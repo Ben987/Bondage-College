@@ -83,34 +83,74 @@ var LocationViewChat = {
 	,OnPlayerEnter(player){console.log("enter " + player.id)}
 	,OnPlayerReconnect(player){console.log("reconnect " + player.id)}
 	,OnAction(action){
+		var scrollToBot = Util.ScrollableElementIsAtBottom(LocationViewChat.logContainer);	
+		
+		var originPlayer = LocationController.GetPlayer(action.originPlayerId);
+		var targetPlayer = LocationController.GetPlayer(action.targetPlayerId);
+		var color = originPlayer.settings.gui.chat.labelColor;
 		switch(action.type){
 			case "ChatMessage":
-				LocationViewChat.AddChatMessageToLog(action.result.content);
+				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", name:originPlayer.name, content:action.result.content});
 				LocationViewChat.AddChatMessageToFigureBox(action.originPlayerId, action.result.content);
 			break;
 			case "MoveToSpot":
-				var content = "" + action.originPlayerId + " " + (action.finished ? "completed" : "started")
-						+ " moving to " + action.targetSpotName + " ";
-				LocationViewChat.AddChatMessageToLog(content);						
+				var content = "*" + originPlayer.character.name + " " + (action.finished ? ">>" : ">") + " " + action.targetSpotName + "*";
+				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});				
+			break;
+			case "AppearanceUpdateOther":
+				var content = "*" + originPlayer.character.name + " " + (action.finished ? "completed" : "started") + " updating appearance of " + targetPlayer.name + "*";
+				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});					
 			break;
 			case "AppearanceUpdateSelf":
-				var content =  "" + action.originPlayerId + " updated her appearance"; 
-				LocationViewChat.AddChatMessageToLog(content);
+				//no message
 			break;
 			default:
 				console.log("Chat unhandled " + action.type);
 		}
+		
+		if(scrollToBot) LocationViewChat.logContainer.scrollTop = LocationViewChat.logContainer.scrollHeight;
+	}
+	
+	/*
+	,OnAction_MoveToSpot(action){
+	
 	}
 	
 	
-	
-	,AddChatMessageToLog(content){
-		//var data = {playerId:playerId, type:type, content:content};
-		//LocationViewChat.messageLog.push(data);
+	,OnAction_ChatMessage(action){
+		var origniPlayer = LocationController.GetPlayer(action.originPlayerId);
+		var color = new Util.Color.Instance(Util.Color.TYPE_HEXSTRING, origniPlayer.settings.gui.chat.labelColor)	
+		//var messageDiv = Util.CreateElement({parent:LocationViewChat.logContainer, cssClass:"chat-log-message", cssStyles:{backgroundColor:color.ToCssColor(0.1)}});
+		var messageDiv = Util.CreateElement({parent:LocationViewChat.logContainer, cssClass:"chat-log-message"});
 		
-		var scrollToBot = Util.ScrollableElementIsAtBottom(LocationViewChat.logContainer);
-		Util.CreateElement({parent:LocationViewChat.logContainer, className:"chat-log-item", textContent:content});
-		if(scrollToBot) LocationViewChat.logContainer.scrollTop = LocationViewChat.logContainer.scrollHeight;
+		var messageDataDiv = Util.CreateElement({parent:messageDiv, cssClass:"chat-log-message-data"});
+		var timeDiv = Util.CreateElement({parent:messageDataDiv, textContent:"10:20", cssClass:"chat-log-message-data-time"});
+		var originIdDiv = Util.CreateElement({parent:messageDataDiv, textContent:"334", cssClass:"chat-log-message-data-id"});
+
+		var nameSpan = Util.CreateElement({tag:"span", parent:messageDiv, textContent:origniPlayer.name +": ", cssClass:"chat-log-message-name", cssStyles:{color:color.ToCssColor()}});
+		var contentSpan = Util.CreateElement({tag:"span", parent:messageDiv, textContent:action.result.content, cssClass:"chat-log-message-content"});
+		AddChatMessageToLog
+		LocationViewChat.AddChatMessageToFigureBox(action.originPlayerId, action.result.content);
+	}*/
+	
+	,AddChatMessageToLog(messageData){
+		var color = new Util.Color.Instance(Util.Color.TYPE_HEXSTRING,  messageData.color ? messageData.color : "#ffffff");
+		
+		var cssStyles = messageData.narration ? {backgroundColor:color.ToCssColor(0.1), fontStyle:"italic", color:"gray"} : {color:"black"};
+		var messageDiv = Util.CreateElement({cssClass:"chat-log-message", cssStyles:cssStyles});
+		
+		if(messageData.id || messageData.time){
+			var messageDataDiv =	Util.CreateElement({parent:messageDiv, cssClass:"chat-log-message-data"});
+			if(messageData.time)	Util.CreateElement({parent:messageDataDiv, textContent:messageData.time, cssClass:"chat-log-message-data-time"});
+			if(messageData.id) 		Util.CreateElement({parent:messageDataDiv, textContent:messageData.id, cssClass:"chat-log-message-data-id"});
+		}
+		
+		if(messageData.name)
+			var nameSpan = Util.CreateElement({tag:"span", parent:messageDiv, textContent:messageData.name +": ", cssClass:"chat-log-message-name", cssStyles:{color:color.ToCssColor()}});
+		
+		var contentSpan = Util.CreateElement({tag:"span", parent:messageDiv, textContent:messageData.content, cssClass:"chat-log-message-content"});
+		
+		setTimeout(function(){LocationViewChat.logContainer.appendChild(messageDiv);}, 20);
 	}
 	
 	,AddChatMessageToFigureBox(playerId, content){

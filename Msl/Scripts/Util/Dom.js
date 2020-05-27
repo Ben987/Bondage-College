@@ -1,7 +1,7 @@
 'use strict'
 
-Util.ProcessIncludes = function(callback){
-	var includes = document.getElementsByTagName("include");//is dynamic list
+Util.ProcessIncludesRecursive = function(topElement, callback){	
+	var includes = topElement.getElementsByTagName("include");//is dynamic list
 	var loadCount = 0, totalToLoad = includes.length;
 	for(var i = 0; i < includes.length; i++){
 		let includeElement = includes[i];
@@ -15,13 +15,15 @@ Util.ProcessIncludes = function(callback){
 					,attributes:{id:includeElement.getAttribute("id"), name:includeElement.getAttribute("name")}
 				});
 				includeElement.parentNode.removeChild(includeElement);
-				if(++loadCount == totalToLoad && callback) callback();				
+				if(++loadCount == totalToLoad && callback) callback();
+				
+				setTimeout(function(){Util.ProcessIncludesRecursive(el);}, 20);
 			}
 		}
 		r.send();
 	}	
 }
-	
+
 
 Util.CreateElement = function(params){
 	var element = params.template ? document.getElementById(params.template).cloneNode(true) : document.createElement(params.tag ? params.tag : "DIV");
@@ -41,6 +43,9 @@ Util.CreateElement = function(params){
 		if(params.events[key])
 			element.addEventListener(key, params.events[key]);
 	
+	for(var key in params.dataset)
+		element.dataset[key] = params.dataset[key];
+	
 	if(params.className) 
 		element.className = params.className;
 	
@@ -53,6 +58,8 @@ Util.CreateElement = function(params){
 	for(var key in params.cssStyles ) 
 		element.style[key] = params.cssStyles[key] ;
 	
+	if(params.hasOwnProperty("parent") && ! params.parent) console.error("Key for parent node exists, but is null!");
+	
 	if(params.parent){
 		var parent = typeof(params.parent) === "string" ? document.getElementById(params.parent) : params.parent;
 		if(params.insertFirst)
@@ -64,6 +71,12 @@ Util.CreateElement = function(params){
 	}
 	
 	return element;
+}
+
+Util.InitSelectableMenu = function(menuIconContainerElement){
+	for(var j = 0; j < menuIconContainerElement.childNodes.length; j++)
+		if(menuIconContainerElement.childNodes[j].nodeType == 1)
+			menuIconContainerElement.childNodes[j].addEventListener("click", function(){Util.SelectElementAndDeselectSiblings(this);});	
 }
 
 
@@ -94,13 +107,14 @@ Util.GetFirstChildNodeByName = function(element, name){
 	return Util.GetFirstChildNodeWithAttribute(element, "name", name);
 }
 
-Util.SelectElementAndDeselectSiblings = function(elementToSelect, selectionCssClass){
+Util.SelectElementAndDeselectSiblings = function(elementToSelect, className){
+	if(! className) className = "selected";
 	var nodes = elementToSelect.parentNode.childNodes;
 	for(var i = 0; i < nodes.length; i++)
 		if(nodes[i].nodeType == 1)
-			nodes[i].classList.remove(selectionCssClass);
+			nodes[i].classList.remove(className);
 		
-	if(elementToSelect) elementToSelect.classList.add(selectionCssClass);
+	if(elementToSelect) elementToSelect.classList.add(className);
 }
 	
 Util.DetachElementsAndClear = function(listOrMap){

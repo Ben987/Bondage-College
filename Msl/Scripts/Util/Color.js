@@ -28,8 +28,8 @@ Util.Color = {
 		}
 		
 		
-		this.ToCssColor = function(){
-			return "rgb(" + (this.red) + "," + this.green + "," + this.blue + ")";
+		this.ToCssColor = function(opacity){
+			return opacity ? "rgba(" + (this.red) + "," + this.green + "," + this.blue+ "," + opacity + ")" :"rgb(" + (this.red) + "," + this.green + "," + this.blue + ")";
 		}
 		
 		this.ToCssFilter = function(){

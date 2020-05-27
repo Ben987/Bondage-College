@@ -4,12 +4,14 @@ var MainController = {
 	divIdList : ["LoginView", "MainView", "CreateLocationTypesView", "CreateLocationView"]
 	,locationTypesCache:null
 	,playerAccount:null
+	,onlineFriendList:{}
 	
 	,Login(memberNumber){
 		memberNumber = memberNumber ? memberNumber : parseInt(document.getElementById("loginMemberNumber").value);
-		if(! memberNumber) return;
 		
-		MslServer.GetPlayerCharacter(memberNumber);
+		MslServer.Send("GetPlayerCharacter", {memberNumber:memberNumber}, function(data){
+			this.GetPlayerCharacterResp(data);
+		}.bind(this))
 	}
 	
 	
@@ -18,7 +20,9 @@ var MainController = {
 		console.log(data);
 		MainController.playerAccount = new PlayerAccount(data.player);
 		MainController.ShowMainViewAndCreateButton();
-		MslServer.GetAvailableLocations();
+		MslServer.Send("GetAvailableLocations", {}, function(data){
+			this.GetAvailableLocationsResp(data);
+		}.bind(this));
 	}
 	
 	
@@ -28,32 +32,39 @@ var MainController = {
 		MainController.ShowMainViewAndCreateButton();
 		Util.CreateElement({parent:"MainView", tag:"br"});
 		data.locations.forEach(location => {
-			Util.CreateElement({parent:"MainView", template:"InterfaceButtonTemplate",attributes:{value:"Enter " + location.id}
+			Util.CreateElement({parent:"MainView", tag:"button",textContent:"Enter " + location.id
 					,events:{click:() => MainController.EnterLocation(location.id)}});
 		});
 	}
 	
 	
 	,EnterLocation(locationId){
-		MslServer.EnterLocation(locationId);
+		MslServer.Send("EnterLocation",{locationId:locationId},function(data){
+			this.EnterLocationResp(data);
+		}.bind(this));
 	}
 	
 	,ExitLocation(){
-		MslServer.ExitLocation(LocationController.GetSpot().name);
+		MslServer.Send("ExitLocation", {originSpotName:LocationController.GetSpot().name}, function(data){
+			this.ExitLocationResp(data);
+		}.bind(this));
 	}
 	
 	
 	,ShowMainViewAndCreateButton(){
 		MainController.HideOtherAndShowView("MainView", true);		
-		Util.CreateElement({parent:"MainView", template:"InterfaceButtonTemplate",attributes:{value:"Create Location"}
-				,events:{click:MainController.ShowCreateLocationTypes}
-		})
+		Util.CreateElement({parent:"MainView",  tag:"button", textContent:"Create Location"
+			,events:{click:MainController.ShowCreateLocationTypes.bind(this)}
+		});
 	}
 	
 	
 	,ShowCreateLocationTypes(){
-		if(!MainController.locationTypesCache)
-			MslServer.GetAvailableLocationTypes();
+		if(!MainController.locationTypesCache){
+			MslServer.Send("GetAvailableLocationTypes", {}, function(data){
+				this.GetAvailableLocationTypesResp(data);
+			}.bind(this));
+		}
 		else
 			MainController.HideOtherAndShowView("CreateLocationTypesView");
 	}
@@ -68,7 +79,7 @@ var MainController = {
 		
 		MainController.HideOtherAndShowView("CreateLocationTypesView");
 		MainController.locationTypesCache.forEach(el => {
-			Util.CreateElement({parent:"CreateLocationTypesView", template:"CreateLocationButtonTemplate", attributes:{type:"submit", value:el.name}
+			Util.CreateElement({parent:"CreateLocationTypesView", tag:"button", textContent:el.name
 					,events:{click:function(){MainController.ShowCreateLocation(el)}}});
 		});
 		
@@ -79,15 +90,19 @@ var MainController = {
 	,ShowCreateLocation(locationDef){ 
 		MainController.HideOtherAndShowView("CreateLocationView", true);
 		
-		var buttonElement = Util.CreateElement({parent:"CreateLocationView", template:"CreateLocationButtonTemplate"
-			, attributes:{value:"Create new " + locationDef.name}
-			, events:{click:function(){MainController.CreateLocation(locationDef.name)}}});
+		var buttonElement = Util.CreateElement({
+			parent:"CreateLocationView"
+			,tag:"button"
+			,textContent:"Create new " + locationDef.name
+			,events:{click:function(){MainController.CreateLocation(locationDef.name)}}
+		});
 		
 		Util.CreateElement({parent:"CreateLocationView", tag:"br"});
 		
 		locationDef.entrances.forEach(el =>{
-			var radio = Util.CreateElement({parent:"CreateLocationView", template:"LocationEntranceSelectionTemplate"
-				,attributes:{name:"LocationEntrance", value:el, id:el}
+			var radio = Util.CreateElement({
+				parent:"CreateLocationView", tag:"input"
+				,attributes:{type:"radio",name:"LocationEntrance", value:el, id:el}
 			});
 			Util.CreateElement({parent:"CreateLocationView", tag:"label", attributes:{"for":el}, innerHTML:el});
 			Util.CreateElement({parent:"CreateLocationView", tag:"br"});
@@ -97,14 +112,18 @@ var MainController = {
 	
 	,CreateLocation(locationType){
 		var selectedEntry = [...document.getElementsByName('LocationEntrance')].find(el => el.checked);
-		MslServer.CreateLocation(locationType, selectedEntry ? selectedEntry.value : null);
+		MslServer.Send("CreateLocation", {locationType:locationType, selectedEntry:selectedEntry ? selectedEntry.value : null}, function(data){
+			this.EnterLocationResp(data);
+		}.bind(this));
 	}
 	
 	
 	,ExitLocationResp(data){
 		LocationController.UnInit();
 		MainController.ShowMainViewAndCreateButton();
-		MslServer.GetAvailableLocations();		
+		MslServer.Send("GetAvailableLocations", {}, function(data){
+			this.GetAvailableLocationsResp(data);
+		}.bind(this));
 	}
 	
 	

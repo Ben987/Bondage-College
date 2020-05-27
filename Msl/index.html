@@ -11,32 +11,45 @@
 	<script src="../BondageClub/Scripts/socket.io/socket.io.js"></script>	
 	
 	<script src="./environment.js"></script>
-	<script src="./Scripts/MslServer.js"></script>
-	<script src="./Scripts/DevTools.js"></script>
+	
 	<script src="./Scripts/Util.js"></script>
-	<script src="./Scripts/Util/Dom.js"></script>
 	<script src="./Scripts/Util/Core.js"></script>
+	<script src="./Scripts/Util/Dom.js"></script>
 	<script src="./Scripts/Util/Color.js"></script>
 	<script src="./Scripts/Util/Render.js"></script>
 	<script src="./Scripts/Util/Svg.js"></script>
+	
 	<script src="./Scripts/F3dcgAssets/Assets.js"></script>
 	<script src="./Scripts/F3dcgAssets/Import.js"></script>
 	<script src="./Scripts/F3dcgAssets/Validation.js"></script>
 	<script src="./Scripts/F3dcgAssets/Inventory.js"></script>
 	<script src="./Scripts/F3dcgAssets/Render.js"></script>
+	
+	<script src="./Scripts/MslServer.js"></script>
+	<script src="./Scripts/DevTools.js"></script>	
 	<script src="./Scripts/MainContainer.js"></script>	
 	<script src="./Scripts/MainController.js"></script>
 	<script src="./Scripts/PlayerAccount.js"></script>
+	
+	<script src="./Scripts/Location/Actions.js"></script>
+	<script src="./Scripts/Location/Chat.js"></script>
+	<script src="./Scripts/Location/Controller.js"></script>	
+	<script src="./Scripts/Location/Minigames.js"></script>
+	<script src="./Scripts/Location/Player.js"></script>
+	<script src="./Scripts/Location/View.js"></script>
+	
+	<script src="./Scripts/Location/Hud.js"></script>
+	
+	<script src="./Scripts/Location/Dialog/Dialog.js"></script>
+	<script src="./Scripts/Location/Dialog/Appearance.js"></script>
+	<script src="./Scripts/Location/Dialog/AppearanceActions.js"></script>
+	<script src="./Scripts/Location/Dialog/Profile.js"></script>
+	<script src="./Scripts/Location/Dialog/Social.js"></script>
+	<script src="./Scripts/Location/Dialog/Settings.js"></script>
+	
 	<script src="./Scripts/Minigame/MinigameAbCancel.js"></script>
 	<script src="./Scripts/Minigame/MinigameComplyRefuse.js"></script>	
-	<script src="./Scripts/Location/Player.js"></script>
-	<script src="./Scripts/Location/Controller.js"></script>	
-	<script src="./Scripts/Location/View.js"></script>
-	<script src="./Scripts/Location/ViewInput.js"></script>
-	<script src="./Scripts/Location/Actions.js"></script>
-	<script src="./Scripts/Location/FocusView.js"></script>
-	<script src="./Scripts/Location/FocusActions.js"></script>
-	<script src="./Scripts/Location/Minigames.js"></script>
+	
 	
 	<link rel="stylesheet" type="text/css" href="./styles.css" />
 </head>
@@ -50,28 +63,24 @@ window.addEventListener("load", function(){
 	F3dcgAssets.Init();
 	MainContainer.Resize();
 	MslServer.Init();
-	Util.ProcessIncludes();
-	
-
+	Util.ProcessIncludesRecursive(document.body);
 });
 
 window.addEventListener('resize', MainContainer.Resize, false);
-
- console.log(Number.isInteger("33"));
 
 </script>
 
 <body style="width:100%; height:100%; background-color:black; color:white; margin:0px; padding:0px; overflow:hidden;user-select:none;">
 	<div id="MainContainer" class="full-block" style="position:relative;overflow:hidden;display:inline-block;">
 		<div id="LoginView" class="full-block">
-			<input type="submit" value="Login 1" class="regular-input" onclick="MainController.Login(1)" />
-			<input type="submit" value="Login 2" class="regular-input" onclick="MainController.Login(2)" />
-			<input type="submit" value="Login 4" class="regular-input" onclick="MainController.Login(4)" />
+			<button onclick="MainController.Login(1)">Login 1</button>
+			<button onclick="MainController.Login(2)">Login 2</button>
+			<button onclick="MainController.Login(4)">Login 4</button>
 			<br />
 		</div>
 		
-		<div id="MainView" class="full-block" style="display:none;" 
-			<input type="submit" value="Create Location" onclick="MainController.ShowCreateLocationTypes()" class="regular-input" /> <br />
+		<div id="MainView" class="full-block" style="display:none;" >
+			<button onclick="MainController.ShowCreateLocationTypes()" >Create Location</button> <br />
 		</div>
 		
 		<div id="CreateLocationTypesView" class="full-block" style="display:none;"></div>
@@ -90,46 +99,31 @@ window.addEventListener('resize', MainContainer.Resize, false);
 				<!--<include src="./Html/Hud/InputSideLeft.htm" id="LocationViewSideInputLeft" class="roll-left roll-left-small"></include>-->
 				<!--<include src="./Html/Hud/BottomChat.htm" id="LocationViewChat" class="chat-container"></include>-->
 				
-				<div class="hover-button-highlight" style="position:absolute; left:97%; top:2%; width:3%; height:6%; background-color:white" onclick="ClassicHud.RollForward()"><img src="./Images/Icons/Out.png" alt="RollOut" class="fill-container"/></div>
-				<include src="./Html/Hud/Classic.htm" id="ClassicRoomHud" class="classic-hud-right-container"></include>
+				<div class="hover-button-highlight" style="position:absolute; left:97%; top:2%; width:3%; height:6%;" onclick="ClassicHud.RollForward()"><img src="./Images/Icons/Out.png" alt="RollOut" class="fill-container"/></div>
+				<include src="./Html/Hud/Classic.htm" id="ClassicRoomHud" class="classic-hud-right"></include>
 			</div>
-			
 		</div>
 	</div>
 	
 	<div name="uiTemplates" style="display:none; visibility:hidden">
 		
-		<include src="./Html/InterfaceButtons.htm"></include>
-		
-		<div id="FocusSelfTemplate" class="focus-container focus-container-normal" onclick="event.stopPropagation()">
-			
-			<include src="./Html/Focus/ItemGroupTypeSelection.htm" name="itemGroupTypeSelection" class="focus-item-group-type-selection-icon-container"></include>
-			
-			<div name="figureContainer" class="focus-figure">
-				<include src="./Html/Focus/ItemGroupIcons.htm" name="itemGroupSelection" class="focus-item-group-selection-icon-container"></include>
-			</div>			
-			<div name="itemSelection" class="focus-item-selection-icon-container" ></div>
-			
-			<include src="./Html/Focus/ControlButtons.htm" name="controlButtons" class="focus-control-buttons-container"></include>
-			
-			<include src="./Html/Focus/ItemActionButtons.htm"  name="itemActionButtons" class="focus-item-action-buttons-container"></include>
-			
-			<include src="./Html/Focus/ColorPicker.htm" name="itemColorActions" class="focus-item-actions focus-color-picker-container"></include>
-			
-			<div name="itemVariantActions" class="focus-item-actions focus-item-actions-variant-container"></div>
-			<div name="itemLockActions" class="focus-item-actions focus-item-actions-lock-container"></div>
-			<div name="itemRemoteActions" class="focus-item-actions focus-item-actions-lock-container"></div>
-			<div name="itemDirectActions" class="focus-item-actions focus-item-actions-lock-container"></div>
-			<div name="itemArousalActions" class="focus-item-actions focus-item-actions-lock-container"></div>
+		<div id="DialogSelfTemplate" class="dialog normal" onclick="event.stopPropagation()">
+			<img alt="backgroundImage" class='dialog-background full-block' />
+			<include src="./Html/Dialog/TopLevelMenu.htm" name="topLevelMenuContainer" class="dialog-selection" ></include>
+			<div name="viewContainer" class="dialog-views">
+				<include src="./Html/Dialog/Profile.htm" name="profile" class="dialog-profile"></include>
+				<include src="./Html/Dialog/Social.htm" name="social" class="dialog-social"></include>
+				<include src="./Html/Dialog/Appearance.htm" name="appearance" class="dialog-appearance"></include>
+				<include src="./Html/Dialog/Settings.htm" name="settings" class="dialog-appearance"></include>
+			</div>
 		</div>
 		
 		<include src="./Html/Hud/Profile.htm" id="PlayerProfileTemplate" class="hud-profile-container"></include>
 		
-		
 		<!-- minigames -->
 		
-		<include src="./Html/Minigame/AbCancel.htm" id="MinigameAbCancelTemplate" class="mingame-abcancel-container"></include>
-		<include src="./Html/Minigame/ComplyRefuse.htm" id="MinigameComplyRefuseTemplate" class="mingame-complyrefuse-container"></include>
+		<include src="./Html/Minigame/AbCancel.htm" id="MinigameAbCancelTemplate" class="mingame-abcancel"></include>
+		<include src="./Html/Minigame/ComplyRefuse.htm" id="MinigameComplyRefuseTemplate" class="mingame-complyrefuse"></include>
 		
 		<!-- dev tools -->
 		

@@ -2,61 +2,40 @@
 
 var MslServer = {
 	socket:null
+	,responseCallbacks:{}
 	,Init(){
 		//console.log(ServerURL + "/msl");
 		MslServer.socket = io(ServerURL + "/msl");
-		MslServer.socket.on("GeneralError", resp => {  console.log(resp); });
-		MslServer.socket.on("GetPlayerCharacter", resp => MslServer.ServerResponse(resp, MainController.GetPlayerCharacterResp));
-		MslServer.socket.on("GetAvailableLocations", resp => MslServer.ServerResponse(resp, MainController.GetAvailableLocationsResp));
-		MslServer.socket.on("GetAvailableLocationTypes", resp => MslServer.ServerResponse(resp, MainController.GetAvailableLocationTypesResp));
-		//MslServer.socket.on("CreateLocation", resp => MslServer.ServerResponse(resp, MainController.CreateLocationResp));
-		MslServer.socket.on("EnterLocation", resp => MslServer.ServerResponse(resp, MainController.EnterLocationResp));
-		MslServer.socket.on("ExitLocation", resp => MslServer.ServerResponse(resp, MainController.ExitLocationResp));
 		
-		MslServer.socket.on("PlayerEnterLocation", resp => MslServer.ServerResponse(resp, LocationController.PlayerEnterLocationResp));
-		MslServer.socket.on("PlayerExitLocation", resp => MslServer.ServerResponse(resp, LocationController.PlayerExitLocationResp));
-		
-		MslServer.socket.on("LocationAction", resp => MslServer.ServerResponse(resp, LocationController.LocationActionResp));
-		//MslServer.socket.on("LocationUpdate", resp => MslServer.ServerResponse(resp, LocationController.LocationUpdateResp));
+		MslServer.socket.on("AllOfThem", resp => {MslServer.ServerResponse(resp); });
 	}
+	
 	,ServerResponse(resp, callback){
-		if(!resp.meta.success)		console.log(resp); 
-		else						callback(resp.data);
+		if(! resp.meta.messageId){
+			console.log(resp);
+		}else{
+			var callbacks = MslServer.responseCallbacks[resp.meta.messageId];
+			var callbackSuccess = typeof(callbacks) == "function" ? callbacks : callbacks.success;
+			var callbackError = typeof(callbacks) == "function" ? MslServer.LogError : callbacks.error ? callbacks.error : MslServer.LogError;
+			
+			if(resp.meta.success)
+				callbackSuccess(resp.data);
+			else
+				callbackError(resp.meta.error);
+		}	
 	}
 	
-	
-	
-	,ExitLocation(spotName){
-		MslServer.socket.emit("ExitLocation", {spotName:spotName});
+	,Send(handlerName, data, callbacks){
+		var messageId;
+		if(callbacks){
+			messageId = Util.RandomId();
+			MslServer.responseCallbacks[messageId] = callbacks;
+		}
+		
+		MslServer.socket.emit(handlerName, {meta:{messageId:messageId}, data:data});
 	}
 	
-	,EnterLocation(locationId){
-		MslServer.socket.emit("EnterLocation", {locationId:locationId});
-	}
-
-	,GetAvailableLocations(){
-		MslServer.socket.emit("GetAvailableLocations", {});
-	}
-	,ActionStart(data){
-		MslServer.socket.emit("ActionStart", data);
-	}
-	,ActionProgress(data){
-		MslServer.socket.emit("ActionProgress", data);
-	}
-	,GetPlayerCharacter(id){
-		MslServer.socket.emit("GetPlayerCharacter", {memberNumber: id});
-	}
-	,UpdateAccountSettings(profileData){
-		MslServer.socket.emit("UpdateAccountSettings", profileData);
-	}
-
-	,GetAvailableLocationTypes(){
-		MslServer.socket.emit("GetAvailableLocationTypes", {});
-	}
-	,CreateLocation(locationType, entrySpotName){
-		MslServer.socket.emit("CreateLocation", {locationType:locationType, entrySpotName:entrySpotName});
-	}
-	,MoveToSpot(originSpotName, destinationSpotName){
-		MslServer.socket.emit("MoveToSpot", {originSpotName:originSpotName, destinationSpotName:destinationSpotName});
+	,LogError(error){
+		console.error(error);
 	}
 }

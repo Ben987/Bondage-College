@@ -1,6 +1,6 @@
 'use strict'
 
-var ActionView = function(container, callback){
+var DialogAppearanceActionView = function(container, callback){
 	this.container = container;
 	this.callback = callback;
 	this.Show = function(){
@@ -15,9 +15,9 @@ var ActionView = function(container, callback){
 }
 
 
-var LockActionView = function(container, callback) {
-	this.prototype = Object.create(ActionView.prototype);
-	ActionView.call(this, container, callback);
+var LockDialogAppearanceActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceActionView.prototype);
+	DialogAppearanceActionView.call(this, container, callback);
 	
 	this.SetItem = function(appearanceItem, inventoryItem, inventoryLocks, inventoryKeys){
 		Util.ClearNodeContent(this.container);
@@ -147,9 +147,9 @@ var LockActionView = function(container, callback) {
 }
 
 
-var VariantActionView = function(container, callback) {
-	this.prototype = Object.create(ActionView.prototype);
-	ActionView.call(this, container, callback);
+var VariantDialogAppearanceActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceActionView.prototype);
+	DialogAppearanceActionView.call(this, container, callback);
 	
 	this.SetItem = function(appearanceItem, inventoryItem){
 		Util.ClearNodeContent(this.container);
@@ -172,28 +172,28 @@ var VariantActionView = function(container, callback) {
 };
 
 
-var RemoteActionView = function(container, callback) {
-	this.prototype = Object.create(ActionView.prototype);
-	ActionView.call(this, container, callback);
+var RemoteDialogAppearanceActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceActionView.prototype);
+	DialogAppearanceActionView.call(this, container, callback);
 };
 
 
-var DirectActionView = function(container, callback) {
-	this.prototype = Object.create(ActionView.prototype);
-	ActionView.call(this, container, callback);
+var DirectDialogAppearanceActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceActionView.prototype);
+	DialogAppearanceActionView.call(this, container, callback);
 };
 
 
-var ArousalActionView = function(container, callback) {
-	this.prototype = Object.create(ActionView.prototype);
-	ActionView.call(this, container, callback);
+var ArousalDialogAppearanceActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceActionView.prototype);
+	DialogAppearanceActionView.call(this, container, callback);
 };
 
 
 
-var ColorActionView = function(container, callback) {
-	this.prototype = Object.create(ActionView.prototype);
-	ActionView.call(this, container, callback);
+var ColorDialogAppearanceActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceActionView.prototype);
+	DialogAppearanceActionView.call(this, container, callback);
 	
 	this.containerHue = Util.GetFirstChildNodeByName(this.container, "hue");
 	this.containerSat = Util.GetFirstChildNodeByName(this.container, "saturation");

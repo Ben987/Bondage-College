@@ -18,10 +18,10 @@ var LocationController = {
 	
 	,delegates:{//Each delegate implements Init, OnScreenChange, InterruptActions and UnInit
 		chat:null
-		,profile:null //Move this to main controller?
+		//,profile:null //Move this to main controller?
 		,view:null	//renderer for the location
 		,actions:null //renderer for action html on the location
-		,focus:null
+		,dialog:null
 		,devTools:null
 		,minigames:null
 	}
@@ -46,15 +46,15 @@ var LocationController = {
 		
 		//Delegates Order is important
 		this.delegates.chat = LocationViewChat;
-		this.delegates.profile = ProfileManagement;
+		//this.delegates.profile = ProfileManagement;
 		this.delegates.view = LocationView;	
 		this.delegates.actions = LocationActions;
-		this.delegates.focus = LocationFocusView;
+		this.delegates.dialog = LocationDialog;
 		this.delegates.devTools = DevTools;
 		this.delegates.minigames = LocationMinigames;
 		
 		LocationController.locationContainer.style.display = "block";
-		Object.values(this.delegates).forEach(delegate => {delegate?.Init()});
+		Object.values(this.delegates).forEach(delegate => {/*console.log(delegate);*/ delegate.Init()});
 		
 		ClassicHud.RollForward();
 	}
@@ -88,10 +88,12 @@ var LocationController = {
 				return LocationController.location.players[spotName];
 	}
 	
+	
 	//Other private methods
 	,InterruptDelegateActions(){
 		Object.values(LocationController.delegates).forEach(delegate => delegate?.Interrupt());
 	}
+	
 	
 	//Show actions or popups
 	,ShowMoveActions(){
@@ -100,17 +102,17 @@ var LocationController = {
 	}
 	
 	
-	,StartPlayerFocus(player){
+	,StartPlayerDialog(player){
 		LocationController.InterruptDelegateActions();
-		LocationController.delegates.focus.Focus(player ? player : LocationController.GetPlayer());
+		LocationController.delegates.dialog.Start(player ? player : LocationController.GetPlayer());
 	}
 	
-	
+	/*
 	,ShowPlayerProfile(player){
 		//console.log(player);
 		LocationController.InterruptDelegateActions();
 		LocationController.delegates.profile.ShowProfile(player ? player : LocationController.GetPlayer());
-	}
+	}*/
 	
 	/*
 	,IsActionInProgress(){
@@ -155,22 +157,29 @@ var LocationController = {
 	//Actions, that update server state
 	,ExitLocation(){MainController.ExitLocation();}	
 	
+	/*
 	,UpdatePlayerProfile(profileData){
-		MslServer.UpdateAccountSettings(profileData);
+		MslServer.Send("UpdateAccountSettings", profileData, function(data){
+			
+		}.bind(this));
 		LocationController.InterruptDelegateActions();
-	}
+	}*/
 
-	,UpdatePlayer(playerUpdate){
+	,UpdatePlayerAppearance(playerUpdate){
 		if(! playerUpdate?.IsValid()) throw "ChangeWasInvalidated";
 		
 		var appearanceUpdate = playerUpdate.GetFinalAppItemList();
 		
 		if(playerUpdate.player.id == MainController.playerAccount.id){			
 			F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player);
-			MslServer.ActionStart({type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate});
+			MslServer.Send("ActionStart", {type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate}, function(data){
+				this.LocationActionResp(data);
+			});
 		}else{
 			F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player, LocationController.GetPlayer());
-			MslServer.ActionStart({type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()});
+			MslServer.Send("ActionStart", {type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()}, function(data){
+				this.LocationActionResp(data);
+			}.bind(this));
 		}
 		
 		LocationController.InterruptDelegateActions();
@@ -178,11 +187,15 @@ var LocationController = {
 	
 	//,SpotInfo(spotName){MslServer.ActionStart({type:"SpotInfo", originSpotName:LocationController.currentSpotName, targetSpotName:spotName});}
 	,MoveToSpot(spotName){
-		MslServer.ActionStart({type:"MoveToSpot", originSpotName:LocationController.GetSpot().name, targetSpotName:spotName});
+		MslServer.Send("ActionStart", {type:"MoveToSpot", originSpotName:LocationController.GetSpot().name, targetSpotName:spotName}, function(data){
+			this.LocationActionResp(data);
+		}.bind(this));
 	}
 	
 	,SendChatMessage(content){
-		MslServer.ActionStart({type:"ChatMessage", content:content});
+		MslServer.Send("ActionStart", {type:"ChatMessage", content:content}, function(data){
+			this.LocationActionResp(data);
+		}.bind(this));
 	}
 	
 	
@@ -257,7 +270,12 @@ var LocationController = {
 		if(action.originPlayerId == MainController.playerAccount.id){//self action
 			if(! action.finished){//minigame
 				LocationController.currentAction = action;
-				LocationController.delegates.minigames.StartMinigame(action.challenge, (result) => {result.id=action.id; MslServer.ActionProgress(result);});
+				LocationController.delegates.minigames.StartMinigame(action.challenge, function(result){
+					result.id = action.id;
+					MslServer.Send("ActionProgress", result, function(data){
+						this.LocationActionResp(data);
+					}.bind(this));
+				}.bind(this));
 			}else if(action.success){//finished
 				Move(action.originPlayerId, action.originSpotName, action.targetSpotName)				
 				//LocationController.currentAction.finished = true;

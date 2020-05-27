@@ -6,18 +6,21 @@ textarea {box-sizing: border-box;}
 
 #LocationViewHud {pointer-events:none;}
 #LocationViewHud > div {pointer-events:all;}
-.hud-profile-container {position:absolute;width:80%;height:100%;left:10%;top:0%; background-color:rgba(255,255,255,0.8);}
+.hud-profile {position:absolute;width:80%;height:100%;left:10%;top:0%; background-color:rgba(255,255,255,0.8);}
 
-.main-interface-button{width:15%;height:10%}
 .fill-container{width:100%;height:100%;}
-.full-block{width:100%;height:100%;position:absolute;}
+.full-block{position:absolute;width:100%;height:100%;}
 
-input.regular-input{width:15%;height:10%;font-size:2.5em}
-input.smaller-input{width:10%;height:5%;font-size:1.7em}
-input.smallest-input{width:10%;height:5%;font-size:1.2em}
-input.create-location-button{width:15%;height:10%;}
-input.select-location-entrance{}
+button:hover{background-color:lightblue}
+button{font-size:1.2em}
+input {font-size:1.2em}
+textarea {font-size:1.2em}
+#LoginView > button {width:15%;height:10%; font-size:2em}
+#MainView > button {width:15%;height:10%; font-size:2em}
+#CreateLocationTypesView > button {width:15%;height:10%; font-size:2em}
+ 
 
+.hover-button-highlight{background-color:white}
 .hover-button-highlight:hover{background-color:lightblue}
  
 /*Minigames*/
@@ -27,7 +30,7 @@ div.progress_bar{height:100%;background-color:green;}
 div.cancel_button{width:100%;height:100%;background-color:gray;}
 
 /*Location view*/
-.screen-spot-container{position:absolute;}
+.screen-spot{position:absolute;}
 .location-spot-event-listener{position:absolute;}
 .location-spot-figure-listener{position:absolute;width:50%; height:75%; margin-left:25%; margin-top:25%}
 .spot-base{position:absolute;border-radius:45%;background-color: rgba(0,0,0,0.25)}
@@ -35,47 +38,35 @@ div.cancel_button{width:100%;height:100%;background-color:gray;}
 .spot-base-far{border:5px rgba(0,0,0,0.6) solid}
 .spot-base-free{border:5px rgba(0,128,0,0.6) solid}
 .spot-base-occupied{border:5px rgba(128,0,0,0.6) solid}
-.spot-icon-examine{position:absolute}
+.spot-examine{position:absolute}
 
 
 @keyframes fadeOut { 0% {opacity:1;} 100% { opacity:0;} }
 @keyframes blink { 0% {opacity:1;}  89%{opacity:1;}  90%{opacity:0;}  99%{opacity:0;}  100%{opacity:1}}
 .blinking {animation-name: blink; animation-duration: 6s; animation-iteration-count: infinite; }
 
-/*Location view Hud*/
-/*
-div.roll-left{float:right;position:relative;height:100%; width:8%;background-color: rgb(255, 255, 255);}
-div.roll-left-full{left:92%;}
-div.roll-left-small{left:-6%}
-div.roll-left-out{left:-100%}
-img.roll-left-icon{width:100%;height:16%}
-*/
 .tooltiptext {display:none; position: relative; left:-800%; top:-120%; width:600%; height:100%; padding-top:20%; background-color: darkblue; color: white;  text-align: center; }
 
-.classic-hud-right-container {position:absolute; left:100%; height:100%; width:0%; background-color:black;padding:.25%;}
-.classic-hud-action-icon-container {height:6%;width:100%;margin-bottom:.5%}
-.classic-hud-action-icon-container > div {background-color:white;width:12.5%;height:100%;padding-left:2.5%; padding-right:2.5%; margin-right:5%; float:left}
-.classic-hud-action-icon-container > div.spread {width:28%;padding-left:8%; padding-right:8%; margin-right:8%; }
-.classic-hud-action-icon-container > div:hover .tooltiptext {display:inline-block;}
-.classic-hud-action-icon-container > div > img {width:100%;height:100%}
-.classic-hud-action-icon-container > div > img.rectangle {width:150%;position:relative;left:-25%}
-.classic-hud-chat-log-container {background-color:white; width:100%;height:86%;margin-bottom:.5%;overflow-y:auto;user-select:text;}
-.classic-hud-chat-log-container  > .chat-log-item {color:black; font-size:2em; word-break:break-word;}
-.classic-hud-chat-input-container {width:100%;height:8%;}
-.classic-hud-chat-input-container > textarea{float:left; width:80%; height: 100%; resize:none; border:none;top:0;padding:0;font-size:2em;margin-right:0.5%;margin-left:0.5%;}
-.classic-hud-chat-input-container > textarea.spread {width:60%;}
-.classic-hud-chat-input-container > div{float:left; width:9.5%; padding:0.5%; height:99%;background-color:white}
-.classic-hud-chat-input-container > div.spread {width:19%; }
+.classic-hud-right {position:absolute; left:100%; height:100%; width:0%; background-color:black;padding:.25%;}
+.classic-hud-action {height:6%;width:100%;margin-bottom:.5%}
+.classic-hud-action > div {background-color:white;width:12.5%;height:100%;padding-left:2.5%; padding-right:2.5%; margin-right:5%; float:left}
+.classic-hud-action > div.spread {width:28%;padding-left:8%; padding-right:8%; margin-right:8%; }
+.classic-hud-action > div:hover .tooltiptext {display:inline-block;}
+.classic-hud-action > div > img {width:100%;height:100%}
+.classic-hud-action > div > img.rectangle {width:150%;position:relative;left:-25%}
+.classic-hud-chat-log {background-color:white; width:100%;height:86%;margin-bottom:.5%;overflow-y:scroll;user-select:text;}
+.classic-hud-chat-log > .chat-log-message {font-size:1.5em;padding-left:0.25em}
+.classic-hud-chat-log > .chat-log-message > .chat-log-message-name {text-shadow: 0.025em 0.025em black;}
+.classic-hud-chat-log > .chat-log-message > .chat-log-message-content {word-wrap:break-word;}
+.classic-hud-chat-log > .chat-log-message > .chat-log-message-data {float:right; color:gray; text-align:right}
+.classic-hud-chat-log > .chat-log-message > .chat-log-message-data > .chat-log-message-data-time {font-size:0.5em}
+.classic-hud-chat-log > .chat-log-message > .chat-log-message-data > .chat-log-message-data-id {font-size:0.25em}
+.classic-hud-chat-input {width:100%;height:8%;}
+.classic-hud-chat-input > textarea{float:left; width:80%; height: 100%; resize:none; border:none;top:0;padding:0;font-size:2em;margin-right:0.5%;margin-left:0.5%;}
+.classic-hud-chat-input > textarea.spread {width:60%;}
+.classic-hud-chat-input > div{float:left; width:9.5%; padding:0.5%; height:99%;background-color:white}
+.classic-hud-chat-input > div.spread {width:19%; }
 
-
-/*
-div.chat-container{position:absolute;left:10%;height:8%;width:80%;bottom:0;}
-div.chat-log{background-color: rgba(0, 0, 0, 0.5);overflow-y: scroll; height:0%; width:100%;position:absolute;}
-
-.chat-button-roll{width:5%; height:100%; position:absolute; background-color: rgba(255, 255, 255, 0.5);}
-textarea.chat-input{width:90%; height:100%; position:absolute;left:5%; resize:none; border:none;top:0;padding:0;font-size:2em}
-div.chat-log-item{font-size:2em}
-*/
 div.chat-hover-item{
 	background-color: rgba(0, 0, 0, 0.5); word-break:break-word; text-align:center; padding:1%;
 	width:150%; left:-25%; top:-20%; position:relative; border-radius:30px
@@ -86,75 +77,99 @@ div.chat-hover-item:after {
 	border-top-color:#00aabb;border-bottom:0;border-left:0;margin-left:-24px;margin-bottom:-48px;
 }
 
+/*Location dialog view*/
+.dialog {position:absolute;width:100%;height:100%;left:0%;top:0%; background-color:rgb(255,255,255);color:black;}
+.dialog.transparent {background-color:rgba(255,255,255,0.8);}
+.dialog-background {filter: brightness(20%);}
 
-/*Location focus view*/
+.dialog-selection {position:absolute;width:10%;height:100%}
+.dialog-selection > div {height:20%;padding:15%;}
+.dialog-selection > div.selected {box-shadow: inset 0 0 1em 0.5em #0aa;}
+.dialog-selection > div > img {width:100%; height:100%;background-color:white}
 
-.focus-container {position:absolute;width:80%;height:100%;left:10%;top:0%; background-color:rgb(255,255,255);}
-.focus-container.transparent {background-color:rgba(255,255,255,0.8);}
+.dialog-views {position:absolute;left:10%;width:90%;height:100%; color:white; font-size:150%}
+.dialog-views > div {position:absolute;left:0;top:0;width:100%;height:100%; transition: opacity 250ms}
 
-.focus-figure {position:absolute;width:31.25%;left:34.375%;height:100%;left:31%}
+.dialog-profile {width:100%;height:100%}
+.dialog-profile-description {float:right;width:40%;height:100%;padding:1%;}
+.dialog-profile-description > textarea {width:100%;height:80%; color:black;}
+.dialog-profile-description > button {width:40%;}
 
-.focus-item-group-type-selection-icon-container {float:left;width:10%;height:100%;}
-.focus-item-group-type-selection-icon-container > div {height:16.5%; padding:5%}
-.focus-item-group-type-selection-icon-container > div.selected {background-color:green}
-.focus-item-group-type-selection-icon-container > div > img {width:100%; height:100%;background-color:white}
+.dialog-profile-character {float:left; width:20%; } 
+.dialog-profile-character > div {} 
+.dialog-profile-character > div:empty{display:none} 
+.dialog-profile-reputation {float:left; width:20%; color:white;}
+.dialog-profile-skills {float:left; width:20% ;color:white} 
 
-.focus-item-group-selection-icon-container {}
-.focus-item-group-selection-icon-container > div {display:none;border:.1em black solid;word-break:break-word;color:black}
-.focus-item-group-selection-icon-container > div.selected {border:.1em green solid}
-.focus-item-group-selection-icon-container > div > img {position:absolute; width:100%; height:100%;}
-.focus-item-group-selection-icon-container > .grid-cell {position:absolute;height:7%;margin:1%;overflow:hidden;}
-.focus-item-group-selection-icon-container > .heightx2 {height:14.1%;}
-.focus-item-group-selection-icon-container > .heightx3 {height:21.2%;}
-.focus-item-group-selection-icon-container > .col0 {left:5%; width:24%}
-.focus-item-group-selection-icon-container > .col1 {left:30%; width:40%}
-.focus-item-group-selection-icon-container > .col2 {left:71%; width:24%}
-.focus-item-group-selection-icon-container > .widthx3 {width:90%;}
-.focus-item-group-selection-icon-container > .row0 {top:0%}
-.focus-item-group-selection-icon-container > .row1 {top:7.1%}
-.focus-item-group-selection-icon-container > .row2 {top:14.2%}
-.focus-item-group-selection-icon-container > .row3 {top:21.3%}
-.focus-item-group-selection-icon-container > .row4 {top:28.4%}
-.focus-item-group-selection-icon-container > .row5 {top:35.6%}
-.focus-item-group-selection-icon-container > .row6 {top:42.7%}
-.focus-item-group-selection-icon-container > .row7 {top:49.8%}
-.focus-item-group-selection-icon-container > .row8 {top:56.9%}
-.focus-item-group-selection-icon-container > .row9 {top:64.0%}
-.focus-item-group-selection-icon-container > .row10 {top:71.1%}
-.focus-item-group-selection-icon-container > .row11 {top:78.2%}
-.focus-item-group-selection-icon-container > .row12 {top:85.3%}
+.dialog-social {position:absolute;top:0;left:0;width:100%; height:100%; overflow-y:auto;}}
 
-.focus-wardrobe-container {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll}
-.focus-wardrobe-container > div {position:relative;width:30%;padding-top:66%;margin:1.5% 1.5% 1.5% 1.5%;float:left;}
-.focus-wardrobe-container > div  > div {position:absolute;width:100%;height:81%;top:0%;left:0}
+.dialog-appearance{}
+.dialog-appearance-figure {position:absolute;width:27.17%;left:30%;height:100%;border:1px white solid;}
 
-.focus-item-selection-icon-container {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll}
-.focus-item-selection-icon-container > div {position:relative;width:30%;padding-top:30%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:rgba(0,0,0,.4);overflow:hidden;}
-.focus-item-selection-icon-container > div > img {position:absolute;width:100%;height:100%;top:0%;left:0}
-.focus-item-selection-icon-container > div > div {position:absolute;top:0;}
+.dialog-appearance-group-type-selection {position:absolute;left:0%;width:10%;height:100%;}
+.dialog-appearance-group-type-selection > div {height:16.5%; padding:15%}
+.dialog-appearance-group-type-selection > div.selected {box-shadow: inset 0 0 1em 0.5em #0aa;}
+.dialog-appearance-group-type-selection > div > img {width:100%; height:100%;background-color:white}
+.dialog-appearance-group-type-selection > div > img:hover {background-color:gray;}
 
-.focus-item-actions {position:absolute; left:10%; width:20%; height:50%; display:none;}
-.focus-color-picker-container {}
-.focus-color-picker-container > div {width:100%}
-.focus-color-picker-container input {width:96%; font-size:1.6em}
+.dialog-appearance-group-selection {}
+.dialog-appearance-group-selection > div {display:none;border:.1em white solid;word-break:break-word;color:black}
+.dialog-appearance-group-selection > div.selected {border:.1em green solid}
+.dialog-appearance-group-selection > div > img {position:absolute; width:100%; height:100%;}
+.dialog-appearance-group-selection > .grid-cell {position:absolute;height:7%;margin:1%;overflow:hidden;}
+.dialog-appearance-group-selection > .heightx2 {height:14.1%;}
+.dialog-appearance-group-selection > .heightx3 {height:21.2%;}
+.dialog-appearance-group-selection > .col0 {left:5%; width:24%}
+.dialog-appearance-group-selection > .col1 {left:30%; width:40%}
+.dialog-appearance-group-selection > .col2 {left:71%; width:24%}
+.dialog-appearance-group-selection > .widthx3 {width:90%;}
+.dialog-appearance-group-selection > .row0 {top:0%}
+.dialog-appearance-group-selection > .row1 {top:7.1%}
+.dialog-appearance-group-selection > .row2 {top:14.2%}
+.dialog-appearance-group-selection > .row3 {top:21.3%}
+.dialog-appearance-group-selection > .row4 {top:28.4%}
+.dialog-appearance-group-selection > .row5 {top:35.6%}
+.dialog-appearance-group-selection > .row6 {top:42.7%}
+.dialog-appearance-group-selection > .row7 {top:49.8%}
+.dialog-appearance-group-selection > .row8 {top:56.9%}
+.dialog-appearance-group-selection > .row9 {top:64.0%}
+.dialog-appearance-group-selection > .row10 {top:71.1%}	
+.dialog-appearance-group-selection > .row11 {top:78.2%}
+.dialog-appearance-group-selection > .row12 {top:85.3%}
 
-.focus-item-actions-lock-container {}
-.focus-item-actions-lock-container > img{width:45%; float:left; margin:2%}
+.dialog-appearance-wardrobe {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll;font-size:50%}
+.dialog-appearance-wardrobe > div {position:relative;width:30%;padding-top:66%;margin:1.5% 1.5% 1 .5% 1.5%;float:left;}
+.dialog-appearance-wardrobe > div  > div {position:absolute;width:100%;height:81%;top:0%;left:0}
 
-.focus-control-buttons-container{position:absolute; left:10%; top:50%; width:10%; height:50%; }
-.focus-control-buttons-container > img {width:80%; margin:10% 10% 10% 10%}
+.dialog-appearance-item-selection {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll}
+.dialog-appearance-item-selection > div {position:relative;width:30%;padding-top:30%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:white; word-break:break-word}
+.dialog-appearance-item-selection > div > img {position:absolute;width:100%;height:100%;top:0%;left:0}
+.dialog-appearance-item-selection > div > div {position:absolute;top:0;}
 
-.focus-item-action-buttons-container{position:absolute; left:20%;top:50%; width:10%; height:50%; overflow-y:auto;}
-.focus-item-action-buttons-container > img{width:80%; margin:10% 10% 10% 10%; display:none;}
+.dialog-appearance-control-buttons {position:absolute; left:10%; top:50%; width:10%; height:50%; }
+.dialog-appearance-control-buttons > div {width:100%; height:35%; padding:15%;}
+.dialog-appearance-control-buttons > div > img{width:100%; height:100%; background-color:white;}
 
-.focus-item-actions-variant-container {overflow-y:auto}
-.focus-item-actions-variant-container > div {width:45%; float:left; margin:2%; position:relative;}
-.focus-item-actions-variant-container > div > img {width:100%; margin:2%}
-.focus-item-actions-variant-container > div > div {position:absolute; overflow:hidden; word-break:break-word}
+.dialog-appearance-item-action-buttons{position:absolute; left:20%;top:50%; width:10%; height:50%; overflow-y:auto;}
+.dialog-appearance-item-action-buttons > img{width:80%; margin:10% 10% 10% 10%; display:none;}
 
-.validation_message_fadout {color:red;font-size:2em;position:absolute}
+.dialog-appearance-item-action {position:absolute; left:10%; width:20%; height:50%; display:none;}
+.dialog-appearance-item-action.color-picker {}
+.dialog-appearance-item-action.color-picker > div {width:100%}
+.dialog-appearance-item-action.color-picker input {width:96%;}
 
-.mingame-abcancel-container{position:absolute;top:47.5%;left:40%;width:20%; height:20%;;eft:16.25b ackground-color:black;text-align:center;vertical-align:middle;}
-.mingame-complyrefuse-container{position:absolute;top:40%;left:30%;width:40%; height:40%;background-color:black;text-align:center;vertical-align:middle}focus-color-picker-container
+.dialog-appearance-item-action.lock {}
+.dialog-appearance-item-action.lock > img{width:45%; float:left; margin:2%}
+
+
+.dialog-appearance-item-action.variant {overflow-y:auto}
+.dialog-appearance-item-action.variant > div {width:45%; float:left; margin:2%; position:relative;}
+.dialog-appearance-item-action.variant > div > img {width:100%; margin:2%}
+.dialog-appearance-item-action.variant > div > div {position:absolute; overflow:hidden; word-break:break-word}
+
+.validation_message_fadout {color:red;position:absolute}
+
+.mingame-abcancel{position:absolute;top:47.5%;left:40%;width:20%; height:20%;;eft:16.25b ackground-color:black;text-align:center;vertical-align:middle;}
+.mingame-complyrefuse{position:absolute;top:40%;left:30%;width:40%; height:40%;background-color:black;text-align:center;vertical-align:middle}
 
 

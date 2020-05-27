@@ -84,7 +84,7 @@ var LocationView = {
 			//spotDiv = LocationView.spotDivs[spot.name];
 		//}else{
 			var left = spot.left+"%", top = spot.top+"%", width = spot.scale+"%", height = spot.scale*2/LocationView.aspectRatio+"%";
-			spotDiv = Util.CreateElement({parent:"LocationViewMidground", className:"screen-spot-container"
+			spotDiv = Util.CreateElement({parent:"LocationViewMidground", className:"screen-spot"
 				,cssStyles:{
 					left:left, top:top, width:width, height:height
 					,zIndex:spot.zIndex
@@ -153,10 +153,23 @@ var LocationView = {
 		}else if(! originSpotDiv){ //player came from a spot that was not rendered
 			this.BuildPlayerFigure(destinationSpotDiv, player.render);
 		}else{ //save rendering effort
-			originSpotDiv.removeChild(originSpotDiv.figure);
-			destinationSpotDiv.appendChild(originSpotDiv.figure);
-			destinationSpotDiv.figure = originSpotDiv.figure;
+			var figureElement = originSpotDiv.figure
+			var boxOrigin= originSpotDiv.getBoundingClientRect();
+			var boxDestination = destinationSpotDiv.getBoundingClientRect();
 			originSpotDiv.figure = null;
+			
+			figureElement.style.left = (boxOrigin.x - boxDestination.x) + "px";
+			figureElement.style.top = (boxOrigin.y- boxDestination.y) + "px";
+			
+			originSpotDiv.removeChild(figureElement);
+			destinationSpotDiv.appendChild(figureElement);
+			destinationSpotDiv.figure = figureElement;
+			
+			setTimeout(function(){
+				figureElement.style.left="0";
+				figureElement.style.top="0";	
+				figureElement.style.transition="1s";
+			}, 20);
 		}
 	}
 	

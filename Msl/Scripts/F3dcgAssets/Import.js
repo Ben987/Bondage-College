@@ -26,7 +26,7 @@ F3dcgAssets.InitItems = function(){
 		
 		AssetGroup.Items = {};
 		if(AssetGroup.type == F3dcgAssets.EXPRESSION){
-			AssetGroup.Items["None"] = {Name:"None"};
+			AssetGroup.Items[AssetGroup.Group] = {Name:AssetGroup.Group};
 			AssetGroup.AllowExpression.forEach(exp => {
 				AssetGroup.Items[exp] = {Name:exp}
 				F3dcgAssets.ItemNameToGroupNameMap[exp] = AssetGroup.Group;

@@ -20,4 +20,8 @@ Util.CloneRecursive = function(o){
 	
 	return clone;
 }
-	
+
+Util.RandomId = function(){
+	return Math.random().toString(36).replace('0.', '') 
+}
+

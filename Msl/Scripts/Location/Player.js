@@ -56,7 +56,8 @@ var LocationPlayerUpdate = function(player){
 	this.updateRestraint = null;
 	
 	this.GetInventoryItem = function(groupName, itemName){
-		return this.items[F3dcgAssets.AssetGroups[groupName].type][groupName].find(inventoryItem => inventoryItem.itemName == itemName);
+		var item = this.items[F3dcgAssets.AssetGroups[groupName].type][groupName].find(inventoryItem => inventoryItem.itemName == itemName);
+		return item;
 	}
 	
 	this.GetCurrentWornItem = function(groupName){
@@ -80,11 +81,11 @@ var LocationPlayerUpdate = function(player){
 		var update = {type:"suit", appearance:{}};
 		this.updateStack.push(update);		
 		
-		update.appearance.frame = this.appearance.frame;
+		update.appearance.frame = appearanceSuit.frame;
 		this.appearance.frame = appearanceSuit.frame;
 		for(var groupType in F3dcgAssets.SuitSelfTypeGroups){
-			update.appearance[groupType] = appearanceSuit[groupType];
-			this.appearance[groupType] = appearanceSuit[groupType];
+			update.appearance[groupType] = Util.CloneRecursive(appearanceSuit[groupType]);
+			this.appearance[groupType] = Util.CloneRecursive(appearanceSuit[groupType])
 		}
 		
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);
@@ -125,7 +126,6 @@ var LocationPlayerUpdate = function(player){
 				this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});
 			break;
 			case F3dcgAssets.BONDAGE_TOY:
-				//if(oldItem == 
 				if(this.updateRestraint) return ["OnlyOneBondageToyAtTime"];
 				this.updateRestraint = true;
 				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildBondageToyAppearanceItem(itemName, colorHexString);
@@ -149,22 +149,25 @@ var LocationPlayerUpdate = function(player){
 		
 		switch(updateToUndo.type){
 			case F3dcgAssets.BONDAGE_TOY:
-				this.updateRestraint = false; //no break
+				this.updateRestraint = false; //no break	
 			case F3dcgAssets.CLOTH:
 			case F3dcgAssets.ACCESSORY:
-				var itemPrev = this.GetMostRecentUpdateForGroup(updateToUndo.groupName);			
-				var item = itemPrev ? itemPrev.item : this.player.appearance[updateToUndo.type][updateToUndo.groupName];
+				var itemPrev = this.GetMostRecentUpdatedItemForGroup(updateToUndo.groupName);			
+				var item = itemPrev ? itemPrev : this.player.appearance[updateToUndo.type][updateToUndo.groupName];
 				this.appearance[updateToUndo.type][updateToUndo.groupName] = item;				
 			case F3dcgAssets.EXPRESSION:				
-				var itemPrev = this.GetMostRecentUpdateForGroup(updateToUndo.groupName);
-				var item = itemPrev ? itemPrev.item : this.player.appearance[updateToUndo.type][updateToUndo.groupName];
+				var itemPrev = this.GetMostRecentUpdatedItemForGroup(updateToUndo.groupName);
+				var item = itemPrev ? itemPrev : this.player.appearance[updateToUndo.type][updateToUndo.groupName];
 				this.appearance[updateToUndo.type][updateToUndo.groupName] = item;						
 			break;
 			case "suit":
+				var framePrev = this.GetMostRecentFrameUpdate();
+				this.appearance.frame = framePrev ? framePrev : this.player.appearance.frame;
+				
 				for(var groupType in F3dcgAssets.SuitSelfTypeGroups){
 					F3dcgAssets.SuitSelfTypeGroups[groupType].forEach(groupName => {
-						var itemPrev = this.GetMostRecentUpdateForGroup(groupName);
-						var item = itemPrev ? itemPrev.item : this.player.appearance[groupType][groupName];
+						var itemPrev = this.GetMostRecentUpdatedItemForGroup(groupName);
+						var item = itemPrev ? itemPrev : this.player.appearance[groupType][groupName];
 						this.appearance[groupType][groupName] = item;						
 					})
 				}
@@ -188,7 +191,8 @@ var LocationPlayerUpdate = function(player){
 	
 	
 	this.HasChanges = function(){
-		return this.updateStack.length > 0;
+		console.log(this.updateRestraint);
+		return this.updateStack.length > 0 || this.updateRestraint;
 	}
 	
 	
@@ -229,16 +233,27 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.GetMostRecentUpdateForGroup = function(groupName){
+	this.GetMostRecentFrameUpdate = function(){
+		var mostRecentSuitFrame;
+		this.updateStack.forEach(update => {
+			if(update.type == "suit"){
+				mostRecentSuitFrame = update.appearance.frame;
+			}
+		});
+		return mostRecentSuitFrame;	
+	}
+	
+	
+	this.GetMostRecentUpdatedItemForGroup = function(groupName){
 		var mostRecent;
 		this.updateStack.forEach(update => {
 			if(update.type != "suit"){
 				if(update.groupName == groupName)
-					mostRecent = update;
+					mostRecent = update.item;
 			}else{
 				for(var groupType in F3dcgAssets.SuitSelfTypeGroups){
-					F3dcgAssets.SuitSelfTypeGroups[groupType].forEach(groupName => {
-						if(groupName == groupName){
+					F3dcgAssets.SuitSelfTypeGroups[groupType].forEach(suitGroupName => {
+						if(groupName == suitGroupName){
 							mostRecent = update.appearance[groupType][groupName];
 						}
 					});

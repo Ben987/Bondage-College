@@ -28,7 +28,7 @@ var F3dcgAssetsInventory = {
 		F3dcgAssets.ExpressionGroups.forEach(groupName => {
 			applicableItems[F3dcgAssets.EXPRESSION][groupName] = [];//The none case is handles specially
 			for(var itemName in F3dcgAssets.AssetGroups[groupName].Items){
-				var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + (itemName != "None" ? groupName + "/" + itemName + "/Icon.png" : groupName + "/Icon.png");
+				var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + (itemName != groupName ? groupName + "/" + itemName + "/Icon.png" : groupName + "/Icon.png");
 				applicableItems[F3dcgAssets.EXPRESSION][groupName].push({itemName:itemName, iconUrl: iconUrl});
 			};
 		});
