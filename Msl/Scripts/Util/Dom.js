@@ -133,6 +133,30 @@ Util.ScrollableElementIsAtBottom = function(element){
 	return Math.abs(Math.ceil(element.scrollHeight - element.scrollTop) - element.clientHeight) < 10;
 }
 
+Util.GetTypedPropertyValueFromElement = function(obj, property, inputElement){
+	var valuePrev = Util.GetProperty(obj, property);
+	if(typeof(valuePrev) == "boolean") return inputElement.checked ? true : false; 
+	if(typeof(valuePrev) == "number") return inputElement.value ? parseInt(inputElement.value) : 0; 
+	return inputElement.value ? inputElement.value : ""; 
+}
+
+Util.SetTypedPropertyValueOnObjectAndElement = function(obj, property, inputElement, value){
+	var valuePrev = Util.GetProperty(obj, property);
+	
+	if(typeof(valuePrev) == "boolean") {
+		inputElement.checked = value ? true : false;
+		Util.SetProperty(obj, property, value ? true : false);
+	}else if(typeof(valuePrev) == "number"){
+		Util.SetProperty(obj, property, parseInt(value));
+		inputElement.value = value;
+	}else{
+		inputElement.value = value;
+		Util.SetProperty(obj, property, value);
+	}
+}
+
+
+
 Util.DateTime = {
 	FormatSimplest(timestamp){
 		var days = Math.floor(timestamp / (1000 * 60 * 60 * 24));

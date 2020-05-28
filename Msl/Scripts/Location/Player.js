@@ -95,16 +95,15 @@ var LocationPlayerUpdate = function(player){
 	
 	
 	this.AddColor = function(itemName, color){
-		return this.AddItem(itemName, null, color);
+		return this.AddItem(F3dcgAssets.ItemNameToGroupNameMap[itemName], itemName, null, color);
 	}
 	
 	
 	this.AddVariant = function(itemName, variantName){
-		return this.AddItem(itemName, variantName);
+		return this.AddItem(F3dcgAssets.ItemNameToGroupNameMap[itemName], itemName, variantName);
 	}
 	
-	this.AddItem = function(itemName, variantName, color){
-		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+	this.AddItem = function(groupName, itemName, variantName, color){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var oldItem = this.appearance[AssetGroup.type][groupName];		
 		var colorHexString = color ? color.ToHexString() : oldItem?.color;
@@ -191,7 +190,6 @@ var LocationPlayerUpdate = function(player){
 	
 	
 	this.HasChanges = function(){
-		console.log(this.updateRestraint);
 		return this.updateStack.length > 0 || this.updateRestraint;
 	}
 	

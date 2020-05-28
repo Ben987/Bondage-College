@@ -1,53 +1,60 @@
- <div style="float:left; width:25%">
-	Actions<br />
-	<select name="permissions.actions.bondageToys">
-		<option value="0">Everyone</option>
-		<option value="1">Everyone but blacklist</option>
-		<option value="2">Any Dom and whitelist</option>
-		<option value="3">Owner, lover, whitelist</option>
-		<option value="4">Owner and Lover</option>
-		<option value="5">Owner only</option>
-	</select>Bondage toys
-	<br />
-	<select name="permissions.actions.clothes">
-		<option value="0">Everyone</option>
-		<option value="1">Everyone but blacklist</option>
-		<option value="2">Any Dom and whitelist</option>
-		<option value="3">Owner, lover, whitelist</option>
-		<option value="4">Owner and Lover</option>
-		<option value="5">Owner only</option>
-	</select>Clothes
-	<br />
-	<select name="permissions.actions.arousal">
-		<option value="0">Everyone</option>
-		<option value="1">Everyone but blacklist</option>
-		<option value="2">Any Dom and whitelist</option>
-		<option value="3">Owner, lover, whitelist</option>
-		<option value="4">Owner and Lover</option>
-		<option value="5">Owner only</option>
-	</select> Arousal actions
-	<br />
-	<select name="permissions.actions.poses">
-		<option value="0">Everyone</option>
-		<option value="1">Everyone but blacklist</option>
-		<option value="2">Any Dom and whitelist</option>
-		<option value="3">Owner, lover, whitelist</option>
-		<option value="4">Owner and Lover</option>
-		<option value="5">Owner only</option>
-	</select>Poses actions
-	<br />
+	<form>
+	<div style="float:left; width:25%">
+		Actions<br />
+		<select name="settings.permissions.actions.bondageToys">
+			<option value="0">Everyone</option>
+			<option value="1">Everyone but blacklist</option>
+			<option value="2">Any Dom and whitelist</option>
+			<option value="3">Owner, lover, whitelist</option>
+			<option value="4">Owner and Lover</option>
+			<option value="5">Owner only</option>
+		</select>Bondage toys
+		<br />
+		<select name="settings.permissions.actions.clothes">
+			<option value="0">Everyone</option>
+			<option value="1">Everyone but blacklist</option>
+			<option value="2">Any Dom and whitelist</option>
+			<option value="3">Owner, lover, whitelist</option>
+			<option value="4">Owner and Lover</option>
+			<option value="5">Owner only</option>
+		</select>Clothes
+		<br />
+		<select name="settings.permissions.actions.arousal">
+			<option value="0">Everyone</option>
+			<option value="1">Everyone but blacklist</option>
+			<option value="2">Any Dom and whitelist</option>
+			<option value="3">Owner, lover, whitelist</option>
+			<option value="4">Owner and Lover</option>
+			<option value="5">Owner only</option>
+		</select> Arousal actions
+		<br />
+		<select name="settings.permissions.actions.poses">
+			<option value="0">Everyone</option>
+			<option value="1">Everyone but blacklist</option>
+			<option value="2">Any Dom and whitelist</option>
+			<option value="3">Owner, lover, whitelist</option>
+			<option value="4">Owner and Lover</option>
+			<option value="5">Owner only</option>
+		</select>Poses actions
+		<br />
+	</div>
+	
+	<br style="clear:both" />
+
+	Chat label color.<input  name="settings.gui.chat.labelColor" /> <br />
+	Focus background transparent <input type="checkbox" name="settings.gui.focus.transparentBackground" />  <br />
+
+	<div style="width:10%; height:5%" onclick="LocationController.delegates.profile.UpdatePlayerProfile();">Submit</div>
+</form>
+
+<div name="itemLists" style="float:left; width:25%">
+	Items Black list
+	<table name="black">
+		<tbody></tbody>
+		<tfoot>
+			<tr><td><select></td><td><button>Add</button></td></tr>
+		</tfoot>
+	</table>
+	
 </div>
 
-<div style="float:left; width:25%">
-	Items<br />
-	Black list<br />
-	<textarea name="permissions.itemLists.black"></textarea><br />
-</div>
-
-
-<br style="clear:both" />
-
-Chat label color.<input  name="gui.chat.labelColor" /> <br />
-Focus background transparent <input type="checkbox" name="gui.focus.transparentBackground" />  <br />
-
-<div style="width:10%; height:5%" onclick="LocationController.delegates.profile.UpdatePlayerProfile();">Submit</div>

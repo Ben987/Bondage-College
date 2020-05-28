@@ -12,13 +12,14 @@ textarea {box-sizing: border-box;}
 .full-block{position:absolute;width:100%;height:100%;}
 
 button:hover{background-color:lightblue}
-button{font-size:1.2em}
+button {font-size:1.2em}
 input {font-size:1.2em}
 textarea {font-size:1.2em}
+select {font-size:1em}
 #LoginView > button {width:15%;height:10%; font-size:2em}
 #MainView > button {width:15%;height:10%; font-size:2em}
 #CreateLocationTypesView > button {width:15%;height:10%; font-size:2em}
- 
+
 
 .hover-button-highlight{background-color:white}
 .hover-button-highlight:hover{background-color:lightblue}
@@ -78,7 +79,7 @@ div.chat-hover-item:after {
 }
 
 /*Location dialog view*/
-.dialog {position:absolute;width:100%;height:100%;left:0%;top:0%; background-color:rgb(255,255,255);color:black;}
+.dialog {position:absolute;width:100%;height:100%;left:0%;top:0%; background-color:rgb(255,255,255);color:black;opacity:0;transition:opacity 250ms}
 .dialog.transparent {background-color:rgba(255,255,255,0.8);}
 .dialog-background {filter: brightness(20%);}
 

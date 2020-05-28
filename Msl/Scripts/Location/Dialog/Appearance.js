@@ -205,7 +205,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	
 	this.OnItemClick = function(itemName){
 		this.selectedItemName = itemName;
-		var validationErrors = this.mainDialog.updateDelegate.AddItem(this.selectedItemName);
+		var validationErrors = this.mainDialog.updateDelegate.AddItem(this.selectedItemGroupName, this.selectedItemName);
 		this.RenderAppearanceOrShowErrors(validationErrors);
 		
 		//if(! validationErrors.length) this.UpdateItemGroupIconImage(this.selectedItemGroupTypeName, this.selectedItemGroupName);

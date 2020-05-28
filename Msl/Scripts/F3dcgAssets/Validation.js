@@ -141,7 +141,8 @@ F3dcgAssets.DoesPlayerHavePermission = function(permissionActionType, pT, pO){
 
 F3dcgAssets.ValidateItemNotBlacklisted = function(item, playerTarget) {
 	if(!item) return;
-	if(playerTarget.settings.permissions.itemLists.black.includes(item)) throw "ItemBlacklisted " + item.name;
+	
+	if(playerTarget.settings.permissions.itemLists.black.includes(item.name)) throw "ItemBlacklisted " + item.name;
 }
 
 F3dcgAssets.ValidateItemIsOwned = function(item, groupType, playerTarget, playerOrigin) {

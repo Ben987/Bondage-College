@@ -1,6 +1,26 @@
 'use strict'
 
 
+Util.GetProperty = function(obj, property){
+	var propertyPathStack = property.split(".");
+
+	for(var i = 0; i < propertyPathStack.length - 1; i++)
+		obj = obj[propertyPathStack[i]];
+	
+	return obj[propertyPathStack[propertyPathStack.length-1]];
+}
+
+
+Util.SetProperty = function(obj, property, value){
+	var propertyPathStack = property.split(".");
+
+	for(var i = 0; i < propertyPathStack.length - 1; i++)
+		obj = obj[propertyPathStack[i]];
+	
+	obj[propertyPathStack[propertyPathStack.length-1]] = value;
+}
+
+
 Util.ReplaceInPlace = function(existingObject, sourceObject){
 	for(var key in existingObject) delete existingObject[key];
 	for(var key in sourceObject) existingObject[key] = sourceObject[key];

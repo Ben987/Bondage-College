@@ -154,10 +154,12 @@ var LocationView = {
 			this.BuildPlayerFigure(destinationSpotDiv, player.render);
 		}else{ //save rendering effort
 			var figureElement = originSpotDiv.figure
-			var boxOrigin= originSpotDiv.getBoundingClientRect();
+			var boxOrigin = originSpotDiv.getBoundingClientRect();
 			var boxDestination = destinationSpotDiv.getBoundingClientRect();
 			originSpotDiv.figure = null;
 			
+			figureElement.style.width = (boxOrigin.width / boxDestination.width)*100 + "%";
+			figureElement.style.height = (boxOrigin.height / boxDestination.height)*100 + "%";
 			figureElement.style.left = (boxOrigin.x - boxDestination.x) + "px";
 			figureElement.style.top = (boxOrigin.y- boxDestination.y) + "px";
 			
@@ -167,9 +169,12 @@ var LocationView = {
 			
 			setTimeout(function(){
 				figureElement.style.left="0";
-				figureElement.style.top="0";	
+				figureElement.style.top="0";
+				figureElement.style.width = 100 + "%";
+				figureElement.style.height = 100 + "%";				
 				figureElement.style.transition="1s";
 			}, 20);
+
 		}
 	}
 	

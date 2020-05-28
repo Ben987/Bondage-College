@@ -13,9 +13,22 @@ var LocationDialog = {
 	,OnScreenChange(){}
 	,Interrupt(){
 		this.updateDelegate?.Invalidate();
-		this.updateDelegate = this.undefined;
-		this.mainContainer?.parentNode?.removeChild(this.mainContainer);
-		this.mainContainer = null;
+		this.updateDelegate = null;
+		
+		if(this.mainContainer){
+			this.mainContainer.style.opacity = "0";
+			this.mainContainer.addEventListener('transitionend', function(){
+				this.mainContainer.parentNode.removeChild(this.mainContainer);
+				this.mainContainer = null;
+				this.topLevelActionsContainer = null;
+				this.figureContainer = null;
+			}.bind(this));
+		}
+		
+		for(var key in this.viewsContainerElements) {
+			delete this.views[key];
+			delete this.viewsContainerElements[key];
+		}
 	}
 	,UnInit(){}
 	
@@ -24,6 +37,7 @@ var LocationDialog = {
 		this.player = player;
 		this.updateDelegate = player.GetUpdateDelegate();
 		this.mainContainer = Util.CreateElement({parent:LocationController.inputContainer, template:"DialogSelfTemplate"});
+		setTimeout(function(){this.mainContainer.style.opacity = 1;}.bind(this), 20);
 		this.topLevelMenuContainer = Util.GetFirstChildNodeByName(this.mainContainer, "topLevelMenuContainer");
 		this.viewContainer = Util.GetFirstChildNodeByName(this.mainContainer, "viewContainer");
 		Util.InitSelectableMenu(this.topLevelMenuContainer);
@@ -43,8 +57,6 @@ var LocationDialog = {
 		Util.GetFirstChildNodeWithAttribute(this.mainContainer, "alt", "backgroundImage").src = LocationController.backgroundContainer.src;
 		
 		LocationDialog.ShowView(this.currentAction);
-		
-
 	}
 	
 	,ShowView(viewName){

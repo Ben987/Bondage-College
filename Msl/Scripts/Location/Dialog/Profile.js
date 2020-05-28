@@ -37,7 +37,7 @@ var LocationDialogProfileView = function(mainDialog, containerElement){
 	}
 	
 	this.containerElements.reputation = Util.GetFirstChildNodeByName(this.containerElements.main, "reputation");
-	var reputation = mainDialog.player.clubStanding.reputation;
+	var reputation = mainDialog.player.club.reputation;
 	for(var key in reputation){
 		if(key == "dominant" && reputation[key] < 0)
 			Util.GetFirstChildNodeByName(this.containerElements.reputation, "submissive").innerText = "submissive: " -1*reputation[key];
@@ -53,13 +53,14 @@ var LocationDialogProfileView = function(mainDialog, containerElement){
 	
 	this.containerElements.description = Util.GetFirstChildNodeByName(this.containerElements.main, "description");
 	this.descriptionTextarea = this.containerElements.description.getElementsByTagName("textarea")[0];
-	this.descriptionTextarea.value = mainDialog.player.clubStanding.description;
+	this.descriptionTextarea.value = mainDialog.player.club.description;
 	
 	this.updateButton = Util.GetFirstChildNodeByName(this.containerElements.description, "update");
 	this.updateButton.addEventListener("click", function(event){
-		MslServer.UpdatePlayer("clubStanding.description", this.descriptionTextarea.value, "set", function(data){
-			this.descriptionTextarea.value = data;
-		});
+		MslServer.Send("UpdatePlayerProperty", {property:"club.description", value:this.descriptionTextarea.value, operation:"set"}, function(data){
+			this.descriptionTextarea.value = data.value;
+			mainDialog.player.club.description = data.value;
+		}.bind(this));
 	}.bind(this));
 	
 	
