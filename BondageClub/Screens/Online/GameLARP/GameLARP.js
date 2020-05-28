@@ -253,8 +253,7 @@ function GameLARPClick() {
 		}
 
 		// Give two seconds to the server to shuffle the room before calling the start game function (could be reviewed, maybe this is not needed)
-		var waitUntil = new Date().getTime() + 2000;
-		while(new Date().getTime() < waitUntil) true;
+		CommonWait(2000);
 		GameLARPTurnTimer = CurrentTime + 20000;
 
 		// Notices everyone in the room that the game starts

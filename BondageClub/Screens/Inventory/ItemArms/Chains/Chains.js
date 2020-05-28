@@ -33,13 +33,13 @@ const ChainsArmsOptions = [
 	}, {
 		Name: "Hogtied",
 		RequiredBondageLevel: 4,
-		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemMisc"], SetPose: ["Hogtied"], Difficulty: 3 },
+		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], SetPose: ["Hogtied"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false
 	}, {
 		Name: "AllFours",
 		RequiredBondageLevel: 6,
-		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemMisc"], SetPose: ["AllFours"], Difficulty: 3 },
+		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], SetPose: ["AllFours"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false
 	}, {
@@ -119,19 +119,14 @@ function InventoryItemArmsChainsSetPose(NewType) {
 	// Validates a few parameters before hogtied
 	if ((NewType.ArmsOnly == false) && !InventoryAllow(C, ["NotKneeling", "NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
 
-	// Sets the new pose with its effects
+	// Sets the new pose with its effects only if the chains are not locked
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		DialogFocusItem.Property = NewType.Property;
-		if (NewType.Expression != null)
-			for (var E = 0; E < NewType.Expression.length; E++)
-				CharacterSetFacialExpression(C, NewType.Expression[E].Group, NewType.Expression[E].Name, NewType.Expression[E].Timer);
-
-		if (NewType.HiddenItem != null) {
-			InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
-		}
+		if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
 		else InventoryRemove(C, "ItemHidden");
 	} else {
-		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked"); return;
+		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked"); 
+		return;
 	}
 
 	// Adds the lock effect back if it was padlocked
@@ -141,6 +136,7 @@ function InventoryItemArmsChainsSetPose(NewType) {
 	}
 
 	// Refresh the character
+	ChatRoomCharacterUpdate(C);
 	CharacterRefresh(C);
 
 	// Sets the chatroom or NPC message

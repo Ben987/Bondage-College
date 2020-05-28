@@ -22,18 +22,19 @@ Arrest4,Arrest4,Here are my keys.,Anything else?,ArrestHandoverKeys(),PrisonPlay
 Arrest4,Arrest4,Here are my sleeping pills.,Anything else?,ArrestHandoverSleepingPills(),PrisonPlayerHasSleepingPills()
 Arrest4,Arrest4,Here are my spanking toys.,Anything else?,ArrestHandoverSpankingToys(),PrisonPlayerHasSpankingToys()
 Arrest4,Arrest5,I don't have that.,"Well, let's get you strip-searched. Undress to check.",,
+Arrest4,Arrest5,(Silence),"Guess we'll have to strip-search you to find out.",,
 Arrest5,Arrest7,(Take off all your clothes.),There you go. Spread your legs and bend over.,ArrestStripUnderware(),
 Arrest5,Arrest6,(Take off your outer clothing.),Completely undress.,ArrestStripOuterCloth(),
 Arrest5,Arrest6,(Refuse and wait and see.),Will it be soon? We can do it differently!,SetBehavior(-2),
 Arrest6,Arrest7,(Take off the underwear.),Finally. Spread your legs and bend over.,ArrestStripUnderware(),
-Arrest6,Arrest6,(Take off your outer clothing.),Complete and a little bit snappy.,ArrestStripOuterCloth(),!CharacterIsInUnderwear(Player)
+Arrest6,Arrest6,(Take off your outer clothing.),Complete and a little bit snappy.,ArrestStripOuterCloth(),!CharacterIsInUnderwear()
 Arrest7,Arrest8,(Spread your legs and bend over.),She's patting you down. Then she hands you a prisoner suit. Put it on.,,
 Arrest8,Arrest9,(Dress it on.),Now the shackles.,ArrestSuit(),
 Arrest9,,(Wait and see.),Now into the cell. I'll check your equipment.,ArrestEquipmentSearch(),
 Arrest10,,(Wait and see.),What is that? The Dices. Confiscated.,ArrestConfiscatDices(),
 Arrest11,,(Wait and see.),What is that? Keys. Confiscated.,ArrestConfiscatKeys(),
-Arrest12,,(Wait and see.),What is that? Spanking toys. Confiscated.,ConfiscatSpankingToys(),
-Arrest13,,(Wait and see.),What is that? Sleeping pills. Confiscated.,ConfiscatSleepingPills(),
+Arrest12,,(Wait and see.),What is that? Spanking toys. Confiscated.,ArrestConfiscatSpankingToys(),
+Arrest13,,(Wait and see.),What is that? Sleeping pills. Confiscated.,ArrestConfiscatSleepingPills(),
 Arrest14,Arrest15,(Wait and see.),"All right, your bag is clear.",,
 Arrest15,Arrest16,(Wait and see.),Let me check your restraints again.,ArrestShackle(),
 Arrest16,Arrest17,(Wait and see.),I'm going. Think about your behavior.,ArrestLeave(),

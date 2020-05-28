@@ -5,7 +5,7 @@ WardrobeNameInfo,Set wardrobe character name:
 WardrobeNameError,Invalid name for character.
 ResetClothes,Reset character
 Random,Randomize character
-Naked,Strip naked
+Naked,Strip clothes
 StripItem,Strip item
 Next,Next
 Prev,Previous
