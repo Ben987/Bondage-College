@@ -30,7 +30,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,BondageNotConfronted,"I'm so sorry.  I love ropes,|could you tie me up?","You're pathetic, soon you will lick my boots.|Now give me my ropes. (She takes the ropes.)",300,0,-2,GiveRope()
 200,0,0,,Here are your ropes. |Hide them better.,Good!  Now leave me alone.|(She takes the rope and turns around.),300,1,0,GiveRope()
 200,0,0,,Let's talk some more.,Mmmh.  Fine.|What were we talking about?,200,0,0,StopRope()
-200,0,2,,(Strip and tie her.)ADD_MINUTES:1,(You pin her again and tie her wrist behind her back.|She trashes and kicks you but finally submits.),220,0,0,Tie()
+200,0,2,,(Strip and tie her.)ADD_MINUTES:1,(You pin her again and tie her wrist behind her back.|She thrashes and kicks you but finally submits.),220,0,0,Tie()
 200,0,4,,You know you will submit.|(Strip and tie.)ADD_MINUTES:1,(She reluctantly removes her uniform|and gives you her wrist to tie them.),220,0,0,TieSub()
 200,0,0,,"If you want them,|come and fight for them.",,40,-2,0,Fight()
 220,0,0,,(Turn her.),Fuck!  What are you doing now?|(You force her to turn around.),230,0,0,

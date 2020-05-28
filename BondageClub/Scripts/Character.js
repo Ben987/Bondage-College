@@ -45,6 +45,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsChaste: function () { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste: function () { return (this.Effect.indexOf("Chaste") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
+		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
@@ -502,6 +503,13 @@ function CharacterRelease(C) {
 			E--;
 		}
 	CharacterRefresh(C);
+}
+
+// Removes all locks that matches LockName from a character
+function CharacterReleaseFromLock(C, LockName) {
+	for (var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.LockedBy == LockName))
+			InventoryUnlock(C, C.Appearance[A]);
 }
 
 // Removes any binding item from the character if there's no specific padlock on it

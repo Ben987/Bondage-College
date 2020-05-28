@@ -364,12 +364,14 @@ function DialogFacialExpressionsBuild() {
 // Gets the correct label for the current operation (struggling, removing, swaping, adding, etc.)
 function DialogProgressGetOperation(C, PrevItem, NextItem) {
 	if ((PrevItem != null) && (NextItem != null)) return DialogFind(Player, "Swapping");
+	if ((C.ID == 0) && (PrevItem != null) && (SkillGetRatio("Evasion") != 1)) return DialogFind(Player, "Using" + (SkillGetRatio("Evasion") * 100).toString());
 	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(C, PrevItem)) return DialogFind(Player, "Struggling");
 	if ((PrevItem != null) && !Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Block", true)) return DialogFind(Player, "Struggling");
 	if (InventoryItemHasEffect(PrevItem, "Lock", true)) return DialogFind(Player, "Unlocking");
 	if ((PrevItem != null) && InventoryItemHasEffect(PrevItem, "Mounted", true)) return DialogFind(Player, "Dismounting");
 	if ((PrevItem != null) && InventoryItemHasEffect(PrevItem, "Enclose", true)) return DialogFind(Player, "Escaping");
 	if (PrevItem != null) return DialogFind(Player, "Removing");
+	if ((PrevItem == null) && (NextItem != null) && (SkillGetRatio("Bondage") != 1)) return DialogFind(Player, "Using" + (SkillGetRatio("Bondage") * 100).toString());
 	if (InventoryItemHasEffect(NextItem, "Lock", true)) return DialogFind(Player, "Locking");
 	if ((PrevItem == null) && (NextItem != null)) return DialogFind(Player, "Adding");
 	return "...";
@@ -414,7 +416,7 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
 	var S = 0;
 	if ((PrevItem != null) && (C.ID == 0)) {
-		S = S + SkillGetLevel(Player, "Evasion"); // Add the player evasion level
+		S = S + SkillGetWithRatio("Evasion"); // Add the player evasion level (modified by the effectiveness ratio)
 		if (PrevItem.Difficulty != null) S = S - PrevItem.Difficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
 		if ((PrevItem.Property != null) && (PrevItem.Property.Difficulty != null)) S = S - PrevItem.Property.Difficulty; // Subtract the additional item difficulty for expanded items only
 	}
@@ -537,7 +539,7 @@ function DialogMenuButtonClick() {
 						DialogItemToLock = Item;
 						for (var A = 0; A < Player.Inventory.length; A++)
 							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
-								DialogInventoryAdd(C, Player.Inventory[A], false, 1);
+								DialogInventoryAdd(C, Player.Inventory[A], false, 2);
 						DialogInventorySort();
 					}
 				} else {
@@ -769,7 +771,7 @@ function DialogClick() {
 
 	// If the user clicked the Up button, move the character up to the top of the screen
 	if ((CurrentCharacter.HeightModifier < -90) && (CurrentCharacter.FocusGroup != null) && (MouseX >= 510) && (MouseX < 600) && (MouseY >= 25) && (MouseY < 115)) {
-		CharacterAppearanceForceTopPosition = true;
+		CharacterAppearanceForceUpCharacter = CurrentCharacter.MemberNumber;
 		CurrentCharacter.HeightModifier = 0;
 		return;
 	}
@@ -799,8 +801,8 @@ function DialogClick() {
 	}
 
 	// If the user clicked anywhere outside the current character item zones, ensure the position is corrected
-	if (CharacterAppearanceForceTopPosition == true && ((MouseX < 500) || (MouseX > 1000) || (CurrentCharacter.FocusGroup == null))) {
-		CharacterAppearanceForceTopPosition = false;
+	if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber && ((MouseX < 500) || (MouseX > 1000) || (CurrentCharacter.FocusGroup == null))) {
+		CharacterAppearanceForceUpCharacter = 0;
 		CharacterApperanceSetHeightModifier(CurrentCharacter);
 	}
 
@@ -1112,7 +1114,7 @@ function DialogDrawItemMenu(C) {
 			InventoryRemove(C, C.FocusGroup.Name);
 			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
 			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckRestraints");
-			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
+			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetWithRatio("Bondage"));
 
 			// The player can use another item right away, for another character we jump back to her reaction
 			if (C.ID == 0) {
@@ -1139,8 +1141,8 @@ function DialogDrawItemMenu(C) {
 			} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
 
 			// Reset the the character's position
-			if (CharacterAppearanceForceTopPosition == true) {
-				CharacterAppearanceForceTopPosition = false;
+			if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
+				CharacterAppearanceForceUpCharacter = 0;
 				CharacterApperanceSetHeightModifier(C);
 			}
 
@@ -1270,4 +1272,9 @@ function DialogDrawExpressionMenu() {
 		DrawButton(355, OffsetY, 90, 90, "", (FE.MenuExpression4 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression4 ? "/" + FE.MenuExpression4 : "") + "/Icon.png");
 
 	}
+}
+
+// Sets the skill ratio for the player, will be a % of effectiveness applied to the skill when using it
+function DialogSetSkillRatio(SkillType, NewRatio) {
+	SkillSetRatio(SkillType, parseInt(NewRatio) / 100);
 }

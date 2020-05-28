@@ -119,13 +119,8 @@ function InventoryItemArmsHempRopeSetPose(NewType) {
 	// Validates a few parameters before hogtied
 	if ((NewType.ArmsOnly == false) && !InventoryAllow(C, ["NotKneeling", "NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
 
-	// Sets the new pose with its effects
+	// Sets the new pose with its effects and the hidden items if we need to
 	DialogFocusItem.Property = NewType.Property;
-	if (NewType.Expression != null)
-		for (var E = 0; E < NewType.Expression.length; E++)
-			CharacterSetFacialExpression(C, NewType.Expression[E].Group, NewType.Expression[E].Name, NewType.Expression[E].Timer);
-
-	// Sets hidden items if we need to
 	if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
 	else InventoryRemove(C, "ItemHidden");
 	CharacterRefresh(C);

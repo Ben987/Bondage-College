@@ -20,7 +20,7 @@ Eine Herrin sagte einst: "Wenn du nichts Interessantes zu sagen hast, wird dir S
 (She doesn't resist much as you silence her with the gag.)
 (Sie wehrt sich kaum, als du sie mit dem Knebel zum Schweigen bringst.)
 ###_NPC [Dominant|Violent]
-(She trashes her head to avoid the gag but surrenders as you insist.)
+(She thrashes her head to avoid the gag but surrenders as you insist.)
 (Sie schwingt ihren Kopf umher, um dem Knebel zu entgehen, ergibt sich aber, als du darauf bestehst.)
 ###_NPC [Submissive|Serious]
 (She bows her head and presents her mouth so you can gag her easily.)
@@ -140,7 +140,7 @@ Moment! Das musst... (Du bringst sie mit einem Knebel zum Schweigen, als sie etw
 (She shakes her head as you lock the belt on her.)  That's no fun!
 (Sie schüttelt den Kopf, als du ihr den Gürtel umschließt.) So macht das doch keinen Spaß!
 ###_NPC [Dominant|Violent]
-(You lock the belt on her as she panics and trashes in vain to make it slip.)  Big mistake girl!
+(You lock the belt on her as she panics and thrashes in vain to make it slip.)  Big mistake girl!
 (Als du ihr den Gürtel umlegst, gerät sie in Panik und versucht verzweifelt, ihn abzuschütteln.) Großer Fehler, Mädchen!
 ###_NPC [Submissive|Horny]
 (She almost cries as you lock the belt around her waist.)  This is cruel Miss!  How can I relieve myself now?
@@ -188,7 +188,7 @@ Moment! Das musst... (Du bringst sie mit einem Knebel zum Schweigen, als sie etw
 (You strap the item on her head as she sighs.)  Please don't leave me like that for too long.
 (Du schnallst ihr das Ding um den Kopf und sie seufzt.) Bitte lass mich nicht zu lange so.
 ###_NPC [Dominant|Violent]
-(She trashes her head and tries to avoid the item but you're able to strap it on her.)
+(She thrashes her head and tries to avoid the item but you're able to strap it on her.)
 (Sie fuchtelt mit dem Kopf und versucht der Sache auszuweichen, aber du schnallst sie ihr um den Kopf.)
 ###_NPC [Submissive|Serious]
 (She takes a deep breath as you strap the device on her head.)  I'm totally under your control Miss.
@@ -347,7 +347,7 @@ Moment! Das musst... (Du bringst sie mit einem Knebel zum Schweigen, als sie etw
 (She does one last moan as you remove the egg.)  Ooooh!  That was quite a stimulation.
 (Sie stöhnt ein letztes Mal, als du das Ei herausnimmst.) Uuuuh! Das war wirklich stimulierend.
 ###_NPC [Horny|Violent]
-(She trashes violently to try to stop you but you're able to recover the egg.)  Hey!  Put it back!
+(She thrashes violently to try to stop you but you're able to recover the egg.)  Hey!  Put it back!
 (Sie versucht dich durch wildes Zappeln aufzuhalten, aber du holst das Ei heraus.) Hey! Pack das wieder zurück!
 ###_NPC [Frigid|Dumb]
 (She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.
