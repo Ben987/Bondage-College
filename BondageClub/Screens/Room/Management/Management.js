@@ -54,8 +54,8 @@ function ManagementLoverFromBondageCollege() { return ((Player.Lover == "NPC-Sid
 function ManagementCanBreakDatingLoverOnline() { return ((Player.Lover == "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage != 2)) }
 function ManagementCanBreakUpLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage == 2) && (Player.Lovership.Start != null) && (Player.Lovership.Start + 604800000 < CurrentTime)) }
 function ManagementCannotBreakUpLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage == 2) && (Player.Lovership.Start != null) && (Player.Lovership.Start + 604800000 >= CurrentTime)) }
-function ManagementCanBreakUpLoverNPC() { return ((Player.Lover != "") && (Player.Lovership == null) && !PrivateLoverInRoom()) }
-function ManagementCannotBreakUpLoverNPC() { return ((Player.Lover != "") && (Player.Lovership == null) && PrivateLoverInRoom()) }
+function ManagementCanBreakUpLoverNPC() { return ((Player.Lover != "") && !PrivateLoverInRoom()) }
+function ManagementCannotBreakUpLoverNPC() { return ((Player.Lover != "") && PrivateLoverInRoom()) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
 function ManagementWearingSlaveCollar() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar")) }
 function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
@@ -253,7 +253,7 @@ function ManagementBreakTrialOnline() {
 // When the Mistress breaks the bond between lovers
 function ManagementBreakLover() {
 	Player.Lover = "";
-	if ((Player.Lovership != null) && (Player.Lovership.MemberNumber != null)) ServerSend("AccountLovership", { MemberNumber: Player.Lovership.MemberNumber, Name: Player.Lovership.Name, Action: "Break" });
+	ServerSend("AccountLovership", { MemberNumber: Player.Lovership.MemberNumber ? Player.Lovership.MemberNumber : -1, Name: Player.Lovership.Name, Action: "Break" });
 	ServerPlayerSync();
 }
 
