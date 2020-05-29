@@ -253,7 +253,7 @@ function ManagementBreakTrialOnline() {
 // When the Mistress breaks the bond between lovers
 function ManagementBreakLover() {
 	Player.Lover = "";
-	if ((Player.Lovership != null) && (Player.Lovership.MemberNumber != null)) ServerSend("AccountLovership", { MemberNumber: Player.Lovership.MemberNumber, Action: "Break" });
+	if ((Player.Lovership != null) && (Player.Lovership.MemberNumber != null)) ServerSend("AccountLovership", { MemberNumber: Player.Lovership.MemberNumber, Name: Player.Lovership.Name, Action: "Break" });
 	ServerPlayerSync();
 }
 

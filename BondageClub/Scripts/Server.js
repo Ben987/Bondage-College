@@ -85,7 +85,9 @@ function ServerSend(Message, Data) {
 
 // Syncs some player information to the server
 function ServerPlayerSync() {
-	ServerSend("AccountUpdate", { Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover });
+	var D = { Money: Player.Money, Owner: Player.Owner };
+	if (Player.Lover) D.Lover = Player.Lover;
+	ServerSend("AccountUpdate", D);
 }
 
 // Syncs the full player inventory to the server, it's compressed as a stringify array using LZString
@@ -529,15 +531,14 @@ function ServerAccountLovership(data) {
 			ChatRoomLovershipOption = data.Result;
 
 	// If we must update the character lovership data
-	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lover != null) && (typeof data.Lover === "string") && (data.Lovership != null) && (typeof data.Lovership === "object")) {
-		Player.Lover = data.Lover;
-		Player.Lovership = data.Lovership;
-	}
-
-	// If we must clear the character lovership data
-	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearLovership != null) && (typeof data.ClearLovership === "boolean") && (data.ClearLovership == true)) {
-		Player.Lover = "";
-		Player.Lovership = null;
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lovership != null) && (typeof data.Lovership === "object")) {
+		if (data.Lovership.length > 0) {
+			Player.Lovership = data.Lovership[0];
+		}
+		else {
+			Player.Lover = "";
+			Player.Lovership = null;
+		}
 		LoginLoversItems();
 	}
 
