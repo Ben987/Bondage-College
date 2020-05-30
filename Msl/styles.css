@@ -79,9 +79,10 @@ div.chat-hover-item:after {
 }
 
 /*Location dialog view*/
-.dialog {position:absolute;width:100%;height:100%;left:0%;top:0%; background-color:rgb(255,255,255);color:black;opacity:0;transition:opacity 250ms}
-.dialog.transparent {background-color:rgba(255,255,255,0.8);}
-.dialog-background {filter: brightness(20%);}
+.dialog {position:absolute;width:100%;height:100%;left:0%;top:0%; color:black;opacity:0;transition:opacity 250ms}
+.dialog-background.transparent {background-color:rgba(0.2,0.2,0.2,0.8);}
+.dialog-background.transparent > img {display:none}
+.dialog-background > img {filter: brightness(20%);}
 
 .dialog-selection {position:absolute;width:10%;height:100%}
 .dialog-selection > div {height:20%;padding:15%;}
@@ -142,7 +143,7 @@ div.chat-hover-item:after {
 .dialog-appearance-wardrobe > div {position:relative;width:30%;padding-top:66%;margin:1.5% 1.5% 1 .5% 1.5%;float:left;}
 .dialog-appearance-wardrobe > div  > div {position:absolute;width:100%;height:81%;top:0%;left:0}
 
-.dialog-appearance-item-selection {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll}
+.dialog-appearance-item-selection {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll;color:black;}
 .dialog-appearance-item-selection > div {position:relative;width:30%;padding-top:30%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:white; word-break:break-word}
 .dialog-appearance-item-selection > div > img {position:absolute;width:100%;height:100%;top:0%;left:0}
 .dialog-appearance-item-selection > div > div {position:absolute;top:0;}

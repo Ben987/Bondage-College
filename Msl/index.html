@@ -64,6 +64,14 @@ window.addEventListener("load", function(){
 	MainContainer.Resize();
 	MslServer.Init();
 	Util.ProcessIncludesRecursive(document.body);
+	
+	var playerId = 	sessionStorage.getItem("playerId"), mainSessionId = sessionStorage.getItem("mainSessionId");
+	
+	if(playerId && mainSessionId) 
+		MainController.LoginWithMainSession(mainSessionId, playerId);
+	else
+		MainController.Init();
+	
 });
 
 window.addEventListener('resize', MainContainer.Resize, false);
@@ -73,9 +81,8 @@ window.addEventListener('resize', MainContainer.Resize, false);
 <body style="width:100%; height:100%; background-color:black; color:white; margin:0px; padding:0px; overflow:hidden;user-select:none;">
 	<div id="MainContainer" class="full-block" style="position:relative;overflow:hidden;display:inline-block;">
 		<div id="LoginView" class="full-block">
-			<button onclick="MainController.Login(1)">Login 1</button>
-			<button onclick="MainController.Login(2)">Login 2</button>
-			<button onclick="MainController.Login(4)">Login 4</button>
+			<select name="userList"></select>
+			<button onclick="MainController.Login()">Login</button>
 			<br />
 		</div>
 		
@@ -108,7 +115,9 @@ window.addEventListener('resize', MainContainer.Resize, false);
 	<div name="uiTemplates" style="display:none; visibility:hidden">
 		
 		<div id="DialogSelfTemplate" class="dialog normal" onclick="event.stopPropagation()">
-			<img alt="backgroundImage" class='dialog-background full-block' />
+			<div name="background" class="dialog-background full-block">
+				<img alt="backgroundImage" class='fill-container' />
+			</div>
 			<include src="./Html/Dialog/TopLevelMenu.htm" name="topLevelMenuContainer" class="dialog-selection" ></include>
 			<div name="viewContainer" class="dialog-views">
 				<include src="./Html/Dialog/Profile.htm" name="profile" class="dialog-profile"></include>

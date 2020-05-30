@@ -36,7 +36,12 @@ var LocationDialog = {
 		this.Interrupt();
 		this.player = player;
 		this.updateDelegate = player.GetUpdateDelegate();
-		this.mainContainer = Util.CreateElement({parent:LocationController.inputContainer, template:"DialogSelfTemplate"});
+		
+		var parentElement = LocationController.inputContainer;
+		if(player.settings.gui.dialog.fullScreen)
+			parentElement = document.getElementById("LocationViewHud");	
+		
+		this.mainContainer = Util.CreateElement({parent:parentElement, template:"DialogSelfTemplate"});
 		setTimeout(function(){this.mainContainer.style.opacity = 1;}.bind(this), 20);
 		this.topLevelMenuContainer = Util.GetFirstChildNodeByName(this.mainContainer, "topLevelMenuContainer");
 		this.viewContainer = Util.GetFirstChildNodeByName(this.mainContainer, "viewContainer");
@@ -53,8 +58,12 @@ var LocationDialog = {
 			this.views[a] = new window["LocationDialog" + actionName + "View"](this, this.viewsContainerElements[a]);
 		});
 		
-		var backgroundImageElement = Util.GetFirstChildNodeWithAttribute(this.mainContainer, "alt", "backgroundImage")
-		Util.GetFirstChildNodeWithAttribute(this.mainContainer, "alt", "backgroundImage").src = LocationController.backgroundContainer.src;
+		var backgroundCoverElement = Util.GetFirstChildNodeByName(this.mainContainer, "background");
+		backgroundCoverElement.getElementsByTagName("img")[0].src = LocationController.backgroundContainer.src;		
+		if(player.settings.gui.dialog.transparentBackground)
+			backgroundCoverElement.classList.add("transparent");
+		else
+			backgroundCoverElement.classList.remove("transparent");
 		
 		LocationDialog.ShowView(this.currentAction);
 	}

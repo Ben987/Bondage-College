@@ -6,12 +6,41 @@ var MainController = {
 	,playerAccount:null
 	,onlineFriendList:{}
 	
-	,Login(memberNumber){
-		memberNumber = memberNumber ? memberNumber : parseInt(document.getElementById("loginMemberNumber").value);
+	,Init(){
+		var loginContainer = document.getElementById("LoginView");
+		var userSelect = Util.GetFirstChildNodeByName(loginContainer, "userList");
 		
-		MslServer.Send("GetPlayerCharacter", {memberNumber:memberNumber}, function(data){
-			this.GetPlayerCharacterResp(data);
+		MslServer.Send("GetAllUserNames", {}, function(data){
+			for(var id in data){
+				Util.CreateElement({tag:"option", parent:userSelect, textContent:data[id], attributes:{value:id }});
+			}
 		}.bind(this))
+	}
+	
+	,Login(playerId){
+		var loginContainer = document.getElementById("LoginView");
+		var userSelect = Util.GetFirstChildNodeByName(loginContainer, "userList");
+		
+		playerId = playerId ? playerId : parseInt(userSelect.value);
+		
+		MslServer.Send("GetPlayerCharacter", {playerId:playerId}, function(data){
+			this.GetPlayerCharacterResp(data);
+		}.bind(this));
+	}
+	
+	,LoginWithMainSession(mainSessionId, playerId){
+		MslServer.Send("LoginWithSessionToken", {playerId:parseInt(playerId), mainSessionId:mainSessionId}, {
+			success:
+				function(data){
+					this.GetPlayerCharacterResp(data);
+				}.bind(this)
+			,error:
+				function(error){
+					console.error(error);
+					this.Init();
+				}.bind(this)
+			}
+		);
 	}
 	
 	

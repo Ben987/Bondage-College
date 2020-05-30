@@ -7,14 +7,21 @@ var MslServer = {
 		//console.log(ServerURL + "/msl");
 		MslServer.socket = io(ServerURL + "/msl");
 		
-		MslServer.socket.on("AllOfThem", resp => {MslServer.ServerResponse(resp); });
+		MslServer.socket.on("GeneralResponse", resp => MslServer.ServerResponse(resp));
+		MslServer.socket.on("LocationAction", resp => MslServer.ServerResponse(resp, LocationController.LocationActionResp));
+		MslServer.socket.on("PlayerEnterLocation", resp => MslServer.ServerResponse(resp, LocationController.PlayerEnterLocationResp));
+		MslServer.socket.on("PlayerExitLocation", resp => MslServer.ServerResponse(resp, LocationController.PlayerExitLocationResp));
 	}
 	
 	,ServerResponse(resp, callback){
-		if(! resp.meta.messageId){
-			console.log(resp);
-		}else{
-			var callbacks = MslServer.responseCallbacks[resp.meta.messageId];
+		if(callback){
+			if(resp.meta.success)
+				callback(resp.data);
+			else
+				MslServer.LogError(resp.meta.error);
+		}
+		else if(resp.meta.messageId){
+			var callbacks = MslServer.responseCallbacks[resp.meta.messageId];			
 			var callbackSuccess = typeof(callbacks) == "function" ? callbacks : callbacks.success;
 			var callbackError = typeof(callbacks) == "function" ? MslServer.LogError : callbacks.error ? callbacks.error : MslServer.LogError;
 			
@@ -23,6 +30,10 @@ var MslServer = {
 			else
 				callbackError(resp.meta.error);
 		}	
+		else{
+			console.error("unhandled server response");
+			console.log(resp);
+		}
 	}
 	
 	,Send(handlerName, data, callbacks){

@@ -2,11 +2,11 @@
 var ClassicHud = {
 	timerId:null
 	,sizes : [0, 18, 40]
-	,currentSizeIndex : 0
+	,currentSizeIndex : 1
 	,RollForward(){ClassicHud.Roll(1);}
 	,RollBack(){ClassicHud.Roll(-1);}
 	,Roll(direction){
-		if(ClassicHud.timerId) return;
+		//if(ClassicHud.timerId) return;
 		var sizePrev = ClassicHud.sizes[ClassicHud.currentSizeIndex];
 		ClassicHud.currentSizeIndex += direction;
 		if(ClassicHud.currentSizeIndex == ClassicHud.sizes.length) ClassicHud.currentSizeIndex--;
@@ -14,10 +14,10 @@ var ClassicHud = {
 		var sizeNext = ClassicHud.sizes[ClassicHud.currentSizeIndex];
 		
 		if(sizePrev == sizeNext) return;
-		var transitTime = 750;
+		//var transitTime = 750;
 		
-		ClassicHud.timerId = true;
-		setTimeout(function(){ClassicHud.timerId = false}, transitTime); 
+		//ClassicHud.timerId = true;
+		//setTimeout(function(){ClassicHud.timerId = false}, transitTime); 
 		
 		var steps = 150, step = 0;
 		//var sizePerStep = (sizeNext - sizePrev) / steps;

@@ -39,15 +39,17 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 	//simple drop downs, checkboxes, textboxes
 	this.FillFormRecursive = function(form, keyStack, settings){
 		for(var key in settings){
-			let property = keyStack.join(".") + "." + key;
 			var value = settings[key];
-			var element = form.elements[property]
 			
-			if(typeof(value) == "object"){
+			if(Array.isArray(value)){
+				continue;//lists are handled separately
+			}else if(typeof(value) == "object"){
 				keyStack.push(key);
 				this.FillFormRecursive(form, keyStack, value);
 				keyStack.pop();
 			}else{
+				let property = keyStack.join(".") + "." + key;			
+				var element = form.elements[property];		
 				if(element){
 					if(value === true || value === false)
 						element.checked = value;
@@ -56,19 +58,19 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 					
 					element.addEventListener("change", function(event){
 						var value = Util.GetTypedPropertyValueFromElement(mainDialog.player, property, event.target);
-						
 						MslServer.Send("UpdatePlayerProperty", {property:property, value:value, operation:"set"}, function(data){
 							Util.SetTypedPropertyValueOnObjectAndElement(mainDialog.player, data.property, event.target, data.value);
 						});
 					}.bind(this));
 				}
+				else{
+					console.error("input element not found for " + property);
+				}
 			}
 		}
 	}
 	
-	this.FillFormRecursive(this.form, ["settings"], MainController.playerAccount.settings)
-	
-	
+	this.FillFormRecursive(this.form, ["settings"], MainController.playerAccount.settings);
 	
 	this.RemoveItemFromBlackList = function(itemName, tableRowElement){
 		if(! itemsBlackList.includes(itemName)) return;
@@ -79,82 +81,3 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 		}.bind(this));
 	}
 }
-
-/*
-
-
-var ProfileManagement ={
-	profileContainer:null
-	,Init(){}
-	,OnScreenChange(){}
-	,Interrupt(){
-		ProfileManagement.profileContainer?.parentNode?.removeChild(ProfileManagement.profileContainer);	
-	}
-	,UnInit(){
-		ProfileManagement.profileContainer?.parentNode?.removeChild(ProfileManagement.profileContainer);
-	}
-	,UpdatePlayerProfile(){
-		var f = document.forms["profileSettings"];
-		
-		var settingsCopy = Util.CloneRecursive(MainController.playerAccount.settings);
-		this.PullFromFormRecursive(document.forms["profileSettings"], [], settingsCopy);
-		console.log(settingsCopy);
-		MainController.playerAccount.settings = settingsCopy;
-		LocationController.UpdatePlayerProfile(settingsCopy);
-	}
-	
-	,ShowProfile(player){
-		ProfileManagement.profileContainer = Util.CreateElement({parent:LocationController.hudContainer
-			,className:"full-block"
-			,events:{click:(event) => ProfileManagement.Interrupt()}
-		});
-		
-		Util.CreateElement({parent:ProfileManagement.profileContainer, template:"PlayerProfileTemplate", events:{
-			click:(event) => event.stopPropagation()
-		}});
-		
-		this.FillFormRecursive(document.forms["profileSettings"], [], MainController.playerAccount.settings);
-	}
-	
-	,PullFromFormRecursive(form, keyStack, settings){
-		for(var key in settings){
-			var value = settings[key];
-			if(value === true || value === false){
-				settings[key] = !!form.elements[keyStack.join(".") + "." + key].checked;
-			}else if(Array.isArray(value)){
-				var ids = {};//numeric or string player id or item name ids
-				form.elements[keyStack.join(".") + "." + key].value.split(",").forEach(id => {ids[id] = true;})
-				var er = /^-?[0-9]+$/;
-				settings[key] = Object.keys(ids).map(id => er.test(id) ? parseInt(id) : id);
-			}else if(typeof(value) == "object"){
-				keyStack.push(key);
-				this.PullFromFormRecursive(form, keyStack, value);
-				keyStack.pop();
-			}else{
-				settings[key] = form.elements[keyStack.join(".") + "." + key].value;
-			}
-		}
-	}
-	
-	,FillFormRecursive(form, keyStack, settings){
-		for(var key in settings){
-			var value = settings[key];
-			if(value === true || value === false){
-				form.elements[keyStack.join(".") + "." + key].checked = value;
-			}else if(Array.isArray(value)){
-				form.elements[keyStack.join(".") + "." + key].value = value.join(",");
-			}else if(typeof(value) == "object"){
-				keyStack.push(key);
-				this.FillFormRecursive(form, keyStack, value);
-				keyStack.pop();
-			}else{
-				form.elements[keyStack.join(".") + "." + key].value = value;
-			}
-		}
-	}
-}
-
-
-
-
-*/

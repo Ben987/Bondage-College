@@ -1,6 +1,6 @@
 'use strict'
 
-
+//The controller has to be a singleton because being called by MslServer
 var LocationController = {
 	locationContainer:null
 	,canvasContainer:null
@@ -57,6 +57,7 @@ var LocationController = {
 		Object.values(this.delegates).forEach(delegate => {/*console.log(delegate);*/ delegate.Init()});
 		
 		ClassicHud.RollForward();
+		setTimeout(ClassicHud.RollBack, 2000);
 	}
 	
 	,UnInit(){
