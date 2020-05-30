@@ -224,7 +224,7 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.ArousalSettings == null))) Char.ArousalSettings = data.ArousalSettings;
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Game == null))) Char.Game = data.Game;
 	Char.Ownership = data.Ownership;
-	Char.Lovership = data.Lovership.length > 0 ? data.Lovership[0] : null;
+	Char.Lovership = Array.isArray(data.Lovership) ? data.Lovership.length > 0 ? data.Lovership[0] : null : data.Lovership;
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.LimitedItems = Array.isArray(data.LimitedItems) ? data.LimitedItems : [];
