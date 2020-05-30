@@ -86,7 +86,7 @@ function ServerSend(Message, Data) {
 // Syncs some player information to the server
 function ServerPlayerSync() {
 	var D = { Money: Player.Money, Owner: Player.Owner };
-	if (Player.Lover) D.Lover = Player.Lover;
+	D.Lover = Player.Lover;
 	ServerSend("AccountUpdate", D);
 }
 
