@@ -23,16 +23,30 @@ var MainController = {
 		
 		playerId = playerId ? playerId : parseInt(userSelect.value);
 		
-		MslServer.Send("GetPlayerCharacter", {playerId:playerId}, function(data){
-			this.GetPlayerCharacterResp(data);
+		MslServer.Send("Login", {playerId:playerId}, function(data){
+			console.log("Login");
+			console.log(data);
+			
+			sessionStorage.setItem("playerId", data.playerId), 
+			sessionStorage.setItem("sessionId", data.sessionId);
+			
+			MslServer.Send("GetPlayerAccount", {}, function(data){
+				this.GetPlayerCharacterResp(data);
+			}.bind(this));
 		}.bind(this));
 	}
 	
-	,LoginWithMainSession(mainSessionId, playerId){
-		MslServer.Send("LoginWithSessionToken", {playerId:parseInt(playerId), mainSessionId:mainSessionId}, {
+	,LoginWithSessionId(sessionId, playerId){
+		console.log({playerId:parseInt(playerId), sessionId:sessionId});
+		
+		MslServer.Send("LoginWithSessionId", {playerId:parseInt(playerId), sessionId:sessionId}, {
 			success:
 				function(data){
-					this.GetPlayerCharacterResp(data);
+					sessionStorage.setItem("sessionId", data.sessionId);				
+					
+					MslServer.Send("GetPlayerAccount", {}, function(data){
+						this.GetPlayerCharacterResp(data);
+					}.bind(this));
 				}.bind(this)
 			,error:
 				function(error){

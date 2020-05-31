@@ -5,7 +5,7 @@ var MslServer = {
 	,responseCallbacks:{}
 	,Init(){
 		//console.log(ServerURL + "/msl");
-		MslServer.socket = io(ServerURL + "/msl");
+		MslServer.socket = io(Environment.serverUrl + "/msl");
 		
 		MslServer.socket.on("GeneralResponse", resp => MslServer.ServerResponse(resp));
 		MslServer.socket.on("LocationAction", resp => MslServer.ServerResponse(resp, LocationController.LocationActionResp));

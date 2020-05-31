@@ -10,7 +10,7 @@
 	<script src="../BondageClub/Scripts/LZString.js"></script>	
 	<script src="../BondageClub/Scripts/socket.io/socket.io.js"></script>	
 	
-	<script src="./environment.js"></script>
+	<script src="./Environment.js"></script>
 	
 	<script src="./Scripts/Util.js"></script>
 	<script src="./Scripts/Util/Core.js"></script>
@@ -50,12 +50,13 @@
 	<script src="./Scripts/Minigame/MinigameAbCancel.js"></script>
 	<script src="./Scripts/Minigame/MinigameComplyRefuse.js"></script>	
 	
-	
 	<link rel="stylesheet" type="text/css" href="./styles.css" />
 </head>
 
 <script>
 
+
+//TODO:  addEventListener supports multiple listeners, move away from global scope.
 var KeyDownEventListeners = {};
 window.addEventListener('keydown', (e) => {for(key in KeyDownEventListeners) KeyDownEventListeners[key](e);});	
 
@@ -65,10 +66,10 @@ window.addEventListener("load", function(){
 	MslServer.Init();
 	Util.ProcessIncludesRecursive(document.body);
 	
-	var playerId = 	sessionStorage.getItem("playerId"), mainSessionId = sessionStorage.getItem("mainSessionId");
+	var playerId = sessionStorage.getItem("playerId"), sessionId = sessionStorage.getItem("sessionId");
 	
-	if(playerId && mainSessionId) 
-		MainController.LoginWithMainSession(mainSessionId, playerId);
+	if(playerId && sessionId && playerId != "undefined" && sessionId != "undefined")
+		MainController.LoginWithSessionId(sessionId, playerId);
 	else
 		MainController.Init();
 	

@@ -33,28 +33,29 @@ var F3dcgAssetsInventory = {
 			};
 		});
 		
-		//TODO restore this
-		//F3dcgAssets.ClothesFree.forEach(itemName => this.AddClothItem(applicableItems, itemName));
-		//locationPlayer.inventory[F3dcgAssets.CLOTH].forEach(itemName => this.AddClothItem(applicableItems, itemName));
-		//locationPlayer.inventory[F3dcgAssets.ACCESSORY].forEach(itemName => this.AddAccessoryItem(applicableItems, itemName));
-		
 		var posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(locationPlayer.appearance[F3dcgAssets.BONDAGE_TOY]);
-		//locationPlayer.inventory[F3dcgAssets.BONDAGE_TOY].forEach(itemName => this.AddBondageToyItem(applicableItems, itemName, locationPlayer.appearance, posesEffectsBlocks));
-		
-		F3dcgAssets.ClothesGroups.forEach(groupName => {
-			for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
-				this.AddClothItem(applicableItems, itemName);
-		});
-		
-		F3dcgAssets.AccessoriesGroups.forEach(groupName => {
-			for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
-				this.AddAccessoryItem(applicableItems, itemName);
-		});
-		
-		F3dcgAssets.BondageToyGroups.forEach(groupName => {
-			for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
-				this.AddBondageToyItem(applicableItems, itemName, locationPlayer.appearance, posesEffectsBlocks);
-		});
+		if(Environment.allItemsInInventory){
+			F3dcgAssets.ClothesGroups.forEach(groupName => {
+				for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
+					this.AddClothItem(applicableItems, itemName);
+			});
+			
+			F3dcgAssets.AccessoriesGroups.forEach(groupName => {
+				for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
+					this.AddAccessoryItem(applicableItems, itemName);
+			});
+			
+			F3dcgAssets.BondageToyGroups.forEach(groupName => {
+				for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
+					this.AddBondageToyItem(applicableItems, itemName, locationPlayer.appearance, posesEffectsBlocks);
+			});
+		}else{
+			F3dcgAssets.ClothesFree.forEach(itemName => this.AddClothItem(applicableItems, itemName));
+			locationPlayer.inventory[F3dcgAssets.CLOTH].forEach(itemName => this.AddClothItem(applicableItems, itemName));
+			locationPlayer.inventory[F3dcgAssets.ACCESSORY].forEach(itemName => this.AddAccessoryItem(applicableItems, itemName));
+			
+			locationPlayer.inventory[F3dcgAssets.BONDAGE_TOY].forEach(itemName => this.AddBondageToyItem(applicableItems, itemName, locationPlayer.appearance, posesEffectsBlocks));
+		}
 		
 		return applicableItems;
 	}

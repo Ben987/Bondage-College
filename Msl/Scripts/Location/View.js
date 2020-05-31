@@ -3,6 +3,7 @@
 
 var LocationView = {
 	aspectRatio: .5
+	,assetsScaleFactor: .2//f3dcg asset scale factor	
 	,spotDivs: {}
 	,fixtureDivs: {}
 
@@ -105,24 +106,28 @@ var LocationView = {
 		this.BuildPlayerFigure(spotDiv, player.render);
 	}
 	
+	,BuildPlayerFigurePosition(render){
+		return {
+			transform:"rotate("+render.rotate +"deg)"
+			,left:"0%"
+			,top:(render.top*LocationView.assetsScaleFactor/2 + (100 - render.scale*100)) + "%"
+			,width:render.scale*100 + "%"
+			,height:render.scale*100 + "%"
+			,position:"absolute"
+		}
+	}
 	
 	,BuildPlayerFigure(spotDiv, render){
-		var scaleFactor = .2;//f3dcg asset scale factor	
-		
-		spotDiv.figure = Util.CreateElement({parent:spotDiv, cssStyles:{
-				transform:"rotate("+render.rotate +"deg)"
-				,top:(render.top*scaleFactor/2 + (100 - render.scale*100)) + "%"
-				,width:render.scale*100 + "%"
-				,height:render.scale*100 + "%"
-				,position:"absolute"
-		}});
+		var cssStyles = LocationView.BuildPlayerFigurePosition(render);
+	
+		spotDiv.figure = Util.CreateElement({parent:spotDiv, cssStyles:cssStyles});
 		
 		render.items.forEach(renderItem => {
-			var cssStyles = {left:(renderItem.left*scaleFactor)+"%",top:(renderItem.top*scaleFactor/2)+"%",visibility:"hidden",position:"absolute"}
+			var cssStyles = {left:(renderItem.left*LocationView.assetsScaleFactor)+"%",top:(renderItem.top*LocationView.assetsScaleFactor/2)+"%",visibility:"hidden",position:"absolute"}
 			
 			renderItem.layers.forEach(renderItemLayer => {
 				var cS = Util.CloneRecursive(cssStyles);
-				Util.CreateImageElement(renderItemLayer.url, spotDiv.figure, cS, scaleFactor, scaleFactor/2
+				Util.CreateImageElement(renderItemLayer.url, spotDiv.figure, cS, LocationView.assetsScaleFactor, LocationView.assetsScaleFactor/2
 					,(image) => {
 						if(renderItemLayer.colorize && renderItem.color)
 							Util.ColorizeImage(image, renderItem.color, renderItem.fullAlpha);
@@ -158,23 +163,23 @@ var LocationView = {
 			var boxDestination = destinationSpotDiv.getBoundingClientRect();
 			originSpotDiv.figure = null;
 			
-			figureElement.style.width = (boxOrigin.width / boxDestination.width)*100 + "%";
-			figureElement.style.height = (boxOrigin.height / boxDestination.height)*100 + "%";
+			var position = LocationView.BuildPlayerFigurePosition(player.render);			
+			
+			figureElement.style.width = (boxOrigin.width / boxDestination.width)*player.render.scale*100 + "%";
+			figureElement.style.height = (boxOrigin.height / boxDestination.height)*player.render.scale*100 + "%";
 			figureElement.style.left = (boxOrigin.x - boxDestination.x) + "px";
-			figureElement.style.top = (boxOrigin.y- boxDestination.y) + "px";
+			//TODO: revisit height offset calculation.
+			var topDelta = (boxOrigin.y - boxDestination.y) 
+			figureElement.style.top = (topDelta +  boxDestination.height*parseInt(position.top)/100) + "px";
 			
 			originSpotDiv.removeChild(figureElement);
 			destinationSpotDiv.appendChild(figureElement);
 			destinationSpotDiv.figure = figureElement;
 			
 			setTimeout(function(){
-				figureElement.style.left="0";
-				figureElement.style.top="0";
-				figureElement.style.width = 100 + "%";
-				figureElement.style.height = 100 + "%";				
+				for(var key in position) figureElement.style[key] = position[key];
 				figureElement.style.transition="1s";
 			}, 20);
-
 		}
 	}
 	

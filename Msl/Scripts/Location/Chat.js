@@ -1,63 +1,5 @@
 'use strict'
 
-var SideInput = {
-	currentRollState:"ROLL_STATE_SMALL"
-	,ROLL_STATE_OUT:"ROLL_STATE_OUT"
-	,ROLL_STATE_SMALL:"ROLL_STATE_SMALL"
-	,ROLL_STATE_FULL:"ROLL_STATE_FULL"
-	
-	,Roll(){
-		Util.DetachElementsAndClear(LocationView.actionIcons);
-		if(SideInput.currentRollState == SideInput.ROLL_STATE_SMALL)
-			SideInput.RollFull();
-		else if(SideInput.currentRollState == SideInput.ROLL_STATE_OUT || SideInput.currentRollState == SideInput.ROLL_STATE_FULL)
-			SideInput.RollSmall();
-	}
-	
-	,RollSmall(){
-		var leftRoll = document.getElementById("LocationViewSideInputLeft");
-		leftRoll.setAttribute("class", "");	leftRoll.classList.add("roll-left"); leftRoll.classList.add("roll-left-small");
-		SideInput.currentRollState = SideInput.ROLL_STATE_SMALL;
-	}
-	
-	,RollFull(){
-		var leftRoll = document.getElementById("LocationViewSideInputLeft");
-		leftRoll.setAttribute("class", "");	leftRoll.classList.add("roll-left"); leftRoll.classList.add("roll-left-full");
-		SideInput.currentRollState = SideInput.ROLL_STATE_FULL;
-	}
-	
-	,RollOut(){
-		var leftRoll = document.getElementById("LocationViewSideInputLeft");
-		leftRoll.setAttribute("class", "");	leftRoll.classList.add("roll-left"); leftRoll.classList.add("roll-left-out");
-		SideInput.currentRollState = SideInput.ROLL_STATE_OUT;
-	}
-	
-	,Poses(){LocationController.PoseChangeSelf();}
-	,Examine(){SideInput.LocationViewActionAndRollSmall("Examine");}
-	,Move(){SideInput.LocationViewActionAndRollSmall("Move");}
-	
-	,Item(){
-		if(SideInput.currentRollState != SideInput.ROLL_STATE_FULL)
-			return SideInput.RollFull();
-		
-		LocationFocusView.Show(LocationController.GetPlayer());
-		
-		SideInput.RollSmall();
-	}
-	
-	
-	,Settings(){SideInput.LocationViewActionAndRollSmall("Settings");}
-	,LocationViewActionAndRollSmall(actionName){
-		if(SideInput.currentRollState != SideInput.ROLL_STATE_FULL)
-			return SideInput.RollFull();
-		
-		LocationView["ShowActions" + actionName]();
-		SideInput.RollSmall();
-	}
-}
-
-
-
 var LocationViewChat = {
 	displayMessagesOnCharacter:true
 	,currentRollOutState:1
@@ -74,14 +16,27 @@ var LocationViewChat = {
 	}
 	,UnInit(){
 		LocationViewChat.messageLog = [];
-		Util.ClearNodeContent(document.getElementById(LocationViewChat.CHAT_LOG_ELEMENT_ID));
+		Util.ClearNodeContent(LocationViewChat.logContainer);
 	}
 	,Interrupt(){}
 	,OnScreenChange(){}
 	
-	,OnPlayerExit(player){console.log("exit " + player.id)}
-	,OnPlayerEnter(player){console.log("enter " + player.id)}
-	,OnPlayerReconnect(player){console.log("reconnect " + player.id)}
+	,OnPlayerExit(player, spot){
+		var content = "*" + player.character.name + " left the location (from " + spot.name + ")";
+		this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});	
+	}
+	,OnPlayerEnter(player, spot){
+		var content = "*" + player.character.name + " entered location (into " + spot.name + ")";
+		this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});			
+	}
+	,OnPlayerReconnect(player){
+		var content = "*" + player.character.name + " reconnected";
+		this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});		
+	}
+	,OnPlayerDisonnect(player, time){
+		var content = "*" + player.character.name + " disconnected (waiting for " + time + ")";
+		this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});		
+	}
 	,OnAction(action){
 		var scrollToBot = Util.ScrollableElementIsAtBottom(LocationViewChat.logContainer);	
 		
@@ -103,6 +58,10 @@ var LocationViewChat = {
 			break;
 			case "AppearanceUpdateSelf":
 				//no message
+			break;
+			case "PlayerExit":
+				var content = "*" + originPlayer.character.name + " left the location (from " + targetPlayer.name + "*";
+				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});	
 			break;
 			default:
 				console.log("Chat unhandled " + action.type);
@@ -222,3 +181,63 @@ var LocationViewChat = {
 		LocationViewChat.RollNext(-1);
 	}*/
 }
+
+/*
+
+var SideInput = {
+	currentRollState:"ROLL_STATE_SMALL"
+	,ROLL_STATE_OUT:"ROLL_STATE_OUT"
+	,ROLL_STATE_SMALL:"ROLL_STATE_SMALL"
+	,ROLL_STATE_FULL:"ROLL_STATE_FULL"
+	
+	,Roll(){
+		Util.DetachElementsAndClear(LocationView.actionIcons);
+		if(SideInput.currentRollState == SideInput.ROLL_STATE_SMALL)
+			SideInput.RollFull();
+		else if(SideInput.currentRollState == SideInput.ROLL_STATE_OUT || SideInput.currentRollState == SideInput.ROLL_STATE_FULL)
+			SideInput.RollSmall();
+	}
+	
+	,RollSmall(){
+		var leftRoll = document.getElementById("LocationViewSideInputLeft");
+		leftRoll.setAttribute("class", "");	leftRoll.classList.add("roll-left"); leftRoll.classList.add("roll-left-small");
+		SideInput.currentRollState = SideInput.ROLL_STATE_SMALL;
+	}
+	
+	,RollFull(){
+		var leftRoll = document.getElementById("LocationViewSideInputLeft");
+		leftRoll.setAttribute("class", "");	leftRoll.classList.add("roll-left"); leftRoll.classList.add("roll-left-full");
+		SideInput.currentRollState = SideInput.ROLL_STATE_FULL;
+	}
+	
+	,RollOut(){
+		var leftRoll = document.getElementById("LocationViewSideInputLeft");
+		leftRoll.setAttribute("class", "");	leftRoll.classList.add("roll-left"); leftRoll.classList.add("roll-left-out");
+		SideInput.currentRollState = SideInput.ROLL_STATE_OUT;
+	}
+	
+	,Poses(){LocationController.PoseChangeSelf();}
+	,Examine(){SideInput.LocationViewActionAndRollSmall("Examine");}
+	,Move(){SideInput.LocationViewActionAndRollSmall("Move");}
+	
+	,Item(){
+		if(SideInput.currentRollState != SideInput.ROLL_STATE_FULL)
+			return SideInput.RollFull();
+		
+		LocationFocusView.Show(LocationController.GetPlayer());
+		
+		SideInput.RollSmall();
+	}
+	
+	
+	,Settings(){SideInput.LocationViewActionAndRollSmall("Settings");}
+	,LocationViewActionAndRollSmall(actionName){
+		if(SideInput.currentRollState != SideInput.ROLL_STATE_FULL)
+			return SideInput.RollFull();
+		
+		LocationView["ShowActions" + actionName]();
+		SideInput.RollSmall();
+	}
+}
+
+*/

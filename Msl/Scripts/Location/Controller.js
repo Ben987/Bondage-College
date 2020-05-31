@@ -31,6 +31,8 @@ var LocationController = {
 		//Initialize data
 		this.location = data;
 		
+		console.log(this.constructor);
+		
 		//replace player ids with player objects
 		for(var spotName in this.location.players)
 			this.location.players[spotName] = new LocationPlayer(this.location.players[spotName]);
@@ -68,6 +70,8 @@ var LocationController = {
 	
 	//Getters
 	,GetSpot(spotName){
+		console.log(MainController.playerAccount);
+	
 		return spotName ? LocationController.location.spots[spotName] : LocationController.GetSpotWithPlayer(MainController.playerAccount.id);
 	}
 	
@@ -170,17 +174,21 @@ var LocationController = {
 		if(! playerUpdate?.IsValid()) throw "ChangeWasInvalidated";
 		
 		var appearanceUpdate = playerUpdate.GetFinalAppItemList();
-		
-		if(playerUpdate.player.id == MainController.playerAccount.id){			
-			F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player);
-			MslServer.Send("ActionStart", {type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate}, function(data){
-				this.LocationActionResp(data);
-			}.bind(this));
-		}else{
-			F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player, LocationController.GetPlayer());
-			MslServer.Send("ActionStart", {type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()}, function(data){
-				this.LocationActionResp(data);
-			}.bind(this));
+		try{
+			if(playerUpdate.player.id == MainController.playerAccount.id){
+				F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player);
+				MslServer.Send("ActionStart", {type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate}, function(data){
+					this.LocationActionResp(data);
+				}.bind(this));
+			}else{
+				F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player, LocationController.GetPlayer());
+				MslServer.Send("ActionStart", {type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()}, function(data){
+					this.LocationActionResp(data);
+				}.bind(this));
+			}
+		}catch(e){
+			console.log(appearanceUpdate);
+			throw e;
 		}
 		
 		LocationController.InterruptDelegateActions();
@@ -208,9 +216,12 @@ var LocationController = {
 		var spot = LocationController.GetSpotWithPlayer(data.playerId);
 		if(! spot) 	throw "PlayerNotFound " + data.playerId;
 		
-		delete LocationController.location.players[spot.name]
-		LocationController.delegates.view.OnPlayerExit(spot.name);
-		LocationController.delegates.chat.OnPlayerExit(spot.name);
+		var player = LocationController.location.players[spot.name];
+		LocationController.delegates.view.OnPlayerExit(player, spot);
+		LocationController.delegates.chat.OnPlayerExit(player, spot);
+		
+		delete LocationController.location.players[spot.name];
+
 	}
 	
 	
@@ -219,14 +230,15 @@ var LocationController = {
 		console.log(data);
 		
 		var existingPlayer = LocationController.GetPlayer(data.player.id);
+		var spot = LocationController.GetSpot(data.spotName);
 		if(! existingPlayer){
 			var player = new LocationPlayer(data.player);
 			LocationController.location.players[data.spotName] = player
 			LocationController.delegates.view.RenderPlayerInSpot(data.spotName, player);
-			LocationController.delegates.chat.OnPlayerEnter(player);
+			LocationController.delegates.chat.OnPlayerEnter(player, spot);
 		}else if(existingPlayer.id == data.player.id){
 			console.log("player reconnected");
-			LocationController.delegates.chat.OnPlayerReconnect(data.player.id);
+			LocationController.delegates.chat.OnPlayerReconnect(player);
 		}else{
 			console.log("mismatch detected, update whole thing");
 		}

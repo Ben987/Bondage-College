@@ -7,13 +7,13 @@ var DevTools = {
 	,Interrupt(){}
 
 	,OnScreenChange(){
-		if(DevToolsSettings.highilghtSpotClickDivs)
+		if(Environment.highilghtSpotClickDivs)
 			Object.values(LocationController.delegates.actions.spotClickDivs).forEach(el => el.style.border = "1px black solid");
 		
-		if(DevToolsSettings.highilghtSpotFigreDivs)
+		if(Environment.highilghtSpotFigreDivs)
 			Object.values(LocationController.delegates.actions.figureClickDivs).forEach(el => el.style.border = "1px black solid");
 		
-		if(! DevToolsSettings.spotPositionAdjustment) return;
+		if(! Environment.spotPositionAdjustment) return;
 		
 		for(let spotName in LocationController.actionDelegate.spotClickDivs){
 			let toolContainer = Util.CreateElement({parent:LocationController.delegates.actions.spotClickDivs[spotName], template:"SpotClickDivToolTemplate", className:"full-block"});

@@ -79,11 +79,11 @@ var F3dcgAssetsRender = {
 		return result;
 	}
 
-	,InitRenderItem(AssetItemGroup, AssetItem){
+	,InitRenderItem(AssetItemGroup, AssetItem){//AssetItem may be null
 		var renderItem = {
 			priority : AssetItem?.Priority ? AssetItem.Priority : AssetItemGroup.Priority
-			,left : (AssetItem?.Left ? AssetItem.Left : AssetItemGroup.Left) || 0
-			,top : (AssetItem?.Top ? AssetItem.Top : AssetItemGroup.Top) || 0
+			,left : (AssetItem?.Left || AssetItem?.Left === 0 ? AssetItem.Left : AssetItemGroup.Left) || 0
+			,top : (AssetItem?.Top || AssetItem?.Top === 0 ? AssetItem.Top : AssetItemGroup.Top) || 0
 			,color:null
 			,fullAlpha:AssetItemGroup.FullAlpha === false ? false : true
 			,layers:[]//url and allow colorize
