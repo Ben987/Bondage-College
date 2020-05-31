@@ -9,6 +9,8 @@ var MslServer = {
 		
 		MslServer.socket.on("GeneralResponse", resp => MslServer.ServerResponse(resp));
 		MslServer.socket.on("LocationAction", resp => MslServer.ServerResponse(resp, LocationController.LocationActionResp));
+		
+		
 		MslServer.socket.on("PlayerEnterLocation", resp => MslServer.ServerResponse(resp, LocationController.PlayerEnterLocationResp));
 		MslServer.socket.on("PlayerExitLocation", resp => MslServer.ServerResponse(resp, LocationController.PlayerExitLocationResp));
 	}

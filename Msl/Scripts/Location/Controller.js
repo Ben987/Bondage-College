@@ -62,24 +62,26 @@ var LocationController = {
 		setTimeout(ClassicHud.RollBack, 2000);
 	}
 	
+	
 	,UnInit(){
 		LocationController.location = null;
 		LocationController.locationContainer.style.display = "none";
 		Object.values(this.delegates).forEach(delegate => delegate?.UnInit());
 	}
 	
-	//Getters
-	,GetSpot(spotName){
-		console.log(MainController.playerAccount);
 	
+	//Getters
+	,GetSpot(spotName){	
 		return spotName ? LocationController.location.spots[spotName] : LocationController.GetSpotWithPlayer(MainController.playerAccount.id);
 	}
+	
 	
 	,GetSpotWithPlayer(playerId){
 		for(var spotName in LocationController.location.players)
 			if(LocationController.location.players[spotName].id == playerId)
 				return LocationController.location.spots[spotName];
 	}
+	
 	
 	,GetPlayer(playerIdOrSpotName){
 		if(typeof(playerIdOrSpotName) == "undefined")
@@ -209,6 +211,7 @@ var LocationController = {
 	
 	
 	//Server replies to actions
+	
 	,PlayerExitLocationResp(data){
 		console.log("PlayerExitLocationResp");
 		console.log(data);
@@ -231,17 +234,11 @@ var LocationController = {
 		
 		var existingPlayer = LocationController.GetPlayer(data.player.id);
 		var spot = LocationController.GetSpot(data.spotName);
-		if(! existingPlayer){
-			var player = new LocationPlayer(data.player);
-			LocationController.location.players[data.spotName] = player
-			LocationController.delegates.view.RenderPlayerInSpot(data.spotName, player);
-			LocationController.delegates.chat.OnPlayerEnter(player, spot);
-		}else if(existingPlayer.id == data.player.id){
-			console.log("player reconnected");
-			LocationController.delegates.chat.OnPlayerReconnect(player);
-		}else{
-			console.log("mismatch detected, update whole thing");
-		}
+		
+		var player = new LocationPlayer(data.player);
+		LocationController.location.players[data.spotName] = player
+		LocationController.delegates.view.RenderPlayerInSpot(data.spotName, player);
+		LocationController.delegates.chat.OnPlayerEnter(player, spot);
 	}
 	
 	
@@ -255,6 +252,17 @@ var LocationController = {
 	
 	,LocationAction_ChatMessage(data){
 		//already takecn care of earlier
+	}
+	
+	
+	,LocationAction_PlayerReconnect(data){
+		console.log(data.playerId + "  reconnected")
+		LocationController.delegates.chat.OnPlayerReconnect(player);
+	}
+	
+	,LocationAction_PlayerDisconnect(data){
+		LocationController.delegates.view.OnPlayerDisconnect(player);
+		LocationController.delegates.chat.OnPlayerDisconnect(player);
 		
 	}
 	

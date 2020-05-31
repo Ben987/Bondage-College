@@ -23,19 +23,23 @@ var LocationViewChat = {
 	
 	,OnPlayerExit(player, spot){
 		var content = "*" + player.character.name + " left the location (from " + spot.name + ")";
-		this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});	
+		var color = player.settings.gui.chat.labelColor;
+		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});	
 	}
 	,OnPlayerEnter(player, spot){
 		var content = "*" + player.character.name + " entered location (into " + spot.name + ")";
-		this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});			
+		var color = player.settings.gui.chat.labelColor;
+		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});			
 	}
 	,OnPlayerReconnect(player){
 		var content = "*" + player.character.name + " reconnected";
-		this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});		
+		var color = player.settings.gui.chat.labelColor;
+		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
 	,OnPlayerDisonnect(player, time){
 		var content = "*" + player.character.name + " disconnected (waiting for " + time + ")";
-		this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});		
+		var color = player.settings.gui.chat.labelColor;
+		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
 	,OnAction(action){
 		var scrollToBot = Util.ScrollableElementIsAtBottom(LocationViewChat.logContainer);	

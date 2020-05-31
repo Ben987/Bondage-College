@@ -5,6 +5,7 @@ var MainController = {
 	,locationTypesCache:null
 	,playerAccount:null
 	,onlineFriendList:{}
+	,locationId:null
 	
 	,Init(){
 		var loginContainer = document.getElementById("LoginView");
@@ -30,23 +31,28 @@ var MainController = {
 			sessionStorage.setItem("playerId", data.playerId), 
 			sessionStorage.setItem("sessionId", data.sessionId);
 			
+			this.locationId = data.locationId;
+			
 			MslServer.Send("GetPlayerAccount", {}, function(data){
 				this.GetPlayerCharacterResp(data);
 			}.bind(this));
 		}.bind(this));
 	}
 	
-	,LoginWithSessionId(sessionId, playerId){
-		console.log({playerId:parseInt(playerId), sessionId:sessionId});
-		
+	,LoginWithSessionId(sessionId, playerId){		
 		MslServer.Send("LoginWithSessionId", {playerId:parseInt(playerId), sessionId:sessionId}, {
 			success:
 				function(data){
 					sessionStorage.setItem("sessionId", data.sessionId);				
+					console.log("LoginWithSessionId");
+					console.log(data);
+					
+					this.locationId = data.locationId;
 					
 					MslServer.Send("GetPlayerAccount", {}, function(data){
 						this.GetPlayerCharacterResp(data);
 					}.bind(this));
+
 				}.bind(this)
 			,error:
 				function(error){
@@ -63,9 +69,14 @@ var MainController = {
 		console.log(data);
 		MainController.playerAccount = new PlayerAccount(data.player);
 		MainController.ShowMainViewAndCreateButton();
-		MslServer.Send("GetAvailableLocations", {}, function(data){
-			this.GetAvailableLocationsResp(data);
-		}.bind(this));
+		
+		if(this.locationId){
+			this.EnterLocation(this.locationId)
+		}else{
+			MslServer.Send("GetAvailableLocations", {}, function(data){
+				this.GetAvailableLocationsResp(data);
+			}.bind(this));
+		}
 	}
 	
 	
@@ -75,7 +86,9 @@ var MainController = {
 		MainController.ShowMainViewAndCreateButton();
 		Util.CreateElement({parent:"MainView", tag:"br"});
 		data.locations.forEach(location => {
-			Util.CreateElement({parent:"MainView", tag:"button",textContent:"Enter " + location.id
+			var buttonInnerHtml = "<span>" + location.type  + "</span>"
+					+ " (" + location.playerCount + "/" + location.capacity + ")"
+			Util.CreateElement({parent:"MainView", tag:"button",innerHTML:buttonInnerHtml
 					,events:{click:() => MainController.EnterLocation(location.id)}});
 		});
 	}
