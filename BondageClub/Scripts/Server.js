@@ -88,7 +88,7 @@ function ServerPlayerSync() {
 	var D = { Money: Player.Money, Owner: Player.Owner };
 	if (Player.Lover) D.Lover = Player.Lover;
 	ServerSend("AccountUpdate", D);
-	delete D.Lover;
+	delete Player.Lover;
 }
 
 // Syncs the full player inventory to the server, it's compressed as a stringify array using LZString
