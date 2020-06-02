@@ -18,22 +18,24 @@ function SlaveMarketLoad() {
 	if (SlaveMarketSlave == null) SlaveMarketNewSlave();
 }
 
-// Run the Slave Market
+// Run the Slave Market (The screen can be used for the search daily job)
 function SlaveMarketRun() {
-	DrawCharacter(Player, 250, 0, 1);
-	DrawCharacter(SlaveMarketMistress, 750, 0, 1);
-	DrawCharacter(SlaveMarketSlave, 1250, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(Player, 250, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(SlaveMarketMistress, 750, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(SlaveMarketSlave, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
+	DailyJobSubSearchRun();
 }
 
 // When the user clicks in the Slave Market
 function SlaveMarketClick() {
-	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(SlaveMarketMistress);
-	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(SlaveMarketSlave);
+	if (!DailyJobSubSearchIsActive() && (MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && (MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(SlaveMarketMistress);
+	if (!DailyJobSubSearchIsActive() && (MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(SlaveMarketSlave);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	DailyJobSubSearchClick();
 }
 
 // When the auction starts, launch the mini-game

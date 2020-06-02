@@ -5,7 +5,7 @@ PlayerGagged,,,We can try to have a gagged conversation Miss.,,,IntroGag,Dumb|Su
 PlayerGagged,,,The best gags are the harness ball gag and panel gag.  They hurt the jaw but are the most effective.,,,IntroGag,Violent|Wise
 PlayerGagged,,,"A Mistress once said: ""If you have nothing interesting to say, then silence will be enforced on you.""",,,IntroGag,Serious|Polite
 ItemMouth,,,(She doesn't resist much as you silence her with the gag.),,,ItemMouth,
-ItemMouth,,,(She trashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth,Dominant|Violent
+ItemMouth,,,(She thrashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth,Dominant|Violent
 ItemMouth,,,(She bows her head and presents her mouth so you can gag her easily.),,,ItemMouth,Submissive|Serious
 ItemMouth,,,Wait!  You don't...  (You silence her with a gag as she was trying to speak.),,,ItemMouth,Playful|Dumb
 RemoveItemMouth,,,(You remove her gag and she smiles.)  Thanks!  It will be easier to communicate now.,,,RemoveItemMouth,
@@ -13,7 +13,7 @@ RemoveItemMouth,,,(You remove her gag and she stretches her jaw.)  Gags are stup
 RemoveItemMouth,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth,Submissive|Horny
 RemoveItemMouth,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth,Frigid|Wise
 ItemMouth2,,,(She doesn't resist much as you silence her with the gag.),,,ItemMouth2,
-ItemMouth2,,,(She trashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth2,Dominant|Violent
+ItemMouth2,,,(She thrashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth2,Dominant|Violent
 ItemMouth2,,,(She bows her head and presents her mouth so you can gag her easily.),,,ItemMouth2,Submissive|Serious
 ItemMouth2,,,Wait!  You don't...  (You silence her with a gag as she was trying to speak.),,,ItemMouth2,Playful|Dumb
 RemoveItemMouth2,,,(You remove her gag and she smiles.)  Thanks!  It will be easier to communicate now.,,,RemoveItemMouth2,
@@ -21,7 +21,7 @@ RemoveItemMouth2,,,(You remove her gag and she stretches her jaw.)  Gags are stu
 RemoveItemMouth2,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth2,Submissive|Horny
 RemoveItemMouth2,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth2,Frigid|Wise
 ItemMouth3,,,(She doesn't resist much as you silence her with the gag.),,,ItemMouth3,
-ItemMouth3,,,(She trashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth3,Dominant|Violent
+ItemMouth3,,,(She thrashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth3,Dominant|Violent
 ItemMouth3,,,(She bows her head and presents her mouth so you can gag her easily.),,,ItemMouth3,Submissive|Serious
 ItemMouth3,,,Wait!  You don't...  (You silence her with a gag as she was trying to speak.),,,ItemMouth3,Playful|Dumb
 RemoveItemMouth3,,,(You remove her gag and she smiles.)  Thanks!  It will be easier to communicate now.,,,RemoveItemMouth3,
@@ -77,7 +77,7 @@ RemoveItemNeck,,,(You remove the collar as she nods.)  This collar isn't for me 
 RemoveItemNeck,,,"(You remove the collar from her neck.)  Miss, please don't toy with my emotions with collars, this is a strong BDSM symbol.",,,RemoveItemNeck,Submissive|Serious
 RemoveItemNeck,,,(You unfasten the collar from her neck.)  Collars are protective for submissives.  It politely tells Dominants to keep their hands away.,,,RemoveItemNeck,Frigid|Polite
 MetalChastityBelt,,,(She shakes her head as you lock the belt on her.)  That's no fun!,,,MetalChastityBelt,
-MetalChastityBelt,,,(You lock the belt on her as she panics and trashes in vain to make it slip.)  Big mistake girl!,,,MetalChastityBelt,Dominant|Violent
+MetalChastityBelt,,,(You lock the belt on her as she panics and thrashes in vain to make it slip.)  Big mistake girl!,,,MetalChastityBelt,Dominant|Violent
 MetalChastityBelt,,,(She almost cries as you lock the belt around her waist.)  This is cruel Miss!  How can I relieve myself now?,,,MetalChastityBelt,Submissive|Horny
 MetalChastityBelt,,,(She seems very calm as you lock the belt.)  I don't mind at all.  This item is a shield against rape and unwanted hands.,,,MetalChastityBelt,Frigid|Peaceful
 RemoveMetalChastityBelt,,,"(You unlock the device from her waist, and she nods.)  That belt was kind of cruel.",,,RemoveMetalChastityBelt,
@@ -93,7 +93,7 @@ RemoveStraponPanties,,,"(You remove the device from her waist.)  If you ever nee
 RemoveStraponPanties,,,"(You remove the device from her waist, and she nods.)  Thanks Miss, this item wasn't really suited for me anyway.",,,RemoveStraponPanties,Submissive|Frigid
 RemoveStraponPanties,,,"(You remove the device from her waist, and she sighs.)  Bye bye kinky panties, come back soon.",,,RemoveStraponPanties,Dumb|Horny
 ItemHead,,,(You strap the item on her head as she sighs.)  Please don't leave me like that for too long.,,,ItemHead,
-ItemHead,,,(She trashes her head and tries to avoid the item but you're able to strap it on her.),,,ItemHead,Dominant|Violent
+ItemHead,,,(She thrashes her head and tries to avoid the item but you're able to strap it on her.),,,ItemHead,Dominant|Violent
 ItemHead,,,(She takes a deep breath as you strap the device on her head.)  I'm totally under your control Miss.,,,ItemHead,Submissive|Serious
 ItemHead,,,(You strap the item on her head as she laughs.)  Oh shit!  This is fucking kinky.,,,ItemHead,Playful|Rude
 RemoveItemHead,,,(You remove the device from her as she hums a song.)  Thanks!  I appreciate.,,,RemoveItemHead,
@@ -152,9 +152,16 @@ VibratingEgg,,,(She wiggles her butt as you slide the egg inside.)  Now this is 
 VibratingEgg,,,"(She moans loudly as you slide the egg inside.)  This egg is perfect.  It's soft, sexy, discrete and so pleasurable.",,,VibratingEgg,Horny|Peaceful
 VibratingEgg,,,"(You slide the egg inside, but she barely reacts to it.)  I don't want to top from the bottom, but this egg would work better on someone else.",,,VibratingEgg,Frigid|Wise
 RemoveVibratingEgg,,,(She does one last moan as you remove the egg.)  Ooooh!  That was quite a stimulation.,,,RemoveVibratingEgg,
-RemoveVibratingEgg,,,(She trashes violently to try to stop you but you're able to recover the egg.)  Hey!  Put it back!,,,RemoveVibratingEgg,Horny|Violent
+RemoveVibratingEgg,,,(She thrashes violently to try to stop you but you're able to recover the egg.)  Hey!  Put it back!,,,RemoveVibratingEgg,Horny|Violent
 RemoveVibratingEgg,,,"(She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.",,,RemoveVibratingEgg,Frigid|Dumb
 RopeBondageBasic,,,"(You wrap the rope around her legs, tying them together.)  I won't be running away now.",,,,
+RopeBondageWristTie,,,(You slowly restrain her wrists behind her back.) Good. But it could also be a lot better.,,,,
+RopeBondageWristElbowTie,,,(You restain her wrists and elbows behind her back.) Not bad at all.,,,,
+RopeBondageWristElbowHarnessTie,,,(You restrain her wrists and elbows behind her back. And tie a harness around her.) This really effective. Well done!,,,,
+RopeBondageAllFours,,,(You restain her with ropes so she's on all fours.) This is a funny tie.,,,,
+RopeBondageRopeCuffs,,,(You restrain her wrists behind her back in a handcuff like tie.) Hmm. This tie is very interesting. I like it.,,,,
+RopeBondageStar,,,(You use the rope and create a star harness around her body) This is a very erotic harness.,,,,
+RopeBondageWaist,,,(You use the ropes and create a waist rope around her body.) This is all you can come up with? Well lets see what you can do with it.,,,,
 RopeBondageMermaid,,,"(You wrap the rope around her legs, tying them in a mermaid pattern.)  That's a great bondage pattern.",,,,
 RopeBondageBoxTie,,,(You slowly restrain her arms in a box tie pattern.)  Secure and comfy.  Well done.,,,,
 RopeBondageHogtied,,,(You use the ropes to restrain her in a tight hogtie.)  I hope they clean the floor often.,,,,

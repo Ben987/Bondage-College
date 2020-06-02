@@ -102,8 +102,11 @@ function EmptySlaveMarketTrainingProgress(Intensity) {
 function EmptySlaveMarketTrainingEnd(Status) {
 	var Money = CurrentCharacter.TrainingCountPerfect * 3;
 	DialogLeave();
-	if (Status != "Success") DialogChangeReputation("Dominant", -2);
-	else CharacterChangeMoney(Player, Money);
+	if (Status != "Success") DialogChangeReputation("Dominant", -1);
+	else {
+		CharacterChangeMoney(Player, Money);
+		IntroductionJobProgress("DomTrainer");
+	}
 	CommonSetScreen("Room", "SlaveMarket");
 	SlaveMarketMistress.CurrentDialog = DialogFind(SlaveMarketMistress, "Training" + Status).replace("MoneyAmount", Money.toString());
 	SlaveMarketMistress.Stage = (Status == "Success") ? "42" : "43";

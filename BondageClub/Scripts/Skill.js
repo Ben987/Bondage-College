@@ -4,11 +4,8 @@ var SkillModifierMax = 5;
 var SkillModifierMin = -10
 var SkillLevelMaximum = 10;
 var SkillLevelMinimum = 0;
-
-// Pushes the skill progression to the server
-function SkillSave(S) {
-	ServerPlayerSkillSync();
-}
+var SkillBondageRatio = 1;
+var SkillBondageRatio = 1;
 
 // When the player progresses in a skill
 function SkillChange(SkillType, SkillLevel, SkillProgress, Push) {
@@ -24,7 +21,7 @@ function SkillChange(SkillType, SkillLevel, SkillProgress, Push) {
 		if (Player.Skill[S].Type == SkillType) {
 			Player.Skill[S].Level = SkillLevel;
 			Player.Skill[S].Progress = SkillProgress;
-			if ((Push == null) || Push) SkillSave(Player.Skill[S])
+			if ((Push == null) || Push) ServerPlayerSkillSync();
 			return;
 		}
 
@@ -35,7 +32,7 @@ function SkillChange(SkillType, SkillLevel, SkillProgress, Push) {
 		Progress: SkillProgress
 	}
 	Player.Skill.push(NewSkill);
-	if ((Push == null) || Push) SkillSave(NewSkill);
+	if ((Push == null) || Push) ServerPlayerSkillSync();
 
 }
 
@@ -46,8 +43,10 @@ function SkillLoad(NewSkill) {
 	if (NewSkill != null) {
 
 		// Add each skill entry one by one
-		for (var S = 0; S < NewSkill.length; S++)
+		for (var S = 0; S < NewSkill.length; S++) {
 			SkillChange(NewSkill[S].Type, NewSkill[S].Level, NewSkill[S].Progress, false);
+			if (NewSkill[S].Ratio != null) SkillSetRatio(NewSkill[S].Type, NewSkill[S].Ratio, false);
+		}
 
 	}
 
@@ -120,6 +119,34 @@ function SkillProgress(SkillType, SkillProgress) {
 
 	}
 
+}
+
+// Sets the ratio % of a skill that's going to be used by the player
+function SkillSetRatio(SkillType, Ratio, Push) {
+	if (Ratio < 0) Ratio = 0;
+	if (Ratio > 1) Ratio = 1;
+	for (var S = 0; S < Player.Skill.length; S++)
+		if (Player.Skill[S].Type == SkillType) {
+			if (Ratio == 1) delete Player.Skill[S].Ratio;
+			else Player.Skill[S].Ratio = Ratio;
+		}
+	if ((Push == null) || Push) ServerPlayerSkillSync();
+}
+
+// Gets the ratio % of effectiveness of a skill for the player
+function SkillGetRatio(SkillType) {
+	var Ratio = 1;
+	for (var S = 0; S < Player.Skill.length; S++)
+		if ((Player.Skill[S].Type == SkillType) && (Player.Skill[S].Ratio != null))
+			Ratio = Player.Skill[S].Ratio;
+	if (Ratio < 0) Ratio = 0;
+	if (Ratio > 1) Ratio = 1;
+	return Ratio;
+}
+
+// Returns a skill level with the ratio % applied, if the player wanted to reduce the effectiveness if her skill
+function SkillGetWithRatio(SkillType) {
+	return Math.round(SkillGetLevel(Player, SkillType) * SkillGetRatio(SkillType));
 }
 
 // Alters the current skill modifier for the player

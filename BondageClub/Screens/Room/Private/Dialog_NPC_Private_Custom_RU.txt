@@ -20,7 +20,7 @@ A Mistress once said: "If you have nothing interesting to say, then silence will
 (She doesn't resist much as you silence her with the gag.)
 (Она почти не сопротивляется, когда ты затыкаешь ей рот кляпом.)
 ###_NPC [Dominant|Violent]
-(She trashes her head to avoid the gag but surrenders as you insist.)
+(She thrashes her head to avoid the gag but surrenders as you insist.)
 (Она бьется головой, чтобы избежать кляпа, но сдается, так как ты настаиваешь.)
 ###_NPC [Submissive|Serious]
 (She bows her head and presents her mouth so you can gag her easily.)
@@ -140,7 +140,7 @@ Wait!  You don't...  (You silence her with a gag as she was trying to speak.)
 (She shakes her head as you lock the belt on her.)  That's no fun!
 (Она качает головой, когда ты застегиваешь на ней пояс.)  Это совсем не весело!
 ###_NPC [Dominant|Violent]
-(You lock the belt on her as she panics and trashes in vain to make it slip.)  Big mistake girl!
+(You lock the belt on her as she panics and thrashes in vain to make it slip.)  Big mistake girl!
 (Ты застегиваешь на ней пояс, когда она паникует и тщетно бьется, чтобы он соскользнул.)  Большая ошибка, девочка!
 ###_NPC [Submissive|Horny]
 (She almost cries as you lock the belt around her waist.)  This is cruel Miss!  How can I relieve myself now?
@@ -188,7 +188,7 @@ Wait!  You don't...  (You silence her with a gag as she was trying to speak.)
 (You strap the item on her head as she sighs.)  Please don't leave me like that for too long.
 (Ты пристегиваешь этот предмет к ее голове, когда она вздыхает.)  Пожалуйста, не оставляйте меня так надолго.
 ###_NPC [Dominant|Violent]
-(She trashes her head and tries to avoid the item but you're able to strap it on her.)
+(She thrashes her head and tries to avoid the item but you're able to strap it on her.)
 (Она бьется головой и пытается избежать этого предмета, но ты можешь надеть его на нее.)
 ###_NPC [Submissive|Serious]
 (She takes a deep breath as you strap the device on her head.)  I'm totally under your control Miss.
@@ -347,7 +347,7 @@ Wait!  You don't...  (You silence her with a gag as she was trying to speak.)
 (She does one last moan as you remove the egg.)  Ooooh!  That was quite a stimulation.
 (Она издает последний стон, когда ты убираешь яйцо.)  Оооо!  Это была настоящая стимуляция.
 ###_NPC [Horny|Violent]
-(She trashes violently to try to stop you but you're able to recover the egg.)  Hey!  Put it back!
+(She thrashes violently to try to stop you but you're able to recover the egg.)  Hey!  Put it back!
 (Она яростно бьется, пытаясь остановить тебя, но ты вытаскиваешь яйцо.)  Эй!  Верни его обратно!
 ###_NPC [Frigid|Dumb]
 (She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.

@@ -300,31 +300,19 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 */
 function InventoryRemove(C, AssetGroup) {
 
-	// Loops until we find the item group to remove
+	// First loop to find the item and any sub item to remove with it
+	for (var E = 0; E < C.Appearance.length; E++)
+		if (C.Appearance[E].Asset.Group.Name == AssetGroup)
+			for (var R = 0; R < C.Appearance[E].Asset.RemoveItemOnRemove.length; R++)
+				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name)))
+					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
+
+	// Second loop to find the item again, and remove it from the character appearance
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
-
-			// Remove other items that are flagged to be removed when this item is removed.  If the name is empty, we remove any item from that group.
-			var ForceUpdate = false;
-			for (var R = 0; R < C.Appearance[E].Asset.RemoveItemOnRemove.length; R++)
-				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name))) {
-					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
-					ForceUpdate = true;
-				}
-
-			// Removes the item itself and refreshes the character
 			C.Appearance.splice(E, 1);
 			CharacterRefresh(C);
-			
-			// If a second item was removed, we force reload the full character to get it refreshed
-			if (ForceUpdate && (CurrentScreen == "ChatRoom") && (C.ID != 0)) {
-				var AllowUpdate = ChatRoomAllowCharacterUpdate;
-				ChatRoomAllowCharacterUpdate = true;
-				ChatRoomCharacterUpdate(C);
-				ChatRoomAllowCharacterUpdate = AllowUpdate;
-			}
 			return;
-
 		}
 
 }

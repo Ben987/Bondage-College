@@ -34,18 +34,19 @@ function KidnapLeagueLoad() {
 	KidnapLeagueTrainer.AllowItem = ((KidnapLeagueTrainer.Stage == "100") || (KidnapLeagueTrainer.Stage == "110"));
 }
 
-// Run the kidnap league
+// Run the kidnap league (The screen can be used for the search daily job)
 function KidnapLeagueRun() {
-	DrawCharacter(Player, 500, 0, 1);
-	DrawCharacter(KidnapLeagueTrainer, 1000, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(Player, 500, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(KidnapLeagueTrainer, 1000, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
+	DailyJobSubSearchRun();
 }
 
 // When the user clicks in the kidnap league room
 function KidnapLeagueClick() {
-	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
+	if (!DailyJobSubSearchIsActive() && (MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && (MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
 		ManagementClubSlaveDialog(KidnapLeagueTrainer);
 		CharacterSetCurrent(KidnapLeagueTrainer);
 	}
@@ -58,6 +59,7 @@ function KidnapLeagueClick() {
 		}
 		CommonSetScreen("Room", "MainHall");
 	}
+	DailyJobSubSearchClick();
 }
 
 // When the player starts a kidnap game against the trainer (an easy fight will lower the player dominant reputation)
