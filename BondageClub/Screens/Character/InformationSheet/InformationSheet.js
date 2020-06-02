@@ -41,7 +41,7 @@ function InformationSheetRun() {
 	
 	// Shows the lover
 	if ((C.Lovership == null) || (C.Lovership.Name == null) || (C.Lovership.MemberNumber == null) || (C.Lovership.Start == null) || (C.Lovership.Stage == null)) {
-		DrawText(TextGet("Lover") + " " + (((C.Lover == null) || (C.Lover == "")) ? TextGet("LoverNone") : C.Lover.replace("NPC-", "")), 550, 500, "Black", "Gray");
+		DrawText(TextGet("Lover") + " " + (((C.Lover == null) || (C.Lover == "")) ? (C.Lovership == null) || (C.Lovership.Name == null) ? TextGet("LoverNone") : C.Lovership.Name.replace("NPC-", "") : C.Lover.replace("NPC-", "")), 550, 500, "Black", "Gray");
 		if ((C.Lover != null) && (C.Lover != "") && (C.ID != 0) && (NPCEventGet(C, "Girlfriend") > 0)) DrawText(TextGet("LoverFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "Girlfriend")) / 86400000)).toString() + " " + TextGet("Days"), 550, 575, "Black", "Gray");
 	} else {
 		DrawText(TextGet("Lover") + " " + C.Lovership.Name + " (" + C.Lovership.MemberNumber + ")", 550, 500, "Black", "Gray");

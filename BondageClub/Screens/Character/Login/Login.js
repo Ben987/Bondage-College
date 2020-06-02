@@ -301,6 +301,7 @@ function LoginResponse(C) {
 			LoginStableItems();
 			LoginLoversItems();
 			LoginValideBuyGroups();
+			ServerPlayerSync();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell
