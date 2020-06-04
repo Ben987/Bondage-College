@@ -2,8 +2,8 @@
 
 var LocationViewChat = {
 	displayMessagesOnCharacter:true
-	,currentRollOutState:1
-	,rollOutStates:[0, 8, 16, 95]
+	//,currentRollOutState:1
+	//,rollOutStates:[0, 8, 16, 95]
 
 	,messageLog:[]
 	
@@ -21,13 +21,15 @@ var LocationViewChat = {
 	,Interrupt(){}
 	,OnScreenChange(){}
 	
-	,OnPlayerExit(player, spot){
-		var content = "*" + player.character.name + " left the location (from " + spot.name + ")";
+	,OnPlayerExit(player){
+		var spotName = LocationController.GetSpotWithPlayer(player.id).name;	
+		var content = "*" + player.character.name + " left the location (from " + spotName + ")";
 		var color = player.settings.gui.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});	
 	}
-	,OnPlayerEnter(player, spot){
-		var content = "*" + player.character.name + " entered location (into " + spot.name + ")";
+	,OnPlayerEnter(player){
+		var spotName = LocationController.GetSpotWithPlayer(player.id).name;	
+		var content = "*" + player.character.name + " entered (>> " + spotName + ")";
 		var color = player.settings.gui.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});			
 	}
@@ -36,8 +38,8 @@ var LocationViewChat = {
 		var color = player.settings.gui.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
-	,OnPlayerDisonnect(player, time){
-		var content = "*" + player.character.name + " disconnected (waiting for " + time + ")";
+	,OnPlayerDisconnect(player, time){
+		var content = "*" + player.character.name + " is reconnecting (waiting for " + time + ")";
 		var color = player.settings.gui.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
@@ -49,7 +51,7 @@ var LocationViewChat = {
 		var color = originPlayer.settings.gui.chat.labelColor;
 		switch(action.type){
 			case "ChatMessage":
-				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", name:originPlayer.name, content:action.result.content});
+				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", name:originPlayer.character.name, content:action.result.content});
 				LocationViewChat.AddChatMessageToFigureBox(action.originPlayerId, action.result.content);
 			break;
 			case "MoveToSpot":
@@ -66,6 +68,10 @@ var LocationViewChat = {
 			case "PlayerExit":
 				var content = "*" + originPlayer.character.name + " left the location (from " + targetPlayer.name + "*";
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});	
+			break;
+			case "PlayerDisconnect":
+			case "PlayerReconnect":
+				//handled in OnPlayerDisconnect
 			break;
 			default:
 				console.log("Chat unhandled " + action.type);
@@ -108,8 +114,10 @@ var LocationViewChat = {
 			if(messageData.id) 		Util.CreateElement({parent:messageDataDiv, textContent:messageData.id, cssClass:"chat-log-message-data-id"});
 		}
 		
-		if(messageData.name)
-			var nameSpan = Util.CreateElement({tag:"span", parent:messageDiv, textContent:messageData.name +": ", cssClass:"chat-log-message-name", cssStyles:{color:color.ToCssColor()}});
+		if(messageData.name){
+			Util.CreateElement({tag:"span", parent:messageDiv, textContent:messageData.name +": ", cssClass:"chat-log-message-name", cssStyles:{color:color.ToCssColor()}});
+			Util.CreateElement({tag:"span", parent:messageDiv, textContent:messageData.name.substring(0, 1) +".: ", cssClass:"chat-log-message-initial", cssStyles:{color:color.ToCssColor()}});
+		}
 		
 		var contentSpan = Util.CreateElement({tag:"span", parent:messageDiv, textContent:messageData.content, cssClass:"chat-log-message-content"});
 		

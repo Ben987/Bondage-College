@@ -9,6 +9,7 @@ F3dcgAssets.InitFreeAndQuestClothes = function(){
 			else if(! AssetItem.Value) 		this.ClothesFree.push(AssetItem.Name);
 		}
 	}
+
 }
 	
 F3dcgAssets.InitPoses = function(){

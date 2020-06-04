@@ -42,6 +42,7 @@ var LocationView = {
 		
 	}
 	
+	
 	,UnInit(){
 		LocationController.canvasContainer.style.display = "none";
 		
@@ -141,7 +142,20 @@ var LocationView = {
 	}
 	
 	
-	,OnPlayerExit(spotName){
+	,OnPlayerDisconnect(player){
+		var spotName = LocationController.GetSpotWithPlayer(player.id).name;
+		var spotDiv = this.spotDivs[spotName]
+		spotDiv.classList.add("disconnected");
+	}
+	,OnPlayerReconnect(player){
+		var spotName = LocationController.GetSpotWithPlayer(player.id).name;
+		var spotDiv = this.spotDivs[spotName]
+		spotDiv.classList.remove("disconnected");	
+	}
+	
+	
+	,OnPlayerExit(player){
+		var spotName = LocationController.GetSpotWithPlayer(player.id).name;	
 		var spotDiv = LocationView.spotDivs[spotName]
 		spotDiv.removeChild(spotDiv.figure);
 	}

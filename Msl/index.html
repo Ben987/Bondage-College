@@ -68,10 +68,11 @@ window.addEventListener("load", function(){
 	
 	var playerId = sessionStorage.getItem("playerId"), sessionId = sessionStorage.getItem("sessionId");
 	
+	MainController.Init();
 	if(playerId && sessionId && playerId != "undefined" && sessionId != "undefined")
 		MainController.LoginWithSessionId(sessionId, playerId);
 	else
-		MainController.Init();
+		MainController.ShowLoginView();
 	
 });
 
@@ -81,19 +82,25 @@ window.addEventListener('resize', MainContainer.Resize, false);
 
 <body style="width:100%; height:100%; background-color:black; color:white; margin:0px; padding:0px; overflow:hidden;user-select:none;">
 	<div id="MainContainer" class="full-block" style="position:relative;overflow:hidden;display:inline-block;">
-		<div id="LoginView" class="full-block">
-			<select name="userList"></select>
-			<button onclick="MainController.Login()">Login</button>
-			<br />
+		<div id="MainView" class="full-block" style="" >
+			<div name="login" class="full-block">
+				<select name="userList"></select>
+				<button onclick="MainController.Login()">Login</button>
+				<br />
+			</div>
+			
+			<div name="locations" class="full-block" style="display:none;">
+				<div name="management" style="width:100%; height:20%">
+					<button name="create" onclick="MainController.ShowCreateLocationTypes()">Create Location</button> 
+					<button name="refresh" onclick="MainController.RefreshAvailableLocations()">Refresh</button> 
+				</div>
+				<div name="enterButtons" style="width:75%; height:80%; float:left"></div>
+				<div name="info" style="width:25%; height:80%; float:right"></div>
+			</div>
+			
+			<div name="newLocationTypes" class="full-block" style="display:none;"></div>
+			<div name="newLocation" class="full-block" style="display:none;"></div>
 		</div>
-		
-		<div id="MainView" class="full-block" style="display:none;" >
-			<button onclick="MainController.ShowCreateLocationTypes()" >Create Location</button> <br />
-		</div>
-		
-		<div id="CreateLocationTypesView" class="full-block" style="display:none;"></div>
-		
-		<div id="CreateLocationView" class="full-block" style="display:none;"></div>
 		
 		<div id="LocationView" style="width:100%;height:100%;display:none;position:absolute;overflow:hidden;">
 			<div id="LocationViewCanvas" style="width:100%; height:100%; overflow:hidden; position:absolute; z-index:0">
@@ -114,7 +121,6 @@ window.addEventListener('resize', MainContainer.Resize, false);
 	</div>
 	
 	<div name="uiTemplates" style="display:none; visibility:hidden">
-		
 		<div id="DialogSelfTemplate" class="dialog normal" onclick="event.stopPropagation()">
 			<div name="background" class="dialog-background full-block">
 				<img alt="backgroundImage" class='fill-container' />

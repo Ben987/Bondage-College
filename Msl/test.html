@@ -92,34 +92,34 @@ window.addEventListener('resize', MainContainer.Resize, false);
 
 </script>
 
-</script>
-
 <style>
-
-.test-box {position:absolute; width:10%; height:20%; background-color:green}
-
-.speech-bubble:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: 48px solid transparent;
-	border-top-color: #00aabb;
-	border-bottom: 0;
-	border-left: 0;
-	margin-left: -24px;
-	margin-bottom: -48px;
-}
 
 
 </style>
 
-<body style="width:100%; height:100%; background-color:black; color:white; margin:0px; padding:0px; overflow:hidden;">
-	<div id="Box1" class="test-box">	<p id="TheElem" style="position:relative; left:0px">SOME TEXT</p></div>
-	<div id="Box2" class="test-box" style="top:40%; left:80%">	</div>
+<body style="width:100%; height:100%; background-color:white; color:black; margin:0px; padding:0px; overflow:hidden;">
 
+	<br />
+	<br />
+	<br />
+	<br />
+	<div style="padding:200px">
+	
+	<button title="tooltip content here"> click here !! </button>
+	
+		<h2>tooltipp</h2>
+		<p>Move the mouse over the text below:</p>
+		
+		<div class="main-locations-enter">Hover over me
+		  <span class="tooltiptext">tooltipp text</span>
+		</div>
+		
+		<div class="main-locations-enter" style="position:absolute">
+			<span>VacationHome</span>
+			<span>(0/11)</span> 
+			<span class="tooltiptext">Tooltip text</span>
+		</div>		
+	</div>
 </body>
 
 </html>

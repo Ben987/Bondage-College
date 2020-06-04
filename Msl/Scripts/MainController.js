@@ -1,26 +1,33 @@
 'use strict'
 
 var MainController = {
-	divIdList : ["LoginView", "MainView", "CreateLocationTypesView", "CreateLocationView"]
-	,locationTypesCache:null
+	locationTypesCache:null
 	,playerAccount:null
-	,onlineFriendList:{}
+	,onlineFriendList:[]
+	,onlineLocationList:[]
 	,locationId:null
+	,containers:{}
 	
 	,Init(){
-		var loginContainer = document.getElementById("LoginView");
-		var userSelect = Util.GetFirstChildNodeByName(loginContainer, "userList");
-		
+		this.mainContainer = document.getElementById("MainView");
+		this.containers.login = Util.GetFirstChildNodeByName(this.mainContainer, "login");
+		this.containers.locations = Util.GetFirstChildNodeByName(this.mainContainer, "locations")
+		this.containers.newLocationTypes = Util.GetFirstChildNodeByName(this.mainContainer, "newLocationTypes");
+		this.containers.newLocation = Util.GetFirstChildNodeByName(this.mainContainer, "newLocation");
+	}
+	
+	,ShowLoginView(){
 		MslServer.Send("GetAllUserNames", {}, function(data){
+			
+			var userSelect = Util.GetFirstChildNodeByName(this.containers.login, "userList");		
 			for(var id in data){
 				Util.CreateElement({tag:"option", parent:userSelect, textContent:data[id], attributes:{value:id }});
 			}
-		}.bind(this))
+		}.bind(this))	
 	}
 	
 	,Login(playerId){
-		var loginContainer = document.getElementById("LoginView");
-		var userSelect = Util.GetFirstChildNodeByName(loginContainer, "userList");
+		var userSelect = Util.GetFirstChildNodeByName(this.containers.login, "userList");
 		
 		playerId = playerId ? playerId : parseInt(userSelect.value);
 		
@@ -52,15 +59,19 @@ var MainController = {
 					MslServer.Send("GetPlayerAccount", {}, function(data){
 						this.GetPlayerCharacterResp(data);
 					}.bind(this));
-
 				}.bind(this)
 			,error:
 				function(error){
 					console.error(error);
 					this.Init();
+					this.ShowLoginView();
 				}.bind(this)
 			}
 		);
+	}
+	
+	,RefreshAvailableLocations(){
+	
 	}
 	
 	
@@ -68,11 +79,11 @@ var MainController = {
 		console.log("GetPlayerCharacterResp");
 		console.log(data);
 		MainController.playerAccount = new PlayerAccount(data.player);
-		MainController.ShowMainViewAndCreateButton();
 		
 		if(this.locationId){
 			this.EnterLocation(this.locationId)
 		}else{
+			MainController.HideOtherAndShowView(this.containers.locations);
 			MslServer.Send("GetAvailableLocations", {}, function(data){
 				this.GetAvailableLocationsResp(data);
 			}.bind(this));
@@ -83,13 +94,50 @@ var MainController = {
 	,GetAvailableLocationsResp(data){
 		console.log("GetAvailableLocationsResp");
 		console.log(data);
-		MainController.ShowMainViewAndCreateButton();
-		Util.CreateElement({parent:"MainView", tag:"br"});
+		
+		MainController.HideOtherAndShowView(this.containers.locations);
+		//Util.CreateElement({parent:"MainView", tag:"br"});
+		
+		var container = Util.GetFirstChildNodeByName(this.containers.locations, "enterButtons");
+		Util.ClearNodeContent(container);
+		
+		this.onlineLocationList = {}
 		data.locations.forEach(location => {
-			var buttonInnerHtml = "<span>" + location.type  + "</span>"
-					+ " (" + location.playerCount + "/" + location.capacity + ")"
-			Util.CreateElement({parent:"MainView", tag:"button",innerHTML:buttonInnerHtml
-					,events:{click:() => MainController.EnterLocation(location.id)}});
+			this.onlineLocationList[location.id] = location;
+			
+			var buttonInnerHtml = "<span>" + location.type  + "</span>"	
+								+ " <span>(" + location.playerCount + "/" + location.capacity + ")</span>"
+								//+ " <span class='tooltiptext'>Tooltip text</span>";
+			var button = Util.CreateElement({parent:container, tag:"button",innerHTML:buttonInnerHtml,cssClass:"main-locations-enter", events:{
+				click:function(){
+					//this.EnterLocation(location.id);
+					this.ShowLocationInfo(location.id);
+				}.bind(this)
+			}});
+			
+			if(location.friends){
+				button.classList.add("has-friends");
+			}
+		});
+	}
+	
+	
+	,ShowLocationInfo(locationId){
+		var container = Util.GetFirstChildNodeByName(this.containers.locations, "info");
+		Util.ClearNodeContent(container);
+		var location = this.onlineLocationList[locationId];
+		
+		var button = Util.CreateElement({parent:container, tag:"button",innerHTML:"ENTER",cssClass:"main-locations-enter", events:{
+			click:function(){
+				Util.ClearNodeContent(container);				
+				this.EnterLocation(location.id);
+			}.bind(this)
+		}});
+		
+		Util.CreateElement({parent:container, textContent:"Permissions: default"});
+		
+		location.friends?.forEach(friend =>{
+			Util.CreateElement({parent:container, textContent:friend.name + " (" + friend.id + ")"});
 		});
 	}
 	
@@ -107,11 +155,8 @@ var MainController = {
 	}
 	
 	
-	,ShowMainViewAndCreateButton(){
-		MainController.HideOtherAndShowView("MainView", true);		
-		Util.CreateElement({parent:"MainView",  tag:"button", textContent:"Create Location"
-			,events:{click:MainController.ShowCreateLocationTypes.bind(this)}
-		});
+	,ShowLocationsView(){	
+		MainController.HideOtherAndShowView(this.containers.locations);
 	}
 	
 	
@@ -122,7 +167,7 @@ var MainController = {
 			}.bind(this));
 		}
 		else
-			MainController.HideOtherAndShowView("CreateLocationTypesView");
+			MainController.HideOtherAndShowView(this.containers.newLocationTypes);
 	}
 	
 	
@@ -133,9 +178,9 @@ var MainController = {
 		
 		if(LocationController.location) return;
 		
-		MainController.HideOtherAndShowView("CreateLocationTypesView");
+		MainController.HideOtherAndShowView(this.containers.newLocationTypes);
 		MainController.locationTypesCache.forEach(el => {
-			Util.CreateElement({parent:"CreateLocationTypesView", tag:"button", textContent:el.name
+			Util.CreateElement({parent:this.containers.newLocationTypes, tag:"button", textContent:el.name
 					,events:{click:function(){MainController.ShowCreateLocation(el)}}});
 		});
 		
@@ -144,24 +189,24 @@ var MainController = {
 	
 	
 	,ShowCreateLocation(locationDef){ 
-		MainController.HideOtherAndShowView("CreateLocationView", true);
+		MainController.HideOtherAndShowView(this.containers.newLocation);
 		
 		var buttonElement = Util.CreateElement({
-			parent:"CreateLocationView"
+			parent:this.containers.newLocation
 			,tag:"button"
 			,textContent:"Create new " + locationDef.name
 			,events:{click:function(){MainController.CreateLocation(locationDef.name)}}
 		});
 		
-		Util.CreateElement({parent:"CreateLocationView", tag:"br"});
+		Util.CreateElement({parent:this.containers.newLocation, tag:"br"});
 		
 		locationDef.entrances.forEach(el =>{
 			var radio = Util.CreateElement({
-				parent:"CreateLocationView", tag:"input"
+				parent:this.containers.newLocation, tag:"input"
 				,attributes:{type:"radio",name:"LocationEntrance", value:el, id:el}
 			});
-			Util.CreateElement({parent:"CreateLocationView", tag:"label", attributes:{"for":el}, innerHTML:el});
-			Util.CreateElement({parent:"CreateLocationView", tag:"br"});
+			Util.CreateElement({parent:this.containers.newLocation, tag:"label", attributes:{"for":el}, innerHTML:el});
+			Util.CreateElement({parent:this.containers.newLocation, tag:"br"});
 		});
 	}
 	
@@ -176,7 +221,8 @@ var MainController = {
 	
 	,ExitLocationResp(data){
 		LocationController.UnInit();
-		MainController.ShowMainViewAndCreateButton();
+		this.mainContainer.style.display = "block";
+		MainController.HideOtherAndShowView(this.containers.locations);
 		MslServer.Send("GetAvailableLocations", {}, function(data){
 			this.GetAvailableLocationsResp(data);
 		}.bind(this));
@@ -186,16 +232,17 @@ var MainController = {
 	,EnterLocationResp(data){
 		console.log("EnterLocationResp");
 		console.log(data);
-		MainController.HideOtherAndShowView();
+		this.mainContainer.style.display = "none";
 		LocationController.InitAndRender(data);
 	}
 	
 	
-	,HideOtherAndShowView(viewElementId, clearInnerHtml){
-		MainController.divIdList.forEach(viewElementId => document.getElementById(viewElementId).style.display = "none");
-		if(viewElementId) {
-			document.getElementById(viewElementId).style.display = "block";
-			if(clearInnerHtml) document.getElementById(viewElementId).innerHTML = "";
-		}
+	,HideOtherAndShowView(viewContainerElement){
+		for(var name in this.containers)
+			this.containers[name].style.display = "none";
+		
+		if(viewContainerElement)
+			viewContainerElement.style.display = "block"
+
 	}	
 }

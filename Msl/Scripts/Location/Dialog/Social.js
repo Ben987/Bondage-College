@@ -39,9 +39,13 @@ var LocationDialogSocialView  = function(mainDialog, containerElement){
 	
 	this.RefreshOnlineFriendList = function(){
 		MslServer.Send("GetOnlineFriendList", {}, (function(data){
+			console.log("GetOnlineFriendList");
+			console.log(data);
+			
 			Util.ClearNodeContent(this.tbodies.online);
 			data.friends.forEach(friend => {
-				var tr = Util.CreateElement({tag:"tr", parent:this.tbodies.online, innerHTML:"<td>"+friend.id+"</td><td>"+friend.name+"</td><td>"+friend.locationId+"</td>"});
+				var innerHTML = "<td>" + friend.id + "</td><td>" + friend.name + "</td><td>" + friend.locationId + " " + friend.locationType + "</td>";
+				var tr = Util.CreateElement({tag:"tr", parent:this.tbodies.online, innerHTML:innerHTML});
 			});
 		}.bind(this)));
 	}

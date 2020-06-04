@@ -31,11 +31,10 @@ var LocationController = {
 		//Initialize data
 		this.location = data;
 		
-		console.log(this.constructor);
-		
 		//replace player ids with player objects
 		for(var spotName in this.location.players)
 			this.location.players[spotName] = new LocationPlayer(this.location.players[spotName]);
+		
 		
 		//DOM container elements
 		this.locationContainer = document.getElementById("LocationView");
@@ -210,28 +209,28 @@ var LocationController = {
 	}
 	
 	
-	//Server replies to actions
-	
-	,PlayerExitLocationResp(data){
-		console.log("PlayerExitLocationResp");
+	,LocationActionResp(data){
+		console.log("LocationActionResp"); 
 		console.log(data);
-		
+		console.log("LocationAction_" + data.type);
+		LocationController["LocationAction_" + data.type](data);
+		LocationController.delegates.chat.OnAction(data);
+	}
+	
+	,LocationAction_PlayerExit(data){
 		var spot = LocationController.GetSpotWithPlayer(data.playerId);
 		if(! spot) 	throw "PlayerNotFound " + data.playerId;
 		
 		var player = LocationController.location.players[spot.name];
-		LocationController.delegates.view.OnPlayerExit(player, spot);
-		LocationController.delegates.chat.OnPlayerExit(player, spot);
+		LocationController.delegates.view.OnPlayerExit(player);
+		LocationController.delegates.chat.OnPlayerExit(player);
 		
 		delete LocationController.location.players[spot.name];
 
 	}
 	
 	
-	,PlayerEnterLocationResp(data){
-		console.log("PlayerEnterLocationResp");
-		console.log(data);
-		
+	,LocationAction_PlayerEnter(data){
 		var existingPlayer = LocationController.GetPlayer(data.player.id);
 		var spot = LocationController.GetSpot(data.spotName);
 		
@@ -241,29 +240,27 @@ var LocationController = {
 		LocationController.delegates.chat.OnPlayerEnter(player, spot);
 	}
 	
+	,LocationAction_PlayerReconnect(data){
+		console.log(data.playerId + "  reconnected")
+		var player = LocationController.GetPlayer(data.playerId);
+		LocationController.delegates.view.OnPlayerReconnect(player);
+		LocationController.delegates.chat.OnPlayerReconnect(player);
+	}
 	
-	,LocationActionResp(data){
-		console.log("LocationActionResp"); 
-		console.log(data);
-		LocationController["LocationAction_" + data.type](data);
-		LocationController.delegates.chat.OnAction(data);
+	,LocationAction_PlayerDisconnectTimeout(data){
+		this.LocationAction_PlayerExit(data)
+	}
+	
+	,LocationAction_PlayerDisconnect(data){
+		console.log(data.playerId + "  disconnected")
+		var player = LocationController.GetPlayer(data.playerId);
+		LocationController.delegates.view.OnPlayerDisconnect(player);
+		LocationController.delegates.chat.OnPlayerDisconnect(player);
 	}
 	
 	
 	,LocationAction_ChatMessage(data){
 		//already takecn care of earlier
-	}
-	
-	
-	,LocationAction_PlayerReconnect(data){
-		console.log(data.playerId + "  reconnected")
-		LocationController.delegates.chat.OnPlayerReconnect(player);
-	}
-	
-	,LocationAction_PlayerDisconnect(data){
-		LocationController.delegates.view.OnPlayerDisconnect(player);
-		LocationController.delegates.chat.OnPlayerDisconnect(player);
-		
 	}
 	
 	

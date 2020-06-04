@@ -51,8 +51,9 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 		if(! AssetGroup) throw "GroupNotFound " + groupName;
 		
 		var posesEffectsBlocks, item, AssetItem;
+		var item = appearanceUpdate[groupName];
+		
 		if(appearanceUpdate[groupName]){
-			var item = appearanceUpdate[groupName];
 			var itemName = item.name;
 			AssetItem = AssetGroup.Items[itemName];
 			if(! AssetItem) throw "ItemNotFound " + itemName;
@@ -149,8 +150,13 @@ F3dcgAssets.ValidateItemIsOwned = function(item, groupType, playerTarget, player
 	if(null == item) return;
 	if(groupType == F3dcgAssets.BODY || groupType == F3dcgAssets.EXPRESSION) return;
 	if(groupType == F3dcgAssets.CLOTH && F3dcgAssets.ClothesFree.includes(item.name)) return;
-	if(! playerTarget.inventory[groupType].includes(item.name) && ! (playerOrigin && playerOrigin.inventory[groupType].includes(item.name)))
+	
+	
+	if(! playerTarget.inventory[groupType].includes(item.name) && ! (playerOrigin && playerOrigin.inventory[groupType].includes(item.name))){
+		console.log(groupType + " " + item.name);
+	
 		throw "ItemNotOwned " + item.name;
+	}
 }
 
 F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffectsBlocks) {
