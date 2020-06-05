@@ -472,6 +472,8 @@ ItemLegs,LeatherLegCuffs,Leather Leg Cuffs
 ItemLegs,OrnateLegCuffs,Ornate Leg Cuffs
 ItemLegs,LegBinder,Leg Binder
 ItemLegs,HobbleSkirt,Hobble Skirt
+ItemLegs,SeamlessLegBinder,Seamless Leg Binder
+ItemLegs,SeamlessHobbleSkirt,Seamless Hobble Skirt
 ItemLegs,WoodenHorse,Wooden Horse
 ItemLegs,Zipties,Zip Ties
 ItemLegs,Chains,Chains
@@ -629,6 +631,8 @@ ItemArms,BitchSuitExposed,Pet Suit Exposed
 ItemArms,CollarLeashHolding,Holding Leash
 ItemArms,StraitDress,Strait Dress
 ItemArms,StraitDressOpen,Open Crotch Strait Dress
+ItemArms,SeamlessStraitDress,Seamless Strait Dress
+ItemArms,SeamlessStraitDressOpen,Seamless Open Crotch Strait Dress
 ItemArms,Yoke,Yoke
 ItemArms,Pillory,Pillory
 ItemArms,FullLatexSuit,Full LockDown Latex Suit
