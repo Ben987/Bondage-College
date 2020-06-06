@@ -71,7 +71,7 @@ var F3dcgAssetsInventory = {
 		var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + "/Preview/" + namePart + ".png";
 		
 		var validation = [];
-		var inventoryItem = {itemName:AssetItem.Name, iconUrl:iconUrl, validation:validation}
+		var inventoryItem = {itemName:AssetItem.Name, iconUrl:iconUrl, validation:validation, colorize:true}
 		
 		if(posesEffectsBlocks.blocks.includes(groupName)) validation.push("Blocked");
 		
@@ -84,7 +84,7 @@ var F3dcgAssetsInventory = {
 		
 		//Subject to validation
 		if(AssetItem.Variant){			
-			inventoryItem.variants = {colorize:true};
+			inventoryItem.variants = {};
 			for(var variantName in AssetItem.Variant){
 				var Variant = AssetItem.Variant[variantName];
 				var variant = {name: Variant.Name, iconUrl : Variant.iconUrl, validation:[]}

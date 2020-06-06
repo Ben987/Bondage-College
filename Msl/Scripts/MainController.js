@@ -71,7 +71,17 @@ var MainController = {
 	}
 	
 	,RefreshAvailableLocations(){
+		
 	
+		if(this.locationId){
+			LocationView.a;
+		}
+	}
+	
+	
+	
+	,FriendMessageResp(data){
+		console.log(data);
 	}
 	
 	
@@ -226,6 +236,7 @@ var MainController = {
 		MslServer.Send("GetAvailableLocations", {}, function(data){
 			this.GetAvailableLocationsResp(data);
 		}.bind(this));
+		this.locationId = null;
 	}
 	
 	

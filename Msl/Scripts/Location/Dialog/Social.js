@@ -43,9 +43,23 @@ var LocationDialogSocialView  = function(mainDialog, containerElement){
 			console.log(data);
 			
 			Util.ClearNodeContent(this.tbodies.online);
-			data.friends.forEach(friend => {
-				var innerHTML = "<td>" + friend.id + "</td><td>" + friend.name + "</td><td>" + friend.locationId + " " + friend.locationType + "</td>";
-				var tr = Util.CreateElement({tag:"tr", parent:this.tbodies.online, innerHTML:innerHTML});
+			data.friends.forEach(friend => {	
+				var rowHTML = "<td>" + friend.id + "</td><td>" + friend.name + "</td><td>" + friend.locationId + " " + friend.locationType + "</td><td>";
+				var tr = Util.CreateElement({tag:"tr", parent:this.tbodies.online, innerHTML:rowHTML});
+				
+				var selectionOptionsHTML = "<option value='1'>Plain Beep</option><option value='2'>Fancy Beep</option>"
+				var tdSelection = Util.CreateElement({tag:"td", parent:tr});
+				
+				var selectionElement = Util.CreateElement({tag:"select", parent:tdSelection, innerHTML:selectionOptionsHTML});
+				
+				var tdButton = Util.CreateElement({tag:"td", parent:tr});
+				var button = Util.CreateElement({tag:"button", parent:tdButton, textContent:"Send", events:{
+					click:function(){
+						MslServer.Send("SendMessageToFriend", {targetPlayerId:friend.id*1, message:1*selectionElement.value}, function(){
+							//message sent
+						}.bind(this));
+					}.bind(this)
+				}});
 			});
 		}.bind(this)));
 	}

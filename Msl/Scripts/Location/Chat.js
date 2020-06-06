@@ -129,6 +129,7 @@ var LocationViewChat = {
 		var spotDiv = LocationController.delegates.view.spotDivs[LocationController.GetSpotWithPlayer(playerId).name];
 		var hoverDiv = Util.CreateElement({parent:spotDiv, textContent:content, className:"chat-hover-item"});
 		
+		//TODO replace animation with transition
 		setTimeout(() => {hoverDiv.style.animation = "fadeOut ease " + fadeOutTime +"ms"}, 6000);
 		setTimeout(() => {hoverDiv.parentNode.removeChild(hoverDiv);}, 6000  + fadeOutTime);
 	}

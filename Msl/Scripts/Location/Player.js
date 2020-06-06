@@ -95,49 +95,60 @@ var LocationPlayerUpdate = function(player){
 	
 	
 	this.AddColor = function(itemName, color){
-		return this.AddItem(F3dcgAssets.ItemNameToGroupNameMap[itemName], itemName, null, color);
-	}
-	
-	
-	this.AddVariant = function(itemName, variantName){
-		return this.AddItem(F3dcgAssets.ItemNameToGroupNameMap[itemName], itemName, variantName);
-	}
-	
-	this.AddItem = function(groupName, itemName, variantName, color){
+		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
-		var oldItem = this.appearance[AssetGroup.type][groupName];		
-		var colorHexString = color ? color.ToHexString() : oldItem?.color;
 		
-		switch(AssetGroup.type){
+		var mostRecentItemName = this.HasChanges() ? this.updateStack[this.updateStack.length - 1].item.name : this.appearance[AssetGroup.type][groupName].name;
+		
+		return this.Add(AssetGroup.type, groupName, mostRecentItemName, null, color.ToHexString());
+	}
+	
+	/*
+	this.AddVariant = function(itemName, variantName){
+		return this.AddItem(F3dcgAssets.ItemNameToGroupNameMap[itemName], itemName);
+	}*/
+	
+	
+	this.AddItem = function(groupName, itemName){
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		var oldItem = this.appearance[AssetGroup.type][groupName];
+		var colorHexString = oldItem?.color;
+		
+		if(AssetGroup.type == F3dcgAssets.BONDAGE_TOY){
+			if(this.updateRestraint) return ["OnlyOneBondageToyAtTime"];
+			this.updateRestraint = true;
+		}
+		
+		this.Add(AssetGroup.type, groupName, itemName, colorHexString);
+		
+		return [];
+	}
+	
+	
+	this.Add = function(groupTypeName, groupName, itemName, variantName, colorHexString){//Assuming validation has been taken care of elsewhere
+		var newItem;
+		
+		console.log(groupTypeName, groupName, itemName, colorHexString);
+		switch(groupTypeName){
 			case F3dcgAssets.CLOTH:
-				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildClothAppearanceItem(itemName, colorHexString);
-				this.appearance[AssetGroup.type][groupName] = newItem;
-				this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});
+				newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildClothAppearanceItem(itemName, colorHexString);
 			break;
 			case F3dcgAssets.ACCESSORY:
-				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildAccessoryAppearanceItem(itemName, colorHexString);
-				this.appearance[AssetGroup.type][groupName] = newItem;
-				this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});			
+				newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildAccessoryAppearanceItem(itemName, colorHexString);
 			break;
 			case F3dcgAssets.EXPRESSION:
-				var newItem = F3dcgAssets.BuildExpressionAppearanceItem(itemName);
-				this.appearance[AssetGroup.type][groupName] = newItem;
-				this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});
+				newItem = F3dcgAssets.BuildExpressionAppearanceItem(itemName);
 			break;
 			case F3dcgAssets.BONDAGE_TOY:
-				if(this.updateRestraint) return ["OnlyOneBondageToyAtTime"];
-				this.updateRestraint = true;
-				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildBondageToyAppearanceItem(itemName, colorHexString);
-				this.appearance[AssetGroup.type][groupName] = newItem;
-				this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});				
+				newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildBondageToyAppearanceItem(itemName, colorHexString);
 			break;
 			default:
 				return [AssetGroup.type + " not supported"];
 		}
 		
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);
-		
-		return [];
+		this.appearance[groupTypeName][groupName] = newItem;
+		this.updateStack.push({type:groupTypeName, groupName:groupName, item:newItem});
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);	
 	}
 	
 	
@@ -172,7 +183,7 @@ var LocationPlayerUpdate = function(player){
 				}
 			break;
 			
-			default:console.log(updateToUndo.type);
+			default:console.error(updateToUndo.type);
 		}
 		
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);

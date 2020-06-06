@@ -8,6 +8,7 @@ var MslServer = {
 		MslServer.socket = io(Environment.serverUrl + "/msl");
 		
 		MslServer.socket.on("GeneralResponse", resp => MslServer.ServerResponse(resp));
+		MslServer.socket.on("FriendMessage", resp => MslServer.ServerResponse(resp, MainController.FriendMessageResp));
 		MslServer.socket.on("LocationAction", resp => MslServer.ServerResponse(resp, LocationController.LocationActionResp));
 	}
 	

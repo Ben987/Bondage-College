@@ -73,8 +73,8 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 				parent:this.figureContainer
 				,innerHTML:error
 				,className:"validation_message_fadout"
+				,removeAfter:4000
 			});
-			setTimeout(() => {errorDiv.parentNode.removeChild(errorDiv);}, 4000);
 		});
 	}
 	
@@ -208,12 +208,13 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		var validationErrors = this.mainDialog.updateDelegate.AddItem(this.selectedItemGroupName, this.selectedItemName);
 		this.RenderAppearanceOrShowErrors(validationErrors);
 		
-		//if(! validationErrors.length) this.UpdateItemGroupIconImage(this.selectedItemGroupTypeName, this.selectedItemGroupName);
+		if(! validationErrors.length) this.UpdateItemGroupIconImage(this.selectedItemGroupTypeName, this.selectedItemGroupName);
+		this.UpdateControlAndActionButtons();
 	}
 	
 	
 	this.UpdateItemGroupIconImage = function(itemGroupTypeName, itemGroupName){
-		var wornItem //= this.mainDialog.updateDelegate.GetCurrentWornItem(itemGroupName);
+		var wornItem; //= this.mainDialog.updateDelegate.GetCurrentWornItem(itemGroupName);
 		if(wornItem){
 			//current item will be displayed elsewhere
 			//var itemGroupIcon = Util.GetFirstChildNodeByName(this.containerElements.itemGroupSelection, itemGroupName);		

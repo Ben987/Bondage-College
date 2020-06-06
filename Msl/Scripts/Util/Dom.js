@@ -70,6 +70,9 @@ Util.CreateElement = function(params){
 			parent.appendChild(element);
 	}
 	
+	if(params.removeAfter)
+		setTimeout(() => {element.parentNode.removeChild(element);}, params.removeAfter);
+	
 	return element;
 }
 

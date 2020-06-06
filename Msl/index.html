@@ -81,8 +81,25 @@ window.addEventListener('resize', MainContainer.Resize, false);
 </script>
 
 <body style="width:100%; height:100%; background-color:black; color:white; margin:0px; padding:0px; overflow:hidden;user-select:none;">
-	<div id="MainContainer" class="full-block" style="position:relative;overflow:hidden;display:inline-block;">
-		<div id="MainView" class="full-block" style="" >
+	<div id="MainContainer" class="full-block" style="position:relative;overflow:hidden;">
+		<div id="LocationView" style="width:100%;height:100%;display:none;position:absolute;overflow:hidden;">
+			<div id="LocationViewCanvas" style="width:100%; height:100%; overflow:hidden; position:absolute; z-index:0">
+				<img id="LocationViewBackground" src="" alt="" class="full-block" style="z-index:-10000" />
+				<div id="LocationViewMidground" class="full-block" style="overflow:hidden;"></div>
+				<img id="LocationViewForeground" src="" alt="" class="full-block" style="z-index:10000;"/>
+				<div id="LocationViewInput" class="full-block" style="z-index:10000;"></div>
+			</div>
+			
+			<div id="LocationViewHud" style="z-index:10000;" class="full-block">
+				<!--<include src="./Html/Hud/InputSideLeft.htm" id="LocationViewSideInputLeft" class="roll-left roll-left-small"></include>-->
+				<!--<include src="./Html/Hud/BottomChat.htm" id="LocationViewChat" class="chat-container"></include>-->
+				
+				<div class="hover-button-highlight" style="position:absolute; left:97%; top:2%; width:3%; height:6%;" onclick="ClassicHud.RollForward()"><img src="./Images/Icons/Out.png" alt="RollOut" class="fill-container"/></div>
+				<include src="./Html/Hud/Classic.htm" id="ClassicRoomHud" class="classic-hud-right"></include>
+			</div>
+		</div>	
+	
+		<div id="MainView" class="full-block" style="">
 			<div name="login" class="full-block">
 				<select name="userList"></select>
 				<button onclick="MainController.Login()">Login</button>
@@ -100,23 +117,6 @@ window.addEventListener('resize', MainContainer.Resize, false);
 			
 			<div name="newLocationTypes" class="full-block" style="display:none;"></div>
 			<div name="newLocation" class="full-block" style="display:none;"></div>
-		</div>
-		
-		<div id="LocationView" style="width:100%;height:100%;display:none;position:absolute;overflow:hidden;">
-			<div id="LocationViewCanvas" style="width:100%; height:100%; overflow:hidden; position:absolute; z-index:0">
-				<img id="LocationViewBackground" src="" alt="" class="full-block" style="z-index:-10000" />
-				<div id="LocationViewMidground" class="full-block" style="overflow:hidden;"></div>
-				<img id="LocationViewForeground" src="" alt="" class="full-block" style="z-index:10000;"/>
-				<div id="LocationViewInput" class="full-block" style="z-index:10000;"></div>
-			</div>
-			
-			<div id="LocationViewHud" style="z-index:10000;" class="full-block">
-				<!--<include src="./Html/Hud/InputSideLeft.htm" id="LocationViewSideInputLeft" class="roll-left roll-left-small"></include>-->
-				<!--<include src="./Html/Hud/BottomChat.htm" id="LocationViewChat" class="chat-container"></include>-->
-				
-				<div class="hover-button-highlight" style="position:absolute; left:97%; top:2%; width:3%; height:6%;" onclick="ClassicHud.RollForward()"><img src="./Images/Icons/Out.png" alt="RollOut" class="fill-container"/></div>
-				<include src="./Html/Hud/Classic.htm" id="ClassicRoomHud" class="classic-hud-right"></include>
-			</div>
 		</div>
 	</div>
 	
