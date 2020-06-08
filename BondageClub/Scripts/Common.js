@@ -229,6 +229,24 @@ function CommonDynamicFunctionParams(FunctionName) {
 
 }
 
+
+/**
+ *  Calls a named global function with the passed in arguments, if the named function exists. Differs from
+ *  CommonDynamicFunctionParams in that arguments are not parsed from the passed in FunctionName string, but
+ *  passed directly into the function call, allowing for more complex JS objects to be passed in. This
+ *  function will not log to console if the provided function name does not exist as a global function.
+ *
+ * @param {string} FunctionName - The name of the global function to call
+ * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ */
+function CommonCallFunctionByName(FunctionName/*, ...args */) {
+	var Function = window[FunctionName];
+	if (typeof Function === "function") {
+		var args = Array.prototype.slice.call(arguments, 1);
+		return Function.apply(null, args);
+	}
+}
+
 // Sets the current screen and calls the loading script if needed, only allow the change screen if the player can walk
 function CommonSetScreen(NewModule, NewScreen) {
 	CurrentModule = NewModule;

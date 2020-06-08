@@ -1,14 +1,41 @@
 "use strict";
 var DailyJobBackground = "MainHall";
 var DailyJobOpponent = null;
+var DailyJobPuppyMistress = null;
+var DailyJobPuppy1 = null;
+var DailyJobPuppy2 = null;
+var DailyJobPuppy3 = null;
+var DailyJobPuppy4 = null;
 
 function DailyJobPlayerFullRestrain() { CharacterFullRandomRestrain(Player, "ALL") };
+
+// Loads a puppy girl and fully restrain her
+function DailyJobPuppyLoad(GirlNum) {
+	var C = CharacterLoadNPC("NPC_DailyJob_PuppyGirl" + GirlNum);
+	CharacterNaked(C);
+	InventoryWear(C, CommonRandomItemFromList("", ["BitchSuit", "BitchSuitExposed", "HempRope", "Chain", "ArmbinderJacket", "StraitLeotard", "LeatherStraitJacket", "SeamlessStraitDress", "SeamlessStraitDressOpen", "BoxTieArmbinder"]), "ItemArms", null, 8);
+	InventoryWear(C, CommonRandomItemFromList("", ["Ears1", "Ears2", "PonyEars1", "BunnyEars1", "BunnyEars2", "PuppyEars1", "FoxEars1", "WolfEars1", "WolfEars2", "FoxEars2", "FoxEars3", "PuppyEars2"]), "HairAccessory1", null, 8);
+	InventoryWear(C, CommonRandomItemFromList("", ["FoxTailsStrap", "PuppyTailStrap", "RaccoonStrap", "PuppyTailStrap1", "FoxTailStrap1", "FoxTailStrap2", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"]), "TailStraps", null, 8);
+	InventoryWearRandom(C, "ItemMouth", 8);
+	InventoryWearRandom(C, "ItemNeck", 8);
+	InventoryWear(C, "ChainLeash", "ItemNeckRestraints", null, 8);
+	CharacterSetActivePose(C, "Kneel");
+	return C;
+}
 
 // Loads the daily job room screen
 function DailyJobLoad() {
 	if (DailyJobOpponent == null) {
 		DailyJobOpponent = CharacterLoadNPC("NPC_DailyJob_Opponent");
 		DailyJobOpponent.AllowItem = false;
+	}
+	if (DailyJobPuppyMistress == null) {
+		DailyJobPuppyMistress = CharacterLoadNPC("NPC_DailyJob_PuppyMistress");
+		DailyJobPuppyMistress.AllowItem = false;
+		DailyJobPuppy1 = DailyJobPuppyLoad("1");
+		DailyJobPuppy2 = DailyJobPuppyLoad("2");
+		DailyJobPuppy3 = DailyJobPuppyLoad("3");
+		DailyJobPuppy4 = DailyJobPuppyLoad("4");
 	}
 }
 
@@ -74,4 +101,13 @@ function DailyJobKidnapFail() {
 	DailyJobOpponent.Stage = "10";
 	CurrentCharacter = null;
 	DialogChangeReputation("Dominant", -1);
+}
+
+// When the puppy walker job starts
+function DailyJobPuppyGameStart() {
+	MiniGameStart("PuppyWalker", 0, "DailyJobPuppyGameEnd");
+}
+
+// When the puppy walker job ends
+function DailyJobPuppyGameEnd() {
 }

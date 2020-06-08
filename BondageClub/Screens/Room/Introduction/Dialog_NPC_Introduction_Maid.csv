@@ -54,6 +54,10 @@ JobKidnapIntro100,,,(Your target sees you coming back and laughs.)  You haven't 
 JobKidnapIntro101,,,(You track your target again in the club halls.)  Are you serious?  Get off my path.,,
 JobKidnapIntro102,,,(You target stares at you with a huge grin.)  My favorite bounty loser is back!,,
 JobKidnapIntro103,,,(You find your target again in the club halls.)  You think I will go easy on you now?,,
+JobPuppyIntro00,,,"(A Mistress rushes to you, she seems in a hurry.)  Let's make it quick, I need someone to take care of my puppies, can you do it?",,
+JobPuppyIntro01,,,"(A Mistress comes to meet you.)  Hello, I need to leave for the day, could you take care of my puppies?",,
+JobPuppyIntro02,,,"(A stern Mistress greets you.)  Girl, my puppies needs to go walk, can you take care of that?",,
+JobPuppyIntro03,,,"(The Mistress comes in late.)  Sorry for the delay, I need a girl to care for my pups, can you do that?",,
 0,,,Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,IsHeadMaid
 0,,,(She stares at you.)  Hello naked girl.  Welcome to the introduction class.,,Player.IsNaked()
@@ -214,7 +218,7 @@ JobKidnapIntro103,,,(You find your target again in the club halls.)  You think I
 400,0,I won't take any job now.,"Very well, you can always come back tomorrow to check for new assignments.  Would you like to know more about the club then?",,
 410,411,I'll do it!,Wonderful!  Let me go get the Mistress.  She will give you the instructions.,"JobStart(""DomPuppy"", 1)",
 410,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
-411,,(Wait for the Mistress.),TO DO,,
+411,,(Wait for the Mistress.),,JobPuppyStart(),
 420,421,I'll do it!,The shop will be very happy.  You'll need to use a specific lock on five different members in the chat rooms.,"JobStart(""DomLock"", 5)",
 420,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
 421,,,You need to use a specific lock on five different members in the chat rooms.,,

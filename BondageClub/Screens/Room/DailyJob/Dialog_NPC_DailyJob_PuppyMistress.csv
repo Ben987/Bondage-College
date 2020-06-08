@@ -1,0 +1,44 @@
+PlayerGagged,,,Keep that gag on and someday you'll be enslaved as a puppy girl.,
+PuppyVictory,,,TO DO,
+PuppyDefeat,,,TO DO,
+ItemMouth,,,(She sighs and reluctantly allows you to gag her.),
+RemoveItemMouth,,,(You remove her gag and she seems happy.)  You had fun?  It's over now?,
+ItemArms,,,(She turns around as you restrain her arms securely.)  Enjoy your victory while it lasts.,
+RemoveItemArms,,,(You free her arms as she stretches them.)  Alright.  Am I allowed to leave?,
+ItemHands,,,(She grumbles and gives you her hands as you restrain them.)  Enjoy your victory while it lasts.,
+RemoveItemHands,,,(You free her hands and she gives you a thumbs up.)  Alright.  Am I allowed to leave?,
+ItemLegs,,,(She submits to you while you restrain her legs.)  You sure know your bondage.,
+RemoveItemLegs,,,(You release her legs as she shakes her butt.)  How long will you keep me here?,
+ItemFeet,,,(She tests your feet restraints by jumping on her toes.),
+RemoveItemFeet,,,(You release her feet and she wiggles them.),
+ItemBoots,,,(She tests your feet restraints by jumping on her toes.),
+RemoveItemBoots,,,(You release her feet and she wiggles them.),
+ItemNeck,,,(She adjusts her neck to the new collar.)  I will never become your slave.,
+RemoveItemNeck,,,(You remove the collar from her neck.)  Next time I will collar you.,
+ItemPelvis,,,(She struggles to avoid the belt but you're able to strap it on her.)  These belts should be banned.,
+RemoveItemPelvis,,,"(She seems happy as you unlock the belt from her waist.)  Thanks, DialogPlayerName.",
+ItemHead,,,(You strap the device on her head as she sighs.)  Next time I won't lose against you.,
+RemoveItemHead,,,(You release her head as she nods rapidly.)  Enjoy that short-term victory.,
+ItemTorso,,,(You strap the harness on her torso as she blushes.)  Stop the kinky stuff.,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  It will be easier to breath like that.,
+ItemBreastLeatherWhip,,,(She whimpers and cries as you whip her breast.)  Revenge will be sweet!,
+ItemBreastLeatherCrop,,,"(You lash the crop on her torso, hitting her breast.)  Ow!  Careful with that crop.",
+ItemPelvisLeatherWhip,,,(You whip her butt as she grumbles.)  I'll make sure to get a whip next time I'm facing you.,
+ItemPelvisLeatherCrop,,,(You whack the leather crop right on her butt.)  Ouch! I'll put my next bounty on you.,
+0,10,That should be easy.,"(She nods.)  Yes it will.  Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.","DialogChangeReputation(""Dominant"", 2)"
+0,10,What do I need to do?,"Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.",
+0,10,That sounds complicated.,"(She frowns.)  It's not.  Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.","DialogChangeReputation(""Dominant"", -2)"
+0,10,How many puppies do you have?,"I have four puppy girls, take them to the park, make them walk, play with them for a while and get them back here.",
+10,20,What's the catch?,"There's no catch, just take them outside and make sure they don't run away.  If you lose one of them, there will be trouble.",
+10,20,Anything I should know?,"Just take them outside and make sure they don't run away.  If you lose one of them, there will be trouble.",
+10,20,You'll pay me after?,"Yes, after the job is done.  Just take them outside and make sure they don't run away.  If you lose one of them, there will be trouble.",
+20,20,What trouble?,Lose one of them and you'll see.  (She smirks.),DialogRemove()
+20,,I'll do it!  (Go walk the puppies.),,PuppyGameStart()
+100,110,TO DO,TO DO,"DialogChangeReputation(""Dominant"", -1)"
+100,110,TO DO,TO DO,
+100,110,TO DO,TO DO,
+100,110,TO DO,TO DO,"DialogChangeReputation(""Dominant"", 3)"
+200,210,TO DO,TO DO,"DialogChangeReputation(""Dominant"", -3)"
+200,210,TO DO,TO DO,
+200,210,TO DO,TO DO,"DialogChangeReputation(""Dominant"", 1)"
+200,210,TO DO,TO DO,
