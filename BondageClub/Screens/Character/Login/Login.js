@@ -248,8 +248,15 @@ function LoginResponse(C) {
 
 			// Loads the lovership data
 			Player.Lovership = Array.isArray(C.Lovership) ? C.Lovership.length > 0 ? C.Lovership[0] : null : C.Lovership;
-			if ((Player.Lovership != null) && (Player.Lovership.Name != null))
-				Player.Lover = Player.Lovership.Name;
+			if (((C.Lover != null) && (C.Lover != "undefined") && C.Lover.startsWith("NPC-")) ||
+				(Player.Lovership && ((Player.Lovership.Name.startsWith("NPC-") || ((Player.Lovership.Stage) && (Player.Lovership.Stage == 2)))))) {
+				Player.Lover = C.Lover;
+				ServerPlayerSync();
+			}
+			else {
+				Player.Lover = "";
+				ServerPlayerSync();
+			}
 
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
@@ -301,7 +308,6 @@ function LoginResponse(C) {
 			LoginStableItems();
 			LoginLoversItems();
 			LoginValideBuyGroups();
-			ServerPlayerSync();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell
