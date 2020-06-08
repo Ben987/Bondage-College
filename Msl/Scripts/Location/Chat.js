@@ -21,6 +21,12 @@ var LocationViewChat = {
 	,Interrupt(){}
 	,OnScreenChange(){}
 	
+	
+	,OnFriendMessage(data){
+		var content = "*" + data.originPlayerName + " sent message: " + data.message;
+		if(data.locationId) content += " from location " + data.locationName + " (" + data.locationType + "-" + data.locationId + ")";
+		this.AddChatMessageToLog({id:data.originPlayerId, time:"12:20", content:content, narration:true});	
+	}
 	,OnPlayerExit(player){
 		var spotName = LocationController.GetSpotWithPlayer(player.id).name;	
 		var content = "*" + player.character.name + " left the location (from " + spotName + ")";

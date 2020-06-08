@@ -6,6 +6,7 @@ var LocationPlayer = function(Account){
 		this[key] = Account[key];
 	
 	this.currentPose = F3dcgAssets.POSE_NONE;
+	
 	this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.currentPose);
 	
 	this.GetUpdateDelegate = function(){
@@ -53,26 +54,18 @@ var LocationPlayerUpdate = function(player){
 	//this.clothOrAccessoryUpdateLimit = 100;//unlimited
 	this.updateStack = [];
 	
-	this.updateRestraint = null;
-	
 	this.GetInventoryItem = function(groupName, itemName){
-		var item = this.items[F3dcgAssets.AssetGroups[groupName].type][groupName].find(inventoryItem => inventoryItem.itemName == itemName);
+		var item = this.items[F3dcgAssets.AssetGroups[groupName].type][groupName].items.find(inventoryItem => inventoryItem.itemName == itemName);
 		return item;
 	}
 	
+	this.GetApplicableItems = function(){
+		return this.items;
+	}
+	
 	this.GetCurrentWornItem = function(groupName){
-		var AssetGroup = F3dcgAssets.AssetGroups[groupName], item;
-		switch(AssetGroup.type){
-			case F3dcgAssets.CLOTH:
-			case F3dcgAssets.ACCESSORY:
-			case F3dcgAssets.EXPRESSION:
-			case F3dcgAssets.BODY:
-			case F3dcgAssets.BONDAGE_TOY:
-				item = this.appearance[AssetGroup.type][groupName];
-			break;
-			default:
-				throw "ItemGroupNotDefined " + groupName;
-		}
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		var item = this.appearance[AssetGroup.type][groupName];
 		return item;
 	}
 	
@@ -97,26 +90,38 @@ var LocationPlayerUpdate = function(player){
 	this.AddColor = function(itemName, color){
 		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
-		
-		var mostRecentItemName = this.HasChanges() ? this.updateStack[this.updateStack.length - 1].item.name : this.appearance[AssetGroup.type][groupName].name;
-		
-		return this.Add(AssetGroup.type, groupName, mostRecentItemName, null, color.ToHexString());
+		var existingItem = this.appearance[AssetGroup.type][groupName];
+		//var mostRecentItemName = this.HasChanges() ? this.updateStack[this.updateStack.length - 1].item.name : existingItem.name;
+		return this.Add(AssetGroup.type, groupName, existingItem.name, color ? color.ToHexString() : null);
 	}
 	
-	/*
+	
 	this.AddVariant = function(itemName, variantName){
-		return this.AddItem(F3dcgAssets.ItemNameToGroupNameMap[itemName], itemName);
-	}*/
+		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		var currentItem = this.player.appearance[AssetGroup.type][groupName];
+		
+		//if(currentItem.name != itemName) return ["CanOnlySetVariantOnAppliedItem"]
+		
+		var newItem = F3dcgAssets.BuildBondageToyAppearanceItem(itemName, currentItem?.color); //Atm, variants only exist on Bondaget Toy Items
+		newItem.variant = variantName;
+		this.appearance[AssetGroup.type][groupName] = newItem;
+		this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);	
+		
+		return [];
+	}
 	
 	
 	this.AddItem = function(groupName, itemName){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
-		var oldItem = this.appearance[AssetGroup.type][groupName];
-		var colorHexString = oldItem?.color;
+		var currentItem = this.appearance[AssetGroup.type][groupName];
+		
+		var colorHexString = currentItem?.color;
 		
 		if(AssetGroup.type == F3dcgAssets.BONDAGE_TOY){
-			if(this.updateRestraint) return ["OnlyOneBondageToyAtTime"];
-			this.updateRestraint = true;
+			var mostRecent = this.GetMostRecentTypeUpdate(F3dcgAssets.BONDAGE_TOY);
+			if(mostRecent && mostRecent.groupName != groupName) return ["OnlyOneBondageToyAtTime"];
 		}
 		
 		this.Add(AssetGroup.type, groupName, itemName, colorHexString);
@@ -125,10 +130,11 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.Add = function(groupTypeName, groupName, itemName, variantName, colorHexString){//Assuming validation has been taken care of elsewhere
+	//Assuming validation has been taken care of elsewhere
+	//Variants are taken care of elsewhere
+	this.Add = function(groupTypeName, groupName, itemName, colorHexString){
 		var newItem;
 		
-		console.log(groupTypeName, groupName, itemName, colorHexString);
 		switch(groupTypeName){
 			case F3dcgAssets.CLOTH:
 				newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildClothAppearanceItem(itemName, colorHexString);
@@ -159,7 +165,6 @@ var LocationPlayerUpdate = function(player){
 		
 		switch(updateToUndo.type){
 			case F3dcgAssets.BONDAGE_TOY:
-				this.updateRestraint = false; //no break	
 			case F3dcgAssets.CLOTH:
 			case F3dcgAssets.ACCESSORY:
 				var itemPrev = this.GetMostRecentUpdatedItemForGroup(updateToUndo.groupName);			
@@ -201,7 +206,7 @@ var LocationPlayerUpdate = function(player){
 	
 	
 	this.HasChanges = function(){
-		return this.updateStack.length > 0 || this.updateRestraint;
+		return this.updateStack.length > 0;
 	}
 	
 	
@@ -239,6 +244,17 @@ var LocationPlayerUpdate = function(player){
 			suit[groupType] = Util.CloneRecursive(this.appearance[groupType]);
 		
 		return suit;
+	}
+	
+	
+	this.GetMostRecentTypeUpdate = function(type){
+		var mostRecentUpdate;
+		this.updateStack.forEach(update => {
+			if(update.type == type){
+				mostRecentUpdate = update
+			}
+		});
+		return mostRecentUpdate;	
 	}
 	
 	

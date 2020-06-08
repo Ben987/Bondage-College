@@ -20,7 +20,9 @@ var F3dcgAssetsRender = {
 				var item = appearanceItems[groupName];
 				
 				if(! item) continue;
-				var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name], AssetVariant = AssetItem.Variant ? AssetItem.Variant[item.variant] : null;			
+				var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name];
+				if(!AssetItem) console.log(item);
+				var AssetVariant = AssetItem.Variant ? AssetItem.Variant[item.variant] : null;			
 				
 				if(AssetItem.Height) result.top -= AssetItem.Height;				
 				
@@ -64,7 +66,7 @@ var F3dcgAssetsRender = {
 		
 		//pose effects
 		result.poses.forEach(poseName => {
-			if(poseName == "Suspension") appearanceItemEffects.rotate = 180;
+			if(poseName == "Suspension") result.rotate = 180;
 			
 			if(F3dcgAssets.Poses[poseName]){
 				var AssetPose = F3dcgAssets.Poses[poseName];
@@ -107,40 +109,55 @@ var F3dcgAssetsRender = {
 		this.TranslateRenderItem(renderItem, appearanceItemEffects.itemGroupsToTranslateByPose[AssetItemGroup.Group]);
 		
 		var posePart = this.GetPoseUrlPart(AssetItemGroup, AssetItem, appearanceItemEffects.poses);
-		var variantPart = appearanceItem.variant ?  appearanceItem.variant : "";
+		var variantPart = appearanceItem.variant && appearanceItem.variant != "None" ?  appearanceItem.variant : "";
 		var sizePart = AssetItemGroup.useBodySize  && ! (AssetItem.IgnoreParentGroup === true) ? "_" + body[AssetItemGroup.useBodySize] : "";
 		
 		var groupPart = AssetItemGroup.Group +"/";
 		var itemPart =  AssetItem.Name.includes("_") ?  AssetItem.Name.split("_")[0] :  AssetItem.Name;
 		
 		if(AssetItem.Layer) {
-			AssetItem.Layer.forEach(AssetItemLayer => {					
-				/*if(AssetItem.Variants){
-					console.log(AssetItemLayer.Name  + " " + appearanceItem.itemVariantName);
-					
-					var isDefaultVariant = appearanceItem.itemVariantName == Object.keys(AssetItem.Variants)[0];
-					var isDefaultLayer = !AssetItemLayer.AllowTypes;
-					
-					if(isDefaultVariant && AssetItemLayer.AllowTypes?.includes(""))
+			AssetItem.Layer.forEach(AssetItemLayer => {//multi laeyered multi variant items that reuse layers
+				var renderItemLayer = {colorize:AssetItemLayer.AllowColorize ? true : false}
+				renderItem.layers.push(renderItemLayer);
+				
+				var urlPartLayerName = "_" + AssetItemLayer.Name;
+				
+				if(AssetItem.Variant && AssetItem.Variant[appearanceItem.variant].Layer){
+					if(AssetItem.Variant[appearanceItem.variant].Layer.includes(AssetItemLayer.Name))
 						variantPart = "";
-					else if(AssetItemLayer.AllowTypes && !AssetItemLayer.AllowTypes.includes(appearanceItem.itemVariantName)) 
+					else{
+						renderItem.layers.pop();
 						return;
-					else if(AssetItemLayer.AllowTypes && !AssetItemLayer.AllowTypes.includes(appearanceItem.itemVariantName))
-						variantPart = AssetItemLayer.Name;
-					else
-						variantPart = "";
+					}
 					
-				}*/
+					if(AssetItem.Name == "BondageBench"){
+						if(	AssetItemLayer.Name == "Base") {
+							urlPartLayerName = "";
+						}else{
+							groupPart = "ItemAddon/";
+							itemPart = "BondageBenchStraps";
+							sizePart = "";
+							urlPartLayerName = AssetItemLayer.Name;
+							renderItemLayer.priority = AssetItemLayer.Priority;
+						}
+					}else if(AssetItem.Name == "LeatherArmbinder"){
+						if(	AssetItemLayer.Name == "Base") {
+							urlPartLayerName = "";
+						}else{
+							groupPart = "ItemHidden/";
+							sizePart = "";
+							urlPartLayerName = AssetItemLayer.Name;
+							renderItemLayer.priority = AssetItemLayer.Priority;	
+							renderItemLayer.left = renderItemLayer.top = 1;
+						}
+					}
+				}
 				
 				if(posePart) variantPart = ""; //ornate cuffs
 				
-				var urlPartLayerName = "_" + AssetItemLayer.Name;
-				renderItem.layers.push({
-					colorize:AssetItemLayer.AllowColorize ? true : false
-					,url:F3dcgAssets.F3DCG_ASSET_BASE + groupPart + posePart + itemPart + sizePart + urlPartLayerName + variantPart + ".png"
-				});
+				renderItemLayer.url = F3dcgAssets.F3DCG_ASSET_BASE + groupPart + posePart + itemPart + sizePart + urlPartLayerName + variantPart + ".png";
 			});
-			//if(AppItem.lock) item.urlLock = groupPart + posePart + itemPart + "_Lock.png";  Looks like layered items never have locks rendered
+			//if(AppItem.lock) item.urlLock = groupPart + posePart + itemPart + "_Lock.png";
 		} else {
 			if(AssetItem.Variant)
 				variantPart = variantPart == Object.keys(AssetItem.Variant)[0] ? "" : variantPart;
@@ -260,12 +277,27 @@ var F3dcgAssetsRender = {
 		if(appearance.bondageToys) renderItemList.push(...this.BuildRenderItems(appearance.bondageToys, appearance.frame, appearanceItemEffects));
 		if(appearance.expressions) renderItemList.push(...this.BuildExpressionRenderItems(appearance.expressions, appearance.frame, appearanceItemEffects));
 		
-		renderItemList.sort((item1, item2) => {return item1.priority - item2.priority;});
+		//to implement layer level properties
+		var renderItemLayerList = [];
+		renderItemList.forEach( renderItem =>{
+			renderItem.layers.forEach( renderItemLayer =>{
+				renderItemLayerList.push(renderItemLayer);
+				renderItemLayer.top = renderItem.top;
+				renderItemLayer.left = renderItem.left;
+				renderItemLayer.priority = renderItemLayer.priority ? renderItemLayer.priority : renderItem.priority ;
+				renderItemLayer.color = renderItem.color;
+				renderItemLayer.fullAlpha = renderItem.fullAlpha ;
+			});
+		});
+		
+		
+		renderItemLayerList.sort((item1, item2) => {return item1.priority - item2.priority;});
+		
 		return {
 			top:appearanceItemEffects.top
 			,rotate:appearanceItemEffects.rotate
 			,scale:appearanceItemEffects.scale
-			,items:renderItemList
+			,items:renderItemLayerList
 		};
 	}
 	

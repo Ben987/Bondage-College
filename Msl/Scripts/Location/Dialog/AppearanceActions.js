@@ -133,7 +133,7 @@ var LockDialogAppearanceActionView = function(container, callback) {
 		}
 	} 
 	
-	this.SetItemUnlocked = function(allowedLocks, inventoryLocks ){
+	this.SetItemUnlocked = function(allowedLocks, inventoryLocks){
 		allowedLocks.forEach(lockName => {
 			var lock = inventoryLocks[lockName];
 			var lockImage = Util.CreateElement({parent:this.container, tag:"img"
@@ -157,7 +157,7 @@ var VariantDialogAppearanceActionView = function(container, callback) {
 			var variantData = inventoryItem.variants[variantName];
 			
 			var iconContainer = Util.CreateElement({parent:this.container});
-			Util.CreateElement({parent:iconContainer,innerHTML:variantName,cssStyles:{color:"#fff",fontSize:".8em"}});
+			Util.CreateElement({parent:iconContainer,innerHTML:variantName,cssStyles:{fontSize:".8em"}});
 			
 			var events = {};
 			if(variantData.validation?.length == 0)
@@ -200,7 +200,6 @@ var ColorDialogAppearanceActionView = function(container, callback) {
 	this.containerLig = Util.GetFirstChildNodeByName(this.container, "lightness");
 	this.hexColorStringInput = Util.GetFirstChildNodeByName(this.container, "hexColorString");
 	
-	
 	this.SetHexValue = function(value){
 		if(! value) return;
 		
@@ -220,11 +219,14 @@ var ColorDialogAppearanceActionView = function(container, callback) {
 
 	this.UpdateFromInputElementText = function(){
 		try{
-			var color = new Util.Color.Instance(Util.Color.TYPE_HEXSTRING, this.hexColorStringInput.value);
-			this.UpdateInputRanges(color);
-			this.UpdateBackgrounds(color);
-		
-			this.callback(color);
+			if(! this.hexColorStringInput.value || this.hexColorStringInput.value == "#"){
+				this.callback(null);
+			}else{
+				var color = new Util.Color.Instance(Util.Color.TYPE_HEXSTRING, this.hexColorStringInput.value);
+				this.UpdateInputRanges(color);
+				this.UpdateBackgrounds(color);
+				this.callback(color);
+			}
 		}catch(e){console.log(e);return;}
 	}
 	
@@ -268,11 +270,9 @@ var ColorDialogAppearanceActionView = function(container, callback) {
 		color.SetLightness(lightness);
 	}
 	
-	this.hexColorStringInput.addEventListener("click", this.UpdateFromInputElementText.bind(this));
-	
-	this.container.addEventListener("input", function(event){
-		event.stopPropagation();
-		this.UpdateFromInputElementsRanges();
-	}.bind(this));
+	this.hexColorStringInput.addEventListener("change", this.UpdateFromInputElementText.bind(this));
+	this.containerHue.addEventListener("change", this.UpdateFromInputElementsRanges.bind(this));
+	this.containerSat.addEventListener("change", this.UpdateFromInputElementsRanges.bind(this));
+	this.containerLig.addEventListener("change", this.UpdateFromInputElementsRanges.bind(this));
 }
 

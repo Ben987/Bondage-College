@@ -173,6 +173,7 @@ F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffec
 		case "NoItemFeet":  	return b.ItemFeet ? "MustFreeFeetFirst" : "";
 		case "NoItemLegs":  	return b.ItemLegs ? "MustFreeLegsFirst" : "";
 		case "NoItemHands":	  	return b.ItemHands ? "MustFreeHandsFirst" : "";
+		case "NakedCloth":		return c.Cloth ? "RemoveClothesForItem" : "";
 		case "NakedClothLower":	return c.ClothLower ? "RemoveClothesForItem" : "";
 		case "NakedFeet":	  	return b.ItemBoots || c.Socks || c.Shoes ? "RemoveClothesForItem" : "";
 		case "NakedHands":	  	return b.ItemHands || c.Gloves ? "RemoveClothesForItem" : "";

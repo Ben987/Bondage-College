@@ -209,6 +209,10 @@ var LocationController = {
 	}
 	
 	
+	,FriendMessageResp(data){
+		this.delegates.chat.OnFriendMessage(data);
+	}
+	
 	,LocationActionResp(data){
 		console.log("LocationActionResp"); 
 		console.log(data);

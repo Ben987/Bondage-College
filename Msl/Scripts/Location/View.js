@@ -120,24 +120,24 @@ var LocationView = {
 	
 	,BuildPlayerFigure(spotDiv, render){
 		var cssStyles = LocationView.BuildPlayerFigurePosition(render);
-	
+		
 		spotDiv.figure = Util.CreateElement({parent:spotDiv, cssStyles:cssStyles});
 		
 		render.items.forEach(renderItem => {
 			var cssStyles = {left:(renderItem.left*LocationView.assetsScaleFactor)+"%",top:(renderItem.top*LocationView.assetsScaleFactor/2)+"%",visibility:"hidden",position:"absolute"}
 			
-			renderItem.layers.forEach(renderItemLayer => {
+			//renderItem.layers.forEach(renderItemLayer => {
 				var cS = Util.CloneRecursive(cssStyles);
-				Util.CreateImageElement(renderItemLayer.url, spotDiv.figure, cS, LocationView.assetsScaleFactor, LocationView.assetsScaleFactor/2
+				Util.CreateImageElement(renderItem.url, spotDiv.figure, cS, LocationView.assetsScaleFactor, LocationView.assetsScaleFactor/2
 					,(image) => {
-						if(renderItemLayer.colorize && renderItem.color)
+						if(renderItem.colorize && renderItem.color)
 							Util.ColorizeImage(image, renderItem.color, renderItem.fullAlpha);
 							
-						if(renderItemLayer.blinking)
+						if(renderItem.blinking)
 							image.classList.add("blinking");
 					}
 				);
-			});
+			//});
 		});
 	}
 	
@@ -145,11 +145,15 @@ var LocationView = {
 	,OnPlayerDisconnect(player){
 		var spotName = LocationController.GetSpotWithPlayer(player.id).name;
 		var spotDiv = this.spotDivs[spotName]
+		if(! spotDiv) return; // player disconnected where player not visible
 		spotDiv.classList.add("disconnected");
 	}
+	
+	
 	,OnPlayerReconnect(player){
 		var spotName = LocationController.GetSpotWithPlayer(player.id).name;
 		var spotDiv = this.spotDivs[spotName]
+		if(! spotDiv) return; // player connected where player not visible
 		spotDiv.classList.remove("disconnected");	
 	}
 	

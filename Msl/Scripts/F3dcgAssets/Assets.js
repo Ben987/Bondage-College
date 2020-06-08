@@ -17,8 +17,8 @@ F3dcgAssets.UNIMPLEMENTED_ITEMS = ["SpankingToys", "DildoPlugGag", "PlugGag"
 		
 		]
 	
-F3dcgAssets.POSE_None = "None"
-F3dcgAssets.POSE_KNEELEING = "Kneel"
+F3dcgAssets.POSE_NONE = "None";
+F3dcgAssets.POSE_KNEEL = "Kneel";
 	
 F3dcgAssets.F3DCG_ASSET_BASE = "../BondageClub/Assets/Female3DCG/"//
 F3dcgAssets.F3DCG_TYPE_ICON_BASE = "../BondageClub/Screens/Inventory/"//ItemArms/OrnateCuffs/Elbow.png None.png

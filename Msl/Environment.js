@@ -5,5 +5,5 @@ var Environment = {
 	,highilghtSpotClickDivs:true
 	,highilghtSpotFigreDivs:true
 	
-	,allItemsInInventory:false
+	,allItemsInInventory:true
 }

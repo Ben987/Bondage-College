@@ -83,22 +83,45 @@ F3dcgAssets.InitVariants = function(){
 	
 	V = this.SimplestVariant(G.Items.BitchSuit, ["Latex", "UnZip"]);
 	V.Latex.Property = {Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
+	V.Latex.Layer = ["Base", "Latex"];
+	V.UnZip.Layer = ["Base", "UnZip"];
 	
 	V = this.SimplestVariant(G.Items.MermaidSuit, ["Latex", "UnZip"]);
 	V.Latex.Property = {Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
+	V.Latex.Layer = ["Base", "Latex"];
+	V.UnZip.Layer = ["Base", "UnZip"];
 	
 	V = this.SimplestVariant(G.Items.FullLatexSuit, ["Latex", "UnZip"]);
 	V.Latex.Property = {Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
+	V.Latex.Layer = ["Base", "Latex"];
+	V.UnZip.Layer = ["Base", "UnZip"];
 	
 	V = this.SimplestVariant(G.Items.DuctTape_ItemArms, ["Arms", "Bottom", "Top", "Full", "Complete"]);
 	V.Bottom.Hide = ["Cloth", "ClothLower"];
 	V.Bottom.Block = ["ItemVulva", "ItemButt", "ItemPelvis"];
+	V.Bottom.Prerequisite = ["NakedClothLower", "NakedCloth"];
 	V.Top.Hide = ["Cloth", "ClothLower"];
 	V.Top.Block = ["ItemTorso", "ItemBreast", "ItemNipples"];
 	V.Full.Hide = ["Cloth", "ClothLower"];
 	V.Full.Block = ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"];
+	V.Full.Prerequisite = ["NakedClothLower", "NakedCloth"];
 	V.Complete.Hide = ["Cloth", "ClothLower"];
 	V.Complete.Block = ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"];
+	V.Complete.Prerequisite = ["NakedClothLower", "NakedCloth"];
+	
+	V = this.SimplestVariant(G.Items.LeatherArmbinder, ["Base", "Strap", "WrapStrap"]);
+	V.Base.Layer = ["Base"];
+	V.Strap.Layer  = ["Base", "Strap"];
+	V.WrapStrap.Layer  = ["Base", "WrapStrap"];
+	
+	G.Items.LeatherArmbinder.Layer = [
+		{ Name: "Base", AllowColorize: true, Priority: 6 }
+		,{ Name: "Strap", AllowColorize: true,Priority: 31}
+		,{ Name: "WrapStrap", AllowColorize: true,Priority: 31 }
+	]//*/
+	
+	
+	//"Strap", "WrapStrap", "None"
 	
 	//this.SimplestVariant(G.Items.StraitJacket, ["Loose", "Normal", "Snug", "Tight"]);//single image for all, not interesting
 	
@@ -137,6 +160,21 @@ F3dcgAssets.InitVariants = function(){
 	G = F3dcgAssets.AssetGroups.ItemDevices;
 	this.SimplestVariant(G.Items.InflatableBodyBag, ["Light", "Inflated", "Bloated", "Max"]);
 	this.SimplestVariant(G.Items.TeddyBear, ["Bear", "Kitty", "Pony", "Pup", "Fox", "Bunny"]);
+	//*
+	V = this.SimplestVariant(G.Items.BondageBench, ["Base", "Light", "Normal", "Heavy", "Full"]);
+	V.Base.Layer = ["Base"];
+	V.Light.Layer  = ["Base", "Light"];
+	V.Normal.Layer  = ["Base", "Normal"];
+	V.Heavy.Layer  = ["Base", "Heavy"];
+	V.Full.Layer  = ["Base", "Full"];
+	G.Items.BondageBench.Layer = [
+		{ Name: "Base", AllowColorize: false, Priority: 1 }
+		,{ Name: "Light", AllowColorize: true,Priority: 50}
+		,{ Name: "Normal", AllowColorize: true,Priority: 50 }
+		,{ Name: "Heavy", AllowColorize: true,Priority: 50}
+		,{ Name: "Full", AllowColorize: true,Priority: 50}
+	]//*/
+	
 	
 	//ItemEars
 	G = F3dcgAssets.AssetGroups.ItemEars;

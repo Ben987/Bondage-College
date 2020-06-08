@@ -6,10 +6,17 @@ var MainController = {
 	,onlineFriendList:[]
 	,onlineLocationList:[]
 	,locationId:null
+	
+	//TODO refactor to separate main menu and hud
+	,mainContainer:null
+	,mainHudContainer:null
 	,containers:{}
+	
+	,friendMessages:[]
 	
 	,Init(){
 		this.mainContainer = document.getElementById("MainView");
+		this.mainHudContainer = document.getElementById("MainHud");
 		this.containers.login = Util.GetFirstChildNodeByName(this.mainContainer, "login");
 		this.containers.locations = Util.GetFirstChildNodeByName(this.mainContainer, "locations")
 		this.containers.newLocationTypes = Util.GetFirstChildNodeByName(this.mainContainer, "newLocationTypes");
@@ -18,7 +25,6 @@ var MainController = {
 	
 	,ShowLoginView(){
 		MslServer.Send("GetAllUserNames", {}, function(data){
-			
 			var userSelect = Util.GetFirstChildNodeByName(this.containers.login, "userList");		
 			for(var id in data){
 				Util.CreateElement({tag:"option", parent:userSelect, textContent:data[id], attributes:{value:id }});
@@ -71,17 +77,20 @@ var MainController = {
 	}
 	
 	,RefreshAvailableLocations(){
-		
-	
-		if(this.locationId){
-			LocationView.a;
-		}
+
 	}
 	
 	
 	
 	,FriendMessageResp(data){
-		console.log(data);
+		data.timestamp = Date.now();
+		MainController.friendMessages.push(data);
+		
+		var el = Util.CreateElement({parent:MainController.mainHudContainer, removeAfter:5000, className:"main-beep",  textContent:"Beep " + data.message});
+		
+		if(MainController.locationId){
+			LocationController.FriendMessageResp(data);
+		}
 	}
 	
 	
