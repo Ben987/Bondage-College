@@ -1146,6 +1146,8 @@ function ChatRoomSetRule(data) {
 		if (data.Content == "OwnerRuleKeyAllow") LogDelete("BlockKey", "OwnerRule");
 		if (data.Content == "OwnerRuleKeyConfiscate") InventoryConfiscateKey();
 		if (data.Content == "OwnerRuleKeyBlock") LogAdd("BlockKey", "OwnerRule");
+		if (data.Content == "OwnerRuleOwnerSelfLockAllow") LogAdd("BlockOwnerLockSelf", "OwnerRule");
+		if (data.Content == "OwnerRuleOwnerSelfLockBlock") LogDelete("BlockOwnerLockSelf", "OwnerRule");
 
 		// Remote rules
 		if (data.Content == "OwnerRuleRemoteAllow") LogDelete("BlockRemote", "OwnerRule");
