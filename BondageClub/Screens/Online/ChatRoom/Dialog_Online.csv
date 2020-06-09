@@ -97,8 +97,8 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 130,100,(Allow her to buy keys.),(The store will sell keys to her.),"SendRule(""KeyAllow"")",
 130,100,(Confiscate her keys.),(She lost all of her keys.),"SendRule(""KeyConfiscate"")",
 130,100,(Block her from buying keys.),(The store will not sell keys to her anymore.),"SendRule(""KeyBlock"")",
-130,100,(Allow her to use owner locks on herself.),(She will be able to use owner locks on herself.),"SendRule(""RuleOwnerSelfLockAllow"")",
-130,100,(Block her from using owner locks on herself.),(She will not be able to use owner locks on herself anymore.),"SendRule(""RuleOwnerSelfLockBlock"")",
+130,100,(Allow her to use owner locks on herself.),(She will be able to use owner locks on herself.),"SendRule(""SelfOwnerLockAllow"")",
+130,100,(Block her from using owner locks on herself.),(She will not be able to use owner locks on herself anymore.),"SendRule(""SelfOwnerLockBlock"")",
 130,0,(Back to main menu.),(Main menu.),,
 140,100,(Allow her to buy remotes.),(The store will sell remotes to her.),"SendRule(""RemoteAllow"")",
 140,100,(Allow her to use remotes on herself.),(Her remotes will work on her now.),"SendRule(""RemoteAllowSelf"")"
