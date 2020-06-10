@@ -158,6 +158,10 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "ItemArms") != null || InventoryGet(C, "ItemLegs") != null || InventoryGet(C, "ItemFeet") != null || InventoryGet(C, "ItemBoots") != null)) return "RemoveRestraintsFirst";
 	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null || InventoryGet(C, "Shoes") != null)) return "RemoveClothesForItem";
 
+	// Gas mask (Or face covering items going below the chin)
+	if (Prerequisite == "GasMask" && (InventoryGet(C, "ItemArms") != null && InventoryGet(C, "ItemArms").Asset.Name == "Pillory" || InventoryGet(C, "ItemDevices") != null && InventoryGet(C, "ItemDevices").Asset.Name == "TheDisplayFrame")) return "RemoveRestraintsFirst";
+	if (Prerequisite == "NotMasked"  && (InventoryGet(C, "ItemHead") != null) && (InventoryGet(C, "ItemHead").Asset.Name == "OldGasMask")) return "RemoveFaceMaskFirst";
+	
 	// Layered Gags, Prevent gags marked with "GagUnique" from being equipped over gags with "GagFlat" and "GagCorset"
 	if (Prerequisite == "GagUnique" && C.FocusGroup) {
 		// Index of the gag we're trying to add (1-indexed)

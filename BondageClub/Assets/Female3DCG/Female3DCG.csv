@@ -868,6 +868,9 @@ ItemHead,LeatherHoodSensDep,Sensory Deprivation Hood
 ItemHead,LatexHoodOpenHair,Open Hair Latex Hood
 ItemHead,LeatherHoodSealed,Sealed Leather Hood
 ItemHead,PolishedSteelHood,Polished Steel Hood
+ItemHead,NoseHook,Nose Hook
+ItemHead,InflatedBallHood,Inflatable Hood
+ItemHead,OldGasMask,Gas Mask
 ItemHead,SackHood,Sack Hood
 ItemHead,LewdBlindfold,Lewd Blindfold
 ItemHead,LatexBlindfold,Latex Blindfold
@@ -926,6 +929,10 @@ ItemDevices,WoodenStocks,Wooden Stocks
 ItemDevices,Vacbed,Vacbed
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
+ItemAddon,OldGasMaskLenses,Blinding Lenses
+ItemAddon,OldGasMaskTube1,Gas Mask Tube
+ItemAddon,OldGasMaskTube2,Gas Mask Tube
+ItemAddon,OldGasMaskRebreather,Rebreather
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels
