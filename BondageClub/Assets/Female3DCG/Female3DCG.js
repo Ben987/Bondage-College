@@ -2235,9 +2235,7 @@ var AssetFemale3DCG = [
 		    { Name: "LeatherArmbinderStrap", Priority: 31,  Value: -1, AllowType: ["Strap", "WrapStrap", "None"] },
 			{ Name: "LeatherArmbinderWrapStrap", Priority: 31, Value: -1, AllowType: ["WrapStrap", "None"] },
 			{ Name: "SuspensionHempRope", Priority: 31, Value: -1 },
-			{ Name: "SuspensionChains", Priority: 31, Value: -1 },
-			{ Name: "LatexArmbinderStrap", Priority: 31,  Value: -1, AllowType: ["Strap", "WrapStrap", "None"] },
-			{ Name: "LatexArmbinderWrapStrap", Priority: 31, Value: -1, AllowType: ["WrapStrap", "None"] },
+			{ Name: "SuspensionChains", Priority: 31, Value: -1 }
 		],
 		Color: ["Default"]
 	}
