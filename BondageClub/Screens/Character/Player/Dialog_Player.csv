@@ -267,6 +267,8 @@ ServerMessageOwnerRuleWhisperBlock,,,Your owner is now preventing you from whisp
 ServerMessageOwnerRuleKeyAllow,,,Your owner is now allowing you to have keys.  You can buy keys from the club shop.,,
 ServerMessageOwnerRuleKeyConfiscate,,,Your owner has confiscated your keys.  All your regular keys are lost.,,
 ServerMessageOwnerRuleKeyBlock,,,Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.,,
+ServerMessageOwnerRuleSelfOwnerLockAllow,,,Your owner is now allowing to using owner locks on yourself.,,
+ServerMessageOwnerRuleSelfOwnerLockBlock,,,Your owner is now preventing you from using owner locks on yourself.,,
 ServerMessageOwnerRuleRemoteAllow,,,Your owner is now allowing you to have remotes.  You can buy remotes from the club shop.,,
 ServerMessageOwnerRuleRemoteAllowSelf,,,Your owner is now allowing you to use remotes on yourself.,,
 ServerMessageOwnerRuleRemoteConfiscate,,,Your owner has confiscated your remotes.  All your remotes are lost.,,

@@ -11,15 +11,15 @@ function DailyJobPlayerFullRestrain() { CharacterFullRandomRestrain(Player, "ALL
 
 // Loads a puppy girl and fully restrain her
 function DailyJobPuppyLoad(GirlNum) {
-	var C = CharacterLoadNPC("NPC_DailyJob_PuppyGirl" + GirlNum);
+	var C = (GirlNum == "0") ? Player : CharacterLoadNPC("NPC_DailyJob_PuppyGirl" + GirlNum);
 	CharacterNaked(C);
-	InventoryWear(C, CommonRandomItemFromList("", ["BitchSuit", "BitchSuitExposed", "HempRope", "Chain", "ArmbinderJacket", "StraitLeotard", "LeatherStraitJacket", "SeamlessStraitDress", "SeamlessStraitDressOpen", "BoxTieArmbinder"]), "ItemArms", null, 8);
+	InventoryWear(C, CommonRandomItemFromList("", ["BitchSuit", "BitchSuitExposed", "HempRope", "Chains", "ArmbinderJacket", "StraitLeotard", "LeatherStraitJacket", "BoxTieArmbinder"]), "ItemArms", null, 8);
 	InventoryWear(C, CommonRandomItemFromList("", ["Ears1", "Ears2", "PonyEars1", "BunnyEars1", "BunnyEars2", "PuppyEars1", "FoxEars1", "WolfEars1", "WolfEars2", "FoxEars2", "FoxEars3", "PuppyEars2"]), "HairAccessory1", null, 8);
 	InventoryWear(C, CommonRandomItemFromList("", ["FoxTailsStrap", "PuppyTailStrap", "RaccoonStrap", "PuppyTailStrap1", "FoxTailStrap1", "FoxTailStrap2", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"]), "TailStraps", null, 8);
-	InventoryWearRandom(C, "ItemMouth", 8);
-	InventoryWearRandom(C, "ItemNeck", 8);
-	InventoryWear(C, "ChainLeash", "ItemNeckRestraints", null, 8);
-	CharacterSetActivePose(C, "Kneel");
+	if (InventoryGet(C, "ItemMouth") == null) InventoryWearRandom(C, "ItemMouth", 8);
+	if (InventoryGet(C, "ItemNeck") == null) InventoryWearRandom(C, "ItemNeck", 8);
+	if (InventoryGet(C, "ItemNeckRestraints") == null) InventoryWear(C, "ChainLeash", "ItemNeckRestraints", null, 8);
+	if (GirlNum != "0") CharacterSetActivePose(C, "Kneel");
 	return C;
 }
 
@@ -110,4 +110,21 @@ function DailyJobPuppyGameStart() {
 
 // When the puppy walker job ends
 function DailyJobPuppyGameEnd() {
+	CommonSetScreen("Room", "DailyJob");
+	DailyJobPuppyMistress.Stage = (MiniGameVictory) ? "100" : "200";
+	CharacterSetCurrent(DailyJobPuppyMistress);
+	if (MiniGameVictory) IntroductionJobDone();
+	IntroductionMaid.Stage = "0";
+	DailyJobPuppyMistress.CurrentDialog = DialogFind(DailyJobPuppyMistress, (MiniGameVictory) ? "PuppyVictory" : "PuppyDefeat");
+}
+
+// When a daily jobs ends and we must go back to the main hall
+function DailyJobEnd() {
+	CommonSetScreen("Room", "MainHall");
+	CurrentCharacter = null;
+}
+
+// When the player is turned into a puppy by the Mistress
+function DailyJobPuppyPlayer() {
+	DailyJobPuppyLoad("0");
 }

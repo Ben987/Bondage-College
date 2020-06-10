@@ -184,7 +184,7 @@ function ServerValidateProperties(C, Item) {
 				} else delete Item.Property.RemoveTimer;
 
 				// Make sure the owner lock is valid
-				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Ownership.MemberNumber != Item.Property.LockMemberNumber))) {
+				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || ((C.Ownership.MemberNumber != Item.Property.LockMemberNumber) && (C.MemberNumber != Item.Property.LockMemberNumber)))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.CombinationNumber;
@@ -199,7 +199,7 @@ function ServerValidateProperties(C, Item) {
 				}
 
 				// Make sure the lover lock is valid
-				if (Lock.Asset.LoverOnly && ((Item.Property.LockMemberNumber == null) || (C.GetLoversNumbers().indexOf(Item.Property.LockMemberNumber) < 0))) {
+				if (Lock.Asset.LoverOnly && ((Item.Property.LockMemberNumber == null) || ((C.GetLoversNumbers().indexOf(Item.Property.LockMemberNumber) < 0) && (C.MemberNumber != Item.Property.LockMemberNumber)))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.CombinationNumber;

@@ -58,6 +58,10 @@ JobPuppyIntro00,,,"(A Mistress rushes to you, she seems in a hurry.)  Let's make
 JobPuppyIntro01,,,"(A Mistress comes to meet you.)  Hello, I need to leave for the day, could you take care of my puppies?",,
 JobPuppyIntro02,,,"(A stern Mistress greets you.)  Girl, my puppies needs to go walk, can you take care of that?",,
 JobPuppyIntro03,,,"(The Mistress comes in late.)  Sorry for the delay, I need a girl to care for my pups, can you do that?",,
+JobPuppyIntro300,,,You again?  You think you can do it now?,,
+JobPuppyIntro301,,,(The Mistress gives you a stern look.)  I must be crazy to give you my pets again.  Can you do it now?,,
+JobPuppyIntro302,,,(The Mistress seems to be in a hurry.)  You're lucky I haven't found anyone else.  Can you do it now?,,
+JobPuppyIntro303,,,I hope you've learned your lesson girl.  Can you do it or not?,,
 0,,,Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,IsHeadMaid
 0,,,(She stares at you.)  Hello naked girl.  Welcome to the introduction class.,,Player.IsNaked()

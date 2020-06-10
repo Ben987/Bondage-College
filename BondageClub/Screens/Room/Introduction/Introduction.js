@@ -145,7 +145,7 @@ function IntroductionCompleteRescue() {
 }
 
 // When a job is done, no new job can be taken on the same day, the day is based on the server date
-function IntroductionJobDone(JobName) {
+function IntroductionJobDone() {
 	CharacterChangeMoney(Player, 100);
 	var NextDay = Math.floor(CurrentTime / (24 * 60 * 60 * 1000)) + 1;
 	LogAdd("DailyJobDone", "Introduction", NextDay * 24 * 60 * 60 * 1000);
@@ -158,7 +158,7 @@ function IntroductionJobAvailable(JobName) {
 	if (LogQuery("DailyJobDone", "Introduction")) return false;
 	if ((JobName.substr(0, 3) == "Dom") && (ReputationGet("Dominant") <= -50)) return false;
 	if ((JobName.substr(0, 3) == "Sub") && (ReputationGet("Dominant") >= 50)) return false;
-	var Day = Math.floor(CurrentTime / (24 * 60 * 60 * 1000)) + 3;
+	var Day = Math.floor(CurrentTime / (24 * 60 * 60 * 1000));
 	if (Day % (IntroductionJobList.length / 2) != IntroductionJobList.indexOf(JobName) % (IntroductionJobList.length / 2)) return false;
 	return true;
 }
