@@ -2,12 +2,6 @@
 
 // Loads the item extension properties
 function InventoryItemHeadOldGasMaskLoad() {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	var addonItem = InventoryGet(C, "ItemAddon");
-	if (addonItem != null && addonItem.Asset.Name.startsWith("OldGasMask")) {
-		DialogExtendItem(addonItem);
-		return;
-	}
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
 }
 
@@ -60,7 +54,6 @@ function InventoryItemHeadOldGasMaskSetItem(Item) {
 	if (CurrentScreen == "ChatRoom") {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemHeadOldGasMaskLoad();
-	
 	}
 	
 	// Do not continue if the item is blocked by permissions
