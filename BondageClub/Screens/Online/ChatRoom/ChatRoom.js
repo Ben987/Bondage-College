@@ -728,6 +728,10 @@ function ChatRoomMessage(data) {
 				else if (data.Type == "Emote") {
 					if (msg.indexOf("*") == 0) msg = msg + "*";
 					else if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
+					else if ((msg.indexOf("'") == 0)|| (msg.indexOf(",") == 0)) {
+						// No blank added, if first character of an emote is ' or ,
+						msg = "*" + SenderCharacter.Name + msg + "*";
+					}
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
