@@ -66,6 +66,10 @@ JobDojoIntro00,,,(You head to the Dojo and a Shujin comes to greet you.)   Konic
 JobDojoIntro01,,,"(You get to the Dojo and a Shibari teacher greets you.)  It's an honor to meet you, you're here for the event?",,
 JobDojoIntro02,,,(A Shibari Shujin comes to greet you as soon as you enter.)  Konichiwa!  You're right on time for the event.,,
 JobDojoIntro03,,,(You're warmly greeted by a Shibari teacher.)  Welcome!  The event could not start without you.,,
+JobDojoIntro2200,,,Welcome back DialogPlayerName.  Would you like to test your evasion techniques again?,,
+JobDojoIntro2201,,,"(She looks at you and bows politely.)  Welcome back, are you ready for another test?",,
+JobDojoIntro2202,,,Failling down and stepping up is the biggest accomplishment.  Are you ready to try again?,,
+JobDojoIntro2203,,,Konichiwa!  (She smiles and bows politely.)  I trust you want to challenge the ropes again?,,
 0,,,Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,IsHeadMaid
 0,,,(She stares at you.)  Hello naked girl.  Welcome to the introduction class.,,Player.IsNaked()
@@ -75,8 +79,9 @@ JobDojoIntro03,,,(You're warmly greeted by a Shibari teacher.)  Welcome!  The ev
 0,10,"Thanks, little maid.  What's going on here?","In here, you can learn how to restrain someone, and how to escape by yourself.",ChangeMaidOpinion(1),
 0,10,Introduction class?,"In this class, you can learn how to restrain someone, and how to free yourself.",,
 0,100,I don't need any introduction.,"Very well, would you like to practice with us then?",,
-0,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,JobAnyAvailable()
-0,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,!JobAnyAvailable()
+0,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,CanTakeJob()
+0,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,CannotTakeJobDone()
+0,,Do you have any work for me?,(She giggles and shakes her head no.)  We are not in a good situation to hire you.,,CannotTakeJobRestrained()
 0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
 10,,Can I strap up anyone at any time?,Yes and no.  You need their consent and you cannot do it in the middle of a conversation.,DialogRemove(),
 10,20,This is great!,I'm glad you like it.  Let me teach you about the body parts your can restrain.,,
@@ -175,8 +180,9 @@ JobDojoIntro03,,,(You're warmly greeted by a Shibari teacher.)  Welcome!  The ev
 270,,Can you teach me more about rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
 270,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
 270,,Tell me about item permissions.,"In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.",,
-270,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,JobAnyAvailable()
-270,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,!JobAnyAvailable()
+270,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,CanTakeJob()
+270,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,CannotTakeJobDone()
+270,,Do you have any work for me?,(She giggles and shakes her head no.)  We are not in a good situation to hire you.,,CannotTakeJobRestrained()
 270,300,I want to practice freeing myself.,Of course!  If you're ready for the challenge I will tie you up.,,
 300,,,Are you ready to struggle against the ropes?,,Player.CanInteract()
 300,,,Get your arms free first if you want to practice struggling against my ropes.  Let me know when you're ready.,,!Player.CanInteract()
@@ -208,8 +214,9 @@ JobDojoIntro03,,,(You're warmly greeted by a Shibari teacher.)  Welcome!  The ev
 370,,Can you teach me more on rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
 370,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
 370,,Tell me about item permissions.,"In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.",,
-370,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,JobAnyAvailable()
-370,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,!JobAnyAvailable()
+370,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,CanTakeJob()
+370,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,CannotTakeJobDone()
+370,,Do you have any work for me?,(She giggles and shakes her head no.)  We are not in a good situation to hire you.,,CannotTakeJobRestrained()
 370,300,I want to practice freeing myself.,Again?  Well of course.  Are you ready to struggle now?,,
 400,,,These are the special jobs you could do for us.  Pick something you like.  (She shows you a notepad.),,
 400,,What's the salary?,"Since it's a special job that I can only offer once per day, the salary is 100$.",DialogRemove(),

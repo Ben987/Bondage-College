@@ -114,5 +114,5 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 150,0,(Back to main menu.),(Main menu.),,
 160,100,(No forced labor.),"(Select the rule, restriction or punishment that you want to enforce.)",,
 160,100,(Force her to serve drinks as a maid.),(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.),"SendRule(""LaborMaidDrinks"", ""Quest"")",CanServeDrink()
-160,,(Force her to serve drinks as a maid.),(She needs to be a maid in the sorority and be able to walk to do that job for you.),,!CanServeDrink()
+160,,(Force her to serve drinks as a maid.),"(She needs to be a maid in the sorority, be able to talk and be able to walk to do that job for you.)",,!CanServeDrink()
 160,0,(Back to main menu.),(Main menu.),,

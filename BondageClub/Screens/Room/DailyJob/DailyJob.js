@@ -140,9 +140,24 @@ function DailyJobPuppyPlayer() {
 // When the player is turned into a puppy by the Mistress
 function DailyJobDojoRestrainPlayer() {
 	InventoryWear(Player, "HempRope", "ItemArms", "Default", 7);
+	if (InventoryGet(Player, "ItemTorso") == null) {
+		InventoryWear(Player, "HempRopeHarness", "ItemTorso", "Default", 7);
+		InventoryGet(Player, "ItemTorso").Property = { Type: "Harness", Difficulty: 0, Effect: [] };
+	}
+	CharacterRefresh(Player);
 }
 
 // When the dojo struggle game starts
 function DailyJobDojoGameStart() {
 	MiniGameStart("DojoStruggle", 0, "DailyJobDojoGameEnd");
+}
+
+// When the dojo mini game ends
+function DailyJobDojoGameEnd() {
+	CommonSetScreen("Room", "DailyJob");
+	DailyJobDojoTeacher.Stage = (MiniGameVictory) ? "100" : "200";
+	CharacterSetCurrent(DailyJobDojoTeacher);
+	if (MiniGameVictory) IntroductionJobDone();
+	IntroductionMaid.Stage = "0";
+	DailyJobDojoTeacher.CurrentDialog = DialogFind(DailyJobDojoTeacher, (MiniGameVictory) ? "DojoStruggleVictory" : "DojoStruggleDefeat");
 }
