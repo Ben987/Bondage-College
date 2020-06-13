@@ -2207,10 +2207,10 @@ var AssetFemale3DCG = [
 			{ Name: "OldGasMaskTube2", Effect: ["GagEasy"], Priority: 43, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true, IgnoreParentGroup: true},
 			{ Name: "OldGasMaskRebreather", Priority: 43, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true, Effect: ["GagNormal"], IgnoreParentGroup: true},
 			{ Name: "Covers", Value: 10, Difficulty: 1, SelfBondage: 0, Prerequisite: "OnBed", IgnoreParentGroup: true},
-			{ Name: "BedRopes", Value: 60, Difficulty: 6, SelfBondage: 3, DefaultColor: "#956B1C", Block: ["ItemDevices"], Hide: ["TailStraps"], Prerequisite: "OnBed", IgnoreParentGroup: true },
-			{ Name: "BedStraps", Value: 50, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", IgnoreParentGroup: true },
-			{ Name: "BedTape", Value: 50, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], Prerequisite: "OnBed", IgnoreParentGroup: true },
-			{ Name: "BedChains", Value: 90, Difficulty: 6, SelfBondage: 4, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", IgnoreParentGroup: true },
+			{ Name: "BedRopes", Value: 60, Difficulty: 6, SelfBondage: 3, DefaultColor: "#956B1C", Block: ["ItemDevices"], Hide: ["TailStraps"], Prerequisite: "OnBed", IgnoreParentGroup: true, BuyGroup: "HempRope" },
+			{ Name: "BedStraps", Value: 50, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", IgnoreParentGroup: true, BuyGroup: "SturdyLeatherBelts" },
+			{ Name: "BedTape", Value: 50, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], Prerequisite: "OnBed", IgnoreParentGroup: true, BuyGroup: "DuctTape" },
+			{ Name: "BedChains", Value: 90, Difficulty: 6, SelfBondage: 4, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", IgnoreParentGroup: true, BuyGroup: "Chains" },
 			{ Name: "UnderBedBondageCuffs", Value: 40, Difficulty: 9, SelfBondage: 3, IsRestraint: true, SetPose: ["Yoked"], Effect: ["Block", "Prone", "Freeze"], Block: ["ItemDevices", "ItemLegs"], AllowLock: true }
 		],
 		Color: ["Default"]
