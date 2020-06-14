@@ -1574,8 +1574,8 @@ var AssetFemale3DCG = [
 			},{
 				Name: "SpankingToysToothbrush", Value: 10, Random: false, Activity: "TickleItem", DynamicAllowInventoryAdd: () => { return false },
 				PrerequisiteBuyGroups: ["SpankingToys"]
-			}
-		
+			},
+			{ Name: "HoofMittens", Value: -1, Difficulty: 5, SelfBondage: 4, Time: 15, RemoveTime: 5, AllowLock: true, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"] },
 		],
 		Color: ["Default"]
 	},
@@ -2091,6 +2091,7 @@ var AssetFemale3DCG = [
 			{ Name: "BlackoutLenses", Value: 60, Difficulty: 10, Random: false, DefaultColor: "#333333", Hide: ["Glasses", "Eyes"], Effect: ["BlindHeavy", "Prone"] },
 			{ Name: "WebBlindfold", Value: 50, Difficulty: 5, Time: 10, RemoveTime: 20, Hide: ["Glasses"], AllowBlock: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars"], AllowEffect: ["BlindHeavy", "GagNormal"], AllowType: ["Cocoon"], Effect: ["BlindLight", "Prone"], Extended: true },
 			{ Name: "RopeBlindfold", Value: 60, Time: 15, DefaultColor: "#956B1C", BuyGroup: "HempRope", Hide: ["Glasses"], Effect: ["BlindLight", "Prone"] },
+			{ Name: "PonyHood", Value: -1, Difficulty: 50, Time: 15, AllowLock: true, DefaultColor: "#404040", Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3","Eyes", "HairAccessory1", "HairAccessory2"], Effect: ["BlindHeavy", "DeafLight", "Prone", "GagNormal"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemNeck"] },
 			AssetSpankingToys
 		],
 		Color: ["Default"]
