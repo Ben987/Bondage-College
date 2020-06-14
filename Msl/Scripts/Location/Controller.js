@@ -101,7 +101,7 @@ var LocationController = {
 	}
 	
 	
-	//Show actions or popups
+	//UI commands
 	,ShowMoveActions(){
 		LocationController.InterruptDelegateActions();
 		LocationController.delegates.actions.ShowActionsMove();
@@ -112,6 +112,7 @@ var LocationController = {
 		LocationController.InterruptDelegateActions();
 		LocationController.delegates.dialog.Start(player ? player : LocationController.GetPlayer());
 	}
+	
 	
 	/*
 	,ShowPlayerProfile(player){
@@ -202,13 +203,26 @@ var LocationController = {
 		}.bind(this));
 	}
 	
+	
 	,SendChatMessage(content){
 		MslServer.Send("ActionStart", {type:"ChatMessage", content:content}, function(data){
 			this.LocationActionResp(data);
 		}.bind(this));
 	}
 	
+	//TODO:  validate pose change is allowed
+		
+	,ChangePose(){
+		if(this.GetPlayer().CanChangePose()){
+			var pose = this.GetPlayer().activePose == F3dcgAssets.POSE_NONE ? F3dcgAssets.POSE_KNEEL : F3dcgAssets.POSE_NONE;
+			
+			MslServer.Send("ActionStart", {type:"ChangePose", pose:pose}, function(data){
+				this.LocationActionResp(data);
+			}.bind(this));		
+		}
+	}
 	
+	//TODO change convension from *Resp to On* to indicate a method called by other modules
 	,FriendMessageResp(data){
 		this.delegates.chat.OnFriendMessage(data);
 	}
@@ -221,6 +235,17 @@ var LocationController = {
 		LocationController.delegates.chat.OnAction(data);
 	}
 	
+	,LocationAction_ChangePose(data){
+		var player = LocationController.GetPlayer(data.playerId);
+		if(! player) 	throw "PlayerNotFound " + data.playerId;
+		player.activePose = data.result;
+		var spot = this.GetSpotWithPlayer(player.id);
+		player.UpdateAppearanceAndRender();
+		if(spot) //may be update for player that is in spot that is not visible
+			LocationController.delegates.view.RenderPlayerInSpot(this.GetSpotWithPlayer(player.id).name, player);
+	}
+	
+	
 	,LocationAction_PlayerExit(data){
 		var spot = LocationController.GetSpotWithPlayer(data.playerId);
 		if(! spot) 	throw "PlayerNotFound " + data.playerId;
@@ -230,7 +255,6 @@ var LocationController = {
 		LocationController.delegates.chat.OnPlayerExit(player);
 		
 		delete LocationController.location.players[spot.name];
-
 	}
 	
 	

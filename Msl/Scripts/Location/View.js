@@ -130,8 +130,9 @@ var LocationView = {
 				var cS = Util.CloneRecursive(cssStyles);
 				Util.CreateImageElement(renderItem.url, spotDiv.figure, cS, LocationView.assetsScaleFactor, LocationView.assetsScaleFactor/2
 					,(image) => {
-						if(renderItem.colorize && renderItem.color)
-							Util.ColorizeImage(image, renderItem.color, renderItem.fullAlpha);
+						if(Environment.colorizeRenderItems)
+							if(renderItem.colorize && renderItem.color)
+								Util.ColorizeImage(image, renderItem.color, renderItem.fullAlpha);
 							
 						if(renderItem.blinking)
 							image.classList.add("blinking");

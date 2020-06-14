@@ -16,7 +16,7 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 		removeButton.addEventListener("click", function(){this.RemoveItemFromBlackList(itemName, tr);}.bind(this));
 	}
 	
-	var itemsBlackList = mainDialog.player.settings.permissions.itemLists.black;
+	var itemsBlackList = mainDialog.player.settings.permissions.items.black;
 	itemsBlackList.forEach(itemName => this.AddItemRow(itemName));
 	
 	this.itemBlackSelectElement = this.tableItemsBlack.tFoot.rows[0].cells[0].childNodes[0];
@@ -29,7 +29,7 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 		var itemName = this.itemBlackSelectElement.value;
 		if(itemsBlackList.includes(itemName)) return;
 		
-		MslServer.Send("UpdatePlayerProperty", {property:"settings.permissions.itemLists.black", value:itemName, operation:"add"}, function(data){
+		MslServer.Send("UpdatePlayerProperty", {property:"settings.permissions.items.black", value:itemName, operation:"add"}, function(data){
 			Util.SetTypedPropertyValueOnObjectAndElement(mainDialog.player, data.property, event.target, data.value);
 			itemsBlackList.push(data.value);
 			this.AddItemRow(data.value);

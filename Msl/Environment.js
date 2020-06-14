@@ -6,4 +6,6 @@ var Environment = {
 	,highilghtSpotFigreDivs:true
 	
 	,allItemsInInventory:true
+	
+	//,colorizeRenderItems:true
 }

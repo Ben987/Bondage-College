@@ -1,13 +1,13 @@
 'use strict'
 
-var LocationPlayer = function(Account){
-	console.log("building character " + Account.id + " " + Object.keys(Account));
-	for(var key in Account)
-		this[key] = Account[key];
+var LocationPlayer = function(Player){
+	console.log("building character " + Player.id + " " + Object.keys(Player));
+	for(var key in Player)
+		this[key] = Player[key];
 	
-	this.currentPose = F3dcgAssets.POSE_NONE;
-	
-	this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.currentPose);
+	this.activePose = Player.activePose ? Player.activePose : F3dcgAssets.POSE_NONE; 
+		
+	this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.activePose);
 	
 	this.GetUpdateDelegate = function(){
 		this.update = new LocationPlayerUpdate(this);
@@ -15,9 +15,29 @@ var LocationPlayer = function(Account){
 	}
 	
 	this.UpdateAppearanceAndRender = function(appearanceUpdate){
-		F3dcgAssets.UpdateAppearance(appearanceUpdate, this);
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.currentPose);
+		if(appearanceUpdate) F3dcgAssets.UpdateAppearance(appearanceUpdate, this);
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.activePose);
 	}
+	
+	this.CanChangePose = function () { 
+		var error = F3dcgAssets.ValidateCanChangePose(F3dcgAssets.BuildPosesEffectsBlocks(this.appearance));
+		return ! error;
+	}
+	
+	this.CanChangeBondageToys = function(){
+		var error = F3dcgAssets.ValidateCanChangeBondageToys(F3dcgAssets.BuildEffects(this.appearance));
+		return ! error;
+	}
+	
+	this.CanChangeClothes = function(){
+		var error = F3dcgAssets.ValidateCanChangeClothes(F3dcgAssets.BuildEffects(this.appearance));
+		return ! error;
+	}
+	
+	
+		//CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
+		//CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || ((this.Pose.indexOf("LegsClosed") < 0) && (this.Pose.indexOf("Supension") < 0) && (this.Pose.indexOf("Hogtied") < 0)))) },
+		
 	
 	/*
 	this.interval = setInterval(function(){
@@ -81,7 +101,7 @@ var LocationPlayerUpdate = function(player){
 			this.appearance[groupType] = Util.CloneRecursive(appearanceSuit[groupType])
 		}
 		
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);
 		
 		return [];
 	}
@@ -107,7 +127,7 @@ var LocationPlayerUpdate = function(player){
 		newItem.variant = variantName;
 		this.appearance[AssetGroup.type][groupName] = newItem;
 		this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);	
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);	
 		
 		return [];
 	}
@@ -154,7 +174,7 @@ var LocationPlayerUpdate = function(player){
 		
 		this.appearance[groupTypeName][groupName] = newItem;
 		this.updateStack.push({type:groupTypeName, groupName:groupName, item:newItem});
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);	
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);	
 	}
 	
 	
@@ -191,7 +211,7 @@ var LocationPlayerUpdate = function(player){
 			default:console.error(updateToUndo.type);
 		}
 		
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);
 		return [];
 	}
 	

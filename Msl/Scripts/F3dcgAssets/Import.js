@@ -13,6 +13,56 @@ F3dcgAssets.InitFreeAndQuestClothes = function(){
 }
 	
 F3dcgAssets.InitPoses = function(){
+/*  Poses:
+LegsClosed: true
+LegsOpen: true
+Horse: true
+Kneel: true
+BackBoxTie: true
+BackElbowTouch: true
+Bolero: true
+StraitDressOpen: true
+Yoked: true
+AllFours: true
+TapedHands: true
+GagFlat: true
+GagUnique: true
+GagCorset: true
+Suspension: true
+KneelingSpread: true
+*/
+
+/*Effects:
+Freeze: true
+Prone: true
+Egged: true
+Mounted: true
+Remote: true
+Chaste: true
+Block: true
+Lock: true
+BreastChaste: true
+ForceKneel: true
+Shackled: true
+BlockKneel: true
+ReceiveShock: true
+TriggerShock: true
+GagNormal: true
+Tethered: true
+GagVeryLight: true
+GagMedium: true
+GagEasy: true
+GagLight: true
+GagHeavy: true
+BlindLight: true
+BlindNormal: true
+BlindHeavy: true
+DeafLight: true
+DeafHeavy: true
+"": true
+Enclose: true
+*/
+
 	PoseFemale3DCG.forEach(pose => {
 		F3dcgAssets.Poses[pose.Name] = pose;
 		F3dcgAssets.Poses[pose.Name].priority = pose.Name == "Kneel" ? 1 : 0;
@@ -118,12 +168,15 @@ F3dcgAssets.InitVariants = function(){
 		{ Name: "Base", AllowColorize: true, Priority: 6 }
 		,{ Name: "Strap", AllowColorize: true,Priority: 31}
 		,{ Name: "WrapStrap", AllowColorize: true,Priority: 31 }
-	]//*/
+	]
 	
+	A = G.Items.Web;
+	A.Variant = {};
+	InventoryItemArmsWebOptions.forEach(VariantItem => {
+		A.Variant[VariantItem.Name] = VariantItem;
+	});
 	
-	//"Strap", "WrapStrap", "None"
-	
-	//this.SimplestVariant(G.Items.StraitJacket, ["Loose", "Normal", "Snug", "Tight"]);//single image for all, not interesting
+	//this.SimplestVariant(G.Items.StraitJacket, ["Loose", "Normal", "Snug", "Tight"]);//single image for all, not worth it
 	
 	V = this.SimplestVariant(G.Items.LeatherStraitJacket, ["Loose", "Normal", "Snug", "Tight"])
 	V.Normal.Property = {SetPose:["BackElbowTouch"]}
@@ -218,6 +271,73 @@ F3dcgAssets.InitVariants = function(){
 	V.Wrap.Property = {Effect:["BlindNormal", "Prone"]};
 	V.Mummy.Property = {Hide:["HairFront", "HairBack"], Effect:["GagNormal", "BlindNormal", "Prone"], Block:["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars"]};
 	
+	//ItemNeckAccessories
+	G = F3dcgAssets.AssetGroups.ItemNeckAccessories;
+	["CollarNameTag", "CollarNameTagOval", "CollarNameTagPet", "CollarNameTagLover", "CollarNameTagLivestock"].forEach(itemName =>{
+		V = this.SimplestVariant(G.Items[itemName], G.Items[itemName].AllowType);
+	});
+	
+	//ItemMouth
+	["ItemMouth", "ItemMouth2", "ItemMouth3"].forEach(GroupName =>{
+		G = F3dcgAssets.AssetGroups[GroupName];
+		I = G.Items["ClothGag"] ? G.Items["ClothGag"] : G.Items["ClothGag_" + GroupName];
+		V = this.SimplestVariant(I, ["Small", "Cleave", "OTM", "OTN"]);
+		V.Small.Property = {Effect:["GagVeryLight"]};
+		V.Cleave.Property = {Effect:["GagLight"]};
+		V.OTM.Property = {Effect:["GagEasy"]};
+		V.OTN.Property = {Effect:["GagEasy"]};
+		
+		I = G.Items["DuctTape"] ? G.Items["DuctTape"] : G.Items["DuctTape_" + GroupName]
+		V = this.SimplestVariant(I, ["Single", "Crossed", "Full", "Double", "Cover"]);
+		V.Single.Property = {Effect:["GagVeryLight"]};
+		V.Crossed.Property = {Effect:["GagVeryLight"]};
+		V.Full.Property = {Effect:["GagLight"]};
+		V.Double.Property = {Effect:["GagEasy"]};
+		V.Cover.Property = {Effect:["GagNormal"]};
+	});
+	
+	
+	G = F3dcgAssets.AssetGroups.ItemMouth;//DildoPlugGag_Lock,  DildoPlugGag_Strap, DildoPlugGag_Tongue, DildoPlugGagPlug_Close
+	V = this.SimplestVariant(G.Items.DildoPlugGag, ["Open", "Plug"]);
+	V.Open.Property = {Effect:["GagVeryLight"]};
+	V.Plug.Property = {Effect:["GagVeryHeavy"]};
+	V.Open.Layer = ["Strap", "Tongue"];
+	V.Plug.Layer  = ["Strap", "Close"];
+	G.Items.DildoPlugGag.Layer = [
+		{ Name: "Strap", AllowColorize: true }
+		,{ Name: "Close", AllowColorize: true, urlPart:"Plug_Close" }
+		,{ Name: "Tongue", AllowColorize: false }
+	];
+	
+	V = this.SimplestVariant(G.Items.PlugGag, ["Open", "Plug"]);
+	V.Open.Property = {Effect:["GagVeryLight"]};
+	V.Plug.Property = {Effect:["GagVeryHeavy"]};
+	V.Open.Layer = ["Strap", "Tongue"];
+	V.Plug.Layer  = ["Strap", "Close"];
+	G.Items.PlugGag.Layer = [
+		{ Name: "Strap", AllowColorize: true }
+		,{ Name: "Close", AllowColorize: true, urlPart:"Plug_Close" }
+		,{ Name: "Tongue", AllowColorize: false }
+	];
+	
+	
+	//ItemTorso
+	G = F3dcgAssets.AssetGroups.ItemTorso;
+	A = G.Items.HempRopeHarness;
+	A.Variant = {};
+	HempRopeTorsoOptions.forEach(VariantItem => {
+		A.Variant[VariantItem.Name] = VariantItem;
+		//VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
+	});
+	
+	A = G.Items.NylonRopeHarness;
+	A.Variant = {};
+	HempRopeTorsoOptions.forEach(VariantItem => {
+		if(! ["Crotch", "Diamond", "Harness"].includes(VariantItem.Name)) return;
+		A.Variant[VariantItem.Name] = VariantItem;
+		//VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
+	});
+
 	//ItemLegs
 	G = F3dcgAssets.AssetGroups.ItemLegs;
 	G.Items.DuctTape_ItemLegs.SetPose = ["LegsClosed"];
@@ -238,47 +358,6 @@ F3dcgAssets.InitVariants = function(){
 	G.Items.SturdyLeatherBelts_ItemLegs.SetPose = ["LegsClosed"];
 	this.SimplestVariant(G.Items.SturdyLeatherBelts_ItemLegs, ["One", "Two"]);
 	
-	//ItemMouth
-	
-	["ItemMouth", "ItemMouth2", "ItemMouth3"].forEach(GroupName =>{
-		G = F3dcgAssets.AssetGroups[GroupName];
-		I = G.Items["ClothGag"] ? G.Items["ClothGag"] : G.Items["ClothGag_" + GroupName];
-		V = this.SimplestVariant(I, ["Small", "Cleave", "OTM", "OTN"]);
-		V.Small.Property = {Effect:["GagVeryLight"]};
-		V.Cleave.Property = {Effect:["GagLight"]};
-		V.OTM.Property = {Effect:["GagEasy"]};
-		V.OTN.Property = {Effect:["GagEasy"]};
-		
-		I = G.Items["DuctTape"] ? G.Items["DuctTape"] : G.Items["DuctTape_" + GroupName]
-		V = this.SimplestVariant(I, ["Single", "Crossed", "Full", "Double", "Cover"]);
-		V.Single.Property = {Effect:["GagVeryLight"]};
-		V.Crossed.Property = {Effect:["GagVeryLight"]};
-		V.Full.Property = {Effect:["GagLight"]};
-		V.Double.Property = {Effect:["GagEasy"]};
-		V.Cover.Property = {Effect:["GagNormal"]};
-	});
-	
-	/* Dropping this as layer logic is too complex
-	V = this.SimplestVariant(G.Items.DildoPlugGag, ["Open", "Plug"]);
-	V.Open.Property = {Effect:["GagVeryLight"]};
-	V.Plug.Property = {Effect:["GagVeryHeavy"]};*/
-	
-	//ItemTorso
-	G = F3dcgAssets.AssetGroups.ItemTorso;
-	A = G.Items.HempRopeHarness;
-	A.Variant = {};
-	HempRopeTorsoOptions.forEach(VariantItem => {
-		A.Variant[VariantItem.Name] = VariantItem;
-		//VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
-	});
-	
-	A = G.Items.NylonRopeHarness;
-	A.Variant = {};
-	HempRopeTorsoOptions.forEach(VariantItem => {
-		if(! ["Crotch", "Diamond", "Harness"].includes(VariantItem.Name)) return;
-		A.Variant[VariantItem.Name] = VariantItem;
-		//VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
-	});
 }
 	
 F3dcgAssets.SimplestVariant = function(A, variantNames){
@@ -492,4 +571,83 @@ var HempRopeTorsoOptions = [
 		Property: { Type: "Diamond" , Difficulty: 3 },
 		
 	}
+];
+
+var InventoryItemArmsWebOptions = [
+	{
+		Name: "Tangled",
+		Property: { Type: null, Difficulty: 0 },
+	},
+	{
+		Name: "Wrapped",
+		BondageLevel: 0,
+		SelfBondageLevel: 4,
+		Property: {
+			Type: "Wrapped",
+			Difficulty: 2,
+			Prerequisite: ["NoFeetSpreader"],
+			AllowPose: ["Kneel"],
+			SetPose: ["LegsClosed", "BackElbowTouch"],
+			Effect: ["Block", "Freeze", "Prone"],
+			Block: ["ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"],
+		},
+	},
+	{
+		Name: "Cocooned",
+		BondageLevel: 1,
+		SelfBondageLevel: 5,
+		Property: {
+			Type: "Cocooned",
+			Difficulty: 4,
+			Prerequisite: ["NoFeetSpreader"],
+			AllowPose: ["Kneel"],
+			SetPose: ["LegsClosed", "BackElbowTouch"],
+			Effect: ["Block", "Freeze", "Prone"],
+			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],
+		},
+	},
+	{
+		Name: "Hogtied",
+		BondageLevel: 3,
+		SelfBondageLevel: 6,
+		RequiresPrerequisites: true,
+		Property: {
+			Type: "Hogtied",
+			Difficulty: 4,
+			Prerequisite: ["NoFeetSpreader"],
+			SetPose: ["Hogtied"],
+			Effect: ["Block", "Freeze", "Prone"],
+			Hide: ["Cloth", "ClothLower", "ClothAccessory", "Necklace"],
+			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],
+		},
+	},
+	{
+		Name: "Suspended",
+		BondageLevel: 4,
+		SelfBondageLevel: 8,
+		RequiresPrerequisites: true,
+		Property: {
+			Type: "Suspended",
+			Difficulty: 6,
+			Prerequisite: ["NoFeetSpreader"],
+			SetPose: ["LegsClosed", "BackElbowTouch", "Suspension"],
+			Effect: ["Block", "Freeze", "Prone"],
+			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],
+		},
+	},
+	{
+		Name: "SuspensionHogtied",
+		BondageLevel: 5,
+		SelfBondageLevel: 9,
+		RequiresPrerequisites: true,
+		Property: {
+			Type: "SuspensionHogtied",
+			Difficulty: 11,
+			Prerequisite: ["NoFeetSpreader"],
+			SetPose: ["Hogtied", "SuspensionHogtied"],
+			Effect: ["Block", "Freeze", "Prone"],
+			Hide: ["Cloth", "ClothLower", "ClothAccessory", "Necklace"],
+			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],
+		},
+	},
 ];

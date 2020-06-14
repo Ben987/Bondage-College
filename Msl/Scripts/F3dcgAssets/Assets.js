@@ -9,12 +9,10 @@ F3dcgAssets.CLOTH = "clothes"			//few restrictions
 F3dcgAssets.ACCESSORY = "accessories" 	//do not block restraints and needed for the remove function
 F3dcgAssets.BONDAGE_TOY = "bondageToys" 	//have forced poses, effects, blocks
 	
-F3dcgAssets.UNIMPLEMENTED_ITEMS = ["SpankingToys", "DildoPlugGag", "PlugGag"
-		,"CollarNameTag", "CollarNameTagLivestock", "CollarNameTagLover"
-		,"CollarNameTagOval", "CollarNameTagPet", "CollarShockUnit"
+F3dcgAssets.UNIMPLEMENTED_ITEMS = ["SpankingToys"
+		,"CollarShockUnit"
 		,"VibratingWand"
 		,"MetalCuffsKey", "MetalCuffs"//not worth the effort
-		
 		]
 	
 F3dcgAssets.POSE_NONE = "None";
@@ -28,13 +26,14 @@ F3dcgAssets.Poses = {}
 F3dcgAssets.AssetGroups = {}
 F3dcgAssets.ItemNameToGroupNameMap = {}
 
-F3dcgAssets.IgnoreGroups = ["ItemNeckAccessories", "ItemNeckRestraints", "ItemMisc"]	
+F3dcgAssets.IgnoreGroups = [/*"ItemNeckAccessories","ItemNeckRestraints", */"ItemMisc"]	
 F3dcgAssets.BodyItemsGroups = ["Eyes", "Mouth", "Nipples", "Pussy", "HairFront", "HairBack"]
 F3dcgAssets.ExpressionGroups = ["Eyebrows", "Blush", "Fluids", "Emoticon"]	
 F3dcgAssets.ClothesGroups = []//Asset group has a meaningful flag
 F3dcgAssets.AccessoriesGroups = ["TailStraps", "Wings", "HairAccessory1", "HairAccessory2"]
 F3dcgAssets.BondageToyGroups = [
 	"ItemHead", "ItemEars", "ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck"
+	,"ItemNeckAccessories", "ItemNeckRestraints"
 	,"ItemHands", "ItemArms"
 	,"ItemBreast", "ItemTorso", "ItemPelvis"
 	,"ItemLegs", "ItemFeet", "ItemBoots"
@@ -74,9 +73,7 @@ F3dcgAssets.Init = function(){
 }
 	
 	
-F3dcgAssets.UpdateAppearance = function(appearanceUpdate, playerTarget, playerOrigin){		
-	this.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerTarget, playerOrigin);
-	
+F3dcgAssets.UpdateAppearance = function(appearanceUpdate, playerTarget, playerOrigin){
 	for(var groupName in appearanceUpdate){
 		var appearanceItem = appearanceUpdate[groupName];
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];

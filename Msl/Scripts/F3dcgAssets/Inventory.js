@@ -22,7 +22,7 @@ var F3dcgAssetsInventory = {
 			if(AssetItem.Name.includes("Owner"))	keys["OwnerTimerPadlock"] = keys[AssetItem.Name];
 		});*/
 		
-		var posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(locationPlayer.appearance[F3dcgAssets.BONDAGE_TOY]);
+		var posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(locationPlayer.appearance);
 		var applicableItems = {[F3dcgAssets.CLOTH]:{}, [F3dcgAssets.ACCESSORY]:{}, [F3dcgAssets.BONDAGE_TOY]:{}, [F3dcgAssets.EXPRESSION]:{}};
 		F3dcgAssets.ClothesGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableGroup(locationPlayer, applicableItems, F3dcgAssets.CLOTH, groupName, posesEffectsBlocks)});
 		F3dcgAssets.AccessoriesGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableGroup(locationPlayer, applicableItems, F3dcgAssets.ACCESSORY, groupName, posesEffectsBlocks)});
@@ -108,6 +108,7 @@ var F3dcgAssetsInventory = {
 				
 				var variantNamePart =  Variant.Name.includes("_") ?  Variant.Name.split("_")[0] :  Variant.Name;
 				variant.iconUrl = F3dcgAssets.F3DCG_TYPE_ICON_BASE + groupName + "/" + namePart + "/" + variantNamePart + ".png";
+				if(groupName == "ItemNeckAccessories") variant.iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + groupName + "/" + namePart +  variantNamePart + ".png";
 				
 				if(AssetItem.Name == "BondageBench"){
 					if(Variant.Name == "Base")

@@ -21,7 +21,7 @@ var F3dcgAssetsRender = {
 				
 				if(! item) continue;
 				var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name];
-				if(!AssetItem) console.log(item);
+				if(!AssetItem) console.log(item, Object.keys(AssetGroup.Items));
 				var AssetVariant = AssetItem.Variant ? AssetItem.Variant[item.variant] : null;			
 				
 				if(AssetItem.Height) result.top -= AssetItem.Height;				
@@ -56,8 +56,8 @@ var F3dcgAssetsRender = {
 					result.itemGroupsToHideByItem.push(...AssetItem.Hide)
 			}
 		});
-		
-		if(activePose === F3dcgAssets.POSE_KNEELEING) result.poses.push("Kneel");
+	
+		if(activePose === F3dcgAssets.POSE_KNEEL) result.poses.push("Kneel");
 		result.poses.sort((poseName1, poseName2) => {
 			var p1 = F3dcgAssets.Poses[poseName1] ? F3dcgAssets.Poses[poseName1].priority : 0;
 			var p2 = F3dcgAssets.Poses[poseName2] ? F3dcgAssets.Poses[poseName2].priority : 0;
@@ -120,7 +120,7 @@ var F3dcgAssetsRender = {
 				var renderItemLayer = {colorize:AssetItemLayer.AllowColorize ? true : false}
 				renderItem.layers.push(renderItemLayer);
 				
-				var urlPartLayerName = "_" + AssetItemLayer.Name;
+				var urlPartLayerName = AssetItemLayer.urlPart ? AssetItemLayer.urlPart : "_" + AssetItemLayer.Name;
 				
 				if(AssetItem.Variant && AssetItem.Variant[appearanceItem.variant].Layer){
 					if(AssetItem.Variant[appearanceItem.variant].Layer.includes(AssetItemLayer.Name))
@@ -153,7 +153,8 @@ var F3dcgAssetsRender = {
 					}
 				}
 				
-				if(posePart) variantPart = ""; //ornate cuffs
+				//if(posePart) variantPart = ""; //ornate cuffs
+				if(posePart && AssetItem.AllowLock) variantPart = "";
 				
 				renderItemLayer.url = F3dcgAssets.F3DCG_ASSET_BASE + groupPart + posePart + itemPart + sizePart + urlPartLayerName + variantPart + ".png";
 			});
@@ -162,7 +163,8 @@ var F3dcgAssetsRender = {
 			if(AssetItem.Variant)
 				variantPart = variantPart == Object.keys(AssetItem.Variant)[0] ? "" : variantPart;
 			
-			if(posePart) variantPart = ""; //Leather cuffs				
+			//if(posePart) variantPart = ""; //Leather cuffs
+			if(posePart && AssetItem.AllowLock) variantPart = "";
 			
 			var url = F3dcgAssets.F3DCG_ASSET_BASE + groupPart + posePart + itemPart + sizePart + variantPart + ".png";
 			renderItem.layers.push({url:url, colorize: true});
@@ -266,8 +268,8 @@ var F3dcgAssetsRender = {
 	}
 	
 	
-	,BuildRender(appearance){
-		var appearanceItemEffects = this.BuildAppearanceItemsEffects(appearance);
+	,BuildRender(appearance, pose){
+		var appearanceItemEffects = this.BuildAppearanceItemsEffects(appearance, pose);
 		
 		var renderItemList = [];
 		renderItemList.push(...this.BuildFrameRenderItems(appearance.frame, appearanceItemEffects));
@@ -305,7 +307,7 @@ var F3dcgAssetsRender = {
 		return this.BuildRender(appearance);
 	}	
 	
-	,BuildPlayerRender(appearance){
-		return this.BuildRender(appearance);
+	,BuildPlayerRender(appearance, pose){
+		return this.BuildRender(appearance, pose);
 	}
 }

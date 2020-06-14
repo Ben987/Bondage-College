@@ -1,13 +1,21 @@
 'use strict'
 
 var LocationDialogSocialView  = function(mainDialog, containerElement){
-	this.AddPlayerIdRow = function(tbodyElement, listName, playerId){
+	this.AddPlayerIdRow = function(tbodyElement, playerId, listPropertyName){
 		var tr = Util.CreateElement({tag:"tr", parent:tbodyElement});
 		var td = Util.CreateElement({tag:"td", parent:tr, textContent:playerId});
 		var td = Util.CreateElement({tag:"td", parent:tr});
 		var removeButton = Util.CreateElement({tag:"a", parent:td, textContent:"Remove"});
-		removeButton.addEventListener("click", function(){this.RemovePlayerFromList(listName, playerId, tr);}.bind(this));
+		removeButton.addEventListener("click", function(){this.RemovePlayerFromList(tr, playerId, listPropertyName);}.bind(this));
 		return tr;
+	}
+	
+	this.FillPlayerList = function(tBodyElement, playerIdList, listPropertyName){
+		playerIdList.forEach(playerId => this.AddPlayerIdRow(tBodyElement, playerId, listPropertyName));
+		
+		var addInput = tBodyElement.parentNode.tFoot.rows[0].cells[0].childNodes[0];//relies on there being no whitespaces in the html
+		var addButton = tBodyElement.parentNode.tFoot.rows[0].cells[1].childNodes[0];
+		addButton.addEventListener("click", function(){this.AddPlayerToList(tBodyElement, addInput.value, listPropertyName);}.bind(this));		
 	}
 	
 	
@@ -19,17 +27,11 @@ var LocationDialogSocialView  = function(mainDialog, containerElement){
 		this.tbodies[listName] = Util.GetFirstChildNodeByName(this.mainContainer, listName).tBodies[0]
 	});
 	
+	this.FillPlayerList(this.tbodies.friend, mainDialog.player.character.friends, "character.friends");
+	this.FillPlayerList(this.tbodies.ghost, mainDialog.player.character.ghosts, "character.ghosts");
+	this.FillPlayerList(this.tbodies.black, mainDialog.player.settings.permissions.players.black, "settings.permissions.players.black");
+	this.FillPlayerList(this.tbodies.white, mainDialog.player.settings.permissions.players.white, "settings.permissions.players.white");
 	
-	for(let listName in mainDialog.player.character.playerLists){
-		let playerIdList = mainDialog.player.character.playerLists[listName];
-		let tbody = this.tbodies[listName];
-		
-		playerIdList.forEach(playerId => this.AddPlayerIdRow(tbody, listName, playerId));
-		
-		let addInput = tbody.parentNode.tFoot.rows[0].cells[0].childNodes[0];//relies on there being no whitespaces in the html
-		let addButton = tbody.parentNode.tFoot.rows[0].cells[1].childNodes[0];
-		addButton.addEventListener("click", function(){this.AddPlayerToList(listName, addInput.value, tbody);}.bind(this));
-	}
 	
 	
 	Util.GetFirstChildNodeByName(this.mainContainer, "refresh").addEventListener("click", function(event){
@@ -66,20 +68,20 @@ var LocationDialogSocialView  = function(mainDialog, containerElement){
 	this.RefreshOnlineFriendList();
 	
 	
-	this.AddPlayerToList = function(listName, playerId, tableBodyElement){
+	this.AddPlayerToList = function(tableBodyElement, playerId, listPropertyName){
 		playerId = parseInt(playerId);
 		if(playerId){
-			MslServer.Send("UpdatePlayerProperty", {property:"character.playerLists." + listName, value:playerId*1, operation:"add"}, function(){
-				this.AddPlayerIdRow(tableBodyElement, listName, playerId);
+			MslServer.Send("UpdatePlayerProperty", {property:listPropertyName, value:playerId*1, operation:"add"}, function(){
+				this.AddPlayerIdRow(tableBodyElement, playerId, listPropertyName);
 			}.bind(this));
 		}
 	}
 	
 	
-	this.RemovePlayerFromList = function(listName, playerId, tableRowElement){
+	this.RemovePlayerFromList = function(tableRowElement, playerId, listPropertyName){
 		playerId = parseInt(playerId);
 		if(playerId){
-			MslServer.Send("UpdatePlayerProperty", {property:"character.playerLists." + listName, value:playerId*1, operation:"remove"}, function(){
+			MslServer.Send("UpdatePlayerProperty", {property:listPropertyName, value:playerId*1, operation:"remove"}, function(){
 				tableRowElement.parentNode.removeChild(tableRowElement);
 			}.bind(this));
 		}
