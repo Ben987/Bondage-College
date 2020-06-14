@@ -201,13 +201,13 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 
 	// Make sure we do not add owner/lover only items for invalid characters, owner/lover locks can be applied on the player by the player for self-bondage
 	if (NewInv.Asset.OwnerOnly && !NewInvWorn && !C.IsOwnedByPlayer())
-		if ((C.ID != 0) || ((C.Owner == "") && (C.Ownership == null)) || !NewInv.Asset.IsLock)
+		if ((C.ID != 0) || ((C.Owner == "") && (C.Ownership == null)) || !NewInv.Asset.IsLock || ((C.ID == 0) && LogQuery("BlockOwnerLockSelf", "OwnerRule")))
 			return;
 	if (NewInv.Asset.LoverOnly && !NewInvWorn && !C.IsLoverOfPlayer())
-		if ((C.ID != 0) || ((C.Lover == "") && (C.Lovership == null)) || !NewInv.Asset.IsLock)
+		if ((C.ID != 0) || (C.Lovership.length < 0) || !NewInv.Asset.IsLock)
 			return;
 
-	// Do not show keys if they are in the depoist
+	// Do not show keys if they are in the deposit
 	if (LogQuery("KeyDeposit", "Cell") && InventoryIsKey(NewInv)) return false;
 
 	// Make sure we do not duplicate the non-blocked item
@@ -667,7 +667,7 @@ function DialogPublishAction(C, ClickItem) {
 	}
 
 	// Publishes the item result
-	if (CurrentScreen == "ChatRoom" && !InventoryItemHasEffect(ClickItem)) {
+	if ((CurrentScreen == "ChatRoom") && !InventoryItemHasEffect(ClickItem)) {
 		InventoryExpressionTrigger(C, ClickItem);
 		ChatRoomPublishAction(C, null, ClickItem, true);
 	}
@@ -710,10 +710,11 @@ function DialogItemClick(ClickItem) {
 	// If the item is limited for that character, based on item permissions
 	if (!InventoryCheckLimitedPermission(C, ClickItem)) return;
 
-	// If we must apply a lock to an item
+	// If we must apply a lock to an item (can trigger a daily job)
 	if (DialogItemToLock != null) {
 		if ((CurrentItem != null) && CurrentItem.Asset.AllowLock) {
 			InventoryLock(C, CurrentItem, ClickItem, Player.MemberNumber);
+			IntroductionJobProgress("DomLock", ClickItem.Asset.Name, true);
 			DialogItemToLock = null;
 			DialogInventoryBuild(C);
 			ChatRoomPublishAction(C, CurrentItem, ClickItem, true);
@@ -817,6 +818,7 @@ function DialogClick() {
 
 				// If this specific activity is clicked, we run it
 				if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
+					IntroductionJobProgress("SubActivity", DialogActivity[A].MaxProgress.toString(), true);
 					ActivityRun((Player.FocusGroup != null) ? Player : CurrentCharacter, DialogActivity[A]);
 					return;
 				}

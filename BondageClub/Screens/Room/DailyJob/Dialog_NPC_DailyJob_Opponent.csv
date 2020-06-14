@@ -1,0 +1,61 @@
+PlayerGagged,,,"Silence is gold, and gags are better than gold.",
+KidnapVictory,,,"(She sighs and bows her head.)  Well done, you're too strong for me.",
+KidnapDefeat,,,(She laughs at you and smirks.)  Ha!  You're so pathetic.,
+ItemMouth,,,(She sighs and reluctantly allows you to gag her.),
+RemoveItemMouth,,,(You remove her gag and she seems happy.)  You had fun?  It's over now?,
+ItemArms,,,(She turns around as you restrain her arms securely.)  Enjoy your victory while it lasts.,
+RemoveItemArms,,,(You free her arms as she stretches them.)  Alright.  Am I allowed to leave?,
+ItemHands,,,(She grumbles and gives you her hands as you restrain them.)  Enjoy your victory while it lasts.,
+RemoveItemHands,,,(You free her hands and she gives you a thumbs up.)  Alright.  Am I allowed to leave?,
+ItemLegs,,,(She submits to you while you restrain her legs.)  You sure know your bondage.,
+RemoveItemLegs,,,(You release her legs as she shakes her butt.)  How long will you keep me here?,
+ItemFeet,,,(She tests your feet restraints by jumping on her toes.),
+RemoveItemFeet,,,(You release her feet and she wiggles them.),
+ItemBoots,,,(She tests your feet restraints by jumping on her toes.),
+RemoveItemBoots,,,(You release her feet and she wiggles them.),
+ItemNeck,,,(She adjusts her neck to the new collar.)  I will never become your slave.,
+RemoveItemNeck,,,(You remove the collar from her neck.)  Next time I will collar you.,
+ItemPelvis,,,(She struggles to avoid the belt but you're able to strap it on her.)  These belts should be banned.,
+RemoveItemPelvis,,,"(She seems happy as you unlock the belt from her waist.)  Thanks, DialogPlayerName.",
+ItemHead,,,(You strap the device on her head as she sighs.)  Next time I won't lose against you.,
+RemoveItemHead,,,(You release her head as she nods rapidly.)  Enjoy that short-term victory.,
+ItemTorso,,,(You strap the harness on her torso as she blushes.)  Stop the kinky stuff.,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  It will be easier to breath like that.,
+ItemBreastLeatherWhip,,,(She whimpers and cries as you whip her breast.)  Revenge will be sweet!,
+ItemBreastLeatherCrop,,,"(You lash the crop on her torso, hitting her breast.)  Ow!  Careful with that crop.",
+ItemPelvisLeatherWhip,,,(You whip her butt as she grumbles.)  I'll make sure to get a whip next time I'm facing you.,
+ItemPelvisLeatherCrop,,,(You whack the leather crop right on her butt.)  Ouch! I'll put my next bounty on you.,
+0,10,The maids want you bound and gagged.,(She laughs at you.)  Get off my path or there will be trouble.,
+0,10,"I'm sorry, but there's money on your head.",And you're not getting it.  Get off my path or there will be trouble.,"DialogChangeReputation(""Dominant"", -2)"
+0,10,Surrender now and I won't be too rough with you.,I'll make a better deal: run away now and I won't crush you!,
+0,10,I'm here to teach you a lesson.,You and what army?  Get off my path or there will be trouble.,"DialogChangeReputation(""Dominant"", 2)"
+10,,(Fight her.),,KidnapStart()
+10,,(Run away.),,KidnapFail()
+100,110,Many people will enjoy your humiliation.,(She stays silent as more club members gathers around you two.),
+100,110,Beg for your freedom slave.,(She gulps as more club members gathers around you two.),"DialogChangeReputation(""Dominant"", 3)"
+100,110,Wow!  I was so lucky.,(She sighs as more club members gathers around you two.),"DialogChangeReputation(""Dominant"", -1)"
+100,110,(Invite other members.),(She grumbles as more club members gathers around you two.),
+110,120,Time to strip girl.,"(She blushes as you strip her down, while everyone is watching her humiliation.)",DialogNaked(CurrentCharacter)
+110,120,You're wearing too many clothes.,"(She blushes as you strip her down, while everyone is watching her humiliation.)",DialogNaked(CurrentCharacter)
+110,120,(Strip her.),"(She blushes as you strip her down, while everyone is watching her humiliation.)",DialogNaked(CurrentCharacter)
+120,,,NOEXIT,
+120,,(Restrain her.),(Use the items from your inventory to restrain her.),
+120,,(Humiliate her.),(Everyone laughs and has a good time as you humiliate her publicly in the main hall.),
+120,,(Let her go.),,KidnapSuccess()
+200,210,Congrats girl.  You got the best of me.,"I'm the best, never forget that.  (She calls for other club members to see you.)",
+200,210,I'll get you next time.,There won't be another time.  (She calls for other club members to see you.),"DialogChangeReputation(""Dominant"", 1)"
+200,210,(Bow your head.),(She smirks and calls for other club members to see you.),"DialogChangeReputation(""Dominant"", -3)"
+200,210,(Struggle to get out.),(She laughs and calls for other club members to see you.),
+210,220,Now what?,Now you get naked.  (She strips you down.),DialogNaked(Player)
+210,220,Why the crowd?,So you remember that day.  (She strips you down.),DialogNaked(Player)
+210,220,(Stay silent.),(She quickly strips you down.),DialogNaked(Player)
+220,230,I'll have my revenge someday.,We'll see about that.  (She opens a gym bag full of restraints and grins.),"DialogChangeReputation(""Dominant"", 2)"
+220,230,This is too much!,It's not enough.  (She opens a gym bag full of restraints and grins.),
+220,230,(Blush red.),Isn't it fun?  (She opens a gym bag full of restraints and grins.),"DialogChangeReputation(""Dominant"", -2)"
+220,230,(Act like you don't care.),Time for more trouble.  (She opens a gym bag full of restraints and grins.),
+230,240,"Alright, can we stop now?","(She stares at you and uses many restraints on you, while everyone around watches.)",PlayerFullRestrain(Player)
+230,240,(Shake your head no.),"(She stares at you and uses many restraints on you, while everyone around watches.)",PlayerFullRestrain(Player)
+230,240,(Look away.),"(She stares at you and uses many restraints on you, while everyone around watches.)",PlayerFullRestrain(Player)
+240,250,(Grumble and struggle.),(She humiliates you some more and leaves you bound in the main hall.),
+240,250,(Wait patiently.),(She humiliates you some more and leaves you bound in the main hall.),
+250,,(Leave her.),,KidnapFail()

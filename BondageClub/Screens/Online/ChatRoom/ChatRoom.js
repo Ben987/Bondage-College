@@ -29,7 +29,7 @@ function ChatRoomOwnershipOptionIs(Option) { return (Option == ChatRoomOwnership
 function ChatRoomLovershipOptionIs(Option) { return (Option == ChatRoomLovershipOption) }
 function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (CurrentCharacter.ID != 0) && Player.CanInteract() && (InventoryGet(CurrentCharacter, "ItemMisc") != null) && (InventoryGet(CurrentCharacter, "ItemMisc").Asset.Name == "WoodenMaidTrayFull")) }
 function ChatRoomIsCollaredByPlayer() { return ((CurrentCharacter != null) && (CurrentCharacter.Ownership != null) && (CurrentCharacter.Ownership.Stage == 1) && (CurrentCharacter.Ownership.MemberNumber == Player.MemberNumber)) }
-function ChatRoomCanServeDrink() { return ((CurrentCharacter != null) && CurrentCharacter.CanWalk() && (ReputationCharacterGet(CurrentCharacter, "Maid") > 0)) }
+function ChatRoomCanServeDrink() { return ((CurrentCharacter != null) && CurrentCharacter.CanWalk() && (ReputationCharacterGet(CurrentCharacter, "Maid") > 0) && CurrentCharacter.CanTalk()) }
 function ChatRoomCanGiveMoneyForOwner() { return ((ChatRoomMoneyForOwner > 0) && (CurrentCharacter != null) && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (Player.Ownership.MemberNumber == CurrentCharacter.MemberNumber)) }
 function ChatRoomPlayerIsAdmin() { return ((ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(Player.MemberNumber) >= 0)) }
 function ChatRoomCurrentCharacterIsAdmin() { return ((CurrentCharacter != null) && (ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
@@ -193,8 +193,6 @@ function ChatRoomDrawCharacter(DoClick) {
 					ChatRoomOwnershipOption = "";
 					ChatRoomLovershipOption = "";
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
-					if (ChatRoomCharacter[C].ID != 0) ServerSend("AccountOwnership", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
-					if (ChatRoomCharacter[C].ID != 0) ServerSend("AccountLovership", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
 					CharacterSetCurrent(ChatRoomCharacter[C]);
 
 				} else
@@ -225,6 +223,13 @@ function ChatRoomDrawCharacter(DoClick) {
 
 		}
 
+}
+
+// Sends the request to the server to check relationships
+function ChatRoomCheckRelationships(){
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (C.ID != 0) ServerSend("AccountOwnership", { MemberNumber: C.MemberNumber });
+	if (C.ID != 0) ServerSend("AccountLovership", { MemberNumber: C.MemberNumber });
 }
 
 // Displays /help content to the player if it's their first visit to a chatroom this session
@@ -928,10 +933,8 @@ function ChatRoomSyncItem(data) {
 			if ((Item != null) && (ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item))
 				if (!ChatRoomAllowChangeLockedItem(data, Item))
 					return;
-			if ((Item != null) && (ChatRoomCharacter[C].Lovership != null) && (ChatRoomCharacter[C].Lovership.MemberNumber != data.Source) && InventoryLoverOnlyItem(Item))
-				if ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source))
-					if (!ChatRoomAllowChangeLockedItem(data, Item))
-						return;
+			if ((Item != null) && (ChatRoomCharacter[C].GetLoversNumbers().indexOf(data.Source) < 0) && InventoryLoverOnlyItem(Item)
+				&& ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source)) && !ChatRoomAllowChangeLockedItem(data, Item)) { return; }
 
 			// If there's no name in the item packet, we remove the item instead of wearing it
 			ChatRoomAllowCharacterUpdate = false;
@@ -1146,6 +1149,8 @@ function ChatRoomSetRule(data) {
 		if (data.Content == "OwnerRuleKeyAllow") LogDelete("BlockKey", "OwnerRule");
 		if (data.Content == "OwnerRuleKeyConfiscate") InventoryConfiscateKey();
 		if (data.Content == "OwnerRuleKeyBlock") LogAdd("BlockKey", "OwnerRule");
+		if (data.Content == "OwnerRuleSelfOwnerLockAllow") LogDelete("BlockOwnerLockSelf", "OwnerRule");
+		if (data.Content == "OwnerRuleSelfOwnerLockBlock") LogAdd("BlockOwnerLockSelf", "OwnerRule");
 
 		// Remote rules
 		if (data.Content == "OwnerRuleRemoteAllow") LogDelete("BlockRemote", "OwnerRule");
@@ -1169,13 +1174,8 @@ function ChatRoomSetRule(data) {
 		}
 
 		// Forced labor
-		if (data.Content == "OwnerRuleLaborMaidDrinks") {
+		if (data.Content == "OwnerRuleLaborMaidDrinks" && Player.CanTalk()) {
 			CharacterSetActivePose(Player, null);
-			InventoryRemove(Player, "ItemMouth");
-			InventoryRemove(Player, "ItemMouth2");
-			InventoryRemove(Player, "ItemMouth3");
-			InventoryRemove(Player, "ItemHead");
-			ChatRoomCharacterUpdate(Player);
 			var D = TextGet("ActionGrabbedToServeDrinksIntro");
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedToServeDrinks", Type: "Action", Dictionary: [{Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber}]} );
 			ElementRemove("InputChat");

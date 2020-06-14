@@ -51,13 +51,22 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsLoved: function () { return ((this.Lover != null) && (this.Lover.trim() != "")) },
-		IsLoverOfPlayer: function () { return (((((this.Lover != null) && (this.Lover.trim() == Player.Name)) || (NPCEventGet(this, "Girlfriend") > 0)) && (this.Lovership == null)) || ((this.Lovership != null) && (this.Lovership.MemberNumber != null) && (this.Lovership.MemberNumber == Player.MemberNumber))) },
-		IsLover: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (this.Name == Player.Lover.replace("NPC-", ""))) },
+		IsLoverOfPlayer: function () { return this.IsLover(Player); },
+		IsLover: function (C) { return ((this.GetLoversNumbers().indexOf(C.MemberNumber) >= 0) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
+		GetLoversNumbers: function () {
+			var LoversNumbers = [];
+			for (var L = 0; L < this.Lovership.length; L++) {
+				if (this.Lovership[L].MemberNumber) { LoversNumbers.push(this.Lovership[L].MemberNumber); }
+				else if (this.Lovership[L].Name) { LoversNumbers.push(this.Lovership[L].Name); }
+			}
+			return LoversNumbers;
+		},
+		IsLoverPrivate: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (Player.GetLoversNumbers().indexOf("NPC-" + this.Name) >= 0)); },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked: function () { return CharacterIsNaked(this); },
 		IsDeaf: function () { return ((this.Effect.indexOf("DeafLight") >= 0) || (this.Effect.indexOf("DeafNormal") >= 0) || (this.Effect.indexOf("DeafHeavy") >= 0)) },
 		HasNoItem: function () { return CharacterHasNoItem(this); }
-	}
+	};
 
 	// If the character doesn't exist, we create it
 	if (CharacterID >= Character.length)
