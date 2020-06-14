@@ -372,7 +372,7 @@ function CharacterAppearanceBuildCanvas(C) {
 				var LayerType = Type;
 				if (CA.Asset.Layer != null) {
 					Layer = "_" + CA.Asset.Layer[L].Name;
-					if ((CA.Asset.Layer[L].AllowTypes != null) && (CA.Asset.Layer[L].AllowTypes.indexOf(Type) < 0)) continue;
+					if ((CA.Asset.Layer[L].AllowTypes != null) && (CA.Asset.Layer[L].AllowTypes.indexOf(Type) < 0 && Type != "")) continue;
 					if (!CA.Asset.Layer[L].HasExpression) Expression = "";
 					if (!CA.Asset.Layer[L].HasType) LayerType = "";
 					if ((CA.Asset.Layer[L].NewParentGroupName != null) && (CA.Asset.Layer[L].NewParentGroupName != CA.Asset.Group.ParentGroupName)) {
