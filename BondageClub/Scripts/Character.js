@@ -55,6 +55,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsLover: function (C) { return ((this.GetLoversNumbers().indexOf(C.MemberNumber) >= 0) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
 		GetLoversNumbers: function () {
 			var LoversNumbers = [];
+			if (typeof this.Lovership == "undefined") return [];
 			for (var L = 0; L < this.Lovership.length; L++) {
 				if (this.Lovership[L].MemberNumber) { LoversNumbers.push(this.Lovership[L].MemberNumber); }
 				else if (this.Lovership[L].Name) { LoversNumbers.push(this.Lovership[L].Name); }
