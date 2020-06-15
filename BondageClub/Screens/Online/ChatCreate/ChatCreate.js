@@ -115,15 +115,27 @@ function ChatCreateResponse(data) {
 
 // Creates the chat room
 function ChatCreateRoom() {
-	ChatRoomPlayerCanJoin = true;
+	// Check if we should push banned members
+	var BanList = [];
+	if (Player.ChatSettings) {
+		if (Player.ChatSettings.AutoBanBlackList) {
+			BanList = BanList.concat(Player.BlackList);
+		}
+		if (Player.ChatSettings.AutoBanGhostList) {
+			BanList = BanList.concat(Player.GhostList);
+		}
+	}
+	
+	// Push the new room
 	var NewRoom = {
 		Name: ElementValue("InputName").trim(),
 		Description: ElementValue("InputDescription").trim(),
 		Background: ChatCreateBackgroundSelect,
 		Private: ChatCreatePrivate,
 		Space: ChatRoomSpace,
-		Limit: ElementValue("InputSize").trim()
+		Limit: ElementValue("InputSize").trim(),
 	};
+	ChatRoomPlayerCanJoin = true;
 	ServerSend("ChatRoomCreate", NewRoom);
 	ChatCreateMessage = "CreatingRoom";
 }
