@@ -105,6 +105,13 @@ var AssetFemale3DCG = [
 			{ Name: "VirginKiller1", Value: 40, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing"] },
 			{ Name: "ReverseBunnySuit", Value: 100, BuyGroup: "ReverseBunnySuit"},
 			{ Name: "LeatherCropTop", Value: 60, Hide: ["ItemNipples", "ItemNipplesPiercings"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
+			{ 
+				Name: "CorsetShirt", Value: 60, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing"],
+				Layer: [
+					{ Name: "Shirt", AllowColorize: true },
+					{ Name: "Corset", AllowColorize: false }
+				]
+			},
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
