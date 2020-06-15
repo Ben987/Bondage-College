@@ -134,6 +134,7 @@ function ChatCreateRoom() {
 		Private: ChatCreatePrivate,
 		Space: ChatRoomSpace,
 		Limit: ElementValue("InputSize").trim(),
+		Ban: BanList.filter(N => Number.isInteger(N))
 	};
 	ChatRoomPlayerCanJoin = true;
 	ServerSend("ChatRoomCreate", NewRoom);
