@@ -1280,3 +1280,13 @@ function DialogDrawExpressionMenu() {
 function DialogSetSkillRatio(SkillType, NewRatio) {
 	SkillSetRatio(SkillType, parseInt(NewRatio) / 100);
 }
+
+// Sends an administrative command to the server for the chat room from the player dialog
+function DialogChatRoomAdminAction(ActionType, Publish) {
+	ChatRoomAdminAction(ActionType, Publish);
+}
+
+// Checks if a chat room player swap is in progress
+function DialogChatRoomHasSwapTarget() {
+	return ChatRoomHasSwapTarget();
+}
