@@ -1281,6 +1281,11 @@ function DialogSetSkillRatio(SkillType, NewRatio) {
 	SkillSetRatio(SkillType, parseInt(NewRatio) / 100);
 }
 
+// Check if the player is the admin of the current room
+function DialogChatRoomPlayerIsAdmin() {
+	return ChatRoomPlayerIsAdmin() && CurrentScreen == "ChatRoom";
+}
+
 // Sends an administrative command to the server for the chat room from the player dialog
 function DialogChatRoomAdminAction(ActionType, Publish) {
 	ChatRoomAdminAction(ActionType, Publish);
