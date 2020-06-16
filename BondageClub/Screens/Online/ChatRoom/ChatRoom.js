@@ -732,6 +732,10 @@ function ChatRoomMessage(data) {
 				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {
 					if (msg.indexOf("*") == 0) msg = msg + "*";
+					else if ((msg.indexOf("'") == 0)|| (msg.indexOf(",") == 0)) {
+						// No blank added, if first character of an emote is ' or ,
+						msg = "*" + SenderCharacter.Name + msg + "*";
+					}
 					else if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
