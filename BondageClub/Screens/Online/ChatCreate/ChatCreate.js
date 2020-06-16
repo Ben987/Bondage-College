@@ -124,7 +124,7 @@ function ChatCreateRoom() {
 		Background: ChatCreateBackgroundSelect,
 		Private: ChatCreatePrivate,
 		Space: ChatRoomSpace,
-		Limit: ElementValue("InputSize").trim(),
+		Limit: ElementValue("InputSize").trim()
 	};
 	ServerSend("ChatRoomCreate", NewRoom);
 	ChatCreateMessage = "CreatingRoom";
