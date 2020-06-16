@@ -12,9 +12,9 @@ DojoStruggleDefeat,,,"I'm sorry you could not make it, please practice your evas
 20,30,This is not cool.  (Strip reluctantly.),(You strip as she nods politely.)  Arigato.  Now turn around and give me your hands.,"DialogNaked(""Player"")"
 20,30,(Stay silent and strip.),(You strip as she nods politely.)  Arigato.  Now turn around and give me your hands.,"DialogNaked(""Player"")"
 30,,It's really necessary?,"(She nods and stays silent, showing your anatomy to her students.)",DialogRemove()
-30,40,Make it tight!,"(She ties you up very slowly in a strange fashion, showing every knots she does to her students.)",DojoRestrainPlayer()
-30,40,Don't go crazy.,"(She ties you up very slowly in a strange fashion, showing every knots she does to her students.)",DojoRestrainPlayer()
-30,40,(Stay silent.),"(She ties you up very slowly in a strange fashion, showing every knots she does to her students.)",DojoRestrainPlayer()
+30,40,Make it tight!,"(She ties you up very slowly in a strange fashion, showing every knot she does to her students.)",DojoRestrainPlayer()
+30,40,Don't go crazy.,"(She ties you up very slowly in a strange fashion, showing every knot she does to her students.)",DojoRestrainPlayer()
+30,40,(Stay silent.),"(She ties you up very slowly in a strange fashion, showing every knot she does to her students.)",DojoRestrainPlayer()
 40,50,Miss!  This is very tight.,It's an intriguing Shibari isn't it?  You'll have three chances to escape from it.  Please show every movements to our class.,"DialogChangeReputation(""Dominant"", -2)"
 40,50,I can escape from any rope.,This will be your evasion challenge!  You'll have three tries.  Please show every movements to our class.,"DialogChangeReputation(""Dominant"", 2)"
 40,50,(Struggle a little.),You'll have three chances to escape from this Shibari.  Please show every movements to our class.,
@@ -30,7 +30,7 @@ DojoStruggleDefeat,,,"I'm sorry you could not make it, please practice your evas
 200,210,You will leave me like that?,Absolutely.  Onegaishimasu practice your evasion techniques and come back.,
 200,210,I'll get better in no time.,A great attitude will help you to learn faster.  Practice your evasion techniques and come back when you're ready.,"DialogChangeReputation(""Dominant"", 1)"
 210,220,(Leave her.),,End()
-220,230,Can I try again?,"(She nods and makes sure you're naked.)  Yes you can, turn around and give me your hands again.","DialogNaked(""Player"")"
+220,230,Can I try again?,"(She nods and makes sure you're naked.)  Yes, you can, turn around and give me your hands again.","DialogNaked(""Player"")"
 220,230,I'll do better this time!,"(She nods and makes sure you're naked.)  I like your attitude, turn around and give me your hands.","DialogNaked(""Player"")"
 230,240,Don't make it too tight.,(She restrains you skillfully.)  Please show every evasion movements you will do for our class.,DojoRestrainPlayer()
 230,240,Do you worst girl.,(She restrains you skillfully.)  Please show every evasion movements you will do for our class.,DojoRestrainPlayer()

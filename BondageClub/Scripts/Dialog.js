@@ -56,6 +56,7 @@ function DialogCanInteract(C) { return ((C.toUpperCase().trim() == "PLAYER") ? P
 function DialogSetPose(C, NewPose) { CharacterSetActivePose((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter, ((NewPose != null) && (NewPose != "")) ? NewPose : null) }
 function DialogSkillGreater(SkillType, Value) { return (parseInt(SkillGetLevel(Player, SkillType)) >= parseInt(Value)) } // Returns TRUE if a specific reputation type is less or equal than a given value
 function DialogInventoryAvailable(InventoryName, InventoryGroup) { return InventoryAvailable(Player, InventoryName, InventoryGroup) }
+function DialogChatRoomPlayerIsAdmin() { return (ChatRoomPlayerIsAdmin() && (CurrentScreen == "ChatRoom")) }
 
 // Returns TRUE if the dialog prerequisite condition is met
 function DialogPrerequisite(D) {
@@ -1279,4 +1280,14 @@ function DialogDrawExpressionMenu() {
 // Sets the skill ratio for the player, will be a % of effectiveness applied to the skill when using it
 function DialogSetSkillRatio(SkillType, NewRatio) {
 	SkillSetRatio(SkillType, parseInt(NewRatio) / 100);
+}
+
+// Sends an administrative command to the server for the chat room from the player dialog
+function DialogChatRoomAdminAction(ActionType, Publish) {
+	ChatRoomAdminAction(ActionType, Publish);
+}
+
+// Checks if a chat room player swap is in progress
+function DialogChatRoomHasSwapTarget() {
+	return ChatRoomHasSwapTarget();
 }
