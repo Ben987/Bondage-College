@@ -7,6 +7,15 @@ function InventoryItemButtButtPlugLockLoad() {
 	InventoryItemButtButtPlugLockMessage = "SelectAttachmentState";
 }
 
+// check, if a short chain can be applied
+function getChainShortPrerequesites(C) {
+	let ChainShortPrerequisites = true;
+	if (C.Pose.indexOf("Suspension") >= 0 || C.Pose.indexOf("StraitDressOpen") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
+		ChainShortPrerequisites = false;
+	}	
+	return ChainShortPrerequisites;
+} //getChainShortPrerequesites
+
 // Draw the item extension screen
 function InventoryItemButtButtPlugLockDraw() {
 	
@@ -17,10 +26,11 @@ function InventoryItemButtButtPlugLockDraw() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = true;
-	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
-		ChainShortPrerequisites = false;
-	}	
+	let ChainShortPrerequisites = getChainShortPrerequesites(C);
+//	let ChainShortPrerequisites = true;
+//	if (C.Pose.indexOf("Suspension") >= 0 || C.Pose.indexOf("StraitDressOpen") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
+//		ChainShortPrerequisites = false;
+//	}	
 	
 	// Draw the possible poses
 	DrawText(DialogFind(Player, InventoryItemButtButtPlugLockMessage), 1500, 500, "white", "gray");
@@ -40,10 +50,11 @@ function InventoryItemButtButtPlugLockClick() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = true;
-	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
-		ChainShortPrerequisites = false;
-	}
+	let ChainShortPrerequisites = getChainShortPrerequesites(C);
+//	let ChainShortPrerequisites = true;
+//	if (C.Pose.indexOf("Suspension") >= 0 || C.Pose.indexOf("StraitDressOpen") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
+//		ChainShortPrerequisites = false;
+//	}	
 	
 	// Trigger click handlers
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
@@ -73,12 +84,12 @@ function InventoryItemButtButtPlugLockSetPose(NewPose) {
 	} else {
 		DialogFocusItem.Property.Type = NewPose;
 		if (NewPose == "ChainShort") {
-			DialogFocusItem.Property.Effect = ["Chaste", "Freeze", "ForceKneel"];
+			DialogFocusItem.Property.Effect = ["Chaste", "Freeze", "ForceKneel", "IsChained"];
 			DialogFocusItem.Property.SetPose = ["Kneel"];
 		}
 		if (NewPose == "ChainLong") {
 			DialogFocusItem.Property.SetPose = [""];
-			DialogFocusItem.Property.Effect = ["Chaste", "Tethered"];
+			DialogFocusItem.Property.Effect = ["Chaste", "Tethered", "IsChained"];
 			DialogFocusItem.Property.AllowPose = ["Kneel", "Horse", "KneelingSpread"];
 		}
 	}

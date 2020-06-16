@@ -281,12 +281,16 @@ function CharacterApperanceSetHeightModifier(C) {
 		for (var A = 0; A < C.Appearance.length; A++)
 			if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name))
 				Height += C.Appearance[A].Asset.HeightModifier;
-		if (C.Pose != null)
+		if (C.Pose != null) 
 			for (var A = 0; A < C.Pose.length; A++)
 				for (var P = 0; P < Pose.length; P++)
 					if (Pose[P].Name == C.Pose[A])
-						if (Pose[P].OverrideHeight != null)
-							Height = Pose[P].OverrideHeight;
+						if (Pose[P].OverrideHeight != null) {
+							if (!((Pose[P].Name == "Kneel") && (C.Pose.indexOf("Hogtied") >= 0)))
+								// Ignore kneel, if player is hogtied. 
+								// Allows the use of a short chain on hogtied players
+								Height = Pose[P].OverrideHeight;
+						}// if
 		C.HeightModifier = Height;
 	}
 }
