@@ -117,6 +117,7 @@ function InventoryItemArmsChainsSetPose(NewType) {
 	}
 
 	// Validates a few parameters before hogtied
+	if ((NewType.Name == "AllFours") && !InventoryAllow(C, ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
 	if ((NewType.Name == "Hogtied") && !InventoryAllow(C, ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
 	if ((NewType.Name == "SuspensionHogtied") && !InventoryAllow(C, ["NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
 
