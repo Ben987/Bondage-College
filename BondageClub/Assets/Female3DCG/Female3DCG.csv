@@ -644,6 +644,9 @@ ItemArms,ChainLeashHolding,Holding Chain Leash
 ItemArms,PetCrawler,Pet Crawler
 ItemArms,MermaidSuit,Mermaid Suit
 ItemArms,Web,Web
+ItemArms,LatexArmbinder,Latex Armbinder
+ItemArms,SeamlessLatexArmbinder,Seamless Latex Armbinder
+ItemArms,FullBodyLeatherHarness,Full Body Leather Harness
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -779,6 +782,7 @@ ItemMouth,LatexBallMuzzleGag,Latex Ball Muzzle Gag
 ItemMouth,SockStuffing,Sock Stuffing
 ItemMouth,GasMaskGag,Respirator Mask
 ItemMouth,WebGag,Web
+ItemMouth,RopeGag,Rope Gag
 ItemMouth,MilkBottle,Milk Bottle
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
@@ -815,6 +819,7 @@ ItemMouth2,StitchedMuzzleGag,Stitched Muzzle Gag
 ItemMouth2,LatexBallMuzzleGag,Latex Ball Muzzle Gag
 ItemMouth2,GasMaskGag,Respirator Mask
 ItemMouth2,WebGag,Web Gag
+ItemMouth2,RopeGag,Rope Gag
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -850,6 +855,7 @@ ItemMouth3,StitchedMuzzleGag,Stitched Muzzle Gag
 ItemMouth3,LatexBallMuzzleGag,Latex Ball Muzzle Gag
 ItemMouth3,GasMaskGag,Respirator Mask
 ItemMouth3,WebGag,Web Gag
+ItemMouth3,RopeGag,Rope Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -869,6 +875,9 @@ ItemHead,LeatherHoodSensDep,Sensory Deprivation Hood
 ItemHead,LatexHoodOpenHair,Open Hair Latex Hood
 ItemHead,LeatherHoodSealed,Sealed Leather Hood
 ItemHead,PolishedSteelHood,Polished Steel Hood
+ItemHead,NoseHook,Nose Hook
+ItemHead,InflatedBallHood,Inflatable Hood
+ItemHead,OldGasMask,Gas Mask
 ItemHead,SackHood,Sack Hood
 ItemHead,LewdBlindfold,Lewd Blindfold
 ItemHead,LatexBlindfold,Latex Blindfold
@@ -877,6 +886,7 @@ ItemHead,FoxyMask,Foxy Mask
 ItemHead,SleepMask,Sleep Mask
 ItemHead,BlackoutLenses,Blackout Lenses
 ItemHead,WebBlindfold,Web
+ItemHead,RopeBlindfold,Rope Blindfold
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
@@ -928,6 +938,10 @@ ItemDevices,Vacbed,Vacbed
 ItemDevices,Crib,Crib
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
+ItemAddon,OldGasMaskLenses,Blinding Lenses
+ItemAddon,OldGasMaskTube1,Gas Mask Tube
+ItemAddon,OldGasMaskTube2,Gas Mask Tube
+ItemAddon,OldGasMaskRebreather,Rebreather
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels
