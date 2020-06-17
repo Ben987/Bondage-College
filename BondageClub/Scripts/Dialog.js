@@ -183,6 +183,7 @@ function DialogLeaveItemMenu() {
 	DialogTextDefault = "";
 	DialogTextDefaultTimer = 0;
 	ElementRemove("InputColor");
+	AudioDialogStop();
 }
 
 // Leaves the item menu of the focused item
@@ -484,9 +485,6 @@ function DialogMenuButtonClick() {
 	for (var I = 0; I < DialogMenuButton.length; I++)
 		if ((MouseX >= 1885 - I * 110) && (MouseX <= 1975 - I * 110)) {
 			
-			// Stops the dialog sounds
-			AudioDialogStop();
-
 			// Gets the current character and item
 			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 			var Item = InventoryGet(C, C.FocusGroup.Name);
