@@ -24,6 +24,9 @@ function IntroductionIsBothFree() { return (!IntroductionMaid.IsRestrained() && 
 function IntroductionIsMaidRestrained() { return (IntroductionMaid.IsRestrained() || !IntroductionMaid.CanTalk()) }
 function IntroductionNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management")) }
 function IntroductionJobIsComplete() { return (IntroductionJobCount <= 0) }
+function IntroductionCanTakeJob() { return (IntroductionJobAnyAvailable() && !Player.IsRestrained() && Player.CanTalk() && !IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !ManagementIsClubSlave()) }
+function IntroductionCannotTakeJobDone() { return (!IntroductionJobAnyAvailable() && !Player.IsRestrained() && Player.CanTalk() && !IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !ManagementIsClubSlave()) }
+function IntroductionCannotTakeJobRestrained() { return (IntroductionJobAnyAvailable() && (Player.IsRestrained() || !Player.CanTalk() || IntroductionMaid.IsRestrained() || !IntroductionMaid.CanTalk()) && !ManagementIsClubSlave()) }
 
 // Loads the introduction room
 function IntroductionLoad() {
@@ -154,7 +157,6 @@ function IntroductionJobDone() {
 
 // Returns TRUE if a specific daily job is available for the player, each job is available in a rotating fashion
 function IntroductionJobAvailable(JobName) {
-	if (!IntroductionMaid.CanInteract() || !IntroductionMaid.CanTalk()) return false;
 	if (LogQuery("DailyJobDone", "Introduction")) return false;
 	if ((JobName.substr(0, 3) == "Dom") && (ReputationGet("Dominant") <= -50)) return false;
 	if ((JobName.substr(0, 3) == "Sub") && (ReputationGet("Dominant") >= 50)) return false;
@@ -224,4 +226,12 @@ function IntroductionJobPuppyStart() {
 	CommonSetScreen("Room", "DailyJob");
 	CharacterSetCurrent(DailyJobPuppyMistress);
 	DailyJobPuppyMistress.CurrentDialog = DialogFind(IntroductionMaid, "JobPuppyIntro" + DailyJobPuppyMistress.Stage.toString() + Math.floor(Math.random() * 4).toString());
+}
+
+// When the daily dojo job starts
+function IntroductionJobDojoStart() {
+	CommonSetScreen("Room", "DailyJob");
+	DailyJobBackground = "Shibari";
+	CharacterSetCurrent(DailyJobDojoTeacher);
+	DailyJobDojoTeacher.CurrentDialog = DialogFind(IntroductionMaid, "JobDojoIntro" + DailyJobDojoTeacher.Stage.toString() + Math.floor(Math.random() * 4).toString());
 }

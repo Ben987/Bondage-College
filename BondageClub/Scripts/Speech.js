@@ -53,6 +53,7 @@ function SpeechGarble(C, CD) {
 	GagEffect += SpeechGetGagLevel(C, "ItemHead");
 	GagEffect += SpeechGetGagLevel(C, "ItemNeck");
 	GagEffect += SpeechGetGagLevel(C, "ItemDevices");
+	GagEffect += SpeechGetGagLevel(C, "ItemAddon");
 
 	// GagTotal4 always returns mmmmm and muffles some frequent letters entirely, 75% least frequent letters
 	if (GagEffect >= 20) {

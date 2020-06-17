@@ -119,6 +119,7 @@ function ExtendedItemSetType(Options, Option) {
 		// Call the item's load function
 		CommonCallFunctionByName(FunctionPrefix + "Load");
 	}
+	var PreviousType = DialogFocusItem.Property.Type;
 
 	DialogFocusItem.Property = Option.Property;
 	CharacterRefresh(C);
@@ -126,7 +127,7 @@ function ExtendedItemSetType(Options, Option) {
 
 	if (CurrentScreen === "ChatRoom") {
 		// If we're in a chatroom, call the item's publish function to publish a message to the chatroom
-		var PreviousOption = Options.find(Option => Option.Property.Type === DialogFocusItem.Property.Type);
+		var PreviousOption = Options.find(O => O.Property.Type === PreviousType);
 		CommonCallFunctionByName(FunctionPrefix + "PublishAction", Option, PreviousOption);
 	}
 
