@@ -8,11 +8,11 @@ function InventoryItemButtButtPlugLockLoad() {
 }
 
 // check, if a short chain can be applied
-function getChainShortPrerequesites(C) {
+function InventoryItemButtButtPlugLockChainShortPrerequesites(C) {
 	let ChainShortPrerequisites = true;
 	if (C.Pose.indexOf("Suspension") >= 0 || C.Pose.indexOf("StraitDressOpen") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
 		ChainShortPrerequisites = false;
-	}	
+	} // if
 	return ChainShortPrerequisites;
 } //getChainShortPrerequesites
 
@@ -26,11 +26,7 @@ function InventoryItemButtButtPlugLockDraw() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = getChainShortPrerequesites(C);
-//	let ChainShortPrerequisites = true;
-//	if (C.Pose.indexOf("Suspension") >= 0 || C.Pose.indexOf("StraitDressOpen") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
-//		ChainShortPrerequisites = false;
-//	}	
+	let ChainShortPrerequisites = InventoryItemButtButtPlugLockChainShortPrerequesites(C);
 	
 	// Draw the possible poses
 	DrawText(DialogFind(Player, InventoryItemButtButtPlugLockMessage), 1500, 500, "white", "gray");
@@ -50,11 +46,7 @@ function InventoryItemButtButtPlugLockClick() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = getChainShortPrerequesites(C);
-//	let ChainShortPrerequisites = true;
-//	if (C.Pose.indexOf("Suspension") >= 0 || C.Pose.indexOf("StraitDressOpen") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
-//		ChainShortPrerequisites = false;
-//	}	
+	let ChainShortPrerequisites = InventoryItemButtButtPlugLockChainShortPrerequesites(C);
 	
 	// Trigger click handlers
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
