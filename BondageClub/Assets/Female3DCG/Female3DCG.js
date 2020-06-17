@@ -117,10 +117,10 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		Random: false,
 		Asset: [
-			{ Name: "StudentOutfit3Scarf", Priority: 34, Left: 200, Top: 250, IgnoreParentGroup: true },
-			{ Name: "StudentOutfit3Bow1", Priority: 34, Left: 200, Top: 250, IgnoreParentGroup: true },
-			{ Name: "StudentOutfit3Bow2", Priority: 34, Left: 200, Top: 250, IgnoreParentGroup: true },
-			{ Name: "StudentOutfit3Bow3", Priority: 34, Left: 200, Top: 250, IgnoreParentGroup: true },
+			{ Name: "StudentOutfit3Scarf", Left: 200, Top: 250, IgnoreParentGroup: true },
+			{ Name: "StudentOutfit3Bow1", Left: 200, Top: 250, IgnoreParentGroup: true },
+			{ Name: "StudentOutfit3Bow2", Left: 200, Top: 250, IgnoreParentGroup: true },
+			{ Name: "StudentOutfit3Bow3", Left: 200, Top: 250, IgnoreParentGroup: true },
 			{ 
 				Name: "Bouquet", Priority: 41, Value: 40, Left: 175, Top: 350, BuyGroup: "Bouquet", AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied"], IgnoreParentGroup: true,
 				Layer: [
