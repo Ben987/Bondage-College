@@ -8,6 +8,7 @@ var ChatRoomTargetMemberNumber = null;
 var ChatRoomOwnershipOption = "";
 var ChatRoomLovershipOption = "";
 var ChatRoomPlayerCanJoin = false;
+var ChatRoomPlayerJoiningAsAdmin = false;
 var ChatRoomMoneyForOwner = 0;
 var ChatRoomQuestGiven = [];
 var ChatRoomSpace = "";
@@ -797,6 +798,23 @@ function ChatRoomSync(data) {
 				Joining = true;
 				ChatRoomPlayerCanJoin = false;
 				CommonSetScreen("Online", "ChatRoom");
+				if (ChatRoomPlayerJoiningAsAdmin) {
+					ChatRoomPlayerJoiningAsAdmin = false;
+					// Check if we should push banned members
+					if (Player.ChatSettings && data.Character.length == 1) {
+						var BanList = [];
+						if (Player.ChatSettings.AutoBanBlackList) {
+							BanList = BanList.concat(Player.BlackList);
+						}
+						if (Player.ChatSettings.AutoBanGhostList) {
+							BanList = BanList.concat(Player.GhostList);
+						}
+						if (BanList.length > 0) { 
+							data.Ban = BanList;
+							ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: data, Action: "Update" });
+						}
+					}
+				}
 			} else return;
 		}
 

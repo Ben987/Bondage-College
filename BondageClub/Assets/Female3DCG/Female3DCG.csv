@@ -939,12 +939,19 @@ ItemDevices,SmallWoodenBoxOpenHead,Exposed Head Small Wooden Box
 ItemDevices,WoodenStocks,Wooden Stocks
 ItemDevices,Vacbed,Vacbed
 ItemDevices,Crib,Crib
+ItemDevices,Bed,Bed
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemAddon,OldGasMaskLenses,Blinding Lenses
 ItemAddon,OldGasMaskTube1,Gas Mask Tube
 ItemAddon,OldGasMaskTube2,Gas Mask Tube
-ItemAddon,OldGasMaskRebreather,Rebreather
+ItemAddon,OldGasMaskRebreather,Rebreather,
+ItemAddon,Covers,Blanket
+ItemAddon,BedRopes,Bed Ropes
+ItemAddon,BedStraps,Bed Straps
+ItemAddon,BedTape,Bed Tape
+ItemAddon,BedChains,Bed Chains
+ItemAddon,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels

@@ -55,6 +55,7 @@ RemoveChastityFirst,,,Must remove chastity first.,,
 RemoveChainForItem,,,Remove the chain to the floor first.,,
 CannotBeHogtiedWithAlphaHood,,,Cannot hogtie with this hood.,,
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.,,
+MustBeOnBed,,,Must be on a bed to attach addons to.
 NoClothAndCollared,,,Remove some clothes and requires a collar.,,
 LegsCannotOpen,,,Legs cannot open.,,
 LegsCannotClose,,,Legs cannot close.,,
