@@ -12,6 +12,16 @@ const HempRopeFeetOptions = [
 		Property: { Type: "FullBinding", SetPose: ["LegsClosed"], Difficulty: 2 },
 		FeetGround: true
 	}, {
+		Name: "Link",
+		RequiredBondageLevel: 2,
+		Property: { Type: "Link", SetPose: ["LegsClosed"], Difficulty: 2 },
+		FeetGround: true
+	}, {
+		Name: "Diamond",
+		RequiredBondageLevel: 4,
+		Property: { Type: "Diamond", SetPose: ["LegsClosed"], Difficulty: 4 },
+		FeetGround: true
+	}, {
 		Name: "Mermaid",
 		RequiredBondageLevel: 4,
 		Property: { Type: "Mermaid", SetPose: ["LegsClosed"], Difficulty: 4 },

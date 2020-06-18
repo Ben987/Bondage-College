@@ -10,9 +10,17 @@ const HempRopeLegsOptions = [
 		RequiredBondageLevel: 2,
 		Property: { Type: "FullBinding", SetPose: ["LegsClosed"], Difficulty: 2 },
 	}, {
+		Name: "Link",
+		RequiredBondageLevel: 2,
+		Property: { Type: "Link", SetPose: ["LegsClosed"], Difficulty: 2 },
+	}, {
 		Name: "Frogtie",
 		RequiredBondageLevel: 3,
 		Property: { Type: "Frogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Difficulty: 3 },
+	}, {
+		Name: "Crossed",
+		RequiredBondageLevel: 4,
+		Property: { Type: "Crossed", SetPose: ["LegsClosed"], Difficulty: 4 },
 	}, {
 		Name: "Mermaid",
 		RequiredBondageLevel: 4,
