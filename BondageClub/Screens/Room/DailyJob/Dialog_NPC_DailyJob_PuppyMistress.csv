@@ -1,7 +1,7 @@
 PlayerGagged,,,Keep that gag on and someday you'll be enslaved as a puppy girl.,,
 PuppyVictory,,,(The Mistress greets you back with a smile.)  Thanks for taking good care of my pets.,,
 PuppyDefeat,,,(The Mistress gives you a furious look.)  My poor pet girl!  You should be ashamed of yourself.,,
-0,10,That should be easy.,"(She nods.)  Yes it will.  Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.","DialogChangeReputation(""Dominant"", 2)",
+0,10,That should be easy.,"(She nods.)  Yes, it will.  Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.","DialogChangeReputation(""Dominant"", 2)",
 0,10,What do I need to do?,"Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.",,
 0,10,That sounds complicated.,"(She frowns.)  It's not.  Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.","DialogChangeReputation(""Dominant"", -2)",
 0,10,How many puppies do you have?,"I have four puppy girls, take them to the park, make them walk, play with them for a while and get them back here.",,

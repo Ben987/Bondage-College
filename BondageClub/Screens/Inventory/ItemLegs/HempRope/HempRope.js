@@ -10,9 +10,17 @@ const HempRopeLegsOptions = [
 		RequiredBondageLevel: 2,
 		Property: { Type: "FullBinding", SetPose: ["LegsClosed"], Difficulty: 2 },
 	}, {
+		Name: "Link",
+		RequiredBondageLevel: 2,
+		Property: { Type: "Link", SetPose: ["LegsClosed"], Difficulty: 2 },
+	}, {
 		Name: "Frogtie",
 		RequiredBondageLevel: 3,
 		Property: { Type: "Frogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Difficulty: 3 },
+	}, {
+		Name: "Crossed",
+		RequiredBondageLevel: 4,
+		Property: { Type: "Crossed", SetPose: ["LegsClosed"], Difficulty: 4 },
 	}, {
 		Name: "Mermaid",
 		RequiredBondageLevel: 4,
@@ -45,9 +53,10 @@ function InventoryItemLegsHempRopeDraw() {
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 550 + (Math.floor(offset / 2) * 300);
 		var FailSkillCheck = (HempRopeLegsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeLegsOptions[I].RequiredBondageLevel);
-
+		var RequirementText = HempRopeLegsOptions[I].RequiredBondageLevel ? DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", HempRopeLegsOptions[I].RequiredBondageLevel) : DialogFind(Player, "NoRequirement");
+			
 		DrawText(DialogFind(Player, "RopeBondage" + HempRopeLegsOptions[I].Name), X + 113, Y - 20, "white", "gray");
-		DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", HempRopeLegsOptions[I].RequiredBondageLevel), X + 113, Y + 250, "white", "gray");
+		DrawText(RequirementText, X + 113, Y + 250, "white", "gray");
 		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == HempRopeLegsOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + HempRopeLegsOptions[I].Name + ".png", X, Y + 1);
 	}

@@ -50,12 +50,12 @@ function ManagementCanBeReleased() { return ((Player.Owner != "") && (Player.Own
 function ManagementCannotBeReleased() { return ((Player.Owner != "") && (Player.Ownership == null) && PrivateOwnerInRoom()) }
 function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
-function ManagementLoverFromBondageCollege() { return ((Player.Lover == "NPC-Sidney") || (Player.Lover == "NPC-Amanda") || (Player.Lover == "NPC-Jennifer")) }
-function ManagementCanBreakDatingLoverOnline() { return ((Player.Lover == "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage != 2)) }
-function ManagementCanBreakUpLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage == 2) && (Player.Lovership.Start != null) && (Player.Lovership.Start + 604800000 < CurrentTime)) }
-function ManagementCannotBreakUpLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage == 2) && (Player.Lovership.Start != null) && (Player.Lovership.Start + 604800000 >= CurrentTime)) }
-function ManagementCanBreakUpLoverNPC() { return ((Player.Lover != "") && !PrivateLoverInRoom()) }
-function ManagementCannotBreakUpLoverNPC() { return ((Player.Lover != "") && PrivateLoverInRoom()) }
+function ManagementLoverFromBondageCollege() { var L = Player.GetLoversNumbers(); return ((L.indexOf("NPC-Sidney") >= 0) || (L.indexOf("NPC-Amanda") >= 0) || (L.indexOf("NPC-Jennifer") >= 0)); }
+function ManagementCanBreakDatingLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage != 2)); }
+function ManagementCanBreakUpLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage == 2) && (Player.Lovership[L].Start != null) && (Player.Lovership[L].Start + 604800000 < CurrentTime)); }
+function ManagementCannotBreakUpLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage == 2) && (Player.Lovership[L].Start != null) && (Player.Lovership[L].Start + 604800000 >= CurrentTime)) }
+function ManagementCanBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && !PrivateLoverInRoom(L)) }
+function ManagementCannotBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && PrivateLoverInRoom(L)) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
 function ManagementWearingSlaveCollar() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar")) }
 function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
@@ -251,9 +251,9 @@ function ManagementBreakTrialOnline() {
 }
 
 // When the Mistress breaks the bond between lovers
-function ManagementBreakLover() {
+function ManagementBreakLover(L) {
 	Player.Lover = "";
-	ServerSend("AccountLovership", { MemberNumber: Player.Lovership && Player.Lovership.MemberNumber ? Player.Lovership.MemberNumber : -1, Name: Player.Lovership && Player.Lovership.Name, Action: "Break" });
+	ServerSend("AccountLovership", { MemberNumber: Player.Lovership[L].MemberNumber ? Player.Lovership[L].MemberNumber : -1, Name: Player.Lovership[L].Name, Action: "Break" });
 	ServerPlayerSync();
 }
 

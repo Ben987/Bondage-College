@@ -45,8 +45,8 @@ var InventoryItemArmsWebOptions = [
 			Difficulty: 4,
 			SetPose: ["Hogtied"],
 			Effect: ["Block", "Freeze", "Prone"],
-			Hide: ["Cloth", "ClothLower", "ClothAccessory", "Necklace"],
-			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],
+			Hide: ["Cloth", "ClothLower", "ClothAccessory", "Necklace", "Shoes", "Socks"],
+			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemDevices"],
 		},
 	},
 	{
@@ -72,8 +72,8 @@ var InventoryItemArmsWebOptions = [
 			Difficulty: 11,
 			SetPose: ["Hogtied", "SuspensionHogtied"],
 			Effect: ["Block", "Freeze", "Prone"],
-			Hide: ["Cloth", "ClothLower", "ClothAccessory", "Necklace"],
-			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],
+			Hide: ["Cloth", "ClothLower", "ClothAccessory", "Necklace", "Shoes", "Socks"],
+			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemDevices"],
 		},
 	},
 ];
@@ -118,8 +118,7 @@ function InventoryItemArmsWebValidate(Option) {
 	}
 }
 
-function InventoryItemArmsWebPublishAction(Option, PreviousOption) {
-	var C = CharacterGetCurrent();
+function InventoryItemArmsWebPublishAction(C, Option, PreviousOption) {
 	var NewIndex = InventoryItemArmsWebOptions.indexOf(Option);
 	var PreviousIndex = InventoryItemArmsWebOptions.indexOf(PreviousOption);
 	var msg = "ArmsWebSet" + Option.Name;
@@ -130,4 +129,8 @@ function InventoryItemArmsWebPublishAction(Option, PreviousOption) {
 		{ Tag: "Action", Text: ActionDialog },
 	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
+
+function InventoryItemArmsWebNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "ItemArmsWeb" + Option.Name, "ItemArms");
 }

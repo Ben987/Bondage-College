@@ -46,6 +46,7 @@ Cloth,AdmiralTop,Admiral Top
 Cloth,VirginKiller1,Virgin Killer
 Cloth,ReverseBunnySuit,Reverse Bunny Suit Top
 Cloth,LeatherCropTop, Leather Crop Top
+Cloth,CorsetShirt,Corset Shirt
 ClothAccessory,,Cloth Accessory
 ClothAccessory,StudentOutfit3Scarf,Student Scarf
 ClothAccessory,StudentOutfit3Bow1,Student Bow 1
@@ -679,6 +680,7 @@ ItemHands,SpankingToysHairbrush,Hairbrush
 ItemHands,SpankingToysSmallDildo,Small Dildo
 ItemHands,SpankingToysElectricToothbrush,Electric Toothbrush
 ItemHands,SpankingToysToothbrush,Toothbrush
+ItemHands,HoofMittens, Hoof Mittens
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,LeatherCollarBell,Bell Collar
@@ -783,6 +785,7 @@ ItemMouth,SockStuffing,Sock Stuffing
 ItemMouth,GasMaskGag,Respirator Mask
 ItemMouth,WebGag,Web
 ItemMouth,RopeGag,Rope Gag
+ItemMouth,MilkBottle,Milk Bottle
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -886,6 +889,7 @@ ItemHead,SleepMask,Sleep Mask
 ItemHead,BlackoutLenses,Blackout Lenses
 ItemHead,WebBlindfold,Web
 ItemHead,RopeBlindfold,Rope Blindfold
+ItemHead,PonyHood,Pony Hood
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
@@ -934,6 +938,7 @@ ItemDevices,WoodenBoxOpenHead,Exposed Head Wooden Box
 ItemDevices,SmallWoodenBoxOpenHead,Exposed Head Small Wooden Box
 ItemDevices,WoodenStocks,Wooden Stocks
 ItemDevices,Vacbed,Vacbed
+ItemDevices,Crib,Crib
 ItemDevices,Bed,Bed
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
