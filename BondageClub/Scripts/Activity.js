@@ -72,7 +72,6 @@ function ActivityDialogBuild(C) {
 						if ((Activity.Prerequisite[P] == "UseMouth") && !Player.CanTalk()) Allow = false;
 						if ((Activity.Prerequisite[P] == "UseHands") && !Player.CanInteract()) Allow = false;
 						if ((Activity.Prerequisite[P] == "UseFeet") && !Player.CanWalk()) Allow = false;
-//						if ((Activity.Prerequisite[P] == "ZoneNaked") && ((C.FocusGroup.Name == "ItemButt") || (C.FocusGroup.Name == "ItemVulva")) && ((InventoryPrerequisiteMessage(C, "AccessVulva") != "") || C.IsVulvaChaste())) Allow = false;
 						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemButt") && ((InventoryPrerequisiteMessage(C, "AccessButt") != "") || C.IsPlugged())) Allow = false;
 						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemVulva") && ((InventoryPrerequisiteMessage(C, "AccessVulva") != "") || C.IsVulvaChaste())) Allow = false;
 						if ((Activity.Prerequisite[P] == "ZoneNaked") && ((C.FocusGroup.Name == "ItemBreast") || (C.FocusGroup.Name == "ItemNipples")) && ((InventoryPrerequisiteMessage(C, "AccessBreast") != "") || C.IsBreastChaste())) Allow = false;
