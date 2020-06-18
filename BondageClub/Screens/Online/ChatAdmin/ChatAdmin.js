@@ -33,7 +33,7 @@ function ChatAdminLoad() {
 	document.getElementById("InputAdminList").setAttribute("autocomplete", "off");
 	ElementValue("InputAdminList", CommonConvertArrayToString(ChatRoomData.Admin));
 	ElementCreateTextArea("InputBanList");
-	document.getElementById("InputBanList").setAttribute("maxLength", 250);
+	document.getElementById("InputBanList").setAttribute("maxLength", 1000);
 	document.getElementById("InputBanList").setAttribute("autocomplete", "off");
 	ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomData.Ban));
 	ChatAdminPrivate = ChatRoomData.Private;

@@ -93,7 +93,7 @@ RelationshipPoor,(Poor)
 RelationshipBad,(Bad)
 RelationshipHorrible,(Horrible)
 RelationshipAtrocious,(Atrocious)
-ItemPermission,Item permission:
+ItemPermission,Permission:
 PermissionLevel0,"Everyone, no exceptions"
 PermissionLevel1,"Everyone, except blacklist"
 PermissionLevel2,"Owner, Lovers, whitelist & Dominants"

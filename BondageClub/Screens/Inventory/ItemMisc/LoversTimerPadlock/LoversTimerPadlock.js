@@ -24,7 +24,7 @@ function InventoryItemMiscLoversTimerPadlockDraw() {
     DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
 
     // Draw the settings
-    if (Player.CanInteract() && (Player.GetLoversNumbers.indexOf(DialogFocusSourceItem.Property.LockMemberNumber) >= 0)) {
+    if (Player.CanInteract() && (Player.GetLoversNumbers().indexOf(DialogFocusSourceItem.Property.LockMemberNumber) >= 0)) {
         MainCanvas.textAlign = "left";
         DrawButton(1100, 666, 64, 64, "", "White", (DialogFocusSourceItem.Property.RemoveItem) ? "Icons/Checked.png" : "");
         DrawText(DialogFind(Player, "RemoveItemWithTimer"), 1200, 698, "white", "gray");
@@ -41,7 +41,7 @@ function InventoryItemMiscLoversTimerPadlockDraw() {
     }
 
     // Draw buttons to add/remove time if available
-    if (Player.CanInteract() && (Player.GetLoversNumbers.indexOf(DialogFocusSourceItem.Property.LockMemberNumber) >= 0)) {
+    if (Player.CanInteract() && (Player.GetLoversNumbers().indexOf(DialogFocusSourceItem.Property.LockMemberNumber) >= 0)) {
         DrawButton(1100, 910, 250, 70, DialogFind(Player, "AddTimerTime"), "White");
         DrawBackNextButton(1400, 910, 250, 70, LoverTimerChooseList[LoverTimerChooseIndex] + " " + DialogFind(Player, "Hours"), "White", "",
             () => LoverTimerChooseList[(LoverTimerChooseList.length + LoverTimerChooseIndex - 1) % LoverTimerChooseList.length] + " " + DialogFind(Player, "Hours"),
@@ -62,7 +62,7 @@ function InventoryItemMiscLoversTimerPadlockClick() {
     if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemMiscLoversTimerPadlockExit();
     if (!Player.CanInteract()) return;
 
-    if (Player.GetLoversNumbers.indexOf(DialogFocusSourceItem.Property.LockMemberNumber) >= 0) {
+    if (Player.GetLoversNumbers().indexOf(DialogFocusSourceItem.Property.LockMemberNumber) >= 0) {
         if ((MouseX >= 1100) && (MouseX <= 1164)) {
             if ((MouseY >= 666) && (MouseY <= 730)) { DialogFocusSourceItem.Property.RemoveItem = !(DialogFocusSourceItem.Property.RemoveItem); }
             if ((MouseY >= 746) && (MouseY <= 810)) { DialogFocusSourceItem.Property.ShowTimer = !(DialogFocusSourceItem.Property.ShowTimer); }
@@ -72,7 +72,7 @@ function InventoryItemMiscLoversTimerPadlockClick() {
     }
 
     if ((MouseY >= 910) && (MouseY <= 975)) {
-        if (Player.GetLoversNumbers.indexOf(DialogFocusSourceItem.Property.LockMemberNumber) >= 0) {
+        if (Player.GetLoversNumbers().indexOf(DialogFocusSourceItem.Property.LockMemberNumber) >= 0) {
             if ((MouseX >= 1100) && (MouseX < 1350)) InventoryItemMiscLoversTimerPadlockAdd(LoverTimerChooseList[LoverTimerChooseIndex] * 3600);
             if ((MouseX >= 1400) && (MouseX < 1650)) {
                 if (MouseX <= 1525) LoverTimerChooseIndex = (LoverTimerChooseList.length + LoverTimerChooseIndex - 1) % LoverTimerChooseList.length;

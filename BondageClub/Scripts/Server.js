@@ -85,8 +85,7 @@ function ServerSend(Message, Data) {
 
 // Syncs some player information to the server
 function ServerPlayerSync() {
-	var D = { Money: Player.Money, Owner: Player.Owner };
-	if (Player.Lover) D.Lover = Player.Lover;
+	var D = { Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover };
 	ServerSend("AccountUpdate", D);
 	delete Player.Lover;
 }
@@ -306,7 +305,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							}
 						}
 						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
+						if (C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, NA.Property.LockMemberNumber);
 
 					}
 					Appearance.push(NA);
@@ -334,7 +333,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							}
 						}
 						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Property.LockedBy == "LoversPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoversPadlock") }, C.Lovership[0].MemberNumber);
+						if (C.Appearance[A].Property.LockedBy == "LoversPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoversPadlock") }, NA.Property.LockMemberNumber);
 					}
 					Appearance.push(NA);
 				}
