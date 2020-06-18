@@ -1153,9 +1153,17 @@ tightens,,,tightens
 loosens,,,loosens
 HeadWebSetBlindfold,,,SourceCharacter creates a blindfold out of web for TargetCharacter
 HeadWebSetCocoon,,,SourceCharacter creates a cocoon out of web for TargetCharacter
+SelectCribState,,,Crib Setup
+CribOpen,,,Open,,
+CribClosed,,,Closed,,
+CribStuffed,,,Stuffed,,
 CribSetOpen,,,SourceCharacter opens DestinationCharacter crib.,,
 CribSetClosed,,,SourceCharater closes DestinationCharacter crib.,,
 CribSetStuffed,,,SourceCharacter stuffs DestinationCharacter crib full of plushies.,,
+SelectMilkBottleState,,,Raise or lower the bottle
+MilkBottleRest,,,Resting,,
+MilkBottleRaised,,,Held up,,
+MilkBottleChug,,,Help up high,,
 MilkBottleSetRest,,,SourceCharacter rests DestinationCharacter bottle on her chest.,,
 MilkBottleSetRaised,,,SourceCharacter holds DestinationCharacter bottle up.,,
 MilkBottleSetChug,,,SourceCharacter holds DestinationCharacter bottle high above her head.,,
