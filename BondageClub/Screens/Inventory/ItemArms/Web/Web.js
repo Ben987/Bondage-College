@@ -39,7 +39,7 @@ var InventoryItemArmsWebOptions = [
 		Name: "Hogtied",
 		BondageLevel: 3,
 		SelfBondageLevel: 6,
-		Prerequisite: ["NotSuspended", "NoFeetSpreader", "NotKneeling", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Prerequisite: ["NotSuspended", "NoFeetSpreader", "CannotBeHogtiedWithAlphaHood"],
 		Property: {
 			Type: "Hogtied",
 			Difficulty: 4,
@@ -53,7 +53,7 @@ var InventoryItemArmsWebOptions = [
 		Name: "Suspended",
 		BondageLevel: 4,
 		SelfBondageLevel: 8,
-		Prerequisite: ["NoFeetSpreader", "NotKneeling", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Prerequisite: ["NoFeetSpreader", "NotChained", "CannotBeHogtiedWithAlphaHood"],
 		Property: {
 			Type: "Suspended",
 			Difficulty: 6,
@@ -66,7 +66,7 @@ var InventoryItemArmsWebOptions = [
 		Name: "SuspensionHogtied",
 		BondageLevel: 5,
 		SelfBondageLevel: 9,
-		Prerequisite: ["NotSuspended", "NoFeetSpreader", "NotKneeling", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Prerequisite: ["NotSuspended", "NoFeetSpreader", "NotChained", "CannotBeHogtiedWithAlphaHood"],
 		Property: {
 			Type: "SuspensionHogtied",
 			Difficulty: 11,
