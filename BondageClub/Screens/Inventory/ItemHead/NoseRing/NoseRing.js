@@ -7,6 +7,14 @@ function InventoryItemHeadNoseRingLoad() {
 	InventoryItemHeadNoseRingMessage = "SelectAttachmentState";
 }
 
+function InventoryItemHeadNoseRingChainShortPrerequesites(C) {
+	let ChainShortPrerequisites = true;
+	if (C.Pose.indexOf("Suspension") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Pose.indexOf("StraitDressOpen") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
+		ChainShortPrerequisites = false;
+	} // if
+	return ChainShortPrerequisites;
+} // InventoryItemHeadNoseRingChainShortPrerequesites
+
 // Draw the item extension screen
 function InventoryItemHeadNoseRingDraw() {
 	
@@ -17,10 +25,7 @@ function InventoryItemHeadNoseRingDraw() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = true;
-	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
-		ChainShortPrerequisites = false;
-	}	
+	let ChainShortPrerequisites = InventoryItemHeadNoseRingChainShortPrerequesites(C);
 	
 	// Draw the possible poses
 	DrawText(DialogFind(Player, InventoryItemHeadNoseRingMessage), 1500, 500, "white", "gray");
@@ -30,7 +35,7 @@ function InventoryItemHeadNoseRingDraw() {
 	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "ChainShort") || !ChainShortPrerequisites) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/ChainShort.png", 1250, 550);
 	DrawText(DialogFind(Player, "NoseRingPoseChainShort"), 1375, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "ChainLong")) ? "#888888" : "White");
+	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "ChainLong")|| C.Pose.indexOf("Suspension") >= 0 ) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/ChainLong.png", 1500, 550);
 	DrawText(DialogFind(Player, "NoseRingPoseChainLong"), 1625, 800, "white", "gray");
 	DrawButton(1750, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Leash")) ? "#888888" : "White");
@@ -43,10 +48,7 @@ function InventoryItemHeadNoseRingClick() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = true;
-	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
-		ChainShortPrerequisites = false;
-	}
+	let ChainShortPrerequisites = InventoryItemHeadNoseRingChainShortPrerequesites(C);
 	
 	// Trigger click handlers
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
@@ -55,7 +57,6 @@ function InventoryItemHeadNoseRingClick() {
 	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainLong"))) InventoryItemHeadNoseRingSetPose("ChainLong");
 	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Leash"))) InventoryItemHeadNoseRingSetPose("Leash");
 }
-
 
 // Sets the item pose (shorts chains, long chains or none)
 function InventoryItemHeadNoseRingSetPose(NewPose) {
@@ -77,12 +78,12 @@ function InventoryItemHeadNoseRingSetPose(NewPose) {
 	} else {
 		DialogFocusItem.Property.Type = NewPose;
 		if (NewPose == "ChainShort") {
-			DialogFocusItem.Property.Effect = ["Freeze", "ForceKneel"];
+			DialogFocusItem.Property.Effect = ["Freeze", "ForceKneel","IsChained"];
 			DialogFocusItem.Property.SetPose = ["Kneel"];
 		}
 		if (NewPose == "ChainLong") {
 			DialogFocusItem.Property.SetPose = [""];
-			DialogFocusItem.Property.Effect = ["Tethered"];
+			DialogFocusItem.Property.Effect = ["Tethered","IsChained"];
 			DialogFocusItem.Property.AllowPose = ["Kneel", "Horse", "KneelingSpread"];
 		}
 		if (NewPose == "Leash") {
