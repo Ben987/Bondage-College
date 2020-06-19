@@ -1154,7 +1154,7 @@ loosens,,,loosens
 HeadWebSetBlindfold,,,SourceCharacter creates a blindfold out of web for TargetCharacter
 HeadWebSetCocoon,,,SourceCharacter creates a cocoon out of web for TargetCharacter
 CribSetOpen,,,SourceCharacter opens DestinationCharacter crib.,,
-CribSetClosed,,,SourceCharater closes DestinationCharacter crib.,,
+CribSetClosed,,,SourceCharacter closes DestinationCharacter crib.,,
 CribSetStuffed,,,SourceCharacter stuffs DestinationCharacter crib full of plushies.,,
 MilkBottleSetRest,,,SourceCharacter rests DestinationCharacter bottle on her chest.,,
 MilkBottleSetRaised,,,SourceCharacter holds DestinationCharacter bottle up.,,
