@@ -20,14 +20,19 @@ function NPCTraitSet(C, TraitName, TraitValue) {
 // Generate random traits for a NPC (70% odds for each traits, can switch on both sides, strength is from 1 to 100)
 function NPCTraitGenerate(C) {
 	C.Trait = [];
-	for (var T = 0; T < NPCTrait.length; T++)
-		if (Math.random() >= 0.3) {
-			var NewTrait = {
-				Name: NPCTrait[T][Math.floor(Math.random() * 2)],
-				Value: Math.floor(Math.random() * 100) + 1
+	var GenerateTraits = true;
+	while (GenerateTraits == true) {
+		for (var T = 0; T < NPCTrait.length; T++)
+			if (Math.random() >= 0.3) {
+				var NewTrait = {
+					Name: NPCTrait[T][Math.floor(Math.random() * 2)],
+					Value: Math.floor(Math.random() * 100) + 1
+				}
+				C.Trait.push(NewTrait);
 			}
-			C.Trait.push(NewTrait);
-		}
+		// If no traits were generated at all, try again
+		GenerateTraits = (C.Trait == []);
+	}
 }
 
 // Returns the opposite trait of a specified trait
