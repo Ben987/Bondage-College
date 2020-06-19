@@ -38,8 +38,7 @@ var MainController = {
 		playerId = playerId ? playerId : parseInt(userSelect.value);
 		
 		MslServer.Send("Login", {playerId:playerId}, function(data){
-			console.log("Login");
-			console.log(data);
+			console.log("From Server: Login", data);
 			
 			sessionStorage.setItem("playerId", data.playerId), 
 			sessionStorage.setItem("sessionId", data.sessionId);
@@ -47,6 +46,7 @@ var MainController = {
 			this.locationId = data.locationId;
 			
 			MslServer.Send("GetPlayerAccount", {}, function(data){
+				console.log("From Server: GetPlayerAccount", data);				
 				this.GetPlayerCharacterResp(data);
 			}.bind(this));
 		}.bind(this));
@@ -57,12 +57,12 @@ var MainController = {
 			success:
 				function(data){
 					sessionStorage.setItem("sessionId", data.sessionId);				
-					console.log("LoginWithSessionId");
-					console.log(data);
+					console.log("From Server: LoginWithSessionId", data);
 					
 					this.locationId = data.locationId;
 					
 					MslServer.Send("GetPlayerAccount", {}, function(data){
+						console.log("From Server: GetPlayerAccount", data);					
 						this.GetPlayerCharacterResp(data);
 					}.bind(this));
 				}.bind(this)
@@ -82,21 +82,20 @@ var MainController = {
 	
 	
 	
-	,FriendMessageResp(data){
+	,OnFriendMessage(data){
+		console.log("From Server: OnFriendMessage", data);		
 		data.timestamp = Date.now();
 		MainController.friendMessages.push(data);
 		
 		var el = Util.CreateElement({parent:MainController.mainHudContainer, removeAfter:5000, className:"main-beep",  textContent:"Beep " + data.message});
 		
 		if(MainController.locationId){
-			LocationController.FriendMessageResp(data);
+			LocationController.OnFriendMessage(data);
 		}
 	}
 	
 	
 	,GetPlayerCharacterResp(data){
-		console.log("GetPlayerCharacterResp");
-		console.log(data);
 		MainController.playerAccount = new PlayerAccount(data.player);
 		
 		if(this.locationId){
@@ -104,16 +103,14 @@ var MainController = {
 		}else{
 			MainController.HideOtherAndShowView(this.containers.locations);
 			MslServer.Send("GetAvailableLocations", {}, function(data){
+				console.log("From Server: GetAvailableLocations", data);			
 				this.GetAvailableLocationsResp(data);
 			}.bind(this));
 		}
 	}
 	
 	
-	,GetAvailableLocationsResp(data){
-		console.log("GetAvailableLocationsResp");
-		console.log(data);
-		
+	,GetAvailableLocationsResp(data){	
 		MainController.HideOtherAndShowView(this.containers.locations);
 		//Util.CreateElement({parent:"MainView", tag:"br"});
 		
@@ -163,12 +160,14 @@ var MainController = {
 	
 	,EnterLocation(locationId){
 		MslServer.Send("EnterLocation",{locationId:locationId},function(data){
+			console.log("From Server: EnterLocation", data);
 			this.EnterLocationResp(data);
 		}.bind(this));
 	}
 	
 	,ExitLocation(){
 		MslServer.Send("ExitLocation", {originSpotName:LocationController.GetSpot().name}, function(data){
+			console.log("From Server: ExitLocation", data);		
 			this.ExitLocationResp(data);
 		}.bind(this));
 	}
@@ -233,6 +232,7 @@ var MainController = {
 	,CreateLocation(locationType){
 		var selectedEntry = [...document.getElementsByName('LocationEntrance')].find(el => el.checked);
 		MslServer.Send("CreateLocation", {locationType:locationType, selectedEntry:selectedEntry ? selectedEntry.value : null}, function(data){
+			console.log("From Server: CreateLocation", data);		
 			this.EnterLocationResp(data);
 		}.bind(this));
 	}
@@ -243,6 +243,7 @@ var MainController = {
 		this.mainContainer.style.display = "block";
 		MainController.HideOtherAndShowView(this.containers.locations);
 		MslServer.Send("GetAvailableLocations", {}, function(data){
+			console.log("From Server: GetAvailableLocations", data);			
 			this.GetAvailableLocationsResp(data);
 		}.bind(this));
 		this.locationId = null;
@@ -250,8 +251,6 @@ var MainController = {
 	
 	
 	,EnterLocationResp(data){
-		console.log("EnterLocationResp");
-		console.log(data);
 		this.mainContainer.style.display = "none";
 		LocationController.InitAndRender(data);
 	}

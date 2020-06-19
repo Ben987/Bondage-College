@@ -29,14 +29,14 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		var icon = Util.GetFirstChildNodeByName(this.containerElements.itemGroupTypeSelection, itemGroupTypeName);
 		
 		if(! icon) console.log(itemGroupTypeName);
-		icon.addEventListener("click", function(e){this.OnItemGroupTypeClick(itemGroupTypeName);}.bind(this));
+		icon.addEventListener("click", function(e){this.SelectItemGroupType(itemGroupTypeName);}.bind(this));
 		
 		if(itemGroupTypeName == this.selectedItemGroupTypeName){
-			this.OnItemGroupTypeClick(itemGroupTypeName);
+			this.SelectItemGroupType(itemGroupTypeName);
 		}
 	}
 	
-	Util.GetFirstChildNodeByName(this.containerElements.itemGroupTypeSelection, "wardrobe").addEventListener("click", function(event){this.OnWardrobeIconClick();}.bind(this));
+	Util.GetFirstChildNodeByName(this.containerElements.itemGroupTypeSelection, "wardrobe").addEventListener("click", function(event){this.ShowWardrobe();}.bind(this));
 	Util.GetFirstChildNodeByName(this.containerElements.controlButtons, "commit").addEventListener("click", function(event){this.Commit();}.bind(this));
 	Util.GetFirstChildNodeByName(this.containerElements.controlButtons, "cancel").addEventListener("click", function(event){this.Cancel();}.bind(this));
 	Util.GetFirstChildNodeByName(this.containerElements.controlButtons, "undo").addEventListener("click", function(event){this.Undo();}.bind(this));
@@ -114,7 +114,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	}
 	
 	
-	this.OnWardrobeIconClick = function(){
+	this.ShowWardrobe = function(){
 		Util.ClearNodeContent(this.containerElements.itemSelection);
 		Util.HideAllChildNodes(this.containerElements.itemGroupSelection);
 		Util.ClearNodeContent(this.containerElements.itemSelection);
@@ -165,7 +165,9 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		LocationController.delegates.view.BuildPlayerFigure(figureDiv, suit.render);
 	}
 	
-	this.OnItemGroupTypeClick = function(itemGroupTypeName){
+	this.SelectItemGroupType = function(itemGroupTypeName){
+		Util.SelectElementAndDeselectSiblings(Util.GetFirstChildNodeByName(this.containerElements.itemGroupTypeSelection, itemGroupTypeName));//because may be selected not by click
+		
 		this.selectedItemGroupTypeName = itemGroupTypeName;
 		//var icon = Util.GetFirstChildNodeByName(Util.GetFirstChildNodeByName(this.containerElements.main, "itemGroupTypeSelection"), itemGroupTypeName)
 		
@@ -179,7 +181,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 			var itemGroupIcon = Util.GetFirstChildNodeByName(this.containerElements.itemGroupSelection, itemGroupName);
 			if(! itemGroupIcon) throw "No item group icon defined for " + itemGroupName
 			itemGroupIcon.style.display = "block";
-			itemGroupIcon.addEventListener("click", function(event){this.OnItemGroupClick(itemGroupName);}.bind(this));
+			itemGroupIcon.addEventListener("click", function(event){this.SelectItemGroup(itemGroupName);}.bind(this));
 			
 			var group = this.mainDialog.updateDelegate.GetApplicableItems()[itemGroupTypeName][itemGroupName];
 			if(group.currentItem) itemGroupIcon.classList.add("filled"); else itemGroupIcon.classList.remove("filled");
@@ -188,12 +190,12 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 			this.UpdateItemGroupIconImage(this.selectedItemGroupTypeName, itemGroupName);
 			
 			//if(itemGroupName == this.selectedItemGroupName)
-				//this.OnItemGroupClick(itemGroupName);
+				//this.SelectItemGroup(itemGroupName);
 		}
 	}
 	
 	
-	this.OnItemGroupClick = function(itemGroupName){
+	this.SelectItemGroup = function(itemGroupName){
 		this.selectedItemGroupName = itemGroupName;
 		Util.ClearNodeContent(this.containerElements.itemSelection);
 		
@@ -211,7 +213,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 			var events = {};
 			
 			if(! itemData.validation?.length)
-				events.click = function(event){this.OnItemClick(itemData.itemName)}.bind(this);
+				events.click = function(event){this.SelectItem(itemData.itemName)}.bind(this);
 			else
 				for(var i = 0; i < itemData.validation.length; i++)
 					Util.CreateElement({parent:iconContainer,innerHTML:itemData.validation[i],cssStyles:{top:(i+1)+"em"},cssClass:"invalid"});
@@ -224,7 +226,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	}
 	
 	
-	this.OnItemClick = function(itemName){
+	this.SelectItem = function(itemName){
 		this.selectedItemName = itemName;
 		var validationErrors = this.mainDialog.updateDelegate.AddItem(this.selectedItemGroupName, this.selectedItemName);
 		this.RenderAppearanceOrShowErrors(validationErrors);
@@ -246,18 +248,19 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	
 	
 	this.UpdateControlAndActionButtons = function(){
-		//var wornItem = this.mainDialog.updateDelegate.GetCurrentWornItem(this.selectedItemGroupName);
+		this.HideControlAndActionButtons();
+		
 		var wornItem = this.mainDialog.updateDelegate.GetCurrentWornItem(this.selectedItemGroupName);
 		
 		this.selectedItemName = wornItem?.name;
 		
 		var buttonsToShow = [];
 		
+		//hide the buttons, view will be hidden later
 		for(var action in this.itemActionViews)
 			Util.GetFirstChildNodeByName(this.containerElements.itemActionButtons, action.toLowerCase()).style.display="none";
 		
 		if(wornItem){
-			//var inventoryItem = this.mainDialog.updateDelegate.GetApplicableItems()[this.selectedItemGroupTypeName][this.selectedItemGroupName].find(inventoryItem => inventoryItem.itemName == wornItem.name);
 			var inventoryItem = this.mainDialog.updateDelegate.GetInventoryItem(this.selectedItemGroupName, wornItem.name);
 			
 			if(inventoryItem.colorize){
@@ -278,10 +281,12 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		
 		buttonsToShow.forEach(action => {Util.GetFirstChildNodeByName(this.containerElements.itemActionButtons, action.toLowerCase()).style.display="block"});
 		
-		if(! buttonsToShow.includes(this.selectedAction)) 
+		//TODO:  select the first available action
+		if(! buttonsToShow.includes(this.selectedAction)){
 			this.itemActionViews[this.selectedAction].Hide();
-		else
+		}else{
 			this.itemActionViews[this.selectedAction].Show();
+		}
 	}
 	
 	this.HideControlAndActionButtons = function(){

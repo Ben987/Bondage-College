@@ -8,7 +8,7 @@ F3dcgAssets.EXPRESSION = "expressions" 	//can be changed at any time
 F3dcgAssets.CLOTH = "clothes"			//few restrictions
 F3dcgAssets.ACCESSORY = "accessories" 	//do not block restraints and needed for the remove function
 F3dcgAssets.BONDAGE_TOY = "bondageToys" 	//have forced poses, effects, blocks
-	
+
 F3dcgAssets.UNIMPLEMENTED_ITEMS = ["SpankingToys"
 		,"CollarShockUnit"
 		,"VibratingWand"

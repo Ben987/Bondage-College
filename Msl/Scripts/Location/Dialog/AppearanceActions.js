@@ -169,6 +169,13 @@ var VariantDialogAppearanceActionView = function(container, callback) {
 			Util.CreateElement({parent:iconContainer, tag:"img",attributes:{src:inventoryItem.variants[variantName].iconUrl, alt:variantName},events:events});		
 		};
 	}
+	
+	this.Show = function(){
+		this.container.style.display = "block";
+	}
+	this.Hide = function(){
+		this.container.style.display = "none";
+	}	
 };
 
 

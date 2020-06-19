@@ -108,11 +108,20 @@ var LocationController = {
 	}
 	
 	
-	,StartPlayerDialog(player){
+	,StartPlayerDialogBondageToys(player){
+		LocationController.InterruptDelegateActions();
+		LocationController.delegates.dialog.StartBondageToys(player ? player : LocationController.GetPlayer());
+	}
+	
+	,StartPlayerDialogProfile(player){
 		LocationController.InterruptDelegateActions();
 		LocationController.delegates.dialog.Start(player ? player : LocationController.GetPlayer());
 	}
 	
+	,StartPlayerDialogClothes(player){
+		LocationController.InterruptDelegateActions();
+		LocationController.delegates.dialog.StartClothes(player ? player : LocationController.GetPlayer());
+	}
 	
 	/*
 	,ShowPlayerProfile(player){
@@ -180,12 +189,12 @@ var LocationController = {
 			if(playerUpdate.player.id == MainController.playerAccount.id){
 				F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player);
 				MslServer.Send("ActionStart", {type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate}, function(data){
-					this.LocationActionResp(data);
+					this.OnLocationAction(data);
 				}.bind(this));
 			}else{
 				F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player, LocationController.GetPlayer());
 				MslServer.Send("ActionStart", {type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()}, function(data){
-					this.LocationActionResp(data);
+					this.OnLocationAction(data);
 				}.bind(this));
 			}
 		}catch(e){
@@ -199,14 +208,14 @@ var LocationController = {
 	//,SpotInfo(spotName){MslServer.ActionStart({type:"SpotInfo", originSpotName:LocationController.currentSpotName, targetSpotName:spotName});}
 	,MoveToSpot(spotName){
 		MslServer.Send("ActionStart", {type:"MoveToSpot", originSpotName:LocationController.GetSpot().name, targetSpotName:spotName}, function(data){
-			this.LocationActionResp(data);
+			this.OnLocationAction(data);
 		}.bind(this));
 	}
 	
 	
 	,SendChatMessage(content){
 		MslServer.Send("ActionStart", {type:"ChatMessage", content:content}, function(data){
-			this.LocationActionResp(data);
+			this.OnLocationAction(data);
 		}.bind(this));
 	}
 	
@@ -217,19 +226,18 @@ var LocationController = {
 			var pose = this.GetPlayer().activePose == F3dcgAssets.POSE_NONE ? F3dcgAssets.POSE_KNEEL : F3dcgAssets.POSE_NONE;
 			
 			MslServer.Send("ActionStart", {type:"ChangePose", pose:pose}, function(data){
-				this.LocationActionResp(data);
+				this.OnLocationAction(data);
 			}.bind(this));		
 		}
 	}
 	
 	//TODO change convension from *Resp to On* to indicate a method called by other modules
-	,FriendMessageResp(data){
+	,OnFriendMessage(data){
 		this.delegates.chat.OnFriendMessage(data);
 	}
 	
-	,LocationActionResp(data){
-		console.log("LocationActionResp"); 
-		console.log(data);
+	,OnLocationAction(data){
+		console.log("From Server: OnLocationAction", data);
 		console.log("LocationAction_" + data.type);
 		LocationController["LocationAction_" + data.type](data);
 		LocationController.delegates.chat.OnAction(data);
@@ -319,7 +327,7 @@ var LocationController = {
 				LocationController.delegates.minigames.StartMinigame(action.challenge, function(result){
 					result.id = action.id;
 					MslServer.Send("ActionProgress", result, function(data){
-						this.LocationActionResp(data);
+						this.OnLocationAction(data);
 					}.bind(this));
 				}.bind(this));
 			}else if(action.success){//finished

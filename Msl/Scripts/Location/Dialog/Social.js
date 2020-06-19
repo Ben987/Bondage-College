@@ -27,10 +27,10 @@ var LocationDialogSocialView  = function(mainDialog, containerElement){
 		this.tbodies[listName] = Util.GetFirstChildNodeByName(this.mainContainer, listName).tBodies[0]
 	});
 	
-	this.FillPlayerList(this.tbodies.friend, mainDialog.player.character.friends, "character.friends");
-	this.FillPlayerList(this.tbodies.ghost, mainDialog.player.character.ghosts, "character.ghosts");
-	this.FillPlayerList(this.tbodies.black, mainDialog.player.settings.permissions.players.black, "settings.permissions.players.black");
-	this.FillPlayerList(this.tbodies.white, mainDialog.player.settings.permissions.players.white, "settings.permissions.players.white");
+	this.FillPlayerList(this.tbodies.friend, mainDialog.player.profile.friends, "character.friends");
+	this.FillPlayerList(this.tbodies.ghost, mainDialog.player.profile.ghosts, "character.ghosts");
+	this.FillPlayerList(this.tbodies.black, mainDialog.player.permissions.players.black, "permissions.players.black");
+	this.FillPlayerList(this.tbodies.white, mainDialog.player.permissions.players.white, "permissions.players.white");
 	
 	
 	
@@ -41,8 +41,7 @@ var LocationDialogSocialView  = function(mainDialog, containerElement){
 	
 	this.RefreshOnlineFriendList = function(){
 		MslServer.Send("GetOnlineFriendList", {}, (function(data){
-			console.log("GetOnlineFriendList");
-			console.log(data);
+			console.log("From Server: GetOnlineFriendList", data);
 			
 			Util.ClearNodeContent(this.tbodies.online);
 			data.friends.forEach(friend => {	

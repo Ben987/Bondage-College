@@ -30,23 +30,23 @@ var LocationViewChat = {
 	,OnPlayerExit(player){
 		var spotName = LocationController.GetSpotWithPlayer(player.id).name;	
 		var content = "*" + player.character.name + " left the location (from " + spotName + ")";
-		var color = player.settings.gui.chat.labelColor;
+		var color = player.settings.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});	
 	}
 	,OnPlayerEnter(player){
 		var spotName = LocationController.GetSpotWithPlayer(player.id).name;	
 		var content = "*" + player.character.name + " entered (>> " + spotName + ")";
-		var color = player.settings.gui.chat.labelColor;
+		var color = player.settings.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});			
 	}
 	,OnPlayerReconnect(player){
 		var content = "*" + player.character.name + " reconnected";
-		var color = player.settings.gui.chat.labelColor;
+		var color = player.settings.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
 	,OnPlayerDisconnect(player, time){
 		var content = "*" + player.character.name + " is reconnecting (waiting for " + time + ")";
-		var color = player.settings.gui.chat.labelColor;
+		var color = player.settings.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
 	,OnAction(action){
@@ -54,7 +54,7 @@ var LocationViewChat = {
 		
 		var originPlayer = LocationController.GetPlayer(action.originPlayerId);
 		var targetPlayer = LocationController.GetPlayer(action.targetPlayerId);
-		var color = originPlayer.settings.gui.chat.labelColor;
+		var color = originPlayer.settings.chat.labelColor;
 		switch(action.type){
 			case "ChatMessage":
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", name:originPlayer.character.name, content:action.result.content});
@@ -94,7 +94,7 @@ var LocationViewChat = {
 	
 	,OnAction_ChatMessage(action){
 		var origniPlayer = LocationController.GetPlayer(action.originPlayerId);
-		var color = new Util.Color.Instance(Util.Color.TYPE_HEXSTRING, origniPlayer.settings.gui.chat.labelColor)	
+		var color = new Util.Color.Instance(Util.Color.TYPE_HEXSTRING, origniPlayer.settings.chat.labelColor)	
 		//var messageDiv = Util.CreateElement({parent:LocationViewChat.logContainer, cssClass:"chat-log-message", cssStyles:{backgroundColor:color.ToCssColor(0.1)}});
 		var messageDiv = Util.CreateElement({parent:LocationViewChat.logContainer, cssClass:"chat-log-message"});
 		

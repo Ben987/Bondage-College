@@ -9,27 +9,27 @@ var LocationDialogProfileView = function(mainDialog, containerElement){
 	
 	this.containerElements.character = Util.GetFirstChildNodeByName(this.containerElements.main, "character");
 	
-	if(mainDialog.player.character.name)
-		Util.GetFirstChildNodeByName(this.containerElements.character, "name").innerText = "Name: " + mainDialog.player.character.name;
+	if(mainDialog.player.profile.name)
+		Util.GetFirstChildNodeByName(this.containerElements.character, "name").innerText = "Name: " + mainDialog.player.profile.name;
 	
-	if(mainDialog.player.character.number)
-		Util.GetFirstChildNodeByName(this.containerElements.character, "number").innerText = "Number: " + mainDialog.player.character.number;
+	if(mainDialog.player.profile.number)
+		Util.GetFirstChildNodeByName(this.containerElements.character, "number").innerText = "Number: " + mainDialog.player.profile.number;
 	
-	var title = mainDialog.player.character.title ? mainDialog.player.character.title : "";
+	var title = mainDialog.player.profile.title ? mainDialog.player.profile.title : "";
 	if(title) 
 		Util.GetFirstChildNodeByName(this.containerElements.character, "title").innerText = "Title " + title;
 	
-	var days = parseInt((currentTimestamp - mainDialog.player.character.created) / 1000 / 60 / 60 / 24);
+	var days = parseInt((currentTimestamp - mainDialog.player.profile.created) / 1000 / 60 / 60 / 24);
 	Util.GetFirstChildNodeByName(this.containerElements.character, "age").innerText = "Member for " + days + " day(s)";
 
-	var owner = mainDialog.player.character.owner;//lover ash 199 dating for collared for
+	var owner = mainDialog.player.profile.owner;//lover ash 199 dating for collared for
 	if(owner) {
 		var days = parseInt((currentTimestamp - owner.created) / 1000 / 60 / 60 / 24);
 		var htmlStr = "Owned by: " + owner.name + " (" + owner.id + ")<br /> Stage: " + owner.stage + " for " + days + " day(s)" ;
 		Util.GetFirstChildNodeByName(this.containerElements.character, "owner").innerHTML = htmlStr;
 	}
 	
-	var lover = mainDialog.player.character.lover;//lover ash 199 dating for collared for
+	var lover = mainDialog.player.profile.lover;//lover ash 199 dating for collared for
 	if(lover) {
 		var days = parseInt((currentTimestamp - lover.created) / 1000 / 60 / 60 / 24);
 		var htmlStr = "Loved by: " + lover.name + " (" + lover.id + ")<br /> Stage: " + lover.stage + " for " + days + " day(s)" ;

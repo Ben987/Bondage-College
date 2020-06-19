@@ -32,13 +32,27 @@ var LocationDialog = {
 	}
 	,UnInit(){}
 	
+	,StartClothes(player){
+		this.Start(player);
+		this.ShowView("appearance");
+		Util.SelectElementAndDeselectSiblings(Util.GetFirstChildNodeByName(this.topLevelMenuContainer, "appearance"));
+		this.views.appearance.SelectItemGroupType("clothes");
+	}
+	
+	,StartBondageToys(player){
+		this.Start(player);
+		this.ShowView("appearance");
+		Util.SelectElementAndDeselectSiblings(Util.GetFirstChildNodeByName(this.topLevelMenuContainer, "appearance"));
+		this.views.appearance.SelectItemGroupType("bondageToys");
+	}
+	
 	,Start(player){
 		this.Interrupt();
 		this.player = player;
 		this.updateDelegate = player.GetUpdateDelegate();
 		
 		var parentElement = LocationController.inputContainer;
-		if(player.settings.gui.dialog.fullScreen)
+		if(player.settings.dialog.fullScreen)
 			parentElement = document.getElementById("LocationViewHud");	
 		
 		this.mainContainer = Util.CreateElement({parent:parentElement, template:"DialogSelfTemplate"});
@@ -60,7 +74,7 @@ var LocationDialog = {
 		
 		var backgroundCoverElement = Util.GetFirstChildNodeByName(this.mainContainer, "background");
 		backgroundCoverElement.getElementsByTagName("img")[0].src = LocationController.backgroundContainer.src;		
-		if(player.settings.gui.dialog.transparentBackground)
+		if(player.settings.dialog.transparentBackground)
 			backgroundCoverElement.classList.add("transparent");
 		else
 			backgroundCoverElement.classList.remove("transparent");

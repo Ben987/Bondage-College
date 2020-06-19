@@ -47,7 +47,7 @@ var LocationActions = {
 						
 						console.log("click on " + spotName + " " + player.id);
 						event.stopPropagation();
-						LocationController.StartPlayerDialog(player);
+						LocationController.StartPlayerDialogBondageToys(player);
 					}
 				}
 			});

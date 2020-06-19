@@ -112,7 +112,8 @@ var LocationPlayerUpdate = function(player){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var existingItem = this.appearance[AssetGroup.type][groupName];
 		//var mostRecentItemName = this.HasChanges() ? this.updateStack[this.updateStack.length - 1].item.name : existingItem.name;
-		return this.Add(AssetGroup.type, groupName, existingItem.name, color ? color.ToHexString() : null);
+		
+		return this.Add(AssetGroup.type, groupName, existingItem.name, color ? color.ToHexString() : null, existingItem.variant);
 	}
 	
 	
@@ -121,13 +122,10 @@ var LocationPlayerUpdate = function(player){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.player.appearance[AssetGroup.type][groupName];
 		
+		//TODO: restore 
 		//if(currentItem.name != itemName) return ["CanOnlySetVariantOnAppliedItem"]
 		
-		var newItem = F3dcgAssets.BuildBondageToyAppearanceItem(itemName, currentItem?.color); //Atm, variants only exist on Bondaget Toy Items
-		newItem.variant = variantName;
-		this.appearance[AssetGroup.type][groupName] = newItem;
-		this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);	
+		this.Add(AssetGroup.type, groupName, itemName, currentItem?.color, variantName);
 		
 		return [];
 	}
@@ -151,8 +149,8 @@ var LocationPlayerUpdate = function(player){
 	
 	
 	//Assuming validation has been taken care of elsewhere
-	//Variants are taken care of elsewhere
-	this.Add = function(groupTypeName, groupName, itemName, colorHexString){
+	this.Add = function(groupTypeName, groupName, itemName, colorHexString, variant){
+	console.log(variant);
 		var newItem;
 		
 		switch(groupTypeName){
@@ -172,6 +170,7 @@ var LocationPlayerUpdate = function(player){
 				return [AssetGroup.type + " not supported"];
 		}
 		
+		newItem.variant = variant;
 		this.appearance[groupTypeName][groupName] = newItem;
 		this.updateStack.push({type:groupTypeName, groupName:groupName, item:newItem});
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);	

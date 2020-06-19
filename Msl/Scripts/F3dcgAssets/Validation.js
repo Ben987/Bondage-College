@@ -52,6 +52,7 @@ F3dcgAssets.BuildPosesEffectsBlocks = function(playerAppearance){
 				result.blocks.push(...AssetItem.Block)
 		}
 	}
+	
 	return result;;
 }
 
@@ -85,7 +86,7 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 		}
 		
 		//Check that item is owned and not blacklisted
-		if(! F3dcgAssets.IsItemOwned(item, AssetGroup.type, playerTarget, playerOrigin)) throw "ItemNotOwned " + item.name;
+		if(! F3dcgAssets.IsItemOwned(item, AssetGroup, playerTarget, playerOrigin)) throw "ItemNotOwned " + item.name;
 		if(F3dcgAssets.IsItemBlacklisted(item, playerTarget)) throw "ItemBlacklisted " + item.name
 		
 		if(posesEffectsBlocks.blocks.includes(groupName)) throw "ItemGroupBlocked " + groupName;
@@ -104,9 +105,9 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 			case F3dcgAssets.CLOTH:
 				//The applying player must not be tied			
 				if(playerOrigin){
-					if(! F3dcgAssets.CanChangeBondageClothes(playerOriginEffects)) throw "PlayerUnableChangeClothes " + groupName
+					if(! F3dcgAssets.CanChangeClothes(playerOriginEffects)) throw "PlayerUnableChangeClothes " + groupName
 				}else{
-					if(! F3dcgAssets.CanChangeBondageClothes(posesEffectsBlocks.effects)) throw "PlayerUnableChangeClothes " + groupName	
+					if(! F3dcgAssets.CanChangeClothes(posesEffectsBlocks.effects)) throw "PlayerUnableChangeClothes " + groupName	
 				}
 				
 				//TODO:  cache the result and do not call each iteration
@@ -191,12 +192,15 @@ F3dcgAssets.IsItemBlacklisted = function(item, playerTarget) {
 	return false;
 }
 
-F3dcgAssets.IsItemOwned = function(item, groupType, playerTarget, playerOrigin) {
+F3dcgAssets.IsItemOwned = function(item, AssetGroup, playerTarget, playerOrigin) {
 	if(null == item) return true;
-	if(groupType == F3dcgAssets.BODY || groupType == F3dcgAssets.EXPRESSION) return true;
-	if(groupType == F3dcgAssets.CLOTH && F3dcgAssets.ClothesFree.includes(item.name)) return true;
+	if(AssetGroup.type == F3dcgAssets.BODY || AssetGroup.type == F3dcgAssets.EXPRESSION) return true;
+	if(AssetGroup.type == F3dcgAssets.CLOTH && F3dcgAssets.ClothesFree.includes(item.name)) return true;
 	
-	if(playerTarget.inventory[groupType].includes(item.name) || (playerOrigin && playerOrigin.inventory[groupType].includes(item.name)))
+	var currentItem = playerTarget.appearance[AssetGroup.type][AssetGroup.Group];
+	if(currentItem && currentItem.name == item.name) return true;
+	
+	if(playerTarget.inventory[AssetGroup.type].includes(item.name) || (playerOrigin && playerOrigin.inventory[AssetGroup.type].includes(item.name)))
 		return true;
 	
 	return false;
@@ -205,7 +209,7 @@ F3dcgAssets.IsItemOwned = function(item, groupType, playerTarget, playerOrigin) 
 
 F3dcgAssets.CanChangeClothes = function(effects){
 	if(effects.includes("Block")) return false;
-	if(effects.includes("Freeze")) return false;
+	if(effects.includes("Freeze")) return false; 
 	if(effects.includes("Prone")) return false;	
 	return true;
 }
@@ -308,6 +312,8 @@ F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffec
 		case "GagCorset":
 		case "NoItemArms":
 		case "NoHorse":
+		case "NotMasked":
+		case "GasMask":
 			return "";//TODO
 		
 		default: 

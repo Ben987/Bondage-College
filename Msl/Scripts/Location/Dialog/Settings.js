@@ -16,7 +16,7 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 		removeButton.addEventListener("click", function(){this.RemoveItemFromBlackList(itemName, tr);}.bind(this));
 	}
 	
-	var itemsBlackList = mainDialog.player.settings.permissions.items.black;
+	var itemsBlackList = mainDialog.player.permissions.items.black;
 	itemsBlackList.forEach(itemName => this.AddItemRow(itemName));
 	
 	this.itemBlackSelectElement = this.tableItemsBlack.tFoot.rows[0].cells[0].childNodes[0];
@@ -29,7 +29,7 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 		var itemName = this.itemBlackSelectElement.value;
 		if(itemsBlackList.includes(itemName)) return;
 		
-		MslServer.Send("UpdatePlayerProperty", {property:"settings.permissions.items.black", value:itemName, operation:"add"}, function(data){
+		MslServer.Send("UpdatePlayerProperty", {property:"permissions.items.black", value:itemName, operation:"add"}, function(data){
 			Util.SetTypedPropertyValueOnObjectAndElement(mainDialog.player, data.property, event.target, data.value);
 			itemsBlackList.push(data.value);
 			this.AddItemRow(data.value);
@@ -38,6 +38,7 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 	
 	//simple drop downs, checkboxes, textboxes
 	this.FillFormRecursive = function(form, keyStack, settings){
+		console.log(settings);
 		for(var key in settings){
 			var value = settings[key];
 			
@@ -58,6 +59,8 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 					
 					element.addEventListener("change", function(event){
 						var value = Util.GetTypedPropertyValueFromElement(mainDialog.player, property, event.target);
+						
+						console.log({property:property, value:value, operation:"set"});
 						MslServer.Send("UpdatePlayerProperty", {property:property, value:value, operation:"set"}, function(data){
 							Util.SetTypedPropertyValueOnObjectAndElement(mainDialog.player, data.property, event.target, data.value);
 						});
@@ -71,10 +74,13 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 	}
 	
 	this.FillFormRecursive(this.form, ["settings"], MainController.playerAccount.settings);
+	this.FillFormRecursive(this.form, ["permissions"], MainController.playerAccount.permissions);
+	//var updateButton = this.topLevelMenuContainer = Util.GetFirstChildNodeByName(this.form, "updateButton");
+	//updateButton.addEventListener("click", this.
 	
 	this.RemoveItemFromBlackList = function(itemName, tableRowElement){
 		if(! itemsBlackList.includes(itemName)) return;
-		MslServer.Send("UpdatePlayerProperty", {property:"settings.permissions.itemLists.black", value:itemName, operation:"remove"}, function(data){
+		MslServer.Send("UpdatePlayerProperty", {property:"permissions.items.black", value:itemName, operation:"remove"}, function(data){
 			tableRowElement.parentNode.removeChild(tableRowElement);
 			var index = itemsBlackList.indexOf(itemName);
 			itemsBlackList.splice(index, 1);

@@ -24,22 +24,22 @@ var F3dcgAssetsInventory = {
 		
 		var posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(locationPlayer.appearance);
 		var applicableItems = {[F3dcgAssets.CLOTH]:{}, [F3dcgAssets.ACCESSORY]:{}, [F3dcgAssets.BONDAGE_TOY]:{}, [F3dcgAssets.EXPRESSION]:{}};
-		F3dcgAssets.ClothesGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableGroup(locationPlayer, applicableItems, F3dcgAssets.CLOTH, groupName, posesEffectsBlocks)});
-		F3dcgAssets.AccessoriesGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableGroup(locationPlayer, applicableItems, F3dcgAssets.ACCESSORY, groupName, posesEffectsBlocks)});
-		F3dcgAssets.BondageToyGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableGroup(locationPlayer, applicableItems, F3dcgAssets.BONDAGE_TOY, groupName, posesEffectsBlocks)});
+		F3dcgAssets.ClothesGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableClothesGroup(locationPlayer, applicableItems, groupName, posesEffectsBlocks)});
+		F3dcgAssets.AccessoriesGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableAccessoryGroup(locationPlayer, applicableItems, groupName, posesEffectsBlocks)});
+		F3dcgAssets.BondageToyGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableBondageToyGroup(locationPlayer, applicableItems, groupName, posesEffectsBlocks)});
 		
 		F3dcgAssets.ExpressionGroups.forEach(groupName => {
 			applicableItems[F3dcgAssets.EXPRESSION][groupName] = {items:[], currentItem:null, blocked:false};//The none case is handled unlike all other groups
 			for(var itemName in F3dcgAssets.AssetGroups[groupName].Items){
 				var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + (itemName != groupName ? groupName + "/" + itemName + "/Icon.png" : groupName + "/Icon.png");
-				applicableItems[F3dcgAssets.EXPRESSION][groupName].items.push({itemName:itemName, iconUrl: iconUrl});
+				applicableItems[F3dcgAssets.EXPRESSION][groupName].items.push({itemName:itemName, iconUrl:iconUrl});
 			};
 		});
 		
 		if(Environment.allItemsInInventory){
 			F3dcgAssets.ClothesGroups.forEach(groupName => {
 				for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
-					this.AddClothItem(applicableItems, itemName);
+					this.AddClothItem(applicableItems, itemName, posesEffectsBlocks);
 			});
 			
 			F3dcgAssets.AccessoriesGroups.forEach(groupName => {
@@ -53,28 +53,44 @@ var F3dcgAssetsInventory = {
 			});
 		}else{
 			F3dcgAssets.ClothesFree.forEach(itemName => this.AddClothItem(applicableItems, itemName));
-			locationPlayer.inventory[F3dcgAssets.CLOTH].forEach(itemName => {this.AddClothItem(applicableItems, itemName);});
+			locationPlayer.inventory[F3dcgAssets.CLOTH].forEach(itemName => {this.AddClothItem(applicableItems, itemName, posesEffectsBlocks);});
 			locationPlayer.inventory[F3dcgAssets.ACCESSORY].forEach(itemName => this.AddAccessoryItem(applicableItems, itemName));
 			locationPlayer.inventory[F3dcgAssets.BONDAGE_TOY].forEach(itemName => this.AddBondageToyItem(applicableItems, itemName, locationPlayer.appearance, posesEffectsBlocks));
 		}
-		
-		console.log(applicableItems);
 		
 		return applicableItems;
 	}
 	
 	
-	,InitApplicableGroup(locationPlayer, applicableItems, groupTypeName, groupName, posesEffectsBlocks){
-		var applicableGroup = {	items:[],current: null, blocked:posesEffectsBlocks.blocks.includes(groupName)};
+	,InitApplicableAccessoryGroup(locationPlayer, applicableItems, groupName, posesEffectsBlocks){
+		return F3dcgAssetsInventory.InitApplicableGroup(locationPlayer, applicableItems, groupName, F3dcgAssets.ACCESSORY);
+	}
+	,InitApplicableClothesGroup(locationPlayer, applicableItems, groupName, posesEffectsBlocks){
+		var group = F3dcgAssetsInventory.InitApplicableGroup(locationPlayer, applicableItems, groupName, F3dcgAssets.CLOTH);
+		if(! F3dcgAssets.CanChangeClothes(posesEffectsBlocks.effects)) group.blocked = true;
+		if(posesEffectsBlocks.blocks.includes(groupName)) group.blocked = true; 
+		return group;
+	}
+	,InitApplicableBondageToyGroup(locationPlayer, applicableItems, groupName, posesEffectsBlocks){
+		var group = F3dcgAssetsInventory.InitApplicableGroup(locationPlayer, applicableItems, groupName, F3dcgAssets.BONDAGE_TOY);
+		if( ! F3dcgAssets.CanChangeBondageToys(posesEffectsBlocks.effects)) group.blocked = true;
+		if(posesEffectsBlocks.blocks.includes(groupName)) group.blocked = true; 
+		return group;		
+	}
+	,InitApplicableGroup(locationPlayer, applicableItems, groupName, groupTypeName){
+		var applicableGroup = {items:[], current: null, blocked:false};
 		applicableItems[groupTypeName][groupName] = applicableGroup;
 		
 		var currentAppearanceItem = locationPlayer.appearance[groupTypeName][groupName];
 		if(currentAppearanceItem){
-			applicableGroup.items.push({itemName:F3dcgAssetsInventory.NONE});
 			applicableGroup.currentItem = Util.CloneRecursive(currentAppearanceItem);
 			applicableGroup.currentItem.itemName = applicableGroup.currentItem.name;
 			applicableGroup.currentItem.iconUrl = F3dcgAssetsInventory.GetIconUrlForItem(currentAppearanceItem.name);
+			
+			applicableGroup.items.push({itemName:F3dcgAssetsInventory.NONE});
 		}
+		
+		return applicableGroup;
 	}
 	
 	
@@ -89,8 +105,6 @@ var F3dcgAssetsInventory = {
 		var validation = [];
 		var inventoryItem = {itemName:AssetItem.Name, iconUrl:F3dcgAssetsInventory.GetIconUrlForItem(itemName), validation:validation, colorize:true}
 		
-		if(posesEffectsBlocks.blocks.includes(groupName)) validation.push("Blocked");
-		
 		if(AssetItem.Prerequisite){
 			for(var i = 0; i < AssetItem.Prerequisite.length; i++){
 				var errorReason = F3dcgAssets.ValidatePrerequisite(AssetItem.Prerequisite[i], appearance, posesEffectsBlocks);
@@ -99,12 +113,12 @@ var F3dcgAssetsInventory = {
 		}
 		
 		//Subject to validation
-		if(AssetItem.Variant){			
+		if(AssetItem.Variant){
 			inventoryItem.variants = {};
 			
 			for(var variantName in AssetItem.Variant){
 				var Variant = AssetItem.Variant[variantName];
-				var variant = {name: Variant.Name, iconUrl : Variant.iconUrl, validation:[]}
+				var variant = {name: Variant.Name, iconUrl : Variant.iconUrl, validation:[]};
 				
 				var variantNamePart =  Variant.Name.includes("_") ?  Variant.Name.split("_")[0] :  Variant.Name;
 				variant.iconUrl = F3dcgAssets.F3DCG_TYPE_ICON_BASE + groupName + "/" + namePart + "/" + variantNamePart + ".png";
@@ -141,15 +155,18 @@ var F3dcgAssetsInventory = {
 		applicableItems[F3dcgAssets.ACCESSORY][groupName].items.push({itemName:itemName, iconUrl: iconUrl, colorize:true});
 	}
 	
-	,AddClothItem(applicableItems, itemName){		
+	,AddClothItem(applicableItems, itemName, posesEffectsBlocks){		
 		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
 		var AssetGroup =  F3dcgAssets.AssetGroups[groupName];
 		var AssetItem = AssetGroup.Items[itemName];
 		
 		if(! AssetItem || ! AssetGroup) console.error(itemName + " " + groupName);
 		
-		//if(! applicableItems[F3dcgAssets.CLOTH][groupName]) applicableItems[F3dcgAssets.CLOTH][groupName] = [{itemName:F3dcgAssetsInventory.NONE}];		
-		applicableItems[F3dcgAssets.CLOTH][groupName].items.push({itemName:AssetItem.Name, iconUrl:F3dcgAssetsInventory.GetIconUrlForItem(itemName), colorize:true});
+		var validation = [];
+		if(! F3dcgAssets.CanChangeClothes(posesEffectsBlocks.effects)) validation.push("CanNotChangeClothes");
+		
+		//if(! applicableItems[F3dcgAssets.CLOTH][groupName]) applicableItems[F3dcgAssets.CLOTH][groupName] = [{itemName:F3dcgAssetsInventory.NONE}];
+		applicableItems[F3dcgAssets.CLOTH][groupName].items.push({itemName:AssetItem.Name, iconUrl:F3dcgAssetsInventory.GetIconUrlForItem(itemName), colorize:true, validation:validation});
 	}
 	
 	,GetIconUrlForItem (itemName){
