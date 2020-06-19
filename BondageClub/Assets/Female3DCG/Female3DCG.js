@@ -1486,6 +1486,10 @@ var AssetFemale3DCG = [
 			    Name: "FullBodyLeatherHarness", Priority: 29, Value: 60, Difficulty: 14, SelfBondage: 6, Time: 20, RemoveTime: 15, AllowLock: true, SetPose: ["BackElbowTouch", "LegsClosed"], AllowPose: ["Kneel"], Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "NotKneelingSpread", "NoFeetSpreader", "NotShackled"], Effect: ["Block", "Prone"], SelfUnlock: false,
 			    HideItem: ["ClothLowerSkirt1",  "ClothLowerSkirt2",  "ClothLowerSkirt3",  "ClothLowerTennisSkirt1",  "ClothLowerWaspie1",  "ClothLowerWaspie2",  "ClothLowerWaspie3", "ClothLowerLatexSkirt1",  "ClothLowerLatexSkirt2",  "ClothLowerClothSkirt1",  "ClothLowerChineseSkirt1",  "ClothLowerGown2Skirt",  "ClothLowerAdmiralSkirt",  "ClothLowerJeanSkirt",  "ClothLowerPencilSkirt",  "ClothLowerPajama1"]
 			},
+			{ Name: "TightJacket", Value: 150, Difficulty: 6, SelfBondage: 8, Time: 35, RemoveTime: 20, AllowLock: true,Hide: ["Cloth", "ItemNipplesPiercings"], HideItem: ["ClothLowerSkirt1", "ClothLowerSkirt2", "ClothLowerSkirt3", "ClothLowerTennisSkirt1", "ClothLowerGown2Skirt", "ClothLowerWaspie1", "ClothLowerWaspie2", "ClothLowerWaspie3", "ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerClothSkirt1", "ClothLowerChineseSkirt1", "ClothLowerAdmiralSkirt", "ClothLowerJeanSkirt", "ClothLowerPencilSkirt"], SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemNipples", "ItemNipplesPiercings", "ItemTorso", "ItemBreast", "ItemHands"], SelfUnlock: false, Layer: [
+				{ Name: "Jacket", AllowColorize: true},
+				{ Name: "Straps", AllowColorize: false}
+			] },	
 			AssetSpankingToys
 		],
 		Color: ["Default"]
