@@ -2224,7 +2224,7 @@ var AssetFemale3DCG = [
 			{ Name: "BedStraps", Value: -1, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", IgnoreParentGroup: true, BuyGroup: "Bed" },
 			{ Name: "BedTape", Value: -1, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], Prerequisite: "OnBed", IgnoreParentGroup: true, BuyGroup: "Bed" },
 			{ Name: "BedChains", Value: -1, Difficulty: 6, SelfBondage: 4, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", IgnoreParentGroup: true, BuyGroup: "Bed" },
-			{ Name: "UnderBedBondageCuffs", Value: -1, Difficulty: 9, SelfBondage: 3, IsRestraint: true, SetPose: ["Yoked"], Prerequisite: "OnBed",  Effect: ["Block", "Prone", "Freeze"], Block: ["ItemDevices", "ItemLegs"], AllowLock: true, BuyGroup: "Bed" }
+			{ Name: "UnderBedBondageCuffs", Value: -1, Difficulty: 9, SelfBondage: 3, IsRestraint: true, SetPose: ["Yoked"], Prerequisite: "OnBed",  Effect: ["Block", "Prone", "Freeze"], Block: ["ItemDevices", "ItemLegs"], AllowLock: true, BuyGroup: "Bed", Block: "ItemArms" }
 		],
 		Color: ["Default"]
 	},
