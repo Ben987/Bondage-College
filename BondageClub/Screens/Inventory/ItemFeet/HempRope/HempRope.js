@@ -50,21 +50,21 @@ function InventoryItemFeetHempRopeDraw() {
 
 	// Draw the header and item
 	DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-	DrawText(DialogExtendedMessage, 1500, 475, "white", "gray");
+	DrawRect(1387, 25, 225, 275, "white");
+	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 27, 221, 221);
+	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 275, 221, "black");
+	DrawText(DialogExtendedMessage, 1500, 335, "white", "gray");
 	
 	// Draw the possible positions and their requirements
-	for (var I = HempRopeFeetOptionOffset; (I < HempRopeFeetOptions.length) && (I < HempRopeFeetOptionOffset + 2); I++) {
+	for (var I = HempRopeFeetOptionOffset; (I < HempRopeFeetOptions.length) && (I < HempRopeFeetOptionOffset + 4); I++) {
 		var offset = I - HempRopeFeetOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
-		var Y = 550 + (Math.floor(offset / 2) * 300);
+		var Y = 420 + (Math.floor(offset / 2) * 300);
 		var FailSkillCheck = (HempRopeFeetOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeFeetOptions[I].RequiredBondageLevel);
 		var RequirementText = HempRopeFeetOptions[I].RequiredBondageLevel ? DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", HempRopeFeetOptions[I].RequiredBondageLevel) : DialogFind(Player, "NoRequirement");
 
 		DrawText(DialogFind(Player, "RopeBondage" + HempRopeFeetOptions[I].Name), X + 113, Y - 20, "white", "gray");
-		DrawText(RequirementText, X + 113, Y + 250, "white", "gray");
+		DrawText(RequirementText, X + 113, Y + 245, "white", "gray");
 		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == HempRopeFeetOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + HempRopeFeetOptions[I].Name + ".png", X, Y + 1);
 	}
@@ -75,14 +75,14 @@ function InventoryItemFeetHempRopeClick() {
 
 	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeFeetOptionOffset += 2;
+	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeFeetOptionOffset += 4;
 	if (HempRopeFeetOptionOffset >= HempRopeFeetOptions.length) HempRopeFeetOptionOffset = 0;
 
 	// Item buttons
-	for (var I = HempRopeFeetOptionOffset; (I < HempRopeFeetOptions.length) && (I < HempRopeFeetOptionOffset + 2); I++) {
+	for (var I = HempRopeFeetOptionOffset; (I < HempRopeFeetOptions.length) && (I < HempRopeFeetOptionOffset + 4); I++) {
 		var offset = I - HempRopeFeetOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
-		var Y = 550 + (Math.floor(offset / 2) * 300);
+		var Y = 420 + (Math.floor(offset / 2) * 300);
 
 		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != HempRopeFeetOptions[I].Property.Type))
 			if (HempRopeFeetOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeFeetOptions[I].RequiredBondageLevel) {

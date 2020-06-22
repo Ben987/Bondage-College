@@ -44,6 +44,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsMounted: function () { return (this.Effect.indexOf("Mounted") >= 0) },
 		IsChaste: function () { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste: function () { return (this.Effect.indexOf("Chaste") >= 0) },
+		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
