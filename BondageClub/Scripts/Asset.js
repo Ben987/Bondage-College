@@ -93,7 +93,7 @@ function AssetAdd(NewAsset) {
 		DefaultColor: NewAsset.DefaultColor,
 		Audio: NewAsset.Audio,
 		// used for items that work on another zone, then their own, like the sybian or the spreader dildo bar
-		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Group : NewAsset.ArousalZone, 
+		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone, 
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null) ? false : NewAsset.IgnoreParentGroup,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
 		BodyCosplay: NewAsset.BodyCosplay == null ? false : NewAsset.BodyCosplay,
