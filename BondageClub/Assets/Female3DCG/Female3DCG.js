@@ -106,7 +106,7 @@ var AssetFemale3DCG = [
 			{ Name: "ReverseBunnySuit", Value: 100, BuyGroup: "ReverseBunnySuit"},
 			{ Name: "LeatherCropTop", Value: 60, Hide: ["ItemNipples", "ItemNipplesPiercings"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
 			{ 
-				Name: "CorsetShirt", Value: 60, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing"],
+				Name: "CorsetShirt", Priority: 25, Value: 60, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing"],
 				Layer: [
 					{ Name: "Shirt", AllowColorize: true },
 					{ Name: "Corset", AllowColorize: false }
