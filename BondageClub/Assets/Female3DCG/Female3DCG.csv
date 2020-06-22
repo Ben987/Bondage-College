@@ -308,8 +308,9 @@ Glasses,Mask1,Venetian Mask
 Glasses,Mask2,Domino Mask
 Glasses,ButterflyMask1,Butterfly Mask
 Glasses,EyePatch1,Eye Patch
-Glasses,ShinobiMask,Shinobi Mask
-Glasses,FoxMask,Fox Mask
+Mask,,Mask
+Mask,ShinobiMask,Shinobi Mask
+Mask,FoxMask,Fox Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
