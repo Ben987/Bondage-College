@@ -1955,7 +1955,6 @@ var AssetFemale3DCG = [
 			{ Name: "StitchedMuzzleGag", Value: 60, Difficulty: 5, Time: 15, AllowLock: true, BuyGroup: "StitchedMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagEasy"], Block: ["ItemMouth"] },
 			{ Name: "LatexBallMuzzleGag", Value: 65, Difficulty: 6, Time: 15, AllowLock: true, BuyGroup: "LatexBallMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagMedium"], Block: ["ItemMouth"] },
 			{ Name: "GasMaskGag", Priority: 50, Value: 40, Difficulty: 4, Time: 20, Random: false, AllowLock: true, BuyGroup: "GasMaskGag", Hide: ["Mouth"], HideItem: ["ItemHeadNoseRing"], Effect: ["GagEasy"], Prerequisite: "GagFlat",  SetPose: ["GagFlat"],  Block: ["ItemMouth", "ItemMouth3"]},
-			{ Name: "WebGag", Value: 30, Difficulty: 3, Time: 5, RemoveTime: 10, BuyGroup: "WebGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagLight"], Block: ["ItemMouth"] },
 			{ Name: "WebGag", Value: 30, Difficulty: 3, Time: 5, RemoveTime: 10, Random: false, BuyGroup: "WebGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagLight"], Block: ["ItemMouth"] },
 			{ Name: "RopeGag", Value: 60, Difficulty: 3, Time: 20, RemoveTime: 10, Prerequisite: "GagUnique", DefaultColor: "#956B1C", BuyGroup: "HempRope", SetPose: ["GagUnique"], Block: ["ItemMouth"], Effect: ["GagLight"]}
 		],
@@ -2049,7 +2048,6 @@ var AssetFemale3DCG = [
 			{ Name: "StitchedMuzzleGag", Value: 60, Difficulty: 5, Time: 15, AllowLock: true, BuyGroup: "StitchedMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagEasy"], Block: ["ItemMouth", "ItemMouth2"] },
 			{ Name: "LatexBallMuzzleGag", Value: 65, Difficulty: 6, Time: 15, AllowLock: true, BuyGroup: "LatexBallMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagMedium"], Block: ["ItemMouth", "ItemMouth2"] }, 
 			{ Name: "GasMaskGag", Priority: 50, Value: 40, Difficulty: 4, Time: 20, Random: false, AllowLock: true, BuyGroup: "GasMaskGag", Hide: ["Mouth"], HideItem: ["ItemHeadNoseRing"], Effect: ["GagEasy"], Prerequisite: "GagFlat",  SetPose: ["GagFlat"],  Block: ["ItemMouth", "ItemMouth2"]},
-			{ Name: "WebGag", Value: 30, Difficulty: 3, Time: 5, RemoveTime: 10, BuyGroup: "WebGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagLight"], Block: ["ItemMouth", "ItemMouth2"] },
 			{ Name: "WebGag", Value: 30, Difficulty: 3, Time: 5, RemoveTime: 10, Random: false, BuyGroup: "WebGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagLight"], Block: ["ItemMouth", "ItemMouth2"] },
 			{ Name: "RopeGag", Value: 60, Difficulty: 3, Time: 20, RemoveTime: 10, Prerequisite: "GagUnique", DefaultColor: "#956B1C", BuyGroup: "HempRope", SetPose: ["GagUnique"], Block: ["ItemMouth", "ItemMouth2"], Effect: ["GagLight"]}
 		],
