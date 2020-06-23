@@ -39,3 +39,7 @@ function InventoryItemHeadWebBlindfoldPublishAction(Option) {
 	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
+
+function InventoryItemHeadWebBlindfoldNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "ItemHeadWebBlindfold" + Option.Name, "ItemHead");
+}

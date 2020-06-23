@@ -116,6 +116,8 @@ function ChatCreateResponse(data) {
 // Creates the chat room
 function ChatCreateRoom() {
 	ChatRoomPlayerCanJoin = true;
+	ChatRoomPlayerJoiningAsAdmin = true;
+	// Push the new room
 	var NewRoom = {
 		Name: ElementValue("InputName").trim(),
 		Description: ElementValue("InputDescription").trim(),

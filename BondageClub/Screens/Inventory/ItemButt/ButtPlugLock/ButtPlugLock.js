@@ -73,12 +73,12 @@ function InventoryItemButtButtPlugLockSetPose(NewPose) {
 	} else {
 		DialogFocusItem.Property.Type = NewPose;
 		if (NewPose == "ChainShort") {
-			DialogFocusItem.Property.Effect = ["Chaste", "Freeze", "ForceKneel"];
+			DialogFocusItem.Property.Effect = ["Freeze", "ForceKneel"];
 			DialogFocusItem.Property.SetPose = ["Kneel"];
 		}
 		if (NewPose == "ChainLong") {
 			DialogFocusItem.Property.SetPose = [""];
-			DialogFocusItem.Property.Effect = ["Chaste", "Tethered"];
+			DialogFocusItem.Property.Effect = ["Tethered"];
 			DialogFocusItem.Property.AllowPose = ["Kneel", "Horse", "KneelingSpread"];
 		}
 	}

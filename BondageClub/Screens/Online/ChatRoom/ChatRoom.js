@@ -8,6 +8,7 @@ var ChatRoomTargetMemberNumber = null;
 var ChatRoomOwnershipOption = "";
 var ChatRoomLovershipOption = "";
 var ChatRoomPlayerCanJoin = false;
+var ChatRoomPlayerJoiningAsAdmin = false;
 var ChatRoomMoneyForOwner = 0;
 var ChatRoomQuestGiven = [];
 var ChatRoomSpace = "";
@@ -31,7 +32,7 @@ function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (Current
 function ChatRoomIsCollaredByPlayer() { return ((CurrentCharacter != null) && (CurrentCharacter.Ownership != null) && (CurrentCharacter.Ownership.Stage == 1) && (CurrentCharacter.Ownership.MemberNumber == Player.MemberNumber)) }
 function ChatRoomCanServeDrink() { return ((CurrentCharacter != null) && CurrentCharacter.CanWalk() && (ReputationCharacterGet(CurrentCharacter, "Maid") > 0) && CurrentCharacter.CanTalk()) }
 function ChatRoomCanGiveMoneyForOwner() { return ((ChatRoomMoneyForOwner > 0) && (CurrentCharacter != null) && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (Player.Ownership.MemberNumber == CurrentCharacter.MemberNumber)) }
-function ChatRoomPlayerIsAdmin() { return ((ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(Player.MemberNumber) >= 0)) }
+function ChatRoomPlayerIsAdmin() { return ((ChatRoomData != null && ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(Player.MemberNumber) >= 0)) }
 function ChatRoomCurrentCharacterIsAdmin() { return ((CurrentCharacter != null) && (ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomHasSwapTarget() { return ChatRoomSwapTarget != null }
 
@@ -732,6 +733,7 @@ function ChatRoomMessage(data) {
 				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {
 					if (msg.indexOf("*") == 0) msg = msg + "*";
+					else if ((msg.indexOf("'") == 0) || (msg.indexOf(",") == 0)) msg = "*" + SenderCharacter.Name + msg + "*";
 					else if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
@@ -796,6 +798,23 @@ function ChatRoomSync(data) {
 				Joining = true;
 				ChatRoomPlayerCanJoin = false;
 				CommonSetScreen("Online", "ChatRoom");
+				if (ChatRoomPlayerJoiningAsAdmin) {
+					ChatRoomPlayerJoiningAsAdmin = false;
+					// Check if we should push banned members
+					if (Player.ChatSettings && data.Character.length == 1) {
+						var BanList = [];
+						if (Player.ChatSettings.AutoBanBlackList) {
+							BanList = BanList.concat(Player.BlackList);
+						}
+						if (Player.ChatSettings.AutoBanGhostList) {
+							BanList = BanList.concat(Player.GhostList);
+						}
+						if (BanList.length > 0) { 
+							data.Ban = BanList;
+							ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: data, Action: "Update" });
+						}
+					}
+				}
 			} else return;
 		}
 
@@ -928,13 +947,15 @@ function ChatRoomSyncItem(data) {
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (ChatRoomCharacter[C].MemberNumber == data.Item.Target) {
 
-			// Prevent changing the item if the current item is locked by owner/lover locks
-			var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
-			if ((Item != null) && (ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item))
-				if (!ChatRoomAllowChangeLockedItem(data, Item))
+			// From another user, we prevent changing the item if the current item is locked by owner/lover locks
+			if (data.Source != data.Item.Target) {
+				var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
+				if ((Item != null) && (ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item))
+					if (!ChatRoomAllowChangeLockedItem(data, Item))
+						return;
+				if ((Item != null) && (ChatRoomCharacter[C].GetLoversNumbers().indexOf(data.Source) < 0) && InventoryLoverOnlyItem(Item) && ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source)) && !ChatRoomAllowChangeLockedItem(data, Item))
 					return;
-			if ((Item != null) && (ChatRoomCharacter[C].GetLoversNumbers().indexOf(data.Source) < 0) && InventoryLoverOnlyItem(Item)
-				&& ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source)) && !ChatRoomAllowChangeLockedItem(data, Item)) { return; }
+			}
 
 			// If there's no name in the item packet, we remove the item instead of wearing it
 			ChatRoomAllowCharacterUpdate = false;
@@ -945,7 +966,7 @@ function ChatRoomSyncItem(data) {
 				// Wear the item and applies locks and properties if we need to
 				InventoryWear(ChatRoomCharacter[C], data.Item.Name, data.Item.Group, data.Item.Color, data.Item.Difficulty);
 				if (data.Item.Property != null) {
-					Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
+					var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
 					if (Item != null) {
 						Item.Property = data.Item.Property;
 						ServerValidateProperties(ChatRoomCharacter[C], Item);

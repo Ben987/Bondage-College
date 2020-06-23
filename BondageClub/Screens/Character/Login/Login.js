@@ -4,10 +4,10 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Ayezona", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Dan", "Dini", "Epona", "Escurse",
-						 "Fluffythewhat", "Greendragon", "John", "Laioken", "Lennart", "Michal", "Mindtie", "Misa", "Mitchell", "MuchyCat",
-						 "Mzklopyu", "Nera", "Nick", "Overlord", "Rashiash", "Ray", "Reire", "Robin", "Rutherford", "Ryner", 
-						 "Samuel", "Setsu", "Shadow", "Sky", "Thomas", "Trent", "William", "Xepherio"];
+var LoginThankYouList = ["Alvin", "Ayezona", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Desch", "Dini", "Donna", "Epona",
+						 "Escurse", "Fluffythewhat", "Greendragon", "John", "Laioken", "Michal", "Mindtie", "Misa", "Mzklopyu", "Nera",
+						 "Nick", "Overlord", "Rashiash", "Ray", "Reire", "Robin", "Rutherford", "Ryner", "Samuel", "Setsu",
+						 "Shadow", "Sky", "Tam", "Thomas", "Trent", "William", "Xepherio"];
 var LoginThankYouNext = 0;
 //var LoginLastCT = 0;
 
@@ -154,12 +154,16 @@ function LoginStableItems() {
 		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryAdd(Player, "PonyBoots", "Shoes", false);
 		InventoryAdd(Player, "PonyBoots", "ItemBoots", false);
+		InventoryAdd(Player,"PonyHood", "ItemHead", false);
+		InventoryAdd(Player,"HoofMittens", "ItemHands", false);
 	} else {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth", false);
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth2", false);
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
+		InventoryDelete(Player, "PonyHood", "ItemHead",false)
+		InventoryDelete(Player,"HoofMittens", "ItemHands", false);
 	}
 	ServerPlayerInventorySync();
 }

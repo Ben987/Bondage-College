@@ -44,6 +44,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsMounted: function () { return (this.Effect.indexOf("Mounted") >= 0) },
 		IsChaste: function () { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste: function () { return (this.Effect.indexOf("Chaste") >= 0) },
+		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
@@ -55,6 +56,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsLover: function (C) { return ((this.GetLoversNumbers().indexOf(C.MemberNumber) >= 0) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
 		GetLoversNumbers: function () {
 			var LoversNumbers = [];
+			if (typeof this.Lovership == "undefined") return [];
 			for (var L = 0; L < this.Lovership.length; L++) {
 				if (this.Lovership[L].MemberNumber) { LoversNumbers.push(this.Lovership[L].MemberNumber); }
 				else if (this.Lovership[L].Name) { LoversNumbers.push(this.Lovership[L].Name); }
@@ -234,6 +236,11 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Game == null))) Char.Game = data.Game;
 	Char.Ownership = data.Ownership;
 	Char.Lovership = data.Lovership;
+	for (var L = Char.Lovership.length - 1; L >= 0; L--) {
+		delete Char.Lovership[L].BeginEngagementOfferedByMemberNumber;
+		delete Char.Lovership[L].BeginWeddingOfferedByMemberNumber;
+		if (Char.Lovership[L].BeginDatingOfferedByMemberNumber) Char.Lovership.splice(L, 1);
+	}
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.LimitedItems = Array.isArray(data.LimitedItems) ? data.LimitedItems : [];
