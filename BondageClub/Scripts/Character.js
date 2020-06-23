@@ -1,4 +1,10 @@
 "use strict";
+
+const CCharacterDeafLevelFactorLight  = 1;
+const CCharacterDeafLevelFactorNormal = 2;
+const CCharacterDeafLevelFactorHeavy  = 3;
+const CCharacterDeafLevelFactorTotal  = 4;
+
 var Character = [];
 
 // Loads a character in the buffer
@@ -62,6 +68,19 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 				else if (this.Lovership[L].Name) { LoversNumbers.push(this.Lovership[L].Name); }
 			}
 			return LoversNumbers;
+		},
+		GetDeafLevel: function () {
+			var deafLevel =0;
+			for (var i = 0; i < this.Appearance.length; i++) {
+				// Sum up the various level of deafness. Light: 1, Normal: 2, Heavy: 3, Total: 4
+				if(this.Appearance[i].Asset.Effect != null){
+					if (this.Appearance[i].Asset.Effect.indexOf ("DeafLight") >= 0) deafLevel += CCharacterDeafLevelFactorLight;
+					else if (this.Appearance[i].Asset.Effect.indexOf ("DeafNormal") >= 0) deafLevel += CCharacterDeafLevelFactorNormal;
+					else if (this.Appearance[i].Asset.Effect.indexOf ("DeafHeavy") >= 0) deafLevel += CCharacterDeafLevelFactorHeavy;
+					else if (this.Appearance[i].Asset.Effect.indexOf ("DeafTotal") >= 0) deafLevel += CCharacterDeafLevelFactorTotal;
+				}
+			}
+			return deafLevel;
 		},
 		IsLoverPrivate: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (Player.GetLoversNumbers().indexOf("NPC-" + this.Name) >= 0)); },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
