@@ -23,8 +23,9 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
     DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
     DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
 
+    var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
     // Draw the settings
-    if (Player.CanInteract() && (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber)) {
+    if (Player.CanInteract() && C.IsOwnedByPlayer()) {
         MainCanvas.textAlign = "left";
         DrawButton(1100, 666, 64, 64, "", "White", (DialogFocusSourceItem.Property.RemoveItem) ? "Icons/Checked.png" : "");
         DrawText(DialogFind(Player, "RemoveItemWithTimer"), 1200, 698, "white", "gray");
@@ -41,7 +42,7 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
     }
 
     // Draw buttons to add/remove time if available
-    if (Player.CanInteract() && (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber)) {
+    if (Player.CanInteract() && C.IsOwnedByPlayer()) {
         DrawButton(1100, 910, 250, 70, DialogFind(Player, "AddTimerTime"), "White");
         DrawBackNextButton(1400, 910, 250, 70, OwnerTimerChooseList[OwnerTimerChooseIndex] + " " + DialogFind(Player, "Hours"), "White", "",
             () => OwnerTimerChooseList[(OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"),
@@ -62,7 +63,8 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
     if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemMiscOwnerTimerPadlockExit();
     if (!Player.CanInteract()) return;
 
-    if (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) {
+    var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+    if (C.IsOwnedByPlayer()) {
         if ((MouseX >= 1100) && (MouseX <= 1164)) {
             if ((MouseY >= 666) && (MouseY <= 730)) { DialogFocusSourceItem.Property.RemoveItem = !(DialogFocusSourceItem.Property.RemoveItem); }
             if ((MouseY >= 746) && (MouseY <= 810)) { DialogFocusSourceItem.Property.ShowTimer = !(DialogFocusSourceItem.Property.ShowTimer); }
@@ -72,7 +74,7 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
     }
 
     if ((MouseY >= 910) && (MouseY <= 975)) {
-        if (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) {
+        if (C.IsOwnedByPlayer()) {
             if ((MouseX >= 1100) && (MouseX < 1350)) InventoryItemMiscOwnerTimerPadlockAdd(OwnerTimerChooseList[OwnerTimerChooseIndex] * 3600);
             if ((MouseX >= 1400) && (MouseX < 1650)) {
                 if (MouseX <= 1525) OwnerTimerChooseIndex = (OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length;
@@ -81,7 +83,7 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
         }
         else if (DialogFocusSourceItem.Property.EnableRandomInput) {
             for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++){
-                if (DialogFocusSourceItem.Property.MemberNumberList[I] == Player.MemberNumber) return;
+                if (C.IsOwnedByPlayer()) return;
             }
             if ((MouseX >= 1100) && (MouseX < 1350)) { InventoryItemMiscOwnerTimerPadlockAdd(-2 * 3600, true); }
             if ((MouseX >= 1400) && (MouseX < 1650)) { InventoryItemMiscOwnerTimerPadlockAdd(4 * 3600 * ((Math.random() >= 0.5) ? 1 : -1), true); }
