@@ -802,13 +802,7 @@ function ChatRoomSync(data) {
 					ChatRoomPlayerJoiningAsAdmin = false;
 					// Check if we should push banned members
 					if (Player.ChatSettings && data.Character.length == 1) {
-						var BanList = [];
-						if (Player.ChatSettings.AutoBanBlackList) {
-							BanList = BanList.concat(Player.BlackList);
-						}
-						if (Player.ChatSettings.AutoBanGhostList) {
-							BanList = BanList.concat(Player.GhostList);
-						}
+						var BanList = ChatRoomConcatenateBanList(Player.ChatSettings.AutoBanBlackList, Player.ChatSettings.AutoBanGhostList);
 						if (BanList.length > 0) { 
 							data.Ban = BanList;
 							ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: data, Action: "Update" });
@@ -1244,4 +1238,22 @@ function ChatRoomPayQuest(data) {
 // When a game message comes in, we forward it to the current online game being played
 function ChatRoomGameResponse(data) {
 	if (OnlineGameName == "LARP") GameLARPProcess(data);
+}
+
+/** 
+ * Concatenates the list of users to ban.
+ * @param {boolean} IncludesBlackList - Adds the blacklist to the banlist
+ * @param {boolean} IncludesGhostList - Adds the ghostlist to the banlist
+ * @param {number[]} [ExistingList] - The existing Banlist, if applicable
+ * @returns {number[]} Complete array of members to ban
+ */
+function ChatRoomConcatenateBanList(IncludesBlackList, IncludesGhostList, ExistingList) { 
+	var BanList = Array.isArray(ExistingList) ? ExistingList : [];
+	if (IncludesBlackList) {
+		BanList = BanList.concat(Player.BlackList);
+	}
+	if (IncludesGhostList) {
+		BanList = BanList.concat(Player.GhostList);
+	}
+	return BanList.filter((MemberNumber, Idx, Arr) => Arr.indexOf(MemberNumber) == Idx);
 }
