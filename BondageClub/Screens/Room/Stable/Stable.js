@@ -361,7 +361,7 @@ function StablePlayerTrainingTreadmill(Behavior) {
 }
 
 //Start Traning Strong Treadmill
-function StablePlayerTrainingStongTreadmill(Behavior) {
+function StablePlayerTrainingStrongTreadmill(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	var StableDressage = SkillGetLevel(Player, "Dressage");
 	var StableDifficulty = 2;
