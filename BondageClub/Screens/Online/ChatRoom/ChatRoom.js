@@ -947,13 +947,15 @@ function ChatRoomSyncItem(data) {
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (ChatRoomCharacter[C].MemberNumber == data.Item.Target) {
 
-			// Prevent changing the item if the current item is locked by owner/lover locks
-			var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
-			if ((Item != null) && (ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item))
-				if (!ChatRoomAllowChangeLockedItem(data, Item))
+			// From another user, we prevent changing the item if the current item is locked by owner/lover locks
+			if (data.Source != data.Item.Target) {
+				var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
+				if ((Item != null) && (ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item))
+					if (!ChatRoomAllowChangeLockedItem(data, Item))
+						return;
+				if ((Item != null) && (ChatRoomCharacter[C].GetLoversNumbers().indexOf(data.Source) < 0) && InventoryLoverOnlyItem(Item) && ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source)) && !ChatRoomAllowChangeLockedItem(data, Item))
 					return;
-			if ((Item != null) && (ChatRoomCharacter[C].GetLoversNumbers().indexOf(data.Source) < 0) && InventoryLoverOnlyItem(Item)
-				&& ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source)) && !ChatRoomAllowChangeLockedItem(data, Item)) { return; }
+			}
 
 			// If there's no name in the item packet, we remove the item instead of wearing it
 			ChatRoomAllowCharacterUpdate = false;
@@ -964,7 +966,7 @@ function ChatRoomSyncItem(data) {
 				// Wear the item and applies locks and properties if we need to
 				InventoryWear(ChatRoomCharacter[C], data.Item.Name, data.Item.Group, data.Item.Color, data.Item.Difficulty);
 				if (data.Item.Property != null) {
-					Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
+					var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
 					if (Item != null) {
 						Item.Property = data.Item.Property;
 						ServerValidateProperties(ChatRoomCharacter[C], Item);

@@ -184,6 +184,8 @@ function DialogLeaveItemMenu() {
 	DialogTextDefaultTimer = 0;
 	ElementRemove("InputColor");
 	AudioDialogStop();
+	ColorPickerEndPick();
+	ColorPickerRemoveEventListener();
 }
 
 // Leaves the item menu of the focused item
