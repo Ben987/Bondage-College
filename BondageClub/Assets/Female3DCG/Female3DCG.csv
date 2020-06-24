@@ -648,6 +648,7 @@ ItemArms,Web,Web
 ItemArms,LatexArmbinder,Latex Armbinder
 ItemArms,SeamlessLatexArmbinder,Seamless Latex Armbinder
 ItemArms,FullBodyLeatherHarness,Full Body Leather Harness
+ItemArms,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -952,7 +953,6 @@ ItemAddon,BedRopes,Bed Ropes
 ItemAddon,BedStraps,Bed Straps
 ItemAddon,BedTape,Bed Tape
 ItemAddon,BedChains,Bed Chains
-ItemAddon,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels

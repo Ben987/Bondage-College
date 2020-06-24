@@ -1167,7 +1167,7 @@ CribOpen,,,Open,,
 CribClosed,,,Closed,,
 CribStuffed,,,Stuffed,,
 CribSetOpen,,,SourceCharacter opens DestinationCharacter crib.,,
-CribSetClosed,,,SourceCharater closes DestinationCharacter crib.,,
+CribSetClosed,,,SourceCharacter closes DestinationCharacter crib.,,
 CribSetStuffed,,,SourceCharacter stuffs DestinationCharacter crib full of plushies.,,
 SelectMilkBottleState,,,Raise or lower the bottle
 MilkBottleRest,,,Resting,,
