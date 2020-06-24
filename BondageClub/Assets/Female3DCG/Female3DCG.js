@@ -1123,8 +1123,8 @@ var AssetFemale3DCG = [
 			{ Name: "MouseTail1", Value: 35, Time: 10, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
 			{ Name: "MouseTail2", Value: 35, Time: 10, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
 			{ Name: "VibratingDildoPlug", Value: 60, Time: 10, BuyGroup: "VibratingDildo", Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], Effect: ["IsPlugged", "Egged"] },
-			{ Name: "BunnyTailPlug1", Value: 1, Time: 10, Prerequisite: "AccessVulva", ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10}] },
-			{ Name: "BunnyTailPlug2", Value: 1, Time: 10, Prerequisite: "AccessVulva", ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10}] },
+			{ Name: "BunnyTailPlug1", Value: 1, Time: 10, Prerequisite:  ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10}] },
+			{ Name: "BunnyTailPlug2", Value: 1, Time: 10, Prerequisite:  ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10}] },
 			AssetSpankingToys
 		],
 		Color: ["Default"]
