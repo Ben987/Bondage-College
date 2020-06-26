@@ -30,8 +30,7 @@ function InventoryItemHeadWebBlindfoldClick() {
 	ExtendedItemClick(InventoryItemHeadWebBlindfoldOptions);
 }
 
-function InventoryItemHeadWebBlindfoldPublishAction(Option) {
-	var C = CharacterGetCurrent();
+function InventoryItemHeadWebBlindfoldPublishAction(C, Option) {
 	var msg = "HeadWebSet" + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
