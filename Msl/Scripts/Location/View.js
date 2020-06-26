@@ -38,9 +38,7 @@ var LocationView = {
 		});
 	}
 	
-	,Interrupt(){
-		
-	}
+	,Interrupt(){}
 	
 	
 	,UnInit(){
@@ -162,7 +160,8 @@ var LocationView = {
 	,OnPlayerExit(player){
 		var spotName = LocationController.GetSpotWithPlayer(player.id).name;	
 		var spotDiv = LocationView.spotDivs[spotName]
-		spotDiv.removeChild(spotDiv.figure);
+		if(spotDiv && spotDiv.figure)//player might have left from off screen
+			spotDiv.removeChild(spotDiv.figure);
 	}
 	
 	

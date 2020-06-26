@@ -29,23 +29,23 @@ var LocationViewChat = {
 	}
 	,OnPlayerExit(player){
 		var spotName = LocationController.GetSpotWithPlayer(player.id).name;	
-		var content = "*" + player.character.name + " left the location (from " + spotName + ")";
+		var content = "*" + player.profile.name + " left the location (from " + spotName + ")";
 		var color = player.settings.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});	
 	}
 	,OnPlayerEnter(player){
 		var spotName = LocationController.GetSpotWithPlayer(player.id).name;	
-		var content = "*" + player.character.name + " entered (>> " + spotName + ")";
+		var content = "*" + player.profile.name + " entered (>> " + spotName + ")";
 		var color = player.settings.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});			
 	}
 	,OnPlayerReconnect(player){
-		var content = "*" + player.character.name + " reconnected";
+		var content = "*" + player.profile.name + " reconnected";
 		var color = player.settings.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
 	,OnPlayerDisconnect(player, time){
-		var content = "*" + player.character.name + " is reconnecting (waiting for " + time + ")";
+		var content = "*" + player.profile.name + " is reconnecting (waiting for " + time + ")";
 		var color = player.settings.chat.labelColor;
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
@@ -61,18 +61,18 @@ var LocationViewChat = {
 				LocationViewChat.AddChatMessageToFigureBox(action.originPlayerId, action.result.content);
 			break;
 			case "MoveToSpot":
-				var content = "*" + originPlayer.character.name + " " + (action.finished ? ">>" : ">") + " " + action.targetSpotName + "*";
+				var content = "*" + originPlayer.profile.name + " " + (action.finished ? ">>" : ">") + " " + action.targetSpotName + "*";
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});				
 			break;
 			case "AppearanceUpdateOther":
-				var content = "*" + originPlayer.character.name + " " + (action.finished ? "completed" : "started") + " updating appearance of " + targetPlayer.name + "*";
+				var content = "*" + originPlayer.profile.name + " " + (action.finished ? "completed" : "started") + " updating appearance of " + targetPlayer.name + "*";
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});					
 			break;
 			case "AppearanceUpdateSelf":
 				//no message
 			break;
 			case "PlayerExit":
-				var content = "*" + originPlayer.character.name + " left the location (from " + targetPlayer.name + "*";
+				var content = "*" + originPlayer.profile.name + " left the location (from " + targetPlayer.name + "*";
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});	
 			break;
 			case "PlayerDisconnect":
@@ -86,27 +86,6 @@ var LocationViewChat = {
 		if(scrollToBot) LocationViewChat.logContainer.scrollTop = LocationViewChat.logContainer.scrollHeight;
 	}
 	
-	/*
-	,OnAction_MoveToSpot(action){
-	
-	}
-	
-	
-	,OnAction_ChatMessage(action){
-		var origniPlayer = LocationController.GetPlayer(action.originPlayerId);
-		var color = new Util.Color.Instance(Util.Color.TYPE_HEXSTRING, origniPlayer.settings.chat.labelColor)	
-		//var messageDiv = Util.CreateElement({parent:LocationViewChat.logContainer, cssClass:"chat-log-message", cssStyles:{backgroundColor:color.ToCssColor(0.1)}});
-		var messageDiv = Util.CreateElement({parent:LocationViewChat.logContainer, cssClass:"chat-log-message"});
-		
-		var messageDataDiv = Util.CreateElement({parent:messageDiv, cssClass:"chat-log-message-data"});
-		var timeDiv = Util.CreateElement({parent:messageDataDiv, textContent:"10:20", cssClass:"chat-log-message-data-time"});
-		var originIdDiv = Util.CreateElement({parent:messageDataDiv, textContent:"334", cssClass:"chat-log-message-data-id"});
-
-		var nameSpan = Util.CreateElement({tag:"span", parent:messageDiv, textContent:origniPlayer.name +": ", cssClass:"chat-log-message-name", cssStyles:{color:color.ToCssColor()}});
-		var contentSpan = Util.CreateElement({tag:"span", parent:messageDiv, textContent:action.result.content, cssClass:"chat-log-message-content"});
-		AddChatMessageToLog
-		LocationViewChat.AddChatMessageToFigureBox(action.originPlayerId, action.result.content);
-	}*/
 	
 	,AddChatMessageToLog(messageData){
 		var color = new Util.Color.Instance(Util.Color.TYPE_HEXSTRING,  messageData.color ? messageData.color : "#ffffff");
@@ -140,15 +119,6 @@ var LocationViewChat = {
 		setTimeout(() => {hoverDiv.parentNode.removeChild(hoverDiv);}, 6000  + fadeOutTime);
 	}
 	
-	/*
-	,ClearAndDisplayLog(messageDataList){
-		var chatLogDiv = document.getElementById(LocationViewChat.CHAT_LOG_ELEMENT_ID);
-		var scrollToBot = Util.ScrollableElementIsAtBottom(chatLogDiv);		
-		Util.ClearNodeContent(chatLogDiv);
-		messageDataList.forEach(messageData => LocationViewChat.CreateAndAddChatLogElement(messageData));
-		if(scrollToBot) chatLogDiv.scrollTop = chatLogDiv.scrollHeight;
-	}*/
-	
 	
 	,TypeMessage(event){
 		if(event.code == "Enter" || event.code == "NumpadEnter"){
@@ -164,99 +134,4 @@ var LocationViewChat = {
 		LocationViewChat.inputTextarea.value = "";
 		LocationController.SendChatMessage(content);		
 	}
-	
-	/*,RollNext(direction){
-		var b = LocationViewChat.currentRollOutState + direction;
-		if(b >= LocationViewChat.rollOutStates.length) b = LocationViewChat.rollOutStates.length - 1; else if(b < 0) b = 0;
-		
-		var chatLogDiv = document.getElementById("LocationViewChatLog");
-		var scrollToBot = Math.ceil(chatLogDiv.scrollHeight - chatLogDiv.scrollTop) === chatLogDiv.clientHeight;
-		
-		document.getElementById("LocationViewChat").style.height = LocationViewChat.rollOutStates[b] + "%";
-		
-		var height = b == 0 ? 0 : LocationViewChat.rollOutStates[1] * 100 / LocationViewChat.rollOutStates[b];
-		var top = 100 - height;
-		
-		chatLogDiv.style.height = top + "%";
-		
-		["LocationViewChatButtonLeft", "LocationViewChatButtonRight", "LocationViewChatInput"].forEach(elementId => {
-			document.getElementById(elementId).style.height = height + "%";
-			document.getElementById(elementId).style.top = top + "%";
-		});
-		
-		LocationViewChat.currentRollOutState = b;
-		
-		if(scrollToBot) chatLogDiv.scrollTop = chatLogDiv.scrollHeight;		
-	}
-	
-	,RollMedIfSmall(){
-		if(LocationViewChat.currentRollOutState <= 1) LocationViewChat.RollNext(1);	
-	}
-	,RollSmallIfHidden(){
-		if(LocationViewChat.currentRollOutState == 0) LocationViewChat.RollNext(1);
-	}
-	,RollHide(){
-		LocationViewChat.currentRollOutState == 1; 
-		LocationViewChat.RollNext(-1);
-	}*/
 }
-
-/*
-
-var SideInput = {
-	currentRollState:"ROLL_STATE_SMALL"
-	,ROLL_STATE_OUT:"ROLL_STATE_OUT"
-	,ROLL_STATE_SMALL:"ROLL_STATE_SMALL"
-	,ROLL_STATE_FULL:"ROLL_STATE_FULL"
-	
-	,Roll(){
-		Util.DetachElementsAndClear(LocationView.actionIcons);
-		if(SideInput.currentRollState == SideInput.ROLL_STATE_SMALL)
-			SideInput.RollFull();
-		else if(SideInput.currentRollState == SideInput.ROLL_STATE_OUT || SideInput.currentRollState == SideInput.ROLL_STATE_FULL)
-			SideInput.RollSmall();
-	}
-	
-	,RollSmall(){
-		var leftRoll = document.getElementById("LocationViewSideInputLeft");
-		leftRoll.setAttribute("class", "");	leftRoll.classList.add("roll-left"); leftRoll.classList.add("roll-left-small");
-		SideInput.currentRollState = SideInput.ROLL_STATE_SMALL;
-	}
-	
-	,RollFull(){
-		var leftRoll = document.getElementById("LocationViewSideInputLeft");
-		leftRoll.setAttribute("class", "");	leftRoll.classList.add("roll-left"); leftRoll.classList.add("roll-left-full");
-		SideInput.currentRollState = SideInput.ROLL_STATE_FULL;
-	}
-	
-	,RollOut(){
-		var leftRoll = document.getElementById("LocationViewSideInputLeft");
-		leftRoll.setAttribute("class", "");	leftRoll.classList.add("roll-left"); leftRoll.classList.add("roll-left-out");
-		SideInput.currentRollState = SideInput.ROLL_STATE_OUT;
-	}
-	
-	,Poses(){LocationController.PoseChangeSelf();}
-	,Examine(){SideInput.LocationViewActionAndRollSmall("Examine");}
-	,Move(){SideInput.LocationViewActionAndRollSmall("Move");}
-	
-	,Item(){
-		if(SideInput.currentRollState != SideInput.ROLL_STATE_FULL)
-			return SideInput.RollFull();
-		
-		LocationFocusView.Show(LocationController.GetPlayer());
-		
-		SideInput.RollSmall();
-	}
-	
-	
-	,Settings(){SideInput.LocationViewActionAndRollSmall("Settings");}
-	,LocationViewActionAndRollSmall(actionName){
-		if(SideInput.currentRollState != SideInput.ROLL_STATE_FULL)
-			return SideInput.RollFull();
-		
-		LocationView["ShowActions" + actionName]();
-		SideInput.RollSmall();
-	}
-}
-
-*/

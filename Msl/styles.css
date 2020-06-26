@@ -33,7 +33,8 @@ select {font-size:1em}
 /*Minigames*/
 div.simplest-comply-button{position:absolute;top:42.5%;left:47.5%;width:5%; height:5%; }
 
-div.progress_bar{height:100%;background-color:green;}
+div.progress_bar{background-color:red;}
+div.progress_bar > div{height:100%;background-color:green;}
 div.cancel_button{width:100%;height:100%;background-color:gray;}
 
 /*Location view*/
@@ -107,7 +108,10 @@ div.chat-hover-item:after {
 
 
 .dialog-views {position:absolute;left:10%;width:90%;height:100%; color:white; font-size:150%}
-.dialog-views > div {position:absolute;left:0;top:0;width:100%;height:100%; transition: opacity 250ms}
+.dialog-views > div {position:absolute;left:0;top:0;width:100%;height:100%;}
+.dialog-views > div {transition: opacity 250ms; opacity:0; pointer-events:none}
+.dialog-views > div.visible { transition: opacity 250ms; opacity:1; pointer-events:auto; transitionDelay:250ms}
+
 
 .dialog-profile {width:100%;height:100%}
 .dialog-profile-description {float:right;width:40%;height:100%;padding:1%;}
@@ -182,12 +186,12 @@ div.chat-hover-item:after {
 .dialog-appearance-item-action-buttons > div > img{width:100%; height:100%; background-color:white;}
 .dialog-appearance-item-action-buttons > div:hover > img{background-color:gray;}
 
-.dialog-appearance-item-action {position:absolute; left:10%; width:20%; height:50%; display:none;}
+.dialog-appearance-item-action {position:absolute; left:10%; width:20%; height:50%; display:none; }
 .dialog-appearance-item-action.color-picker {}
 .dialog-appearance-item-action.color-picker > div {width:100%}
 .dialog-appearance-item-action.color-picker input {width:96%;}
 
-.dialog-appearance-item-action.lock {}
+.dialog-appearance-item-action.lock {overflow-y:auto;overflow-x:hidden}
 .dialog-appearance-item-action.lock > img{width:45%; float:left; margin:2%}
 
 

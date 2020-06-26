@@ -184,14 +184,14 @@ F3dcgAssets.InitVariants = function(){
 	V.Tight.Property = {SetPose:["BackElbowTouch"]}
 	
 	V = this.SimplestVariant(G.Items.LeatherCuffs, ["None", "Wrist", "Elbow", "Both"]);
-	V.Wrist.Property = {SetPose:["BackBoxTie"]};
-	V.Elbow.Property = {SetPose:["BackElbowTouch"]};
-	V.Both.Property = {SetPose:["BackElbowTouch"]};
+	V.Wrist.Property = {SetPose:["BackBoxTie"],Effect : ["Block", "Prone"]};	
+	V.Elbow.Property = {SetPose:["BackElbowTouch"],Effect : ["Block", "Prone"]};
+	V.Both.Property = {SetPose:["BackElbowTouch"],Effect : ["Block", "Prone"]};
 	
 	V = this.SimplestVariant(G.Items.OrnateCuffs, ["None", "Wrist", "Elbow", "Both"]);
-	V.Wrist.Property = {SetPose:["BackBoxTie"]};
-	V.Elbow.Property = {SetPose:["BackElbowTouch"]};
-	V.Both.Property = {SetPose:["BackElbowTouch"]};
+	V.Wrist.Property = {SetPose:["BackBoxTie"],Effect : ["Block", "Prone"]};	
+	V.Elbow.Property = {SetPose:["BackElbowTouch"],Effect : ["Block", "Prone"]};
+	V.Both.Property = {SetPose:["BackElbowTouch"],Effect : ["Block", "Prone"]};
 	
 	G.Items.SturdyLeatherBelts_ItemArms.SetPose = ["BackElbowTouch"];//Should really be in assets.js
 	this.SimplestVariant(G.Items.SturdyLeatherBelts_ItemArms, ["One", "Two", "Three"]);
@@ -400,7 +400,7 @@ F3dcgAssets.InitClothesGroupsNames = function(){
 			F3dcgAssets.ClothesGroups.push(AssetGroup.Group) 
 	}
 } 
-	
+/*
 F3dcgAssets.InitLocks = function(){
 	var ItemMiscAssetGroup = AssetFemale3DCG.find(AssetItemGroup => AssetItemGroup.Group == "ItemMisc");
 	var keys = {};
@@ -411,7 +411,7 @@ F3dcgAssets.InitLocks = function(){
 		if (AssetItem.Name.includes("Padlock") || AssetItem.Name.includes("MetalCuffsKey")) { 
 			ItemMiscAssetGroup.Asset.splice(i, 1);
 			
-			AssetItem.iconUrl = "ItemMisc/Preview/" + AssetItem.Name + ".png";
+			//AssetItem.iconUrl = "ItemMisc/Preview/" + AssetItem.Name + ".png";
 			
 			if(AssetItem.Name.includes("PadlockKey"))
 				keys[AssetItem.Name] = AssetItem;
@@ -439,7 +439,7 @@ F3dcgAssets.InitLocks = function(){
 	F3dcgAssets.Padlocks.MistressTimerPadlock.KeylessActions = {random:20, plus:10, minus:10};
 	
 	F3dcgAssets.Padlocks.TimerPadlock.KeylessSelections = {plus:5};	
-}
+}*/
 
 
 

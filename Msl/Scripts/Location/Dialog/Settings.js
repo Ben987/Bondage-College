@@ -38,7 +38,6 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 	
 	//simple drop downs, checkboxes, textboxes
 	this.FillFormRecursive = function(form, keyStack, settings){
-		console.log(settings);
 		for(var key in settings){
 			var value = settings[key];
 			

@@ -12,103 +12,112 @@ var MinigameAbCancel = {
 	,endCallback:null
 	,status:{}
 	
+	,mainContainer:null
+	,buttons:{a:null,b:null,cancel:null}
+	
 	,IsInProgress(){return status.startTime > 0}
 	
 	,SetNextKey(key){
-		MinigameAbCancel.nextKey = key;
-		MinigameAbCancel.gameContainer.childNodes[1].style.textShadow = "none";
-		MinigameAbCancel.gameContainer.childNodes[3].style.textShadow = "none";
-		var elem = key == "KeyA" ? MinigameAbCancel.gameContainer.childNodes[1] : MinigameAbCancel.gameContainer.childNodes[3];
-		elem.style.textShadow = MinigameAbCancel.highlightShadow;
+		this.nextKey = key;
+		this.buttons.a.style.textShadow = "none";
+		this.buttons.b.style.textShadow = "none";
+		var elem = key == "KeyA" ? this.buttons.a : this.buttons.b;
+		elem.style.textShadow = this.highlightShadow;
 	}
 	
-	
+	//updates progress, but not UI
 	,AdvanceEffort(pressedKey, deviceBonusFactor){
 		var progress = 0;
 		deviceBonusFactor = deviceBonusFactor ? deviceBonusFactor : 1.0;
-		if(pressedKey == MinigameAbCancel.nextKey){
-			MinigameAbCancel.status.hits++;
-			MinigameAbCancel.SetNextKey(MinigameAbCancel.nextKey == "KeyA" ? "KeyB" : "KeyA");
-			progress = MinigameAbCancel.extraChallenge
-					? (MinigameAbCancel.mashProgress * ((MinigameAbCancel.extraChallenge - MinigameAbCancel.progressBarProgress)/100)) 
-					: MinigameAbCancel.mashProgress;
+		if(pressedKey == this.nextKey){
+			this.status.hits++;
+			this.SetNextKey(this.nextKey == "KeyA" ? "KeyB" : "KeyA");
+			progress = this.extraChallenge
+					? (this.mashProgress * ((this.extraChallenge - this.progressBarProgress)/100)) 
+					: this.mashProgress;
 		}else{
-			MinigameAbCancel.status.misses++;
-			progress = -MinigameAbCancel.mashProgress;
+			this.status.misses++;
+			progress = -this.mashProgress;
 		}
 		
 		progress *= deviceBonusFactor;
 		
-		MinigameAbCancel.progressBarProgress += progress;
-		MinigameAbCancel.progressBarProgress = MinigameAbCancel.progressBarProgress < 0 ? 0 : MinigameAbCancel.progressBarProgress;
+		this.progressBarProgress += progress;
+		this.progressBarProgress = this.progressBarProgress < 0 ? 0 : this.progressBarProgress;
 	}
 	
-	
+	//update progress and UI
 	,Progress(){
-		MinigameAbCancel.progressBarProgress += MinigameAbCancel.autoProgress;
-		MinigameAbCancel.progressBarProgress = MinigameAbCancel.progressBarProgress < 0 ? 0 : MinigameAbCancel.progressBarProgress;
+		this.progressBarProgress += this.autoProgress;
+		this.progressBarProgress = this.progressBarProgress < 0 ? 0 : this.progressBarProgress;
 		
-		MinigameAbCancel.progressBarElem.style.width = MinigameAbCancel.progressBarProgress + "%";
+		this.progressBarElem.style.width = this.progressBarProgress + "%";
 		
-		if(MinigameAbCancel.progressBarProgress >= 100)	MinigameAbCancel.EndSuccess();
+		if(this.progressBarProgress >= 100)	this.EndSuccess();
 	}
 	
 	
 	//extra challenge of 120 is practically impossible, 100 and below theoretically impossible.
 	,Start(endCallback, autoProgress, mashProgress, extraChallenge){
-		MinigameAbCancel.status = {startTime:Date.now(), hits:0, misses:0};
-		MinigameAbCancel.gameContainer = Util.CreateElement({"template":"MinigameAbCancelTemplate", parent:LocationController.inputContainer});
-		MinigameAbCancel.progressBarElem = MinigameAbCancel.gameContainer.childNodes[7].childNodes[1];
-		MinigameAbCancel.progressBarElem.style.width = "0";
-		MinigameAbCancel.progressBarProgress = 0;
-		MinigameAbCancel.endCallback = endCallback
-		MinigameAbCancel.autoProgress = autoProgress;
-		MinigameAbCancel.mashProgress = mashProgress;
-		MinigameAbCancel.extraChallenge = extraChallenge;
+		this.status = {startTime:Date.now(), hits:0, misses:0};
+		this.mainContainer = Util.CreateElement({"template":"MinigameAbCancelTemplate", parent:LocationController.inputContainer});
 		
-		var childNodes = MinigameAbCancel.gameContainer.childNodes;
-		childNodes[1].addEventListener("touch", (e) => {MinigameAbCancel.AdvanceEffort("KeyA", 2); e.stopPropagation();});
-		childNodes[3].addEventListener("touch", (e) => {MinigameAbCancel.AdvanceEffort("KeyB", 2); e.stopPropagation();});		
-		childNodes[1].addEventListener("click", (e) => {MinigameAbCancel.AdvanceEffort("KeyA", 3); e.stopPropagation();});
-		childNodes[3].addEventListener("click", (e) => {MinigameAbCancel.AdvanceEffort("KeyB", 3); e.stopPropagation();});
-		childNodes[childNodes.length-2].addEventListener("click", (e) => {MinigameAbCancel.EndCancel(); e.stopPropagation();});
+		this.progressBarElem = Util.GetFirstChildNodeByName(this.mainContainer, "progress").childNodes[0];
+		this.progressBarElem.style.width = "0";
+		this.progressBarProgress = 0;
+		this.endCallback = endCallback
+		this.autoProgress = autoProgress;
+		this.mashProgress = mashProgress;
+		this.extraChallenge = extraChallenge;
+		
+		this.buttons.a = Util.GetFirstChildNodeByName(this.mainContainer, "buttonA");
+		this.buttons.b = Util.GetFirstChildNodeByName(this.mainContainer, "buttonB");
+		this.buttons.cancel = Util.GetFirstChildNodeByName(this.mainContainer, "buttonCancel");
+		
+		this.buttons.a.addEventListener("touch", function(e){this.AdvanceEffort("KeyA", 2); e.stopPropagation();}.bind(this));
+		this.buttons.b.addEventListener("touch", function(e){this.AdvanceEffort("KeyB", 2); e.stopPropagation();}.bind(this));		
+		
+		this.buttons.a.addEventListener("click", function(e){this.AdvanceEffort("KeyA", 3); e.stopPropagation();}.bind(this));
+		this.buttons.b.addEventListener("click", function(e){this.AdvanceEffort("KeyB", 3); e.stopPropagation();}.bind(this));
+		
+		this.buttons.cancel.addEventListener("click", function(e){this.EndCancel(); e.stopPropagation();}.bind(this));
 		
 		KeyDownEventListeners.MinigameAbCancel = function(e){
-			if(e.code == "KeyA" || e.code == "KeyB") MinigameAbCancel.AdvanceEffort(e.code);
-		}
+			if(e.code == "KeyA" || e.code == "KeyB") this.AdvanceEffort(e.code);
+		}.bind(this);
 		
-		MinigameAbCancel.SetNextKey("KeyA");		
-		MinigameAbCancel.progressBarTimer = setInterval(MinigameAbCancel.Progress, 25);
+		this.SetNextKey("KeyA");		
+		this.progressBarTimer = setInterval(this.Progress.bind(this), 25);
 	}
 	
 	
 	,Stop(){
-		clearInterval(MinigameAbCancel.progressBarTimer);
-		MinigameAbCancel.status = {};
+		clearInterval(this.progressBarTimer);
+		this.status = {};
 		delete KeyDownEventListeners.MinigameAbCancel;
 	}
 	
 	
 	,End(){
-		clearInterval(MinigameAbCancel.progressBarTimer); 
-		MinigameAbCancel.status.totalTime = Date.now() - MinigameAbCancel.status.startTime;
-		MinigameAbCancel.endCallback(MinigameAbCancel.status);
-		MinigameAbCancel.status = {};
+		clearInterval(this.progressBarTimer); 
+		this.status.totalTime = Date.now() - this.status.startTime;
+		this.endCallback(this.status);
+		this.status = {};
 		delete KeyDownEventListeners.MinigameAbCancel;
-		MinigameAbCancel.gameContainer.parentNode.removeChild(MinigameAbCancel.gameContainer);
-		MinigameAbCancel.gameContainer = null;
-		MinigameAbCancel.progressBarElem = null;
+		this.mainContainer.parentNode.removeChild(this.mainContainer);
+		this.mainContainer = null;
+		this.progressBarElem = null;
 	}
 	
 	
 	,EndSuccess(){
-		MinigameAbCancel.status.success = true;
-		MinigameAbCancel.End();
+		this.status.success = true;
+		this.End();
 	}
 	
 	
 	,EndCancel(){
-		MinigameAbCancel.status.canceled = true;
-		MinigameAbCancel.End();
+		this.status.canceled = true;
+		this.End();
 	}
 }

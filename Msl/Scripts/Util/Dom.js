@@ -178,10 +178,10 @@ Util.DateTime = {
 			if(! element.parentNode)
 				clearInterval(scheduledInterval);
 			
-			if (timeRemaining <= 0) {
+			/*if (timeRemaining <= 0) {
 				clearInterval(scheduledInterval);
 				if(callback) callback();
-			}
+			}*/
 		}, 1000);
 	}
 }

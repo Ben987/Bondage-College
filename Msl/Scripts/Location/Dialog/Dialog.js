@@ -34,14 +34,14 @@ var LocationDialog = {
 	
 	,StartClothes(player){
 		this.Start(player);
-		this.ShowView("appearance");
+		this.ShowViewAndHideOthers("appearance");
 		Util.SelectElementAndDeselectSiblings(Util.GetFirstChildNodeByName(this.topLevelMenuContainer, "appearance"));
 		this.views.appearance.SelectItemGroupType("clothes");
 	}
 	
 	,StartBondageToys(player){
 		this.Start(player);
-		this.ShowView("appearance");
+		this.ShowViewAndHideOthers("appearance");
 		Util.SelectElementAndDeselectSiblings(Util.GetFirstChildNodeByName(this.topLevelMenuContainer, "appearance"));
 		this.views.appearance.SelectItemGroupType("bondageToys");
 	}
@@ -65,9 +65,13 @@ var LocationDialog = {
 			this.Interrupt();
 		}.bind(this));
 		
-		["Profile", "Social", "Appearance", "Settings"].forEach(actionName => { 
+		var viewNames = player.IsMainPlayer() ?	["Profile", "Social", "Appearance", "Settings"] : ["Profile", "Interaction", "Appearance"];
+		viewNames.forEach(actionName => { 
 			let a = actionName.toLowerCase();
-			Util.GetFirstChildNodeByName(this.topLevelMenuContainer, a).addEventListener("click", function(event){this.ShowView(a);}.bind(this));
+			var topLevelButton = Util.GetFirstChildNodeByName(this.topLevelMenuContainer, a);
+			topLevelButton.addEventListener("click", function(event){this.ShowViewAndHideOthers(a);}.bind(this));
+			topLevelButton.style.display = "block";
+			
 			this.viewsContainerElements[a] = Util.GetFirstChildNodeByName(this.viewContainer, a);
 			this.views[a] = new window["LocationDialog" + actionName + "View"](this, this.viewsContainerElements[a]);
 		});
@@ -79,31 +83,24 @@ var LocationDialog = {
 		else
 			backgroundCoverElement.classList.remove("transparent");
 		
-		LocationDialog.ShowView(this.currentAction);
+		LocationDialog.ShowViewAndHideOthers(this.currentAction);
 	}
 	
-	,ShowView(viewName){
+	,ShowViewAndHideOthers(viewName){
 		for(var name in this.views){
 			var viewContainerElement = this.viewsContainerElements[name];
 			if(! viewContainerElement) continue;
-			//if(viewContainerElement.style.opacity == 0) continue;
-			viewContainerElement.style.opacity = "0";	
-			viewContainerElement.style.transition = "opacity 250ms";// .2s cubic-bezier(.42, 0, .34, 1.01)"
-			viewContainerElement.style.pointerEvents = "none"
+			viewContainerElement.classList.remove("visible");
 		}
 		
 		var viewContainerElement = this.viewsContainerElements[viewName];
 		if(! viewContainerElement) return;
-		viewContainerElement.style.opacity = "1";
-		viewContainerElement.style.transition = "500ms";
-		viewContainerElement.style.transitionDelay = "250ms";
-		viewContainerElement.style.pointerEvents = "auto";
-
+		viewContainerElement.classList.add("visible");
 	}
 }
 
-
+/*
 var LocationDialogAccountView  = function(mainDialog){
 	this.Show = function(){}
 	this.Hide = function(){}
-}
+}*/

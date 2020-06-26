@@ -14,6 +14,10 @@ var LocationPlayer = function(Player){
 		return this.update;
 	}
 	
+	this.IsMainPlayer = function(){
+		return this.id == MainController.playerAccount.id;
+	}
+	
 	this.UpdateAppearanceAndRender = function(appearanceUpdate){
 		if(appearanceUpdate) F3dcgAssets.UpdateAppearance(appearanceUpdate, this);
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.activePose);
@@ -74,10 +78,11 @@ var LocationPlayerUpdate = function(player){
 	//this.clothOrAccessoryUpdateLimit = 100;//unlimited
 	this.updateStack = [];
 	
+	/*
 	this.GetInventoryItem = function(groupName, itemName){
 		var item = this.items[F3dcgAssets.AssetGroups[groupName].type][groupName].items.find(inventoryItem => inventoryItem.itemName == itemName);
 		return item;
-	}
+	}*/
 	
 	this.GetApplicableItems = function(){
 		return this.items;
@@ -110,10 +115,62 @@ var LocationPlayerUpdate = function(player){
 	this.AddColor = function(itemName, color){
 		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
-		var existingItem = this.appearance[AssetGroup.type][groupName];
-		//var mostRecentItemName = this.HasChanges() ? this.updateStack[this.updateStack.length - 1].item.name : existingItem.name;
+		var currentItem = this.appearance[AssetGroup.type][groupName];
+		//var mostRecentItemName = this.HasChanges() ? this.updateStack[this.updateStack.length - 1].item.name : currentItem.name;
 		
-		return this.Add(AssetGroup.type, groupName, existingItem.name, color ? color.ToHexString() : null, existingItem.variant);
+		return this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:color ? color.ToHexString() : null, variant:currentItem.variant, lock:currentItem.lock});
+	}
+	
+	
+	this.UpdateLock = function(itemName, lockPropertyName, lockPropertyValue){
+		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		var currentItem = this.appearance[AssetGroup.type][groupName];
+		
+		var lock = suit.frame = Util.CloneRecursive(currentItem.lock);
+		switch(lockPropertyName){
+			case "showTimer":
+			case "removeItem":
+			case "enableInput":
+				lock[lockPropertyName] = ! lock[lockPropertyName];
+			break;
+			default:
+				lock[lockPropertyName] = lockPropertyValue;
+			break;
+		}
+		
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, lock});
+		
+		return [];
+	}
+	
+	
+	this.RemoveLock = function(itemName, lockName){
+		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		var currentItem = this.appearance[AssetGroup.type][groupName];
+		
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant});
+		
+		return [];
+	}
+	
+	this.AddLock = function(itemName, lockName){
+		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		var currentItem = this.appearance[AssetGroup.type][groupName];
+		
+		var lock = {name:lockName, originPlayerId:MainController.playerAccount.id};
+		switch(lockName){
+			case "TimerPadlock":
+				lock.timer = {time:Date.now() + 1000*60*60*5, showTimer:true, removeItem:false, enableActions:false};
+			break;
+			default: break;
+		}
+		
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, lock:lock});
+		
+		return [];
 	}
 	
 	
@@ -122,10 +179,9 @@ var LocationPlayerUpdate = function(player){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.player.appearance[AssetGroup.type][groupName];
 		
-		//TODO: restore 
-		//if(currentItem.name != itemName) return ["CanOnlySetVariantOnAppliedItem"]
+		if(currentItem.name != itemName) return ["CanOnlySetVariantOnAppliedItem"]
 		
-		this.Add(AssetGroup.type, groupName, itemName, currentItem?.color, variantName);
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:itemName, color:currentItem?.color, variant:variantName, lock:currentItem.lock});
 		
 		return [];
 	}
@@ -142,37 +198,38 @@ var LocationPlayerUpdate = function(player){
 			if(mostRecent && mostRecent.groupName != groupName) return ["OnlyOneBondageToyAtTime"];
 		}
 		
-		this.Add(AssetGroup.type, groupName, itemName, colorHexString);
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:itemName, color:colorHexString});
 		
 		return [];
 	}
 	
 	
-	//Assuming validation has been taken care of elsewhere
-	this.Add = function(groupTypeName, groupName, itemName, colorHexString, variant){
-	console.log(variant);
+	//Validation has been taken care of elsewhere
+	//this.Add = function(groupTypeName, groupName, itemName, colorHexString, variant){
+	this.Add = function(itemData){
 		var newItem;
 		
-		switch(groupTypeName){
+		switch(itemData.groupTypeName){
 			case F3dcgAssets.CLOTH:
-				newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildClothAppearanceItem(itemName, colorHexString);
+				newItem = itemData.itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildClothAppearanceItem(itemData.itemName, itemData.color);
 			break;
 			case F3dcgAssets.ACCESSORY:
-				newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildAccessoryAppearanceItem(itemName, colorHexString);
+				newItem = itemData.itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildAccessoryAppearanceItem(itemData.itemName, itemData.color);
 			break;
 			case F3dcgAssets.EXPRESSION:
-				newItem = F3dcgAssets.BuildExpressionAppearanceItem(itemName);
+				newItem = F3dcgAssets.BuildExpressionAppearanceItem(itemData.itemName);
 			break;
 			case F3dcgAssets.BONDAGE_TOY:
-				newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildBondageToyAppearanceItem(itemName, colorHexString);
+				newItem = itemData.itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildBondageToyAppearanceItem(itemData.itemName, itemData.color);
 			break;
 			default:
 				return [AssetGroup.type + " not supported"];
 		}
 		
-		newItem.variant = variant;
-		this.appearance[groupTypeName][groupName] = newItem;
-		this.updateStack.push({type:groupTypeName, groupName:groupName, item:newItem});
+		if(itemData.lock) newItem.lock = itemData.lock;
+		if(itemData.variant) newItem.variant = itemData.variant;
+		this.appearance[itemData.groupTypeName][itemData.groupName] = newItem;
+		this.updateStack.push({type:itemData.groupTypeName, groupName:itemData.groupName, item:newItem});
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);	
 	}
 	

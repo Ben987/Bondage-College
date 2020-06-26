@@ -158,7 +158,9 @@ var F3dcgAssetsRender = {
 				
 				renderItemLayer.url = F3dcgAssets.F3DCG_ASSET_BASE + groupPart + posePart + itemPart + sizePart + urlPartLayerName + variantPart + ".png";
 			});
-			//if(AppItem.lock) item.urlLock = groupPart + posePart + itemPart + "_Lock.png";
+			
+			if(appearanceItem.lock) renderItem.layers.push({colorize:false, priority:AssetItem.Priority, url:F3dcgAssets.F3DCG_ASSET_BASE + groupPart +  posePart + itemPart + "_Lock.png"});
+			//item.urlLock = groupPart + posePart + itemPart + "_Lock.png";
 		} else {
 			if(AssetItem.Variant)
 				variantPart = variantPart == Object.keys(AssetItem.Variant)[0] ? "" : variantPart;
@@ -170,6 +172,7 @@ var F3dcgAssetsRender = {
 			renderItem.layers.push({url:url, colorize: true});
 			
 			//if(appearanceItem.lock) appearanceItem.layers.push({url:F3dcgAssets.F3DCG_ASSET_BASE + groupPart + posePart + itemPart + "_Lock.png", colorize:false});
+			if(appearanceItem.lock) renderItem.layers.push({colorize:false, priority:AssetItem.Priority, url:F3dcgAssets.F3DCG_ASSET_BASE + groupPart +  posePart + itemPart + "_Lock.png"});
 		}
 		
 		if(AssetItemGroup.AllowColorize !== false){

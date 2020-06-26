@@ -50,7 +50,7 @@ F3dcgAssets.SuitSelfTypeGroups = {};
 F3dcgAssets.SuitOtherTypeGroups = {};
 	
 F3dcgAssets.Init = function(){
-	this.InitLocks();
+	//this.InitLocks(); 
 	this.InitClothesGroupsNames();
 	this.InitGroupTypes();
 	this.InitItems();
