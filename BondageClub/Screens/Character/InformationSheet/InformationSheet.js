@@ -178,6 +178,7 @@ function InformationSheetClick() {
 
 // when the user exit this screen
 function InformationSheetExit() {
+	InformationSheetSecondScreen = false;
 	CommonSetScreen(InformationSheetPreviousModule, InformationSheetPreviousScreen);
 }
 

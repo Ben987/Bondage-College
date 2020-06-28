@@ -50,11 +50,11 @@ function InventoryItemMouthDuctTapeSetType(NewType) {
 		InventoryItemMouthDuctTapeLoad();
 	}
 	DialogFocusItem.Property.Type = NewType;
-	if (NewType == null) DialogFocusItem.Property.Effect = ["GagVeryLight"];
-	else if (NewType == "Crossed") DialogFocusItem.Property.Effect = ["GagVeryLight"];
-	else if (NewType == "Full") DialogFocusItem.Property.Effect = ["GagLight"];
-	else if (NewType == "Double") DialogFocusItem.Property.Effect = ["GagEasy"];
-	else if (NewType == "Cover") DialogFocusItem.Property.Effect = ["GagNormal"];
+	if (NewType == null) DialogFocusItem.Property.Effect = ["BlockMouth", "GagVeryLight"];
+	else if (NewType == "Crossed") DialogFocusItem.Property.Effect = ["BlockMouth", "GagVeryLight"];
+	else if (NewType == "Full") DialogFocusItem.Property.Effect = ["BlockMouth", "GagLight"];
+	else if (NewType == "Double") DialogFocusItem.Property.Effect = ["BlockMouth", "GagEasy"];
+	else if (NewType == "Cover") DialogFocusItem.Property.Effect = ["BlockMouth", "GagNormal"];
 	CharacterRefresh(C);
 	var msg = "DuctTapeMouthSet" + ((NewType) ? NewType : "Small");
 	var Dictionary = [];

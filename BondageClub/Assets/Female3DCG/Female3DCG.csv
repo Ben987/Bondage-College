@@ -648,6 +648,7 @@ ItemArms,Web,Web
 ItemArms,LatexArmbinder,Latex Armbinder
 ItemArms,SeamlessLatexArmbinder,Seamless Latex Armbinder
 ItemArms,FullBodyLeatherHarness,Full Body Leather Harness
+ItemArms,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
 ItemArms,TightJacket,Tight Straighjacket
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
@@ -887,11 +888,12 @@ ItemHead,LewdBlindfold,Lewd Blindfold
 ItemHead,LatexBlindfold,Latex Blindfold
 ItemHead,DogHood,Dog Hood
 ItemHead,FoxyMask,Foxy Mask
-ItemHead,SleepMask,Sleep Mask
+ItemHead,FrilledSleepMask,Frilled Sleep Mask
 ItemHead,BlackoutLenses,Blackout Lenses
 ItemHead,WebBlindfold,Web
 ItemHead,RopeBlindfold,Rope Blindfold
 ItemHead,PonyHood,Pony Hood
+ItemHead,SleepMask,Smooth Sleep Mask
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
@@ -953,7 +955,6 @@ ItemAddon,BedRopes,Bed Ropes
 ItemAddon,BedStraps,Bed Straps
 ItemAddon,BedTape,Bed Tape
 ItemAddon,BedChains,Bed Chains
-ItemAddon,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels
