@@ -611,11 +611,17 @@ function CharacterAppearanceNextColor(C, Group) {
 }
 
 // Moves the offset to get new character appearance items
-function CharacterAppearanceMoveOffset(Move) {
+function CharacterAppearanceMoveOffset(C, Move) {
+
+	// Get the amount of visible groups for that character
+	var AssetGroupLength = (C.ID == 0) ? AssetGroup.length : AssetGroup.filter(G => G.Clothing).length;
+
+	// Calculate the new offset
 	CharacterAppearanceOffset = CharacterAppearanceOffset + Move;
-	if (CharacterAppearanceOffset > AssetGroup.length) CharacterAppearanceOffset = 0;
+	if (CharacterAppearanceOffset >= AssetGroupLength) CharacterAppearanceOffset = 0;
 	if ((AssetGroup[CharacterAppearanceOffset].Category != "Appearance") || !AssetGroup[CharacterAppearanceOffset].AllowCustomize) CharacterAppearanceOffset = 0;
-	if (CharacterAppearanceOffset < 0) CharacterAppearanceOffset = Math.floor(AssetGroup.length / CharacterAppearanceNumPerPage) * CharacterAppearanceNumPerPage;
+	if (CharacterAppearanceOffset < 0) CharacterAppearanceOffset = Math.floor(AssetGroupLength / CharacterAppearanceNumPerPage) * CharacterAppearanceNumPerPage;
+
 }
 
 // Sets the color for a specific group
@@ -635,7 +641,7 @@ function AppearanceClick() {
 
 		// If we must remove/restore to default the item
 		if ((MouseX >= 1210) && (MouseX < 1275) && (MouseY >= 145) && (MouseY < 975))
-			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage;A++)
+			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing) && AssetGroup[A].AllowNone && !AssetGroup[A].KeepNaked && (InventoryGet(C, AssetGroup[A].Name) != null))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
 						InventoryRemove(C, AssetGroup[A].Name);
@@ -673,7 +679,7 @@ function AppearanceClick() {
 		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0)) CharacterAppearanceFullRandom(C);
 		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID != 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
 		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceStripLayer(C);
-		if ((MouseX >= 1651) && (MouseX < 1741) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceMoveOffset(CharacterAppearanceNumPerPage);
+		if ((MouseX >= 1651) && (MouseX < 1741) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceMoveOffset(C, CharacterAppearanceNumPerPage);
 		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceExit(C);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceReady(C);
 

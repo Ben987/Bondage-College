@@ -69,14 +69,16 @@ function ActivityDialogBuild(C) {
 				// Make sure all the prerequisites are met
 				if (Allow && (Activity.Prerequisite != null))
 					for (var P = 0; P < Activity.Prerequisite.length; P++) {
-						if ((Activity.Prerequisite[P] == "UseMouth") && !Player.CanTalk()) Allow = false;
-						if ((Activity.Prerequisite[P] == "UseHands") && !Player.CanInteract()) Allow = false;
-						if ((Activity.Prerequisite[P] == "UseFeet") && !Player.CanWalk()) Allow = false;
-						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemButt") && ((InventoryPrerequisiteMessage(C, "AccessButt") != "") || C.IsPlugged())) Allow = false;
-						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemVulva") && ((InventoryPrerequisiteMessage(C, "AccessVulva") != "") || C.IsVulvaChaste())) Allow = false;
-						if ((Activity.Prerequisite[P] == "ZoneNaked") && ((C.FocusGroup.Name == "ItemBreast") || (C.FocusGroup.Name == "ItemNipples")) && ((InventoryPrerequisiteMessage(C, "AccessBreast") != "") || C.IsBreastChaste())) Allow = false;
-						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemBoots") && (InventoryPrerequisiteMessage(C, "NakedFeet") != "")) Allow = false;
-						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemHands") && (InventoryPrerequisiteMessage(C, "NakedHands") != "")) Allow = false;
+						if ((Activity.Prerequisite[P] == "UseMouth") && (Player.IsMouthBlocked() || !Player.CanTalk())) Allow = false;
+						else if ((Activity.Prerequisite[P] == "UseTongue") && Player.IsMouthBlocked()) Allow = false;
+						else if ((Activity.Prerequisite[P] == "UseHands") && !Player.CanInteract()) Allow = false;
+						else if ((Activity.Prerequisite[P] == "UseFeet") && !Player.CanWalk()) Allow = false;
+						else if ((Activity.Prerequisite[P] == "TargetCanUseTongue") && C.IsMouthBlocked()) Allow = false;
+						else if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemButt") && ((InventoryPrerequisiteMessage(C, "AccessButt") != "") || C.IsPlugged())) Allow = false;
+						else if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemVulva") && ((InventoryPrerequisiteMessage(C, "AccessVulva") != "") || C.IsVulvaChaste())) Allow = false;
+						else if ((Activity.Prerequisite[P] == "ZoneNaked") && ((C.FocusGroup.Name == "ItemBreast") || (C.FocusGroup.Name == "ItemNipples")) && ((InventoryPrerequisiteMessage(C, "AccessBreast") != "") || C.IsBreastChaste())) Allow = false;
+						else if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemBoots") && (InventoryPrerequisiteMessage(C, "NakedFeet") != "")) Allow = false;
+						else if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemHands") && (InventoryPrerequisiteMessage(C, "NakedHands") != "")) Allow = false;
 					}
 
 				// Make sure the current player has permission to do this activity

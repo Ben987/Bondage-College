@@ -12,7 +12,7 @@ var InventoryItemHeadWebBlindfoldOptions = [
 			Difficulty: 30,
 			Hide: ["HairFront", "HairBack", "Glasses", "Hat"],
 			Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars"],
-			Effect: ["BlindHeavy", "Prone", "GagNormal"],
+			Effect: ["BlindHeavy", "Prone", "GagNormal", "BlockMouth"],
 		},
 	},
 ];
@@ -30,8 +30,7 @@ function InventoryItemHeadWebBlindfoldClick() {
 	ExtendedItemClick(InventoryItemHeadWebBlindfoldOptions);
 }
 
-function InventoryItemHeadWebBlindfoldPublishAction(Option) {
-	var C = CharacterGetCurrent();
+function InventoryItemHeadWebBlindfoldPublishAction(C, Option) {
 	var msg = "HeadWebSet" + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },

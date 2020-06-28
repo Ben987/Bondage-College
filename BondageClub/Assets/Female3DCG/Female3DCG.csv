@@ -304,12 +304,13 @@ Glasses,Glasses5,Style 5
 Glasses,Glasses6,Style 6
 Glasses,SunGlasses1,Sunglasses 1
 Glasses,SunGlasses2,Sunglasses 2
-Glasses,Mask1,Venetian Mask
-Glasses,Mask2,Domino Mask
-Glasses,ButterflyMask1,Butterfly Mask
 Glasses,EyePatch1,Eye Patch
-Glasses,ShinobiMask,Shinobi Mask
-Glasses,FoxMask,Fox Mask
+Mask,,Mask
+Mask,VenetianMask,Venetian Mask
+Mask,DominoMask,Domino Mask
+Mask,ButterflyMask,Butterfly Mask
+Mask,ShinobiMask,Shinobi Mask
+Mask,FoxMask,Fox Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
@@ -339,6 +340,7 @@ Wings,DevilWings,Devil Wings
 Wings,FallenAngelWings,Fallen Angel Wings
 Wings,AngelWings,Angel Wings
 Wings,BatWings,Bat Wings
+Wings,FairyWings,Fairy Wings
 Height,,Height
 Height,H0950,165 cm
 Height,H0960,167 cm
@@ -648,6 +650,8 @@ ItemArms,Web,Web
 ItemArms,LatexArmbinder,Latex Armbinder
 ItemArms,SeamlessLatexArmbinder,Seamless Latex Armbinder
 ItemArms,FullBodyLeatherHarness,Full Body Leather Harness
+ItemArms,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
+ItemArms,TightJacket,Tight Straighjacket
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -886,11 +890,12 @@ ItemHead,LewdBlindfold,Lewd Blindfold
 ItemHead,LatexBlindfold,Latex Blindfold
 ItemHead,DogHood,Dog Hood
 ItemHead,FoxyMask,Foxy Mask
-ItemHead,SleepMask,Sleep Mask
+ItemHead,FrilledSleepMask,Frilled Sleep Mask
 ItemHead,BlackoutLenses,Blackout Lenses
 ItemHead,WebBlindfold,Web
 ItemHead,RopeBlindfold,Rope Blindfold
 ItemHead,PonyHood,Pony Hood
+ItemHead,SleepMask,Smooth Sleep Mask
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
@@ -946,13 +951,12 @@ ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemAddon,OldGasMaskLenses,Blinding Lenses
 ItemAddon,OldGasMaskTube1,Gas Mask Tube
 ItemAddon,OldGasMaskTube2,Gas Mask Tube
-ItemAddon,OldGasMaskRebreather,Rebreather,
+ItemAddon,OldGasMaskRebreather,Rebreather
 ItemAddon,Covers,Blanket
 ItemAddon,BedRopes,Bed Ropes
 ItemAddon,BedStraps,Bed Straps
 ItemAddon,BedTape,Bed Tape
 ItemAddon,BedChains,Bed Chains
-ItemAddon,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels

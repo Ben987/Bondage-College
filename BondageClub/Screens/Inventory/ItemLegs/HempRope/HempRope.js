@@ -16,7 +16,8 @@ const HempRopeLegsOptions = [
 	}, {
 		Name: "Frogtie",
 		RequiredBondageLevel: 3,
-		Property: { Type: "Frogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Difficulty: 3 },
+		Property: { Type: "Frogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Effect: ["ForceKneel"], Difficulty: 3 },
+		Prerequisite: ["NotSuspended", "CanKneel"],
 	}, {
 		Name: "Crossed",
 		RequiredBondageLevel: 4,
@@ -64,7 +65,8 @@ function InventoryItemLegsHempRopeDraw() {
 
 // Catches the item extension clicks
 function InventoryItemLegsHempRopeClick() {
-
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	
 	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeLegsOptionOffset += 4;
@@ -80,7 +82,11 @@ function InventoryItemLegsHempRopeClick() {
 			if (HempRopeLegsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeLegsOptions[I].RequiredBondageLevel) {
 				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", HempRopeLegsOptions[I].RequiredBondageLevel);
 			}
-			else InventoryItemLegsHempRopeSetPose(HempRopeLegsOptions[I]);
+			else if (!InventoryAllow(C, HempRopeLegsOptions[I].Prerequisite, true)) {
+				DialogExtendedMessage = DialogText;
+			} else { 
+				InventoryItemLegsHempRopeSetPose(HempRopeLegsOptions[I]);
+			}
 	}
 }
 
