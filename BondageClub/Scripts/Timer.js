@@ -143,10 +143,11 @@ function TimerProcess(Timestamp) {
 							var Factor = -1;
 							for (var A = 0; A < Character[C].Appearance.length; A++) {
 								var Item = Character[C].Appearance[A];
-								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.Group.Name) - 2;
-								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor))
-									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.Group.Name))
+								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
+								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor)){
+									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.ArousalZone))
 										Factor = Item.Property.Intensity + ZoneFactor;
+								}
 							}
 							if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) ActivityTimerProgress(Character[C], 1);
 							if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) ActivityTimerProgress(Character[C], 1);
@@ -173,9 +174,9 @@ function TimerProcess(Timestamp) {
 							var Factor = -1;
 							for (var A = 0; A < Character[C].Appearance.length; A++) {
 								var Item = Character[C].Appearance[A];
-								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.Group.Name) - 2;
+								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
 								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor))
-									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.Group.Name))
+									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.ArousalZone))
 										Factor = Item.Property.Intensity + ZoneFactor;
 							}
 

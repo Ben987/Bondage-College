@@ -68,6 +68,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 100,,Show me your pants or skirts.,,"Start(""ClothLower"")",
 100,,Hats or head accessories.,,"Start(""Hat"")",
 100,,Do you have glasses?,,"Start(""Glasses"")",
+100,,Do you have masks?,,"Start(""Mask"")",
 100,101,What other types of clothes do you have?,We have all kinds of clothes,,
 100,0,I've changed my mind.,Can I help you with something else?,,
 101,,Do you have any necklaces?,,"Start(""Necklace"")",
