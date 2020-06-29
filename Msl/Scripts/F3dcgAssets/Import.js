@@ -62,6 +62,21 @@ DeafHeavy: true
 "": true
 Enclose: true
 */
+/*
+"LegsOpen", "NotKneeling", "AccessVulva", "NotSuspended", "NotHogtied", "NotHorse", "NotChaste", "NotShackled", 
+"AccessVulvaSuitZip", "RemotesAllowed", "CannotHaveWand", "AccessTorso", "AccessBreast", "AccessBreastSuitZip", 
+"NoItemFeet", "NotMounted", "NotKneelingSpread", "Collared", "NoFeetSpreader", "NotMasked", "CannotBeSuited", "NoItemLegs", 
+"NotYoked", "StraitDressOpen", "OnBed", "AllFours", "CanKneel", "GagFlat", "GagUnique", "GagCorset", "GasMask",
+ "DisplayFrame", "NoItemArms", "NoItemHands", "NoHorse", "ToeTied"
+	var p = {}; 
+	Object.values(F3dcgAssets.AssetGroups).forEach( AssetGroup => {
+		Object.values(AssetGroup.Items).forEach(AssetItem => {
+			AssetItem.Prerequisite?.forEach(preq => {
+				p[preq] = true;
+			});
+		});
+	});
+	console.log(Object.keys(p));*/
 
 	PoseFemale3DCG.forEach(pose => {
 		F3dcgAssets.Poses[pose.Name] = pose;
@@ -297,7 +312,7 @@ F3dcgAssets.InitVariants = function(){
 	});
 	
 	
-	G = F3dcgAssets.AssetGroups.ItemMouth;//DildoPlugGag_Lock,  DildoPlugGag_Strap, DildoPlugGag_Tongue, DildoPlugGagPlug_Close
+	G = F3dcgAssets.AssetGroups.ItemMouth;
 	V = this.SimplestVariant(G.Items.DildoPlugGag, ["Open", "Plug"]);
 	V.Open.Property = {Effect:["GagVeryLight"]};
 	V.Plug.Property = {Effect:["GagVeryHeavy"]};

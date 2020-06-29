@@ -1,5 +1,7 @@
 /*percentage-based margin values are calculated relative to the width of containing block*/
 
+/* group in the context of a character refers to the item slot, that can be occupied by an item.*/
+
 body {box-sizing: border-box;}
 div {box-sizing: border-box;}
 textarea {box-sizing: border-box;}
@@ -105,13 +107,10 @@ div.chat-hover-item:after {
 .dialog-selection > div > img {width:100%; height:100%;background-color:white}
 .dialog-selection > div:hover > img{background-color:gray;}
 
-
-
 .dialog-views {position:absolute;left:10%;width:90%;height:100%; color:white; font-size:150%}
 .dialog-views > div {position:absolute;left:0;top:0;width:100%;height:100%;}
 .dialog-views > div {transition: opacity 250ms; opacity:0; pointer-events:none}
 .dialog-views > div.visible { transition: opacity 250ms; opacity:1; pointer-events:auto; transitionDelay:250ms}
-
 
 .dialog-profile {width:100%;height:100%}
 .dialog-profile-description {float:right;width:40%;height:100%;padding:1%;}
@@ -126,80 +125,83 @@ div.chat-hover-item:after {
 
 .dialog-social {position:absolute;top:0;left:0;width:100%; height:100%; overflow-y:auto;}}
 
+/* The appearance view -- this one is biggest*/
 .dialog-appearance{}
-.dialog-appearance-figure {position:absolute;width:27.17%;left:30%;height:100%;border:1px white solid;}
 
+/* appearance top level menu -- group type plus wardrobe*/
 .dialog-appearance-group-type-selection {position:absolute;left:0%;width:10%;height:100%;}
 .dialog-appearance-group-type-selection > div {height:16.5%; padding:15%}
 .dialog-appearance-group-type-selection > div.selected {box-shadow: inset 0 0 1em 0.5em #0aa;}
 .dialog-appearance-group-type-selection > div > img {width:100%; height:100%;background-color:white}
 .dialog-appearance-group-type-selection > div > img:hover {background-color:gray;}
 
-.dialog-appearance-group-selection {}
-.dialog-appearance-group-selection > div {display:none;border:.1em white solid;word-break:break-word;color:black}
-.dialog-appearance-group-selection > div.filled {border:.1em yellow solid}
-.dialog-appearance-group-selection > div.blocked {border:.1em red solid}
-.dialog-appearance-group-selection > div.selected {border:.1em green solid}
-.dialog-appearance-group-selection > div > img {position:absolute; width:100%; height:100%;}
-.dialog-appearance-group-selection > .grid-cell {position:absolute;height:7%;margin:1%;overflow:hidden;}
-.dialog-appearance-group-selection > .heightx2 {height:14.1%;}
-.dialog-appearance-group-selection > .heightx3 {height:21.2%;}
-.dialog-appearance-group-selection > .col0 {left:5%; width:24%}
-.dialog-appearance-group-selection > .col1 {left:30%; width:40%}
-.dialog-appearance-group-selection > .col2 {left:71%; width:24%}
-.dialog-appearance-group-selection > .widthx3 {width:90%;}
-.dialog-appearance-group-selection > .row0 {top:0%}
-.dialog-appearance-group-selection > .row1 {top:7.1%}
-.dialog-appearance-group-selection > .row2 {top:14.2%}
-.dialog-appearance-group-selection > .row3 {top:21.3%}
-.dialog-appearance-group-selection > .row4 {top:28.4%}
-.dialog-appearance-group-selection > .row5 {top:35.6%}
-.dialog-appearance-group-selection > .row6 {top:42.7%}
-.dialog-appearance-group-selection > .row7 {top:49.8%}
-.dialog-appearance-group-selection > .row8 {top:56.9%}
-.dialog-appearance-group-selection > .row9 {top:64.0%}
-.dialog-appearance-group-selection > .row10 {top:71.1%}	
-.dialog-appearance-group-selection > .row11 {top:78.2%}
-.dialog-appearance-group-selection > .row12 {top:85.3%}
+.dialog-appearance-figure {position:absolute;width:27.17%;left:20%;height:100%;border:1px white solid;}
 
-.dialog-appearance-wardrobe {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll;font-size:50%}
+.dialog-appearance-figure > .group-selection {}
+.dialog-appearance-figure > .group-selection > div {display:none;border:.1em white solid;word-break:break-word;color:black}
+.dialog-appearance-figure > .group-selection > div.filled {border:.1em yellow solid}
+.dialog-appearance-figure > .group-selection > div.blocked {border:.1em red solid}
+.dialog-appearance-figure > .group-selection > div.selected {border:.1em green solid}
+.dialog-appearance-figure > .group-selection > div > img {position:absolute; width:100%; height:100%;}
+.dialog-appearance-figure > .group-selection > .grid-cell {position:absolute;height:7%;margin:1%;overflow:hidden;}
+.dialog-appearance-figure > .group-selection > .heightx2 {height:14.1%;}
+.dialog-appearance-figure > .group-selection > .heightx3 {height:21.2%;}
+.dialog-appearance-figure > .group-selection > .col0 {left:5%; width:24%}
+.dialog-appearance-figure > .group-selection > .col1 {left:30%; width:40%}
+.dialog-appearance-figure > .group-selection > .col2 {left:71%; width:24%}
+.dialog-appearance-figure > .group-selection > .widthx3 {width:90%;}
+.dialog-appearance-figure > .group-selection > .row0 {top:0%}
+.dialog-appearance-figure > .group-selection > .row1 {top:7.1%}
+.dialog-appearance-figure > .group-selection > .row2 {top:14.2%}
+.dialog-appearance-figure > .group-selection > .row3 {top:21.3%}
+.dialog-appearance-figure > .group-selection > .row4 {top:28.4%}
+.dialog-appearance-figure > .group-selection > .row5 {top:35.6%}
+.dialog-appearance-figure > .group-selection > .row6 {top:42.7%}
+.dialog-appearance-figure > .group-selection > .row7 {top:49.8%}
+.dialog-appearance-figure > .group-selection > .row8 {top:56.9%}
+.dialog-appearance-figure > .group-selection > .row9 {top:64.0%}
+.dialog-appearance-figure > .group-selection > .row10 {top:71.1%}	
+.dialog-appearance-figure > .group-selection > .row11 {top:78.2%}
+.dialog-appearance-figure > .group-selection > .row12 {top:85.3%}
+
+
+.dialog-appearance-update-stack-buttons {position:absolute; left:10%; top:50%; width:10%; height:50%; }
+.dialog-appearance-update-stack-buttons > div {width:100%; height:35%; padding:15%;}
+.dialog-appearance-update-stack-buttons > div > img{width:100%; height:100%; background-color:white;}
+.dialog-appearance-update-stack-buttons > div:hover > img{background-color:gray;}
+
+
+.dialog-appearance-group-wardrobe {position:absolute;left:50%;width:50%;height:100%;}
+.dialog-appearance-group {width:100%;height:100%;}
+.dialog-appearance-group > .buttons {width:100%;height:15%}
+.dialog-appearance-group > .buttons > div.selected {box-shadow: inset 0 0 1em 0.5em #0aa;}
+.dialog-appearance-group > .buttons > div {float:left;width:16.5%;height:100%;padding:2%;}
+.dialog-appearance-group > .buttons > div > img {width:100%;height:100%;background-color:white;}
+
+
+.dialog-appearance-group > .items-actions {width:100%;height:85%;position:relative}
+.dialog-appearance-group > .items-actions > div {position:absolute;width:100%;height:100%; }
+.dialog-appearance-group > .items-actions > .items {overflow-y:scroll; }
+.dialog-appearance-group > .items-actions > .items > div {position:relative;width:22%;padding-top:22%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:white; word-break:break-word}
+.dialog-appearance-group > .items-actions > .items > div > img {position:absolute;width:100%;max-height:100%;top:0%;left:0; }
+.dialog-appearance-group > .items-actions > .items > div > div {position:absolute;color:black;top:0;}
+
+
+.dialog-appearance-group > .items-actions > .variants > div {position:relative;width:22%;padding-top:22%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:white; word-break:break-word}
+.dialog-appearance-group > .items-actions > .variants > div > img {position:absolute;width:100%;max-height:100%;top:0%;left:0; }
+.dialog-appearance-group > .items-actions > .variants > div > div {position:absolute;color:black;top:0;}
+
+
+.dialog-appearance-wardrobe {width:100%;height:100%;overflow-y:auto}
 .dialog-appearance-wardrobe > div {position:relative;width:30%;padding-top:66%;margin:1.5% 1.5% 1 .5% 1.5%;float:left;}
 .dialog-appearance-wardrobe > div  > div {position:absolute;width:100%;height:81%;top:0%;left:0}
 
-.dialog-appearance-item-selection {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll;color:black;}
-.dialog-appearance-item-selection > div {position:relative;width:30%;padding-top:30%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:white; word-break:break-word}
-.dialog-appearance-item-selection > div.current {background-color:#faa;}
-.dialog-appearance-item-selection > div:hover {background-color:gray;}
-.dialog-appearance-item-selection > div.current:hover {background-color:#faa;}
-.dialog-appearance-item-selection > div > img {position:absolute;width:100%;height:100%;top:0%;left:0}
-.dialog-appearance-item-selection > div > div {position:absolute;top:0;font-size:0.8em}
-.dialog-appearance-item-selection > div > div.invalid {color:#f44;font-size:0.8em}
-
-.dialog-appearance-control-buttons {position:absolute; left:10%; top:50%; width:10%; height:50%; }
-.dialog-appearance-control-buttons > div {width:100%; height:35%; padding:15%;}
-.dialog-appearance-control-buttons > div > img{width:100%; height:100%; background-color:white;}
-.dialog-appearance-control-buttons > div:hover > img{background-color:gray;}
-
-.dialog-appearance-item-action-buttons{position:absolute; left:20%;top:50%; width:10%; height:50%; overflow-y:scroll;}
-.dialog-appearance-item-action-buttons > div {width:100%; height:30%; padding:15%;}
-.dialog-appearance-item-action-buttons > div.selected {box-shadow: inset 0 0 1em 0.5em #0aa;}
-.dialog-appearance-item-action-buttons > div > img{width:100%; height:100%; background-color:white;}
-.dialog-appearance-item-action-buttons > div:hover > img{background-color:gray;}
-
-.dialog-appearance-item-action {position:absolute; left:10%; width:20%; height:50%; display:none; }
-.dialog-appearance-item-action.color-picker {}
-.dialog-appearance-item-action.color-picker > div {width:100%}
-.dialog-appearance-item-action.color-picker input {width:96%;}
-
-.dialog-appearance-item-action.lock {overflow-y:auto;overflow-x:hidden}
-.dialog-appearance-item-action.lock > img{width:45%; float:left; margin:2%}
-
-
+/*
 .dialog-appearance-item-action.variant {overflow-y:auto}
 .dialog-appearance-item-action.variant > div {width:45%; float:left; margin:2%; position:relative;}
 .dialog-appearance-item-action.variant > div > img {width:100%; margin:2%; background-color:white;}
 .dialog-appearance-item-action.variant > div > div {position:absolute; overflow:hidden; word-break:break-word; color:black}
-
+*/
 .validation_message_fadout {color:red;position:absolute}
 
 .mingame-abcancel{position:absolute;top:47.5%;left:40%;width:20%; height:20%;;eft:16.25b ackground-color:black;text-align:center;vertical-align:middle;}

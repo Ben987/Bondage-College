@@ -11,6 +11,11 @@ Util.GetProperty = function(obj, property){
 }
 
 
+Util.Capitalize = function(string){
+	return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+
 Util.SetProperty = function(obj, property, value){
 	var propertyPathStack = property.split(".");
 

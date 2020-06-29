@@ -1,16 +1,51 @@
-			<div name="figureContainer" class="dialog-appearance-figure">
-				<include src="./Html/Dialog/Appearance/ItemGroupIcons.htm" name="itemGroupSelection" class="dialog-appearance-group-selection"></include>
-			</div>
-			<div name="itemSelection" class="dialog-appearance-item-selection" ></div>
-			
-			<div name="itemVariantActions" class="dialog-appearance-item-action variant"></div>
-			<div name="itemLockActions" class="dialog-appearance-item-action lock"></div>
-			<div name="itemRemoteActions" class="dialog-appearance-item-action remote"></div>
-			<div name="itemDirectActions" class="dialog-appearance-item-action direct"></div>
-			<div name="itemArousalActions" class="dialog-appearance-item-action arousal"></div>
-			
 			<include src="./Html/Dialog/Appearance/ItemGroupTypeSelection.htm" name="itemGroupTypeSelection" class="dialog-appearance-group-type-selection"></include>
-			<include src="./Html/Dialog/Appearance/ControlButtons.htm" name="controlButtons" class="dialog-appearance-control-buttons"></include>
-			<include src="./Html/Dialog/Appearance/ItemActionButtons.htm"  name="itemActionButtons" class="dialog-appearance-item-action-buttons"></include>
-			<include src="./Html/Dialog/Appearance/ColorPicker.htm" name="itemColorActions" class="dialog-appearance-item-action color-picker"></include>
 			
+			<div name="updateStackButtons" class="dialog-appearance-update-stack-buttons">
+				<div name="cancel"><img src="./Images/Icons/Cancel.png" alt="Cancel" /></div>					
+				<div name="undo"><img src="./Images/Icons/Undo.png" alt="Undo" /></div>
+				<div name="commit"><img src="./Images/Icons/Check.png" alt="Commit" /></div>
+			</div>
+			<!--<include src="./Html/Dialog/Appearance/ItemActionButtons.htm"  name="itemActionButtons" class="dialog-appearance-item-action-buttons"></include>-->
+			
+			<div name="figureContainer" class="dialog-appearance-figure">
+				<include src="./Html/Dialog/Appearance/ItemGroupIcons.htm" name="itemGroupSelection" class="group-selection"></include>
+			</div>
+			
+			<div name="groupDetailsAndWardrobe" class="dialog-appearance-group-wardrobe">
+				<div name="groupDetailsContainer" class="dialog-appearance-group">
+					<div name="buttons" class="buttons">
+						<div name="items"><img src="./Images/Icons/Variants.png" alt="item" /></div>
+						<div name="color"><img src="../BondageClub/Icons/ColorPick.png" alt="color" /></div>
+						<div name="lock"><img src="../BondageClub/Icons/Lock.png" alt="lock" /></div>
+						<div name="variants"><img src="./Images/Icons/Variants.png" alt="variant" /></div>
+						<div name="struggle"><img src="../BondageClub/Icons/Struggle.png" alt="struggle" /></div>
+						<!--<div name="remote"><img src="../BondageClub/Icons/Remote.png" alt="arousal" /></div>-->
+						<!--<div name="arousal"><img src="../BondageClub/Icons/Use.png" alt="arousal" /></div>-->
+						<!--<div name="direct"><img src="../BondageClub/Icons/Activity.png" alt="arousal" /></div>-->
+					</div>
+					
+					<!--
+				<div name="color" style="display:none"><img src="../BondageClub/Icons/ColorPick.png" /></div>
+				<div name="variant" style="display:none"><img src="./Images/Icons/Variants.png" /></div>
+				<div name="lock" style="display:none"><img src="../BondageClub/Icons/InspectLock.png" /></div>
+				<div name="remote" style="display:none"><img src="../BondageClub/Icons/Remote.png" /></div>
+				<div name="direct" style="display:none"><img src="../BondageClub/Icons/Use.png" /></div>
+				<div name="arousal" style="display:none"><img src="../BondageClub/Icons/Activity.png" /></div>
+-->					
+					
+					<div name="itemsAndCurrentActions" class="items-actions">
+						<div name="items" class="items"></div>
+						<include src="./Html/Dialog/Appearance/ColorPicker.htm" name="color" class="color-picker"></include>						
+						<div name="lock" class="lock"></div>
+						<div name="variants" class="variants"></div>
+						<div name="struggle" class="struggle"></div>
+						<!--<div name="remote" class="remote"></div>
+						<div name="arousal" class="direct"></div>
+						<div name="direct" class="arousal"></div>-->
+					</div>
+				</div>
+				
+				<div name="wardrobe" class="dialog-appearance-wardrobe">
+				
+				</div>
+			</div>

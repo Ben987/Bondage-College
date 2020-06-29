@@ -76,8 +76,34 @@ var F3dcgAssetsInventory = {
 		
 		return applicableItems;
 	}
+
+	//currentItem
 	
+	//group
+		//validation (inaccessible, no permissions, no item access)
+		//clearable
 	
+		//item
+			//struggleable	
+			//color
+			//lock
+				//unlockable
+				//lock actions
+				//lock and management
+			
+			//color
+			
+			
+	
+	//locked
+	//lock actions and management
+	//inaccessible
+	//removable
+	//strugglable
+	//colorizable
+	//has variants
+	
+	//Not items currently block the accessory groups
 	,InitApplicableAccessoryGroup(applicableItems, groupName, validationFlagsCache){
 		var applicableGroup = F3dcgAssetsInventory.InitApplicableGroup(validationFlagsCache.playerTarget, F3dcgAssets.ACCESSORY, groupName);
 		applicableItems[F3dcgAssets.ACCESSORY][groupName] = applicableGroup;
@@ -161,9 +187,9 @@ var F3dcgAssetsInventory = {
 	
 	
 	,InitApplicableGroup(playerTarget, groupTypeName, groupName){
-		var applicableGroup = {items:[], current: null, validation:[]};
+		var applicableGroup = {items:[], currentItem: null, validation:[], changeable:true};
 		
-		var currentAppearanceItem = playerTarget.appearance[groupTypeName][groupName];
+		var currentAppearanceItem = (playerTarget.update ?  playerTarget.update : playerTarget)["appearance"][groupTypeName][groupName];
 		
 		if(currentAppearanceItem){
 			applicableGroup.currentItem = Util.CloneRecursive(currentAppearanceItem);
@@ -250,6 +276,8 @@ var F3dcgAssetsInventory = {
 			if(lock.name == "MistressTimerPadlock") keyItemName = "MistressPadlockKey";
 			
 			lock.key.iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + "ItemMisc/Preview/" + keyItemName + ".png"
+		}else{
+			applicableGroup.validation.push("Locked");
 		}
 		
 		var lockOwner = lock.originPlayerId == MainController.playerAccount.id;

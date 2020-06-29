@@ -1,6 +1,6 @@
 'use strict'
 
-var DialogAppearanceActionView = function(container, callback){
+var DialogAppearanceGroupActionView = function(container, callback){
 	this.container = container;
 	this.callback = callback;
 	this.Show = function(){
@@ -15,9 +15,40 @@ var DialogAppearanceActionView = function(container, callback){
 }
 
 
-var LockDialogAppearanceActionView = function(container, callback) {
-	this.prototype = Object.create(DialogAppearanceActionView.prototype);
-	DialogAppearanceActionView.call(this, container, callback);
+var ItemsDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
+	
+	this.SetItems = function(items, removable){
+		Util.ClearNodeContent(this.container);
+		
+		if(removable){
+			var iconContainer = Util.CreateElement({parent:this.container, events:{
+				click:function(event){this.callback("None");}.bind(this)
+			}});
+			Util.CreateElement({parent:iconContainer, tag:"img", attributes:{src:"../BondageClub/Icons/Remove.png", alt:"Remove"}});				
+		}
+		
+		items.forEach(itemData => {
+			var iconContainer = Util.CreateElement({parent:this.container});
+			var events = {};
+			
+			if(! itemData.validation?.length)
+				events.click = function(event){this.callback(itemData.itemName)}.bind(this);
+			else
+				for(var i = 0; i < itemData.validation.length; i++)
+					Util.CreateElement({parent:iconContainer,innerHTML:itemData.validation[i],cssStyles:{top:(i+1)+"em"},cssClass:"invalid"});
+			
+			Util.CreateElement({parent:iconContainer, tag:"img", events:events, attributes:{src:itemData.iconUrl, alt:itemData.itemName}});
+			Util.CreateElement({parent:iconContainer,innerHTML:itemData.itemName});
+		})
+	}
+}
+
+
+var LockDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
 	
 	this.SetItem = function(appliedItem){
 		Util.ClearNodeContent(this.container);
@@ -195,9 +226,19 @@ var LockDialogAppearanceActionView = function(container, callback) {
 }
 
 
-var VariantDialogAppearanceActionView = function(container, callback) {
-	this.prototype = Object.create(DialogAppearanceActionView.prototype);
-	DialogAppearanceActionView.call(this, container, callback);
+var StruggleDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
+	
+	this.SetItem = function(appliedItem){
+		console.log(appliedItem);
+	}
+}
+
+
+var VariantsDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
 	
 	this.SetItem = function(appliedItem){
 		Util.ClearNodeContent(this.container);
@@ -209,7 +250,7 @@ var VariantDialogAppearanceActionView = function(container, callback) {
 			
 			var events = {};
 			if(variantData.validation?.length == 0)
-				events.click = (event) => this.callback(variantName);
+				events.click = (event) => this.callback({itemName:appliedItem.name, variantName:variantName});
 			else
 				for(var i = 0; i < variantData.validation?.length; i++)
 					Util.CreateElement({parent:iconContainer,innerHTML:variantData.validation[i],cssStyles:{color:"#fcc",top:(i+1)+"em",fontSize:"1em"}});
@@ -227,28 +268,28 @@ var VariantDialogAppearanceActionView = function(container, callback) {
 };
 
 
-var RemoteDialogAppearanceActionView = function(container, callback) {
-	this.prototype = Object.create(DialogAppearanceActionView.prototype);
-	DialogAppearanceActionView.call(this, container, callback);
+var RemoteDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
 };
 
 
-var DirectDialogAppearanceActionView = function(container, callback) {
-	this.prototype = Object.create(DialogAppearanceActionView.prototype);
-	DialogAppearanceActionView.call(this, container, callback);
+var DirectDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
 };
 
 
-var ArousalDialogAppearanceActionView = function(container, callback) {
-	this.prototype = Object.create(DialogAppearanceActionView.prototype);
-	DialogAppearanceActionView.call(this, container, callback);
+var ArousalDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
 };
 
 
 
-var ColorDialogAppearanceActionView = function(container, callback) {
-	this.prototype = Object.create(DialogAppearanceActionView.prototype);
-	DialogAppearanceActionView.call(this, container, callback);
+var ColorDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
 	
 	this.containerHue = Util.GetFirstChildNodeByName(this.container, "hue");
 	this.containerSat = Util.GetFirstChildNodeByName(this.container, "saturation");

@@ -71,27 +71,12 @@ var LocationPlayerUpdate = function(player){
 	this.appearance = Util.CloneRecursive(player.appearance);
 	this.render = Util.CloneRecursive(player.render);
 	
-	//this.inventory = Util.CloneRecursive(player.inventory);
 	this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(MainController.playerAccount, player);
 	
-	//this.clothOrAccessoryUpdateLimit = 3;
-	//this.clothOrAccessoryUpdateLimit = 100;//unlimited
 	this.updateStack = [];
-	
-	/*
-	this.GetInventoryItem = function(groupName, itemName){
-		var item = this.items[F3dcgAssets.AssetGroups[groupName].type][groupName].items.find(inventoryItem => inventoryItem.itemName == itemName);
-		return item;
-	}*/
 	
 	this.GetApplicableItems = function(){
 		return this.items;
-	}
-	
-	this.GetCurrentWornItem = function(groupName){
-		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
-		var item = this.appearance[AssetGroup.type][groupName];
-		return item;
 	}
 	
 	
@@ -112,11 +97,9 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.AddColor = function(itemName, color){
-		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+	this.AddColor = function(groupName, color){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.appearance[AssetGroup.type][groupName];
-		//var mostRecentItemName = this.HasChanges() ? this.updateStack[this.updateStack.length - 1].item.name : currentItem.name;
 		
 		return this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:color ? color.ToHexString() : null, variant:currentItem.variant, lock:currentItem.lock});
 	}
@@ -155,6 +138,7 @@ var LocationPlayerUpdate = function(player){
 		return [];
 	}
 	
+	
 	this.AddLock = function(itemName, lockName){
 		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
@@ -174,14 +158,16 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.AddVariant = function(itemName, variantName){
-		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+	this.AddVariant = function(groupName, itemName, variantName){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.player.appearance[AssetGroup.type][groupName];
 		
-		if(currentItem.name != itemName) return ["CanOnlySetVariantOnAppliedItem"]
+		console.log(currentItem, itemName, variantName);
 		
-		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:itemName, color:currentItem?.color, variant:variantName, lock:currentItem.lock});
+		if(currentItem.name != itemName) return ["CanOnlySetVariantOnAppliedItem"];
+		if(currentItem.variant == variantName) return ["SameVariant"];
+		
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem?.color, variant:variantName, lock:currentItem.lock});
 		
 		return [];
 	}
@@ -231,6 +217,7 @@ var LocationPlayerUpdate = function(player){
 		this.appearance[itemData.groupTypeName][itemData.groupName] = newItem;
 		this.updateStack.push({type:itemData.groupTypeName, groupName:itemData.groupName, item:newItem});
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);	
+		this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(MainController.playerAccount, player);
 	}
 	
 	

@@ -225,7 +225,7 @@ F3dcgAssets.CanUnlockItem = function(playerTarget, playerOrigin, appearanceItem)
 	if(appearanceItem.lock.name == "TimerPadlock") return false;
 	if(appearanceItem.lock.name == "CombinationPadlock") return false;
 	
-	var locksKeys = playerOrigin ? playerOrigin.inventory.locksKeys : playerTarget.locksKeys;
+	var locksKeys = playerOrigin ? playerOrigin.inventory.locksKeys : playerTarget.inventory.locksKeys;
 	
 	if(appearanceItem.lock.name == "MetalPadlock") 
 		return locksKeys.includes("MetalPadlockKey");
@@ -273,6 +273,23 @@ F3dcgAssets.ValidateCanChangePose = function(posesEffectsBlocks){
 	if(posesEffectsBlocks.poses.includes("Hogtied")) return "CanNotChangePose " + "Hogtied";
 }
 
+/*
+"LegsOpen", 
+"NotKneeling", 
+"AccessVulva", 
+"NotSuspended", 
+"NotHogtied", 
+"NotHorse", 
+"NotChaste", 
+"NotShackled", 
+"AccessVulvaSuitZip", 
+"RemotesAllowed", 
+"CannotHaveWand", 
+"AccessTorso", "AccessBreast", "AccessBreastSuitZip", 
+"NoItemFeet", "NotMounted", "NotKneelingSpread", "Collared", "NoFeetSpreader", "NotMasked", "CannotBeSuited", "NoItemLegs", 
+"NotYoked", "StraitDressOpen", "OnBed", "AllFours", "CanKneel", "GagFlat", "GagUnique", "GagCorset", "GasMask",
+ "DisplayFrame", "NoItemArms", "NoItemHands", "NoHorse", "ToeTied"
+*/
 
 F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffectsBlocks) {
 	// Basic prerequisites that can apply to many items
