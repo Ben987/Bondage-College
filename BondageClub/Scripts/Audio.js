@@ -36,6 +36,8 @@ function AudioPlayContent(data) {
 	// Instant actions can trigger a sound depending on the asset
 	if (data.Content == "ActionAddLock") {
 		audioFile = "Audio/LockSmall.mp3";
+	} else if (data.Content == "TimerRelease" || data.Content == "ActionUnlock" || data.Content == "ActionUnlockAndRemove") {
+		audioFile = "Audio/UnlockSmall.mp3";
 	} else if (data.Content == "ActionLock" || data.Content == "ActionUse" || data.Content == "ActionSwap" || data.Content == "SlaveCollarChangeType" || (data.Content.indexOf("ActionActivity") == 0)) {
 		noiseLevelModifier += 3; //constant vibration volume level
 		var NextAsset = data.Dictionary.find(function (el) {return el.Tag == "NextAsset";});

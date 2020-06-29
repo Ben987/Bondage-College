@@ -48,11 +48,11 @@ function InventoryItemMouthPumpGagSetPump(Modifier) {
 
 	// Sets the pump & gag level
 	DialogFocusItem.Property.PumpLevel = DialogFocusItem.Property.PumpLevel + Modifier;
-	if (DialogFocusItem.Property.PumpLevel == 0) delete DialogFocusItem.Property.Effect;
-	if (DialogFocusItem.Property.PumpLevel == 1) DialogFocusItem.Property.Effect = ["GagLight"];
-	if (DialogFocusItem.Property.PumpLevel == 2) DialogFocusItem.Property.Effect = ["GagEasy"];
-	if (DialogFocusItem.Property.PumpLevel == 3) DialogFocusItem.Property.Effect = ["GagMedium"];
-	if (DialogFocusItem.Property.PumpLevel == 4) DialogFocusItem.Property.Effect = ["GagVeryHeavy"];
+	if (DialogFocusItem.Property.PumpLevel == 0) DialogFocusItem.Property.Effect = ["BlockMouth"];
+	if (DialogFocusItem.Property.PumpLevel == 1) DialogFocusItem.Property.Effect = ["BlockMouth", "GagLight"];
+	if (DialogFocusItem.Property.PumpLevel == 2) DialogFocusItem.Property.Effect = ["BlockMouth", "GagEasy"];
+	if (DialogFocusItem.Property.PumpLevel == 3) DialogFocusItem.Property.Effect = ["BlockMouth", "GagMedium"];
+	if (DialogFocusItem.Property.PumpLevel == 4) DialogFocusItem.Property.Effect = ["BlockMouth", "GagVeryHeavy"];
 
 	// The more it's pumped, the harder it becomes to struggle out of it
 	if (DialogFocusItem.Property.PumpLevel == 0) delete DialogFocusItem.Property.Difficulty;
