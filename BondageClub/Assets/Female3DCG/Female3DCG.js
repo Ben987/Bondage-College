@@ -118,25 +118,24 @@ var AssetFemale3DCG = [
 
 	{
 		Group: "ClothAccessory",
-		ParentGroup: "BodyUpper",
 		Priority: 32,
 		Default: false,
 		Clothing: true,
 		Random: false,
 		Asset: [
-			{ Name: "StudentOutfit3Scarf", Priority: 34, Left: 200, Top: 250, IgnoreParentGroup: true },
-			{ Name: "StudentOutfit3Bow1", Priority: 34, Left: 200, Top: 250, IgnoreParentGroup: true },
-			{ Name: "StudentOutfit3Bow2", Priority: 34, Left: 200, Top: 250, IgnoreParentGroup: true },
-			{ Name: "StudentOutfit3Bow3", Priority: 34, Left: 200, Top: 250, IgnoreParentGroup: true },
+			{ Name: "StudentOutfit3Scarf", Priority: 34, Left: 200, Top: 250 },
+			{ Name: "StudentOutfit3Bow1", Priority: 34, Left: 200, Top: 250 },
+			{ Name: "StudentOutfit3Bow2", Priority: 34, Left: 200, Top: 250 },
+			{ Name: "StudentOutfit3Bow3", Priority: 34, Left: 200, Top: 250 },
 			{ 
-				Name: "Bouquet", Priority: 41, Value: 40, Left: 175, Top: 350, BuyGroup: "Bouquet", AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied"], IgnoreParentGroup: true,
+				Name: "Bouquet", Priority: 41, Value: 40, Left: 175, Top: 350, BuyGroup: "Bouquet", AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied"],
 				Layer: [
 					{ Name: "Base", AllowColorize: false },
 					{ Name: "Flowers", AllowColorize: true }
 				]
 			},
-			{ Name: "FrillyApron", Value: -1, Left: 135, Top: 179, BuyGroup: "Maid", AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied"] },
-			{ Name: "BunnyCollarCuffs", Value: 10, Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"], AllowPose: ["AllFours", "TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied"] }
+			{ Name: "FrillyApron", ParentGroup: "BodyUpper", Value: -1, Left: 135, Top: 179, BuyGroup: "Maid", AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied"] },
+			{ Name: "BunnyCollarCuffs", ParentGroup: "BodyUpper", Value: 10, Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"], AllowPose: ["AllFours", "TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied"] }
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
