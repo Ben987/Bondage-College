@@ -47,6 +47,7 @@ function AssetAdd(NewAsset) {
 		Description: NewAsset.Name,
 		Group: AssetCurrentGroup,
 		ParentItem: NewAsset.ParentItem,
+		ParentGroupName: NewAsset.ParentGroup,
 		Enable: (NewAsset.Enable == null) ? true : NewAsset.Enable,
 		Visible: (NewAsset.Visible == null) ? true : NewAsset.Visible,
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
