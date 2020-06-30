@@ -2229,7 +2229,7 @@ var AssetFemale3DCG = [
 		Top: -250,
 		Zone: [[400, 0, 90, 200]],
 		Asset: [
-			{ Name: "BondageBenchStraps", Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, IsRestraint: true, AllowLock: true, Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"], SetPose: ["LegsClosed"], Effect: ["Block", "Prone"], AllowType: ["Light", "Normal", "Heavy", "Full"], Block: ["ItemDevices"], Extended: true, RemoveAtLogin: true, IgnoreParentGroup: true },
+			{ Name: "BondageBenchStraps", Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, IsRestraint: true, AllowLock: true, Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"], SetPose: ["LegsClosed"], Effect: ["Block", "Prone"], AllowType: ["Light", "Normal", "Heavy", "Full"], Block: ["ItemDevices"], Extended: true, RemoveAtLogin: true },
 			{ Name: "OldGasMaskLenses", Priority: 44, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true, Effect: ["BlindHeavy"] },
 			{ Name: "OldGasMaskTube1", Effect: ["GagEasy"], Priority: 43, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true },
 			{ Name: "OldGasMaskTube2", Effect: ["GagEasy"], Priority: 43, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true },
