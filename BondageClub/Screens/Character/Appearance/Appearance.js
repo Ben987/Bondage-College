@@ -148,7 +148,7 @@ function CharacterAppearanceMustHide(C, GroupName) {
 
 
 /**
- * @description Sets a full random set of items for a character
+ * @description Sets a full random set of items for a character. Only items that do not have the "Random" property set to false will be used.
  * 
  * @param {Character} C - The character to dress
  * @param {boolean} ClothOnly - Defines, if only clothes should be used
@@ -281,7 +281,7 @@ function CharacterAppearanceStripLayer(C) {
 }
 
 /**
- * @description sorts the character appearance  by drawing priority
+ * @description sorts the character appearance by drawing priority
  * 
  * @param {Appearance} AP - The appearance to be sorted
  * @returns {Appearance} - The sorted appearance
@@ -330,7 +330,6 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 	return true;
 }
 
-// 
 /**
  * @description Calculates and sets the height modifier which determines the character's vertical position on screen
  * 
@@ -355,7 +354,6 @@ function CharacterApperanceSetHeightModifier(C) {
 	}
 }
 
-// Gets the character
 /**
  * @description Draws the character canvas
  * 
@@ -487,7 +485,7 @@ function CharacterAppearanceBuildCanvas(C) {
  * @param {Character} C - The character to get values from
  * @param {string} Group - The name of the group, whose values we want to get
  * @param {string} Type - The name of the value, we want to get
- * @returns {string} - The return value
+ * @returns {*} - The return value
  */
 function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 
@@ -724,7 +722,6 @@ function CharacterAppearanceNextColor(C, Group) {
 
 }
 
-// Moves the offset to get new character appearance items
 /**
  * @description Moves the offset to get new character appearance items
  * 
@@ -750,7 +747,7 @@ function CharacterAppearanceMoveOffset(C, Move) {
  * @description Sets the color for a specific group
  * 
  * @param {Character} C - The character whose item group should be coloured
- * @param {string} Color - The colour (in the format "#xxyyzz") to be applied to the group
+ * @param {string} Color - The colour (in the format "#rrggbb") to be applied to the group
  * @param {string} Group - The name of the group, whose colour should be changed
  * @returns {void} - Nothing
  */
@@ -869,7 +866,7 @@ function AppearanceClick() {
 
 
 /**
- * @description Handle the exitiing of the appearance screen. The function name is created dynamically.
+ * @description Handle the exiting of the appearance screen. The function name is created dynamically.
  * 
  * @returns {void} - Nothing
  */
