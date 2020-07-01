@@ -113,7 +113,7 @@ function SpeechGarble(C, CD) {
 	}	
 
 	// Total gags always returns mmmmm
-	if ((GagEffect >= 8) || ((C.ID != 0) && (Player.Effect.indexOf("DeafTotal") >= 0))) {
+	if ((GagEffect >= 8) || ((C.ID != 0) && (Player.GetDeafLevel() >= 4))) {
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
@@ -166,7 +166,7 @@ function SpeechGarble(C, CD) {
 	}
 	
 	// Heavy garble - Almost no letter stays the same
-	if ((GagEffect >= 6) || ((C.ID != 0) && (Player.Effect.indexOf("DeafHeavy") >= 0))) {
+	if ((GagEffect >= 6) || ((C.ID != 0) && (Player.GetDeafLevel() >= 3))) {
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
@@ -240,7 +240,7 @@ function SpeechGarble(C, CD) {
 	}
 	
 	// Normal garble, keep vowels and a few letters the same
-	if ((GagEffect >= 4) || ((C.ID != 0) && (Player.Effect.indexOf("DeafNormal") >= 0))) {
+	if ((GagEffect >= 4) || ((C.ID != 0) && (Player.GetDeafLevel() >= 2))) {
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
@@ -326,7 +326,7 @@ function SpeechGarble(C, CD) {
 	}
 	
 	// Light garble, half of the letters stay the same
-	if ((GagEffect >= 2) || ((C.ID != 0) && (Player.Effect.indexOf("DeafLight") >= 0))) {
+	if ((GagEffect >= 2) || ((C.ID != 0) && (Player.GetDeafLevel() >= 1))) {
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;

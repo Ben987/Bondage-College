@@ -92,6 +92,7 @@ function AssetAdd(NewAsset) {
 		AllowType: NewAsset.AllowType,
 		DefaultColor: NewAsset.DefaultColor,
 		Audio: NewAsset.Audio,
+		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone, 
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null) ? false : NewAsset.IgnoreParentGroup,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
 		BodyCosplay: NewAsset.BodyCosplay == null ? false : NewAsset.BodyCosplay,

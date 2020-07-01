@@ -46,9 +46,9 @@ function InventoryItemMouth3ClothGagSetType(NewType) {
 		InventoryItemMouth3ClothGagLoad();
 	}
 	DialogFocusItem.Property.Type = NewType;
-	if (NewType == null) DialogFocusItem.Property.Effect = ["GagVeryLight"];
-	else if (NewType == "OTM") DialogFocusItem.Property.Effect = ["GagEasy"];
-	else if (NewType == "OTN") DialogFocusItem.Property.Effect = ["GagEasy"];
+	if (NewType == null) DialogFocusItem.Property.Effect = ["BlockMouth", "GagVeryLight"];
+	else if (NewType == "OTM") DialogFocusItem.Property.Effect = ["BlockMouth", "GagEasy"];
+	else if (NewType == "OTN") DialogFocusItem.Property.Effect = ["BlockMouth", "GagEasy"];
 
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
