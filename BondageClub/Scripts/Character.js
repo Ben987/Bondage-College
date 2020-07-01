@@ -85,17 +85,14 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		 */
 		GetClumsiness: function () {
 			var clumsiness = 0;
-			var A = 0;
-			var found = false;
-			while (A < this.Appearance.length && !found) {
+			this.Appearance.some(Item => {
 				// get the difficulty of a hand restraint
-				if (this.Appearance[A].Asset.Group.Name != null && this.Appearance[A].Asset.Group.Name == "ItemHands") {
+				if (Item.Asset.Group.Name === "ItemHands") {
 					// half the itme difficulty for now
-					clumsiness = Math.ceil(this.Appearance[A].Asset.Difficulty / 2);
-					found = true;
+					clumsiness = Math.ceil(Item.Asset.Difficulty / 2);
+					return true;
 				} // if
-				A++;
-			} // while
+			});
 			return clumsiness;
 		},
 		IsLoverPrivate: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (Player.GetLoversNumbers().indexOf("NPC-" + this.Name) >= 0)); },
