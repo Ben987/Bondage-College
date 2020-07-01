@@ -3,9 +3,11 @@ var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
 var ChatSearchMessage = "";
 var ChatSearchLeaveRoom = "MainHall";
+var ChatSearchSafewordAppearance = null;
 
 // When the chat screens loads, we loads up to 24 public rooms
 function ChatSearchLoad() {
+	if (ChatSearchSafewordAppearance == null) ChatSearchSafewordAppearance = Player.Appearance.slice(0);
 	ElementCreateInput("InputSearch", "text", "", "20");
 	ChatSearchQuery();
 	ChatSearchMessage = "";
