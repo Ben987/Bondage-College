@@ -44,11 +44,11 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsMounted: function () { return (this.Effect.indexOf("Mounted") >= 0) },
 		IsChaste: function () { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste: function () { return (this.Effect.indexOf("Chaste") >= 0) },
-		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
+		IsPlugged: function () { return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
-		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
+		IsMouthBlocked: function () { return this.Effect.indexOf("BlockMouth") >= 0 },
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
@@ -76,6 +76,27 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 				}
 			}
 			return deafLevel;
+		},
+		/**
+		 * @description Evaluates the strictness of the hand binding of the current player and returns a value based on this. 
+		 * The higher the value, the more handicapped the player is
+		 * 
+		 * @returns {number} - The level of clumsiness of the current player. The higher the more clumsy
+		 */
+		GetClumsiness: function () {
+			var clumsiness = 0;
+			var A = 0;
+			var found = false;
+			while (A < this.Appearance.length && !found) {
+				// get the difficulty of a hand restraint
+				if (this.Appearance[A].Asset.Group.Name != null && this.Appearance[A].Asset.Group.Name == "ItemHands") {
+					// half the itme difficulty for now
+					clumsiness = Math.ceil(this.Appearance[A].Asset.Difficulty / 2);
+					found = true;
+				} // if
+				A++;
+			} // while
+			return clumsiness;
 		},
 		IsLoverPrivate: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (Player.GetLoversNumbers().indexOf("NPC-" + this.Name) >= 0)); },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
@@ -205,7 +226,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryAdd(C, "MistressBottom", "ClothLower", false);
 		InventoryWear(C, "MistressBottom", "ClothLower", Color);
 		InventoryAdd(C, "MistressPadlock", "ItemMisc", false);
-		InventoryAdd(C, "MistressTimerPadlock","ItemMisc", false);
+		InventoryAdd(C, "MistressTimerPadlock", "ItemMisc", false);
 		InventoryAdd(C, "MistressPadlockKey", "ItemMisc", false);
 		InventoryRemove(C, "ClothAccessory");
 		InventoryRemove(C, "HairAccessory1");
@@ -408,7 +429,7 @@ function CharacterLoadCanvas(C) {
 
 	// Sets the total height modifier for that character
 	CharacterApperanceSetHeightModifier(C);
-	
+
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
 
@@ -634,7 +655,7 @@ function CharacterCompressWardrobe(Wardrobe) {
 		var CompressedWardrobe = [];
 		for (var W = 0; W < Wardrobe.length; W++) {
 			var Arr = [];
-			for (var A = 0; A < Wardrobe[W].length; A++)			
+			for (var A = 0; A < Wardrobe[W].length; A++)
 				Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color]);
 			CompressedWardrobe.push(Arr);
 		}
