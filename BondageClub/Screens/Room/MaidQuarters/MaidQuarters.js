@@ -218,8 +218,9 @@ function MaidQuartersBecomHeadMaid() {
 // Starts a maid rescue mission in a random room
 function MaidQuartersStartRescue() {
 	
-	// Make sure we don't select the same room twice and prepares the rescue scenario
+	// Make sure we don't select the same room twice or sent rescue to the introduction room when doing the daily quest
 	MaidQuartersCurrentRescue = CommonRandomItemFromList(MaidQuartersCurrentRescue, MaidQuartersRescueList);
+	if ((MaidQuartersCurrentRescue == "IntroductionClass") && (IntroductionJobCurrent == "SubMaid")) MaidQuartersCurrentRescue = CommonRandomItemFromList(MaidQuartersCurrentRescue, ["ShibariDojo", "Shop", "Gambling"]);
 	MaidQuartersMaid.Stage = MaidQuartersRescueStage[MaidQuartersRescueList.indexOf(MaidQuartersCurrentRescue)];
 	MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, "Rescue" + MaidQuartersCurrentRescue);
 	MaidQuartersCurrentRescueStarted = false;

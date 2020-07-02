@@ -17,6 +17,7 @@ function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlock
 function MainHallLoad() {
 	
 	// Loads the variables and dialog
+	ChatSearchSafewordAppearance = null;
 	CharacterSetActivePose(Player, null);
 	MainHallBackground = "MainHall";
 	MainHallStartEventTimer = null;
