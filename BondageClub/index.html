@@ -18,6 +18,7 @@
 <script src="Scripts/GLDraw.js"></script>
 <script src="Scripts/Common.js"></script>
 <script src="Scripts/Drawing.js"></script>
+<script src="Scripts/Drawing3D.js"></script>
 <script src="Scripts/Timer.js"></script>
 <script src="Scripts/AfkTimer.js"></script>
 <script src="Scripts/GameLog.js"></script>
@@ -39,9 +40,12 @@
 <script src="Scripts/Element.js"></script>
 <script src="Scripts/Translation.js"></script>
 <script src="Scripts/Activity.js"></script>
-<script src="Scripts/socket.io/socket.io.js"></script>
-<script src="Scripts/LZString.js"></script>
 <script src="Scripts/ExtendedItem.js"></script>
+<script src="Scripts/LZString.js"></script>
+<script src="Scripts/socket.io/socket.io.js"></script>
+<script src="Scripts/three/three.min.js"></script>
+<script src="Scripts/three/inflate.min.js"></script>
+<script src="Scripts/three/FBXLoader.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
 <script src="Screens/Character/Appearance/Appearance.js"></script>
@@ -258,6 +262,12 @@
 	OK - Gasmask chat log text fix (Ace)
 	OK - Prevent using bed/crib with alpha hoods (Ace)
 	OK - Fix kneeling with locking boots (Ace)
+	OK - Validate spaces in account on client side (Ellie)
+	OK - Big asset file clean-up (Sandrine)
+	OK - Prevent audio errors (Ellie)
+	OK - Total Deafness level (Ellie)
+	OK - ParentGroup on asset to be used for multiple categories (Ace)
+	OK - Reverse bunny asset clean-up (Ellie)
 	
 	OK - Prevent doing the introduction rescue mission if doing the maid daily job
 	
@@ -269,6 +279,7 @@
 		This could be useful against trolls or console script attacks, and would not affect single-player.  What do you think?
 	
 	TO DO - Add a way to assist someone to struggle, giving half of your own evasion as a temporary bonus
+	TO DO - Removing some evasion skill when struggling while hands are restrained (do not need to affect removing hands item though)
 	
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
