@@ -18,6 +18,7 @@
 <script src="Scripts/GLDraw.js"></script>
 <script src="Scripts/Common.js"></script>
 <script src="Scripts/Drawing.js"></script>
+<script src="Scripts/Drawing3D.js"></script>
 <script src="Scripts/Timer.js"></script>
 <script src="Scripts/AfkTimer.js"></script>
 <script src="Scripts/GameLog.js"></script>
@@ -39,9 +40,12 @@
 <script src="Scripts/Element.js"></script>
 <script src="Scripts/Translation.js"></script>
 <script src="Scripts/Activity.js"></script>
-<script src="Scripts/socket.io/socket.io.js"></script>
-<script src="Scripts/LZString.js"></script>
 <script src="Scripts/ExtendedItem.js"></script>
+<script src="Scripts/LZString.js"></script>
+<script src="Scripts/socket.io/socket.io.js"></script>
+<script src="Scripts/three/three.min.js"></script>
+<script src="Scripts/three/inflate.min.js"></script>
+<script src="Scripts/three/FBXLoader.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
 <script src="Screens/Character/Appearance/Appearance.js"></script>
@@ -258,8 +262,11 @@
 	OK - Gasmask chat log text fix (Ace)
 	OK - Prevent using bed/crib with alpha hoods (Ace)
 	OK - Fix kneeling with locking boots (Ace)
+	OK - Validate spaces in account on client side (Ellie)
 	
-	TO DO - How would you feel if we added a safeword feature, available by typing /safeword or going in your player profile and clicking on a safeword button somewhere in the interface?  This is how it would work:
+	OK - Prevent doing the introduction rescue mission if doing the maid daily job
+	
+	OK - How would you feel if we added a safeword feature, available by typing /safeword or going in your player profile and clicking on a safeword button somewhere in the interface?  This is how it would work:
 		-    When you enter the multiplayer lobby to find a chat room, it will save a state on how your character is dressed, including restraints and locks.
 		-    You can navigate from room to room, as long as you don’t go back to the main hall, that state is kept.  If you enter the main hall, that state will be lost.
 		-    In any chatroom, if you use the safeword, it will revert you back to that initial state and show a public message: “X used her safeword, please check for her safety and well-being.”
