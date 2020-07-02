@@ -488,6 +488,7 @@ function ChatRoomSendChat() {
 
 		}
 		else if (m.indexOf("/help") == 0) ServerSend("ChatRoomChat", { Content: "ChatRoomHelp", Type: "Action", Target: Player.MemberNumber});
+		else if (m.indexOf("/safeword") == 0) ChatRoomSafeword();
 		else if (m.indexOf("/friendlistadd ") == 0) ChatRoomListManipulation(Player.FriendList, null, msg);
 		else if (m.indexOf("/friendlistremove ") == 0) ChatRoomListManipulation(null, Player.FriendList, msg);
 		else if (m.indexOf("/ghostadd ") == 0) { ChatRoomListManipulation(Player.GhostList, null, msg); ChatRoomListManipulation(Player.BlackList, Player.WhiteList, msg); }
@@ -651,11 +652,10 @@ function ChatRoomMessage(data) {
 				if (data.Type == "Hidden") return;
 			}
 
-			// [Temporary?] Checks if the message is a notification about the user entering or leaving the room
-			var enterLeave = "";
-			if ((data.Type == "Action") && (msg.startsWith("ServerEnter")) || (msg.startsWith("ServerLeave")) || (msg.startsWith("ServerDisconnect")) || (msg.startsWith("ServerBan")) || (msg.startsWith("ServerKick"))) {
-				enterLeave = " ChatMessageEnterLeave";
-			}
+			// Checks if the message is a notification about the user entering or leaving the room
+			var MsgEnterLeave = "";
+			if ((data.Type == "Action") && (msg.startsWith("ServerEnter")) || (msg.startsWith("ServerLeave")) || (msg.startsWith("ServerDisconnect")) || (msg.startsWith("ServerBan")) || (msg.startsWith("ServerKick")))
+				MsgEnterLeave = " ChatMessageEnterLeave";
 
 			// Replace actions by the content of the dictionary
 			if (data.Type && ((data.Type == "Action") || (data.Type == "ServerMessage"))) {
@@ -710,7 +710,7 @@ function ChatRoomMessage(data) {
 									GroupName = dictionary[D].AssetGroupName;
 								}
 						}
-						else msg = msg.replace(dictionary[D].Tag, ChatRoomHTMLEntities(dictionary[D].Text));
+						else if (msg != null) msg = msg.replace(dictionary[D].Tag, ChatRoomHTMLEntities(dictionary[D].Text));
 					}
 
 					// If another player is using an item which applies an activity on the current player, apply the effect here
@@ -769,7 +769,7 @@ function ChatRoomMessage(data) {
 
 			// Adds the message and scrolls down unless the user has scrolled up
 			var div = document.createElement("div");
-			div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + enterLeave);
+			div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + MsgEnterLeave);
 			div.setAttribute('data-time', ChatRoomCurrentTime());
 			div.setAttribute('data-sender', data.Sender);
 			if (data.Type == "Emote" || data.Type == "Action" || data.Type == "Activity")
@@ -1238,6 +1238,16 @@ function ChatRoomPayQuest(data) {
 // When a game message comes in, we forward it to the current online game being played
 function ChatRoomGameResponse(data) {
 	if (OnlineGameName == "LARP") GameLARPProcess(data);
+}
+
+// When the player activates her safeword, we swap her appearance to the state when she entered the chat room lobby
+function ChatRoomSafeword() {
+	if (ChatSearchSafewordAppearance != null) {
+		Player.Appearance = ChatSearchSafewordAppearance.slice(0);
+		CharacterRefresh(Player);
+		ChatRoomCharacterUpdate(Player);
+		ServerSend("ChatRoomChat", { Content: "ActionActivateSafeword", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name}] });
+	}
 }
 
 /** 
