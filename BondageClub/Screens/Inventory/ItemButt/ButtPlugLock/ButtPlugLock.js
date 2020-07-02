@@ -17,7 +17,7 @@ function InventoryItemButtButtPlugLockDraw() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = true;
+	var ChainShortPrerequisites = true;
 	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
 		ChainShortPrerequisites = false;
 	}	
@@ -40,7 +40,7 @@ function InventoryItemButtButtPlugLockClick() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = true;
+	var ChainShortPrerequisites = true;
 	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
 		ChainShortPrerequisites = false;
 	}

@@ -3,6 +3,7 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 0,10,(Adjust your bondage skill.),"(By default, you restrain using your full bondage skill.  You can use less of your skill and make it easier for your victims to escape.)",,"DialogSkillGreater(""Bondage"", 1)"
 0,20,(Adjust your evasion skill.),"(By default, you struggle using your full evasion skill.  You can use less of your skill and make it harder for you to struggle free.)",,"DialogSkillGreater(""Evasion"", 1)"
 0,30,(Room administrator action.),"(As a room administrator, you can take these actions.)",,DialogChatRoomPlayerIsAdmin()
+0,90,(Use your safeword.),(A safeword is serious and should not be used to cheat.  It will revert your clothing and restraints to when you entered the lobby.  Do you really want to use it?),,DialogChatRoomCanSafeword()
 10,,,"(By default, you restrain using your full bondage skill.  You can use less of your skill and make it easier for your victims to escape.)",,
 10,0,(Use your full bondage skill.  100%),(You will now use your full bondage skill when using a restraint.  100%),"DialogSetSkillRatio(""Bondage"", 100)",
 10,0,(Use most of your bondage skill.  75%),(You will now use most of your bondage skill when using a restraint.  75%),"DialogSetSkillRatio(""Bondage"", 75)",
@@ -26,6 +27,8 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 31,,(Move to the right.),(You have moved to the right at position CharacterPosition.  Would you like to move further?),"DialogChatRoomAdminAction(""MoveRight"", ""false"")",
 31,0,(Back to main menu.),,,
 31,0,(Leave this menu.),,DialogLeave(),
+90,0,"(Yes, use your safeword.)",,DialogChatRoomSafeword(),
+90,0,"(No, do not use your safeword.)",(You can use or remove items by selecting specific body regions on yourself.),,
 SelectItem,,,Select an item to use.,,
 SelectItemGroup,,,Select an item to use on the GroupName.,,
 SelectActivity,,,Select an activity.,,
@@ -57,7 +60,7 @@ CannotBeHogtiedWithAlphaHood,,,Cannot hogtie with this hood.,,
 CannotUseWithAlphaHood,,,Cannot be used with this hood.,,
 ReleaseAlphaBlockingItem,,,Remove restraints first before using this hood.,,
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.,,
-MustBeOnBed,,,Must be on a bed to attach addons to.
+MustBeOnBed,,,Must be on a bed to attach addons to.,,
 NoClothAndCollared,,,Remove some clothes and requires a collar.,,
 LegsCannotOpen,,,Legs cannot open.,,
 LegsCannotClose,,,Legs cannot close.,,
@@ -319,6 +322,7 @@ ActionUnlock,,,SourceCharacter unlocks the PrevAsset on DestinationCharacter Foc
 ActionUnlockAndRemove,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.,,
 ActionDice,,,SourceCharacter rolls DiceType.  The result is: DiceResult.,,
 ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.,,
+ActionActivateSafeword,,,SourceCharacter used her safeword.  Please check for her well-being.,,
 ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands.",,
 ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.,,
 ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.,,
@@ -549,8 +553,8 @@ RopeBondageBoxTie,,,Box Tie,,
 RopeBondageHogtied,,,Hogtie,,
 RopeBondageSwissSeat,,,SwissSeat,,
 RopeBondageKikkouHip,,,KikkouHip,,
-ToeTapePoseToes,,,Toes
-ToeTapePoseFull,,,Full
+ToeTapePoseToes,,,Toes,,
+ToeTapePoseFull,,,Full,,
 ToeTapeSetToes,,,SourceCharacter uses the tape on TargetCharacter to tie her toes together with tape.,,
 ToeTapeSetFull,,,SourceCharacter uses the tape on TargetCharacter to fully wrap her feet with tape.,,
 RopeBondageSuspension,,,Suspension Tie,,
@@ -1146,33 +1150,33 @@ ChastityOpenBack,,,Open Back,,
 ChastityClosedBack,,,Closed Back,,
 ChastityBeltBackShieldOpenBack,,,SourceCharacter removes the shield from the back of DestinationCharacter's belt.,,
 ChastityBeltBackShieldClosedBack,,,SourceCharacter adds the shield to the back of DestinationCharacter's belt.,,
-WebBondageSelect,,,Select web type
-WebBondageTangled,,,Tangled
-WebBondageWrapped,,,Wrapped
-WebBondageCocooned,,,Cocooned
-WebBondageHogtied,,,Hogtied
-WebBondageSuspended,,,Suspended
-WebBondageSuspensionHogtied,,,Suspension Hogtied
-WebBondageBlindfold,,,Blindfold
-WebBondageCocoon,,,Cocoon
-ArmsWebSetTangled,,,SourceCharacter Action the webbing on TargetCharacter
-ArmsWebSetWrapped,,,"SourceCharacter Action the webbing on TargetCharacter, leaving them fully wrapped"
-ArmsWebSetCocooned,,,"SourceCharacter Action the webbing on TargetCharacter, forming a cocoon"
-ArmsWebSetHogtied,,,"SourceCharacter wraps TargetCharacter in webbing, forming a hogtie"
-ArmsWebSetSuspended,,,SourceCharacter fully wraps TargetCharacter in webbing and uses it to suspend her
-ArmsWebSetSuspensionHogtied,,,"SourceCharacter hogties TargetCharacter with the webbing and uses it to suspend her"
-tightens,,,tightens
-loosens,,,loosens
-HeadWebSetBlindfold,,,SourceCharacter creates a blindfold out of web for TargetCharacter
-HeadWebSetCocoon,,,SourceCharacter creates a cocoon out of web for TargetCharacter
-SelectCribState,,,Crib Setup
+WebBondageSelect,,,Select web type,,
+WebBondageTangled,,,Tangled,,
+WebBondageWrapped,,,Wrapped,,
+WebBondageCocooned,,,Cocooned,,
+WebBondageHogtied,,,Hogtied,,
+WebBondageSuspended,,,Suspended,,
+WebBondageSuspensionHogtied,,,Suspension Hogtied,,
+WebBondageBlindfold,,,Blindfold,,
+WebBondageCocoon,,,Cocoon,,
+ArmsWebSetTangled,,,SourceCharacter Action the webbing on TargetCharacter,,
+ArmsWebSetWrapped,,,"SourceCharacter Action the webbing on TargetCharacter, leaving them fully wrapped",,
+ArmsWebSetCocooned,,,"SourceCharacter Action the webbing on TargetCharacter, forming a cocoon",,
+ArmsWebSetHogtied,,,"SourceCharacter wraps TargetCharacter in webbing, forming a hogtie",,
+ArmsWebSetSuspended,,,SourceCharacter fully wraps TargetCharacter in webbing and uses it to suspend her,,
+ArmsWebSetSuspensionHogtied,,,SourceCharacter hogties TargetCharacter with the webbing and uses it to suspend her,,
+tightens,,,tightens,,
+loosens,,,loosens,,
+HeadWebSetBlindfold,,,SourceCharacter creates a blindfold out of web for TargetCharacter,,
+HeadWebSetCocoon,,,SourceCharacter creates a cocoon out of web for TargetCharacter,,
+SelectCribState,,,Crib Setup,,
 CribOpen,,,Open,,
 CribClosed,,,Closed,,
 CribStuffed,,,Stuffed,,
 CribSetOpen,,,SourceCharacter opens DestinationCharacter crib.,,
 CribSetClosed,,,SourceCharacter closes DestinationCharacter crib.,,
 CribSetStuffed,,,SourceCharacter stuffs DestinationCharacter crib full of plushies.,,
-SelectMilkBottleState,,,Raise or lower the bottle
+SelectMilkBottleState,,,Raise or lower the bottle,,
 MilkBottleRest,,,Resting,,
 MilkBottleRaised,,,Held up,,
 MilkBottleChug,,,Help up high,,
