@@ -49,6 +49,9 @@ function DrawLoad() {
 	MainCanvas.font = "36px Arial";
 	MainCanvas.textAlign = "center";
 	MainCanvas.textBaseline = "middle";
+	
+	// Loads the 3D engine as well
+	Draw3DLoad();
 
 }
 
@@ -118,6 +121,12 @@ function DrawArousalMeter(C, X, Y, Zoom) {
 // Refreshes the character if not all images are loaded and draw the character canvas on the main game screen
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	if ((C != null) && ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet"))) {
+		
+		// Shortcuts drawing the character to 3D if needed
+		if (Draw3DEnabled) {
+			Draw3DCharacter(C, X, Y, Zoom, IsHeightResizeAllowed);
+			return;
+		}
 
 		// There's 2 different canvas, one blinking and one that doesn't
 		var seconds = new Date().getTime();
@@ -631,6 +640,9 @@ function DrawProcess() {
 
 	// Draws beep from online player sent by the server
 	ServerDrawBeep();
+
+	// Draws the 3D objects
+	Draw3DProcess();
 
 }
 

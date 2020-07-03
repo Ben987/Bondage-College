@@ -52,17 +52,18 @@ function BackgroundSelectionInputChanged() {
 
 // When the background selection screens runs
 function BackgroundSelectionRun() {
-	DrawText(TextGet("Selection").replace("SelectedBackground", BackgroundSelectionSelectName), 400, 65, "White", "Black");
-	DrawText(TextGet("Filter").replace("Filtered", BackgroundSelectionView.length).replace("Total", BackgroundSelectionAll.length), 1100, 65, "White", "Black");
+	DrawText(TextGet("Selection").replace("SelectedBackground", BackgroundSelectionSelectName), 300, 65, "White", "Black");
+	DrawText(TextGet("Filter").replace("Filtered", BackgroundSelectionView.length).replace("Total", BackgroundSelectionAll.length), 1000, 65, "White", "Black");
 
+	DrawButton(1585, 25, 90, 90, "", "White", "Icons/Prev.png", TextGet("Prev"));
 	DrawButton(1685, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 	DrawButton(1785, 25, 90, 90, "", "White", "Icons/Cancel.png", TextGet("Cancel"));
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Accept.png", TextGet("Accept"));
 
-	if (!CommonIsMobile && (CommonIsClickAt(1685, 25, 90, 90) || CommonIsClickAt(1785, 25, 90, 90) || CommonIsClickAt(1885, 25, 90, 90))) {
+	if (!CommonIsMobile && (CommonIsClickAt(1585, 25, 90, 90) || CommonIsClickAt(1685, 25, 90, 90) || CommonIsClickAt(1785, 25, 90, 90) || CommonIsClickAt(1885, 25, 90, 90))) {
 		document.getElementById("InputBackground").style.display = "none";
 	} else {
-		ElementPosition("InputBackground", 1450, 60, 400);
+		ElementPosition("InputBackground", 1350, 60, 400);
 	}
 
 	var X = 45;
@@ -96,7 +97,15 @@ function BackgroundSelectionClick() {
 		BackgroundSelectionExit();
 	}
 
-	// Set next offset
+	// Set next offset backward
+	if ((MouseX >= 1585) && (MouseX < 1675) && (MouseY >= 25) && (MouseY < 115)) {
+		BackgroundSelectionOffset -= BackgroundSelectionSize;
+		if (BackgroundSelectionOffset < 0) {
+			BackgroundSelectionOffset = BackgroundSelectionView.length - BackgroundSelectionSize - (BackgroundSelectionView.length - BackgroundSelectionSize) % BackgroundSelectionSize;
+		}
+	}
+
+	// Set next offset forward
 	if ((MouseX >= 1685) && (MouseX < 1775) && (MouseY >= 25) && (MouseY < 115)) {
 		BackgroundSelectionOffset += BackgroundSelectionSize;
 		if (BackgroundSelectionOffset >= BackgroundSelectionView.length) BackgroundSelectionOffset = 0;
