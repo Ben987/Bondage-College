@@ -222,7 +222,7 @@ function CharacterAppearanceNaked(C) {
 		if (C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked && (C.Appearance[A].Asset.Group.Category == "Appearance")) {
 			C.Appearance.splice(A, 1);
 			A--;
-		} // if
+		}
 
 	// Loads the new character canvas
 	CharacterLoadCanvas(C);
@@ -246,7 +246,7 @@ function CharacterAppearanceStripLayer(C) {
 		if (C.Appearance[A].Asset.Group.BodyCosplay || C.Appearance[A].Asset.BodyCosplay) HasBodyCosplay = true;
 		else if (C.Appearance[A].Asset.Group.Underwear) HasUnderwear = true;
 		else if (C.Appearance[A].Asset.Group.Clothing) { HasClothes = true; break; }
-	} // for
+	}
 
 	// Check if there's anything to remove
 	if (!HasClothes && !HasUnderwear && !HasBodyCosplay) return;
@@ -383,11 +383,11 @@ function CharacterAppearanceBuildCanvas(C) {
 			// If there's a father group, we must add it to find the correct image
 			var CA = C.Appearance[A];
 			var ParentGroup = CA.Asset.ParentGroupName ? CA.Asset.ParentGroupName : CA.Asset.Group.ParentGroupName && !CA.Asset.IgnoreParentGroup ? CA.Asset.Group.ParentGroupName : "";
-            var G = "";
-            if (ParentGroup != "")
-                for (var FG = 0; FG < C.Appearance.length; FG++)
-                    if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
-                        G = "_" + C.Appearance[FG].Asset.Name;
+			var G = "";
+			if (ParentGroup != "")
+				for (var FG = 0; FG < C.Appearance.length; FG++)
+					if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
+						G = "_" + C.Appearance[FG].Asset.Name;
 
 			// If there's a pose style we must add (first by group then by item)
 			var Pose = "";
