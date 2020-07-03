@@ -46,6 +46,7 @@
 <script src="Scripts/three/three.min.js"></script>
 <script src="Scripts/three/inflate.min.js"></script>
 <script src="Scripts/three/FBXLoader.js"></script>
+<script src="Scripts/three/Detector.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
 <script src="Screens/Character/Appearance/Appearance.js"></script>
@@ -226,9 +227,9 @@
 /*
 
 	NEXT VERISON:
-	
+
 	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
-	
+
 	OK - Belt Strap fix (Nina)
 	OK - Reset sheet on page one (Ellie)
 	OK - Missing locks (Ace)
@@ -244,7 +245,7 @@
 	OK - Invisible butt plug (Ace)
 	OK - Straitdress alignment fix (Ellie)
 	OK - Web blindfold text fix (Ellie)
-	
+
 	HOT FIXES
 
 	OK - Allow Mouth Activities with some gags (Ellie)
@@ -272,28 +273,28 @@
 	OK - Remove unused flower dress assets (Ace)
 	OK - JSDoc for AFK module (Sandrine)
 	OK - Previous button in background selection (Sandrine)
-	
+
 	OK - Prevent doing the introduction rescue mission if doing the maid daily job
-	
+
 	OK - How would you feel if we added a safeword feature, available by typing /safeword or going in your player profile and clicking on a safeword button somewhere in the interface?  This is how it would work:
 		-    When you enter the multiplayer lobby to find a chat room, it will save a state on how your character is dressed, including restraints and locks.
 		-    You can navigate from room to room, as long as you don’t go back to the main hall, that state is kept.  If you enter the main hall, that state will be lost.
 		-    In any chatroom, if you use the safeword, it will revert you back to that initial state and show a public message: “X used her safeword, please check for her safety and well-being.”
 		-    When the safeword is used, if the player item permission level is below “Whitelist/owner/lover only”, it will be set to “Whitelist/owner/lover only” automatically.
 		This could be useful against trolls or console script attacks, and would not affect single-player.  What do you think?
-	
+
 	OK - Removing some evasion skill when struggling while arms/hands/mouth are restrained
 
 	TO DO - Add a way to assist someone to struggle, giving half of your own evasion as a temporary bonus
-	
+
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
 		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
 		3. Be Clever (Rope, Yokes, Cages & Boxes, Cuffs & Manacles, Locking Boots, Collars) - Memory Game: Simon Says
 		4. Use Dexterity (Rope, Jackets & Suits, One Bar & Bench & Bag, Mittens, Body Harnesses, Gags with harness, Collars) - Timing Game: Stop the moving object at the right position
-		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
+		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower
 		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
-	
+
 	TO DO - Add a random punishment function to online chat room to roll a random punishment for a player or yourself, the punishment will be executed manually
 
 	TO DO - Proof Read
@@ -359,9 +360,9 @@ function Touch(event) {
 		} else {
 			MouseX = Math.round((event.touches[0].clientX - rect.left) * 1000 / document.body.clientHeight);
 			MouseY = Math.round((event.touches[0].clientY - rect.top) * 1000 / document.body.clientHeight);
-		}		
+		}
 		CommonClick();
-	} 
+	}
 }
 
 // When mouse move, we keep the mouse position for other scripts
@@ -383,7 +384,7 @@ function LoseFocus(event) {
 		MouseY = -1;
 	}
 }
- 
+
 </script>
 
 <body style="width:100%; height:100%; background-color:black; margin:0px; padding:0px; overflow:hidden;">
