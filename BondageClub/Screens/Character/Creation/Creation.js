@@ -2,7 +2,12 @@
 var CreationBackground = "Dressing";
 var CreationMessage = "";
 
-// Loads the character login screen
+/**
+ * @description Loads the character login screen. Imports data from the Bondage College if necessary
+ * and creates the input fields. This function is called dynamically.
+ * 
+ * @returns {void} - Nothing
+ */
 function CreationLoad() {
 
 	// Gets the info to import Bondage College data
@@ -21,7 +26,14 @@ function CreationLoad() {
 
 }
 
-// Run the character creation screen 
+
+/**
+ * @description Runs the character creation screen. Draws all needed input fields and buttons.
+ * If the import of Bondage College data is possible, an appropriate check box is drawn.
+ * The function is called dynamically.
+ * 
+ * @returns {void} - Nothing
+ */
 function CreationRun() {
 
 	// Places the controls on the screen
@@ -30,7 +42,7 @@ function CreationRun() {
 	ElementPosition("InputPassword1", 1250, 435, 500);
 	ElementPosition("InputPassword2", 1250, 565, 500);
 	ElementPosition("InputEmail", 1250, 695, 500);
-		
+
 	// Draw the character, the labels and buttons
 	if (CreationMessage == "") CreationMessage = TextGet("EnterAccountCharacterInfo");
 	DrawCharacter(Player, 500, 0, 1);
@@ -43,7 +55,7 @@ function CreationRun() {
 	DrawButton(1050, 825, 400, 60, TextGet("CreateAccount"), "White", "");
 	DrawText(TextGet("AccountAlreadyExists"), 1180, 950, "White", "Black");
 	DrawButton(1440, 920, 120, 60, TextGet("Login"), "White", "");
-	
+
 	// Draw the importation check box
 	if (ImportBondageCollegeData != null) {
 		DrawText(TextGet("ImportBondageCollege"), 1217, 783, "White", "Black");
@@ -53,6 +65,17 @@ function CreationRun() {
 }
 
 // When the server response returns, we analyze it's data
+/**
+ * @description Handles the server response to a creation request. Creates the character, if possible,
+ * initializes the basic data and sends the newborn to the maid in the main hall.
+ * 
+ * @param {*} data - The set of data, received from the server
+ * @param {string} data.ServerAnswer - The outcome of the creation request: should always be "AccountCreated"
+ * @param {string} data.OnlineID - The ID of the newly created account
+ * @param {string} data.MemberNumber - The member number of the newly created account
+ * 
+ * @returns {void} - Nothing
+ */
 function CreationResponse(data) {
 	if ((data != null) && (data.ServerAnswer != null)) {
 		if (data.ServerAnswer == "AccountCreated") {
@@ -94,14 +117,19 @@ function CreationResponse(data) {
 			// A maid will introduce the player to the club and explain the basic rules
 			MainHallMaidIntroduction();
 
-		} else CreationMessage = TextGet("Error") + " " + data.ServerAnswer;		
+		} else CreationMessage = TextGet("Error") + " " + data.ServerAnswer;
 	} else {
 		if ((data != null) && (typeof data === "string")) CreationMessage = data;
 		else CreationMessage = TextGet("InvalidServerAnswer");
 	}
 }
 
-// When the user clicks on the character creation screen
+/**
+ * @description Handles click events in the creation dialog. 
+ * Imports data from Bondage College and creates a character.
+ * 
+ * @returns {void} - Nothing
+ */
 function CreationClick() {
 
 	// If we must check or uncheck the importation checkbox
@@ -112,17 +140,17 @@ function CreationClick() {
 	if ((MouseX >= 1440) && (MouseX <= 1560) && (MouseY >= 920) && (MouseY <= 980)) {
 		CreationExit();
 	}
-	
+
 	// If we must try to create a new account (make sure we don't create it twice)
 	if ((MouseX >= 1050) && (MouseX <= 1450) && (MouseY >= 825) && (MouseY <= 885) && (CreationMessage != TextGet("CreatingCharacter"))) {
-		
+
 		// First, we make sure both passwords are the same
 		var CharacterName = ElementValue("InputCharacter");
 		var Name = ElementValue("InputName");
 		var Password1 = ElementValue("InputPassword1");
 		var Password2 = ElementValue("InputPassword2");
 		var Email = ElementValue("InputEmail");
-		
+
 		// If both password matches
 		if (Password1 == Password2) {
 
@@ -132,9 +160,9 @@ function CreationClick() {
 			var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
 			if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100)) {
 				CreationMessage = TextGet("CreatingCharacter");
-				ServerSend("AccountCreate", { Name: CharacterName, AccountName: Name, Password: Password1, Email: Email } );
+				ServerSend("AccountCreate", { Name: CharacterName, AccountName: Name, Password: Password1, Email: Email });
 			}
-			else 
+			else
 				CreationMessage = TextGet("InvalidData");
 
 		} else CreationMessage = TextGet("BothPasswordDoNotMatch");
@@ -143,6 +171,11 @@ function CreationClick() {
 }
 
 // when the user exit this screen
+/**
+ * @description Does the cleanup, if the user exits the screen
+ * 
+ * @returns {void} - Nothing
+ */
 function CreationExit() {
 	ElementRemove("InputCharacter");
 	ElementRemove("InputName");
