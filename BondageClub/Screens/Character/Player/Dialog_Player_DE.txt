@@ -95,6 +95,8 @@ You cannot unlock yourself
 Du kannst dich nicht befreien
 This zone is out of reach from another item
 Diese Zone wird von einem anderen Objekt versperrt
+Another item is blocking access to this lock
+Ein anderes Item blockiert den Zugriff auf dieses Schloss
 You cannot access your items
 Du kommst nicht an deine Items
 Click here to speed up the progress

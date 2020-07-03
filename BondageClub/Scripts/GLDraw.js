@@ -287,10 +287,11 @@ function GLDrawAppearanceBuild(C) {
 
             // If there's a father group, we must add it to find the correct image
             var CA = C.Appearance[A];
+            var ParentGroup = CA.Asset.ParentGroupName ? CA.Asset.ParentGroupName : CA.Asset.Group.ParentGroupName && !CA.Asset.IgnoreParentGroup ? CA.Asset.Group.ParentGroupName : "";
             var G = "";
-            if (CA.Asset.Group.ParentGroupName != "" && !CA.Asset.IgnoreParentGroup)
+            if (ParentGroup != "")
                 for (var FG = 0; FG < C.Appearance.length; FG++)
-                    if (CA.Asset.Group.ParentGroupName == C.Appearance[FG].Asset.Group.Name)
+                    if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
                         G = "_" + C.Appearance[FG].Asset.Name;
 
             // If there's a pose style we must add (first by group then by item)

@@ -174,7 +174,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 		var GagIndex = Number(C.FocusGroup.Name.replace("ItemMouth", "") || 1);
 		var MouthItems = [InventoryGet(C, "ItemMouth"), InventoryGet(C, "ItemMouth2"), InventoryGet(C, "ItemMouth3")];
 		var MinBlockingIndex = 0;
-		for (let i = 0; i < MouthItems.length && !MinBlockingIndex; i++) {
+		for (var i = 0; i < MouthItems.length && !MinBlockingIndex; i++) {
 			// Find the lowest indexed slot in which there is a "GagFlat" or "GagCorset" item, drop out of the loop if we find one
 			var AssetPrerequisite = MouthItems[i] && MouthItems[i].Asset.Prerequisite;
 			if (AssetPrerequisite === "GagFlat" || AssetPrerequisite === "GagCorset") MinBlockingIndex = i + 1;
