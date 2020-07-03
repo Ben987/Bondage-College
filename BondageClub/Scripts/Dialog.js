@@ -422,7 +422,9 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	var S = 0;
 	if ((PrevItem != null) && (C.ID == 0)) {
 		S = S + SkillGetWithRatio("Evasion"); // Add the player evasion level (modified by the effectiveness ratio)
-		S = S - Player.GetClumsiness(); // make struggling harder if hands are restrained
+		if (PrevItem.Asset.Group.Name !== "ItemHands") {
+			S = S - Player.GetClumsiness(); // make struggling harder if hands are restrained
+		}
 		if (PrevItem.Difficulty != null) S = S - PrevItem.Difficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
 		if ((PrevItem.Property != null) && (PrevItem.Property.Difficulty != null)) S = S - PrevItem.Property.Difficulty; // Subtract the additional item difficulty for expanded items only
 	}
