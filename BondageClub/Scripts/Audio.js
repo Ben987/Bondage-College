@@ -5,7 +5,7 @@ var AudioDialog = new Audio();
 function AudioPlayInstantSound(src, volume) {
 	var audio = new Audio();
 	audio.src = src;
-	audio.volume = volume;
+	audio.volume = Math.max(0, Math.min(volume, 1));
 	audio.play();
 }
 
@@ -165,25 +165,22 @@ function AudioPlayContent(data) {
 	var target = data.Dictionary.find(function (el) {return el.Tag == "DestinationCharacter" || el.Tag == "DestinationCharacterName" || el.Tag == "TargetCharacter";});
 	if (!target || !target.MemberNumber) return;
 
-	// Changes the volume based on sensory deprivation
-	if (target.MemberNumber == Player.MemberNumber) {
-		noiseLevelModifier += 2;
-		if (Player.Effect.indexOf("BlindHeavy") >= 0) noiseLevelModifier += 5;
-		else if (Player.Effect.indexOf("BlindNormal") >= 0) noiseLevelModifier += 3;
-		else if (Player.Effect.indexOf("BlindLight") >= 0) noiseLevelModifier += 1;
-		if (Player.Effect.indexOf("DeafTotal") >= 0) noiseLevelModifier += 6;
-		else if (Player.Effect.indexOf("DeafHeavy") >= 0) noiseLevelModifier += 5;
-		else if (Player.Effect.indexOf("DeafNormal") >= 0) noiseLevelModifier += 3;
-		else if (Player.Effect.indexOf("DeafLight") >= 0) noiseLevelModifier += 1;
-	} else {
-		if (Player.Effect.indexOf("DeafTotal") >= 0) noiseLevelModifier -= 4;
-		else if (Player.Effect.indexOf("DeafHeavy") >= 0) noiseLevelModifier -= 3;
-		else if (Player.Effect.indexOf("DeafNormal") >= 0) noiseLevelModifier -= 2;
-		else if (Player.Effect.indexOf("DeafLight") >= 0) noiseLevelModifier -= 1;
-	}
+	var targetIsPlayer = target.MemberNumber == Player.MemberNumber;
+
+	// If the player is the target, increase volume
+	if (targetIsPlayer) noiseLevelModifier += 3;
+
+	// If the player is blindfolded, increase volume based on blindfold level
+	if (Player.Effect.indexOf("BlindHeavy") >= 0) noiseLevelModifier += 4;
+	else if (Player.Effect.indexOf("BlindNormal") >= 0) noiseLevelModifier += 2;
+	else if (Player.Effect.indexOf("BlindLight") >= 0) noiseLevelModifier += 1;
+
+	// Reduce volume based on player's deafness level
+	noiseLevelModifier -= (3 * Player.GetDeafLevel());
+
+	// Reduce volume a little if the player was neither the sender nor target
+	if (data.Sender != Player.MemberNumber && !targetIsPlayer) noiseLevelModifier -= 3;
 
 	// Sends the audio file to be played
-	if (data.Sender != Player.MemberNumber && target.MemberNumber != Player.MemberNumber) noiseLevelModifier -= 2;
-	AudioPlayInstantSound(audioFile, Player.AudioSettings.Volume * (.1 + noiseLevelModifier / 30));
-
+	AudioPlayInstantSound(audioFile, Player.AudioSettings.Volume * (.2 + noiseLevelModifier / 40));
 }

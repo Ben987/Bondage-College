@@ -85,7 +85,7 @@ function InformationSheetRun() {
 	if ((C.ID == 0) || OnlinePlayer) {
 		DrawText(TextGet("Relationships"), 1200, 125, "Black", "Gray");
 		if (C.Lovership.length < 1) DrawText(TextGet("Lover") + " " + TextGet("LoverNone"), 1200, 200, "Black", "Gray");
-		for (let L = 0; L < C.Lovership.length; L++) {
+		for (var L = 0; L < C.Lovership.length; L++) {
 			if (C.Lovership[L].MemberNumber == null) DrawText(TextGet("Lover") + " " + C.Lovership[L].Name.replace("NPC-", ""), 1200, 200 + L * 150, "Black", "Gray");
 			else {
 				DrawText(TextGet("Lover") + " " + C.Lovership[L].Name + " (" + C.Lovership[L].MemberNumber + ")", 1200, 200 + L * 150, "Black", "Gray");
