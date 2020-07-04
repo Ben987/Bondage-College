@@ -7,6 +7,7 @@ var ChatAdminBackgroundSelect = "";
 var ChatAdminPrivate = false;
 var ChatAdminLocked = false;
 var ChatAdminBackgroundSelected = null;
+var ChatAdminTemporaryData = null;
 
 // When the chat admin screens loads
 function ChatAdminLoad() {
@@ -18,24 +19,24 @@ function ChatAdminLoad() {
 	ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
 
 	// Prepares the controls to edit a room
-	ElementCreateInput("InputName", "text", ChatRoomData.Name, "20");
+	ElementCreateInput("InputName", "text", ChatAdminTemporaryData ? ChatAdminTemporaryData.Name : ChatRoomData.Name, "20");
 	document.getElementById("InputName").setAttribute("autocomplete", "off");
-	ElementCreateInput("InputSize", "text", ChatRoomData.Limit.toString(), "2");
+	ElementCreateInput("InputSize", "text", ChatAdminTemporaryData ? ChatAdminTemporaryData.Limit : ChatRoomData.Limit.toString(), "2");
 	document.getElementById("InputSize").setAttribute("autocomplete", "off");
 	ElementCreateTextArea("InputDescription");
 	document.getElementById("InputDescription").setAttribute("maxLength", 100);
 	document.getElementById("InputDescription").setAttribute("autocomplete", "off");
-	ElementValue("InputDescription", ChatRoomData.Description);
+	ElementValue("InputDescription", ChatAdminTemporaryData ? ChatAdminTemporaryData.Description : ChatRoomData.Description);
 	ElementCreateTextArea("InputAdminList");
 	document.getElementById("InputAdminList").setAttribute("maxLength", 250);
 	document.getElementById("InputAdminList").setAttribute("autocomplete", "off");
-	ElementValue("InputAdminList", CommonConvertArrayToString(ChatRoomData.Admin));
+	ElementValue("InputAdminList", ChatAdminTemporaryData ? ChatAdminTemporaryData.AdminList : CommonConvertArrayToString(ChatRoomData.Admin));
 	ElementCreateTextArea("InputBanList");
 	document.getElementById("InputBanList").setAttribute("maxLength", 1000);
 	document.getElementById("InputBanList").setAttribute("autocomplete", "off");
-	ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomData.Ban));
-	ChatAdminPrivate = ChatRoomData.Private;
-	ChatAdminLocked = ChatRoomData.Locked;
+	ElementValue("InputBanList", ChatAdminTemporaryData ? ChatAdminTemporaryData.BanList : CommonConvertArrayToString(ChatRoomData.Ban));
+	ChatAdminPrivate = ChatAdminTemporaryData ? ChatAdminTemporaryData.Private :ChatRoomData.Private;
+	ChatAdminLocked = ChatAdminTemporaryData ? ChatAdminTemporaryData.Locked : ChatRoomData.Locked;
 
 	// If the player isn't an admin, we disable the inputs
 	if (!ChatRoomPlayerIsAdmin()) {
@@ -110,6 +111,17 @@ function ChatAdminClick() {
 		if ((MouseX >= 975) && (MouseX < 1225) && (MouseY >= 770) && (MouseY < 835)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(false, true, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
 		
 		if ((MouseX >= 1450) && (MouseX <= 1750) && (MouseY >= 600) && (MouseY <= 665)) {
+			// Save the input values before entering background selection
+			ChatAdminTemporaryData = {
+				Name: ElementValue("InputName"),
+				Description: ElementValue("InputDescription"),
+				Limit: ElementValue("InputSize"),
+				AdminList: ElementValue("InputAdminList"),
+				BanList: ElementValue("InputBanList"),
+				Private: ChatAdminPrivate,
+				Locked: ChatAdminLocked,
+			};
+			
 			ElementRemove("InputName");
 			ElementRemove("InputDescription");
 			ElementRemove("InputSize");
@@ -123,6 +135,7 @@ function ChatAdminClick() {
 // When the user exit from this screen
 function ChatAdminExit() {
 	ChatAdminBackgroundSelected = null;
+	ChatAdminTemporaryData = null;
 	ElementRemove("InputName");
 	ElementRemove("InputDescription");
 	ElementRemove("InputSize");
