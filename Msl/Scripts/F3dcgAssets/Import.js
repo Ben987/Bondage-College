@@ -1,4 +1,6 @@
 
+
+
 F3dcgAssets.InitFreeAndQuestClothes = function(){
 	for(var i = 0; i < this.ClothesGroups.length; i++){
 		for(var itemName in this.AssetGroups[this.ClothesGroups[i]].Items){
@@ -11,7 +13,26 @@ F3dcgAssets.InitFreeAndQuestClothes = function(){
 	}
 
 }
+
+F3dcgAssets.InitPrerequisites = function(){
+	//var unconvertedPrereqs = {};
 	
+	Object.values(F3dcgAssets.AssetGroups).forEach( AssetGroup => {
+		Object.values(AssetGroup.Items).forEach(AssetItem => {
+			if(AssetItem.Prerequisite && AssetItem.Prerequisite.length){
+				for(var i = 0; i < AssetItem.Prerequisite.length; i++){
+					switch(AssetItem.Prerequisite[i]){
+						//case "Collared":	AssetItem.Prerequisite[i] = {type:"GroupFilled", value:"ItemNeck"};		break;
+						default: 
+					}
+				}
+			}
+		});
+	});
+	
+	F3dcgAssets.AssetGroups.ItemNeck.RemoveOtherGroup = ["ItemNeckAccessories", "ItemNeckRestraints"];
+}
+
 F3dcgAssets.InitPoses = function(){
 /*  Poses:
 LegsClosed: true

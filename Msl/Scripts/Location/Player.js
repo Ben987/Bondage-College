@@ -41,26 +41,6 @@ var LocationPlayer = function(Player){
 	
 		//CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
 		//CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || ((this.Pose.indexOf("LegsClosed") < 0) && (this.Pose.indexOf("Supension") < 0) && (this.Pose.indexOf("Hogtied") < 0)))) },
-		
-	
-	/*
-	this.interval = setInterval(function(){
-		this.Appearance.forEach(AppearanceItem => {
-			if(AppearanceItem.Property?.RemoveTimer && AppearanceItem.Property?.RemoveTimer - new Date().getTime() < 0){
-				if(AppearanceItem.Property.RemoveItem){
-					this.Appearance = this.Appearance.filter(el => el != AppearanceItem);
-					this.appearance = F3dcgAssets.BuildPlayerAppearance(MainController.playerAccount, this, this.Appearance);
-					this.inventory = F3dcgAssets.BuildPlayerInventory(MainController.playerAccount, this, this.Inventory, this.appearance);					
-					this.update?.OnItemUpdate();
-				}else{
-					delete AppearanceItem.Property.RemoveTimer;
-					delete AppearanceItem.Property.RemoveItem;
-					delete AppearanceItem.Property.LockedBy;
-					delete AppearanceItem.Property.LockMemberNumber;
-				}
-			}
-		});
-	}.bind(this), 1000);*/
 	
 }
 
@@ -105,17 +85,25 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.UpdateLock = function(itemName, lockPropertyName, lockPropertyValue){
-		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+	this.UpdateLock = function(groupName, lockPropertyName, lockPropertyValue, code){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.appearance[AssetGroup.type][groupName];
 		
-		var lock = suit.frame = Util.CloneRecursive(currentItem.lock);
+		var lock = Util.CloneRecursive(currentItem.lock);
+		
+		if(lock.name == "CombinationPadlock" && lock.code != code) return ["InvalidCombination"];
+		
 		switch(lockPropertyName){
 			case "showTimer":
 			case "removeItem":
 			case "enableInput":
 				lock[lockPropertyName] = ! lock[lockPropertyName];
+			break;
+			case "setTime":
+				lock.timer.time = Date.now() + 1000*60 * lockPropertyValue;
+			break;
+			case "setCode":
+				lock.code = code;
 			break;
 			default:
 				lock[lockPropertyName] = lockPropertyValue;
@@ -128,10 +116,11 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.RemoveLock = function(itemName, lockName){
-		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+	this.RemoveLock = function(groupName, code){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.appearance[AssetGroup.type][groupName];
+		
+		if(currentItem.lock.name == "CombinationPadlock" && currentItem.lock.code != code) return ["InvalidCombination"];
 		
 		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant});
 		
@@ -139,18 +128,16 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.AddLock = function(itemName, lockName){
-		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+	this.AddLock = function(groupName, lockName){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.appearance[AssetGroup.type][groupName];
 		
 		var lock = {name:lockName, originPlayerId:MainController.playerAccount.id};
-		switch(lockName){
-			case "TimerPadlock":
-				lock.timer = {time:Date.now() + 1000*60*60*5, showTimer:true, removeItem:false, enableActions:false};
-			break;
-			default: break;
-		}
+		if(lockName.includes("Timer"))
+			lock.timer = {time:Date.now() + 1000*60*5, showTimer:true, removeItem:false, enableActions:false};
+		
+		if(lockName == "CombinationPadlock")
+			lock.code = "1234";
 		
 		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, lock:lock});
 		

@@ -49,7 +49,7 @@ var ItemsDialogAppearanceGroupActionView = function(container, callback) {
 var LockDialogAppearanceGroupActionView = function(container, callback) {
 	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
 	DialogAppearanceGroupActionView.call(this, container, callback);
-	
+	/*
 	this.SetItem = function(appliedItem){
 		Util.ClearNodeContent(this.container);
 		
@@ -57,18 +57,20 @@ var LockDialogAppearanceGroupActionView = function(container, callback) {
 			this.SetItemLocked(appliedItem.lock);
 		else
 			this.SetItemUnlocked(appliedItem.allowedLocks);
-	}
+	}*/
 	
-	this.SetItemLocked = function(lock){
+	this.SetItemLocked = function(lock, actions){
+		Util.ClearNodeContent(this.container);
+		
 		Util.CreateElement({parent:this.container, tag:"img"
 			,attributes:{src:lock.iconUrl, alt:lock.name}
 			,cssClass:"focus-item-actions-lock-present"
 		});
 		
-		if(lock.key){
-			var itemNameKey = lock.key.name;
+		if(actions.unlock){
+			var itemNameKey = actions.key.name;
 			Util.CreateElement({parent:this.container, tag:"img"
-				,attributes:{src:lock.key.iconUrl, alt:lock.key.name}
+				,attributes:{src:actions.key.iconUrl, alt:actions.key.name}
 				,events:{click:(event) =>{
 					this.callback({actionType:"unlock"});
 				}}
@@ -78,23 +80,52 @@ var LockDialogAppearanceGroupActionView = function(container, callback) {
 		Util.CreateElement({parent:this.container, tag:"br", cssStyles:{clear:"both"}});
 		Util.CreateElement({parent:this.container, innerHTML:"Locked by " + lock.originPlayerId});
 		
-		if(lock.timer) 
+		if(lock.timer?.showTimer) 
 			this.ShowItemLockedTimer(lock.timer);
 		
-		if(lock.actions?.timeIncrease){
-			var timeSelection = Util.CreateElement({parent:this.container, tag:"select"});
-			lock.actions.timeIncrease.forEach(sel => {
-				Util.CreateElement({parent:timeSelection, tag:"option", attributes:{value:sel}, innerHTML:sel});
-			});
-			Util.CreateElement({parent:this.container, tag:"input", attributes:{type:"submit",value:"Add/Subtract Time"}, events:{click:function(event){
-				this.callback({actionType:actionType, value:timeSelection.value});}.bind(this)
+		if(actions.setTime){
+			var maxTime = actions.setTime, timeSelectionDays, timeSelectionHours, timeSelectionMinutes;
+			if(maxTime > 60*24){
+				timeSelectionDays = Util.CreateElement({parent:this.container, tag:"select"});
+				for(var days = "0"; days*60*24 <= maxTime; days++)
+					Util.CreateElement({parent:timeSelectionDays, tag:"option", attributes:{value:days}, innerHTML:days});
+				
+				Util.CreateElement({parent:this.container, tag:"span", textContent:"Days"});
+				Util.CreateElement({parent:this.container, tag:"br"});
+				maxTime = 60*24;
+			}
+			
+			if(maxTime > 60){
+				timeSelectionHours = Util.CreateElement({parent:this.container, tag:"select"});
+				for(var hours = "0"; hours*60 <= maxTime; hours ++)
+					Util.CreateElement({parent:timeSelectionHours, tag:"option", attributes:{value:hours}, innerHTML:hours});
+				
+				Util.CreateElement({parent:this.container, tag:"span", textContent:"Hours"});
+				Util.CreateElement({parent:this.container, tag:"br"});
+				maxTime = 60;
+			}
+			
+			timeSelectionMinutes = Util.CreateElement({parent:this.container, tag:"select"});
+			for(var minutes = "0"; minutes <= maxTime; minutes = 1*minutes + 5) //tricks to propertly display the number in drop down
+				Util.CreateElement({parent:timeSelectionMinutes, tag:"option", attributes:{value:minutes}, innerHTML:minutes});
+			
+			Util.CreateElement({parent:this.container, tag:"span", textContent:"Minutes"});
+			Util.CreateElement({parent:this.container, tag:"br"});
+			
+			Util.CreateElement({parent:this.container, tag:"input", attributes:{type:"submit",value:"Set Time"}
+				,events:{click:function(event){
+					var minutes = parseInt(timeSelectionMinutes.value);
+					if(timeSelectionHours) minutes += parseInt(timeSelectionHours.value) * 60;
+					if(timeSelectionDays) minutes += parseInt(timeSelectionDays.value) * 60*24;
+					this.callback({actionType:"setTime", value:minutes});
+				}.bind(this)
 			}});
 		}
 		
-		if(lock.actions?.flags){
-			for(let flagName in lock.actions.flags){
+		if(actions.flags){
+			for(let flagName in actions.flags){
 				var checkboxContainer = Util.CreateElement({parent:this.container});
-				var attributes = lock.actions.flags[flagName] ? {type:"checkbox", checked:true} : {type:"checkbox"};
+				var attributes = actions.flags[flagName] ? {type:"checkbox", checked:true} : {type:"checkbox"};
 				let checkboxElement = Util.CreateElement({parent:checkboxContainer, tag:"input",attributes:attributes});
 				Util.CreateElement({parent:checkboxContainer,tag:"label",innerHTML:flagName});
 				
@@ -104,22 +135,25 @@ var LockDialogAppearanceGroupActionView = function(container, callback) {
 				}.bind(this));					
 			}
 		}
-			
-			/*
-			for(let actionType in lock.actions){
-				var checkboxContainer = Util.CreateElement({parent:this.container});
-				var attributes = timer.management[actionType] ? {type:"checkbox", checked:true} : {type:"checkbox"};
-				let checkboxElement = Util.CreateElement({parent:checkboxContainer,tag:"input",attributes:attributes});
-				Util.CreateElement({parent:checkboxContainer,tag:"label",innerHTML:actionType});
-				
-				checkboxContainer.addEventListener("click", function(event){
-					event.stopPropagation();
-					timer.management[actionType] = ! timer.management[actionType];
-					checkboxElement.checked = timer.management[actionType];
-					this.callback({actionType:actionType, value:timer.management[actionType]});
-				}.bind(this));
-			}*/		
 		
+		console.log(actions);
+		
+		if(actions.code){			
+			var currentCode =  Util.CreateElement({parent:this.container,tag:"input", attributes:{placeholder:actions.code}});
+			Util.CreateElement({parent:this.container,tag:"input", attributes:{type:"submit", value:"Unlock"}
+				,events:{click:function(event){
+					this.callback({actionType:"unlockCode", value:currentCode.value});
+				}.bind(this)			
+			}});
+			
+			Util.CreateElement({parent:this.container, tag:"br"});
+			var newCode = Util.CreateElement({parent:this.container,tag:"input", attributes:{placeholder:actions.code}});
+			Util.CreateElement({parent:this.container,tag:"input", attributes:{type:"submit", value:"Change"}
+				,events:{click:function(event){
+					this.callback({actionType:"setCode", value:currentCode.value, code:newCode.value});
+				}.bind(this)
+			}});
+		}
 	}
 	
 	
@@ -139,7 +173,7 @@ var LockDialogAppearanceGroupActionView = function(container, callback) {
 		if(this.timerCountdownElement?.parentNode){
 			this.timerCountdownElement.parentNode.removeChild(this.timerCountdownElement);
 			this.timerCountdownElement = null;
-		}		
+		}
 	}
 	
 	
@@ -153,67 +187,13 @@ var LockDialogAppearanceGroupActionView = function(container, callback) {
 		
 		var removalText = timer.removeItem ? "Item will be removed" : "Item will NOT be removed";
 		Util.CreateElement({parent:this.container, innerHTML:removalText});
-		/*
-		for(let actionType in timer.actions){
-			switch(actionType){
-				case "plus":
-					Util.CreateElement({
-						parent:this.container,tag:"input"
-						,attributes:{type:"submit",value:"Add " + timer.actions[actionType]}
-						,events:{click:function(event){this.callback({actionType:actionType, value:timer.actions[actionType]});}.bind(this)
-					}});
-				break;
-				case "minus":
-					Util.CreateElement({
-						parent:this.container,tag:"input"
-						,attributes:{type:"submit",value:"Subtract " + timer.actions[actionType]}
-						,events:{click:function(event){this.callback({actionType:actionType, value:timer.actions[actionType]});}.bind(this)
-					}});
-				break;
-				case "random":	
-					Util.CreateElement({
-						parent:this.container,tag:"input"
-						,attributes:{type:"submit",value:"Random"}
-						,events:{click:function(event){this.callback({actionType:actionType, value:timer.actions[actionType]});}.bind(this)
-					}});
-				break;
-				
-				case "selection":
-					let timeSelection = Util.CreateElement({parent:this.container, tag:"select"});
-					timer.actions[actionType].forEach(sel => {
-						Util.CreateElement({parent:timeSelection, tag:"option", attributes:{value:sel}, innerHTML:sel});
-					})
-					Util.CreateElement({parent:this.container, tag:"input", attributes:{type:"submit",value:"Add/Subtract Time"}, events:{click:function(event){
-						this.callback({actionType:actionType, value:timeSelection.value});}.bind(this)
-					}});
-				break;
-				
-				case "timerManagement":
-					["removeItem", "showTimer", "enableInput"].forEach(timerAction => {
-						var checkboxContainer = Util.CreateElement({parent:this.container});
-						var attributes = timer.management[actionType] ? {type:"checkbox", checked:true} : {type:"checkbox"};
-						let checkboxElement = Util.CreateElement({parent:checkboxContainer,tag:"input",attributes:attributes});
-						Util.CreateElement({parent:checkboxContainer,tag:"label",innerHTML:actionType});
-						
-						checkboxContainer.addEventListener("click", function(event){
-							event.stopPropagation();
-							timer.management[actionType] = ! timer.management[actionType];
-							checkboxElement.checked = timer.management[actionType];
-							this.callback({actionType:actionType, value:timer.management[actionType]});
-						}.bind(this));					
-					});
-					//remove item
-					//show time 
-					//enable input
-				break;
-				
-				default:throw "Unimplemented lock action " + actionType;
-			}
-		}*/
 		Util.CreateElement({parent:this.container,tag:"br"});
 	} 
 	
+	
 	this.SetItemUnlocked = function(allowedLocks){
+		Util.ClearNodeContent(this.container);
+		
 		allowedLocks.forEach(allowedLock => {
 			var lockImage = Util.CreateElement({parent:this.container, tag:"img"
 				,attributes:{src:allowedLock.iconUrl, alt:allowedLock.name}
@@ -245,9 +225,6 @@ var VariantsDialogAppearanceGroupActionView = function(container, callback) {
 		for(let variantName in appliedItem.variants){
 			var variantData = appliedItem.variants[variantName];
 			
-			var iconContainer = Util.CreateElement({parent:this.container});
-			Util.CreateElement({parent:iconContainer,innerHTML:variantName,cssStyles:{fontSize:".8em"}});
-			
 			var events = {};
 			if(variantData.validation?.length == 0)
 				events.click = (event) => this.callback({itemName:appliedItem.name, variantName:variantName});
@@ -255,7 +232,9 @@ var VariantsDialogAppearanceGroupActionView = function(container, callback) {
 				for(var i = 0; i < variantData.validation?.length; i++)
 					Util.CreateElement({parent:iconContainer,innerHTML:variantData.validation[i],cssStyles:{color:"#fcc",top:(i+1)+"em",fontSize:"1em"}});
 			
+			var iconContainer = Util.CreateElement({parent:this.container});
 			Util.CreateElement({parent:iconContainer, tag:"img",attributes:{src:appliedItem.variants[variantName].iconUrl, alt:variantName},events:events});		
+			Util.CreateElement({parent:iconContainer,innerHTML:variantName,cssStyles:{fontSize:".8em"}});
 		};
 	}
 	

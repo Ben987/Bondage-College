@@ -130,7 +130,7 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 				}
 				
 				if(previousItem && previousItem.lock && ! F3dcgAssets.CanUnlockItem(playerTarget, playerOrigin, previousItem)) throw "CanNotUnlock " + groupName + " " + previousItem.lock.name;
-				if(item.lock) F3dcgAssets.ValidateLockOrThrow(playerTarget, playerOrigin, item.lock);
+				if(item && item.lock) F3dcgAssets.ValidateLockOrThrow(playerTarget, playerOrigin, item.lock);
 				
 				//The applying player must not be tied
 				if(playerOrigin){
@@ -144,8 +144,12 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 				if(AssetItem && AssetItem.Variant && ! AssetItem.Variant[item.variant]) throw "VariantNotFound " + item.variant;
 				
 				if(item){
-					var Prerequisite = item.variant && AssetItem.Variant[item.variant].Prerequisite ?  AssetItem.Variant[item.variant].Prerequisite : AssetItem.Prerequisite;
-					if(Prerequisite){
+					var Prerequisite = AssetGroup.Prerequisite;
+					Prerequisite = AssetItem.Prerequisite ? AssetItem.Prerequisite : Prerequisite;
+					Prerequisite = item.variant && AssetItem.Variant[item.variant].Prerequisite ?  AssetItem.Variant[item.variant].Prerequisite : Prerequisite;
+					if(Prerequisite && Prerequisite.length){
+						console.log(Prerequisite);
+					
 						for(var i = 0; i < Prerequisite.length; i++){
 							var errorReason = F3dcgAssets.ValidatePrerequisite(Prerequisite[i], playerTarget.appearance, posesEffectsBlocks);
 							if(errorReason.length > 0) throw errorReason;
@@ -218,33 +222,60 @@ F3dcgAssets.IsItemOwned = function(item, AssetGroup, playerTarget, playerOrigin)
 	return false;
 }
 
+//TODO:  implement blacklsists
+//TODO:  lover locks
+F3dcgAssets.CanLockItem = function(playerTarget, playerOrigin, lockName){
+
+	var locksKeys = playerOrigin ? playerOrigin.inventory.locksKeys : playerTarget.inventory.locksKeys;
+	if(! locksKeys.includes(lockName)) return false;
+
+	if(lockName == "TimerPadlock") return true;
+	if(lockName == "CombinationPadlock") return true;
+	if(lockName == "MetalPadlock") return true;
+	if(lockName == "IntricatePadlock") return true;
+	if(lockName == "MistressPadlock") return true;
+	if(lockName == "MistressTimerPadlock") return true;
+	
+	if(lockName == "OwnerPadlock" || lockName == "OwnerTimerPadlock")
+		return playerOrigin && this.IsPlayerOwner(playerTarget, playerOrigin)
+	
+	if(lockName == "ExclusivePadlock")
+		return playerOrigin && playerOrigin.id != playerTarget.id;
+	
+	if(lockName == "LoversPadlock" || lockName == "LoversTimerPadlock")
+		return playerOrigin && playerOrigin.id != playerTarget.id;
+	
+	throw lockName;
+}
+
 
 F3dcgAssets.CanUnlockItem = function(playerTarget, playerOrigin, appearanceItem){
 	if(! appearanceItem.lock) throw "Lock not on item " + appearanceItem.name;
 	
 	if(appearanceItem.lock.name == "TimerPadlock") return false;
-	if(appearanceItem.lock.name == "CombinationPadlock") return false;
+	if(appearanceItem.lock.name == "CombinationPadlock") return true;//no point validating the combination code server side
+	if(this.IsPlayerOwner(playerTarget, playerOrigin)) return true;//owner can unlock any lock, except timer padlock, even without key
+	
+	if(appearanceItem.lock.name == "OwnerPadlock" || appearanceItem.lock.name == "OwnerTimerPadlock"){
+		if(! playerOrigin) return false;//no self locking by owner lock
+		return playerOrigin && playerOrigin.inventory.locksKeys.includes("OwnerPadlockKey");	
+	}
+	
+	if(appearanceItem.lock.name == "ExclusivePadlock")
+		return playerOrigin && playerOrigin.id != playerTarget.id;
 	
 	var locksKeys = playerOrigin ? playerOrigin.inventory.locksKeys : playerTarget.inventory.locksKeys;
 	
-	if(appearanceItem.lock.name == "MetalPadlock") 
+	if(appearanceItem.lock.name == "MetalPadlock")
 		return locksKeys.includes("MetalPadlockKey");
 	
-	if(appearanceItem.lock.name == "IntricatePadlock") 
+	if(appearanceItem.lock.name == "IntricatePadlock")
 		return locksKeys.includes("IntricatePadlockKey");
 	
 	if(appearanceItem.lock.name == "MistressPadlock" || appearanceItem.lock.name == "MistressTimerPadlock"){ 
 		var player = playerOrigin ? playerOrigin : playerTarget; //mistress may lock oneself
 		return this.IsPlayerClubMistress(player) && locksKeys.includes("MistressPadlockKey");
 	}
-	
-	if(appearanceItem.lock.name == "OwnerPadlock" || appearanceItem.lock.name == "OwnerTimerPadlock"){
-		if(! playerOrigin) return false;//no self locking by owner lock
-		return playerOrigin && this.IsPlayerOwner(playerTarget, playerOrigin) && locksKeys.includes("OwnerPadlockKey");	
-	}
-	
-	if(appearanceItem.lock.name == "ExclusivePadlock")
-		return playerOrigin && playerOrigin.id != playerTarget.id
 	
 	throw appearanceItem.lock.name;
 }
@@ -300,86 +331,98 @@ F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffec
 	var blocks = posesEffectsBlocks.blocks;
 	var effects = posesEffectsBlocks.effects;
 	
-	switch(prerequisite){
-		//Item group must be empty
-		case "NoItemFeet":  	return b.ItemFeet ? "MustFreeFeetFirst" : "";
-		case "NoItemLegs":  	return b.ItemLegs ? "MustFreeLegsFirst" : "";
-		case "NoItemHands":	  	return b.ItemHands ? "MustFreeHandsFirst" : "";
-		case "NakedCloth":		return c.Cloth ? "RemoveClothesForItem" : "";
-		case "NakedClothLower":	return c.ClothLower ? "RemoveClothesForItem" : "";
-		case "NakedFeet":	  	return b.ItemBoots || c.Socks || c.Shoes ? "RemoveClothesForItem" : "";
-		case "NakedHands":	  	return b.ItemHands || c.Gloves ? "RemoveClothesForItem" : "";
-		case "DisplayFrame":	
-			if(b.ItemArms || b.ItemLegs || b.ItemFeet || b.ItemBoots) return "RemoveRestraintsFirst";
-			if(c.Cloth || c.ClothLower || c.Shoes) return "RemoveClothesForItem";
-			return "";
-		
-		//specific item must be absent 
-		case "NotChained":		return b.ItemNeckRestraints && b.ItemNeckRestraints.itemName == "CollarChainLong" ? "RemoveChainForItem" : "";
-		case "NoFeetSpreader":	return b.ItemFeet && b.ItemFeet.itemName == "SpreaderMetal" ? "CannotBeUsedWithFeetSpreader" : "";
-		case "CannotHaveWand":	return b.ItemArms && b.ItemArms.itemName == "FullLatexSuit" ? "CannotHaveWand" : "";
-		case "CannotBeSuited":	return b.ItemVulva && b.ItemVulva.itemName == "WandBelt" ? "CannotHaveWand" : "";
-		
-		case "ToeTied":
-			return b.ItemFeet && b.ItemFeet.itemName == "SpreaderMetal" 
-					|| b.ItemLegs && b.ItemLegs.itemName == "WoodenHorse" 
-					|| b.ItemDevices && b.ItemDevices.itemName == "OneBarPrison" 
-					|| b.ItemDevices && b.ItemDevices.itemName == "SaddleStand"
-				? "LegsCannotClose" : "";
-		
-		//an item group must be filled
-		case "Collared":		return b.ItemNeck ? "" : "MustCollaredFirst";
-		
-		//a pose shouldn't be in the list
-		case "LegsOpen":			return poses.includes("LegsClosed")		? "LegsCannotOpen" : "";
-		case "NotKneeling":			return poses.includes("Kneel")			? "MustStandUpFirst" : "";
-		case "NotHorse":			return poses.includes("Horse")			? "CannotBeUsedWhenMounted" : "";
-		case "NotHogtied":			return poses.includes("Hogtied")		? "ReleaseHogtieForItem" : "";
-		case "NotYoked":			return poses.includes("Yoked")			? "CannotBeUsedWhenYoked" : "";
-		case "NotKneelingSpread":	return poses.includes("KneelingSpread")	? "MustStandUpFirst" : "";
-		case "NotSuspended":		return poses.includes("Suspension")		? "RemoveSuspensionForItem" : "";
-		case "AllFours":			return poses.includes("AllFours") 		? "StraitDressOpen" : "";
-		case "StraitDressOpen":		return poses.includes("StraitDressOpen")? "StraitDressOpen" : "";
-		
-		//effect shouldn't be in the list
-		case "CanKneel":	return effects.includes("BlockKneel")? "MustBeAbleToKneel" : "";
-		case "NotMounted":	return effects.includes("Mounted")	? "CannotBeUsedWhenMounted" : "";
-		case "NotChaste":	return effects.includes("Chaste")	? "RemoveChastityFirst" : "";
-		case "NotShackled":	return effects.includes("Shackled")	? "RemoveShacklesFirst" : "";
-		
-		//Clothes may block
-		case "AccessTorso":	return this.AppItemsExpose(c, ["Cloth"], "ItemTorso") ? "" : "RemoveClothesForItem";
-		case "AccessBreast": this.AppItemsExpose(c, ["Cloth", "Bra"], "ItemBreast") ? "" : "RemoveClothesForItem";
-		case "AccessBreastSuitZip": return this.AppItemsExpose(c, ["Cloth", "Suit"], "ItemNipplesPiercings") ? "" : "UnZipSuitForItem";
-		case "AccessVulva": 
-			var exposed = this.AppItemsExpose(c, ["ClothLower", "SuitLower", "Panties", "Socks"], "ItemVulva");
-			var blocked = this.AppItemsBlock(c, ["Socks"], "ItemVulva");
-			return (blocked || ! exposed) ? "RemoveClothesForItem" : "";
-		
-		case "GagUnique":
-			var appliedGag = b.ItemMouth ?  F3dcgAssets.AssetGroups.ItemMouth.Items[b.ItemMouth.itemName] : null;
-			if(appliedGag && appliedGag.Prerequisite.includes("GagFlat")) return "CannotBeUsedOverFlatGag"
-			if(appliedGag && appliedGag.Prerequisite.includes("GagCorset")) return "CannotBeUsedOverFlatGag"
+	if(typeof(prerequisite) != "string"){
+		switch(prerequisite.type){
+			case "GroupFilled":		return b[prerequisite.value] ? "" : "GroupEmpty " +  prerequisite.type;
+			case "GroupEmpty":		return b[prerequisite.value] ? "GroupFilled " +  prerequisite.type :  "" ;
+			case "ItemPresent":
+				var groupName = F3dcgAssets.ItemNameToGroupNameMap[prerequisite.value];
+				return b[groupName] && b[groupName].name == prerequisite.value ? "" : "ItemNotPresent " + prerequisite.value;
+		}
+	}else{
+		switch(prerequisite){
+			//Item group must be empty
+			case "NoItemFeet":  	return b.ItemFeet ? "MustFreeFeetFirst" : "";
+			case "NoItemLegs":  	return b.ItemLegs ? "MustFreeLegsFirst" : "";
+			case "NoItemHands":	  	return b.ItemHands ? "MustFreeHandsFirst" : "";
+			case "NakedCloth":		return c.Cloth ? "RemoveClothesForItem" : "";
+			case "NakedClothLower":	return c.ClothLower ? "RemoveClothesForItem" : "";
+			case "NakedFeet":	  	return b.ItemBoots || c.Socks || c.Shoes ? "RemoveClothesForItem" : "";
+			case "NakedHands":	  	return b.ItemHands || c.Gloves ? "RemoveClothesForItem" : "";
+			case "DisplayFrame":	
+				if(b.ItemArms || b.ItemLegs || b.ItemFeet || b.ItemBoots) return "RemoveRestraintsFirst";
+				if(c.Cloth || c.ClothLower || c.Shoes) return "RemoveClothesForItem";
+				return "";
 			
-			var appliedGag2 = b.ItemMouth ?  F3dcgAssets.AssetGroups.ItemMouth2.Items[b.ItemMouth.itemName] : null;
-			if(appliedGag2 && appliedGag2.Prerequisite.includes("GagFlat")) return "CannotBeUsedOverFlatGag"
-			if(appliedGag2 && appliedGag2.Prerequisite.includes("GagCorset")) return "CannotBeUsedOverFlatGag"
+			//specific item must be absent 
+			case "NotChained":		return b.ItemNeckRestraints && b.ItemNeckRestraints.itemName == "CollarChainLong" ? "RemoveChainForItem" : "";
+			case "NoFeetSpreader":	return b.ItemFeet && b.ItemFeet.itemName == "SpreaderMetal" ? "CannotBeUsedWithFeetSpreader" : "";
+			case "CannotHaveWand":	return b.ItemArms && b.ItemArms.itemName == "FullLatexSuit" ? "CannotHaveWand" : "";
+			case "CannotBeSuited":	return b.ItemVulva && b.ItemVulva.itemName == "WandBelt" ? "CannotHaveWand" : "";
 			
-			return "";
-		
-		case "AccessVulvaSuitZip":
-		case "GagFlat":
-		case "GagCorset":
-		case "NoItemArms":
-		case "NoHorse":
-		case "NotMasked":
-		case "OnBed":
-		case "RemotesAllowed":
-		case "GasMask":
-			return "";//TODO
-		
-		default: 
-			throw "UnhandledCase " + prerequisite;
+			case "ToeTied":
+				return b.ItemFeet && b.ItemFeet.itemName == "SpreaderMetal" 
+						|| b.ItemLegs && b.ItemLegs.itemName == "WoodenHorse" 
+						|| b.ItemDevices && b.ItemDevices.itemName == "OneBarPrison" 
+						|| b.ItemDevices && b.ItemDevices.itemName == "SaddleStand"
+					? "LegsCannotClose" : "";
+			
+			//an item group must be filled
+			case "Collared":		return b.ItemNeck ? "" : "MustCollaredFirst";
+			
+			//a pose shouldn't be in the list
+			case "LegsOpen":			return poses.includes("LegsClosed")		? "LegsCannotOpen" : "";
+			case "NotKneeling":			return poses.includes("Kneel")			? "MustStandUpFirst" : "";
+			case "NotHorse":			return poses.includes("Horse")			? "CannotBeUsedWhenMounted" : "";
+			case "NotHogtied":			return poses.includes("Hogtied")		? "ReleaseHogtieForItem" : "";
+			case "NotYoked":			return poses.includes("Yoked")			? "CannotBeUsedWhenYoked" : "";
+			case "NotKneelingSpread":	return poses.includes("KneelingSpread")	? "MustStandUpFirst" : "";
+			case "NotSuspended":		return poses.includes("Suspension")		? "RemoveSuspensionForItem" : "";
+			case "AllFours":			return poses.includes("AllFours") 		? "StraitDressOpen" : "";
+			case "StraitDressOpen":		return poses.includes("StraitDressOpen")? "StraitDressOpen" : "";
+			
+			//effect shouldn't be in the list
+			case "CanKneel":	return effects.includes("BlockKneel")? "MustBeAbleToKneel" : "";
+			case "NotMounted":	return effects.includes("Mounted")	? "CannotBeUsedWhenMounted" : "";
+			case "NotChaste":	return effects.includes("Chaste")	? "RemoveChastityFirst" : "";
+			case "NotShackled":	return effects.includes("Shackled")	? "RemoveShacklesFirst" : "";
+			
+			//Clothes may block
+			case "AccessTorso":	return this.AppItemsExpose(c, ["Cloth"], "ItemTorso") ? "" : "RemoveClothesForItem";
+			case "AccessBreast": this.AppItemsExpose(c, ["Cloth", "Bra"], "ItemBreast") ? "" : "RemoveClothesForItem";
+			case "AccessBreastSuitZip": return this.AppItemsExpose(c, ["Cloth", "Suit"], "ItemNipplesPiercings") ? "" : "UnZipSuitForItem";
+			case "AccessVulva": 
+				var exposed = this.AppItemsExpose(c, ["ClothLower", "SuitLower", "Panties", "Socks"], "ItemVulva");
+				var blocked = this.AppItemsBlock(c, ["Socks"], "ItemVulva");
+				return (blocked || ! exposed) ? "RemoveClothesForItem" : "";
+			
+			case "GagUnique":
+				var appliedGag = b.ItemMouth ?  F3dcgAssets.AssetGroups.ItemMouth.Items[b.ItemMouth.itemName] : null;
+				if(appliedGag && appliedGag.Prerequisite.includes("GagFlat")) return "CannotBeUsedOverFlatGag"
+				if(appliedGag && appliedGag.Prerequisite.includes("GagCorset")) return "CannotBeUsedOverFlatGag"
+				
+				var appliedGag2 = b.ItemMouth ?  F3dcgAssets.AssetGroups.ItemMouth2.Items[b.ItemMouth.itemName] : null;
+				if(appliedGag2 && appliedGag2.Prerequisite.includes("GagFlat")) return "CannotBeUsedOverFlatGag"
+				if(appliedGag2 && appliedGag2.Prerequisite.includes("GagCorset")) return "CannotBeUsedOverFlatGag"
+				
+				return "";
+			
+			case "AccessVulvaSuitZip":
+			case "GagFlat":
+			case "GagCorset":
+			case "NoItemArms":
+			case "NoHorse":
+			case "NotMasked":
+			case "OnBed":
+			case "RemotesAllowed":
+			case "GasMask":
+			case "CanUseAlphaHood":
+			case "CannotUseWithAlphaHood":
+				return "";//TODO
+			
+			default: 
+				throw "UnhandledCase " + prerequisite;
+		}
 	}
 	
 	//if (Prerequisite == "CannotBeHogtiedWithAlphaHood") return ((InventoryGet(C, "ItemHead") != null) && (InventoryGet(C, "ItemHead").Asset.Prerequisite != null) && (InventoryGet(C, "ItemHead").Asset.Prerequisite.indexOf("NotHogtied") >= 0)) ? "CannotBeHogtiedWithAlphaHood" : "";

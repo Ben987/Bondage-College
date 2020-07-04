@@ -196,12 +196,7 @@ div.chat-hover-item:after {
 .dialog-appearance-wardrobe > div {position:relative;width:30%;padding-top:66%;margin:1.5% 1.5% 1 .5% 1.5%;float:left;}
 .dialog-appearance-wardrobe > div  > div {position:absolute;width:100%;height:81%;top:0%;left:0}
 
-/*
-.dialog-appearance-item-action.variant {overflow-y:auto}
-.dialog-appearance-item-action.variant > div {width:45%; float:left; margin:2%; position:relative;}
-.dialog-appearance-item-action.variant > div > img {width:100%; margin:2%; background-color:white;}
-.dialog-appearance-item-action.variant > div > div {position:absolute; overflow:hidden; word-break:break-word; color:black}
-*/
+
 .validation_message_fadout {color:red;position:absolute}
 
 .mingame-abcancel{position:absolute;top:47.5%;left:40%;width:20%; height:20%;;eft:16.25b ackground-color:black;text-align:center;vertical-align:middle;}

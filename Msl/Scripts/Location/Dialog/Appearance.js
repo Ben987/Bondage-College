@@ -18,6 +18,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	this.containerElements.groupDetails = Util.GetFirstChildNodeByName(this.containerElements.groupDetailsAndWardrobe, "groupDetailsContainer");
 	this.containerElements.groupDetailsButtons = Util.GetFirstChildNodeByName(this.containerElements.groupDetails, "buttons");
 	this.containerElements.itemsAndCurrentActions = Util.GetFirstChildNodeByName(this.containerElements.groupDetails, "itemsAndCurrentActions");
+	this.containerElements.groupValidation = Util.GetFirstChildNodeByName(this.containerElements.groupDetails, "validation");
 	
 	this.containerElements.wardrobe = null;//Lazily initialized
 	
@@ -224,7 +225,10 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		
 		for(let itemGroupName in this.mainDialog.updateDelegate.GetApplicableItems()[itemGroupTypeName]){		
 			var itemGroupIcon = Util.GetFirstChildNodeByName(this.containerElements.itemGroupSelection, itemGroupName);
-			if(! itemGroupIcon) throw "No item group icon defined for " + itemGroupName
+			if(! itemGroupIcon) {
+				console.log(Object.keys(this.mainDialog.updateDelegate.GetApplicableItems()[itemGroupTypeName]));
+				throw "No item group icon defined for " + itemGroupName
+			}
 			itemGroupIcon.style.display = "block";
 			itemGroupIcon.addEventListener("click", function(event){this.SelectItemGroup(itemGroupName);}.bind(this));
 			
@@ -239,52 +243,59 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	}
 	
 	
-	this.SelectItemGroup = function(itemGroupName){
+	this.SelectItemGroup = function(itemGroupName, groupActionToShow){
 		this.selectedItemGroupName = itemGroupName;
 		
 		var applicableGroup = this.mainDialog.updateDelegate.GetApplicableItems()[this.selectedItemGroupTypeName][itemGroupName];
-		
+
+		//Item icon is always shown
 		var buttonsToShow = ["items"];
-		
 		if(! applicableGroup.currentItem){
 			this.groupItemActions.items.button.childNodes[0].src = "./Images/Icons/Variants.png";
 		}else{
 			this.groupItemActions.items.button.childNodes[0].src = applicableGroup.currentItem.iconUrl;
-			
-			if(applicableGroup.currentItem.colorable) 
+		}
+		
+		//Show validation mesages
+		Util.ClearNodeContent(this.containerElements.groupValidation);
+		if(applicableGroup.validation?.length)
+			applicableGroup.validation.forEach(validationError => {Util.CreateElement({parent:this.containerElements.groupValidation,innerHTML:validationError});});
+		
+		if(applicableGroup.actions.changeItem)
+			this.groupItemActions.items.controller.SetItems(applicableGroup.items, applicableGroup.actions.removeItem && applicableGroup.currentItem);
+		else
+			this.groupItemActions.items.controller.SetItems([]);//clear the icons for prev list
+		
+		if(applicableGroup.currentItem){
+			if(applicableGroup.actions.color) 
 				buttonsToShow.push("color");
-			
-			if(applicableGroup.currentItem.variants){
+				
+			if(applicableGroup.actions.variants){
 				buttonsToShow.push("variants");				
 				var variantData = applicableGroup.currentItem.variants[applicableGroup.currentItem.variant];
 				this.groupItemActions.variants.button.childNodes[0].src = variantData.iconUrl;
 				this.groupItemActions.variants.controller.SetItem(applicableGroup.currentItem);
 			}
 			
-		}
-		
-		if(applicableGroup.changeable)
-			this.groupItemActions.items.controller.SetItems(applicableGroup.items, applicableGroup.removable);		
-		
-		if(! applicableGroup.validation || applicableGroup.validation.length == 0){
-			/*if(applicableGroup.removable){
-				var iconContainer = Util.CreateElement({parent:this.containerElements.itemSelection, events:{
-					click:function(event){this.SelectItem("None");}.bind(this)
-				}});
-				Util.CreateElement({parent:iconContainer, tag:"img", attributes:{src:"../BondageClub/Icons/Remove.png", alt:"Remove"}});				
-			}*/	
-		}else{
-			applicableGroup.validation.forEach(validationError => {
-				var iconContainer = Util.CreateElement({parent:this.containerElements.itemSelection,innerHTML:validationError,cssClass:"invalid"});
-			});
-			
-			//this.HideControlAndActionButtons();
+			if(applicableGroup.currentItem.lock){
+				buttonsToShow.push("lock");
+				this.groupItemActions.lock.button.childNodes[0].src = applicableGroup.currentItem.lock.iconUrl
+				this.groupItemActions.lock.controller.SetItemLocked(applicableGroup.currentItem.lock, applicableGroup.actions.lock);
+			}else if(applicableGroup.actions.lock?.locks?.length){
+				buttonsToShow.push("lock");
+				this.groupItemActions.lock.button.childNodes[0].src = "../BondageClub/Icons/Lock.png"
+				this.groupItemActions.lock.controller.SetItemUnlocked(applicableGroup.actions.lock.locks);
+			}
 		}
 		
 		//Show the actions for the group and current item
 		this.HideOthersAndShowGroupActionButton(buttonsToShow);
-		//Select the first one (items)
-		this.groupItemActions.items.button.click();
+		
+		if(groupActionToShow && buttonsToShow.includes(groupActionToShow))
+			this.groupItemActions[groupActionToShow].button.click();
+		else
+			this.groupItemActions.items.button.click();
+		
 	}
 	
 	
@@ -374,18 +385,29 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		var updateCharacter = false, updateTime = false, validationErrors;
 		switch(action.actionType){
 			case "lock":
-				validationErrors = this.mainDialog.updateDelegate.AddLock(this.selectedItemName, action.value, MainController.playerAccount.id);
+				validationErrors = this.mainDialog.updateDelegate.AddLock(this.selectedItemGroupName, action.value, MainController.playerAccount.id);
 				updateCharacter = true;
 			break;
 			case "unlock":
-				validationErrors = this.mainDialog.updateDelegate.RemoveLock(this.selectedItemName);
+				validationErrors = this.mainDialog.updateDelegate.RemoveLock(this.selectedItemGroupName);
 				updateCharacter = true;
 			break;
 			case "updateProperty":
-				validationErrors = this.mainDialog.updateDelegate.UpdateLock(this.selectedItemName, action.value);
+				validationErrors = this.mainDialog.updateDelegate.UpdateLock(this.selectedItemGroupName, action.value);
 				updateTime = true;
 			break;
-			
+			case "setTime":
+				validationErrors = this.mainDialog.updateDelegate.UpdateLock(this.selectedItemGroupName, "setTime", action.value);
+				updateCharacter = true;
+			break;
+			case "unlockCode":
+				validationErrors = this.mainDialog.updateDelegate.RemoveLock(this.selectedItemGroupName, action.value);
+				updateCharacter = true;
+			break;
+			case "setCode":
+				validationErrors = this.mainDialog.updateDelegate.UpdateLock(this.selectedItemGroupName, "setCode", action.value, action.code);
+				updateCharacter = true;			
+			break;
 			//timer adjustment,
 			/*case "selection":		
 			case "plus":		
@@ -416,10 +438,12 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		
 		if(validationErrors.length > 0)
 			this.RenderAppearanceOrShowErrors(validationErrors);
-		else if(updateCharacter) 
+		else if(updateCharacter)
 			this.RenderAppearanceOrShowErrors(validationErrors);
 		//else if(updateTime !== false)
-			//this.itemActionViews.Lock.OnTimerUpdate(appearanceItemCopy.lock.timer);
+			//this.itemActionViews.Lock.OnTimerUpdate(appearanceItemCopy.lock.timer);'
+			
+		this.SelectItemGroup(this.selectedItemGroupName, "lock");
 	}
 	
 	this.GroupItemActionCallback_variants = function(data){

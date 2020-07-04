@@ -57,6 +57,7 @@ F3dcgAssets.Init = function(){
 	this.InitPoses();
 	this.InitVariants();
 	this.InitFreeAndQuestClothes();
+	this.InitPrerequisites();
 	
 	this.FullCharacterTypeGroups[this.BODY] = this.BodyItemsGroups;
 	this.FullCharacterTypeGroups[this.EXPRESSION] = this.ExpressionGroups;
@@ -90,6 +91,14 @@ F3dcgAssets.UpdateAppearance = function(appearanceUpdate, playerTarget, playerOr
 			break;				
 			default:
 				console.log("UnimplementedType " + groupName);
+		}
+		
+		//Removal of things such as leash and collar tag
+		if(! appearanceItem && AssetGroup.RemoveOtherGroup){
+			for(var i = 0; i < AssetGroup.RemoveOtherGroup.length; i++){
+				var otherGroupName = AssetGroup.RemoveOtherGroup[i];
+				playerTarget.appearance[F3dcgAssets.AssetGroups[otherGroupName].type][otherGroupName] = null;
+			}
 		}
 	}
 }

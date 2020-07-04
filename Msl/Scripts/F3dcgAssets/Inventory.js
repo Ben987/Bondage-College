@@ -76,9 +76,8 @@ var F3dcgAssetsInventory = {
 		
 		return applicableItems;
 	}
-
-	//currentItem
 	
+	//TODO:  move everything to group level for consistency?
 	//group
 		//validation (inaccessible, no permissions, no item access)
 		//clearable
@@ -86,29 +85,29 @@ var F3dcgAssetsInventory = {
 		//item
 			//struggleable	
 			//color
+			//allowedLocks
 			//lock
 				//unlockable
 				//lock actions
 				//lock and management
 			
-			//color
-			
-			
-	
-	//locked
-	//lock actions and management
-	//inaccessible
-	//removable
-	//strugglable
-	//colorizable
-	//has variants
+			//color (body parts are not colorable, everything else is
 	
 	//Not items currently block the accessory groups
 	,InitApplicableAccessoryGroup(applicableItems, groupName, validationFlagsCache){
 		var applicableGroup = F3dcgAssetsInventory.InitApplicableGroup(validationFlagsCache.playerTarget, F3dcgAssets.ACCESSORY, groupName);
 		applicableItems[F3dcgAssets.ACCESSORY][groupName] = applicableGroup;
 		
-		if(! validationFlagsCache.permissions[F3dcgAssets.ACCESSORY]) applicableGroup.validation.push("PermissionDenied");
+		applicableGroup.actions = {changeItem:true,color:true,removeItem:true};
+		if(! validationFlagsCache.permissions[F3dcgAssets.ACCESSORY]) {
+			applicableGroup.validation.push("PermissionDenied");
+			applicableGroup.actions = {};
+		}
+		
+		if( ! F3dcgAssets.CanChangeClothes(validationFlagsCache.posesEffectsBlocksOrigin.effects)) {
+			applicableGroup.validation.push("NoItemAccess");
+			applicableGroup.actions = {};
+		}
 	}
 	
 	
@@ -116,25 +115,45 @@ var F3dcgAssetsInventory = {
 		var applicableGroup = F3dcgAssetsInventory.InitApplicableGroup(validationFlagsCache.playerTarget, F3dcgAssets.CLOTH, groupName);
 		applicableItems[F3dcgAssets.CLOTH][groupName] = applicableGroup;
 		
-		if( ! F3dcgAssets.CanChangeClothes(validationFlagsCache.posesEffectsBlocksOrigin.effects)) applicableGroup.validation.push("NoItemAccess");
-		if(validationFlagsCache.posesEffectsBlocksTarget.blocks.includes(groupName)) applicableGroup.validation.push("BlockedByEffect") = true; 
-		if(! validationFlagsCache.permissions[F3dcgAssets.CLOTH]) applicableGroup.validation.push("PermissionDenied");
+
+		
+		if( ! F3dcgAssets.CanChangeClothes(validationFlagsCache.posesEffectsBlocksOrigin.effects)) {
+			applicableGroup.validation.push("NoItemAccess");
+			applicableGroup.actions = {};
+		}
+		
+		if(validationFlagsCache.posesEffectsBlocksTarget.blocks.includes(groupName)) {
+			applicableGroup.validation.push("BlockedByEffect") = true; 
+			applicableGroup.actions = {};
+		}
+		
+		if(! validationFlagsCache.permissions[F3dcgAssets.CLOTH]) {
+			applicableGroup.validation.push("PermissionDenied");
+			applicableGroup.actions = {};
+		}
 	}
 	
 	
 	,InitApplicableBondageToyGroup(applicableItems, groupName, validationFlagsCache){
 		var applicableGroup = F3dcgAssetsInventory.InitApplicableGroup(validationFlagsCache.playerTarget, F3dcgAssets.BONDAGE_TOY, groupName);
-		applicableItems[F3dcgAssets.BONDAGE_TOY][groupName] = applicableGroup;				
+		applicableItems[F3dcgAssets.BONDAGE_TOY][groupName] = applicableGroup;
+		applicableGroup.actions = {changeItem:true,color:true,removeItem:true};
 		
-		if(validationFlagsCache.posesEffectsBlocksTarget.blocks.includes(groupName)) applicableGroup.validation.push("BlockedByEffect"); 
-		if(! validationFlagsCache.permissions[F3dcgAssets.BONDAGE_TOY]) applicableGroup.validation.push("PermissionDenied");
+		if(validationFlagsCache.posesEffectsBlocksTarget.blocks.includes(groupName)){
+			applicableGroup.validation.push("BlockedByEffect"); 
+			applicableGroup.actions = {};
+		}
+		
+		if(! validationFlagsCache.permissions[F3dcgAssets.BONDAGE_TOY]){
+			applicableGroup.validation.push("PermissionDenied");
+			applicableGroup.actions = {};
+		}
 		
 		//Current item is a copy of the original -- adding icon urls and other properties for front end.
 		if(applicableGroup.currentItem){
 			if( ! F3dcgAssets.CanChangeBondageToys(validationFlagsCache.posesEffectsBlocksOrigin.effects)){
 				applicableGroup.validation.push("NoItemAccess");
-				applicableGroup.struggleable = true;
-				applicableGroup.removable = false;
+				applicableGroup.actions = {struggle:true};
 			}
 			
 			var AssetItem = F3dcgAssets.AssetGroups[groupName].Items[applicableGroup.currentItem.name];
@@ -143,16 +162,17 @@ var F3dcgAssetsInventory = {
 				applicableGroup.currentItem.lock.iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + "ItemMisc/Preview/" + applicableGroup.currentItem.lock.name + ".png"
 				F3dcgAssetsInventory.InitLockActions(applicableGroup, validationFlagsCache);
 			}else if(AssetItem.AllowLock){
-				applicableGroup.currentItem.allowedLocks = [];
-				validationFlagsCache.playerOrigin.inventory.locksKeys.forEach(itemName => {					
-					if(! itemName.includes("Key")){
-						applicableGroup.currentItem.allowedLocks.push({name:itemName, iconUrl:F3dcgAssets.F3DCG_ASSET_BASE + "ItemMisc/Preview/" + itemName + ".png"});
+				applicableGroup.actions.lock = {add:true, locks:[]};
+				validationFlagsCache.playerOrigin.inventory.locksKeys.forEach(lockOrKeyName => {
+					if(! lockOrKeyName.includes("Key") && F3dcgAssets.CanLockItem(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin, lockOrKeyName)){
+						applicableGroup.actions.lock.locks.push({name:lockOrKeyName, iconUrl:F3dcgAssets.F3DCG_ASSET_BASE + "ItemMisc/Preview/" + lockOrKeyName + ".png"});
 					}
 				});
 			}
 			
 			if(AssetItem.Variant){
 				applicableGroup.currentItem.variants = {};
+				applicableGroup.actions.variants = true;
 				
 				for(var variantName in AssetItem.Variant){
 					var Variant = AssetItem.Variant[variantName];
@@ -187,7 +207,7 @@ var F3dcgAssetsInventory = {
 	
 	
 	,InitApplicableGroup(playerTarget, groupTypeName, groupName){
-		var applicableGroup = {items:[], currentItem: null, validation:[], changeable:true};
+		var applicableGroup = {items:[],currentItem: null,validation:[], actions:{}};
 		
 		var currentAppearanceItem = (playerTarget.update ?  playerTarget.update : playerTarget)["appearance"][groupTypeName][groupName];
 		
@@ -195,10 +215,6 @@ var F3dcgAssetsInventory = {
 			applicableGroup.currentItem = Util.CloneRecursive(currentAppearanceItem);
 			applicableGroup.currentItem.name = applicableGroup.currentItem.name;
 			applicableGroup.currentItem.iconUrl = F3dcgAssetsInventory.GetIconUrlForItem(currentAppearanceItem.name);
-			applicableGroup.currentItem.colorable = true;
-			
-			applicableGroup.removable = true;
-			//items.push({itemName:F3dcgAssetsInventory.NONE});
 		}
 		
 		return applicableGroup;
@@ -214,7 +230,7 @@ var F3dcgAssetsInventory = {
 		var namePart = AssetItem.Name.includes("_") ?  AssetItem.Name.split("_")[0] :  AssetItem.Name;
 		
 		var validation = [];
-		var applicableItem = {itemName:AssetItem.Name, iconUrl:F3dcgAssetsInventory.GetIconUrlForItem(itemName), validation:validation, lockable:AssetItem.AllowLock}
+		var applicableItem = {itemName:AssetItem.Name, iconUrl:F3dcgAssetsInventory.GetIconUrlForItem(itemName), validation:validation}
 		
 		if(AssetItem.Prerequisite){
 			for(var i = 0; i < AssetItem.Prerequisite.length; i++){
@@ -232,6 +248,7 @@ var F3dcgAssetsInventory = {
 		var iconUrl = F3dcgAssetsInventory.GetIconUrlForItem(itemName);
 		applicableItems[F3dcgAssets.ACCESSORY][groupName].items.push({itemName:itemName, iconUrl:iconUrl});
 	}
+	
 	
 	,AddClothItem(applicableItems, itemName){		
 		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
@@ -263,11 +280,12 @@ var F3dcgAssetsInventory = {
 		return iconUrl;
 	}
 	
+	
 	,InitLockActions(applicableGroup, validationFlagsCache){
 		var lock = applicableGroup.currentItem.lock;
 		
 		if(F3dcgAssets.CanUnlockItem(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin, applicableGroup.currentItem)){
-			lock.key = {name:lock.name + "Key"};
+			var key = {name:lock.name + "Key"};
 			var keyItemName = "MetalPadlockKey";
 			if(["IntricatePadlock",	"OwnerPadlock",	"LoverPadlock",	"MistressPadlock"].includes(lock.name))
 				keyItemName = lock.name  + "Key";
@@ -275,7 +293,9 @@ var F3dcgAssetsInventory = {
 			if(lock.name == "OwnerTimerPadlock") keyItemName = "OwnerPadlockKey";
 			if(lock.name == "MistressTimerPadlock") keyItemName = "MistressPadlockKey";
 			
-			lock.key.iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + "ItemMisc/Preview/" + keyItemName + ".png"
+			key.iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + "ItemMisc/Preview/" + keyItemName + ".png"
+			
+			applicableGroup.actions.lock = {unlock:true, key:key};
 		}else{
 			applicableGroup.validation.push("Locked");
 		}
@@ -283,37 +303,40 @@ var F3dcgAssetsInventory = {
 		var lockOwner = lock.originPlayerId == MainController.playerAccount.id;
 		switch(lock.name){
 			case "CombinationPadlock":
-				//lock.actions = lockOwner ? {comboChange
+				if(lockOwner)
+					applicableGroup.actions.lock.code = lock.code;
+				else
+					applicableGroup.actions.lock = {code:"0000"};//remove the unlocking key
 			break;
 			case "TimerPadlock":
-				lock.actions = {plus:5};
+				applicableGroup.actions.lock.setTime = 5;
 			break;
-			case "LoverTimerPadlock":
-				if(lockOwner)
-					lock.actions = {
-						flags:{removeItem:lock.removeItem, showTimer:lock.showTimer, enableInput:lock.enableInput}
-						,timeIncrease:[60, 120, 240, 480, 960, 1440, 2880, 4320, 5760, 7200, 8640, 10080, -8640, -4320, -2880, -1440, -480, -240]
-					}; 
-				else if(lock.timer.enableInput)
-					lock.actions = {random:240, plus:120, minus:120};	
+			case "LoverTimerPadlock"://time is in minutes
+				if(lockOwner){
+					applicableGroup.actions.lock.flags = {removeItem:lock.removeItem, showTimer:lock.showTimer, enableInput:lock.enableInput};
+					applicableGroup.actions.lock.setTime = 60*24*8;
+				}else if(lock.timer.enableInput){
+					applicableGroup.actions.lock.randomTime = 240;
+					applicableGroup.actions.lock.plusMinusTime = 120;
+				}
 			break;
 			case "OwnerTimerPadlock":
-				if(lockOwner)
-					lock.actions = {
-						flags:{removeItem:lock.removeItem, showTimer:lock.showTimer, enableInput:lock.enableInput}
-						,timeIncrease:[60, 120, 240, 480, 960, 1440, 2880, 4320, 5760, 7200, 8640, 10080, -8640, -4320, -2880, -1440, -480, -240]
-					};
-				else if(lock.timer.enableInput)
-					lock.actions = {random:240, plus:120, minus:120};	
+				if(lockOwner){
+					applicableGroup.actions.lock.flags = {removeItem:lock.removeItem, showTimer:lock.showTimer, enableInput:lock.enableInput};
+					applicableGroup.actions.lock.setTime = 60*24*8;
+				}else if(lock.timer.enableInput){
+					applicableGroup.actions.lock.randomTime = 240;
+					applicableGroup.actions.lock.plusMinusTime = 120;
+				}
 			break;
 			case "MistressTimerPadlock":
-				if(lockOwner)
-					lock.actions = {
-						flags:{removeItem:lock.removeItem, showTimer:lock.showTimer, enableInput:lock.enableInput}
-						,timeIncrease:[5, 10, 15, 30, 60, 120, 180, 240, -180, -120, -60, -30, -15]
-					} ;
-				else if(lock.timer.enableInput)
-					lock.actions = {random:20, plus:10, minus:10};		
+				if(lockOwner){
+					applicableGroup.actions.lock.flags = {removeItem:lock.removeItem, showTimer:lock.showTimer, enableInput:lock.enableInput}
+					applicableGroup.actions.lock.setTime = 60*4;
+				}else if(lock.timer.enableInput){
+					applicableGroup.actions.lock.randomTime = 20;
+					applicableGroup.actions.lock.plusMinusTime = 10;
+				}
 			break;
 			//no actions on the below locks
 			case "ExclusivePadlock":
