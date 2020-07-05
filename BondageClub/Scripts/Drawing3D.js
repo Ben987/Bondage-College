@@ -50,7 +50,7 @@ function init(){
 	scene.add(ambientLight);
 
     let loader = new THREE.FBXLoader();
-    loader.load('Assets/3D/fbx/intro1.fbx',
+    loader.load('Assets/3D/fbx/maid.fbx',
 				function( object ) {
 					model = object;
 					// animation
