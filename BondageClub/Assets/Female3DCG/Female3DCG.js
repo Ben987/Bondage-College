@@ -1672,6 +1672,7 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "SlenderSteelCollar", Value: 30, Difficulty: 50, Time: 5, AllowLock: true },
 			{ Name: "HeartLinkChoker", Value: 15, Difficulty: 50, Time: 5, AllowLock: true },
+			{ Name: "NeckRope", Value: 10, Difficulty: 50, Time: 5, AllowLock: false, DefaultColor: "#956B1C", ExpressionTrigger: [{ Name: "Medium", Group: "Blush", Timer: 3 }, { Name: "Soft", Group: "Eyebrows", Timer: 3 }] },
 			AssetSpankingToys
 		],
 		Color: ["Default"]
