@@ -77,11 +77,11 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.AddColor = function(groupName, color){
+	this.SetColor = function(groupName, color){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.appearance[AssetGroup.type][groupName];
 		
-		return this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:color ? color.ToHexString() : null, variant:currentItem.variant, lock:currentItem.lock});
+		return this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:color ? color.ToHexString() : null, variant:currentItem.variant, lock:currentItem.lock, vibeLevel:currentItem.vibeLevel});
 	}
 	
 	
@@ -110,7 +110,7 @@ var LocationPlayerUpdate = function(player){
 			break;
 		}
 		
-		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, lock});
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, lock, vibeLevel:currentItem.vibeLevel});
 		
 		return [];
 	}
@@ -122,7 +122,7 @@ var LocationPlayerUpdate = function(player){
 		
 		if(currentItem.lock.name == "CombinationPadlock" && currentItem.lock.code != code) return ["InvalidCombination"];
 		
-		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant});
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, vibeLevel:currentItem.vibeLevel});
 		
 		return [];
 	}
@@ -139,13 +139,13 @@ var LocationPlayerUpdate = function(player){
 		if(lockName == "CombinationPadlock")
 			lock.code = "1234";
 		
-		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, lock:lock});
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, lock:lock, vibeLevel:currentItem.vibeLevel});
 		
 		return [];
 	}
 	
 	
-	this.AddVariant = function(groupName, itemName, variantName){
+	this.SetVariant = function(groupName, itemName, variantName){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.player.appearance[AssetGroup.type][groupName];
 		
@@ -154,13 +154,13 @@ var LocationPlayerUpdate = function(player){
 		if(currentItem.name != itemName) return ["CanOnlySetVariantOnAppliedItem"];
 		if(currentItem.variant == variantName) return ["SameVariant"];
 		
-		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem?.color, variant:variantName, lock:currentItem.lock});
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem?.color, variant:variantName, lock:currentItem.lock, vibeLevel:currentItem.vibeLevel});
 		
 		return [];
 	}
 	
 	
-	this.AddItem = function(groupName, itemName){
+	this.SetItem = function(groupName, itemName){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.appearance[AssetGroup.type][groupName];
 		
@@ -172,6 +172,19 @@ var LocationPlayerUpdate = function(player){
 		}
 		
 		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:itemName, color:colorHexString});
+		
+		return [];
+	}
+	
+	this.SetVibeLevel = function(groupName, level){
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		var currentItem = this.appearance[F3dcgAssets.BONDAGE_TOY][groupName];
+		var AssetItem = AssetGroup.Items[currentItem.name];
+		
+		if(! AssetItem.CommonVibe) return ["NotCommonVibe"];
+		if(currentItem.vibeLevel == level) return ["SameLevel"]
+		
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, lock:currentItem.lock, vibeLevel:level});
 		
 		return [];
 	}
@@ -201,6 +214,7 @@ var LocationPlayerUpdate = function(player){
 		
 		if(itemData.lock) newItem.lock = itemData.lock;
 		if(itemData.variant) newItem.variant = itemData.variant;
+		if(itemData.vibeLevel) newItem.vibeLevel = itemData.vibeLevel;
 		this.appearance[itemData.groupTypeName][itemData.groupName] = newItem;
 		this.updateStack.push({type:itemData.groupTypeName, groupName:itemData.groupName, item:newItem});
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);	

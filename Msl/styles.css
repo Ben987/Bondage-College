@@ -55,6 +55,24 @@ div.cancel_button{width:100%;height:100%;background-color:gray;}
 @keyframes fadeOut { 0% {opacity:1;} 100% { opacity:0;} }
 @keyframes blink { 0% {opacity:1;}  89%{opacity:1;}  90%{opacity:0;}  99%{opacity:0;}  100%{opacity:1}}
 .blinking {animation-name: blink; animation-duration: 6s; animation-iteration-count: infinite; }
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.shaking { animation-name: shake; animation-iteration-count: infinite;}
+.shaking.speed1 { animation-duration: 1.5s;}
+.shaking.speed2 { animation-duration: 1.25s;}
+.shaking.speed3 { animation-duration: 1s;}
+.shaking.speed4 { animation-duration: 0.75s;}
 
 
 .classic-hud-right {position:absolute; left:100%; height:100%; width:0%; background-color:black;padding:.25%;}

@@ -148,6 +148,17 @@ F3dcgAssets.InitItems = function(){
 }
 	
 	
+F3dcgAssets.InitVibes = function(){
+	Object.values(F3dcgAssets.AssetGroups).forEach( AssetGroup => {
+		Object.values(AssetGroup.Items).forEach(AssetItem => {
+			if(AssetItem.AllowEffect && AssetItem.AllowEffect.includes("Vibrating")){
+				AssetItem.CommonVibe = true;
+			}
+		})
+	});
+}
+
+
 F3dcgAssets.InitVariants = function(){
 	//Item Addon -- skipping as too difficult
 	//Item Arms

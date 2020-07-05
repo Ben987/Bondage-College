@@ -148,13 +148,15 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 					Prerequisite = AssetItem.Prerequisite ? AssetItem.Prerequisite : Prerequisite;
 					Prerequisite = item.variant && AssetItem.Variant[item.variant].Prerequisite ?  AssetItem.Variant[item.variant].Prerequisite : Prerequisite;
 					if(Prerequisite && Prerequisite.length){
-						console.log(Prerequisite);
-					
 						for(var i = 0; i < Prerequisite.length; i++){
 							var errorReason = F3dcgAssets.ValidatePrerequisite(Prerequisite[i], playerTarget.appearance, posesEffectsBlocks);
 							if(errorReason.length > 0) throw errorReason;
 						}
 					}
+					
+					if(AssetItem.CommonVibe && previousItem.vibeLevel != item.vibeLevel)
+						if(! F3dcgAssets.CanChangeVibeLevel(playerTarget, playerOrigin))
+							throw "CanNotChangeVibeLevel";
 				}
 			break;
 			default:
@@ -294,6 +296,20 @@ F3dcgAssets.CanChangeBondageToys = function(effects){
 	return true;
 }
 
+
+F3dcgAssets.CanChangeVibeLevel = function(playerTarget, playerOrigin){
+	var remotes = playerOrigin ? playerOrigin.inventory.remotes : playerTarget.inventory.remotes;
+	
+	if(! remotes.includes("VibratorRemote")) return false;
+	
+	if(! playerOrigin || playerOrigin.id == playerTarget.id){
+		var o = playerTarget.profile.owner;
+		if(o && o.rules && o.rules.blockRemoteSelf.active)
+			return false;
+	}
+	
+	return true;
+}
 
 F3dcgAssets.ValidateCanChangePose = function(posesEffectsBlocks){
 	//var posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(player.appearance);

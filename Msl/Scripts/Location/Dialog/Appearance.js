@@ -49,7 +49,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	//Right pane group and current item management and actions -- display refactored into separate classses
 	this.groupItemActions = {};
 	this.selectedGroupItemAction = "items";
-	["items", "color", "lock", "variants", "struggle"].forEach(groupItemAction =>{
+	["items", "color", "lock", "variants", "struggle", "vibe"].forEach(groupItemAction =>{
 		var button = Util.GetFirstChildNodeByName(this.containerElements.groupDetailsButtons, groupItemAction);
 		var containerElement = Util.GetFirstChildNodeByName(this.containerElements.itemsAndCurrentActions, groupItemAction);
 		var constructorFunctionName = Util.Capitalize(groupItemAction) + "DialogAppearanceGroupActionView"; 
@@ -286,6 +286,14 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 				this.groupItemActions.lock.button.childNodes[0].src = "../BondageClub/Icons/Lock.png"
 				this.groupItemActions.lock.controller.SetItemUnlocked(applicableGroup.actions.lock.locks);
 			}
+			
+			this.groupItemActions.items.button.childNodes[0].className = "";
+			if(applicableGroup.actions.commonVibe){
+				buttonsToShow.push("vibe");
+				this.groupItemActions.vibe.controller.SetItem(applicableGroup.currentItem);
+				this.groupItemActions.items.button.childNodes[0].classList.add("shaking");
+				this.groupItemActions.items.button.childNodes[0].classList.add("speed" + applicableGroup.currentItem.vibeLevel);
+			}
 		}
 		
 		//Show the actions for the group and current item
@@ -365,16 +373,31 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		this.itemActionViews[action].Show();
 	}*/
 	
+	this.GroupItemActionCallback_vibe = function(level){
+		if(! this.selectedItemGroupName) return;
+		
+		var validationErrors = this.mainDialog.updateDelegate.SetVibeLevel(this.selectedItemGroupName, level);
+		if(validationErrors.length > 0){
+			this.RenderAppearanceOrShowErrors(validationErrors);
+		}else{
+			this.groupItemActions.items.button.childNodes[0].className = "";
+			this.groupItemActions.items.button.childNodes[0].classList.add("shaking");
+			this.groupItemActions.items.button.childNodes[0].classList.add("speed" + level);
+		}
+	}
+	
+	
 	this.GroupItemActionCallback_items = function(itemName){
-		var validationErrors = this.mainDialog.updateDelegate.AddItem(this.selectedItemGroupName, itemName);
+		var validationErrors = this.mainDialog.updateDelegate.SetItem(this.selectedItemGroupName, itemName);
 		this.RenderAppearanceOrShowErrors(validationErrors);
 		this.SelectItemGroup(this.selectedItemGroupName);
 	}
 	
+	
 	this.GroupItemActionCallback_color = function(color){
 		if(! this.selectedItemGroupName) return;
 		
-		var validationErrors = this.mainDialog.updateDelegate.AddColor(this.selectedItemGroupName, color);
+		var validationErrors = this.mainDialog.updateDelegate.SetColor(this.selectedItemGroupName, color);
 		this.RenderAppearanceOrShowErrors(validationErrors);
 	}
 	
@@ -382,76 +405,46 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	this.GroupItemActionCallback_lock = function(action){
 		if(! this.selectedItemGroupName) return;
 		
-		var updateCharacter = false, updateTime = false, validationErrors;
+		var updateCharacter = false, validationErrors;
 		switch(action.actionType){
 			case "lock":
 				validationErrors = this.mainDialog.updateDelegate.AddLock(this.selectedItemGroupName, action.value, MainController.playerAccount.id);
-				updateCharacter = true;
 			break;
 			case "unlock":
 				validationErrors = this.mainDialog.updateDelegate.RemoveLock(this.selectedItemGroupName);
-				updateCharacter = true;
+				updateCharacter = true;//lock removal
 			break;
 			case "updateProperty":
 				validationErrors = this.mainDialog.updateDelegate.UpdateLock(this.selectedItemGroupName, action.value);
-				updateTime = true;
 			break;
 			case "setTime":
 				validationErrors = this.mainDialog.updateDelegate.UpdateLock(this.selectedItemGroupName, "setTime", action.value);
-				updateCharacter = true;
 			break;
 			case "unlockCode":
 				validationErrors = this.mainDialog.updateDelegate.RemoveLock(this.selectedItemGroupName, action.value);
-				updateCharacter = true;
+				updateCharacter = true;//lock removal
 			break;
 			case "setCode":
-				validationErrors = this.mainDialog.updateDelegate.UpdateLock(this.selectedItemGroupName, "setCode", action.value, action.code);
-				updateCharacter = true;			
+				validationErrors = this.mainDialog.updateDelegate.UpdateLock(this.selectedItemGroupName, "setCode", action.value, action.code);	
 			break;
-			//timer adjustment,
-			/*case "selection":		
-			case "plus":		
-				updateTime = action.value*1000*60;
-			break;
-			case "minus":		
-				updateTime =-action.value*1000*60;
-			break;
-			case "random":
-				var value = Math.random() > .5 ? 1 * action.value : -1 * action.value;
-				updateTime = value*1000*60;
-			break;
-			//timer management
-			case "showTimer":
-				updateTime = true;//no break is intentional
-			case "removeItem":
-			case "enableActions":	
-				appearanceItemCopy.lock.timer[action.actionType] = action.value;			
-			break;*/
 			default: throw "Unrecognized action " + action.actionType;
 		}
-		
-		/*
-		if(updateTime){
-			var maxTime = Date.now() + appearanceItemCopy.lock.timer.maxTime * 1000;
-			appearanceItemCopy.lock.timer.time = Math.min(maxTime, appearanceItemCopy.lock.timer.time+updateTime);
-		}*/
 		
 		if(validationErrors.length > 0)
 			this.RenderAppearanceOrShowErrors(validationErrors);
 		else if(updateCharacter)
 			this.RenderAppearanceOrShowErrors(validationErrors);
-		//else if(updateTime !== false)
-			//this.itemActionViews.Lock.OnTimerUpdate(appearanceItemCopy.lock.timer);'
 			
 		this.SelectItemGroup(this.selectedItemGroupName, "lock");
 	}
 	
 	this.GroupItemActionCallback_variants = function(data){
-		var validationErrors = this.mainDialog.updateDelegate.AddVariant(this.selectedItemGroupName, data.itemName, data.variantName);
+		var validationErrors = this.mainDialog.updateDelegate.SetVariant(this.selectedItemGroupName, data.itemName, data.variantName);
 		
-		if(! validationErrors.length){
+		if(! validationErrors.length)
 			this.RenderAppearance();
-		}else this.DisplayErrors(validationErrors);
+		else 
+			this.DisplayErrors(validationErrors);
 	}
 	
 	

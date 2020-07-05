@@ -115,8 +115,6 @@ var F3dcgAssetsInventory = {
 		var applicableGroup = F3dcgAssetsInventory.InitApplicableGroup(validationFlagsCache.playerTarget, F3dcgAssets.CLOTH, groupName);
 		applicableItems[F3dcgAssets.CLOTH][groupName] = applicableGroup;
 		
-
-		
 		if( ! F3dcgAssets.CanChangeClothes(validationFlagsCache.posesEffectsBlocksOrigin.effects)) {
 			applicableGroup.validation.push("NoItemAccess");
 			applicableGroup.actions = {};
@@ -202,6 +200,10 @@ var F3dcgAssetsInventory = {
 					applicableGroup.currentItem.variants[variantName] = variant;		
 				}
 			}
+			
+			if(AssetItem.CommonVibe)
+				if(F3dcgAssets.CanChangeVibeLevel(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin))
+					applicableGroup.actions.commonVibe = true;
 		}
 	}
 	

@@ -15,6 +15,27 @@ var DialogAppearanceGroupActionView = function(container, callback){
 }
 
 
+var VibeDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
+	
+	this.SetItem = function(item){		
+		Util.ClearNodeContent(this.container);
+		
+		var settings = {Stop:0, Low:1, Medimum:2, High:3, Max:4}
+		for(let settingName in settings){
+			Util.CreateElement({parent:this.container, tag:"input", attributes:{type:"submit",value:settingName}
+				,events:{click:function(event){
+					this.callback(settings[settingName]);
+				}.bind(this)
+			}});
+			
+			Util.CreateElement({parent:this.container, tag:"br"});
+		}
+	}
+}
+
+
 var ItemsDialogAppearanceGroupActionView = function(container, callback) {
 	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
 	DialogAppearanceGroupActionView.call(this, container, callback);
@@ -246,11 +267,6 @@ var VariantsDialogAppearanceGroupActionView = function(container, callback) {
 	}	
 };
 
-
-var RemoteDialogAppearanceGroupActionView = function(container, callback) {
-	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
-	DialogAppearanceGroupActionView.call(this, container, callback);
-};
 
 
 var DirectDialogAppearanceGroupActionView = function(container, callback) {

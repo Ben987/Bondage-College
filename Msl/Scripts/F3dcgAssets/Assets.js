@@ -10,8 +10,10 @@ F3dcgAssets.ACCESSORY = "accessories" 	//do not block restraints and needed for 
 F3dcgAssets.BONDAGE_TOY = "bondageToys" 	//have forced poses, effects, blocks
 
 F3dcgAssets.UNIMPLEMENTED_ITEMS = ["SpankingToys"
-		,"CollarShockUnit"
-		,"VibratingWand"
+		,"CollarShockUnit"//TODO -- implement instant (shock) actions
+		,"VibratingWand"//Used via hand held actions
+		,"VibratorRemote" //Handled separately
+		,"ClitAndDildoVibratorbelt"//Two vibrating actions is too small of a use case.
 		,"MetalCuffsKey", "MetalCuffs"//not worth the effort
 		]
 	
@@ -27,6 +29,7 @@ F3dcgAssets.AssetGroups = {}
 F3dcgAssets.ItemNameToGroupNameMap = {}
 
 F3dcgAssets.IgnoreGroups = [/*"ItemNeckAccessories","ItemNeckRestraints", */"ItemMisc"]	
+F3dcgAssets.IgnoreItems = ["ClitAndDildoVibratorbelt"];//Two vibrating actions is too small of a use case.
 F3dcgAssets.BodyItemsGroups = ["Eyes", "Mouth", "Nipples", "Pussy", "HairFront", "HairBack"]
 F3dcgAssets.ExpressionGroups = ["Eyebrows", "Blush", "Fluids", "Emoticon"]	
 F3dcgAssets.ClothesGroups = []//Asset group has a meaningful flag
@@ -58,6 +61,7 @@ F3dcgAssets.Init = function(){
 	this.InitVariants();
 	this.InitFreeAndQuestClothes();
 	this.InitPrerequisites();
+	this.InitVibes();
 	
 	this.FullCharacterTypeGroups[this.BODY] = this.BodyItemsGroups;
 	this.FullCharacterTypeGroups[this.EXPRESSION] = this.ExpressionGroups;
@@ -117,12 +121,17 @@ F3dcgAssets.BuildAccessoryAppearanceItem = function(name, color){
 	return {name:name,color:color}
 }
 F3dcgAssets.BuildBondageToyAppearanceItem = function(name, color, variant){
-	//during server side imorts process, assets.js finds the asset group on its own for the default variant
+	var groupName = F3dcgAssets.ItemNameToGroupNameMap[name];
+	var AssetItem = F3dcgAssets.AssetGroups[groupName].Items[name];
+	
 	if(! variant){
-		var groupName = F3dcgAssets.ItemNameToGroupNameMap[name];
-		var AssetItem = F3dcgAssets.AssetGroups[groupName].Items[name];
+		//during server side imorts process, assets.js finds the asset group on its own for the default variant
 		if(AssetItem.Variant) variant = Object.values(AssetItem.Variant)[0].Name;
 	}
+	
+	var item = {name:name,color:color,variant:variant}
+	
+	if(AssetItem.CommonVibe) item.vibeLevel = 0;
 
-	return {name:name,color:color,variant:variant}
+	return item;
 }
