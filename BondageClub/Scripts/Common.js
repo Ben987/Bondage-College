@@ -235,7 +235,6 @@ function CommonDynamicFunctionParams(FunctionName) {
  *  CommonDynamicFunctionParams in that arguments are not parsed from the passed in FunctionName string, but
  *  passed directly into the function call, allowing for more complex JS objects to be passed in. This
  *  function will not log to console if the provided function name does not exist as a global function.
- *
  * @param {string} FunctionName - The name of the global function to call
  * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
  */

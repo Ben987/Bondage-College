@@ -16,7 +16,11 @@ var CharacterAppearanceWardrobeMode = false;
 var CharacterAppearanceWardrobeText = "";
 var CharacterAppearanceForceUpCharacter = 0;
 
-// Builds all the assets that can be used to dress up the character
+/**
+ * @description Builds all the assets that can be used to dress up the character
+ * @param {Character} C - The character whose appearance is modified
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceBuildAssets(C) {
 
 	// Adds all items with 0 value and from the appearance category
@@ -30,7 +34,12 @@ function CharacterAppearanceBuildAssets(C) {
 
 }
 
-// Makes sure the character appearance is valid from inventory and asset requirement
+// 
+/**
+ * @description Makes sure the character appearance is valid from inventory and asset requirement
+ * @param {Character} C - The character whose appearance is checked
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceValidate(C) {
 
 	// Remove any appearance item that's not in inventory
@@ -66,7 +75,11 @@ function CharacterAppearanceValidate(C) {
 
 }
 
-// Resets the character to it's default appearance
+/**
+ * @description Resets the character to it's default appearance
+ * @param {Character} C - The character to redress to its default appearance
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceSetDefault(C) {
 
 	// Resets the current appearance and prepares the assets
@@ -100,7 +113,13 @@ function CharacterAppearanceSetDefault(C) {
 
 }
 
-// Returns TRUE if the item group is required from
+// 
+/**
+ * @description Checks wether an item group is required for this asset
+ * @param {Character} C - The character, whose assets are used for the check
+ * @param {string} GroupName - The name of the group to check
+ * @returns {boolean} - Returns TRUE if the item group is required from
+ */
 function CharacterAppearanceRequired(C, GroupName) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset.Require != null) && (C.Appearance[A].Asset.Require.indexOf(GroupName) >= 0))
@@ -108,7 +127,12 @@ function CharacterAppearanceRequired(C, GroupName) {
 	return false;
 }
 
-// Returns TRUE if the item group must be hidden and not chosen
+/**
+ * @description Checks, wether the item group must be hidden for a certain asset
+ * @param {Character} C - The character, whose assets are used for the check
+ * @param {string} GroupName - The name of the group to check
+ * @returns {boolean} - Returns TRUE if the item group must be hidden and not chosen
+ */
 function CharacterAppearanceMustHide(C, GroupName) {
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) return true;
@@ -117,7 +141,13 @@ function CharacterAppearanceMustHide(C, GroupName) {
 	return false;
 }
 
-// Sets a full random set of items for a character
+
+/**
+ * @description Sets a full random set of items for a character. Only items that do not have the "Random" property set to false will be used.
+ * @param {Character} C - The character to dress
+ * @param {boolean} ClothOnly - Defines, if only clothes should be used
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceFullRandom(C, ClothOnly) {
 
 	// Clear the current appearance
@@ -173,7 +203,11 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 
 }
 
-// Removes all items that can be removed, making the character naked
+/**
+ * @description Removes all items that can be removed, making the character naked. Currently includes cosplay items, like tails, wings or ears.
+ * @param {Character} C - The character to undress
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceNaked(C) {
 
 	// For each item group (non default items only show at a 20% rate)
@@ -189,7 +223,11 @@ function CharacterAppearanceNaked(C) {
 }
 
 
-// Removes one layer of clothing: outer clothes, then underwear, then body-cosplay clothes, then nothing
+/**
+ * @description Removes one layer of clothing: outer clothes, then underwear, then body-cosplay clothes, then nothing
+ * @param {Character} C - The character to undress
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceStripLayer(C) {
 	var HasClothes = false;
 	var HasUnderwear = false;
@@ -234,7 +272,11 @@ function CharacterAppearanceStripLayer(C) {
 	CharacterLoadCanvas(C);
 }
 
-// Returns the character appearance sorted by drawing priority
+/**
+ * @description sorts the character appearance by drawing priority
+ * @param {Appearance} AP - The appearance to be sorted
+ * @returns {Appearance} - The sorted appearance
+ */
 function CharacterAppearanceSort(AP) {
 	function GetPriority(A) {
 		return ((A.Property != null) && (A.Property.OverridePriority != null)) ? A.Property.OverridePriority : A.Asset.DrawingPriority != null ? A.Asset.DrawingPriority : A.Asset.Group.DrawingPriority;
@@ -256,7 +298,13 @@ function CharacterAppearanceSort(AP) {
 	return AP;
 }
 
-// Returns TRUE if we can show the item group
+/**
+ * @description Determines wether an item or a whole item group is visible or not
+ * @param {Character} C - The character whose assets are checked
+ * @param {string} AssetName - The name of the asset to check
+ * @param {string} GroupName - The name of the item group to check
+ * @returns {boolean} - Returns TRUE if we can show the item or the item group
+ */
 function CharacterAppearanceVisible(C, AssetName, GroupName) {
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) return false;
@@ -272,7 +320,11 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 	return true;
 }
 
-// Sets the height modifier which determines the character's vertical position on screen
+/**
+ * @description Calculates and sets the height modifier which determines the character's vertical position on screen
+ * @param {Character} C - The character whose height must be calculated
+ * @returns {void} - Nothing
+ */
 function CharacterApperanceSetHeightModifier(C) {
 	if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
 		C.HeightModifier = 0;
@@ -281,17 +333,25 @@ function CharacterApperanceSetHeightModifier(C) {
 		for (var A = 0; A < C.Appearance.length; A++)
 			if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name))
 				Height += C.Appearance[A].Asset.HeightModifier;
-		if (C.Pose != null)
+		if (C.Pose != null) 
 			for (var A = 0; A < C.Pose.length; A++)
 				for (var P = 0; P < Pose.length; P++)
 					if (Pose[P].Name == C.Pose[A])
-						if (Pose[P].OverrideHeight != null)
-							Height = Pose[P].OverrideHeight;
+						if (Pose[P].OverrideHeight != null) {
+							if (!((Pose[P].Name == "Kneel") && (C.Pose.indexOf("Hogtied") >= 0)))
+								// Ignore kneel, if player is hogtied. 
+								// Allows the use of a short chain on hogtied players
+								Height = Pose[P].OverrideHeight;
+						}// if
 		C.HeightModifier = Height;
 	}
 }
 
-// Gets the character
+/**
+ * @description Draws the character canvas
+ * @param {Character} C - The character to draw
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceBuildCanvas(C) {
 
 	// Prepares both canvas (500x1000 for characters)
@@ -315,11 +375,11 @@ function CharacterAppearanceBuildCanvas(C) {
 			// If there's a father group, we must add it to find the correct image
 			var CA = C.Appearance[A];
 			var ParentGroup = CA.Asset.ParentGroupName ? CA.Asset.ParentGroupName : CA.Asset.Group.ParentGroupName && !CA.Asset.IgnoreParentGroup ? CA.Asset.Group.ParentGroupName : "";
-            var G = "";
-            if (ParentGroup != "")
-                for (var FG = 0; FG < C.Appearance.length; FG++)
-                    if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
-                        G = "_" + C.Appearance[FG].Asset.Name;
+			var G = "";
+			if (ParentGroup != "")
+				for (var FG = 0; FG < C.Appearance.length; FG++)
+					if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
+						G = "_" + C.Appearance[FG].Asset.Name;
 
 			// If there's a pose style we must add (first by group then by item)
 			var Pose = "";
@@ -411,7 +471,14 @@ function CharacterAppearanceBuildCanvas(C) {
 		}
 }
 
-// Returns a value from the character current appearance
+
+/**
+ * @description Returns a value from the character current appearance
+ * @param {Character} C - The character to get values from
+ * @param {string} Group - The name of the group, whose values we want to get
+ * @param {string} Type - The name of the value, we want to get
+ * @returns {*} - The return value
+ */
 function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 
 	// Finds the value
@@ -430,7 +497,10 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 
 }
 
-// Loads the character appearance screen and keeps a backup of the previous appearance
+/**
+ * @description Loads the character appearance screen and keeps a backup of the previous appearance. The function name is created dynamically.
+ * @returns {void} - Nothing
+ */
 function AppearanceLoad() {
 	if (!CharacterAppearanceSelection) CharacterAppearanceSelection = Player;
 	var C = CharacterAppearanceSelection;
@@ -439,7 +509,11 @@ function AppearanceLoad() {
 	CharacterAppearanceBackup = C.Appearance.map(Item => Object.assign({}, Item));
 }
 
-// Run the character appearance selection screen
+
+/**
+ * @description Run the character appearance selection screen. The function name is created dynamically.
+ * @returns {void} - Nothing
+ */
 function AppearanceRun() {
 
 	// Draw the background and the character twice
@@ -517,7 +591,17 @@ function AppearanceRun() {
 
 }
 
-// Sets an item in the character appearance
+
+/**
+ * @description Sets an item in the character appearance
+ * @param {Character} C - The character whose appearance should be changed
+ * @param {string} Group - The name of the corresponding groupr for the item
+ * @param {Asset} ItemAsset - The asset collection of the item to be changed
+ * @param {string} NewColor - The new color (as "#xxyyzz" hex value) for that item
+ * @param {number} DifficultyFactor - The difficulty factor of the ne item
+ * @param {boolean} Refresh - Determines, wether the character should be redrawn after the item change
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor, Refresh) {
 
 	// Sets the difficulty factor
@@ -546,7 +630,14 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 
 }
 
-// Cycle in the appearance assets to find the next item in a group and wear it
+/**
+ * @description Cycle in the appearance assets to find the next item in a group and wear it
+ * @param {Character} C - The character whose assets are used
+ * @param {string} Group - The name of the group to cycle
+ * @param {boolean} Forward - Sets the direction of the cycling
+ * @param {boolean} Description - Determines, wether the description of the item should be returned or not.
+ * @returns {string} - The Description of the worn item
+ */
 function CharacterAppearanceNextItem(C, Group, Forward, Description) {
 	var Current = CharacterAppearanceGetCurrentValue(C, Group, "Name");
 	var CAA = CharacterAppearanceAssets.filter(a => a.Group.Name == Group);
@@ -585,7 +676,13 @@ function CharacterAppearanceNextItem(C, Group, Forward, Description) {
 	if (Description == true) return "None";
 }
 
-// Find the next color for the item
+
+/**
+ * @description Find the next color for the item
+ * @param {Character} C - The character whose items are cycled
+ * @param {string} Group - The name of the group for which we are colour cycling
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceNextColor(C, Group) {
 
 	// For each item, we first find the item and pick the next one
@@ -611,7 +708,12 @@ function CharacterAppearanceNextColor(C, Group) {
 
 }
 
-// Moves the offset to get new character appearance items
+/**
+ * @description Moves the offset to get new character appearance items
+ * @param {Character} C - The character whose visible groups are used for calculation
+ * @param {number} Move - The amount the next asset group should be moved before it is displayed
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceMoveOffset(C, Move) {
 
 	// Get the amount of visible groups for that character
@@ -625,7 +727,14 @@ function CharacterAppearanceMoveOffset(C, Move) {
 
 }
 
-// Sets the color for a specific group
+
+/**
+ * @description Sets the color for a specific group
+ * @param {Character} C - The character whose item group should be coloured
+ * @param {string} Color - The colour (in the format "#rrggbb") to be applied to the group
+ * @param {string} Group - The name of the group, whose colour should be changed
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceSetColorForGroup(C, Color, Group) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if (C.Appearance[A].Asset.Group.Name == Group)
@@ -633,7 +742,11 @@ function CharacterAppearanceSetColorForGroup(C, Color, Group) {
 	CharacterLoadCanvas(C);
 }
 
-// When the user clicks on the character appearance selection screen
+
+/**
+ * @description Handle the clicks in the character appearance selection screen. The function name is created dynamically.
+ * @returns {void} - Nothing
+ */
 function AppearanceClick() {
 	var C = CharacterAppearanceSelection;
 
@@ -734,14 +847,21 @@ function AppearanceClick() {
 
 }
 
-// when the user press escape
+/**
+ * @description Handle the exiting of the appearance screen. The function name is created dynamically.
+ * @returns {void} - Nothing
+ */
 function AppearanceExit() {
 	if (CharacterAppearanceColorPicker != "") { CharacterAppearanceColorPicker = ""; ElementRemove("InputColor"); }
 	else if (CharacterAppearanceWardrobeMode) { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); }
 	else CharacterAppearanceExit(CharacterAppearanceSelection);
 }
 
-// When we cancel the character appearance edit, we restore the backup
+/**
+ * @description Restore the characters appearance backup, if the exit button is clicked
+ * @param {Character} C - The character, whose appearance backup should be used
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceExit(C) {
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceWardrobeMode = false;
@@ -754,7 +874,11 @@ function CharacterAppearanceExit(C) {
 	CharacterAppearanceHeaderText = "";
 }
 
-// When the player is ready, we make sure she at least has an outfit
+/**
+ * @description Handle the confirmation click in the wardrobe screen. 
+ * @param {Character} C - The character who has been changed
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceReady(C) {
 
 	// Make sure the character has one item of each default type (not used for now)
@@ -785,9 +909,9 @@ function CharacterAppearanceReady(C) {
 		ServerPlayerAppearanceSync();
 		if ((CharacterAppearanceReturnRoom == "ChatRoom") && (C.ID != 0)) {
 			var Dictionary = [];
-			Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-			ServerSend("ChatRoomChat", { Content: "ChangeClothes", Type: "Action" , Dictionary: Dictionary});
+			Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+			ServerSend("ChatRoomChat", { Content: "ChangeClothes", Type: "Action", Dictionary: Dictionary });
 			ChatRoomCharacterUpdate(C);
 		}
 		CommonSetScreen(CharacterAppearanceReturnModule, CharacterAppearanceReturnRoom);
@@ -797,7 +921,11 @@ function CharacterAppearanceReady(C) {
 
 }
 
-// Copy the appearance from a character to another
+/**
+ * @description Copy the appearance from a character to another
+ * @param {Character} FromC - The character to copy from
+ * @param {Character} ToC - The character to copy to
+ */
 function CharacterAppearanceCopy(FromC, ToC) {
 
 	// Removes any previous appearance asset
@@ -818,7 +946,11 @@ function CharacterAppearanceCopy(FromC, ToC) {
 
 }
 
-// Loads the appearance editing screen for a character
+/**
+ * @description Loads the appearance editing screen for a character
+ * @param {Character} C - The character for whom the appearance screen should be loaded
+ * @returns {void} - nothing
+ */
 function CharacterAppearanceLoadCharacter(C) {
 	CharacterAppearanceSelection = C;
 	CharacterAppearanceReturnRoom = CurrentScreen;
@@ -826,7 +958,11 @@ function CharacterAppearanceLoadCharacter(C) {
 	CommonSetScreen("Character", "Appearance");
 }
 
-// Load wardrobe menu in appearance selection
+/**
+ * @description Load wardrobe menu in appearance selection screen
+ * @param {Character} C - The character whose wardrobe should be loaded
+ * @returns {void} - Nothing
+ */
 function CharacterAppearanceWardrobeLoad(C) {
 	if ((Player.Wardrobe == null) || (Player.Wardrobe.length < 12))
 		WardrobeLoadCharacters(true);

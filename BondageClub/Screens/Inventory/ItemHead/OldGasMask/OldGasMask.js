@@ -11,12 +11,17 @@ function InventoryItemHeadOldGasMaskDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = CharacterGetCurrent();
+	var tube1 = InventoryItemCreate(C, "ItemAddon", "OldGasMaskTube1");
+	var tube2 = InventoryItemCreate(C, "ItemAddon", "OldGasMaskTube2");
+	var rebreather = InventoryItemCreate(C, "ItemAddon", "OldGasMaskRebreather");
+	var lenses = InventoryItemCreate(C, "ItemAddon", "OldGasMaskLenses");
+
 	var itemBlocked = InventoryGet(C, "ItemAddon") != null;
-	var tube1IsBlocked = InventoryIsPermissionLimited(C, "OldGasMaskTube1", "ItemAddon") || InventoryIsPermissionLimited(C, "OldGasMaskTube1", "ItemAddon");
-	var tube2IsBlocked = InventoryIsPermissionLimited(C, "OldGasMaskTube2", "ItemAddon") || InventoryIsPermissionLimited(C, "OldGasMaskTube2", "ItemAddon");
-	var rebreatherIsBlocked = InventoryIsPermissionLimited(C, "OldGasMaskRebreather", "ItemAddon") || InventoryIsPermissionLimited(C, "OldGasMaskRebreather", "ItemAddon");
-	var lensesIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLenses", "ItemAddon") || InventoryIsPermissionLimited(C, "OldGasMaskLenses", "ItemAddon");
+	var tube1IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskTube1", "ItemAddon") || !InventoryCheckLimitedPermission(C, tube1);
+	var tube2IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskTube2", "ItemAddon") || !InventoryCheckLimitedPermission(C, tube2);
+	var rebreatherIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskRebreather", "ItemAddon") || !InventoryCheckLimitedPermission(C, rebreather);
+	var lensesIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLenses", "ItemAddon") || !InventoryCheckLimitedPermission(C, lenses);
 
 	DrawButton(1250, 650, 200, 55, DialogFind(Player, "OldGasMaskLenses"), itemBlocked || lensesIsBlocked ? "#888" : "White");
 	DrawButton(1550, 650, 200, 55, DialogFind(Player, "OldGasMaskTubeA"), itemBlocked || tube1IsBlocked ? "#888" : "White");
@@ -33,7 +38,7 @@ function InventoryItemHeadOldGasMaskDraw() {
 
 // Catches the item extension clicks
 function InventoryItemHeadOldGasMaskClick() {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = CharacterGetCurrent();
 	var itemBlocked = InventoryGet(C, "ItemAddon") != null;
 	
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
@@ -47,26 +52,27 @@ function InventoryItemHeadOldGasMaskClick() {
 }
 
 // Sets the lenses
-function InventoryItemHeadOldGasMaskSetItem(Item) {
+function InventoryItemHeadOldGasMaskSetItem(itemName) {
 
 	// Loads the item
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = CharacterGetCurrent();
 	if (CurrentScreen == "ChatRoom") {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemHeadOldGasMaskLoad();
 	}
-	
+
+	var item = InventoryItemCreate(C, "ItemAddon", itemName);
 	// Do not continue if the item is blocked by permissions
-	if (InventoryIsPermissionBlocked(C, Item, "ItemAddon") || InventoryIsPermissionLimited(C, Item, "ItemAddon")) return;
+	if (InventoryIsPermissionBlocked(C, itemName, "ItemAddon") || !InventoryCheckLimitedPermission(C, item)) return;
 	
 	// Wear the item
-	InventoryWear(C, Item, "ItemAddon", DialogColorSelect);
+	InventoryWear(C, itemName, "ItemAddon", DialogColorSelect);
 	DialogFocusItem = InventoryGet(C, "ItemAddon");
 	
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
 	CharacterLoadEffect(C);
-	var msg = "OldGasMaskUse" + Item;
+	var msg = "OldGasMaskUse" + itemName;
 	var Dictionary = [];
 	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
 	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
