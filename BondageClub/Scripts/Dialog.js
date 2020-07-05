@@ -30,36 +30,251 @@ var DialogExtendedMessage = "";
 var DialogActivityMode = false;
 var DialogActivity = [];
 
-function DialogReputationLess(RepType, Value) { return (ReputationGet(RepType) <= Value); } // Returns TRUE if a specific reputation type is less or equal than a given value
-function DialogReputationGreater(RepType, Value) { return (ReputationGet(RepType) >= Value); } // Returns FALSE if a specific reputation type is greater or equal than a given value
-function DialogMoneyGreater(Amount) { return (parseInt(Player.Money) >= parseInt(Amount)); } // Returns TRUE if the player has enough money
-function DialogChangeMoney(Amount) { CharacterChangeMoney(Player, Amount); } // Change the player money amount
+/**
+ * @description Compares the player's reputation with a given value 
+ * 
+ * @param {string} RepType - The name of the reputation to check
+ * @param {string} Value - The value to compare
+ * @returns {boolean} - Returns TRUE if a specific reputation type is less or equal than a given value
+ */
+function DialogReputationLess(RepType, Value) { return (ReputationGet(RepType) <= Value); }
+
+/**
+ * @description Compares the player's reputation with a given value
+ *
+ * @param {string} RepType - The name of the reputation to check
+ * @param {string} Value - The value to compare
+ * @returns {boolean} - Returns TRUE if a specific reputation type is greater or equal than a given value
+ */
+function DialogReputationGreater(RepType, Value) { return (ReputationGet(RepType) >= Value); }
+
+/**
+ * @description Compares the player's money with a given amount
+ * 
+ * @param {string} Amount - The amount of money that must be met
+ * @returns {boolean} - Returns TRUE if the player has enough money
+ */
+function DialogMoneyGreater(Amount) { return (parseInt(Player.Money) >= parseInt(Amount)); }
+
+/**
+ * @description Changes a given player's account by a given amount
+ * 
+ * @param {string} Amount - The amount that should be charged or added to the player's account
+ * @returns {void} - Nothing
+ */
+function DialogChangeMoney(Amount) { CharacterChangeMoney(Player, Amount); }
+
+/**
+ * @description Alters the current player's reputation by a given amount
+ * 
+ * @param {string} RepType - The name of the reputation to change
+ * @param {string} Value - The value, the player's reputation should be altered by
+ * @returns {void} - Nothing
+ */
 function DialogSetReputation(RepType, Value) { ReputationChange(RepType, (parseInt(ReputationGet(RepType)) * -1) + parseInt(Value)); } // Sets a fixed number for the player specific reputation
-function DialogChangeReputation(RepType, Value) { ReputationProgress(RepType, Value); } // Change the player reputation progressively through dialog options (a reputation is easier to break than to build)
-function DialogWearItem(AssetName, AssetGroup) { InventoryWear(Player, AssetName, AssetGroup); } // Equips a specific item on the player from dialog
-function DialogWearRandomItem(AssetGroup) { InventoryWearRandom(Player, AssetGroup); } // Equips a random item from a given group to the player from dialog
-function DialogRemoveItem(AssetGroup) { InventoryRemove(Player, AssetGroup); } // Removes an item of a specific item group from the player 
-function DialogRelease(C) { CharacterRelease((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); } // Releases a character from restraints
-function DialogNaked(C) { CharacterNaked((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); } // Strips a character naked and removes the restrains
+
+/**
+ * @description Change the player's reputation progressively through dialog options (a reputation is easier to break than to build)
+ * 
+ * @param {string} RepType - The name of the reputation to change
+ * @param {string} Value - The value, the player's reputation should be altered by
+ * @returns {void} - Nothing
+ */
+function DialogChangeReputation(RepType, Value) { ReputationProgress(RepType, Value); }
+
+/**
+ * @description Equips a specific item on the player from dialog
+ * 
+ * @param {string} AssetName - The name of the asset that should be equipped
+ * @param {string} AssetGroup - The name of the corresponding asset group
+ * @returns {void} - Nothing
+ */
+function DialogWearItem(AssetName, AssetGroup) { InventoryWear(Player, AssetName, AssetGroup); }
+
+/**
+ * @description Equips a random item from a given group to the player from dialog
+ * 
+ * @param {string} AssetGroup - The name of the asset group to pick from
+ * @returns {void} - Nothing
+ */
+function DialogWearRandomItem(AssetGroup) { InventoryWearRandom(Player, AssetGroup); }
+
+/**
+ * @description Removes an item of a specific item group from the player
+ * 
+ * @param {string} AssetGroup - The item to be removed belongs to this asset group
+ * @returns {void} - Nothing
+ */
+function DialogRemoveItem(AssetGroup) { InventoryRemove(Player, AssetGroup); }
+
+/**
+ * @description Releases a character from restraints
+ * 
+ * @param {string} C - The character to be released. 
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @returns {void} - Nothing
+ */
+function DialogRelease(C) { CharacterRelease((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); }
+
+/**
+ * @description Strips a character naked and removes the restrains
+ * 
+ * @param {string} C - The character to be stripped and released.
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @returns {void} - Nothing
+ */
+function DialogNaked(C) { CharacterNaked((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); }
+
+/**
+ * @description Fully restrain a character with random items
+ * 
+ * @param {string} C - The character to be restrained.
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @returns {void} - Nothing
+ */
 function DialogFullRandomRestrain(C) { CharacterFullRandomRestrain((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); } // Strips a character naked and removes the restrains
-function DialogLogQuery(LogType, LogGroup) { return LogQuery(LogType, LogGroup); } // Returns TRUE if a specific log is registered
-function DialogAllowItem(Allow) { return CurrentCharacter.AllowItem = (Allow.toUpperCase().trim() == "TRUE"); } // Sets the AllowItem flag on the current character
-function DialogDoAllowItem(C) { return (C.toUpperCase().trim() == "PLAYER") ? Player.AllowItem : CurrentCharacter.AllowItem } // Sets the AllowItem flag on the current character
+
+/**
+ * @description Checks, if a specific log has been registered with the player
+ * 
+ * @param {string} LogType - The name of the log to search for
+ * @param {string} LogGroup - The name of the log group
+ * @returns {boolean} - Returns true, if a specific log is registered
+ */
+function DialogLogQuery(LogType, LogGroup) { return LogQuery(LogType, LogGroup); }
+
+/**
+ * @description Sets the AllowItem flag on the current character
+ * 
+ * @param {string} Allow - The flag to set. Either "TRUE" or "FALSE"
+ * @returns {boolean} - The boolean version of the flag
+ */
+function DialogAllowItem(Allow) { return CurrentCharacter.AllowItem = (Allow.toUpperCase().trim() == "TRUE"); } // 
+
+/**
+ * @description Returns the value of the AllowItem flag of a given character
+ * 
+ * @param {string} C - The character whose flag should be returned.
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @returns {boolean} - The value of the given character's AllowItem flag
+ */
+function DialogDoAllowItem(C) { return (C.toUpperCase().trim() == "PLAYER") ? Player.AllowItem : CurrentCharacter.AllowItem }
+
+/**
+ * @description Determines if the given character is kneeling
+ * 
+ * @param {string} C - The character to check
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @returns {boolean} - Returns true, if the given character is kneeling
+ */
 function DialogIsKneeling(C) { return (C.toUpperCase().trim() == "PLAYER") ? Player.IsKneeling() : CurrentCharacter.IsKneeling() }
+
+/**
+ * @description Determines if the player is owned by the current character
+ * 
+ * @returns {boolean} - Returns true, if the player is owned by the current character, false otherwise
+ */
 function DialogIsOwner() { return (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) }
+
+/**
+ * @description Determines, if the current character is the player's lover
+ * 
+ * @returns {boolean} - Returns true, if the current character is one of the player's lovers
+ */
 function DialogIsLover() { return (CurrentCharacter.Name == Player.Lover.replace("NPC-", "")) }
+
+/**
+ * @description Determines if the current character is owned by the player
+ * 
+ * @returns {boolean} - Returns true, if the current character is owned by the player, false otherwise
+ */
 function DialogIsProperty() { return (CurrentCharacter.Owner == Player.Name) }
+
+/**
+ * @description Checks, if a given character is currently restrained
+ * 
+ * @param {string} C - The character to check.
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @returns {boolean} - Returns true, if the given character is wearing restraints, false otherwise
+ */
 function DialogIsRestrained(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsRestrained() : CurrentCharacter.IsRestrained()) }
+
+/**
+ * @description Checks, if a given character is currently blinded
+ *
+ * @param {string} C - The character to check.
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @returns {boolean} - Returns true, if the given character is blinded, false otherwise
+ */
 function DialogIsBlind(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsBlind() : CurrentCharacter.IsBlind()) }
+
+/**
+ * @description Checks, if a given character is currently wearing a vibrating item
+ *
+ * @param {string} C - The character to check.
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @returns {boolean} - Returns true, if the given character is wearing a vibrating item, false otherwise
+ */
 function DialogIsEgged(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsEgged() : CurrentCharacter.IsEgged()) }
+
+/**
+ * @description Checks, if a given character is able to change her clothes
+ *
+ * @param {string} C - The character to check.
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @returns {boolean} - Returns true, if the given character is able to change clothes, false otherwise
+ */
 function DialogCanInteract(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.CanInteract() : CurrentCharacter.CanInteract()) }
+
+/**
+ * @description Sets a new pose for the given character
+ * 
+ * @param {string} C - The character whose pose should be altered.
+ * Either the player (value: Player) or the current character (value: CurrentCharacter)
+ * @param {string} [NewPose=null] - The new pose, the character should take. 
+ * Can be omitted to bring the character back to the standing position.
+ * @returns {void} - Nothing
+ */
 function DialogSetPose(C, NewPose) { CharacterSetActivePose((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter, ((NewPose != null) && (NewPose != "")) ? NewPose : null) }
-function DialogSkillGreater(SkillType, Value) { return (parseInt(SkillGetLevel(Player, SkillType)) >= parseInt(Value)) } // Returns TRUE if a specific reputation type is less or equal than a given value
+
+/**
+ * @description CHecks, wether a given skill of the player is greater or equal a given value
+ * 
+ * @param {string} SkillType - Name of the skill to check
+ * @param {string} Value - The value, the given skill must be compared to
+ * @returns {boolean} - Returns true if a specific skill is greater or equal than a given value
+ */
+function DialogSkillGreater(SkillType, Value) { return (parseInt(SkillGetLevel(Player, SkillType)) >= parseInt(Value)) }
+
+/**
+ * @description Cheks, if a given item is available in the player's inventory
+ * 
+ * @param {string} InventoryName
+ * @param {string} InventoryGroup
+ * @returns {boolean} - Returns true, if the item is available, false otherwise
+ */
 function DialogInventoryAvailable(InventoryName, InventoryGroup) { return InventoryAvailable(Player, InventoryName, InventoryGroup) }
+
+/**
+ * @description Checks, if the player is the administrator of the current chat room
+ * 
+ * @returns {boolean} - Returns true, if the player belogs to the group of administrators for the current char room false otherwise
+ */
 function DialogChatRoomPlayerIsAdmin() { return (ChatRoomPlayerIsAdmin() && (CurrentScreen == "ChatRoom")) }
+
+/**
+ * @description Checks, if a safe word can be used.
+ * 
+ * @returns {boolean} - Returns true, if the player is currently within a chat room
+ */
 function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom") }
 
-// Returns TRUE if the dialog prerequisite condition is met
+/**
+ * @description Checks the prerequisite for a given dialog
+ * 
+ * @param {number} D - Index of the dialog to check
+ * @returns {boolean} - Returns true, if the prerequisite is met, false otherwise
+ */
 function DialogPrerequisite(D) {
 	if (CurrentCharacter.Dialog[D].Prerequisite == null)
 		return true;
@@ -85,7 +300,14 @@ function DialogPrerequisite(D) {
 								return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
 }
 
-// Searches for an item in the player inventory to unlock a specific item
+/**
+ * @description Checks, if the player owns a key to unlock a given item or is able to unlock the item
+ * 
+ * @param {Character} C - The character whose inventory and ability to unlock the lock should be checked
+ * @param {Item} Item - The item that should be unlocked
+ * 
+ * @returns {boolean} - Returns true, if the character can unlock the given item, false otherwise
+ */
 function DialogCanUnlock(C, Item) {
 	if ((C.ID != 0) && !Player.CanInteract()) return false;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy == "ExclusivePadlock")) return (C.ID != 0);
@@ -161,13 +383,13 @@ function DialogEndExpression() {
 	if (DialogAllowEyebrows) {
 		TimerInventoryRemoveSet(Player, "Eyebrows", 5);
 		DialogAllowEyebrows = false;
-	}		
+	}
 	if (DialogAllowFluids) {
 		TimerInventoryRemoveSet(Player, "Fluids", 5);
 		DialogAllowFluids = false;
 	}
 }
-		
+
 // Leaves the item menu for both characters
 function DialogLeaveItemMenu() {
 	DialogEndExpression();
@@ -295,7 +517,7 @@ function DialogMenuButtonBuild(C) {
 
 // Sort the inventory list by SortOrder (a fixed number & current language description)
 function DialogInventorySort() {
-	DialogInventory.sort((a,b) => (a.SortOrder > b.SortOrder) ? 1 : ((b.SortOrder > a.SortOrder) ? -1 : 0));
+	DialogInventory.sort((a, b) => (a.SortOrder > b.SortOrder) ? 1 : ((b.SortOrder > a.SortOrder) ? -1 : 0));
 }
 
 // Build the inventory listing for the dialog which is what's equipped, the player inventory and the character inventory for that group
@@ -309,7 +531,7 @@ function DialogInventoryBuild(C) {
 		// First, we add anything that's currently equipped
 		var Item = null;
 		var CurItem = null;
-		for(var A = 0; A < C.Appearance.length; A++)
+		for (var A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && C.Appearance[A].Asset.DynamicAllowInventoryAdd(C)) {
 				DialogInventoryAdd(C, C.Appearance[A], true, 1);
 				CurItem = C.Appearance[A];
@@ -324,13 +546,13 @@ function DialogInventoryBuild(C) {
 						DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: "1" + Asset[A].Description });
 		} else {
 			// Second, we add everything from the victim inventory
-			for(var A = 0; A < C.Inventory.length; A++)
+			for (var A = 0; A < C.Inventory.length; A++)
 				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C))
 					DialogInventoryAdd(C, C.Inventory[A], false, 2);
 
 			// Third, we add everything from the player inventory if the player isn't the victim
 			if (C.ID != 0)
-				for(var A = 0; A < Player.Inventory.length; A++)
+				for (var A = 0; A < Player.Inventory.length; A++)
 					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C))
 						DialogInventoryAdd(C, Player.Inventory[A], false, 2);
 
@@ -470,7 +692,7 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	// If there's no current blushing, we update the blushing state while struggling
 	DialogAllowBlush = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Blush") == null) || (InventoryGet(C, "Blush").Property == null) || (InventoryGet(C, "Blush").Property.Expression == null)));
 	DialogAllowEyebrows = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Eyebrows") == null) || (InventoryGet(C, "Eyebrows").Property == null) || (InventoryGet(C, "Eyebrows").Property.Expression == null)));
-	DialogAllowFluids = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Fluids") == null) ||(InventoryGet(C, "Fluids").Property == null) || (InventoryGet(C, "Fluids").Property.Expression == null)));
+	DialogAllowFluids = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Fluids") == null) || (InventoryGet(C, "Fluids").Property == null) || (InventoryGet(C, "Fluids").Property.Expression == null)));
 
 	// Applying or removing specific items can trigger an audio sound to play
 	if ((PrevItem && PrevItem.Asset) || (NextItem && NextItem.Asset)) {
@@ -494,7 +716,7 @@ function DialogMenuButtonClick() {
 	// Finds the current icon
 	for (var I = 0; I < DialogMenuButton.length; I++)
 		if ((MouseX >= 1885 - I * 110) && (MouseX <= 1975 - I * 110)) {
-			
+
 			// Gets the current character and item
 			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 			var Item = InventoryGet(C, C.FocusGroup.Name);
@@ -631,7 +853,7 @@ function DialogMenuButtonClick() {
 				ActivityDialogBuild(C);
 				return;
 			}
-			
+
 			// When we enter item permission mode, we rebuild the inventory to set permissions
 			else if (DialogMenuButton[I] == "DialogPermissionMode") {
 				DialogItemPermissionMode = true;
@@ -660,7 +882,7 @@ function DialogPublishAction(C, ClickItem) {
 			if (CurrentScreen == "ChatRoom") {
 				var intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
 				InventoryExpressionTrigger(C, ClickItem);
-				ChatRoomPublishCustomAction(TargetItem.Asset.Name + "Trigger" + intensity, true, [{Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber}]);
+				ChatRoomPublishCustomAction(TargetItem.Asset.Name + "Trigger" + intensity, true, [{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber }]);
 			}
 			else {
 				var intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
@@ -701,7 +923,7 @@ function DialogItemClick(ClickItem) {
 	// In permission mode, the player can allow or block items for herself
 	if ((C.ID == 0) && DialogItemPermissionMode) {
 		if (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name)) return;
-		if (InventoryIsPermissionBlocked(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name)){
+		if (InventoryIsPermissionBlocked(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name)) {
 			Player.BlockItems = Player.BlockItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
 			Player.LimitedItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
 		}
@@ -923,7 +1145,7 @@ function DialogClick() {
 	// If the user clicked in the facial expression menu
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
 		if (CommonIsClickAt(15, 15, 90, 90)) {
-			DialogFacialExpressions.forEach(FE => { 
+			DialogFacialExpressions.forEach(FE => {
 				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name);
 				FE.CurrentExpression = null;
 			});
@@ -1041,7 +1263,7 @@ function DialogDrawActivityMenu(C) {
 			Y = Y + 300;
 		}
 	}
-	
+
 }
 
 // Draw the item menu dialog
@@ -1078,7 +1300,7 @@ function DialogDrawItemMenu(C) {
 			var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
 			var Limit = InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name);
 			var Blocked = DialogInventory[I].SortOrder.startsWith("3");
-			DrawRect(X, Y, 225, 275, (DialogItemPermissionMode && C.ID == 0) ? 
+			DrawRect(X, Y, 225, 275, (DialogItemPermissionMode && C.ID == 0) ?
 				(DialogInventory[I].Worn ? "gray" : Block ? Hover ? "red" : "pink" : Limit ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") :
 				((Hover && !Blocked) ? "cyan" : DialogInventory[I].Worn ? "pink" : Blocked ? "gray" : "white"));
 			if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
@@ -1253,7 +1475,7 @@ function DialogDraw() {
 
 // Draw the menu for changing facial expressions
 function DialogDrawExpressionMenu() {
-	
+
 	// Draw the expression groups
 	DrawText(DialogFind(Player, "FacialExpression"), 265, 62, "White", "Black");
 	DrawButton(15, 15, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearFacialExpressions"));
