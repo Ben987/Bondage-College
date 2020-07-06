@@ -796,7 +796,12 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 
 }
 
-// The player can use the space bar to speed up the dialog progress, just like clicking
+/**
+ * @description Handles the KeyDown event. The player can use the space bar to speed up the dialog progress, just like clicking.
+ * Increases or decreases the struggle mini-game, if a/A or s/S were pressed.
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogKeyDown() {
 	if (((KeyPress == 65) || (KeyPress == 83) || (KeyPress == 97) || (KeyPress == 115)) && (DialogProgress >= 0) && (DialogColor == null)) {
 		DialogStruggle((DialogProgressLastKeyPress == KeyPress));
@@ -804,7 +809,11 @@ function DialogKeyDown() {
 	}
 }
 
-// When the user clicks on one of icons in the item menu
+/**
+ * @description Handles the Click events in the Dialog Screen
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogMenuButtonClick() {
 
 	// Finds the current icon
@@ -966,7 +975,14 @@ function DialogMenuButtonClick() {
 
 }
 
-// Publishes the item action to the local chat room or the dialog screen
+/**
+ * @description Publishes the item action to the local chat room or the dialog screen
+ * 
+ * @param {Character} C - The character who is the actor in this action
+ * @param {Item} ClickItem - The item that is used
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogPublishAction(C, ClickItem) {
 
 	// The shock triggers can trigger items that can shock the wearer
@@ -1007,7 +1023,13 @@ function DialogPublishAction(C, ClickItem) {
 
 }
 
-// When the player clicks on an item
+/**
+ * @description Handles clicks on an item
+ * 
+ * @param {Item} ClickItem - The item that is clicked
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogItemClick(ClickItem) {
 
 	// Gets the current character and item
@@ -1092,7 +1114,11 @@ function DialogItemClick(ClickItem) {
 
 }
 
-// When the user clicks on a dialog option
+/**
+ * @description Handles the click in the dialog screen
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogClick() {
 
 	// If the user clicked the Up button, move the character up to the top of the screen
@@ -1291,13 +1317,25 @@ function DialogClick() {
 
 }
 
-// Sets the dialog 5 seconds text
+/**
+ * @description Displays the given text for 5 seconds
+ * 
+ * @param {string} NewText - The text to be displayed
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogSetText(NewText) {
 	DialogTextDefaultTimer = CommonTime() + 5000;
 	DialogText = DialogFind(Player, NewText);
 }
 
-// Extends a specific item (loads its settings and shows its own menu)
+/**
+ * @description Shows the extended item menue for a given item, if possible. 
+ * Therefore a dynamic function name is created and then called.
+ * 
+ * @param {Item} Item
+ * @param {Item} SourceItem
+ */
 function DialogExtendItem(Item, SourceItem) {
 	DialogProgress = -1;
 	DialogColor = null;
@@ -1306,7 +1344,13 @@ function DialogExtendItem(Item, SourceItem) {
 	CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
 }
 
-// Validates that the player is allowed to change the item color and swaps it on the fly
+/**
+ * @description Validates that the player is allowed to change the item color and swaps it on the fly
+ * @param {Character} C - The player who wants to change the color
+ * @param {string} Color - The new color in the format "#rrggbb"
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogChangeItemColor(C, Color) {
 
 	// Validates that the player isn't blind and can interact with the item
@@ -1328,7 +1372,14 @@ function DialogChangeItemColor(C, Color) {
 
 }
 
-// Draw the activity selection dialog
+// 
+/**
+ * @description Draw the activity selection dialog
+ * 
+ * @param {Character} C - The character for whom the activity selection dialog is drawn. That can be the player or another character.
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogDrawActivityMenu(C) {
 
 	// Gets the default text that will reset after 5 seconds
@@ -1360,7 +1411,13 @@ function DialogDrawActivityMenu(C) {
 
 }
 
-// Draw the item menu dialog
+/**
+ * @description Draw the item menu dialog
+ * 
+ * @param {Character} C - The character for whom the activity selection dialog is drawn. That can be the player or another character.
+ *
+ * @returns {void} - Nothing
+ */
 function DialogDrawItemMenu(C) {
 
 	// Gets the default text that will reset after 5 seconds
@@ -1498,7 +1555,19 @@ function DialogDrawItemMenu(C) {
 
 }
 
-// Searches in the dialog for a specific stage keyword and returns that dialog option if we find it
+/**
+ * @description Searches in the dialog for a specific stage keyword and returns that dialog option if we find it
+ * 
+ * @param {Character} C - The character whose dialog optio* 
+ * @param {string} KeyWord1 - The key word to search for
+ * @param {string} [KeyWord2] - An optionally given second key word. is only looked for, if specified and the first 
+ * keyword was not found.
+ * @param {boolean} [ReturnPrevious] - If specified, returns the previous dialog, if neither of the the two key words were found
+ ns should be searched
+ * 
+ * @returns {string} - The name of a dialog. That can either be the one with the keyword or the previous dialog. 
+ * An empty string is returned, if neither keyword was found and no previous dialog was given.
+ */
 function DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious) {
 	for (var D = 0; D < C.Dialog.length; D++)
 		if (C.Dialog[D].Stage == KeyWord1)
@@ -1510,14 +1579,28 @@ function DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious) {
 	return ((ReturnPrevious == null) || ReturnPrevious) ? C.CurrentDialog : "";
 }
 
-// Searches in the dialog for a specific stage keyword and returns that dialog option if we find it and replace the names
+/**
+ * @description Searches in the dialog for a specific stage keyword and returns that dialog option if we find it and replace the names
+ *
+ * @param {Character} C - The character whose dialog options should be searched
+ * @param {string} KeyWord1 - The key word to search for
+ * @param {string} [KeyWord2] - An optionally given second key word. is only looked for, if specified and the first
+ * keyword was not found.
+ * @param {boolean} [ReturnPrevious] - If specified, returns the previous dialog, if neither of the the two key words were found
+ *
+ * @returns 
+ */
 function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
 	return DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious)
 		.replace("SourceCharacter", Player.Name)
 		.replace("DestinationCharacter", CharacterGetCurrent().Name);
 }
 
-// Draw all the possible interactions 
+/**
+ * @description Draws the initial Dialod screen. That screen is entered, when the player clicks on herself or another player
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogDraw() {
 
 	// Draw both the player and the interaction character
@@ -1567,7 +1650,11 @@ function DialogDraw() {
 
 }
 
-// Draw the menu for changing facial expressions
+/**
+ * @description Draw the menu for changing facial expressions
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogDrawExpressionMenu() {
 
 	// Draw the expression groups
@@ -1601,22 +1688,43 @@ function DialogDrawExpressionMenu() {
 	}
 }
 
-// Sets the skill ratio for the player, will be a % of effectiveness applied to the skill when using it
+/**
+ * @description Sets the skill ratio for the player, will be a % of effectiveness applied to the skill when using it. 
+ * This way a player can use only a part of her bondage or evasion skill.
+ * 
+ * @param {string} SkillType - The name of the skill to influence
+ * @param {strign} NewRatio - The ration of this skill that should be used
+ */
 function DialogSetSkillRatio(SkillType, NewRatio) {
 	SkillSetRatio(SkillType, parseInt(NewRatio) / 100);
 }
 
-// Sends an administrative command to the server for the chat room from the player dialog
+/**
+ * @description Sends an room administrative command to the server for the chat room from the player dialog
+ * 
+ * @param {string} ActionType - The name of the administrative command to use 
+ * @param {string} Publish - Determines wether the action should be published to the ChatRoom. As this is a string, use "true" to do so
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogChatRoomAdminAction(ActionType, Publish) {
 	ChatRoomAdminAction(ActionType, Publish);
 }
 
-// Checks if a chat room player swap is in progress
+/**
+ * @description Checks if a chat room player swap is in progress
+ * 
+ * @returns {boolean} - Returns true, if a swap is in progress, false otherwise
+ */
 function DialogChatRoomHasSwapTarget() {
 	return ChatRoomHasSwapTarget();
 }
 
-// When the player uses her safeword
+/**
+ * @description Leave the dialog and revert back to a safe state, when the player uses her safe word
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogChatRoomSafeword() {
 	DialogLeave();
 	ChatRoomSafeword();
