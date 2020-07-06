@@ -50,7 +50,7 @@ function init(){
 	// renderer.shadowMapDebug = true;
 
 	let ambientLight = new THREE.AmbientLight(0xffffff);
-	ambientLight.castShadow = true;
+	// ambientLight.castShadow = true;
 	ambientLight.position.set(200,2000,200);
 	scene.add(ambientLight);
 
