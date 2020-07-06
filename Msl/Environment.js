@@ -7,5 +7,5 @@ var Environment = {
 	
 	,allItemsInInventory:true
 	
-	,colorizeRenderItems:true
+	//,colorizeRenderItems:true
 }

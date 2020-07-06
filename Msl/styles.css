@@ -199,15 +199,20 @@ div.chat-hover-item:after {
 
 .dialog-appearance-group > .items-actions {width:100%;height:85%;position:relative}
 .dialog-appearance-group > .items-actions > div {position:absolute;width:100%;height:100%; }
+
 .dialog-appearance-group > .items-actions > .items {overflow-y:scroll; }
 .dialog-appearance-group > .items-actions > .items > div {position:relative;width:22%;padding-top:22%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:white; word-break:break-word}
 .dialog-appearance-group > .items-actions > .items > div > img {position:absolute;width:100%;max-height:100%;top:0%;left:0; }
-.dialog-appearance-group > .items-actions > .items > div > div {position:absolute;color:black;top:0;}
-
+.dialog-appearance-group > .items-actions > .items > div > div {position:absolute;color:black;top:0;pointer-events:none}
 
 .dialog-appearance-group > .items-actions > .variants > div {position:relative;width:22%;padding-top:22%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:white; word-break:break-word}
 .dialog-appearance-group > .items-actions > .variants > div > img {position:absolute;width:100%;max-height:100%;top:0%;left:0; }
 .dialog-appearance-group > .items-actions > .variants > div > div {position:absolute;color:black;top:0;}
+
+.dialog-appearance-group > .items-actions > .activity > div {position:relative;width:22%;padding-top:22%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:white; word-break:break-word}
+.dialog-appearance-group > .items-actions > .activity > div > img {position:absolute;width:100%;max-height:100%;top:0%;left:0; }
+.dialog-appearance-group > .items-actions > .activity > div > div {position:absolute;color:black;top:0;}
+
 
 
 .dialog-appearance-wardrobe {width:100%;height:100%;overflow-y:auto}

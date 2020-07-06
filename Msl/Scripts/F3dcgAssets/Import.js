@@ -125,7 +125,7 @@ F3dcgAssets.InitItems = function(){
 				let AssetItem = AssetGroup.Asset[j];
 				if(typeof(AssetItem) === "string") AssetItem = {Name:AssetItem};
 				
-				if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(AssetItem.Name)) continue;
+				if(F3dcgAssets.IgnoreItems.includes(AssetItem.Name)) continue;
 				
 				if(AssetItem.Prerequisite && ! AssetItem.Prerequisite.forEach) AssetItem.Prerequisite = [AssetItem.Prerequisite];
 				
@@ -142,6 +142,7 @@ F3dcgAssets.InitItems = function(){
 				AssetItem.Group = AssetGroup.Group;
 				AssetGroup.Items[AssetItem.Name] = AssetItem;
 				if(AssetGroup.ParentGroup) AssetGroup.useBodySize = AssetGroup.ParentGroup == "BodyUpper" ? "upperSize" : "lowerSize";
+				if(AssetItem.Name.includes("SpankingToys")) AssetItem.IgnoreParentGroup = true;
 			}
 		}	
 	}
@@ -152,10 +153,22 @@ F3dcgAssets.InitVibes = function(){
 	Object.values(F3dcgAssets.AssetGroups).forEach( AssetGroup => {
 		Object.values(AssetGroup.Items).forEach(AssetItem => {
 			if(AssetItem.AllowEffect && AssetItem.AllowEffect.includes("Vibrating")){
-				AssetItem.CommonVibe = true;
+				AssetItem.VibeCommon = true;
 			}
 		})
 	});
+}
+
+
+F3dcgAssets.InitActivities = function(){
+	ActivityFemale3DCG.forEach(Activity => {
+		F3dcgAssets.Activities[Activity.Name] = Activity;
+		if(Activity.TargetSelf) Activity.TargetSelf.forEach(groupName => {
+			var AssetGroup = F3dcgAssets.AssetGroups[groupName]
+			if(! AssetGroup.ActivitySelf)   AssetGroup.ActivitySelf = [];
+			AssetGroup.ActivitySelf.push(Activity.Name);
+		});
+	})
 }
 
 
@@ -246,6 +259,21 @@ F3dcgAssets.InitVariants = function(){
 	V = this.SimplestVariant(G.Items.WristShackles, ["InFront", "Behind"]);
 	V.Behind.Property = {SetPose:["BackCuffs"],Effect:["Block", "Prone"]}
 	
+	//ItemPelvis
+	G = F3dcgAssets.AssetGroups.ItemPelvis;
+	G.Items.LoveChastityBelt.Variant = {
+		Open:{Name:"Open", Layer:["Open"]}
+		,Closed:{Name:"Closed", Layer:["Closed", "Lock", "ShieldLock"],Block:["ItemVulva", "ItemVulvaPiercings"]}
+		,Vibe:{Name:"Vibe", Layer:["Closed", "Lock", "ShieldLock", "Vibe"],Block:["ItemVulva", "ItemVulvaPiercings"], Prerequisite:[{type:"GroupEmpty", value:"ItemVulva"}]}
+		,Shock:{Name:"Shock", Layer:["Closed", "Lock", "ShieldLock", "Shock"],Block:["ItemVulva", "ItemVulvaPiercings"], Prerequisite:[{type:"GroupEmpty", value:"ItemVulva"}]}
+		,Open_Closed:{Name:"Open_Closed", Layer:["Open"],Block:["ItemButt"]}
+		,Closed_Closed:{Name:"Closed_Closed", Layer:["Closed",  "Lock", "ShieldLock"],Block:["ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
+		,Vibe_Closed:{Name:"Vibe_Closed", Layer:["Closed",  "Lock", "ShieldLock", "Vibe"], Block:["ItemVulva", "ItemVulvaPiercings", "ItemButt"], Prerequisite:[{type:"GroupEmpty", value:"ItemVulva"}]}
+		,Shock_Closed:{Name:"Shock_Closed", Layer:["Closed",  "Lock", "ShieldLock", "Shock"], Block:["ItemVulva", "ItemVulvaPiercings", "ItemButt"], Prerequisite:[{type:"GroupEmpty", value:"ItemVulva"}]}
+	}
+	
+	//V.Behind.Property = {SetPose:["BackCuffs"],Effect:["Block", "Prone"]}
+	
 	//ItemButt
 	G = F3dcgAssets.AssetGroups.ItemButt;
 	V = this.SimplestVariant(G.Items.AnalHook, ["Base", "Chain", "Hair"]);
@@ -270,7 +298,7 @@ F3dcgAssets.InitVariants = function(){
 	G.Items.BondageBench.Layer = [
 		{ Name: "Base", AllowColorize: false, Priority: 1 }
 		,{ Name: "Light", AllowColorize: true,Priority: 50}
-		,{ Name: "Normal", AllowColorize: true,Priority: 50 }
+		,{ Name: "Normal", AllowColorize: true,Priority: 50}
 		,{ Name: "Heavy", AllowColorize: true,Priority: 50}
 		,{ Name: "Full", AllowColorize: true,Priority: 50}
 	]//*/

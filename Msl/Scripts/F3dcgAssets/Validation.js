@@ -122,12 +122,12 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 				bondageToyUpdated = true;
 				
 				//A newly applied bondage toy item has to be in the default variant.
-				if(item && item.variant){
+				/*if(item && item.variant){
 					var prevItem = playerTarget.appearance[F3dcgAssets.BONDAGE_TOY][groupName];
 					if(item.variant != Object.values(AssetItem.Variant)[0].Name)
 						if(! prevItem ||  prevItem.name != item.name) 
 							throw "NonDefaultVariantOnNewItem " + groupName;
-				}
+				}*/
 				
 				if(previousItem && previousItem.lock && ! F3dcgAssets.CanUnlockItem(playerTarget, playerOrigin, previousItem)) throw "CanNotUnlock " + groupName + " " + previousItem.lock.name;
 				if(item && item.lock) F3dcgAssets.ValidateLockOrThrow(playerTarget, playerOrigin, item.lock);
@@ -144,6 +144,9 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 				if(AssetItem && AssetItem.Variant && ! AssetItem.Variant[item.variant]) throw "VariantNotFound " + item.variant;
 				
 				if(item){
+					if(item.name == "LoveChastityBelt" && ! (this.IsPlayerOwner(playerTarget, playerOrigin) || this.IsPlayerLover(playerTarget, playerOrigin))) throw "OwnerOrLoverOnly";
+					if(item.name == "SlaveCollar" && ! (this.IsPlayerOwner(playerTarget, playerOrigin))) throw "OwnerOnly";
+					
 					var Prerequisite = AssetGroup.Prerequisite;
 					Prerequisite = AssetItem.Prerequisite ? AssetItem.Prerequisite : Prerequisite;
 					Prerequisite = item.variant && AssetItem.Variant[item.variant].Prerequisite ?  AssetItem.Variant[item.variant].Prerequisite : Prerequisite;
@@ -154,7 +157,7 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 						}
 					}
 					
-					if(AssetItem.CommonVibe && previousItem.vibeLevel != item.vibeLevel)
+					if(previousItem && AssetItem.VibeCommon && previousItem.vibeLevel != item.vibeLevel)
 						if(! F3dcgAssets.CanChangeVibeLevel(playerTarget, playerOrigin))
 							throw "CanNotChangeVibeLevel";
 				}
@@ -177,8 +180,8 @@ F3dcgAssets.IsPlayerGhostListed = function(playerTarget, playerOrigin){return  p
 F3dcgAssets.IsPlayerBlackListed = function(playerTarget, playerOrigin){return playerTarget.permissions.players.black.includes(playerOrigin.id);}
 F3dcgAssets.IsPlayerWhiteListed = function(playerTarget, playerOrigin){return playerTarget.permissions.players.white.includes(playerOrigin.id);}
 F3dcgAssets.IsPlayerOwner = function(playerTarget, playerOrigin){return playerTarget.profile.owner && playerTarget.profile.owner.id == playerOrigin.id;}
+F3dcgAssets.IsPlayerLover = function(playerTarget, playerOrigin){return false;}//TODO when figure out lovership
 
-F3dcgAssets.IsPlayerLover = function(playerTarget, playerOrigin){return playerTarget.club.lover && playerTarget.club.lover.id == playerOrigin.id;}
 F3dcgAssets.IsPlayerDomEnough = function(playerTarget, playerOrigin){return playerOrigin.club.reputation.Dominant - playerTarget.club.reputation.Dominant >= -25;}
 F3dcgAssets.IsPlayerClubMistress = function(player){return player.club.jobs.mistress && player.club.jobs.mistress.active;}
 	
@@ -232,6 +235,7 @@ F3dcgAssets.CanLockItem = function(playerTarget, playerOrigin, lockName){
 	if(! locksKeys.includes(lockName)) return false;
 
 	if(lockName == "TimerPadlock") return true;
+	if(lockName == "ExclusivePadlock") return true;
 	if(lockName == "CombinationPadlock") return true;
 	if(lockName == "MetalPadlock") return true;
 	if(lockName == "IntricatePadlock") return true;
@@ -241,8 +245,8 @@ F3dcgAssets.CanLockItem = function(playerTarget, playerOrigin, lockName){
 	if(lockName == "OwnerPadlock" || lockName == "OwnerTimerPadlock")
 		return playerOrigin && this.IsPlayerOwner(playerTarget, playerOrigin)
 	
-	if(lockName == "ExclusivePadlock")
-		return playerOrigin && playerOrigin.id != playerTarget.id;
+	//if(lockName == "ExclusivePadlock")
+		//return playerOrigin && playerOrigin.id != playerTarget.id;
 	
 	if(lockName == "LoversPadlock" || lockName == "LoversTimerPadlock")
 		return playerOrigin && playerOrigin.id != playerTarget.id;

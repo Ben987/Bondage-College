@@ -161,7 +161,7 @@ var F3dcgAssetsRender = {
 			
 			if(appearanceItem.lock) renderItem.layers.push({colorize:false, priority:AssetItem.Priority, url:F3dcgAssets.F3DCG_ASSET_BASE + groupPart +  posePart + itemPart + "_Lock.png"});
 			//item.urlLock = groupPart + posePart + itemPart + "_Lock.png";
-		} else {
+		} else {		
 			if(AssetItem.Variant)
 				variantPart = variantPart == Object.keys(AssetItem.Variant)[0] ? "" : variantPart;
 			
@@ -294,7 +294,6 @@ var F3dcgAssetsRender = {
 				renderItemLayer.fullAlpha = renderItem.fullAlpha ;
 			});
 		});
-		
 		
 		renderItemLayerList.sort((item1, item2) => {return item1.priority - item2.priority;});
 		

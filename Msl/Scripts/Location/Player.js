@@ -147,14 +147,12 @@ var LocationPlayerUpdate = function(player){
 	
 	this.SetVariant = function(groupName, itemName, variantName){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
-		var currentItem = this.player.appearance[AssetGroup.type][groupName];
-		
-		console.log(currentItem, itemName, variantName);
+		var currentItem = this.appearance[AssetGroup.type][groupName];
 		
 		if(currentItem.name != itemName) return ["CanOnlySetVariantOnAppliedItem"];
 		if(currentItem.variant == variantName) return ["SameVariant"];
 		
-		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem?.color, variant:variantName, lock:currentItem.lock, vibeLevel:currentItem.vibeLevel});
+		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem?.color, variant:variantName, lock:currentItem?.lock, vibeLevel:currentItem?.vibeLevel});
 		
 		return [];
 	}
@@ -181,7 +179,7 @@ var LocationPlayerUpdate = function(player){
 		var currentItem = this.appearance[F3dcgAssets.BONDAGE_TOY][groupName];
 		var AssetItem = AssetGroup.Items[currentItem.name];
 		
-		if(! AssetItem.CommonVibe) return ["NotCommonVibe"];
+		if(! AssetItem.VibeCommon) return ["NotCommonVibe"];
 		if(currentItem.vibeLevel == level) return ["SameLevel"]
 		
 		this.Add({groupTypeName:AssetGroup.type, groupName:groupName, itemName:currentItem.name, color:currentItem.color, variant:currentItem.variant, lock:currentItem.lock, vibeLevel:level});
@@ -193,7 +191,12 @@ var LocationPlayerUpdate = function(player){
 	//Validation has been taken care of elsewhere
 	//this.Add = function(groupTypeName, groupName, itemName, colorHexString, variant){
 	this.Add = function(itemData){
+	console.log(itemData);
+		var AssetGroup = F3dcgAssets.AssetGroups[itemData.groupName];
+		var AssetItem = AssetGroup.Items[itemData.itemName];
+		
 		var newItem;
+		
 		
 		switch(itemData.groupTypeName){
 			case F3dcgAssets.CLOTH:
@@ -214,7 +217,7 @@ var LocationPlayerUpdate = function(player){
 		
 		if(itemData.lock) newItem.lock = itemData.lock;
 		if(itemData.variant) newItem.variant = itemData.variant;
-		if(itemData.vibeLevel) newItem.vibeLevel = itemData.vibeLevel;
+		if(AssetItem && AssetItem.VibeCommon) newItem.vibeLevel = itemData.vibeLevel ? itemData.vibeLevel : 0;
 		this.appearance[itemData.groupTypeName][itemData.groupName] = newItem;
 		this.updateStack.push({type:itemData.groupTypeName, groupName:itemData.groupName, item:newItem});
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);	

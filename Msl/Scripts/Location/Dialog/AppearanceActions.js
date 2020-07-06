@@ -15,6 +15,31 @@ var DialogAppearanceGroupActionView = function(container, callback){
 }
 
 
+var ActivityDialogAppearanceGroupActionView = function(container, callback) {
+	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
+	DialogAppearanceGroupActionView.call(this, container, callback);
+	
+	this.SetActivities = function(activities){
+		Util.ClearNodeContent(this.container);
+		
+		activities.forEach(activityData => {
+			var iconContainer = Util.CreateElement({parent:this.container});
+			var events = {};
+			
+			//if(! activityData.validation?.length)
+				events.click = function(event){this.callback(activityData.name)}.bind(this);
+			//else
+				//for(var i = 0; i < activityData.validation.length; i++)
+					//Util.CreateElement({parent:iconContainer,innerHTML:activityData.validation[i],cssStyles:{top:(i+1)+"em"},cssClass:"invalid"});
+			
+			Util.CreateElement({parent:iconContainer, tag:"img", events:events, attributes:{src:activityData.iconUrl, alt:activityData.name}});
+			Util.CreateElement({parent:iconContainer,innerHTML:activityData.name});
+		})
+	}
+	
+}
+
+
 var VibeDialogAppearanceGroupActionView = function(container, callback) {
 	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
 	DialogAppearanceGroupActionView.call(this, container, callback);
@@ -157,8 +182,6 @@ var LockDialogAppearanceGroupActionView = function(container, callback) {
 			}
 		}
 		
-		console.log(actions);
-		
 		if(actions.code){			
 			var currentCode =  Util.CreateElement({parent:this.container,tag:"input", attributes:{placeholder:actions.code}});
 			Util.CreateElement({parent:this.container,tag:"input", attributes:{type:"submit", value:"Unlock"}
@@ -253,8 +276,8 @@ var VariantsDialogAppearanceGroupActionView = function(container, callback) {
 				for(var i = 0; i < variantData.validation?.length; i++)
 					Util.CreateElement({parent:iconContainer,innerHTML:variantData.validation[i],cssStyles:{color:"#fcc",top:(i+1)+"em",fontSize:"1em"}});
 			
-			var iconContainer = Util.CreateElement({parent:this.container});
-			Util.CreateElement({parent:iconContainer, tag:"img",attributes:{src:appliedItem.variants[variantName].iconUrl, alt:variantName},events:events});		
+			var iconContainer = Util.CreateElement({parent:this.container,events:events});
+			Util.CreateElement({parent:iconContainer, tag:"img",attributes:{src:appliedItem.variants[variantName].iconUrl, alt:variantName}});		
 			Util.CreateElement({parent:iconContainer,innerHTML:variantName,cssStyles:{fontSize:".8em"}});
 		};
 	}
@@ -265,19 +288,6 @@ var VariantsDialogAppearanceGroupActionView = function(container, callback) {
 	this.Hide = function(){
 		this.container.style.display = "none";
 	}	
-};
-
-
-
-var DirectDialogAppearanceGroupActionView = function(container, callback) {
-	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
-	DialogAppearanceGroupActionView.call(this, container, callback);
-};
-
-
-var ArousalDialogAppearanceGroupActionView = function(container, callback) {
-	this.prototype = Object.create(DialogAppearanceGroupActionView.prototype);
-	DialogAppearanceGroupActionView.call(this, container, callback);
 };
 
 

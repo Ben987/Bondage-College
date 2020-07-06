@@ -8,14 +8,6 @@ F3dcgAssets.EXPRESSION = "expressions" 	//can be changed at any time
 F3dcgAssets.CLOTH = "clothes"			//few restrictions
 F3dcgAssets.ACCESSORY = "accessories" 	//do not block restraints and needed for the remove function
 F3dcgAssets.BONDAGE_TOY = "bondageToys" 	//have forced poses, effects, blocks
-
-F3dcgAssets.UNIMPLEMENTED_ITEMS = ["SpankingToys"
-		,"CollarShockUnit"//TODO -- implement instant (shock) actions
-		,"VibratingWand"//Used via hand held actions
-		,"VibratorRemote" //Handled separately
-		,"ClitAndDildoVibratorbelt"//Two vibrating actions is too small of a use case.
-		,"MetalCuffsKey", "MetalCuffs"//not worth the effort
-		]
 	
 F3dcgAssets.POSE_NONE = "None";
 F3dcgAssets.POSE_KNEEL = "Kneel";
@@ -25,11 +17,18 @@ F3dcgAssets.F3DCG_TYPE_ICON_BASE = "../BondageClub/Screens/Inventory/"//ItemArms
 	
 F3dcgAssets.Padlocks = {}
 F3dcgAssets.Poses = {}	
+F3dcgAssets.Activities = {}	
 F3dcgAssets.AssetGroups = {}
 F3dcgAssets.ItemNameToGroupNameMap = {}
 
-F3dcgAssets.IgnoreGroups = [/*"ItemNeckAccessories","ItemNeckRestraints", */"ItemMisc"]	
-F3dcgAssets.IgnoreItems = ["ClitAndDildoVibratorbelt"];//Two vibrating actions is too small of a use case.
+F3dcgAssets.IgnoreItems = [
+	"VibratorRemote" //Handled separately
+	,"VibratingWand","LeatherWhip", "LeatherCrop", "SpankingToys"//Used via hand held actions
+	,"CollarShockUnit"//TODO -- implement instant (shock) actions
+	,"ClitAndDildoVibratorbelt"//Two vibrating actions is too small of a use case.
+	,"MetalCuffsKey", "MetalCuffs"//not worth the effort
+];
+F3dcgAssets.IgnoreGroups = ["ItemMisc"]	
 F3dcgAssets.BodyItemsGroups = ["Eyes", "Mouth", "Nipples", "Pussy", "HairFront", "HairBack"]
 F3dcgAssets.ExpressionGroups = ["Eyebrows", "Blush", "Fluids", "Emoticon"]	
 F3dcgAssets.ClothesGroups = []//Asset group has a meaningful flag
@@ -62,6 +61,7 @@ F3dcgAssets.Init = function(){
 	this.InitFreeAndQuestClothes();
 	this.InitPrerequisites();
 	this.InitVibes();
+	this.InitActivities();
 	
 	this.FullCharacterTypeGroups[this.BODY] = this.BodyItemsGroups;
 	this.FullCharacterTypeGroups[this.EXPRESSION] = this.ExpressionGroups;

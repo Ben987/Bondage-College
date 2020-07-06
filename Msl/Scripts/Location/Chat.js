@@ -57,7 +57,7 @@ var LocationViewChat = {
 		var color = originPlayer.settings.chat.labelColor;
 		switch(action.type){
 			case "ChatMessage":
-				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", name:originPlayer.character.name, content:action.result.content});
+				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", name:originPlayer.profile.name, content:action.result.content});
 				LocationViewChat.AddChatMessageToFigureBox(action.originPlayerId, action.result.content);
 			break;
 			case "MoveToSpot":

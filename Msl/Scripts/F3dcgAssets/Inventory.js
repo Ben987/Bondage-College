@@ -18,22 +18,6 @@ var F3dcgAssetsInventory = {
 		
 		var ownableTypes = [F3dcgAssets.ACCESSORY, F3dcgAssets.BONDAGE_TOY, F3dcgAssets.CLOTHES];  //everything else is enabled by default
 		
-		/*
-		var locks = {};
-		Inventory.filter(InvItem => InvItem.Group == "ItemMisc" && InvItem.Name.endsWith("adlock")).forEach(InvItem => {
-			var AssetItem = F3dcgAssets.Padlocks[InvItem.Name];
-			locks[InvItem.Name] = {itemName : InvItem.Name, iconUrl: this.F3DCG_ASSET_BASE + AssetItem.iconUrl};
-		});
-		
-		var keys = {};
-		Inventory.filter(InvItem => InvItem.Group == "ItemMisc" && InvItem.Name.endsWith("adlockKey")).forEach(InvItem => {
-			var name = InvItem.Name.substring(0, InvItem.Name.length-3);
-			var AssetItem = F3dcgAssets.Padlocks[name];
-			keys[AssetItem.Name] = {name: AssetItem.Key.Name, iconUrl: this.F3DCG_ASSET_BASE + AssetItem.Key.iconUrl};
-			if(AssetItem.Name.includes("Mistress")) keys["MistressTimerPadlock"] = keys[AssetItem.Name];
-			if(AssetItem.Name.includes("Owner"))	keys["OwnerTimerPadlock"] = keys[AssetItem.Name];
-		});*/
-		
 		//Initializing top level arrays
 		var applicableItems = {[F3dcgAssets.CLOTH]:{}, [F3dcgAssets.ACCESSORY]:{}, [F3dcgAssets.BONDAGE_TOY]:{}, [F3dcgAssets.EXPRESSION]:{}};
 		
@@ -64,34 +48,19 @@ var F3dcgAssetsInventory = {
 			
 			F3dcgAssets.BondageToyGroups.forEach(groupName => {
 				for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
-					this.AddBondageToyItem(applicableItems, itemName, playerTarget.appearance, validationFlagsCache.posesEffectsBlocksTarget);
+					this.AddBondageToyItem(applicableItems, itemName, validationFlagsCache);
 			});
 		}else{
 			F3dcgAssets.ClothesFree.forEach(itemName => this.AddClothItem(applicableItems, itemName));
 			playerTarget.inventory[F3dcgAssets.CLOTH].forEach(itemName => {this.AddClothItem(applicableItems, itemName);});
 			playerTarget.inventory[F3dcgAssets.ACCESSORY].forEach(itemName => this.AddAccessoryItem(applicableItems, itemName));
-			playerTarget.inventory[F3dcgAssets.BONDAGE_TOY].forEach(itemName => this.AddBondageToyItem(applicableItems, itemName, playerTarget.appearance, validationFlagsCache.posesEffectsBlocksTarget));
+			playerTarget.inventory[F3dcgAssets.BONDAGE_TOY].forEach(itemName => this.AddBondageToyItem(applicableItems, itemName, validationFlagsCache));
 		}
 		//Done with items
 		
 		return applicableItems;
 	}
 	
-	//TODO:  move everything to group level for consistency?
-	//group
-		//validation (inaccessible, no permissions, no item access)
-		//clearable
-	
-		//item
-			//struggleable	
-			//color
-			//allowedLocks
-			//lock
-				//unlockable
-				//lock actions
-				//lock and management
-			
-			//color (body parts are not colorable, everything else is
 	
 	//Not items currently block the accessory groups
 	,InitApplicableAccessoryGroup(applicableItems, groupName, validationFlagsCache){
@@ -108,6 +77,8 @@ var F3dcgAssetsInventory = {
 			applicableGroup.validation.push("NoItemAccess");
 			applicableGroup.actions = {};
 		}
+		
+		applicableGroup.actions = {changeItem :true, removeItem :true}	
 	}
 	
 	
@@ -129,6 +100,8 @@ var F3dcgAssetsInventory = {
 			applicableGroup.validation.push("PermissionDenied");
 			applicableGroup.actions = {};
 		}
+		
+		applicableGroup.actions = {changeItem :true, removeItem :true}	
 	}
 	
 	
@@ -138,14 +111,18 @@ var F3dcgAssetsInventory = {
 		applicableGroup.actions = {changeItem:true,color:true,removeItem:true};
 		
 		if(validationFlagsCache.posesEffectsBlocksTarget.blocks.includes(groupName)){
-			applicableGroup.validation.push("BlockedByEffect"); 
+			applicableGroup.validation.push("Blocked"); 
 			applicableGroup.actions = {};
+			return;
 		}
 		
 		if(! validationFlagsCache.permissions[F3dcgAssets.BONDAGE_TOY]){
 			applicableGroup.validation.push("PermissionDenied");
 			applicableGroup.actions = {};
+			return;
 		}
+		
+		F3dcgAssetsInventory.InitDirectActions(applicableGroup, groupName, validationFlagsCache);
 		
 		//Current item is a copy of the original -- adding icon urls and other properties for front end.
 		if(applicableGroup.currentItem){
@@ -168,7 +145,7 @@ var F3dcgAssetsInventory = {
 				});
 			}
 			
-			if(AssetItem.Variant){
+			if(AssetItem.Variant && applicableGroup.actions.variants !== false){//locked item might have put the false
 				applicableGroup.currentItem.variants = {};
 				applicableGroup.actions.variants = true;
 				
@@ -181,18 +158,20 @@ var F3dcgAssetsInventory = {
 					variant.iconUrl = F3dcgAssets.F3DCG_TYPE_ICON_BASE + groupName + "/" + namePart + "/" + variantNamePart + ".png";
 					if(groupName == "ItemNeckAccessories") variant.iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + groupName + "/" + namePart + variantNamePart + ".png";
 					
-					if(AssetItem.Name == "BondageBench"){
+					if(AssetItem.Name == "LoveChastityBelt"){
+						variant.iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + "ItemPelvis/LoveChastityBelt_Small_"+variantNamePart+".png"
+					}else if(AssetItem.Name == "BondageBench"){
 						if(Variant.Name == "Base")
-							variant.iconUrl = applicableItem.iconUrl;
+							variant.iconUrl = applicableGroup.currentItem.iconUrl;
 						else
 							variant.iconUrl = F3dcgAssets.F3DCG_TYPE_ICON_BASE + "ItemAddon" + "/" + "BondageBenchStraps" + "/" + variantNamePart + ".png";
 					}else if(AssetItem.Name == "LeatherArmbinder" && Variant.Name == "Base"){
-						variant.iconUrl = applicableItem.iconUrl;
+						variant.iconUrl = applicableGroup.currentItem.iconUrl;
 					}
 					
 					if(Variant.Prerequisite){
 						for(var i = 0; i < Variant.Prerequisite.length; i++){
-							var errorReason = F3dcgAssets.ValidatePrerequisite(Variant.Prerequisite[i], appearance, posesEffectsBlocks);
+							var errorReason = F3dcgAssets.ValidatePrerequisite(Variant.Prerequisite[i], validationFlagsCache.playerTarget.appearance, validationFlagsCache.posesEffectsBlocksTarget);
 							if(errorReason.length > 0) variant.validation.push(errorReason);
 						}
 					}
@@ -201,9 +180,9 @@ var F3dcgAssetsInventory = {
 				}
 			}
 			
-			if(AssetItem.CommonVibe)
-				if(F3dcgAssets.CanChangeVibeLevel(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin))
-					applicableGroup.actions.commonVibe = true;
+			if(AssetItem.VibeCommon && applicableGroup.actions.vibe !== false)
+				if(F3dcgAssets.CanChangeVibeLevel(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin, applicableGroup.currentItem))
+					applicableGroup.actions.vibe = true;
 		}
 	}
 	
@@ -223,8 +202,14 @@ var F3dcgAssetsInventory = {
 	}
 	
 	
-	,AddBondageToyItem(applicableItems, itemName, appearance, posesEffectsBlocks){
-		if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(itemName)) return;
+	,AddBondageToyItem(applicableItems, itemName, validationFlagsCache){
+		if(F3dcgAssets.IgnoreItems.includes(itemName)) return;
+		
+		if(itemName == "LoveChastityBelt" 
+				&& ! (F3dcgAssets.IsPlayerOwner(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin) 
+						|| F3dcgAssets.IsPlayerLover(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin)))
+			return;
+		if(itemName == "SlaveCollar" && ! (F3dcgAssets.IsPlayerOwner(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin))) return;
 		
 		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
 		if(F3dcgAssets.IgnoreGroups.includes(groupName)) return;
@@ -236,7 +221,7 @@ var F3dcgAssetsInventory = {
 		
 		if(AssetItem.Prerequisite){
 			for(var i = 0; i < AssetItem.Prerequisite.length; i++){
-				var errorReason = F3dcgAssets.ValidatePrerequisite(AssetItem.Prerequisite[i], appearance, posesEffectsBlocks);
+				var errorReason = F3dcgAssets.ValidatePrerequisite(AssetItem.Prerequisite[i], validationFlagsCache.playerTarget.appearance, validationFlagsCache.posesEffectsBlocksTarget);
 				if(errorReason.length > 0) validation.push(errorReason);
 			}
 		}
@@ -263,23 +248,27 @@ var F3dcgAssetsInventory = {
 	}
 	
 	
-	,GetIconUrlForItem (itemName){
+	,GetIconUrlForItem(itemName){
 		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var AssetItem = AssetGroup.Items[itemName];
 		
-		var namePart = AssetItem.Name.includes("_") ?  AssetItem.Name.split("_")[0] :  AssetItem.Name;
-		var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + "/Preview/" + namePart + ".png";
-		
-		if(AssetGroup.type == F3dcgAssets.CLOTH){
-			if(F3dcgAssets.ClothesQuest.includes(itemName) || F3dcgAssets.ClothesFree.includes(itemName)){
-				var layerPart = AssetItem.Layer ? "_" + AssetItem.Layer[0].Name : "";
-				var parentPart = AssetGroup.ParentGroup && ! AssetItem.IgnoreParentGroup ? "_Normal" : "";
-				iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + "/" + AssetItem.Name + parentPart + layerPart + ".png";
-			}
+		if(AssetGroup.type == F3dcgAssets.CLOTH && (F3dcgAssets.ClothesQuest.includes(itemName) || F3dcgAssets.ClothesFree.includes(itemName))){
+			var layerPart = AssetItem.Layer ? "_" + AssetItem.Layer[0].Name : "";
+			var parentPart = AssetGroup.ParentGroup && ! AssetItem.IgnoreParentGroup ? "_Normal" : "";
+			return F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + "/" + AssetItem.Name + parentPart + layerPart + ".png";
+			
+		}else{
+			var namePart = AssetItem.Name.includes("_") ?  AssetItem.Name.split("_")[0] : AssetItem.Name;
+			var previewPart = "/Preview/";
+			["Ears1", "Ears2", "PonyEars1", "Ribbons1", "Ribbons2", "Ribbons3", "Ribbons4", "GiantBow1"].forEach(diplicateEarItemName => {
+				if(itemName.includes(diplicateEarItemName))
+					previewPart = "/";
+			})
+			
+			var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + previewPart + namePart + ".png";
+			return iconUrl;
 		}
-		
-		return iconUrl;
 	}
 	
 	
@@ -300,6 +289,12 @@ var F3dcgAssetsInventory = {
 			applicableGroup.actions.lock = {unlock:true, key:key};
 		}else{
 			applicableGroup.validation.push("Locked");
+			applicableGroup.actions.struggle = true;
+			applicableGroup.actions.color = false;
+			applicableGroup.actions.variants = false;
+			applicableGroup.actions.changeItem = false;
+			applicableGroup.actions.removeItem = false;	
+			//no return here, because combination lock 
 		}
 		
 		var lockOwner = lock.originPlayerId == MainController.playerAccount.id;
@@ -311,7 +306,7 @@ var F3dcgAssetsInventory = {
 					applicableGroup.actions.lock = {code:"0000"};//remove the unlocking key
 			break;
 			case "TimerPadlock":
-				applicableGroup.actions.lock.setTime = 5;
+				applicableGroup.actions.lock = {setTime:5};
 			break;
 			case "LoverTimerPadlock"://time is in minutes
 				if(lockOwner){
@@ -349,6 +344,32 @@ var F3dcgAssetsInventory = {
 			case "MistressPadlock":  break;
 			default: console.error("Unimplemented lock type " + lock.name);	break;
 		}
+	}
+	
+	,InitDirectActions(applicableGroup, groupName, validationFlagsCache){
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		
+		var activities = AssetGroup.Activity;
+		if(validationFlagsCache.playerOrigin && validationFlagsCache.playerOrigin.id == validationFlagsCache.playerTarget.id)
+			activities = AssetGroup.ActivitySelf;
+		
+		if(! activities || ! activities.length) return;
+		
+		applicableGroup.actions.activity = [];
+		
+		activities.forEach(activityName => {
+			applicableGroup.actions.activity.push({name:activityName, iconUrl:F3dcgAssets.F3DCG_ASSET_BASE + "Activity/" + activityName + ".png"})
+		});
+		
+		var currentEquippedItem = validationFlagsCache.playerOrigin.appearance[F3dcgAssets.BONDAGE_TOY].ItemHands;
+		if(currentEquippedItem){
+			var AssetItem = F3dcgAssets.AssetGroups.ItemHands.Items[currentEquippedItem.name];
+			if(AssetItem.Activity){
+				applicableGroup.actions.activity.push({name:AssetItem.Activity, itemName:currentEquippedItem.name, iconUrl:F3dcgAssets.F3DCG_ASSET_BASE + "ItemHands/Preview/" + currentEquippedItem.name + ".png"})
+			}
+		}
+		
+		
 	}
 }
 

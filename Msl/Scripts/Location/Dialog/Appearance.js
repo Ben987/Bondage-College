@@ -45,11 +45,10 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	Util.GetFirstChildNodeByName(this.containerElements.updateStackButtons, "cancel").addEventListener("click", function(event){this.Cancel();}.bind(this));
 	Util.GetFirstChildNodeByName(this.containerElements.updateStackButtons, "undo").addEventListener("click", function(event){this.Undo();}.bind(this));
 	
-	
 	//Right pane group and current item management and actions -- display refactored into separate classses
 	this.groupItemActions = {};
 	this.selectedGroupItemAction = "items";
-	["items", "color", "lock", "variants", "struggle", "vibe"].forEach(groupItemAction =>{
+	["items", "color", "lock", "variants", "struggle", "vibe", "activity"].forEach(groupItemAction =>{
 		var button = Util.GetFirstChildNodeByName(this.containerElements.groupDetailsButtons, groupItemAction);
 		var containerElement = Util.GetFirstChildNodeByName(this.containerElements.itemsAndCurrentActions, groupItemAction);
 		var constructorFunctionName = Util.Capitalize(groupItemAction) + "DialogAppearanceGroupActionView"; 
@@ -247,7 +246,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		this.selectedItemGroupName = itemGroupName;
 		
 		var applicableGroup = this.mainDialog.updateDelegate.GetApplicableItems()[this.selectedItemGroupTypeName][itemGroupName];
-
+		
 		//Item icon is always shown
 		var buttonsToShow = ["items"];
 		if(! applicableGroup.currentItem){
@@ -267,9 +266,12 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 			this.groupItemActions.items.controller.SetItems([]);//clear the icons for prev list
 		
 		if(applicableGroup.currentItem){
+			if(applicableGroup.actions.struggle)
+				buttonsToShow.push("struggle");
+			
 			if(applicableGroup.actions.color) 
 				buttonsToShow.push("color");
-				
+			
 			if(applicableGroup.actions.variants){
 				buttonsToShow.push("variants");				
 				var variantData = applicableGroup.currentItem.variants[applicableGroup.currentItem.variant];
@@ -280,7 +282,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 			if(applicableGroup.currentItem.lock){
 				buttonsToShow.push("lock");
 				this.groupItemActions.lock.button.childNodes[0].src = applicableGroup.currentItem.lock.iconUrl
-				this.groupItemActions.lock.controller.SetItemLocked(applicableGroup.currentItem.lock, applicableGroup.actions.lock);
+				this.groupItemActions.lock.controller.SetItemLocked(applicableGroup.currentItem.lock, applicableGroup.actions);
 			}else if(applicableGroup.actions.lock?.locks?.length){
 				buttonsToShow.push("lock");
 				this.groupItemActions.lock.button.childNodes[0].src = "../BondageClub/Icons/Lock.png"
@@ -288,12 +290,17 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 			}
 			
 			this.groupItemActions.items.button.childNodes[0].className = "";
-			if(applicableGroup.actions.commonVibe){
+			if(applicableGroup.actions.vibe){
 				buttonsToShow.push("vibe");
 				this.groupItemActions.vibe.controller.SetItem(applicableGroup.currentItem);
 				this.groupItemActions.items.button.childNodes[0].classList.add("shaking");
 				this.groupItemActions.items.button.childNodes[0].classList.add("speed" + applicableGroup.currentItem.vibeLevel);
 			}
+		}
+		
+		if(applicableGroup.actions.activity){
+			buttonsToShow.push("activity");
+			this.groupItemActions.activity.controller.SetActivities(applicableGroup.actions.activity);			
 		}
 		
 		//Show the actions for the group and current item
@@ -373,6 +380,11 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		this.itemActionViews[action].Show();
 	}*/
 	
+	
+	this.GroupItemActionCallback_activity = function(activityName){
+		console.log(activityName);
+	}
+	
 	this.GroupItemActionCallback_vibe = function(level){
 		if(! this.selectedItemGroupName) return;
 		
@@ -446,10 +458,4 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		else 
 			this.DisplayErrors(validationErrors);
 	}
-	
-	
-	
-	this.GroupItemActionCallback_Remote = function(){}
-	this.GroupItemActionCallback_Direct = function(){}
-	this.GroupItemActionCallback_Arousal = function(){}
 }
