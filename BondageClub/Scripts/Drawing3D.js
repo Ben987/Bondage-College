@@ -6,6 +6,11 @@ let model;
 var Draw3DEnabled = false;
 
 function Draw3DLoad() {
+	// const path3d =  "/Assets/3D/fbx/items/";
+	// //list all item folders
+  // const pathitem = ["arms", "back hair", "bra", "eyes", "front hair", "head"
+	// 									,"neck", "pantie", "shoes", "skin", "skirt", "socks", "Tail"
+	// 									, "top"	];
 	init();
 	renderer.domElement.addEventListener("click", Click);
 	renderer.domElement.addEventListener("touchstart", Touch);
@@ -33,7 +38,7 @@ function init(){
 
 	let light = new THREE.DirectionalLight( 0xffffff );
 	light.position.set( 0, 2000, 100 );
-	light.castShadow = true;
+	// light.castShadow = true;
 	scene.add( light );
 
 	renderer = new THREE.WebGLRenderer({  alpha : true });
@@ -45,10 +50,23 @@ function init(){
 	// renderer.shadowMapDebug = true;
 
 	let ambientLight = new THREE.AmbientLight(0xffffff);
-	ambientLight.castShadow = true;
+	// ambientLight.castShadow = true;
 	ambientLight.position.set(200,2000,200);
 	scene.add(ambientLight);
+// TODO: loop loader.load path/+allfolders +- assets || strike
+// TODO: merge || deselect
+// TODO: load animation
+// TODO: use tensorspace.js to create an story teller
 
+
+	  // pathitem.forEach(function(pathitems){} //for env.
+		// TODO: loop through all items when item = 2d asset
+	// 	for (let j = 0; j < pathitem.length; j++){
+	// 	if (CurrentCharacter.asset.group == pathitems ){
+	// 		let item = CurrentCharacter.asset.name
+	//     loader.load(`${path3d}${pathitems}${item}.fbx`, // TODO: assign 3d to png
+	// 				function( object ) {
+	// 					model = object;
     let loader = new THREE.FBXLoader();
     loader.load('Assets/3D/fbx/maid.fbx',
 				function( object ) {
@@ -58,15 +76,7 @@ function init(){
 					// model.mixer = object.mixer;
 					// model.root = object.mixer.getRoot();
 
-					model.castShadow = true;
-					model.reciveShadow = true;
 
-					model.traverse( function (child){
-						if (child.isMesh){
-							child.castShadow = true;
-							child.reciveShadow = true;
-						}
-					});
 					//object.scale.set(0.01, 0.01, 0.01);
 					scene.add(model);
     			},
