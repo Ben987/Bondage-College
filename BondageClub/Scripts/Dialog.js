@@ -332,7 +332,11 @@ function DialogCanUnlock(C, Item) {
 	return false;
 }
 
-// Returns the current character dialog intro
+/**
+ * @description Returns the current character dialog intro
+ * 
+ * @returns {string} - The name of the current dialog, if such a dialog exists, any empty string otherwise
+ */
 function DialogIntro() {
 	for (var D = 0; D < CurrentCharacter.Dialog.length; D++)
 		if ((CurrentCharacter.Dialog[D].Stage == CurrentCharacter.Stage) && (CurrentCharacter.Dialog[D].Option == null) && (CurrentCharacter.Dialog[D].Result != null) && DialogPrerequisite(D))
@@ -340,7 +344,12 @@ function DialogIntro() {
 	return "";
 }
 
-// Generic dialog function to leave conversation
+/**
+ * @description Generic dialog function to leave conversation. De-inititalizes global variables and reverts the
+ * FocusGroup of the player and the current character to null
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogLeave() {
 	DialogItemPermissionMode = false;
 	DialogActivityMode = false;
@@ -351,7 +360,11 @@ function DialogLeave() {
 	CurrentCharacter = null;
 }
 
-// Generic dialog function to remove a piece of the conversation that's already done
+/**
+ * @description Generic dialog function to remove a piece of the conversation that's already done
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogRemove() {
 	var pos = 0;
 	for (var D = 0; D < CurrentCharacter.Dialog.length; D++)
@@ -364,7 +377,13 @@ function DialogRemove() {
 		}
 }
 
-// Generic dialog function to remove any dialog from a specific group
+/**
+ * @description Generic dialog function to remove any dialog from a specific group
+ * 
+ * @param {string} GroupName - All dialog options are removed from this group
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogRemoveGroup(GroupName) {
 	GroupName = GroupName.trim().toUpperCase();
 	for (var D = 0; D < CurrentCharacter.Dialog.length; D++)
@@ -374,7 +393,11 @@ function DialogRemoveGroup(GroupName) {
 		}
 }
 
-// Ends any expression with a timer
+/**
+ * @description Generic function that sets timers for expression changes, if the player'S expressions have been altered by the dialog
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogEndExpression() {
 	if (DialogAllowBlush) {
 		TimerInventoryRemoveSet(Player, "Blush", 15);
@@ -390,7 +413,12 @@ function DialogEndExpression() {
 	}
 }
 
-// Leaves the item menu for both characters
+/**
+ * @description Leaves the item menu for both characters. De-initializes global variables, sets the FocusGroup of
+ * player andd current character to null and calls various cleanup functions
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogLeaveItemMenu() {
 	DialogEndExpression();
 	DialogItemToLock = null;
@@ -411,7 +439,12 @@ function DialogLeaveItemMenu() {
 	ColorPickerRemoveEventListener();
 }
 
-// Leaves the item menu of the focused item
+/**
+ * @description Leaves the item menu of the focused item. Constructs a function name from the 
+ * item's asset group name and the item's name and tries to call that.
+ * 
+ * @returns {boolean} - Returns true, if an item specific exit function was called, false otherwise
+ */
 function DialogLeaveFocusItem() {
 	if (DialogFocusItem != null) {
 		var funcName = "Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Exit()";
@@ -423,7 +456,16 @@ function DialogLeaveFocusItem() {
 	return false;
 }
 
-// Adds the item in the dialog list
+/**
+ * @description Adds the item in the dialog list
+ * 
+ * @param {Character} C - The character, whose inventory should be manipulated
+ * @param {Item} NewInv - The item that should be added to the player's inventory
+ * @param {boolean} NewInvWorn - Should be true, if the item is worn, false otherwise
+ * @param {number} SortOrder - Defines the group the item is added to. 
+ * 
+ * @returns {boolean} - Returns true, if the item could be added to the player's inventory, false otherwise
+ */
 function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 
 	// Make sure we do not add owner/lover only items for invalid characters, owner/lover locks can be applied on the player by the player for self-bondage
@@ -460,12 +502,22 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 
 }
 
-// Some special screens can always allow you to put on new restraints
+/**
+ * @description Some special screens can always allow you to put on new restraints. This function determines, if this is possible
+ * 
+ * @returns {boolean} - Returns trues, if it is possible to put on new restraints.
+ */
 function DialogAlwaysAllowRestraint() {
 	return (CurrentScreen == "Photographic");
 }
 
-// Build the buttons in the top menu
+/**
+ * @description Build the buttons in the top menu
+ * 
+ * @param {Character} C - The character for whom the dialog is prepared
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogMenuButtonBuild(C) {
 
 	// The "Exit" button is always available
@@ -515,12 +567,25 @@ function DialogMenuButtonBuild(C) {
 
 }
 
-// Sort the inventory list by SortOrder (a fixed number & current language description)
+
+/**
+ * @description Sort the inventory list by the global variable SortOrder (a fixed number & current language description)
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogInventorySort() {
 	DialogInventory.sort((a, b) => (a.SortOrder > b.SortOrder) ? 1 : ((b.SortOrder > a.SortOrder) ? -1 : 0));
 }
 
-// Build the inventory listing for the dialog which is what's equipped, the player inventory and the character inventory for that group
+// 
+/**
+ * @description Build the inventory listing for the dialog which is what's equipped, 
+ * the player's inventory and the character's inventory for that group
+ * 
+ * @param {Character} C - The character whose inventory must be built
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogInventoryBuild(C) {
 
 	// Make sure there's a focused group
@@ -565,7 +630,11 @@ function DialogInventoryBuild(C) {
 	}
 }
 
-// Build the initial state of the selection available in the facial expressions menu
+/**
+ * @description Build the initial state of the selection available in the facial expressions menu
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogFacialExpressionsBuild() {
 	DialogFacialExpressions = [];
 	for (var I = 0; I < Player.Appearance.length; I++) {
@@ -588,7 +657,15 @@ function DialogFacialExpressionsBuild() {
 	});
 }
 
-// Gets the correct label for the current operation (struggling, removing, swaping, adding, etc.)
+/**
+ * @description Gets the correct label for the current operation (struggling, removing, swaping, adding, etc.)
+ * 
+ * @param {Character} C - The character who acts
+ * @param {Item} PrevItem - The first item that's part of the action
+ * @param {Item} NextItem - The second item that's part of the action
+ * 
+ * @returns {string} - The appropriate dialog option
+ */
 function DialogProgressGetOperation(C, PrevItem, NextItem) {
 	if ((PrevItem != null) && (NextItem != null)) return DialogFind(Player, "Swapping");
 	if ((C.ID == 0) && (PrevItem != null) && (SkillGetRatio("Evasion") != 1)) return DialogFind(Player, "Using" + (SkillGetRatio("Evasion") * 100).toString());
@@ -604,7 +681,13 @@ function DialogProgressGetOperation(C, PrevItem, NextItem) {
 	return "...";
 }
 
-// Starts the dialog progress bar and keeps the items that needs to be added / swaped / removed
+/**
+ * @description Starts the dialog progress bar and keeps the items that needs to be added / swaped / removed. 
+ * The change of facial expressions during struggling is done here
+ * 
+ * @param {boolean} Reverse - If set to true, the progress is decreased
+ * @returns {void} - Nothing
+ */
 function DialogStruggle(Reverse) {
 
 	// Progress calculation
@@ -637,7 +720,18 @@ function DialogStruggle(Reverse) {
 
 }
 
-// Starts the dialog progress bar and keeps the items that needs to be added / swapped / removed
+// 
+/**
+ * @description Starts the dialog progress bar for struggling out of bondage and keeps the items that needs to be added / swapped / removed.
+ * First the challenge level is calculated based on the base item difficulty, the skill of the rigger and the escapee and modified, if
+ * the escapee is bound in a way. Also blushing and drooling, as well as playing a sound is handled in this function.
+ * 
+ * @param {Character} C
+ * @param {Item} PrevItem
+ * @param {Item} NextItem
+ * 
+ * @returns {void} - Nothing
+ */
 function DialogProgressStart(C, PrevItem, NextItem) {
 
 	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
