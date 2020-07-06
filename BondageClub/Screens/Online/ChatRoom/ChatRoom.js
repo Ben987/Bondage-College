@@ -805,6 +805,7 @@ function ChatRoomSync(data) {
 						var BanList = ChatRoomConcatenateBanList(Player.ChatSettings.AutoBanBlackList, Player.ChatSettings.AutoBanGhostList);
 						if (BanList.length > 0) { 
 							data.Ban = BanList;
+							data.Limit = data.Limit.toString();
 							ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: data, Action: "Update" });
 						}
 					}

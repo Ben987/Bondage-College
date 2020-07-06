@@ -63,6 +63,20 @@ var InventoryItemArmsWebOptions = [
 		},
 	},
 	{
+		Name: "KneelingSuspended",
+		BondageLevel: 5,
+		SelfBondageLevel: 8,
+		Prerequisite: ["NoFeetSpreader", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Property: {
+			Type: "KneelingSuspended",
+			Difficulty: 8,
+			SetPose: ["LegsClosed", "BackElbowTouch", "Suspension"],
+			Effect: ["Block", "Freeze", "Prone"],
+			Hide: ["BodyLower", "Cloth", "ClothLower", "Shoes", "SuitLower", "Panties", "Socks", "Pussy", "ItemFeet", "ItemLegs", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis"],
+			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],
+		},
+	},
+	{
 		Name: "SuspensionHogtied",
 		BondageLevel: 5,
 		SelfBondageLevel: 9,
