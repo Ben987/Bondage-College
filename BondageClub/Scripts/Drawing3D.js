@@ -6,6 +6,11 @@ let model;
 var Draw3DEnabled = false;
 
 function Draw3DLoad() {
+	// const path3d =  "/Assets/3D/fbx/items/";
+	// //list all item folders
+  // const pathitem = ["arms", "back hair", "bra", "eyes", "front hair", "head"
+	// 									,"neck", "pantie", "shoes", "skin", "skirt", "socks", "Tail"
+	// 									, "top"	];
 	init();
 	renderer.domElement.addEventListener("click", Click);
 	renderer.domElement.addEventListener("touchstart", Touch);
@@ -49,25 +54,54 @@ function init(){
 	ambientLight.position.set(200,2000,200);
 	scene.add(ambientLight);
 
-    let loader = new THREE.FBXLoader();
-    loader.load('Assets/3D/fbx/maid.fbx',
+// TODO: loop loader.load path/+allfolders +- assets || strike
+// TODO: merge || deselect
+// TODO: !multi ? game: env
+// TODO: load animation
+// TODO: write 3d world use tensorspace.js to create an story teller
+// TODO: load env.
+	  // pathitem.forEach(function(pathitems){} //for env.
+
+		let loader = new THREE.FBXLoader();
+	// TODO: loop through all items when item = 2d asset
+	// 	for (let j = 0; j < pathitem.length; j++){
+	// 	if (CurrentCharacter.asset.group == pathitems ){
+	// 		let item = CurrentCharacter.asset.name
+	//     loader.load(`${path3d}${pathitems}${item}.fbx`, // TODO: assign 3d to png
+	// 				function( object ) {
+	// 					model = object;
+	// 					// animation
+	// 					// model.mixer = new THREE.AnimationMixer(object);
+	// 					// model.mixer = object.mixer;
+	// 					// model.root = object.mixer.getRoot();
+	//
+	// 					model.castShadow = true;
+	// 					model.reciveShadow = true;
+	//
+	// 					model.traverse( function (child){
+	// 						if (child.isMesh){
+	// 							child.castShadow = true;
+	// 							child.reciveShadow = true;
+	// 						}
+	// 					});
+	// 					//object.scale.set(0.01, 0.01, 0.01);
+	// 					scene.add(model);
+	//     			},
+	// 				}else{
+	// 				undefined,
+	// 				function( error ) {
+	// 					console.log(error);
+	// 				}
+	//     );
+	// 	}
+	// }
+		loader.load('Assets/3D/fbx/intro1.fbx',
 				function( object ) {
 					model = object;
 					// animation
 					// model.mixer = new THREE.AnimationMixer(object);
 					// model.mixer = object.mixer;
 					// model.root = object.mixer.getRoot();
-
-					model.castShadow = true;
-					model.reciveShadow = true;
-
-					model.traverse( function (child){
-						if (child.isMesh){
-							child.castShadow = true;
-							child.reciveShadow = true;
-						}
-					});
-					//object.scale.set(0.01, 0.01, 0.01);
 					scene.add(model);
     			},
 				undefined,
