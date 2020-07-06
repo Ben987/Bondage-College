@@ -1335,6 +1335,8 @@ function DialogSetText(NewText) {
  * 
  * @param {Item} Item
  * @param {Item} SourceItem
+ * 
+ * @returns {void} - Nothing
  */
 function DialogExtendItem(Item, SourceItem) {
 	DialogProgress = -1;
@@ -1696,6 +1698,8 @@ function DialogDrawExpressionMenu() {
  * 
  * @param {string} SkillType - The name of the skill to influence
  * @param {strign} NewRatio - The ration of this skill that should be used
+ * 
+ * @returns {void} - Nothing
  */
 function DialogSetSkillRatio(SkillType, NewRatio) {
 	SkillSetRatio(SkillType, parseInt(NewRatio) / 100);
