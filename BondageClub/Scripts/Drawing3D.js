@@ -38,7 +38,7 @@ function init(){
 
 	let light = new THREE.DirectionalLight( 0xffffff );
 	light.position.set( 0, 2000, 100 );
-	light.castShadow = true;
+	// light.castShadow = true;
 	scene.add( light );
 
 	renderer = new THREE.WebGLRenderer({  alpha : true });
