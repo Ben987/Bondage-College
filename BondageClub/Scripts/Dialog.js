@@ -1588,7 +1588,9 @@ function DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious) {
  * keyword was not found.
  * @param {boolean} [ReturnPrevious] - If specified, returns the previous dialog, if neither of the the two key words were found
  *
- * @returns 
+ * @returns {string} - The name of a dialog. That can either be the one with the keyword or the previous dialog.
+ * An empty string is returned, if neither keyword was found and no previous dialog was given. 'SourceCharacter' 
+ * is replaced with the player's name and 'DestinationCharacter' with the current character's name.
  */
 function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
 	return DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious)
