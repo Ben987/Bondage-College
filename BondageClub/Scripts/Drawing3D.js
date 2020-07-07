@@ -33,6 +33,23 @@ function Draw3DKeyDown(event) {
 function init(){
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,1, 1000);
+// 	Google Chrome newest version.
+// Version 83.0.4103.116 Offical Build) (64-Bit)
+//
+// my fbx model is now inside the pmd folder.(maybe it was a problem, i'm not sure)
+//
+// picture 1:
+// i've deleted all light section execpt the ambientLight.
+// please, change the model from Assets/3D/fbx/pmd/0intro/intro1.fbx to Assets/3D/Rin/Rin1.fbx, to see if one of them works.
+// both model work ?
+// when both models are working just fine. we know that's the second light and probably third light section is the problem.
+// when only your model works.(mmm, my model sucks ... <.<)
+//
+// picture 2 :
+// i've added a second and a third light section.
+// please, change the model from Assets/3D/fbx/pmd/0intro/intro1.fbx to Assets/3D/Rin/Rin1.fbx, to see if one of them works.
+// i bet my model isn't working but i'm curious if your model works.
+// when your model works( something must be with my model.)
 
 	renderer = new THREE.WebGLRenderer({  alpha : true });
 	renderer.setPixelRatio(window.devicePixelRatio); //add
@@ -53,7 +70,7 @@ function init(){
   scene.add(ambientLight);
 
     let loader = new THREE.FBXLoader();
-    loader.load('Assets/3D/fbx/intro1.fbx',
+    loader.load('Assets/3D/fbx/pmd/0intro/intro1.fbx',
 				function( object ) {
 					model = object;
 
