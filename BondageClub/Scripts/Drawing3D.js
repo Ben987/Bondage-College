@@ -38,14 +38,14 @@ function init(){
 //
 // my fbx model is now inside the pmd folder.(maybe it was a problem, i'm not sure)
 //
-// picture 1:
+// test 1:
 // i've deleted all light section execpt the ambientLight.
 // please, change the model from Assets/3D/fbx/pmd/0intro/intro1.fbx to Assets/3D/Rin/Rin1.fbx, to see if one of them works.
 // both model work ?
 // when both models are working just fine. we know that's the second light and probably third light section is the problem.
 // when only your model works.(mmm, my model sucks ... <.<)
 //
-// picture 2 :
+// test 2 :
 // i've added a second and a third light section.
 // please, change the model from Assets/3D/fbx/pmd/0intro/intro1.fbx to Assets/3D/Rin/Rin1.fbx, to see if one of them works.
 // i bet my model isn't working but i'm curious if your model works.
