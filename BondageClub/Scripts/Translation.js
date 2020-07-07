@@ -335,7 +335,7 @@ function TranslationDialogArray(C, T) {
 function TranslationTextArray(S, T) {
 	for (var P = 0; P < S.length; P++)
 		S[P].Value = TranslationString(S[P].Value, T, "");
-	if (CurrentScreen == "Login") LoginMessage = "";
+	if (CurrentScreen == "Login") LoginUpdateMessage();
 }
 
 // Translate a character dialog if the file is in the dictionary

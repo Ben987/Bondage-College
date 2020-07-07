@@ -27,6 +27,9 @@ function init(){
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,1, 1000);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 189103e45d702fbdcdb5126d3d237ff2dc9c9644
 // 	Google Chrome newest version.
 // Version 83.0.4103.116 Offical Build) (64-Bit)
 //
@@ -44,6 +47,7 @@ function init(){
 // please, change the model from Assets/3D/fbx/pmd/0intro/intro1.fbx to Assets/3D/Rin/Rin1.fbx, to see if one of them works.
 // i bet my model isn't working but i'm curious if your model works.
 // when your model works( something must be with my model.)
+<<<<<<< HEAD
 =======
 
 
@@ -53,6 +57,8 @@ function init(){
 	// // light.castShadow = true;
 	// scene.add( light );
 >>>>>>> upstream/master
+=======
+>>>>>>> 189103e45d702fbdcdb5126d3d237ff2dc9c9644
 
 	renderer = new THREE.WebGLRenderer({  alpha : true });
 	renderer.setPixelRatio(window.devicePixelRatio); //add
@@ -63,6 +69,7 @@ function init(){
 	light.castShadow = true;//add
 	scene.add( light );//add
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	let light1 = new THREE.PointLight(0xffffff);
 	light1.castShadow = true;
@@ -77,6 +84,11 @@ function init(){
 // TODO: load animation
 // TODO: use tensorspace.js to create an story teller
 >>>>>>> upstream/master
+=======
+	let light1 = new THREE.PointLight(0xffffff);
+	light1.castShadow = true;
+	scene.add(light1);
+>>>>>>> 189103e45d702fbdcdb5126d3d237ff2dc9c9644
 
 	let ambientLight = new THREE.AmbientLight(0xffffff,1);
   ambientLight.castShadow = true;
