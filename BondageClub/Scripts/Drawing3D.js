@@ -12,27 +12,21 @@ function Draw3DLoad() {
 	// 									,"neck", "pantie", "shoes", "skin", "skirt", "socks", "Tail"
 	// 									, "top"	];
 	init();
-	renderer.domElement.addEventListener("click", Click);
-	renderer.domElement.addEventListener("touchstart", Touch);
-	renderer.domElement.addEventListener("mousemove", MouseMove);
-	renderer.domElement.addEventListener("mouseleave", LoseFocus);
-	renderer.domElement.addEventListener("keydown", Draw3DKeyDown);
-	document.body.addEventListener("keydown", Draw3DKeyDown);
-	document.body.appendChild(renderer.domElement);
+	MainCanvas.canvas.appendChild(renderer.domElement);
 }
 
 function Draw3DKeyDown(event) {
-	var KeyCode = event.keyCode || event.which;
-	if ((KeyCode == 51) && (CurrentScreen == "MainHall") && (CurrentCharacter == null)) Draw3DEnable(!Draw3DEnabled);
-	if ((KeyCode == 37) && Draw3DEnabled) model.rotation.y -= 0.1;
-	if ((KeyCode == 39) && Draw3DEnabled) model.rotation.y += 0.1;
-	if ((KeyCode == 38) && Draw3DEnabled) model.rotation.x -= 0.1;
-	if ((KeyCode == 40) && Draw3DEnabled) model.rotation.x += 0.1;
+	if ((KeyPress == 51) && (CurrentScreen == "MainHall") && (CurrentCharacter == null)) Draw3DEnable(!Draw3DEnabled);
+	if ((KeyPress == 37) && Draw3DEnabled) model.rotation.y -= 0.1;
+	if ((KeyPress == 39) && Draw3DEnabled) model.rotation.y += 0.1;
+	if ((KeyPress == 38) && Draw3DEnabled) model.rotation.x -= 0.1;
+	if ((KeyPress == 40) && Draw3DEnabled) model.rotation.x += 0.1;
 }
 
 function init(){
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,1, 1000);
+<<<<<<< HEAD
 // 	Google Chrome newest version.
 // Version 83.0.4103.116 Offical Build) (64-Bit)
 //
@@ -50,6 +44,15 @@ function init(){
 // please, change the model from Assets/3D/fbx/pmd/0intro/intro1.fbx to Assets/3D/Rin/Rin1.fbx, to see if one of them works.
 // i bet my model isn't working but i'm curious if your model works.
 // when your model works( something must be with my model.)
+=======
+
+
+
+	// let light = new THREE.DirectionalLight( 0xffffff );
+	// light.position.set( 0, 2000, 100 );
+	// // light.castShadow = true;
+	// scene.add( light );
+>>>>>>> upstream/master
 
 	renderer = new THREE.WebGLRenderer({  alpha : true });
 	renderer.setPixelRatio(window.devicePixelRatio); //add
@@ -60,9 +63,20 @@ function init(){
 	light.castShadow = true;//add
 	scene.add( light );//add
 
+<<<<<<< HEAD
 	let light1 = new THREE.PointLight(0xffffff);
 	light1.castShadow = true;
 	scene.add(light1);
+=======
+	let ambientLight = new THREE.AmbientLight(0xffffff);
+	// ambientLight.castShadow = true;
+	// ambientLight.position.set(200,2000,200);
+	scene.add(ambientLight);
+// TODO: loop loader.load path/+allfolders +- assets || strike
+// TODO: merge || deselect
+// TODO: load animation
+// TODO: use tensorspace.js to create an story teller
+>>>>>>> upstream/master
 
 	let ambientLight = new THREE.AmbientLight(0xffffff,1);
   ambientLight.castShadow = true;

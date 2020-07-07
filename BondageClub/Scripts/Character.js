@@ -634,8 +634,9 @@ function CharacterCompressWardrobe(Wardrobe) {
 		var CompressedWardrobe = [];
 		for (var W = 0; W < Wardrobe.length; W++) {
 			var Arr = [];
-			for (var A = 0; A < Wardrobe[W].length; A++)			
-				Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color]);
+			if (Wardrobe[W] != null)
+				for (var A = 0; A < Wardrobe[W].length; A++)
+					Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color]);
 			CompressedWardrobe.push(Arr);
 		}
 		return LZString.compressToUTF16(JSON.stringify(CompressedWardrobe));

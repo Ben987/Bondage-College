@@ -15,6 +15,8 @@ var ChatRoomSpace = "";
 var ChatRoomSwapTarget = null;
 var ChatRoomHelpSeen = false;
 var ChatRoomAllowCharacterUpdate = true;
+var ChatRoomStruggleAssistBonus = 0;
+var ChatRoomStruggleAssistTimer = 0;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -34,7 +36,8 @@ function ChatRoomCanServeDrink() { return ((CurrentCharacter != null) && Current
 function ChatRoomCanGiveMoneyForOwner() { return ((ChatRoomMoneyForOwner > 0) && (CurrentCharacter != null) && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (Player.Ownership.MemberNumber == CurrentCharacter.MemberNumber)) }
 function ChatRoomPlayerIsAdmin() { return ((ChatRoomData != null && ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(Player.MemberNumber) >= 0)) }
 function ChatRoomCurrentCharacterIsAdmin() { return ((CurrentCharacter != null) && (ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
-function ChatRoomHasSwapTarget() { return ChatRoomSwapTarget != null }
+function ChatRoomHasSwapTarget() { return (ChatRoomSwapTarget != null) }
+function ChatRoomCanAssistStruggle() { return !CurrentCharacter.CanInteract() }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -642,8 +645,13 @@ function ChatRoomMessage(data) {
 			while (msg.indexOf("<") > -1) msg = msg.replace("<", "&lt;");
 			while (msg.indexOf(">") > -1) msg = msg.replace(">", "&gt;");
 
-			// Hidden messages are processed separately, they are used by chat room mini-games
+			// Hidden messages are processed separately, they are used by chat room mini-games / events
 			if ((data.Type != null) && (data.Type == "Hidden")) {
+				for (var A = 1; A <= 6; A++)
+					if (msg == "StruggleAssist" + A.toString()) {
+						ChatRoomStruggleAssistTimer = CurrentTime + 60000;
+						ChatRoomStruggleAssistBonus = A;
+					}
 				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
 				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
 				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
@@ -1003,6 +1011,22 @@ function ChatRoomViewProfile() {
 		DialogLeave();
 		InformationSheetLoadCharacter(C);
 	}
+}
+
+// The player can assist another player to struggle out, the bonus is evasion / 2 + 1, with penalties if the player is restrained
+function ChatRoomStruggleAssist() {
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	Dictionary.push({Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber});
+	var Bonus = SkillGetLevelReal(Player, "Evasion") / 2 + 1;
+	if (!Player.CanInteract()) {
+		if (InventoryItemHasEffect(InventoryGet(Player, "ItemArms"), "Block", true)) Bonus = Bonus / 1.5;
+		if (InventoryItemHasEffect(InventoryGet(Player, "ItemHands"), "Block", true)) Bonus = Bonus / 1.5;
+		if (!Player.CanTalk()) Bonus = Bonus / 1.25;
+	}
+	ServerSend("ChatRoomChat", { Content: "StruggleAssist", Type: "Action", Dictionary: Dictionary} );
+    ServerSend("ChatRoomChat", { Content: "StruggleAssist" + Math.round(Bonus).toString(), Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
+	DialogLeave();
 }
 
 // Sends an administrative command to the server for the chat room from the character dialog
