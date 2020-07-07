@@ -34,41 +34,26 @@ function init(){
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,1, 1000);
 
-
-
-	// let light = new THREE.DirectionalLight( 0xffffff );
-	// light.position.set( 0, 2000, 100 );
-	// // light.castShadow = true;
-	// scene.add( light );
-
 	renderer = new THREE.WebGLRenderer({  alpha : true });
+	renderer.setPixelRatio(window.devicePixelRatio); //add
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
-	//when we load an env.
-	// renderer.shadowMap.enabled = false;
-	// renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-	// renderer.shadowMapDebug = true;
+	let light = new THREE.DirectionalLight( 0xffffff, 0.5); //add
+	light.position.set( 0, 2000, 100 );//add
+	light.castShadow = true;//add
+	scene.add( light );//add
 
-	let ambientLight = new THREE.AmbientLight(0xffffff);
-	// ambientLight.castShadow = true;
-	// ambientLight.position.set(200,2000,200);
-	scene.add(ambientLight);
-// TODO: loop loader.load path/+allfolders +- assets || strike
-// TODO: merge || deselect
-// TODO: load animation
-// TODO: use tensorspace.js to create an story teller
+	let light1 = new THREE.PointLight(0xffffff);
+	light1.castShadow = true;
+	scene.add(light1);
 
+	let ambientLight = new THREE.AmbientLight(0xffffff,1);
+  ambientLight.castShadow = true;
+  ambientLight.position.set(200,2000,200);
+  scene.add(ambientLight);
 
-	  // pathitem.forEach(function(pathitems){} //for env.
-		// TODO: loop through all items when item = 2d asset
-	// 	for (let j = 0; j < pathitem.length; j++){
-	// 	if (CurrentCharacter.asset.group == pathitems ){
-	// 		let item = CurrentCharacter.asset.name
-	//     loader.load(`${path3d}${pathitems}${item}.fbx`, // TODO: assign 3d to png
-	// 				function( object ) {
-	// 					model = object;
     let loader = new THREE.FBXLoader();
-    loader.load('Assets/3D/fbx/maid.fbx',
+    loader.load('Assets/3D/fbx/intro1.fbx',
 				function( object ) {
 					model = object;
 
