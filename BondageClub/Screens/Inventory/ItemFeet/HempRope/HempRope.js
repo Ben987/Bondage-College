@@ -104,8 +104,6 @@ function InventoryItemFeetHempRopeSetPose(NewType) {
 	
 	// Validates a few parameters before suspending
 	if ((NewType.FeetGround == false) && !InventoryAllow(C, ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"], true)) { DialogExtendedMessage = DialogText; return; }
-	if ((NewType.Suspension == false) && (C.ID == 0)) { DialogExtendedMessage = DialogFind(Player, "CannotUseOnSelf"); return; }
-
 	// Sets the position & difficulty
 	DialogFocusItem.Property = NewType.Property;
 	CharacterRefresh(C);
