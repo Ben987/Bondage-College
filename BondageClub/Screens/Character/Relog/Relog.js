@@ -13,8 +13,9 @@ function RelogLoad() {
 		Elements[E].style.display = "none";
 
 	// Clears the previous login message
-	LoginMessage = "";
-	
+	LoginIsRelog = true;
+	LoginUpdateMessage();
+
 	// Keeps a copy of the main canvas and darkens it
 	var Context = RelogCanvas.getContext("2d");
 	RelogCanvas.width = 2000;
@@ -37,7 +38,7 @@ function RelogRun() {
 	MainCanvas.drawImage(RelogCanvas, 0, 0);
 	
 	// Draw the relog controls
-	if (LoginMessage == "") LoginMessage = TextGet("Disconnected");
+	if (!LoginMessage) LoginUpdateMessage();
 	DrawText(LoginMessage, 1000, 150, "White", "Black");
 	DrawText(TextGet("EnterPassword"), 1000, 230, "White", "Black");
 	DrawText(TextGet("Account") + "  " + Player.AccountName, 1000, 400, "White", "Black");
@@ -66,10 +67,12 @@ function RelogSend() {
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-			LoginMessage = TextGet("ValidatingNamePassword");
+			LoginSubmitted = true;
+			LoginInvalid = false;
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
-		} else LoginMessage = TextGet("InvalidNamePassword");
+		} else LoginInvalid = true;
 	}
+	LoginUpdateMessage();
 }
 
 // when the user exit this screen, we go back to login
