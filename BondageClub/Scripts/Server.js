@@ -42,15 +42,12 @@ function ServerInit() {
 
 /**
  * Sets the connection status of the server and updates the login page message
- *
  * @param {boolean} connected - whether or not the websocket connection to the server has been established successfully
  */
 function ServerSetConnected(connected) {
 	ServerIsConnected = connected;
 	ServerDidDisconnect = !connected;
-	if (connected) {
-		ServerReconnectCount = 0;
-	}
+	if (connected) ServerReconnectCount = 0;
 	LoginUpdateMessage();
 }
 
@@ -63,8 +60,7 @@ function ServerConnect() {
 }
 
 /**
- * Callback when receiving a "reconnecting" event on the socket - this is called when socket.io initiates a retry after a failed
- * connection attempt.
+ * Callback when receiving a "reconnecting" event on the socket - this is called when socket.io initiates a retry after a failed connection attempt.
  */
 function ServerReconnecting() {
 	ServerReconnectCount++;

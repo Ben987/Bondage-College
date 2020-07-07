@@ -28,8 +28,11 @@ function init(){
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,1, 1000);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 189103e45d702fbdcdb5126d3d237ff2dc9c9644
+=======
+>>>>>>> upstream/master
 // 	Google Chrome newest version.
 // Version 83.0.4103.116 Offical Build) (64-Bit)
 //
@@ -48,6 +51,7 @@ function init(){
 // i bet my model isn't working but i'm curious if your model works.
 // when your model works( something must be with my model.)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -59,6 +63,8 @@ function init(){
 >>>>>>> upstream/master
 =======
 >>>>>>> 189103e45d702fbdcdb5126d3d237ff2dc9c9644
+=======
+>>>>>>> upstream/master
 
 	renderer = new THREE.WebGLRenderer({  alpha : true });
 	renderer.setPixelRatio(window.devicePixelRatio); //add
@@ -69,6 +75,7 @@ function init(){
 	light.castShadow = true;//add
 	scene.add( light );//add
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	let light1 = new THREE.PointLight(0xffffff);
@@ -95,6 +102,17 @@ function init(){
   ambientLight.position.set(200,2000,200);
   scene.add(ambientLight);
 
+=======
+	let light1 = new THREE.PointLight(0xffffff);
+	light1.castShadow = true;
+	scene.add(light1);
+
+	let ambientLight = new THREE.AmbientLight(0xffffff,1);
+  ambientLight.castShadow = true;
+  ambientLight.position.set(200,2000,200);
+  scene.add(ambientLight);
+
+>>>>>>> upstream/master
     let loader = new THREE.FBXLoader();
     loader.load('Assets/3D/fbx/pmd/0intro/intro1.fbx',
 				function( object ) {
