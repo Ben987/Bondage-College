@@ -36,10 +36,10 @@ function init(){
 
 
 
-	let light = new THREE.DirectionalLight( 0xffffff );
-	light.position.set( 0, 2000, 100 );
-	// light.castShadow = true;
-	scene.add( light );
+	// let light = new THREE.DirectionalLight( 0xffffff );
+	// light.position.set( 0, 2000, 100 );
+	// // light.castShadow = true;
+	// scene.add( light );
 
 	renderer = new THREE.WebGLRenderer({  alpha : true });
 	renderer.setSize(window.innerWidth, window.innerHeight);
@@ -51,7 +51,7 @@ function init(){
 
 	let ambientLight = new THREE.AmbientLight(0xffffff);
 	// ambientLight.castShadow = true;
-	ambientLight.position.set(200,2000,200);
+	// ambientLight.position.set(200,2000,200);
 	scene.add(ambientLight);
 // TODO: loop loader.load path/+allfolders +- assets || strike
 // TODO: merge || deselect
@@ -71,13 +71,7 @@ function init(){
     loader.load('Assets/3D/fbx/maid.fbx',
 				function( object ) {
 					model = object;
-					// animation
-					// model.mixer = new THREE.AnimationMixer(object);
-					// model.mixer = object.mixer;
-					// model.root = object.mixer.getRoot();
 
-
-					//object.scale.set(0.01, 0.01, 0.01);
 					scene.add(model);
     			},
 				undefined,
