@@ -102,7 +102,7 @@ function LogValue(QueryLogName, QueryLogGroup) {
 /**
  * @description Loads the account log.
  * 
- * @param {Array.<{Name: string, Group: string, Value: number}} NewLog - Existing logs received by the server
+ * @param {Array.<{Name: string, Group: string, Value: number}>} NewLog - Existing logs received by the server
  * 
  * @returns {void} - Nothing
  */
