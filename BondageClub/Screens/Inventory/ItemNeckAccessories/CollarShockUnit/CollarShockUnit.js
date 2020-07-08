@@ -14,12 +14,11 @@ function InventoryItemNeckAccessoriesCollarShockUnitDraw() {
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
 	if(DialogFocusItem.Property.Intensity > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "Low"), "White");
-	if(DialogFocusItem.Property.Intensity < 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Medium"), "White");
-	if(DialogFocusItem.Property.Intensity > 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Medium"), "White");
+	if(DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Medium"), "White");
 	if(DialogFocusItem.Property.Intensity < 2) DrawButton(1375, 710, 200, 55, DialogFind(Player, "High"), "White");
 	if( CurrentScreen == "ChatRoom") DrawButton(1325, 800, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
 	if( CurrentScreen == "ChatRoom") DrawText(DialogFind(Player, "ShockCollarShowChat"), 1570, 833, "White", "Gray");
-	if(Player.CanInteract()) DrawButton(1370, 900, 200, 55, DialogFind(Player, "TriggerShock"), "White");
+	DrawButton(1375, 900, 200, 55, DialogFind(Player, "TriggerShock"), "White");
 }
 
 // Catches the item extension clicks
@@ -30,11 +29,10 @@ function InventoryItemNeckAccessoriesCollarShockUnitClick() {
 		DialogLeave();
 	}
 	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(0 - DialogFocusItem.Property.Intensity);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(2 - DialogFocusItem.Property.Intensity);
 	
-	if(Player.CanInteract() && (MouseX >= 1370) && (MouseX <= 1570) && (MouseY >= 900) && (MouseY <= 955)) InventoryItemNeckAccessoriesCollarShockUnitTrigger();
+	if(Player.CanInteract() && (MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 900) && (MouseY <= 955)) InventoryItemNeckAccessoriesCollarShockUnitTrigger();
 }
 
 // Sets the shock collar intensity
