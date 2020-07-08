@@ -10,7 +10,7 @@ function Draw3DLoad() {
 	// //list all item folders
   // const pathitem = ["arms", "back hair", "bra", "eyes", "front hair", "head"
 	// 									,"neck", "pantie", "shoes", "skin", "skirt", "socks", "Tail"
-	// 									, "top"	];
+// 										, "top"	];
 	init();
 	MainCanvas.canvas.appendChild(renderer.domElement);
 }
@@ -26,83 +26,17 @@ function Draw3DKeyDown(event) {
 function init(){
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,1, 1000);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 189103e45d702fbdcdb5126d3d237ff2dc9c9644
-=======
->>>>>>> upstream/master
-// 	Google Chrome newest version.
-// Version 83.0.4103.116 Offical Build) (64-Bit)
-//
-// my fbx model is now inside the pmd folder.(maybe it was a problem, i'm not sure)
-//
-// test 1:
-// i've deleted all light section execpt the ambientLight.
-// please, change the model from Assets/3D/fbx/pmd/0intro/intro1.fbx to Assets/3D/Rin/Rin1.fbx, to see if one of them works.
-// both model work ?
-// when both models are working just fine. we know that's the second light and probably third light section is the problem.
-// when only your model works.(mmm, my model sucks ... <.<)
-//
-// test 2 :
-// i've added a second and a third light section.
-// please, change the model from Assets/3D/fbx/pmd/0intro/intro1.fbx to Assets/3D/Rin/Rin1.fbx, to see if one of them works.
-// i bet my model isn't working but i'm curious if your model works.
-// when your model works( something must be with my model.)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
-
-	// let light = new THREE.DirectionalLight( 0xffffff );
-	// light.position.set( 0, 2000, 100 );
-	// // light.castShadow = true;
-	// scene.add( light );
->>>>>>> upstream/master
-=======
->>>>>>> 189103e45d702fbdcdb5126d3d237ff2dc9c9644
-=======
->>>>>>> upstream/master
 
 	renderer = new THREE.WebGLRenderer({  alpha : true });
 	renderer.setPixelRatio(window.devicePixelRatio); //add
 	renderer.setSize(window.innerWidth, window.innerHeight);
+
 
 	let light = new THREE.DirectionalLight( 0xffffff, 0.5); //add
 	light.position.set( 0, 2000, 100 );//add
 	light.castShadow = true;//add
 	scene.add( light );//add
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	let light1 = new THREE.PointLight(0xffffff);
-	light1.castShadow = true;
-	scene.add(light1);
-=======
-	let ambientLight = new THREE.AmbientLight(0xffffff);
-	// ambientLight.castShadow = true;
-	// ambientLight.position.set(200,2000,200);
-	scene.add(ambientLight);
-// TODO: loop loader.load path/+allfolders +- assets || strike
-// TODO: merge || deselect
-// TODO: load animation
-// TODO: use tensorspace.js to create an story teller
->>>>>>> upstream/master
-=======
-	let light1 = new THREE.PointLight(0xffffff);
-	light1.castShadow = true;
-	scene.add(light1);
->>>>>>> 189103e45d702fbdcdb5126d3d237ff2dc9c9644
-
-	let ambientLight = new THREE.AmbientLight(0xffffff,1);
-  ambientLight.castShadow = true;
-  ambientLight.position.set(200,2000,200);
-  scene.add(ambientLight);
-
-=======
 	let light1 = new THREE.PointLight(0xffffff);
 	light1.castShadow = true;
 	scene.add(light1);
@@ -112,19 +46,19 @@ function init(){
   ambientLight.position.set(200,2000,200);
   scene.add(ambientLight);
 
->>>>>>> upstream/master
-    let loader = new THREE.FBXLoader();
-    loader.load('Assets/3D/fbx/pmd/0intro/intro1.fbx',
-				function( object ) {
-					model = object;
+	let loader = new THREE.FBXLoader();
+  loader.load('Assets/3D/fbx/maid.fbx',
+ 		 function( object ) {
+ 			 model = object;
 
-					scene.add(model);
-    			},
-				undefined,
-				function( error ) {
-					console.log(error);
-				}
-    );
+
+ 			 },
+ 		 undefined,
+ 		 function( error ) {
+ 			 console.log(error);
+ 		 }
+  );
+	scene.add(model);
 }
 
 function Draw3DEnable(Enable) {
