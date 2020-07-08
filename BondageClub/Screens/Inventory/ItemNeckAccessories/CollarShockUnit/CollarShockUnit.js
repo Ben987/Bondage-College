@@ -19,6 +19,7 @@ function InventoryItemNeckAccessoriesCollarShockUnitDraw() {
 	if(DialogFocusItem.Property.Intensity < 2) DrawButton(1375, 710, 200, 55, DialogFind(Player, "High"), "White");
 	if( CurrentScreen == "ChatRoom") DrawButton(1325, 800, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
 	if( CurrentScreen == "ChatRoom") DrawText(DialogFind(Player, "ShockCollarShowChat"), 1570, 833, "White", "Gray");
+	if(Player.CanInteract()) DrawButton(1370, 900, 200, 55, DialogFind(Player, "TriggerShock"), "White");
 }
 
 // Catches the item extension clicks
@@ -32,6 +33,8 @@ function InventoryItemNeckAccessoriesCollarShockUnitClick() {
 	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(2 - DialogFocusItem.Property.Intensity);
+	
+	if(Player.CanInteract() && (MouseX >= 1370) && (MouseX <= 1570) && (MouseY >= 900) && (MouseY <= 955)) InventoryItemNeckAccessoriesCollarShockUnitTrigger();
 }
 
 // Sets the shock collar intensity
@@ -49,9 +52,29 @@ function InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(Modifier) {
 		var Dictionary = [];
 		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+		Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});
 		ChatRoomPublishCustomAction("ShockCollarSet" + DialogFocusItem.Property.Intensity, true, Dictionary);
 	}
 	else
 		DialogLeave();
 		
+}
+
+// Trigger a shock from the dialog menu
+function InventoryItemNeckAccessoriesCollarShockUnitTrigger() { 
+	// Gets the current item and character
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
+		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+		InventoryItemNeckAccessoriesCollarShockUnitLoad();
+	}
+
+	var Dictionary = [];
+	Dictionary.push({Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});
+	ChatRoomPublishCustomAction("TriggerShock" + DialogFocusItem.Property.Intensity, true, Dictionary);
+	
+    CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
+    CharacterSetFacialExpression(C, "Blush", "Soft", 15);
+    CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
 }

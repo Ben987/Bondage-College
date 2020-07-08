@@ -1,16 +1,16 @@
 "use strict";
 
 // Loads the item extension properties
-function InventoryItemNeckShockCollarLoad() {
+function InventoryItemButtShockPlugLoad() {
 	InventoryItemNeckAccessoriesCollarShockUnitLoad();
 }
 
 // Draw the item extension screen
-function InventoryItemNeckShockCollarDraw() {
+function InventoryItemButtShockPlugDraw() {
 	InventoryItemNeckAccessoriesCollarShockUnitDraw();
 }
 
 // Catches the item extension clicks
-function InventoryItemNeckShockCollarClick() {
+function InventoryItemButtShockPlugClick() {
 	InventoryItemNeckAccessoriesCollarShockUnitClick();
 }
