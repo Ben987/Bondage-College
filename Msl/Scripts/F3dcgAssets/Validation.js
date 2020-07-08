@@ -427,6 +427,7 @@ F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffec
 				
 				return "";
 			
+			case "AccessButt":
 			case "AccessVulvaSuitZip":
 			case "GagFlat":
 			case "GagCorset":
@@ -449,21 +450,23 @@ F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffec
 	return "";
 }
 
-
+//Appearance items allow access to the group, such as revealing bra allowing access to nipples
 F3dcgAssets.AppItemsExpose = function(appearanceItems, groups, exposition){
 	for(var i = 0; i < groups.length; i++){
 		if(! appearanceItems[groups[i]]) continue;
 		var assetItem = F3dcgAssets.AssetGroups.Cloth.Items[appearanceItems[groups[i]].itemName];
-		if(assetItem && assetItem.Expose && !assetItem.Expose.includes(exposition)) return false;
+		if(assetItem && ! (assetItem.Expose && assetItem.Expose.includes(exposition))) return false; 
 	}
 	return true;
 }
-	
+
+
+//Appearance items block access to the group, such as pantyhose (socks) blocking vulva
 F3dcgAssets.AppItemsBlock = function(appearanceItems, groups, expositiion){
 	for(var i = 0; i < groups.length; i++){
 		if(! appearanceItems[groups[i]]) continue;			
 		var assetItem = F3dcgAssets.AssetGroups.Cloth.Items[appearanceItems[groups[i]].itemName];
-		if(assetItem && assetItem.Block && !assetItem.Block.includes(exposition)) return false;
+		if(assetItem && aassetItem.Block && assetItem.Block.includes(exposition)) return true;
 	}
 	return false;
 }

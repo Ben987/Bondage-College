@@ -45,6 +45,7 @@ F3dcgAssets.BondageToyGroups = [
 
 F3dcgAssets.ClothesFree = []
 F3dcgAssets.ClothesQuest = []
+
 	
 //Regular and wardrobe update limitations
 F3dcgAssets.FullCharacterTypeGroups = {};

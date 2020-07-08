@@ -197,7 +197,6 @@ var LocationPlayerUpdate = function(player){
 		
 		var newItem;
 		
-		
 		switch(itemData.groupTypeName){
 			case F3dcgAssets.CLOTH:
 				newItem = itemData.itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildClothAppearanceItem(itemData.itemName, itemData.color);

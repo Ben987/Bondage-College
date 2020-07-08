@@ -26,15 +26,15 @@ var F3dcgAssetsInventory = {
 		F3dcgAssets.AccessoriesGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableAccessoryGroup(applicableItems, groupName, validationFlagsCache)});
 		F3dcgAssets.BondageToyGroups.forEach(groupName => {F3dcgAssetsInventory.InitApplicableBondageToyGroup(applicableItems, groupName, validationFlagsCache)});
 		
-		//Initializing items and variants, validating items and variants
-		F3dcgAssets.ExpressionGroups.forEach(groupName => {
-			applicableItems[F3dcgAssets.EXPRESSION][groupName] = {items:[], currentItem:null, blocked:false};//The none case is handled unlike all other group types
+		F3dcgAssets.ExpressionGroups.forEach(groupName => {//The none case is handled unlike all other group types
+			applicableItems[F3dcgAssets.EXPRESSION][groupName] = {items:[], currentItem:null, validation:[], actions:{changeItem:true,removeItem:false}};
 			for(var itemName in F3dcgAssets.AssetGroups[groupName].Items){
 				var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + (itemName != groupName ? groupName + "/" + itemName + "/Icon.png" : groupName + "/Icon.png");
 				applicableItems[F3dcgAssets.EXPRESSION][groupName].items.push({itemName:itemName, iconUrl:iconUrl});
 			};
 		});
 		
+		//Initializing items and variants, validating items and variants
 		if(Environment.allItemsInInventory){
 			F3dcgAssets.ClothesGroups.forEach(groupName => {
 				for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
@@ -357,14 +357,61 @@ var F3dcgAssetsInventory = {
 		
 		applicableGroup.actions.activity = [];
 		
+		var posesEffectsBlock = validationFlagsCache.posesEffectsBlocksOrigin;
+		
 		activities.forEach(activityName => {
-			applicableGroup.actions.activity.push({name:activityName, iconUrl:F3dcgAssets.F3DCG_ASSET_BASE + "Activity/" + activityName + ".png"})
+			var Activity = F3dcgAssets.Activities[activityName];
+			var validationPassed = true;
+			
+			Activity.Prerequisite.forEach(Prerequisite => {
+				switch(Prerequisite){
+					case "UseMouth":
+						if(posesEffectsBlock.effects.includes("BlockMouth"))
+							validationPassed = false;
+					break;
+					case "UseTongue":
+						if(posesEffectsBlock.effects.includes("BlockMouth"))
+							validationPassed = false;					
+					break;
+					case "UseFeet":
+						if(posesEffectsBlock.effects.includes("Freeze") || posesEffectsBlock.effects.includes("Tethered"))
+							validationPassed = false;	
+					break;
+					case "UseHands": 
+						if(posesEffectsBlock.effects.includes("Block"))
+							validationPassed = false;	
+					break;
+					case "ZoneNaked": 
+						var prerequisite, effect;
+						switch(groupName){	
+							case "ItemButt":  prerequisite = "AccessButt"; effect = "IsPlugged"; break;
+							case "ItemVulva":  prerequisite = "AccessVulva"; effect = "Chaste"; break;
+							case "ItemBreast":  prerequisite = "AccessBreast"; effect = "BreastChaste"; break;
+							case "ItemBoots":	 prerequisite = "NakedFeet"; break;
+							case "ItemHands":	 prerequisite = "NakedHands"; break;
+						}
+						
+						if(prerequisite && F3dcgAssets.ValidatePrerequisite(prerequisite, validationFlagsCache.playerTarget.appearance, posesEffectsBlock))
+							validationPassed = false;
+						if(effect && posesEffectsBlock.effects.includes(effect))
+							validationPassed = false;
+					break;
+					
+					default: throw "Unimplemented " + Prerequisite;
+				}
+			});
+			
+			if(validationPassed)
+				applicableGroup.actions.activity.push({name:activityName, iconUrl:F3dcgAssets.F3DCG_ASSET_BASE + "Activity/" + activityName + ".png"})
 		});
 		
 		var currentEquippedItem = validationFlagsCache.playerOrigin.appearance[F3dcgAssets.BONDAGE_TOY].ItemHands;
+		
 		if(currentEquippedItem){
 			var AssetItem = F3dcgAssets.AssetGroups.ItemHands.Items[currentEquippedItem.name];
+			console.log(AssetItem.Activity);
 			if(AssetItem.Activity){
+				console.log("pushing");
 				applicableGroup.actions.activity.push({name:AssetItem.Activity, itemName:currentEquippedItem.name, iconUrl:F3dcgAssets.F3DCG_ASSET_BASE + "ItemHands/Preview/" + currentEquippedItem.name + ".png"})
 			}
 		}

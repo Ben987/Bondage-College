@@ -200,6 +200,7 @@ var F3dcgAssetsRender = {
 			//Items such as headphones are not rendered, the layer array is empty
 			var AssetItemGroup = F3dcgAssets.AssetGroups[groupName];
 			var AssetItem = AssetItemGroup.Items[appearanceItem.name];
+			
 			if(! AssetItemGroup.Wear && (AssetItem.Visible === false || AssetItemGroup.Visible === false)) continue;
 			
 			renderItemList.push(this.BuildRenderItem(AssetItemGroup, body, appearanceItemEffects, appearanceItem));

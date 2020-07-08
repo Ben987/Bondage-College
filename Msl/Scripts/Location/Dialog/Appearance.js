@@ -94,15 +94,6 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	}
 	this.HideOthersAndShowGroupActionView("items");//.items.button.click();//display items by default
 	
-	
-	
-	this.Struggle = function(){
-		if(this.mainDialog.updateDelegate.HasChanges())
-			this.DisplayErrors(["ClearChanges"]);
-		else
-			LocationController.StartPlayerStruggle(this.selectedItemGroupName);
-	}
-	
 	this.Commit = function(){
 		if(!this.mainDialog.updateDelegate.HasChanges() )
 			this.DisplayErrors(["NoChanges"]);
@@ -269,7 +260,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 			if(applicableGroup.actions.struggle)
 				buttonsToShow.push("struggle");
 			
-			if(applicableGroup.actions.color) 
+			if(applicableGroup.actions.color)
 				buttonsToShow.push("color");
 			
 			if(applicableGroup.actions.variants){
@@ -313,76 +304,20 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		
 	}
 	
-	
-	/*
-	this.UpdateItemGroupIconImage = function(itemGroupTypeName, itemGroupName){
-		var wornItem; //= this.mainDialog.updateDelegate.GetCurrentWornItem(itemGroupName);
-		if(wornItem){
-			//current item will be displayed elsewhere
-			//var itemGroupIcon = Util.GetFirstChildNodeByName(this.containerElements.itemGroupSelection, itemGroupName);		
-			//var inventoryItem = this.mainDialog.updateDelegate.inventory.items[itemGroupTypeName][itemGroupName][wornItem.itemName];
-			//itemGroupIcon.childNodes[1].setAttribute("src", inventoryItem?.iconUrl ? inventoryItem.iconUrl : "./Images/Icons/e4x4.png");
-		}		
-	}*/
-	/*
-	this.UpdateControlAndActionButtons = function(){
-		this.HideControlAndActionButtons();
-		var buttonsToShow = [];
-		
-		var appliedItem = this.mainDialog.updateDelegate.GetApplicableItems()[this.selectedItemGroupTypeName][this.selectedItemGroupName].currentItem;
-		this.selectedItemName = appliedItem?.name;
-		
-		//hide the buttons, views will be hidden later
-		for(var action in this.itemActionViews)
-			Util.GetFirstChildNodeByName(this.containerElements.itemActionButtons, action.toLowerCase()).style.display="none";
-		
-		if(appliedItem){
-			if(appliedItem.colorable){
-				buttonsToShow.push("Color");
-				if(appliedItem.color) this.itemActionViews.Color.SetHexValue(appliedItem.color);	
-			}
-			
-			if(appliedItem.lock || appliedItem.allowedLocks?.length){
-				buttonsToShow.push("Lock");
-				this.itemActionViews.Lock.SetItem(appliedItem);
-			}
-			
-			if(appliedItem.variants){
-				buttonsToShow.push("Variant");
-				this.itemActionViews.Variant.SetItem(appliedItem);
-			}
-		}
-		
-		buttonsToShow.forEach(action => {Util.GetFirstChildNodeByName(this.containerElements.itemActionButtons, action.toLowerCase()).style.display="block"});
-		
-		//TODO:  select the first available action
-		if(! buttonsToShow.includes(this.selectedAction)){
-			this.itemActionViews[this.selectedAction].Hide();
-		}else{
-			this.itemActionViews[this.selectedAction].Show();
-			Util.GetFirstChildNodeByName(this.containerElements.itemActionButtons, this.selectedAction.toLowerCase()).click();
-		}
+	//Callbacks from group actions
+	this.GroupItemActionCallback_struggle = function(){
+		if(this.mainDialog.updateDelegate.HasChanges())
+			this.DisplayErrors(["ClearChanges"]);
+		else
+			LocationController.StartPlayerStruggle(this.selectedItemGroupName);	
 	}
-	
-	this.HideControlAndActionButtons = function(){
-		for(var action in this.itemActionViews){
-			Util.GetFirstChildNodeByName(this.containerElements.itemActionButtons, action.toLowerCase()).style.display="none";
-			this.itemActionViews[action].Hide();
-		}
-	}*/
-	
-	/*
-	this.ShowOrHideActions = function(action){
-		this.selectedAction = action;
-		for(var actionName in this.itemActionViews)
-			this.itemActionViews[actionName].Hide();
-		
-		this.itemActionViews[action].Show();
-	}*/
 	
 	
 	this.GroupItemActionCallback_activity = function(activityName){
-		console.log(activityName);
+		if(this.mainDialog.updateDelegate.HasChanges())
+			this.DisplayErrors(["ClearChanges"]);
+		else
+			LocationController.StartPlayerActivity(this.mainDialog.updateDelegate.player, this.selectedItemGroupName, activityName);	
 	}
 	
 	this.GroupItemActionCallback_vibe = function(level){

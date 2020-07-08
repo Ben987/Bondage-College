@@ -34,7 +34,6 @@ var LocationController = {
 		for(var spotName in this.location.players)
 			this.location.players[spotName] = new LocationPlayer(this.location.players[spotName]);
 		
-		
 		//DOM container elements
 		this.locationContainer = document.getElementById("LocationView");
 		this.canvasContainer = document.getElementById("LocationViewCanvas");
@@ -123,18 +122,6 @@ var LocationController = {
 	}
 	
 	/*
-	,ShowPlayerProfile(player){
-		//console.log(player);
-		LocationController.InterruptDelegateActions();
-		LocationController.delegates.profile.ShowProfile(player ? player : LocationController.GetPlayer());
-	}*/
-	
-	/*
-	,IsActionInProgress(){
-		return currentActionData && ! currentActionData.finished;
-	}*/
-	
-	/*
 	,GetActionsForSpot(spot){
 		var actions = {
 			spotInfo:function(){LocationController.SpotInfo(spot.name);} //instant resposne to origin only
@@ -161,13 +148,6 @@ var LocationController = {
 	}
 	*/
 	
-	/*
-	,PoseChangeSelf(){
-		var player = this.GetPlayer();
-		if(! F3dcgAssets.ValidateChangePoseSelf(player)) return;
-		player.kneelingActive = ! player.kneelingActive;
-		LocationController.viewDelegate.RenderPlayerInSpot(this.GetCurrentSpot());	
-	}*/
 	
 	//Actions, that update server state
 	,ExitLocation(){MainController.ExitLocation();}	
@@ -182,6 +162,13 @@ var LocationController = {
 
 	,StartPlayerStruggle(groupName){
 		MslServer.Send("ActionStart", {type:"StruggleRemoveSelf", groupName:groupName}, function(data){
+			this.OnLocationAction(data);
+		}.bind(this));
+		LocationController.InterruptDelegateActions();
+	}
+	
+	,StartPlayerActivity(targetPlayer, groupName, activityName){
+		MslServer.Send("ActionStart", {type:"Activity", targetPlayerId:targetPlayer.id, activityName:activityName, groupName:groupName}, function(data){
 			this.OnLocationAction(data);
 		}.bind(this));
 		LocationController.InterruptDelegateActions();
@@ -227,7 +214,6 @@ var LocationController = {
 	}
 	
 	//TODO:  validate pose change is allowed
-		
 	,ChangePose(){
 		if(this.GetPlayer().CanChangePose()){
 			var pose = this.GetPlayer().activePose == F3dcgAssets.POSE_NONE ? F3dcgAssets.POSE_KNEEL : F3dcgAssets.POSE_NONE;
@@ -247,6 +233,10 @@ var LocationController = {
 		console.log("From Server: OnLocationAction", data);
 		LocationController["LocationAction_" + data.type](data);
 		LocationController.delegates.chat.OnAction(data);
+	}
+	
+	,LocationAction_Activity(data){
+		//console.log(data);//handled by chat 
 	}
 	
 	,LocationAction_ChangePose(data){
