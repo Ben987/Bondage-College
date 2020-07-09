@@ -64,11 +64,9 @@ function LogDelete(DelLogName, DelLogGroup, Push) {
 // Checks if the log exists, return true if it does (if there's a value, it counts as an expiry time)
 
 /**
- * @description Searches for an existing log entry.
- * 
+ * Searches for an existing log entry.
  * @param {string} NewLogName - The name of the log to search for
  * @param {string} NewLogGroup - The name of the log's group
- * 
  * @returns {boolean} - Returns TRUE if there is an existing log matching the Name/Group with no value or a value above the current time in ms.
  */
 function LogQuery(QueryLogName, QueryLogGroup) {
