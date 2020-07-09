@@ -713,6 +713,7 @@ ItemNeck,HighSecurityCollar,High Security Collar
 ItemNeck,OrnateCollar,Ornate Collar
 ItemNeck,SlenderSteelCollar,Slender Steel Collar
 ItemNeck,HeartLinkChoker, Heart-Link Choker
+ItemNeck,NeckRope,Neck Rope
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
@@ -790,6 +791,7 @@ ItemMouth,GasMaskGag,Respirator Mask
 ItemMouth,WebGag,Web
 ItemMouth,RopeGag,Rope Gag
 ItemMouth,MilkBottle,Milk Bottle
+ItemMouth,MedicalMask,Medical Mask
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -826,6 +828,7 @@ ItemMouth2,LatexBallMuzzleGag,Latex Ball Muzzle Gag
 ItemMouth2,GasMaskGag,Respirator Mask
 ItemMouth2,WebGag,Web Gag
 ItemMouth2,RopeGag,Rope Gag
+ItemMouth2,MedicalMask,Medical Mask
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -862,6 +865,7 @@ ItemMouth3,LatexBallMuzzleGag,Latex Ball Muzzle Gag
 ItemMouth3,GasMaskGag,Respirator Mask
 ItemMouth3,WebGag,Web Gag
 ItemMouth3,RopeGag,Rope Gag
+ItemMouth3,MedicalMask,Medical Mask
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold

@@ -333,6 +333,7 @@ ActionActivityTickleItem,,,SourceCharacter tickles DestinationCharacter FocusAss
 ActionActivityRubItem,,,SourceCharacter rubs DestinationCharacter FocusAssetGroup with a NextAsset.,,
 ActionActivityRollItem,,,SourceCharacter rolls a NextAsset over DestinationCharacter FocusAssetGroup.,,
 ActionActivityPourItem,,,SourceCharacter pours NextAsset onto DestinationCharacter FocusAssetGroup.,,
+StruggleAssist,,,SourceCharacter tries to help TargetCharacter to struggle free.,,
 MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.,,
 MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.,,
 MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.,,

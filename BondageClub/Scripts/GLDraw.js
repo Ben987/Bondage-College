@@ -29,6 +29,16 @@ function GLDrawLoad() {
 
     CharacterAppearanceBuildCanvas = GLDrawAppearanceBuild;
 
+    // Attach context listeners
+    GLDrawCanvas.addEventListener("webglcontextlost", function (event) {
+        event.preventDefault();
+        console.log("WebGL Drawing disabled: Context Lost. If the context does not restore itself, refresh your page.");
+    }, false);
+    GLDrawCanvas.addEventListener("webglcontextrestored", function () {
+        GLDrawLoad();
+        console.log("WebGL: Context restored.");
+    }, false);
+    
     console.log("WebGL Drawing enabled: '" + GLVersion + "'");
 }
 

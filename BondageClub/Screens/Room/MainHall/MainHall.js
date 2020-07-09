@@ -323,3 +323,7 @@ function MainHallMaidIntroduction() {
 function MainHallMaidIntroductionDone() {
 	LogAdd("IntroductionDone", "MainHall");
 }
+
+function MainHallKeyDown() {
+	Draw3DKeyDown();
+}

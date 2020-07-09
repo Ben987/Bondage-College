@@ -72,9 +72,10 @@ function LogLoad(NewLog) {
 	Log = [];
 	if (NewLog != null) {
 
-		// Add each log entry one by one
+		// Add each log entry one by one, validates the type to prevent client crashes
 		for (var L = 0; L < NewLog.length; L++)
-			LogAdd(NewLog[L].Name, NewLog[L].Group, NewLog[L].Value, false);
+			if ((typeof NewLog[L].Name === "string") && (typeof NewLog[L].Group === "string") && ((NewLog[L].Value == null) || (typeof NewLog[L].Value === "number")))
+				LogAdd(NewLog[L].Name, NewLog[L].Group, NewLog[L].Value, false);
 
 	}
 	

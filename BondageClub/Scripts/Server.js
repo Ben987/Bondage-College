@@ -1,13 +1,18 @@
 "use strict";
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
-var ServerRelog = null;
 var ServerBeep = {};
 var ServerBeepAudio = new Audio();
+var ServerIsConnected = false;
+var ServerReconnectCount = 0;
+var ServerDidDisconnect = false;
 
 // Loads the server events
 function ServerInit() {
 	ServerSocket = io(ServerURL);
+	ServerSocket.on("connect", ServerConnect);
+	ServerSocket.on("reconnecting", ServerReconnecting);
+	ServerSocket.on("event", function (data) {console.log(data);});
 	ServerSocket.on("ServerMessage", function (data) { console.log(data); });
 	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data); });
 	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
@@ -35,6 +40,33 @@ function ServerInit() {
 	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
+/**
+ * Sets the connection status of the server and updates the login page message
+ * @param {boolean} connected - whether or not the websocket connection to the server has been established successfully
+ */
+function ServerSetConnected(connected) {
+	ServerIsConnected = connected;
+	ServerDidDisconnect = !connected;
+	if (connected) ServerReconnectCount = 0;
+	LoginUpdateMessage();
+}
+
+/**
+ * Callback when receiving a "connect" event on the socket - this will be called on initial connection and on successful reconnects.
+ */
+function ServerConnect() {
+	console.info("Server connection established");
+	ServerSetConnected(true);
+}
+
+/**
+ * Callback when receiving a "reconnecting" event on the socket - this is called when socket.io initiates a retry after a failed connection attempt.
+ */
+function ServerReconnecting() {
+	ServerReconnectCount++;
+	LoginUpdateMessage();
+}
+
 // When the server sends some information to the client, we keep it in variables
 function ServerInfo(data) {
 	if (data.OnlinePlayers != null) CurrentOnlinePlayers = data.OnlinePlayers;
@@ -43,6 +75,12 @@ function ServerInfo(data) {
 
 // When the server disconnects, we enter in "Reconnect Mode"
 function ServerDisconnect(data) {
+	ServerSetConnected(false);
+	console.warn("Server connection lost");
+	if (data) {
+		console.warn(data);
+	}
+
 	if (Player.Name != "") {
 		if (CurrentScreen != "Relog") {
 
@@ -75,7 +113,6 @@ function ServerDisconnect(data) {
 
 		}
 	}
-	else if (CurrentScreen == "Login") LoginMessage = TextGet((data != null) ? data : "ErrorDisconnectedFromServer");
 }
 
 // Sends a message to the server

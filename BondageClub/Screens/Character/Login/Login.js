@@ -9,6 +9,9 @@ var LoginThankYouList = ["Alvin", "Ayezona", "BlueEyedCat", "BlueWiner", "Bryce"
 						 "Nick", "Overlord", "Rashiash", "Ray", "Reire", "Robin", "Rutherford", "Ryner", "Samuel", "Setsu",
 						 "Shadow", "Sky", "Tam", "Thomas", "Trent", "William", "Xepherio"];
 var LoginThankYouNext = 0;
+var LoginSubmitted = false;
+var LoginInvalid = false;
+var LoginIsRelog = false;
 //var LoginLastCT = 0;
 
 // Loads the next thank you bubble
@@ -71,7 +74,10 @@ function LoginLoad() {
 	CharacterReset(0, "Female3DCG");
 	LoginDoNextThankYou();
 	CharacterLoadCSVDialog(Player);
-	LoginMessage = "";
+	LoginSubmitted = false;
+	LoginInvalid = false;
+	LoginIsRelog = false;
+	LoginUpdateMessage();
 	if (LoginCredits == null) CommonReadCSV("LoginCredits", CurrentModule, CurrentScreen, "GameCredits");
 	ActivityDictionaryLoad();
 	OnlneGameDictionaryLoad();
@@ -85,9 +91,10 @@ function LoginRun() {
 
 	// Draw the credits
 	if (LoginCredits != null) LoginDrawCredits();
+
+	if (!LoginMessage) LoginUpdateMessage();
 	
 	// Draw the login controls
-	if (LoginMessage == "") LoginMessage = TextGet("EnterNamePassword");
 	DrawText(TextGet("Welcome"), 1000, 50, "White", "Black");
 	DrawText(LoginMessage, 1000, 100, "White", "Black");
 	DrawText(TextGet("AccountName"), 1000, 200, "White", "Black");
@@ -209,7 +216,7 @@ function LoginResponse(C) {
 
 		// In relog mode, we jump back to the previous screen, keeping the current game flow
 		if (RelogData != null) {
-			LoginMessage = "";
+			LoginUpdateMessage();
 			ElementRemove("InputPassword");
 			Player.OnlineID = C.ID.toString();
 			CurrentModule = RelogData.Module;
@@ -228,7 +235,7 @@ function LoginResponse(C) {
 		if ((C.Name != null) && (C.AccountName != null)) {
 
 			// Make sure we have values
-			LoginMessage = "";
+			LoginUpdateMessage();
 			if (C.Appearance == null) C.Appearance = [];
 			if (C.AssetFamily == null) C.AssetFamily = "Female3DCG";
 
@@ -387,7 +394,7 @@ function LoginClick() {
 		TranslationNextLanguage();
 		TextLoad();
 		AssetLoadDescription("Female3DCG");
-		LoginMessage = "";
+		LoginUpdateMessage();
 	}
 	
 }
@@ -399,13 +406,49 @@ function LoginKeyDown() {
 
 // If we must try to login (make sure we don't send the login query twice)
 function LoginDoLogin() {
-	if (LoginMessage != TextGet("ValidatingNamePassword")) {
+	if (!LoginSubmitted) {
 		var Name = ElementValue("InputName");
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-			LoginMessage = TextGet("ValidatingNamePassword");
+			LoginSubmitted = true;
+			LoginInvalid = false;
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
-		} else LoginMessage = TextGet("InvalidNamePassword");
+		} else LoginInvalid = true;
+		LoginUpdateMessage();
+	}
+}
+
+/**
+ * Updates the message on the login page
+ */
+function LoginUpdateMessage() {
+	LoginMessage = TextGet(LoginGetMessageKey());
+}
+
+/**
+ * Retrieves the correct message key based on the current state of the login page
+ *
+ * @return {string} The key of the message to display
+ */
+function LoginGetMessageKey() {
+	if (!ServerIsConnected) {
+		if (LoginIsRelog) {
+			return "Disconnected";
+		} else if (ServerDidDisconnect) {
+			return "ErrorDisconnectedFromServer";
+		} else if (ServerReconnectCount >= 3) {
+			return "ErrorUnableToConnect";
+		} else {
+			return "ConnectingToServer";
+		}
+	} else {
+		if (LoginSubmitted) {
+			return "ValidatingNamePassword";
+		} else if (LoginInvalid) {
+			return "InvalidNamePassword";
+		} else {
+			return "EnterNamePassword";
+		}
 	}
 }

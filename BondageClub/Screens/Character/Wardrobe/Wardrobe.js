@@ -2,25 +2,25 @@
 var WardrobeBackground = "PrivateDark";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
+var WardrobeOffset = 0;
+var WardrobeSize = 24;
 
 // Load the wardrobe character names
 function WardrobeLoadCharacterNames() {
 	if (Player.WardrobeCharacterNames == null) Player.WardrobeCharacterNames = [];
 	var Push = false;
-	while (Player.WardrobeCharacterNames.length <= 12) {
+	while (Player.WardrobeCharacterNames.length <= WardrobeSize) {
 		Player.WardrobeCharacterNames.push(Player.Name);
 		Push = true;
 	}
-	if (Push) {
-		ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
-	}
+	if (Push) ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
 }
 
 // Makes sure the wardrobe is of the correct length
 function WardrobeFixLength() {
 	if (Player.Wardrobe != null) {
-		if (Player.Wardrobe.length > 12) Player.Wardrobe = Player.Wardrobe.slice(0, 11);
-		while (Player.Wardrobe.length < 12) Player.Wardrobe.push(null);
+		if (Player.Wardrobe.length > WardrobeSize) Player.Wardrobe = Player.Wardrobe.slice(0, WardrobeSize - 1);
+		while (Player.Wardrobe.length < WardrobeSize) Player.Wardrobe.push(null);
 	}
 }
 
@@ -30,7 +30,7 @@ function WardrobeLoadCharacters(Fast) {
 	var W = null;
 	WardrobeLoadCharacterNames();
 	if (Player.Wardrobe == null) Player.Wardrobe = [];
-	for (var P = 0; P < 12; P++) {
+	for (var P = 0; P < WardrobeSize; P++) {
 		if (WardrobeCharacter.length <= P && ((W == null) || !Fast)) {
 
 			// Creates a character
@@ -77,18 +77,19 @@ function WardrobeLoad() {
 // Shows the wardrobe screen
 function WardrobeRun() {
 	DrawCharacter(Player, 0, 0, 1);
-	DrawButton(500, 25, 225, 65, TextGet("Load"), "White");
-	DrawButton(750, 25, 225, 65, TextGet("Save"), "White");
-	DrawButton(1750, 25, 225, 65, TextGet("Return"), "White");
-	DrawText(TextGet("SelectAppareance"), 1375, 60, "White", "Gray");
+	DrawButton(500, 25, 225, 60, TextGet("Load"), "White");
+	DrawButton(750, 25, 225, 60, TextGet("Save"), "White");
+	DrawButton(1000, 25, 60, 60, "", "White", "Icons/Small/Next.png");
+	DrawButton(1750, 25, 225, 60, TextGet("Return"), "White");
+	DrawText(TextGet("SelectAppareance"), 1405, 60, "White", "Gray");
 	for (var C = 0; C < 12; C++)
 		if (C < 6) {
-			DrawCharacter(WardrobeCharacter[C], 500 + C * 250, 100, 0.45);
-			if (WardrobeSelection == C) DrawEmptyRect(500 + C * 250, 105, 225, 440, "Cyan");
+			DrawCharacter(WardrobeCharacter[C + WardrobeOffset], 500 + C * 250, 100, 0.45);
+			if (WardrobeSelection == C + WardrobeOffset) DrawEmptyRect(500 + C * 250, 105, 225, 440, "Cyan");
 		}
 		else {
-			DrawCharacter(WardrobeCharacter[C], 500 + (C - 6) * 250, 550, 0.45);
-			if (WardrobeSelection == C) DrawEmptyRect(500 + (C - 6) * 250, 555, 225, 440, "Cyan");
+			DrawCharacter(WardrobeCharacter[C + WardrobeOffset], 500 + (C - 6) * 250, 550, 0.45);
+			if (WardrobeSelection == C + WardrobeOffset) DrawEmptyRect(500 + (C - 6) * 250, 555, 225, 440, "Cyan");
 		}
 }
 
@@ -96,15 +97,21 @@ function WardrobeRun() {
 function WardrobeClick() {
 
 	// If we must go back to the room
-	if ((MouseX >= 1750) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 90))
+	if ((MouseX >= 1750) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 85))
 		WardrobeExit();
 
+	// If we must move to the next page
+	if ((MouseX >= 1000) && (MouseX < 1060) && (MouseY >= 25) && (MouseY < 85)) {
+		WardrobeOffset = WardrobeOffset + 12;
+		if (WardrobeOffset >= WardrobeSize) WardrobeOffset = 0;
+	}
+
 	// If we must load a saved outfit
-	if ((MouseX >= 500) && (MouseX < 725) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
+	if ((MouseX >= 500) && (MouseX < 725) && (MouseY >= 25) && (MouseY < 85) && (WardrobeSelection >= 0))
 		WardrobeFastLoad(Player, WardrobeSelection);
 
 	// If we must save an outfit
-	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
+	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 85) && (WardrobeSelection >= 0))
 		WardrobeFastSave(Player, WardrobeSelection);
 
 	// If we must select a different wardrobe
@@ -112,11 +119,11 @@ function WardrobeClick() {
 		for (var C = 0; C < 12; C++)
 			if (C < 6) {
 				if ((MouseX >= 500 + C * 250) && (MouseX <= 725 + C * 250) && (MouseY >= 100) && (MouseY <= 450))
-					WardrobeSelection = C;
+					WardrobeSelection = C + WardrobeOffset;
 			}
 			else
 				if ((MouseX >= 500 + (C - 6) * 250) && (MouseX <= 725 + (C - 6) * 250) && (MouseY >= 550) && (MouseY <= 1000))
-					WardrobeSelection = C;
+					WardrobeSelection = C + WardrobeOffset;
 }
 
 // when the user exit this screen
@@ -144,7 +151,7 @@ function WardrobeAssetBundle(A) {
 function WardrobeFastLoad(C, W, Update) {
 	var savedExpression = {};
 	if (C == Player) savedExpression = WardrobeGetExpression(Player);
-	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
+	if ((Player.Wardrobe != null) && (Player.Wardrobe[W] != null) && (Player.Wardrobe[W].length > 0)) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		C.Appearance = C.Appearance
 			.filter(a => a.Asset.Group.Category != "Appearance" || (!a.Asset.Group.Clothing && !AddAll))
