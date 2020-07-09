@@ -23,11 +23,13 @@ var ActivityDialogAppearanceGroupActionView = function(container, callback) {
 		Util.ClearNodeContent(this.container);
 		
 		activities.forEach(activityData => {
+			console.log(activityData);
+			
 			var iconContainer = Util.CreateElement({parent:this.container});
 			var events = {};
 			
 			//if(! activityData.validation?.length)
-				events.click = function(event){this.callback(activityData.name)}.bind(this);
+				events.click = function(event){this.callback(activityData)}.bind(this);
 			//else
 				//for(var i = 0; i < activityData.validation.length; i++)
 					//Util.CreateElement({parent:iconContainer,innerHTML:activityData.validation[i],cssStyles:{top:(i+1)+"em"},cssClass:"invalid"});

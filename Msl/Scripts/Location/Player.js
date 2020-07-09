@@ -191,7 +191,6 @@ var LocationPlayerUpdate = function(player){
 	//Validation has been taken care of elsewhere
 	//this.Add = function(groupTypeName, groupName, itemName, colorHexString, variant){
 	this.Add = function(itemData){
-	console.log(itemData);
 		var AssetGroup = F3dcgAssets.AssetGroups[itemData.groupName];
 		var AssetItem = AssetGroup.Items[itemData.itemName];
 		

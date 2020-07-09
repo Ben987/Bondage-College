@@ -352,6 +352,10 @@ F3dcgAssets.InitVariants = function(){
 		V = this.SimplestVariant(G.Items[itemName], G.Items[itemName].AllowType);
 	});
 	
+	//ItemNeck
+	G = F3dcgAssets.AssetGroups.ItemNeck;
+	V = this.SimplestVariant(G.Items.SlaveCollar, G.Items.SlaveCollar.AllowType);
+	
 	//ItemMouth
 	["ItemMouth", "ItemMouth2", "ItemMouth3"].forEach(GroupName =>{
 		G = F3dcgAssets.AssetGroups[GroupName];

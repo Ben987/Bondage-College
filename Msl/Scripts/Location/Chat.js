@@ -50,7 +50,6 @@ var LocationViewChat = {
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
 	,OnAction(action){
-		console.log(action);
 		var scrollToBot = Util.ScrollableElementIsAtBottom(LocationViewChat.logContainer);	
 		
 		var originPlayer = LocationController.GetPlayer(action.originPlayerId);
@@ -72,6 +71,8 @@ var LocationViewChat = {
 			case "Activity":
 				var targetName = originPlayer.id == targetPlayer.id ?  "self" : targetPlayer.profile.name;
 				var content = "*" + originPlayer.profile.name + " does " + action.result.activityName + " on " + targetName + "'s " + action.result.groupName;
+				if(action.result.itemName) content += " with " + action.result.itemName;
+				
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});					
 			break;
 			case "AppearanceUpdateSelf":

@@ -10,7 +10,7 @@ F3dcgAssets.BuildEffects = function(playerAppearance){
 			var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name], AssetVariant = AssetItem.Variant ? AssetItem.Variant[item.variant] : null;			
 			
 			if(item.variant)
-				if(! AssetItem.Variants) {console.log("Variants not defined for " + AssetItem.Name + " " + AssetItem.Group);continue;}
+				if(! AssetItem.Variant) {console.log("Variants not defined for " + AssetItem.Name + " " + AssetItem.Group);continue;}
 			
 			if(AssetVariant && AssetVariant.Property && AssetVariant.Property.Effect)
 				result.push(...AssetVariant.Property.Effect)
@@ -144,8 +144,8 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 				if(AssetItem && AssetItem.Variant && ! AssetItem.Variant[item.variant]) throw "VariantNotFound " + item.variant;
 				
 				if(item){
-					if(item.name == "LoveChastityBelt" && ! (this.IsPlayerOwner(playerTarget, playerOrigin) || this.IsPlayerLover(playerTarget, playerOrigin))) throw "OwnerOrLoverOnly";
-					if(item.name == "SlaveCollar" && ! (this.IsPlayerOwner(playerTarget, playerOrigin))) throw "OwnerOnly";
+					if(item.name == "LoveChastityBelt" && ! (this.IsPlayerOwnedBy(playerTarget, playerOrigin) || this.IsPlayerLover(playerTarget, playerOrigin))) throw "OwnerOrLoverOnly";
+					if(item.name == "SlaveCollar" && ! (this.IsPlayerOwnedBy(playerTarget, playerOrigin))) throw "OwnerOnly";
 					
 					var Prerequisite = AssetGroup.Prerequisite;
 					Prerequisite = AssetItem.Prerequisite ? AssetItem.Prerequisite : Prerequisite;
@@ -179,7 +179,7 @@ F3dcgAssets.IsPlayerFriendListed = function(playerTarget, playerOrigin){return p
 F3dcgAssets.IsPlayerGhostListed = function(playerTarget, playerOrigin){return  playerTarget.profile.friends.includes(playerOrigin.id);}
 F3dcgAssets.IsPlayerBlackListed = function(playerTarget, playerOrigin){return playerTarget.permissions.players.black.includes(playerOrigin.id);}
 F3dcgAssets.IsPlayerWhiteListed = function(playerTarget, playerOrigin){return playerTarget.permissions.players.white.includes(playerOrigin.id);}
-F3dcgAssets.IsPlayerOwner = function(playerTarget, playerOrigin){return playerTarget.profile.owner && playerTarget.profile.owner.id == playerOrigin.id;}
+F3dcgAssets.IsPlayerOwnedBy = function(playerSub, playerDom){return playerDom && playerSub.profile.owner && playerSub.profile.owner.id == playerDom.id;}
 F3dcgAssets.IsPlayerLover = function(playerTarget, playerOrigin){return false;}//TODO when figure out lovership
 
 F3dcgAssets.IsPlayerDomEnough = function(playerTarget, playerOrigin){return playerOrigin.club.reputation.Dominant - playerTarget.club.reputation.Dominant >= -25;}
@@ -199,9 +199,9 @@ F3dcgAssets.DoesPlayerHavePermission = function(permissionActionType, pT, pO){
 		case "2": case 2: //Any Dom and whitelist
 			return this.IsPlayerWhiteListed(pT, pO) 
 					|| (! ! this.IsPlayerGhostListed(pT, pO) && ! this.IsPlayerBlackListed(pT, pO) && this.IsPlayerDomEnough(pT, pO));
-		case "3": case 3: return this.IsPlayerOwner(pT, pO) || this.IsPlayerLover(pT, pO) || this.IsPlayerWhiteListed(pT, pO); //Owner, lover, whitelist
-		case "4": case 4: return this.IsPlayerOwner(pT, pO) || this.IsPlayerLover(pT, pO);  //Owner, lover
-		case "5": case 5: return this.IsPlayerOwner(pT, pO); //Owner only		
+		case "3": case 3: return this.IsPlayerOwnedBy(pT, pO) || this.IsPlayerLover(pT, pO) || this.IsPlayerWhiteListed(pT, pO); //Owner, lover, whitelist
+		case "4": case 4: return this.IsPlayerOwnedBy(pT, pO) || this.IsPlayerLover(pT, pO);  //Owner, lover
+		case "5": case 5: return this.IsPlayerOwnedBy(pT, pO); //Owner only		
 		default: throw "Unimplemented permission type " + pT.permissions.actions[permissionActionType];
 	}
 }
@@ -243,7 +243,7 @@ F3dcgAssets.CanLockItem = function(playerTarget, playerOrigin, lockName){
 	if(lockName == "MistressTimerPadlock") return true;
 	
 	if(lockName == "OwnerPadlock" || lockName == "OwnerTimerPadlock")
-		return playerOrigin && this.IsPlayerOwner(playerTarget, playerOrigin)
+		return playerOrigin && this.IsPlayerOwnedBy(playerTarget, playerOrigin)
 	
 	//if(lockName == "ExclusivePadlock")
 		//return playerOrigin && playerOrigin.id != playerTarget.id;
@@ -260,7 +260,7 @@ F3dcgAssets.CanUnlockItem = function(playerTarget, playerOrigin, appearanceItem)
 	
 	if(appearanceItem.lock.name == "TimerPadlock") return false;
 	if(appearanceItem.lock.name == "CombinationPadlock") return true;//no point validating the combination code server side
-	if(this.IsPlayerOwner(playerTarget, playerOrigin)) return true;//owner can unlock any lock, except timer padlock, even without key
+	if(this.IsPlayerOwnedBy(playerTarget, playerOrigin)) return true;//owner can unlock any lock, except timer padlock, even without key
 	
 	if(appearanceItem.lock.name == "OwnerPadlock" || appearanceItem.lock.name == "OwnerTimerPadlock"){
 		if(! playerOrigin) return false;//no self locking by owner lock
@@ -439,6 +439,7 @@ F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffec
 			case "GasMask":
 			case "CanUseAlphaHood":
 			case "CannotUseWithAlphaHood":
+			case "TargetCanUseTongue":
 				return "";//TODO
 			
 			default: 

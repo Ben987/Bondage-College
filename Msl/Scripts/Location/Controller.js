@@ -167,8 +167,9 @@ var LocationController = {
 		LocationController.InterruptDelegateActions();
 	}
 	
-	,StartPlayerActivity(targetPlayer, groupName, activityName){
-		MslServer.Send("ActionStart", {type:"Activity", targetPlayerId:targetPlayer.id, activityName:activityName, groupName:groupName}, function(data){
+	,StartPlayerActivity(targetPlayer, activityData){
+		console.log(activityData);
+		MslServer.Send("ActionStart", {type:"Activity", targetPlayerId:targetPlayer.id, activityName:activityData.activityName, itemName:activityData.itemName, groupName:activityData.groupName}, function(data){
 			this.OnLocationAction(data);
 		}.bind(this));
 		LocationController.InterruptDelegateActions();
@@ -236,7 +237,7 @@ var LocationController = {
 	}
 	
 	,LocationAction_Activity(data){
-		//console.log(data);//handled by chat 
+		//console.log(data);//handled by chat 	
 	}
 	
 	,LocationAction_ChangePose(data){

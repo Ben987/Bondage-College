@@ -198,7 +198,7 @@ div.chat-hover-item:after {
 
 
 .dialog-appearance-group > .items-actions {width:100%;height:85%;position:relative}
-.dialog-appearance-group > .items-actions > div {position:absolute;width:100%;height:100%; }
+.dialog-appearance-group > .items-actions > div {position:absolute;width:100%;height:100%; overflow-y: auto;}
 
 .dialog-appearance-group > .items-actions > .items {overflow-y:scroll; }
 .dialog-appearance-group > .items-actions > .items > div {position:relative;width:22%;padding-top:22%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:white; word-break:break-word}

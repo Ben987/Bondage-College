@@ -14,7 +14,10 @@ var F3dcgAssetsInventory = {
 				,[F3dcgAssets.ACCESSORY]:F3dcgAssets.DoesPlayerHavePermission(F3dcgAssets.ACCESSORY, playerTarget, playerOrigin)
 				,[F3dcgAssets.BONDAGE_TOY]:F3dcgAssets.DoesPlayerHavePermission(F3dcgAssets.BONDAGE_TOY, playerTarget, playerOrigin)
 			}
+			,isOwned:F3dcgAssets.IsPlayerOwnedBy(playerTarget, playerOrigin)
+			,isLover:F3dcgAssets.IsPlayerLover(playerTarget, playerOrigin)
 		}
+		validationFlagsCache.isFullyOwned = validationFlagsCache.isOwned && playerTarget.profile.owner?.stage;
 		
 		var ownableTypes = [F3dcgAssets.ACCESSORY, F3dcgAssets.BONDAGE_TOY, F3dcgAssets.CLOTHES];  //everything else is enabled by default
 		
@@ -158,7 +161,11 @@ var F3dcgAssetsInventory = {
 					variant.iconUrl = F3dcgAssets.F3DCG_TYPE_ICON_BASE + groupName + "/" + namePart + "/" + variantNamePart + ".png";
 					if(groupName == "ItemNeckAccessories") variant.iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + groupName + "/" + namePart + variantNamePart + ".png";
 					
-					if(AssetItem.Name == "LoveChastityBelt"){
+					if(AssetItem.Name == "SlaveCollar"){
+						var collarName = variant.name.includes("Collar") ? variant.name : variant.name + "Collar";
+						if(collarName == "LeatherPostureCollar") collarName = "PostureCollar";
+						variant.iconUrl = this.GetIconUrlForItem(collarName);
+					}else if(AssetItem.Name == "LoveChastityBelt"){
 						variant.iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + "ItemPelvis/LoveChastityBelt_Small_"+variantNamePart+".png"
 					}else if(AssetItem.Name == "BondageBench"){
 						if(Variant.Name == "Base")
@@ -183,6 +190,14 @@ var F3dcgAssetsInventory = {
 			if(AssetItem.VibeCommon && applicableGroup.actions.vibe !== false)
 				if(F3dcgAssets.CanChangeVibeLevel(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin, applicableGroup.currentItem))
 					applicableGroup.actions.vibe = true;
+			
+			if(applicableGroup.currentItem.name == "SlaveCollar"){
+				if(validationFlagsCache.isFullyOwned)//Assuming only fully collared subs wear it
+					applicableItems[F3dcgAssets.BONDAGE_TOY].ItemNeck.actions = {changeItem:false, removeItem:false, variants:true}
+				else{
+					applicableItems[F3dcgAssets.BONDAGE_TOY].ItemNeck.actions = {changeItem:false, removeItem:false, variants:false}
+				}
+			}
 		}
 	}
 	
@@ -204,14 +219,12 @@ var F3dcgAssetsInventory = {
 	
 	,AddBondageToyItem(applicableItems, itemName, validationFlagsCache){
 		if(F3dcgAssets.IgnoreItems.includes(itemName)) return;
-		
-		if(itemName == "LoveChastityBelt" 
-				&& ! (F3dcgAssets.IsPlayerOwner(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin) 
-						|| F3dcgAssets.IsPlayerLover(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin)))
-			return;
-		if(itemName == "SlaveCollar" && ! (F3dcgAssets.IsPlayerOwner(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin))) return;
+		if(itemName == "LoveChastityBelt" && ! (validationFlagsCache.isOwned || validationFlagsCache.isLover))	return;
 		
 		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+		
+		//if(itemName == "SlaveCollar" && ! (F3dcgAssets.IsPlayerOwner(validationFlagsCache.playerTarget, validationFlagsCache.playerOrigin))) return;
+		
 		if(F3dcgAssets.IgnoreGroups.includes(groupName)) return;
 		var AssetItem = F3dcgAssets.AssetGroups[groupName].Items[itemName];
 		var namePart = AssetItem.Name.includes("_") ?  AssetItem.Name.split("_")[0] :  AssetItem.Name;
@@ -257,14 +270,13 @@ var F3dcgAssetsInventory = {
 			var layerPart = AssetItem.Layer ? "_" + AssetItem.Layer[0].Name : "";
 			var parentPart = AssetGroup.ParentGroup && ! AssetItem.IgnoreParentGroup ? "_Normal" : "";
 			return F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + "/" + AssetItem.Name + parentPart + layerPart + ".png";
-			
 		}else{
 			var namePart = AssetItem.Name.includes("_") ?  AssetItem.Name.split("_")[0] : AssetItem.Name;
 			var previewPart = "/Preview/";
 			["Ears1", "Ears2", "PonyEars1", "Ribbons1", "Ribbons2", "Ribbons3", "Ribbons4", "GiantBow1"].forEach(diplicateEarItemName => {
 				if(itemName.includes(diplicateEarItemName))
 					previewPart = "/";
-			})
+			});
 			
 			var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + previewPart + namePart + ".png";
 			return iconUrl;
@@ -360,6 +372,8 @@ var F3dcgAssetsInventory = {
 		var posesEffectsBlock = validationFlagsCache.posesEffectsBlocksOrigin;
 		
 		activities.forEach(activityName => {
+			if(activityName.includes("Item")) return;
+		
 			var Activity = F3dcgAssets.Activities[activityName];
 			var validationPassed = true;
 			
@@ -369,6 +383,9 @@ var F3dcgAssetsInventory = {
 						if(posesEffectsBlock.effects.includes("BlockMouth"))
 							validationPassed = false;
 					break;
+					case "TargetCanUseTongue":
+						if(validationFlagsCache.posesEffectsBlocksTarget.effects.includes("BlockMouth"))
+							validationPassed = false;						
 					case "UseTongue":
 						if(posesEffectsBlock.effects.includes("BlockMouth"))
 							validationPassed = false;					
@@ -409,14 +426,10 @@ var F3dcgAssetsInventory = {
 		
 		if(currentEquippedItem){
 			var AssetItem = F3dcgAssets.AssetGroups.ItemHands.Items[currentEquippedItem.name];
-			console.log(AssetItem.Activity);
-			if(AssetItem.Activity){
-				console.log("pushing");
+			if(AssetItem.Activity && (activities.includes(AssetItem.Activity) || activities.includes(AssetItem.Activity.substring(0, AssetItem.Activity.length-4)) )){
 				applicableGroup.actions.activity.push({name:AssetItem.Activity, itemName:currentEquippedItem.name, iconUrl:F3dcgAssets.F3DCG_ASSET_BASE + "ItemHands/Preview/" + currentEquippedItem.name + ".png"})
 			}
 		}
-		
-		
 	}
 }
 

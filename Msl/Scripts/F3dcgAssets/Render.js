@@ -161,8 +161,8 @@ var F3dcgAssetsRender = {
 			
 			if(appearanceItem.lock) renderItem.layers.push({colorize:false, priority:AssetItem.Priority, url:F3dcgAssets.F3DCG_ASSET_BASE + groupPart +  posePart + itemPart + "_Lock.png"});
 			//item.urlLock = groupPart + posePart + itemPart + "_Lock.png";
-		} else {		
-			if(AssetItem.Variant)
+		} else {
+			if(AssetItem.Variant && appearanceItem.name != "SlaveCollar")
 				variantPart = variantPart == Object.keys(AssetItem.Variant)[0] ? "" : variantPart;
 			
 			//if(posePart) variantPart = ""; //Leather cuffs

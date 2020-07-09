@@ -263,11 +263,13 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 			if(applicableGroup.actions.color)
 				buttonsToShow.push("color");
 			
-			if(applicableGroup.actions.variants){
-				buttonsToShow.push("variants");				
+			if(applicableGroup.currentItem.variants){
+				buttonsToShow.push("variants");
 				var variantData = applicableGroup.currentItem.variants[applicableGroup.currentItem.variant];
 				this.groupItemActions.variants.button.childNodes[0].src = variantData.iconUrl;
-				this.groupItemActions.variants.controller.SetItem(applicableGroup.currentItem);
+				console.log(applicableGroup.actions);
+				if(applicableGroup.actions.variants)
+					this.groupItemActions.variants.controller.SetItem(applicableGroup.currentItem);
 			}
 			
 			if(applicableGroup.currentItem.lock){
@@ -313,11 +315,11 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	}
 	
 	
-	this.GroupItemActionCallback_activity = function(activityName){
+	this.GroupItemActionCallback_activity = function(activityData){
 		if(this.mainDialog.updateDelegate.HasChanges())
 			this.DisplayErrors(["ClearChanges"]);
 		else
-			LocationController.StartPlayerActivity(this.mainDialog.updateDelegate.player, this.selectedItemGroupName, activityName);	
+			LocationController.StartPlayerActivity(this.mainDialog.updateDelegate.player, {groupName:this.selectedItemGroupName, activityName:activityData.name, itemName:activityData.itemName});	
 	}
 	
 	this.GroupItemActionCallback_vibe = function(level){
