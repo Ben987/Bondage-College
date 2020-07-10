@@ -209,6 +209,7 @@ var MainController = {
 	
 	,ShowCreateLocation(locationDef){ 
 		MainController.HideOtherAndShowView(this.containers.newLocation);
+		Util.ClearNodeContent(this.containers.newLocation);
 		
 		var buttonElement = Util.CreateElement({
 			parent:this.containers.newLocation
@@ -263,6 +264,5 @@ var MainController = {
 		
 		if(viewContainerElement)
 			viewContainerElement.style.display = "block"
-
 	}	
 }
