@@ -402,7 +402,6 @@ function TranslationDialog(C) {
  * @returns {void} - Nothing
  */
 function TranslationText(Text) {
-	console.log(Text)
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
 		
