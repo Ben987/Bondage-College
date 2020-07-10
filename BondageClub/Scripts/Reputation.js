@@ -1,5 +1,10 @@
 "use strict";
 
+// Pushes the reputation to the server
+function ReputationSave(R) {
+	ServerPlayerReputationSync();
+}
+
 // When we need to alter a reputation (positive or negative)
 function ReputationChange(RepType, RepValue, Push) {
 
@@ -13,7 +18,7 @@ function ReputationChange(RepType, RepValue, Push) {
 				Player.Reputation[R].Value = Player.Reputation[R].Value + RepValue;
 				if (Player.Reputation[R].Value > 100) Player.Reputation[R].Value = 100;
 				if (Player.Reputation[R].Value < -100) Player.Reputation[R].Value = -100;
-				if ((Push == null) || Push) ServerPlayerReputationSync();
+				if ((Push == null) || Push) ReputationSave(Player.Reputation[R]);
 				return;
 			}
 
@@ -25,7 +30,7 @@ function ReputationChange(RepType, RepValue, Push) {
 		if (NewRep.Value > 100) NewRep.Value = 100;
 		if (NewRep.Value < -100) NewRep.Value = -100;
 		Player.Reputation.push(NewRep);
-		if ((Push == null) || Push) ServerPlayerReputationSync();
+		if ((Push == null) || Push) ReputationSave(NewRep);
 
 	}
 
