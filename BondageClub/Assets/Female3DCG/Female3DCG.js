@@ -25,7 +25,8 @@ var AssetSpankingToys = {
 	DynamicName: C => "SpankingToys" + InventorySpankingToysGetType(C),
 	DynamicGroupName: "ItemHands",
 	DynamicActivity: C => InventorySpankingToysGetActivity(C),
-	IgnoreParentGroup: true
+	IgnoreParentGroup: true,
+	Effect: []
 };
 
 // 3D Custom Girl based assets
