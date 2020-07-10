@@ -12,49 +12,41 @@ const ZiptiesArmsOptions = [
 		ArmsOnly: true
 	}, {
 		Name: "ZipFull",
-		RequiredBondageLevel: null,
 		Property: { Type: "ZipFull", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
 		ArmsOnly: true
 	}, {
 		Name: "ZipElbowWrist",
-		RequiredBondageLevel: 2,
 		Property: { Type: "ZipElbowWrist", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 1 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
 		ArmsOnly: true
 	}, {
 		Name: "ZipWristLight",
-		RequiredBondageLevel: 3,
 		Property: { Type: "ZipWristLight", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
         ArmsOnly: true
     }, {
 		Name: "ZipWristMedium",
-		RequiredBondageLevel: 3,
 		Property: { Type: "ZipWristMedium", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
         ArmsOnly: true
     }, {
 		Name: "ZipWristFull",
-		RequiredBondageLevel: 3,
 		Property: { Type: "ZipWristFull", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
         ArmsOnly: true
     }, {
 		Name: "ZipWrist",
-		RequiredBondageLevel: 2,
 		Property: { Type: "ZipWrist", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
 		ArmsOnly: true
 	}, {
 		Name: "ZipHogtie",
-		RequiredBondageLevel: 4,
 		Property: { Type: "ZipHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], SetPose: ["Hogtied"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false
 	}, {
 		Name: "ZipAllFours",
-		RequiredBondageLevel: 6,
 		Property: { Type: "ZipAllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], SetPose: ["AllFours"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false
