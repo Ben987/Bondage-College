@@ -102,8 +102,14 @@ window.addEventListener('resize', MainContainer.Resize, false);
 		
 		<div id="MainView" class="full-block" style="">
 			<div name="login" class="full-block">
-				<select name="userList"></select>
+
+				<select name="userList"></select><br />
+				
+				Name <input name="AccountName" /><br />
+				Password <input type="password" name="Password" /><br />
+				
 				<button onclick="MainController.Login()">Login</button>
+
 				<br />
 			</div>
 			

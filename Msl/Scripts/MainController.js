@@ -33,11 +33,12 @@ var MainController = {
 	}
 	
 	,Login(playerId){
-		var userSelect = Util.GetFirstChildNodeByName(this.containers.login, "userList");
+		var name = Util.GetFirstChildNodeByName(this.containers.login, "AccountName").value;
+		var pass = Util.GetFirstChildNodeByName(this.containers.login, "Password").value;
+		var userSelect = Util.GetFirstChildNodeByName(this.containers.login, "userList");		
+		playerId = playerId ? playerId : userSelect.value ? parseInt(userSelect.value) : 0;
 		
-		playerId = playerId ? playerId : parseInt(userSelect.value);
-		
-		MslServer.Send("Login", {playerId:playerId}, function(data){
+		MslServer.Send("Login", {playerId:playerId, AccountName:name, Password:pass}, function(data){
 			console.log("From Server: Login", data);
 			
 			sessionStorage.setItem("playerId", data.playerId), 
