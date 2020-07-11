@@ -27,7 +27,6 @@ function InventoryItemFeetZiptiesLoad() {
 function InventoryItemFeetZiptiesDraw() {
 
 	// Draw the header and item
-	DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
 	DrawRect(1387, 55, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 57, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 310, 221, "black");
