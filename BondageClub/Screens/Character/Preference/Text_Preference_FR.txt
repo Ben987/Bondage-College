@@ -16,8 +16,8 @@ Owner only
 Patronne seulement
 Put a valid hex #red-green-blue color
 Entrez un code de couleur hex #rouge-vert-bleu valide
-- Chat display settings -
-- Paramètres d'affichage du chat -
+- Chat Preferences -
+- Préférences du chat -
 Color theme:
 Thème de couleur:
 Light
@@ -25,7 +25,7 @@ Clair
 Dark
 Sombre
 Enter/Leave message style:
-Style des messages entrer / quitter:
+Messages entrer/quitter:
 Normal
 Normal
 Smaller
@@ -33,7 +33,7 @@ Petit
 Hidden
 Caché
 Display member numbers:
-Afficher les numéros de membre:
+Numéros de membre:
 Always
 Toujours
 Never
@@ -64,3 +64,137 @@ Keep all of your restraints when relogging
 Gardez toutes vos contraintes lors de la reconnexion
 Display all characters at maximum height
 Afficher tous les personnages à la hauteur maximale
+- Audio Preferences -
+- Préférences audio -
+- Arousal Meter & Sexual Activities Preferences -
+- Compteur de plaisir & préférences pour les activités sexuelles -
+- Security Preferences -
+- Préférences de sécurité -
+Owner and Lover only
+Patronne et Amante seulement
+Show sexual activities & orgasms
+Afficher les activités sexuelles et les orgasmes
+Ban blacklist when creating a room
+Barrer la liste noire en créant une salle
+Ban ghostlist when creating a room
+Barrer la liste des fantômes des salles
+Play item sounds in chatrooms
+Jouer les sons dans les salons de discussion
+Only play item sounds if you're involved
+Jouer les sons seulement si impliquée
+Show AFK bubble if idle for 5 minutes
+Afficher la bulle AFK si inactif pendant 5 minutes
+Linking an email will allow password recovery
+Lier un e-mail permettra la récupération du mot de passe
+Update Email
+Mettre à jour le courriel
+Current email:
+Courriel actuel:
+New email:
+Nouveau courriel:
+No email saved, write here to add one
+Aucun courriel enregistré, écrivez ici pour en ajouter un
+An email is linked, write it here to update it
+Un courriel est lié, écrivez-le ici pour le mettre à jour
+Your email has been updated !
+Votre courriel a été mis à jour!
+Current email does not match
+Le courriel actuel ne correspond pas
+Invalid characters
+Caractères invalides
+Show other characters meter
+Voir le compteur des autres
+Affect your facial expressions
+Affecte vos expressions faciales
+Activation:
+Activation:
+Disable sexual activities
+Désactiver les activités sexuelles
+Allow without a meter
+Autoriser sans compteur
+Allow with a manual meter
+Autoriser avec un compteur manuel
+Allow with a hybrid meter
+Autoriser avec un compteur hybride
+Allow with a locked meter
+Autoriser avec un compteur verrouillé
+Meter visibility:
+Visibilité du compteur:
+Show arousal to everyone
+Montrez le niveau d'excitation à tout le monde
+Show if they have access
+Montrer s'ils ont accès
+Show to yourself only
+Montrez à vous seulement
+Activity preferences:
+Préférences d'activité:
+Done on yourself:
+Fait sur vous:
+Doing it to others:
+Le faire aux autres:
+Forbid/Block it
+Interdire/Bloquer
+Doesn't like it
+Je n'aime pas
+Neutral on it
+Neutre
+Like it
+J'aime
+Adore it
+J'adore
+Click on yourself to set your erogenous zones
+Cliquez sur vous pour définir vos zones érogènes
+Configure this zone to be erogenous or not
+Configurer cette zone pour qu'elle soit érogène ou non
+Block all activities on this zone
+Bloquer toutes les activités sur cette zone
+Dislike this zone, it's a turn-off
+Je n'aime pas cette zone, ça vous rebute
+This zone isn't special for you
+Cette zone n'est pas spéciale pour vous
+Like this zone, it turns you on
+Vous aimez cette zone, elle vous excite
+Love this zone, it's a big turn-on
+J'adore cette zone, c'est une grande source d'excitation
+This zone can give you an orgasm
+Cette zone peut donner un orgasme
+Feet & Toes
+Pieds & Orteilles
+Lower Legs
+Jambes (bas)
+Upper Legs
+Jambes (haut)
+Clitoris & Vagina
+Clitoris & Vagin
+Butt / Anal
+Derrière / Anal
+Pelvis & Belly
+Bassin & Ventre
+Torso & Ribs
+Torse et Côtes
+Nipples
+Mamelons
+Breast
+Sein
+Arms & Shoulders
+Bras et Épaules
+Hands
+Mains
+Neck
+Cou
+Mouth & Lips
+Bouche & Lèvres
+Head & Hair
+Tête & Cheveux
+Ears
+Oreilles
+Speech stuttering:
+Bégaiement:
+Never stutter
+Jamais
+When you're aroused
+Quand excitée
+When you're vibrated
+En portant un vibrateur
+Aroused & vibrated
+Quand excité & En portant un vibrateur

@@ -113,6 +113,7 @@ var TranslationDictionary = [
 		Files: [
 			"Assets/Female3DCG/Female3DCG_FR.txt",
 			"Screens/Character/Appearance/Text_Appearance_FR.txt",
+			"Screens/Character/BackgroundSelection/Text_BackgroundSelection_FR.txt",
 			"Screens/Character/Cheat/Text_Cheat_FR.txt",
 			"Screens/Character/Creation/Text_Creation_FR.txt",
 			"Screens/Character/FriendList/Text_FriendList_FR.txt",
