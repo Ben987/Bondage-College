@@ -493,7 +493,10 @@ var AssetFemale3DCG = [
 			{ Name: "Crown2", Value: 20 },
 			{ Name: "Crown3", Value: 20 },
 			{ Name: "Crown4", Value: 20 },
-			{ Name: "Crown5", Value: 20 }
+			{ Name: "Crown5", Value: 20 },
+			{ Name: "SmallHat1", Value: 30 },
+			{ Name: "Veil1", Value: 40 },
+			{ Name: "Veil2", Value: 40 }
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
@@ -641,7 +644,14 @@ var AssetFemale3DCG = [
 			{ Name: "DominoMask", HideItem: ["ItemHeadNoseRing"] },
 			{ Name: "ButterflyMask", Value: 30, HideItem: ["ItemHeadNoseRing"] },
 			{ Name: "ShinobiMask", Value: 30, Left: 199, Top: 88, HideItem: ["ItemHeadNoseRing"] },
-			{ Name: "FoxMask", Value: 30, Left: 150, Top: 20, HideItem: ["ItemHeadNoseRing"] }],
+			{ Name: "FoxMask", Value: 30, Left: 150, Top: 20, HideItem: ["ItemHeadNoseRing"] },
+			{ Name: "BunnyMask1", Value: 40, Left: 150, Top: 20, Priority: 48, HideItem: ["ItemHeadNoseRing", "HairAccessory1Ears1", "HairAccessory2Ears1", "HairAccessory1PonyEars1", "HairAccessory2PonyEars1", "HairAccessory1FoxEars1", "HairAccessory2FoxEars1", "HairAccessory1FoxEars3", "HairAccessory2FoxEars3", "HairAccessory1RaccoonEars1", "HairAccessory2RaccoonEars1", "HatVeil1", "HatVeil2", "HatCaptainHat1", "HatPoliceWomanHat"], Hide: ["Glasses"] },
+			{ Name: "BunnyMask2", Value: 40, Left: 150, Top: 20, Priority: 48, HideItem: ["ItemHeadNoseRing", "HairAccessory1Ears1", "HairAccessory2Ears1", "HairAccessory1PonyEars1", "HairAccessory2PonyEars1", "HairAccessory1FoxEars1", "HairAccessory2FoxEars1", "HairAccessory1FoxEars3", "HairAccessory2FoxEars3", "HairAccessory1RaccoonEars1", "HairAccessory2RaccoonEars1", "HatVeil1", "HatVeil2", "HatCaptainHat1", "HatPoliceWomanHat"], Hide: ["Glasses"] },
+			{ Name: "BunnyMask3", Value: 40, Left: 150, Top: 20, Priority: 48, HideItem: ["ItemHeadNoseRing", "HairAccessory1Ears1", "HairAccessory2Ears1", "HairAccessory1PonyEars1", "HairAccessory2PonyEars1", "HairAccessory1FoxEars1", "HairAccessory2FoxEars1", "HairAccessory1FoxEars3", "HairAccessory2FoxEars3", "HairAccessory1RaccoonEars1", "HairAccessory2RaccoonEars1", "HatVeil1", "HatVeil2", "HatCaptainHat1", "HatPoliceWomanHat"], Hide: ["Glasses"] },
+			{ Name: "KittyMask1", Value: 30, Left: 150, Top: 20, Priority: 48, HideItem: ["ItemHeadNoseRing", "HatVeil1", "HatVeil2"], Hide: ["Glasses"] },
+			{ Name: "KittyMask2", Value: 30, Left: 150, Top: 20, Priority: 48, HideItem: ["ItemHeadNoseRing", "HatVeil1", "HatVeil2"], Hide: ["Glasses"] },
+			{ Name: "LaceMask1", Value: 25, Left: 150, Top: 20, Priority: 48, HideItem: ["ItemHeadNoseRing", "HatVeil1", "HatVeil2"], Hide: ["Glasses"] },
+			{ Name: "LaceMask2", Value: 25, Left: 150, Top: 20, Priority: 48, HideItem: ["ItemHeadNoseRing", "HatVeil1", "HatVeil2"], Hide: ["Glasses"] }],
 		Color: ["#303030", "#808080", "#e0e0e0", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 	},
 
@@ -1158,6 +1168,8 @@ var AssetFemale3DCG = [
 			{ Name: "VibratingDildoPlug", Value: 60, Time: 10, Visible: false, BuyGroup: "VibratingDildo", Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], Effect: ["IsPlugged", "Egged"] },
 			{ Name: "BunnyTailPlug1", Value: 1, Time: 10, Visible: false, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
 			{ Name: "BunnyTailPlug2", Value: 1, Time: 10, Visible: false, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
+			{ Name: "BunnyTailVibePlug", Effect: ["Egged"], Value: 75, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"], Visible: false },
+			{ Name: "EggVibePlugXXL", Effect: ["Egged"], Value: 90, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"], Visible: false },
 			{ Name: "ShockPlug", Value: 60, Time: 10, Visible: false, Extended: true, AlwaysExtend: true, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
 			AssetSpankingToys
 		],
