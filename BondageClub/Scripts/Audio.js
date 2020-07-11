@@ -119,9 +119,9 @@ function AudioPlayContent(data) {
 		}
 	} else {
 		// When the vibrator or inflatable level increases or decreases
-		if(data.Content.includes("pumps") || data.Content.includes("Suctightens") || data.Content.includes("InflatableBodyBagRestrain"))
+		if (data.Content.includes("pumps") || data.Content.includes("Suctightens") || data.Content.includes("InflatableBodyBagRestrain"))
 			audioFile = "Audio/Inflation.mp3";
-		else if(data.Content.includes("deflates") || data.Content.includes("Sucloosens"))
+		else if (data.Content.includes("deflates") || data.Content.includes("Sucloosens"))
 			audioFile = "Audio/Deflation.mp3";
 		else if (data.Content.includes("Decrease") || data.Content.includes("Increase")) { 
 			if (data.Content.endsWith("-1")) return; // special case of turning vibrators off, may be a click sound in the future?
@@ -149,12 +149,12 @@ function AudioPlayContent(data) {
 			var shockLevel = parseInt(data.Content.substr(data.Content.length - 1));
 			if (!isNaN(shockLevel)) noiseLevelModifier+= shockLevel * 3;
 			audioFile = "Audio/Shocks.mp3";
-		} else if (data.Content.includes("ShacklesRestrain") || data.Content.includes("Ornate")){
+		} else if (data.Content.includes("ShacklesRestrain") || data.Content.includes("Ornate")) {
 			audioFile = "Audio/CuffsMetal.mp3";
-		} else if (data.Content.includes("RopeSet")){
+		} else if (data.Content.includes("RopeSet")) {
 			audioFile = "Audio/RopeShort.mp3";
 			data.Sender = data.Dictionary.find(function (el) {return el.Tag == "SourceCharacter";}).MemberNumber;
-		} else if (data.Content.includes("ChainSet")){
+		} else if (data.Content.includes("ChainSet")) {
 			audioFile = "Audio/ChainLong.mp3";
 			data.Sender = data.Dictionary.find(function (el) {return el.Tag == "SourceCharacter";}).MemberNumber;
 		}

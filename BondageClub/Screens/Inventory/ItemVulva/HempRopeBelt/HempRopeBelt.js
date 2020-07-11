@@ -14,14 +14,14 @@ function InventoryItemVulvaHempRopeBeltDraw() {
 	else DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
-	if(DialogFocusItem.Property.Intensity > -1) DrawButton(1200, 650, 200, 55, DialogFind(Player, "TurnOff"), "White");
-	if(DialogFocusItem.Property.Intensity < 0) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Low"), "White");
-	if(DialogFocusItem.Property.Intensity > 0) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Low"), "White");
-	if(DialogFocusItem.Property.Intensity < 1) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Medium"), "White");
-	if(DialogFocusItem.Property.Intensity > 1) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Medium"), "White");
-	if(DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
-	if(DialogFocusItem.Property.Intensity > 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
-	if(DialogFocusItem.Property.Intensity < 3) DrawButton(1375, 770, 200, 55, DialogFind(Player, "Maximum"), "White");
+	if (DialogFocusItem.Property.Intensity > -1) DrawButton(1200, 650, 200, 55, DialogFind(Player, "TurnOff"), "White");
+	if (DialogFocusItem.Property.Intensity < 0) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Low"), "White");
+	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Low"), "White");
+	if (DialogFocusItem.Property.Intensity < 1) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Medium"), "White");
+	if (DialogFocusItem.Property.Intensity > 1) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Medium"), "White");
+	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
+	if (DialogFocusItem.Property.Intensity > 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
+	if (DialogFocusItem.Property.Intensity < 3) DrawButton(1375, 770, 200, 55, DialogFind(Player, "Maximum"), "White");
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");	
 }
 

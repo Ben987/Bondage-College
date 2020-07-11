@@ -48,7 +48,7 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
             () => OwnerTimerChooseList[(OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"),
             () => OwnerTimerChooseList[(OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"));
     }
-    else if (Player.CanInteract() && DialogFocusSourceItem.Property.EnableRandomInput){
+    else if (Player.CanInteract() && DialogFocusSourceItem.Property.EnableRandomInput) {
         for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
             if (DialogFocusSourceItem.Property.MemberNumberList[I] == Player.MemberNumber) return;
         }
@@ -82,7 +82,7 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
             }
         }
         else if (DialogFocusSourceItem.Property.EnableRandomInput) {
-            for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++){
+            for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
                 if (C.IsOwnedByPlayer()) return;
             }
             if ((MouseX >= 1100) && (MouseX < 1350)) { InventoryItemMiscOwnerTimerPadlockAdd(-2 * 3600, true); }

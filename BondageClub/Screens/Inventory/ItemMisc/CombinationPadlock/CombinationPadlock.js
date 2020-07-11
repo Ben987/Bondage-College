@@ -48,10 +48,10 @@ function InventoryItemMiscCombinationPadlockClick() {
 	var C = CharacterGetCurrent();
 	var Item = InventoryGet(C, C.FocusGroup.Name);
 
-	if ((MouseX >= 1600) && (MouseX <= 1950) && !InventoryGroupIsBlocked(C, C.FocusGroup.Name)){
+	if ((MouseX >= 1600) && (MouseX <= 1950) && !InventoryGroupIsBlocked(C, C.FocusGroup.Name)) {
 		// Opens the padlock
-		if ((MouseY >= 771) && (MouseY <= 835)){
-			if (ElementValue("CombinationNumber") == DialogFocusSourceItem.Property.CombinationNumber){
+		if ((MouseY >= 771) && (MouseY <= 835)) {
+			if (ElementValue("CombinationNumber") == DialogFocusSourceItem.Property.CombinationNumber) {
 				delete DialogFocusSourceItem.Property.CombinationNumber;
 				for (var A = 0; A < C.Appearance.length; A++) {
 					if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
