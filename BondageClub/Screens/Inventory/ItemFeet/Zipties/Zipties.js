@@ -3,13 +3,13 @@
 const ZiptiesFeetOptions = [
 	{
 		Name: "ZipFeetLight",
-		Property: { Type: null, SetPose: ["FeetClosed"], Difficulty: 1 },
+		Property: { Type: null, SetPose: ["LegsClosed"], Difficulty: 1 },
 	}, {
 		Name: "ZipFeetMedium",
-		Property: { Type: "ZipFeetMedium", SetPose: ["FeetClosed"], Difficulty: 2 },
+		Property: { Type: "ZipFeetMedium", SetPose: ["LegsClosed"], Difficulty: 2 },
 	}, {
 		Name: "ZipFeetFull",
-		Property: { Type: "ZipFeetFull", SetPose: ["FeetClosed"], Difficulty: 2 },
+		Property: { Type: "ZipFeetFull", SetPose: ["LegsClosed"], Difficulty: 2 },
 	}, 
 ];
 
