@@ -1269,6 +1269,7 @@ function ChatRoomGameResponse(data) {
 function ChatRoomSafeword() {
 	if (ChatSearchSafewordAppearance != null) {
 		Player.Appearance = ChatSearchSafewordAppearance.slice(0);
+		CharacterSetActivePose(Player, ChatSearchSafewordPose);
 		CharacterRefresh(Player);
 		ChatRoomCharacterUpdate(Player);
 		ServerSend("ChatRoomChat", { Content: "ActionActivateSafeword", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name}] });

@@ -654,7 +654,8 @@ ItemArms,LatexArmbinder,Latex Armbinder
 ItemArms,SeamlessLatexArmbinder,Seamless Latex Armbinder
 ItemArms,FullBodyLeatherHarness,Full Body Leather Harness
 ItemArms,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
-ItemArms,TightJacket,Tight Straighjacket
+ItemArms,TightJacket,Tight Straitjacket
+ItemArms,LatexSleevelessLeotard,Latex Sleeveless Leotard
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -983,6 +984,7 @@ ItemBoots,LockingShoes2,Locking Full Shoes
 ItemBoots,LockingBoots1,Locking Boots
 ItemBoots,LeatherFootMitts1,Short Leather Foot Mittens
 ItemBoots,ToeTape,Toe Tape
+ItemBoots,Zipties,Zip Ties
 ItemHidden,Accessories,
 ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
 ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps

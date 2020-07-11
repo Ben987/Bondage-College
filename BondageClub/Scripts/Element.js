@@ -1,6 +1,11 @@
 "use strict";
 
-// Returns the current value of an element
+/** 
+ * Handles the value of a HTML element. It sets the value of the element when the Value parameter is provided or it returns the value when the parameter is omitted
+ * @param {string} ID - The id of the element for which we want to get/set the value.
+ * @param {string} [Value] - The value to give to the element (if applicable)
+ * @returns {string | undefined} - The value of the element (When no value parameter was passed to the function)
+ */
 function ElementValue(ID, Value) {
 	if (document.getElementById(ID) != null)
 		if (Value == null)
@@ -10,6 +15,13 @@ function ElementValue(ID, Value) {
 }
 
 // Returns the current HTML content of an element
+
+/** 
+ * Handles the content of a HTML element. It sets the content of the element when the Content parameter is provided or it returns the value when the parameter is omitted
+ * @param {string} ID - The id of the element for which we want to get/set the value.
+ * @param {string} [Content] - The content/inner HTML to give to the element (if applicable)
+ * @returns {string | undefined} - The content of the element (When no Content parameter was passed to the function)
+ */
 function ElementContent(ID, Content) {
 	if (document.getElementById(ID) != null)
 		if (Content == null)
@@ -18,7 +30,11 @@ function ElementContent(ID, Content) {
 			document.getElementById(ID).innerHTML = Content;
 }
 
-// Creates a new text area element in the main document
+/**
+ * Creates a new text area element in the main document. Does not create a new element if there is already an existing one with the same ID
+ * @param {string} ID - The id of the text area to create.
+ * @returns {void} - Nothing
+ */
 function ElementCreateTextArea(ID) {
 	if (document.getElementById(ID) == null) {
 		var TextArea = document.createElement("TextArea");
@@ -30,7 +46,14 @@ function ElementCreateTextArea(ID) {
 	}
 }
 
-// Creates a new text input element in the main document
+/** 
+ * Creates a new text input element in the main document.Does not create a new element if there is already an existing one with the same ID
+ * @param {string} ID - The id of the input tag to create.
+ * @param {string} Type - Type of the input tag to create.
+ * @param {string} Value - Value of the input tag to create.
+ * @param {string} MaxLength - Maximum input tag of the input to create.
+ * @returns {void} - Nothing
+ */
 function ElementCreateInput(ID, Type, Value, MaxLength) {
 	if (document.getElementById(ID) == null) {
 		var Input = document.createElement("input");
@@ -46,7 +69,11 @@ function ElementCreateInput(ID, Type, Value, MaxLength) {
 	}
 }
 
-// Creates a new div element in the main document
+/** 
+ * Creates a new div element in the main document. Does not create a new element if there is already an existing one with the same ID
+ * @param {string} ID - The id of the div tag to create.
+ * @returns {void} - Nothing
+ */
 function ElementCreateDiv(ID) {
 	if (document.getElementById(ID) == null) {
 		var Div = document.createElement("div");
@@ -58,13 +85,25 @@ function ElementCreateDiv(ID) {
 	}
 }
 
-// Removes an element from the main document
+/**
+ * Removes an element from the main document
+ * @param {string} ID - The id of the tag to remove from the document.
+ * @returns {void} - Nothing
+ */
 function ElementRemove(ID) {
 	if (document.getElementById(ID) != null)
 		document.getElementById(ID).parentNode.removeChild(document.getElementById(ID));
 }
 
-// Draw a regular HTML element at a specific position
+/** 
+ * Draws an existing HTML element at a specific position within the document. The element is "centered" on the given coordinates by dividing its height and width by two. 
+ * @param {string} ElementID - The id of the input tag to (re-)position.
+ * @param {number} X - Center point of the element on the X axis.
+ * @param {number} Y - Center point of the element on the Y axis.
+ * @param {number} W - Width of the element.
+ * @param {number} H - Height of the element.
+ * @returns {void} - Nothing
+ */
 function ElementPosition(ElementID, X, Y, W, H) {
 
 	// Different positions based on the width/height ratio
@@ -92,7 +131,15 @@ function ElementPosition(ElementID, X, Y, W, H) {
 
 }
 
-// Draw a regular HTML element at a specific position
+/** 
+ * Draws an existing HTML element at a specific position within the document. The element will not be centered on its given coordinates unlike the ElementPosition function. 
+ * @param {string} ElementID - The id of the input tag to (re-)position.
+ * @param {number} X - Starting point of the element on the X axis.
+ * @param {number} Y - Starting point of the element on the Y axis.
+ * @param {number} W - Width of the element.
+ * @param {number} H - Height of the element.
+ * @returns {void} - Nothing
+ */
 function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 	// Different positions based on the width/height ratio
@@ -119,7 +166,13 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 }
 
-// Sets a custom data-attribute to a specified value on a specified element
+/** 
+ * Sets a custom data-attribute to a specified value on a specified element
+ * @param {string} ID - The id of the element to create/set the data attribute of.
+ * @param {string} Name - Name of the data attribute. ("data-" will be automatically appended to it.)
+ * @param {string} Value - Value to give to the attribute.
+ * @returns {void} - Nothing
+ */
 function ElementSetDataAttribute(ID, Name, Value) {
 	var element = document.getElementById(ID);
 	if (element != null) {
@@ -127,20 +180,31 @@ function ElementSetDataAttribute(ID, Name, Value) {
 	}
 }
 
-// Scrolls to the end of a specified element
+/**
+ * Scrolls to the end of a specified element
+ * @param {string} ID - The id of the element to scroll down to the bottom of.
+ * @returns {void} - Nothing
+ */
 function ElementScrollToEnd(ID) {
 	var element = document.getElementById(ID);
 	if (element != null) element.scrollTop = element.scrollHeight;
 }
 
-// Returns TRUE if the specified element is currently scrolled to the very bottom
+/**
+ * Checks if a given HTML element is scrolled to the very bottom. 
+ * @param {string} ID - The id of the element to check for scroll height.
+ * @returns {boolean} - Returns TRUE if the specified element is scrolled to the very bottom
+ */
 function ElementIsScrolledToEnd(ID) {
 	var element = document.getElementById(ID);
-	if (element != null && element.scrollHeight - element.scrollTop - element.clientHeight < 1) return true;
-	else return false;
+	return element != null && element.scrollHeight - element.scrollTop - element.clientHeight < 1
 }
 
-// Sets focus to the specified element for regular users, not mobile
+/**
+ * Gives focus to a specified existing element for non-mobile users. 
+ * @param {string} ID - The id of the element to give focus to.
+ * @returns {void} - Nothing
+ */
 function ElementFocus(ID) {
 	if ((document.getElementById(ID) != null) && !CommonIsMobile)
 		document.getElementById(ID).focus();
