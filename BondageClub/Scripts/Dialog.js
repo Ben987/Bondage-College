@@ -307,7 +307,6 @@ function DialogInventoryBuild(C) {
 	if (C.FocusGroup != null) {
 
 		// First, we add anything that's currently equipped
-		var Item = null;
 		var CurItem = null;
 		for(var A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && C.Appearance[A].Asset.DynamicAllowInventoryAdd(C)) {
@@ -316,12 +315,20 @@ function DialogInventoryBuild(C) {
 				break;
 			}
 
-		// In item permission mode, we add all the enable items, except the one already on
+		// In item permission mode, we add all the enable items, except the ones already on
 		if (DialogItemPermissionMode) {
 			for (var A = 0; A < Asset.length; A++)
-				if (Asset[A].Enable && (Asset[A].Wear || Asset[A].IsLock) && Asset[A].Group.Name == C.FocusGroup.Name)
-					if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
-						DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: "1" + Asset[A].Description });
+				if (Asset[A].Enable && Asset[A].Group.Name == C.FocusGroup.Name) {
+					if (Asset[A].Wear) {
+						if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
+							DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: "1" + Asset[A].Description });
+					}
+					else if (Asset[A].IsLock) {
+						var LockIsWorn = InventoryCharacterIsWearingLock(C, Asset[A].Name);
+						DialogInventory.push({ Asset: Asset[A], Worn: LockIsWorn, Icon: "", SortOrder: "1" + Asset[A].Description });
+					}
+				}
+					
 		} else {
 			// Second, we add everything from the victim inventory
 			for(var A = 0; A < C.Inventory.length; A++)

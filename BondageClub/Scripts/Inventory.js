@@ -449,6 +449,19 @@ function InventoryCharacterHasLockedRestraint(C) {
 }
 
 /**
+ *
+ * @param {Character} C - The character to scan
+ * @param {String} LockName - The type of lock to check for
+ * @returns {Boolean} - Returns TRUE if any item has the specified lock locked onto it
+ */
+function InventoryCharacterIsWearingLock(C, LockName) {
+	for (var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.LockedBy == LockName))
+			return true;
+	return false;
+}
+
+/**
 * Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the owner padlock
 * @param {Character} C - The character to scan
 * @returns {Boolean} - TRUE if one owner only restraint is found
