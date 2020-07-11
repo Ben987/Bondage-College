@@ -17,6 +17,7 @@ const ZiptiesLegsOptions = [
 	},
 ];
 
+
 var ZiptiesLegsOptionOffset = 0;
 
 // Loads the item extension properties
@@ -31,21 +32,19 @@ function InventoryItemLegsZiptiesDraw() {
 
 	// Draw the header and item
 	DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
-	DrawRect(1387, 25, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 27, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 275, 221, "black");
-	DrawText(DialogExtendedMessage, 1500, 335, "white", "gray");
+	DrawRect(1387, 55, 225, 275, "white");
+	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 57, 221, 221);
+	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 310, 221, "black");
+	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 	
-	// Draw the possible positions and their requirements
+	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
 	for (var I = ZiptiesLegsOptionOffset; (I < ZiptiesLegsOptions.length) && (I < ZiptiesLegsOptionOffset + 4); I++) {
 		var offset = I - ZiptiesLegsOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
-		var Y = 420 + (Math.floor(offset / 2) * 300);
+		var Y = 450 + (Math.floor(offset / 2) * 300);
 		var FailSkillCheck = (ZiptiesLegsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ZiptiesLegsOptions[I].RequiredBondageLevel);
-		var RequirementText = ZiptiesLegsOptions[I].RequiredBondageLevel ? DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", ZiptiesLegsOptions[I].RequiredBondageLevel) : DialogFind(Player, "NoRequirement");
-			
+
 		DrawText(DialogFind(Player, "ZipBondage" + ZiptiesLegsOptions[I].Name), X + 113, Y - 20, "white", "gray");
-		DrawText(RequirementText, X + 113, Y + 245, "white", "gray");
 		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == ZiptiesLegsOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + ZiptiesLegsOptions[I].Name + ".png", X, Y + 1);
 	}
@@ -53,8 +52,7 @@ function InventoryItemLegsZiptiesDraw() {
 
 // Catches the item extension clicks
 function InventoryItemLegsZiptiesClick() {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	
+
 	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) ZiptiesLegsOptionOffset += 4;
@@ -64,38 +62,41 @@ function InventoryItemLegsZiptiesClick() {
 	for (var I = ZiptiesLegsOptionOffset; (I < ZiptiesLegsOptions.length) && (I < ZiptiesLegsOptionOffset + 4); I++) {
 		var offset = I - ZiptiesLegsOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
-		var Y = 420 + (Math.floor(offset / 2) * 300);
+		var Y = 450 + (Math.floor(offset / 2) * 300);
 
 		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != ZiptiesLegsOptions[I].Property.Type))
 			if (ZiptiesLegsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ZiptiesLegsOptions[I].RequiredBondageLevel) {
 				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", ZiptiesLegsOptions[I].RequiredBondageLevel);
 			}
-			else if (!InventoryAllow(C, ZiptiesLegsOptions[I].Prerequisite, true)) {
-				DialogExtendedMessage = DialogText;
-			} else { 
-				InventoryItemLegsZiptiesSetPose(ZiptiesLegsOptions[I]);
-			}
+			else InventoryItemLegsZiptiesSetPose(ZiptiesLegsOptions[I]);
 	}
 }
 
-// Sets the rope bondage position (Basic, Mermaid, FullBinding)
+// Sets the hemp rope pose (hogtied, suspension, etc.)
 function InventoryItemLegsZiptiesSetPose(NewType) {
 
-	// Loads the character and item
+	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (CurrentScreen == "ChatRoom") {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemLegsZiptiesLoad();
 	}
 
-	// Sets the position & difficulty
+	// Validates a few parameters before hogtied
+	if ((NewType.Name == "AllFours") && !InventoryAllow(C, ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
+	if ((NewType.Name == "Hogtied") && !InventoryAllow(C, ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
+	if ((NewType.Name == "SuspensionHogtied") && !InventoryAllow(C, ["NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
+
+	// Sets the new pose with its effects and the hidden items if we need to
 	DialogFocusItem.Property = NewType.Property;
+	if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
+	else InventoryRemove(C, "ItemHidden");
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
-		var msg = "ZipLegRopeSet" + NewType.Name;
+		var msg = "ZipLegsSet" + NewType.Name;
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
@@ -104,7 +105,7 @@ function InventoryItemLegsZiptiesSetPose(NewType) {
 		DialogFocusItem = null;
 		if (C.ID == 0) DialogMenuButtonBuild(C);
 		else {
-			C.CurrentDialog = DialogFind(C, "ZipBondage" + NewType.Name, "ItemLegs");
+			C.CurrentDialog = DialogFind(C, "Zip" + NewType.Name, "ItemLegs");
 			C.FocusGroup = null;
 		}
 	}
