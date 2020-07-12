@@ -1265,7 +1265,7 @@ function ChatRoomGameResponse(data) {
 	if (OnlineGameName == "LARP") GameLARPProcess(data);
 }
 
-// When the player activates her safeword, we swap her appearance to the state when she entered the chat room lobby
+// When the player activates her safeword, we swap her appearance to the state when she entered the chat room lobby, minimum permission becomes whitelist and up
 function ChatRoomSafeword() {
 	if (ChatSearchSafewordAppearance != null) {
 		Player.Appearance = ChatSearchSafewordAppearance.slice(0);
@@ -1273,6 +1273,12 @@ function ChatRoomSafeword() {
 		CharacterRefresh(Player);
 		ChatRoomCharacterUpdate(Player);
 		ServerSend("ChatRoomChat", { Content: "ActionActivateSafeword", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name}] });
+		if (Player.ItemPermission < 3) {
+			Player.ItemPermission = 3;
+			ServerSend("AccountUpdate", { ItemPermission: Player.ItemPermission });
+			CommonWait(1000);
+			ChatRoomCharacterUpdate(Player);
+		}
 	}
 }
 

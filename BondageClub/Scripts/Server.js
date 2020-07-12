@@ -43,11 +43,17 @@ function ServerInit() {
 /**
  * Sets the connection status of the server and updates the login page message
  * @param {boolean} connected - whether or not the websocket connection to the server has been established successfully
+ * @param {string} errorMessage - the error message to display if not connected
  */
-function ServerSetConnected(connected) {
+function ServerSetConnected(connected, errorMessage) {
 	ServerIsConnected = connected;
 	ServerDidDisconnect = !connected;
-	if (connected) ServerReconnectCount = 0;
+	if (connected) {
+        ServerReconnectCount = 0;
+        LoginErrorMessage = "";
+    } else {
+	    LoginErrorMessage = errorMessage || "";
+    }
 	LoginUpdateMessage();
 }
 
@@ -64,6 +70,7 @@ function ServerConnect() {
  */
 function ServerReconnecting() {
 	ServerReconnectCount++;
+	if (ServerReconnectCount >= 3) LoginErrorMessage = "ErrorUnableToConnect";
 	LoginUpdateMessage();
 }
 
@@ -75,13 +82,14 @@ function ServerInfo(data) {
 
 // When the server disconnects, we enter in "Reconnect Mode"
 function ServerDisconnect(data) {
-	ServerSetConnected(false);
 	console.warn("Server connection lost");
 	if (data) {
 		console.warn(data);
 	}
+	var ShouldRelog = Player.Name != "";
+	ServerSetConnected(false, ShouldRelog ? "Disconnected": "ErrorDisconnectedFromServer");
 
-	if (Player.Name != "") {
+	if (ShouldRelog) {
 		if (CurrentScreen != "Relog") {
 
 			// Exits out of the chat room or a sub screen of the chatroom, so we'll be able to get in again when we log back

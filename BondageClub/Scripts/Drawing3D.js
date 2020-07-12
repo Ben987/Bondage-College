@@ -34,7 +34,7 @@ function init() {
 	light();
 
     let loader = new THREE.FBXLoader();
-    loader.load('Assets/3D/fbx/maid.fbx',
+    loader.load('Assets/3D/fbx/pmd/maid/maid.fbx',
 				function( object ) {
 					model = object;
 					scene.add(model);
@@ -68,9 +68,10 @@ function Draw3DProcess() {
 function Draw3DCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	camera.position.set(0, 80, 300);
 }
+
 function light() {
 	//light section
-	let directlight = new THREE.DirectionalLight( 0xffffff); //add
+	let directlight = new THREE.DirectionalLight( 0xbbbbbb, 0.5); //add
 	directlight.position.set( 0, 2000, 100 );//add
 	directlight.castShadow = true;//add
 	scene.add( directlight );//add

@@ -3,54 +3,50 @@
 const ZiptiesArmsOptions = [
 	{
 		Name: "ZipLight",
-		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 1 },
-		ArmsOnly: true
+		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 1 }
 	}, {
 		Name: "ZipMedium",
 		Property: { Type: "ZipMedium", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
-		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
-		ArmsOnly: true
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
 	}, {
 		Name: "ZipFull",
 		Property: { Type: "ZipFull", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
-		ArmsOnly: true
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
 	}, {
 		Name: "ZipElbowWrist",
 		Property: { Type: "ZipElbowWrist", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 1 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-		ArmsOnly: true
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
 	}, {
 		Name: "ZipWristLight",
 		Property: { Type: "ZipWristLight", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-        ArmsOnly: true
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
     }, {
 		Name: "ZipWristMedium",
 		Property: { Type: "ZipWristMedium", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-        ArmsOnly: true
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
     }, {
 		Name: "ZipWristFull",
 		Property: { Type: "ZipWristFull", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-        ArmsOnly: true
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
     }, {
 		Name: "ZipWrist",
 		Property: { Type: "ZipWrist", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-		ArmsOnly: true
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
+	}, {
+		Name: "ZipKneelingHogtie",
+		Prerequisite: ["NotMounted", "NotSuspended"],
+		Property: { Type: "ZipKneelingHogtie", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], SetPose: ["Kneel", "BackElbowTouch"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
 	}, {
 		Name: "ZipHogtie",
+		Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "ZipHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], SetPose: ["Hogtied"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
-		ArmsOnly: false
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
 	}, {
 		Name: "ZipAllFours",
+		Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "ZipAllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], SetPose: ["AllFours"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
-		ArmsOnly: false
-	
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
 	}
 ];
 
@@ -81,7 +77,7 @@ function InventoryItemArmsZiptiesDraw() {
 		var FailSkillCheck = (ZiptiesArmsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ZiptiesArmsOptions[I].RequiredBondageLevel);
 
 		DrawText(DialogFind(Player, "ZipBondage" + ZiptiesArmsOptions[I].Name), X + 113, Y - 20, "white", "gray");
-		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == ZiptiesArmsOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
+		DrawButton(X, Y, 225, 227, "", ((DialogFocusItem.Property.Type == ZiptiesArmsOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + ZiptiesArmsOptions[I].Name + ".png", X, Y + 1);
 	}
 }
@@ -100,7 +96,7 @@ function InventoryItemArmsZiptiesClick() {
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
 
-		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != ZiptiesArmsOptions[I].Property.Type))
+		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 227) && (DialogFocusItem.Property.Type != ZiptiesArmsOptions[I].Property.Type))
 			if (ZiptiesArmsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ZiptiesArmsOptions[I].RequiredBondageLevel) {
 				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", ZiptiesArmsOptions[I].RequiredBondageLevel);
 			}
@@ -118,10 +114,8 @@ function InventoryItemArmsZiptiesSetPose(NewType) {
 		InventoryItemArmsZiptiesLoad();
 	}
 
-	// Validates a few parameters before hogtied
-	if ((NewType.Name == "AllFours") && !InventoryAllow(C, ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
-	if ((NewType.Name == "Hogtied") && !InventoryAllow(C, ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
-	if ((NewType.Name == "SuspensionHogtied") && !InventoryAllow(C, ["NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
+	// Validates the selected option
+	if (NewType.Prerequisite != null && !InventoryAllow(C, NewType.Prerequisite, true)) { DialogExtendedMessage = DialogText; return; }
 
 	// Sets the new pose with its effects and the hidden items if we need to
 	DialogFocusItem.Property = NewType.Property;

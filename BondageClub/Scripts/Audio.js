@@ -145,7 +145,7 @@ function AudioPlayContent(data) {
 				case "Sybian": audioFile = "Audio/Sybian.mp3"; break;
 				default: return;
 			}
-		} else if (data.Content.includes("CollarShockUnitTrigger") || data.Content.includes("ShockCollarTrigger") || data.Content.includes("LoveChastityBeltShockTrigger")) {
+		} else if (data.Content.includes("CollarShockUnitTrigger") || data.Content.includes("ShockCollarTrigger") || data.Content.includes("LoveChastityBeltShockTrigger") || data.Content.includes("TriggerShock")) {
 			var shockLevel = parseInt(data.Content.substr(data.Content.length - 1));
 			if (!isNaN(shockLevel)) noiseLevelModifier+= shockLevel * 3;
 			audioFile = "Audio/Shocks.mp3";
