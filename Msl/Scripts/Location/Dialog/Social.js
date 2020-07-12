@@ -51,7 +51,10 @@ var LocationDialogSocialView  = function(mainDialog, containerElement){
 				var selectionOptionsHTML = "<option value='1'>Plain Beep</option><option value='2'>Fancy Beep</option>"
 				var tdSelection = Util.CreateElement({tag:"td", parent:tr});
 				
-				var selectionElement = Util.CreateElement({tag:"select", parent:tdSelection, innerHTML:selectionOptionsHTML});
+				var selectionElement = Util.CreateElement({tag:"select", parent:tdSelection});
+				L.Beeps.forEach(beepDef => {
+					var el = Util.CreateElement({tag:"option", parent:selectionElement, innerText:beepDef.text, value:beepDef.id});
+				});
 				
 				var tdButton = Util.CreateElement({tag:"td", parent:tr});
 				var button = Util.CreateElement({tag:"button", parent:tdButton, textContent:"Send", events:{

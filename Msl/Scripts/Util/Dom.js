@@ -32,8 +32,14 @@ Util.CreateElement = function(params){
 	if(params.innerHTML) 
 		element.innerHTML = params.innerHTML;
 	
+	if(params.innerText)
+		element.appendChild(document.createTextNode(params.innerText));
+	
 	if(params.textContent)
 		element.appendChild(document.createTextNode(params.textContent));
+	
+	if(params.value)
+		element.value = params.value;
 	
 	for(var key in params.attributes)
 		if(params.attributes[key])

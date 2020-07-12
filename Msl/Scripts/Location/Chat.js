@@ -23,7 +23,8 @@ var LocationViewChat = {
 	
 	
 	,OnFriendMessage(data){
-		var content = "*" + data.originPlayerName + " sent message: " + data.message;
+		var messageText = L.Beeps.find(beep => beep.id == data.message).text;
+		var content = "*" + data.originPlayerName + " sent message: " + messageText;
 		if(data.locationId) content += " from location " + data.locationName + " (" + data.locationType + "-" + data.locationId + ")";
 		this.AddChatMessageToLog({id:data.originPlayerId, time:"12:20", content:content, narration:true});	
 	}
