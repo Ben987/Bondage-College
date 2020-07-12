@@ -25,10 +25,14 @@ function Draw3DKeyDown() {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function init(){
 =======
 function init() {
 >>>>>>> upstream/master
+=======
+function init() {
+>>>>>>> a5cd711f4b7e2c06b4f80eb90f3665c461ba176b
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000);
 	renderer = new THREE.WebGLRenderer({  alpha : true });
@@ -73,11 +77,16 @@ function Draw3DCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	camera.position.set(0, 80, 300);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 function light(){
 =======
 
 function light() {
 >>>>>>> upstream/master
+=======
+
+function light() {
+>>>>>>> a5cd711f4b7e2c06b4f80eb90f3665c461ba176b
 	//light section
 	let directlight = new THREE.DirectionalLight( 0xbbbbbb, 0.5); //add
 	directlight.position.set( 0, 2000, 100 );//add
