@@ -29,6 +29,16 @@ function GLDrawLoad() {
 
     CharacterAppearanceBuildCanvas = GLDrawAppearanceBuild;
 
+    // Attach context listeners
+    GLDrawCanvas.addEventListener("webglcontextlost", function (event) {
+        event.preventDefault();
+        console.log("WebGL Drawing disabled: Context Lost. If the context does not restore itself, refresh your page.");
+    }, false);
+    GLDrawCanvas.addEventListener("webglcontextrestored", function () {
+        GLDrawLoad();
+        console.log("WebGL: Context restored.");
+    }, false);
+    
     console.log("WebGL Drawing enabled: '" + GLVersion + "'");
 }
 
@@ -287,10 +297,11 @@ function GLDrawAppearanceBuild(C) {
 
             // If there's a father group, we must add it to find the correct image
             var CA = C.Appearance[A];
+            var ParentGroup = CA.Asset.ParentGroupName ? CA.Asset.ParentGroupName : CA.Asset.Group.ParentGroupName && !CA.Asset.IgnoreParentGroup ? CA.Asset.Group.ParentGroupName : "";
             var G = "";
-            if (CA.Asset.Group.ParentGroupName != "" && !CA.Asset.IgnoreParentGroup)
+            if (ParentGroup != "")
                 for (var FG = 0; FG < C.Appearance.length; FG++)
-                    if (CA.Asset.Group.ParentGroupName == C.Appearance[FG].Asset.Group.Name)
+                    if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
                         G = "_" + C.Appearance[FG].Asset.Name;
 
             // If there's a pose style we must add (first by group then by item)

@@ -5,7 +5,7 @@ var AudioDialog = new Audio();
 function AudioPlayInstantSound(src, volume) {
 	var audio = new Audio();
 	audio.src = src;
-	audio.volume = volume;
+	audio.volume = Math.max(0, Math.min(volume, 1));
 	audio.play();
 }
 
@@ -36,6 +36,8 @@ function AudioPlayContent(data) {
 	// Instant actions can trigger a sound depending on the asset
 	if (data.Content == "ActionAddLock") {
 		audioFile = "Audio/LockSmall.mp3";
+	} else if (data.Content == "TimerRelease" || data.Content == "ActionUnlock" || data.Content == "ActionUnlockAndRemove") {
+		audioFile = "Audio/UnlockSmall.mp3";
 	} else if (data.Content == "ActionLock" || data.Content == "ActionUse" || data.Content == "ActionSwap" || data.Content == "SlaveCollarChangeType" || (data.Content.indexOf("ActionActivity") == 0)) {
 		noiseLevelModifier += 3; //constant vibration volume level
 		var NextAsset = data.Dictionary.find(function (el) {return el.Tag == "NextAsset";});
@@ -117,9 +119,9 @@ function AudioPlayContent(data) {
 		}
 	} else {
 		// When the vibrator or inflatable level increases or decreases
-		if(data.Content.includes("pumps") || data.Content.includes("Suctightens") || data.Content.includes("InflatableBodyBagRestrain"))
+		if (data.Content.includes("pumps") || data.Content.includes("Suctightens") || data.Content.includes("InflatableBodyBagRestrain"))
 			audioFile = "Audio/Inflation.mp3";
-		else if(data.Content.includes("deflates") || data.Content.includes("Sucloosens"))
+		else if (data.Content.includes("deflates") || data.Content.includes("Sucloosens"))
 			audioFile = "Audio/Deflation.mp3";
 		else if (data.Content.includes("Decrease") || data.Content.includes("Increase")) { 
 			if (data.Content.endsWith("-1")) return; // special case of turning vibrators off, may be a click sound in the future?
@@ -143,16 +145,16 @@ function AudioPlayContent(data) {
 				case "Sybian": audioFile = "Audio/Sybian.mp3"; break;
 				default: return;
 			}
-		} else if (data.Content.includes("CollarShockUnitTrigger") || data.Content.includes("ShockCollarTrigger") || data.Content.includes("LoveChastityBeltShockTrigger")) {
+		} else if (data.Content.includes("CollarShockUnitTrigger") || data.Content.includes("ShockCollarTrigger") || data.Content.includes("LoveChastityBeltShockTrigger") || data.Content.includes("TriggerShock")) {
 			var shockLevel = parseInt(data.Content.substr(data.Content.length - 1));
 			if (!isNaN(shockLevel)) noiseLevelModifier+= shockLevel * 3;
 			audioFile = "Audio/Shocks.mp3";
-		} else if (data.Content.includes("ShacklesRestrain") || data.Content.includes("Ornate")){
+		} else if (data.Content.includes("ShacklesRestrain") || data.Content.includes("Ornate")) {
 			audioFile = "Audio/CuffsMetal.mp3";
-		} else if (data.Content.includes("RopeSet")){
+		} else if (data.Content.includes("RopeSet")) {
 			audioFile = "Audio/RopeShort.mp3";
 			data.Sender = data.Dictionary.find(function (el) {return el.Tag == "SourceCharacter";}).MemberNumber;
-		} else if (data.Content.includes("ChainSet")){
+		} else if (data.Content.includes("ChainSet")) {
 			audioFile = "Audio/ChainLong.mp3";
 			data.Sender = data.Dictionary.find(function (el) {return el.Tag == "SourceCharacter";}).MemberNumber;
 		}
@@ -163,25 +165,22 @@ function AudioPlayContent(data) {
 	var target = data.Dictionary.find(function (el) {return el.Tag == "DestinationCharacter" || el.Tag == "DestinationCharacterName" || el.Tag == "TargetCharacter";});
 	if (!target || !target.MemberNumber) return;
 
-	// Changes the volume based on sensory deprivation
-	if (target.MemberNumber == Player.MemberNumber) {
-		noiseLevelModifier += 2;
-		if (Player.Effect.indexOf("BlindHeavy") >= 0) noiseLevelModifier += 5;
-		else if (Player.Effect.indexOf("BlindNormal") >= 0) noiseLevelModifier += 3;
-		else if (Player.Effect.indexOf("BlindLight") >= 0) noiseLevelModifier += 1;
-		if (Player.Effect.indexOf("DeafTotal") >= 0) noiseLevelModifier += 6;
-		else if (Player.Effect.indexOf("DeafHeavy") >= 0) noiseLevelModifier += 5;
-		else if (Player.Effect.indexOf("DeafNormal") >= 0) noiseLevelModifier += 3;
-		else if (Player.Effect.indexOf("DeafLight") >= 0) noiseLevelModifier += 1;
-	} else {
-		if (Player.Effect.indexOf("DeafTotal") >= 0) noiseLevelModifier -= 4;
-		else if (Player.Effect.indexOf("DeafHeavy") >= 0) noiseLevelModifier -= 3;
-		else if (Player.Effect.indexOf("DeafNormal") >= 0) noiseLevelModifier -= 2;
-		else if (Player.Effect.indexOf("DeafLight") >= 0) noiseLevelModifier -= 1;
-	}
+	var targetIsPlayer = target.MemberNumber == Player.MemberNumber;
+
+	// If the player is the target, increase volume
+	if (targetIsPlayer) noiseLevelModifier += 3;
+
+	// If the player is blindfolded, increase volume based on blindfold level
+	if (Player.Effect.indexOf("BlindHeavy") >= 0) noiseLevelModifier += 4;
+	else if (Player.Effect.indexOf("BlindNormal") >= 0) noiseLevelModifier += 2;
+	else if (Player.Effect.indexOf("BlindLight") >= 0) noiseLevelModifier += 1;
+
+	// Reduce volume based on player's deafness level
+	noiseLevelModifier -= (3 * Player.GetDeafLevel());
+
+	// Reduce volume a little if the player was neither the sender nor target
+	if (data.Sender != Player.MemberNumber && !targetIsPlayer) noiseLevelModifier -= 3;
 
 	// Sends the audio file to be played
-	if (data.Sender != Player.MemberNumber && target.MemberNumber != Player.MemberNumber) noiseLevelModifier -= 2;
-	AudioPlayInstantSound(audioFile, Player.AudioSettings.Volume * (.1 + noiseLevelModifier / 30));
-
+	AudioPlayInstantSound(audioFile, Player.AudioSettings.Volume * (.2 + noiseLevelModifier / 40));
 }

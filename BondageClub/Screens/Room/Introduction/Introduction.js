@@ -12,8 +12,10 @@ var IntroductionRescueScenarioList = ["LatexWoman", "Newcomer", "MaidFight", "Sa
 var IntroductionJobList = ["DomPuppy", "DomLock", "DomKidnap", "DomTrainer", "SubSearch", "SubDojo", "SubActivity", "SubMaid"];
 var IntroductionJobCurrent = "";
 var IntroductionJobCount = 1;
-var IntroductionJobLock = null;
+var IntroductionJobParam = null;
+var IntroductionJobPosition = { Active: false, X: 1000, Y: 1000 };
 var IntroductionJobLockList = ["MetalPadlock", "IntricatePadlock", "TimerPadlock", "CombinationPadlock", "ExclusivePadlock"];
+var IntroductionJobSearchList = ["MaidQuarters", "LARP", "KidnapLeague", "SlaveMarket"];
 var IntroductionJobMember = [];
 
 // Returns TRUE if the dialog situation is allowed
@@ -22,6 +24,9 @@ function IntroductionIsBothFree() { return (!IntroductionMaid.IsRestrained() && 
 function IntroductionIsMaidRestrained() { return (IntroductionMaid.IsRestrained() || !IntroductionMaid.CanTalk()) }
 function IntroductionNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management")) }
 function IntroductionJobIsComplete() { return (IntroductionJobCount <= 0) }
+function IntroductionCanTakeJob() { return (IntroductionJobAnyAvailable() && !Player.IsRestrained() && Player.CanTalk() && !IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !ManagementIsClubSlave()) }
+function IntroductionCannotTakeJobDone() { return (!IntroductionJobAnyAvailable() && !Player.IsRestrained() && Player.CanTalk() && !IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !ManagementIsClubSlave()) }
+function IntroductionCannotTakeJobRestrained() { return (IntroductionJobAnyAvailable() && (Player.IsRestrained() || !Player.CanTalk() || IntroductionMaid.IsRestrained() || !IntroductionMaid.CanTalk()) && !ManagementIsClubSlave()) }
 
 // Loads the introduction room
 function IntroductionLoad() {
@@ -143,15 +148,15 @@ function IntroductionCompleteRescue() {
 }
 
 // When a job is done, no new job can be taken on the same day, the day is based on the server date
-function IntroductionJobDone(JobName) {
+function IntroductionJobDone() {
 	CharacterChangeMoney(Player, 100);
 	var NextDay = Math.floor(CurrentTime / (24 * 60 * 60 * 1000)) + 1;
 	LogAdd("DailyJobDone", "Introduction", NextDay * 24 * 60 * 60 * 1000);
+	IntroductionJobCurrent = "";
 }
 
 // Returns TRUE if a specific daily job is available for the player, each job is available in a rotating fashion
 function IntroductionJobAvailable(JobName) {
-	if (!IntroductionMaid.CanInteract() || !IntroductionMaid.CanTalk()) return false;
 	if (LogQuery("DailyJobDone", "Introduction")) return false;
 	if ((JobName.substr(0, 3) == "Dom") && (ReputationGet("Dominant") <= -50)) return false;
 	if ((JobName.substr(0, 3) == "Sub") && (ReputationGet("Dominant") >= 50)) return false;
@@ -172,8 +177,16 @@ function IntroductionJobAnyAvailable() {
 function IntroductionJobStart(JobName, JobCount) {
 	IntroductionJobCurrent = JobName;
 	IntroductionJobCount = parseInt(JobCount);
-	var Day = Math.floor(CurrentTime / (24 * 60 * 60 * 1000));
-	IntroductionJobLock = IntroductionJobLockList[Day % IntroductionJobLockList.length];
+	IntroductionJobParam = null;
+	if (JobName == "DomLock") {
+		var Day = Math.floor(CurrentTime / (24 * 60 * 60 * 1000));
+		IntroductionJobParam = IntroductionJobLockList[Day % IntroductionJobLockList.length];
+	}
+	if (JobName == "SubActivity") IntroductionJobParam = "100";
+	if (JobName == "SubSearch") {
+		IntroductionJobParam = IntroductionJobSearchList[Math.floor(Math.random() * IntroductionJobSearchList.length)];
+		IntroductionJobPosition = { Active: false, X: Math.floor(Math.random() * 1700) + 100, Y: Math.floor(Math.random() * 800) + 100 };
+	}
 	IntroductionJobMember = [];
 }
 
@@ -186,6 +199,39 @@ function IntroductionJobGiveUp() {
 
 // Shows the lock description that the player must apply
 function IntroductionJobLockType() {
-	var Item = AssetGet(Player.AssetFamily, "ItemMisc", IntroductionJobLock);
+	var Item = AssetGet(Player.AssetFamily, "ItemMisc", IntroductionJobParam);
 	if (Item != null) IntroductionMaid.CurrentDialog = DialogFind(IntroductionMaid, "JobLockType").replace("LockType", Item.Description);
+}
+
+// When a possible progress is registered, we check if it counts toward the daily job
+function IntroductionJobProgress(JobName, Param, UniqueMember) {
+	if ((UniqueMember == true) && (CurrentScreen != "ChatRoom")) return;
+	if ((IntroductionJobCurrent == JobName) && (IntroductionJobParam == Param)) {
+		if ((UniqueMember == true) && ((CurrentCharacter == null) || (CurrentCharacter.ID == 0) || (CurrentCharacter.MemberNumber == null) || (CurrentCharacter.MemberNumber < 1) || (IntroductionJobMember.indexOf(CurrentCharacter.MemberNumber) >= 0))) return;
+		if (UniqueMember == true) IntroductionJobMember.push(CurrentCharacter.MemberNumber);
+		IntroductionJobCount--;
+	}
+}
+
+// When the daily kidnapping job starts
+function IntroductionJobBouncerStart() {
+	CommonSetScreen("Room", "DailyJob");
+	CharacterSetCurrent(DailyJobOpponent);
+	CharacterRelease(DailyJobOpponent);
+	DailyJobOpponent.CurrentDialog = DialogFind(IntroductionMaid, "JobKidnapIntro" + DailyJobOpponent.Stage.toString() + Math.floor(Math.random() * 4).toString());
+}
+
+// When the daily dog walking job starts
+function IntroductionJobPuppyStart() {
+	CommonSetScreen("Room", "DailyJob");
+	CharacterSetCurrent(DailyJobPuppyMistress);
+	DailyJobPuppyMistress.CurrentDialog = DialogFind(IntroductionMaid, "JobPuppyIntro" + DailyJobPuppyMistress.Stage.toString() + Math.floor(Math.random() * 4).toString());
+}
+
+// When the daily dojo job starts
+function IntroductionJobDojoStart() {
+	CommonSetScreen("Room", "DailyJob");
+	DailyJobBackground = "Shibari";
+	CharacterSetCurrent(DailyJobDojoTeacher);
+	DailyJobDojoTeacher.CurrentDialog = DialogFind(IntroductionMaid, "JobDojoIntro" + DailyJobDojoTeacher.Stage.toString() + Math.floor(Math.random() * 4).toString());
 }

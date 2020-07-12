@@ -67,6 +67,8 @@ You cannot unlock yourself
 Vous ne pouvez déverouiller le cadenas
 This zone is out of reach from another item
 Cette zone est hors d'accès
+Another item is blocking access to this lock
+Un autre article bloque l'accès à ce verrou
 You cannot access your items
 Vous ne pouvez accéder à vos objets
 Click here to speed up the progress

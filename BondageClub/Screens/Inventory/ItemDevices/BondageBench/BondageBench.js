@@ -4,7 +4,7 @@
 function InventoryItemDevicesBondageBenchLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	var addonItem = InventoryGet(C, "ItemAddon");
-	if (addonItem != null) {
+	if (addonItem != null && addonItem.Name == ("BondageBenchStraps")) {
 		DialogExtendItem(addonItem);
 		return;
 	}
@@ -15,10 +15,13 @@ function InventoryItemDevicesBondageBenchLoad() {
 
 // Draw the item extension screen
 function InventoryItemDevicesBondageBenchDraw() {
-	
+
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	var strapsBlocked = InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null;
-	
+	var itemBlocked = InventoryGet(C, "ItemAddon") != null;
+	var BondageBenchStraps = InventoryItemCreate(C, "ItemAddon", "BondageBenchStraps");
+	var itemPermissionBlocked = InventoryIsPermissionBlocked(C, "BondageBenchStraps", "ItemAddon") || !InventoryCheckLimitedPermission(C, BondageBenchStraps);
+
 	// Draw the header and item
 	DrawRect(1387, 125, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
@@ -30,7 +33,13 @@ function InventoryItemDevicesBondageBenchDraw() {
 	DrawText(DialogFind(Player, "BondageBenchPoseStrapUp"), 1500, 800, "white", "gray");
 
 	// Draw the message if the player is wearing clothes
-	if (strapsBlocked) DrawTextWrap(DialogFind(Player, "RemoveClothesForItem"), 1100, 850, 800, 160, "White");
+	if (strapsBlocked) {
+		DrawTextWrap(DialogFind(Player, "RemoveClothesForItem"), 1100, 850, 800, 160, "White");
+	} else if (itemBlocked) { 
+		DrawTextWrap(DialogFind(Player, "ItemAddonRemoveAddon"), 1100, 850, 800, 160, "White");
+	} else if (itemPermissionBlocked) { 
+		DrawTextWrap(DialogFind(Player, "ItemAddonUsedWithWrongPermissions"), 1100, 850, 800, 160, "White");
+	}
 }
 
 // Catches the item extension clicks
@@ -50,8 +59,13 @@ function InventoryItemDevicesBondageBenchSetPose(NewPose) {
 		InventoryItemDevicesBondageBenchLoad();
 	}
 
+	var BondageBenchStraps = InventoryItemCreate(C, "ItemAddon", "BondageBenchStraps");
+
+	// Do not continue if the item is blocked
+	if (InventoryIsPermissionBlocked(C, "BondageBenchStraps", "ItemAddon") || !InventoryCheckLimitedPermission(C, BondageBenchStraps)) return;
+
 	// Cannot be used with clothes or other addons
-	if ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "ClothLower") != null)) return; 
+	if ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "ClothLower") != null)) return;
 	if (InventoryGet(C, "ItemAddon") != null) return;
 
 	// Adds the strap and focus on it

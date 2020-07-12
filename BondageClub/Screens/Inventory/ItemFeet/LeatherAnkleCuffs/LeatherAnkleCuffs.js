@@ -48,7 +48,7 @@ function InventoryItemFeetLeatherAnkleCuffsSetPose(NewPose) {
 		delete DialogFocusItem.Property.Effect;
 		delete DialogFocusItem.Property.SelfUnlock;
 		delete DialogFocusItem.Property.Difficulty;
-	} else if(NewPose == "Closed"){
+	} else if (NewPose == "Closed") {
 		DialogFocusItem.Property.SetPose = ["LegsClosed"];
 		DialogFocusItem.Property.Effect = ["Prone", "Freeze"];
 		DialogFocusItem.Property.Difficulty = 6;

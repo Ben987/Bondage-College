@@ -185,6 +185,7 @@ function AsylumTherapyTherapyMiniGameEnd() {
 		DialogChangeReputation("Asylum", 6);
 		CharacterChangeMoney(Player, 20);
 	}
+	if (MiniGameVictory) IntroductionJobProgress("DomTrainer");
 }
 
 // When a new patient comes in

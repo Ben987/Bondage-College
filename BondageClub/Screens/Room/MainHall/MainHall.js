@@ -17,6 +17,7 @@ function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlock
 function MainHallLoad() {
 	
 	// Loads the variables and dialog
+	ChatSearchSafewordAppearance = null;
 	CharacterSetActivePose(Player, null);
 	MainHallBackground = "MainHall";
 	MainHallStartEventTimer = null;
@@ -235,7 +236,7 @@ function MainHallClick() {
 // The maid can release the player
 function MainHallMaidReleasePlayer() {
 	if (MainHallMaid.CanInteract()) {
-		for(var D = 0; D < MainHallMaid.Dialog.length; D++)
+		for (var D = 0; D < MainHallMaid.Dialog.length; D++)
 			if ((MainHallMaid.Dialog[D].Stage == "0") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "AlreadyReleased");
 		CharacterRelease(Player);
@@ -247,7 +248,7 @@ function MainHallMaidReleasePlayer() {
 // If the maid is angry, she might gag or tie up the player
 function MainHallMaidAngry() {
 	if ((ReputationGet("Dominant") < 30) && !MainHallIsHeadMaid) {
-		for(var D = 0; D < MainHallMaid.Dialog.length; D++)
+		for (var D = 0; D < MainHallMaid.Dialog.length; D++)
 			if ((MainHallMaid.Dialog[D].Stage == "PlayerGagged") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "LearnedLesson");
 		ReputationProgress("Dominant", 1);
@@ -321,4 +322,8 @@ function MainHallMaidIntroduction() {
 // Flag the introduction as done
 function MainHallMaidIntroductionDone() {
 	LogAdd("IntroductionDone", "MainHall");
+}
+
+function MainHallKeyDown() {
+	Draw3DKeyDown();
 }

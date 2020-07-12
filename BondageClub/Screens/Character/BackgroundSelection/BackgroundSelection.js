@@ -13,8 +13,13 @@ var BackgroundSelectionPreviousScreen = "";
 var BackgroundSelectionAll = [];
 var BackgroundSelectionView = [];
 
-
-// Change the current screen to the background selection screens
+/**
+ * Change the current screen to the background selection screen
+ * @param {string[]} List - The list of possible Background names
+ * @param {number} Idx - The index of the current background
+ * @param {function} Callback - The function to call when a new background has been selected
+ * @returns {void} - Nothing
+ */
 function BackgroundSelectionMake(List, Idx, Callback) {
 	BackgroundSelectionList = List;
 	BackgroundSelectionIndex = Idx < List.length ? Idx : 0;
@@ -24,20 +29,27 @@ function BackgroundSelectionMake(List, Idx, Callback) {
 	CommonSetScreen("Character", "BackgroundSelection");
 }
 
-// When the background selection screens loads
+/**
+ * Initializes the Background selection screen. 
+ * Function coiuld be called dynamically, so the body has to be there, even if it does nothing.
+ * @returns {void} - Nothing
+ */
 function BackgroundSelectionLoad() {
 	BackgroundSelectionSelect = BackgroundSelectionList[BackgroundSelectionIndex];
 	BackgroundSelectionSelectName = DialogFind(Player, BackgroundSelectionSelect);
 	BackgroundSelectionOffset = Math.floor(BackgroundSelectionIndex / BackgroundSelectionSize) * BackgroundSelectionSize;
 	BackgroundSelectionBackground = BackgroundSelectionList[BackgroundSelectionIndex] || "Introduction";
-
 	BackgroundSelectionAll = BackgroundSelectionList.map(B => { var D = DialogFind(Player, B); return { Name: B, Description: D, Low: D.toLowerCase() }; });
 	BackgroundSelectionView = BackgroundSelectionAll.slice(0);
-
 	ElementCreateInput("InputBackground", "text", "", "30");
 	document.getElementById("InputBackground").oninput = BackgroundSelectionInputChanged;
 }
 
+/**
+ * Handles input in the text box in the topmost row of the selection screen 
+ * and changes the offset of the background selection appropriately
+ * @returns {void} - Nothing
+ */
 function BackgroundSelectionInputChanged() {
 	var Input = ElementValue("InputBackground") || "";
 	Input = Input.trim().toLowerCase();
@@ -50,19 +62,26 @@ function BackgroundSelectionInputChanged() {
 	}
 }
 
-// When the background selection screens runs
+/**
+ * Draws the Background selection screen:
+ * - draws all the buttons and the text input field on the topmost rows
+ * - paints the first (max) 12 possible backgrounds in the lower part of the screen
+ * The function is called dynamically
+ * @returns {void} - Nothing
+ */
 function BackgroundSelectionRun() {
-	DrawText(TextGet("Selection").replace("SelectedBackground", BackgroundSelectionSelectName), 400, 65, "White", "Black");
-	DrawText(TextGet("Filter").replace("Filtered", BackgroundSelectionView.length).replace("Total", BackgroundSelectionAll.length), 1100, 65, "White", "Black");
+	DrawText(TextGet("Selection").replace("SelectedBackground", BackgroundSelectionSelectName), 300, 65, "White", "Black");
+	DrawText(TextGet("Filter").replace("Filtered", BackgroundSelectionView.length).replace("Total", BackgroundSelectionAll.length), 1000, 65, "White", "Black");
 
+	DrawButton(1585, 25, 90, 90, "", "White", "Icons/Prev.png", TextGet("Prev"));
 	DrawButton(1685, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 	DrawButton(1785, 25, 90, 90, "", "White", "Icons/Cancel.png", TextGet("Cancel"));
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Accept.png", TextGet("Accept"));
 
-	if (!CommonIsMobile && (CommonIsClickAt(1685, 25, 90, 90) || CommonIsClickAt(1785, 25, 90, 90) || CommonIsClickAt(1885, 25, 90, 90))) {
+	if (!CommonIsMobile && (CommonIsClickAt(1585, 25, 90, 90) || CommonIsClickAt(1685, 25, 90, 90) || CommonIsClickAt(1785, 25, 90, 90) || CommonIsClickAt(1885, 25, 90, 90))) {
 		document.getElementById("InputBackground").style.display = "none";
 	} else {
-		ElementPosition("InputBackground", 1450, 60, 400);
+		ElementPosition("InputBackground", 1350, 60, 400);
 	}
 
 	var X = 45;
@@ -84,19 +103,32 @@ function BackgroundSelectionRun() {
 	}
 }
 
-// When he player clicks in background selection screens
+/**
+ * Handles clicks in the background selection screen:
+ * - Exit: Exit the screen without changes
+ * - Accept: Exit the screen with a new background
+ * - Prev: Paints the previous 12 backgrounds
+ * - Next: Paints the nextt 12 backgrounds
+ * - Click on any background: Sets this background for selection
+ * This function is called dynamically
+ * 
+ * @returns {void} - Nothing
+ */
 function BackgroundSelectionClick() {
-	// set and exit
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
-		BackgroundSelectionExit(true);
+
+	// Exit by selecting or cancelling
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) BackgroundSelectionExit(true);
+	if ((MouseX >= 1785) && (MouseX < 1875) && (MouseY >= 25) && (MouseY < 115)) BackgroundSelectionExit(false);
+
+	// Set next offset backward
+	if ((MouseX >= 1585) && (MouseX < 1675) && (MouseY >= 25) && (MouseY < 115)) {
+		BackgroundSelectionOffset -= BackgroundSelectionSize;
+		if (BackgroundSelectionOffset < 0) {
+			BackgroundSelectionOffset = Math.ceil(BackgroundSelectionView.length / BackgroundSelectionSize - 1) * BackgroundSelectionSize;
+		}
 	}
 
-	// cancel and exit
-	if ((MouseX >= 1785) && (MouseX < 1875) && (MouseY >= 25) && (MouseY < 115)) {
-		BackgroundSelectionExit();
-	}
-
-	// Set next offset
+	// Set next offset forward
 	if ((MouseX >= 1685) && (MouseX < 1775) && (MouseY >= 25) && (MouseY < 115)) {
 		BackgroundSelectionOffset += BackgroundSelectionSize;
 		if (BackgroundSelectionOffset >= BackgroundSelectionView.length) BackgroundSelectionOffset = 0;
@@ -119,14 +151,24 @@ function BackgroundSelectionClick() {
 			Y += 225 + 55;
 		}
 	}
+
 }
 
-// When the user press "enter", we exit
+/**
+ * Handles key events in the background selection screen:
+ * - When the user presses "enter", we exit
+ * @returns {void} - Nothing
+ */
 function BackgroundSelectionKeyDown() {
 	if (KeyPress == 13) BackgroundSelectionExit(true);
 }
 
-// When the user exit from this screen
+/**
+ * Handles the exit of the selection screen. Sets the new background, if necessary, and 
+ * calls the previously defined callback function. Then exits the screen to the screen, the player was before
+ * @param {boolean} SetBackground - Defines, wether the background must be changed (true) or not (false)
+ * @returns {void} - Nothing
+ */
 function BackgroundSelectionExit(SetBackground) {
 	ElementRemove("InputBackground");
 	if (SetBackground && BackgroundSelectionCallback) BackgroundSelectionCallback(BackgroundSelectionSelect);

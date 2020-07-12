@@ -1,40 +1,97 @@
 "use strict";
 
+const HempRopeLegsOptions = [
+	{
+		Name: "Basic",
+		RequiredBondageLevel: null,
+		Property: { Type: null, SetPose: ["LegsClosed"], Difficulty: 1 },
+	}, {
+		Name: "FullBinding",
+		RequiredBondageLevel: 2,
+		Property: { Type: "FullBinding", SetPose: ["LegsClosed"], Difficulty: 2 },
+	}, {
+		Name: "Link",
+		RequiredBondageLevel: 2,
+		Property: { Type: "Link", SetPose: ["LegsClosed"], Difficulty: 2 },
+	}, {
+		Name: "Frogtie",
+		RequiredBondageLevel: 3,
+		Property: { Type: "Frogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Effect: ["ForceKneel"], Difficulty: 3 },
+		Prerequisite: ["NotSuspended", "CanKneel"],
+	}, {
+		Name: "Crossed",
+		RequiredBondageLevel: 4,
+		Property: { Type: "Crossed", SetPose: ["LegsClosed"], Difficulty: 4 },
+	}, {
+		Name: "Mermaid",
+		RequiredBondageLevel: 4,
+		Property: { Type: "Mermaid", SetPose: ["LegsClosed"], Difficulty: 4 },
+	},
+];
+
+var HempRopeLegsOptionOffset = 0;
+
 // Loads the item extension properties
 function InventoryItemLegsHempRopeLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Effect: [] };
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = HempRopeLegsOptions[0].Property;
+	DialogExtendedMessage = DialogFind(Player, "SelectRopeBondage");
+	HempRopeLegsOptionOffset = 0;
 }
 
 // Draw the item extension screen
 function InventoryItemLegsHempRopeDraw() {
 
 	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
-	// Draw the possible rope bondage positions
-	DrawText(DialogFind(Player, "SelectRopeBondage"), 1500, 475, "white", "gray");
-	DrawButton(1175, 550, 225, 225, "", (DialogFocusItem.Property.Type == null || DialogFocusItem.Property.Type == "Basic") ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Basic.png", 1175, 551);
-	DrawText(DialogFind(Player, "RopeBondageBasic"), 1288, 800, "white", "gray");
-	DrawText(DialogFind(Player, "NoRequirement").replace("ReqLevel", "2"), 1288, 850, "white", "gray");
-	DrawButton(1600, 550, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Mermaid")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 2) ? "Pink" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Mermaid.png", 1600, 551);
-	DrawText(DialogFind(Player, "RopeBondageMermaid"), 1713, 800, "white", "gray");
-	DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "2"), 1713, 850, "white", "gray");
-
+	DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
+	DrawRect(1387, 25, 225, 275, "white");
+	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 27, 221, 221);
+	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 275, 221, "black");
+	DrawText(DialogExtendedMessage, 1500, 335, "white", "gray");
+	
+	// Draw the possible positions and their requirements
+	for (var I = HempRopeLegsOptionOffset; (I < HempRopeLegsOptions.length) && (I < HempRopeLegsOptionOffset + 4); I++) {
+		var offset = I - HempRopeLegsOptionOffset;
+		var X = 1200 + (offset % 2 * 387);
+		var Y = 420 + (Math.floor(offset / 2) * 300);
+		var FailSkillCheck = (HempRopeLegsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeLegsOptions[I].RequiredBondageLevel);
+		var RequirementText = HempRopeLegsOptions[I].RequiredBondageLevel ? DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", HempRopeLegsOptions[I].RequiredBondageLevel) : DialogFind(Player, "NoRequirement");
+			
+		DrawText(DialogFind(Player, "RopeBondage" + HempRopeLegsOptions[I].Name), X + 113, Y - 20, "white", "gray");
+		DrawText(RequirementText, X + 113, Y + 245, "white", "gray");
+		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == HempRopeLegsOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + HempRopeLegsOptions[I].Name + ".png", X, Y + 1);
+	}
 }
 
 // Catches the item extension clicks
 function InventoryItemLegsHempRopeClick() {
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	
+	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1175) && (MouseX <= 1400) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != null)) InventoryItemLegsHempRopeSetType(null);
-	if ((MouseX >= 1600) && (MouseX <= 1825) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Mermaid")) && (SkillGetLevelReal(Player, "Bondage") >= 2)) InventoryItemLegsHempRopeSetType("Mermaid");
+	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeLegsOptionOffset += 4;
+	if (HempRopeLegsOptionOffset >= HempRopeLegsOptions.length) HempRopeLegsOptionOffset = 0;
+
+	// Item buttons
+	for (var I = HempRopeLegsOptionOffset; (I < HempRopeLegsOptions.length) && (I < HempRopeLegsOptionOffset + 4); I++) {
+		var offset = I - HempRopeLegsOptionOffset;
+		var X = 1200 + (offset % 2 * 387);
+		var Y = 420 + (Math.floor(offset / 2) * 300);
+
+		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != HempRopeLegsOptions[I].Property.Type))
+			if (HempRopeLegsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeLegsOptions[I].RequiredBondageLevel) {
+				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", HempRopeLegsOptions[I].RequiredBondageLevel);
+			}
+			else if (!InventoryAllow(C, HempRopeLegsOptions[I].Prerequisite, true)) {
+				DialogExtendedMessage = DialogText;
+			} else { 
+				InventoryItemLegsHempRopeSetPose(HempRopeLegsOptions[I]);
+			}
+	}
 }
 
-// Sets the rope bondage position (Basic or Mermaid)
-function InventoryItemLegsHempRopeSetType(NewType) {
+// Sets the rope bondage position (Basic, Mermaid, FullBinding)
+function InventoryItemLegsHempRopeSetPose(NewType) {
 
 	// Loads the character and item
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -44,15 +101,13 @@ function InventoryItemLegsHempRopeSetType(NewType) {
 	}
 
 	// Sets the position & difficulty
-	DialogFocusItem.Property.Type = NewType;
-	DialogFocusItem.Property.Effect = [];
-	if (NewType == null) DialogFocusItem.Property.Difficulty = 0;
-	if (NewType == "Mermaid") DialogFocusItem.Property.Difficulty = 2;
+	DialogFocusItem.Property = NewType.Property;
 	CharacterRefresh(C);
+	ChatRoomCharacterUpdate(C);
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
-		var msg = "LegRopeSet" + ((NewType) ? NewType : "Basic");
+		var msg = "LegRopeSet" + NewType.Name;
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
@@ -61,7 +116,7 @@ function InventoryItemLegsHempRopeSetType(NewType) {
 		DialogFocusItem = null;
 		if (C.ID == 0) DialogMenuButtonBuild(C);
 		else {
-			C.CurrentDialog = DialogFind(C, "RopeBondage" + ((NewType) ? NewType : "Basic"), "ItemLegs");
+			C.CurrentDialog = DialogFind(C, "RopeBondage" + NewType.Name, "ItemLegs");
 			C.FocusGroup = null;
 		}
 	}

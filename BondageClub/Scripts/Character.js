@@ -44,20 +44,45 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsMounted: function () { return (this.Effect.indexOf("Mounted") >= 0) },
 		IsChaste: function () { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste: function () { return (this.Effect.indexOf("Chaste") >= 0) },
+		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
+		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsLoved: function () { return ((this.Lover != null) && (this.Lover.trim() != "")) },
-		IsLoverOfPlayer: function () { return (((((this.Lover != null) && (this.Lover.trim() == Player.Name)) || (NPCEventGet(this, "Girlfriend") > 0)) && (this.Lovership == null)) || ((this.Lovership != null) && (this.Lovership.MemberNumber != null) && (this.Lovership.MemberNumber == Player.MemberNumber))) },
-		IsLover: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (this.Name == Player.Lover.replace("NPC-", ""))) },
+		IsLoverOfPlayer: function () { return this.IsLover(Player); },
+		IsLover: function (C) { return ((this.GetLoversNumbers().indexOf(C.MemberNumber) >= 0) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
+		GetLoversNumbers: function () {
+			var LoversNumbers = [];
+			if (typeof this.Lovership == "undefined") return [];
+			for (var L = 0; L < this.Lovership.length; L++) {
+				if (this.Lovership[L].MemberNumber) { LoversNumbers.push(this.Lovership[L].MemberNumber); }
+				else if (this.Lovership[L].Name) { LoversNumbers.push(this.Lovership[L].Name); }
+			}
+			return LoversNumbers;
+		},
+		GetDeafLevel: function () {
+			var deafLevel = 0;
+			for (var A = 0; A < this.Appearance.length; A++) {
+				// Sum up the various level of deafness and returns the final value, Light: 1, Normal: 2, Heavy: 3, Total: 4
+				if (this.Appearance[A].Asset.Effect != null) {
+					if (this.Appearance[A].Asset.Effect.indexOf("DeafLight") >= 0) deafLevel += 1;
+					else if (this.Appearance[A].Asset.Effect.indexOf("DeafNormal") >= 0) deafLevel += 2;
+					else if (this.Appearance[A].Asset.Effect.indexOf("DeafHeavy") >= 0) deafLevel += 3;
+					else if (this.Appearance[A].Asset.Effect.indexOf("DeafTotal") >= 0) deafLevel += 4;
+				}
+			}
+			return deafLevel;
+		},
+		IsLoverPrivate: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (Player.GetLoversNumbers().indexOf("NPC-" + this.Name) >= 0)); },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked: function () { return CharacterIsNaked(this); },
 		IsDeaf: function () { return ((this.Effect.indexOf("DeafLight") >= 0) || (this.Effect.indexOf("DeafNormal") >= 0) || (this.Effect.indexOf("DeafHeavy") >= 0)) },
 		HasNoItem: function () { return CharacterHasNoItem(this); }
-	}
+	};
 
 	// If the character doesn't exist, we create it
 	if (CharacterID >= Character.length)
@@ -102,8 +127,9 @@ function CharacterRandomName(C) {
 // Builds the dialog objects from the CSV files
 function CharacterBuildDialog(C, CSV) {
 
-	// For each lines in the file
+	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	C.Dialog = [];
+	// For each lines in the file
 	for (var L = 0; L < CSV.length; L++)
 		if ((CSV[L][0] != null) && (CSV[L][0] != "")) {
 
@@ -113,7 +139,7 @@ function CharacterBuildDialog(C, CSV) {
 			if ((CSV[L][1] != null) && (CSV[L][1].trim() != "")) D.NextStage = CSV[L][1];
 			if ((CSV[L][2] != null) && (CSV[L][2].trim() != "")) D.Option = CSV[L][2].replace("DialogCharacterName", C.Name).replace("DialogPlayerName", Player.Name);
 			if ((CSV[L][3] != null) && (CSV[L][3].trim() != "")) D.Result = CSV[L][3].replace("DialogCharacterName", C.Name).replace("DialogPlayerName", Player.Name);
-			if ((CSV[L][4] != null) && (CSV[L][4].trim() != "")) D.Function = ((CSV[L][4].trim().substring(0, 6) == "Dialog") ? "" : CurrentScreen) + CSV[L][4];
+			if ((CSV[L][4] != null) && (CSV[L][4].trim() != "")) D.Function = ((CSV[L][4].trim().substring(0, 6) == "Dialog") ? "" : OnlinePlayer ? "ChatRoom" : CurrentScreen) + CSV[L][4];
 			if ((CSV[L][5] != null) && (CSV[L][5].trim() != "")) D.Prerequisite = CSV[L][5];
 			if ((CSV[L][6] != null) && (CSV[L][6].trim() != "")) D.Group = CSV[L][6];
 			if ((CSV[L][7] != null) && (CSV[L][7].trim() != "")) D.Trait = CSV[L][7];
@@ -220,11 +246,17 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
 	Char.Creation = data.Creation;
+	Char.Description = data.Description;
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.ItemPermission == null))) Char.ItemPermission = data.ItemPermission;
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.ArousalSettings == null))) Char.ArousalSettings = data.ArousalSettings;
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Game == null))) Char.Game = data.Game;
 	Char.Ownership = data.Ownership;
 	Char.Lovership = data.Lovership;
+	for (var L = Char.Lovership.length - 1; L >= 0; L--) {
+		delete Char.Lovership[L].BeginEngagementOfferedByMemberNumber;
+		delete Char.Lovership[L].BeginWeddingOfferedByMemberNumber;
+		if (Char.Lovership[L].BeginDatingOfferedByMemberNumber) Char.Lovership.splice(L, 1);
+	}
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.LimitedItems = Array.isArray(data.LimitedItems) ? data.LimitedItems : [];
@@ -281,7 +313,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 
 		// Flags "refresh" if we need to redraw the character
 		if (!Refresh)
-			if ((Char.ActivePose != data.ActivePose) || (Char.Title != data.Title) || (Char.LabelColor != data.LabelColor) || (ChatRoomData == null) || (ChatRoomData.Character == null))
+			if ((Char.ActivePose != data.ActivePose) || (Char.Description != data.Description) || (Char.Title != data.Title) || (Char.LabelColor != data.LabelColor) || (ChatRoomData == null) || (ChatRoomData.Character == null))
 				Refresh = true;
 			else
 				for (var C = 0; C < ChatRoomData.Character.length; C++)
@@ -602,8 +634,9 @@ function CharacterCompressWardrobe(Wardrobe) {
 		var CompressedWardrobe = [];
 		for (var W = 0; W < Wardrobe.length; W++) {
 			var Arr = [];
-			for (var A = 0; A < Wardrobe[W].length; A++)			
-				Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color]);
+			if (Wardrobe[W] != null)
+				for (var A = 0; A < Wardrobe[W].length; A++)
+					Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color]);
 			CompressedWardrobe.push(Arr);
 		}
 		return LZString.compressToUTF16(JSON.stringify(CompressedWardrobe));

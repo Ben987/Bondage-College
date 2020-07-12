@@ -28,6 +28,8 @@ ColorNames,Color names
 ColorActions,Color actions
 ColorEmotes,Color emotes
 ShowActivities,Show sexual activities & orgasms
+AutoBanBlackList,Ban blacklist when creating a room
+AutoBanGhostList,Ban ghostlist when creating a room
 AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms

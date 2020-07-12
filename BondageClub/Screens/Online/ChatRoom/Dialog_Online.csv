@@ -4,9 +4,10 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 0,,,(You don't have access to use or remove items on her.),,!DialogDoAllowItem(CurrentCharacter)
 0,,(View her profile.),,ViewProfile(),
 0,,(Change her clothes.),,ChangeClothes(),ChatRoomCanChangeClothes()
-0,10,(Manage your relationship.),"(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)",,
+0,10,(Manage your relationship.),"(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)",CheckRelationships(),
 0,20,(Check her drink tray.),(There's a variety of drinks.  Some are offered by the club and some are more expensive.),,CanTakeDrink()
 0,30,(Room administrator action.),"(As a room administrator, you can take these actions with her.)",,PlayerIsAdmin()
+0,,(Help her to struggle free.),,StruggleAssist(),CanAssistStruggle()
 0,,(Leave this menu.),,DialogLeave(),
 10,,(Add to item whitelist.),(This member is now on your item permission whitelist.  She will have higher access to restrain or free you.),"ListManage(""Add"", ""WhiteList"")",CanAddWhiteList()
 10,,(Remove from item whitelist.),(This member is no longer on your item permission whitelist.),"ListManage(""Remove"", ""WhiteList"")",CanRemoveWhiteList()
@@ -80,7 +81,7 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 31,0,(Leave this menu.),,DialogLeave(),
 100,110,(Wardrobe access.),(Select her wardrobe access.),,
 100,120,(Whisper rules.),(Select her rules for whispering when you're in the same room.),,
-100,130,(Key restrictions.),(Select her restrictions for keys.),,
+100,130,(Key and locks restrictions.),(Select her restrictions for keys and locks.),,
 100,140,(Remote restrictions.),(Select her restrictions for remotes.),,
 100,150,(Timer cell punishment.),"(For how long do you want to lock her up?  She will be isolated, and you won't be able to unlock her.)",,
 100,160,(Forced labor.),(What kind of labor will she be forced to do?  Her salary will be given to you.),,
@@ -97,6 +98,8 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 130,100,(Allow her to buy keys.),(The store will sell keys to her.),"SendRule(""KeyAllow"")",
 130,100,(Confiscate her keys.),(She lost all of her keys.),"SendRule(""KeyConfiscate"")",
 130,100,(Block her from buying keys.),(The store will not sell keys to her anymore.),"SendRule(""KeyBlock"")",
+130,100,(Allow her to use owner locks on herself.),(She will be able to use owner locks on herself.),"SendRule(""SelfOwnerLockAllow"")",
+130,100,(Block her from using owner locks on herself.),(She will not be able to use owner locks on herself anymore.),"SendRule(""SelfOwnerLockBlock"")",
 130,0,(Back to main menu.),(Main menu.),,
 140,100,(Allow her to buy remotes.),(The store will sell remotes to her.),"SendRule(""RemoteAllow"")",
 140,100,(Allow her to use remotes on herself.),(Her remotes will work on her now.),"SendRule(""RemoteAllowSelf"")"
@@ -112,5 +115,5 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 150,0,(Back to main menu.),(Main menu.),,
 160,100,(No forced labor.),"(Select the rule, restriction or punishment that you want to enforce.)",,
 160,100,(Force her to serve drinks as a maid.),(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.),"SendRule(""LaborMaidDrinks"", ""Quest"")",CanServeDrink()
-160,,(Force her to serve drinks as a maid.),(She needs to be a maid in the sorority and be able to walk to do that job for you.),,!CanServeDrink()
+160,,(Force her to serve drinks as a maid.),"(She needs to be a maid in the sorority, be able to talk and be able to walk to do that job for you.)",,!CanServeDrink()
 160,0,(Back to main menu.),(Main menu.),,

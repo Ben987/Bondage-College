@@ -1,13 +1,18 @@
 "use strict";
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
-var ServerRelog = null;
 var ServerBeep = {};
 var ServerBeepAudio = new Audio();
+var ServerIsConnected = false;
+var ServerReconnectCount = 0;
+var ServerDidDisconnect = false;
 
 // Loads the server events
 function ServerInit() {
 	ServerSocket = io(ServerURL);
+	ServerSocket.on("connect", ServerConnect);
+	ServerSocket.on("reconnecting", ServerReconnecting);
+	ServerSocket.on("event", function (data) {console.log(data);});
 	ServerSocket.on("ServerMessage", function (data) { console.log(data); });
 	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data); });
 	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
@@ -35,6 +40,40 @@ function ServerInit() {
 	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
+/**
+ * Sets the connection status of the server and updates the login page message
+ * @param {boolean} connected - whether or not the websocket connection to the server has been established successfully
+ * @param {string} errorMessage - the error message to display if not connected
+ */
+function ServerSetConnected(connected, errorMessage) {
+	ServerIsConnected = connected;
+	ServerDidDisconnect = !connected;
+	if (connected) {
+        ServerReconnectCount = 0;
+        LoginErrorMessage = "";
+    } else {
+	    LoginErrorMessage = errorMessage || "";
+    }
+	LoginUpdateMessage();
+}
+
+/**
+ * Callback when receiving a "connect" event on the socket - this will be called on initial connection and on successful reconnects.
+ */
+function ServerConnect() {
+	console.info("Server connection established");
+	ServerSetConnected(true);
+}
+
+/**
+ * Callback when receiving a "reconnecting" event on the socket - this is called when socket.io initiates a retry after a failed connection attempt.
+ */
+function ServerReconnecting() {
+	ServerReconnectCount++;
+	if (ServerReconnectCount >= 3) LoginErrorMessage = "ErrorUnableToConnect";
+	LoginUpdateMessage();
+}
+
 // When the server sends some information to the client, we keep it in variables
 function ServerInfo(data) {
 	if (data.OnlinePlayers != null) CurrentOnlinePlayers = data.OnlinePlayers;
@@ -43,7 +82,14 @@ function ServerInfo(data) {
 
 // When the server disconnects, we enter in "Reconnect Mode"
 function ServerDisconnect(data) {
-	if (Player.Name != "") {
+	console.warn("Server connection lost");
+	if (data) {
+		console.warn(data);
+	}
+	var ShouldRelog = Player.Name != "";
+	ServerSetConnected(false, ShouldRelog ? "Disconnected": "ErrorDisconnectedFromServer");
+
+	if (ShouldRelog) {
 		if (CurrentScreen != "Relog") {
 
 			// Exits out of the chat room or a sub screen of the chatroom, so we'll be able to get in again when we log back
@@ -75,7 +121,6 @@ function ServerDisconnect(data) {
 
 		}
 	}
-	else if (CurrentScreen == "Login") LoginMessage = TextGet((data != null) ? data : "ErrorDisconnectedFromServer");
 }
 
 // Sends a message to the server
@@ -85,7 +130,9 @@ function ServerSend(Message, Data) {
 
 // Syncs some player information to the server
 function ServerPlayerSync() {
-	ServerSend("AccountUpdate", { Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover });
+	var D = { Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover };
+	ServerSend("AccountUpdate", D);
+	delete Player.Lover;
 }
 
 // Syncs the full player inventory to the server, it's compressed as a stringify array using LZString
@@ -145,7 +192,7 @@ function ServerValidateProperties(C, Item) {
 
 			// Make sure the item can be locked, remove any lock that's invalid
 			var Effect = Item.Property.Effect[E];
-			if ((Effect == "Lock") && ((Item.Asset.AllowLock == null) || (Item.Asset.AllowLock == false) || (InventoryGetLock(Item) == null))) {
+			if ((Effect == "Lock") && ((Item.Asset.AllowLock == null) || (Item.Asset.AllowLock == false) || (InventoryGetLock(Item) == null) || (InventoryIsPermissionBlocked(C, Item.Property.LockedBy, "ItemMisc")))) {
 				delete Item.Property.LockedBy;
 				delete Item.Property.LockMemberNumber;
 				delete Item.Property.CombinationNumber;
@@ -181,7 +228,7 @@ function ServerValidateProperties(C, Item) {
 				} else delete Item.Property.RemoveTimer;
 
 				// Make sure the owner lock is valid
-				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Ownership.MemberNumber != Item.Property.LockMemberNumber))) {
+				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || ((C.Ownership.MemberNumber != Item.Property.LockMemberNumber) && (C.MemberNumber != Item.Property.LockMemberNumber)))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.CombinationNumber;
@@ -196,7 +243,7 @@ function ServerValidateProperties(C, Item) {
 				}
 
 				// Make sure the lover lock is valid
-				if (Lock.Asset.LoverOnly && ((C.Lovership == null) || (C.Lovership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Lovership.MemberNumber != Item.Property.LockMemberNumber))) {
+				if (Lock.Asset.LoverOnly && ((Item.Property.LockMemberNumber == null) || ((C.GetLoversNumbers().indexOf(Item.Property.LockMemberNumber) < 0) && (C.MemberNumber != Item.Property.LockMemberNumber)))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.CombinationNumber;
@@ -303,12 +350,12 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							}
 						}
 						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
+						if (C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, NA.Property.LockMemberNumber);
 
 					}
 					Appearance.push(NA);
 				}
-				if ((C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(C.Appearance[A])) {
+				if ((C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && InventoryLoverOnlyItem(C.Appearance[A])) {
 					var NA = C.Appearance[A];
 					if (!C.Appearance[A].Asset.LoverOnly) {
 
@@ -331,7 +378,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							}
 						}
 						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Property.LockedBy == "LoversPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoversPadlock") }, C.Lovership.MemberNumber);
+						if (C.Appearance[A].Property.LockedBy == "LoversPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoversPadlock") }, NA.Property.LockMemberNumber);
 					}
 					Appearance.push(NA);
 				}
@@ -355,7 +402,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 				// LoverOnly items can only get update if it comes from lover
 				if (Asset[I].LoverOnly && (C.ID == 0)) {
-					if ((C.Lovership == null) || (C.Lovership.MemberNumber == null) || ((C.Lovership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) break;
+					if ((C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && (SourceMemberNumber != null)) break;
 				}
 
 				// Creates the item and colorize it
@@ -377,7 +424,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						var Lock = InventoryGetLock(NA);
 						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
 					}
-					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(NA)) {
+					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && InventoryLoverOnlyItem(NA)) {
 						var Lock = InventoryGetLock(NA);
 						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
 					}
@@ -485,7 +532,7 @@ function ServerAccountBeep(data) {
 		}
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null)
-			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
+			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : data.ChatRoomSpace === "LARP" ? DialogFind(Player, "InLarp") : '');
 		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
@@ -529,16 +576,8 @@ function ServerAccountLovership(data) {
 			ChatRoomLovershipOption = data.Result;
 
 	// If we must update the character lovership data
-	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lover != null) && (typeof data.Lover === "string") && (data.Lovership != null) && (typeof data.Lovership === "object")) {
-		Player.Lover = data.Lover;
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lovership != null) && (typeof data.Lovership === "object")) {
 		Player.Lovership = data.Lovership;
-	}
-
-	// If we must clear the character lovership data
-	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearLovership != null) && (typeof data.ClearLovership === "boolean") && (data.ClearLovership == true)) {
-		Player.Lover = "";
-		Player.Lovership = null;
 		LoginLoversItems();
 	}
-
 }

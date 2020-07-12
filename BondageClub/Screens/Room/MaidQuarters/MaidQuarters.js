@@ -46,7 +46,7 @@ function MaidQuartersLoad() {
 
 }
 
-// Run the maid quarters, draw both characters
+// Run the maid quarters, draw both characters (The screen can be used for the search daily job)
 function MaidQuartersRun() {
 	MaidQuartersCanBecomeMaid = (!LogQuery("JoinedSorority", "Maid") && (ReputationGet("Maid") >= 50));
 	MaidQuartersCannotBecomeMaidYet = ((ReputationGet("Maid") > 0) && (ReputationGet("Maid") < 50) && !LogQuery("JoinedSorority", "Maid"));
@@ -54,22 +54,24 @@ function MaidQuartersRun() {
 	MaidQuartersCannotBecomeHeadMaidYet = (((ReputationGet("Maid") < 100) || (ReputationGet("Dominant") < 50)) && LogQuery("JoinedSorority", "Maid") && !LogQuery("LeadSorority", "Maid"));
 	MaidQuartersIsMaid = LogQuery("JoinedSorority", "Maid");
 	MaidQuartersIsHeadMaid = LogQuery("LeadSorority", "Maid");
-	DrawCharacter(Player, 500, 0, 1);
-	DrawCharacter(MaidQuartersMaid, 1000, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(Player, 500, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(MaidQuartersMaid, 1000, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
+	DailyJobSubSearchRun();
 }
 
 // When the user clicks in the maid quarters
 function MaidQuartersClick() {
-	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
+	if (!DailyJobSubSearchIsActive() && (MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && (MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
 		ManagementClubSlaveDialog(MaidQuartersMaid);
 		CharacterSetCurrent(MaidQuartersMaid);
 		if (MaidQuartersMaid.Stage == "285") MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, (MaidQuartersOnlineDrinkCompleted()) ? "MaidDrinkOnlineComplete" : "MaidDrinkOnlineIncomplete");
 	}
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	DailyJobSubSearchClick();
 }
 
 // The maid can ungag the player
@@ -136,12 +138,15 @@ function MaidQuartersMiniGamePay() {
 	if (MiniGameDifficulty == "Hard") M = M * 2;
 	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", M.toString());
 	CharacterChangeMoney(Player, M);
+	IntroductionJobProgress("SubMaid");
 }
 
-function MaidQuartersMiniGamePayAdvanced(){
+// When the music mini game is successful, the player gets paid
+function MaidQuartersMiniGamePayAdvanced() {
 	ReputationProgress("Maid", 4);
 	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", MiniGameAdvancedPayment.toString());
 	CharacterChangeMoney(Player, MiniGameAdvancedPayment);
+	IntroductionJobProgress("SubMaid");
 }
 
 // When the rescue is successful, the player gets paid
@@ -151,6 +156,7 @@ function MaidQuartersRescuePay() {
 	var M = 10 + Math.floor(Math.random() * 11);
 	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", M.toString());
 	CharacterChangeMoney(Player, M);
+	IntroductionJobProgress("SubMaid");
 }
 
 // When the maid releases the player
@@ -212,8 +218,9 @@ function MaidQuartersBecomHeadMaid() {
 // Starts a maid rescue mission in a random room
 function MaidQuartersStartRescue() {
 	
-	// Make sure we don't select the same room twice and prepares the rescue scenario
+	// Make sure we don't select the same room twice or sent rescue to the introduction room when doing the daily quest
 	MaidQuartersCurrentRescue = CommonRandomItemFromList(MaidQuartersCurrentRescue, MaidQuartersRescueList);
+	if ((MaidQuartersCurrentRescue == "IntroductionClass") && (IntroductionJobCurrent == "SubMaid")) MaidQuartersCurrentRescue = CommonRandomItemFromList(MaidQuartersCurrentRescue, ["ShibariDojo", "Shop", "Gambling"]);
 	MaidQuartersMaid.Stage = MaidQuartersRescueStage[MaidQuartersRescueList.indexOf(MaidQuartersCurrentRescue)];
 	MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, "Rescue" + MaidQuartersCurrentRescue);
 	MaidQuartersCurrentRescueStarted = false;
@@ -275,6 +282,7 @@ function MaidQuartersOnlineDrinkPay() {
 	if (!MaidQuartersOnlineDrinkFromOwner) CharacterChangeMoney(Player, M);
 	else ChatRoomMoneyForOwner = M;
 	ReputationProgress("Maid", 4);
+	IntroductionJobProgress("SubMaid");
 }
 
 // Flags the maid drink as not from the player owner
