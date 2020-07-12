@@ -20,7 +20,7 @@ function PasswordResetLoad() {
 	document.getElementById("InputPassword2").setAttribute("autocomplete", "off");
 	
 	// Clears the fields after a little while
-	setTimeout(function(){
+	setTimeout(function() {
 		ElementValue("InputResetNumber", "");
 		ElementValue("InputPassword1", "");
 	}, 500);

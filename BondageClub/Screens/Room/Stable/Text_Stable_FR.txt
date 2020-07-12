@@ -6,3 +6,7 @@ Horse Carriage
 Calèche
 You wait in an isolation stable
 Vous attendez dans une écurie d'isolement
+Try to hide the dice.
+Essayer de cacher les dés.
+You have successfully hidden the dice
+Vous avez réussi à cacher les dés

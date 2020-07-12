@@ -1,7 +1,14 @@
 "use strict";
 var Log = [];
 
-// Add a new log to the server side
+/**
+ * Adds a new entry to the player's logs, renews the value if it already exists.
+ * @param {string} NewLogName - The name of the log
+ * @param {string} NewLogGroup - The name of the log's group
+ * @param {number} [NewLogValue] - Value for the log as the time in ms. Is undefined if the value is permanent
+ * @param {boolean} [Push] - TRUE if we must push the log to the server
+ * @returns {void} - Nothing
+ */
 function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 
 	// Makes sure the value is numeric
@@ -32,7 +39,13 @@ function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 
 }
 
-// Deletes a log entry
+/**
+ * Deletes a log entry.
+ * @param {string} NewLogName - The name of the log
+ * @param {string} NewLogGroup - The name of the log's group
+ * @param {boolean} [Push] - TRUE if we must push the log to the server
+ * @returns {void} - Nothing
+ */
 function LogDelete(DelLogName, DelLogGroup, Push) {
 
 	// Finds the log entry and deletes it
@@ -49,6 +62,13 @@ function LogDelete(DelLogName, DelLogGroup, Push) {
 }
 
 // Checks if the log exists, return true if it does (if there's a value, it counts as an expiry time)
+
+/**
+ * Searches for an existing log entry.
+ * @param {string} NewLogName - The name of the log to search for
+ * @param {string} NewLogGroup - The name of the log's group
+ * @returns {boolean} - Returns TRUE if there is an existing log matching the Name/Group with no value or a value above the current time in ms.
+ */
 function LogQuery(QueryLogName, QueryLogGroup) {
 	for (var L = 0; L < Log.length; L++)
 		if ((Log[L].Name == QueryLogName) && (Log[L].Group == QueryLogGroup))
@@ -57,7 +77,13 @@ function LogQuery(QueryLogName, QueryLogGroup) {
 	return false;
 }
 
-// Returns the value associated to the log
+
+/**
+ * Returns the value associated to a log.
+ * @param {string} NewLogName - The name of the log to query the value
+ * @param {string} NewLogGroup - The name of the log's group
+ * @returns {number | undefined} - Returns the value of the log which is a date represented in ms or undefined. Returns null if no matching log is found.
+ */
 function LogValue(QueryLogName, QueryLogGroup) {
 	for (var L = 0; L < Log.length; L++)
 		if ((Log[L].Name == QueryLogName) && (Log[L].Group == QueryLogGroup))
@@ -65,7 +91,11 @@ function LogValue(QueryLogName, QueryLogGroup) {
 	return null;
 }
 
-// Loads the account log
+/**
+ * Loads the account log.
+ * @param {Array.<{Name: string, Group: string, Value: number}>} NewLog - Existing logs received by the server
+ * @returns {void} - Nothing
+ */
 function LogLoad(NewLog) {
 
 	// Make sure we have something to load

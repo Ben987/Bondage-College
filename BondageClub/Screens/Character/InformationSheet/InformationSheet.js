@@ -5,7 +5,11 @@ var InformationSheetPreviousModule = "";
 var InformationSheetPreviousScreen = "";
 var InformationSheetSecondScreen = false;
 
-// Returns the NPC love text
+/**
+ * Returns the love sheet of an NPC
+ * @param {number} Love - The current realtionship value
+ * @returns {string} - The text describing the relationship to the NPC
+ */
 function InformationSheetGetLove(Love) {
 	if (Love >= 100) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipPerfect");
 	if (Love >= 75) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipGreat");
@@ -18,7 +22,11 @@ function InformationSheetGetLove(Love) {
 	return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipAtrocious");
 }
 
-// Run the character info screen
+/**
+ * Main function of the character info screen. It's called continuously, so be careful 
+ * to add time consuming functions or loops here
+ * @returns {void} - Nothing
+ */
 function InformationSheetRun() {
 
 	// Draw the character base values
@@ -104,7 +112,7 @@ function InformationSheetRun() {
 		// After one week we show the traits, after two weeks we show the level
 		if (CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 604800000) {
 			var pos = 0;
-			for(var T = 0; T < C.Trait.length; T++)
+			for (var T = 0; T < C.Trait.length; T++)
 				if ((C.Trait[T].Value != null) && (C.Trait[T].Value > 0)) {
 					DrawText(TextGet("Trait" + C.Trait[T].Name) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 1209600000) ? C.Trait[T].Value.toString() : "??"), 1000, 200 + pos * 75, "Black", "Gray");
 					pos++;
@@ -116,8 +124,11 @@ function InformationSheetRun() {
 
 }
 
-// Draws the second part of the information sheet for reputation & skills
-function InformationSheetSecondScreenRun(){
+/**
+ * Display the second part of the information sheet for reputation & skills
+ * @returns {void} - Nothing
+ */
+function InformationSheetSecondScreenRun() {
 
 	// For current player and online characters
 	var C = InformationSheetSelection;
@@ -127,7 +138,7 @@ function InformationSheetSecondScreenRun(){
 		// Draw the reputation section
 		DrawText(TextGet("Reputation"), 1000, 125, "Black", "Gray");
 		var pos = 0;
-		for(var R = 0; R < C.Reputation.length; R++)
+		for (var R = 0; R < C.Reputation.length; R++)
 			if (C.Reputation[R].Value != 0) {
 				DrawText(TextGet("Reputation" + C.Reputation[R].Type + ((C.Reputation[R].Value > 0) ? "Positive" : "Negative")) + " " + Math.abs(C.Reputation[R].Value).toString(), 1000, 200 + pos * 75, "Black", "Gray");
 				pos++;
@@ -140,7 +151,7 @@ function InformationSheetSecondScreenRun(){
 			DrawText(TextGet("Unknown"), 1425, 200, "Black", "Gray");
 		}
 		else {
-			for(var S = 0; S < C.Skill.length; S++)
+			for (var S = 0; S < C.Skill.length; S++)
 				DrawText(TextGet("Skill" + C.Skill[S].Type) + " " + C.Skill[S].Level.toString() + " (" + Math.floor(C.Skill[S].Progress / 10) + "%)", 1425, 200 + S * 75, ((C.Skill[S].Ratio != null) && (C.Skill[S].Ratio != 1)) ? "Red" : "Black", "Gray");
 			if (C.Skill.length == 0) DrawText(TextGet("SkillNone"), 1425, 200, "Black", "Gray");
 		}
@@ -160,7 +171,10 @@ function InformationSheetSecondScreenRun(){
 
 }
 
-// When the user clicks on the character info screen
+/**
+ * Handles the click events on the screen
+ * @returns {void} - Nothing
+ */
 function InformationSheetClick() {
 	var C = InformationSheetSelection;
 	if (CommonIsClickAt(1815, 75, 90, 90)) InformationSheetExit();
@@ -176,13 +190,20 @@ function InformationSheetClick() {
 	}
 }
 
-// when the user exit this screen
+/**
+ * Cleanup all elements, if the user exits the screen
+ * @returns {void} - Nothing
+ */
 function InformationSheetExit() {
 	InformationSheetSecondScreen = false;
 	CommonSetScreen(InformationSheetPreviousModule, InformationSheetPreviousScreen);
 }
 
-// Loads the information sheet for a character
+/**
+ * Loads the information sheet for a character
+ * @param {Character} C - The character whose information sheet should be displayed
+ * @returns {void} - Nothing
+ */
 function InformationSheetLoadCharacter(C) {
 	InformationSheetSelection = C;
 	InformationSheetPreviousModule = CurrentModule;

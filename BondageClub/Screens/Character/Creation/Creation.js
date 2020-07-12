@@ -3,9 +3,8 @@ var CreationBackground = "Dressing";
 var CreationMessage = "";
 
 /**
- * @description Loads the character login screen. Imports data from the Bondage College if necessary
+ * Loads the character login screen. Imports data from the Bondage College if necessary
  * and creates the input fields. This function is called dynamically.
- * 
  * @returns {void} - Nothing
  */
 function CreationLoad() {
@@ -28,10 +27,9 @@ function CreationLoad() {
 
 
 /**
- * @description Runs the character creation screen. Draws all needed input fields and buttons.
+ * Runs the character creation screen. Draws all needed input fields and buttons.
  * If the import of Bondage College data is possible, an appropriate check box is drawn.
  * The function is called dynamically.
- * 
  * @returns {void} - Nothing
  */
 function CreationRun() {
@@ -66,14 +64,12 @@ function CreationRun() {
 
 // When the server response returns, we analyze it's data
 /**
- * @description Handles the server response to a creation request. Creates the character, if possible,
+ * Handles the server response to a creation request. Creates the character, if possible,
  * initializes the basic data and sends the newborn to the maid in the main hall.
- * 
  * @param {*} data - The set of data, received from the server
  * @param {string} data.ServerAnswer - The outcome of the creation request: should always be "AccountCreated"
  * @param {string} data.OnlineID - The ID of the newly created account
  * @param {string} data.MemberNumber - The member number of the newly created account
- * 
  * @returns {void} - Nothing
  */
 function CreationResponse(data) {
@@ -125,9 +121,8 @@ function CreationResponse(data) {
 }
 
 /**
- * @description Handles click events in the creation dialog. 
+ * Handles click events in the creation dialog. 
  * Imports data from Bondage College and creates a character.
- * 
  * @returns {void} - Nothing
  */
 function CreationClick() {
@@ -172,8 +167,7 @@ function CreationClick() {
 
 // when the user exit this screen
 /**
- * @description Does the cleanup, if the user exits the screen
- * 
+ * Does the cleanup, if the user exits the screen
  * @returns {void} - Nothing
  */
 function CreationExit() {

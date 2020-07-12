@@ -85,7 +85,7 @@ function ManagementNoMistressInPrivateRoom() {
 
 // Returns TRUE if any friend in the private room is chaste
 function ManagementFriendIsChaste() {
-	for(var C = 1; C < PrivateCharacter.length; C++)
+	for (var C = 1; C < PrivateCharacter.length; C++)
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsChaste())
 			return true;
 	return false;

@@ -33,7 +33,7 @@ function LoginDrawCredits() {
 	// For each credits in the list
 	LoginCreditsPosition++;
 	MainCanvas.font = "30px Arial";
-	for(var C = 0; C < LoginCredits.length; C++) {
+	for (var C = 0; C < LoginCredits.length; C++) {
 
 		// Sets the Y position (it scrolls from bottom to top)
 		var Y = 800 - Math.floor(LoginCreditsPosition * 2) + (C * 50);
@@ -307,7 +307,7 @@ function LoginResponse(C) {
 			PrivateCharacter = [];
 			PrivateCharacter.push(Player);
 			if (C.PrivateCharacter != null)
-				for(var P = 0; P < C.PrivateCharacter.length; P++)
+				for (var P = 0; P < C.PrivateCharacter.length; P++)
 					PrivateCharacter.push(C.PrivateCharacter[P]);
 			SarahSetStatus();
 
