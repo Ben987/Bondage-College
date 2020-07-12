@@ -2,7 +2,10 @@
 var PasswordResetBackground = "Dressing";
 var PasswordResetMessage = "";
 
-// Loads the recovery screen
+/**
+ * Loads the password reset screen
+ * @returns {void} Nothing
+ */
 function PasswordResetLoad() {
 
 	// Creates the controls
@@ -18,24 +21,27 @@ function PasswordResetLoad() {
 	document.getElementById("InputResetNumber").setAttribute("autocomplete", "off");
 	document.getElementById("InputPassword1").setAttribute("autocomplete", "off");
 	document.getElementById("InputPassword2").setAttribute("autocomplete", "off");
-	
+
 	// Clears the fields after a little while
-	setTimeout(function(){
+	setTimeout(function() {
 		ElementValue("InputResetNumber", "");
 		ElementValue("InputPassword1", "");
 	}, 500);
 
 }
 
-// Run the recovery screen 
+/**
+ * Runs the password reset screen
+ * @returns {void} Nothing
+ */
 function PasswordResetRun() {
-	
+
 	// Draw the email validation controls
 	if (PasswordResetMessage == "") PasswordResetMessage = TextGet("EnterEmail");
 	DrawText(PasswordResetMessage, 1000, 60, "White", "Black");
 	ElementPosition("InputEmail", 1000, 120, 1000);
 	DrawButton(800, 180, 400, 60, TextGet("SendEmail"), "White", "");
-	
+
 	// Draw the recovery controls
 	DrawText(TextGet("AccountName"), 1000, 320, "White", "Black");
 	ElementPosition("InputAccountName", 1000, 380, 500);
@@ -50,12 +56,19 @@ function PasswordResetRun() {
 
 }
 
-// When the character logs, we analyze the data
+/**
+ * Handles a password reset response
+ * @param {string} msg - The password reset response message to be displayed to the player
+ * @returns {void} Nothing
+ */
 function PasswordResetResponse(msg) {
 	PasswordResetMessage = TextGet(msg);
 }
 
-// When the user clicks on the recovery screen
+/**
+ * Handles player click events on the password reset screen
+ * @returns {void} Nothing
+ */
 function PasswordResetClick() {
 
 	// Push a recovery request to the server
@@ -74,11 +87,10 @@ function PasswordResetClick() {
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-			LoginSubmitted = true;
-			LoginInvalid = false;
+		    LoginSetSubmitted();
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password } );
 		}
-		else LoginInvalid = true;
+		else LoginStatusReset("InvalidNamePassword");
 		LoginUpdateMessage();
 	}
 
@@ -111,13 +123,14 @@ function PasswordResetClick() {
 	}
 
 	// Go back to the login screen
-	if ((MouseX >= 1025) && (MouseX <= 1325) && (MouseY >= 890) && (MouseY <= 950)) {
-		PasswordResetExit();
-	}
+	if ((MouseX >= 1025) && (MouseX <= 1325) && (MouseY >= 890) && (MouseY <= 950)) PasswordResetExit();
 
 }
 
-// when the user exit this screen
+/**
+ * Sends the player back to the login screen
+ * @returns {void} Nothing
+ */
 function PasswordResetExit() {
 	ElementRemove("InputEmail");
 	ElementRemove("InputAccountName");

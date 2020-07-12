@@ -1,5 +1,6 @@
-# JetBrains
+# IDEs
 .idea/
+.vscode/
 
 #system temp file
 .DS_Store

@@ -16,23 +16,23 @@ function InventoryItemVulvaInflatableVibeDildoDraw() {
 	else DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	DrawText(DialogFind(Player, "InflateLevel" + DialogFocusItem.Property.InflateLevel.toString()), 1500, 750, "White", "Gray");
-	if(DialogFocusItem.Property.InflateLevel > 0) DrawButton(1200, 775, 200, 55, DialogFind(Player, "Empty"), "White");
-	if(DialogFocusItem.Property.InflateLevel < 1) DrawButton(1550, 775, 200, 55, DialogFind(Player, "Light"), "White");
-	if(DialogFocusItem.Property.InflateLevel > 1) DrawButton(1550, 775, 200, 55, DialogFind(Player, "Light"), "White");
-	if(DialogFocusItem.Property.InflateLevel < 2) DrawButton(1200, 835, 200, 55, DialogFind(Player, "Inflated"), "White");
-	if(DialogFocusItem.Property.InflateLevel > 2) DrawButton(1200, 835, 200, 55, DialogFind(Player, "Inflated"), "White");
-	if(DialogFocusItem.Property.InflateLevel < 3) DrawButton(1550, 835, 200, 55, DialogFind(Player, "Bloated"), "White");
-	if(DialogFocusItem.Property.InflateLevel > 3) DrawButton(1550, 835, 200, 55, DialogFind(Player, "Bloated"), "White");
-	if(DialogFocusItem.Property.InflateLevel < 4) DrawButton(1375, 895, 200, 55, DialogFind(Player, "Maximum"), "White");
+	if (DialogFocusItem.Property.InflateLevel > 0) DrawButton(1200, 775, 200, 55, DialogFind(Player, "Empty"), "White");
+	if (DialogFocusItem.Property.InflateLevel < 1) DrawButton(1550, 775, 200, 55, DialogFind(Player, "Light"), "White");
+	if (DialogFocusItem.Property.InflateLevel > 1) DrawButton(1550, 775, 200, 55, DialogFind(Player, "Light"), "White");
+	if (DialogFocusItem.Property.InflateLevel < 2) DrawButton(1200, 835, 200, 55, DialogFind(Player, "Inflated"), "White");
+	if (DialogFocusItem.Property.InflateLevel > 2) DrawButton(1200, 835, 200, 55, DialogFind(Player, "Inflated"), "White");
+	if (DialogFocusItem.Property.InflateLevel < 3) DrawButton(1550, 835, 200, 55, DialogFind(Player, "Bloated"), "White");
+	if (DialogFocusItem.Property.InflateLevel > 3) DrawButton(1550, 835, 200, 55, DialogFind(Player, "Bloated"), "White");
+	if (DialogFocusItem.Property.InflateLevel < 4) DrawButton(1375, 895, 200, 55, DialogFind(Player, "Maximum"), "White");
 	DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()), 1500, 525, "White", "Gray");
-	if(DialogFocusItem.Property.Intensity > -1) DrawButton(1200, 550, 200, 55, DialogFind(Player, "TurnOff"), "White");
-	if(DialogFocusItem.Property.Intensity < 0) DrawButton(1550, 550, 200, 55, DialogFind(Player, "Low"), "White");
-	if(DialogFocusItem.Property.Intensity > 0) DrawButton(1550, 550, 200, 55, DialogFind(Player, "Low"), "White");
-	if(DialogFocusItem.Property.Intensity < 1) DrawButton(1200, 610, 200, 55, DialogFind(Player, "Medium"), "White");
-	if(DialogFocusItem.Property.Intensity > 1) DrawButton(1200, 610, 200, 55, DialogFind(Player, "Medium"), "White");
-	if(DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 610, 200, 55, DialogFind(Player, "High"), "White");
-	if(DialogFocusItem.Property.Intensity > 2) DrawButton(1550, 610, 200, 55, DialogFind(Player, "High"), "White");
-	if(DialogFocusItem.Property.Intensity < 3) DrawButton(1375, 670, 200, 55, DialogFind(Player, "Maximum"), "White");
+	if (DialogFocusItem.Property.Intensity > -1) DrawButton(1200, 550, 200, 55, DialogFind(Player, "TurnOff"), "White");
+	if (DialogFocusItem.Property.Intensity < 0) DrawButton(1550, 550, 200, 55, DialogFind(Player, "Low"), "White");
+	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1550, 550, 200, 55, DialogFind(Player, "Low"), "White");
+	if (DialogFocusItem.Property.Intensity < 1) DrawButton(1200, 610, 200, 55, DialogFind(Player, "Medium"), "White");
+	if (DialogFocusItem.Property.Intensity > 1) DrawButton(1200, 610, 200, 55, DialogFind(Player, "Medium"), "White");
+	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 610, 200, 55, DialogFind(Player, "High"), "White");
+	if (DialogFocusItem.Property.Intensity > 2) DrawButton(1550, 610, 200, 55, DialogFind(Player, "High"), "White");
+	if (DialogFocusItem.Property.Intensity < 3) DrawButton(1375, 670, 200, 55, DialogFind(Player, "Maximum"), "White");
 }
 
 // Catches the item extension clicks

@@ -4,7 +4,10 @@ var RelogCanvas = document.createElement("canvas");
 var RelogData = null;
 var RelogChatLog = null;
 
-// Loads the relog screen
+/**
+ * Loads the relog screen
+ * @returns {void} Nothing
+ */
 function RelogLoad() {
 	
 	// Hides any HTML DOM element with the tag "HideOnPopup", like text boxes
@@ -12,8 +15,8 @@ function RelogLoad() {
 	for (var E = 0; E < Elements.length; E++)
 		Elements[E].style.display = "none";
 
-	// Clears the previous login message
-	LoginIsRelog = true;
+	// Resets login variables and sets the login message
+	LoginStatusReset(null, true);
 	LoginUpdateMessage();
 
 	// Keeps a copy of the main canvas and darkens it
@@ -31,7 +34,10 @@ function RelogLoad() {
 
 }
 
-// Run the relog screen 
+/**
+ * Runs the relog screen
+ * @returns {void} Nothing
+ */
 function RelogRun() {
 	
 	// The previous darkened background is drawn
@@ -49,33 +55,45 @@ function RelogRun() {
 
 }
 
-// When the user clicks on the relog screen buttons
+/**
+ * Handles player click events on the relog screen
+ * @returns {void} Nothing
+ */
 function RelogClick() {
-	if ((MouseX >= 675) && (MouseX <= 975) && (MouseY >= 750) && (MouseY <= 810)) RelogSend();
-	if ((MouseX >= 1025) && (MouseX <= 1325) && (MouseY >= 750) && (MouseY <= 810)) RelogExit();
+	if ((MouseX >= 675) && (MouseX <= 975) && (MouseY >= 750) && (MouseY <= 810)) RelogSend(); // Log Back button
+	if ((MouseX >= 1025) && (MouseX <= 1325) && (MouseY >= 750) && (MouseY <= 810)) RelogExit(); // Give Up button
 }
 
-// When the user press "enter" we send the relog query
+/**
+ * Handles player keyboard events on the relog screen
+ * @returns {void} Nothing
+ */
 function RelogKeyDown() {
-	if (KeyPress == 13) RelogSend();
+	if (KeyPress == 13) RelogSend(); // On an "enter" key press, try to relog the player
 }
 
-// Sends the relog query to the server
+/**
+ * Attempt to log the user in based on the current player account name and the input password
+ * @returns {void} Nothing
+ */
 function RelogSend() {
-	if (LoginMessage != TextGet("ValidatingNamePassword")) {
+    // Ensure the login request is not sent twice
+	if (!LoginSubmitted) {
 		var Name = Player.AccountName;
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-			LoginSubmitted = true;
-			LoginInvalid = false;
+		    LoginSetSubmitted();
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
-		} else LoginInvalid = true;
+		} else LoginStatusReset("InvalidNamePassword", true);
 	}
 	LoginUpdateMessage();
 }
 
-// when the user exit this screen, we go back to login
+/**
+ * Sends the player back to the main login screen
+ * @returns {void} Nothing
+ */
 function RelogExit() {
 	window.location = window.location;
 }

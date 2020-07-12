@@ -10,7 +10,7 @@ function InventoryItemButtButtPlugLockLoad() {
 // check, if a short chain can be applied
 function InventoryItemButtButtPlugLockChainShortPrerequesites(C) {
 	var ChainShortPrerequisites = true;
-	if (C.Pose.indexOf("Suspension") >= 0 || C.Pose.indexOf("StraitDressOpen") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
+	if (C.Pose.indexOf("Suspension") >= 0 || C.Effect.indexOf("BlockKneel") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
 		ChainShortPrerequisites = false;
 	} // if
 	return ChainShortPrerequisites;

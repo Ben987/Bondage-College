@@ -39,7 +39,7 @@ function CheatImport() {
 		CheatBrowserName = BI.Name;
 		CheatBrowserVersion = BI.Version;
 		CheatBrowserTime = CommonTime();
-		for(var C = 0; C < CheatList.length; C++) {
+		for (var C = 0; C < CheatList.length; C++) {
 			var AC = localStorage.getItem("BondageClubCheat" + CheatList[C]);
 			if ((AC != null) && (AC.toUpperCase() == "TRUE")) CheatActivated.push(CheatList[C]);
 		}
@@ -48,7 +48,7 @@ function CheatImport() {
 
 // Exports the cheats to the local storage
 function CheatExport() {
-	for(var C = 0; C < CheatList.length; C++)
+	for (var C = 0; C < CheatList.length; C++)
 		localStorage.setItem("BondageClubCheat" + CheatList[C], (CheatActivated.indexOf(CheatList[C]) >= 0) ? "true" : "false");
 }
 
@@ -57,7 +57,7 @@ function CheatRun() {
 
 	// List all the cheats
 	MainCanvas.textAlign = "left";
-	for(var C = 0; C < CheatList.length; C++) {
+	for (var C = 0; C < CheatList.length; C++) {
 		DrawButton(150, 115 + (C * 100), 64, 64, "", "White", CheatActive(CheatList[C]) ? "Icons/Checked.png" : "");
 		DrawText(TextGet(CheatList[C]), 250, 147 + (C * 100), "Black", "Gray");		
 	}
@@ -75,7 +75,7 @@ function CheatClick() {
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CheatExit();
 	
 	// When the user activates an option
-	for(var C = 0; C < CheatList.length; C++)
+	for (var C = 0; C < CheatList.length; C++)
 		if ((MouseX >= 150) && (MouseX <= 800) && (MouseY >= 115 + (C * 100)) && (MouseY <= 179 + (C * 100))) {
 			var CheatName = CheatList[C];
 			if (CheatActivated.indexOf(CheatName) >= 0)

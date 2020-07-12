@@ -12,8 +12,8 @@ Reset character
 Réinitialiser le personnage
 Randomize character
 Personnage aléatoire
-Strip naked
-Déshabiller au complet
+Strip clothes
+Rétirer les vêtements
 Strip item
 Retiré l'objet
 Next

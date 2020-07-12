@@ -88,7 +88,7 @@ function MagicClick() {
 ////////////////////////////////////////////////////////////////////////////////////////////
 //Tricks
 ////////////////////////////////////////////////////////////////////////////////////////////
-function MagicTrickChangeDresses(){
+function MagicTrickChangeDresses() {
 	CharacterNaked(Player);
 	CharacterNaked(MagicAssistant);
 	CharacterDress(Player, MagicAssistantAppearance);
@@ -96,7 +96,7 @@ function MagicTrickChangeDresses(){
 	MagicShowState = 2;
 }
 
-function MagicTrickChangeDressesBack(){
+function MagicTrickChangeDressesBack() {
 	CharacterNaked(Player);
 	CharacterNaked(MagicAssistant);
 	CharacterDress(MagicAssistant, MagicAssistantAppearance);
@@ -104,7 +104,7 @@ function MagicTrickChangeDressesBack(){
 	MagicShowState = 1;
 }
 
-function MagicAssistantDress(){
+function MagicAssistantDress() {
 	CharacterNaked(MagicAssistant);
 	var ColorList = ["Default", "#aa8080", "#8080aa", "#aaaa80", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"];
 	var Color = CommonRandomItemFromList("", ColorList);
@@ -188,7 +188,7 @@ function MagicSelectTrick() {
 	}
 }
 
-function MagicTrickChangeBinds(){
+function MagicTrickChangeBinds() {
 	var T = ((Math.random() < 0.5) ? Player : MagicAssistant);
 	MagicRestrainCopyTransfer(MagicPerformer, T);
 	MagicPerformer.AllowItem = false;
@@ -256,12 +256,12 @@ function MagicTrickGetCoin() {
 	CharacterChangeMoney(Player, MagicMoney);
 }
 
-function MagicSongLeavePerformer(){
+function MagicSongLeavePerformer() {
 	MagicShowState = 6;
 	DialogLeave()
 }
 
-function MagicSongGwendoyn(){
+function MagicSongGwendoyn() {
 	InventoryWear(Player, "HempRope", "ItemFeet");
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "LeatherArmbinder", "ItemArms");
@@ -273,7 +273,7 @@ function MagicSongGwendoyn(){
 	MagicShowState = 4;
 }
 
-function MagicSongBadGirl(){
+function MagicSongBadGirl() {
 	var MagicMoney = Math.floor(Math.random() * 6) + 6;
 	MagicAssistant.CurrentDialog = MagicAssistant.CurrentDialog.replace("REPLACEMONEY", MagicMoney.toString());
 	CharacterChangeMoney(Player, MagicMoney);
@@ -308,17 +308,17 @@ function MagicTrickEndPerformance() {
 
 function MagicRestrainCopyTransfer(FromC, ToC) {
 	// Removes any previous appearance asset From second
-	for(var A = 0; A < ToC.Appearance.length; A++)
+	for (var A = 0; A < ToC.Appearance.length; A++)
 		if ((ToC.Appearance[A].Asset != null) && ((ToC.Appearance[A].Asset.Group.Name == "ItemMouth") || (ToC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (ToC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (ToC.Appearance[A].Asset.Group.Name == "ItemArms") || (ToC.Appearance[A].Asset.Group.Name == "ItemFeet") || (ToC.Appearance[A].Asset.Group.Name == "ItemLegs") || (ToC.Appearance[A].Asset.Group.Name == "ItemHead") || (ToC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
 			ToC.Appearance.splice(A, 1);
 			A--;
 		}
 	// Adds all appearance assets from the first character to the second
-	for(var A = 0; A < FromC.Appearance.length; A++)
+	for (var A = 0; A < FromC.Appearance.length; A++)
 		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices")))
 			ToC.Appearance.push(FromC.Appearance[A]);
 	// Removes any previous appearance asset From first
-	for(var A = 0; A < FromC.Appearance.length; A++)
+	for (var A = 0; A < FromC.Appearance.length; A++)
 		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
 			FromC.Appearance.splice(A, 1);
 			A--;

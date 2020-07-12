@@ -1,7 +1,6 @@
 "use strict";
 var ChatAdminBackground = "Sheet";
 var ChatAdminMessage = "";
-var ChatAdminPrivate = false;
 var ChatAdminBackgroundIndex = 0;
 var ChatAdminBackgroundSelect = "";
 var ChatAdminPrivate = false;
@@ -69,11 +68,11 @@ function ChatAdminRun() {
 	DrawButton(975, 770, 250, 65, TextGet("QuickbanGhostList"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4");
 
 	// Background selection
-	DrawImageResize("Backgrounds/" + ChatAdminBackgroundSelect + "Dark.jpg", 1300, 75, 600, 400);
-	DrawBackNextButton(1350, 500, 500, 65, DialogFind(Player, ChatAdminBackgroundSelect), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null,
+	DrawImageResize("Backgrounds/" + ChatAdminBackgroundSelect + "Dark.jpg", 1300, 75, 600, 350);
+	DrawBackNextButton(1350, 450, 500, 65, DialogFind(Player, ChatAdminBackgroundSelect), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null,
 		() => DialogFind(Player, (ChatAdminBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatAdminBackgroundIndex - 1]),
 		() => DialogFind(Player, (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatAdminBackgroundIndex + 1]));
-	DrawButton(1450, 600, 300, 65, TextGet("ShowAll"),  ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4");
+	DrawButton(1450, 550, 300, 65, TextGet("ShowAll"),  ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4");
 
 	// Private and Locked check boxes
 	DrawText(TextGet("RoomPrivate"), 1384, 740, "Black", "Gray");
@@ -96,7 +95,7 @@ function ChatAdminClick() {
 	if (ChatRoomPlayerIsAdmin()) {
 
 		// When we select a new background
-		if ((MouseX >= 1350) && (MouseX <= 1850) && (MouseY >= 500) && (MouseY <= 565)) {
+		if ((MouseX >= 1350) && (MouseX <= 1850) && (MouseY >= 450) && (MouseY <= 515)) {
 			ChatAdminBackgroundIndex += ((MouseX < 1600) ? -1 : 1);
 			if (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length) ChatAdminBackgroundIndex = 0;
 			if (ChatAdminBackgroundIndex < 0) ChatAdminBackgroundIndex = ChatCreateBackgroundList.length - 1;
@@ -110,7 +109,7 @@ function ChatAdminClick() {
 		if ((MouseX >= 695) && (MouseX < 945) && (MouseY >= 770) && (MouseY < 835)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(true, false, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
 		if ((MouseX >= 975) && (MouseX < 1225) && (MouseY >= 770) && (MouseY < 835)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(false, true, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
 		
-		if ((MouseX >= 1450) && (MouseX <= 1750) && (MouseY >= 600) && (MouseY <= 665)) {
+		if ((MouseX >= 1450) && (MouseX <= 1750) && (MouseY >= 550) && (MouseY <= 615)) {
 			// Save the input values before entering background selection
 			ChatAdminTemporaryData = {
 				Name: ElementValue("InputName"),
