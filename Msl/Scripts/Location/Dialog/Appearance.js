@@ -257,8 +257,10 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 			this.groupItemActions.items.controller.SetItems([]);//clear the icons for prev list
 		
 		if(applicableGroup.currentItem){
-			if(applicableGroup.actions.struggle)
+			if(applicableGroup.actions.struggle){
 				buttonsToShow.push("struggle");
+				this.groupItemActions.struggle.controller.SetItem(applicableGroup.currentItem);
+			}
 			
 			if(applicableGroup.actions.color)
 				buttonsToShow.push("color");
@@ -267,7 +269,6 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 				buttonsToShow.push("variants");
 				var variantData = applicableGroup.currentItem.variants[applicableGroup.currentItem.variant];
 				this.groupItemActions.variants.button.childNodes[0].src = variantData.iconUrl;
-				console.log(applicableGroup.actions);
 				if(applicableGroup.actions.variants)
 					this.groupItemActions.variants.controller.SetItem(applicableGroup.currentItem);
 			}

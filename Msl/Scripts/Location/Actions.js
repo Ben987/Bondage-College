@@ -14,21 +14,23 @@ var LocationActions = {
 	,UnInit(){
 		Util.DetachElementsAndClear(LocationActions.actionIcons);
 		Util.DetachElementsAndClear(LocationActions.spotClickDivs);
+		Util.DetachElementsAndClear(LocationActions.figureClickDivs);
 	}
 	
 	,OnScreenChange(){
 		Util.DetachElementsAndClear(LocationActions.actionIcons);	
 		Util.DetachElementsAndClear(LocationActions.spotClickDivs);
+		Util.DetachElementsAndClear(LocationActions.figureClickDivs);
 		
 		var currentSpot = LocationController.GetSpot();
 		var currentScreen = LocationController.location.screens[currentSpot.screens.Default];
 		
 		for(let spotName in currentScreen.spotPositions){
 			var spotPos = currentScreen.spotPositions[spotName];
-			var left = spotPos.left + "%", top = spotPos.top + "%",width = spotPos.scale + "%", height = spotPos.scale*2/LocationView.aspectRatio + "%";
+			var left = spotPos.left, top = spotPos.top,width = spotPos.scale, height = spotPos.scale*2/LocationView.aspectRatio;
 			
 			var spotClickDiv = Util.CreateElement({parent:LocationController.inputContainer, className:"location-spot-event-listener", insertFirst:true
-				,cssStyles:{left:left, top:top, width:width, height:height}
+				,cssStyles:{left:left + "%", top:top + "%", width:width + "%", height:height + "%"}
 				,events:{
 					click:(event) => {
 						event.stopPropagation();
@@ -37,15 +39,24 @@ var LocationActions = {
 				}
 			});
 			this.spotClickDivs[spotName] = spotClickDiv;
+		}
+		
+		for(let spotName in currentScreen.spotPositions){
+			var spotPos = currentScreen.spotPositions[spotName];
+			var left = spotPos.left, top = spotPos.top,width = spotPos.scale, height = spotPos.scale*2/LocationView.aspectRatio;	
+			left += width * .25;
+			top += height * .25;
+			width *= .5;
+			height *= .5;
 			
-			var figureClickDiv = Util.CreateElement({parent:spotClickDiv, className:"location-spot-figure-listener"
-				,cssStyles:{border:DevTools.locationSpotBorder}
+			var figureClickDiv = Util.CreateElement({parent:LocationController.inputContainer, className:"location-spot-figure-listener"
+				,cssStyles:{border:DevTools.locationSpotBorder, left:left + "%", top:top + "%", width:width + "%", height:height + "%"}
 				,events:{
 					click:(event) => {
 						var player = LocationController.GetPlayer(spotName);
 						if(! player) return;
 						
-						console.log("click on " + spotName + " " + player.id);
+						//console.log("click on " + spotName + " " + player.id);
 						event.stopPropagation();
 						LocationController.StartPlayerDialogBondageToys(player);
 					}

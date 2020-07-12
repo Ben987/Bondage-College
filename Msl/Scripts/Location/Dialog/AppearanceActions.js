@@ -23,8 +23,6 @@ var ActivityDialogAppearanceGroupActionView = function(container, callback) {
 		Util.ClearNodeContent(this.container);
 		
 		activities.forEach(activityData => {
-			console.log(activityData);
-			
 			var iconContainer = Util.CreateElement({parent:this.container});
 			var events = {};
 			
@@ -257,7 +255,12 @@ var StruggleDialogAppearanceGroupActionView = function(container, callback) {
 	DialogAppearanceGroupActionView.call(this, container, callback);
 	
 	this.SetItem = function(appliedItem){
-		console.log(appliedItem);
+		Util.ClearNodeContent(this.container);
+		
+		Util.CreateElement({parent:container, tag:"img",attributes:{src:appliedItem.iconUrl, alt:appliedItem.name}});		
+		Util.CreateElement({parent:container,innerHTML:"STRUGGLE", events:{
+			click:function(e){this.callback();}.bind(this)
+		}});
 	}
 }
 
@@ -279,7 +282,7 @@ var VariantsDialogAppearanceGroupActionView = function(container, callback) {
 					Util.CreateElement({parent:iconContainer,innerHTML:variantData.validation[i],cssStyles:{color:"#fcc",top:(i+1)+"em",fontSize:"1em"}});
 			
 			var iconContainer = Util.CreateElement({parent:this.container,events:events});
-			Util.CreateElement({parent:iconContainer, tag:"img",attributes:{src:appliedItem.variants[variantName].iconUrl, alt:variantName}});		
+			Util.CreateElement({parent:iconContainer, tag:"img",attributes:{src:appliedItem.variants[variantName].iconUrl, alt:variantName}});
 			Util.CreateElement({parent:iconContainer,innerHTML:variantName,cssStyles:{fontSize:".8em"}});
 		};
 	}

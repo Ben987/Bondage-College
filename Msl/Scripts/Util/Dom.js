@@ -132,8 +132,8 @@ Util.DetachElementsAndClear = function(listOrMap){
 	}
 }
 
-Util.ScrollableElementIsAtBottom = function(element){
-	return Math.abs(Math.ceil(element.scrollHeight - element.scrollTop) - element.clientHeight) < 10;
+Util.ScrollableElementIsAtBottom = function(element, errorMargin){
+	return Math.abs(Math.ceil(element.scrollHeight - element.scrollTop) - element.clientHeight) < errorMargin ? 10 : errorMargin;
 }
 
 Util.GetTypedPropertyValueFromElement = function(obj, property, inputElement){

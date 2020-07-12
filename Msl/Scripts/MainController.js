@@ -191,8 +191,7 @@ var MainController = {
 	
 	
 	,GetAvailableLocationTypesResp(data){
-		console.log("GetAvailableLocationTypesResp");
-		console.log(data);
+		console.log("GetAvailableLocationTypesResp", data);
 		MainController.locationTypesCache = data.locationTypes;
 		
 		if(LocationController.location) return;

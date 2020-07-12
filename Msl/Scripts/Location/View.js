@@ -6,14 +6,7 @@ var LocationView = {
 	,assetsScaleFactor: .2//f3dcg asset scale factor	
 	,spotDivs: {}
 	,fixtureDivs: {}
-
-	,nsfw:{Groups:["BodyUpper", "BodyLower", "Nipples", "Pussy"]}
 	
-	//,DoubleClick(event){console.log("double click");}
-	//,Click(event){SideInput.Roll();BottomChat.RollSmallIfHidden();}
-	//,Touch(event){SideInput.Roll();BottomChat.RollSmallIfHidden();}
-	//,MouseMove(event){}
-	//,LoseFocus(event){MslController.LoseFocus();}
 	,Init(){
 		LocationController.canvasContainer.style.display = "block";	
 		this.OnScreenChange();
@@ -61,12 +54,12 @@ var LocationView = {
 	
 	
 	,RenderFixture(screen, fixture){
-		var url = "./Images/Locations/"+LocationController.location.type+"/"+screen.name+"/"+fixture.name+".png";
+		var url = "./Images/Locations/"+LocationController.location.type+"/"+screen.name+"/"+ (fixture.image ? fixture.image : fixture.name +".png");
 		
 		LocationView.fixtureDivs[fixture.name] = Util.CreateElement({tag:"img", parent:"LocationViewMidground", attributes:{src:url, alt:""}
 			,cssStyles:{
-				left:fixture.left-fixture.scaleX/2 + "%"
-				,top:fixture.top-fixture.scaleY + "%"
+				left:fixture.left + "%"
+				,top:fixture.top + "%"
 				,width:fixture.scaleX + "%"
 				,height:fixture.scaleY + "%"
 				,zIndex:fixture.zIndex
@@ -200,59 +193,4 @@ var LocationView = {
 			}, 20);
 		}
 	}
-	
-	/*
-	
-	,ShowActionsChat(){}
-	,ShowActionsSettings(){
-		console.log("Settings will be the exit button for a while");
-	}
-	
-	,ShowActionsExamine(){
-		Util.DetachElementsAndClear(LocationView.actionIcons);
-		
-		for(let spotName in LocationController.location.spots){
-			var spot = LocationController.location.spots[spotName];
-			var iconDiv = Util.CreateElement({parent:"LocationViewInput", tag:"img", attributes:{src:"./Icons/"+"Examine.png"}, className:"spot-icon-examine"
-				,cssStyles:{
-					left:spot.left + "%"
-					,top:spot.top + "%"
-					,width:spot.scale + "%"
-					,height:spot.scale/LocationView.aspectRatio + "%"
-				}
-				,events:{
-					click:(event)=>{
-						event.stopPropagation();
-						LocationController.SpotInfo(spotName);
-						Util.DetachElementsAndClear(LocationView.actionIcons);
-					}
-				}
-			});
-			this.actionIcons.push(iconDiv);
-		}
-	}*/
 }
-
-
-/*
-LocationView.oval = {
-	ovalXhalf:8.25/1.5
-	, ovalX:12.5/1.5
-	, ovalYhalf:15/1.5
-	, ovalY:25/1.5
-}
-
-LocationView.actionIconPositions = {
-	spotInfo:[0, LocationView.oval.ovalY]
-	,moveToSpot:[ LocationView.oval.ovalXhalf, LocationView.oval.ovalYhalf]
-	,exitLocation:[LocationView.oval.ovalX, 0]
-	,appItemChange:[LocationView.oval.ovalXhalf, -LocationView.oval.ovalYhalf]
-	,appItemChangeSelf:[-LocationView.oval.ovalXhalf, -LocationView.oval.ovalYhalf]
-	,poseChangeSelf:[-LocationView.oval.ovalXhalf, LocationView.oval.ovalYhalf]
-	, 
-		,[0, -LocationView.Oval.ovalY]
-
-		,[ -LocationView.Oval.ovalX, 0]
-		,[-LocationView.Oval.ovalXhalf, LocationView.Oval.ovalYhalf]
-	}
-}*/

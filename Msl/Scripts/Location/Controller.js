@@ -181,17 +181,10 @@ var LocationController = {
 		
 		var appearanceUpdate = playerUpdate.GetFinalAppItemList();
 		try{
-			if(playerUpdate.player.id == MainController.playerAccount.id){
-				F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player);
-				MslServer.Send("ActionStart", {type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate}, function(data){
-					this.OnLocationAction(data);
-				}.bind(this));
-			}else{
-				F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player, LocationController.GetPlayer());
-				MslServer.Send("ActionStart", {type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()}, function(data){
-					this.OnLocationAction(data);
-				}.bind(this));
-			}
+			F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player, LocationController.GetPlayer());
+			MslServer.Send("ActionStart", {type:"AppearanceUpdate", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()}, function(data){
+				this.OnLocationAction(data);
+			}.bind(this));
 		}catch(e){
 			console.log(appearanceUpdate);
 			throw e;
@@ -344,7 +337,7 @@ var LocationController = {
 			delete LocationController.location.players[originSpotName];
 			
 			if(player.id == MainController.playerAccount.id	&& originSpot.screens.Default != targetSpot.screens.Default){
-				Object.values(LocationController.delegates).forEach(delegate => {delegate?.OnScreenChange()});		
+				Object.values(LocationController.delegates).forEach(delegate => {delegate?.OnScreenChange()});
 			}else{
 				LocationController.delegates.view.OnPlayerMove(player, originSpotName, targetSpotName);
 			}
@@ -376,16 +369,11 @@ var LocationController = {
 	}
 	
 	
-	,LocationAction_AppearanceUpdateOther(action){
+	,LocationAction_AppearanceUpdate(action){
 		var player = this.GetPlayer(action.targetPlayerId);
 		player.UpdateAppearanceAndRender(action.result);
 		LocationController.delegates.view.RenderPlayerInSpot(this.GetSpotWithPlayer(player.id).name, player);
 	}
 	
-	
-	,LocationAction_AppearanceUpdateSelf(action){
-		var player = this.GetPlayer(action.targetPlayerId);
-		player.UpdateAppearanceAndRender(action.result);
-		LocationController.delegates.view.RenderPlayerInSpot(this.GetSpotWithPlayer(player.id).name, player);
-	}
+
 }

@@ -50,7 +50,7 @@ var LocationViewChat = {
 		this.AddChatMessageToLog({color:color, id:player.id, time:"12:20", content:content, narration:true});		
 	}
 	,OnAction(action){
-		var scrollToBot = Util.ScrollableElementIsAtBottom(LocationViewChat.logContainer);	
+		var scrollToBot = Util.ScrollableElementIsAtBottom(LocationViewChat.logContainer, 50);	
 		
 		var originPlayer = LocationController.GetPlayer(action.originPlayerId);
 		var targetPlayer = LocationController.GetPlayer(action.targetPlayerId);
@@ -64,7 +64,7 @@ var LocationViewChat = {
 				var content = "*" + originPlayer.profile.name + " " + (action.finished ? ">>" : ">") + " " + action.targetSpotName + "*";
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});				
 			break;
-			case "AppearanceUpdateOther":
+			case "AppearanceUpdate":
 				var content = "*" + originPlayer.profile.name + " " + (action.finished ? "completed" : "started") + " updating appearance of " + targetPlayer.name + "*";
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});					
 			break;
@@ -75,12 +75,19 @@ var LocationViewChat = {
 				
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});					
 			break;
-			case "AppearanceUpdateSelf":
-				//no message
-			break;
 			case "PlayerExit":
 				var content = "*" + originPlayer.profile.name + " left the location (from " + targetPlayer.name + "*";
 				this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});	
+			break;
+			case "StruggleRemoveSelf":
+				if(action.finished){
+					var groupName = Object.keys(action.result)[0];
+					var content =  "*" + originPlayer.profile.name + " has freed her " + groupName + " slot*";
+					this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});	
+				}else{
+					var content = "*" + originPlayer.profile.name + " started struggling";
+					this.AddChatMessageToLog({color:color, id:originPlayer.id, time:"12:20", content:content, narration:true});	
+				}
 			break;
 			case "PlayerDisconnect":
 			case "PlayerReconnect":
@@ -138,7 +145,8 @@ var LocationViewChat = {
 	
 	,SendMessage(){
 		var content = LocationViewChat.inputTextarea.value;
+		if(! content || ! content.trim()) return;
 		LocationViewChat.inputTextarea.value = "";
-		LocationController.SendChatMessage(content);		
+		LocationController.SendChatMessage(content.trim());		
 	}
 }
