@@ -3,7 +3,7 @@
 // Loads the item extension properties
 function InventoryItemButtAnalBeads2Load() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { InsertedBeads: 1, ShowText: true, Type: "Base" };
-	if (DialogFocusItem.Property.InsertedBeads == null){
+	if (DialogFocusItem.Property.InsertedBeads == null) {
 		DialogFocusItem.Property.Type = DialogFocusItem.Property.Type || "Base";
 		DialogFocusItem.Property.InsertedBeads = DialogFocusItem.Property.Type == "Base" ? 1 : DialogFocusItem.Property.Type.split('')[1];
 	}

@@ -222,6 +222,9 @@ Hat,Crown2,Crown Style 2
 Hat,Crown3,Crown Style 3
 Hat,Crown4,Crown Style 4
 Hat,Crown5,Crown Style 5
+Hat,SmallHat1,Stylish Small Hat
+Hat,Veil1,Veil Half Face
+Hat,Veil2,Veil Full Face
 HairAccessory1,,Hair Accessory
 HairAccessory1,Ears1,Ears Small
 HairAccessory1,Ears2,Ears Large
@@ -311,6 +314,13 @@ Mask,DominoMask,Domino Mask
 Mask,ButterflyMask,Butterfly Mask
 Mask,ShinobiMask,Shinobi Mask
 Mask,FoxMask,Fox Mask
+Mask,BunnyMask1,Bunny Mask Filigrane 
+Mask,BunnyMask2,Bunny Mask Leather
+Mask,BunnyMask3,Bunny Mask Leather Nose
+Mask,KittyMask1,Kitty Mask Filigrane
+Mask,KittyMask2,Kitty Mask Whiskers
+Mask,LaceMask1,Bat Mask
+Mask,LaceMask2,Venice Festival Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
@@ -488,6 +498,7 @@ ItemVulva,VibratorRemote,Vibrating Items Remote
 ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
 ItemVulva,WandBelt,Wand Belt
 ItemVulva,PenisDildo,Penis Dildo
+ItemVulva,ShockDildo,Shock Dildo
 ItemVulva,VibratingDildo,Vibrating Dildo
 ItemVulva,InflatableVibeDildo,Inflatable Vibrating Dildo
 ItemVulva,ClitoralStimulator,Clitoral Stimulator
@@ -545,6 +556,9 @@ ItemButt,MouseTail2,Mouse Tail 2
 ItemButt,VibratingDildoPlug,Vibrating Dildo
 ItemButt,BunnyTailPlug1,White Bunny Tail Plug
 ItemButt,BunnyTailPlug2,Brown Bunny Tail Plug
+ItemButt,BunnyTailVibePlug,Bunny Tail Vibe Plug
+ItemButt,EggVibePlugXXL,Egg Vibe Plug XXL
+ItemButt,ShockPlug,Shock Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -591,6 +605,7 @@ ItemNipples,KittyPasties,Kitty Pasties
 ItemNipples,Clothespins,Clothespins
 ItemNipples,NippleWeightClamps,Nipple Weight Clamps
 ItemNipples,BellClamps,Nipple Bell Clamps
+ItemNipples,ShockClamps,Shock Clamps
 ItemNipplesPiercings,,Nipples
 ItemNipplesPiercings,StraightPiercing,Straight Piercings
 ItemNipplesPiercings,RoundPiercing,Round Piercings
@@ -651,7 +666,8 @@ ItemArms,LatexArmbinder,Latex Armbinder
 ItemArms,SeamlessLatexArmbinder,Seamless Latex Armbinder
 ItemArms,FullBodyLeatherHarness,Full Body Leather Harness
 ItemArms,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
-ItemArms,TightJacket,Tight Straighjacket
+ItemArms,TightJacket,Tight Straitjacket
+ItemArms,LatexSleevelessLeotard,Latex Sleeveless Leotard
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -749,6 +765,7 @@ ItemMouth,DuctTape,Duct Tape
 ItemMouth,PacifierGag,Pacifier
 ItemMouth,HarnessPacifierGag,Harness Pacifier
 ItemMouth,DusterGag,Duster Gag
+ItemMouth,CupholderGag,Cup Holder Gag
 ItemMouth,HarnessPonyBits,Bit Gag
 ItemMouth,PumpGag,Pump Gag
 ItemMouth,KittyGag,Kitty Mask Gag
@@ -801,6 +818,7 @@ ItemMouth2,RingGag,Ring Gag
 ItemMouth2,DuctTape,Duct Tape
 ItemMouth2,HarnessPacifierGag,Harness Pacifier
 ItemMouth2,DusterGag,Duster Gag
+ItemMouth2,CupholderGag,Cup Holder Gag
 ItemMouth2,HarnessPonyBits,Bit Gag
 ItemMouth2,KittyGag,Kitty Mask Gag
 ItemMouth2,KittenHarnessPanelGag,Kitty Harness Gag
@@ -838,6 +856,7 @@ ItemMouth3,RingGag,Ring Gag
 ItemMouth3,DuctTape,Duct Tape
 ItemMouth3,HarnessPacifierGag,Harness Pacifier
 ItemMouth3,DusterGag,Duster Gag
+ItemMouth3,CupholderGag,Cup Holder Gag
 ItemMouth3,HarnessPonyBits,Bit Gag
 ItemMouth3,KittyGag,Kitty Mask Gag
 ItemMouth3,KittenHarnessPanelGag,Kitty Harness Gag
@@ -904,6 +923,7 @@ ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
 ItemEars,HeadphoneEarPlugs,Headphone Ear Plugs
+ItemEars,BluetoothEarbuds,Bluetooth Earbuds
 ItemMisc,,Body
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
@@ -976,6 +996,7 @@ ItemBoots,LockingShoes2,Locking Full Shoes
 ItemBoots,LockingBoots1,Locking Boots
 ItemBoots,LeatherFootMitts1,Short Leather Foot Mittens
 ItemBoots,ToeTape,Toe Tape
+ItemBoots,Zipties,Zip Ties
 ItemHidden,Accessories,
 ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
 ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps

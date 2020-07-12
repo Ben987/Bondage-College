@@ -10,7 +10,7 @@ function MaidCleaningGenerateSpots(MaxSpot) {
 
 	// Full the spots sequence
 	MaidCleaningSpots = [];
-	for(var S = 0; S < MaxSpot; S++) {
+	for (var S = 0; S < MaxSpot; S++) {
 
 		// Generates each spot 1 by 1
 		var NewSpot = {
@@ -26,7 +26,7 @@ function MaidCleaningGenerateSpots(MaxSpot) {
 
 // Draw the cleaning spots
 function MaidCleaningDrawSpots() {
-	for(var S = 0; S < MaidCleaningSpots.length; S++)
+	for (var S = 0; S < MaidCleaningSpots.length; S++)
 		DrawImage("Screens/MiniGame/MaidCleaning/Spot" + MaidCleaningSpots[S].T + ".png", MaidCleaningSpots[S].X - (MaidCleaningSpotSize / 2), MaidCleaningSpots[S].Y - (MaidCleaningSpotSize / 2));
 }
 
@@ -94,7 +94,7 @@ function MaidCleaningDoMove() {
 
 		// If the game has started, we check the click position and remove a spot at that position
 		if (!MiniGameEnded)
-			for(var S = 0; S < MaidCleaningSpots.length; S++)
+			for (var S = 0; S < MaidCleaningSpots.length; S++)
 				if ((MouseX >= MaidCleaningSpots[S].X - Range) && (MouseX <= MaidCleaningSpots[S].X + Range) && (MouseY >= MaidCleaningSpots[S].Y - Range) && (MouseY <= MaidCleaningSpots[S].Y + Range)) {
 					if (MaidCleaningSpots[S].T == 1) MaidCleaningSpots.splice(S, 1);
 					else MaidCleaningSpots[S].T--;

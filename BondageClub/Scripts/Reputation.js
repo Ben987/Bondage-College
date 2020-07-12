@@ -1,11 +1,12 @@
 "use strict";
 
-// Pushes the reputation to the server
-function ReputationSave(R) {
-	ServerPlayerReputationSync();
-}
-
-// When we need to alter a reputation (positive or negative)
+/**
+ * Alters a given reputation value for the player
+ * @param {string} RepType - The name/type of the reputation to alter
+ * @param {number} RepValue - Reputation to add/subtract to the current reputation value.
+ * @param {boolean} [Push=true] - Pushes the reputation to the server if TRUE
+ * @returns {void} - Nothing
+ */
 function ReputationChange(RepType, RepValue, Push) {
 
 	// Nothing will be done for a zero change
@@ -18,7 +19,7 @@ function ReputationChange(RepType, RepValue, Push) {
 				Player.Reputation[R].Value = Player.Reputation[R].Value + RepValue;
 				if (Player.Reputation[R].Value > 100) Player.Reputation[R].Value = 100;
 				if (Player.Reputation[R].Value < -100) Player.Reputation[R].Value = -100;
-				if ((Push == null) || Push) ReputationSave(Player.Reputation[R]);
+				if ((Push == null) || Push) ServerPlayerReputationSync();
 				return;
 			}
 
@@ -30,15 +31,18 @@ function ReputationChange(RepType, RepValue, Push) {
 		if (NewRep.Value > 100) NewRep.Value = 100;
 		if (NewRep.Value < -100) NewRep.Value = -100;
 		Player.Reputation.push(NewRep);
-		if ((Push == null) || Push) ReputationSave(NewRep);
+		if ((Push == null) || Push) ServerPlayerReputationSync();
 
 	}
 
 }
 
-// Loads the reputation data
+/**
+ * Loads the reputation data from the server
+ * @param {Array.<{Type: string, Value: number}>} NewRep - The array of reputation-value pairs to load for the current player
+ * @returns {void} - Nothing
+ */
 function ReputationLoad(NewRep) {
-
 	// Make sure we have something to load
 	if (NewRep != null) {
 
@@ -50,7 +54,11 @@ function ReputationLoad(NewRep) {
 
 }
 
-// Returns a specific reputation value for the player
+/**
+ * Returns a specific reputation value for the player
+ * @param {string} RepType - Type/name of the reputation to get the value of.
+ * @returns {number} - Returns the value of the reputation. It can range from 100 to -100, and it defaults to 0 if the player never earned this type of reputation before.
+ */
 function ReputationGet(RepType) {
 	for (var R = 0; R < Player.Reputation.length; R++)
 		if (Player.Reputation[R].Type == RepType)
@@ -58,7 +66,12 @@ function ReputationGet(RepType) {
 	return 0;
 }
 
-// Returns a specific reputation value for a specific character
+/**
+ * Returns a specific reputation value for a given character
+ * @param {Character} C - Character to get the reputation for.
+ * @param {string} RepType - Type/name of the reputation to get the value of.
+ * @returns {number} - Returns the value of the reputation. It can range from 100 to -100, and it defaults to 0 if the given character never earned this type of reputation before.
+ */
 function ReputationCharacterGet(C, RepType) {
 	if ((C != null) && (C.Reputation != null))
 		for (var R = 0; R < C.Reputation.length; R++)
@@ -67,7 +80,12 @@ function ReputationCharacterGet(C, RepType) {
 	return 0;
 }
 
-// Alter the reputation progress by a factor (The higher the rep, the slower it gets, a reputation is easier to break than to build)
+/**
+ * Alter the reputation progress by a factor. The higher the rep, the slower it gets, a reputation is easier to break than to build. Takes the cheater version factor into account.
+ * @param {string} RepType - Type/name of the reputation
+ * @param {number} Value - Value of the reputation change before the factor is applied
+ * @return {void} - Nothing 
+ */
 function ReputationProgress(RepType, Value) {
 	var V = ReputationGet(RepType);
 	Value = parseInt(Value) * CheatFactor("DoubleReputation", 2);

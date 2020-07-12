@@ -369,7 +369,7 @@ function InventoryGroupIsBlocked(C, GroupName) {
 function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 	if (!Item) return null;
 	if (!Effect) {
-		if ((Item.Asset && Item.Asset.Effect) || (CheckProperties && Item.Property && Item.Property.Effect)) return true;
+		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.length > 0) || (CheckProperties && Item.Property && Item.Property.Effect)) return true;
 		else return false;
 	}
 	else {
@@ -445,6 +445,19 @@ function InventoryCharacterHasLockedRestraint(C) {
 		for (var A = 0; A < C.Appearance.length; A++)
 			if (C.Appearance[A].Asset.IsRestraint && (InventoryGetLock(C.Appearance[A]) != null))
 				return true;
+	return false;
+}
+
+/**
+ *
+ * @param {Character} C - The character to scan
+ * @param {String} LockName - The type of lock to check for
+ * @returns {Boolean} - Returns TRUE if any item has the specified lock locked onto it
+ */
+function InventoryCharacterIsWearingLock(C, LockName) {
+	for (var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.LockedBy == LockName))
+			return true;
 	return false;
 }
 

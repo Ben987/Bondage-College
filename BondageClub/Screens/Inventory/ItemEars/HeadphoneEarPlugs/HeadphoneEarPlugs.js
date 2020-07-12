@@ -79,6 +79,7 @@ function InventoryItemEarsHeadphoneEarPlugsSetPose(NewPose) {
 	var Dictionary = [];
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 
 	// Rebuilds the inventory menu

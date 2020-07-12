@@ -17,7 +17,7 @@ var CharacterAppearanceWardrobeText = "";
 var CharacterAppearanceForceUpCharacter = 0;
 
 /**
- * @description Builds all the assets that can be used to dress up the character
+ * Builds all the assets that can be used to dress up the character
  * @param {Character} C - The character whose appearance is modified
  * @returns {void} - Nothing
  */
@@ -36,7 +36,7 @@ function CharacterAppearanceBuildAssets(C) {
 
 // 
 /**
- * @description Makes sure the character appearance is valid from inventory and asset requirement
+ * Makes sure the character appearance is valid from inventory and asset requirement
  * @param {Character} C - The character whose appearance is checked
  * @returns {void} - Nothing
  */
@@ -76,7 +76,7 @@ function CharacterAppearanceValidate(C) {
 }
 
 /**
- * @description Resets the character to it's default appearance
+ * Resets the character to it's default appearance
  * @param {Character} C - The character to redress to its default appearance
  * @returns {void} - Nothing
  */
@@ -115,7 +115,7 @@ function CharacterAppearanceSetDefault(C) {
 
 // 
 /**
- * @description Checks wether an item group is required for this asset
+ * Checks wether an item group is required for this asset
  * @param {Character} C - The character, whose assets are used for the check
  * @param {string} GroupName - The name of the group to check
  * @returns {boolean} - Returns TRUE if the item group is required from
@@ -128,7 +128,7 @@ function CharacterAppearanceRequired(C, GroupName) {
 }
 
 /**
- * @description Checks, wether the item group must be hidden for a certain asset
+ * Checks, wether the item group must be hidden for a certain asset
  * @param {Character} C - The character, whose assets are used for the check
  * @param {string} GroupName - The name of the group to check
  * @returns {boolean} - Returns TRUE if the item group must be hidden and not chosen
@@ -143,7 +143,7 @@ function CharacterAppearanceMustHide(C, GroupName) {
 
 
 /**
- * @description Sets a full random set of items for a character. Only items that do not have the "Random" property set to false will be used.
+ * Sets a full random set of items for a character. Only items that do not have the "Random" property set to false will be used.
  * @param {Character} C - The character to dress
  * @param {boolean} ClothOnly - Defines, if only clothes should be used
  * @returns {void} - Nothing
@@ -204,7 +204,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 }
 
 /**
- * @description Removes all items that can be removed, making the character naked. Currently includes cosplay items, like tails, wings or ears.
+ * Removes all items that can be removed, making the character naked. Currently includes cosplay items, like tails, wings or ears.
  * @param {Character} C - The character to undress
  * @returns {void} - Nothing
  */
@@ -224,7 +224,7 @@ function CharacterAppearanceNaked(C) {
 
 
 /**
- * @description Removes one layer of clothing: outer clothes, then underwear, then body-cosplay clothes, then nothing
+ * Removes one layer of clothing: outer clothes, then underwear, then body-cosplay clothes, then nothing
  * @param {Character} C - The character to undress
  * @returns {void} - Nothing
  */
@@ -273,7 +273,7 @@ function CharacterAppearanceStripLayer(C) {
 }
 
 /**
- * @description sorts the character appearance by drawing priority
+ * sorts the character appearance by drawing priority
  * @param {Appearance} AP - The appearance to be sorted
  * @returns {Appearance} - The sorted appearance
  */
@@ -299,7 +299,7 @@ function CharacterAppearanceSort(AP) {
 }
 
 /**
- * @description Determines wether an item or a whole item group is visible or not
+ * Determines wether an item or a whole item group is visible or not
  * @param {Character} C - The character whose assets are checked
  * @param {string} AssetName - The name of the asset to check
  * @param {string} GroupName - The name of the item group to check
@@ -321,7 +321,7 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 }
 
 /**
- * @description Calculates and sets the height modifier which determines the character's vertical position on screen
+ * Calculates and sets the height modifier which determines the character's vertical position on screen
  * @param {Character} C - The character whose height must be calculated
  * @returns {void} - Nothing
  */
@@ -348,7 +348,7 @@ function CharacterApperanceSetHeightModifier(C) {
 }
 
 /**
- * @description Draws the character canvas
+ * Draws the character canvas
  * @param {Character} C - The character to draw
  * @returns {void} - Nothing
  */
@@ -473,7 +473,7 @@ function CharacterAppearanceBuildCanvas(C) {
 
 
 /**
- * @description Returns a value from the character current appearance
+ * Returns a value from the character current appearance
  * @param {Character} C - The character to get values from
  * @param {string} Group - The name of the group, whose values we want to get
  * @param {string} Type - The name of the value, we want to get
@@ -498,7 +498,7 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 }
 
 /**
- * @description Loads the character appearance screen and keeps a backup of the previous appearance. The function name is created dynamically.
+ * Loads the character appearance screen and keeps a backup of the previous appearance. The function name is created dynamically.
  * @returns {void} - Nothing
  */
 function AppearanceLoad() {
@@ -511,7 +511,7 @@ function AppearanceLoad() {
 
 
 /**
- * @description Run the character appearance selection screen. The function name is created dynamically.
+ * Run the character appearance selection screen. The function name is created dynamically.
  * @returns {void} - Nothing
  */
 function AppearanceRun() {
@@ -593,7 +593,7 @@ function AppearanceRun() {
 
 
 /**
- * @description Sets an item in the character appearance
+ * Sets an item in the character appearance
  * @param {Character} C - The character whose appearance should be changed
  * @param {string} Group - The name of the corresponding groupr for the item
  * @param {Asset} ItemAsset - The asset collection of the item to be changed
@@ -631,7 +631,7 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 }
 
 /**
- * @description Cycle in the appearance assets to find the next item in a group and wear it
+ * Cycle in the appearance assets to find the next item in a group and wear it
  * @param {Character} C - The character whose assets are used
  * @param {string} Group - The name of the group to cycle
  * @param {boolean} Forward - Sets the direction of the cycling
@@ -678,7 +678,7 @@ function CharacterAppearanceNextItem(C, Group, Forward, Description) {
 
 
 /**
- * @description Find the next color for the item
+ * Find the next color for the item
  * @param {Character} C - The character whose items are cycled
  * @param {string} Group - The name of the group for which we are colour cycling
  * @returns {void} - Nothing
@@ -709,7 +709,7 @@ function CharacterAppearanceNextColor(C, Group) {
 }
 
 /**
- * @description Moves the offset to get new character appearance items
+ * Moves the offset to get new character appearance items
  * @param {Character} C - The character whose visible groups are used for calculation
  * @param {number} Move - The amount the next asset group should be moved before it is displayed
  * @returns {void} - Nothing
@@ -729,7 +729,7 @@ function CharacterAppearanceMoveOffset(C, Move) {
 
 
 /**
- * @description Sets the color for a specific group
+ * Sets the color for a specific group
  * @param {Character} C - The character whose item group should be coloured
  * @param {string} Color - The colour (in the format "#rrggbb") to be applied to the group
  * @param {string} Group - The name of the group, whose colour should be changed
@@ -744,7 +744,7 @@ function CharacterAppearanceSetColorForGroup(C, Color, Group) {
 
 
 /**
- * @description Handle the clicks in the character appearance selection screen. The function name is created dynamically.
+ * Handle the clicks in the character appearance selection screen. The function name is created dynamically.
  * @returns {void} - Nothing
  */
 function AppearanceClick() {
@@ -848,7 +848,7 @@ function AppearanceClick() {
 }
 
 /**
- * @description Handle the exiting of the appearance screen. The function name is created dynamically.
+ * Handle the exiting of the appearance screen. The function name is created dynamically.
  * @returns {void} - Nothing
  */
 function AppearanceExit() {
@@ -858,7 +858,7 @@ function AppearanceExit() {
 }
 
 /**
- * @description Restore the characters appearance backup, if the exit button is clicked
+ * Restore the characters appearance backup, if the exit button is clicked
  * @param {Character} C - The character, whose appearance backup should be used
  * @returns {void} - Nothing
  */
@@ -875,7 +875,7 @@ function CharacterAppearanceExit(C) {
 }
 
 /**
- * @description Handle the confirmation click in the wardrobe screen. 
+ * Handle the confirmation click in the wardrobe screen. 
  * @param {Character} C - The character who has been changed
  * @returns {void} - Nothing
  */
@@ -922,7 +922,7 @@ function CharacterAppearanceReady(C) {
 }
 
 /**
- * @description Copy the appearance from a character to another
+ * Copy the appearance from a character to another
  * @param {Character} FromC - The character to copy from
  * @param {Character} ToC - The character to copy to
  */
@@ -947,7 +947,7 @@ function CharacterAppearanceCopy(FromC, ToC) {
 }
 
 /**
- * @description Loads the appearance editing screen for a character
+ * Loads the appearance editing screen for a character
  * @param {Character} C - The character for whom the appearance screen should be loaded
  * @returns {void} - nothing
  */
@@ -959,7 +959,7 @@ function CharacterAppearanceLoadCharacter(C) {
 }
 
 /**
- * @description Load wardrobe menu in appearance selection screen
+ * Load wardrobe menu in appearance selection screen
  * @param {Character} C - The character whose wardrobe should be loaded
  * @returns {void} - Nothing
  */

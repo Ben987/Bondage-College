@@ -14,7 +14,7 @@ var BackgroundSelectionAll = [];
 var BackgroundSelectionView = [];
 
 /**
- * @description Change the current screen to the background selection screen
+ * Change the current screen to the background selection screen
  * @param {string[]} List - The list of possible Background names
  * @param {number} Idx - The index of the current background
  * @param {function} Callback - The function to call when a new background has been selected
@@ -30,7 +30,7 @@ function BackgroundSelectionMake(List, Idx, Callback) {
 }
 
 /**
- * @description Initializes the Background selection screen. 
+ * Initializes the Background selection screen. 
  * Function coiuld be called dynamically, so the body has to be there, even if it does nothing.
  * @returns {void} - Nothing
  */
@@ -46,7 +46,7 @@ function BackgroundSelectionLoad() {
 }
 
 /**
- * @description Handles input in the text box in the topmost row of the selection screen 
+ * Handles input in the text box in the topmost row of the selection screen 
  * and changes the offset of the background selection appropriately
  * @returns {void} - Nothing
  */
@@ -63,7 +63,7 @@ function BackgroundSelectionInputChanged() {
 }
 
 /**
- * @description Draws the Background selection screen:
+ * Draws the Background selection screen:
  * - draws all the buttons and the text input field on the topmost rows
  * - paints the first (max) 12 possible backgrounds in the lower part of the screen
  * The function is called dynamically
@@ -104,7 +104,7 @@ function BackgroundSelectionRun() {
 }
 
 /**
- * @description Handles clicks in the background selection screen:
+ * Handles clicks in the background selection screen:
  * - Exit: Exit the screen without changes
  * - Accept: Exit the screen with a new background
  * - Prev: Paints the previous 12 backgrounds
@@ -155,7 +155,7 @@ function BackgroundSelectionClick() {
 }
 
 /**
- * @description Handles key events in the background selection screen:
+ * Handles key events in the background selection screen:
  * - When the user presses "enter", we exit
  * @returns {void} - Nothing
  */
@@ -164,7 +164,7 @@ function BackgroundSelectionKeyDown() {
 }
 
 /**
- * @description Handles the exit of the selection screen. Sets the new background, if necessary, and 
+ * Handles the exit of the selection screen. Sets the new background, if necessary, and 
  * calls the previously defined callback function. Then exits the screen to the screen, the player was before
  * @param {boolean} SetBackground - Defines, wether the background must be changed (true) or not (false)
  * @returns {void} - Nothing

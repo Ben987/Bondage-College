@@ -2,7 +2,10 @@
 var TranslationLanguage = "EN";
 var TranslationCache = {};
 
-// Dictionary for all supported languages and their files
+/**
+ * Dictionary for all supported languages and their files
+ * @constant 
+ */
 var TranslationDictionary = [
 
 	{
@@ -113,6 +116,7 @@ var TranslationDictionary = [
 		Files: [
 			"Assets/Female3DCG/Female3DCG_FR.txt",
 			"Screens/Character/Appearance/Text_Appearance_FR.txt",
+			"Screens/Character/BackgroundSelection/Text_BackgroundSelection_FR.txt",
 			"Screens/Character/Cheat/Text_Cheat_FR.txt",
 			"Screens/Character/Creation/Text_Creation_FR.txt",
 			"Screens/Character/FriendList/Text_FriendList_FR.txt",
@@ -273,7 +277,11 @@ var TranslationDictionary = [
 
 ];
 
-// Returns TRUE if a translation is available for the current file
+/**
+ * Checks if a file can be translated in the selected language
+ * @param {string} FullPath - Full path of the file to check for a corresponding translation file
+ * @returns {boolean} - Returns TRUE if a translation is available for the given file
+ */
 function TranslationAvailable(FullPath) {
 	var FileName = FullPath.trim().toUpperCase();
 	for (var L = 0; L < TranslationDictionary.length; L++)
@@ -284,7 +292,11 @@ function TranslationAvailable(FullPath) {
 	return false;
 }
 
-// Parse a TXT translation file and returns it as JSON array
+/**
+ * Parse a TXT translation file and returns it as an array
+ * @param {string} str - Content of the translation text file
+ * @returns {string[]} - Array of strings with each line divided. For each translated line, the english string precedes the translated one in the array.
+ */
 function TranslationParseTXT(str) {
 		
     var arr = [];
@@ -308,11 +320,16 @@ function TranslationParseTXT(str) {
 	// Trims the full translated array
     for (var row = 0; row < arr.length; row++)
 		arr[row] = arr[row].trim();
-		
     return arr;
 }
 
-// Translates a string (S) to another language from the array (T), the translation is the line right after
+/**
+ * Translates a string to another language from the array, the translation is always the one right after the english line
+ * @param {string} S - The original english string to translate
+ * @param {string[]} T - The active translation dictionary
+ * @param {string} CharacterName - Name of the character if it is required to replace it within the string.
+ * @returns {string} - The translated string
+ */
 function TranslationString(S, T, CharacterName) {
 	if ((S != null) && (S.trim() != "")) {
 		S = S.trim();
@@ -323,7 +340,12 @@ function TranslationString(S, T, CharacterName) {
 	return S;
 }
 
-// Translates a character dialog from the specified array
+/**
+ * Translates a character dialog from the specified array
+ * @param {Character} C - The character for which we need to translate the dialog array.
+ * @param {string[]} T - The active translation dictionary
+ * @returns {void} - Nothing
+ */
 function TranslationDialogArray(C, T) {
 	for (var D = 0; D < C.Dialog.length; D++) {
 		C.Dialog[D].Option = TranslationString(C.Dialog[D].Option, T, C.Name);
@@ -331,14 +353,23 @@ function TranslationDialogArray(C, T) {
 	}
 }
 
-// Translates a character dialog from the specified array
+/**
+ * Translates a set of tags. Rerenders the login message when on the login page.
+ * @param {Array.<{Tag: string, Value: string}>} S - Array of current tag-value pairs 
+ * @param {string[]} T - The active translation dictionary
+ * @returns {void} - Nothing
+ */
 function TranslationTextArray(S, T) {
 	for (var P = 0; P < S.length; P++)
 		S[P].Value = TranslationString(S[P].Value, T, "");
 	if (CurrentScreen == "Login") LoginUpdateMessage();
 }
 
-// Translate a character dialog if the file is in the dictionary
+/**
+ * Translate a character dialog if the file is in the dictionary
+ * @param {Character} C - The character for which we want to translate the dialog
+ * @returns {void} - Nothing
+ */
 function TranslationDialog(C) {
 
 	// If we play in a foreign language
@@ -366,9 +397,12 @@ function TranslationDialog(C) {
 	
 }
 
-// Translate a character dialog if the file is in the dictionary
+/**
+ * Translate an array of tags in the current selected language
+ * @param {Array.<{Tag: string, Value: string}>} Text - Array of current tag-value pairs
+ * @returns {void} - Nothing
+ */
 function TranslationText(Text) {
-	
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
 		
@@ -394,7 +428,11 @@ function TranslationText(Text) {
 
 }
 
-// Translates the asset group and asset description
+/**
+ * Translates the asset group and asset descriptions based on the given dictionary
+ * @param {string[]} T - The active translation dictionary
+ * @returns {void} - Nothing
+ */
 function TranslationAssetProcess(T) {
 	for (var A = 0; A < AssetGroup.length; A++)
 		AssetGroup[A].Description = TranslationString(AssetGroup[A].Description, T, "");
@@ -402,7 +440,11 @@ function TranslationAssetProcess(T) {
 		Asset[A].Description = TranslationString(Asset[A].Description, T, "");
 }
 
-// Translates the description of the assets and groups
+/**
+ * Translates the description of the assets and groups of an asset family
+ * @param {string} - Name of the asset family to translate
+ * @returns {void} - Nothing
+ */
 function TranslationAsset(Family) {
 	
 	// If we play in a foreign language
@@ -430,7 +472,10 @@ function TranslationAsset(Family) {
 	
 }
 
-// Changes the current language
+/**
+ * Changes the current language and save the new selected language to local storage
+ * @returns {void} - Nothing
+ */
 function TranslationNextLanguage() {
 	for (var L = 0; L < TranslationDictionary.length; L++)
 		if (TranslationDictionary[L].LanguageCode == TranslationLanguage) {
@@ -443,7 +488,10 @@ function TranslationNextLanguage() {
 		}
 }
 
-// Loads the translations
+/**
+ * Loads the previous translation language from local storage if it exists 
+ * @returns {void} - Nothing
+ */
 function TranslationLoad() {
 	var L = localStorage.getItem("BondageClubLanguage");
 	if (L != null) TranslationLanguage = L;
