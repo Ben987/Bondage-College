@@ -271,9 +271,9 @@ function CharacterLoadNPC(NPCType) {
 
 /**
  * Sets up an online character
- * @param {*} Char - Online character to set up
- * @param {*} data - Character data received
- * @param {*} SourceMemberNumber - Source number of the refresh
+ * @param {Character} Char - Online character to set up
+ * @param {object} data - Character data received
+ * @param {number} SourceMemberNumber - Source number of the refresh
  */
 function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Title == null))) Char.Title = data.Title;
