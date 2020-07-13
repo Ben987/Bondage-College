@@ -3,14 +3,14 @@ var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
 var ChatSearchMessage = "";
 var ChatSearchLeaveRoom = "MainHall";
-var ChatSearchSafewordAppearance = null;
-var ChatSearchSafewordPose = null;
+var ChatSearchSavestateAppearance = null;
+var ChatSearchSavestatePose = null;
 
 // When the chat screens loads, we loads up to 24 public rooms
 function ChatSearchLoad() {
-	if (ChatSearchSafewordAppearance == null) {
-		ChatSearchSafewordAppearance = Player.Appearance.slice(0);
-		ChatSearchSafewordPose = Player.ActivePose;
+	if (ChatSearchSavestateAppearance == null) {
+		ChatSearchSavestateAppearance = Player.Appearance.slice(0);
+		ChatSearchSavestatePose = Player.ActivePose;
 	}
 	ElementCreateInput("InputSearch", "text", "", "20");
 	ChatSearchQuery();

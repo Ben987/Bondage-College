@@ -491,7 +491,7 @@ function ChatRoomSendChat() {
 
 		}
 		else if (m.indexOf("/help") == 0) ServerSend("ChatRoomChat", { Content: "ChatRoomHelp", Type: "Action", Target: Player.MemberNumber});
-		else if (m.indexOf("/safeword") == 0) ChatRoomSafeword();
+		else if (m.indexOf("/safeword") == 0) ChatRoomSavestate();
 		else if (m.indexOf("/friendlistadd ") == 0) ChatRoomListManipulation(Player.FriendList, null, msg);
 		else if (m.indexOf("/friendlistremove ") == 0) ChatRoomListManipulation(null, Player.FriendList, msg);
 		else if (m.indexOf("/ghostadd ") == 0) { ChatRoomListManipulation(Player.GhostList, null, msg); ChatRoomListManipulation(Player.BlackList, Player.WhiteList, msg); }
@@ -1266,13 +1266,13 @@ function ChatRoomGameResponse(data) {
 }
 
 // When the player activates her safeword, we swap her appearance to the state when she entered the chat room lobby, minimum permission becomes whitelist and up
-function ChatRoomSafeword() {
-	if (ChatSearchSafewordAppearance != null) {
-		Player.Appearance = ChatSearchSafewordAppearance.slice(0);
-		CharacterSetActivePose(Player, ChatSearchSafewordPose);
+function ChatRoomSavestate() {
+	if (ChatSearchSavestateAppearance != null) {
+		Player.Appearance = ChatSearchSavestateAppearance.slice(0);
+		CharacterSetActivePose(Player, ChatSearchSavestatePose);
 		CharacterRefresh(Player);
 		ChatRoomCharacterUpdate(Player);
-		ServerSend("ChatRoomChat", { Content: "ActionActivateSafeword", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name}] });
+		ServerSend("ChatRoomChat", { Content: "ActionActivateSavestate", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name}] });
 		if (Player.ItemPermission < 3) {
 			Player.ItemPermission = 3;
 			ServerSend("AccountUpdate", { ItemPermission: Player.ItemPermission });

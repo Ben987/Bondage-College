@@ -239,7 +239,7 @@ function DialogChatRoomPlayerIsAdmin() { return (ChatRoomPlayerIsAdmin() && (Cur
  * Checks, if a safe word can be used.
  * @returns {boolean} - Returns true, if the player is currently within a chat room
  */
-function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom") }
+function DialogChatRoomCanSavestate() { return (CurrentScreen == "ChatRoom") }
 
 /**
  * Checks the prerequisite for a given dialog
@@ -1657,7 +1657,7 @@ function DialogChatRoomHasSwapTarget() {
  * Leave the dialog and revert back to a safe state, when the player uses her safe word
  * @returns {void} - Nothing
  */
-function DialogChatRoomSafeword() {
+function DialogChatRoomSavestate() {
 	DialogLeave();
-	ChatRoomSafeword();
+	ChatRoomSavestate();
 }
