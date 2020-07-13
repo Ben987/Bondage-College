@@ -826,6 +826,10 @@ function ChatRoomSync(data) {
 			if (ChatRoomCharacter.length == data.Character.length + 1) {
 				ChatRoomCharacter = ChatRoomCharacter.filter(A => data.Character.some(B => A.MemberNumber == B.MemberNumber));
 				ChatRoomData = data;
+				// Remove non-present chatroom characters from the characters array as they are no longer needed
+				for (var C = 0; C < Character.length; C++)
+					if (Character[C].AccountName.startsWith("Online-") && data.Character.find(DC => DC.MemberNumber == Character[C].MemberNumber) == null)
+						CharacterDelete(Character[C].AccountName);
 				return;
 			}
 			else if (ChatRoomCharacter.length == data.Character.length - 1) {				
