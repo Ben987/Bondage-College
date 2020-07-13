@@ -42,35 +42,41 @@ function InventoryItemButtAnalBeads2SetBeads(Modifier) {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemButtAnalBeads2Load();
 	}
-	
+	// save the old number of beads
+	var beadsOld = DialogFocusItem.Property.InsertedBeads;
 	// Set the new amount of beads
 	DialogFocusItem.Property.InsertedBeads = DialogFocusItem.Property.InsertedBeads + Modifier;
 	if (DialogFocusItem.Property.InsertedBeads > 5)
 		DialogFocusItem.Property.InsertedBeads = 5;
 	if (DialogFocusItem.Property.InsertedBeads < 1)
 		DialogFocusItem.Property.InsertedBeads = 1;
-		
-	var beadsNum = DialogFocusItem.Property.InsertedBeads;	
-		
+
+	var beadsNum = DialogFocusItem.Property.InsertedBeads;
+
 	// Loads the correct type/asset	
 	DialogFocusItem.Property.Type = beadsNum > 1 ? "_" + beadsNum + "in" : ["Base"];
 	CharacterRefresh(C);
-		
+
 	// Push Chatroom Event	
 	var Dictionary = [];
 	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
 	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-	
+
 	if (Modifier == 5)
 		ChatRoomPublishCustomAction("AnalBeads2SetMax", true, Dictionary);
 	else if (Modifier == -5)
 		ChatRoomPublishCustomAction("AnalBeads2SetMin", true, Dictionary);
 	else
 		ChatRoomPublishCustomAction("AnalBeads2Set" + (Modifier > 0 ? "UpTo" + beadsNum : "Down"), true, Dictionary);
-		
+
 	// Rebuilds the inventory menu
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);
+	}
+
+	// Peerform sexual acitivites, if anal beads are removed
+	for (var remove = beadsOld - beadsNum; remove > 0; remove--) {
+		ActivityEffect(Player, C, "MasturbateItem", "ItemButt");
 	}
 }
