@@ -491,7 +491,7 @@ function ChatRoomSendChat() {
 
 		}
 		else if (m.indexOf("/help") == 0) ServerSend("ChatRoomChat", { Content: "ChatRoomHelp", Type: "Action", Target: Player.MemberNumber});
-		else if (m.indexOf("/safeword") == 0) ChatRoomSavestate();
+		else if (m.indexOf("/savestate") == 0) ChatRoomSavestate();
 		else if (m.indexOf("/friendlistadd ") == 0) ChatRoomListManipulation(Player.FriendList, null, msg);
 		else if (m.indexOf("/friendlistremove ") == 0) ChatRoomListManipulation(null, Player.FriendList, msg);
 		else if (m.indexOf("/ghostadd ") == 0) { ChatRoomListManipulation(Player.GhostList, null, msg); ChatRoomListManipulation(Player.BlackList, Player.WhiteList, msg); }
@@ -1265,7 +1265,7 @@ function ChatRoomGameResponse(data) {
 	if (OnlineGameName == "LARP") GameLARPProcess(data);
 }
 
-// When the player activates her safeword, we swap her appearance to the state when she entered the chat room lobby, minimum permission becomes whitelist and up
+// When the player activates her savestate, we swap her appearance to the state when she entered the chat room lobby, minimum permission becomes whitelist and up
 function ChatRoomSavestate() {
 	if (ChatSearchSavestateAppearance != null) {
 		Player.Appearance = ChatSearchSavestateAppearance.slice(0);
