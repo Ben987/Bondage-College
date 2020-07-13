@@ -357,6 +357,16 @@ function CharacterDelete(NPCType) {
 		}
 }
 
+/**
+ * Deletes all online characters from the character array
+ * @returns {void} - Nothing
+ */
+function CharacterDeleteAllOnline() { 
+	for (var C = Character.length - 1; C >= 0; C--)
+		if (Character[C].AccountName.startsWith("Online-"))
+			CharacterDelete(Character[C].AccountName);
+}
+
 // Adds new effects on a character if it's not already there
 function CharacterAddPose(C, NewPose) {
 	for (var E = 0; E < NewPose.length; E++)

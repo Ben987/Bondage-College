@@ -330,6 +330,7 @@ function ChatRoomClick() {
 		ElementRemove("TextAreaChatLog");
 		ServerSend("ChatRoomLeave", "");
 		CommonSetScreen("Online", "ChatSearch");
+		CharacterDeleteAllOnline();
 	}
 
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
@@ -1214,6 +1215,7 @@ function ChatRoomSetRule(data) {
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
 			ServerSend("ChatRoomLeave", "");
+			CharacterDeleteAllOnline();
 			CellLock(TimerCell);
 		}
 
@@ -1225,6 +1227,7 @@ function ChatRoomSetRule(data) {
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
 			ServerSend("ChatRoomLeave", "");
+			CharacterDeleteAllOnline();
 			CommonSetScreen("Room", "MaidQuarters");
 			CharacterSetCurrent(MaidQuartersMaid);
 			MaidQuartersMaid.CurrentDialog = D;
