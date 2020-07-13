@@ -3,7 +3,7 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 0,10,(Adjust your bondage skill.),"(By default, you restrain using your full bondage skill.  You can use less of your skill and make it easier for your victims to escape.)",,"DialogSkillGreater(""Bondage"", 1)"
 0,20,(Adjust your evasion skill.),"(By default, you struggle using your full evasion skill.  You can use less of your skill and make it harder for you to struggle free.)",,"DialogSkillGreater(""Evasion"", 1)"
 0,30,(Room administrator action.),"(As a room administrator, you can take these actions.)",,DialogChatRoomPlayerIsAdmin()
-0,90,(Use your safeword.),(A safeword is serious and should not be used to cheat.  It will revert your clothing and restraints to when you entered the lobby.  Do you really want to use it?),,DialogChatRoomCanSafeword()
+0,90,(Use your savestate.),(A savestate is serious and should not be used to cheat.  It will revert your clothing and restraints to when you entered the lobby.  Do you really want to use it?),,DialogChatRoomCanSafeword()
 10,,,"(By default, you restrain using your full bondage skill.  You can use less of your skill and make it easier for your victims to escape.)",,
 10,0,(Use your full bondage skill.  100%),(You will now use your full bondage skill when using a restraint.  100%),"DialogSetSkillRatio(""Bondage"", 100)",
 10,0,(Use most of your bondage skill.  75%),(You will now use most of your bondage skill when using a restraint.  75%),"DialogSetSkillRatio(""Bondage"", 75)",
@@ -27,8 +27,8 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 31,,(Move to the right.),(You have moved to the right at position CharacterPosition.  Would you like to move further?),"DialogChatRoomAdminAction(""MoveRight"", ""false"")",
 31,0,(Back to main menu.),,,
 31,0,(Leave this menu.),,DialogLeave(),
-90,0,"(Yes, use your safeword.)",,DialogChatRoomSafeword(),
-90,0,"(No, do not use your safeword.)",(You can use or remove items by selecting specific body regions on yourself.),,
+90,0,"(Yes, use your savestate.)",,DialogChatRoomSafeword(),
+90,0,"(No, do not use your savestate.)",(You can use or remove items by selecting specific body regions on yourself.),,
 SelectItem,,,Select an item to use.,,
 SelectItemGroup,,,Select an item to use on the GroupName.,,
 SelectActivity,,,Select an activity.,,
@@ -323,7 +323,7 @@ ActionUnlock,,,SourceCharacter unlocks the PrevAsset on DestinationCharacter Foc
 ActionUnlockAndRemove,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.,,
 ActionDice,,,SourceCharacter rolls DiceType.  The result is: DiceResult.,,
 ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.,,
-ActionActivateSafeword,,,SourceCharacter used her safeword.  Please check for her well-being.,,
+ActionActivateSafeword,,,SourceCharacter used her savestate.  Please check for her well-being.,,
 ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands.",,
 ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.,,
 ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.,,
