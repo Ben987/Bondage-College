@@ -8,10 +8,16 @@ var ActivityOrgasmGameResistCount = 0;
 var ActivityOrgasmGameTimer = 0;
 var ActivityOrgasmResistLabel = "";
 
-// Activities are only allowed in certain rooms
+/**
+ * Checks if the current room allows for activities. (They can only be done in certain rooms)
+ * @returns {boolean} - Whether or not activities can be done
+ */
 function ActivityAllowed() { return ((CurrentScreen == "ChatRoom") || ((CurrentScreen == "Private") && LogQuery("RentRoom", "PrivateRoom"))) }
 
-// Loads the activity dictionary that will be used throughout the game to output messages
+/**
+ * Loads the activity dictionary that will be used throughout the game to output messages. Loads from cache first if possible.
+ * @return {void} - Nothing
+ */
 function ActivityDictionaryLoad() {
 	if (ActivityDictionary == null) {
 
@@ -40,7 +46,11 @@ function ActivityDictionaryLoad() {
 	}
 }
 
-// Searches in the dictionary for a specific keyword and returns the message linked to it
+/**
+ * Searches in the dictionary for a specific keyword's text
+ * @param {string} KeyWord - Tag of the activity description to search for
+ * @returns {string} - Description associated to the given keyword
+ */
 function ActivityDictionaryText(KeyWord) {
 	for (var D = 0; D < ActivityDictionary.length; D++)
 		if (ActivityDictionary[D][0] == KeyWord)
@@ -48,7 +58,11 @@ function ActivityDictionaryText(KeyWord) {
 	return "MISSING ACTIVITY DESCRIPTION FOR KEYWORD " + KeyWord;
 }
 
-// Builds an activity selection dialog
+/**
+ * Builds the possible dialog activity options based on the character settings 
+ * @param {Character} C - The character for which to build the activity dialog options
+ * @return {void} - Nothing
+ */
 function ActivityDialogBuild(C) {
 
 	// Clears the current activities to rebuild them
@@ -104,7 +118,14 @@ function ActivityDialogBuild(C) {
 
 }
 
-// Calculates the effect of an activity (A) on target character (C) from source character (S) on zone (Z)
+/**
+ * Calculates the effect of an activity performed on a zone
+ * @param {Character} S - The character performing the activity
+ * @param {Character} C - The character on which the activity is performed
+ * @param {string} A - The activity performed
+ * @param {string} Z - The group/zone name where the activity was performed
+ * @return {void} - Nothing
+ */
 function ActivityEffect(S, C, A, Z) {
 
 	// Converts from activity name to the activity object
@@ -120,13 +141,22 @@ function ActivityEffect(S, C, A, Z) {
 
 }
 
-// Syncs the player arousal with everyone in chatroom
+/**
+ * Syncs the player arousal with everyone in chatroom
+ * @param {Character} C - The character for which to sync the arousal data
+ * @return {void} - Nothing
+ */
 function ActivityChatRoomArousalSync(C) {
 	if ((C.ID == 0) && (CurrentScreen == "ChatRoom"))
 		ServerSend("ChatRoomCharacterArousalUpdate", { OrgasmTimer: C.ArousalSettings.OrgasmTimer, Progress: C.ArousalSettings.Progress, ProgressTimer: C.ArousalSettings.ProgressTimer });
 }
 
-// Sets the character arousal level and validates the value
+/**
+ * Sets the character arousal level and validates the value
+ * @param {Character} C - The character for which to set the arousal progress of
+ * @param {number} Progress - Progress to set for the character (Ranges from 0 to 100)
+ * @return {void} - Nothing
+ */
 function ActivitySetArousal(C, Progress) {
 	if ((C.ArousalSettings.Progress == null) || (typeof C.ArousalSettings.Progress !== "number") || isNaN(C.ArousalSettings.Progress)) C.ArousalSettings.Progress = 0;
 	if ((Progress == null) || (Progress < 0)) Progress = 0;
@@ -139,7 +169,14 @@ function ActivitySetArousal(C, Progress) {
 	}
 }
 
-// The progress can be set on a timer to grow slowly, activities are capped at MaxProgress
+/**
+ * Sets an activity progress on a timer, activities are capped at MaxProgress
+ * @param {Character} C - The character for which to set the timer for
+ * @param {object} Activity - The activity for which the timer is for
+ * @param {string} Zone - The target zone of the activity
+ * @param {number} Progress - Progress to set
+ * @return {void} - Nothing
+ */
 function ActivitySetArousalTimer(C, Activity, Zone, Progress) {
 
 	// If there's already a progress timer running, we add it's value but divide it by 2 to lessen the impact, the progress must be between -25 and 25
@@ -162,7 +199,12 @@ function ActivitySetArousalTimer(C, Activity, Zone, Progress) {
 
 }
 
-// Draw the progress bar at X, Y for every orgasm timer
+/**
+ * Draws the arousal progress bar at the given coordinates for every orgasm timer.
+ * @param {number} X - Position on the X axis
+ * @param {number} Y - Position on the Y axis
+ * @return {void} - Nothing
+ */
 function ActivityOrgasmProgressBar(X, Y) {
 	var Pos = 0;
 	if ((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < Player.ArousalSettings.OrgasmTimer))
@@ -172,7 +214,11 @@ function ActivityOrgasmProgressBar(X, Y) {
 	DrawProgressBar(X, Y, 900, 25, Pos);
 }
 
-// Each time the player tries to resist, it slowly raises her willpower
+/**
+ * Increases the player's willpower when resisting an orgasm.
+ * @param {Character} C - The character currently resisting
+ * @return {void} - Nothing
+ */
 function ActivityOrgasmWillpowerProgress(C) {
 	if ((C.ID == 0) && (ActivityOrgasmGameProgress > 0)) {
 		SkillProgress("Willpower", ActivityOrgasmGameProgress);
@@ -180,7 +226,11 @@ function ActivityOrgasmWillpowerProgress(C) {
 	}
 }
 
-// The orgasm lasts between 5 and 15 seconds and can be outputted in the chatroom
+/**
+ * Starts an orgasm for a given character, lasts between 5 to 15 seconds and can be displayed in a chatroom.
+ * @param {Character} C - Character for which an orgasm is starting
+ * @returns {void} - Nothing
+ */
 function ActivityOrgasmStart(C) {
 	if ((C.ID == 0) || (C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) {
 		if (C.ID == 0) ActivityOrgasmGameResistCount = 0;
@@ -197,7 +247,12 @@ function ActivityOrgasmStart(C) {
 	}
 }
 
-// If we need to stop an orgasm
+/**
+ * Triggered when an orgasm needs to be stopped
+ * @param {Character} C - Character for which to stop the orgasm
+ * @param {number} Progress - Arousal level to set the character at once the orgasm ends
+ * @returns {void} - Nothing
+ */
 function ActivityOrgasmStop(C, Progress) {
 	if ((C.ID == 0) || (C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) {
 		ActivityOrgasmWillpowerProgress(C);
@@ -209,7 +264,11 @@ function ActivityOrgasmStop(C, Progress) {
 	}
 }
 
-// Generates an orgasm button and progresses in the mini-game
+/**
+ * Generates an orgasm button and progresses in the orgasm mini-game. Handles the resets and success/failures
+ * @param {number} Progress - Progress of the currently running mini-game
+ * @returns {void} - Nothing
+ */
 function ActivityOrgasmGameGenerate(Progress) {
 
 	// If we must reset the mini-game
@@ -238,7 +297,11 @@ function ActivityOrgasmGameGenerate(Progress) {
 
 }
 
-// Triggers an orgasm for the player or an NPC which lasts from 5 to 15 seconds
+/**
+ * Triggers an orgasm for the player or an NPC which lasts from 5 to 15 seconds
+ * @param {Character} C - Character for which an orgasm was triggered
+ * @returns {void} - Nothing
+ */
 function ActivityOrgasmPrepare(C) {
 	if ((C.ID == 0) || (C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) {
 
@@ -257,7 +320,12 @@ function ActivityOrgasmPrepare(C) {
 	}
 }
 
-// The current arousal level can affect the facial expressions of a character
+/**
+ * Sets a character's facial expressions based on their arousal level if their settings allow it.
+ * @param {Character} C - Character for which to set the facial expressions
+ * @param {number} Progress - Current arousal progress
+ * @returns {void} - Nothing
+ */
 function ActivityExpression(C, Progress) {
 
 	// Floors the progress to the nearest 10 to pick the expression
@@ -300,7 +368,12 @@ function ActivityExpression(C, Progress) {
 
 }
 
-// With time ticking, the arousal get increase or decrease
+/**
+ * With time, we increase or decrease the arousal. Validates the result to keep it within 0 to 100 and triggers an orgasm when it reaches 100
+ * @param {Character} C - Character for which the timer is progressing
+ * @param {number} Progress - Progress made (from -100 to 100)
+ * @returns {void} - Nothing
+ */
 function ActivityTimerProgress(C, Progress) {
 
 	// Changes the current arousal progress value
@@ -318,7 +391,13 @@ function ActivityTimerProgress(C, Progress) {
 
 }
 
-// If the player does the activity on someone else, we calculate the progress for the player right away
+/**
+ * Calculates the progress one character does on another right away
+ * @param {Character} Source- The character who performed the activity
+ * @param {Character} Target - The character on which the activity was performed
+ * @param {object} Activity - The activity performed
+ * @returns {void} - Nothing
+ */
 function ActivityRunSelf(Source, Target, Activity) {
 	if (((Player.ArousalSettings.Active == "Hybrid") || (Player.ArousalSettings.Active == "Automatic")) && (Source.ID == 0) && (Target.ID != 0)) {
 		var Factor = (PreferenceGetActivityFactor(Player, Activity.Name, false) * 5) - 10; // Check how much the player likes the activity, from -10 to +10
@@ -328,7 +407,12 @@ function ActivityRunSelf(Source, Target, Activity) {
 	}
 }
 
-// Launches a sexual activity for a character
+/**
+ * Launches a sexual activity for a character and sends the chatroom message if applicable.
+ * @param {Character} C - Character on which the activity was triggered
+ * @param {object} Activity - Activity performed
+ * @returns {void} - Nothing
+ */
 function ActivityRun(C, Activity) {
 
 	// If the player does the activity on herself or an NPC, we calculate the result right away
@@ -357,7 +441,13 @@ function ActivityRun(C, Activity) {
 
 }
 
-// Some items such as vibrating wands and spanking toys can trigger arousal for both the source and target character
+/**
+ * Checks if a used asset should trigger an activity/arousal progress on the target character
+ * @param {Character} Source- The character who used the item
+ * @param {Character} Target - The character on which the item was used
+ * @param {object} Asset - Asset used
+ * @return {void} - Nothing
+ */
 function ActivityArousalItem(Source, Target, Asset) {
 	var AssetActivity = Asset.DynamicActivity(Source);
 	if (AssetActivity != null) {
