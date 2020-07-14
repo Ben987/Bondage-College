@@ -30,9 +30,11 @@ function Draw3DKeyDown() {
 		// if ((KeyPress == 67) || (KeyPress == 107)) switchcamera();
 	}
 }
+// TODO: load all fbx files when the player is already logged in
+// TODO: create more fbx assets <.<
 // TODO: seperate all fbx files by using the clone function
 // TODO: assign all 2D asset names to the 3D asset path
-// TODO: walk animation 
+// TODO: walk animation
 function init(){
 	var path3d = "Assets/3D/fbx/pmd/";
 	var itemgroup = ["Back Hair/Back Hair 1", "Front Hair/Front Hair 1","Eyes/BlueEyes 1", "Skin/Dark Skin","Top/Maid Top 1"];
