@@ -680,6 +680,21 @@ function CharacterReleaseNoLock(C) {
 }
 
 /**
+ * Removes all items except for clothing from the character
+ * @param {Character} C - Character to release
+ * @returns {void} - Nothing
+ */
+function CharacterReleaseTotal(C) {
+	for(var E = 0; E < C.Appearance.length; E++){
+	    if(!C.Appearance[E].Asset.Clothing && !C.Appearance[E].Asset.Bodypart){
+	        C.Appearance.splice(E,1);
+	        E--;
+	    }
+	}
+	CharacterRefresh(C);
+}
+
+/**
  * Gets the bonus amount of a given type for a given character (Kidnap league)
  * @param {Character} C - Character for which we want to get the bonus amount
  * @param {string} BonusType - Type/name of the bonus to look for
