@@ -3,7 +3,7 @@
 var F3dcgAssetsInventory = {
 	
 	NONE:"None"
-	,BuildPlayerApplicableItems(playerOrigin, playerTarget){
+	,BuildPlayerApplicableItems(playerTarget, playerOrigin){
 		var validationFlagsCache = {
 			playerOrigin:playerOrigin
 			,playerTarget:playerTarget
@@ -14,6 +14,7 @@ var F3dcgAssetsInventory = {
 				,[F3dcgAssets.ACCESSORY]:F3dcgAssets.DoesPlayerHavePermission(F3dcgAssets.ACCESSORY, playerTarget, playerOrigin)
 				,[F3dcgAssets.BONDAGE_TOY]:F3dcgAssets.DoesPlayerHavePermission(F3dcgAssets.BONDAGE_TOY, playerTarget, playerOrigin)
 			}
+			,isSelf:playerOrigin && playerOrigin.id == playerTarget.id
 			,isOwned:F3dcgAssets.IsPlayerOwnedBy(playerTarget, playerOrigin)
 			,isLover:F3dcgAssets.IsPlayerLover(playerTarget, playerOrigin)
 		}
@@ -309,7 +310,7 @@ var F3dcgAssetsInventory = {
 			//no return here, because combination lock 
 		}
 		
-		var lockOwner = lock.originPlayerId == MainController.playerAccount.id;
+		var lockOwner = lock.originPlayerId == validationFlagsCache.isSelf;
 		switch(lock.name){
 			case "CombinationPadlock":
 				if(lockOwner)
@@ -362,7 +363,7 @@ var F3dcgAssetsInventory = {
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		
 		var activities = AssetGroup.Activity;
-		if(validationFlagsCache.playerOrigin && validationFlagsCache.playerOrigin.id == validationFlagsCache.playerTarget.id)
+		if(validationFlagsCache.playerOrigin && validationFlagsCache.isSelf)
 			activities = AssetGroup.ActivitySelf;
 		
 		if(! activities || ! activities.length) return;

@@ -247,14 +247,14 @@ var F3dcgAssetsRender = {
 	,BuildFrameRenderItems(frame, appearanceItemEffects){
 		var renderItems = [];
 		
-		if(! appearanceItemEffects.itemGroupsToHideByItem.includes("BodyUpper")){
+		if(frame.upperSize && ! appearanceItemEffects.itemGroupsToHideByItem.includes("BodyUpper")){
 			var renderItem = this.InitRenderItem(F3dcgAssets.AssetGroups.BodyUpper);
 			var poseUrlPart = this.GetPoseUrlPart(F3dcgAssets.AssetGroups.BodyUpper, null, appearanceItemEffects.poses);
 			renderItem.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + "BodyUpper/" + poseUrlPart + frame.upperSize + "_" + frame.color + ".png"});
 			renderItems.push(renderItem);
 		}
 		
-		if(! appearanceItemEffects.itemGroupsToHideByItem.includes("BodyLower")){
+		if(frame.lowerSize && ! appearanceItemEffects.itemGroupsToHideByItem.includes("BodyLower")){
 			var renderItem = this.InitRenderItem(F3dcgAssets.AssetGroups.BodyLower);
 			var poseUrlPart = this.GetPoseUrlPart(F3dcgAssets.AssetGroups.BodyLower, null, appearanceItemEffects.poses);
 			renderItem.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + "BodyLower/" + poseUrlPart + frame.lowerSize + "_" + frame.color + ".png"});
@@ -313,4 +313,27 @@ var F3dcgAssetsRender = {
 	,BuildPlayerRender(appearance, pose){
 		return this.BuildRender(appearance, pose);
 	}
+	
+	
+	,BuildPortraitRender(appearance){
+		var a = {frame:{height:"H1000", upperSize:appearance.frame.upperSize, color:appearance.frame.color}};
+		var portraitGroups = {
+			[F3dcgAssets.BODY]:["Eyes", "Mouth", "HairFront", "HairBack"]
+			,[F3dcgAssets.EXPRESSION]:["Eyebrows", "Blush", "Fluids", "Emoticon"]
+			,[F3dcgAssets.ACCESSORY]:["HairAccessory1", "HairAccessory2"]
+			,[F3dcgAssets.CLOTH]:["Hat", "Glasses", "Mask", "Cloth", "Bra"]
+			,[F3dcgAssets.BONDAGE_TOY]:["ItemHead", "ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemNeckAccessories", "ItemNeckRestraint"]
+		}
+		
+		for(var groupType in portraitGroups){
+			portraitGroups[groupType].forEach(groupName =>{
+				if(! a[groupType]) a[groupType] = {};
+				a[groupType][groupName] = appearance[groupType][groupName];
+			});
+		}
+		
+		console.log(a);
+		return this.BuildRender(a, F3dcgAssets.POSE_NONE);
+	}
+	
 }

@@ -1,4 +1,4 @@
-					<div id="HudClassicChatRoomActionIcons" class="classic-hud-action" onclick="event.stopPropagation()">
+					<div id="HudClassicChatRoomActionIcons" class="hud-classic-action" onclick="event.stopPropagation()">
 						<div class="hover-button-highlight" onclick="LocationController.ExitLocation();"><img src="../BondageClub/Icons/Exit.png" alt="Exit"/><span class="tooltiptext">Leave this chat room</span></div>
 						<div class="hover-button-highlight" onclick="LocationController.StartPlayerDialogClothes();"><img src="../BondageClub/Icons/Dress.png" alt="DialogSelf" /><span class="tooltiptext">Dress your character</span></div>
 						<div class="hover-button-highlight"><img src="../BondageClub/Icons/Rectangle/Cut.png" alt="Cut" class="rectangle"/><span class="tooltiptext">Keep only 20 messages</span></div>
@@ -8,10 +8,9 @@
 						
 						<!--<div><img src="./Images/Icons/Out.png" alt="More" style="transform: rotate(270deg);"/></div>--> 
 					</div>
-					<div class="classic-hud-chat-log" id="LocationViewChatLog"></div>
-					<div id="HudClassicChatContainer" class="classic-hud-chat-input" onclick="event.stopPropagation()"> 
+					<div class="hud-classic-chat-log" id="LocationViewChatLog"></div>
+					<div id="HudClassicChatContainer" class="hud-classic-chat-input" onclick="event.stopPropagation()"> 
 						<div class="hover-button-highlight" onclick="ClassicHud.RollBack()"><img class="fill-container" src="./Images/Icons/Out.png" style="transform:rotate(180deg)" /></div>
 						<textarea maxlength="250" autocomplete="off" placeholder="Talk to everyone" id="LocationViewChatInput" onkeypress="LocationController.delegates.chat.TypeMessage(event)"></textarea>
 						<div class="hover-button-highlight" onclick="LocationController.delegates.chat.SendMessage()"><img class="fill-container" src="../BondageClub/Icons/Small/Chat.png" /></div>
 					</div>
-					

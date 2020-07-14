@@ -154,7 +154,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		if(null == this.containerElements.wardrobe){
 			this.containerElements.wardrobe = Util.GetFirstChildNodeByName(this.containerElements.groupDetailsAndWardrobe, "wardrobe");
 			
-			MainController.playerAccount.wardrobe.forEach((suit, index) => {
+			this.mainDialog.updateDelegate.playerOrigin.wardrobe.forEach((suit, index) => {
 				if(! suit) return;
 				var figureContainer = Util.CreateElement({parent:this.containerElements.wardrobe});
 				var figure = Util.CreateElement({parent:figureContainer});
@@ -185,12 +185,12 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 	}
 	
 	this.LoadSuit = function(index){
-		var validationErrors = this.mainDialog.updateDelegate.AddSuit(MainController.playerAccount.wardrobe[index].appearance);
+		var validationErrors = this.mainDialog.updateDelegate.AddSuit(this.mainDialog.updateDelegate.playerOrigin.wardrobe[index].appearance);
 		this.RenderAppearanceOrShowErrors(validationErrors);
 	}
 	
 	this.SaveSuit = function(index){
-		var suit = MainController.playerAccount.wardrobe[index];
+		var suit = this.mainDialog.updateDelegate.playerOrigin.wardrobe[index];
 		suit.appearance = this.mainDialog.updateDelegate.BuildSuitFromCurrentAppearance();
 		suit.render = F3dcgAssetsRender.BuildSuitRender(suit.appearance)
 		var figureDiv = this.containerElements.wardrobe.childNodes[index].childNodes[0];
@@ -358,7 +358,7 @@ var LocationDialogAppearanceView = function(mainDialog, containerElement){
 		var updateCharacter = false, validationErrors;
 		switch(action.actionType){
 			case "lock":
-				validationErrors = this.mainDialog.updateDelegate.AddLock(this.selectedItemGroupName, action.value, MainController.playerAccount.id);
+				validationErrors = this.mainDialog.updateDelegate.AddLock(this.selectedItemGroupName, action.value);
 			break;
 			case "unlock":
 				validationErrors = this.mainDialog.updateDelegate.RemoveLock(this.selectedItemGroupName);

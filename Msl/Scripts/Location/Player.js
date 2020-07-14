@@ -6,16 +6,20 @@ var LocationPlayer = function(Player){
 		this[key] = Player[key];
 	
 	this.activePose = Player.activePose ? Player.activePose : F3dcgAssets.POSE_NONE; 
-		
+	
 	this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.activePose);
+	this.renderPortrait = F3dcgAssetsRender.BuildPortraitRender(this.appearance);
+
+	if(this.wardrobe)
+		this.wardrobe.forEach(suit => suit.render = F3dcgAssetsRender.BuildSuitRender(suit.appearance));
 	
 	this.GetUpdateDelegate = function(){
-		this.update = new LocationPlayerUpdate(this);
+		this.update = new LocationPlayerUpdate(this, LocationController.GetPlayer());
 		return this.update;
 	}
 	
 	this.IsMainPlayer = function(){
-		return this.id == MainController.playerAccount.id;
+		return this.id == MainController.playerData.id;
 	}
 	
 	this.UpdateAppearanceAndRender = function(appearanceUpdate){
@@ -45,13 +49,14 @@ var LocationPlayer = function(Player){
 }
 
 //Update type is a either group type name, or 'suit'
-var LocationPlayerUpdate = function(player){
-	this.player = player;
+var LocationPlayerUpdate = function(playerTarget, playerOrigin){
+	this.playerTarget = playerTarget;
+	this.playerOrigin = playerOrigin;
 	
-	this.appearance = Util.CloneRecursive(player.appearance);
-	this.render = Util.CloneRecursive(player.render);
+	this.appearance = Util.CloneRecursive(playerTarget.appearance);
+	this.render = Util.CloneRecursive(playerTarget.render);
 	
-	this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(MainController.playerAccount, player);
+	this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(playerTarget, playerOrigin);
 	
 	this.updateStack = [];
 	
@@ -132,7 +137,7 @@ var LocationPlayerUpdate = function(player){
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		var currentItem = this.appearance[AssetGroup.type][groupName];
 		
-		var lock = {name:lockName, originPlayerId:MainController.playerAccount.id};
+		var lock = {name:lockName, originPlayerId:this.originPlayer.id};
 		if(lockName.includes("Timer"))
 			lock.timer = {time:Date.now() + 1000*60*5, showTimer:true, removeItem:false, enableActions:false};
 		
@@ -218,8 +223,8 @@ var LocationPlayerUpdate = function(player){
 		if(AssetItem && AssetItem.VibeCommon) newItem.vibeLevel = itemData.vibeLevel ? itemData.vibeLevel : 0;
 		this.appearance[itemData.groupTypeName][itemData.groupName] = newItem;
 		this.updateStack.push({type:itemData.groupTypeName, groupName:itemData.groupName, item:newItem});
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);	
-		this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(MainController.playerAccount, player);
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.playerTarget.activePose);	
+		this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(this.originPlayer, this.playerTarget);
 	}
 	
 	
@@ -262,8 +267,9 @@ var LocationPlayerUpdate = function(player){
 	
 	
 	this.Invalidate = function(){
-		this.player.update = null;
-		this.player = null;
+		this.playerTarget.update = null;
+		this.playerTarget = null;
+		this.playerOrigin = null;
 	}
 	this.IsValid = function(){
 		return this.player?.update == this;//an update is invalidated when the player gets a new update objet;

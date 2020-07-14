@@ -2,7 +2,7 @@
 
 var MainController = {
 	locationTypesCache:null
-	,playerAccount:null
+	,playerData:null
 	,onlineFriendList:[]
 	,onlineLocationList:[]
 	,locationId:null
@@ -86,23 +86,23 @@ var MainController = {
 	,OnFriendMessage(data){
 		console.log("From Server: OnFriendMessage", data);		
 		data.timestamp = Date.now();
-		MainController.friendMessages.push(data);
+		this.friendMessages.push(data);
 		
-		var el = Util.CreateElement({parent:MainController.mainHudContainer, removeAfter:5000, className:"main-beep",  textContent:"Beep " + data.message});
+		var el = Util.CreateElement({parent:this.mainHudContainer, removeAfter:5000, className:"main-beep",  textContent:"Beep " + data.message});
 		
-		if(MainController.locationId){
+		if(this.locationId){
 			LocationController.OnFriendMessage(data);
 		}
 	}
 	
 	
 	,GetPlayerCharacterResp(data){
-		MainController.playerAccount = new PlayerAccount(data.player);
+		this.playerData = data.player;
 		
 		if(this.locationId){
 			this.EnterLocation(this.locationId)
 		}else{
-			MainController.HideOtherAndShowView(this.containers.locations);
+			this.HideOtherAndShowView(this.containers.locations);
 			MslServer.Send("GetAvailableLocations", {}, function(data){
 				console.log("From Server: GetAvailableLocations", data);			
 				this.GetAvailableLocationsResp(data);
@@ -112,7 +112,7 @@ var MainController = {
 	
 	
 	,GetAvailableLocationsResp(data){	
-		MainController.HideOtherAndShowView(this.containers.locations);
+		this.HideOtherAndShowView(this.containers.locations);
 		//Util.CreateElement({parent:"MainView", tag:"br"});
 		
 		var container = Util.GetFirstChildNodeByName(this.containers.locations, "enterButtons");
@@ -175,31 +175,31 @@ var MainController = {
 	
 	
 	,ShowLocationsView(){	
-		MainController.HideOtherAndShowView(this.containers.locations);
+		this.HideOtherAndShowView(this.containers.locations);
 	}
 	
 	
 	,ShowCreateLocationTypes(){
-		if(!MainController.locationTypesCache){
+		if(!this.locationTypesCache){
 			MslServer.Send("GetAvailableLocationTypes", {}, function(data){
 				this.GetAvailableLocationTypesResp(data);
 			}.bind(this));
 		}
 		else
-			MainController.HideOtherAndShowView(this.containers.newLocationTypes);
+			this.HideOtherAndShowView(this.containers.newLocationTypes);
 	}
 	
 	
 	,GetAvailableLocationTypesResp(data){
 		console.log("GetAvailableLocationTypesResp", data);
-		MainController.locationTypesCache = data.locationTypes;
+		this.locationTypesCache = data.locationTypes;
 		
 		if(LocationController.location) return;
 		
-		MainController.HideOtherAndShowView(this.containers.newLocationTypes);
-		MainController.locationTypesCache.forEach(el => {
+		this.HideOtherAndShowView(this.containers.newLocationTypes);
+		this.locationTypesCache.forEach(el => {
 			Util.CreateElement({parent:this.containers.newLocationTypes, tag:"button", textContent:el.name
-					,events:{click:function(){MainController.ShowCreateLocation(el)}}});
+					,events:{click:function(){this.ShowCreateLocation(el)}.bind(this)}});
 		});
 		
 		//var container = Util.createElement({parent:"CreateLocationTypesView", cssText :"width:20%;height:10%;background-color:red"});
@@ -207,14 +207,14 @@ var MainController = {
 	
 	
 	,ShowCreateLocation(locationDef){ 
-		MainController.HideOtherAndShowView(this.containers.newLocation);
+		this.HideOtherAndShowView(this.containers.newLocation);
 		Util.ClearNodeContent(this.containers.newLocation);
 		
 		var buttonElement = Util.CreateElement({
 			parent:this.containers.newLocation
 			,tag:"button"
 			,textContent:"Create new " + locationDef.name
-			,events:{click:function(){MainController.CreateLocation(locationDef.name)}}
+			,events:{click:function(){this.CreateLocation(locationDef.name)}.bind(this)}
 		});
 		
 		Util.CreateElement({parent:this.containers.newLocation, tag:"br"});
@@ -242,7 +242,7 @@ var MainController = {
 	,ExitLocationResp(data){
 		LocationController.UnInit();
 		this.mainContainer.style.display = "block";
-		MainController.HideOtherAndShowView(this.containers.locations);
+		this.HideOtherAndShowView(this.containers.locations);
 		MslServer.Send("GetAvailableLocations", {}, function(data){
 			console.log("From Server: GetAvailableLocations", data);			
 			this.GetAvailableLocationsResp(data);
@@ -253,7 +253,7 @@ var MainController = {
 	
 	,EnterLocationResp(data){
 		this.mainContainer.style.display = "none";
-		LocationController.InitAndRender(data);
+		LocationController.InitAndRender(this.playerData, data);
 	}
 	
 	

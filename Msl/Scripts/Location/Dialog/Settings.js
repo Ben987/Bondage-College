@@ -72,8 +72,8 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 		}
 	}
 	
-	this.FillFormRecursive(this.form, ["settings"], MainController.playerAccount.settings);
-	this.FillFormRecursive(this.form, ["permissions"], MainController.playerAccount.permissions);
+	this.FillFormRecursive(this.form, ["settings"], this.mainDialog.updateDelegate.playerOrigin.settings);
+	this.FillFormRecursive(this.form, ["permissions"], this.mainDialog.updateDelegate.playerOrigin.permissions);
 	//var updateButton = this.topLevelMenuContainer = Util.GetFirstChildNodeByName(this.form, "updateButton");
 	//updateButton.addEventListener("click", this.
 	
