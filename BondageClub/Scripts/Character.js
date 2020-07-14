@@ -74,10 +74,10 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			for (var A = 0; A < this.Appearance.length; A++) {
 				// Sum up the various level of deafness and returns the final value, Light: 1, Normal: 2, Heavy: 3, Total: 4
 				if (this.Appearance[A].Asset.Effect != null) {
-					if (this.Appearance[A].Asset.Effect.indexOf("DeafLight") >= 0) deafLevel += 1;
-					else if (this.Appearance[A].Asset.Effect.indexOf("DeafNormal") >= 0) deafLevel += 2;
-					else if (this.Appearance[A].Asset.Effect.indexOf("DeafHeavy") >= 0) deafLevel += 3;
-					else if (this.Appearance[A].Asset.Effect.indexOf("DeafTotal") >= 0) deafLevel += 4;
+					if (this.Appearance[A].Asset.Effect.indexOf("DeafLight") >= 0 || (this.Appearance[A].Property != null && Array.isArray(this.Appearance[A].Property.Effect) && this.Appearance[A].Property.Effect.indexOf("DeafLight") >= 0)) deafLevel += 1;
+					else if (this.Appearance[A].Asset.Effect.indexOf("DeafNormal") >= 0 || (this.Appearance[A].Property != null && Array.isArray(this.Appearance[A].Property.Effect) && this.Appearance[A].Property.Effect.indexOf("DeafNormal") >= 0)) deafLevel += 2;
+					else if (this.Appearance[A].Asset.Effect.indexOf("DeafHeavy") >= 0 || (this.Appearance[A].Property != null && Array.isArray(this.Appearance[A].Property.Effect) && this.Appearance[A].Property.Effect.indexOf("DeafHeavy") >= 0)) deafLevel += 3;
+					else if (this.Appearance[A].Asset.Effect.indexOf("DeafTotal") >= 0 || (this.Appearance[A].Property != null && Array.isArray(this.Appearance[A].Property.Effect) && this.Appearance[A].Property.Effect.indexOf("DeafTotal") >= 0)) deafLevel += 4;
 				}
 			}
 			return deafLevel;

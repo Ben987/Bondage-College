@@ -34,7 +34,6 @@ function WardrobeFixLength() {
 /**
  * Loads all wardrobe characters. If the slot of the wardrobe is currently unused, display a randomly dressed character.
  * Saves the current wardrobe on the server
- *
  * @param {boolean} Fast
  * @returns {void} - Nothing
  */
@@ -81,7 +80,6 @@ function WardrobeLoadCharacters(Fast) {
 	}
 }
 
-// Loads the wardrobe screen
 /**
  * Loads the player's wardrobe. when the player opens the wardrobe screen for the first time.
  * This function is called dynamically.
@@ -176,7 +174,6 @@ function WardrobeSetCharacterName(W, Name, Push) {
 	}
 }
 
-// Bundle an asset in wardrobe format
 /**
  * Reduces a given asset to the attributes needed for the wardrobe
  * @param {Asset} A - The asset that should be reduced
@@ -191,7 +188,6 @@ function WardrobeAssetBundle(A) {
 
 /**
  * Load character appearance from wardrobe, only load clothes on others
- *
  * @param {Character} C - The character the appearance should be loaded for
  * @param {number} W - The spot in the wardrobe the appearance should be loaded to
  * @param {boolean} [Update=false] - If set to true, the appearance will be updated to the server

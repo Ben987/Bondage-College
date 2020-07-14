@@ -119,7 +119,6 @@ function PreferenceSetZoneOrgasm(C, Zone, CanOrgasm) {
 				else delete C.ArousalSettings.Zone[Z].Orgasm;
 }
 
-// Returns a red color for low factors and a green color for high factors
 /**
  * Gets a color code for a given arousal factor
  * @param {number} Factor - The factor that should be translated in a color code
@@ -133,7 +132,6 @@ function PreferenceGetFactorColor(Factor) {
 	return "#80808044";
 }
 
-// 
 /**
  * Checks, if the arousal activity controls must be activated
  * @returns {void} - Returns true if we must activate the preference controls, false otherwise
@@ -151,7 +149,6 @@ function PreferenceLoadActivityFactor() {
 	PreferenceArousalActivityFactorOther = PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false);
 }
 
-// 
 /**
  * Initialize and validates the character settings
  * @param {Character} C - The character, whose preferences are initialized
@@ -233,7 +230,6 @@ function PreferenceInit(C) {
 
 }
 
-// When the preference screens loads
 /**
  * Loads the preference screen. This function is called dynamically, when the character enters the preference screen for the first time
  * @returns {void} - Nothing
@@ -268,7 +264,6 @@ function PreferenceLoad() {
 
 }
 
-// Run the preference screen
 /**
  * Runs the preference screen. This function is called dynamically on a repeated basis. 
  * So don't use complex loops or other function calls within this method
@@ -321,9 +316,8 @@ function PreferenceRun() {
 	}
 }
 
-// When the user clicks in the preference screen
 /**
- * Handles click events that are propagated from CommonClick()
+ * Handles click events in the preference screen that are propagated from CommonClick()
  * @returns {void} - Nothing
  */
 function PreferenceClick() {
@@ -392,7 +386,6 @@ function PreferenceClick() {
 
 }
 
-// When the user exit the preference screen, we push the data back to the server
 /**
  * Is called when the player exits the preference screen. All settings of the preference screen are sent to the server.
  * If the selected color is invalid, the player cannot leave the screen.
@@ -436,7 +429,6 @@ function PreferenceSubscreenAudioRun() {
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 }
 
-// 
 /**
  * Sets the chat preferences for the player. Redirected to from the main Run function if the player is in the chat settings subscreen.
  * @returns {void} - Nothing
