@@ -1,22 +1,22 @@
 "use strict";
-var InventoryItemHeadNoseRingMessage = "SelectAttachmentState";
+var InventoryItemNoseNoseRingMessage = "SelectAttachmentState";
 
 // Loads the item extension properties
-function InventoryItemHeadNoseRingLoad() {
+function InventoryItemNoseNoseRingLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
-	InventoryItemHeadNoseRingMessage = "SelectAttachmentState";
+	InventoryItemNoseNoseRingMessage = "SelectAttachmentState";
 }
 
-function InventoryItemHeadNoseRingChainShortPrerequesites(C) {
+function InventoryItemNoseNoseRingChainShortPrerequesites(C) {
 	var ChainShortPrerequisites = true;
 	if (C.Pose.indexOf("Suspension") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Pose.indexOf("StraitDressOpen") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
 		ChainShortPrerequisites = false;
 	} // if
 	return ChainShortPrerequisites;
-} // InventoryItemHeadNoseRingChainShortPrerequesites
+} // InventoryItemNoseNoseRingChainShortPrerequesites
 
 // Draw the item extension screen
-function InventoryItemHeadNoseRingDraw() {
+function InventoryItemNoseNoseRingDraw() {
 
 	// Draw the header and item
 	DrawRect(1387, 125, 225, 275, "white");
@@ -25,10 +25,10 @@ function InventoryItemHeadNoseRingDraw() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	var ChainShortPrerequisites = InventoryItemHeadNoseRingChainShortPrerequesites(C);
+	var ChainShortPrerequisites = InventoryItemNoseNoseRingChainShortPrerequesites(C);
 
 	// Draw the possible poses
-	DrawText(DialogFind(Player, InventoryItemHeadNoseRingMessage), 1500, 500, "white", "gray");
+	DrawText(DialogFind(Player, InventoryItemNoseNoseRingMessage), 1500, 500, "white", "gray");
 	DrawButton(1000, 550, 225, 225, "", ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type == null)) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Base.png", 1000, 550);
 	DrawText(DialogFind(Player, "NoseRingPoseBase"), 1125, 800, "white", "gray");
@@ -44,28 +44,28 @@ function InventoryItemHeadNoseRingDraw() {
 }
 
 // Catches the item extension clicks
-function InventoryItemHeadNoseRingClick() {
+function InventoryItemNoseNoseRingClick() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	var ChainShortPrerequisites = InventoryItemHeadNoseRingChainShortPrerequesites(C);
+	var ChainShortPrerequisites = InventoryItemNoseNoseRingChainShortPrerequesites(C);
 
 	// Trigger click handlers
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemHeadNoseRingSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainShort")) && ChainShortPrerequisites) InventoryItemHeadNoseRingSetPose("ChainShort");
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainLong"))) InventoryItemHeadNoseRingSetPose("ChainLong");
-	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Leash"))) InventoryItemHeadNoseRingSetPose("Leash");
+	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemNoseNoseRingSetPose(null);
+	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainShort")) && ChainShortPrerequisites) InventoryItemNoseNoseRingSetPose("ChainShort");
+	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainLong"))) InventoryItemNoseNoseRingSetPose("ChainLong");
+	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Leash"))) InventoryItemNoseNoseRingSetPose("Leash");
 }
 
 // Sets the item pose (shorts chains, long chains or none)
-function InventoryItemHeadNoseRingSetPose(NewPose) {
+function InventoryItemNoseNoseRingSetPose(NewPose) {
 
 	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemHeadNoseRingLoad();
+		InventoryItemNoseNoseRingLoad();
 	}
 
 	// Sets the new pose with it's effects

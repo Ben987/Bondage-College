@@ -230,10 +230,24 @@ ChatOther-ItemHead-Caress,SourceCharacter caresses TargetCharacter's face.
 ChatOther-ItemHead-TakeCare,SourceCharacter brushes TargetCharacter's hair.
 ChatOther-ItemHead-Pull,SourceCharacter pulls on TargetCharacter's hair.
 ChatOther-ItemHead-Pet,SourceCharacter gently pets TargetCharacter's head.
-ChatOther-ItemHead-Cuddle,SourceCharacter nose-nuzzles with TargetCharacter.
 ChatOther-ItemHead-Rub,SourceCharacter rubs her breast against TargetCharacter's face.
+ChatOther-ItemNose-Cuddle,SourceCharacter nose-nuzzles with TargetCharacter.
+ChatOther-ItemNose-Pet,SourceCharacter boops TargetCharacter's nose.
+ChatOther-ItemNose-Kiss,SourceCharacter kisses TargetCharacter's nose.
+ChatOther-ItemNose-Pinch,SourceCharacter pinches TargetCharacter's nose.
+ChatOther-ItemNose-Caress,SourceCharacter caresses TargetCharacter's nose.
+ChatOther-ItemNose-Pull,SourceCharacter pulls TargetCharacter's nose.
+ChatOther-ItemNose-Rub,SourceCharacter rubs TargetCharacter's nose.
+ChatOther-ItemNose-Nibble,SourceCharacter bites TargetCharacter's nose.
+ChatOther-ItemNose-Choke,SourceCharacter pinches  TargetCharacter's nostrils closed.
+ChatSelf-ItemNose-Pinch,SourceCharacter pinches her nose.
+ChatSelf-ItemNose-Caress,SourceCharacter caresses her nose.
+ChatSelf-ItemNose-Pet,SourceCharacter boops her nose.
+ChatSelf-ItemNose-Pull,SourceCharacter pulls her nose.
+ChatSelf-ItemNose-Rub,SourceCharacter rubs her nose.
 ChatSelf-ItemEars-Pinch,SourceCharacter pinches her ear.
 ChatSelf-ItemEars-Caress,SourceCharacter caresses her ear.
+ChatSelf-ItemNose-Choke,SourceCharacter pinches  her nostrils closed.
 ChatOther-ItemEars-Kiss,SourceCharacter kisses TargetCharacter's ear.
 ChatOther-ItemEars-Lick,SourceCharacter licks TargetCharacter's ear.
 ChatOther-ItemEars-Nibble,SourceCharacter nibbles TargetCharacter's ear.

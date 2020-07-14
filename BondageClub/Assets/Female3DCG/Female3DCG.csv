@@ -905,8 +905,6 @@ ItemHead,LeatherHoodSensDep,Sensory Deprivation Hood
 ItemHead,LatexHoodOpenHair,Open Hair Latex Hood
 ItemHead,LeatherHoodSealed,Sealed Leather Hood
 ItemHead,PolishedSteelHood,Polished Steel Hood
-ItemHead,NoseRing,Nose Ring
-ItemHead,NoseHook,Nose Hook
 ItemHead,InflatedBallHood,Inflatable Hood
 ItemHead,OldGasMask,Gas Mask
 ItemHead,SackHood,Sack Hood
@@ -920,6 +918,10 @@ ItemHead,WebBlindfold,Web
 ItemHead,RopeBlindfold,Rope Blindfold
 ItemHead,PonyHood,Pony Hood
 ItemHead,SleepMask,Smooth Sleep Mask
+ItemNose,,Nose
+ItemNose,NoseRing,Nose Ring
+ItemNose,NoseHook,Nose Hook
+ItemHood,,Head
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
