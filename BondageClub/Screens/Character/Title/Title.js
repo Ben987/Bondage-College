@@ -27,16 +27,25 @@ var TitleList = [
 	{ Name: "PonyFoal", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 1) } }
 ];
 
-// Sets the title for the player
+/**
+ * Sets the new title of the player, if the title has changed
+ * @param {string} NewTitle - The new title for the player
+ * @returns {string} - The new title of the player
+ */
 function TitleSet(NewTitle) {
 	if (NewTitle != Player.Title) {
 		Player.Title = NewTitle;
-		ServerSend("AccountUpdate", { Title: NewTitle } );
+		ServerSend("AccountUpdate", { Title: NewTitle });
 	}
 	return NewTitle;
 }
 
-// Returns the current title and validates the title for the player
+/**
+ * Returns the current title of the given player. If an invalid title is found or the player has to wear a certain title
+ * the correct title is pushed to the player's attributes
+ * @param {Character} C - The player, whose title we want to get
+ * @returns {string} - The title of the given player
+ */
 function TitleGet(C) {
 
 	// If we find a title that we must force, we set it and return it
@@ -59,7 +68,11 @@ function TitleGet(C) {
 
 }
 
-// Returns TRUE if the current player title is forced upon her
+/**
+ * CHecks, if the given title is forced a forced title like 'Club Slave' or 'Escaped Patient'
+ * @param {string} Title - The title to check
+ * @returns {void} - Nothing
+ */
 function TitleIsForced(Title) {
 	if ((Title == null) || (Title == "") || (Title == "None")) return false;
 	for (var T = 0; T < TitleList.length; T++)
@@ -68,7 +81,11 @@ function TitleIsForced(Title) {
 	return false;
 }
 
-// Run the title selection screen
+/**
+ * Runs the title selection screen. This function is called dynamically on a repeated basis, 
+ * so don't use complex loops or call extended functions from here.
+ * @returns {void} - Nothing
+ */
 function TitleRun() {
 
 	// List all the available titles
@@ -90,7 +107,10 @@ function TitleRun() {
 
 }
 
-// When the user clicks on the screen
+/**
+ * Handles the click events in the title selection screen. Clicks are forwarded from CommonClick()
+ * @returns {void} - Nothing
+ */
 function TitleClick() {
 
 	// When the user exits
@@ -115,6 +135,10 @@ function TitleClick() {
 }
 
 // when the user exit this screen
+/**
+ * Exits the title selection screen and brings the player back to the InformationSheet
+ * @returns {void} - Nothing
+ */
 function TitleExit() {
 	CommonSetScreen("Character", "InformationSheet");
 }
