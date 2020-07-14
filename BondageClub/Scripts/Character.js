@@ -686,7 +686,7 @@ function CharacterReleaseNoLock(C) {
  */
 function CharacterReleaseTotal(C) {
 	for(var E = 0; E < C.Appearance.length; E++){
-	    if(!C.Appearance[E].Asset.Clothing && !C.Appearance[E].Asset.Bodypart){
+	    if(C.Appearance[E].Asset.Group.Category != "Appearance"){
 	        C.Appearance.splice(E,1);
 	        E--;
 	    }
