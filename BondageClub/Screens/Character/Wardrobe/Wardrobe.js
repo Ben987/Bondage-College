@@ -5,7 +5,10 @@ var WardrobeSelection = -1;
 var WardrobeOffset = 0;
 var WardrobeSize = 24;
 
-// Load the wardrobe character names
+/**
+ * Loads the player's wardrobe safe spots. If a spot is not named yet, initializes it with the player's name
+ * @returns {void} - Nothing
+ */
 function WardrobeLoadCharacterNames() {
 	if (Player.WardrobeCharacterNames == null) Player.WardrobeCharacterNames = [];
 	var Push = false;
@@ -16,7 +19,11 @@ function WardrobeLoadCharacterNames() {
 	if (Push) ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
 }
 
-// Makes sure the wardrobe is of the correct length
+/**
+ * Makes sure the wardrobe is of the correct length. If someone tampered with the wardrobe's size, all
+ * extended slots are deleted
+ * @returns {void} - Nothing
+ */
 function WardrobeFixLength() {
 	if (Player.Wardrobe != null) {
 		if (Player.Wardrobe.length > WardrobeSize) Player.Wardrobe = Player.Wardrobe.slice(0, WardrobeSize - 1);
@@ -24,7 +31,12 @@ function WardrobeFixLength() {
 	}
 }
 
-// Loads all wardrobe characters 
+/**
+ * Loads all wardrobe characters. If the slot of the wardrobe is currently unused, display a randomly dressed character.
+ * Saves the current wardrobe on the server
+ * @param {boolean} Fast
+ * @returns {void} - Nothing
+ */
 function WardrobeLoadCharacters(Fast) {
 	Fast = Fast == null ? false : Fast;
 	var W = null;
@@ -68,13 +80,22 @@ function WardrobeLoadCharacters(Fast) {
 	}
 }
 
-// Loads the wardrobe screen
+/**
+ * Loads the player's wardrobe. when the player opens the wardrobe screen for the first time.
+ * This function is called dynamically.
+ * @returns {void} - Nothing
+ *
+ */
 function WardrobeLoad() {
 	WardrobeSelection = -1;
 	WardrobeLoadCharacters(false);
 }
 
-// Shows the wardrobe screen
+/**
+ * Shows the wardrobe screen. This function is called dynamically on a repeated basis. So don't call complex functions
+ * or use extended loops in this function.
+ * @returns {void} - Nothing
+ */
 function WardrobeRun() {
 	DrawCharacter(Player, 0, 0, 1);
 	DrawButton(500, 25, 225, 60, TextGet("Load"), "White");
@@ -93,7 +114,10 @@ function WardrobeRun() {
 		}
 }
 
-// Loads the character appearance screen and keeps a backup of the previous appearance
+/**
+ * Handles the click events in the wardrobe screen. Clicks are propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
 function WardrobeClick() {
 
 	// If we must go back to the room
@@ -126,12 +150,20 @@ function WardrobeClick() {
 					WardrobeSelection = C + WardrobeOffset;
 }
 
-// when the user exit this screen
+/**
+ * Exits the wardorbe screen and sends the player back to her private room
+ * @returns {void} - Nothing
+ */
 function WardrobeExit() {
 	CommonSetScreen("Room", "Private");
 }
 
-// Set a wardrobe character name, sync it with server
+/**
+ * Set a wardrobe character name, sync it with server
+ * @param {number} W - The number of the wardrobe slot to save
+ * @param {string} Name - The name of the wardrobe slot
+ * @param {boolean} [Push=false] -If set to true, the changes are pushed to the server
+ */
 function WardrobeSetCharacterName(W, Name, Push) {
 	Player.WardrobeCharacterNames[W] = Name;
 	if (WardrobeCharacter != null && WardrobeCharacter[W] != null) {
@@ -142,12 +174,25 @@ function WardrobeSetCharacterName(W, Name, Push) {
 	}
 }
 
-// Bundle an asset in wardrobe format
+/**
+ * Reduces a given asset to the attributes needed for the wardrobe
+ * @param {Asset} A - The asset that should be reduced
+ * @returns {Object} - bundle. The bundled asset
+ * @returns {string} - bundle.Name - The name of the asset in the bundle
+ * @returns {string} - bundle.Group - The name of the asste group, the bundled asset belongs to
+ * @returns {string} - bundle.Color - The string representation of the color in the format "#rrggbb"
+ */
 function WardrobeAssetBundle(A) {
 	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color };
 }
 
-// Load character appearance from wardrobe, only load clothes on others
+/**
+ * Load character appearance from wardrobe, only load clothes on others
+ * @param {Character} C - The character the appearance should be loaded for
+ * @param {number} W - The spot in the wardrobe the appearance should be loaded to
+ * @param {boolean} [Update=false] - If set to true, the appearance will be updated to the server
+ * @returns {void} - Nothing
+ */
 function WardrobeFastLoad(C, W, Update) {
 	var savedExpression = {};
 	if (C == Player) savedExpression = WardrobeGetExpression(Player);
@@ -181,7 +226,7 @@ function WardrobeFastLoad(C, W, Update) {
 				if (savedExpression[item.Asset.Group.Name] != null) {
 					if (item.Property == null) item.Property = {};
 					item.Property.Expression = savedExpression[item.Asset.Group.Name];
-					
+
 				}
 			});
 		}
@@ -193,7 +238,12 @@ function WardrobeFastLoad(C, W, Update) {
 	}
 }
 
-// Saves character appearance in Player's wardrobe, use Player's body as base for others
+/**
+ * Saves character appearance in player's wardrobe, use player's body as base for others
+ * @param {Character} C - The character, whose appearance should be saved
+ * @param {number} W - The spot in the wardrobe the current outfit should be saved to
+ * @param {boolean} [Push=false] - If set to true, the wardrobe is saved on the server
+ */
 function WardrobeFastSave(C, W, Push) {
 	if (Player.Wardrobe != null) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
@@ -214,9 +264,13 @@ function WardrobeFastSave(C, W, Push) {
 	}
 }
 
-//Returns the expressions of character C as a single big object
+/**
+ * Returns the expressions of character C as a single big object
+ * @param {Character} C - The character whose expressions should be returned
+ * @returns {Object} Expression - The expresssion of a character
+ */
 function WardrobeGetExpression(C) {
 	var characterExpression = {}
-	ServerAppearanceBundle(C.Appearance).filter(item=>item.Property != null && item.Property.Expression != null).forEach(item => characterExpression[item.Group] = item.Property.Expression);
+	ServerAppearanceBundle(C.Appearance).filter(item => item.Property != null && item.Property.Expression != null).forEach(item => characterExpression[item.Group] = item.Property.Expression);
 	return characterExpression;
 }

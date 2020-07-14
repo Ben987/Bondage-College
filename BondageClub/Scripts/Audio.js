@@ -1,7 +1,12 @@
 "use strict";
 var AudioDialog = new Audio();
 
-// Players a sound with a set volume
+/**
+ * Plays a sound at a given volume
+ * @param {string} src - Source of the audio file to play
+ * @param {number} volume - Volume of the audio in percentage (ranges from 0 to 1)
+ * @returns {void} - Nothing
+ */
 function AudioPlayInstantSound(src, volume) {
 	var audio = new Audio();
 	audio.src = src;
@@ -9,7 +14,11 @@ function AudioPlayInstantSound(src, volume) {
 	audio.play();
 }
 
-// Plays a background sound in the dialog for applying/removing an item
+/**
+ * Begins to play a sound when applying/removing an item 
+ * @param {string} SourceFile - Source of the audio file to play
+ * @returns {void} - Nothing
+ */
 function AudioDialogStart(SourceFile) {
 	if (!Player.AudioSettings || !Player.AudioSettings.PlayItem || !Player.AudioSettings.Volume || (Player.AudioSettings.Volume == 0)) return;
 	AudioDialog.pause();
@@ -19,13 +28,20 @@ function AudioDialogStart(SourceFile) {
 	AudioDialog.play();
 }
 
-// Plays the background sound in the dialog for applying/removing an item
+/**
+ * Stops playing the sound when done applying/removing an item 
+ * @returns {void} - Nothing
+ */
 function AudioDialogStop() {
 	AudioDialog.pause();
 	AudioDialog.currentTime = 0;
 }
 
-// Takes a data dictionary content and sends the related audio mp3 to be played
+/**
+ * Takes the received data dictionary content and identifies the audio to be played
+ * @param {object} data - Data received
+ * @returns {void} - Nothing
+ */
 function AudioPlayContent(data) {
 	// Exits right away if we are missing content data
 	if (!Player.AudioSettings || !Player.AudioSettings.PlayItem || (Player.AudioSettings.Volume == 0)) return;
