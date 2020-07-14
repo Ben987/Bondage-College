@@ -118,12 +118,25 @@ function ExtendedItemSetType(Options, Option) {
 		CommonCallFunctionByName(FunctionPrefix + "Load");
 	}
 	var PreviousType = DialogFocusItem.Property.Type;
+	var PreviousOption = Options.find(O => O.Property.Type === PreviousType);
 
-	DialogFocusItem.Property = Option.Property;
+	// Create a new Property object based on the previous one
+	var NewProperty = Object.assign({}, DialogFocusItem.Property);
+	// Delete properties added by the previous option
+	Object.keys(PreviousOption.Property).forEach(key => delete NewProperty[key]);
+	// Clone the new properties and use them to extend the existing properties
+	Object.assign(NewProperty, JSON.parse(JSON.stringify(Option.Property)));
+
+	// If the item is locked, ensure it has the "Lock" effect
+	if (NewProperty.LockedBy && !(NewProperty.Effect || []).includes("Lock")) {
+		NewProperty.Effect = (NewProperty.Effect || []);
+		NewProperty.Effect.push("Lock");
+	}
+
+	DialogFocusItem.Property = NewProperty;
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 
-	var PreviousOption = Options.find(O => O.Property.Type === PreviousType);
 	if (CurrentScreen === "ChatRoom") {
 		// If we're in a chatroom, call the item's publish function to publish a message to the chatroom
 		CommonCallFunctionByName(FunctionPrefix + "PublishAction", C, Option, PreviousOption);
