@@ -1,13 +1,13 @@
 "use strict";
 
 // Loads the item extension properties
-function InventoryItemHeadInflatedBallHoodLoad() {
+function InventoryItemHoodInflatedBallHoodLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { PumpLevel: 0 };
 	if (DialogFocusItem.Property.PumpLevel == null) DialogFocusItem.Property.PumpLevel = 0;
 }
 
 // Draw the item extension screen
-function InventoryItemHeadInflatedBallHoodDraw() {
+function InventoryItemHoodInflatedBallHoodDraw() {
 	DrawRect(1387, 225, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
@@ -23,27 +23,27 @@ function InventoryItemHeadInflatedBallHoodDraw() {
 }
 
 // Catches the item extension clicks
-function InventoryItemHeadInflatedBallHoodClick() {
+function InventoryItemHoodInflatedBallHoodClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel > 0)) InventoryItemHeadInflatedBallHoodSetPump(0 - DialogFocusItem.Property.PumpLevel);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel < 1)) InventoryItemHeadInflatedBallHoodSetPump(1 - DialogFocusItem.Property.PumpLevel);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel > 1)) InventoryItemHeadInflatedBallHoodSetPump(1 - DialogFocusItem.Property.PumpLevel);
-	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel < 2)) InventoryItemHeadInflatedBallHoodSetPump(2 - DialogFocusItem.Property.PumpLevel);
-	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel > 2)) InventoryItemHeadInflatedBallHoodSetPump(2 - DialogFocusItem.Property.PumpLevel);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel > 3)) InventoryItemHeadInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel < 3)) InventoryItemHeadInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
-	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 770) && (MouseY <= 825) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemHeadInflatedBallHoodSetPump(4 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel > 0)) InventoryItemHoodInflatedBallHoodSetPump(0 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel < 1)) InventoryItemHoodInflatedBallHoodSetPump(1 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel > 1)) InventoryItemHoodInflatedBallHoodSetPump(1 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel < 2)) InventoryItemHoodInflatedBallHoodSetPump(2 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel > 2)) InventoryItemHoodInflatedBallHoodSetPump(2 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel > 3)) InventoryItemHoodInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel < 3)) InventoryItemHoodInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 770) && (MouseY <= 825) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemHoodInflatedBallHoodSetPump(4 - DialogFocusItem.Property.PumpLevel);
 }
 
 // Sets the pump gag level
-function InventoryItemHeadInflatedBallHoodSetPump(Modifier) {
+function InventoryItemHoodInflatedBallHoodSetPump(Modifier) {
 
 	// Loads the item
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (CurrentScreen == "ChatRoom") {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemHeadInflatedBallHoodLoad();
+		InventoryItemHoodInflatedBallHoodLoad();
 	}
 
 	// Sets the pump & gag level

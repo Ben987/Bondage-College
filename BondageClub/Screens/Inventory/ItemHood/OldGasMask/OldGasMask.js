@@ -1,12 +1,12 @@
 "use strict";
 
 // Loads the item extension properties
-function InventoryItemHeadOldGasMaskLoad() {
+function InventoryItemHoodOldGasMaskLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
 }
 
 // Draw the item extension screen
-function InventoryItemHeadOldGasMaskDraw() {
+function InventoryItemHoodOldGasMaskDraw() {
 	DrawRect(1387, 225, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
@@ -37,28 +37,28 @@ function InventoryItemHeadOldGasMaskDraw() {
 }
 
 // Catches the item extension clicks
-function InventoryItemHeadOldGasMaskClick() {
+function InventoryItemHoodOldGasMaskClick() {
 	var C = CharacterGetCurrent();
 	var itemBlocked = InventoryGet(C, "ItemAddon") != null;
 	
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	
-	if ((MouseX >= 1250) && (MouseX <= 1450) && (MouseY >= 650) && (MouseY <= 705) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskLenses");
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskTube1");
-	if ((MouseX >= 1250) && (MouseX <= 1450) && (MouseY >= 750) && (MouseY <= 805) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskRebreather");
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 750) && (MouseY <= 805) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskTube2");
+	if ((MouseX >= 1250) && (MouseX <= 1450) && (MouseY >= 650) && (MouseY <= 705) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskLenses");
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskTube1");
+	if ((MouseX >= 1250) && (MouseX <= 1450) && (MouseY >= 750) && (MouseY <= 805) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskRebreather");
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 750) && (MouseY <= 805) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskTube2");
 	
 }
 
 // Sets the lenses
-function InventoryItemHeadOldGasMaskSetItem(itemName) {
+function InventoryItemHoodOldGasMaskSetItem(itemName) {
 
 	// Loads the item
 	var C = CharacterGetCurrent();
 	if (CurrentScreen == "ChatRoom") {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemHeadOldGasMaskLoad();
+		InventoryItemHoodOldGasMaskLoad();
 	}
 
 	var item = InventoryItemCreate(C, "ItemAddon", itemName);

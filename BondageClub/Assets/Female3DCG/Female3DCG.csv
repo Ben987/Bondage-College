@@ -889,9 +889,6 @@ ItemMouth3,MedicalMask,Medical Mask
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
-ItemHead,LeatherHood,Leather Hood
-ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
-ItemHead,GasMask,Gas Mask
 ItemHead,LeatherSlimMask,Slim Leather Mask
 ItemHead,LeatherSlimMaskOpenMouth,Open Mouth Slim Mask
 ItemHead,LeatherSlimMaskOpenEyes,Open Eyes Mouth Slim Mask
@@ -899,29 +896,32 @@ ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
 ItemHead,SmallBlindfold,Small Blindfold
-ItemHead,LeatherHoodOpenMouth,Leather Hood Mouth
 ItemHead,FullBlindfold,Full Blindfold
-ItemHead,LeatherHoodSensDep,Sensory Deprivation Hood
-ItemHead,LatexHoodOpenHair,Open Hair Latex Hood
-ItemHead,LeatherHoodSealed,Sealed Leather Hood
-ItemHead,PolishedSteelHood,Polished Steel Hood
-ItemHead,InflatedBallHood,Inflatable Hood
-ItemHead,OldGasMask,Gas Mask
-ItemHead,SackHood,Sack Hood
 ItemHead,LewdBlindfold,Lewd Blindfold
 ItemHead,LatexBlindfold,Latex Blindfold
-ItemHead,DogHood,Dog Hood
-ItemHead,FoxyMask,Foxy Mask
 ItemHead,FrilledSleepMask,Frilled Sleep Mask
 ItemHead,BlackoutLenses,Blackout Lenses
 ItemHead,WebBlindfold,Web
 ItemHead,RopeBlindfold,Rope Blindfold
-ItemHead,PonyHood,Pony Hood
 ItemHead,SleepMask,Smooth Sleep Mask
 ItemNose,,Nose
-ItemNose,NoseRing,Nose Ring
 ItemNose,NoseHook,Nose Hook
+ItemNose,NoseRing,Nose Ring
 ItemHood,,Head
+ItemHood,LeatherHoodSealed,Sealed Leather Hood
+ItemHood,PolishedSteelHood,Polished Steel Hood
+ItemHood,InflatedBallHood,Inflatable Hood
+ItemHood,OldGasMask,Gas Mask
+ItemHood,SackHood,Sack Hood
+ItemHood,LeatherHoodSensDep,Sensory Deprivation Hood
+ItemHood,LatexHoodOpenHair,Open Hair Latex Hood
+ItemHood,LeatherHood,Leather Hood
+ItemHood,LeatherHoodOpenEyes,Leather Hood Eyes
+ItemHood,GasMask,Gas Mask
+ItemHood,DogHood,Dog Hood
+ItemHood,FoxyMask,Foxy Mask
+ItemHood,PonyHood,Pony Hood
+ItemHood,LeatherHoodOpenMouth,Leather Hood Mouth
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs

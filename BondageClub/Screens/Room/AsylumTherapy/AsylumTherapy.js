@@ -49,7 +49,10 @@ function AsylumTherapyClick() {
 function AsylumTherapyPlayerUngag() {
 	DialogChangeReputation("Dominant", -1);
 	InventoryRemove(Player, "ItemHead");
+	InventoryRemove(Player, "ItemHood");
 	InventoryRemove(Player, "ItemMouth");
+	InventoryRemove(Player, "ItemMouth2");
+	InventoryRemove(Player, "ItemMouth3");
 }
 
 // When the player is stripped and unrestrained
