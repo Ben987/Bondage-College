@@ -713,6 +713,7 @@ var AssetFemale3DCG = [
 
 	{
 		Group: "Height",
+		Bodypart: true,
 		AllowNone: false,
 		AllowColorize: false,
 		Asset: [
@@ -733,6 +734,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "BodyUpper",
 		Priority: 7,
+		Bodypart: true,
 		AllowNone: false,
 		AllowColorize: false,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "StraitDressOpen", "Yoked", "Hogtied", "AllFours"],
@@ -746,6 +748,7 @@ var AssetFemale3DCG = [
 		ParentColor: "BodyUpper",
 		Priority: 9,
 		Top: 462,
+		Bodypart: true,
 		AllowNone: false,
 		AllowColorize: false,
 		AllowPose: ["LegsClosed", "Kneel", "Horse", "KneelingSpread"],
@@ -757,6 +760,7 @@ var AssetFemale3DCG = [
 		Group: "Hands",
 		ParentColor: "BodyUpper",
 		Priority: 27,
+		Bodypart: true,
 		AllowNone: false,
 		AllowColorize: false,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "AllFours"],
@@ -769,6 +773,7 @@ var AssetFemale3DCG = [
 		Priority: 5,
 		Left: 50,
 		Top: 0,
+		Bodypart: true,
 		AllowNone: false,
 		AllowPose: ["Suspension", "Hogtied", "AllFours"],
 		Asset: ["HairNone", "HairBack1", "HairBack2", "HairBack4", "HairBack10", "HairBack14", "HairBack15", "HairBack16", "HairBack17", "HairBack18", "HairBack19", "HairBack20", "HairBack5", "HairBack8", "HairBack11", "HairBack6", "HairBack21", "HairBack22",
@@ -784,6 +789,7 @@ var AssetFemale3DCG = [
 		Priority: 51,
 		Left: 150,
 		Top: 50,
+		Bodypart: true,
 		AllowNone: false,
 		Asset: ["HairFront1", "HairFront1b", "HairFront2", "HairFront2b", "HairFront3", "HairFront3b", "HairFront4", "HairFront4b", "HairFront5", "HairFront5b", "HairFront6", "HairFront6b", "HairFront7", "HairFront7b", "HairFront8", "HairFront8b", "HairFront9", "HairFront9b", "HairFront10", "HairFront10b", "HairFront11", "HairFront11b", "HairFront12", "HairFront12b", "HairFront13", "HairFront13b", "HairFront14", "HairFront14b"],
 		Color: ["#6a3628", "#202020", "#dcc787", "#6c2132", "#999999", "#dddddd", "#e781b1", "#81e7b1", "#81b1e7", "#eeee99", "#ee9999", "#ee99ee"]
@@ -795,6 +801,7 @@ var AssetFemale3DCG = [
 		Blink: true,
 		Left: 200,
 		Top: 145,
+		Bodypart: true,
 		FullAlpha: false,
 		AllowNone: false,
 		AllowExpression: ["Closed", "Dazed", "Shy", "Sad", "Horny", "Lewd", "VeryLewd", "Heart", "HeartPink", "LewdHeart", "LewdHeartPink", "Dizzy", "Daydream", "WinkL", "WinkR", "Angry", "Surprised", "Scared"],
@@ -807,6 +814,7 @@ var AssetFemale3DCG = [
 		Priority: 10,
 		Left: 235,
 		Top: 180,
+		Bodypart: true,
 		AllowNone: false,
 		AllowExpression: ["Frown", "Sad", "Pained", "Angry", "HalfOpen", "Open", "Ahegao", "Moan", "TonguePinch", "LipBite", "Happy", "Devious", "Laughing", "Grin", "Smirk"],
 		Asset: [
@@ -829,6 +837,7 @@ var AssetFemale3DCG = [
 		Default: false,
 		Left: 175,
 		Top: 285,
+		Bodypart: true,
 		AllowNone: false,
 		Asset: ["Nipples1", "Nipples2", "Nipples3"],
 		Color: ["Default", "#a6665b", "#803d26", "#d68777", "#9b4a2e", "#bb6655"]
@@ -839,6 +848,7 @@ var AssetFemale3DCG = [
 		Priority: 12,
 		Left: 225,
 		Top: 500,
+		Bodypart: true,
 		FullAlpha: false,
 		AllowNone: false,
 		Asset: ["PussyLight1", "PussyLight2", "PussyLight3", "PussyDark1", "PussyDark2", "PussyDark3"],
@@ -851,6 +861,7 @@ var AssetFemale3DCG = [
 		Priority: 9,
 		Left: 200,
 		Top: 120,
+		Bodypart: true,
 		AllowNone: false,
 		AllowColorize: false,
 		AllowCustomize: false,
