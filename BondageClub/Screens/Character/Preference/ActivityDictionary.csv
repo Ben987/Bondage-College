@@ -18,7 +18,7 @@ ActivityPinch,Pinch
 ActivitySpank,Spank
 ActivitySlap,Slap
 ActivityTakeCare,Take Care
-ActivityPull,Pull Hair
+ActivityPull,Pull
 ActivityChoke,Choke
 ActivityMasturbateTongue,Tongue Masturbation
 ActivityMasturbateHand,Hand Masturbation
@@ -147,6 +147,8 @@ ChatSelf-ItemNipples-Suck,SourceCharacter sucks on her own nipple.
 ChatSelf-ItemNipples-Nibble,SourceCharacter nibbles her own nipple.
 ChatSelf-ItemNipples-Pinch,SourceCharacter pinches her own nipple.
 ChatSelf-ItemNipples-Caress,SourceCharacter caresses her nipples.
+ChatSelf-ItemNipples-Pull,SourceCharacter pulls her nipples.
+ChatOther-ItemNipples-Pull,SourceCharacter pulls TargetCharacter's nipples.
 ChatOther-ItemNipples-Kiss,SourceCharacter kisses TargetCharacter's nipple.
 ChatOther-ItemNipples-Lick,SourceCharacter licks TargetCharacter's nipple.
 ChatOther-ItemNipples-Suck,SourceCharacter sucks on TargetCharacter's nipple.
