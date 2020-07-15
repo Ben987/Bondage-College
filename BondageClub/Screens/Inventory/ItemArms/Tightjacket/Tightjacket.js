@@ -26,7 +26,7 @@ const TightJacketArmsOptions = [
 		Property: { Type: "PulledPadding", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
     },
     {
-		Name: "PaddingLining",
+		Name: "PaddedLining",
 		Property: { Type: "PaddedLining", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
     },
     {
