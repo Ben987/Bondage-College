@@ -29,7 +29,13 @@ var PreferenceArousalActivityFactorSelf = 0;
 var PreferenceArousalActivityFactorOther = 0;
 var PreferenceArousalZoneFactor = 0;
 
-// Returns the love factor of the activity for the character (0 is horrible, 2 is normal, 4 is great)
+/**
+ * Gets the effect of a sexual activity on the player
+ * @param {Character} C - The player who performs the sexual activity
+ * @param {string} Type - The type of the activity that is performed
+ * @param {boolean} Self - Determines, if the current player is giving (true) or recieving (false)
+ * @returns {number} - Returns the love factor of the activity for the character (0 is horrible, 2 is normal, 4 is great)
+ */
 function PreferenceGetActivityFactor(C, Type, Self) {
 	var Factor = 2;
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Activity != null))
@@ -40,7 +46,13 @@ function PreferenceGetActivityFactor(C, Type, Self) {
 	return Factor;
 }
 
-// Sets the love factor of the activity for the character (0 is horrible, 2 is normal, 4 is great)
+/**
+ * Sets the love factor of a sexual activity for the character 
+ * @param {Character} C - The character for whom the activity factor should be set
+ * @param {string} Type - The type of the activity that is performed
+ * @param {boolean} Self - Determines, if the current player is giving (true) or recieving (false)
+ * @param {number} Factor - The factor of the sexual activity (0 is horrible, 2 is normal, 4 is great)
+ */
 function PreferenceSetActivityFactor(C, Type, Self, Factor) {
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Activity != null))
 		for (var P = 0; P < C.ArousalSettings.Activity.length; P++)
@@ -49,7 +61,12 @@ function PreferenceSetActivityFactor(C, Type, Self, Factor) {
 				else C.ArousalSettings.Activity[P].Other = Factor;
 }
 
-// Returns the love factor of a zone for the character (0 is horrible, 2 is normal, 4 is great)
+/**
+ * Gets the love factor of a zone for the character
+ * @param {Character} C - The character for whom the love factor of a particular zone should be gotten
+ * @param {string} Zone - The name of the zone to get the love factor for
+ * @returns {number} - Returns the love factor of a zone for the character (0 is horrible, 2 is normal, 4 is great)
+ */
 function PreferenceGetZoneFactor(C, Zone) {
 	var Factor = 2;
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Zone != null))
@@ -60,7 +77,13 @@ function PreferenceGetZoneFactor(C, Zone) {
 	return Factor;
 }
 
-// Sets the love factor for a specific body zone on the player (0 is horrible, 2 is normal, 4 is great)
+/**
+ * Sets the love factor for a specific body zone on the player 
+ * @param {Character} C - The character, for whom the love factor of a particular zone should be set
+ * @param {string} Zone - The name of the zone, the factor should be set for
+ * @param {number} Factor - The factor of the zone (0 is horrible, 2 is normal, 4 is great)
+ * @returns {void} - Nothing
+ */
 function PreferenceSetZoneFactor(C, Zone, Factor) {
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Zone != null))
 		for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
@@ -68,7 +91,12 @@ function PreferenceSetZoneFactor(C, Zone, Factor) {
 				C.ArousalSettings.Zone[Z].Factor = Factor;
 }
 
-// Returns TRUE if the zone allows orgasms for a character
+/**
+ * Determines, if a player can reach on orgasm from a particular zone
+ * @param {Character} C - The character whose ability to orgasm we check
+ * @param {string} Zone - The name of the zone to check
+ * @returns {boolean} - Returns true if the zone allows orgasms for a character, false otherwise
+ */
 function PreferenceGetZoneOrgasm(C, Zone) {
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Zone != null))
 		for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
@@ -77,7 +105,12 @@ function PreferenceGetZoneOrgasm(C, Zone) {
 	return false;
 }
 
-// Sets if a zone can give an orgasm to the character
+/**
+ * Sets the ability to induce an orgasm for a given zone*
+ * @param {Character} C - The characterfor whom we set the ability to órgasm from a given zone
+ * @param {string} Zone - The name of the zone to set the ability to orgasm for
+ * @param {boolean} CanOrgasm - Sets, if the character can cum from the given zone (true) or not (false)
+ */
 function PreferenceSetZoneOrgasm(C, Zone, CanOrgasm) {
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Zone != null))
 		for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
@@ -86,7 +119,11 @@ function PreferenceSetZoneOrgasm(C, Zone, CanOrgasm) {
 				else delete C.ArousalSettings.Zone[Z].Orgasm;
 }
 
-// Returns a red color for low factors and a green color for high factors
+/**
+ * Gets a color code for a given arousal factor
+ * @param {number} Factor - The factor that should be translated in a color code
+ * @returns {string} - The color for the given factor in the format "#rrggbbaa"
+ */
 function PreferenceGetFactorColor(Factor) {
 	if (Factor == 0) return "#FF000088";
 	if (Factor == 1) return "#FF000044";
@@ -95,18 +132,28 @@ function PreferenceGetFactorColor(Factor) {
 	return "#80808044";
 }
 
-// Returns TRUE if we must active the preference controls
+/**
+ * Checks, if the arousal activity controls must be activated
+ * @returns {void} - Returns true if we must activate the preference controls, false otherwise
+ */
 function PreferenceArousalIsActive() {
 	return (PreferenceArousalActiveList[PreferenceArousalActiveIndex] != "Inactive");
 }
 
-// Loads the activity factor combo boxes based on the current activity selected
+/**
+ * Loads the activity factor combo boxes based on the current activity selected
+ * @returns {void} - Nothing
+ */
 function PreferenceLoadActivityFactor() {
 	PreferenceArousalActivityFactorSelf = PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true);
 	PreferenceArousalActivityFactorOther = PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false);
 }
 
-// Initialize and validates the character settings
+/**
+ * Initialize and validates the character settings
+ * @param {Character} C - The character, whose preferences are initialized
+ * @returns {void} - Nothing
+ */
 function PreferenceInit(C) {
 
 	// If the settings aren't set before, construct them to replicate the default behavior
@@ -145,10 +192,10 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.BlindDisableExamine !== "boolean") C.GameplaySettings.BlindDisableExamine = false;
 	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
 	if (typeof C.GameplaySettings.EnableAfkTimer !== "boolean") C.GameplaySettings.EnableAfkTimer = true;
-	
+
 	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
 	if (Player.AssetFamily == "Female3DCG") {
-		
+
 		// Validates the activities
 		for (var A = 0; A < ActivityFemale3DCG.length; A++) {
 			var Found = false;
@@ -183,7 +230,10 @@ function PreferenceInit(C) {
 
 }
 
-// When the preference screens loads
+/**
+ * Loads the preference screen. This function is called dynamically, when the character enters the preference screen for the first time
+ * @returns {void} - Nothing
+ */
 function PreferenceLoad() {
 
 	// Sets up the player label color
@@ -195,11 +245,11 @@ function PreferenceLoad() {
 	PreferenceChatColorThemeIndex = (PreferenceChatColorThemeList.indexOf(Player.ChatSettings.ColorTheme) < 0) ? 0 : PreferenceChatColorThemeList.indexOf(Player.ChatSettings.ColorTheme);
 	PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave) < 0) ? 0 : PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave);
 	PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers) < 0) ? 0 : PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers);
-	PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog) < 0 ) ? 0 : PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog);
-    PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
-    PreferenceArousalActiveIndex = (PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active) < 0) ? 0 : PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active);
-    PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible) < 0) ? 0 : PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible);
-    PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.indexOf(Player.ArousalSettings.AffectStutter) < 0) ? 0 : PreferenceArousalAffectStutterList.indexOf(Player.ArousalSettings.AffectStutter);
+	PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog) < 0) ? 0 : PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog);
+	PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
+	PreferenceArousalActiveIndex = (PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active) < 0) ? 0 : PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active);
+	PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible) < 0) ? 0 : PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible);
+	PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.indexOf(Player.ArousalSettings.AffectStutter) < 0) ? 0 : PreferenceArousalAffectStutterList.indexOf(Player.ArousalSettings.AffectStutter);
 	PreferenceChatColorThemeSelected = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
 	PreferenceChatEnterLeaveSelected = PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex];
 	PreferenceChatMemberNumbersSelected = PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex];
@@ -214,9 +264,13 @@ function PreferenceLoad() {
 
 }
 
-// Run the preference screen
+/**
+ * Runs the preference screen. This function is called dynamically on a repeated basis. 
+ * So don't use complex loops or other function calls within this method
+ * @returns {void} - Nothing
+ */
 function PreferenceRun() {
-	
+
 	// If a subscreen is active, draw that instead
 	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatRun();
 	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioRun();
@@ -226,7 +280,7 @@ function PreferenceRun() {
 	// Draw the online preferences
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("Preferences"), 500, 125, "Black", "Gray");
-    if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
+	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
 	DrawText(TextGet("CharacterLabelColor"), 500, 225, "Black", "Gray");
 	ElementPosition("InputCharacterLabelColor", 990, 212, 250);
 	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) document.getElementById("InputCharacterLabelColor").style.color = ElementValue("InputCharacterLabelColor");
@@ -254,7 +308,7 @@ function PreferenceRun() {
 	if (PreferenceColorPick != "") {
 		ColorPickerDraw(1250, 185, 675, 830, document.getElementById(PreferenceColorPick));
 	} else {
-    	ColorPickerHide();
+		ColorPickerHide();
 		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");
 		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Audio.png");
 		DrawButton(1815, 420, 90, 90, "", "White", "Icons/Activity.png");
@@ -262,7 +316,10 @@ function PreferenceRun() {
 	}
 }
 
-// When the user clicks in the preference screen
+/**
+ * Handles click events in the preference screen that are propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
 function PreferenceClick() {
 
 	// If a subscreen is active, process that instead
@@ -300,7 +357,7 @@ function PreferenceClick() {
 		ServerSend("AccountQuery", { Query: "EmailStatus" });
 		PreferenceSubscreen = "Security";
 	}
-	
+
 	// If we must change the restrain permission level
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
 		Player.ItemPermission++;
@@ -311,7 +368,7 @@ function PreferenceClick() {
 	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick != "")) PreferenceColorPick = "";
 
-    // If we must change audio gameplay or visual settings
+	// If we must change audio gameplay or visual settings
 	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 392) && (MouseY < 456)) {
 		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
@@ -329,7 +386,11 @@ function PreferenceClick() {
 
 }
 
-// When the user exit the preference screen, we push the data back to the server
+/**
+ * Is called when the player exits the preference screen. All settings of the preference screen are sent to the server.
+ * If the selected color is invalid, the player cannot leave the screen.
+ * @returns {void} - Nothing
+ */
 function PreferenceExit() {
 	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
 		Player.LabelColor = ElementValue("InputCharacterLabelColor");
@@ -349,7 +410,10 @@ function PreferenceExit() {
 	} else PreferenceMessage = "ErrorInvalidColor";
 }
 
-// Redirected to from the main Run function if the player is in the audio settings subscreen
+/**
+ * Sets the audio preferences for the player. Redirected to from the main Run function if the player is in the audio settings subscreen
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenAudioRun() {
 	DrawCharacter(Player, 50, 50, 0.9);
 	MainCanvas.textAlign = "left";
@@ -359,13 +423,16 @@ function PreferenceSubscreenAudioRun() {
 	DrawCheckbox(500, 352, 64, 64, TextGet("AudioPlayItem"), Player.AudioSettings.PlayItem);
 	DrawCheckbox(500, 432, 64, 64, TextGet("AudioPlayItemPlayerOnly"), Player.AudioSettings.PlayItemPlayerOnly);
 	MainCanvas.textAlign = "center";
-    DrawBackNextButton(500, 193, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
-        () => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
-        () => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length] * 100 + "%");
+	DrawBackNextButton(500, 193, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
+		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
+		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length] * 100 + "%");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 }
 
-// Redirected to from the main Run function if the player is in the chat settings subscreen
+/**
+ * Sets the chat preferences for the player. Redirected to from the main Run function if the player is in the chat settings subscreen.
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenChatRun() {
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("ChatPreferences"), 500, 125, "Black", "Gray");
@@ -393,7 +460,10 @@ function PreferenceSubscreenChatRun() {
 	DrawCharacter(Player, 50, 50, 0.9);
 }
 
-// Redirected to from the main Run function if the player is in the arousal settings subscreen
+/**
+ * Sets the arousal preferences for a player. Redirected to from the main Run function if the player is in the arousal settings subscreen
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenArousalRun() {
 
 	// Draws the main labels and player
@@ -449,7 +519,10 @@ function PreferenceSubscreenArousalRun() {
 
 }
 
-// Redirected to from the main Run function if the player is in the security settings subscreen
+/**
+ * Sets the security preferences for a player. Redirected to from the main Run function if the player is in the security settings subscreen
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenSecurityRun() {
 	DrawCharacter(Player, 50, 50, 0.9);
 	MainCanvas.textAlign = "left";
@@ -464,7 +537,11 @@ function PreferenceSubscreenSecurityRun() {
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 }
 
-// When the user clicks in the audio preference subscreen
+/**
+ * Handles click events for the audio preference settings. 
+ * Redirected to from the main Click function if the player is in the audio settings subscreen
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenAudioClick() {
 
 	// If the user clicked the exit icon to return to the main screen
@@ -474,11 +551,11 @@ function PreferenceSubscreenAudioClick() {
 	}
 
 	// Volume increase/decrease control
-    if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
-        if (MouseX <= 625) PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.length + PreferenceSettingsVolumeIndex - 1) % PreferenceSettingsVolumeList.length;
-        else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
-        Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
-    }
+	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
+		if (MouseX <= 625) PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.length + PreferenceSettingsVolumeIndex - 1) % PreferenceSettingsVolumeList.length;
+		else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
+		Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
+	}
 
 	// Individual audio check-boxes
 	if ((MouseX >= 500) && (MouseX < 564)) {
@@ -489,7 +566,10 @@ function PreferenceSubscreenAudioClick() {
 
 }
 
-// Redirected to from the main Click function if the player is in the chat settings subscreen
+/**
+ * Handles the click events for the chat settings of a player
+ * Redirected to from the main Click function if the player is in the chat settings subscreen
+ */
 function PreferenceSubscreenChatClick() {
 
 	// If the user clicked one of the check-boxes
@@ -500,8 +580,8 @@ function PreferenceSubscreenChatClick() {
 		if ((MouseY >= 732) && (MouseY <= 796)) Player.ChatSettings.ColorEmotes = !Player.ChatSettings.ColorEmotes;
 		if ((MouseY >= 812) && (MouseY <= 876)) Player.ChatSettings.ShowActivities = !Player.ChatSettings.ShowActivities;
 	}
-	
-	if ((MouseX >= 1200) && (MouseX <= 1264)) { 
+
+	if ((MouseX >= 1200) && (MouseX <= 1264)) {
 		if ((MouseY >= 492) && (MouseY <= 556)) Player.ChatSettings.AutoBanBlackList = !Player.ChatSettings.AutoBanBlackList;
 		if ((MouseY >= 572) && (MouseY <= 636)) Player.ChatSettings.AutoBanGhostList = !Player.ChatSettings.AutoBanGhostList;
 	}
@@ -534,7 +614,11 @@ function PreferenceSubscreenChatClick() {
 
 }
 
-// When the user clicks in the arousal preference subscreen
+/**
+ * Handles the click events for the arousal settings
+ * Redirected to from the main Click function if the player is in the arousal settings subscreen
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenArousalClick() {
 
 	// If the user clicked the exit icon to return to the main screen
@@ -545,28 +629,28 @@ function PreferenceSubscreenArousalClick() {
 	}
 
 	// Arousal active control
-    if ((MouseX >= 750) && (MouseX < 1200) && (MouseY >= 193) && (MouseY < 257)) {
-        if (MouseX <= 975) PreferenceArousalActiveIndex = (PreferenceArousalActiveList.length + PreferenceArousalActiveIndex - 1) % PreferenceArousalActiveList.length;
-        else PreferenceArousalActiveIndex = (PreferenceArousalActiveIndex + 1) % PreferenceArousalActiveList.length;
-        Player.ArousalSettings.Active = PreferenceArousalActiveList[PreferenceArousalActiveIndex];
-    }
+	if ((MouseX >= 750) && (MouseX < 1200) && (MouseY >= 193) && (MouseY < 257)) {
+		if (MouseX <= 975) PreferenceArousalActiveIndex = (PreferenceArousalActiveList.length + PreferenceArousalActiveIndex - 1) % PreferenceArousalActiveList.length;
+		else PreferenceArousalActiveIndex = (PreferenceArousalActiveIndex + 1) % PreferenceArousalActiveList.length;
+		Player.ArousalSettings.Active = PreferenceArousalActiveList[PreferenceArousalActiveIndex];
+	}
 
 	// Speech stuttering control
-    if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 393) && (MouseY < 457)) {
-        if (MouseX <= 1150) PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.length + PreferenceArousalAffectStutterIndex - 1) % PreferenceArousalAffectStutterList.length;
-        else PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterIndex + 1) % PreferenceArousalAffectStutterList.length;
-        Player.ArousalSettings.AffectStutter = PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex];
-    }
+	if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 393) && (MouseY < 457)) {
+		if (MouseX <= 1150) PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.length + PreferenceArousalAffectStutterIndex - 1) % PreferenceArousalAffectStutterList.length;
+		else PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterIndex + 1) % PreferenceArousalAffectStutterList.length;
+		Player.ArousalSettings.AffectStutter = PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex];
+	}
 
 	// Show other player meter check box
-	if ((MouseX >= 550) && (MouseX < 614) && (MouseY >= 286) && (MouseY < 350)) 
+	if ((MouseX >= 550) && (MouseX < 614) && (MouseY >= 286) && (MouseY < 350))
 		Player.ArousalSettings.ShowOtherMeter = !Player.ArousalSettings.ShowOtherMeter;
-	
+
 	// If the arousal is active, we allow more controls
 	if (PreferenceArousalIsActive()) {
 
 		// Meter affect your facial expressions check box
-		if ((MouseX >= 1250) && (MouseX < 1314) && (MouseY >= 286) && (MouseY < 350)) 
+		if ((MouseX >= 1250) && (MouseX < 1314) && (MouseY >= 286) && (MouseY < 350))
 			Player.ArousalSettings.AffectExpression = !Player.ArousalSettings.AffectExpression;
 
 		// Arousal visible control
@@ -619,10 +703,13 @@ function PreferenceSubscreenArousalClick() {
 					}
 
 	}
-		
+
 }
 
-// When the user clicks in the security preference subscreen
+/**
+ * Handles the click events in the security settings dialog for a player.
+ * Redirected to from the main Click function if the player is in the security settings subscreen
+ */
 function PreferenceSubscreenSecurityClick() {
 
 	// If the user clicked the exit icon to return to the main screen
@@ -646,17 +733,26 @@ function PreferenceSubscreenSecurityClick() {
 
 }
 
-// Handles the loading of the main preferences screen
+/**
+ * Loads the Preferences screen. Is called dynamically, when the player enters the preferences dialog for the first time
+ * @returns {void} - Nothing
+ */
 function PreferenceMainScreenLoad() {
 	ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
 }
 
-// Handles the exiting of the main preferences screen
+/**
+ * Exists the preference screen. Cleans up elements that are not needed anymore
+ * @returns {void} - Nothing
+ */
 function PreferenceMainScreenExit() {
 	ElementRemove("InputCharacterLabelColor");
 }
 
-// Return true if sensory deprivation is active
+/**
+ * Get the sensory deprivation setting for the player
+ * @returns {boolean} - Return true if sensory deprivation is active, false otherwise
+ */
 function PreferenceIsPlayerInSensDep() {
 	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal")) && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0));
 }
