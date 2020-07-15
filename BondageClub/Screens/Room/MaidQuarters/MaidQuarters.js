@@ -61,12 +61,12 @@ function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("Lead
  * Checks, if the maid can release the player from her restraint
  * @returns {boolean} - Returns true, if the player can be released, false otherwise
  */
-function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
+function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLockedRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
 /**
  * Checks, if the maid is unable to free the player
  * @returns {boolean} - Returns true, if the maid is unable to free the player, flase otherwise
  */
-function MaidQuartersCannotReleasePlayer() { return (Player.IsRestrained() && (InventoryCharacterHasOwnerOnlyRestraint(Player) || !CurrentCharacter.CanTalk() || !CurrentCharacter.CanInteract())) }
+function MaidQuartersCannotReleasePlayer() { return !MaidQuartersCanReleasePlayer() }
 /**
  * Checks, if the player can get the duster gag
  * @returns {boolean} - Returns true, if the player can get the duster gag, false otherwise
