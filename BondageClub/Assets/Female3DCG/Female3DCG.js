@@ -906,7 +906,7 @@ var AssetFemale3DCG = [
 		Top: 725,
 		Effect: ["Freeze", "Prone"],
 		Zone: [[100, 750, 300, 120]],
-		Activity: ["Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "MassageHands", "Grope", "SpankItem", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
+		Activity: ["Bite", "Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "MassageHands", "Grope", "SpankItem", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
 		Asset: [
 			{ Name: "NylonRope", Value: 30, Time: 15, DefaultColor: "#909090", BuyGroup: "NylonRope", SetPose: ["LegsClosed"], Audio: "RopeLong" },
 			{ Name: "HempRope", Value: 60, Difficulty: 3, Time: 15, DefaultColor: "#956B1C", BuyGroup: "HempRope", HideItem: ["ItemDevicesTeddyBear"], SetPose: ["LegsClosed"], AllowType: ["Mermaid", "Suspension", "FullBinding", "Diamond", "Link"], Audio: "RopeLong", Extended: true },
@@ -958,7 +958,7 @@ var AssetFemale3DCG = [
 		AllowPose: ["Kneel"],
 		Effect: ["Prone", "KneelFreeze"],
 		Zone: [[100, 580, 300, 170]],
-		Activity: ["Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "MassageHands", "Grope", "SpankItem", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
+		Activity: ["Bite", "Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "MassageHands", "Grope", "SpankItem", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
 		Asset: [
 			{ Name: "NylonRope", Value: 30, Time: 10, DefaultColor: "#909090", BuyGroup: "NylonRope", SetPose: ["LegsClosed"], Audio: "RopeLong" },
 			{ Name: "HempRope", Value: 60, Difficulty: 3, Time: 10, RemoveTime: 15, DefaultColor: "#956B1C", BuyGroup: "HempRope", SetPose: ["LegsClosed"], AllowBlock: ["ItemFeet"], AllowEffect: ["ForceKneel"], AllowType: ["Mermaid", "FullBinding", "Frogtie", "Link", "Crossed"], Audio: "RopeLong", Extended: true },
@@ -1134,7 +1134,7 @@ var AssetFemale3DCG = [
 		AllowPose: ["AllFours"],
 		Effect: ["IsPlugged"],
 		Zone: [[300, 500, 100, 80]],
-		Activity: ["Kiss", "MasturbateHand", "MasturbateFist", "MasturbateTongue", "Spank", "Caress", "Grope", "SpankItem", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
+		Activity: ["Bite", "Kiss", "MasturbateHand", "MasturbateFist", "MasturbateTongue", "Spank", "Caress", "Grope", "SpankItem", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
 		Asset: [
 			{ Name: "BlackButtPlug", Value: 15, Time: 10, Visible: false, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
 			{ Name: "PenisPlug", Value: 20, Time: 10, Visible: false, BuyGroup: "PenisDildo", Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
@@ -1262,7 +1262,7 @@ var AssetFemale3DCG = [
 		Top: 200,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "AllFours"],
 		Zone: [[100, 340, 300, 80]],
-		Activity: ["Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "MassageHands", "MassageFeet", "Rub", "SpankItem", "TickleItem", "RubItem", "RollItem", "PourItem"],
+		Activity: ["Bite", "Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "MassageHands", "MassageFeet", "Rub", "SpankItem", "TickleItem", "RubItem", "RollItem", "PourItem"],
 		Asset: [
 			{ Name: "NylonRopeHarness", Value: 30, Time: 20, DefaultColor: "#909090", BuyGroup: "NylonRope", Prerequisite: "AccessTorso", AllowType: ["Harness", "Diamond", "Star", "Waist"], Audio: "RopeLong", Extended: true },
 			{ Name: "HempRopeHarness", Value: 60, Difficulty: 3, Time: 20, RemoveTime: 25, DefaultColor: "#956B1C", BuyGroup: "HempRope", Prerequisite: "AccessTorso", AllowType: ["Harness", "Diamond", "Star", "Waist"], Audio: "RopeLong", Extended: true },
@@ -1293,7 +1293,7 @@ var AssetFemale3DCG = [
 		Top: 200,
 		AllowPose: ["AllFours"],
 		Zone: [[100, 270, 100, 70]],
-		Activity: ["Kiss", "Lick", "Suck", "Nibble", "Pinch", "Caress", "SpankItem", "Pull", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
+		Activity: ["Bite", "Kiss", "Lick", "Suck", "Nibble", "Pinch", "Caress", "SpankItem", "Pull", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
 		Asset: [
 			{ Name: "NippleClamp", Value: 25, Time: 10, Prerequisite: "AccessBreast", ExpressionTrigger: [{ Name: "Closed", Group: "Eyes", Timer: 5 }, { Name: "Angry", Group: "Eyebrows", Timer: 5 }] },
 			{ Name: "VibeNippleClamp", Value: 40, Time: 10, Prerequisite: "AccessBreast", Effect: ["Egged"], AllowEffect: ["Egged", "Vibrating"], ExpressionTrigger: [{ Name: "Closed", Group: "Eyes", Timer: 5 }, { Name: "Angry", Group: "Eyebrows", Timer: 5 }] },
@@ -1358,7 +1358,7 @@ var AssetFemale3DCG = [
 		Top: 200,
 		AllowPose: ["AllFours"],
 		Zone: [[300, 270, 100, 70]],
-		Activity: ["Kiss", "Lick", "Tickle", "Slap", "Caress", "MasturbateHand", "Grope", "SpankItem", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
+		Activity: ["Bite", "Kiss", "Lick", "Tickle", "Slap", "Caress", "MasturbateHand", "Grope", "SpankItem", "TickleItem", "RubItem", "RollItem", "MasturbateItem", "PourItem"],
 		Asset: [
 			{ Name: "MetalChastityBra", Value: 60, Difficulty: 50, Time: 15, AllowLock: true, Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }] },
 			{ Name: "PolishedChastityBra", Value: 100, Difficulty: 50, Time: 15, AllowLock: true, Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }] },
@@ -1386,7 +1386,7 @@ var AssetFemale3DCG = [
 		Left: 50,
 		Top: 200,
 		Zone: [[10, 200, 90, 200], [400, 200, 90, 200]],
-		Activity: ["Kiss", "Lick", "Nibble", "Tickle", "Spank", "Pinch", "Caress", "MassageHands", "Grope", "Cuddle", "SpankItem", "TickleItem", "RubItem", "RollItem", "PourItem"],
+		Activity: ["Bite", "Kiss", "Lick", "Nibble", "Tickle", "Spank", "Pinch", "Caress", "MassageHands", "Grope", "Cuddle", "SpankItem", "TickleItem", "RubItem", "RollItem", "PourItem"],
 		Asset: [
 			{ Name: "NylonRope", Value: 30, SelfBondage: 2, Time: 15, DefaultColor: "#909090", BuyGroup: "NylonRope", SetPose: ["BackBoxTie"], Effect: ["Block", "Prone"], Audio: "RopeLong" },
 			{ Name: "HempRope", Value: 60, Difficulty: 3, SelfBondage: 2, Time: 20, DefaultColor: "#956B1C", BuyGroup: "HempRope", SetPose: ["BackBoxTie"], Effect: ["Block", "Prone"], AllowBlock: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowEffect: ["Freeze", "Block", "Prone", "ForceKneel"], AllowType: ["Hogtied", "SuspensionHogtied", "AllFours", "WristTie", "WristElbowTie", "RopeCuffs", "WristElbowHarnessTie", "KneelingHogtie"], Audio: "RopeLong", Extended: true, RemoveItemOnRemove: [{ Name: "SuspensionHempRope", Group: "ItemHidden" }] },
@@ -1566,7 +1566,7 @@ var AssetFemale3DCG = [
 		Default: false,
 		IsRestraint: true,
 		Zone: [[10, 400, 90, 200], [400, 400, 90, 200]],
-		Activity: ["Kiss", "PoliteKiss", "Lick", "Suck", "Nibble", "Spank", "Caress", "TakeCare"],
+		Activity: ["Bite", "Kiss", "PoliteKiss", "Lick", "Suck", "Nibble", "Spank", "Caress", "TakeCare"],
 		Asset: [
 			{ Name: "PaddedMittens", Value: 40, Difficulty: 4, SelfBondage: 2, Time: 15, AllowLock: true, DefaultColor: "#bbbbbb", AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Effect: ["Block", "Prone"], Extended: true },
 			{ Name: "PawMittens", Value: 50, Difficulty: 4, SelfBondage: 1, Time: 15, AllowLock: true, DefaultColor: "#bbbbbb", AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Effect: ["Block", "Prone"], Extended: true },
@@ -1664,7 +1664,7 @@ var AssetFemale3DCG = [
 		Left: 185,
 		Top: 160,
 		Zone: [[200, 200, 100, 70]],
-		Activity: ["Kiss", "Lick", "Nibble", "Caress", "MassageHands", "Choke", "TickleItem", "RubItem", "RollItem"],
+		Activity: ["Bite", "Kiss", "Lick", "Nibble", "Caress", "MassageHands", "Choke", "TickleItem", "RubItem", "RollItem"],
 		Asset: [
 			{ Name: "LeatherCollar", Value: 20, Difficulty: 50, Time: 5, AllowLock: true },
 			{ Name: "LeatherCollarBell", Value: 30, Difficulty: 50, Time: 5, AllowLock: true },
@@ -1771,7 +1771,7 @@ var AssetFemale3DCG = [
 		Top: 0,
 		Effect: ["BlockMouth", "GagNormal"],
 		Zone: [[100, 130, 100, 70]],
-		Activity: ["Kiss", "FrenchKiss", "PoliteKiss", "Lick", "Nibble", "Caress", "TickleItem", "RubItem", "RollItem"],
+		Activity: ["Bite", "Kiss", "FrenchKiss", "PoliteKiss", "Lick", "Nibble", "Caress", "TickleItem", "RubItem", "RollItem"],
 		Asset: [
 			{ Name: "ClothGag", Value: 15, Difficulty: -4, Time: 10, DefaultColor: "#B0B0B0", BuyGroup: "ClothGag", Prerequisite: "GagFlat", SetPose: ["GagFlat"], Effect: ["BlockMouth", "GagVeryLight"], AllowEffect: ["BlockMouth", "GagVeryLight", "GagLight", "GagEasy"], AllowType: ["Small", "Cleave", "OTM", "OTN"], ExpressionTrigger: [{ Name: "DroolSides", Group: "Fluids", Timer: 30 }], Extended: true },
 			{
@@ -2186,7 +2186,7 @@ var AssetFemale3DCG = [
 		Top: 20,
 		Zone: [[175, 0, 150, 65]],
 		Block: ["ItemNose"],
-		Activity: ["Kiss", "Slap", "Caress", "TakeCare", "Pet", "Pull", "Rub", "TickleItem", "RubItem"],
+		Activity: ["Bite", "Kiss", "Slap", "Caress", "TakeCare", "Pet", "Pull", "Rub", "TickleItem", "RubItem"],
 		Asset: [
 			{ Name: "ClothBlindfold", Value: 15, Time: 5, DefaultColor: "#A0A0A0", Hide: ["Glasses"], Effect: ["BlindLight", "Prone"] },
 			{ Name: "LeatherBlindfold", Value: 30, Time: 5, AllowLock: true, DefaultColor: "#404040", Hide: ["Glasses"], Effect: ["BlindNormal", "Prone"] },
@@ -2396,7 +2396,7 @@ var AssetFemale3DCG = [
 		Hide: ["Shoes"],
 		AllowPose: ["LegsClosed", "Kneel", "Hogtied"],
 		Zone: [[100, 870, 300, 130]],
-		Activity: ["Kiss", "PoliteKiss", "Lick", "Suck", "Nibble", "Tickle", "Spank", "MassageHands", "MassageFeet", "TakeCare", "SpankItem", "TickleItem", "RubItem", "RollItem", "PourItem"],
+		Activity: ["Bite", "Kiss", "PoliteKiss", "Lick", "Suck", "Nibble", "Tickle", "Spank", "MassageHands", "MassageFeet", "TakeCare", "SpankItem", "TickleItem", "RubItem", "RollItem", "PourItem"],
 		Asset: [
 			{ Name: "PonyBoots", Value: -1, Difficulty: 6, Time: 10, RemoveTime: 15, AllowLock: true, Alpha: [[75, 875, 140, 200], [290, 875, 140, 200]], Height: 35 },
 			{ Name: "BalletHeels", Value: 75, Difficulty: 6, Time: 10, RemoveTime: 15, AllowLock: true, Alpha: [[75, 875, 140, 200], [290, 875, 140, 200]], Height: 35 },
@@ -2529,6 +2529,12 @@ var ActivityFemale3DCG = [
 		Name: "Nibble",
 		MaxProgress: 40,
 		TargetSelf: ["ItemMouth", "ItemHands", "ItemArms", "ItemBoots", "ItemNipples"],
+		Prerequisite: ["UseMouth", "ZoneNaked"]
+	},
+	{
+		Name: "Bite",
+		MaxProgress: 40,
+		TargetSelf: ["ItemMouth", "ItemHands", "ItemArms", "ItemBoots", "ItemLegs", "ItemFeet"],
 		Prerequisite: ["UseMouth", "ZoneNaked"]
 	},
 	{
