@@ -11,7 +11,7 @@ var InventoryItemHeadWebBlindfoldOptions = [
 		Property: {
 			Type: "Cocoon",
 			Difficulty: 30,
-			Hide: ["HairFront", "HairBack", "Glasses", "Hat"],
+			Hide: ["HairFront", "HairBack", "Glasses", "Hat", "ItemMouth", "ItemMouth2", "ItemMouth3"],
 			Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemHood", "ItemNose"],
 			Effect: ["BlindHeavy", "Prone", "GagNormal", "BlockMouth"],
 		},

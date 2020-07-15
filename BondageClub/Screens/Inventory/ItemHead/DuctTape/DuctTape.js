@@ -21,7 +21,7 @@ var InventoryItemHeadDuctTapeOptions = [
 		Name: "Mummy",
 		Property: {
 			Type: "Mummy",
-			Hide: ["HairFront", "HairBack"],
+			Hide: ["ItemMouth", "ItemMouth2", "ItemMouth3", "HairFront", "HairBack"],
 			Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemHood", "ItemNose"],
 			Effect: ["GagNormal", "BlindNormal", "Prone", "BlockMouth"],
 		},
