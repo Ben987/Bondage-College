@@ -192,17 +192,10 @@ var LocationController = {
 		
 		var appearanceUpdate = playerUpdate.GetFinalAppItemList();
 		try{
-			if(playerUpdate.player.id == MainController.playerData.id){
-				F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player);
-				MslServer.Send("ActionStart", {type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate}, function(data){
-					this.OnLocationAction(data);
-				}.bind(this));
-			}else{
-				F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player, LocationController.GetPlayer());
-				MslServer.Send("ActionStart", {type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()}, function(data){
-					this.OnLocationAction(data);
-				}.bind(this));
-			}
+			F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.playerTarget, LocationController.GetPlayer());
+			MslServer.Send("ActionStart", {type:"AppearanceUpdate", targetPlayerId:playerUpdate.playerTarget.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()}, function(data){
+				this.OnLocationAction(data);
+			}.bind(this));
 		}catch(e){
 			console.log(appearanceUpdate);
 			throw e;
@@ -391,14 +384,7 @@ var LocationController = {
 	}
 	
 	
-	,LocationAction_AppearanceUpdateOther(action){
-		var player = this.GetPlayer(action.targetPlayerId);
-		player.UpdateAppearanceAndRender(action.result);
-		LocationController.delegates.view.RenderPlayerInSpot(this.GetSpotWithPlayer(player.id).name, player);
-	}
-	
-	
-	,LocationAction_AppearanceUpdateSelf(action){
+	,LocationAction_AppearanceUpdate(action){
 		var player = this.GetPlayer(action.targetPlayerId);
 		player.UpdateAppearanceAndRender(action.result);
 		LocationController.delegates.view.RenderPlayerInSpot(this.GetSpotWithPlayer(player.id).name, player);

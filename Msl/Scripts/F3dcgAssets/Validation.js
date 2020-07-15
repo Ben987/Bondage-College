@@ -95,18 +95,18 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 		
 		switch(AssetGroup.type){//the suit type is never propagated here
 			case F3dcgAssets.EXPRESSION:
-				if(playerOrigin) throw "SelfOnly " + AssetGroup.type;
+				if(playerOrigin && playerOrigin.id != playerTarget.id) throw "SelfOnly " + AssetGroup.type;
 			break;
 			case F3dcgAssets.BODY:
-				if(playerOrigin) throw "SelfOnly " + AssetGroup.type;
+				if(playerOrigin && playerOrigin.id != playerTarget.id) throw "SelfOnly " + AssetGroup.type;
 			break;
 			case F3dcgAssets.ACCESSORY:
-				if(playerOrigin) throw "SelfOnly " + AssetGroup.type;
+				if(playerOrigin && playerOrigin.id != playerTarget.id) throw "SelfOnly " + AssetGroup.type;
 			break;
 			
 			case F3dcgAssets.CLOTH:
 				//The applying player must not be tied			
-				if(playerOrigin){
+				if(playerOrigin && playerOrigin.id != playerTarget.id){
 					if(! F3dcgAssets.CanChangeClothes(playerOriginEffects)) throw "PlayerUnableChangeClothes " + groupName
 				}else{
 					if(! F3dcgAssets.CanChangeClothes(posesEffectsBlocks.effects)) throw "PlayerUnableChangeClothes " + groupName	
@@ -133,7 +133,7 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 				if(item && item.lock) F3dcgAssets.ValidateLockOrThrow(playerTarget, playerOrigin, item.lock);
 				
 				//The applying player must not be tied
-				if(playerOrigin){
+				if(playerOrigin && playerOrigin.id != playerTarget.id){
 					if(! F3dcgAssets.CanChangeBondageToys(playerOriginEffects)) throw "PlayerUnableChangeBondageToys " + groupName
 				}else{
 					if(! F3dcgAssets.CanChangeBondageToys(posesEffectsBlocks.effects)) throw "PlayerUnableChangeBondageToys " + groupName

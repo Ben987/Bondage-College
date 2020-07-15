@@ -6,29 +6,25 @@ var ClassicHud = {
 	,RollForward(){this.Roll(1);}
 	,RollBack(){this.Roll(-1);}
 	
+	,playerPortraits:{}
+	
 	,Init(){
 		this.topStripContainer = document.getElementById("LocationHudStripTop");
 		Util.ClearNodeContent(this.topStripContainer);
-		LocationController.GetPlayers().forEach(player => {
-			this.topStripContainer.classList.add("large");
-			var div = Util.CreateElement({parent:this.topStripContainer, events:{
-				click:function(e){LocationController.StartPlayerDialogProfile(player);}.bind(this)
-			}});
-			LocationController.delegates.view.BuildPlayerFigure(div, player.renderPortrait);
-		});
+		LocationController.GetPlayers().forEach(player => this.AddPlayerPortrait(player));
 	}
 	
-	,UnInit(){}
-	,Interrupt(){}
+	,UnInit(){Util.DetachElementsAndClear(this.playerPortraits);}
+	,Interrupt(){Util.DetachElementsAndClear(this.playerPortraits);}
 	
-	,playerPortraits:{}
 	
 	,OnPlayerEnter(player){
-		console.log("Enter ", player);
+		this.AddPlayerPortrait(player);
 	}
 	
 	,OnPlayerExit(player){
-		console.log("Exit ", player);
+		this.playerPortraits[player.id].parentNode.removeChild(this.playerPortraits[player.id]);
+		delete this.playerPortraits[player.id];
 	}
 	
 	,OnPlayerDisconnect(player){
@@ -39,6 +35,15 @@ var ClassicHud = {
 		console.log("Reconnect ", player);
 	}
 	
+	,AddPlayerPortrait(player){
+		this.topStripContainer.classList.add("large");
+		var div = Util.CreateElement({parent:this.topStripContainer, events:{
+			click:function(e){LocationController.StartPlayerDialogProfile(player);}.bind(this)
+		}});
+		LocationController.delegates.view.BuildPlayerFigure(div, player.renderPortrait);
+		
+		this.playerPortraits[player.id] = div;
+	}
 	
 	,Roll(direction){
 		var sizePrev = this.sizes[this.currentSizeIndex];

@@ -322,7 +322,7 @@ var F3dcgAssetsRender = {
 			,[F3dcgAssets.EXPRESSION]:["Eyebrows", "Blush", "Fluids", "Emoticon"]
 			,[F3dcgAssets.ACCESSORY]:["HairAccessory1", "HairAccessory2"]
 			,[F3dcgAssets.CLOTH]:["Hat", "Glasses", "Mask", "Cloth", "Bra"]
-			,[F3dcgAssets.BONDAGE_TOY]:["ItemHead", "ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemNeckAccessories", "ItemNeckRestraint"]
+			,[F3dcgAssets.BONDAGE_TOY]:["ItemHead", "ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemNeckAccessories", "ItemNeckRestraint", "ItemBreast"]
 		}
 		
 		for(var groupType in portraitGroups){

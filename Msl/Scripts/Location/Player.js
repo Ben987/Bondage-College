@@ -224,7 +224,7 @@ var LocationPlayerUpdate = function(playerTarget, playerOrigin){
 		this.appearance[itemData.groupTypeName][itemData.groupName] = newItem;
 		this.updateStack.push({type:itemData.groupTypeName, groupName:itemData.groupName, item:newItem});
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.playerTarget.activePose);	
-		this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(this.originPlayer, this.playerTarget);
+		this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(this.playerOrigin, this.playerTarget);
 	}
 	
 	
@@ -272,7 +272,10 @@ var LocationPlayerUpdate = function(playerTarget, playerOrigin){
 		this.playerOrigin = null;
 	}
 	this.IsValid = function(){
-		return this.player?.update == this;//an update is invalidated when the player gets a new update objet;
+		console.log(this.playerTarget.id);
+		console.log(this.playerOrigin.id);
+		
+		return this.playerTarget?.update == this;//an update is invalidated when the player gets a new update objet;
 	}
 	
 	
