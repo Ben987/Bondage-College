@@ -109,7 +109,7 @@ function AsylumTherapyTickleTherapyRestrain() {
 function AsylumTherapyTickleTherapyBlindfold() {
 	if ((ReputationGet("Asylum") <= -1) && (ReputationGet("Asylum") >= -49)) InventoryWear(Player, "ClothBlindfold", "ItemHead");
 	if ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") >= -99)) InventoryWear(Player, "LeatherBlindfold", "ItemHead");
-	if ((ReputationGet("Asylum") <= -100) && (ReputationGet("Asylum") >= -100)) InventoryWear(Player, "LeatherHoodOpenMouth", "ItemHead");
+	if ((ReputationGet("Asylum") <= -100) && (ReputationGet("Asylum") >= -100)) InventoryWear(Player, "LeatherHoodOpenMouth", "ItemHood");
 }
 
 // For the orgasm therapy, a vibrating toy can be applied on the player's breast
@@ -142,7 +142,7 @@ function AsylumTherapyPatientTickleIntro(RepChange) {
 	InventoryWear(AsylumTherapyPatient, "FourLimbsShackles", "ItemArms");
 	if ((ReputationGet("Asylum") >= 1) && (ReputationGet("Asylum") <= 49)) InventoryWear(AsylumTherapyPatient, "ClothBlindfold", "ItemHead");
 	if ((ReputationGet("Asylum") >= 50) && (ReputationGet("Asylum") <= 99)) InventoryWear(AsylumTherapyPatient, "LeatherBlindfold", "ItemHead");
-	if (ReputationGet("Asylum") >= 100) InventoryWear(AsylumTherapyPatient, "LeatherHoodOpenMouth", "ItemHead");
+	if (ReputationGet("Asylum") >= 100) InventoryWear(AsylumTherapyPatient, "LeatherHoodOpenMouth", "ItemHood");
 	CharacterRefresh(AsylumTherapyPatient);
 }
 
@@ -168,6 +168,7 @@ function AsylumTherapyTherapyMiniGameEnd() {
 	CommonSetScreen("Room", "AsylumTherapy");
 	CharacterSetActivePose(AsylumTherapyPatient, null);
 	InventoryRemove(AsylumTherapyPatient, "ItemHead");
+	InventoryRemove(AsylumTherapyPatient, "ItemHood");
 	InventoryRemove(AsylumTherapyPatient, "ItemMouth");
 	CharacterSetCurrent(AsylumTherapyPatient);
 	AsylumTherapyPatient.Stage = MiniGameVictory ? "1100" : "1200";

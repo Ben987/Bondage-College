@@ -85,6 +85,7 @@ function MaidQuartersMaidUngagPlayer() {
 		InventoryRemove(Player, "ItemMouth2");
 		InventoryRemove(Player, "ItemMouth3");
 		InventoryRemove(Player, "ItemHead");
+		InventoryRemove(Player, "ItemHood");
 	} else MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, "CantReleasePlayer");
 }
 
