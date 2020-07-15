@@ -487,7 +487,7 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	}
 }
 
-function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked){
+function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked) {
     DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
     DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
 }

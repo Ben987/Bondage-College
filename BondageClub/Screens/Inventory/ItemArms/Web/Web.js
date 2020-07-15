@@ -39,7 +39,7 @@ var InventoryItemArmsWebOptions = [
 		Name: "Hogtied",
 		BondageLevel: 3,
 		SelfBondageLevel: 6,
-		Prerequisite: ["NotSuspended", "NoFeetSpreader", "NotKneeling", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Prerequisite: ["NotSuspended", "NoFeetSpreader", "CannotBeHogtiedWithAlphaHood"],
 		Property: {
 			Type: "Hogtied",
 			Difficulty: 4,
@@ -53,7 +53,7 @@ var InventoryItemArmsWebOptions = [
 		Name: "Suspended",
 		BondageLevel: 4,
 		SelfBondageLevel: 8,
-		Prerequisite: ["NoFeetSpreader", "NotKneeling", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Prerequisite: ["NoFeetSpreader", "NotChained", "CannotBeHogtiedWithAlphaHood"],
 		Property: {
 			Type: "Suspended",
 			Difficulty: 6,
@@ -63,10 +63,24 @@ var InventoryItemArmsWebOptions = [
 		},
 	},
 	{
+		Name: "KneelingSuspended",
+		BondageLevel: 5,
+		SelfBondageLevel: 8,
+		Prerequisite: ["NoFeetSpreader", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Property: {
+			Type: "KneelingSuspended",
+			Difficulty: 8,
+			SetPose: ["LegsClosed", "BackElbowTouch", "Suspension"],
+			Effect: ["Block", "Freeze", "Prone"],
+			Hide: ["BodyLower", "Cloth", "ClothLower", "Shoes", "SuitLower", "Panties", "Socks", "Pussy", "ItemFeet", "ItemLegs", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemBoots", "ItemHands", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],
+			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],
+		},
+	},
+	{
 		Name: "SuspensionHogtied",
 		BondageLevel: 5,
 		SelfBondageLevel: 9,
-		Prerequisite: ["NotSuspended", "NoFeetSpreader", "NotKneeling", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Prerequisite: ["NotSuspended", "NoFeetSpreader", "NotChained", "CannotBeHogtiedWithAlphaHood"],
 		Property: {
 			Type: "SuspensionHogtied",
 			Difficulty: 11,

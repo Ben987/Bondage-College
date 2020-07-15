@@ -1,7 +1,11 @@
 "use strict";
 var Text = null;
 
-// Finds the text value linked to the tag in the buffer
+/**
+ * Finds the text value linked to the tag in the buffer
+ * @param {string} TextTag - Tag for the text to find
+ * @returns {string} - Returns the text associated to the tag, will return a missing tag text if the tag was not found.
+ */
 function TextGet(TextTag) {
 	if (Text == null) return "";
 	for (var T = 0; T < Text.length; T++)
@@ -10,7 +14,11 @@ function TextGet(TextTag) {
 	return "MISSING VALUE FOR TAG: " + TextTag;
 }
 
-// Builds the text objects from the CSV file
+/**
+ * Builds the text objects from the CSV file, then applies the translation to the text.
+ * @param {string[][]} CSV - The content of the CSV file to parse (List of tag-text pairs)
+ * @returns {void} - Nothing
+ */
 function TextBuild(CSV) {
 
 	// For each lines in the file
@@ -32,7 +40,12 @@ function TextBuild(CSV) {
 
 }
 
-// Loads the CSV text file of the current screen
+
+/**
+ * Loads the CSV text file of the current screen into the buffer. It will get the CSV from the cache if the file was already fetched from the server
+ * @param {string} TextGroup - Screen for which to load the CSV of
+ * @returns {void} - Nothing
+ */
 function TextLoad(TextGroup) {
 
 	// Finds the full path of the CSV file to use cache

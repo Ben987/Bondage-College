@@ -107,7 +107,7 @@ function GamblingClick() {
 }
 
 // Print the Stack of Dices and the Sum of Ponits and Player Money
-function GamblingShowDiceStack(){
+function GamblingShowDiceStack() {
 	var j = 0;
 	for (var i = GamblingPlayerDiceStack.length; i > 0 ; i--) {
 		DrawImageResize("Screens/Room/Gambling/dice_" + GamblingPlayerDiceStack[i - 1] + ".png", 25, (25 + j * 60), 60, 60);
@@ -125,13 +125,13 @@ function GamblingShowDiceStack(){
 }
 
 // Print the Dices for the NPC
-function GamblingShowNpcDice(){
+function GamblingShowNpcDice() {
 	DrawImageResize("Screens/Room/Gambling/dice_" + GamblingNpcDice + ".png", 525, 25, 60, 60);
 	return true;
 }
 
 //Calculate the Sum of Points in the Stock of Dices
-function GamblingDiceStackSum(DiceStack){
+function GamblingDiceStackSum(DiceStack) {
 	var GamblingDiceStackSum = 0;
 	for (var i = 0; i < DiceStack.length ; i++) {
 		GamblingDiceStackSum = GamblingDiceStackSum + DiceStack[i];
@@ -141,7 +141,7 @@ function GamblingDiceStackSum(DiceStack){
 
 // Controller for the Simple Dice Game
 function GamblingSimpleDiceController(SimpleDiceState) {
-	if (SimpleDiceState == "new"){
+	if (SimpleDiceState == "new") {
 		GamblingPlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
 		GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
@@ -160,13 +160,13 @@ function GamblingSimpleDiceController(SimpleDiceState) {
 			GamblingFirstSub.AllowItem = false;
 			GamblingFirstSub.Stage = 83;
 			}
-	} else if (SimpleDiceState == "win"){
+	} else if (SimpleDiceState == "win") {
 			GamblingFirstSub.Stage = 0;
 			ReputationProgress("Gambling", 1);
-	} else if (SimpleDiceState == "lost"){
+	} else if (SimpleDiceState == "lost") {
 			InventoryWearRandom(Player, "ItemArms");
 			GamblingFirstSub.Stage = 0;
-	} else if (SimpleDiceState == "equal"){
+	} else if (SimpleDiceState == "equal") {
 			InventoryRemove(Player, "ItemArms");
 			InventoryRemove(GamblingFirstSub, "ItemArms");
 			GamblingFirstSub.Stage = 0;
@@ -244,7 +244,7 @@ function GamblingToothpickNPCChoice() {
 //Controller for fifteen and six
 function GamblingTwentyOneController(TwentyOneState) {
 	
-	if (TwentyOneState == "new"){
+	if (TwentyOneState == "new") {
 		// Start a New Game
 		Player.Appearance = GamblingAppearancePlayer.slice();
 		GamblingFirstSub.Appearance = GamblingAppearanceFirst.slice();
@@ -262,7 +262,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 		}
 		GamblingFirstSub.Stage = 100 + GamblingDiceStackSum(GamblingPlayerDiceStack);
 	
-	} else if (TwentyOneState == "add"){
+	} else if (TwentyOneState == "add") {
 		//Get on more Dice
 		GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
 		GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice; 
@@ -270,7 +270,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 		if (GamblingDiceStackSum(GamblingPlayerDiceStack) > 21) {
 			GamblingPlayerSubState = GamblingPlayerSubState +1;
 			GamblingFirstSub.Stage = 170 + GamblingPlayerSubState;
-		} else if (GamblingDiceStackSum(GamblingPlayerDiceStack) == 21){
+		} else if (GamblingDiceStackSum(GamblingPlayerDiceStack) == 21) {
 			//The Player win automatilly
 			GamblingNpcSubState = GamblingNpcSubState +1;
 			GamblingFirstSub.Stage = 160 + GamblingNpcSubState;
@@ -283,7 +283,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 			GamblingNpcDice = Math.floor(Math.random() * 6) + 1;
 			GamblingNpcDiceStack[GamblingNpcDiceStack.length] = GamblingNpcDice; 
 		}
-		if (GamblingDiceStackSum(GamblingNpcDiceStack) > GamblingDiceStackSum(GamblingPlayerDiceStack) && GamblingDiceStackSum(GamblingNpcDiceStack) < 22){
+		if (GamblingDiceStackSum(GamblingNpcDiceStack) > GamblingDiceStackSum(GamblingPlayerDiceStack) && GamblingDiceStackSum(GamblingNpcDiceStack) < 22) {
 			GamblingPlayerSubState = GamblingPlayerSubState +1;
 			GamblingFirstSub.Stage = 170 + GamblingPlayerSubState;
 		} else {
@@ -291,7 +291,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 			GamblingFirstSub.Stage = 160 + GamblingNpcSubState;
 		}
 	
-	} else if (TwentyOneState == "win_next"){
+	} else if (TwentyOneState == "win_next") {
 		//The winner stiped the loser
 		//the next turn started automaticly
 		if (GamblingStripTied(GamblingFirstSub, GamblingNpcSubState)) {
@@ -311,7 +311,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 		}
 		if (GamblingFirstSub.Stage != 0) {GamblingFirstSub.Stage = 100 + GamblingDiceStackSum(GamblingPlayerDiceStack); }
 	
-	} else if (TwentyOneState == "lost_next"){
+	} else if (TwentyOneState == "lost_next") {
 		//the loser Player ist stipped by winner
 		//the next turn started automaticly
 		if (GamblingStripTied(Player, GamblingPlayerSubState)) {
@@ -332,8 +332,8 @@ function GamblingTwentyOneController(TwentyOneState) {
 }
 
 //Controller for Catch the Fox
-function GamblingFoxController(FoxState){
-		if (FoxState == "new"){
+function GamblingFoxController(FoxState) {
+		if (FoxState == "new") {
 			GamblingPlayerDiceStack = [];
 			GamblingNpcDiceStack = [];
 			GamblingShowMoney = true;
@@ -371,7 +371,7 @@ function GamblingFoxController(FoxState){
 				//next dice
 				GamblingSecondSub.Stage = 101;
 			}
-		} else if (FoxState == "player_fox_win"){
+		} else if (FoxState == "player_fox_win") {
 			GamblingSecondSub.AllowItem = false;
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
 			CharacterChangeMoney(Player, GamblingMoneyBet);
@@ -379,7 +379,7 @@ function GamblingFoxController(FoxState){
 			GamblingPlayerDiceStack = [];
 			GamblingNpcDiceStack = [];
 			GamblingShowMoney = false;
-		} else if (FoxState == "player_fox_lost"){
+		} else if (FoxState == "player_fox_lost") {
 			GamblingSecondSub.AllowItem = false;
 			InventoryWearRandom(Player, "ItemLegs"); 
 			InventoryWearRandom(Player, "ItemFeet"); 
@@ -387,7 +387,7 @@ function GamblingFoxController(FoxState){
 			GamblingPlayerDiceStack = [];
 			GamblingNpcDiceStack = [];
 			GamblingShowMoney = false;
-		} else if (FoxState == "player_hunter_win"){
+		} else if (FoxState == "player_hunter_win") {
 			InventoryWearRandom(GamblingSecondSub, "ItemArms"); 
 			GamblingSecondSub.AllowItem = true;
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
@@ -396,7 +396,7 @@ function GamblingFoxController(FoxState){
 			GamblingPlayerDiceStack = [];
 			GamblingNpcDiceStack = [];
 			GamblingShowMoney = false;
-		} else if (FoxState == "player_hunter_lost"){
+		} else if (FoxState == "player_hunter_lost") {
 			GamblingSecondSub.AllowItem = false;
 			GamblingPlayerDiceStack = [];
 			GamblingNpcDiceStack = [];
@@ -405,8 +405,8 @@ function GamblingFoxController(FoxState){
 }
 
 //Controller for Street to Roissy
-function GamblingStreetRoissyController (StreetRoissyState){
-	if (StreetRoissyState == "new"){
+function GamblingStreetRoissyController (StreetRoissyState) {
+	if (StreetRoissyState == "new") {
 		GamblingShowDiceSum = false;
 		GamblingShowMoney = true;
 		GamblingMoneyBet = 0;
@@ -419,7 +419,7 @@ function GamblingStreetRoissyController (StreetRoissyState){
 		CharacterRefresh(GamblingSecondSub);
 		CharacterRefresh(Player);
 		GamblingSecondSub.Stage = 200;
-	} else if (StreetRoissyState == "nextDice"){
+	} else if (StreetRoissyState == "nextDice") {
 		GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
 		GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 		GamblingNpcDice = Math.floor(Math.random() * 6) + 1;
@@ -428,7 +428,7 @@ function GamblingStreetRoissyController (StreetRoissyState){
 		if (GamblingPlayerDice == GamblingPlayerSubState && GamblingNpcDice == GamblingNpcSubState) {
 			//both the next level
 			GamblingSecondSub.Stage = 210 + GamblingPlayerSubState;
-			if (GamblingPlayerDice == GamblingNpcDice && GamblingPlayerDice == 6){
+			if (GamblingPlayerDice == GamblingNpcDice && GamblingPlayerDice == 6) {
 				// both 6, new dice
 				GamblingSecondSub.Stage = 220;
 			} else if (GamblingNpcDice == 6) {
@@ -453,13 +453,13 @@ function GamblingStreetRoissyController (StreetRoissyState){
 				GamblingMoneyBet++;
 			}
 		}
-	} else if (StreetRoissyState == "both"){
+	} else if (StreetRoissyState == "both") {
 		GamblingStripTied(Player, GamblingNpcSubState);
 		GamblingStripTied(GamblingSecondSub, GamblingPlayerSubState);
 		GamblingPlayerSubState++;
 		GamblingNpcSubState++;
 		GamblingSecondSub.Stage = 200;
-	} else if (StreetRoissyState == "win"){
+	} else if (StreetRoissyState == "win") {
 		GamblingSecondSub.Stage = 0; 
 		if (GamblingStripTied(GamblingSecondSub, GamblingPlayerSubState)) {
 			ReputationProgress("Gambling", 2);
@@ -474,7 +474,7 @@ function GamblingStreetRoissyController (StreetRoissyState){
 			GamblingPlayerSubState++;
 			GamblingSecondSub.Stage = 200;
 		}
-	} else if (StreetRoissyState == "lost"){
+	} else if (StreetRoissyState == "lost") {
 		GamblingSecondSub.Stage = 0; 
 		if (GamblingStripTied(Player, GamblingNpcSubState)) {
 			CharacterRelease(GamblingSecondSub);
@@ -487,7 +487,7 @@ function GamblingStreetRoissyController (StreetRoissyState){
 			GamblingNpcSubState++;
 			GamblingSecondSub.Stage = 200;
 		}
-	} else if (StreetRoissyState == "end"){
+	} else if (StreetRoissyState == "end") {
 		GamblingMoneyBet = 0;
 		GamblingPlayerSubState = 1;
 		GamblingNpcSubState = 1; 
@@ -499,8 +499,8 @@ function GamblingStreetRoissyController (StreetRoissyState){
 }
 
 //Controller for Dared Six
-function GamblingDaredSixController (DaredSixState){
-	if (DaredSixState == "new"){
+function GamblingDaredSixController(DaredSixState) {
+	if (DaredSixState == "new") {
 		GamblingShowMoney = true;
 		GamblingMoneyBet = 0;
 		Player.Appearance = GamblingAppearancePlayer.slice();
@@ -512,7 +512,7 @@ function GamblingDaredSixController (DaredSixState){
 		CharacterRefresh(GamblingSecondSub);
 		CharacterRefresh(Player);
 		GamblingDaredSixController("add");
-	} else if (DaredSixState == "add"){
+	} else if (DaredSixState == "add") {
 		GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
 		GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 		GamblingMoneyBet++;
@@ -523,7 +523,7 @@ function GamblingDaredSixController (DaredSixState){
 			//Player lost automaticly
 			GamblingSecondSub.Stage = 310 + GamblingPlayerSubState;
 		} 
-	} else if (DaredSixState == "fin"){
+	} else if (DaredSixState == "fin") {
 		do {
 		GamblingNpcDice = Math.floor(Math.random() * 6) + 1;
 		GamblingNpcDiceStack[GamblingNpcDiceStack.length] = GamblingNpcDice;
@@ -537,7 +537,7 @@ function GamblingDaredSixController (DaredSixState){
 			//GamblingNpcDice won, Player lost
 			GamblingSecondSub.Stage = 310 + GamblingPlayerSubState;
 		}
-	} else if (DaredSixState == "win"){
+	} else if (DaredSixState == "win") {
 		GamblingPlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
 		if (GamblingStripTied(GamblingSecondSub, GamblingNpcSubState)) {
@@ -555,7 +555,7 @@ function GamblingDaredSixController (DaredSixState){
 			GamblingNpcSubState++;
 			GamblingDaredSixController("add");
 		}
-	} else if (DaredSixState == "lost"){
+	} else if (DaredSixState == "lost") {
 		GamblingPlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
 		if (GamblingStripTied(Player, GamblingPlayerSubState)) {
@@ -585,9 +585,9 @@ function GamblingDressingLevel(C) {
 }
 
 // Strip or tied a caracter that lost a turn, return true if the last level reached
-function GamblingStripTied(gstCarachter, gstLevel){
+function GamblingStripTied(gstCarachter, gstLevel) {
 	var r = false;
-	if (gstLevel == 1){
+	if (gstLevel == 1) {
 		InventoryRemove(gstCarachter, "Hat"); 
 		InventoryRemove(gstCarachter, "Shoes"); 
 		InventoryRemove(gstCarachter, "Gloves"); 
@@ -612,22 +612,22 @@ function GamblingStripTied(gstCarachter, gstLevel){
 }
 
 // The GamblingFirstSub blindfold the Player
-function GamblingAnnoyGamblingFirstSub(){
+function GamblingAnnoyGamblingFirstSub() {
 	InventoryWear(Player, "LeatherBlindfold", "ItemHead");
 	CharacterSetCurrent(Player);
 }
 
 //Release Player
 function GamblingReleasePlayerGame(ReleaseState) {
-	if (ReleaseState == "new"){
+	if (ReleaseState == "new") {
 		GamblingNpcSubState = 0;
 		GamblingReleasePlayerGame("next");
-	} else if (ReleaseState == "next"){
+	} else if (ReleaseState == "next") {
 		GamblingNpcDice = Math.floor(Math.random() * 6) + 1;
 		GamblingNpcDice = GamblingNpcDice + GamblingNpcSubState;
 		if (GamblingNpcDice > 6) GamblingNpcDice = 6;
 		GamblingNpcDiceStack[GamblingNpcDiceStack.length] = GamblingNpcDice;
-		if (GamblingNpcDice == 1){
+		if (GamblingNpcDice == 1) {
 			GamblingFirstSub.CurrentDialog = DialogFind(GamblingFirstSub, "ActivityKissIntro");
 			GamblingFirstSub.Stage = "ActivityKiss";
 			GamblingNpcSubState++;
@@ -657,8 +657,8 @@ function GamblingReleasePlayerGame(ReleaseState) {
 }
 
 //Release Player for Money
-function GamblingPayForFreedom(){
-	if (!GamblingSecondSub.IsRestrained()){
+function GamblingPayForFreedom() {
+	if (!GamblingSecondSub.IsRestrained()) {
 		CharacterChangeMoney(Player, -25);
 		CharacterRelease(Player);
 	} else {

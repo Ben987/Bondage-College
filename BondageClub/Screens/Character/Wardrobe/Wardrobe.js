@@ -2,35 +2,47 @@
 var WardrobeBackground = "PrivateDark";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
+var WardrobeOffset = 0;
+var WardrobeSize = 24;
 
-// Load the wardrobe character names
+/**
+ * Loads the player's wardrobe safe spots. If a spot is not named yet, initializes it with the player's name
+ * @returns {void} - Nothing
+ */
 function WardrobeLoadCharacterNames() {
 	if (Player.WardrobeCharacterNames == null) Player.WardrobeCharacterNames = [];
 	var Push = false;
-	while (Player.WardrobeCharacterNames.length <= 12) {
+	while (Player.WardrobeCharacterNames.length <= WardrobeSize) {
 		Player.WardrobeCharacterNames.push(Player.Name);
 		Push = true;
 	}
-	if (Push) {
-		ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
-	}
+	if (Push) ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
 }
 
-// Makes sure the wardrobe is of the correct length
+/**
+ * Makes sure the wardrobe is of the correct length. If someone tampered with the wardrobe's size, all
+ * extended slots are deleted
+ * @returns {void} - Nothing
+ */
 function WardrobeFixLength() {
 	if (Player.Wardrobe != null) {
-		if (Player.Wardrobe.length > 12) Player.Wardrobe = Player.Wardrobe.slice(0, 11);
-		while (Player.Wardrobe.length < 12) Player.Wardrobe.push(null);
+		if (Player.Wardrobe.length > WardrobeSize) Player.Wardrobe = Player.Wardrobe.slice(0, WardrobeSize - 1);
+		while (Player.Wardrobe.length < WardrobeSize) Player.Wardrobe.push(null);
 	}
 }
 
-// Loads all wardrobe characters 
+/**
+ * Loads all wardrobe characters. If the slot of the wardrobe is currently unused, display a randomly dressed character.
+ * Saves the current wardrobe on the server
+ * @param {boolean} Fast
+ * @returns {void} - Nothing
+ */
 function WardrobeLoadCharacters(Fast) {
 	Fast = Fast == null ? false : Fast;
 	var W = null;
 	WardrobeLoadCharacterNames();
 	if (Player.Wardrobe == null) Player.Wardrobe = [];
-	for (var P = 0; P < 12; P++) {
+	for (var P = 0; P < WardrobeSize; P++) {
 		if (WardrobeCharacter.length <= P && ((W == null) || !Fast)) {
 
 			// Creates a character
@@ -68,43 +80,62 @@ function WardrobeLoadCharacters(Fast) {
 	}
 }
 
-// Loads the wardrobe screen
+/**
+ * Loads the player's wardrobe. when the player opens the wardrobe screen for the first time.
+ * This function is called dynamically.
+ * @returns {void} - Nothing
+ *
+ */
 function WardrobeLoad() {
 	WardrobeSelection = -1;
 	WardrobeLoadCharacters(false);
 }
 
-// Shows the wardrobe screen
+/**
+ * Shows the wardrobe screen. This function is called dynamically on a repeated basis. So don't call complex functions
+ * or use extended loops in this function.
+ * @returns {void} - Nothing
+ */
 function WardrobeRun() {
 	DrawCharacter(Player, 0, 0, 1);
-	DrawButton(500, 25, 225, 65, TextGet("Load"), "White");
-	DrawButton(750, 25, 225, 65, TextGet("Save"), "White");
-	DrawButton(1750, 25, 225, 65, TextGet("Return"), "White");
-	DrawText(TextGet("SelectAppareance"), 1375, 60, "White", "Gray");
+	DrawButton(500, 25, 225, 60, TextGet("Load"), "White");
+	DrawButton(750, 25, 225, 60, TextGet("Save"), "White");
+	DrawButton(1000, 25, 60, 60, "", "White", "Icons/Small/Next.png");
+	DrawButton(1750, 25, 225, 60, TextGet("Return"), "White");
+	DrawText(TextGet("SelectAppareance"), 1405, 60, "White", "Gray");
 	for (var C = 0; C < 12; C++)
 		if (C < 6) {
-			DrawCharacter(WardrobeCharacter[C], 500 + C * 250, 100, 0.45);
-			if (WardrobeSelection == C) DrawEmptyRect(500 + C * 250, 105, 225, 440, "Cyan");
+			DrawCharacter(WardrobeCharacter[C + WardrobeOffset], 500 + C * 250, 100, 0.45);
+			if (WardrobeSelection == C + WardrobeOffset) DrawEmptyRect(500 + C * 250, 105, 225, 440, "Cyan");
 		}
 		else {
-			DrawCharacter(WardrobeCharacter[C], 500 + (C - 6) * 250, 550, 0.45);
-			if (WardrobeSelection == C) DrawEmptyRect(500 + (C - 6) * 250, 555, 225, 440, "Cyan");
+			DrawCharacter(WardrobeCharacter[C + WardrobeOffset], 500 + (C - 6) * 250, 550, 0.45);
+			if (WardrobeSelection == C + WardrobeOffset) DrawEmptyRect(500 + (C - 6) * 250, 555, 225, 440, "Cyan");
 		}
 }
 
-// Loads the character appearance screen and keeps a backup of the previous appearance
+/**
+ * Handles the click events in the wardrobe screen. Clicks are propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
 function WardrobeClick() {
 
 	// If we must go back to the room
-	if ((MouseX >= 1750) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 90))
+	if ((MouseX >= 1750) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 85))
 		WardrobeExit();
 
+	// If we must move to the next page
+	if ((MouseX >= 1000) && (MouseX < 1060) && (MouseY >= 25) && (MouseY < 85)) {
+		WardrobeOffset = WardrobeOffset + 12;
+		if (WardrobeOffset >= WardrobeSize) WardrobeOffset = 0;
+	}
+
 	// If we must load a saved outfit
-	if ((MouseX >= 500) && (MouseX < 725) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
+	if ((MouseX >= 500) && (MouseX < 725) && (MouseY >= 25) && (MouseY < 85) && (WardrobeSelection >= 0))
 		WardrobeFastLoad(Player, WardrobeSelection);
 
 	// If we must save an outfit
-	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
+	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 85) && (WardrobeSelection >= 0))
 		WardrobeFastSave(Player, WardrobeSelection);
 
 	// If we must select a different wardrobe
@@ -112,19 +143,27 @@ function WardrobeClick() {
 		for (var C = 0; C < 12; C++)
 			if (C < 6) {
 				if ((MouseX >= 500 + C * 250) && (MouseX <= 725 + C * 250) && (MouseY >= 100) && (MouseY <= 450))
-					WardrobeSelection = C;
+					WardrobeSelection = C + WardrobeOffset;
 			}
 			else
 				if ((MouseX >= 500 + (C - 6) * 250) && (MouseX <= 725 + (C - 6) * 250) && (MouseY >= 550) && (MouseY <= 1000))
-					WardrobeSelection = C;
+					WardrobeSelection = C + WardrobeOffset;
 }
 
-// when the user exit this screen
+/**
+ * Exits the wardorbe screen and sends the player back to her private room
+ * @returns {void} - Nothing
+ */
 function WardrobeExit() {
 	CommonSetScreen("Room", "Private");
 }
 
-// Set a wardrobe character name, sync it with server
+/**
+ * Set a wardrobe character name, sync it with server
+ * @param {number} W - The number of the wardrobe slot to save
+ * @param {string} Name - The name of the wardrobe slot
+ * @param {boolean} [Push=false] -If set to true, the changes are pushed to the server
+ */
 function WardrobeSetCharacterName(W, Name, Push) {
 	Player.WardrobeCharacterNames[W] = Name;
 	if (WardrobeCharacter != null && WardrobeCharacter[W] != null) {
@@ -135,16 +174,29 @@ function WardrobeSetCharacterName(W, Name, Push) {
 	}
 }
 
-// Bundle an asset in wardrobe format
+/**
+ * Reduces a given asset to the attributes needed for the wardrobe
+ * @param {Asset} A - The asset that should be reduced
+ * @returns {Object} - bundle. The bundled asset
+ * @returns {string} - bundle.Name - The name of the asset in the bundle
+ * @returns {string} - bundle.Group - The name of the asste group, the bundled asset belongs to
+ * @returns {string} - bundle.Color - The string representation of the color in the format "#rrggbb"
+ */
 function WardrobeAssetBundle(A) {
 	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color };
 }
 
-// Load character appearance from wardrobe, only load clothes on others
+/**
+ * Load character appearance from wardrobe, only load clothes on others
+ * @param {Character} C - The character the appearance should be loaded for
+ * @param {number} W - The spot in the wardrobe the appearance should be loaded to
+ * @param {boolean} [Update=false] - If set to true, the appearance will be updated to the server
+ * @returns {void} - Nothing
+ */
 function WardrobeFastLoad(C, W, Update) {
 	var savedExpression = {};
 	if (C == Player) savedExpression = WardrobeGetExpression(Player);
-	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
+	if ((Player.Wardrobe != null) && (Player.Wardrobe[W] != null) && (Player.Wardrobe[W].length > 0)) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		C.Appearance = C.Appearance
 			.filter(a => a.Asset.Group.Category != "Appearance" || (!a.Asset.Group.Clothing && !AddAll))
@@ -174,7 +226,7 @@ function WardrobeFastLoad(C, W, Update) {
 				if (savedExpression[item.Asset.Group.Name] != null) {
 					if (item.Property == null) item.Property = {};
 					item.Property.Expression = savedExpression[item.Asset.Group.Name];
-					
+
 				}
 			});
 		}
@@ -186,7 +238,12 @@ function WardrobeFastLoad(C, W, Update) {
 	}
 }
 
-// Saves character appearance in Player's wardrobe, use Player's body as base for others
+/**
+ * Saves character appearance in player's wardrobe, use player's body as base for others
+ * @param {Character} C - The character, whose appearance should be saved
+ * @param {number} W - The spot in the wardrobe the current outfit should be saved to
+ * @param {boolean} [Push=false] - If set to true, the wardrobe is saved on the server
+ */
 function WardrobeFastSave(C, W, Push) {
 	if (Player.Wardrobe != null) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
@@ -207,9 +264,13 @@ function WardrobeFastSave(C, W, Push) {
 	}
 }
 
-//Returns the expressions of character C as a single big object
+/**
+ * Returns the expressions of character C as a single big object
+ * @param {Character} C - The character whose expressions should be returned
+ * @returns {Object} Expression - The expresssion of a character
+ */
 function WardrobeGetExpression(C) {
 	var characterExpression = {}
-	ServerAppearanceBundle(C.Appearance).filter(item=>item.Property != null && item.Property.Expression != null).forEach(item => characterExpression[item.Group] = item.Property.Expression);
+	ServerAppearanceBundle(C.Appearance).filter(item => item.Property != null && item.Property.Expression != null).forEach(item => characterExpression[item.Group] = item.Property.Expression);
 	return characterExpression;
 }

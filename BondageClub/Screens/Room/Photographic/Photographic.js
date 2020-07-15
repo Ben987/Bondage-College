@@ -80,31 +80,31 @@ function PhotographicCanvasToPng(x) {
 	w.document.write("<img src='"+d+"' alt='from canvas'/>");
 }
 
-function PhotographicShotThePlayerPhoto(){
+function PhotographicShotThePlayerPhoto() {
 	PhotographicCanvasToPng(0);
 }
 
-function PhotographicPlayerClothRemove(Group){
+function PhotographicPlayerClothRemove(Group) {
 	InventoryRemove(Player, Group); 
 }
 
-function PhotographicAppearanceAvailable(C, Group){
-	for (var I = 0; I < C.Appearance.length; I++){
-		if (C.Appearance[I].Asset.Group.Name == Group){
+function PhotographicAppearanceAvailable(C, Group) {
+	for (var I = 0; I < C.Appearance.length; I++) {
+		if (C.Appearance[I].Asset.Group.Name == Group) {
 			return true;
 		}
 	}
 	return false;
 }
 
-function PhotographicPlayerAssetAvailable(Asset, Group){
+function PhotographicPlayerAssetAvailable(Asset, Group) {
 	for (var I = Player.Inventory.length - 1; I > -1; I--)
 		if ((Player.Inventory[I].Name == Asset) && (Player.Inventory[I].Group == Group)) {return true;}
 	return false;	
 }
 
-function PhotographicPlayerRelease(){
-	if (!PhotographicSub.IsRestrained()){
+function PhotographicPlayerRelease() {
+	if (!PhotographicSub.IsRestrained()) {
 		CharacterRelease(Player);
 	} else {
 		PhotographicSub.Stage = "0";
@@ -112,7 +112,7 @@ function PhotographicPlayerRelease(){
 	}
 }
 
-function PhotographicUseAsset(Asset,Group){
+function PhotographicUseAsset(Asset,Group) {
 	InventoryWear(Player, Asset, Group);
 	CharacterRefresh(Player);
 }
@@ -131,7 +131,7 @@ function PhotographicSubChangePose() {
 }
 
 
-function PhotographicSubClothRemove(Group){
+function PhotographicSubClothRemove(Group) {
 	InventoryRemove(PhotographicSub, Group); 
 }
 

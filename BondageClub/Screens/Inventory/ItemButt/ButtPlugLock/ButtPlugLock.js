@@ -7,9 +7,18 @@ function InventoryItemButtButtPlugLockLoad() {
 	InventoryItemButtButtPlugLockMessage = "SelectAttachmentState";
 }
 
+// check, if a short chain can be applied
+function InventoryItemButtButtPlugLockChainShortPrerequesites(C) {
+	var ChainShortPrerequisites = true;
+	if (C.Pose.indexOf("Suspension") >= 0 || C.Effect.indexOf("BlockKneel") >= 0 || C.Pose.indexOf("SuspensionHogtied") >= 0 || C.Effect.indexOf("Mounted") >= 0) {
+		ChainShortPrerequisites = false;
+	} // if
+	return ChainShortPrerequisites;
+} //getChainShortPrerequesites
+
 // Draw the item extension screen
 function InventoryItemButtButtPlugLockDraw() {
-	
+
 	// Draw the header and item
 	DrawRect(1387, 125, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
@@ -17,11 +26,8 @@ function InventoryItemButtButtPlugLockDraw() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = true;
-	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
-		ChainShortPrerequisites = false;
-	}	
-	
+	var ChainShortPrerequisites = InventoryItemButtButtPlugLockChainShortPrerequesites(C);
+
 	// Draw the possible poses
 	DrawText(DialogFind(Player, InventoryItemButtButtPlugLockMessage), 1500, 500, "white", "gray");
 	DrawButton(1000, 550, 225, 225, "", ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type == null)) ? "#888888" : "White");
@@ -30,7 +36,7 @@ function InventoryItemButtButtPlugLockDraw() {
 	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "ChainShort") || !ChainShortPrerequisites) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/ChainShort.png", 1250, 550);
 	DrawText(DialogFind(Player, "ButtPlugLockPoseChainShort"), 1375, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "ChainLong")) ? "#888888" : "White");
+	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "ChainLong") || C.Pose.indexOf("Suspension") >= 0) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/ChainLong.png", 1500, 550);
 	DrawText(DialogFind(Player, "ButtPlugLockPoseChainLong"), 1625, 800, "white", "gray");
 }
@@ -40,11 +46,8 @@ function InventoryItemButtButtPlugLockClick() {
 
 	// Variables to check if short chain can be applied
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	let ChainShortPrerequisites = true;
-	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
-		ChainShortPrerequisites = false;
-	}
-	
+	var ChainShortPrerequisites = InventoryItemButtButtPlugLockChainShortPrerequesites(C);
+
 	// Trigger click handlers
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemButtButtPlugLockSetPose(null);
@@ -73,12 +76,12 @@ function InventoryItemButtButtPlugLockSetPose(NewPose) {
 	} else {
 		DialogFocusItem.Property.Type = NewPose;
 		if (NewPose == "ChainShort") {
-			DialogFocusItem.Property.Effect = ["Freeze", "ForceKneel"];
+			DialogFocusItem.Property.Effect = ["Freeze", "ForceKneel", "IsChained"];
 			DialogFocusItem.Property.SetPose = ["Kneel"];
 		}
 		if (NewPose == "ChainLong") {
 			DialogFocusItem.Property.SetPose = [""];
-			DialogFocusItem.Property.Effect = ["Tethered"];
+			DialogFocusItem.Property.Effect = ["Tethered", "IsChained"];
 			DialogFocusItem.Property.AllowPose = ["Kneel", "Horse", "KneelingSpread"];
 		}
 	}
@@ -93,8 +96,8 @@ function InventoryItemButtButtPlugLockSetPose(NewPose) {
 	CharacterRefresh(C);
 	var msg = "ButtPlugLockRestrain" + ((NewPose == null) ? "Base" : NewPose);
 	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 
 	// Rebuilds the inventory menu

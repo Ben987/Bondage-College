@@ -1,0 +1,5 @@
+身体 W_Body_CgfxShader
+身体 W_Body_CgfxShader
+身体 W_FacePartsA_CgfxShader
+身体 W_FacePartsB
+身体 Anal1
