@@ -242,6 +242,7 @@ ChatOther-ItemNose-Pull,SourceCharacter pulls TargetCharacter's nose.
 ChatOther-ItemNose-Rub,SourceCharacter rubs TargetCharacter's nose.
 ChatOther-ItemNose-Nibble,SourceCharacter bites TargetCharacter's nose.
 ChatOther-ItemNose-Choke,SourceCharacter pinches  TargetCharacter's nostrils closed.
+ChatOther-ItemNose-Lick,SourceCharacter licks  TargetCharacter's nose.
 ChatSelf-ItemNose-Pinch,SourceCharacter pinches her nose.
 ChatSelf-ItemNose-Caress,SourceCharacter caresses her nose.
 ChatSelf-ItemNose-Pet,SourceCharacter boops her nose.
