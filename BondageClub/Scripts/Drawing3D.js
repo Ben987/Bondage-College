@@ -134,7 +134,7 @@ function update3Dmodel (group1, path3d){
 		let loader = new THREE.FBXLoader();
 			loader.load(`${path3d}${grpname}/${itemname}.fbx`, function( object ) {
 				model = object;
-				color2(itemcolor, itemname);
+				color2(itemcolor, grpname);
 				group1.add(model);
 
 			},
