@@ -30,6 +30,11 @@ var DialogExtendedMessage = "";
 var DialogActivityMode = false;
 var DialogActivity = [];
 
+const DialogSortOrderEnabled = 1;
+const DialogSortOrderUsable = 2;
+const DialogSortOrderUnusable = 3;
+const DialogSortOrderBlocked = 4;
+
 /**
  * Compares the player's reputation with a given value 
  * @param {string} RepType - The name of the reputation to check
@@ -426,14 +431,13 @@ function DialogLeaveFocusItem() {
  * @returns {boolean} - Returns true, if the item could be added to the player's inventory, false otherwise
  */
 function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
-
 	// Make sure we do not add owner/lover only items for invalid characters, owner/lover locks can be applied on the player by the player for self-bondage
 	if (NewInv.Asset.OwnerOnly && !NewInvWorn && !C.IsOwnedByPlayer())
 		if ((C.ID != 0) || ((C.Owner == "") && (C.Ownership == null)) || !NewInv.Asset.IsLock || ((C.ID == 0) && LogQuery("BlockOwnerLockSelf", "OwnerRule")))
-			return;
+			return false;
 	if (NewInv.Asset.LoverOnly && !NewInvWorn && !C.IsLoverOfPlayer())
 		if ((C.ID != 0) || (C.Lovership.length < 0) || !NewInv.Asset.IsLock)
-			return;
+			return false;
 
 	// Do not show keys if they are in the deposit
 	if (LogQuery("KeyDeposit", "Cell") && InventoryIsKey(NewInv)) return false;
@@ -441,10 +445,11 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 	// Make sure we do not duplicate the non-blocked item
 	for (var I = 0; I < DialogInventory.length; I++)
 		if ((DialogInventory[I].Asset.Group.Name == NewInv.Asset.Group.Name) && (DialogInventory[I].Asset.Name == NewInv.Asset.Name))
-			return;
+			return false;
 
 	// If the item is blocked, we show it at the end of the list
-	if (InventoryIsPermissionBlocked(C, NewInv.Asset.Name, NewInv.Asset.Group.Name) || !InventoryCheckLimitedPermission(C, NewInv)) SortOrder++;
+	if (InventoryIsPermissionBlocked(C, NewInv.Asset.Name, NewInv.Asset.Group.Name) || !InventoryCheckLimitedPermission(C, NewInv))
+		SortOrder = DialogSortOrderBlocked;
 
 	// Creates a new dialog inventory item
 	var DI = {
@@ -459,6 +464,7 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 	if (!NewInvWorn && InventoryItemHasEffect(NewInv, "Lock", true)) DI.Icon = "Unlocked";
 	DialogInventory.push(DI);
 
+	return true;
 }
 
 /**
@@ -503,7 +509,7 @@ function DialogMenuButtonBuild(C) {
 		if ((Item != null) && !IsItemLocked && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Remove");
 		if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Dismount");
 		if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Escape");
-		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva") && Player.CanInteract() && !(LogQuery("BlockRemoteSelf", "OwnerRule") &&(Player.Ownership != null && Player.Ownership.Stage == 1) && (C.ID == 0))) DialogMenuButton.push("Remote");
+		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva") && Player.CanInteract() && !(LogQuery("BlockRemoteSelf", "OwnerRule") && (Player.Ownership != null && Player.Ownership.Stage == 1) && (C.ID == 0))) DialogMenuButton.push("Remote");
 		if ((Item != null) && Item.Asset.Extended && ((Player.CanInteract()) || DialogAlwaysAllowRestraint() || Item.Asset.AlwaysInteract) && (!IsGroupBlocked || Item.Asset.AlwaysExtend) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer()))) DialogMenuButton.push("Use");
 		if ((Player.CanInteract()) || DialogAlwaysAllowRestraint()) DialogMenuButton.push("ColorPick");
 
@@ -561,26 +567,34 @@ function DialogInventoryBuild(C) {
 				if (Asset[A].Enable && Asset[A].Group.Name == C.FocusGroup.Name) {
 					if (Asset[A].Wear) {
 						if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
-							DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: "1" + Asset[A].Description });
+							DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: DialogSortOrderEnabled.toString() + Asset[A].Description });
 					}
 					else if (Asset[A].IsLock) {
 						var LockIsWorn = InventoryCharacterIsWearingLock(C, Asset[A].Name);
-						DialogInventory.push({ Asset: Asset[A], Worn: LockIsWorn, Icon: "", SortOrder: "1" + Asset[A].Description });
+						DialogInventory.push({ Asset: Asset[A], Worn: LockIsWorn, Icon: "", SortOrder: DialogSortOrderEnabled.toString() + Asset[A].Description });
 					}
 				}
-					
+
 		} else {
 			// Second, we add everything from the victim inventory
 			for (var A = 0; A < C.Inventory.length; A++)
-				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C))
-					DialogInventoryAdd(C, C.Inventory[A], false, 2);
+				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
+					if (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false)) {
+						DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrderUsable);
+					} else {
+						DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrderUnusable);
+					}
+				}
 
 			// Third, we add everything from the player inventory if the player isn't the victim
 			if (C.ID != 0)
 				for (var A = 0; A < Player.Inventory.length; A++)
 					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C))
-						DialogInventoryAdd(C, Player.Inventory[A], false, 2);
-
+						if (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false)) {
+							DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrderUsable);
+						} else {
+							DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrderUnusable);
+						}
 		}
 
 		// Rebuilds the dialog menu and it's buttons
@@ -1390,10 +1404,11 @@ function DialogDrawItemMenu(C) {
 			var Hover = (MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile;
 			var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
 			var Limit = InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name);
-			var Blocked = DialogInventory[I].SortOrder.startsWith("3");
+			var Unusable = DialogInventory[I].SortOrder.startsWith(DialogSortOrderUnusable.toString());
+			var Blocked = DialogInventory[I].SortOrder.startsWith(DialogSortOrderBlocked.toString());
 			DrawRect(X, Y, 225, 275, (DialogItemPermissionMode && C.ID == 0) ?
-				(DialogInventory[I].Worn ? "gray" : Block ? Hover ? "red" : "pink" : Limit ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") :
-				((Hover && !Blocked) ? "cyan" : DialogInventory[I].Worn ? "pink" : Blocked ? "gray" : "white"));
+				(Item.Worn ? "gray" : Block ? Hover ? "red" : "pink" : Limit ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") :
+				((Hover && !Blocked) ? "cyan" : Item.Worn ? "pink" : Blocked ? "red" : Unusable ? "gray" : "white"));
 			if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
 			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
 			DrawTextFit(Item.Asset.DynamicDescription(Player), X + 112, Y + 250, 221, "black");
@@ -1405,7 +1420,6 @@ function DialogDrawItemMenu(C) {
 			}
 		}
 		return;
-
 	}
 
 	// If the player is progressing
@@ -1535,7 +1549,7 @@ function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
 }
 
 /**
- * Draws the initial Dialod screen. That screen is entered, when the player clicks on herself or another player
+ * Draws the initial Dialog screen. That screen is entered, when the player clicks on herself or another player
  * @returns {void} - Nothing
  */
 function DialogDraw() {
