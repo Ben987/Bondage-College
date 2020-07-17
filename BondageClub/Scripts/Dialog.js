@@ -590,10 +590,10 @@ function DialogInventoryBuild(C) {
 			if (C.ID != 0)
 				for (var A = 0; A < Player.Inventory.length; A++)
 					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C))
-						if (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false)) {
-							DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrderUsable);
+						if (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false)) {
+							DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
 						} else {
-							DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrderUnusable);
+							DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUnusable);
 						}
 		}
 
