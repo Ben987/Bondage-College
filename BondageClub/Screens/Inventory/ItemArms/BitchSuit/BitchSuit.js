@@ -2,8 +2,7 @@
 
 // Loads the item extension properties
 function InventoryItemArmsBitchSuitLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
-	if (DialogFocusItem.Property.Type == null) DialogFocusItem.Property.Type = null ;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null };
 	if (DialogFocusItem.Property.Block == null) DialogFocusItem.Property.Block = DialogFocusItem.Property.Type ? [] : ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"];
 }
 
