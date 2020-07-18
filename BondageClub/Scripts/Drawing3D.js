@@ -23,7 +23,7 @@ function Draw3DKeyDown() {
 		if ((KeyPress == 68) || (KeyPress == 100)) group1.position.x += 1;
 		if ((KeyPress == 87) || (KeyPress == 119)) group1.position.z -= 1;
 		if ((KeyPress == 83) || (KeyPress == 115)) group1.position.z += 1;
-		// if (KeyPress == 73) update3Dmodel(group1, path3d); // press i
+		if (KeyPress == 73) update3Dmodel(group1, path3d); // press i
 	}
 }
 // TODO: load all fbx files when the player is already logged in
@@ -34,11 +34,11 @@ function Draw3DKeyDown() {
 function init(){
 	// var animations = ["Standing", "Walk", "WalkBack"];
 	var path3d = "Assets/3D/";
-	var itemgroup = ["HairBack/Back Hair 1", "HairFront/Front Hair 1","Eyes/BlueEyes 1","BodyUpper/Pale Skin 1", "Panties/PantieMaid", "Cloth/TopMaid", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/HighHeels"]; //load paleskin
+	var itemgroup = ["HairBack/Back Hair 1", "HairFront/Front Hair 1","Eyes/BlueEyes 1","BodyUpper/Pale Skin 1", "Panties/PantieMaid", "Cloth/TopMaid", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/HighHeels"];
 	scene = new THREE.Scene();
 
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000);
-	renderer = new THREE.WebGLRenderer({  alpha : true });
+	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true  });
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -51,7 +51,7 @@ function init(){
 
 					model = object;
 					scene.add(model);
-					color2(0x0c3863, i); //
+					color2("#0c3863", i); //
 					group1.add(model); //merge all fbx files
 					},
 					undefined,
@@ -117,8 +117,11 @@ function color2(hexcolor, i){
 		} );
 }
 
+function anima(){
+
+}
 // function update3Dmodel (group1, path3d){
-// 	// scene.clone(group1);
+
 // 	scene.remove(group1);
 // 	let chale = Character[0].Appearance.length;
 // 	for(let i = 0; i < chale; i++){
@@ -131,7 +134,7 @@ function color2(hexcolor, i){
 // 		let loader = new THREE.FBXLoader();
 // 			loader.load(`${path3d}${grpname}/${itemname}.fbx`, function( object ) {
 // 				model = object;
-// 				converthashtohex(itemcolor);
+
 // 				color2(hexcolor, grpname);
 // 				group1.add(model);
 //
@@ -143,13 +146,4 @@ function color2(hexcolor, i){
 // 		);
 //   }
 // 		scene.add(group1);
-// }
-// function converthashtohex(hashcolor){
-// 	let hex = "0x";
-// 	let newhex = hashcolor.slice(1,6);
-// 	let newhex = hex.concat(newhex);
-// 	var hexacolor = number(newhex);
-// }
-// function animate (){
-//
 // }
