@@ -78,15 +78,16 @@ var ItemsDialogAppearanceGroupActionView = function(container, callback) {
 		items.forEach(itemData => {
 			var iconContainer = Util.CreateElement({parent:this.container});
 			var events = {};
-			
 			if(! itemData.validation?.length)
-				events.click = function(event){this.callback(itemData.itemName)}.bind(this);
-			else
-				for(var i = 0; i < itemData.validation.length; i++)
-					Util.CreateElement({parent:iconContainer,innerHTML:itemData.validation[i],cssStyles:{top:(i+1)+"em"},cssClass:"invalid"});
+				events.click = function(event){console.log("clicking");this.callback(itemData.itemName)}.bind(this);
 			
 			Util.CreateElement({parent:iconContainer, tag:"img", events:events, attributes:{src:itemData.iconUrl, alt:itemData.itemName}});
 			Util.CreateElement({parent:iconContainer,innerHTML:itemData.itemName});
+			
+			if(itemData.validation?.length)
+				for(var i = 0; i < itemData.validation.length; i++)
+					Util.CreateElement({parent:iconContainer,innerHTML:itemData.validation[i],cssStyles:{top:(i+1)+"em"},cssClass:"invalid"});
+			
 		})
 	}
 }

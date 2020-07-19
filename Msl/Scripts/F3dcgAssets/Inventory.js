@@ -42,7 +42,7 @@ var F3dcgAssetsInventory = {
 		if(Environment.allItemsInInventory){
 			F3dcgAssets.ClothesGroups.forEach(groupName => {
 				for(var itemName in F3dcgAssets.AssetGroups[groupName].Items)
-					this.AddClothItem(applicableItems, itemName);
+					this.AddClothItem(applicableItems, itemName, validationFlagsCache);
 			});
 			
 			F3dcgAssets.AccessoriesGroups.forEach(groupName => {
@@ -55,8 +55,8 @@ var F3dcgAssetsInventory = {
 					this.AddBondageToyItem(applicableItems, itemName, validationFlagsCache);
 			});
 		}else{
-			F3dcgAssets.ClothesFree.forEach(itemName => this.AddClothItem(applicableItems, itemName));
-			playerTarget.inventory[F3dcgAssets.CLOTH].forEach(itemName => {this.AddClothItem(applicableItems, itemName);});
+			F3dcgAssets.ClothesFree.forEach(itemName => this.AddClothItem(applicableItems, itemName, validationFlagsCache));
+			playerTarget.inventory[F3dcgAssets.CLOTH].forEach(itemName => {this.AddClothItem(applicableItems, itemName, validationFlagsCache);});
 			playerTarget.inventory[F3dcgAssets.ACCESSORY].forEach(itemName => this.AddAccessoryItem(applicableItems, itemName));
 			playerTarget.inventory[F3dcgAssets.BONDAGE_TOY].forEach(itemName => this.AddBondageToyItem(applicableItems, itemName, validationFlagsCache));
 		}
@@ -233,6 +233,9 @@ var F3dcgAssetsInventory = {
 		var validation = [];
 		var applicableItem = {itemName:AssetItem.Name, iconUrl:F3dcgAssetsInventory.GetIconUrlForItem(itemName), validation:validation}
 		
+		if(F3dcgAssets.IsItemBlacklisted(AssetItem, validationFlagsCache.playerTarget))
+			validation.push("blacklisted");
+		
 		if(AssetItem.Prerequisite){
 			for(var i = 0; i < AssetItem.Prerequisite.length; i++){
 				var errorReason = F3dcgAssets.ValidatePrerequisite(AssetItem.Prerequisite[i], validationFlagsCache.playerTarget.appearance, validationFlagsCache.posesEffectsBlocksTarget);
@@ -251,14 +254,18 @@ var F3dcgAssetsInventory = {
 	}
 	
 	
-	,AddClothItem(applicableItems, itemName){		
+	,AddClothItem(applicableItems, itemName, validationFlagsCache){		
 		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
 		var AssetGroup =  F3dcgAssets.AssetGroups[groupName];
 		var AssetItem = AssetGroup.Items[itemName];
 		
 		if(! AssetItem || ! AssetGroup) console.error(itemName + " " + groupName);
 		
-		applicableItems[F3dcgAssets.CLOTH][groupName].items.push({itemName:AssetItem.Name, iconUrl:F3dcgAssetsInventory.GetIconUrlForItem(itemName), validation:[]});
+		var validation = [];
+		if(F3dcgAssets.IsItemBlacklisted(AssetItem, validationFlagsCache.playerTarget))
+			validation.push("blacklisted");
+		
+		applicableItems[F3dcgAssets.CLOTH][groupName].items.push({itemName:AssetItem.Name, iconUrl:F3dcgAssetsInventory.GetIconUrlForItem(itemName), validation:validation});
 	}
 	
 	

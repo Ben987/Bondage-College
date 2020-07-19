@@ -20,6 +20,8 @@ input {font-size:1.2em}
 textarea {font-size:1.2em}
 select {font-size:1em}
 
+input[type=checkbox]{transform: scale(4);}
+
 .main-beep{margin: 0 auto ; width:25%; height:10%; color:white; border:0.1em red solid}
 
 .main-locations-enter{display:block; width:25%; height:10%;}
@@ -151,6 +153,8 @@ div.chat-hover-item:after {
 
 /* The appearance view -- this one is biggest*/
 .dialog-appearance{}
+
+.dialog-settings{overflow-y:auto}
 
 /* appearance top level menu -- group type plus wardrobe*/
 .dialog-appearance-group-type-selection {position:absolute;left:0%;width:10%;height:100%;}

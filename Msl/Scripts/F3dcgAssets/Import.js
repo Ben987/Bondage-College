@@ -1,6 +1,120 @@
 
 
 
+F3dcgAssets.InitThemes = function(){
+	var G = F3dcgAssets.AssetGroups.Panties;
+	F3dcgAssets.ThemedItems.abdl.push(G.Items.Diapers1.Name);
+	F3dcgAssets.ThemedItems.abdl.push(G.Items.Diapers2.Name);
+	F3dcgAssets.ThemedItems.abdl.push(G.Items.Diapers3.Name);
+	
+	var G = F3dcgAssets.AssetGroups.ItemMouth;
+	F3dcgAssets.ThemedItems.abdl.push(G.Items.PacifierGag.Name);
+	F3dcgAssets.ThemedItems.abdl.push(G.Items.HarnessPacifierGag.Name);
+	
+	var G = F3dcgAssets.AssetGroups.ItemMouth2;
+	F3dcgAssets.ThemedItems.abdl.push(G.Items.PacifierGag.Name);
+	F3dcgAssets.ThemedItems.abdl.push(G.Items.HarnessPacifierGag.Name);
+	
+	var G = F3dcgAssets.AssetGroups.ItemMouth3;
+	F3dcgAssets.ThemedItems.abdl.push(G.Items.PacifierGag.Name);
+	F3dcgAssets.ThemedItems.abdl.push(G.Items.HarnessPacifierGag.Name);
+	
+	G = F3dcgAssets.AssetGroups.ItemVulva;
+	F3dcgAssets.ThemedItems.shock.push(G.Items.ShockDildo.Name);
+	F3dcgAssets.ThemedItems.vags.push(G.Items.ShockDildo.Name);
+	F3dcgAssets.ThemedItems.vags.push(G.Items.PenisDildo.Name);
+	F3dcgAssets.ThemedItems.vags.push(G.Items.VibratingDildo.Name);
+	F3dcgAssets.ThemedItems.vags.push(G.Items.InflatableVibeDildo.Name);
+	F3dcgAssets.ThemedItems.vags.push(G.Items.ClitoralStimulator.Name);
+	F3dcgAssets.ThemedItems.vags.push(G.Items.ClitSuctionCup.Name);
+	F3dcgAssets.ThemedItems.vags.push(G.Items.BenWaBalls.Name);
+	F3dcgAssets.ThemedItems.vags.push(G.Items.HeavyWeightClamp.Name);
+	//F3dcgAssets.AssetGroups.Panties.Items.ClitAndDildoVibratorbelt.Theme = ["vags"];
+	
+	G = F3dcgAssets.AssetGroups.ItemNipples;
+	F3dcgAssets.ThemedItems.shock.push(G.Items.ShockClamps.Name);
+	
+	G = F3dcgAssets.AssetGroups.ItemNipplesPiercings;
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.StraightPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.StraightPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.RoundPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.WeightedPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.BarbellPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.NippleChastityPiercing1.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.NippleChastityPiercing2.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.VibeHeartPiercings.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.BellPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.NippleAccessory1.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.NippleAccessory2.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.NippleAccessory3.Name);
+	
+	G = F3dcgAssets.AssetGroups.ItemVulvaPiercings;
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.RoundClitPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.WeightedClitPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.BarbellClitPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.JewelClitPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.AdornedClitPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.VibeHeartClitPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.BellClitPiercing.Name);
+	
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.ChastityClitPiercing.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.ChastityClitShield.Name);
+	F3dcgAssets.ThemedItems.piercing.push(G.Items.HighSecurityVulvaShield.Name);
+	
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.ChastityClitPiercing.Name);
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.ChastityClitShield.Name);
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.HighSecurityVulvaShield.Name);
+	
+	
+	G = F3dcgAssets.AssetGroups.ItemButt;
+	F3dcgAssets.ThemedItems.ans.push(G.Items.BlackButtPlug.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.PenisPlug.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.AnalBeads.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.AnalBeads2.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.ButtPump.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.VibratingButtplug.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.InflVibeButtPlug.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.AnalHook.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.ButtPlugLock.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.VibratingDildoPlug.Name);
+	F3dcgAssets.ThemedItems.ans.push(G.Items.ShockPlug.Name);
+	
+	G = F3dcgAssets.AssetGroups.ItemPelvis;
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.LeatherChastityBelt.Name);
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.SleekLeatherChastityBelt.Name);
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.StuddedChastityBelt.Name);
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.MetalChastityBelt.Name);
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.PolishedChastityBelt.Name);
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.OrnateChastityBelt.Name);
+	F3dcgAssets.ThemedItems.chastity.push(G.Items.SteelChastityPanties.Name);
+
+			/*G.TailButtPlug
+			G.HorsetailPlug
+			G.HorsetailPlug1
+			G.PuppyTailPlug
+			G.PuppyTailPlug1
+			G.SuccubusButtPlug
+			G.SuccubusButtPlug2
+			G.FoxTails
+			G.RaccoonButtPlug
+			G.RaccoonTailPlug
+			G.KittenTail1
+			G.KittenTail2
+			G.FoxTail1
+			G.FoxTail2
+			G.WolfTail1
+			G.WolfTail2
+			G.WolfTail3
+			G.DemonPlug
+			G.MouseTail1
+			G.MouseTail2
+			G.BunnyTailPlug1
+			G.BunnyTailPlug2
+			G.BunnyTailVibePlug
+			G.EggVibePlugXXL*/
+}
+
+
 F3dcgAssets.InitFreeAndQuestClothes = function(){
 	for(var i = 0; i < this.ClothesGroups.length; i++){
 		for(var itemName in this.AssetGroups[this.ClothesGroups[i]].Items){

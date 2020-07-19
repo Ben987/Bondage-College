@@ -49,7 +49,8 @@ var LocationDialogSettingsView = function(mainDialog, containerElement){
 				keyStack.pop();
 			}else{
 				let property = keyStack.join(".") + "." + key;			
-				var element = form.elements[property];		
+				var element = form.elements[property];
+				
 				if(element){
 					if(value === true || value === false)
 						element.checked = value;

@@ -7,7 +7,9 @@ var LocationPlayer = function(Player){
 	
 	this.activePose = Player.activePose ? Player.activePose : F3dcgAssets.POSE_NONE; 
 	
-	this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.activePose);
+	console.log(MainController.playerData.permissions.themes);
+	
+	this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.activePose, MainController.playerData.permissions.themes);
 	this.renderPortrait = F3dcgAssetsRender.BuildPortraitRender(this.appearance);
 
 	if(this.wardrobe)
@@ -24,7 +26,7 @@ var LocationPlayer = function(Player){
 	
 	this.UpdateAppearanceAndRender = function(appearanceUpdate){
 		if(appearanceUpdate) F3dcgAssets.UpdateAppearance(appearanceUpdate, this);
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.activePose);
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.activePose, MainController.playerData.permissions.themes);
 	}
 	
 	this.CanChangePose = function () { 
@@ -76,7 +78,7 @@ var LocationPlayerUpdate = function(playerTarget, playerOrigin){
 			this.appearance[groupType] = Util.CloneRecursive(appearanceSuit[groupType])
 		}
 		
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose, MainController.playerData.permissions.themes);
 		
 		return [];
 	}
@@ -223,7 +225,7 @@ var LocationPlayerUpdate = function(playerTarget, playerOrigin){
 		if(AssetItem && AssetItem.VibeCommon) newItem.vibeLevel = itemData.vibeLevel ? itemData.vibeLevel : 0;
 		this.appearance[itemData.groupTypeName][itemData.groupName] = newItem;
 		this.updateStack.push({type:itemData.groupTypeName, groupName:itemData.groupName, item:newItem});
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.playerTarget.activePose);	
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.playerTarget.activePose, MainController.playerData.permissions.themes);	
 		this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(this.playerOrigin, this.playerTarget);
 	}
 	
@@ -261,7 +263,7 @@ var LocationPlayerUpdate = function(playerTarget, playerOrigin){
 			default:console.error(updateToUndo.type);
 		}
 		
-		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose);
+		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.activePose, MainController.playerData.permissions.themes);
 		return [];
 	}
 	
@@ -272,9 +274,6 @@ var LocationPlayerUpdate = function(playerTarget, playerOrigin){
 		this.playerOrigin = null;
 	}
 	this.IsValid = function(){
-		console.log(this.playerTarget.id);
-		console.log(this.playerOrigin.id);
-		
 		return this.playerTarget?.update == this;//an update is invalidated when the player gets a new update objet;
 	}
 	

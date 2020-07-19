@@ -1,12 +1,13 @@
 'use strict'
 
 var F3dcgAssetsRender = {
-	BuildAppearanceItemsEffects(appearance, activePose){
+	BuildAppearanceItemsEffects(appearance, activePose, playerThemeSettings){
 		var result = {
 			itemGroupsToTranslateByPose:{}
 			,itemGroupsToHideByItem:[]
 			,itemGroupsToHideByPose:[]
 			,itemsToHideByItems:[]
+			,itemsToDisableByThemes:[]
 			,poses:[]
 			,effects:[]
 			,blocks:[]
@@ -15,11 +16,17 @@ var F3dcgAssetsRender = {
 			,scale:1.0
 		};
 		
+		if(playerThemeSettings)
+			for(var theme in playerThemeSettings)
+				if(playerThemeSettings[theme] > 1)
+					F3dcgAssets.ThemedItems[theme].forEach(itemName => result.itemsToDisableByThemes.push(itemName));		
+		
 		[appearance.bondageToys, appearance.clothes].forEach(appearanceItems => {
 			for(var groupName in appearanceItems){
 				var item = appearanceItems[groupName];
 				
 				if(! item) continue;
+				if(result.itemsToDisableByThemes.includes(item.name)) continue;
 				var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name];
 				if(!AssetItem) console.log(item, Object.keys(AssetGroup.Items));
 				var AssetVariant = AssetItem.Variant ? AssetItem.Variant[item.variant] : null;			
@@ -196,6 +203,7 @@ var F3dcgAssetsRender = {
 			if(appearanceItemEffects.itemGroupsToHideByPose.includes(groupName)) continue;
 			if(appearanceItemEffects.itemGroupsToHideByItem.includes(groupName)) continue;
 			if(appearanceItemEffects.itemsToHideByItems.includes(appearanceItem.name)) continue;
+			if(appearanceItemEffects.itemsToDisableByThemes.includes(appearanceItem.name)) continue;
 			
 			//Items such as headphones are not rendered, the layer array is empty
 			var AssetItemGroup = F3dcgAssets.AssetGroups[groupName];
@@ -272,8 +280,8 @@ var F3dcgAssetsRender = {
 	}
 	
 	
-	,BuildRender(appearance, pose){
-		var appearanceItemEffects = this.BuildAppearanceItemsEffects(appearance, pose);
+	,BuildRender(appearance, pose, playerThemeSettings){
+		var appearanceItemEffects = this.BuildAppearanceItemsEffects(appearance, pose, playerThemeSettings);
 		
 		var renderItemList = [];
 		renderItemList.push(...this.BuildFrameRenderItems(appearance.frame, appearanceItemEffects));
@@ -310,8 +318,8 @@ var F3dcgAssetsRender = {
 		return this.BuildRender(appearance);
 	}	
 	
-	,BuildPlayerRender(appearance, pose){
-		return this.BuildRender(appearance, pose);
+	,BuildPlayerRender(appearance, pose, themeSettings){
+		return this.BuildRender(appearance, pose, themeSettings);
 	}
 	
 	
@@ -332,7 +340,6 @@ var F3dcgAssetsRender = {
 			});
 		}
 		
-		console.log(a);
 		return this.BuildRender(a, F3dcgAssets.POSE_NONE);
 	}
 	

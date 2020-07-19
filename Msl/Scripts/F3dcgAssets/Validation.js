@@ -88,8 +88,8 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 		}
 		
 		//Check that item is owned and not blacklisted
-		if(! F3dcgAssets.IsItemOwned(item, AssetGroup, playerTarget, playerOrigin)) throw "ItemNotOwned " + item.name;
-		if(F3dcgAssets.IsItemBlacklisted(item, playerTarget)) throw "ItemBlacklisted " + item.name
+		if(! F3dcgAssets.IsItemOwned(AssetItem, AssetGroup, playerTarget, playerOrigin)) throw "ItemNotOwned " + item.name;
+		if(F3dcgAssets.IsItemBlacklisted(AssetItem, playerTarget)) throw "ItemBlacklisted " + item.name
 		
 		if(posesEffectsBlocks.blocks.includes(groupName)) throw "ItemGroupBlocked " + groupName;
 		
@@ -207,25 +207,33 @@ F3dcgAssets.DoesPlayerHavePermission = function(permissionActionType, pT, pO){
 }
 
 
-F3dcgAssets.IsItemBlacklisted = function(item, playerTarget) {
-	if(!item) return false;
-	if(playerTarget.permissions.items.black.includes(item.name)) return true;
+F3dcgAssets.IsItemBlacklisted = function(AssetItem, playerTarget) {
+	if(!AssetItem) return false;
+	if(playerTarget.permissions.items.black.includes(AssetItem.Name)) return true;
+	
+	for(var theme in playerTarget.permissions.themes)
+		if(playerTarget.permissions.themes[theme] > 0 && F3dcgAssets.ThemedItems[theme].includes(AssetItem.Name))
+			return true;
+	
 	return false;
 }
 
-F3dcgAssets.IsItemOwned = function(item, AssetGroup, playerTarget, playerOrigin) {
-	if(null == item) return true;
+
+F3dcgAssets.IsItemOwned = function(AssetItem, AssetGroup, playerTarget, playerOrigin) {
+	if(null == AssetItem) return true;
 	if(AssetGroup.type == F3dcgAssets.BODY || AssetGroup.type == F3dcgAssets.EXPRESSION) return true;
-	if(AssetGroup.type == F3dcgAssets.CLOTH && F3dcgAssets.ClothesFree.includes(item.name)) return true;
+	if(AssetGroup.type == F3dcgAssets.CLOTH && F3dcgAssets.ClothesFree.includes(AssetItem.name)) return true;
 	
 	var currentItem = playerTarget.appearance[AssetGroup.type][AssetGroup.Group];
-	if(currentItem && currentItem.name == item.name) return true;
+	if(currentItem && currentItem.name == AssetItem.Name) return true;
 	
-	if(playerTarget.inventory[AssetGroup.type].includes(item.name) || (playerOrigin && playerOrigin.inventory[AssetGroup.type].includes(item.name)))
+	if(playerTarget.inventory[AssetGroup.type].includes(AssetItem.Name) 
+			|| (playerOrigin && playerOrigin.id != playerTarget.id && playerOrigin.inventory[AssetGroup.type].includes(AssetItem.Name)))
 		return true;
 	
 	return false;
 }
+
 
 //TODO:  implement blacklsists
 //TODO:  lover locks

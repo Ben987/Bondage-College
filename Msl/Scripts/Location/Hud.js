@@ -15,7 +15,8 @@ var ClassicHud = {
 	}
 	
 	,UnInit(){Util.DetachElementsAndClear(this.playerPortraits);}
-	,Interrupt(){Util.DetachElementsAndClear(this.playerPortraits);}
+	,Interrupt(){}
+	,OnScreenChange (){}
 	
 	
 	,OnPlayerEnter(player){

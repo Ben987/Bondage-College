@@ -51,6 +51,8 @@ F3dcgAssets.ClothesQuest = []
 F3dcgAssets.FullCharacterTypeGroups = {};
 F3dcgAssets.SuitSelfTypeGroups = {};
 F3dcgAssets.SuitOtherTypeGroups = {};
+
+F3dcgAssets.ThemedItems = {abdl:[], vags:[], ans:[], shock:[], piercing:[], chastity:[]};
 	
 F3dcgAssets.Init = function(){
 	//this.InitLocks(); 
@@ -63,6 +65,7 @@ F3dcgAssets.Init = function(){
 	this.InitPrerequisites();
 	this.InitVibes();
 	this.InitActivities();
+	this.InitThemes();
 	
 	this.FullCharacterTypeGroups[this.BODY] = this.BodyItemsGroups;
 	this.FullCharacterTypeGroups[this.EXPRESSION] = this.ExpressionGroups;

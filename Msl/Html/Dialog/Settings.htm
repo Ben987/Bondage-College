@@ -1,6 +1,6 @@
 <form>
-	<div style="float:left; width:40%">
-		Permissions on actions<br />
+	<h3>Actions permissions</h3>
+	<div>
 		<select name="permissions.actions.bondageToys">
 			<option value="0">Everyone</option>
 			<option value="1">Everyone but blacklist</option>
@@ -27,14 +27,14 @@
 			<option value="5">Owner only</option>
 		</select>Accessories		
 		<br />
-		<select name="permissions.actions.arousal">
+		<select name="permissions.actions.activity">
 			<option value="0">Everyone</option>
 			<option value="1">Everyone but blacklist</option>
 			<option value="2">Any Dom and whitelist</option>
 			<option value="3">Owner, lover, whitelist</option>
 			<option value="4">Owner and Lover</option>
 			<option value="5">Owner only</option>
-		</select>Arousal actions
+		</select>Arousal/Activity actions
 		<br />
 		<select name="permissions.actions.poses">
 			<option value="0">Everyone</option>
@@ -49,11 +49,54 @@
 	
 	<br style="clear:both" />
 	<br />
+	
+	<div>
+		<h3>UI settings</h3>
+		Chat label color.<input name="settings.chat.labelColor" /> <br />
+		Dialog transparent background <input type="checkbox" name="settings.dialog.transparentBackground" />  <br />
+		Dialog full screen <input type="checkbox" name="settings.dialog.fullScreen" />  <br />
+	</div>
 
-	Chat label color.<input  name="settings.chat.labelColor" /> <br />
-	Dialog transparent background <input type="checkbox" name="settings.dialog.transparentBackground" />  <br />
-	Dialog full screen <input type="checkbox" name="settings.dialog.fullScreen" />  <br />
 
+	<div>
+		<h3>Themes</h3>
+		<select name="permissions.themes.shock">		
+			<option value="0">No restrictions</option>
+			<option value="1">Blacklist items</option>
+			<option value="2">Disable display and messages</option>
+		</select>Shock items<br />
+		
+		<select name="permissions.themes.piercing">		
+			<option value="0">No restrictions</option>
+			<option value="1">Blacklist items</option>
+			<option value="2">Disable display and messages</option>
+		</select>Piercings items<br />
+		
+		<select name="permissions.themes.abdl">		
+			<option value="0">No restrictions</option>
+			<option value="1">Blacklist items</option>
+			<option value="2">Disable display and messages</option>
+		</select>ABDL<br />
+		
+		<select name="permissions.themes.vags">		
+			<option value="0">No restrictions</option>
+			<option value="1">Blacklist items</option>
+			<option value="2">Disable display and messages</option>
+		</select>Vaginal sex<br />
+		
+		<select name="permissions.themes.ans">		
+			<option value="0">No restrictions</option>
+			<option value="1">Blacklist items</option>
+			<option value="2">Disable display and messages</option>
+		</select>Anal sex<br />
+		
+		<select name="permissions.themes.chastity">		
+			<option value="0">No restrictions</option>
+			<option value="1">Blacklist</option>
+			<option value="2">Disable display and messages</option>
+			<!--<option value="3">Warn rooms</option>-->
+		</select>Chastity<br />
+	</div>
 </form>
 
 <br />
