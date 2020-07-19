@@ -5,6 +5,7 @@ var camera;
 var model;
 var group1;
 var material;
+var action;
 var Draw3DEnabled = false;
 
 function Draw3DLoad() {
@@ -28,31 +29,43 @@ function Draw3DKeyDown() {
 }
 // TODO: load all fbx files when the player is already logged in
 // TODO: create more fbx assets <.<
-// TODO: seperate all fbx files by using the clone function
+// TODO: seperate all fbx files
 // TODO: assign all 2D asset names to the 3D asset path
 // TODO: walk animation
 function init(){
-	// var animations = ["Standing", "Walk", "WalkBack"];
+
+	var animspath = "Assets/3D/1animation/";
+	var animations = ["Standing", "Walk", "WalkBack"];
+
 	var path3d = "Assets/3D/";
-	var itemgroup = ["HairBack/Back Hair 1", "HairFront/Front Hair 1","Eyes/BlueEyes 1","BodyUpper/Pale Skin 1", "Panties/PantieMaid", "Cloth/TopMaid", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/HighHeels"];
+
+	var itemgroup = ["HairBack/Back Hair 1", "HairFront/Front Hair 1","Eyes/BlueEyes 1","BodyUpper/Pale Skin", "Panties/PantieMaid", "Cloth/TopMaid", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/HighHeels"];
+
 	scene = new THREE.Scene();
 
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000);
+
 	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true  });
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
+
   group1 = new THREE.Group();
 	light();
-		for (let i of itemgroup){
+		for (let i of itemgroup){//itemgroup
 			let loader = new THREE.FBXLoader();
 				loader.load(`${path3d}${i}.fbx`,function( object ) {
-				  console.log(`${path3d}${i}.fbx`);
-
 					model = object;
-					scene.add(model);
-					color2("#0c3863", i); //
-					group1.add(model); //merge all fbx files
+
+					// let body = i.slice(0, 9); //add
+					// console.log(body); //add
+
+
+					color2("#0c3863", i);
+					group1.add(model);
+					 //merge all fbx files
+					console.log(`${path3d}${i}.fbx`);
+
 					},
 					undefined,
 					function( error ) {
@@ -60,6 +73,7 @@ function init(){
 					}
 			);
 		}
+
 		scene.add(group1);
 	}
 
@@ -102,7 +116,7 @@ function color2(hexcolor, i){
 	model.traverse( function ( child ) {
 		if ( child.isMesh ) {
 				if (i == "HairBack/Back Hair 1" || i == "HairFront/Front Hair 1" || i == "Shoes/HighHeels"){
-				// if (grpname  == "BackHair" || grpname == "FrontHair" ){
+				// if (grpname  == "BackHair" || grpname == "FrontHair" || grpname == "Shoes"){
 					child.castShadow = true;
 					child.receiveShadow = true;
 					child.material = new THREE.MeshPhongMaterial( {
@@ -117,33 +131,31 @@ function color2(hexcolor, i){
 		} );
 }
 
-function anima(){
 
+
+function update3Dmodel (group1, path3d){
+	scene.remove(group1);
+	let chale = Character[0].Appearance.length;
+	for(let i = 0; i < chale; i++){
+		let grpname =	Character[0].Appearance[i].Asset.DynamicGroupName;
+		let itemname = Character[0].Appearance[i].Asset.Name;
+		let itemcolor = Character[0].Appearance[i].Color;
+		if (grpname == "BodyUpper" && itemcolor == "Black") itemname = "Dark Skin";
+		if (grpname == "BodyUpper" && itemcolor == "White") itemname = "Pale Skin";
+		if (grpname == "BodyUpper" && itemcolor == "Asian") itemname = "Light Skin";
+		let loader = new THREE.FBXLoader();
+			loader.load(`${path3d}${grpname}/${itemname}.fbx`, function( object ) {
+				model = object;
+
+				color2(hexcolor, grpname);
+				group1.add(model);
+
+			},
+			undefined,
+			function( error ) {
+				console.log(error);
+			}
+		);
+  }
+		scene.add(group1);
 }
-// function update3Dmodel (group1, path3d){
-
-// 	scene.remove(group1);
-// 	let chale = Character[0].Appearance.length;
-// 	for(let i = 0; i < chale; i++){
-// 		let grpname =	Character[0].Appearance[i].Asset.DynamicGroupName;
-// 		let itemname = Character[0].Appearance[i].Asset.Name;
-// 		let itemcolor = Character[0].Appearance[i].Color;
-// 		if (grpname == "BodyUpper" && itemcolor == "Black") itemname = "Dark Skin";
-// 		if (grpname == "BodyUpper" && itemcolor == "White") itemname = "Pale Skin";
-// 		if (grpname == "BodyUpper" && itemcolor == "Asian") itemname = "Light Skin";
-// 		let loader = new THREE.FBXLoader();
-// 			loader.load(`${path3d}${grpname}/${itemname}.fbx`, function( object ) {
-// 				model = object;
-
-// 				color2(hexcolor, grpname);
-// 				group1.add(model);
-//
-// 			},
-// 			undefined,
-// 			function( error ) {
-// 				console.log(error);
-// 			}
-// 		);
-//   }
-// 		scene.add(group1);
-// }
