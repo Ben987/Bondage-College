@@ -9,8 +9,12 @@ var action;
 var path3d;
 var Draw3DEnabled = false;
 
+
 function Draw3DLoad() {
+
+
 	init();
+
 
 	document.body.appendChild(renderer.domElement);
 	renderer.domElement.style.display = "none";
@@ -83,7 +87,7 @@ function init(){
 			);
 		}
 
-		scene.add(group1)
+		scene.add(group1);
 	}
 
 function Draw3DEnable(Enable) {
@@ -99,6 +103,7 @@ function Draw3DProcess() {
 		if (renderer.domElement.style.width != "100%") {
 			renderer.domElement.style.width = "100%";
 			renderer.domElement.style.height = "";
+
 		}
 
 		renderer.render(scene, camera);
@@ -166,6 +171,9 @@ function update3Dmodel (group1){
 	}
 		scene.add(group1);
 }
+function button3d(){
+			DrawButton(125, 265, 90, 90, "", "White", "", TextGet("3D"));
+}
 
 // function animations(loader){
 // 	let anim = anims.pop();
@@ -175,7 +183,7 @@ function update3Dmodel (group1){
 // 		animations(loader);
 // 		}else{
 // 			delete anims;
-// 			action = "look-around1";
+// 			action = "Standing";
 //
 // 		}
 // 	});
