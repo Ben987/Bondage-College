@@ -6,10 +6,7 @@ var model;
 var group1;
 var material;
 var action;
-<<<<<<< HEAD
 var path3d;
-=======
->>>>>>> 82bc9193edfee4421f674eed58bd1721be0b8bc8
 var Draw3DEnabled = false;
 
 function Draw3DLoad() {
@@ -34,7 +31,6 @@ function Draw3DKeyDown() {
 
 // TODO: create more fbx assets <.<
 // TODO: seperate all fbx files
-<<<<<<< HEAD
 
 // TODO: walk animation
 function init(){
@@ -51,19 +47,6 @@ function init(){
 
 	// animas.forEach( function(anim){ aniassets.push(`${animspath}${anim}.fbx`)});//add
 
-=======
-// TODO: assign all 2D asset names to the 3D asset path
-// TODO: walk animation
-function init(){
-
-	var animspath = "Assets/3D/1animation/";
-	var animations = ["Standing", "Walk", "WalkBack"];
-
-	var path3d = "Assets/3D/";
-
-	var itemgroup = ["HairBack/Back Hair 1", "HairFront/Front Hair 1","Eyes/BlueEyes 1","BodyUpper/Pale Skin", "Panties/PantieMaid", "Cloth/TopMaid", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/HighHeels"];
-
->>>>>>> 82bc9193edfee4421f674eed58bd1721be0b8bc8
 	scene = new THREE.Scene();
 
 	camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 1000);
@@ -72,10 +55,7 @@ function init(){
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
-<<<<<<< HEAD
   // clock = new THREE.Clock();
-=======
->>>>>>> 82bc9193edfee4421f674eed58bd1721be0b8bc8
 
   group1 = new THREE.Group();
 
@@ -87,12 +67,8 @@ function init(){
 
 					// let body = i.slice(0, 9); //add
 					// console.log(body); //add
-<<<<<<< HEAD
 					// model.mixer = new THREE.AnimationMixer(model);
 					// model.mixer.root = model.mixer.getRoot();
-=======
-
->>>>>>> 82bc9193edfee4421f674eed58bd1721be0b8bc8
 
 					color2("#0c3863", i);
 					group1.add(model);
@@ -107,11 +83,7 @@ function init(){
 			);
 		}
 
-<<<<<<< HEAD
 		scene.add(group1)
-=======
-		scene.add(group1);
->>>>>>> 82bc9193edfee4421f674eed58bd1721be0b8bc8
 	}
 
 function Draw3DEnable(Enable) {
@@ -167,15 +139,8 @@ function color2(hexcolor, i){
 			}
 		} );
 }
-<<<<<<< HEAD
 function update3Dmodel (group1){
 	path3d = "Assets/3D/";
-=======
-
-
-
-function update3Dmodel (group1, path3d){
->>>>>>> 82bc9193edfee4421f674eed58bd1721be0b8bc8
 	scene.remove(group1);
 	let chale = Character[0].Appearance.length;
 	for(let i = 0; i < chale; i++){
@@ -189,11 +154,7 @@ function update3Dmodel (group1, path3d){
 			loader.load(`${path3d}${grpname}/${itemname}.fbx`, function( object ) {
 				model = object;
 
-<<<<<<< HEAD
 				color2(itemcolor, grpname);
-=======
-				color2(hexcolor, grpname);
->>>>>>> 82bc9193edfee4421f674eed58bd1721be0b8bc8
 				group1.add(model);
 
 			},
@@ -202,7 +163,6 @@ function update3Dmodel (group1, path3d){
 				console.log(error);
 			}
 		);
-<<<<<<< HEAD
 	}
 		scene.add(group1);
 }
@@ -224,8 +184,3 @@ function update3Dmodel (group1, path3d){
 // function animate(){
 // 	requestAnimationFrame(animate);
 // }
-=======
-  }
-		scene.add(group1);
-}
->>>>>>> 82bc9193edfee4421f674eed58bd1721be0b8bc8
