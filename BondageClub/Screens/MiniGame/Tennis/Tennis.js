@@ -159,7 +159,9 @@ function TennisRun() {
 		}
 
 	} else {
-
+		
+		TennisLastFrame = null;
+		
 		// Draw the end message
 		if (MiniGameVictory && (TennisCharacterRightPoint == 0)) DrawText(TextGet("Perfect"), 1000, 400, "black");
 		else if (MiniGameVictory) DrawText(TextGet("Victory"), 1000, 400, "black");
