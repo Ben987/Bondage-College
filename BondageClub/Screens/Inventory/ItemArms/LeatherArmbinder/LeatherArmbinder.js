@@ -19,12 +19,12 @@ function InventoryItemArmsLeatherArmbinderDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 	DrawText(DialogFind(Player, "SelectStrapType"), 1500, 500, "white", "gray");
-	DrawButton(1175, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") == null) ? "#888888" : "White");
+	DrawButton(1175, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") != null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Strap.png", 1175, 550);
-	DrawText(DialogFind(Player, "LeatherArmbinderTypeStrap"), 1500, 800, "white", "gray");
-	DrawButton(1600, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") == null) ? "#888888" : "White");
+	DrawText(DialogFind(Player, "LeatherArmbinderTypeStrap"), 1287, 800, "white", "gray");
+	DrawButton(1600, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") != null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/WrapStrap.png", 1600, 550);
-	DrawText(DialogFind(Player, "LeatherArmbinderTypeWrapStrap"), 1500, 800, "white", "gray");
+	DrawText(DialogFind(Player, "LeatherArmbinderTypeWrapStrap"), 1712, 800, "white", "gray");
 }
 
 // Catches the item extension clicks
