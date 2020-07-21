@@ -562,6 +562,10 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 			else if (DialogProgressNextItem != null) msg = "ActionUse";
 			else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = "ActionUnlockAndRemove";
 			else msg = "ActionRemove";
+		} else if (Action == "interrupted") {
+			if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && !DialogProgressNextItem.Asset.IsLock) msg = "ActionInterruptedSwap";
+			else if (DialogProgressNextItem != null) msg = "ActionInterruptedAdd";
+			else msg = "ActionInterruptedRemove";
 		} else msg = Action;
 
 		// Replaces the action tags to build the phrase

@@ -1421,6 +1421,18 @@ function DialogDrawItemMenu(C) {
 		// Add or subtract to the automatic progression, doesn't move in color picking mode
 		DialogProgress = DialogProgress + DialogProgressAuto;
 		if (DialogProgress < 0) DialogProgress = 0;
+		
+		// We cancel out if at least one of the following cases apply: a new item conflicts with this, the player can no longer interact, something else was added first, the item was already removed
+		if (InventoryGroupIsBlocked(C) || (DialogProgressNextItem != null && !InventoryAllow(C, DialogProgressNextItem.Asset.Prerequisite)) || (C != Player && !Player.CanInteract()) || (DialogProgressNextItem == null && !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name)) || (DialogProgressNextItem != null && DialogProgressPrevItem != null && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name) && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name).Asset.Name != DialogProgressPrevItem.Asset.Name) || (DialogProgressNextItem != null && DialogProgressPrevItem == null && InventoryGet(C, DialogProgressNextItem.Asset.Group.Name))) {
+			DialogProgress = -1;
+			DialogColor = null;
+			DialogLeaveItemMenu();
+			if (DialogColor != null) {
+				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true, "interrupted");
+			}
+			DialogLeave();
+			return;
+		}
 
 		// Draw the current operation and progress
 		if (DialogProgressAuto < 0) DrawText(DialogFind(Player, "Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
