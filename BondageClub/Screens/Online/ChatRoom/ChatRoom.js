@@ -330,6 +330,7 @@ function ChatRoomClick() {
 		ElementRemove("TextAreaChatLog");
 		ServerSend("ChatRoomLeave", "");
 		CommonSetScreen("Online", "ChatSearch");
+		CharacterDeleteAllOnline();
 	}
 
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
@@ -826,6 +827,10 @@ function ChatRoomSync(data) {
 			if (ChatRoomCharacter.length == data.Character.length + 1) {
 				ChatRoomCharacter = ChatRoomCharacter.filter(A => data.Character.some(B => A.MemberNumber == B.MemberNumber));
 				ChatRoomData = data;
+				// Remove non-present chatroom characters from the characters array as they are no longer needed
+				for (var C = 0; C < Character.length; C++)
+					if (Character[C].AccountName.startsWith("Online-") && data.Character.find(DC => DC.MemberNumber == Character[C].MemberNumber) == null)
+						CharacterDelete(Character[C].AccountName);
 				return;
 			}
 			else if (ChatRoomCharacter.length == data.Character.length - 1) {				
@@ -1210,6 +1215,7 @@ function ChatRoomSetRule(data) {
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
 			ServerSend("ChatRoomLeave", "");
+			CharacterDeleteAllOnline();
 			CellLock(TimerCell);
 		}
 
@@ -1221,6 +1227,7 @@ function ChatRoomSetRule(data) {
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
 			ServerSend("ChatRoomLeave", "");
+			CharacterDeleteAllOnline();
 			CommonSetScreen("Room", "MaidQuarters");
 			CharacterSetCurrent(MaidQuartersMaid);
 			MaidQuartersMaid.CurrentDialog = D;
