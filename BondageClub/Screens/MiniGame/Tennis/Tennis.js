@@ -87,7 +87,7 @@ function TennisRun() {
 			DrawText(TextGet("StartsIn") + " " + (5 - Math.floor(MiniGameTimer / 1000)).toString(), 1000, 600, "black");
 		} else {
 						
-			// Moves the ball the way a 60FPS monitor would if we are above 60FPS
+			// Checks for the frame ratio to keep the ball from moving too fast if the game is running above 60 FPS
 			var TennisCurrentFrame = performance.now();
 			var FrameRatio = 1;
 			if (TennisLastFrame != null && TennisCurrentFrame - TennisLastFrame <= 16.666667) {
