@@ -2346,7 +2346,7 @@ var AssetFemale3DCG = [
 			{ Name: "BedStraps", Value: -1, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", BuyGroup: "Bed" },
 			{ Name: "BedTape", Value: -1, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], Prerequisite: "OnBed", BuyGroup: "Bed" },
 			{ Name: "BedChains", Value: -1, Difficulty: 6, SelfBondage: 4, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", BuyGroup: "Bed" },
-			{ Name: "TightJacketStraps", Priority: 32, Value: -1, Difficulty: 4, SelfBondage: 4, Block: ["ItemArms"], AllowLock: true},
+			{ Name: "TightJacketStraps", Priority: 32, Value: -1, Difficulty: 4, SelfBondage: 4, Block: ["ItemArms"], AllowLock: true, ParentGroup: "BodyUpper", BuyGroup: "TightJacket", Extended: true},
 		],
 		Color: ["Default"]
 	},
