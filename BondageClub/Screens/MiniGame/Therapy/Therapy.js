@@ -6,7 +6,10 @@ var TherapyMoves = [0, 0, 0, 0, 0, 0];
 var TherapyGenerateMoveTimer = 0;
 var TherapyStress = 0;
 
-// Loads the therapy mini game and sets the difficulty (a little faster on mobile)
+/**
+ * Loads the therapy mini game and sets the difficulty. The game is a little faster on mobile since its easier.
+ * @returns {void} - Nothing
+ */
 function TherapyLoad() {
 	TherapyGenerateMoveTimer = CurrentTime + 5000;
 	TherapyStress = 0;
@@ -16,7 +19,10 @@ function TherapyLoad() {
 	if (CommonIsMobile) MiniGameDifficultyRatio = Math.round(MiniGameDifficultyRatio * 0.75);
 }
 
-// Runs the therapy mini game
+/**
+ * Runs the therapy mini game.
+ * @returns {void} - Nothing
+ */
 function TherapyRun() {
 	
 	// Draw the characters
@@ -74,7 +80,10 @@ function TherapyRun() {
 
 }
 
-// Validates if the therapy must end
+/**
+ * Checks if the therapy minigame should end. It ends when the therapy is completed, or when the patient is too stressed out.
+ * @returns {void} - Nothing
+ */
 function TherapyVerifyEnd() {
 	if (MiniGameProgress >= 100) {
 		MiniGameVictory = true;
@@ -88,7 +97,11 @@ function TherapyVerifyEnd() {
 	}
 }
 
-// When a move is done, we validate it
+/**
+ * Handles a given move type and validates it
+ * @param {number} MoveType - Move type (Index of the TherapyMoves array)
+ * @returns {void} - Nothing
+ */
 function TherapyDoMove(MoveType) {
 
 	// Checks if the move is valid
@@ -100,7 +113,10 @@ function TherapyDoMove(MoveType) {
 
 }
 
-// When the user clicks in the therapy mini game
+/**
+ * Handles clicks in the therapy mini game
+ * @returns {void} - Nothing
+ */
 function TherapyClick() {
 
 	// If the game is over, clicking on the image will end it
