@@ -87,20 +87,18 @@ function TennisRun() {
 			DrawText(TextGet("StartsIn") + " " + (5 - Math.floor(MiniGameTimer / 1000)).toString(), 1000, 600, "black");
 		} else {
 						
-			// Skip a frame if we are going higher than 60FPS to avoid issues on 144hz monitors, we skip a frame if the game is going too fast
+			// Moves the ball the way a 60FPS monitor would if we are above 60FPS
 			var TennisCurrentFrame = performance.now();
-			if (TennisLastFrame != null && TennisCurrentFrame - TennisLastFrame <= 16.6) {
-				// Shows the rackets and ball again, they wont have moved
-				DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/RacketLeft.png", 500, TennisCharacterLeftRacket - 75);
-				DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/RacketRight.png", 1450, TennisCharacterRightRacket - 75);
-				DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/TennisBall.png", TennisBallX - 20, TennisBallY - 20);
-				return;
+			var FrameRatio = 1;
+			if (TennisLastFrame != null && TennisCurrentFrame - TennisLastFrame <= 16.666667) {
+				// Determine the speed ratio based on the framerate (Delta/ 1/60fps)
+				FrameRatio = (TennisCurrentFrame - TennisLastFrame) / 16.666667;
 			}
 			TennisLastFrame = TennisCurrentFrame;
 			
 			// Moves the ball
-			TennisBallX = TennisBallX + Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
-			TennisBallY = TennisBallY - Math.sin(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
+			TennisBallX = TennisBallX + (Math.cos(TennisBallAngle) * TennisBallSpeed * FrameRatio) / TimerRunInterval;
+			TennisBallY = TennisBallY - (Math.sin(TennisBallAngle) * TennisBallSpeed * FrameRatio) / TimerRunInterval;
 
 			// Moves the player and opponent racket, the opponent speeds up with difficulty, tracks the ball in defense, go back toward the middle in offense
 			if ((MouseY >= 0) && (MouseY <= 999)) TennisCharacterLeftRacket = MouseY;
