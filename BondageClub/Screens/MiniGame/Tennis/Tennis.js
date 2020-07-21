@@ -120,11 +120,11 @@ function TennisRun() {
 			// If the racket hits the ball, we bounce it at an angle linked to the racket vs ball Y position
 			if ((Math.cos(TennisBallAngle) < 0) && (TennisBallX >= 500) && (TennisBallX <= 550) && (TennisBallY >= TennisCharacterLeftRacket - 110) && (TennisBallY <= TennisCharacterLeftRacket + 110)) {
 				TennisBallAngle = (Math.PI * 0.4 * ((TennisCharacterLeftRacket - TennisBallY) / 110));
-				TennisBallSpeed = TennisBallSpeed + 20;
+				TennisBallSpeed = TennisBallSpeed + (20 * FrameRatio);
 			}
 			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallX >= 1450) && (TennisBallX <= 1500) && (TennisBallY >= TennisCharacterRightRacket - 110) && (TennisBallY <= TennisCharacterRightRacket + 110)) {
 				TennisBallAngle = Math.PI + (Math.PI * 0.4 * ((TennisBallY - TennisCharacterRightRacket) / 110));
-				TennisBallSpeed = TennisBallSpeed + 20;
+				TennisBallSpeed = TennisBallSpeed + (20 * FrameRatio);
 			}
 			
 			// Shows the rackets and ball
