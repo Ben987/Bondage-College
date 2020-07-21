@@ -81,6 +81,14 @@ var InventoryItemNeckSlaveCollarTypes = [
         Name: "SlenderSteelCollar",
         Image: "SlenderSteelCollar",
         Property: { Type: "SlenderSteelCollar", Effect: [], Block: [] }
+	},{
+        Name: "HeartLinkChoker",
+        Image: "HeartLinkChoker",
+        Property: { Type: "HeartLinkChoker", Effect: [], Block: [] }
+	},{
+        Name: "NeckRope",
+        Image: "NeckRope",
+        Property: { Type: "NeckRope", Effect: [], Block: [] }
 	},
 ];
 
