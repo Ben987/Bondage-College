@@ -129,6 +129,7 @@ function ChatSearchResponse(data) {
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
 			CommonSetScreen("Online", "ChatSearch");
+			CharacterDeleteAllOnline();
 		}
 		ChatSearchMessage = "Response" + data;
 	}
