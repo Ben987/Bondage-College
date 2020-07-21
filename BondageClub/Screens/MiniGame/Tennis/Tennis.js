@@ -11,6 +11,7 @@ var TennisBallY = 500;
 var TennisBallSpeed = 100;
 /** Angle of the ball.  Angle is in radians (0 is right, PI / 2 is up, PI is left, 3 PI / 2 is down)*/
 var TennisBallAngle = 0;
+var TennisLastFrame = null;
 
 /**
  * Called when a player servers, the angle can vary by 45 degrees up or down
@@ -86,6 +87,17 @@ function TennisRun() {
 			DrawText(TextGet("StartsIn") + " " + (5 - Math.floor(MiniGameTimer / 1000)).toString(), 1000, 600, "black");
 		} else {
 						
+			// Skip a frame if we are going higher than 60FPS to avoid issues on 144hz monitors, we skip a frame if the game is going too fast
+			var TennisCurrentFrame = performance.now();
+			if (TennisLastFrame != null && TennisCurrentFrame - TennisLastFrame <= 16.6) {
+				// Shows the rackets and ball again, they wont have moved
+				DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/RacketLeft.png", 500, TennisCharacterLeftRacket - 75);
+				DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/RacketRight.png", 1450, TennisCharacterRightRacket - 75);
+				DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/TennisBall.png", TennisBallX - 20, TennisBallY - 20);
+				return;
+			}
+			TennisLastFrame = TennisCurrentFrame;
+			
 			// Moves the ball
 			TennisBallX = TennisBallX + Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
 			TennisBallY = TennisBallY - Math.sin(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
