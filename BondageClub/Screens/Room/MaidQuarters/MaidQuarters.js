@@ -61,12 +61,12 @@ function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("Lead
  * Checks, if the maid can release the player from her restraint
  * @returns {boolean} - Returns true, if the player can be released, false otherwise
  */
-function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
+function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLockedRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
 /**
  * Checks, if the maid is unable to free the player
- * @returns {boolean} - Returns true, if the maid is unable to free the player, flase otherwise
+ * @returns {boolean} - Returns true, if the maid is unable to free the player, false otherwise
  */
-function MaidQuartersCannotReleasePlayer() { return (Player.IsRestrained() && (InventoryCharacterHasOwnerOnlyRestraint(Player) || !CurrentCharacter.CanTalk() || !CurrentCharacter.CanInteract())) }
+function MaidQuartersCannotReleasePlayer() { return (Player.IsRestrained() && (InventoryCharacterHasOwnerOnlyRestraint(Player) || InventoryCharacterHasLockedRestraint(Player) || !CurrentCharacter.CanTalk() || !CurrentCharacter.CanInteract())) }
 /**
  * Checks, if the player can get the duster gag
  * @returns {boolean} - Returns true, if the player can get the duster gag, false otherwise
@@ -84,7 +84,7 @@ function MaidQuartersOnlineDrinkCompleted() { return (MaidQuartersOnlineDrinkCou
 function MaidQuartersCanUngag() { return (!Player.CanTalk() && !InventoryCharacterHasOwnerOnlyRestraint(Player)) }
 /**
  * Checks, if the maids are unable to remove the gag (if there is one)
- * @returns {boolean} - Returns true, if the player cannot be ungagged by the mauds, flase otherwise
+ * @returns {boolean} - Returns true, if the player cannot be ungagged by the maids, false otherwise
  */
 function MaidQuartersCannotUngag() { return (!Player.CanTalk() && InventoryCharacterHasOwnerOnlyRestraint(Player)) }
 
@@ -102,7 +102,7 @@ function MaidQuartersLoad() {
 }
 
 /**
- * Runs the maid quartes dialogs. 
+ * Runs the maid quarters dialog 
  * This function is called periodically so don't use it for extensive use or the call of other complex functions
  * @returns {void} - Nothing
  */
@@ -121,7 +121,7 @@ function MaidQuartersRun() {
 }
 
 /**
- * Handles the click events of the maid quartest. Clicks are propageted from 'CommonClick()'
+ * Handles the click events of the maid quarters. Clicks are propageted from 'CommonClick()'
  * @returns {void} - Nothing
  */
 function MaidQuartersClick() {
@@ -194,7 +194,6 @@ function MaidQuartersMiniGameStart(GameType, Difficulty) {
 	MiniGameStart(GameType, Difficulty, "MaidQuartersMiniGameEnd");
 }
 
-// When the mini game ends, we go back to the maid
 /**
  * Is called when the mini game ends and sends the player back to the maid quarters. 
  * Depending on the choosen game, the next dialog option is selected
