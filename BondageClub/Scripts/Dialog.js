@@ -5,6 +5,7 @@ var DialogTextDefaultTimer = -1;
 var DialogProgress = -1;
 var DialogColor = null;
 var DialogColorSelect = null;
+var DialogPreviousCharacterAppearance = null;
 var DialogProgressStruggleCount = 0;
 var DialogProgressAuto = 0;
 var DialogProgressOperation = "...";
@@ -395,6 +396,7 @@ function DialogLeaveItemMenu() {
 	DialogActivityMode = false;
 	DialogTextDefault = "";
 	DialogTextDefaultTimer = 0;
+	DialogPreviousCharacterAppearance = null;
 	ElementRemove("InputColor");
 	AudioDialogStop();
 	ColorPickerEndPick();
@@ -1423,14 +1425,11 @@ function DialogDrawItemMenu(C) {
 		if (DialogProgress < 0) DialogProgress = 0;
 		
 		// We cancel out if at least one of the following cases apply: a new item conflicts with this, the player can no longer interact, something else was added first, the item was already removed
-		if (InventoryGroupIsBlocked(C) || (DialogProgressNextItem != null && !InventoryAllow(C, DialogProgressNextItem.Asset.Prerequisite)) || (C != Player && !Player.CanInteract()) || (DialogProgressNextItem == null && !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name)) || (DialogProgressNextItem != null && DialogProgressPrevItem != null && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name) && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name).Asset.Name != DialogProgressPrevItem.Asset.Name) || (DialogProgressNextItem != null && DialogProgressPrevItem == null && InventoryGet(C, DialogProgressNextItem.Asset.Group.Name))) {
+		if (
+			InventoryGroupIsBlocked(C) || (C != Player && !Player.CanInteract()) || (DialogProgressNextItem == null && !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name)) || (DialogProgressNextItem != null && !InventoryAllow(C, DialogProgressNextItem.Asset.Prerequisite)) || (DialogProgressNextItem != null && DialogProgressPrevItem != null && ((InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name) && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name).Asset.Name != DialogProgressPrevItem.Asset.Name) || !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name))) || (DialogProgressNextItem != null && DialogProgressPrevItem == null && InventoryGet(C, DialogProgressNextItem.Asset.Group.Name))
+		) {
+			ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true, "interrupted");
 			DialogProgress = -1;
-			DialogColor = null;
-			DialogLeaveItemMenu();
-			if (DialogColor != null) {
-				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true, "interrupted");
-			}
-			DialogLeave();
 			return;
 		}
 
@@ -1547,7 +1546,7 @@ function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
 }
 
 /**
- * Draws the initial Dialod screen. That screen is entered, when the player clicks on herself or another player
+ * Draws the initial Dialog screen. That screen is entered, when the player clicks on herself or another player
  * @returns {void} - Nothing
  */
 function DialogDraw() {
@@ -1563,6 +1562,19 @@ function DialogDraw() {
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
 
 		// The view can show one specific extended item or the list of all items for a group
+		
+		// We leave if the dialog focus item is no longer there
+		if (DialogFocusItem != null && (InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name) == null || InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name).Asset.Name != DialogFocusItem.Asset.Name)) { 
+			DialogLeaveFocusItem();
+			DialogFocusItem = null;
+		}
+		
+		// We rebuild the menu if things changed
+		if (DialogPreviousCharacterAppearance !== JSON.stringify(ServerAppearanceBundle(CurrentCharacter.Appearance))) {
+			DialogInventoryBuild(CurrentCharacter);
+			DialogPreviousCharacterAppearance = JSON.stringify(ServerAppearanceBundle(CurrentCharacter.Appearance));
+		}
+		
 		if (DialogFocusItem != null) {
 			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
