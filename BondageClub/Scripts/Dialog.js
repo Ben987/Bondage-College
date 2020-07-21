@@ -1572,6 +1572,7 @@ function DialogDraw() {
 		// We rebuild the menu if things changed
 		if (DialogPreviousCharacterAppearance !== JSON.stringify(ServerAppearanceBundle(CurrentCharacter.Appearance))) {
 			DialogInventoryBuild(CurrentCharacter);
+			ActivityDialogBuild(CurrentCharacter);
 			DialogPreviousCharacterAppearance = JSON.stringify(ServerAppearanceBundle(CurrentCharacter.Appearance));
 		}
 		
