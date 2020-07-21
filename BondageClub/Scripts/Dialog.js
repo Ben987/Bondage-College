@@ -1211,7 +1211,7 @@ function DialogClick() {
 
 	// If the user clicked in the facial expression menu
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
-		if (CommonIsClickAt(15, 15, 90, 90)) {
+		if (MouseIn(15, 15, 90, 90)) {
 			DialogFacialExpressions.forEach(FE => {
 				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name);
 				FE.CurrentExpression = null;

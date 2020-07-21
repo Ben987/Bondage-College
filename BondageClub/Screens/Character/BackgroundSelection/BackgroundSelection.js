@@ -78,7 +78,7 @@ function BackgroundSelectionRun() {
 	DrawButton(1785, 25, 90, 90, "", "White", "Icons/Cancel.png", TextGet("Cancel"));
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Accept.png", TextGet("Accept"));
 
-	if (!CommonIsMobile && (CommonIsClickAt(1585, 25, 90, 90) || CommonIsClickAt(1685, 25, 90, 90) || CommonIsClickAt(1785, 25, 90, 90) || CommonIsClickAt(1885, 25, 90, 90))) {
+	if (!CommonIsMobile && (MouseIn(1585, 25, 90, 90) || MouseIn(1685, 25, 90, 90) || MouseIn(1785, 25, 90, 90) || MouseIn(1885, 25, 90, 90))) {
 		document.getElementById("InputBackground").style.display = "none";
 	} else {
 		ElementPosition("InputBackground", 1350, 60, 400);

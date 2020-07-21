@@ -8,7 +8,10 @@ var ChatAdminLocked = false;
 var ChatAdminBackgroundSelected = null;
 var ChatAdminTemporaryData = null;
 
-// When the chat admin screens loads
+/**
+ * Loads the chat Admin screen properties and creates the inputs
+ * @returns {void} - Nothing
+ */
 function ChatAdminLoad() {
 
 	// If the current room background isn't valid, we pick the first one
@@ -49,7 +52,10 @@ function ChatAdminLoad() {
 
 }
 
-// When the chat Admin screen runs
+/**
+ * When the chat Admin screen runs, draws the screen
+ * @returns {void} - Nothing
+ */
 function ChatAdminRun() {
 
 	// Draw the main controls
@@ -85,7 +91,10 @@ function ChatAdminRun() {
 	DrawButton(1625, 840, 250, 65, TextGet(ChatRoomPlayerIsAdmin() ? "Cancel" : "Exit"), "White");
 }
 
-// When the player clicks in the chat Admin screen
+/**
+ * Handles the click events on the admin screen. Is called from CommonClick()
+ * @returns {void} - Nothing
+ */
 function ChatAdminClick() {
 
 	// When the user cancels/exits
@@ -131,7 +140,10 @@ function ChatAdminClick() {
 	}
 }
 
-// When the user exit from this screen
+/**
+ * Handles exiting from the admin screen, removes the inputs and resets the state of the variables
+ * @returns {void} - Nothing
+ */
 function ChatAdminExit() {
 	ChatAdminBackgroundSelected = null;
 	ChatAdminTemporaryData = null;
@@ -143,14 +155,21 @@ function ChatAdminExit() {
 	CommonSetScreen("Online", "ChatRoom");
 }
 
-// When the server sends a response, if it was updated properly we exit, if not we show the error
+/**
+ * Handles the reception of the server response after attempting to update a chatroom: Leaves the admin screen or shows an error message
+ * @param {string} data - Response from the server ("Updated" or error message)
+ * @returns {void} - Nothing
+ */
 function ChatAdminResponse(data) {
 	if ((data != null) && (typeof data === "string") && (data != ""))
 		if (data === "Updated") ChatAdminExit();
 		else ChatAdminMessage = "Response" + data;
 }
 
-// Sends the chat room update packet to the server and waits for the answer
+/**
+ * Sends the chat room data packet to the server. The response will be handled by ChatAdminResponse once it is received
+ * @returns {void} - Nothing
+ */
 function ChatAdminUpdateRoom() {
 	var UpdatedRoom = {
 		Name: ElementValue("InputName").trim(),

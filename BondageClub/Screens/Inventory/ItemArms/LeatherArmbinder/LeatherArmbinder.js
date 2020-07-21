@@ -19,20 +19,20 @@ function InventoryItemArmsLeatherArmbinderDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 	DrawText(DialogFind(Player, "SelectStrapType"), 1500, 500, "white", "gray");
-	DrawButton(1175, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") == null) ? "#888888" : "White");
+	DrawButton(1175, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") != null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Strap.png", 1175, 550);
-	DrawText(DialogFind(Player, "LeatherArmbinderTypeStrap"), 1500, 800, "white", "gray");
-	DrawButton(1600, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") == null) ? "#888888" : "White");
+	DrawText(DialogFind(Player, "LeatherArmbinderTypeStrap"), 1287, 800, "white", "gray");
+	DrawButton(1600, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") != null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/WrapStrap.png", 1600, 550);
-	DrawText(DialogFind(Player, "LeatherArmbinderTypeWrapStrap"), 1500, 800, "white", "gray");
+	DrawText(DialogFind(Player, "LeatherArmbinderTypeWrapStrap"), 1712, 800, "white", "gray");
 }
 
 // Catches the item extension clicks
 function InventoryItemArmsLeatherArmbinderClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CommonIsClickAt(1175, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("Strap");
-	if (CommonIsClickAt(1600, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("WrapStrap");
+	if (MouseIn(1175, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("Strap");
+	if (MouseIn(1600, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("WrapStrap");
 }
 
 // Sets the strap properties
