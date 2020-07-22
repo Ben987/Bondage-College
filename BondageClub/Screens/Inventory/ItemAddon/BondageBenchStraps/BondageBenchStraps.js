@@ -70,33 +70,33 @@ function InventoryItemAddonBondageBenchStrapsSetPose(NewPose) {
 
 	if (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null) {
 		InventoryItemAddonBondageBenchStrapsMessage = "RemoveClothesForItem";
-	} else {
+		return;
+	}
 
-		DialogFocusItem.Property.SetPose = ["LegsClosed"];
-		DialogFocusItem.Property.Type = NewPose;
-		if (NewPose == "Normal") DialogFocusItem.Property.Difficulty = 3;
-		if (NewPose == "Heavy") DialogFocusItem.Property.Difficulty = 6;
-		if (NewPose == "Full") DialogFocusItem.Property.Difficulty = 9;
-		DialogFocusItem.Property.Restrain = NewPose;
+	DialogFocusItem.Property.SetPose = ["LegsClosed"];
+	DialogFocusItem.Property.Type = NewPose;
+	if (NewPose == "Normal") DialogFocusItem.Property.Difficulty = 3;
+	if (NewPose == "Heavy") DialogFocusItem.Property.Difficulty = 6;
+	if (NewPose == "Full") DialogFocusItem.Property.Difficulty = 9;
+	DialogFocusItem.Property.Restrain = NewPose;
 
-		// Adds the lock effect back if it was padlocked
-		if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-			if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-			DialogFocusItem.Property.Effect.push("Lock");
-		}
+	// Adds the lock effect back if it was padlocked
+	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
+		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
+		DialogFocusItem.Property.Effect.push("Lock");
+	}
 
-		// Refreshes the character and chatroom
-		CharacterRefresh(C);
-		var msg = "BondageBenchStrapsRestrain" + ((NewPose == null) ? "None" : NewPose);
-		var Dictionary = [];
-		Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-		Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
-		ChatRoomPublishCustomAction(msg, true, Dictionary);
+	// Refreshes the character and chatroom
+	CharacterRefresh(C);
+	var msg = "BondageBenchStrapsRestrain" + ((NewPose == null) ? "None" : NewPose);
+	var Dictionary = [];
+	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+	Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
 
-		// Rebuilds the inventory menu
-		if (DialogInventory != null) {
-			DialogFocusItem = null;
-			DialogMenuButtonBuild(C);
-		}
+	// Rebuilds the inventory menu
+	if (DialogInventory != null) {
+		DialogFocusItem = null;
+		DialogMenuButtonBuild(C);
 	}
 }
