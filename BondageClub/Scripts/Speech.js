@@ -67,6 +67,7 @@ function SpeechGarble(C, CD) {
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth2");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth3");
 	GagEffect += SpeechGetGagLevel(C, "ItemHead");
+	GagEffect += SpeechGetGagLevel(C, "ItemHood");
 	GagEffect += SpeechGetGagLevel(C, "ItemNeck");
 	GagEffect += SpeechGetGagLevel(C, "ItemDevices");
 	GagEffect += SpeechGetGagLevel(C, "ItemAddon");
