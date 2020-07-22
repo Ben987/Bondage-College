@@ -438,7 +438,7 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 		if ((C.ID != 0) || ((C.Owner == "") && (C.Ownership == null)) || !NewInv.Asset.IsLock || ((C.ID == 0) && LogQuery("BlockOwnerLockSelf", "OwnerRule")))
 			return;
 	if (NewInv.Asset.LoverOnly && !NewInvWorn && !C.IsLoverOfPlayer())
-		if ((C.ID != 0) || (C.Lovership.length < 0) || !NewInv.Asset.IsLock)
+		if ((C.ID != 0) || (C.Lovership.length == 0) || !NewInv.Asset.IsLock || ((C.ID == 0) && C.GetLoversNumbers(true).length == 0))
 			return;
 
 	// Do not show keys if they are in the deposit
