@@ -22,9 +22,14 @@ var HorseWalkSpeed = 1;
 var HorseWalkText =""
 var HorseWalkEventTimer = 0;
 
-// Generates all the Carrots
+/**
+ * Generates all the carrots and crops
+ * @param {number} MaxCarrot - Maximum number of carrots to generate
+ * @param {number} MaxCrop - Maximum number of crops to generate
+ * @returns {void} - Nothing
+ */
 function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
-	// Full the Carrots sequence
+	// Fill the Carrots sequence
 	HorseWalkCarrots = [];
 	for (var S = 0; S < MaxCarrot; S++) {
 		// Generates each Carrot 1 by 1
@@ -34,7 +39,7 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 		}
 		HorseWalkCarrots.push(NewCarrot);
 	}
-	// Full the Crops sequence
+	// Fill the Crops sequence
 	HorseWalkCrops = [];
 	for (var S = 0; S < MaxCrop; S++) {
 		// Generates each Carrot 1 by 1
@@ -47,7 +52,11 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 
 }
 
-// Generates all the Hurdle
+/**
+ * Generates all the Hurdles
+ * @param {number} MaxHurdle - Maximum number of hurdles to generate
+ * @returns {void} - Nothing
+ */
 function HorseWalkGenerateHurdleItems(MaxHurdle) {
 	HorseWalkHurdle = [];
 	for (var S = 0; S < MaxHurdle; S++) {
