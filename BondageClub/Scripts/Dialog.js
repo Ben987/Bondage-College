@@ -1566,7 +1566,7 @@ function DialogDraw() {
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
 
 		// We leave if the dialog focus item is no longer there
-		if (DialogFocusItem != null && (InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name) == null || InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name).Asset.Name != DialogFocusItem.Asset.Name)) {
+		if (DialogFocusItem != null && (InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name) == null || InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name).Asset.Name != DialogFocusItem.Asset.Name) && !DialogFocusItem.Asset.IsLock) {
 			DialogLeaveFocusItem();
 			DialogFocusItem = null;
 		}
