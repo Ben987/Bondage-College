@@ -11,7 +11,6 @@ var TennisBallY = 500;
 var TennisBallSpeed = 100;
 /** Angle of the ball.  Angle is in radians (0 is right, PI / 2 is up, PI is left, 3 PI / 2 is down)*/
 var TennisBallAngle = 0;
-var TennisLastFrame = null;
 
 /**
  * Called when a player servers, the angle can vary by 45 degrees up or down
@@ -86,20 +85,11 @@ function TennisRun() {
 			DrawText(TextGet("Intro2"), 1000, 500, "black");
 			DrawText(TextGet("StartsIn") + " " + (5 - Math.floor(MiniGameTimer / 1000)).toString(), 1000, 600, "black");
 		} else {
-						
-			// Checks for the frame ratio to keep the ball from moving too fast if the game is running above 60 FPS
-			var TennisCurrentFrame = performance.now();
-			var FrameRatio = 1;
-			if (TennisLastFrame != null && TennisCurrentFrame - TennisLastFrame <= 16.666667) {
-				// Determine the speed ratio based on the framerate (Delta/ 1/60fps)
-				FrameRatio = (TennisCurrentFrame - TennisLastFrame) / 16.666667;
-			}
-			TennisLastFrame = TennisCurrentFrame;
 			
 			// Moves the ball
-			TennisBallX = TennisBallX + ((Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval) * FrameRatio);
-			TennisBallY = TennisBallY - ((Math.sin(TennisBallAngle) * TennisBallSpeed / TimerRunInterval) * FrameRatio);
-
+			TennisBallX += Math.cos(TennisBallAngle) * (TennisBallSpeed / 20) * (TimerRunInterval / 16.6667);
+			TennisBallY -= Math.sin(TennisBallAngle) * (TennisBallSpeed / 20) * (TimerRunInterval / 16.6667);
+			
 			// Moves the player and opponent racket, the opponent speeds up with difficulty, tracks the ball in defense, go back toward the middle in offense
 			if ((MouseY >= 0) && (MouseY <= 999)) TennisCharacterLeftRacket = MouseY;
 			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY > TennisCharacterRightRacket + 55)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
@@ -159,8 +149,6 @@ function TennisRun() {
 		}
 
 	} else {
-		
-		TennisLastFrame = null;
 		
 		// Draw the end message
 		if (MiniGameVictory && (TennisCharacterRightPoint == 0)) DrawText(TextGet("Perfect"), 1000, 400, "black");

@@ -1,8 +1,8 @@
 "use strict";
 var CurrentTime = 0;
 var TimerRunInterval = 20;
-var TimerCycle = 0;
 var TimerLastTime = CommonTime();
+var TimerLastCycleCall = 0;
 var TimerLastArousalProgress = 0;
 var TimerLastArousalProgressCount = 0;
 var TimerLastArousalDecay = 0;
@@ -136,11 +136,11 @@ function TimerProcess(Timestamp) {
 	TimerLastTime = Timestamp;
 	CurrentTime = CurrentTime + TimerRunInterval;
 
-	// At each 100 cycles, we check for timed events
-	TimerCycle++;
-	if (TimerCycle % 100 == 0) {
+	// At each 1700 ms, we check for timed events (equivalent of 100 cycles at 60FPS)
+	if (TimerLastCycleCall + 1700 <= CurrentTime) {
 		TimerInventoryRemove();
 		TimerPrivateOwnerBeep();
+		TimerLastCycleCall = CurrentTime;
 	}
 
 	// Arousal/Activity events only occur in allowed rooms
