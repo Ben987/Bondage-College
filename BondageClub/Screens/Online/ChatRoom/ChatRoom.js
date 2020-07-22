@@ -330,6 +330,7 @@ function ChatRoomClick() {
 		ElementRemove("TextAreaChatLog");
 		ServerSend("ChatRoomLeave", "");
 		CommonSetScreen("Online", "ChatSearch");
+		CharacterDeleteAllOnline();
 	}
 
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
@@ -391,6 +392,9 @@ function ChatRoomCanLeave() {
 
 // Chat room keyboard shortcuts
 function ChatRoomKeyDown() {
+
+	// If the input textfield is not focussed at the moment, set the focus to it.
+	if (document.activeElement.id != "InputChat") document.getElementById("InputChat").focus();
 
 	// The ENTER key sends the chat.  The "preventDefault" is needed for <textarea>, otherwise it adds a new line after clearing the field
 	if (KeyPress == 13) {
@@ -558,6 +562,11 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 			else if (DialogProgressNextItem != null) msg = "ActionUse";
 			else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = "ActionUnlockAndRemove";
 			else msg = "ActionRemove";
+		} else if (Action == "interrupted") {
+			if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && !DialogProgressNextItem.Asset.IsLock) msg = "ActionInterruptedSwap";
+			else if (DialogProgressNextItem != null) msg = "ActionInterruptedAdd";
+			else msg = "ActionInterruptedRemove";
+			Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
 		} else msg = Action;
 
 		// Replaces the action tags to build the phrase
@@ -827,6 +836,10 @@ function ChatRoomSync(data) {
 			if (ChatRoomCharacter.length == data.Character.length + 1) {
 				ChatRoomCharacter = ChatRoomCharacter.filter(A => data.Character.some(B => A.MemberNumber == B.MemberNumber));
 				ChatRoomData = data;
+				// Remove non-present chatroom characters from the characters array as they are no longer needed
+				for (var C = 0; C < Character.length; C++)
+					if (Character[C].AccountName.startsWith("Online-") && data.Character.find(DC => DC.MemberNumber == Character[C].MemberNumber) == null)
+						CharacterDelete(Character[C].AccountName);
 				return;
 			}
 			else if (ChatRoomCharacter.length == data.Character.length - 1) {
@@ -1211,6 +1224,7 @@ function ChatRoomSetRule(data) {
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
 			ServerSend("ChatRoomLeave", "");
+			CharacterDeleteAllOnline();
 			CellLock(TimerCell);
 		}
 
@@ -1222,6 +1236,7 @@ function ChatRoomSetRule(data) {
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
 			ServerSend("ChatRoomLeave", "");
+			CharacterDeleteAllOnline();
 			CommonSetScreen("Room", "MaidQuarters");
 			CharacterSetCurrent(MaidQuartersMaid);
 			MaidQuartersMaid.CurrentDialog = D;

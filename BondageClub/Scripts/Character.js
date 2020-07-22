@@ -401,6 +401,16 @@ function CharacterDelete(NPCType) {
 }
 
 /**
+ * Deletes all online characters from the character array
+ * @returns {void} - Nothing
+ */
+function CharacterDeleteAllOnline() { 
+	for (var C = Character.length - 1; C >= 0; C--)
+		if (Character[C].AccountName.startsWith("Online-"))
+			CharacterDelete(Character[C].AccountName);
+}
+
+/** 
  * Adds a pose to a character's pose list, does not add it if it's already there
  * @param {Character} C - Character for which to add a pose to its list
  * @param {string} NewPose - The name of the pose to add

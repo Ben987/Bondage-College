@@ -1,8 +1,6 @@
 // Main variables
 "use strict";
 var Player;
-var MouseX = 0;
-var MouseY = 0;
 var KeyPress = "";
 var CurrentModule;
 var CurrentScreen;
@@ -21,8 +19,11 @@ var CommonBackgroundList = [
 	"HorseStable", "Nursery", "Bedroom", "PrisonHall", "Kennels",
 	"BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "BondageBedChamber",
 	"CeremonialVenue", "WeddingRoom", "WeddingArch", "WeddingBeach",
-	"ParkDay", "ParkNight", "Gardens", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet", "DystopianCity",
+	"ParkDay", "ParkNight", "Gardens", 
+	"OldFarm",
+	"ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet", "DystopianCity",
 	"IndoorPool", "OutdoorPool", "PublicBath", "Onsen", "Beach", "BeachCafe", "BeachHotel",
+	"RustySaloon",
 	"PirateIsland", "PirateIslandNight", "ShipDeck", "CaptainCabin", "Shipwreck", 
 	"UnderwaterOne",
 	"MedinaMarket",	"SheikhPrivate", "SheikhTent",
@@ -200,18 +201,6 @@ function CommonClick() {
 		CommonDynamicFunction(CurrentScreen + "Click()");
 	else
 		DialogClick();
-}
-
-/**
- * Check if the click was within the boundaries of a given zone (Useful for UI components)
- * @param {number} Left - Starting position on the X axis
- * @param {number} Top - Starting position on the Y axis
- * @param {number} Width - Width of the zone
- * @param {number} Height - Height of the zone
- * @returns {boolean} - Returns TRUE if the click occured on the given zone
- */
-function CommonIsClickAt(Left, Top, Width, Height) {
-	return (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height);
 }
 
 /**
