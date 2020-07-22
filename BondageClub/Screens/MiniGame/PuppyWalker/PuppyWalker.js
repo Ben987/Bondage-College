@@ -5,7 +5,10 @@ var PuppyWalkerMovesTimer = [0, 0, 0, 0];
 var PuppyWalkerEscape = [0, 0, 0, 0];
 var PuppyWalkerGenerateMoveTimer = 0;
 
-// Loads the puppy walker mini game and sets the difficulty (a little faster on mobile)
+/**
+ * Loads the puppy walker mini game and sets the difficulty, it's a little faster on mobile because it's easier.
+ * @returns {void} - Nothing
+ */
 function PuppyWalkerLoad() {
 	PuppyWalkerMoves = [0, 0, 0, 0];
 	PuppyWalkerEscape = [0, 0, 0, 0];
@@ -15,7 +18,13 @@ function PuppyWalkerLoad() {
 	if (CommonIsMobile) MiniGameDifficultyRatio = Math.round(MiniGameDifficultyRatio * 0.75);
 }
 
-// Draws on the puppy girl if she hasn't escaped
+/**
+ * Draws the puppy girl if she hasn't escaped 
+ * @param {Character} Puppy - The puppy character to draw
+ * @param {number} X - Position on the X axis
+ * @param {number} Fail - Amount of failures for this puppy
+ * @returns {void} - Nothing
+ */
 function PuppyWalkerDraw(Puppy, X, Fail) {
 	if (Fail < 3) DrawCharacter(Puppy, X, 0, 1);
 	DrawImage("Screens/MiniGame/PuppyWalker/" + ((Fail <= 0) ? "Success" : "Fail") + ".png", X + 60, 100);
@@ -23,7 +32,10 @@ function PuppyWalkerDraw(Puppy, X, Fail) {
 	DrawImage("Screens/MiniGame/PuppyWalker/" + ((Fail <= 2) ? "Success" : "Fail") + ".png", X + 320, 100);
 }
 
-// Runs the puppy walker mini game
+/**
+ * Runs the puppy walker mini game and draws the relevant information on the screen
+ * @returns {void} - Nothing
+ */
 function PuppyWalkerRun() {
 	
 	// Draw the characters
@@ -82,7 +94,10 @@ function PuppyWalkerRun() {
 
 }
 
-// Validates if the mini game must end
+/**
+ * Validates if the mini game must end. The mini game ends when the timer is up or if a puppy escaped. Failing 3 moves of a given type counts as an escape.
+ * @returns {void} - Nothing
+ */
 function PuppyWalkerVerifyEnd() {
 	if ((PuppyWalkerEscape[0] >= 3) || (PuppyWalkerEscape[1] >= 3) || (PuppyWalkerEscape[2] >= 3) || (PuppyWalkerEscape[3] >= 3)) {
 		MiniGameVictory = false;
@@ -94,7 +109,11 @@ function PuppyWalkerVerifyEnd() {
 	}
 }
 
-// When a move is done, we validate it and raise the escape counter if not
+/**
+ * Validate the moves, we raise the escape counter if it was invalid
+ * @param {number} MoveType - Type of move done, goes from 0 to 3. It represents the index of the PuppyWalkerEscape array
+ * @returns {void} - Nothing
+ */
 function PuppyWalkerDoMove(MoveType) {
 	if (PuppyWalkerMoves[MoveType] <= CurrentTime) PuppyWalkerEscape[MoveType]++;
 	PuppyWalkerMoves[MoveType] = 0;
@@ -102,7 +121,10 @@ function PuppyWalkerDoMove(MoveType) {
 	PuppyWalkerVerifyEnd();
 }
 
-// When the user clicks in the puppy walker mini game
+/**
+ * Handles clicks during the puppy walker minigame
+ * @returns {void} - Nothing
+ */
 function PuppyWalkerClick() {
 
 	// If the game is over, clicking on the image will end it
