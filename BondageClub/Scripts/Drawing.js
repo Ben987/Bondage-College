@@ -1,7 +1,7 @@
 // The main game canvas where everything will be drawn
 /**
  * An item is a pair of asset and its dynamic properties that define a worn asset.
- * @typedef {{Asset: object, Color: string, Difficulty: number, Property: object}} Item
+ * @typedef {{Asset: object, Color: string, Difficulty: number, Property: object | undefined}} Item
  */
 "use strict";
 var MainCanvas;

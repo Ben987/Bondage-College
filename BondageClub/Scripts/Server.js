@@ -1,6 +1,6 @@
 /**
  * An item is a pair of asset and its dynamic properties that define a worn asset.
- * @typedef {{Asset: object, Color: string, Difficulty: number, Property: object}} Item
+ * @typedef {{Asset: object, Color: string, Difficulty: number, Property: object | undefined}} Item
  */
 
 /**
@@ -10,7 +10,7 @@
 
 /**
  * An appearance bundle is an array of object defining each appearance item of a character. It's a minified version of the normal appearance array
- * @typedef {Array.<{Group: string, Name: string, Difficulty: number, Color: string, Property: object}>} AppearanceBundle
+ * @typedef {Array.<{Group: string, Name: string, Difficulty: number | undefined, Color: string | undefined, Property: object | undefined}>} AppearanceBundle
  */
 
 "use strict";
