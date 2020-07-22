@@ -98,7 +98,7 @@ function TennisRun() {
 			
 			// Moves the ball
 			TennisBallX = TennisBallX + ((Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval) * FrameRatio);
-			TennisBallY = TennisBallY - ((Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval) * FrameRatio);
+			TennisBallY = TennisBallY - ((Math.sin(TennisBallAngle) * TennisBallSpeed / TimerRunInterval) * FrameRatio);
 
 			// Moves the player and opponent racket, the opponent speeds up with difficulty, tracks the ball in defense, go back toward the middle in offense
 			if ((MouseY >= 0) && (MouseY <= 999)) TennisCharacterLeftRacket = MouseY;
