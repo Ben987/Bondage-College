@@ -97,8 +97,8 @@ function TennisRun() {
 			TennisLastFrame = TennisCurrentFrame;
 			
 			// Moves the ball
-			TennisBallX = TennisBallX + (Math.cos(TennisBallAngle) * TennisBallSpeed * FrameRatio) / TimerRunInterval;
-			TennisBallY = TennisBallY - (Math.sin(TennisBallAngle) * TennisBallSpeed * FrameRatio) / TimerRunInterval;
+			TennisBallX = TennisBallX + ((Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval) * FrameRatio);
+			TennisBallY = TennisBallY - ((Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval) * FrameRatio);
 
 			// Moves the player and opponent racket, the opponent speeds up with difficulty, tracks the ball in defense, go back toward the middle in offense
 			if ((MouseY >= 0) && (MouseY <= 999)) TennisCharacterLeftRacket = MouseY;
@@ -120,11 +120,11 @@ function TennisRun() {
 			// If the racket hits the ball, we bounce it at an angle linked to the racket vs ball Y position
 			if ((Math.cos(TennisBallAngle) < 0) && (TennisBallX >= 500) && (TennisBallX <= 550) && (TennisBallY >= TennisCharacterLeftRacket - 110) && (TennisBallY <= TennisCharacterLeftRacket + 110)) {
 				TennisBallAngle = (Math.PI * 0.4 * ((TennisCharacterLeftRacket - TennisBallY) / 110));
-				TennisBallSpeed = TennisBallSpeed + (20 * FrameRatio);
+				TennisBallSpeed = TennisBallSpeed + 20;
 			}
 			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallX >= 1450) && (TennisBallX <= 1500) && (TennisBallY >= TennisCharacterRightRacket - 110) && (TennisBallY <= TennisCharacterRightRacket + 110)) {
 				TennisBallAngle = Math.PI + (Math.PI * 0.4 * ((TennisBallY - TennisCharacterRightRacket) / 110));
-				TennisBallSpeed = TennisBallSpeed + (20 * FrameRatio);
+				TennisBallSpeed = TennisBallSpeed + 20;
 			}
 			
 			// Shows the rackets and ball
