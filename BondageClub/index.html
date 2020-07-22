@@ -17,6 +17,7 @@
 <script src="Scripts/webgl/resources/m4.js"></script>
 <script src="Scripts/GLDraw.js"></script>
 <script src="Scripts/Common.js"></script>
+<script src="Scripts/Mouse.js"></script>
 <script src="Scripts/Drawing.js"></script>
 <script src="Scripts/Drawing3D.js"></script>
 <script src="Scripts/Timer.js"></script>
@@ -151,8 +152,8 @@
 <script src="Screens/Inventory/ItemMisc/MistressPadlock/MistressPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/ExclusivePadlock/ExclusivePadlock.js"></script>
 <script src="Screens/Inventory/ItemHead/DuctTape/DuctTape.js"></script>
-<script src="Screens/Inventory/ItemHead/OldGasMask/OldGasMask.js"></script>
-<script src="Screens/Inventory/ItemHead/InflatedBallHood/InflatedBallHood.js"></script>
+<script src="Screens/Inventory/ItemHood/OldGasMask/OldGasMask.js"></script>
+<script src="Screens/Inventory/ItemHood/InflatedBallHood/InflatedBallHood.js"></script>
 <script src="Screens/Inventory/ItemHead/WebBlindfold/WebBlindfold.js"></script>
 <script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/DildoPlugGag/DildoPlugGag.js"></script>
@@ -224,7 +225,7 @@
 <script src="Screens/Inventory/ItemPelvis/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemDevices/Crib/Crib.js"></script>
 <script src="Screens/Inventory/ItemMouth/MilkBottle/MilkBottle.js"></script>
-<script src="Screens/Inventory/ItemHead/NoseRing/NoseRing.js"></script>
+<script src="Screens/Inventory/ItemNose/NoseRing/NoseRing.js"></script>
 <script src="Screens/Inventory/ItemButt/ShockPlug/ShockPlug.js"></script>
 <script src="Screens/Inventory/ItemVulva/ShockDildo/ShockDildo.js"></script>
 <script src="Screens/Inventory/ItemNipples/ShockClamps/ShockClamps.js"></script>
@@ -233,6 +234,7 @@
 <script src="Screens/Inventory/ItemMouth3/CupholderGag/CupholderGag.js"></script>
 <script src="Screens/Inventory/ItemButt/BunnyTailVibePlug/BunnyTailVibePlug.js"></script>
 <script src="Screens/Inventory/ItemButt/EggVibePlugXXL/EggVibePlugXXL.js"></script>
+<script src="Screens/Inventory/ItemNipples/LactationPump/LactationPump.js"></script>
 <script>
 
 /*
@@ -240,6 +242,50 @@
 	NEXT VERISON:
 	
 	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
+		
+	OK - Armbinder text fix (Ellie)
+	OK - Latex leotard + clit items fix (Ellie)
+	OK - JSDoc for Timer.js (Ace)
+	OK - More 3D models (ZeroDawn)
+	OK - Breast lactation item (Zfreak + Ace)
+	OK - Character array cleanup (Ace)
+	OK - JSDoc for Maid Quarters (Sandrine)
+	OK - Lighter latex (Codefreak64)
+	OK - JSDoc for OnlineGame.js (Ace)
+	OK - Fix on zipped suits (Ace)
+	OK - JSDoc for Server.js (Ace)
+	OK - Mouth activities (Ellie)
+	OK - JSDoc for GLDraw.js & Drawing.js (Ace)
+	OK - Auto focus back on chat log text (Sandrine)
+	OK - Extended item fix (Ellie)
+	OK - Two new backgrounds (Aldarris)
+	OK - Item prerequisite fixes (Ace)
+	OK - JSDoc for Bitchsuit & Chains (Sandrine)
+	OK - JSDoc for 8 scripts (Ace)
+	OK - Two new slave collar models (Ace)
+	OK - New color and sorting for items that can't be used (Sandrine)
+	TEST - Head zone split (Ace)
+	TEST - New poses & items: X-Cross, OverTheHead & Spread (Nythaleath, Kirsty, Ruilove & Sybil)
+	TEST - Fixes for the cross (Ace)	
+	TEST - New interrupt/refresh system for multi-player (Ace)
+	
+	OK - Patron title
+	
+	TO DO - Orgasms count and different messages after the first one
+	
+	TO DO - Item specific actions (Slow & Fast penetration with the strap-on, masturbate with the crotch rope, etc.)
+	
+	TO DO - Arousal System - Special categories:
+		Bondage - The more restraints you wear, the faster the % arousal raises
+		Gagged - Being gagged raise or lower arousal %
+		Blindness - Raise or lower arousal % if blind
+		Chaste - Raise or lower arousal % if chaste
+		Feet - Any activity on the feet can raise your arousal %
+		Voyeurism - When other players do activities, it raises your arousal
+		Exhibitionist - When naked, it raises your arousal
+		Masochism - Being hit with handheld item raises arousal
+		Sadism - Hitting someone with handheld item raises arousal
+		By item category/fabric: Rope, Latex, Leather, Metal, Tape, Lingerie, Furry, Pony, ABDL
 		
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)

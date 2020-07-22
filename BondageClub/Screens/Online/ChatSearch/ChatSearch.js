@@ -6,7 +6,10 @@ var ChatSearchLeaveRoom = "MainHall";
 var ChatSearchSafewordAppearance = null;
 var ChatSearchSafewordPose = null;
 
-// When the chat screens loads, we loads up to 24 public rooms
+/**
+ * Loads the chat search screen properties, creates the inputs and loads up the first 24 rooms.
+ * @returns {void} - Nothing
+ */
 function ChatSearchLoad() {
 	if (ChatSearchSafewordAppearance == null) {
 		ChatSearchSafewordAppearance = Player.Appearance.slice(0);
@@ -17,7 +20,10 @@ function ChatSearchLoad() {
 	ChatSearchMessage = "";
 }
 
-// When the chat screens load
+/**
+ * When the chat Search screen runs, draws the screen
+ * @returns {void} - Nothing
+ */
 function ChatSearchRun() {
 
 	// If we can show the chat room search result
@@ -78,7 +84,10 @@ function ChatSearchRun() {
 	DrawButton(1885, 885, 90, 90, "", "White", "Icons/Exit.png");
 }
 
-// When the player clicks in the chat screen
+/**
+ * Handles the click events on the chat search screen. Is called from CommonClick()
+ * @returns {void} - Nothing
+ */
 function ChatSearchClick() {
 	if ((MouseX >= 25) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 875) && Array.isArray(ChatSearchResult) && (ChatSearchResult.length >= 1)) ChatSearchJoin();
 	if ((MouseX >= 1065) && (MouseX < 1385) && (MouseY >= 898) && (MouseY < 962)) ChatSearchQuery();
@@ -87,18 +96,27 @@ function ChatSearchClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 885) && (MouseY < 975)) ChatSearchExit();
 }
 
-// When the user press "enter" in the search box, we launch a search query
+/**
+ * Handles the key presses while in the chat search screen. When the user presses enter, we lauch the search query.
+ * @returns {void} - Nothing
+ */
 function ChatSearchKeyDown() {
 	if (KeyPress == 13) ChatSearchQuery();
 }
 
-// when the user exit this screen
+/**
+ * Handles exiting from the chat search screen, removes the input.
+ * @returns {void} - Nothing
+ */
 function ChatSearchExit() {
 	ElementRemove("InputSearch");
 	CommonSetScreen("Room", ChatSearchLeaveRoom);
 }
 
-// When the player wants to join a chat room
+/**
+ * Handles the clicks related to the chatroom list
+ * @returns {void} - Nothing
+ */
 function ChatSearchJoin() {
 
 	// Scans up to 24 results
@@ -121,7 +139,11 @@ function ChatSearchJoin() {
 	}
 }
 
-// When the server sends a response (force leave the room if the user was banned)
+/**
+ * Handles the reception of the server response when joining a room or when getting banned/kicked
+ * @param {string} data - Response from the server
+ * @returns {void} - Nothing
+ */
 function ChatSearchResponse(data) {
 	if ((data != null) && (typeof data === "string") && (data != "")) {
 		if (((data == "RoomBanned") || (data == "RoomKicked")) && (CurrentScreen == "ChatRoom")) {
@@ -129,12 +151,16 @@ function ChatSearchResponse(data) {
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
 			CommonSetScreen("Online", "ChatSearch");
+			CharacterDeleteAllOnline();
 		}
 		ChatSearchMessage = "Response" + data;
 	}
 }
 
-// Sends a search query to the server
+/**
+ * Sends the search query data to the server. The response will be handled by ChatSearchResponse once it is received
+ * @returns {void} - Nothing
+ */
 function ChatSearchQuery() {
 	ChatSearchResult = [];
 	ServerSend("ChatRoomSearch", { Query: ElementValue("InputSearch").toUpperCase().trim(), Space: ChatRoomSpace });

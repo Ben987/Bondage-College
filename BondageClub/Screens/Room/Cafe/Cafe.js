@@ -325,15 +325,16 @@ function CafeServiceBound(Style) {
 		// Head
 		RandomNumber = Math.floor(Math.random() * 15);
 		if (RandomNumber >= 4) Bondage = "LeatherBlindfold";
-		if (RandomNumber >= 5) Bondage = "LeatherHood";
-		if (RandomNumber >= 6) Bondage = "LeatherHoodOpenEyes";
-		if (RandomNumber >= 7) Bondage = "StuddedBlindfold";
-		if (RandomNumber >= 8) Bondage = "SmallBlindfold";
-		if (RandomNumber >= 9) Bondage = "LeatherHoodOpenMouth";
-		if (RandomNumber >= 10) Bondage = "FullBlindfold";
+		if (RandomNumber >= 5) Bondage = "StuddedBlindfold";
+		if (RandomNumber >= 6) Bondage = "SmallBlindfold";
+		if (RandomNumber >= 7) Bondage = "FullBlindfold";
+		if (RandomNumber >= 8) Bondage = "LeatherHood";
+		if (RandomNumber >= 9) Bondage = "LeatherHoodOpenEyes";
+		if (RandomNumber >= 10) Bondage = "LeatherHoodOpenMouth";
 		if (RandomNumber >= 11) Bondage = "LeatherHoodSensDep";
 		if (RandomNumber >= 12) Bondage = "LeatherHoodSealed";
-		if (RandomNumber >= 4) InventoryWear(Player, Bondage, "ItemHead");
+		if (RandomNumber >= 8) InventoryWear(Player, Bondage, "ItemHood");
+		if (RandomNumber >= 4 && RandomNumber < 8) InventoryWear(Player, Bondage, "ItemHead");
 		
 		// Locks
 		InventoryFullLockRandom(Player);
