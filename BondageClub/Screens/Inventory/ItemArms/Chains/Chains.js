@@ -55,14 +55,21 @@ const ChainsArmsOptions = [
 
 var ChainsArmsOptionOffset = 0;
 
-// Loads the item extension properties
+/**
+ * Loads the item extension properties. This is called dynamically, when the player opens the menu for the first time
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsChainsLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = ChainsArmsOptions[0].Property;
 	DialogExtendedMessage = DialogFind(Player, "SelectChainBondage");
 	ChainsArmsOptionOffset = 0;
 }
 
-// Draw the item extension screen
+/**
+ * Draws the item extension screen. 
+ * This is called at short intervals periodically so don't call complex functions or loops from within
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsChainsDraw() {
 
 	// Draw the header and item
@@ -85,7 +92,10 @@ function InventoryItemArmsChainsDraw() {
 	}
 }
 
-// Catches the item extension clicks
+/**
+ * Handles the click events. Is called from CommonClick()
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsChainsClick() {
 
 	// Menu buttons
@@ -107,7 +117,16 @@ function InventoryItemArmsChainsClick() {
 	}
 }
 
-// Sets the chain pose (hogtied, suspension, etc.)
+/**
+ * Sets the chain pose (hogtied, suspension, etc.)
+ * @param {Object} NewType - The new pose.
+ * @param {string} NewType.Name - Name of the new pose
+ * @param {number} NewType.RequiredBondageLevel - THe minimum bondage level, the rigger needs befor she can do this tie
+ * @param {Property} NewType.Property - A propperty object, detailing the new pose
+ * @param {Expression} NewType.Expression - An expression object, that changes the expressions of the victim
+ * @param {string} NewType.HiddenItem - Name of an item from the ItemHidden gropu to apply on the victim
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsChainsSetPose(NewType) {
 
 	// Gets the current item and character
@@ -126,7 +145,7 @@ function InventoryItemArmsChainsSetPose(NewType) {
 		if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
 		else InventoryRemove(C, "ItemHidden");
 	} else {
-		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked"); 
+		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");
 		return;
 	}
 
@@ -144,8 +163,8 @@ function InventoryItemArmsChainsSetPose(NewType) {
 	if (CurrentScreen == "ChatRoom") {
 		var msg = "ArmsChainSet" + NewType.Name;
 		var Dictionary = [];
-		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+		Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+		Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
 		ChatRoomPublishCustomAction(msg, true, Dictionary);
 	} else {
 		DialogFocusItem = null;

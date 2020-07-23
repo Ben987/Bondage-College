@@ -29,10 +29,10 @@ function InventoryItemArmsLeatherArmbinderDraw() {
 
 // Catches the item extension clicks
 function InventoryItemArmsLeatherArmbinderClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CommonIsClickAt(1175, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("Strap");
-	if (CommonIsClickAt(1600, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("WrapStrap");
+	if (MouseIn(1175, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("Strap");
+	if (MouseIn(1600, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("WrapStrap");
 }
 
 // Sets the strap properties

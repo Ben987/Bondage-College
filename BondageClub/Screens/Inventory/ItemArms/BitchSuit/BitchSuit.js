@@ -1,12 +1,18 @@
 "use strict";
 
-// Loads the item extension properties
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsBitchSuitLoad() {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null };
+	if (DialogFocusItem.Property.Block == null) DialogFocusItem.Property.Block = DialogFocusItem.Property.Type ? [] : ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"];
 }
 
-// Draw the item extension screen
+/**
+ * Draw the item extension screen. As this function is called periodically, don't call expensive functionns from here
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsBitchSuitDraw() {
 
 	// Draw the item image and top controls
@@ -26,7 +32,10 @@ function InventoryItemArmsBitchSuitDraw() {
 
 }
 
-// Catches the item extension clicks
+/**
+ * Handles the click events. Is called from CommomnClick()
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsBitchSuitClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1150) && (MouseX <= 1375) && (MouseY >= 440) && (MouseY <= 665) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsBitchSuitSetType(null);
@@ -34,7 +43,11 @@ function InventoryItemArmsBitchSuitClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 }
 
-// Sets the suit properties when it's model changes
+/**
+ * Sets the suit properties when it's model changes
+ * @param {string} NewType - The new property. Valid values are "Zipped" and "Unzip"
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsBitchSuitSetType(NewType) {
 
 	// Sets the type, blocking zones and wand
@@ -51,8 +64,8 @@ function InventoryItemArmsBitchSuitSetType(NewType) {
 	// Pushes the change to the chatroom
 	var msg = "BitchSuitSet" + ((NewType) ? NewType : "Zipped");
 	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+	Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 	if (DialogInventory != null) {
 		DialogFocusItem = null;

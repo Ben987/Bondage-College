@@ -37,11 +37,11 @@ function InventoryItemAddonBondageBenchStrapsDraw() {
 
 // Catches the item extension clicks
 function InventoryItemAddonBondageBenchStrapsClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if (CommonIsClickAt(1000, 550, 225, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemAddonBondageBenchStrapsSetPose(null);
-	if (CommonIsClickAt(1250, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Normal"))) InventoryItemAddonBondageBenchStrapsSetPose("Normal");
-	if (CommonIsClickAt(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Heavy"))) InventoryItemAddonBondageBenchStrapsSetPose("Heavy");
-	if (CommonIsClickAt(1750, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Full"))) InventoryItemAddonBondageBenchStrapsSetPose("Full");
+	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
+	if (MouseIn(1000, 550, 225, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemAddonBondageBenchStrapsSetPose(null);
+	if (MouseIn(1250, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Normal"))) InventoryItemAddonBondageBenchStrapsSetPose("Normal");
+	if (MouseIn(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Heavy"))) InventoryItemAddonBondageBenchStrapsSetPose("Heavy");
+	if (MouseIn(1750, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Full"))) InventoryItemAddonBondageBenchStrapsSetPose("Full");
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)

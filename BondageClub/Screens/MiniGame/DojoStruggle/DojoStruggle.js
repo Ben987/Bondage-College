@@ -4,7 +4,10 @@ var DojoStrugglePosition = 450;
 var DojoStruggleImpulse = 0;
 var DojoStruggleRope = [];
 
-// Loads the dojo struggle mini game and prepare the rope walls
+/**
+ * Loads the dojo struggle mini game and prepare the rope walls
+ * @returns {void} - Nothing
+ */
 function DojoStruggleLoad() {
 	DojoStrugglePosition = 450;
 	if (MiniGameProgress < 0) MiniGameProgress = 0;
@@ -13,7 +16,10 @@ function DojoStruggleLoad() {
 		DojoStruggleRope.push(Math.floor(Math.random() * 651) + 175);
 }
 
-// Runs the dojo struggle mini game
+/**
+ * Runs the dojo struggle mini game and draws the relevant information on screen
+ * @returns {void} - Nothing
+ */
 function DojoStruggleRun() {
 
 	// Draw the character
@@ -89,7 +95,10 @@ function DojoStruggleRun() {
 
 }
 
-// When the user clicks in the dojo struggle mini game
+/**
+ * Handles clicks during the dojo struggle mini game
+ * @returns {void} - Nothing
+ */
 function DojoStruggleClick() {
 
 	// If the game is over, clicking on the image will end it
@@ -102,7 +111,10 @@ function DojoStruggleClick() {
 
 }
 
-// When the space bar is used, we do the same as a click
+/**
+ * Handles key presses during the dojo struggle mini game. A space bar is handled just like a click is.
+ * @returns {void} - Nothing
+ */
 function DojoStruggleKeyDown() {
 	if (!MiniGameEnded && (KeyPress == 32))
 		DojoStruggleImpulse = 86;
