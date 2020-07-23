@@ -1584,8 +1584,8 @@ function DialogDraw() {
 			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		} else {
-			if (DialogActivityMode) DialogDrawActivityMenu((Player.FocusGroup != null) ? Player : CurrentCharacter);
-			else DialogDrawItemMenu((Player.FocusGroup != null) ? Player : CurrentCharacter);
+			if (DialogActivityMode) DialogDrawActivityMenu(C);
+			else DialogDrawItemMenu(C);
 		}
 
 		// Draw the 'Up' reposition button if some zones are offscreen
