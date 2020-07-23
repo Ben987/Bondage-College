@@ -804,7 +804,7 @@ var AssetFemale3DCG = [
 
 	{
 		Group: "Eyes2",
-		Priority: 10,
+		Priority: 9,
 		Blink: true,
 		Left: 250,
 		Top: 145,

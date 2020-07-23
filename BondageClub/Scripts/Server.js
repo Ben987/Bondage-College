@@ -512,13 +512,33 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				if (Appearance[A].Asset.Group.Name == AssetGroup[G].Name)
 					Found = true;
 
-			// Adds the missing appearance part
-			if (!Found)
-				for (var I = 0; I < Asset.length; I++)
-					if (Asset[I].Group.Name == AssetGroup[G].Name) {
-						Appearance.push({ Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] });
-						break;
-					}
+			// Adds the missing appearance part, for eyes 2 we copy eyes 1
+			if (!Found) {
+				if (AssetGroup[G].Name == "Eyes2") { 
+					var Eyes2 = null;
+					for (var A = 0; A < Appearance.length; A++)
+						if (Appearance[A].Asset.Group.Name == "Eyes") {
+							for (var I = 0; I < Asset.length; I++)
+								if (Asset[I].Group.Name == AssetGroup[G].Name && Asset[I].Name == Appearance[A].Asset.Name) {
+									Eyes2 = { Asset: Asset[I], Color: Appearance[A].Color };
+									break;
+								}
+							break;
+						}
+					if (Eyes2 == null)
+						for (var I = 0; I < Asset.length; I++)
+							if (Asset[I].Group.Name == AssetGroup[G].Name) {
+								Eyes2 = { Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] };
+								break;
+							}
+					Appearance.push(Eyes2);
+				} else
+					for (var I = 0; I < Asset.length; I++)
+						if (Asset[I].Group.Name == AssetGroup[G].Name) {
+							Appearance.push({ Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] });
+							break;
+						}
+			}
 
 		}
 	return Appearance;

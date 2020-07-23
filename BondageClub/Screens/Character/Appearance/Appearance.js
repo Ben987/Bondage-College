@@ -190,8 +190,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 					if (CharacterAppearanceGetCurrentValue(C, SelectedAsset.Group.ParentColor, "Color") != "None")
 						SelectedColor = CharacterAppearanceGetCurrentValue(C, SelectedAsset.Group.ParentColor, "Color");
 				// Rare chance of keeping eyes of a different color
-				if (SelectedAsset.Group.Name == "Eyes2" && Math.random() < 0.9999) {
-					console.log(C.Appearance[A])
+				if (SelectedAsset.Group.Name == "Eyes2" && Math.random() < 0.999) {
 					for (var A = 0; A < C.Appearance.length; A++)
 						if (C.Appearance[A].Asset.Group.Name == "Eyes")
 							SelectedColor = C.Appearance[A].Color;
