@@ -1219,14 +1219,18 @@ function DialogClick() {
 
 	// If the user clicked in the facial expression menu
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
-		if (MouseIn(15, 15, 90, 90)) {
+		if (MouseIn(20, 50, 90, 90)) {
 			DialogFacialExpressions.forEach(FE => {
 				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name);
 				FE.CurrentExpression = null;
 			});
+		} else if (MouseIn(120, 50, 90, 90)) { 
+			CharacterSetFacialExpression(Player, "Eyes", "Wink");
+		} else if (MouseIn(220, 50, 90, 90)) { 
+			CharacterSetFacialExpression(Player, "Eyes2", "Wink");
 		} else for (var I = 0; I < DialogFacialExpressions.length; I++) {
 			var FE = DialogFacialExpressions[I];
-			if ((MouseY >= 125 + 120 * I) && (MouseY <= (125 + 120 * I) + 90)) {
+			if ((MouseY >= 160 + 120 * I) && (MouseY <= (160 + 120 * I) + 90)) {
 
 				// Left arrow button
 				if (MouseX >= 0 && MouseX <= 45) {
@@ -1621,12 +1625,14 @@ function DialogDraw() {
 function DialogDrawExpressionMenu() {
 
 	// Draw the expression groups
-	DrawText(DialogFind(Player, "FacialExpression"), 265, 62, "White", "Black");
-	DrawButton(15, 15, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearFacialExpressions"));
+	DrawText(DialogFind(Player, "FacialExpression"), 165, 25, "White", "Black");
+	DrawButton(220, 50, 90, 90, "", "White", "Icons/WinkL.png", DialogFind(Player, "WinkLFacialExpressions"));
+	DrawButton(120, 50, 90, 90, "", "White", "Icons/WinkR.png", DialogFind(Player, "WinkRFacialExpressions"));
+	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearFacialExpressions"));
 	if (!DialogFacialExpressions || !DialogFacialExpressions.length) DialogFacialExpressionsBuild();
 	for (var I = 0; I < DialogFacialExpressions.length; I++) {
 		var FE = DialogFacialExpressions[I];
-		var OffsetY = 125 + 120 * I;
+		var OffsetY = 160 + 120 * I;
 
 		// Draw the back and forth arrow buttons
 		DrawButton(0, OffsetY, 45, 90, "", "White");
