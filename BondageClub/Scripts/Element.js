@@ -163,8 +163,8 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
  * @returns {void} - Nothing
  */
 function ElementCloseAllSelect(elmnt) {
-	/*a function that will close all select boxes in the document,
-	except the current select box:*/
+    /*a function that will close all select boxes in the document,
+    except the current select box:*/
 	var arrNo = [];
 	var y = document.getElementsByClassName("select-selected");
 	for (var i = 0; i < y.length; i++) {
