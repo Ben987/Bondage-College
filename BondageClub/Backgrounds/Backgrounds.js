@@ -130,7 +130,6 @@ const BackgroundsList = [
     { Name: "CosyChalet", Tag: [BackgroundsTagIndoor], Public: true },
     { Name: "BalconyNight", Tag: [BackgroundsTagOutdoor], Public: true },
     { Name: "WrestlingRing", Tag: [BackgroundsTagIndoor], Public: false },
-    { Name: "OldFarm", Tag: [BackgroundsTagOutdoor], Public: true },
     { Name: "RustySaloon", Tag: [BackgroundsTagIndoor], Public: true },
-
+    { Name: "OldFarm", Tag: [BackgroundsTagOutdoor], Public: true }
 ];
