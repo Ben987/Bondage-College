@@ -18,7 +18,8 @@
 
 // Spanking Toys Asset
 var AssetSpankingToys = {
-	Name: "SpankingToys", Random: false, Wear: false, BuyGroup: "SpankingToys", DynamicAllowInventoryAdd: C => InventoryIsWorn(Player, "SpankingToys", "ItemHands") && InventorySpankingToysActivityAllowed(C),
+	Name: "SpankingToys", Random: false, Wear: false, BuyGroup: "SpankingToys",
+	DynamicAllowInventoryAdd: C => InventoryIsWorn(Player, "SpankingToys", "ItemHands") && InventorySpankingToysActivityAllowed(C),
 	DynamicDescription: C => InventorySpankingToysGetDescription(C),
 	DynamicExpressionTrigger: C => SpankingInventory.find(x => x.Name == InventorySpankingToysGetType(Player)).ExpressionTrigger,
 	DynamicPreviewIcon: C => InventorySpankingToysGetType(Player),
@@ -26,7 +27,9 @@ var AssetSpankingToys = {
 	DynamicGroupName: "ItemHands",
 	DynamicActivity: C => InventorySpankingToysGetActivity(C),
 	IgnoreParentGroup: true,
-	Effect: []
+	Effect: [],
+	DialogSortOverride: DialogSortOrderEquipped
+
 };
 
 // 3D Custom Girl based assets
