@@ -361,6 +361,7 @@ function ActivityExpression(C, Progress) {
 		if (C.Appearance[A].Asset.Group.Name == "Eyebrows") C.Appearance[A].Property = { Expression: Eyebrows };
 		if (C.Appearance[A].Asset.Group.Name == "Fluids") C.Appearance[A].Property = { Expression: Fluids };
 		if (C.Appearance[A].Asset.Group.Name == "Eyes") C.Appearance[A].Property = { Expression: Eyes };
+		if (C.Appearance[A].Asset.Group.Name == "Eyes2") C.Appearance[A].Property = { Expression: Eyes };
 	}
 
 	// Refreshes the character

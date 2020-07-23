@@ -36,6 +36,7 @@ function CollegeCafeteriaLoad() {
 			CharacterNaked(CollegeCafeteriaSidney);
 			InventoryWear(CollegeCafeteriaSidney, "PussyDark1", "Pussy", "#505050");
 			InventoryWear(CollegeCafeteriaSidney, "Eyes10", "Eyes", "#FF0000");
+			InventoryWear(CollegeCafeteriaSidney, "Eyes10", "Eyes2", "#FF0000");
 			InventoryWear(CollegeCafeteriaSidney, "Mouth", "Mouth", "Default");
 			InventoryWear(CollegeCafeteriaSidney, "H0960", "Height", "Default");
 			InventoryWear(CollegeCafeteriaSidney, "XLarge", "BodyUpper", "White");

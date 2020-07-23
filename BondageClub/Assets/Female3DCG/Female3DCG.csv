@@ -425,7 +425,7 @@ HairFront,HairFront13,Style 13
 HairFront,HairFront13b,Style 13b
 HairFront,HairFront14,Style 14
 HairFront,HairFront14b,Style 14b
-Eyes,,Eyes
+Eyes,,Left eye
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
 Eyes,Eyes3,Style 3
@@ -437,6 +437,18 @@ Eyes,Eyes8,Style 8
 Eyes,Eyes9,Style 9
 Eyes,Eyes10,Style 10
 Eyes,Eyes11,Style 11
+Eyes2,,Right eye
+Eyes2,Eyes1,Style 1
+Eyes2,Eyes2,Style 2
+Eyes2,Eyes3,Style 3
+Eyes2,Eyes4,Style 4
+Eyes2,Eyes5,Style 5
+Eyes2,Eyes6,Style 6
+Eyes2,Eyes7,Style 7
+Eyes2,Eyes8,Style 8
+Eyes2,Eyes9,Style 9
+Eyes2,Eyes10,Style 10
+Eyes2,Eyes11,Style 11
 Mouth,,Mouth
 Mouth,Regular,Regular
 Mouth,Discreet,Discreet
