@@ -24,7 +24,7 @@ function OnlineProfileRun() {
 
 // When the player clicks in the online profile form
 function OnlineProfileClick() {	
-    if (CommonIsClickAt(1820, 60, 90, 90)) OnlineProfileExit();
+    if (MouseIn(1820, 60, 90, 90)) OnlineProfileExit();
 }
 
 // when the user exit this screen

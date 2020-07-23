@@ -44,9 +44,9 @@ function InventoryItemDevicesBondageBenchDraw() {
 
 // Catches the item extension clicks
 function InventoryItemDevicesBondageBenchClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CommonIsClickAt(1389, 550, 225, 225) && InventoryGet(C, "ItemAddon") == null) InventoryItemDevicesBondageBenchSetPose("StrapUp");
+	if (MouseIn(1389, 550, 225, 225) && InventoryGet(C, "ItemAddon") == null) InventoryItemDevicesBondageBenchSetPose("StrapUp");
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)

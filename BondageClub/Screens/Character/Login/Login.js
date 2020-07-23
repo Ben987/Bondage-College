@@ -183,7 +183,7 @@ function LoginStableItems() {
 		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryAdd(Player, "PonyBoots", "Shoes", false);
 		InventoryAdd(Player, "PonyBoots", "ItemBoots", false);
-		InventoryAdd(Player,"PonyHood", "ItemHead", false);
+		InventoryAdd(Player,"PonyHood", "ItemHood", false);
 		InventoryAdd(Player,"HoofMittens", "ItemHands", false);
 	} else {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth", false);
@@ -191,7 +191,7 @@ function LoginStableItems() {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
-		InventoryDelete(Player, "PonyHood", "ItemHead",false)
+		InventoryDelete(Player, "PonyHood", "ItemHood",false)
 		InventoryDelete(Player,"HoofMittens", "ItemHands", false);
 	}
 	ServerPlayerInventorySync();
