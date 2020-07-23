@@ -1572,10 +1572,11 @@ function DialogDraw() {
 		}
 
 		// We rebuild the menu if things changed
-		if (DialogPreviousCharacterAppearance !== JSON.stringify(ServerAppearanceBundle(CurrentCharacter.Appearance))) {
-			DialogInventoryBuild(CurrentCharacter);
-			ActivityDialogBuild(CurrentCharacter);
-			DialogPreviousCharacterAppearance = JSON.stringify(ServerAppearanceBundle(CurrentCharacter.Appearance));
+		var C = CharacterGetCurrent();
+		if (DialogPreviousCharacterAppearance !== JSON.stringify(ServerAppearanceBundle(C.Appearance))) {
+			DialogInventoryBuild(C);
+			ActivityDialogBuild(C);
+			DialogPreviousCharacterAppearance = JSON.stringify(ServerAppearanceBundle(C.Appearance));
 		}
 
 		// The view can show one specific extended item or the list of all items for a group
