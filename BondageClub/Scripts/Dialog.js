@@ -607,7 +607,7 @@ function DialogFacialExpressionsBuild() {
 	for (var I = 0; I < Player.Appearance.length; I++) {
 		var PA = Player.Appearance[I];
 		var ExpressionList = PA.Asset.Group.AllowExpression;
-		if (!ExpressionList || !ExpressionList.length) continue;
+		if (!ExpressionList || !ExpressionList.length || PA.Asset.Group.Name == "Eyes2") continue;
 		var Item = {};
 		Item.Appearance = PA;
 		Item.CurrentExpression = (PA.Property == null) ? null : PA.Property.Expression;
