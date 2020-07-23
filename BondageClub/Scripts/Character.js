@@ -751,6 +751,8 @@ function CharacterSetActivePose(C, NewPose) {
  * @returns {void} - Nothing
  */
 function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
+	// A normal eye expression is triggered for both eyes
+	if (AssetGroup == "Eyes") CharacterSetFacialExpression(C, "Eyes2", Expression, Timer);
 	var Ex = InventoryGet(C, AssetGroup);
 	if ((Timer != null) && (Ex != null) && (Ex.Property != null) && (Ex.Property.Expression != null) && (Ex.Property.Expression != "")) return;
 	for (var A = 0; A < C.Appearance.length; A++) {
