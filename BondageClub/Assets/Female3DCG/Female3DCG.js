@@ -806,6 +806,7 @@ var AssetFemale3DCG = [
 		Group: "Eyes",
 		Left: 200,
 		Top: 145,
+		MirrorGroup: "Eyes2",
 		Asset: ["Eyes1", "Eyes2", "Eyes3", "Eyes4", "Eyes5", "Eyes6", "Eyes7", "Eyes8", "Eyes9", "Eyes10", "Eyes11"],
 	}),
 
