@@ -5,21 +5,19 @@
  * @constant
  * @type {string}
  */
-
-const BackgroundsTagNone = "Filter by tag";
-const BackgroundsTagIndoor = "Indoor";
-const BackgroundsTagOutdoor = "Outdoor";
-const BackgroundsTagPirates = "Pirates";
-const BackgroundsTagSpecial = "Special Events";
-const BackgroundsTagSciFiFantasy = "SciFi & Fantasy";
+var BackgroundsTagNone = "Filter by tag";
+var BackgroundsTagIndoor = "Indoor";
+var BackgroundsTagOutdoor = "Outdoor";
+var BackgroundsTagPirates = "Pirates";
+var BackgroundsTagSpecial = "Special Events";
+var BackgroundsTagSciFiFantasy = "SciFi & Fantasy";
 
 /**
  * List of all tags
  * @constant
  * @type {string[]}
  */
-
-const BackgroundsTagList = [
+var BackgroundsTagList = [
     BackgroundsTagNone,
     BackgroundsTagIndoor,
     BackgroundsTagOutdoor,
@@ -33,7 +31,7 @@ const BackgroundsTagList = [
  * @constant 
  * @type {string[]}
  */
-const BackgroundsList = [
+var BackgroundsList = [
     { Name: "Introduction", Tag: [BackgroundsTagIndoor], Public: true },
     { Name: "KidnapLeague", Tag: [BackgroundsTagIndoor], Public: true },
     { Name: "MaidQuarters", Tag: [BackgroundsTagIndoor], Public: true },
