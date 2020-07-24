@@ -156,7 +156,7 @@ function MainHallRun() {
 
 /**
  * Validates the player's move into a new room. Before entering the requested rooms, the player can be attacked by random kidnappers or intercepted by various NPC types
- * @param {*} RoomName 
+ * @param {string} RoomName - Name of the room the player is heading to 
  * @returns {void} - Nothing
  */
 function MainHallWalk(RoomName) {
