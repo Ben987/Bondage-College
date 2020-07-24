@@ -4,10 +4,7 @@ var CellMinutes = 5;
 var CellOpenTimer = 0;
 var CellKeyDepositStaff = null;
 
-/**
- * Loads the cell screen and its NPC, then checks if it should be locked or not
- * @returns {void} - Nothing
- */
+// Loads the cell screen
 function CellLoad() {
 	CellKeyDepositStaff = CharacterLoadNPC("NPC_Cell_KeyDepositStaff");
 	CellKeyDepositStaff.AllowItem = false;
@@ -20,10 +17,7 @@ function CellLoad() {
 	}
 }
 
-/**
- * Runs and draws the cell screen
- * @returns {void} - Nothing
- */
+// Run the cell screen
 function CellRun() {
 	DrawCharacter(Player, 750, 0, 1);
 	if (CellOpenTimer < CurrentTime) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png", TextGet("Leave"));
@@ -38,38 +32,27 @@ function CellRun() {
 	else DrawText(TextGet("OpensIn") + " " + TimerToString(CellOpenTimer - CurrentTime), 1620, 920, "White", "Black");
 }
 
-/**
- * Handles clicks in the cell screen
- * @returns {void} - Nothing
- */
+// When the user clicks in the cell screen
 function CellClick() {
-	if (MouseIn(1885, 25, 90, 90) && Player.CanKneel() && (CellOpenTimer > CurrentTime)) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanKneel() && (CellOpenTimer > CurrentTime)) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 	if (CellOpenTimer < CurrentTime) {
-		if (MouseIn(1885, 25, 90, 90)) CommonSetScreen("Room", "MainHall");
-		if (MouseIn(1885, 265, 90, 90)) CellLock(CellMinutes);
-		if (MouseIn(1885, 385, 90, 90) && (CellMinutes < 60)) CellMinutes = CellMinutes + 5;
-		if (MouseIn(1885, 505, 90, 90) && (CellMinutes > 5)) CellMinutes = CellMinutes - 5;
-		if (MouseIn(1885, 625, 90, 90)) CharacterSetCurrent(CellKeyDepositStaff);
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CommonSetScreen("Room", "MainHall");
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) CellLock(CellMinutes);
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && (CellMinutes < 60)) CellMinutes = CellMinutes + 5;
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && (CellMinutes > 5)) CellMinutes = CellMinutes - 5;
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715)) CharacterSetCurrent(CellKeyDepositStaff);
 	}
 }
 
-/**
- * Locks the player in the cell for the given amount of time
- * @param {number} LockTime - Number of minutes to be locked for 
- * @returns {void} - Nothing
- */
+// When the player gets locked in the cell
 function CellLock(LockTime) {
 	LogAdd("Locked", "Cell", CurrentTime + LockTime * 60000);
 	CommonSetScreen("Room", "Cell");
 }
 
-/**
- * Takes away the player's keys for the given amount of time
- * @param {number} DepositTime - Number of hours to lose the keys for 
- * @returns {void} - Nothing
- */
+// When the player leaves her keys in the deposit
 function CellDepositKeys(DepositTime) {
 	LogAdd("KeyDeposit", "Cell", CurrentTime + DepositTime * 3600000);
 }
