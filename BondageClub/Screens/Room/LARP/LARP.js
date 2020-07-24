@@ -36,11 +36,11 @@ function LARPRun() {
  * @returns {void} - Nothing
  */
 function LARPClick() {
-	if (!DailyJobSubSearchIsActive() && (MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if (!DailyJobSubSearchIsActive() && (MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(LARPOrganiser);	
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY <= 115)) CommonSetScreen("Room", "MainHall");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY <= 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY <= 355) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) {
+	if (!DailyJobSubSearchIsActive() && MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(LARPOrganiser);	
+	if (MouseIn(1885, 25, 90, 90)) CommonSetScreen("Room", "MainHall");
+	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+	if (MouseIn(1885, 265, 90, 90) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) {
 		Player.Game.LARP.Team = "None";
 		ServerSend("AccountUpdate", { Game: Player.Game });
 		var BG = CommonBackgroundList.slice();
