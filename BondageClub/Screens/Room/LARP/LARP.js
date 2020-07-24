@@ -2,10 +2,7 @@
 var LARPBackground = "WrestlingRing";
 var LARPOrganiser = null;
 
-/**
- * Loads the LARP introduction room NPC
- * @returns {void} - Nothing
- */
+// Loads the LARP screen NPC
 function LARPLoad() {
 	if (LARPOrganiser == null) {		
 		LARPOrganiser = CharacterLoadNPC("NPC_LARP_Organiser");
@@ -17,10 +14,7 @@ function LARPLoad() {
 	}
 }
 
-/**
- * Runs and draws the LARP introduction screen. The screen can be used to search for daily jobs.
- * @returns {void} - Nothing
- */
+// Run the LARP screen (The screen can be used for the search daily job)
 function LARPRun() {
 	if (!DailyJobSubSearchIsActive()) DrawCharacter(Player, 500, 0, 1);
 	if (!DailyJobSubSearchIsActive()) DrawCharacter(LARPOrganiser, 1000, 0, 1);
@@ -31,10 +25,7 @@ function LARPRun() {
 	DailyJobSubSearchRun();
 }
 
-/**
- * Handles clicks in the LARP introduction screen.
- * @returns {void} - Nothing
- */
+// When the user clicks in the LARP screen
 function LARPClick() {
 	if (!DailyJobSubSearchIsActive() && (MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 	if (!DailyJobSubSearchIsActive() && (MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(LARPOrganiser);	
@@ -50,11 +41,7 @@ function LARPClick() {
 	DailyJobSubSearchClick();
 }
 
-/**
- * Sets the new LARP class selected by the player
- * @param {string} NewClass - Name of the newly selected class
- * @returns {void} - Nothing
- */
+// When the user selects a class
 function LARPSelectClass(NewClass) {
 	if (ReputationGet("LARP") <= 0) DialogSetReputation("LARP", 1);
 	if (Player.Game == null) Player.Game = {};
