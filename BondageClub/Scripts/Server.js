@@ -512,26 +512,26 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				if (Appearance[A].Asset.Group.Name == AssetGroup[G].Name)
 					Found = true;
 
-			// Adds the missing appearance part, for eyes 2 we copy eyes 1
+			// Adds the missing appearance part, we copy the mirrored group if it is not found and it exists
 			if (!Found) {
-				if (AssetGroup[G].Name == "Eyes2") { 
-					var Eyes2 = null;
+				if (AssetGroup[G].MirrorGroup) { 
+					var MirroredAsset = null;
 					for (var A = 0; A < Appearance.length; A++)
-						if (Appearance[A].Asset.Group.Name == "Eyes") {
+						if (Appearance[A].Asset.Group.Name == AssetGroup[G].MirrorGroup) {
 							for (var I = 0; I < Asset.length; I++)
 								if (Asset[I].Group.Name == AssetGroup[G].Name && Asset[I].Name == Appearance[A].Asset.Name) {
-									Eyes2 = { Asset: Asset[I], Color: Appearance[A].Color };
+									MirroredAsset = { Asset: Asset[I], Color: Appearance[A].Color };
 									break;
 								}
 							break;
 						}
-					if (Eyes2 == null)
+					if (MirroredAsset == null)
 						for (var I = 0; I < Asset.length; I++)
 							if (Asset[I].Group.Name == AssetGroup[G].Name) {
-								Eyes2 = { Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] };
+								MirroredAsset = { Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] };
 								break;
 							}
-					Appearance.push(Eyes2);
+					Appearance.push(MirroredAsset);
 				} else
 					for (var I = 0; I < Asset.length; I++)
 						if (Asset[I].Group.Name == AssetGroup[G].Name) {

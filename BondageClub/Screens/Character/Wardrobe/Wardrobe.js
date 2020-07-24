@@ -217,9 +217,9 @@ function WardrobeFastLoad(C, W, Update) {
 			.filter(g => g.Category == "Appearance" && !g.AllowNone)
 			.forEach(g => {
 				if (C.Appearance.find(a => a.Asset.Group.Name == g.Name) == null) {
-					// For eyes 2, we copy eyes 1
-					if (g.Name == "Eyes2" && InventoryGet(C, "Eyes")) {
-						C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name && a.Name == InventoryGet(C, "Eyes").Asset.Name), Difficulty: 0, Color: InventoryGet(C, "Eyes").Color });
+					// For a group with a mirrored group, we copy the opposite if it exists
+					if (g.MirrorGroup && InventoryGet(C, g.MirrorGroup)) {
+						C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name && a.Name == InventoryGet(C, g.MirrorGroup).Asset.Name), Difficulty: 0, Color: InventoryGet(C, g.MirrorGroup).Color });
 					} else {
 						C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Difficulty: 0, Color: "Default" });
 					}
