@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html style="width:100%; height:100%; padding:0px; margin:0px;">
-
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<meta http-equiv="cache-control" content="max-age=0" />
@@ -239,159 +238,157 @@
 <script src="Screens/Inventory/ItemNipples/LactationPump/LactationPump.js"></script>
 <script>
 
-	/*
+/*
+
+	NEXT VERISON:
 	
-		NEXT VERISON:
+	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
 		
-		BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
-			
-		OK - Armbinder text fix (Ellie)
-		OK - Latex leotard + clit items fix (Ellie)
-		OK - JSDoc for Timer.js (Ace)
-		OK - More 3D models (ZeroDawn)
-		OK - Breast lactation item (Zfreak + Ace)
-		OK - Character array cleanup (Ace)
-		OK - JSDoc for Maid Quarters (Sandrine)
-		OK - Lighter latex (Codefreak64)
-		OK - JSDoc for OnlineGame.js (Ace)
-		OK - Fix on zipped suits (Ace)
-		OK - JSDoc for Server.js (Ace)
-		OK - Mouth activities (Ellie)
-		OK - JSDoc for GLDraw.js & Drawing.js (Ace)
-		OK - Auto focus back on chat log text (Sandrine)
-		OK - Extended item fix (Ellie)
-		OK - Two new backgrounds (Aldarris)
-		OK - Item prerequisite fixes (Ace)
-		OK - JSDoc for Bitchsuit & Chains (Sandrine)
-		OK - JSDoc for 8 scripts (Ace)
-		OK - Two new slave collar models (Ace)
-		OK - New color and sorting for items that can't be used (Sandrine)
-		TEST - Head zone split (Ace)
-		TEST - New poses & items: X-Cross, OverTheHead & Spread (Nythaleath, Kirsty, Ruilove & Sybil)
-		TEST - Fixes for the cross (Ace)	
-		TEST - New interrupt/refresh system for multi-player (Ace)
-		
-		OK - Patron title
-		
-		TO DO - Orgasms count and different messages after the first one
-		
-		TO DO - Item specific actions (Slow & Fast penetration with the strap-on, masturbate with the crotch rope, etc.)
-		
-		TO DO - Arousal System - Special categories:
-			Bondage - The more restraints you wear, the faster the % arousal raises
-			Gagged - Being gagged raise or lower arousal %
-			Blindness - Raise or lower arousal % if blind
-			Chaste - Raise or lower arousal % if chaste
-			Feet - Any activity on the feet can raise your arousal %
-			Voyeurism - When other players do activities, it raises your arousal
-			Exhibitionist - When naked, it raises your arousal
-			Masochism - Being hit with handheld item raises arousal
-			Sadism - Hitting someone with handheld item raises arousal
-			By item category/fabric: Rope, Latex, Leather, Metal, Tape, Lingerie, Furry, Pony, ABDL
-			
-		TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
-			1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
-			2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
-			3. Be Clever (Rope, Yokes, Cages & Boxes, Cuffs & Manacles, Locking Boots, Collars) - Memory Game: Simon Says
-			4. Use Dexterity (Rope, Jackets & Suits, One Bar & Bench & Bag, Mittens, Body Harnesses, Gags with harness, Collars) - Timing Game: Stop the moving object at the right position
-			5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
-			6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
-		
-		TO DO - Add a random punishment function to online chat room to roll a random punishment for a player or yourself, the punishment will be executed manually
+	OK - Armbinder text fix (Ellie)
+	OK - Latex leotard + clit items fix (Ellie)
+	OK - JSDoc for Timer.js (Ace)
+	OK - More 3D models (ZeroDawn)
+	OK - Breast lactation item (Zfreak + Ace)
+	OK - Character array cleanup (Ace)
+	OK - JSDoc for Maid Quarters (Sandrine)
+	OK - Lighter latex (Codefreak64)
+	OK - JSDoc for OnlineGame.js (Ace)
+	OK - Fix on zipped suits (Ace)
+	OK - JSDoc for Server.js (Ace)
+	OK - Mouth activities (Ellie)
+	OK - JSDoc for GLDraw.js & Drawing.js (Ace)
+	OK - Auto focus back on chat log text (Sandrine)
+	OK - Extended item fix (Ellie)
+	OK - Two new backgrounds (Aldarris)
+	OK - Item prerequisite fixes (Ace)
+	OK - JSDoc for Bitchsuit & Chains (Sandrine)
+	OK - JSDoc for 8 scripts (Ace)
+	OK - Two new slave collar models (Ace)
+	OK - New color and sorting for items that can't be used (Sandrine)
+	TEST - Head zone split (Ace)
+	TEST - New poses & items: X-Cross, OverTheHead & Spread (Nythaleath, Kirsty, Ruilove & Sybil)
+	TEST - Fixes for the cross (Ace)	
+	TEST - New interrupt/refresh system for multi-player (Ace)
 	
-		TO DO - Proof Read
-		TO DO - Patreon Import/Update
+	OK - Patron title
 	
-	*/
+	TO DO - Orgasms count and different messages after the first one
+	
+	TO DO - Item specific actions (Slow & Fast penetration with the strap-on, masturbate with the crotch rope, etc.)
+	
+	TO DO - Arousal System - Special categories:
+		Bondage - The more restraints you wear, the faster the % arousal raises
+		Gagged - Being gagged raise or lower arousal %
+		Blindness - Raise or lower arousal % if blind
+		Chaste - Raise or lower arousal % if chaste
+		Feet - Any activity on the feet can raise your arousal %
+		Voyeurism - When other players do activities, it raises your arousal
+		Exhibitionist - When naked, it raises your arousal
+		Masochism - Being hit with handheld item raises arousal
+		Sadism - Hitting someone with handheld item raises arousal
+		By item category/fabric: Rope, Latex, Leather, Metal, Tape, Lingerie, Furry, Pony, ABDL
+		
+	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
+		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
+		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
+		3. Be Clever (Rope, Yokes, Cages & Boxes, Cuffs & Manacles, Locking Boots, Collars) - Memory Game: Simon Says
+		4. Use Dexterity (Rope, Jackets & Suits, One Bar & Bench & Bag, Mittens, Body Harnesses, Gags with harness, Collars) - Timing Game: Stop the moving object at the right position
+		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
+		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
+	
+	TO DO - Add a random punishment function to online chat room to roll a random punishment for a player or yourself, the punishment will be executed manually
 
-	// When the code is loaded, we start the game engine
-	window.onload = function () {
-		//CheatImport();
-		ServerURL = "https://bondage-club-server.herokuapp.com/";
-		CommonIsMobile = CommonDetectMobile();
-		TranslationLoad();
-		DrawLoad();
-		AssetLoadAll();
-		CommonSetScreen("Character", "Login");
-		ServerInit();
-		MainRun(0);
-	};
+	TO DO - Proof Read
+	TO DO - Patreon Import/Update
 
-	// Main game running state, runs the drawing
-	function MainRun(Timestamp) {
-		DrawProcess();
-		TimerProcess(Timestamp);
-	}
+*/
 
-	// When the user presses a key, we send the KeyDown event to the current screen if it can accept it
-	function KeyDown(event) {
-		if (event.repeat) return;
-		KeyPress = event.keyCode || event.which;
-		CommonKeyDown();
-	}
+// When the code is loaded, we start the game engine
+window.onload = function() {
+	//CheatImport();
+	ServerURL = "https://bondage-club-server.herokuapp.com/";
+	CommonIsMobile = CommonDetectMobile();
+	TranslationLoad();
+	DrawLoad();
+	AssetLoadAll();
+	CommonSetScreen("Character", "Login");
+	ServerInit();
+	MainRun(0);
+};
 
-	function DocumentKeyDown(event) {
-		if (event.repeat) return;
-		if (event.key == "Escape") {
-			if (typeof window[CurrentScreen + "Exit"] === "function") {
-				window[CurrentScreen + "Exit"]();
-			} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
-				if (!DialogLeaveFocusItem())
-					DialogLeaveItemMenu();
-			} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
-				DialogLeave();
-			}
+// Main game running state, runs the drawing
+function MainRun(Timestamp) {
+	DrawProcess();
+	TimerProcess(Timestamp);
+}
+
+// When the user presses a key, we send the KeyDown event to the current screen if it can accept it
+function KeyDown(event) {
+	if (event.repeat) return;
+	KeyPress = event.keyCode || event.which;
+	CommonKeyDown();
+}
+
+function DocumentKeyDown(event) {
+	if (event.repeat) return;
+	if (event.key == "Escape") {
+		if (typeof window[CurrentScreen + "Exit"] === "function") {
+			window[CurrentScreen + "Exit"]();
+		} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
+			if (!DialogLeaveFocusItem())
+				DialogLeaveItemMenu();
+		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
+			DialogLeave();
 		}
 	}
+}
 
-	// When the user clicks, we fire the click event for other screens
-	function Click(event) {
-		if (!CommonIsMobile) {
-			MouseMove(event);
-			CommonClick();
-		}
+// When the user clicks, we fire the click event for other screens
+function Click(event) {
+	if (!CommonIsMobile) {
+		MouseMove(event);
+		CommonClick();
 	}
+}
 
-	// When the user touches the screen (mobile only), we fire the click event for other screens
-	function Touch(event) {
-		if (CommonIsMobile) {
-			var rect = document.getElementById("MainCanvas").getBoundingClientRect();
-			if (document.body.clientWidth <= document.body.clientHeight * 2) {
-				MouseX = Math.round((event.touches[0].clientX - rect.left) * 2000 / document.body.clientWidth);
-				MouseY = Math.round((event.touches[0].clientY - rect.top) * 2000 / document.body.clientWidth);
-			} else {
-				MouseX = Math.round((event.touches[0].clientX - rect.left) * 1000 / document.body.clientHeight);
-				MouseY = Math.round((event.touches[0].clientY - rect.top) * 1000 / document.body.clientHeight);
-			}
-			CommonClick();
-		}
-	}
-
-	// When mouse move, we keep the mouse position for other scripts
-	function MouseMove(event) {
+// When the user touches the screen (mobile only), we fire the click event for other screens
+function Touch(event) {
+	if (CommonIsMobile) {
 		var rect = document.getElementById("MainCanvas").getBoundingClientRect();
 		if (document.body.clientWidth <= document.body.clientHeight * 2) {
-			MouseX = Math.round((event.clientX - rect.left) * 2000 / document.body.clientWidth);
-			MouseY = Math.round((event.clientY - rect.top) * 2000 / document.body.clientWidth);
+			MouseX = Math.round((event.touches[0].clientX - rect.left) * 2000 / document.body.clientWidth);
+			MouseY = Math.round((event.touches[0].clientY - rect.top) * 2000 / document.body.clientWidth);
 		} else {
-			MouseX = Math.round((event.clientX - rect.left) * 1000 / document.body.clientHeight);
-			MouseY = Math.round((event.clientY - rect.top) * 1000 / document.body.clientHeight);
-		}
-	}
+			MouseX = Math.round((event.touches[0].clientX - rect.left) * 1000 / document.body.clientHeight);
+			MouseY = Math.round((event.touches[0].clientY - rect.top) * 1000 / document.body.clientHeight);
+		}		
+		CommonClick();
+	} 
+}
 
-	// When the mouse is away from the control, we stop keeping the coordinates, we also check for false positives with "relatedTarget"
-	function LoseFocus(event) {
-		if (event.relatedTarget || event.toElement) {
-			MouseX = -1;
-			MouseY = -1;
-		}
+// When mouse move, we keep the mouse position for other scripts
+function MouseMove(event) {
+	var rect = document.getElementById("MainCanvas").getBoundingClientRect();
+	if (document.body.clientWidth <= document.body.clientHeight * 2) {
+		MouseX = Math.round((event.clientX - rect.left) * 2000 / document.body.clientWidth);
+		MouseY = Math.round((event.clientY - rect.top) * 2000 / document.body.clientWidth);
+	} else {
+		MouseX = Math.round((event.clientX - rect.left) * 1000 / document.body.clientHeight);
+		MouseY = Math.round((event.clientY - rect.top) * 1000 / document.body.clientHeight);
 	}
+}
 
+// When the mouse is away from the control, we stop keeping the coordinates, we also check for false positives with "relatedTarget"
+function LoseFocus(event) {
+	if (event.relatedTarget || event.toElement) {
+		MouseX = -1;
+		MouseY = -1;
+	}
+}
+ 
 </script>
 
 <body style="width:100%; height:100%; background-color:black; margin:0px; padding:0px; overflow:hidden;">
-	<canvas id="MainCanvas" Width="2000" Height="1000" onClick="Click(event);" onTouchStart="Touch(event);"
-		onMouseMove="MouseMove(event);" onMouseLeave="LoseFocus(event);"></canvas>
+	<canvas id="MainCanvas" Width="2000" Height="1000" onClick="Click(event);" onTouchStart="Touch(event);" onMouseMove="MouseMove(event);" onMouseLeave="LoseFocus(event);"></canvas>
 </body>
-
 </html>
