@@ -13,7 +13,7 @@ const ChainsArmsOptions = [
 	}, {
 		Name: "ChainCuffs",
 		RequiredBondageLevel: null,
-		Property: { Type: "ChainCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 30 },
+		Property: { Type: "ChainCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 29 },
 		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
 	}, {
 		Name: "WristElbowTie",

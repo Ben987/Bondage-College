@@ -393,8 +393,8 @@ function ChatRoomCanLeave() {
 // Chat room keyboard shortcuts
 function ChatRoomKeyDown() {
 
-	// If the input textfield is not focussed at the moment, set the focus to it.
-	if (document.activeElement.id != "InputChat") document.getElementById("InputChat").focus();
+	// If the input text is not focused and not on mobile, set the focus to it
+	if (document.activeElement.id != "InputChat") ElementFocus("InputChat");
 
 	// The ENTER key sends the chat.  The "preventDefault" is needed for <textarea>, otherwise it adds a new line after clearing the field
 	if (KeyPress == 13) {
@@ -594,10 +594,10 @@ function ChatRoomCharacterItemUpdate(C, Group) {
 		var P = {};
 		P.Target = C.MemberNumber;
 		P.Group = Group;
-		P.Name = (Item != null) ? Item.Asset.Name : null;
+		P.Name = (Item != null) ? Item.Asset.Name : undefined;
 		P.Color = ((Item != null) && (Item.Color != null)) ? Item.Color : "Default";
 		P.Difficulty = SkillGetWithRatio("Bondage");
-		P.Property = ((Item != null) && (Item.Property != null)) ? Item.Property : null;
+		P.Property = ((Item != null) && (Item.Property != null)) ? Item.Property : undefined;
 		ServerSend("ChatRoomCharacterItemUpdate", P);
 	}
 }
@@ -1105,8 +1105,7 @@ function ChatRoomListManage(Operation, ListType) {
 		var data = {};
 		data[ListType] = Player[ListType];
 		ServerSend("AccountUpdate", data);
-		CommonWait(1000);
-		ChatRoomCharacterUpdate(Player);
+		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
 	if (ListType == "GhostList") ChatRoomListManage(Operation, "BlackList");
 }
@@ -1118,8 +1117,7 @@ function ChatRoomListManipulation(Add, Remove, Message) {
 		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
 		if ((Remove != null) && (Remove.indexOf(C) >= 0)) Remove.splice(Remove.indexOf(C), 1);
 		ServerSend("AccountUpdate", { FriendList: Player.FriendList, GhostList: Player.GhostList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
-		CommonWait(1000);
-		ChatRoomCharacterUpdate(Player);
+		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
 }
 
@@ -1291,8 +1289,7 @@ function ChatRoomSafeword() {
 		if (Player.ItemPermission < 3) {
 			Player.ItemPermission = 3;
 			ServerSend("AccountUpdate", { ItemPermission: Player.ItemPermission });
-			CommonWait(1000);
-			ChatRoomCharacterUpdate(Player);
+			setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 		}
 	}
 }
