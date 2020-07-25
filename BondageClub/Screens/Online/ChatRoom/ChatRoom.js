@@ -393,8 +393,8 @@ function ChatRoomCanLeave() {
 // Chat room keyboard shortcuts
 function ChatRoomKeyDown() {
 
-	// If the input textfield is not focussed at the moment, set the focus to it.
-	if (document.activeElement.id != "InputChat") document.getElementById("InputChat").focus();
+	// If the input text is not focused and not on mobile, set the focus to it
+	if (document.activeElement.id != "InputChat") ElementFocus("InputChat");
 
 	// The ENTER key sends the chat.  The "preventDefault" is needed for <textarea>, otherwise it adds a new line after clearing the field
 	if (KeyPress == 13) {
@@ -594,10 +594,10 @@ function ChatRoomCharacterItemUpdate(C, Group) {
 		var P = {};
 		P.Target = C.MemberNumber;
 		P.Group = Group;
-		P.Name = (Item != null) ? Item.Asset.Name : null;
+		P.Name = (Item != null) ? Item.Asset.Name : undefined;
 		P.Color = ((Item != null) && (Item.Color != null)) ? Item.Color : "Default";
 		P.Difficulty = SkillGetWithRatio("Bondage");
-		P.Property = ((Item != null) && (Item.Property != null)) ? Item.Property : null;
+		P.Property = ((Item != null) && (Item.Property != null)) ? Item.Property : undefined;
 		ServerSend("ChatRoomCharacterItemUpdate", P);
 	}
 }
