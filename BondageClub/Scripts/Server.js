@@ -1,6 +1,6 @@
 /**
  * An item is a pair of asset and its dynamic properties that define a worn asset.
- * @typedef {{Asset: object, Color: string, Difficulty: number, Property?: object}} Item
+ * @typedef {{Asset: object, Color: string, Difficulty: number, Property: object | undefined}} Item
  */
 
 /**
@@ -10,7 +10,7 @@
 
 /**
  * An appearance bundle is an array of object defining each appearance item of a character. It's a minified version of the normal appearance array
- * @typedef {Array.<{Group: string, Name: string, Difficulty?: number, Color?: string, Property?: object}>} AppearanceBundle
+ * @typedef {Array.<{Group: string, Name: string, Difficulty: number | undefined, Color: string | undefined, Property: object | undefined}>} AppearanceBundle
  */
 
 "use strict";
@@ -27,7 +27,7 @@ function ServerInit() {
 	ServerSocket = io(ServerURL);
 	ServerSocket.on("connect", ServerConnect);
 	ServerSocket.on("reconnecting", ServerReconnecting);
-	ServerSocket.on("event", function (data) {console.log(data);});
+	ServerSocket.on("event", function (data) { console.log(data); });
 	ServerSocket.on("ServerMessage", function (data) { console.log(data); });
 	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data); });
 	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
@@ -51,7 +51,7 @@ function ServerInit() {
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); });
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
-	ServerSocket.on("AccountLovership", function(data) { ServerAccountLovership(data); });
+	ServerSocket.on("AccountLovership", function (data) { ServerAccountLovership(data); });
 	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
@@ -64,11 +64,11 @@ function ServerSetConnected(connected, errorMessage) {
 	ServerIsConnected = connected;
 	ServerDidDisconnect = !connected;
 	if (connected) {
-        ServerReconnectCount = 0;
-        LoginErrorMessage = "";
-    } else {
-	    LoginErrorMessage = errorMessage || "";
-    }
+		ServerReconnectCount = 0;
+		LoginErrorMessage = "";
+	} else {
+		LoginErrorMessage = errorMessage || "";
+	}
 	LoginUpdateMessage();
 }
 
@@ -110,7 +110,7 @@ function ServerDisconnect(data) {
 		console.warn(data);
 	}
 	var ShouldRelog = Player.Name != "";
-	ServerSetConnected(false, ShouldRelog ? "Disconnected": "ErrorDisconnectedFromServer");
+	ServerSetConnected(false, ShouldRelog ? "Disconnected" : "ErrorDisconnectedFromServer");
 
 	if (ShouldRelog) {
 		if (CurrentScreen != "Relog") {
@@ -169,7 +169,7 @@ function ServerPlayerInventorySync() {
 	var Inv = [];
 	for (var I = 0; I < Player.Inventory.length; I++)
 		if (Player.Inventory[I].Asset != null)
-			Inv.push([ Player.Inventory[I].Asset.Name, Player.Inventory[I].Asset.Group.Name ]);
+			Inv.push([Player.Inventory[I].Asset.Name, Player.Inventory[I].Asset.Group.Name]);
 	ServerSend("AccountUpdate", { Inventory: LZString.compressToUTF16(JSON.stringify(Inv)) });
 }
 
@@ -367,7 +367,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 	// Removes any invalid data from the appearance bundle
 	for (var B = 0; B < Bundle.length; B++)
-		if ((Bundle[B] == null) || (typeof Bundle[B] !== "object") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string")) {			
+		if ((Bundle[B] == null) || (typeof Bundle[B] !== "object") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string")) {
 			Bundle.splice(B, 1);
 			B--;
 		}
@@ -443,7 +443,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	for (var A = 0; A < Bundle.length; A++) {
 
 		// Skip blocked items
-		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) || InventoryIsPermissionLimited(C,Bundle[A].Name, Bundle)) && OnlineGameAllowBlockItems()) continue;
+		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) || InventoryIsPermissionLimited(C, Bundle[A].Name, Bundle)) && OnlineGameAllowBlockItems()) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (var I = 0; I < Asset.length; I++)
@@ -467,7 +467,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				}
 
 				// Validate color string, fallback to default in case of an invalid color
-				if ((NA.Color !=  NA.Asset.Group.ColorSchema[0]) && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
+				if ((NA.Color != NA.Asset.Group.ColorSchema[0]) && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
 					NA.Color = NA.Asset.Group.ColorSchema[0];
 				}
 

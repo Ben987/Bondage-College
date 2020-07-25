@@ -85,11 +85,11 @@ function TennisRun() {
 			DrawText(TextGet("Intro2"), 1000, 500, "black");
 			DrawText(TextGet("StartsIn") + " " + (5 - Math.floor(MiniGameTimer / 1000)).toString(), 1000, 600, "black");
 		} else {
-						
+			
 			// Moves the ball
-			TennisBallX = TennisBallX + Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
-			TennisBallY = TennisBallY - Math.sin(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
-
+			TennisBallX += Math.cos(TennisBallAngle) * (TennisBallSpeed / 20) * (TimerRunInterval / 16.6667);
+			TennisBallY -= Math.sin(TennisBallAngle) * (TennisBallSpeed / 20) * (TimerRunInterval / 16.6667);
+			
 			// Moves the player and opponent racket, the opponent speeds up with difficulty, tracks the ball in defense, go back toward the middle in offense
 			if ((MouseY >= 0) && (MouseY <= 999)) TennisCharacterLeftRacket = MouseY;
 			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY > TennisCharacterRightRacket + 55)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
@@ -149,7 +149,7 @@ function TennisRun() {
 		}
 
 	} else {
-
+		
 		// Draw the end message
 		if (MiniGameVictory && (TennisCharacterRightPoint == 0)) DrawText(TextGet("Perfect"), 1000, 400, "black");
 		else if (MiniGameVictory) DrawText(TextGet("Victory"), 1000, 400, "black");

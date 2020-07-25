@@ -1,7 +1,7 @@
 // The main game canvas where everything will be drawn
 /**
  * An item is a pair of asset and its dynamic properties that define a worn asset.
- * @typedef {{Asset: object, Color: string, Difficulty: number, Property?: object}} Item
+ * @typedef {{Asset: object, Color: string, Difficulty: number, Property: object | undefined}} Item
  */
 "use strict";
 var MainCanvas;
@@ -64,7 +64,7 @@ function DrawLoad() {
 	MainCanvas.font = "36px Arial";
 	MainCanvas.textAlign = "center";
 	MainCanvas.textBaseline = "middle";
-	
+
 	// Loads the 3D engine as well
 	Draw3DLoad();
 
@@ -172,7 +172,7 @@ function DrawArousalMeter(C, X, Y, Zoom) {
  */
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	if ((C != null) && ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet"))) {
-		
+
 		// Shortcuts drawing the character to 3D if needed
 		if (Draw3DEnabled) {
 			Draw3DCharacter(C, X, Y, Zoom, IsHeightResizeAllowed);
@@ -182,7 +182,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		// There's 2 different canvas, one blinking and one that doesn't
 		var seconds = new Date().getTime();
 		var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
-		
+
 		// Applies an offset to X and Y based on the HeightRatio.  If the player prefers full height, we always use 1.0
 		var HeightRatio = 1.0;
 		if ((IsHeightResizeAllowed == undefined) || IsHeightResizeAllowed) HeightRatio = CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
@@ -231,7 +231,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 
 		// Applies a Y offset if the character is suspended
 		if (C.Pose.indexOf("Suspension") >= 0) Y += (Zoom * Canvas.height * (1 - HeightRatio) / HeightRatio);
-		
+
 		// Draws the character focus zones if we need too
 		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null) && (CurrentScreen != "Preference")) {
 
@@ -684,8 +684,8 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
  * @returns {void} - Nothing
  */
 function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked) {
-    DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
-    DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
+	DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
+	DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
 }
 
 /**

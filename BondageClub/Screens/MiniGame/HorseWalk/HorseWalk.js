@@ -22,9 +22,14 @@ var HorseWalkSpeed = 1;
 var HorseWalkText =""
 var HorseWalkEventTimer = 0;
 
-// Generates all the Carrots
+/**
+ * Generates all the carrots and crops
+ * @param {number} MaxCarrot - Maximum number of carrots to generate
+ * @param {number} MaxCrop - Maximum number of crops to generate
+ * @returns {void} - Nothing
+ */
 function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
-	// Full the Carrots sequence
+	// Fill the Carrots sequence
 	HorseWalkCarrots = [];
 	for (var S = 0; S < MaxCarrot; S++) {
 		// Generates each Carrot 1 by 1
@@ -34,7 +39,7 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 		}
 		HorseWalkCarrots.push(NewCarrot);
 	}
-	// Full the Crops sequence
+	// Fill the Crops sequence
 	HorseWalkCrops = [];
 	for (var S = 0; S < MaxCrop; S++) {
 		// Generates each Carrot 1 by 1
@@ -47,7 +52,11 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 
 }
 
-// Generates all the Hurdle
+/**
+ * Generates all the Hurdles for the basic hurdle difficulty
+ * @param {number} MaxHurdle - Maximum number of hurdles to generate
+ * @returns {void} - Nothing
+ */
 function HorseWalkGenerateHurdleItems(MaxHurdle) {
 	HorseWalkHurdle = [];
 	for (var S = 0; S < MaxHurdle; S++) {
@@ -61,7 +70,11 @@ function HorseWalkGenerateHurdleItems(MaxHurdle) {
 	}
 }
 
-// Generates all the Hurdle
+/**
+ * Generates all the Hurdles for the hurdle training difficulty
+ * @param {number} MaxHurdle - Maximum number of hurdles to generate
+ * @returns {void} - Nothing
+ */
 function HorseWalkGenerateHurdleTrainingItems(MaxHurdle) {
 	HorseWalkHurdle = [];
 	for (var S = 0; S < MaxHurdle; S++) {
@@ -75,7 +88,10 @@ function HorseWalkGenerateHurdleTrainingItems(MaxHurdle) {
 	}
 }
 
-// Draw the Carrots
+/**
+ * Draws the carrots & crops, or hurdles based on the current difficulty/mode
+ * @returns {void} - Nothing
+ */
 function HorseWalkDrawItem() {
 	if (MiniGameDifficulty == "Carrot") {
 		for (var S = 0; S < HorseWalkCarrots.length; S++)
@@ -95,12 +111,14 @@ function HorseWalkDrawItem() {
 	}
 }
 
-// Loads the Horse Walk mini game
+/**
+ * Loads the Horse Walk mini game and generate the items, there are more carrots on harder difficulties and there are less of them overall on mobile because it is hard (no mouse swiping)
+ * @returns {void} - Nothing
+ */
 function HorseWalkLoad() {
 
 	HorseWalkBackground = "HorseStable";
 
-	// The higher the difficulty, the more Carrots there will be (less Carrots on mobile since we cannot swipe the mouse)
 	HorseWalkPlayerX = 900;
 	HorseWalkPlayerY = 400;
 	var Factor = (CommonIsMobile) ? 0.25 : 1;
@@ -128,7 +146,10 @@ function HorseWalkLoad() {
 	HorseWalkSpeed = 1 + SkillGetLevel(Player, "Dressage")/5;
 }
 
-// Run the mini game
+/**
+ * Runs the horse walk mini game and draws the characters and items on screen
+ * @returns {void} - Nothing
+ */
 function HorseWalkRun() {
 
 	// The game ends in victory if the time runs out
@@ -234,14 +255,21 @@ function HorseWalkRun() {
 	}
 }
 
-// Ends the game and sends the result back to the screen
+/**
+ * Ends the game and sends the result back to the screen
+ * @param {boolean} Victory - Whether or not the player has won
+ * @returns {void} - Nothing
+ */
 function HorseWalkEnd(Victory) {
 	MiniGameVictory = Victory;
 	MiniGameEnded = true;
 	MiniGameTimer = CommonTime();
 }
 
-// When the user clicks in the horse walk game
+/**
+ * Validates the clicks during the horse walk mini game for mobile, moves the character and validates touched items
+ * @returns {void} - Nothing
+ */
 function HorseWalkDoMove() {
 
 	// If the position changed
@@ -301,7 +329,10 @@ function HorseWalkDoMove() {
 
 }
 
-// On mobile, we need to move the player on click
+/**
+ * Handles click events during the horse walk mini game. On mobile we move the player on click.
+ * @returns {void} - Nothing
+ */
 function HorseWalkClick() {
 	if (MiniGameDifficulty == "WhipPony") {
 		if ((MouseX >= HorseWalkDrawXPosition) && (MouseX < (HorseWalkDrawXPosition + (HorseWalkDrawYHeigh / 2))) && (MouseY >= HorseWalkDrawYPosition) && (MouseY < (HorseWalkDrawYPosition + HorseWalkDrawYHeigh))) {
