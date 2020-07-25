@@ -385,7 +385,7 @@ function PreferenceClick() {
 		AfkTimerSetEnabled(Player.GameplaySettings.EnableAfkTimer);
 	}
 	if (CommonIsClickAt(500, 712, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
-	if (CommonIsClickAt(500, 792, 64, 64)) {
+	if (MouseIn(500, 792, 64, 64)) {
 		if(!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) Player.GameplaySettings.EnableSafeword = true;
 		else if (Player.GameplaySettings.EnableSafeword) Player.GameplaySettings.EnableSafeword = false;
 	}
