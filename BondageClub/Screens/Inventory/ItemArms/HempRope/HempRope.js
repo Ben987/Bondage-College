@@ -13,7 +13,7 @@ const HempRopeArmsOptions = [
 	}, {
 		Name: "RopeCuffs",
 		RequiredBondageLevel: null,
-		Property: { Type: "RopeCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 30 },
+		Property: { Type: "RopeCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 29 },
 		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
 	}, {
 		Name: "WristElbowTie",
