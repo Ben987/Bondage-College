@@ -90,7 +90,10 @@ var SpankingPlayerInventory;
 // Loads the item extension properties
 function InventoryItemHandsSpankingToysLoad() {
 	SpankingPlayerInventory = SpankingInventory.filter(x => Player.Inventory.map(i => i.Name).includes("SpankingToys" + x.Name));
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: "Crop" };
+	if (DialogFocusItem.Property == null) {
+		DialogFocusItem.Property = { Type: "Crop" };
+		CharacterRefresh(CharacterGetCurrent(), false);
+	}
 	if (SpankingPlayerInventory.length > 6) SpankingNextButton = true;
 }
 

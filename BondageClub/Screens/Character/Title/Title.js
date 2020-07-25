@@ -14,6 +14,7 @@ var TitleList = [
 	{ Name: "Nurse", Requirement: function () { return ((ReputationGet("Asylum") >= 50) && (ReputationGet("Asylum") < 100)) } },
 	{ Name: "Doctor", Requirement: function () { return (ReputationGet("Asylum") >= 100) } },
 	{ Name: "LadyLuck", Requirement: function () { return (ReputationGet("Gambling") >= 100) } },
+	{ Name: "Patron", Requirement: function () { return CheatAllow } },
 	{ Name: "CollegeStudent", Requirement: function () { return LogQuery("BondageCollege", "Import") } },
 	{ Name: "Nawashi", Requirement: function () { return (SkillGetLevel(Player, "Bondage") >= 10) } },
 	{ Name: "Houdini", Requirement: function () { return (SkillGetLevel(Player, "Evasion") >= 10) } },

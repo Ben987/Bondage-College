@@ -1,16 +1,22 @@
 "use strict";
 var InventoryItemAddonBondageBenchStrapsMessage = "";
 
-// Loads the item extension properties
+/**
+ * Loads the item extension properties. Is called dynamically the first time a player enters this dialog
+ * @returns {void} - Nothing
+ */
 function InventoryItemAddonBondageBenchStrapsLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
 	DialogFocusItem.Property.SelfUnlock = false;
 	InventoryItemAddonBondageBenchStrapsMessage = null;
 }
 
-// Draw the item extension screen
+/**
+ * Draw the item extension screen. As this function is called periodically, don't call expensive functions from here
+ * @returns {void} - Nothing
+ */
 function InventoryItemAddonBondageBenchStrapsDraw() {
-	
+
 	// Draw the header and item
 	DrawRect(1387, 125, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
@@ -35,16 +41,23 @@ function InventoryItemAddonBondageBenchStrapsDraw() {
 	if (InventoryItemAddonBondageBenchStrapsMessage != null) DrawTextWrap(DialogFind(Player, InventoryItemAddonBondageBenchStrapsMessage), 1100, 850, 800, 160, "White");
 }
 
-// Catches the item extension clicks
+/**
+ * Handles click events for this extension. Is called from CommonClick()
+ * @returns {void} - Nothing
+ */
 function InventoryItemAddonBondageBenchStrapsClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if (CommonIsClickAt(1000, 550, 225, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemAddonBondageBenchStrapsSetPose(null);
-	if (CommonIsClickAt(1250, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Normal"))) InventoryItemAddonBondageBenchStrapsSetPose("Normal");
-	if (CommonIsClickAt(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Heavy"))) InventoryItemAddonBondageBenchStrapsSetPose("Heavy");
-	if (CommonIsClickAt(1750, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Full"))) InventoryItemAddonBondageBenchStrapsSetPose("Full");
+	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
+	if (MouseIn(1000, 550, 225, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemAddonBondageBenchStrapsSetPose(null);
+	if (MouseIn(1250, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Normal"))) InventoryItemAddonBondageBenchStrapsSetPose("Normal");
+	if (MouseIn(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Heavy"))) InventoryItemAddonBondageBenchStrapsSetPose("Heavy");
+	if (MouseIn(1750, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Full"))) InventoryItemAddonBondageBenchStrapsSetPose("Full");
 }
 
-// Sets the cuffs pose (wrist, elbow, both or none)
+/**
+ * Sets the heavyness of the bindings 
+ * @param {string} NewPose - The 'pose' to set. Possible values are ('Normal', 'Heavy', 'Full')
+ * @returns {void} - Nothing
+ */
 function InventoryItemAddonBondageBenchStrapsSetPose(NewPose) {
 	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -59,7 +72,7 @@ function InventoryItemAddonBondageBenchStrapsSetPose(NewPose) {
 		InventoryItemAddonBondageBenchStrapsMessage = "RemoveClothesForItem";
 		return;
 	}
-	
+
 	DialogFocusItem.Property.SetPose = ["LegsClosed"];
 	DialogFocusItem.Property.Type = NewPose;
 	if (NewPose == "Normal") DialogFocusItem.Property.Difficulty = 3;
@@ -77,8 +90,8 @@ function InventoryItemAddonBondageBenchStrapsSetPose(NewPose) {
 	CharacterRefresh(C);
 	var msg = "BondageBenchStrapsRestrain" + ((NewPose == null) ? "None" : NewPose);
 	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+	Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 
 	// Rebuilds the inventory menu

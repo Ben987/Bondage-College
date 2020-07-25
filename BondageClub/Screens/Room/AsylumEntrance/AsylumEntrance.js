@@ -136,10 +136,14 @@ function AsylumEntranceFightNurseEnd() {
 	AsylumEntranceWearNurseClothes(AsylumEntranceNurse);
 	AsylumEntranceWearPatientClothes(Player);
 	InventoryRemove(AsylumEntranceNurse, "ItemHead");
+	InventoryRemove(AsylumEntranceNurse, "ItemHood");
+	InventoryRemove(AsylumEntranceNurse, "ItemNose");
 	InventoryRemove(AsylumEntranceNurse, "ItemMouth");
 	InventoryRemove(AsylumEntranceNurse, "ItemFeet");
 	InventoryRemove(AsylumEntranceNurse, "ItemNeck");
 	InventoryRemove(Player, "ItemHead");
+	InventoryRemove(Player, "ItemHood");
+	InventoryRemove(Player, "ItemNose");
 	InventoryRemove(Player, "ItemMouth");
 	InventoryRemove(Player, "ItemFeet");
 	CommonSetScreen("Room", "AsylumEntrance");

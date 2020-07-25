@@ -30,12 +30,14 @@ var ExtendedItemOffsets = {};
 
 /**
  * Loads the item extension properties
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @param {string} DialogKey - The dialog key for the message to display prompting the player to select an extended type
  * @returns {void} Nothing
  */
 function ExtendedItemLoad(Options, DialogKey) {
 	if (!DialogFocusItem.Property) {
+		// Default to the first option if no property is set
 		DialogFocusItem.Property = Options[0].Property;
 	}
 
@@ -48,7 +50,8 @@ function ExtendedItemLoad(Options, DialogKey) {
 
 /**
  * Draws the extended item type selection screen
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @param {string} DialogPrefix - The prefix to the dialog keys for the display strings describing each extended type.
  *     The full dialog key will be <Prefix><Option.Name>
  * @returns {void} Nothing
@@ -77,18 +80,19 @@ function ExtendedItemDraw(Options, DialogPrefix) {
 
 /**
  * Handles clicks on the extended item type selection screen
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @returns {void} Nothing
  */
 function ExtendedItemClick(Options) {
+
 	// Exit button
-	if (MouseX >= 1885 && MouseX <= 1975 && MouseY >= 25 && MouseY <= 110) {
+	if (MouseIn(1885, 25, 90, 85)) {
 		DialogFocusItem = null;
 		return;
 	}
 
 	var IsSelfBondage = CharacterGetCurrent().ID === 0;
-
 	if (Options.length === 2) {
 		ExtendedItemClickTwo(Options, IsSelfBondage);
 	} else {
@@ -98,7 +102,8 @@ function ExtendedItemClick(Options) {
 
 /**
  * Handler function for setting the type of an extended item
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @param {ExtendedItemOption} Option - The selected type definition
  * @returns {void} Nothing
  */
@@ -117,13 +122,28 @@ function ExtendedItemSetType(Options, Option) {
 		// Call the item's load function
 		CommonCallFunctionByName(FunctionPrefix + "Load");
 	}
-	var PreviousType = DialogFocusItem.Property.Type;
+	// Default the previous Property and Type to the first option if not found on the current item
+	var PreviousProperty = DialogFocusItem.Property || Options[0].Property;
+	var PreviousType = PreviousProperty.Type || Options[0].Property.Type;
+	var PreviousOption = Options.find(O => O.Property.Type === PreviousType);
 
-	DialogFocusItem.Property = Option.Property;
+	// Create a new Property object based on the previous one
+	var NewProperty = Object.assign({}, PreviousProperty);
+	// Delete properties added by the previous option
+	Object.keys(PreviousOption.Property).forEach(key => delete NewProperty[key]);
+	// Clone the new properties and use them to extend the existing properties
+	Object.assign(NewProperty, JSON.parse(JSON.stringify(Option.Property)));
+
+	// If the item is locked, ensure it has the "Lock" effect
+	if (NewProperty.LockedBy && !(NewProperty.Effect || []).includes("Lock")) {
+		NewProperty.Effect = (NewProperty.Effect || []);
+		NewProperty.Effect.push("Lock");
+	}
+
+	DialogFocusItem.Property = NewProperty;
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 
-	var PreviousOption = Options.find(O => O.Property.Type === PreviousType);
 	if (CurrentScreen === "ChatRoom") {
 		// If we're in a chatroom, call the item's publish function to publish a message to the chatroom
 		CommonCallFunctionByName(FunctionPrefix + "PublishAction", C, Option, PreviousOption);
@@ -142,7 +162,8 @@ function ExtendedItemSetType(Options, Option) {
 
 /**
  * Draws the extended item type selection screen when there are only two options
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @param {string} DialogPrefix - The prefix to the dialog keys for the display strings describing each extended type.
  *     The full dialog key will be <Prefix><Option.Name>
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
@@ -166,7 +187,8 @@ function ExtendedItemDrawTwo(Options, DialogPrefix, IsSelfBondage) {
 /**
  * Draws the extended item type selection screen when there are more than two options. Options will be paginated if necessary, with four
  * options drawn per page in a 2x2 grid
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @param {string} DialogPrefix - The prefix to the dialog keys for the display strings describing each extended type.
  *     The full dialog key will be <Prefix><Option.Name>
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
@@ -191,7 +213,8 @@ function ExtendedItemDrawGrid(Options, DialogPrefix, IsSelfBondage) {
 
 /**
  * Handles clicks on the extended item type selection screen when there are only two options
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
  * @returns {void} Nothing
  */
@@ -200,7 +223,7 @@ function ExtendedItemClickTwo(Options, IsSelfBondage) {
 		var X = 1175 + I * 425;
 		var Y = 550;
 		var Option = Options[I];
-		if (MouseX >= X && MouseX <= X + 225 && MouseY >= Y && MouseY <= Y + 225 && DialogFocusItem.Property.Type !== Option.Property.Type) {
+		if (MouseIn(X, Y, 225, 225) && DialogFocusItem.Property.Type !== Option.Property.Type) {
 			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage);
 		}
 	}
@@ -208,15 +231,16 @@ function ExtendedItemClickTwo(Options, IsSelfBondage) {
 
 /**
  * Handles clicks on the extended item type selection screen when there are more than two options
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
  * @returns {void} Nothing
  */
 function ExtendedItemClickGrid(Options, IsSelfBondage) {
+
 	// Pagination button
-	if (Options.length > 4 && MouseX >= 1775 && MouseX <= 1865 && MouseY >= 25 && MouseY <= 110) {
+	if ((Options.length > 4) && MouseIn(1775, 25, 90, 85))
 		ExtendedItemNextPage(InventoryItemArmsWebOptions);
-	}
 
 	var ItemOptionsOffset = ExtendedItemGetOffset();
 
@@ -225,7 +249,7 @@ function ExtendedItemClickGrid(Options, IsSelfBondage) {
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
 		var Option = Options[I];
-		if (MouseX >= X && MouseX <= X + 225 && MouseY >= Y && MouseY <= Y + 225 && DialogFocusItem.Property.Type !== Option.Property.Type) {
+		if (MouseIn(X, Y, 225, 225) && DialogFocusItem.Property.Type !== Option.Property.Type) {
 			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage);
 		}
 	}
@@ -233,7 +257,8 @@ function ExtendedItemClickGrid(Options, IsSelfBondage) {
 
 /**
  * Handler function called when an option on the type selection screen is clicked
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @param {ExtendedItemOption} Option - The selected type definition
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
  * @returns {void} Nothing
@@ -304,7 +329,8 @@ function ExtendedItemSetOffset(Offset) {
 /**
  * Switches the pagination offset to the next page for the currently focused extended item. If the new offset is greater
  * than the number of available options, the offset will be reset to zero, wrapping back to the first page.
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
+ *     be the default option.
  * @returns {void} Nothing
  */
 function ExtendedItemNextPage(Options) {

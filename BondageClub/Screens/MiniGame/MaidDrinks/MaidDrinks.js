@@ -15,7 +15,10 @@ var MaidDrinksLastMoveTypeTimer = -1;
 var MaidDrinksKeyUpper = [65, 83, 75, 76]; 
 var MaidDrinksKeyLower = [97, 115, 107, 108];
 
-// Generates a full sequence
+/**
+ * Generates a full sequence
+ * @param {number} StartTime - Start time of the sequence
+ */
 function MaidDrinksGenerateMove(StartTime) {
 	
 	// Full the sequence
@@ -33,7 +36,10 @@ function MaidDrinksGenerateMove(StartTime) {
 
 }
 
-// Loads the maid drinks mini game
+/**
+ * Loads the maid drinks mini game and its NPCs
+ * @returns {void} - Nothing
+ */
 function MaidDrinksLoad() {
 	InventoryWear(Player, "WoodenMaidTrayFull", "ItemMisc");
 	MaidDrinksCustomerLeftVisible = false;
@@ -50,7 +56,10 @@ function MaidDrinksLoad() {
 	if (MiniGameDifficulty == "Hard") MiniGameDifficultyRatio = 2.0;
 }
 
-// Draw the mini game icons
+/**
+ * Draws the icons for the mini game
+ * @returns {void} - Nothing
+ */
 function MaidDrinksDrawIcons() {
 
 	// Scroll the icons with time
@@ -77,7 +86,11 @@ function MaidDrinksDrawIcons() {
 
 }
 
-// Draw the bars to tell when the moves will hit
+/**
+ * Draws the bars to tell when the moves will hit
+ * @param {number} SquareType - Type of the bar to draw (0 to 3)
+ * @returns {void} - Nothing
+ */
 function MaidDrinksDrawBar(SquareType) {
 
 	// The color changes when it's clicked or pressed
@@ -90,7 +103,10 @@ function MaidDrinksDrawBar(SquareType) {
 
 }
 
-// Generates random customers for the mini game
+/**
+ * Generates random customers for the mini game (makes them visible for a random amount of time)
+ * @returns {void} - Nothing
+ */
 function MaidDrinksCustomers() {
 	
 	// Manages the left customer
@@ -119,7 +135,10 @@ function MaidDrinksCustomers() {
 
 }
 
-// Run the maid drinks mini game
+/**
+ * Runs and draws the maid drinks mini game
+ * @returns {void} - Nothing
+ */
 function MaidDrinksRun() {
 	
 	// Draw the characters
@@ -167,7 +186,11 @@ function MaidDrinksRun() {
 
 }
 
-// Ends the game and sends the result back to the screen
+/**
+ * Ends the maid drinks mini game and sends the result back to the screen
+ * @param {boolean} Victory - Whether or not the player one the mini game
+ * @returns {void} - Nothing
+ */
 function MaidDrinksEnd(Victory) {
 	MaidDrinksLastMoveType = -1;
 	MaidDrinksCustomerLeft = null;
@@ -179,14 +202,20 @@ function MaidDrinksEnd(Victory) {
 	MiniGameEnded = true;
 }
 
-// When the player hits
+/**
+ * Used when the player hits, at 100 progress the player wins and the game ends
+ * @returns {void} - Nothing
+ */
 function MaidDrinksHit() {
 	MiniGameProgress = MiniGameProgress + 1;
 	if (MiniGameProgress >= 100)
 		MaidDrinksEnd(true);
 }
 
-// When the player misses (the penalty is greater on higher difficulties)
+/**
+ * Used when the player misses, the penalty is bigger on higher difficulties. When below zero progress, the player fails the mini game.
+ * @returns {void} - Nothing
+ */
 function MaidDrinksMiss() {
 	MiniGamePerfect = false;
 	if (MiniGameDifficulty == "Easy") MiniGameProgress = MiniGameProgress - 2;
@@ -195,7 +224,11 @@ function MaidDrinksMiss() {
 	if (MiniGameProgress <= 0) MaidDrinksEnd(false);
 }
 
-// When the player tries a specific move type
+/**
+ * Used when the player tries to do a specific move type
+ * @param {number} MoveType - Type of move made by the player
+ * @returns {void} - Nothing
+ */
 function MaidDrinksDoMove(MoveType) {
 	
 	// Below zero is always a miss
@@ -230,7 +263,10 @@ function MaidDrinksDoMove(MoveType) {
 
 }
 
-// When a key is pressed while in the mini game (for both keyboard and mobile)
+/**
+ * Handles key presses during the maid drinks mini game. (Both keyboard and mobile)
+ * @returns {void} - Nothing
+ */
 function MaidDrinksKeyDown() {
 
 	// If the game has started, we check the key pressed and send it as a move
@@ -245,7 +281,10 @@ function MaidDrinksKeyDown() {
 	
 }
 
-// When the user clicks in the maid drinks mini game (only works on mobile)
+/**
+ * Handles clicks during the maid drinks mini game (only on mobile, to replace the keyboard)
+ * @returns {void} - Nothing
+ */
 function MaidDrinksClick() {
 
 	// If the game is over, clicking on the image will end it
@@ -255,10 +294,10 @@ function MaidDrinksClick() {
 	// If the game has started, we check the click position and send it as a move
 	if ((MiniGameTimer > 5000) && (MiniGameProgress != -1) && !MiniGameEnded && CommonIsMobile) {
 		var MoveType = -1;
-		if ((MouseX >= 1200) && (MouseX < 1400) && (MouseY >= 700) && (MouseY <= 850)) MoveType = 0;
-		if ((MouseX >= 1400) && (MouseX < 1600) && (MouseY >= 700) && (MouseY <= 850)) MoveType = 1;
-		if ((MouseX >= 1600) && (MouseX < 1800) && (MouseY >= 700) && (MouseY <= 850)) MoveType = 2;
-		if ((MouseX >= 1800) && (MouseX < 2000) && (MouseY >= 700) && (MouseY <= 850)) MoveType = 3;
+		if (MouseIn(1200, 700, 200, 150)) MoveType = 0;
+		if (MouseIn(1400, 700, 200, 150)) MoveType = 1;
+		if (MouseIn(1600, 700, 200, 150)) MoveType = 2;
+		if (MouseIn(1800, 700, 200, 150)) MoveType = 3;
 		MaidDrinksDoMove(MoveType);
 	}
 
