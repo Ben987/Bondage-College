@@ -17,6 +17,7 @@ var ChatRoomHelpSeen = false;
 var ChatRoomAllowCharacterUpdate = true;
 var ChatRoomStruggleAssistBonus = 0;
 var ChatRoomStruggleAssistTimer = 0;
+var ChatRoomSlowtimer = 0;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -271,7 +272,17 @@ function ChatRoomRun() {
 	DrawButton(1905, 908, 90, 90, "", "White", "Icons/Chat.png");
 
 	// Draws the top button, in red if they aren't enabled
-	DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+	if (!ChatRoomCanLeave() && ChatRoomSlowtimer != 0)ChatRoomSlowtimer = 0;
+	if (Player.IsSlow() && ChatRoomCanLeave()){
+		if (ChatRoomSlowtimer == 0) DrawButton(1005, 2, 120, 60, "", "Blue", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+		if (CurrentTime < ChatRoomSlowtimer && ChatRoomSlowtimer != 0) DrawButton(1005, 2, 120, 60, "", "Yellow", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+		if (CurrentTime > ChatRoomSlowtimer && CurrentTime < ChatRoomSlowtimer + 3000 && ChatRoomSlowtimer != 0) DrawButton(1005, 2, 120, 60, "", "rgb(49, 255, 49)", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+		if (CurrentTime > ChatRoomSlowtimer + 3000 && ChatRoomSlowtimer != 0){
+			ChatRoomSlowtimer = 0;
+			DrawButton(1005, 2, 120, 60, "", "Blue", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+		}
+	} 
+	else DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
 	if (OnlineGameName == "") DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
 	else DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/GameOption.png", TextGet("MenuGameOption"));
 	DrawButton(1353, 2, 120, 60, "", (Player.CanKneel()) ? "White" : "Pink", "Icons/Rectangle/Kneel.png", TextGet("MenuKneel"));
@@ -325,11 +336,26 @@ function ChatRoomClick() {
 	if ((MouseX >= 0) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) ChatRoomDrawCharacter(true);
 
 	// When the user leaves
-	if ((MouseX >= 1005) && (MouseX < 1125) && (MouseY >= 0) && (MouseY <= 62) && ChatRoomCanLeave()) {
+	if ((MouseX >= 1005) && (MouseX < 1125) && (MouseY >= 0) && (MouseY <= 62) && ChatRoomCanLeave() && !Player.IsSlow()) {
 		ElementRemove("InputChat");
 		ElementRemove("TextAreaChatLog");
 		ServerSend("ChatRoomLeave", "");
 		CommonSetScreen("Online", "ChatSearch");
+	}
+
+	//When the player is slow and attempts leave
+	if ((MouseX >= 1005) && (MouseX < 1125) && (MouseY >= 0) && (MouseY <= 62) && ChatRoomCanLeave() && Player.IsSlow()){
+		if (ChatRoomSlowtimer == 0){
+			//TODO: send chat command alerting others that Player is attempting to leave.
+			ChatRoomSlowtimer = CurrentTime + 10000;
+		}
+		else if (CurrentTime > ChatRoomSlowtimer && CurrentTime < ChatRoomSlowtimer + 3000){
+			ElementRemove("InputChat");
+			ElementRemove("TextAreaChatLog");
+			ServerSend("ChatRoomLeave", "");
+			CommonSetScreen("Online", "ChatSearch");
+		}
+		else if (CurrentTime > ChatRoomSlowtimer + 3000)ChatRoomSlowtimer = 0;
 	}
 
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
