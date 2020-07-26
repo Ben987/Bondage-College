@@ -33,7 +33,7 @@ function NPCCollaringRun() {
 }
 
 /**
- * Handles clicks during the NPC collaring cutscene. Clicking anywhere on the screen advances the cutscene. At the end of the cutscene, we save the changes and go back in the player's private room.
+ * Handles clicks during the NPC collaring cutscene. Clicking anywhere on the screen advances the cutscene. At the end of the cutscene, NPCs are saved and the player is sent back to her room with her sub.
  * @returns {void} - Nothing
  */
 function NPCCollaringClick() {
