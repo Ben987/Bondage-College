@@ -1455,8 +1455,6 @@ function DialogDrawItemMenu(C) {
 
 			// Removes the item & associated items if needed, then wears the new one 
 			InventoryRemove(C, C.FocusGroup.Name);
-			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
-			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckRestraints");
 			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetWithRatio("Bondage"));
 
 			// The player can use another item right away, for another character we jump back to her reaction
