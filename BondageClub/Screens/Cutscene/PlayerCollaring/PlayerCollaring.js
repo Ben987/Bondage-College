@@ -33,7 +33,7 @@ function PlayerCollaringRun() {
 }
 
 /**
- * Handles clicks during the player collaring cutscene. Clicking anywhere on the screen advances the cutscene. At the end of the cutscene, NPCs are saved and the player is sent back to her room with her mistress.
+ * Handles clicks during the player collaring cutscene. Clicking anywhere on the screen advances the cutscene. At the end of the cutscene, the player is sent back to her room with her mistress.
  * @returns {void} - Nothing
  */
 function PlayerCollaringClick() {
