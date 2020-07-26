@@ -35,7 +35,7 @@ function PlayerMistressRun() {
 }
 
 /**
- * Handles clicks during the player collaring cutscene. Clicking anywhere on the screen advances the cutscene. At the end of the cutscene, the player stays in the management room but the state goes back to normal.
+ * Handles clicks during the mistress promotion cutscene. Clicking anywhere on the screen advances the cutscene. At the end of the cutscene, the player stays in the management room but the state goes back to normal.
  * @returns {void} - Nothing
  */
 function PlayerMistressClick() {
