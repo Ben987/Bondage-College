@@ -161,7 +161,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 	// For each item group (non default items only show at a 20% rate, if it can occasionally happen)
 	for (var A = 0; A < AssetGroup.length; A++)
 		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (AssetGroup[A].Random && Math.random() < 0.2) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && (!CharacterAppearanceMustHide(C, AssetGroup[A].Name) || !AssetGroup[A].AllowNone) && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None")) {
-
+			
 			// Get the parent size
 			var ParentSize = "";
 			if (AssetGroup[A].ParentSize != "")
@@ -189,6 +189,12 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 				if (SelectedAsset.Group.ParentColor != "")
 					if (CharacterAppearanceGetCurrentValue(C, SelectedAsset.Group.ParentColor, "Color") != "None")
 						SelectedColor = CharacterAppearanceGetCurrentValue(C, SelectedAsset.Group.ParentColor, "Color");
+				// Rare chance of keeping eyes of a different color
+				if (SelectedAsset.Group.Name == "Eyes2" && Math.random() < 0.999) {
+					for (var A = 0; A < C.Appearance.length; A++)
+						if (C.Appearance[A].Asset.Group.Name == "Eyes")
+							SelectedColor = C.Appearance[A].Color;
+				}
 				var NA = {
 					Asset: SelectedAsset,
 					Color: SelectedColor

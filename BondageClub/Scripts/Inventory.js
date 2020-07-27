@@ -291,13 +291,16 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 				break;
 			}
 
-		// Builds a list of all possible items and use one
+		// Builds a list of all possible items and uses one of them, prevents the user from blocking everything to cheat
 		var List = [];
-		for (var A = 0; A < Asset.length; A++)
-			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false))
+		var ListWithPermission = [];
+		for (var A = 0; A < Asset.length; A++) 
+			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false)) {
 				List.push(Asset[A]);
+				if (C.ID == 0 && !InventoryIsPermissionBlocked(C, Asset[A].Name, Asset[A].Group.Name)) ListWithPermission.push(Asset[A]);
+			}
 		if (List.length == 0) return;
-		var RandomAsset = List[Math.floor(Math.random() * List.length)];
+		var RandomAsset = ListWithPermission.length > 0 ? ListWithPermission[Math.floor(Math.random() * ListWithPermission.length)] : List[Math.floor(Math.random() * List.length)];
 		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty);
 		CharacterRefresh(C);
 

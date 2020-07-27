@@ -245,7 +245,7 @@ function DialogChatRoomPlayerIsAdmin() { return (ChatRoomPlayerIsAdmin() && (Cur
  * Checks, if a safe word can be used.
  * @returns {boolean} - Returns true, if the player is currently within a chat room
  */
-function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom") }
+function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom" && Player.GameplaySettings.EnableSafeword) }
 
 /**
  * Checks the prerequisite for a given dialog
@@ -611,7 +611,7 @@ function DialogFacialExpressionsBuild() {
 	for (var I = 0; I < Player.Appearance.length; I++) {
 		var PA = Player.Appearance[I];
 		var ExpressionList = PA.Asset.Group.AllowExpression;
-		if (!ExpressionList || !ExpressionList.length) continue;
+		if (!ExpressionList || !ExpressionList.length || PA.Asset.Group.Name == "Eyes2") continue;
 		var Item = {};
 		Item.Appearance = PA;
 		Item.CurrentExpression = (PA.Property == null) ? null : PA.Property.Expression;
@@ -1223,14 +1223,18 @@ function DialogClick() {
 
 	// If the user clicked in the facial expression menu
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
-		if (MouseIn(15, 15, 90, 90)) {
+		if (MouseIn(20, 50, 90, 90)) {
 			DialogFacialExpressions.forEach(FE => {
 				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name);
 				FE.CurrentExpression = null;
 			});
+		} else if (MouseIn(120, 50, 90, 90)) { 
+			CharacterSetFacialExpression(Player, "Eyes", "Wink");
+		} else if (MouseIn(220, 50, 90, 90)) { 
+			CharacterSetFacialExpression(Player, "Eyes2", "Wink");
 		} else for (var I = 0; I < DialogFacialExpressions.length; I++) {
 			var FE = DialogFacialExpressions[I];
-			if ((MouseY >= 125 + 120 * I) && (MouseY <= (125 + 120 * I) + 90)) {
+			if ((MouseY >= 160 + 120 * I) && (MouseY <= (160 + 120 * I) + 90)) {
 
 				// Left arrow button
 				if (MouseX >= 0 && MouseX <= 45) {
@@ -1455,8 +1459,6 @@ function DialogDrawItemMenu(C) {
 
 			// Removes the item & associated items if needed, then wears the new one 
 			InventoryRemove(C, C.FocusGroup.Name);
-			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
-			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckRestraints");
 			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetWithRatio("Bondage"));
 
 			// The player can use another item right away, for another character we jump back to her reaction
@@ -1626,12 +1628,14 @@ function DialogDraw() {
 function DialogDrawExpressionMenu() {
 
 	// Draw the expression groups
-	DrawText(DialogFind(Player, "FacialExpression"), 265, 62, "White", "Black");
-	DrawButton(15, 15, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearFacialExpressions"));
+	DrawText(DialogFind(Player, "FacialExpression"), 165, 25, "White", "Black");
+	DrawButton(220, 50, 90, 90, "", "White", "Icons/WinkL.png", DialogFind(Player, "WinkLFacialExpressions"));
+	DrawButton(120, 50, 90, 90, "", "White", "Icons/WinkR.png", DialogFind(Player, "WinkRFacialExpressions"));
+	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearFacialExpressions"));
 	if (!DialogFacialExpressions || !DialogFacialExpressions.length) DialogFacialExpressionsBuild();
 	for (var I = 0; I < DialogFacialExpressions.length; I++) {
 		var FE = DialogFacialExpressions[I];
-		var OffsetY = 125 + 120 * I;
+		var OffsetY = 160 + 120 * I;
 
 		// Draw the back and forth arrow buttons
 		DrawButton(0, OffsetY, 45, 90, "", "White");
@@ -1689,7 +1693,16 @@ function DialogChatRoomHasSwapTarget() {
  * Leave the dialog and revert back to a safe state, when the player uses her safe word
  * @returns {void} - Nothing
  */
-function DialogChatRoomSafeword() {
+function DialogChatRoomSafewordRevert() {
 	DialogLeave();
-	ChatRoomSafeword();
+	ChatRoomSafewordRevert();
 }
+
+/**
+ * Leave the dialog and release the player of all restraints before returning them to the Main Lobby
+ * @returns {void} - Nothing
+ */
+ function DialogChatRoomSafewordRelease() {
+ 	DialogLeave();
+ 	ChatRoomSafewordRelease();
+ }

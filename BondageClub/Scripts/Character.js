@@ -689,6 +689,30 @@ function CharacterReleaseNoLock(C) {
 }
 
 /**
+ * Removes all items except for clothing and slave collars from the character
+ * @param {Character} C - Character to release
+ * @returns {void} - Nothing
+ */
+function CharacterReleaseTotal(C) {
+	for(var E = 0; E < C.Appearance.length; E++){
+
+	    if(C.Appearance[E].Asset.Group.Category != "Appearance"){
+	    	if(C.IsOwned() && C.Appearance[E].Asset.Name == "SlaveCollar") {
+	    		//Reset slave collar to the default model if it has a gameplay effect (such as gagging the player)
+	    		if(C.Appearance[E].Property.Effect && C.Appearance[E].Property.Effect.length > 0)
+	    			delete C.Appearance[E].Property;
+	    	}
+	    	else {
+	    		C.Appearance.splice(E,1);
+	        	E--;
+	    	}
+	        
+	    }
+	}
+	CharacterRefresh(C);
+}
+
+/**
  * Gets the bonus amount of a given type for a given character (Kidnap league)
  * @param {Character} C - Character for which we want to get the bonus amount
  * @param {string} BonusType - Type/name of the bonus to look for
@@ -750,6 +774,8 @@ function CharacterSetActivePose(C, NewPose) {
  * @returns {void} - Nothing
  */
 function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
+	// A normal eye expression is triggered for both eyes
+	if (AssetGroup == "Eyes" && Expression != "Wink") CharacterSetFacialExpression(C, "Eyes2", Expression, Timer);
 	var Ex = InventoryGet(C, AssetGroup);
 	if ((Timer != null) && (Ex != null) && (Ex.Property != null) && (Ex.Property.Expression != null) && (Ex.Property.Expression != "")) return;
 	for (var A = 0; A < C.Appearance.length; A++) {
