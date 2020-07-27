@@ -32,7 +32,7 @@ function LARPRun() {
 }
 
 /**
- * Handles clicks in the LARP introduction screen.
+ * Handles clicks in the LARP introduction screen. And adds the LARP Backgrounds to the list of seletable backgrounds.
  * @returns {void} - Nothing
  */
 function LARPClick() {
@@ -43,8 +43,7 @@ function LARPClick() {
 	if (MouseIn(1885, 265, 90, 90) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) {
 		Player.Game.LARP.Team = "None";
 		ServerSend("AccountUpdate", { Game: Player.Game });
-		var BG = CommonBackgroundList.slice();
-		BG.unshift("WrestlingRing");
+		var BG = CommonBackgroundList.slice().concat(BackgroundsList.filter(bg => bg.Tag.indexOf(BackgroundsTagLARP)>=0).map(bg => bg.Name));
 		ChatRoomStart("LARP", "LARP", "LARP", "WrestlingRingDark", BG);
 	}
 	DailyJobSubSearchClick();

@@ -14,6 +14,8 @@ var BackgroundsTagSciFiFantasy = "SciFi & Fantasy";
 var BackgroundsTagClub = "Club rooms";
 var BackgroundsTagHouse = "Regular house";
 var BackgroundsTagDungeon = "Dungeon";
+var BackgroundsTagAsylum = "Asylum";  // not public, hence not added to the select form
+var BackgroundsTagLARP = "LARP";
 
 /**
  * List of all tags
@@ -133,7 +135,13 @@ var BackgroundsList = [
     { Name: "PartyBasement", Tag: [BackgroundsTagIndoor, BackgroundsTagHouse], Public: true },
     { Name: "CosyChalet", Tag: [BackgroundsTagIndoor, BackgroundsTagHouse], Public: true },
     { Name: "BalconyNight", Tag: [BackgroundsTagOutdoor, BackgroundsTagHouse], Public: true },
-    { Name: "WrestlingRing", Tag: [BackgroundsTagIndoor], Public: false },
+    { Name: "WrestlingRing", Tag: [BackgroundsTagIndoor, BackgroundsTagLARP], Public: false },
     { Name: "RustySaloon", Tag: [BackgroundsTagIndoor], Public: true },
-    { Name: "OldFarm", Tag: [BackgroundsTagOutdoor], Public: true }
+    { Name: "OldFarm", Tag: [BackgroundsTagOutdoor], Public: true },
+    { Name: "AsylumEntrance", Tag: [BackgroundsTagAsylum], Public: false },
+    { Name: "AsylumBedroom", Tag: [BackgroundsTagAsylum], Public: false },
+    { Name: "AsylumMeeting", Tag: [BackgroundsTagAsylum], Public: false },
+    { Name: "AsylumTherapy", Tag: [BackgroundsTagAsylum], Public: false },
+    { Name: "PaddedCell", Tag: [BackgroundsTagAsylum], Public: false },
+    { Name: "PaddedCell2", Tag: [BackgroundsTagAsylum], Public: false }
 ];

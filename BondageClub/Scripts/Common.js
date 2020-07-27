@@ -15,7 +15,7 @@ var CutsceneStage = 0;
  * @constant 
  * @type {string[]}
  */
-var CommonBackgroundList = CommonBackgroundList = BackgroundsList.filter(bg => bg.Public).map(bg => bg.Name);
+var CommonBackgroundList = BackgroundsList.filter(bg => bg.Public).map(bg => bg.Name);
 
 /**
  * Checks if a variable is a number
