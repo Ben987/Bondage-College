@@ -57,15 +57,14 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
-		IsLoved: function () { return ((this.Lover != null) && (this.Lover.trim() != "")) },
 		IsLoverOfPlayer: function () { return this.IsLover(Player); },
 		IsLover: function (C) { return ((this.GetLoversNumbers().indexOf(C.MemberNumber) >= 0) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
-		GetLoversNumbers: function () {
+		GetLoversNumbers: function (MembersOnly) {
 			var LoversNumbers = [];
 			if (typeof this.Lovership == "undefined") return [];
 			for (var L = 0; L < this.Lovership.length; L++) {
 				if (this.Lovership[L].MemberNumber) { LoversNumbers.push(this.Lovership[L].MemberNumber); }
-				else if (this.Lovership[L].Name) { LoversNumbers.push(this.Lovership[L].Name); }
+				else if (this.Lovership[L].Name && (MembersOnly == null || MembersOnly == false)) { LoversNumbers.push(this.Lovership[L].Name); }
 			}
 			return LoversNumbers;
 		},
@@ -686,6 +685,30 @@ function CharacterReleaseNoLock(C) {
 			C.Appearance.splice(E, 1);
 			E--;
 		}
+	CharacterRefresh(C);
+}
+
+/**
+ * Removes all items except for clothing and slave collars from the character
+ * @param {Character} C - Character to release
+ * @returns {void} - Nothing
+ */
+function CharacterReleaseTotal(C) {
+	for(var E = 0; E < C.Appearance.length; E++){
+
+	    if(C.Appearance[E].Asset.Group.Category != "Appearance"){
+	    	if(C.IsOwned() && C.Appearance[E].Asset.Name == "SlaveCollar") {
+	    		//Reset slave collar to the default model if it has a gameplay effect (such as gagging the player)
+	    		if(C.Appearance[E].Property.Effect && C.Appearance[E].Property.Effect.length > 0)
+	    			delete C.Appearance[E].Property;
+	    	}
+	    	else {
+	    		C.Appearance.splice(E,1);
+	        	E--;
+	    	}
+	        
+	    }
+	}
 	CharacterRefresh(C);
 }
 

@@ -393,8 +393,8 @@ function ChatRoomCanLeave() {
 // Chat room keyboard shortcuts
 function ChatRoomKeyDown() {
 
-	// If the input textfield is not focussed at the moment, set the focus to it.
-	if (document.activeElement.id != "InputChat") document.getElementById("InputChat").focus();
+	// If the input text is not focused and not on mobile, set the focus to it
+	if (document.activeElement.id != "InputChat") ElementFocus("InputChat");
 
 	// The ENTER key sends the chat.  The "preventDefault" is needed for <textarea>, otherwise it adds a new line after clearing the field
 	if (KeyPress == 13) {
@@ -494,8 +494,8 @@ function ChatRoomSendChat() {
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" });
 
 		}
-		else if (m.indexOf("/help") == 0) ServerSend("ChatRoomChat", { Content: "ChatRoomHelp", Type: "Action", Target: Player.MemberNumber });
-		else if (m.indexOf("/safeword") == 0) ChatRoomSafeword();
+		else if (m.indexOf("/help") == 0) ServerSend("ChatRoomChat", { Content: "ChatRoomHelp", Type: "Action", Target: Player.MemberNumber});
+		else if (m.indexOf("/safeword") == 0) ChatRoomSafewordRevert();
 		else if (m.indexOf("/friendlistadd ") == 0) ChatRoomListManipulation(Player.FriendList, null, msg);
 		else if (m.indexOf("/friendlistremove ") == 0) ChatRoomListManipulation(null, Player.FriendList, msg);
 		else if (m.indexOf("/ghostadd ") == 0) { ChatRoomListManipulation(Player.GhostList, null, msg); ChatRoomListManipulation(Player.BlackList, Player.WhiteList, msg); }
@@ -1105,8 +1105,7 @@ function ChatRoomListManage(Operation, ListType) {
 		var data = {};
 		data[ListType] = Player[ListType];
 		ServerSend("AccountUpdate", data);
-		CommonWait(1000);
-		ChatRoomCharacterUpdate(Player);
+		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
 	if (ListType == "GhostList") ChatRoomListManage(Operation, "BlackList");
 }
@@ -1118,8 +1117,7 @@ function ChatRoomListManipulation(Add, Remove, Message) {
 		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
 		if ((Remove != null) && (Remove.indexOf(C) >= 0)) Remove.splice(Remove.indexOf(C), 1);
 		ServerSend("AccountUpdate", { FriendList: Player.FriendList, GhostList: Player.GhostList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
-		CommonWait(1000);
-		ChatRoomCharacterUpdate(Player);
+		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
 }
 
@@ -1280,21 +1278,31 @@ function ChatRoomGameResponse(data) {
 	if (OnlineGameName == "LARP") GameLARPProcess(data);
 }
 
-// When the player activates her safeword, we swap her appearance to the state when she entered the chat room lobby, minimum permission becomes whitelist and up
-function ChatRoomSafeword() {
+// When the player activates her safeword to revert, we swap her appearance to the state when she entered the chat room lobby, minimum permission becomes whitelist and up
+function ChatRoomSafewordRevert() {
 	if (ChatSearchSafewordAppearance != null) {
 		Player.Appearance = ChatSearchSafewordAppearance.slice(0);
 		CharacterSetActivePose(Player, ChatSearchSafewordPose);
 		CharacterRefresh(Player);
 		ChatRoomCharacterUpdate(Player);
-		ServerSend("ChatRoomChat", { Content: "ActionActivateSafeword", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name }] });
+		ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRevert", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name }] });
 		if (Player.ItemPermission < 3) {
 			Player.ItemPermission = 3;
 			ServerSend("AccountUpdate", { ItemPermission: Player.ItemPermission });
-			CommonWait(1000);
-			ChatRoomCharacterUpdate(Player);
+			setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 		}
 	}
+}
+
+// When the player activates her safeword and wants to be released, we remove all bondage from her and return her to the Main Lobby.
+function ChatRoomSafewordRelease() {
+	CharacterReleaseTotal(Player);
+	CharacterRefresh(Player);
+	ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRelease", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name}] });
+	ElementRemove("InputChat");
+	ElementRemove("TextAreaChatLog");
+	ServerSend("ChatRoomLeave", "");
+	CommonSetScreen("Room","MainHall");
 }
 
 /** 

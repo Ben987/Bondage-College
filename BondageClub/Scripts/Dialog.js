@@ -31,9 +31,10 @@ var DialogExtendedMessage = "";
 var DialogActivityMode = false;
 var DialogActivity = [];
 var DialogSortOrderEnabled = 1;
-var DialogSortOrderUsable = 2;
-var DialogSortOrderUnusable = 3;
-var DialogSortOrderBlocked = 4;
+var DialogSortOrderEquipped = 2;
+var DialogSortOrderUsable = 3;
+var DialogSortOrderUnusable = 4;
+var DialogSortOrderBlocked = 5;
 
 /**
  * Compares the player's reputation with a given value 
@@ -244,7 +245,7 @@ function DialogChatRoomPlayerIsAdmin() { return (ChatRoomPlayerIsAdmin() && (Cur
  * Checks, if a safe word can be used.
  * @returns {boolean} - Returns true, if the player is currently within a chat room
  */
-function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom") }
+function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom" && Player.GameplaySettings.EnableSafeword) }
 
 /**
  * Checks the prerequisite for a given dialog
@@ -438,7 +439,7 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 		if ((C.ID != 0) || ((C.Owner == "") && (C.Ownership == null)) || !NewInv.Asset.IsLock || ((C.ID == 0) && LogQuery("BlockOwnerLockSelf", "OwnerRule")))
 			return;
 	if (NewInv.Asset.LoverOnly && !NewInvWorn && !C.IsLoverOfPlayer())
-		if ((C.ID != 0) || (C.Lovership.length < 0) || !NewInv.Asset.IsLock)
+		if ((C.ID != 0) || (C.Lovership.length == 0) || !NewInv.Asset.IsLock || ((C.ID == 0) && C.GetLoversNumbers(true).length == 0))
 			return;
 
 	// Do not show keys if they are in the deposit
@@ -580,15 +581,18 @@ function DialogInventoryBuild(C) {
 
 			// Second, we add everything from the victim inventory
 			for (var A = 0; A < C.Inventory.length; A++)
-				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C))
-					DialogInventoryAdd(C, C.Inventory[A], false, (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable);
+				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
+					var DialogSortOrder = C.Inventory[A].Asset.DialogSortOverride != null ? C.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+					DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrder);
+				}
 
 			// Third, we add everything from the player inventory if the player isn't the victim
 			if (C.ID != 0)
 				for (var A = 0; A < Player.Inventory.length; A++)
-					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C))
-						DialogInventoryAdd(C, Player.Inventory[A], false, (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable);
-
+					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
+						var DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrder);
+					}
 		}
 
 		// Rebuilds the dialog menu and it's buttons
@@ -1455,8 +1459,6 @@ function DialogDrawItemMenu(C) {
 
 			// Removes the item & associated items if needed, then wears the new one 
 			InventoryRemove(C, C.FocusGroup.Name);
-			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
-			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckRestraints");
 			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetWithRatio("Bondage"));
 
 			// The player can use another item right away, for another character we jump back to her reaction
@@ -1576,10 +1578,11 @@ function DialogDraw() {
 		}
 
 		// We rebuild the menu if things changed
-		if (DialogPreviousCharacterAppearance !== JSON.stringify(ServerAppearanceBundle(CurrentCharacter.Appearance))) {
-			DialogInventoryBuild(CurrentCharacter);
-			ActivityDialogBuild(CurrentCharacter);
-			DialogPreviousCharacterAppearance = JSON.stringify(ServerAppearanceBundle(CurrentCharacter.Appearance));
+		var C = CharacterGetCurrent();
+		if (DialogPreviousCharacterAppearance !== JSON.stringify(ServerAppearanceBundle(C.Appearance))) {
+			DialogInventoryBuild(C);
+			ActivityDialogBuild(C);
+			DialogPreviousCharacterAppearance = JSON.stringify(ServerAppearanceBundle(C.Appearance));
 		}
 
 		// The view can show one specific extended item or the list of all items for a group
@@ -1587,8 +1590,8 @@ function DialogDraw() {
 			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		} else {
-			if (DialogActivityMode) DialogDrawActivityMenu((Player.FocusGroup != null) ? Player : CurrentCharacter);
-			else DialogDrawItemMenu((Player.FocusGroup != null) ? Player : CurrentCharacter);
+			if (DialogActivityMode) DialogDrawActivityMenu(C);
+			else DialogDrawItemMenu(C);
 		}
 
 		// Draw the 'Up' reposition button if some zones are offscreen
@@ -1690,7 +1693,16 @@ function DialogChatRoomHasSwapTarget() {
  * Leave the dialog and revert back to a safe state, when the player uses her safe word
  * @returns {void} - Nothing
  */
-function DialogChatRoomSafeword() {
+function DialogChatRoomSafewordRevert() {
 	DialogLeave();
-	ChatRoomSafeword();
+	ChatRoomSafewordRevert();
 }
+
+/**
+ * Leave the dialog and release the player of all restraints before returning them to the Main Lobby
+ * @returns {void} - Nothing
+ */
+ function DialogChatRoomSafewordRelease() {
+ 	DialogLeave();
+ 	ChatRoomSafewordRelease();
+ }
