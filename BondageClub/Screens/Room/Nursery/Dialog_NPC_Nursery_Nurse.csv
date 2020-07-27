@@ -108,7 +108,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 100,130,I don't want to wear this dress.,"That is a pity, you look beautiful in it.  Do you want try on another of our gorgeous dresses instead?",,PlayerWearingBabyDress()
 100,140,Can I wear a dress again?,"You certainly can, but you will need to pay for the laundry, which is $5.  We can't have our babies wearing dirty dresses.",,!PlayerWearingBabyDress()
 100,110,Can I have some restraints please?,Baby DialogPlayerName have you been naughty?  We won't tolerate inappropriate behaviour from any of our babies here.,,!Player.IsRestrained()
-100,120,It's kind of fun to regress.,"I'm sure it is.  If you really want to regress properly, I can fix you up some special milk that will help you forget how to do things.",,
+100,120,It's kind of fun to regress.,"I'm sure it is.  If you really want to regress properly, I can fix you up some special milk that will help you forget how to do things.",,PlayerCanRegress()
 100,0,I would like to leave the nursery now.,It's been lovely having you here.  (She helps you change and disposes of the diaper.),PlayerRedressed(),
 100,,(Leave her.),,DialogLeave(),
 110,100,I've been a good girl honest.  My hands are cold.,"Aww, you poor thing.  Slip you hands in these and they will soon warm up.  (She fastens mittens over your hands.)","DialogWearItem(""PaddedMittens"", ""ItemArms"")",

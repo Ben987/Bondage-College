@@ -1956,6 +1956,7 @@ var AssetFemale3DCG = [
 					{ Name: "Outer", AllowColorize: true }
 				]
 			},
+			{ Name: "RegressedMilk", Value: -1, Time: 10, Random: false, Visible: false, BuyGroup: "RegressedMilk", Block: [], Effect: ["RegressedTalk"], ExpressionTrigger: [{ Name: "DroolSides", Group: "Fluids", Timer: 30 }]},
 			AssetSpankingToys
 		],
 		Color: ["Default"]
@@ -2067,7 +2068,8 @@ var AssetFemale3DCG = [
 					{ Name: "Inner", AllowColorize: false },
 					{ Name: "Outer", AllowColorize: true }
 				]
-			}
+			},
+			{ Name: "RegressedMilk", Value: -1, Time: 10, Random: false, Visible: false, BuyGroup: "RegressedMilk", Block: [], Effect: ["RegressedTalk"], ExpressionTrigger: [{ Name: "DroolSides", Group: "Fluids", Timer: 30 }]},
 		],
 		Color: ["Default"]
 	},
@@ -2178,7 +2180,8 @@ var AssetFemale3DCG = [
 					{ Name: "Inner", AllowColorize: false },
 					{ Name: "Outer", AllowColorize: true }
 				]
-			}
+			},
+			{ Name: "RegressedMilk", Value: -1, Time: 10, Random: false, Visible: false, BuyGroup: "RegressedMilk", Block: [], Effect: ["RegressedTalk"], ExpressionTrigger: [{ Name: "DroolSides", Group: "Fluids", Timer: 30 }]},
 		],
 		Color: ["Default"]
 	},

@@ -523,7 +523,7 @@ function SpeechBabyTalk(C, CD) {
 	var Par = false;
 	var NS = "";
 
-	if (C == Player && NurseryRegressedTalk) {
+	if (C.Effect.indexOf("RegressedTalk") >= 0) {
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
