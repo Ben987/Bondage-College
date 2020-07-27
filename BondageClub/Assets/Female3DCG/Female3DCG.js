@@ -1443,7 +1443,7 @@ var AssetFemale3DCG = [
 				Hide: ["Cloth", "ClothLower", "BodyLower", "Shoes", "Socks", "ItemBoots", "ItemLegs", "ItemFeet"],
 				SetPose: ["BackElbowTouch", "Kneel", "LegsClosed", "StraitDressOpen"],
 				Effect: ["Block", "Prone", "ForceKneel"],
-				Block: ["ItemPelvis", "ItemTorso", "ItemBreast", "ItemHands"],
+				Block: ["ItemPelvis", "ItemTorso", "ItemHands"],
 				SelfUnlock: false
 			},
 			{ Name: "CollarLeashHolding", Priority: 36, Value: -1, Difficulty: 1, Time: 3, RemoveTime: 3, Random: false, Prerequisite: ["NotSuspended", "NotHogtied"] },
