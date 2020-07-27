@@ -29,8 +29,16 @@ function BackgroundSelectionMake(List, Idx, Callback) {
 	CommonSetScreen("Character", "BackgroundSelection");
 }
 
+/**
+ * Comapres two backgrounds by their description
+ * @param {object} a - The first object to compare
+ * @param {string} a.Description - The description of object a. Is used for comparision
+ * @param {object} b - The second object to compar
+ * @param {string} b.Description - The description of object b. Is used for comparision
+ * @returns {number} - Returns -1 if the description of object a is less then that of b, 1 otherwise
+ */
 function BackGroundSelectionSort(a, b) {
-	return (a.Description < b.Description) ? -1: 1;	
+	return (a.Description <= b.Description) ? -1: 1;	
 }
 
 /**
