@@ -45,7 +45,7 @@ function RelogRun() {
 	
 	// Draw the relog controls
 	if (!LoginMessage) LoginUpdateMessage();
-	DrawText(LoginMessage, 1000, 150, "White", "Black");
+	if (LoginMessage != TextGet("EnterPassword")) DrawText(LoginMessage, 1000, 150, "White", "Black");
 	DrawText(TextGet("EnterPassword"), 1000, 230, "White", "Black");
 	DrawText(TextGet("Account") + "  " + Player.AccountName, 1000, 400, "White", "Black");
 	DrawText(TextGet("Password"), 1000, 500, "White", "Black");
@@ -60,8 +60,8 @@ function RelogRun() {
  * @returns {void} Nothing
  */
 function RelogClick() {
-	if ((MouseX >= 675) && (MouseX <= 975) && (MouseY >= 750) && (MouseY <= 810)) RelogSend(); // Log Back button
-	if ((MouseX >= 1025) && (MouseX <= 1325) && (MouseY >= 750) && (MouseY <= 810)) RelogExit(); // Give Up button
+	if (MouseIn(675, 750, 300, 60)) RelogSend(); // Log Back button
+	if (MouseIn(1025, 750, 300, 60)) RelogExit(); // Give Up button
 }
 
 /**

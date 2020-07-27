@@ -43,6 +43,7 @@ function MainHallLoad() {
 	CommonReadCSV("NoArravVar", "Room", "AsylumEntrance", "Dialog_NPC_AsylumEntrance_KidnapNurse");
 	CommonReadCSV("NoArravVar", "Room", "AsylumEntrance", "Dialog_NPC_AsylumEntrance_EscapedPatient");
 	CommonReadCSV("NoArravVar", "Room", "Prison", "Dialog_NPC_Prison_Police");
+	CommonReadCSV("NoArravVar", "Character", "Relog", "Text_Relog");
 
 }
 
