@@ -3,7 +3,7 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 0,10,(Adjust your bondage skill.),"(By default, you restrain using your full bondage skill.  You can use less of your skill and make it easier for your victims to escape.)",,"DialogSkillGreater(""Bondage"", 1)"
 0,20,(Adjust your evasion skill.),"(By default, you struggle using your full evasion skill.  You can use less of your skill and make it harder for you to struggle free.)",,"DialogSkillGreater(""Evasion"", 1)"
 0,30,(Room administrator action.),"(As a room administrator, you can take these actions.)",,DialogChatRoomPlayerIsAdmin()
-0,90,(Use your safeword.),(A safeword is serious and should not be used to cheat.  It will revert your clothing and restraints to when you entered the lobby.  Do you really want to use it?),,DialogChatRoomCanSafeword()
+0,90,(Use your safeword.),"(A safeword is serious and should not be used to cheat.  It can revert your clothes and restraints to when you entered the lobby, or release you completely.)",,DialogChatRoomCanSafeword()
 10,,,"(By default, you restrain using your full bondage skill.  You can use less of your skill and make it easier for your victims to escape.)",,
 10,0,(Use your full bondage skill.  100%),(You will now use your full bondage skill when using a restraint.  100%),"DialogSetSkillRatio(""Bondage"", 100)",
 10,0,(Use most of your bondage skill.  75%),(You will now use most of your bondage skill when using a restraint.  75%),"DialogSetSkillRatio(""Bondage"", 75)",
@@ -27,8 +27,13 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 31,,(Move to the right.),(You have moved to the right at position CharacterPosition.  Would you like to move further?),"DialogChatRoomAdminAction(""MoveRight"", ""false"")",
 31,0,(Back to main menu.),,,
 31,0,(Leave this menu.),,DialogLeave(),
-90,0,"(Yes, use your safeword.)",,DialogChatRoomSafeword(),
-90,0,"(No, do not use your safeword.)",(You can use or remove items by selecting specific body regions on yourself.),,
+90,91,"(Revert Character.)",(This will revert your character's clothes and restraints back to how they were when you entered the lobby. Use this if you were forced into restraints against your consent. Are you sure you want to revert your character?),,
+90,92,"(Release Character.)",(This will immediately release you of ALL restraints you are wearing and return you to the Main Lobby. Use this only if you are stuck in restraints and nobody can or wants to help you. Are you sure about this?),,
+90,0,"(Don't use Safeword.)",(You can use or remove items by selecting specific body regions on yourself.),,
+91,0,"(Yes, revert Character.)",,DialogChatRoomSafewordRevert(),
+91,0,"(No, don't revert Character.)",(You can use or remove items by selecting specific body regions on yourself.),,
+92,0,"(Yes, I want to be released.)",,DialogChatRoomSafewordRelease(),
+92,0,"(No, don't release me.)",(You can use or remove items by selecting specific body regions on yourself.),,
 SelectItem,,,Select an item to use.,,
 SelectItemGroup,,,Select an item to use on the GroupName.,,
 SelectActivity,,,Select an activity.,,
@@ -327,7 +332,8 @@ ActionUnlock,,,SourceCharacter unlocks the PrevAsset on DestinationCharacter Foc
 ActionUnlockAndRemove,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.,,
 ActionDice,,,SourceCharacter rolls DiceType.  The result is: DiceResult.,,
 ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.,,
-ActionActivateSafeword,,,SourceCharacter used her safeword.  Please check for her well-being.,,
+ActionActivateSafewordRevert,,,SourceCharacter used her safeword.  Please check for her well-being.,,
+ActionActivateSafewordRelease,,,SourceCharacter used her safeword and wants to be released. She is guided out of the room for her safety.
 ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands.",,
 ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.,,
 ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.,,

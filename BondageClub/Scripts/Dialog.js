@@ -245,7 +245,7 @@ function DialogChatRoomPlayerIsAdmin() { return (ChatRoomPlayerIsAdmin() && (Cur
  * Checks, if a safe word can be used.
  * @returns {boolean} - Returns true, if the player is currently within a chat room
  */
-function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom") }
+function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom" && Player.GameplaySettings.EnableSafeword) }
 
 /**
  * Checks the prerequisite for a given dialog
@@ -1455,8 +1455,6 @@ function DialogDrawItemMenu(C) {
 
 			// Removes the item & associated items if needed, then wears the new one 
 			InventoryRemove(C, C.FocusGroup.Name);
-			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
-			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckRestraints");
 			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetWithRatio("Bondage"));
 
 			// The player can use another item right away, for another character we jump back to her reaction
@@ -1689,7 +1687,16 @@ function DialogChatRoomHasSwapTarget() {
  * Leave the dialog and revert back to a safe state, when the player uses her safe word
  * @returns {void} - Nothing
  */
-function DialogChatRoomSafeword() {
+function DialogChatRoomSafewordRevert() {
 	DialogLeave();
-	ChatRoomSafeword();
+	ChatRoomSafewordRevert();
 }
+
+/**
+ * Leave the dialog and release the player of all restraints before returning them to the Main Lobby
+ * @returns {void} - Nothing
+ */
+ function DialogChatRoomSafewordRelease() {
+ 	DialogLeave();
+ 	ChatRoomSafewordRelease();
+ }
