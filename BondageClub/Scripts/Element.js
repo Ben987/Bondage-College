@@ -243,6 +243,7 @@ function ElementPosition(ElementID, X, Y, W, H) {
 		top: Top + "px",
 		width: Width + "px",
 		height: Height + "px",
+		display: "inline"
 	});
 
 }
@@ -287,6 +288,7 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 		top: Top + "px",
 		width: Width + "px",
 		height: Height + "px",
+		display: "inline"
 	});
 
 }

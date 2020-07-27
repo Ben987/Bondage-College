@@ -29,6 +29,10 @@ function BackgroundSelectionMake(List, Idx, Callback) {
 	CommonSetScreen("Character", "BackgroundSelection");
 }
 
+function BackGroundSelectionSort(a, b) {
+	return (a.Description < b.Description) ? -1: 1;	
+}
+
 /**
  * Initializes the Background selection screen. 
  * Function coiuld be called dynamically, so the body has to be there, even if it does nothing.
@@ -40,7 +44,7 @@ function BackgroundSelectionLoad() {
 	BackgroundSelectionOffset = Math.floor(BackgroundSelectionIndex / BackgroundSelectionSize) * BackgroundSelectionSize;
 	BackgroundSelectionBackground = BackgroundSelectionList[BackgroundSelectionIndex] || "Introduction";
 	BackgroundSelectionAll = BackgroundSelectionList.map(B => { var D = DialogFind(Player, B); return { Name: B, Description: D, Low: D.toLowerCase() }; });
-	BackgroundSelectionView = BackgroundSelectionAll.slice(0);
+	BackgroundSelectionView = BackgroundSelectionAll.slice(0).sort(BackGroundSelectionSort);
 	ElementCreateInput("InputBackground", "text", "", "30");
 	document.getElementById("InputBackground").oninput = BackgroundSelectionInputChanged;
 	ElementCreateDropdown("TagDropDown", BackgroundsTagList, function () {
@@ -59,6 +63,7 @@ function BackgroundSelectionLoad() {
 					return { Name: bg.Name, Description: D, Low: D.toLowerCase() };
 				});
 		}
+		BackgroundSelectionAll.sort(BackGroundSelectionSort);
 		BackgroundSelectionInputChanged();
 	});
 }
@@ -78,6 +83,7 @@ function BackgroundSelectionInputChanged() {
 		BackgroundSelectionView = BackgroundSelectionAll.filter(B => B.Low.includes(Input));
 		if (BackgroundSelectionOffset >= BackgroundSelectionView.length) BackgroundSelectionOffset = 0;
 	}
+	BackgroundSelectionView.sort(BackGroundSelectionSort);
 }
 
 /**
