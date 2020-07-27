@@ -382,6 +382,8 @@ function NurseryBadBabies() {
 // Player will loose skill progress or level from drinking special milk
 function NurseryPlayerSkillsAmnesia() {
 	SkillModifierChange(-1);
+	InventoryAdd(Player, "RegressedMilk", "ItemMouth");
+	InventoryAdd(Player, "RegressedMilk", "ItemMouth2");
 	InventoryAdd(Player, "RegressedMilk", "ItemMouth3");
 	InventoryWear(Player, "RegressedMilk", "ItemMouth3");
 }
