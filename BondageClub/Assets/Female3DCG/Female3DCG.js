@@ -27,8 +27,8 @@ var AssetSpankingToys = {
 	DynamicGroupName: "ItemHands",
 	DynamicActivity: C => InventorySpankingToysGetActivity(C),
 	IgnoreParentGroup: true,
-	Effect: [],	
-	DialogSortOverride: DialogSortOrderEquipped	
+	Effect: [],
+	DialogSortOverride: DialogSortOrderEquipped
 
 };
 
