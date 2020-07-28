@@ -69,6 +69,113 @@ function ElementCreateInput(ID, Type, Value, MaxLength) {
 	}
 }
 
+/**
+ * Creates a dropdown element and adjusts it to the BC look and feel. In the HTML Code this will look like this:
+ * <div> -- enclosing div used for css and postioning
+ *     <select> -- the select statement with its options
+ *         <option 1>
+ *         <option n>
+ *     </select>
+ *     <div></div> -- the div representing the currently selected item
+ *     <div> -- div for the various options
+ *        <div>Option 1</div>
+ *        <div>Option n</div>
+ *     </div>
+ * </div>
+ * This construct is built automatically and ignores the original select statement. All the logic is handled by 
+ * event handlers that are connected to the various divs. See comments in the code.
+ * What this function cannot handle at the moment:
+ * - The size is always set to 1
+ * - Multiple selects are impossible
+ * @param {string} ID - The name of the select item. The outer div will get this name, for positioning. The select
+ * tag will get the name ID+"-select" 
+ * @param {atring[]} Options - The list of options for the current select statement
+ * @param {function} [ClickEventListener=null] - An event listener to be called, when the value of the drop down box changes
+ * @returns {void} - Nothing
+ */
+function ElementCreateDropdown(ID, Options, ClickEventListener) {
+	if (document.getElementById(ID) == null) {
+		// Create the all enclosing <div>
+		var CustomSelect = document.createElement("DIV");
+		CustomSelect.setAttribute("class", "custom-select");
+		CustomSelect.setAttribute("ID", ID);
+		// Create the <select> tag
+		var Select = document.createElement("select");
+		Select.setAttribute("Name", ID + "-select");
+		Select.setAttribute("ID", ID + "-select");
+		// Create the <div> for the options
+		var DivOptions = document.createElement("DIV");
+		DivOptions.setAttribute("class", "select-items select-hide");
+		// Create <option> and inner <div> tags for all Options in the list
+		for (var i = 0; i < Options.length; i++) {
+			var Option = document.createElement("option");
+			var InnerDiv = document.createElement("DIV");
+
+			Option.setAttribute("value", Options[i]);
+			Option.innerHTML = Options[i];
+			InnerDiv.innerHTML = Options[i];
+			InnerDiv.addEventListener("click", function (e) {
+				// when an item is clicked, update the original select box, and the selected item:
+				var s = this.parentNode.parentNode.getElementsByTagName("select")[0]; // Representation of the select tag
+				var h = this.parentNode.previousSibling; // Representation of the dropdown box
+				for (var j = 0; j < s.length; j++) {
+					if (s.options[j].innerHTML == this.innerHTML) {
+						s.selectedIndex = j; // Fake the selection of an option
+						h.innerHTML = this.innerHTML; // Update the drop down box
+						var y = this.parentNode.getElementsByClassName("same-as-selected");
+						for (var k = 0; k < y.length; k++) {
+							y[k].removeAttribute("class");
+						}
+						this.setAttribute("class", "same-as-selected");
+						break;
+					}
+				}
+				h.click(); // Evove a click events
+				s.dispatchEvent(new Event("change")); // Evoke a onChange events
+			});
+			Select.appendChild(Option);
+			DivOptions.appendChild(InnerDiv);
+		}
+		// Cretae the div for the selected item
+		var SelectedItem = document.createElement("DIV");
+		SelectedItem.setAttribute("class", "select-selected");
+		SelectedItem.innerHTML = Select.options[0].innerHTML;
+		SelectedItem.addEventListener("click", function (e) {
+			//when the select box is clicked, close any other select boxes, and open/close the current select box:
+			e.stopPropagation();
+			ElementCloseAllSelect(this);
+			this.nextSibling.classList.toggle("select-hide");
+		});
+		// add an event listener to the <select> tag
+		if (ClickEventListener != null) Select.addEventListener("change", ClickEventListener)
+		// Add alle the items to the enclosing <di>
+		CustomSelect.appendChild(Select);
+		CustomSelect.appendChild(SelectedItem);
+		CustomSelect.appendChild(DivOptions);
+		document.body.appendChild(CustomSelect);
+		document.addEventListener("click", ElementCloseAllSelect);
+	}
+}
+
+/**
+ * Closes all select boxes in the current document, except the current select box
+ * @param {object} elmnt - The select box to exclude from the closing
+ * @returns {void} - Nothing
+ */
+function ElementCloseAllSelect(elmnt) {
+    /*a function that will close all select boxes in the document,
+    except the current select box:*/
+	var arrNo = [];
+	var y = document.getElementsByClassName("select-selected");
+	for (var i = 0; i < y.length; i++) {
+		if (elmnt == y[i]) arrNo.push(i);
+	}
+	var x = document.getElementsByClassName("select-items");
+	for (var i = 0; i < x.length; i++) {
+		if (arrNo.indexOf(i)) x[i].classList.add("select-hide");
+	}
+}
+
 /** 
  * Creates a new div element in the main document. Does not create a new element if there is already an existing one with the same ID
  * @param {string} ID - The id of the div tag to create.
@@ -127,7 +234,17 @@ function ElementPosition(ElementID, X, Y, W, H) {
 	}
 
 	// Sets the element style
-	document.getElementById(ElementID).setAttribute("style", "font-size:" + Font + "px; font-family:Arial; position:absolute; padding-left:10px; left:" + Left + "px; top:" + Top + "px; width:" + Width + "px; height:" + Height + "px;");
+	var E = document.getElementById(ElementID);
+	Object.assign(E.style, {
+		fontSize: Font + "px",
+		fontFamily: "Arial",
+		position: "absolute",
+		left: Left + "px",
+		top: Top + "px",
+		width: Width + "px",
+		height: Height + "px",
+		display: "inline"
+	});
 
 }
 
@@ -162,7 +279,17 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 	}
 
 	// Sets the element style
-	document.getElementById(ElementID).setAttribute("style", "font-size:" + Font + "px; font-family:Arial; position:absolute; padding-left:10px; left:" + Left + "px; top:" + Top + "px; width:" + Width + "px; height:" + Height + "px; resize: none;");
+	var E = document.getElementById(ElementID);
+	Object.assign(E.style, {
+		fontSize: Font + "px",
+		fontFamily: "Arial",
+		position: "absolute",
+		left: Left + "px",
+		top: Top + "px",
+		width: Width + "px",
+		height: Height + "px",
+		display: "inline"
+	});
 
 }
 

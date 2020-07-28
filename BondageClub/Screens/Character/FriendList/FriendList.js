@@ -65,7 +65,7 @@ function FriendListExit() {
 // 
 /**
  * Loads the friend list data into the HTML div element.
- * @param {Array.*} data - An array of data, we recieve from the server
+ * @param {Array.<*>} data - An array of data, we receive from the server
  * @param {string} data.MemberName - The name of the player
  * @param {number} data.MemberNumber - The ID of the player
  * @param {string} data.ChatRoomName - The name of the ChatRoom

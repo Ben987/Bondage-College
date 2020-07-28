@@ -85,7 +85,7 @@ function ChatCreateClick() {
 
 	// Show backgrounds in grid
 	if ((MouseX >= 1300) && (MouseX < 1600) && (MouseY >= 640) && (MouseY < 705)) {
-		BackgroundSelectionMake(ChatCreateBackgroundList, ChatCreateBackgroundIndex, Name => ChatCreateBackgroundSelect = Name);
+		BackgroundSelectionMake(ChatCreateBackgroundList, ChatCreateBackgroundIndex, Name => ChatCreateBackgroundSelect = Name, ChatRoomSpace === "Asylum");
 		document.getElementById("InputName").style.display = "none";
 		document.getElementById("InputDescription").style.display = "none";
 		document.getElementById("InputSize").style.display = "none";
