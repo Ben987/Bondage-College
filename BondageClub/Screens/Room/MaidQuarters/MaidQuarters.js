@@ -78,6 +78,11 @@ function MaidQuartersCanGetDusterGag() { return (!SarahUnlockQuest && LogQuery("
  */
 function MaidQuartersOnlineDrinkCompleted() { return (MaidQuartersOnlineDrinkCount >= 5) }
 /**
+ * Checks if the player can talk after being rewarded for the online drinks mini-game
+ * @returns {boolean} - Returns true, if the player is gagged or restrained.
+ */
+function MaidQuartersOnlineDrinkIsRestrained() { return Player.IsRestrained() || !Player.CanTalk()}
+/**
  * Checks if the player can get ungagged by the maids
  * @returns {boolean} - Returns true, if the maids can remove the gag, false otherwise
  */
