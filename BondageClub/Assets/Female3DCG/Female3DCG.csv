@@ -1002,7 +1002,6 @@ ItemAddon,BedRopes,Bed Ropes
 ItemAddon,BedStraps,Bed Straps
 ItemAddon,BedTape,Bed Tape
 ItemAddon,BedChains,Bed Chains
-ItemAddon,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels
@@ -1015,10 +1014,10 @@ ItemBoots,LockingHeels,Locking Heels
 ItemBoots,LockingHeels2,Multi-Strap Locking Heels
 ItemBoots,LockingShoes1,Locking Strap Shoes
 ItemBoots,LockingShoes2,Locking Full Shoes
-ItemBoots,Zipties,Zip Ties
 ItemBoots,LockingBoots1,Locking Boots
 ItemBoots,LeatherFootMitts1,Short Leather Foot Mittens
 ItemBoots,ToeTape,Toe Tape
+ItemBoots,Zipties,Zip Ties
 ItemHidden,Accessories,
 ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
 ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps
