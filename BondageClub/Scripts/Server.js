@@ -1,13 +1,33 @@
+/**
+ * An item is a pair of asset and its dynamic properties that define a worn asset.
+ * @typedef {{Asset: object, Color: string, Difficulty: number, Property: object | undefined}} Item
+ */
+
+/**
+ * An appearance array is an array of object defining each appearance item of a character in all of its details.
+ * @typedef {Array.<Item>} AppearanceArray
+ */
+
+/**
+ * An appearance bundle is an array of object defining each appearance item of a character. It's a minified version of the normal appearance array
+ * @typedef {Array.<{Group: string, Name: string, Difficulty: number | undefined, Color: string | undefined, Property: object | undefined}>} AppearanceBundle
+ */
+
 "use strict";
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
-var ServerRelog = null;
 var ServerBeep = {};
 var ServerBeepAudio = new Audio();
+var ServerIsConnected = false;
+var ServerReconnectCount = 0;
+var ServerDidDisconnect = false;
 
-// Loads the server events
+/** Loads the server by attaching the socket events and their respective callbacks */
 function ServerInit() {
 	ServerSocket = io(ServerURL);
+	ServerSocket.on("connect", ServerConnect);
+	ServerSocket.on("reconnecting", ServerReconnecting);
+	ServerSocket.on("event", function (data) { console.log(data); });
 	ServerSocket.on("ServerMessage", function (data) { console.log(data); });
 	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data); });
 	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
@@ -31,19 +51,68 @@ function ServerInit() {
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); });
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
-	ServerSocket.on("AccountLovership", function(data) { ServerAccountLovership(data); });
+	ServerSocket.on("AccountLovership", function (data) { ServerAccountLovership(data); });
 	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
-// When the server sends some information to the client, we keep it in variables
+/**
+ * Sets the connection status of the server and updates the login page message
+ * @param {boolean} connected - whether or not the websocket connection to the server has been established successfully
+ * @param {string} errorMessage - the error message to display if not connected
+ */
+function ServerSetConnected(connected, errorMessage) {
+	ServerIsConnected = connected;
+	ServerDidDisconnect = !connected;
+	if (connected) {
+		ServerReconnectCount = 0;
+		LoginErrorMessage = "";
+	} else {
+		LoginErrorMessage = errorMessage || "";
+	}
+	LoginUpdateMessage();
+}
+
+/**
+ * Callback when receiving a "connect" event on the socket - this will be called on initial connection and on successful reconnects.
+ */
+function ServerConnect() {
+	console.info("Server connection established");
+	ServerSetConnected(true);
+}
+
+/**
+ * Callback when receiving a "reconnecting" event on the socket - this is called when socket.io initiates a retry after a failed connection attempt.
+ */
+function ServerReconnecting() {
+	ServerReconnectCount++;
+	if (ServerReconnectCount >= 3) LoginErrorMessage = "ErrorUnableToConnect";
+	LoginUpdateMessage();
+}
+
+/** 
+ * Callback used to parse received information related to the server 
+ * @param {{OnlinePlayers: number, Time: number}} data - Data object containing the server information
+ * @returns {void} - Nothing
+ */
 function ServerInfo(data) {
 	if (data.OnlinePlayers != null) CurrentOnlinePlayers = data.OnlinePlayers;
 	if (data.Time != null) CurrentTime = data.Time;
 }
 
-// When the server disconnects, we enter in "Reconnect Mode"
+/** 
+ * Callback used when we are disconnected from the server, try to enter the reconnection mode (relog screen) if the user was logged in
+ * @param {*} data - Error to log
+ * @returns {void} - Nothing
+ */
 function ServerDisconnect(data) {
-	if (Player.Name != "") {
+	console.warn("Server connection lost");
+	if (data) {
+		console.warn(data);
+	}
+	var ShouldRelog = Player.Name != "";
+	ServerSetConnected(false, ShouldRelog ? "Disconnected" : "ErrorDisconnectedFromServer");
+
+	if (ShouldRelog) {
 		if (CurrentScreen != "Relog") {
 
 			// Exits out of the chat room or a sub screen of the chatroom, so we'll be able to get in again when we log back
@@ -75,52 +144,70 @@ function ServerDisconnect(data) {
 
 		}
 	}
-	else if (CurrentScreen == "Login") LoginMessage = TextGet((data != null) ? data : "ErrorDisconnectedFromServer");
 }
 
-// Sends a message to the server
+/** Sends a message with the given data to the server via socket.emit */
 function ServerSend(Message, Data) {
 	ServerSocket.emit(Message, Data);
 }
 
-// Syncs some player information to the server
+/**
+ * Syncs Money, owner name and lover name with the server
+ * @returns {void} - Nothing
+ */
 function ServerPlayerSync() {
 	var D = { Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover };
 	ServerSend("AccountUpdate", D);
 	delete Player.Lover;
 }
 
-// Syncs the full player inventory to the server, it's compressed as a stringify array using LZString
+/**
+ * Syncs the full player inventory to the server. The inventory is a stringified object compressed with LZString
+ * @returns {void} - Nothing
+ */
 function ServerPlayerInventorySync() {
 	var Inv = [];
 	for (var I = 0; I < Player.Inventory.length; I++)
 		if (Player.Inventory[I].Asset != null)
-			Inv.push([ Player.Inventory[I].Asset.Name, Player.Inventory[I].Asset.Group.Name ]);
+			Inv.push([Player.Inventory[I].Asset.Name, Player.Inventory[I].Asset.Group.Name]);
 	ServerSend("AccountUpdate", { Inventory: LZString.compressToUTF16(JSON.stringify(Inv)) });
 }
 
-// Syncs the full player log to the server
+/**
+ * Syncs the full player log array to the server.
+ * @returns {void} - Nothing
+ */
 function ServerPlayerLogSync() {
 	var D = {};
 	D.Log = Log;
 	ServerSend("AccountUpdate", D);
 }
 
-// Syncs the full player reputation to the server
+/**
+ * Syncs the full player reputation array to the server.
+ * @returns {void} - Nothing
+ */
 function ServerPlayerReputationSync() {
 	var D = {};
 	D.Reputation = Player.Reputation;
 	ServerSend("AccountUpdate", D);
 }
 
-// Syncs the full player reputation to the server
+/**
+ * Syncs the full player skill array to the server.
+ * @returns {void} - Nothing
+ */
 function ServerPlayerSkillSync() {
 	var D = {};
 	D.Skill = Player.Skill;
 	ServerSend("AccountUpdate", D);
 }
 
-// Prepares an appearance bundle that we can push to the server (removes the assets, only keep the main information)
+/** 
+ * Prepares an appearance bundle so we can push it to the server. It minimizes it by keeping only the necessary information. (Asset name, group name, color, properties and difficulty)
+ * @param {AppearanceArray} Appearance - The appearance array to bundle
+ * @returns {AppearanceBundle} - The appearance bundle created from the given appearance array 
+ */
 function ServerAppearanceBundle(Appearance) {
 	var Bundle = [];
 	for (var A = 0; A < Appearance.length; A++) {
@@ -135,7 +222,12 @@ function ServerAppearanceBundle(Appearance) {
 	return Bundle;
 }
 
-// Make sure the properties are valid for the item (to prevent griefing in multi-player)
+/**
+ * Validates the properties for a given item to prevent griefing in multiplayer
+ * @param {Character} C - The character the item will be applied to
+ * @param {Item} Item - The item for which to validate the properties
+ * @returns {void} - Nothing
+ */
 function ServerValidateProperties(C, Item) {
 
 	// No validations for NPCs
@@ -263,12 +355,19 @@ function ServerValidateProperties(C, Item) {
 		["SetPose", "Difficulty", "SelfUnlock", "Hide"].forEach(P => delete Item.Property[P]);
 }
 
-// Loads the appearance assets from a server bundle that only contains the main info (no assets)
+/**
+ * Loads the appearance assets from a server bundle that only contains the main info (no asset) and validates their properties to prevent griefing and respecting permissions in multiplayer
+ * @param {Character} C - Character for which to load the appearance 
+ * @param {string} AssetFamily - Family of assets used for the appearance array
+ * @param {AppearanceBundle} Bundle - Bundled appearance
+ * @param {number} SourceMemberNumber - Member number of the user who triggered the change
+ * @returns {void} - Nothing 
+ */
 function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
 	// Removes any invalid data from the appearance bundle
 	for (var B = 0; B < Bundle.length; B++)
-		if ((Bundle[B] == null) || (typeof Bundle[B] !== "object") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string")) {			
+		if ((Bundle[B] == null) || (typeof Bundle[B] !== "object") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string")) {
 			Bundle.splice(B, 1);
 			B--;
 		}
@@ -344,7 +443,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	for (var A = 0; A < Bundle.length; A++) {
 
 		// Skip blocked items
-		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) || InventoryIsPermissionLimited(C,Bundle[A].Name, Bundle)) && OnlineGameAllowBlockItems()) continue;
+		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) || InventoryIsPermissionLimited(C, Bundle[A].Name, Bundle)) && OnlineGameAllowBlockItems()) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (var I = 0; I < Asset.length; I++)
@@ -368,7 +467,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				}
 
 				// Validate color string, fallback to default in case of an invalid color
-				if ((NA.Color !=  NA.Asset.Group.ColorSchema[0]) && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
+				if ((NA.Color != NA.Asset.Group.ColorSchema[0]) && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
 					NA.Color = NA.Asset.Group.ColorSchema[0];
 				}
 
@@ -413,20 +512,43 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				if (Appearance[A].Asset.Group.Name == AssetGroup[G].Name)
 					Found = true;
 
-			// Adds the missing appearance part
-			if (!Found)
-				for (var I = 0; I < Asset.length; I++)
-					if (Asset[I].Group.Name == AssetGroup[G].Name) {
-						Appearance.push({ Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] });
-						break;
-					}
+			// Adds the missing appearance part, we copy the mirrored group if it is not found and it exists
+			if (!Found) {
+				if (AssetGroup[G].MirrorGroup) { 
+					var MirroredAsset = null;
+					for (var A = 0; A < Appearance.length; A++)
+						if (Appearance[A].Asset.Group.Name == AssetGroup[G].MirrorGroup) {
+							for (var I = 0; I < Asset.length; I++)
+								if (Asset[I].Group.Name == AssetGroup[G].Name && Asset[I].Name == Appearance[A].Asset.Name) {
+									MirroredAsset = { Asset: Asset[I], Color: Appearance[A].Color };
+									break;
+								}
+							break;
+						}
+					if (MirroredAsset == null)
+						for (var I = 0; I < Asset.length; I++)
+							if (Asset[I].Group.Name == AssetGroup[G].Name) {
+								MirroredAsset = { Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] };
+								break;
+							}
+					Appearance.push(MirroredAsset);
+				} else
+					for (var I = 0; I < Asset.length; I++)
+						if (Asset[I].Group.Name == AssetGroup[G].Name) {
+							Appearance.push({ Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] });
+							break;
+						}
+			}
 
 		}
 	return Appearance;
 
 }
 
-// Syncs the player appearance with the server
+/** 
+ * Syncs the player appearance with the server
+ * @returns {void} - Nothing 
+ */
 function ServerPlayerAppearanceSync() {
 
 	// Creates a big parameter string of every appearance items and sends it to the server
@@ -439,7 +561,10 @@ function ServerPlayerAppearanceSync() {
 
 }
 
-// Syncs the private character with the server
+/** 
+ * Syncs all the private room characters with the server
+ * @returns {void} - Nothing 
+ */
 function ServerPrivateCharacterSync() {
 	if (PrivateVendor != null) {
 		var D = {};
@@ -465,7 +590,11 @@ function ServerPrivateCharacterSync() {
 	}
 };
 
-// Parse the query result and sends it to the right screen
+/** 
+ * Callback used to parse received information related to a query made by the player such as viewing their online friends or current email status
+ * @param {object} data - Data object containing the query data
+ * @returns {void} - Nothing
+ */
 function ServerAccountQueryResult(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Query != null) && (typeof data.Query === "string") && (data.Result != null)) {
 		if (data.Query == "OnlineFriends") FriendListLoadFriendList(data.Result);
@@ -474,7 +603,11 @@ function ServerAccountQueryResult(data) {
 	}
 }
 
-// When the server sends a beep from another account
+/** 
+ * Callback used to parse received information related to ta beep from another account
+ * @param {object} data - Data object containing the beep object which contain at the very least a name and a member number
+ * @returns {void} - Nothing
+ */
 function ServerAccountBeep(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
 		ServerBeep.MemberNumber = data.MemberNumber;
@@ -487,18 +620,22 @@ function ServerAccountBeep(data) {
 		}
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null)
-			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
+			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : data.ChatRoomSpace === "LARP" ? DialogFind(Player, "InLarp") : '');
 		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
 }
 
-// Draws the beep sent by the server
+/** Draws the last beep sent by the server if the timer is still valid, used during the drawing process */
 function ServerDrawBeep() {
 	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
 }
 
-// Gets the account ownership result from the query sent to the server
+/** 
+ * Callback used to parse received information related to the player ownership data
+ * @param {object} data - Data object containing the Owner name and Ownership object
+ * @returns {void} - Nothing
+ */
 function ServerAccountOwnership(data) {
 
 	// If we get a result for a specific member number, we show that option in the online dialog
@@ -522,7 +659,11 @@ function ServerAccountOwnership(data) {
 
 }
 
-// Gets the account lovership result from the query sent to the server
+/** 
+ * Callback used to parse received information related to the player lovership data
+ * @param {object} data - Data object containing the Lovership array
+ * @returns {void} - Nothing
+ */
 function ServerAccountLovership(data) {
 
 	// If we get a result for a specific member number, we show that option in the online dialog

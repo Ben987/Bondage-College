@@ -30,7 +30,12 @@ var KidnapMoveMap = [
 	[0, 0, 0, 0, 0] // Passive
 ];
 
-// Generates the character or player kidnap stats
+/**
+ * Generates the kidnap stats for the given character, factoring in any bonus it might have.
+ * @param {Character} C - The character for which to generate the stats for.
+ * @param {number} Bonus - The possible stat bonus a character has
+ * @returns {void} - Nothing
+ */
 function KidnapLoadStats(C, Bonus) {
 	C.KidnapStat = [
 		SkillGetLevel(C, KidnapMoveType[0]) + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[0]) + Bonus + 5, 
@@ -40,25 +45,32 @@ function KidnapLoadStats(C, Bonus) {
 	];
 }
 
-// Build the inventory listing that's available when kidnapping
+/**
+ * Builds the inventory items that are available when kidnapping
+ * @returns {void} - Nothing
+ */
 function KidnapInventoryBuild() {
 
 	// Loop in the player inventory for that group for items that can be worn, is enable and is allowed for random events
 	DialogInventory = [];
 	if (KidnapOpponent.FocusGroup != null)
-		for(var A = 0; A < Player.Inventory.length; A++)
+		for (var A = 0; A < Player.Inventory.length; A++)
 			if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == KidnapOpponent.FocusGroup.Name) && Player.Inventory[A].Asset.Enable && Player.Inventory[A].Asset.Wear && Player.Inventory[A].Asset.Random)
-				DialogInventoryAdd(KidnapOpponent, Player.Inventory[A], false, 1);
+				DialogInventoryAdd(KidnapOpponent, Player.Inventory[A], false, DialogSortOrderEnabled);
 	DialogInventorySort();
 
 }
 
-// Sets the new kidnap mode and timer
+/**
+ * Sets the current battle status and its related timer
+ * @param {string} NewMode - New mode for the battle
+ * @returns {void} - Nothing
+ */
 function KidnapSetMode(NewMode) {
 
 	// Removes the focus group if not selecting an item
 	if (NewMode != "SelectItem") KidnapOpponent.FocusGroup = null;
-	
+
 	// If we must enter in Upper Hand mode
 	if (KidnapMode == "UpperHand") KidnapUpperHandVictim = null;
 	if ((NewMode == "SelectMove") && (KidnapUpperHandVictim != null)) NewMode = "UpperHand";
@@ -72,15 +84,15 @@ function KidnapSetMode(NewMode) {
 	}
 
 	// If we must end the mini game in defeat
-	if ((NewMode == "SelectMove") && (Player.KidnapWillpower <= 0)) { 
+	if ((NewMode == "SelectMove") && (Player.KidnapWillpower <= 0)) {
 		InventoryWearRandom(Player, "ItemArms", KidnapDifficulty);
-		NewMode = "End"; 
+		NewMode = "End";
 	}
-	
+
 	// If we must end the mini game in victory, one last item can be equipped
 	if ((NewMode == "SelectMove") && (KidnapOpponent.KidnapWillpower <= 0)) {
 		if (!KidnapVictory) {
-			for(var A = 0; A < AssetGroup.length; A++)
+			for (var A = 0; A < AssetGroup.length; A++)
 				if (AssetGroup[A].Name == "ItemArms") {
 					KidnapOpponent.FocusGroup = AssetGroup[A];
 					KidnapInventoryBuild();
@@ -89,8 +101,8 @@ function KidnapSetMode(NewMode) {
 			NewMode = (KidnapOpponent.FocusGroup != null) ? "SelectItem" : "End";
 			KidnapVictory = true;
 		} else NewMode = "End";
-	}	
-	
+	}
+
 	// Sets the mode and timer
 	KidnapMode = NewMode;
 	if ((NewMode == "Intro") || (NewMode == "SuddenDeath") || (NewMode == "End")) KidnapTimer = CommonTime() + 5000;
@@ -98,12 +110,20 @@ function KidnapSetMode(NewMode) {
 
 }
 
-// Returns the opponent regular move determined by the AI
+/**
+ * Gets a move value for the NPC
+ * @returns {number} - Returns a random value for the opponent regular move
+ */
 function KidnapAIMove() {
 	return Math.floor(Math.random() * 4);
 }
 
-// Returns TRUE if the Upper Hand move type is available
+/**
+ * Validates or checks if a given upper hand move type is available.
+ * @param {string} MoveType - The type of move to check for or perform
+ * @param {boolean} DoMove - Whether or not the move is being performed
+ * @returns {boolean} - Returns TRUE if the upper hand move type is available
+ */
 function KidnapUpperHandMoveAvailable(MoveType, DoMove) {
 
 	// Mercy is always available
@@ -156,7 +176,10 @@ function KidnapUpperHandMoveAvailable(MoveType, DoMove) {
 
 }
 
-// Returns the opponent upper hand move determined by the AI
+/**
+ * Sets a random upper hand move for the NPC to use
+ * @returns {void} - Nothing
+ */
 function KidnapAIMoveUpperHand() {
 	var Try = 0;
 	var MoveDone = false;
@@ -168,7 +191,10 @@ function KidnapAIMoveUpperHand() {
 	if (MoveDone == false) KidnapUpperHandSelection = 8;
 }
 
-// Show the move text on the left side, show the effect on the right side
+/**
+ * Draws the move text (left side) and the effect (right side)
+ * @returns {void} - Nothing
+ */
 function KidnapShowMove() {
 	DrawTextWrap(TextGet(KidnapDialog + "Action"), 10, 150, 580, 200, "white");
 	DrawTextWrap(Player.Name + ": " + SpeechGarble(Player, TextGet(KidnapDialog + "Player")), 10, 350, 580, 200, "white");
@@ -180,14 +206,23 @@ function KidnapShowMove() {
 	DrawText(TextGet(KidnapMoveType[KidnapOpponentMove]), 1250, 25, "white", "gray");
 }
 
-// Returns TRUE if the move for that person is effective
+/**
+ * Checks if a given move is effective against a given character
+ * @param {Character} C - Character for which to check if the move is 
+ * @param {number} MoveType - Type of move to check for
+ * @returns {boolean} - Returns TRUE if the move for that person is effective
+ */
 function KidnapMoveEffective(C, MoveType) {
 	if ((MoveType == 0) && (InventoryGet(C, KidnapUpperHandMoveType[MoveType]) != null)) return true;
 	if ((MoveType > 0) && (InventoryGet(C, KidnapUpperHandMoveType[MoveType]) == null)) return true;
 	return false;
 }
 
-// When the player select its move
+/**
+ * Processes a selected move. Triggered when the player selects their move.
+ * @param {number} PlayerMove - Type of the player move (Represented by the index of the character move array)
+ * @returns {void} - Nothing
+ */
 function KidnapSelectMove(PlayerMove) {
 	
 	// Gets both moves effectiveness
@@ -229,7 +264,7 @@ function KidnapSelectMove(PlayerMove) {
 	if (KidnapOpponent.KidnapWillpower < 0) KidnapOpponent.KidnapWillpower = 0;
 
 	// Every move gets a +2
-	for(var M = 0; M < 4; M++) {
+	for (var M = 0; M < 4; M++) {
 		Player.KidnapStat[M] = parseInt(Player.KidnapStat[M]) + 1;
 		KidnapOpponent.KidnapStat[M] = parseInt(KidnapOpponent.KidnapStat[M]) + 1;
 	}
@@ -243,7 +278,11 @@ function KidnapSelectMove(PlayerMove) {
 
 }
 
-// When the player select its upper hand move
+/**
+ * Processes a selected upper handmove. Triggered when the player selects their upper hand move.
+ * @param {number} PlayerMove - Type of the player upper hand move (Represented by the index of the character move array)
+ * @returns {void} - Nothing
+ */
 function KidnapSelectMoveUpperHand(PlayerMove) {
 	
 	// Stripping or undoing something is automatic
@@ -254,7 +293,7 @@ function KidnapSelectMoveUpperHand(PlayerMove) {
 	// Apply an item enters another mode with a focused group
 	if ((PlayerMove == 1) || (PlayerMove == 2) || (PlayerMove == 3))
 		if (KidnapUpperHandMoveAvailable(PlayerMove, false))
-			for(var A = 0; A < AssetGroup.length; A++)
+			for (var A = 0; A < AssetGroup.length; A++)
 				if (AssetGroup[A].Name == KidnapUpperHandMoveType[PlayerMove]) {
 					KidnapOpponent.FocusGroup = AssetGroup[A];
 					KidnapInventoryBuild();
@@ -266,13 +305,23 @@ function KidnapSelectMoveUpperHand(PlayerMove) {
 	if (PlayerMove == 8) KidnapSetMode("SelectMove");
 }
 
-// When the player surrenders to her opponent
+/**
+ * Triggered when the player surrenders to her opponent
+ * @returns {void} - Nothing
+ */
 function KidnapSurrender() {
 	Player.KidnapWillpower = 0;
 	KidnapSetMode("SelectMove");
 }
 
-// Starts a kidnap match
+/**
+ * Starts a kidnap match
+ * @param {Character} Opponent - The NPC that will be the opponent for the fight
+ * @param {string} Background - The background for the fight, changes depending on which room the battle is happening
+ * @param {number} Difficulty - Difficulty modifier for the fight, higher is harder
+ * @param {string} ReturnFunction - The callback to execute through CommonDynamicFunction
+ * @returns {void} - Nothing
+ */
 function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
 	KidnapDifficulty = (Difficulty == null) ? 0 : Difficulty;
 	KidnapVictory = false;
@@ -296,24 +345,36 @@ function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
 	CommonSetScreen("MiniGame", "Kidnap");
 }
 
-// Draws the player and opponent moves
+/**
+ * Draws the given character move.
+ * @param {Character} C - Character to draw the move for
+ * @param {string} Header - Text to display
+ * @param {number} X - Position of the text to draw on the X axis, normally the position of the character
+ * @returns {void} - Nothing
+ */
 function KidnapDrawMove(C, Header, X) {
 	DrawText(TextGet(Header), X, 50, "White", "Gray");
-	for(var M = 0; M < 4; M++)
+	for (var M = 0; M < 4; M++)
 		DrawButton(X - 200, (M * 100) + 100, 400, 70, TextGet(KidnapMoveType[M]) + " ( " + C.KidnapStat[M].toString() + ((KidnapMoveEffective(C, M)) ? "" : " / 2") + " )", (C.ID == 0) ? (KidnapMoveEffective(C, M) ? "White" : "Silver") : "Pink");
 	DrawButton(X - 200, 900, 400, 70, TextGet("Surrender"), (C.ID == 0) ? "White" : "Pink");
 }
 
-// Draws the upper hand moves
+/**
+ * Draws the upper hand moves
+ * @returns {void} - Nothing
+ */
 function KidnapDrawMoveUpperHand() {
 	var X = (KidnapUpperHandVictim.ID == 0) ? 1500 : 0;
 	if (KidnapUpperHandVictim.ID == 0) DrawTextWrap(TextGet("UpperHand" + KidnapUpperHandMoveType[KidnapUpperHandSelection]), 10, 300, 580, 200, "White");
 	DrawText(TextGet("UpperHandMove"), X + 250, 50, "white", "gray");
-	for(var M = 0; M <= 9; M++)
+	for (var M = 0; M <= 9; M++)
 		DrawButton(X + 50, (M * 100) + 100, 400, 70, TextGet(KidnapUpperHandMoveType[M]), (KidnapUpperHandVictim.ID != 0) ? ((KidnapUpperHandMoveAvailable(M, false)) ? "White" : "Pink") : ((KidnapUpperHandSelection == M) ? "Aquamarine" : "Pink"));
 }
 
-// Shows a huge timer in the middle of the screen
+/**
+ * Draws a large timer in the middle of the screen based on the kidnapping timer.
+ * @returns {void} - Nothing
+ */
 function KidnapShowTimer() {
 	if ((KidnapMode == "SelectItem") || (KidnapMode == "SelectMove") || (KidnapMode == "UpperHand") || (KidnapMode == "ShowMove")) {
 		var Sec = Math.floor((KidnapTimer - CommonTime() + 1000) / 1000);
@@ -323,7 +384,11 @@ function KidnapShowTimer() {
 	}
 }
 
-// Shows a big title in the center of the screen
+/**
+ * Draws a large title in the center of the screen.
+ * @param {string} Title - Title to display on screen
+ * @returns {void} - Nothing
+ */
 function KidnapTitle(Title) {
 	MainCanvas.font = "italic 200px Arial Narrow";
 	DrawText(Title, 1003, 503, "White");
@@ -331,7 +396,10 @@ function KidnapTitle(Title) {
 	MainCanvas.font = "36px Arial";
 }
 
-// Show the items
+/**
+ * Shows the items that can be used by the player.
+ * @returns {void} - Nothing
+ */
 function KidnapShowItem() {
 	
 	// Draw the header
@@ -341,7 +409,7 @@ function KidnapShowItem() {
 	// For each items in the player inventory
 	var X = 1000;
 	var Y = 125;
-	for(var I = 0; I < DialogInventory.length; I++) {
+	for (var I = 0; I < DialogInventory.length; I++) {
 		DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : DialogInventory[I].Worn ? "pink" : "white");
 		DrawImageResize("Assets/" + DialogInventory[I].Asset.Group.Family + "/" + DialogInventory[I].Asset.Group.Name + "/Preview/" + DialogInventory[I].Asset.Name + ".png", X + 2, Y + 2, 221, 221);
 		DrawTextFit(DialogInventory[I].Asset.Description, X + 112, Y + 250, 221, "black");
@@ -355,7 +423,10 @@ function KidnapShowItem() {
 	
 }
 
-// Run the kidnap league
+/**
+ * Runs and draws the kidnapping minigame
+ * @returns {void} - Nothing
+ */
 function KidnapRun() {
 
 	// Draw the kidnap elements
@@ -384,7 +455,10 @@ function KidnapRun() {
 
 }
 
-// When the user clicks in the kidnap mini game
+/**
+ * Handles clicks in the kidnap mini game
+ * @returns {void} - Nothing
+ */
 function KidnapClick() {
 
 	// If we must end the fight
@@ -398,7 +472,7 @@ function KidnapClick() {
 	
 	// When the user selects a regular move
 	if (KidnapMode == "SelectMove") {
-		for(var M = 0; M < 4; M++)
+		for (var M = 0; M < 4; M++)
 			if ((MouseX >= 50) && (MouseX <= 450) && (MouseY >= 100 + (M * 100)) && (MouseY <= 170 + (M * 100)))
 				KidnapSelectMove(M);
 		if ((MouseX >= 50) && (MouseX <= 450) && (MouseY >= 900) && (MouseY <= 970))
@@ -408,7 +482,7 @@ function KidnapClick() {
 	
 	// When the user selects a upper hand move
 	if ((KidnapMode == "UpperHand") && (KidnapUpperHandVictim.ID > 0)) {
-		for(var M = 0; M <= 8; M++)
+		for (var M = 0; M <= 8; M++)
 			if ((MouseX >= 50) && (MouseX <= 450) && (MouseY >= 100 + (M * 100)) && (MouseY <= 170 + (M * 100)))
 				KidnapSelectMoveUpperHand(M);
 		return;
@@ -424,7 +498,7 @@ function KidnapClick() {
 		// For each items in the player/opponent inventory
 		var X = 1000;
 		var Y = 125;
-		for(var I = 0; I < DialogInventory.length; I++) {
+		for (var I = 0; I < DialogInventory.length; I++) {
 
 			// If the item at position is clicked, we add the item to the opponent
 			if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {

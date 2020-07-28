@@ -15,11 +15,23 @@ var ShopDemoItemGroup = "";
 var ShopDemoItemGroupList = ["ItemHead", "ItemMouth", "ItemArms", "ItemLegs", "ItemFeet"];
 var ShopSelectAsset = ShopAssetFocusGroup;
 
-// Returns TRUE if a dialog is permitted
+/** 
+ * Checks if the vendor is restrained
+ * @returns {boolean} - Returns TRUE if the vendor is restrained or gagged
+ */
 function ShopIsVendorRestrained() { return (ShopVendor.IsRestrained() || !ShopVendor.CanTalk()) }
+
+/** 
+ * Checks if the current rescue scenario corresponds to the given one
+ * @param {string} ScenarioName - Name of the rescue scenario to check for
+ * @returns {boolean} - Returns TRUE if the current rescue scenario is the given one
+ */
 function ShopIsRescueScenario(ScenarioName) { return (ShopRescueScenario == ScenarioName) }
 
-// Loads the shop room
+/**
+ * Loads the shop room and its NPC
+ * @returns {void} - Nothing
+ */
 function ShopLoad() {
 
 	// Creates the shop vendor always at full height to be able to click on her zones correctly
@@ -45,7 +57,10 @@ function ShopLoad() {
 
 }
 
-// Run the shop
+/**
+ * Runs and draws the shop screen.
+ * @returns {void} - Nothing
+ */
 function ShopRun() {
 	
 	// Draw both characters
@@ -62,7 +77,7 @@ function ShopRun() {
 		var X = 1000;
 		var Y = 125;
 		ShopItemCount = 0;
-		for(var A = 0; A < Asset.length; A++)
+		for (var A = 0; A < Asset.length; A++)
 			if (ShopSelectAsset(Asset[A])) {
 				if ((ShopItemCount >= ShopItemOffset) && (ShopItemCount < ShopItemOffset + 12)) {
 					DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : "white");
@@ -86,17 +101,28 @@ function ShopRun() {
 
 }
 
-// Select asset by vendor's focusgroup
+/**
+ * Checks if an asset is from the focus group and if it can be bought. An asset can be shown if it has a value greater than 0. (0 is a default item, -1 is a non-purchasable item)
+ * @param {Asset} Asset - The asset to check for availability
+ * @returns {boolean} - Returns TRUE if the item is purchasable and part of the focus group.
+ */
 function ShopAssetFocusGroup(Asset) {
 	return (Asset != null) && (Asset.Group != null) && (Asset.Value > 0) && (Asset.Group.Name == ShopVendor.FocusGroup.Name);
 }
 
-// Select missing assets
+/**
+ * Checks if an asset can be bought. An asset is considered missing if it is not owned and has a value greater than 0. (0 is a default item, -1 is a non-purchasable item)
+ * @param {Asset} Asset - The asset to check for availability
+ * @returns {boolean} - Returns TRUE if the item is purchasable and unowned.
+ */
 function ShopAssetMissing(Asset) {
 	return (Asset != null) && (Asset.Group != null) && (Asset.Value > 0) && !InventoryAvailable(Player, Asset.Name, Asset.Group.Name);
 }
 
-// When user wants to see the missing items
+/**
+ * Used to display all the items the player does not own
+ * @returns {void} - Nothing
+ */
 function ShopSelectAssetMissing() {
 	ShopVendor.FocusGroup = null;
 	ShopItemOffset = 0;
@@ -106,7 +132,10 @@ function ShopSelectAssetMissing() {
 	ShopText = TextGet("SelectItemBuy");
 }
 
-// When the user clicks in the shop
+/**
+ * Click handler for the shop screen
+ * @returns {void} - Nothing
+ */
 function ShopClick() {
 	
 	// Out of shopping mode, the player can click on herself, the vendor or exit
@@ -120,9 +149,9 @@ function ShopClick() {
 		// The user can select a different body by clicking on the vendor
 		if ((ShopVendor.FocusGroup != null) && (ShopVendor.FocusGroup.Category == "Item"))
 			if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000))
-				for(var A = 0; A < AssetGroup.length; A++)
+				for (var A = 0; A < AssetGroup.length; A++)
 					if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
-						for(var Z = 0; Z < AssetGroup[A].Zone.length; Z++)
+						for (var Z = 0; Z < AssetGroup[A].Zone.length; Z++)
 							if ((MouseX - 500 >= AssetGroup[A].Zone[Z][0]) && (MouseY >= AssetGroup[A].Zone[Z][1] - ShopVendor.HeightModifier) && (MouseX - 500 <= AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) && (MouseY <= AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - ShopVendor.HeightModifier)) {
 								ShopItemOffset = 0;
 								ShopVendor.FocusGroup = AssetGroup[A];
@@ -133,7 +162,7 @@ function ShopClick() {
 		var X = 1000;
 		var Y = 125;
 		var ItemCount = 0;
-		for(var A = 0; A < Asset.length; A++)
+		for (var A = 0; A < Asset.length; A++)
 			if (ShopSelectAsset(Asset[A])) {
 				if ((ItemCount >= ShopItemOffset) && (ItemCount < ShopItemOffset + 12)) {
 					if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
@@ -152,14 +181,14 @@ function ShopClick() {
 
 							// Add any item that belongs in the same buy group
 							if (Asset[A].BuyGroup != null)
-								for(var B = 0; B < Asset.length; B++)
+								for (var B = 0; B < Asset.length; B++)
 									if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup))
 										InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
 
-							if(Asset[A].PrerequisiteBuyGroups)
-								for(var B = 0; B < Asset.length; B++)
-									for(var C = 0; C < Asset[A].PrerequisiteBuyGroups.length; C++)
-										if((Asset[B]) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].PrerequisiteBuyGroups[C]))
+							if (Asset[A].PrerequisiteBuyGroups)
+								for (var B = 0; B < Asset.length; B++)
+									for (var C = 0; C < Asset[A].PrerequisiteBuyGroups.length; C++)
+										if ((Asset[B]) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].PrerequisiteBuyGroups[C]))
 											InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
 
 						}
@@ -192,7 +221,11 @@ function ShopClick() {
 	}
 }
 
-// When the user starts to shop
+/**
+ * Sets the current asset group the player is shopping for
+ * @param {string} ItemGroup - Name of the asset group to look for
+ * @returns {void} - Nothing
+ */
 function ShopStart(ItemGroup) {
 
 	// Finds the asset group to shop with
@@ -213,29 +246,41 @@ function ShopStart(ItemGroup) {
 
 }
 
-// When the player rescues the shop vendor
+/**
+ * Triggered when the player rescues the shop vendor
+ * @returns {void} - Nothing
+ */
 function ShopCompleteRescue() {
 	ShopVendor.AllowItem = ShopVendorAllowItem;
 	CharacterRelease(ShopVendor);
 	MaidQuartersCurrentRescueCompleted = true;
 }
 
-// Checks if the player bought all items that can be bought, including appearance items
+/**
+ * Checks if the player bought all items that can be bought, including appearance items
+ * @returns {void} - Nothing
+ */
 function ShopCheckBoughtEverything() {
 	ShopBoughtEverything = false;
-	for(var A = 0; A < Asset.length; A++)
+	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A] != null) && (Asset[A].Group != null) && (Asset[A].Value > 0) && !InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name))
 			return;
 	ShopBoughtEverything = true;
 }
 
-// The vendor can be restrained if the player bought everything
+/**
+ * Allows the player to tie the shop vendor if the player has bought everything
+ * @returns {void} - Nothing
+ */
 function ShopVendorBondage() {
 	ShopVendorAllowItem = true;
 	ShopVendor.AllowItem = true;
 }
 
-// Before the shop demo job starts, the player gets a random restrain on her
+/**
+ * Restrains the player with a random shop item before the shop demo job starts. The customer will have a 50/50 chance of being willing to release the player
+ * @returns {void} - Nothing
+ */
 function ShopJobRestrain() {
 
 	// First, we find a body part where we can use the item
@@ -257,7 +302,10 @@ function ShopJobRestrain() {
 
 }
 
-// When the shop demo job starts, the customer is sent in an empty room with a customer
+/**
+ * Handles starting the shop demo job, the player is sent in an empty room with a customer
+ * @returns {void} - Nothing
+ */
 function ShopJobStart() {
 	DialogLeave();
 	EmptyBackground = "Shop";

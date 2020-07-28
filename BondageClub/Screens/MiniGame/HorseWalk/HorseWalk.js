@@ -22,11 +22,16 @@ var HorseWalkSpeed = 1;
 var HorseWalkText =""
 var HorseWalkEventTimer = 0;
 
-// Generates all the Carrots
+/**
+ * Generates all the carrots and crops
+ * @param {number} MaxCarrot - Maximum number of carrots to generate
+ * @param {number} MaxCrop - Maximum number of crops to generate
+ * @returns {void} - Nothing
+ */
 function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
-	// Full the Carrots sequence
+	// Fill the Carrots sequence
 	HorseWalkCarrots = [];
-	for(var S = 0; S < MaxCarrot; S++) {
+	for (var S = 0; S < MaxCarrot; S++) {
 		// Generates each Carrot 1 by 1
 		var NewCarrot = {
 			X : Math.floor(Math.random() * 1980) + 10,
@@ -34,9 +39,9 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 		}
 		HorseWalkCarrots.push(NewCarrot);
 	}
-	// Full the Crops sequence
+	// Fill the Crops sequence
 	HorseWalkCrops = [];
-	for(var S = 0; S < MaxCrop; S++) {
+	for (var S = 0; S < MaxCrop; S++) {
 		// Generates each Carrot 1 by 1
 		var NewCrop = {
 			X : Math.floor(Math.random() * 1980) + 10,
@@ -47,10 +52,14 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 
 }
 
-// Generates all the Hurdle
+/**
+ * Generates all the Hurdles for the basic hurdle difficulty
+ * @param {number} MaxHurdle - Maximum number of hurdles to generate
+ * @returns {void} - Nothing
+ */
 function HorseWalkGenerateHurdleItems(MaxHurdle) {
 	HorseWalkHurdle = [];
-	for(var S = 0; S < MaxHurdle; S++) {
+	for (var S = 0; S < MaxHurdle; S++) {
 		// Generates each Hurdle 1 by 1
 		var NewHurdle = {
 			X : 1000 + 800*Math.cos((Math.PI*2)/MaxHurdle*S),
@@ -61,10 +70,14 @@ function HorseWalkGenerateHurdleItems(MaxHurdle) {
 	}
 }
 
-// Generates all the Hurdle
+/**
+ * Generates all the Hurdles for the hurdle training difficulty
+ * @param {number} MaxHurdle - Maximum number of hurdles to generate
+ * @returns {void} - Nothing
+ */
 function HorseWalkGenerateHurdleTrainingItems(MaxHurdle) {
 	HorseWalkHurdle = [];
-	for(var S = 0; S < MaxHurdle; S++) {
+	for (var S = 0; S < MaxHurdle; S++) {
 		// Generates each Hurdle 1 by 1
 		var NewHurdle = {
 			X : 1150 + 700*Math.cos((Math.PI*2)/MaxHurdle*S),
@@ -75,15 +88,18 @@ function HorseWalkGenerateHurdleTrainingItems(MaxHurdle) {
 	}
 }
 
-// Draw the Carrots
+/**
+ * Draws the carrots & crops, or hurdles based on the current difficulty/mode
+ * @returns {void} - Nothing
+ */
 function HorseWalkDrawItem() {
 	if (MiniGameDifficulty == "Carrot") {
-		for(var S = 0; S < HorseWalkCarrots.length; S++)
+		for (var S = 0; S < HorseWalkCarrots.length; S++)
 			DrawImage("Screens/MiniGame/HorseWalk/carrot.png", HorseWalkCarrots[S].X - (HorseWalkItemSize / 2), HorseWalkCarrots[S].Y - (HorseWalkItemSize / 2));
-		for(var S = 0; S < HorseWalkCrops.length; S++)
+		for (var S = 0; S < HorseWalkCrops.length; S++)
 			DrawImage("Screens/MiniGame/HorseWalk/LeatherCrop.png", HorseWalkCrops[S].X - (HorseWalkItemSize / 2), HorseWalkCrops[S].Y - (HorseWalkItemSize / 2));
 	} else if (MiniGameDifficulty == "Hurdle" || MiniGameDifficulty == "HurdleTraining") {
-		for(var S = 0; S < HorseWalkHurdle.length; S++) {
+		for (var S = 0; S < HorseWalkHurdle.length; S++) {
 			if (HorseWalkHurdle[S].Stat == 0) {	
 				DrawImage("Screens/MiniGame/HorseWalk/hurdle_90.png", HorseWalkHurdle[S].X - (HorseWalkItemSize / 2), HorseWalkHurdle[S].Y - (HorseWalkItemSize / 2));
 			} else if (HorseWalkHurdle[S].Stat == 1) {	
@@ -95,12 +111,14 @@ function HorseWalkDrawItem() {
 	}
 }
 
-// Loads the Horse Walk mini game
+/**
+ * Loads the Horse Walk mini game and generate the items, there are more carrots on harder difficulties and there are less of them overall on mobile because it is hard (no mouse swiping)
+ * @returns {void} - Nothing
+ */
 function HorseWalkLoad() {
 
 	HorseWalkBackground = "HorseStable";
 
-	// The higher the difficulty, the more Carrots there will be (less Carrots on mobile since we cannot swipe the mouse)
 	HorseWalkPlayerX = 900;
 	HorseWalkPlayerY = 400;
 	var Factor = (CommonIsMobile) ? 0.25 : 1;
@@ -128,12 +146,15 @@ function HorseWalkLoad() {
 	HorseWalkSpeed = 1 + SkillGetLevel(Player, "Dressage")/5;
 }
 
-// Run the mini game
+/**
+ * Runs the horse walk mini game and draws the characters and items on screen
+ * @returns {void} - Nothing
+ */
 function HorseWalkRun() {
 
 	// The game ends in victory if the time runs out
 	var Time = CommonTime();
-	if (!MiniGameEnded && (Time >= MiniGameTimer)){
+	if (!MiniGameEnded && (Time >= MiniGameTimer)) {
 		if (MiniGameDifficulty == "Carrot") {
 			if (HorseWalkCollectedCarrots > HorseWalkCollectedCrops) {
 				var HorseWalkSkillProgress = (HorseWalkCollectedCarrots - HorseWalkCollectedCrops) * 5;
@@ -234,30 +255,37 @@ function HorseWalkRun() {
 	}
 }
 
-// Ends the game and sends the result back to the screen
+/**
+ * Ends the game and sends the result back to the screen
+ * @param {boolean} Victory - Whether or not the player has won
+ * @returns {void} - Nothing
+ */
 function HorseWalkEnd(Victory) {
 	MiniGameVictory = Victory;
 	MiniGameEnded = true;
 	MiniGameTimer = CommonTime();
 }
 
-// When the user clicks in the horse walk game
+/**
+ * Validates the clicks during the horse walk mini game for mobile, moves the character and validates touched items
+ * @returns {void} - Nothing
+ */
 function HorseWalkDoMove() {
 
 	// If the position changed
 	if (((HorseWalkPlayerX != MouseX - 100) || (HorseWalkPlayerY != MouseY - 100)) && (MouseX >= 0) && (MouseY >= 0)) {
 		
-		if ( HorseWalkPlayerX > (MouseX - 100 + HorseWalkSpeed) ) {
+		if (HorseWalkPlayerX > (MouseX - 100 + HorseWalkSpeed) ) {
 			HorseWalkPlayerX -= HorseWalkSpeed;
-		} else if ( HorseWalkPlayerX < (MouseX - 100 - HorseWalkSpeed) ){
+		} else if (HorseWalkPlayerX < (MouseX - 100 - HorseWalkSpeed)) {
 			HorseWalkPlayerX += HorseWalkSpeed;
 		} else {
 			HorseWalkPlayerX = MouseX - 100;
 		}
 
-		if ( HorseWalkPlayerY > (MouseY - 100 + HorseWalkSpeed) ) {
+		if (HorseWalkPlayerY > (MouseY - 100 + HorseWalkSpeed)) {
 			HorseWalkPlayerY -= HorseWalkSpeed;
-		} else if ( (HorseWalkPlayerY) < (MouseY - 100 - HorseWalkSpeed) ){
+		} else if ((HorseWalkPlayerY) < (MouseY - 100 - HorseWalkSpeed)) {
 			HorseWalkPlayerY += HorseWalkSpeed;
 		} else {
 			HorseWalkPlayerY = MouseY - 100;
@@ -266,16 +294,16 @@ function HorseWalkDoMove() {
 		var Range = ((CommonIsMobile) ? (HorseWalkItemSize / 1.5) : (HorseWalkItemSize / 2));
 
 		// If the game has started, we check the click position and change a Item at that position
-		if (!MiniGameEnded){
+		if (!MiniGameEnded) {
 			if (MiniGameDifficulty == "Carrot") {
-				for(var S = 0; S < HorseWalkCarrots.length; S++){
+				for (var S = 0; S < HorseWalkCarrots.length; S++) {
 					if (((HorseWalkPlayerX+100) >= HorseWalkCarrots[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkCarrots[S].X + Range) && ((HorseWalkPlayerY+100) >= HorseWalkCarrots[S].Y - Range) && ((HorseWalkPlayerY+100) <= HorseWalkCarrots[S].Y + Range)) {
 						HorseWalkCarrots.splice(S, 1);
 						HorseWalkCollectedCarrots++;
 						return;
 					}
 				}
-				for(var S = 0; S < HorseWalkCrops.length; S++){
+				for (var S = 0; S < HorseWalkCrops.length; S++) {
 					if (((HorseWalkPlayerX+100) >= HorseWalkCrops[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkCrops[S].X + Range) && ((HorseWalkPlayerY+100) >= HorseWalkCrops[S].Y - Range) && ((HorseWalkPlayerY+100) <= HorseWalkCrops[S].Y + Range)) {
 						HorseWalkCrops.splice(S, 1);
 						HorseWalkCollectedCrops++;
@@ -283,7 +311,7 @@ function HorseWalkDoMove() {
 					}
 				}
 			} else if (MiniGameDifficulty == "Hurdle" || MiniGameDifficulty == "HurdleTraining") {
-				for(var S = 0; S < HorseWalkHurdle.length; S++){
+				for (var S = 0; S < HorseWalkHurdle.length; S++) {
 					if (((HorseWalkPlayerX+100) >= HorseWalkHurdle[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkHurdle[S].X + Range) && ((HorseWalkPlayerY+300) >= HorseWalkHurdle[S].Y - Range) && ((HorseWalkPlayerY+300) <= HorseWalkHurdle[S].Y + Range) && HorseWalkHurdle[S].Stat == 0) {
 						if ((Math.random() * Math.random() * 10) < SkillGetLevel(Player, "Dressage")) {
 							HorseWalkHurdle[S].Stat = 1;
@@ -301,7 +329,10 @@ function HorseWalkDoMove() {
 
 }
 
-// On mobile, we need to move the player on click
+/**
+ * Handles click events during the horse walk mini game. On mobile we move the player on click.
+ * @returns {void} - Nothing
+ */
 function HorseWalkClick() {
 	if (MiniGameDifficulty == "WhipPony") {
 		if ((MouseX >= HorseWalkDrawXPosition) && (MouseX < (HorseWalkDrawXPosition + (HorseWalkDrawYHeigh / 2))) && (MouseY >= HorseWalkDrawYPosition) && (MouseY < (HorseWalkDrawYPosition + HorseWalkDrawYHeigh))) {

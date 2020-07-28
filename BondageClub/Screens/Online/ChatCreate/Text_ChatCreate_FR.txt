@@ -25,7 +25,8 @@ Invalid room data
 Données invalides de compte
 Room created, joining it...
 Salon créé, vous vous y rendez...
-###Rooms
+Selection
+Sélection
 Introduction
 Introduction
 Kidnappers League

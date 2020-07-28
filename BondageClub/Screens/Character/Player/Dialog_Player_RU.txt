@@ -97,6 +97,8 @@ You cannot unlock yourself
 Вы не можете отпереть себя
 This zone is out of reach from another item
 Эта зона находится вне досягаемости из-за другого предмета
+Another item is blocking access to this lock
+Another item is blocking access to this lock
 You cannot access your items
 Вы не можете получить доступ к своим предметам
 Click here to speed up the progress

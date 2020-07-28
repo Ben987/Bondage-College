@@ -14,10 +14,13 @@
 	<link rel="stylesheet" href="CSS/Styles.css">
 </head>
 
+<script src="Backgrounds/Backgrounds.js"></script>
 <script src="Scripts/webgl/resources/m4.js"></script>
 <script src="Scripts/GLDraw.js"></script>
 <script src="Scripts/Common.js"></script>
+<script src="Scripts/Mouse.js"></script>
 <script src="Scripts/Drawing.js"></script>
+<script src="Scripts/Drawing3D.js"></script>
 <script src="Scripts/Timer.js"></script>
 <script src="Scripts/AfkTimer.js"></script>
 <script src="Scripts/GameLog.js"></script>
@@ -39,9 +42,12 @@
 <script src="Scripts/Element.js"></script>
 <script src="Scripts/Translation.js"></script>
 <script src="Scripts/Activity.js"></script>
-<script src="Scripts/socket.io/socket.io.js"></script>
-<script src="Scripts/LZString.js"></script>
 <script src="Scripts/ExtendedItem.js"></script>
+<script src="Scripts/LZString.js"></script>
+<script src="Scripts/socket.io/socket.io.js"></script>
+<script src="Scripts/three/three.min.js"></script>
+<script src="Scripts/three/inflate.min.js"></script>
+<script src="Scripts/three/FBXLoader.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
 <script src="Screens/Character/Appearance/Appearance.js"></script>
@@ -147,8 +153,8 @@
 <script src="Screens/Inventory/ItemMisc/MistressPadlock/MistressPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/ExclusivePadlock/ExclusivePadlock.js"></script>
 <script src="Screens/Inventory/ItemHead/DuctTape/DuctTape.js"></script>
-<script src="Screens/Inventory/ItemHead/OldGasMask/OldGasMask.js"></script>
-<script src="Screens/Inventory/ItemHead/InflatedBallHood/InflatedBallHood.js"></script>
+<script src="Screens/Inventory/ItemHood/OldGasMask/OldGasMask.js"></script>
+<script src="Screens/Inventory/ItemHood/InflatedBallHood/InflatedBallHood.js"></script>
 <script src="Screens/Inventory/ItemHead/WebBlindfold/WebBlindfold.js"></script>
 <script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/DildoPlugGag/DildoPlugGag.js"></script>
@@ -157,6 +163,7 @@
 <script src="Screens/Inventory/ItemTorso/NylonRopeHarness/NylonRopeHarness.js"></script>
 <script src="Screens/Inventory/ItemFeet/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemFeet/Chains/Chains.js"></script>
+<script src="Screens/Inventory/ItemFeet/Zipties/Zipties.js"></script>
 <script src="Screens/Inventory/ItemLegs/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemLegs/Chains/Chains.js"></script>
 <script src="Screens/Inventory/ItemPelvis/LoveChastityBelt/LoveChastityBelt.js"></script>
@@ -185,11 +192,13 @@
 <script src="Screens/Inventory/ItemDevices/InflatableBodyBag/InflatableBodyBag.js"></script>
 <script src="Screens/Inventory/ItemArms/WristShackles/WristShackles.js"></script>
 <script src="Screens/Inventory/ItemEars/HeadphoneEarPlugs/HeadphoneEarPlugs.js"></script>
+<script src="Screens/Inventory/ItemEars/BluetoothEarbuds/BluetoothEarbuds.js"></script>
 <script src="Screens/Inventory/ItemArms/SturdyLeatherBelts/SturdyLeatherBelts.js"></script>
 <script src="Screens/Inventory/ItemLegs/SturdyLeatherBelts/SturdyLeatherBelts.js"></script>
 <script src="Screens/Inventory/ItemFeet/SturdyLeatherBelts/SturdyLeatherBelts.js"></script>
 <script src="Screens/Inventory/ItemNipplesPiercings/RoundPiercing/RoundPiercing.js"></script>
 <script src="Screens/Inventory/ItemNipplesPiercings/WeightedPiercing/WeightedPiercing.js"></script>
+<script src="Screens/Inventory/ItemLegs/Zipties/Zipties.js"></script>
 <script src="Screens/Inventory/ItemDevices/Sybian/Sybian.js"></script>
 <script src="Screens/Inventory/ItemBoots/ToeTape/ToeTape.js"></script>
 <script src="Screens/Inventory/ItemDevices/BondageBench/BondageBench.js"></script>
@@ -199,6 +208,7 @@
 <script src="Screens/Inventory/ItemButt/ButtPlugLock/ButtPlugLock.js"></script>
 <script src="Screens/Inventory/ItemButt/VibratingDildoPlug/VibratingDildoPlug.js"></script>
 <script src="Screens/Inventory/ItemArms/OrnateCuffs/OrnateCuffs.js"></script>
+<script src="Screens/Inventory/ItemArms/Zipties/Zipties.js"></script>
 <script src="Screens/Inventory/ItemLegs/OrnateLegCuffs/OrnateLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/OrnateAnkleCuffs/OrnateAnkleCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/FullLatexSuit/FullLatexSuit.js"></script>
@@ -216,6 +226,16 @@
 <script src="Screens/Inventory/ItemPelvis/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemDevices/Crib/Crib.js"></script>
 <script src="Screens/Inventory/ItemMouth/MilkBottle/MilkBottle.js"></script>
+<script src="Screens/Inventory/ItemNose/NoseRing/NoseRing.js"></script>
+<script src="Screens/Inventory/ItemButt/ShockPlug/ShockPlug.js"></script>
+<script src="Screens/Inventory/ItemVulva/ShockDildo/ShockDildo.js"></script>
+<script src="Screens/Inventory/ItemNipples/ShockClamps/ShockClamps.js"></script>
+<script src="Screens/Inventory/ItemMouth/CupholderGag/CupholderGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/CupholderGag/CupholderGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/CupholderGag/CupholderGag.js"></script>
+<script src="Screens/Inventory/ItemButt/BunnyTailVibePlug/BunnyTailVibePlug.js"></script>
+<script src="Screens/Inventory/ItemButt/EggVibePlugXXL/EggVibePlugXXL.js"></script>
+<script src="Screens/Inventory/ItemNipples/LactationPump/LactationPump.js"></script>
 <script>
 
 /*
@@ -223,90 +243,76 @@
 	NEXT VERISON:
 	
 	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
-	OK - Missing boots assets (Ace-1331)
-	OK - SpreaderVibratingDildoBar inventory screen crash (Ace-1331)
-	OK - XLarge Vacbed Translucent Fix (Kitsune) 
-	OK - Fixes for Bondage Bench and Open Head Boxes (Ace-1331)
-	OK - Maid removes combo locks (Nina)
-	OK - Combo locks fix (Atasly)
-	OK - added variants heart eyes based on player's eyes color (Atasly)
-	OK - 2 locking shoes, 1 locking boots, based on default models (Ayesha-678)
-	OK - XL Ballgag Layers (Ayesha-678)
-	OK - ItemVulva assets optimization (Ayesha-678)
-	OK - Gas masks (Ace-1331 & Jilly)
-	OK - Prevents rendering of the suspension pose from vertically overflowing (Elliesec)
-	OK - Fix chain pose (Ace-1331)
-	OK - More Rope Dialog (Ayesha-678)
-	OK - Leather Foot Mittens & Socks (Ayesha-678)
-	OK - Improved hairstyles (Akita + Gatetrek + Ayesha-678)
-	OK - Spider Web Bondage (Elliesec & Cecilia)
-	OK - Toe/Feet Tape (Ayesha-678)
-	OK - Two handheld toothbrushes (Ayesha-678)
-	OK - Wand intensity fix (Ace-1331)
-	OK - Blocked locks inventory menu fix (Ace-1331)
-	OK - Appearance text fix (Ace-1331)
-	OK - Raccoon tail blinking image fix (Nina-1474)
-	OK - Kennel Alpha Fix (Nina-1474)
-	OK - Missing Chain Lock Asset (Ace-1331)
-	OK - Up Button Fix (Nina)
-	OK - Prison - Gagged dialog fix (Nina)
-	OK - ItemVulva assets fixes (Ace-1331)
-	OK - Asset CSV cleanup (Ace-1331)
-	OK - Trashes -> Thrashes (Nina)
-	OK - Raccoon butt-plug tail blinking image fix (Ulith)
-	OK - 4 new seamless items (Shiranui-Izayoi)
-	OK - Multiple Lover Hotfix (Atasly)
-	OK - Show player # when self-applying owner/lover locks (Atasly)
-	OK - New Extended Items Standardized Code (Elliesec)
-	CANNOT TEST - Fix infinite swaps with NPC collar (Ace-1331)
-	OK - New transparency on hall icons (Nina)
-	OK - Owner rule for using owner locks on self (Atasly)
-	OK - New leg / feet rope ties (gatetrek)
-	OK - Lock permission validation for scripts (Nina)
-	OK - 2 new latex armbinders (Ayesha)
-	OK - Leg spreader items with pencil skirt (Elliesec)
-	OK - Nose hook + Inflatable ball hood + Old style gas mask (Ace-1331 & Evals)
-	OK - Priority fixes for many items (Sandrine + Shiranui)
-	OK - New Rope Gag + Blindfold + Leather Body Harness (gatetrek)
-	NPC BUG SENT - Mulitple Lovers (Atasly)
-	OK - Ban List - 1000 characters (Ace-1331)
-	OK - Emote behavior, no space (Sandrine)
-	OK - Bondage requirement label fix (Ace-1331)
-	OK - Being able to use room swap functions on yourself (Nina)	
+		
+	OK - Armbinder text fix (Ellie)
+	OK - Latex leotard + clit items fix (Ellie)
+	OK - JSDoc for Timer.js (Ace)
+	OK - More 3D models (ZeroDawn)
+	OK - Breast lactation item (Zfreak + Ace)
+	OK - Character array cleanup (Ace)
+	OK - JSDoc for Maid Quarters (Sandrine)
+	OK - Lighter latex (Codefreak64)
+	OK - JSDoc for OnlineGame.js (Ace)
+	OK - Fix on zipped suits (Ace)
+	OK - JSDoc for Server.js (Ace)
+	OK - Mouth activities (Ellie)
+	OK - JSDoc for GLDraw.js & Drawing.js (Ace)
+	OK - Auto focus back on chat log text (Sandrine)
+	OK - Extended item fix (Ellie)
+	OK - Two new backgrounds (Aldarris)
+	OK - Item prerequisite fixes (Ace)
+	OK - JSDoc for Bitchsuit, Chains & Bonbage Bench (Sandrine)
+	OK - JSDoc for 8 scripts (Ace)
+	OK - Two new slave collar models (Ace)
+	OK - New color and sorting for items that can't be used (Sandrine)
+	OK - Head zone split (Ace)
+	OK - New poses & items: X-Cross, OverTheHead & Spread (Nythaleath, Kirsty, Ruilove & Sybil)
+	OK - Fixes for the cross (Ace)	
+	OK - New interrupt/refresh system for multi-player (Ace)
+	OK - Inspect Lock Fix (Nina)
+	OK - Websocket optimizaion (Ellie)
+	OK - Tennis framerate (Ace)
+	OK - New gag level calculation (Ellie)
+	OK - Self-Lover Locking Fix for NPC lovers (Nina)
+	OK - Fixes the OverridePriority of hemp rope and chains cuff variants (Ellie)
+	OK - Self-Target menu fix (Nina)
+	OK - Spanking toys drawing on equip (Ellie)
+	OK - Chatroom timeout (Ace)
+	OK - JSDoc for 16 files (Ace)
+	OK - JSDoc for 8 files (Sandrine)
+	OK - Spanking toys item order (Ellie)
+	OK - Double 's for chastity belt (Ellie)
+	OK - Remove collar attach & restrain with collar (Sandrine)
+	BUG SENT - New release safeword (Lucritus)
+	OK - New canvas hood item (Ellie + Cecilia)
+	OK - Online profile cancel button (Ace)
+	OK - New diaper harness (mrbakucamp)
+	OK - Open breast with pet suit exposed (Sandrine)
+	OK - Clean duplicated properties (Ellie)
+	OK - Eyes split (Ace)
+	OK - Relog CSV fix (Ace)
+	OK - Override blinking (Ace)
+	OK - Background tags (Sandrine)
+		
+	OK - Patron title
 	
-	Beta 
+	TO DO - Orgasms count and different messages after the first one
 	
-	OK - fix owner/lovers lock resetting to player ID (Atasly)
-	OK = Block self-use of remotes (Ace-1331)
-	OK - Toe Tape Fix (Elliesec)
-	OK - Struggle Audio Fix (Nina)
-	OK - Spider web fixes (Elliesec)
-	OK - Hat display errors on polished hood and gas mask (Sandrine)
-	BUG SENT - Fix for Timed Lover Locks (Atasly)
+	TO DO - Item specific actions (Slow & Fast penetration with the strap-on, Handgag activity for roleplay, masturbate with the crotch rope, etc.)
 	
-	BUG - Struggling from owner locked item doesn't show in chat room
-	
-	OK - Add a setting to adjust the % of effectiveness of the player bondage / evasion skill level, to use restraints at a lower level than current bondage level or use make it harder to struggle
-	
-	OK - Add daily quests for Dommes and subs
-		OK - Domme - Quest to go take out "puppies" for a walk, keep them in leash
-		OK - Domme - Lock 5 different online players with a 5 minute timer / exclusive lock, give the lock if the player doesn't have it
-		OK - Domme - Bouncer work to kick out a girl from the club (kidnapping fight)
-		OK - Domme - Slaver trainer, train 3 slaves
-		OK - Sub - Find a missing precious item (search in many rooms)
-		OK - Sub - Become the Dojo student
-		OK - Sub - Do sexual activities with 5 different online players
-		OK - Sub - Maid helper, do 3 maid chores
-	
-	TO DO - How would you feel if we added a safeword feature, available by typing /safeword or going in your player profile and clicking on a safeword button somewhere in the interface?  This is how it would work:
-		-    When you enter the multiplayer lobby to find a chat room, it will save a state on how your character is dressed, including restraints and locks.
-		-    You can navigate from room to room, as long as you don’t go back to the main hall, that state is kept.  If you enter the main hall, that state will be lost.
-		-    In any chatroom, if you use the safeword, it will revert you back to that initial state and show a public message: “X used her safeword, please check for her safety and well-being.”
-		-    When the safeword is used, if the player item permission level is below “Whitelist/owner/lover only”, it will be set to “Whitelist/owner/lover only” automatically.
-		This could be useful against trolls or console script attacks, and would not affect single-player.  What do you think?
-	
-	TO DO - Add a way to assist someone to struggle, giving half of your own evasion as a temporary bonus
-	
+	TO DO - Arousal System - Special categories:
+		Bondage - The more restraints you wear, the faster the % arousal raises
+		Gagged - Being gagged raise or lower arousal %
+		Blindness - Raise or lower arousal % if blind
+		Deafness - Raise or lower arousal % if deaf
+		Chaste - Raise or lower arousal % if chaste
+		Feet - Any activity on the feet can raise your arousal %
+		Voyeurism - When other players do activities, it raises your arousal
+		Exhibitionist - When naked, it raises your arousal
+		Masochism - Being hit with handheld item raises arousal
+		Sadism - Hitting someone with handheld item raises arousal
+		By item category/fabric: Rope, Latex, Leather, Metal, Tape, Nylon, Lingerie, Furry, Pony, ABDL
+		
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
 		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)

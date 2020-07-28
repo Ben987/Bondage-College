@@ -1,8 +1,6 @@
 // Main variables
 "use strict";
 var Player;
-var MouseX = 0;
-var MouseY = 0;
 var KeyPress = "";
 var CurrentModule;
 var CurrentScreen;
@@ -11,35 +9,20 @@ var CurrentOnlinePlayers = 0;
 var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
-var CommonBackgroundList = [
-	"Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "MaidCafe", 
-	"HorseStable", "Nursery", "Bedroom", "PrisonHall", "Kennels",
-	"BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "BondageBedChamber",
-	"CeremonialVenue", "WeddingRoom", "WeddingArch", "WeddingBeach",
-	"ParkDay", "ParkNight", "Gardens", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet", "DystopianCity",
-	"IndoorPool", "OutdoorPool", "PublicBath", "Onsen", "Beach", "BeachCafe", "BeachHotel",
-	"PirateIsland", "PirateIslandNight", "ShipDeck", "CaptainCabin", "Shipwreck", 
-	"UnderwaterOne",
-	"MedinaMarket",	"SheikhPrivate", "SheikhTent",
-	"ForestPath", "WoodenCabin", "DeepForest", "ForestCave", "SpookyForest", "WitchWood", "DesolateVillage",
-	"ThroneRoom", "SecretChamber", "Dungeon", "DungeonRuin", "Confessions",
-	"AncientRuins", "JungleTemple", "SunTemple",
-	"AlchemistOffice", "ResearchPrep", "ResearchProgress",
-	"MiddletownSchool", "SlipperyClassroom", "LockerRoom", "SchoolHospital", "SchoolRuins", "SlumRuins", 
-	"SlumApartment", "AbandonedBuilding", "AbandonedSideRoom", "Industrial", "BackAlley", "CreepyBasement", "Cellar", "SlumCellar",
-	"VaultCorridor", "SciFiCell", "SpaceCaptainBedroom",
-	"HellEntrance", "HeavenEntrance", 
-	"BarRestaurant", "LostVages",
-	"ChillRoom", "Boudoir", "Kitchen", "DiningRoom", "CozyLivingRoom", "TiledBathroom",
-	"RooftopParty", "PartyBasement", "CosyChalet", "BalconyNight"
-];
 
-// Returns TRUE if the variable is a number
+/**
+ * Checks if a variable is a number
+ * @param {*} n - Variable to check for 
+ * @returns {boolean} - Returns TRUE if the variable is a finite number
+ */
 function CommonIsNumeric(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-// Returns the current date and time in a yyyy-mm-dd hh:mm:ss format
+/**
+ * Gets the current time as a string
+ * @returns {string} - Returns the current date and time in a yyyy-mm-dd hh:mm:ss format
+ */
 function CommonGetFormatDate() {
 	var d = new Date();
 	var yyyy = d.getFullYear();
@@ -51,7 +34,10 @@ function CommonGetFormatDate() {
 	return "".concat(yyyy).concat("-").concat(mm).concat("-").concat(dd).concat(" ").concat(hh).concat(":").concat(min).concat(":").concat(ss);
 }
 
-// Used to detect whether the users browser is an mobile browser
+/**
+ * Detects if the user is on a mobile browser
+ * @returns {boolean} - Returns TRUE if the user is on a mobile browser
+ */
 function CommonDetectMobile() {
 
 	// First check
@@ -63,14 +49,17 @@ function CommonDetectMobile() {
 
 	// Second check
 	if (sessionStorage.desktop) return false;
-	else if (localStorage.mobile) return true;	
+	else if (localStorage.mobile) return true;
 
 	// If nothing is found, we assume desktop
 	return false;
 
 }
 
-// Gets the current browser name and version
+/**
+ * Gets the current browser name and version
+ * @returns {{Name: string, Version: string}} - Browser info
+ */
 function CommonGetBrowser() {
 	var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
 	if (/trident/i.test(M[1])) {
@@ -86,7 +75,11 @@ function CommonGetBrowser() {
 	return { Name: M[0] || "N/A", Version: M[1] || "N/A" };
 }
 
-// Parse a CSV file
+/**
+ * Parse a CSV file content into an array
+ * @param {string} str - Content of the CSV
+ * @returns {string[][]} Array representing each line of the parsed content, each line itself is split by commands and stored within an array.
+ */
 function CommonParseCSV(str) {
 
 	var arr = [];
@@ -121,7 +114,14 @@ function CommonParseCSV(str) {
 	return arr;
 }
 
-// Read a CSV file from the web site
+/**
+ *  Read a CSV file from cache, or fetch it from the server
+ * @param {string} Array - Name of where the cached text is stored
+ * @param {string} Path - Path/Group in which the screen is located
+ * @param {string} Screen - Screen for which the file is for
+ * @param {string} File - Name of the file to get
+ * @returns {void} - Nothing
+ */
 function CommonReadCSV(Array, Path, Screen, File) {
 
 	// Changed from a single path to various arguments and internally concatenate them
@@ -143,13 +143,18 @@ function CommonReadCSV(Array, Path, Screen, File) {
 	// If a translation file is available, we open the txt file and keep it in cache
 	var TranslationPath = FullPath.replace(".csv", "_" + TranslationLanguage + ".txt");
 	if (TranslationAvailable(TranslationPath))
-		CommonGet(TranslationPath, function() {
+		CommonGet(TranslationPath, function () {
 			if (this.status == 200) TranslationCache[TranslationPath] = TranslationParseTXT(this.responseText);
 		});
 
 }
 
-// AJAX utility to get a file and return it's content
+/**
+ * AJAX utility to get a file and return its content
+ * @param {string} Path - Path of the resource to request
+ * @param {function} Callback - Callback to execute once the resource is received
+ * @returns {void} - Nothing
+ */
 function CommonGet(Path, Callback) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", Path);
@@ -157,7 +162,10 @@ function CommonGet(Path, Callback) {
 	xhr.send(null);
 }
 
-// Catches the clicks on the main screen and forwards it to the current screen or dialog screen
+/**
+ * Catches the clicks on the main screen and forwards it to the current screen click function if it exists, otherwise it sends it to the dialog click function
+ * @returns {void} - Nothing
+ */
 function CommonClick() {
 	if (CurrentCharacter == null)
 		CommonDynamicFunction(CurrentScreen + "Click()");
@@ -165,11 +173,10 @@ function CommonClick() {
 		DialogClick();
 }
 
-function CommonIsClickAt(Left, Top, Width, Height) {
-	return (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height);
-}
-
-// Catches the clicks on the main screen and forwards it to the current screen or dialog screen
+/**
+ * Catches key presses on the main screen and forwards it to the current screen key down function if it exists, otherwise it sends it to the dialog key down function
+ * @returns {void} - Nothing
+ */
 function CommonKeyDown() {
 	if (CurrentCharacter == null) {
 		if (typeof window[CurrentScreen + "KeyDown"] === "function")
@@ -179,7 +186,11 @@ function CommonKeyDown() {
 		DialogKeyDown();
 }
 
-// Calls a basic dynamic function (if it exists), for complex functions, use: CommonDynamicFunctionParams
+/**
+ * Calls a basic dynamic function if it exists, for complex functions, use: CommonDynamicFunctionParams
+ * @param {string} FunctionName - Name of the function to call
+ * @returns {void} - Nothing
+ */
 function CommonDynamicFunction(FunctionName) {
 	if (typeof window[FunctionName.substr(0, FunctionName.indexOf("("))] === "function")
 		window[FunctionName.replace("()", "")]();
@@ -187,7 +198,12 @@ function CommonDynamicFunction(FunctionName) {
 		console.log("Trying to launch invalid function: " + FunctionName);
 }
 
-// Calls a dynamic function with parameters (if it exists), also allow ! in front to reverse the result
+
+/**
+ * Calls a dynamic function with parameters (if it exists), also allow ! in front to reverse the result. The dynamic function is the provided function name in the dialog option object and it is prefixed by the current screen.
+ * @param {string} FunctionName - Function name to call dynamically
+ * @returns {*} - Returns what the dynamic function returns or FALSE if the function does not exist
+ */
 function CommonDynamicFunctionParams(FunctionName) {
 
 	// Gets the reverse (!) sign
@@ -235,7 +251,6 @@ function CommonDynamicFunctionParams(FunctionName) {
  *  CommonDynamicFunctionParams in that arguments are not parsed from the passed in FunctionName string, but
  *  passed directly into the function call, allowing for more complex JS objects to be passed in. This
  *  function will not log to console if the provided function name does not exist as a global function.
- *
  * @param {string} FunctionName - The name of the global function to call
  * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
  */
@@ -247,7 +262,12 @@ function CommonCallFunctionByName(FunctionName/*, ...args */) {
 	}
 }
 
-// Sets the current screen and calls the loading script if needed, only allow the change screen if the player can walk
+/**
+ * Sets the current screen and calls the loading script if needed
+ * @param {string} NewModule - Module of the screen to display
+ * @param {string} NewScreen - Screen to display
+ * @returns {void} - Nothing
+ */
 function CommonSetScreen(NewModule, NewScreen) {
 	CurrentModule = NewModule;
 	CurrentScreen = NewScreen;
@@ -256,19 +276,31 @@ function CommonSetScreen(NewModule, NewScreen) {
 		CommonDynamicFunction(CurrentScreen + "Load()");
 }
 
-// Return the current time
+/**
+ * Gets the current time in ms
+ * @returns {number} - Date in ms
+ */
 function CommonTime() {
 	return Date.now();
 }
 
-// Returns TRUE if the string is a HEX color
+/**
+ * Checks if a given value is a valid HEX color code
+ * @param {string} Value - Potential HEX color code 
+ * @returns {boolean} - Returns TRUE if the string is a valid HEX color 
+ */
 function CommonIsColor(Value) {
 	if ((Value == null) || (Value.length < 3)) return false;
 	if (/^#[0-9A-F]{3}$/i.test(Value)) Value = "#" + Value[1] + Value[1] + Value[2] + Value[2] + Value[3] + Value[3];	//convert short hand hex color to standard format
 	return /^#[0-9A-F]{6}$/i.test(Value);
 }
 
-// Returns a random item from a list but make sure we don't pick the previous item again
+/**
+ * Get a random item from a list while making sure not to pick the previous one.
+ * @param {*} ItemPrevious - Previously selected item from the given list
+ * @param {*} ItemList - List for which to pick a random item from
+ * @returns {*} - The randomly selected item from the list
+ */
 function CommonRandomItemFromList(ItemPrevious, ItemList) {
 	var NewItem = ItemPrevious;
 	while (NewItem == ItemPrevious)
@@ -276,11 +308,15 @@ function CommonRandomItemFromList(ItemPrevious, ItemList) {
 	return NewItem;
 }
 
-// Converts a string of numbers to an array with map and remove all NaN or undefined elements with reduce
+/**
+ * Converts a string of numbers split by commas to an array, sanitizes the array by removing all NaN or undefined elements.
+ * @param {string} s - String of numbers split by commas
+ * @returns {number[]} - Array of valid numbers from the given string 
+ */
 function CommonConvertStringToArray(s) {
 	var arr = [];
 	if (s != "") {
-		arr = s.split(',').map(Number).reduce((list,curr) => {
+		arr = s.split(',').map(Number).reduce((list, curr) => {
 			if (!((curr === false) || Number.isNaN(curr))) list.push(curr);
 			return list;
 		}, []);
@@ -288,7 +324,11 @@ function CommonConvertStringToArray(s) {
 	return arr;
 }
 
-// Converts an array of numbers to a string, separated with ","
+/**
+ * Converts an array to a string separated by commas (equivalent of .join(","))
+ * @param {Array} Arr - Array to convert to a joined string
+ * @returns {string} - String of all the array items joined together
+ */
 function CommonConvertArrayToString(Arr) {
 	var S = "";
 	for (var P = 0; P < Arr.length; P++) {
@@ -298,8 +338,11 @@ function CommonConvertArrayToString(Arr) {
 	return S;
 }
 
-// Waits for X milliseconds, gives time to the server to do an async call
+/**
+ * Waits for a given time (Used to wait for the server)
+ * @param {number} MS - Time to wait in ms 
+ */
 function CommonWait(MS) {
 	var waitUntil = new Date().getTime() + MS;
-	while(new Date().getTime() < waitUntil) true;
+	while (new Date().getTime() < waitUntil) true;
 }

@@ -15,7 +15,10 @@ var GLDrawHalfAlphaHigh = 1.2 / 256.0;
 
 window.addEventListener('load', GLDrawLoad);
 
-// Load WebGL if not awailable it use the old canvas engine
+/**
+ * Loads WebGL, if not available, use the old canvas engine
+ * @returns {void} - Nothing
+ */
 function GLDrawLoad() {
     GLDrawCanvas = document.createElement("canvas");
     GLDrawCanvas.width = 1000;
@@ -29,10 +32,24 @@ function GLDrawLoad() {
 
     CharacterAppearanceBuildCanvas = GLDrawAppearanceBuild;
 
+    // Attach context listeners
+    GLDrawCanvas.addEventListener("webglcontextlost", function (event) {
+        event.preventDefault();
+        console.log("WebGL Drawing disabled: Context Lost. If the context does not restore itself, refresh your page.");
+    }, false);
+    GLDrawCanvas.addEventListener("webglcontextrestored", function () {
+        GLDrawLoad();
+        console.log("WebGL: Context restored.");
+    }, false);
+    
     console.log("WebGL Drawing enabled: '" + GLVersion + "'");
 }
 
-// Makes all programs on the GL
+/**
+ * Makes all programs and shaders on the GL context
+ * @param {WebGL2RenderingContext} gl - The WebGL context of the canvas
+ * @returns {void} - Nothing
+ */
 function GLDrawMakeGLProgam(gl) {
     var vertexShader = GLDrawCreateShader(gl, GLDrawVertexShaderSource, gl.VERTEX_SHADER);
     var fragmentShader = GLDrawCreateShader(gl, GLDrawFragmentShaderSource, gl.FRAGMENT_SHADER);
@@ -49,7 +66,11 @@ function GLDrawMakeGLProgam(gl) {
     gl.textureCache = new Map();
 }
 
-// Initialize a WebGL canvas
+/**
+ * Initializes a WebGL canvas for characters
+ * @param {HTMLCanvasElement} [canvas] - The canvas used to draw characters on
+ * @returns {HTMLCanvasElement} - The prepared canvas
+ */
 function GLDrawInitCharacterCanvas(canvas) {
     if (canvas == null) {
         canvas = document.createElement("canvas");
@@ -71,6 +92,11 @@ function GLDrawInitCharacterCanvas(canvas) {
     return canvas;
 }
 
+/**
+ * Source used for the Vertex Shader
+ * @constant
+ * @type {string}
+ */
 var GLDrawVertexShaderSource = `
   attribute vec4 a_position;
   attribute vec2 a_texcoord;
@@ -85,6 +111,11 @@ var GLDrawVertexShaderSource = `
   }
 `;
 
+/**
+ * Source used for the Fragment Shader
+ * @constant
+ * @type {string}
+ */
 var GLDrawFragmentShaderSource = `
   precision mediump float;
 
@@ -99,6 +130,11 @@ var GLDrawFragmentShaderSource = `
   }
 `;
 
+/**
+ * Source used for the Full Alpha Shader
+ * @constant
+ * @type {string}
+ */
 var GLDrawFragmentShaderSourceFullAlpha = `
   precision mediump float;
 
@@ -115,6 +151,11 @@ var GLDrawFragmentShaderSourceFullAlpha = `
   }
 `;
 
+/**
+ * Source used for the Half Alpha Shader
+ * @constant
+ * @type {string}
+ */
 var GLDrawFragmentShaderSourceHalfAlpha = `
   precision mediump float;
 
@@ -135,7 +176,13 @@ var GLDrawFragmentShaderSourceHalfAlpha = `
   }
 `;
 
-// Creates Shader from source
+/**
+ * Creates a shader for the current WebGL context from a given source
+ * @param {WebGL2RenderingContext} gl - WebGL context
+ * @param {string} source - Source of the shader to create
+ * @param {WebGLShader} type - The type of the shader to create
+ * @returns {WebGLShader} - The created WebGL shader
+ */
 function GLDrawCreateShader(gl, source, type) {
     var shader = gl.createShader(type);
     gl.shaderSource(shader, source);
@@ -146,7 +193,13 @@ function GLDrawCreateShader(gl, source, type) {
     return shader;
 }
 
-// Creates Program from vertex and fragment shaders
+/**
+ * Creates the WebGL program from the vertex and fragment shaders
+ * @param {WebGL2RenderingContext} gl - WebGL context
+ * @param {WebGLShader} vertexShader - The vertex shader to create the program with
+ * @param {WebGLShader} fragmentShader - The fragment shader to create the program with
+ * @returns {WebGLProgram} - The created WebGL program
+ */
 function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
     var program = gl.createProgram();
     gl.attachShader(program, vertexShader);
@@ -173,8 +226,27 @@ function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
     return program;
 }
 
-// Draws image from url to a WebGLRenderingContext
+/**
+ * Draws an image from a given url to a WebGLRenderingContext, used when the character is blinking
+ * @param {string} url - URL of the image to render
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {number} dstX - Position of the image on the X axis
+ * @param {number} dstY - Position of the image on the Y axis
+ * @param {string} color - Color of the image to draw
+ * @param {boolean} fullAlpha - Whether or not the full alpha should be rendered
+ * @returns {void} - Nothing
+ */
 function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha) { GLDrawImage(url, gl, dstX + 500, dstY, color, fullAlpha); }
+/**
+ * Draws an image from a given url to a WebGLRenderingContext
+ * @param {string} url - URL of the image to render
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {number} dstX - Position of the image on the X axis
+ * @param {number} dstY - Position of the image on the Y axis
+ * @param {string} color - Color of the image to draw
+ * @param {boolean} fullAlpha - Whether or not the full alpha should be rendered
+ * @returns {void} - Nothing
+ */
 function GLDrawImage(url, gl, dstX, dstY, color, fullAlpha) {
     var tex = GLDrawLoadImage(gl, url);
 
@@ -205,7 +277,13 @@ function GLDrawImage(url, gl, dstX, dstY, color, fullAlpha) {
     gl.drawArrays(gl.TRIANGLES, 0, 6);
 }
 
-// Sets texture info from image data
+/**
+ * Sets texture info from image data
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {ImageData} Img - Image to get the data of
+ * @param {WebGLTexture} textureInfo - Texture information
+ * @returns {void} - Nothing
+ */
 function GLDrawBingImageToTextureInfo(gl, Img, textureInfo) {
     textureInfo.width = Img.width;
     textureInfo.height = Img.height;
@@ -213,7 +291,12 @@ function GLDrawBingImageToTextureInfo(gl, Img, textureInfo) {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, Img);
 }
 
-// load Image texture data
+/**
+ * Loads image texture data
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {string} url - URL of the image
+ * @returns {WebGLTexture} - The texture info of a given image
+ */
 function GLDrawLoadImage(gl, url) {
 
     var textureInfo = gl.textureCache.get(url);
@@ -259,8 +342,25 @@ function GLDrawLoadImage(gl, url) {
     return textureInfo;
 }
 
-// Clears rectangle on WebGLRenderingContext
+/**
+ * Clears a rectangle on WebGLRenderingContext
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {number} x - Position of the image on the X axis
+ * @param {number} y - Position of the image on the Y axis
+ * @param {number} width - Width of the rectangle to clear
+ * @param {number} height - Height of the rectangle to clear
+ * @returns {void} - Nothing
+ */
 function GLDrawClearRectBlink(gl, x, y, width, height) { GLDrawClearRect(gl, x + 500, y, width, height); }
+/**
+ * Clears a rectangle on WebGLRenderingContext
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {number} x - Position of the image on the X axis
+ * @param {number} y - Position of the image on the Y axis
+ * @param {number} width - Width of the rectangle to clear
+ * @param {number} height - Height of the rectangle to clear
+ * @returns {void} - Nothing
+ */
 function GLDrawClearRect(gl, x, y, width, height) {
     gl.enable(gl.SCISSOR_TEST);
     gl.scissor(x, y, width, height);
@@ -269,7 +369,11 @@ function GLDrawClearRect(gl, x, y, width, height) {
     gl.disable(gl.SCISSOR_TEST);
 }
 
-// Convert a hex color string to a RGBA color
+/**
+ * Converts a hex color to a RGBA color
+ * @param {string} color - Hex color code to convert to RGBA
+ * @return {string} - Converted color code
+ */
 function GLDrawHexToRGBA(color) {
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     color = color.replace(shorthandRegex, function (m, r, g, b) { return r + r + g + g + b + b; });
@@ -277,7 +381,11 @@ function GLDrawHexToRGBA(color) {
     return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16), 1] : [0, 0, 0, 1];
 }
 
-// Create character canvas with WebGL
+/**
+ * Creates the given character canvas with WebGL
+ * @param {Character} C - Character to build the canvas for
+ * @returns {void} - Nothing 
+ */
 function GLDrawAppearanceBuild(C) {
     GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, 1000);
 
@@ -287,10 +395,11 @@ function GLDrawAppearanceBuild(C) {
 
             // If there's a father group, we must add it to find the correct image
             var CA = C.Appearance[A];
+            var ParentGroup = CA.Asset.ParentGroupName ? CA.Asset.ParentGroupName : CA.Asset.Group.ParentGroupName && !CA.Asset.IgnoreParentGroup ? CA.Asset.Group.ParentGroupName : "";
             var G = "";
-            if (CA.Asset.Group.ParentGroupName != "" && !CA.Asset.IgnoreParentGroup)
+            if (ParentGroup != "")
                 for (var FG = 0; FG < C.Appearance.length; FG++)
-                    if (CA.Asset.Group.ParentGroupName == C.Appearance[FG].Asset.Group.Name)
+                    if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
                         G = "_" + C.Appearance[FG].Asset.Name;
 
             // If there's a pose style we must add (first by group then by item)
@@ -367,18 +476,18 @@ function GLDrawAppearanceBuild(C) {
                 // Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
                 if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
                     GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
+                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
                 } else {
                     var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
                     GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
-                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
+                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
                 }
             }
 
             // If we must draw the lock (never colorized)
             if ((CA.Property != null) && (CA.Property.LockedBy != null) && (CA.Property.LockedBy != "")) {
                 GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
-                GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
+                GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
             }
         }
 

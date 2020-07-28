@@ -32,3 +32,9 @@ Account error, please try to relog
 Erreur de compte, veuillez essayer de vous reconnecter
 Invalid chat room data detected
 Donnée(s) de salle de chat non valide(s) détectée(s)
+Ban blacklist
+Barré la liste noire
+Ban ghostlist
+Barré la liste des fantômes
+Selection
+Sélection

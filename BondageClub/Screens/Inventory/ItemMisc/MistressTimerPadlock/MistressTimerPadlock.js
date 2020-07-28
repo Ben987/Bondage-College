@@ -79,7 +79,7 @@ function InventoryItemMiscMistressTimerPadlockClick() {
             }
         }
         else if (DialogFocusSourceItem.Property.EnableRandomInput) {
-            for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++){
+            for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
                 if (DialogFocusSourceItem.Property.MemberNumberList[I] == Player.MemberNumber) return;
             }
             if ((MouseX >= 1100) && (MouseX < 1350)) { InventoryItemMiscMistressTimerPadlockAdd(-DialogFocusItem.Asset.RemoveTimer * 2, true); }

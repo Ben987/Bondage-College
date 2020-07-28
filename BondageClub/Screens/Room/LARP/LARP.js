@@ -2,7 +2,10 @@
 var LARPBackground = "WrestlingRing";
 var LARPOrganiser = null;
 
-// Loads the LARP screen NPC
+/**
+ * Loads the LARP introduction room NPC
+ * @returns {void} - Nothing
+ */
 function LARPLoad() {
 	if (LARPOrganiser == null) {		
 		LARPOrganiser = CharacterLoadNPC("NPC_LARP_Organiser");
@@ -14,7 +17,10 @@ function LARPLoad() {
 	}
 }
 
-// Run the LARP screen (The screen can be used for the search daily job)
+/**
+ * Runs and draws the LARP introduction screen. The screen can be used to search for daily jobs.
+ * @returns {void} - Nothing
+ */
 function LARPRun() {
 	if (!DailyJobSubSearchIsActive()) DrawCharacter(Player, 500, 0, 1);
 	if (!DailyJobSubSearchIsActive()) DrawCharacter(LARPOrganiser, 1000, 0, 1);
@@ -25,23 +31,28 @@ function LARPRun() {
 	DailyJobSubSearchRun();
 }
 
-// When the user clicks in the LARP screen
+/**
+ * Handles clicks in the LARP introduction screen. And adds the LARP Backgrounds to the list of seletable backgrounds.
+ * @returns {void} - Nothing
+ */
 function LARPClick() {
-	if (!DailyJobSubSearchIsActive() && (MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if (!DailyJobSubSearchIsActive() && (MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(LARPOrganiser);	
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY <= 115)) CommonSetScreen("Room", "MainHall");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY <= 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY <= 355) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) {
+	if (!DailyJobSubSearchIsActive() && MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(LARPOrganiser);	
+	if (MouseIn(1885, 25, 90, 90)) CommonSetScreen("Room", "MainHall");
+	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+	if (MouseIn(1885, 265, 90, 90) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) {
 		Player.Game.LARP.Team = "None";
 		ServerSend("AccountUpdate", { Game: Player.Game });
-		var BG = CommonBackgroundList.slice();
-		BG.unshift("WrestlingRing");
-		ChatRoomStart("LARP", "LARP", "LARP", "WrestlingRingDark", BG);
+		ChatRoomStart("LARP", "LARP", "LARP", "WrestlingRingDark", BackgroundsTagList);
 	}
 	DailyJobSubSearchClick();
 }
 
-// When the user selects a class
+/**
+ * Sets the new LARP class selected by the player
+ * @param {string} NewClass - Name of the newly selected class
+ * @returns {void} - Nothing
+ */
 function LARPSelectClass(NewClass) {
 	if (ReputationGet("LARP") <= 0) DialogSetReputation("LARP", 1);
 	if (Player.Game == null) Player.Game = {};
