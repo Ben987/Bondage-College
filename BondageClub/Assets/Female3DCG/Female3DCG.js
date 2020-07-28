@@ -170,29 +170,26 @@ var AssetFemale3DCG = [
 					{ Name: "Key", AllowColorize: false }
 				]
 			 },
-
 			 {
 				Name: "IDCard", Value: 10, Left: 145, Top: 180, IgnoreParentGroup: true,
-			   	Layer: [
+				Layer: [
 					{ Name: "String", AllowColorize: true },
 					{ Name: "Card", AllowColorize: false }
-			   ]
-		
-			},
+			   	]
+
+			}
 
 
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
 
-
-
 	{
-	    Group: "Suit",
+	    	Group: "Suit",
 		ParentGroup: "BodyUpper",
 		Priority: 14,
 		Clothing: true,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied"],
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
 		Asset: [
 		    {
 			    Name: "Catsuit", Value: 100, BuyGroup: "Catsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
