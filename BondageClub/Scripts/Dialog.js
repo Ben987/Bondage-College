@@ -1253,10 +1253,12 @@ function DialogClick() {
 			});
 		} else if (MouseIn(120, 50, 90, 90)) { 
 			var EyesExpression = WardrobeGetExpression(Player);
-			CharacterSetFacialExpression(Player, "Eyes1", (EyesExpression.Eyes !== "Closed") ? "Closed" : DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression);
+			var CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
+			CharacterSetFacialExpression(Player, "Eyes1", (EyesExpression.Eyes !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
 		} else if (MouseIn(220, 50, 90, 90)) { 
 			var EyesExpression = WardrobeGetExpression(Player);
-			CharacterSetFacialExpression(Player, "Eyes2", (EyesExpression.Eyes2 !== "Closed") ? "Closed" : DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression);
+			var CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
+			CharacterSetFacialExpression(Player, "Eyes2", (EyesExpression.Eyes2 !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
 		} else for (var I = 0; I < DialogFacialExpressions.length; I++) {
 			var FE = DialogFacialExpressions[I];
 			if ((MouseY >= 160 + 120 * I) && (MouseY <= (160 + 120 * I) + 90)) {
