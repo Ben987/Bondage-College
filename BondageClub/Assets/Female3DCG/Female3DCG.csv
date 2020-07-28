@@ -919,24 +919,24 @@ ItemHead,BlackoutLenses,Blackout Lenses
 ItemHead,WebBlindfold,Web
 ItemHead,RopeBlindfold,Rope Blindfold
 ItemHead,SleepMask,Smooth Sleep Mask
-ItemNose,,Nose	
-ItemNose,NoseHook,Nose Hook	
-ItemNose,NoseRing,Nose Ring	
-ItemHood,,Head	
-ItemHood,LeatherHoodSealed,Sealed Leather Hood	
-ItemHood,PolishedSteelHood,Polished Steel Hood	
-ItemHood,InflatedBallHood,Inflatable Hood	
-ItemHood,OldGasMask,Gas Mask	
-ItemHood,SackHood,Sack Hood	
-ItemHood,LeatherHoodSensDep,Sensory Deprivation Hood	
-ItemHood,LatexHoodOpenHair,Open Hair Latex Hood	
-ItemHood,LeatherHood,Leather Hood	
-ItemHood,LeatherHoodOpenEyes,Leather Hood Eyes	
-ItemHood,GasMask,Gas Mask	
-ItemHood,DogHood,Dog Hood	
-ItemHood,FoxyMask,Foxy Mask	
-ItemHood,PonyHood,Pony Hood	
-ItemHood,LeatherHoodOpenMouth,Leather Hood Mouth	
+ItemNose,,Nose
+ItemNose,NoseHook,Nose Hook
+ItemNose,NoseRing,Nose Ring
+ItemHood,,Head
+ItemHood,LeatherHoodSealed,Sealed Leather Hood
+ItemHood,PolishedSteelHood,Polished Steel Hood
+ItemHood,InflatedBallHood,Inflatable Hood
+ItemHood,OldGasMask,Gas Mask
+ItemHood,SackHood,Sack Hood
+ItemHood,LeatherHoodSensDep,Sensory Deprivation Hood
+ItemHood,LatexHoodOpenHair,Open Hair Latex Hood
+ItemHood,LeatherHood,Leather Hood
+ItemHood,LeatherHoodOpenEyes,Leather Hood Eyes
+ItemHood,GasMask,Gas Mask
+ItemHood,DogHood,Dog Hood
+ItemHood,FoxyMask,Foxy Mask
+ItemHood,PonyHood,Pony Hood
+ItemHood,LeatherHoodOpenMouth,Leather Hood Mouth
 ItemHood,CanvasHood,Canvas Hood
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
