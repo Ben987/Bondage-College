@@ -2449,36 +2449,33 @@ var AssetFemale3DCG = [
 			{ Name: "LockingShoes1", Value: 15, Difficulty: 3, Time: 5, RemoveTime: 8, AllowLock: true, Height: 6 },
 			{ Name: "LockingShoes2", Value: 20, Difficulty: 4, Time: 5, RemoveTime: 8, AllowLock: true, Height: 6 },
 			{
-				Name: "LockingBoots1", Value: 30, Difficulty: 6, Time: 7, RemoveTime: 14, AllowLock: true, Hide: ["Shoes"], Height: 9,
+				Name: "LockingBoots1", Value: 30, Difficulty: 6, Time: 7, RemoveTime: 14, AllowLock: true, Height: 9,
 				Layer: [
-					{ Name: "Boots", AllowColorize: true},
-					{ Name: "Straps", AllowColorize: false}
+					{ Name: "Boots", AllowColorize: true },
+					{ Name: "Straps", AllowColorize: false }
 				]
 			},
 			{
-				Name: "LeatherFootMitts1", Value: 35, Difficulty: 4, Time: 6, RemoveTime: 7, AllowLock: true, Hide: ["Shoes", "Socks"], 
+				Name: "LeatherFootMitts1", Value: 35, Difficulty: 4, Time: 6, RemoveTime: 7, AllowLock: true, Hide: ["Shoes", "Socks"],
 				Layer: [
-					{ Name: "Mitts", AllowColorize: true},
-					{ Name: "Straps", AllowColorize: false}
+					{ Name: "Mitts", AllowColorize: true },
+					{ Name: "Straps", AllowColorize: false }
 				]
 			},
 			{ Name: "ToeTape", Extended: true, Value: 50, BuyGroup: "DuctTape", Difficulty: 2, Time: 10, RemoveTime: 5, Prerequisite: "ToeTied", SetPose: ["LegsClosed"], AllowType: ["Full"] },
 			{ Name: "Zipties", Value: 20, Difficulty: 6, Time: 5, RemoveTime: 6, BuyGroup: "Zipties", Prerequisite: "ToeTied", SetPose: ["LegsClosed"], Effect: ["Freeze", "Prone"] },
 			AssetSpankingToys
-		},
-		{ Name: "ToeTape", Extended: true, Value: 50, BuyGroup: "DuctTape", Difficulty: 2, Time: 10, RemoveTime: 5, Prerequisite: "ToeTied", Hide: ["Shoes"], SetPose: ["LegsClosed"], Effect: ["Freeze", "Prone"], AllowType: ["Full"] },
-			AssetSpankingToys
 		],
 		Color: ["Default"]
 	},
-	
+
 	{
 		Group: "ItemHidden",
 		Category: "Item",
 		Default: false,
 		IsRestraint: true,
 		Asset: [
-			{ Name: "LeatherArmbinderStrap", Priority: 31,  Value: -1, AllowType: ["Strap", "WrapStrap", "None"] },
+			{ Name: "LeatherArmbinderStrap", Priority: 31, Value: -1, AllowType: ["Strap", "WrapStrap", "None"] },
 			{ Name: "LeatherArmbinderWrapStrap", Priority: 31, Value: -1, AllowType: ["WrapStrap", "None"] },
 			{ Name: "SuspensionHempRope", Priority: 31, Value: -1 },
 			{ Name: "SuspensionChains", Priority: 31, Value: -1 }
@@ -2512,6 +2509,11 @@ var PoseFemale3DCG = [
 		Hide: ["Hands"]
 	},
 	{
+		Name: "OverTheHead",
+		OverrideHeight: -25,
+		Hide: ["Hands"]
+	},
+	{
 		Name: "Hogtied",
 		OverrideHeight: -575,
 		Hide: ["BodyLower", "Hands", "ClothLower", "Wings", "TailStraps", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemLegs", "ItemFeet", "SuitLower"],
@@ -2531,7 +2533,7 @@ var PoseFemale3DCG = [
 		Name: "AllFours",
 		OverrideHeight: -560,
 		Hide: ["ItemFeet", "ClothLower", "SuitLower", "Nipples", "Pussy", "BodyLower", "Wings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemBoots", "Suit", "Panties", "Bra", "Socks", "Shoes"],
-		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 } ]
+		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }]
 	}
 
 ];
@@ -2547,7 +2549,7 @@ var ActivityFemale3DCG = [
 	{
 		Name: "FrenchKiss",
 		MaxProgress: 70,
-		Prerequisite: ["UseMouth", "ZoneNaked"]
+		Prerequisite: ["UseTongue", "ZoneNaked", "TargetCanUseTongue"]
 	},
 	{
 		Name: "PoliteKiss",
@@ -2559,7 +2561,7 @@ var ActivityFemale3DCG = [
 		Name: "Lick",
 		MaxProgress: 80,
 		TargetSelf: ["ItemMouth", "ItemHands", "ItemArms", "ItemBoots", "ItemBreast", "ItemNipples"],
-		Prerequisite: ["UseMouth", "ZoneNaked"]
+		Prerequisite: ["UseTongue", "ZoneNaked"]
 	},
 	{
 		Name: "Suck",
@@ -2571,6 +2573,12 @@ var ActivityFemale3DCG = [
 		Name: "Nibble",
 		MaxProgress: 40,
 		TargetSelf: ["ItemMouth", "ItemHands", "ItemArms", "ItemBoots", "ItemNipples"],
+		Prerequisite: ["UseMouth", "ZoneNaked"]
+	},
+	{
+		Name: "Bite",
+		MaxProgress: 40,
+		TargetSelf: ["ItemMouth", "ItemHands", "ItemArms", "ItemBoots", "ItemLegs", "ItemFeet"],
 		Prerequisite: ["UseMouth", "ZoneNaked"]
 	},
 	{
@@ -2587,13 +2595,13 @@ var ActivityFemale3DCG = [
 	{
 		Name: "Caress",
 		MaxProgress: 80,
-		TargetSelf: ["ItemTorso", "ItemPelvis", "ItemBreast", "ItemNipples", "ItemLegs", "ItemFeet", "ItemBoots", "ItemArms", "ItemHands", "ItemButt", "ItemVulva", "ItemHead", "ItemNeck", "ItemMouth", "ItemEars"],
+		TargetSelf: ["ItemTorso", "ItemPelvis", "ItemBreast", "ItemNipples", "ItemLegs", "ItemFeet", "ItemBoots", "ItemArms", "ItemHands", "ItemButt", "ItemVulva", "ItemHead", "ItemNeck", "ItemMouth", "ItemEars", "ItemNose"],
 		Prerequisite: ["UseHands"]
 	},
 	{
 		Name: "Pet",
 		MaxProgress: 20,
-		TargetSelf: ["ItemHead"],
+		TargetSelf: ["ItemHead", "ItemNose"],
 		Prerequisite: ["UseHands"]
 	},
 	{
@@ -2604,6 +2612,7 @@ var ActivityFemale3DCG = [
 	{
 		Name: "Rub",
 		MaxProgress: 60,
+		TargetSelf: ["ItemNose"],
 		Prerequisite: []
 	},
 	{
@@ -2632,7 +2641,7 @@ var ActivityFemale3DCG = [
 	{
 		Name: "Pinch",
 		MaxProgress: 20,
-		TargetSelf: ["ItemNipples", "ItemEars", "ItemArms", "ItemPelvis"],
+		TargetSelf: ["ItemNipples", "ItemEars", "ItemArms", "ItemPelvis", "ItemNose"],
 		Prerequisite: ["UseHands"]
 	},
 	{
@@ -2650,19 +2659,19 @@ var ActivityFemale3DCG = [
 	{
 		Name: "Pull",
 		MaxProgress: 30,
-		TargetSelf: ["ItemHead"],
+		TargetSelf: ["ItemHead", "ItemNose", "ItemNipples"],
 		Prerequisite: ["UseHands"]
 	},
 	{
 		Name: "Choke",
 		MaxProgress: 50,
-		TargetSelf: ["ItemNeck"],
+		TargetSelf: ["ItemNeck", "ItemNose"],
 		Prerequisite: ["UseHands"]
 	},
 	{
 		Name: "MasturbateTongue",
 		MaxProgress: 100,
-		Prerequisite: ["UseMouth", "ZoneNaked"]
+		Prerequisite: ["UseTongue", "ZoneNaked"]
 	},
 	{
 		Name: "MasturbateHand",
