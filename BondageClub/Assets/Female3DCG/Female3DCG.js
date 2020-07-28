@@ -143,6 +143,7 @@ var AssetFemale3DCG = [
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
+	
 	{
 		Group: "Necklace",
 		ParentGroup: "BodyUpper",
@@ -151,11 +152,12 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		Random: false,
 		Asset: [
-			 { Name: "Necklace1", Value: 40, Left: 148, Top: 70, IgnoreParentGroup: true},
-			 { Name: "Necklace2", Left: 147, Top: 90, IgnoreParentGroup: true},
-			 { Name: "Necklace3", Left: 147, Top: 110, IgnoreParentGroup: true},
-			 { Name: "Necklace4", Value: 30, Left: 147, Top: 110, IgnoreParentGroup: true},
-			 { Name: "NecklaceLock", Value: 40, Left: 155, Top: 152, Priority: 29, IgnoreParentGroup: true,
+			{ Name: "Necklace1", Value: 40, Left: 148, Top: 70, IgnoreParentGroup: true },
+			{ Name: "Necklace2", Left: 147, Top: 90, IgnoreParentGroup: true },
+			{ Name: "Necklace3", Left: 147, Top: 110, IgnoreParentGroup: true },
+			{ Name: "Necklace4", Value: 30, Left: 147, Top: 110, IgnoreParentGroup: true },
+			{
+				Name: "NecklaceLock", Value: 40, Left: 155, Top: 152, Priority: 29, IgnoreParentGroup: true,
 				Layer: [
 				{ Name: "Chain", AllowColorize: true},
 				{ Name: "Lock", AllowColorize: false}
