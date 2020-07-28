@@ -407,7 +407,7 @@ var AssetFemale3DCG = [
 			{ Name: "Stockings4", Value: 10 },
 			{ Name: "Pantyhose1", Value: 10, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup", "ItemVulvaInflatableVibeDildo"], Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
 			{
-			    	Name: "Socks6", Value: 25,
+				Name: "Socks6", Value: 25,
 				Layer: [
 					{ Name: "Sock", AllowColorize: true },
 					{ Name: "Frill", AllowColorize: false }
@@ -423,7 +423,7 @@ var AssetFemale3DCG = [
 			{ Name: "SocksStriped1", Value: 10 },
 			{ Name: "LatexSocks1", Value: 30 },
 			{ Name: "FootlessSocks1", Value: 15 },
-			{ Name: "ReverseBunnySuit", Value: 100, BuyGroup: "ReverseBunnySuit" },
+			{ Name: "ReverseBunnySuit", Priority: 22, Value: 100, BuyGroup: "ReverseBunnySuit" },
 			{ Name: "LeatherSocks1", Value: 20 }
 		],
 		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
@@ -496,14 +496,17 @@ var AssetFemale3DCG = [
 			{ Name: "Crown2", Value: 20 },
 			{ Name: "Crown3", Value: 20 },
 			{ Name: "Crown4", Value: 20 },
-			{ Name: "Crown5", Value: 20 }
+			{ Name: "Crown5", Value: 20 },
+			{ Name: "SmallHat1", Value: 30 },
+			{ Name: "Veil1", Value: 40 },
+			{ Name: "Veil2", Value: 40 }
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
 
 	{
 		Group: "HairAccessory1",
-		Priority: 45,
+		Priority: 53,
 		Default: false,
 		Clothing: true,
 		Left: 90,
@@ -525,7 +528,7 @@ var AssetFemale3DCG = [
 			{ Name: "Horns", Value: 20, BuyGroup: "Horns", BodyCosplay: true },
 			{ Name: "Horns2", Value: 15, BuyGroup: "Horns2", BodyCosplay: true },
 			{ Name: "Horns3", Value: 15, BuyGroup: "Horns3", BodyCosplay: true },
-			{ Name: "HairFlower1", Value: 10, BuyGroup: "HairFlower1"},
+			{ Name: "HairFlower1", Value: 10, BuyGroup: "HairFlower1" },
 			{ Name: "FoxEars1", Value: 15, BuyGroup: "FoxEars1", BodyCosplay: true },
 			{ Name: "BatWings", Value: 20, BuyGroup: "BatWings", BodyCosplay: true },
 			{ Name: "KittyMask1", Value: 25, BuyGroup: "BatWings", Hide: ["HairFront", "Glasses", "HairAccessory2"] },
@@ -537,17 +540,17 @@ var AssetFemale3DCG = [
 			{ Name: "FoxEars3", Value: 20, BuyGroup: "FoxEars3", BodyCosplay: true },
 			{ Name: "PuppyEars2", Value: 20, BuyGroup: "PuppyEars2", BodyCosplay: true },
 			{ Name: "RaccoonEars1", Value: 15, BuyGroup: "RaccoonEars1", BodyCosplay: true },
-			{ Name: "WeddingVeil1", Priority: 4, Value: 30, BuyGroup: "WeddingVeil1"},
-			{ Name: "HairFeathers1", Value: 10, BuyGroup: "HairFeathers1"},
+			{ Name: "WeddingVeil1", Priority: 4, Value: 30, BuyGroup: "WeddingVeil1" },
+			{ Name: "HairFeathers1", Value: 10, BuyGroup: "HairFeathers1" },
 			{ Name: "MouseEars1", Value: 20, BuyGroup: "MouseEars1", BodyCosplay: true },
 			{ Name: "MouseEars2", Value: 20, BuyGroup: "MouseEars2", BodyCosplay: true }
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
-	
+
 	{
 		Group: "HairAccessory2",
-		Priority: 47,
+		Priority: 55,
 		Default: false,
 		Clothing: true,
 		Left: 90,
@@ -567,9 +570,9 @@ var AssetFemale3DCG = [
 			{ Name: "PuppyEars1", Priority: 29, Value: -1, BuyGroup: "PuppyEars1", BodyCosplay: true },
 			{ Name: "SuccubusHorns", Value: -1, BuyGroup: "SuccubusHorns", BodyCosplay: true },
 			{ Name: "Horns", Value: -1, BuyGroup: "Horns", BodyCosplay: true },
-			{ Name: "Horns2", Value: -1, BuyGroup: "Horns2", BodyCosplay: true},
+			{ Name: "Horns2", Value: -1, BuyGroup: "Horns2", BodyCosplay: true },
 			{ Name: "Horns3", Value: -1, BuyGroup: "Horns3", BodyCosplay: true },
-			{ Name: "HairFlower1", Value: -1, BuyGroup: "HairFlower1"},
+			{ Name: "HairFlower1", Value: -1, BuyGroup: "HairFlower1" },
 			{ Name: "FoxEars1", Value: -1, BuyGroup: "FoxEars1", BodyCosplay: true },
 			{ Name: "BatWings", Value: -1, BuyGroup: "BatWings", BodyCosplay: true },
 			{ Name: "KittyMask1", Value: -1, BuyGroup: "BatWings", Hide: ["HairFront", "Glasses", "HairAccessory1"] },
@@ -581,7 +584,7 @@ var AssetFemale3DCG = [
 			{ Name: "FoxEars3", Value: -1, BuyGroup: "FoxEars3", BodyCosplay: true },
 			{ Name: "PuppyEars2", Value: -1, BuyGroup: "PuppyEars2", BodyCosplay: true },
 			{ Name: "RaccoonEars1", Value: -1, BuyGroup: "RaccoonEars1", BodyCosplay: true },
-			{ Name: "WeddingVeil1", Priority: 4, Value: -1, BuyGroup: "WeddingVeil1"},
+			{ Name: "WeddingVeil1", Priority: 4, Value: -1, BuyGroup: "WeddingVeil1" },
 			{ Name: "HairFeathers1", Value: -1, BuyGroup: "HairFeathers1" },
 			{ Name: "MouseEars1", Value: 20, BuyGroup: "MouseEars1", BodyCosplay: true },
 			{ Name: "MouseEars2", Value: 20, BuyGroup: "MouseEars2", BodyCosplay: true }
@@ -597,13 +600,13 @@ var AssetFemale3DCG = [
 		Default: false,
 		Clothing: true,
 		Underwear: true,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "AllFours"],
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "AllFours", "OverTheHead"],
 		Asset: [
 			"Gloves1", "Gloves2",
 			{ Name: "Gloves3", Value: 15, Left: 60, Top: 109 },
 			{ Name: "MistressGloves", Value: -1 },
 			{ Name: "FingerlessGloves", Value: 20 },
-			{ 
+			{
 				Name: "GlovesFur", Value: 30,
 				Layer: [
 					{ Name: "Fabric", AllowColorize: true },
@@ -628,13 +631,30 @@ var AssetFemale3DCG = [
 			"Glasses1", "Glasses2", "Glasses3", "Glasses4", "Glasses5", "Glasses6",
 			{ Name: "SunGlasses1", Value: 15 },
 			{ Name: "SunGlasses2", Value: 15 },
-			{ Name: "Mask1", Value: 20 },
-			{ Name: "Mask2", Value: 20 },
-			{ Name: "ButterflyMask1", Value: 30 },
-			{ Name: "EyePatch1", Value: 10 },
-			{ Name: "ShinobiMask", Value: 30, Left: 199, Top: 88 },
-			{ Name: "FoxMask", Value: 30, Left: 150, Top: 20 }],
+			{ Name: "EyePatch1", Value: 10, Priority: 29 }],
 		Color: ["#303030", "#808080", "#e0e0e0", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+	},
+	{
+		Group: "Mask",
+		Priority: 28
+		Default: false,	
+		Clothing: true,	
+		Underwear: true,	
+		Left: 180,	
+		Top: 125,	
+		Asset: [	
+			{ Name: "VenetianMask", HideItem: ["ItemNoseNoseRing"] },	
+			{ Name: "DominoMask", HideItem: ["ItemNoseNoseRing"] },	
+			{ Name: "ButterflyMask", Value: 30, HideItem: ["ItemNoseNoseRing"] },	
+			{ Name: "ShinobiMask", Value: 30, Left: 199, Top: 88, HideItem: ["ItemNoseNoseRing"] },	
+			{ Name: "FoxMask", Value: 30, Left: 150, Top: 20, HideItem: ["ItemNoseNoseRing"] },	
+			{ Name: "BunnyMask1", Value: 40, Left: 150, Top: 20, Priority: 49, HideItem: ["ItemNoseNoseRing", "HairAccessory1Ears1", "HairAccessory2Ears1", "HairAccessory1PonyEars1", "HairAccessory2PonyEars1", "HairAccessory1FoxEars1", "HairAccessory2FoxEars1", "HairAccessory1FoxEars3", "HairAccessory2FoxEars3", "HairAccessory1RaccoonEars1", "HairAccessory2RaccoonEars1", "HatVeil1", "HatVeil2", "HatCaptainHat1", "HatPoliceWomanHat"], Hide: ["Glasses"] },	
+			{ Name: "BunnyMask2", Value: 40, Left: 150, Top: 20, Priority: 49, HideItem: ["ItemNoseNoseRing", "HairAccessory1Ears1", "HairAccessory2Ears1", "HairAccessory1PonyEars1", "HairAccessory2PonyEars1", "HairAccessory1FoxEars1", "HairAccessory2FoxEars1", "HairAccessory1FoxEars3", "HairAccessory2FoxEars3", "HairAccessory1RaccoonEars1", "HairAccessory2RaccoonEars1", "HatVeil1", "HatVeil2", "HatCaptainHat1", "HatPoliceWomanHat"], Hide: ["Glasses"] },	
+			{ Name: "BunnyMask3", Value: 40, Left: 150, Top: 20, Priority: 49, HideItem: ["ItemNoseNoseRing", "HairAccessory1Ears1", "HairAccessory2Ears1", "HairAccessory1PonyEars1", "HairAccessory2PonyEars1", "HairAccessory1FoxEars1", "HairAccessory2FoxEars1", "HairAccessory1FoxEars3", "HairAccessory2FoxEars3", "HairAccessory1RaccoonEars1", "HairAccessory2RaccoonEars1", "HatVeil1", "HatVeil2", "HatCaptainHat1", "HatPoliceWomanHat"], Hide: ["Glasses"] },	
+			{ Name: "KittyMask1", Value: 30, Left: 150, Top: 20, Priority: 49, HideItem: ["ItemNoseNoseRing", "HatVeil1", "HatVeil2"], Hide: ["Glasses"] },	
+			{ Name: "KittyMask2", Value: 30, Left: 150, Top: 20, Priority: 49, HideItem: ["ItemNoseNoseRing", "HatVeil1", "HatVeil2"], Hide: ["Glasses"] },	
+			{ Name: "LaceMask1", Value: 25, Left: 150, Top: 20, Priority: 49, HideItem: ["ItemNoseNoseRing", "HatVeil1", "HatVeil2"], Hide: ["Glasses"] },	
+			{ Name: "LaceMask2", Value: 25, Left: 150, Top: 20, Priority: 49, HideItem: ["ItemNoseNoseRing", "HatVeil1", "HatVeil2"], Hide: ["Glasses"] }],		Color: ["#303030", "#808080", "#e0e0e0", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 	},
 
 	{
@@ -687,7 +707,8 @@ var AssetFemale3DCG = [
 			{ Name: "DevilWings", Value: 25 },
 			{ Name: "FallenAngelWings", Value: 50 },
 			{ Name: "AngelWings", Value: 50 },
-			{ Name: "BatWings", Value: 20 }
+			{ Name: "BatWings", Value: 20 },
+			{ Name: "FairyWings", Value: 50 },
 		],
 		Color: ["Default"]
 	},
