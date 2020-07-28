@@ -900,7 +900,8 @@ ItemMouth3,LatexBallMuzzleGag,Latex Ball Muzzle Gag
 ItemMouth3,GasMaskGag,Respirator Mask
 ItemMouth3,WebGag,Web Gag
 ItemMouth3,RopeGag,Rope Gag
-ItemHead,,Head
+ItemMouth3,MedicalMask,Medical Mask
+ItemHead,,Eyes
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
 ItemHead,LeatherHood,Leather Hood
