@@ -143,7 +143,7 @@ var AssetFemale3DCG = [
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
-	
+
 	{
 		Group: "Necklace",
 		ParentGroup: "BodyUpper",
@@ -159,14 +159,19 @@ var AssetFemale3DCG = [
 			{
 				Name: "NecklaceLock", Value: 40, Left: 155, Top: 152, Priority: 29, IgnoreParentGroup: true,
 				Layer: [
-				{ Name: "Chain", AllowColorize: true},
-				{ Name: "Lock", AllowColorize: false}
-			   ]},
-			 { Name: "NecklaceKey", Value: 40, Left: 153, Top: 152, Priority: 29, IgnoreParentGroup: true,
+					{ Name: "Chain", AllowColorize: true},
+					{ Name: "Lock", AllowColorize: false}
+			   ]
+			},
+
+			 {
+				Name: "NecklaceKey", Value: 40, Left: 153, Top: 152, Priority: 29, IgnoreParentGroup: true,
 				Layer: [
-				{ Name: "Chain", AllowColorize: true},
-				{ Name: "Key", AllowColorize: false}
-				]},
+					{ Name: "Chain", AllowColorize: true},
+					{ Name: "Key", AllowColorize: false}
+				]
+			 },
+
 			 { Name: "IDCard", Value: 10, Left: 145, Top: 180, IgnoreParentGroup: true,
 			   Layer: [
 				{ Name: "String", AllowColorize: true},
