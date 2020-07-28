@@ -311,8 +311,19 @@ Glasses,Mask1,Venetian Mask
 Glasses,Mask2,Domino Mask
 Glasses,ButterflyMask1,Butterfly Mask
 Glasses,EyePatch1,Eye Patch
-Glasses,ShinobiMask,Shinobi Mask
-Glasses,FoxMask,Fox Mask
+Mask,,Mask
+Mask,VenetianMask,Venetian Mask
+Mask,DominoMask,Domino Mask	
+Mask,ButterflyMask,Butterfly Mask	
+Mask,ShinobiMask,Shinobi Mask	
+Mask,FoxMask,Fox Mask	
+Mask,BunnyMask1,Bunny Mask Filigrane 	
+Mask,BunnyMask2,Bunny Mask Leather	
+Mask,BunnyMask3,Bunny Mask Leather Nose	
+Mask,KittyMask1,Kitty Mask Filigrane	
+Mask,KittyMask2,Kitty Mask Whiskers	
+Mask,LaceMask1,Bat Mask	
+Mask,LaceMask2,Venice Festival Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
