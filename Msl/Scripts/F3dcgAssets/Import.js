@@ -12,12 +12,12 @@ F3dcgAssets.InitThemes = function(){
 	F3dcgAssets.ThemedItems.abdl.push(G.Items.HarnessPacifierGag.Name);
 	
 	var G = F3dcgAssets.AssetGroups.ItemMouth2;
-	F3dcgAssets.ThemedItems.abdl.push(G.Items.PacifierGag.Name);
-	F3dcgAssets.ThemedItems.abdl.push(G.Items.HarnessPacifierGag.Name);
+//	F3dcgAssets.ThemedItems.abdl.push(G.Items.PacifierGag.Name);
+	//F3dcgAssets.ThemedItems.abdl.push(G.Items.HarnessPacifierGag.Name);
 	
 	var G = F3dcgAssets.AssetGroups.ItemMouth3;
-	F3dcgAssets.ThemedItems.abdl.push(G.Items.PacifierGag.Name);
-	F3dcgAssets.ThemedItems.abdl.push(G.Items.HarnessPacifierGag.Name);
+	//F3dcgAssets.ThemedItems.abdl.push(G.Items.PacifierGag.Name);
+	//F3dcgAssets.ThemedItems.abdl.push(G.Items.HarnessPacifierGag.Name);
 	
 	G = F3dcgAssets.AssetGroups.ItemVulva;
 	F3dcgAssets.ThemedItems.shock.push(G.Items.ShockDildo.Name);
