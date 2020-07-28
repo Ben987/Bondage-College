@@ -159,16 +159,15 @@ var AssetFemale3DCG = [
 			{
 				Name: "NecklaceLock", Value: 40, Left: 155, Top: 152, Priority: 29, IgnoreParentGroup: true,
 				Layer: [
-					{ Name: "Chain", AllowColorize: true},
-					{ Name: "Lock", AllowColorize: false}
-			   ]
+					{ Name: "Chain", AllowColorize: true },
+					{ Name: "Lock", AllowColorize: false }
+			   	]
 			},
-
-			 {
+			{
 				Name: "NecklaceKey", Value: 40, Left: 153, Top: 152, Priority: 29, IgnoreParentGroup: true,
 				Layer: [
-					{ Name: "Chain", AllowColorize: true},
-					{ Name: "Key", AllowColorize: false}
+					{ Name: "Chain", AllowColorize: true },
+					{ Name: "Key", AllowColorize: false }
 				]
 			 },
 
