@@ -34,7 +34,6 @@ var PreferenceVisibilityAssetIndex = 0;
 var PreferenceVisibilityHideChecked = false;
 var PreferenceVisibilityPreviewImg = null;
 var PreferenceVisibilitySettings = null;
-var PreferenceVisibilityHiddenItems = null;
 var PreferenceVisibilityResetClicked = false;
 
 /**

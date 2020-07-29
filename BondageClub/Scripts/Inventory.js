@@ -292,16 +292,19 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 				break;
 			}
 
-		// Builds a list of all possible items and uses one of them, prevents the user from blocking everything to cheat
-		var List = [];
-		var ListWithPermission = [];
-		for (var A = 0; A < Asset.length; A++) 
-			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false) && !CharacterAppearanceItemIsHidden(Asset[A].Name, GroupName)) {
-				List.push(Asset[A]);
-				if (C.ID == 0 && !InventoryIsPermissionBlocked(C, Asset[A].Name, Asset[A].Group.Name)) ListWithPermission.push(Asset[A]);
+		// Builds a list of all possible items and uses one of them, visible if possible, prevents the user from blocking everything to cheat
+		var ListFull = [];
+		var ListPermittedVisible = [];
+		var ListPermitted = [];
+		for (var A = 0; A < Asset.length; A++)
+			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false)) {
+				ListFull.push(Asset[A]);
+				if (!InventoryIsPermissionBlocked(C, Asset[A].Name, Asset[A].Group.Name))
+					if (!CharacterAppearanceItemIsHidden(Asset[A].Name, GroupName)) ListPermittedVisible.push(Asset[A]);
+					else ListPermitted.push(Asset[A]);
 			}
-		if (List.length == 0) return;
-		var RandomAsset = ListWithPermission.length > 0 ? ListWithPermission[Math.floor(Math.random() * ListWithPermission.length)] : List[Math.floor(Math.random() * List.length)];
+		if (ListFull.length == 0) return;
+		var RandomAsset = ListPermittedVisible.length > 0 ? ListPermittedVisible[Math.floor(Math.random() * ListPermittedVisible.length)] : ListPermitted.length > 0 ? ListPermitted[Math.floor(Math.random() * ListPermitted.length)] : ListFull[Math.floor(Math.random() * ListFull.length)];
 		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty);
 		CharacterRefresh(C);
 
