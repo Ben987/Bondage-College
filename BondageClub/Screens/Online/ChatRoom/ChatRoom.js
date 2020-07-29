@@ -272,14 +272,19 @@ function ChatRoomRun() {
 	DrawButton(1905, 908, 90, 90, "", "White", "Icons/Chat.png");
 
 	// Draws the top button, in red if they aren't enabled
-	if (!ChatRoomCanLeave() && ChatRoomSlowtimer != 0)ChatRoomSlowtimer = 0;
-	if (Player.IsSlow() && ChatRoomCanLeave()){
-		if (ChatRoomSlowtimer == 0) DrawButton(1005, 2, 120, 60, "", "Blue", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
-		if (CurrentTime < ChatRoomSlowtimer && ChatRoomSlowtimer != 0) DrawButton(1005, 2, 120, 60, "", "Yellow", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
-		if (CurrentTime > ChatRoomSlowtimer && CurrentTime < ChatRoomSlowtimer + 3000 && ChatRoomSlowtimer != 0) DrawButton(1005, 2, 120, 60, "", "rgb(49, 255, 49)", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
-		if (CurrentTime > ChatRoomSlowtimer + 3000 && ChatRoomSlowtimer != 0){
+	if (!ChatRoomCanLeave() && ChatRoomSlowtimer != 0){ //reset slow leave timer if  player can't leave. Send chat message stating a leave attempt being interupted.
+		ServerSend("ChatRoomChat", { Content: "ActionSlowLeaveInterrupt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+		ChatRoomSlowtimer = 0;
+	}
+	if (Player.IsSlow() && ChatRoomCanLeave()){//Draw exit icon blue or yellow if player is under a slow effect.
+		if (ChatRoomSlowtimer == 0) DrawButton(1005, 2, 120, 60, "", "rgb(39, 68, 233)", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));//Draw blue exit for slow
+		if (CurrentTime < ChatRoomSlowtimer && ChatRoomSlowtimer != 0) DrawButton(1005, 2, 120, 60, "", "White", "Icons/Rectangle/CancelRect.png", TextGet("MenuCancel"));//Draw cancel, player has started auto leave.
+		if (CurrentTime > ChatRoomSlowtimer && ChatRoomSlowtimer != 0){//Auto leave once timer completes. Reset Timer
 			ChatRoomSlowtimer = 0;
-			DrawButton(1005, 2, 120, 60, "", "Blue", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+			ElementRemove("InputChat");
+			ElementRemove("TextAreaChatLog");
+			ServerSend("ChatRoomLeave", "");
+			CommonSetScreen("Online", "ChatSearch");
 		}
 	} 
 	else DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
@@ -345,17 +350,16 @@ function ChatRoomClick() {
 
 	//When the player is slow and attempts leave
 	if ((MouseX >= 1005) && (MouseX < 1125) && (MouseY >= 0) && (MouseY <= 62) && ChatRoomCanLeave() && Player.IsSlow()){
+		//Player clicked to leave, start timer, send chat message player is heading for exit.
 		if (ChatRoomSlowtimer == 0){
-			//TODO: send chat command alerting others that Player is attempting to leave.
-			ChatRoomSlowtimer = CurrentTime + 10000;
+			ServerSend("ChatRoomChat", { Content: "ActionSlowLeaveAttempt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+			ChatRoomSlowtimer = CurrentTime + (10 * (1000-(50 * SkillGetLevelReal(Player,"Evasion") ) ) );//10seconds max - 5 sec min
 		}
-		else if (CurrentTime > ChatRoomSlowtimer && CurrentTime < ChatRoomSlowtimer + 3000){
-			ElementRemove("InputChat");
-			ElementRemove("TextAreaChatLog");
-			ServerSend("ChatRoomLeave", "");
-			CommonSetScreen("Online", "ChatSearch");
+		//Player clicked to cancel leaving, reset timer to 0, send chat message player stops leaving.
+		else if (ChatRoomSlowtimer != 0){
+			ServerSend("ChatRoomChat", { Content: "ActionSlowLeaveCancel", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+			ChatRoomSlowtimer = 0;
 		}
-		else if (CurrentTime > ChatRoomSlowtimer + 3000)ChatRoomSlowtimer = 0;
 	}
 
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
