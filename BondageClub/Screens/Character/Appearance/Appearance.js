@@ -311,11 +311,18 @@ function CharacterAppearanceSort(AP) {
  * @returns {boolean} - Returns TRUE if we can show the item or the item group
  */
 function CharacterAppearanceVisible(C, AssetName, GroupName) {
+	if (CharacterAppearanceItemIsHidden(AssetName, GroupName)) {
+		C.HasHiddenItems = true;
+		return false;
+	}
+
 	for (var A = 0; A < C.Appearance.length; A++) {
+		if (CharacterAppearanceItemIsHidden(C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) continue;
 		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) return false;
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) return false;
 		if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) return false;
 	}
+
 	if (C.Pose != null)
 		for (var A = 0; A < C.Pose.length; A++)
 			for (var P = 0; P < Pose.length; P++)
@@ -323,6 +330,19 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 					if ((Pose[P].Hide != null) && (Pose[P].Hide.indexOf(GroupName) >= 0))
 						return false;
 	return true;
+}
+
+/**
+ * Determines whether the player has set this item to not appear on screen
+ * @param {string} AssetName - The name of the asset to check
+ * @param {string} GroupName - The name of the item group to check
+ * @returns {boolean} - TRUE if the item is hidden
+ */
+function CharacterAppearanceItemIsHidden(AssetName, GroupName) {
+	for (var H = 0; H < Player.HiddenItems.length; H++)
+		if (Player.HiddenItems[H].Asset == AssetName && Player.HiddenItems[H].Group == GroupName)
+			return true;
+	return false;
 }
 
 /**
@@ -372,6 +392,7 @@ function CharacterAppearanceBuildCanvas(C) {
 	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
 
 	C.MustDraw = true;
+	C.HasHiddenItems = false;
 
 	// Loops in all visible items worn by the character
 	for (var A = 0; A < C.Appearance.length; A++)

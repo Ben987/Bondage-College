@@ -296,7 +296,7 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 		var List = [];
 		var ListWithPermission = [];
 		for (var A = 0; A < Asset.length; A++) 
-			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false)) {
+			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false) && !CharacterAppearanceItemIsHidden(Asset[A].Name, GroupName)) {
 				List.push(Asset[A]);
 				if (C.ID == 0 && !InventoryIsPermissionBlocked(C, Asset[A].Name, Asset[A].Group.Name)) ListWithPermission.push(Asset[A]);
 			}

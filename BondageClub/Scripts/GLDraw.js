@@ -388,6 +388,7 @@ function GLDrawHexToRGBA(color) {
  */
 function GLDrawAppearanceBuild(C) {
     GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, 1000);
+	C.HasHiddenItems = false;
 
     // Loops in all visible items worn by the character
     for (var A = 0; A < C.Appearance.length; A++)
