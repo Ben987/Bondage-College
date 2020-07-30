@@ -33,7 +33,7 @@ var PreferenceVisibilityGroupIndex = 0;
 var PreferenceVisibilityAssetIndex = 0;
 var PreferenceVisibilityHideChecked = false;
 var PreferenceVisibilityPreviewImg = null;
-var PreferenceVisibilitySettings = null;
+var PreferenceVisibilitySettings = [];
 var PreferenceVisibilityResetClicked = false;
 
 /**
@@ -859,8 +859,7 @@ function PreferenceSubscreenVisibilityClick() {
 	if (MouseIn(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64)) {
 		if (PreferenceVisibilityResetClicked) {
 			Player.HiddenItems = [];
-			ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems });
-			PreferenceSubscreenVisibilityExit();
+			PreferenceSubscreenVisibilityExit(true);
 		}
 		else PreferenceVisibilityResetClicked = true;
 	}
@@ -868,19 +867,18 @@ function PreferenceSubscreenVisibilityClick() {
 	// Confirm button
 	if (MouseIn(1720, 60, 90, 90)) {
 		Player.HiddenItems = PreferenceVisibilitySettings;
-		ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems });
-		PreferenceSubscreenVisibilityExit();
+		PreferenceSubscreenVisibilityExit(true);
 	}
 
 	// Cancel button
 	if (MouseIn(1820, 60, 90, 90)) {
-		PreferenceSubscreenVisibilityExit();
+		PreferenceSubscreenVisibilityExit(false);
 	}
 }
 
 /**
  * Update the Hide checkbox and asset preview image based on the new asset selection
- * @param {any} ResetCheckbox - If FALSE, don't change the Hide checkbox setting
+ * @param {boolean} ResetCheckbox - If FALSE, don't change the Hide checkbox setting
  */
 function PreferenceSubscreenVisibilityAssetChanged(ResetCheckbox) {
 	if (ResetCheckbox) PreferenceVisibilityHideChecked = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Hidden;
@@ -895,12 +893,31 @@ function PreferenceSubscreenVisibilityAssetChanged(ResetCheckbox) {
 }
 
 /**
- * Exits the visibility preference screen. Disposes of large lists
+ * Saves changes to the asset settings, disposes of large lists & exits the visibility preference screen.
+ * @param {boolean} SaveChanges - If TRUE, update HiddenItems and BlockItems for the account
  * @returns {void} - Nothing
  */
-function PreferenceSubscreenVisibilityExit() {
+function PreferenceSubscreenVisibilityExit(SaveChanges) {
+	if (SaveChanges) {
+		// Add the item to the blocked list if able
+		var BlockItemsChanged = false;
+		for (var H = 0; H < Player.HiddenItems.length; H++) {
+			var HiddenAsset = AssetGet(Player.AssetFamily, Player.HiddenItems[H].Group, Player.HiddenItems[H].Asset);
+			if (HiddenAsset.Group.Category == "Item" && HiddenAsset.Group.Zone != null && HiddenAsset.Enable && HiddenAsset.Wear)
+				if (!InventoryIsPermissionBlocked(Player, HiddenAsset.Name, HiddenAsset.Group.Name) && !InventoryIsPermissionLimited(Player, HiddenAsset.Name, HiddenAsset.Group.Name)) {
+					Player.BlockItems.push({ Name: HiddenAsset.Name, Group: HiddenAsset.Group.Name });
+					BlockItemsChanged = true;
+				}
+		}
+
+		// Update the account settings
+		var data = { HiddenItems: Player.HiddenItems };
+		if (BlockItemsChanged) data.BlockItems = Player.BlockItems
+		ServerSend("AccountUpdate", data);
+	}
+
 	PreferenceVisibilityGroupList = [];
-	PreferenceVisibilitySettings = null;
+	PreferenceVisibilitySettings = [];
 	PreferenceSubscreen = "";
 	PreferenceMainScreenLoad();
 }
