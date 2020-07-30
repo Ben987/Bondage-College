@@ -698,7 +698,7 @@ function CharacterReleaseTotal(C) {
 	    if (C.Appearance[E].Asset.Group.Category != "Appearance") {
 	    	if (C.IsOwned() && C.Appearance[E].Asset.Name == "SlaveCollar") {
 	    		// Reset slave collar to the default model if it has a gameplay effect (such as gagging the player)
-	    		if (C.Appearance[E].Property.Effect && C.Appearance[E].Property.Effect.length > 0)
+	    		if (C.Appearance[E].Property && C.Appearance[E].Property.Effect && C.Appearance[E].Property.Effect.length > 0)
 	    			delete C.Appearance[E].Property;
 	    	}
 	    	else {
