@@ -1020,21 +1020,15 @@ function DialogItemClick(ClickItem) {
 	// In permission mode, the player can allow or block items for herself
 	if ((C.ID == 0) && DialogItemPermissionMode) {
 		if (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name)) return;
-		
-		var ListItem = { Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name };
 		if (InventoryIsPermissionBlocked(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name)) {
 			Player.BlockItems = Player.BlockItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
-			Player.LimitedItems.push(ListItem);
+			Player.LimitedItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
 		}
-		else if (InventoryIsPermissionLimited(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name)) {
+		else if (InventoryIsPermissionLimited(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name))
 			Player.LimitedItems = C.LimitedItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
-			Player.OptedItems.push(ListItem);
-		} else {
-			Player.BlockItems.push(ListItem);
-			Player.OptedItems = C.OptedItems.filter(OI => OI.Name != ClickItem.Asset.Name || OI.Group != ClickItem.Asset.Group.Name);
-		}
-		
-		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems, OptedItems: Player.OptedItems });
+		else
+			Player.BlockItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
+		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
 		return;
 	}
 

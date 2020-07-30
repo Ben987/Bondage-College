@@ -101,7 +101,6 @@ function AssetAdd(NewAsset) {
 		Audio: NewAsset.Audio,
 		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone,
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null) ? false : NewAsset.IgnoreParentGroup,
-		BlackList: (NewAsset.BlackList == null) ? false : NewAsset.BlackList,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
 		BodyCosplay: (NewAsset.BodyCosplay == null) ? ((AssetCurrentGroup.BodyCosplay == null) ? false : AssetCurrentGroup.BodyCosplay) : NewAsset.BodyCosplay,
 		OverrideBlinking: (NewAsset.OverrideBlinking == null) ? false : NewAsset.OverrideBlinking,
@@ -240,25 +239,4 @@ function AssetGetActivity(Family, Name) {
 			if (ActivityFemale3DCG[A].Name == Name)
 				return ActivityFemale3DCG[A];
 	return null;
-}
-
-/**
- * Cleans one to many given arrays of assets of any items that no longer exists
- * @param {Array.<Array.<{Name: string, Group: string}>>} AssetArray - The arrays of items to clean
- * @returns {Array.<{Name: string, Group: string}>} - The cleaned up array
- */
-function AssetCleanArray(Arrays) { 
-	var CleanArrays = [];
-	for (var ARR = 0; ARR < Arrays.length; ARR++)
-		CleanArrays.push([]);
-	
-	// Only save the existing items
-	for (var A = 0; A < Asset.length; A++)
-		for (var ARR = 0; ARR < Arrays.length; ARR++) { 
-			var FoundItem = Arrays[ARR].find(Item => Item.Name == Asset[A].Name && Item.Group == Asset[A].Group.Name)
-			if (Arrays[ARR].find(Item => Item.Name == Asset[A].Name && Item.Group == Asset[A].Group.Name))
-				CleanArrays[ARR].push(FoundItem);
-		}
-	
-	return CleanArrays;
 }

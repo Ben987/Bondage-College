@@ -237,27 +237,6 @@ function LoginValideBuyGroups() {
 }
 
 /**
- * Checks if the player arrays contains any item that does not exists and saves them.
- * @returns {void} Nothing
- */
-function LoginValidateArrays() { 
-	var Result = AssetCleanArray([Player.BlockItems, Player.OptedItems, Player.LimitedItems]);
-	if (Result[0].length != Player.BlockItems) { 
-		Player.BlockItems = Result[0];
-		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
-	}
-	if (Result[1].length != Player.OptedItems) { 
-		Player.OptedItems = Result[1];
-		ServerSend("AccountUpdate", { OptedItems: Player.OptedItems });
-	}
-	if (Result[2].length != Player.LimitedItems) { 
-		Player.LimitedItems = Result[2];
-		ServerSend("AccountUpdate", { LimitedItems: Player.LimitedItems });
-	}
-	
-}
-
-/**
  * Handles player login response data
  * @param {Character | string} C - The Login response data - this will either be the player's character data if the
  * login was successful, or a string error message if the login failed.
@@ -306,9 +285,8 @@ function LoginResponse(C) {
 			WardrobeFixLength();
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
-			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
+			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;;
 			Player.LimitedItems = ((C.LimitedItems == null) || !Array.isArray(C.LimitedItems)) ? [] : C.LimitedItems;
-			Player.OptedItems = ((C.OptedItems == null) || !Array.isArray(C.OptedItems)) ? [] : C.OptedItems;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 
@@ -324,16 +302,6 @@ function LoginResponse(C) {
 				ServerPlayerSync();
 			}
 
-			// Assures all blocked-by-default items are blocked
-			var MustRefresh = false
-			for (var A = 0; A < Asset.length; A++) { 
-				if (Asset[A].BlackList && !Player.OptedItems.find(OI => OI.Name == Asset[A].Name && OI.Group == Asset[A].Group.Name) && !Player.BlockItems.find(BI => BI.Name == Asset[A].Name && BI.Group == Asset[A].Group.Name)  && !Player.LimitedItems.find(LI => LI.Name == Asset[A].Name && LI.Group == Asset[A].Group.Name)) { 
-					Player.BlockItems.push({ Name: Asset[A].Name, Group: Asset[A].Group.Name });
-					MustRefresh = true;
-				}
-			}
-			if (MustRefresh) ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
-			
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
 			Player.ItemPermission = C.ItemPermission;
@@ -385,8 +353,7 @@ function LoginResponse(C) {
 			LoginLoversItems();
 			LoginValideBuyGroups();
 			CharacterAppearanceValidate(Player);
-			LoginValidateArrays();
-			
+
 			// If the player must log back in the cell
 			if (LogQuery("Locked", "Cell")) {
 				CommonSetScreen("Room", "Cell");
