@@ -37,7 +37,22 @@ function ChatRoomCanGiveMoneyForOwner() { return ((ChatRoomMoneyForOwner > 0) &&
 function ChatRoomPlayerIsAdmin() { return ((ChatRoomData != null && ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(Player.MemberNumber) >= 0)) }
 function ChatRoomCurrentCharacterIsAdmin() { return ((CurrentCharacter != null) && (ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomHasSwapTarget() { return (ChatRoomSwapTarget != null) }
-function ChatRoomCanAssistStruggle() { return !CurrentCharacter.CanInteract() }
+function ChatRoomCanAssistStruggle() { return CurrentCharacter.AllowItem && !CurrentCharacter.CanInteract() }
+/**
+ * Checks if the character options menu is available.
+ * @returns {boolean} - Whether or not the player can interact with the target character
+ */
+function ChatRoomCanPerformCharacterAction() { return CurrentCharacter.AllowItem }
+/**
+ * Checks if the target character can be helped back on her feet. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
+ * @returns {boolean} - Whether or not the target character can stand
+ */
+function ChatRoomCanAssistStand() { return CurrentCharacter.AllowItem && CurrentCharacter.ActivePose != null && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) }
+/**
+ * Checks if the target character can be helped down on her knees. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
+ * @returns {boolean} - Whether or not the target character can stand
+ */
+function ChatRoomCanAssistKneel() { return CurrentCharacter.AllowItem  && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) && CurrentCharacter.ActivePose == null}
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -1058,6 +1073,16 @@ function ChatRoomStruggleAssist() {
 	ServerSend("ChatRoomChat", { Content: "StruggleAssist", Type: "Action", Dictionary: Dictionary });
 	ServerSend("ChatRoomChat", { Content: "StruggleAssist" + Math.round(Bonus).toString(), Type: "Hidden", Target: CurrentCharacter.MemberNumber });
 	DialogLeave();
+}
+
+/**
+ * Triggered when a character makes another character kneel/stand
+ * @returns {void} - Nothing
+ */
+function ChatRoomKneelStandAssist() { 
+	ServerSend("ChatRoomChat", { Content: (CurrentCharacter.ActivePose == null) ? "HelpKneelDown" : "HelpStandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }, { Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber }] });
+	CharacterSetActivePose(CurrentCharacter, (CurrentCharacter.ActivePose == null) ? "Kneel" : null);
+	ChatRoomCharacterUpdate(CurrentCharacter);
 }
 
 // Sends an administrative command to the server for the chat room from the character dialog
