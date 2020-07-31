@@ -252,6 +252,12 @@ function LoginValidateArrays() {
 		Player.LimitedItems = CleanLimitedItems;
 		ServerSend("AccountUpdate", { LimitedItems: Player.LimitedItems });
 	}
+
+	var CleanHiddenItems = AssetCleanArray(Player.HiddenItems);
+	if (CleanHiddenItems.length != Player.HiddenItems.length) {
+		Player.HiddenItems = CleanHiddenItems;
+		ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems });
+	}
 }
 
 /**
