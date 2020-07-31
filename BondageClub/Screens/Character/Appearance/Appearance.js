@@ -512,7 +512,7 @@ function AppearanceLoad() {
 	var C = CharacterAppearanceSelection;
 	CharacterAppearanceBuildAssets(Player);
 	CharacterAppearanceBackup = C.Appearance.slice();
-	if (Player.GameplaySettings.EnableWardrobeIcon) {
+	if (Player.GameplaySettings.EnableWardrobeIcon && CharacterAppearanceReturnRoom == "ChatRoom") {
 		CharacterAppearancePreviousEmoticon = WardrobeGetExpression(Player).Emoticon;
 		ServerSend("ChatRoomCharacterExpressionUpdate", { Name: "Wardrobe", Group: "Emoticon", Appearance: ServerAppearanceBundle(Player.Appearance) });
 	}
@@ -876,7 +876,7 @@ function CharacterAppearanceExit(C) {
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceWardrobeMode = false;
 	C.Appearance = CharacterAppearanceBackup;
-	if (Player.GameplaySettings.EnableWardrobeIcon) {
+	if (Player.GameplaySettings.EnableWardrobeIcon && CharacterAppearanceReturnRoom == "ChatRoom") {
 		CharacterSetFacialExpression(Player, "Emoticon", CharacterAppearancePreviousEmoticon);
 		CharacterAppearancePreviousEmoticon = "";
 	}
