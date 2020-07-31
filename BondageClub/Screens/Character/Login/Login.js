@@ -237,6 +237,22 @@ function LoginValideBuyGroups() {
 }
 
 /**
+ * Checks if the player arrays contains any item that does not exists and saves them.
+ * @returns {void} Nothing
+ */
+function LoginValidateArrays() { 
+	var Result = AssetCleanArray([Player.BlockItems, Player.LimitedItems]);
+	if (Result[0].length != Player.BlockItems.length) { 
+		Player.BlockItems = Result[0];
+		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
+	}
+	if (Result[1].length != Player.LimitedItems.length) { 
+		Player.LimitedItems = Result[1];
+		ServerSend("AccountUpdate", { LimitedItems: Player.LimitedItems });
+	}
+}
+
+/**
  * Handles player login response data
  * @param {Character | string} C - The Login response data - this will either be the player's character data if the
  * login was successful, or a string error message if the login failed.
@@ -352,6 +368,7 @@ function LoginResponse(C) {
 			LoginStableItems();
 			LoginLoversItems();
 			LoginValideBuyGroups();
+			LoginValidateArrays();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell
