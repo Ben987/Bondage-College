@@ -249,9 +249,11 @@ function AssetGetActivity(Family, Name) {
 function AssetCleanArray(AssetArray) { 
 	var CleanArray = [];
 	// Only save the existing items
-	for (var A = 0; A < Asset.length; A++) {
-		var FoundItem = AssetArray.find(Item => Item.Name == Asset[A].Name && Item.Group == Asset[A].Group.Name)
-		if (FoundItem) CleanArray.push(FoundItem);
-	}
+	for (var A = 0; A < Asset.length; A++)
+		for (var AA = 0; AA < AssetArray.length; AA++)
+			if (AssetArray[AA].Name == Asset[A].Name && AssetArray[AA].Group == Asset[A].Group.Name) {
+				CleanArray.push(AssetArray[AA]);
+				break;
+			}
 	return CleanArray;
 }
