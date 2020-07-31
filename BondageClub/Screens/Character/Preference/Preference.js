@@ -28,9 +28,9 @@ var PreferenceArousalActivityIndex = 0;
 var PreferenceArousalActivityFactorSelf = 0;
 var PreferenceArousalActivityFactorOther = 0;
 var PreferenceArousalZoneFactor = 0;
-var PreferenceVisibilityGroupList = [];
-var PreferenceVisibilityGroupIndex = 0;
-var PreferenceVisibilityAssetIndex = 0;
+var PreferenceArousalFetishList = null;
+var PreferenceArousalFetishIndex = 0;
+var PreferenceArousalFetishFactor = 0;
 var PreferenceVisibilityHideChecked = false;
 var PreferenceVisibilityPreviewImg = null;
 var PreferenceVisibilitySettings = [];
@@ -49,6 +49,22 @@ function PreferenceGetActivityFactor(C, Type, Self) {
 		for (var P = 0; P < C.ArousalSettings.Activity.length; P++)
 			if (C.ArousalSettings.Activity[P].Name == Type)
 				Factor = (Self) ? C.ArousalSettings.Activity[P].Self : C.ArousalSettings.Activity[P].Other;
+	if ((Factor == null) || (typeof Factor !== "number") || (Factor < 0) || (Factor > 4)) Factor = 2;
+	return Factor;
+}
+
+/**
+ * Gets the factor of a fetish for the player
+ * @param {Character} C - The character to query
+ * @param {string} Type - The name of the fetish
+ * @returns {number} - Returns the love factor of the fetish for the character (0 is horrible, 2 is normal, 4 is great)
+ */
+function PreferenceGetFetishFactor(C, Type) {
+	var Factor = 2;
+	if ((C.ArousalSettings != null) && (C.ArousalSettings.Fetish != null))
+		for (var F = 0; F < C.ArousalSettings.Fetish.length; F++)
+			if (C.ArousalSettings.Fetish[F].Name == Type)
+				Factor = C.ArousalSettings.Fetish[F].Factor;
 	if ((Factor == null) || (typeof Factor !== "number") || (Factor < 0) || (Factor > 4)) Factor = 2;
 	return Factor;
 }
@@ -114,7 +130,7 @@ function PreferenceGetZoneOrgasm(C, Zone) {
 
 /**
  * Sets the ability to induce an orgasm for a given zone*
- * @param {Character} C - The characterfor whom we set the ability to órgasm from a given zone
+ * @param {Character} C - The characterfor whom we set the ability to Ã³rgasm from a given zone
  * @param {string} Zone - The name of the zone to set the ability to orgasm for
  * @param {boolean} CanOrgasm - Sets, if the character can cum from the given zone (true) or not (false)
  */
@@ -157,6 +173,14 @@ function PreferenceLoadActivityFactor() {
 }
 
 /**
+ * Loads the fetish factor combo boxes based on the current fetish selected
+ * @returns {void} - Nothing
+ */
+function PreferenceLoadFetishFactor() {
+	PreferenceArousalFetishFactor = PreferenceGetFetishFactor(Player, PreferenceArousalFetishList[PreferenceArousalFetishIndex]);
+}
+
+/**
  * Initialize and validates the character settings
  * @param {Character} C - The character, whose preferences are initialized
  * @returns {void} - Nothing
@@ -192,6 +216,7 @@ function PreferenceInit(C) {
 	if ((typeof C.ArousalSettings.ProgressTimer !== "number") || isNaN(C.ArousalSettings.ProgressTimer)) C.ArousalSettings.ProgressTimer = 0;
 	if ((C.ArousalSettings.Activity == null) || !Array.isArray(C.ArousalSettings.Activity)) C.ArousalSettings.Activity = [];
 	if ((C.ArousalSettings.Zone == null) || !Array.isArray(C.ArousalSettings.Zone)) C.ArousalSettings.Zone = [];
+	if ((C.ArousalSettings.Fetish == null) || !Array.isArray(C.ArousalSettings.Fetish)) C.ArousalSettings.Fetish = [];
 
 	// Sets the default game settings
 	if (!C.GameplaySettings) C.GameplaySettings = {};
@@ -214,6 +239,17 @@ function PreferenceInit(C) {
 					if ((C.ArousalSettings.Activity[P].Other == null) || (typeof C.ArousalSettings.Activity[P].Other !== "number") || (C.ArousalSettings.Activity[P].Other < 0) || (C.ArousalSettings.Activity[P].Other > 4)) C.ArousalSettings.Activity[P].Other = 2;
 				}
 			if (!Found) C.ArousalSettings.Activity.push({ Name: ActivityFemale3DCG[A].Name, Self: 2, Other: 2 });
+		}
+
+		// Validates the fetishes
+		for (var A = 0; A < FetishFemale3DCG.length; A++) {
+			var Found = false;
+			for (var F = 0; F < C.ArousalSettings.Fetish.length; F++)
+				if ((C.ArousalSettings.Fetish[F] != null) && (C.ArousalSettings.Fetish[F].Name != null) && (FetishFemale3DCG[A].Name == C.ArousalSettings.Fetish[F].Name)) {
+					Found = true;
+					if ((C.ArousalSettings.Fetish[F].Factor == null) || (typeof C.ArousalSettings.Fetish[F].Factor !== "number") || (C.ArousalSettings.Fetish[F].Factor < 0) || (C.ArousalSettings.Fetish[F].Factor > 4)) C.ArousalSettings.Fetish[F].Factor = 2;
+				}
+			if (!Found) C.ArousalSettings.Fetish.push({ Name: FetishFemale3DCG[A].Name, Factor: 2 });
 		}
 
 		// Validates the zones
@@ -270,6 +306,14 @@ function PreferenceLoad() {
 	PreferenceArousalActivityIndex = 0;
 	PreferenceLoadActivityFactor();
 
+	// Prepares the fetish list
+	PreferenceArousalFetishList = [];
+	if (Player.AssetFamily == "Female3DCG")
+		for (var A = 0; A < FetishFemale3DCG.length; A++)
+			PreferenceArousalFetishList.push(FetishFemale3DCG[A].Name);
+	PreferenceArousalFetishIndex = 0;
+	PreferenceLoadFetishFactor();
+	
 }
 
 /**
@@ -402,7 +446,7 @@ function PreferenceClick() {
 	}
 	if (MouseIn(500, 712, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
 	if (MouseIn(500, 792, 64, 64)) {
-		if(!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) Player.GameplaySettings.EnableSafeword = true;
+		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) Player.GameplaySettings.EnableSafeword = true;
 		else if (Player.GameplaySettings.EnableSafeword) Player.GameplaySettings.EnableSafeword = false;
 	}
 
@@ -493,7 +537,7 @@ function PreferenceSubscreenArousalRun() {
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("ArousalPreferences"), 550, 125, "Black", "Gray");
 	DrawText(TextGet("ArousalActive"), 550, 225, "Black", "Gray");
-	DrawText(TextGet("ArousalStutter"), 550, 425, "Black", "Gray");
+	DrawText(TextGet("ArousalStutter"), 550, 410, "Black", "Gray");
 	DrawCheckbox(550, 286, 64, 64, TextGet("ArousalShowOtherMeter"), Player.ArousalSettings.ShowOtherMeter);
 
 	// The other controls are only drawn if the arousal is active
@@ -502,9 +546,10 @@ function PreferenceSubscreenArousalRun() {
 		// Draws the labels and check boxes
 		DrawCheckbox(1250, 286, 64, 64, TextGet("ArousalAffectExpression"), Player.ArousalSettings.AffectExpression);
 		DrawText(TextGet("ArousalVisible"), 1240, 225, "Black", "Gray");
-		DrawText(TextGet("ArousalActivity"), 550, 525, "Black", "Gray");
-		DrawText(TextGet("ArousalActivityLoveSelf"), 550, 625, "Black", "Gray");
-		DrawText(TextGet("ArousalActivityLoveOther"), 1255, 625, "Black", "Gray");
+		DrawText(TextGet("ArousalFetish"), 550, 495, "Black", "Gray");
+		DrawText(TextGet("ArousalActivity"), 550, 580, "Black", "Gray");
+		DrawText(TextGet("ArousalActivityLoveSelf"), 550, 665, "Black", "Gray");
+		DrawText(TextGet("ArousalActivityLoveOther"), 1255, 665, "Black", "Gray");
 
 		// Draws all the available character zones
 		for (var A = 0; A < AssetGroup.length; A++)
@@ -515,28 +560,30 @@ function PreferenceSubscreenArousalRun() {
 
 		// The zones can be selected and drawn on the character
 		if (Player.FocusGroup != null) {
-			DrawCheckbox(1230, 793, 64, 64, TextGet("ArousalAllowOrgasm"), PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
-			DrawText(TextGet("ArousalZone" + Player.FocusGroup.Name) + " - " + TextGet("ArousalConfigureErogenousZones"), 550, 725, "Black", "Gray");
+			DrawCheckbox(1230, 813, 64, 64, TextGet("ArousalAllowOrgasm"), PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
+			DrawText(TextGet("ArousalZone" + Player.FocusGroup.Name) + " - " + TextGet("ArousalConfigureErogenousZones"), 550, 745, "Black", "Gray");
 			DrawAssetGroupZone(Player, Player.FocusGroup.Zone, 0.9, 50, 50, "cyan");
 			MainCanvas.textAlign = "center";
-			DrawBackNextButton(550, 793, 600, 64, TextGet("ArousalZoneLove" + PreferenceArousalZoneFactor), PreferenceGetFactorColor(PreferenceGetZoneFactor(Player, Player.FocusGroup.Name)), "", () => "", () => "");
+			DrawBackNextButton(550, 813, 600, 64, TextGet("ArousalZoneLove" + PreferenceArousalZoneFactor), PreferenceGetFactorColor(PreferenceGetZoneFactor(Player, Player.FocusGroup.Name)), "", () => "", () => "");
 			Player.FocusGroup
 		}
-		else DrawText(TextGet("ArousalSelectErogenousZones"), 550, 725, "Black", "Gray");
+		else DrawText(TextGet("ArousalSelectErogenousZones"), 550, 745, "Black", "Gray");
 
 		// Draws the sub-selection controls
 		MainCanvas.textAlign = "center";
 		DrawBackNextButton(1505, 193, 400, 64, TextGet("ArousalVisible" + PreferenceArousalVisibleList[PreferenceArousalVisibleIndex]), "White", "", () => "", () => "");
-		DrawBackNextButton(900, 493, 500, 64, ActivityDictionaryText("Activity" + PreferenceArousalActivityList[PreferenceArousalActivityIndex]), "White", "", () => "", () => "");
-		DrawBackNextButton(900, 593, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorSelf), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true)), "", () => "", () => "");
-		DrawBackNextButton(1605, 593, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorOther), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false)), "", () => "", () => "");
+		DrawBackNextButton(900, 548, 500, 64, ActivityDictionaryText("Activity" + PreferenceArousalActivityList[PreferenceArousalActivityIndex]), "White", "", () => "", () => "");
+		DrawBackNextButton(900, 633, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorSelf), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true)), "", () => "", () => "");
+		DrawBackNextButton(1605, 633, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorOther), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false)), "", () => "", () => "");
 
 	}
 
 	// We always draw the active & stutter control
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(750, 193, 450, 64, TextGet("ArousalActive" + PreferenceArousalActiveList[PreferenceArousalActiveIndex]), "White", "", () => "", () => "");
-	DrawBackNextButton(900, 393, 500, 64, TextGet("ArousalStutter" + PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex]), "White", "", () => "", () => "");
+	DrawBackNextButton(900, 378, 500, 64, TextGet("ArousalStutter" + PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex]), "White", "", () => "", () => "");
+	DrawBackNextButton(900, 463, 500, 64, TextGet("ArousalFetish" + PreferenceArousalFetishList[PreferenceArousalFetishIndex]), "White", "", () => "", () => "");
+	DrawBackNextButton(1455, 463, 450, 64, TextGet("ArousalFetishLove" + PreferenceArousalFetishFactor), PreferenceGetFactorColor(PreferenceGetFetishFactor(Player, PreferenceArousalFetishList[PreferenceArousalFetishIndex], false)), "", () => "", () => "");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
 }
@@ -707,7 +754,7 @@ function PreferenceSubscreenArousalClick() {
 	}
 
 	// Speech stuttering control
-	if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 393) && (MouseY < 457)) {
+	if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 378) && (MouseY < 442)) {
 		if (MouseX <= 1150) PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.length + PreferenceArousalAffectStutterIndex - 1) % PreferenceArousalAffectStutterList.length;
 		else PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterIndex + 1) % PreferenceArousalAffectStutterList.length;
 		Player.ArousalSettings.AffectStutter = PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex];
@@ -731,36 +778,52 @@ function PreferenceSubscreenArousalClick() {
 			Player.ArousalSettings.Visible = PreferenceArousalVisibleList[PreferenceArousalVisibleIndex];
 		}
 
+		// Fetish master control
+		if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 463) && (MouseY <= 527)) {
+			if (MouseX <= 1150) PreferenceArousalFetishIndex = (PreferenceArousalFetishList.length + PreferenceArousalFetishIndex - 1) % PreferenceArousalFetishList.length;
+			else PreferenceArousalFetishIndex = (PreferenceArousalFetishIndex + 1) % PreferenceArousalFetishList.length;
+			PreferenceLoadFetishFactor();
+		}
+
+		// Fetish love control
+		if ((MouseX >= 1455) && (MouseX < 1905) && (MouseY >= 463) && (MouseY <= 527)) {
+			if (MouseX <= 1680) PreferenceArousalFetishFactor = (5 + PreferenceArousalFetishFactor - 1) % 5;
+			else PreferenceArousalFetishFactor = (PreferenceArousalFetishFactor + 1) % 5;
+			for (var F = 0; F < Player.ArousalSettings.Fetish.length; F++)
+				if (Player.ArousalSettings.Fetish[F].Name == PreferenceArousalFetishList[PreferenceArousalFetishIndex])
+					Player.ArousalSettings.Fetish[F].Factor = PreferenceArousalFetishFactor;
+		}
+
 		// Arousal activity control
-		if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 493) && (MouseY <= 557)) {
+		if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 548) && (MouseY <= 612)) {
 			if (MouseX <= 1150) PreferenceArousalActivityIndex = (PreferenceArousalActivityList.length + PreferenceArousalActivityIndex - 1) % PreferenceArousalActivityList.length;
 			else PreferenceArousalActivityIndex = (PreferenceArousalActivityIndex + 1) % PreferenceArousalActivityList.length;
 			PreferenceLoadActivityFactor();
 		}
-
+		
 		// Arousal activity love on self control
-		if ((MouseX >= 900) && (MouseX < 1200) && (MouseY >= 593) && (MouseY <= 657)) {
+		if ((MouseX >= 900) && (MouseX < 1200) && (MouseY >= 633) && (MouseY <= 697)) {
 			if (MouseX <= 1050) PreferenceArousalActivityFactorSelf = (5 + PreferenceArousalActivityFactorSelf - 1) % 5;
 			else PreferenceArousalActivityFactorSelf = (PreferenceArousalActivityFactorSelf + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true, PreferenceArousalActivityFactorSelf);
 		}
 
 		// Arousal activity love on other control
-		if ((MouseX >= 1605) && (MouseX < 1905) && (MouseY >= 593) && (MouseY <= 657)) {
+		if ((MouseX >= 1605) && (MouseX < 1905) && (MouseY >= 633) && (MouseY <= 697)) {
 			if (MouseX <= 1755) PreferenceArousalActivityFactorOther = (5 + PreferenceArousalActivityFactorOther - 1) % 5;
 			else PreferenceArousalActivityFactorOther = (PreferenceArousalActivityFactorOther + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false, PreferenceArousalActivityFactorOther);
 		}
 
 		// Arousal zone love control
-		if ((Player.FocusGroup != null) && (MouseX >= 550) && (MouseX < 1150) && (MouseY >= 793) && (MouseY < 857)) {
+		if ((Player.FocusGroup != null) && (MouseX >= 550) && (MouseX < 1150) && (MouseY >= 813) && (MouseY < 877)) {
 			if (MouseX <= 850) PreferenceArousalZoneFactor = (5 + PreferenceArousalZoneFactor - 1) % 5;
 			else PreferenceArousalZoneFactor = (PreferenceArousalZoneFactor + 1) % 5;
 			PreferenceSetZoneFactor(Player, Player.FocusGroup.Name, PreferenceArousalZoneFactor);
 		}
 
 		// Arousal zone orgasm check box
-		if ((Player.FocusGroup != null) && (MouseX >= 1230) && (MouseX < 1294) && (MouseY >= 793) && (MouseY < 857))
+		if ((Player.FocusGroup != null) && (MouseX >= 1230) && (MouseX < 1294) && (MouseY >= 813) && (MouseY < 877))
 			PreferenceSetZoneOrgasm(Player, Player.FocusGroup.Name, !PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
 
 		// In arousal mode, the player can click on her zones

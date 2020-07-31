@@ -148,7 +148,7 @@ function update3Dmodel (group1){
 	path3d = "Assets/3D/";
 	scene.remove(group1);
 	let chale = Character[0].Appearance.length;
-	for(let i = 0; i < chale; i++){
+	for (let i = 0; i < chale; i++){
 		let grpname =	Character[0].Appearance[i].Asset.DynamicGroupName;
 		let itemname = Character[0].Appearance[i].Asset.Name;
 		let itemcolor = Character[0].Appearance[i].Color;

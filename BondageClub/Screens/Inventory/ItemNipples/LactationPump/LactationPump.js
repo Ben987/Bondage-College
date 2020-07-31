@@ -12,11 +12,11 @@ function InventoryItemNipplesLactationPumpDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	DrawText(DialogFind(Player, "LactationPumpSuctionPower" + DialogFocusItem.Property.SuctionLevel.toString()), 1500, 600, "White", "Gray");
-	if(DialogFocusItem.Property.SuctionLevel > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "LactationPumpoff"), "White");
-	if(DialogFocusItem.Property.SuctionLevel != 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "LactationPumpLowSuction"), "White");
-	if(DialogFocusItem.Property.SuctionLevel != 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "LactationPumpMediumSuction"), "White");
-	if(DialogFocusItem.Property.SuctionLevel != 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "LactationPumpHighSuction"), "White");
-	if(DialogFocusItem.Property.SuctionLevel < 4) DrawButton(1375, 770, 200, 55, DialogFind(Player, "LactationPumpMaximumSuction"), "White");
+	if (DialogFocusItem.Property.SuctionLevel > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "LactationPumpoff"), "White");
+	if (DialogFocusItem.Property.SuctionLevel != 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "LactationPumpLowSuction"), "White");
+	if (DialogFocusItem.Property.SuctionLevel != 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "LactationPumpMediumSuction"), "White");
+	if (DialogFocusItem.Property.SuctionLevel != 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "LactationPumpHighSuction"), "White");
+	if (DialogFocusItem.Property.SuctionLevel < 4) DrawButton(1375, 770, 200, 55, DialogFind(Player, "LactationPumpMaximumSuction"), "White");
 }
 
 // Catches the item extension clicks

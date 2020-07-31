@@ -185,6 +185,15 @@ function TimerProcess(Timestamp) {
 										Factor = Item.Property.Intensity + ZoneFactor;
 								}
 							}
+
+							// Adds the fetish value to the factor
+							if (Factor >= 0) {
+								var Fetish = ActivityFetishFactor(Character[C]);
+								if (Fetish > 0) Factor = Factor + Math.ceil(Fetish / 3);
+								if (Fetish < 0) Factor = Factor + Math.floor(Fetish / 3);
+							}
+
+							// Kicks the arousal timer faster from personal arousal
 							if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) ActivityTimerProgress(Character[C], 1);
 							if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) ActivityTimerProgress(Character[C], 1);
 							if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0) && (Character[C].ArousalSettings.Progress <= 95)) ActivityTimerProgress(Character[C], 1);
