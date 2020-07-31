@@ -255,8 +255,7 @@ function AssetCleanArray(Arrays) {
 	for (var A = 0; A < Asset.length; A++)
 		for (var ARR = 0; ARR < Arrays.length; ARR++) { 
 			var FoundItem = Arrays[ARR].find(Item => Item.Name == Asset[A].Name && Item.Group == Asset[A].Group.Name)
-			if (Arrays[ARR].find(Item => Item.Name == Asset[A].Name && Item.Group == Asset[A].Group.Name))
-				CleanArrays[ARR].push(FoundItem);
+			if (FoundItem) CleanArrays[ARR].push(FoundItem);
 		}
 	
 	return CleanArrays;
