@@ -42,17 +42,17 @@ function ChatRoomCanAssistStruggle() { return CurrentCharacter.AllowItem && !Cur
  * Checks if the character options menu is available.
  * @returns {boolean} - Whether or not the player can interact with the target character
  */
-function ChatRoomCanPerformCharacterAction() { return CurrentCharacter.AllowItem }
+function ChatRoomCanPerformCharacterAction() { return ChatRoomCanAssistStand() ||  ChatRoomCanAssistKneel() || ChatRoomCanAssistStruggle()}
 /**
  * Checks if the target character can be helped back on her feet. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
  * @returns {boolean} - Whether or not the target character can stand
  */
-function ChatRoomCanAssistStand() { return CurrentCharacter.AllowItem && CurrentCharacter.ActivePose != null && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) }
+function ChatRoomCanAssistStand() { return Player.CanInteract() && CurrentCharacter.AllowItem && CurrentCharacter.ActivePose != null && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) }
 /**
  * Checks if the target character can be helped down on her knees. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
  * @returns {boolean} - Whether or not the target character can stand
  */
-function ChatRoomCanAssistKneel() { return CurrentCharacter.AllowItem  && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) && CurrentCharacter.ActivePose == null}
+function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharacter.AllowItem  && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) && CurrentCharacter.ActivePose == null}
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
