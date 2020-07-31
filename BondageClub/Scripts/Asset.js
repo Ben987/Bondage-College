@@ -242,21 +242,16 @@ function AssetGetActivity(Family, Name) {
 }
 
 /**
- * Cleans one to many given arrays of assets of any items that no longer exists
- * @param {Array.<Array.<{Name: string, Group: string}>>} AssetArray - The arrays of items to clean
- * @returns {Array.<Array.<{Name: string, Group: string}>>} - The cleaned up array(s)
+ * Cleans the given array of assets of any items that no longer exists
+ * @param {Array.<{Name: string, Group: string}>} AssetArray - The arrays of items to clean
+ * @returns {Array.<{Name: string, Group: string}>} - The cleaned up array
  */
-function AssetCleanArray(Arrays) { 
-	var CleanArrays = [];
-	for (var ARR = 0; ARR < Arrays.length; ARR++)
-		CleanArrays.push([]);
-	
+function AssetCleanArray(AssetArray) { 
+	var CleanArray = [];
 	// Only save the existing items
-	for (var A = 0; A < Asset.length; A++)
-		for (var ARR = 0; ARR < Arrays.length; ARR++) { 
-			var FoundItem = Arrays[ARR].find(Item => Item.Name == Asset[A].Name && Item.Group == Asset[A].Group.Name)
-			if (FoundItem) CleanArrays[ARR].push(FoundItem);
-		}
-	
-	return CleanArrays;
+	for (var A = 0; A < Asset.length; A++) {
+		var FoundItem = AssetArray.find(Item => Item.Name == Asset[A].Name && Item.Group == Asset[A].Group.Name)
+		if (FoundItem) CleanArray.push(FoundItem);
+	}
+	return CleanArray;
 }

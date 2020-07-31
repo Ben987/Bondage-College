@@ -241,13 +241,15 @@ function LoginValideBuyGroups() {
  * @returns {void} Nothing
  */
 function LoginValidateArrays() { 
-	var Result = AssetCleanArray([Player.BlockItems, Player.LimitedItems]);
-	if (Result[0].length != Player.BlockItems.length) { 
-		Player.BlockItems = Result[0];
+	var CleanBlockItems = AssetCleanArray(Player.BlockItems);
+	if (CleanBlockItems.length != Player.BlockItems.length) { 
+		Player.BlockItems = CleanBlockItems;
 		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
 	}
-	if (Result[1].length != Player.LimitedItems.length) { 
-		Player.LimitedItems = Result[1];
+	
+	var CleanLimitedItems = AssetCleanArray(Player.LimitedItems);
+	if (CleanLimitedItems.length != Player.LimitedItems.length) { 
+		Player.LimitedItems = CleanLimitedItems;
 		ServerSend("AccountUpdate", { LimitedItems: Player.LimitedItems });
 	}
 }
