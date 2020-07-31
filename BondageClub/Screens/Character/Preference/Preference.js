@@ -843,12 +843,12 @@ function PreferenceSubscreenVisibilityClick() {
 		var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Name;
 		if (PreferenceVisibilityHideChecked) {
 			for (var H = 0; H < PreferenceVisibilitySettings.length; H++)
-				if (PreferenceVisibilitySettings[H].Asset == CurrAsset && PreferenceVisibilitySettings[H].Group == CurrGroup) {
+				if (PreferenceVisibilitySettings[H].Name == CurrAsset && PreferenceVisibilitySettings[H].Group == CurrGroup) {
 					PreferenceVisibilitySettings.splice(H, 1);
 					break;
 				}
 		}
-		else PreferenceVisibilitySettings.push({ Asset: CurrAsset, Group: CurrGroup });
+		else PreferenceVisibilitySettings.push({ Name: CurrAsset, Group: CurrGroup });
 		
 		PreferenceVisibilityHideChecked = !PreferenceVisibilityHideChecked;
 		PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Hidden = PreferenceVisibilityHideChecked;
@@ -902,7 +902,7 @@ function PreferenceSubscreenVisibilityExit(SaveChanges) {
 		// Add the item to the blocked list if able
 		var BlockItemsChanged = false;
 		for (var H = 0; H < Player.HiddenItems.length; H++) {
-			var HiddenAsset = AssetGet(Player.AssetFamily, Player.HiddenItems[H].Group, Player.HiddenItems[H].Asset);
+			var HiddenAsset = AssetGet(Player.AssetFamily, Player.HiddenItems[H].Group, Player.HiddenItems[H].Name);
 			if (HiddenAsset.Group.Category == "Item" && HiddenAsset.Group.Zone != null && HiddenAsset.Enable && HiddenAsset.Wear)
 				if (!InventoryIsPermissionBlocked(Player, HiddenAsset.Name, HiddenAsset.Group.Name) && !InventoryIsPermissionLimited(Player, HiddenAsset.Name, HiddenAsset.Group.Name)) {
 					Player.BlockItems.push({ Name: HiddenAsset.Name, Group: HiddenAsset.Group.Name });

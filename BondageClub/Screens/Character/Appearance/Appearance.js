@@ -340,7 +340,7 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
  */
 function CharacterAppearanceItemIsHidden(AssetName, GroupName) {
 	for (var H = 0; H < Player.HiddenItems.length; H++)
-		if (Player.HiddenItems[H].Asset == AssetName && Player.HiddenItems[H].Group == GroupName)
+		if (Player.HiddenItems[H].Name == AssetName && Player.HiddenItems[H].Group == GroupName)
 			return true;
 	return false;
 }
