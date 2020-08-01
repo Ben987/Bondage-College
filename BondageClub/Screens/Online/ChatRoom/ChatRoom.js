@@ -18,6 +18,7 @@ var ChatRoomAllowCharacterUpdate = true;
 var ChatRoomStruggleAssistBonus = 0;
 var ChatRoomStruggleAssistTimer = 0;
 var ChatRoomSlowtimer = 0;
+var ChatRoomSlowStop = false;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -39,7 +40,7 @@ function ChatRoomPlayerIsAdmin() { return ((ChatRoomData != null && ChatRoomData
 function ChatRoomCurrentCharacterIsAdmin() { return ((CurrentCharacter != null) && (ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomHasSwapTarget() { return (ChatRoomSwapTarget != null) }
 function ChatRoomCanAssistStruggle() { return !CurrentCharacter.CanInteract() }
-
+function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Player.CanInteract() && CurrentCharacter.AllowItem ) }
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
 
@@ -270,24 +271,39 @@ function ChatRoomRun() {
 	ElementPositionFix("TextAreaChatLog", 36, 1005, 66, 988, 835);
 	ElementPosition("InputChat", 1456, 950, 900, 82);
 	DrawButton(1905, 908, 90, 90, "", "White", "Icons/Chat.png");
-
-	// Draws the top button, in red if they aren't enabled
-	if (!ChatRoomCanLeave() && ChatRoomSlowtimer != 0){ //reset slow leave timer if  player can't leave. Send chat message stating a leave attempt being interupted.
-		ServerSend("ChatRoomChat", { Content: "ActionSlowLeaveInterrupt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+	if (!ChatRoomCanLeave() && ChatRoomSlowtimer != 0){//Player got interrupted while trying to leave. (Via a bind)
+		ServerSend("ChatRoomChat", { Content: "SlowLeaveInterrupt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+		ServerSend("ChatRoomChat", { Content: "SlowLeaveInterrupt", Type: "Hidden", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
 		ChatRoomSlowtimer = 0;
+		ChatRoomSlowStop = false;
 	}
-	if (Player.IsSlow() && ChatRoomCanLeave()){//Draw exit icon blue or yellow if player is under a slow effect.
+	//Player is slow and can leave and is not stopped by other player.
+	if (Player.IsSlow() && ChatRoomCanLeave() && ChatRoomSlowStop == false){
 		if (ChatRoomSlowtimer == 0) DrawButton(1005, 2, 120, 60, "", "rgb(39, 68, 233)", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));//Draw blue exit for slow
 		if (CurrentTime < ChatRoomSlowtimer && ChatRoomSlowtimer != 0) DrawButton(1005, 2, 120, 60, "", "White", "Icons/Rectangle/CancelRect.png", TextGet("MenuCancel"));//Draw cancel, player has started auto leave.
-		if (CurrentTime > ChatRoomSlowtimer && ChatRoomSlowtimer != 0){//Auto leave once timer completes. Reset Timer
+		if (CurrentTime > ChatRoomSlowtimer && ChatRoomSlowtimer != 0 ){//Auto leave once timer completes. Reset slow Timers
 			ChatRoomSlowtimer = 0;
+			ChatRoomSlowStop = false;
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
 			ServerSend("ChatRoomLeave", "");
 			CommonSetScreen("Online", "ChatSearch");
 		}
-	} 
-	else DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+	}
+	//Player is stopped by other player and is slow.
+	if (ChatRoomSlowStop == true && Player.IsSlow()){
+		DrawButton(1005, 2, 120, 60, "", "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));//Player is currently kept in room while slow by other player.
+		if (CurrentTime > ChatRoomSlowtimer){//Stopped player has their stop timer expire, reset. 
+			 ChatRoomSlowtimer = 0;
+			 ChatRoomSlowStop = false;
+		}
+		
+	}
+	// Draws the top button, in red if they aren't enabled	- Check for slow, make sure slow timer is not active.
+	if (!Player.IsSlow()){
+		if (ChatRoomSlowtimer != 0) ChatRoomSlowtimer = 0;
+		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+	}
 	if (OnlineGameName == "") DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
 	else DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/GameOption.png", TextGet("MenuGameOption"));
 	DrawButton(1353, 2, 120, 60, "", (Player.CanKneel()) ? "White" : "Pink", "Icons/Rectangle/Kneel.png", TextGet("MenuKneel"));
@@ -351,13 +367,13 @@ function ChatRoomClick() {
 	//When the player is slow and attempts leave
 	if ((MouseX >= 1005) && (MouseX < 1125) && (MouseY >= 0) && (MouseY <= 62) && ChatRoomCanLeave() && Player.IsSlow()){
 		//Player clicked to leave, start timer, send chat message player is heading for exit.
-		if (ChatRoomSlowtimer == 0){
-			ServerSend("ChatRoomChat", { Content: "ActionSlowLeaveAttempt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+		if (ChatRoomSlowtimer == 0 && ChatRoomSlowStop == false){
+			ServerSend("ChatRoomChat", { Content: "SlowLeaveAttempt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
 			ChatRoomSlowtimer = CurrentTime + (10 * (1000-(50 * SkillGetLevelReal(Player,"Evasion") ) ) );//10seconds max - 5 sec min
 		}
 		//Player clicked to cancel leaving, reset timer to 0, send chat message player stops leaving.
-		else if (ChatRoomSlowtimer != 0){
-			ServerSend("ChatRoomChat", { Content: "ActionSlowLeaveCancel", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+		else if (ChatRoomSlowtimer != 0 && ChatRoomSlowStop == false){
+			ServerSend("ChatRoomChat", { Content: "SlowLeaveCancel", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
 			ChatRoomSlowtimer = 0;
 		}
 	}
@@ -682,6 +698,10 @@ function ChatRoomMessage(data) {
 						ChatRoomStruggleAssistTimer = CurrentTime + 60000;
 						ChatRoomStruggleAssistBonus = A;
 					}
+					if (msg == "SlowStop"){
+						ChatRoomSlowtimer = CurrentTime + 45000;
+						ChatRoomSlowStop = true;
+					} 
 				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
 				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
 				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
@@ -1056,6 +1076,16 @@ function ChatRoomStruggleAssist() {
 	}
 	ServerSend("ChatRoomChat", { Content: "StruggleAssist", Type: "Action", Dictionary: Dictionary} );
     ServerSend("ChatRoomChat", { Content: "StruggleAssist" + Math.round(Bonus).toString(), Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
+	DialogLeave();
+}
+
+//The player can stop a player leaving for a certain amount of time
+function ChatRoomStopLeave(){
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	Dictionary.push({Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber});
+	ServerSend("ChatRoomChat", { Content: "SlowStop", Type: "Action", Dictionary: Dictionary});
+	ServerSend("ChatRoomChat", { Content: "SlowStop", Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
 	DialogLeave();
 }
 
