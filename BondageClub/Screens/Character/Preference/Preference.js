@@ -36,7 +36,7 @@ var PreferenceArousalFetishFactor = 0;
  * Gets the effect of a sexual activity on the player
  * @param {Character} C - The player who performs the sexual activity
  * @param {string} Type - The type of the activity that is performed
- * @param {boolean} Self - Determines, if the current player is giving (true) or recieving (false)
+ * @param {boolean} Self - Determines, if the current player is giving (false) or receiving (true)
  * @returns {number} - Returns the love factor of the activity for the character (0 is horrible, 2 is normal, 4 is great)
  */
 function PreferenceGetActivityFactor(C, Type, Self) {
@@ -69,7 +69,7 @@ function PreferenceGetFetishFactor(C, Type) {
  * Sets the love factor of a sexual activity for the character 
  * @param {Character} C - The character for whom the activity factor should be set
  * @param {string} Type - The type of the activity that is performed
- * @param {boolean} Self - Determines, if the current player is giving (true) or recieving (false)
+ * @param {boolean} Self - Determines, if the current player is giving (false) or receiving (true)
  * @param {number} Factor - The factor of the sexual activity (0 is horrible, 2 is normal, 4 is great)
  */
 function PreferenceSetActivityFactor(C, Type, Self, Factor) {
