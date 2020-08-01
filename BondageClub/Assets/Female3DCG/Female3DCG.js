@@ -1805,7 +1805,7 @@ var AssetFemale3DCG = [
 		Top: 0,
 		Effect: ["BlockMouth", "GagNormal"],
 		Zone: [[100, 130, 100, 70]],
-		Activity: ["Bite", "Kiss", "FrenchKiss", "PoliteKiss", "Lick", "Nibble", "Caress", "HandGag", "TickleItem", "RubItem", "RollItem"],
+		Activity: ["Bite", "Kiss", "FrenchKiss", "PoliteKiss", "Lick", "Nibble", "Caress", "HandGag", "TickleItem", "RubItem", "RollItem", "PenetrateSlow", "PenetrateFast"],
 		Asset: [
 			{ Name: "ClothGag", Value: 15, Difficulty: -4, Time: 10, DefaultColor: "#B0B0B0", BuyGroup: "ClothGag", Prerequisite: "GagFlat", SetPose: ["GagFlat"], Effect: ["BlockMouth", "GagVeryLight"], AllowEffect: ["BlockMouth", "GagVeryLight", "GagLight", "GagEasy"], AllowType: ["Small", "Cleave", "OTM", "OTN"], ExpressionTrigger: [{ Name: "DroolSides", Group: "Fluids", Timer: 30 }], Extended: true },
 			{
@@ -2715,12 +2715,12 @@ var ActivityFemale3DCG = [
 	{
 		Name: "PenetrateSlow",
 		MaxProgress: 80,
-		Prerequisite: ["ZoneAccessible", "WearingPenetrationItem", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "ZoneEmpty", "WearingPenetrationItem", "ZoneNaked"]
 	},
 	{
 		Name: "PenetrateFast",
 		MaxProgress: 100,
-		Prerequisite: ["ZoneAccessible", "WearingPenetrationItem", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "ZoneEmpty", "WearingPenetrationItem", "ZoneNaked"]
 	},
 	{
 		Name: "SpankItem",
