@@ -4,10 +4,10 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Ayezona", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Desch", "Dini", "Donna", "Epona",
-						 "Escurse", "Fluffythewhat", "Greendragon", "John", "Laioken", "Michal", "Mindtie", "Misa", "Mzklopyu", "Nera",
-						 "Nick", "Overlord", "Rashiash", "Ray", "Reire", "Robin", "Rutherford", "Ryner", "Samuel", "Setsu",
-						 "Shadow", "Sky", "Tam", "Thomas", "Trent", "William", "Xepherio"];
+var LoginThankYouList = ["Alvin", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Desch", "Dini", "Epona", "Escurse", "Fluffythewhat", 
+						 "Greendragon", "John", "Michal", "Mindtie", "Misa", "MuchyCat", "Mzklopyu", "Nera", "Nick", "Overlord", 
+						 "Rashiash", "Ray", "Reire", "Robin", "Rutherford", "Ryner", "Samuel", "Setsu", "Shadow", "Sky", 
+						 "Tam", "Thomas", "Trent", "William", "Xepherio"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -183,7 +183,7 @@ function LoginStableItems() {
 		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryAdd(Player, "PonyBoots", "Shoes", false);
 		InventoryAdd(Player, "PonyBoots", "ItemBoots", false);
-		InventoryAdd(Player,"PonyHood", "ItemHead", false);
+		InventoryAdd(Player,"PonyHood", "ItemHood", false);
 		InventoryAdd(Player,"HoofMittens", "ItemHands", false);
 	} else {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth", false);
@@ -191,7 +191,7 @@ function LoginStableItems() {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
-		InventoryDelete(Player, "PonyHood", "ItemHead",false)
+		InventoryDelete(Player, "PonyHood", "ItemHood",false)
 		InventoryDelete(Player,"HoofMittens", "ItemHands", false);
 	}
 	ServerPlayerInventorySync();
@@ -234,6 +234,24 @@ function LoginValideBuyGroups() {
 			for (var B = 0; B < Asset.length; B++)
 				if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup) && !InventoryAvailable(Player, Asset[B].Name, Asset[B].Group.Name))
 					InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
+}
+
+/**
+ * Checks if the player arrays contains any item that does not exists and saves them.
+ * @returns {void} Nothing
+ */
+function LoginValidateArrays() { 
+	var CleanBlockItems = AssetCleanArray(Player.BlockItems);
+	if (CleanBlockItems.length != Player.BlockItems.length) { 
+		Player.BlockItems = CleanBlockItems;
+		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
+	}
+	
+	var CleanLimitedItems = AssetCleanArray(Player.LimitedItems);
+	if (CleanLimitedItems.length != Player.LimitedItems.length) { 
+		Player.LimitedItems = CleanLimitedItems;
+		ServerSend("AccountUpdate", { LimitedItems: Player.LimitedItems });
+	}
 }
 
 /**
@@ -352,6 +370,7 @@ function LoginResponse(C) {
 			LoginStableItems();
 			LoginLoversItems();
 			LoginValideBuyGroups();
+			LoginValidateArrays();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell

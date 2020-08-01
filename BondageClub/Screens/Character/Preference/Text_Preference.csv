@@ -41,6 +41,7 @@ BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
+EnableSafeword,Allow Safeword use (Cannot enable while bound).
 UpdateEmailDescription,Linking an email will allow password recovery
 UpdateEmail,Update Email
 UpdateEmailOld,Current email:
@@ -62,6 +63,29 @@ ArousalVisible,Meter visibility:
 ArousalVisibleAll,Show arousal to everyone
 ArousalVisibleAccess,Show if they have access
 ArousalVisibleSelf,Show to yourself only
+ArousalFetish,Fetish preferences:
+ArousalFetishBondage,Being restrained
+ArousalFetishGagged,Being gagged
+ArousalFetishBlindness,Being blind
+ArousalFetishDeafness,Being deaf
+ArousalFetishChastity,Being chaste
+ArousalFetishExhibitionist,Being naked
+ArousalFetishMasochism,Masochism
+ArousalFetishSadism,Sadism
+ArousalFetishRope,Rope
+ArousalFetishLatex,Latex
+ArousalFetishLeather,Leather
+ArousalFetishMetal,Metal
+ArousalFetishTape,Tape
+ArousalFetishNylon,Nylon
+ArousalFetishLingerie,Lingerie
+ArousalFetishPony,Pony
+ArousalFetishABDL,ABDL
+ArousalFetishLove0,Hate it
+ArousalFetishLove1,Doesn't like it
+ArousalFetishLove2,Neutral on it
+ArousalFetishLove3,Like it
+ArousalFetishLove4,Adore it
 ArousalActivity,Activity preferences:
 ArousalActivityLoveSelf,Done on yourself:
 ArousalActivityLoveOther,Doing it to others:
@@ -92,6 +116,7 @@ ArousalZoneItemHands,Hands
 ArousalZoneItemNeck,Neck
 ArousalZoneItemMouth,Mouth & Lips
 ArousalZoneItemHead,Head & Hair
+ArousalZoneItemNose,Nose
 ArousalZoneItemEars,Ears
 ArousalStutter,Speech stuttering:
 ArousalStutterNone,Never stutter

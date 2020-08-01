@@ -5,6 +5,7 @@ var InventoryItemHeadDuctTapeOptions = [
 		Name: "Double",
 		Property: {
 			Type: null,
+			Block: ["ItemNose"],
 			Effect: ["BlindNormal", "Prone"],
 		},
 	},
@@ -12,6 +13,7 @@ var InventoryItemHeadDuctTapeOptions = [
 		Name: "Wrap",
 		Property: {
 			Type: "Wrap",
+			Block: ["ItemNose"],
 			Effect: ["BlindNormal", "Prone"],
 		},
 	},
@@ -19,8 +21,8 @@ var InventoryItemHeadDuctTapeOptions = [
 		Name: "Mummy",
 		Property: {
 			Type: "Mummy",
-			Hide: ["HairFront", "HairBack"],
-			Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars"],
+			Hide: ["ItemMouth", "ItemMouth2", "ItemMouth3", "HairFront", "HairBack"],
+			Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemHood", "ItemNose"],
 			Effect: ["GagNormal", "BlindNormal", "Prone", "BlockMouth"],
 		},
 	},

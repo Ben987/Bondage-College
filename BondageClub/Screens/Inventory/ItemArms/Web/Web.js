@@ -124,7 +124,7 @@ function InventoryItemArmsWebValidate(Option) {
 
 		// Re-add the web
 		var DifficultyFactor = Web.Difficulty - Web.Asset.Difficulty;
-		CharacterAppearanceSetItem(C, "ItemArms", Web.Asset, Web.Color, DifficultyFactor, false);
+		CharacterAppearanceSetItem(C, "ItemArms", Web.Asset, Web.Color, DifficultyFactor, null, false);
 		InventoryGet(C, "ItemArms").Property = Web.Property;
 		CharacterRefresh(C);
 

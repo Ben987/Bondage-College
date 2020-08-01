@@ -425,7 +425,7 @@ HairFront,HairFront13,Style 13
 HairFront,HairFront13b,Style 13b
 HairFront,HairFront14,Style 14
 HairFront,HairFront14b,Style 14b
-Eyes,,Eyes
+Eyes,,Left eye
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
 Eyes,Eyes3,Style 3
@@ -437,6 +437,18 @@ Eyes,Eyes8,Style 8
 Eyes,Eyes9,Style 9
 Eyes,Eyes10,Style 10
 Eyes,Eyes11,Style 11
+Eyes2,,Right eye
+Eyes2,Eyes1,Style 1
+Eyes2,Eyes2,Style 2
+Eyes2,Eyes3,Style 3
+Eyes2,Eyes4,Style 4
+Eyes2,Eyes5,Style 5
+Eyes2,Eyes6,Style 6
+Eyes2,Eyes7,Style 7
+Eyes2,Eyes8,Style 8
+Eyes2,Eyes9,Style 9
+Eyes2,Eyes10,Style 10
+Eyes2,Eyes11,Style 11
 Mouth,,Mouth
 Mouth,Regular,Regular
 Mouth,Discreet,Discreet
@@ -510,6 +522,8 @@ ItemVulva,FullLatexSuitWand,Wand
 ItemVulva,ClitAndDildoVibratorbelt,Clit&Dildo Vibrating belt
 ItemVulva,HempRopeBelt,Hemp Rope Wand Belt
 ItemVulva,WiredEgg,Wired Vibrating Egg
+ItemVulva,LoversVibrator,Lovers Vibrator
+ItemVulva,LoversVibratorRemote,Lovers Remote
 ItemVulvaPiercings,,Clit
 ItemVulvaPiercings,StraightClitPiercing,Straight Clit Piercing
 ItemVulvaPiercings,RoundClitPiercing,Round Clit Piercing
@@ -521,7 +535,7 @@ ItemVulvaPiercings,HighSecurityVulvaShield,High Security Vulva Shield
 ItemVulvaPiercings,JewelClitPiercing,Jewel Clit Piercing
 ItemVulvaPiercings,AdornedClitPiercing,Adorned Clit Piercing
 ItemVulvaPiercings,VibeHeartClitPiercing,Vibrating Heart Clit Piercing
-ItemVulvaPiercings,BellClitPiercing,Bell Clit Bell Piercing
+ItemVulvaPiercings,BellClitPiercing,Bell Clit Piercing
 ItemVulvaPiercings,TapedClitEgg,Taped Vibrating Egg
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
@@ -574,6 +588,8 @@ ItemPelvis,LeatherStrapPanties1,Leather Strap Panties
 ItemPelvis,LoveChastityBelt,Love Chastity Belt
 ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
+ItemPelvis,HempRope,Rope Harness
+ItemPelvis,DiaperHarness,Diaper Harness
 ItemTorso,,Torso
 ItemTorso,NylonRopeHarness,Nylon Rope
 ItemTorso,HempRopeHarness,Hemp Rope
@@ -605,6 +621,7 @@ ItemNipples,KittyPasties,Kitty Pasties
 ItemNipples,Clothespins,Clothespins
 ItemNipples,NippleWeightClamps,Nipple Weight Clamps
 ItemNipples,BellClamps,Nipple Bell Clamps
+ItemNipples,LactationPump,Lactation Pump
 ItemNipples,ShockClamps,Shock Clamps
 ItemNipplesPiercings,,Nipples
 ItemNipplesPiercings,StraightPiercing,Straight Piercings
@@ -669,6 +686,7 @@ ItemArms,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
 ItemArms,TightJacket,Tight Straitjacket
 ItemArms,LatexSleevelessLeotard,Latex Sleeveless Leotard
 ItemArms,LatexBoxtieLeotard,Latex Boxtie Leotard
+ItemArms,LatexButterflyLeotard,Latex Butterfly Leotard
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -810,6 +828,7 @@ ItemMouth,WebGag,Web
 ItemMouth,RopeGag,Rope Gag
 ItemMouth,MilkBottle,Milk Bottle
 ItemMouth,MedicalMask,Medical Mask
+ItemMouth,RegressedMilk,Nursery Milk
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -848,6 +867,7 @@ ItemMouth2,GasMaskGag,Respirator Mask
 ItemMouth2,WebGag,Web Gag
 ItemMouth2,RopeGag,Rope Gag
 ItemMouth2,MedicalMask,Medical Mask
+ItemMouth2,RegressedMilk,Nursery Milk
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -886,12 +906,10 @@ ItemMouth3,GasMaskGag,Respirator Mask
 ItemMouth3,WebGag,Web Gag
 ItemMouth3,RopeGag,Rope Gag
 ItemMouth3,MedicalMask,Medical Mask
-ItemHead,,Head
+ItemMouth3,RegressedMilk,Nursery Milk
+ItemHead,,Eyes
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
-ItemHead,LeatherHood,Leather Hood
-ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
-ItemHead,GasMask,Gas Mask
 ItemHead,LeatherSlimMask,Slim Leather Mask
 ItemHead,LeatherSlimMaskOpenMouth,Open Mouth Slim Mask
 ItemHead,LeatherSlimMaskOpenEyes,Open Eyes Mouth Slim Mask
@@ -899,27 +917,33 @@ ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
 ItemHead,SmallBlindfold,Small Blindfold
-ItemHead,LeatherHoodOpenMouth,Leather Hood Mouth
 ItemHead,FullBlindfold,Full Blindfold
-ItemHead,LeatherHoodSensDep,Sensory Deprivation Hood
-ItemHead,LatexHoodOpenHair,Open Hair Latex Hood
-ItemHead,LeatherHoodSealed,Sealed Leather Hood
-ItemHead,PolishedSteelHood,Polished Steel Hood
-ItemHead,NoseRing,Nose Ring
-ItemHead,NoseHook,Nose Hook
-ItemHead,InflatedBallHood,Inflatable Hood
-ItemHead,OldGasMask,Gas Mask
-ItemHead,SackHood,Sack Hood
 ItemHead,LewdBlindfold,Lewd Blindfold
 ItemHead,LatexBlindfold,Latex Blindfold
-ItemHead,DogHood,Dog Hood
-ItemHead,FoxyMask,Foxy Mask
 ItemHead,FrilledSleepMask,Frilled Sleep Mask
 ItemHead,BlackoutLenses,Blackout Lenses
 ItemHead,WebBlindfold,Web
 ItemHead,RopeBlindfold,Rope Blindfold
-ItemHead,PonyHood,Pony Hood
 ItemHead,SleepMask,Smooth Sleep Mask
+ItemNose,,Nose
+ItemNose,NoseHook,Nose Hook
+ItemNose,NoseRing,Nose Ring
+ItemHood,,Head
+ItemHood,LeatherHoodSealed,Sealed Leather Hood
+ItemHood,PolishedSteelHood,Polished Steel Hood
+ItemHood,InflatedBallHood,Inflatable Hood
+ItemHood,OldGasMask,Gas Mask
+ItemHood,SackHood,Sack Hood
+ItemHood,LeatherHoodSensDep,Sensory Deprivation Hood
+ItemHood,LatexHoodOpenHair,Open Hair Latex Hood
+ItemHood,LeatherHood,Leather Hood
+ItemHood,LeatherHoodOpenEyes,Leather Hood Eyes
+ItemHood,GasMask,Gas Mask
+ItemHood,DogHood,Dog Hood
+ItemHood,FoxyMask,Foxy Mask
+ItemHood,PonyHood,Pony Hood
+ItemHood,LeatherHoodOpenMouth,Leather Hood Mouth
+ItemHood,CanvasHood,Canvas Hood
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
@@ -971,6 +995,8 @@ ItemDevices,WoodenStocks,Wooden Stocks
 ItemDevices,Vacbed,Vacbed
 ItemDevices,Crib,Crib
 ItemDevices,Bed,Bed
+ItemDevices,X-Cross,St. Andrews Cross
+ItemDevices,ChangingTable,Changing Table
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemAddon,OldGasMaskLenses,Blinding Lenses

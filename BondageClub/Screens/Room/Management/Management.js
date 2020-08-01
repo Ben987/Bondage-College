@@ -486,6 +486,7 @@ function ManagementRemoveGag() {
 	InventoryRemove(Player, "ItemMouth2");
 	InventoryRemove(Player, "ItemMouth3");
 	InventoryRemove(Player, "ItemHead");
+	InventoryRemove(Player, "ItemHood");
 }
 
 // Locks the player in a cell for 5 minutes

@@ -10,7 +10,10 @@ var SlaveAuctionBidNextTime = 0;
 var SlaveAuctionBidAmount = 0;
 var SlaveAuctionEnd = false;
 
-// The next bid will occur between 5 and 15 seconds, the auction gets slower and there's less biddings when the price is high
+/**
+ * Sets when the next bid will occur. It varies from 5 to 15 seconds, the auction gets slower and there are less bids the higher the price is.
+ * @returns {void} - Nothing
+ */
 function SlaveAuctionSetNextBidTime() {
 	if (SlaveAuctionBidAmount == 0) SlaveAuctionBidNextTime = CurrentTime + 3000 + (Math.random() * 3000);
 	if ((SlaveAuctionBidAmount > 0) && (SlaveAuctionBidAmount < 50)) SlaveAuctionBidNextTime = (Math.random() >= 0.05) ? CurrentTime + 3000 + (Math.random() * 5000) : -1;
@@ -20,7 +23,10 @@ function SlaveAuctionSetNextBidTime() {
 	if (SlaveAuctionBidAmount >= 300) SlaveAuctionBidNextTime = (Math.random() >= 0.25) ? CurrentTime + 8000 + (Math.random() * 7000) : -1;
 }
 
-// Loads the slave auction mini game
+/**
+ * Loads the slave auction mini game by setting the global variables and loading the NPCs required
+ * @returns {void} - Nothing
+ */
 function SlaveAuctionLoad() {
 	SlaveAuctionCustomerLeft = CharacterLoadNPC("NPC_Customer_Left");
 	CharacterAppearanceFullRandom(SlaveAuctionCustomerLeft);
@@ -33,7 +39,10 @@ function SlaveAuctionLoad() {
 	SlaveAuctionEnd = false;
 }
 
-// Run the slave auction mini game
+/**
+ * Runs the slave auction mini game by drawing the characters and related text on screen.
+ * @returns {void} - Nothing
+ */
 function SlaveAuctionRun() {
 
 	// Draw the characters
@@ -99,7 +108,10 @@ function SlaveAuctionRun() {
 
 }
 
-// When the player clicks on the slave auction screen, she can bid or end the auction
+/**
+ * Handles click events during the slave auction minigame. The player can bid or end the auction.
+ * @returns {void} - Nothing
+ */
 function SlaveAuctionClick() {
 	if (!SlaveAuctionEnd && (SlaveAuctionBidCurrent != "Player") && (Player.Money >= SlaveAuctionBidAmount + 10) && (MouseX >= 800) && (MouseX < 975) && (MouseY >= 235) && (MouseY < 300)) {
 		SlaveAuctionSetNextBidTime();

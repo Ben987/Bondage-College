@@ -1,3 +1,13 @@
+/**
+ * A hexadecimal color code
+ * @typedef {string} HexColor
+ */
+
+/**
+ * A HSV color value
+ * @typedef {{ H: number, S: number, V: number }} HSVColor
+ */
+
 var ColorPickerX, ColorPickerY, ColorPickerWidth, ColorPickerHeight;
 var ColorPickerInitialHSV, ColorPickerLastHSV, ColorPickerHSV, ColorPickerCallback, ColorPickerSourceElement;
 
@@ -15,6 +25,10 @@ var ColorPickerLayout = {
     PalleteHeight: NaN
 };
 
+/**
+ * Attaches event listeners required for the color picker to the canvas
+ * @returns {void} - Nothing
+ */
 function ColorPickerAttachEventListener() {
     var CanvasElement = document.getElementById("MainCanvas");
     if (!CommonIsMobile) {
@@ -23,12 +37,21 @@ function ColorPickerAttachEventListener() {
     CanvasElement.addEventListener("touchstart", ColorPickerStartPick);
 }
 
+/**
+ * Removes the color picker related event listeners from the canvas
+ * @returns {void} - Nothing
+ */
 function ColorPickerRemoveEventListener() {
     var CanvasElement = document.getElementById("MainCanvas");
     CanvasElement.removeEventListener("mousedown", ColorPickerStartPick);
     CanvasElement.removeEventListener("touchstart", ColorPickerStartPick);
 }
 
+/**
+ * When the touch/mouse event begins to be registered. On mobile we only fire it once
+ * @param {Event} Event - The touch/mouse event 
+ * @returns {void} - Nothing
+ */
 function ColorPickerStartPick(Event) {
     // Only fires at first touch on mobile devices
     if (Event.changedTouches) {
@@ -60,7 +83,11 @@ function ColorPickerStartPick(Event) {
     }
 }
 
-function ColorPickerEndPick(Event) {
+/**
+ * When we stop registering the touch/mouse event, to remove the attached event listeners
+ * @returns {void} - Nothing
+ */
+function ColorPickerEndPick() {
     document.removeEventListener("mousemove", ColorPickerPickHue);
     document.removeEventListener("mousemove", ColorPickerPickSV);
     document.removeEventListener("mouseup", ColorPickerEndPick);
@@ -70,6 +97,11 @@ function ColorPickerEndPick(Event) {
     document.removeEventListener("touchend", ColorPickerEndPick);
 }
 
+/**
+ * Gets the coordinates of the current event on the canvas
+ * @param {Event} Event - The touch/mouse event 
+ * @returns {{X: number, Y: number}} - Coordinates of the click/touch event on the canvas
+ */
 function ColorPickerGetCoordinates(Event) {
     var X, Y;
     if (Event.changedTouches) {
@@ -94,6 +126,11 @@ function ColorPickerGetCoordinates(Event) {
     return { X: MouseX, Y: MouseY };
 }
 
+/**
+ * Sets the picked hue based on the Event coordinates on the canvas
+ * @param {Event} Event - The touch/mouse event 
+ * @returns {void} - Nothing
+ */
 function ColorPickerPickHue(Event) {
     var C = ColorPickerGetCoordinates(Event);
     ColorPickerHSV.H = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
@@ -101,6 +138,11 @@ function ColorPickerPickHue(Event) {
     ColorPickerNotify();
 }
 
+/**
+ * Sets the picked saturation (SV) based on the Event coordinates on the canvas
+ * @param {Event} Event - The touch/mouse event 
+ * @returns {void} - Nothing
+ */
 function ColorPickerPickSV(Event) {
     var C = ColorPickerGetCoordinates(Event);
     var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
@@ -114,6 +156,11 @@ function ColorPickerPickSV(Event) {
     ColorPickerNotify();
 }
 
+/**
+ * Sets the picked HSV from the color pallet
+ * @param {Event} Event - The touch/mouse event 
+ * @returns {void} - Nothing
+ */
 function ColorPickerSelectFromPallete(Event) {
     var C = ColorPickerGetCoordinates(Event);
     var P = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
@@ -122,6 +169,10 @@ function ColorPickerSelectFromPallete(Event) {
     ColorPickerNotify();
 }
 
+/**
+ * Alters the color picker display based on the selected value
+ * @returns {void} - Nothing
+ */
 function ColorPickerNotify() {
     var Color = ColorPickerHSVToCSS(ColorPickerHSV);
     if (ColorPickerCallback) {
@@ -133,6 +184,10 @@ function ColorPickerNotify() {
     }
 }
 
+/**
+ * Removes the color picker and its listeners from the canvas
+ * @return {void} - Nothing
+ */
 function ColorPickerHide() {
     ColorPickerSourceElement = null;
     ColorPickerInitialHSV = null;
@@ -141,6 +196,12 @@ function ColorPickerHide() {
     ColorPickerRemoveEventListener();
 }
 
+/**
+ * Checks if two hex color codes are equal, will convert short hand hex codes (#FFF is equal to #FFFFFF)
+ * @param {HexColor} Color1 - First color to compare
+ * @param {HexColor} Color2 - Second color to compare
+ * @returns {boolean} - Returns TRUE if the two colors are the same
+ */
 function ColorPickerCSSColorEquals(Color1, Color2) {
     Color1 = Color1.toUpperCase();
     Color2 = Color2.toUpperCase();
@@ -151,6 +212,16 @@ function ColorPickerCSSColorEquals(Color1, Color2) {
     return Color1 == Color2;
 }
 
+/**
+ * Draws the color picker on the canvas
+ * @param {number} X - Coordinate on the X axis
+ * @param {number} Y - Coordinate on the Y axis
+ * @param {number} Width - Width of the color picker
+ * @param {number} Height - Height of the color picker
+ * @param {HTMLInputElement} Src - Input element that can contain a hex color code
+ * @param {function} Callback - Callback to execute when the selected color changes
+ * @returns {void} - Nothing
+ */
 function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     
     // Calculate Layout
@@ -250,7 +321,13 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     ColorPickerCallback = Callback;
 }
 
-// See: https://gist.github.com/mjackson/5311256
+/**
+ * Parses a hex color code and converts it to a HSV object
+ * @param {HexColor} Color - Hex color code
+ * @param {HSVColor} [DefaultHSV] - The HSV to output if the color is not valid
+ * @returns {HSVColor} - The HSV color from a hex color code
+ * @see {@link https://gist.github.com/mjackson/5311256}
+ */
 function ColorPickerCSSToHSV(Color, DefaultHSV) {
     Color = Color || "#FFFFFF";
     var M = Color.match(/^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i)
@@ -295,6 +372,11 @@ function ColorPickerCSSToHSV(Color, DefaultHSV) {
     return { H: H, S: S, V: V };
 }
 
+/**
+ * Converts a HSV object into a valid hex code to use in the css
+ * @param {HSVColor} HSV - HSV value to convert
+ * @returns {HexColor} - Hex color code corresponding to the given HSV 
+ */
 function ColorPickerHSVToCSS(HSV) {
     var R, G, B;
     var H = HSV.H, S = HSV.S, V = HSV.V;
