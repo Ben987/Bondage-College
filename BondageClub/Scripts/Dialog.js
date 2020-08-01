@@ -537,11 +537,13 @@ function DialogMenuButtonBuild(C) {
 		if ((Player.CanInteract()) || DialogAlwaysAllowRestraint()) DialogMenuButton.push("ColorPick");
 
 		// Make sure the target player zone is allowed for an activity
-		if ((C.FocusGroup.Activity != null) && !IsGroupBlocked && ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Zone != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive"))
+		if ((C.FocusGroup.Activity != null) && (!C.Effect.includes("Enclose") || C.ID == 0) && ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Zone != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive"))
 			for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
-				if ((C.ArousalSettings.Zone[Z].Name == C.FocusGroup.Name) && (C.ArousalSettings.Zone[Z].Factor != null) && (C.ArousalSettings.Zone[Z].Factor > 0))
-					DialogMenuButton.push("Activity");
-
+				if ((C.ArousalSettings.Zone[Z].Name == C.FocusGroup.Name) && (C.ArousalSettings.Zone[Z].Factor != null) && (C.ArousalSettings.Zone[Z].Factor > 0)) {
+					ActivityDialogBuild(C);
+					if (DialogActivity.length > 0) DialogMenuButton.push("Activity");
+				}
+		
 		// Item permission enter/exit
 		if (C.ID == 0) {
 			if (DialogItemPermissionMode) DialogMenuButton.push("DialogNormalMode");
@@ -938,7 +940,6 @@ function DialogMenuButtonClick() {
 				DialogInventoryOffset = 0;
 				DialogTextDefault = "";
 				DialogTextDefaultTimer = 0;
-				ActivityDialogBuild(C);
 				return;
 			}
 
@@ -1142,7 +1143,7 @@ function DialogClick() {
 
 	// In activity mode, we check if the user clicked on an activity box
 	if (DialogActivityMode && (DialogProgress < 0) && (DialogColor == null) && ((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)))
-		if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter)) {
+		if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000)) {
 
 			// For each activities in the list
 			var X = 1000;

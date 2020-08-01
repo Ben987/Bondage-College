@@ -2556,12 +2556,12 @@ var ActivityFemale3DCG = [
 		Name: "Kiss",
 		MaxProgress: 50,
 		TargetSelf: ["ItemHands", "ItemArms", "ItemBoots", "ItemBreast", "ItemNipples"],
-		Prerequisite: ["UseMouth"]
+		Prerequisite: ["ZoneAccessible", "UseMouth"]
 	},
 	{
 		Name: "FrenchKiss",
 		MaxProgress: 70,
-		Prerequisite: ["UseTongue", "ZoneNaked", "TargetCanUseTongue"]
+		Prerequisite: ["ZoneAccessible", "UseTongue", "ZoneNaked", "TargetCanUseTongue"]
 	},
 	{
 		Name: "PoliteKiss",
@@ -2573,25 +2573,25 @@ var ActivityFemale3DCG = [
 		Name: "Lick",
 		MaxProgress: 80,
 		TargetSelf: ["ItemMouth", "ItemHands", "ItemArms", "ItemBoots", "ItemBreast", "ItemNipples"],
-		Prerequisite: ["UseTongue", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "UseTongue", "ZoneNaked"]
 	},
 	{
 		Name: "Suck",
 		MaxProgress: 60,
 		TargetSelf: ["ItemHands", "ItemArms", "ItemBoots", "ItemNipples"],
-		Prerequisite: ["UseMouth", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "UseMouth", "ZoneNaked"]
 	},
 	{
 		Name: "Nibble",
 		MaxProgress: 40,
 		TargetSelf: ["ItemMouth", "ItemHands", "ItemArms", "ItemBoots", "ItemNipples"],
-		Prerequisite: ["UseMouth", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "UseMouth", "ZoneNaked"]
 	},
 	{
 		Name: "Bite",
 		MaxProgress: 40,
 		TargetSelf: ["ItemMouth", "ItemHands", "ItemArms", "ItemBoots", "ItemLegs", "ItemFeet"],
-		Prerequisite: ["UseMouth", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "UseMouth", "ZoneNaked"]
 	},
 	{
 		Name: "Whisper",
@@ -2602,13 +2602,13 @@ var ActivityFemale3DCG = [
 		Name: "Tickle",
 		MaxProgress: 50,
 		TargetSelf: ["ItemTorso", "ItemPelvis", "ItemBreast", "ItemNipples", "ItemLegs", "ItemFeet", "ItemBoots", "ItemArms", "ItemHands"],
-		Prerequisite: ["UseHands"]
+		Prerequisite: ["ZoneAccessible", "UseHands"]
 	},
 	{
 		Name: "Caress",
 		MaxProgress: 80,
 		TargetSelf: ["ItemTorso", "ItemPelvis", "ItemBreast", "ItemNipples", "ItemLegs", "ItemFeet", "ItemBoots", "ItemArms", "ItemHands", "ItemButt", "ItemVulva", "ItemHead", "ItemNeck", "ItemMouth", "ItemEars", "ItemNose"],
-		Prerequisite: ["UseHands"]
+		Prerequisite: ["ZoneAccessible", "UseHands"]
 	},
 	{
 		Name: "Pet",
@@ -2631,18 +2631,18 @@ var ActivityFemale3DCG = [
 		Name: "TakeCare",
 		MaxProgress: 10,
 		TargetSelf: ["ItemBoots", "ItemHands", "ItemHead"],
-		Prerequisite: ["UseHands", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "UseHands", "ZoneNaked"]
 	},
 	{
 		Name: "MassageHands",
 		MaxProgress: 60,
 		TargetSelf: ["ItemTorso", "ItemPelvis", "ItemBreast", "ItemLegs", "ItemFeet", "ItemBoots", "ItemArms", "ItemHands", "ItemButt", "ItemVulva", "ItemHead", "ItemNeck"],
-		Prerequisite: ["UseHands"]
+		Prerequisite: ["ZoneAccessible", "UseHands"]
 	},
 	{
 		Name: "MassageFeet",
 		MaxProgress: 40,
-		Prerequisite: ["UseFeet"]
+		Prerequisite: ["ZoneAccessible", "UseFeet"]
 	},
 	{
 		Name: "Grope",
@@ -2654,7 +2654,7 @@ var ActivityFemale3DCG = [
 		Name: "Pinch",
 		MaxProgress: 20,
 		TargetSelf: ["ItemNipples", "ItemEars", "ItemArms", "ItemPelvis", "ItemNose"],
-		Prerequisite: ["UseHands"]
+		Prerequisite: ["ZoneAccessible", "UseHands"]
 	},
 	{
 		Name: "Spank",
@@ -2672,34 +2672,34 @@ var ActivityFemale3DCG = [
 		Name: "Pull",
 		MaxProgress: 30,
 		TargetSelf: ["ItemHead", "ItemNose", "ItemNipples"],
-		Prerequisite: ["UseHands"]
+		Prerequisite: ["ZoneAccessible", "UseHands"]
 	},
 	{
 		Name: "Choke",
 		MaxProgress: 50,
 		TargetSelf: ["ItemNeck", "ItemNose"],
-		Prerequisite: ["UseHands"]
+		Prerequisite: ["ZoneAccessible", "UseHands"]
 	},
 	{
 		Name: "MasturbateTongue",
 		MaxProgress: 100,
-		Prerequisite: ["UseTongue", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "UseTongue", "ZoneNaked"]
 	},
 	{
 		Name: "MasturbateHand",
 		TargetSelf: ["ItemBreast", "ItemVulva", "ItemButt"],
 		MaxProgress: 100,
-		Prerequisite: ["UseHands", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "UseHands", "ZoneNaked"]
 	},
 	{
 		Name: "MasturbateFist",
 		MaxProgress: 100,
-		Prerequisite: ["UseHands", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "UseHands", "ZoneNaked"]
 	},
 	{
 		Name: "MasturbateFoot",
 		MaxProgress: 100,
-		Prerequisite: ["UseFeet", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "UseFeet", "ZoneNaked"]
 	},
 	{
 		Name: "MasturbateItem",
