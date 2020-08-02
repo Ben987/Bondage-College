@@ -25,6 +25,10 @@ function MainHallLoad() {
 	// Loads the variables and dialog
 	ChatSearchSafewordAppearance = null;
 	CharacterSetActivePose(Player, null);
+	if (ChatRoomPreviousActivePose != null) {
+		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
+		ChatRoomPreviousActivePose = null;
+	}
 	MainHallBackground = "MainHall";
 	MainHallStartEventTimer = null;
 	MainHallNextEventTimer = null;
