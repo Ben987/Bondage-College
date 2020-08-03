@@ -2700,7 +2700,7 @@ var ActivityFemale3DCG = [
 	{
 		Name: "MasturbateFist",
 		MaxProgress: 100,
-		Prerequisite: ["ZoneAccessible", "UseHands", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "VulvaEmpty", "UseHands", "ZoneNaked"]
 	},
 	{
 		Name: "MasturbateFoot",
