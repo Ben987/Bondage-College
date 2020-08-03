@@ -285,8 +285,6 @@ function GameLARPClick() {
 			}
 		}
 
-		// Give two seconds to the server to shuffle the room before calling the start game function (could be reviewed, maybe this is not needed)
-		CommonWait(2000);
 		GameLARPTurnTimer = CurrentTime + 20000;
 
 		// Notices everyone in the room that the game starts
@@ -314,11 +312,13 @@ function GameLARPExit() {
 	// When the game isn't running, we allow to change the class or team
 	if (GameLARPStatus == "") {
 		
-		// Notices everyone in the room of the change
-		var Dictionary = [];
-		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-		ServerSend("ChatRoomChat", { Content: "LARPChangeTeamClass", Type: "Action" , Dictionary: Dictionary});
-
+		// Notices everyone in the room of the change, if there is any
+		if (GameLARPEntryClass != Player.Game.LARP.Class || GameLARPEntryTeam != Player.Game.LARP.Team) {
+			var Dictionary = [];
+			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+			ServerSend("ChatRoomChat", { Content: "LARPChangeTeamClass", Type: "Action", Dictionary: Dictionary });
+		}
+		
 		// Updates the player and go back to the chat room
 		ServerSend("AccountUpdate", { Game: Player.Game });
 		ChatRoomCharacterUpdate(Player);
