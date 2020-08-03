@@ -2715,12 +2715,12 @@ var ActivityFemale3DCG = [
 	{
 		Name: "PenetrateSlow",
 		MaxProgress: 80,
-		Prerequisite: ["ZoneAccessible", "ZoneEmpty", "WearingPenetrationItem", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "TargetCanUseTongue", "WearingPenetrationItem", "ZoneNaked"]
 	},
 	{
 		Name: "PenetrateFast",
 		MaxProgress: 100,
-		Prerequisite: ["ZoneAccessible", "ZoneEmpty", "WearingPenetrationItem", "ZoneNaked"]
+		Prerequisite: ["ZoneAccessible", "TargetCanUseTongue", "WearingPenetrationItem", "ZoneNaked"]
 	},
 	{
 		Name: "SpankItem",
