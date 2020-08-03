@@ -15,6 +15,7 @@ function ChatSearchLoad() {
 		ChatSearchSafewordAppearance = Player.Appearance.slice(0);
 		ChatSearchSafewordPose = Player.ActivePose;
 	}
+	Player.ArousalSettings.OrgasmCount = 0;
 	ElementCreateInput("InputSearch", "text", "", "20");
 	ChatSearchQuery();
 	ChatSearchMessage = "";

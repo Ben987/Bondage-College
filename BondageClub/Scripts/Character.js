@@ -57,15 +57,14 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
-		IsLoved: function () { return ((this.Lover != null) && (this.Lover.trim() != "")) },
 		IsLoverOfPlayer: function () { return this.IsLover(Player); },
 		IsLover: function (C) { return ((this.GetLoversNumbers().indexOf(C.MemberNumber) >= 0) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
-		GetLoversNumbers: function () {
+		GetLoversNumbers: function (MembersOnly) {
 			var LoversNumbers = [];
 			if (typeof this.Lovership == "undefined") return [];
 			for (var L = 0; L < this.Lovership.length; L++) {
 				if (this.Lovership[L].MemberNumber) { LoversNumbers.push(this.Lovership[L].MemberNumber); }
-				else if (this.Lovership[L].Name) { LoversNumbers.push(this.Lovership[L].Name); }
+				else if (this.Lovership[L].Name && (MembersOnly == null || MembersOnly == false)) { LoversNumbers.push(this.Lovership[L].Name); }
 			}
 			return LoversNumbers;
 		},
@@ -85,7 +84,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsLoverPrivate: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (Player.GetLoversNumbers().indexOf("NPC-" + this.Name) >= 0)); },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked: function () { return CharacterIsNaked(this); },
-		IsDeaf: function () { return ((this.Effect.indexOf("DeafLight") >= 0) || (this.Effect.indexOf("DeafNormal") >= 0) || (this.Effect.indexOf("DeafHeavy") >= 0)) },
+		IsDeaf: function () { return this.GetDeafLevel() > 0 },
 		HasNoItem: function () { return CharacterHasNoItem(this); }
 	};
 
@@ -690,6 +689,28 @@ function CharacterReleaseNoLock(C) {
 }
 
 /**
+ * Removes all items except for clothing and slave collars from the character
+ * @param {Character} C - Character to release
+ * @returns {void} - Nothing
+ */
+function CharacterReleaseTotal(C) {
+	for (var E = 0; E < C.Appearance.length; E++) {
+	    if (C.Appearance[E].Asset.Group.Category != "Appearance") {
+	    	if (C.IsOwned() && C.Appearance[E].Asset.Name == "SlaveCollar") {
+	    		// Reset slave collar to the default model if it has a gameplay effect (such as gagging the player)
+	    		if (C.Appearance[E].Property && C.Appearance[E].Property.Effect && C.Appearance[E].Property.Effect.length > 0)
+	    			delete C.Appearance[E].Property;
+	    	}
+	    	else {
+	    		C.Appearance.splice(E,1);
+	        	E--;
+	    	}
+	    }
+	}
+	CharacterRefresh(C);
+}
+
+/**
  * Gets the bonus amount of a given type for a given character (Kidnap league)
  * @param {Character} C - Character for which we want to get the bonus amount
  * @param {string} BonusType - Type/name of the bonus to look for
@@ -751,6 +772,10 @@ function CharacterSetActivePose(C, NewPose) {
  * @returns {void} - Nothing
  */
 function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
+	// A normal eye expression is triggered for both eyes
+	if (AssetGroup == "Eyes") CharacterSetFacialExpression(C, "Eyes2", Expression, Timer);
+	if (AssetGroup == "Eyes1") AssetGroup = "Eyes";
+		
 	var Ex = InventoryGet(C, AssetGroup);
 	if ((Timer != null) && (Ex != null) && (Ex.Property != null) && (Ex.Property.Expression != null) && (Ex.Property.Expression != "")) return;
 	for (var A = 0; A < C.Appearance.length; A++) {
@@ -830,4 +855,17 @@ function CharacterDecompressWardrobe(Wardrobe) {
 		return DecompressedWardrobe;
 	}
 	return Wardrobe;
+}
+
+/**
+ * Checks if the character is wearing an item that allows for a specific activity
+ * @param {Character} C - The character to test for
+ * @param {String} Activity - The name of the activity that must be allowed
+ * @returns {boolean} - TRUE if at least one item allows that activity
+ */
+function CharacterHasItemForActivity(C, Activity) {
+	for (var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.AllowActivity != null) && (C.Appearance[A].Asset.AllowActivity.indexOf(Activity) >= 0))
+			return true;
+	return false;
 }

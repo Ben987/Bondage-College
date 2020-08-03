@@ -42,32 +42,47 @@ function InventoryItemButtAnalBeads2SetBeads(Modifier) {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemButtAnalBeads2Load();
 	}
-	
+	// save the old number of beads
+	var beadsOld = DialogFocusItem.Property.InsertedBeads;
 	// Set the new amount of beads
 	DialogFocusItem.Property.InsertedBeads = DialogFocusItem.Property.InsertedBeads + Modifier;
 	if (DialogFocusItem.Property.InsertedBeads > 5)
 		DialogFocusItem.Property.InsertedBeads = 5;
 	if (DialogFocusItem.Property.InsertedBeads < 1)
 		DialogFocusItem.Property.InsertedBeads = 1;
-		
-	var beadsNum = DialogFocusItem.Property.InsertedBeads;	
-		
+
+	var beadsNum = DialogFocusItem.Property.InsertedBeads;
+
 	// Loads the correct type/asset	
 	DialogFocusItem.Property.Type = beadsNum > 1 ? "_" + beadsNum + "in" : ["Base"];
 	CharacterRefresh(C);
-		
+
 	// Push Chatroom Event	
 	var Dictionary = [];
 	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
 	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-	
-	if (Modifier == 5)
+	Dictionary.push({ Tag: "ActivityName", Text: "MasturbateItem" });
+	Dictionary.push({ Tag: "ActivityGroup", Text: "ItemButt" });
+	Dictionary.push({ AssetName: "AnalBeads2" });
+	Dictionary.push({ AssetGroupName: "ItemButt" });
+	Dictionary.push({ ActivityCounter: Math.max(beadsOld - beadsNum, 0) });
+
+	if (Modifier == 5) {
 		ChatRoomPublishCustomAction("AnalBeads2SetMax", true, Dictionary);
-	else if (Modifier == -5)
+	} else if (Modifier == -5) {
 		ChatRoomPublishCustomAction("AnalBeads2SetMin", true, Dictionary);
-	else
+	} else {
 		ChatRoomPublishCustomAction("AnalBeads2Set" + (Modifier > 0 ? "UpTo" + beadsNum : "Down"), true, Dictionary);
-		
+	}
+
+	if (C.ID == Player.ID) {
+		// The Player pulls beads from her own butt
+		var A = AssetGet(C.AssetFamily, "ItemButt", "AnalBeads2");
+		for (var i = beadsOld - beadsNum; i > 0; i--) {
+			ActivityArousalItem(C, C, A);
+		}
+	}
+
 	// Rebuilds the inventory menu
 	if (DialogInventory != null) {
 		DialogFocusItem = null;

@@ -476,18 +476,18 @@ function GLDrawAppearanceBuild(C) {
                 // Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
                 if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
                     GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
+                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
                 } else {
                     var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
                     GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
-                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
+                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
                 }
             }
 
             // If we must draw the lock (never colorized)
             if ((CA.Property != null) && (CA.Property.LockedBy != null) && (CA.Property.LockedBy != "")) {
                 GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
-                GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
+                GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
             }
         }
 

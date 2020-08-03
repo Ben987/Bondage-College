@@ -503,18 +503,18 @@ Decrease
 Verringern
 Show chat message
 Chat-Nachricht senden
-SourceCharacter sets DestinationCharacter shock collar to low intensity.
-SourceCharacter stellt DestinationCharacters Elektrohalsband auf "niedrig".
-SourceCharacter sets DestinationCharacter shock collar to moderate intensity.
-SourceCharacter stellt DestinationCharacters Elektrohalsband auf "mittel".
-SourceCharacter sets DestinationCharacter shock collar to high intensity.
+SourceCharacter sets DestinationCharacter AssetName to low intensity.
+SourceCharacter stellt DestinationCharacters AssetName auf "niedrig".
+SourceCharacter sets DestinationCharacter AssetName to moderate intensity.
+SourceCharacter stellt DestinationCharacters AssetName auf "mittel".
+SourceCharacter sets DestinationCharacter AssetName to high intensity.
 SourceCharacter stellt DestinationCharacters Elektrohalsband auf "hoch".
-DestinationCharacterName collar gives her a light shock.
-Ihr Halsband gibt DestinationCharacterName einen leichten Schock.
-DestinationCharacterName collar lets out a sharp jolt!
-Ihr Halsband versetzt DestinationCharacterName einen scharfen Ruck!
-DestinationCharacterName collar delivers an intense shock!
-Ihr Halsband verabreicht DestinationCharacterName einen heftigen Schock!
+DestinationCharacter AssetName gives her a light shock.
+Ihr AssetName gibt DestinationCharacter einen leichten Schock.
+DestinationCharacter AssetName lets out a sharp jolt!
+Ihr AssetName versetzt DestinationCharacter einen scharfen Ruck!
+DestinationCharacter AssetName delivers an intense shock!
+Ihr AssetName verabreicht DestinationCharacter einen heftigen Schock!
 DestinationCharacterName vibrating egg stops vibrating.
 DestinationCharacterNames Vibrator-Ei hört auf zu vibrieren.
 DestinationCharacterName vibrating egg slows down into a light tease.

@@ -1,8 +1,8 @@
 "use strict";
 var CurrentTime = 0;
 var TimerRunInterval = 20;
-var TimerCycle = 0;
 var TimerLastTime = CommonTime();
+var TimerLastCycleCall = 0;
 var TimerLastArousalProgress = 0;
 var TimerLastArousalProgressCount = 0;
 var TimerLastArousalDecay = 0;
@@ -136,11 +136,11 @@ function TimerProcess(Timestamp) {
 	TimerLastTime = Timestamp;
 	CurrentTime = CurrentTime + TimerRunInterval;
 
-	// At each 100 cycles, we check for timed events
-	TimerCycle++;
-	if (TimerCycle % 100 == 0) {
+	// At each 1700 ms, we check for timed events (equivalent of 100 cycles at 60FPS)
+	if (TimerLastCycleCall + 1700 <= CurrentTime) {
 		TimerInventoryRemove();
 		TimerPrivateOwnerBeep();
+		TimerLastCycleCall = CurrentTime;
 	}
 
 	// Arousal/Activity events only occur in allowed rooms
@@ -185,6 +185,15 @@ function TimerProcess(Timestamp) {
 										Factor = Item.Property.Intensity + ZoneFactor;
 								}
 							}
+
+							// Adds the fetish value to the factor
+							if (Factor >= 0) {
+								var Fetish = ActivityFetishFactor(Character[C]);
+								if (Fetish > 0) Factor = Factor + Math.ceil(Fetish / 3);
+								if (Fetish < 0) Factor = Factor + Math.floor(Fetish / 3);
+							}
+
+							// Kicks the arousal timer faster from personal arousal
 							if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) ActivityTimerProgress(Character[C], 1);
 							if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) ActivityTimerProgress(Character[C], 1);
 							if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0) && (Character[C].ArousalSettings.Progress <= 95)) ActivityTimerProgress(Character[C], 1);

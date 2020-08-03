@@ -505,18 +505,18 @@ Decrease
 Decrease
 Show chat message
 Show chat message
-SourceCharacter sets DestinationCharacter's shock collar to low intensity.
-SourceCharacter sets DestinationCharacter's shock collar to low intensity.
-SourceCharacter sets DestinationCharacter's shock collar to moderate intensity.
-SourceCharacter sets DestinationCharacter's shock collar to moderate intensity.
-SourceCharacter sets DestinationCharacter's shock collar to high intensity.
-SourceCharacter sets DestinationCharacter's shock collar to high intensity.
-DestinationCharacter's collar gives her a light shock.
-DestinationCharacter's collar gives her a light shock.
-DestinationCharacter's collar lets out a sharp jolt!
-DestinationCharacter's collar lets out a sharp jolt!
-DestinationCharacter's collar delivers an intense shock!
-DestinationCharacter's collar delivers an intense shock!
+SourceCharacter sets DestinationCharacter AssetName to low intensity.
+SourceCharacter sets DestinationCharacter AssetName to low intensity.
+SourceCharacter sets DestinationCharacter AssetName to moderate intensity.
+SourceCharacter sets DestinationCharacter AssetName to moderate intensity.
+SourceCharacter sets DestinationCharacter AssetName to high intensity.
+SourceCharacter sets DestinationCharacter AssetName to high intensity.
+DestinationCharacter AssetName gives her a light shock.
+DestinationCharacter AssetName gives her a light shock.
+DestinationCharacter AssetName lets out a sharp jolt!
+DestinationCharacter AssetName lets out a sharp jolt!
+DestinationCharacter AssetName delivers an intense shock!
+DestinationCharacter AssetName delivers an intense shock!
 DestinationCharacter's vibrating egg stops vibrating.
 DestinationCharacter's vibrating egg stops vibrating.
 DestinationCharacter's vibrating egg slows down into a light tease.

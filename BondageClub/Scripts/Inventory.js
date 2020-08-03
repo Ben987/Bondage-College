@@ -234,12 +234,13 @@ function InventoryGet(C, AssetGroup) {
 * @param {String} AssetName - The name of the asset to wear
 * @param {String} AssetGroup - The name of the asset group to wear
 * @param {String} ItemColor - The hex color of the item, can be undefined or "Default"
-* @param {Int} Difficulty - The difficulty level to escape from the item
+* @param {Number} Difficulty - The difficulty level to escape from the item
+* @param {Number} MemberNumber - The member number of the character putting the item on - defaults to -1
 */
-function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty) {
+function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty, MemberNumber) {
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup)) {
-			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null) || (ItemColor == "Default")) ? Asset[A].DefaultColor : ItemColor, Difficulty);
+			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null) || (ItemColor == "Default")) ? Asset[A].DefaultColor : ItemColor, Difficulty, MemberNumber);
 			InventoryExpressionTrigger(C, InventoryGet(C, AssetGroup));
 			return;
 		}
@@ -291,13 +292,16 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 				break;
 			}
 
-		// Builds a list of all possible items and use one
+		// Builds a list of all possible items and uses one of them, prevents the user from blocking everything to cheat
 		var List = [];
-		for (var A = 0; A < Asset.length; A++)
-			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false))
+		var ListWithPermission = [];
+		for (var A = 0; A < Asset.length; A++) 
+			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false)) {
 				List.push(Asset[A]);
+				if (C.ID == 0 && !InventoryIsPermissionBlocked(C, Asset[A].Name, Asset[A].Group.Name)) ListWithPermission.push(Asset[A]);
+			}
 		if (List.length == 0) return;
-		var RandomAsset = List[Math.floor(Math.random() * List.length)];
+		var RandomAsset = ListWithPermission.length > 0 ? ListWithPermission[Math.floor(Math.random() * ListWithPermission.length)] : List[Math.floor(Math.random() * List.length)];
 		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty);
 		CharacterRefresh(C);
 
@@ -571,6 +575,7 @@ function InventoryConfiscateKey() {
 function InventoryConfiscateRemote() {
 	InventoryDelete(Player, "VibratorRemote", "ItemVulva");
 	InventoryDelete(Player, "VibratorRemote", "ItemNipples");
+	InventoryDelete(Player, "LoversVibratorRemote", "ItemVulva");
 }
 
 /**

@@ -93,6 +93,7 @@ function PrivateLoad() {
 	// Loads the vendor and NPCs, also check for relationship decay
 	PrivateVendor = CharacterLoadNPC("NPC_Private_Vendor");
 	PrivateVendor.AllowItem = false;
+	Player.ArousalSettings.OrgasmCount = 0;
 	NPCTraitDialog(PrivateVendor);
 	for (var C = 1; C < PrivateCharacter.length; C++)
 		PrivateLoadCharacter(C);

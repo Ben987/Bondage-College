@@ -32,6 +32,8 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		AllowPose: NewAsset.AllowPose,
 		AllowExpression: NewAsset.AllowExpression,
 		Effect: NewAsset.Effect,
+		MirrorGroup: (NewAsset.MirrorGroup == null) ? "" : NewAsset.MirrorGroup,
+		RemoveItemOnRemove: (NewAsset.RemoveItemOnRemove == null) ? [] : NewAsset.RemoveItemOnRemove,
 		DrawingPriority: (NewAsset.Priority == null) ? AssetGroup.length : NewAsset.Priority,
 		DrawingLeft: (NewAsset.Left == null) ? 0 : NewAsset.Left,
 		DrawingTop: (NewAsset.Top == null) ? 0 : NewAsset.Top,
@@ -54,6 +56,7 @@ function AssetAdd(NewAsset) {
 		Visible: (NewAsset.Visible == null) ? true : NewAsset.Visible,
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
 		Activity: (NewAsset.Activity == null) ? AssetCurrentGroup.Activity : NewAsset.Activity,
+		AllowActivity: NewAsset.AllowActivity,
 		BuyGroup: NewAsset.BuyGroup,
 		PrerequisiteBuyGroups: NewAsset.PrerequisiteBuyGroups,
 		Effect: (NewAsset.Effect == null) ? AssetCurrentGroup.Effect : NewAsset.Effect,
@@ -91,23 +94,28 @@ function AssetAdd(NewAsset) {
 		LoverOnly: (NewAsset.LoverOnly == null) ? false : NewAsset.LoverOnly,
 		ExpressionTrigger: NewAsset.ExpressionTrigger,
 		Layer: AssetBuildLayer(NewAsset.Layer),
-		RemoveItemOnRemove: (NewAsset.RemoveItemOnRemove == null) ? [] : NewAsset.RemoveItemOnRemove,
+		RemoveItemOnRemove: (NewAsset.RemoveItemOnRemove == null) ? AssetCurrentGroup.RemoveItemOnRemove : AssetCurrentGroup.RemoveItemOnRemove.concat(NewAsset.RemoveItemOnRemove),
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
 		AllowType: NewAsset.AllowType,
 		DefaultColor: NewAsset.DefaultColor,
 		Audio: NewAsset.Audio,
+		Fetish: NewAsset.Fetish,
 		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone,
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null) ? false : NewAsset.IgnoreParentGroup,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
 		BodyCosplay: (NewAsset.BodyCosplay == null) ? ((AssetCurrentGroup.BodyCosplay == null) ? false : AssetCurrentGroup.BodyCosplay) : NewAsset.BodyCosplay,
+		OverrideBlinking: (NewAsset.OverrideBlinking == null) ? false : NewAsset.OverrideBlinking,
+		DialogSortOverride: NewAsset.DialogSortOverride,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicDescription : function () { return this.Description },
 		DynamicPreviewIcon: (typeof NewAsset.DynamicPreviewIcon === 'function') ? NewAsset.DynamicPreviewIcon : function () { return "" },
 		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function') ? NewAsset.DynamicAllowInventoryAdd : function () { return true },
 		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function') ? NewAsset.DynamicExpressionTrigger : function () { return this.ExpressionTrigger },
 		DynamicName: (typeof NewAsset.DynamicName === 'function') ? NewAsset.DynamicName : function () { return this.Name },
 		DynamicGroupName: (NewAsset.DynamicGroupName || AssetCurrentGroup.Name),
-		DynamicActivity: (typeof NewAsset.DynamicActivity === 'function') ? NewAsset.DynamicActivity : function () { return NewAsset.Activity }
+		DynamicActivity: (typeof NewAsset.DynamicActivity === 'function') ? NewAsset.DynamicActivity : function () { return NewAsset.Activity },
+		CharacterRestricted: typeof NewAsset.CharacterRestricted === 'boolean' ? NewAsset.CharacterRestricted : false,
+		AllowRemoveExclusive: typeof NewAsset.AllowRemoveExclusive === 'boolean' ? NewAsset.CharacterRestricted : false,
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
@@ -233,4 +241,21 @@ function AssetGetActivity(Family, Name) {
 			if (ActivityFemale3DCG[A].Name == Name)
 				return ActivityFemale3DCG[A];
 	return null;
+}
+
+/**
+ * Cleans the given array of assets of any items that no longer exists
+ * @param {Array.<{Name: string, Group: string}>} AssetArray - The arrays of items to clean
+ * @returns {Array.<{Name: string, Group: string}>} - The cleaned up array
+ */
+function AssetCleanArray(AssetArray) { 
+	var CleanArray = [];
+	// Only save the existing items
+	for (var A = 0; A < Asset.length; A++)
+		for (var AA = 0; AA < AssetArray.length; AA++)
+			if (AssetArray[AA].Name == Asset[A].Name && AssetArray[AA].Group == Asset[A].Group.Name) {
+				CleanArray.push(AssetArray[AA]);
+				break;
+			}
+	return CleanArray;
 }

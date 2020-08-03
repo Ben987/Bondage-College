@@ -22,7 +22,6 @@ var NurseryLeaveMsg = null;								// message about ease of opening nursery gate
 var NurseryEscapeAttempts = null;
 var NursuryEscapeFailMsg = null;
 var NurseryRepeatOffender = null;
-var NurseryRegressedTalk = null;
 
 
 				
@@ -36,6 +35,7 @@ function NurseryPlayerWearingBabyDress() { return (CharacterAppearanceGetCurrent
 function NurseryPlayerReadyToAppologise() { return (NurseryPlayerBadBabyStatus <= 1) }
 function NurseryPlayerDiapered() { return (CharacterAppearanceGetCurrentValue(Player, "Panties", "Name") == "Diapers1") }
 function NurseryPlayerReadyDiapered() { return (NurseryPlayerDiapered() && !NurseryPlayerInappropriateCloth) }
+function NurseryPlayerCanRegress() { return !InventoryGet(Player, "ItemMouth3") && !InventoryGroupIsBlocked(Player, "ItemMouth3") }
 
 
 // Loads the nursery room
@@ -382,7 +382,10 @@ function NurseryBadBabies() {
 // Player will loose skill progress or level from drinking special milk
 function NurseryPlayerSkillsAmnesia() {
 	SkillModifierChange(-1);
-	NurseryRegressedTalk = true;
+	InventoryAdd(Player, "RegressedMilk", "ItemMouth");
+	InventoryAdd(Player, "RegressedMilk", "ItemMouth2");
+	InventoryAdd(Player, "RegressedMilk", "ItemMouth3");
+	InventoryWear(Player, "RegressedMilk", "ItemMouth3");
 }
 
 // Repair Lost skills

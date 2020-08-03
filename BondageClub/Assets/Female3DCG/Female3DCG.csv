@@ -425,7 +425,7 @@ HairFront,HairFront13,Style 13
 HairFront,HairFront13b,Style 13b
 HairFront,HairFront14,Style 14
 HairFront,HairFront14b,Style 14b
-Eyes,,Eyes
+Eyes,,Left eye
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
 Eyes,Eyes3,Style 3
@@ -437,6 +437,18 @@ Eyes,Eyes8,Style 8
 Eyes,Eyes9,Style 9
 Eyes,Eyes10,Style 10
 Eyes,Eyes11,Style 11
+Eyes2,,Right eye
+Eyes2,Eyes1,Style 1
+Eyes2,Eyes2,Style 2
+Eyes2,Eyes3,Style 3
+Eyes2,Eyes4,Style 4
+Eyes2,Eyes5,Style 5
+Eyes2,Eyes6,Style 6
+Eyes2,Eyes7,Style 7
+Eyes2,Eyes8,Style 8
+Eyes2,Eyes9,Style 9
+Eyes2,Eyes10,Style 10
+Eyes2,Eyes11,Style 11
 Mouth,,Mouth
 Mouth,Regular,Regular
 Mouth,Discreet,Discreet
@@ -510,6 +522,8 @@ ItemVulva,FullLatexSuitWand,Wand
 ItemVulva,ClitAndDildoVibratorbelt,Clit&Dildo Vibrating belt
 ItemVulva,HempRopeBelt,Hemp Rope Wand Belt
 ItemVulva,WiredEgg,Wired Vibrating Egg
+ItemVulva,LoversVibrator,Lovers Vibrator
+ItemVulva,LoversVibratorRemote,Lovers Remote
 ItemVulvaPiercings,,Clit
 ItemVulvaPiercings,StraightClitPiercing,Straight Clit Piercing
 ItemVulvaPiercings,RoundClitPiercing,Round Clit Piercing
@@ -574,6 +588,8 @@ ItemPelvis,LeatherStrapPanties1,Leather Strap Panties
 ItemPelvis,LoveChastityBelt,Love Chastity Belt
 ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
+ItemPelvis,HempRope,Rope Harness
+ItemPelvis,DiaperHarness,Diaper Harness
 ItemTorso,,Torso
 ItemTorso,NylonRopeHarness,Nylon Rope
 ItemTorso,HempRopeHarness,Hemp Rope
@@ -670,6 +686,7 @@ ItemArms,UnderBedBondageCuffs,Under Bed Bondage Cuff Set
 ItemArms,TightJacket,Tight Straitjacket
 ItemArms,LatexSleevelessLeotard,Latex Sleeveless Leotard
 ItemArms,LatexBoxtieLeotard,Latex Boxtie Leotard
+ItemArms,LatexButterflyLeotard,Latex Butterfly Leotard
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -811,6 +828,7 @@ ItemMouth,WebGag,Web
 ItemMouth,RopeGag,Rope Gag
 ItemMouth,MilkBottle,Milk Bottle
 ItemMouth,MedicalMask,Medical Mask
+ItemMouth,RegressedMilk,Nursery Milk
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -849,6 +867,7 @@ ItemMouth2,GasMaskGag,Respirator Mask
 ItemMouth2,WebGag,Web Gag
 ItemMouth2,RopeGag,Rope Gag
 ItemMouth2,MedicalMask,Medical Mask
+ItemMouth2,RegressedMilk,Nursery Milk
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -887,6 +906,7 @@ ItemMouth3,GasMaskGag,Respirator Mask
 ItemMouth3,WebGag,Web Gag
 ItemMouth3,RopeGag,Rope Gag
 ItemMouth3,MedicalMask,Medical Mask
+ItemMouth3,RegressedMilk,Nursery Milk
 ItemHead,,Eyes
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -923,6 +943,7 @@ ItemHood,DogHood,Dog Hood
 ItemHood,FoxyMask,Foxy Mask
 ItemHood,PonyHood,Pony Hood
 ItemHood,LeatherHoodOpenMouth,Leather Hood Mouth
+ItemHood,CanvasHood,Canvas Hood
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
@@ -975,6 +996,7 @@ ItemDevices,Vacbed,Vacbed
 ItemDevices,Crib,Crib
 ItemDevices,Bed,Bed
 ItemDevices,X-Cross,St. Andrews Cross
+ItemDevices,ChangingTable,Changing Table
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemAddon,OldGasMaskLenses,Blinding Lenses

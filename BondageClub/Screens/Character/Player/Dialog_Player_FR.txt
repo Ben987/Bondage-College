@@ -335,18 +335,18 @@ Decrease
 Réduire
 Show chat message
 Message visible
-SourceCharacter sets DestinationCharacter shock collar to low intensity.
-SourceCharacter règle le collier de choc de DestinationCharacter à intensité faible.
-SourceCharacter sets DestinationCharacter shock collar to moderate intensity.
-SourceCharacter règle le collier de choc de DestinationCharacter à intensité moyenne.
-SourceCharacter sets DestinationCharacter shock collar to high intensity.
-SourceCharacter règle le collier de choc de DestinationCharacter à intensité forte.
-DestinationCharacterName collar gives her a light shock.
-Le collier de DestinationCharacterName lui donne un choc léger.
-DestinationCharacterName collar lets out a sharp jolt!
-Le collier de DestinationCharacterName lui donne une secousse aigüe.
-DestinationCharacterName collar delivers an intense shock!
-Le collier de DestinationCharacterName lui donne un choc intense.
+SourceCharacter sets DestinationCharacter AssetName to low intensity.
+SourceCharacter règle le AssetName de DestinationCharacter à intensité faible.
+SourceCharacter sets DestinationCharacter AssetName to moderate intensity.
+SourceCharacter règle le AssetName de DestinationCharacter à intensité moyenne.
+SourceCharacter sets DestinationCharacter AssetName to high intensity.
+SourceCharacter règle le AssetName de DestinationCharacter à intensité forte.
+DestinationCharacter AssetName gives her a light shock.
+Le AssetName de DestinationCharacterName lui donne un choc léger.
+DestinationCharacter AssetName lets out a sharp jolt!
+Le AssetName de DestinationCharacterName lui donne une secousse aigüe.
+DestinationCharacter AssetName delivers an intense shock!
+Le AssetName de DestinationCharacterName lui donne un choc intense.
 DestinationCharacterName vibrating egg stops vibrating.
 L'oeuf de DestinationCharacterName arrête de vibrer.
 DestinationCharacterName vibrating egg slows down into a light tease.

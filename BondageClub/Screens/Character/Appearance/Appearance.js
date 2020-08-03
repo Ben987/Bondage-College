@@ -161,7 +161,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 	// For each item group (non default items only show at a 20% rate, if it can occasionally happen)
 	for (var A = 0; A < AssetGroup.length; A++)
 		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (AssetGroup[A].Random && Math.random() < 0.2) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && (!CharacterAppearanceMustHide(C, AssetGroup[A].Name) || !AssetGroup[A].AllowNone) && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None")) {
-
+			
 			// Get the parent size
 			var ParentSize = "";
 			if (AssetGroup[A].ParentSize != "")
@@ -189,6 +189,11 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 				if (SelectedAsset.Group.ParentColor != "")
 					if (CharacterAppearanceGetCurrentValue(C, SelectedAsset.Group.ParentColor, "Color") != "None")
 						SelectedColor = CharacterAppearanceGetCurrentValue(C, SelectedAsset.Group.ParentColor, "Color");
+				// Rare chance of keeping eyes of a different color
+				if (SelectedAsset.Group.Name == "Eyes2" && Math.random() < 0.995)
+					for (var A = 0; A < C.Appearance.length; A++)
+						if (C.Appearance[A].Asset.Group.Name == "Eyes")
+							SelectedColor = C.Appearance[A].Color;
 				var NA = {
 					Asset: SelectedAsset,
 					Color: SelectedColor
@@ -455,18 +460,18 @@ function CharacterAppearanceBuildCanvas(C) {
 				// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 				if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
 					DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Layer + ".png", C.Canvas.getContext("2d"), X, Y, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-					DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", C.CanvasBlink.getContext("2d"), X, Y, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
+					DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", C.CanvasBlink.getContext("2d"), X, Y, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
 				} else {
 					var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
 					DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Color + Layer + ".png", C.Canvas.getContext("2d"), X, Y);
-					DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", C.CanvasBlink.getContext("2d"), X, Y);
+					DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", C.CanvasBlink.getContext("2d"), X, Y);
 				}
 			}
 
 			// If we must draw the lock (never colorized)
 			if ((CA.Property != null) && (CA.Property.LockedBy != null) && (CA.Property.LockedBy != "")) {
 				DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Type + "_Lock.png", C.Canvas.getContext("2d"), X, Y);
-				DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", C.CanvasBlink.getContext("2d"), X, Y);
+				DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", C.CanvasBlink.getContext("2d"), X, Y);
 			}
 		}
 }
@@ -504,11 +509,9 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 function AppearanceLoad() {
 	if (!CharacterAppearanceSelection) CharacterAppearanceSelection = Player;
 	var C = CharacterAppearanceSelection;
-
 	CharacterAppearanceBuildAssets(Player);
-	CharacterAppearanceBackup = C.Appearance.map(Item => Object.assign({}, Item));
+	CharacterAppearanceBackup = C.Appearance.slice();
 }
-
 
 /**
  * Run the character appearance selection screen. The function name is created dynamically.
@@ -599,10 +602,11 @@ function AppearanceRun() {
  * @param {Asset} ItemAsset - The asset collection of the item to be changed
  * @param {string} NewColor - The new color (as "#xxyyzz" hex value) for that item
  * @param {number} DifficultyFactor - The difficulty factor of the ne item
+ * @param {number} ItemMemberNumber - The member number of the player adding the item - defaults to -1
  * @param {boolean} Refresh - Determines, wether the character should be redrawn after the item change
  * @returns {void} - Nothing
  */
-function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor, Refresh) {
+function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor, ItemMemberNumber, Refresh) {
 
 	// Sets the difficulty factor
 	if (DifficultyFactor == null) DifficultyFactor = 0;
@@ -620,7 +624,8 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 		var NA = {
 			Asset: ItemAsset,
 			Difficulty: parseInt((ItemAsset.Difficulty == null) ? 0 : ItemAsset.Difficulty) + parseInt(DifficultyFactor),
-			Color: ((NewColor == null) ? ItemColor : NewColor)
+			Color: ((NewColor == null) ? ItemColor : NewColor),
+			Property: ItemAsset.CharacterRestricted ? {ItemMemberNumber: ItemMemberNumber == null ? -1 : ItemMemberNumber} : undefined
 		}
 		C.Appearance.push(NA);
 	}
