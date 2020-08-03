@@ -2614,7 +2614,7 @@ var ActivityFemale3DCG = [
 		Name: "Pet",
 		MaxProgress: 20,
 		TargetSelf: ["ItemHead", "ItemNose"],
-		Prerequisite: ["UseHands"]
+		Prerequisite: ["UseArms"]
 	},
 	{
 		Name: "Cuddle",
