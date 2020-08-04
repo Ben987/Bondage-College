@@ -9,6 +9,7 @@ function InventoryItemMouthPlugGagLoad() {
 		DialogFocusItem.Property.Effect = ["GagMedium", "OpenMouth"];
 		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 		CharacterRefresh(C);
+		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 	}
 }
 

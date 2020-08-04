@@ -45,6 +45,7 @@ function ExtendedItemLoad(Options, DialogKey) {
 				if (!DialogFocusItem.Asset.Effect.includes(Options[0].Property.Effect[E])) { 
 					var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 					CharacterRefresh(C);
+					ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 					break;
 				}
 	}
