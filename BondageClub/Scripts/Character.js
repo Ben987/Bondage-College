@@ -322,7 +322,13 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 
 	// If the character isn't found
 	if (Char == null) {
-
+		// We delete the duplicate character if the person relogged.
+		for (var C = 0; C < Character.length; C++)
+			if (Character[C].MemberNumber == data.MemberNumber) { 
+				CharacterDelete(Character[C].AccountName);
+				break;
+			}
+		
 		// Creates the new character from the online template
 		CharacterReset(Character.length, "Female3DCG");
 		Char = Character[Character.length - 1];
