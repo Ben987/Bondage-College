@@ -49,8 +49,10 @@ function StableLoad() {
 
 	// Give items to the player in case they completed the exam before they were added
 	if (StablePlayerIsExamTrainer || StablePlayerIsExamPony) {
-		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth");
-		InventoryAdd(Player, "PonyBoots", "Shoes");
+		var ItemsToEarn = [];
+		ItemsToEarn.push({Name: "PonyBoots", Group: "Shoes"});
+		ItemsToEarn.push({Name: "HarnessPonyBits", Group: "ItemMouth"});
+		InventoryAddMany(Player, ItemsToEarn);
 	}
 	
 	// Default load

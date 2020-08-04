@@ -29,6 +29,46 @@ function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 }
 
 /**
+* Adds multiple new items by group & name to the character inventory
+* @param {Character} C - The character that gets the new items added to her inventory
+* @param {Array.<{ Name: string, Group: string }>} NewItems - The new items to add
+* @param {Boolean} Push - Set to TRUE to push to the server, pushed by default
+*/
+function InventoryAddMany(C, NewItems, Push) {
+
+	// Return if data is invalid
+	if (C == null || !Array.isArray(NewItems)) return;
+	
+	var ShouldSync = false;
+	
+	// Add each items
+	for (var NI = 0; NI < NewItems.length; NI++) { 
+		// First, we check if the item already exists in the inventory, continue if it's the case
+		var ItemExists = false;
+		for (var I = 0; I < C.Inventory.length; I++)
+			if ((C.Inventory[I].Name == NewItems[NI].Name) && (C.Inventory[I].Group == NewItems[NI].Group)) {
+				ItemExists = true;
+				break;
+			}
+		
+		if (!ItemExists) { 
+			// Create the new item for current character's asset family, group name and item name
+			var NewItem = InventoryItemCreate(C, NewItems[NI].Group, NewItems[NI].Name);
+
+			// Only add the item if we found the asset
+			if (NewItem) {
+				// Pushes the new item to the inventory and flag the refresh
+				C.Inventory.push(NewItem);
+				ShouldSync = true;
+			}
+		}
+	}
+	
+	// Sends the new item(s) to the server if it's for the current player and an item was added
+	if ((C.ID == 0) && ((Push == null) || Push) && ShouldSync) ServerPlayerInventorySync();
+}
+
+/**
  * Creates a new item for a character based on asset group and name
  * @param {Character} C - The character to create the item for
  * @param {string} Group - The name of the asset group the item belongs to

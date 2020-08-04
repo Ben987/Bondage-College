@@ -176,21 +176,21 @@ function ShopClick() {
 
 							// Add the item and removes the money
 							CharacterChangeMoney(Player, Asset[A].Value * -1);
-							InventoryAdd(Player, Asset[A].Name, Asset[A].Group.Name);
+							InventoryAdd(Player, Asset[A].Name, Asset[A].Group.Name, false);
 							ShopText = TextGet("ThankYou");
 
 							// Add any item that belongs in the same buy group
 							if (Asset[A].BuyGroup != null)
 								for (var B = 0; B < Asset.length; B++)
 									if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup))
-										InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
+										InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name, false);
 
 							if (Asset[A].PrerequisiteBuyGroups)
 								for (var B = 0; B < Asset.length; B++)
 									for (var C = 0; C < Asset[A].PrerequisiteBuyGroups.length; C++)
 										if ((Asset[B]) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].PrerequisiteBuyGroups[C]))
-											InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
-
+											InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name, false);
+							ServerPlayerInventorySync();
 						}
 
 					}
