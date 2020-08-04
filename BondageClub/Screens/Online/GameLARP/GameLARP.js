@@ -337,8 +337,8 @@ function GameLARPExit() {
  * @returns {boolean} - Returns TRUE if the game can be launched
  */
 function GameLARPCanLaunchGame() {
-	if (Player.Game.LARP.Class != GameLARPEntryClass) return false;
-	if (Player.Game.LARP.Team != GameLARPEntryTeam) return false;
+	if (Player.Game.LARP.Class == null || Player.Game.LARP.Class == "") return false;
+	if (Player.Game.LARP.Team == null || Player.Game.LARP.Team == "None") return false;
 	if (GameLARPStatus != "") return false;
 	if (!GameLARPIsAdmin(Player)) return false;
 	var Team = "";
