@@ -13,7 +13,6 @@ LARPTeamGray,Gray
 LARPTeamBlack,Black
 LARPTimerNA,NA
 LARPEndGame,The game is over!  TeamName team wins.  Enjoy your spoils of war.
-LARPEndGameStalemate,The game is over!  The match was forfeited by all teams.
 LARPTurnStart,TargetName (TargetNumber) plays first and starts the game.
 LARPTurnSkip,The turn is skipped.  TargetName (TargetNumber) plays.
 LARPTurnNext,TargetName (TargetNumber) plays.
