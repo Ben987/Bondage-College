@@ -54,6 +54,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
 		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
+		IsMouthOpen: function() { return this.Effect.indexOf("OpenMouth") >= 0 },
 		IsVulvaFull: function() { return this.Effect.indexOf("FillVulva") >= 0 },
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
