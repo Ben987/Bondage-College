@@ -8,9 +8,17 @@ var DailyJobPuppy3 = null;
 var DailyJobPuppy4 = null;
 var DailyJobDojoTeacher = null;
 
+/**
+ * Triggered when a player is fully restrained from a daily job dialog
+ * @returns {void} - Nothing
+ */
 function DailyJobPlayerFullRestrain() { CharacterFullRandomRestrain(Player, "ALL") };
 
-// Loads a puppy girl and fully restrain her
+/**
+ * Loads a puppy girl and fully restrain her
+ * @param {number} GirlNum - Number of the puppy to load
+ * @returns {Character} - The generated puppy girl
+ */
 function DailyJobPuppyLoad(GirlNum) {
 	var C = (GirlNum == "0") ? Player : CharacterLoadNPC("NPC_DailyJob_PuppyGirl" + GirlNum);
 	CharacterNaked(C);
@@ -24,7 +32,10 @@ function DailyJobPuppyLoad(GirlNum) {
 	return C;
 }
 
-// Loads the daily job room screen characters
+/**
+ * Loads the daily job room screen characters. This changes based on the current job being performed.
+ * @returns {void} - Nothing
+ */
 function DailyJobLoad() {
 	DailyJobBackground = "MainHall";
 	if ((DailyJobOpponent == null) && (IntroductionJobCurrent == "DomKidnap")) {
@@ -47,15 +58,25 @@ function DailyJobLoad() {
 	}
 }
 
-// Run the daily job room
+/**
+ * Runs and draws the daily job room. Empty as daily jobs are ran from other rooms.
+ * @returns {void} - Nothing
+ */
 function DailyJobRun() {
 }
 
-// When the user clicks in the daily job room
+
+/**
+ * Handles clicks in the daily job room. Empty as daily jobs are ran from other rooms.
+ * @returns {void} - Nothing
+ */
 function DailyJobClick() {
 }
 
-// In search mission, we add an extra button
+/**
+ * In search mission, draws the extra button for the job
+ * @returns {void} - Nothing
+ */
 function DailyJobSubSearchRun() {
 	if (IntroductionJobCurrent == "SubSearch") {
 		DrawButton(1885, 885, 90, 90, "", "White", "Icons/Search.png");
@@ -64,26 +85,39 @@ function DailyJobSubSearchRun() {
 	}
 }
 
-// In search mission
+/**
+ * In search mission, handles clicks on the extra button for the job
+ * @returns {void} - Nothing
+ */
 function DailyJobSubSearchClick() {
 	if (IntroductionJobCurrent == "SubSearch") {
 		if (DailyJobSubSearchIsActive() && (MouseX >= IntroductionJobPosition.X - 100) && (MouseX <= IntroductionJobPosition.X + 100) && (MouseY >= IntroductionJobPosition.Y - 100) && (MouseY <= IntroductionJobPosition.Y + 100)) IntroductionJobProgress("SubSearch", CurrentScreen);
 		if (DailyJobSubSearchIsActive() && (IntroductionJobCount > 0) && (MouseX <= 1900)) { IntroductionJobPosition.ClickX = MouseX; IntroductionJobPosition.ClickY = MouseY; IntroductionJobPosition.ClickScreen = CurrentScreen; }
-		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 885) && (MouseY <= 975)) IntroductionJobPosition.Active = !IntroductionJobPosition.Active;
+		if (MouseIn(1885, 885, 90, 90)) IntroductionJobPosition.Active = !IntroductionJobPosition.Active;
 	}
 }
 
-// Returns TRUE if the job search is active
+/**
+ * Checks if the player is currently searching for a daily job
+ * @returns {boolean} - Returns TRUE if the job search process is active
+ */
 function DailyJobSubSearchIsActive() {
 	return ((IntroductionJobCurrent == "SubSearch") && IntroductionJobPosition.Active);
 }
 
-// When the kidnap daily job fight starts
+/**
+ * Triggered when the kidnap daily job fight minigame is started
+ * @returns {void} - Nothing
+ */
 function DailyJobKidnapStart() {
 	KidnapStart(DailyJobOpponent, "MainHallDark", 7, "DailyJobKidnapEnd()");
 }
 
-// When the kidnap daily job fight ends
+
+/**
+ * Triggered at the end of the kidnap daily job fight mini-game
+ * @returns {void} - Nothing
+ */
 function DailyJobKidnapEnd() {
 	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (DailyJobOpponent.KidnapMaxWillpower - DailyJobOpponent.KidnapWillpower)) * 2);
 	DailyJobOpponent.Stage = (KidnapVictory) ? "100" : "200";
@@ -95,7 +129,10 @@ function DailyJobKidnapEnd() {
 	DailyJobOpponent.CurrentDialog = DialogFind(DailyJobOpponent, (KidnapVictory) ? "KidnapVictory" : "KidnapDefeat");
 }
 
-// When the kidnap mission succeed, we go back to the main hall
+/**
+ * Triggered when the kidnap daily job fight mini-game is won. Sends the player back to the main hall.
+ * @returns {void} - Nothing
+ */
 function DailyJobKidnapSuccess() {
 	CommonSetScreen("Room", "MainHall");
 	CurrentCharacter = null;
@@ -103,7 +140,10 @@ function DailyJobKidnapSuccess() {
 	IntroductionJobCount = 0;
 }
 
-// When the kidnap mission fails, we go back to the main hall and allows it to restart later
+/**
+ * Triggered when the kidnap daily job fight mini-game is lost. Sends the player back to the main hall and allow the player to retry later.
+ * @returns {void} - Nothing
+ */
 function DailyJobKidnapFail() {
 	CommonSetScreen("Room", "MainHall");
 	DailyJobOpponent.Stage = "10";
@@ -111,12 +151,18 @@ function DailyJobKidnapFail() {
 	DialogChangeReputation("Dominant", -1);
 }
 
-// When the puppy walker job starts
+/**
+ * Triggered when the puppy walker job minigame is started
+ * @returns {void} - Nothing
+ */
 function DailyJobPuppyGameStart() {
 	MiniGameStart("PuppyWalker", 0, "DailyJobPuppyGameEnd");
 }
 
-// When the puppy walker job ends
+/**
+ * Triggered at the end of the puppy walker job fight mini-game
+ * @returns {void} - Nothing
+ */
 function DailyJobPuppyGameEnd() {
 	CommonSetScreen("Room", "DailyJob");
 	DailyJobPuppyMistress.Stage = (MiniGameVictory) ? "100" : "200";
@@ -126,18 +172,27 @@ function DailyJobPuppyGameEnd() {
 	DailyJobPuppyMistress.CurrentDialog = DialogFind(DailyJobPuppyMistress, (MiniGameVictory) ? "PuppyVictory" : "PuppyDefeat");
 }
 
-// When a daily jobs ends and we must go back to the main hall
+/**
+ * Triggered when a daily job ends, sends the player back to the main hall
+ * @returns {void} - Nothing
+ */
 function DailyJobEnd() {
 	CommonSetScreen("Room", "MainHall");
 	CurrentCharacter = null;
 }
 
-// When the player is turned into a puppy by the Mistress
+/**
+ * Triggered when the player is turned into a puppy by the Mistress
+ * @returns {void} - Nothing
+ */
 function DailyJobPuppyPlayer() {
 	DailyJobPuppyLoad("0");
 }
 
-// When the player is turned into a puppy by the Mistress
+/**
+ * Triggered when the player is restrained during the dojo minigame
+ * @returns {void} - Nothing
+ */
 function DailyJobDojoRestrainPlayer() {
 	InventoryWear(Player, "HempRope", "ItemArms", "Default", 7);
 	if (InventoryGet(Player, "ItemTorso") == null) {
@@ -147,12 +202,18 @@ function DailyJobDojoRestrainPlayer() {
 	CharacterRefresh(Player);
 }
 
-// When the dojo struggle game starts
+/**
+ * Triggered when the dojo struggle job minigame is started
+ * @returns {void} - Nothing
+ */
 function DailyJobDojoGameStart() {
 	MiniGameStart("DojoStruggle", 0, "DailyJobDojoGameEnd");
 }
 
-// When the dojo mini game ends
+/**
+ * Triggered at the end of the dojo struggle job minigame 
+ * @returns {void} - Nothing
+ */
 function DailyJobDojoGameEnd() {
 	CommonSetScreen("Room", "DailyJob");
 	DailyJobDojoTeacher.Stage = (MiniGameVictory) ? "100" : "200";
