@@ -275,7 +275,7 @@ function KidnapLeagueRandomActivityLaunch() {
 			if (KidnapPlayerClothAccessory != null) InventoryWear(Player, KidnapPlayerClothAccessory.Asset.Name, "ClothAccessory", KidnapPlayerClothAccessory.Color);
 			if (KidnapPlayerClothLower != null) InventoryWear(Player, KidnapPlayerClothLower.Asset.Name, "ClothLower", KidnapPlayerClothLower.Color);
 		}
-		if (!InventoryCharacterHasOwnerOnlyRestraint(Player)) {
+		if ((!InventoryCharacterHasOwnerOnlyRestraint(Player)) && (!InventoryCharacterHasLoverOnlyRestraint(Player))){
 			CharacterRelease(Player);		
 			KidnapLeagueRandomActivityStart("End");
 			KidnapLeagueVisitRoom = ((Math.random() >= 0.5) && KidnapLeagueCanTransferToRoom());

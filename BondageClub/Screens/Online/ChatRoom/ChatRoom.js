@@ -525,6 +525,7 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/kick ") == 0) ChatRoomAdminChatAction("Kick", msg);
 		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
 		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
+		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
 		else {
 
 			// Regular chat can be garbled with a gag
