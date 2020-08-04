@@ -89,7 +89,6 @@ function GameLARPLoad() {
  * @returns {void} - Nothing
  */
 function GameLARPRun() {
-
 	// Draw the character, text and buttons
 	DrawCharacter(Player, 50, 50, 0.9);
 	MainCanvas.textAlign = "left";
@@ -679,6 +678,9 @@ function GameLARPProcessAction(Action, ItemName, Source, Target, RNG) {
  */
 function GameLARPCharacterClick(C) {
 
+	// If the game is running, but the character dc'ed, we need to rebuild
+	if (GameLARPStatus == "Running" && GameLARPPlayer.length == 0) GameLARPBuildPlayerList();
+	
 	// If it's the player turn, we allow clicking on a character to get the abilities menu
 	if ((GameLARPStatus == "Running") && (GameLARPPlayer[GameLARPTurnPosition].ID == 0) && (C.Game != null) && (C.Game.LARP != null) && (C.Game.LARP.Team != null) && (C.Game.LARP.Team != "") && (C.Game.LARP.Team != "None")) {
 		GameLARPTurnFocusCharacter = C;
@@ -754,20 +756,43 @@ function GameLARPNewTurnPublish(NewPlayerPosition, Ascending, Msg) {
 /**
  * Generates a new turn for the LARP game.
  * @param {string} Msg - Content of the turn message such as TurnNext, TurnStart or TurnSkip
+ * @param {number} [Offset] - The offset of the position. Increased by one when a character was skipped.
  * @returns {void} - Nothing
  */
-function GameLARPNewTurn(Msg) {
+function GameLARPNewTurn(Msg, Offset = 0) {
 
+	// If the offset is bigger than the amount of character, the game has ended in a stalemate. (Infinite loop prevention)
+	if (GameLARPPlayer.length == Offset) return GameLARPAddChatLog("EndGameStalemate", Player, Player, "", 0, 0, "#0000B0");;
+	
 	// Resets the focus
 	GameLARPTurnFocusCharacter = null;
 	GameLARPTurnFocusGroup = null;
 
 	// Cycles in the game player array ascending or descending and shifts the position
-	if ((GameLARPTurnAscending) && (GameLARPTurnPosition < GameLARPPlayer.length - 1)) return GameLARPNewTurnPublish(GameLARPTurnPosition + 1, true, Msg);
-	if ((GameLARPTurnAscending) && (GameLARPTurnPosition == GameLARPPlayer.length - 1)) return GameLARPNewTurnPublish(GameLARPTurnPosition, false, Msg);
-	if ((!GameLARPTurnAscending) && (GameLARPTurnPosition > 0)) return GameLARPNewTurnPublish(GameLARPTurnPosition - 1, false, Msg);
-	if ((!GameLARPTurnAscending) && (GameLARPTurnPosition == 0)) return GameLARPNewTurnPublish(GameLARPTurnPosition, true, Msg);
-
+	var NewPosition;
+	var Ascending;;
+	
+	if ((GameLARPTurnAscending) && (GameLARPTurnPosition < GameLARPPlayer.length - 1)) {
+		NewPosition = GameLARPTurnPosition + 1;
+		Ascending = true;
+	} else if ((GameLARPTurnAscending) && (GameLARPTurnPosition == GameLARPPlayer.length - 1)) {
+		NewPosition = GameLARPTurnPosition;
+		Ascending = false;
+	} else if ((!GameLARPTurnAscending) && (GameLARPTurnPosition > 0)) {
+		NewPosition = GameLARPTurnPosition - 1;
+		Ascending = false;
+	} else if ((!GameLARPTurnAscending) && (GameLARPTurnPosition == 0)) {
+		NewPosition = GameLARPTurnPosition;
+		Ascending = true;
+	} else { 
+		return;
+	}
+	
+	// If the character no longer exists (DC/Leave), we skip her.
+	if (!ChatRoomCharacter.find(Char => Char.AccountName == GameLARPPlayer[NewPosition].AccountName)) return GameLARPNewTurn(Msg, Offset + 1);
+	
+	// If everything is okay, we publish the action.
+	return GameLARPNewTurnPublish(NewPosition, Ascending, Msg);
 }
 
 /**
@@ -790,14 +815,14 @@ function GameLARPContinue() {
 	// See if there's at least 2 teams in which players have free arms, return TRUE if that's the case
 	var Team = "";
 	for (var C = 0; C < GameLARPPlayer.length; C++)
-		if ((GameLARPPlayer[C].Game.LARP.Team != "") && (GameLARPPlayer[C].Game.LARP.Team != "None") && (InventoryGet(GameLARPPlayer[C], "ItemArms") == null)) {
+		if ((GameLARPPlayer[C].Game.LARP.Team != "") && (GameLARPPlayer[C].Game.LARP.Team != "None") && (InventoryGet(GameLARPPlayer[C], "ItemArms") == null) && ChatRoomCharacter.find(Char => Char.AccountName == GameLARPPlayer[C].AccountName)) {
 			if (Team == "")
 				Team = GameLARPPlayer[C].Game.LARP.Team;
 			else
 				if (Team != GameLARPPlayer[C].Game.LARP.Team)
 					return true;
 		}
-
+	
 	// If there's a winning team, we announce it and stop the game
 	if (Team != "") {
 
