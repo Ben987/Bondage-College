@@ -917,6 +917,7 @@ function CharacterAppearanceReady(C) {
 	// Exits wardrobe mode
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceWardrobeMode = false;
+	CharacterAppearanceHeaderText = "";
 
 	// If there's no error, we continue to the login or main hall if already logged
 	if (C.AccountName != "") {
