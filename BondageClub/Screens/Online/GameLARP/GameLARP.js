@@ -756,13 +756,9 @@ function GameLARPNewTurnPublish(NewPlayerPosition, Ascending, Msg) {
 /**
  * Generates a new turn for the LARP game.
  * @param {string} Msg - Content of the turn message such as TurnNext, TurnStart or TurnSkip
- * @param {number} [Offset] - The offset of the position. Increased by one when a character was skipped.
  * @returns {void} - Nothing
  */
-function GameLARPNewTurn(Msg, Offset = 0) {
-
-	// If the offset is bigger than the amount of character, the game has ended in a stalemate. (Infinite loop prevention)
-	if (GameLARPPlayer.length == Offset) return GameLARPAddChatLog("EndGameStalemate", Player, Player, "", 0, 0, "#0000B0");;
+function GameLARPNewTurn(Msg) {
 	
 	// Resets the focus
 	GameLARPTurnFocusCharacter = null;
@@ -770,7 +766,7 @@ function GameLARPNewTurn(Msg, Offset = 0) {
 
 	// Cycles in the game player array ascending or descending and shifts the position
 	var NewPosition;
-	var Ascending;;
+	var Ascending;
 	
 	if ((GameLARPTurnAscending) && (GameLARPTurnPosition < GameLARPPlayer.length - 1)) {
 		NewPosition = GameLARPTurnPosition + 1;
@@ -789,7 +785,11 @@ function GameLARPNewTurn(Msg, Offset = 0) {
 	}
 	
 	// If the character no longer exists (DC/Leave), we skip her.
-	if (!ChatRoomCharacter.find(Char => Char.AccountName == GameLARPPlayer[NewPosition].AccountName)) return GameLARPNewTurn(Msg, Offset + 1);
+	if (!ChatRoomCharacter.find(Char => Char.AccountName == GameLARPPlayer[NewPosition].AccountName)) {
+		GameLARPTurnPosition = NewPosition;
+		GameLARPTurnAscending = Ascending;
+		return GameLARPNewTurn(Msg);
+	}
 	
 	// If everything is okay, we publish the action.
 	return GameLARPNewTurnPublish(NewPosition, Ascending, Msg);
