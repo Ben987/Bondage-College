@@ -218,6 +218,25 @@ function GameLARPClickProcess() {
 
 }
 
+/**
+ * Starts a LARP match.
+ * @returns {void} - Nothing
+ */
+function GameLARPStartProcess() { 
+	GameLARPTurnTimer = CurrentTime + 20000;
+
+	// Notices everyone in the room that the game starts
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	ServerSend("ChatRoomChat", { Content: "LARPGameStart", Type: "Action" , Dictionary: Dictionary});
+
+	// Changes the game status and exits
+	ServerSend("ChatRoomGame", { GameProgress: "Start" });
+	Player.Game.LARP.Status = "Running";
+	ServerSend("AccountUpdate", { Game: Player.Game });
+	ChatRoomCharacterUpdate(Player);
+}
+
 // When the player clicks in the chat Admin screen
 function GameLARPClick() {
 
@@ -252,18 +271,8 @@ function GameLARPClick() {
 			}
 		}
 
-		GameLARPTurnTimer = CurrentTime + 20000;
-
-		// Notices everyone in the room that the game starts
-		var Dictionary = [];
-		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-		ServerSend("ChatRoomChat", { Content: "LARPGameStart", Type: "Action" , Dictionary: Dictionary});
-
-		// Changes the game status and exits
-		ServerSend("ChatRoomGame", { GameProgress: "Start" });
-		Player.Game.LARP.Status = "Running";
-		ServerSend("AccountUpdate", { Game: Player.Game });
-		ChatRoomCharacterUpdate(Player);
+		// Give time for the server to shuffle the room.
+		setTimeout(GameLARPStartProcess, 4000);
 		CommonSetScreen("Online", "ChatRoom");
 
 	}
