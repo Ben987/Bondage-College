@@ -39,15 +39,27 @@ function ExtendedItemLoad(Options, DialogKey) {
 	if (!DialogFocusItem.Property) {
 		// Default to the first option if no property is set
 		DialogFocusItem.Property = Options[0].Property;
-		//Refresh the character if the base effects of the items do not correspond.
-		if (Array.isArray(DialogFocusItem.Asset.Effect) && Array.isArray(Options[0].Property.Effect))
+		//Refresh the character if the base properties of the items do not correspond with its base type.
+		var MustRefresh = false;
+		if (DialogFocusItem.Asset.Effect == null && Array.isArray(Options[0].Property.Effect) && Options[0].Property.Effect.length > 0) MustRefresh = true;
+		if (!MustRefresh && Array.isArray(DialogFocusItem.Asset.Effect) && Array.isArray(Options[0].Property.Effect))
 			for (var E = 0; E <  Options[0].Property.Effect.length; E++)
 				if (!DialogFocusItem.Asset.Effect.includes(Options[0].Property.Effect[E])) { 
-					var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-					CharacterRefresh(C);
-					ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
+					MustRefresh = true;
 					break;
 				}
+		if (!MustRefresh && DialogFocusItem.Asset.Block == null && Array.isArray(Options[0].Property.Block) && Options[0].Property.Block.length > 0) MustRefresh = true;
+		if (!MustRefresh && Array.isArray(DialogFocusItem.Asset.Block) && Array.isArray(Options[0].Property.Block))
+			for (var E = 0; E <  Options[0].Property.Block.length; E++)
+				if (!DialogFocusItem.Asset.Block.includes(Options[0].Property.Block[E])) { 
+					MustRefresh = true;
+					break;
+					}
+		if (MustRefresh) { 
+			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+			CharacterRefresh(C);
+			ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
+		}
 	}
 
 	if (Options.length > 2) {
