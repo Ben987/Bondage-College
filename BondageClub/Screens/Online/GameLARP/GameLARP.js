@@ -49,11 +49,7 @@ var GameLARPTurnTimer = null;
 var GameLARPTurnFocusCharacter = null;
 var GameLARPTurnFocusGroup = null;
 
-/**
- * Checks if the character is an admin or the LARP admin while the game is going.
- * @param {Character} C - Character to check for
- * @returns {boolean} -  Returns TRUE if that character is an admin/the game administrator
- */
+// Return TRUE if that character is the room creator (game administrator)
 function GameLARPIsAdmin(C) {
 	if (GameLARPStatus == "")
 		return (ChatRoomData.Admin.indexOf(C.MemberNumber) >= 0)
@@ -61,33 +57,20 @@ function GameLARPIsAdmin(C) {
 		return (GameLARPTurnAdmin == C.MemberNumber);
 };
 
-/**
- * Draws the LARP class/team icon of a character
- * @param {Character} C - Character for which to draw the icons
- * @param {number} X - Position on the X axis of the canvas
- * @param {number} Y - Position on the Y axis of the canvas
- * @param {number} Zoom - Zoom factor of the character
- * @returns {void} - Nothing
- */
+// Draws the LARP class/team icon of a character
 function GameLARPDrawIcon(C, X, Y, Zoom) {
 	if ((C != null) && (C.Game != null) && (C.Game.LARP != null) && (C.Game.LARP.Class != null) && (C.Game.LARP.Team != null) && (C.Game.LARP.Team != "") && (C.Game.LARP.Team != "None"))
 		DrawImageZoomCanvas("Icons/LARP/" + C.Game.LARP.Class + C.Game.LARP.Team + ".png", MainCanvas, 0, 0, 100, 100, X, Y, 100 * Zoom, 100 * Zoom);
 }
 
-/**
- * Loads the LARP game.
- * @returns {void} - Nothing
- */
+// When the screens loads
 function GameLARPLoad() {
 	GameLARPEntryClass = Player.Game.LARP.Class;
 	GameLARPEntryTeam = Player.Game.LARP.Team;
 	if (GameLARPStatus == "") GameLARPProgress = [];
 }
 
-/**
- * Runs and draws the LARP game.
- * @returns {void} - Nothing
- */
+// When the screen runs
 function GameLARPRun() {
 
 	// Draw the character, text and buttons
@@ -108,10 +91,7 @@ function GameLARPRun() {
 
 }
 
-/**
- * Runs the game from the chat room
- * @returns {void} - Nothing
- */
+// Runs the game from the chat room
 function GameLARPRunProcess() {
 
 	// If the player is an admin, she can make player skip their turns
@@ -171,11 +151,7 @@ function GameLARPRunProcess() {
 
 }
 
-/**
- * Builds the inventory selection list for a given asset group.
- * @param {string} FocusGroup - Asset group for which to build the inventory.
- * @returns {void} - Nothing
- */
+// Builds the inventory selection list
 function GameLARPBuildInventory(FocusGroup) {
 	GameLARPTurnFocusGroup = FocusGroup;
 	GameLARPInventory = [];
@@ -186,11 +162,7 @@ function GameLARPBuildInventory(FocusGroup) {
 	GameLARPInventory.sort((a,b) => (a.Description > b.Description) ? 1 : ((b.Description > a.Description) ? -1 : 0));
 }
 
-/**
- * Triggered when an option is selected for the current target character. The inventory for it is built and the action is published
- * @param {string} Name - Name of the selected option
- * @returns {void} - Nothing
- */
+// When an option is selected for a target
 function GameLARPClickOption(Name) {
 	GameLARPAction = Name;
 	if ((Name == "RestrainLegs") || (Name == "Immobilize")) return GameLARPBuildInventory("ItemFeet");
@@ -200,11 +172,9 @@ function GameLARPClickOption(Name) {
 	ServerSend("ChatRoomGame", { GameProgress: "Action", Action: Name, Target: GameLARPTurnFocusCharacter.MemberNumber });
 }
 
-/**
- * Handles clicks during the LARP game.
- * @returns {boolean} - Returns TRUE if the click was handled by this LARP click handler
- */
+// Return TRUE if we intercept clicks in the chat room
 function GameLARPClickProcess() {
+
 	// Do not handle any click if no character is selected, a target is required here
 	if (GameLARPTurnFocusCharacter == null) return false;
 
@@ -212,11 +182,11 @@ function GameLARPClickProcess() {
 	if (GameLARPTurnFocusGroup != null) {
 
 		// If "Next" or "Cancel" is clicked
-		if ((GameLARPInventory.length > 12) && MouseIn(525, 20, 200, 60)) {
+		if ((GameLARPInventory.length > 12) && (MouseX >= 525) && (MouseX < 725) && (MouseY >= 20) && (MouseY <= 80)) {
 			GameLARPInventoryOffset = GameLARPInventoryOffset + 12;
 			if (GameLARPInventoryOffset >= GameLARPInventory.length) GameLARPInventoryOffset = 0;
 		}
-		if (MouseIn(775, 20, 200, 60)) GameLARPTurnFocusGroup = null;
+		if ((MouseX >= 775) && (MouseX < 975) && (MouseY >= 20) && (MouseY <= 80)) GameLARPTurnFocusGroup = null;
 		
 		// Checks if one of the 4x3 inventory square is clicked
 		var X = 15;
@@ -239,7 +209,7 @@ function GameLARPClickProcess() {
 				GameLARPClickOption(GameLARPOption[O].Name);
 
 		// If we must exit from the currently focused character
-		if (MouseIn(50, 900, 400, 65)) GameLARPTurnFocusCharacter = null;
+		if ((MouseX >= 50) && (MouseX < 450) && (MouseY >= 900) && (MouseY <= 965)) GameLARPTurnFocusCharacter = null;
 
 	}
 
@@ -248,17 +218,14 @@ function GameLARPClickProcess() {
 
 }
 
-/**
- * Handles clicks in the LARP chat Admin screen
- * @returns {void} - Nothing
- */
+// When the player clicks in the chat Admin screen
 function GameLARPClick() {
-	
+
 	// When the user exits
-	if (MouseIn(1815, 75, 90, 90)) GameLARPExit();
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) GameLARPExit();
 
 	// When the user selects a new class
-	if (MouseIn(900, 193, 400, 64) && (GameLARPStatus == "")) {
+	if ((MouseX >= 900) && (MouseX < 1300) && (MouseY >= 193) && (MouseY < 257) && (GameLARPStatus == "")) {
 		var Index = 0;
 		for (var I = 0; I < GameLARPClass.length; I++)
 			if (GameLARPClass[I].Name == Player.Game.LARP.Class)
@@ -269,13 +236,13 @@ function GameLARPClick() {
 	}
 	
 	// When the user selects a new team
-	if (MouseIn(900, 293, 400, 64) && (GameLARPStatus == "")) {
+	if ((MouseX >= 900) && (MouseX < 1300) && (MouseY >= 293) && (MouseY < 357) && (GameLARPStatus == "")) {
 		if (MouseX <= 1100) Player.Game.LARP.Team = (GameLARPTeamList.indexOf(Player.Game.LARP.Team) <= 0) ? GameLARPTeamList[GameLARPTeamList.length - 1] : GameLARPTeamList[GameLARPTeamList.indexOf(Player.Game.LARP.Team) - 1];
 		else Player.Game.LARP.Team = (GameLARPTeamList.indexOf(Player.Game.LARP.Team) >= GameLARPTeamList.length - 1) ? GameLARPTeamList[0] : GameLARPTeamList[GameLARPTeamList.indexOf(Player.Game.LARP.Team) + 1];
 	}
 	
 	// If the administrator wants to start the game
-	if (MouseIn(550, 500, 400, 64) && GameLARPCanLaunchGame()) {
+	if ((MouseX >= 550) && (MouseX < 950) && (MouseY >= 500) && (MouseY < 565) && GameLARPCanLaunchGame()) {
 
 		// Shuffles all players in the chat room
 		for (var C = 0; C < ChatRoomCharacter.length; C++) {
@@ -303,10 +270,7 @@ function GameLARPClick() {
 	
 }
 
-/**
- * Triggered when the player exits the LARP info screen.
- * @returns {void} - Nothing
- */
+// When the user exit from this screen
 function GameLARPExit() {
 
 	// When the game isn't running, we allow to change the class or team
@@ -332,10 +296,7 @@ function GameLARPExit() {
 
 }
 
-/**
- * Checks if a LARP match can be launched. The player must be an admin and two different teams must be selected.
- * @returns {boolean} - Returns TRUE if the game can be launched
- */
+// Returns TRUE if the game can be launched, the player must an administrator and two different teams must be selected
 function GameLARPCanLaunchGame() {
 	if (Player.Game.LARP.Class == null || Player.Game.LARP.Class == "") return false;
 	if (Player.Game.LARP.Team == null || Player.Game.LARP.Team == "None") return false;
@@ -353,12 +314,7 @@ function GameLARPCanLaunchGame() {
 	return false;
 }
 
-/**
- * Gets a specific bonus from a given character's class.
- * @param {Character} Target - Character to check for a specific bonus value.
- * @param {number} BonusType - The bonus type to get the value of.
- * @returns {number} - Total bonuses for the given character.
- */
+// Gets a specific bonus from the character class
 function GameLARPGetBonus(Target, BonusType) {
 
 	// Gets the base class bonus
@@ -382,13 +338,7 @@ function GameLARPGetBonus(Target, BonusType) {
 
 }
 
-/**
- * Gets the odds of successfully doing an offensive action on a given character.
- * @param {string} Action - Action attempted. 
- * @param {Character} Source - Character doing the move.
- * @param {Character} Target - Character targetted by the move.
- * @returns {number} - Odds of successfully doing an offensive action. The number has two decimals.
- */
+// Returns the odds of successfully doing an offensive action
 function GameLARPGetOdds(Action, Source, Target) {
 
 	// The basic odds are 50% + Offensive bonus of source - Defensive bonus of target
@@ -418,37 +368,13 @@ function GameLARPGetOdds(Action, Source, Target) {
 
 }
 
-/**
- * In LARP, check if the given character can talk.
- * @param {Character} C - Character to check.
- * @returns {boolean} - Whether the character can talk or not
- */
+// Returns TRUE if the character can talk or walk, based on the LARP game
 function GameLARPCanTalk(C) { return (InventoryGet(C, "ItemMouth") == null) }
-/**
- * In LARP, check if the given character can walk.
- * @param {Character} C - Character to check.
- * @returns {boolean} - Whether the character can walk or not
- */
 function GameLARPCanWalk(C) { return (InventoryGet(C, "ItemFeet") == null) }
-/**
- * In LARP, check if the given character can act.
- * @param {Character} C - Character to check.
- * @returns {boolean} - Whether the character can act or not
- */
 function GameLARPCanAct(C) { return (InventoryGet(C, "ItemArms") == null) }
-/**
- * In LARP, check if the given character is wearing clothes.
- * @param {Character} C - Character to check.
- * @returns {boolean} - Whether the character is wearing clothes or not
- */
 function GameLARPClothed(C) { return (InventoryGet(C, "Cloth") != null) }
 
-/**
- * Checks if an item can be removed in LARP.
- * @param {Character} C - Character to check for a lock on the given group.
- * @param {string} Zone - Group to check for a lock.
- * @returns {boolean} - Returns TRUE if we can remove an item at a specific zone (cannot remove if there's a custom lock)
- */
+// Returns TRUE if we can remove an item at a specific zone (cannot remove if there's a custom lock)
 function GameLARPCanRemoveItem(C, Zone) {
 	var Item = InventoryGet(C, Zone);
 	if (Item == null) return false;
@@ -456,14 +382,7 @@ function GameLARPCanRemoveItem(C, Zone) {
 	return true;
 }
 
-/**
- * Adds all available class abilities to the built basic options
- * @param {Character} Source - Character about to do an action.
- * @param {Character} Target - The character on which an action is about to be done.
- * @param {Array.<{ Name: string, Odds: number}>} - List of the basic options the source character can perform
- * @param {string} Ability - Character's ability.
- * @returns {void} - Nothing
- */
+// Adds all available class abilities to the valid options
 function GameLARPBuildOptionAbility(Source, Target, Option, Ability) {
 
 	// Only the "Evasion" special ability can be used when arms are restrained
@@ -526,12 +445,7 @@ function GameLARPBuildOptionAbility(Source, Target, Option, Ability) {
 
 }
 
-/**
- * Builds the available options a character can perform on another for the LARP menu.
- * @param {Character} Source - Character about to do an action.
- * @param {Character} Target - The character on which an action is about to be done.
- * @returns {Array.<{ Name: string, Odds: number}>} - Options the character can perform
- */
+// Build a clickable menu for everything that can be tempted on a character
 function GameLARPBuildOption(Source, Target) {
 
 	// If the source clicks on herself, she can always pass her turn and do nothing
@@ -594,11 +508,7 @@ function GameLARPBuildOption(Source, Target) {
 
 }
 
-/**
- * Gets a character from the LARP game by member number
- * @param {number} MemberNumber - Member number of the character to get.
- * @returns {Character | null} - The corresponding character, if it exists.
- */
+// Returns the character based on the member number
 function GameLARPGetPlayer(MemberNumber) {
 	for (var C = 0; C < GameLARPPlayer.length; C++)
 		if (GameLARPPlayer[C].MemberNumber == MemberNumber)
@@ -606,15 +516,7 @@ function GameLARPGetPlayer(MemberNumber) {
 	return null;
 }
 
-/**
- * Processes an action for a player.
- * @param {string} Action - Action attempted.
- * @param {string} ItemName - Name of the item to attempt to use.
- * @param {Character} Source - Source character of the action
- * @param {Character} Target - Character targetted by the action
- * @param {number} RNG - Random odds received for which the character's odds will be compared.
- * @returns {void} - Nothing
- */
+// Processes an action for a player
 function GameLARPProcessAction(Action, ItemName, Source, Target, RNG) {
 
 	// Skip if the characters aren't valid
@@ -672,11 +574,7 @@ function GameLARPProcessAction(Action, ItemName, Source, Target, RNG) {
 
 }
 
-/**
- * Processes the LARP game clicks. This method is called from the generic OnlineGameClickCharacter function when the current game is LARP.
- * @param {Character} C - Character clicked on
- * @returns {boolean} - returns TRUE if the code handles the click
- */
+// Processes the LARP game clicks, returns TRUE if the code handles the click
 function GameLARPCharacterClick(C) {
 
 	// If it's the player turn, we allow clicking on a character to get the abilities menu
@@ -691,17 +589,7 @@ function GameLARPCharacterClick(C) {
 
 }
 
-/**
- * Adds a LARP message to the chat log.
- * @param {string} Msg - Message tag
- * @param {Character} Source - Source character of the message
- * @param {Character} Target - Character targetted by the message
- * @param {string} Description - Description of the message (item name, team name, etc.)
- * @param {number} RNG - The number given by RNG.
- * @param {number} Odds - The number required for the move to work.
- * @param {string} Color - Color of the message to add.
- * @returns {void} - Nothing
- */
+// Adds the LARP message to the chat log
 function GameLARPAddChatLog(Msg, Source, Target, Description, RNG, Odds, Color) {
 
 	// The first message of the game is blue
@@ -734,13 +622,7 @@ function GameLARPAddChatLog(Msg, Source, Target, Description, RNG, Odds, Color) 
 
 }
 
-/**
- * Sets the new turn player and publish it in the chat room
- * @param {number} NewPlayerPosition - Position of the new player
- * @param {boolean} Ascending - Whether or not the turn is ascending
- * @param {string} Msg - Message tag to display such as TurnStart, TurnSkip and TurnNext
- * @returns {void} - Nothing
- */
+// Sets the new turn player and publish it in the chat room
 function GameLARPNewTurnPublish(NewPlayerPosition, Ascending, Msg) {
 
 	// Sets the new position and turn order, the timer is 20 seconds (10 seconds if arms are restrained), then publish in the chat log
@@ -751,11 +633,7 @@ function GameLARPNewTurnPublish(NewPlayerPosition, Ascending, Msg) {
 
 }
 
-/**
- * Generates a new turn for the LARP game.
- * @param {string} Msg - Content of the turn message such as TurnNext, TurnStart or TurnSkip
- * @returns {void} - Nothing
- */
+// Generates a new turn for the LARP game
 function GameLARPNewTurn(Msg) {
 
 	// Resets the focus
@@ -770,10 +648,7 @@ function GameLARPNewTurn(Msg) {
 
 }
 
-/**
- * Builds the full LARP player list. Someone with no team is not playing the match.
- * @returns {void} - Nothing
- */
+// Builds the full player list
 function GameLARPBuildPlayerList() {
 	GameLARPPlayer = [];
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
@@ -781,10 +656,7 @@ function GameLARPBuildPlayerList() {
 			GameLARPPlayer.push(ChatRoomCharacter[C]);
 }
 
-/**
- * Moves forward in the LARP game. If there are less than 2 teams with free arms, the game is over.
- * @returns {boolean} - Returns TRUE if the game ends and runs the end scripts.
- */
+// Returns TRUE if the game ends and runs the end scripts
 function GameLARPContinue() {
 
 	// See if there's at least 2 teams in which players have free arms, return TRUE if that's the case
@@ -830,11 +702,7 @@ function GameLARPContinue() {
 
 }
 
-/**
- * Processes the LARP game messages for turns and actions.
- * @param {object} P - Data object containing the message data.
- * @returns {void} - Nothing
- */
+// Processes the LARP game messages
 function GameLARPProcess(P) {
 	if ((P != null) && (typeof P === "object") && (P.Data != null) && (typeof P.Data === "object") && (P.Sender != null) && (typeof P.Sender === "number") && (P.RNG != null) && (typeof P.RNG === "number")) {
 
