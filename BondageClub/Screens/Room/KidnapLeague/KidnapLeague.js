@@ -16,25 +16,66 @@ var KidnapLeagueBountyLocationList = ["Introduction", "MaidQuarters", "Shibari",
 var KidnapLeagueBountyVictory = null;
 var KidnapLeagueVisitRoom = false;
 
-// Returns TRUE if the dialog option are available
+/**
+ * Checks if the player can be kidnapped
+ * @returns {boolean} - Returns TRUE if the player is restrained and the trainer is not.
+ */
 function KidnapLeagueAllowKidnap() { return (!Player.IsRestrained() && !KidnapLeagueTrainer.IsRestrained()) }
+/**
+ * Checks if the kidnap league trainer is restrained.
+ * @returns {boolean} - Returns TRUE if the kidnap league trainer is restrained.
+ */
 function KidnapLeagueIsTrainerRestrained() { return KidnapLeagueTrainer.IsRestrained() }
+/**
+ * Checks if the player can take a new kidnap league bounty.
+ * @returns {boolean} - Returns TRUE if the player has no active bounty.
+ */
 function KidnapLeagueCanTakeBounty() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty == null)) }
+/**
+ * Checks if a kidnap league bounty was taken.
+ * @returns {boolean} - Returns TRUE if the player has an active and unfinished bounty.
+ */
 function KidnapLeagueBountyTaken() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null)) }
+/**
+ * Checks if the current bounty resulted in a victory.
+ * @returns {boolean} - Returns TRUE if the current bounty resulted in a victory.
+ */
 function KidnapLeagueBountyWasVictory() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == true)) }
+/**
+ * Checks if the current bounty resulted in a defeat.
+ * @returns {boolean} - Returns TRUE if the current bounty resulted in a defeat.
+ */
 function KidnapLeagueBountyWasDefeat() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == false)) }
+/**
+ * Checks if a NPC can be transfered to the player's private room.
+ * @returns {boolean} - Returns TRUE if the player has an accessible private room and a free spot for a NPC.
+ */
 function KidnapLeagueCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
+/**
+ * Checks if the NPC will not visit the player's private room.
+ * @returns {boolean} - Returns TRUE if the NPC won't come to the private room even if it's possible
+ */
 function KidnapLeagueWontVisitRoom() { return (!KidnapLeagueVisitRoom && KidnapLeagueCanTransferToRoom()) }
+/**
+ * Checks if both players can kiss.
+ * @returns {boolean} - Returns TRUE if both players are able to talk which means they can kiss.
+ */
 function KidnapLeagueCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
 
-// Loads the kidnap league NPC
+/**
+ * Loads the kidnap league NPC
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueLoad() {
 	KidnapLeagueBackground = "KidnapLeague";
 	KidnapLeagueTrainer = CharacterLoadNPC("NPC_KidnapLeague_Trainer");
 	KidnapLeagueTrainer.AllowItem = ((KidnapLeagueTrainer.Stage == "100") || (KidnapLeagueTrainer.Stage == "110"));
 }
 
-// Run the kidnap league (The screen can be used for the search daily job)
+/**
+ * Runs and draws the kidnap league,  this room can be used for daily job search
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRun() {
 	if (!DailyJobSubSearchIsActive()) DrawCharacter(Player, 500, 0, 1);
 	if (!DailyJobSubSearchIsActive()) DrawCharacter(KidnapLeagueTrainer, 1000, 0, 1);
@@ -43,15 +84,18 @@ function KidnapLeagueRun() {
 	DailyJobSubSearchRun();
 }
 
-// When the user clicks in the kidnap league room
+/**
+ * Handles clicks in the kidnap league room, this room can be used for daily job search
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueClick() {
-	if (!DailyJobSubSearchIsActive() && (MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if (!DailyJobSubSearchIsActive() && (MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
+	if (!DailyJobSubSearchIsActive() && MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && MouseIn(1000, 0, 500, 1000)) {
 		ManagementClubSlaveDialog(KidnapLeagueTrainer);
 		CharacterSetCurrent(KidnapLeagueTrainer);
 	}
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
+	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) {
 		if ((InventoryGet(Player, "Cloth") == null) && (KidnapPlayerCloth != null)) {
 			InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);
 			if (KidnapPlayerClothAccessory != null) InventoryWear(Player, KidnapPlayerClothAccessory.Asset.Name, "ClothAccessory", KidnapPlayerClothAccessory.Color);
@@ -62,7 +106,11 @@ function KidnapLeagueClick() {
 	DailyJobSubSearchClick();
 }
 
-// When the player starts a kidnap game against the trainer (an easy fight will lower the player dominant reputation)
+/**
+ * Triggered when the player takes a bounty of a given difficulty. An easy bounty lowers the kidnap reputation.
+ * @param {number} Difficulty - Difficulty factor of the bounty.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueTakeBounty(Difficulty) {
 	KidnapLeagueBountyDifficulty = parseInt(Difficulty) + Math.floor(Math.random() * 4);
 	KidnapLeagueBounty = null;
@@ -76,12 +124,18 @@ function KidnapLeagueTakeBounty(Difficulty) {
 	if (KidnapLeagueBountyLocation == "Shibari") InventoryWear(KidnapLeagueBounty, "ChineseDress1", "Cloth");
 }
 
-// Reminds the player on the bounty taken
+/**
+ * Triggered when the league trainer reminds the player of her current bounty. The proper character dialog for it is set.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueBountyRemind() {
 	KidnapLeagueTrainer.CurrentDialog = DialogFind(KidnapLeagueTrainer, "Bounty" + KidnapLeagueBountyLocation).replace("BOUNTYNAME", KidnapLeagueBounty.Name).replace("BOUNTYAMOUNT", (15 + KidnapLeagueBountyDifficulty * 2).toString());
 }
 
-// Starts the bounty hunter mission
+/**
+ * Starts the bounty hunter mission in the kidnap league screen.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueBountyStart() {
 	CommonSetScreen("Room", "KidnapLeague");
 	KidnapLeagueBackground = KidnapLeagueBountyLocation;
@@ -90,12 +144,18 @@ function KidnapLeagueBountyStart() {
 	KidnapLeagueBounty.CurrentDialog = DialogFind(KidnapLeagueBounty, "Bounty" + KidnapLeagueBountyLocation);
 }
 
-// Starts the bounty hunter fight
+/**
+ * Starts the bounty hunter fight with its settings.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueBountyFightStart() {
 	KidnapStart(KidnapLeagueBounty, KidnapLeagueBountyLocation + "Dark", KidnapLeagueBountyDifficulty, "KidnapLeagueBountyFightEnd()");
 }
 
-// Ends the bounty hunter fight
+/**
+ * Ends the bounty hunter fight and goes back to the kidnap league screen.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueBountyFightEnd() {
 	KidnapLeagueRandomActivityCount = 0;
 	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (KidnapLeagueBounty.KidnapMaxWillpower - KidnapLeagueBounty.KidnapWillpower)) * 2);
@@ -111,27 +171,40 @@ function KidnapLeagueBountyFightEnd() {
 	KidnapLeagueWillPayForFreedom = false;
 }
 
-// Pays the player bounty
+/**
+ * Triggered when the player pays for a kidnap league bounty.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueBountyPay() {
 	KidnapLeagueTrainer.CurrentDialog = DialogFind(KidnapLeagueTrainer, "BountyPay").replace("BOUNTYAMOUNT", (15 + KidnapLeagueBountyDifficulty * 2).toString());
 	CharacterChangeMoney(Player, 15 + KidnapLeagueBountyDifficulty * 2);
 	KidnapLeagueBountyReset();
 }
 
-// Resets the bounty so another one can be taken
+/**
+ * Resets the current kidnap league bounty so another one can be taken. The harder the battle, the more reputation the player gains.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueBountyReset() {
 	ReputationProgress("Kidnap", KidnapLeagueBountyVictory ? 2 + Math.floor(KidnapLeagueBountyDifficulty / 2) : 1);
 	KidnapLeagueBounty = null;
 	KidnapLeagueBountyVictory = null;
 }
 
-// When the player starts a kidnap game against the trainer (an easy fight will lower the player dominant reputation)
+/**
+ * Starts a kidnap game with the player against the trainer. An easy fight will lower the player dominant reputation.
+ * @param {number} Difficulty - Difficulty ratio of the encounter
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueStartKidnap(Difficulty) {
 	if (Difficulty < 0) ReputationProgress("Dominant", -2);
 	KidnapStart(KidnapLeagueTrainer, "KidnapLeagueDark", Difficulty, "KidnapLeagueEndKidnap()");
 }
 
-// When the kidnap match ends
+/**
+ * Ends a kidnap match ends. Send the player to the kidnap league screen and sets the right trainer dialog.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueEndKidnap() {
 	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (KidnapLeagueTrainer.KidnapMaxWillpower - KidnapLeagueTrainer.KidnapWillpower)));
 	KidnapLeagueTrainer.AllowItem = KidnapVictory;
@@ -142,7 +215,10 @@ function KidnapLeagueEndKidnap() {
 	KidnapLeagueTrainer.CurrentDialog = DialogFind(KidnapLeagueTrainer, (KidnapVictory) ? "KidnapVictory" : "KidnapDefeat");
 }
 
-// Resets the player and teacher for another kidnapping
+/**
+ * Resets the player and teacher for another kidnapping by releasing them and dressing them up.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueResetTrainer() {
 	KidnapLeagueTrainer.AllowItem = false;
 	CharacterRelease(Player);
@@ -159,7 +235,10 @@ function KidnapLeagueResetTrainer() {
 	}
 }
 
-// When the player gets in a random kidnap match
+/**
+ * Triggered at the start of a match, sets a random intro sequence.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomIntro() {
 	
 	// Sets the kidnapping scene
@@ -192,7 +271,11 @@ function KidnapLeagueRandomIntro() {
 	}
 }
 
-// When a random kidnap match ends
+/**
+ * Triggered at the end of a match, sets a random outro sequence.
+ * @param {boolean} Surrender - Whether or not the player surrendered.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomOutro(Surrender) {
 	KidnapLeagueRandomActivityCount = 0;
 	CommonSetScreen("Room", "KidnapLeague");	
@@ -211,25 +294,38 @@ function KidnapLeagueRandomOutro(Surrender) {
 	} else KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, ((KidnapVictory) ? "Victory" : "Defeat") + KidnapLeagueRandomKidnapperScenario);
 }
 
-// When a random kidnap match starts
+/**
+ * Triggered when a random kidnap match starts. We start the kidnap minigame with the appropriate settings.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomStart() {
 	KidnapStart(KidnapLeagueRandomKidnapper, "MainHallDark", KidnapLeagueRandomKidnapperDifficulty, "KidnapLeagueRandomOutro()");
 }
 
-// When a the player bribes her way out of a fight
+/**
+ * Triggered when a the player successfully bribes her way out of a fight
+ * @param {number} Amount - Amount paid (positive number)
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomBribe(Amount) {
 	CharacterChangeMoney(Player, Amount * -1);
 	DialogLeave();
 	CommonSetScreen("Room", "MainHall");
 }
 
-// When a random kidnap match is surrendered
+/**
+ * Triggered when the player surrenders during a kidnap match, the match ends early.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomSurrender() {
 	KidnapVictory = false;
 	KidnapLeagueRandomOutro(true);
 }
 
-// When a random kidnap match event ends, we dress the player back and no more kidnappings for 3 minutes
+/**
+ * Triggered at the end of a kidnap match. Player is sent to the main hall, dressed back and is unable to do another match for 3 minutes.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomEnd() {
 	if ((InventoryGet(Player, "Cloth") == null) && (KidnapPlayerCloth != null)) {
 		InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);		
@@ -245,25 +341,38 @@ function KidnapLeagueRandomEnd() {
 	CommonSetScreen("Room", "MainHall");
 }
 
-// When we need to show the amount of money offered to get out
+/**
+ * Triggered when we need to show the amount of money the NPC offers to get out.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomMoneyAmount() {
 	KidnapLeagueRandomKidnapper.CurrentDialog = KidnapLeagueRandomKidnapper.CurrentDialog.replace("DIALOGMONEY", (10 + KidnapLeagueRandomKidnapperDifficulty * 2).toString());
 }
 
-// When we need to show the amount of money offered to get out
+/**
+ * Triggered when accepts the NPC's offer to pay for freedom, we lower the kidnap reputation.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomEndMoney() {
 	CharacterChangeMoney(Player, 10 + KidnapLeagueRandomKidnapperDifficulty * 2);
 	ReputationProgress("Kidnap", -2);
 	KidnapLeagueRandomEnd();
 }
 
-// When a random activity starts
+/**
+ * When a random activity starts, set the related NPC dialog and stage
+ * @param {string} A - Name of the activity to perform.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomActivityStart(A) {
 	KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Activity" + A + "Intro");
 	KidnapLeagueRandomKidnapper.Stage = "Activity" + A;
 }
 
-// When there's a random activity to do on the player from the kidnapper
+/**
+ * Triggered when the kidnapper does a random activity on the player.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueRandomActivityLaunch() {
 	
 	// After 4 activities, there's more and more chances that the player will be released
@@ -304,7 +413,10 @@ function KidnapLeagueRandomActivityLaunch() {
 	}
 }
 
-// When the player transfers the kidnapper to her room 
+/**
+ * Triggered when the player transfers the kidnapper to her room, they are sent to the private room.
+ * @returns {void} - Nothing
+ */
 function KidnapLeagueTransferToRoom() {
 	KidnapLeagueRandomEnd();
 	CharacterRelease(Player);
