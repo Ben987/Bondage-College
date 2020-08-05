@@ -1002,6 +1002,8 @@ ItemDevices,Crib,Crib
 ItemDevices,Bed,Bed
 ItemDevices,X-Cross,St. Andrews Cross
 ItemDevices,ChangingTable,Changing Table
+ItemDevices,Locker,Locker
+ItemDevices,SmallLocker,Small Locker
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemAddon,OldGasMaskLenses,Blinding Lenses
