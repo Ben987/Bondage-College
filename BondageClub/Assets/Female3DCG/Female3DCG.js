@@ -2406,7 +2406,10 @@ var AssetFemale3DCG = [
 					{ Name: "Frame", AllowColorize: false },
 					{ Name: "Table", AllowColorize: true }
 				] 
-			}
+			},
+			{ Name: "Locker", Value: 100, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied"], Effect: ["Prone", "Enclose", "BlindLight", "Freeze"], Alpha: [[1, 1, 125, 999],[360, 1, 140, 999]], RemoveAtLogin: true },
+
+	
 		],
 		Color: ["Default"]
 	},
