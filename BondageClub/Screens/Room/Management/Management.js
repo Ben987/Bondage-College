@@ -66,9 +66,14 @@ function ManagementCannotBeClubMistressLaugh() { return ((ReputationGet("Dominan
 function ManagementCannotBeClubMistressTime() { return (((Math.floor((CurrentTime - Player.Creation) / 86400000)) < 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()) }
 function ManagementMistressCanBePaid() { return (LogQuery("ClubMistress", "Management") && !LogQuery("MistressWasPaid", "Management")) }
 function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Management") && LogQuery("MistressWasPaid", "Management")) }
-function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)) }
-function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)) }
+function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)) }
+function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)) }
 function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyRestraint(Player) }
+/**
+ * Checks, if the player is wearing a lover locked restraint
+ * @returns {boolean} - Returns true, if the player wears a lover locked item, false otherwise
+ */
+function ManagementCannotBeClubSlaveLoverLock() { return InventoryCharacterHasLoverOnlyRestraint(Player) }
 function ManagementCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
 function ManagementCanMasturbate() { return (Player.CanInteract() && !CurrentCharacter.IsVulvaChaste()) }
 function ManagementCanPlayWithSub() { return (DialogReputationLess("Dominant", 24) && !InventoryCharacterHasLockedRestraint(Player)) }

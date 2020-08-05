@@ -246,13 +246,13 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 function CharacterLoadNPC(NPCType) {
 
 	// Checks if the NPC already exists and returns it if it's the case
-	for (var C = 0; C < Character.length; C++)
+	for (let C = 0; C < Character.length; C++)
 		if (Character[C].AccountName == NPCType)
 			return Character[C];
 
 	// Randomize the new character
 	CharacterReset(Character.length, "Female3DCG");
-	C = Character[Character.length - 1];
+	let C = Character[Character.length - 1];
 	C.AccountName = NPCType;
 	CharacterLoadCSVDialog(C);
 	CharacterRandomName(C);

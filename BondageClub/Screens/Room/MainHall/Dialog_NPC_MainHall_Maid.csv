@@ -30,9 +30,10 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,,,"(A maid walks by and greets you.)  Hi Sister, are you in trouble?  Do you need help?",,IsMaid
 0,,,(A maid walks by and greets you.)  Are you in trouble?  Do you need help?,,!IsMaid
 0,,Who are you?,"I'm DialogCharacterName, I work here as a maid to help submissives in trouble.  Do you need help?",DialogRemove(),!IsMaid
-0,,(Nod yes.),(She releases you and smiles.)  Here you go!  Everything is ok now?,MaidReleasePlayer(),!HasOwnerLock
-0,,"Yes, can you release me?",(She releases you and smiles.)  Here you go!  Everything is ok now?,MaidReleasePlayer(),!HasOwnerLock
+0,,(Nod yes.),(She releases you and smiles.)  Here you go!  Everything is ok now?,MaidReleasePlayer(),!HasOwnerOrLoverItem()
+0,,"Yes, can you release me?",(She releases you and smiles.)  Here you go!  Everything is ok now?,MaidReleasePlayer(),!HasOwnerOrLoverItem()
 0,40,(Nod yes.),(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.,,HasOwnerLock
+0,45,(Nod yes.),(She checks your locks and frowns.)  Is that a lover lock?  Your Lover might not be pleased if I release you.,,HasLoverLock
 0,70,(Nod yes and point to your slave collar.),(She checks the lock and frowns.) That is a slave collar. Your Mistress might not be pleased if I change it.,,HasSlaveCollar
 0,40,"Yes, can you release me?",(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.,,HasOwnerLock
 0,70,"Yes, can you change my collar?",(She checks the lock and frowns.) That is a slave collar. Your Mistress might not be pleased if I change it.,,HasSlaveCollar
@@ -64,6 +65,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 43,,"Fine, I'm going then.  (Leave her.)",,DialogLeave(),
 43,,(Grumble and leave.),,DialogLeave(),
 43,1010,I have some questions on the club.,Sure.  What would you like to know?,,
+45,43,Please release me anyways.,  "Well, that's something you should discuss with your Lover  (She releases you)",MaidReleasePlayer(),
 50,51,Why do you care?,"I'm doing my job.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
 50,51,Oops!  I forgot the rule.,"Rules are important.  Club slaves must stay naked, let me help you to strip.",,Player.CanTalk()
 50,51,Sorry.  I was tricked by someone.,"Make sure to remember the rules.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", -2)",Player.CanTalk()

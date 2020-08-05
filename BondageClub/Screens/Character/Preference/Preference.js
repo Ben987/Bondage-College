@@ -36,7 +36,7 @@ var PreferenceArousalFetishFactor = 0;
  * Gets the effect of a sexual activity on the player
  * @param {Character} C - The player who performs the sexual activity
  * @param {string} Type - The type of the activity that is performed
- * @param {boolean} Self - Determines, if the current player is giving (true) or recieving (false)
+ * @param {boolean} Self - Determines, if the current player is giving (false) or receiving (true)
  * @returns {number} - Returns the love factor of the activity for the character (0 is horrible, 2 is normal, 4 is great)
  */
 function PreferenceGetActivityFactor(C, Type, Self) {
@@ -69,7 +69,7 @@ function PreferenceGetFetishFactor(C, Type) {
  * Sets the love factor of a sexual activity for the character 
  * @param {Character} C - The character for whom the activity factor should be set
  * @param {string} Type - The type of the activity that is performed
- * @param {boolean} Self - Determines, if the current player is giving (true) or recieving (false)
+ * @param {boolean} Self - Determines, if the current player is giving (false) or receiving (true)
  * @param {number} Factor - The factor of the sexual activity (0 is horrible, 2 is normal, 4 is great)
  */
 function PreferenceSetActivityFactor(C, Type, Self, Factor) {
@@ -220,6 +220,7 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.BlindDisableExamine !== "boolean") C.GameplaySettings.BlindDisableExamine = false;
 	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
 	if (typeof C.GameplaySettings.EnableAfkTimer !== "boolean") C.GameplaySettings.EnableAfkTimer = true;
+	if (typeof C.GameplaySettings.EnableWardrobeIcon !== "boolean") C.GameplaySettings.EnableWardrobeIcon = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 
 	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
@@ -345,6 +346,7 @@ function PreferenceRun() {
 	DrawCheckbox(500, 632, 64, 64, TextGet("EnableAfkTimer"), Player.GameplaySettings.EnableAfkTimer);
 	DrawCheckbox(500, 712, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
 	DrawCheckbox(500, 792, 64, 64, TextGet("EnableSafeword"), Player.GameplaySettings.EnableSafeword);
+	DrawCheckbox(500, 872, 64, 64, TextGet("EnableWardrobeIcon"), Player.GameplaySettings.EnableWardrobeIcon);
 
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
@@ -436,6 +438,7 @@ function PreferenceClick() {
 		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) Player.GameplaySettings.EnableSafeword = true;
 		else if (Player.GameplaySettings.EnableSafeword) Player.GameplaySettings.EnableSafeword = false;
 	}
+	if (MouseIn(500, 872, 64, 64)) Player.GameplaySettings.EnableWardrobeIcon = !Player.GameplaySettings.EnableWardrobeIcon;
 
 }
 
