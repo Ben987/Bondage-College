@@ -482,6 +482,21 @@ function InventoryCharacterHasOwnerOnlyRestraint(C) {
 }
 
 /**
+* Returns TRUE if the character is wearing at least one item that's a restraint with a LoverOnly flag, such as the lover padlock
+* @param {Character} C - The character to scan
+* @returns {Boolean} - TRUE if one lover only restraint is found
+*/
+function InventoryCharacterHasLoverOnlyRestraint(C) {
+	if (C.GetLoversNumbers().length == 0) return false;
+	if (C.Appearance != null)
+		for (var A = 0; A < C.Appearance.length; A++) {
+			if (C.Appearance[A].Asset.IsRestraint && InventoryLoverOnlyItem(C.Appearance[A]))
+				return true;
+		}
+	return false;
+}
+
+/**
 * Returns TRUE if at least one item on the character can be locked
 * @param {Character} C - The character to scan
 * @returns {Boolean} - TRUE if at least one item can be locked
