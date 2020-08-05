@@ -5,6 +5,7 @@ var ChatSearchMessage = "";
 var ChatSearchLeaveRoom = "MainHall";
 var ChatSearchSafewordAppearance = null;
 var ChatSearchSafewordPose = null;
+var ChatSearchPreviousActivePose = null;
 
 /**
  * Loads the chat search screen properties, creates the inputs and loads up the first 24 rooms.
@@ -110,6 +111,7 @@ function ChatSearchKeyDown() {
  * @returns {void} - Nothing
  */
 function ChatSearchExit() {
+	ChatSearchPreviousActivePose = Player.ActivePose;
 	ElementRemove("InputSearch");
 	CommonSetScreen("Room", ChatSearchLeaveRoom);
 }

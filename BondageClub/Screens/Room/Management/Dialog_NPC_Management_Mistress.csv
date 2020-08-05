@@ -255,6 +255,7 @@ MistressExpulsion,,,We Mistresses have been speaking.  It seems you're not fit t
 300,,What if the sub is already owned?,"As long as the owner doesn't disapprove, a regular slave can take a club slave contract for one hour.  We will swap collars and lock the slave collar again in the end.",,,
 300,,Can I become a club slave?,"No, you're not submissive enough.",,CannotBeClubSlaveDominant(),
 300,,Can I become a club slave?,"(She checks your locks.)  No, your Mistress has put an owner lock on you, get released first.",,CannotBeClubSlaveOwnerLock(),
+300,,Can I become a club slave?,"(She checks your locks.)  No, your Lover has put a lover lock on you, get released first.",,CannotBeClubSlaveLoverLock(),
 300,310,Can I become a club slave?,"You could, are you sure you understand the terms and commitments?  Do you accept the contract?",,CanBeClubSlave(),
 300,0,Let's talk about something else.,"Alright girl, but don't waste my time.",,,
 310,320,I accept the terms.  I want to be a club slave.,"Very good, it's time to strip girl.",,!Player.IsNaked(),

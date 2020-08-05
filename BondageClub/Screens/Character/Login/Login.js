@@ -168,7 +168,6 @@ function LoginMistressItems() {
 		InventoryDelete(Player, "MistressTop", "Cloth", false);
 		InventoryDelete(Player, "MistressBottom", "ClothLower", false);
 	}
-	ServerPlayerInventorySync();
 }
 
 /**
@@ -194,7 +193,6 @@ function LoginStableItems() {
 		InventoryDelete(Player, "PonyHood", "ItemHood",false)
 		InventoryDelete(Player,"HoofMittens", "ItemHands", false);
 	}
-	ServerPlayerInventorySync();
 }
 
 /**
@@ -233,7 +231,7 @@ function LoginValideBuyGroups() {
 		if ((Asset[A].BuyGroup != null) && InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name))
 			for (var B = 0; B < Asset.length; B++)
 				if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup) && !InventoryAvailable(Player, Asset[B].Name, Asset[B].Group.Name))
-					InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
+					InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name, false);
 }
 
 /**
@@ -362,8 +360,9 @@ function LoginResponse(C) {
 			SarahSetStatus();
 
 			// Fixes a few items
+			var InventoryBeforeFixes = JSON.stringify(Player.Inventory);
 			InventoryRemove(Player, "ItemMisc");
-			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth");
+			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth", false);
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 			LoginValidCollar();
 			LoginMistressItems();
@@ -371,6 +370,7 @@ function LoginResponse(C) {
 			LoginLoversItems();
 			LoginValideBuyGroups();
 			LoginValidateArrays();
+			if (InventoryBeforeFixes != JSON.stringify(Player.Inventory)) ServerPlayerInventorySync();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell

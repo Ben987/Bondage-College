@@ -687,6 +687,7 @@ ItemArms,TightJacket,Tight Straitjacket
 ItemArms,LatexSleevelessLeotard,Latex Sleeveless Leotard
 ItemArms,LatexBoxtieLeotard,Latex Boxtie Leotard
 ItemArms,LatexButterflyLeotard,Latex Butterfly Leotard
+ItemArms,PrisonLockdownSuit,Prison Lockdown Suit
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -829,6 +830,7 @@ ItemMouth,RopeGag,Rope Gag
 ItemMouth,MilkBottle,Milk Bottle
 ItemMouth,MedicalMask,Medical Mask
 ItemMouth,RegressedMilk,Nursery Milk
+ItemMouth,PrisonLockdownGag,Prison Lockdown Gag
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -868,6 +870,7 @@ ItemMouth2,WebGag,Web Gag
 ItemMouth2,RopeGag,Rope Gag
 ItemMouth2,MedicalMask,Medical Mask
 ItemMouth2,RegressedMilk,Nursery Milk
+ItemMouth2,PrisonLockdownGag,Prison Lockdown Gag
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -907,6 +910,7 @@ ItemMouth3,WebGag,Web Gag
 ItemMouth3,RopeGag,Rope Gag
 ItemMouth3,MedicalMask,Medical Mask
 ItemMouth3,RegressedMilk,Nursery Milk
+ItemMouth3,PrisonLockdownGag,Prison Lockdown Gag
 ItemHead,,Eyes
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -925,6 +929,7 @@ ItemHead,BlackoutLenses,Blackout Lenses
 ItemHead,WebBlindfold,Web
 ItemHead,RopeBlindfold,Rope Blindfold
 ItemHead,SleepMask,Smooth Sleep Mask
+ItemHead,PrisonLockdownBlindfold,Prison Lockdown Blindfold
 ItemNose,,Nose
 ItemNose,NoseHook,Nose Hook
 ItemNose,NoseRing,Nose Ring
