@@ -337,12 +337,3 @@ function CommonConvertArrayToString(Arr) {
 	}
 	return S;
 }
-
-/**
- * Waits for a given time (Used to wait for the server)
- * @param {number} MS - Time to wait in ms 
- */
-function CommonWait(MS) {
-	var waitUntil = new Date().getTime() + MS;
-	while (new Date().getTime() < waitUntil) true;
-}

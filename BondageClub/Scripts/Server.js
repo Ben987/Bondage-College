@@ -259,8 +259,8 @@ function ServerValidateProperties(C, Item) {
 				// Make sure the combination number on the lock is valid, 4 digits only
 				var Lock = InventoryGetLock(Item);
 				if ((Item.Property.CombinationNumber != null) && (typeof Item.Property.CombinationNumber == "string")) {
-					var E = /^[0-9]+$/;
-					if (!Item.Property.CombinationNumber.match(E) || (Item.Property.CombinationNumber.length != 4)) {
+					var Regex = /^[0-9]+$/;
+					if (!Item.Property.CombinationNumber.match(Regex) || (Item.Property.CombinationNumber.length != 4)) {
 						Item.Property.CombinationNumber = "0000";
 					}
 				} else delete Item.Property.CombinationNumber;
