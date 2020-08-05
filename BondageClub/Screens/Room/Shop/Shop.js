@@ -14,6 +14,7 @@ var ShopDemoItemPayment = 0;
 var ShopDemoItemGroup = "";
 var ShopDemoItemGroupList = ["ItemHead", "ItemMouth", "ItemArms", "ItemLegs", "ItemFeet"];
 var ShopSelectAsset = ShopAssetFocusGroup;
+var ShopCart = [];
 
 /** 
  * Checks if the vendor is restrained
@@ -72,25 +73,23 @@ function ShopRun() {
 
 	// In shopping mode
 	if (ShopStarted) {
-
 		// For each items in the assets with a value
 		var X = 1000;
 		var Y = 125;
 		ShopItemCount = 0;
-		for (var A = 0; A < Asset.length; A++)
-			if (ShopSelectAsset(Asset[A])) {
-				if ((ShopItemCount >= ShopItemOffset) && (ShopItemCount < ShopItemOffset + 12)) {
-					DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : "white");
-					DrawImageResize("Assets/" + Asset[A].Group.Family + "/" + Asset[A].Group.Name + "/Preview/" + Asset[A].Name + ".png", X + 2, Y + 2, 221, 221);
-					DrawTextFit(Asset[A].Description + " " + Asset[A].Value.toString() + " $", X + 112, Y + 250, 221, (InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name)) ? "green" : "red");
-					X = X + 250;
-					if (X > 1800) {
-						X = 1000;
-						Y = Y + 300;
-					}
+		for (var A = 0; A < ShopCart.length; A++) {
+			if ((ShopItemCount >= ShopItemOffset) && (ShopItemCount < ShopItemOffset + 12)) {
+				DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : "white");
+				DrawImageResize("Assets/" + ShopCart[A].Group.Family + "/" + ShopCart[A].Group.Name + "/Preview/" + ShopCart[A].Name + ".png", X + 2, Y + 2, 221, 221);
+				DrawTextFit(ShopCart[A].Description + " " + ShopCart[A].Value.toString() + " $", X + 112, Y + 250, 221, (InventoryAvailable(Player, ShopCart[A].Name, ShopCart[A].Group.Name)) ? "green" : "red");
+				X = X + 250;
+				if (X > 1800) {
+					X = 1000;
+					Y = Y + 300;
 				}
-				ShopItemCount++;
 			}
+			ShopItemCount++;
+		}
 
 		// Draw the header and empty text if we need too
 		if (ShopText == "") ShopText = TextGet("SelectItemBuy");
@@ -130,6 +129,7 @@ function ShopSelectAssetMissing() {
 	ShopStarted = true;
 	ShopSelectAsset = ShopAssetMissing;
 	ShopText = TextGet("SelectItemBuy");
+	ShopCartBuild();
 }
 
 /**
@@ -162,46 +162,46 @@ function ShopClick() {
 		var X = 1000;
 		var Y = 125;
 		var ItemCount = 0;
-		for (var A = 0; A < Asset.length; A++)
-			if (ShopSelectAsset(Asset[A])) {
-				if ((ItemCount >= ShopItemOffset) && (ItemCount < ShopItemOffset + 12)) {
-					if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
+		for (var A = 0; A < ShopCart.length; A++) {
+			if ((ItemCount >= ShopItemOffset) && (ItemCount < ShopItemOffset + 12)) {
+				if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
 
-						// If the item isn't already owned and the player has enough money, we buy it
-						if (InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name)) ShopText = TextGet("AlreadyOwned");
-						else if (Asset[A].Value > Player.Money) ShopText = TextGet("NotEnoughMoney");
-						else if (LogQuery("BlockKey", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && ((Asset[A].Name == "MetalCuffsKey") || (Asset[A].Name == "MetalPadlockKey") || (Asset[A].Name == "IntricatePadlockKey"))) ShopText = TextGet("CannotSellKey");
-						else if (LogQuery("BlockRemote", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (Asset[A].Name == "VibratorRemote" || Asset[A].Name == "LoversVibratorRemote")) ShopText = TextGet("CannotSellRemote");
-						else {
+					// If the item isn't already owned and the player has enough money, we buy it
+					if (InventoryAvailable(Player, ShopCart[A].Name, ShopCart[A].Group.Name)) ShopText = TextGet("AlreadyOwned");
+					else if (ShopCart[A].Value > Player.Money) ShopText = TextGet("NotEnoughMoney");
+					else if (LogQuery("BlockKey", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && ((ShopCart[A].Name == "MetalCuffsKey") || (ShopCart[A].Name == "MetalPadlockKey") || (ShopCart[A].Name == "IntricatePadlockKey"))) ShopText = TextGet("CannotSellKey");
+					else if (LogQuery("BlockRemote", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (ShopCart[A].Name == "VibratorRemote" || ShopCart[A].Name == "LoversVibratorRemote")) ShopText = TextGet("CannotSellRemote");
+					else {
 
-							// Add the item and removes the money
-							CharacterChangeMoney(Player, Asset[A].Value * -1);
-							InventoryAdd(Player, Asset[A].Name, Asset[A].Group.Name);
-							ShopText = TextGet("ThankYou");
+						// Add the item and removes the money
+						CharacterChangeMoney(Player, ShopCart[A].Value * -1);
+						InventoryAdd(Player, ShopCart[A].Name, ShopCart[A].Group.Name);
+						ShopText = TextGet("ThankYou");
 
-							// Add any item that belongs in the same buy group
-							if (Asset[A].BuyGroup != null)
-								for (var B = 0; B < Asset.length; B++)
-									if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup))
+						// Add any item that belongs in the same buy group
+						if (ShopCart[A].BuyGroup != null)
+							for (var B = 0; B < Asset.length; B++)
+								if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == ShopCart[A].BuyGroup))
+									InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
+
+						if (ShopCart[A].PrerequisiteBuyGroups)
+							for (var B = 0; B < Asset.length; B++)
+								for (var C = 0; C < ShopCart[A].PrerequisiteBuyGroups.length; C++)
+									if ((Asset[B]) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == ShopCart[A].PrerequisiteBuyGroups[C]))
 										InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
-
-							if (Asset[A].PrerequisiteBuyGroups)
-								for (var B = 0; B < Asset.length; B++)
-									for (var C = 0; C < Asset[A].PrerequisiteBuyGroups.length; C++)
-										if ((Asset[B]) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].PrerequisiteBuyGroups[C]))
-											InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
-
-						}
-
+						// Rebuild the shop menu to be up-to-date
+						ShopCartBuild();
 					}
-					X = X + 250;
-					if (X > 1800) {
-						X = 1000;
-						Y = Y + 300;
-					}
+
 				}
-				ItemCount++;
+				X = X + 250;
+				if (X > 1800) {
+					X = 1000;
+					Y = Y + 300;
+				}
 			}
+			ItemCount++;
+		}
 
 		// Exit shopping mode
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
@@ -221,6 +221,17 @@ function ShopClick() {
 	}
 }
 
+/**
+ * Builds the array of items the player can buy in the current category.
+ * @returns {void} - Nothing
+ */
+function ShopCartBuild() { 
+	ShopCart = [];
+	for (var A = 0; A < Asset.length; A++)
+		if (ShopSelectAsset(Asset[A]))
+			ShopCart.push(Asset[A]);
+}
+ 
 /**
  * Sets the current asset group the player is shopping for
  * @param {string} ItemGroup - Name of the asset group to look for
@@ -242,6 +253,7 @@ function ShopStart(ItemGroup) {
 		ShopStarted = true;
 		ShopSelectAsset = ShopAssetFocusGroup;
 		ShopText = TextGet("SelectItemBuy");
+		ShopCartBuild();
 	}
 
 }
