@@ -3,6 +3,7 @@ var AppearanceBackground = "Dressing";
 var CharacterAppearanceOffset = 0;
 var CharacterAppearanceNumPerPage = 9;
 var CharacterAppearanceHeaderText = "";
+var CharacterAppearanceHeaderTextTime = 0;
 var CharacterAppearanceBackup = null;
 var CharacterAppearanceAssets = [];
 var CharacterAppearanceColorPicker = "";
@@ -528,6 +529,8 @@ function AppearanceRun() {
 	// Draw the background and the character twice
 	var C = CharacterAppearanceSelection;
 	var HideColorPicker = true;
+	if (CharacterAppearanceHeaderTextTime < CommonTime() && CharacterAppearanceMode == "Cloth")
+		CharacterAppearanceHeaderText = "";
 	if (CharacterAppearanceHeaderText == "") {
 		if (C.ID == 0) CharacterAppearanceHeaderText = TextGet("SelectYourAppearance");
 		else CharacterAppearanceHeaderText = TextGet("SelectSomeoneAppearance").replace("TargetCharacterName", C.Name);
@@ -941,7 +944,17 @@ function AppearanceClick() {
 		var Y = 125;
 		for (var I = DialogInventoryOffset; (I < DialogInventory.length) && (I < DialogInventoryOffset + 9); I++) {
 			if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
-				CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
+				var Item = DialogInventory[I];
+				var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
+				var Limit = InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name);
+				
+				if (Block || Limit) return;
+				if (InventoryAllow(C, Item.Asset.Prerequisite))
+					CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
+				else { 
+					CharacterAppearanceHeaderTextTime = DialogTextDefaultTimer;
+					CharacterAppearanceHeaderText = DialogText;
+				}
 				return;
 			}
 			X = X + 250;
@@ -963,6 +976,7 @@ function AppearanceClick() {
 function AppearanceExit() {
 	if (CharacterAppearanceMode != "") { 
 		CharacterAppearanceMode = "";
+		CharacterAppearanceHeaderText = "";
 		ElementRemove("InputColor");
 		ElementRemove("InputWardrobeName"); 
 	} else CharacterAppearanceExit(CharacterAppearanceSelection);
