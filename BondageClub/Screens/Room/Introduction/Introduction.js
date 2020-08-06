@@ -162,12 +162,14 @@ function IntroductionClearZone() {
  * @returns {void} - Nothing
  */
 function IntroductionGetBasicItems() {
-	InventoryAdd(Player, "NylonRope", "ItemFeet");
-	InventoryAdd(Player, "NylonRope", "ItemLegs");
-	InventoryAdd(Player, "NylonRope", "ItemArms");
-	InventoryAdd(Player, "ClothGag", "ItemMouth");
-	InventoryAdd(Player, "ClothGag", "ItemMouth2");
-	InventoryAdd(Player, "ClothGag", "ItemMouth3");
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "NylonRope", Group: "ItemFeet"});
+	ItemsToEarn.push({Name: "NylonRope", Group: "ItemLegs"});
+	ItemsToEarn.push({Name: "NylonRope", Group: "ItemArms"});
+	ItemsToEarn.push({Name: "ClothGag", Group: "ItemMouth"});
+	ItemsToEarn.push({Name: "ClothGag", Group: "ItemMouth2"});
+	ItemsToEarn.push({Name: "ClothGag", Group: "ItemMouth3"});
+	InventoryAddMany(Player, ItemsToEarn);
 	IntroductionHasBasicItems = true;
 }
 

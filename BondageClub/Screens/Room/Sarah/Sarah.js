@@ -504,8 +504,10 @@ function SarahKickPlayerOut() {
 function SarahTransferSophieToRoom(Love) {
 	if (SarahShackled()) SarahUnlock();
 	SarahSophieLeaveRoom();
-	InventoryAdd(Player, "LeatherCuffs", "ItemArms");
-	InventoryAdd(Player, "LeatherCuffsKey", "ItemArms");
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "LeatherCuffs", Group: "ItemArms"});
+	ItemsToEarn.push({Name: "LeatherCuffsKey", Group: "ItemArms"});
+	InventoryAddMany(Player, ItemsToEarn);
 	CharacterRelease(Sophie);
 	CharacterArchetypeClothes(Sophie, "Mistress", "#333333");
 	CommonSetScreen("Room", "Private");
