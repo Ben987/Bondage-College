@@ -5,7 +5,7 @@ var DialogTextDefaultTimer = -1;
 var DialogProgress = -1;
 var DialogColor = null;
 var DialogColorSelect = null;
-var DialogPreviousCharacterAppearance = null;
+var DialogPreviousCharacterData = {};
 var DialogProgressStruggleCount = 0;
 var DialogProgressAuto = 0;
 var DialogProgressOperation = "...";
@@ -401,7 +401,7 @@ function DialogLeaveItemMenu() {
 	DialogActivityMode = false;
 	DialogTextDefault = "";
 	DialogTextDefaultTimer = 0;
-	DialogPreviousCharacterAppearance = null;
+	DialogPreviousCharacterData = {};
 	ElementRemove("InputColor");
 	AudioDialogStop();
 	ColorPickerEndPick();
@@ -566,12 +566,14 @@ function DialogInventorySort() {
  * Build the inventory listing for the dialog which is what's equipped, 
  * the player's inventory and the character's inventory for that group
  * @param {Character} C - The character whose inventory must be built
+ * @param {number} [Offset] - The offset to be at, if specified.
  * @returns {void} - Nothing
  */
-function DialogInventoryBuild(C) {
+function DialogInventoryBuild(C, Offset) {
 
 	// Make sure there's a focused group
-	DialogInventoryOffset = 0;
+	DialogInventoryOffset = Offset;
+	if (DialogInventoryOffset == null) DialogInventoryOffset = 0;
 	DialogInventory = [];
 	if (C.FocusGroup != null) {
 
@@ -614,6 +616,14 @@ function DialogInventoryBuild(C) {
 						var DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
 						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrder);
 					}
+
+			// Fourth, we add all free items (especially useful for clothes)
+			for (var A = 0; A < Asset.length; A++)
+				if ((Asset[A].Group.Name == C.FocusGroup.Name) && (Asset[A].Value == 0) && Asset[A].DynamicAllowInventoryAdd(C)) {
+					var DialogSortOrder = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride : (InventoryAllow(C, Asset[A].Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+					DialogInventoryAdd(C, { Asset: Asset[A] }, false, DialogSortOrder);
+				}
+
 		}
 
 		// Rebuilds the dialog menu and it's buttons
@@ -1359,7 +1369,6 @@ function DialogChangeItemColor(C, Color) {
 
 }
 
-// 
 /**
  * Draw the activity selection dialog
  * @param {Character} C - The character for whom the activity selection dialog is drawn. That can be the player or another character.
@@ -1467,7 +1476,10 @@ function DialogDrawItemMenu(C) {
 		
 		// We cancel out if at least one of the following cases apply: a new item conflicts with this, the player can no longer interact, something else was added first, the item was already removed
 		if (InventoryGroupIsBlocked(C) || (C != Player && !Player.CanInteract()) || (DialogProgressNextItem == null && !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name)) || (DialogProgressNextItem != null && !InventoryAllow(C, DialogProgressNextItem.Asset.Prerequisite)) || (DialogProgressNextItem != null && DialogProgressPrevItem != null && ((InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name) && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name).Asset.Name != DialogProgressPrevItem.Asset.Name) || !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name))) || (DialogProgressNextItem != null && DialogProgressPrevItem == null && InventoryGet(C, DialogProgressNextItem.Asset.Group.Name))) {
-			ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true, "interrupted");
+			if (DialogProgress > 0)
+				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true, "interrupted");
+			else
+				DialogLeave();
 			DialogProgress = -1;
 			return;
 		}
@@ -1598,18 +1610,21 @@ function DialogDraw() {
 	// If we must show the item/inventory menu
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
 
+		var C = CharacterGetCurrent();
 		// We leave if the dialog focus item is no longer there
-		if (DialogFocusItem != null && (InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name) == null || InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name).Asset.Name != DialogFocusItem.Asset.Name) && !DialogFocusItem.Asset.IsLock) {
+		if (DialogFocusItem != null && (InventoryGet(C, DialogFocusItem.Asset.Group.Name) == null || InventoryGet(C, DialogFocusItem.Asset.Group.Name).Asset.Name != DialogFocusItem.Asset.Name) && !DialogFocusItem.Asset.IsLock) {
 			DialogLeaveFocusItem();
 			DialogFocusItem = null;
 		}
 
 		// We rebuild the menu if things changed
-		var C = CharacterGetCurrent();
-		if (DialogPreviousCharacterAppearance !== JSON.stringify(ServerAppearanceBundle(C.Appearance))) {
-			DialogInventoryBuild(C);
+		if (DialogPreviousCharacterData.Appearance !== JSON.stringify(ServerAppearanceBundle(C.Appearance)) || JSON.stringify(DialogPreviousCharacterData.Limited) !== JSON.stringify(C.LimitedItems) || JSON.stringify(DialogPreviousCharacterData.Blocked) !== JSON.stringify(C.BlockItems) || DialogPreviousCharacterData.ActivePose !== C.ActivePose) {
+			DialogInventoryBuild(C, DialogInventoryOffset);
 			ActivityDialogBuild(C);
-			DialogPreviousCharacterAppearance = JSON.stringify(ServerAppearanceBundle(C.Appearance));
+			DialogPreviousCharacterData.Appearance = JSON.stringify(ServerAppearanceBundle(C.Appearance));
+			DialogPreviousCharacterData.Limited = C.LimitedItems;
+			DialogPreviousCharacterData.Blocked = C.BlockItems;
+			DialogPreviousCharacterData.ActivePose = C.ActivePose;
 		}
 
 		// The view can show one specific extended item or the list of all items for a group

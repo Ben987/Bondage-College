@@ -52,6 +52,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
+		IsSlow: function () { return (this.Effect.indexOf("Slow") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
 		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
@@ -246,13 +247,13 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 function CharacterLoadNPC(NPCType) {
 
 	// Checks if the NPC already exists and returns it if it's the case
-	for (var C = 0; C < Character.length; C++)
+	for (let C = 0; C < Character.length; C++)
 		if (Character[C].AccountName == NPCType)
 			return Character[C];
 
 	// Randomize the new character
 	CharacterReset(Character.length, "Female3DCG");
-	C = Character[Character.length - 1];
+	let C = Character[Character.length - 1];
 	C.AccountName = NPCType;
 	CharacterLoadCSVDialog(C);
 	CharacterRandomName(C);
