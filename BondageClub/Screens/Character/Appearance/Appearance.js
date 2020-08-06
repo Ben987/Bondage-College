@@ -976,6 +976,7 @@ function AppearanceExit() {
 function CharacterAppearanceExit(C) {
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceMode = "";
+	C.FocusGroup = null;
 	C.Appearance = CharacterAppearanceBackup;
 	if (Player.GameplaySettings.EnableWardrobeIcon && CharacterAppearanceReturnRoom == "ChatRoom") {
 		CharacterSetFacialExpression(Player, "Emoticon", CharacterAppearancePreviousEmoticon);
