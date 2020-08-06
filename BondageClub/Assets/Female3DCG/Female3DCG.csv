@@ -246,7 +246,6 @@ HairAccessory1,Horns3,Horns 3
 HairAccessory1,HairFlower1, Flower
 HairAccessory1,FoxEars1,Fox Ears Small
 HairAccessory1,BatWings,Small Bat Wings
-HairAccessory1,KittyMask1,Full Kitty Mask
 HairAccessory1,KittenEars1,Black Kitty Ears
 HairAccessory1,KittenEars2,Light Kitty Ears
 HairAccessory1,WolfEars1,Wolf Ears One Piece
@@ -278,7 +277,6 @@ HairAccessory2,Horns3,Horns 3
 HairAccessory2,HairFlower1, Flower
 HairAccessory2,FoxEars1,Fox Ears Small
 HairAccessory2,BatWings,Small Bat Wings
-HairAccessory2,KittyMask1,Full Kitty Mask
 HairAccessory2,KittenEars1,Black Kitty Ears
 HairAccessory2,KittenEars2,Light Kitty Ears
 HairAccessory2,WolfEars1,Wolf Ears One Piece
@@ -321,6 +319,7 @@ Mask,BunnyMask2,Bunny Mask Leather
 Mask,BunnyMask3,Bunny Mask Leather Nose
 Mask,KittyMask1,Kitty Mask Filigrane
 Mask,KittyMask2,Kitty Mask Whiskers
+Mask,KittyMask3,Full Kitty Mask
 Mask,LaceMask1,Bat Mask
 Mask,LaceMask2,Venice Festival Mask
 TailStraps,,Tail Strap
@@ -939,7 +938,7 @@ ItemHead,WebBlindfold,Web
 ItemHead,RopeBlindfold,Rope Blindfold
 ItemHead,SleepMask,Smooth Sleep Mask
 ItemHead,PrisonLockdownBlindfold,Prison Lockdown Blindfold
-ItemHead,Pantyhose.Pantyhose
+ItemHead,Pantyhose,Pantyhose
 ItemNose,,Nose
 ItemNose,NoseHook,Nose Hook
 ItemNose,NoseRing,Nose Ring
@@ -1013,6 +1012,8 @@ ItemDevices,Crib,Crib
 ItemDevices,Bed,Bed
 ItemDevices,X-Cross,St. Andrews Cross
 ItemDevices,ChangingTable,Changing Table
+ItemDevices,Locker,Locker
+ItemDevices,SmallLocker,Small Locker
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemAddon,OldGasMaskLenses,Blinding Lenses
