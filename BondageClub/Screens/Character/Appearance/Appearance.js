@@ -927,6 +927,7 @@ function AppearanceClick() {
 		// Cancels the selected cloth and reverts it back
 		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) {
 			CharacterAppearanceSetItem(C, C.FocusGroup.Name, ((CharacterAppearanceCloth != null) && (CharacterAppearanceCloth.Asset != null)) ? CharacterAppearanceCloth.Asset : null);
+			C.FocusGroup = null;
 			AppearanceExit();
 		}
 
@@ -976,7 +977,6 @@ function AppearanceExit() {
 function CharacterAppearanceExit(C) {
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceMode = "";
-	C.FocusGroup = null;
 	C.Appearance = CharacterAppearanceBackup;
 	if (Player.GameplaySettings.EnableWardrobeIcon && CharacterAppearanceReturnRoom == "ChatRoom") {
 		CharacterSetFacialExpression(Player, "Emoticon", CharacterAppearancePreviousEmoticon);
