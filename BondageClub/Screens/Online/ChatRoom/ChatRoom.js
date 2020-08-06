@@ -17,6 +17,12 @@ var ChatRoomHelpSeen = false;
 var ChatRoomAllowCharacterUpdate = true;
 var ChatRoomStruggleAssistBonus = 0;
 var ChatRoomStruggleAssistTimer = 0;
+<<<<<<< Updated upstream
+=======
+var ChatRoomSlowtimer = 0;
+var ChatRoomSlowStop = false;
+var ChatRoomPplLeaving = [];
+>>>>>>> Stashed changes
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -53,7 +59,25 @@ function ChatRoomCanAssistStand() { return Player.CanInteract() && CurrentCharac
  * @returns {boolean} - Whether or not the target character can stand
  */
 function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharacter.AllowItem  && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) && CurrentCharacter.ActivePose == null}
+<<<<<<< Updated upstream
 
+=======
+function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && isleaving(CurrentCharacter.MemberNumber) && Player.CanInteract() && CurrentCharacter.AllowItem && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) && CurrentCharacter.ActivePose == null) }
+function isleaving(girl){
+	for (var x = 0;x < ChatRoomPplLeaving.length;x++){
+		if (ChatRoomPplLeaving[x] == girl)return true;
+		console.log(ChatRoomPplLeaving);
+	}
+	return false;
+}
+function removeleaving(girl){
+	for (var x = 0 ; x < ChatRoomPplLeaving.length; x++){
+		console.log(ChatRoomPplLeaving[x]);
+		if (ChatRoomPplLeaving[x] == girl) ChatRoomPplLeaving = ChatRoomPplLeaving.splice(ChatRoomPplLeaving[x],1);
+	}
+	
+}
+>>>>>>> Stashed changes
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
 
@@ -285,9 +309,47 @@ function ChatRoomRun() {
 	ElementPositionFix("TextAreaChatLog", 36, 1005, 66, 988, 835);
 	ElementPosition("InputChat", 1456, 950, 900, 82);
 	DrawButton(1905, 908, 90, 90, "", "White", "Icons/Chat.png");
+<<<<<<< Updated upstream
 
 	// Draws the top button, in red if they aren't enabled
 	DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+=======
+	if (!ChatRoomCanLeave() && ChatRoomSlowtimer != 0){//Player got interrupted while trying to leave. (Via a bind)
+		ServerSend("ChatRoomChat", { Content: "SlowLeaveInterrupt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+		ChatRoomSlowtimer = 0;
+		ChatRoomSlowStop = false;
+		removeleaving(Player.MemberNumber);
+	}
+	//Player is slow and can leave and is not stopped by other player.
+	if (Player.IsSlow() && ChatRoomCanLeave() && ChatRoomSlowStop == false){
+		if (ChatRoomSlowtimer == 0) DrawButton(1005, 2, 120, 60, "", "rgb(39, 68, 233)", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));//Draw blue exit for slow
+		if (CurrentTime < ChatRoomSlowtimer && ChatRoomSlowtimer != 0) DrawButton(1005, 2, 120, 60, "", "White", "Icons/Rectangle/CancelRect.png", TextGet("MenuCancel"));//Draw cancel, player has started auto leave.
+		if (CurrentTime > ChatRoomSlowtimer && ChatRoomSlowtimer != 0 ){//Auto leave once timer completes. Reset slow Timers
+			ChatRoomSlowtimer = 0;
+			ChatRoomSlowStop = false;
+			ChatRoomPplLeaving = [];
+			ElementRemove("InputChat");
+			ElementRemove("TextAreaChatLog");
+			ServerSend("ChatRoomLeave", "");
+			CommonSetScreen("Online", "ChatSearch");
+			CharacterDeleteAllOnline();
+		}
+	}
+	//Player is stopped by other player and is slow.
+	if (ChatRoomSlowStop == true && Player.IsSlow()){
+		DrawButton(1005, 2, 120, 60, "", "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));//Player is currently kept in room while slow by other player.
+		if (CurrentTime > ChatRoomSlowtimer){//Stopped player has their stop timer expire, reset. 
+			 ChatRoomSlowtimer = 0;
+			 ChatRoomSlowStop = false;
+		}
+		
+	}
+	// Draws the top button, in red if they aren't enabled	- Check for slow, make sure slow timer is not active.
+	if (!Player.IsSlow()){
+		if (ChatRoomSlowtimer != 0) ChatRoomSlowtimer = 0;//make sure the timer is reset if the a "slow" bind is removed.
+		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+	}
+>>>>>>> Stashed changes
 	if (OnlineGameName == "") DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
 	else DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/GameOption.png", TextGet("MenuGameOption"));
 	DrawButton(1353, 2, 120, 60, "", (Player.CanKneel()) ? "White" : "Pink", "Icons/Rectangle/Kneel.png", TextGet("MenuKneel"));
@@ -687,7 +749,6 @@ function ChatRoomMessage(data) {
 			var MsgEnterLeave = "";
 			if ((data.Type == "Action") && (msg.startsWith("ServerEnter")) || (msg.startsWith("ServerLeave")) || (msg.startsWith("ServerDisconnect")) || (msg.startsWith("ServerBan")) || (msg.startsWith("ServerKick")))
 				MsgEnterLeave = " ChatMessageEnterLeave";
-
 			// Replace actions by the content of the dictionary
 			if (data.Type && ((data.Type == "Action") || (data.Type == "ServerMessage"))) {
 				if (data.Type == "ServerMessage") msg = "ServerMessage" + msg;
@@ -746,6 +807,8 @@ function ChatRoomMessage(data) {
 						else if (dictionary[D].ActivityCounter) ActivityCounter = dictionary[D].ActivityCounter;
 						else if (msg != null) msg = msg.replace(dictionary[D].Tag, ChatRoomHTMLEntities(dictionary[D].Text));
 					}
+					
+			
 
 					// If another player is using an item which applies an activity on the current player, apply the effect here
 					if ((ActivityName != null) && (TargetMemberNumber != null) && (TargetMemberNumber == Player.MemberNumber) && (SenderCharacter.MemberNumber != Player.MemberNumber))
@@ -755,7 +818,18 @@ function ChatRoomMessage(data) {
 					// Launches the audio file if allowed
 					if (!Player.AudioSettings.PlayItemPlayerOnly || IsPlayerInvolved)
 						AudioPlayContent(data);
-
+					// Activate appropriate "Slow" button for focused "slow" user.
+					if (data.Content == "SlowLeaveAttempt"){
+						ChatRoomPplLeaving.push(data.Sender);
+					}
+					if (data.Content == "SlowLeaveCancel" || data.Content == "ChatRoomLeave" ) removeleaving(data.Sender);
+					if (data.Content == "SlowStop"){
+						if (!ChatRoomSlowStop){
+							ChatRoomSlowtimer = CurrentTime + 45000;
+							ChatRoomSlowStop = true;
+							removeleaving(TargetMemberNumber);
+						}
+					}
 				}
 			}
 
@@ -1086,6 +1160,17 @@ function ChatRoomKneelStandAssist() {
 	ChatRoomCharacterUpdate(CurrentCharacter);
 }
 
+<<<<<<< Updated upstream
+=======
+function ChatRoomStopLeave(){
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	Dictionary.push({Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber});
+	ServerSend("ChatRoomChat", { Content: "SlowStop", Type: "Action", Dictionary: Dictionary});
+	DialogLeave();
+}
+
+>>>>>>> Stashed changes
 // Sends an administrative command to the server for the chat room from the character dialog
 function ChatRoomAdminAction(ActionType, Publish) {
 	if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && ChatRoomPlayerIsAdmin()) {
