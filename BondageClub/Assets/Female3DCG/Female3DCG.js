@@ -2315,12 +2315,13 @@ var AssetFemale3DCG = [
 		Left: 150,
 		Top: 20,
 		Zone: [[325, 0, 75, 130]],
+		RemoveItemOnRemove: [{ Group: "ItemHoodAddon", Name: "" }],
 		Asset: [
 			{ Name: "LeatherHoodSealed", Fetish: ["Leather"], Value: 70, Difficulty: 50, Time: 15, AllowLock: true, DefaultColor: "#555555", Prerequisite: ["NotHogtied", "CanUseAlphaHood"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Hat", "HairAccessory1", "HairAccessory2", "Mask"], Effect: ["BlindHeavy", "Prone", "GagLight", "BlockMouth"], Alpha: [[150, 50, 200, 100]], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemNeck", "ItemHead", "ItemNose"] },
 			{ Name: "PolishedSteelHood", Fetish: ["Metal"], Value: 85, Difficulty: 50, Time: 15, AllowLock: true, Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "HairAccessory1", "HairAccessory2", "Mask"], HideItem: ["HatBand1", "HatBand2", "HatTiara1"], Effect: ["BlindHeavy", "DeafLight", "Prone", "GagHeavy", "BlockMouth"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemHead", "ItemNose", "ItemEars"] },
 			{ Name: "InflatedBallHood", Fetish: ["Latex"], Value: 65, Difficulty: 50, Time: 15, AllowLock: true, Prerequisite: ["GagUnique"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "HairAccessory1", "HairAccessory2", "ItemHat", "Mask"], Effect: ["BlindHeavy", "DeafLight", "Prone", "BlockMouth"], AllowEffect: ["GagLight", "GagEasy", "GagMedium", "GagVeryHeavy", "BlockMouth"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemHead", "ItemNose", "ItemEars"], Extended: true },
 			{
-				Name: "OldGasMask", Fetish: ["Leather"], Value: 85, Difficulty: 25, Time: 10, Random: false, AllowLock: true, Prerequisite: ["GasMask"], DefaultColor: "#313131", Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "HairAccessory1", "HairAccessory2", "Mask"], Effect: ["BlockMouth"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemHead", "ItemNose", "ItemEars"], Extended: true, RemoveItemOnRemove: [{ Name: "OldGasMaskTube1", Group: "ItemAddon" }, { Name: "OldGasMaskTube2", Group: "ItemAddon" }, { Name: "OldGasMaskLenses", Group: "ItemAddon" }, { Name: "OldGasMaskRebreather", Group: "ItemAddon" }], Layer: [
+				Name: "OldGasMask", Fetish: ["Leather"], Value: 85, Difficulty: 25, Time: 10, Random: false, AllowLock: true, Prerequisite: ["GasMask"], DefaultColor: "#313131", Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "HairAccessory1", "HairAccessory2", "Mask"], Effect: ["BlockMouth"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemHead", "ItemNose", "ItemEars"], Extended: true, Layer: [
 					{ Name: "Mask", AllowColorize: true },
 					{ Name: "Light", AllowColorize: false }
 				]
@@ -2451,7 +2452,41 @@ var AssetFemale3DCG = [
 		],
 		Color: ["Default"]
 	},
-
+	{
+		Group: "ItemHoodAddon",
+		Category: "Item",
+		Priority: 46,
+		Default: false,
+		IsRestraint: true,
+		Left: 0,
+		Top: -250,
+		Zone: [[400, 100, 90, 100]],
+		Asset: [
+			{ Name: "OldGasMaskLenses", Priority: 46, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true, Effect: ["BlindHeavy"] },
+			{ Name: "OldGasMaskTube1", Effect: ["GagEasy"], Priority: 45, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true },
+			{ Name: "OldGasMaskTube2", Effect: ["GagEasy"], Priority: 45, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true },
+			{ Name: "OldGasMaskRebreather", Priority: 45, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true, Effect: ["GagNormal"] },
+			{
+				Name: "OldGasMaskLensesTube1", Value: -1, Difficulty: 12, SelfBondage: 5, Time: 10, AllowLock: true, Effect: ["BlindHeavy", "GagEasy"], Layer: [
+					{ Name: "Lenses", Priority: 46 },
+					{ Name: "Tube1", Priority: 45 },
+				]
+			},
+			{
+				Name: "OldGasMaskLensesTube2", Value: -1, Difficulty: 12, SelfBondage: 5, Time: 10, AllowLock: true, Effect: ["BlindHeavy", "GagEasy"], Layer: [
+					{ Name: "Lenses", Priority: 46 },
+					{ Name: "Tube2", Priority: 45 },
+				]
+			},
+			{
+				Name: "OldGasMaskLensesRebreather", Value: -1, Difficulty: 12, SelfBondage: 5, Time: 10, AllowLock: true, Effect: ["BlindHeavy", "GagNormal"], Layer: [
+					{ Name: "Lenses", Priority: 46 },
+					{ Name: "Rebreather", Priority: 45 },
+				]
+			},
+		],
+		Color: ["Default"]
+	},
 	{
 		Group: "ItemAddon",
 		Category: "Item",
@@ -2460,13 +2495,9 @@ var AssetFemale3DCG = [
 		IsRestraint: true,
 		Left: 0,
 		Top: -250,
-		Zone: [[400, 0, 90, 200]],
+		Zone: [[400, 0, 90, 100]],
 		Asset: [
 			{ Name: "BondageBenchStraps", Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, IsRestraint: true, AllowLock: true, Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"], SetPose: ["LegsClosed"], Effect: ["Block", "Prone"], AllowType: ["Light", "Normal", "Heavy", "Full"], Block: ["ItemDevices"], Extended: true, RemoveAtLogin: true },
-			{ Name: "OldGasMaskLenses", Priority: 46, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true, Effect: ["BlindHeavy"] },
-			{ Name: "OldGasMaskTube1", Effect: ["GagEasy"], Priority: 45, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true },
-			{ Name: "OldGasMaskTube2", Effect: ["GagEasy"], Priority: 45, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true },
-			{ Name: "OldGasMaskRebreather", Priority: 45, Value: -1, Difficulty: 12, SelfBondage: 5, Time: 5, AllowLock: true, Effect: ["GagNormal"] },
 			{ Name: "Covers", Value: -1, Difficulty: 1, SelfBondage: 0, Prerequisite: "OnBed", BuyGroup: "Bed" },
 			{ Name: "BedRopes", Fetish: ["Rope"], Value: -1, Difficulty: 6, SelfBondage: 3, DefaultColor: "#956B1C", Block: ["ItemDevices"], Hide: ["TailStraps"], Prerequisite: "OnBed", BuyGroup: "Bed" },
 			{ Name: "BedStraps", Fetish: ["Leather"], Value: -1, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", BuyGroup: "Bed" },
