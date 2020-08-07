@@ -22,7 +22,7 @@ var NPCTrait = [
  */
 function NPCTraitSet(C, TraitName, TraitValue) {
 	var ReverseName = NPCTraitReverse(TraitName);
-	for (var T = 0; T < C.Trait.length; T++)
+	for (let T = 0; T < C.Trait.length; T++)
 		if ((C.Trait[T].Name == TraitName) || (C.Trait[T].Name == ReverseName))
 			C.Trait.splice(T, 1);
 	C.Trait.push({ Name: TraitName, Value: TraitValue });
@@ -36,7 +36,7 @@ function NPCTraitSet(C, TraitName, TraitValue) {
 function NPCTraitGenerate(C) {
 	C.Trait = [];
 	while (C.Trait.length == 0) {
-		for (var T = 0; T < NPCTrait.length; T++)
+		for (let T = 0; T < NPCTrait.length; T++)
 			if (Math.random() >= 0.3) {
 				var NewTrait = {
 					Name: NPCTrait[T][Math.floor(Math.random() * 2)],
@@ -53,7 +53,7 @@ function NPCTraitGenerate(C) {
  * @returns {string} - Name of the opposite trait.
  */
 function NPCTraitReverse(Trait) {
-	for (var T = 0; T < NPCTrait.length; T++)
+	for (let T = 0; T < NPCTrait.length; T++)
 		if (NPCTrait[T][1] != null) {
 			if (NPCTrait[T][0] == Trait) return NPCTrait[T][1];
 			if (NPCTrait[T][1] == Trait) return NPCTrait[T][0];
@@ -72,8 +72,8 @@ function NPCTraitGetOptionValue(Dialog, NPCTrait) {
 	if ((Dialog != null) && (NPCTrait != null)) {
 		var Value = 0;
 		var DialogTrait = Dialog.split("|");
-		for (var T = 0; T < DialogTrait.length; T++)
-			for (var N = 0; N < NPCTrait.length; N++)
+		for (let T = 0; T < DialogTrait.length; T++)
+			for (let N = 0; N < NPCTrait.length; N++)
 				if (NPCTrait[N].Name.trim() == DialogTrait[T].trim())
 					Value = Value + NPCTrait[N].Value;
 				else
@@ -94,7 +94,7 @@ function NPCTraitKeepBestOption(C, Group) {
 	// For each dialog option of that group
 	var Best = -1;
 	var Pos = -1;
-	for (var D = 0; D < C.Dialog.length; D++)
+	for (let D = 0; D < C.Dialog.length; D++)
 		if ((C.Dialog[D].Group != null) && (C.Dialog[D].Group == Group)) {
 			var Value = NPCTraitGetOptionValue(C.Dialog[D].Trait, C.Trait);
 			if (Value > Best) { Best = Value; Pos = D; }
@@ -102,7 +102,7 @@ function NPCTraitKeepBestOption(C, Group) {
 
 	// If we found the best possibility, we remove all the others
 	if (Pos >= 0)
-		for (var D = 0; D < C.Dialog.length; D++)
+		for (let D = 0; D < C.Dialog.length; D++)
 			if ((D != Pos) && (C.Dialog[D].Group != null) && (C.Dialog[D].Group == Group)) {
 				C.Dialog.splice(D, 1)
 				Pos--;
@@ -119,7 +119,7 @@ function NPCTraitKeepBestOption(C, Group) {
 function NPCTraitDialog(C) {
 
 	// For each dialog option
-	for (var D = 0; D < C.Dialog.length; D++) {
+	for (let D = 0; D < C.Dialog.length; D++) {
 		if (C.Dialog[D].Group != null) NPCTraitKeepBestOption(C, C.Dialog[D].Group)
 		if (C.Dialog[D].Function != null) C.Dialog[D].Function = C.Dialog[D].Function.replace("MainHall", "");
 	}
@@ -143,7 +143,7 @@ function NPCArousal(C) {
 		var Horny = NPCTraitGet(C, "Horny");
 
 		// Generates love/hate for all activities
-		for (var P = 0; P < C.ArousalSettings.Activity.length; P++) {
+		for (let P = 0; P < C.ArousalSettings.Activity.length; P++) {
 
 			// Picks a random love factor for the activity (highest values have less chances)
 			var LoveSelf = Math.round((Math.random() * 4) + 0.5, 0);
@@ -176,7 +176,7 @@ function NPCArousal(C) {
 		var Orgasm = CommonRandomItemFromList("", OrgasmZones);
 
 		// Generates love/hate for all regions randomly
-		for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++) {
+		for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++) {
 			if (C.ArousalSettings.Zone[Z].Name == Orgasm) {
 				C.ArousalSettings.Zone[Z].Factor = 4;
 				C.ArousalSettings.Zone[Z].Orgasm = true;
@@ -205,7 +205,7 @@ function NPCTraitGet(C, TraitType) {
 
 	// For each NPC trait
 	var Reverse = NPCTraitReverse(TraitType);
-	for (var T = 0; T < C.Trait.length; T++) {
+	for (let T = 0; T < C.Trait.length; T++) {
 		if (TraitType == C.Trait[T].Name) return C.Trait[T].Value;
 		if (Reverse == C.Trait[T].Name) return C.Trait[T].Value * -1;
 	}
@@ -222,7 +222,7 @@ function NPCTraitGet(C, TraitType) {
  */
 function NPCEventAdd(C, EventName, EventValue) {
 	if (C.Event == null) C.Event = [];
-	for (var E = 0; E < C.Event.length; E++)
+	for (let E = 0; E < C.Event.length; E++)
 		if (C.Event[E].Name == EventName) {
 			C.Event[E].Value = EventValue;
 			return;
@@ -243,7 +243,7 @@ function NPCEventAdd(C, EventName, EventValue) {
  */
 function NPCEventDelete(C, EventName) {
 	if (C.Event == null) C.Event = [];
-	for (var E = 0; E < C.Event.length; E++)
+	for (let E = 0; E < C.Event.length; E++)
 		if (C.Event[E].Name == EventName)
 			C.Event.splice(E, 1);
 }
@@ -256,7 +256,7 @@ function NPCEventDelete(C, EventName) {
  */
 function NPCEventGet(C, EventName) {
 	if (C.Event != null)
-		for (var E = 0; E < C.Event.length; E++)
+		for (let E = 0; E < C.Event.length; E++)
 			if (C.Event[E].Name == EventName)
 				return C.Event[E].Value;
 	return 0;

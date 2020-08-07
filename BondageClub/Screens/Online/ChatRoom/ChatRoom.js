@@ -115,7 +115,7 @@ function ChatRoomStart(Space, Game, LeaveRoom, Background, BackgroundTagList) {
 
 // Returns TRUE if the player owner is inside the room
 function ChatRoomOwnerInside() {
-	for (var C = 0; C < ChatRoomCharacter.length; C++)
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
 		if (Player.Ownership.MemberNumber == ChatRoomCharacter[C].MemberNumber)
 			return true;
 	return false;
@@ -168,7 +168,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	if (ChatRoomCharacter.length >= 5) Zoom = 0.5;
 
 	// Draw the characters (in click mode, we can open the character menu or start whispering to them)
-	for (var C = 0; C < ChatRoomCharacter.length; C++)
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
 		if (DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
 				if ((MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) && (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine ? (!(Player.Effect.indexOf("BlindHeavy") >= 0) || ChatRoomCharacter[C].ID == Player.ID) : true)) {
@@ -267,7 +267,7 @@ function ChatRoomFirstTimeHelp() {
 function ChatRoomTarget() {
 	var TargetName = null;
 	if (ChatRoomTargetMemberNumber != null) {
-		for (var C = 0; C < ChatRoomCharacter.length; C++)
+		for (let C = 0; C < ChatRoomCharacter.length; C++)
 			if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
 				TargetName = ChatRoomCharacter[C].Name;
 		if (TargetName == null) ChatRoomTargetMemberNumber = null;
@@ -452,7 +452,7 @@ function ChatRoomClick() {
 function ChatRoomCanLeave() {
 	if (!Player.CanWalk()) return false; // Cannot leave if cannot walk
 	if (!ChatRoomData.Locked || ChatRoomPlayerIsAdmin()) return true; // Can leave if the room isn't locked or is an administrator
-	for (var C = 0; C < ChatRoomCharacter.length; C++)
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
 		if (ChatRoomData.Admin.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0)
 			return false; // Cannot leave if the room is locked and there's an administrator inside
 	return true; // Can leave if the room is locked and there's no administrator inside
@@ -587,7 +587,7 @@ function ChatRoomSendChat() {
 			if ((msg != "") && (ChatRoomTargetMemberNumber != null)) {
 				ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Target: ChatRoomTargetMemberNumber });
 				var TargetName = "";
-				for (var C = 0; C < ChatRoomCharacter.length; C++)
+				for (let C = 0; C < ChatRoomCharacter.length; C++)
 					if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
 						TargetName = ChatRoomCharacter[C].Name;
 
@@ -707,7 +707,7 @@ function ChatRoomMessage(data) {
 
 		// Make sure the sender is in the room
 		var SenderCharacter = null;
-		for (var C = 0; C < ChatRoomCharacter.length; C++)
+		for (let C = 0; C < ChatRoomCharacter.length; C++)
 			if (ChatRoomCharacter[C].MemberNumber == data.Sender) {
 				SenderCharacter = ChatRoomCharacter[C]
 				break;
@@ -722,7 +722,7 @@ function ChatRoomMessage(data) {
 
 			// Hidden messages are processed separately, they are used by chat room mini-games / events
 			if ((data.Type != null) && (data.Type == "Hidden")) {
-				for (var A = 1; A <= 6; A++)
+				for (let A = 1; A <= 6; A++)
 					if (msg == "StruggleAssist" + A.toString()) {
 						ChatRoomStruggleAssistTimer = CurrentTime + 60000;
 						ChatRoomStruggleAssistBonus = A;
@@ -756,7 +756,7 @@ function ChatRoomMessage(data) {
 					var ActivityName = null;
 					var GroupName = null;
 					var ActivityCounter = 1;
-					for (var D = 0; D < dictionary.length; D++) {
+					for (let D = 0; D < dictionary.length; D++) {
 
 						// If there's a member number in the dictionary packet, we use that number to alter the chat message
 						if (dictionary[D].MemberNumber) {
@@ -772,7 +772,7 @@ function ChatRoomMessage(data) {
 							}
 							else if (dictionary[D].Tag == "SourceCharacter") {
 								msg = msg.replace(dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFind(Player, "Someone") : ChatRoomHTMLEntities(dictionary[D].Text));
-								for (var T = 0; T < ChatRoomCharacter.length; T++)
+								for (let T = 0; T < ChatRoomCharacter.length; T++)
 									if (ChatRoomCharacter[T].MemberNumber == dictionary[D].MemberNumber)
 										SourceCharacter = ChatRoomCharacter[T];
 							}
@@ -785,7 +785,7 @@ function ChatRoomMessage(data) {
 						}
 						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, ChatRoomHTMLEntities(dictionary[D].TextToLookUp)).toLowerCase());
 						else if (dictionary[D].AssetName) {
-							for (var A = 0; A < Asset.length; A++)
+							for (let A = 0; A < Asset.length; A++)
 								if (Asset[A].Name == dictionary[D].AssetName) {
 									msg = msg.replace(dictionary[D].Tag, Asset[A].DynamicDescription(SourceCharacter || Player).toLowerCase());
 									ActivityName = Asset[A].DynamicActivity(SourceCharacter || Player);
@@ -793,7 +793,7 @@ function ChatRoomMessage(data) {
 								}
 						}
 						else if (dictionary[D].AssetGroupName) {
-							for (var A = 0; A < AssetGroup.length; A++)
+							for (let A = 0; A < AssetGroup.length; A++)
 								if (AssetGroup[A].Name == dictionary[D].AssetGroupName) {
 									msg = msg.replace(dictionary[D].Tag, AssetGroup[A].Description.toLowerCase());
 									GroupName = dictionary[D].AssetGroupName;
@@ -843,7 +843,7 @@ function ChatRoomMessage(data) {
 				var ActivityGroup = null;
 				var ActivityCounter = 1;
 				if (data.Dictionary != null)
-					for (var D = 0; D < data.Dictionary.length; D++) {
+					for (let D = 0; D < data.Dictionary.length; D++) {
 						if (data.Dictionary[D].MemberNumber != null) msg = msg.replace(data.Dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (data.Dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFind(Player, "Someone") : ChatRoomHTMLEntities(data.Dictionary[D].Text));
 						if ((data.Dictionary[D].MemberNumber != null) && (data.Dictionary[D].Tag == "TargetCharacter")) TargetMemberNumber = data.Dictionary[D].MemberNumber;
 						if (data.Dictionary[D].Tag == "ActivityName") ActivityName = data.Dictionary[D].Text;
@@ -915,7 +915,7 @@ function ChatRoomSync(data) {
 				ChatRoomCharacter = ChatRoomCharacter.filter(A => data.Character.some(B => A.MemberNumber == B.MemberNumber));
 				ChatRoomData = data;
 				// Remove non-present chatroom characters from the characters array as they are no longer needed
-				for (var C = 0; C < Character.length; C++)
+				for (let C = 0; C < Character.length; C++)
 					if (Character[C].AccountName.startsWith("Online-") && data.Character.find(DC => DC.MemberNumber == Character[C].MemberNumber) == null)
 						CharacterDelete(Character[C].AccountName);
 				return;
@@ -929,7 +929,7 @@ function ChatRoomSync(data) {
 
 		// Load the characters
 		ChatRoomCharacter = [];
-		for (var C = 0; C < data.Character.length; C++)
+		for (let C = 0; C < data.Character.length; C++)
 			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C], data.SourceMemberNumber));
 
 		// Keeps a copy of the previous version
@@ -947,12 +947,12 @@ function ChatRoomSyncSingle(data) {
 	// Sets the chat room character data
 	if ((data == null) || (typeof data !== "object")) return;
 	if ((data.Character == null) || (typeof data.Character !== "object")) return;
-	for (var C = 0; C < ChatRoomCharacter.length; C++)
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
 		if (ChatRoomCharacter[C].MemberNumber == data.Character.MemberNumber)
 			ChatRoomCharacter[C] = CharacterLoadOnline(data.Character, data.SourceMemberNumber);
 
 	// Keeps a copy of the previous version
-	for (var C = 0; C < ChatRoomData.Character.length; C++)
+	for (let C = 0; C < ChatRoomData.Character.length; C++)
 		if (ChatRoomData.Character[C].MemberNumber == data.Character.MemberNumber)
 			ChatRoomData.Character[C] = data.Character;
 
@@ -961,11 +961,11 @@ function ChatRoomSyncSingle(data) {
 // Updates a single character expression in the chatroom
 function ChatRoomSyncExpression(data) {
 	if ((data == null) || (typeof data !== "object") || (data.Group == null) || (typeof data.Group !== "string")) return;
-	for (var C = 0; C < ChatRoomCharacter.length; C++)
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
 		if (ChatRoomCharacter[C].MemberNumber == data.MemberNumber) {
 
 			// Changes the facial expression
-			for (var A = 0; A < ChatRoomCharacter[C].Appearance.length; A++)
+			for (let A = 0; A < ChatRoomCharacter[C].Appearance.length; A++)
 				if ((ChatRoomCharacter[C].Appearance[A].Asset.Group.Name == data.Group) && (ChatRoomCharacter[C].Appearance[A].Asset.Group.AllowExpression))
 					if ((data.Name == null) || (ChatRoomCharacter[C].Appearance[A].Asset.Group.AllowExpression.indexOf(data.Name) >= 0)) {
 						if (!ChatRoomCharacter[C].Appearance[A].Property) ChatRoomCharacter[C].Appearance[A].Property = {};
@@ -976,7 +976,7 @@ function ChatRoomSyncExpression(data) {
 					}
 
 			// Keeps a copy of the previous version
-			for (var C = 0; C < ChatRoomData.Character.length; C++)
+			for (let C = 0; C < ChatRoomData.Character.length; C++)
 				if (ChatRoomData.Character[C].MemberNumber == data.MemberNumber)
 					ChatRoomData.Character[C].Appearance = ChatRoomCharacter[C].Appearance;
 			return;
@@ -987,7 +987,7 @@ function ChatRoomSyncExpression(data) {
 // Updates a single character pose in the chatroom
 function ChatRoomSyncPose(data) {
 	if ((data == null) || (typeof data !== "object")) return;
-	for (var C = 0; C < ChatRoomCharacter.length; C++)
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
 		if (ChatRoomCharacter[C].MemberNumber == data.MemberNumber) {
 
 			// Sets the active pose
@@ -995,7 +995,7 @@ function ChatRoomSyncPose(data) {
 			CharacterRefresh(ChatRoomCharacter[C], false);
 
 			// Keeps a copy of the previous version
-			for (var C = 0; C < ChatRoomData.Character.length; C++)
+			for (let C = 0; C < ChatRoomData.Character.length; C++)
 				if (ChatRoomData.Character[C].MemberNumber == data.MemberNumber)
 					ChatRoomData.Character[C].ActivePose = data.Pose;
 			return;
@@ -1006,7 +1006,7 @@ function ChatRoomSyncPose(data) {
 // Updates a single character arousal progress in the chatroom
 function ChatRoomSyncArousal(data) {
 	if ((data == null) || (typeof data !== "object")) return;
-	for (var C = 0; C < ChatRoomCharacter.length; C++)
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
 		if ((ChatRoomCharacter[C].MemberNumber == data.MemberNumber) && (ChatRoomCharacter[C].ArousalSettings != null)) {
 
 			// Sets the orgasm count & progress
@@ -1017,7 +1017,7 @@ function ChatRoomSyncArousal(data) {
 			if ((ChatRoomCharacter[C].ArousalSettings.AffectExpression == null) || ChatRoomCharacter[C].ArousalSettings.AffectExpression) ActivityExpression(ChatRoomCharacter[C], ChatRoomCharacter[C].ArousalSettings.Progress);
 
 			// Keeps a copy of the previous version
-			for (var C = 0; C < ChatRoomData.Character.length; C++)
+			for (let C = 0; C < ChatRoomData.Character.length; C++)
 				if (ChatRoomData.Character[C].MemberNumber == data.MemberNumber) {
 					ChatRoomData.Character[C].ArousalSettings.OrgasmTimer = data.OrgasmTimer;
 					ChatRoomData.Character[C].ArousalSettings.OrgasmCount = data.OrgasmCount;
@@ -1052,7 +1052,7 @@ function ChatRoomAllowChangeLockedItem(Data, Item) {
 // Updates a single character item in the chatroom
 function ChatRoomSyncItem(data) {
 	if ((data == null) || (typeof data !== "object") || (data.Source == null) || (typeof data.Source !== "number") || (data.Item == null) || (typeof data.Item !== "object") || (data.Item.Target == null) || (typeof data.Item.Target !== "number") || (data.Item.Group == null) || (typeof data.Item.Group !== "string")) return;
-	for (var C = 0; C < ChatRoomCharacter.length; C++)
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
 		if (ChatRoomCharacter[C].MemberNumber == data.Item.Target) {
 
 			// From another user, we prevent changing the item if the current item is locked by owner/lover locks
@@ -1085,7 +1085,7 @@ function ChatRoomSyncItem(data) {
 			}
 
 			// Keeps the change in the chat room data and allows the character to be updated again
-			for (var R = 0; R < ChatRoomData.Character.length; R++)
+			for (let R = 0; R < ChatRoomData.Character.length; R++)
 				if (ChatRoomData.Character[R].MemberNumber == data.Item.Target)
 					ChatRoomData.Character[R].Appearance = ChatRoomCharacter[C].Appearance;
 			ChatRoomAllowCharacterUpdate = true;
@@ -1096,7 +1096,7 @@ function ChatRoomSyncItem(data) {
 // Refreshes the chat log element
 function ChatRoomRefreshChatSettings(C) {
 	if (C.ChatSettings) {
-		for (var property in C.ChatSettings)
+		for (let property in C.ChatSettings)
 			ElementSetDataAttribute("TextAreaChatLog", property, C.ChatSettings[property]);
 		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepNames" || C.GameplaySettings.SensDepChatLog == "SensDepTotal") && (C.GetDeafLevel() >= 3) && (C.Effect.indexOf("BlindHeavy") >= 0)) ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden");
 		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepTotal") && (C.GetDeafLevel() >= 3) && (C.Effect.indexOf("BlindHeavy") >= 0)) {

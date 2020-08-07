@@ -624,7 +624,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	process.nextTick = function (fun) {
 	    var args = new Array(arguments.length - 1);
 	    if (arguments.length > 1) {
-	        for (var i = 1; i < arguments.length; i++) {
+	        for (let i = 1; i < arguments.length; i++) {
 	            args[i - 1] = arguments[i];
 	        }
 	    }
@@ -759,7 +759,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    // turn the `arguments` into a proper Array
 	    var args = new Array(arguments.length);
-	    for (var i = 0; i < args.length; i++) {
+	    for (let i = 0; i < args.length; i++) {
 	      args[i] = arguments[i];
 	    }
 	
@@ -1516,7 +1516,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	function mixin(obj) {
-	  for (var key in Emitter.prototype) {
+	  for (let key in Emitter.prototype) {
 	    obj[key] = Emitter.prototype[key];
 	  }
 	  return obj;
@@ -1594,7 +1594,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  // remove specific handler
 	  var cb;
-	  for (var i = 0; i < callbacks.length; i++) {
+	  for (let i = 0; i < callbacks.length; i++) {
 	    cb = callbacks[i];
 	    if (cb === fn || cb.fn === fn) {
 	      callbacks.splice(i, 1);
@@ -1619,7 +1619,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  if (callbacks) {
 	    callbacks = callbacks.slice(0);
-	    for (var i = 0, len = callbacks.length; i < len; ++i) {
+	    for (let i = 0, len = callbacks.length; i < len; ++i) {
 	      callbacks[i].apply(this, args);
 	    }
 	  }
@@ -1697,13 +1697,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return placeholder;
 	  } else if (isArray(data)) {
 	    var newData = new Array(data.length);
-	    for (var i = 0; i < data.length; i++) {
+	    for (let i = 0; i < data.length; i++) {
 	      newData[i] = _deconstructPacket(data[i], buffers);
 	    }
 	    return newData;
 	  } else if (typeof data === 'object' && !(data instanceof Date)) {
 	    var newData = {};
-	    for (var key in data) {
+	    for (let key in data) {
 	      newData[key] = _deconstructPacket(data[key], buffers);
 	    }
 	    return newData;
@@ -1732,11 +1732,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (data && data._placeholder) {
 	    return buffers[data.num]; // appropriate buffer (should be natural order anyway)
 	  } else if (isArray(data)) {
-	    for (var i = 0; i < data.length; i++) {
+	    for (let i = 0; i < data.length; i++) {
 	      data[i] = _reconstructPacket(data[i], buffers);
 	    }
 	  } else if (typeof data === 'object') {
-	    for (var key in data) {
+	    for (let key in data) {
 	      data[key] = _reconstructPacket(data[key], buffers);
 	    }
 	  }
@@ -1781,11 +1781,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      fileReader.readAsArrayBuffer(obj); // blob -> arraybuffer
 	    } else if (isArray(obj)) { // handle array
-	      for (var i = 0; i < obj.length; i++) {
+	      for (let i = 0; i < obj.length; i++) {
 	        _removeBlobs(obj[i], i, obj);
 	      }
 	    } else if (typeof obj === 'object' && !isBuf(obj)) { // and object
-	      for (var key in obj) {
+	      for (let key in obj) {
 	        _removeBlobs(obj[key], key, obj);
 	      }
 	    }
@@ -1923,7 +1923,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	Manager.prototype.emitAll = function () {
 	  this.emit.apply(this, arguments);
-	  for (var nsp in this.nsps) {
+	  for (let nsp in this.nsps) {
 	    if (has.call(this.nsps, nsp)) {
 	      this.nsps[nsp].emit.apply(this.nsps[nsp], arguments);
 	    }
@@ -1937,7 +1937,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	Manager.prototype.updateSocketIds = function () {
-	  for (var nsp in this.nsps) {
+	  for (let nsp in this.nsps) {
 	    if (has.call(this.nsps, nsp)) {
 	      this.nsps[nsp].id = this.generateId(nsp);
 	    }
@@ -2264,7 +2264,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // encode, then write to engine with result
 	    self.encoding = true;
 	    this.encoder.encode(packet, function (encodedPackets) {
-	      for (var i = 0; i < encodedPackets.length; i++) {
+	      for (let i = 0; i < encodedPackets.length; i++) {
 	        self.engine.write(encodedPackets[i], packet.options);
 	      }
 	      self.encoding = false;
@@ -2300,7 +2300,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  debug('cleanup');
 	
 	  var subsLength = this.subs.length;
-	  for (var i = 0; i < subsLength; i++) {
+	  for (let i = 0; i < subsLength; i++) {
 	    var sub = this.subs.shift();
 	    sub.destroy();
 	  }
@@ -2646,7 +2646,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function clone (obj) {
 	  var o = {};
-	  for (var i in obj) {
+	  for (let i in obj) {
 	    if (obj.hasOwnProperty(i)) {
 	      o[i] = obj[i];
 	    }
@@ -2856,7 +2856,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // listener already closed the socket
 	  if ('open' === this.readyState && this.upgrade && this.transport.pause) {
 	    debug('starting upgrade probes');
-	    for (var i = 0, l = this.upgrades.length; i < l; i++) {
+	    for (let i = 0, l = this.upgrades.length; i < l; i++) {
 	      this.probe(this.upgrades[i]);
 	    }
 	  }
@@ -3178,7 +3178,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	Socket.prototype.filterUpgrades = function (upgrades) {
 	  var filteredUpgrades = [];
-	  for (var i = 0, j = upgrades.length; i < j; i++) {
+	  for (let i = 0, j = upgrades.length; i < j; i++) {
 	    if (~index(this.transports, upgrades[i])) filteredUpgrades.push(upgrades[i]);
 	  }
 	  return filteredUpgrades;
@@ -3516,7 +3516,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    try {
 	      if (this.extraHeaders) {
 	        xhr.setDisableHeaderCheck && xhr.setDisableHeaderCheck(true);
-	        for (var i in this.extraHeaders) {
+	        for (let i in this.extraHeaders) {
 	          if (this.extraHeaders.hasOwnProperty(i)) {
 	            xhr.setRequestHeader(i, this.extraHeaders[i]);
 	          }
@@ -3723,7 +3723,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 	
 	function unloadHandler () {
-	  for (var i in Request.requests) {
+	  for (let i in Request.requests) {
 	    if (Request.requests.hasOwnProperty(i)) {
 	      Request.requests[i].abort();
 	    }
@@ -4298,7 +4298,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var resultBuffer = new Uint8Array(1 + data.byteLength);
 	
 	  resultBuffer[0] = packets[packet.type];
-	  for (var i = 0; i < contentArray.length; i++) {
+	  for (let i = 0; i < contentArray.length; i++) {
 	    resultBuffer[i+1] = contentArray[i];
 	  }
 	
@@ -4358,7 +4358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // iPhone Safari doesn't let you apply with typed arrays
 	    var typed = new Uint8Array(packet.data);
 	    var basic = new Array(typed.length);
-	    for (var i = 0; i < typed.length; i++) {
+	    for (let i = 0; i < typed.length; i++) {
 	      basic[i] = typed[i];
 	    }
 	    b64data = String.fromCharCode.apply(null, basic);
@@ -4509,7 +4509,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	  };
 	
-	  for (var i = 0; i < ary.length; i++) {
+	  for (let i = 0; i < ary.length; i++) {
 	    eachWithIndex(i, ary[i], next);
 	  }
 	}
@@ -4540,7 +4540,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  var length = '', n, msg;
 	
-	  for (var i = 0, l = data.length; i < l; i++) {
+	  for (let i = 0, l = data.length; i < l; i++) {
 	    var chr = data.charAt(i);
 	
 	    if (chr !== ':') {
@@ -4628,7 +4628,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var ab = p;
 	      if (isString) {
 	        var view = new Uint8Array(p.length);
-	        for (var i = 0; i < p.length; i++) {
+	        for (let i = 0; i < p.length; i++) {
 	          view[i] = p.charCodeAt(i);
 	        }
 	        ab = view.buffer;
@@ -4641,13 +4641,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	
 	      var lenStr = ab.byteLength.toString();
-	      for (var i = 0; i < lenStr.length; i++) {
+	      for (let i = 0; i < lenStr.length; i++) {
 	        resultArray[bufferIndex++] = parseInt(lenStr[i]);
 	      }
 	      resultArray[bufferIndex++] = 255;
 	
 	      var view = new Uint8Array(ab);
-	      for (var i = 0; i < view.length; i++) {
+	      for (let i = 0; i < view.length; i++) {
 	        resultArray[bufferIndex++] = view[i];
 	      }
 	    });
@@ -4667,7 +4667,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      binaryIdentifier[0] = 1;
 	      if (typeof encoded === 'string') {
 	        var view = new Uint8Array(encoded.length);
-	        for (var i = 0; i < encoded.length; i++) {
+	        for (let i = 0; i < encoded.length; i++) {
 	          view[i] = encoded.charCodeAt(i);
 	        }
 	        encoded = view.buffer;
@@ -4680,7 +4680,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      var lenStr = len.toString();
 	      var lengthAry = new Uint8Array(lenStr.length + 1);
-	      for (var i = 0; i < lenStr.length; i++) {
+	      for (let i = 0; i < lenStr.length; i++) {
 	        lengthAry[i] = parseInt(lenStr[i]);
 	      }
 	      lengthAry[lenStr.length] = 255;
@@ -4720,7 +4720,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var isString = tailArray[0] === 0;
 	    var msgLength = '';
 	
-	    for (var i = 1; ; i++) {
+	    for (let i = 1; ; i++) {
 	      if (tailArray[i] === 255) break;
 	
 	      // 310 = char length of Number.MAX_VALUE
@@ -4742,7 +4742,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // iPhone Safari doesn't let you apply to typed arrays
 	        var typed = new Uint8Array(msg);
 	        msg = '';
-	        for (var i = 0; i < typed.length; i++) {
+	        for (let i = 0; i < typed.length; i++) {
 	          msg += String.fromCharCode(typed[i]);
 	        }
 	      }
@@ -4775,7 +4775,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var arr = [];
 	  var has = Object.prototype.hasOwnProperty;
 	
-	  for (var i in obj) {
+	  for (let i in obj) {
 	    if (has.call(obj, i)) {
 	      arr.push(i);
 	    }
@@ -4823,7 +4823,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	
 	  if (isArray(obj)) {
-	    for (var i = 0, l = obj.length; i < l; i++) {
+	    for (let i = 0, l = obj.length; i < l; i++) {
 	      if (hasBinary(obj[i])) {
 	        return true;
 	      }
@@ -4844,7 +4844,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return hasBinary(obj.toJSON(), true);
 	  }
 	
-	  for (var key in obj) {
+	  for (let key in obj) {
 	    if (Object.prototype.hasOwnProperty.call(obj, key) && hasBinary(obj[key])) {
 	      return true;
 	    }
@@ -4882,7 +4882,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  var abv = new Uint8Array(arraybuffer);
 	  var result = new Uint8Array(end - start);
-	  for (var i = start, ii = 0; i < end; i++, ii++) {
+	  for (let i = start, ii = 0; i < end; i++, ii++) {
 	    result[ii] = abv[i];
 	  }
 	  return result.buffer;
@@ -5157,7 +5157,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  // Use a lookup table to find the index.
 	  var lookup = new Uint8Array(256);
-	  for (var i = 0; i < chars.length; i++) {
+	  for (let i = 0; i < chars.length; i++) {
 	    lookup[chars.charCodeAt(i)] = i;
 	  }
 	
@@ -5333,7 +5333,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.encode = function (obj) {
 	  var str = '';
 	
-	  for (var i in obj) {
+	  for (let i in obj) {
 	    if (obj.hasOwnProperty(i)) {
 	      if (str.length) str += '&';
 	      str += encodeURIComponent(i) + '=' + encodeURIComponent(obj[i]);
@@ -5353,7 +5353,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.decode = function(qs){
 	  var qry = {};
 	  var pairs = qs.split('&');
-	  for (var i = 0, l = pairs.length; i < l; i++) {
+	  for (let i = 0, l = pairs.length; i < l; i++) {
 	    var pair = pairs[i].split('=');
 	    qry[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
 	  }
@@ -5862,7 +5862,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // encodePacket efficient as it uses WS framing
 	  // no need for encodePayload
 	  var total = packets.length;
-	  for (var i = 0, l = total; i < l; i++) {
+	  for (let i = 0, l = total; i < l; i++) {
 	    (function (packet) {
 	      parser.encodePacket(packet, self.supportsBinary, function (data) {
 	        if (!self.usingBrowserWebSocket) {
@@ -5998,7 +5998,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	module.exports = function(arr, obj){
 	  if (indexOf) return arr.indexOf(obj);
-	  for (var i = 0; i < arr.length; ++i) {
+	  for (let i = 0; i < arr.length; ++i) {
 	    if (arr[i] === obj) return i;
 	  }
 	  return -1;
@@ -6386,7 +6386,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Socket.prototype.destroy = function () {
 	  if (this.subs) {
 	    // clean subscriptions to avoid reconnections
-	    for (var i = 0; i < this.subs.length; i++) {
+	    for (let i = 0; i < this.subs.length; i++) {
 	      this.subs[i].destroy();
 	    }
 	    this.subs = null;
@@ -6455,7 +6455,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    index = index || 0
 	
-	    for (var i = index || 0; i < list.length; i++) {
+	    for (let i = index || 0; i < list.length; i++) {
 	        array[i - index] = list[i]
 	    }
 	

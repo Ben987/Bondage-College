@@ -167,7 +167,7 @@ function ServerPlayerSync() {
  */
 function ServerPlayerInventorySync() {
 	var Inv = [];
-	for (var I = 0; I < Player.Inventory.length; I++)
+	for (let I = 0; I < Player.Inventory.length; I++)
 		if (Player.Inventory[I].Asset != null)
 			Inv.push([Player.Inventory[I].Asset.Name, Player.Inventory[I].Asset.Group.Name]);
 	ServerSend("AccountUpdate", { Inventory: LZString.compressToUTF16(JSON.stringify(Inv)) });
@@ -210,7 +210,7 @@ function ServerPlayerSkillSync() {
  */
 function ServerAppearanceBundle(Appearance) {
 	var Bundle = [];
-	for (var A = 0; A < Appearance.length; A++) {
+	for (let A = 0; A < Appearance.length; A++) {
 		var N = {};
 		N.Group = Appearance[A].Asset.Group.Name;
 		N.Name = Appearance[A].Asset.Name;
@@ -235,7 +235,7 @@ function ServerValidateProperties(C, Item) {
 
 	// For each effect on the item
 	if ((Item.Property != null) && (Item.Property.Effect != null)) {
-		for (var E = 0; E < Item.Property.Effect.length; E++) {
+		for (let E = 0; E < Item.Property.Effect.length; E++) {
 
 			// Make sure the item can be locked, remove any lock that's invalid
 			var Effect = Item.Property.Effect[E];
@@ -312,7 +312,7 @@ function ServerValidateProperties(C, Item) {
 				// Check if the effect is allowed for the item
 				var MustRemove = true;
 				if (Item.Asset.AllowEffect != null)
-					for (var A = 0; A < Item.Asset.AllowEffect.length; A++)
+					for (let A = 0; A < Item.Asset.AllowEffect.length; A++)
 						if (Item.Asset.AllowEffect[A] == Effect)
 							MustRemove = false;
 
@@ -328,12 +328,12 @@ function ServerValidateProperties(C, Item) {
 
 	// For each block on the item
 	if ((Item.Property != null) && (Item.Property.Block != null)) {
-		for (var B = 0; B < Item.Property.Block.length; B++) {
+		for (let B = 0; B < Item.Property.Block.length; B++) {
 
 			// Check if the effect is allowed for the item
 			var MustRemove = true;
 			if (Item.Asset.AllowBlock != null)
-				for (var A = 0; A < Item.Asset.AllowBlock.length; A++)
+				for (let A = 0; A < Item.Asset.AllowBlock.length; A++)
 					if (Item.Asset.AllowBlock[A] == Item.Property.Block[B])
 						MustRemove = false;
 
@@ -366,7 +366,7 @@ function ServerValidateProperties(C, Item) {
 function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
 	// Removes any invalid data from the appearance bundle
-	for (var B = 0; B < Bundle.length; B++)
+	for (let B = 0; B < Bundle.length; B++)
 		if ((Bundle[B] == null) || (typeof Bundle[B] !== "object") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string")) {
 			Bundle.splice(B, 1);
 			B--;
@@ -377,7 +377,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 	// Reapply any item that was equipped and isn't enable, same for owner locked items if the source member isn't the owner
 	if ((SourceMemberNumber != null) && (C.ID == 0))
-		for (var A = 0; A < C.Appearance.length; A++) {
+		for (let A = 0; A < C.Appearance.length; A++) {
 			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly && !C.Appearance[A].Asset.LoverOnly) {
 				Appearance.push(C.Appearance[A]);
 			} else {
@@ -386,7 +386,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					if (!C.Appearance[A].Asset.OwnerOnly) {
 
 						// If the owner-locked item is sent back from a non-owner, we allow to change some properties and lock it back with the owner lock
-						for (var B = 0; B < Bundle.length; B++)
+						for (let B = 0; B < Bundle.length; B++)
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
 
@@ -414,7 +414,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					if (!C.Appearance[A].Asset.LoverOnly) {
 
 						// If the lover-locked item is sent back from a non-lover, we allow to change some properties and lock it back with the lover lock
-						for (var B = 0; B < Bundle.length; B++)
+						for (let B = 0; B < Bundle.length; B++)
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
 
@@ -440,13 +440,13 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 		}
 
 	// For each appearance item to load
-	for (var A = 0; A < Bundle.length; A++) {
+	for (let A = 0; A < Bundle.length; A++) {
 
 		// Skip blocked items
 		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) || InventoryIsPermissionLimited(C, Bundle[A].Name, Bundle)) && OnlineGameAllowBlockItems()) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
-		for (var I = 0; I < Asset.length; I++)
+		for (let I = 0; I < Asset.length; I++)
 			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
 
 				// OwnerOnly items can only get update if it comes from owner
@@ -487,7 +487,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 				// Make sure we don't push an item if there's already an item in that slot
 				var CanPush = true;
-				for (var P = 0; P < Appearance.length; P++)
+				for (let P = 0; P < Appearance.length; P++)
 					if (Appearance[P].Asset.Group.Name == NA.Asset.Group.Name) {
 						CanPush = false;
 						break;
@@ -503,12 +503,12 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	}
 
 	// Adds any critical appearance asset that could be missing, adds the default one
-	for (var G = 0; G < AssetGroup.length; G++)
+	for (let G = 0; G < AssetGroup.length; G++)
 		if ((AssetGroup[G].Category == "Appearance") && !AssetGroup[G].AllowNone) {
 
 			// Check if we already have the item
 			var Found = false;
-			for (var A = 0; A < Appearance.length; A++)
+			for (let A = 0; A < Appearance.length; A++)
 				if (Appearance[A].Asset.Group.Name == AssetGroup[G].Name)
 					Found = true;
 
@@ -516,9 +516,9 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			if (!Found) {
 				if (AssetGroup[G].MirrorGroup) { 
 					var MirroredAsset = null;
-					for (var A = 0; A < Appearance.length; A++)
+					for (let A = 0; A < Appearance.length; A++)
 						if (Appearance[A].Asset.Group.Name == AssetGroup[G].MirrorGroup) {
-							for (var I = 0; I < Asset.length; I++)
+							for (let I = 0; I < Asset.length; I++)
 								if (Asset[I].Group.Name == AssetGroup[G].Name && Asset[I].Name == Appearance[A].Asset.Name) {
 									MirroredAsset = { Asset: Asset[I], Color: Appearance[A].Color };
 									break;
@@ -526,14 +526,14 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							break;
 						}
 					if (MirroredAsset == null)
-						for (var I = 0; I < Asset.length; I++)
+						for (let I = 0; I < Asset.length; I++)
 							if (Asset[I].Group.Name == AssetGroup[G].Name) {
 								MirroredAsset = { Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] };
 								break;
 							}
 					Appearance.push(MirroredAsset);
 				} else
-					for (var I = 0; I < Asset.length; I++)
+					for (let I = 0; I < Asset.length; I++)
 						if (Asset[I].Group.Name == AssetGroup[G].Name) {
 							Appearance.push({ Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] });
 							break;
@@ -569,7 +569,7 @@ function ServerPrivateCharacterSync() {
 	if (PrivateVendor != null) {
 		var D = {};
 		D.PrivateCharacter = [];
-		for (var ID = 1; ID < PrivateCharacter.length; ID++) {
+		for (let ID = 1; ID < PrivateCharacter.length; ID++) {
 			var C = {
 				Name: PrivateCharacter[ID].Name,
 				Love: PrivateCharacter[ID].Love,

@@ -140,7 +140,7 @@ function IntroductionChangeMaidOpinion(Bonus) {
  * @returns {void} - Nothing
  */
 function IntroductionSetZone(NewZone) {
-	for (var A = 0; A < AssetGroup.length; A++)
+	for (let A = 0; A < AssetGroup.length; A++)
 		if (AssetGroup[A].Name == NewZone) {
 			Player.FocusGroup = AssetGroup[A];
 			CurrentCharacter.FocusGroup = AssetGroup[A];
@@ -246,7 +246,7 @@ function IntroductionJobAvailable(JobName) {
  * @returns {boolean} - Returns TRUE if any job is available for the player
  */
 function IntroductionJobAnyAvailable() {
-	for (var J = 0; J < IntroductionJobList.length; J++)
+	for (let J = 0; J < IntroductionJobList.length; J++)
 		if (IntroductionJobAvailable(IntroductionJobList[J]))
 			return true;
 	return false;

@@ -164,7 +164,7 @@ function MaidQuartersMaidUngagPlayer() {
  * @returns {void} - Nothing
  */
 function MaidQuartersWearMaidUniform() {
-	for (var ItemAssetGroupName in MaidQuartersItemClothPrev) {
+	for (let ItemAssetGroupName in MaidQuartersItemClothPrev) {
 		MaidQuartersItemClothPrev[ItemAssetGroupName] = InventoryGet(Player, ItemAssetGroupName);
 		InventoryRemove(Player, ItemAssetGroupName);
 	}
@@ -178,7 +178,7 @@ function MaidQuartersWearMaidUniform() {
  */
 function MaidQuartersRemoveMaidUniform() {
 	CharacterReleaseNoLock(Player);
-	for (var ItemAssetGroupName in MaidQuartersItemClothPrev) {
+	for (let ItemAssetGroupName in MaidQuartersItemClothPrev) {
 		var PreviousItem = MaidQuartersItemClothPrev[ItemAssetGroupName];
 		InventoryRemove(Player, ItemAssetGroupName);
 		if (PreviousItem) InventoryWear(Player, PreviousItem.Asset.Name, ItemAssetGroupName, PreviousItem.Color);

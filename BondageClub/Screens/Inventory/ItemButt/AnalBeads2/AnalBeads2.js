@@ -78,7 +78,7 @@ function InventoryItemButtAnalBeads2SetBeads(Modifier) {
 	if (C.ID == Player.ID) {
 		// The Player pulls beads from her own butt
 		var A = AssetGet(C.AssetFamily, "ItemButt", "AnalBeads2");
-		for (var i = beadsOld - beadsNum; i > 0; i--) {
+		for (let i = beadsOld - beadsNum; i > 0; i--) {
 			ActivityArousalItem(C, C, A);
 		}
 	}

@@ -390,7 +390,7 @@ function GLDrawAppearanceBuild(C) {
     GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, 1000);
 
     // Loops in all visible items worn by the character
-    for (var A = 0; A < C.Appearance.length; A++)
+    for (let A = 0; A < C.Appearance.length; A++)
         if (C.Appearance[A].Asset.Visible && CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
 
             // If there's a father group, we must add it to find the correct image
@@ -398,26 +398,26 @@ function GLDrawAppearanceBuild(C) {
             var ParentGroup = CA.Asset.ParentGroupName ? CA.Asset.ParentGroupName : CA.Asset.Group.ParentGroupName && !CA.Asset.IgnoreParentGroup ? CA.Asset.Group.ParentGroupName : "";
             var G = "";
             if (ParentGroup != "")
-                for (var FG = 0; FG < C.Appearance.length; FG++)
+                for (let FG = 0; FG < C.Appearance.length; FG++)
                     if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
                         G = "_" + C.Appearance[FG].Asset.Name;
 
             // If there's a pose style we must add (first by group then by item)
             var Pose = "";
             if ((CA.Asset.Group.AllowPose != null) && (CA.Asset.Group.AllowPose.length > 0) && (C.Pose != null) && (C.Pose.length > 0))
-                for (var AP = 0; AP < CA.Asset.Group.AllowPose.length; AP++)
-                    for (var P = 0; P < C.Pose.length; P++)
+                for (let AP = 0; AP < CA.Asset.Group.AllowPose.length; AP++)
+                    for (let P = 0; P < C.Pose.length; P++)
                         if (C.Pose[P] == CA.Asset.Group.AllowPose[AP])
                             Pose = C.Pose[P] + "/";
             if ((CA.Asset.AllowPose != null) && (CA.Asset.AllowPose.length > 0) && (C.Pose != null) && (C.Pose.length > 0))
-                for (var AP = 0; AP < CA.Asset.AllowPose.length; AP++)
-                    for (var P = 0; P < C.Pose.length; P++)
+                for (let AP = 0; AP < CA.Asset.AllowPose.length; AP++)
+                    for (let P = 0; P < C.Pose.length; P++)
                         if (C.Pose[P] == CA.Asset.AllowPose[AP])
                             Pose = C.Pose[P] + "/";
 
             // If we must apply alpha masks to the current image as it is being drawn
             if (CA.Asset.Alpha != null)
-                for (var AL = 0; AL < CA.Asset.Alpha.length; AL++) {
+                for (let AL = 0; AL < CA.Asset.Alpha.length; AL++) {
                     GLDrawClearRect(GLDrawCanvas.GL, CA.Asset.Alpha[AL][0], 1000 - CA.Asset.Alpha[AL][1] - CA.Asset.Alpha[AL][3], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
                     GLDrawClearRectBlink(GLDrawCanvas.GL, CA.Asset.Alpha[AL][0], 1000 - CA.Asset.Alpha[AL][1] - CA.Asset.Alpha[AL][3], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
                 }
@@ -434,10 +434,10 @@ function GLDrawAppearanceBuild(C) {
             if (CA.Asset.DrawingLeft != null) X = CA.Asset.DrawingLeft;
             if (CA.Asset.DrawingTop != null) Y = CA.Asset.DrawingTop;
             if (C.Pose != null)
-                for (var CP = 0; CP < C.Pose.length; CP++)
-                    for (var P = 0; P < PoseFemale3DCG.length; P++)
+                for (let CP = 0; CP < C.Pose.length; CP++)
+                    for (let P = 0; P < PoseFemale3DCG.length; P++)
                         if ((C.Pose[CP] == PoseFemale3DCG[P].Name) && (PoseFemale3DCG[P].MovePosition != null))
-                            for (var M = 0; M < PoseFemale3DCG[P].MovePosition.length; M++)
+                            for (let M = 0; M < PoseFemale3DCG[P].MovePosition.length; M++)
                                 if (PoseFemale3DCG[P].MovePosition[M].Group == CA.Asset.Group.Name) {
                                     X = X + PoseFemale3DCG[P].MovePosition[M].X;
                                     Y = Y + PoseFemale3DCG[P].MovePosition[M].Y;
@@ -449,7 +449,7 @@ function GLDrawAppearanceBuild(C) {
 
             // Cycle through all layers of the image
             var MaxLayer = (CA.Asset.Layer == null) ? 1 : CA.Asset.Layer.length;
-            for (var L = 0; L < MaxLayer; L++) {
+            for (let L = 0; L < MaxLayer; L++) {
                 var Layer = "";
                 var LayerType = Type;
                 if (CA.Asset.Layer != null) {
@@ -460,14 +460,14 @@ function GLDrawAppearanceBuild(C) {
                     if ((CA.Asset.Layer[L].NewParentGroupName != null) && (CA.Asset.Layer[L].NewParentGroupName != CA.Asset.Group.ParentGroupName)) {
                         if (CA.Asset.Layer[L].NewParentGroupName == "") G = "";
                         else
-                            for (var FG = 0; FG < C.Appearance.length; FG++)
+                            for (let FG = 0; FG < C.Appearance.length; FG++)
                                 if (CA.Asset.Layer[L].NewParentGroupName == C.Appearance[FG].Asset.Group.Name)
                                     G = "_" + C.Appearance[FG].Asset.Name;
                     }
                     if (CA.Asset.Layer[L].OverrideAllowPose != null) {
                         Pose = "";
-                        for (var AP = 0; AP < CA.Asset.Layer[L].OverrideAllowPose.length; AP++)
-                            for (var P = 0; P < C.Pose.length; P++)
+                        for (let AP = 0; AP < CA.Asset.Layer[L].OverrideAllowPose.length; AP++)
+                            for (let P = 0; P < C.Pose.length; P++)
                                 if (C.Pose[P] == CA.Asset.Layer[L].OverrideAllowPose[AP])
                                     Pose = C.Pose[P] + "/";
                     }

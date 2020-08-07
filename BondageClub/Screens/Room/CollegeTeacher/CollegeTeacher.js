@@ -53,7 +53,7 @@ function CollegeTeacherLoad() {
 
 		// Do not generate her if she's already in the private room
 		if (PrivateCharacter.length > 1)
-			for (var P = 1; P < PrivateCharacter.length; P++)
+			for (let P = 1; P < PrivateCharacter.length; P++)
 				if (PrivateCharacter[P].Name == "Mildred")
 					return;
 		

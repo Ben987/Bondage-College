@@ -16,7 +16,7 @@ function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 
 	// Checks to make sure we don't duplicate a log
 	var AddToLog = true;
-	for (var L = 0; L < Log.length; L++)
+	for (let L = 0; L < Log.length; L++)
 		if ((Log[L].Name == NewLogName) && (Log[L].Group == NewLogGroup)) {
 			Log[L].Value = NewLogValue;
 			AddToLog = false;
@@ -49,7 +49,7 @@ function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 function LogDelete(DelLogName, DelLogGroup, Push) {
 
 	// Finds the log entry and deletes it
-	for (var L = 0; L < Log.length; L++)
+	for (let L = 0; L < Log.length; L++)
 		if ((Log[L].Name == DelLogName) && (Log[L].Group == DelLogGroup)) {
 			Log.splice(L, 1);
 			break;
@@ -70,7 +70,7 @@ function LogDelete(DelLogName, DelLogGroup, Push) {
  * @returns {boolean} - Returns TRUE if there is an existing log matching the Name/Group with no value or a value above the current time in ms.
  */
 function LogQuery(QueryLogName, QueryLogGroup) {
-	for (var L = 0; L < Log.length; L++)
+	for (let L = 0; L < Log.length; L++)
 		if ((Log[L].Name == QueryLogName) && (Log[L].Group == QueryLogGroup))
 			if ((Log[L].Value == null) || (Log[L].Value >= CurrentTime))
 				return true;
@@ -85,7 +85,7 @@ function LogQuery(QueryLogName, QueryLogGroup) {
  * @returns {number | undefined} - Returns the value of the log which is a date represented in ms or undefined. Returns null if no matching log is found.
  */
 function LogValue(QueryLogName, QueryLogGroup) {
-	for (var L = 0; L < Log.length; L++)
+	for (let L = 0; L < Log.length; L++)
 		if ((Log[L].Name == QueryLogName) && (Log[L].Group == QueryLogGroup))
 			return Log[L].Value;
 	return null;
@@ -103,7 +103,7 @@ function LogLoad(NewLog) {
 	if (NewLog != null) {
 
 		// Add each log entry one by one, validates the type to prevent client crashes
-		for (var L = 0; L < NewLog.length; L++)
+		for (let L = 0; L < NewLog.length; L++)
 			if ((typeof NewLog[L].Name === "string") && (typeof NewLog[L].Group === "string") && ((NewLog[L].Value == null) || (typeof NewLog[L].Value === "number")))
 				LogAdd(NewLog[L].Name, NewLog[L].Group, NewLog[L].Value, false);
 

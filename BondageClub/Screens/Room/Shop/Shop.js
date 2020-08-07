@@ -75,7 +75,7 @@ function ShopRun() {
 		// For each items in the assets with a value
 		var X = 1000;
 		var Y = 125;
-		for (var A = ShopItemOffset; (A < ShopCart.length && A < ShopItemOffset + 12); A++) {
+		for (let A = ShopItemOffset; (A < ShopCart.length && A < ShopItemOffset + 12); A++) {
 			DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : "white");
 			DrawImageResize("Assets/" + ShopCart[A].Group.Family + "/" + ShopCart[A].Group.Name + "/Preview/" + ShopCart[A].Name + ".png", X + 2, Y + 2, 221, 221);
 			DrawTextFit(ShopCart[A].Description + " " + ShopCart[A].Value.toString() + " $", X + 112, Y + 250, 221, (InventoryAvailable(Player, ShopCart[A].Name, ShopCart[A].Group.Name)) ? "green" : "red");
@@ -144,9 +144,9 @@ function ShopClick() {
 		// The user can select a different body by clicking on the vendor
 		if ((ShopVendor.FocusGroup != null) && (ShopVendor.FocusGroup.Category == "Item"))
 			if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000))
-				for (var A = 0; A < AssetGroup.length; A++)
+				for (let A = 0; A < AssetGroup.length; A++)
 					if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
-						for (var Z = 0; Z < AssetGroup[A].Zone.length; Z++)
+						for (let Z = 0; Z < AssetGroup[A].Zone.length; Z++)
 							if ((MouseX - 500 >= AssetGroup[A].Zone[Z][0]) && (MouseY >= AssetGroup[A].Zone[Z][1] - ShopVendor.HeightModifier) && (MouseX - 500 <= AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) && (MouseY <= AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - ShopVendor.HeightModifier)) {
 								ShopItemOffset = 0;
 								ShopVendor.FocusGroup = AssetGroup[A];
@@ -157,7 +157,7 @@ function ShopClick() {
 		// For each items in the assets with a value
 		var X = 1000;
 		var Y = 125;
-		for (var A = ShopItemOffset; (A < ShopCart.length && A < ShopItemOffset + 12); A++) {
+		for (let A = ShopItemOffset; (A < ShopCart.length && A < ShopItemOffset + 12); A++) {
 			if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
 
 				// If the item isn't already owned and the player has enough money, we buy it
@@ -174,13 +174,13 @@ function ShopClick() {
 
 					// Add any item that belongs in the same buy group
 					if (ShopCart[A].BuyGroup != null)
-						for (var B = 0; B < Asset.length; B++)
+						for (let B = 0; B < Asset.length; B++)
 							if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == ShopCart[A].BuyGroup))
 								InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name, false);
 
 					if (ShopCart[A].PrerequisiteBuyGroups)
-						for (var B = 0; B < Asset.length; B++)
-							for (var C = 0; C < ShopCart[A].PrerequisiteBuyGroups.length; C++)
+						for (let B = 0; B < Asset.length; B++)
+							for (let C = 0; C < ShopCart[A].PrerequisiteBuyGroups.length; C++)
 								if ((Asset[B]) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == ShopCart[A].PrerequisiteBuyGroups[C]))
 									InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name, false);
 					
@@ -234,7 +234,7 @@ function ShopCartBuild() {
 function ShopStart(ItemGroup) {
 
 	// Finds the asset group to shop with
-	for (var A = 0; A < AssetGroup.length; A++)
+	for (let A = 0; A < AssetGroup.length; A++)
 		if (AssetGroup[A].Name == ItemGroup) {
 			ShopVendor.FocusGroup = AssetGroup[A];
 			break;
@@ -268,7 +268,7 @@ function ShopCompleteRescue() {
  */
 function ShopCheckBoughtEverything() {
 	ShopBoughtEverything = false;
-	for (var A = 0; A < Asset.length; A++)
+	for (let A = 0; A < Asset.length; A++)
 		if ((Asset[A] != null) && (Asset[A].Group != null) && (Asset[A].Value > 0) && !InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name))
 			return;
 	ShopBoughtEverything = true;
