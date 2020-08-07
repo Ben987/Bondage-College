@@ -241,7 +241,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null) && (CurrentScreen != "Preference")) {
 
 			// Draw all the possible zones in transparent colors (gray if free, yellow if occupied, red if blocker)
-			for (var A = 0; A < AssetGroup.length; A++)
+			for (let A = 0; A < AssetGroup.length; A++)
 				if (AssetGroup[A].Zone != null && AssetGroup[A].Name != C.FocusGroup.Name) {
 					var Color = "#80808040";
 					if (InventoryGroupIsBlocked(C, AssetGroup[A].Name)) Color = "#88000580";
@@ -276,7 +276,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
  * @returns {void} - Nothing
  */
 function DrawAssetGroupZone(C, Zone, HeightRatio, X, Y, Color, Thickness = 3) {
-	for (var Z = 0; Z < Zone.length; Z++)
+	for (let Z = 0; Z < Zone.length; Z++)
 		if (C.Pose.indexOf("Suspension") >= 0)
 			DrawEmptyRect((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color, Thickness);
 		else
@@ -294,7 +294,7 @@ function DrawAssetGroupZone(C, Zone, HeightRatio, X, Y, Color, Thickness = 3) {
  * @returns {void} - Nothing
  */
 function DrawAssetGroupZoneBackground(C, Zone, HeightRatio, X, Y, Color) {
-	for (var Z = 0; Z < Zone.length; Z++)
+	for (let Z = 0; Z < Zone.length; Z++)
 		if (C.Pose.indexOf("Suspension") >= 0)
 			DrawRect((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color);
 		else
@@ -446,7 +446,7 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 
 	// We transform each non transparent pixel based on the RGG value
 	if (FullAlpha) {
-		for (var p = 0, len = data.length; p < len; p += 4) {
+		for (let p = 0, len = data.length; p < len; p += 4) {
 			if (data[p + 3] == 0)
 				continue;
 			trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);
@@ -455,7 +455,7 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 			data[p + 2] = rgbColor.b * trans;
 		}
 	} else {
-		for (var p = 0, len = data.length; p < len; p += 4) {
+		for (let p = 0, len = data.length; p < len; p += 4) {
 			trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);
 			if ((data[p + 3] == 0) || (trans < 0.8) || (trans > 1.2))
 				continue;
@@ -506,7 +506,7 @@ function GetWrapTextSize(Text, Width, MaxLine) {
 
 		// Find the number of lines
 		var LineCount = 1;
-		for (var n = 0; n < words.length; n++) {
+		for (let n = 0; n < words.length; n++) {
 			var testLine = line + words[n] + ' ';
 			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
 				line = words[n] + ' ';
@@ -565,7 +565,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 
 		// Find the number of lines
 		var LineCount = 1;
-		for (var n = 0; n < words.length; n++) {
+		for (let n = 0; n < words.length; n++) {
 			var testLine = line + words[n] + ' ';
 			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
 				line = words[n] + ' ';
@@ -577,7 +577,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 		words = Text.split(' ');
 		line = '';
 		Y = Y - ((LineCount - 1) * 23) + (Height / 2);
-		for (var n = 0; n < words.length; n++) {
+		for (let n = 0; n < words.length; n++) {
 			var testLine = line + words[n] + ' ';
 			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
 				MainCanvas.fillText(line, X + Width / 2, Y);
@@ -609,7 +609,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
  */
 function DrawTextFit(Text, X, Y, Width, Color) {
 
-	for (var S = 36; S >= 10; S = S - 2) {
+	for (let S = 36; S >= 10; S = S - 2) {
 		MainCanvas.font = S.toString() + "px Arial";
 		var metrics = MainCanvas.measureText(Text);
 		if (metrics.width <= Width)

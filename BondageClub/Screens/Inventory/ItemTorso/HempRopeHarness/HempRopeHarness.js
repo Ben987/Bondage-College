@@ -45,7 +45,7 @@ function InventoryItemTorsoHempRopeHarnessDraw() {
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 	
 	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
-	for (var I = HempRopeTorsoOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeTorsoOptionOffset + 4); I++) {
+	for (let I = HempRopeTorsoOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeTorsoOptionOffset + 4); I++) {
 		var offset = I - HempRopeTorsoOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
@@ -66,7 +66,7 @@ function InventoryItemTorsoHempRopeHarnessClick() {
 	if (HempRopeTorsoOptionOffset >= HempRopeTorsoOptions.length) HempRopeTorsoOptionOffset = 0;
 
 	// Item buttons
-	for (var I = HempRopeTorsoOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeTorsoOptionOffset + 4); I++) {
+	for (let I = HempRopeTorsoOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeTorsoOptionOffset + 4); I++) {
 		var offset = I - HempRopeTorsoOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
@@ -95,7 +95,7 @@ function InventoryItemTorsoHempRopeSetPose(NewType) {
 	// Sets the new pose with its effects
 	DialogFocusItem.Property = NewType.Property;
 	if (NewType.Expression != null)
-		for (var E = 0; E < NewType.Expression.length; E++)
+		for (let E = 0; E < NewType.Expression.length; E++)
 			CharacterSetFacialExpression(C, NewType.Expression[E].Group, NewType.Expression[E].Name, NewType.Expression[E].Timer);
 	if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
 	else InventoryRemove(C, "ItemHidden");

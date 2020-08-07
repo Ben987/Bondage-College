@@ -53,7 +53,7 @@ function InventoryItemMiscCombinationPadlockClick() {
 		if ((MouseY >= 771) && (MouseY <= 835)) {
 			if (ElementValue("CombinationNumber") == DialogFocusSourceItem.Property.CombinationNumber) {
 				delete DialogFocusSourceItem.Property.CombinationNumber;
-				for (var A = 0; A < C.Appearance.length; A++) {
+				for (let A = 0; A < C.Appearance.length; A++) {
 					if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
 						C.Appearance[A] = DialogFocusSourceItem;
 				}
@@ -84,7 +84,7 @@ function InventoryItemMiscCombinationPadlockClick() {
 				// We only accept code made of digits and of 4 numbers
 				if (NewCode.match(E) && (NewCode.length == 4)) {
 					DialogFocusSourceItem.Property.CombinationNumber = NewCode;
-					for (var A = 0; A < C.Appearance.length; A++) {
+					for (let A = 0; A < C.Appearance.length; A++) {
 						if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
 							C.Appearance[A] = DialogFocusSourceItem;
 					}

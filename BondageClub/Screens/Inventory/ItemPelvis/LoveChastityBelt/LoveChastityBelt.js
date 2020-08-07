@@ -108,7 +108,7 @@ function InventoryItemPelvisLoveChastityBeltClick() {
 
 // checks if "ItemVulva" is accessible
 function InventoryItemPelvisLoveChastityBeltCanInsert(C) {
-  for (var A = 0; A < C.Appearance.length; A++)
+  for (let A = 0; A < C.Appearance.length; A++)
     if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily)) {
       if (C.Appearance[A].Asset.Group.Name == "ItemVulva")
         return false;

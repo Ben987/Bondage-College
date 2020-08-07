@@ -8,7 +8,7 @@ var Text = null;
  */
 function TextGet(TextTag) {
 	if (Text == null) return "";
-	for (var T = 0; T < Text.length; T++)
+	for (let T = 0; T < Text.length; T++)
 		if (Text[T].Tag == TextTag)
 			return Text[T].Value;
 	return "MISSING VALUE FOR TAG: " + TextTag;
@@ -23,7 +23,7 @@ function TextBuild(CSV) {
 
 	// For each lines in the file
 	Text = [];
-	for (var L = 0; L < CSV.length; L++)
+	for (let L = 0; L < CSV.length; L++)
 		if ((CSV[L][0] != null) && (CSV[L][0] != "")) {
 
 			// Creates a text object and adds it to the buffer

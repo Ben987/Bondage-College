@@ -204,14 +204,14 @@ function GamblingClick() {
  */
 function GamblingShowDiceStack() {
 	var j = 0;
-	for (var i = GamblingPlayerDiceStack.length; i > 0 ; i--) {
+	for (let i = GamblingPlayerDiceStack.length; i > 0 ; i--) {
 		DrawImageResize("Screens/Room/Gambling/dice_" + GamblingPlayerDiceStack[i - 1] + ".png", 25, (25 + j * 60), 60, 60);
 		j++;
 	}
 	if (GamblingShowDiceSum) DrawText(GamblingDiceStackSum(GamblingPlayerDiceStack), 125, 55, "white", "black");
 	if (GamblingShowMoney) DrawText(Player.Money.toString() + " $", 175, 125, "white", "black");
 	j = 0;
-	for (var i = GamblingNpcDiceStack.length; i > 0 ; i--) {
+	for (let i = GamblingNpcDiceStack.length; i > 0 ; i--) {
 		DrawImageResize("Screens/Room/Gambling/dice_" + GamblingNpcDiceStack[i - 1] + ".png", 525, (25 + j * 60), 60, 60);
 		j++;
 		}
@@ -235,7 +235,7 @@ function GamblingShowNpcDice() {
  */
 function GamblingDiceStackSum(DiceStack) {
 	var GamblingDiceStackSum = 0;
-	for (var i = 0; i < DiceStack.length ; i++) {
+	for (let i = 0; i < DiceStack.length ; i++) {
 		GamblingDiceStackSum = GamblingDiceStackSum + DiceStack[i];
 	}
 	return GamblingDiceStackSum;
@@ -284,7 +284,7 @@ function GamblingSimpleDiceController(SimpleDiceState) {
  * @returns {true} - Always true
  */
 function GamblingShowToothpickStack () {
-	for (var i = 0; i < GamblingToothpickCount; i++) {
+	for (let i = 0; i < GamblingToothpickCount; i++) {
 		DrawImageResize("Screens/Room/Gambling/toothpick.png", 410, 45 + 26 * i, 160, 7);
 	}
 	DrawText(GamblingToothpickCount, 490, 25, "white", "black")
@@ -377,7 +377,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 		CharacterRefresh(GamblingFirstSub);
 		CharacterRefresh(Player);
 
-		for (var i = 1; i <= 3; i++) {
+		for (let i = 1; i <= 3; i++) {
 			GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
 			GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 		}
@@ -426,7 +426,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 		
 		GamblingPlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
-		for (var i = 1; i <= 3; i++) {
+		for (let i = 1; i <= 3; i++) {
 			GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
 			GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 		}
@@ -444,7 +444,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 
 		GamblingPlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
-		for (var i = 1; i <= 3; i++) {
+		for (let i = 1; i <= 3; i++) {
 			GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
 			GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 		}
@@ -714,7 +714,7 @@ function GamblingDaredSixController(DaredSixState) {
 function GamblingDressingLevel(C) {
 	if (CharacterIsNaked(C)) return 3;
 	if (CharacterIsInUnderwear(C)) return 2;
-	for (var I = 0; I < C.Appearance.length; I++)
+	for (let I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.Group.Name == "Shoes")
 			return 0;
 	return 1;

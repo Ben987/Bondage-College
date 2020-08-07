@@ -66,7 +66,7 @@ function PuppyWalkerRun() {
 
 			// Ends moves and generates new moves if we need to
 			PuppyWalkerGenerateMoveTimer = PuppyWalkerGenerateMoveTimer + 100;
-			for (var M = 0; M < PuppyWalkerMoves.length; M++) {
+			for (let M = 0; M < PuppyWalkerMoves.length; M++) {
 				if ((PuppyWalkerMoves[M] > 0) && (PuppyWalkerMoves[M] <= CurrentTime))
 					PuppyWalkerDoMove(M);
 				if ((PuppyWalkerMoves[M] <= CurrentTime) && (PuppyWalkerMovesTimer[M] < CurrentTime) && (Math.random() >= 0.95))

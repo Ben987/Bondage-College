@@ -34,7 +34,7 @@ function ChatSearchRun() {
 		// Show up to 24 results
 		var X = 25;
 		var Y = 25;
-		for (var C = 0; C < ChatSearchResult.length && C < 24; C++) {
+		for (let C = 0; C < ChatSearchResult.length && C < 24; C++) {
 
 			// Draw the room rectangle
 			DrawButton(X, Y, 630, 85, "", ((ChatSearchResult[C].Friends != null) && (ChatSearchResult[C].Friends.length > 0)) ? "#CFFFCF" : "White");
@@ -55,12 +55,12 @@ function ChatSearchRun() {
 			// Finds the room where the mouse is hovering
 			X = 25;
 			Y = 25;
-			for (var C = 0; C < ChatSearchResult.length && C < 24; C++) {
+			for (let C = 0; C < ChatSearchResult.length && C < 24; C++) {
 
 				// Builds the friend list and shows it
 				if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85) && (ChatSearchResult[C].Friends != null) && (ChatSearchResult[C].Friends.length > 0)) {
 					DrawTextWrap(TextGet("FriendsInRoom") + " " + ChatSearchResult[C].Name, (X > 1000) ? 685 : X + 660, (Y > 352) ? 352 : Y, 630, 60, "black", "#FFFF88", 1);
-					for (var F = 0; F < ChatSearchResult[C].Friends.length; F++)
+					for (let F = 0; F < ChatSearchResult[C].Friends.length; F++)
 						DrawTextWrap(ChatSearchResult[C].Friends[F].MemberName + " (" + ChatSearchResult[C].Friends[F].MemberNumber + ")", (X > 1000) ? 685 : X + 660, ((Y > 352) ? 352 : Y) + 60 + F * 60, 630, 60, "black", "#FFFF88", 1);
 				}
 
@@ -125,7 +125,7 @@ function ChatSearchJoin() {
 	// Scans up to 24 results
 	var X = 25;
 	var Y = 25;
-	for (var C = 0; C < ChatSearchResult.length && C < 24; C++) {
+	for (let C = 0; C < ChatSearchResult.length && C < 24; C++) {
 
 		// If the player clicked on a valid room
 		if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {

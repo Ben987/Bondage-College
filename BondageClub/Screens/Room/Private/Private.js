@@ -95,7 +95,7 @@ function PrivateLoad() {
 	PrivateVendor.AllowItem = false;
 	Player.ArousalSettings.OrgasmCount = 0;
 	NPCTraitDialog(PrivateVendor);
-	for (var C = 1; C < PrivateCharacter.length; C++)
+	for (let C = 1; C < PrivateCharacter.length; C++)
 		PrivateLoadCharacter(C);
 	PrivateRelationDecay();
 
@@ -109,7 +109,7 @@ function PrivateDrawCharacter() {
 	if (X < 0) X = 0;
 
 	// For each character to draw (maximum 4 at a time)
-	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
+	for (let C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
 
 		// If the character is rent, she won't show in the room but her slot is still taken
 		if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) {
@@ -201,7 +201,7 @@ function PrivateClickCharacterButton() {
 	if (X < 0) X = 0;
 
 	// For each character, we check if the player clicked on the cage or information button
-	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
+	for (let C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
 		
 		// The information sheet button is always available
 		if ((MouseX >= X + 85 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 175 + (C - PrivateCharacterOffset) * 470))
@@ -239,7 +239,7 @@ function PrivateClickCharacter() {
 	if (X < 0) X = 0;
 
 	// For each character, we find the one that was clicked and open it's dialog
-	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++)
+	for (let C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++)
 		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470))
 			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime)) {
 
@@ -429,7 +429,7 @@ function PrivateAddCharacter(Template, Archetype, CustomData) {
 
 // Returns the ID of the private room current character
 function PrivateGetCurrentID() {
-	for (var P = 1; P < PrivateCharacter.length; P++)
+	for (let P = 1; P < PrivateCharacter.length; P++)
 		if (CurrentCharacter.Name == PrivateCharacter[P].Name)
 			return P;
 }
@@ -440,7 +440,7 @@ function PrivateKickOut() {
 	PrivateCharacter[ID] = null;
 	PrivateCharacter.splice(ID, 1);
 	ServerPrivateCharacterSync();
-	for (var P = 1; P < PrivateCharacter.length; P++)
+	for (let P = 1; P < PrivateCharacter.length; P++)
 		if (PrivateCharacter[P] != null) 
 			PrivateCharacter[P].AccountName = "NPC_Private_Custom" + P.toString();
 	DialogLeave();
@@ -462,7 +462,7 @@ function PrivateChange(NewCloth) {
 
 // Returns TRUE if the player owner is already in the room
 function PrivateOwnerInRoom() {
-	for (var C = 1; C < PrivateCharacter.length; C++) {
+	for (let C = 1; C < PrivateCharacter.length; C++) {
 		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (PrivateCharacter[C].Name == Player.Owner.replace("NPC-", ""))) return true;
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter != null) && (PrivateCharacter[C].ID != CurrentCharacter.ID)) return true;
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter == null)) return true;
@@ -472,7 +472,7 @@ function PrivateOwnerInRoom() {
 
 // Returns TRUE if the player lover is already in the room
 function PrivateLoverInRoom(L) {
-	for (var C = 1; C < PrivateCharacter.length; C++) {
+	for (let C = 1; C < PrivateCharacter.length; C++) {
 		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (Player.GetLoversNumbers()[L] == "NPC-" + PrivateCharacter[C].Name)) return true;
 		if ((PrivateCharacter[C].AccountName != null) && (Player.GetLoversNumbers()[L] == "NPC-" + PrivateCharacter[C].Name) && (CurrentCharacter != null) && (PrivateCharacter[C].ID != CurrentCharacter.ID)) return true;
 		if ((PrivateCharacter[C].AccountName != null) && (Player.GetLoversNumbers()[L] == "NPC-" + PrivateCharacter[C].Name) && (CurrentCharacter == null)) return true;
@@ -490,7 +490,7 @@ function PrivateRestrainPlayer() {
 // Relationship with any NPC will decay with time, below -100, the NPC leaves if she's not caged
 function PrivateRelationDecay() {
 	var MustSave = false;
-	for (var C = 1; C < PrivateCharacter.length; C++) {
+	for (let C = 1; C < PrivateCharacter.length; C++) {
 		var LastDecay = NPCEventGet(PrivateCharacter[C], "LastDecay");
 		if (LastDecay * CheatFactor("NoLoveDecay", 0) == 0)
 			NPCEventAdd(PrivateCharacter[C], "LastDecay", CurrentTime);
@@ -534,7 +534,7 @@ function PrivateShowTrialHours() {
 // Returns TRUE if the player is owned (from the room or not)
 function PrivatePlayerIsOwned() {
 	if (Player.Owner != "") return true;
-	for (var C = 0; C < PrivateCharacter.length; C++)
+	for (let C = 0; C < PrivateCharacter.length; C++)
 		if (typeof PrivateCharacter[C].IsOwner === 'function') 
 			if (PrivateCharacter[C].IsOwner())
 				return true;
@@ -545,7 +545,7 @@ function PrivatePlayerIsOwned() {
 function PrivateCanRestrainOther() {
 	PrivateActivityTarget = null;
 	var List = [];
-	for (var C = 0; C < PrivateCharacter.length; C++)
+	for (let C = 0; C < PrivateCharacter.length; C++)
 		if ((PrivateCharacter[C].ID != 0) && (PrivateCharacter[C].ID != CurrentCharacter.ID) && (NPCTraitGet(CurrentCharacter, "Dominant") > NPCTraitGet(PrivateCharacter[C], "Dominant")) && (InventoryGet(PrivateCharacter[C], "ItemArms") == null))
 			List.push(PrivateCharacter[C]);
 	if (List.length > 0)
