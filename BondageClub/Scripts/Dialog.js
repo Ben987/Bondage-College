@@ -616,6 +616,14 @@ function DialogInventoryBuild(C, Offset) {
 						var DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
 						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrder);
 					}
+
+			// Fourth, we add all free items (especially useful for clothes)
+			for (var A = 0; A < Asset.length; A++)
+				if ((Asset[A].Group.Name == C.FocusGroup.Name) && (Asset[A].Value == 0) && Asset[A].DynamicAllowInventoryAdd(C)) {
+					var DialogSortOrder = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride : (InventoryAllow(C, Asset[A].Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+					DialogInventoryAdd(C, { Asset: Asset[A] }, false, DialogSortOrder);
+				}
+
 		}
 
 		// Rebuilds the dialog menu and it's buttons
@@ -1602,14 +1610,14 @@ function DialogDraw() {
 	// If we must show the item/inventory menu
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
 
+		var C = CharacterGetCurrent();
 		// We leave if the dialog focus item is no longer there
-		if (DialogFocusItem != null && (InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name) == null || InventoryGet(CurrentCharacter, DialogFocusItem.Asset.Group.Name).Asset.Name != DialogFocusItem.Asset.Name) && !DialogFocusItem.Asset.IsLock) {
+		if (DialogFocusItem != null && (InventoryGet(C, DialogFocusItem.Asset.Group.Name) == null || InventoryGet(C, DialogFocusItem.Asset.Group.Name).Asset.Name != DialogFocusItem.Asset.Name) && !DialogFocusItem.Asset.IsLock) {
 			DialogLeaveFocusItem();
 			DialogFocusItem = null;
 		}
 
 		// We rebuild the menu if things changed
-		var C = CharacterGetCurrent();
 		if (DialogPreviousCharacterData.Appearance !== JSON.stringify(ServerAppearanceBundle(C.Appearance)) || JSON.stringify(DialogPreviousCharacterData.Limited) !== JSON.stringify(C.LimitedItems) || JSON.stringify(DialogPreviousCharacterData.Blocked) !== JSON.stringify(C.BlockItems) || DialogPreviousCharacterData.ActivePose !== C.ActivePose) {
 			DialogInventoryBuild(C, DialogInventoryOffset);
 			ActivityDialogBuild(C);

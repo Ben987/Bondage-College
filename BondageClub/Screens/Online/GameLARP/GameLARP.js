@@ -249,6 +249,25 @@ function GameLARPClickProcess() {
 }
 
 /**
+ * Starts a LARP match.
+ * @returns {void} - Nothing
+ */
+function GameLARPStartProcess() { 
+	GameLARPTurnTimer = CurrentTime + 20000;
+
+	// Notices everyone in the room that the game starts
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	ServerSend("ChatRoomChat", { Content: "LARPGameStart", Type: "Action" , Dictionary: Dictionary});
+
+	// Changes the game status and exits
+	ServerSend("ChatRoomGame", { GameProgress: "Start" });
+	Player.Game.LARP.Status = "Running";
+	ServerSend("AccountUpdate", { Game: Player.Game });
+	ChatRoomCharacterUpdate(Player);
+}
+
+/**
  * Handles clicks in the LARP chat Admin screen
  * @returns {void} - Nothing
  */
@@ -285,20 +304,8 @@ function GameLARPClick() {
 			}
 		}
 
-		// Give two seconds to the server to shuffle the room before calling the start game function (could be reviewed, maybe this is not needed)
-		CommonWait(2000);
-		GameLARPTurnTimer = CurrentTime + 20000;
-
-		// Notices everyone in the room that the game starts
-		var Dictionary = [];
-		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-		ServerSend("ChatRoomChat", { Content: "LARPGameStart", Type: "Action" , Dictionary: Dictionary});
-
-		// Changes the game status and exits
-		ServerSend("ChatRoomGame", { GameProgress: "Start" });
-		Player.Game.LARP.Status = "Running";
-		ServerSend("AccountUpdate", { Game: Player.Game });
-		ChatRoomCharacterUpdate(Player);
+		// Give time for the server to shuffle the room.
+		setTimeout(GameLARPStartProcess, 4000);
 		CommonSetScreen("Online", "ChatRoom");
 
 	}
@@ -314,11 +321,13 @@ function GameLARPExit() {
 	// When the game isn't running, we allow to change the class or team
 	if (GameLARPStatus == "") {
 		
-		// Notices everyone in the room of the change
-		var Dictionary = [];
-		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-		ServerSend("ChatRoomChat", { Content: "LARPChangeTeamClass", Type: "Action" , Dictionary: Dictionary});
-
+		// Notices everyone in the room of the change, if there is any
+		if (GameLARPEntryClass != Player.Game.LARP.Class || GameLARPEntryTeam != Player.Game.LARP.Team) {
+			var Dictionary = [];
+			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+			ServerSend("ChatRoomChat", { Content: "LARPChangeTeamClass", Type: "Action", Dictionary: Dictionary });
+		}
+		
 		// Updates the player and go back to the chat room
 		ServerSend("AccountUpdate", { Game: Player.Game });
 		ChatRoomCharacterUpdate(Player);
@@ -337,8 +346,8 @@ function GameLARPExit() {
  * @returns {boolean} - Returns TRUE if the game can be launched
  */
 function GameLARPCanLaunchGame() {
-	if (Player.Game.LARP.Class != GameLARPEntryClass) return false;
-	if (Player.Game.LARP.Team != GameLARPEntryTeam) return false;
+	if (Player.Game.LARP.Class == null || Player.Game.LARP.Class == "") return false;
+	if (Player.Game.LARP.Team == null || Player.Game.LARP.Team == "None") return false;
 	if (GameLARPStatus != "") return false;
 	if (!GameLARPIsAdmin(Player)) return false;
 	var Team = "";

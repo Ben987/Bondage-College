@@ -30,7 +30,7 @@ function ChatRoomCanAddFriend() { return ((CurrentCharacter != null) && (Current
 function ChatRoomCanRemoveFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomCanAddGhost() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.GhostList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
 function ChatRoomCanRemoveGhost() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.GhostList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
-function ChatRoomCanChangeClothes() { return (Player.CanInteract() && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
+function ChatRoomCanChangeClothes() { return (Player.CanInteract() && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !CurrentCharacter.IsEnclose() && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
 function ChatRoomOwnershipOptionIs(Option) { return (Option == ChatRoomOwnershipOption) }
 function ChatRoomLovershipOptionIs(Option) { return (Option == ChatRoomLovershipOption) }
 function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (CurrentCharacter.ID != 0) && Player.CanInteract() && (InventoryGet(CurrentCharacter, "ItemMisc") != null) && (InventoryGet(CurrentCharacter, "ItemMisc").Asset.Name == "WoodenMaidTrayFull")) }
@@ -398,18 +398,21 @@ function ChatRoomClick() {
 		CharacterDeleteAllOnline();
 	}
 
-	//When the player is slow and attempts leave
-	if ((MouseX >= 1005) && (MouseX < 1125) && (MouseY >= 0) && (MouseY <= 62) && ChatRoomCanLeave() && Player.IsSlow()){
-		//Player clicked to leave, start timer, send chat message player is heading for exit.
-		if (ChatRoomSlowtimer == 0 && ChatRoomSlowStop == false){
+	// When the player is slow and attempts to leave
+	if ((MouseX >= 1005) && (MouseX < 1125) && (MouseY >= 0) && (MouseY <= 62) && ChatRoomCanLeave() && Player.IsSlow()) {
+
+		// If the player clicked to leave, we start a timer based on evasion level and send a chat message
+		if ((ChatRoomSlowtimer == 0) && (ChatRoomSlowStop == false)) {
 			ServerSend("ChatRoomChat", { Content: "SlowLeaveAttempt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
-			ChatRoomSlowtimer = CurrentTime + (10 * (1000-(50 * SkillGetLevelReal(Player,"Evasion") ) ) );//10seconds max - 5 sec min
+			ChatRoomSlowtimer = CurrentTime + (10 * (1000 - (50 * SkillGetLevelReal(Player, "Evasion"))));
 		}
-		//Player clicked to cancel leaving, reset timer to 0, send chat message player stops leaving.
-		else if (ChatRoomSlowtimer != 0 && ChatRoomSlowStop == false){
+
+		// If the player clicked to cancel leaving, we alert the room and stop the timer
+		else if ((ChatRoomSlowtimer != 0) && (ChatRoomSlowStop == false)) {
 			ServerSend("ChatRoomChat", { Content: "SlowLeaveCancel", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
 			ChatRoomSlowtimer = 0;
 		}
+
 	}
 
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
@@ -858,6 +861,7 @@ function ChatRoomMessage(data) {
 
 			// Outputs the sexual activities text and runs the activity if the player is targeted
 			if ((data.Type != null) && (data.Type === "Activity")) {
+
 				// Creates the output message using the activity dictionary and tags, keep some values to calculate the activity effects on the player
 				msg = "(" + ActivityDictionaryText(msg) + ")";
 				var TargetMemberNumber = null;
@@ -872,6 +876,7 @@ function ChatRoomMessage(data) {
 						if (data.Dictionary[D].Tag == "ActivityGroup") ActivityGroup = data.Dictionary[D].Text;
 						if (data.Dictionary[D].ActivityCounter != null) ActivityCounter = data.Dictionary[D].ActivityCounter;
 					}
+
 				// If the player does the activity on herself or an NPC, we calculate the result right away
 				if ((data.Type === "Action") || ((TargetMemberNumber == Player.MemberNumber) && (SenderCharacter.MemberNumber != Player.MemberNumber)))
 					if ((Player.ArousalSettings == null) || (Player.ArousalSettings.Active == null) || (Player.ArousalSettings.Active == "Hybrid") || (Player.ArousalSettings.Active == "Automatic"))
