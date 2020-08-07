@@ -606,12 +606,6 @@ function AppearanceRun() {
 	// In cloth selection mode
 	if (CharacterAppearanceMode == "Cloth") {
 
-		// Draw the wardrobe top controls & buttons
-		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
-		if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
-		
-		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
-
 		// Prepares a 3x3 square of clothes to present all the possible options
 		var X = 1250;
 		var Y = 125;
@@ -641,9 +635,17 @@ function AppearanceRun() {
 	// Hides the color picker if needed
 	if (HideColorPicker) ColorPickerHide();
 
+	if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
+	
+	// Draw the wardrobe top controls & buttons
+	DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
+	if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
+	
 	// Draw the default buttons
-	if (!DialogItemPermissionMode) DrawButton(1768, 25, 90, 90, "", "White", "Icons/Cancel.png", TextGet("Cancel"));
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Accept.png", TextGet("Accept"));
+	if (!DialogItemPermissionMode) {
+		DrawButton(1768, 25, 90, 90, "", "White", "Icons/Cancel.png", TextGet("Cancel"));
+		DrawButton(1885, 25, 90, 90, "", "White", "Icons/Accept.png", TextGet("Accept"));
+	}
 
 }
 
@@ -935,7 +937,7 @@ function AppearanceClick() {
 			AppearanceExit();
 		}
 
-		// Accepts the new cloth selection
+		// Accepts the new cloth selection or
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
 			C.FocusGroup = null;
 			AppearanceExit();
@@ -943,9 +945,6 @@ function AppearanceClick() {
 
 		// Swaps between normal and permission mode
 		if (C.ID == 0 && MouseIn(1417, 25, 90, 90)) { 
-			if (DialogItemPermissionMode) { 
-				ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
-			}
 			DialogItemPermissionMode = !DialogItemPermissionMode;
 			DialogInventoryBuild(C);
 		}
