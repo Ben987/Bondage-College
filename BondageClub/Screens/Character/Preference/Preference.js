@@ -43,13 +43,13 @@ var PreferenceVisibilityResetClicked = false;
  * Gets the effect of a sexual activity on the player
  * @param {Character} C - The player who performs the sexual activity
  * @param {string} Type - The type of the activity that is performed
- * @param {boolean} Self - Determines, if the current player is giving (true) or recieving (false)
+ * @param {boolean} Self - Determines, if the current player is giving (false) or receiving (true)
  * @returns {number} - Returns the love factor of the activity for the character (0 is horrible, 2 is normal, 4 is great)
  */
 function PreferenceGetActivityFactor(C, Type, Self) {
 	var Factor = 2;
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Activity != null))
-		for (var P = 0; P < C.ArousalSettings.Activity.length; P++)
+		for (let P = 0; P < C.ArousalSettings.Activity.length; P++)
 			if (C.ArousalSettings.Activity[P].Name == Type)
 				Factor = (Self) ? C.ArousalSettings.Activity[P].Self : C.ArousalSettings.Activity[P].Other;
 	if ((Factor == null) || (typeof Factor !== "number") || (Factor < 0) || (Factor > 4)) Factor = 2;
@@ -65,7 +65,7 @@ function PreferenceGetActivityFactor(C, Type, Self) {
 function PreferenceGetFetishFactor(C, Type) {
 	var Factor = 2;
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Fetish != null))
-		for (var F = 0; F < C.ArousalSettings.Fetish.length; F++)
+		for (let F = 0; F < C.ArousalSettings.Fetish.length; F++)
 			if (C.ArousalSettings.Fetish[F].Name == Type)
 				Factor = C.ArousalSettings.Fetish[F].Factor;
 	if ((Factor == null) || (typeof Factor !== "number") || (Factor < 0) || (Factor > 4)) Factor = 2;
@@ -76,12 +76,12 @@ function PreferenceGetFetishFactor(C, Type) {
  * Sets the love factor of a sexual activity for the character 
  * @param {Character} C - The character for whom the activity factor should be set
  * @param {string} Type - The type of the activity that is performed
- * @param {boolean} Self - Determines, if the current player is giving (true) or recieving (false)
+ * @param {boolean} Self - Determines, if the current player is giving (false) or receiving (true)
  * @param {number} Factor - The factor of the sexual activity (0 is horrible, 2 is normal, 4 is great)
  */
 function PreferenceSetActivityFactor(C, Type, Self, Factor) {
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Activity != null))
-		for (var P = 0; P < C.ArousalSettings.Activity.length; P++)
+		for (let P = 0; P < C.ArousalSettings.Activity.length; P++)
 			if (C.ArousalSettings.Activity[P].Name == Type)
 				if (Self) C.ArousalSettings.Activity[P].Self = Factor;
 				else C.ArousalSettings.Activity[P].Other = Factor;
@@ -96,7 +96,7 @@ function PreferenceSetActivityFactor(C, Type, Self, Factor) {
 function PreferenceGetZoneFactor(C, Zone) {
 	var Factor = 2;
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Zone != null))
-		for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
+		for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
 			if (C.ArousalSettings.Zone[Z].Name == Zone)
 				Factor = C.ArousalSettings.Zone[Z].Factor;
 	if ((Factor == null) || (typeof Factor !== "number") || (Factor < 0) || (Factor > 4)) Factor = 2;
@@ -112,7 +112,7 @@ function PreferenceGetZoneFactor(C, Zone) {
  */
 function PreferenceSetZoneFactor(C, Zone, Factor) {
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Zone != null))
-		for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
+		for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
 			if (C.ArousalSettings.Zone[Z].Name == Zone)
 				C.ArousalSettings.Zone[Z].Factor = Factor;
 }
@@ -125,7 +125,7 @@ function PreferenceSetZoneFactor(C, Zone, Factor) {
  */
 function PreferenceGetZoneOrgasm(C, Zone) {
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Zone != null))
-		for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
+		for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
 			if (C.ArousalSettings.Zone[Z].Name == Zone)
 				return ((C.ArousalSettings.Zone[Z].Orgasm != null) && (typeof C.ArousalSettings.Zone[Z].Orgasm === "boolean") && C.ArousalSettings.Zone[Z].Orgasm);
 	return false;
@@ -139,7 +139,7 @@ function PreferenceGetZoneOrgasm(C, Zone) {
  */
 function PreferenceSetZoneOrgasm(C, Zone, CanOrgasm) {
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Zone != null))
-		for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
+		for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
 			if (C.ArousalSettings.Zone[Z].Name == Zone)
 				if (CanOrgasm) C.ArousalSettings.Zone[Z].Orgasm = true;
 				else delete C.ArousalSettings.Zone[Z].Orgasm;
@@ -227,15 +227,16 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.BlindDisableExamine !== "boolean") C.GameplaySettings.BlindDisableExamine = false;
 	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
 	if (typeof C.GameplaySettings.EnableAfkTimer !== "boolean") C.GameplaySettings.EnableAfkTimer = true;
+	if (typeof C.GameplaySettings.EnableWardrobeIcon !== "boolean") C.GameplaySettings.EnableWardrobeIcon = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 
 	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
 	if (Player.AssetFamily == "Female3DCG") {
 
 		// Validates the activities
-		for (var A = 0; A < ActivityFemale3DCG.length; A++) {
+		for (let A = 0; A < ActivityFemale3DCG.length; A++) {
 			var Found = false;
-			for (var P = 0; P < C.ArousalSettings.Activity.length; P++)
+			for (let P = 0; P < C.ArousalSettings.Activity.length; P++)
 				if ((C.ArousalSettings.Activity[P] != null) && (C.ArousalSettings.Activity[P].Name != null) && (ActivityFemale3DCG[A].Name == C.ArousalSettings.Activity[P].Name)) {
 					Found = true;
 					if ((C.ArousalSettings.Activity[P].Self == null) || (typeof C.ArousalSettings.Activity[P].Self !== "number") || (C.ArousalSettings.Activity[P].Self < 0) || (C.ArousalSettings.Activity[P].Self > 4)) C.ArousalSettings.Activity[P].Self = 2;
@@ -245,9 +246,9 @@ function PreferenceInit(C) {
 		}
 
 		// Validates the fetishes
-		for (var A = 0; A < FetishFemale3DCG.length; A++) {
+		for (let A = 0; A < FetishFemale3DCG.length; A++) {
 			var Found = false;
-			for (var F = 0; F < C.ArousalSettings.Fetish.length; F++)
+			for (let F = 0; F < C.ArousalSettings.Fetish.length; F++)
 				if ((C.ArousalSettings.Fetish[F] != null) && (C.ArousalSettings.Fetish[F].Name != null) && (FetishFemale3DCG[A].Name == C.ArousalSettings.Fetish[F].Name)) {
 					Found = true;
 					if ((C.ArousalSettings.Fetish[F].Factor == null) || (typeof C.ArousalSettings.Fetish[F].Factor !== "number") || (C.ArousalSettings.Fetish[F].Factor < 0) || (C.ArousalSettings.Fetish[F].Factor > 4)) C.ArousalSettings.Fetish[F].Factor = 2;
@@ -256,10 +257,10 @@ function PreferenceInit(C) {
 		}
 
 		// Validates the zones
-		for (var A = 0; A < AssetGroup.length; A++)
+		for (let A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null)) {
 				var Found = false;
-				for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
+				for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
 					if ((C.ArousalSettings.Zone[Z] != null) && (C.ArousalSettings.Zone[Z].Name != null) && (AssetGroup[A].Name == C.ArousalSettings.Zone[Z].Name)) {
 						Found = true;
 						if ((C.ArousalSettings.Zone[Z].Factor == null) || (typeof C.ArousalSettings.Zone[Z].Factor !== "number") || (C.ArousalSettings.Zone[Z].Factor < 0) || (C.ArousalSettings.Zone[Z].Factor > 4)) C.ArousalSettings.Zone[Z].Factor = 2;
@@ -304,7 +305,7 @@ function PreferenceLoad() {
 	// Prepares the activity list
 	PreferenceArousalActivityList = [];
 	if (Player.AssetFamily == "Female3DCG")
-		for (var A = 0; A < ActivityFemale3DCG.length; A++)
+		for (let A = 0; A < ActivityFemale3DCG.length; A++)
 			PreferenceArousalActivityList.push(ActivityFemale3DCG[A].Name);
 	PreferenceArousalActivityIndex = 0;
 	PreferenceLoadActivityFactor();
@@ -312,7 +313,7 @@ function PreferenceLoad() {
 	// Prepares the fetish list
 	PreferenceArousalFetishList = [];
 	if (Player.AssetFamily == "Female3DCG")
-		for (var A = 0; A < FetishFemale3DCG.length; A++)
+		for (let A = 0; A < FetishFemale3DCG.length; A++)
 			PreferenceArousalFetishList.push(FetishFemale3DCG[A].Name);
 	PreferenceArousalFetishIndex = 0;
 	PreferenceLoadFetishFactor();
@@ -353,6 +354,7 @@ function PreferenceRun() {
 	DrawCheckbox(500, 632, 64, 64, TextGet("EnableAfkTimer"), Player.GameplaySettings.EnableAfkTimer);
 	DrawCheckbox(500, 712, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
 	DrawCheckbox(500, 792, 64, 64, TextGet("EnableSafeword"), Player.GameplaySettings.EnableSafeword);
+	DrawCheckbox(500, 872, 64, 64, TextGet("EnableWardrobeIcon"), Player.GameplaySettings.EnableWardrobeIcon);
 
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
@@ -452,6 +454,7 @@ function PreferenceClick() {
 		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) Player.GameplaySettings.EnableSafeword = true;
 		else if (Player.GameplaySettings.EnableSafeword) Player.GameplaySettings.EnableSafeword = false;
 	}
+	if (MouseIn(500, 872, 64, 64)) Player.GameplaySettings.EnableWardrobeIcon = !Player.GameplaySettings.EnableWardrobeIcon;
 
 }
 
@@ -555,7 +558,7 @@ function PreferenceSubscreenArousalRun() {
 		DrawText(TextGet("ArousalActivityLoveOther"), 1255, 665, "Black", "Gray");
 
 		// Draws all the available character zones
-		for (var A = 0; A < AssetGroup.length; A++)
+		for (let A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null)) {
 				DrawAssetGroupZoneBackground(Player, AssetGroup[A].Zone, 0.9, 50, 50, PreferenceGetFactorColor(PreferenceGetZoneFactor(Player, AssetGroup[A].Name)));
 				DrawAssetGroupZone(Player, AssetGroup[A].Zone, 0.9, 50, 50, "#808080FF", 3);
@@ -792,7 +795,7 @@ function PreferenceSubscreenArousalClick() {
 		if ((MouseX >= 1455) && (MouseX < 1905) && (MouseY >= 463) && (MouseY <= 527)) {
 			if (MouseX <= 1680) PreferenceArousalFetishFactor = (5 + PreferenceArousalFetishFactor - 1) % 5;
 			else PreferenceArousalFetishFactor = (PreferenceArousalFetishFactor + 1) % 5;
-			for (var F = 0; F < Player.ArousalSettings.Fetish.length; F++)
+			for (let F = 0; F < Player.ArousalSettings.Fetish.length; F++)
 				if (Player.ArousalSettings.Fetish[F].Name == PreferenceArousalFetishList[PreferenceArousalFetishIndex])
 					Player.ArousalSettings.Fetish[F].Factor = PreferenceArousalFetishFactor;
 		}
@@ -830,9 +833,9 @@ function PreferenceSubscreenArousalClick() {
 			PreferenceSetZoneOrgasm(Player, Player.FocusGroup.Name, !PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
 
 		// In arousal mode, the player can click on her zones
-		for (var A = 0; A < AssetGroup.length; A++)
+		for (let A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null))
-				for (var Z = 0; Z < AssetGroup[A].Zone.length; Z++)
+				for (let Z = 0; Z < AssetGroup[A].Zone.length; Z++)
 					if (((Player.Pose.indexOf("Suspension") < 0) && (MouseX >= ((AssetGroup[A].Zone[Z][0] * 0.9) + 50)) && (MouseY >= (((AssetGroup[A].Zone[Z][1] - Player.HeightModifier) * 0.9) + 50)) && (MouseX <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * 0.9) + 50)) && (MouseY <= (((AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - Player.HeightModifier) * 0.9) + 50)))
 						|| ((Player.Pose.indexOf("Suspension") >= 0) && (MouseX >= ((AssetGroup[A].Zone[Z][0] * 0.9) + 50)) && (MouseY >= 0.9 * ((1000 - (AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3])) - Player.HeightModifier)) && (MouseX <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * 0.9) + 50)) && (MouseY <= 0.9 * (1000 - ((AssetGroup[A].Zone[Z][1])) - Player.HeightModifier)))) {
 						Player.FocusGroup = AssetGroup[A];

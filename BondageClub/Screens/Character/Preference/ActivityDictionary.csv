@@ -26,11 +26,15 @@ ActivityMasturbateHand,Hand Masturbation
 ActivityMasturbateFist,Fist Masturbation
 ActivityMasturbateFoot,Foot Masturbation
 ActivityMasturbateItem,Item Masturbation
+ActivityPenetrateSlow,Slow Penetration
+ActivityPenetrateFast,Fast Penetration
+ActivityHandGag,Hand Gag
 ActivitySpankItem,Item Spank
 ActivityTickleItem,Item Tickle
 ActivityRubItem,Item Rub
 ActivityRollItem,Item Roll
 ActivityPourItem,Item Pour
+ActivityShockItem,Item Shock
 Orgasm0,"SourceCharacter trembles and moans loudly, getting a powerful orgasm."
 Orgasm1,"SourceCharacter thrashes and loses all control, getting an intense orgasm."
 Orgasm2,"SourceCharacter screams silently and rocks her hips, getting a wonderful orgasm."
@@ -111,6 +115,8 @@ ChatOther-ItemVulva-Kiss,SourceCharacter kisses TargetCharacter's pussy lips.
 ChatOther-ItemVulva-Lick,SourceCharacter licks TargetCharacter's pussy lips.
 ChatOther-ItemVulva-Nibble,SourceCharacter nibbles TargetCharacter's pussy lips.
 ChatOther-ItemVulva-MasturbateItem,She uses the device to masturbate the clitoris.
+ChatOther-ItemVulva-PenetrateSlow,SourceCharacter penetrates TargetCharacter's vagina at a slow pace.
+ChatOther-ItemVulva-PenetrateFast,SourceCharacter penetrates TargetCharacter's vagina at a fast pace.
 ChatSelf-ItemButt-MasturbateHand,SourceCharacter fingers and masturbates her ass.
 ChatSelf-ItemButt-Spank,SourceCharacter spanks herself on the butt.
 ChatSelf-ItemButt-Caress,SourceCharacter caresses her butt.
@@ -123,6 +129,8 @@ ChatOther-ItemButt-MasturbateTongue,SourceCharacter uses her tongue to masturbat
 ChatOther-ItemButt-Spank,SourceCharacter spanks TargetCharacter's butt.
 ChatOther-ItemButt-Caress,SourceCharacter caresses TargetCharacter's butt.
 ChatOther-ItemButt-Grope,SourceCharacter gropes TargetCharacter's butt.
+ChatOther-ItemButt-PenetrateSlow,SourceCharacter penetrates TargetCharacter's butt at a slow pace.
+ChatOther-ItemButt-PenetrateFast,SourceCharacter penetrates TargetCharacter's butt at a fast pace.
 ChatSelf-ItemPelvis-Tickle,SourceCharacter tickles her own tummy.
 ChatSelf-ItemPelvis-Spank,SourceCharacter spanks her own tummy.
 ChatSelf-ItemPelvis-Caress,SourceCharacter caresses her tummy.
@@ -233,6 +241,7 @@ ChatSelf-ItemMouth-Lick,SourceCharacter licks her lips.
 ChatSelf-ItemMouth-Nibble,SourceCharacter nibbles her lips.
 ChatSelf-ItemMouth-Caress,SourceCharacter caresses and wipes her mouth clean.
 ChatSelf-ItemMouth-Bite,SourceCharacter bites her lips.
+ChatSelf-ItemMouth-HandGag,SourceCharacter clamps her hand over her mouth.
 ChatOther-ItemMouth-Bite,SourceCharacter bites TargetCharacter's lips.
 ChatOther-ItemMouth-Kiss,SourceCharacter kisses TargetCharacter's lips.
 ChatOther-ItemMouth-FrenchKiss,SourceCharacter shares a long French kiss with TargetCharacter.
@@ -240,6 +249,7 @@ ChatOther-ItemMouth-PoliteKiss,SourceCharacter gives a friendly kiss on TargetCh
 ChatOther-ItemMouth-Lick,SourceCharacter licks TargetCharacter's lips.
 ChatOther-ItemMouth-Nibble,SourceCharacter nibbles TargetCharacter's lips.
 ChatOther-ItemMouth-Caress,SourceCharacter caresses and cleans TargetCharacter's mouth.
+ChatOther-ItemMouth-HandGag,SourceCharacter clamps her hand over TargetCharacter's mouth.
 ChatSelf-ItemHead-Slap,SourceCharacter slaps herself on the face.
 ChatSelf-ItemHead-Caress,SourceCharacter caresses her face.
 ChatSelf-ItemHead-TakeCare,SourceCharacter brushes her hair.

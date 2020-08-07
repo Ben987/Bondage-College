@@ -36,7 +36,7 @@ function EmptyLoad() {
  * @returns {void} - Nothing
  */
 function EmptyRun() {
-	for (var C = 0; C < EmptyCharacter.length; C++)
+	for (let C = 0; C < EmptyCharacter.length; C++)
 		DrawCharacter(EmptyCharacter[C], 1000 - EmptyCharacter.length * 250 + C * 500 + EmptyCharacterOffset, 0, 1);
 }
 
@@ -45,7 +45,7 @@ function EmptyRun() {
  * @returns {void} - Nothing
  */
 function EmptyClick() {
-	for (var C = 0; C < EmptyCharacter.length; C++)
+	for (let C = 0; C < EmptyCharacter.length; C++)
 		if ((MouseX >= 1000 - EmptyCharacter.length * 250 + C * 500 + EmptyCharacterOffset) && (MouseX < 1500 - EmptyCharacter.length * 250 + C * 500 + EmptyCharacterOffset) && (MouseY >= 0) && (MouseY < 1000)) 
 			CharacterSetCurrent(EmptyCharacter[C]);
 }

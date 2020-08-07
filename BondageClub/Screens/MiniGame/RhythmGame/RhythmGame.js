@@ -7,7 +7,11 @@ let RhythmGameEnded = false;
 let RhythmGamePassed = true;
 let RhythmGamePreloadCompleted = false;
 
-//Rhythm game initialization object, handling pre and post loading, invoking initialization of other objects
+/**
+ * Rhythm game initialization object: Handles pre and post loading, invokes initialization of other objects.
+ * @constant
+ * @type {object} - The game initialization object. Contains the functions required to load the game. 
+ */
 let RhythmGameInit = {
     RhythmGamePreload : function(){
         RhythmGameBackground = 'RhythmGameLoading';
@@ -80,7 +84,11 @@ let RhythmGameInit = {
     },
 };
 
-//Rhythm game image object, load and cache the image resources
+/**
+ * Rhythm game image object: Loads and caches the image resources.
+ * @constant
+ * @type {object} - The game image object. Contains the functions required to load the images. 
+ */
 let RhythmGameImage = {
     preload : function () {
         RhythmGameImage.preloadTotal = 5;
@@ -104,7 +112,11 @@ let RhythmGameImage = {
     },
 };
 
-//Rhythm game audio object, handles loading audio and starts the music
+/**
+ * Rhythm game audio object: Handles loading audio and starting the music
+ * @constant
+ * @type {object} - The game audio object. Contains the functions required to load, start and stop the audio files. 
+ */
 let RhythmGameAudio =  {
     preload : function () {
         RhythmGameAudio.preloadComplted = false;
@@ -139,7 +151,11 @@ let RhythmGameAudio =  {
     }
 };
 
-//Rhythm game chart object, handles loading chart, parse xml, cached chart for rendering and judging
+/**
+ * Rhythm game chart object: Handles loading chart, parsing xml, caching chart for rendering and judging.
+ * @constant
+ * @type {object} - The game chart object. Contains the functions required to load the charts.
+ */
 let RhythmGameChart = {
     preload : function () {
         RhythmGameChart.preloadComplted = false;
@@ -224,7 +240,11 @@ let RhythmGameChart = {
     },
 };
 
-//Rhythm game keyboard input handler object
+/**
+ * Rhythm game keyboard input handler object: Handles keyboard inputs.
+ * @constant
+ * @type {object} - The game keyboard input handler object. Contains the functions and properties required to handle key press events.
+ */
 let RhythmGameKey = {
     keyPressed : [false, false, false, false],
     key_log : [], //{key,type,time}
@@ -308,7 +328,11 @@ let RhythmGameKey = {
     },
 };
 
-//Rhythm game kernel object, handles the game timing
+/**
+ * Rhythm game kernel object: Handles game timing.
+ * @constant
+ * @type {object} - The game kernel object. Contains the functions required to handle the game's timing.
+ */
 let RhythmGameKernel = {
     load : function(){
         RhythmGameKernel.offsetTime = 3000;
@@ -346,7 +370,11 @@ let RhythmGameKernel = {
     },
 };
 
-//Rhythm game script object, contains functions related to game mechanics
+/**
+ * Rhythm game script object: Handles game mechanics.
+ * @constant
+ * @type {object} - The game kernel object. Contains the functions related to game mechanics such as health, score and accuracy.
+ */
 let RhythmGameScript = {
     judge_perfect : 50,
     judge_great   : 120,
@@ -535,7 +563,11 @@ let RhythmGameScript = {
     },
 };
 
-//Rhythm game render object, contains functions related to game rendering
+/**
+ * Rhythm game render object: Handles game rendering.
+ * @constant
+ * @type {object} - The game render object. Contains the functions related to game rendering such as the visual effects and notes.
+ */
 let RhythmGameRender = {
     scrollSpeed : 2.1,
 
@@ -885,7 +917,11 @@ let RhythmGameRender = {
     },
 };
 
-//Rhythm game integration object, contains bondage club specific functions
+/**
+ * Rhythm game integration object: Handles bondage club specific functions.
+ * @constant
+ * @type {object} - The game integration object. Contains the functions related to handling functions from the club such as punishing the player for being inaccurate.
+ */
 let RhythmGameIntegration = {
     punishment_level : 0,
 
@@ -898,7 +934,7 @@ let RhythmGameIntegration = {
     },
 
     setPunishment : function () {
-        RhythmGameIntegration.punishment_level ++;
+        RhythmGameIntegration.punishment_level++;
         switch(RhythmGameIntegration.punishment_level){
             case 0:
                 break;
@@ -929,13 +965,19 @@ let RhythmGameIntegration = {
     },
 };
 
-//Loading the game resources
+/**
+ * Loads the rythm mini game after saving the main cancas to restore it once the game is done.
+ * @returns {void} - Nothing
+ */
 function RhythmGameLoad(){
     MainCanvas.save();
     RhythmGameInit.RhythmGamePreload();
 }
 
-//Main process
+/**
+ * Runs and draws the canvas for the rythm mini game. The game uses objects to handle various processes.
+ * @returns {void} - Nothing
+ */
 function RhythmGameRun() {
     if(!RhythmGameStarted) {
         if(!RhythmGamePreloadCompleted) RhythmGameInit.RhythmGamePreloadCheck();

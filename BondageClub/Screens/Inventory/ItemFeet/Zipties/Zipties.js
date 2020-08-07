@@ -33,7 +33,7 @@ function InventoryItemFeetZiptiesDraw() {
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 	
 	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
-	for (var I = ZiptiesFeetOptionOffset; (I < ZiptiesFeetOptions.length) && (I < ZiptiesFeetOptionOffset + 4); I++) {
+	for (let I = ZiptiesFeetOptionOffset; (I < ZiptiesFeetOptions.length) && (I < ZiptiesFeetOptionOffset + 4); I++) {
 		var offset = I - ZiptiesFeetOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
@@ -54,7 +54,7 @@ function InventoryItemFeetZiptiesClick() {
 	if (ZiptiesFeetOptionOffset >= ZiptiesFeetOptions.length) ZiptiesFeetOptionOffset = 0;
 
 	// Item buttons
-	for (var I = ZiptiesFeetOptionOffset; (I < ZiptiesFeetOptions.length) && (I < ZiptiesFeetOptionOffset + 4); I++) {
+	for (let I = ZiptiesFeetOptionOffset; (I < ZiptiesFeetOptions.length) && (I < ZiptiesFeetOptionOffset + 4); I++) {
 		var offset = I - ZiptiesFeetOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);

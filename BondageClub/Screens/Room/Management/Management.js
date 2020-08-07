@@ -66,9 +66,14 @@ function ManagementCannotBeClubMistressLaugh() { return ((ReputationGet("Dominan
 function ManagementCannotBeClubMistressTime() { return (((Math.floor((CurrentTime - Player.Creation) / 86400000)) < 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()) }
 function ManagementMistressCanBePaid() { return (LogQuery("ClubMistress", "Management") && !LogQuery("MistressWasPaid", "Management")) }
 function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Management") && LogQuery("MistressWasPaid", "Management")) }
-function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)) }
-function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)) }
+function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)) }
+function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)) }
 function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyRestraint(Player) }
+/**
+ * Checks, if the player is wearing a lover locked restraint
+ * @returns {boolean} - Returns true, if the player wears a lover locked item, false otherwise
+ */
+function ManagementCannotBeClubSlaveLoverLock() { return InventoryCharacterHasLoverOnlyRestraint(Player) }
 function ManagementCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
 function ManagementCanMasturbate() { return (Player.CanInteract() && !CurrentCharacter.IsVulvaChaste()) }
 function ManagementCanPlayWithSub() { return (DialogReputationLess("Dominant", 24) && !InventoryCharacterHasLockedRestraint(Player)) }
@@ -77,7 +82,7 @@ function ManagementCannotPlayWithSubLock() { return (DialogReputationLess("Domin
 // Returns TRUE if there's no other Mistress in the player private room
 function ManagementNoMistressInPrivateRoom() {
 	if (PrivateCharacter.length <= 1) return true;
-	for (var C = 1; C < PrivateCharacter.length; C++)
+	for (let C = 1; C < PrivateCharacter.length; C++)
 		if ((PrivateCharacter[C].Title != null) && (PrivateCharacter[C].Title == "Mistress"))
 			return false;
 	return true;
@@ -85,7 +90,7 @@ function ManagementNoMistressInPrivateRoom() {
 
 // Returns TRUE if any friend in the private room is chaste
 function ManagementFriendIsChaste() {
-	for (var C = 1; C < PrivateCharacter.length; C++)
+	for (let C = 1; C < PrivateCharacter.length; C++)
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsChaste())
 			return true;
 	return false;
@@ -206,7 +211,7 @@ function ManagementSwitchToAngryMistress() {
 
 // Releases all girls that are locked in chastity items in the private room
 function ManagementReleasePrivateRoom() {
-	for (var P = 1; P < PrivateCharacter.length; P++) {
+	for (let P = 1; P < PrivateCharacter.length; P++) {
 		if (PrivateCharacter[P].IsVulvaChaste()) InventoryRemove(PrivateCharacter[P], "ItemPelvis");
 		if (PrivateCharacter[P].IsBreastChaste()) InventoryRemove(PrivateCharacter[P], "ItemBreast");
 		ServerPrivateCharacterSync();
@@ -245,7 +250,7 @@ function ManagementBreakTrialOnline() {
 	if ((Player.Ownership != null) && (Player.Ownership.MemberNumber != null)) {
 		ServerSend("AccountOwnership", { MemberNumber: Player.Ownership.MemberNumber, Action: "Break" });
 		Player.Ownership = null;
-		for (var A = 0; A < Player.Appearance.length; A++)
+		for (let A = 0; A < Player.Appearance.length; A++)
 			ServerValidateProperties(Player, Player.Appearance[A]);
 	}
 }
