@@ -609,6 +609,8 @@ function AppearanceRun() {
 		// Draw the wardrobe top controls & buttons
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
 		if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
+		
+		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 
 		// Prepares a 3x3 square of clothes to present all the possible options
 		var X = 1250;
@@ -640,7 +642,7 @@ function AppearanceRun() {
 	if (HideColorPicker) ColorPickerHide();
 
 	// Draw the default buttons
-	DrawButton(1768, 25, 90, 90, "", "White", "Icons/Cancel.png", TextGet("Cancel"));
+	if (!DialogItemPermissionMode) DrawButton(1768, 25, 90, 90, "", "White", "Icons/Cancel.png", TextGet("Cancel"));
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Accept.png", TextGet("Accept"));
 
 }
@@ -939,6 +941,15 @@ function AppearanceClick() {
 			AppearanceExit();
 		}
 
+		// Swaps between normal and permission mode
+		if (C.ID == 0 && MouseIn(1417, 25, 90, 90)) { 
+			if (DialogItemPermissionMode) { 
+				ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
+			}
+			DialogItemPermissionMode = !DialogItemPermissionMode;
+			DialogInventoryBuild(C);
+		}
+		
 		// Prepares a 3x3 square of clothes to present all the possible options
 		var X = 1250;
 		var Y = 125;
@@ -948,12 +959,30 @@ function AppearanceClick() {
 				var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
 				var Limit = InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name);
 				
-				if (Block || Limit) return;
-				if (InventoryAllow(C, Item.Asset.Prerequisite))
-					CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
-				else { 
-					CharacterAppearanceHeaderTextTime = DialogTextDefaultTimer;
-					CharacterAppearanceHeaderText = DialogText;
+				// In permission mode, we toggle the settings for an item
+				if (DialogItemPermissionMode) {
+					
+					var CurrentItem = InventoryGet(C, C.FocusGroup.Name);
+					
+					if (CurrentItem && (CurrentItem.Asset.Name == Item.Asset.Name)) return;
+					if (InventoryIsPermissionBlocked(Player, Item.Asset.Name, Item.Asset.Group.Name)) {
+						Player.BlockItems = Player.BlockItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name);
+						Player.LimitedItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name });
+					}
+					else if (InventoryIsPermissionLimited(Player, Item.Asset.Name, Item.Asset.Group.Name))
+						Player.LimitedItems = C.LimitedItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name);
+					else
+						Player.BlockItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name });
+					ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
+					
+				} else {
+					if (Block || Limit) return;
+					if (InventoryAllow(C, Item.Asset.Prerequisite))
+						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
+					else {
+						CharacterAppearanceHeaderTextTime = DialogTextDefaultTimer;
+						CharacterAppearanceHeaderText = DialogText;
+					}
 				}
 				return;
 			}
