@@ -89,7 +89,7 @@ function PhotographicPlayerClothRemove(Group) {
 }
 
 function PhotographicAppearanceAvailable(C, Group) {
-	for (var I = 0; I < C.Appearance.length; I++) {
+	for (let I = 0; I < C.Appearance.length; I++) {
 		if (C.Appearance[I].Asset.Group.Name == Group) {
 			return true;
 		}
@@ -98,7 +98,7 @@ function PhotographicAppearanceAvailable(C, Group) {
 }
 
 function PhotographicPlayerAssetAvailable(Asset, Group) {
-	for (var I = Player.Inventory.length - 1; I > -1; I--)
+	for (let I = Player.Inventory.length - 1; I > -1; I--)
 		if ((Player.Inventory[I].Name == Asset) && (Player.Inventory[I].Group == Group)) {return true;}
 	return false;	
 }
@@ -137,7 +137,7 @@ function PhotographicSubClothRemove(Group) {
 
 function PhotographicStartInventoryPlayer(ItemGroup) {
 	DialogLeaveItemMenu();
-	for (var A = 0; A < AssetGroup.length; A++) {
+	for (let A = 0; A < AssetGroup.length; A++) {
 		if (AssetGroup[A].Name == ItemGroup) {
 			Player.FocusGroup = AssetGroup[A];
 			DialogItemToLock = null;

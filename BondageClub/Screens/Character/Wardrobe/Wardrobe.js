@@ -42,7 +42,7 @@ function WardrobeLoadCharacters(Fast) {
 	var W = null;
 	WardrobeLoadCharacterNames();
 	if (Player.Wardrobe == null) Player.Wardrobe = [];
-	for (var P = 0; P < WardrobeSize; P++) {
+	for (let P = 0; P < WardrobeSize; P++) {
 		if (WardrobeCharacter.length <= P && ((W == null) || !Fast)) {
 
 			// Creates a character
@@ -103,7 +103,7 @@ function WardrobeRun() {
 	DrawButton(1000, 25, 60, 60, "", "White", "Icons/Small/Next.png");
 	DrawButton(1750, 25, 225, 60, TextGet("Return"), "White");
 	DrawText(TextGet("SelectAppareance"), 1405, 60, "White", "Gray");
-	for (var C = 0; C < 12; C++)
+	for (let C = 0; C < 12; C++)
 		if (C < 6) {
 			DrawCharacter(WardrobeCharacter[C + WardrobeOffset], 500 + C * 250, 100, 0.45);
 			if (WardrobeSelection == C + WardrobeOffset) DrawEmptyRect(500 + C * 250, 105, 225, 440, "Cyan");
@@ -140,7 +140,7 @@ function WardrobeClick() {
 
 	// If we must select a different wardrobe
 	if ((MouseX >= 500) && (MouseX < 2000) && (MouseY >= 100) && (MouseY < 1000))
-		for (var C = 0; C < 12; C++)
+		for (let C = 0; C < 12; C++)
 			if (C < 6) {
 				if ((MouseX >= 500 + C * 250) && (MouseX <= 725 + C * 250) && (MouseY >= 100) && (MouseY <= 450))
 					WardrobeSelection = C + WardrobeOffset;

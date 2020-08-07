@@ -40,7 +40,7 @@ function OnlneGameDictionaryLoad() {
  * @returns {string} The text attached to the keyword, will return a missing text if it was not found 
  */
 function OnlineGameDictionaryText(KeyWord) {
-	for (var D = 0; D < OnlineGameDictionary.length; D++)
+	for (let D = 0; D < OnlineGameDictionary.length; D++)
 		if (OnlineGameDictionary[D][0] == OnlineGameName + KeyWord)
 			return OnlineGameDictionary[D][1].trim();
 	return "MISSING ONLINE GAME DESCRIPTION FOR KEYWORD " + KeyWord;
@@ -100,7 +100,7 @@ function OnlineGameAllowBlockItems() {
  */
 function OnlineGameLoadStatus() {
 	if (OnlineGameName == "LARP") {
-		for (var C = 0; C < ChatRoomCharacter.length; C++)
+		for (let C = 0; C < ChatRoomCharacter.length; C++)
 			if ((ChatRoomData.Admin.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) && (ChatRoomCharacter[C].Game.LARP.Status != "")) {
 				GameLARPStatus = ChatRoomCharacter[C].Game.LARP.Status;
 				return;

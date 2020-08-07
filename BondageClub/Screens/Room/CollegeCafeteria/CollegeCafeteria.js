@@ -33,7 +33,7 @@ function CollegeCafeteriaLoad() {
 	if (LogQuery("JenniferMistress", "NPC-Sidney") && (Player.Owner == "NPC-Sidney")) CollegeCafeteriaSidneyStatus = "Owner";
 	if (LogQuery("JenniferMistress", "NPC-Sidney") && (Player.Owner != "NPC-Sidney")) CollegeCafeteriaSidneyStatus = "ExOwner";
 	if (PrivateCharacter.length > 1)
-		for (var P = 1; P < PrivateCharacter.length; P++)
+		for (let P = 1; P < PrivateCharacter.length; P++)
 			if (PrivateCharacter[P].Name == "Sidney")
 				CollegeCafeteriaSidneyStatus = "Away";
 

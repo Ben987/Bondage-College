@@ -12,7 +12,7 @@ function DojoStruggleLoad() {
 	DojoStrugglePosition = 450;
 	if (MiniGameProgress < 0) MiniGameProgress = 0;
 	DojoStruggleRope = [];
-	for (var P = 0; P < 25; P++)
+	for (let P = 0; P < 25; P++)
 		DojoStruggleRope.push(Math.floor(Math.random() * 651) + 175);
 }
 
@@ -50,7 +50,7 @@ function DojoStruggleRun() {
 
 			// Draw the obstacles
 			var C = 25;
-			for (var P = 0; P < 25; P++) {
+			for (let P = 0; P < 25; P++) {
 				var X = 1000 + (P * 500) + ((5000 - MiniGameTimer) / 5);
 				if (X < 150) C--;
 				if ((X > 0) && (X < 1200) && (DojoStruggleRope[P] > 150)) DrawImageZoomCanvas("Screens/MiniGame/DojoStruggle/RopeVertical.png", MainCanvas, 0, 0, 50, DojoStruggleRope[P] - 150, X, 0, 50, DojoStruggleRope[P] - 150);

@@ -52,7 +52,7 @@ function ActivityDictionaryLoad() {
  * @returns {string} - Description associated to the given keyword
  */
 function ActivityDictionaryText(KeyWord) {
-	for (var D = 0; D < ActivityDictionary.length; D++)
+	for (let D = 0; D < ActivityDictionary.length; D++)
 		if (ActivityDictionary[D][0] == KeyWord)
 			return ActivityDictionary[D][1].trim();
 	return "MISSING ACTIVITY DESCRIPTION FOR KEYWORD " + KeyWord;
@@ -70,7 +70,7 @@ function ActivityDialogBuild(C) {
 	if ((C.FocusGroup != null) && (C.FocusGroup.Activity != null)) {
 
 		// For each activities
-		for (var A = 0; A < C.FocusGroup.Activity.length; A++) {
+		for (let A = 0; A < C.FocusGroup.Activity.length; A++) {
 
 			// Make sure the activity is valid for that player asset family
 			var Activity = AssetGetActivity(C.AssetFamily, C.FocusGroup.Activity[A]);
@@ -82,7 +82,7 @@ function ActivityDialogBuild(C) {
 
 				// Make sure all the prerequisites are met
 				if (Allow && (Activity.Prerequisite != null))
-					for (var P = 0; P < Activity.Prerequisite.length; P++) {
+					for (let P = 0; P < Activity.Prerequisite.length; P++) {
 						if ((Activity.Prerequisite[P] == "UseMouth") && (Player.IsMouthBlocked() || !Player.CanTalk())) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseTongue") && Player.IsMouthBlocked()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseHands") && !Player.CanInteract()) Allow = false;
@@ -98,13 +98,13 @@ function ActivityDialogBuild(C) {
 
 				// Make sure the current player has permission to do this activity
 				if (Allow && (Player.ArousalSettings != null) && (Player.ArousalSettings.Activity != null))
-					for (var P = 0; P < Player.ArousalSettings.Activity.length; P++)
+					for (let P = 0; P < Player.ArousalSettings.Activity.length; P++)
 						if ((Player.ArousalSettings.Activity[P].Name == C.FocusGroup.Activity[A]) && (Player.ArousalSettings.Activity[P].Other != null) && (Player.ArousalSettings.Activity[P].Other == 0))
 							Allow = false;
 
 				// Make sure the target player gives permission for this activity
 				if (Allow && (C.ArousalSettings != null) && (C.ArousalSettings.Activity != null))
-					for (var P = 0; P < C.ArousalSettings.Activity.length; P++)
+					for (let P = 0; P < C.ArousalSettings.Activity.length; P++)
 						if ((C.ArousalSettings.Activity[P].Name == C.FocusGroup.Activity[A]) && (C.ArousalSettings.Activity[P].Self != null) && (C.ArousalSettings.Activity[P].Self == 0))
 							Allow = false;
 
@@ -363,7 +363,7 @@ function ActivityExpression(C, Progress) {
 	if (Progress == 100) Eyes = "Closed";
 
 	// Find the expression in the character appearance and alters it
-	for (var A = 0; A < C.Appearance.length; A++) {
+	for (let A = 0; A < C.Appearance.length; A++) {
 		if (C.Appearance[A].Asset.Group.Name == "Blush") C.Appearance[A].Property = { Expression: Blush };
 		if (C.Appearance[A].Asset.Group.Name == "Eyebrows") C.Appearance[A].Property = { Expression: Eyebrows };
 		if (C.Appearance[A].Asset.Group.Name == "Fluids") C.Appearance[A].Property = { Expression: Fluids };
@@ -475,7 +475,7 @@ function ActivityArousalItem(Source, Target, Asset) {
 function ActivityFetishItemFactor(C, Type) {
 	var Factor = (PreferenceGetFetishFactor(C, Type) - 2);
 	if (Factor != 0)
-		for (var A = 0; A < C.Appearance.length; A++)
+		for (let A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Fetish != null))
 				if (C.Appearance[A].Asset.Fetish.indexOf(Type) >= 0)
 					return Factor;
@@ -490,9 +490,9 @@ function ActivityFetishItemFactor(C, Type) {
 function ActivityFetishFactor(C) {
 	var Factor = 0;
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Fetish != null))
-		for (var A = 0; A < C.ArousalSettings.Fetish.length; A++)
+		for (let A = 0; A < C.ArousalSettings.Fetish.length; A++)
 			if (C.ArousalSettings.Fetish[A].Factor != 2)
-				for (var F = 0; F < FetishFemale3DCG.length; F++)
+				for (let F = 0; F < FetishFemale3DCG.length; F++)
 					if (FetishFemale3DCG[F].Name == C.ArousalSettings.Fetish[A].Name)
 						Factor = Factor + FetishFemale3DCG[F].GetFactor(C);
 	return Factor;

@@ -140,7 +140,7 @@ function IntroductionChangeMaidOpinion(Bonus) {
  * @returns {void} - Nothing
  */
 function IntroductionSetZone(NewZone) {
-	for (var A = 0; A < AssetGroup.length; A++)
+	for (let A = 0; A < AssetGroup.length; A++)
 		if (AssetGroup[A].Name == NewZone) {
 			Player.FocusGroup = AssetGroup[A];
 			CurrentCharacter.FocusGroup = AssetGroup[A];
@@ -162,12 +162,14 @@ function IntroductionClearZone() {
  * @returns {void} - Nothing
  */
 function IntroductionGetBasicItems() {
-	InventoryAdd(Player, "NylonRope", "ItemFeet");
-	InventoryAdd(Player, "NylonRope", "ItemLegs");
-	InventoryAdd(Player, "NylonRope", "ItemArms");
-	InventoryAdd(Player, "ClothGag", "ItemMouth");
-	InventoryAdd(Player, "ClothGag", "ItemMouth2");
-	InventoryAdd(Player, "ClothGag", "ItemMouth3");
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "NylonRope", Group: "ItemFeet"});
+	ItemsToEarn.push({Name: "NylonRope", Group: "ItemLegs"});
+	ItemsToEarn.push({Name: "NylonRope", Group: "ItemArms"});
+	ItemsToEarn.push({Name: "ClothGag", Group: "ItemMouth"});
+	ItemsToEarn.push({Name: "ClothGag", Group: "ItemMouth2"});
+	ItemsToEarn.push({Name: "ClothGag", Group: "ItemMouth3"});
+	InventoryAddMany(Player, ItemsToEarn);
 	IntroductionHasBasicItems = true;
 }
 
@@ -244,7 +246,7 @@ function IntroductionJobAvailable(JobName) {
  * @returns {boolean} - Returns TRUE if any job is available for the player
  */
 function IntroductionJobAnyAvailable() {
-	for (var J = 0; J < IntroductionJobList.length; J++)
+	for (let J = 0; J < IntroductionJobList.length; J++)
 		if (IntroductionJobAvailable(IntroductionJobList[J]))
 			return true;
 	return false;

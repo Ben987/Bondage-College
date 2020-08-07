@@ -56,7 +56,7 @@ function InventoryItemFeetHempRopeDraw() {
 	DrawText(DialogExtendedMessage, 1500, 335, "white", "gray");
 	
 	// Draw the possible positions and their requirements
-	for (var I = HempRopeFeetOptionOffset; (I < HempRopeFeetOptions.length) && (I < HempRopeFeetOptionOffset + 4); I++) {
+	for (let I = HempRopeFeetOptionOffset; (I < HempRopeFeetOptions.length) && (I < HempRopeFeetOptionOffset + 4); I++) {
 		var offset = I - HempRopeFeetOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 420 + (Math.floor(offset / 2) * 300);
@@ -79,7 +79,7 @@ function InventoryItemFeetHempRopeClick() {
 	if (HempRopeFeetOptionOffset >= HempRopeFeetOptions.length) HempRopeFeetOptionOffset = 0;
 
 	// Item buttons
-	for (var I = HempRopeFeetOptionOffset; (I < HempRopeFeetOptions.length) && (I < HempRopeFeetOptionOffset + 4); I++) {
+	for (let I = HempRopeFeetOptionOffset; (I < HempRopeFeetOptions.length) && (I < HempRopeFeetOptionOffset + 4); I++) {
 		var offset = I - HempRopeFeetOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 420 + (Math.floor(offset / 2) * 300);
