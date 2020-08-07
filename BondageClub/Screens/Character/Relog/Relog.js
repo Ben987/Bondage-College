@@ -12,7 +12,7 @@ function RelogLoad() {
 	
 	// Hides any HTML DOM element with the tag "HideOnPopup", like text boxes
 	var Elements = document.getElementsByClassName("HideOnPopup");
-	for (var E = 0; E < Elements.length; E++)
+	for (let E = 0; E < Elements.length; E++)
 		Elements[E].style.display = "none";
 
 	// Resets login variables and sets the login message

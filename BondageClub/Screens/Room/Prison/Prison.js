@@ -204,7 +204,7 @@ function PrisonClick() {
 
 // Returns true if Appearance for Character available
 function PrisonCharacterAppearanceAvailable (C, AppearanceName, AppearanceGroup) {
-	for (var I = 0; I < C.Appearance.length; I++)
+	for (let I = 0; I < C.Appearance.length; I++)
 		if ((C.Appearance[I].Asset.Name == AppearanceName) && (C.Appearance[I].Asset.Group.Name == AppearanceGroup))
 			return true;
 	return false;
@@ -212,7 +212,7 @@ function PrisonCharacterAppearanceAvailable (C, AppearanceName, AppearanceGroup)
 
 // Returns true if Appearance-Group for Character available
 function PrisonCharacterAppearanceGroupAvailable (C, AppearanceGroup) {
-	for (var I = 0; I < C.Appearance.length; I++)
+	for (let I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.Group.Name == AppearanceGroup)
 			return true;
 	return false;
@@ -315,7 +315,7 @@ function PrisonLightSearch(C) {
 function PrisonerClothBack(C) {
 	PrisonMaidIsAngry = true;
 	if (PrisonPlayerIsStriped()) {
-		for (var A = 0; A < PrisonPlayerAppearance.length; A++) {
+		for (let A = 0; A < PrisonPlayerAppearance.length; A++) {
 			if (PrisonPlayerAppearance[A].Asset.Group.Name == "Hat") {
 				InventoryWear(C, PrisonPlayerAppearance[A].Asset.Name, "Hat", PrisonPlayerAppearance[A].Color );
 			}
@@ -535,7 +535,7 @@ function PrisonLeaveCell() {
 
 //Give Cloth back to Sub
 function PrisonSubClothBack() {
-	for (var A = 0; A < PrisonSubAppearance.length; A++) {
+	for (let A = 0; A < PrisonSubAppearance.length; A++) {
 		if (PrisonSubAppearance[A].Asset.Group.Name == "Hat") {
 			InventoryWear(PrisonSub, PrisonSubAppearance[A].Asset.Name, "Hat", PrisonSubAppearance[A].Color );
 		}
