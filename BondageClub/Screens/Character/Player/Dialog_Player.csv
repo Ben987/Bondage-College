@@ -354,7 +354,7 @@ ActionInterruptedSwap,,,SourceCharacter was interrupted while swapping a PrevAss
 SlowLeaveAttempt,,,SourceCharacter slowly heads for the door.,,
 SlowLeaveCancel,,,SourceCharacter stops heading for the door.,,
 SlowLeaveInterrupt,,,SourceCharacter was stopped from leaving.,,
-SlowStop,,,SourceCharacter gets in the way of TargetCharacter, preventing them from leaving.,,
+SlowStop,,,SourceCharacter gets in the way of TargetCharacter preventing them from leaving.,,
 StruggleAssist,,,SourceCharacter tries to help TargetCharacter to struggle free.,,
 MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.,,
 MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.,,

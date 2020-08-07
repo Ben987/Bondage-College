@@ -56,20 +56,23 @@ function ChatRoomCanAssistStand() { return Player.CanInteract() && CurrentCharac
  * @returns {boolean} - Whether or not the target character can stand
  */
 function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharacter.AllowItem  && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) && CurrentCharacter.ActivePose == null}
-function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && isleaving(CurrentCharacter.MemberNumber) && Player.CanInteract() && CurrentCharacter.AllowItem && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) && CurrentCharacter.ActivePose == null) }
-function isleaving(girl){
-	for (var x = 0;x < ChatRoomPplLeaving.length;x++){
+//Check to see if stop button for a leaving girl while they are attempting to leave while "slow" should appear.
+function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && ChatRoomIsLeaving(CurrentCharacter.MemberNumber) && Player.CanInteract() && CurrentCharacter.AllowItem && CurrentCharacter.Effect.indexOf("Freeze") < 0 && CurrentCharacter.Effect.indexOf("ForceKneel") < 0 && (CurrentCharacter.Pose == null || CurrentCharacter.Pose.indexOf("Supension") < 0 && CurrentCharacter.Pose.indexOf("Hogtied") < 0) && CurrentCharacter.ActivePose == null) }
+//Populate array with leaving girls, checked when focus on currentcharacter.
+function ChatRoomIsLeaving(girl){
+	for (var x = 0;x < ChatRoomPplLeaving.length;x++){	
 		if (ChatRoomPplLeaving[x] == girl)return true;
-		console.log(ChatRoomPplLeaving);
 	}
 	return false;
 }
-function removeleaving(girl){
-	for (var x = 0 ; x < ChatRoomPplLeaving.length; x++){
-		console.log(ChatRoomPplLeaving[x]);
-		if (ChatRoomPplLeaving[x] == girl) ChatRoomPplLeaving = ChatRoomPplLeaving.splice(ChatRoomPplLeaving[x],1);
-	}
-	
+
+// Removes "slow" girls from chatroomisleaving array, removes the stop button for the specific girl.
+function ChatRoomRemoveLeaving(girl){
+	for (var x = ChatRoomPplLeaving.length ; x >= 0; x--){
+		if (ChatRoomPplLeaving[x] === girl){
+			ChatRoomPplLeaving.splice(x,1);
+		} 
+	}	
 }
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -306,7 +309,6 @@ function ChatRoomRun() {
 		ServerSend("ChatRoomChat", { Content: "SlowLeaveInterrupt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
 		ChatRoomSlowtimer = 0;
 		ChatRoomSlowStop = false;
-		removeleaving(Player.MemberNumber);
 	}
 	//Player is slow and can leave and is not stopped by other player.
 	if (Player.IsSlow() && ChatRoomCanLeave() && ChatRoomSlowStop == false){
@@ -404,7 +406,7 @@ function ChatRoomClick() {
 		// If the player clicked to leave, we start a timer based on evasion level and send a chat message
 		if ((ChatRoomSlowtimer == 0) && (ChatRoomSlowStop == false)) {
 			ServerSend("ChatRoomChat", { Content: "SlowLeaveAttempt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
-			ChatRoomSlowtimer = CurrentTime + (10 * (1000 - (50 * SkillGetLevelReal(Player, "Evasion"))));
+			ChatRoomSlowtimer = CurrentTime + (10 * (1000 - (50 * SkillGetLevelReal(Player, "Evasion"))));	
 		}
 
 		// If the player clicked to cancel leaving, we alert the room and stop the timer
@@ -741,10 +743,7 @@ function ChatRoomMessage(data) {
 						ChatRoomStruggleAssistTimer = CurrentTime + 60000;
 						ChatRoomStruggleAssistBonus = A;
 					}
-					if (msg == "SlowStop"){
-						ChatRoomSlowtimer = CurrentTime + 45000;
-						ChatRoomSlowStop = true;
-					} 
+					
 				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
 				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
 				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
@@ -830,12 +829,14 @@ function ChatRoomMessage(data) {
 					if (data.Content == "SlowLeaveAttempt"){
 						ChatRoomPplLeaving.push(data.Sender);
 					}
-					if (data.Content == "SlowLeaveCancel" || data.Content == "ChatRoomLeave" ) removeleaving(data.Sender);
-					if (data.Content == "SlowStop"){
-						if (!ChatRoomSlowStop){
-							ChatRoomSlowtimer = CurrentTime + 45000;
+
+					//Slow checks for leaving messages. 
+					if (data.Content == "SlowLeaveCancel" || data.Content == "ChatRoomLeave" || data.Content == "SlowLeaveInterrupt") ChatRoomRemoveLeaving(data.Sender);
+					if (data.Content == "SlowStop") {
+						ChatRoomRemoveLeaving(TargetMemberNumber);
+						if (!ChatRoomSlowStop && (TargetMemberNumber == Player.MemberNumber)){
+							ChatRoomSlowtimer = CurrentTime + 30000;
 							ChatRoomSlowStop = true;
-							removeleaving(TargetMemberNumber);
 						}
 					}
 				}
