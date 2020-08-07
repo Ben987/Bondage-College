@@ -221,7 +221,7 @@ function ShopClick() {
  */
 function ShopCartBuild() { 
 	ShopCart = [];
-	for (var A = 0; A < Asset.length; A++)
+	for (let A = 0; A < Asset.length; A++)
 		if (ShopSelectAsset(Asset[A]))
 			ShopCart.push(Asset[A]);
 }
