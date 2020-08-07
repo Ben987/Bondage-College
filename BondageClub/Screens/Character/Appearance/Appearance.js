@@ -539,6 +539,14 @@ function AppearanceRun() {
 	DrawCharacter(C, 750, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 400, 40, "White", "Black");
 
+	
+	// When there is an extended item
+	if (DialogFocusItem != null) {
+		CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
+		DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+		return;
+	}
+	
 	// In regular dress-up mode 
 	if (CharacterAppearanceMode == "") {
 
@@ -607,6 +615,7 @@ function AppearanceRun() {
 	if (CharacterAppearanceMode == "Cloth") {
 		
 		// Draw the wardrobe top controls & buttons
+		if (!DialogItemPermissionMode && InventoryGet(C, C.FocusGroup.Name) && InventoryGet(C, C.FocusGroup.Name).Asset.Extended) DrawButton(1302, 25, 90, 90, "", "White", "Icons/Use.png", DialogFind(Player, "Use"));
 		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
 		if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
@@ -805,6 +814,12 @@ function CharacterAppearanceSetColorForGroup(C, Color, Group) {
 function AppearanceClick() {
 	var C = CharacterAppearanceSelection;
 
+	// When there is an extended item
+	if (DialogFocusItem != null) {
+		CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
+		return;
+	}
+	
 	// In regular dress-up mode
 	if (CharacterAppearanceMode == "") {
 
@@ -920,6 +935,18 @@ function AppearanceClick() {
 	// In cloth selection mode
 	if (CharacterAppearanceMode == "Cloth") {
 
+		// Extends the current item
+		if (MouseIn(1302, 25, 90, 90)) { 
+			var Item = InventoryGet(C, C.FocusGroup.Name);
+			if (Item && Item.Asset.Extended) DialogExtendItem(Item);
+		}
+
+		// Swaps between normal and permission mode
+		if (C.ID == 0 && MouseIn(1417, 25, 90, 90)) { 
+			DialogItemPermissionMode = !DialogItemPermissionMode;
+			DialogInventoryBuild(C);
+		}
+		
 		// Strips the current item
 		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115))
 			CharacterAppearanceSetItem(C, C.FocusGroup.Name, null);
@@ -940,12 +967,6 @@ function AppearanceClick() {
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
 			C.FocusGroup = null;
 			AppearanceExit();
-		}
-
-		// Swaps between normal and permission mode
-		if (C.ID == 0 && MouseIn(1417, 25, 90, 90)) { 
-			DialogItemPermissionMode = !DialogItemPermissionMode;
-			DialogInventoryBuild(C);
 		}
 		
 		// Prepares a 3x3 square of clothes to present all the possible options
@@ -1001,6 +1022,13 @@ function AppearanceClick() {
  * @returns {void} - Nothing
  */
 function AppearanceExit() {
+	// We quit the extended item menu instead, if applicable.
+	if (CharacterAppearanceMode == "Cloth" && DialogFocusItem) {
+		DialogLeaveFocusItem();
+		DialogFocusItem = null;
+		return;
+	}
+	
 	if (CharacterAppearanceMode != "") { 
 		CharacterAppearanceMode = "";
 		CharacterAppearanceHeaderText = "";
