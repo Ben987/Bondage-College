@@ -93,7 +93,7 @@ function InformationSheetRun() {
 	if ((C.ID == 0) || OnlinePlayer) {
 		DrawText(TextGet("Relationships"), 1200, 125, "Black", "Gray");
 		if (C.Lovership.length < 1) DrawText(TextGet("Lover") + " " + TextGet("LoverNone"), 1200, 200, "Black", "Gray");
-		for (var L = 0; L < C.Lovership.length; L++) {
+		for (let L = 0; L < C.Lovership.length; L++) {
 			if (C.Lovership[L].MemberNumber == null) DrawText(TextGet("Lover") + " " + C.Lovership[L].Name.replace("NPC-", ""), 1200, 200 + L * 150, "Black", "Gray");
 			else {
 				DrawText(TextGet("Lover") + " " + C.Lovership[L].Name + " (" + C.Lovership[L].MemberNumber + ")", 1200, 200 + L * 150, "Black", "Gray");
@@ -112,7 +112,7 @@ function InformationSheetRun() {
 		// After one week we show the traits, after two weeks we show the level
 		if (CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 604800000) {
 			var pos = 0;
-			for (var T = 0; T < C.Trait.length; T++)
+			for (let T = 0; T < C.Trait.length; T++)
 				if ((C.Trait[T].Value != null) && (C.Trait[T].Value > 0)) {
 					DrawText(TextGet("Trait" + C.Trait[T].Name) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 1209600000) ? C.Trait[T].Value.toString() : "??"), 1000, 200 + pos * 75, "Black", "Gray");
 					pos++;
@@ -138,7 +138,7 @@ function InformationSheetSecondScreenRun() {
 		// Draw the reputation section
 		DrawText(TextGet("Reputation"), 1000, 125, "Black", "Gray");
 		var pos = 0;
-		for (var R = 0; R < C.Reputation.length; R++)
+		for (let R = 0; R < C.Reputation.length; R++)
 			if (C.Reputation[R].Value != 0) {
 				DrawText(TextGet("Reputation" + C.Reputation[R].Type + ((C.Reputation[R].Value > 0) ? "Positive" : "Negative")) + " " + Math.abs(C.Reputation[R].Value).toString(), 1000, 200 + pos * 75, "Black", "Gray");
 				pos++;
@@ -151,7 +151,7 @@ function InformationSheetSecondScreenRun() {
 			DrawText(TextGet("Unknown"), 1425, 200, "Black", "Gray");
 		}
 		else {
-			for (var S = 0; S < C.Skill.length; S++)
+			for (let S = 0; S < C.Skill.length; S++)
 				DrawText(TextGet("Skill" + C.Skill[S].Type) + " " + C.Skill[S].Level.toString() + " (" + Math.floor(C.Skill[S].Progress / 10) + "%)", 1425, 200 + S * 75, ((C.Skill[S].Ratio != null) && (C.Skill[S].Ratio != 1)) ? "Red" : "Black", "Gray");
 			if (C.Skill.length == 0) DrawText(TextGet("SkillNone"), 1425, 200, "Black", "Gray");
 		}

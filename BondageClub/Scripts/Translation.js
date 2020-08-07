@@ -284,9 +284,9 @@ var TranslationDictionary = [
  */
 function TranslationAvailable(FullPath) {
 	var FileName = FullPath.trim().toUpperCase();
-	for (var L = 0; L < TranslationDictionary.length; L++)
+	for (let L = 0; L < TranslationDictionary.length; L++)
 		if (TranslationDictionary[L].LanguageCode == TranslationLanguage)
-			for (var F = 0; F < TranslationDictionary[L].Files.length; F++)
+			for (let F = 0; F < TranslationDictionary[L].Files.length; F++)
 				if (TranslationDictionary[L].Files[F].trim().toUpperCase() == FileName)
 					return true;
 	return false;
@@ -303,7 +303,7 @@ function TranslationParseTXT(str) {
 	var c;
 
     // iterate over each character, keep track of current row (of the returned array)
-    for (var row = c = 0; c < str.length; c++) {
+    for (let row = c = 0; c < str.length; c++) {
         var cc = str[c], nc = str[c+1];        // current character, next character
         arr[row] = arr[row] || [];             // create a new row if necessary        
         if (cc == '\n') { ++row; continue; }   // If it's a newline, move on to the next row
@@ -311,14 +311,14 @@ function TranslationParseTXT(str) {
     }
 
 	// Removes any comment rows (starts with ###)
-    for (var row = 0; row < arr.length; row++)
+    for (let row = 0; row < arr.length; row++)
 		if (arr[row].indexOf("###") == 0) {
 			arr.splice(row, 1);
 			row = row - 1;
 		}
 
 	// Trims the full translated array
-    for (var row = 0; row < arr.length; row++)
+    for (let row = 0; row < arr.length; row++)
 		arr[row] = arr[row].trim();
     return arr;
 }
@@ -333,7 +333,7 @@ function TranslationParseTXT(str) {
 function TranslationString(S, T, CharacterName) {
 	if ((S != null) && (S.trim() != "")) {
 		S = S.trim();
-		for (var P = 0; P < T.length; P++)
+		for (let P = 0; P < T.length; P++)
 			if (S == T[P].replace("DialogCharacterName", CharacterName).replace("DialogPlayerName", Player.Name))
 				return T[P + 1].replace("DialogCharacterName", CharacterName).replace("DialogPlayerName", Player.Name);
 	}
@@ -347,7 +347,7 @@ function TranslationString(S, T, CharacterName) {
  * @returns {void} - Nothing
  */
 function TranslationDialogArray(C, T) {
-	for (var D = 0; D < C.Dialog.length; D++) {
+	for (let D = 0; D < C.Dialog.length; D++) {
 		C.Dialog[D].Option = TranslationString(C.Dialog[D].Option, T, C.Name);
 		C.Dialog[D].Result = TranslationString(C.Dialog[D].Result, T, C.Name);
 	}
@@ -360,7 +360,7 @@ function TranslationDialogArray(C, T) {
  * @returns {void} - Nothing
  */
 function TranslationTextArray(S, T) {
-	for (var P = 0; P < S.length; P++)
+	for (let P = 0; P < S.length; P++)
 		S[P].Value = TranslationString(S[P].Value, T, "");
 	if (CurrentScreen == "Login") LoginUpdateMessage();
 }
@@ -434,9 +434,9 @@ function TranslationText(Text) {
  * @returns {void} - Nothing
  */
 function TranslationAssetProcess(T) {
-	for (var A = 0; A < AssetGroup.length; A++)
+	for (let A = 0; A < AssetGroup.length; A++)
 		AssetGroup[A].Description = TranslationString(AssetGroup[A].Description, T, "");
-	for (var A = 0; A < Asset.length; A++)
+	for (let A = 0; A < Asset.length; A++)
 		Asset[A].Description = TranslationString(Asset[A].Description, T, "");
 }
 
@@ -477,7 +477,7 @@ function TranslationAsset(Family) {
  * @returns {void} - Nothing
  */
 function TranslationNextLanguage() {
-	for (var L = 0; L < TranslationDictionary.length; L++)
+	for (let L = 0; L < TranslationDictionary.length; L++)
 		if (TranslationDictionary[L].LanguageCode == TranslationLanguage) {
 			if (L != TranslationDictionary.length - 1)
 				TranslationLanguage = TranslationDictionary[L + 1].LanguageCode;

@@ -42,7 +42,7 @@ function CommonDetectMobile() {
 
 	// First check
 	var mobile = ['iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini', 'windows mobile', 'windows phone', 'iemobile', 'mobile/', 'webos', 'kindle'];
-	for (var i in mobile) if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) return true;
+	for (let i in mobile) if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) return true;
 
 	// IPad pro check
 	if (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform)) return true;
@@ -88,7 +88,7 @@ function CommonParseCSV(str) {
 	var col;
 
 	// iterate over each character, keep track of current row and column (of the returned array)
-	for (var row = col = c = 0; c < str.length; c++) {
+	for (let row = col = c = 0; c < str.length; c++) {
 		var cc = str[c], nc = str[c + 1];        // current character, next character
 		arr[row] = arr[row] || [];             // create a new row if necessary
 		arr[row][col] = arr[row][col] || '';   // create a new column (start with empty string) if necessary
@@ -218,7 +218,7 @@ function CommonDynamicFunctionParams(FunctionName) {
 	var openParenthesisIndex = FunctionName.indexOf("(");
 	var closedParenthesisIndex = FunctionName.indexOf(")", openParenthesisIndex);
 	var Params = FunctionName.substring(openParenthesisIndex + 1, closedParenthesisIndex).split(",");
-	for (var P = 0; P < Params.length; P++)
+	for (let P = 0; P < Params.length; P++)
 		Params[P] = Params[P].trim().replace('"', '').replace('"', '')
 	FunctionName = FunctionName.substring(0, openParenthesisIndex);
 	if ((FunctionName.indexOf("Dialog") != 0) && (FunctionName.indexOf("Inventory") != 0) && (FunctionName.indexOf(CurrentScreen) != 0)) FunctionName = CurrentScreen + FunctionName;
@@ -331,7 +331,7 @@ function CommonConvertStringToArray(s) {
  */
 function CommonConvertArrayToString(Arr) {
 	var S = "";
-	for (var P = 0; P < Arr.length; P++) {
+	for (let P = 0; P < Arr.length; P++) {
 		if (P != 0) S = S + ",";
 		S = S + Arr[P].toString();
 	}

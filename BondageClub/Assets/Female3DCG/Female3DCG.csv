@@ -692,6 +692,7 @@ ItemArms,LatexBoxtieLeotard,Latex Boxtie Leotard
 ItemArms,LatexButterflyLeotard,Latex Butterfly Leotard
 ItemArms,PrisonLockdownSuit,Prison Lockdown Suit
 ItemArms,LeatherArmSplints,Leather Arm Splints
+ItemArms,TightJacketCrotch,Tightjacket Leotard
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -942,6 +943,8 @@ ItemHead,Pantyhose,Pantyhose
 ItemNose,,Nose
 ItemNose,NoseHook,Nose Hook
 ItemNose,NoseRing,Nose Ring
+ItemNose,DuctTape,Duct Tape
+ItemNose,NosePlugs,Nose Plugs
 ItemHood,,Head
 ItemHood,LeatherHoodSealed,Sealed Leather Hood
 ItemHood,PolishedSteelHood,Polished Steel Hood

@@ -19,7 +19,7 @@ function InventoryItemNeckAccessoriesCollarNameTagDraw() {
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;
 		var Y = 530;
-		for (var T = 0; T < List.length; T++) {
+		for (let T = 0; T < List.length; T++) {
 			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFind(Player, "CollarNameTagType" + List[T]), "White");
 			X = X + 210;
 			if (T % 5 == 4) { 
@@ -40,7 +40,7 @@ function InventoryItemNeckAccessoriesCollarNameTagClick() {
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;
 		var Y = 530;
-		for (var T = 0; T < List.length; T++) {
+		for (let T = 0; T < List.length; T++) {
 			if ((MouseX >= X) && (MouseX <= X + 200) && (MouseY >= Y) && (MouseY <= Y + 55) && (DialogFocusItem.Property.Type != List[T]))
 				InventoryItemNeckAccessoriesCollarNameTagSetType(List[T]);
 			X = X + 210;

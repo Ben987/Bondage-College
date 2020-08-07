@@ -44,7 +44,7 @@ function MainHallLoad() {
 	MainHallIsHeadMaid = LogQuery("LeadSorority", "Maid");
 	MainHallHasOwnerLock = InventoryCharacterHasOwnerOnlyRestraint(Player);
 	MainHallHasLoverLock = InventoryCharacterHasLoverOnlyRestraint(Player);
-	for (var A = 0; A < Player.Appearance.length; A++)
+	for (let A = 0; A < Player.Appearance.length; A++)
 		if (Player.Appearance[A].Asset.Name == "SlaveCollar")
 			if (Player.Appearance[A].Property)
 				MainHallHasSlaveCollar = true;
@@ -268,7 +268,7 @@ function MainHallClick() {
  */
 function MainHallMaidReleasePlayer() {
 	if (MainHallMaid.CanInteract()) {
-		for (var D = 0; D < MainHallMaid.Dialog.length; D++)
+		for (let D = 0; D < MainHallMaid.Dialog.length; D++)
 			if ((MainHallMaid.Dialog[D].Stage == "0") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "AlreadyReleased");
 		CharacterRelease(Player);
@@ -283,7 +283,7 @@ function MainHallMaidReleasePlayer() {
  */
 function MainHallMaidAngry() {
 	if ((ReputationGet("Dominant") < 30) && !MainHallIsHeadMaid) {
-		for (var D = 0; D < MainHallMaid.Dialog.length; D++)
+		for (let D = 0; D < MainHallMaid.Dialog.length; D++)
 			if ((MainHallMaid.Dialog[D].Stage == "PlayerGagged") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "LearnedLesson");
 		ReputationProgress("Dominant", 1);
@@ -320,7 +320,7 @@ function MainHallMaidShamePlayer() {
  * @returns {void} - Nothing
  */
 function MainHallMaidChangeCollarPlayer() {
-	for (var A = 0; A < Player.Appearance.length; A++)
+	for (let A = 0; A < Player.Appearance.length; A++)
 		if (Player.Appearance[A].Asset.Name == "SlaveCollar") {
 			Player.Appearance[A].Property = null;
 			Player.Appearance[A].Color = "Default";

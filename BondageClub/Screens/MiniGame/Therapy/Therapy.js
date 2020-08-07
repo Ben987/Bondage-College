@@ -52,7 +52,7 @@ function TherapyRun() {
 		if (TherapyGenerateMoveTimer < CurrentTime) {
 			if (MiniGameProgress < 0) MiniGameProgress = 0;
 			TherapyGenerateMoveTimer = TherapyGenerateMoveTimer + 100;
-			for (var M = 0; M < TherapyMoves.length; M++) {
+			for (let M = 0; M < TherapyMoves.length; M++) {
 				if ((TherapyMoves[M] > 0) && (TherapyMoves[M] <= CurrentTime)) {
 					TherapyStress++;
 					TherapyMoves[M] = 0;
@@ -64,7 +64,7 @@ function TherapyRun() {
 		}
 
 		// Draws the move
-		for (var M = 0; M < TherapyMoves.length; M++)
+		for (let M = 0; M < TherapyMoves.length; M++)
 			if (TherapyMoves[M] >= CurrentTime)
 				DrawCircle(1250 + ((M % 3) * 250), 200 + Math.floor(M / 3) * 300, 100, 25, "cyan");
 
@@ -128,7 +128,7 @@ function TherapyClick() {
 
 		// Gets the move type and sends it
 		var MoveType = -1;
-		for (var M = 0; M < TherapyMoves.length; M++)
+		for (let M = 0; M < TherapyMoves.length; M++)
 			if ((MouseX >= 1125 + ((M % 3) * 250)) && (MouseX <= 1375 + ((M % 3) * 250)) && (MouseY >= 75 + Math.floor(M / 3) * 300) && (MouseY <= 325 + Math.floor(M / 3) * 300))
 				MoveType = M;
 		TherapyDoMove(MoveType);

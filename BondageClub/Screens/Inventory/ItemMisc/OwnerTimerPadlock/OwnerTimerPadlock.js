@@ -49,7 +49,7 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
             () => OwnerTimerChooseList[(OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"));
     }
     else if (Player.CanInteract() && DialogFocusSourceItem.Property.EnableRandomInput) {
-        for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
+        for (let I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
             if (DialogFocusSourceItem.Property.MemberNumberList[I] == Player.MemberNumber) return;
         }
         DrawButton(1100, 910, 250, 70, "- 2 " + DialogFind(Player, "Hours"), "White");
@@ -82,7 +82,7 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
             }
         }
         else if (DialogFocusSourceItem.Property.EnableRandomInput) {
-            for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
+            for (let I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
                 if (C.IsOwnedByPlayer()) return;
             }
             if ((MouseX >= 1100) && (MouseX < 1350)) { InventoryItemMiscOwnerTimerPadlockAdd(-2 * 3600, true); }
@@ -113,7 +113,7 @@ function InventoryItemMiscOwnerTimerPadlockAdd(TimeToAdd, PlayerMemberNumberToLi
         }
         Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
 
-        for (var A = 0; A < C.Appearance.length; A++) {
+        for (let A = 0; A < C.Appearance.length; A++) {
             if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
                 C.Appearance[A] = DialogFocusSourceItem;
         }

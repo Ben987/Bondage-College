@@ -72,7 +72,7 @@ function CollegeDetentionLoad() {
 
 		// Do not generate her if she's already in the private room
 		if (PrivateCharacter.length > 1)
-			for (var P = 1; P < PrivateCharacter.length; P++)
+			for (let P = 1; P < PrivateCharacter.length; P++)
 				if (PrivateCharacter[P].Name == "Yuki")
 					return;
 		
@@ -193,9 +193,13 @@ function CollegeDetentionRestrainPlayer(Type) {
  */
 function CollegeDetentionInviteToPrivateRoom() {
 	CollegeDetentionDressBack();
-	InventoryAdd(Player, "Ribbons2", "HairAccessory1");
-	InventoryAdd(Player, "Ribbons2", "HairAccessory2");
-	InventoryAdd(Player, "RegularSleepingPill", "ItemMouth");
+	
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "Ribbons2", Group: "HairAccessory1"});
+	ItemsToEarn.push({Name: "Ribbons2", Group: "HairAccessory2"});
+	ItemsToEarn.push({Name: "RegularSleepingPill", Group: "ItemMouth"});
+	InventoryAddMany(Player, ItemsToEarn);
+	
 	CommonSetScreen("Room", "Private");
 	PrivateAddCharacter(CollegeDetentionYuki, null, true);
 	var C = PrivateCharacter[PrivateCharacter.length - 1];

@@ -51,7 +51,7 @@ function TitleGet(C) {
 
 	// If we find a title that we must force, we set it and return it
 	if (C.ID == 0)
-		for (var T = 0; T < TitleList.length; T++)
+		for (let T = 0; T < TitleList.length; T++)
 			if (TitleList[T].Requirement() && (TitleList[T].Force != null) && TitleList[T].Force)
 				return TitleSet(TitleList[T].Name);
 
@@ -60,7 +60,7 @@ function TitleGet(C) {
 	if (C.ID != 0) return C.Title;
 
 	// If we find a valid title, we return it
-	for (var T = 0; T < TitleList.length; T++)
+	for (let T = 0; T < TitleList.length; T++)
 		if ((C.Title == TitleList[T].Name) && TitleList[T].Requirement())
 			return C.Title;
 
@@ -76,7 +76,7 @@ function TitleGet(C) {
  */
 function TitleIsForced(Title) {
 	if ((Title == null) || (Title == "") || (Title == "None")) return false;
-	for (var T = 0; T < TitleList.length; T++)
+	for (let T = 0; T < TitleList.length; T++)
 		if ((Title == TitleList[T].Name) && (TitleList[T].Force != null) && TitleList[T].Force)
 			return true;
 	return false;
@@ -93,7 +93,7 @@ function TitleRun() {
 	DrawText(TextGet("SelectTitle"), 1000, 120, "Black", "Gray");
 	var X = 130;
 	var Y = 200;
-	for (var T = 0; T < TitleList.length; T++)
+	for (let T = 0; T < TitleList.length; T++)
 		if (TitleList[T].Requirement()) {
 			DrawButton(X, Y, 400, 65, TextGet("Title" + TitleList[T].Name), "White");
 			X = X + 450;
@@ -120,7 +120,7 @@ function TitleClick() {
 	// When the user selects a title
 	var X = 130;
 	var Y = 200;
-	for (var T = 0; T < TitleList.length; T++)
+	for (let T = 0; T < TitleList.length; T++)
 		if (TitleList[T].Requirement()) {
 			if ((MouseX >= X) && (MouseX <= X + 400) && (MouseY >= Y) && (MouseY <= Y + 65)) {
 				TitleSet(TitleList[T].Name);

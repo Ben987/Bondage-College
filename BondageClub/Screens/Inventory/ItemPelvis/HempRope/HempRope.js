@@ -37,7 +37,7 @@ function InventoryItemPelvisHempRopeDraw() {
 	DrawText(DialogExtendedMessage, 1500, 475, "white", "gray");
 	
 	// Draw the possible positions and their requirements
-	for (var I = HempRopePelvisOptionOffset; (I < HempRopePelvisOptions.length) && (I < HempRopePelvisOptionOffset + 2); I++) {
+	for (let I = HempRopePelvisOptionOffset; (I < HempRopePelvisOptions.length) && (I < HempRopePelvisOptionOffset + 2); I++) {
 		var offset = I - HempRopePelvisOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 550 + (Math.floor(offset / 2) * 300);
@@ -60,7 +60,7 @@ function InventoryItemPelvisHempRopeClick() {
 	if (HempRopePelvisOptionOffset >= HempRopePelvisOptions.length) HempRopePelvisOptionOffset = 0;
 
 	// Item buttons
-	for (var I = HempRopePelvisOptionOffset; (I < HempRopePelvisOptions.length) && (I < HempRopePelvisOptionOffset + 2); I++) {
+	for (let I = HempRopePelvisOptionOffset; (I < HempRopePelvisOptions.length) && (I < HempRopePelvisOptionOffset + 2); I++) {
 		var offset = I - HempRopePelvisOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 550 + (Math.floor(offset / 2) * 300);

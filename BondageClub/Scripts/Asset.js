@@ -188,7 +188,7 @@ function AssetBuildDescription(Family, CSV) {
 
 	// For each assets in the family
 	var L = 0;
-	for (var A = 0; A < Asset.length; A++)
+	for (let A = 0; A < Asset.length; A++)
 		if (Asset[A].Group.Family == Family) {
 
 			// Checks if the group matches
@@ -270,7 +270,7 @@ function AssetLoadAll() {
 
 // Gets a specific asset by family/group/name
 function AssetGet(Family, Group, Name) {
-	for (var A = 0; A < Asset.length; A++)
+	for (let A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == Name) && (Asset[A].Group.Name == Group) && (Asset[A].Group.Family == Family))
 			return Asset[A];
 	return null;
@@ -279,7 +279,7 @@ function AssetGet(Family, Group, Name) {
 // Gets an activity asset by family and name
 function AssetGetActivity(Family, Name) {
 	if (Family == "Female3DCG")
-		for (var A = 0; A < ActivityFemale3DCG.length; A++)
+		for (let A = 0; A < ActivityFemale3DCG.length; A++)
 			if (ActivityFemale3DCG[A].Name == Name)
 				return ActivityFemale3DCG[A];
 	return null;
@@ -293,8 +293,8 @@ function AssetGetActivity(Family, Name) {
 function AssetCleanArray(AssetArray) { 
 	var CleanArray = [];
 	// Only save the existing items
-	for (var A = 0; A < Asset.length; A++)
-		for (var AA = 0; AA < AssetArray.length; AA++)
+	for (let A = 0; A < Asset.length; A++)
+		for (let AA = 0; AA < AssetArray.length; AA++)
 			if (AssetArray[AA].Name == Asset[A].Name && AssetArray[AA].Group == Asset[A].Group.Name) {
 				CleanArray.push(AssetArray[AA]);
 				break;

@@ -172,7 +172,7 @@ function ExtendedItemSetType(Options, Option) {
 function ExtendedItemDrawTwo(Options, DialogPrefix, IsSelfBondage) {
 	var Asset = DialogFocusItem.Asset;
 
-	for (var I = 0; I < Options.length; I++) {
+	for (let I = 0; I < Options.length; I++) {
 		var X = 1175 + I * 425;
 		var Y = 550;
 		var Option = Options[I];
@@ -198,7 +198,7 @@ function ExtendedItemDrawGrid(Options, DialogPrefix, IsSelfBondage) {
 	var Asset = DialogFocusItem.Asset;
 	var ItemOptionsOffset = ExtendedItemGetOffset();
 	// Draw the possible variants and their requirements, 4 at a time in a 2x2 grid
-	for (var I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + 4; I++) {
+	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + 4; I++) {
 		var PageOffset = I - ItemOptionsOffset;
 		var X = 1200 + (PageOffset % 2 * 387);
 		var Y = 450 + (Math.floor(PageOffset / 2) * 300);
@@ -219,7 +219,7 @@ function ExtendedItemDrawGrid(Options, DialogPrefix, IsSelfBondage) {
  * @returns {void} Nothing
  */
 function ExtendedItemClickTwo(Options, IsSelfBondage) {
-	for (var I = 0; I < Options.length; I++) {
+	for (let I = 0; I < Options.length; I++) {
 		var X = 1175 + I * 425;
 		var Y = 550;
 		var Option = Options[I];
@@ -244,7 +244,7 @@ function ExtendedItemClickGrid(Options, IsSelfBondage) {
 
 	var ItemOptionsOffset = ExtendedItemGetOffset();
 
-	for (var I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + 4; I++) {
+	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + 4; I++) {
 		var offset = I - ItemOptionsOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
