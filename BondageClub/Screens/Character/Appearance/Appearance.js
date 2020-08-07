@@ -606,8 +606,8 @@ function AppearanceRun() {
 	// In cloth selection mode
 	if (CharacterAppearanceMode == "Cloth") {
 		
-		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 		// Draw the wardrobe top controls & buttons
+		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
 		if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 		
