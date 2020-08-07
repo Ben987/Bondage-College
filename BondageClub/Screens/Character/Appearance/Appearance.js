@@ -936,7 +936,7 @@ function AppearanceClick() {
 			AppearanceExit();
 		}
 
-		// Accepts the new cloth selection or
+		// Accepts the new cloth selection
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
 			C.FocusGroup = null;
 			AppearanceExit();
