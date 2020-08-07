@@ -606,6 +606,10 @@ function AppearanceRun() {
 	// In cloth selection mode
 	if (CharacterAppearanceMode == "Cloth") {
 
+		if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
+		
+		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
+		
 		// Prepares a 3x3 square of clothes to present all the possible options
 		var X = 1250;
 		var Y = 125;
@@ -634,12 +638,9 @@ function AppearanceRun() {
 
 	// Hides the color picker if needed
 	if (HideColorPicker) ColorPickerHide();
-
-	if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 	
 	// Draw the wardrobe top controls & buttons
 	DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
-	if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 	
 	// Draw the default buttons
 	if (!DialogItemPermissionMode) {
