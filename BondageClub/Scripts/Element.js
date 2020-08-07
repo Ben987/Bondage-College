@@ -107,7 +107,7 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
 		var DivOptions = document.createElement("DIV");
 		DivOptions.setAttribute("class", "select-items select-hide");
 		// Create <option> and inner <div> tags for all Options in the list
-		for (var i = 0; i < Options.length; i++) {
+		for (let i = 0; i < Options.length; i++) {
 			var Option = document.createElement("option");
 			var InnerDiv = document.createElement("DIV");
 
@@ -118,12 +118,12 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
 				// when an item is clicked, update the original select box, and the selected item:
 				var s = this.parentNode.parentNode.getElementsByTagName("select")[0]; // Representation of the select tag
 				var h = this.parentNode.previousSibling; // Representation of the dropdown box
-				for (var j = 0; j < s.length; j++) {
+				for (let j = 0; j < s.length; j++) {
 					if (s.options[j].innerHTML == this.innerHTML) {
 						s.selectedIndex = j; // Fake the selection of an option
 						h.innerHTML = this.innerHTML; // Update the drop down box
 						var y = this.parentNode.getElementsByClassName("same-as-selected");
-						for (var k = 0; k < y.length; k++) {
+						for (let k = 0; k < y.length; k++) {
 							y[k].removeAttribute("class");
 						}
 						this.setAttribute("class", "same-as-selected");
@@ -167,11 +167,11 @@ function ElementCloseAllSelect(elmnt) {
     except the current select box:*/
 	var arrNo = [];
 	var y = document.getElementsByClassName("select-selected");
-	for (var i = 0; i < y.length; i++) {
+	for (let i = 0; i < y.length; i++) {
 		if (elmnt == y[i]) arrNo.push(i);
 	}
 	var x = document.getElementsByClassName("select-items");
-	for (var i = 0; i < x.length; i++) {
+	for (let i = 0; i < x.length; i++) {
 		if (arrNo.indexOf(i)) x[i].classList.add("select-hide");
 	}
 }

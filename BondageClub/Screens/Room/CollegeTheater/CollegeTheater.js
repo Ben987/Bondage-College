@@ -61,7 +61,7 @@ function CollegeTheaterLoad() {
 
 		// Do not generate her if she's already in the private room
 		if (PrivateCharacter.length > 1)
-			for (var P = 1; P < PrivateCharacter.length; P++)
+			for (let P = 1; P < PrivateCharacter.length; P++)
 				if (PrivateCharacter[P].Name == "Julia")
 					return;
 		
@@ -193,10 +193,18 @@ function CollegeTheaterDressBack() {
  */
 function CollegeTheaterInviteToPrivateRoom(Role) {
 	CollegeTheaterDressBack();
-	if (Role == "Witch") InventoryAdd(Player, "WitchHat1", "Hat");
-	if (Role == "Witch") InventoryAdd(Player, "BondageDress2", "Cloth");
-	if (Role == "Maiden") InventoryAdd(Player, "Dress2", "Cloth");
-	if (Role == "Maiden") InventoryAdd(Player, "BatWings", "Wings");
+	if (Role == "Witch") { 
+		var ItemsToEarn = [];
+		ItemsToEarn.push({Name: "WitchHat1", Group: "Hat"});
+		ItemsToEarn.push({Name: "BondageDress2", Group: "Cloth"});
+		InventoryAddMany(Player, ItemsToEarn);
+	}
+	if (Role == "Maiden") { 
+		var ItemsToEarn = [];
+		ItemsToEarn.push({Name: "BatWings", Group: "Wings"});
+		ItemsToEarn.push({Name: "Dress2", Group: "Cloth"});
+		InventoryAddMany(Player, ItemsToEarn);
+	}
 	CommonSetScreen("Room", "Private");
 	PrivateAddCharacter(CollegeTheaterJulia, null, true);
 	var C = PrivateCharacter[PrivateCharacter.length - 1];

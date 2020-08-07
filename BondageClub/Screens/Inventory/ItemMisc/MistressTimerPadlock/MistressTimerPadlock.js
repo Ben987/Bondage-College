@@ -47,7 +47,7 @@ function InventoryItemMiscMistressTimerPadlockDraw() {
             () => MistressTimerChooseList[(MistressTimerChooseIndex + 1) % MistressTimerChooseList.length] + " " + DialogFind(Player, "Minutes"));
     }
     else if (Player.CanInteract() && DialogFocusSourceItem.Property.EnableRandomInput) {
-        for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
+        for (let I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
             if (DialogFocusSourceItem.Property.MemberNumberList[I] == Player.MemberNumber) return;
         }
         DrawButton(1100, 910, 250, 70, "- " + DialogFocusItem.Asset.RemoveTimer * 3 / 60 + " " + DialogFind(Player, "Minutes"), "White");
@@ -79,7 +79,7 @@ function InventoryItemMiscMistressTimerPadlockClick() {
             }
         }
         else if (DialogFocusSourceItem.Property.EnableRandomInput) {
-            for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
+            for (let I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
                 if (DialogFocusSourceItem.Property.MemberNumberList[I] == Player.MemberNumber) return;
             }
             if ((MouseX >= 1100) && (MouseX < 1350)) { InventoryItemMiscMistressTimerPadlockAdd(-DialogFocusItem.Asset.RemoveTimer * 2, true); }
@@ -110,7 +110,7 @@ function InventoryItemMiscMistressTimerPadlockAdd(TimeToAdd, PlayerMemberNumberT
         }
         Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
 
-        for (var A = 0; A < C.Appearance.length; A++) {
+        for (let A = 0; A < C.Appearance.length; A++) {
             if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
                 C.Appearance[A] = DialogFocusSourceItem;
         }

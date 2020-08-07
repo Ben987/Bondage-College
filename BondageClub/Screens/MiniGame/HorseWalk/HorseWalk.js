@@ -31,7 +31,7 @@ var HorseWalkEventTimer = 0;
 function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 	// Fill the Carrots sequence
 	HorseWalkCarrots = [];
-	for (var S = 0; S < MaxCarrot; S++) {
+	for (let S = 0; S < MaxCarrot; S++) {
 		// Generates each Carrot 1 by 1
 		var NewCarrot = {
 			X : Math.floor(Math.random() * 1980) + 10,
@@ -41,7 +41,7 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 	}
 	// Fill the Crops sequence
 	HorseWalkCrops = [];
-	for (var S = 0; S < MaxCrop; S++) {
+	for (let S = 0; S < MaxCrop; S++) {
 		// Generates each Carrot 1 by 1
 		var NewCrop = {
 			X : Math.floor(Math.random() * 1980) + 10,
@@ -59,7 +59,7 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
  */
 function HorseWalkGenerateHurdleItems(MaxHurdle) {
 	HorseWalkHurdle = [];
-	for (var S = 0; S < MaxHurdle; S++) {
+	for (let S = 0; S < MaxHurdle; S++) {
 		// Generates each Hurdle 1 by 1
 		var NewHurdle = {
 			X : 1000 + 800*Math.cos((Math.PI*2)/MaxHurdle*S),
@@ -77,7 +77,7 @@ function HorseWalkGenerateHurdleItems(MaxHurdle) {
  */
 function HorseWalkGenerateHurdleTrainingItems(MaxHurdle) {
 	HorseWalkHurdle = [];
-	for (var S = 0; S < MaxHurdle; S++) {
+	for (let S = 0; S < MaxHurdle; S++) {
 		// Generates each Hurdle 1 by 1
 		var NewHurdle = {
 			X : 1150 + 700*Math.cos((Math.PI*2)/MaxHurdle*S),
@@ -94,12 +94,12 @@ function HorseWalkGenerateHurdleTrainingItems(MaxHurdle) {
  */
 function HorseWalkDrawItem() {
 	if (MiniGameDifficulty == "Carrot") {
-		for (var S = 0; S < HorseWalkCarrots.length; S++)
+		for (let S = 0; S < HorseWalkCarrots.length; S++)
 			DrawImage("Screens/MiniGame/HorseWalk/carrot.png", HorseWalkCarrots[S].X - (HorseWalkItemSize / 2), HorseWalkCarrots[S].Y - (HorseWalkItemSize / 2));
-		for (var S = 0; S < HorseWalkCrops.length; S++)
+		for (let S = 0; S < HorseWalkCrops.length; S++)
 			DrawImage("Screens/MiniGame/HorseWalk/LeatherCrop.png", HorseWalkCrops[S].X - (HorseWalkItemSize / 2), HorseWalkCrops[S].Y - (HorseWalkItemSize / 2));
 	} else if (MiniGameDifficulty == "Hurdle" || MiniGameDifficulty == "HurdleTraining") {
-		for (var S = 0; S < HorseWalkHurdle.length; S++) {
+		for (let S = 0; S < HorseWalkHurdle.length; S++) {
 			if (HorseWalkHurdle[S].Stat == 0) {	
 				DrawImage("Screens/MiniGame/HorseWalk/hurdle_90.png", HorseWalkHurdle[S].X - (HorseWalkItemSize / 2), HorseWalkHurdle[S].Y - (HorseWalkItemSize / 2));
 			} else if (HorseWalkHurdle[S].Stat == 1) {	
@@ -296,14 +296,14 @@ function HorseWalkDoMove() {
 		// If the game has started, we check the click position and change a Item at that position
 		if (!MiniGameEnded) {
 			if (MiniGameDifficulty == "Carrot") {
-				for (var S = 0; S < HorseWalkCarrots.length; S++) {
+				for (let S = 0; S < HorseWalkCarrots.length; S++) {
 					if (((HorseWalkPlayerX+100) >= HorseWalkCarrots[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkCarrots[S].X + Range) && ((HorseWalkPlayerY+100) >= HorseWalkCarrots[S].Y - Range) && ((HorseWalkPlayerY+100) <= HorseWalkCarrots[S].Y + Range)) {
 						HorseWalkCarrots.splice(S, 1);
 						HorseWalkCollectedCarrots++;
 						return;
 					}
 				}
-				for (var S = 0; S < HorseWalkCrops.length; S++) {
+				for (let S = 0; S < HorseWalkCrops.length; S++) {
 					if (((HorseWalkPlayerX+100) >= HorseWalkCrops[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkCrops[S].X + Range) && ((HorseWalkPlayerY+100) >= HorseWalkCrops[S].Y - Range) && ((HorseWalkPlayerY+100) <= HorseWalkCrops[S].Y + Range)) {
 						HorseWalkCrops.splice(S, 1);
 						HorseWalkCollectedCrops++;
@@ -311,7 +311,7 @@ function HorseWalkDoMove() {
 					}
 				}
 			} else if (MiniGameDifficulty == "Hurdle" || MiniGameDifficulty == "HurdleTraining") {
-				for (var S = 0; S < HorseWalkHurdle.length; S++) {
+				for (let S = 0; S < HorseWalkHurdle.length; S++) {
 					if (((HorseWalkPlayerX+100) >= HorseWalkHurdle[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkHurdle[S].X + Range) && ((HorseWalkPlayerY+300) >= HorseWalkHurdle[S].Y - Range) && ((HorseWalkPlayerY+300) <= HorseWalkHurdle[S].Y + Range) && HorseWalkHurdle[S].Stat == 0) {
 						if ((Math.random() * Math.random() * 10) < SkillGetLevel(Player, "Dressage")) {
 							HorseWalkHurdle[S].Stat = 1;
