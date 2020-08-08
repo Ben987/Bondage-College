@@ -11,6 +11,11 @@ const HempRopeArmsOptions = [
 		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
 		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
 	}, {
+		Name: "CrossedBoxtie",
+		RequiredBondageLevel: null,
+		Property: { Type: "CrossedBoxtie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
+	}, {
 		Name: "RopeCuffs",
 		RequiredBondageLevel: null,
 		Property: { Type: "RopeCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 29 },
