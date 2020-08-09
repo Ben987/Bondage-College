@@ -1017,6 +1017,8 @@ ItemDevices,X-Cross,St. Andrews Cross
 ItemDevices,ChangingTable,Changing Table
 ItemDevices,Locker,Locker
 ItemDevices,SmallLocker,Small Locker
+ItemDevices,VentlessLocker,Ventless Locker
+ItemDevices,SmallVentlessLocker,Small Ventless Locker
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemAddon,OldGasMaskLenses,Blinding Lenses
