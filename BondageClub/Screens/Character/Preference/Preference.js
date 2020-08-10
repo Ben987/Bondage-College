@@ -955,7 +955,6 @@ function PreferenceSubscreenVisibilityAssetChanged(ResetCheckbox) {
 	// Get the preview image path
 	var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset;
 	if (PreferenceVisibilityHideChecked) PreferenceVisibilityPreviewImg = "Icons/HiddenItem.png";
-	else if (CurrAsset.Group.Clothing && CurrAsset.Value <= 0) PreferenceVisibilityPreviewImg = null;
 	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Group.Family + "/" + CurrAsset.Group.Name + "/Preview/" + CurrAsset.Name + ".png";
 
 	PreferenceVisibilityResetClicked = false;
