@@ -479,6 +479,9 @@ function CharacterLoadEffect(C) {
  * @returns {void} - Nothing 
  */
 function CharacterLoadCanvas(C) {
+	// Reset the property that tracks if wearing a hidden item
+	C.HasHiddenItems = false;
+
 	// Generates a layer array from the character's appearance array, sorted by drawing order
 	C.AppearanceLayers = CharacterAppearanceSortLayers(C);
 
