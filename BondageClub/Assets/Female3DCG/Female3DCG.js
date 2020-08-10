@@ -178,7 +178,7 @@ var AssetFemale3DCG = [
 				]
 
 			},
-		{ Name: "BlackHeart", Value: 40, Left: 148, Top: 70, ParentGroup: null }	
+		{ Name: "BlackHeart", Value: 40, Left: 148, Top: 70, ParentGroup: null }
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
@@ -1591,6 +1591,25 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "LeatherArmSplints", Value: 65, Fetish: ["Leather"], Difficulty: 7, SelfBondage: 7, Time: 15, RemoveTime: 10, Visible: false, AllowLock: true, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], SelfUnlock: false },
 			{ Name: "TightJacketCrotch", Fetish: ["Leather"], DefaultColor: "#FFFFFF", Value: 150, Difficulty: 6, SelfBondage: 8, Time: 35, RemoveTime: 20, AllowLock: true, Hide: ["Cloth", "ItemNipplesPiercings"], HideItem: ["ClothLowerSkirt1", "ClothLowerSkirt2", "ClothLowerSkirt3", "ClothLowerTennisSkirt1", "ClothLowerGown2Skirt", "ClothLowerWaspie1", "ClothLowerWaspie2", "ClothLowerWaspie3", "ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerClothSkirt1", "ClothLowerChineseSkirt1", "ClothLowerAdmiralSkirt", "ClothLowerJeanSkirt", "ClothLowerPencilSkirt"], SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemNipples", "ItemNipplesPiercings", "ItemTorso", "ItemBreast", "ItemHands", "ItemVulva", "ItemButt", "ItemVulvsPiercings"], BuyGroup: "TightJacket", SelfUnlock: false, Extended: true, AllowType: ["PulledStraps", "LiningStraps", "ExtraPadding", "PulledLining", "PulledPadding", "PaddedLining", "FullJacket"] },
+			{ Name: "HighSecurityStraitJacket", Value: 220, Priority: 23, Difficulty: 4, SelfBondage: 2, Time: 45, RemoveTime: 30, AllowLock: true, DefaultColor: "#333", Hide: ["Cloth", "ItemNipplesPiercings"], SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"],
+				AllowBlock: ["ItemNipples", "ItemNipplesPiercings", "ItemTorso", "ItemBreast", "ItemHands", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis"],
+				AllowType: ["c0a0s0", "c0a0s1", "c0a0s2", "c0a0s3", "c0a1s0", "c0a1s1", "c0a1s2", "c0a1s3", "c0a2s0", "c0a2s1", "c0a2s2", "c0a2s3", "c1a0s0", "c1a0s1", "c1a0s2", "c1a0s3", "c1a1s0", "c1a1s1", "c1a1s2", "c1a1s3", "c1a2s0", "c1a2s1", "c1a2s2", "c1a2s3"],
+				Block: ["ItemNipples", "ItemNipplesPiercings", "ItemTorso", "ItemBreast", "ItemHands"],
+				Extended: true,
+				Layer: [
+					{ Name: "Crotch", ParentGroup: null, AllowTypes: ["c1a0s0", "c1a0s1", "c1a0s2", "c1a0s3", "c1a1s0", "c1a1s1", "c1a1s2", "c1a1s3", "c1a2s0", "c1a2s1", "c1a2s2", "c1a2s3"], HasType: false },
+					{ Name: "JacketLoose", ParentGroup: null, AllowTypes: ["c0a0s0", "c0a0s1", "c0a0s2", "c0a0s3", "c1a0s0", "c1a0s1", "c1a0s2", "c1a0s3"], HasType: false},
+					{ Name: "JacketFront", AllowTypes: ["c0a1s0", "c0a1s1", "c0a1s2", "c0a1s3", "c1a1s0", "c1a1s1", "c1a1s2", "c1a1s3"], HasType: false },
+					{ Name: "JacketBack", AllowTypes: ["c0a2s0", "c0a2s1", "c0a2s2", "c0a2s3", "c1a2s0", "c1a2s1", "c1a2s2", "c1a2s3"], HasType: false },
+					{ Name: "StrapsLoose", AllowColorize: false, AllowTypes: ["c0a0s0", "c0a0s1", "c0a0s2", "c0a0s3", "c1a0s0", "c1a0s1", "c1a0s2", "c1a0s3"], HasType: false},
+					{ Name: "StrapsFront", AllowColorize: false, AllowTypes: ["c0a1s0", "c0a1s1", "c0a1s2", "c0a1s3", "c1a1s0", "c1a1s1", "c1a1s2", "c1a1s3"], HasType: false },
+					{ Name: "StrapsBack", AllowColorize: false, AllowTypes: ["c0a2s0", "c0a2s1", "c0a2s2", "c0a2s3", "c1a2s0", "c1a2s1", "c1a2s2", "c1a2s3"], HasType: false },
+					{ Name: "CrotchStrapsSingle", ParentGroup: null, AllowColorize: false, AllowTypes: ["c0a0s1", "c0a1s1", "c0a2s1", "c1a0s1", "c1a1s1", "c1a2s1"], HasType: false },
+					{ Name: "CrotchStrapsDouble", ParentGroup: null, AllowColorize: false, AllowTypes: ["c0a0s2", "c0a1s2", "c0a2s2", "c1a0s2", "c1a1s2", "c1a2s2"], HasType: false },
+					{ Name: "CrotchStrapsTriple", ParentGroup: null, AllowColorize: false, AllowTypes: ["c0a0s3", "c0a1s3", "c0a2s3", "c1a0s3", "c1a1s3", "c1a2s3"], HasType: false },
+				],
+				SelfUnlock: false
+			},
 			AssetSpankingToys
 		],
 		Color: ["Default"]
