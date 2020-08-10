@@ -11,6 +11,11 @@ const HempRopeArmsOptions = [
 		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
 		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
 	}, {
+		Name: "CrossedBoxtie",
+		RequiredBondageLevel: null,
+		Property: { Type: "CrossedBoxtie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
+	}, {
 		Name: "RopeCuffs",
 		RequiredBondageLevel: null,
 		Property: { Type: "RopeCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 29 },
@@ -19,6 +24,16 @@ const HempRopeArmsOptions = [
 		Name: "WristElbowTie",
 		RequiredBondageLevel: 2,
 		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
+	}, {
+		Name: "SimpleHogtie",
+		RequiredBondageLevel: 2,
+		Property: { Type: "SimpleHogtie", Effect: ["Block", "Prone"], SetPose: ["Hogtied"], Difficulty: 2 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
+	}, {
+		Name: "TightBoxtie",
+		RequiredBondageLevel: 3,
+		Property: { Type: "TightBoxtie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
 	}, {
 		Name: "WristElbowHarnessTie",

@@ -477,16 +477,14 @@ function CharacterLoadEffect(C) {
  * @returns {void} - Nothing 
  */
 function CharacterLoadCanvas(C) {
-
-	// Sorts the full appearance array first
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
+	// Generates a layer array from the character's appearance array, sorted by drawing order
+	C.AppearanceLayers = CharacterAppearanceSortLayers(C);
 
 	// Sets the total height modifier for that character
 	CharacterApperanceSetHeightModifier(C);
 	
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
-
 }
 
 /**

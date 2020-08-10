@@ -693,6 +693,7 @@ ItemArms,LatexButterflyLeotard,Latex Butterfly Leotard
 ItemArms,PrisonLockdownSuit,Prison Lockdown Suit
 ItemArms,LeatherArmSplints,Leather Arm Splints
 ItemArms,TightJacketCrotch,Tightjacket Leotard
+ItemArms,HighSecurityStraitJacket,High Security Straitjacket
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -1019,12 +1020,16 @@ ItemDevices,Locker,Locker
 ItemDevices,SmallLocker,Small Locker
 ItemDevices,VentlessLocker,Ventless Locker
 ItemDevices,SmallVentlessLocker,Small Ventless Locker
+ItemHoodAddon,,Hood
+ItemHoodAddon,OldGasMaskLenses,Blinding Lenses
+ItemHoodAddon,OldGasMaskTube1,Gas Mask Tube
+ItemHoodAddon,OldGasMaskTube2,Gas Mask Tube
+ItemHoodAddon,OldGasMaskRebreather,Rebreather
+ItemHoodAddon,OldGasMaskLensesTube1,Gas Mask Tube & Lenses
+ItemHoodAddon,OldGasMaskLensesTube2,Gas Mask Tube & Lenses
+ItemHoodAddon,OldGasMaskLensesRebreather,Rebreather & Lenses
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
-ItemAddon,OldGasMaskLenses,Blinding Lenses
-ItemAddon,OldGasMaskTube1,Gas Mask Tube
-ItemAddon,OldGasMaskTube2,Gas Mask Tube
-ItemAddon,OldGasMaskRebreather,Rebreather
 ItemAddon,Covers,Blanket
 ItemAddon,BedRopes,Bed Ropes
 ItemAddon,BedStraps,Bed Straps

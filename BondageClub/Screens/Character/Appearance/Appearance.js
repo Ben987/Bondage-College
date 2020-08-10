@@ -280,29 +280,40 @@ function CharacterAppearanceStripLayer(C) {
 }
 
 /**
- * sorts the character appearance by drawing priority
- * @param {Appearance} AP - The appearance to be sorted
- * @returns {Appearance} - The sorted appearance
+ * Builds a filtered and sorted set of appearance layers, each representing a drawable layer of a character's current appearance. Layers
+ * that will not be drawn (because their asset is not visible or they do not permit the current asset type) are filtered out at this stage.
+ * @param {Character} C - The character to build the layers for
+ * @return {Layer[]} - A sorted set of layers, sorted by layer drawing priority
  */
-function CharacterAppearanceSort(AP) {
-	function GetPriority(A) {
-		return ((A.Property != null) && (A.Property.OverridePriority != null)) ? A.Property.OverridePriority : A.Asset.DrawingPriority != null ? A.Asset.DrawingPriority : A.Asset.Group.DrawingPriority;
-	}
-
-	for (let i = 1; i < AP.length; i++) {
-		var key = AP[i];
-		var j = i - 1;
-		var valuePriority = GetPriority(AP[j]);
-		var keyPriority = GetPriority(key);
-		while ((j >= 0) && (valuePriority > keyPriority)) {
-			AP[j + 1] = AP[j];
-			j--;
-			if (j >= 0) valuePriority = GetPriority(AP[j]);
+function CharacterAppearanceSortLayers(C) {
+	var layers = C.Appearance.reduce((layersAcc, item) => {
+		var asset = item.Asset;
+		// Only include layers for visible assets
+		if (asset.Visible && CharacterAppearanceVisible(C, asset.Name, asset.Group.Name)) {
+			// Check if we need to draw a different variation (from type property)
+			var type = (item.Property && item.Property.Type) || "";
+			// Only include layers that permit the current type (if AllowTypes is not defined, also include the layer)
+			var layersToDraw = asset.Layer
+				.filter(layer => !layer.AllowTypes || layer.AllowTypes.includes(type))
+				.map(layer => {
+					var drawLayer = Object.assign({}, layer);
+					// If the item has an OverridePriority property, it completely overrides the layer priority
+					if (item.Property && typeof item.Property.OverridePriority === "number") drawLayer.Priority =
+						item.Property.OverridePriority;
+					return drawLayer;
+				});
+			Array.prototype.push.apply(layersAcc, layersToDraw);
 		}
-		AP[j + 1] = key;
-	}
-
-	return AP;
+		return layersAcc;
+	}, []);
+	return layers.sort((l1, l2) => {
+		// If the layers belong to the same Asset, ensure layer order is preserved
+		if (l1.Asset === l2.Asset) return l1.Asset.Layer.indexOf(l1) - l1.Asset.Layer.indexOf(l2);
+		// If priorities are different, sort by priority
+		if (l1.Priority !== l2.Priority) return l1.Priority - l2.Priority;
+		// If priorities are identical, sort alphabetically to maintain consistency
+		return (l1.Asset.Group.Name + l1.Asset.Name).localeCompare(l2.Asset.Group.Name + l2.Asset.Name);
+	});
 }
 
 /**
@@ -360,124 +371,16 @@ function CharacterApperanceSetHeightModifier(C) {
  * @returns {void} - Nothing
  */
 function CharacterAppearanceBuildCanvas(C) {
-
-	// Prepares both canvas (500x1000 for characters)
-	if (C.Canvas == null) {
-		C.Canvas = document.createElement("canvas");
-		C.Canvas.width = 500;
-		C.Canvas.height = 1000;
-	} else C.Canvas.getContext("2d").clearRect(0, 0, 500, 1000);
-	if (C.CanvasBlink == null) {
-		C.CanvasBlink = document.createElement("canvas");
-		C.CanvasBlink.width = 500;
-		C.CanvasBlink.height = 1000;
-	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
-
-	C.MustDraw = true;
-
-	// Loops in all visible items worn by the character
-	for (let A = 0; A < C.Appearance.length; A++)
-		if (C.Appearance[A].Asset.Visible && CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
-
-			// If there's a father group, we must add it to find the correct image
-			var CA = C.Appearance[A];
-			var ParentGroup = CA.Asset.ParentGroupName ? CA.Asset.ParentGroupName : CA.Asset.Group.ParentGroupName && !CA.Asset.IgnoreParentGroup ? CA.Asset.Group.ParentGroupName : "";
-			var G = "";
-			if (ParentGroup != "")
-				for (let FG = 0; FG < C.Appearance.length; FG++)
-					if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
-						G = "_" + C.Appearance[FG].Asset.Name;
-
-			// If there's a pose style we must add (first by group then by item)
-			var Pose = "";
-			if ((CA.Asset.Group.AllowPose != null) && (CA.Asset.Group.AllowPose.length > 0) && (C.Pose != null) && (C.Pose.length > 0))
-				for (let AP = 0; AP < CA.Asset.Group.AllowPose.length; AP++)
-					for (let P = 0; P < C.Pose.length; P++)
-						if (C.Pose[P] == CA.Asset.Group.AllowPose[AP])
-							Pose = C.Pose[P] + "/";
-			if ((CA.Asset.AllowPose != null) && (CA.Asset.AllowPose.length > 0) && (C.Pose != null) && (C.Pose.length > 0))
-				for (let AP = 0; AP < CA.Asset.AllowPose.length; AP++)
-					for (let P = 0; P < C.Pose.length; P++)
-						if (C.Pose[P] == CA.Asset.AllowPose[AP])
-							Pose = C.Pose[P] + "/";
-
-			// If we must apply alpha masks to the current image as it is being drawn
-			if (CA.Asset.Alpha != null)
-				for (let AL = 0; AL < CA.Asset.Alpha.length; AL++) {
-					C.Canvas.getContext("2d").clearRect(CA.Asset.Alpha[AL][0], CA.Asset.Alpha[AL][1], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
-					C.CanvasBlink.getContext("2d").clearRect(CA.Asset.Alpha[AL][0], CA.Asset.Alpha[AL][1], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
-				}
-
-			// Check if we need to draw a different expression (for facial features)
-			var Expression = "";
-			if ((CA.Asset.Group.AllowExpression != null) && (CA.Asset.Group.AllowExpression.length > 0))
-				if ((CA.Property && CA.Property.Expression && CA.Asset.Group.AllowExpression.indexOf(CA.Property.Expression) >= 0))
-					Expression = CA.Property.Expression + "/";
-
-			// Find the X and Y position to draw on
-			var X = CA.Asset.Group.DrawingLeft;
-			var Y = CA.Asset.Group.DrawingTop;
-			if (CA.Asset.DrawingLeft != null) X = CA.Asset.DrawingLeft;
-			if (CA.Asset.DrawingTop != null) Y = CA.Asset.DrawingTop;
-			if (C.Pose != null)
-				for (let CP = 0; CP < C.Pose.length; CP++)
-					for (let P = 0; P < PoseFemale3DCG.length; P++)
-						if ((C.Pose[CP] == PoseFemale3DCG[P].Name) && (PoseFemale3DCG[P].MovePosition != null))
-							for (let M = 0; M < PoseFemale3DCG[P].MovePosition.length; M++)
-								if (PoseFemale3DCG[P].MovePosition[M].Group == CA.Asset.Group.Name) {
-									X = X + PoseFemale3DCG[P].MovePosition[M].X;
-									Y = Y + PoseFemale3DCG[P].MovePosition[M].Y;
-								}
-
-			// Check if we need to draw a different variation (from type property)
-			var Type = "";
-			if ((CA.Property != null) && (CA.Property.Type != null)) Type = CA.Property.Type;
-
-			// Cycle through all layers of the image
-			var MaxLayer = (CA.Asset.Layer == null) ? 1 : CA.Asset.Layer.length;
-			for (let L = 0; L < MaxLayer; L++) {
-				var Layer = "";
-				var LayerType = Type;
-				if (CA.Asset.Layer != null) {
-					Layer = "_" + CA.Asset.Layer[L].Name;
-					if ((CA.Asset.Layer[L].AllowTypes != null) && (CA.Asset.Layer[L].AllowTypes.indexOf(Type) < 0)) continue;
-					if (!CA.Asset.Layer[L].HasExpression) Expression = "";
-					if (!CA.Asset.Layer[L].HasType) LayerType = "";
-					if ((CA.Asset.Layer[L].NewParentGroupName != null) && (CA.Asset.Layer[L].NewParentGroupName != CA.Asset.Group.ParentGroupName)) {
-						if (CA.Asset.Layer[L].NewParentGroupName == "") G = "";
-						else
-							for (let FG = 0; FG < C.Appearance.length; FG++)
-								if (CA.Asset.Layer[L].NewParentGroupName == C.Appearance[FG].Asset.Group.Name)
-									G = "_" + C.Appearance[FG].Asset.Name;
-					}
-					if (CA.Asset.Layer[L].OverrideAllowPose != null) {
-						Pose = "";
-						for (let AP = 0; AP < CA.Asset.Layer[L].OverrideAllowPose.length; AP++)
-							for (let P = 0; P < C.Pose.length; P++)
-								if (C.Pose[P] == CA.Asset.Layer[L].OverrideAllowPose[AP])
-									Pose = C.Pose[P] + "/";
-					}
-				}
-
-				// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
-				if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
-					DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Layer + ".png", C.Canvas.getContext("2d"), X, Y, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-					DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", C.CanvasBlink.getContext("2d"), X, Y, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-				} else {
-					var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
-					DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Color + Layer + ".png", C.Canvas.getContext("2d"), X, Y);
-					DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", C.CanvasBlink.getContext("2d"), X, Y);
-				}
-			}
-
-			// If we must draw the lock (never colorized)
-			if ((CA.Property != null) && (CA.Property.LockedBy != null) && (CA.Property.LockedBy != "")) {
-				DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Type + "_Lock.png", C.Canvas.getContext("2d"), X, Y);
-				DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", C.CanvasBlink.getContext("2d"), X, Y);
-			}
-		}
+	CommonDrawCanvasPrepare(C);
+	CommonDrawAppearanceBuild(C, {
+		clearRect: (x, y, w, h) => C.Canvas.getContext("2d").clearRect(x, y, w, h),
+		clearRectBlink: (x, y, w, h) => C.CanvasBlink.getContext("2d").clearRect(x, y, w, h),
+		drawImage: (src, x, y) => DrawImageCanvas(src, C.Canvas.getContext("2d"), x, y),
+		drawImageBlink: (src, x, y) => DrawImageCanvas(src, C.CanvasBlink.getContext("2d"), x, y),
+		drawImageColorize: (src, x, y, color, fullAlpha) => DrawImageCanvasColorize(src, C.Canvas.getContext("2d"), x, y, 1, color, fullAlpha),
+		drawImageColorizeBlink: (src, x, y, color, fullAlpha) => DrawImageCanvasColorize(src, C.CanvasBlink.getContext("2d"), x, y, 1, color, fullAlpha),
+	});
 }
-
 
 /**
  * Returns a value from the character current appearance
