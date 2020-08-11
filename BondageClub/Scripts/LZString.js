@@ -18,7 +18,7 @@ var baseReverseDic = {};
 function getBaseValue(alphabet, character) {
   if (!baseReverseDic[alphabet]) {
     baseReverseDic[alphabet] = {};
-    for (var i=0 ; i<alphabet.length ; i++) {
+    for (let i=0 ; i<alphabet.length ; i++) {
       baseReverseDic[alphabet][alphabet.charAt(i)] = i;
     }
   }
@@ -60,7 +60,7 @@ var LZString = {
     var compressed = LZString.compress(uncompressed);
     var buf=new Uint8Array(compressed.length*2); // 2 bytes per character
 
-    for (var i=0, TotalLen=compressed.length; i<TotalLen; i++) {
+    for (let i=0, TotalLen=compressed.length; i<TotalLen; i++) {
       var current_value = compressed.charCodeAt(i);
       buf[i*2] = current_value >>> 8;
       buf[i*2+1] = current_value % 256;
@@ -74,7 +74,7 @@ var LZString = {
         return LZString.decompress(compressed);
     } else {
         var buf=new Array(compressed.length/2); // 2 bytes per character
-        for (var i=0, TotalLen=buf.length; i<TotalLen; i++) {
+        for (let i=0, TotalLen=buf.length; i<TotalLen; i++) {
           buf[i]=compressed[i*2]*256+compressed[i*2+1];
         }
 

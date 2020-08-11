@@ -472,6 +472,8 @@ function AsylumEntranceEscapedPatientLeave() {
  * @returns {void} - Nothing
  */
 function AsylumEntranceGiveNurseUniform() {
-	InventoryAdd(Player, "NurseUniform", "Cloth");
-	InventoryAdd(Player, "NurseCap", "Hat");
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "NurseUniform", Group: "Cloth"});
+	ItemsToEarn.push({Name: "NurseCap", Group: "Hat"});
+	InventoryAddMany(Player, ItemsToEarn);
 }

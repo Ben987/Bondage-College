@@ -14,7 +14,7 @@ function ReputationChange(RepType, RepValue, Push) {
 	if (RepValue != 0) {
 
 		// If the reputation already exists, we update and push it
-		for (var R = 0; R < Player.Reputation.length; R++)
+		for (let R = 0; R < Player.Reputation.length; R++)
 			if (Player.Reputation[R].Type == RepType) {
 				Player.Reputation[R].Value = Player.Reputation[R].Value + RepValue;
 				if (Player.Reputation[R].Value > 100) Player.Reputation[R].Value = 100;
@@ -47,7 +47,7 @@ function ReputationLoad(NewRep) {
 	if (NewRep != null) {
 
 		// Add each reputation entry one by one
-		for (var R = 0; R < NewRep.length; R++)
+		for (let R = 0; R < NewRep.length; R++)
 			ReputationChange(NewRep[R].Type, NewRep[R].Value, false);
 
 	}
@@ -60,7 +60,7 @@ function ReputationLoad(NewRep) {
  * @returns {number} - Returns the value of the reputation. It can range from 100 to -100, and it defaults to 0 if the player never earned this type of reputation before.
  */
 function ReputationGet(RepType) {
-	for (var R = 0; R < Player.Reputation.length; R++)
+	for (let R = 0; R < Player.Reputation.length; R++)
 		if (Player.Reputation[R].Type == RepType)
 			return parseInt(Player.Reputation[R].Value);
 	return 0;
@@ -74,7 +74,7 @@ function ReputationGet(RepType) {
  */
 function ReputationCharacterGet(C, RepType) {
 	if ((C != null) && (C.Reputation != null))
-		for (var R = 0; R < C.Reputation.length; R++)
+		for (let R = 0; R < C.Reputation.length; R++)
 			if (C.Reputation[R].Type == RepType)
 				return parseInt(C.Reputation[R].Value);
 	return 0;

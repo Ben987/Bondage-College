@@ -153,8 +153,8 @@ var BackgroundsList = [
 function BackgroundsGenerateList(BackgroundTagList) {
 	var List = [];
 	BackgroundSelectionAll = [];
-	for (var B = 0; B < BackgroundsList.length; B++)
-		for (var T = 0; T < BackgroundsList[B].Tag.length; T++)
+	for (let B = 0; B < BackgroundsList.length; B++)
+		for (let T = 0; T < BackgroundsList[B].Tag.length; T++)
 			if (BackgroundTagList.indexOf(BackgroundsList[B].Tag[T]) >= 0) {
 				List.push(BackgroundsList[B].Name);
 				var Desc = DialogFind(Player, BackgroundsList[B].Name);

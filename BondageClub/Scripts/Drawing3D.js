@@ -5,51 +5,41 @@ var camera;
 var model;
 var group1;
 var material;
-var action;
-var path3d;
+var path3d = "Assets/3D/";
 var Draw3DEnabled = false;
-
+var count = 0;
+var maid;
 
 function Draw3DLoad() {
-
-
 	init();
-
-
 	document.body.appendChild(renderer.domElement);
 	renderer.domElement.style.display = "none";
 }
-
 function Draw3DKeyDown() {
 	if ((KeyPress == 51) && (CurrentScreen == "MainHall") && (CurrentCharacter == null)) Draw3DEnable(!Draw3DEnabled);
 	if (Draw3DEnabled) {
-		if ((KeyPress == 81) || (KeyPress == 113)) group1.rotation.y -= 0.1;//update3Dmodel(group1);
+		if ((KeyPress == 81) || (KeyPress == 113)) group1.rotation.y -= 0.1;
 		if ((KeyPress == 69) || (KeyPress == 101)) group1.rotation.y += 0.1;
-		if ((KeyPress == 65) || (KeyPress == 97)) group1.position.x -= 1;
+		if ((KeyPress == 65) || (KeyPress == 97))  group1.position.x -= 1;
 		if ((KeyPress == 68) || (KeyPress == 100)) group1.position.x += 1;
 		if ((KeyPress == 87) || (KeyPress == 119)) group1.position.z -= 1;
 		if ((KeyPress == 83) || (KeyPress == 115)) group1.position.z += 1;
-		if (KeyPress == 73) update3Dmodel(group1); // keypress i
+		if ((KeyPress == 90) || (KeyPress == 122)) dress3DModels(group1,path3d);
+		if ((KeyPress == 88) || (KeyPress == 120)) Strip3Dmodel(group1.children, count--);
 	}
 }
 
 // TODO: create more fbx assets <.<
 // TODO: seperate all fbx files
-
-// TODO: walk animation
+// TODO: call each 3d asset and transform x,y towards the next bone node(point)
 function init(){
 
-	// var animspath = "Assets/3D/1animation/";
-	// var anims = ["Standing", "Walk", "WalkBack"];
+	var animspath = "Assets/3D/1animation/";
+	var anims = ["Standing", "Walk", "WalkBack"];
 
-	path3d = "Assets/3D/";
-
-	var itemgroup = ["HairBack/Back Hair 1", "HairFront/Front Hair 1","Eyes/BlueEyes 1","BodyUpper/Pale Skin", "Panties/PantieMaid", "Cloth/TopMaid", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/HighHeels"];
-
-	// var aniassets = [];
+	var itemgroup = ["HairBack/Back Hair 1", "HairFront/Front Hair 1","Eyes/BlueEyes 1","BodyUpper/Pale Skin",  "Cloth/TopMaid","Panties/PantieMaid", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/HighHeels"];
 
 
-	// animas.forEach( function(anim){ aniassets.push(`${animspath}${anim}.fbx`)});//add
 
 	scene = new THREE.Scene();
 
@@ -62,33 +52,34 @@ function init(){
   // clock = new THREE.Clock();
 
   group1 = new THREE.Group();
-
+	count = -1;
 	light();
-		for (let i of itemgroup){//itemgroup
+		for (let i of itemgroup){
+			count += 1;
+			let subst = i.indexOf("/");
+			let grpname = i.slice(0, subst);
+			let itemname = i.slice(subst +1);
 			let loader = new THREE.FBXLoader();
-				loader.load(`${path3d}${i}.fbx`,function( object ) {
+				loader.load(`${path3d}${grpname}/${itemname}.fbx`,function( object ) {
 					model = object;
+					model.name = itemname;
+					model.group = grpname;
 
-					// let body = i.slice(0, 9); //add
-					// console.log(body); //add
 					// model.mixer = new THREE.AnimationMixer(model);
 					// model.mixer.root = model.mixer.getRoot();
 
-					color2("#0c3863", i);
+					color2("#ADD8E6", i);
 					group1.add(model);
-					 //merge all fbx files
-					//console.log(`${path3d}${i}.fbx`);
-
 					},
 					undefined,
 					function( error ) {
 						console.log(error);
 					}
 			);
-		}
+	 }
+	scene.add(group1);
 
-		scene.add(group1);
-	}
+}
 
 function Draw3DEnable(Enable) {
 	Draw3DEnabled = Enable;
@@ -103,9 +94,7 @@ function Draw3DProcess() {
 		if (renderer.domElement.style.width != "100%") {
 			renderer.domElement.style.width = "100%";
 			renderer.domElement.style.height = "";
-
 		}
-
 		renderer.render(scene, camera);
 	}
 }
@@ -113,8 +102,10 @@ function Draw3DProcess() {
 function Draw3DCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	camera.position.set(0, 80, 300);
 }
+
+//light section
 function light(){
-	//light section
+
 	let directlight = new THREE.DirectionalLight( 0xbbbbbb, 0.5);
 	directlight.position.set( 0, 2000, 100 );
 	directlight.castShadow = true;
@@ -126,41 +117,107 @@ function light(){
 	scene.add(ambientLight);
 }
 
-function color2(hexcolor, i){
+//set color
+function color2(hexcolor){
+	let loader = new THREE.TextureLoader();
+	var texturehair = loader.load(`${path3d}HairFront/t005.bmp`)
 	model.traverse( function ( child ) {
 		if ( child.isMesh ) {
-				if (i == "HairBack/Back Hair 1" || i == "HairFront/Front Hair 1" || i == "Shoes/HighHeels"){
-				// if (grpname  == "BackHair" || grpname == "FrontHair" || grpname == "Shoes"){
+				if (model.group == "HairBack" || model.group == "HairFront"){
 					child.castShadow = true;
 					child.receiveShadow = true;
 					child.material = new THREE.MeshPhongMaterial( {
 						color: hexcolor, // hair color
 						wireframe: false,
+					  map: texturehair,
 					} );
 				}else {
 					child.castShadow = true;
 					child.receiveShadow = true;
 				}
-			}
-		} );
+		 }
+	} );
 }
-function update3Dmodel (group1){
-	path3d = "Assets/3D/";
-	scene.remove(group1);
-	let chale = Character[0].Appearance.length;
-	for (let i = 0; i < chale; i++){
+
+//strip the model
+function Strip3Dmodel(models, i){
+		if(i <= -1){
+			console.log("can't strip further");
+			maid = true;
+		}else {
+			if (models[i].group !== "BodyUpper" && models[i].group !== "Eyes" && models[i].group !== "HairBack" && models[i].group !== "HairFront") group1.remove(models[i]);
+		}
+}
+
+function dress3DModels(group, path3d){
+	if ( maid == true){
+		let group2 = [ "Cloth/TopMaid","Panties/PantieMaid", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/HighHeels"];
+		count = 3;
+			// }else{
+			// 	let group = Character[0].Appearance.length -1;
+			// }
+		for (let i of group2){
+			let subst = i.indexOf("/");
+				// if (maid == true){
+			let grpname = i.slice(0, subst);
+			let itemcolor = "#ADD8E6";
+			let itemname = i.slice(subst);
+				// }else {
+				// 	let grpname =	Character[0].Appearance[i].Asset.DynamicGroupName;
+				// 	let itemname = Character[0].Appearance[i].Asset.Name;
+				// 	let itemcolor = Character[0].Appearance[i].Color;
+
+
+			let loader = new THREE.FBXLoader();
+			  loader.load(`${path3d}${grpname}/${itemname}.fbx`,function( object ) {
+				   count += 1;
+				   model = object;
+					 model.name = itemname;
+					 model.group = grpname;
+					 console.log(count);
+
+						// model.mixer = new THREE.AnimationMixer(model);
+						// model.mixer.root = model.mixer.getRoot();
+
+				 	color2(itemcolor, i);
+			 		group1.add(model);
+					},
+					undefined,
+					function( error ) {
+				  	console.log(error);
+						}
+				);
+		 }
+		scene.add(group1);
+		console.log(count);
+		maid = false;
+	}else {
+		console.log("you are already dressed!");
+	}
+}
+
+
+
+function refresh3DModel (group, path3d){
+	count = 0;
+	scene.remove(group);
+	let chale = Character[0].Appearance.length -1;
+	for(let i = 0; i < chale; i++){
 		let grpname =	Character[0].Appearance[i].Asset.DynamicGroupName;
 		let itemname = Character[0].Appearance[i].Asset.Name;
 		let itemcolor = Character[0].Appearance[i].Color;
 		if (grpname == "BodyUpper" && itemcolor == "Black") itemname = "Dark Skin";
 		if (grpname == "BodyUpper" && itemcolor == "White") itemname = "Pale Skin";
 		if (grpname == "BodyUpper" && itemcolor == "Asian") itemname = "Light Skin";
-		let loader = new THREE.FBXLoader();
-			loader.load(`${path3d}${grpname}/${itemname}.fbx`, function( object ) {
-				model = object;
 
+		let loader = new THREE.FBXLoader();
+		loader.load(`${path3d}${grpname}/${itemname}.fbx`, function( object ) {
+				model = object;
+				model.name = itemname;
+				model.group = grpname;
 				color2(itemcolor, grpname);
 				group1.add(model);
+				count++;
 
 			},
 			undefined,
@@ -170,23 +227,25 @@ function update3Dmodel (group1){
 		);
 	}
 		scene.add(group1);
-}
-function button3d(){
-			DrawButton(125, 265, 90, 90, "", "White", "", TextGet("3D"));
+		maid = false;
 }
 
-// function animations(loader){
-// 	let anim = anims.pop();
-// 	loader.load( `${animspath}${anim}.fbx`, function( object ){
-// 		model[anim] = model.animations[0];
-// 		if (anims.length>0){
-// 		animations(loader);
-// 		}else{
-// 			delete anims;
-// 			action = "Standing";
+// function checkitempath(){
 //
-// 		}
+// }
+
+
+// 3d enviourment
+// function env3D(loader){
+// 	loader.load(`${path3d}${}.fbx`, function(object){
+// 		env = object;
+// 		env.castShadow = true;
+// 		env.receiveShadow = true;
 // 	});
+// }
+
+// function animations(loader){
+//
 //
 // }
 // function animate(){

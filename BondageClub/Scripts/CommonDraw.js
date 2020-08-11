@@ -73,6 +73,10 @@ function CommonDrawAppearanceBuild(C, {
 		var AG = A.Group;
 		var CA = C.Appearance.find(item => item.Asset === A);
 		var Property = CA.Property;
+		var CountKey = AG.Name + "/" + A.Name;
+
+		// Count how many layers we've drawn for this asset
+		LayerCounts[CountKey] = (LayerCounts[CountKey] || 0) + 1;
 
 		// If there's a parent group (parent group of the layer overrides that of the asset, which overrides that of the group)
 		var ParentGroupName = Layer.ParentGroupName;
@@ -95,8 +99,8 @@ function CommonDrawAppearanceBuild(C, {
 			}
 		}
 
-		// If we must apply alpha masks to the current image as it is being drawn
-		if (Array.isArray(A.Alpha))
+		// If we must apply alpha masks to the current image as it is being drawn (only apply alpha masks on the first layer)
+		if (Array.isArray(A.Alpha) && LayerCounts[CountKey] === 1)
 			A.Alpha.forEach(([x, y, w, h]) => {
 				clearRect(x, y, w, h);
 				clearRectBlink(x, y, w, h);
@@ -135,19 +139,24 @@ function CommonDrawAppearanceBuild(C, {
 
 		// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 		if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && Layer.AllowColorize) {
-			drawImageColorize("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y, CA.Color, AG.DrawingFullAlpha);
-			drawImageColorizeBlink("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y, CA.Color, AG.DrawingFullAlpha);
+			drawImageColorize(
+				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y, CA.Color,
+				AG.DrawingFullAlpha,
+			);
+			drawImageColorizeBlink(
+				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y, CA.Color,
+				AG.DrawingFullAlpha,
+			);
 		} else {
-			var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
+			var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) ||
+						 (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
 			drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + Color + L + ".png", X, Y);
-			drawImageBlink("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + Color + L + ".png", X, Y);
+			drawImageBlink(
+				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + Color + L + ".png", X, Y);
 		}
 
 		// If the item has been locked
 		if (Property && Property.LockedBy) {
-			// Count how many layers we've drawn for this asset
-			var CountKey = AG.Name + "/" + A.Name;
-			LayerCounts[CountKey] = (LayerCounts[CountKey] || 0) + 1;
 
 			// How many layers should be drawn for the asset
 			var DrawableLayerCount = C.AppearanceLayers.filter(AL => AL.Asset === A).length;

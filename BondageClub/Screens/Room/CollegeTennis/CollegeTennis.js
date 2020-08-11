@@ -30,7 +30,7 @@ function CollegeTennisLoad() {
 	if (LogQuery("JenniferMistress", "NPC-Jennifer") && (Player.Owner == "NPC-Jennifer")) CollegeTennisJenniferStatus = "Owner";
 	if (LogQuery("JenniferMistress", "NPC-Jennifer") && (Player.Owner != "NPC-Jennifer")) CollegeTennisJenniferStatus = "ExOwner";
 	if (PrivateCharacter.length > 1)
-		for (var P = 1; P < PrivateCharacter.length; P++)
+		for (let P = 1; P < PrivateCharacter.length; P++)
 			if (PrivateCharacter[P].Name == "Jennifer")
 				CollegeTennisJenniferStatus = "Away";
 

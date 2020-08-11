@@ -12,7 +12,10 @@ var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
 var LoginErrorMessage = "";
-//var LoginLastCT = 0;
+/* DEBUG: To measure FPS - uncomment this and change the + 4000 to + 40
+var LoginLastCT = 0;
+var LoginFrameCount = 0;
+var LoginFrameTotalTime = 0;*/
 
 /**
  * Loads the next thank you bubble
@@ -32,14 +35,21 @@ function LoginDoNextThankYou() {
  */
 function LoginDrawCredits() {
 
-	//var CT = CommonTime();
-	//if (LoginLastCT + 50 < CT) console.log("Slow Frame: " + (CT - LoginLastCT).toString());
-	//LoginLastCT = CT;
+	/* DEBUG: To measure FPS - uncomment this and change the + 4000 to + 40
+	var CT = CommonTime();
+	if (CT - LoginLastCT < 10000) {
+		LoginFrameCount++;
+		if (LoginFrameCount > 1000)
+			LoginFrameTotalTime = LoginFrameTotalTime + CT - LoginLastCT;
+	}
+	LoginLastCT = CT;
+	if (LoginFrameCount > 1000) DrawText("Average FPS: " + (1000 / (LoginFrameTotalTime / (LoginFrameCount - 1000))).toFixed(2).toString(), 1000, 975, "white");
+	else DrawText("Calculating Average FPS...", 1000, 975, "white");*/
 
 	// For each credits in the list
 	LoginCreditsPosition++;
 	MainCanvas.font = "30px Arial";
-	for (var C = 0; C < LoginCredits.length; C++) {
+	for (let C = 0; C < LoginCredits.length; C++) {
 
 		// Sets the Y position (it scrolls from bottom to top)
 		var Y = 800 - Math.floor(LoginCreditsPosition * 2) + (C * 50);
@@ -212,7 +222,7 @@ function LoginLoversItems() {
 	}
 
 	// remove any item that was lover locked if the number on the lock does not match any lover
-	for (var A = 0; A < Player.Appearance.length; A++) {
+	for (let A = 0; A < Player.Appearance.length; A++) {
 		if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && Player.Appearance[A].Property.LockedBy.startsWith("Lovers")
 			&& Player.Appearance[A].Property.MemberNumber && (LoversNumbers.indexOf(Player.Appearance[A].Property.MemberNumber) < 0)) {
 			InventoryRemove(Player, Player.Appearance[A].Asset.Group.Name);
@@ -227,9 +237,9 @@ function LoginLoversItems() {
  * @returns {void} Nothing
  */
 function LoginValideBuyGroups() {
-	for (var A = 0; A < Asset.length; A++)
+	for (let A = 0; A < Asset.length; A++)
 		if ((Asset[A].BuyGroup != null) && InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name))
-			for (var B = 0; B < Asset.length; B++)
+			for (let B = 0; B < Asset.length; B++)
 				if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup) && !InventoryAvailable(Player, Asset[B].Name, Asset[B].Group.Name))
 					InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name, false);
 }
@@ -355,12 +365,12 @@ function LoginResponse(C) {
 			PrivateCharacter = [];
 			PrivateCharacter.push(Player);
 			if (C.PrivateCharacter != null)
-				for (var P = 0; P < C.PrivateCharacter.length; P++)
+				for (let P = 0; P < C.PrivateCharacter.length; P++)
 					PrivateCharacter.push(C.PrivateCharacter[P]);
 			SarahSetStatus();
 
 			// Fixes a few items
-			var InventoryBeforeFixes = JSON.stringify(Player.Inventory);
+			var InventoryBeforeFixes = InventoryStringify(Player);
 			InventoryRemove(Player, "ItemMisc");
 			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth", false);
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
@@ -370,7 +380,7 @@ function LoginResponse(C) {
 			LoginLoversItems();
 			LoginValideBuyGroups();
 			LoginValidateArrays();
-			if (InventoryBeforeFixes != JSON.stringify(Player.Inventory)) ServerPlayerInventorySync();
+			if (InventoryBeforeFixes != InventoryStringify(Player)) ServerPlayerInventorySync();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell

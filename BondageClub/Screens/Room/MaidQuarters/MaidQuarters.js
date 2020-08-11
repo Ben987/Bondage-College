@@ -164,7 +164,7 @@ function MaidQuartersMaidUngagPlayer() {
  * @returns {void} - Nothing
  */
 function MaidQuartersWearMaidUniform() {
-	for (var ItemAssetGroupName in MaidQuartersItemClothPrev) {
+	for (let ItemAssetGroupName in MaidQuartersItemClothPrev) {
 		MaidQuartersItemClothPrev[ItemAssetGroupName] = InventoryGet(Player, ItemAssetGroupName);
 		InventoryRemove(Player, ItemAssetGroupName);
 	}
@@ -178,7 +178,7 @@ function MaidQuartersWearMaidUniform() {
  */
 function MaidQuartersRemoveMaidUniform() {
 	CharacterReleaseNoLock(Player);
-	for (var ItemAssetGroupName in MaidQuartersItemClothPrev) {
+	for (let ItemAssetGroupName in MaidQuartersItemClothPrev) {
 		var PreviousItem = MaidQuartersItemClothPrev[ItemAssetGroupName];
 		InventoryRemove(Player, ItemAssetGroupName);
 		if (PreviousItem) InventoryWear(Player, PreviousItem.Asset.Name, ItemAssetGroupName, PreviousItem.Color);
@@ -307,11 +307,14 @@ function MaidQuartersChangeInitiationMaid() {
  * @returns {void} - Nothing
  */
 function MaidQuartersBecomMaid() {
-	InventoryAdd(Player, "MaidOutfit1", "Cloth");
-	InventoryAdd(Player, "MaidOutfit2", "Cloth");
-	InventoryAdd(Player, "MaidApron1", "Cloth");
-	InventoryAdd(Player, "MaidApron2", "Cloth");
-	InventoryAdd(Player, "MaidHairband1", "Hat");
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "MaidOutfit1", Group: "Cloth"});
+	ItemsToEarn.push({Name: "MaidOutfit2", Group: "Cloth"});
+	ItemsToEarn.push({Name: "MaidHairband1", Group: "Cloth"});
+	ItemsToEarn.push({Name: "MaidApron1", Group: "Cloth"});
+	ItemsToEarn.push({Name: "MaidHairband1", Group: "Hat"});
+	InventoryAddMany(Player, ItemsToEarn);
+	
 	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
 	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
 	LogAdd("JoinedSorority", "Maid");
@@ -374,9 +377,11 @@ function MaidQuartersFreeSarah() {
  * @returns {void} - Nothing
  */
 function MaidQuartersGetDusterGag() {
-	InventoryAdd(Player, "DusterGag", "ItemMouth");
-	InventoryAdd(Player, "DusterGag", "ItemMouth2");
-	InventoryAdd(Player, "DusterGag", "ItemMouth3");
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "DusterGag", Group: "ItemMouth"});
+	ItemsToEarn.push({Name: "DusterGag", Group: "ItemMouth2"});
+	ItemsToEarn.push({Name: "DusterGag", Group: "ItemMouth3"});
+	InventoryAddMany(Player, ItemsToEarn);
 }
 
 /**
