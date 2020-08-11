@@ -319,10 +319,11 @@ function ChatRoomRun() {
 	}
 
 	// Draws the top buttons in pink if they aren't available
-	if (!Player.IsSlow()){
+	if (!Player.IsSlow() || (ChatRoomSlowtimer == 0 && !ChatRoomCanLeave())){
 		if (ChatRoomSlowtimer != 0) ChatRoomSlowtimer = 0;
 		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
 	}	
+	
 	if (OnlineGameName == "") DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
 	else DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/GameOption.png", TextGet("MenuGameOption"));
 	DrawButton(1353, 2, 120, 60, "", (Player.CanKneel()) ? "White" : "Pink", "Icons/Rectangle/Kneel.png", TextGet("MenuKneel"));
