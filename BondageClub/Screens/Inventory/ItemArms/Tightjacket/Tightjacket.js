@@ -113,12 +113,6 @@ function InventoryItemArmsTightJacketSetPose(NewType) {
 		return;
 	}
 
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
-
 	// Refresh the character
 	ChatRoomCharacterUpdate(C);
     CharacterRefresh(C);

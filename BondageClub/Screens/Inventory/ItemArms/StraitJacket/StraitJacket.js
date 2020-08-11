@@ -59,12 +59,6 @@ function InventoryItemArmsStraitJacketSetPose(NewPose) {
 		if (NewPose == "Tight") DialogFocusItem.Property.Difficulty = 9;
 	}
 
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
-
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
 	var msg = "StraitJacketRestrain" + ((NewPose == null) ? "None" : NewPose);
