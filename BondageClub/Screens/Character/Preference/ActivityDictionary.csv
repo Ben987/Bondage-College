@@ -272,7 +272,8 @@ ChatOther-ItemNose-Pinch,SourceCharacter pinches TargetCharacter's nose.
 ChatOther-ItemNose-Caress,SourceCharacter caresses TargetCharacter's nose.
 ChatOther-ItemNose-Pull,SourceCharacter pulls TargetCharacter's nose.
 ChatOther-ItemNose-Rub,SourceCharacter rubs TargetCharacter's nose.
-ChatOther-ItemNose-Nibble,SourceCharacter bites TargetCharacter's nose.
+ChatOther-ItemNose-Nibble,SourceCharacter nibbles TargetCharacter's nose.
+ChatOther-ItemNose-Bite,SourceCharacter bites TargetCharacter's nose.
 ChatOther-ItemNose-Choke,SourceCharacter pinches  TargetCharacter's nostrils closed.
 ChatOther-ItemNose-Lick,SourceCharacter licks  TargetCharacter's nose.
 ChatOther-ItemNose-Bite,SourceCharacter bites TargetCharacter's nose.
