@@ -2301,7 +2301,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemNose",
 		Category: "Item",
-		Priority: 43,
+		Priority: 33,
 		Default: false,
 		IsRestraint: true,
 		Left: 150,
