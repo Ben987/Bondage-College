@@ -77,7 +77,7 @@ function InventoryItemDevicesSmallLockerSetPose(NewType) {
 	if (NewType.Prerequisite != null && !InventoryAllow(C, NewType.Prerequisite, true)) { DialogExtendedMessage = DialogText; return; }
 
 	// Sets the new pose with its effects and the hidden items if we need to
-	DialogFocusItem.Property = NewType.Property;
+	DialogFocusItem.Property.Type = NewType.Property.Type;
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 
