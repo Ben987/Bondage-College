@@ -14,7 +14,7 @@ var SmallLockerDevicesOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemDevicesSmallLockerLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(SmallLockerDevicesOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectLockerState");
 	SmallLockerDevicesOptionOffset = 0;
 }
@@ -77,7 +77,7 @@ function InventoryItemDevicesSmallLockerSetPose(NewType) {
 	if (NewType.Prerequisite != null && !InventoryAllow(C, NewType.Prerequisite, true)) { DialogExtendedMessage = DialogText; return; }
 
 	// Sets the new pose with its effects and the hidden items if we need to
-	DialogFocusItem.Property.Type = NewType.Property.Type;
+	DialogFocusItem.Property = NewType.Property;
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 

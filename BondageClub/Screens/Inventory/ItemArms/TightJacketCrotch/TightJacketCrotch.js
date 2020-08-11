@@ -40,7 +40,7 @@ var TightJacketCrotchArmsOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemArmsTightJacketCrotchLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = TightJacketCrotchArmsOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(TightJacketCrotchArmsOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectJacketPrep");
 	TightJacketCrotchArmsOptionOffset = 0;
 }

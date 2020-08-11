@@ -60,7 +60,7 @@ var ChainsArmsOptionOffset = 0;
  * @returns {void} - Nothing
  */
 function InventoryItemArmsChainsLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = ChainsArmsOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(ChainsArmsOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectChainBondage");
 	ChainsArmsOptionOffset = 0;
 }

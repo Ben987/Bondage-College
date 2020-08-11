@@ -18,7 +18,7 @@ var ZiptiesFeetOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemFeetZiptiesLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = ZiptiesFeetOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(ZiptiesFeetOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectZipTie");
 	ZiptiesFeetOptionOffset = 0;
 }
