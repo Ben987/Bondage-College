@@ -55,7 +55,8 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		DrawingLeft: (NewAsset.Left == null) ? 0 : NewAsset.Left,
 		DrawingTop: (NewAsset.Top == null) ? 0 : NewAsset.Top,
 		DrawingFullAlpha: (NewAsset.FullAlpha == null) ? true : NewAsset.FullAlpha,
-		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink
+		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink,
+		InheritColor: NewAsset.InheritColor
 	}
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
@@ -131,6 +132,7 @@ function AssetAdd(NewAsset) {
 		DynamicActivity: (typeof NewAsset.DynamicActivity === 'function') ? NewAsset.DynamicActivity : function () { return NewAsset.Activity },
 		CharacterRestricted: typeof NewAsset.CharacterRestricted === 'boolean' ? NewAsset.CharacterRestricted : false,
 		AllowRemoveExclusive: typeof NewAsset.AllowRemoveExclusive === 'boolean' ? NewAsset.CharacterRestricted : false,
+		InheritColor: NewAsset.InheritColor
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	// Unwearable assets are not visible but can be overwritten
@@ -166,7 +168,8 @@ function AssetMapLayer(Layer, AssetDefinition, A) {
 		ParentGroupName: Layer.ParentGroup,
 		OverrideAllowPose: Array.isArray(Layer.OverrideAllowPose) ? Layer.OverrideAllowPose : null,
 		Priority: Layer.Priority || AssetDefinition.Priority || AssetCurrentGroup.DrawingPriority,
-		Asset: A,
+		InheritColor: Layer.InheritColor,
+		Asset: A
 	};
 }
 
