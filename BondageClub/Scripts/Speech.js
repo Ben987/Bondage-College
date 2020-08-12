@@ -83,7 +83,7 @@ function SpeechGarble(C, CD) {
 	GagEffect += SpeechGetGagLevel(C, "ItemHood");
 	GagEffect += SpeechGetGagLevel(C, "ItemNeck");
 	GagEffect += SpeechGetGagLevel(C, "ItemDevices");
-	GagEffect += SpeechGetGagLevel(C, "ItemAddon");
+	GagEffect += SpeechGetGagLevel(C, "ItemHoodAddon");
 
 	// GagTotal4 always returns mmmmm and muffles some frequent letters entirely, 75% least frequent letters
 	if (GagEffect >= 20  || ((C.ID != 0) && (Player.GetDeafLevel() >= 7))) {

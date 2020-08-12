@@ -7,7 +7,6 @@ var InventoryItemAddonBondageBenchStrapsMessage = "";
  */
 function InventoryItemAddonBondageBenchStrapsLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
-	DialogFocusItem.Property.SelfUnlock = false;
 	InventoryItemAddonBondageBenchStrapsMessage = null;
 }
 
