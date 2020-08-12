@@ -25,7 +25,8 @@ var InventoryItemArmsHighSecurityStraitJacketCrotchOptions = [
 		Name: "c1",
 		Difficulty: 1,
 		Block: ["ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt"],
-		Hide: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
+		Hide: ["ItemVulva", "ItemVulvaPiercings"],
+		HideItem: ["ItemButtAnalBeads2"],
 	},
 ];
 
@@ -55,19 +56,20 @@ var InventoryItemArmsHighSecurityStraitJacketStrapsOptions = [
 		Name: "s1",
 		Difficulty: 1,
 		Block: ["ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt"],
-		Hide: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
+		Hide: ["ItemVulvaPiercings"],
+		HideItem: ["ItemButtAnalBeads2"],
 	},
 	{
 		Name: "s2",
 		Difficulty: 2,
 		Block: ["ItemPelvis"],
-		Hide: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
 	},
 	{
 		Name: "s3",
 		Difficulty: 2,
 		Block: ["ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt"],
-		Hide: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
+		Hide: ["ItemVulvaPiercings"],
+		HideItem: ["ItemButtAnalBeads2"],
 	},
 ];
 
@@ -90,9 +92,11 @@ var InventoryItemArmsHighSecurityStraitJacketClickFunctions = {
 function InventoryItemArmsHighSecurityStraitJacketLoad() {
 	if (!DialogFocusItem.Property) {
 		// Default to the base configuration if no property is set
+		var C = CharacterGetCurrent();
 		var [c, a, s] = InventoryItemArmsHighSecurityStraitJacketParseCurrent();
 		DialogFocusItem.Property = InventoryItemArmsHighSecurityStraitJacketMergeOptions(c, a, s);
-		CharacterRefresh(CharacterGetCurrent());
+		CharacterRefresh(C);
+		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 	}
 	DialogExtendedMessage = DialogFind(Player, "ItemArmsHighSecurityStraitJacketSelectBase");
 }
@@ -289,12 +293,14 @@ function InventoryItemArmsHighSecurityStraitJacketMergeOptions(c, a, s) {
 		prop.Difficulty += (componentProp.Difficulty || 0);
 		if (componentProp.Block) InventoryItemArmsHighSecurityStraitJacketAddToArray(prop.Block, componentProp.Block);
 		if (componentProp.Hide) InventoryItemArmsHighSecurityStraitJacketAddToArray(prop.Hide, componentProp.Hide);
+		if (componentProp.HideItem) InventoryItemArmsHighSecurityStraitJacketAddToArray(prop.HideItem, componentProp.HideItem);
 		return prop;
 	}, {
 		Type: `c${c}a${a}s${s}`,
 		Difficulty: 0,
 		Block: ["ItemNipples", "ItemNipplesPiercings", "ItemTorso", "ItemBreast", "ItemHands"],
 		Hide: ["Cloth", "ItemNipplesPiercings"],
+		HideItem: [],
 	});
 }
 
