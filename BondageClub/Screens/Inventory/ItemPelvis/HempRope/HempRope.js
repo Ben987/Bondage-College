@@ -21,7 +21,7 @@ var HempRopePelvisOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemPelvisHempRopeLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = HempRopePelvisOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(HempRopePelvisOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectRopeBondage");
 	HempRopePelvisOptionOffset = 0;
 }

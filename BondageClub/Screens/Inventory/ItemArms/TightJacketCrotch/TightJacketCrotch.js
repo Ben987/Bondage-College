@@ -40,7 +40,7 @@ var TightJacketCrotchArmsOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemArmsTightJacketCrotchLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = TightJacketCrotchArmsOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(TightJacketCrotchArmsOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectJacketPrep");
 	TightJacketCrotchArmsOptionOffset = 0;
 }
@@ -56,7 +56,7 @@ function InventoryItemArmsTightJacketCrotchDraw() {
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 	
 	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
-	for (var I = TightJacketCrotchArmsOptionOffset; (I < TightJacketCrotchArmsOptions.length) && (I < TightJacketCrotchArmsOptionOffset + 4); I++) {
+	for (let I = TightJacketCrotchArmsOptionOffset; (I < TightJacketCrotchArmsOptions.length) && (I < TightJacketCrotchArmsOptionOffset + 4); I++) {
 		var offset = I - TightJacketCrotchArmsOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
@@ -77,7 +77,7 @@ function InventoryItemArmsTightJacketCrotchClick() {
 	if (TightJacketCrotchArmsOptionOffset >= TightJacketCrotchArmsOptions.length) TightJacketCrotchArmsOptionOffset = 0;
 
 	// Item buttons
-	for (var I = TightJacketCrotchArmsOptionOffset; (I < TightJacketCrotchArmsOptions.length) && (I < TightJacketCrotchArmsOptionOffset + 4); I++) {
+	for (let I = TightJacketCrotchArmsOptionOffset; (I < TightJacketCrotchArmsOptions.length) && (I < TightJacketCrotchArmsOptionOffset + 4); I++) {
 		var offset = I - TightJacketCrotchArmsOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
@@ -111,12 +111,6 @@ function InventoryItemArmsTightJacketCrotchSetPose(NewType) {
 	} else {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked"); 
 		return;
-	}
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
 	}
 
 	// Refresh the character

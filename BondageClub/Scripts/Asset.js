@@ -4,6 +4,23 @@ var AssetGroup = [];
 var AssetCurrentGroup;
 var Pose = [];
 
+/**
+ * An object defining a drawable layer of an asset
+ * @typedef {Object} Layer
+ * @property {string | null} Name - the name of the layer - may be null if the asset only contains a single default layer
+ * @property {boolean} AllowColorize - whether or not this layer can be colored
+ * @property {string[] | null} AllowTypes - A list of allowed extended item types that this layer permits - the layer will only be drawn if
+ * the item type matches one of these types. If null, the layer is considered to permit all extended types.
+ * @property {boolean} HasType - whether or not the layer has separate assets per type. If not, the extended type will not be included in
+ * the URL when fetching the layer's image
+ * @property {string | null} [ParentGroupName] - The name of the parent group for this layer. If null, the layer has no parent group. If
+ * undefined, the layer inherits its parent group from it's asset/group.
+ * @property {string[] | null} OverrideAllowPose - An array of poses that this layer permits. If set, it will override the poses permitted
+ * by the parent asset/group.
+ * @property {number} Priority - The drawing priority of this layer. Inherited from the parent asset/group if not specified in the layer definition.
+ * @property {Asset} Asset - The asset that this layer belongs to
+ */
+
 // Adds a new asset group to the main list
 function AssetGroupAdd(NewAssetFamily, NewAsset) {
 	var A = {
@@ -93,7 +110,6 @@ function AssetAdd(NewAsset) {
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
 		LoverOnly: (NewAsset.LoverOnly == null) ? false : NewAsset.LoverOnly,
 		ExpressionTrigger: NewAsset.ExpressionTrigger,
-		Layer: AssetBuildLayer(NewAsset.Layer),
 		RemoveItemOnRemove: (NewAsset.RemoveItemOnRemove == null) ? AssetCurrentGroup.RemoveItemOnRemove : AssetCurrentGroup.RemoveItemOnRemove.concat(NewAsset.RemoveItemOnRemove),
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
@@ -102,7 +118,6 @@ function AssetAdd(NewAsset) {
 		Audio: NewAsset.Audio,
 		Fetish: NewAsset.Fetish,
 		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone,
-		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null) ? false : NewAsset.IgnoreParentGroup,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
 		BodyCosplay: (NewAsset.BodyCosplay == null) ? ((AssetCurrentGroup.BodyCosplay == null) ? false : AssetCurrentGroup.BodyCosplay) : NewAsset.BodyCosplay,
 		OverrideBlinking: (NewAsset.OverrideBlinking == null) ? false : NewAsset.OverrideBlinking,
@@ -117,28 +132,55 @@ function AssetAdd(NewAsset) {
 		CharacterRestricted: typeof NewAsset.CharacterRestricted === 'boolean' ? NewAsset.CharacterRestricted : false,
 		AllowRemoveExclusive: typeof NewAsset.AllowRemoveExclusive === 'boolean' ? NewAsset.CharacterRestricted : false,
 	}
+	A.Layer = AssetBuildLayer(NewAsset, A);
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
 }
 
-// Builds layers for an asset
-function AssetBuildLayer(NewLayers) {
-	if (NewLayers == null || !Array.isArray(NewLayers)) return null;
-	var Layers = [];
-	for (let L = 0; L < NewLayers.length; L++) {
-		var Layer = NewLayers[L];
-		Layers.push({
-			Name: Layer.Name,
-			AllowColorize: (Layer.AllowColorize == null) ? true : Layer.AllowColorize,
-			AllowTypes: (Layer.AllowTypes == null || !Array.isArray(Layer.AllowTypes)) ? [""] : Layer.AllowTypes,
-			HasExpression: (Layer.HasExpression == null) ? true : Layer.HasExpression,
-			HasType: (Layer.HasType == null) ? true : Layer.HasType,
-			NewParentGroupName: Layer.NewParentGroupName,
-			OverrideAllowPose: (Layer.OverrideAllowPose == null || !Array.isArray(Layer.OverrideAllowPose)) ? null : Layer.OverrideAllowPose
-		});
-	}
-	return Layers;
+/**
+ * Builds the layer array for an asset based on the asset definition. One layer is created for each drawable part of the asset (excluding
+ * the lock). If the asset definition contains no layer definitions, a default layer definition will be created.
+ * @param {Object} AssetDefinition - The raw asset definition
+ * @param {Asset} A - The built asset
+ * @return {Layer[]} - An array of layer objects representing the drawable layers of the asset
+ */
+function AssetBuildLayer(AssetDefinition, A) {
+	var Layers = Array.isArray(AssetDefinition.Layer) ? AssetDefinition.Layer : [{}];
+	return Layers.map(Layer => AssetMapLayer(Layer, AssetDefinition, A));
+}
+
+/**
+ * Maps a layer definition to a drawable layer object
+ * @param {Object} Layer - The raw layer definition
+ * @param {Object} AssetDefinition - The raw asset definition
+ * @param {Asset} A - The built asset
+ * @return {Layer} - A Layer object representing the drawable properties of the given layer
+ */
+function AssetMapLayer(Layer, AssetDefinition, A) {
+	return {
+		Name: Layer.Name || null,
+		AllowColorize: AssetLayerAllowColorize(Layer, AssetDefinition),
+		AllowTypes: Array.isArray(Layer.AllowTypes) ? Layer.AllowTypes : null,
+		HasType: typeof Layer.HasType === "boolean" ? Layer.HasType : true,
+		ParentGroupName: Layer.ParentGroup,
+		OverrideAllowPose: Array.isArray(Layer.OverrideAllowPose) ? Layer.OverrideAllowPose : null,
+		Priority: Layer.Priority || AssetDefinition.Priority || AssetCurrentGroup.DrawingPriority,
+		Asset: A,
+	};
+}
+
+/**
+ * Determines whether a layer can be colorized, based on the layer definition and its parent asset/group definitions
+ * @param {Object} Layer - The raw layer definition
+ * @param {Object} NewAsset - The raw asset definition
+ * @return {boolean} - Whether or not the layer should be permit colors
+ */
+function AssetLayerAllowColorize(Layer, NewAsset) {
+	return typeof Layer.AllowColorize === 'boolean' ? Layer.AllowColorize
+		   : typeof NewAsset.AllowColorize === 'boolean' ? NewAsset.AllowColorize
+			 : typeof AssetCurrentGroup.AllowColorize  === 'boolean' ? AssetCurrentGroup.AllowColorize
+			   : true;
 }
 
 // Builds the asset description from the CSV file

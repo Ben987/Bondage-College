@@ -7,7 +7,6 @@ var InventoryItemAddonBondageBenchStrapsMessage = "";
  */
 function InventoryItemAddonBondageBenchStrapsLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
-	DialogFocusItem.Property.SelfUnlock = false;
 	InventoryItemAddonBondageBenchStrapsMessage = null;
 }
 
@@ -79,12 +78,6 @@ function InventoryItemAddonBondageBenchStrapsSetPose(NewPose) {
 	if (NewPose == "Heavy") DialogFocusItem.Property.Difficulty = 6;
 	if (NewPose == "Full") DialogFocusItem.Property.Difficulty = 9;
 	DialogFocusItem.Property.Restrain = NewPose;
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
 
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);

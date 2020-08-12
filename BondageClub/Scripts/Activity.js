@@ -86,8 +86,12 @@ function ActivityDialogBuild(C) {
 						if ((Activity.Prerequisite[P] == "UseMouth") && (Player.IsMouthBlocked() || !Player.CanTalk())) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseTongue") && Player.IsMouthBlocked()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseHands") && !Player.CanInteract()) Allow = false;
+						else if ((Activity.Prerequisite[P] == "UseArms") && (!Player.CanInteract() && (InventoryGet(Player, "ItemArms") || InventoryGroupIsBlocked(Player, "ItemArms")))) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseFeet") && !Player.CanWalk()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "TargetCanUseTongue") && C.IsMouthBlocked()) Allow = false;
+						else if ((Activity.Prerequisite[P] == "TargetMouthOpen") && (C.FocusGroup.Name == "ItemMouth") && (InventoryGet(C, "ItemMouth") && !C.IsMouthOpen())) Allow = false;
+						else if ((Activity.Prerequisite[P] == "VulvaEmpty")  && (C.FocusGroup.Name == "ItemVulva") && C.IsVulvaFull()) Allow = false;
+						else if ((Activity.Prerequisite[P] == "ZoneAccessible") && InventoryGroupIsBlocked(C, C.FocusGroup.Name)) Allow = false;
 						else if ((Activity.Prerequisite[P] == "WearingPenetrationItem") && (!CharacterHasItemForActivity(Player, "Penetrate") || Player.IsEnclose())) Allow = false;
 						else if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemButt") && ((InventoryPrerequisiteMessage(C, "AccessButt") != "") || C.IsPlugged())) Allow = false;
 						else if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemVulva") && ((InventoryPrerequisiteMessage(C, "AccessVulva") != "") || C.IsVulvaChaste())) Allow = false;

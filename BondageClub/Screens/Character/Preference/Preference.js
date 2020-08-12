@@ -31,6 +31,13 @@ var PreferenceArousalZoneFactor = 0;
 var PreferenceArousalFetishList = null;
 var PreferenceArousalFetishIndex = 0;
 var PreferenceArousalFetishFactor = 0;
+var PreferenceVisibilityGroupList = [];
+var PreferenceVisibilityGroupIndex = 0;
+var PreferenceVisibilityAssetIndex = 0;
+var PreferenceVisibilityHideChecked = false;
+var PreferenceVisibilityPreviewImg = null;
+var PreferenceVisibilitySettings = [];
+var PreferenceVisibilityResetClicked = false;
 
 /**
  * Gets the effect of a sexual activity on the player
@@ -325,6 +332,7 @@ function PreferenceRun() {
 	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioRun();
 	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalRun();
 	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityRun();
+	if (PreferenceSubscreen == "Visibility") return PreferenceSubscreenVisibilityRun();
 
 	// Draw the online preferences
 	MainCanvas.textAlign = "left";
@@ -364,6 +372,7 @@ function PreferenceRun() {
 		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Audio.png");
 		DrawButton(1815, 420, 90, 90, "", "White", "Icons/Activity.png");
 		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Lock.png");
+		DrawButton(1815, 650, 90, 90, "", "White", "Icons/Private.png");
 	}
 }
 
@@ -378,6 +387,7 @@ function PreferenceClick() {
 	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioClick();
 	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalClick();
 	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityClick();
+	if (PreferenceSubscreen == "Visibility") return PreferenceSubscreenVisibilityClick();
 
 	// If the user clicks on "Exit"
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
@@ -409,6 +419,12 @@ function PreferenceClick() {
 		PreferenceSubscreen = "Security";
 	}
 
+	// If the user clicks on the security settings button
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 650) && (MouseY < 740) && (PreferenceColorPick == "")) {
+		PreferenceMainScreenExit();
+		PreferenceSubscreen = "Visibility";
+	}
+	
 	// If we must change the restrain permission level
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
 		Player.ItemPermission++;
@@ -594,6 +610,55 @@ function PreferenceSubscreenSecurityRun() {
 	MainCanvas.textAlign = "center";
 	DrawButton(500, 365, 250, 64, TextGet("UpdateEmail"), "White", "");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+}
+
+/**
+ * Sets the item visibility preferences for a player. Redirected to from the main Run function if the player is in the visibility settings subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenVisibilityRun() {
+	// Load the full asset list
+	if (PreferenceVisibilityGroupList.length == 0) {
+		PreferenceVisibilitySettings = Player.HiddenItems.slice();
+
+		for (var G = 0; G < AssetGroup.length; G++)
+			if (AssetGroup[G].Clothing || AssetGroup[G].Category != "Appearance") {
+				var AssetList = [];
+				for (var A = 0; A < Asset.length; A++)
+					if (Asset[A].Group.Name == AssetGroup[G].Name && Asset[A].Visible)
+						AssetList.push({ Asset: Asset[A], Hidden: CharacterAppearanceItemIsHidden(Asset[A].Name, AssetGroup[G].Name) });
+				if (AssetList.length > 0) PreferenceVisibilityGroupList.push({ Group: AssetGroup[G], Assets: AssetList });
+			}
+		PreferenceSubscreenVisibilityAssetChanged(true);
+	}
+
+	DrawCharacter(Player, 50, 50, 0.9);
+
+	// Draw the controls
+	DrawButton(1720, 60, 90, 90, "", "White", "Icons/Accept.png", TextGet("LeaveSave"));
+	DrawButton(1820, 60, 90, 90, "", "White", "Icons/Cancel.png", TextGet("LeaveNoSave"));
+
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("VisibilityPreferences"), 500, 125, "Black", "Gray");
+	DrawText(TextGet("VisibilityGroup"), 500, 225, "Black", "Gray");
+	DrawText(TextGet("VisibilityAsset"), 500, 304, "Black", "Gray");
+	DrawCheckbox(500, 352, 64, 64, TextGet("VisibilityCheckbox"), PreferenceVisibilityHideChecked);
+	if (PreferenceVisibilityHideChecked) {
+		DrawImageResize("Screens/Character/Player/HiddenItem.png", 500, 436, 86, 86);
+		DrawText(TextGet("VisibilityWarning"), 600, 468, "Black", "Gray");
+	}
+	if (PreferenceVisibilityResetClicked) DrawText(TextGet("VisibilityReset"), 500, 732, "Black", "Gray");
+	MainCanvas.textAlign = "center";
+
+	DrawBackNextButton(650, 193, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Description, "White", "", () => "", () => "");
+	DrawBackNextButton(650, 272, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Description, "White", "", () => "", () => "");
+
+	DrawButton(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64, "Reset", "White", "");
+	
+	// Draw preview icon
+	DrawEmptyRect(1200, 193, 225, 225, "Black");
+	if (PreferenceVisibilityPreviewImg == null) DrawRect(1203, 196, 219, 219, "LightGray");
+	else DrawImageResize(PreferenceVisibilityPreviewImg, 1202, 195, 221, 221);
 }
 
 /**
@@ -806,6 +871,123 @@ function PreferenceSubscreenSecurityClick() {
 			ElementValue("InputEmailNew", TextGet("UpdateEmailInvalid"));
 	}
 
+}
+
+/**
+ * Handles the click events for the visibility settings of a player
+ * Redirected to from the main Click function if the player is in the visibility settings subscreen
+ */
+function PreferenceSubscreenVisibilityClick() {
+
+	// Group button
+	if (MouseIn(650, 193, 500, 64)) {
+		if (MouseX >= 900) {
+			PreferenceVisibilityGroupIndex++;
+			if (PreferenceVisibilityGroupIndex >= PreferenceVisibilityGroupList.length) PreferenceVisibilityGroupIndex = 0;
+		}
+		else {
+			PreferenceVisibilityGroupIndex--;
+			if (PreferenceVisibilityGroupIndex < 0) PreferenceVisibilityGroupIndex = PreferenceVisibilityGroupList.length - 1;
+		}
+		PreferenceVisibilityAssetIndex = 0;
+		PreferenceSubscreenVisibilityAssetChanged(true);
+	}
+
+	// Asset button
+	if (MouseIn(650, 272, 500, 64)) {
+		if (MouseX >= 900) {
+			PreferenceVisibilityAssetIndex++;
+			if (PreferenceVisibilityAssetIndex >= PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length) PreferenceVisibilityAssetIndex = 0;
+		}
+		else {
+			PreferenceVisibilityAssetIndex--;
+			if (PreferenceVisibilityAssetIndex < 0) PreferenceVisibilityAssetIndex = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length - 1;
+		}
+		PreferenceSubscreenVisibilityAssetChanged(true);
+	}
+
+	// Hide checkbox
+	if (MouseIn(500, 352, 64, 64)) {
+		var CurrGroup = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Name;
+		var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Name;
+		if (PreferenceVisibilityHideChecked) {
+			for (var H = 0; H < PreferenceVisibilitySettings.length; H++)
+				if (PreferenceVisibilitySettings[H].Name == CurrAsset && PreferenceVisibilitySettings[H].Group == CurrGroup) {
+					PreferenceVisibilitySettings.splice(H, 1);
+					break;
+				}
+		}
+		else PreferenceVisibilitySettings.push({ Name: CurrAsset, Group: CurrGroup });
+		
+		PreferenceVisibilityHideChecked = !PreferenceVisibilityHideChecked;
+		PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Hidden = PreferenceVisibilityHideChecked;
+		PreferenceSubscreenVisibilityAssetChanged(false);
+	}
+
+	// Reset button
+	if (MouseIn(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64)) {
+		if (PreferenceVisibilityResetClicked) {
+			Player.HiddenItems = [];
+			PreferenceSubscreenVisibilityExit(true);
+		}
+		else PreferenceVisibilityResetClicked = true;
+	}
+
+	// Confirm button
+	if (MouseIn(1720, 60, 90, 90)) {
+		Player.HiddenItems = PreferenceVisibilitySettings;
+		PreferenceSubscreenVisibilityExit(true);
+	}
+
+	// Cancel button
+	if (MouseIn(1820, 60, 90, 90)) {
+		PreferenceSubscreenVisibilityExit(false);
+	}
+}
+
+/**
+ * Update the Hide checkbox and asset preview image based on the new asset selection
+ * @param {boolean} ResetCheckbox - If FALSE, don't change the Hide checkbox setting
+ */
+function PreferenceSubscreenVisibilityAssetChanged(ResetCheckbox) {
+	if (ResetCheckbox) PreferenceVisibilityHideChecked = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Hidden;
+
+	// Get the preview image path
+	var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset;
+	if (PreferenceVisibilityHideChecked) PreferenceVisibilityPreviewImg = "Icons/HiddenItem.png";
+	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Group.Family + "/" + CurrAsset.Group.Name + "/Preview/" + CurrAsset.Name + ".png";
+
+	PreferenceVisibilityResetClicked = false;
+}
+
+/**
+ * Saves changes to the asset settings, disposes of large lists & exits the visibility preference screen.
+ * @param {boolean} SaveChanges - If TRUE, update HiddenItems and BlockItems for the account
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenVisibilityExit(SaveChanges) {
+	if (SaveChanges) {
+		// Add the item to the blocked list if able
+		var BlockItemsChanged = false;
+		for (var H = 0; H < Player.HiddenItems.length; H++) {
+			var HiddenAsset = AssetGet(Player.AssetFamily, Player.HiddenItems[H].Group, Player.HiddenItems[H].Name);
+			if (HiddenAsset.Group.Category == "Item" && HiddenAsset.Group.Zone != null && HiddenAsset.Enable && HiddenAsset.Wear)
+				if (!InventoryIsPermissionBlocked(Player, HiddenAsset.Name, HiddenAsset.Group.Name) && !InventoryIsPermissionLimited(Player, HiddenAsset.Name, HiddenAsset.Group.Name)) {
+					Player.BlockItems.push({ Name: HiddenAsset.Name, Group: HiddenAsset.Group.Name });
+					BlockItemsChanged = true;
+				}
+		}
+
+		// Update the account settings
+		var data = { HiddenItems: Player.HiddenItems };
+		if (BlockItemsChanged) data.BlockItems = Player.BlockItems
+		ServerSend("AccountUpdate", data);
+	}
+
+	PreferenceVisibilityGroupList = [];
+	PreferenceVisibilitySettings = [];
+	PreferenceSubscreen = "";
+	PreferenceMainScreenLoad();
 }
 
 /**

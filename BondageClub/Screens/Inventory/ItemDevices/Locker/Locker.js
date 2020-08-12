@@ -14,7 +14,7 @@ var LockerDevicesOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemDevicesLockerLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = LockerDevicesOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(LockerDevicesOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectLockerState");
 	LockerDevicesOptionOffset = 0;
 }
@@ -77,9 +77,7 @@ function InventoryItemDevicesLockerSetPose(NewType) {
 	if (NewType.Prerequisite != null && !InventoryAllow(C, NewType.Prerequisite, true)) { DialogExtendedMessage = DialogText; return; }
 
 	// Sets the new pose with its effects and the hidden items if we need to
-	DialogFocusItem.Property = NewType.Property;
-	if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
-	else InventoryRemove(C, "ItemHidden");
+	DialogFocusItem.Property.Type = NewType.Property.Type;
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 

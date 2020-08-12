@@ -3,7 +3,6 @@
 // Loads the item extension properties
 function InventoryItemArmsCollarCuffsLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
-	DialogFocusItem.Property.SelfUnlock = false;
 }
 
 // Draw the item extension screen
@@ -54,12 +53,6 @@ function InventoryItemArmsCollarCuffsSetPose(NewPose) {
 		if (NewPose == "Normal") DialogFocusItem.Property.Difficulty = 9;
 		if (NewPose == "Snug") DialogFocusItem.Property.Difficulty = 11;
 		if (NewPose == "Tight") DialogFocusItem.Property.Difficulty = 14;
-	}
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
 	}
 
 	// Refreshes the character and chatroom
