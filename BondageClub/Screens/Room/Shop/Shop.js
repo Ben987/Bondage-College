@@ -81,7 +81,8 @@ function ShopRun() {
 			if (ShopSelectAsset(Asset[A])) {
 				if ((ShopItemCount >= ShopItemOffset) && (ShopItemCount < ShopItemOffset + 12)) {
 					DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : "white");
-					DrawImageResize("Assets/" + Asset[A].Group.Family + "/" + Asset[A].Group.Name + "/Preview/" + Asset[A].Name + ".png", X + 2, Y + 2, 221, 221);
+					if (!CharacterAppearanceItemIsHidden(Asset[A].Name, Asset[A].Group.Name)) DrawImageResize("Assets/" + Asset[A].Group.Family + "/" + Asset[A].Group.Name + "/Preview/" + Asset[A].Name + ".png", X + 2, Y + 2, 221, 221);
+					else DrawImageResize("Icons/HiddenItem.png", X + 2, Y + 2, 221, 221);
 					DrawTextFit(Asset[A].Description + " " + Asset[A].Value.toString() + " $", X + 112, Y + 250, 221, (InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name)) ? "green" : "red");
 					X = X + 250;
 					if (X > 1800) {

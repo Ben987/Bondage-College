@@ -260,6 +260,12 @@ function LoginValidateArrays() {
 		Player.LimitedItems = CleanLimitedItems;
 		ServerSend("AccountUpdate", { LimitedItems: Player.LimitedItems });
 	}
+
+	var CleanHiddenItems = AssetCleanArray(Player.HiddenItems);
+	if (CleanHiddenItems.length != Player.HiddenItems.length) {
+		Player.HiddenItems = CleanHiddenItems;
+		ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems });
+	}
 }
 
 /**
@@ -311,8 +317,9 @@ function LoginResponse(C) {
 			WardrobeFixLength();
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
-			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;;
+			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
 			Player.LimitedItems = ((C.LimitedItems == null) || !Array.isArray(C.LimitedItems)) ? [] : C.LimitedItems;
+			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 

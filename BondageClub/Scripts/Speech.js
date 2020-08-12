@@ -53,7 +53,10 @@ function SpeechGetGagLevel(C, AssetGroup) {
 		var item = C.Appearance[i];
 		if (item.Asset.Group.Name === AssetGroup) {
 			var EffectArray = [];
-			if (item.Property && Array.isArray(item.Property.Effect)) EffectArray = item.Property.Effect;
+			if (item.Property &&
+			    Array.isArray(item.Property.Effect) &&
+			    !(typeof item.Property.Type === "undefined" && item.Property.Effect.length === 1 && item.Property.Effect[0] === "Lock")
+			) EffectArray = item.Property.Effect;
 			else if (Array.isArray(item.Asset.Effect)) EffectArray = item.Asset.Effect;
 			else if (Array.isArray(item.Asset.Group.Effect)) EffectArray = item.Asset.Group.Effect;
 			GagEffect += SpeechGetEffectGagLevel(EffectArray);
@@ -83,7 +86,7 @@ function SpeechGarble(C, CD) {
 	GagEffect += SpeechGetGagLevel(C, "ItemHood");
 	GagEffect += SpeechGetGagLevel(C, "ItemNeck");
 	GagEffect += SpeechGetGagLevel(C, "ItemDevices");
-	GagEffect += SpeechGetGagLevel(C, "ItemAddon");
+	GagEffect += SpeechGetGagLevel(C, "ItemHoodAddon");
 
 	// GagTotal4 always returns mmmmm and muffles some frequent letters entirely, 75% least frequent letters
 	if (GagEffect >= 20  || ((C.ID != 0) && (Player.GetDeafLevel() >= 7))) {

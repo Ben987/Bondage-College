@@ -60,7 +60,7 @@ var ChainsArmsOptionOffset = 0;
  * @returns {void} - Nothing
  */
 function InventoryItemArmsChainsLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = ChainsArmsOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(ChainsArmsOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectChainBondage");
 	ChainsArmsOptionOffset = 0;
 }
@@ -147,12 +147,6 @@ function InventoryItemArmsChainsSetPose(NewType) {
 	} else {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");
 		return;
-	}
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
 	}
 
 	// Refresh the character
