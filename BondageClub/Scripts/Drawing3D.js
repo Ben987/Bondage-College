@@ -18,13 +18,14 @@ function Draw3DLoad() {
 function Draw3DKeyDown() {
 	if ((KeyPress == 51) && (CurrentScreen == "MainHall") && (CurrentCharacter == null)) Draw3DEnable(!Draw3DEnabled);
 	if (Draw3DEnabled) {
-		if ((KeyPress == 81) || (KeyPress == 113)) Strip3Dmodel(group1.children, count--); //group1.rotation.y -= 0.1;
+		if ((KeyPress == 81) || (KeyPress == 113)) group1.rotation.y -= 0.1;
 		if ((KeyPress == 69) || (KeyPress == 101)) group1.rotation.y += 0.1;
-		if ((KeyPress == 65) || (KeyPress == 97)) dress3DModels(group1,path3d ); //group1.position.x -= 1;
+		if ((KeyPress == 65) || (KeyPress == 97))  group1.position.x -= 1;
 		if ((KeyPress == 68) || (KeyPress == 100)) group1.position.x += 1;
 		if ((KeyPress == 87) || (KeyPress == 119)) group1.position.z -= 1;
 		if ((KeyPress == 83) || (KeyPress == 115)) group1.position.z += 1;
-
+		if ((KeyPress == 90) || (KeyPress == 122)) dress3DModels(group1,path3d);
+		if ((KeyPress == 88) || (KeyPress == 120)) Strip3Dmodel(group1.children, count--);
 	}
 }
 
