@@ -14,7 +14,7 @@ var VentlessLockerDevicesOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemDevicesVentlessLockerLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = VentlessLockerDevicesOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(VentlessLockerDevicesOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectLockerState");
 	VentlessLockerDevicesOptionOffset = 0;
 }
@@ -77,9 +77,7 @@ function InventoryItemDevicesVentlessLockerSetPose(NewType) {
 	if (NewType.Prerequisite != null && !InventoryAllow(C, NewType.Prerequisite, true)) { DialogExtendedMessage = DialogText; return; }
 
 	// Sets the new pose with its effects and the hidden items if we need to
-	DialogFocusItem.Property = NewType.Property;
-	if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
-	else InventoryRemove(C, "ItemHidden");
+	DialogFocusItem.Property.Type = NewType.Property.Type;
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 
