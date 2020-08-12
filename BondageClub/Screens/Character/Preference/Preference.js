@@ -621,10 +621,10 @@ function PreferenceSubscreenVisibilityRun() {
 	if (PreferenceVisibilityGroupList.length == 0) {
 		PreferenceVisibilitySettings = Player.HiddenItems.slice();
 
-		for (var G = 0; G < AssetGroup.length; G++)
+		for (let G = 0; G < AssetGroup.length; G++)
 			if (AssetGroup[G].Clothing || AssetGroup[G].Category != "Appearance") {
 				var AssetList = [];
-				for (var A = 0; A < Asset.length; A++)
+				for (let A = 0; A < Asset.length; A++)
 					if (Asset[A].Group.Name == AssetGroup[G].Name && Asset[A].Visible)
 						AssetList.push({ Asset: Asset[A], Hidden: CharacterAppearanceItemIsHidden(Asset[A].Name, AssetGroup[G].Name) });
 				if (AssetList.length > 0) PreferenceVisibilityGroupList.push({ Group: AssetGroup[G], Assets: AssetList });
@@ -911,7 +911,7 @@ function PreferenceSubscreenVisibilityClick() {
 		var CurrGroup = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Name;
 		var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Name;
 		if (PreferenceVisibilityHideChecked) {
-			for (var H = 0; H < PreferenceVisibilitySettings.length; H++)
+			for (let H = 0; H < PreferenceVisibilitySettings.length; H++)
 				if (PreferenceVisibilitySettings[H].Name == CurrAsset && PreferenceVisibilitySettings[H].Group == CurrGroup) {
 					PreferenceVisibilitySettings.splice(H, 1);
 					break;
@@ -962,27 +962,11 @@ function PreferenceSubscreenVisibilityAssetChanged(ResetCheckbox) {
 
 /**
  * Saves changes to the asset settings, disposes of large lists & exits the visibility preference screen.
- * @param {boolean} SaveChanges - If TRUE, update HiddenItems and BlockItems for the account
+ * @param {boolean} SaveChanges - If TRUE, update HiddenItems for the account
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenVisibilityExit(SaveChanges) {
-	if (SaveChanges) {
-		// Add the item to the blocked list if able
-		var BlockItemsChanged = false;
-		for (var H = 0; H < Player.HiddenItems.length; H++) {
-			var HiddenAsset = AssetGet(Player.AssetFamily, Player.HiddenItems[H].Group, Player.HiddenItems[H].Name);
-			if (HiddenAsset.Group.Category == "Item" && HiddenAsset.Group.Zone != null && HiddenAsset.Enable && HiddenAsset.Wear)
-				if (!InventoryIsPermissionBlocked(Player, HiddenAsset.Name, HiddenAsset.Group.Name) && !InventoryIsPermissionLimited(Player, HiddenAsset.Name, HiddenAsset.Group.Name)) {
-					Player.BlockItems.push({ Name: HiddenAsset.Name, Group: HiddenAsset.Group.Name });
-					BlockItemsChanged = true;
-				}
-		}
-
-		// Update the account settings
-		var data = { HiddenItems: Player.HiddenItems };
-		if (BlockItemsChanged) data.BlockItems = Player.BlockItems
-		ServerSend("AccountUpdate", data);
-	}
+	if (SaveChanges) ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems });
 
 	PreferenceVisibilityGroupList = [];
 	PreferenceVisibilitySettings = [];
