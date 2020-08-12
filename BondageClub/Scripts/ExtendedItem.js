@@ -38,7 +38,7 @@ var ExtendedItemOffsets = {};
 function ExtendedItemLoad(Options, DialogKey) {
 	if (!DialogFocusItem.Property) {
 		// Default to the first option if no property is set
-		DialogFocusItem.Property = Options[0].Property;
+		DialogFocusItem.Property = JSON.parse(JSON.stringify(Options[0].Property));
 		//Refresh the character if the base properties of the items do not correspond with its base type.
 		var MustRefresh = false;
 		if (DialogFocusItem.Asset.Effect == null && Array.isArray(Options[0].Property.Effect) && Options[0].Property.Effect.length > 0) MustRefresh = true;

@@ -370,7 +370,7 @@ function LoginResponse(C) {
 			SarahSetStatus();
 
 			// Fixes a few items
-			var InventoryBeforeFixes = JSON.stringify(Player.Inventory);
+			var InventoryBeforeFixes = InventoryStringify(Player);
 			InventoryRemove(Player, "ItemMisc");
 			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth", false);
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
@@ -380,7 +380,7 @@ function LoginResponse(C) {
 			LoginLoversItems();
 			LoginValideBuyGroups();
 			LoginValidateArrays();
-			if (InventoryBeforeFixes != JSON.stringify(Player.Inventory)) ServerPlayerInventorySync();
+			if (InventoryBeforeFixes != InventoryStringify(Player)) ServerPlayerInventorySync();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell

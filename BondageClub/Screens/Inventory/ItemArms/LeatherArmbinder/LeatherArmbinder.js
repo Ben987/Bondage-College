@@ -9,7 +9,6 @@ function InventoryItemArmsLeatherArmbinderLoad() {
 		return;
 	}
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null };
-	DialogFocusItem.Property.SelfUnlock = false;
 }
 
 // Draw the item extension screen

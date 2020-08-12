@@ -356,11 +356,13 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 function InventoryRemove(C, AssetGroup) {
 
 	// First loop to find the item and any sub item to remove with it
-	for (let E = 0; E < C.Appearance.length; E++)
-		if (C.Appearance[E].Asset.Group.Name == AssetGroup)
-			for (let R = 0; R < C.Appearance[E].Asset.RemoveItemOnRemove.length; R++)
-				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name)))
-					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
+	for (var E = 0; E < C.Appearance.length; E++)
+		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
+			let AssetToRemove = C.Appearance[E].Asset
+			for (let R = 0; R < AssetToRemove.RemoveItemOnRemove.length; R++)
+				if ((AssetToRemove.RemoveItemOnRemove[R].Name == "") || ((AssetToRemove.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, AssetToRemove.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, AssetToRemove.RemoveItemOnRemove[R].Group).Asset.Name == AssetToRemove.RemoveItemOnRemove[R].Name)))
+					InventoryRemove(C, AssetToRemove.RemoveItemOnRemove[R].Group);
+		}
 
 	// Second loop to find the item again, and remove it from the character appearance
 	for (let E = 0; E < C.Appearance.length; E++)
@@ -702,4 +704,15 @@ function InventoryIsKey(Item) {
 		if (Item.Asset.Effect[E].substr(0, 7) == "Unlock-")
 			return true;
 	return false;
+}
+
+/**
+ * Serialises the provided character's inventory into a string for easy comparisons, inventory items are uniquely identified by their name
+ * and group
+ * @param {Character} C - The character whose inventory we should serialise
+ * @return {string} - A simple string representation of the character's inventory
+ */
+function InventoryStringify(C) {
+	if (!C || !Array.isArray(C.Inventory)) return "";
+	return C.Inventory.map(({ Name, Group }) => Group + Name ).join();
 }

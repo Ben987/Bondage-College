@@ -4,7 +4,6 @@ var InventoryItemEarsHeadphoneEarPlugsMessage = "";
 // Loads the item extension properties
 function InventoryItemEarsHeadphoneEarPlugsLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
-	DialogFocusItem.Property.SelfUnlock = false;
 }
 
 // Draw the item extension screen
@@ -26,9 +25,6 @@ function InventoryItemEarsHeadphoneEarPlugsDraw() {
 	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Heavy")) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Heavy.png", 1500, 550);
 	DrawText(DialogFind(Player, "HeadphoneEarPlugsPoseHeavy"), 1625, 800, "white", "gray");
-//	DrawButton(1750, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Four")) ? "#888888" : "White");
-//	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Four.png", 1750, 550);
-//	DrawText(DialogFind(Player, "HeadphoneEarPlugsPoseFour"), 1875, 800, "white", "gray");
 
 	// Draw the message if present
 	if (InventoryItemEarsHeadphoneEarPlugsMessage != null) DrawTextWrap(DialogFind(Player, InventoryItemEarsHeadphoneEarPlugsMessage), 1100, 850, 800, 160, "White");
@@ -40,7 +36,6 @@ function InventoryItemEarsHeadphoneEarPlugsClick() {
 	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemEarsHeadphoneEarPlugsSetPose(null);
 	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Light"))) InventoryItemEarsHeadphoneEarPlugsSetPose("Light");
 	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Heavy"))) InventoryItemEarsHeadphoneEarPlugsSetPose("Heavy");
-//	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Four"))) InventoryItemEarsHeadphoneEarPlugsSetPose("Four");
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)
@@ -62,16 +57,8 @@ function InventoryItemEarsHeadphoneEarPlugsSetPose(NewPose) {
 			DialogFocusItem.Property.Type = NewPose;
 			if (NewPose == "Light") DialogFocusItem.Property.Effect = ["DeafLight"];
 			if (NewPose == "Heavy") DialogFocusItem.Property.Effect = ["DeafHeavy"];
-//			if (NewPose == "Four") DialogFocusItem.Property.Effect = 6;
 		}
 	} 
-	
-
-	// Adds the lock effect back if it was padlocked
-//	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-//		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-//		DialogFocusItem.Property.Effect.push("Lock");
-//	}
 
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);

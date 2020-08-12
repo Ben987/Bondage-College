@@ -388,122 +388,15 @@ function GLDrawHexToRGBA(color) {
  */
 function GLDrawAppearanceBuild(C) {
     GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, 1000);
-
-    // Loops in all visible items worn by the character
-    for (let A = 0; A < C.Appearance.length; A++)
-        if (C.Appearance[A].Asset.Visible && CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
-
-            // If there's a father group, we must add it to find the correct image
-            var CA = C.Appearance[A];
-            var ParentGroup = CA.Asset.ParentGroupName ? CA.Asset.ParentGroupName : CA.Asset.Group.ParentGroupName && !CA.Asset.IgnoreParentGroup ? CA.Asset.Group.ParentGroupName : "";
-            var G = "";
-            if (ParentGroup != "")
-                for (let FG = 0; FG < C.Appearance.length; FG++)
-                    if (ParentGroup == C.Appearance[FG].Asset.Group.Name)
-                        G = "_" + C.Appearance[FG].Asset.Name;
-
-            // If there's a pose style we must add (first by group then by item)
-            var Pose = "";
-            if ((CA.Asset.Group.AllowPose != null) && (CA.Asset.Group.AllowPose.length > 0) && (C.Pose != null) && (C.Pose.length > 0))
-                for (let AP = 0; AP < CA.Asset.Group.AllowPose.length; AP++)
-                    for (let P = 0; P < C.Pose.length; P++)
-                        if (C.Pose[P] == CA.Asset.Group.AllowPose[AP])
-                            Pose = C.Pose[P] + "/";
-            if ((CA.Asset.AllowPose != null) && (CA.Asset.AllowPose.length > 0) && (C.Pose != null) && (C.Pose.length > 0))
-                for (let AP = 0; AP < CA.Asset.AllowPose.length; AP++)
-                    for (let P = 0; P < C.Pose.length; P++)
-                        if (C.Pose[P] == CA.Asset.AllowPose[AP])
-                            Pose = C.Pose[P] + "/";
-
-            // If we must apply alpha masks to the current image as it is being drawn
-            if (CA.Asset.Alpha != null)
-                for (let AL = 0; AL < CA.Asset.Alpha.length; AL++) {
-                    GLDrawClearRect(GLDrawCanvas.GL, CA.Asset.Alpha[AL][0], 1000 - CA.Asset.Alpha[AL][1] - CA.Asset.Alpha[AL][3], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
-                    GLDrawClearRectBlink(GLDrawCanvas.GL, CA.Asset.Alpha[AL][0], 1000 - CA.Asset.Alpha[AL][1] - CA.Asset.Alpha[AL][3], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
-                }
-
-            // Check if we need to draw a different expression (for facial features)
-            var Expression = "";
-            if ((CA.Asset.Group.AllowExpression != null) && (CA.Asset.Group.AllowExpression.length > 0))
-                if ((CA.Property && CA.Property.Expression && CA.Asset.Group.AllowExpression.indexOf(CA.Property.Expression) >= 0))
-                    Expression = CA.Property.Expression + "/";
-
-            // Find the X and Y position to draw on
-            var X = CA.Asset.Group.DrawingLeft;
-            var Y = CA.Asset.Group.DrawingTop;
-            if (CA.Asset.DrawingLeft != null) X = CA.Asset.DrawingLeft;
-            if (CA.Asset.DrawingTop != null) Y = CA.Asset.DrawingTop;
-            if (C.Pose != null)
-                for (let CP = 0; CP < C.Pose.length; CP++)
-                    for (let P = 0; P < PoseFemale3DCG.length; P++)
-                        if ((C.Pose[CP] == PoseFemale3DCG[P].Name) && (PoseFemale3DCG[P].MovePosition != null))
-                            for (let M = 0; M < PoseFemale3DCG[P].MovePosition.length; M++)
-                                if (PoseFemale3DCG[P].MovePosition[M].Group == CA.Asset.Group.Name) {
-                                    X = X + PoseFemale3DCG[P].MovePosition[M].X;
-                                    Y = Y + PoseFemale3DCG[P].MovePosition[M].Y;
-                                }
-
-            // Check if we need to draw a different variation (from type property)
-            var Type = "";
-            if ((CA.Property != null) && (CA.Property.Type != null)) Type = CA.Property.Type;
-
-            // Cycle through all layers of the image
-            var MaxLayer = (CA.Asset.Layer == null) ? 1 : CA.Asset.Layer.length;
-            for (let L = 0; L < MaxLayer; L++) {
-                var Layer = "";
-                var LayerType = Type;
-                if (CA.Asset.Layer != null) {
-                    Layer = "_" + CA.Asset.Layer[L].Name;
-                    if ((CA.Asset.Layer[L].AllowTypes != null) && (CA.Asset.Layer[L].AllowTypes.indexOf(Type) < 0)) continue;
-                    if (!CA.Asset.Layer[L].HasExpression) Expression = "";
-                    if (!CA.Asset.Layer[L].HasType) LayerType = "";
-                    if ((CA.Asset.Layer[L].NewParentGroupName != null) && (CA.Asset.Layer[L].NewParentGroupName != CA.Asset.Group.ParentGroupName)) {
-                        if (CA.Asset.Layer[L].NewParentGroupName == "") G = "";
-                        else
-                            for (let FG = 0; FG < C.Appearance.length; FG++)
-                                if (CA.Asset.Layer[L].NewParentGroupName == C.Appearance[FG].Asset.Group.Name)
-                                    G = "_" + C.Appearance[FG].Asset.Name;
-                    }
-                    if (CA.Asset.Layer[L].OverrideAllowPose != null) {
-                        Pose = "";
-                        for (let AP = 0; AP < CA.Asset.Layer[L].OverrideAllowPose.length; AP++)
-                            for (let P = 0; P < C.Pose.length; P++)
-                                if (C.Pose[P] == CA.Asset.Layer[L].OverrideAllowPose[AP])
-                                    Pose = C.Pose[P] + "/";
-                    }
-                }
-
-                // Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
-                if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
-                    GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-                } else {
-                    var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
-                    GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
-                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
-                }
-            }
-
-            // If we must draw the lock (never colorized)
-            if ((CA.Property != null) && (CA.Property.LockedBy != null) && (CA.Property.LockedBy != "")) {
-                GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
-                GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + ((CA.Asset.OverrideBlinking ? !CA.Asset.Group.DrawingBlink : CA.Asset.Group.DrawingBlink) ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
-            }
-        }
-
-    if (C.Canvas == null) {
-        C.Canvas = document.createElement("canvas");
-        C.Canvas.width = 500;
-        C.Canvas.height = 1000;
-    } else C.Canvas.getContext("2d").clearRect(0, 0, 500, 1000);
-    if (C.CanvasBlink == null) {
-        C.CanvasBlink = document.createElement("canvas");
-        C.CanvasBlink.width = 500;
-        C.CanvasBlink.height = 1000;
-    } else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
-
+    CommonDrawCanvasPrepare(C);
+	CommonDrawAppearanceBuild(C, {
+		clearRect: (x, y, w, h) => GLDrawClearRect(GLDrawCanvas.GL, x, 1000 - y - h, w, h),
+		clearRectBlink: (x, y, w, h) => GLDrawClearRectBlink(GLDrawCanvas.GL, x, 1000 - y - h, w, h),
+		drawImage: (src, x, y) => GLDrawImage(src, GLDrawCanvas.GL, x, y),
+		drawImageBlink: (src, x, y) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y),
+		drawImageColorize: (src, x, y, color, fullAlpha) => GLDrawImage(src, GLDrawCanvas.GL, x, y, color, fullAlpha),
+		drawImageColorizeBlink: (src, x, y, color, fullAlpha) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, color, fullAlpha),
+	});
     C.Canvas.getContext("2d").drawImage(GLDrawCanvas, 0, 0);
     C.CanvasBlink.getContext("2d").drawImage(GLDrawCanvas, -500, 0);
-
-    C.MustDraw = true;
 }

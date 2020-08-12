@@ -3,7 +3,6 @@
 // Loads the item extension properties
 function InventoryItemDevicesInflatableBodyBagLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
-	DialogFocusItem.Property.SelfUnlock = false;
 }
 
 // Draw the item extension screen
