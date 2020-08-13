@@ -902,7 +902,8 @@ function AppearanceClick() {
 				var Item = DialogInventory[I];
 				var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
 				var Limit = InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name);
-				
+				var CreatedItem = InventoryItemCreate(C, Item.Asset.Group.Name, Item.Asset.Name);
+				var Limited = !InventoryCheckLimitedPermission(C, CreatedItem);
 				// In permission mode, we toggle the settings for an item
 				if (DialogItemPermissionMode) {
 					
@@ -920,7 +921,7 @@ function AppearanceClick() {
 					ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
 					
 				} else {
-					if (Block || Limit) return;
+					if (Block || Limited) return;
 					if (InventoryAllow(C, Item.Asset.Prerequisite))
 						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
 					else {
