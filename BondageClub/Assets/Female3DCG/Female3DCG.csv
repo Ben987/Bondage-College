@@ -328,8 +328,8 @@ TailStraps,HorseTailStrap,Horse Tail Strap
 TailStraps,HorseTailStrap1,Horse TailStrap
 TailStraps,FoxTailsStrap,Fox Tails Strap
 TailStraps,PuppyTailStrap,Puppy Tail Strap
-TailStraps,SuccubusStrap,Succubus Tail Strap
-TailStraps,SuccubusTailStrap,Succubus2 Tail Strap
+TailStraps,SuccubusTailStrap,Succubus Tail Strap
+TailStraps,SuccubusHeartTailStrap,Succubus Heart Tail Strap
 TailStraps,RaccoonStrap,Raccoon Tail Strap
 TailStraps,RaccoonTailStrap,Raccoon2 Tail Strap
 TailStraps,PuppyTailStrap1,Puppy Fluffy Tail Strap
@@ -548,7 +548,7 @@ ItemButt,HorsetailPlug1,Horse ButtPlug
 ItemButt,PuppyTailPlug,Puppy Butt Plug
 ItemButt,PuppyTailPlug1,Puppy Fluffy Butt Plug
 ItemButt,SuccubusButtPlug,Succubus Butt Plug
-ItemButt,SuccubusButtPlug2,Succubus Tail
+ItemButt,SuccubusHeartButtPlug,Succubus Heart Butt Plug
 ItemButt,FoxTails,Fox Tails
 ItemButt,RaccoonButtPlug,Raccoon Butt Plug
 ItemButt,RaccoonTailPlug,Raccoon Tail Plug
