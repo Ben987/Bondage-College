@@ -901,18 +901,13 @@ function PreferenceSubscreenVisibilityClick() {
 
 	// Hide checkbox
 	if (MouseIn(500, 352, 64, 64)) {
-		PreferenceVisibilityHideChecked = !PreferenceVisibilityHideChecked;
-		PreferenceVisibilityCheckboxChanged(PreferenceVisibilityHiddenList, PreferenceVisibilityHideChecked);
-		PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Hidden = PreferenceVisibilityHideChecked;
-		PreferenceVisibilityAssetChanged(false);
+		PreferenceVisibilityHideChange();
+		if (PreferenceVisibilityHideChecked != PreferenceVisibilityBlockChecked && PreferenceVisibilityCanBlock) PreferenceVisibilityBlockChange();
 	}
 
 	// Block checkbox
 	if (MouseIn(500, 432, 64, 64) && PreferenceVisibilityCanBlock) {
-		PreferenceVisibilityBlockChecked = !PreferenceVisibilityBlockChecked;
-		PreferenceVisibilityCheckboxChanged(PreferenceVisibilityBlockList, PreferenceVisibilityBlockChecked);
-		PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Blocked = PreferenceVisibilityBlockChecked;
-		PreferenceVisibilityAssetChanged(false);
+		PreferenceVisibilityBlockChange();
 	}
 
 	// Reset button
@@ -980,6 +975,26 @@ function PreferenceVisibilityAssetChanged(RefreshCheckboxes) {
 	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Asset.Group.Family + "/" + CurrAsset.Asset.Group.Name + "/Preview/" + CurrAsset.Asset.Name + ".png";
 
 	PreferenceVisibilityResetClicked = false;
+}
+
+/**
+ * Toggles the Hide checkbox
+ */
+function PreferenceVisibilityHideChange() {
+	PreferenceVisibilityHideChecked = !PreferenceVisibilityHideChecked;
+	PreferenceVisibilityCheckboxChanged(PreferenceVisibilityHiddenList, PreferenceVisibilityHideChecked);
+	PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Hidden = PreferenceVisibilityHideChecked;
+	PreferenceVisibilityAssetChanged(false);
+}
+
+/**
+ * Toggles the Block checkbox
+ */
+function PreferenceVisibilityBlockChange() {
+	PreferenceVisibilityBlockChecked = !PreferenceVisibilityBlockChecked;
+	PreferenceVisibilityCheckboxChanged(PreferenceVisibilityBlockList, PreferenceVisibilityBlockChecked);
+	PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Blocked = PreferenceVisibilityBlockChecked;
+	PreferenceVisibilityAssetChanged(false);
 }
 
 /**
