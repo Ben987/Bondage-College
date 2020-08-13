@@ -541,7 +541,7 @@ function AppearanceRun() {
 		// Draw the wardrobe top controls & buttons
 		if (!DialogItemPermissionMode && InventoryGet(C, C.FocusGroup.Name) && InventoryGet(C, C.FocusGroup.Name).Asset.Extended) DrawButton(1302, 25, 90, 90, "", "White", "Icons/Use.png", DialogFind(Player, "Use"));
 		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
-		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
+		if (!DialogItemPermissionMode) DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
 		if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 		
 		// Prepares a 3x3 square of clothes to present all the possible options
@@ -872,7 +872,7 @@ function AppearanceClick() {
 		}
 		
 		// Strips the current item
-		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115))
+		if (!DialogItemPermissionMode && (MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115))
 			CharacterAppearanceSetItem(C, C.FocusGroup.Name, null);
 
 		// Jumps to the cloth page
