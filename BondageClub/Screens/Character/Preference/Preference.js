@@ -35,8 +35,11 @@ var PreferenceVisibilityGroupList = [];
 var PreferenceVisibilityGroupIndex = 0;
 var PreferenceVisibilityAssetIndex = 0;
 var PreferenceVisibilityHideChecked = false;
+var PreferenceVisibilityBlockChecked = false;
+var PreferenceVisibilityCanBlock = true;
 var PreferenceVisibilityPreviewImg = null;
-var PreferenceVisibilitySettings = [];
+var PreferenceVisibilityHiddenList = [];
+var PreferenceVisibilityBlockList = [];
 var PreferenceVisibilityResetClicked = false;
 
 /**
@@ -617,45 +620,35 @@ function PreferenceSubscreenSecurityRun() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenVisibilityRun() {
-	// Load the full asset list
-	if (PreferenceVisibilityGroupList.length == 0) {
-		PreferenceVisibilitySettings = Player.HiddenItems.slice();
-
-		for (let G = 0; G < AssetGroup.length; G++)
-			if (AssetGroup[G].Clothing || AssetGroup[G].Category != "Appearance") {
-				var AssetList = [];
-				for (let A = 0; A < Asset.length; A++)
-					if (Asset[A].Group.Name == AssetGroup[G].Name && Asset[A].Visible)
-						AssetList.push({ Asset: Asset[A], Hidden: CharacterAppearanceItemIsHidden(Asset[A].Name, AssetGroup[G].Name) });
-				if (AssetList.length > 0) PreferenceVisibilityGroupList.push({ Group: AssetGroup[G], Assets: AssetList });
-			}
-		PreferenceSubscreenVisibilityAssetChanged(true);
-	}
+	// Load the full asset list on the first call
+	if (PreferenceVisibilityGroupList.length == 0) PreferenceVisibilityLoad();
 
 	DrawCharacter(Player, 50, 50, 0.9);
 
-	// Draw the controls
+	// Exit buttons
 	DrawButton(1720, 60, 90, 90, "", "White", "Icons/Accept.png", TextGet("LeaveSave"));
 	DrawButton(1820, 60, 90, 90, "", "White", "Icons/Cancel.png", TextGet("LeaveNoSave"));
 
+	// Left-aligned text controls
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("VisibilityPreferences"), 500, 125, "Black", "Gray");
 	DrawText(TextGet("VisibilityGroup"), 500, 225, "Black", "Gray");
 	DrawText(TextGet("VisibilityAsset"), 500, 304, "Black", "Gray");
-	DrawCheckbox(500, 352, 64, 64, TextGet("VisibilityCheckbox"), PreferenceVisibilityHideChecked);
+	DrawCheckbox(500, 352, 64, 64, TextGet("VisibilityCheckboxHide"), PreferenceVisibilityHideChecked);
+	if (PreferenceVisibilityCanBlock) DrawCheckbox(500, 432, 64, 64, TextGet("VisibilityCheckboxBlock"), PreferenceVisibilityBlockChecked);
 	if (PreferenceVisibilityHideChecked) {
-		DrawImageResize("Screens/Character/Player/HiddenItem.png", 500, 436, 86, 86);
-		DrawText(TextGet("VisibilityWarning"), 600, 468, "Black", "Gray");
+		DrawImageResize("Screens/Character/Player/HiddenItem.png", 500, 516, 86, 86);
+		DrawText(TextGet("VisibilityWarning"), 600, 548, "Black", "Gray");
 	}
-	if (PreferenceVisibilityResetClicked) DrawText(TextGet("VisibilityReset"), 500, 732, "Black", "Gray");
+	if (PreferenceVisibilityResetClicked) DrawText(TextGet("VisibilityResetDescription"), 500, 732, "Black", "Gray");
 	MainCanvas.textAlign = "center";
 
+	// Buttons
 	DrawBackNextButton(650, 193, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Description, "White", "", () => "", () => "");
 	DrawBackNextButton(650, 272, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Description, "White", "", () => "", () => "");
-
-	DrawButton(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64, "Reset", "White", "");
+	DrawButton(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64, TextGet("VisibilityReset"), "White", "");
 	
-	// Draw preview icon
+	// Preview icon
 	DrawEmptyRect(1200, 193, 225, 225, "Black");
 	if (PreferenceVisibilityPreviewImg == null) DrawRect(1203, 196, 219, 219, "LightGray");
 	else DrawImageResize(PreferenceVisibilityPreviewImg, 1202, 195, 221, 221);
@@ -890,7 +883,7 @@ function PreferenceSubscreenVisibilityClick() {
 			if (PreferenceVisibilityGroupIndex < 0) PreferenceVisibilityGroupIndex = PreferenceVisibilityGroupList.length - 1;
 		}
 		PreferenceVisibilityAssetIndex = 0;
-		PreferenceSubscreenVisibilityAssetChanged(true);
+		PreferenceVisibilityAssetChanged(true);
 	}
 
 	// Asset button
@@ -903,73 +896,123 @@ function PreferenceSubscreenVisibilityClick() {
 			PreferenceVisibilityAssetIndex--;
 			if (PreferenceVisibilityAssetIndex < 0) PreferenceVisibilityAssetIndex = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length - 1;
 		}
-		PreferenceSubscreenVisibilityAssetChanged(true);
+		PreferenceVisibilityAssetChanged(true);
 	}
 
 	// Hide checkbox
 	if (MouseIn(500, 352, 64, 64)) {
-		var CurrGroup = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Name;
-		var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Name;
-		if (PreferenceVisibilityHideChecked) {
-			for (let H = 0; H < PreferenceVisibilitySettings.length; H++)
-				if (PreferenceVisibilitySettings[H].Name == CurrAsset && PreferenceVisibilitySettings[H].Group == CurrGroup) {
-					PreferenceVisibilitySettings.splice(H, 1);
-					break;
-				}
-		}
-		else PreferenceVisibilitySettings.push({ Name: CurrAsset, Group: CurrGroup });
-		
 		PreferenceVisibilityHideChecked = !PreferenceVisibilityHideChecked;
+		PreferenceVisibilityCheckboxChanged(PreferenceVisibilityHiddenList, PreferenceVisibilityHideChecked);
 		PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Hidden = PreferenceVisibilityHideChecked;
-		PreferenceSubscreenVisibilityAssetChanged(false);
+		PreferenceVisibilityAssetChanged(false);
+	}
+
+	// Block checkbox
+	if (MouseIn(500, 432, 64, 64) && PreferenceVisibilityCanBlock) {
+		PreferenceVisibilityBlockChecked = !PreferenceVisibilityBlockChecked;
+		PreferenceVisibilityCheckboxChanged(PreferenceVisibilityBlockList, PreferenceVisibilityBlockChecked);
+		PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Blocked = PreferenceVisibilityBlockChecked;
+		PreferenceVisibilityAssetChanged(false);
 	}
 
 	// Reset button
 	if (MouseIn(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64)) {
 		if (PreferenceVisibilityResetClicked) {
 			Player.HiddenItems = [];
-			PreferenceSubscreenVisibilityExit(true);
+			PreferenceVisibilityExit(true);
 		}
 		else PreferenceVisibilityResetClicked = true;
 	}
 
 	// Confirm button
 	if (MouseIn(1720, 60, 90, 90)) {
-		Player.HiddenItems = PreferenceVisibilitySettings;
-		PreferenceSubscreenVisibilityExit(true);
+		Player.HiddenItems = PreferenceVisibilityHiddenList;
+		Player.BlockItems = PreferenceVisibilityBlockList;
+		PreferenceVisibilityExit(true);
 	}
 
 	// Cancel button
 	if (MouseIn(1820, 60, 90, 90)) {
-		PreferenceSubscreenVisibilityExit(false);
+		PreferenceVisibilityExit(false);
 	}
 }
 
+/** Load the full list of items and clothes along with the player settings for them */
+function PreferenceVisibilityLoad() {
+	PreferenceVisibilityHiddenList = Player.HiddenItems.slice();
+	PreferenceVisibilityBlockList = Player.BlockItems.slice();
+
+	for (let G = 0; G < AssetGroup.length; G++)
+		if (AssetGroup[G].Clothing || AssetGroup[G].Category != "Appearance") {
+			var AssetList = [];
+			for (let A = 0; A < Asset.length; A++)
+				if (Asset[A].Group.Name == AssetGroup[G].Name && Asset[A].Visible)
+					AssetList.push({
+						Asset: Asset[A],
+						Hidden: CharacterAppearanceItemIsHidden(Asset[A].Name, AssetGroup[G].Name),
+						Blocked: InventoryIsPermissionBlocked(Player, Asset[A].Name, AssetGroup[G].Name),
+						Limited: InventoryIsPermissionLimited(Player, Asset[A].Name, AssetGroup[G].Name)
+					});
+			if (AssetList.length > 0) PreferenceVisibilityGroupList.push({ Group: AssetGroup[G], Assets: AssetList });
+		}
+	PreferenceVisibilityAssetChanged(true);
+}
+
 /**
- * Update the Hide checkbox and asset preview image based on the new asset selection
- * @param {boolean} ResetCheckbox - If FALSE, don't change the Hide checkbox setting
+ * Update the checkbox settings and asset preview image based on the new asset selection
+ * @param {boolean} RefreshCheckboxes - If TRUE, load the new asset settings. If FALSE, a checkbox was just manually changed so don't refresh them
  */
-function PreferenceSubscreenVisibilityAssetChanged(ResetCheckbox) {
-	if (ResetCheckbox) PreferenceVisibilityHideChecked = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Hidden;
+function PreferenceVisibilityAssetChanged(RefreshCheckboxes) {
+	var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex];
+
+	// Load info for the new asset
+	if (RefreshCheckboxes) {
+		PreferenceVisibilityHideChecked = CurrAsset.Hidden;
+		PreferenceVisibilityBlockChecked = CurrAsset.Blocked;
+	}
+
+	// Can't change the Block setting if the item is worn or set to limited permissions
+	var WornItem = InventoryGet(Player, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Name);
+	PreferenceVisibilityCanBlock = (WornItem == null || WornItem.Asset.Name != CurrAsset.Asset.Name) && !CurrAsset.Limited;
 
 	// Get the preview image path
-	var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset;
 	if (PreferenceVisibilityHideChecked) PreferenceVisibilityPreviewImg = "Icons/HiddenItem.png";
-	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Group.Family + "/" + CurrAsset.Group.Name + "/Preview/" + CurrAsset.Name + ".png";
+	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Asset.Group.Family + "/" + CurrAsset.Asset.Group.Name + "/Preview/" + CurrAsset.Asset.Name + ".png";
 
 	PreferenceVisibilityResetClicked = false;
 }
 
 /**
- * Saves changes to the asset settings, disposes of large lists & exits the visibility preference screen.
- * @param {boolean} SaveChanges - If TRUE, update HiddenItems for the account
+ * Adds or removes the current item to/from the list based on the new state of the corresponding checkbox
+ * @param {Array} List - The list to add or remove the item from
+ * @param {boolean} CheckSetting - The new true/false setting of the checkbox
+ */
+function PreferenceVisibilityCheckboxChanged(List, CheckSetting) {
+	var CurrGroup = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Name;
+	var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Name;
+	if (CheckSetting == true) {
+		List.push({ Name: CurrAsset, Group: CurrGroup });
+	}
+	else {
+		for (let A = 0; A < List.length; A++)
+			if (List[A].Name == CurrAsset && List[A].Group == CurrGroup) {
+				List.splice(A, 1);
+				break;
+			}
+	}
+}
+
+/**
+ * Saves changes to the settings, disposes of large lists & exits the visibility preference screen.
+ * @param {boolean} SaveChanges - If TRUE, update HiddenItems and BlockItems for the account
  * @returns {void} - Nothing
  */
-function PreferenceSubscreenVisibilityExit(SaveChanges) {
-	if (SaveChanges) ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems });
+function PreferenceVisibilityExit(SaveChanges) {
+	if (SaveChanges) ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems, BlockItems: Player.BlockItems });
 
 	PreferenceVisibilityGroupList = [];
-	PreferenceVisibilitySettings = [];
+	PreferenceVisibilityHiddenList = [];
+	PreferenceVisibilityBlockList = [];
 	PreferenceSubscreen = "";
 	PreferenceMainScreenLoad();
 }
