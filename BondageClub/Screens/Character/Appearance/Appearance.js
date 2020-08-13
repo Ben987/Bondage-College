@@ -601,7 +601,7 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 	var ID = CharacterAppearanceGetCurrentValue(C, Group, "ID");
 	var ItemColor;
 	if (ID != "None") {
-		if (CurrentScreen == "Appearance") ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
+		if (CurrentScreen == "Appearance" && !NewColor) ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
 		C.Appearance.splice(ID, 1);
 	} else if (ItemAsset != null) ItemColor = ItemAsset.Group.ColorSchema[0];
 
@@ -922,9 +922,10 @@ function AppearanceClick() {
 					
 				} else {
 					if (Block || Limited) return;
-					if (InventoryAllow(C, Item.Asset.Prerequisite))
-						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
-					else {
+					if (InventoryAllow(C, Item.Asset.Prerequisite)) {
+						var ItemColor = CharacterAppearanceGetCurrentValue(C, C.FocusGroup.Name, "Color");
+						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset, ((ItemColor == null) || (ItemColor == "Default")) ? DialogInventory[I].Asset.DefaultColor : ItemColor);
+					} else {
 						CharacterAppearanceHeaderTextTime = DialogTextDefaultTimer;
 						CharacterAppearanceHeaderText = DialogText;
 					}
