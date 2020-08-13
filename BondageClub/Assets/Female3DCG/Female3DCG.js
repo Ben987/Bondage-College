@@ -756,7 +756,8 @@ var AssetFemale3DCG = [
 		AllowColorize: false,
 		AllowPose: ["LegsClosed", "Kneel", "Horse", "KneelingSpread", "Spread"],
 		Asset: ["Small", "Normal", "Large", "XLarge"],
-		Color: ["White", "Asian", "Black"]
+		Color: ["Default", "White", "Asian", "Black"],
+		InheritColor: "BodyUpper"
 	},
 
 	{
