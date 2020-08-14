@@ -103,10 +103,10 @@ function ExtendedItemDraw(Options, DialogPrefix) {
  * Handles clicks on the extended item type selection screen
  * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
  *     be the default option.
- * @param {boolean} Clothes - TRUE if the click is performed on a clothing item.
+ * @param {boolean} IsClothes - Whether or not the click is performed on a clothing item.
  * @returns {void} Nothing
  */
-function ExtendedItemClick(Options, Clothes) {
+function ExtendedItemClick(Options, IsClothes) {
 
 	// Exit button
 	if (MouseIn(1885, 25, 90, 85)) {
@@ -116,9 +116,9 @@ function ExtendedItemClick(Options, Clothes) {
 
 	var IsSelfBondage = CharacterGetCurrent().ID === 0;
 	if (Options.length === 2) {
-		ExtendedItemClickTwo(Options, IsSelfBondage, Clothes);
+		ExtendedItemClickTwo(Options, IsSelfBondage, IsClothes);
 	} else {
-		ExtendedItemClickGrid(Options, IsSelfBondage, Clothes);
+		ExtendedItemClickGrid(Options, IsSelfBondage, IsClothes);
 	}
 }
 
@@ -127,10 +127,10 @@ function ExtendedItemClick(Options, Clothes) {
  * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
  *     be the default option.
  * @param {ExtendedItemOption} Option - The selected type definition
- * @param {boolean} Clothes - TRUE if the click is performed on a clothing item.
+ * @param {boolean} IsClothes - Whether or not the click is performed on a clothing item.
  * @returns {void} Nothing
  */
-function ExtendedItemSetType(Options, Option, Clothes) {
+function ExtendedItemSetType(Options, Option, IsClothes) {
 	var C = CharacterGetCurrent();
 	var FunctionPrefix = ExtendedItemFunctionPrefix();
 
@@ -164,10 +164,10 @@ function ExtendedItemSetType(Options, Option, Clothes) {
 	}
 
 	DialogFocusItem.Property = NewProperty;
-	CharacterRefresh(C, !Clothes); // Does not sync appearance while in the wardrobe
+	CharacterRefresh(C, !IsClothes); // Does not sync appearance while in the wardrobe
 	
 	// For a restraint, we might publish an action or change the dialog of a NPC
-	if (!Clothes) {
+	if (!IsClothes) {
 		ChatRoomCharacterUpdate(C);
 		if (CurrentScreen === "ChatRoom") {
 			// If we're in a chatroom, call the item's publish function to publish a message to the chatroom
@@ -242,16 +242,16 @@ function ExtendedItemDrawGrid(Options, DialogPrefix, IsSelfBondage) {
  * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
  *     be the default option.
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
- * @param {boolean} Clothes - TRUE if the click is performed on a clothing item.
+ * @param {boolean} IsClothes - Whether or not the click is performed on a clothing item.
  * @returns {void} Nothing
  */
-function ExtendedItemClickTwo(Options, IsSelfBondage, Clothes) {
+function ExtendedItemClickTwo(Options, IsSelfBondage, IsClothes) {
 	for (let I = 0; I < Options.length; I++) {
 		var X = 1175 + I * 425;
 		var Y = 550;
 		var Option = Options[I];
 		if (MouseIn(X, Y, 225, 225) && DialogFocusItem.Property.Type !== Option.Property.Type) {
-			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, Clothes);
+			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsClothes);
 		}
 	}
 }
@@ -261,10 +261,10 @@ function ExtendedItemClickTwo(Options, IsSelfBondage, Clothes) {
  * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
  *     be the default option.
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
- * @param {boolean} Clothes - TRUE if the click is performed on a clothing item.
+ * @param {boolean} IsClothes - Whether or not the click is performed on a clothing item.
  * @returns {void} Nothing
  */
-function ExtendedItemClickGrid(Options, IsSelfBondage, Clothes) {
+function ExtendedItemClickGrid(Options, IsSelfBondage, IsClothes) {
 
 	// Pagination button
 	if ((Options.length > 4) && MouseIn(1775, 25, 90, 85))
@@ -278,7 +278,7 @@ function ExtendedItemClickGrid(Options, IsSelfBondage, Clothes) {
 		var Y = 450 + (Math.floor(offset / 2) * 300);
 		var Option = Options[I];
 		if (MouseIn(X, Y, 225, 225) && DialogFocusItem.Property.Type !== Option.Property.Type) {
-			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, Clothes);
+			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsClothes);
 		}
 	}
 }
@@ -289,15 +289,15 @@ function ExtendedItemClickGrid(Options, IsSelfBondage, Clothes) {
  *     be the default option.
  * @param {ExtendedItemOption} Option - The selected type definition
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
- * @param {boolean} Clothes - TRUE if the click is performed on a clothing item.
+ * @param {boolean} IsClothes - Whether or not the click is performed on a clothing item.
  * @returns {void} Nothing
  */
-function ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, Clothes) {
+function ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsClothes) {
 	var requirementMessage = ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
 	if (requirementMessage) {
 		DialogExtendedMessage = requirementMessage;
 	} else {
-		ExtendedItemSetType(Options, Option, Clothes);
+		ExtendedItemSetType(Options, Option, IsClothes);
 	}
 }
 
