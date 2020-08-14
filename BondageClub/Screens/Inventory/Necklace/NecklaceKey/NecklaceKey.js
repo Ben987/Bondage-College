@@ -26,14 +26,5 @@ function InventoryNecklaceNecklaceKeyDraw() {
 
 // Catches the item extension clicks
 function InventoryNecklaceNecklaceKeyClick() {
-	ExtendedItemClick(InventoryNecklaceNecklaceKeyOptions);
-}
-
-
-function InventoryNecklaceNecklaceKeyPublishAction() {
-	// No action message for clothes
-}
-
-function InventoryNecklaceNecklaceKeyNpcDialog() {
-	// No dialog message for clothes
+	ExtendedItemClick(InventoryNecklaceNecklaceKeyOptions, true);
 }
