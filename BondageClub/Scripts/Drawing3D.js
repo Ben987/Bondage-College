@@ -114,6 +114,8 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d){
 		textures = null;
 	}else if (model.group == "Socks") {
 		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
+	}else if (model.group == "TailSraps") {
+		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
 	}else if (model.group == "Gloves") {
 		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
 	}else if (model.group == "Cloth") {
@@ -218,14 +220,14 @@ function refresh3DModel (group, path3d, count){
 	let characternames = Character[0].Name;
 	character3D = new THREE.Group();
 	character3D.Name = characternames;
-	let chale = Character[0].Appearance.length -1;
+	let chale = Character[0].Appearance.length ;
 	for(let i = 0; i < chale; i++){
 		let grpname =	Character[0].Appearance[i].Asset.DynamicGroupName;
 		let itemname = Character[0].Appearance[i].Asset.Name;
 		let itemcolor = Character[0].Appearance[i].Color;
 		if (grpname == "BodyUpper" && itemcolor == "Black") itemname = "Dark Skin";
 		if (grpname == "BodyUpper" && itemcolor == "White") itemname = "Pale Skin";
-		if (grpname == "BodyUpper" && itemcolor == "Asian") itemname = "Light Skin";
+		if (grpname == "BodyUpper" && itemcolor == "Asian") itemname = "Light Skin 1";
 		let neweyes = itemname.slice(0, 4);
 		if (neweyes == "Eyes") itemname = "BlueEyes 1"; // TODO: change and ask for color range
 		let newhair = itemname.slice(-1);
@@ -243,7 +245,6 @@ function refresh3DModel (group, path3d, count){
 //delay the process
 function countz(){
 	count = character3D.children.length -1;
-	console.log(count);
 }
 
 function Loadassets(character3D, path3d, grpname, itemcolor, itemname){
