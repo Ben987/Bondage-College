@@ -27,7 +27,7 @@ function Draw3DKeyDown() {
 		if ((KeyPress == 69) || (KeyPress == 101)) character3D.rotation.y += 0.1;
 		if ((KeyPress == 65) || (KeyPress == 97)) dress3DModels(character3D,path3d, count1++); //character3D.position.x -= 1;
 		if ((KeyPress == 68) || (KeyPress == 100)) character3D.position.x += 1;
-		if ((KeyPress == 87) || (KeyPress == 119)) refresh3DModel (character3D, path3d, count);
+		if ((KeyPress == 87) || (KeyPress == 119)) refresh3DModel (character3D, path3d, count); //character3D.position.z += 1;
 		if ((KeyPress == 83) || (KeyPress == 115)) character3D.position.z += 1;
 	}
 }
@@ -112,6 +112,8 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d){
 		textures1 = null;// textures1 = null;
 	}else if (model.group == "BodyUpper") {
 		textures = null;
+	}else if (model.group == "Gloves") {
+		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
 	}else if (model.group == "Cloth") {
 		textures = loader.load(`${path3d}Cloth/t015.bmp`);
 		textures1 = loader.load(`${path3d}Cloth/t015.bmp`);
@@ -269,23 +271,22 @@ function assetexist(group,path3d, grpname,itemcolor, itemname){
 		asset3D.push(chargroup);
 	}
 	var asset3Dexist = asset3D.includes(grpname);
-	console.log(asset3Dexist);
 	if (asset3Dexist != true) Loadassets(group,path3d, grpname,itemcolor, itemname);
 }
 // TODO: create animation
 // TODO: change the current animation
 
-function animate(model){
-	// var animspath = "Assets/3D/1animation/";
-	// var anims = ["Standing"];
-	// 	const anim = new FBXLoader();
-	// 	anim.load(`${animspath}${anims}.fbx`){
-		mixer = new THREE.AnimationMixer(model);
-		var action = mixer.clipAction(model.animations[0]);
-		action.play();
-	// requestAnimationFrame(animate);
-	// }
-}
+// function animate(model){
+// 	var animspath = "Assets/3D/1animation/";
+// 	var anims = ["Standing"];
+// 		const anim = new FBXLoader();
+// 		anim.load(`${animspath}${anims}.fbx`){
+// 		mixer = new THREE.AnimationMixer(model);
+// 		var action = mixer.clipAction(model.animations[0]);
+// 		action.play();
+// 	// requestAnimationFrame(animate);
+// 	// }
+// }
 
 
 
