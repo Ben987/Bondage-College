@@ -496,8 +496,6 @@ function AppearanceRun() {
 					DrawButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Description"), "White");
 				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
 				if (Color == null) Color = "Default";
-				var SelectedItem = InventoryGet(C, AssetGroup[A].Name);
-				if (SelectedItem != null && SelectedItem.Asset.DefaultColor != null && Color == SelectedItem.Asset.DefaultColor) Color = "Default";
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, Color, ((Color.indexOf("#") == 0) ? Color : "White"));
 				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", AssetGroup[A].AllowColorize ? "Icons/Color.png" : "Icons/ColorBlocked.png");
 			}
@@ -604,9 +602,12 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 	var ID = CharacterAppearanceGetCurrentValue(C, Group, "ID");
 	var ItemColor;
 	if (ID != "None") {
-		if (CurrentScreen == "Appearance" && !NewColor) ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
+		if (CurrentScreen == "Appearance") {
+			ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
+			if ((ItemColor == null || ItemColor == "Default" || ItemColor == "None") && ItemAsset != null && ItemAsset.DefaultColor != null) ItemColor = ItemAsset.DefaultColor;
+		}
 		C.Appearance.splice(ID, 1);
-	} else if (ItemAsset != null) ItemColor = ItemAsset.Group.ColorSchema[0];
+	} else if (ItemAsset != null) ItemColor = ItemAsset.DefaultColor ? ItemAsset.DefaultColor : ItemAsset.Group.ColorSchema[0];
 
 	// Add the new item to the character appearance
 	if (ItemAsset != null) {
@@ -927,10 +928,9 @@ function AppearanceClick() {
 					
 				} else {
 					if (Block || Limited) return;
-					if (InventoryAllow(C, Item.Asset.Prerequisite)) {
-						var ItemColor = CharacterAppearanceGetCurrentValue(C, C.FocusGroup.Name, "Color");
-						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset, ((ItemColor == null) || (ItemColor == "Default")) ? DialogInventory[I].Asset.DefaultColor : ItemColor);
-					} else {
+					if (InventoryAllow(C, Item.Asset.Prerequisite))
+						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
+					else {
 						CharacterAppearanceHeaderTextTime = DialogTextDefaultTimer;
 						CharacterAppearanceHeaderText = DialogText;
 					}
