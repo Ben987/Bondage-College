@@ -14,8 +14,3 @@ function InventoryNecklaceNecklaceLockDraw() {
 function InventoryNecklaceNecklaceLockClick() {
 	InventoryNecklaceNecklaceKeyClick();
 }
-
-// Sets the of the vibe egg
-function InventoryNecklaceNecklaceLockSetType(Modifier) {
-	InventoryNecklaceNecklaceKeySetType(Modifier);
-}

@@ -30,10 +30,10 @@ function InventoryNecklaceNecklaceKeyClick() {
 }
 
 
-function InventoryItemMouthDildoPlugGagPublishAction(C, Option) {
+function InventoryNecklaceNecklaceKeyPublishAction() {
 	// No action message for clothes
 }
 
-function InventoryItemMouthDildoPlugGagNpcDialog(C, Option) {
+function InventoryNecklaceNecklaceKeyNpcDialog() {
 	// No dialog message for clothes
 }
