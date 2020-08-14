@@ -112,6 +112,8 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d){
 		textures1 = null;// textures1 = null;
 	}else if (model.group == "BodyUpper") {
 		textures = null;
+	}else if (model.group == "Socks") {
+		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
 	}else if (model.group == "Gloves") {
 		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
 	}else if (model.group == "Cloth") {
@@ -122,7 +124,7 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d){
 	}else if (model.group == "Bra") {
 		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
 	}else if (hexcolor == "Default") {
-		hexcolor = "#87ceeb";
+		console.log("set color!");
 	}else {
 		textures = null;
 	}
@@ -236,7 +238,7 @@ function refresh3DModel (group, path3d, count){
 	maid = false;
 	strip3D = false;
 	d2tod3 = true;
-	setTimeout(countz, 2000);
+	setTimeout(countz, 3000);
 }
 //delay the process
 function countz(){
