@@ -1376,6 +1376,3 @@ ItemArmsHighSecurityStraitJacketSets0,,,SourceCharacter removes the crotch strap
 ItemArmsHighSecurityStraitJacketSets1,,,SourceCharacter secures DestinationCharacter straitjacket with a single crotch strap,,
 ItemArmsHighSecurityStraitJacketSets2,,,SourceCharacter secures DestinationCharacter straitjacket with a double crotch strap,,
 ItemArmsHighSecurityStraitJacketSets3,,,SourceCharacter secures DestinationCharacter straitjacket with a triple crotch strap,,
-SelectPriorityType,,,Select the visibility,,
-ClothPriorityTypeNormal,,,Revealed,,
-ClothPriorityTypeTucked,,,Tucked in,,
