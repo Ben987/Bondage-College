@@ -9,7 +9,7 @@ var path3d = "Assets/3D/";
 var Draw3DEnabled = false;
 var count = 0;
 var count1 = 0;
-var maid, textures, textures1;
+var maid, textures, webpath;
 var strip3D;
 var d2tod3,second;
 var mixer;
@@ -34,7 +34,8 @@ function Draw3DKeyDown() {
 // TODO: create more fbx assets
 // TODO: call each 3d asset and transform x,y towards the next bone node(point)
 function init(){
-
+	webpath = window.location.href;
+	// console.log(webpath);
 	var itemgroup = ["HairBack/HairBack1", "HairFront/HairFront6","Eyes/BlueEyes 1","BodyUpper/Pale Skin",  "Cloth/MaidOutfit1","Panties/MaidPanties1", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/Heels1"];
 
 	scene = new THREE.Scene();
@@ -100,55 +101,72 @@ function light(){
 //set color
 function set3Dcolor(hexcolor,grpname , itemname, path3d){
 	let loader = new THREE.TextureLoader();
-	// later
+
 	// let mesh5 = model.children.length;
 	// console.log(grpname);
 	// console.log(mesh5);
-	if (model.group == "HairBack" || model.group == "HairFront"){
-		textures = loader.load(`${path3d}HairFront/t005.bmp`);
-		textures1 = null; //  ${grpname}/${itemname}.bmp
-	}else if (model.group == "Shoes") {
-		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
-		textures1 = null;// textures1 = null;
-	}else if (model.group == "BodyUpper") {
-		textures = null;
-	}else if (model.group == "Socks") {
-		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
-	}else if (model.group == "TailSraps") {
-		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
-	}else if (model.group == "Gloves") {
-		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
-	}else if (model.group == "Cloth") {
-		textures = loader.load(`${path3d}Cloth/t015.bmp`);
-		textures1 = loader.load(`${path3d}Cloth/t015.bmp`);
-	}else if (model.group == "Hat") {
-		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
-	}else if (model.group == "Bra") {
-		textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
-	}else if (hexcolor == "Default") {
-		console.log("set color!");
-	}else {
-		textures = null;
+
+
+
+	//loop path3d grpname itemname+ i.bmp
+	//push all current textures in
+	//on error break the loop with return
+
+
+	// console.log(model.children);
+
+
+	if (hexcolor == "Default") hexcolor = "#C0C0C0";
+
+	// if (model.group == "Panties") {
+	// 	textures = loader.load(`${path3d}${grpname}/${itemname}${i}.bmp`);
+	// 	textures = loader.load(`${path3d}${grpname}/${itemname}${i}.bmp`);
+	// }else {
+	// 	textures = undefined;
+	// }
+
+	// }else if (model.group == "TailSraps") {
+	// 	textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
+	// }else if (model.group == "Socks") {
+	// 	textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
+	// 	textures1 = loader.load(`${path3d}Shoes/Heels1.bmp`);
+	//
+	let textlist = 0;
+	let textut = 0;
+	let http = new XMLHttpRequest();
+	while ( textut < 9 ){
+
+		var zero = `${webpath}${path3d}${grpname}/${itemname}${textut}.bmp`;
+		textut += 1;
+		http.open('HEAD', zero, false);
+		http.send();
+		if (http.status === 200 )textlist += 1;
 	}
+	for (let i = 0; i < textlist; i++ ){
+		textures = loader.load(`${path3d}${grpname}/${itemname}${i}.bmp`);
+	}
+	// textureexist(path3d, grpname, itemname);
+
 	// let mesh1 = "mesh" + i;
 	//textures = loader.load(`${path3d}${grpname}/${itemname}.bmp`);
 	model.traverse( function ( child ) {
 		if ( child.isMesh ) {
-				 if (textures != null){
-					child.castShadow = true;
-					child.receiveShadow = true;
-					child.material = new THREE.MeshPhongMaterial( {
-						name: "Mesh1",
-						map: textures,
-						color: hexcolor,
-						wireframe: false,
-					} );
-					child.material[0] = new THREE.MeshPhongMaterial( {
-						name: "Mesh2",
-						map: textures1,
-						color: hexcolor,
-						wireframe: false,
-					} );
+				 if (grpname !== "BodyUpper" && grpname !== "Eyes"){
+							 if(textures !== undefined){
+								child.castShadow = true;
+								child.receiveShadow = true;
+								child.material = new THREE.MeshPhongMaterial( {
+								 name: `Mesh`,
+								 map: textures,
+								 color:hexcolor,
+								 wireframe: false,
+							 } );
+						// }else{
+						// 	console.log("texture not there !");
+						// }
+						// console.log(child.material[i]);
+						// console.log(grpname);
+					}
 				}else {
 					child.castShadow = true;
 					child.receiveShadow = true;
@@ -232,6 +250,7 @@ function refresh3DModel (group, path3d, count){
 		if (neweyes == "Eyes") itemname = "BlueEyes 1"; // TODO: change and ask for color range
 		let newhair = itemname.slice(-1);
 		if (grpname == "HairFront" && newhair == "b") itemname = itemname.slice(0, -1);
+
 		Loadassets(character3D, path3d, grpname, itemcolor, itemname);
 
 	}
@@ -251,11 +270,15 @@ function Loadassets(character3D, path3d, grpname, itemcolor, itemname){
 	var loader = new THREE.FBXLoader();
 	loader.load(`${path3d}${grpname}/${itemname}.fbx`,function( object ) {
 		model = object;
+		// console.log(model);
 		model.name = itemname;
 		model.group = grpname;
+
+		// console.log(fullpath.children.length);
 		set3Dcolor(itemcolor, grpname, itemname, path3d);
 		// if(model.group == "BodyUpper") animate(model);
 		character3D.add(model);
+
 		},
 		undefined,
 		function( error ) {
@@ -263,8 +286,6 @@ function Loadassets(character3D, path3d, grpname, itemcolor, itemname){
 		}
 	);
 }
-
-
 
 function assetexist(group,path3d, grpname,itemcolor, itemname){
 	var asset3D = [];
@@ -276,6 +297,11 @@ function assetexist(group,path3d, grpname,itemcolor, itemname){
 	var asset3Dexist = asset3D.includes(grpname);
 	if (asset3Dexist != true) Loadassets(group,path3d, grpname,itemcolor, itemname);
 }
+
+function textureexist(path3d, grpname, itemname){
+
+}
+
 // TODO: create animation
 // TODO: change the current animation
 
