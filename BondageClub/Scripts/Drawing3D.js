@@ -35,7 +35,7 @@ function Draw3DKeyDown() {
 // TODO: call each 3d asset and transform x,y towards the next bone node(point)
 function init(){
 	webpath = window.location.href;
-	// console.log(webpath);
+
 	var itemgroup = ["HairBack/HairBack1", "HairFront/HairFront6","Eyes/BlueEyes 1","BodyUpper/Pale Skin",  "Cloth/MaidOutfit1","Panties/MaidPanties1", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/Heels1"];
 
 	scene = new THREE.Scene();
@@ -102,40 +102,12 @@ function light(){
 function set3Dcolor(hexcolor,grpname , itemname, path3d){
 	let loader = new THREE.TextureLoader();
 
-	// let mesh5 = model.children.length;
-	// console.log(grpname);
-	// console.log(mesh5);
-
-
-
-	//loop path3d grpname itemname+ i.bmp
-	//push all current textures in
-	//on error break the loop with return
-
-
-	// console.log(model.children);
-
-
 	if (hexcolor == "Default") hexcolor = "#C0C0C0";
 
-	// if (model.group == "Panties") {
-	// 	textures = loader.load(`${path3d}${grpname}/${itemname}${i}.bmp`);
-	// 	textures = loader.load(`${path3d}${grpname}/${itemname}${i}.bmp`);
-	// }else {
-	// 	textures = undefined;
-	// }
-
-	// }else if (model.group == "TailSraps") {
-	// 	textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
-	// }else if (model.group == "Socks") {
-	// 	textures = loader.load(`${path3d}Shoes/Heels1.bmp`);
-	// 	textures1 = loader.load(`${path3d}Shoes/Heels1.bmp`);
-	//
 	let textlist = 0;
 	let textut = 0;
 	let http = new XMLHttpRequest();
 	while ( textut < 9 ){
-
 		var zero = `${webpath}${path3d}${grpname}/${itemname}${textut}.bmp`;
 		textut += 1;
 		http.open('HEAD', zero, false);
@@ -161,12 +133,7 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d){
 								 color:hexcolor,
 								 wireframe: false,
 							 } );
-						// }else{
-						// 	console.log("texture not there !");
-						// }
-						// console.log(child.material[i]);
-						// console.log(grpname);
-					}
+						}
 				}else {
 					child.castShadow = true;
 					child.receiveShadow = true;
