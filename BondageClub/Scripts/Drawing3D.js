@@ -117,10 +117,7 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d){
 	for (let i = 0; i < textlist; i++ ){
 		textures = loader.load(`${path3d}${grpname}/${itemname}${i}.bmp`);
 	}
-	// textureexist(path3d, grpname, itemname);
 
-	// let mesh1 = "mesh" + i;
-	//textures = loader.load(`${path3d}${grpname}/${itemname}.bmp`);
 	model.traverse( function ( child ) {
 		if ( child.isMesh ) {
 				 if (grpname !== "BodyUpper" && grpname !== "Eyes"){
@@ -217,7 +214,7 @@ function refresh3DModel (group, path3d, count){
 		if (neweyes == "Eyes") itemname = "BlueEyes 1"; // TODO: change and ask for color range
 		let newhair = itemname.slice(-1);
 		if (grpname == "HairFront" && newhair == "b") itemname = itemname.slice(0, -1);
-
+		if (itemname == "HairBack23") itemname = "HairBack24";
 		Loadassets(character3D, path3d, grpname, itemcolor, itemname);
 
 	}
@@ -237,11 +234,8 @@ function Loadassets(character3D, path3d, grpname, itemcolor, itemname){
 	var loader = new THREE.FBXLoader();
 	loader.load(`${path3d}${grpname}/${itemname}.fbx`,function( object ) {
 		model = object;
-		// console.log(model);
 		model.name = itemname;
 		model.group = grpname;
-
-		// console.log(fullpath.children.length);
 		set3Dcolor(itemcolor, grpname, itemname, path3d);
 		// if(model.group == "BodyUpper") animate(model);
 		character3D.add(model);
@@ -265,9 +259,7 @@ function assetexist(group,path3d, grpname,itemcolor, itemname){
 	if (asset3Dexist != true) Loadassets(group,path3d, grpname,itemcolor, itemname);
 }
 
-function textureexist(path3d, grpname, itemname){
 
-}
 
 // TODO: create animation
 // TODO: change the current animation
