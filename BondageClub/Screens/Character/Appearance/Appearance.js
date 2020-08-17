@@ -434,6 +434,12 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
  * @returns {void} - Nothing
  */
 function AppearanceLoad() {
+	// We quit the extended item menu if it was not properly closed previously.
+	if (DialogFocusItem) {
+		DialogLeaveFocusItem();
+		DialogFocusItem = null;
+	}
+	
 	if (!CharacterAppearanceSelection) CharacterAppearanceSelection = Player;
 	var C = CharacterAppearanceSelection;
 	CharacterAppearanceBuildAssets(Player);
