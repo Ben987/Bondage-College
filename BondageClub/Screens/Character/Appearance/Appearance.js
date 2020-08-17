@@ -308,10 +308,10 @@ function CharacterAppearanceSortLayers(C) {
 		return layersAcc;
 	}, []);
 	return layers.sort((l1, l2) => {
-		// If the layers belong to the same Asset, ensure layer order is preserved
-		if (l1.Asset === l2.Asset) return l1.Asset.Layer.indexOf(l1) - l1.Asset.Layer.indexOf(l2);
 		// If priorities are different, sort by priority
 		if (l1.Priority !== l2.Priority) return l1.Priority - l2.Priority;
+		// If the priorities are identical and the layers belong to the same Asset, ensure layer order is preserved
+		if (l1.Asset === l2.Asset) return l1.Asset.Layer.indexOf(l1) - l1.Asset.Layer.indexOf(l2);
 		// If priorities are identical, sort alphabetically to maintain consistency
 		return (l1.Asset.Group.Name + l1.Asset.Name).localeCompare(l2.Asset.Group.Name + l2.Asset.Name);
 	});
@@ -434,6 +434,8 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
  * @returns {void} - Nothing
  */
 function AppearanceLoad() {
+	// We make sure no extended item was left active by mistake.
+	DialogFocusItem = null;
 	if (!CharacterAppearanceSelection) CharacterAppearanceSelection = Player;
 	var C = CharacterAppearanceSelection;
 	CharacterAppearanceBuildAssets(Player);
@@ -902,7 +904,8 @@ function AppearanceClick() {
 				var Item = DialogInventory[I];
 				var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
 				var Limit = InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name);
-				
+				var CreatedItem = InventoryItemCreate(C, Item.Asset.Group.Name, Item.Asset.Name);
+				var Limited = !InventoryCheckLimitedPermission(C, CreatedItem);
 				// In permission mode, we toggle the settings for an item
 				if (DialogItemPermissionMode) {
 					
@@ -920,7 +923,7 @@ function AppearanceClick() {
 					ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
 					
 				} else {
-					if (Block || Limit) return;
+					if (Block || Limited) return;
 					if (InventoryAllow(C, Item.Asset.Prerequisite))
 						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
 					else {

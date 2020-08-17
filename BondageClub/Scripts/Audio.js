@@ -154,6 +154,7 @@ function AudioPlayContent(data) {
 			if (!isNaN(vibrationLevel)) noiseLevelModifier += vibrationLevel * 3;
 			var assetName = data.Content.substring(0, data.Content.length - "IncreaseTo1".length);
 			switch (assetName) {
+				case "Vibe":
 				case "VibeHeartClitPiercing":
 				case "NippleHeart":
 				case "Nipple":
