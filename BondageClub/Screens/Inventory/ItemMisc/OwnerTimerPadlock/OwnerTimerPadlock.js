@@ -83,7 +83,7 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
         }
         else if (DialogFocusSourceItem.Property.EnableRandomInput) {
             for (let I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
-                if (C.IsOwnedByPlayer()) return;
+                if (DialogFocusSourceItem.Property.MemberNumberList[I] == Player.MemberNumber) return;
             }
             if ((MouseX >= 1100) && (MouseX < 1350)) { InventoryItemMiscOwnerTimerPadlockAdd(-2 * 3600, true); }
             if ((MouseX >= 1400) && (MouseX < 1650)) { InventoryItemMiscOwnerTimerPadlockAdd(4 * 3600 * ((Math.random() >= 0.5) ? 1 : -1), true); }

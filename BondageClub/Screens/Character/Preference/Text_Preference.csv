@@ -3,6 +3,7 @@ ChatPreferences,- Chat Preferences -
 AudioPreferences,- Audio Preferences -
 ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
 SecurityPreferences,- Security Preferences -
+VisibilityPreferences,- Item Preferences -
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -82,6 +83,7 @@ ArousalFetishNylon,Nylon
 ArousalFetishLingerie,Lingerie
 ArousalFetishPony,Pony
 ArousalFetishABDL,ABDL
+ArousalFetishPet,Pet play
 ArousalFetishLove0,Hate it
 ArousalFetishLove1,Doesn't like it
 ArousalFetishLove2,Neutral on it
@@ -124,3 +126,12 @@ ArousalStutterNone,Never stutter
 ArousalStutterArousal,When you're aroused
 ArousalStutterVibration,When you're vibrated
 ArousalStutterAll,Aroused & vibrated
+VisibilityGroup,Group:
+VisibilityAsset,Asset:
+VisibilityCheckboxHide,Hide
+VisibilityCheckboxBlock,Block
+VisibilityWarning,This icon will appear beside a character that's wearing a hidden item
+VisibilityReset,Reset All
+VisibilityResetDescription,This will reset all items to be visible. Click again to confirm and exit.
+LeaveSave,Accept changes
+LeaveNoSave,Cancel changes

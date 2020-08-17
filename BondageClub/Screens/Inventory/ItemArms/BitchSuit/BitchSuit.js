@@ -5,8 +5,14 @@
  * @returns {void} - Nothing
  */
 function InventoryItemArmsBitchSuitLoad() {
+	
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null };
-	if (DialogFocusItem.Property.Block == null) DialogFocusItem.Property.Block = DialogFocusItem.Property.Type ? [] : ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"];
+	if (DialogFocusItem.Property.Block == null) {
+		DialogFocusItem.Property.Block = DialogFocusItem.Property.Type ? [] : ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"];
+		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+		CharacterRefresh(C);
+		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
+	}
 }
 
 /**

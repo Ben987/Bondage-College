@@ -319,10 +319,11 @@ function ChatRoomRun() {
 	}
 
 	// Draws the top buttons in pink if they aren't available
-	if (!Player.IsSlow()){
+	if (!Player.IsSlow() || (ChatRoomSlowtimer == 0 && !ChatRoomCanLeave())){
 		if (ChatRoomSlowtimer != 0) ChatRoomSlowtimer = 0;
 		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
 	}	
+	
 	if (OnlineGameName == "") DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
 	else DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/GameOption.png", TextGet("MenuGameOption"));
 	DrawButton(1353, 2, 120, 60, "", (Player.CanKneel()) ? "White" : "Pink", "Icons/Rectangle/Kneel.png", TextGet("MenuKneel"));
@@ -627,7 +628,7 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 			else if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && !DialogProgressNextItem.Asset.IsLock) msg = "ActionSwap";
 			else if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && DialogProgressNextItem.Asset.IsLock) msg = "ActionAddLock";
 			else if (InventoryItemHasEffect(DialogProgressNextItem, "Lock")) msg = "ActionLock";
-			else if ((DialogProgressNextItem != null) && (DialogProgressNextItem.Asset.DynamicActivity(Player) != null)) msg = "ActionActivity" + DialogProgressNextItem.Asset.DynamicActivity(Player);
+			else if ((DialogProgressNextItem != null) && (!DialogProgressNextItem.Asset.Wear) && (DialogProgressNextItem.Asset.DynamicActivity(Player) != null)) msg = "ActionActivity" + DialogProgressNextItem.Asset.DynamicActivity(Player);
 			else if (DialogProgressNextItem != null) msg = "ActionUse";
 			else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = "ActionUnlockAndRemove";
 			else msg = "ActionRemove";
@@ -854,7 +855,7 @@ function ChatRoomMessage(data) {
 				// If the player does the activity on herself or an NPC, we calculate the result right away
 				if ((data.Type === "Action") || ((TargetMemberNumber == Player.MemberNumber) && (SenderCharacter.MemberNumber != Player.MemberNumber)))
 					if ((Player.ArousalSettings == null) || (Player.ArousalSettings.Active == null) || (Player.ArousalSettings.Active == "Hybrid") || (Player.ArousalSettings.Active == "Automatic"))
-						ActivityEffect(SenderCharacter, Player, ActivityName, GroupName, ActivityCounter);
+						ActivityEffect(SenderCharacter, Player, ActivityName, ActivityGroup, ActivityCounter);
 
 				// Exits before outputting the text if the player doesn't want to see the sexual activity messages
 				if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
@@ -914,10 +915,6 @@ function ChatRoomSync(data) {
 			if (ChatRoomCharacter.length == data.Character.length + 1) {
 				ChatRoomCharacter = ChatRoomCharacter.filter(A => data.Character.some(B => A.MemberNumber == B.MemberNumber));
 				ChatRoomData = data;
-				// Remove non-present chatroom characters from the characters array as they are no longer needed
-				for (let C = 0; C < Character.length; C++)
-					if (Character[C].AccountName.startsWith("Online-") && data.Character.find(DC => DC.MemberNumber == Character[C].MemberNumber) == null)
-						CharacterDelete(Character[C].AccountName);
 				return;
 			}
 			else if (ChatRoomCharacter.length == data.Character.length - 1) {

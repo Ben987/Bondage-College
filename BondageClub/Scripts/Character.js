@@ -35,8 +35,10 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		AllowItem: true,
 		BlockItems: [],
 		LimitedItems: [],
+		HiddenItems: [],
 		WhiteList: [],
 		HeightModifier: 0,
+		HasHiddenItems: false,
 		CanTalk: function () { return ((this.Effect.indexOf("GagVeryLight") < 0) && (this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagEasy") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagMedium") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagVeryHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0) && (this.Effect.indexOf("GagTotal2") < 0) && (this.Effect.indexOf("GagTotal3") < 0) && (this.Effect.indexOf("GagTotal4") < 0)) },
 		CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
 		CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || ((this.Pose.indexOf("LegsClosed") < 0) && (this.Pose.indexOf("Supension") < 0) && (this.Pose.indexOf("Hogtied") < 0)))) },
@@ -55,6 +57,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsSlow: function () { return (this.Effect.indexOf("Slow") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
 		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
+		IsMouthOpen: function() { return this.Effect.indexOf("OpenMouth") >= 0 },
+		IsVulvaFull: function() { return this.Effect.indexOf("FillVulva") >= 0 },
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
@@ -321,7 +325,13 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 
 	// If the character isn't found
 	if (Char == null) {
-
+		// We delete the duplicate character if the person relogged.
+		for (var C = 0; C < Character.length; C++)
+			if (Character[C].MemberNumber == data.MemberNumber) { 
+				CharacterDelete(Character[C].AccountName);
+				break;
+			}
+		
 		// Creates the new character from the online template
 		CharacterReset(Character.length, "Female3DCG");
 		Char = Character[Character.length - 1];
@@ -477,6 +487,9 @@ function CharacterLoadEffect(C) {
  * @returns {void} - Nothing 
  */
 function CharacterLoadCanvas(C) {
+	// Reset the property that tracks if wearing a hidden item
+	C.HasHiddenItems = false;
+
 	// Generates a layer array from the character's appearance array, sorted by drawing order
 	C.AppearanceLayers = CharacterAppearanceSortLayers(C);
 

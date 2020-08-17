@@ -119,18 +119,17 @@ function InventoryItemVulvaLoversVibratorOptionSetMode(Option) {
 	ChatRoomCharacterUpdate(C);
 
 	var Message;
-	var Dictionary = [];
+	var Dictionary = [
+		{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: "AssetName", AssetName: DialogFocusItem.Asset.Name },
+	];
 
 	if (Property.Intensity !== OldIntensity) {
 		var Direction = Property.Intensity > OldIntensity ? "Increase" : "Decrease";
-		Message = "Egg" + Direction + "To" + Property.Intensity;
-		Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
+		Message = "Vibe" + Direction + "To" + Property.Intensity;
 	} else {
-		Message = "EggModeChange";
-		Dictionary.push(
-			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-			{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
-		);
+		Message = "VibeModeChange";
+		Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
 	}
 
 	ChatRoomPublishCustomAction(Message, true, Dictionary);

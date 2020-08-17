@@ -40,7 +40,7 @@ var TightJacketArmsOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemArmsTightJacketLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = TightJacketArmsOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(TightJacketArmsOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectJacketPrep");
 	TightJacketArmsOptionOffset = 0;
 }
@@ -111,12 +111,6 @@ function InventoryItemArmsTightJacketSetPose(NewType) {
 	} else {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked"); 
 		return;
-	}
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
 	}
 
 	// Refresh the character

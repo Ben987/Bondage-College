@@ -72,7 +72,7 @@ var HempRopeArmsOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemArmsHempRopeLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = HempRopeArmsOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = JSON.parse(JSON.stringify(HempRopeArmsOptions[0].Property));
 	DialogExtendedMessage = DialogFind(Player, "SelectRopeBondage");
 	HempRopeArmsOptionOffset = 0;
 }

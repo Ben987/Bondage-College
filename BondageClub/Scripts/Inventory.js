@@ -332,16 +332,19 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 				break;
 			}
 
-		// Builds a list of all possible items and uses one of them, prevents the user from blocking everything to cheat
-		var List = [];
-		var ListWithPermission = [];
-		for (let A = 0; A < Asset.length; A++) 
+		// Builds a list of all possible items and uses one of them, visible if possible, prevents the user from blocking everything to cheat
+		var ListFull = [];
+		var ListPermittedVisible = [];
+		var ListPermitted = [];
+		for (let A = 0; A < Asset.length; A++)
 			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false)) {
-				List.push(Asset[A]);
-				if (C.ID == 0 && !InventoryIsPermissionBlocked(C, Asset[A].Name, Asset[A].Group.Name)) ListWithPermission.push(Asset[A]);
+				ListFull.push(Asset[A]);
+				if (!InventoryIsPermissionBlocked(C, Asset[A].Name, Asset[A].Group.Name))
+					if (!CharacterAppearanceItemIsHidden(Asset[A].Name, GroupName)) ListPermittedVisible.push(Asset[A]);
+					else ListPermitted.push(Asset[A]);
 			}
-		if (List.length == 0) return;
-		var RandomAsset = ListWithPermission.length > 0 ? ListWithPermission[Math.floor(Math.random() * ListWithPermission.length)] : List[Math.floor(Math.random() * List.length)];
+		if (ListFull.length == 0) return;
+		var RandomAsset = ListPermittedVisible.length > 0 ? ListPermittedVisible[Math.floor(Math.random() * ListPermittedVisible.length)] : ListPermitted.length > 0 ? ListPermitted[Math.floor(Math.random() * ListPermitted.length)] : ListFull[Math.floor(Math.random() * ListFull.length)];
 		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty);
 		CharacterRefresh(C);
 
@@ -356,11 +359,13 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 function InventoryRemove(C, AssetGroup) {
 
 	// First loop to find the item and any sub item to remove with it
-	for (let E = 0; E < C.Appearance.length; E++)
-		if (C.Appearance[E].Asset.Group.Name == AssetGroup)
-			for (let R = 0; R < C.Appearance[E].Asset.RemoveItemOnRemove.length; R++)
-				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name)))
-					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
+	for (var E = 0; E < C.Appearance.length; E++)
+		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
+			let AssetToRemove = C.Appearance[E].Asset
+			for (let R = 0; R < AssetToRemove.RemoveItemOnRemove.length; R++)
+				if ((AssetToRemove.RemoveItemOnRemove[R].Name == "") || ((AssetToRemove.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, AssetToRemove.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, AssetToRemove.RemoveItemOnRemove[R].Group).Asset.Name == AssetToRemove.RemoveItemOnRemove[R].Name)))
+					InventoryRemove(C, AssetToRemove.RemoveItemOnRemove[R].Group);
+		}
 
 	// Second loop to find the item again, and remove it from the character appearance
 	for (let E = 0; E < C.Appearance.length; E++)

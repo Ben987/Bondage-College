@@ -250,6 +250,8 @@ ChatOther-ItemMouth-Lick,SourceCharacter licks TargetCharacter's lips.
 ChatOther-ItemMouth-Nibble,SourceCharacter nibbles TargetCharacter's lips.
 ChatOther-ItemMouth-Caress,SourceCharacter caresses and cleans TargetCharacter's mouth.
 ChatOther-ItemMouth-HandGag,SourceCharacter clamps her hand over TargetCharacter's mouth.
+ChatOther-ItemMouth-PenetrateSlow,SourceCharacter penetrates TargetCharacter's mouth at a slow pace.
+ChatOther-ItemMouth-PenetrateFast,SourceCharacter penetrates TargetCharacter's mouth at a fast pace.
 ChatSelf-ItemHead-Slap,SourceCharacter slaps herself on the face.
 ChatSelf-ItemHead-Caress,SourceCharacter caresses her face.
 ChatSelf-ItemHead-TakeCare,SourceCharacter brushes her hair.
@@ -270,7 +272,8 @@ ChatOther-ItemNose-Pinch,SourceCharacter pinches TargetCharacter's nose.
 ChatOther-ItemNose-Caress,SourceCharacter caresses TargetCharacter's nose.
 ChatOther-ItemNose-Pull,SourceCharacter pulls TargetCharacter's nose.
 ChatOther-ItemNose-Rub,SourceCharacter rubs TargetCharacter's nose.
-ChatOther-ItemNose-Nibble,SourceCharacter bites TargetCharacter's nose.
+ChatOther-ItemNose-Nibble,SourceCharacter nibbles TargetCharacter's nose.
+ChatOther-ItemNose-Bite,SourceCharacter bites TargetCharacter's nose.
 ChatOther-ItemNose-Choke,SourceCharacter pinches  TargetCharacter's nostrils closed.
 ChatOther-ItemNose-Lick,SourceCharacter licks  TargetCharacter's nose.
 ChatOther-ItemNose-Bite,SourceCharacter bites TargetCharacter's nose.

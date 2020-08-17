@@ -55,11 +55,6 @@ function InventoryItemLegsChainsSetType(NewType) {
 	}
 	else return;
 
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
 	CharacterRefresh(C);
 
 	// Sets the chatroom or NPC message
