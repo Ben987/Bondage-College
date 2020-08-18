@@ -16,6 +16,7 @@ var mixer;
 
 function Draw3DLoad() {
 	init();
+	// animate(character3D);
 	document.body.appendChild(renderer.domElement);
 	renderer.domElement.style.display = "none";
 }
@@ -125,7 +126,7 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d){
 								child.castShadow = true;
 								child.receiveShadow = true;
 								child.material = new THREE.MeshPhongMaterial( {
-								 name: `Mesh`,
+								 name: `${itemname}_Mesh`,
 								 map: textures,
 								 color:hexcolor,
 								 wireframe: false,
@@ -201,7 +202,7 @@ function refresh3DModel (group, path3d, count){
 	scene.remove(group);
 	let characternames = Character[0].Name;
 	character3D = new THREE.Group();
-	character3D.Name = characternames;
+	character3D.name = characternames;
 	let chale = Character[0].Appearance.length ;
 	for(let i = 0; i < chale; i++){
 		let grpname =	Character[0].Appearance[i].Asset.DynamicGroupName;
@@ -235,11 +236,15 @@ function Loadassets(character3D, path3d, grpname, itemcolor, itemname){
 	loader.load(`${path3d}${grpname}/${itemname}.fbx`,function( object ) {
 		model = object;
 		model.name = itemname;
-		model.group = grpname;
+		model.type = grpname;
+		// mixer = new THREE.AnimationMixer(model); //add
+		// mixer.root = mixer.getRoot(); //add
 		set3Dcolor(itemcolor, grpname, itemname, path3d);
 		// if(model.group == "BodyUpper") animate(model);
+		console.log(model);
 		character3D.add(model);
-
+		// var action = mixer.clipAction(model.animations,mixer.root); //add
+		// action.play(); //add
 		},
 		undefined,
 		function( error ) {
@@ -267,13 +272,17 @@ function assetexist(group,path3d, grpname,itemcolor, itemname){
 // function animate(model){
 // 	var animspath = "Assets/3D/1animation/";
 // 	var anims = ["Standing"];
-// 		const anim = new FBXLoader();
-// 		anim.load(`${animspath}${anims}.fbx`){
-// 		mixer = new THREE.AnimationMixer(model);
-// 		var action = mixer.clipAction(model.animations[0]);
-// 		action.play();
-// 	// requestAnimationFrame(animate);
-// 	// }
+// 		const anim = new THREE.FBXLoader();
+// 		anim.load(`${animspath}${anims}.fbx`, function(object1){
+//
+//
+//
+// 		// requestAnimationFrame(animate);
+// 			},
+// 			undefined,
+// 			function( error ) {
+// 				console.log(error);
+// 		});
 // }
 
 
