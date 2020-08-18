@@ -156,14 +156,14 @@ var AssetFemale3DCG = [
 			{ Name: "Necklace2", Left: 147, Top: 90, ParentGroup: null },
 			{ Name: "Necklace3", Left: 147, Top: 110, ParentGroup: null },
 			{ Name: "Necklace4", Value: 30, Left: 147, Top: 110, ParentGroup: null },
-      {
+			{
 				Name: "NecklaceLock", Fetish: ["Metal"], Value: 40, Left: 155, Top: 152, Priority: 29, ParentGroup: null,
 				Layer: [
 					{ Name: "Chain", AllowColorize: true },
 					{ Name: "Lock", AllowColorize: false }
 				]
 			},
-			{Name: "NecklaceKey", Value: 40, Left: 153, Top: 152, Priority: 29, ParentGroup: null,
+			{
 				Name: "NecklaceKey", Fetish: ["Metal"], Value: 40, Left: 153, Top: 152, Priority: 29, ParentGroup: null,
 				Layer: [
 					{ Name: "Chain", AllowColorize: true },
