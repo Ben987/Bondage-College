@@ -1,7 +1,12 @@
 "use strict";
 var Character = [];
 
-// Loads a character in the buffer
+/**
+ * Loads a character into the buffer, creates it if it does not exist
+ * @param {number|string} CharacterID - ID of the character
+ * @param {string} CharacterAssetFamily - Name of the asset family of the character
+ * @returns {void} - Nothing
+ */
 function CharacterReset(CharacterID, CharacterAssetFamily) {
 
 	// Prepares the character sheet
@@ -30,8 +35,10 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		AllowItem: true,
 		BlockItems: [],
 		LimitedItems: [],
+		HiddenItems: [],
 		WhiteList: [],
 		HeightModifier: 0,
+		HasHiddenItems: false,
 		CanTalk: function () { return ((this.Effect.indexOf("GagVeryLight") < 0) && (this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagEasy") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagMedium") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagVeryHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0) && (this.Effect.indexOf("GagTotal2") < 0) && (this.Effect.indexOf("GagTotal3") < 0) && (this.Effect.indexOf("GagTotal4") < 0)) },
 		CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
 		CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || ((this.Pose.indexOf("LegsClosed") < 0) && (this.Pose.indexOf("Supension") < 0) && (this.Pose.indexOf("Hogtied") < 0)))) },
@@ -44,20 +51,47 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsMounted: function () { return (this.Effect.indexOf("Mounted") >= 0) },
 		IsChaste: function () { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste: function () { return (this.Effect.indexOf("Chaste") >= 0) },
+		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
+		IsSlow: function () { return (this.Effect.indexOf("Slow") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
+		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
+		IsMouthOpen: function() { return this.Effect.indexOf("OpenMouth") >= 0 },
+		IsVulvaFull: function() { return this.Effect.indexOf("FillVulva") >= 0 },
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
-		IsLoved: function () { return ((this.Lover != null) && (this.Lover.trim() != "")) },
-		IsLoverOfPlayer: function () { return (((((this.Lover != null) && (this.Lover.trim() == Player.Name)) || (NPCEventGet(this, "Girlfriend") > 0)) && (this.Lovership == null)) || ((this.Lovership != null) && (this.Lovership.MemberNumber != null) && (this.Lovership.MemberNumber == Player.MemberNumber))) },
-		IsLover: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (this.Name == Player.Lover.replace("NPC-", ""))) },
+		IsLoverOfPlayer: function () { return this.IsLover(Player); },
+		IsLover: function (C) { return ((this.GetLoversNumbers().indexOf(C.MemberNumber) >= 0) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
+		GetLoversNumbers: function (MembersOnly) {
+			var LoversNumbers = [];
+			if (typeof this.Lovership == "undefined") return [];
+			for (let L = 0; L < this.Lovership.length; L++) {
+				if (this.Lovership[L].MemberNumber) { LoversNumbers.push(this.Lovership[L].MemberNumber); }
+				else if (this.Lovership[L].Name && (MembersOnly == null || MembersOnly == false)) { LoversNumbers.push(this.Lovership[L].Name); }
+			}
+			return LoversNumbers;
+		},
+		GetDeafLevel: function () {
+			var deafLevel = 0;
+			for (let A = 0; A < this.Appearance.length; A++) {
+				// Sum up the various level of deafness and returns the final value, Light: 1, Normal: 2, Heavy: 3, Total: 4
+				if (this.Appearance[A].Asset.Effect != null) {
+					if (this.Appearance[A].Asset.Effect.indexOf("DeafLight") >= 0 || (this.Appearance[A].Property != null && Array.isArray(this.Appearance[A].Property.Effect) && this.Appearance[A].Property.Effect.indexOf("DeafLight") >= 0)) deafLevel += 1;
+					else if (this.Appearance[A].Asset.Effect.indexOf("DeafNormal") >= 0 || (this.Appearance[A].Property != null && Array.isArray(this.Appearance[A].Property.Effect) && this.Appearance[A].Property.Effect.indexOf("DeafNormal") >= 0)) deafLevel += 2;
+					else if (this.Appearance[A].Asset.Effect.indexOf("DeafHeavy") >= 0 || (this.Appearance[A].Property != null && Array.isArray(this.Appearance[A].Property.Effect) && this.Appearance[A].Property.Effect.indexOf("DeafHeavy") >= 0)) deafLevel += 3;
+					else if (this.Appearance[A].Asset.Effect.indexOf("DeafTotal") >= 0 || (this.Appearance[A].Property != null && Array.isArray(this.Appearance[A].Property.Effect) && this.Appearance[A].Property.Effect.indexOf("DeafTotal") >= 0)) deafLevel += 4;
+				}
+			}
+			return deafLevel;
+		},
+		IsLoverPrivate: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (Player.GetLoversNumbers().indexOf("NPC-" + this.Name) >= 0)); },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked: function () { return CharacterIsNaked(this); },
-		IsDeaf: function () { return ((this.Effect.indexOf("DeafLight") >= 0) || (this.Effect.indexOf("DeafNormal") >= 0) || (this.Effect.indexOf("DeafHeavy") >= 0)) },
+		IsDeaf: function () { return this.GetDeafLevel() > 0 },
 		HasNoItem: function () { return CharacterHasNoItem(this); }
-	}
+	};
 
 	// If the character doesn't exist, we create it
 	if (CharacterID >= Character.length)
@@ -76,7 +110,11 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 
 }
 
-// Creates a random name for the character
+/**
+ * Attributes a random name for the character, does not select a name in use
+ * @param {Character} C - Character for which to attribute a name
+ * @returns {void} - Nothing
+ */
 function CharacterRandomName(C) {
 
 	// Generates a name from the name bank 
@@ -84,14 +122,14 @@ function CharacterRandomName(C) {
 	C.Name = NewName;
 
 	// If the name is already taken, we generate a new one
-	for (var CN = 0; CN < Character.length; CN++)
+	for (let CN = 0; CN < Character.length; CN++)
 		if ((Character[CN].Name == NewName) && (Character[CN].ID != C.ID)) {
 			CharacterRandomName(C);
 			return;
 		}
 
 	// If the name is already taken by a private room character
-	for (var P = 0; P < PrivateCharacter.length; P++)
+	for (let P = 0; P < PrivateCharacter.length; P++)
 		if ((PrivateCharacter[P].Name == NewName) && ((PrivateCharacter[P].ID == null) || (PrivateCharacter[P].ID != C.ID))) {
 			CharacterRandomName(C);
 			return;
@@ -99,12 +137,18 @@ function CharacterRandomName(C) {
 
 }
 
-// Builds the dialog objects from the CSV files
+/**
+ * Builds the dialog objects from the character CSV file
+ * @param {Character} C - Character for which to build the dialog
+ * @param {string} CSV - Content of the CSV file
+ * @returns {void} - Nothing
+ */
 function CharacterBuildDialog(C, CSV) {
 
-	// For each lines in the file
+	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	C.Dialog = [];
-	for (var L = 0; L < CSV.length; L++)
+	// For each lines in the file
+	for (let L = 0; L < CSV.length; L++)
 		if ((CSV[L][0] != null) && (CSV[L][0] != "")) {
 
 			// Creates a dialog object
@@ -113,7 +157,7 @@ function CharacterBuildDialog(C, CSV) {
 			if ((CSV[L][1] != null) && (CSV[L][1].trim() != "")) D.NextStage = CSV[L][1];
 			if ((CSV[L][2] != null) && (CSV[L][2].trim() != "")) D.Option = CSV[L][2].replace("DialogCharacterName", C.Name).replace("DialogPlayerName", Player.Name);
 			if ((CSV[L][3] != null) && (CSV[L][3].trim() != "")) D.Result = CSV[L][3].replace("DialogCharacterName", C.Name).replace("DialogPlayerName", Player.Name);
-			if ((CSV[L][4] != null) && (CSV[L][4].trim() != "")) D.Function = ((CSV[L][4].trim().substring(0, 6) == "Dialog") ? "" : CurrentScreen) + CSV[L][4];
+			if ((CSV[L][4] != null) && (CSV[L][4].trim() != "")) D.Function = ((CSV[L][4].trim().substring(0, 6) == "Dialog") ? "" : OnlinePlayer ? "ChatRoom" : CurrentScreen) + CSV[L][4];
 			if ((CSV[L][5] != null) && (CSV[L][5].trim() != "")) D.Prerequisite = CSV[L][5];
 			if ((CSV[L][6] != null) && (CSV[L][6].trim() != "")) D.Group = CSV[L][6];
 			if ((CSV[L][7] != null) && (CSV[L][7].trim() != "")) D.Trait = CSV[L][7];
@@ -126,7 +170,12 @@ function CharacterBuildDialog(C, CSV) {
 
 }
 
-// Loads a CSV file to build the character dialog
+/**
+ * Loads the content of a CSV file to build the character dialog. Can override the current screen.
+ * @param {Character} C - Character for which to build the dialog objects
+ * @param {string} [Override] - Optional: Path to the specific CSV to build the character dialog with 
+ * @returns {void} - Nothing
+ */
 function CharacterLoadCSVDialog(C, Override) {
 
 	// Finds the full path of the CSV file to use cache
@@ -146,7 +195,13 @@ function CharacterLoadCSVDialog(C, Override) {
 
 }
 
-// Sets the clothes based on a character archetype
+/**
+ * Sets the clothes based on a character archetype
+ * @param {Character} C - Character to set the clothes for
+ * @param {string} Archetype - Archetype to determine the clothes to put on
+ * @param {string} [ForceColor] - Color to use for the added clothes 
+ * @returns {void} - Nothing
+ */
 function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 
 	// Maid archetype
@@ -188,17 +243,21 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 
 }
 
-// Loads in the NPC character in the buffer
+/**
+ * Loads an NPC into the character array. The appearance is randomized, and a type can be provided to dress them in a given style.
+ * @param {string} NPCType - Archetype of the NPC
+ * @returns {Character} - The randomly generated NPC
+ */
 function CharacterLoadNPC(NPCType) {
 
 	// Checks if the NPC already exists and returns it if it's the case
-	for (var C = 0; C < Character.length; C++)
+	for (let C = 0; C < Character.length; C++)
 		if (Character[C].AccountName == NPCType)
 			return Character[C];
 
 	// Randomize the new character
 	CharacterReset(Character.length, "Female3DCG");
-	C = Character[Character.length - 1];
+	let C = Character[Character.length - 1];
 	C.AccountName = NPCType;
 	CharacterLoadCSVDialog(C);
 	CharacterRandomName(C);
@@ -214,17 +273,28 @@ function CharacterLoadNPC(NPCType) {
 
 }
 
-// Sets up the online character
+/**
+ * Sets up an online character
+ * @param {Character} Char - Online character to set up
+ * @param {object} data - Character data received
+ * @param {number} SourceMemberNumber - Source number of the refresh
+ */
 function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Title == null))) Char.Title = data.Title;
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
 	Char.Creation = data.Creation;
+	Char.Description = data.Description;
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.ItemPermission == null))) Char.ItemPermission = data.ItemPermission;
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.ArousalSettings == null))) Char.ArousalSettings = data.ArousalSettings;
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Game == null))) Char.Game = data.Game;
 	Char.Ownership = data.Ownership;
 	Char.Lovership = data.Lovership;
+	for (let L = Char.Lovership.length - 1; L >= 0; L--) {
+		delete Char.Lovership[L].BeginEngagementOfferedByMemberNumber;
+		delete Char.Lovership[L].BeginWeddingOfferedByMemberNumber;
+		if (Char.Lovership[L].BeginDatingOfferedByMemberNumber) Char.Lovership.splice(L, 1);
+	}
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.LimitedItems = Array.isArray(data.LimitedItems) ? data.LimitedItems : [];
@@ -236,7 +306,12 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	CharacterRefresh(Char);
 }
 
-// Loads an online character
+/**
+ * Loads an online character and flags it for a refresh if any data was changed
+ * @param {object} data - Character data received
+ * @param {number} SourceMemberNumber - Source number of the load trigger
+ * @returns {Character} - The reloaded character
+ */
 function CharacterLoadOnline(data, SourceMemberNumber) {
 
 	// Checks if the NPC already exists and returns it if it's the case
@@ -244,13 +319,19 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 	if (data.ID.toString() == Player.OnlineID)
 		Char = Player;
 	else
-		for (var C = 0; C < Character.length; C++)
+		for (let C = 0; C < Character.length; C++)
 			if (Character[C].AccountName == "Online-" + data.ID.toString())
 				Char = Character[C];
 
 	// If the character isn't found
 	if (Char == null) {
-
+		// We delete the duplicate character if the person relogged.
+		for (var C = 0; C < Character.length; C++)
+			if (Character[C].MemberNumber == data.MemberNumber) { 
+				CharacterDelete(Character[C].AccountName);
+				break;
+			}
+		
 		// Creates the new character from the online template
 		CharacterReset(Character.length, "Female3DCG");
 		Char = Character[Character.length - 1];
@@ -273,7 +354,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		// If we must add a character, we refresh it
 		var Refresh = true;
 		if (ChatRoomData.Character != null)
-			for (var C = 0; C < ChatRoomData.Character.length; C++)
+			for (let C = 0; C < ChatRoomData.Character.length; C++)
 				if (ChatRoomData.Character[C].ID.toString() == data.ID.toString()) {
 					Refresh = false;
 					break;
@@ -281,15 +362,15 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 
 		// Flags "refresh" if we need to redraw the character
 		if (!Refresh)
-			if ((Char.ActivePose != data.ActivePose) || (Char.Title != data.Title) || (Char.LabelColor != data.LabelColor) || (ChatRoomData == null) || (ChatRoomData.Character == null))
+			if ((Char.ActivePose != data.ActivePose) || (Char.Description != data.Description) || (Char.Title != data.Title) || (Char.LabelColor != data.LabelColor) || (ChatRoomData == null) || (ChatRoomData.Character == null))
 				Refresh = true;
 			else
-				for (var C = 0; C < ChatRoomData.Character.length; C++)
+				for (let C = 0; C < ChatRoomData.Character.length; C++)
 					if (ChatRoomData.Character[C].ID == data.ID)
 						if (ChatRoomData.Character[C].Appearance.length != data.Appearance.length)
 							Refresh = true;
 						else
-							for (var A = 0; A < data.Appearance.length && !Refresh; A++) {
+							for (let A = 0; A < data.Appearance.length && !Refresh; A++) {
 								var Old = ChatRoomData.Character[C].Appearance[A];
 								var New = data.Appearance[A];
 								if ((New.Name != Old.Name) || (New.Group != Old.Group) || (New.Color != Old.Color)) Refresh = true;
@@ -316,27 +397,50 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 
 }
 
-// Deletes an NPC from the buffer
+/**
+ * Deletes an NPC from the buffer
+ * @param {string} NPCType - Account name of the npc to delete
+ * @returns {void} - Nothing 
+ */
 function CharacterDelete(NPCType) {
-	for (var C = 0; C < Character.length; C++)
+	for (let C = 0; C < Character.length; C++)
 		if (Character[C].AccountName == NPCType) {
 			Character.splice(C, 1);
 			return;
 		}
 }
 
-// Adds new effects on a character if it's not already there
+/**
+ * Deletes all online characters from the character array
+ * @returns {void} - Nothing
+ */
+function CharacterDeleteAllOnline() { 
+	for (let C = Character.length - 1; C >= 0; C--)
+		if (Character[C].AccountName.startsWith("Online-"))
+			CharacterDelete(Character[C].AccountName);
+}
+
+/** 
+ * Adds a pose to a character's pose list, does not add it if it's already there
+ * @param {Character} C - Character for which to add a pose to its list
+ * @param {string} NewPose - The name of the pose to add
+ * @returns {void} - Nothing 
+ */
 function CharacterAddPose(C, NewPose) {
-	for (var E = 0; E < NewPose.length; E++)
+	for (let E = 0; E < NewPose.length; E++)
 		if (C.Pose.indexOf(NewPose[E]) < 0)
 			C.Pose.push(NewPose[E]);
 }
 
-// Resets the current pose list on a character
+/**
+ * Refreshes the list of poses for a character. Each pose can only be found once in the pose array
+ * @param {Character} C - Character for which to refresh the pose list
+ * @returns {void} - Nothing 
+ */
 function CharacterLoadPose(C) {
 	C.Pose = [];
 	if (C.ActivePose != null) C.Pose.push(C.ActivePose);
-	for (var A = 0; A < C.Appearance.length; A++) {
+	for (let A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null))
 			CharacterAddPose(C, C.Appearance[A].Property.SetPose);
 		else
@@ -348,17 +452,26 @@ function CharacterLoadPose(C) {
 	}
 }
 
-// Adds new effects on a character if it's not already there
+/**
+ * Adds an effect to a character's effect list, does not add it if it's already there
+ * @param {Character} C - Character for which to add an effect to its list
+ * @param {string} NewEffect - The name of the effect to add
+ * @returns {void} - Nothing 
+ */
 function CharacterAddEffect(C, NewEffect) {
-	for (var E = 0; E < NewEffect.length; E++)
+	for (let E = 0; E < NewEffect.length; E++)
 		if (C.Effect.indexOf(NewEffect[E]) < 0)
 			C.Effect.push(NewEffect[E]);
 }
 
-// Resets the current effect list on a character
+/**
+ * Refreshes the list of effects for a character. Each effect can only be found once in the effect array
+ * @param {Character} C - Character for which to refresh the effect list
+ * @returns {void} - Nothing 
+ */
 function CharacterLoadEffect(C) {
 	C.Effect = [];
-	for (var A = 0; A < C.Appearance.length; A++) {
+	for (let A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Effect != null)) CharacterAddEffect(C, C.Appearance[A].Property.Effect);
 		if (C.Appearance[A].Asset.Effect != null)
 			CharacterAddEffect(C, C.Appearance[A].Asset.Effect);
@@ -368,30 +481,42 @@ function CharacterLoadEffect(C) {
 	}
 }
 
-// Sorts the character appearance by priority and loads the canvas
+/**
+ * Loads a character's canvas by sorting its appearance and drawing it.
+ * @param {Character} C - Character to load the canvas for
+ * @returns {void} - Nothing 
+ */
 function CharacterLoadCanvas(C) {
+	// Reset the property that tracks if wearing a hidden item
+	C.HasHiddenItems = false;
 
-	// Sorts the full appearance array first
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
+	// Generates a layer array from the character's appearance array, sorted by drawing order
+	C.AppearanceLayers = CharacterAppearanceSortLayers(C);
 
 	// Sets the total height modifier for that character
 	CharacterApperanceSetHeightModifier(C);
 	
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
-
 }
 
-// Reload all characters canvas
+/**
+ * Reloads all character canvases in need of being redrawn.
+ * @returns {void} - Nothing
+ */
 function CharacterLoadCanvasAll() {
-	for (var C = 0; C < Character.length; C++)
+	for (let C = 0; C < Character.length; C++)
 		if (Character[C].MustDraw) {
 			CharacterLoadCanvas(Character[C]);
 			Character[C].MustDraw = false;
 		}
 }
 
-// Sets the current character for conversation with introduction
+/**
+ * Sets the current character to have a dialog with
+ * @param {Character} C - Character to have a conversation with
+ * @returns {void} - Nothing
+ */
 function CharacterSetCurrent(C) {
 	CurrentCharacter = C;
 	var NewDialog = DialogIntro();
@@ -399,13 +524,23 @@ function CharacterSetCurrent(C) {
 	if (NewDialog != "") C.CurrentDialog = NewDialog;
 }
 
-// Changes the character money and sync with the account server
+/**
+ * Changes the character money and sync with the account server, factors in the cheaters version.
+ * @param {Character} C - Character for which we are altering the money amount 
+ * @param {number} Value - Money to subtract/add
+ * @returns {void} - Nothing
+ */
 function CharacterChangeMoney(C, Value) {
 	C.Money = parseInt(C.Money) + parseInt(Value) * ((Value > 0) ? CheatFactor("DoubleMoney", 2) : 1);
 	ServerPlayerSync();
 }
 
-// Refreshes the character parameters
+/**
+ * Refreshes the character parameters (Effects, poses, canvas, settings, etc.)
+ * @param {Character} C - Character to refresh
+ * @param {boolean} [Push=true] - Pushes the data to the server if true or null 
+ * @returns {void} - Nothing
+ */
 function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);
@@ -416,42 +551,62 @@ function CharacterRefresh(C, Push) {
 	}
 }
 
-// Returns TRUE if a character has no item (the slave collar doesn't count)
+/**
+ * Checks if a character is wearing items (restraints), the slave collar is ignored.
+ * @param {Character} C - Character to inspect the appearance of
+ * @returns {boolean} - Returns TRUE if the given character is wearing an item
+ */
 function CharacterHasNoItem(C) {
-	for (var A = 0; A < C.Appearance.length; A++)
+	for (let A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Item"))
 			if (C.Appearance[A].Asset.Name != "SlaveCollar")
 				return false;
 	return true;
 }
 
-// Returns TRUE if a character is naked
+/**
+ * Checks if a character is naked
+ * @param {Character} C - Character to inspect the appearance of
+ * @returns {boolean} - Returns TRUE if the given character is naked
+ */
 function CharacterIsNaked(C) {
-	for (var A = 0; A < C.Appearance.length; A++)
+	for (let A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked)
 			return false;
 	return true;
 }
 
-// Returns TRUE if a character is in her underwear
+/**
+ * Checks if a character is in underwear
+ * @param {Character} C - Character to inspect the appearance of
+ * @returns {boolean} - Returns TRUE if the given character is in underwear
+ */
 function CharacterIsInUnderwear(C) {
-	for (var A = 0; A < C.Appearance.length; A++)
+	for (let A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked && !C.Appearance[A].Asset.Group.Underwear)
 			return false;
 	return true;
 }
 
-// Removes all appearance items from the character
+/**
+ * Removes all appearance items from the character
+ * @param {Character} C - Character to undress
+ * @returns {void} - Nothing
+ */
 function CharacterNaked(C) {
 	CharacterAppearanceNaked(C);
 	CharacterRefresh(C);
 }
 
-// Dress the character in random underwear
+/**
+ * Dresses the given character in random underwear
+ * @param {Character} C - Character to randomly dress
+ * @returns {void} - Nothing
+ */
 function CharacterRandomUnderwear(C) {
 
 	// Clear the current clothes
-	for (var A = 0; A < C.Appearance.length; A++)
+	for (let A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
 			C.Appearance.splice(A, 1);
 			A--;
@@ -459,11 +614,11 @@ function CharacterRandomUnderwear(C) {
 
 	// Generate random undies at a random color
 	var Color = "";
-	for (var A = 0; A < AssetGroup.length; A++)
+	for (let A = 0; A < AssetGroup.length; A++)
 		if ((AssetGroup[A].Category == "Appearance") && AssetGroup[A].Underwear && (AssetGroup[A].IsDefault || (Math.random() < 0.2))) {
 			var Group = [];
 			if (Color == "") Color = CommonRandomItemFromList("", AssetGroup[A].ColorSchema);
-			for (var I = 0; I < Asset.length; I++)
+			for (let I = 0; I < Asset.length; I++)
 				if ((Asset[I].Group.Name == AssetGroup[A].Name) && ((Asset[I].Value == 0) || InventoryAvailable(C, Asset[I].Name, Asset[I].Group.Name)))
 					Group.push(Asset[I]);
 			if (Group.length > 0)
@@ -475,19 +630,29 @@ function CharacterRandomUnderwear(C) {
 
 }
 
-// Removes all appearance items from the character expect underwear
+/**
+ * Removes all appearance items from the character except underwear
+ * @param {Character} C - Character to undress partially
+ * @param {Array.<*>} Appearance - Appearance array to remove clothes from
+ * @returns {void} - Nothing
+ */
 function CharacterUnderwear(C, Appearance) {
 	CharacterAppearanceNaked(C);
-	for (var A = 0; A < Appearance.length; A++)
+	for (let A = 0; A < Appearance.length; A++)
 		if ((Appearance[A].Asset != null) && Appearance[A].Asset.Group.Underwear && (Appearance[A].Asset.Group.Category == "Appearance"))
 			C.Appearance.push(Appearance[A]);
 	CharacterRefresh(C);
 }
 
-// Redress the character based on a specific appearance object
+/**
+ * Redresses a character based on a given appearance array
+ * @param {Character} C - Character to redress
+ * @param {Array.<*>} Appearance - Appearance array to redress the character with
+ * @returns {void} - Nothing
+ */
 function CharacterDress(C, Appearance) {
 	if ((Appearance != null) && (Appearance.length > 0)) {
-		for (var A = 0; A < Appearance.length; A++)
+		for (let A = 0; A < Appearance.length; A++)
 			if ((Appearance[A].Asset != null) && (Appearance[A].Asset.Group.Category == "Appearance"))
 				if (InventoryGet(C, Appearance[A].Asset.Group.Name) == null)
 					C.Appearance.push(Appearance[A]);
@@ -495,9 +660,13 @@ function CharacterDress(C, Appearance) {
 	}
 }
 
-// Removes any binding item from the character
+/**
+ * Removes all binding items from a given character
+ * @param {Character} C - Character to release
+ * @returns {void} - Nothing
+ */
 function CharacterRelease(C) {
-	for (var E = 0; E < C.Appearance.length; E++)
+	for (let E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.IsRestraint) {
 			C.Appearance.splice(E, 1);
 			E--;
@@ -505,9 +674,25 @@ function CharacterRelease(C) {
 	CharacterRefresh(C);
 }
 
-// Removes any binding item from the character if there's no specific padlock on it
+/**
+ * Releases a character from all locks matching the given lock name
+ * @param {Character} C - Character to release from the lock(s)
+ * @param {string} LockName - Name of the lock to look for
+ * @returns {void} - Nothing
+ */
+function CharacterReleaseFromLock(C, LockName) {
+	for (let A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.LockedBy == LockName))
+			InventoryUnlock(C, C.Appearance[A]);
+}
+
+/**
+ * Releases a character from all restraints that are not locked
+ * @param {Character} C - Character to release
+ * @returns {void} - Nothing
+ */
 function CharacterReleaseNoLock(C) {
-	for (var E = 0; E < C.Appearance.length; E++)
+	for (let E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.IsRestraint && ((C.Appearance[E].Property == null) || (C.Appearance[E].Property.LockedBy == null))) {
 			C.Appearance.splice(E, 1);
 			E--;
@@ -515,18 +700,49 @@ function CharacterReleaseNoLock(C) {
 	CharacterRefresh(C);
 }
 
-// Returns the best bonus factor available
+/**
+ * Removes all items except for clothing and slave collars from the character
+ * @param {Character} C - Character to release
+ * @returns {void} - Nothing
+ */
+function CharacterReleaseTotal(C) {
+	for (let E = 0; E < C.Appearance.length; E++) {
+	    if (C.Appearance[E].Asset.Group.Category != "Appearance") {
+	    	if (C.IsOwned() && C.Appearance[E].Asset.Name == "SlaveCollar") {
+	    		// Reset slave collar to the default model if it has a gameplay effect (such as gagging the player)
+	    		if (C.Appearance[E].Property && C.Appearance[E].Property.Effect && C.Appearance[E].Property.Effect.length > 0)
+	    			delete C.Appearance[E].Property;
+	    	}
+	    	else {
+	    		C.Appearance.splice(E,1);
+	        	E--;
+	    	}
+	    }
+	}
+	CharacterRefresh(C);
+}
+
+/**
+ * Gets the bonus amount of a given type for a given character (Kidnap league)
+ * @param {Character} C - Character for which we want to get the bonus amount
+ * @param {string} BonusType - Type/name of the bonus to look for
+ * @returns {number} - Active bonus amount for the bonus type
+ */
 function CharacterGetBonus(C, BonusType) {
 	var Bonus = 0;
-	for (var I = 0; I < C.Inventory.length; I++)
+	for (let I = 0; I < C.Inventory.length; I++)
 		if ((C.Inventory[I].Asset != null) && (C.Inventory[I].Asset.Bonus != null))
-			for (var B = 0; B < C.Inventory[I].Asset.Bonus.length; B++)
+			for (let B = 0; B < C.Inventory[I].Asset.Bonus.length; B++)
 				if ((C.Inventory[I].Asset.Bonus[B].Type == BonusType) && (C.Inventory[I].Asset.Bonus[B].Factor > Bonus))
 					Bonus = C.Inventory[I].Asset.Bonus[B].Factor;
 	return Bonus;
 }
 
-// Fully restrain a character with random items
+/**
+ * Restrains a character with random restraints. Some restraints are specifically disabled for randomization in their definition.
+ * @param {Character} C - The target character to restrain
+ * @param {"FEW"|"LOT"|"ALL"} [Ratio] - Amount of restraints to put on the character
+ */
 function CharacterFullRandomRestrain(C, Ratio) {
 
 	// Sets the ratio depending on the parameter
@@ -548,17 +764,33 @@ function CharacterFullRandomRestrain(C, Ratio) {
 
 }
 
-// Sets a new pose for the character
+/**
+ * Sets a new pose for the character
+ * @param {Character} C - Character for which to set the pose
+ * @param {string} NewPose - Name of the pose to set as active
+ * @returns {void} - Nothing
+ */
 function CharacterSetActivePose(C, NewPose) {
 	C.ActivePose = NewPose;
 	CharacterRefresh(C, false);
 }
 
-// Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a timed expression cannot override another one
+/**
+ * Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a timed expression cannot override another one.
+ * @param {Character} C - Character for which to set the expression of
+ * @param {group} AssetGroup - Asset group for the expression
+ * @param {string} Expression - Name of the expression to use
+ * @param {number} [Timer] - Optional: time the expression will last 
+ * @returns {void} - Nothing
+ */
 function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
+	// A normal eye expression is triggered for both eyes
+	if (AssetGroup == "Eyes") CharacterSetFacialExpression(C, "Eyes2", Expression, Timer);
+	if (AssetGroup == "Eyes1") AssetGroup = "Eyes";
+		
 	var Ex = InventoryGet(C, AssetGroup);
 	if ((Timer != null) && (Ex != null) && (Ex.Property != null) && (Ex.Property.Expression != null) && (Ex.Property.Expression != "")) return;
-	for (var A = 0; A < C.Appearance.length; A++) {
+	for (let A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
 				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
@@ -577,41 +809,57 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
 	}
 }
 
-// Resets the character's facial expression to the default
+/**
+ * Resets the character's facial expression to the default
+ * @param {Character} C - Character for which to reset the expression of
+ * @returns {void} - Nothing
+ */
 function CharacterResetFacialExpression(C) {
-	for (var A = 0; A < C.Appearance.length; A++)
+	for (let A = 0; A < C.Appearance.length; A++)
 		if (C.Appearance[A].Asset.Group.AllowExpression)
 			CharacterSetFacialExpression(C, C.Appearance[A].Asset.Group.Name, null);
 }
 
-// returns the current selected character
+/**
+ * Gets the currently selected character
+ * @returns {Character} - Currently selected character
+ */
 function CharacterGetCurrent() {
 	return (Player.FocusGroup != null) ? Player : CurrentCharacter;
 }
 
-// Compress a character wardrobe into an array and then into a LZ string to save space on the server
+/**
+ * Compresses a character wardrobe from an array to a LZ string to use less storage space
+ * @param {Array.<Array.<*>>} Wardrobe - Uncompressed wardrobe
+ * @returns {string} - The compressed wardrobe
+ */
 function CharacterCompressWardrobe(Wardrobe) {
 	if (Array.isArray(Wardrobe) && (Wardrobe.length > 0)) {
 		var CompressedWardrobe = [];
-		for (var W = 0; W < Wardrobe.length; W++) {
+		for (let W = 0; W < Wardrobe.length; W++) {
 			var Arr = [];
-			for (var A = 0; A < Wardrobe[W].length; A++)			
-				Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color]);
+			if (Wardrobe[W] != null)
+				for (let A = 0; A < Wardrobe[W].length; A++)
+					Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color]);
 			CompressedWardrobe.push(Arr);
 		}
 		return LZString.compressToUTF16(JSON.stringify(CompressedWardrobe));
 	} else return "";
 }
 
-// Decompress a character wardrobe from a LZ String and then from an array
+/**
+ * Decompresses a character wardrobe from a LZ String to an array if it was previously compressed (For backward compatibility with old wardrobes)
+ * @param {Array.<Array.<*>> | string} Wardrobe - The current wardrobe
+ * @returns {Array.<Array.<*>>} - The array of wardrobe items decompressed
+ */
 function CharacterDecompressWardrobe(Wardrobe) {
 	if (typeof Wardrobe === "string") {
 		var CompressedWardrobe = JSON.parse(LZString.decompressFromUTF16(Wardrobe));
 		var DecompressedWardrobe = [];
 		if (CompressedWardrobe != null) {
-			for (var W = 0; W < CompressedWardrobe.length; W++) {
+			for (let W = 0; W < CompressedWardrobe.length; W++) {
 				var Arr = [];
-				for (var A = 0; A < CompressedWardrobe[W].length; A++)
+				for (let A = 0; A < CompressedWardrobe[W].length; A++)
 					Arr.push({ Name: CompressedWardrobe[W][A][0], Group: CompressedWardrobe[W][A][1], Color: CompressedWardrobe[W][A][2] });
 				DecompressedWardrobe.push(Arr);
 			}
@@ -619,4 +867,17 @@ function CharacterDecompressWardrobe(Wardrobe) {
 		return DecompressedWardrobe;
 	}
 	return Wardrobe;
+}
+
+/**
+ * Checks if the character is wearing an item that allows for a specific activity
+ * @param {Character} C - The character to test for
+ * @param {String} Activity - The name of the activity that must be allowed
+ * @returns {boolean} - TRUE if at least one item allows that activity
+ */
+function CharacterHasItemForActivity(C, Activity) {
+	for (let A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.AllowActivity != null) && (C.Appearance[A].Asset.AllowActivity.indexOf(Activity) >= 0))
+			return true;
+	return false;
 }

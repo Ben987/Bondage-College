@@ -54,8 +54,6 @@ function InventoryItemFeetChainsSetType(NewType) {
 
 	// Validates a few parameters before suspending
 	if ((NewType == "Suspension") && !InventoryAllow(C, ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"], true)) { DialogExtendedMessage = DialogText; return; }
-	if ((NewType == "Suspension") && (C.ID == 0)) { DialogExtendedMessage = DialogFind(Player, "CannotUseOnSelf"); return; }
-
 	// Sets the position, difficulty and blush effect
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		DialogFocusItem.Property.Type = NewType;
@@ -76,11 +74,6 @@ function InventoryItemFeetChainsSetType(NewType) {
 	}
 	else return;
 
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
 	CharacterRefresh(C);
 
 	// Sets the chatroom or NPC message

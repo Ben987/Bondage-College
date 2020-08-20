@@ -2,8 +2,13 @@
 
 // Loads the item extension properties
 function InventoryItemArmsFullLatexSuitLoad() {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null };
+	if (DialogFocusItem.Property.Block == null) {
+		DialogFocusItem.Property.Block = DialogFocusItem.Property.Type ? [] : ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"];
+		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+		CharacterRefresh(C);
+		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
+	}
 }
 
 // Draw the item extension screen
@@ -38,11 +43,11 @@ function InventoryItemArmsFullLatexSuitDraw() {
 
 // Catches the item extension clicks
 function InventoryItemArmsFullLatexSuitClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
 	if ((MouseX >= 1150) && (MouseX <= 1375) && (MouseY >= 440) && (MouseY <= 665) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsFullLatexSuitSetType(null);
 	if ((MouseX >= 1600) && (MouseX <= 1825) && (MouseY >= 440) && (MouseY <= 665) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "UnZip"))) InventoryItemArmsFullLatexSuitSetType("UnZip");
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CommonIsClickAt(1375, 750, 225, 225) && InventoryGet(C, "ItemVulva") == null) InventoryItemArmsFullLatexSuitSetType("Wand");
+	if (MouseIn(1375, 750, 225, 225) && InventoryGet(C, "ItemVulva") == null) InventoryItemArmsFullLatexSuitSetType("Wand");
 }
 
 // Sets the suit properties when it's model changes

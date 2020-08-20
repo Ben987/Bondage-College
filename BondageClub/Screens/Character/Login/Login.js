@@ -4,14 +4,23 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Ayezona", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Dan", "Dini", "Epona", "Escurse",
-						 "Fluffythewhat", "Greendragon", "John", "Laioken", "Lennart", "Michal", "Mindtie", "Misa", "Mitchell", "MuchyCat",
-						 "Mzklopyu", "Nera", "Nick", "Overlord", "Rashiash", "Ray", "Reire", "Robin", "Rutherford", "Ryner", 
-						 "Samuel", "Setsu", "Shadow", "Sky", "Thomas", "Trent", "William", "Xepherio"];
+var LoginThankYouList = ["Alvin", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Desch", "Dini", "Epona", "Escurse", "Fluffythewhat", 
+						 "Greendragon", "John", "Michal", "Mindtie", "Misa", "MuchyCat", "Mzklopyu", "Nera", "Nick", "Overlord", 
+						 "Rashiash", "Ray", "Reire", "Robin", "Rutherford", "Ryner", "Samuel", "Setsu", "Shadow", "Sky", 
+						 "Tam", "Thomas", "Trent", "William", "Xepherio"];
 var LoginThankYouNext = 0;
-//var LoginLastCT = 0;
+var LoginSubmitted = false;
+var LoginIsRelog = false;
+var LoginErrorMessage = "";
+/* DEBUG: To measure FPS - uncomment this and change the + 4000 to + 40
+var LoginLastCT = 0;
+var LoginFrameCount = 0;
+var LoginFrameTotalTime = 0;*/
 
-// Loads the next thank you bubble
+/**
+ * Loads the next thank you bubble
+ * @returns {void} Nothing
+ */
 function LoginDoNextThankYou() {
 	LoginThankYou = CommonRandomItemFromList(LoginThankYou, LoginThankYouList);
 	CharacterRelease(Player);
@@ -20,17 +29,27 @@ function LoginDoNextThankYou() {
 	LoginThankYouNext = CommonTime() + 4000;
 }
 
-// Draw the credits 
+/**
+ * Draw the credits
+ * @returns {void} Nothing
+ */
 function LoginDrawCredits() {
 
-	//var CT = CommonTime();
-	//if (LoginLastCT + 50 < CT) console.log("Slow Frame: " + (CT - LoginLastCT).toString());
-	//LoginLastCT = CT;
+	/* DEBUG: To measure FPS - uncomment this and change the + 4000 to + 40
+	var CT = CommonTime();
+	if (CT - LoginLastCT < 10000) {
+		LoginFrameCount++;
+		if (LoginFrameCount > 1000)
+			LoginFrameTotalTime = LoginFrameTotalTime + CT - LoginLastCT;
+	}
+	LoginLastCT = CT;
+	if (LoginFrameCount > 1000) DrawText("Average FPS: " + (1000 / (LoginFrameTotalTime / (LoginFrameCount - 1000))).toFixed(2).toString(), 1000, 975, "white");
+	else DrawText("Calculating Average FPS...", 1000, 975, "white");*/
 
 	// For each credits in the list
 	LoginCreditsPosition++;
 	MainCanvas.font = "30px Arial";
-	for(var C = 0; C < LoginCredits.length; C++) {
+	for (let C = 0; C < LoginCredits.length; C++) {
 
 		// Sets the Y position (it scrolls from bottom to top)
 		var Y = 800 - Math.floor(LoginCreditsPosition * 2) + (C * 50);
@@ -63,7 +82,10 @@ function LoginDrawCredits() {
 	
 }
 
-// Loads the character login screen
+/**
+ * Loads the character login screen
+ * @returns {void} Nothing
+ */
 function LoginLoad() {
 
 	// Resets the player and other characters
@@ -71,7 +93,9 @@ function LoginLoad() {
 	CharacterReset(0, "Female3DCG");
 	LoginDoNextThankYou();
 	CharacterLoadCSVDialog(Player);
-	LoginMessage = "";
+	LoginStatusReset();
+	LoginErrorMessage = "";
+	LoginUpdateMessage();
 	if (LoginCredits == null) CommonReadCSV("LoginCredits", CurrentModule, CurrentScreen, "GameCredits");
 	ActivityDictionaryLoad();
 	OnlneGameDictionaryLoad();
@@ -80,14 +104,18 @@ function LoginLoad() {
 
 }
 
-// Run the character login screen 
+/**
+ * Runs the character login screen
+ * @returns {void} Nothing
+ */
 function LoginRun() {
 
 	// Draw the credits
 	if (LoginCredits != null) LoginDrawCredits();
+
+	if (!LoginMessage) LoginUpdateMessage();
 	
 	// Draw the login controls
-	if (LoginMessage == "") LoginMessage = TextGet("EnterNamePassword");
 	DrawText(TextGet("Welcome"), 1000, 50, "White", "Black");
 	DrawText(LoginMessage, 1000, 100, "White", "Black");
 	DrawText(TextGet("AccountName"), 1000, 200, "White", "Black");
@@ -108,7 +136,10 @@ function LoginRun() {
 
 }
 
-// Make sure the slave collar is equipped or unequipped based on the owner
+/**
+ * Make sure the slave collar is equipped or unequipped based on the owner
+ * @returns {void} Nothing
+ */
 function LoginValidCollar() {
  	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) {
  		InventoryRemove(Player, "ItemNeck");
@@ -120,11 +151,15 @@ function LoginValidCollar() {
 	}
 	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) {
 		InventoryWear(Player, "SlaveCollar", "ItemNeck");
-		if (CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
+		if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(Player, "ItemNeck");
 	}
 }
 
-// Only players that are club Mistresses can have the Mistress Padlock & Key
+/**
+ * Adds or confiscates Club Mistress items from the player. Only players that are club Mistresses can have the Mistress
+ * Padlock & Key
+ * @returns {void} Nothing
+ */
 function LoginMistressItems() {
 	if (LogQuery("ClubMistress", "Management")) {
 		InventoryAdd(Player, "MistressGloves", "Gloves", false);
@@ -143,10 +178,13 @@ function LoginMistressItems() {
 		InventoryDelete(Player, "MistressTop", "Cloth", false);
 		InventoryDelete(Player, "MistressBottom", "ClothLower", false);
 	}
-	ServerPlayerInventorySync();
 }
 
-// Only players that are ponies or trainers can have the pony equipment
+/**
+ * Adds or confiscates pony equipment from the player. Only players that are ponies or trainers can have the pony
+ * equipment.
+ * @returns {void} Nothing
+ */
 function LoginStableItems() {
 	if (LogQuery("JoinedStable", "PonyExam") || LogQuery("JoinedStable", "TrainerExam")) {
 		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth", false);
@@ -154,43 +192,88 @@ function LoginStableItems() {
 		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryAdd(Player, "PonyBoots", "Shoes", false);
 		InventoryAdd(Player, "PonyBoots", "ItemBoots", false);
+		InventoryAdd(Player,"PonyHood", "ItemHood", false);
+		InventoryAdd(Player,"HoofMittens", "ItemHands", false);
 	} else {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth", false);
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth2", false);
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
+		InventoryDelete(Player, "PonyHood", "ItemHood",false)
+		InventoryDelete(Player,"HoofMittens", "ItemHands", false);
 	}
-	ServerPlayerInventorySync();
 }
 
-// Make sure a player without lover is not wearing any lovers exclusive items
+/**
+ * Ensures lover-exclusive items are removed if the player has no lovers.
+ * @returns {void} Nothing
+ */
 function LoginLoversItems() {
-	if (Player.Lovership == null) {
-		for(var A = 0; A < Player.Appearance.length; A++) {
-			if (Player.Appearance[A].Asset.Group.Name == "ItemNeck" && Player.Appearance[A].Property && Player.Appearance[A].Asset.Name == "SlaveCollar" && Player.Appearance[A].Property.Type == "LoveLeatherCollar") {
-				Player.Appearance[A].Property = null;
-				Player.Appearance[A].Color = "Default";
-			}
-			if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && ((Player.Appearance[A].Property.LockedBy == "LoversPadlock") || (Player.Appearance[A].Property.LockedBy == "LoversTimerPadlock"))) {
-				InventoryRemove(Player, Player.Appearance[A].Asset.Group.Name);
-				A--;
-			}
+	var LoversNumbers = Player.GetLoversNumbers();
+
+	//check to remove love leather collar slave collar if no lover
+	if (LoversNumbers.length < 1) {
+		var Collar = InventoryGet(Player,"ItemNeck");
+		if (Collar && Collar.Property && (Collar.Asset.Name == "SlaveCollar") && (Collar.Property.Type == "LoveLeatherCollar")) {
+			Collar.Property = null;
+			Collar.Color = "Default";
+		}
+	}
+
+	// remove any item that was lover locked if the number on the lock does not match any lover
+	for (let A = 0; A < Player.Appearance.length; A++) {
+		if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && Player.Appearance[A].Property.LockedBy.startsWith("Lovers")
+			&& Player.Appearance[A].Property.MemberNumber && (LoversNumbers.indexOf(Player.Appearance[A].Property.MemberNumber) < 0)) {
+			InventoryRemove(Player, Player.Appearance[A].Asset.Group.Name);
+			A--;
 		}
 	}
 }
 
-// Checks every owned item to see if its buygroup contains an item the player does not have
-// This allows the user to collect any items from a modified buy group already purchased
+/**
+ * Checks every owned item to see if its BuyGroup contains an item the player does not have. This allows the player to
+ * collect any items that have been added to the game which are in a BuyGroup that they have already purchased.
+ * @returns {void} Nothing
+ */
 function LoginValideBuyGroups() {
-	for (var A = 0; A < Asset.length; A++)
+	for (let A = 0; A < Asset.length; A++)
 		if ((Asset[A].BuyGroup != null) && InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name))
-			for (var B = 0; B < Asset.length; B++)
+			for (let B = 0; B < Asset.length; B++)
 				if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup) && !InventoryAvailable(Player, Asset[B].Name, Asset[B].Group.Name))
-					InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
+					InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name, false);
 }
 
-// When the character logs, we analyze the data
+/**
+ * Checks if the player arrays contains any item that does not exists and saves them.
+ * @returns {void} Nothing
+ */
+function LoginValidateArrays() { 
+	var CleanBlockItems = AssetCleanArray(Player.BlockItems);
+	if (CleanBlockItems.length != Player.BlockItems.length) { 
+		Player.BlockItems = CleanBlockItems;
+		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
+	}
+	
+	var CleanLimitedItems = AssetCleanArray(Player.LimitedItems);
+	if (CleanLimitedItems.length != Player.LimitedItems.length) { 
+		Player.LimitedItems = CleanLimitedItems;
+		ServerSend("AccountUpdate", { LimitedItems: Player.LimitedItems });
+	}
+
+	var CleanHiddenItems = AssetCleanArray(Player.HiddenItems);
+	if (CleanHiddenItems.length != Player.HiddenItems.length) {
+		Player.HiddenItems = CleanHiddenItems;
+		ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems });
+	}
+}
+
+/**
+ * Handles player login response data
+ * @param {Character | string} C - The Login response data - this will either be the player's character data if the
+ * login was successful, or a string error message if the login failed.
+ * @returns {void} Nothing
+ */
 function LoginResponse(C) {
 
 	// If the return package contains a name and a account name
@@ -198,7 +281,7 @@ function LoginResponse(C) {
 
 		// In relog mode, we jump back to the previous screen, keeping the current game flow
 		if (RelogData != null) {
-			LoginMessage = "";
+			LoginUpdateMessage();
 			ElementRemove("InputPassword");
 			Player.OnlineID = C.ID.toString();
 			CurrentModule = RelogData.Module;
@@ -217,7 +300,6 @@ function LoginResponse(C) {
 		if ((C.Name != null) && (C.AccountName != null)) {
 
 			// Make sure we have values
-			LoginMessage = "";
 			if (C.Appearance == null) C.Appearance = [];
 			if (C.AssetFamily == null) C.AssetFamily = "Female3DCG";
 
@@ -228,7 +310,6 @@ function LoginResponse(C) {
 			Player.Title = C.Title;
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
-			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
 			Player.Game = C.Game;
 			Player.Description = C.Description;
 			Player.Creation = C.Creation;
@@ -236,8 +317,9 @@ function LoginResponse(C) {
 			WardrobeFixLength();
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
-			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;;
+			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
 			Player.LimitedItems = ((C.LimitedItems == null) || !Array.isArray(C.LimitedItems)) ? [] : C.LimitedItems;
+			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 
@@ -246,10 +328,12 @@ function LoginResponse(C) {
 			if ((Player.Ownership != null) && (Player.Ownership.Name != null))
 				Player.Owner = (Player.Ownership.Stage == 1) ? Player.Ownership.Name : "";
 
-			// Loads the lovership data
-			Player.Lovership = C.Lovership;
-			if ((Player.Lovership != null) && (Player.Lovership.Name != null))
-				Player.Lover = (Player.Lovership.Stage == 2) ? Player.Lovership.Name : "";
+			// Ensures lovership data is compatible and converts lovers to lovership
+			Player.Lovership = Array.isArray(C.Lovership) ? C.Lovership : C.Lovership != undefined ? [C.Lovership] : [];
+			if ((C.Lover != null) && (C.Lover != "undefined") && C.Lover.startsWith("NPC-")) {
+				Player.Lover = C.Lover;
+				ServerPlayerSync();
+			}
 
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
@@ -288,19 +372,22 @@ function LoginResponse(C) {
 			PrivateCharacter = [];
 			PrivateCharacter.push(Player);
 			if (C.PrivateCharacter != null)
-				for(var P = 0; P < C.PrivateCharacter.length; P++)
+				for (let P = 0; P < C.PrivateCharacter.length; P++)
 					PrivateCharacter.push(C.PrivateCharacter[P]);
 			SarahSetStatus();
 
 			// Fixes a few items
+			var InventoryBeforeFixes = InventoryStringify(Player);
 			InventoryRemove(Player, "ItemMisc");
-			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth");
+			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth", false);
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 			LoginValidCollar();
 			LoginMistressItems();
 			LoginStableItems();
 			LoginLoversItems();
 			LoginValideBuyGroups();
+			LoginValidateArrays();
+			if (InventoryBeforeFixes != InventoryStringify(Player)) ServerPlayerInventorySync();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell
@@ -332,12 +419,17 @@ function LoginResponse(C) {
 
 			}
 
-		} else LoginMessage = TextGet("ErrorLoadingCharacterData");
-	} else LoginMessage = TextGet(C);
-
+		} else {
+            LoginStatusReset("ErrorLoadingCharacterData");
+        }
+	} else LoginStatusReset(C);
+    LoginUpdateMessage();
 }
 
-// When the user clicks on the character login screen
+/**
+ * Handles player click events on the character login screen
+ * @returns {void} Nothing
+ */
 function LoginClick() {
 	
 	// Opens the cheat panel
@@ -375,25 +467,75 @@ function LoginClick() {
 		TranslationNextLanguage();
 		TextLoad();
 		AssetLoadDescription("Female3DCG");
-		LoginMessage = "";
+		LoginUpdateMessage();
 	}
 	
 }
 
-// When the user press "enter" we try to login
+/**
+ * Handles player keyboard events on the character login screen, "enter" will login
+ * @returns {void} Nothing
+ */
 function LoginKeyDown() {
 	if (KeyPress == 13) LoginDoLogin();
 }
 
-// If we must try to login (make sure we don't send the login query twice)
+/**
+ * Attempt to log the user in based on their input username and password
+ * @returns {void} Nothing
+ */
 function LoginDoLogin() {
-	if (LoginMessage != TextGet("ValidatingNamePassword")) {
+
+    // Ensure the login request is not sent twice
+	if (!LoginSubmitted) {
 		var Name = ElementValue("InputName");
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-			LoginMessage = TextGet("ValidatingNamePassword");
+		    LoginSetSubmitted();
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
-		} else LoginMessage = TextGet("InvalidNamePassword");
+		} else LoginStatusReset("InvalidNamePassword");
 	}
+    LoginUpdateMessage();
+
+}
+
+/**
+ * Sets the state of the login page to the submitted state
+ * @returns {void} Nothing
+ */
+function LoginSetSubmitted() {
+    LoginSubmitted = true;
+    if (ServerIsConnected) LoginErrorMessage = "";
+}
+
+/**
+ * Resets the login submission state
+ * @param {boolean} IsRelog - whether or not we're on the relog screen
+ * @param {string} ErrorMessage - the login error message to set if the login is invalid - if not specified, will clear the login error message
+ * @returns {void} Nothing
+ */
+function LoginStatusReset(ErrorMessage, IsRelog) {
+    LoginSubmitted = false;
+    LoginIsRelog = !!IsRelog;
+    if (ErrorMessage) LoginErrorMessage = ErrorMessage;
+}
+
+/**
+ * Updates the message on the login page
+ * @returns {void} Nothing
+ */
+function LoginUpdateMessage() {
+	LoginMessage = TextGet(LoginGetMessageKey());
+}
+
+/**
+ * Retrieves the correct message key based on the current state of the login page
+ * @returns {string} The key of the message to display
+ */
+function LoginGetMessageKey() {
+    if (LoginErrorMessage) return LoginErrorMessage;
+    else if (!ServerIsConnected) return "ConnectingToServer";
+    else if (LoginSubmitted) return "ValidatingNamePassword";
+    else return LoginIsRelog ? "EnterPassword" : "EnterNamePassword";
 }

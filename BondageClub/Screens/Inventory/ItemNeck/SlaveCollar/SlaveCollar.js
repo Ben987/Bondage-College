@@ -81,7 +81,11 @@ var InventoryItemNeckSlaveCollarTypes = [
         Name: "SlenderSteelCollar",
         Image: "SlenderSteelCollar",
         Property: { Type: "SlenderSteelCollar", Effect: [], Block: [] }
-	},
+	},{
+        Name: "HeartLinkChoker",
+        Image: "HeartLinkChoker",
+        Property: { Type: "HeartLinkChoker", Effect: [], Block: [] }
+	}
 ];
 
 // Loads the item extension properties
@@ -121,7 +125,7 @@ function InventoryItemNeckSlaveCollarDraw() {
 			DrawText(DialogFind(Player, "SlaveCollarSelectType"), 1500, 250, "white", "gray");
 			DrawButton(1665, 25, 90, 90, "", "White", "Icons/Next.png");
 			DrawButton(1775, 25, 90, 90, "", (DialogFocusItem.Color != null && DialogFocusItem.Color != "Default" && DialogFocusItem.Color != "None") ? DialogFocusItem.Color : "White", "Icons/ColorPick.png");
-			for (var I = InventoryItemNeckSlaveCollarOffset; I < InventoryItemNeckSlaveCollarTypes.length && I < InventoryItemNeckSlaveCollarOffset + 8; I++) {
+			for (let I = InventoryItemNeckSlaveCollarOffset; I < InventoryItemNeckSlaveCollarTypes.length && I < InventoryItemNeckSlaveCollarOffset + 8; I++) {
 				var Type = DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Type || "";
 				DrawButton(1000 + ((I - InventoryItemNeckSlaveCollarOffset) % 4) * 250, 350 + Math.floor((I - InventoryItemNeckSlaveCollarOffset) / 4) * 300, 225, 275, "", (Type == InventoryItemNeckSlaveCollarTypes[I].Name) ? "#888888" : "White");
 				DrawImage("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + InventoryItemNeckSlaveCollarTypes[I].Image + ".png", 1000 + ((I - InventoryItemNeckSlaveCollarOffset) % 4) * 250, 350 + Math.floor((I - InventoryItemNeckSlaveCollarOffset) / 4) * 300);
@@ -186,7 +190,7 @@ function InventoryItemNeckSlaveCollarClick() {
                 InventoryItemNeckSlaveCollarColor = DialogFocusItem.Color;
                 ElementCreateInput("InputColor", "text", (DialogColorSelect != null) ? DialogColorSelect.toString() : "");
             }
-			for (var I = InventoryItemNeckSlaveCollarOffset; I < InventoryItemNeckSlaveCollarTypes.length && I < InventoryItemNeckSlaveCollarOffset + 8; I++) {
+			for (let I = InventoryItemNeckSlaveCollarOffset; I < InventoryItemNeckSlaveCollarTypes.length && I < InventoryItemNeckSlaveCollarOffset + 8; I++) {
                 var Type = DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Type || "";
                 if ((MouseX >= 1000 + ((I - InventoryItemNeckSlaveCollarOffset) % 4) * 250) && (MouseX <= 1225 + ((I - InventoryItemNeckSlaveCollarOffset) % 4) * 250) && (MouseY >= 350 + Math.floor((I - InventoryItemNeckSlaveCollarOffset) / 4) * 300) && (MouseY <= 625 + Math.floor((I - InventoryItemNeckSlaveCollarOffset) / 4) * 300) && (Type != InventoryItemNeckSlaveCollarTypes[I].Name))
                     InventoryItemNeckSlaveCollarSetType(InventoryItemNeckSlaveCollarTypes[I].Name);

@@ -1,2 +1,5 @@
 EnterDescription,Enter your online description (1000 characters maximum)
 ViewDescription,CharacterName's online description
+Leave,Exit profile
+LeaveSave,Accept changes
+LeaveNoSave,Cancel changes

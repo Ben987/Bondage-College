@@ -2,7 +2,15 @@
 
 // Loads the item extension properties
 function InventoryItemMouthPlugGagLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Effect: ["GagHeavy"] };
+	if (DialogFocusItem.Property == null) {
+		DialogFocusItem.Property = { Type: null };
+	}
+	if (DialogFocusItem.Property.Effect == null) {
+		DialogFocusItem.Property.Effect = ["GagMedium", "OpenMouth"];
+		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+		CharacterRefresh(C);
+		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
+	}
 }
 
 // Draw the item extension screen
@@ -38,8 +46,8 @@ function InventoryItemMouthPlugGagSetType(NewType) {
 		InventoryItemMouthPlugGagLoad();
 	}
 	DialogFocusItem.Property.Type = NewType;
-	if (NewType == null) DialogFocusItem.Property.Effect = ["GagEasy"];
-	else if (NewType == "Plug") DialogFocusItem.Property.Effect = ["GagHeavy"];
+	if (NewType == null) DialogFocusItem.Property.Effect = ["GagMedium", "OpenMouth"];
+	else if (NewType == "Plug") DialogFocusItem.Property.Effect = ["BlockMouth", "GagTotal"];
 
 	// Adds the lock effect back if it was padlocked
 	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {

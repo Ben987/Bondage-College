@@ -7,17 +7,35 @@ var MainHallMaid = null;
 var MainHallIsMaid = false;
 var MainHallIsHeadMaid = false;
 var MainHallHasOwnerLock = false;
+var MainHallHasLoverLock = false;
 var MainHallHasSlaveCollar = false;
 var MainHallTip = 0;
 
-// Returns TRUE if a dialog option is available
+/**
+ * Checks if the dialog option to trick the maid is available
+ * @returns {boolean} - Returns TRUE if the maid can be tricked
+ */
 function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlockQuest) }
 
-// Main hall loading
+/**
+ * Checks, if the player has an owner or lover lock on her
+ * @returns {boolean} - Returns true, if the player has either a lover or owner item on herself, false otherwise
+ */
+function MainHallHasOwnerOrLoverItem() { return MainHallHasLoverLock || MainHallHasOwnerLock }
+
+/**
+ * Loads the main hall by setting up the NPCs, CSVs and global variables required.
+ * @returns {void} - Nothing
+ */
 function MainHallLoad() {
 	
 	// Loads the variables and dialog
+	ChatSearchSafewordAppearance = null;
 	CharacterSetActivePose(Player, null);
+	if (ChatSearchPreviousActivePose != null) {
+		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
+		ChatSearchPreviousActivePose = null;
+	}
 	MainHallBackground = "MainHall";
 	MainHallStartEventTimer = null;
 	MainHallNextEventTimer = null;
@@ -25,7 +43,8 @@ function MainHallLoad() {
 	MainHallIsMaid = LogQuery("JoinedSorority", "Maid");
 	MainHallIsHeadMaid = LogQuery("LeadSorority", "Maid");
 	MainHallHasOwnerLock = InventoryCharacterHasOwnerOnlyRestraint(Player);
-	for (var A = 0; A < Player.Appearance.length; A++)
+	MainHallHasLoverLock = InventoryCharacterHasLoverOnlyRestraint(Player);
+	for (let A = 0; A < Player.Appearance.length; A++)
 		if (Player.Appearance[A].Asset.Name == "SlaveCollar")
 			if (Player.Appearance[A].Property)
 				MainHallHasSlaveCollar = true;
@@ -36,10 +55,14 @@ function MainHallLoad() {
 	CommonReadCSV("NoArravVar", "Room", "AsylumEntrance", "Dialog_NPC_AsylumEntrance_KidnapNurse");
 	CommonReadCSV("NoArravVar", "Room", "AsylumEntrance", "Dialog_NPC_AsylumEntrance_EscapedPatient");
 	CommonReadCSV("NoArravVar", "Room", "Prison", "Dialog_NPC_Prison_Police");
+	CommonReadCSV("NoArravVar", "Character", "Relog", "Text_Relog");
 
 }
 
-// Run the main hall screen
+/**
+ * Runs and draws the main hall screen
+ * @returns {void} - Nothing
+ */
 function MainHallRun() {
 
 	// If the player is dressed up while being a club slave, the maid intercepts her
@@ -144,7 +167,11 @@ function MainHallRun() {
 
 }
 
-// When the player walks to another room, she can be attacked by a random kidnapper
+/**
+ * Validates the player's move into a new room. Before entering the requested rooms, the player can be attacked by random kidnappers or intercepted by various NPC types
+ * @param {string} RoomName - Name of the room the player is heading to 
+ * @returns {void} - Nothing
+ */
 function MainHallWalk(RoomName) {
 
 	// Each time the player travels from room to room, the odds raises for a random event
@@ -179,7 +206,10 @@ function MainHallWalk(RoomName) {
 
 }
 
-// When the user clicks in the main hall screen
+/**
+ * Handles clicks in the main hall screen
+ * @returns {void} - Nothing
+ */
 function MainHallClick() {
 
 	// Character, Dressing, Exit & Chat
@@ -187,7 +217,7 @@ function MainHallClick() {
 	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 25) && (MouseY < 115)) InformationSheetLoadCharacter(Player);
 	if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 25) && (MouseY < 115) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) window.location = window.location;
-	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 145) && (MouseY < 235)) ChatRoomStart("", "", "MainHall", "IntroductionDark", CommonBackgroundList.slice());
+	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 145) && (MouseY < 235)) ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList);
 
 	// The options below are only available if the player can move
 	if (Player.CanWalk()) {
@@ -232,21 +262,28 @@ function MainHallClick() {
 
 }
 
-// The maid can release the player
+/**
+ * Triggered when the player asks for release, the player is freed from restraints and any combo locks
+ * @returns {void} - Nothing
+ */
 function MainHallMaidReleasePlayer() {
 	if (MainHallMaid.CanInteract()) {
-		for(var D = 0; D < MainHallMaid.Dialog.length; D++)
+		for (let D = 0; D < MainHallMaid.Dialog.length; D++)
 			if ((MainHallMaid.Dialog[D].Stage == "0") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "AlreadyReleased");
 		CharacterRelease(Player);
+		CharacterReleaseFromLock(Player, "CombinationPadlock");
 		MainHallMaid.Stage = "10";
 	} else MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "CannotRelease");
 }
 
-// If the maid is angry, she might gag or tie up the player
+/**
+ * Triggered when the maid is angry at the player, she might gag or tie her up if the player is not dominant or not a head maid
+ * @returns {void} - Nothing
+ */
 function MainHallMaidAngry() {
 	if ((ReputationGet("Dominant") < 30) && !MainHallIsHeadMaid) {
-		for(var D = 0; D < MainHallMaid.Dialog.length; D++)
+		for (let D = 0; D < MainHallMaid.Dialog.length; D++)
 			if ((MainHallMaid.Dialog[D].Stage == "PlayerGagged") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "LearnedLesson");
 		ReputationProgress("Dominant", 1);
@@ -258,23 +295,32 @@ function MainHallMaidAngry() {
 	} else MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "Cower");
 }
 
-// The maid can be tricked to release Sarah
+/**
+ * Triggered when the maid is tricked into releasing Sarah
+ * @returns {void} - Nothing
+ */
 function MainHallFreeSarah() {
 	ReputationProgress("Dominant", -4);
 	SarahUnlock();
 	DialogLeave();
 }
 
-// When the maid unlocks the player from an owner
+/**
+ * Triggered when the maid unlocks the player from an owner
+ * @returns {void} - Nothing
+ */
 function MainHallMaidShamePlayer() {
 	CharacterRelease(Player);
 	MainHallHasOwnerLock = false;
 	MainHallMaidPunishmentPlayer();
 }
 
-// When the maid changes the slave collar model to default
+/**
+ * Triggered when the maid resets the slave collar to default. The player is punished after.
+ * @returns {void} - Nothing
+ */
 function MainHallMaidChangeCollarPlayer() {
-	for (var A = 0; A < Player.Appearance.length; A++)
+	for (let A = 0; A < Player.Appearance.length; A++)
 		if (Player.Appearance[A].Asset.Name == "SlaveCollar") {
 			Player.Appearance[A].Property = null;
 			Player.Appearance[A].Color = "Default";
@@ -283,7 +329,10 @@ function MainHallMaidChangeCollarPlayer() {
 	MainHallMaidPunishmentPlayer();
 }
 
-// When the maid punishes the player, she get forced naked for an hour and loses reputation
+/**
+ * Triggered when the maid punishes the player. The player is stripped and loses dominant/submissive reputation.
+ * @returns {void} - Nothing
+ */
 function MainHallMaidPunishmentPlayer() {
 	CharacterNaked(Player);
 	LogAdd("BlockChange","Rule", CurrentTime + 3600000);
@@ -291,7 +340,10 @@ function MainHallMaidPunishmentPlayer() {
 	if (ReputationGet("Dominant") < -10) ReputationProgress("Dominant", 10);
 }
 
-// When the maid catches the club slave player with clothes, she strips her and starts the timer back
+/**
+ * Triggered when the maid catches the club slave player with clothes. The player is stripped and the timer is restarted.
+ * @returns {void} - Nothing
+ */
 function MainHallResetClubSlave() {
 	CharacterNaked(Player);
 	LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
@@ -299,7 +351,10 @@ function MainHallResetClubSlave() {
 	TitleSet("ClubSlave");
 }
 
-// The maid can lead the player to the club management to be expelled
+/**
+ * Triggered when the player needs to be brought to the club management room to be expelled
+ * @returns {void} - Nothing
+ */
 function MainHallMistressExpulsion() {
 	CommonSetScreen("Room", "Management");
 	ManagementMistress.Stage = "500";
@@ -307,7 +362,10 @@ function MainHallMistressExpulsion() {
 	CharacterSetCurrent(ManagementMistress);
 }
 
-// The maid can introduce the game to the player
+/**
+ * Sets the maid dialog stage to the introduction for new players
+ * @returns {void} - Nothing
+ */
 function MainHallMaidIntroduction() {
 	if (!LogQuery("IntroductionDone", "MainHall") && Player.CanTalk()) {
 		MainHallMaid.Stage = "1000";
@@ -317,7 +375,18 @@ function MainHallMaidIntroduction() {
 	}
 }
 
-// Flag the introduction as done
+/**
+ * Flags the introduction as done
+ * @returns {void} - Nothing
+ */
 function MainHallMaidIntroductionDone() {
 	LogAdd("IntroductionDone", "MainHall");
+}
+
+/**
+ * Handles key presses while in the main hall screen
+ * @returns {void} - Nothing
+ */
+function MainHallKeyDown() {
+	Draw3DKeyDown();
 }

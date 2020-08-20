@@ -12,14 +12,14 @@ function InventoryItemMouthPumpGagDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	DrawText(DialogFind(Player, "PumpLevel" + DialogFocusItem.Property.PumpLevel.toString()), 1500, 600, "White", "Gray");
-	if(DialogFocusItem.Property.PumpLevel > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "Empty"), "White");
-    if(DialogFocusItem.Property.PumpLevel < 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Light"), "White");
-    if(DialogFocusItem.Property.PumpLevel > 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Light"), "White");
-    if(DialogFocusItem.Property.PumpLevel < 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Inflated"), "White");
-    if(DialogFocusItem.Property.PumpLevel > 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Inflated"), "White");
-    if(DialogFocusItem.Property.PumpLevel < 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "Bloated"), "White");
-    if(DialogFocusItem.Property.PumpLevel > 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "Bloated"), "White");
-    if(DialogFocusItem.Property.PumpLevel < 4) DrawButton(1375, 770, 200, 55, DialogFind(Player, "Maximum"), "White");
+	if (DialogFocusItem.Property.PumpLevel > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "Empty"), "White");
+    if (DialogFocusItem.Property.PumpLevel < 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Light"), "White");
+    if (DialogFocusItem.Property.PumpLevel > 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Light"), "White");
+    if (DialogFocusItem.Property.PumpLevel < 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Inflated"), "White");
+    if (DialogFocusItem.Property.PumpLevel > 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Inflated"), "White");
+    if (DialogFocusItem.Property.PumpLevel < 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "Bloated"), "White");
+    if (DialogFocusItem.Property.PumpLevel > 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "Bloated"), "White");
+    if (DialogFocusItem.Property.PumpLevel < 4) DrawButton(1375, 770, 200, 55, DialogFind(Player, "Maximum"), "White");
 }
 
 // Catches the item extension clicks
@@ -48,11 +48,11 @@ function InventoryItemMouthPumpGagSetPump(Modifier) {
 
 	// Sets the pump & gag level
 	DialogFocusItem.Property.PumpLevel = DialogFocusItem.Property.PumpLevel + Modifier;
-	if (DialogFocusItem.Property.PumpLevel == 0) delete DialogFocusItem.Property.Effect;
-	if (DialogFocusItem.Property.PumpLevel == 1) DialogFocusItem.Property.Effect = ["GagLight"];
-	if (DialogFocusItem.Property.PumpLevel == 2) DialogFocusItem.Property.Effect = ["GagEasy"];
-	if (DialogFocusItem.Property.PumpLevel == 3) DialogFocusItem.Property.Effect = ["GagMedium"];
-	if (DialogFocusItem.Property.PumpLevel == 4) DialogFocusItem.Property.Effect = ["GagVeryHeavy"];
+	if (DialogFocusItem.Property.PumpLevel == 0) DialogFocusItem.Property.Effect = ["BlockMouth"];
+	if (DialogFocusItem.Property.PumpLevel == 1) DialogFocusItem.Property.Effect = ["BlockMouth", "GagLight"];
+	if (DialogFocusItem.Property.PumpLevel == 2) DialogFocusItem.Property.Effect = ["BlockMouth", "GagEasy"];
+	if (DialogFocusItem.Property.PumpLevel == 3) DialogFocusItem.Property.Effect = ["BlockMouth", "GagMedium"];
+	if (DialogFocusItem.Property.PumpLevel == 4) DialogFocusItem.Property.Effect = ["BlockMouth", "GagVeryHeavy"];
 
 	// The more it's pumped, the harder it becomes to struggle out of it
 	if (DialogFocusItem.Property.PumpLevel == 0) delete DialogFocusItem.Property.Difficulty;

@@ -32,7 +32,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 410,0,0,CanUntie,(Untie her.)ADD_MINUTES:1,(You undo the knots and release her from|the ropes while she stretches happily.),410,0,0,Untie()
 410,0,0,CanUngag,(Ungag her.)ADD_MINUTES:1,(You remove the gag and she smiles.)|This damsel grant you mercy thee!,410,0,0,Ungag()
 410,0,0,CanKiss,(Kiss her.)ADD_MINUTES:1,(You get close and give her a long kiss on the lips.)|COMMON_PLAYERNAME!  This is inappropriate.,410,0,0,Kiss()
-410,0,0,CanAbuse,(Tickle her.)ADD_MINUTES:1,"(She laughs and trashes in her bondage|while you tickle her, she's enjoying it.)",410,0,0,Tickle()
+410,0,0,CanAbuse,(Tickle her.)ADD_MINUTES:1,"(She laughs and thrashes in her bondage|while you tickle her, she's enjoying it.)",410,0,0,Tickle()
 410,0,0,CanAbuse,(Spank her.)ADD_MINUTES:1,(You spank her pretty hard on the butt.|She seems to find it inappropriate.),410,0,0,Spank()
 410,0,0,CanAbuse,(Masturbate her.)ADD_MINUTES:1,(She struggles but can't avoid your touch.|She seems to find it very inappropriate.),410,0,0,Masturbate()
 500,0,0,,You're beautiful|tonight my queen.,"Well thank you, I appreciate.",500,0,0,

@@ -50,12 +50,12 @@ function ManagementCanBeReleased() { return ((Player.Owner != "") && (Player.Own
 function ManagementCannotBeReleased() { return ((Player.Owner != "") && (Player.Ownership == null) && PrivateOwnerInRoom()) }
 function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
-function ManagementLoverFromBondageCollege() { return ((Player.Lover == "NPC-Sidney") || (Player.Lover == "NPC-Amanda") || (Player.Lover == "NPC-Jennifer")) }
-function ManagementCanBreakDatingLoverOnline() { return ((Player.Lover == "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage != 2)) }
-function ManagementCanBreakUpLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage == 2) && (Player.Lovership.Start != null) && (Player.Lovership.Start + 604800000 < CurrentTime)) }
-function ManagementCannotBreakUpLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage == 2) && (Player.Lovership.Start != null) && (Player.Lovership.Start + 604800000 >= CurrentTime)) }
-function ManagementCanBreakUpLoverNPC() { return ((Player.Lover != "") && (Player.Lovership == null) && !PrivateLoverInRoom()) }
-function ManagementCannotBreakUpLoverNPC() { return ((Player.Lover != "") && (Player.Lovership == null) && PrivateLoverInRoom()) }
+function ManagementLoverFromBondageCollege() { var L = Player.GetLoversNumbers(); return ((L.indexOf("NPC-Sidney") >= 0) || (L.indexOf("NPC-Amanda") >= 0) || (L.indexOf("NPC-Jennifer") >= 0)); }
+function ManagementCanBreakDatingLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage != 2)); }
+function ManagementCanBreakUpLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage == 2) && (Player.Lovership[L].Start != null) && (Player.Lovership[L].Start + 604800000 < CurrentTime)); }
+function ManagementCannotBreakUpLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage == 2) && (Player.Lovership[L].Start != null) && (Player.Lovership[L].Start + 604800000 >= CurrentTime)) }
+function ManagementCanBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && !PrivateLoverInRoom(L)) }
+function ManagementCannotBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && PrivateLoverInRoom(L)) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
 function ManagementWearingSlaveCollar() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar")) }
 function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
@@ -66,9 +66,14 @@ function ManagementCannotBeClubMistressLaugh() { return ((ReputationGet("Dominan
 function ManagementCannotBeClubMistressTime() { return (((Math.floor((CurrentTime - Player.Creation) / 86400000)) < 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()) }
 function ManagementMistressCanBePaid() { return (LogQuery("ClubMistress", "Management") && !LogQuery("MistressWasPaid", "Management")) }
 function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Management") && LogQuery("MistressWasPaid", "Management")) }
-function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)) }
-function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)) }
+function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)) }
+function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)) }
 function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyRestraint(Player) }
+/**
+ * Checks, if the player is wearing a lover locked restraint
+ * @returns {boolean} - Returns true, if the player wears a lover locked item, false otherwise
+ */
+function ManagementCannotBeClubSlaveLoverLock() { return InventoryCharacterHasLoverOnlyRestraint(Player) }
 function ManagementCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
 function ManagementCanMasturbate() { return (Player.CanInteract() && !CurrentCharacter.IsVulvaChaste()) }
 function ManagementCanPlayWithSub() { return (DialogReputationLess("Dominant", 24) && !InventoryCharacterHasLockedRestraint(Player)) }
@@ -77,7 +82,7 @@ function ManagementCannotPlayWithSubLock() { return (DialogReputationLess("Domin
 // Returns TRUE if there's no other Mistress in the player private room
 function ManagementNoMistressInPrivateRoom() {
 	if (PrivateCharacter.length <= 1) return true;
-	for (var C = 1; C < PrivateCharacter.length; C++)
+	for (let C = 1; C < PrivateCharacter.length; C++)
 		if ((PrivateCharacter[C].Title != null) && (PrivateCharacter[C].Title == "Mistress"))
 			return false;
 	return true;
@@ -85,7 +90,7 @@ function ManagementNoMistressInPrivateRoom() {
 
 // Returns TRUE if any friend in the private room is chaste
 function ManagementFriendIsChaste() {
-	for(var C = 1; C < PrivateCharacter.length; C++)
+	for (let C = 1; C < PrivateCharacter.length; C++)
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsChaste())
 			return true;
 	return false;
@@ -206,7 +211,7 @@ function ManagementSwitchToAngryMistress() {
 
 // Releases all girls that are locked in chastity items in the private room
 function ManagementReleasePrivateRoom() {
-	for (var P = 1; P < PrivateCharacter.length; P++) {
+	for (let P = 1; P < PrivateCharacter.length; P++) {
 		if (PrivateCharacter[P].IsVulvaChaste()) InventoryRemove(PrivateCharacter[P], "ItemPelvis");
 		if (PrivateCharacter[P].IsBreastChaste()) InventoryRemove(PrivateCharacter[P], "ItemBreast");
 		ServerPrivateCharacterSync();
@@ -245,15 +250,15 @@ function ManagementBreakTrialOnline() {
 	if ((Player.Ownership != null) && (Player.Ownership.MemberNumber != null)) {
 		ServerSend("AccountOwnership", { MemberNumber: Player.Ownership.MemberNumber, Action: "Break" });
 		Player.Ownership = null;
-		for (var A = 0; A < Player.Appearance.length; A++)
+		for (let A = 0; A < Player.Appearance.length; A++)
 			ServerValidateProperties(Player, Player.Appearance[A]);
 	}
 }
 
 // When the Mistress breaks the bond between lovers
-function ManagementBreakLover() {
+function ManagementBreakLover(L) {
 	Player.Lover = "";
-	if ((Player.Lovership != null) && (Player.Lovership.MemberNumber != null)) ServerSend("AccountLovership", { MemberNumber: Player.Lovership.MemberNumber, Action: "Break" });
+	ServerSend("AccountLovership", { MemberNumber: Player.Lovership[L].MemberNumber ? Player.Lovership[L].MemberNumber : -1, Name: Player.Lovership[L].Name, Action: "Break" });
 	ServerPlayerSync();
 }
 
@@ -486,6 +491,7 @@ function ManagementRemoveGag() {
 	InventoryRemove(Player, "ItemMouth2");
 	InventoryRemove(Player, "ItemMouth3");
 	InventoryRemove(Player, "ItemHead");
+	InventoryRemove(Player, "ItemHood");
 }
 
 // Locks the player in a cell for 5 minutes

@@ -3,7 +3,6 @@
 // Loads the item extension properties
 function InventoryItemArmsStraitJacketLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
-	DialogFocusItem.Property.SelfUnlock = false;
 }
 
 // Draw the item extension screen
@@ -57,12 +56,6 @@ function InventoryItemArmsStraitJacketSetPose(NewPose) {
 		if (NewPose == "Normal") DialogFocusItem.Property.Difficulty = 3;
 		if (NewPose == "Snug") DialogFocusItem.Property.Difficulty = 6;
 		if (NewPose == "Tight") DialogFocusItem.Property.Difficulty = 9;
-	}
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
 	}
 
 	// Refreshes the character and chatroom

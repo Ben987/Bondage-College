@@ -4,15 +4,29 @@ var CollegeTeacherMildred = null;
 var CollegeTeacherMildredLove = 0;
 
 // Returns TRUE if the dialog option should be shown
+/**
+ * Checks, if the teacher can be invited to the player's room
+ * @returns {boolean} - Returns true, if the player can invite the teacher to her room, false otherwise
+ */
 function CollegeTeacherCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
+
+/**
+ * Checks, if Mildred's love level is higher than a given value
+ * @param {string} LoveLevel - The level of love to check against
+ * @returns {boolean} - Returns true, if Mildred's love is equal or higher than the given level, false otherwise
+ */
 function CollegeTeacherMildredLoveIs(LoveLevel) { return (CollegeTeacherMildredLove >= parseInt(LoveLevel)) }
 
-// Fully dress-up Mildred
+/**
+ * Fully dress-up Mildred
+ * @returns {void} - Nothing
+ */
 function CollegeTeacherMildredClothes() {
 	CharacterNaked(CollegeTeacherMildred);
 	InventoryWear(CollegeTeacherMildred, "TeacherOutfit1", "Cloth", "Default");
 	InventoryWear(CollegeTeacherMildred, "PussyDark3", "Pussy", "#333333");
 	InventoryWear(CollegeTeacherMildred, "Eyes1", "Eyes", "#a57b78");
+	InventoryWear(CollegeTeacherMildred, "Eyes1", "Eyes2", "#a57b78");
 	InventoryWear(CollegeTeacherMildred, "Glasses4", "Glasses", "#333333");
 	InventoryWear(CollegeTeacherMildred, "Mouth", "Mouth", "Default");
 	InventoryWear(CollegeTeacherMildred, "H0940", "Height", "Default");
@@ -28,6 +42,10 @@ function CollegeTeacherMildredClothes() {
 }
 
 // Generates Mildred
+/**
+ * Loads the teacher's lounge and generates Mildred
+ * @returns {void} - Nothing
+ */
 function CollegeTeacherLoad() {
 
 	// Generates a full Mildred model based on the Bondage College template
@@ -35,7 +53,7 @@ function CollegeTeacherLoad() {
 
 		// Do not generate her if she's already in the private room
 		if (PrivateCharacter.length > 1)
-			for (var P = 1; P < PrivateCharacter.length; P++)
+			for (let P = 1; P < PrivateCharacter.length; P++)
 				if (PrivateCharacter[P].Name == "Mildred")
 					return;
 		
@@ -51,7 +69,10 @@ function CollegeTeacherLoad() {
 
 }
 
-// Runs the room (shows the player and Mildred)
+/**
+ * Runs the room (shows the player and Mildred)
+ * @returns {void} - Nothing
+ */
 function CollegeTeacherRun() {
 	DrawCharacter(Player, 0, 0, 1);
 	if ((CollegeTeacherMildred != null) && !CollegeTeacherMildred.GoneAway) DrawCharacter(CollegeTeacherMildred, 500, 0, 1);
@@ -59,14 +80,23 @@ function CollegeTeacherRun() {
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
 }
 
-// When the user clicks in the room
+/**
+ * Handles the click events. Is called from CommonClick()
+ * @returns {void} - Nothing
+ */
 function CollegeTeacherClick() {
-	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000) && (CollegeTeacherMildred != null) && !CollegeTeacherMildred.GoneAway) CharacterSetCurrent(CollegeTeacherMildred);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	if (MouseIn(500, 0, 500, 1000) && (CollegeTeacherMildred != null) && !CollegeTeacherMildred.GoneAway) CharacterSetCurrent(CollegeTeacherMildred);
+	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
+	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 }
 
-// When Mildred love towards the player changes, it can also trigger an event.  When a good or bad move is done, her expression will change quickly.
+/**
+ * When Mildred love towards the player changes, it can also trigger an event.  
+ * When a good or bad move is done, her expression will change quickly.
+ * @param {string} LoveChange - The amount, the teacher's love changes
+ * @param {string} Event - The event to trigger
+ * @returns {void} - Nothing
+ */
 function CollegeTeacherMildredLoveChange(LoveChange, Event) {
 	if (LoveChange != null) CollegeTeacherMildredLove = CollegeTeacherMildredLove + parseInt(LoveChange);
 	if ((LoveChange != null) && (parseInt(LoveChange) < 0)) CharacterSetFacialExpression(CollegeTeacherMildred, "Eyes", "Dazed", 2);
@@ -84,7 +114,10 @@ function CollegeTeacherMildredLoveChange(LoveChange, Event) {
 	if (Event == "Gag") InventoryWear(Player, "DogMuzzleExposed", "ItemMouth");
 }
 
-// Dress back the player and Mildred
+/**
+ * Dress back the player and Mildred
+ * @returns {void} - Nothing
+ */
 function CollegeTeacherDressBack() {
 	CharacterRelease(Player);
 	CharacterRelease(CollegeTeacherMildred);
@@ -93,12 +126,20 @@ function CollegeTeacherDressBack() {
 	CollegeTeacherMildredClothes();
 }
 
-// Sets the current background for the scene
+/**
+ * Sets the current background for the scene
+ * @param {string} New - The name of the new background
+ * @returns {void} - Nothing
+ */
 function CollegeTeacherNewBackground(New) {
 	CollegeTeacherBackground = New;
 }
 
-// When the plater invites Mildred to her room
+//
+/**
+ * When the plater invites Mildred to her room, she gets the pillory
+ * @returns {void} - Nothing
+ */
 function CollegeTeacherInviteToPrivateRoom() {
 	CollegeTeacherDressBack();
 	InventoryAdd(Player, "Pillory", "ItemArms");

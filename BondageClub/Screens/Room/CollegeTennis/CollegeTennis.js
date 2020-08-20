@@ -4,11 +4,22 @@ var CollegeTennisJennifer = null;
 var CollegeTennisJenniferStatus = "";
 var CollegeTennisJenniferWillJoinRoom = false;
 
-// Returns TRUE if the dialog option should be shown
+/**
+ * Checks if Jennifer is currently in the given status.
+ * @param {string} QueryStatus - Status to query
+ * @returns {boolean} - Returns TRUE if Jennifer is currently in that status
+ */
 function CollegeTennisJenniferStatusIs(QueryStatus) { return (QueryStatus == CollegeTennisJenniferStatus) }
+/**
+ * Checks if the player can invite a new character to a private room. (Used for Jennifer.)
+ * @returns {boolean} - Returns TRUE if the player has a private room and an empty spot in it.
+ */
 function CollegeTennisCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
 
-// Generates Jennifer
+/**
+ * Loads the tennis screen by generating Jennifer. The player's relationship with her from the bondage college is taken into consideration.
+ * @returns {void} - Nothing
+ */
 function CollegeTennisLoad() {
 
 	// Sets Jennifer current relationship with the player
@@ -19,7 +30,7 @@ function CollegeTennisLoad() {
 	if (LogQuery("JenniferMistress", "NPC-Jennifer") && (Player.Owner == "NPC-Jennifer")) CollegeTennisJenniferStatus = "Owner";
 	if (LogQuery("JenniferMistress", "NPC-Jennifer") && (Player.Owner != "NPC-Jennifer")) CollegeTennisJenniferStatus = "ExOwner";
 	if (PrivateCharacter.length > 1)
-		for (var P = 1; P < PrivateCharacter.length; P++)
+		for (let P = 1; P < PrivateCharacter.length; P++)
 			if (PrivateCharacter[P].Name == "Jennifer")
 				CollegeTennisJenniferStatus = "Away";
 
@@ -34,6 +45,7 @@ function CollegeTennisLoad() {
 			CollegeTennisJennifer.Name = "Jennifer";
 			InventoryWear(CollegeTennisJennifer, "PussyLight1", "Pussy", "#edd6b0");
 			InventoryWear(CollegeTennisJennifer, "Eyes5", "Eyes", "#ffa239");
+			InventoryWear(CollegeTennisJennifer, "Eyes5", "Eyes2", "#ffa239");
 			InventoryWear(CollegeTennisJennifer, "Mouth", "Mouth", "Default");
 			InventoryWear(CollegeTennisJennifer, "H0980", "Height", "Default");
 			InventoryWear(CollegeTennisJennifer, "Small", "BodyUpper", "White");
@@ -61,7 +73,10 @@ function CollegeTennisLoad() {
 
 }
 
-// Runs the room (shows the player and Jennifer)
+/**
+ * Runs and draws the tennis screen. Shows the player and Jennifer
+ * @returns {void} - Nothing
+ */
 function CollegeTennisRun() {
 	DrawCharacter(Player, 500, 0, 1);
 	DrawCharacter(CollegeTennisJennifer, 1000, 0, 1);
@@ -69,15 +84,22 @@ function CollegeTennisRun() {
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
 }
 
-// When the user clicks in the room
+/**
+ * Handles clicks in the tennis court screen
+ * @returns {void} - Nothing
+ */
 function CollegeTennisClick() {
-	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(CollegeTennisJennifer);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	if (MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
+	if (MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(CollegeTennisJennifer);
+	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
+	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 }
 
-// When the tennis game starts
+/**
+ * Starts the tennis mini game on the given difficulty. The player is equipped with a racket.
+ * @param {number} Difficulty - Difficulty factor of the minigame
+ * @returns {void} - Nothing
+ */
 function CollegeTennisGameStart(Difficulty) {
 
 	// Gives a racket to the player
@@ -93,7 +115,10 @@ function CollegeTennisGameStart(Difficulty) {
 
 }
 
-// When the tennis game ends (an extra dialog can open to invite Jennifer after winning)
+/**
+ * Triggered when the tennis game ends. Winning opens a dialog option to allow the player to invite Jennifer to their room.
+ * @returns {void} - Nothing
+ */
 function CollegeTennisGameEnd() {
 	CommonSetScreen("Room", "CollegeTennis");
 	CharacterSetCurrent(CollegeTennisJennifer);
@@ -104,7 +129,10 @@ function CollegeTennisGameEnd() {
 	CollegeTennisJenniferWillJoinRoom = ((CollegeTennisJennifer.Name == "Jennifer") && MiniGameVictory && (MiniGameDifficulty != "Easy") && (CollegeTennisJenniferStatus != "Lover") && (CollegeTennisJenniferStatus != "Owned") && (CollegeTennisJenniferStatus != "Owner") && LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax));
 }
 
-// When the plater invites Jennifer to her room, she also gets a tennis racket
+/**
+ * Triggered when Jennifer is invited to the player's private room. The player earns a tennis racket.
+ * @returns {void} - Nothing
+ */
 function CollegeTennisInviteToPrivateRoom() {
 	InventoryAdd(Player, "SpankingToysTennisRacket", "ItemHands");
 	InventoryRemove(CollegeTennisJennifer, "ItemHands");

@@ -107,7 +107,7 @@ Bonjour Madame, aimeriez-vous me toucher?
 (Tickle her.)
 (Chatouillez-la.)
 ###_NPC
-(She trashes around and laughs from your skillful tickling hands.)
+(She thrashes around and laughs from your skillful tickling hands.)
 (Elle se débat et rit à cause de vos mains qui la chatouille habilement.)
 ###_PLAYER
 (Kiss her.)

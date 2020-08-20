@@ -184,7 +184,7 @@ ActivityTickleIntro,,,(She gets closer and starts to tickle you without mercy.) 
 ActivityTickle,,No please! Stop!,,RandomActivityLaunch(),
 ActivityTickle,,Eeeeeeaahahahaha!  Stop it!  Hahaahaahi.,,RandomActivityLaunch(),Player.CanTalk()
 ActivityTickle,,(Laugh out loud.),,RandomActivityLaunch(),
-ActivityTickle,,(Trash in your bondage.),,RandomActivityLaunch(),
+ActivityTickle,,(Thrash in your bondage.),,RandomActivityLaunch(),
 ActivityTickle,,(Pretend you're not ticklish.),,RandomActivityLaunch(),
 ActivitySpankIntro,,,(She raises her hand and spanks you many times on the butt.)  Endure the pain. It's not like you have much choice.,,
 ActivitySpank,,Ow!  That stings!,,RandomActivityLaunch(),

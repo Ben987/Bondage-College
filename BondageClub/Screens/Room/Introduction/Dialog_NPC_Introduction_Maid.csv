@@ -11,7 +11,7 @@ RemoveItemEars,,,(You pull the earplugs out.)  It will be easier to do my job.,,
 ItemArms,,,(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.,,
 RemoveItemArms,,,"(You free her arms and she nods slowly.)  Thanks a lot Miss, this is much better.",,
 ItemHands,,,(She sighs and lets you restrain her hands.) It's going be difficult to work now miss.,,
-RemoveItemHands,,,(You slowly release her hands.)  Thanks you Miss this is much better,,
+RemoveItemHands,,,"(You slowly release her hands.)  Thank you, Miss.  This is much better",,
 ItemLegs,,,(She submits to you while you restrain her legs.)  Do I get paid overtime if I'm stuck here?,,
 RemoveItemLegs,,,(You release her legs from the restraint.)  You're quite good with restraints Miss.,,
 ItemFeet,,,(She looks puzzled as you restrain her feet.)  I didn't plan on running anytime soon.,,
@@ -32,13 +32,44 @@ ItemPelvisLeatherWhip,,,(You whip her butt hard as she sighs.)  Ahh! I promise I
 ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss.,,
 RopeBondageBasic,,,"(You wrap the rope around her legs, tying them together.)  Please don't leave me tied up for too long.",,
 RopeBondageMermaid,,,"(You wrap the rope around her legs, tying them in a mermaid pattern.)  There's lots of rope for my legs.",,
-RopeBondageBoxTie,,,(You slowly restrain her arms in a box tie pattern and she nods.)  As long as I don't need to point for directions.,,
+RopeBondageWristTie,,,(You slowly restrain her wrists behind her back.) This will make it hard to do work...,,
+RopeBondageWristElbowTie,,,(You restrain her wrists and elbows behind her back.) You're very skilled.,,
+RopeBondageWristElbowHarnessTie,,,(You restrain her wrists and elbows behind her back. And tie a harness around her.) Nnngh...So tight...,,
+RopeBondageAllFours,,,(You restrain her with ropes so she's on all fours.) DialogPlayerName! I can't do any work like this!,,
+RopeBondageRopeCuffs,,,(You restrain her wrists behind her back in a handcuff like tie.) Hehe. Am I being arrested?,,
+RopeBondageStar,,,(You use the rope and create a star harness around her body) What a lovely harness!,,
+RopeBondageWaist,,,(You use the ropes and create a waist rope around her body.) Uhh. Not sure how this is fashionable or functional.,,
+RopeBondageBoxTie,,,(You slowly restrain her arms in a box tie pattern and nods.)  As long as I don't need to point for directions.,,
 RopeBondageHogtied,,,(You use the ropes to restrain her in a tight hogtie.)  Ugh!  This is pretty tight.,,
 RopeBondageSuspension,,,(You restrain her legs with ropes and suspend her by the feet from the ceiling.)  I can feel the blood rushing to my head.,,
 RopeBondageSuspensionHogtied,,,"(You carefully hogtie her and suspend her from the ceiling.)  Well done, this is truly inescapable.",,
 RopeBondageCrotch,,,(You use a rope and restrain it on her crotch.)  A maid day can turn pretty kinky.,,
 RopeBondageHarness,,,(You use the ropes and create a harness around her body.)  Harnesses can be very handy.,,
 RopeBondageDiamond,,,(You use the ropes and create a diamond harness around her body.)  Very chic!,,
+JobKidnapIntro00,,,"(You see your target walking in the halls, she's stares at you and smirks.)  You're the new guard dog sent by the maids?",,
+JobKidnapIntro01,,,(You see your target finishing a drink in the halls.)  Hey you!  Go get me another drink!,,
+JobKidnapIntro02,,,(You see your target spanking a club slave in the halls.)  What do you want?  Find your own bitch.,,
+JobKidnapIntro03,,,(You see your target arguing with a maid in the halls.)  Some maids are so dumb.  Am I right?,,
+JobKidnapIntro100,,,(Your target sees you coming back and laughs.)  You haven't had your lesson yet?,,
+JobKidnapIntro101,,,(You track your target again in the club halls.)  Are you serious?  Get off my path.,,
+JobKidnapIntro102,,,(You target stares at you with a huge grin.)  My favorite bounty loser is back!,,
+JobKidnapIntro103,,,(You find your target again in the club halls.)  You think I will go easy on you now?,,
+JobPuppyIntro00,,,"(A Mistress rushes to you, she seems in a hurry.)  Let's make it quick, I need someone to take care of my puppies, can you do it?",,
+JobPuppyIntro01,,,"(A Mistress comes to meet you.)  Hello, I need to leave for the day, could you take care of my puppies?",,
+JobPuppyIntro02,,,"(A stern Mistress greets you.)  Girl, my puppies needs to go walk, can you take care of that?",,
+JobPuppyIntro03,,,"(The Mistress comes in late.)  Sorry for the delay, I need a girl to care for my pups, can you do that?",,
+JobPuppyIntro300,,,You again?  You think you can do it now?,,
+JobPuppyIntro301,,,(The Mistress gives you a stern look.)  I must be crazy to give you my pets again.  Can you do it now?,,
+JobPuppyIntro302,,,(The Mistress seems to be in a hurry.)  You're lucky I haven't found anyone else.  Can you do it now?,,
+JobPuppyIntro303,,,I hope you've learned your lesson girl.  Can you do it or not?,,
+JobDojoIntro00,,,(You head to the Dojo and a Shujin comes to greet you.)   Konichiwa!  I trust you are here for our special event.,,
+JobDojoIntro01,,,"(You get to the Dojo and a Shibari teacher greets you.)  It's an honor to meet you, you're here for the event?",,
+JobDojoIntro02,,,(A Shibari Shujin comes to greet you as soon as you enter.)  Konichiwa!  You're right on time for the event.,,
+JobDojoIntro03,,,(You're warmly greeted by a Shibari teacher.)  Welcome!  The event could not start without you.,,
+JobDojoIntro2200,,,Welcome back DialogPlayerName.  Would you like to test your evasion techniques again?,,
+JobDojoIntro2201,,,"(She looks at you and bows politely.)  Welcome back, are you ready for another test?",,
+JobDojoIntro2202,,,Falling down and getting up is the biggest accomplishment.  Are you ready to try again?,,
+JobDojoIntro2203,,,Konichiwa!  (She smiles and bows politely.)  I trust you want to challenge the ropes again?,,
 0,,,Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,IsHeadMaid
 0,,,(She stares at you.)  Hello naked girl.  Welcome to the introduction class.,,Player.IsNaked()
@@ -48,6 +79,9 @@ RopeBondageDiamond,,,(You use the ropes and create a diamond harness around her 
 0,10,"Thanks, little maid.  What's going on here?","In here, you can learn how to restrain someone, and how to escape by yourself.",ChangeMaidOpinion(1),
 0,10,Introduction class?,"In this class, you can learn how to restrain someone, and how to free yourself.",,
 0,100,I don't need any introduction.,"Very well, would you like to practice with us then?",,
+0,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,CanTakeJob()
+0,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,CannotTakeJobDone()
+0,,Do you have any work for me?,(She giggles and shakes her head no.)  We are not in a good situation to hire you.,,CannotTakeJobRestrained()
 0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
 10,,Can I strap up anyone at any time?,Yes and no.  You need their consent and you cannot do it in the middle of a conversation.,DialogRemove(),
 10,20,This is great!,I'm glad you like it.  Let me teach you about the body parts your can restrain.,,
@@ -65,7 +99,7 @@ RopeBondageDiamond,,,(You use the ropes and create a diamond harness around her 
 30A,30B,(Listen.),Restraining the feet will prevent your victim from moving away.,"SetZone(""ItemFeet"")",
 30B,30C,(Listen.),Restraining the upper legs will still allow your victim to move around but it creates a nice effect.,"SetZone(""ItemLegs"")",
 30C,30D,(Listen.),"On the pussy or vagina region, you can use items such as vibrators or eggs.  The perfect place to tease your victim and make them climax.","SetZone(""ItemVulva"")",
-30D,30E,(Listen.),You can also attach piercings on the vuvla.  Fashion is important.,"SetZone(""ItemVulvaPiercings"")",
+30D,30E,(Listen.),You can also attach piercings on the vulva.  Fashion is important.,"SetZone(""ItemVulvaPiercings"")",
 30E,30F,(Listen.),"On the butt or anal region, you can use regular butt plugs or fashion plugs such as cat tails.","SetZone(""ItemButt"")",
 30F,30G,(Listen.),"On the pelvis, you can use whips, crops or chastity belts.  Know that it will restrict any access to the vagina and anus.","SetZone(""ItemPelvis"")",
 30G,30H,(Listen.),"On the torso, you can use many kinds of harnesses, mostly for esthetics.","SetZone(""ItemTorso"")",
@@ -80,11 +114,13 @@ RopeBondageDiamond,,,(You use the ropes and create a diamond harness around her 
 30P,30Q,(Listen.),"You can use gags to silence your victim, making her unable to speak.","SetZone(""ItemMouth"")",
 30Q,30R,(Listen.),"If you first used some stuffing on your victim mouth, you can apply a locking gag to keep in it.","SetZone(""ItemMouth2"")",
 30R,30S,(Listen.),"For the finishing touch of your gag, the overlay can give a very nice effect.","SetZone(""ItemMouth3"")",
-30S,30T,(Listen.),Blindfolds and hoods can be used to restrict vision and hearing.,"SetZone(""ItemHead"")",
-30T,30U,(Listen.),Ear plugs can be used to deafen your victim.,"SetZone(""ItemEars"")",
-30U,30V,(Listen.),Your pockets can be used to store your padlocks and keys. ,"SetZone(""ItemMisc"")",
-30V,30W,(Listen.),Your pockets can be used to store more advanced devices. ,"SetZone(""ItemDevices"")",
-30W,40,(Listen.),That's about everything. Remember that your arms need to be free to restrain someone.,ClearZone(),
+30S,30T,(Listen.),Blindfolds can be used to restrict vision.,"SetZone(""ItemHead"")",
+30T,30U,(Listen.),"On the nose, you can use items for esthetics or kinkier plays.","SetZone(""ItemNose"")",
+30U,30V,(Listen.),Hoods can be used to restrict vision and hearing.,"SetZone(""ItemHood"")",
+30V,30W,(Listen.),Ear plugs can be used to deafen your victim.,"SetZone(""ItemEars"")",
+30W,30X,(Listen.),Your pockets can be used to store your padlocks and keys. ,"SetZone(""ItemMisc"")",
+30X,30Y,(Listen.),Your pockets can be used to store more advanced devices. ,"SetZone(""ItemDevices"")",
+30Y,40,(Listen.),That's about everything. Remember that your arms need to be free to restrain someone.,ClearZone(),
 40,100,Thanks for the info.,"My pleasure! Now we can practice.  Would you prefer to restrain someone, or be tied up yourself?",,
 40,100,That makes sense.,"Of course! And now we can practice.  Would you prefer to restrain someone, or be tied up yourself?",,
 40,200,Can I strap you up now?,"Not me I'm afraid, but we have someone here who would certainly enjoy being your victim.",ChangeMaidOpinion(1),!IsHeadMaid
@@ -114,7 +150,7 @@ RopeBondageDiamond,,,(You use the ropes and create a diamond harness around her 
 240A,240B,(Listen.),Restraining the feet will prevent your victim from moving away.,"SetZone(""ItemFeet"")",
 240B,240C,(Listen.),Restraining the upper legs will still allow your victim to move around but it creates a nice effect.,"SetZone(""ItemLegs"")",
 240C,240D,(Listen.),"On the pussy or vagina region, you can use items such as vibrators or eggs.  The perfect place to tease your victim and make them climax.","SetZone(""ItemVulva"")",
-240D,240E,(Listen.),You can also attach piercings on the vuvla.  Fashion is important.,"SetZone(""ItemVulvaPiercings"")",
+240D,240E,(Listen.),You can also attach piercings on the vulva.  Fashion is important.,"SetZone(""ItemVulvaPiercings"")",
 240E,240F,(Listen.),"On the butt or anal region, you can use regular butt plugs or fashion plugs such as cat tails.","SetZone(""ItemButt"")",
 240F,240G,(Listen.),"On the pelvis, you can use whips, crops or chastity belts.  Know that it will restrict any access to the vagina and anus.","SetZone(""ItemPelvis"")",
 240G,240H,(Listen.),"On the torso, you can use many kinds of harnesses, mostly for esthetics.","SetZone(""ItemTorso"")",
@@ -146,6 +182,9 @@ RopeBondageDiamond,,,(You use the ropes and create a diamond harness around her 
 270,,Can you teach me more about rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
 270,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
 270,,Tell me about item permissions.,"In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.",,
+270,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,CanTakeJob()
+270,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,CannotTakeJobDone()
+270,,Do you have any work for me?,(She giggles and shakes her head no.)  We are not in a good situation to hire you.,,CannotTakeJobRestrained()
 270,300,I want to practice freeing myself.,Of course!  If you're ready for the challenge I will tie you up.,,
 300,,,Are you ready to struggle against the ropes?,,Player.CanInteract()
 300,,,Get your arms free first if you want to practice struggling against my ropes.  Let me know when you're ready.,,!Player.CanInteract()
@@ -171,14 +210,81 @@ RopeBondageDiamond,,,(You use the ropes and create a diamond harness around her 
 360,370,I'm sure it will be fun to explore the club.,"Oh yes, I'm sure too. Remember to be courteous and respect others.",SaveMaidOpinion(),HasBasicItems
 360,360,Can I have some items to start with?,"Sure, have these ropes and this gag.  (She gives you some ropes and a cloth gag.)",GetBasicItems(),!HasBasicItems
 370,,,You're ready to explore.  Remember to be courteous and respect others.,,
-370,,You were a great teacher.,Well thanks a lot.  You're a good student.,DialogRemove(),
 370,,Thanks!  Take care.  (Leave her.),,DialogLeave(),
 370,,Can I strap her up?,"Sure, my assistant here will be happy to help you practice.",,
 370,,Can I get better at struggling out?,Yes. You might learn new skills to escape faster if you stick around.  Others might also learn skills to make your struggling harder though...,,
 370,,Can you teach me more on rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
 370,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
 370,,Tell me about item permissions.,"In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.",,
+370,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,CanTakeJob()
+370,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,CannotTakeJobDone()
+370,,Do you have any work for me?,(She giggles and shakes her head no.)  We are not in a good situation to hire you.,,CannotTakeJobRestrained()
 370,300,I want to practice freeing myself.,Again?  Well of course.  Are you ready to struggle now?,,
+400,,,These are the special jobs you could do for us.  Pick something you like.  (She shows you a notepad.),,
+400,,What's the salary?,"Since it's a special job that I can only offer once per day, the salary is 100$.",DialogRemove(),
+400,410,Tell me about the puppy care job.,A club Mistress is too busy to take her puppy girls for a walk.  She's offering 100$ if you take good care of them.  Are you up for it?,,"JobAvailable(""DomPuppy"")"
+400,420,Tell me about the lock promotion job.,The shop wants to promote a specific lock.  They offer 100$ if you use it on five different girls in the chat rooms.  Are you up for it?,,"JobAvailable(""DomLock"")"
+400,430,Tell me about the kidnapper job.,The club wants to teach a lesson to one of our members.  They will give you 100$ if you kidnap and humiliate her.  Are you up for it?,,"JobAvailable(""DomKidnap"")"
+400,440,Tell me about the nurse and trainer job.,We need nurses and trainers right now.  You will get a 100$ bonus if you train three slaves or treat three patients.  Are you up for it?,,"JobAvailable(""DomTrainer"")"
+400,510,Tell me about the missing jewelry job.,A member lost a piece of jewelry somewhere in the club.  She offers 100$ to whoever finds it.  Are you up for it?,,"JobAvailable(""SubSearch"")"
+400,520,Tell me about the dojo assistant job.,"One of the Shibari Dojo assistant called in sick, so we need a replacement quick.  You need to be flexible and the salary is 100$.  Are you up for it?",,"JobAvailable(""SubDojo"")"
+400,530,Tell me about the pleasure giver job.,"The club members in the chat rooms need some extra care today.  If you're willing to give pleasure to five of them, you'll be paid 100$.  Are you up for it?",,"JobAvailable(""SubActivity"")"
+400,540,Tell me about the maid helper job.,The Maid Sorority is getting swamped with work.  They offer a 100$ bonus if you complete three chores for them.  Are you up for it?,,"JobAvailable(""SubMaid"")"
+400,,Can I take another job?,"Sorry, come back tomorrow and I might have something else for you.",DialogRemove(),
+400,,There's nothing else to do?,"Not here, but there's lots of work to do in the club.  You can start by checking with the Maid Sorority.",DialogRemove(),
+400,0,I won't take any job now.,"Very well, you can always come back tomorrow to check for new assignments.  Would you like to know more about the club then?",,
+410,411,I'll do it!,Wonderful!  Let me go get the Mistress.  She will give you the instructions.,"JobStart(""DomPuppy"", 1)",
+410,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
+411,,(Wait for the Mistress.),,JobPuppyStart(),
+420,421,I'll do it!,The shop will be very happy.  You'll need to use a specific lock on five different members in the chat rooms.,"JobStart(""DomLock"", 5)",
+420,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
+421,,,You need to use a specific lock on five different members in the chat rooms.,,
+421,,Which lock should I use?,The shop wants you to promote the LockType.  Use them on at least five different members in the chat rooms.,JobLockType(),
+421,400,I give up.  I cannot do it.,"(She sighs.)  Too bad, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",JobGiveUp(),!JobIsComplete()
+421,500,The job is done!,Congratulations!  Here's your money.  (She gives you 100$.)  Well done.,JobDone(),JobIsComplete()
+421,,I'll be back later.  (Leave her.),,DialogLeave(),
+430,431,I'll do it!,This won't be an easy task.  You'll need to kidnap and humiliate a girl.  Are you ready to fight her?,"JobStart(""DomKidnap"", 1)",
+430,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
+431,,,You'll need to kidnap and humiliate her.  Are you ready to fight?,,
+431,,I'm ready to fight her!,,JobBouncerStart(),
+431,400,I give up.  I cannot do it.,"(She sighs.)  Too bad, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",JobGiveUp(),!JobIsComplete()
+431,500,The job is done!,,JobDone(),JobIsComplete()
+431,,Give me a minute.  (Leave her.),,DialogLeave(),
+432,,,Congratulations!  I've heard of your victory and her humiliation.  You've done a great job.,,
+432,500,Thanks a lot!,(She smiles and gives you 100$.)  Well done.,JobDone(),
+432,500,She deserved it.,(She nods and gives you 100$.)  Well done.,JobDone(),
+432,500,Where's my money?,(She frowns and gives you 100$.)  Well done.,JobDone(),
+440,441,I'll do it!,Great news!  Please train three submissives from the slave auction room or treat three asylum patients and come back to me.,"JobStart(""DomTrainer"", 3)",
+440,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
+441,,,Please train three submissives from the slave auction room or treat three asylum patients and come back to me.,,
+441,400,I give up.  I cannot do it.,"(She sighs.)  Too bad, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",JobGiveUp(),!JobIsComplete()
+441,500,The job is done!,Congratulations!  Here's your money.  (She gives you 100$.)  Well done.,JobDone(),JobIsComplete()
+441,,I'll be back later.  (Leave her.),,DialogLeave(),
+500,0,Is there anything else I can do?,"Sorry, there's nothing left for you.  Please come back tomorrow, I might have something else to do.",,
+500,0,I don't deserve such praises Miss.,"Of course, you deserve it girl.  Come back tomorrow, I might have something else for you.","DialogChangeReputation(""Dominant"", -4)",
+500,0,"Girl, give me a challenge next time.","(She nods politely.)  Absolutely Miss.  Please come back tomorrow, I might have something else for you.","DialogChangeReputation(""Dominant"", 4)",
+510,511,I'll do it!,(She takes a British accent.)  I'm chuffed about it mate!  Bum a detective hat Sherlock and start looking!,"JobStart(""SubSearch"", 1)",
+510,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
+511,,,(She takes a British accent.)  Bum a detective hat Sherlock.  Search for that missing jewelry mate.,,
+511,,Where should I search?,"We think it could be in the Maid Quarters, the Kidnappers League, the LARP instructor room or the Slave Market.  (Click everywhere in these places to search.)",,
+511,400,I give up.  I cannot do it.,"(She sighs.)  Too bad, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",JobGiveUp(),!JobIsComplete()
+511,500,The job is done!,Congratulations!  Here's your money.  (She gives you 100$.)  Well done.,JobDone(),JobIsComplete()
+511,,I'll be back later.  (Leave her.),,DialogLeave(),
+520,521,I'll do it!,Wonderful!  You will meet the Shujin at the Shibari Dojo.  She will give you the instructions.,"JobStart(""SubDojo"", 1)",
+520,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
+521,,(Go see the Shujin.),,JobDojoStart(),
+530,531,I'll do it!,The chat rooms will get crowded for sure.  You'll need to masturbate at least five different members and come back to me.,"JobStart(""SubActivity"", 5)",
+530,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
+531,,,You need to masturbate at least five different chat room members and come back to me.,,
+531,400,I give up.  I cannot do it.,"(She sighs.)  Too bad, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",JobGiveUp(),!JobIsComplete()
+531,500,The job is done!,Congratulations!  Here's your money.  (She gives you 100$.)  Well done.,JobDone(),JobIsComplete()
+531,,I'll be back later.  (Leave her.),,DialogLeave(),
+540,541,I'll do it!,(She nods happily.)  You'll need to complete three chores or more for the maid sorority.  Come back when everything is done.,"JobStart(""SubMaid"", 3)",
+540,400,Let me think about it.,"Of course, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",,
+541,,,You need to complete three chores or more for the maid sorority.  Come back when everything is done.,,
+541,400,I give up.  I cannot do it.,"(She sighs.)  Too bad, is there anything else you'd like to know about our special jobs?  (She shows you a notepad.)",JobGiveUp(),!JobIsComplete()
+541,500,The job is done!,Congratulations!  Here's your money.  (She gives you 100$.)  Well done.,JobDone(),JobIsComplete()
+541,,I'll be back later.  (Leave her.),,DialogLeave(),
 MaidRescue,,,(She struggles and tries to get out.)  Can you please help me?,,IsMaidRestrained()
 MaidRescue,,,(She bows her head respectfully.)  Can you also help our friend here?,,!IsBothFree()
 MaidRescue,,,I will spread the good word of you around the sorority.  Thanks for helping.,,IsBothFree()

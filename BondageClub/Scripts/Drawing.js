@@ -1,4 +1,8 @@
 // The main game canvas where everything will be drawn
+/**
+ * An item is a pair of asset and its dynamic properties that define a worn asset.
+ * @typedef {{Asset: object, Color: string, Difficulty: number, Property: object | undefined}} Item
+ */
 "use strict";
 var MainCanvas;
 var ColorCanvas;
@@ -10,7 +14,11 @@ var DrawCacheTotalImages = 0;
 var DrawScreenWidth = -1;
 var DrawScreenHeight = -1;
 
-// Convert a hex color string to a RGB color
+/**
+ * Converts a hex color string to a RGB color
+ * @param {string} color - Hex color to conver
+ * @returns {string} - RGB color
+ */
 function DrawHexToRGB(color) {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 	color = color.replace(shorthandRegex, function (m, r, g, b) {
@@ -29,13 +37,20 @@ function DrawHexToRGB(color) {
 		};
 }
 
-// Returns the hex value of a RGB data
+/**
+ * Converts a RGB color to a hex color string
+ * @param {string} color - RGB color to conver
+ * @returns {string} - Hex color string
+ */
 function DrawRGBToHex(rgb) {
 	var rgb = rgb[2] | (rgb[1] << 8) | (rgb[0] << 16);
 	return '#' + (0x1000000 + rgb).toString(16).slice(1);
 };
 
-// Loads the drawing objects
+/**
+ * Loads the canvas to draw on with its style and event listeners.
+ * @returns {void} - Nothing
+ */
 function DrawLoad() {
 
 	// Creates the objects used in the game
@@ -50,9 +65,16 @@ function DrawLoad() {
 	MainCanvas.textAlign = "center";
 	MainCanvas.textBaseline = "middle";
 
+	// Loads the 3D engine as well
+	Draw3DLoad();
+
 }
 
-// Returns the image file or build it from the source
+/**
+ * Returns the image file from cache or build it from the source
+ * @param {string} Source - URL of the image
+ * @returns {HTMLImageElement} - Image file
+ */
 function DrawGetImage(Source) {
 	// Search in the cache to find the image and make sure this image is valid
 	var Img = DrawCacheImage[Source];
@@ -80,13 +102,21 @@ function DrawGetImage(Source) {
 	return Img;
 }
 
-// Reloads all character canvas once everything is loaded
-function DrawGetImageOnLoad(Img) {
+/**
+ * Reloads all character canvas once all images are loaded
+ * @returns {void} - Nothing
+ */
+function DrawGetImageOnLoad() {
 	++DrawCacheLoadedImages;
 	if (DrawCacheLoadedImages == DrawCacheTotalImages) CharacterLoadCanvasAll();
 }
 
-// Attempt to redownload an image if it fails to load
+/**
+ * Attempts to redownload an image if it previously failed to load
+ * @param {HTMLImageElement} Img - Image tag that failed to load
+ * @param {boolean} IsAsset - Whether or not the image is part of an asset
+ * @returns {void} - Nothing
+ */
 function DrawGetImageOnError(Img, IsAsset) {
 	if (Img.errorcount == null) Img.errorcount = 0;
 	Img.errorcount += 1;
@@ -99,30 +129,65 @@ function DrawGetImageOnError(Img, IsAsset) {
 	}
 }
 
-// Draw the arousal meter on screen
+/**
+ * Draws the arousal meter on screen
+ * @param {number} X - Position of the meter on the X axis
+ * @param {number} Y - Position of the meter on the Y axis
+ * @param {number} Zoom - Zoom factor
+ * @param {number} Progress - Current progress of the arousal meter
+ * @param {boolean} Automatic - Wheter or not the arousal is in automatic mode
+ * @param {boolean} Orgasm - Whether or not the meter is in recover from orgasm mode
+ * @returns {void} - Nothing
+ */
 function DrawArousalThermometer(X, Y, Zoom, Progress, Automatic, Orgasm) {
 	DrawImageZoomCanvas("Screens/Character/Player/ArousalMeter" + (Orgasm ? "Orgasm" : "") + (Automatic ? "Automatic" : "") + ".png", MainCanvas, 0, 0, 100, 500, X, Y, 100 * Zoom, 500 * Zoom);
 	if ((Progress > 0) && !Orgasm) DrawRect(X + (30 * Zoom), Y + (15 * Zoom) + (Math.round((100 - Progress) * 4 * Zoom)), (40 * Zoom), (Math.round(Progress * 4 * Zoom)), "#FF0000");
 }
 
-// Draw the arousal meter next to the player if allowed by the character and visible for the player
+/**
+ * Draw the arousal meter next to the player if it is allowed by the character and visible for the player
+ * @param {Character} C - Character for which to potentially draw the arousal meter
+ * @param {number} X - Position of the meter on the X axis
+ * @param {number} Y - Position of the meter on the Y axis
+ * @param {number} Zoom - Zoom factor
+ * @returns {void} - Nothing
+ */
 function DrawArousalMeter(C, X, Y, Zoom) {
 	if (ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Active != null) && ((C.ArousalSettings.Active == "Manual") || (C.ArousalSettings.Active == "Hybrid") || (C.ArousalSettings.Active == "Automatic")))
 		if ((C.ID == 0) || ((C.ArousalSettings.Visible != null) && (C.ArousalSettings.Visible == "Access") && C.AllowItem) || ((C.ArousalSettings.Visible != null) && (C.ArousalSettings.Visible == "All")))
 			if ((C.ID == 0) || (Player.ArousalSettings.ShowOtherMeter == null) || Player.ArousalSettings.ShowOtherMeter) {
 				ActivitySetArousal(C, C.ArousalSettings.Progress);
 				DrawArousalThermometer(X + ((C.ArousalZoom ? 50 : 90) * Zoom), Y + ((C.ArousalZoom ? 200 : 400) * Zoom), C.ArousalZoom ? Zoom : Zoom * 0.2, C.ArousalSettings.Progress, (C.ArousalSettings.Active == "Automatic"), ((C.ArousalSettings.OrgasmTimer != null) && (typeof C.ArousalSettings.OrgasmTimer === "number") && !isNaN(C.ArousalSettings.OrgasmTimer) && (C.ArousalSettings.OrgasmTimer > 0)));
+				if (C.ArousalZoom && (typeof C.ArousalSettings.OrgasmCount === "number") && (C.ArousalSettings.OrgasmCount >= 0) && (C.ArousalSettings.OrgasmCount <= 9999)) {
+					MainCanvas.font = Math.round(36 * Zoom).toString() + "px Arial";
+					DrawText(((C.ArousalSettings.OrgasmCount != null) ? C.ArousalSettings.OrgasmCount : 0).toString(), X + 100 * Zoom, Y + 655 * Zoom, "Black", "Gray");
+					MainCanvas.font = "36px Arial";
+				}
 			}
 }
 
-// Refreshes the character if not all images are loaded and draw the character canvas on the main game screen
+/**
+ * Refreshes the character if not all images are loaded and draw the character canvas on the main game screen
+ * @param {Character} C - Character to draw
+ * @param {number} X - Position of the character on the X axis
+ * @param {number} Y - Position of the character on the Y axis
+ * @param {number} Zoom - Zoom factor
+ * @param {boolean} IsHeightResizeAllowed - Whether or not the settings allow for the height modifier to be applied
+ * @returns {void} - Nothing
+ */
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	if ((C != null) && ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet"))) {
+
+		// Shortcuts drawing the character to 3D if needed
+		if (Draw3DEnabled) {
+			Draw3DCharacter(C, X, Y, Zoom, IsHeightResizeAllowed);
+			return;
+		}
 
 		// There's 2 different canvas, one blinking and one that doesn't
 		var seconds = new Date().getTime();
 		var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
-		
+
 		// Applies an offset to X and Y based on the HeightRatio.  If the player prefers full height, we always use 1.0
 		var HeightRatio = 1.0;
 		if ((IsHeightResizeAllowed == undefined) || IsHeightResizeAllowed) HeightRatio = CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
@@ -155,7 +220,8 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			CanvasH.height = Canvas.height;
 			CanvasH.getContext("2d").rotate(Math.PI);
 			CanvasH.getContext("2d").translate(-Canvas.width, -Canvas.height);
-			CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
+			// Render to the flipped canvas, and crop off the height modifier to prevent vertical overflow
+			CanvasH.getContext("2d").drawImage(Canvas, 0, 0, Canvas.width, Canvas.height - C.HeightModifier, 0, 0, Canvas.width, Canvas.height - C.HeightModifier);
 			Canvas = CanvasH;
 		}
 
@@ -164,18 +230,19 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		var H = Canvas.height + (((C.HeightModifier != null) && (C.HeightModifier < 0)) ? C.HeightModifier : 0);
 		MainCanvas.drawImage(Canvas, 0, 0, Canvas.width, H, X, Y - (C.HeightModifier * Zoom), Canvas.width * Zoom, H * Zoom);
 
-		// Draw the arousal meter & game images on certain conditions
-		DrawArousalMeter(C, X - Zoom * Canvas.width * (1 - HeightRatio) / 2, Y - Zoom * Canvas.height * (1 - HeightRatio), Zoom / HeightRatio);
-		OnlineGameDrawCharacter(C, X - Zoom * Canvas.width * (1 - HeightRatio) / 2, Y - Zoom * Canvas.height * (1 - HeightRatio), Zoom / HeightRatio);
-
 		// Applies a Y offset if the character is suspended
 		if (C.Pose.indexOf("Suspension") >= 0) Y += (Zoom * Canvas.height * (1 - HeightRatio) / HeightRatio);
 		
+		// Draw the arousal meter & game images on certain conditions
+		DrawArousalMeter(C, X - Zoom * Canvas.width * (1 - HeightRatio) / 2, Y - Zoom * Canvas.height * (1 - HeightRatio), Zoom / HeightRatio);
+		OnlineGameDrawCharacter(C, X - Zoom * Canvas.width * (1 - HeightRatio) / 2, Y - Zoom * Canvas.height * (1 - HeightRatio), Zoom / HeightRatio);
+		if (C.HasHiddenItems) DrawImageZoomCanvas("Screens/Character/Player/HiddenItem.png", MainCanvas, 0, 0, 86, 86, X + 54 * Zoom, Y + 880 * Zoom, 70 * Zoom, 70 * Zoom);
+
 		// Draws the character focus zones if we need too
 		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null) && (CurrentScreen != "Preference")) {
 
 			// Draw all the possible zones in transparent colors (gray if free, yellow if occupied, red if blocker)
-			for (var A = 0; A < AssetGroup.length; A++)
+			for (let A = 0; A < AssetGroup.length; A++)
 				if (AssetGroup[A].Zone != null && AssetGroup[A].Name != C.FocusGroup.Name) {
 					var Color = "#80808040";
 					if (InventoryGroupIsBlocked(C, AssetGroup[A].Name)) Color = "#88000580";
@@ -198,25 +265,57 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	}
 }
 
-// Scans the item zone and draws it over the character
+/**
+ * Draws an asset group zone outline over the character
+ * @param {Character} C - Character for which to draw the zone
+ * @param {number[][]} Zone - Zone to be drawn
+ * @param {number} HeightRatio - Height ratio of the character
+ * @param {number} X - Position of the character on the X axis
+ * @param {number} Y - Position of the character on the Y axis
+ * @param {string} Color - Color of the zone outline
+ * @param {number} [Thickness=3] - Thickness of the outline 
+ * @returns {void} - Nothing
+ */
 function DrawAssetGroupZone(C, Zone, HeightRatio, X, Y, Color, Thickness = 3) {
-	for (var Z = 0; Z < Zone.length; Z++)
+	for (let Z = 0; Z < Zone.length; Z++)
 		if (C.Pose.indexOf("Suspension") >= 0)
 			DrawEmptyRect((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color, Thickness);
 		else
 			DrawEmptyRect((HeightRatio * Zone[Z][0]) + X, HeightRatio * (Zone[Z][1] - C.HeightModifier) + Y, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color, Thickness);
 }
 
-// Scans the item zone and draws a background rectangle over it
+/**
+ * Draws an asset group zone background over the character
+ * @param {Character} C - Character for which to draw the zone
+ * @param {number[][]} Zone - Zone to be drawn
+ * @param {number} HeightRatio - Height ratio of the character
+ * @param {number} X - Position of the character on the X axis
+ * @param {number} Y - Position of the character on the Y axis
+ * @param {string} Color - Color of the zone background
+ * @returns {void} - Nothing
+ */
 function DrawAssetGroupZoneBackground(C, Zone, HeightRatio, X, Y, Color) {
-	for (var Z = 0; Z < Zone.length; Z++)
+	for (let Z = 0; Z < Zone.length; Z++)
 		if (C.Pose.indexOf("Suspension") >= 0)
 			DrawRect((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color);
 		else
 			DrawRect((HeightRatio * Zone[Z][0]) + X, HeightRatio * (Zone[Z][1] - C.HeightModifier) + Y, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color);
 }
 
-// Draw a zoomed image from a source to a specific canvas
+/**
+ * Draws a zoomed image from a source to a specific canvas
+ * @param {string} Source - URL of the image
+ * @param {HTMLCanvasElement} Canvas - Canvas on which to draw the image
+ * @param {number} SX - The X coordinate where to start clipping
+ * @param {number} SY - The Y coordinate where to start clipping
+ * @param {number} SWidth - The width of the clipped image
+ * @param {number} SHeight - The height of the clipped image
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @param {number} Width - Width of the image
+ * @param {number} Height - Height of the image
+ * @returns {boolean} - whether the image was complete or not
+ */
 function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
@@ -225,6 +324,15 @@ function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Widt
 	return true;
 }
 
+/**
+ * Draws a resized image from a source to the main canvas
+ * @param {string} Source - URL of the image
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @param {number} Width - Width of the image after being resized
+ * @param {number} Height - Height of the image after being resized
+ * @returns {boolean} - whether the image was complete or not
+ */
 function DrawImageResize(Source, X, Y, Width, Height) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
@@ -233,7 +341,14 @@ function DrawImageResize(Source, X, Y, Width, Height) {
 	return true;
 }
 
-// Draw a zoomed image from a source to a specific canvas
+/**
+ * Draws a zoomed image from a source to a specific canvas
+ * @param {string} Source - URL of the image
+ * @param {HTMLCanvasElement} Canvas - Canvas on which to draw the image
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @returns {boolean} - whether the image was complete or not
+ */
 function DrawImageCanvas(Source, Canvas, X, Y) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
@@ -242,18 +357,39 @@ function DrawImageCanvas(Source, Canvas, X, Y) {
 	return true;
 }
 
-// Draw a specific canvas on the main canvas
+/**
+ * Draws a specific canvas on the main canvas
+ * @param {HTMLCanvasElement} Canvas - Canvas to draw on the main canvas
+ * @param {number} X - Position of the canvas on the X axis
+ * @param {number} Y - Position of the canvas on the Y axis
+ * @returns {void} - Nothing
+ */
 function DrawCanvas(Canvas, X, Y) {
 	MainCanvas.drawImage(Canvas, X, Y);
 }
 
-// Draw a specific canvas with a zoom on the main canvas
+/**
+ * Draws a specific canvas with a zoom on the main canvas
+ * @param {HTMLCanvasElement} Canvas - Canvas to draw on the main canvas
+ * @param {number} X - Position of the canvas on the X axis
+ * @param {number} Y - Position of the canvas on the Y axis
+ * @param {number} Zoom - Zoom factor
+ * @returns {void} - Nothing
+ */
 function DrawCanvasZoom(Canvas, X, Y, Zoom) {
 	MainCanvas.drawImage(Canvas, 0, 0, Canvas.width, Canvas.height, X, Y, Canvas.width * Zoom, Canvas.height * Zoom);
 }
 
-// Draw a zoomed image from a source to the canvas and mirrors it from left to right
-function DrawImageZoomMirror(Source, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
+/**
+ * Draws a zoomed image from a source to the canvas and mirrors it from left to right
+ * @param {string} Source - URL of the image
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @param {number} Width - Width of the image
+ * @param {number} Height - Height of the image
+ * @returns {boolean} - whether the image was complete or not
+ */
+function DrawImageZoomMirror(Source, X, Y, Width, Height) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
@@ -264,7 +400,13 @@ function DrawImageZoomMirror(Source, SX, SY, SWidth, SHeight, X, Y, Width, Heigh
 	return true;
 }
 
-// Draw an image from a source to the canvas
+/**
+ * Draws an image from a source on the main canvas
+ * @param {string} Source - URL of the image
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @returns {boolean} - whether the image was complete or not
+ */
 function DrawImage(Source, X, Y) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
@@ -273,7 +415,17 @@ function DrawImage(Source, X, Y) {
 	return true;
 }
 
-// Draw an image from a source to the canvas
+/**
+ * Draws an image from a source to the specified canvas
+ * @param {string} Source - URL of the image
+ * @param {HTMLCanvasElement} Canvas - Canvas on which to draw the image
+ * @param {number} X - Position of the rectangle on the X axis
+ * @param {number} Y - Position of the rectangle on the Y axis
+ * @param {number} Zoom - Zoom factor
+ * @param {string} HexColor - Color of the image to draw
+ * @param {boolean} FullAlpha - Whether or not it is drawn in full alpha mode
+ * @returns {boolean} - whether the image was complete or not
+ */
 function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha) {
 
 	// Make sure that the starting image is loaded
@@ -295,7 +447,7 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 
 	// We transform each non transparent pixel based on the RGG value
 	if (FullAlpha) {
-		for (var p = 0, len = data.length; p < len; p += 4) {
+		for (let p = 0, len = data.length; p < len; p += 4) {
 			if (data[p + 3] == 0)
 				continue;
 			trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);
@@ -304,7 +456,7 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 			data[p + 2] = rgbColor.b * trans;
 		}
 	} else {
-		for (var p = 0, len = data.length; p < len; p += 4) {
+		for (let p = 0, len = data.length; p < len; p += 4) {
 			trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);
 			if ((data[p + 3] == 0) || (trans < 0.8) || (trans > 1.2))
 				continue;
@@ -321,7 +473,13 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 	return true;
 }
 
-// Draw an image from a source to the canvas
+/**
+ * Draws the mirrored version of an image from a source on the canvas
+ * @param {string} Source - URL of the image
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @returns {boolean} - whether the image was complete or not
+ */
 function DrawImageMirror(Source, X, Y) {
 	var Img = DrawGetImage(Source)
 	if (!Img.complete) return false;
@@ -333,7 +491,13 @@ function DrawImageMirror(Source, X, Y) {
 	return true;
 }
 
-// Reduces the font size progressively until it fits the wrap size
+/**
+ * Reduces the font size progressively until the text fits the wrap size
+ * @param {string} Text - Text that will be drawn
+ * @param {number} Width - Width in which the text must fit
+ * @param {number} MaxLine - Maximum of lines the word can wrap for
+ * @returns {void} - Nothing
+ */
 function GetWrapTextSize(Text, Width, MaxLine) {
 
 	// Don't bother if it fits on one line
@@ -343,7 +507,7 @@ function GetWrapTextSize(Text, Width, MaxLine) {
 
 		// Find the number of lines
 		var LineCount = 1;
-		for (var n = 0; n < words.length; n++) {
+		for (let n = 0; n < words.length; n++) {
 			var testLine = line + words[n] + ' ';
 			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
 				line = words[n] + ' ';
@@ -360,7 +524,18 @@ function GetWrapTextSize(Text, Width, MaxLine) {
 	} return;
 }
 
-// Draw a word wrapped text in a rectangle
+/**
+ * Draws a word wrapped text in a rectangle
+ * @param {string} Text - Text to draw
+ * @param {number} X - Position of the rectangle on the X axis
+ * @param {number} Y - Position of the rectangle on the Y axis
+ * @param {number} Width - Width of the rectangle
+ * @param {number} Height - Height of the rectangle
+ * @param {string} ForeColor - Foreground color 
+ * @param {string} BackColor - Background color
+ * @param {number} MaxLine - Maximum of lines the word can wrap for
+ * @returns {void} - Nothing
+ */
 function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) {
 
 	// Draw the rectangle if we need too
@@ -391,7 +566,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 
 		// Find the number of lines
 		var LineCount = 1;
-		for (var n = 0; n < words.length; n++) {
+		for (let n = 0; n < words.length; n++) {
 			var testLine = line + words[n] + ' ';
 			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
 				line = words[n] + ' ';
@@ -403,7 +578,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 		words = Text.split(' ');
 		line = '';
 		Y = Y - ((LineCount - 1) * 23) + (Height / 2);
-		for (var n = 0; n < words.length; n++) {
+		for (let n = 0; n < words.length; n++) {
 			var testLine = line + words[n] + ' ';
 			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
 				MainCanvas.fillText(line, X + Width / 2, Y);
@@ -424,10 +599,18 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 
 }
 
-// Draw a text that will fit on the specified width
+/**
+ * Draws a text element on the canvas that will fit on the specified width
+ * @param {string} Text - Text to draw
+ * @param {number} X - Position of the text on the X axis
+ * @param {number} Y - Position of the text on the Y axis
+ * @param {number} Width - Width in which the text has to fit
+ * @param {string} Color - Color of the text
+ * @returns {void} - Nothing
+ */
 function DrawTextFit(Text, X, Y, Width, Color) {
 
-	for (var S = 36; S >= 10; S = S - 2) {
+	for (let S = 36; S >= 10; S = S - 2) {
 		MainCanvas.font = S.toString() + "px Arial";
 		var metrics = MainCanvas.measureText(Text);
 		if (metrics.width <= Width)
@@ -438,7 +621,15 @@ function DrawTextFit(Text, X, Y, Width, Color) {
 	MainCanvas.font = "36px Arial";
 }
 
-// Draw a text in the canvas
+/**
+ * Draws a text element on the canvas
+ * @param {string} Text - Text to draw
+ * @param {number} X - Position of the text on the X axis
+ * @param {number} Y - Position of the text on the Y axis
+ * @param {string} Color - Color of the text
+ * @param {string} BackColor - Color of the background
+ * @returns {void} - Nothing
+ */
 function DrawText(Text, X, Y, Color, BackColor) {
 
 	// Draw a back color relief text if needed
@@ -453,7 +644,18 @@ function DrawText(Text, X, Y, Color, BackColor) {
 
 }
 
-// Draw a button
+/**
+ * Draws a button component
+ * @param {number} Left - Position of the component from the left of the canvas
+ * @param {number} Top - Position of the component from the top of the canvas
+ * @param {number} Width - Width of the component
+ * @param {number} Height - Height of the component
+ * @param {string} Label - Text to display in the button
+ * @param {string} Color - Color of the component
+ * @param {string} [Image] - URL of the image to draw inside the button, if applicable 
+ * @param {string} [HoveringText] - Text of the tooltip, if applicable 
+ * @returns {void} - Nothing
+ */
 function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText) {
 
 	// Draw the button rectangle (makes the background color cyan if the mouse is over it)
@@ -477,12 +679,34 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	}
 }
 
-function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked){
-    DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
-    DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
+/**
+ * Draws a checkbox component
+ * @param {number} Left - Position of the component from the left of the canvas
+ * @param {number} Top - Position of the component from the top of the canvas
+ * @param {number} Width - Width of the component
+ * @param {number} Height - Height of the component
+ * @param {string} Text - Label associated with the checkbox
+ * @param {boolean} IsChecked - Whether or not the checkbox is checked
+ * @returns {void} - Nothing
+ */
+function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked) {
+	DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
+	DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
 }
 
-// Draw a back & next button
+/**
+ * Draw a back & next button component
+ * @param {number} Left - Position of the component from the left of the canvas
+ * @param {number} Top - Position of the component from the top of the canvas
+ * @param {number} Width - Width of the component
+ * @param {number} Height - Height of the component
+ * @param {string} Label - Text inside the component
+ * @param {string} Color - Color of the component
+ * @param {string} [Image] - Image URL to draw in the component
+ * @param {string} BackText - Text for the back button tooltip
+ * @param {string} NextText - Text for the next button tooltip
+ * @returns {void} - Nothing
+ */
 function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText) {
 
 	// Draw the button rectangle (makes half of the background cyan colored if the mouse is over it)
@@ -535,7 +759,15 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 
 }
 
-// Draw the hovering text
+/**
+ * Draw the hovering text tooltip
+ * @param {number} Left - Position of the tooltip from the left of the canvas
+ * @param {number} Top - Position of the tooltip from the top of the canvas
+ * @param {number} Width - Width of the tooltip
+ * @param {number} Height - Height of the tooltip
+ * @param {string} HoveringText - Text to display in the tooltip
+ * @returns {void} - Nothing
+ */
 function DrawButtonHover(Left, Top, Width, Height, HoveringText) {
 	if ((HoveringText != null) && (HoveringText != "")) {
 		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
@@ -553,7 +785,16 @@ function DrawButtonHover(Left, Top, Width, Height, HoveringText) {
 	}
 }
 
-// Draw a basic empty rectangle
+/**
+ * Draws a basic empty rectangle with a colored outline
+ * @param {number} Left - Position of the rectangle from the left of the canvas
+ * @param {number} Top - Position of the rectangle from the top of the canvas
+ * @param {number} Width - Width of the rectangle
+ * @param {number} Height - Height of the rectangle
+ * @param {string} Color - Color of the rectangle outline
+ * @param {number} [Thickness=3] - Thickness of the rectangle line 
+ * @returns {void} - Nothing
+ */
 function DrawEmptyRect(Left, Top, Width, Height, Color, Thickness = 3) {
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
@@ -562,7 +803,15 @@ function DrawEmptyRect(Left, Top, Width, Height, Color, Thickness = 3) {
 	MainCanvas.stroke();
 }
 
-// Draw a basic rectangle
+/**
+ * Draws a basic rectangle filled with a given color
+ * @param {number} Left - Position of the rectangle from the left of the canvas
+ * @param {number} Top - Position of the rectangle from the top of the canvas
+ * @param {number} Width - Width of the rectangle
+ * @param {number} Height - Height of the rectangle
+ * @param {string} Color - Color of the rectangle
+ * @returns {void} - Nothing
+ */
 function DrawRect(Left, Top, Width, Height, Color) {
 	MainCanvas.beginPath();
 	MainCanvas.fillStyle = Color;
@@ -570,7 +819,15 @@ function DrawRect(Left, Top, Width, Height, Color) {
 	MainCanvas.fill();
 }
 
-// Draw a basic circle
+/**
+ * Draws a basic circle
+ * @param {number} CenterX - Position of the center of the circle on the X axis
+ * @param {number} CenterY - Position of the center of the circle on the Y axis
+ * @param {number} Radius - Radius of the circle to draw
+ * @param {number} LineWidth - Width of the line
+ * @param {string} LineColor - Color of the circle's line
+ * @returns {void} - Nothing
+ */
 function DrawCircle(CenterX, CenterY, Radius, LineWidth, LineColor) {
 	MainCanvas.beginPath();
 	MainCanvas.arc(CenterX, CenterY, Radius, 0, 2 * Math.PI, false);
@@ -579,14 +836,25 @@ function DrawCircle(CenterX, CenterY, Radius, LineWidth, LineColor) {
 	MainCanvas.stroke();
 }
 
-// Draw a progress bar
+/**
+ * Draws a progress bar
+ * @param {number} X - Position of the bar on the X axis
+ * @param {number} Y - Position of the bar on the Y axis
+ * @param {number} W - Width of the bar
+ * @param {number} H - Height of the bar
+ * @param {number} Progress - Current progress to display on the bar
+ * @returns {void} - Nothing
+ */
 function DrawProgressBar(X, Y, W, H, Progress) {
 	DrawRect(X, Y, W, H, "white");
 	DrawRect(X + 2, Y + 2, Math.floor((W - 4) * Progress / 100), H - 4, "#66FF66");
 	DrawRect(Math.floor(X + 2 + (W - 4) * Progress / 100), Y + 2, Math.floor((W - 4) * (100 - Progress) / 100), H - 4, "red");
 }
 
-// Makes sure the screen is at the proper size
+/**
+ * Constantly looping draw process. Draws beeps, handles the screen size, handles the current blindfold state and draws the current screen.
+ * @returns {void} - Nothing
+ */
 function DrawProcess() {
 
 	// Gets the Width and Height differently on mobile and regular browsers
@@ -631,9 +899,18 @@ function DrawProcess() {
 	// Draws beep from online player sent by the server
 	ServerDrawBeep();
 
+	// Draws the 3D objects
+	Draw3DProcess();
+
 }
 
-// Draw the item preview box
+/**
+ * Draws the item preview box
+ * @param {number} X - Position of the item on the X axis
+ * @param {number} Y - Position of the item on the Y axis
+ * @param {Item} Item - The item to draw the preview for
+ * @returns {void} - Nothing
+ */
 function DrawItemPreview(X, Y, Item) {
 	DrawRect(X, Y, 225, 275, "white");
 	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);

@@ -6,13 +6,31 @@ var AsylumEntranceEscapedPatient = null;
 var AsylumEntranceEscapedPatientWillBribe = false;
 var AsylumEntranceEscapedPatientWillJoin = false;
 
-// Returns TRUE if specific dialog conditions are met
+/**
+ * Checks, if the player is able to leave the Asylum
+ * @returns {boolean} - Returns true, if the player is able to leave, false otherwise
+ */
 function AsylumEntranceCanWander() { return (Player.CanWalk() && ((LogValue("Committed", "Asylum") >= CurrentTime) || ((ReputationGet("Asylum") >= 1) && AsylumEntranceIsWearingNurseClothes(Player)))) }
+/**
+ * Checks, if the player can bring the nurse to her private room
+ * @returns {boolean} - Returns true, if the player can drag the nurse to her private roo, false otherwise
+ */
 function AsylumEntranceCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
+/**
+ * CHecks if the player can kiss the nurse
+ * @returns {boolean} - Returns true, if the player can kiss the nurse, false otherwise
+ */
 function AsylumEntranceCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
+/**
+ * Checks if the player can have a nurse uniform of her own
+ * @returns {boolean} - Returns true, if the player can have her own nurse uniform, false otherwise
+ */
 function AsylumEntranceCanGetNurseUniform() { return ((ReputationGet("Asylum") >= 50) && (!DialogInventoryAvailable("NurseUniform", "Cloth") || !DialogInventoryAvailable("NurseCap", "Hat"))) }
 
-// Loads the room and generates the nurse
+/**
+ * Loads the room and generates the nurse. Is called dynamically
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceLoad() {
 	AsylumEntranceBackground = "AsylumEntrance";
 	if (AsylumEntranceNurse == null) {
@@ -22,7 +40,11 @@ function AsylumEntranceLoad() {
 	}
 }
 
-// Runs the room (shows the nurse, player, icons and committed time)
+/**
+ * // Runs the room (shows the nurse, player, icons and committed time). 
+ * Is called over and over again, so don't call expensive functions or loops from here.
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceRun() {
 	DrawCharacter(Player, 500, 0, 1);
 	DrawCharacter(AsylumEntranceNurse, 1000, 0, 1);
@@ -38,30 +60,41 @@ function AsylumEntranceRun() {
 	}
 }
 
-// When the user clicks in the room
+/**
+ * Handles the click events. Is called from CommonClick()
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceClick() {
-	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
+	if (MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
+	if (MouseIn(1000, 0, 500, 1000)) {
 		if (LogValue("Committed", "Asylum") >= CurrentTime) AsylumEntranceNurse.Stage = "100";
 		else if (AsylumEntranceNurse.Stage == "100") AsylumEntranceNurse.Stage = "0";
 		if ((LogValue("Escaped", "Asylum") >= CurrentTime) && !AsylumEntranceNurse.IsRestrained()) AsylumEntranceNurse.Stage = "140";
 		ManagementClubSlaveDialog(AsylumEntranceNurse);
 		CharacterSetCurrent(AsylumEntranceNurse);
 	}
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (LogValue("Committed", "Asylum") < CurrentTime)) CommonSetScreen("Room", "MainHall");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && AsylumEntranceCanWander()) AsylumEntranceStartChat();
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumBedroom");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumMeeting");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumTherapy");
+	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk() && (LogValue("Committed", "Asylum") < CurrentTime)) CommonSetScreen("Room", "MainHall");
+	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+	if (MouseIn(1885, 265, 90, 90) && AsylumEntranceCanWander()) AsylumEntranceStartChat();
+	if (MouseIn(1885, 385, 90, 90) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumBedroom");
+	if (MouseIn(1885, 505, 90, 90) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumMeeting");
+	if (MouseIn(1885, 625, 90, 90) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumTherapy");
 }
 
-// Enters the online chat room in "Asylum mode"
+/**
+ * Enters the online chat room in "Asylum mode"
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceStartChat() {
-	ChatRoomStart("Asylum", "", "AsylumEntrance", "AsylumEntranceDark", ["AsylumEntrance", "AsylumBedroom", "AsylumMeeting", "AsylumTherapy", "PaddedCell", "PaddedCell2"]);
+	ChatRoomStart("Asylum", "", "AsylumEntrance", "AsylumEntranceDark", [BackgroundsTagAsylum]);
 }
 
 // Wears the nurse clothes on a character (same as nursery)
+/**
+ * Dresses a given character as a nurse
+ * @param {Character} C - The character to dress
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceWearNurseClothes(C) {
 	InventoryWear(C, "NurseUniform", "Cloth", "#848080");
 	InventoryWear(C, "NurseCap", "Hat", "Default");
@@ -71,6 +104,11 @@ function AsylumEntranceWearNurseClothes(C) {
 }
 
 // Wears the patient clothes on a character
+/**
+ * Dresses a given character as a patient
+ * @param {string | Character} C - The character to dress
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceWearPatientClothes(C) {
 	if ((typeof C === "string") && (C == "Player")) C = Player;
 	InventoryWear(C, "TShirt1", "Cloth", "#500028");
@@ -85,7 +123,10 @@ function AsylumEntranceWearPatientClothes(C) {
 	InventoryRemove(C, "Hat");
 }
 
-// Returns TRUE if the player is wearing patient clothes
+/**
+ * Checks, if the player is dressed as a patient
+ * @returns {boolean} - Returns true, if the player is dressed as a patient, false otherwise
+ */
 function AsylumEntranceIsWearingPatientClothes() {
 	if ((InventoryGet(Player, "Cloth") == null) || (InventoryGet(Player, "Cloth").Asset.Name != "TShirt1")) return false;
 	if ((InventoryGet(Player, "ClothLower") == null) || (InventoryGet(Player, "ClothLower").Asset.Name != "Pajama1")) return false;
@@ -100,7 +141,10 @@ function AsylumEntranceIsWearingPatientClothes() {
 	return true;
 }
 
-// Returns TRUE if the player is wearing nurse clothes
+/**
+ * Checks, if the player is dressed as a nurse
+ * @returns {boolean} - Returns true, if the player is dressed as a nurse, false otherwise
+ */
 function AsylumEntranceIsWearingNurseClothes() {
 	if ((InventoryGet(Player, "Cloth") == null) || (InventoryGet(Player, "Cloth").Asset.Name != "NurseUniform")) return false;
 	if ((InventoryGet(Player, "Hat") == null) || (InventoryGet(Player, "Hat").Asset.Name != "NurseCap")) return false;
@@ -109,24 +153,41 @@ function AsylumEntranceIsWearingNurseClothes() {
 }
 
 // When a patient gets committed
+/**
+ * Commits a player to the asylum for a given time and changes the players reputation
+ * @param {string} Duration - The time (in micro seconds) the player gets committed for
+ * @param {string} ReputationChange - The amount the player's reputation is going to change
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceCommitPatient(Duration, ReputationChange) {
 	LogAdd("Committed", "Asylum", CurrentTime + parseInt(Duration));
 	if (ReputationGet("Asylum") >= 0) DialogSetReputation("Asylum", -1);
 	DialogChangeReputation("Asylum", parseInt(ReputationChange) * -1);
 }
 
-// Starts to work as a nurse for the asylum
+/**
+ * The player starts working as a nurse for the Asylum. Dresses the player and sets her reputation to 1
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceStartNurse() {
 	AsylumEntranceWearNurseClothes(Player);
 	if (ReputationGet("Asylum") <= 0) DialogSetReputation("Asylum", 1);
 }
 
 // When a patient player fights for her freedom against the nurse
+/**
+ * Starts the fight for freedom between the player and the nurse
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceFightNurse() {
 	KidnapStart(AsylumEntranceNurse, "AsylumEntranceDark", 7, "AsylumEntranceFightNurseEnd()");
 }
 
 // When the fight against the nurse ends
+/**
+ * Resolves the result of the fight against the nurse
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceFightNurseEnd() {
 	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (AsylumEntranceNurse.KidnapMaxWillpower - AsylumEntranceNurse.KidnapWillpower)) * 2);
 	AsylumEntranceNurse.Stage = (KidnapVictory) ? "120" : "130";
@@ -136,10 +197,14 @@ function AsylumEntranceFightNurseEnd() {
 	AsylumEntranceWearNurseClothes(AsylumEntranceNurse);
 	AsylumEntranceWearPatientClothes(Player);
 	InventoryRemove(AsylumEntranceNurse, "ItemHead");
+	InventoryRemove(AsylumEntranceNurse, "ItemHood");
+	InventoryRemove(AsylumEntranceNurse, "ItemNose");
 	InventoryRemove(AsylumEntranceNurse, "ItemMouth");
 	InventoryRemove(AsylumEntranceNurse, "ItemFeet");
 	InventoryRemove(AsylumEntranceNurse, "ItemNeck");
 	InventoryRemove(Player, "ItemHead");
+	InventoryRemove(Player, "ItemHood");
+	InventoryRemove(Player, "ItemNose");
 	InventoryRemove(Player, "ItemMouth");
 	InventoryRemove(Player, "ItemFeet");
 	CommonSetScreen("Room", "AsylumEntrance");
@@ -147,7 +212,11 @@ function AsylumEntranceFightNurseEnd() {
 	AsylumEntranceNurse.CurrentDialog = DialogFind(AsylumEntranceNurse, (KidnapVictory) ? "FightVictory" : "FightDefeat");
 }
 
-// Restrains the player in a straitjacket with a custom difficulty
+/**
+ * Restrains the player in a straitjacket with a custom difficulty
+ * @param {string} Pose - The tightness of the straitjacket
+ * @returns {void} - Nothing
+ */
 function AsylumEntrancePlayerJacket(Pose) {
 	InventoryWear(Player, "StraitJacket", "ItemArms", "Default", 3);
 	Player.FocusGroup = { Name: "ItemArms" };
@@ -155,13 +224,20 @@ function AsylumEntrancePlayerJacket(Pose) {
 	Player.FocusGroup = null;
 }
 
-// When the player steals the nurse clothes
+/**
+ * Handles the theft of the nurse's clothes by the player
+ * @param {number} RepChange - The amount of reputation change
+ * @returns {void} - Nothing
+ */
 function AsylumEntrancePlayerNurseClothes(RepChange) {
 	DialogChangeReputation("Dominant", RepChange);
 	AsylumEntranceWearNurseClothes(Player);
 }
 
-// When the nurse is forced to be a patient (player will be tracked down for a full day after and a title will be forced)
+/**
+ * When the nurse is forced to be a patient (player will be tracked down for a full day after and a title will be forced)
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceNurseBecomePatient() {
 	LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
 	MainHallRandomEventOdds = 0;
@@ -170,7 +246,11 @@ function AsylumEntranceNurseBecomePatient() {
 	AsylumEntranceWearPatientClothes(AsylumEntranceNurse);
 }
 
-// When the nurse gets strapped down by the player
+/**
+ * Handles the restraining of the nurse by the player
+ * @param {number} RepChange - The amount of reputation change for the player
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceNurseStrap(RepChange) {
 	DialogChangeReputation("Dominant", RepChange);
 	InventoryWear(AsylumEntranceNurse, "StraitJacket", "ItemArms");
@@ -178,7 +258,11 @@ function AsylumEntranceNurseStrap(RepChange) {
 	InventoryWear(AsylumEntranceNurse, "MuzzleGag", "ItemMouth");
 }
 
-// When the player gets committed again after escaping
+// 
+/**
+ * When the player gets committed again after escaping, she is restraint tightly and has to stay for a full day
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceRecommit() {
 	DialogChangeReputation("Asylum", -3);
 	LogAdd("Committed", "Asylum", CurrentTime + 86400000);
@@ -189,7 +273,10 @@ function AsylumEntranceRecommit() {
 	AsylumEntrancePlayerJacket("Tight");
 }
 
-// When the player has escaped from the asylum and is caught by a nurse
+/**
+ * Handles the player being caught by a nurse, after escaping the Asylum. The player is brought back and the doors locked
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceNurseCatchEscapedPlayer() {
 	CommonSetScreen("Room", "AsylumEntrance");
 	AsylumEntranceBackground = "MainHall";
@@ -203,13 +290,20 @@ function AsylumEntranceNurseCatchEscapedPlayer() {
 	CharacterSetCurrent(AsylumEntranceKidnapNurse);
 }
 
-// When the player fights against the kidnap nurse
+/**
+ * Handled the player'S fight against the kidnap nurse
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceKidnapNurseFight() {
 	DialogChangeReputation("Dominant", 4);
 	KidnapStart(AsylumEntranceKidnapNurse, "MainHallDark", 7, "AsylumEntranceKidnapNurseFightOutro()");
 }
 
-// When the fight against the kidnap nurse ends
+/**
+ * Resolved the fight against the kidnap nurse
+ * @param {boolean} Surrender - Wether the player surrendered or not
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceKidnapNurseFightOutro(Surrender) {
 	CommonSetScreen("Room", "AsylumEntrance");
 	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (AsylumEntranceKidnapNurse.KidnapMaxWillpower - AsylumEntranceKidnapNurse.KidnapWillpower)) * 2);
@@ -220,7 +314,12 @@ function AsylumEntranceKidnapNurseFightOutro(Surrender) {
 	AsylumEntranceKidnapNurse.CurrentDialog = DialogFind(AsylumEntranceKidnapNurse, ((KidnapVictory) ? "Victory" : "Defeat"));
 }
 
-// When the player tries to bribe the kidnap nurse
+/**
+ * Handles the bribe attempt of the kidnapping nurse
+ * @param {string} BribeAmount - The offered bribe amount
+ * @param {string} BribeOdds - The odds of a succesful bribe attempt
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceKidnapNurseBribe(BribeAmount, BribeOdds) {
 	if (parseInt(BribeOdds) > Math.random() * 100) {
 		CharacterChangeMoney(Player, parseInt(BribeAmount) * -1);
@@ -232,7 +331,10 @@ function AsylumEntranceKidnapNurseBribe(BribeAmount, BribeOdds) {
 	}
 }
 
-// When the player transfers the kidnap nurse to her room
+/**
+ * When the player transfers the kidnap nurse to her room
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceKidnapNurseTransferToRoom() {
 	AsylumEntranceWearNurseClothes(AsylumEntranceKidnapNurse);
 	CharacterRelease(Player);
@@ -241,13 +343,19 @@ function AsylumEntranceKidnapNurseTransferToRoom() {
 	DialogLeave();
 }
 
-// When the player leaves the kidnap nurse
+/**
+ * When the player leaves the kidnap nurse
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceKidnapNurseExit() {
 	DialogLeave();
 	CommonSetScreen("Room", "MainHall");
 }
 
-// When the player walks back to the asylum
+/**
+ * When the escaped player walks back to the asylum
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceGoToAsylum() {
 	AsylumEntranceBackground = "AsylumEntrance";
 	LogAdd("Committed", "Asylum", CurrentTime + 86400000);
@@ -255,7 +363,10 @@ function AsylumEntranceGoToAsylum() {
 	TitleSet("None");
 }
 
-// When the player is dressed back as a patient
+/**
+ * When the escaped player is dressed back as a patient
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceBackAsPatient() {
 	CharacterRelease(Player);
 	AsylumEntranceWearPatientClothes("Player");
@@ -263,7 +374,10 @@ function AsylumEntranceBackAsPatient() {
 	AsylumEntranceWearNurseClothes(AsylumEntranceNurse);
 }
 
-// When the player meets an escaped patient as a nurse
+/**
+ * The player meets  an escaped patient while on nurse duty
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceEscapedPatientMeet() {
 	CommonSetScreen("Room", "AsylumEntrance");
 	AsylumEntranceBackground = "MainHall";
@@ -279,7 +393,10 @@ function AsylumEntranceEscapedPatientMeet() {
 	CharacterSetCurrent(AsylumEntranceEscapedPatient);
 }
 
-// When the player starts a fight against the escaped patient
+/**
+ * When the player starts a fight against the escaped patient
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceEscapedPatientFight() {
 	DialogChangeReputation("Asylum", 2);
 	DialogChangeReputation("Dominant", 2);
@@ -287,6 +404,11 @@ function AsylumEntranceEscapedPatientFight() {
 }
 
 // When the player fight ends against the escaped patient
+/**
+ * Resolves the fight against an escaped patient
+ * @param {boolean} Surrender - Wether the player surrendered or not
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceEscapedPatientFightOutro(Surrender) {
 	CommonSetScreen("Room", "AsylumEntrance");
 	AsylumEntranceBackground = "MainHall";
@@ -300,13 +422,19 @@ function AsylumEntranceEscapedPatientFightOutro(Surrender) {
 	AsylumEntranceEscapedPatient.CurrentDialog = DialogFind(AsylumEntranceEscapedPatient, ((KidnapVictory) ? "Victory" : "Defeat"));
 }
 
-// When the player gets bribed by a patient
+/**
+ * Resolves the bribe attempt towards the player by an escaped patient
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceEscapedPatientBribe() {
 	CharacterChangeMoney(Player, 5);
 	DialogChangeReputation("Asylum", -1);
 }
 
-// When the player transfers a patient to her room
+/**
+ * When the player transfers a patient to her room
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceEscapedPatientTransferToRoom() {
 	AsylumEntranceWearPatientClothes(AsylumEntranceEscapedPatient);
 	CharacterRelease(Player);
@@ -315,7 +443,10 @@ function AsylumEntranceEscapedPatientTransferToRoom() {
 	DialogLeave();
 }
 
-// When the player brings back an escaped patient to the asylum
+/**
+ * Handles the returning of an escaped patient by the player
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceEscapedPatientTransferToAsylum() {
 	AsylumEntranceBackground = "AsylumEntrance";
 	CharacterChangeMoney(Player, 15);
@@ -327,14 +458,22 @@ function AsylumEntranceEscapedPatientTransferToAsylum() {
 	InventoryWear(AsylumEntranceEscapedPatient, "MuzzleGag", "ItemMouth");
 }
 
-// When the player leaves the escaped patient
+/**
+ * When the player leaves the escaped patient
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceEscapedPatientLeave() {
 	CommonSetScreen("Room", "MainHall");
 	DialogLeave();
 }
 
-// Gives the nurse uniform to the player if asylum reputation is 50 or more
+/**
+ * The player gets a nurse uniform of her own
+ * @returns {void} - Nothing
+ */
 function AsylumEntranceGiveNurseUniform() {
-	InventoryAdd(Player, "NurseUniform", "Cloth");
-	InventoryAdd(Player, "NurseCap", "Hat");
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "NurseUniform", Group: "Cloth"});
+	ItemsToEarn.push({Name: "NurseCap", Group: "Hat"});
+	InventoryAddMany(Player, ItemsToEarn);
 }

@@ -19,7 +19,7 @@ function InventoryItemLegsChainsDraw() {
 		DrawButton(1175, 550, 225, 225, "", (DialogFocusItem.Property.Type == null || DialogFocusItem.Property.Type == "Basic") ? "#888888" : "White");
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Basic.png", 1175, 551);
 		DrawText(DialogFind(Player, "ChainBondageBasic"), 1288, 800, "white", "gray");
-		DrawText(DialogFind(Player, "NoRequirement").replace("ReqLevel", "2"), 1288, 850, "white", "gray");
+		DrawText(DialogFind(Player, "NoRequirement"), 1288, 850, "white", "gray");
 		DrawButton(1600, 550, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Strict")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 2) ? "Pink" : "White");
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Strict.png", 1600, 551);
 		DrawText(DialogFind(Player, "ChainBondageStrict"), 1713, 800, "white", "gray");
@@ -55,11 +55,6 @@ function InventoryItemLegsChainsSetType(NewType) {
 	}
 	else return;
 
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
 	CharacterRefresh(C);
 
 	// Sets the chatroom or NPC message

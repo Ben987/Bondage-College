@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Bondage Club Translation Status</title>
-<link rel="icon" type="image/png" href="../../Icons/Logo.png">
+<link rel="icon" type="image/png" href="../../../Icons/Logo.png">
 
 <style>
     body {
@@ -66,8 +66,8 @@
     }
 </style>
 
-<script src="../../Scripts/Common.js"></script>
-<script src="../../Scripts/Translation.js"></script>
+<script src="../../../Scripts/Common.js"></script>
+<script src="../../../Scripts/Translation.js"></script>
 <script>
 
 /*	
@@ -138,7 +138,7 @@ function CreateFileStatusReport(Language, Path) {
         Status.EnglishFile = EnglishFiles[EnglishPath];
         GetDataAndAnalyze(Status);
     }
-    CommonGet("../../" + EnglishPath, Callback);
+    CommonGet("../../../" + EnglishPath, Callback);
 }
 
 function ProcessEnglishFile(File) {
@@ -178,7 +178,7 @@ function HasExitButton(Data, Stage) {
 }
 
 function GetDataAndAnalyze(Status) {
-    CommonGet("../../" + Status.Path, function() {
+    CommonGet("../../../" + Status.Path, function() {
         Status.RawData = this.responseText;
         var Lines = Status.RawData.split("\n");
         Status.Data = [];

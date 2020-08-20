@@ -2,8 +2,13 @@
 
 // Loads the item extension properties
 function InventoryItemArmsMermaidSuitLoad() {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null };
+	if (DialogFocusItem.Property.Block == null) {
+		DialogFocusItem.Property.Block = DialogFocusItem.Property.Type ? [] : ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"];
+		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+		CharacterRefresh(C);
+		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
+	}
 }
 
 // Draw the item extension screen

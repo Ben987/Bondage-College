@@ -6,6 +6,8 @@ RoomPrivate,Private
 RoomLocked,Locked
 RoomSize,Size (2-10)
 UseMemberNumbers,"Use member numbers, separated by commas (ex: 3571,541,7001)"
+QuickbanBlackList,Ban blacklist
+QuickbanGhostList,Ban ghostlist
 AdminOnly,Room settings can only be updated by administrators
 Background,Background
 ShowAll,Selection
