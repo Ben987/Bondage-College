@@ -101,9 +101,9 @@ function CommonDrawAppearanceBuild(C, {
 
 		// If we must apply alpha masks to the current image as it is being drawn (only apply alpha masks on the first layer)
 		if (Array.isArray(A.Alpha) && LayerCounts[CountKey] === 1)
-			A.Alpha.forEach(([x, y, w, h]) => {
-				clearRect(x, y, w, h);
-				clearRectBlink(x, y, w, h);
+			A.Alpha.forEach(rect => {
+				clearRect(rect[0], rect[1], rect[2], rect[3]);
+				clearRectBlink(rect[0], rect[1], rect[2], rect[3]);
 			});
 
 		// Check if we need to draw a different expression (for facial features)

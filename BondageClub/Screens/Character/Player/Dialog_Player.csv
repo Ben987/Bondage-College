@@ -346,6 +346,7 @@ ActionActivityTickleItem,,,SourceCharacter tickles DestinationCharacter FocusAss
 ActionActivityRubItem,,,SourceCharacter rubs DestinationCharacter FocusAssetGroup with a NextAsset.,,
 ActionActivityRollItem,,,SourceCharacter rolls a NextAsset over DestinationCharacter FocusAssetGroup.,,
 ActionActivityPourItem,,,SourceCharacter pours NextAsset onto DestinationCharacter FocusAssetGroup.,,
+ActionActivityShockItem,,,SourceCharacter shocks DestinationCharacter FocusAssetGroup with a NextAsset,,
 ActionInterruptedAdd,,,SourceCharacter was interrupted while trying to use a NextAsset on TargetCharacter.,,
 ActionInterruptedRemove,,,SourceCharacter was interrupted while going for the PrevAsset on TargetCharacter.,,
 ActionInterruptedSwap,,,SourceCharacter was interrupted while swapping a PrevAsset for a NextAsset on TargetCharacter.,,
