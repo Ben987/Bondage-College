@@ -13,9 +13,11 @@ var maid, textures, webpath;
 var strip3D;
 var d2tod3,second;
 var mixer;
+// var clock = new THREE.Clock();
 
 function Draw3DLoad() {
 	init();
+	// animate();
 	// animate(character3D);
 	document.body.appendChild(renderer.domElement);
 	renderer.domElement.style.display = "none";
@@ -28,7 +30,7 @@ function Draw3DKeyDown() {
 		if ((KeyPress == 69) || (KeyPress == 101)) character3D.rotation.y += 0.1;
 		if ((KeyPress == 65) || (KeyPress == 97)) dress3DModels(character3D,path3d, count1++); //character3D.position.x -= 1;
 		if ((KeyPress == 68) || (KeyPress == 100)) character3D.position.x += 1;
-		if ((KeyPress == 87) || (KeyPress == 119)) refresh3DModel (character3D, path3d, count); //character3D.position.z += 1;
+		if ((KeyPress == 87) || (KeyPress == 119)) refresh3DModel (character3D, path3d, count);;// //character3D.position.z += 1;
 		if ((KeyPress == 83) || (KeyPress == 115)) character3D.position.z += 1;
 	}
 }
@@ -36,8 +38,8 @@ function Draw3DKeyDown() {
 // TODO: call each 3d asset and transform x,y towards the next bone node(point)
 function init(){
 	webpath = window.location.href;
-
-	var itemgroup = ["HairBack/HairBack1", "HairFront/HairFront6","Eyes/BlueEyes 1","BodyUpper/Pale Skin",  "Cloth/MaidOutfit1","Panties/MaidPanties1", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/Heels1"];
+	let _mixers = [];
+	var itemgroup = ["HairBack/HairBack1", "HairFront/HairFront6","Eyes/BlueEyes 1","BodyUpper/Pale Skin1",  "Cloth/MaidOutfit1","Panties/MaidPanties1", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/Heels1"];
 
 	scene = new THREE.Scene();
 
@@ -46,8 +48,14 @@ function init(){
 	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true  });
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(window.innerWidth, window.innerHeight);
+	// window.addEventListener( 'resize', onWindowResize, false );
 
-  // clock = new THREE.Clock();
+
+	light();
+
+
+
+
 
   character3D = new THREE.Group();
 	count = -1;
@@ -58,10 +66,16 @@ function init(){
 			let grpname = i.slice(0, subst);
 			let itemname = i.slice(subst +1);
 			var itemcolor = "#c21e56";
+			// if (grpname == "BodyUpper"){
 			Loadassets(character3D,path3d,grpname, itemcolor, itemname);
+
+
 	 }
 	scene.add(character3D);
 }
+
+
+
 
 function Draw3DEnable(Enable) {
 	Draw3DEnabled = Enable;
@@ -93,7 +107,7 @@ function light(){
 	directlight.castShadow = true;
 	scene.add( directlight );
 
-	let ambientLight = new THREE.AmbientLight(0xffffff, 1);
+	let ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 	ambientLight.castShadow = true;
 	ambientLight.position.set(200, 2000, 200);
 	scene.add(ambientLight);
@@ -210,7 +224,7 @@ function refresh3DModel (group, path3d, count){
 		let itemcolor = Character[0].Appearance[i].Color;
 		if (grpname == "BodyUpper" && itemcolor == "Black") itemname = "Dark Skin";
 		if (grpname == "BodyUpper" && itemcolor == "White") itemname = "Pale Skin";
-		if (grpname == "BodyUpper" && itemcolor == "Asian") itemname = "Light Skin 1";
+		if (grpname == "BodyUpper" && itemcolor == "Asian") itemname = "Light Skin1";
 		let neweyes = itemname.slice(0, 4);
 		if (neweyes == "Eyes") itemname = "BlueEyes 1"; // TODO: change and ask for color range
 		let newhair = itemname.slice(-1);
@@ -237,14 +251,15 @@ function Loadassets(character3D, path3d, grpname, itemcolor, itemname){
 		model = object;
 		model.name = itemname;
 		model.type = grpname;
-		// mixer = new THREE.AnimationMixer(model); //add
+		// if(model.group == "BodyUpper") animate(model);
 		// mixer.root = mixer.getRoot(); //add
 		set3Dcolor(itemcolor, grpname, itemname, path3d);
-		// if(model.group == "BodyUpper") animate(model);
-		console.log(model);
-		character3D.add(model);
-		// var action = mixer.clipAction(model.animations,mixer.root); //add
+		// mixer = new THREE.AnimationMixer(model); //add
+		// var action = mixer.clipAction(model.animations[0]); //add
 		// action.play(); //add
+
+		character3D.add(model);
+
 		},
 		undefined,
 		function( error ) {
@@ -252,6 +267,7 @@ function Loadassets(character3D, path3d, grpname, itemcolor, itemname){
 		}
 	);
 }
+
 
 function assetexist(group,path3d, grpname,itemcolor, itemname){
 	var asset3D = [];
@@ -269,22 +285,30 @@ function assetexist(group,path3d, grpname,itemcolor, itemname){
 // TODO: create animation
 // TODO: change the current animation
 
-// function animate(model){
-// 	var animspath = "Assets/3D/1animation/";
-// 	var anims = ["Standing"];
-// 		const anim = new THREE.FBXLoader();
-// 		anim.load(`${animspath}${anims}.fbx`, function(object1){
-//
-//
-//
-// 		// requestAnimationFrame(animate);
-// 			},
-// 			undefined,
-// 			function( error ) {
-// 				console.log(error);
-// 		});
-// }
+function animat(model){
+	var animspath = "Assets/3D/1animation/";
+	var anims = "Standing";
+	const anim = new THREE.FBXLoader();
+	anim.load(`${animspath}${anims}.fbx`, function(model){
+		var mixer = new THREE.AnimationMixer(model);
+		var action = mixer.clipAction(model.animations[0]);
+		action.play();
 
+
+		},
+		undefined,
+		function( error ) {
+			console.log(error);
+	});
+}
+
+function animate() {
+		requestAnimationFrame( animate );
+		var delta = clock.getDelta();
+		if ( mixer ) mixer.update( delta );
+		renderer.render( scene, camera );
+
+	}
 
 
 // 3d enviourment
