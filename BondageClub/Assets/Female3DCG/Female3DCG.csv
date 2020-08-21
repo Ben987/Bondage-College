@@ -137,6 +137,7 @@ Bra,HeartTop,Heart Top
 Bra,ChineseBra1,Chinese Bra
 Bra,LatexCorset1,Latex Corset
 Bra,LeatherStrapBra1,Leather Strap Bra
+Bra,Swimsuit3,Swimsuit style 3
 Panties,,Panties
 Panties,Panties1,Style 1
 Panties,Panties7,Style 2
@@ -227,6 +228,7 @@ Hat,Crown5,Crown Style 5
 Hat,SmallHat1,Stylish Small Hat
 Hat,Veil1,Veil Half Face
 Hat,Veil2,Veil Full Face
+Hat,BakerBoyHat,Baker Boy Hat
 HairAccessory1,,Hair Accessory
 HairAccessory1,Ears1,Ears Small
 HairAccessory1,Ears2,Ears Large
@@ -258,6 +260,7 @@ HairAccessory1,WeddingVeil1,Wedding Veil
 HairAccessory1,HairFeathers1,Feathers
 HairAccessory1,MouseEars1,Mouse Ears 1
 HairAccessory1,MouseEars2,Mouse Ears 2
+HairAccessory1,ElfEars,Elf Ears
 HairAccessory2,,Hair Accessory
 HairAccessory2,Ears1,Ears Small
 HairAccessory2,Ears2,Ears Large
@@ -289,6 +292,7 @@ HairAccessory2,WeddingVeil1,Wedding Veil
 HairAccessory2,HairFeathers1,Feathers
 HairAccessory2,MouseEars1,Mouse Ears 1
 HairAccessory2,MouseEars2,Mouse Ears 2
+HairAccessory2,ElfEars,Elf Ears
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -438,6 +442,7 @@ Eyes,Eyes8,Style 8
 Eyes,Eyes9,Style 9
 Eyes,Eyes10,Style 10
 Eyes,Eyes11,Style 11
+Eyes,Eyes12,Style 12
 Eyes2,,Right eye
 Eyes2,Eyes1,Style 1
 Eyes2,Eyes2,Style 2
@@ -450,6 +455,7 @@ Eyes2,Eyes8,Style 8
 Eyes2,Eyes9,Style 9
 Eyes2,Eyes10,Style 10
 Eyes2,Eyes11,Style 11
+Eyes2,Eyes12,Style 12
 Mouth,,Mouth
 Mouth,Regular,Regular
 Mouth,Discreet,Discreet
@@ -694,6 +700,8 @@ ItemArms,PrisonLockdownSuit,Prison Lockdown Suit
 ItemArms,LeatherArmSplints,Leather Arm Splints
 ItemArms,TightJacketCrotch,Tightjacket Leotard
 ItemArms,HighSecurityStraitJacket,High Security Straitjacket
+ItemArms,PantyhoseBody,Pantyhose fullBody
+ItemArms,PantyhoseBodyOpen,Crotchless Pantyhose fullBody
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens

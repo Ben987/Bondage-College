@@ -197,6 +197,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 					for (let A = 0; A < C.Appearance.length; A++)
 						if (C.Appearance[A].Asset.Group.Name == "Eyes")
 							SelectedColor = C.Appearance[A].Color;
+				if (SelectedColor == "Default" && SelectedAsset.DefaultColor != null) SelectedColor = SelectedAsset.DefaultColor;
 				var NA = {
 					Asset: SelectedAsset,
 					Color: SelectedColor
@@ -418,7 +419,7 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 		if ((C.Appearance[A].Asset.Group.Family == C.AssetFamily) && (C.Appearance[A].Asset.Group.Name == Group)) {
 			if (Type == "Name") return C.Appearance[A].Asset.Name;
 			if (Type == "Description") return C.Appearance[A].Asset.Description;
-			if (Type == "Color") return C.Appearance[A].Color;
+			if (Type == "Color") return (C.Appearance[A].Color == C.Appearance[A].Asset.DefaultColor) ? "Default" : C.Appearance[A].Color;
 			if (Type == "ID") return A;
 			if (Type == "Effect") return C.Appearance[A].Asset.Effect;
 			if (Type == "Asset") return C.Appearance[A].Asset;
@@ -603,9 +604,12 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 	var ID = CharacterAppearanceGetCurrentValue(C, Group, "ID");
 	var ItemColor;
 	if (ID != "None") {
-		if (CurrentScreen == "Appearance") ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
+		if (CurrentScreen == "Appearance") {
+			ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
+			if ((ItemColor == null || ItemColor == "Default" || ItemColor == "None") && ItemAsset != null && ItemAsset.DefaultColor != null) ItemColor = ItemAsset.DefaultColor;
+		}
 		C.Appearance.splice(ID, 1);
-	} else if (ItemAsset != null) ItemColor = ItemAsset.Group.ColorSchema[0];
+	} else if (ItemAsset != null) ItemColor = ItemAsset.DefaultColor ? ItemAsset.DefaultColor : ItemAsset.Group.ColorSchema[0];
 
 	// Add the new item to the character appearance
 	if (ItemAsset != null) {
@@ -689,8 +693,10 @@ function CharacterAppearanceNextColor(C, Group) {
 
 			// Sets the color
 			for (Pos = 0; Pos < C.Appearance.length; Pos++)
-				if ((C.Appearance[Pos].Asset.Group.Name == Group) && (C.Appearance[Pos].Asset.Group.Family == C.AssetFamily))
+				if ((C.Appearance[Pos].Asset.Group.Name == Group) && (C.Appearance[Pos].Asset.Group.Family == C.AssetFamily)) {
+					if (Color == "Default" && C.Appearance[Pos].Asset.DefaultColor != null) Color = C.Appearance[Pos].Asset.DefaultColor;
 					C.Appearance[Pos].Color = Color;
+				}
 
 			// Reloads the character canvas
 			CharacterLoadCanvas(C);
