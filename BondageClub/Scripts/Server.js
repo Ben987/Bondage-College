@@ -654,6 +654,7 @@ function ServerAccountOwnership(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearOwnership != null) && (typeof data.ClearOwnership === "boolean") && (data.ClearOwnership == true)) {
 		Player.Owner = "";
 		Player.Ownership = null;
+		LogDelete("ReleasedCollar", "OwnerRule");
 		LoginValidCollar();
 	}
 

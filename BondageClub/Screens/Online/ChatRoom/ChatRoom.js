@@ -1333,6 +1333,23 @@ function ChatRoomSetRule(data) {
 			CellLock(TimerCell);
 		}
 
+		// Collar Rules
+		if (data.Content == "OwnerRuleCollarRelease") {
+			if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar")) {
+				InventoryRemove(Player, "ItemNeck");
+				ChatRoomCharacterItemUpdate(Player, "ItemNeck");
+				ServerSend("ChatRoomChat", { Content: "PlayerOwnerCollarRelease", Type: "Action", Dictionary: [{Tag: "DestinationCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber}] });
+			}
+			LogAdd("ReleasedCollar", "OwnerRule");
+		}
+		if (data.Content == "OwnerRuleCollarWear") {
+			if ((InventoryGet(Player, "ItemNeck") == null) || ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar"))) {
+				ServerSend("ChatRoomChat", { Content: "PlayerOwnerCollarWear", Type: "Action", Dictionary: [{Tag: "DestinationCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber}] });
+			}
+			LogDelete("ReleasedCollar", "OwnerRule");
+			LoginValidCollar();
+		}
+		
 		// Forced labor
 		if (data.Content == "OwnerRuleLaborMaidDrinks" && Player.CanTalk()) {
 			CharacterSetActivePose(Player, null);

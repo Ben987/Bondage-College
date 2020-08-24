@@ -559,7 +559,7 @@ function CharacterRefresh(C, Push) {
 function CharacterHasNoItem(C) {
 	for (let A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Item"))
-			if (C.Appearance[A].Asset.Name != "SlaveCollar")
+			if (C.Appearance[A].Asset.Group.Name != "ItemNeck" || (C.Appearance[A].Asset.Group.Name == "ItemNeck" && !InventoryOwnerOnlyItem(C.Appearance[A])))
 				return false;
 	return true;
 }

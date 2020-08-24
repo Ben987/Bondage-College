@@ -145,13 +145,21 @@ function LoginValidCollar() {
  		InventoryRemove(Player, "ItemNeck");
 		InventoryRemove(Player, "ItemNeckAccessories");
 		InventoryRemove(Player, "ItemNeckRestraints");
+		if (CurrentScreen == "ChatRoom") {
+			ChatRoomCharacterItemUpdate(Player, "ItemNeck");
+			ChatRoomCharacterItemUpdate(Player, "ItemNeckAccessories");
+			ChatRoomCharacterItemUpdate(Player, "ItemNeckRestraints");
+		}
 	}
- 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) {
- 		InventoryRemove(Player, "ItemNeck");
-	}
-	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) {
-		InventoryWear(Player, "SlaveCollar", "ItemNeck");
-		if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(Player, "ItemNeck");
+	if (!LogQuery("ReleasedCollar", "OwnerRule")) {
+		if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) {
+			InventoryRemove(Player, "ItemNeck");
+			if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(Player, "ItemNeck");
+		}
+		if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) {
+			InventoryWear(Player, "SlaveCollar", "ItemNeck");
+			if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(Player, "ItemNeck");
+		}
 	}
 }
 
