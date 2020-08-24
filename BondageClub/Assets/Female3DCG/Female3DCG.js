@@ -187,6 +187,7 @@ var AssetFemale3DCG = [
 		Group: "Suit",
 		ParentGroup: "BodyUpper",
 		Priority: 14,
+		Default: false,
 		Clothing: true,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
 		Asset: [

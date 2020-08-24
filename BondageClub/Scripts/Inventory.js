@@ -313,42 +313,83 @@ function InventoryLocked(C, AssetGroup, CheckProperties) {
 }
 
 /**
-* Makes the character wear a random item from a body area, the character doesn't need to own the item
+* Makes the character wear a random item from a body area
 * @param {Character} C - The character that must wear the item
 * @param {String} GroupName - The name of the asset group (body area)
 * @param {Int} Difficulty - The difficulty level to escape from the item
+* @param {Boolean} MustOwn - If TRUE, only assets that the character owns can be worn. Otherwise any asset can be used
 */
-function InventoryWearRandom(C, GroupName, Difficulty) {
+function InventoryWearRandom(C, GroupName, Difficulty, MustOwn) {
 	if (!InventoryLocked(C, GroupName)) {
 
 		// Finds the asset group and make sure it's not blocked
 		for (let A = 0; A < AssetGroup.length; A++)
 			if (AssetGroup[A].Name == GroupName) {
-				var FG = C.FocusGroup;
-				C.FocusGroup = AssetGroup[A];
-				var IsBlocked = InventoryGroupIsBlocked(C);
-				C.FocusGroup = FG;
+				var IsBlocked = InventoryGroupIsBlocked(C, GroupName);
 				if (IsBlocked) return;
 				break;
 			}
 
-		// Builds a list of all possible items and uses one of them, visible if possible, prevents the user from blocking everything to cheat
-		var ListFull = [];
-		var ListPermittedVisible = [];
-		var ListPermitted = [];
-		for (let A = 0; A < Asset.length; A++)
-			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false)) {
-				ListFull.push(Asset[A]);
-				if (!InventoryIsPermissionBlocked(C, Asset[A].Name, Asset[A].Group.Name))
-					if (!CharacterAppearanceItemIsHidden(Asset[A].Name, GroupName)) ListPermittedVisible.push(Asset[A]);
-					else ListPermitted.push(Asset[A]);
-			}
-		if (ListFull.length == 0) return;
-		var RandomAsset = ListPermittedVisible.length > 0 ? ListPermittedVisible[Math.floor(Math.random() * ListPermittedVisible.length)] : ListPermitted.length > 0 ? ListPermitted[Math.floor(Math.random() * ListPermitted.length)] : ListFull[Math.floor(Math.random() * ListFull.length)];
-		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty);
+		// Check if the options should be restricted to owned assets only
+		var AssetList = MustOwn ? CharacterAppearanceAssets : null;
+
+		// Get and apply a random asset
+		var SelectedAsset = InventoryGetRandom(C, GroupName, AssetList);
+
+		// Pick a random color from the schema
+		var SelectedColor = SelectedAsset.Group.ColorSchema[Math.floor(Math.random() * SelectedAsset.Group.ColorSchema.length)];
+
+		CharacterAppearanceSetItem(C, GroupName, SelectedAsset, SelectedColor, Difficulty);
 		CharacterRefresh(C);
 
 	}
+}
+
+/**
+ * Select a random asset from a group, narrowed to the most preferable available options (i.e unblocked/visible/unlimited) based on their binary "rank"
+ * @param {Character} C - The character to pick the asset for
+ * @param {String} GroupName - The asset group to pick the asset from. Set to an empty string to not filter by group.
+ * @param {Array} AllowedAssets - Optional parameter: A list of assets from which one can be selected. If not provided, the full list of all assets is used.
+ * @returns {Asset} - The randomly selected asset
+ */
+function InventoryGetRandom(C, GroupName, AllowedAssets) {
+	var List = [];
+	var AssetList = AllowedAssets || Asset;
+	var RandomOnly = (AllowedAssets == null);
+
+	var MinRank = Math.pow(2, 10);
+	var BlockedRank = Math.pow(2, 2);
+	var HiddenRank = Math.pow(2, 1);
+	var LimitedRank = Math.pow(2, 0);
+		
+	for (let A = 0; A < AssetList.length; A++)
+		if (((AssetList[A].Group.Name == GroupName && AssetList[A].Wear) || GroupName == null || GroupName == "") && (RandomOnly == false || AssetList[A].Random) && AssetList[A].Enable && InventoryAllow(C, AssetList[A].Prerequisite, false)) {
+			var CurrRank = 0;
+
+			if (InventoryIsPermissionBlocked(C, AssetList[A].Name, AssetList[A].Group.Name)) {
+				if (BlockedRank > MinRank) continue;
+				else CurrRank += BlockedRank;
+			}
+
+			if (CharacterAppearanceItemIsHidden(AssetList[A].Name, GroupName)) {
+				if (HiddenRank > MinRank) continue;
+				else CurrRank += HiddenRank;
+			}
+
+			if (InventoryIsPermissionLimited(C, AssetList[A].Name, AssetList[A].Group.Name)) {
+				if (LimitedRank > MinRank) continue;
+				else CurrRank += LimitedRank;
+			}
+
+			MinRank = Math.min(MinRank, CurrRank);
+			List.push({ Asset: AssetList[A], Rank: CurrRank });
+		}
+
+	var PreferredList = List.filter(L => L.Rank == MinRank);
+	if (PreferredList.length == 0) return null;
+
+	var RandomAsset = PreferredList[Math.floor(Math.random() * PreferredList.length)].Asset;
+	return RandomAsset;
 }
 
 /**
@@ -603,7 +644,7 @@ function InventoryLockRandom(C, Item, FromOwner) {
 			if (Asset[A].IsLock && Asset[A].Random && !Asset[A].LoverOnly && (FromOwner || !Asset[A].OwnerOnly))
 				List.push(Asset[A]);
 		if (List.length > 0) {
-			var Lock = { Asset: List[Math.floor(Math.random() * List.length)] };
+			var Lock = InventoryGetRandom(C, null, List);
 			InventoryLock(C, Item, Lock);
 		}
 	}
