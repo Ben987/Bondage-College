@@ -55,6 +55,12 @@ var DialogSelfMenuOptions = [
 		Draw: DialogDrawPoseMenu,
 		Click: DialogClickPoseMenu,
 	},	
+	{
+		Name: "OwnerRules",
+		IsAvailable: () => DialogSelfMenuSelected && DialogSelfMenuSelected.Name == "OwnerRules",
+		Draw: DialogDrawOwnerRulesMenu,
+		Click: () => {},
+	},
 ];
 
 /**
@@ -267,6 +273,12 @@ function DialogChatRoomPlayerIsAdmin() { return (ChatRoomPlayerIsAdmin() && (Cur
  * @returns {boolean} - Returns true, if the player is currently within a chat room
  */
 function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom" && Player.GameplaySettings.EnableSafeword) }
+
+/**
+ * Checks if the player is currently owned.
+ * @returns {boolean} - Returns true, if the player is currently owned by an online player (not in trial)
+ */
+function DialogCanViewRules() { return (Player.Ownership != null) && (Player.Ownership.Stage == 1) }
 
 /**
  * Checks the prerequisite for a given dialog
@@ -1319,7 +1331,7 @@ function DialogFindNextSubMenu() {
 			DialogSelfMenuSelected = DialogSelfMenuOptions[SM];
 			return;
 		}
-		if (SM + 1 == DialogSelfMenuOptions.length) SM = 0;
+		if (SM + 1 == DialogSelfMenuOptions.length) SM = -1;
 	}
 }
 
@@ -1833,6 +1845,39 @@ function DialogClickPoseMenu() {
 				ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 			}
 		}
+	}
+}
+
+
+/**
+ * Sets the current character sub menu to the owner rules
+ * @returns {void} - Nothing
+ */
+function DialogViewOwnerRules() { 
+	DialogSelfMenuSelected = DialogSelfMenuOptions.find(M => M.Name == "OwnerRules");
+}
+
+/**
+ * Draws the owner rules sub menu
+ * @returns {void} - Nothing
+ */
+function DialogDrawOwnerRulesMenu() { 
+	// Draw the pose groups
+	DrawText(DialogFind(Player, "OwnerRulesMenu"), 130, 25, "White", "Black");
+
+	var ToDisplay = [];
+	
+	if (LogQuery("BlockOwnerLockSelf", "OwnerRule")) ToDisplay.push({ Tag: "BlockOwnerLockSelf" });
+	if (LogQuery("BlockChange", "OwnerRule")) ToDisplay.push({ Tag: "BlockChange", Value: LogValue("BlockChange", "OwnerRule") });
+	if (LogQuery("BlockWhisper", "OwnerRule")) ToDisplay.push({ Tag: "BlockWhisper" });
+	if (LogQuery("BlockKey", "OwnerRule")) ToDisplay.push({ Tag: "BlockKey" });
+	if (LogQuery("BlockRemote", "OwnerRule")) ToDisplay.push({ Tag: "BlockRemote" });
+	if (LogQuery("BlockRemoteSelf", "OwnerRule")) ToDisplay.push({ Tag: "BlockRemoteSelf" });
+	if (ToDisplay.length == 0) ToDisplay.push({ Tag: "Empty" });
+	
+	for (let I = 0; I < ToDisplay.length; I++) { 
+		var OffsetY = 230 + 100 * I;
+		DrawText(DialogFind(Player, "OwnerRulesMenu" + ToDisplay[I].Tag) + (ToDisplay[I].Value ?  " " + TimerToString(ToDisplay[I].Value - CurrentTime) : ""), 250, OffsetY, "White", "Black");
 	}
 }
 
