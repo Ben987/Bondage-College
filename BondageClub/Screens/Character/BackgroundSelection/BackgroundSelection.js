@@ -116,8 +116,8 @@ function BackgroundSelectionRun() {
 	var X = 45;
 	var Y = 150;
 	for (let i = BackgroundSelectionOffset; i < BackgroundSelectionView.length && i - BackgroundSelectionOffset < BackgroundSelectionSize; ++i) {
-		if (BackgroundSelectionView[i].Name == BackgroundSelectionSelect) DrawButton(X - 4, Y - 4, 450 + 8, 225 + 8, BackgroundSelectionView[i], "Blue");
-		else DrawButton(X, Y, 450, 225, BackgroundSelectionView[i].Name, "White");
+		if (BackgroundSelectionView[i].Name == BackgroundSelectionSelect) DrawButton(X - 4, Y - 4, 450 + 8, 225 + 8, BackgroundSelectionView[i].Description, "Blue");
+		else DrawButton(X, Y, 450, 225, BackgroundSelectionView[i].Description, "White");
 		DrawImageResize("Backgrounds/" + BackgroundSelectionView[i].Name + ".jpg", X + 2, Y + 2, 446, 221);
 		DrawTextFit(BackgroundSelectionView[i].Description, X + 227, Y + 252, 450, "Black");
 		DrawTextFit(BackgroundSelectionView[i].Description, X + 225, Y + 250, 450, "White");
