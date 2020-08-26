@@ -101,9 +101,9 @@ function CommonDrawAppearanceBuild(C, {
 
 		// If we must apply alpha masks to the current image as it is being drawn (only apply alpha masks on the first layer)
 		if (Array.isArray(A.Alpha) && LayerCounts[CountKey] === 1)
-			A.Alpha.forEach(([x, y, w, h]) => {
-				clearRect(x, y, w, h);
-				clearRectBlink(x, y, w, h);
+			A.Alpha.forEach(rect => {
+				clearRect(rect[0], rect[1], rect[2], rect[3]);
+				clearRectBlink(rect[0], rect[1], rect[2], rect[3]);
 			});
 
 		// Check if we need to draw a different expression (for facial features)
@@ -137,22 +137,30 @@ function CommonDrawAppearanceBuild(C, {
 		if (!Layer.HasType) LayerType = "";
 		var BlinkExpression = (A.OverrideBlinking ? !AG.DrawingBlink : AG.DrawingBlink) ? "Closed/" : Expression;
 
+		// Check if we need to copy the color of another asset
+		var Color = CA.Color;
+		var InheritColor = Layer.InheritColor || (Color == "Default" ? (CA.Asset.InheritColor || CA.Asset.Group.InheritColor) : null);
+		if (InheritColor != null) {
+			var ParentAsset = InventoryGet(C, InheritColor);
+			if (ParentAsset != null) Color = ParentAsset.Color;
+		}
+
 		// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
-		if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && Layer.AllowColorize) {
+		if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
 			drawImageColorize(
-				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y, CA.Color,
+				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y, Color,
 				AG.DrawingFullAlpha,
 			);
 			drawImageColorizeBlink(
-				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y, CA.Color,
+				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y, Color,
 				AG.DrawingFullAlpha,
 			);
 		} else {
-			var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) ||
-						 (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
-			drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + Color + L + ".png", X, Y);
+			var ColorName = ((Color == null) || (Color == "Default") || (Color == "") || (Color.length == 1) ||
+							 (Color.indexOf("#") == 0)) ? "" : "_" + Color;
+			drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + ColorName + L + ".png", X, Y);
 			drawImageBlink(
-				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + Color + L + ".png", X, Y);
+				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + ColorName + L + ".png", X, Y);
 		}
 
 		// If the item has been locked

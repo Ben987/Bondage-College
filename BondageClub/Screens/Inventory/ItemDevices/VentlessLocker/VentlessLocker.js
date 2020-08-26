@@ -83,7 +83,7 @@ function InventoryItemDevicesVentlessLockerSetPose(NewType) {
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
-		var msg = "DevicesLockerSet" + NewType.Name;
+		var msg = "DevicesLockerVentlessSet" + NewType.Name;
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
