@@ -26,6 +26,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		Reputation: [],
 		Skill: [],
 		Pose: [],
+		AllowedActivePose: [],
 		Effect: [],
 		FocusGroup: null,
 		Canvas: null,
@@ -434,12 +435,13 @@ function CharacterAddPose(C, NewPose) {
 }
 
 /**
- * Checks if a character has a pose from items (not active pose)
+ * Checks if a character has a pose from items (not active pose unless an item lets it through)
  * @param {Character} C - Character to check for the pose 
  * @param {string} Pose - Pose to check for within items
  * @returns {boolean} - TRUE if the character has the pose
  */
 function CharacterItemsHavePose(C, Pose) { 
+	if (C.ActivePose != null && C.AllowedActivePose.includes(Pose) && (typeof C.ActivePose == "string" && C.ActivePose == Pose || Array.isArray(C.ActivePose) && C.ActivePose.includes(Pose))) return true;
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null) && (C.Appearance[A].Property.SetPose.includes(Pose)))
 			return true;
@@ -454,7 +456,7 @@ function CharacterItemsHavePose(C, Pose) {
 }
 
 /**
- * Checks if a character has a pose type from items (not active pose)
+ * Checks if a character has a pose type from items (not active pose unless an item lets it through)
  * @param {Character} C - Character to check for the pose type
  * @param {string} Type - Pose type to check for within items
  * @returns {boolean} - TRUE if the character has the pose type active
@@ -463,6 +465,8 @@ function CharacterItemsHavePoseType(C, Type) {
 	var PossiblePoses = PoseFemale3DCG.filter(P => P.Category == Type || P.Category == "BodyFull").map(P => P.Name);
 	
 	for (let A = 0; A < C.Appearance.length; A++) {
+		if (C.Appearance[A].Asset.AllowActivePose != null && (C.Appearance[A].Asset.AllowActivePose.find(P => PossiblePoses.includes(P) && C.AllowedActivePose.includes(P))))
+			return true;
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null) && (C.Appearance[A].Property.SetPose.find(P => PossiblePoses.includes(P))))
 			return true;
 		else
@@ -482,8 +486,11 @@ function CharacterItemsHavePoseType(C, Type) {
  */
 function CharacterLoadPose(C) {
 	C.Pose = [];
+	C.AllowedActivePose = [];
 	
 	for (let A = 0; A < C.Appearance.length; A++) {
+		if (C.Appearance[A].Asset.AllowActivePose != null)
+			C.Appearance[A].Asset.AllowActivePose.forEach(Pose => C.AllowedActivePose.push(Pose));
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null))
 			CharacterAddPose(C, C.Appearance[A].Property.SetPose);
 		else
@@ -504,12 +511,11 @@ function CharacterLoadPose(C) {
 			.filter(P => P);
 		
 		for (let P = 0; P < ActivePoses.length; P++) {
-			if (
-				!C.Pose.includes(ActivePoses[P].Name) &&
-				!Poses.find(Pose => Pose.Category == "BodyFull") &&
-				!Poses.find(Pose => Pose.Category == ActivePoses[P].Category) &&
-				!(C.Pose.length > 0 && ActivePoses[P].Category == "BodyFull")
-			)
+			var HasPose = C.Pose.includes(ActivePoses[P].Name);
+			var IsAllowed = C.AllowedActivePose.includes(ActivePoses[P].Name);
+			var MissingGroup = !Poses.find(Pose => Pose.Category == "BodyFull") && !Poses.find(Pose => Pose.Category == ActivePoses[P].Category);
+			var IsFullBody = C.Pose.length > 0 && ActivePoses[P].Category == "BodyFull";
+			if (!HasPose && (IsAllowed || (MissingGroup && !IsFullBody)))
 				C.Pose.push(ActivePoses[P].Name);
 		}
 	}

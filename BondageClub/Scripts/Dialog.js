@@ -1798,8 +1798,7 @@ function DialogClickExpressionMenu() {
  */
 function DialogDrawPoseMenu() { 
 	// Draw the pose groups
-	DrawText(DialogFind(Player, "PoseMenu"), 70, 25, "White", "Black");
-	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearActivePoses"));
+	DrawText(DialogFind(Player, "PoseMenu"), 250, 100, "White", "Black");
 
 	if (!DialogActivePoses || !DialogActivePoses.length) DialogActivePoseMenuBuild();
 	
@@ -1826,8 +1825,6 @@ function DialogDrawPoseMenu() {
  * @returns {void} - Nothing
  */
 function DialogClickPoseMenu() {
-	if (MouseIn(20, 50, 90, 90)) CharacterSetActivePose(Player, null);
-	
 	for (let I = 0; I < DialogActivePoses.length; I++) { 
 		var OffsetX = 140 + 140 * I;
 		var PoseGroup = DialogActivePoses[I];
@@ -1863,7 +1860,7 @@ function DialogViewOwnerRules() {
  */
 function DialogDrawOwnerRulesMenu() { 
 	// Draw the pose groups
-	DrawText(DialogFind(Player, "OwnerRulesMenu"), 130, 25, "White", "Black");
+	DrawText(DialogFind(Player, "OwnerRulesMenu"), 220, 100, "White", "Black");
 
 	var ToDisplay = [];
 	
