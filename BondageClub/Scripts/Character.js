@@ -861,6 +861,9 @@ function CharacterSetActivePose(C, NewPose, ForceChange) {
 		C.ActivePose.push(Pose.Name);
 	}
 	
+	// If we reset to base, we remove the poses
+	if (C.ActivePose.length == 2 && C.ActivePose.includes("BaseUpper") && C.ActivePose.includes("BaseLower")) C.ActivePose = null;
+	
 	CharacterRefresh(C, false);
 }
 

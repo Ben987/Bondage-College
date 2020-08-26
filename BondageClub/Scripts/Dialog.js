@@ -1812,9 +1812,17 @@ function DialogDrawPoseMenu() {
 			
 			if (typeof Player.ActivePose == "string" && Player.ActivePose == PoseGroup[P].Name)
 				IsActive = true;
-			if (Array.isArray(Player.ActivePose) && Player.ActivePose.includes(PoseGroup[P].Name))
+			else if (Array.isArray(Player.ActivePose)) {
+				if (Player.ActivePose.includes(PoseGroup[P].Name))
+					IsActive = true;
+				else if (PoseGroup[P].Name == "BaseUpper" && !Player.ActivePose.map(Pose => PoseFemale3DCG.find(PP => PP.Name == Pose)).filter(Pose => Pose).find(Pose => Pose.Category == "BodyUpper" || Pose.Category == "BodyFull"))
+					IsActive = true;
+				else if (PoseGroup[P].Name == "BaseLower" && !Player.ActivePose.map(Pose => PoseFemale3DCG.find(PP => PP.Name == Pose)).filter(Pose => Pose).find(Pose => Pose.Category == "BodyLower" || Pose.Category == "BodyFull"))
+					IsActive = true;
+			}
+			else if ((PoseGroup[P].Name == "BaseUpper" || PoseGroup[P].Name == "BaseLower") && Player.ActivePose == null)
 				IsActive = true;
-				
+			
 			DrawButton(OffsetX, OffsetY, 90, 90, "", CharacterItemsHavePoseType(Player, PoseGroup[0].Category) ? "#888" : IsActive ? "Pink" : "White", "Icons/Poses/" + PoseGroup[P].Name + ".png");
 		}
 	}
@@ -1860,7 +1868,7 @@ function DialogViewOwnerRules() {
  */
 function DialogDrawOwnerRulesMenu() { 
 	// Draw the pose groups
-	DrawText(DialogFind(Player, "OwnerRulesMenu"), 220, 100, "White", "Black");
+	DrawText(DialogFind(Player, "OwnerRulesMenu"), 230, 100, "White", "Black");
 
 	var ToDisplay = [];
 	
