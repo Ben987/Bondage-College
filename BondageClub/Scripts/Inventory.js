@@ -329,8 +329,12 @@ function InventoryWearRandom(C, GroupName, Difficulty, MustOwn) {
 				break;
 			}
 
-		// Check if the options should be restricted to owned assets only
-		var AssetList = MustOwn ? CharacterAppearanceAssets : null;
+		// Restrict the options to assets owned by the character if required
+		var AssetList = null;
+		if (MustOwn) {
+			CharacterAppearanceBuildAssets(C);
+			AssetList = CharacterAppearanceAssets;
+		}
 
 		// Get and apply a random asset
 		var SelectedAsset = InventoryGetRandom(C, GroupName, AssetList);
@@ -643,7 +647,7 @@ function InventoryLockRandom(C, Item, FromOwner) {
 			if (Asset[A].IsLock && Asset[A].Random && !Asset[A].LoverOnly && (FromOwner || !Asset[A].OwnerOnly))
 				List.push(Asset[A]);
 		if (List.length > 0) {
-			var Lock = InventoryGetRandom(C, null, List);
+			var Lock = { Asset: InventoryGetRandom(C, null, List) };
 			InventoryLock(C, Item, Lock);
 		}
 	}
