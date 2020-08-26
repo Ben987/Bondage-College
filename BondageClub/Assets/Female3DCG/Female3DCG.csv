@@ -378,8 +378,6 @@ BodyLower,Small,Small
 BodyLower,Normal,Normal
 BodyLower,Large,Large
 BodyLower,XLarge,Xlarge
-Hands,,Hands
-Hands,Default,Default
 HairBack,,Back Hair
 HairBack,HairNone,None
 HairBack,HairBack1,Style 1
@@ -840,7 +838,7 @@ ItemMouth,StitchedMuzzleGag,Stitched Muzzle Gag
 ItemMouth,LatexBallMuzzleGag,Latex Ball Muzzle Gag
 ItemMouth,SockStuffing,Sock Stuffing
 ItemMouth,GasMaskGag,Respirator Mask
-ItemMouth,WebGag,Web
+ItemMouth,WebGag,Web Gag
 ItemMouth,RopeGag,Rope Gag
 ItemMouth,MilkBottle,Milk Bottle
 ItemMouth,MedicalMask,Medical Mask
