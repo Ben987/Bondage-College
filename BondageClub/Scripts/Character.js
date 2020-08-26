@@ -343,11 +343,8 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
 		Char.AllowItem = false;
-		var BackupCurrentScreen = CurrentScreen;
-		CurrentScreen = "ChatRoom";
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
 		CharacterOnlineRefresh(Char, data, SourceMemberNumber);
-		CurrentScreen = BackupCurrentScreen;
 
 	} else {
 
