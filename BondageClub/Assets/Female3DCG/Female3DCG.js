@@ -2686,7 +2686,6 @@ var PoseFemale3DCG = [
 	{
 		Name: "Spread",
 		Category: "BodyLower",
-		AllowMenu: true,
 	},
 	{
 		Name: "BackElbowTouch",

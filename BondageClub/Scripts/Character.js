@@ -454,6 +454,28 @@ function CharacterItemsHavePose(C, Pose) {
 }
 
 /**
+ * Checks if a character has a pose type from items (not active pose)
+ * @param {Character} C - Character to check for the pose type
+ * @param {string} Type - Pose type to check for within items
+ * @returns {boolean} - TRUE if the character has the pose type active
+ */
+function CharacterItemsHavePoseType(C, Type) { 
+	var PossiblePoses = PoseFemale3DCG.filter(P => P.Category == Type || P.Category == "BodyFull").map(P => P.Name);
+	
+	for (let A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null) && (C.Appearance[A].Property.SetPose.find(P => PossiblePoses.includes(P))))
+			return true;
+		else
+			if (C.Appearance[A].Asset.SetPose != null && (C.Appearance[A].Asset.SetPose.find(P => PossiblePoses.includes(P))))
+				return true;
+			else
+				if (C.Appearance[A].Asset.Group.SetPose != null  && (C.Appearance[A].Asset.Group.SetPose.find(P => PossiblePoses.includes(P))))
+					return true;
+	}
+	return false;
+}
+
+/**
  * Refreshes the list of poses for a character. Each pose can only be found once in the pose array
  * @param {Character} C - Character for which to refresh the pose list
  * @returns {void} - Nothing 
