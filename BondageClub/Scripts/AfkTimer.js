@@ -7,6 +7,7 @@ var AfkTimerIsSet = false;
 var AfkTimerIsEnabled = null;
 var AfkTimerEventsList = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
 var AfkTimerID = null;
+var AfkTimerOldEmoticon = null;
 
 /**
  * Resets the timer for AFK count
@@ -16,7 +17,8 @@ function AfkTimerReset() {
     AfkTimerIdle = 0;
     if (AfkTimerIsSet) {
         AfkTimerIsSet = false;
-        CharacterSetFacialExpression(Player, "Emoticon", null);
+        CharacterSetFacialExpression(Player, "Emoticon", AfkTimerOldEmoticon);
+        AfkTimerOldEmoticon = null;
     }
 }
 
@@ -67,11 +69,15 @@ function AfkTimerSetEnabled(Enabled) {
 }
 
 /**
- * Sets the players's emote to the Afk symbol, when the timer runs out
+ * Sets the players's emote to the Afk symbol, when the timer runs out and saves the current Emoticon, if there is any
  * @returns {void} - Nothing
  */
 function AfkTimerSetIsAfk() {
     if (CurrentScreen != "ChatRoom") return;
+    // save the current Emoticon, if there is any
+    if (InventoryGet(Player, "Emoticon") && InventoryGet(Player, "Emoticon").Property && AfkTimerOldEmoticon == null) {
+        AfkTimerOldEmoticon = InventoryGet(Player, "Emoticon").Property.Expression;
+    }
     CharacterSetFacialExpression(Player, "Emoticon", "Afk");
     AfkTimerIsSet = true;
 }
