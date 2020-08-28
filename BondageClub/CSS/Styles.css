@@ -91,7 +91,7 @@ TextArea {
 }
 #TextAreaChatLog[data-coloractions=false] .ChatMessageAction,
 #TextAreaChatLog[data-coloremotes=false] .ChatMessageEmote,
-#TextAreaChatLog[data-coloremotes=false] .ChatMessageActivity {
+#TextAreaChatLog[data-coloractivities=false] .ChatMessageActivity {
 	background-color: transparent !important;
 }
 #FriendList {
