@@ -845,8 +845,7 @@ function ChatRoomMessage(data) {
 				var ActivityCounter = 1;
 				if (data.Dictionary != null)
 					for (let D = 0; D < data.Dictionary.length; D++) {
-						if (data.Dictionary[D].MemberNumber != null)
-							msg = msg.replace(data.Dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (data.Dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFind(Player, "Someone") : ChatRoomHTMLEntities(data.Dictionary[D].Text));
+						if (data.Dictionary[D].MemberNumber != null) msg = msg.replace(data.Dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (data.Dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFind(Player, "Someone") : ChatRoomHTMLEntities(data.Dictionary[D].Text));
 						if ((data.Dictionary[D].MemberNumber != null) && (data.Dictionary[D].Tag == "TargetCharacter")) TargetMemberNumber = data.Dictionary[D].MemberNumber;
 						if (data.Dictionary[D].Tag == "ActivityName") ActivityName = data.Dictionary[D].Text;
 						if (data.Dictionary[D].Tag == "ActivityGroup") ActivityGroup = data.Dictionary[D].Text;
@@ -868,7 +867,7 @@ function ChatRoomMessage(data) {
 			div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + MsgEnterLeave);
 			div.setAttribute('data-time', ChatRoomCurrentTime());
 			div.setAttribute('data-sender', data.Sender);
-			if (data.Type == "Emote" || data.Type == "Action" || (data.Type == "Activity" && !PreferenceIsPlayerInSensDep()))
+			if (data.Type == "Emote" || data.Type == "Action" || data.Type == "Activity")
 				div.setAttribute('style', 'background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';');
 			div.innerHTML = msg;
 
@@ -1102,6 +1101,7 @@ function ChatRoomRefreshChatSettings(C) {
 			ElementSetDataAttribute("TextAreaChatLog", "ColorNames", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "ColorActions", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "ColorEmotes", "false");
+			ElementSetDataAttribute("TextAreaChatLog", "ColorActivities", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "MemberNumbers", "Never");
 		}
 	}
