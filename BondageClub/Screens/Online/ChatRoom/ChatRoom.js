@@ -1403,7 +1403,7 @@ function ChatRoomSafewordRelease() {
 	ElementRemove("InputChat");
 	ElementRemove("TextAreaChatLog");
 	ServerSend("ChatRoomLeave", "");
-	CommonSetScreen("Room","MainHall");
+	CommonSetScreen("Online","ChatSearch");
 }
 
 /** 
