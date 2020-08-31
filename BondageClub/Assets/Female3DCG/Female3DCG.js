@@ -2665,9 +2665,9 @@ var PoseFemale3DCG = [
 	{
 		Name: "OverTheHead",
 		Category: "BodyUpper",
+		AllowMenu: true,
 		OverrideHeight: -25,
 		Hide: ["Hands"],
-		MovePosition: [{ Group: "Pussy", X: 0, Y: -5 }, { Group: "ItemVulva", X: 0, Y: -5 }, { Group: "ItemButt", X: 0, Y: -5 }, { Group: "TailStraps", X: 0, Y: -5 }, { Group: "ItemVulvaPiercings", X: 0, Y: -5 }]
 	},
 	{
 		Name: "Hogtied",
@@ -2708,6 +2708,7 @@ var PoseFemale3DCG = [
 	{
 		Name: "Spread",
 		Category: "BodyLower",
+		MovePosition: [{ Group: "Pussy", X: 0, Y: -5 }, { Group: "ItemVulva", X: 0, Y: -5 }, { Group: "ItemButt", X: 0, Y: -5 }, { Group: "TailStraps", X: 0, Y: -5 }, { Group: "ItemVulvaPiercings", X: 0, Y: -5 }]
 	},
 	{
 		Name: "BackElbowTouch",
