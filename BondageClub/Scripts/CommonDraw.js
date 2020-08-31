@@ -15,6 +15,7 @@
  * @param {string} src - The URL of the image to draw
  * @param {number} x - The x coordinate to draw the image at
  * @param {number} y - The y coordinate to draw the image at
+ * @param {number[][]} alphaMasks - A list of alpha masks to apply to the image when drawing
  */
 
 /**
@@ -25,6 +26,7 @@
  * @param {number} y - The y coordinate to draw the image at
  * @param {string} color - The color to apply to the image
  * @param {boolean} fullAlpha - Whether or not to apply colour to the entire image
+ * @param {number[][]} alphaMasks - A list of alpha masks to apply to the image when drawing
  */
 
 /**
@@ -99,12 +101,17 @@ function CommonDrawAppearanceBuild(C, {
 			}
 		}
 
-		// If we must apply alpha masks to the current image as it is being drawn (only apply alpha masks on the first layer)
-		if (Array.isArray(A.Alpha) && LayerCounts[CountKey] === 1)
-			A.Alpha.forEach(rect => {
-				clearRect(rect[0], rect[1], rect[2], rect[3]);
-				clearRectBlink(rect[0], rect[1], rect[2], rect[3]);
-			});
+		// If we must apply alpha masks to the current image as it is being drawn
+		Layer.Alpha.forEach(AlphaDef => {
+			// If no groups are defined and the character's pose matches one of the allowed poses (or no poses are defined)
+			if ((!AlphaDef.Group || !AlphaDef.Group.length) &&
+				(!AlphaDef.Pose || !Array.isArray(AlphaDef.Pose) || !!CommonDrawFindPose(C, AlphaDef.Pose))) {
+				AlphaDef.Masks.forEach(rect => {
+					clearRect(rect[0], rect[1], rect[2], rect[3]);
+					clearRectBlink(rect[0], rect[1], rect[2], rect[3]);
+				});
+			}
+		});
 
 		// Check if we need to draw a different expression (for facial features)
 		var Expression = "";
@@ -136,6 +143,12 @@ function CommonDrawAppearanceBuild(C, {
 		if (Layer.Name) L = "_" + Layer.Name;
 		if (!Layer.HasType) LayerType = "";
 		var BlinkExpression = (A.OverrideBlinking ? !AG.DrawingBlink : AG.DrawingBlink) ? "Closed/" : Expression;
+		var AlphaMasks = Layer.GroupAlpha
+			.filter(({Pose}) => !Pose || !Array.isArray(Pose) || !!CommonDrawFindPose(C, Pose))
+			.reduce((Acc, {Masks}) => {
+				Array.prototype.push.apply(Acc, Masks);
+				return Acc;
+			}, []);
 
 		// Check if we need to copy the color of another asset
 		var Color = CA.Color;
@@ -149,18 +162,18 @@ function CommonDrawAppearanceBuild(C, {
 		if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
 			drawImageColorize(
 				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y, Color,
-				AG.DrawingFullAlpha,
+				AG.DrawingFullAlpha, AlphaMasks
 			);
 			drawImageColorizeBlink(
 				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y, Color,
-				AG.DrawingFullAlpha,
+				AG.DrawingFullAlpha, AlphaMasks
 			);
 		} else {
 			var ColorName = ((Color == null) || (Color == "Default") || (Color == "") || (Color.length == 1) ||
 							 (Color.indexOf("#") == 0)) ? "" : "_" + Color;
-			drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + ColorName + L + ".png", X, Y);
+			drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + G + LayerType + ColorName + L + ".png", X, Y, AlphaMasks);
 			drawImageBlink(
-				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + ColorName + L + ".png", X, Y);
+				"Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + G + LayerType + ColorName + L + ".png", X, Y, AlphaMasks);
 		}
 
 		// If the item has been locked
@@ -171,8 +184,8 @@ function CommonDrawAppearanceBuild(C, {
 
 			// If we just drew the last drawable layer for this asset, draw the lock too (never colorized)
 			if (DrawableLayerCount === LayerCounts[CountKey]) {
-				drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + Type + "_Lock.png", X, Y);
-				drawImageBlink("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + Type + "_Lock.png", X, Y);
+				drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + Type + "_Lock.png", X, Y, AlphaMasks);
+				drawImageBlink("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + Type + "_Lock.png", X, Y, AlphaMasks);
 			}
 		}
 	});

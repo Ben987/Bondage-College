@@ -347,13 +347,24 @@ function DrawImageResize(Source, X, Y, Width, Height) {
  * @param {HTMLCanvasElement} Canvas - Canvas on which to draw the image
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
+ * @param {number[][]} AlphaMasks - A list of alpha masks to apply to the asset
  * @returns {boolean} - whether the image was complete or not
  */
-function DrawImageCanvas(Source, Canvas, X, Y) {
+function DrawImageCanvas(Source, Canvas, X, Y, AlphaMasks) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
-	Canvas.drawImage(Img, X, Y);
+	if (AlphaMasks && AlphaMasks.length) {
+		var tmpCanvas = document.createElement("canvas");
+		tmpCanvas.width = Img.width;
+		tmpCanvas.height = Img.height;
+		var ctx = tmpCanvas.getContext('2d');
+		ctx.drawImage(Img, 0, 0);
+		AlphaMasks.forEach(([x, y, w, h]) => ctx.clearRect(x - X, y - Y, w, h));
+		Canvas.drawImage(tmpCanvas, X, Y);
+	} else {
+		Canvas.drawImage(Img, X, Y);
+	}
 	return true;
 }
 
@@ -424,9 +435,10 @@ function DrawImage(Source, X, Y) {
  * @param {number} Zoom - Zoom factor
  * @param {string} HexColor - Color of the image to draw
  * @param {boolean} FullAlpha - Whether or not it is drawn in full alpha mode
+ * @param {number[][]} AlphaMasks - A list of alpha masks to apply to the asset
  * @returns {boolean} - whether the image was complete or not
  */
-function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha) {
+function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha, AlphaMasks) {
 
 	// Make sure that the starting image is loaded
 	var Img = DrawGetImage(Source);
@@ -468,6 +480,9 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 
 	// Replace the source image with the modified canvas
 	ctx.putImageData(imageData, 0, 0);
+	if (AlphaMasks && AlphaMasks.length) {
+		AlphaMasks.forEach(([x, y, w, h]) => ctx.clearRect(x - X, y - Y, w, h));
+	}
 	Canvas.drawImage(ctx.canvas, 0, 0, Img.width, Img.height, X, Y, Img.width * Zoom, Img.height * Zoom);
 
 	return true;
