@@ -12,6 +12,7 @@ var InventoryItemArmsWristShacklesOptions = [
 			Type: "Behind",
 			SetPose: ["BackCuffs"],
 			Effect: ["Block", "Prone"],
+			Difficulty: 3,
 		},
 	},
 ];
