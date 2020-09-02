@@ -181,9 +181,7 @@ function ChatSearchPermissionDraw() {
 		}
 		
 		// Display ignored rooms that are no longer present
-		var IgnoreOffset = ChatSearchResultOffset;
-		if (IgnoreOffset < 0) IgnoreOffset = 0;
-		for (let C = IgnoreOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
+		for (let C = ChatSearchResultOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
 			var isIgnored = !ChatSearchResult.map(Room => Room.Name.toUpperCase()).includes(ChatSearchIgnoredRooms[C]);
 			if (isIgnored) {
 				var Hover = (MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85) && !CommonIsMobile;
@@ -267,9 +265,7 @@ function ChatSearchClickPermission() {
 	}
 	
 	// Clicks for the extra hidden rooms
-	var IgnoreOffset = ChatSearchResultOffset;
-	if (IgnoreOffset < 0) IgnoreOffset = 0;
-	for (let C = IgnoreOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
+	for (let C = ChatSearchResultOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
 		var isIgnored = !ChatSearchResult.map(Room => Room.Name.toUpperCase()).includes(ChatSearchIgnoredRooms[C]);
 		if (isIgnored) {
 			// If the click is valid
