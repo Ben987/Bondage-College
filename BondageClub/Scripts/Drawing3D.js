@@ -9,7 +9,7 @@ var path3d = "Assets/3D/";
 var Draw3DEnabled = false;
 var count = 0;
 var count1 = 0;
-var maid, textures, webpath;
+var maid = true, textures, webpath;
 var strip3D;
 var d2tod3,second;
 var mixer;
@@ -51,10 +51,8 @@ function init(){
 	// window.addEventListener( 'resize', onWindowResize, false );
 
   character3D = new THREE.Group();
-	count = -1;
 	light();
 		for (let i of itemgroup){
-			count += 1;
 			let subst = i.indexOf("/");
 			let grpname = i.slice(0, subst);
 			let itemname = i.slice(subst +1);
@@ -65,6 +63,7 @@ function init(){
 
 	 }
 	scene.add(character3D);
+	setTimeout(countz, 3000);
 }
 
 function Draw3DEnable(Enable) {
@@ -111,7 +110,6 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d) {
 
 	// ask how many and if texture exists
 	var  texturecount = 0;
-
 	model.traverse( function ( child ) {
 		if ( child.isMesh ) {
 				 if (grpname !== "BodyUpper" && grpname !== "Eyes"){
@@ -143,17 +141,10 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d) {
 
 //strip the model
 function Strip3Dmodel(models, i){
-	var childlen = models.length;
-	let j = 0;
-	let le = 0;
-	while (j < childlen){
-		if (models[j].name == "characterletter") le += 1;
-	}
-	if (second == true && childlen <= le || i == -1){
+	if (models[i].name == "characterletter" || i == -1){
 			console.log("can't strip further");
 	}else {
-
-		if (models[i].type !== "BodyUpper" && models[i].type !== "Eyes" && models[i].type !== "HairBack" && models[i].type !== "HairFront" && models[i].name !== "characterletter" ){
+		if (models[i].type !== "BodyUpper" && models[i].type !== "Eyes" && models[i].type !== "HairBack" && models[i].type !== "HairFront"){
 			character3D.remove(models[i]);
 			console.log(i);
 			count1 = 0;
@@ -165,7 +156,7 @@ function Strip3Dmodel(models, i){
 
 function dress3DModels(group, path3d, j){
 	if ( strip3D){
-		if(maid == true ){
+		if(maid == true){
 			var group2 = [ "Panties/MaidPanties1", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/Heels1" ,"Cloth/MaidOutfit1"];
 				if (j < 5){
 				var subst = group2[j].indexOf("/");
@@ -174,22 +165,20 @@ function dress3DModels(group, path3d, j){
 				var itemname = group2[j].slice(subst +1);
 				Loadassets(group ,path3d ,grpname, itemcolor, itemname, );
 				scene.add(group);
-				second = true;
+				// second = true;
 				count = character3D.children.length;
 			}else {
 				console.log("Dressed!")
 			}
 		}else {
-			console.log(j);
 			var group2 = Character[0].Appearance.length -1;
-			console.log(count1);
 			if (j < group2){
 				var grpname =	Character[0].Appearance[j].Asset.DynamicGroupName;
 				var itemname = Character[0].Appearance[j].Asset.Name;
 				var itemcolor = Character[0].Appearance[j].Color;
 				assetexist(group,path3d, grpname,itemcolor, itemname);
 				scene.add(group);
-				second = true;
+				// second = true;
 				count = character3D.children.length - 1;
 			}else{
 				console.log("Dressed!");
@@ -223,7 +212,7 @@ function refresh3DModel (group1, path3d, count){
 		charactername3D(path3d, character3D,maid ); //new
 	}
 	scene.add(character3D);
-	second = false;
+	// second = false;
 	strip3D = false;
 	setTimeout(countz, 3000);
 }
@@ -267,7 +256,6 @@ function charactername3D(path3d, group1, maid){
 	if (character3Dlabelcolor == undefined)character3Dlabelcolor = "#ffffff";
 	var loader = new THREE.FontLoader();
 	loader.load( `${path3d}1animation/helvetiker_regular.typeface.json`, function ( font ) {
-
 		var modelname = new THREE.TextGeometry(`${character3Dname}`,{
 			font: font,
 			size: 8,
