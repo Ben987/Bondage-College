@@ -111,23 +111,12 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d) {
 
 	// ask how many and if texture exists
 	var  texturecount = 0;
-	// let http = new XMLHttpRequest();
-	// while ( texturecount < 9 ){
-	// 	var zero = `${webpath}${path3d}${grpname}/${itemname}${texturecount}.bmp`;
-	// 	http.open('HEAD', zero, false);
-	// 	http.send();
-	// 	if (http.status !== 200) break;
-	// 	textures = loader.load(`${path3d}${grpname}/${itemname}${texturecount}.bmp`);
-	// 	texturecount += 1;
-	// }
 
 	model.traverse( function ( child ) {
 		if ( child.isMesh ) {
 				 if (grpname !== "BodyUpper" && grpname !== "Eyes"){
 					 let http = new XMLHttpRequest();
 					 while (texturecount < 9){
-						 // textures = loader.load(`${path3d}${grpname}/${itemname}${texturecount}.bmp`);
-						 // if (textures == undefined || textures == null || textures == "") break;
 						 var zero = `${webpath}${path3d}${grpname}/${itemname}${texturecount}.bmp`;
 					   http.open('HEAD', zero, false);
 					 	 http.send();
@@ -154,11 +143,17 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d) {
 
 //strip the model
 function Strip3Dmodel(models, i){
-	if (second == true && models.length <= 4 || i == -1){
+	var childlen = models.length;
+	let j = 0;
+	let le = 0;
+	while (j < childlen){
+		if (models[j].name == "characterletter") le += 1;
+	}
+	if (second == true && childlen <= le || i == -1){
 			console.log("can't strip further");
 	}else {
 
-		if (models[i].type !== "BodyUpper" && models[i].type !== "Eyes" && models[i].type !== "HairBack" && models[i].type !== "HairFront" ){
+		if (models[i].type !== "BodyUpper" && models[i].type !== "Eyes" && models[i].type !== "HairBack" && models[i].type !== "HairFront" && models[i].name !== "characterletter" ){
 			character3D.remove(models[i]);
 			console.log(i);
 			count1 = 0;
@@ -170,9 +165,8 @@ function Strip3Dmodel(models, i){
 
 function dress3DModels(group, path3d, j){
 	if ( strip3D){
-		if(maid ){
+		if(maid == true ){
 			var group2 = [ "Panties/MaidPanties1", "Bra/MaidBra", "ItemNeck/MaidCollar", "Shoes/Heels1" ,"Cloth/MaidOutfit1"];
-				// let group12 = group2.length;
 				if (j < 5){
 				var subst = group2[j].indexOf("/");
 				var grpname = group2[j].slice(0, subst);
