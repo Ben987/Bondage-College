@@ -24,7 +24,7 @@ var ServerDidDisconnect = false;
 
 /** Loads the server by attaching the socket events and their respective callbacks */
 function ServerInit() {
-	ServerSocket = io(ServerURL);
+	ServerSocket = io(ServerURL, { transports: ['websocket'], upgrade: false });
 	ServerSocket.on("connect", ServerConnect);
 	ServerSocket.on("reconnecting", ServerReconnecting);
 	ServerSocket.on("event", function (data) { console.log(data); });
