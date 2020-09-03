@@ -3,7 +3,7 @@ var renderer;
 var scene;
 var camera;
 var model;
-var character3D;
+var character3D, chanames;
 var material;
 var path3d = "Assets/3D/";
 var Draw3DEnabled = false;
@@ -26,10 +26,10 @@ function Draw3DKeyDown() {
 	if (Draw3DEnabled) {
 		if ((KeyPress == 81) || (KeyPress == 113)) character3D.rotation.y -= 0.1;
 		if ((KeyPress == 69) || (KeyPress == 101)) character3D.rotation.y += 0.1;
-		if ((KeyPress == 65) || (KeyPress == 97))  character3D.position.x -= 1; //&& mesh.position.x -=1;
-		if ((KeyPress == 68) || (KeyPress == 100)) character3D.position.x += 1;
-		if ((KeyPress == 87) || (KeyPress == 119)) refresh3DModel (character3D, path3d, count);
-		if ((KeyPress == 83) || (KeyPress == 115)) character3D.position.z += 1;
+		if ((KeyPress == 65) || (KeyPress == 97))  character3D.position.x -= 1, chanames.position.x -= 1, chanames.rotation.y += 0.004; //&& mesh.position.x -=1;
+		if ((KeyPress == 68) || (KeyPress == 100)) character3D.position.x += 1, chanames.position.x += 1, chanames.rotation.y -= 0.004;
+		if ((KeyPress == 87) || (KeyPress == 119)) refresh3DModel (character3D, chanames, path3d, count);
+		if ((KeyPress == 83) || (KeyPress == 115)) character3D.position.z += 1, chanames.position.z += 1;
 		if ((KeyPress == 90) || (KeyPress == 122)) dress3DModels(character3D, path3d, count1++);
 		if ((KeyPress == 88) || (KeyPress == 120)) Strip3Dmodel(character3D.children, count--);
 	}
@@ -51,6 +51,7 @@ function init(){
 	// window.addEventListener( 'resize', onWindowResize, false );
 
   character3D = new THREE.Group();
+  chanames = new THREE.Group();
 	light();
 		for (let i of itemgroup){
 			let subst = i.indexOf("/");
@@ -59,10 +60,11 @@ function init(){
 			var itemcolor = "#c21e56";
 			// if (grpname == "BodyUpper"){
 			Loadassets(character3D,path3d,grpname, itemcolor, itemname);
-			charactername3D(path3d, character3D, maid); //new
+			charactername3D(path3d, chanames, maid); //new
 
 	 }
 	scene.add(character3D);
+	scene.add(chanames);
 	setTimeout(countz, 3000);
 }
 
@@ -141,7 +143,7 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d) {
 
 //strip the model
 function Strip3Dmodel(models, i){
-	if (models[i].name == "characterletter" || i == -1){
+	if (models.length <= 4 || i == -1){
 			console.log("can't strip further");
 	}else {
 		if (models[i].type !== "BodyUpper" && models[i].type !== "Eyes" && models[i].type !== "HairBack" && models[i].type !== "HairFront"){
@@ -165,7 +167,7 @@ function dress3DModels(group, path3d, j){
 				var itemname = group2[j].slice(subst +1);
 				Loadassets(group ,path3d ,grpname, itemcolor, itemname, );
 				scene.add(group);
-				// second = true;
+				second = true;
 				count = character3D.children.length;
 			}else {
 				console.log("Dressed!")
@@ -178,7 +180,7 @@ function dress3DModels(group, path3d, j){
 				var itemcolor = Character[0].Appearance[j].Color;
 				assetexist(group,path3d, grpname,itemcolor, itemname);
 				scene.add(group);
-				// second = true;
+				second = true;
 				count = character3D.children.length - 1;
 			}else{
 				console.log("Dressed!");
@@ -189,8 +191,9 @@ function dress3DModels(group, path3d, j){
 	}
 }
 
-function refresh3DModel (group1, path3d, count){
+function refresh3DModel (group1, group2, path3d, count){
 	scene.remove(group1);
+	scene.remove(group2);
 	maid = false;
 	let characternames = Character[0].Name;
 	character3D = new THREE.Group();
@@ -209,9 +212,10 @@ function refresh3DModel (group1, path3d, count){
 		if (grpname == "HairFront" && newhair == "b") itemname = itemname.slice(0, -1);
 		if (itemname == "HairBack23") itemname = "HairBack24";
 		Loadassets(character3D, path3d, grpname, itemcolor, itemname);
-		charactername3D(path3d, character3D,maid ); //new
+		charactername3D(path3d, chanames,maid ); //new
 	}
 	scene.add(character3D);
+	scene.add(chanames);
 	// second = false;
 	strip3D = false;
 	setTimeout(countz, 3000);
@@ -251,9 +255,10 @@ function assetexist(group,path3d, grpname,itemcolor, itemname){
 
 //new set character name
 function charactername3D(path3d, group1, maid){
-	let character3Dname = maid == false ? Character[0].Name : 'Maid';
+	let character3Dname = maid == false ? Character[0].Name : '';
 	let character3Dlabelcolor =  maid == false ? Character[0].LabelColor : "#202020";
 	if (character3Dlabelcolor == undefined)character3Dlabelcolor = "#ffffff";
+	if (character3Dname == "") return;
 	var loader = new THREE.FontLoader();
 	loader.load( `${path3d}1animation/helvetiker_regular.typeface.json`, function ( font ) {
 		var modelname = new THREE.TextGeometry(`${character3Dname}`,{
