@@ -1428,7 +1428,7 @@ var AssetFemale3DCG = [
 		Group: "ItemArms",
 		ParentGroup: "BodyUpper",
 		Category: "Item",
-		Priority: 28,
+		Priority: 31,
 		Default: false,
 		IsRestraint: true,
 		Left: 50,
@@ -2494,8 +2494,12 @@ var AssetFemale3DCG = [
 			{ Name: "VentlessLocker", Value: 50, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, Top: 0, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied"], Effect: ["Prone", "Enclose", "BlindHeavy", "GagLight", "Freeze"], Alpha: [{ Masks: [[1, 1, 125, 999],[360, 1, 140, 999]] }], Extended: true, RemoveAtLogin: true, AllowType:["Seethrough", "Opaque"] },
 			{ Name: "SmallVentlessLocker", Value: 40, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, Top: 0, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "CanKneel"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "BlindHeavy", "GagLight", "Freeze"], Alpha: [{ Masks: [[1, 1, 125, 999], [360, 1, 140, 999]] }], Extended: true, RemoveAtLogin: true, AllowType: ["Seethrough", "Opaque"] },
 			{
-				Name: "ConcealingCloak", Value: 100, Difficulty: 0, Top: 0, SelfBondage: 5, Time: 7, AllowLock: true, Prerequisite: ["NotSuspended", "AllFours", "Notkneeling", "NotHogtied", "NotYoked", "NotMounted", "NotKneelingSpread"], Hide: [ "Suit", "ItemButt", "TailStraps", "Wings", "ItemNipplesPiercings"], 
-				HideItem: ["ItemVulvaFullLatexSuitWand", "ItemArmsLatexButterflyLeotard", "ItemArmsBondageBouquet", "ItemArmsTightJacket", "ItemArmsNylonRope", "ItemArmsRope", "ItemArmsChains"], Effect: ["Prone"], Block: ["ItemBreast", "ItemButt", "ItemHands", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemArms"], Layer: [
+				Name: "ConcealingCloak", Value: 100, Difficulty: 0, Top: 0, SelfBondage: 5, Time: 7, AllowLock: true, 
+				Prerequisite: ["NotSuspended", "AllFours", "Notkneeling", "NotHogtied", "NotYoked", "NotMounted", "NotKneelingSpread"], 
+				Hide: [ "Suit", "ItemButt", "TailStraps", "Wings", "ItemNipplesPiercings"], 
+				HideItem: ["ItemVulvaFullLatexSuitWand", "ItemArmsLatexButterflyLeotard", "ItemArmsBondageBouquet", "ItemArmsTightJacket", "ItemArmsNylonRope", "ItemArmsRope", "ItemArmsChains"], 
+				Effect: ["Prone"], Block: ["ItemBreast", "ItemButt", "ItemHands", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemArms"], 
+				Layer: [
 					{ Name: "Front", Priority: 30, AllowColorize: true },
 					{ Name: "Back", Priority: 3, AllowColorize: true},
 					{ Name: "Strap", Priority: 32, AllowColorize: false}
