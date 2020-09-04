@@ -12,7 +12,7 @@ function InventoryItemArmsDuctTapeDraw() {
 	// Draw the header and item
 	DrawRect(1387, 125, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 350, 221, "black");
+	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	// Draw the possible poses
 	DrawText(DialogFind(Player, InventoryItemArmsDuctTapeMessage), 1500, 50, "white", "gray");

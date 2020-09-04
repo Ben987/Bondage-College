@@ -197,6 +197,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 					for (let A = 0; A < C.Appearance.length; A++)
 						if (C.Appearance[A].Asset.Group.Name == "Eyes")
 							SelectedColor = C.Appearance[A].Color;
+				if (SelectedColor == "Default" && SelectedAsset.DefaultColor != null) SelectedColor = SelectedAsset.DefaultColor;
 				var NA = {
 					Asset: SelectedAsset,
 					Color: SelectedColor
@@ -287,6 +288,7 @@ function CharacterAppearanceStripLayer(C) {
  * @return {Layer[]} - A sorted set of layers, sorted by layer drawing priority
  */
 function CharacterAppearanceSortLayers(C) {
+	var groupAlphas = {};
 	var layers = C.Appearance.reduce((layersAcc, item) => {
 		var asset = item.Asset;
 		// Only include layers for visible assets
@@ -298,15 +300,33 @@ function CharacterAppearanceSortLayers(C) {
 				.filter(layer => !layer.AllowTypes || layer.AllowTypes.includes(type))
 				.map(layer => {
 					var drawLayer = Object.assign({}, layer);
+					// Store any group-level alpha mask definitions
+					drawLayer.Alpha.forEach(alphaDef => {
+						if (alphaDef.Group && alphaDef.Group.length) {
+							alphaDef.Group.forEach(groupName => {
+								groupAlphas[groupName] = groupAlphas[groupName] || [];
+								groupAlphas[groupName].push({Pose: alphaDef.Pose, Masks: alphaDef.Masks});
+							});
+						}
+					});
 					// If the item has an OverridePriority property, it completely overrides the layer priority
-					if (item.Property && typeof item.Property.OverridePriority === "number") drawLayer.Priority =
-						item.Property.OverridePriority;
+					if (item.Property && typeof item.Property.OverridePriority === "number") drawLayer.Priority = item.Property.OverridePriority;
 					return drawLayer;
 				});
 			Array.prototype.push.apply(layersAcc, layersToDraw);
 		}
 		return layersAcc;
 	}, []);
+
+	// Run back over the layers to apply the group-level alpha mask definitions to the appropriate layers
+	layers.forEach(layer => {
+		const groupName = layer.Asset.Group.Name;
+		layer.GroupAlpha = [];
+		if (groupAlphas[groupName]) {
+			Array.prototype.push.apply(layer.GroupAlpha, groupAlphas[groupName]);
+		}
+	});
+
 	return layers.sort((l1, l2) => {
 		// If priorities are different, sort by priority
 		if (l1.Priority !== l2.Priority) return l1.Priority - l2.Priority;
@@ -397,10 +417,10 @@ function CharacterAppearanceBuildCanvas(C) {
 	CommonDrawAppearanceBuild(C, {
 		clearRect: (x, y, w, h) => C.Canvas.getContext("2d").clearRect(x, y, w, h),
 		clearRectBlink: (x, y, w, h) => C.CanvasBlink.getContext("2d").clearRect(x, y, w, h),
-		drawImage: (src, x, y) => DrawImageCanvas(src, C.Canvas.getContext("2d"), x, y),
-		drawImageBlink: (src, x, y) => DrawImageCanvas(src, C.CanvasBlink.getContext("2d"), x, y),
-		drawImageColorize: (src, x, y, color, fullAlpha) => DrawImageCanvasColorize(src, C.Canvas.getContext("2d"), x, y, 1, color, fullAlpha),
-		drawImageColorizeBlink: (src, x, y, color, fullAlpha) => DrawImageCanvasColorize(src, C.CanvasBlink.getContext("2d"), x, y, 1, color, fullAlpha),
+		drawImage: (src, x, y, alphaMasks) => DrawImageCanvas(src, C.Canvas.getContext("2d"), x, y, alphaMasks),
+		drawImageBlink: (src, x, y, alphaMasks) => DrawImageCanvas(src, C.CanvasBlink.getContext("2d"), x, y, alphaMasks),
+		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks) => DrawImageCanvasColorize(src, C.Canvas.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks),
+		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks) => DrawImageCanvasColorize(src, C.CanvasBlink.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks),
 	});
 }
 
@@ -418,7 +438,7 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 		if ((C.Appearance[A].Asset.Group.Family == C.AssetFamily) && (C.Appearance[A].Asset.Group.Name == Group)) {
 			if (Type == "Name") return C.Appearance[A].Asset.Name;
 			if (Type == "Description") return C.Appearance[A].Asset.Description;
-			if (Type == "Color") return C.Appearance[A].Color;
+			if (Type == "Color") return (C.Appearance[A].Color == C.Appearance[A].Asset.DefaultColor) ? "Default" : C.Appearance[A].Color;
 			if (Type == "ID") return A;
 			if (Type == "Effect") return C.Appearance[A].Asset.Effect;
 			if (Type == "Asset") return C.Appearance[A].Asset;
@@ -434,12 +454,12 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
  * @returns {void} - Nothing
  */
 function AppearanceLoad() {
-	// We make sure no extended item was left active by mistake.
 	DialogFocusItem = null;
+	CharacterAppearanceOffset = 0;
 	if (!CharacterAppearanceSelection) CharacterAppearanceSelection = Player;
 	var C = CharacterAppearanceSelection;
 	CharacterAppearanceBuildAssets(Player);
-	CharacterAppearanceBackup = C.Appearance.slice();
+	CharacterAppearanceBackup = CharacterAppearanceStringify(C);
 	if ((Player.GameplaySettings != null) && Player.GameplaySettings.EnableWardrobeIcon && (CharacterAppearanceReturnRoom == "ChatRoom")) {
 		CharacterAppearancePreviousEmoticon = WardrobeGetExpression(Player).Emoticon;
 		ServerSend("ChatRoomCharacterExpressionUpdate", { Name: "Wardrobe", Group: "Emoticon", Appearance: ServerAppearanceBundle(Player.Appearance) });
@@ -603,9 +623,12 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 	var ID = CharacterAppearanceGetCurrentValue(C, Group, "ID");
 	var ItemColor;
 	if (ID != "None") {
-		if (CurrentScreen == "Appearance") ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
+		if (CurrentScreen == "Appearance") {
+			ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
+			if ((ItemColor == null || ItemColor == "Default" || ItemColor == "None") && ItemAsset != null && ItemAsset.DefaultColor != null) ItemColor = ItemAsset.DefaultColor;
+		}
 		C.Appearance.splice(ID, 1);
-	} else if (ItemAsset != null) ItemColor = ItemAsset.Group.ColorSchema[0];
+	} else if (ItemAsset != null) ItemColor = ItemAsset.DefaultColor ? ItemAsset.DefaultColor : ItemAsset.Group.ColorSchema[0];
 
 	// Add the new item to the character appearance
 	if (ItemAsset != null) {
@@ -689,8 +712,10 @@ function CharacterAppearanceNextColor(C, Group) {
 
 			// Sets the color
 			for (Pos = 0; Pos < C.Appearance.length; Pos++)
-				if ((C.Appearance[Pos].Asset.Group.Name == Group) && (C.Appearance[Pos].Asset.Group.Family == C.AssetFamily))
+				if ((C.Appearance[Pos].Asset.Group.Name == Group) && (C.Appearance[Pos].Asset.Group.Family == C.AssetFamily)) {
+					if (Color == "Default" && C.Appearance[Pos].Asset.DefaultColor != null) Color = C.Appearance[Pos].Asset.DefaultColor;
 					C.Appearance[Pos].Color = Color;
+				}
 
 			// Reloads the character canvas
 			CharacterLoadCanvas(C);
@@ -886,6 +911,10 @@ function AppearanceClick() {
 		// Cancels the selected cloth and reverts it back
 		if (!DialogItemPermissionMode && (MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) {
 			CharacterAppearanceSetItem(C, C.FocusGroup.Name, ((CharacterAppearanceCloth != null) && (CharacterAppearanceCloth.Asset != null)) ? CharacterAppearanceCloth.Asset : null);
+			if (CharacterAppearanceCloth != null && CharacterAppearanceCloth.Property != null) {
+				InventoryGet(C, C.FocusGroup.Name).Property = CharacterAppearanceCloth.Property;
+				CharacterRefresh(C, false);
+			}
 			C.FocusGroup = null;
 			AppearanceExit();
 		}
@@ -973,7 +1002,7 @@ function AppearanceExit() {
 function CharacterAppearanceExit(C) {
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceMode = "";
-	C.Appearance = CharacterAppearanceBackup;
+	CharacterAppearanceRestore(C, CharacterAppearanceBackup);
 	if ((Player.GameplaySettings != null) && Player.GameplaySettings.EnableWardrobeIcon && (CharacterAppearanceReturnRoom == "ChatRoom")) {
 		CharacterSetFacialExpression(Player, "Emoticon", CharacterAppearancePreviousEmoticon);
 		CharacterAppearancePreviousEmoticon = "";
@@ -1084,4 +1113,34 @@ function CharacterAppearanceWardrobeLoad(C) {
 	ElementCreateInput("InputWardrobeName", "text", C.Name, "20");
 	CharacterAppearanceMode = "Wardrobe";
 	CharacterAppearanceWardrobeText = TextGet("WardrobeNameInfo");
+}
+
+/**
+ * Serialises a character's appearance into an abbreviated string for backup purposes
+ * @param {Character} C - The character whose appearance should be serialised
+ * @returns {string} - A serialised version of the character's current appearance
+ */
+function CharacterAppearanceStringify(C) {
+    return JSON.stringify(C.Appearance,(key, value) => {
+        if (key === "Asset") {
+            return value.Group.Family + "/" + value.Group.Name + "/" + value.Name;
+        }
+        return value;
+    });
+}
+
+/**
+ * Restores a character's appearance from a serialised string generated by CharacterAppearanceStringify
+ * @param {Character} C - The character whose appearance should be restored
+ * @param {string} backup - The serialised appearance to restore
+ * @returns {void} - Nothing
+ */
+function CharacterAppearanceRestore(C, backup) {
+    C.Appearance = JSON.parse(backup, (key, value) => {
+        if (key === "Asset") {
+            const FGA = value.split("/");
+            return AssetGet(FGA[0], FGA[1], FGA[2]);
+        }
+        return value;
+    });
 }
