@@ -64,12 +64,6 @@ Necklace,NecklaceLock,Lock Necklace
 Necklace,NecklaceKey,Key Necklace
 Necklace,IDCard,ID Card
 Necklace,BlackHeart,Black Heart
-Suit,,Upper Suit
-Suit,Catsuit,Catsuit
-Suit,SeamlessCatsuit, Seamless Catsuit
-Suit,SeethroughSuit,See-through Suit
-Suit,SeethroughSuitZip,See-through Zipsuit
-Suit,ReverseBunnySuit,Reverse Bunny Suit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,Skirt2,Student Skirt
@@ -92,12 +86,6 @@ ClothLower,Gown2Skirt,Hobble Gown Skirt
 ClothLower,AdmiralSkirt,Admiral Skirt
 ClothLower,JeanSkirt,Jean Skirt
 ClothLower,PencilSkirt,Pencil Skirt
-SuitLower,,Suit Lower
-SuitLower,Catsuit,Catsuit
-SuitLower,SeamlessCatsuit, Seamless Catsuit
-SuitLower,SeethroughSuit,See-through Suit
-SuitLower,SeethroughSuitZip,See-through Zipsuit
-SuitLower,ReverseBunnySuit,Reverse Bunny Suit
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
@@ -229,6 +217,45 @@ Hat,SmallHat1,Stylish Small Hat
 Hat,Veil1,Veil Half Face
 Hat,Veil2,Veil Full Face
 Hat,BakerBoyHat,Baker Boy Hat
+Suit,,Upper Suit 1
+Suit,Catsuit,Catsuit
+Suit,SeamlessCatsuit, Seamless Catsuit
+Suit,SeethroughSuit,See-through Suit
+Suit,SeethroughSuitZip,See-through Zipsuit
+Suit,ReverseBunnySuit,Reverse Bunny Suit
+Suit2,,Upper Suit 2
+Suit2,SeethroughSuit,See-through Suit
+Suit2,SeethroughSuitZip,See-through Zipsuit
+Suit2,ReverseBunnySuit,Reverse Bunny Suit
+Suit3,,Upper Suit 3
+Suit3,ReverseBunnySuit,Reverse Bunny Suit
+SuitLower,,Lower Suit 1
+SuitLower,Catsuit,Catsuit
+SuitLower,SeamlessCatsuit, Seamless Catsuit
+SuitLower,SeethroughSuit,See-through Suit
+SuitLower,SeethroughSuitZip,See-through Zipsuit
+SuitLower,ReverseBunnySuit,Reverse Bunny Suit
+SuitLower2,,Lower Suit 2
+SuitLower2,SeethroughSuit,See-through Suit
+SuitLower2,SeethroughSuitZip,See-through Zipsuit
+SuitLower2,ReverseBunnySuit,Reverse Bunny Suit
+SuitLower3,,Lower Suit 3
+SuitLower3,ReverseBunnySuit,Reverse Bunny Suit
+Gloves,,Gloves 1
+Gloves,Gloves1,Short Gloves
+Gloves,Gloves2,Long Gloves
+Gloves,Gloves3,Silky Gloves
+Gloves,MistressGloves,Mistress Gloves
+Gloves,FingerlessGloves,Fingerless Gloves
+Gloves,GlovesFur,Gloves with Fur
+Gloves,Catsuit,Catsuit Gloves
+Gloves,SeethroughSuit,See-through Gloves
+Gloves2,,Gloves 2
+Gloves2,MistressGloves,Mistress Gloves
+Gloves2,FingerlessGloves,Fingerless Gloves
+Gloves2,SeethroughSuit,See-through Gloves
+Dummy,,Hidden Dummy
+DummyHide,Dummy Item For Organization
 HairAccessory1,,Hair Accessory
 HairAccessory1,Ears1,Ears Small
 HairAccessory1,Ears2,Ears Large
@@ -293,15 +320,6 @@ HairAccessory2,HairFeathers1,Feathers
 HairAccessory2,MouseEars1,Mouse Ears 1
 HairAccessory2,MouseEars2,Mouse Ears 2
 HairAccessory2,ElfEars,Elf Ears
-Gloves,,Gloves
-Gloves,Gloves1,Short Gloves
-Gloves,Gloves2,Long Gloves
-Gloves,Gloves3,Silky Gloves
-Gloves,MistressGloves,Mistress Gloves
-Gloves,FingerlessGloves,Fingerless Gloves
-Gloves,GlovesFur,Gloves with Fur
-Gloves,Catsuit,Catsuit Gloves
-Gloves,SeethroughSuit,See-through Gloves
 Glasses,,Glasses
 Glasses,Glasses1,Style 1
 Glasses,Glasses2,Style 2

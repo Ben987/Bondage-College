@@ -184,66 +184,6 @@ var AssetFemale3DCG = [
 	},
 
 	{
-		Group: "Suit",
-		ParentGroup: "BodyUpper",
-		Priority: 14,
-		Clothing: true,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
-		Asset: [
-			{
-				Name: "Catsuit", Fetish: ["Nylon"], Value: 100, BuyGroup: "Catsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
-				Layer: [
-					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
-				]
-			},
-			{ Name: "SeamlessCatsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
-			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: 100, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
-			{
-				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
-				Layer: [
-					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
-				]
-			},
-			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: 100, BuyGroup: "ReverseBunnySuit", Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"] }
-		],
-		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
-	},
-
-	{
-		Group: "Suit2",
-		ParentGroup: "BodyUpper",
-		Priority: 15,
-		Clothing: true,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
-		Asset: [
-			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: 100, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
-			{
-				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
-				Layer: [
-					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
-				]
-			},
-			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: 100, BuyGroup: "ReverseBunnySuit", Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"] }
-		],
-		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
-	},
-
-	{
-		Group: "Suit3",
-		ParentGroup: "BodyUpper",
-		Priority: 16,
-		Clothing: true,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
-		Asset: [
-			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: 100, BuyGroup: "ReverseBunnySuit", Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"] }
-		],
-		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
-	},
-
-	{
 		Group: "ClothLower",
 		ParentGroup: "BodyLower",
 		ParentColor: "Cloth",
@@ -289,75 +229,6 @@ var AssetFemale3DCG = [
 			{ Name: "PencilSkirt", Fetish: ["Latex"], Value: 60, Left: 105, Top: 380, HideItem: ["ItemDevicesStrapOnSmooth", "ItemDevicesStrapOnStuds", "ItemLegsNylonRope", "ItemLegsHempRope", "ItemLegsLeatherBelt", "ItemLegsSturdyLeatherBelts", "ItemLegsDuctTape", "ItemLegsLeatherLegCuffs", "ItemLegsOrnateLegCuffs", "ItemLegsZipties", "ItemLegsChains", "ItemFeetSpreaderMetal", "ItemFeetSpreaderDildoBar", "ItemFeetSpreaderVibratingDildoBar"], SetPose: ["LegsClosed"] },
 		],
 		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
-	},
-
-	{
-		Group: "SuitLower",
-		ParentGroup: "BodyLower",
-		Priority: 14,
-		Default: false,
-		Clothing: true,
-		Left: 95,
-		Top: 380,
-		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse", "KneelingSpread", "Spread"],
-		Asset: [
-			{
-				Name: "Catsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemVulvaPiercings", "BodyLower"], HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
-				Layer: [
-					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
-				]
-			},
-			{ Name: "SeamlessCatsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemVulvaPiercings", "BodyLower"], HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
-			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
-			{
-				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
-				Layer: [
-					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
-				]
-			},
-			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: -1, BuyGroup: "ReverseBunnySuit", Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] }
-		],
-		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
-	},
-
-	{
-		Group: "SuitLower2",
-		ParentGroup: "BodyLower",
-		Priority: 15,
-		Default: false,
-		Clothing: true,
-		Left: 95,
-		Top: 380,
-		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse", "KneelingSpread", "Spread"],
-		Asset: [
-			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
-			{
-				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
-				Layer: [
-					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
-				]
-			},
-			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: -1, BuyGroup: "ReverseBunnySuit", Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] }
-		],
-		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
-	},
-
-	{
-		Group: "SuitLower3",
-		ParentGroup: "BodyLower",
-		Priority: 16,
-		Default: false,
-		Clothing: true,
-		Left: 95,
-		Top: 380,
-		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse", "KneelingSpread", "Spread"],
-		Asset: [
-			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: -1, BuyGroup: "ReverseBunnySuit", Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] }
-		],
-		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
 
 	{
@@ -584,6 +455,190 @@ var AssetFemale3DCG = [
 	},
 
 	{
+		Group: "Suit",
+		ParentGroup: "BodyUpper",
+		Priority: 14,
+		Clothing: true,
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
+		Asset: [
+			{
+				Name: "Catsuit", Fetish: ["Nylon"], Value: 100, BuyGroup: "Catsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
+				Layer: [
+					{ Name: "Base", AllowColorize: true },
+					{ Name: "Zip", AllowColorize: false }
+				]
+			},
+			{ Name: "SeamlessCatsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
+			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: 100, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
+			{
+				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
+				Layer: [
+					{ Name: "Base", AllowColorize: true },
+					{ Name: "Zip", AllowColorize: false }
+				]
+			},
+			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: 100, BuyGroup: "ReverseBunnySuit", Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"] }
+		],
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "Suit2",
+		ParentGroup: "BodyUpper",
+		Priority: 15,
+		Clothing: true,
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
+		Asset: [
+			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: 100, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
+			{
+				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
+				Layer: [
+					{ Name: "Base", AllowColorize: true },
+					{ Name: "Zip", AllowColorize: false }
+				]
+			},
+			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: 100, BuyGroup: "ReverseBunnySuit", Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"] }
+		],
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "Suit3",
+		ParentGroup: "BodyUpper",
+		Priority: 16,
+		Clothing: true,
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
+		Asset: [
+			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: 100, BuyGroup: "ReverseBunnySuit", Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"] }
+		],
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "SuitLower",
+		ParentGroup: "BodyLower",
+		Priority: 14,
+		Default: false,
+		Clothing: true,
+		Left: 95,
+		Top: 380,
+		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse", "KneelingSpread", "Spread"],
+		Asset: [
+			{
+				Name: "Catsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemVulvaPiercings", "BodyLower"], HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
+				Layer: [
+					{ Name: "Base", AllowColorize: true },
+					{ Name: "Zip", AllowColorize: false }
+				]
+			},
+			{ Name: "SeamlessCatsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemVulvaPiercings", "BodyLower"], HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
+			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
+			{
+				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
+				Layer: [
+					{ Name: "Base", AllowColorize: true },
+					{ Name: "Zip", AllowColorize: false }
+				]
+			},
+			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: -1, BuyGroup: "ReverseBunnySuit", Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] }
+		],
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "SuitLower2",
+		ParentGroup: "BodyLower",
+		Priority: 15,
+		Default: false,
+		Clothing: true,
+		Left: 95,
+		Top: 380,
+		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse", "KneelingSpread", "Spread"],
+		Asset: [
+			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
+			{
+				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
+				Layer: [
+					{ Name: "Base", AllowColorize: true },
+					{ Name: "Zip", AllowColorize: false }
+				]
+			},
+			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: -1, BuyGroup: "ReverseBunnySuit", Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] }
+		],
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "SuitLower3",
+		ParentGroup: "BodyLower",
+		Priority: 16,
+		Default: false,
+		Clothing: true,
+		Left: 95,
+		Top: 380,
+		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse", "KneelingSpread", "Spread"],
+		Asset: [
+			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: -1, BuyGroup: "ReverseBunnySuit", Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] }
+		],
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "Gloves",
+		ParentGroup: "BodyUpper",
+		ParentColor: "Bra",
+		Priority: 28,
+		Default: false,
+		Clothing: true,
+		Underwear: true,
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "AllFours", "OverTheHead"],
+		Asset: [
+			"Gloves1", "Gloves2",
+			{ Name: "Gloves3", Value: 15, Left: 60, Top: 109 },
+			{ Name: "MistressGloves", Fetish: ["Leather"], Value: -1 },
+			{ Name: "FingerlessGloves", Value: 20 },
+			{
+				Name: "GlovesFur", Value: 30,
+				Layer: [
+					{ Name: "Fabric", AllowColorize: true },
+					{ Name: "Fur", AllowColorize: false }
+				]
+			},
+			{ Name: "Catsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit" },
+			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit" }
+		],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "Gloves2",
+		ParentGroup: "BodyUpper",
+		ParentColor: "Bra",
+		Priority: 29,
+		Default: false,
+		Clothing: true,
+		Underwear: true,
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "AllFours", "OverTheHead"],
+		Asset: [
+			{ Name: "MistressGloves", Fetish: ["Leather"], Value: -1 },
+			{ Name: "FingerlessGloves", Value: 20, BuyGroup: "FingerlessGloves" },
+			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit" }
+		],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "Dummy",
+		Priority: 0,
+		AllowNone: true,
+		AllowColorize: false,
+		AllowCustomize: false,
+		Asset: [
+			{ Name: "DummyHide", Value: -1 }
+		]
+	},
+
+	{
 		Group: "HairAccessory1",
 		Priority: 53,
 		Default: false,
@@ -669,50 +724,6 @@ var AssetFemale3DCG = [
 			{ Name: "ElfEars", Value: 20, BuyGroup: "ElfEars", BodyCosplay: true, InheritColor: "BodyUpper" }
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
-	},
-
-	{
-		Group: "Gloves",
-		ParentGroup: "BodyUpper",
-		ParentColor: "Bra",
-		Priority: 28,
-		Default: false,
-		Clothing: true,
-		Underwear: true,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "AllFours", "OverTheHead"],
-		Asset: [
-			"Gloves1", "Gloves2",
-			{ Name: "Gloves3", Value: 15, Left: 60, Top: 109 },
-			{ Name: "MistressGloves", Fetish: ["Leather"], Value: -1 },
-			{ Name: "FingerlessGloves", Value: 20 },
-			{
-				Name: "GlovesFur", Value: 30,
-				Layer: [
-					{ Name: "Fabric", AllowColorize: true },
-					{ Name: "Fur", AllowColorize: false }
-				]
-			},
-			{ Name: "Catsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit" },
-			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit" }
-		],
-		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
-	},
-
-	{
-		Group: "Gloves2",
-		ParentGroup: "BodyUpper",
-		ParentColor: "Bra",
-		Priority: 29,
-		Default: false,
-		Clothing: true,
-		Underwear: true,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "AllFours", "OverTheHead"],
-		Asset: [
-			{ Name: "MistressGloves", Fetish: ["Leather"], Value: -1 },
-			{ Name: "FingerlessGloves", Value: 20, BuyGroup: "FingerlessGloves" },
-			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit" }
-		],
-		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
 
 	{
@@ -1743,7 +1754,7 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherMittens", Fetish: ["Leather"], Value: 60, Difficulty: 5, SelfBondage: 4, Time: 15, RemoveTime: 5, AllowLock: true, AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"] },
 			{ Name: "PaddedLeatherMittens", Fetish: ["Leather"], Value: 70, Difficulty: 6, SelfBondage: 5, Time: 15, RemoveTime: 5, AllowLock: true, AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"] },
 			{ Name: "PolishedMittens", Fetish: ["Metal"], Value: 80, Difficulty: 8, SelfBondage: 6, Time: 20, RemoveTime: 10, AllowLock: true, AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Effect: ["Block", "Prone"] },
-			{ Name: "DuctTape", Fetish: ["Tape"], Value: 50, Difficulty: 5, SelfBondage: 3, Time: 20, RemoveTime: 10, BuyGroup: "DuctTape", Hide: ["Gloves"], AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"] },
+			{ Name: "DuctTape", Fetish: ["Tape"], Value: 50, Difficulty: 5, SelfBondage: 3, Time: 20, RemoveTime: 10, BuyGroup: "DuctTape", Hide: ["Gloves", "Gloves2"], AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"] },
 			{
 				Name: "SpankingToys", Fetish: ["Sadism"], Priority: 46, Random: false, Wear: true, IsRestraint: false, BuyGroup: "SpankingToys", AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], AllowType: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle", "Whip", "CattleProd", "TennisRacket", "Feather", "FeatherDuster", "IceCube", "WartenbergWheel", "VibratingWand", "SmallVibratingWand", "CandleWax", "LargeDildo", "PetToy", "Vibrator", "Belt", "Hairbrush", "SmallDildo", "ElectricToothbrush", "Toothbrush"], DynamicPreviewIcon: C => InventorySpankingToysGetType(C),
 				Extended: true,
@@ -2743,7 +2754,7 @@ var PoseFemale3DCG = [
 	{
 		Name: "Hogtied",
 		OverrideHeight: -575,
-		Hide: ["BodyLower", "Head", "Hands", "ClothLower", "Wings", "TailStraps", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemLegs", "ItemFeet", "SuitLower", "SuitLower2", "SuitLower3"],
+		Hide: ["BodyLower", "Head", "Hands", "ClothLower", "Wings", "TailStraps", "Gloves", "Gloves2", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemLegs", "ItemFeet", "SuitLower", "SuitLower2", "SuitLower3"],
 		MovePosition: [{ Group: "Socks", X: 0, Y: -400 }, { Group: "Shoes", X: 0, Y: -500 }, { Group: "ItemBoots", X: 0, Y: -500 }]
 	},
 	{
@@ -2754,7 +2765,7 @@ var PoseFemale3DCG = [
 	{
 		Name: "SuspensionHogtied",
 		OverrideHeight: 0,
-		Hide: ["BodyLower", "Hands", "ClothLower", "Wings", "TailStraps", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemLegs", "ItemFeet", "SuitLower", "SuitLower2", "SuitLower3", "ItemDevices"]
+		Hide: ["BodyLower", "Hands", "ClothLower", "Wings", "TailStraps", "Gloves", "Gloves2", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemLegs", "ItemFeet", "SuitLower", "SuitLower2", "SuitLower3", "ItemDevices"]
 	},
 	{
 		Name: "AllFours",
