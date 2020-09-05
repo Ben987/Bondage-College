@@ -660,7 +660,10 @@ function ManagementRandomActivityStart(A) {
 	ManagementRandomGirl.Stage = "Activity" + A;
 }
 
-// Club slave random activity
+/**
+ * Launches a random club slave activity.
+ * @returns {void} - Nothing.
+ */
 function ManagementClubSlaveRandomActivityLaunch() {
 	
 	// After 4 activities, there's more and more chances that it will stop
@@ -702,14 +705,21 @@ function ManagementClubSlaveRandomActivityLaunch() {
 	}
 }
 
-// When the random activities stops
+/**
+ * Triggered when the random activity stops.
+ * @param {number} RepChange - Amount of dominant reputation to gain or lose.
+ * @returns {void} - Nothing.
+ */
 function ManagementClubSlaveRandomActivityEnd(RepChange) {
 	ReputationProgress("Dominant", RepChange);
 	DialogLeave();
 	CommonSetScreen("Room", "MainHall");
 }
 
-// When the player transfers the random girl to her room
+/**
+ * Triggered when the player transfers the random NPC to her room.
+ * @returns {void} - Nothing.
+ */
 function ManagementClubSlaveTransferToRoom() {
 	ManagementClubSlaveRandomActivityEnd(2);
 	InventoryRemove(Player, "ItemFeet");
@@ -717,14 +727,20 @@ function ManagementClubSlaveTransferToRoom() {
 	PrivateAddCharacter(ManagementRandomGirl, ManagementRandomGirlArchetype);
 }
 
-// When the player gets the Mistress clothes
+/**
+ * Triggered when the player earns the mistress clothes.
+ * @returns {void} - Nothing.
+ */
 function ManagementGetMistressOutfit(Color) {
 	CharacterRelease(Player);
 	CharacterArchetypeClothes(Player, "Mistress", Color);
 	ServerPlayerInventorySync();
 }
 
-// When the player starts the Mistress introduction party
+/**
+ * Triggered when the player starts the Mistress introduction cutscene.
+ * @returns {void} - Nothing.
+ */
 function ManagementPlayerMistressCutscene() {
 	LogAdd("ClubMistress", "Management");
 	LogAdd("MistressWasPaid", "Management", CurrentTime + 604800000);
@@ -733,7 +749,10 @@ function ManagementPlayerMistressCutscene() {
 	CommonSetScreen("Cutscene", "PlayerMistress");
 }
 
-// When the player gets her Mistress pay
+/**
+ * Triggered when the player receives her weekly 100$ mistress pay.
+ * @returns {void} - Nothing.
+ */
 function ManagementMistressPay() {
 	LogAdd("MistressWasPaid", "Management", CurrentTime + 604800000);
 	CharacterChangeMoney(Player, 100);
