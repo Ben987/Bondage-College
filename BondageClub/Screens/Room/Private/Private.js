@@ -670,7 +670,13 @@ function PrivateLoadCharacter(C) {
 
 }
 
-// When a new character is added to the room
+/**
+ * Triggered when a new character is added to the palyer's private room.
+ * @param {object} Template - The base of the character, includes the name and appearance. 
+ * @param {string} Archetype - The type of character such as maid or mistress.
+ * @param {boolean} CustomData - Whether or not the character has non-random traits.
+ * @returns {void} - Nothing.
+ */
 function PrivateAddCharacter(Template, Archetype, CustomData) {
 	var C = CharacterLoadNPC("NPC_Private_Custom");
 	C.Name = Template.Name;
@@ -691,14 +697,20 @@ function PrivateAddCharacter(Template, Archetype, CustomData) {
 	if ((InventoryGet(C, "ItemNeck") != null) && (InventoryGet(C, "ItemNeck").Asset.Name == "ClubSlaveCollar")) InventoryRemove(C, "ItemNeck");
 }
 
-// Returns the ID of the private room current character
+/**
+ * Gets the index of a given private room character.
+ * @returns {number} - Index of the NPC inside the private characters array.
+ */
 function PrivateGetCurrentID() {
 	for (let P = 1; P < PrivateCharacter.length; P++)
 		if (CurrentCharacter.Name == PrivateCharacter[P].Name)
 			return P;
 }
 
-// When the player kicks out a character
+/**
+ * Triggered when the player kicks out a character.
+ * @returns {void} - Nothing.
+ */
 function PrivateKickOut() {
 	var ID = PrivateGetCurrentID();
 	PrivateCharacter[ID] = null;
@@ -710,7 +722,11 @@ function PrivateKickOut() {
 	DialogLeave();
 }
 
-// When the player tells the character to change
+/**
+ * Triggered when the player tells a NPC to change.
+ * @param {Asset[]} NewCloth - The new appearance to dress the NPC with
+ * @returns {void} - Nothing.
+ */
 function PrivateChange(NewCloth) {
 	if (NewCloth == "Cloth") CharacterDress(CurrentCharacter, CurrentCharacter.AppearanceFull);
 	if (NewCloth == "Underwear") CharacterUnderwear(CurrentCharacter, CurrentCharacter.AppearanceFull);
@@ -724,7 +740,10 @@ function PrivateChange(NewCloth) {
 	}
 }
 
-// Returns TRUE if the player owner is already in the room
+/**
+ * Checks if the player's owner is inside her private room.
+ * @returns {boolean} - Returns TRUE if the player's owner is inside her private room.
+ */
 function PrivateOwnerInRoom() {
 	for (let C = 1; C < PrivateCharacter.length; C++) {
 		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (PrivateCharacter[C].Name == Player.Owner.replace("NPC-", ""))) return true;
@@ -734,7 +753,11 @@ function PrivateOwnerInRoom() {
 	return false;
 }
 
-// Returns TRUE if the player lover is already in the room
+/**
+ * Checks if the player's lover is inside her private room.
+ * @param {number} L - Index of the lover to check for.
+ * @returns {boolean} - Returns TRUE if the player's lover is inside her private room.
+ */
 function PrivateLoverInRoom(L) {
 	for (let C = 1; C < PrivateCharacter.length; C++) {
 		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (Player.GetLoversNumbers()[L] == "NPC-" + PrivateCharacter[C].Name)) return true;
@@ -744,14 +767,20 @@ function PrivateLoverInRoom(L) {
 	return false;
 }
 
-// When a custom NPC restrains the player, there's a minute timer before release
+/**
+ * Triggered when a NPC restrains the player, there's a 1-2 minute timer before the player can be released.
+ * @returns {void} - Nothing.
+ */
 function PrivateRestrainPlayer() {
 	CharacterFullRandomRestrain(Player);
 	PrivateNPCInteraction(5);
 	PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
 }
 
-// Relationship with any NPC will decay with time, below -100, the NPC leaves if she's not caged
+/**
+ * Alters relationships to make them decay after some time. Below -100, the NPC leaves if she's not caged.
+ * @returns {void} - Nothing.
+ */
 function PrivateRelationDecay() {
 	var MustSave = false;
 	for (let C = 1; C < PrivateCharacter.length; C++) {
@@ -773,7 +802,11 @@ function PrivateRelationDecay() {
 	if (MustSave) ServerPrivateCharacterSync();
 }
 
-// When the player starts a submissive trial with an NPC
+/**
+ * Triggered when the player starts a submissive trial with an NPC
+ * @param {number} ChangeRep - Amount of dominant reputation to lose. 
+ * @returns {void} - Nothing.
+ */
 function PrivateStartTrial(ChangeRep) {
 	DialogChangeReputation("Dominant", ChangeRep);
 	CharacterDress(CurrentCharacter, CurrentCharacter.AppearanceFull);
@@ -782,7 +815,11 @@ function PrivateStartTrial(ChangeRep) {
 	ServerPrivateCharacterSync();
 }
 
-// When the player stops a submissive trial with an NPC
+/**
+ * Triggered when the player stops a submissive trial with an NPC
+ * @param {number} ChangeRep - Amount of dominant reputation to gain/lose. 
+ * @returns {void} - Nothing.
+ */
 function PrivateStopTrial(ChangeRep) {
 	DialogChangeReputation("Dominant", ChangeRep);
 	NPCEventDelete(CurrentCharacter, "EndSubTrial");
@@ -790,12 +827,18 @@ function PrivateStopTrial(ChangeRep) {
 	ServerPrivateCharacterSync();
 }
 
-// Shows the number or hours remaining for the trial
+/**
+ * Shows the number or hours remaining for the trial in the dialog phrase.
+ * @returns {void} - Nothing.
+ */
 function PrivateShowTrialHours() {
 	CurrentCharacter.CurrentDialog = CurrentCharacter.CurrentDialog.replace("DialogHours", Math.ceil((NPCEventGet(CurrentCharacter, "EndSubTrial") - CurrentTime) / 3600000).toString());
 }
 
-// Returns TRUE if the player is owned (from the room or not)
+/**
+ * Checks if the player is owned. (In general)
+ * @returns {boolean} - Returns TRUE if the player has an owner.
+ */
 function PrivatePlayerIsOwned() {
 	if (Player.Owner != "") return true;
 	for (let C = 0; C < PrivateCharacter.length; C++)
@@ -805,7 +848,10 @@ function PrivatePlayerIsOwned() {
 	return false;
 }
 
-// Returns TRUE if someone else in the room can be restrained by the player owner, keep that target in a variable to be used later
+/**
+ * Checks if an NPC in the private room can be restrained by another.
+ * @returns {boolean} - Returns TRUE if someone else in the room can be restrained by the player's owner, keep that target in a variable to be used later
+ */
 function PrivateCanRestrainOther() {
 	PrivateActivityTarget = null;
 	var List = [];
@@ -817,7 +863,10 @@ function PrivateCanRestrainOther() {
 	return (PrivateActivityTarget != null);
 }
 
-// Starts a random activity for the player as submissive
+/**
+ * Starts a random activity for the player as submissive.
+ * @returns {void} - Nothing.
+ */
 function PrivateStartActivity() {
 
 	// Finds a valid activity for the player
@@ -871,7 +920,11 @@ function PrivateStartActivity() {
 
 }
 
-// Runs the current activity
+/**
+ * Runs the currently selected activity
+ * @param {number} LoveFactor - Amount of love to be added or removed from the NPC.
+ * @returns {void} - Nothing.
+ */
 function PrivateActivityRun(LoveFactor) {
 
 	// Changes the love factor only once per activity (except if negative)
@@ -964,13 +1017,19 @@ function PrivateActivityRun(LoveFactor) {
 
 }
 
-// Set the no change rule for the player
+/**
+ * Set the no change rule for the player.
+ * @returns {void} - Nothing.
+ */
 function PrivateBlockChange(Minutes) {
 	LogAdd("BlockChange", "Rule", CurrentTime + (Minutes * 60000));
 	ServerPlayerAppearanceSync();
 }
 
-// Starts a random punishment for the player as submissive
+/**
+ * Starts a random punishment for the player as submissive.
+ * @returns {void} - Nothing.
+ */
 function PrivateSelectPunishment() {
 	
 	// Release the player first
@@ -990,7 +1049,6 @@ function PrivateSelectPunishment() {
 	}
 	
 	// Finds a valid punishment for the player
-	var Count = 0;
 	while (true) {
 
 		// Picks an punishment at random
@@ -1018,7 +1076,11 @@ function PrivateSelectPunishment() {
 
 }
 
-// Runs the player punishment
+/**
+ * Runs the currently selected player punishment.
+ * @param {number} LoveFactor - Amount of love to be added or removed from the NPC.
+ * @returns {void} - Nothing.
+ */
 function PrivateRunPunishment(LoveFactor) {
 	NPCLoveChange(CurrentCharacter, LoveFactor);
 	NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
@@ -1038,7 +1100,10 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "Cell") { DialogLeave(); CharacterFullRandomRestrain(Player, "ALL"); CellLock(5); }
 }
 
-// Sets up the player collaring ceremony cutscene
+/**
+ * Sets up the player collaring ceremony cutscene.
+ * @returns {void} - Nothing.
+ */
 function PrivatePlayerCollaring() {
 	NPCEventDelete(CurrentCharacter, "EndSubTrial");
 	NPCEventAdd(CurrentCharacter, "PlayerCollaring", CurrentTime);
@@ -1055,7 +1120,11 @@ function PrivatePlayerCollaring() {
 	DialogLeave();
 }
 
-// Starts the D/s trial period with the player as Dominant
+/**
+ * Starts the D/s trial period with the player as the owner.
+ * @param {number} TrialTime - amount of days the trial will go for.
+ * @returns {void} - Nothing.
+ */
 function PrivateStartDomTrial(TrialTime) {
 	DialogChangeReputation("Dominant", TrialTime);
 	NPCEventAdd(CurrentCharacter, "EndDomTrial", CurrentTime + TrialTime * 86400000);
@@ -1063,7 +1132,10 @@ function PrivateStartDomTrial(TrialTime) {
 	ServerPrivateCharacterSync();
 }
 
-// Sets up the NPC collaring ceremony cutscene
+/**
+ * Sets up the NPC collaring ceremony cutscene.
+ * @returns {void} - Nothing.
+ */
 function PrivateNPCCollaring() {
 	CharacterChangeMoney(Player, -100);
 	NPCEventDelete(CurrentCharacter, "EndDomTrial");
@@ -1081,7 +1153,10 @@ function PrivateNPCCollaring() {
 	DialogLeave();
 }
 
-// When the player gets an NPC girlfriend, we assign that new lover
+/**
+ * Triggered when the player gets a NPC lover, it assigns the current character as one of the player's lovers.
+ * @returns {void} - Nothing.
+ */
 function PrivateStartGirlfriend() {
 	NPCEventAdd(CurrentCharacter, "Girlfriend", CurrentTime);
 	CurrentCharacter.Lover = Player.Name;
@@ -1091,14 +1166,22 @@ function PrivateStartGirlfriend() {
 	ServerPrivateCharacterSync();
 }
 
-// The NPC love can only reach 60 without a proper relationship, 100 if in a relationship
+/**
+ * Processes a love change for a NPC.The NPC love can only reach 60 without a proper relationship, 100 if in a relationship.
+ * @param {number} LoveFactor - Amount of love to gain or lose.
+ * @returns {void} - Nothing.
+ */
 function PrivateNPCInteraction(LoveFactor) {
 	if (CurrentCharacter.Love == null) CurrentCharacter.Love = 0;
 	if ((CurrentCharacter.Love < 60) || (CurrentCharacter.IsOwner()) || (CurrentCharacter.IsOwnedByPlayer()) || CurrentCharacter.IsLoverPrivate() || (parseInt(LoveFactor) < 0))
 		NPCLoveChange(CurrentCharacter, LoveFactor);
 }
 
-// When the slave market transation starts (10$ + 1$ per day for sold slave + 0% to 100% from the random auction, divide in 7 for rentals)
+/**
+ * Triggered when the slave market transation starts (10$ + 1$ per day for sold slave + 0% to 100% from the random auction, divide in 7 for rentals)
+ * @param {"Rent" | "Sell"} AuctionType - Type of the auction to start.
+ * @returns {void} - Nothing.
+ */
 function PrivateSlaveMarketStart(AuctionType) {
 	if (AuctionType == "Rent") NPCEventAdd(CurrentCharacter, "SlaveMarketRent", CurrentTime + 86400000);
 	else InventoryRemove(CurrentCharacter, "ItemNeck");
@@ -1118,12 +1201,19 @@ function PrivateSlaveMarketStart(AuctionType) {
 	else DialogLeave();
 }
 
-// When the player selects how to improve her slave
+/**
+ * Triggered when the player selects how to improve her slave.
+ * @param {string} Type - Trait to improve.
+ * @returns {void} - Nothing.
+ */
 function PrivateSlaveImproveSelect(Type) {
 	PrivateSlaveImproveType = Type;
 }
 
-// The player slave can be sent to the asylum to have a trait corrected (The higher the value, the slower it raises)
+/**
+ * Triggered when the player's slave is sent to the asylum to have a trait corrected. (The higher the value, the slower it raises)
+ * @returns {void} - Nothing.
+ */
 function PrivateSlaveImproveSend() {
 	CharacterChangeMoney(Player, -25);
 	var T = NPCTraitGet(CurrentCharacter, PrivateSlaveImproveType);
@@ -1137,14 +1227,20 @@ function PrivateSlaveImproveSend() {
 	DialogLeave();
 }
 
-// When Amanda/Sarah/Sidney/Jennifer gives her college outfit to the player
+/**
+ * Triggered when Amanda/Sarah/Sidney/Jennifer gives her college outfit to the player.
+ * @returns {void} - Nothing.
+ */
 function PrivateGetCollegeClothes() {
 	NPCLoveChange(CurrentCharacter, -10);
 	InventoryAdd(Player, "CollegeOutfit1", "Cloth");
 	if ((InventoryGet(CurrentCharacter, "Cloth") != null) && (InventoryGet(CurrentCharacter, "Cloth").Asset.Name == "CollegeOutfit1")) InventoryRemove(CurrentCharacter, "Cloth");
 }
 
-// When the player says "I love you" to her NPC girlfriend
+/**
+ * Triggered when the player says "I love you" to her NPC girlfriend.
+ * @returns {void} - Nothing.
+ */
 function PrivateLoveYou() {
 
 	// Once every minute, it will raise the love meter a little
