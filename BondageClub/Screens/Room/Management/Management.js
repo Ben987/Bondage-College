@@ -534,8 +534,9 @@ function ManagementClubSlaveVisitRoom() {
 // When the player wants to change her slave collar model
 function ManagementChangeSlaveCollarType(NewType) {
 	var Collar = InventoryGet(Player, "ItemNeck");
-	if (NewType == "") Collar.Property = null;
-	else Collar.Property = { Type: NewType, Effect: [] };
+	var TypeProperties = InventoryItemNeckSlaveCollarTypes.find(T => T.Name == NewType);
+	if (!TypeProperties) Collar.Property = null;
+	else Collar.Property = TypeProperties.Property;
 	CharacterRefresh(Player);
 	CharacterChangeMoney(Player, -30);
 }
