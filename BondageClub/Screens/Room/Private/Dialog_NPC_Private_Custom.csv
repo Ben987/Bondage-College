@@ -334,14 +334,14 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 0,,Can I tie you up?,"Don't even try, I'm more Dominant than you will ever be.",,!AllowRestain(),CannotRestrain,Serious|Dominant
 0,,Can I tie you up?,"A subbie tying a subbie?  No, let's find a real Domme.",,!AllowRestain(),CannotRestrain,Playful|Submissive
 0,,Can I tie you up?,"I refuse.  You don't have the strength, techniques and mental capacity to do an effective bondage.  You'll only end up hurting me.",,!AllowRestain(),CannotRestrain,Wise|Peaceful
-0,,Will you tie me up?,Sure!  Give me your arms and I'll fix you up.  (She restrains you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,
-0,,Will you tie me up?,My pleasure girl.  I'll make it extra tight for you.  (She hurts you a little while restraining you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Dominant|Violent
-0,,Will you tie me up?,A sub tying a sub?  I guess we can try that.  (She giggles and restrains you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Submissive|Playful
-0,,Will you tie me up?,"Come closer and stay still little one, I don't want to hurt you.  (She carefully restrains you.)",RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Peaceful|Polite
-0,,Will you tie me up?,I can't tie up a strong woman like you.,,WontRestainPlayer(),WontRestrainPlayer,
-0,,Will you tie me up?,I've tied up lots of bitches around here.  But I won't dare touching someone like ya.,,WontRestainPlayer(),WontRestrainPlayer,Dominant|Rude
-0,,Will you tie me up?,"(She shakes her head no.)  Miss, I must politely decline your offer.  It wouldn't be proper.",,WontRestainPlayer(),WontRestrainPlayer,Submissive|Polite
-0,,Will you tie me up?,"Me?  Restrain you?  I don't know...  I mean, I don't want...  I mean, I'm not sure.",,WontRestainPlayer(),WontRestrainPlayer,Dumb|Frigid
+0,,Will you tie me up?,Sure!  Give me your arms and I'll fix you up.  (She restrains you.),RestrainPlayer(),AllowRestrainPlayer(),WillRestrainPlayer,
+0,,Will you tie me up?,My pleasure girl.  I'll make it extra tight for you.  (She hurts you a little while restraining you.),RestrainPlayer(),AllowRestrainPlayer(),WillRestrainPlayer,Dominant|Violent
+0,,Will you tie me up?,A sub tying a sub?  I guess we can try that.  (She giggles and restrains you.),RestrainPlayer(),AllowRestrainPlayer(),WillRestrainPlayer,Submissive|Playful
+0,,Will you tie me up?,"Come closer and stay still little one, I don't want to hurt you.  (She carefully restrains you.)",RestrainPlayer(),AllowRestrainPlayer(),WillRestrainPlayer,Peaceful|Polite
+0,,Will you tie me up?,I can't tie up a strong woman like you.,,WontRestrainPlayer(),WontRestrainPlayer,
+0,,Will you tie me up?,I've tied up lots of bitches around here.  But I won't dare touching someone like ya.,,WontRestrainPlayer(),WontRestrainPlayer,Dominant|Rude
+0,,Will you tie me up?,"(She shakes her head no.)  Miss, I must politely decline your offer.  It wouldn't be proper.",,WontRestrainPlayer(),WontRestrainPlayer,Submissive|Polite
+0,,Will you tie me up?,"Me?  Restrain you?  I don't know...  I mean, I don't want...  I mean, I'm not sure.",,WontRestrainPlayer(),WontRestrainPlayer,Dumb|Frigid
 0,,Can you release me?,(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,
 0,,Can you release me?,Are you in pain girl?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,Dominant|Peaceful
 0,,Can you release me?,"I'm not sure how Miss, let me try.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,Submissive|Dumb
