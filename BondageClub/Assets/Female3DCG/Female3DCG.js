@@ -234,7 +234,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "Suit3",
 		ParentGroup: "BodyUpper",
-		Priority: 15,
+		Priority: 16,
 		Clothing: true,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
 		Asset: [
@@ -348,7 +348,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "SuitLower3",
 		ParentGroup: "BodyLower",
-		Priority: 15,
+		Priority: 16,
 		Default: false,
 		Clothing: true,
 		Left: 95,
@@ -1312,7 +1312,7 @@ var AssetFemale3DCG = [
 		Group: "ItemPelvis",
 		ParentGroup: "BodyLower",
 		Category: "Item",
-		Priority: 16,
+		Priority: 17,
 		Default: false,
 		Left: 125,
 		Top: 375,
@@ -1390,7 +1390,7 @@ var AssetFemale3DCG = [
 		Group: "ItemTorso",
 		ParentGroup: "BodyUpper",
 		Category: "Item",
-		Priority: 17,
+		Priority: 18,
 		Default: false,
 		Left: 125,
 		Top: 200,
@@ -1487,7 +1487,7 @@ var AssetFemale3DCG = [
 		Group: "ItemBreast",
 		ParentGroup: "BodyUpper",
 		Category: "Item",
-		Priority: 16,
+		Priority: 17,
 		Default: false,
 		Left: 150,
 		Top: 200,
@@ -2545,7 +2545,7 @@ var AssetFemale3DCG = [
 			{ Name: "BondageBench", Fetish: ["Leather"], Priority: 1, Value: 250, SelfBondage: 4, Time: 10, RemoveTime: 10, Prerequisite: ["NotKneeling", "AllFours", "NotSuspended", "NotHogtied", "NoFeetSpreader"], SetPose: ["LegsClosed"], Effect: ["Block", "Prone", "Freeze", "Mounted"], Extended: true, RemoveAtLogin: true },
 			{ Name: "TeddyBear", Fetish: ["ABDL"], Priority: 34, Value: 50, Difficulty: -10, Time: 5, IsRestraint: false, AllowPose: ["AllFours", "Hogtied", "TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Horse", "StraitDressOpen", "Yoked"], Effect: [], AllowType: ["Bear", "Fox", "Kitty", "Pup", "Bunny", "Pony"], Extended: true, RemoveAtLogin: true },
 			{
-				Name: "OneBarPrison", Fetish: ["Metal"], Priority: 16, Value: 75, Difficulty: 8, SelfBondage: 2, Time: 20, AllowLock: true, Prerequisite: ["AccessVulva", "AllFours", "LegsOpen", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NotChaste", "StraitDressOpen"], SetPose: ["LegsOpen"], Effect: ["FillVulva", "Prone", "Freeze", "Mounted"], Block: ["ItemPelvis", "ItemLegs", "ItemVulva", "ItemFeet"], Layer: [
+				Name: "OneBarPrison", Fetish: ["Metal"], Priority: 17, Value: 75, Difficulty: 8, SelfBondage: 2, Time: 20, AllowLock: true, Prerequisite: ["AccessVulva", "AllFours", "LegsOpen", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NotChaste", "StraitDressOpen"], SetPose: ["LegsOpen"], Effect: ["FillVulva", "Prone", "Freeze", "Mounted"], Block: ["ItemPelvis", "ItemLegs", "ItemVulva", "ItemFeet"], Layer: [
 					{ Name: "Bar", AllowColorize: true },
 					{ Name: "Pussy", AllowColorize: false }
 				],
