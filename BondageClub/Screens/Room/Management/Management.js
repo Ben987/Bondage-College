@@ -301,6 +301,7 @@ function ManagementCannotPlayWithSubLock() { return (DialogReputationLess("Domin
  * @returns {boolean} - TRUE if there's no other Mistress in the player private room
  */
 function ManagementNoMistressInPrivateRoom() {
+	if (PrivateCharacter.length <= 1) return true;
 	for (let C = 1; C < PrivateCharacter.length; C++)
 		if ((PrivateCharacter[C].Title != null) && (PrivateCharacter[C].Title == "Mistress"))
 			return false;
@@ -532,7 +533,11 @@ function ManagementBreakLover(L) {
 	ServerPlayerSync();
 }
 
-// When the Mistress leaves her job to go see the player
+/**
+ * Triggered when the Mistress leaves her job to go see the player
+ * @param {number} RepChange - The amount of dominant reputation the player will gain.
+ * @returns {void} - Nothing.
+ */
 function ManagementSendMistressToPrivateRoom(RepChange) {
 	ReputationProgress("Dominant", RepChange);
 	ManagementEmpty = true;
@@ -543,7 +548,11 @@ function ManagementSendMistressToPrivateRoom(RepChange) {
 	DialogLeave();
 }
 
-// When the Mistress locks the club slave collar on the player
+/**
+ * Triggered when the Mistress locks the club slave collar on the player.
+ * @param {number} RepChange - The amount of dominant reputation the player will lose.
+ * @returns {void} - Nothing.
+ */
 function ManagementClubSlaveCollar(RepChange) {
 	ReputationProgress("Dominant", RepChange);
 	CharacterRelease(Player);
@@ -553,7 +562,11 @@ function ManagementClubSlaveCollar(RepChange) {
 	TitleSet("ClubSlave");
 }
 
-// When the player finishes the club slave contract
+/**
+ * Triggered when the player finishes the club slave contract.
+ * @param {number} RepChange - The amount of dominant reputation the player will gain or lose.
+ * @returns {void} - Nothing.
+ */
 function ManagementFinishClubSlave(RepChange) {
 	ReputationProgress("Dominant", RepChange);
 	CharacterChangeMoney(Player, 80);
@@ -566,7 +579,10 @@ function ManagementFinishClubSlave(RepChange) {
 	if (Player.IsNaked()) CharacterDress(Player, ManagementPlayerAppearance);
 }
 
-// When the player as club slave gets stopped by a random girl
+/**
+ * Triggered when the player gets stopped by a random girl while the player is a club slave.
+ * @returns {void} - Nothing.
+ */
 function ManagementClubSlaveRandomIntro() {
 	
 	// Sets the girl that greets the club slave player
@@ -596,7 +612,10 @@ function ManagementClubSlaveRandomIntro() {
 
 }
 
-// When the player meets a random club slave
+/**
+ * Triggered when the player meets a random club slave while the player is a club mistress.
+ * @returns {void} - Nothing.
+ */
 function ManagementFindClubSlaveRandomIntro() {
 
 	// Sets the girl that greets the club slave player
@@ -630,7 +649,11 @@ function ManagementFindClubSlaveRandomIntro() {
 
 }
 
-// When a random activity starts
+/**
+ * Triggered when a random club management activity starts.
+ * @param {string} A - Name of the activity being started.
+ * @returns {void} - Nothing.
+ */
 function ManagementRandomActivityStart(A) {
 	ManagementRandomActivity = A;
 	ManagementRandomGirl.CurrentDialog = DialogFind(ManagementRandomGirl, "Activity" + A + "Intro");
@@ -801,7 +824,11 @@ function ManagementClubSlaveVisitRoom() {
 	}
 }
 
-// When the player wants to change her slave collar model
+/**
+ * Triggered when the player asks to have her slave collar model changed
+ * @param {string} NewType - The new slave collar type to change to. 
+ * @returns {void} - Nothing. 
+ */
 function ManagementChangeSlaveCollarType(NewType) {
 	var Collar = InventoryGet(Player, "ItemNeck");
 	if (NewType == "") Collar.Property = null;
@@ -810,7 +837,11 @@ function ManagementChangeSlaveCollarType(NewType) {
 	CharacterChangeMoney(Player, -30);
 }
 
-// Some NPC won't be available if the player is a club slave, they will have a special dialog for that
+/**
+ * Sets the given NPC's dialog based on if the player is a club slave or not. Some NPC are not available or have special dialog for club slaves.
+ * @param {Character} C - Current NPC.
+ * @returns {void} - Nothing. 
+ */
 function ManagementClubSlaveDialog(C) {
 	if ((C != null) && (C.Stage == "0") && ManagementIsClubSlave()) C.Stage = "ClubSlave";
 	if ((C != null) && (C.Stage == "ClubSlave") && !ManagementIsClubSlave()) C.Stage = "0";
