@@ -276,11 +276,20 @@
 	OK - Web gag name fix (Nina)
 	OK - Gag speech fix after lock expiry (Ellie)
 	OK - Character zoom/position in online rooms (Nina)
-	CRIB + OPEN HAIR HOOD BUG SENT - Head / BodyUpper split (Nina)
-	
+	OK - Head / BodyUpper split (Nina)
+	OK - Extended scripts for clothes (Ace)
+	OK - Milk + DuctTape + Online dialog fix (Ace)
+	OK - Chat room filter & search improvements (Ace)
+	OK - Remove collar cuffs fix (Sandrine)
+	OK - Blacklist locks + timer lock fix (Ace)
+	OK - Safeword space fix (Ace)
+	OK - Character appearance backup fix (Ellie)
+	OK - Remove background color for sensory dep (Sandrine)
+	OK - Advanced alpha masks (Ellie)
+	OK - Locks for the cross item (Uwnodi)
 	CONSOLE BUGS SENT - SetColor on 3D assets (Zerodawn)
 	
-	TO DO - Server Migration
+	OK - Server Migration
 
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
@@ -300,7 +309,8 @@
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
-	ServerURL = "https://bondage-club-server.herokuapp.com/";
+	ServerURL = "https://bondage-club-server.azurewebsites.net/";
+	//ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
 	DrawLoad();

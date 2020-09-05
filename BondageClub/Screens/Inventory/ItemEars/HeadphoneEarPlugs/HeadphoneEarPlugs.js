@@ -46,19 +46,19 @@ function InventoryItemEarsHeadphoneEarPlugsSetPose(NewPose) {
 	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemEarsHeadphoneEarPlugsLoad();
+	} 
 
 	// Sets the new pose with it's effects
-		DialogFocusItem.Property.Restrain = NewPose;
-		if (NewPose == null) {
-			delete DialogFocusItem.Property.Effect;
-			delete DialogFocusItem.Property.Type;
-		} else {
-			DialogFocusItem.Property.Effect = [""];
-			DialogFocusItem.Property.Type = NewPose;
-			if (NewPose == "Light") DialogFocusItem.Property.Effect = ["DeafLight"];
-			if (NewPose == "Heavy") DialogFocusItem.Property.Effect = ["DeafHeavy"];
-		}
-	} 
+	DialogFocusItem.Property.Restrain = NewPose;
+	if (NewPose == null) {
+		delete DialogFocusItem.Property.Effect;
+		delete DialogFocusItem.Property.Type;
+	} else {
+		DialogFocusItem.Property.Effect = [""];
+		DialogFocusItem.Property.Type = NewPose;
+		if (NewPose == "Light") DialogFocusItem.Property.Effect = ["DeafLight"];
+		if (NewPose == "Heavy") DialogFocusItem.Property.Effect = ["DeafHeavy"];
+	}
 
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
