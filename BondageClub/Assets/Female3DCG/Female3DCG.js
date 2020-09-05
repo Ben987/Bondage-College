@@ -218,14 +218,6 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
 		Asset: [
-			{
-				Name: "Catsuit", Fetish: ["Nylon"], Value: 100, BuyGroup: "Catsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
-				Layer: [
-					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
-				]
-			},
-			{ Name: "SeamlessCatsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
 			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: 100, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
 			{
 				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
@@ -234,6 +226,18 @@ var AssetFemale3DCG = [
 					{ Name: "Zip", AllowColorize: false }
 				]
 			},
+			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: 100, BuyGroup: "ReverseBunnySuit", Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"] }
+		],
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "Suit3",
+		ParentGroup: "BodyUpper",
+		Priority: 15,
+		Clothing: true,
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied", "OverTheHead"],
+		Asset: [
 			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: 100, BuyGroup: "ReverseBunnySuit", Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"] }
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
@@ -328,14 +332,6 @@ var AssetFemale3DCG = [
 		Top: 380,
 		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse", "KneelingSpread", "Spread"],
 		Asset: [
-			{
-				Name: "Catsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemVulvaPiercings", "BodyLower"], HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
-				Layer: [
-					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
-				]
-			},
-			{ Name: "SeamlessCatsuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemVulvaPiercings", "BodyLower"], HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
 			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
 			{
 				Name: "SeethroughSuitZip", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit", HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
@@ -344,6 +340,21 @@ var AssetFemale3DCG = [
 					{ Name: "Zip", AllowColorize: false }
 				]
 			},
+			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: -1, BuyGroup: "ReverseBunnySuit", Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] }
+		],
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "SuitLower3",
+		ParentGroup: "BodyLower",
+		Priority: 15,
+		Default: false,
+		Clothing: true,
+		Left: 95,
+		Top: 380,
+		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse", "KneelingSpread", "Spread"],
+		Asset: [
 			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Value: -1, BuyGroup: "ReverseBunnySuit", Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] }
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
