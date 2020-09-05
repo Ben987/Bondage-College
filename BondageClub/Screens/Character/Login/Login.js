@@ -162,18 +162,22 @@ function LoginValidCollar() {
  */
 function LoginMistressItems() {
 	if (LogQuery("ClubMistress", "Management")) {
-		InventoryAdd(Player, "MistressGloves", "Gloves", false);
-		InventoryAdd(Player, "MistressBoots", "Shoes", false);
-		InventoryAdd(Player, "MistressTop", "Cloth", false);
-		InventoryAdd(Player, "MistressBottom", "ClothLower", false);
-		InventoryAdd(Player, "MistressPadlock", "ItemMisc", false);
-		InventoryAdd(Player, "MistressPadlockKey", "ItemMisc", false);
-		InventoryAdd(Player, "MistressTimerPadlock", "ItemMisc", false);
+		var ItemsToEarn = [];
+		ItemsToEarn.push({Name: "MistressGloves", Group: "Gloves"});
+		ItemsToEarn.push({Name: "MistressGloves", Group: "Gloves2"});
+		ItemsToEarn.push({Name: "MistressBoots", Group: "ItemMouth"});
+		ItemsToEarn.push({Name: "MistressTop", Group: "Cloth"});
+		ItemsToEarn.push({Name: "MistressBottom", Group: "ClothLower"});
+		ItemsToEarn.push({Name: "MistressPadlock", Group: "ItemMisc"});
+		ItemsToEarn.push({Name: "MistressPadlockKey", Group: "ItemMisc"});
+		ItemsToEarn.push({Name: "MistressTimerPadlock", Group: "ItemMisc"});
+		InventoryAddMany(Player, ItemsToEarn);
 	} else {
 		InventoryDelete(Player, "MistressPadlock", "ItemMisc", false);
 		InventoryDelete(Player, "MistressPadlockKey", "ItemMisc", false);
 		InventoryDelete(Player, "MistressTimerPadlock", "ItemMisc", false);
 		InventoryDelete(Player, "MistressGloves", "Gloves", false);
+		InventoryDelete(Player, "MistressGloves2", "Gloves", false);
 		InventoryDelete(Player, "MistressBoots", "Shoes", false);
 		InventoryDelete(Player, "MistressTop", "Cloth", false);
 		InventoryDelete(Player, "MistressBottom", "ClothLower", false);
@@ -187,21 +191,23 @@ function LoginMistressItems() {
  */
 function LoginStableItems() {
 	if (LogQuery("JoinedStable", "PonyExam") || LogQuery("JoinedStable", "TrainerExam")) {
-		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth", false);
-		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth2", false);
-		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth3", false);
-		InventoryAdd(Player, "PonyBoots", "Shoes", false);
-		InventoryAdd(Player, "PonyBoots", "ItemBoots", false);
-		InventoryAdd(Player,"PonyHood", "ItemHood", false);
-		InventoryAdd(Player,"HoofMittens", "ItemHands", false);
+		var ItemsToEarn = [];
+		ItemsToEarn.push({Name: "HarnessPonyBits", Group: "ItemMouth"});
+		ItemsToEarn.push({Name: "HarnessPonyBits", Group: "ItemMouth2"});
+		ItemsToEarn.push({Name: "HarnessPonyBits", Group: "ItemMouth3"});
+		ItemsToEarn.push({Name: "PonyBoots", Group: "Shoes"});
+		ItemsToEarn.push({Name: "PonyBoots", Group: "ItemBoots"});
+		ItemsToEarn.push({Name: "PonyHood", Group: "ItemHood"});
+		ItemsToEarn.push({Name: "HoofMittens", Group: "ItemHands"});
+		InventoryAddMany(Player, ItemsToEarn);
 	} else {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth", false);
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth2", false);
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
-		InventoryDelete(Player, "PonyHood", "ItemHood",false)
-		InventoryDelete(Player,"HoofMittens", "ItemHands", false);
+		InventoryDelete(Player, "PonyHood", "ItemHood", false)
+		InventoryDelete(Player, "HoofMittens", "ItemHands", false);
 	}
 }
 
@@ -214,7 +220,7 @@ function LoginLoversItems() {
 
 	//check to remove love leather collar slave collar if no lover
 	if (LoversNumbers.length < 1) {
-		var Collar = InventoryGet(Player,"ItemNeck");
+		var Collar = InventoryGet(Player, "ItemNeck");
 		if (Collar && Collar.Property && (Collar.Asset.Name == "SlaveCollar") && (Collar.Property.Type == "LoveLeatherCollar")) {
 			Collar.Property = null;
 			Collar.Color = "Default";
