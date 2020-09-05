@@ -758,7 +758,10 @@ function ManagementMistressPay() {
 	CharacterChangeMoney(Player, 100);
 }
 
-// When the player gets kicked out of the Mistress community
+/**
+ * Triggered when the player gets kicked out of the Mistress community
+ * @returns {void} - Nothing.
+ */
 function ManagementMistressKicked() {
 	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
 	LogDelete("ClubMistress", "Management");
@@ -767,18 +770,27 @@ function ManagementMistressKicked() {
 	ServerPlayerInventorySync();
 }
 
-// Frees Sarah if the player is already her owner
+/**
+ * Unlocks Sarah if the player is already her owner
+ * @returns {void} - Nothing.
+ */
 function ManagementFreeSarah() {
 	ReputationProgress("Dominant", 4);
 	SarahUnlock();
 }
 
-// Fully restrains the player for the struggle activity
+/**
+ * Fully restrains the player for the struggle activity
+ * @returns {void} - Nothing.
+ */
 function ManagementActivityStruggleRestrain() {
 	CharacterFullRandomRestrain(Player, "ALL");
 }
 
-// Starts the struggle game
+/**
+ * Starts the struggle game
+ * @returns {void} - Nothing.
+ */
 function ManagementActivityStruggleStart() {
 	ManagementTimer = CurrentTime + 60000;
 	DialogLeave();
@@ -790,14 +802,20 @@ function ManagementActivityStruggleStart() {
 	CommonSetScreen("Room", "Empty");
 }
 
-// Starts the quiz game (picks a question at random)
+/**
+ * Starts the quiz game (picks a question at random)
+ * @returns {void} - Nothing.
+ */
 function ManagementStartQuiz() {
 	var Q = (Math.floor(Math.random() * 20)).toString();
 	CurrentCharacter.Stage = "QuizAnswer" + Q;
 	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "QuizQuestion" + Q);
 }
 
-// Locks the player in a cell for 5 minutes
+/**
+ * Removes gagging items from the player.
+ * @returns {void} - Nothing.
+ */
 function ManagementRemoveGag() {
 	InventoryRemove(Player, "ItemMouth");
 	InventoryRemove(Player, "ItemMouth2");
@@ -806,20 +824,31 @@ function ManagementRemoveGag() {
 	InventoryRemove(Player, "ItemHood");
 }
 
-// Locks the player in a cell for 5 minutes
+/**
+ * Locks the player in the timer cell for 5 minutes.
+ * @returns {void} - Nothing.
+ */
 function ManagementCell() {
 	DialogLeave();
 	CharacterFullRandomRestrain(Player, "ALL");
 	CellLock(5);
 }
 
-// Returns to the main hall
+/**
+ * Returns to the main hall.
+ * @returns {void} - Nothing.
+ */
 function ManagementMainHall() {
 	DialogLeave();
 	CommonSetScreen("Room", "MainHall");
 }
 
-// Runs an activity with a random club slave
+/**
+ * Runs an activity with a random club slave. (Reputation is only added for the first 3 activities)
+ * @param {string} ActivityType - The type of the club slave activity performed.
+ * @param {number} RepChange - Amount of dominant reputation to gain or lose.
+ * @returns {void} - Nothing.
+ */
 function ManagementClubSlaveActiviy(ActivityType, RepChange) {
 	if (ActivityType == "Talk") {
 		ManagementRandomTalkCount++;
@@ -832,6 +861,10 @@ function ManagementClubSlaveActiviy(ActivityType, RepChange) {
 }
 
 // If the player talked and played with the club slave, there's a 50% chance she will go to the player's room
+/**
+ * Triggered after player with a club slave. There's a 50% chance the club slave will go to the player's private room.
+ * @returns {void} - Nothing. 
+ */
 function ManagementClubSlaveVisitRoom() {
 	if ((ManagementRandomTalkCount >= 2) && (ManagementRandomActivityCount >= 2) && ManagementVisitRoom && ManagementRandomGirl.CanTalk()) {
 		CommonSetScreen("Room", "Private");
