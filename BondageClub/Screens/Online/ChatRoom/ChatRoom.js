@@ -1332,7 +1332,7 @@ function ChatRoomStopLeave(){
 /**
  * Sends an administrative command to the server for the chat room from the character dialog.
  * @param {string} ActionType - Type of action performed.
- * @param {boolean} Publish - Whether or not the action should be published.
+ * @param {boolean} [Publish] - Whether or not the action should be published.
  * @returns {void} - Nothing
  */
 function ChatRoomAdminAction(ActionType, Publish) {
@@ -1353,7 +1353,11 @@ function ChatRoomAdminAction(ActionType, Publish) {
 	}
 }
 
-// Swaps a character position with another character
+/**
+ * Swaps the current swap target's position with a given character, then publish the action.
+ * @param {number} MemberNumber - Member number of the character to swap with.
+ * @returns {void} - Nothing
+ */
 function ChatRoomCompleteSwap(MemberNumber) {
 	if (ChatRoomSwapTarget == null) return;
 	ServerSend("ChatRoomAdmin",
@@ -1367,7 +1371,12 @@ function ChatRoomCompleteSwap(MemberNumber) {
 	ChatRoomSwapTarget = null;
 }
 
-// Sends an administrative command to the server from the chat text field
+/**
+ * Sends an administrative command to the server from the chat text field.
+ * @param {string} ActionType - Type of action performed.
+ * @param {string} Message - Target number of the action.
+ * @returns {void} - Nothing
+ */
 function ChatRoomAdminChatAction(ActionType, Message) {
 	if (ChatRoomPlayerIsAdmin()) {
 		var C = parseInt(Message.substring(Message.indexOf(" ") + 1));
@@ -1376,20 +1385,32 @@ function ChatRoomAdminChatAction(ActionType, Message) {
 	}
 }
 
-// Returns the User's current local time as a displayable string
+/**
+ * Gets the player's current time as a string.
+ * @returns {string} - The player's current local time as a string.
+ */
 function ChatRoomCurrentTime() {
 	var D = new Date();
 	return ("0" + D.getHours()).substr(-2) + ":" + ("0" + D.getMinutes()).substr(-2);
 }
 
-// Returns a transparent version of the specified hex color
+/**
+ * Gets a transparent version of the specified hex color.
+ * @param {HexColor} Color - Hex color code.
+ * @returns {string} - A transparent version of the specified hex color in the rgba format.
+ */
 function ChatRoomGetTransparentColor(Color) {
 	if (!Color) return "rgba(128,128,128,0.1)";
 	var R = Color.substring(1, 3), G = Color.substring(3, 5), B = Color.substring(5, 7);
 	return "rgba(" + parseInt(R, 16) + "," + parseInt(G, 16) + "," + parseInt(B, 16) + ",0.1)";
 }
 
-// Adds or remove an online member to/from a specific list
+/**
+ * Adds or removes an online member to/from a specific list. (From the dialog menu)
+ * @param {"Add" | "Remove"} Operation - Operation to perform. 
+ * @param {string} ListType - Name of the list to alter. (Whitelist, friendlist, blacklist, ghostlist)
+ * @returns {void} - Nothing
+ */
 function ChatRoomListManage(Operation, ListType) {
 	if (((Operation == "Add" || Operation == "Remove")) && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player[ListType] != null) && Array.isArray(Player[ListType])) {
 		if ((Operation == "Add") && (Player[ListType].indexOf(CurrentCharacter.MemberNumber) < 0)) Player[ListType].push(CurrentCharacter.MemberNumber);
@@ -1402,7 +1423,13 @@ function ChatRoomListManage(Operation, ListType) {
 	if (ListType == "GhostList") ChatRoomListManage(Operation, "BlackList");
 }
 
-// Modify the player FriendList/GhostList/WhiteList/BlackList based on typed message
+/**
+ * Adds or removes an online member to/from a specific list. (From a typed message.)
+ * @param {number[]} [Add] - List to add to.
+ * @param {number[]} [Remove] - List to remove from.
+ * @param {string} Message - Member number to add/remove.
+ * @returns {void} - Nothing
+ */
 function ChatRoomListManipulation(Add, Remove, Message) {
 	var C = parseInt(Message.substring(Message.indexOf(" ") + 1));
 	if (!isNaN(C) && (C > 0) && (C != Player.MemberNumber)) {
@@ -1413,7 +1440,11 @@ function ChatRoomListManipulation(Add, Remove, Message) {
 	}
 }
 
-// When the server returns if applying an item is allowed
+/**
+ * Handles reception of data pertaining to if applying an item is allowed.
+ * @param {object} data - Data object containing if the player is allowed to interact with a character.
+ * @returns {void} - Nothing
+ */
 function ChatRoomAllowItem(data) {
 	if ((data != null) && (typeof data === "object") && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.AllowItem != null) && (typeof data.AllowItem === "boolean"))
 		if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber == data.MemberNumber)) {
@@ -1422,14 +1453,21 @@ function ChatRoomAllowItem(data) {
 		}
 }
 
-// When the player wants to change another player's outfit
+/**
+ * Triggered when the player wants to change another player's outfit.
+ * @returns {void} - Nothing
+ */
 function ChatRoomChangeClothes() {
 	var C = CurrentCharacter;
 	DialogLeave();
 	CharacterAppearanceLoadCharacter(C);
 }
 
-// When the player selects an ownership dialog option (can change money and reputation)
+/**
+ * Triggered when the player selects an ownership dialog option. (It can change money and reputation)
+ * @param {string} RequestType - Type of request being performed.
+ * @returns {void} - Nothing
+ */
 function ChatRoomSendOwnershipRequest(RequestType) {
 	if ((ChatRoomOwnershipOption == "CanOfferEndTrial") && (RequestType == "Propose")) { CharacterChangeMoney(Player, -100); DialogChangeReputation("Dominant", 10); }
 	if ((ChatRoomOwnershipOption == "CanEndTrial") && (RequestType == "Accept")) DialogChangeReputation("Dominant", -20);
@@ -1438,7 +1476,11 @@ function ChatRoomSendOwnershipRequest(RequestType) {
 	if (RequestType == "Accept") DialogLeave();
 }
 
-// When the player selects a lovership dialog option (can change money)
+/**
+ * Triggered when the player selects an lovership dialog option. (It can change money and reputation)
+ * @param {string} RequestType - Type of request being performed.
+ * @returns {void} - Nothing
+ */
 function ChatRoomSendLovershipRequest(RequestType) {
 	if ((ChatRoomLovershipOption == "CanOfferBeginWedding") && (RequestType == "Propose")) CharacterChangeMoney(Player, -100);
 	if ((ChatRoomLovershipOption == "CanBeginWedding") && (RequestType == "Accept")) CharacterChangeMoney(Player, -100);
@@ -1447,7 +1489,12 @@ function ChatRoomSendLovershipRequest(RequestType) {
 	if (RequestType == "Accept") DialogLeave();
 }
 
-// When the player picks a drink from a maid platter
+/**
+ * Triggered when the player picks a drink from a character's maid tray.
+ * @param {string} DrinkType - Drink chosen.
+ * @param {number} Money - Cost of the drink.
+ * @returns {void} - Nothing
+ */
 function ChatRoomDrinkPick(DrinkType, Money) {
 	if (ChatRoomCanTakeDrink()) {
 		var Dictionary = [];
@@ -1461,7 +1508,12 @@ function ChatRoomDrinkPick(DrinkType, Money) {
 	}
 }
 
-// Sends a rule / restriction / punishment to the slave character client, it will be handled from there
+/**
+ * Sends a rule / restriction / punishment to the player's slave client, it will be handled on the slave's side when received.
+ * @param {string} RuleType - The rule selected.
+ * @param {"Quest" | "Leave"} [Option] - If the rule is a quest or we should just leave the dialog.
+ * @returns {void} - Nothing
+ */
 function ChatRoomSendRule(RuleType, Option) {
 	ServerSend("ChatRoomChat", { Content: "OwnerRule" + RuleType, Type: "Hidden", Target: CurrentCharacter.MemberNumber });
 	if (Option == "Quest") {
@@ -1471,7 +1523,11 @@ function ChatRoomSendRule(RuleType, Option) {
 	if ((Option == "Leave") || (Option == "Quest")) DialogLeave();
 }
 
-// Sends the rule / restriction / punishment from the owner
+/**
+ * Processes a rule sent to the player from her owner.
+ * @param {object} data - Received rule data object.
+ * @returns {object} - Returns the data object, used to continue processing the chat message.
+ */
 function ChatRoomSetRule(data) {
 
 	// Only works if the sender is the player, and the player is fully collared
@@ -1543,7 +1599,10 @@ function ChatRoomSetRule(data) {
 
 }
 
-// When a slave gives her salary to her owner
+/**
+ * Sends quest money to the player's owner.
+ * @returns {void} - Nothing
+ */
 function ChatRoomGiveMoneyForOwner() {
 	if (ChatRoomCanGiveMoneyForOwner()) {
 		ServerSend("ChatRoomChat", { Content: "ActionGiveEnvelopeToOwner", Type: "Action", Dictionary: [{ Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
@@ -1553,7 +1612,11 @@ function ChatRoomGiveMoneyForOwner() {
 	}
 }
 
-// When a quest is paid
+/**
+ * Handles the reception of quest data, when payment is received.
+ * @param {object} data - Data object containing the payment.
+ * @returns {void} - Nothing
+ */
 function ChatRoomPayQuest(data) {
 	if ((data != null) && (data.Sender != null) && (ChatRoomQuestGiven.indexOf(data.Sender) >= 0)) {
 		var M = parseInt(data.Content.substring(8));
@@ -1566,11 +1629,19 @@ function ChatRoomPayQuest(data) {
 }
 
 // When a game message comes in, we forward it to the current online game being played
+/**
+ * Triggered 2hen a game message comes in, we forward it to the current online game being played.
+ * @param {object} data - Game data to process, sent to the current game handler.
+ * @returns {void} - Nothing
+ */
 function ChatRoomGameResponse(data) {
 	if (OnlineGameName == "LARP") GameLARPProcess(data);
 }
 
-// When the player uses the /safeword command, we revert the character if safewords are enabled, and display a warning in chat if not
+/**
+ * Triggered when the player uses the /safeword command, we revert the character if safewords are enabled, and display a warning in chat if not.
+ * @returns {void} - Nothing
+ */
 function ChatRoomSafewordChatCommand() {
 	if (DialogChatRoomCanSafeword())
 		ChatRoomSafewordRevert();
@@ -1580,7 +1651,10 @@ function ChatRoomSafewordChatCommand() {
 	}
 }
 
-// When the player activates her safeword to revert, we swap her appearance to the state when she entered the chat room lobby, minimum permission becomes whitelist and up
+/**
+ * Triggered when the player activates her safeword to revert, we swap her appearance to the state when she entered the chat room lobby, minimum permission becomes whitelist and up.
+ * @returns {void} - Nothing
+ */
 function ChatRoomSafewordRevert() {
 	if (ChatSearchSafewordAppearance != null) {
 		Player.Appearance = ChatSearchSafewordAppearance.slice(0);
@@ -1596,7 +1670,10 @@ function ChatRoomSafewordRevert() {
 	}
 }
 
-// When the player activates her safeword and wants to be released, we remove all bondage from her and return her to the Main Lobby.
+/**
+ * Triggered when the player activates her safeword and wants to be released, we remove all bondage from her and return her to the chat search screen.
+ * @returns {void} - Nothing
+ */
 function ChatRoomSafewordRelease() {
 	CharacterReleaseTotal(Player);
 	CharacterRefresh(Player);
