@@ -1628,9 +1628,8 @@ function ChatRoomPayQuest(data) {
 	}
 }
 
-// When a game message comes in, we forward it to the current online game being played
 /**
- * Triggered 2hen a game message comes in, we forward it to the current online game being played.
+ * Triggered when a game message comes in, we forward it to the current online game being played.
  * @param {object} data - Game data to process, sent to the current game handler.
  * @returns {void} - Nothing
  */
