@@ -61,7 +61,7 @@ function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllow
  */
 function ManagementOwnerFromBondageCollege() { return ((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
 /**
- * Checks if the player is a NPC in her private room.
+ * Checks if the player's owner is a NPC in her private room.
  * @returns {boolean} - TRUE if the player's owner is in the player's private room.
  */
 function ManagementOwnerInPrivateRoom() { return PrivateOwnerInRoom() }
@@ -860,7 +860,6 @@ function ManagementClubSlaveActiviy(ActivityType, RepChange) {
 	}
 }
 
-// If the player talked and played with the club slave, there's a 50% chance she will go to the player's room
 /**
  * Triggered after player with a club slave. There's a 50% chance the club slave will go to the player's private room.
  * @returns {void} - Nothing. 
