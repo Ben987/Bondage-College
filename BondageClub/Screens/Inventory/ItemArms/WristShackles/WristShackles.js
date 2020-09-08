@@ -32,7 +32,7 @@ function InventoryItemArmsWristShacklesClick() {
 	ExtendedItemClick(InventoryItemArmsWristShacklesOptions);
 }
 
-// Sets the cuffs pose (InFront, Behind)
+// Publishes the extended action to the chat.
 function InventoryItemArmsWristShacklesPublishAction(C, Option) {
 	var msg = "WristShacklesRestrain" + Option.Name;
 	var Dictionary = [
