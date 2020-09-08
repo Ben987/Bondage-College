@@ -872,18 +872,6 @@ var AssetFemale3DCG = [
 		InheritColor: "BodyUpper"
 	},
 
-	{
-		Group: "Hands",
-		ParentColor: "BodyUpper",
-		Priority: 27,
-		AllowNone: false,
-		AllowColorize: false,
-		AllowCustomize: false,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "AllFours"],
-		Asset: ["Default"],
-		InheritColor: "BodyUpper"
-	},
-
 	// Facial Expression specific
 	{
 		Group: "Blush",
@@ -920,7 +908,7 @@ var AssetFemale3DCG = [
 		AllowExpression: ["Afk", "Sleep", "Hearts", "Tear", "Hearing", "Confusion", "Exclamation", "Annoyed", "Read", "RaisedHand", "Spectator", "ThumbsDown", "ThumbsUp", "Wardrobe"],
 		Asset: ["Emoticon"]
 	},
-	
+	// Uncolorable body parts
 	{
 		Group: "Eyebrows",
 		Priority: 9,
@@ -939,9 +927,10 @@ var AssetFemale3DCG = [
 		Priority: 27,
 		AllowNone: false,
 		AllowColorize: false,
+		AllowCustomize: false,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "AllFours"],
 		Asset: ["Default"],
-		Color: ["White", "Asian", "Black"]
+		InheritColor: "BodyUpper"
 	},
 
 	// Item specific
