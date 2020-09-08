@@ -728,9 +728,9 @@ function ChatRoomSendChat() {
 /**
  * Publishes common player actions (add, remove, swap) to the chat.
  * @param {Character} C - Character on which the action is done.
- * @param {Asset} DialogProgressPrevItem 
- * @param {Asset} DialogProgressNextItem 
- * @param {boolean} LeaveDialog 
+ * @param {Asset} DialogProgressPrevItem - The item that has been removed.
+ * @param {Asset} DialogProgressNextItem - The item that has been added.
+ * @param {boolean} LeaveDialog - Whether to leave the current dialog after publishing the action.
  * @param {string} [Action] - Action modifier 
  * @returns {void} - Nothing.
  */
