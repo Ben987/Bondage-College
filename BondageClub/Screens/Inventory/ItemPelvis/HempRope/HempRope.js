@@ -35,6 +35,6 @@ function InventoryItemPelvisHempRopePublishAction(C, Option) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemFeetHempRopeNpcDialog(C, Option) {
+function InventoryItemPelvisHempRopeNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "RopeBondage" + Option.Name, "ItemPelvis");
 }
