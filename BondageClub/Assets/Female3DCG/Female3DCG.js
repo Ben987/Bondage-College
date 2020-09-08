@@ -883,18 +883,6 @@ var AssetFemale3DCG = [
 		InheritColor: "BodyUpper"
 	},
 
-	{
-		Group: "Hands",
-		ParentColor: "BodyUpper",
-		Priority: 27,
-		AllowNone: false,
-		AllowColorize: false,
-		AllowCustomize: false,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "AllFours"],
-		Asset: ["Default"],
-		InheritColor: "BodyUpper"
-	},
-
 	// Facial Expression specific
 	{
 		Group: "Eyebrows",
