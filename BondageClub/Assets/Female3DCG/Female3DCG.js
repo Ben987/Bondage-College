@@ -861,17 +861,6 @@ var AssetFemale3DCG = [
 		Color: ["Default", "#6a3628", "#443330", "#222222"]
 	},
 
-	{
-		Group: "Head",
-		ParentColor: "BodyUpper",
-		Priority: 7,
-		AllowNone: false,
-		AllowColorize: false,
-		AllowCustomize: false,
-		Asset: ["Default"],
-		InheritColor: "BodyUpper"
-	},
-
 	// Facial Expression specific
 	{
 		Group: "Blush",
@@ -929,6 +918,17 @@ var AssetFemale3DCG = [
 		AllowColorize: false,
 		AllowCustomize: false,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "AllFours"],
+		Asset: ["Default"],
+		InheritColor: "BodyUpper"
+	},
+	
+	{
+		Group: "Head",
+		ParentColor: "BodyUpper",
+		Priority: 7,
+		AllowNone: false,
+		AllowColorize: false,
+		AllowCustomize: false,
 		Asset: ["Default"],
 		InheritColor: "BodyUpper"
 	},
