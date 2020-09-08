@@ -268,7 +268,7 @@ function ExtendedItemClickGrid(Options, IsSelfBondage, IsCloth) {
 
 	// Pagination button
 	if ((Options.length > 4) && MouseIn(1775, 25, 90, 85))
-		ExtendedItemNextPage(InventoryItemArmsWebOptions);
+		ExtendedItemNextPage(Options);
 
 	var ItemOptionsOffset = ExtendedItemGetOffset();
 
