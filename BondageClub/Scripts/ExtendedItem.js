@@ -203,8 +203,8 @@ function ExtendedItemDrawTwo(Options, DialogPrefix, IsSelfBondage) {
 		var Y = 550;
 		var Option = Options[I];
 		var FailSkillCheck = !!ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
-
-		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == Option.Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
+		var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
+		DrawButton(X, Y, 225, 225, "", IsSelected ? "#888888" : FailSkillCheck ? "Pink" : "White", null, null, IsSelected);
 		DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X, Y);
 		DrawText(DialogFind(Player, DialogPrefix + Option.Name), X + 113, Y + 250, "white", "gray");
 	}
@@ -230,8 +230,9 @@ function ExtendedItemDrawGrid(Options, DialogPrefix, IsSelfBondage) {
 		var Y = 450 + (Math.floor(PageOffset / 2) * 300);
 		var Option = Options[I];
 		var FailSkillCheck = !!ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
+		var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
 
-		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == Option.Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
+		DrawButton(X, Y, 225, 225, "", IsSelected ? "#888888" : FailSkillCheck ? "Pink" : "White", null, null, IsSelected);
 		DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X, Y);
 		DrawText(DialogFind(Player, DialogPrefix + Option.Name), X + 113, Y - 20, "white", "gray");
 	}
