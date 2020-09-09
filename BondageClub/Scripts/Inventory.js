@@ -153,7 +153,6 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "NotHorse") return (C.Pose.indexOf("Horse") >= 0) ? "CannotBeUsedWhenMounted" : "";
 	if (Prerequisite == "NotSuspended") return ((C.Pose.indexOf("Suspension") >= 0) || (C.Pose.indexOf("SuspensionHogtied") >=0)) ? "RemoveSuspensionForItem" : "";
 	if (Prerequisite == "NotHogtied") return (C.Pose.indexOf("Hogtied") >= 0) ? "ReleaseHogtieForItem" : "";
-	if (Prerequisite == "CanUseAlphaHood") return (C.Appearance.find(A => A.Asset.Prerequisite && A.Asset.Prerequisite.includes("CannotUseWithAlphaHood"))) ? "ReleaseAlphaBlockingItem" : "";
 	if (Prerequisite == "NotYoked") return (C.Pose.indexOf("Yoked") >= 0) ? "CannotBeUsedWhenYoked" : "";
 	if (Prerequisite == "NotKneelingSpread") return (C.Pose.indexOf("KneelingSpread") >= 0) ? "MustStandUpFirst" : "";
 	if (Prerequisite == "NotChaste") return (C.Effect.indexOf("Chaste") >= 0) ? "RemoveChastityFirst" : "";
@@ -163,7 +162,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "Collared") return (InventoryGet(C, "ItemNeck") == null) ? "MustCollaredFirst" : "";
 	if (Prerequisite == "CannotHaveWand") return ((InventoryGet(C, "ItemArms") != null) && (InventoryGet(C, "ItemArms").Asset.Name == "FullLatexSuit")) ? "CannotHaveWand" : "";
 	if (Prerequisite == "CannotBeSuited") return ((InventoryGet(C, "ItemVulva") != null) && (InventoryGet(C, "ItemVulva").Asset.Name == "WandBelt")) ? "CannotHaveWand" : "";
-	if (Prerequisite == "CannotBeHogtiedWithAlphaHood" || Prerequisite == "CannotUseWithAlphaHood") return ((InventoryGet(C, "ItemHood") != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite.indexOf("CanUseAlphaHood") >= 0)) ? Prerequisite : "";
+	if (Prerequisite == "CannotBeHogtiedWithAlphaHood") return ((InventoryGet(C, "ItemHood") != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite.indexOf("CanUseAlphaHood") >= 0)) ? Prerequisite : "";
 	if (Prerequisite == "StraitDressOpen") return (C.Pose.indexOf("StraitDressOpen") >= 0) ? "StraitDressOpen" : "";
 	if (Prerequisite == "AllFours") return (C.Pose.indexOf("AllFours") >= 0) ? "StraitDressOpen" : "";
 	if (Prerequisite == "OnBed") return ((InventoryGet(C, "ItemDevices") == null) || (InventoryGet(C, "ItemDevices").Asset.Name != "Bed")) ? "MustBeOnBed" : "";
@@ -361,10 +360,20 @@ function InventoryRemove(C, AssetGroup) {
 	// First loop to find the item and any sub item to remove with it
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
-			let AssetToRemove = C.Appearance[E].Asset
-			for (let R = 0; R < AssetToRemove.RemoveItemOnRemove.length; R++)
-				if ((AssetToRemove.RemoveItemOnRemove[R].Name == "") || ((AssetToRemove.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, AssetToRemove.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, AssetToRemove.RemoveItemOnRemove[R].Group).Asset.Name == AssetToRemove.RemoveItemOnRemove[R].Name)))
-					InventoryRemove(C, AssetToRemove.RemoveItemOnRemove[R].Group);
+			let AssetToRemove = C.Appearance[E].Asset;
+			let AssetToCheck = null;
+			for (let R = 0; R < AssetToRemove.RemoveItemOnRemove.length; R++) {
+				AssetToCheck = AssetToRemove.RemoveItemOnRemove[R];
+				if (!AssetToCheck.Name) {
+					// Just try to force remove a group, if no item is specified
+					InventoryRemove(C, AssetToCheck.Group);
+				} else if ((InventoryGet(C, AssetToCheck.Group)) && (InventoryGet(C, AssetToCheck.Group).Asset.Name == AssetToCheck.Name)) {
+					// If a name is specified and the item is worn, check if it's an extended item
+					if ((!InventoryGet(C, AssetToCheck.Group).Asset.Type) || (InventoryGet(C, AssetToCheck.Group).Asset.Type) && (InventoryGet(C, AssetToCheck.Group).Asset.Type === AssetToCheck.Type))
+						// if the item is not extended or the item is extended and the type matches, remove it
+						InventoryRemove(C, AssetToCheck.Group);
+				}
+			} 
 		}
 
 	// Second loop to find the item again, and remove it from the character appearance
@@ -391,7 +400,7 @@ function InventoryGroupIsBlocked(C, GroupName) {
 	// Items can block each other (hoods blocks gags, belts blocks eggs, etc.)
 	for (let E = 0; E < C.Appearance.length; E++) {
 		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(GroupName))) return true;
-		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(GroupName) >= 0)) return true;
+		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && Array.isArray(C.Appearance[E].Property.Block) && (C.Appearance[E].Property.Block.indexOf(GroupName) >= 0)) return true;
 	}
 
 	// If another character is enclosed, items other than the enclosing one cannot be used

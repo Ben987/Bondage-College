@@ -89,10 +89,9 @@ TextArea {
 	text-shadow: none;
 	font-weight: bold;
 }
-#TextAreaChatLog[data-coloractions=false] .ChatMessageAction {
-	background-color: transparent !important;
-}
-#TextAreaChatLog[data-coloremotes=false] .ChatMessageEmote {
+#TextAreaChatLog[data-coloractions=false] .ChatMessageAction,
+#TextAreaChatLog[data-coloremotes=false] .ChatMessageEmote,
+#TextAreaChatLog[data-coloractivities=false] .ChatMessageActivity {
 	background-color: transparent !important;
 }
 #FriendList {
