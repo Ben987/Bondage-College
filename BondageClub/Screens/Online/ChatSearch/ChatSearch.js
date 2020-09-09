@@ -48,10 +48,10 @@ function ChatSearchRun() {
 	ElementPosition("InputSearch",  740, 926, 470);
 	DrawButton(980, 898, 280, 64, TextGet("SearchRoom"), "White");
 	DrawButton(1280, 898, 280, 64, TextGet("CreateRoom"), "White");
+	if (ChatSearchResult.length + (ChatSearchMode != "Filter" ? 0 : ChatSearchIgnoredRooms.length) > ChatSearchRoomsPerPage) DrawButton(1585, 885, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 	DrawButton(1685, 885, 90, 90, "", "White", ChatSearchMode != "Filter" ? "Icons/DialogPermissionMode.png" : "Icons/DialogNormalMode.png", TextGet(ChatSearchMode != "Filter" ?  "FilterMode" : "NormalMode"));
-	DrawButton(1785, 885, 90, 90, "", "White", "Icons/FriendList.png");
-	DrawButton(1885, 885, 90, 90, "", "White", "Icons/Exit.png");
-	if (ChatSearchResult.length + (ChatSearchMode != "Filter" ? 0 : ChatSearchIgnoredRooms.length) > ChatSearchRoomsPerPage) DrawButton(1585, 885, 90, 90, "", "White", "Icons/Next.png");
+	DrawButton(1785, 885, 90, 90, "", "White", "Icons/FriendList.png", TextGet("FriendList"));
+	DrawButton(1885, 885, 90, 90, "", "White", "Icons/Exit.png", TextGet("Exit"));
 }
 
 /**
@@ -181,9 +181,7 @@ function ChatSearchPermissionDraw() {
 		}
 		
 		// Display ignored rooms that are no longer present
-		var IgnoreOffset = ChatSearchResultOffset - ChatSearchResult.length + 1;
-		if (IgnoreOffset < 0) IgnoreOffset = 0;
-		for (let C = IgnoreOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
+		for (let C = ChatSearchResultOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
 			var isIgnored = !ChatSearchResult.map(Room => Room.Name.toUpperCase()).includes(ChatSearchIgnoredRooms[C]);
 			if (isIgnored) {
 				var Hover = (MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85) && !CommonIsMobile;
@@ -267,9 +265,7 @@ function ChatSearchClickPermission() {
 	}
 	
 	// Clicks for the extra hidden rooms
-	var IgnoreOffset = ChatSearchResultOffset - ChatSearchResult.length + 1;
-	if (IgnoreOffset < 0) IgnoreOffset = 0;
-	for (let C = IgnoreOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
+	for (let C = ChatSearchResultOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
 		var isIgnored = !ChatSearchResult.map(Room => Room.Name.toUpperCase()).includes(ChatSearchIgnoredRooms[C]);
 		if (isIgnored) {
 			// If the click is valid
