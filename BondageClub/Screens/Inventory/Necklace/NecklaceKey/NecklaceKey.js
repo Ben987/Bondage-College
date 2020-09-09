@@ -4,12 +4,14 @@ var InventoryNecklaceNecklaceKeyOptions = [
 		Name: "Normal",
 		Property: {
 			Type: null,
+			OverridePriority: 31
 		},
 	},
 	{
 		Name: "Tucked",
 		Property: {
 			Type: "Tucked",
+			OverridePriority: 29
 		},
 	},
 ];
