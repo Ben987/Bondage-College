@@ -390,7 +390,7 @@ function InventoryGroupIsBlocked(C, GroupName) {
 	// Items can block each other (hoods blocks gags, belts blocks eggs, etc.)
 	for (let E = 0; E < C.Appearance.length; E++) {
 		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(GroupName))) return true;
-		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(GroupName) >= 0)) return true;
+		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && Array.isArray(C.Appearance[E].Property.Block) && (C.Appearance[E].Property.Block.indexOf(GroupName) >= 0)) return true;
 	}
 
 	// If another character is enclosed, items other than the enclosing one cannot be used

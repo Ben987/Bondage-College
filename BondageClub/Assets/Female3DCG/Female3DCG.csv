@@ -763,6 +763,7 @@ ItemNeck,SlenderSteelCollar,Slender Steel Collar
 ItemNeck,HeartLinkChoker, Heart-Link Choker
 ItemNeck,NeckRope,Neck Rope
 ItemNeckAccessories,,Collar
+ItemNeckAccessories,CustomNameTag,Custom Tag
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
 ItemNeckAccessories,CollarShockUnit,Shock Unit

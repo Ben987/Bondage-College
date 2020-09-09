@@ -85,17 +85,19 @@ function TennisRun() {
 			DrawText(TextGet("Intro2"), 1000, 500, "black");
 			DrawText(TextGet("StartsIn") + " " + (5 - Math.floor(MiniGameTimer / 1000)).toString(), 1000, 600, "black");
 		} else {
-			
+			var FpsAdjustment = 0.05 * 0.06 * TimerRunInterval;
+			var RacketAdjustment = MiniGameDifficultyRatio * FpsAdjustment;
+
 			// Moves the ball
-			TennisBallX += Math.cos(TennisBallAngle) * (TennisBallSpeed / 20) * (TimerRunInterval / 16.6667);
-			TennisBallY -= Math.sin(TennisBallAngle) * (TennisBallSpeed / 20) * (TimerRunInterval / 16.6667);
+			TennisBallX += Math.cos(TennisBallAngle) * TennisBallSpeed * FpsAdjustment;
+			TennisBallY -= Math.sin(TennisBallAngle) * TennisBallSpeed * FpsAdjustment;
 			
 			// Moves the player and opponent racket, the opponent speeds up with difficulty, tracks the ball in defense, go back toward the middle in offense
 			if ((MouseY >= 0) && (MouseY <= 999)) TennisCharacterLeftRacket = MouseY;
-			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY > TennisCharacterRightRacket + 55)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
-			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY < TennisCharacterRightRacket - 55)) TennisCharacterRightRacket = TennisCharacterRightRacket - (MiniGameDifficultyRatio / TimerRunInterval);
-			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket < 450)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
-			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket > 550)) TennisCharacterRightRacket = TennisCharacterRightRacket - (MiniGameDifficultyRatio / TimerRunInterval);
+			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY > TennisCharacterRightRacket + 55)) TennisCharacterRightRacket += RacketAdjustment;
+			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY < TennisCharacterRightRacket - 55)) TennisCharacterRightRacket -= RacketAdjustment;
+			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket < 450)) TennisCharacterRightRacket += RacketAdjustment;
+			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket > 550)) TennisCharacterRightRacket -= RacketAdjustment;
 
 			// Bounces on the upper and lower side
 			if (TennisBallY < 20) {

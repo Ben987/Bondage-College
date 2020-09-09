@@ -1084,6 +1084,7 @@ function ChatRoomRefreshChatSettings(C) {
 			ElementSetDataAttribute("TextAreaChatLog", "ColorNames", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "ColorActions", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "ColorEmotes", "false");
+			ElementSetDataAttribute("TextAreaChatLog", "ColorActivities", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "MemberNumbers", "Never");
 		}
 	}
@@ -1198,7 +1199,10 @@ function ChatRoomListManage(Operation, ListType) {
 		ServerSend("AccountUpdate", data);
 		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
-	if (ListType == "GhostList") ChatRoomListManage(Operation, "BlackList");
+	if (ListType == "GhostList") {
+		CharacterRefresh(CurrentCharacter, false);
+		ChatRoomListManage(Operation, "BlackList");
+	}
 }
 
 // Modify the player FriendList/GhostList/WhiteList/BlackList based on typed message
@@ -1207,6 +1211,7 @@ function ChatRoomListManipulation(Add, Remove, Message) {
 	if (!isNaN(C) && (C > 0) && (C != Player.MemberNumber)) {
 		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
 		if ((Remove != null) && (Remove.indexOf(C) >= 0)) Remove.splice(Remove.indexOf(C), 1);
+		if ((Player.GhostList == Add || Player.GhostList == Remove) && Character.find(Char => Char.MemberNumber == C)) CharacterRefresh(Character.find(Char => Char.MemberNumber == C), false);
 		ServerSend("AccountUpdate", { FriendList: Player.FriendList, GhostList: Player.GhostList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
 		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
@@ -1403,7 +1408,7 @@ function ChatRoomSafewordRelease() {
 	ElementRemove("InputChat");
 	ElementRemove("TextAreaChatLog");
 	ServerSend("ChatRoomLeave", "");
-	CommonSetScreen("Room","MainHall");
+	CommonSetScreen("Online","ChatSearch");
 }
 
 /** 
