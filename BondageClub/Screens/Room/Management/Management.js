@@ -395,6 +395,7 @@ function ManagementPlayerStrip() {
 
 /**
  * Triggered when the mistress straps a tight armbinder on the player for 2 minutes.
+ * @param {number} ChangeRep - The value the player's Dominant reputation should be altered by
  * @returns {void} - Nothing.
  */
 function ManagementPlayerArmbinder(ChangeRep) {
@@ -729,6 +730,7 @@ function ManagementClubSlaveTransferToRoom() {
 
 /**
  * Triggered when the player earns the mistress clothes.
+ * @param {string} Color - The color of the outfit
  * @returns {void} - Nothing.
  */
 function ManagementGetMistressOutfit(Color) {
