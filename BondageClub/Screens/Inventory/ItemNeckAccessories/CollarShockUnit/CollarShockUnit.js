@@ -86,3 +86,10 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
     CharacterSetFacialExpression(C, "Blush", "Soft", 15);
     CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
 }
+
+
+function InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data) { 
+	var Modifier = parseInt(data.Content.substr(data.Content.length - 1));
+	if (isNaN(Modifier)) Modifier = 0;
+	return ["Shocks", Modifier * 3];
+}

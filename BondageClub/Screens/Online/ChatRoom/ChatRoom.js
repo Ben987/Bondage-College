@@ -897,6 +897,7 @@ function ChatRoomMessage(data) {
 					var ActivityName = null;
 					var GroupName = null;
 					var ActivityCounter = 1;
+					var Automatic = false;
 					for (let D = 0; D < dictionary.length; D++) {
 
 						// If there's a member number in the dictionary packet, we use that number to alter the chat message
@@ -919,7 +920,7 @@ function ChatRoomMessage(data) {
 							}
 
 							// Sets if the player is involved in the action
-							if (!IsPlayerInvolved && ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName") || (dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName") || (dictionary[D].Tag == "SourceCharacter")))
+							if (!IsPlayerInvolved && ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName") || (dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName") || (dictionary[D].Tag == "SourceCharacter" || dictionary[D].Tag === "ItemMemberNumber")))
 								if (dictionary[D].MemberNumber == Player.MemberNumber)
 									IsPlayerInvolved = true;
 
@@ -941,7 +942,13 @@ function ChatRoomMessage(data) {
 								}
 						}
 						else if (dictionary[D].ActivityCounter) ActivityCounter = dictionary[D].ActivityCounter;
+						else if (dictionary[D].Automatic) Automatic = true;
 						else if (msg != null) msg = msg.replace(dictionary[D].Tag, ChatRoomHTMLEntities(dictionary[D].Text));
+					}
+
+					// For automatic messages, do not show the message if the player is not involved, depending on their preferences
+					if (Automatic && !IsPlayerInvolved && !Player.ChatSettings.ShowAutomaticMessages) {
+						return;
 					}
 
 					// If another player is using an item which applies an activity on the current player, apply the effect here
@@ -1042,8 +1049,8 @@ function ChatRoomSync(data) {
 				if (ChatRoomPlayerJoiningAsAdmin) {
 					ChatRoomPlayerJoiningAsAdmin = false;
 					// Check if we should push banned members
-					if (Player.ChatSettings && data.Character.length == 1) {
-						var BanList = ChatRoomConcatenateBanList(Player.ChatSettings.AutoBanBlackList, Player.ChatSettings.AutoBanGhostList);
+					if (Player.OnlineSettings && data.Character.length == 1) {
+						var BanList = ChatRoomConcatenateBanList(Player.OnlineSettings.AutoBanBlackList, Player.OnlineSettings.AutoBanGhostList);
 						if (BanList.length > 0) {
 							data.Ban = BanList;
 							data.Limit = data.Limit.toString();
