@@ -1019,6 +1019,7 @@ function PrivateActivityRun(LoveFactor) {
 
 /**
  * Set the no change rule for the player.
+ * @param {number} Minutes - The number of minutes to apply the rule for
  * @returns {void} - Nothing.
  */
 function PrivateBlockChange(Minutes) {
