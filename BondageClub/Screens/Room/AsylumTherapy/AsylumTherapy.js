@@ -47,7 +47,7 @@ function AsylumTherapyRun() {
 function AsylumTherapyClick() {
 	if (MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (MouseIn(1000, 0, 500, 1000) && (ReputationGet("Asylum") >= 1)) CharacterSetCurrent(AsylumTherapyPatient);
-	if (MouseIn(1000, 0, 1500, 1000) && (ReputationGet("Asylum") <= -1)) CharacterSetCurrent(AsylumTherapyNurse);
+	if (MouseIn(1000, 0, 500, 1000) && (ReputationGet("Asylum") <= -1)) CharacterSetCurrent(AsylumTherapyNurse);
 	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) {
 		if (Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) AsylumEntranceWearPatientClothes(Player);
 		if ((ReputationGet("Asylum") <= -50) && (LogValue("Committed", "Asylum") >= CurrentTime) && Player.CanInteract()) InventoryWear(Player, "StraitJacket", "ItemArms", "Default", 3);

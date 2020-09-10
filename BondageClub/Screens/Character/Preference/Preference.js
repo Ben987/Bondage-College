@@ -194,7 +194,7 @@ function PreferenceLoadFetishFactor() {
 function PreferenceInit(C) {
 
 	// If the settings aren't set before, construct them to replicate the default behavior
-	if (!C.ChatSettings) C.ChatSettings = { DisplayTimestamps: true, ColorNames: true, ColorActions: true, ColorEmotes: true, ShowActivities: true, AutoBanGhostList: true, AutoBanBlackList: false, SearchShowsFullRooms: true, SearchFriendsFirst: false };
+	if (!C.ChatSettings) C.ChatSettings = { DisplayTimestamps: true, ColorNames: true, ColorActions: true, ColorEmotes: true, ShowActivities: true, AutoBanGhostList: true, AutoBanBlackList: false, SearchShowsFullRooms: true, SearchFriendsFirst: false, DisableAnimations: false };
 	if (C.ChatSettings.DisplayTimestamps == null) C.ChatSettings.DisplayTimestamps = true;
 	if (C.ChatSettings.ColorNames == null) C.ChatSettings.ColorNames = true;
 	if (C.ChatSettings.ColorActions == null) C.ChatSettings.ColorActions = true;
@@ -202,6 +202,7 @@ function PreferenceInit(C) {
 	if (C.ChatSettings.ShowActivities == null) C.ChatSettings.ShowActivities = true;
 	if (C.ChatSettings.AutoBanBlackList == null) C.ChatSettings.AutoBanBlackList = false;
 	if (C.ChatSettings.AutoBanGhostList == null) C.ChatSettings.AutoBanGhostList = true;
+	if (C.ChatSettings.DisableAnimations == null) C.ChatSettings.DisableAnimations = false;
 	if (C.ChatSettings.SearchShowsFullRooms == null) C.ChatSettings.SearchShowsFullRooms = true;
 	if (C.ChatSettings.SearchFriendsFirst == null) C.ChatSettings.SearchFriendsFirst = false;
 	if (!C.VisualSettings) C.VisualSettings = { ForceFullHeight: false };
@@ -525,6 +526,7 @@ function PreferenceSubscreenChatRun() {
 	DrawCheckbox(1200, 572, 64, 64, TextGet("AutoBanGhostList"), Player.ChatSettings.AutoBanGhostList);
 	DrawCheckbox(1200, 652, 64, 64, TextGet("SearchShowsFullRooms"), Player.ChatSettings.SearchShowsFullRooms);
 	DrawCheckbox(1200, 732, 64, 64, TextGet("SearchFriendsFirst"), Player.ChatSettings.SearchFriendsFirst);
+	DrawCheckbox(1200, 812, 64, 64, TextGet("DisableAnimations"), Player.ChatSettings.DisableAnimations);
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
 		() => TextGet((PreferenceChatColorThemeIndex == 0) ? PreferenceChatColorThemeList[PreferenceChatColorThemeList.length - 1] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex - 1]),
@@ -707,6 +709,7 @@ function PreferenceSubscreenChatClick() {
 		if ((MouseY >= 572) && (MouseY <= 636)) Player.ChatSettings.AutoBanGhostList = !Player.ChatSettings.AutoBanGhostList;
 		if ((MouseY >= 652) && (MouseY <= 716)) Player.ChatSettings.SearchShowsFullRooms = !Player.ChatSettings.SearchShowsFullRooms;
 		if ((MouseY >= 732) && (MouseY <= 796)) Player.ChatSettings.SearchFriendsFirst = !Player.ChatSettings.SearchFriendsFirst;
+		if ((MouseY >= 812) && (MouseY <= 876)) Player.ChatSettings.DisableAnimations = !Player.ChatSettings.DisableAnimations;
 	}
 
 	// If the user used one of the BackNextButtons

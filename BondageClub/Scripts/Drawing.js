@@ -184,6 +184,31 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			return;
 		}
 
+		// Run any existing asset scripts
+		if (
+			(!C.AccountName.startsWith('Online-') || !(Player.ChatSettings && Player.ChatSettings.DisableAnimations))
+			&& (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)
+		) {
+			var DynamicAssets = C.Appearance.filter(CA => CA.Asset.DynamicScriptDraw);
+			DynamicAssets.forEach(Item =>
+				window["Assets" + Item.Asset.Group.Name + Item.Asset.Name + "ScriptDraw"]({
+					C, Item, PersistentData: () => AnimationPersistentDataGet(C, Item.Asset)
+				})
+			);
+			
+			// If we must rebuild the canvas due to an animation
+			const refreshTimeKey = AnimationGetDynamicDataName(C, AnimationDataTypes.RefreshTime);
+			const refreshRateKey = AnimationGetDynamicDataName(C, AnimationDataTypes.RefreshRate);
+			const buildKey = AnimationGetDynamicDataName(C, AnimationDataTypes.Rebuild);
+			const lastRefresh = AnimationPersistentStorage[refreshTimeKey] || 0;
+			const refreshRate = AnimationPersistentStorage[refreshRateKey] == null ? 60000 : AnimationPersistentStorage[refreshRateKey];
+			if (refreshRate + lastRefresh < CommonTime() && AnimationPersistentStorage[buildKey]) { 
+				CharacterRefresh(C, false);
+				AnimationPersistentStorage[buildKey] = false;
+				AnimationPersistentStorage[refreshTimeKey] = CommonTime();
+			}
+		}
+		
 		// There's 2 different canvas, one blinking and one that doesn't
 		var seconds = new Date().getTime();
 		var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
@@ -354,6 +379,31 @@ function DrawImageCanvas(Source, Canvas, X, Y, AlphaMasks) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
+	if (AlphaMasks && AlphaMasks.length) {
+		var tmpCanvas = document.createElement("canvas");
+		tmpCanvas.width = Img.width;
+		tmpCanvas.height = Img.height;
+		var ctx = tmpCanvas.getContext('2d');
+		ctx.drawImage(Img, 0, 0);
+		AlphaMasks.forEach(([x, y, w, h]) => ctx.clearRect(x - X, y - Y, w, h));
+		Canvas.drawImage(tmpCanvas, X, Y);
+	} else {
+		Canvas.drawImage(Img, X, Y);
+	}
+	return true;
+}
+
+
+/**
+ * Draws a canvas to a specific canvas
+ * @param {HTMLCanvasElement} Img - Canvas to draw
+ * @param {HTMLCanvasElement} Canvas - Canvas on which to draw the image
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @param {number[][]} AlphaMasks - A list of alpha masks to apply to the asset
+ * @returns {boolean} - whether the image was complete or not
+ */
+function DrawCanvas(Img, Canvas, X, Y, AlphaMasks) {
 	if (AlphaMasks && AlphaMasks.length) {
 		var tmpCanvas = document.createElement("canvas");
 		tmpCanvas.width = Img.width;
