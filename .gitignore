@@ -6,4 +6,5 @@
 .DS_Store
 
 /BondageClub/node_modules
+/BondageClub/Tools/ESLint/node_modules
 web.config

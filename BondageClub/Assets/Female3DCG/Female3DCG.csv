@@ -633,7 +633,6 @@ ItemNipples,ShockClamps,Shock Clamps
 ItemNipplesPiercings,,Nipples
 ItemNipplesPiercings,StraightPiercing,Straight Piercings
 ItemNipplesPiercings,RoundPiercing,Round Piercings
-ItemNipplesPiercings,WeightedPiercing,Weighted Piercing
 ItemNipplesPiercings,NippleAccessory1,Nipple Jewels
 ItemNipplesPiercings,NippleAccessory2,Nipple Jewel Piercings
 ItemNipplesPiercings,NippleAccessory3,Nipple Gems Piercings
@@ -763,6 +762,7 @@ ItemNeck,SlenderSteelCollar,Slender Steel Collar
 ItemNeck,HeartLinkChoker, Heart-Link Choker
 ItemNeck,NeckRope,Neck Rope
 ItemNeckAccessories,,Collar
+ItemNeckAccessories,CustomNameTag,Custom Tag
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
 ItemNeckAccessories,CollarShockUnit,Shock Unit

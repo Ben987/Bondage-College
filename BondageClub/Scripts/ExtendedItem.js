@@ -136,7 +136,14 @@ function ExtendedItemSetType(Options, Option, IsCloth) {
 
 	// An extendable item may provide a validation function. Returning false from the validation function will drop out of
 	// this function, and the new type will not be applied.
-	if (CommonCallFunctionByName(FunctionPrefix + "Validate", Option) === false) {
+	if (typeof window[FunctionPrefix + "Validate"] === "function") {
+		if (CommonCallFunctionByName(FunctionPrefix + "Validate", Option) === false) {
+			return;
+		}
+	}
+	// Otherwise use the standard prerequisite check
+	else if (Option.Prerequisite != null && !InventoryAllow(C, Option.Prerequisite, true)) {
+		DialogExtendedMessage = DialogText;
 		return;
 	}
 
@@ -268,7 +275,7 @@ function ExtendedItemClickGrid(Options, IsSelfBondage, IsCloth) {
 
 	// Pagination button
 	if ((Options.length > 4) && MouseIn(1775, 25, 90, 85))
-		ExtendedItemNextPage(InventoryItemArmsWebOptions);
+		ExtendedItemNextPage(Options);
 
 	var ItemOptionsOffset = ExtendedItemGetOffset();
 

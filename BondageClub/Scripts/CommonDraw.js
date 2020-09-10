@@ -1,5 +1,4 @@
 "use strict";
-
 /**
  * A callback function used for clearing a rectangular area of a canvas
  * @callback clearRect
@@ -16,6 +15,14 @@
  * @param {number} x - The x coordinate to draw the image at
  * @param {number} y - The y coordinate to draw the image at
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the image when drawing
+ */
+
+/**
+ * A callback function used to draw a canvas on a canvas
+ * @callback drawCanvas
+ * @param {string} Img - The canvas to draw
+ * @param {number} x - The x coordinate to draw the canvas at
+ * @param {number} y - The y coordinate to draw the canvas at
  */
 
 /**
@@ -54,6 +61,8 @@ function CommonDrawCanvasPrepare(C) {
  * @param {Character} C - The character whose appearance to draw
  * @param {clearRect} clearRect - A callback to clear an area of the main character canvas
  * @param {clearRect} clearRectBlink - A callback to clear an area of the blink character canvas
+ * @param {drawCanvas} drawCanvas - Function used to draw a canvas on top of the normal canvas
+ * @param {drawCanvas} drawCanvasBlink - Function used to draw a canvas on top of the blink canvas
  * @param {drawImage} drawImage - A callback to draw an image to the main character canvas
  * @param {drawImage} drawImageBlink - A callback to draw an image to the blink character canvas
  * @param {drawImageColorize} drawImageColorize - A callback to draw a colorized image to the main character canvas
@@ -62,15 +71,17 @@ function CommonDrawCanvasPrepare(C) {
 function CommonDrawAppearanceBuild(C, {
 	clearRect,
 	clearRectBlink,
+	drawCanvas,
+	drawCanvasBlink,
 	drawImage,
 	drawImageBlink,
 	drawImageColorize,
 	drawImageColorizeBlink,
 }) {
 	var LayerCounts = {};
-
+	
 	// Loop through all layers in the character appearance
-	C.AppearanceLayers.forEach(Layer => {
+	C.AppearanceLayers.forEach((Layer) => {
 		var A = Layer.Asset;
 		var AG = A.Group;
 		var CA = C.Appearance.find(item => item.Asset === A);
@@ -157,6 +168,50 @@ function CommonDrawAppearanceBuild(C, {
 			var ParentAsset = InventoryGet(C, InheritColor);
 			if (ParentAsset != null) Color = ParentAsset.Color;
 		}
+		
+		// Before drawing hook, receives all processed data. Any of them can be overriden if returned inside an object.
+		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects. 
+		// Watch out for object references.
+		if (A.DynamicBeforeDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
+			const DrawingData = {
+				C, X, Y, CA, Color, Property, A, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
+			};
+			const OverridenData = window["Assets" + A.Group.Name + A.Name + "BeforeDraw"](DrawingData);
+			if (typeof OverridenData == "object") {
+				for (const key in OverridenData) {
+					switch (key) { 
+						case "Property": { 
+							Property = OverridenData[key];
+							break;
+						}
+						case "CA": { 
+							CA = OverridenData[key];
+							break;
+						}
+						case "Color": {
+							Color = OverridenData[key];
+							break;
+						}
+						case "X": { 
+							X = OverridenData[key];
+							break;
+						}
+						case "Y": { 
+							Y = OverridenData[key];
+							break;
+						}
+						case "LayerType": { 
+							LayerType = OverridenData[key];
+							break;
+						}
+						case "L": { 
+							L = OverridenData[key];
+							break;
+						}
+					}
+				}
+			}
+		}
 
 		// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 		if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
@@ -187,6 +242,16 @@ function CommonDrawAppearanceBuild(C, {
 				drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + Type + "_Lock.png", X, Y, AlphaMasks);
 				drawImageBlink("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + Type + "_Lock.png", X, Y, AlphaMasks);
 			}
+		}
+		
+		// After drawing hook, receives all processed data.
+		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects. 
+		// Watch out for object references.
+		if (A.DynamicAfterDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
+			const DrawingData = {
+				C, X, Y, CA, Property, A, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
+			};
+			window["Assets" + A.Group.Name + A.Name + "AfterDraw"](DrawingData);
 		}
 	});
 }

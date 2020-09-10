@@ -33,6 +33,7 @@ AutoBanBlackList,Ban blacklist when creating a room
 AutoBanGhostList,Ban ghostlist when creating a room
 SearchShowsFullRooms,Display full chatrooms
 SearchFriendsFirst,Order rooms by number of friends
+DisableAnimations,Disable scripted assets on others
 AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
