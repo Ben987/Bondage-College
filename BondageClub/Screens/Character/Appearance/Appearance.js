@@ -298,6 +298,7 @@ function CharacterAppearanceSortLayers(C) {
 			// Only include layers that permit the current type (if AllowTypes is not defined, also include the layer)
 			var layersToDraw = asset.Layer
 				.filter(layer => !layer.AllowTypes || layer.AllowTypes.includes(type))
+				.filter(layer => !layer.HideAs || CharacterAppearanceVisible(C, layer.HideAs.Asset, layer.HideAs.Group))
 				.map(layer => {
 					var drawLayer = Object.assign({}, layer);
 					// Store any group-level alpha mask definitions

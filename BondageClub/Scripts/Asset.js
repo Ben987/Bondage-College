@@ -187,7 +187,10 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		Priority: Layer.Priority || AssetDefinition.Priority || AssetCurrentGroup.DrawingPriority,
 		InheritColor: Layer.InheritColor,
 		Alpha: AssetLayerAlpha(Layer, AssetDefinition, I),
-		Asset: A
+		Asset: A,
+		DrawingLeft: Layer.Left,
+		DrawingTop: Layer.Top,
+		HideAs: Layer.HideAs,
 	};
 }
 
@@ -228,7 +231,7 @@ function AssetBuildDescription(Family, CSV) {
 		if (Asset[A].Group.Family == Family) {
 
 			// Checks if the group matches
-			if ((CSV[L][0] != null) && (CSV[L][0].trim() != "") && (Asset[A].Group.Name == CSV[L][0].trim())) {
+			if ((CSV[L] != null) && (CSV[L][0] != null) && (CSV[L][0].trim() != "") && (Asset[A].Group.Name == CSV[L][0].trim())) {
 
 				// If we must put the group description
 				if (((CSV[L][1] == null) || (CSV[L][1].trim() == "")) && ((CSV[L][2] != null) && (CSV[L][2].trim() != ""))) {

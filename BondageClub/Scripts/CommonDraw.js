@@ -131,8 +131,8 @@ function CommonDrawAppearanceBuild(C, {
 				Expression = Property.Expression + "/";
 
 		// Find the X and Y position to draw on
-		var X = A.DrawingLeft != null ? A.DrawingLeft : AG.DrawingLeft;
-		var Y = A.DrawingTop != null ? A.DrawingTop : AG.DrawingTop;
+		var X = Layer.DrawingLeft != null ? Layer.DrawingLeft : (A.DrawingLeft != null ? A.DrawingLeft : AG.DrawingLeft);
+		var Y = Layer.DrawingTop != null ? Layer.DrawingTop : (A.DrawingTop != null ? A.DrawingTop : AG.DrawingTop);
 		if (C.Pose && C.Pose.length) {
 			C.Pose.forEach(CP => {
 				var PoseDef = PoseFemale3DCG.find(P => P.Name === CP && P.MovePosition);

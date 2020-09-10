@@ -28,6 +28,19 @@
  */
 var ExtendedItemOffsets = {};
 
+/** The X & Y co-ordinates of each option's button, based on the number to be displayed per page. */
+const ExtendedXY = [
+	[], //0 placeholder
+	[], //1 placeholder
+	[[1185, 500], [1590, 500]], //2 options per page
+	[[1080, 500], [1385, 500], [1695, 500]], //3 options per page
+	[[1185, 400], [1590, 400], [1185, 700], [1590, 700]], //4 options per page
+	[[1080, 400], [1385, 400], [1695, 400], [1185, 700], [1590, 700]], //5 options per page
+	[[1080, 400], [1385, 400], [1695, 400], [1080, 700], [1385, 700], [1695, 700]], //6 options per page
+	[[1020, 400], [1265, 400], [1510, 400], [1755, 400], [1080, 700], [1385, 700], [1695, 700]], //7 options per page
+	[[1020, 400], [1265, 400], [1510, 400], [1755, 400], [1020, 700], [1265, 700], [1510, 700], [1755, 700]], //8 options per page
+];
+
 /**
  * Loads the item extension properties
  * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
@@ -62,9 +75,7 @@ function ExtendedItemLoad(Options, DialogKey) {
 		}
 	}
 
-	if (Options.length > 2) {
-		ExtendedItemSetOffset(0);
-	}
+	ExtendedItemSetOffset(0);
 
 	DialogExtendedMessage = DialogFind(Player, DialogKey);
 }
@@ -75,27 +86,40 @@ function ExtendedItemLoad(Options, DialogKey) {
  *     be the default option.
  * @param {string} DialogPrefix - The prefix to the dialog keys for the display strings describing each extended type.
  *     The full dialog key will be <Prefix><Option.Name>
+ * @param {number} OptionsPerPage - The number of options displayed on each page
  * @returns {void} Nothing
  */
-function ExtendedItemDraw(Options, DialogPrefix) {
+function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage) {
 	var IsSelfBondage = CharacterGetCurrent().ID === 0;
 	var Asset = DialogFocusItem.Asset;
+	var ItemOptionsOffset = ExtendedItemGetOffset();
+	OptionsPerPage = OptionsPerPage || Math.min(Options.length, 8);
 
-	// If we have to paginate, draw the next button
-	if (Options.length > 4) {
+	// If we have to paginate, draw the back/next buttons
+	if (ItemOptionsOffset >= OptionsPerPage) {
+		DrawButton(1665, 25, 90, 90, "", "White", "Icons/Prev.png");
+	}
+	if (Options.length > OptionsPerPage && ItemOptionsOffset < OptionsPerPage * Math.floor(Options.length / OptionsPerPage)) {
 		DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
 	}
-
+	
 	// Draw the header and item
 	DrawRect(1387, 55, 225, 275, "white");
 	DrawImageResize("Assets/" + Asset.Group.Family + "/" + Asset.Group.Name + "/Preview/" + Asset.Name + ".png", 1389, 57, 221, 221);
 	DrawTextFit(Asset.Description, 1500, 310, 221, "black");
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 
-	if (Options.length === 2) {
-		ExtendedItemDrawTwo(Options, DialogPrefix, IsSelfBondage);
-	} else {
-		ExtendedItemDrawGrid(Options, DialogPrefix, IsSelfBondage);
+	// Draw the possible variants and their requirements, arranged based on the number per page
+	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
+		var PageOffset = I - ItemOptionsOffset;
+		var X = ExtendedXY[OptionsPerPage][PageOffset][0];
+		var Y = ExtendedXY[OptionsPerPage][PageOffset][1];
+		var Option = Options[I];
+		var FailSkillCheck = !!ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
+
+		DrawButton(X, Y, 225, 275, "", ((DialogFocusItem.Property.Type == Option.Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
+		DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X+2, Y);
+		DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 250, 225, "black");
 	}
 }
 
@@ -104,9 +128,13 @@ function ExtendedItemDraw(Options, DialogPrefix) {
  * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
  *     be the default option.
  * @param {boolean} IsCloth - Whether or not the click is performed on a clothing item.
+ * @param {number} OptionsPerPage - The number of options displayed on each page
  * @returns {void} Nothing
  */
-function ExtendedItemClick(Options, IsCloth) {
+function ExtendedItemClick(Options, IsCloth, OptionsPerPage) {
+	var IsSelfBondage = CharacterGetCurrent().ID === 0;
+	var ItemOptionsOffset = ExtendedItemGetOffset();
+	OptionsPerPage = OptionsPerPage || Math.min(Options.length, 8);
 
 	// Exit button
 	if (MouseIn(1885, 25, 90, 85)) {
@@ -114,11 +142,23 @@ function ExtendedItemClick(Options, IsCloth) {
 		return;
 	}
 
-	var IsSelfBondage = CharacterGetCurrent().ID === 0;
-	if (Options.length === 2) {
-		ExtendedItemClickTwo(Options, IsSelfBondage, IsCloth);
-	} else {
-		ExtendedItemClickGrid(Options, IsSelfBondage, IsCloth);
+	// Pagination buttons
+	if (MouseIn(1665, 25, 90, 90) && ItemOptionsOffset >= OptionsPerPage) {
+		ExtendedItemSetOffset(ItemOptionsOffset - OptionsPerPage);
+	}
+	if (MouseIn(1775, 25, 90, 90) && Options.length > OptionsPerPage && ItemOptionsOffset < OptionsPerPage * Math.floor(Options.length / OptionsPerPage)) {
+		ExtendedItemSetOffset(ItemOptionsOffset + OptionsPerPage);
+	}
+	
+	// Options
+	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
+		var PageOffset = I - ItemOptionsOffset;
+		var X = ExtendedXY[OptionsPerPage][PageOffset][0];
+		var Y = ExtendedXY[OptionsPerPage][PageOffset][1];
+		var Option = Options[I];
+		if (MouseIn(X, Y, 225, 275) && DialogFocusItem.Property.Type !== Option.Property.Type) {
+			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsCloth);
+		}
 	}
 }
 
@@ -194,103 +234,6 @@ function ExtendedItemSetType(Options, Option, IsCloth) {
 }
 
 /**
- * Draws the extended item type selection screen when there are only two options
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
- * @param {string} DialogPrefix - The prefix to the dialog keys for the display strings describing each extended type.
- *     The full dialog key will be <Prefix><Option.Name>
- * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
- * @returns {void} Nothing
- */
-function ExtendedItemDrawTwo(Options, DialogPrefix, IsSelfBondage) {
-	var Asset = DialogFocusItem.Asset;
-
-	for (let I = 0; I < Options.length; I++) {
-		var X = 1175 + I * 425;
-		var Y = 550;
-		var Option = Options[I];
-		var FailSkillCheck = !!ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
-
-		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == Option.Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
-		DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X, Y);
-		DrawText(DialogFind(Player, DialogPrefix + Option.Name), X + 113, Y + 250, "white", "gray");
-	}
-}
-
-/**
- * Draws the extended item type selection screen when there are more than two options. Options will be paginated if necessary, with four
- * options drawn per page in a 2x2 grid
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
- * @param {string} DialogPrefix - The prefix to the dialog keys for the display strings describing each extended type.
- *     The full dialog key will be <Prefix><Option.Name>
- * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
- * @returns {void} Nothing
- */
-function ExtendedItemDrawGrid(Options, DialogPrefix, IsSelfBondage) {
-	var Asset = DialogFocusItem.Asset;
-	var ItemOptionsOffset = ExtendedItemGetOffset();
-	// Draw the possible variants and their requirements, 4 at a time in a 2x2 grid
-	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + 4; I++) {
-		var PageOffset = I - ItemOptionsOffset;
-		var X = 1200 + (PageOffset % 2 * 387);
-		var Y = 450 + (Math.floor(PageOffset / 2) * 300);
-		var Option = Options[I];
-		var FailSkillCheck = !!ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
-
-		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == Option.Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
-		DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X, Y);
-		DrawText(DialogFind(Player, DialogPrefix + Option.Name), X + 113, Y - 20, "white", "gray");
-	}
-}
-
-/**
- * Handles clicks on the extended item type selection screen when there are only two options
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
- * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
- * @param {boolean} IsCloth - Whether or not the click is performed on a clothing item.
- * @returns {void} Nothing
- */
-function ExtendedItemClickTwo(Options, IsSelfBondage, IsCloth) {
-	for (let I = 0; I < Options.length; I++) {
-		var X = 1175 + I * 425;
-		var Y = 550;
-		var Option = Options[I];
-		if (MouseIn(X, Y, 225, 225) && DialogFocusItem.Property.Type !== Option.Property.Type) {
-			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsCloth);
-		}
-	}
-}
-
-/**
- * Handles clicks on the extended item type selection screen when there are more than two options
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
- * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
- * @param {boolean} IsCloth - Whether or not the click is performed on a clothing item.
- * @returns {void} Nothing
- */
-function ExtendedItemClickGrid(Options, IsSelfBondage, IsCloth) {
-
-	// Pagination button
-	if ((Options.length > 4) && MouseIn(1775, 25, 90, 85))
-		ExtendedItemNextPage(Options);
-
-	var ItemOptionsOffset = ExtendedItemGetOffset();
-
-	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + 4; I++) {
-		var offset = I - ItemOptionsOffset;
-		var X = 1200 + (offset % 2 * 387);
-		var Y = 450 + (Math.floor(offset / 2) * 300);
-		var Option = Options[I];
-		if (MouseIn(X, Y, 225, 225) && DialogFocusItem.Property.Type !== Option.Property.Type) {
-			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsCloth);
-		}
-	}
-}
-
-/**
  * Handler function called when an option on the type selection screen is clicked
  * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
  *     be the default option.
@@ -360,19 +303,4 @@ function ExtendedItemGetOffset() {
  */
 function ExtendedItemSetOffset(Offset) {
 	ExtendedItemOffsets[ExtendedItemOffsetKey()] = Offset;
-}
-
-/**
- * Switches the pagination offset to the next page for the currently focused extended item. If the new offset is greater
- * than the number of available options, the offset will be reset to zero, wrapping back to the first page.
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
- * @returns {void} Nothing
- */
-function ExtendedItemNextPage(Options) {
-	var OffsetKey = ExtendedItemOffsetKey();
-	ExtendedItemOffsets[OffsetKey] += 4;
-	if (ExtendedItemOffsets[OffsetKey] >= Options.length) {
-		ExtendedItemOffsets[OffsetKey] = 0;
-	}
 }

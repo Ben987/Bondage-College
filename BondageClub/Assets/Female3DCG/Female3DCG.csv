@@ -423,7 +423,7 @@ HairFront,HairFront10b,Style 10b
 HairFront,HairFront11,Style 11
 HairFront,HairFront11b,Style 11b
 HairFront,HairFront12,Style 12
-HairFront,HairFront12,Style 12b
+HairFront,HairFront12b,Style 12b
 HairFront,HairFront13,Style 13
 HairFront,HairFront13b,Style 13b
 HairFront,HairFront14,Style 14
@@ -1058,6 +1058,3 @@ ItemBoots,LockingBoots1,Locking Boots
 ItemBoots,LeatherFootMitts1,Short Leather Foot Mittens
 ItemBoots,ToeTape,Toe Tape
 ItemBoots,Zipties,Zip Ties
-ItemHidden,Accessories,
-ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
-ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps
