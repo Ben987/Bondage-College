@@ -47,6 +47,7 @@ Cloth,VirginKiller1,Virgin Killer
 Cloth,ReverseBunnySuit,Reverse Bunny Suit Top
 Cloth,LeatherCropTop, Leather Crop Top
 Cloth,CorsetShirt,Corset Shirt
+Cloth,LeatherBolero,Leather Bolero
 ClothAccessory,,Cloth Accessory
 ClothAccessory,StudentOutfit3Scarf,Student Scarf
 ClothAccessory,StudentOutfit3Bow1,Student Bow 1
@@ -92,6 +93,7 @@ ClothLower,Gown2Skirt,Hobble Gown Skirt
 ClothLower,AdmiralSkirt,Admiral Skirt
 ClothLower,JeanSkirt,Jean Skirt
 ClothLower,PencilSkirt,Pencil Skirt
+ClothLower,JeansShorts,Jeans Shorts
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
@@ -138,6 +140,8 @@ Bra,ChineseBra1,Chinese Bra
 Bra,LatexCorset1,Latex Corset
 Bra,LeatherStrapBra1,Leather Strap Bra
 Bra,Swimsuit3,Swimsuit style 3
+Bra,LeatherCorsetTop1,Leather Corset Top
+Bra,CowPrintedBra,Cow Printed Bra
 Panties,,Panties
 Panties,Panties1,Style 1
 Panties,Panties7,Style 2
@@ -167,6 +171,7 @@ Panties,SunstripePanties1,Sunstripe Panties
 Panties,SexyBeachPanties1,Sexy Beach Panties
 Panties,ChinesePanties1,Chinese Panties
 Panties,LeatherStrapPanties1,Leather Strap Panties
+Panties,CowPrintedPanties,Cow Printed Panties
 Socks,,Socks
 Socks,Socks0,Ankle
 Socks,Socks1,Short

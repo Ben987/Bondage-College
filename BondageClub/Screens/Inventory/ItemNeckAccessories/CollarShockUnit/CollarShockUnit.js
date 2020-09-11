@@ -87,6 +87,24 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
     CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
 }
 
+function AssetsItemNeckAccessoriesCollarShockUnitBeforeDraw(data) {
+	return data.L === "_Light" ? { Color: "#2f0" } : null;
+}
+
+function AssetsItemNeckAccessoriesCollarShockUnitScriptDraw(data) {
+	var persistentData = data.PersistentData();
+	var property = (data.Item.Property = data.Item.Property || {});
+	if (typeof persistentData.ChangeTime !== "number") persistentData.ChangeTime = CommonTime() + 4000;
+
+	if (persistentData.ChangeTime < CommonTime()) {
+		var wasBlinking = property.Type === "Blink";
+		property.Type = wasBlinking ? null : "Blink";
+		var timeToNextRefresh = wasBlinking ? 4000 : 1000;
+		persistentData.ChangeTime = CommonTime() + timeToNextRefresh;
+		AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);
+		AnimationRequestDraw(data.C);
+	}
+}
 
 function InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data) { 
 	var Modifier = parseInt(data.Content.substr(data.Content.length - 1));

@@ -419,17 +419,6 @@ function DrawCanvas(Img, Canvas, X, Y, AlphaMasks) {
 }
 
 /**
- * Draws a specific canvas on the main canvas
- * @param {HTMLCanvasElement} Canvas - Canvas to draw on the main canvas
- * @param {number} X - Position of the canvas on the X axis
- * @param {number} Y - Position of the canvas on the Y axis
- * @returns {void} - Nothing
- */
-function DrawCanvas(Canvas, X, Y) {
-	MainCanvas.drawImage(Canvas, X, Y);
-}
-
-/**
  * Draws a specific canvas with a zoom on the main canvas
  * @param {HTMLCanvasElement} Canvas - Canvas to draw on the main canvas
  * @param {number} X - Position of the canvas on the X axis
@@ -719,14 +708,15 @@ function DrawText(Text, X, Y, Color, BackColor) {
  * @param {string} Color - Color of the component
  * @param {string} [Image] - URL of the image to draw inside the button, if applicable 
  * @param {string} [HoveringText] - Text of the tooltip, if applicable 
+ * @param {boolean} [Disabled] - Disables the hovering options if set to true 
  * @returns {void} - Nothing
  */
-function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText) {
+function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled) {
 
 	// Draw the button rectangle (makes the background color cyan if the mouse is over it)
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
-	MainCanvas.fillStyle = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) ? "Cyan" : Color;
+	MainCanvas.fillStyle = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled) ? "Cyan" : Color;
 	MainCanvas.fillRect(Left, Top, Width, Height);
 	MainCanvas.fill();
 	MainCanvas.lineWidth = '2';
@@ -770,9 +760,10 @@ function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked) {
  * @param {string} [Image] - Image URL to draw in the component
  * @param {string} BackText - Text for the back button tooltip
  * @param {string} NextText - Text for the next button tooltip
+ * @param {boolean} [Disabled] - Disables the hovering options if set to true 
  * @returns {void} - Nothing
  */
-function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText) {
+function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText, Disabled) {
 
 	// Draw the button rectangle (makes half of the background cyan colored if the mouse is over it)
 	var Split = Left + Width / 2;
@@ -780,7 +771,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	MainCanvas.rect(Left, Top, Width, Height);
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillRect(Left, Top, Width, Height);
-	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
+	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled) {
 		MainCanvas.fillStyle = "Cyan";
 		if (MouseX > Split) {
 			MainCanvas.fillRect(Split, Top, Width / 2, Height);
@@ -819,7 +810,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (CommonIsMobile) return;
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
-	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height))
+	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !Disabled)
 		DrawButtonHover(Left, Top, Width, Height, (MouseX > Split) ? NextText() : BackText());
 
 }
