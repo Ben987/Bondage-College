@@ -186,7 +186,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 
 		// Run any existing asset scripts
 		if (
-			(!C.AccountName.startsWith('Online-') || !(Player.ChatSettings && Player.ChatSettings.DisableAnimations))
+			(!C.AccountName.startsWith('Online-') || !(Player.OnlineSettings && Player.OnlineSettings.DisableAnimations))
 			&& (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)
 		) {
 			var DynamicAssets = C.Appearance.filter(CA => CA.Asset.DynamicScriptDraw);

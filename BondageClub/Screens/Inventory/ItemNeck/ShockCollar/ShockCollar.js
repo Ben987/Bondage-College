@@ -14,3 +14,11 @@ function InventoryItemNeckShockCollarDraw() {
 function InventoryItemNeckShockCollarClick() {
 	InventoryItemNeckAccessoriesCollarShockUnitClick();
 }
+
+function AssetsItemNeckShockCollarBeforeDraw(data) {
+	return AssetsItemNeckAccessoriesCollarShockUnitBeforeDraw(data);
+}
+
+function AssetsItemNeckShockCollarScriptDraw(data) {
+	AssetsItemNeckAccessoriesCollarShockUnitScriptDraw(data);
+}

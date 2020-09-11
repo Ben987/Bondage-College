@@ -194,18 +194,24 @@ function PreferenceLoadFetishFactor() {
 function PreferenceInit(C) {
 
 	// If the settings aren't set before, construct them to replicate the default behavior
-	if (!C.ChatSettings) C.ChatSettings = { DisplayTimestamps: true, ColorNames: true, ColorActions: true, ColorEmotes: true, ShowActivities: true, AutoBanGhostList: true, AutoBanBlackList: false, SearchShowsFullRooms: true, SearchFriendsFirst: false, DisableAnimations: false };
+	if (!C.ChatSettings) C.ChatSettings = { DisplayTimestamps: true, ColorNames: true, ColorActions: true, ColorEmotes: true, ShowActivities: true, AutoBanGhostList: true, AutoBanBlackList: false, SearchShowsFullRooms: true, SearchFriendsFirst: false, ShowAutomaticMessages: false };
 	if (C.ChatSettings.DisplayTimestamps == null) C.ChatSettings.DisplayTimestamps = true;
 	if (C.ChatSettings.ColorNames == null) C.ChatSettings.ColorNames = true;
 	if (C.ChatSettings.ColorActions == null) C.ChatSettings.ColorActions = true;
 	if (C.ChatSettings.ColorEmotes == null) C.ChatSettings.ColorEmotes = true;
 	if (C.ChatSettings.ShowActivities == null) C.ChatSettings.ShowActivities = true;
-	if (C.ChatSettings.AutoBanBlackList == null) C.ChatSettings.AutoBanBlackList = false;
-	if (C.ChatSettings.AutoBanGhostList == null) C.ChatSettings.AutoBanGhostList = true;
-	if (C.ChatSettings.DisableAnimations == null) C.ChatSettings.DisableAnimations = false;
-	if (C.ChatSettings.SearchShowsFullRooms == null) C.ChatSettings.SearchShowsFullRooms = true;
-	if (C.ChatSettings.SearchFriendsFirst == null) C.ChatSettings.SearchFriendsFirst = false;
+	if (C.ChatSettings.ShowAutomaticMessages == null) C.ChatSettings.ShowAutomaticMessages = false;
 	if (!C.VisualSettings) C.VisualSettings = { ForceFullHeight: false };
+
+	if (!C.OnlineSettings) C.OnlineSettings = {};
+	// TODO: The following preferences were migrated September 2020 in for R61 - replace with standard preference code after a few months
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanBlackList", false);
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanGhostList", true);
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "DisableAnimations", false);
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "SearchShowsFullRooms", true);
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "SearchFriendsFirst", false);
+	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableAfkTimer", true);
+	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableWardrobeIcon", false);
 
 	// Sets the default audio settings
 	if (!C.AudioSettings) C.AudioSettings = { Volume: 1, PlayBeeps: false, PlayItem: false, PlayItemPlayerOnly: false };
@@ -232,8 +238,6 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.SensDepChatLog !== "string") C.GameplaySettings.SensDepChatLog = "Normal";
 	if (typeof C.GameplaySettings.BlindDisableExamine !== "boolean") C.GameplaySettings.BlindDisableExamine = false;
 	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
-	if (typeof C.GameplaySettings.EnableAfkTimer !== "boolean") C.GameplaySettings.EnableAfkTimer = true;
-	if (typeof C.GameplaySettings.EnableWardrobeIcon !== "boolean") C.GameplaySettings.EnableWardrobeIcon = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 
 	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
@@ -285,6 +289,22 @@ function PreferenceInit(C) {
 }
 
 /**
+ * Migrates a named preference from one preference object to another if not already migrated
+ * @param {object} from - The preference object to migrate from
+ * @param {object} to - The preference object to migrate to
+ * @param {string} prefName - The name of the preference to migrate
+ * @param {*} defaultValue - The default value for the preference if it doesn't exist
+ * @returns {void} - Nothing
+ */
+function PreferenceMigrate(from, to, prefName, defaultValue) {
+	if (to[prefName] == null) {
+		to[prefName] = from[prefName];
+		if (to[prefName] == null) to[prefName] = defaultValue;
+		if (from[prefName] != null) delete from[prefName];
+	}
+}
+
+/**
  * Loads the preference screen. This function is called dynamically, when the character enters the preference screen for the first time
  * @returns {void} - Nothing
  */
@@ -323,11 +343,11 @@ function PreferenceLoad() {
 			PreferenceArousalFetishList.push(FetishFemale3DCG[A].Name);
 	PreferenceArousalFetishIndex = 0;
 	PreferenceLoadFetishFactor();
-	
+
 }
 
 /**
- * Runs the preference screen. This function is called dynamically on a repeated basis. 
+ * Runs the preference screen. This function is called dynamically on a repeated basis.
  * So don't use complex loops or other function calls within this method
  * @returns {void} - Nothing
  */
@@ -339,6 +359,7 @@ function PreferenceRun() {
 	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalRun();
 	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityRun();
 	if (PreferenceSubscreen == "Visibility") return PreferenceSubscreenVisibilityRun();
+	if (PreferenceSubscreen == "Online") return PreferenceSubscreenOnlineRun();
 
 	// Draw the online preferences
 	MainCanvas.textAlign = "left";
@@ -357,10 +378,8 @@ function PreferenceRun() {
 	// Checkboxes
 	DrawCheckbox(500, 472, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
 	DrawCheckbox(500, 552, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
-	DrawCheckbox(500, 632, 64, 64, TextGet("EnableAfkTimer"), Player.GameplaySettings.EnableAfkTimer);
-	DrawCheckbox(500, 712, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
-	DrawCheckbox(500, 792, 64, 64, TextGet("EnableSafeword"), Player.GameplaySettings.EnableSafeword);
-	DrawCheckbox(500, 872, 64, 64, TextGet("EnableWardrobeIcon"), Player.GameplaySettings.EnableWardrobeIcon);
+	DrawCheckbox(500, 632, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
+	DrawCheckbox(500, 712, 64, 64, TextGet("EnableSafeword"), Player.GameplaySettings.EnableSafeword);
 
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
@@ -379,6 +398,7 @@ function PreferenceRun() {
 		DrawButton(1815, 420, 90, 90, "", "White", "Icons/Activity.png");
 		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Lock.png");
 		DrawButton(1815, 650, 90, 90, "", "White", "Icons/Private.png");
+		DrawButton(1815, 765, 90, 90, "", "White", "Icons/Online.png");
 	}
 }
 
@@ -394,6 +414,7 @@ function PreferenceClick() {
 	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalClick();
 	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityClick();
 	if (PreferenceSubscreen == "Visibility") return PreferenceSubscreenVisibilityClick();
+	if (PreferenceSubscreen == "Online") return PreferenceSubscreenOnlineClick();
 
 	// If the user clicks on "Exit"
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
@@ -425,12 +446,18 @@ function PreferenceClick() {
 		PreferenceSubscreen = "Security";
 	}
 
-	// If the user clicks on the security settings button
+	// If the user clicks on the visibility settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 650) && (MouseY < 740) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Visibility";
 	}
-	
+
+	// If the user clicks on the online settings button
+	if (MouseIn(1815, 765, 90, 90) && (PreferenceColorPick == "")) {
+		PreferenceMainScreenExit();
+		PreferenceSubscreen = "Online";
+	}
+
 	// If we must change the restrain permission level
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
 		Player.ItemPermission++;
@@ -451,17 +478,11 @@ function PreferenceClick() {
 	// Preference check boxes
 	if (MouseIn(500, 472, 64, 64)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
 	if (MouseIn(500, 552, 64, 64)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
-	if (MouseIn(500, 632, 64, 64)) {
-		Player.GameplaySettings.EnableAfkTimer = !Player.GameplaySettings.EnableAfkTimer;
-		AfkTimerSetEnabled(Player.GameplaySettings.EnableAfkTimer);
-	}
-	if (MouseIn(500, 712, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
-	if (MouseIn(500, 792, 64, 64)) {
+	if (MouseIn(500, 632, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
+	if (MouseIn(500, 712, 64, 64)) {
 		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) Player.GameplaySettings.EnableSafeword = true;
 		else if (Player.GameplaySettings.EnableSafeword) Player.GameplaySettings.EnableSafeword = false;
 	}
-	if (MouseIn(500, 872, 64, 64)) Player.GameplaySettings.EnableWardrobeIcon = !Player.GameplaySettings.EnableWardrobeIcon;
-
 }
 
 /**
@@ -479,7 +500,8 @@ function PreferenceExit() {
 			VisualSettings: Player.VisualSettings,
 			AudioSettings: Player.AudioSettings,
 			GameplaySettings: Player.GameplaySettings,
-			ArousalSettings: Player.ArousalSettings
+			ArousalSettings: Player.ArousalSettings,
+			OnlineSettings: Player.OnlineSettings,
 		};
 		ServerSend("AccountUpdate", P);
 		PreferenceMessage = "";
@@ -522,11 +544,7 @@ function PreferenceSubscreenChatRun() {
 	DrawCheckbox(500, 652, 64, 64, TextGet("ColorActions"), Player.ChatSettings.ColorActions);
 	DrawCheckbox(500, 732, 64, 64, TextGet("ColorEmotes"), Player.ChatSettings.ColorEmotes);
 	DrawCheckbox(500, 812, 64, 64, TextGet("ShowActivities"), Player.ChatSettings.ShowActivities);
-	DrawCheckbox(1200, 492, 64, 64, TextGet("AutoBanBlackList"), Player.ChatSettings.AutoBanBlackList);
-	DrawCheckbox(1200, 572, 64, 64, TextGet("AutoBanGhostList"), Player.ChatSettings.AutoBanGhostList);
-	DrawCheckbox(1200, 652, 64, 64, TextGet("SearchShowsFullRooms"), Player.ChatSettings.SearchShowsFullRooms);
-	DrawCheckbox(1200, 732, 64, 64, TextGet("SearchFriendsFirst"), Player.ChatSettings.SearchFriendsFirst);
-	DrawCheckbox(1200, 812, 64, 64, TextGet("DisableAnimations"), Player.ChatSettings.DisableAnimations);
+	DrawCheckbox(1200, 492, 64, 64, TextGet("ShowAutomaticMessages"), Player.ChatSettings.ShowAutomaticMessages);
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
 		() => TextGet((PreferenceChatColorThemeIndex == 0) ? PreferenceChatColorThemeList[PreferenceChatColorThemeList.length - 1] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex - 1]),
@@ -537,6 +555,20 @@ function PreferenceSubscreenChatRun() {
 	DrawBackNextButton(1000, 390, 350, 70, TextGet(PreferenceChatMemberNumbersSelected), "White", "",
 		() => TextGet((PreferenceChatMemberNumbersIndex == 0) ? PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersList.length - 1] : PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex - 1]),
 		() => TextGet((PreferenceChatMemberNumbersIndex >= PreferenceChatMemberNumbersList.length - 1) ? PreferenceChatMemberNumbersList[0] : PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex + 1]));
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	DrawCharacter(Player, 50, 50, 0.9);
+}
+
+function PreferenceSubscreenOnlineRun() {
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("OnlinePreferences"), 500, 125, "Black", "Gray");
+	DrawCheckbox(500, 225, 64, 64, TextGet("AutoBanBlackList"), Player.OnlineSettings.AutoBanBlackList);
+	DrawCheckbox(500, 305, 64, 64, TextGet("AutoBanGhostList"), Player.OnlineSettings.AutoBanGhostList);
+	DrawCheckbox(500, 385, 64, 64, TextGet("SearchShowsFullRooms"), Player.OnlineSettings.SearchShowsFullRooms);
+	DrawCheckbox(500, 465, 64, 64, TextGet("SearchFriendsFirst"), Player.OnlineSettings.SearchFriendsFirst);
+	DrawCheckbox(500, 545, 64, 64, TextGet("DisableAnimations"), Player.OnlineSettings.DisableAnimations);
+	DrawCheckbox(500, 625, 64, 64, TextGet("EnableAfkTimer"), Player.OnlineSettings.EnableAfkTimer);
+	DrawCheckbox(500, 705, 64, 64, TextGet("EnableWardrobeIcon"), Player.OnlineSettings.EnableWardrobeIcon);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawCharacter(Player, 50, 50, 0.9);
 }
@@ -704,13 +736,7 @@ function PreferenceSubscreenChatClick() {
 		if ((MouseY >= 812) && (MouseY <= 876)) Player.ChatSettings.ShowActivities = !Player.ChatSettings.ShowActivities;
 	}
 
-	if ((MouseX >= 1200) && (MouseX <= 1264)) {
-		if ((MouseY >= 492) && (MouseY <= 556)) Player.ChatSettings.AutoBanBlackList = !Player.ChatSettings.AutoBanBlackList;
-		if ((MouseY >= 572) && (MouseY <= 636)) Player.ChatSettings.AutoBanGhostList = !Player.ChatSettings.AutoBanGhostList;
-		if ((MouseY >= 652) && (MouseY <= 716)) Player.ChatSettings.SearchShowsFullRooms = !Player.ChatSettings.SearchShowsFullRooms;
-		if ((MouseY >= 732) && (MouseY <= 796)) Player.ChatSettings.SearchFriendsFirst = !Player.ChatSettings.SearchFriendsFirst;
-		if ((MouseY >= 812) && (MouseY <= 876)) Player.ChatSettings.DisableAnimations = !Player.ChatSettings.DisableAnimations;
-	}
+	if (MouseIn(1200, 492, 64, 64)) Player.ChatSettings.ShowAutomaticMessages = !Player.ChatSettings.ShowAutomaticMessages;
 
 	// If the user used one of the BackNextButtons
 	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 190) && (MouseY < 270)) {
@@ -738,6 +764,24 @@ function PreferenceSubscreenChatClick() {
 		PreferenceMainScreenLoad();
 	}
 
+}
+
+function PreferenceSubscreenOnlineClick() {
+	const OnlineSettings = Player.OnlineSettings;
+	if (MouseIn(1815, 75, 90, 90) && PreferenceColorPick == "") {
+		PreferenceSubscreen = "";
+		PreferenceMainScreenLoad();
+	}
+	else if (MouseIn(500, 225, 64, 64)) OnlineSettings.AutoBanBlackList = !OnlineSettings.AutoBanBlackList;
+	else if (MouseIn(500, 305, 64, 64)) OnlineSettings.AutoBanGhostList = !OnlineSettings.AutoBanGhostList;
+	else if (MouseIn(500, 385, 64, 64)) OnlineSettings.SearchShowsFullRooms = !OnlineSettings.SearchShowsFullRooms;
+	else if (MouseIn(500, 465, 64, 64)) OnlineSettings.SearchFriendsFirst = !OnlineSettings.SearchFriendsFirst;
+	else if (MouseIn(500, 545, 64, 64)) OnlineSettings.DisableAnimations = !OnlineSettings.DisableAnimations;
+	else if (MouseIn(500, 625, 64, 64)) {
+		OnlineSettings.EnableAfkTimer = !OnlineSettings.EnableAfkTimer;
+		AfkTimerSetEnabled(OnlineSettings.EnableAfkTimer);
+	}
+	else if (MouseIn(500, 705, 64, 64)) OnlineSettings.EnableWardrobeIcon = !OnlineSettings.EnableWardrobeIcon;
 }
 
 /**
