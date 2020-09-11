@@ -239,8 +239,8 @@ function CommonDrawAppearanceBuild(C, {
 
 			// If we just drew the last drawable layer for this asset, draw the lock too (never colorized)
 			if (DrawableLayerCount === LayerCounts[CountKey]) {
-				drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + Type + "_Lock.png", X, Y, AlphaMasks);
-				drawImageBlink("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + Type + "_Lock.png", X, Y, AlphaMasks);
+				drawImage("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + Expression + A.Name + (A.HasType ? Type : "") + "_Lock.png", X, Y, AlphaMasks);
+				drawImageBlink("Assets/" + AG.Family + "/" + AG.Name + "/" + Pose + BlinkExpression + A.Name + (A.HasType ? Type : "") + "_Lock.png", X, Y, AlphaMasks);
 			}
 		}
 		
