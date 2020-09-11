@@ -32,7 +32,7 @@ function InventoryItemLegsDuctTapePublishAction(C, Option) {
 	var msg = "DuctTapeRestrain" + Option.Name;
 	var Dictionary = [];
 	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-	Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
