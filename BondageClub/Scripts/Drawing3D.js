@@ -139,6 +139,7 @@ function set3Dcolor(hexcolor,grpname , itemname, path3d) {
 						 var zero = `${webpath}${path3d}${grpname}/${itemname}${texturecount}.bmp`;
 					   http.open('Head', zero, false);
 					 	 http.send();
+						 // if (http.status == 404) 
 						 if (http.status !== 200) break;
 
 					 	 textures = loader.load(`${path3d}${grpname}/${itemname}${texturecount}.bmp`);
