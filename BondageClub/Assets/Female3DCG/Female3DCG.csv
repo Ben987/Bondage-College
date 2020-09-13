@@ -93,6 +93,7 @@ ClothLower,Gown2Skirt,Hobble Gown Skirt
 ClothLower,AdmiralSkirt,Admiral Skirt
 ClothLower,JeanSkirt,Jean Skirt
 ClothLower,PencilSkirt,Pencil Skirt
+ClothLower,JeansShorts,Jeans Shorts
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
@@ -140,6 +141,7 @@ Bra,LatexCorset1,Latex Corset
 Bra,LeatherStrapBra1,Leather Strap Bra
 Bra,Swimsuit3,Swimsuit style 3
 Bra,LeatherCorsetTop1,Leather Corset Top
+Bra,CowPrintedBra,Cow Printed Bra
 Panties,,Panties
 Panties,Panties1,Style 1
 Panties,Panties7,Style 2
@@ -169,6 +171,7 @@ Panties,SunstripePanties1,Sunstripe Panties
 Panties,SexyBeachPanties1,Sexy Beach Panties
 Panties,ChinesePanties1,Chinese Panties
 Panties,LeatherStrapPanties1,Leather Strap Panties
+Panties,CowPrintedPanties,Cow Printed Panties
 Socks,,Socks
 Socks,Socks0,Ankle
 Socks,Socks1,Short
@@ -470,14 +473,14 @@ Pussy,PussyLight3,Light 3
 Pussy,PussyDark1,Dark 1
 Pussy,PussyDark2,Dark 2
 Pussy,PussyDark3,Dark 3
-Eyebrows,,Eyebrows
-Eyebrows,Eyebrows1,Eyebrows
 Blush,,Blush
 Blush,Blush,Blush
 Fluids,,Fluids
 Fluids,Fluids,Fluids
 Emoticon,,Emoticon
 Emoticon,Emoticon,Emoticon
+Eyebrows,,Eyebrows
+Eyebrows,Eyebrows1,Eyebrows
 ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope

@@ -419,17 +419,6 @@ function DrawCanvas(Img, Canvas, X, Y, AlphaMasks) {
 }
 
 /**
- * Draws a specific canvas on the main canvas
- * @param {HTMLCanvasElement} Canvas - Canvas to draw on the main canvas
- * @param {number} X - Position of the canvas on the X axis
- * @param {number} Y - Position of the canvas on the Y axis
- * @returns {void} - Nothing
- */
-function DrawCanvas(Canvas, X, Y) {
-	MainCanvas.drawImage(Canvas, X, Y);
-}
-
-/**
  * Draws a specific canvas with a zoom on the main canvas
  * @param {HTMLCanvasElement} Canvas - Canvas to draw on the main canvas
  * @param {number} X - Position of the canvas on the X axis

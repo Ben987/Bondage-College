@@ -399,11 +399,11 @@ function CharacterApperanceSetHeightModifier(C) {
 				for (let P = 0; P < Pose.length; P++)
 					if (Pose[P].Name == C.Pose[A])
 						if (Pose[P].OverrideHeight != null) {
-							if (!((Pose[P].Name == "Kneel") && (C.Pose.indexOf("Hogtied") >= 0)))
-								// Ignore kneel, if player is hogtied. 
-								// Allows the use of a short chain on hogtied players
+							// Ignore kneel, if player is hogtied. Allows the use of a short chain on hogtied players
+							// Ignore overthehead if kneeling
+							if (!((Pose[P].Name == "Kneel") && (C.Pose.indexOf("Hogtied") >= 0)) && !((Pose[P].Name == "OverTheHead") && (C.Pose.indexOf("Kneel") >= 0)))
 								Height = Pose[P].OverrideHeight;
-						}// if
+						}
 		C.HeightModifier = Height;
 	}
 }
