@@ -90,7 +90,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked: function () { return CharacterIsNaked(this); },
 		IsDeaf: function () { return this.GetDeafLevel() > 0 },
-		HasNoItem: function () { return CharacterHasNoItem(this); }
+		HasNoItem: function () { return CharacterHasNoItem(this); },
+		IsEdged: function () { return CharacterIsEdged(this); },
 	};
 
 	// If the character doesn't exist, we create it
@@ -402,6 +403,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 function CharacterDelete(NPCType) {
 	for (let C = 0; C < Character.length; C++)
 		if (Character[C].AccountName == NPCType) {
+			AnimationPurge(Character[C], true);
 			Character.splice(C, 1);
 			return;
 		}
@@ -539,6 +541,7 @@ function CharacterChangeMoney(C, Value) {
  * @returns {void} - Nothing
  */
 function CharacterRefresh(C, Push) {
+	AnimationPurge(C, false);
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);
 	CharacterLoadCanvas(C);
@@ -660,15 +663,16 @@ function CharacterDress(C, Appearance) {
 /**
  * Removes all binding items from a given character
  * @param {Character} C - Character to release
+ * @param {false} [Refresh] - do not call CharacterRefresh if false
  * @returns {void} - Nothing
  */
-function CharacterRelease(C) {
+function CharacterRelease(C, Refresh) {
 	for (let E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.IsRestraint) {
 			C.Appearance.splice(E, 1);
 			E--;
 		}
-	CharacterRefresh(C);
+	if (Refresh || Refresh == null) CharacterRefresh(C);
 }
 
 /**
@@ -739,8 +743,9 @@ function CharacterGetBonus(C, BonusType) {
  * Restrains a character with random restraints. Some restraints are specifically disabled for randomization in their definition.
  * @param {Character} C - The target character to restrain
  * @param {"FEW"|"LOT"|"ALL"} [Ratio] - Amount of restraints to put on the character
+ * @param {false} [Refresh] - do not call CharacterRefresh if false
  */
-function CharacterFullRandomRestrain(C, Ratio) {
+function CharacterFullRandomRestrain(C, Ratio, Refresh) {
 
 	// Sets the ratio depending on the parameter
 	var RatioRare = 0.75;
@@ -752,12 +757,14 @@ function CharacterFullRandomRestrain(C, Ratio) {
 	}
 
 	// Apply each item if needed
-	if (InventoryGet(C, "ItemArms") == null) InventoryWearRandom(C, "ItemArms");
-	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemHead") == null)) InventoryWearRandom(C, "ItemHead");
-	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemMouth") == null)) InventoryWearRandom(C, "ItemMouth");
-	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemNeck") == null)) InventoryWearRandom(C, "ItemNeck");
-	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs");
-	if ((Math.random() >= RatioNormal) && !C.IsKneeling() && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet");
+	if (InventoryGet(C, "ItemArms") == null) InventoryWearRandom(C, "ItemArms", false);
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemHead") == null)) InventoryWearRandom(C, "ItemHead", false);
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemMouth") == null)) InventoryWearRandom(C, "ItemMouth", false);
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemNeck") == null)) InventoryWearRandom(C, "ItemNeck", false);
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs", false);
+	if ((Math.random() >= RatioNormal) && !C.IsKneeling() && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet", false);
+
+	if (Refresh || Refresh == null) CharacterRefresh(C);
 
 }
 
@@ -773,11 +780,12 @@ function CharacterSetActivePose(C, NewPose) {
 }
 
 /**
- * Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a timed expression cannot override another one.
+ * Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a
+ * timed expression cannot override another one.
  * @param {Character} C - Character for which to set the expression of
  * @param {group} AssetGroup - Asset group for the expression
  * @param {string} Expression - Name of the expression to use
- * @param {number} [Timer] - Optional: time the expression will last 
+ * @param {number} [Timer] - Optional: time the expression will last
  * @returns {void} - Nothing
  */
 function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
@@ -845,7 +853,8 @@ function CharacterCompressWardrobe(Wardrobe) {
 }
 
 /**
- * Decompresses a character wardrobe from a LZ String to an array if it was previously compressed (For backward compatibility with old wardrobes)
+ * Decompresses a character wardrobe from a LZ String to an array if it was previously compressed (For backward compatibility with old
+ * wardrobes)
  * @param {Array.<Array.<*>> | string} Wardrobe - The current wardrobe
  * @returns {Array.<Array.<*>>} - The array of wardrobe items decompressed
  */
@@ -877,4 +886,24 @@ function CharacterHasItemForActivity(C, Activity) {
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.AllowActivity != null) && (C.Appearance[A].Asset.AllowActivity.indexOf(Activity) >= 0))
 			return true;
 	return false;
+}
+
+/**
+ * Checks if the character is edged or not. The character is edged if every equipped vibrating item on an orgasm zone has the "Edged" effect
+ * @param {Character} C - The character to check
+ * @returns {boolean} - TRUE if the character is edged, FALSE otherwise
+ */
+function CharacterIsEdged(C) {
+	if (C.ID !== 0 || !C.Effect.includes("Edged")) {
+		return false;
+	}
+
+	// Get every vibrating item on an orgasm zone
+	const VibratingItems = C.ArousalSettings.Zone
+		.filter(Zone => Zone.Orgasm)
+		.map(Zone => InventoryGet(C, Zone.Name))
+		.filter(Item => Item && Item.Property && typeof Item.Property.Intensity === "number" && Item.Property.Intensity >= 0);
+
+	// Return true if every vibrating item on an orgasm zone has the "Edged" effect
+	return !!VibratingItems.length && VibratingItems.every(Item => Item.Property.Effect && Item.Property.Effect.includes("Edged"));
 }

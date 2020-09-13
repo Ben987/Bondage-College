@@ -204,3 +204,19 @@ function InventorySpankingToysActivityAllowed(C) {
 	}
 	return false;
 }
+
+// Returns the audio sound to be played
+function InventorySpankingToysGetAudio(C) {
+	switch (InventorySpankingToysGetType(C)) {
+		case "Crop":
+		case "Flogger": return "SmackSkin1";
+		case "Cane":
+		case "HeartCrop": return "SmackSkin2";
+		case "Paddle":
+		case "WhipPaddle":
+		case "TennisRacket": return "SmackSkin3";
+		case "Whip": return "Whip1";
+		case "CattleProd": return "Shocks";
+		default: return "";
+	}
+}

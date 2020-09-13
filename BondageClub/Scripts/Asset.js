@@ -142,9 +142,14 @@ function AssetAdd(NewAsset) {
 		DynamicName: (typeof NewAsset.DynamicName === 'function') ? NewAsset.DynamicName : function () { return this.Name },
 		DynamicGroupName: (NewAsset.DynamicGroupName || AssetCurrentGroup.Name),
 		DynamicActivity: (typeof NewAsset.DynamicActivity === 'function') ? NewAsset.DynamicActivity : function () { return NewAsset.Activity },
+		DynamicAudio: (typeof NewAsset.DynamicAudio === 'function') ? NewAsset.DynamicAudio : null,
 		CharacterRestricted: typeof NewAsset.CharacterRestricted === 'boolean' ? NewAsset.CharacterRestricted : false,
 		AllowRemoveExclusive: typeof NewAsset.AllowRemoveExclusive === 'boolean' ? NewAsset.CharacterRestricted : false,
-		InheritColor: NewAsset.InheritColor
+		InheritColor: NewAsset.InheritColor,
+		DynamicBeforeDraw: (typeof NewAsset.DynamicBeforeDraw === 'boolean') ? NewAsset.DynamicBeforeDraw : false,
+		DynamicAfterDraw: (typeof NewAsset.DynamicAfterDraw === 'boolean') ? NewAsset.DynamicAfterDraw : false,
+		DynamicScriptDraw: (typeof NewAsset.DynamicScriptDraw === 'boolean') ? NewAsset.DynamicScriptDraw : false,
+		HasType: (typeof NewAsset.HasType === 'boolean') ? NewAsset.HasType : true,
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	// Unwearable assets are not visible but can be overwritten
@@ -177,13 +182,16 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		Name: Layer.Name || null,
 		AllowColorize: AssetLayerAllowColorize(Layer, AssetDefinition),
 		AllowTypes: Array.isArray(Layer.AllowTypes) ? Layer.AllowTypes : null,
-		HasType: typeof Layer.HasType === "boolean" ? Layer.HasType : true,
+		HasType: typeof Layer.HasType === "boolean" ? Layer.HasType : A.HasType,
 		ParentGroupName: Layer.ParentGroup,
 		OverrideAllowPose: Array.isArray(Layer.OverrideAllowPose) ? Layer.OverrideAllowPose : null,
 		Priority: Layer.Priority || AssetDefinition.Priority || AssetCurrentGroup.DrawingPriority,
 		InheritColor: Layer.InheritColor,
 		Alpha: AssetLayerAlpha(Layer, AssetDefinition, I),
-		Asset: A
+		Asset: A,
+		DrawingLeft: Layer.Left,
+		DrawingTop: Layer.Top,
+		HideAs: Layer.HideAs,
 	};
 }
 
@@ -224,7 +232,7 @@ function AssetBuildDescription(Family, CSV) {
 		if (Asset[A].Group.Family == Family) {
 
 			// Checks if the group matches
-			if ((CSV[L][0] != null) && (CSV[L][0].trim() != "") && (Asset[A].Group.Name == CSV[L][0].trim())) {
+			if ((CSV[L] != null) && (CSV[L][0] != null) && (CSV[L][0].trim() != "") && (Asset[A].Group.Name == CSV[L][0].trim())) {
 
 				// If we must put the group description
 				if (((CSV[L][1] == null) || (CSV[L][1].trim() == "")) && ((CSV[L][2] != null) && (CSV[L][2].trim() != ""))) {

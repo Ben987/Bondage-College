@@ -23,8 +23,8 @@ var LoginFrameTotalTime = 0;*/
  */
 function LoginDoNextThankYou() {
 	LoginThankYou = CommonRandomItemFromList(LoginThankYou, LoginThankYouList);
-	CharacterRelease(Player);
-	CharacterAppearanceFullRandom(Player);
+	CharacterRelease(Player, false);
+	CharacterAppearanceFullRandom(Player, false);
 	CharacterFullRandomRestrain(Player);
 	LoginThankYouNext = CommonTime() + 4000;
 }
@@ -142,8 +142,8 @@ function LoginRun() {
  */
 function LoginValidCollar() {
  	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) {
- 		InventoryRemove(Player, "ItemNeck");
-		InventoryRemove(Player, "ItemNeckAccessories");
+ 		InventoryRemove(Player, "ItemNeck", false);
+		InventoryRemove(Player, "ItemNeckAccessories", false);
 		InventoryRemove(Player, "ItemNeckRestraints");
 	}
  	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) {
@@ -349,6 +349,7 @@ function LoginResponse(C) {
 			Player.AudioSettings = C.AudioSettings;
 			Player.GameplaySettings = C.GameplaySettings;
 			Player.ArousalSettings = C.ArousalSettings;
+			Player.OnlineSettings = C.OnlineSettings;
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
