@@ -898,7 +898,7 @@ function AppearanceClick() {
 
 		// Picks and colors a random item from the group
 		if (C.ID == 0 && !DialogItemPermissionMode && MouseIn(1300, 25, 90, 90)) {
-			InventoryWearRandom(C, C.FocusGroup.Name, null, false, true);
+			InventoryWearRandom(C, C.FocusGroup.Name, null, true, true);
 		}
 
 		// Swaps between normal and permission mode
