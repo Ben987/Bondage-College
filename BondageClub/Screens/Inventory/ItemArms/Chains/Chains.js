@@ -49,7 +49,6 @@ const ChainsArmsOptions = [
 		Prerequisite: ["NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
-		HiddenItem: "SuspensionChains"
 	}
 ];
 
@@ -124,7 +123,6 @@ function InventoryItemArmsChainsClick() {
  * @param {number} NewType.RequiredBondageLevel - THe minimum bondage level, the rigger needs befor she can do this tie
  * @param {Property} NewType.Property - A propperty object, detailing the new pose
  * @param {Expression} NewType.Expression - An expression object, that changes the expressions of the victim
- * @param {string} NewType.HiddenItem - Name of an item from the ItemHidden gropu to apply on the victim
  * @returns {void} - Nothing
  */
 function InventoryItemArmsChainsSetPose(NewType) {
@@ -142,8 +140,6 @@ function InventoryItemArmsChainsSetPose(NewType) {
 	// Sets the new pose with its effects only if the chains are not locked
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		DialogFocusItem.Property = NewType.Property;
-		if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
-		else InventoryRemove(C, "ItemHidden");
 	} else {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");
 		return;

@@ -1,6 +1,78 @@
 "use strict";
 var AudioDialog = new Audio();
 
+var AudioList = [
+	{ Name: "Bag", File: "Bag" },
+	{ Name: "Beep", File: "BeepAlarm" },
+	{ Name: "BellMedium", File: "BellMedium" },
+	{ Name: "BellSmall", File: "BellSmall" },
+	{ Name: "ChainLong", File: "ChainLong" },
+	{ Name: "ChainShort", File: "ChainShort" },
+	{ Name: "CuffsMetal", File: "CuffsMetal" },
+	{ Name: "Deflation", File: "Deflation" },
+	{ Name: "DuctTape", File: "DuctTape18" },
+	{ Name: "Inflation", File: "Inflation" },
+	{ Name: "LockLarge", File: "LockLarge" },
+	{ Name: "LockSmall", File: "LockSmall" },
+	{ Name: "RopeLong", File: "RopeLong" },
+	{ Name: "RopeShort", File: "RopeShort" },
+	{ Name: "Shocks", File: "Shocks" },
+	{ Name: "SmackSkin1", File: "SmackBareSkin04-1" },
+	{ Name: "SmackSkin2", File: "SmackBareSkin04-2" },
+	{ Name: "SmackSkin3", File: "SmackBareSkin04-3" },
+	{ Name: "Whip1", File: "SmackWhip1" },
+	{ Name: "Whip2", File: "SmackWhip2" },
+	{ Name: "Sybian", File: "Sybian" },
+	{ Name: "Unlock", File: "UnlockSmall" },
+	{ Name: "VibrationLong1", File: "VibrationTone4Long3" },
+	{ Name: "VibrationLong2", File: "VibrationTone4Long6" },
+	{ Name: "VibrationShort", File: "VibrationTone4ShortLoop" },
+	{ Name: "Wand", File: "Wand" },
+	{ Name: "ZipTie", File: "ZipTie" },
+];
+
+var AudioActions = [
+	{ Action: "ActionAddLock", Sound: "LockSmall" },
+	{ Action: "TimerRelease", Sound: "Unlock" },
+	{ Action: "ActionUnlock", Sound: "Unlock" },
+	{ Action: "ActionUnlockAndRemove", Sound: "Unlock" },
+	{ Action: "ActionLock", GetAudioInfo: AudioPlayAssetSound },
+	{ Action: "ActionUse", GetAudioInfo: AudioPlayAssetSound },
+	{ Action: "ActionSwap", GetAudioInfo: AudioPlayAssetSound },
+	{
+		IsAction: (data) => data.Content.indexOf("ActionActivity") == 0,
+		GetAudioInfo: AudioPlayAssetSound
+	},
+	{
+		IsAction: (data) => ["pumps", "Suctightens", "InflatableBodyBagRestrain"].find(A => data.Content.includes(A)),
+		Sound: "Inflation"
+	},
+	{
+		IsAction: (data) => ["deflates", "Sucloosens"].find(A => data.Content.includes(A)),
+		Sound: "Deflation"
+	},
+	{
+		IsAction: (data) => ["ChainSet"].find(A => data.Content.includes(A)),
+		Sound: "ChainLong"
+	},
+	{
+		IsAction: (data) => ["RopeSet"].find(A => data.Content.includes(A)),
+		Sound: "RopeShort"
+	},
+	{
+		IsAction: (data) => ["ShacklesRestrain", "Ornate"].find(A => data.Content.includes(A)),
+		Sound: "CuffsMetal"
+	},
+	{
+		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "TriggerShock"].find(A => data.Content.includes(A)),
+		GetAudioInfo: (data) => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data)
+	},
+	{
+		IsAction: (data) => ["Decrease", "Increase"].find(A => data.Content.includes(A)) && !data.Content.endsWith("-1"),
+		GetAudioInfo: AudioVibratorSounds
+	},
+];
+
 /**
  * Plays a sound at a given volume
  * @param {string} src - Source of the audio file to play
@@ -44,169 +116,103 @@ function AudioDialogStop() {
  */
 function AudioPlayContent(data) {
 	// Exits right away if we are missing content data
-	if (!Player.AudioSettings || !Player.AudioSettings.PlayItem || (Player.AudioSettings.Volume == 0)) return;
-	if (!data.Dictionary || !data.Dictionary.length) return;
-	var noiseLevelModifier = 0;
-	var audioFile = "";
+	if (!Player.AudioSettings || !Player.AudioSettings.PlayItem || (Player.AudioSettings.Volume == 0) || !data.Dictionary || !data.Dictionary.length) return;
+	var NoiseModifier = 0;
+	var FileName = "";
 
-	// Instant actions can trigger a sound depending on the asset
-	if (data.Content == "ActionAddLock") {
-		audioFile = "Audio/LockSmall.mp3";
-	} else if (data.Content == "TimerRelease" || data.Content == "ActionUnlock" || data.Content == "ActionUnlockAndRemove") {
-		audioFile = "Audio/UnlockSmall.mp3";
-	} else if (data.Content == "ActionLock" || data.Content == "ActionUse" || data.Content == "ActionSwap" || data.Content == "SlaveCollarChangeType" || (data.Content.indexOf("ActionActivity") == 0)) {
-		noiseLevelModifier += 3; //constant vibration volume level
-		var NextAsset = data.Dictionary.find(function (el) {return el.Tag == "NextAsset";});
-		if (!NextAsset || !NextAsset.AssetName) return;
-		if (NextAsset.AssetName == "LeatherCrop")
-			audioFile = "Audio/SmackBareSkin04-1.mp3";
-		else if (NextAsset.AssetName == "LeatherWhip")
-			audioFile = "Audio/SmackWhip2.mp3";
-		else if (NextAsset.AssetName == "SpankingToys") {
-			if (data.Dictionary.find(function (g) { return g.AssetGroupName; }) == "ItemHands") return;
-			var characterSource = ChatRoomCharacter.find(function (e1) { return e1.MemberNumber == data.Sender; });
-			var equippedItem = InventoryGet(characterSource, "ItemHands");
-			if (!equippedItem || !equippedItem.Property) return;
-			switch (equippedItem.Property.Type) {
-				case "Crop":
-				case "Flogger": audioFile = "Audio/SmackBareSkin04-1.mp3"; break;
-				case "Cane":
-				case "HeartCrop": audioFile = "Audio/SmackBareSkin04-2.mp3"; break;
-				case "Paddle":
-				case "WhipPaddle":
-				case "TennisRacket": audioFile = "Audio/SmackBareSkin04-3.mp3"; break;
-				case "Whip": audioFile = "Audio/SmackWhip1.mp3"; break;
-				case "CattleProd": audioFile = "Audio/Shocks.mp3"; break;
-				default: return;
-			}
-		} else {
-			switch (NextAsset.AssetName) {
-				case "VibratingWand" : audioFile = "Audio/Wand.mp3"; break;
-				case "Zipties" : audioFile = "Audio/ZipTie.mp3"; break;
-				case "DuctTape" : audioFile = "Audio/DuctTape18.mp3"; break;
-				case "InflatableBodyBag":
-				case "BurlapSack": audioFile = "Audio/Bag.mp3"; break;
-				case "RopeGag": 
-				case "NeckRope": 
-				case "HempRopeHarness": 
-				case "HempRopeBelt": 
-				case "NylonRopeHarness": 
-				case "RopeBlindfold": 
-				case "BedRopes": 
-				case "ToeTie": 
-				case "NylonRope":
-				case "HempRope": audioFile = "Audio/RopeShort.mp3"; break;
-				case "CollarChainShort":
-				case "CollarChainLong":
-				case "Chains":
-				case "CrotchChain":
-				case "Manacles":
-				case "FullBodyShackles": audioFile = "Audio/ChainLong.mp3"; break;
-				case "PolishedSteelHood":
-				case "WoodenBox":
-				case "SmallWoodenBox":
-				case "Cage":
-				case "LowCage":
-				case "TheDisplayFrame":
-				case "DisplayCase":
-				case "SmallDisplayCase":
-				case "HighSecurityCollar": audioFile = "Audio/LockLarge.mp3"; break;
-				case "ChainLeash":
-				case "CollarLeash":
-				case "MetalCuffs":
-				case "ToeCuffs": audioFile = "Audio/LockSmall.mp3"; break;
-				case "PolishedMittens":
-				case "SteelMuzzleGag":
-				case "BondageBouquet":
-				case "Irish8Cuffs":
-				case "WristShackles":
-				case "AnkleShackles":
-				case "SlenderSteelCollar":
-				case "OrnateCollar":
-				case "OrnateLegCuffs":
-				case "OrnateAnkleCuffs":
-				case "OrnateCuffs":
-				case "OrnateChastityBelt":
-				case "OrnateChastityBra":
-				case "MetalChastityBelt":
-				case "MetalChastityBra":
-				case "PolishedChastityBelt":
-				case "PolishedChastityBra":
-				case "LoveChastityBelt":
-				case "SteelChastityPanties":
-				case "SteelPostureCollar": audioFile = "Audio/CuffsMetal.mp3"; break;
-				case "LeatherCollarBell": audioFile = "Audio/BellMedium.mp3"; break;
-				case "BellClamps":
-				case "BellClitPiercing":
-				case "BellPiercing": audioFile = "Audio/BellSmall.mp3"; break;
-				default: return;
-			}
-		}
-	} else {
-		// When the vibrator or inflatable level increases or decreases
-		if (data.Content.includes("pumps") || data.Content.includes("Suctightens") || data.Content.includes("InflatableBodyBagRestrain"))
-			audioFile = "Audio/Inflation.mp3";
-		else if (data.Content.includes("deflates") || data.Content.includes("Sucloosens"))
-			audioFile = "Audio/Deflation.mp3";
-		else if (data.Content.includes("Decrease") || data.Content.includes("Increase")) { 
-			if (data.Content.endsWith("-1")) return; // special case of turning vibrators off, may be a click sound in the future?
-			var vibrationLevel = parseInt(data.Content.substr(data.Content.length - 1));
-			if (!isNaN(vibrationLevel)) noiseLevelModifier += vibrationLevel * 3;
-			var assetName = data.Content.substring(0, data.Content.length - "IncreaseTo1".length);
-			switch (assetName) {
-				case "Vibe":
-				case "VibeHeartClitPiercing":
-				case "NippleHeart":
-				case "Nipple":
-				case "NippleEgg":
-				case "TapedClitEgg":
-				case "Egg": audioFile = "Audio/VibrationTone4ShortLoop.mp3"; break;
-				case "LoveChastityBeltVibe":
-				case "Belt":
-				case "Panties": audioFile = "Audio/VibrationTone4Long3.mp3"; break;
-				case "Buttplug":
-				case "InflVibeButtPlug_Vibe":
-				case "InflVibeDildo_Vibe":
-				case "Dildo": audioFile = "Audio/VibrationTone4Long6.mp3"; break;
-				case "Sybian": audioFile = "Audio/Sybian.mp3"; break;
-				default: return;
-			}
-		} else if (data.Content.includes("CollarShockUnitTrigger") || data.Content.includes("ShockCollarTrigger") || data.Content.includes("LoveChastityBeltShockTrigger") || data.Content.includes("TriggerShock")) {
-			var shockLevel = parseInt(data.Content.substr(data.Content.length - 1));
-			if (!isNaN(shockLevel)) noiseLevelModifier+= shockLevel * 3;
-			audioFile = "Audio/Shocks.mp3";
-		} else if (data.Content.includes("ShacklesRestrain") || data.Content.includes("Ornate")) {
-			audioFile = "Audio/CuffsMetal.mp3";
-		} else if (data.Content.includes("RopeSet")) {
-			audioFile = "Audio/RopeShort.mp3";
-			data.Sender = data.Dictionary.find(function (el) {return el.Tag == "SourceCharacter";}).MemberNumber;
-		} else if (data.Content.includes("ChainSet")) {
-			audioFile = "Audio/ChainLong.mp3";
-			data.Sender = data.Dictionary.find(function (el) {return el.Tag == "SourceCharacter";}).MemberNumber;
-		}
+	// Instant actions can trigger a sound depending on the action. It can be a specific string or custom function to determine if a sound should be played, it can also alter the sound level.
+	// The sound can be a specific one or the result of a function
+	var Action = AudioActions.find(A => A.Action && A.Action == data.Content) || AudioActions.find(CA => CA.IsAction && CA.IsAction(data));
+	if (Action) {
+		if (Action.GetAudioInfo) {
+			var Result = Action.GetAudioInfo(data);
+			FileName = AudioGetFileName(Result[0]);
+			NoiseModifier += Result[1] || 0;
+		} else
+			FileName = AudioGetFileName(Action.Sound);
 	}
 
 	// Update noise level depending on who the interaction took place between.  Sensory isolation increases volume for self, decreases for others.
-	if (!audioFile) return;
-	var target = data.Dictionary.find(function (el) {return el.Tag == "DestinationCharacter" || el.Tag == "DestinationCharacterName" || el.Tag == "TargetCharacter";});
-	if (!target || !target.MemberNumber) return;
+	var Target = data.Dictionary.find((el) => el.Tag == "DestinationCharacter" || el.Tag == "DestinationCharacterName" || el.Tag == "TargetCharacter");
 
-	var targetIsPlayer = target.MemberNumber == Player.MemberNumber;
+	if (!FileName || !Target || !Target.MemberNumber) return;
 
-	// If the player is the target, increase volume
-	if (targetIsPlayer) noiseLevelModifier += 3;
+	if (Target.MemberNumber == Player.MemberNumber) NoiseModifier += 3;
+	else if (data.Sender != Player.MemberNumber) NoiseModifier -= 3;
 
-	// If the player is blindfolded, increase volume based on blindfold level
-	if (Player.Effect.indexOf("BlindHeavy") >= 0) noiseLevelModifier += 4;
-	else if (Player.Effect.indexOf("BlindNormal") >= 0) noiseLevelModifier += 2;
-	else if (Player.Effect.indexOf("BlindLight") >= 0) noiseLevelModifier += 1;
+	if (Player.Effect.indexOf("BlindHeavy") >= 0) NoiseModifier += 4;
+	else if (Player.Effect.indexOf("BlindNormal") >= 0) NoiseModifier += 2;
+	else if (Player.Effect.indexOf("BlindLight") >= 0) NoiseModifier += 1;
 
-	// Reduce volume based on player's deafness level
-	noiseLevelModifier -= (3 * Player.GetDeafLevel());
-
-	// Reduce volume a little if the player was neither the sender nor target
-	if (data.Sender != Player.MemberNumber && !targetIsPlayer) noiseLevelModifier -= 3;
+	NoiseModifier -= (3 * Player.GetDeafLevel());
 
 	// Sends the audio file to be played
-	AudioPlayInstantSound(audioFile, Player.AudioSettings.Volume * (.2 + noiseLevelModifier / 40));
+	AudioPlayInstantSound("Audio/" + FileName + ".mp3", Player.AudioSettings.Volume * (.2 + NoiseModifier / 40));
+}
+
+function AudioGetFileName(sound) {
+	var AssetSound = AudioList.find(A => A.Name == sound);
+	return AssetSound ? AssetSound.File : "";
+}
+
+/**
+ * Processes which sound should be played for items
+ * @param {object} data - Data content triggering the potential sound
+ * @returns {[string, number]} - he name of the sound to play, followed by the noise modifier 
+ */
+function AudioPlayAssetSound(data) {
+	var NextAsset = data.Dictionary.find((el) => el.Tag == "NextAsset");
+	var NextAssetGroup = data.Dictionary.find((el) => el.Tag == "FocusAssetGroup");
+	var FileName = "";
+
+	if (!NextAsset || !NextAsset.AssetName || !NextAssetGroup || !NextAssetGroup.AssetGroupName) return [FileName, 0];
+
+	var Asset = AssetGet("Female3DCG", NextAssetGroup.AssetGroupName, NextAsset.AssetName);
+	
+	if (!Asset) return [FileName, 0];
+	
+	if (Asset.DynamicAudio) {
+		var Char = ChatRoomCharacter.find((C) => C.MemberNumber == data.Sender);
+		FileName = Char ? Asset.DynamicAudio(Char) : "";
+	}
+
+	return [(FileName || Asset.Audio), 3];
+}
+
+/**
+ * Processes the sound for vibrators
+ * @param {object} data - Represents the chat message received
+ * @returns {[string, number]} - The name of the sound to play, followed by the noise modifier 
+ */
+function AudioVibratorSounds(data) {
+	var Sound = "";
+
+	var Level = parseInt(data.Content.substr(data.Content.length - 1));
+	if (isNaN(Level)) Level = 0;
+
+	var AssetName = data.Content.substring(0, data.Content.length - "IncreaseToX".length);
+	switch (AssetName) {
+		case "Vibe":
+		case "VibeHeartClitPiercing":
+		case "NippleHeart":
+		case "Nipple":
+		case "NippleEgg":
+		case "TapedClitEgg":
+		case "ClitStimulator":
+		case "Egg": Sound = "VibrationShort"; break;
+		case "LoveChastityBeltVibe":
+		case "Belt":
+		case "Panties": Sound = "VibrationLong1"; break;
+		case "Buttplug":
+		case "InflVibeButtPlug_Vibe":
+		case "InflVibeDildo_Vibe":
+		case "HempRopeBelt":
+		case "SpreaderVibratingDildoBar":
+		case "BunnyTailVibe":
+		case "EggVibePlugXXL":
+		case "Dildo": Sound = "VibrationLong2"; break;
+		case "Sybian": Sound = "Sybian"; break;
+	}
+
+	return [Sound, Level * 3];
 }
