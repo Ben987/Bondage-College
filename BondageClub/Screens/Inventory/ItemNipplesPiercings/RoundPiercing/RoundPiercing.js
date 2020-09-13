@@ -1,61 +1,100 @@
 "use strict";
 var InventoryItemNipplesPiercingsRoundPiercingMessage = "SelectPiercingState";
+var InventoryItemNipplesPiercingsRoundPiercingPose = "RoundPiercingRestrain";
 
-// Loads the item extension properties
+var InventoryItemNipplesPiercingsRoundPiercingOptions = [
+	{
+		Name: "Base",
+		BondageLevel: 0,
+		Prerequisite: ["AccessBreast", "AccessBreastSuitZip"],
+		Property: {
+			Type: null,
+			Difficulty: 0,
+		},
+	},
+
+	{
+		Name: "Chain",
+		BondageLevel: 0,
+		Prerequisite: ["AccessBreast", "AccessBreastSuitZip", "Collared"],
+		Property: {
+			Type: "Chain",
+			Difficulty: 0,
+			Block: ["ItemNeck"],
+		},
+	},
+
+	{
+		Name: "Weighted",
+		BondageLevel: 0,
+		Prerequisite: ["AccessBreast", "AccessBreastSuitZip"],
+		Property: {
+			Type: "Weighted",
+			Difficulty: 0,
+		},
+	},
+
+	{
+		Name: "WeightedChain",
+		BondageLevel: 0,
+		Prerequisite: ["AccessBreast", "AccessBreastSuitZip", "Collared"],
+		Property: {
+			Type: "WeightedChain",
+			Difficulty: 0,
+			Block: ["ItemNeck"],
+		},
+	},
+]
+
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemNipplesPiercingsRoundPiercingLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
-	InventoryItemNipplesPiercingsRoundPiercingMessage = "SelectPiercingState";
+	ExtendedItemLoad(InventoryItemNipplesPiercingsRoundPiercingOptions, InventoryItemNipplesPiercingsRoundPiercingMessage);
 }
 
-// Draw the item extension screen
+/**
+ * Draw the item extension screen
+ * @returns {void} - Nothing
+ */
 function InventoryItemNipplesPiercingsRoundPiercingDraw() {
-	
-	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
-	// Draw the possible poses
-	DrawText(DialogFind(Player, InventoryItemNipplesPiercingsRoundPiercingMessage), 1500, 500, "white", "gray");
-	DrawButton(1000, 550, 225, 225, "", (DialogFocusItem.Property == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Base.png", 1000, 550);
-	DrawText(DialogFind(Player, "RoundPiercingPoseBase"), 1125, 800, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "Chain")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Chain.png", 1250, 550);
-	DrawText(DialogFind(Player, "RoundPiercingPoseChain"), 1375, 800, "white", "gray");
+	ExtendedItemDraw(InventoryItemNipplesPiercingsRoundPiercingOptions, "RoundPiercingPose");
 }
 
-// Catches the item extension clicks
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemNipplesPiercingsRoundPiercingClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property != null)) InventoryItemNipplesPiercingsRoundPiercingSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "Chain"))) InventoryItemNipplesPiercingsRoundPiercingSetPose("Chain");
+	ExtendedItemClick(InventoryItemNipplesPiercingsRoundPiercingOptions, false);
 }
 
-// Sets the piercing type (chain requires a collar)
-function InventoryItemNipplesPiercingsRoundPiercingSetPose(NewPose) {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if ((NewPose == null) || (InventoryGet(C, "ItemNeck") != null) && (InventoryGet(C, "Cloth") == null)) {
-		if (CurrentScreen == "ChatRoom") {
-			DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-			InventoryItemNipplesPiercingsRoundPiercingLoad();
-		}
-		if (NewPose == null) delete DialogFocusItem.Property;
-		else {
-			DialogFocusItem.Property.Restrain = NewPose;
-			DialogFocusItem.Property.Type = NewPose;
-			DialogFocusItem.Property.OverridePriority = 39;
-			if (NewPose == "Chain") DialogFocusItem.Property.Hide = [""];
-		}
-		CharacterRefresh(C);
-		var msg = "RoundPiercingRestrain" + ((NewPose == null) ? "Base" : NewPose);
-		var Dictionary = [];
-		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-		ChatRoomPublishCustomAction(msg, true, Dictionary);
-		if (DialogInventory != null) {
-			DialogFocusItem = null;
-			DialogMenuButtonBuild(C);
-		}
-	} else InventoryItemNipplesPiercingsRoundPiercingMessage = "NoClothAndCollared";
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @param {Option} PreviousOption - The previously selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemNipplesPiercingsRoundPiercingPublishAction(C, Option, PreviousOption) {
+	var msg = InventoryItemNipplesPiercingsRoundPiercingPose + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
+
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemNipplesPiercingsRoundPiercingNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "RoundPiercingNPCReaction" + Option.Name, "ItemNipplesPiercings");
 }

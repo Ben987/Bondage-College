@@ -47,6 +47,7 @@ Cloth,VirginKiller1,Virgin Killer
 Cloth,ReverseBunnySuit,Reverse Bunny Suit Top
 Cloth,LeatherCropTop, Leather Crop Top
 Cloth,CorsetShirt,Corset Shirt
+Cloth,LeatherBolero,Leather Bolero
 ClothAccessory,,Cloth Accessory
 ClothAccessory,StudentOutfit3Scarf,Student Scarf
 ClothAccessory,StudentOutfit3Bow1,Student Bow 1
@@ -92,6 +93,7 @@ ClothLower,Gown2Skirt,Hobble Gown Skirt
 ClothLower,AdmiralSkirt,Admiral Skirt
 ClothLower,JeanSkirt,Jean Skirt
 ClothLower,PencilSkirt,Pencil Skirt
+ClothLower,JeansShorts,Jeans Shorts
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
@@ -138,6 +140,8 @@ Bra,ChineseBra1,Chinese Bra
 Bra,LatexCorset1,Latex Corset
 Bra,LeatherStrapBra1,Leather Strap Bra
 Bra,Swimsuit3,Swimsuit style 3
+Bra,LeatherCorsetTop1,Leather Corset Top
+Bra,CowPrintedBra,Cow Printed Bra
 Panties,,Panties
 Panties,Panties1,Style 1
 Panties,Panties7,Style 2
@@ -167,6 +171,7 @@ Panties,SunstripePanties1,Sunstripe Panties
 Panties,SexyBeachPanties1,Sexy Beach Panties
 Panties,ChinesePanties1,Chinese Panties
 Panties,LeatherStrapPanties1,Leather Strap Panties
+Panties,CowPrintedPanties,Cow Printed Panties
 Socks,,Socks
 Socks,Socks0,Ankle
 Socks,Socks1,Short
@@ -423,7 +428,7 @@ HairFront,HairFront10b,Style 10b
 HairFront,HairFront11,Style 11
 HairFront,HairFront11b,Style 11b
 HairFront,HairFront12,Style 12
-HairFront,HairFront12,Style 12b
+HairFront,HairFront12b,Style 12b
 HairFront,HairFront13,Style 13
 HairFront,HairFront13b,Style 13b
 HairFront,HairFront14,Style 14
@@ -468,14 +473,14 @@ Pussy,PussyLight3,Light 3
 Pussy,PussyDark1,Dark 1
 Pussy,PussyDark2,Dark 2
 Pussy,PussyDark3,Dark 3
-Eyebrows,,Eyebrows
-Eyebrows,Eyebrows1,Eyebrows
 Blush,,Blush
 Blush,Blush,Blush
 Fluids,,Fluids
 Fluids,Fluids,Fluids
 Emoticon,,Emoticon
 Emoticon,Emoticon,Emoticon
+Eyebrows,,Eyebrows
+Eyebrows,Eyebrows1,Eyebrows
 ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
@@ -633,7 +638,6 @@ ItemNipples,ShockClamps,Shock Clamps
 ItemNipplesPiercings,,Nipples
 ItemNipplesPiercings,StraightPiercing,Straight Piercings
 ItemNipplesPiercings,RoundPiercing,Round Piercings
-ItemNipplesPiercings,WeightedPiercing,Weighted Piercing
 ItemNipplesPiercings,NippleAccessory1,Nipple Jewels
 ItemNipplesPiercings,NippleAccessory2,Nipple Jewel Piercings
 ItemNipplesPiercings,NippleAccessory3,Nipple Gems Piercings
@@ -763,6 +767,7 @@ ItemNeck,SlenderSteelCollar,Slender Steel Collar
 ItemNeck,HeartLinkChoker, Heart-Link Choker
 ItemNeck,NeckRope,Neck Rope
 ItemNeckAccessories,,Collar
+ItemNeckAccessories,CustomNameTag,Custom Tag
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
 ItemNeckAccessories,CollarShockUnit,Shock Unit
@@ -1058,6 +1063,3 @@ ItemBoots,LockingBoots1,Locking Boots
 ItemBoots,LeatherFootMitts1,Short Leather Foot Mittens
 ItemBoots,ToeTape,Toe Tape
 ItemBoots,Zipties,Zip Ties
-ItemHidden,Accessories,
-ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
-ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps

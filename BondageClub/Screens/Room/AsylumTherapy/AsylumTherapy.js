@@ -47,7 +47,7 @@ function AsylumTherapyRun() {
 function AsylumTherapyClick() {
 	if (MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (MouseIn(1000, 0, 500, 1000) && (ReputationGet("Asylum") >= 1)) CharacterSetCurrent(AsylumTherapyPatient);
-	if (MouseIn(1000, 0, 1500, 1000) && (ReputationGet("Asylum") <= -1)) CharacterSetCurrent(AsylumTherapyNurse);
+	if (MouseIn(1000, 0, 500, 1000) && (ReputationGet("Asylum") <= -1)) CharacterSetCurrent(AsylumTherapyNurse);
 	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) {
 		if (Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) AsylumEntranceWearPatientClothes(Player);
 		if ((ReputationGet("Asylum") <= -50) && (LogValue("Committed", "Asylum") >= CurrentTime) && Player.CanInteract()) InventoryWear(Player, "StraitJacket", "ItemArms", "Default", 3);
@@ -128,7 +128,7 @@ function AsylumTherapyTherapySuccess() {
  */
 function AsylumTherapyPainTherapyRestrain() {
 	InventoryWear(Player, "FourLimbsShackles", "ItemArms");
-	CharacterSetActivePose(Player, "Kneel");
+	CharacterSetActivePose(Player, "Kneel", true);
 	InventoryWear(AsylumTherapyNurse, "SpankingToys", "ItemHands");
 	if ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") >= -99)) InventoryGet(AsylumTherapyNurse, "ItemHands").Property = { Type: "Paddle" };
 	if (ReputationGet("Asylum") <= -100) InventoryGet(AsylumTherapyNurse, "ItemHands").Property = { Type: "Whip" };
@@ -182,7 +182,7 @@ function AsylumTherapyPatientBondageIntro(RepChange, RestraintsLevel) {
 function AsylumTherapyPatientPainIntro(RepChange) {
 	DialogChangeReputation("Dominant", RepChange);
 	InventoryWear(AsylumTherapyPatient, "FourLimbsShackles", "ItemArms");
-	CharacterSetActivePose(AsylumTherapyPatient, "Kneel");
+	CharacterSetActivePose(AsylumTherapyPatient, "Kneel", true);
 	InventoryWear(Player, "SpankingToys", "ItemHands");
 	if ((ReputationGet("Asylum") >= 50) && (ReputationGet("Asylum") <= 99)) InventoryGet(Player, "ItemHands").Property = { Type: "Paddle" };
 	if (ReputationGet("Asylum") >= 100) InventoryGet(Player, "ItemHands").Property = { Type: "Whip" };
