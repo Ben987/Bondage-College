@@ -19,6 +19,7 @@
 <script src="Scripts/GLDraw.js"></script>
 <script src="Scripts/Common.js"></script>
 <script src="Scripts/CommonDraw.js"></script>
+<script src="Scripts/Animation.js"></script>
 <script src="Scripts/Mouse.js"></script>
 <script src="Scripts/Drawing.js"></script>
 <script src="Scripts/Drawing3D.js"></script>
@@ -45,6 +46,7 @@
 <script src="Scripts/Activity.js"></script>
 <script src="Scripts/ExtendedItem.js"></script>
 <script src="Scripts/LZString.js"></script>
+<script src="Scripts/VibratorMode.js"></script>
 <script src="Scripts/socket.io/socket.io.js"></script>
 <script src="Scripts/three/three.min.js"></script>
 <script src="Scripts/three/inflate.min.js"></script>
@@ -200,7 +202,6 @@
 <script src="Screens/Inventory/ItemLegs/SturdyLeatherBelts/SturdyLeatherBelts.js"></script>
 <script src="Screens/Inventory/ItemFeet/SturdyLeatherBelts/SturdyLeatherBelts.js"></script>
 <script src="Screens/Inventory/ItemNipplesPiercings/RoundPiercing/RoundPiercing.js"></script>
-<script src="Screens/Inventory/ItemNipplesPiercings/WeightedPiercing/WeightedPiercing.js"></script>
 <script src="Screens/Inventory/ItemLegs/Zipties/Zipties.js"></script>
 <script src="Screens/Inventory/ItemDevices/Sybian/Sybian.js"></script>
 <script src="Screens/Inventory/ItemBoots/ToeTape/ToeTape.js"></script>
@@ -217,8 +218,6 @@
 <script src="Screens/Inventory/ItemArms/FullLatexSuit/FullLatexSuit.js"></script>
 <script src="Screens/Inventory/ItemVulva/FullLatexSuitWand/FullLatexSuitWand.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherArmbinder/LeatherArmbinder.js"></script>
-<script src="Screens/Inventory/ItemHidden/LeatherArmbinderStrap/LeatherArmbinderStrap.js"></script>
-<script src="Screens/Inventory/ItemHidden/LeatherArmbinderWrapStrap/LeatherArmbinderWrapStrap.js"></script>
 <script src="Screens/Inventory/ItemArms/BitchSuit/BitchSuit.js"></script>
 <script src="Screens/Inventory/ItemArms/TightJacketCrotch/TightJacketCrotch.js"></script>
 <script src="Screens/Inventory/ItemDevices/Locker/Locker.js"></script>
@@ -249,6 +248,9 @@
 <script src="Screens/Inventory/ItemArms/LatexSleevelessLeotard/LatexSleevelessLeotard.js"></script>
 <script src="Screens/Inventory/ItemArms/PrisonLockdownSuit/PrisonLockdownSuit.js"></script>
 <script src="Screens/Inventory/ItemArms/HighSecurityStraitJacket/HighSecurityStraitJacket.js"></script>
+<script src="Screens/Inventory/Necklace/NecklaceKey/NecklaceKey.js"></script>
+<script src="Screens/Inventory/Necklace/NecklaceLock/NecklaceLock.js"></script>
+<script src="Screens/Inventory/ItemNeckAccessories/CustomCollarTag.js/CustomCollarTag.js"></script>
 <script>
 
 /*
@@ -257,22 +259,6 @@
 	
 	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
 	
-	OK - No random high security strait jacket (Ellie)
-	OK - Windows XP compatibility (Ellie)
-	OK - Necklace conflict cleanup (Nina)
-	OK - Shopping cart optimization (Ace)
-	BUG SENT - Inherit color (Nina)
-	OK - Elf ears (Nina)
-	OK - Body pantyhose (Gatetrek)
-	OK - Asset default color (Ace)
-	OK - Cattle prod shocks (Ellie)
-	OK - Slow effect for lockdown suit (Ellie)
-	CLIPPING ISSUE SENT - New swimsuit (Ruilove)
-	OK - Hoofs visual fix (Zfreak)
-	OK - Lock for carrot gag (Uwnodi)
-
-	TO DO - Server Migration
-
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
 		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
@@ -291,6 +277,7 @@
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
+	//ServerURL = "https://bondage-club-server.azurewebsites.net/";
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();

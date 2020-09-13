@@ -64,7 +64,6 @@ const HempRopeArmsOptions = [
 		Prerequisite: ["NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
-		HiddenItem: "SuspensionHempRope"
 	}
 ];
 
@@ -137,8 +136,6 @@ function InventoryItemArmsHempRopeSetPose(NewType) {
 
 	// Sets the new pose with its effects and the hidden items if we need to
 	DialogFocusItem.Property = NewType.Property;
-	if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
-	else InventoryRemove(C, "ItemHidden");
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 

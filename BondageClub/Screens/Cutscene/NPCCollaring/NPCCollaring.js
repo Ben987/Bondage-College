@@ -39,7 +39,7 @@ function NPCCollaringRun() {
 function NPCCollaringClick() {
 	CutsceneStage++;
 	if (CutsceneStage == 2) CharacterNaked(NPCCollaringSub);
-	if (CutsceneStage == 4) CharacterSetActivePose(NPCCollaringSub, "Kneel");
+	if (CutsceneStage == 4) CharacterSetActivePose(NPCCollaringSub, "Kneel", true);
 	if (CutsceneStage == 6) InventoryWear(NPCCollaringSub, "SlaveCollar", "ItemNeck");
 	if (CutsceneStage > 8) {
 		ServerPrivateCharacterSync();
