@@ -135,7 +135,7 @@ function SarahLoad() {
 				InventoryWear(Sarah, "SlaveCollar", "ItemNeck");
 				Sarah.Owner = Player.Name;
 			}
-			CharacterSetActivePose(Sarah, "Kneel");
+			CharacterSetActivePose(Sarah, "Kneel", true);
 			AmandaIntroTime = CurrentTime + 400000;
 			SarahCharacter.push(Sarah);
 			
