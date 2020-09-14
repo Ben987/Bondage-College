@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Welcome to the Bondage College!",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint --config ./.eslintrc.js ../../Assets/Female3DCG/Female3DCG.js",
+    "lint:fix": "eslint --fix --config ./.eslintrc.js ../../Assets/Female3DCG/Female3DCG.js",
     "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
   "repository": {

@@ -299,6 +299,30 @@ function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks)
 }
 
 /**
+ * Draws a canvas on the WebGL canvas for the blinking effect
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {ImageData} Img - Canvas to get the data of
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
+ */
+function GLDraw2DCanvasBlink(gl, Img, X, Y, alphaMasks) { GLDraw2DCanvas(gl, Img, X + 500, Y, 500,  alphaMasks); }
+/**
+ * Draws a canvas on the WebGL canvas
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {ImageData} Img - Canvas to get the data of
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
+ */
+function GLDraw2DCanvas(gl, Img, X, Y, alphaMasks) { 
+    var TempCanvasName = Img.getAttribute("name");
+    gl.textureCache.delete(TempCanvasName);
+    GLDrawImageCache.set(TempCanvasName, Img);
+    GLDrawImage(TempCanvasName, gl, X, Y, 0, null, null, alphaMasks);
+}
+
+/**
  * Sets texture info from image data
  * @param {WebGLRenderingContext} gl - WebGL context
  * @param {ImageData} Img - Image to get the data of
@@ -446,13 +470,15 @@ function GLDrawHexToRGBA(color) {
 function GLDrawAppearanceBuild(C) {
     GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, 1000);
     CommonDrawCanvasPrepare(C);
-	CommonDrawAppearanceBuild(C, {
+    CommonDrawAppearanceBuild(C, {
 		clearRect: (x, y, w, h) => GLDrawClearRect(GLDrawCanvas.GL, x, 1000 - y - h, w, h),
 		clearRectBlink: (x, y, w, h) => GLDrawClearRectBlink(GLDrawCanvas.GL, x, 1000 - y - h, w, h),
 		drawImage: (src, x, y, alphaMasks) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, null, null, alphaMasks),
 		drawImageBlink: (src, x, y, alphaMasks) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, null, null, alphaMasks),
 		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, color, fullAlpha, alphaMasks),
 		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, color, fullAlpha, alphaMasks),
+		drawCanvas: (Img, x, y, alphaMasks) => GLDraw2DCanvas(GLDrawCanvas.GL, Img, x, y, alphaMasks),
+		drawCanvasBlink: (Img, x, y, alphaMasks) => GLDraw2DCanvasBlink(GLDrawCanvas.GL, Img, x, y, alphaMasks),
 	});
     C.Canvas.getContext("2d").drawImage(GLDrawCanvas, 0, 0);
     C.CanvasBlink.getContext("2d").drawImage(GLDrawCanvas, -500, 0);

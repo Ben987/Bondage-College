@@ -110,8 +110,8 @@ function ChatSearchNormalDraw() {
 
 			// Draw the room rectangle
 			var HasFriends = ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0;
-			var IsFull = ChatSearchResult[C].MemberCount == ChatSearchResult[C].MemberLimit;
-			DrawButton(X, Y, 630, 85, "", (HasFriends && IsFull ? "#448855" : HasFriends ? "#CFFFCF" : IsFull ? "#666" : "White"));
+			var IsFull = ChatSearchResult[C].MemberCount >= ChatSearchResult[C].MemberLimit;
+			DrawButton(X, Y, 630, 85, "", (HasFriends && IsFull ? "#448855" : HasFriends ? "#CFFFCF" : IsFull ? "#666" : "White"), null, null, IsFull);
 			DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchResult[C].Name + " - " + ChatSearchResult[C].Creator + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 620, "black");
 			DrawTextFit(ChatSearchResult[C].Description, X + 315, Y + 62, 620, "black");
 
@@ -329,7 +329,7 @@ function ChatSearchQuery() {
 		ChatSearchLastQuerySearchTime = CommonTime();
 		ChatSearchLastQuerySearchHiddenRooms = ChatSearchIgnoredRooms.length;
 		ChatSearchResult = [];
-		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace, FullRooms: (Player.ChatSettings && Player.ChatSettings.SearchShowsFullRooms), Ignore: ChatSearchIgnoredRooms });
+		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace, FullRooms: (Player.OnlineSettings && Player.OnlineSettings.SearchShowsFullRooms), Ignore: ChatSearchIgnoredRooms });
 	}
 }
 
@@ -343,6 +343,6 @@ function ChatSearchQuerySort() {
 	ChatSearchResult.sort((R1, R2) => R1.MemberCount >= R1.MemberLimit ? 1 : (R2.MemberCount >= R2.MemberLimit ? -1 : (R1.Order - R2.Order)));
 
 	// Friendlist option overrides basic order, but keeps full rooms at the back for each number of each different total of friends.
-	if (Player.ChatSettings && Player.ChatSettings.SearchFriendsFirst)
+	if (Player.OnlineSettings && Player.OnlineSettings.SearchFriendsFirst)
 		ChatSearchResult.sort((R1, R2) => R2.Friends.length - R1.Friends.length);
 }
