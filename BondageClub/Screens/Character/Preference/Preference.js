@@ -203,16 +203,6 @@ function PreferenceInit(C) {
 	if (C.ChatSettings.ShowAutomaticMessages == null) C.ChatSettings.ShowAutomaticMessages = false;
 	if (!C.VisualSettings) C.VisualSettings = { ForceFullHeight: false };
 
-	if (!C.OnlineSettings) C.OnlineSettings = {};
-	// TODO: The following preferences were migrated September 2020 in for R61 - replace with standard preference code after a few months
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanBlackList", false);
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanGhostList", true);
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "DisableAnimations", false);
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "SearchShowsFullRooms", true);
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "SearchFriendsFirst", false);
-	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableAfkTimer", true);
-	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableWardrobeIcon", false);
-
 	// Sets the default audio settings
 	if (!C.AudioSettings) C.AudioSettings = { Volume: 1, PlayBeeps: false, PlayItem: false, PlayItemPlayerOnly: false };
 	if (typeof C.AudioSettings.Volume !== "number") C.AudioSettings.Volume = 1;
@@ -240,6 +230,16 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 
+	if (!C.OnlineSettings) C.OnlineSettings = {};
+	// TODO: The following preferences were migrated September 2020 in for R61 - replace with standard preference code after a few months
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanBlackList", false);
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanGhostList", true);
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "DisableAnimations", false);
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "SearchShowsFullRooms", true);
+	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "SearchFriendsFirst", false);
+	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableAfkTimer", true);
+	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableWardrobeIcon", false);
+	
 	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
 	if (Player.AssetFamily == "Female3DCG") {
 

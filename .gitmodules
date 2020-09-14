@@ -1,0 +1,3 @@
+[submodule "clubwiki"]
+	path = BondageClub/Wiki
+	url = https://github.com/Ben987/Bondage-College.wiki.git
