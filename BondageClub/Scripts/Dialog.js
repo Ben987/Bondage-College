@@ -924,6 +924,7 @@ function DialogMenuButtonClick() {
 							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
 								DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
 						DialogInventorySort();
+						DialogMenuButtonBuild(C);
 					}
 				} else {
 					DialogItemToLock = null;
@@ -1008,6 +1009,7 @@ function DialogMenuButtonClick() {
 			// When we enter item permission mode, we rebuild the inventory to set permissions
 			else if (DialogMenuButton[I] == "DialogPermissionMode") {
 				DialogItemPermissionMode = true;
+				DialogItemToLock = null;
 				DialogInventoryBuild(C);
 				return;
 			}
