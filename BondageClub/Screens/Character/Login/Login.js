@@ -23,8 +23,8 @@ var LoginFrameTotalTime = 0;*/
  */
 function LoginDoNextThankYou() {
 	LoginThankYou = CommonRandomItemFromList(LoginThankYou, LoginThankYouList);
-	CharacterRelease(Player);
-	CharacterAppearanceFullRandom(Player);
+	CharacterRelease(Player, false);
+	CharacterAppearanceFullRandom(Player, false);
 	CharacterFullRandomRestrain(Player);
 	LoginThankYouNext = CommonTime() + 4000;
 }
@@ -142,8 +142,8 @@ function LoginRun() {
  */
 function LoginValidCollar() {
  	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) {
- 		InventoryRemove(Player, "ItemNeck");
-		InventoryRemove(Player, "ItemNeckAccessories");
+ 		InventoryRemove(Player, "ItemNeck", false);
+		InventoryRemove(Player, "ItemNeckAccessories", false);
 		InventoryRemove(Player, "ItemNeckRestraints");
 	}
  	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) {
@@ -192,16 +192,16 @@ function LoginStableItems() {
 		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryAdd(Player, "PonyBoots", "Shoes", false);
 		InventoryAdd(Player, "PonyBoots", "ItemBoots", false);
-		InventoryAdd(Player,"PonyHood", "ItemHood", false);
-		InventoryAdd(Player,"HoofMittens", "ItemHands", false);
+		InventoryAdd(Player, "PonyHood", "ItemHood", false);
+		InventoryAdd(Player, "HoofMittens", "ItemHands", false);
 	} else {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth", false);
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth2", false);
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
-		InventoryDelete(Player, "PonyHood", "ItemHood",false)
-		InventoryDelete(Player,"HoofMittens", "ItemHands", false);
+		InventoryDelete(Player, "PonyHood", "ItemHood", false)
+		InventoryDelete(Player, "HoofMittens", "ItemHands", false);
 	}
 }
 
@@ -409,7 +409,7 @@ function LoginResponse(C) {
 						InventoryRemove(Player, "ItemFeet");
 						InventoryRemove(Player, "ItemLegs");
 						Player.Cage = true;
-						CharacterSetActivePose(Player, "Kneel");
+						CharacterSetActivePose(Player, "Kneel", true);
 						CommonSetScreen("Room", "Private");
 					} else {
 						CommonSetScreen("Room", "MainHall");

@@ -31,7 +31,7 @@ var ExtendedItemOffsets = {};
 /** The X & Y co-ordinates of each option's button, based on the number to be displayed per page. */
 const ExtendedXY = [
 	[], //0 placeholder
-	[], //1 placeholder
+	[[1385, 500]], //1 option per page
 	[[1185, 500], [1590, 500]], //2 options per page
 	[[1080, 500], [1385, 500], [1695, 500]], //3 options per page
 	[[1185, 400], [1590, 400], [1185, 700], [1590, 700]], //4 options per page
