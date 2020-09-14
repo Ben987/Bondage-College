@@ -322,10 +322,12 @@ function InventoryLocked(C, AssetGroup, CheckProperties) {
 */
 function InventoryWearRandom(C, GroupName, Difficulty, Refresh, MustOwn) {
 	if (!InventoryLocked(C, GroupName)) {
+		var IsClothes = false;
 
 		// Finds the asset group and make sure it's not blocked
 		for (let A = 0; A < AssetGroup.length; A++)
 			if (AssetGroup[A].Name == GroupName) {
+				IsClothes = AssetGroup[A].Clothing;
 				var IsBlocked = InventoryGroupIsBlocked(C, GroupName);
 				if (IsBlocked) return;
 				break;
@@ -341,8 +343,8 @@ function InventoryWearRandom(C, GroupName, Difficulty, Refresh, MustOwn) {
 		// Get and apply a random asset
 		var SelectedAsset = InventoryGetRandom(C, GroupName, AssetList);
 
-		// Pick a random color from the schema
-		var SelectedColor = SelectedAsset.Group.ColorSchema[Math.floor(Math.random() * SelectedAsset.Group.ColorSchema.length)];
+		// Pick a random color for clothes from their schema
+		var SelectedColor = IsClothes ? SelectedAsset.Group.ColorSchema[Math.floor(Math.random() * SelectedAsset.Group.ColorSchema.length)] : null;
 
 		CharacterAppearanceSetItem(C, GroupName, SelectedAsset, SelectedColor, Difficulty, null, Refresh);
 	}
