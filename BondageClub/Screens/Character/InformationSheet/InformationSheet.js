@@ -111,11 +111,11 @@ function InformationSheetRun() {
 
 		// After one week we show the traits, after two weeks we show the level
 		if (CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 604800000) {
-			var pos = 0;
+			let Pos = 0;
 			for (let T = 0; T < C.Trait.length; T++)
-				if ((C.Trait[T].Value != null) && (C.Trait[T].Value > 0)) {
-					DrawText(TextGet("Trait" + C.Trait[T].Name) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 1209600000) ? C.Trait[T].Value.toString() : "??"), 1000, 200 + pos * 75, "Black", "Gray");
-					pos++;
+				if ((C.Trait[T].Value != null) && (C.Trait[T].Value != 0)) {
+					DrawText(TextGet("Trait" + ((C.Trait[T].Value > 0) ? C.Trait[T].Name : NPCTraitReverse(C.Trait[T].Name))) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 1209600000) ? Math.abs(C.Trait[T].Value).toString() : "??"), 1000, 200 + Pos * 75, "Black", "Gray");
+					Pos++;
 				}
 		} else DrawText(TextGet("TraitUnknown"), 1000, 200, "Black", "Gray");
 

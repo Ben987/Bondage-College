@@ -4,6 +4,7 @@ MustPickItem,You must pick an item of type:
 WardrobeNameInfo,Set wardrobe character name:
 WardrobeNameError,Invalid name for character.
 ResetClothes,Reset character
+WearRandom,Randomize clothes
 Random,Randomize character
 Naked,Strip clothes
 StripItem,Strip item

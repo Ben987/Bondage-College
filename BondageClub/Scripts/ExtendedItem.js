@@ -116,8 +116,9 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage) {
 		var Y = ExtendedXY[OptionsPerPage][PageOffset][1];
 		var Option = Options[I];
 		var FailSkillCheck = !!ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
-
-		DrawButton(X, Y, 225, 275, "", ((DialogFocusItem.Property.Type == Option.Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
+		var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
+		
+		DrawButton(X, Y, 225, 275, "", IsSelected ? "#888888" : FailSkillCheck ? "Pink" : "White", null, null, IsSelected);
 		DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X+2, Y);
 		DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 250, 225, "black");
 	}

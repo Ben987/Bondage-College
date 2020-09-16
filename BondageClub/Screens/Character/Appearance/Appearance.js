@@ -186,8 +186,8 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 
 			// Picks a random item and color and add it
 			if (R.length > 0) {
-				var SelectedAsset = R[Math.round(Math.random() * (R.length - 1))];
-				var SelectedColor = SelectedAsset.Group.ColorSchema[Math.round(Math.random() * (SelectedAsset.Group.ColorSchema.length - 1))];
+				var SelectedAsset = InventoryGetRandom(C, AssetGroup[A].Name, R);
+				var SelectedColor = SelectedAsset.Group.ColorSchema[Math.floor(Math.random() * SelectedAsset.Group.ColorSchema.length)];
 				if ((SelectedAsset.Group.ColorSchema[0] == "Default") && (Math.random() < 0.5)) SelectedColor = "Default";
 				if (SelectedAsset.Group.ParentColor != "")
 					if (CharacterAppearanceGetCurrentValue(C, SelectedAsset.Group.ParentColor, "Color") != "None")
@@ -207,9 +207,8 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 
 		}
 
-	// Loads the new character canvas
-	CharacterLoadCanvas(C);
-
+	// Refreshes the character
+	CharacterRefresh(C, false);
 }
 
 /**
@@ -501,7 +500,8 @@ function AppearanceRun() {
 
 		// Draw the top buttons with images
 		if (C.ID == 0) {
-			DrawButton(1300, 25, 90, 90, "", "White", "Icons/" + ((LogQuery("Wardrobe", "PrivateRoom")) ? "Wardrobe" : "Reset") + ".png", TextGet(LogQuery("Wardrobe", "PrivateRoom") ? "Wardrobe" : "ResetClothes"));
+			DrawButton(1183, 25, 90, 90, "", "White", "Icons/" + ((LogQuery("Wardrobe", "PrivateRoom")) ? "Wardrobe" : "Reset") + ".png", TextGet(LogQuery("Wardrobe", "PrivateRoom") ? "Wardrobe" : "ResetClothes"));
+			if (!DialogItemPermissionMode) DrawButton(1300, 25, 90, 90, "", "White", "Icons/WearRandom.png", TextGet("WearRandom"));
 			DrawButton(1417, 25, 90, 90, "", "White", "Icons/Random.png", TextGet("Random"));
 		} else if (LogQuery("Wardrobe", "PrivateRoom")) DrawButton(1417, 25, 90, 90, "", "White", "Icons/Wardrobe.png", TextGet("Wardrobe"));
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
@@ -566,7 +566,8 @@ function AppearanceRun() {
 	if (CharacterAppearanceMode == "Cloth") {
 		
 		// Draw the wardrobe top controls & buttons
-		if (!DialogItemPermissionMode && InventoryGet(C, C.FocusGroup.Name) && InventoryGet(C, C.FocusGroup.Name).Asset.Extended) DrawButton(1302, 25, 90, 90, "", "White", "Icons/Use.png", DialogFind(Player, "Use"));
+		if (!DialogItemPermissionMode && InventoryGet(C, C.FocusGroup.Name) && InventoryGet(C, C.FocusGroup.Name).Asset.Extended) DrawButton(1183, 25, 90, 90, "", "White", "Icons/Use.png", DialogFind(Player, "Use"));
+		if (C.ID == 0 && !DialogItemPermissionMode) DrawButton(1300, 25, 90, 90, "", "White", "Icons/WearRandom.png", TextGet("WearRandom"));
 		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 		if (!DialogItemPermissionMode) DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
 		if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
@@ -819,8 +820,9 @@ function AppearanceClick() {
 					}
 
 		// If we must set back the default outfit or set a random outfit
-		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && !LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceSetDefault(C);
-		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
+		if ((MouseX >= 1183) && (MouseX < 1273) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && !LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceSetDefault(C);
+		if ((MouseX >= 1183) && (MouseX < 1273) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
+		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0)) CharacterAppearanceFullRandom(C, true);
 		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0)) CharacterAppearanceFullRandom(C);
 		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID != 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
 		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceStripLayer(C);
@@ -889,9 +891,14 @@ function AppearanceClick() {
 	if (CharacterAppearanceMode == "Cloth") {
 
 		// Extends the current item
-		if (MouseIn(1302, 25, 90, 90)) { 
+		if (MouseIn(1183, 25, 90, 90)) { 
 			var Item = InventoryGet(C, C.FocusGroup.Name);
 			if (Item && Item.Asset.Extended) DialogExtendItem(Item);
+		}
+
+		// Picks and colors a random item from the group
+		if (C.ID == 0 && !DialogItemPermissionMode && MouseIn(1300, 25, 90, 90)) {
+			InventoryWearRandom(C, C.FocusGroup.Name, null, true, true);
 		}
 
 		// Swaps between normal and permission mode
@@ -912,7 +919,7 @@ function AppearanceClick() {
 
 		// Cancels the selected cloth and reverts it back
 		if (!DialogItemPermissionMode && (MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) {
-			CharacterAppearanceSetItem(C, C.FocusGroup.Name, ((CharacterAppearanceCloth != null) && (CharacterAppearanceCloth.Asset != null)) ? CharacterAppearanceCloth.Asset : null);
+			CharacterAppearanceSetItem(C, C.FocusGroup.Name, ((CharacterAppearanceCloth != null) && (CharacterAppearanceCloth.Asset != null)) ? CharacterAppearanceCloth.Asset : null, ((CharacterAppearanceCloth != null) && (CharacterAppearanceCloth.Color != null)) ? CharacterAppearanceCloth.Color : null);
 			if (CharacterAppearanceCloth != null && CharacterAppearanceCloth.Property != null) {
 				InventoryGet(C, C.FocusGroup.Name).Property = CharacterAppearanceCloth.Property;
 				CharacterRefresh(C, false);
@@ -934,7 +941,6 @@ function AppearanceClick() {
 			if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
 				var Item = DialogInventory[I];
 				var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
-				var Limit = InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name);
 				var CreatedItem = InventoryItemCreate(C, Item.Asset.Group.Name, Item.Asset.Name);
 				var Limited = !InventoryCheckLimitedPermission(C, CreatedItem);
 				// In permission mode, we toggle the settings for an item
@@ -986,8 +992,7 @@ function AppearanceClick() {
 function AppearanceExit() {
 	// We quit the extended item menu instead, if applicable.
 	if (CharacterAppearanceMode == "Cloth" && DialogFocusItem) {
-		DialogLeaveFocusItem();
-		DialogFocusItem = null;
+		DialogLeaveFocusItem();		
 		return;
 	}
 	

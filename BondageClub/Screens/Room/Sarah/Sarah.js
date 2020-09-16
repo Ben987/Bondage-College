@@ -552,7 +552,7 @@ function SarahSophiePreparePunishCharacter(C) {
 	InventoryWear(C, "LeatherBelt", "ItemLegs");
 	var Cuffs = InventoryGet(C, "ItemArms");
 	Cuffs.Property = {};
-	Cuffs.Property.Restrain = "Wrist";
+	Cuffs.Property.Type = "Wrist";
 	Cuffs.Property.SetPose = ["BackBoxTie"];
 	Cuffs.Property.Effect = ["Block", "Prone", "Lock"];
 	CharacterRefresh(C);
@@ -698,7 +698,7 @@ function SarahSlaveLockedCuffs(C) {
 		if ((InventoryGet(C, "ItemPelvis") == null) || (InventoryGet(C, "ItemPelvis").Asset.Name != "MetalChastityBelt")) return false;
 		if ((InventoryGet(C, "ItemBreast") == null) || (InventoryGet(C, "ItemBreast").Asset.Name != "MetalChastityBra")) return false;
 		if ((InventoryGet(C, "ItemArms") == null) || (InventoryGet(C, "ItemArms").Asset.Name != "LeatherCuffs")) return false;
-		if ((InventoryGet(C, "ItemArms").Property == null) || (InventoryGet(C, "ItemArms").Property.Restrain == null)) return false;
+		if ((InventoryGet(C, "ItemArms").Property == null) || (InventoryGet(C, "ItemArms").Property.Type == null)) return false;
 		return true;
 	}
 }

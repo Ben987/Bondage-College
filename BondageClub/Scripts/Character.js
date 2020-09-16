@@ -618,6 +618,39 @@ function CharacterRefresh(C, Push) {
 		ChatRoomRefreshChatSettings(C);
 		ServerPlayerAppearanceSync();
 	}
+	// Also refresh the current dialog menu if the refreshed character is the current character.
+	var Current = CharacterGetCurrent();
+	if (Current && C.ID == Current.ID) {
+		if (DialogFocusItem && DialogFocusItem.Asset) {
+			if (!DialogFocusItem.Asset.IsLock) {
+				DialogFocusItem = C.Appearance.find(Item =>
+					Item.Asset.Name == DialogFocusItem.Asset.Name && Item.Asset.Group.Name == DialogFocusItem.Asset.Group.Name
+				);
+				if (DialogFocusItem && DialogFocusItem.Asset.Extended && typeof window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"] === "function") window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"]();
+			} else {
+				var DFSI = DialogFocusSourceItem && DialogFocusSourceItem.Asset && C.Appearance.find(Item =>
+					Item.Asset.Name == DialogFocusSourceItem.Asset.Name && Item.Asset.Group.Name == DialogFocusSourceItem.Asset.Group.Name
+				);
+				var Lock = DFSI && InventoryGetLock(DFSI);
+				if (!DFSI || !Lock) DialogLeaveFocusItem();
+				else DialogExtendItem(Lock, DFSI);
+			}
+		} else if (DialogFocusItem) DialogLeaveFocusItem();
+		if (!DialogFocusItem) {
+			var IsLockMode = DialogItemToLock && C.Appearance.find(Item => Item.Asset.Name == DialogItemToLock.Asset.Name && DialogItemToLock.Asset.Group.Name == Item.Asset.Group.Name );
+			if (IsLockMode) {
+				DialogInventory = [];
+				for (let A = 0; A < Player.Inventory.length; A++)
+					if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
+						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
+				DialogInventorySort();
+				DialogMenuButtonBuild(C);
+			} else {
+				DialogInventoryBuild(C, DialogInventoryOffset);
+			}
+			ActivityDialogBuild(C);
+		}
+	}
 }
 
 /**
@@ -826,12 +859,12 @@ function CharacterFullRandomRestrain(C, Ratio, Refresh) {
 	}
 
 	// Apply each item if needed
-	if (InventoryGet(C, "ItemArms") == null) InventoryWearRandom(C, "ItemArms", false);
-	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemHead") == null)) InventoryWearRandom(C, "ItemHead", false);
-	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemMouth") == null)) InventoryWearRandom(C, "ItemMouth", false);
-	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemNeck") == null)) InventoryWearRandom(C, "ItemNeck", false);
-	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs", false);
-	if ((Math.random() >= RatioNormal) && !C.IsKneeling() && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet", false);
+	if (InventoryGet(C, "ItemArms") == null) InventoryWearRandom(C, "ItemArms", null, false);
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemHead") == null)) InventoryWearRandom(C, "ItemHead", null, false);
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemMouth") == null)) InventoryWearRandom(C, "ItemMouth", null, false);
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemNeck") == null)) InventoryWearRandom(C, "ItemNeck", null, false);
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs", null, false);
+	if ((Math.random() >= RatioNormal) && !C.IsKneeling() && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet", null, false);
 
 	if (Refresh || Refresh == null) CharacterRefresh(C);
 

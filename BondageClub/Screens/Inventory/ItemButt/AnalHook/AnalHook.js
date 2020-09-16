@@ -1,95 +1,84 @@
 "use strict";
-var InventoryItemButtAnalHookMessage = "SelectAttachmentState";
 
-// Loads the item extension properties
-function InventoryItemButtAnalHookLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
-	InventoryItemButtAnalHookMessage = "SelectAttachmentState";
-}
-
-// Draw the item extension screen
-function InventoryItemButtAnalHookDraw() {
-	
-	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
-	// Draw the possible poses
-	DrawText(DialogFind(Player, InventoryItemButtAnalHookMessage), 1500, 500, "white", "gray");
-	DrawButton(1000, 550, 225, 225, "", (DialogFocusItem.Property == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Base.png", 1000, 550);
-	DrawText(DialogFind(Player, "AnalHookPoseBase"), 1125, 800, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "Chain")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Chain.png", 1250, 550);
-	DrawText(DialogFind(Player, "AnalHookPoseChain"), 1375, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Hair")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Hair.png", 1500, 550);
-	DrawText(DialogFind(Player, "AnalHookPoseHair"), 1625, 800, "white", "gray");
-}
-
-// Catches the item extension clicks
-function InventoryItemButtAnalHookClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemButtAnalHookSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Chain"))) InventoryItemButtAnalHookSetPose("Chain");
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Hair"))) InventoryItemButtAnalHookSetPose("Hair");
-}
-
-
-// Sets the item pose (chains, hair or none)
-function InventoryItemButtAnalHookSetPose(NewPose) {
-
-	// Gets the current item and character
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemButtAnalHookLoad();
-	
-	
-//		if (InventoryGet(C, "Cloth") != null) {
-//		InventoryItemButtAnalHookMessage = "RemoveClothesForItem";
-//		return;
-//		}
-
-	// Sets the new pose with it's effects
-		DialogFocusItem.Property.Restrain = NewPose;
-		if (NewPose == null) {
-			delete DialogFocusItem.Property.Effect;
-			delete DialogFocusItem.Property.Type;
-			delete DialogFocusItem.Property.Difficulty;
-			delete DialogFocusItem.Property.Intensity;
-		} else {
-			DialogFocusItem.Property.Type = NewPose;
-			if (NewPose == "Chain") DialogFocusItem.Property.Intensity = 1;
-			if (NewPose == "Chain") DialogFocusItem.Property.Effect = ["Freeze", "Egged"];
-			if (NewPose == "Chain") DialogFocusItem.Property.Difficulty = 20;
-			if (NewPose == "Hair") DialogFocusItem.Property.Effect = ["Egged"];
-			if (NewPose == "Hair") DialogFocusItem.Property.Intensity = 1;
-			if (NewPose == "Hair") DialogFocusItem.Property.Difficulty = 10;
+var InventoryItemButtAnalHookOptions = [
+	{
+		Name: "Base",
+		Property: {
+			Type: null,
+			Difficulty: 0,
+			Intensity: 0,
+			Effect: [],
+		},
+	},
+	{
+		Name: "Chain",
+		Property: {
+			Type: "Chain",
+			Difficulty: 8,
+			Intensity: 1,
+			Effect: ["Freeze", "Egged"]
 		}
-		DialogFocusItem.Property.Restrain = NewPose;
-	} 
-	
+	},
+	{
+		Name: "Hair",
+		Property: {
+			Type: "Hair",
+			Difficulty: 4,
+			Intensity: 1,
+			Effect: ["Egged"]
+		}
+	},
+];
 
-//	// Adds the lock effect back if it was padlocked
-//	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-//		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-//		DialogFocusItem.Property.Effect.push("Lock");
-//	}
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
+function InventoryItemButtAnalHookLoad() {
+	ExtendedItemLoad(InventoryItemButtAnalHookOptions, "SelectAttachmentState");
+}
 
-	// Refreshes the character and chatroom
-	CharacterRefresh(C);
-	var msg = "AnalHookRestrain" + ((NewPose == null) ? "Base" : NewPose);
-	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+/**
+ * Draw the item extension screen
+ * @returns {void} - Nothing
+ */
+function InventoryItemButtAnalHookDraw() {
+	ExtendedItemDraw(InventoryItemButtAnalHookOptions, "AnalHookPose");
+}
+
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
+function InventoryItemButtAnalHookClick() {
+	ExtendedItemClick(InventoryItemButtAnalHookOptions);
+}
+
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @param {Option} PreviousOption - The previously selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemButtAnalHookPublishAction(C, Option, PreviousOption) {
+	var msg = "AnalHookRestrain" + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
 
-	// Rebuilds the inventory menu
-	if (DialogInventory != null) {
-		DialogFocusItem = null;
-		DialogMenuButtonBuild(C);
-	}
-
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemButtAnalHookNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "InventoryItemButtAnalHookNPCReaction" + Option.Name, "ItemButt");
 }
