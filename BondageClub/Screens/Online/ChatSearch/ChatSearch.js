@@ -110,8 +110,8 @@ function ChatSearchNormalDraw() {
 
 			// Draw the room rectangle
 			var HasFriends = ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0;
-			var IsFull = ChatSearchResult[C].MemberCount == ChatSearchResult[C].MemberLimit;
-			DrawButton(X, Y, 630, 85, "", (HasFriends && IsFull ? "#448855" : HasFriends ? "#CFFFCF" : IsFull ? "#666" : "White"));
+			var IsFull = ChatSearchResult[C].MemberCount >= ChatSearchResult[C].MemberLimit;
+			DrawButton(X, Y, 630, 85, "", (HasFriends && IsFull ? "#448855" : HasFriends ? "#CFFFCF" : IsFull ? "#666" : "White"), null, null, IsFull);
 			DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchResult[C].Name + " - " + ChatSearchResult[C].Creator + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 620, "black");
 			DrawTextFit(ChatSearchResult[C].Description, X + 315, Y + 62, 620, "black");
 

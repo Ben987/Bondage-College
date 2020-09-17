@@ -45,6 +45,7 @@
 <script src="Scripts/Translation.js"></script>
 <script src="Scripts/Activity.js"></script>
 <script src="Scripts/ExtendedItem.js"></script>
+<script src="Screens/Character/ItemColor/ItemColor.js"></script>
 <script src="Scripts/LZString.js"></script>
 <script src="Scripts/VibratorMode.js"></script>
 <script src="Scripts/socket.io/socket.io.js"></script>
@@ -251,15 +252,22 @@
 <script src="Screens/Inventory/Necklace/NecklaceKey/NecklaceKey.js"></script>
 <script src="Screens/Inventory/Necklace/NecklaceLock/NecklaceLock.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CustomCollarTag.js/CustomCollarTag.js"></script>
+<script src="Screens/Inventory/ItemLegs/MermaidTail/MermaidTail.js"></script>
 <script>
 
 /*
 
-	NEXT VERISON:
+	NEXT VERSION:
+
+	DONE - Turn tables on owner NPC and allow NPC slaves to turn tables on you. (50 Dominant reputation difference)
 	
-	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
+	TO DO - Build credit list from Github log	
+	TO DO - Proof Read
+	TO DO - Patreon Import/Update
+
+	FUTURE VERSION:
 	
-	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
+	Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
 		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
 		3. Be Clever (Rope, Yokes, Cages & Boxes, Cuffs & Manacles, Locking Boots, Collars) - Memory Game: Simon Says
@@ -267,10 +275,18 @@
 		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
 		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
 	
-	TO DO - Add a random punishment function to online chat room to roll a random punishment for a player or yourself, the punishment will be executed manually
-
-	TO DO - Proof Read
-	TO DO - Patreon Import/Update
+	Add a random punishment function to online chat room to roll a random punishment for a player or yourself, the punishment will be executed manually
+	
+	To better configure online experience in the club, add many toggles and a membership types that would allow you to use these toggles or not.  There would be two types of toggles and they would only affect the multiplayer side of the game:
+	Casual toggles: for casual players, these toggles would allow you to not be affected by blindness, by gags, by deafness, by sensory deprivation, by blocking items, by items that stops you or slow you down when leaving a room, etc.
+	Hardcore toggles: these would be extra immersion options to give you more trouble: no safeword, no rescue maid, no chastity removal with the club Mistress, automatically be dragged to your owner room when beeped, etc.
+	These toggles would be available for you or not, depending on your membership type:
+	Casual member: The casual member would have access to all toggles, all the time, without restriction.
+	Regular member (default): The regular member would only have access to the hardcore toggles.  All the casual toggles would be disabled and deactivated.
+	Hardcore member: The hardcore member wouldn’t have access to any toggle.  All casual toggles would be deactivated, and all hardcore toggles would be activated, without any user control.
+	When you check someone’s profile, you will be able to see what kind of member they are and for how long they are using that membership type.  For example: (Member type: Hardcore for 7 days).
+	In the management room, the club Mistress would allow you to change your membership type (maybe force a time delay between changes) and will explain the details of each membership type.
+	When you create an online chat room, you would be able to select (with check boxes) which type of members are accepted in that chat room, by default we would allow all membership types.  Players that are not allowed in these chat rooms would not find them when they search or be able to join them.
 
 */
 

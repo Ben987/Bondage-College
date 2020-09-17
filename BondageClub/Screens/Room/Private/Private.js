@@ -306,6 +306,16 @@ function PrivateWontTakePlayerAsLoverAlreadyDating() { return ((CurrentCharacter
  * @returns {boolean} - TRUE if the NPC is free, but the player has 5 lovers.
  */
 function PrivateWontTakePlayerAsLoverPlayerDating() { return (((CurrentCharacter.Lover == null) || (CurrentCharacter.Lover == "")) && (Player.Lovership.length >= 5)) }
+/**
+ * Checks if it's possible for the player to turn the tables against her NPC owner
+ * @returns {boolean} - TRUE if turning the tables is possible
+ */
+function PrivatePlayerCanTurnTables() { return (!Player.IsRestrained() && (ReputationGet("Dominant") - 50 >= NPCTraitGet(CurrentCharacter, "Dominant")) && (NPCEventGet(CurrentCharacter, "PlayerCollaring") > 0)) }
+/**
+ * Checks if it's possible for the submissive to turn the tables against her player owner
+ * @returns {boolean} - TRUE if turning the tables is possible
+ */
+function PrivateSubCanTurnTables() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && !Player.IsOwned() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
 
 /**
  * Loads the private room screen and the vendor NPC.
@@ -572,7 +582,7 @@ function PrivateClick() {
 	if (MouseIn(500, 0, 500, 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(Player);
 	if (MouseIn(1000, 0, 500, 1000) && !LogQuery("RentRoom", "PrivateRoom")) { NPCTraitDialog(PrivateVendor); CharacterSetCurrent(PrivateVendor); }
 	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk() && (Player.Cage == null)) CommonSetScreen("Room", "MainHall");
-	if (MouseIn(1885, 145, 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if (MouseIn(1885, 145, 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 	if (MouseIn(1885, 265, 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
 	if (MouseIn(1885, 385, 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if (MouseIn(1885, 505, 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange() && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
@@ -659,7 +669,7 @@ function PrivateLoadCharacter(C) {
 		CharacterRefresh(N);
 		if (NPCEventGet(N, "PrivateRoomEntry") == 0) NPCEventAdd(N, "PrivateRoomEntry", CurrentTime);
 		PrivateCharacter[C] = N;
-		if (PrivateCharacter[C].CanKneel() && PrivateCharacter[C].IsOwnedByPlayer()) CharacterSetActivePose(PrivateCharacter[C], "Kneel");
+		if (PrivateCharacter[C].CanKneel() && PrivateCharacter[C].IsOwnedByPlayer()) CharacterSetActivePose(PrivateCharacter[C], "Kneel", true);
 	}
 
 	// We allow items on NPC if 25+ dominant reputation, not owner or restrained
@@ -1088,7 +1098,7 @@ function PrivateRunPunishment(LoveFactor) {
 	NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
 	if (PrivatePunishment == "Cage") { Player.Cage = true; LogAdd("BlockCage", "Rule", CurrentTime + 120000); DialogLeave(); }
 	if (PrivatePunishment == "Bound") { PrivateReleaseTimer = CommonTime() + 240000; CharacterFullRandomRestrain(Player, "All"); InventoryRemove(Player, "ItemArms"); InventoryWear(Player, "HempRope", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 12); }
-	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 240000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 15); }
+	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 240000; CharacterSetActivePose(Player, "Kneel", true); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 15); }
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemVulva") == null)) InventoryWear(Player, "VibratingEgg", "ItemVulva");
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemButt") == null)) InventoryWear(Player, "BlackButtPlug", "ItemButt");
 	if (PrivatePunishment == "ChastityBelt") { InventoryWear(Player, CommonRandomItemFromList("", PrivateBeltList), "ItemPelvis"); InventoryLock(Player, "ItemPelvis", "OwnerPadlock", null); }
@@ -1189,7 +1199,7 @@ function PrivateSlaveMarketStart(AuctionType) {
 	else InventoryRemove(CurrentCharacter, "ItemNeck");
 	CharacterRelease(CurrentCharacter);
 	CharacterNaked(CurrentCharacter);
-	CharacterSetActivePose(CurrentCharacter, "Kneel");
+	CharacterSetActivePose(CurrentCharacter, "Kneel", true);
 	NPCSlaveAuctionVendor = Player;
 	NPCSlaveAuctionSlave = CurrentCharacter;
 	NPCSlaveAuctionAmount = Math.floor((CurrentTime - NPCEventGet(CurrentCharacter, "NPCCollaring")) / 86400000);
@@ -1308,5 +1318,75 @@ function PrivateLoveYou() {
 		NPCLoveChange(CurrentCharacter, Math.floor(Math.random() * 3) + 1);
 
 	}
+
+}
+
+/**
+ * Triggered when the player starts turning the tables on her NPC owner.  The player stands up.
+ * @returns {void} - Nothing.
+ */
+function PrivatePlayerTurnTablesStart() {
+	CharacterSetActivePose(Player, null);
+	PrivateNPCInteraction(-5);
+}
+
+/**
+ * Triggered when the player turns the table with her owner but only removes her collar
+ * @returns {void} - Nothing.
+ */
+function PrivatePlayerTurnTablesRemove() {
+	PrivateNPCInteraction(-20);
+	NPCEventDelete(CurrentCharacter, "EndSubTrial");
+	ManagementReleaseFromOwner(8);
+}
+
+/**
+ * Triggered when the player turns the table with her owner and transfer her collar
+ * @returns {void} - Nothing.
+ */
+function PrivatePlayerTurnTablesCollar() {
+	PrivateNPCInteraction(10);
+	ManagementReleaseFromOwner(15);
+	NPCEventDelete(CurrentCharacter, "EndSubTrial");
+	NPCEventAdd(CurrentCharacter, "NPCCollaring", CurrentTime);
+	CurrentCharacter.Owner = Player.Name;
+	InventoryWear(CurrentCharacter, "SlaveCollar", "ItemNeck");
+	ServerPrivateCharacterSync();
+}
+
+/**
+ * Triggered when the sub starts to the turn the tables against the player
+ * @returns {void} - Nothing.
+ */
+function PrivateSubTurnTablesStart() {
+	CharacterSetActivePose(CurrentCharacter, null);
+	PrivateNPCInteraction(-3);
+}
+
+/**
+ * Triggered when the sub turns the table on the player
+ * @returns {void} - Nothing.
+ */
+function PrivateSubTurnTablesDone() {
+	
+	// Clears the submissive ownership
+	NPCEventDelete(CurrentCharacter, "EndSubTrial");
+	NPCEventDelete(CurrentCharacter, "NPCCollaring");
+	CurrentCharacter.Owner = "";
+	InventoryRemove(CurrentCharacter, "ItemNeck");
+	InventoryRemove(CurrentCharacter, "ItemNeckAccessories");
+	InventoryRemove(CurrentCharacter, "ItemNeckRestraints");
+	PrivateNPCInteraction(10);
+	ServerPrivateCharacterSync();
+
+	// The submissive becomes the player owner and the player gets collared
+	NPCEventAdd(CurrentCharacter, "PlayerCollaring", CurrentTime);
+	ReputationProgress("Dominant", -20);
+	InventoryRemove(Player, "ItemNeck");
+	InventoryRemove(Player, "ItemNeckAccessories");
+	InventoryRemove(Player, "ItemNeckRestraints");
+	InventoryWear(Player, "SlaveCollar", "ItemNeck");
+	Player.Owner = "NPC-" + CurrentCharacter.Name;
+	ServerPlayerSync();
 
 }

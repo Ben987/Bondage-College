@@ -338,7 +338,7 @@ function ManagementLoad() {
 		InventoryWear(ManagementSub, "TailButtPlug", "ItemButt");
 		InventoryWear(ManagementSub, "MetalChastityBelt", "ItemPelvis");
 		InventoryWear(ManagementSub, "MetalChastityBra", "ItemBreast");
-		CharacterSetActivePose(ManagementSub, "Kneel");
+		CharacterSetActivePose(ManagementSub, "Kneel", true);
 		ManagementSub.AllowItem = false;
 	}
 }
@@ -380,7 +380,7 @@ function ManagementClick() {
 	if (MouseIn(1250, 0, 500, 1000) && !ManagementEmpty) CharacterSetCurrent(ManagementSub);
 	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
-	if (MouseIn(1885, 265, 90, 90) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if (MouseIn(1885, 265, 90, 90) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 }
 
 /**
@@ -884,8 +884,9 @@ function ManagementClubSlaveVisitRoom() {
  */
 function ManagementChangeSlaveCollarType(NewType) {
 	var Collar = InventoryGet(Player, "ItemNeck");
-	if (NewType == "") Collar.Property = null;
-	else Collar.Property = { Type: NewType, Effect: [] };
+	var TypeProperties = InventoryItemNeckSlaveCollarTypes.find(T => T.Name == NewType);
+	if (!TypeProperties) Collar.Property = null;
+	else Collar.Property = TypeProperties.Property;
 	CharacterRefresh(Player);
 	CharacterChangeMoney(Player, -30);
 }

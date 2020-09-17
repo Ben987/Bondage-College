@@ -1,78 +1,85 @@
 "use strict";
+
 var InventoryItemEarsHeadphoneEarPlugsMessage = "";
 
-// Loads the item extension properties
+var InventoryItemEarsHeadphoneEarPlugsOptions = [
+	{
+		Name: "Off",
+		Property: {
+			Type: null,
+			Effect: [],
+		},
+	},
+	{
+		Name: "Light",
+		Property: {
+			Type: "Light",
+			Effect: ["DeafLight"],
+		},
+	},
+	{
+		Name: "Heavy",
+		Property: {
+			Type: "Heavy",
+			Effect: ["DeafHeavy"],
+		},
+	},
+];
+
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemEarsHeadphoneEarPlugsLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
+	ExtendedItemLoad(InventoryItemEarsHeadphoneEarPlugsOptions, "HeadphoneEarPlugsSelectLoudness");
 }
 
-// Draw the item extension screen
+/**
+ *  Draw the item extension screen
+ * @returns {void} - Nothing
+ */
 function InventoryItemEarsHeadphoneEarPlugsDraw() {
-	
-	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
-	// Draw the possible poses
-	DrawText(DialogFind(Player, "HeadphoneEarPlugsSelectTightness"), 1500, 500, "white", "gray");
-	DrawButton(1000, 550, 225, 225, "", (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Off.png", 1000, 550);
-	DrawText(DialogFind(Player, "HeadphoneEarPlugsPoseOff"), 1125, 800, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Light")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Light.png", 1250, 550);
-	DrawText(DialogFind(Player, "HeadphoneEarPlugsPoseLight"), 1375, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Heavy")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Heavy.png", 1500, 550);
-	DrawText(DialogFind(Player, "HeadphoneEarPlugsPoseHeavy"), 1625, 800, "white", "gray");
-
-	// Draw the message if present
-	if (InventoryItemEarsHeadphoneEarPlugsMessage != null) DrawTextWrap(DialogFind(Player, InventoryItemEarsHeadphoneEarPlugsMessage), 1100, 850, 800, 160, "White");
+	ExtendedItemDraw(InventoryItemEarsHeadphoneEarPlugsOptions, "HeadphoneEarPlugsPose");
 }
 
-// Catches the item extension clicks
+
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemEarsHeadphoneEarPlugsClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemEarsHeadphoneEarPlugsSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Light"))) InventoryItemEarsHeadphoneEarPlugsSetPose("Light");
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Heavy"))) InventoryItemEarsHeadphoneEarPlugsSetPose("Heavy");
+	ExtendedItemClick(InventoryItemEarsHeadphoneEarPlugsOptions);
 }
 
-// Sets the cuffs pose (wrist, elbow, both or none)
-function InventoryItemEarsHeadphoneEarPlugsSetPose(NewPose) {
-
-	// Gets the current item and character
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemEarsHeadphoneEarPlugsLoad();
-	} 
-
-	// Sets the new pose with it's effects
-	DialogFocusItem.Property.Restrain = NewPose;
-	if (NewPose == null) {
-		delete DialogFocusItem.Property.Effect;
-		delete DialogFocusItem.Property.Type;
-	} else {
-		DialogFocusItem.Property.Effect = [""];
-		DialogFocusItem.Property.Type = NewPose;
-		if (NewPose == "Light") DialogFocusItem.Property.Effect = ["DeafLight"];
-		if (NewPose == "Heavy") DialogFocusItem.Property.Effect = ["DeafHeavy"];
-	}
-
-	// Refreshes the character and chatroom
-	CharacterRefresh(C);
-	var msg = "HeadphoneEarPlugsRestrain" + ((NewPose == null) ? "None" : NewPose);
-	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-	Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @param {Option} PreviousOption - The previously selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemEarsHeadphoneEarPlugsPublishAction(C, Option, PreviousOption) {
+	var NewIndex = InventoryItemEarsHeadphoneEarPlugsOptions.indexOf(Option);
+	var PreviousIndex = InventoryItemEarsHeadphoneEarPlugsOptions.indexOf(PreviousOption);
+	var msg = "HeadphoneEarPlugsRestrain" + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: "AssetName", AssetName: DialogFocusItem.Asset.Name },
+	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
-
-	// Rebuilds the inventory menu
-	if (DialogInventory != null) {
-		DialogFocusItem = null;
-		DialogMenuButtonBuild(C);
-	}
-
 }
+
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemEarsHeadphoneEarPlugsNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "ItemEarsHeadphonePlugs" + Option.Name, "ItemEars");
+}
+

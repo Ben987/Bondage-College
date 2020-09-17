@@ -158,7 +158,7 @@ function CommonReadCSV(Array, Path, Screen, File) {
 function CommonGet(Path, Callback) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", Path);
-	xhr.onreadystatechange = function () { if (this.readyState == 4) Callback.bind(this)(); };
+	xhr.onreadystatechange = function () { if (this.readyState == 4) Callback.bind(this)(xhr); };
 	xhr.send(null);
 }
 
@@ -336,4 +336,63 @@ function CommonConvertArrayToString(Arr) {
 		S = S + Arr[P].toString();
 	}
 	return S;
+}
+
+/**
+ * Checks whether two item colors are equal. An item color may either be a string or an array of strings.
+ * @param {string|string[]} C1 - The first color to check
+ * @param {string|string[]} C2 - The second color to check
+ * @returns {boolean} - TRUE if C1 and C2 represent the same item color, FALSE otherwise
+ */
+function CommonColorsEqual(C1, C2) {
+	if (Array.isArray(C1) && Array.isArray(C2)) {
+		return CommonArraysEqual(C1, C2);
+	}
+	return C1 === C2;
+}
+
+/**
+ * Checks whether two arrays are equal. The arrays are considered equal if they have the same length and contain the same items in the same
+ * order, as determined by === comparison
+ * @param {*[]} a1 - The first array to compare
+ * @param {*[]} a2 - The second array to compare
+ * @returns {boolean} - TRUE if both arrays have the same length and contain the same items in the same order, FALSE otherwise
+ */
+function CommonArraysEqual(a1, a2) {
+	return a1.length === a2.length && a1.every((item, i) => item === a2[i]);
+}
+
+/**
+ * Creates a debounced wrapper for the provided function with the provided wait time. The wrapped function will not be called as long as
+ * the debounced function continues to be called. If the debounced function is called, and then not called again within the wait time, the
+ * wrapped function will be called.
+ * @param {function} func - The function to debounce
+ * @param {number} wait - The wait time in milliseconds that needs to pass after calling the debounced function before the wrapped function
+ * is invoked
+ * @returns {function} - A debounced version of the provided function
+ */
+function CommonDebounce(func, wait) {
+	let timeout, args, context, timestamp, result;
+	wait = typeof wait === "number" ? wait : 100;
+
+	function later() {
+		const last = CommonTime() - timestamp;
+		if (last >= 0 && last < wait) {
+			timeout = setTimeout(later, wait - last);
+		} else {
+			timeout = null;
+			result = func.apply(context, args);
+			context = args = null;
+		}
+	}
+
+	return function () {
+		context = this;
+		args = arguments;
+		timestamp = CommonTime();
+		if (!timeout) {
+			timeout = setTimeout(later, wait);
+		}
+		return result;
+	};
 }

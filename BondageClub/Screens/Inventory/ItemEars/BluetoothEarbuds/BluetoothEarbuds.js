@@ -1,15 +1,41 @@
 "use strict";
-// Loads the item extension properties
+
+/**
+ * Forwards the call to InventoryItemEarsHeadphoneEarPlugsLoad 
+ * @returns {void} - Nothing
+ */
 function InventoryItemEarsBluetoothEarbudsLoad() {
 	InventoryItemEarsHeadphoneEarPlugsLoad();
 }
 
-// Draw the item extension screen
+/**
+ * Forwards the call to InventoryItemEarsHeadphoneEarPlugsDraw 
+ * @returns {void} - Nothing
+ */
 function InventoryItemEarsBluetoothEarbudsDraw() {
 	InventoryItemEarsHeadphoneEarPlugsDraw();
 }
 
-// Catches the item extension clicks
+/**
+ * Forwards the call to InventoryItemEarsHeadphoneEarPlugsClick 
+ * @returns {void} - Nothing
+ */
 function InventoryItemEarsBluetoothEarbudsClick() {
 	InventoryItemEarsHeadphoneEarPlugsClick();
+}
+
+/**
+ * Forwards the call to InventoryItemEarsHeadphoneEarPlugsPublishAction 
+ * @returns {void} - Nothing
+ */
+function InventoryItemEarsBluetoothEarbudsPublishAction() {
+	InventoryItemEarsHeadphoneEarPlugsPublishAction();
+}
+
+/**
+ * Forwards the call to 	InventoryItemEarsHeadphoneEarPlugsNpcDialog 
+ * @returns {void} - Nothing
+ */
+function InventoryItemEarsBluetoothEarbudsNpcDialog() {
+	InventoryItemEarsHeadphoneEarPlugsNpcDialog();
 }

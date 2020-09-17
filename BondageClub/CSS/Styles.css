@@ -23,6 +23,7 @@ TextArea {
 .ChatMessage {
 	position: relative;
 	padding-left: 0.4em;
+	overflow: hidden;
 }
 .ChatMessage::before {
 	content: attr(data-time);
