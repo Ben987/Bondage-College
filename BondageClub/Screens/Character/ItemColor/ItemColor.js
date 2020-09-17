@@ -529,7 +529,7 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 /**
  * Returns layers of the asset which can be given distinct colors
  * @param {Item} item - The item to be colored
- * @returns {array} - The colourable layers
+ * @returns {Layer[]} - The colourable layers
  */
 function ItemColorGetColorableLayers(item) {
 	return item.Asset.Layer.filter(layer => !layer.CopyLayerColor && layer.AllowColorize);
