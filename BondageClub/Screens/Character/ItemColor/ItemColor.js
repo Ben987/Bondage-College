@@ -453,7 +453,7 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 	}
 
 	ItemColorStateKey = itemKey;
-	const colorableLayers = item.Asset.Layer.filter(layer => !layer.CopyLayerColor && layer.AllowColorize);
+	const colorableLayers = ItemColorGetColorableLayers(item);
 	const groupMap = colorableLayers.reduce((groupLookup, layer) => {
 		const groupKey = layer.ColorGroup || layer.Name;
 		(groupLookup[groupKey] || (groupLookup[groupKey] = [])).push(layer);
@@ -524,6 +524,27 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 		colorInputX,
 		colorInputY,
 	};
+}
+
+/**
+ * Returns layers of the asset which can be given distinct colors
+ * @param {Item} item - The item to be colored
+ * @returns {array} - The colourable layers
+ */
+function ItemColorGetColorableLayers(item) {
+	return item.Asset.Layer.filter(layer => !layer.CopyLayerColor && layer.AllowColorize);
+}
+
+/**
+ * Returns whether or not the item can have only a single color or multiple colors
+ * @param {Item} item - The item to be colored
+ * @returns {boolean} - Whether the item only allows one color
+ */
+function ItemColorIsSimple(item) {
+	if (item && item.Asset && item.Asset.Layer) {
+		return ItemColorGetColorableLayers(item).length === 1;
+	}
+	else return true;
 }
 
 /**

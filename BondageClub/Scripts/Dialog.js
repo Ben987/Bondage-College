@@ -1446,11 +1446,15 @@ function DialogDrawItemMenu(C) {
 	if (DialogTextDefaultTimer < CommonTime()) DialogText = DialogTextDefault;
 
 	// Draws the top menu text & icons
-	if (DialogMenuButton == null) DialogMenuButtonBuild((Player.FocusGroup != null) ? Player : CurrentCharacter);
+	if (DialogMenuButton == null) DialogMenuButtonBuild(CharacterGetCurrent());
 	if ((DialogColor == null) && Player.CanInteract() && (DialogProgress < 0) && !InventoryGroupIsBlocked(C) && DialogMenuButton.length < 8) DrawTextWrap((!DialogItemPermissionMode) ? DialogText : DialogFind(Player, "DialogPermissionMode"), 1000, 0, 975 - DialogMenuButton.length * 110, 125, "White", null, 3);
-	for (let I = DialogMenuButton.length - 1; I >= 0; I--)
-		DrawButton(1885 - I * 110, 15, 90, 90, "", ((DialogMenuButton[I] == "ColorPick") && (DialogColorSelect != null)) ? DialogColorSelect : "White", "Icons/" + DialogMenuButton[I] + ".png", (DialogColor == null) ? DialogFind(Player, DialogMenuButton[I]) : null);
-
+	for (let I = DialogMenuButton.length - 1; I >= 0; I--) {
+		let ButtonColor = (DialogMenuButton[I] == "ColorPick") && (DialogColorSelect != null) ? DialogColorSelect : "White";
+		let ButtonImage = DialogMenuButton[I] == "ColorPick" && !ItemColorIsSimple(FocusItem) ? "MultiColorPick" : DialogMenuButton[I];
+		let ButtonHoverText = (DialogColor == null) ? DialogFind(Player, DialogMenuButton[I]) : null;
+		DrawButton(1885 - I * 110, 15, 90, 90, "", ButtonColor, "Icons/" + ButtonImage + ".png", ButtonHoverText);
+	}
+	
 	// Draws the color picker
 	if (!FocusItem && DialogColor != null) {
 		ElementPosition("InputColor", 1450, 65, 300);

@@ -525,8 +525,9 @@ function AppearanceRun() {
 				const ColorButtonColor = ColorButtonText.startsWith("#") ? ColorButtonText : "#fff";
 				const CanCycleColors = !!Item && WardrobeGroupAccessible(C, AssetGroup[A]);
 				const CanPickColor = CanCycleColors && AssetGroup[A].AllowColorize;
+				const ColorIsSimple = ItemColorIsSimple(Item);
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, ColorButtonText, CanCycleColors ? ColorButtonColor : "#aaa", null, null, !CanCycleColors);
-				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", CanPickColor ? "#fff" : "#aaa", CanPickColor ? "Icons/Color.png" : "Icons/ColorBlocked.png", null, !CanPickColor);
+				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", CanPickColor ? "#fff" : "#aaa", CanPickColor ? ColorIsSimple ? "Icons/Color.png" : "Icons/MultiColor.png" : "Icons/ColorBlocked.png", null, !CanPickColor);
 			}
 	}
 	
