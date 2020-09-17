@@ -60,7 +60,7 @@ function PhotographicClick() {
 	}
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanInteract()) PhotographicCanvasToPng(750);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)  && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)  && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 }
 
@@ -127,7 +127,7 @@ function PhotographicSubDressBack() {
 }
 
 function PhotographicSubChangePose() {
-	CharacterSetActivePose(PhotographicSub, (PhotographicSub.ActivePose == null) ? "Kneel" : null);
+	CharacterSetActivePose(PhotographicSub, (PhotographicSub.ActivePose == null) ? "Kneel" : null, true);
 }
 
 

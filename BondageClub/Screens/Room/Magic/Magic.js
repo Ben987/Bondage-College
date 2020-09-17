@@ -242,7 +242,8 @@ function MagicTrickBoxMilkCan() {
 }
 
 function MagicTrickBoxWaterCell() {
-	InventoryWear(Player, "SuspensionHempRope", "ItemFeet");
+	InventoryWear(Player, "HempRope", "ItemFeet"); 
+	InventoryGet(Player, "ItemFeet").Property = { Type: "Suspension", SetPose: ["LegsClosed", "Suspension"], Difficulty: 6 };
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "HempRope", "ItemArms");
 	InventoryWear(Player, "WaterCell", "ItemDevices");

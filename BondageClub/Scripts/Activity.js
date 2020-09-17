@@ -314,6 +314,11 @@ function ActivityOrgasmGameGenerate(Progress) {
  * @returns {void} - Nothing
  */
 function ActivityOrgasmPrepare(C) {
+	if (C.IsEdged()) {
+		C.ArousalSettings.Progress = 95;
+		return;
+	}
+
 	if ((C.ID == 0) || (C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) {
 
 		// Starts the timer and exits from dialog if necessary

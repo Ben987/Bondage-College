@@ -1,88 +1,97 @@
 "use strict";
 
-// Loads the item extension properties
+var InventoryItemArmsLeatherCuffsOptions = [
+	{
+		Name: "None",
+		Property: {
+			Type: null,
+			Difficulty: 0,
+			Effect: [],
+			SetPose: null,
+			SelfUnlock: true,
+		},
+	},
+	{
+		Name: "Wrist",
+		Property: {
+			Type: "Wrist",
+			Difficulty: 2,
+			Effect: ["Block", "Prone"],
+			SetPose: ["BackBoxTie"],
+			SelfUnlock: true,
+		},
+	},
+	{
+		Name: "Elbow",
+		Property: {
+			Type: "Elbow",
+			Difficulty: 4,
+			Effect: ["Block", "Prone"],
+			SetPose: ["BackElbowTouch"],
+			SelfUnlock: false,
+		},
+	},
+	{
+		Name: "Both",
+		Property: {
+			Type: "Both",
+			Difficulty: 6,
+			Effect: ["Block", "Prone"],
+			SetPose: ["BackElbowTouch"],
+			SelfUnlock: false,
+		},
+	}
+]
+
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsLeatherCuffsLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
+	ExtendedItemLoad(InventoryItemArmsLeatherCuffsOptions, "SelectBondagePosition");
 }
 
-// Draw the item extension screen
+/**
+ * Draw the item extension screen
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsLeatherCuffsDraw() {
+	ExtendedItemDraw(InventoryItemArmsLeatherCuffsOptions, "LeatherCuffsPose");
+}
 	
-	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
-	// Draw the possible poses
-	DrawText(DialogFind(Player, "SelectBondagePosition"), 1500, 500, "white", "gray");
-	DrawButton(1000, 550, 225, 225, "", (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/None.png", 1000, 550);
-	DrawText(DialogFind(Player, "LeatherCuffsPoseNone"), 1125, 800, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Wrist")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Wrist.png", 1250, 550);
-	DrawText(DialogFind(Player, "LeatherCuffsPoseWrist"), 1375, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Elbow")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Elbow.png", 1500, 550);
-	DrawText(DialogFind(Player, "LeatherCuffsPoseElbow"), 1625, 800, "white", "gray");
-	DrawButton(1750, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Both")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Both.png", 1750, 550);
-	DrawText(DialogFind(Player, "LeatherCuffsPoseBoth"), 1875, 800, "white", "gray");
-	DrawText(DialogFind(Player, "CannotUnlockIfElbowBound"), 1500, 900, "white", "gray");
-}
-
-// Catches the item extension clicks
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsLeatherCuffsClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemArmsLeatherCuffsSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Wrist"))) InventoryItemArmsLeatherCuffsSetPose("Wrist");
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Elbow"))) InventoryItemArmsLeatherCuffsSetPose("Elbow");
-	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Both"))) InventoryItemArmsLeatherCuffsSetPose("Both");
+	ExtendedItemClick(InventoryItemArmsLeatherCuffsOptions);
 }
 
-// Sets the cuffs pose (wrist, elbow, both or none)
-function InventoryItemArmsLeatherCuffsSetPose(NewPose) {
-
-	// Gets the current item and character
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemArmsLeatherCuffsLoad();
-	}
-
-	// Sets the new pose with it's effects
-	DialogFocusItem.Property.Restrain = NewPose;
-	if (NewPose == null) {
-		delete DialogFocusItem.Property.SetPose;
-		delete DialogFocusItem.Property.Effect;
-		delete DialogFocusItem.Property.SelfUnlock;
-		delete DialogFocusItem.Property.Difficulty;
-	} else {
-		DialogFocusItem.Property.SetPose = [(NewPose == "Wrist") ? "BackBoxTie" : "BackElbowTouch"];
-		DialogFocusItem.Property.Effect = ["Block", "Prone"];
-		DialogFocusItem.Property.SelfUnlock = (NewPose == "Wrist");
-		if (NewPose == "Wrist") DialogFocusItem.Property.Difficulty = 2;
-		if (NewPose == "Elbow") DialogFocusItem.Property.Difficulty = 4;
-		if (NewPose == "Both") DialogFocusItem.Property.Difficulty = 6;
-	}
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
-
-	// Refreshes the character and chatroom
-	CharacterRefresh(C);
-	var msg = "LeatherCuffsRestrain" + ((NewPose == null) ? "None" : NewPose);
-	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @param {Option} PreviousOption - The previously selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemArmsLeatherCuffsPublishAction(C, Option, PreviousOption) {
+	var msg = "LeatherCuffsRestrain" + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
 
-	// Rebuilds the inventory menu
-	if (DialogInventory != null) {
-		DialogFocusItem = null;
-		DialogMenuButtonBuild(C);
-	}
-
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemArmsLeatherCuffsNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "ItemArmsLeatherCuffs" + Option.Name, "ItemArms");
 }

@@ -80,7 +80,11 @@ const SpankingInventory = [
 	}, {
 		Name: "Toothbrush",
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, {Group: "Eyes", Name: "Closed", Timer: 10}, { Group: "Mouth", Name: "Grin", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
-	}
+	}, {
+		Name: "ShockWand",
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
+	},
+	
 ];
 
 var SpankingInventoryOffset = 0;
@@ -203,4 +207,20 @@ function InventorySpankingToysActivityAllowed(C) {
 		if (C.FocusGroup.Activity != null) return C.FocusGroup.Activity.indexOf(Activity) >= 0;
 	}
 	return false;
+}
+
+// Returns the audio sound to be played
+function InventorySpankingToysGetAudio(C) {
+	switch (InventorySpankingToysGetType(C)) {
+		case "Crop":
+		case "Flogger": return "SmackSkin1";
+		case "Cane":
+		case "HeartCrop": return "SmackSkin2";
+		case "Paddle":
+		case "WhipPaddle":
+		case "TennisRacket": return "SmackSkin3";
+		case "Whip": return "Whip1";
+		case "CattleProd": return "Shocks";
+		default: return "";
+	}
 }

@@ -28,7 +28,7 @@ function DailyJobPuppyLoad(GirlNum) {
 	if (InventoryGet(C, "ItemMouth") == null) InventoryWearRandom(C, "ItemMouth", 8);
 	if (InventoryGet(C, "ItemNeck") == null) InventoryWearRandom(C, "ItemNeck", 8);
 	if (InventoryGet(C, "ItemNeckRestraints") == null) InventoryWear(C, "ChainLeash", "ItemNeckRestraints", null, 8);
-	if (GirlNum != "0") CharacterSetActivePose(C, "Kneel");
+	if (GirlNum != "0") CharacterSetActivePose(C, "Kneel", true);
 	return C;
 }
 

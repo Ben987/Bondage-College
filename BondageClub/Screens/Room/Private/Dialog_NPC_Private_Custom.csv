@@ -334,14 +334,14 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 0,,Can I tie you up?,"Don't even try, I'm more Dominant than you will ever be.",,!AllowRestain(),CannotRestrain,Serious|Dominant
 0,,Can I tie you up?,"A subbie tying a subbie?  No, let's find a real Domme.",,!AllowRestain(),CannotRestrain,Playful|Submissive
 0,,Can I tie you up?,"I refuse.  You don't have the strength, techniques and mental capacity to do an effective bondage.  You'll only end up hurting me.",,!AllowRestain(),CannotRestrain,Wise|Peaceful
-0,,Will you tie me up?,Sure!  Give me your arms and I'll fix you up.  (She restrains you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,
-0,,Will you tie me up?,My pleasure girl.  I'll make it extra tight for you.  (She hurts you a little while restraining you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Dominant|Violent
-0,,Will you tie me up?,A sub tying a sub?  I guess we can try that.  (She giggles and restrains you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Submissive|Playful
-0,,Will you tie me up?,"Come closer and stay still little one, I don't want to hurt you.  (She carefully restrains you.)",RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Peaceful|Polite
-0,,Will you tie me up?,I can't tie up a strong woman like you.,,WontRestainPlayer(),WontRestrainPlayer,
-0,,Will you tie me up?,I've tied up lots of bitches around here.  But I won't dare touching someone like ya.,,WontRestainPlayer(),WontRestrainPlayer,Dominant|Rude
-0,,Will you tie me up?,"(She shakes her head no.)  Miss, I must politely decline your offer.  It wouldn't be proper.",,WontRestainPlayer(),WontRestrainPlayer,Submissive|Polite
-0,,Will you tie me up?,"Me?  Restrain you?  I don't know...  I mean, I don't want...  I mean, I'm not sure.",,WontRestainPlayer(),WontRestrainPlayer,Dumb|Frigid
+0,,Will you tie me up?,Sure!  Give me your arms and I'll fix you up.  (She restrains you.),RestrainPlayer(),AllowRestrainPlayer(),WillRestrainPlayer,
+0,,Will you tie me up?,My pleasure girl.  I'll make it extra tight for you.  (She hurts you a little while restraining you.),RestrainPlayer(),AllowRestrainPlayer(),WillRestrainPlayer,Dominant|Violent
+0,,Will you tie me up?,A sub tying a sub?  I guess we can try that.  (She giggles and restrains you.),RestrainPlayer(),AllowRestrainPlayer(),WillRestrainPlayer,Submissive|Playful
+0,,Will you tie me up?,"Come closer and stay still little one, I don't want to hurt you.  (She carefully restrains you.)",RestrainPlayer(),AllowRestrainPlayer(),WillRestrainPlayer,Peaceful|Polite
+0,,Will you tie me up?,I can't tie up a strong woman like you.,,WontRestrainPlayer(),WontRestrainPlayer,
+0,,Will you tie me up?,I've tied up lots of bitches around here.  But I won't dare touching someone like ya.,,WontRestrainPlayer(),WontRestrainPlayer,Dominant|Rude
+0,,Will you tie me up?,"(She shakes her head no.)  Miss, I must politely decline your offer.  It wouldn't be proper.",,WontRestrainPlayer(),WontRestrainPlayer,Submissive|Polite
+0,,Will you tie me up?,"Me?  Restrain you?  I don't know...  I mean, I don't want...  I mean, I'm not sure.",,WontRestrainPlayer(),WontRestrainPlayer,Dumb|Frigid
 0,,Can you release me?,(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,
 0,,Can you release me?,Are you in pain girl?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,Dominant|Peaceful
 0,,Can you release me?,"I'm not sure how Miss, let me try.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,Submissive|Dumb
@@ -648,6 +648,10 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1000,1010,Can we talk Mistress?,(She starts to sing.)  Let's talk about sex subbie!  Let's talk about you and me!,,,DomStartTalk,Horny
 1000,1010,Can we talk Mistress?,"Absolutely, what will be the topic of our discussion or debate?",,,DomStartTalk,Polite
 1000,1010,Can we talk Mistress?,What's up slave?,,,DomStartTalk,Rude
+1000,1050,"Girl, it's time to turn the tables.",(She looks surprised.)  What?  What are you talking about my slave?,PlayerTurnTablesStart(),PlayerCanTurnTables(),DomTurnTablesStart,
+1000,1050,"Girl, it's time to turn the tables.",(She looks furious.)  What the fuck?  You better explain yourself before I punish you slave.,PlayerTurnTablesStart(),PlayerCanTurnTables(),DomTurnTablesStart,Rude|Violent
+1000,1050,"Girl, it's time to turn the tables.",(She looks annoyed.)  What?  Do not play games my cherish slave.  I am not disposed.,PlayerTurnTablesStart(),PlayerCanTurnTables(),DomTurnTablesStart,Polite|Serious
+1000,1050,"Girl, it's time to turn the tables.",(She looks confused.)  Uh?  Are you drunk my slave?,PlayerTurnTablesStart(),PlayerCanTurnTables(),DomTurnTablesStart,Dumb|Playful
 1000,,What would you like to do?,,StartActivity(),Player.CanTalk(),,
 1000,,(Try to get her attention.),,StartActivity(),!Player.CanTalk(),,
 1000,,Can you please release me?,(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,
@@ -823,6 +827,30 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1042,1000,Making love will only be better.,"(She nods slowly.)  It will, sweetie.  Let's do something fun to celebrate!",,,,
 1042,1000,I hope we'll never argue.,(She raises an eyebrow.)  Don't talk about that.  Let's do something fun to celebrate!,NPCInteraction(-3),,,
 1042,1000,I hope we'll be together forever.,(She smiles at you.)  Let's make it work my love.  Let's do something fun to celebrate!,NPCInteraction(3),,,
+1050,1051,You don't deserve to call me slave.,So you're a Dominant now?  You want to break our bond?,NPCInteraction(-2),,,
+1050,1051,I've grown stronger than you.,So you're a Dominant now?  You want to break our bond?,,,,
+1050,1051,You've been a good owner.,So you're a Dominant now?  You want to break our bond?,NPCInteraction(2),,,
+1050,1000,"Sorry, I didn't mean to say that.",(She takes a deep breath and calms down slowly.),,,,
+1051,1052,Get on your knees girl.,(She gulps and starts to tremble.)  Are you serious?,,,,
+1051,1056,"Yes, I need someone stronger.",I guess you're ready for someone tougher than me.  You don't want to be owned by me anymore?,,,,
+1051,1000,No!  Sorry I said that.,(She takes a deep breath and calms down slowly.),,,,
+1052,1053,I'm very serious.,"(She starts to sweat and slowly gets down on her knees.)  Yes, Miss.","DialogSetPose(CurrentCharacter, ""Kneel"")",,,
+1052,1053,(Points to the floor.),"(She follows your finger and slowly gets down on her knees.)  Yes, Miss.","DialogSetPose(CurrentCharacter, ""Kneel"")",,,
+1052,1000,Let me think about it.,(She seems shaken.)  Very well my girl.  We'll see if we can work this out.,NPCInteraction(-5),,,
+1053,1054,"No.  You will call me ""Mistress"".",(She bows her head.)  Very well Mistress.  I will wear your collar.,,,PlayerTurnTableCollar,
+1053,1054,"No.  You will call me ""Mistress"".",This is the real shit then?  Wow!  I hope you're genuine on that Mistress.,,,PlayerTurnTableCollar,Serious|Rude
+1053,1054,"No.  You will call me ""Mistress"".","(She nods rapidly.)  Mistress, I hope I'll have outstanding moments exhibiting your collar.",,,PlayerTurnTableCollar,Playful|Polite
+1053,1054,"No.  You will call me ""Mistress"".",(She nods very slowly.)  I trust you will take good care of me Mistress.,,,PlayerTurnTableCollar,Wise|Peaceful
+1054,1055,Let's go girl.  (Go transfer your collar.),(You go to the club management and she pays to have your collar transferred to herself.  You walk back soon after.),PlayerTurnTablesCollar(),,,
+1055,2000,You better behave girl.,(She gulps.)  How can I serve you Mistress?,NPCInteraction(-3),,,
+1055,2000,You will become the perfect slave.,(She nods.)  How can I please you Mistress?,,,,
+1055,2000,I will take good care of you.,"Thanks Mistress, I know you will.  How can I serve you?",NPCInteraction(3),,,
+1056,1057,You can't own me.  But we can stay friends.,"(She sighs.)  Fine, come with me, we'll get you out of that collar.",,,,
+1056,1000,Let me think about it.,Very well my girl.  We'll see if we can work this out.,,,,
+1057,1058,(Go have your collar removed.),(You go to the club management and she pays to have your collar removed.  You walk back soon after.),PlayerTurnTablesRemove(),,,
+1058,0,I hope we can still be friends.,"Yes, lets hope it won't ruin our friendship.  What would you like to do now?",NPCInteraction(5),,,
+1058,0,Let's talk about something else.,Yes.  What would you like to do now?,,,,
+1058,0,I'm glad this collar is gone.,You could have told me sooner you know?  What would you like to do now?,NPCInteraction(-5),,,
 ActivityStop,,,Fine!  (She pushes you back.)  You can play without me girl.,,,DomActivityStop,
 ActivityStop,,,(She pushes you back.)  If you cannot obey then you're not worth my time.,,,DomActivityStop,Wise
 ActivityStop,,,(She pushes you back.)  Back off!,,,DomActivityStop,Dumb
@@ -1202,6 +1230,10 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2000,2010,Let's talk my girl.,(She nods quickly.)  What will be the kinky subject of the day?,,,SubStartTalk,Horny
 2000,2010,Let's talk my girl.,"Absolutely, what will be the topic of our discussion or debate?",,,SubStartTalk,Polite
 2000,2010,Let's talk my girl.,What's up Mistress?,,,SubStartTalk,Rude
+2000,2080,What is that grin on your face?,"Times have changed, I'm now more Dominant than you.  Maybe it's time to turn the tables.",SubTurnTablesStart(),SubCanTurnTables(),SubTurnTablesStart,
+2000,2080,What is that grin on your face?,"Times have changed, I'm fucking tougher than you now.  It's time to turn the tables.",SubTurnTablesStart(),SubCanTurnTables(),SubTurnTablesStart,Rude|Violent
+2000,2080,What is that grin on your face?,"We need to face the reality of our times, I've outgrown you.  It could be time to turn the tables.",SubTurnTablesStart(),SubCanTurnTables(),SubTurnTablesStart,Polite|Serious
+2000,2080,What is that grin on your face?,Things have changed and I have the best plan!  How do you call it?  Turn the tables?,SubTurnTablesStart(),SubCanTurnTables(),SubTurnTablesStart,Dumb|Playful
 2000,2040,You should wear something else.,Alright Mistress.  And what should I wear?,,!DialogIsRestrained(CurrentCharacter),SubChangeCloth,
 2000,2040,You should wear something else.,(She twirls on herself and giggles.)  Of course!  What would be appealing for your eyes?,,!DialogIsRestrained(CurrentCharacter),SubChangeCloth,Playful|Polite
 2000,2040,You should wear something else.,Oh yeah!  Ya feelin' horny Mistress?,,!DialogIsRestrained(CurrentCharacter),SubChangeCloth,Horny|Rude
@@ -1425,6 +1457,26 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2072,2000,Making love will only be better.,"(She nods slowly.)  It will.  I'm yours, body and soul.",,,,
 2072,2000,I hope we'll never argue.,"(She raises an eyebrow.)  Let's not talk about that.  I'm yours, body and soul.",NPCInteraction(-3),,,
 2072,2000,I hope we'll be together forever.,"(She smiles at you.)  Let's make it work.  I'm yours, body and soul.",NPCInteraction(3),,,
+2080,2081,Turn the tables?  What do you mean?,"Since I'm more Dominant than you, you should wear my collar and not the reverse.",,,,
+2080,2081,(Stay silent and listen to her.),"Since I'm more Dominant than you, you should wear my collar and not the reverse.",,,,
+2080,2000,We will not turn any tables girl.,(She seems disappointed.)  Alright Mistress.  What's on your mind then?,,,,
+2080,2000,Forget it.  I don't like this idea.,(She seems disappointed.)  Alright Mistress.  What's on your mind then?,,,,
+2081,2082,You want to collar me?,"This collar of mine would become yours to wear.  You would need to call me ""Mistress"" from now on.",,,,
+2081,2082,You would become my Mistress?,"This collar of mine would become yours to wear.  You would need to call me ""Mistress"" from now on.",,,,
+2081,2000,You could not handle me.,(She sighs.)  Maybe you're right Mistress.  What's on your mind then?,,,,
+2081,2000,Don't be ridiculous girl.,(She nods.)  I'm sorry Mistress.  What's on your mind then?,,,,
+2082,,You will take care of me?,"(She nods and smiles.)  Of course, I will.",DialogRemove(),,,
+2082,2083,"Yes, I will submit to you Miss.",We will build a wonderful relationship.  Now get on your knees.,,,SubTurnTablesYes,
+2082,2083,"Yes, I will submit to you Miss.",We will have a great time together.  (She pets your hair.)  Now get on your knees.,,,SubTurnTablesYes,Playful|Peaceful
+2082,2083,"Yes, I will submit to you Miss.",Damn right you will submit.  Get on your knees girl.  (She snaps her fingers),,,SubTurnTablesYes,Serious|Violent
+2082,2083,"Yes, I will submit to you Miss.",I'll finally be able to fuck you as much as I want.  Get on your knees slut.,,,SubTurnTablesYes,Horny|Rude
+2082,2000,"No, I won't do that.",(She sighs.)  I thought it was a good plan.  What's on your mind then?,,,,
+2083,2084,Yes Miss.  (Kneel down.),"Good girl.  You'll need to call me ""Mistress"" from now on.  We'll go to the club management to transfer that collar.","DialogSetPose(Player, ""Kneel"")",,,
+2083,2084,(Stay silent and kneel down.),"Good girl.  You'll need to call me ""Mistress"" from now on.  We'll go to the club management to transfer that collar.","DialogSetPose(Player, ""Kneel"")",,,
+2084,2085,(Go to transfer her collar.),"(You both walk to the club management where they transfer her collar to you, officialising the new ownership.  You return with your new Mistress.)",SubTurnTablesDone(),,,
+2085,1013,I'm so happy Mistress!,(She smiles.)  So am I.  You are now under my control girl.  Be a good submissive.,NPCInteraction(5),,,
+2085,1013,Wow!  It happened so fast.,(She nods.)  That's right.  You are now under my control girl.  Be a good submissive.,,,,
+2085,1013,Is it too late to change my mind?,"(She frowns.)  Don't worry about making decisions anymore, I will control you.  Be a good submissive.",NPCInteraction(-5),,,
 2100,,,What would you like to do Mistress?,,,,
 2100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),SubPlayTickle,
 2100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),SubPlayTickle,Playful|Peaceful
