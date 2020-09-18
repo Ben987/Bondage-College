@@ -20,6 +20,11 @@ function SlaveMarketCannotStartAuctionSubmissive() { return (ReputationGet("Domi
  * @returns {boolean} - Returns TRUE if the player is dominant enough to participate in an auction, but does not have space in her private room
  */
 function SlaveMarketCannotStartAuctionRoom() { return ((ReputationGet("Dominant") >= -50) && !ManagementCanTransferToRoom()) }
+/**
+ * Checks if the player can be auctioned.  Must not be owned, must be submissive, must not be restrained, must have space in room and must not have been auctioned in the last seven days
+ * @returns {boolean} - Returns TRUE if the player can be auctioned
+ */
+function SlaveMarketCanBeAuctioned() { return (!Player.IsOwned() && !Player.IsRestrained() && !Player.IsChaste() && (ReputationGet("Dominant") < 0) && !LogQuery("SlaveMarket", "Auctioned") && ManagementCanTransferToRoom()) }
 
 /**
  * Loads the Slave Market room, generates the Mistress and slave
@@ -64,7 +69,7 @@ function SlaveMarketClick() {
  * @returns {void} - Nothing
  */
 function SlaveMarketAuctionStart() {
-	InventoryWear(SlaveMarketSlave, "CollarChainShort", "ItemNeckAccessories");
+	InventoryWear(SlaveMarketSlave, "CollarChainShort", "ItemNeckRestraints");
 	SlaveAuctionVendor = SlaveMarketMistress;
 	SlaveAuctionSlave = SlaveMarketSlave;
 	MiniGameStart("SlaveAuction", "", "SlaveMarketAuctionEnd");
@@ -103,7 +108,7 @@ function SlaveMarketNewSlave() {
 	CharacterNaked(SlaveMarketSlave);
 	CharacterRandomName(SlaveMarketSlave);
 	InventoryWear(SlaveMarketSlave, "LeatherCollar", "ItemNeck");
-	InventoryWear(SlaveMarketSlave, "CollarChainLong", "ItemNeckAccessories");
+	InventoryWear(SlaveMarketSlave, "CollarChainLong", "ItemNeckRestraints");
 	if (CurrentCharacter != null) DialogLeave();
 }
 
@@ -141,4 +146,25 @@ function SlaveMarketTrainingStart() {
 	EmptyCharacter.push(Player);
 	EmptyCharacter.push(SlaveMarketSlaveToTrain);
 	CommonSetScreen("Room", "Empty");
+}
+
+/**
+ * Triggered when the auctioned player gets stripped and chained
+ * @returns {void} - Nothing
+ */
+function SlaveMarketAuctionPlayerStrip() {
+	CharacterRelease(Player);
+	CharacterNaked(Player);
+	InventoryRemove(Player, "ItemNeck", false);
+	InventoryWear(Player, "LeatherCollar", "ItemNeck", "Default", 10, false);
+	InventoryWear(Player, "CollarChainLong", "ItemNeckRestraints", "Default", 10, false);
+	CharacterRefresh(Player);
+}
+
+/**
+ * Triggered when the player auction starts
+ * @returns {void} - Nothing
+ */
+function SlaveMarketAuctionPlayerStart() {
+	DialogLeave();
 }

@@ -161,9 +161,13 @@ function CommonDrawAppearanceBuild(C, {
 				return Acc;
 			}, []);
 
-		// Check if we need to copy the color of another asset
 		var Color = CA.Color;
-		var InheritColor = Layer.InheritColor || (Color == "Default" ? (CA.Asset.InheritColor || CA.Asset.Group.InheritColor) : null);
+		if (Array.isArray(Color)) {
+			Color = Color[Layer.ColorIndex] || AG.ColorSchema[0];
+		}
+
+		// Check if we need to copy the color of another asset
+		var InheritColor = Layer.InheritColor || (Color == "Default" ? (A.InheritColor || AG.InheritColor) : null);
 		if (InheritColor != null) {
 			var ParentAsset = InventoryGet(C, InheritColor);
 			if (ParentAsset != null) Color = ParentAsset.Color;
@@ -211,6 +215,10 @@ function CommonDrawAppearanceBuild(C, {
 					}
 				}
 			}
+		}
+
+		if (Color === "Default" && A.DefaultColor) {
+			Color = Array.isArray(A.DefaultColor) ? A.DefaultColor[Layer.ColorIndex] : A.DefaultColor;
 		}
 
 		// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)

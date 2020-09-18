@@ -17,8 +17,8 @@ TrainingFail,,,You've failed your training.  Thanks for your time but I cannot p
 0,,I need to go.  (Leave her.),,DialogLeave(),
 10,,How does the market works?,Owners can sell their own slaves or free submissives can sell themselves for profit.  They get sold through an auction.,,
 10,,Can I sell my slaves here?,"Yes, but only if your slave is fully collared.  You can sell her permanently or rent her for a day.  Go get her first.",,
-10,,Can I sell myself?,"Not yet, we cannot take you at the moment.  (This feature will be available in a future version.)",,!Player.IsOwned()
-10,,Can my owner sell me?,"Not yet, we cannot take you at the moment.  (This feature will be available in a future version.)",,Player.IsOwned()
+10,50,Can I be auctioned as a slave?,"You could, but you need to understand the rules first.",,CanBeAuctioned()
+10,,Can I be auctioned as a slave?,"No, to be auctioned you need to be a submissive, be unowned, be unrestrained, have space in your room and not have been auctioned in the last seven days.",,!CanBeAuctioned()
 10,,It's consensual?,"Always.  Even if we call it the slave market, it remains consensual.  If the slave chickens out, we let her go.",,
 10,,Who gets the profits?,"If the slave is owned, the owner gets the profit.  If not, she gets it.  The Bondage Club takes half the amount of every transaction.",,
 10,,The prices are variable?,"Yes, since it's an auction and all slaves are different, some go at a higher price than others.  The better trained, the higher the auction goes.",,
@@ -53,3 +53,23 @@ TrainingFail,,,You've failed your training.  Thanks for your time but I cannot p
 43,0,I'll do better next time.,I hope you're right.  Do you need anything else?,,
 43,0,I'm sorry.,"Being sorry won't help, you need to be stronger and focus on your slave needs.  Do you want anything else?","DialogChangeReputation(""Dominant"", -1)",
 43,0,That slave was a wimp.,"Maybe, but you still need to focus on your wimp needs.  Do you want anything else?","DialogChangeReputation(""Dominant"", 2)",
+50,51,Please tell me the rules.,"As a slave on auction, you will be naked and chained for Dominants to examine and question you.",,
+50,51,(Listen quietly.),"As a slave on auction, you will be naked and chained for Dominants to examine and question you.",,
+51,52,Alright.,"After the exam, the bidding will start.  Each buyer will bid until no one wants to bid anymore.  The last bid wins you.",,
+51,52,This is kinky!,"After the exam, the bidding will start.  Each buyer will bid until no one wants to bid anymore.  The last bid wins you.",,
+52,53,Very well.,"I don't know the price you will raise, but the more submissive you are, the higher it usualy gets.",,
+52,0,I know how auction works.  Get to the point.,"If you're not going to take this seriously, I cannot allow you to be auctioned.  Get lost girl.","DialogChangeReputation(""Dominant"", 1)",
+52,53,(Listen carefully.),"I don't know the price you will raise, but the more submissive you are, the higher it usualy gets.",,
+53,54,Who gets the profits?,You will get half the money and Bondage Club gets the other half.,,
+53,54,I hope it pays well.,You will get half the money and Bondage Club gets the other half.,,
+54,0,This is robbery!,"If you cannot accept our terms, I cannot allow you to be auctioned.  Get lost girl.","DialogChangeReputation(""Dominant"", 1)",
+54,55,This is fair.,"Once the transaction is done, your owner will go to your room, having started a regular trial period with her.",,
+54,55,(Nod slowly.),"Once the transaction is done, your owner will go to your room, having started a regular trial period with her.",,
+55,56,I understand.,Good girl.  So are you ready to be auctioned?  You first need to get naked and chained.,,
+55,56,It sounds good.,Good girl.  So are you ready to be auctioned?  You first need to get naked and chained.,,
+56,57,"Yes, I'm ready to be auctioned.","Very good.  (She grins and gets you naked and chained, so buyers can come to check on you.)",AuctionPlayerStrip(),
+56,0,I've changed my mind.,Don't waste my time then.  This is a place of business.,,
+57,58,(Let the buyers examine you.),"(A few Dominants seem to be interested in buying you.  They ask you about your fetishes, sexual preferences and limits.)",,"DialogReputationGreater(""Dominant"", -49)"
+57,58,(Let the buyers examine you.),"(Lots of Dominants seem to be very interested in buying you.  They ask you about your fetishes, sexual preferences and limits.)",,"DialogReputationLess(""Dominant"", -50)"
+58,59,(Answer the questions.),"(After many interviews and physcial examinations, the auctioneer comes in so you can be sold.)",,
+59,0,(Start the auction.),,AuctionPlayerStart(),

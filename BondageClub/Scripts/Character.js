@@ -637,7 +637,17 @@ function CharacterRefresh(C, Push) {
 			}
 		} else if (DialogFocusItem) DialogLeaveFocusItem();
 		if (!DialogFocusItem) {
-			DialogInventoryBuild(C, DialogInventoryOffset);
+			var IsLockMode = DialogItemToLock && C.Appearance.find(Item => Item.Asset.Name == DialogItemToLock.Asset.Name && DialogItemToLock.Asset.Group.Name == Item.Asset.Group.Name );
+			if (IsLockMode) {
+				DialogInventory = [];
+				for (let A = 0; A < Player.Inventory.length; A++)
+					if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
+						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
+				DialogInventorySort();
+				DialogMenuButtonBuild(C);
+			} else {
+				DialogInventoryBuild(C, DialogInventoryOffset);
+			}
 			ActivityDialogBuild(C);
 		}
 	}

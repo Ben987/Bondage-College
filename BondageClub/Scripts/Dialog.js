@@ -18,7 +18,6 @@ var DialogInventory = [];
 var DialogInventoryOffset = 0;
 var DialogFocusItem = null;
 var DialogFocusSourceItem = null;
-var DialogFocusItemOriginalColor = null;
 var DialogFocusItemColorizationRedrawTimer = null;
 var DialogMenuButton = [];
 var DialogItemToLock = null;
@@ -429,7 +428,6 @@ function DialogLeaveItemMenu() {
 	DialogInventory = null;
 	DialogProgress = -1;
 	DialogColor = null;
-	DialogFocusItemOriginalColor = null;
 	DialogMenuButton = [];
 	DialogItemPermissionMode = false;
 	DialogActivityMode = false;
@@ -544,8 +542,9 @@ function DialogMenuButtonBuild(C) {
 	// The "Exit" button is always available
 	DialogMenuButton = ["Exit"];
 
+	var Item = InventoryGet(C, C.FocusGroup.Name);
 	// In color picker mode
-	if (DialogColor != null) {
+	if (DialogColor != null && Item == null) {
 		DialogMenuButton.push("ColorCancel");
 		DialogMenuButton.push("ColorSelect");
 		return;
@@ -555,7 +554,6 @@ function DialogMenuButtonBuild(C) {
 	if ((DialogProgress < 0) && !DialogActivityMode) {
 
 		// Pushes all valid main buttons, based on if the player is restrained, has a blocked group, has the key, etc.
-		var Item = InventoryGet(C, C.FocusGroup.Name);
 		var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
 		var IsGroupBlocked = InventoryGroupIsBlocked(C);
 		if ((DialogInventory.length > 12) && ((Player.CanInteract() && !IsGroupBlocked) || DialogItemPermissionMode)) DialogMenuButton.push("Next");
@@ -871,8 +869,8 @@ function DialogMenuButtonClick() {
 		if ((MouseX >= 1885 - I * 110) && (MouseX <= 1975 - I * 110)) {
 
 			// Gets the current character and item
-			var C = CharacterGetCurrent();
-			var Item = InventoryGet(C, C.FocusGroup.Name);
+			const C = CharacterGetCurrent();
+			const Item = InventoryGet(C, C.FocusGroup.Name);
 
 			// Exit Icon - Go back to the character dialog
 			if (DialogMenuButton[I] == "Exit") {
@@ -924,6 +922,7 @@ function DialogMenuButtonClick() {
 							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
 								DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
 						DialogInventorySort();
+						DialogMenuButtonBuild(C);
 					}
 				} else {
 					DialogItemToLock = null;
@@ -957,41 +956,39 @@ function DialogMenuButtonClick() {
 
 			// Color picker Icon - Starts the color picking, keeps the original color and shows it at the bottom
 			else if (DialogMenuButton[I] == "ColorPick") {
-				ElementCreateInput("InputColor", "text", (DialogColorSelect != null) ? DialogColorSelect.toString() : "");
+				if (!Item) {
+					ElementCreateInput("InputColor", "text", (DialogColorSelect != null) ? DialogColorSelect.toString() : "");
+				} else {
+					const originalColor = Item.Color;
+					ItemColorLoad(C, Item, 1300, 25, 675, 950);
+					ItemColorOnExit((save) => {
+						DialogColor = null;
+						if (save && !CommonColorsEqual(originalColor, Item.Color)) {
+							if (C.ID == 0) ServerPlayerAppearanceSync();
+							ChatRoomPublishAction(C, Object.assign({}, Item, { Color: originalColor }), Item, false);
+						}
+					});
+				}
 				DialogColor = "";
 				DialogMenuButtonBuild(C);
-				if (Item != null) {
-					DialogFocusItemOriginalColor = Item.Color;
-					ElementValue("InputColor", Item.Color || "");
-				} else {
-					DialogFocusItemOriginalColor = null;
-				}
 				return;
 			}
 
 			// When the user selects a color, applies it to the item
-			else if ((DialogMenuButton[I] == "ColorSelect") && CommonIsColor(ElementValue("InputColor"))) {
+			else if (!Item && (DialogMenuButton[I] == "ColorSelect") && CommonIsColor(ElementValue("InputColor"))) {
 				DialogColor = null;
 				DialogColorSelect = ElementValue("InputColor");
 				ElementRemove("InputColor");
 				DialogMenuButtonBuild(C);
-				if (Item != null && DialogFocusItemOriginalColor != Item.Color) {
-					if (C.ID == 0) ServerPlayerAppearanceSync();
-					ChatRoomPublishAction(C, Object.assign({}, Item, { Color: DialogFocusItemOriginalColor }), Item, false);
-				}
 				return;
 			}
 
 			// When the user cancels out of color picking, we recall the original color
-			else if (DialogMenuButton[I] == "ColorCancel") {
+			else if (!Item && DialogMenuButton[I] == "ColorCancel") {
 				DialogColor = null;
 				DialogColorSelect = null;
 				ElementRemove("InputColor");
 				DialogMenuButtonBuild(C);
-				if (Item != null) {
-					Item.Color = DialogFocusItemOriginalColor;
-					CharacterAppearanceBuildCanvas(C);
-				}
 				return;
 			}
 
@@ -1008,6 +1005,7 @@ function DialogMenuButtonClick() {
 			// When we enter item permission mode, we rebuild the inventory to set permissions
 			else if (DialogMenuButton[I] == "DialogPermissionMode") {
 				DialogItemPermissionMode = true;
+				DialogItemToLock = null;
 				DialogInventoryBuild(C);
 				return;
 			}
@@ -1171,6 +1169,11 @@ function DialogClick() {
 		CharacterAppearanceForceUpCharacter = CurrentCharacter.MemberNumber;
 		CurrentCharacter.HeightModifier = 0;
 		return;
+	}
+
+
+	if (DialogColor != null && CurrentCharacter.FocusGroup && InventoryGet(CurrentCharacter, CurrentCharacter.FocusGroup.Name) && MouseIn(1300, 25, 675, 950)) {
+		return ItemColorClick(CurrentCharacter, CurrentCharacter.FocusGroup.Name, 1300, 25, 675, 950);
 	}
 
 	// If the user clicked on the interaction character or herself, we check to build the item menu
@@ -1432,9 +1435,14 @@ function DialogDrawActivityMenu(C) {
  */
 function DialogDrawItemMenu(C) {
 
+	const FocusItem = InventoryGet(C, C.FocusGroup.Name);
+
+	if (DialogColor != null && FocusItem) {
+		return ItemColorDraw(C, C.FocusGroup.Name, 1300, 25, 675, 950);
+	}
+
 	// Gets the default text that will reset after 5 seconds
-	var SelectedGroup = (Player.FocusGroup != null) ? Player.FocusGroup.Description : CurrentCharacter.FocusGroup.Description;
-	if (DialogTextDefault == "") DialogTextDefault = DialogFind(Player, "SelectItemGroup").replace("GroupName", SelectedGroup.toLowerCase());
+	if (DialogTextDefault == "") DialogTextDefault = DialogFind(Player, "SelectItemGroup").replace("GroupName", C.FocusGroup.Description.toLowerCase());
 	if (DialogTextDefaultTimer < CommonTime()) DialogText = DialogTextDefault;
 
 	// Draws the top menu text & icons
@@ -1444,7 +1452,7 @@ function DialogDrawItemMenu(C) {
 		DrawButton(1885 - I * 110, 15, 90, 90, "", ((DialogMenuButton[I] == "ColorPick") && (DialogColorSelect != null)) ? DialogColorSelect : "White", "Icons/" + DialogMenuButton[I] + ".png", (DialogColor == null) ? DialogFind(Player, DialogMenuButton[I]) : null);
 
 	// Draws the color picker
-	if (DialogColor != null) {
+	if (!FocusItem && DialogColor != null) {
 		ElementPosition("InputColor", 1450, 65, 300);
 		ColorPickerDraw(1300, 145, 675, 830, document.getElementById("InputColor"), function (Color) { DialogChangeItemColor(C, Color) });
 		return;
@@ -1483,7 +1491,6 @@ function DialogDrawItemMenu(C) {
 	}
 
 	// If the player is progressing
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (DialogProgress >= 0) {
 
 		// Draw one or both items
@@ -1561,14 +1568,13 @@ function DialogDrawItemMenu(C) {
 	}
 
 	// If we must draw the current item from the group
-	var Item = InventoryGet(C, C.FocusGroup.Name);
-	if (Item != null) {
-		if (InventoryItemHasEffect(Item, "Vibrating", true)) {
+	if (FocusItem != null) {
+		if (InventoryItemHasEffect(FocusItem, "Vibrating", true)) {
 			DrawRect(1387, 250, 225, 275, "white");
-			DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 2, 252 + Math.floor(Math.random() * 3) - 2, 221, 221);
-			DrawTextFit(Item.Asset.Description, 1497, 500, 221, "black");
+			DrawImageResize("Assets/" + FocusItem.Asset.Group.Family + "/" + FocusItem.Asset.Group.Name + "/Preview/" + FocusItem.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 2, 252 + Math.floor(Math.random() * 3) - 2, 221, 221);
+			DrawTextFit(FocusItem.Asset.Description, 1497, 500, 221, "black");
 		}
-		else DrawItemPreview(1387, 250, Item);
+		else DrawItemPreview(1387, 250, FocusItem);
 	}
 
 	// Show the no access text
