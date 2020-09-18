@@ -231,6 +231,7 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
+	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
 	if (C.OnlineSharedSettings.AllowFullWardrobeAccess == null) C.OnlineSharedSettings.AllowFullWardrobeAccess = false;
 	if (C.OnlineSharedSettings.BlockBodyCosplay == null) C.OnlineSharedSettings.BlockBodyCosplay = false;
 	// TODO: The following preferences were migrated September 2020 in for R61 - replace with standard preference code after a few months
