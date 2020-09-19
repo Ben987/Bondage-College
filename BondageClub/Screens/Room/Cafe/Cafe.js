@@ -109,7 +109,7 @@ function CafeClick() {
 	if (MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (MouseIn(1000, 0, 500, 1000)) {
 		if (MaidQuartersMaid != null) {
-			if ((MaidQuartersMaid.Stage == "285" || MaidQuartersMaid.Stage == "286") && (InventoryGet(Player, "ItemMisc").Asset.Name == "WoodenMaidTrayFull" || InventoryGet(Player, "ItemMisc").Asset.Name == "WoodenMaidTray")) {
+			if ((MaidQuartersMaid.Stage == "285" || MaidQuartersMaid.Stage == "286") && InventoryGet(Player, "ItemMisc") && (InventoryGet(Player, "ItemMisc").Asset.Name == "WoodenMaidTrayFull" || InventoryGet(Player, "ItemMisc").Asset.Name == "WoodenMaidTray")) {
 				if (!CafeMaid.IsRestrained()) {
 					CafeMaid.Stage = "100";
 					CafeMaid.AllowItem = false;
