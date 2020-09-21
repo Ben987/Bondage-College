@@ -50,10 +50,29 @@ function InventoryItemFeetChainsNpcDialog(C, Option) {
 }
 
 function InventoryItemFeetChainsValidate() {
+	var C = CharacterGetCurrent();
 	var Allowed = true;
 	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");
-		Allowed = false;
+		return false;
 	}
+	
+	// Validates some prerequisites before allowing more advanced types
+	if (Option.Prerequisite) {
+		var Chain = InventoryGet(C, "ItemFeet");
+		InventoryRemove(C, "ItemFeet");
+
+		if (!InventoryAllow(C, Option.Prerequisite, true)) {
+			DialogExtendedMessage = DialogText;
+			Allowed = false;
+		}
+
+		// Re-add the web
+		var DifficultyFactor = Chain.Difficulty - Chain.Asset.Difficulty;
+		CharacterAppearanceSetItem(C, "ItemArms", Chain.Asset, Chain.Color, DifficultyFactor, null, false);
+		InventoryGet(C, "ItemFeet").Property = Chain.Property;
+		CharacterRefresh(C);
+	}
+	
 	return Allowed;
 }
