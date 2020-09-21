@@ -67,9 +67,9 @@ function InventoryItemFeetChainsValidate() {
 			Allowed = false;
 		}
 
-		// Re-add the web
+		// Re-add the chains
 		var DifficultyFactor = Chain.Difficulty - Chain.Asset.Difficulty;
-		CharacterAppearanceSetItem(C, "ItemArms", Chain.Asset, Chain.Color, DifficultyFactor, null, false);
+		CharacterAppearanceSetItem(C, "ItemFeet", Chain.Asset, Chain.Color, DifficultyFactor, null, false);
 		InventoryGet(C, "ItemFeet").Property = Chain.Property;
 		CharacterRefresh(C);
 	}
