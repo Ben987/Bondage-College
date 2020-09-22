@@ -287,7 +287,7 @@ function PreferenceInit(C) {
 	}
 
 	// Enables the AFK timer for the current player only
-	AfkTimerSetEnabled((C.ID == 0) && C.GameplaySettings && (C.GameplaySettings.EnableAfkTimer != false));
+	AfkTimerSetEnabled((C.ID == 0) && C.OnlineSettings && (C.OnlineSettings.EnableAfkTimer != false));
 
 }
 
