@@ -2840,12 +2840,9 @@ var AssetFemale3DCG = [
 				Prerequisite: ["NotKneeling", "AllFours", "NotSuspended", "NotHogtied", "NoFeetSpreader"],
 				SetPose: ["BaseLower"],
 				Layer: [
-					{ Name: "CoverOuter", ColorGroup: "Upper" },
-					{ Name: "CoverInner", ColorGroup: "Lower" },
-					{ Name: "TopPillow", ColorGroup: "Upper" },
-					{ Name: "BottomPillow", ColorGroup: "Lower" },
-					{ Name: "Mattress", ColorGroup: "Lower" },
-					{ Name: "Headboard", ColorGroup: "Lower" },
+				{ Name: "BedFrame"},
+				{ Name: "Mattress"},
+				{ Name: "Pillow"}
 				]
 				
 			},

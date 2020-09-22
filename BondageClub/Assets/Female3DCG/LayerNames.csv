@@ -130,12 +130,9 @@ ItemNeckHighCollarLeather,Leather
 ItemNeckHighCollarRings,Rings
 ItemNeckOrnateCollarCollar,Collar
 ItemNeckOrnateCollarGem,Gems
-ItemDevicesBedCoverOuter,Cover Outer Layer
-ItemDevicesBedCoverInner,Cover Inner Layer
-ItemDevicesBedTopPillow,Top Pillow
-ItemDevicesBedBottomPillow,Bottom Pillow
+ItemDevicesBedPillow,Pillow
 ItemDevicesBedMattress,Mattress
-ItemDevicesBedHeadboard,Headboard
+ItemDevicesBedBedFrame,Frame
 ItemAddonCoversOuter,Outer
 ItemAddonCoversInner,Inner
 ItemDevicesCageFrame,Frame
