@@ -455,7 +455,7 @@ function InventoryGroupIsBlocked(C, GroupName) {
 	// If another character is enclosed, items other than the enclosing one cannot be used
 	if ((C.ID != 0) && C.IsEnclose()) {
 		for (let E = 0; E < C.Appearance.length; E++)
-			if ((C.Appearance[E].Asset.Group.Name == GroupName) && InventoryItemHasEffect(C.Appearance[E], "Enclose"))
+			if ((C.Appearance[E].Asset.Group.Name == GroupName) && InventoryItemHasEffect(C.Appearance[E], "Enclose", true))
 				return false;
 		return true;
 	}
