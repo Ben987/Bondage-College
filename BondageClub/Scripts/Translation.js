@@ -311,10 +311,9 @@ function TranslationParseTXT(str) {
     }
 
 	// Removes any comment rows (starts with ###)
-    for (let row = 0; row < arr.length; row++)
+	for (let row = arr.length - 1; row >= 0; row--)
 		if (arr[row].indexOf("###") == 0) {
 			arr.splice(row, 1);
-			row = row - 1;
 		}
 
 	// Trims the full translated array

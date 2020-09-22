@@ -47,14 +47,11 @@ function InventoryItemArmsTightJacketCrotchClick() {
 	ExtendedItemClick(TightJacketCrotchArmsOptions);
 }
 
-function InventoryItemArmsTightJacketCrotchValidate(Option) {
-	if (Option.Prerequisite != null && !InventoryAllow(C, Option.Prerequisite, true)) { DialogExtendedMessage = DialogText; return false; }
-
+function InventoryItemArmsTightJacketCrotchValidate() {
 	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");
 		return false;
 	}
-
 	return true;
 }
 

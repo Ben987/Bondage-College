@@ -84,6 +84,7 @@ function CollegeEntranceWearStudentClothes(C) {
 	InventoryRemove(C, "Gloves");
 	InventoryRemove(C, "HairAccessory1");
 	InventoryRemove(C, "HairAccessory2");
+	InventoryRemove(C, "HairAccessory3");
 	InventoryRemove(C, "ClothAccessory");
 }
 

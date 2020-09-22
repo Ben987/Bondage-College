@@ -111,7 +111,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 100,120,It's kind of fun to regress.,"I'm sure it is.  If you really want to regress properly, I can fix you up some special milk that will help you forget how to do things.",,PlayerCanRegress()
 100,0,I would like to leave the nursery now.,It's been lovely having you here.  (She helps you change and disposes of the diaper.),PlayerRedressed(),
 100,,(Leave her.),,DialogLeave(),
-110,100,I've been a good girl honest.  My hands are cold.,"Aww, you poor thing.  Slip you hands in these and they will soon warm up.  (She fastens mittens over your hands.)","DialogWearItem(""PaddedMittens"", ""ItemArms"")",
+110,100,I've been a good girl honest.  My hands are cold.,"Aww, you poor thing.  Slip you hands in these and they will soon warm up.  (She fastens mittens over your hands.)","DialogWearItem(""PaddedMittens"", ""ItemHands"")",
 110,115,Maybe.  (Bow your head and avoid her gaze.),"Come here.  (She fastens mittens over your hands and a harness round you chest, connected them with short chains.)  Now what did you do?",PlayerRestrained(2),
 110,100,They are not for me.,"I know bondage items look fun, but they are not suitable toys for ickle babies to play with.",,
 115,100,"Nothing wrong, I just like being bound.",(She puts a pacifier in your mouth.)  I suppose you like to be gagged as well.  Run along now before change my mind and get the hair brush.,"DialogWearItem(""PacifierGag"", ""ItemMouth"")",

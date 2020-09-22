@@ -168,6 +168,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "OnBed") return ((InventoryGet(C, "ItemDevices") == null) || (InventoryGet(C, "ItemDevices").Asset.Name != "Bed")) ? "MustBeOnBed" : "";
 	if (Prerequisite == "CuffedArms") return  (C.Effect.indexOf("CuffedArms") <= -1) ? "MustBeArmCuffedFirst" : "";
 	if (Prerequisite == "CuffedFeet") return (C.Effect.indexOf("CuffedFeet") <= -1) ? "MustBeFeetCuffedFirst" : "";
+	if (Prerequisite == "NoOuterClothes") return (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null) ? "RemoveClothesForItem" : "";
 
 	// Checks for torso access based on clothes
 	var Cloth = InventoryGet(C, "Cloth");
@@ -463,7 +464,7 @@ function InventoryGroupIsBlocked(C, GroupName) {
 	// If another character is enclosed, items other than the enclosing one cannot be used
 	if ((C.ID != 0) && C.IsEnclose()) {
 		for (let E = 0; E < C.Appearance.length; E++)
-			if ((C.Appearance[E].Asset.Group.Name == GroupName) && InventoryItemHasEffect(C.Appearance[E], "Enclose"))
+			if ((C.Appearance[E].Asset.Group.Name == GroupName) && InventoryItemHasEffect(C.Appearance[E], "Enclose", true))
 				return false;
 		return true;
 	}
@@ -493,6 +494,17 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (CheckProperties && Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
 		else return false;
 	}
+}
+
+/**
+ * Returns the value of a given property of an appearance item, prioritizes the Property object.
+ * @param {object} Item - The appearance item to scan 
+ * @param {string} PropertyName - The property name to get.
+ * @returns {any} - The value of the requested property for the given item. Returns undefined if the property or the item itself does not exist.
+ */
+function InventoryGetItemProperty(Item, PropertyName) {
+    if (!Item || !PropertyName || !Item.Asset) return;
+    return (Item.Property && typeof Item.Property[PropertyName] !== "undefined" ? Item.Property : Item.Asset)[PropertyName];
 }
 
 /**

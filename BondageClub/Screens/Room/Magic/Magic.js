@@ -309,20 +309,18 @@ function MagicTrickEndPerformance() {
 
 function MagicRestrainCopyTransfer(FromC, ToC) {
 	// Removes any previous appearance asset From second
-	for (let A = 0; A < ToC.Appearance.length; A++)
+	for (let A = ToC.Appearance.length - 1; A >= 0; A--)
 		if ((ToC.Appearance[A].Asset != null) && ((ToC.Appearance[A].Asset.Group.Name == "ItemMouth") || (ToC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (ToC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (ToC.Appearance[A].Asset.Group.Name == "ItemArms") || (ToC.Appearance[A].Asset.Group.Name == "ItemFeet") || (ToC.Appearance[A].Asset.Group.Name == "ItemLegs") || (ToC.Appearance[A].Asset.Group.Name == "ItemHood") || (ToC.Appearance[A].Asset.Group.Name == "ItemHead") || (ToC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
 			ToC.Appearance.splice(A, 1);
-			A--;
 		}
 	// Adds all appearance assets from the first character to the second
 	for (let A = 0; A < FromC.Appearance.length; A++)
 		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemHood") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices")))
 			ToC.Appearance.push(FromC.Appearance[A]);
 	// Removes any previous appearance asset From first
-	for (let A = 0; A < FromC.Appearance.length; A++)
+	for (let A = FromC.Appearance.length-1; A >=0; A--)
 		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemHood") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
 			FromC.Appearance.splice(A, 1);
-			A--;
 		}
 	// Refreshes the second character and saves it if it's the player
 	CharacterRefresh(ToC);

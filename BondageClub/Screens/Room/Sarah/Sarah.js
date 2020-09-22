@@ -124,6 +124,7 @@ function SarahLoad() {
 			InventoryWear(Sarah, "Small", "BodyUpper", "White");
 			InventoryWear(Sarah, "Small", "BodyLower", "White");
 			InventoryWear(Sarah, "Default", "Hands", "White");
+			InventoryWear(Sarah, "Default", "Head", "White");
 			InventoryWear(Sarah, "HairBack19", "HairBack", "#edd6b0");
 			InventoryWear(Sarah, "HairFront11", "HairFront", "#edd6b0");
 			InventoryWear(Sarah, "Bra2", "Bra", "#a02424");
@@ -159,6 +160,7 @@ function SarahLoad() {
 		InventoryWear(Amanda, "Normal", "BodyUpper", "White");
 		InventoryWear(Amanda, "Normal", "BodyLower", "White");
 		InventoryWear(Amanda, "Default", "Hands", "White");
+		InventoryWear(Amanda, "Default", "Head", "White");
 		InventoryWear(Amanda, "HairBack15", "HairBack", "#623123");
 		InventoryWear(Amanda, "HairFront4", "HairFront", "#623123");
 		InventoryAdd(Amanda, "StraponPanties", "ItemPelvis");
@@ -195,6 +197,7 @@ function SarahLoad() {
 		InventoryWear(Sophie, "Large", "BodyUpper", "White");
 		InventoryWear(Sophie, "Large", "BodyLower", "White");
 		InventoryWear(Sophie, "Default", "Hands", "White");
+		InventoryWear(Sophie, "Default", "Head", "White");
 		InventoryWear(Sophie, "HairBack16", "HairBack", "#CCCCCC");
 		InventoryWear(Sophie, "HairFront1", "HairFront", "#CCCCCC");
 		CharacterArchetypeClothes(Sophie, "Mistress", "#222222");

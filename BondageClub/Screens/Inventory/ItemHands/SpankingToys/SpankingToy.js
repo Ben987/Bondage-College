@@ -83,6 +83,9 @@ const SpankingInventory = [
 	}, {
 		Name: "ShockWand",
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
+	},{
+	  Name: "Lotion",
+	  ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}]
 	},
 	
 ];

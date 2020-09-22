@@ -33,6 +33,7 @@ function CollegeTeacherMildredClothes() {
 	InventoryWear(CollegeTeacherMildred, "Normal", "BodyUpper", "White");
 	InventoryWear(CollegeTeacherMildred, "Normal", "BodyLower", "White");
 	InventoryWear(CollegeTeacherMildred, "Default", "Hands", "White");
+	InventoryWear(CollegeTeacherMildred, "Default", "Head", "White");
 	InventoryWear(CollegeTeacherMildred, "HairBack21", "HairBack", "#626060");
 	InventoryWear(CollegeTeacherMildred, "HairFront3", "HairFront", "#626060");
 	InventoryWear(CollegeTeacherMildred, "Bra1", "Bra", "#2222AA");

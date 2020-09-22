@@ -142,16 +142,22 @@ function LoginRun() {
  */
 function LoginValidCollar() {
  	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) {
- 		InventoryRemove(Player, "ItemNeck", false);
-		InventoryRemove(Player, "ItemNeckAccessories", false);
-		InventoryRemove(Player, "ItemNeckRestraints");
-	}
- 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) {
  		InventoryRemove(Player, "ItemNeck");
+		if (CurrentScreen == "ChatRoom") {
+			ChatRoomCharacterItemUpdate(Player, "ItemNeck");
+			ChatRoomCharacterItemUpdate(Player, "ItemNeckAccessories");
+			ChatRoomCharacterItemUpdate(Player, "ItemNeckRestraints");
+		}
 	}
-	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) {
-		InventoryWear(Player, "SlaveCollar", "ItemNeck");
-		if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(Player, "ItemNeck");
+	if (!LogQuery("ReleasedCollar", "OwnerRule")) {
+		if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) {
+			InventoryRemove(Player, "ItemNeck");
+			if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(Player, "ItemNeck");
+		}
+		if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) {
+			InventoryWear(Player, "SlaveCollar", "ItemNeck");
+			if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(Player, "ItemNeck");
+		}
 	}
 }
 
@@ -344,6 +350,7 @@ function LoginResponse(C) {
 			Player.GameplaySettings = C.GameplaySettings;
 			Player.ArousalSettings = C.ArousalSettings;
 			Player.OnlineSettings = C.OnlineSettings;
+			Player.OnlineSharedSettings = C.OnlineSharedSettings;
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;

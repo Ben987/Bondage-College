@@ -54,6 +54,7 @@ function CollegeCafeteriaLoad() {
 			InventoryWear(CollegeCafeteriaSidney, "XLarge", "BodyUpper", "White");
 			InventoryWear(CollegeCafeteriaSidney, "XLarge", "BodyLower", "White");
 			InventoryWear(CollegeCafeteriaSidney, "Default", "Hands", "White");
+			InventoryWear(CollegeCafeteriaSidney, "Default", "Head", "White");
 			InventoryWear(CollegeCafeteriaSidney, "HairBack21", "HairBack", "#222222");
 			InventoryWear(CollegeCafeteriaSidney, "HairFront6", "HairFront", "#222222");
 			InventoryWear(CollegeCafeteriaSidney, "Bandeau1", "Bra", "#222222");

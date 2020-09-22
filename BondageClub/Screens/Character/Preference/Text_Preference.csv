@@ -49,6 +49,8 @@ ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
 EnableSafeword,Allow Safeword use (Cannot enable while bound).
 EnableWardrobeIcon, Show Wardrobe icon to others while in the appearance menu.
+AllowFullWardrobeAccess,Allow others to alter your whole appearance.
+BlockBodyCosplay,Prevent others from changing cosplay items.
 UpdateEmailDescription,Linking an email will allow password recovery
 UpdateEmail,Update Email
 UpdateEmailOld,Current email:

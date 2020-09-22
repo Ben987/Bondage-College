@@ -299,8 +299,17 @@ function WardrobeGroupAccessible(C, Group, Options) {
 	// You can always edit yourself.
 	if (C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0) return true;
 	
+	// You cannot always change body cosplay
+	if (Group.BodyCosplay && C.OnlineSharedSettings && C.OnlineSharedSettings.BlockBodyCosplay) return false;
+	
 	// Clothes can always be edited
 	if (Group.Clothing) return true;
 		
+	// You can filter out non-clothing options
+	if (!Options || !Options.ExcludeNonCloth) { 
+		// If the player allows all
+		if (C.OnlineSharedSettings && C.OnlineSharedSettings.AllowFullWardrobeAccess) return true;
+	}
+	
 	return false;
 }

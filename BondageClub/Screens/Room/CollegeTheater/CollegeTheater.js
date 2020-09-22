@@ -42,6 +42,7 @@ function CollegeTheaterJuliaClothes() {
 	InventoryWear(CollegeTheaterJulia, "XLarge", "BodyUpper", "White");
 	InventoryWear(CollegeTheaterJulia, "XLarge", "BodyLower", "White");
 	InventoryWear(CollegeTheaterJulia, "Default", "Hands", "White");
+	InventoryWear(CollegeTheaterJulia, "Default", "Head", "White");
 	InventoryWear(CollegeTheaterJulia, "HairBack5", "HairBack", "#e86e37");
 	InventoryWear(CollegeTheaterJulia, "HairFront6", "HairFront", "#e86e37");
 	InventoryWear(CollegeTheaterJulia, "OuvertPerl1", "Bra", "#BB0000");

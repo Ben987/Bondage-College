@@ -141,8 +141,10 @@ Bra,ChineseBra1,Chinese Bra
 Bra,LatexCorset1,Latex Corset
 Bra,LeatherStrapBra1,Leather Strap Bra
 Bra,Swimsuit3,Swimsuit style 3
+Bra,Clamshell,Clamshell Bra
 Bra,LeatherCorsetTop1,Leather Corset Top
 Bra,CowPrintedBra,Cow Printed Bra
+Bra,StuddedHarness,Studded Harness
 Panties,,Panties
 Panties,Panties1,Style 1
 Panties,Panties7,Style 2
@@ -193,6 +195,7 @@ Socks,FootlessSocks1,Footless Socks
 Socks,ReverseBunnySuit,Reverse Bunny Suit Stockings
 Socks,LeatherSocks1,Short Leather Socks
 Socks,Pantyhose2,Crochless Pantyhose
+Socks,CowPrintedSocks,Cow Printed Socks
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -236,7 +239,16 @@ Hat,SmallHat1,Stylish Small Hat
 Hat,Veil1,Veil Half Face
 Hat,Veil2,Veil Full Face
 Hat,BakerBoyHat,Baker Boy Hat
-HairAccessory1,,Hair Accessory
+HairAccessory3,,Hair Accessory
+HairAccessory3,Ribbons1,Hair Ribbon 1
+HairAccessory3,Ribbons2,Hair Ribbon 2
+HairAccessory3,Ribbons3,Hair Ribbon 3
+HairAccessory3,Ribbons4,Hair Ribbon 4
+HairAccessory3,GiantBow1, Giant Bow 1
+HairAccessory3,HairFlower1, Flower
+HairAccessory3,WeddingVeil1,Wedding Veil
+HairAccessory3,HairFeathers1,Feathers
+HairAccessory1,,Hair Accessory (All)
 HairAccessory1,Ears1,Ears Small
 HairAccessory1,Ears2,Ears Large
 HairAccessory1,PonyEars1,Pony Ears
@@ -268,15 +280,11 @@ HairAccessory1,HairFeathers1,Feathers
 HairAccessory1,MouseEars1,Mouse Ears 1
 HairAccessory1,MouseEars2,Mouse Ears 2
 HairAccessory1,ElfEars,Elf Ears
-HairAccessory2,,Hair Accessory
+HairAccessory1,CowHorns,Cow Horns
+HairAccessory2,,Ears
 HairAccessory2,Ears1,Ears Small
 HairAccessory2,Ears2,Ears Large
 HairAccessory2,PonyEars1,Pony Ears
-HairAccessory2,Ribbons1,Hair Ribbon 1
-HairAccessory2,Ribbons2,Hair Ribbon 2
-HairAccessory2,Ribbons3,Hair Ribbon 3
-HairAccessory2,Ribbons4,Hair Ribbon 4
-HairAccessory2,GiantBow1, Giant Bow 1
 HairAccessory2,BunnyEars1,Bunny Ears
 HairAccessory2,BunnyEars2,Floppy Bunny Ears
 HairAccessory2,PuppyEars1,Puppy Ears
@@ -284,7 +292,6 @@ HairAccessory2,SuccubusHorns,Succubus Horns
 HairAccessory2,Horns,Horns
 HairAccessory2,Horns2,Horns 2
 HairAccessory2,Horns3,Horns 3
-HairAccessory2,HairFlower1, Flower
 HairAccessory2,FoxEars1,Fox Ears Small
 HairAccessory2,BatWings,Small Bat Wings
 HairAccessory2,KittenEars1,Black Kitty Ears
@@ -295,11 +302,10 @@ HairAccessory2,FoxEars2,Fox Ears Large
 HairAccessory2,FoxEars3,Fox Ears Bell
 HairAccessory2,PuppyEars2,Floppy Puppy Ears
 HairAccessory2,RaccoonEars1,Raccoon Ears
-HairAccessory2,WeddingVeil1,Wedding Veil
-HairAccessory2,HairFeathers1,Feathers
 HairAccessory2,MouseEars1,Mouse Ears 1
 HairAccessory2,MouseEars2,Mouse Ears 2
 HairAccessory2,ElfEars,Elf Ears
+HairAccessory2,CowHorns,Cow Horns
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -309,6 +315,7 @@ Gloves,FingerlessGloves,Fingerless Gloves
 Gloves,GlovesFur,Gloves with Fur
 Gloves,Catsuit,Catsuit Gloves
 Gloves,SeethroughSuit,See-through Gloves
+Gloves,CowPrintedGloves,Cow Printed Gloves
 Glasses,,Glasses
 Glasses,Glasses1,Style 1
 Glasses,Glasses2,Style 2
@@ -519,6 +526,7 @@ ItemLegs,WoodenHorse,Wooden Horse
 ItemLegs,Zipties,Zip Ties
 ItemLegs,Chains,Chains
 ItemLegs,FrogtieStraps,Frog-tie Straps
+ItemLegs,MermaidTail, Mermaid Tail
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
@@ -590,6 +598,7 @@ ItemButt,BunnyTailPlug2,Brown Bunny Tail Plug
 ItemButt,BunnyTailVibePlug,Bunny Tail Vibe Plug
 ItemButt,EggVibePlugXXL,Egg Vibe Plug XXL
 ItemButt,ShockPlug,Shock Plug
+ItemButt,CowTail,Cow Tail
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -623,6 +632,7 @@ ItemTorso,LeatherBreastBinder,Leather Breast Binder
 ItemTorso,LatexCorset1,Latex Corset
 ItemTorso,LeatherStrapBra1,Leather Strap Bra
 ItemTorso,CrotchChain, Crotch Chain
+ItemTorso,StuddedHarness,Studded Harness
 ItemNipples,,Nipples
 ItemNipples,NippleClamp,Nipple Clamps
 ItemNipples,VibeNippleClamp,Vibrating Nipple Clamps
@@ -743,6 +753,7 @@ ItemHands,SpankingToysSmallDildo,Small Dildo
 ItemHands,SpankingToysElectricToothbrush,Electric Toothbrush
 ItemHands,SpankingToysToothbrush,Toothbrush
 ItemHands,SpankingToysShockWand,Shock Wand
+ItemHands,SpankingToysLotion,Lotion
 ItemHands,HoofMittens, Hoof Mittens
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
@@ -959,6 +970,7 @@ ItemHead,RopeBlindfold,Rope Blindfold
 ItemHead,SleepMask,Smooth Sleep Mask
 ItemHead,PrisonLockdownBlindfold,Prison Lockdown Blindfold
 ItemHead,Pantyhose,Pantyhose
+ItemHead,Snorkel,Snorkel
 ItemNose,,Nose
 ItemNose,NoseHook,Nose Hook
 ItemNose,NoseRing,Nose Ring

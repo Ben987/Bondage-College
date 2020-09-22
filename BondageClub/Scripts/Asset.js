@@ -9,6 +9,9 @@ var Pose = [];
  * @typedef {Object} Layer
  * @property {string | null} Name - the name of the layer - may be null if the asset only contains a single default layer
  * @property {boolean} AllowColorize - whether or not this layer can be colored
+ * @property {string | null} CopyLayerColor - if not null, specifies that this layer should always copy the color of the named layer
+ * @property {string} [ColorGroup] - specifies the name of a color group that this layer belongs to. Any layers within the same color group
+ * can be colored together via the item color UI
  * @property {string[] | null} AllowTypes - A list of allowed extended item types that this layer permits - the layer will only be drawn if
  * the item type matches one of these types. If null, the layer is considered to permit all extended types.
  * @property {boolean} HasType - whether or not the layer has separate assets per type. If not, the extended type will not be included in
@@ -18,8 +21,9 @@ var Pose = [];
  * @property {string[] | null} OverrideAllowPose - An array of poses that this layer permits. If set, it will override the poses permitted
  * by the parent asset/group.
  * @property {number} Priority - The drawing priority of this layer. Inherited from the parent asset/group if not specified in the layer
- *     definition.
+ * definition.
  * @property {Asset} Asset - The asset that this layer belongs to
+ * @property {number} ColorIndex - The coloring index for this layer
  */
 
 /**
@@ -46,7 +50,6 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		AllowNone: (NewAsset.AllowNone == null) ? true : NewAsset.AllowNone,
 		AllowColorize: (NewAsset.AllowColorize == null) ? true : NewAsset.AllowColorize,
 		AllowCustomize: (NewAsset.AllowCustomize == null) ? true : NewAsset.AllowCustomize,
-		KeepNaked: (NewAsset.KeepNaked == null) ? false : NewAsset.KeepNaked,
 		ColorSchema: (NewAsset.Color == null) ? ["Default"] : NewAsset.Color,
 		ParentSize: (NewAsset.ParentSize == null) ? "" : NewAsset.ParentSize,
 		ParentColor: (NewAsset.ParentColor == null) ? "" : NewAsset.ParentColor,
@@ -153,6 +156,7 @@ function AssetAdd(NewAsset) {
 		HasType: (typeof NewAsset.HasType === 'boolean') ? NewAsset.HasType : true,
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);
+	AssetAssignColorIndices(A);
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
@@ -182,6 +186,8 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 	return {
 		Name: Layer.Name || null,
 		AllowColorize: AssetLayerAllowColorize(Layer, AssetDefinition),
+		CopyLayerColor: Layer.CopyLayerColor || null,
+		ColorGroup: Layer.ColorGroup,
 		AllowTypes: Array.isArray(Layer.AllowTypes) ? Layer.AllowTypes : null,
 		HasType: typeof Layer.HasType === "boolean" ? Layer.HasType : A.HasType,
 		ParentGroupName: Layer.ParentGroup,
@@ -222,6 +228,30 @@ function AssetLayerAlpha(Layer, NewAsset, I) {
 		Array.prototype.push.apply(Alpha, NewAsset.Alpha);
 	}
 	return Alpha;
+}
+
+/**
+ * Assigns colour indices to the layers of an asset. These determine which colours get applied to the layer. Also adds a count of colorable
+ * layers to the asset definition.
+ * @param {Object} A - The built asset
+ * @returns {void} - Nothing
+ */
+function AssetAssignColorIndices(A) {
+	var colorIndex = 0;
+	var colorMap = {};
+	A.Layer.forEach(Layer => {
+		// If the layer can't be coloured, we don't need to set a color index
+		if (!Layer.AllowColorize) return;
+
+		var LayerKey = Layer.CopyLayerColor || Layer.Name;
+		if (typeof colorMap[LayerKey] === "number") {
+			Layer.ColorIndex = colorMap[LayerKey];
+		} else {
+			Layer.ColorIndex = colorMap[LayerKey] = colorIndex;
+			colorIndex++;
+		}
+	});
+	A.ColorableLayerCount = colorIndex;
 }
 
 // Builds the asset description from the CSV file

@@ -231,11 +231,11 @@ function ServerAppearanceBundle(Appearance) {
 function ServerValidateProperties(C, Item) {
 
 	// No validations for NPCs
-	if ((C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) return;
+	if (C.IsNpc()) return;
 
 	// For each effect on the item
 	if ((Item.Property != null) && (Item.Property.Effect != null)) {
-		for (let E = 0; E < Item.Property.Effect.length; E++) {
+		for (let E = Item.Property.Effect.length - 1; E >= 0; E--) {
 
 			// Make sure the item can be locked, remove any lock that's invalid
 			var Effect = Item.Property.Effect[E];
@@ -250,7 +250,6 @@ function ServerValidateProperties(C, Item) {
 				delete Item.Property.EnableRandomInput;
 				delete Item.Property.MemberNumberList;
 				Item.Property.Effect.splice(E, 1);
-				E--;
 			}
 
 			// If the item is locked by a lock
@@ -286,7 +285,6 @@ function ServerValidateProperties(C, Item) {
 					delete Item.Property.EnableRandomInput;
 					delete Item.Property.MemberNumberList;
 					Item.Property.Effect.splice(E, 1);
-					E--;
 				}
 
 				// Make sure the lover lock is valid
@@ -301,7 +299,6 @@ function ServerValidateProperties(C, Item) {
 					delete Item.Property.EnableRandomInput;
 					delete Item.Property.MemberNumberList;
 					Item.Property.Effect.splice(E, 1);
-					E--;
 				}
 
 			}
@@ -319,7 +316,6 @@ function ServerValidateProperties(C, Item) {
 				// Remove the effect if it's not allowed
 				if (MustRemove) {
 					Item.Property.Effect.splice(E, 1);
-					E--;
 				}
 
 			}
@@ -328,7 +324,7 @@ function ServerValidateProperties(C, Item) {
 
 	// For each block on the item
 	if ((Item.Property != null) && (Item.Property.Block != null)) {
-		for (let B = 0; B < Item.Property.Block.length; B++) {
+		for (let B = Item.Property.Block.length - 1; B >= 0; B--) {
 
 			// Check if the effect is allowed for the item
 			var MustRemove = true;
@@ -340,7 +336,6 @@ function ServerValidateProperties(C, Item) {
 			// Remove the effect if it's not allowed
 			if (MustRemove) {
 				Item.Property.Block.splice(B, 1);
-				B--;
 			}
 		}
 	}
@@ -459,17 +454,21 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					if ((C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && (SourceMemberNumber != null)) break;
 				}
 
+				var ColorSchema = Asset[I].Group.ColorSchema;
+				var Color = Bundle[A].Color;
+				if (Array.isArray(Color)) {
+					if (Color.length > Asset[I].ColorableLayerCount) Color = Color.slice(0, Asset[I].ColorableLayerCount);
+					Color = Color.map(Col => ServerValidateColorAgainstSchema(Col, ColorSchema));
+				} else {
+					Color = ServerValidateColorAgainstSchema(Color, ColorSchema);
+				}
+
 				// Creates the item and colorize it
 				var NA = {
 					Asset: Asset[I],
 					Difficulty: parseInt((Bundle[A].Difficulty == null) ? 0 : Bundle[A].Difficulty),
-					Color: ((Bundle[A].Color == null) || (typeof Bundle[A].Color !== 'string')) ? Asset[I].Group.ColorSchema[0] : Bundle[A].Color
-				}
-
-				// Validate color string, fallback to default in case of an invalid color
-				if ((NA.Color != NA.Asset.Group.ColorSchema[0]) && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
-					NA.Color = NA.Asset.Group.ColorSchema[0];
-				}
+					Color,
+				};
 
 				// Sets the item properties and make sure a non-owner cannot add an owner lock
 				if (Bundle[A].Property != null) {
@@ -545,9 +544,22 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 }
 
-/** 
+/**
+ * Validates and returns a color against a color schema
+ * @param {string} Color - The color to validate
+ * @param {string[]} Schema - The color schema to validate against (a list of accepted Color values)
+ * @returns {string} - The color if it is a valid hex color string or part of the color schema, or the default color from the color schema
+ * otherwise
+ */
+function ServerValidateColorAgainstSchema(Color, Schema) {
+	var HexCodeRegex = /^#(?:[0-9a-f]{3}){1,2}$/i;
+	if (typeof Color === 'string' && (Schema.includes(Color) || HexCodeRegex.test(Color))) return Color;
+	return Schema[0];
+}
+
+/**
  * Syncs the player appearance with the server
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function ServerPlayerAppearanceSync() {
 
@@ -654,6 +666,7 @@ function ServerAccountOwnership(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearOwnership != null) && (typeof data.ClearOwnership === "boolean") && (data.ClearOwnership == true)) {
 		Player.Owner = "";
 		Player.Ownership = null;
+		LogDelete("ReleasedCollar", "OwnerRule");
 		LoginValidCollar();
 	}
 

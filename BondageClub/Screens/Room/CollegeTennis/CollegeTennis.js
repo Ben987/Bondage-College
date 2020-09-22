@@ -51,6 +51,7 @@ function CollegeTennisLoad() {
 			InventoryWear(CollegeTennisJennifer, "Small", "BodyUpper", "White");
 			InventoryWear(CollegeTennisJennifer, "Small", "BodyLower", "White");
 			InventoryWear(CollegeTennisJennifer, "Default", "Hands", "White");
+			InventoryWear(CollegeTennisJennifer, "Default", "Head", "White");
 			InventoryWear(CollegeTennisJennifer, "HairBack6", "HairBack", "#8dccce");
 			InventoryWear(CollegeTennisJennifer, "HairFront5", "HairFront", "#8dccce");
 			InventoryWear(CollegeTennisJennifer, "Bra1", "Bra", "#CCCCCC");

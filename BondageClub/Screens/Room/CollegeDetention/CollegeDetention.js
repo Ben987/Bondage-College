@@ -52,6 +52,7 @@ function CollegeDetentionYukiClothes() {
 	InventoryWear(CollegeDetentionYuki, "Small", "BodyUpper", "Asian");
 	InventoryWear(CollegeDetentionYuki, "Small", "BodyLower", "Asian");
 	InventoryWear(CollegeDetentionYuki, "Default", "Hands", "Asian");
+	InventoryWear(CollegeDetentionYuki, "Default", "Head", "Asian");
 	InventoryWear(CollegeDetentionYuki, "HairBack6", "HairBack", "#603022");
 	InventoryWear(CollegeDetentionYuki, "HairFront4", "HairFront", "#603022");
 	InventoryWear(CollegeDetentionYuki, "Ribbons2", "HairAccessory1", "#111111");
@@ -196,7 +197,7 @@ function CollegeDetentionInviteToPrivateRoom() {
 	
 	var ItemsToEarn = [];
 	ItemsToEarn.push({Name: "Ribbons2", Group: "HairAccessory1"});
-	ItemsToEarn.push({Name: "Ribbons2", Group: "HairAccessory2"});
+	ItemsToEarn.push({Name: "Ribbons2", Group: "HairAccessory3"});
 	ItemsToEarn.push({Name: "RegularSleepingPill", Group: "ItemMouth"});
 	InventoryAddMany(Player, ItemsToEarn);
 	

@@ -231,6 +231,9 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
+	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
+	if (C.OnlineSharedSettings.AllowFullWardrobeAccess == null) C.OnlineSharedSettings.AllowFullWardrobeAccess = false;
+	if (C.OnlineSharedSettings.BlockBodyCosplay == null) C.OnlineSharedSettings.BlockBodyCosplay = false;
 	// TODO: The following preferences were migrated September 2020 in for R61 - replace with standard preference code after a few months
 	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanBlackList", false);
 	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanGhostList", true);
@@ -284,7 +287,7 @@ function PreferenceInit(C) {
 	}
 
 	// Enables the AFK timer for the current player only
-	AfkTimerSetEnabled((C.ID == 0) && C.GameplaySettings && (C.GameplaySettings.EnableAfkTimer != false));
+	AfkTimerSetEnabled((C.ID == 0) && C.OnlineSettings && (C.OnlineSettings.EnableAfkTimer != false));
 
 }
 
@@ -502,6 +505,7 @@ function PreferenceExit() {
 			GameplaySettings: Player.GameplaySettings,
 			ArousalSettings: Player.ArousalSettings,
 			OnlineSettings: Player.OnlineSettings,
+			OnlineSharedSettings: Player.OnlineSharedSettings
 		};
 		ServerSend("AccountUpdate", P);
 		PreferenceMessage = "";
@@ -569,6 +573,8 @@ function PreferenceSubscreenOnlineRun() {
 	DrawCheckbox(500, 545, 64, 64, TextGet("DisableAnimations"), Player.OnlineSettings.DisableAnimations);
 	DrawCheckbox(500, 625, 64, 64, TextGet("EnableAfkTimer"), Player.OnlineSettings.EnableAfkTimer);
 	DrawCheckbox(500, 705, 64, 64, TextGet("EnableWardrobeIcon"), Player.OnlineSettings.EnableWardrobeIcon);
+	DrawCheckbox(500, 785, 64, 64, TextGet("AllowFullWardrobeAccess"), Player.OnlineSharedSettings.AllowFullWardrobeAccess);
+	DrawCheckbox(500, 865, 64, 64, TextGet("BlockBodyCosplay"), Player.OnlineSharedSettings.BlockBodyCosplay);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawCharacter(Player, 50, 50, 0.9);
 }
@@ -768,6 +774,7 @@ function PreferenceSubscreenChatClick() {
 
 function PreferenceSubscreenOnlineClick() {
 	const OnlineSettings = Player.OnlineSettings;
+	const OnlineSharedSettings = Player.OnlineSharedSettings;
 	if (MouseIn(1815, 75, 90, 90) && PreferenceColorPick == "") {
 		PreferenceSubscreen = "";
 		PreferenceMainScreenLoad();
@@ -782,6 +789,8 @@ function PreferenceSubscreenOnlineClick() {
 		AfkTimerSetEnabled(OnlineSettings.EnableAfkTimer);
 	}
 	else if (MouseIn(500, 705, 64, 64)) OnlineSettings.EnableWardrobeIcon = !OnlineSettings.EnableWardrobeIcon;
+	else if (MouseIn(500, 785, 64, 64)) OnlineSharedSettings.AllowFullWardrobeAccess = !OnlineSharedSettings.AllowFullWardrobeAccess;
+	else if (MouseIn(500, 865, 64, 64)) OnlineSharedSettings.BlockBodyCosplay = !OnlineSharedSettings.BlockBodyCosplay;
 }
 
 /**

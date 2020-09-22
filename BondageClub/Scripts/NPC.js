@@ -243,7 +243,7 @@ function NPCEventAdd(C, EventName, EventValue) {
  */
 function NPCEventDelete(C, EventName) {
 	if (C.Event == null) C.Event = [];
-	for (let E = 0; E < C.Event.length; E++)
+	for (let E = C.Event.length - 1; E >= 0; E--)
 		if (C.Event[E].Name == EventName)
 			C.Event.splice(E, 1);
 }

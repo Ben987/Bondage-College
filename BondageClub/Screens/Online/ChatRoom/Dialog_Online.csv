@@ -90,6 +90,7 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 100,140,(Remote restrictions.),(Select her restrictions for remotes.),,
 100,150,(Timer cell punishment.),"(For how long do you want to lock her up?  She will be isolated, and you won't be able to unlock her.)",,
 100,160,(Forced labor.),(What kind of labor will she be forced to do?  Her salary will be given to you.),,
+100,170,(Collar options.),(Select the option.),,
 100,0,(Back to main menu.),(Main menu.),,
 110,100,(Allow her wardrobe access.),(She can now access her wardrobe and change clothes.),"SendRule(""ChangeAllow"")",
 110,100,(Block her wardrobe for 1 hour.),(Her wardrobe access will be blocked for the next hour.),"SendRule(""ChangeBlock1Hour"")",
@@ -122,3 +123,6 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 160,100,(Force her to serve drinks as a maid.),(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.),"SendRule(""LaborMaidDrinks"", ""Quest"")",CanServeDrink()
 160,,(Force her to serve drinks as a maid.),"(She needs to be a maid in the sorority, be able to talk and be able to walk to do that job for you.)",,!CanServeDrink()
 160,0,(Back to main menu.),(Main menu.),,
+170,100,(Release her from the slave collar.),(You remove her slave collar.),"SendRule(""CollarRelease"")",
+170,100,(Give her the slave collar.),(You lock the slave collar back on her.),"SendRule(""CollarWear"")",
+170,0,(Back to main menu.),(Main menu.),,
