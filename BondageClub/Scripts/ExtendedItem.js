@@ -54,6 +54,17 @@ const ExtendedXYWithoutImages = [
 	[[1050, 450], [1200, 450], [1450, 450], [1700, 450], [1050, 525], [1200, 525], [1425, 525], [1675, 525]], //8 options per page
 ];
 
+/** The X & Y co-ordinates of each option's button, based on the number to be displayed per page. */
+const ExtendedXYClothes = [
+	[], //0 placeholder
+	[[1385, 450]], //1 option per page
+	[[1220, 450], [1550, 450]], //2 options per page
+	[[1140, 450], [1385, 450], [1630, 450]], //3 options per page
+	[[1220, 400], [1550, 400], [1220, 700], [1550, 700]], //4 options per page
+	[[1140, 400], [1385, 400], [1630, 400], [1220, 700], [1550, 700]], //5 options per page
+	[[1140, 400], [1385, 400], [1630, 400], [1140, 700], [1385, 700], [1630, 700]], //6 options per page
+];
+
 /**
  * Loads the item extension properties
  * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
@@ -82,7 +93,7 @@ function ExtendedItemLoad(Options, DialogKey) {
 					break;
 					}
 		if (MustRefresh) { 
-			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+			var C = CharacterGetCurrent();
 			CharacterRefresh(C);
 			ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 		}
@@ -101,19 +112,22 @@ function ExtendedItemLoad(Options, DialogKey) {
  *     The full dialog key will be <Prefix><Option.Name>
  * @param {number} OptionsPerPage - The number of options displayed on each page
  * @param {boolean} [ShowImages=true] - Denotes wether images should be shown for the specific item
+ * @param {boolean} IsCloth - Whether or not the click is performed on a clothing item.
  * @returns {void} Nothing
  */
-function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = true) {
+function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = true, IsCloth) {
 	var IsSelfBondage = CharacterGetCurrent().ID === 0;
 	var Asset = DialogFocusItem.Asset;
 	var ItemOptionsOffset = ExtendedItemGetOffset();
-	OptionsPerPage = OptionsPerPage || Math.min(Options.length, 8);
+	var XYPositions = !IsCloth ? (ShowImages ? ExtendedXY : ExtendedXYWithoutImages) : ExtendedXYClothes;
+	var ImageHeight = ShowImages ? 220 : 0;
+	OptionsPerPage = OptionsPerPage || Math.min(Options.length, XYPositions.length - 1);
 
 	// If we have to paginate, draw the back/next buttons
 	if (ItemOptionsOffset >= OptionsPerPage) {
 		DrawButton(1665, 25, 90, 90, "", "White", "Icons/Prev.png");
 	}
-	if (Options.length > OptionsPerPage && ItemOptionsOffset < OptionsPerPage * Math.floor(Options.length / OptionsPerPage)) {
+	if (ItemOptionsOffset + OptionsPerPage < Options.length) {
 		DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
 	}
 	
@@ -126,27 +140,15 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 	// Draw the possible variants and their requirements, arranged based on the number per page
 	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
 		var PageOffset = I - ItemOptionsOffset;
-		var X = 0;
-		var Y = 0;
-		if (ShowImages) {
-			X = ExtendedXY[OptionsPerPage][PageOffset][0];
-			Y = ExtendedXY[OptionsPerPage][PageOffset][1];	
-		} else {
-			X = ExtendedXYWithoutImages[OptionsPerPage][PageOffset][0];
-			Y = ExtendedXYWithoutImages[OptionsPerPage][PageOffset][1];	
-		}
+		var X = XYPositions[OptionsPerPage][PageOffset][0];
+		var Y = XYPositions[OptionsPerPage][PageOffset][1];
 		var Option = Options[I];
 		var FailSkillCheck = !!ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
 		var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
-		var Height = (ShowImages) ? 275 : 55;
-		DrawButton(X, Y, 225, Height, "", IsSelected ? "#888888" : FailSkillCheck ? "Pink" : "White", null, null, IsSelected);
 		
-		if (ShowImages) {
-			DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X + 2, Y);
-			DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 250, 225, "black");
-		} else {
-			DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 30, 225, "black");
-		}
+		DrawButton(X, Y, 225, 55 + ImageHeight, "", IsSelected ? "#888888" : FailSkillCheck ? "Pink" : "White", null, null, IsSelected);
+		if (ShowImages) DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X + 2, Y);
+		DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
 	}
 }
 
@@ -162,7 +164,9 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) {
 	var IsSelfBondage = CharacterGetCurrent().ID === 0;
 	var ItemOptionsOffset = ExtendedItemGetOffset();
-	OptionsPerPage = OptionsPerPage || Math.min(Options.length, 8);
+	var XYPositions = !IsCloth ? ShowImages ? ExtendedXY : ExtendedXYWithoutImages : ExtendedXYClothes;
+	var ImageHeight = ShowImages ? 220 : 0;
+	OptionsPerPage = OptionsPerPage || Math.min(Options.length, XYPositions.length - 1);
 
 	// Exit button
 	if (MouseIn(1885, 25, 90, 85)) {
@@ -174,25 +178,17 @@ function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) 
 	if (MouseIn(1665, 25, 90, 90) && ItemOptionsOffset >= OptionsPerPage) {
 		ExtendedItemSetOffset(ItemOptionsOffset - OptionsPerPage);
 	}
-	if (MouseIn(1775, 25, 90, 90) && Options.length > OptionsPerPage && ItemOptionsOffset < OptionsPerPage * Math.floor(Options.length / OptionsPerPage)) {
+	if (MouseIn(1775, 25, 90, 90) && ItemOptionsOffset + OptionsPerPage < Options.length) {
 		ExtendedItemSetOffset(ItemOptionsOffset + OptionsPerPage);
 	}
 	
 	// Options
 	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
 		var PageOffset = I - ItemOptionsOffset;
-		var X = 0;
-		var Y = 0;
-		if (ShowImages) {
-			X = ExtendedXY[OptionsPerPage][PageOffset][0];
-			Y = ExtendedXY[OptionsPerPage][PageOffset][1];	
-		} else {
-			X = ExtendedXYWithoutImages[OptionsPerPage][PageOffset][0];
-			Y = ExtendedXYWithoutImages[OptionsPerPage][PageOffset][1];	
-		}
+		var X = XYPositions[OptionsPerPage][PageOffset][0];
+		var Y = XYPositions[OptionsPerPage][PageOffset][1];
 		var Option = Options[I];
-		var Height = (ShowImages) ? 275 : 55;
-		if (MouseIn(X, Y, 225, Height) && DialogFocusItem.Property.Type !== Option.Property.Type) {
+		if (MouseIn(X, Y, 225, 55 + ImageHeight) && DialogFocusItem.Property.Type !== Option.Property.Type) {
 			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsCloth);
 		}
 	}
