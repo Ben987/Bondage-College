@@ -154,7 +154,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 	// Clear the current appearance
 	for (let A = C.Appearance.length - 1; A >= 0; A--)
 		if (C.Appearance[A].Asset.Group.Category == "Appearance")
-			if ((ClothOnly == null) || (C.Appearance[A].Asset.Group.AllowNone)) {
+			if (!ClothOnly || (C.Appearance[A].Asset.Group.AllowNone)) {
 				C.Appearance.splice(A, 1);
 			}
 
