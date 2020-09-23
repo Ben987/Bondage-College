@@ -93,7 +93,7 @@ function ExtendedItemLoad(Options, DialogKey) {
 					break;
 					}
 		if (MustRefresh) { 
-			var C = CharacterGetCurrent();
+			var C = CharacterGetCurrent() || CharacterAppearanceSelection;
 			CharacterRefresh(C);
 			ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 		}
@@ -116,7 +116,8 @@ function ExtendedItemLoad(Options, DialogKey) {
  * @returns {void} Nothing
  */
 function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = true, IsCloth) {
-	var IsSelfBondage = CharacterGetCurrent().ID === 0;
+	var C = CharacterGetCurrent() || CharacterAppearanceSelection;
+	var IsSelfBondage = C.ID === 0;
 	var Asset = DialogFocusItem.Asset;
 	var ItemOptionsOffset = ExtendedItemGetOffset();
 	var XYPositions = !IsCloth ? (ShowImages ? ExtendedXY : ExtendedXYWithoutImages) : ExtendedXYClothes;
@@ -162,7 +163,8 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
  * @returns {void} Nothing
  */
 function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) {
-	var IsSelfBondage = CharacterGetCurrent().ID === 0;
+	var C = CharacterGetCurrent() || CharacterAppearanceSelection;
+	var IsSelfBondage = C.ID === 0;
 	var ItemOptionsOffset = ExtendedItemGetOffset();
 	var XYPositions = !IsCloth ? ShowImages ? ExtendedXY : ExtendedXYWithoutImages : ExtendedXYClothes;
 	var ImageHeight = ShowImages ? 220 : 0;
@@ -203,7 +205,7 @@ function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) 
  * @returns {void} Nothing
  */
 function ExtendedItemSetType(Options, Option, IsCloth) {
-	var C = CharacterGetCurrent();
+	var C = CharacterGetCurrent() || CharacterAppearanceSelection;
 	var FunctionPrefix = ExtendedItemFunctionPrefix();
 
 	// An extendable item may provide a validation function. Returning false from the validation function will drop out of
