@@ -1,0 +1,10 @@
+Tug on the leash circles when they appear.  Don't let any puppy escape.  Starts in StartTimer seconds.
+Tirez sur les cercles de laisse lorsqu'ils apparaissent. Ne laissez personne s'échapper. La partie débute dans StartTimer secondes.
+Escaping:
+S'échapper:
+Perfect!  The puppies can go back home.  Click on yourself to continue.
+Parfait! Elles peuvent rentrer chez elles. Cliquez sur vous-même pour continuer.
+You did it!  The puppies can go back home.  Click on yourself to continue.
+Tu l'as fait! Elles peuvent rentrer chez elles. Cliquez sur vous-même pour continuer.
+You've failed and lost a puppy.  Click on yourself to continue.
+Vous avez échoué et perdu une d'entre elles. Cliquez sur vous-même pour continuer.

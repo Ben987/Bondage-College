@@ -1,0 +1,8 @@
+Tap to navigate the rope between the other ropes.  Starts in StartTimer seconds.
+Appuyez pour intéragir avec les cordes. La partie débute dans StartTimer secondes.
+Perfect!  You've escaped on the first try.  Click on yourself to continue.
+Parfait! Vous vous êtes échappée du premier coup. Cliquez sur vous-même pour continuer.
+Congrats!  You were able to escape.  Click on yourself to continue.
+Félicitations! Vous avez pu vous échapper. Cliquez sur vous-même pour continuer.
+Sorry, you've failed to escape.  Click on yourself to continue.
+Désolé, vous n'avez pas réussi à vous échapper. Cliquez sur vous-même pour continuer.
