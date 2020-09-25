@@ -50,6 +50,7 @@ function InventoryItemFeetChainsNpcDialog(C, Option) {
 }
 
 function InventoryItemFeetChainsValidate(Option) {
+	var C = CharacterGetCurrent();
 	if (Option.Prerequisite != null && !InventoryAllow(C, Option.Prerequisite, true)) {
 		DialogExtendedMessage = DialogText;
 		return false;
