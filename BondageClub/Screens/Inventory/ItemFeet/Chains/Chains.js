@@ -49,30 +49,16 @@ function InventoryItemFeetChainsNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "ChainBondage" + Option.Name, "ItemFeet");
 }
 
-function InventoryItemFeetChainsValidate() {
-	var C = CharacterGetCurrent();
-	var Allowed = true;
+function InventoryItemFeetChainsValidate(Option) {
+	if (Option.Prerequisite != null && !InventoryAllow(C, Option.Prerequisite, true)) {
+		DialogExtendedMessage = DialogText;
+		return false;
+	}
+
 	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");
 		return false;
 	}
-	
-	// Validates some prerequisites before allowing more advanced types
-	if (Option.Prerequisite) {
-		var Chain = InventoryGet(C, "ItemFeet");
-		InventoryRemove(C, "ItemFeet");
 
-		if (!InventoryAllow(C, Option.Prerequisite, true)) {
-			DialogExtendedMessage = DialogText;
-			Allowed = false;
-		}
-
-		// Re-add the chains
-		var DifficultyFactor = Chain.Difficulty - Chain.Asset.Difficulty;
-		CharacterAppearanceSetItem(C, "ItemFeet", Chain.Asset, Chain.Color, DifficultyFactor, null, false);
-		InventoryGet(C, "ItemFeet").Property = Chain.Property;
-		CharacterRefresh(C);
-	}
-	
-	return Allowed;
+	return true;
 }
