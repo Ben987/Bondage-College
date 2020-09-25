@@ -355,6 +355,7 @@ function DialogIntro() {
  * @returns {void} - Nothing
  */
 function DialogLeave() {
+	if (DialogItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 	DialogItemPermissionMode = false;
 	DialogActivityMode = false;
 	DialogItemToLock = null;
@@ -427,6 +428,7 @@ function DialogLeaveItemMenu() {
 	DialogProgress = -1;
 	DialogColor = null;
 	DialogMenuButton = [];
+	if (DialogItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 	DialogItemPermissionMode = false;
 	DialogActivityMode = false;
 	DialogTextDefault = "";
@@ -1010,7 +1012,7 @@ function DialogMenuButtonClick() {
 
 			// When we leave item permission mode, we upload the changes for everyone in the room
 			else if (DialogMenuButton[I] == "DialogNormalMode") {
-				ChatRoomCharacterUpdate(Player);
+				if (CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 				DialogItemPermissionMode = false;
 				DialogInventoryBuild(C);
 				return;

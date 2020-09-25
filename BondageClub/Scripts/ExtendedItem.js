@@ -184,13 +184,14 @@ function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) 
 	// Exit button
 	if (MouseIn(1885, 25, 90, 85)) {
 		DialogFocusItem = null;
-		ExtendedItemPermissionMode = null;
+		if (ExtendedItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
+		ExtendedItemPermissionMode = false;
 		return;
 	}
 
 	// Permission toggle button
 	if (MouseIn(1775, 25, 90, 90)) { 
-		ChatRoomCharacterUpdate(Player);
+		if (ExtendedItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 		ExtendedItemPermissionMode = !ExtendedItemPermissionMode;
 	}
 	
