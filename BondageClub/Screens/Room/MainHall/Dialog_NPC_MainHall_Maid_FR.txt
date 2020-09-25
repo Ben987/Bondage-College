@@ -440,3 +440,13 @@ Très bien. (Elle change le collier, vous déshabille et confisque vos vêtement
 (Elle fronce les sourcils.) Vos vêtements sont confisqués pour l'heure suivante. Cette humiliation pourrait vous apprendre à respecter la volonté de votre patronne.
 (Bow your head in thanks.)
 (Inclinez la tête en remerciement.)
+(She checks your locks and frowns.)  Is that a lover lock?  Your lover might not be pleased if I release you.
+(Elle vérifie vos cadenas et fronce les sourcils.) Est-ce une serrure d'amante? Votre amante ne sera peut-être pas contente si je vous libère.
+Please release me anyway.
+S'il vous plaît, aidez-moi quand même.
+Well, that's something you should discuss with your lover.  (She releases you.)
+Eh bien, c'est quelque chose dont vous devriez discuter avec votre amante. (Elle vous libère.)
+Forget it then.
+Oublie ça alors.
+Alright!  Run to your lover.  (She spanks your butt and giggles.)
+Bien! Courez vers votre amante. (Elle te donne une fessée et rigole.)
