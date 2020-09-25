@@ -190,6 +190,7 @@ function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) 
 
 	// Permission toggle button
 	if (MouseIn(1775, 25, 90, 90)) { 
+		ChatRoomCharacterUpdate(Player);
 		ExtendedItemPermissionMode = !ExtendedItemPermissionMode;
 	}
 	
