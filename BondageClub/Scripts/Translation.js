@@ -173,6 +173,7 @@ var TranslationDictionary = [
 			"Screens/Room/Introduction/Dialog_NPC_Introduction_Sub_FR.txt",
 			"Screens/Room/LARP/Text_LARP_FR.txt",
 			"Screens/Room/DailyJob/Dialog_NPC_DailyJob_DojoTeacher_FR.txt",
+			"Screens/Room/DailyJob/Dialog_NPC_DailyJob_PuppyMistress_FR.txt",
 			"Screens/Room/MaidQuarters/Dialog_NPC_MaidQuarters_InitiationMaids_FR.txt",
 			"Screens/Room/MainHall/Dialog_NPC_MainHall_Maid_FR.txt",
 			"Screens/Room/MainHall/Text_MainHall_FR.txt",
