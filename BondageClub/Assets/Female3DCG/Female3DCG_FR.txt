@@ -90,8 +90,6 @@ High Cut
 Coupe Haute
 Thong
 Lanière
-Diapers
-Couche
 Socks
 Chaussettes
 Ankle
@@ -216,8 +214,6 @@ Puppy Tail Strap
 Queue de Chiot
 Succubus Tail Strap
 Queue de Succubus
-Succubus2 Tail Strap
-Queue de Succubus 2
 Raccoon Tail Strap
 Queue de Raton
 Raccoon2 Tail Strap
@@ -252,8 +248,6 @@ Lower Body
 Bas du Corps
 Hands
 Mains
-Default
-Défaut
 Back Hair
 Chvx. Arrière
 None
@@ -306,24 +300,16 @@ Leather Belt
 Ceinture de Cuir
 Irish 8 Feet Cuffs
 Menottes Irlandaises-8
-Suspension Hemp Rope
-Corde de Suspension en Chanvre
 Duct Tape
 Ruban Adhésif
-Mermaid Rope Tie
-Ligotage de Sirène Bas
 Legs
 Jambes
-Upper Mermaid Tie
-Ligotage de Sirène Haut
 Vulva
 Vulve
 Vibrating Egg
 Oeuf Vibrant
 Vibrating Wand
 Baguette Vibrante
-Vibrating Egg & Panties Remote
-Télécommande pour Oeuf et Slip
 Vibrating Latex Panties
 Slip en Latex Vibrant
 Butt
@@ -338,8 +324,6 @@ Puppy Butt Plug
 Plug Anal Chiot
 Succubus Butt Plug
 Plug Anal Succubus
-Succubus Tail
-Queue de Succubus
 Fox Tails
 Queues de Renard
 Raccoon Butt Plug
@@ -354,8 +338,6 @@ Pelvis
 Bassin
 Metal Chastity Belt
 Ceinture de Chasteté
-Metal Chastity Belt Key
-Clé pour Ceinture de Chasteté
 Leather Crop
 Cravache de Cuir
 Leather Whip
@@ -364,10 +346,6 @@ Strap-On Panties
 Godemiché avec Sangle
 Torso
 Torse
-Nylon Rope Harness
-Harnais de Corde en Nylon
-Hemp Rope Harness
-Harnais de Corde en Chanvre
 Leather Harness
 Harnais de Cuir
 Adult Baby Harness
@@ -384,16 +362,10 @@ Vibrating Nipple Clamps
 Pinces à Seins Vibrantes
 Vibrating Clamps Remote
 Télécommande pour Pinces
-Weighted Piercing
-Perçants avec Poids
 Chain Clamp
 Chaîne à Pinces
-Breast
-Seins
 Metal Chastity Bra
 Brassière de Chasteté
-Metal Chastity Bra Key
-Clé pour Brassière de Chasteté
 Arms
 Bras
 Metal Cuffs
@@ -436,8 +408,6 @@ Bat Collar
 Collier Chauve-Souris
 Posture Collar
 Collier de Posture
-Steel Posture Collar
-Collier de Posture en Fer
 Collar
 Collier
 Bell
@@ -514,8 +484,6 @@ Light Duty Ear Plugs
 Bouchons à Épreuve Faible
 Heavy Duty Ear Plugs
 Bouchons à Épreuve Forte
-Misc Items
-Objets Divers
 Metal Padlock
 Cadenas de Métal
 Intricate Padlock
@@ -538,8 +506,6 @@ Wooden Maid Tray Full
 Plateau de Service en Bois Plein
 Wooden Paddle
 Pagaie en Bois
-Devices
-Devices
 Wooden Box
 Caisse en Bois
 Water filled milk can 
@@ -550,3 +516,375 @@ Saddle Stand
 Stand de selle
 Metal Leg Spreader
 Écarteur de jambe en métal
+Student Top
+Habit d'étudiante
+Shiny Baby dress
+Robe de bébé brillante
+Suspender Top
+Haut à bretelles
+Leather Corset Top
+Haut corset en cuir
+Flower Dress
+Robe fleurie
+Nomadic Dress
+Robe nomade
+Lace Babydoll
+Babydoll en dentelle
+Sleeveless Top
+Top sans manches
+Dress with Fur
+Robe avec fourrure
+Towel
+Serviette
+Yukata
+Yukata
+Steampunk Corset
+Corset Steampunk
+Bondage Dress Style 1
+Robe de bondage Style 1
+Bondage Dress Style 2
+Robe de bondage Style 2
+Shoulderless Top
+Top sans épaules
+Long Dress
+Robe Longue
+Sleep Top
+Haut de nuit
+Wedding Dress
+Robe de mariée
+Shoulderless Wedding Dress
+Robe de mariée sans épaules
+Bridesmaid Dress
+Robe de demoiselle d'honneur
+Puffball Gown
+Robe Puffball
+Hobble Gown
+Robbe entravante
+Shiny Gown
+Robe brillante
+Maid Apron
+Tablier de femme de chambre
+Exposed Maid Apron
+Tablier de femme de chambre ouvert
+Admiral Top
+Haut d'amirale
+Virgin Killer
+Virgin Killer
+Reverse Bunny Suit Top
+Haut de costume de lapin inversé
+Leather Crop Top
+Top court en cuir
+Corset Shirt
+Chemise corset
+Leather Bolero
+Boléro en cuir
+Cloth Accessory
+Accessoire d'habit
+Student Scarf
+Écharpe d'étudiante
+Student Bow 1
+Noeud d'étudiante 1
+Student Bow 2
+Noeud d'étudiante 2
+Student Bow 3
+Noeud d'étudiante 3
+Bouquet of flowers
+Bouquet de fleurs
+Frilly Apron
+Tablier à froufrous
+Necklace
+Collier
+Fancy Necklace
+Collier précieux
+Beaded Necklace
+Collier de perles
+Long Beaded Necklace
+Collier de perles long
+Pearl Necklace
+Collier de perles 2
+Lock Necklace
+Collier cadenas
+Key Necklace
+Collier clef
+ID Card
+Carte d'identification
+Black Heart
+Coeur noir
+Upper Suit
+Habit supérieure
+Catsuit
+Catsuit
+Seamless Catsuit
+Catsuit sans couture
+See-through Suit
+Catsuit transparent
+See-through Zipsuit
+Zipsuit transparent
+Reverse Bunny Suit
+Costume de lapin inversé
+Student Skirt
+Jupe d'étudiante
+Student Skirt Short
+Jupe courte d'étudiante
+Pajama
+Pyjama
+Bondage Waspie
+Bondage Waspie
+Royal Waspie
+Waspie royale
+Straps Waspie
+Waspie avec attaches
+Latex Pants
+Pantalon en latex
+Latex Skirt
+Jupe en latex
+Long Latex Skirt
+Longue jupe en latex
+Patterned Skirt
+Jupe à motifs
+Ripped Jeans
+Jeans déchirés
+Chinese Skirt
+Jupe chinoise
+Hobble Gown Skirt
+Jupe contraignante
+Admiral Skirt
+Jupe d'amirale
+Jean Skirt
+Jupe en jean
+Pencil Skirt
+Jupe mince
+Jeans Shorts
+Shorts en jean
+Short Leggings
+Leggings court
+Long Leggings
+Leggings long
+Pleated Skirt
+Jupe plissée
+Suit Lower
+Habit inférieur
+Floral Corset
+Corset fleuri
+Frilled Bikini
+Bikini à froufrous
+Demonique Bikini
+Bikini Démonique
+Micro Bikini
+Micro Bikini
+One Piece Swimsuit
+Maillot de bain une pièce
+Frame Bra Style 1
+Soutien-gorge Cadre Style 1
+Frame Bra Style 2
+Soutien-gorge Cadre Style 2
+Bondage Bra
+Soutien-gorge Bondage
+Latex Bra
+Soutien-gorge en latex
+Bondage Harness
+Harnais de bondage
+Leather Strap Harness
+Harnais en cuir
+Cute Bikini
+Bikini mignon
+Corset Bikini
+Bikini corset
+Ouvert Perl
+Perl ouvert
+Sarashi
+Sarashi
+Kitty Bra
+Soutien-gorge chaton
+Fishnet Bikini
+Bikini résille
+Sexy Beach Bra
+Soutien-gorge de plage sexy
+Micro Bikini Top
+Haut de micro bikini 
+Star Harness
+Harnais étoile
+Heart Top
+Haut en coeur
+Chinese Bra
+Soutien-gorge chinois
+Latex Corset
+Corset en latex
+Leather Strap Bra
+Soutien-gorge à bretelles en cuir
+Swimsuit style 3
+Maillot de bain Style 3
+Clamshell Bra
+Soutien-gorge coquille
+Cow Printed Bra
+Soutien-gorge vache
+Studded Harness
+Soutien-gorge harnais clouté
+Diaper
+Couche
+Plastic Covered Diaper
+Couche couverte de plastique
+Satin Covered Diaper
+Couche couverte de satin
+Frill Panties
+Culotte à froufrous
+Maid Panties
+Culotte de femme de chambre
+Latex Panties
+Culotte en latex
+Wrap Panties
+Culotte enveloppante
+Crotchless Briefs
+Slip sans entrejambe
+G-String Panties
+G-String
+G-String Pasty
+G-String sans corde
+Zip-String Panties
+Culotte zippée
+Full Bondage Harness
+Harnais de bondage complet
+Kitty Panties
+Culotte chaton
+Pearl String
+Culotte perlée
+165 cm
+165 cm
+167 cm
+167 cm
+169 cm
+169 cm
+171 cm
+171 cm
+173 cm
+173 cm
+175 cm
+175 cm
+155 cm
+155 cm
+157 cm
+157 cm
+159 cm
+159 cm
+161 cm
+161 cm
+163 cm
+163 cm
+Style 13
+Style 13
+Style 14
+Style 14
+Style 15
+Style 15
+Style 16
+Style 16
+Style 17
+Style 17
+Style 18
+Style 18
+Style 19
+Style 19
+Style 1b
+Style 1b
+Style 2b
+Style 2b
+Style 3b
+Style 3b
+Style 4b
+Style 4b
+Style 5b
+Style 5b
+Style 6b
+Style 6b
+Style 7b
+Style 7b
+Style 8b
+Style 8b
+Style 9b
+Style 9b
+Style 10b
+Style 10b
+Style 11b
+Style 11b
+Style 12b
+Style 12b
+Style 13b
+Style 13b
+Style 14b
+Style 14b
+Left eye
+Oeil gauche
+Right eye
+Oeil droit
+Bonnet Style 1
+Bonnet Style 1
+Bonnet Style 2
+Bonnet Style 2
+Crown Style 1
+Couronne Style 1
+Crown Style 2
+Couronne Style 2
+Crown Style 3
+Couronne Style 3
+Crown Style 4
+Couronne Style 4
+Crown Style 5
+Couronne Style 5
+Stylish Small Hat
+Petit chapeau élégant
+Veil Half Face
+Voile demi-visage
+Veil Full Face
+Voile complet
+Baker Boy Hat
+Chapeau Baker Boy
+Hair Ribbon 2
+Ruban à cheveux 2
+Hair Ribbon 3
+Ruban à cheveux 3
+Hair Ribbon 4
+Ruban à cheveux 4
+Sunstripe Panties
+Culotte à rayures solaires
+Sexy Beach Panties
+Culotte de plage sexy
+Chinese Panties
+Culotte chinoise
+Leather Strap Panties
+Culotte à bretelles en cuir
+Cow Printed Panties
+Culotte vache
+Frill Socks
+Bas à froufous
+Socks with Fur
+Chaussettes avec fourrure
+Striped Socks
+Chaussettes rayées
+Latex Socks
+Chaussettes en latex
+Footless Socks
+Chaussettes sans pieds
+Reverse Bunny Suit Stockings
+Bas d'habit de lapin inversé
+Short Leather Socks
+Chaussettes courtes en cuir
+Crochless Pantyhose
+Collants sans entrejambe
+Cow Printed Socks
+Bas vache
+Strap Sandals
+Sandales à bride
+Rhinestone Sandals
+Sandales strass
+Paw Boots
+Bottes patte
+Woolly Boots
+Bottes en laine
+Latex Heels
+Talons hauts en latex
+Multi-Strap Heels
+Talons hauts à sangles multiples
+Jeweled Band
+Bandeau ornée de bijoux
+Witch Hat
+Chapeau de sorcière
