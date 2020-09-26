@@ -21,7 +21,7 @@ var AssetSpankingToys = {
 	Name: "SpankingToys", Random: false, Wear: false, BuyGroup: "SpankingToys",
 	DynamicAllowInventoryAdd: C => InventoryIsWorn(Player, "SpankingToys", "ItemHands") && InventorySpankingToysActivityAllowed(C),
 	DynamicDescription: C => InventorySpankingToysGetDescription(C),
-	DynamicExpressionTrigger: C => SpankingInventory.find(x => x.Name == InventorySpankingToysGetType(Player)).ExpressionTrigger,
+	DynamicExpressionTrigger: C => InventoryItemHandsSpankingToysOptions.find(x => x.Name == InventorySpankingToysGetType(Player)).ExpressionTrigger,
 	DynamicPreviewIcon: C => InventorySpankingToysGetType(Player),
 	DynamicName: C => "SpankingToys" + InventorySpankingToysGetType(C),
 	DynamicGroupName: "ItemHands",
