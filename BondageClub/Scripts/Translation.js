@@ -130,6 +130,7 @@ var TranslationDictionary = [
 			"Screens/Character/PasswordReset/Text_PasswordReset_FR.txt",
 			"Screens/Character/Player/Dialog_Player_FR.txt",
 			"Screens/Character/Preference/Text_Preference_FR.txt",
+			"Screens/Character/Preference/ActivityDictionary_FR.txt",
 			"Screens/Character/Title/Text_Title_FR.txt",
 			"Screens/Character/Wardrobe/Text_Wardrobe_FR.txt",
 			"Screens/Cutscene/NPCCollaring/Text_NPCCollaring_FR.txt",
