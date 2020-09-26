@@ -95,6 +95,10 @@ TextArea {
 #TextAreaChatLog[data-coloractivities=false] .ChatMessageActivity {
 	background-color: transparent !important;
 }
+#TextAreaChatLog[data-whitespace=preserve] {
+	white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
 #FriendList {
 	border: 2px solid white;
 	overflow: auto;

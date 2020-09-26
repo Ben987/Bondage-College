@@ -1,72 +1,86 @@
 "use strict";
 
-// Loads the item extension properties
+var InventoryItemArmsCollarCuffsOptions = [
+	{
+		Name: "Loose",
+		Property: {
+			Type: null,
+			Difficulty: 0,
+		},
+	},
+	{
+		Name: "Normal",
+		Property: {
+			Type: "Normal",
+			Difficulty: 3,
+		},
+	},
+	{
+		Name: "Snug",
+		Property: {
+			Type: "Snug",
+			Difficulty: 6,
+		},
+	},
+	{
+		Name: "Tight",
+		Property: {
+			Type: "Tight",
+			Difficulty: 9,
+		},
+	},
+];
+
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsCollarCuffsLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
+	ExtendedItemLoad(InventoryItemArmsCollarCuffsOptions, "CollarCuffsSelectTightness");
 }
 
-// Draw the item extension screen
+/**
+ * Draw the item extension screen
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsCollarCuffsDraw() {
-
-	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
-	// Draw the possible poses
-	DrawText(DialogFind(Player, "CollarCuffsSelectTightness"), 1500, 500, "white", "gray");
-	
-	DrawButton(1000, 550, 225, 65, DialogFind(Player, "CollarCuffsPoseLoose"), (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
-	
-	DrawButton(1250, 550, 225, 65, DialogFind(Player, "CollarCuffsPoseNormal"), ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Normal")) ? "#888888" : "White");
-	
-	DrawButton(1500, 550, 225, 65, DialogFind(Player, "CollarCuffsPoseSnug"), ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Snug")) ? "#888888" : "White");
-	
-	DrawButton(1750, 550, 225, 65, DialogFind(Player, "CollarCuffsPoseTight"), ((DialogFocusItem.Property.Restrain != null) && 
-	(DialogFocusItem.Property.Restrain == "Tight")) ? "#888888" : "White");
+	ExtendedItemDraw(InventoryItemArmsCollarCuffsOptions, "CollarCuffsPose", InventoryItemArmsCollarCuffsOptions.length, false);
 }
 
-// Catches the item extension clicks
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsCollarCuffsClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemArmsCollarCuffsSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Normal"))) InventoryItemArmsCollarCuffsSetPose("Normal");
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Snug"))) InventoryItemArmsCollarCuffsSetPose("Snug");
-	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Tight"))) InventoryItemArmsCollarCuffsSetPose("Tight");
+	ExtendedItemClick(InventoryItemArmsCollarCuffsOptions, false, InventoryItemArmsCollarCuffsOptions.length, false);
 }
 
-// Sets the cuffs pose (wrist, elbow, both or none)
-function InventoryItemArmsCollarCuffsSetPose(NewPose) {
-
-	// Gets the current item and character
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemArmsCollarCuffsLoad();
-	}
-
-	// Sets the new pose with it's effects
-	DialogFocusItem.Property.Restrain = NewPose;
-	if (NewPose == null) {
-		delete DialogFocusItem.Property.Difficulty;
-	} else {
-		if (NewPose == "Normal") DialogFocusItem.Property.Difficulty = 9;
-		if (NewPose == "Snug") DialogFocusItem.Property.Difficulty = 11;
-		if (NewPose == "Tight") DialogFocusItem.Property.Difficulty = 14;
-	}
-
-	// Refreshes the character and chatroom
-	CharacterRefresh(C);
-	var msg = "CollarCuffsRestrain" + ((NewPose == null) ? "None" : NewPose);
-	var Dictionary = [];
-	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @param {Option} PreviousOption - The previously selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemArmsCollarCuffsPublishAction(C, Option, PreviousOption) {
+	var msg = "CollarCuffsRestrain" + ((Option.Property.Type == null) ? "None" : Option.Property.Type);
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
-
-	// Rebuilds the inventory menu
-	if (DialogInventory != null) {
-		DialogFocusItem = null;
-		DialogMenuButtonBuild(C);
-	}
-
 }
+
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemArmsCollarCuffsNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "ItemArmsCollarCuffsNPCReaction" + Option.Name, "ItemArms");
+}
+

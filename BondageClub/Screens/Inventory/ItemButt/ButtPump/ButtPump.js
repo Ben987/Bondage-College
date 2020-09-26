@@ -1,53 +1,95 @@
 "use strict";
 
-// Loads the item extension properties
+var InventoryItemButtButtPumpOptions = [
+	{
+		Name: "Empty",
+		Property: {
+			Type: null,
+			InflateLevel: "0",
+		},
+	},
+	{
+		Name: "Light",
+		Property: {
+			Type: "Light",
+			InflateLevel: "1",
+		},
+	},
+	{
+		Name: "Inflated",
+		Property: {
+			Type: "Inflated",
+			InflateLevel: "2",
+		},
+	},
+	{
+		Name: "Bloated",
+		Property: {
+			Type: "Bloated",
+			InflateLevel: "3",
+		},
+	},
+	{
+		Name: "Maximum",
+		Property: {
+			Type: "Maximum",
+			InflateLevel: "4",
+		},
+	},
+]
+
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemButtButtPumpLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { InflateLevel: 0 };
-	if (DialogFocusItem.Property.InflateLevel == null) DialogFocusItem.Property.InflateLevel = 0;
+	ExtendedItemLoad(InventoryItemButtButtPumpOptions, "SelectInflateLevel");
 }
 
-// Draw the item extension screen
+/**
+ * Draw the item extension screen
+ * @returns {void} - Nothing
+ */
 function InventoryItemButtButtPumpDraw() {
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	DrawText(DialogFind(Player, "InflateLevel" + DialogFocusItem.Property.InflateLevel.toString()), 1500, 600, "White", "Gray");
-	if (DialogFocusItem.Property.InflateLevel > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "Empty"), "White");
-	if (DialogFocusItem.Property.InflateLevel < 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Light"), "White");
-	if (DialogFocusItem.Property.InflateLevel > 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Light"), "White");
-	if (DialogFocusItem.Property.InflateLevel < 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Inflated"), "White");
-	if (DialogFocusItem.Property.InflateLevel > 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Inflated"), "White");
-	if (DialogFocusItem.Property.InflateLevel < 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "Bloated"), "White");
-	if (DialogFocusItem.Property.InflateLevel > 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "Bloated"), "White");
-	if (DialogFocusItem.Property.InflateLevel < 4) DrawButton(1375, 770, 200, 55, DialogFind(Player, "Maximum"), "White");
+	ExtendedItemDraw(InventoryItemButtButtPumpOptions, "InflateLevel", InventoryItemButtButtPumpOptions.length, false);
 }
 
-// Catches the item extension clicks
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemButtButtPumpClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.InflateLevel > 0)) InventoryItemButtButtPumpIntensity(0 - DialogFocusItem.Property.InflateLevel);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.InflateLevel < 1)) InventoryItemButtButtPumpIntensity(1 - DialogFocusItem.Property.InflateLevel);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.InflateLevel > 1)) InventoryItemButtButtPumpIntensity(1 - DialogFocusItem.Property.InflateLevel);
-	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.InflateLevel < 2)) InventoryItemButtButtPumpIntensity(2 - DialogFocusItem.Property.InflateLevel);
-	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.InflateLevel > 2)) InventoryItemButtButtPumpIntensity(2 - DialogFocusItem.Property.InflateLevel);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.InflateLevel > 3)) InventoryItemButtButtPumpIntensity(3 - DialogFocusItem.Property.InflateLevel);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.InflateLevel < 3)) InventoryItemButtButtPumpIntensity(3 - DialogFocusItem.Property.InflateLevel);
-	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 770) && (MouseY <= 825) && (DialogFocusItem.Property.InflateLevel < 4)) InventoryItemButtButtPumpIntensity(4 - DialogFocusItem.Property.InflateLevel);
+	ExtendedItemClick(InventoryItemButtButtPumpOptions, false, InventoryItemButtButtPumpOptions.length, false);
 }
 
-// Sets the Butt Pump Level
-function InventoryItemButtButtPumpIntensity(Modifier) {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	DialogFocusItem.Property.InflateLevel = DialogFocusItem.Property.InflateLevel + Modifier;
-	if (DialogFocusItem.Property.InflateLevel == 0);
-	if (DialogFocusItem.Property.InflateLevel == 1);
-	if (DialogFocusItem.Property.InflateLevel == 2);
-	if (DialogFocusItem.Property.InflateLevel == 3);
-	if (DialogFocusItem.Property.InflateLevel == 4);
-	if (C.ID == 0) ServerPlayerAppearanceSync();
-	var Dictionary = [];
-	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-    ChatRoomPublishCustomAction("BPumps" + ((Modifier > 0) ? "pumps" : "deflates") + "To" + DialogFocusItem.Property.InflateLevel, true, Dictionary);
-} 
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @param {Option} PreviousOption - The previously selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemButtButtPumpPublishAction(C, Option, PreviousOption) {
+	var NewIndex = InventoryItemButtButtPumpOptions.indexOf(Option);
+	var PreviousIndex = InventoryItemButtButtPumpOptions.indexOf(PreviousOption);
+	var msg = "BPumps" + ((NewIndex > PreviousIndex) ? "pumps" : "deflates") + "To" + Option.Property.InflateLevel;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
+
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemButtButtPumpNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "InventoryItemButtButtPumpNPCReaction" + Option.Name, "ItemButt");
+}
 

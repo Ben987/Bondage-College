@@ -488,6 +488,17 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 }
 
 /**
+ * Returns the value of a given property of an appearance item, prioritizes the Property object.
+ * @param {object} Item - The appearance item to scan 
+ * @param {string} PropertyName - The property name to get.
+ * @returns {any} - The value of the requested property for the given item. Returns undefined if the property or the item itself does not exist.
+ */
+function InventoryGetItemProperty(Item, PropertyName) {
+    if (!Item || !PropertyName || !Item.Asset) return;
+    return (Item.Property && typeof Item.Property[PropertyName] !== "undefined" ? Item.Property : Item.Asset)[PropertyName];
+}
+
+/**
 * Check if we must trigger an expression for the character after an item is used/applied
 * @param {Character} C - The character that we must validate
 * @param {AppearanceItem} Item - The item from appearance that we must validate
@@ -712,16 +723,35 @@ function InventoryIsWorn(C, AssetName, AssetGroup) {
 }
 
 /**
+ * Toggles an item's permission for the player
+ * @param {object} Item - Appearance item to toggle
+ * @param {object} Type - Type of the item to toggle
+ * @returns {void} - Nothing 
+ */
+function InventoryTogglePermission(Item, Type) { 
+	if (InventoryIsPermissionBlocked(Player, Item.Asset.Name, Item.Asset.Group.Name, Type)) {
+		Player.BlockItems = Player.BlockItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name || B.Type != Type);
+		Player.LimitedItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name, Type: Type });
+	}
+	else if (InventoryIsPermissionLimited(Player, Item.Asset.Name, Item.Asset.Group.Name, Type))
+		Player.LimitedItems = Player.LimitedItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name || B.Type != Type);
+	else
+		Player.BlockItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name, Type: Type });
+	ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
+}
+
+/**
 * Returns TRUE if a specific item / asset is blocked by the character item permissions
 * @param {Character} C - The character on which we check the permissions
 * @param {String} AssetName - The asset / item name to scan
 * @param {String} AssetGroup - The asset group name to scan
+* @param {String} AssetType - The asset type to scan
 * @returns {Boolean} - TRUE if asset / item is blocked
 */
-function InventoryIsPermissionBlocked(C, AssetName, AssetGroup) {
+function InventoryIsPermissionBlocked(C, AssetName, AssetGroup, AssetType) {
 	if ((C != null) && (C.BlockItems != null) && Array.isArray(C.BlockItems))
 		for (let B = 0; B < C.BlockItems.length; B++)
-			if ((C.BlockItems[B].Name == AssetName) && (C.BlockItems[B].Group == AssetGroup))
+			if ((C.BlockItems[B].Name == AssetName) && (C.BlockItems[B].Group == AssetGroup) && (C.BlockItems[B].Type == AssetType))
 				return true;
 	return false;
 }
@@ -731,12 +761,13 @@ function InventoryIsPermissionBlocked(C, AssetName, AssetGroup) {
  * @param {Character} C - The character on which we check the permissions
  * @param {String} AssetName - The asset / item name to scan
  * @param {String} AssetGroup - The asset group name to scan
+ * @param {String} AssetType - The asset type to scan
  * @returns {Boolean} - TRUE if asset / item is limited
  */
-function InventoryIsPermissionLimited(C, AssetName, AssetGroup) {
+function InventoryIsPermissionLimited(C, AssetName, AssetGroup, AssetType) {
 	if ((C != null) && (C.LimitedItems != null) && Array.isArray(C.LimitedItems))
 		for (let B = 0; B < C.LimitedItems.length; B++)
-			if ((C.LimitedItems[B].Name == AssetName) && (C.LimitedItems[B].Group == AssetGroup))
+			if ((C.LimitedItems[B].Name == AssetName) && (C.LimitedItems[B].Group == AssetGroup) && (C.LimitedItems[B].Type == AssetType))
 				return true;
 	return false;
 }
@@ -745,10 +776,11 @@ function InventoryIsPermissionLimited(C, AssetName, AssetGroup) {
  * Returns TRUE if the item is not limited, if the player is an owner or a lover of the character, or on their whitelist
  * @param {Character} C - The character on which we check the limited permissions for the item
  * @param {Item} Item - The item being interacted with
+ * @param {String} ItemType - The asset type to scan
  * @returns {Boolean} - TRUE if item is allowed
  */
-function InventoryCheckLimitedPermission(C, Item) {
-	if (!InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name)) return true;
+function InventoryCheckLimitedPermission(C, Item, ItemType) {
+	if (!InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name, ItemType)) return true;
 	if ((C.ID == 0) || C.IsLoverOfPlayer() || C.IsOwnedByPlayer()) return true;
 	if ((C.ItemPermission < 3) && !(C.WhiteList.indexOf(Player.MemberNumber) < 0)) return true;
 	return false;

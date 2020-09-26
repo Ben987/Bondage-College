@@ -188,6 +188,7 @@ ActivitySpank,,(Whimper from the pain.),,"ReleasePlayerGame(""next"")",ShowNpcDi
 ActivitySpank,,(Thrash around in your bondage.),,"ReleasePlayerGame(""next"")",ShowNpcDice()
 ActivitySpank,,(Pretend it doesn't hurt.),,"ReleasePlayerGame(""next"")",ShowNpcDice()
 ActivityReleaseIntro,,,(She releases you and sighs.)  Enjoy the freedom while you have it.,,
-ActivityRelease,0,Take care.,Welcome to the Gambling Hall. Shall we play a game?,"DialogChangeReputation(""Dominant"", 2)",ShowNpcDice()
-ActivityRelease,0,Thanks!  That was fun.,Welcome to the Gambling Hall. Shall we play a game?,"DialogChangeReputation(""Dominant"", -2)",ShowNpcDice()
-ActivityRelease,0,(Leave her.),Welcome to the Gambling Hall. Shall we play a game?,,ShowNpcDice()
+ActivityRelease,0,Take care.,Welcome to the Gambling Hall.  Shall we play a game?,,ShowNpcDice()
+ActivityRelease,0,I'll get you next time.,Welcome to the Gambling Hall.  Shall we play a game?,"DialogChangeReputation(""Dominant"", 1)",ShowNpcDice()
+ActivityRelease,0,Thanks!  That was fun.,Welcome to the Gambling Hall.  Shall we play a game?,"DialogChangeReputation(""Dominant"", -1)",ShowNpcDice()
+ActivityRelease,0,(Leave her.),Welcome to the Gambling Hall.  Shall we play a game?,,ShowNpcDice()

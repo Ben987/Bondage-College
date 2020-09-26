@@ -463,13 +463,14 @@ function CharacterItemsHavePose(C, Pose) {
  * Checks if a character has a pose type from items (not active pose unless an item lets it through)
  * @param {Character} C - Character to check for the pose type
  * @param {string} Type - Pose type to check for within items
+ * @param {boolean} OnlyItems - Whether or not allowed activeposes should be ignored.
  * @returns {boolean} - TRUE if the character has the pose type active
  */
-function CharacterItemsHavePoseType(C, Type) { 
+function CharacterItemsHavePoseType(C, Type, OnlyItems) { 
 	var PossiblePoses = PoseFemale3DCG.filter(P => P.Category == Type || P.Category == "BodyFull").map(P => P.Name);
 	
 	for (let A = 0; A < C.Appearance.length; A++) {
-		if (C.Appearance[A].Asset.AllowActivePose != null && (C.Appearance[A].Asset.AllowActivePose.find(P => PossiblePoses.includes(P) && C.AllowedActivePose.includes(P))))
+		if (!OnlyItems && C.Appearance[A].Asset.AllowActivePose != null && (C.Appearance[A].Asset.AllowActivePose.find(P => PossiblePoses.includes(P) && C.AllowedActivePose.includes(P))))
 			return true;
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null) && (C.Appearance[A].Property.SetPose.find(P => PossiblePoses.includes(P))))
 			return true;

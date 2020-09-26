@@ -438,7 +438,8 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	for (let A = 0; A < Bundle.length; A++) {
 
 		// Skip blocked items
-		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) || InventoryIsPermissionLimited(C, Bundle[A].Name, Bundle)) && OnlineGameAllowBlockItems()) continue;
+		const Type = typeof Bundle[A].Property === "object" ? Bundle[A].Property.Type : null;
+		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group, Type)  || InventoryIsPermissionLimited(C, Bundle[A].Name, Bundle)) && OnlineGameAllowBlockItems()) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (let I = 0; I < Asset.length; I++)

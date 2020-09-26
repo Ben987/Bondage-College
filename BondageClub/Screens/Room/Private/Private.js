@@ -315,7 +315,7 @@ function PrivatePlayerCanTurnTables() { return (!Player.IsRestrained() && (Reput
  * Checks if it's possible for the submissive to turn the tables against her player owner
  * @returns {boolean} - TRUE if turning the tables is possible
  */
-function PrivateSubCanTurnTables() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && !Player.IsOwned() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
+function PrivateSubCanTurnTables() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && !Player.IsOwned() && !PrivateOwnerInRoom() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
 
 /**
  * Loads the private room screen and the vendor NPC.

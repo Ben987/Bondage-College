@@ -572,7 +572,7 @@ function ChatRoomKeyDown() {
 	if (document.activeElement.id != "InputChat") ElementFocus("InputChat");
 
 	// The ENTER key sends the chat.  The "preventDefault" is needed for <textarea>, otherwise it adds a new line after clearing the field
-	if (KeyPress == 13) {
+	if (KeyPress == 13 && !event.shiftKey) {
 		event.preventDefault();
 		ChatRoomSendChat();
 	}
@@ -606,10 +606,8 @@ function ChatRoomSendChat() {
 		ChatRoomLastMessage.push(msg);
 		ChatRoomLastMessageIndex = ChatRoomLastMessage.length;
 
-		// Replace < and > characters to prevent HTML injections
-		while (msg.indexOf("<") > -1) msg = msg.replace("<", "&lt;");
-		while (msg.indexOf(">") > -1) msg = msg.replace(">", "&gt;");
 		var m = msg.toLowerCase().trim();
+
 
 		// Some custom functions like /dice or /coin are implemented for randomness
 		if (m.indexOf("/dice") == 0) {
@@ -829,7 +827,7 @@ function ChatRoomCharacterUpdate(C) {
 /**
  * Escapes a given string.
  * @param {string} str - Text to escape.
- * @returns {void} - Nothing.
+ * @returns {string} - Escaped string.
  */
 function ChatRoomHTMLEntities(str) {
 	return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -857,9 +855,7 @@ function ChatRoomMessage(data) {
 		// If we found the sender
 		if (SenderCharacter != null) {
 			// Replace < and > characters to prevent HTML injections
-			var msg = data.Content;
-			while (msg.indexOf("<") > -1) msg = msg.replace("<", "&lt;");
-			while (msg.indexOf(">") > -1) msg = msg.replace(">", "&gt;");
+			var msg = ChatRoomHTMLEntities(data.Content);
 
 			// Hidden messages are processed separately, they are used by chat room mini-games / events
 			if ((data.Type != null) && (data.Type == "Hidden")) {
@@ -966,9 +962,9 @@ function ChatRoomMessage(data) {
 			// Prepares the HTML tags
 			if (data.Type != null) {
 				if (data.Type == "Chat") {
-					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
-					else if (Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
-					else msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
+					else if (Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
+					else msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
 				}
 				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {

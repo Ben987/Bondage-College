@@ -1,0 +1,11 @@
+PlayerGagged,,,"Hun, speak clearer if you want to become a star.",,
+0,,,It's a honor to see you Mistress DialogPlayerName.  Are you here to review the scenario?,,"DialogLogQuery(""ClubMistress"", ""Management"")"
+0,,,You're DialogPlayerName the kidnapper?  We could use someone like you in our next film.,,"DialogReputationGreater(""Kidnap"", 50)"
+0,,,"Hey maid DialogPlayerName, the studio could use some cleaning.  We also need some fresh coffee.",,"DialogReputationGreater(""Maid"", 50)"
+0,,,"Hey there, are you looking to become a star in the next movie?",,
+0,,"Hi, I'm DialogPlayerName.","Pleased to meet you hun, I'm DialogCharacterName.  I'm directing the next movie.",DialogRemove(),
+0,,Can you help me?,"Go find a maid, I have a movie to shoot.",,Player.IsRestrained()
+0,,Are you looking for actresses?,All the time.  If you're not shy we could hire you.  You could become the next bondage idol.,,
+0,,Do actresses get paid?,"Of course hun.  The better the performance, the better the salary.",,
+0,,What are you filming?,TO DO ,,
+0,,Take care.  (Leave her.),,DialogLeave(),
