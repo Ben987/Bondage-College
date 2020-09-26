@@ -181,7 +181,7 @@ function ItemColorDrawDefault(x, y) {
 			} else {
 				const layer = colorGroup.layers[layerPage - 1];
 				currentColors = colors[layer.ColorIndex];
-				groupName = colorGroupName + ": " + ItemColorLayerNames.get(asset.Group.Name + asset.Name + layer.Name);
+				groupName = colorGroupName + ": " + ItemColorLayerNames.get(asset.Group.Name + asset.Name + (layer.Name || ""));
 			}
 			buttonText = ItemColorGetColorButtonText(currentColors);
 			buttonColor = buttonText.startsWith("#") ? buttonText : "#fff";
@@ -455,7 +455,7 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 	ItemColorStateKey = itemKey;
 	const colorableLayers = ItemColorGetColorableLayers(item);
 	const groupMap = colorableLayers.reduce((groupLookup, layer) => {
-		const groupKey = layer.ColorGroup || layer.Name;
+		const groupKey = layer.ColorGroup || layer.Name || "";
 		(groupLookup[groupKey] || (groupLookup[groupKey] = [])).push(layer);
 		return groupLookup;
 	}, {});
