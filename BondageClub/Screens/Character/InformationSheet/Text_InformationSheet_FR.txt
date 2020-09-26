@@ -191,3 +191,4 @@ Patronne, amantes, liste blanche & Maîtresses
 Owner, Lovers and whitelist only
 Patronne, amantes et liste blanche seulement
 Owner and Lovers only
+Patronne et amantes seulement
