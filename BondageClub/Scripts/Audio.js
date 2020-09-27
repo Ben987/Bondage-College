@@ -28,6 +28,7 @@ var AudioList = [
 	{ Name: "VibrationLong2", File: "VibrationTone4Long6" },
 	{ Name: "VibrationShort", File: "VibrationTone4ShortLoop" },
 	{ Name: "Wand", File: "Wand" },
+	{ Name: "WoodenCuffs", File: "WoodenCuffs" },
 	{ Name: "ZipTie", File: "ZipTie" },
 ];
 
