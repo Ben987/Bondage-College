@@ -154,7 +154,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 	// Clear the current appearance
 	for (let A = C.Appearance.length - 1; A >= 0; A--)
 		if (C.Appearance[A].Asset.Group.Category == "Appearance")
-			if ((ClothOnly == null) || (C.Appearance[A].Asset.Group.AllowNone)) {
+			if (!ClothOnly || (C.Appearance[A].Asset.Group.AllowNone)) {
 				C.Appearance.splice(A, 1);
 			}
 
@@ -360,7 +360,7 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 	if (C.Pose != null)
 		for (let A = 0; A < C.Pose.length; A++)
 			for (let P = 0; P < Pose.length; P++)
-				if (Pose[P].Name == C.Pose[A])
+				if (Pose[P].Name === C.Pose[A])
 					if ((Pose[P].Hide != null) && (Pose[P].Hide.indexOf(GroupName) >= 0))
 						return false;
 	return true;
@@ -395,7 +395,7 @@ function CharacterApperanceSetHeightModifier(C) {
 		if (C.Pose != null) 
 			for (let A = 0; A < C.Pose.length; A++)
 				for (let P = 0; P < Pose.length; P++)
-					if (Pose[P].Name == C.Pose[A])
+					if (Pose[P].Name === C.Pose[A])
 						if (Pose[P].OverrideHeight != null) {
 							// Ignore kneel, if player is hogtied. Allows the use of a short chain on hogtied players
 							// Ignore overthehead if kneeling
@@ -924,15 +924,7 @@ function AppearanceClick() {
 					var CurrentItem = InventoryGet(C, C.FocusGroup.Name);
 					
 					if (CurrentItem && (CurrentItem.Asset.Name == Item.Asset.Name)) return;
-					if (InventoryIsPermissionBlocked(Player, Item.Asset.Name, Item.Asset.Group.Name)) {
-						Player.BlockItems = Player.BlockItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name);
-						Player.LimitedItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name });
-					}
-					else if (InventoryIsPermissionLimited(Player, Item.Asset.Name, Item.Asset.Group.Name))
-						Player.LimitedItems = C.LimitedItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name);
-					else
-						Player.BlockItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name });
-					ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
+					InventoryTogglePermission(Item, null);
 					
 				} else {
 					if (Block || Limited) return;

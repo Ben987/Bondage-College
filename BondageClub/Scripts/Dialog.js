@@ -355,6 +355,7 @@ function DialogIntro() {
  * @returns {void} - Nothing
  */
 function DialogLeave() {
+	if (DialogItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 	DialogItemPermissionMode = false;
 	DialogActivityMode = false;
 	DialogItemToLock = null;
@@ -427,6 +428,7 @@ function DialogLeaveItemMenu() {
 	DialogProgress = -1;
 	DialogColor = null;
 	DialogMenuButton = [];
+	if (DialogItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 	DialogItemPermissionMode = false;
 	DialogActivityMode = false;
 	DialogTextDefault = "";
@@ -1010,7 +1012,7 @@ function DialogMenuButtonClick() {
 
 			// When we leave item permission mode, we upload the changes for everyone in the room
 			else if (DialogMenuButton[I] == "DialogNormalMode") {
-				ChatRoomCharacterUpdate(Player);
+				if (CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 				DialogItemPermissionMode = false;
 				DialogInventoryBuild(C);
 				return;
@@ -1079,15 +1081,7 @@ function DialogItemClick(ClickItem) {
 	// In permission mode, the player can allow or block items for herself
 	if ((C.ID == 0) && DialogItemPermissionMode) {
 		if (ClickItem.Worn || (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name))) return;
-		if (InventoryIsPermissionBlocked(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name)) {
-			Player.BlockItems = Player.BlockItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
-			Player.LimitedItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
-		}
-		else if (InventoryIsPermissionLimited(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name))
-			Player.LimitedItems = C.LimitedItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
-		else
-			Player.BlockItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
-		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
+		InventoryTogglePermission(ClickItem, null);
 		return;
 	}
 

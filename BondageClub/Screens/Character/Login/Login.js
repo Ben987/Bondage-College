@@ -24,7 +24,7 @@ var LoginFrameTotalTime = 0;*/
 function LoginDoNextThankYou() {
 	LoginThankYou = CommonRandomItemFromList(LoginThankYou, LoginThankYouList);
 	CharacterRelease(Player, false);
-	CharacterAppearanceFullRandom(Player, false);
+	CharacterAppearanceFullRandom(Player);
 	CharacterFullRandomRestrain(Player);
 	LoginThankYouNext = CommonTime() + 4000;
 }

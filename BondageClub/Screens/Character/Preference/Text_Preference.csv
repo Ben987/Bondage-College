@@ -36,6 +36,7 @@ SearchShowsFullRooms,Display full chatrooms
 SearchFriendsFirst,Order rooms by number of friends
 DisableAnimations,Disable scripted assets on others
 ShowAutomaticMessages,Show all automatic messages
+PreserveWhitespace,Preserve whitespace in messages
 AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms

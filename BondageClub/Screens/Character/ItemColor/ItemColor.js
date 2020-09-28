@@ -470,7 +470,10 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 			};
 		})
 		.sort((g1, g2) => g1.colorIndex = g2.colorIndex);
-	colorGroups.unshift({ name: null, layers: [], colorIndex: -1 });
+
+	if (item.Asset.AllowColorizeAll) {
+		colorGroups.unshift({ name: null, layers: [], colorIndex: -1 });
+	}
 
 	let colors;
 	if (Array.isArray(item.Color)) {
@@ -532,7 +535,7 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
  * @returns {Layer[]} - The colourable layers
  */
 function ItemColorGetColorableLayers(item) {
-	return item.Asset.Layer.filter(layer => !layer.CopyLayerColor && layer.AllowColorize);
+	return item.Asset.Layer.filter(layer => !layer.CopyLayerColor && layer.AllowColorize && !layer.HideColoring);
 }
 
 /**

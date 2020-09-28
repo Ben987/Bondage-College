@@ -572,7 +572,7 @@ function ChatRoomKeyDown() {
 	if (document.activeElement.id != "InputChat") ElementFocus("InputChat");
 
 	// The ENTER key sends the chat.  The "preventDefault" is needed for <textarea>, otherwise it adds a new line after clearing the field
-	if (KeyPress == 13) {
+	if (KeyPress == 13 && !event.shiftKey) {
 		event.preventDefault();
 		ChatRoomSendChat();
 	}

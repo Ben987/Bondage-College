@@ -1,0 +1,10 @@
+Intro0,,,"(They release, pay and leave you with your new owner.)  Pleased to meet you my girl, I'm DialogCharacterName.",
+Intro1,,,"(They release, pay and leave you with your new owner.)  Come here girl, my name is DialogCharacterName.",
+Intro2,,,"(They release, pay and leave you with your new owner.)  Hello girl, I'm DialogCharacterName, your new owner.",
+0,10,"Hi, I'm DialogPlayerName.","From now on, you will call me ""Mistress"".  I'm sure we'll have a great time together.",
+0,10,You're the new owner?,"From now on, you will call me ""Mistress"".  I'm sure we'll have a great time together.","DialogChangeReputation(""Dominant"", 1)"
+0,10,(Bow your head.),"From now on, you will call me ""Mistress"".  I'm sure we'll have a great time together.","DialogChangeReputation(""Dominant"", -2)"
+10,20,Absolutely!,"Let's go back to your place, I want to know everything about you.","DialogChangeReputation(""Dominant"", 1)"
+10,20,I'm scared.,"Don't be scared my girl, everything will be fine.  Let's go back to your place, I want to know everything about you.","DialogChangeReputation(""Dominant"", -3)"
+10,20,Yes Mistress.,"Good girl.  Now let's go back to your place, I want to know everything about you.",
+20,,(Show her your room.),,PlayerAuctionTransfer()
