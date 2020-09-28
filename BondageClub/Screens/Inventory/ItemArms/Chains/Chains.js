@@ -68,7 +68,7 @@ function InventoryItemArmsChainsPublishAction(C, Option) {
 	var msg = "ArmsChainSet" + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
 	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
