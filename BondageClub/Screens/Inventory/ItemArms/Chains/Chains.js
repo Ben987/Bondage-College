@@ -77,14 +77,13 @@ function InventoryItemArmsChainsNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "ChainBondage" + Option.Name, "ItemArms");
 }
 
-function InventoryItemArmsChainsValidate(Option) {
+function InventoryItemArmsChainsValidate(C, Option) {
 	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");
 		return false;
 	}
 
 	if (Option.Prerequisite) {
-		var C = CharacterGetCurrent();
 		if (!InventoryAllow(C, Option.Prerequisite, true)) {
 			DialogExtendedMessage = DialogText;
 			return false;
