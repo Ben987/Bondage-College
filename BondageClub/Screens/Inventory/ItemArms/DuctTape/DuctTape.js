@@ -102,11 +102,11 @@ function InventoryItemArmsDuctTapeNpcDialog(C, Option) {
 
 /**
  * Validate function that checks, if the restrained character wears outer clothes. If so, the duct tape cannot be applied
+ * @param {Character} C - The character wearing the item
  * @param {Option} Option - The option to be applied on the character. Not used in this item
- * @returns 
+ * @returns {boolean} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
-function InventoryItemArmsDuctTapeValidate(Option) {
-	var C = CharacterGetCurrent();
+function InventoryItemArmsDuctTapeValidate(C, Option) {
 	var Allowed = true;
 
 	if (InventoryGet(C, "Cloth") || InventoryGet(C, "ClothLower")) {

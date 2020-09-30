@@ -148,7 +148,11 @@ class TextCache {
 		const lang = (TranslationLanguage || "").trim().toUpperCase();
 		if (!lang || lang === "EN") return Promise.resolve(lines);
 
-		const translationPath = this.path.replace(/\/([^/]+)\.csv$/, `/Text_$1_${lang}.txt`);
+		const translationPath = this.path.replace(/\/([^/]+)\.csv$/, `/$1_${lang}.txt`);
+		if (!TranslationAvailable(translationPath)) {
+			return Promise.resolve(lines);
+		}
+
 		if (TranslationCache[translationPath]) {
 			return Promise.resolve(this.buildTranslations(lines, TranslationCache[translationPath]));
 		} else {

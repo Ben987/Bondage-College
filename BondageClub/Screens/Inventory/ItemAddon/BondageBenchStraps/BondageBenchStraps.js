@@ -71,10 +71,10 @@ function InventoryItemAddonBondageBenchStrapsNpcDialog(C, Option) {
 
 /**
  * Validation used when switching between types.
+ * @param {Character} C - The character wearing the item
  * @returns {boolean} - Whether or not the change can occur.
  */
-function InventoryItemAddonBondageBenchStrapsValidate() {
-	var C = CharacterGetCurrent();
+function InventoryItemAddonBondageBenchStrapsValidate(C) {
 	var Allowed = true;
 	if (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null) {
 		DialogExtendedMessage = DialogFind(Player, "RemoveClothesForItem");

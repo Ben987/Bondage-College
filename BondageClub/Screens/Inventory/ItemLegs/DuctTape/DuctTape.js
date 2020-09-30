@@ -40,8 +40,7 @@ function InventoryItemLegsDuctTapeNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "DuctTapePose" + Option.Name, "ItemLegs");
 }
 
-function InventoryItemLegsDuctTapeValidate(Option) {
-	var C = CharacterGetCurrent();
+function InventoryItemLegsDuctTapeValidate(C, Option) {
 	var Allowed = true;
 
 	if (Option.Property.Type != null && InventoryGet(C, "ClothLower")) {

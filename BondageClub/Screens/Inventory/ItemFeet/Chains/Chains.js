@@ -49,8 +49,7 @@ function InventoryItemFeetChainsNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "ChainBondage" + Option.Name, "ItemFeet");
 }
 
-function InventoryItemFeetChainsValidate(Option) {
-	var C = CharacterGetCurrent();
+function InventoryItemFeetChainsValidate(C, Option) {
 	if (Option.Prerequisite != null && !InventoryAllow(C, Option.Prerequisite, true)) {
 		DialogExtendedMessage = DialogText;
 		return false;

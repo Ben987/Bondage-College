@@ -19,30 +19,49 @@ function ActivityAllowed() { return ((CurrentScreen == "ChatRoom") || ((CurrentS
  * @return {void} - Nothing
  */
 function ActivityDictionaryLoad() {
-	if (ActivityDictionary == null) {
 
-		// Tries to read it from cache first
-		var FullPath = "Screens/Character/Preference/ActivityDictionary.csv";
-		if (CommonCSVCache[FullPath]) {
-			ActivityDictionary = CommonCSVCache[FullPath];
-			return;
-		}
-
+	// Tries to read it from cache first
+	var FullPath = "Screens/Character/Preference/ActivityDictionary.csv";
+	var TranslationPath = FullPath.replace(".csv", "_" + TranslationLanguage + ".txt");
+	
+	if (CommonCSVCache[FullPath]) {
+		ActivityDictionary = JSON.parse(JSON.stringify(CommonCSVCache[FullPath]));
+	} else {
 		// Opens the file, parse it and returns the result in an object
 		CommonGet(FullPath, function () {
 			if (this.status == 200) {
 				CommonCSVCache[FullPath] = CommonParseCSV(this.responseText);
-				ActivityDictionary = CommonCSVCache[FullPath];
+				ActivityDictionary = JSON.parse(JSON.stringify(CommonCSVCache[FullPath]));
 			}
 		});
+	}
+	
+	// If a translation file is available, we open the txt file and keep it in cache
+	if (TranslationAvailable(TranslationPath)) 
+		CommonGet(TranslationPath, function () {
+			if (this.status == 200) {
+				TranslationCache[TranslationPath] = TranslationParseTXT(this.responseText);
+				ActivityTranslate(TranslationPath);
+			}
+		});
+		
+	ActivityTranslate(TranslationPath);
+}
 
-		// If a translation file is available, we open the txt file and keep it in cache
-		var TranslationPath = FullPath.replace(".csv", "_" + TranslationLanguage + ".txt");
-		if (TranslationAvailable(TranslationPath))
-			CommonGet(TranslationPath, function () {
-				if (this.status == 200) TranslationCache[TranslationPath] = TranslationParseTXT(this.responseText);
-			});
-
+/**
+ * Translates the activity dictionary.
+ * @param {string} CachePath - Path to the language cache. 
+ */
+function ActivityTranslate(CachePath) { 
+	if (!Array.isArray(TranslationCache[CachePath])) return;
+	
+	for (let T = 0; T < ActivityDictionary.length; T++) { 
+		if (ActivityDictionary[T][1]) {
+			let indexText = TranslationCache[CachePath].indexOf(ActivityDictionary[T][1].trim());
+			if (indexText >= 0) {
+				ActivityDictionary[T][1] = TranslationCache[CachePath][indexText + 1];
+			}
+		}
 	}
 }
 

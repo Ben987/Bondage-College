@@ -23,7 +23,7 @@ function InventoryNecklaceNecklaceKeyLoad() {
 
 // Draw the item extension screen
 function InventoryNecklaceNecklaceKeyDraw() {
-	ExtendedItemDraw(InventoryNecklaceNecklaceKeyOptions, "ClothPriorityType");
+	ExtendedItemDraw(InventoryNecklaceNecklaceKeyOptions, "ClothPriorityType", null, true, true);
 }
 
 // Catches the item extension clicks

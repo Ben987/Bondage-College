@@ -67,7 +67,7 @@ function InventoryItemNipplesPiercingsRoundPiercingDraw() {
  * @returns {void} - Nothing
  */
 function InventoryItemNipplesPiercingsRoundPiercingClick() {
-	ExtendedItemClick(InventoryItemNipplesPiercingsRoundPiercingOptions, false);
+	ExtendedItemClick(InventoryItemNipplesPiercingsRoundPiercingOptions);
 }
 
 /**

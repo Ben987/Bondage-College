@@ -1,3 +1,8 @@
 Leave,Main Hall
 Profile,Your Profile
-Battle,LARP Battles
+Recording,Recording
+Wait,Wait 1 Minute
+OtherActivity0,(The movie director waves at you.  Telling you to try something else.)
+OtherActivity1,(The movie director taps her foot.  She seems to be getting impatient.)
+OtherActivity2,(The movie director checks on her phone.  She seems to be bored by what you're doing.)
+OtherActivity3,(The movie director yawns loudly.  She seems to want more action.)

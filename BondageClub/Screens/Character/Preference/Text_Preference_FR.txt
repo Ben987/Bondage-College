@@ -198,3 +198,85 @@ When you're vibrated
 En portant un vibrateur
 Aroused & vibrated
 Quand excité & En portant un vibrateur
+- Item Preferences -
+- Préférences d'objets -
+- Online Preferences -
+- Préférences en ligne -
+Display full chatrooms
+Afficher les salles complètes
+Order rooms by number of friends
+Ordonner les salles par nombres d'amies
+Disable scripted assets on others
+Désactiver les objets scriptés sur les autres
+Show all automatic messages
+Afficher tous les messages automatiques
+Preserve whitespace in messages
+Conserver les espaces blancs dans les messages
+Allow Safeword use (Cannot enable while bound).
+Permettre le safeword (Ne peut être activé quand attachée).
+Show Wardrobe icon to others while in the appearance menu.
+Afficher l'icône de garde-robe aux autres en étant dans le garde-robe.
+Allow others to alter your whole appearance.
+Autoriser les autres à changer toute votre apparence.
+Prevent others from changing cosplay items.
+Empêcher les autres de changer vos objets de cosplay
+Fetish preferences:
+Préférences de fetish
+Being restrained
+Être attachée
+Being gagged
+Être bâillonnée 
+Being blind
+Être aveuglée
+Being deaf
+Être assourdie
+Being chaste
+Être chaste
+Being naked
+Être nue
+Masochism
+Masochisme
+Sadism
+Sadisme
+Rope
+Corde
+Latex
+Latex
+Leather
+Cuir
+Metal
+Métal
+Tape
+Ruban adhésif
+Nylon
+Nylon
+Lingerie
+Lingerie
+Pony
+Pony
+ABDL
+ABDL
+Pet play
+Pet play
+Hate it
+Je hais
+Nose
+Nez
+Group:
+Groupe:
+Asset:
+Objet:
+Hide
+Cacher
+Block
+Bloquer
+This icon will appear beside a character that's wearing a hidden item
+Cette icône apparaîtra à côté d'un personnage qui porte un objet caché
+Reset All
+Réinitialiser
+This will reset all items to be visible. Click again to confirm and exit.
+Cela réinitialisera tous les objets pour qu'ils soient visibles. Cliquez à nouveau pour confirmer et quitter.
+Accept changes
+Accepter les modifications
+Cancel changes
+Annuler les modifications

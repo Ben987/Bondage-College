@@ -178,6 +178,12 @@ function DrawArousalMeter(C, X, Y, Zoom) {
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	if ((C != null) && ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet"))) {
 
+		// If there's a fixed image to draw instead of the character
+		if (C.FixedImage != null) {
+			DrawImageZoomCanvas(C.FixedImage, MainCanvas, 0, 0, 500, 1000, X, Y, 500 * Zoom, 1000 * Zoom);
+			return;
+		}
+
 		// Shortcuts drawing the character to 3D if needed
 		if (Draw3DEnabled) {
 			Draw3DCharacter(C, X, Y, Zoom, IsHeightResizeAllowed);
