@@ -1,3 +1,14 @@
 Leave,Main Hall
 Profile,Your Profile
-Recording,Recording
+Wait,Wait 1 Minute
+Scene1,Scene 1
+Scene2,Scene 2
+Scene3,Scene 3
+OtherActivity0,(The movie director waves at you.  Telling you to try something else.)
+OtherActivity1,(The movie director taps her foot.  She seems to be getting impatient.)
+OtherActivity2,(The movie director checks on her phone.  She seems to be bored by what you're doing.)
+OtherActivity3,(The movie director yawns loudly.  She seems to want more action.)
+MaidIntroCross0,"(A maid enters the room, moves the drawer away and looks at your with a grin.)  Someone got herself in trouble?"
+MaidIntroCross1,"(A maid enters the room, moves the drawer away and rubs her hands greedily)  Well, well, well, have do we have here?"
+MaidIntroNoCross0,"(A maid enters the room, moves the drawer away and smiles at you.)  Hello Miss."
+MaidIntroNoCross1,"(A maid enters the room, moves the drawer away and nods politely.)  Sorry to bother you."

@@ -1,0 +1,4 @@
+0,,,"(A maid is cleaning the room, she turns to look at you.)  You look adorable on that cross.",,Player.IsRestrained()
+0,,,"(A maid is cleaning the room, she turns to look at you.)  I hope I'm not bothering you.",,!Player.IsRestrained()
+0,,Who are you?,"I'm DialogCharacterName the maid, I'm here to clean this room.",DialogRemove(),
+0,,(Leave her.),,DialogLeave(),

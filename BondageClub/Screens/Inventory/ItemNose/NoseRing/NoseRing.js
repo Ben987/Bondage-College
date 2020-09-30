@@ -91,12 +91,12 @@ function InventoryItemNoseNoseRingNpcDialog(C, Option) {
 
 /**
  * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
+ * @param {Character} C - The character wearing the item
  * @param {Option} Option - The next option to use on the character
  * @returns {boolean} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
-function InventoryItemNoseNoseRingValidate(Option) {
+function InventoryItemNoseNoseRingValidate(C, Option) {
 	var ChainShortPrerequisites = true;
-	let C = CharacterGetCurrent();
 	switch (Option.Name) {
 		case "Base":
 			break;

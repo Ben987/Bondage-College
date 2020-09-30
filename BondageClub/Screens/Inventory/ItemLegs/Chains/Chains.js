@@ -36,7 +36,7 @@ function InventoryItemLegsChainsNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "ChainBondage" + Option.Name, "ItemLegs");
 }
 
-function InventoryItemLegsChainsValidate(Option) {
+function InventoryItemLegsChainsValidate() {
 	var Allowed = true;
 	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");

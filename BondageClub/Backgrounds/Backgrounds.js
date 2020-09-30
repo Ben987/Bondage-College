@@ -158,6 +158,9 @@ var BackgroundsList = [
     { Name: "SnowyStreetNight2", Tag: [BackgroundsTagOutdoor] },
     { Name: "SnowyTown1", Tag: [BackgroundsTagOutdoor] },
     { Name: "SnowyTown2", Tag: [BackgroundsTagOutdoor] },
+    { Name: "NightClub", Tag: [BackgroundsTagIndoor] },
+    { Name: "EgyptianExhibit", Tag: [BackgroundsTagIndoor] },
+    { Name: "SciFiOutdoors", Tag: [BackgroundsTagOutdoor, BackgroundsTagSciFiFantasy] },
 ];
 
 /**

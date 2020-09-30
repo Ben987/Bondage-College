@@ -930,9 +930,6 @@ function AppearanceClick() {
 					if (Block || Limited) return;
 					if (InventoryAllow(C, Item.Asset.Prerequisite)) {
 						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
-						// Update the inventory with the new worn item
-						DialogInventory = DialogInventory.map(DI => { DI.Worn = false; return DI; });
-						DialogInventory[I].Worn = true;
 					} else {
 						CharacterAppearanceHeaderTextTime = DialogTextDefaultTimer;
 						CharacterAppearanceHeaderText = DialogText;
