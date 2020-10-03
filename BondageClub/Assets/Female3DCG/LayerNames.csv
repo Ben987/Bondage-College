@@ -217,6 +217,8 @@ ItemMouthXLBoneGagBone,Bone
 ItemMouthXLBoneGagStraps,Straps
 ItemMouthDusterGagDuster,Duster
 ItemMouthDusterGagPanel,Panel
+ItemMouthPantiesMaskDarkStripes,Dark Stripes
+ItemMouthPantiesMaskLightStripes,Light Stripes
 ItemMouthShoeGagShoe,Shoe
 ItemMouthShoeGagStrap,Strap
 ItemMouthHarnessPanelGagPanel,Panel
@@ -259,6 +261,8 @@ ItemMouth2XLBoneGagBone,Bone
 ItemMouth2XLBoneGagStraps,Straps
 ItemMouth2DusterGagDuster,Duster
 ItemMouth2DusterGagPanel,Panel
+ItemMouth2PantiesMaskDarkStripes,Dark Stripes
+ItemMouth2PantiesMaskLightStripes,Light Stripes
 ItemMouth2ShoeGagShoe,Shoe
 ItemMouth2ShoeGagStrap,Strap
 ItemMouth2HarnessPanelGagPanel,Panel
@@ -301,6 +305,8 @@ ItemMouth3XLBoneGagBone,Bone
 ItemMouth3XLBoneGagStraps,Straps
 ItemMouth3DusterGagDuster,Duster
 ItemMouth3DusterGagPanel,Panel
+ItemMouth3PantiesMaskDarkStripes,Dark Stripes
+ItemMouth3PantiesMaskLightStripes,Light Stripes
 ItemMouth3ShoeGagShoe,Shoe
 ItemMouth3ShoeGagStrap,Strap
 ItemMouth3HarnessPanelGagPanel,Panel
