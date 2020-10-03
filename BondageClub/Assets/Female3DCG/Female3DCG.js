@@ -525,7 +525,13 @@ var AssetFemale3DCG = [
 			{ Name: "CaptainHat1", Value: 25 },
 			{ Name: "BunnySuccubus2", Fetish: ["Pet"], Value: 35 },
 			{ Name: "WitchHat1", Value: 40 },
-			{ Name: "PirateBandana1", Value: 15 },
+			{
+				Name: "PirateBandana1", Value: 15, Layer: [
+					{ Name: "Bandana" },
+					{ Name: "Skull" },
+					{ Name: "Dots" },
+				]
+			},
 			{ Name: "PoliceWomanHat", Value: 40 },
 			{ Name: "HeadTowel1", Value: 15, Hide: ["HairFront", "HairBack"] },
 			{ Name: "CollegeDunce", Value: -1 },
