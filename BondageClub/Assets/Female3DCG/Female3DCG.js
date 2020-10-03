@@ -522,7 +522,14 @@ var AssetFemale3DCG = [
 					{ Name: "Fur" }
 				]
 			},
-			{ Name: "CaptainHat1", Value: 25 },
+			{
+				Name: "CaptainHat1", Value: 25, Layer: [
+					{ Name: "Top" },
+					{ Name: "Insignia" },
+					{ Name: "Rope" },
+					{ Name: "Brim" },
+				]
+			},
 			{ Name: "BunnySuccubus2", Fetish: ["Pet"], Value: 35 },
 			{ Name: "WitchHat1", Value: 40 },
 			{
