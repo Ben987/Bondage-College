@@ -220,6 +220,9 @@ ItemMouthDusterGagPanel,Panel
 ItemMouthHarnessPanelGagPanel,Panel
 ItemMouthHarnessPanelGagStraps,Straps
 ItemMouthHarnessPanelGagMetal,Metal
+ItemMouthLipGagLips,Lips
+ItemMouthLipGagStraps,Straps
+ItemMouthLipGagRings,Rings
 ItemMouth2WiffleGagStrap,Strap
 ItemMouth2WiffleGagBall,Ball
 ItemMouth2HarnessBallGagBall,Ball
@@ -255,6 +258,9 @@ ItemMouth2DusterGagPanel,Panel
 ItemMouth2HarnessPanelGagPanel,Panel
 ItemMouth2HarnessPanelGagStraps,Straps
 ItemMouth2HarnessPanelGagMetal,Metal
+ItemMouth2LipGagLips,Lips
+ItemMouth2LipGagStraps,Straps
+ItemMouth2LipGagRings,Rings
 ItemMouth3WiffleGagStrap,Strap
 ItemMouth3WiffleGagBall,Ball
 ItemMouth3HarnessBallGagBall,Ball
@@ -290,3 +296,6 @@ ItemMouth3DusterGagPanel,Panel
 ItemMouth3HarnessPanelGagPanel,Panel
 ItemMouth3HarnessPanelGagStraps,Straps
 ItemMouth3HarnessPanelGagMetal,Metal
+ItemMouth3LipGagLips,Lips
+ItemMouth3LipGagStraps,Straps
+ItemMouth3LipGagRings,Rings
