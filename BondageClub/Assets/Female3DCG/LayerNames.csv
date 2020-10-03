@@ -217,6 +217,8 @@ ItemMouthXLBoneGagBone,Bone
 ItemMouthXLBoneGagStraps,Straps
 ItemMouthDusterGagDuster,Duster
 ItemMouthDusterGagPanel,Panel
+ItemMouthShoeGagShoe,Shoe
+ItemMouthShoeGagStrap,Strap
 ItemMouthHarnessPanelGagPanel,Panel
 ItemMouthHarnessPanelGagStraps,Straps
 ItemMouthHarnessPanelGagMetal,Metal
@@ -257,6 +259,8 @@ ItemMouth2XLBoneGagBone,Bone
 ItemMouth2XLBoneGagStraps,Straps
 ItemMouth2DusterGagDuster,Duster
 ItemMouth2DusterGagPanel,Panel
+ItemMouth2ShoeGagShoe,Shoe
+ItemMouth2ShoeGagStrap,Strap
 ItemMouth2HarnessPanelGagPanel,Panel
 ItemMouth2HarnessPanelGagStraps,Straps
 ItemMouth2HarnessPanelGagMetal,Metal
@@ -297,6 +301,8 @@ ItemMouth3XLBoneGagBone,Bone
 ItemMouth3XLBoneGagStraps,Straps
 ItemMouth3DusterGagDuster,Duster
 ItemMouth3DusterGagPanel,Panel
+ItemMouth3ShoeGagShoe,Shoe
+ItemMouth3ShoeGagStrap,Strap
 ItemMouth3HarnessPanelGagPanel,Panel
 ItemMouth3HarnessPanelGagStraps,Straps
 ItemMouth3HarnessPanelGagMetal,Metal
