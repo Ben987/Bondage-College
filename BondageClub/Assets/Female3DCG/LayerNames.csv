@@ -223,6 +223,8 @@ ItemMouthHarnessPanelGagMetal,Metal
 ItemMouthLipGagLips,Lips
 ItemMouthLipGagStraps,Straps
 ItemMouthLipGagRings,Rings
+ItemMouthMuzzleGagMuzzle,Muzzle
+ItemMouthMuzzleGagStraps,Straps
 ItemMouth2WiffleGagStrap,Strap
 ItemMouth2WiffleGagBall,Ball
 ItemMouth2HarnessBallGagBall,Ball
@@ -261,6 +263,8 @@ ItemMouth2HarnessPanelGagMetal,Metal
 ItemMouth2LipGagLips,Lips
 ItemMouth2LipGagStraps,Straps
 ItemMouth2LipGagRings,Rings
+ItemMouth2MuzzleGagMuzzle,Muzzle
+ItemMouth2MuzzleGagStraps,Straps
 ItemMouth3WiffleGagStrap,Strap
 ItemMouth3WiffleGagBall,Ball
 ItemMouth3HarnessBallGagBall,Ball
@@ -299,3 +303,5 @@ ItemMouth3HarnessPanelGagMetal,Metal
 ItemMouth3LipGagLips,Lips
 ItemMouth3LipGagStraps,Straps
 ItemMouth3LipGagRings,Rings
+ItemMouth3MuzzleGagMuzzle,Muzzle
+ItemMouth3MuzzleGagStraps,Straps
