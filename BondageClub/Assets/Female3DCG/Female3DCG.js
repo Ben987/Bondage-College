@@ -557,8 +557,18 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "Bonnet2", Value: 20 },
 			{ Name: "Crown1", Value: 20 },
-			{ Name: "Crown2", Value: 20 },
-			{ Name: "Crown3", Value: 20 },
+			{
+				Name: "Crown2", Value: 20, Layer: [
+					{ Name: "Crown" },
+					{ Name: "Jewels" }
+				]
+			},
+			{
+				Name: "Crown3", Value: 20, Layer: [
+					{ Name: "Crown" },
+					{ Name: "Jewels" }
+				]
+			},
 			{ Name: "Crown4", Value: 20 },
 			{ Name: "Crown5", Value: 20 },
 			{ Name: "SmallHat1", Value: 30 },
