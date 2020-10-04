@@ -1,6 +1,6 @@
 "use strict";
 
-var InventoryItemMouthFuturisticPanelGagOptions = [
+var InventoryItemMouthFuturisticHarnessPanelGagOptions = [
 	{
 		Name: "Padded",
 		Property: {
@@ -25,23 +25,23 @@ var InventoryItemMouthFuturisticPanelGagOptions = [
 ];
 
 // Loads the item extension properties
-function InventoryItemMouthFuturisticPanelGagLoad() {
-	ExtendedItemLoad(InventoryItemMouthFuturisticPanelGagOptions, "SelectGagType");
+function InventoryItemMouthFuturisticHarnessPanelGagLoad() {
+	ExtendedItemLoad(InventoryItemMouthFuturisticHarnessPanelGagOptions, "SelectGagType");
 }
 
 // Draw the item extension screen
-function InventoryItemMouthFuturisticPanelGagDraw() {
-	ExtendedItemDraw(InventoryItemMouthFuturisticPanelGagOptions, "FuturisticPanelGagMouthType");
+function InventoryItemMouthFuturisticHarnessPanelGagDraw() {
+	ExtendedItemDraw(InventoryItemMouthFuturisticHarnessPanelGagOptions, "FuturisticPanelGagMouthType");
 }
 
 // Catches the item extension clicks
-function InventoryItemMouthFuturisticPanelGagClick() {
-	ExtendedItemClick(InventoryItemMouthFuturisticPanelGagOptions);
+function InventoryItemMouthFuturisticHarnessPanelGagClick() {
+	ExtendedItemClick(InventoryItemMouthFuturisticHarnessPanelGagOptions);
 }
 
 
 
-function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
+function InventoryItemMouthFuturisticHarnessPanelGagValidate(C, Option) {
 	var Allowed = true;
 
 	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
@@ -53,7 +53,7 @@ function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
 }
 
 
-function InventoryItemMouthFuturisticPanelGagPublishAction(C, Option) {
+function InventoryItemMouthFuturisticHarnessPanelGagPublishAction(C, Option) {
 	var msg = "FuturisticPanelGagMouthSet" + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
@@ -62,7 +62,7 @@ function InventoryItemMouthFuturisticPanelGagPublishAction(C, Option) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemMouthFuturisticPanelNpcDialog(C, Option) {
+function InventoryItemMouthFuturisticHarnessPanelNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "ItemMouthPlugGag" + Option.Name, "ItemMouth");
 }
 

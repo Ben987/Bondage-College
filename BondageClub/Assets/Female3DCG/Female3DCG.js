@@ -2187,10 +2187,17 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "MuzzleGag", Fetish: ["Leather"], Value: 70, Difficulty: 6, Time: 20, AllowLock: true, DefaultColor: "#404040", BuyGroup: "MuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"] },
 			{
-				Name: "FuturisticPanelGag", Fetish: ["Metal"], Value: 100, Difficulty: 6, Time: 15, AllowLock: true, DefaultColor: ["#50913C", "Default"], BuyGroup: "FuturisticPanelGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["GagLight"], AllowEffect: ["BlockMouth", "GagMedium", "GagTotal"], AllowType: ["Padded", "Ball", "Plug"], HideItem: ["ItemNoseNoseRing"], Extended: true,
+				Name: "FuturisticPanelGag", Fetish: ["Metal"], Value: 100, Difficulty: 4, Time: 15, AllowLock: true, DefaultColor: ["#50913C", "Default"], BuyGroup: "FuturisticPanelGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["GagLight"], AllowEffect: ["BlockMouth", "GagMedium", "GagTotal"], AllowType: ["Padded", "Ball", "Plug"], HideItem: ["ItemNoseNoseRing"], Extended: true,
 				Layer: [
 					{ Name: "Ball", AllowColorize: true, HasType: false },
-					{ Name: "Strap" , AllowColorize: true, HasType: false },
+					{ Name: "Mask" , AllowColorize: true, HasType: false },
+				]
+			},{
+				Name: "FuturisticHarnessPanelGag", Fetish: ["Metal"], Value: -1, Difficulty: 6, Time: 15, AllowLock: true, DefaultColor: ["#50913C", "Default"], BuyGroup: "FuturisticPanelGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["GagLight"], AllowEffect: ["BlockMouth", "GagMedium", "GagTotal"], AllowType: ["Padded", "Ball", "Plug"], HideItem: ["ItemNoseNoseRing"], Extended: true,
+				Layer: [
+					{ Name: "Ball", AllowColorize: true, HasType: false },
+					{ Name: "Straps" , AllowColorize: true, HasType: false },
+					{ Name: "Mask" , AllowColorize: true, HasType: false },
 				]
 			},
 			{ Name: "RegularSleepingPill", Value: -1, Enable: false, Wear: false, Bonus: [{ Factor: 3, Type: "KidnapSneakiness" }] },
