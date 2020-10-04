@@ -11,7 +11,7 @@ var InventoryItemMouthFuturisticPanelGagOptions = [
 	{
 		Name: "Ball",
 		Property: {
-			Type: "Plug",
+			Type: "Ball",
 			Effect: ["BlockMouth", "GagMedium"],
 		},
 	},
