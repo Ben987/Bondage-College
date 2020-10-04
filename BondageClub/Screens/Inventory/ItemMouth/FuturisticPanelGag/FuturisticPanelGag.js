@@ -5,7 +5,7 @@ var InventoryItemMouthFuturisticPanelGagOptions = [
 		Name: "Padded",
 		Property: {
 			Type: null,
-			Effect: ["GagLight"],
+			Effect: ["BlockMouth", "GagLight"],
 		},
 	},
 	{
