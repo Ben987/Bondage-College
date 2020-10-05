@@ -551,7 +551,11 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 				CharacterRefresh(C);
 				// Sometimes the timer doesnt get refreshed and the timer gives a message when you enter the menu. This fixes that.
 				if (persistentData.MsgTime < time) {
-					var success = InventoryItemMouthVoiceChangerGagTrigger_Timer(C, property)
+					
+					var success = true
+					if (Math.abs(persistentData.MsgTime < time) < 10000) // If we missed it by more than 10 seconds then we don't play the message. Otherwise it happens on chat room entry
+						success = InventoryItemMouthVoiceChangerGagTrigger_Timer(C, property)
+					
 					var timeToNextRefresh = InventoryItemMouthVoiceChangerGagrandomTime(property);//wasBlinking ? 4000 : 1000;
 					
 					// In the case where there is no Timer message but there is an Edge message, we want to be able to make the edge message appear more often.
@@ -571,8 +575,8 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 			if (persistentData.OrgTime < time) {
 				if (C.ArousalSettings.OrgasmStage > 1) {
 					persistentData.OrgTime = time + 25000; // 25 second cooldown before the gag is ready to play the message again
-					
-					InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property)
+					if (Math.abs(persistentData.MsgTime - time) < 5000) // If we missed it by more than 5 seconds then we don't play the message. Otherwise it happens on chat room entry
+						InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property)
 				} else {
 					persistentData.OrgTime = time + 2000;
 				}
