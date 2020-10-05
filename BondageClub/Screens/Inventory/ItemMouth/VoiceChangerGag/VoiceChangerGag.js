@@ -513,7 +513,7 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 	var C = data.C
 	//var persistentData = data.PersistentData();
 	var property = (data.Item.Property = data.Item.Property || {});
-	if (typeof property.MsgTime !== "number") property.MsgTime = CommonTime() + 1000;
+	if (typeof property.MsgTime !== "number") property.MsgTime = CommonTime() + InventoryItemMouthVoiceChangerGagrandomTime(property);
 	if (property.Reset != null & property.Reset == true) {
 		property.Reset = false
 		property.MsgTime = CommonTime() + InventoryItemMouthVoiceChangerGagrandomTime(property);
