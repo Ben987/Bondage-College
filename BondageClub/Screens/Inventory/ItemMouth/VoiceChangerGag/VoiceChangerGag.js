@@ -437,16 +437,24 @@ function InventoryItemMouthVoiceChangerGagString(msg) {
 
 // Trigger timer message
 function InventoryItemMouthVoiceChangerGagTrigger_Timer(C, property) { 
-	if (CurrentScreen == "ChatRoom" && property.TimerMessage != "" && property.TimerLength2 > 0 && C == Player) {
-		var msg = property.TimerMessage
-		if (property.Aroused == false && property.TimerNonArousedMessage != "") {
-			var msg = property.TimerNonArousedMessage
-		} else if (property.Edged == true && property.TimerEdgeMessage != "") {
-			var msg = property.TimerEdgeMessage
+	if (CurrentScreen == "ChatRoom" && property.TimerLength2 > 0 && C == Player) {
+		var msg = ""
+		if (property.TimerMessage != "") {
+			msg = property.TimerMessage
 		}
-		ServerSend("ChatRoomChat", { Content: "*" + C.Name + ": " + InventoryItemMouthVoiceChangerGagString(msg), Type: "Emote"});
+		if (property.Aroused == false && property.TimerNonArousedMessage != "") {
+			msg = property.TimerNonArousedMessage
+		} else if (property.Edged == true && property.TimerEdgeMessage != "") {
+			msg = property.TimerEdgeMessage
+		}
+		if (msg != "") {
+			ServerSend("ChatRoomChat", { Content: "*" + C.Name + ": " + InventoryItemMouthVoiceChangerGagString(msg), Type: "Emote"});
+			return true
+		}
 		//ChatRoomPublishCustomAction(Player.Name + " says: " + property.TimerMessage, false, Dictionary);
 	}
+	return false
+	
 }
 // Trigger an orgasm message
 function InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property) { 
@@ -455,13 +463,13 @@ function InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property) {
 		ServerSend("ChatRoomChat", { Content: "*" + C.Name + ": " + InventoryItemMouthVoiceChangerGagString(msg), Type: "Emote"});
 	}
 }
-// Trigger an edge message
-function InventoryItemMouthVoiceChangerGagTrigger_Edge(C, property) { 
+// Trigger an edge message (Currently unused due to lack of space)
+/*function InventoryItemMouthVoiceChangerGagTrigger_Edge(C, property) { 
 	if (CurrentScreen == "ChatRoom" && property.EdgeMessage != "" && C == Player) {
-		var msg = property.OrgasmMessage
+		var msg = property.EdgeMessage
 		ServerSend("ChatRoomChat", { Content: "*" + C.Name + ": " + InventoryItemMouthVoiceChangerGagString(msg), Type: "Emote"});
 	}
-}
+}*/
 // Trigger an arousal message
 function InventoryItemMouthVoiceChangerGagTrigger_Aroused(C, property) { 
 	if (CurrentScreen == "ChatRoom" && property.ArousedMessage != "" && C == Player) {
@@ -529,18 +537,26 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 		if (property.MsgTime < CommonTime()) {
 			//var wasBlinking = property.Type === "Blink";
 			//property.Type = wasBlinking ? null : "Blink";
+			var success = InventoryItemMouthVoiceChangerGagTrigger_Timer(C, property)
 			var timeToNextRefresh = InventoryItemMouthVoiceChangerGagrandomTime(property);//wasBlinking ? 4000 : 1000;
+			
+			// In the case where there is no TImer message but there is an Edge message, we want to be able to make the edge message appear more often.
+			// So if the conditions for the timer are not met, but there is a valid timer, we shorten the timer to 5 seconds to make it more likely that the timer will happen.
+			
+			if (success == false && (property.TimerMessage != "" || property.TimerEdgeMessage != "" || property.TimerNonArousedMessage != "")) {
+				timeToNextRefresh = 5000
+			}
+			
 			property.MsgTime = CommonTime() + timeToNextRefresh;
 			
-			InventoryItemMouthVoiceChangerGagTrigger_Timer(C, property)
 			
 			//AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);
 			//AnimationRequestDraw(data.C);
 		}
 		
 		if (property.OrgTime < CommonTime()) {
-			if (C.ArousalSettings.OrgasmStage > 0) {
-				property.OrgTime = CommonTime() + 15000; // 15 second cooldown before the gag is ready to play the message again
+			if (C.ArousalSettings.OrgasmStage > 1) {
+				property.OrgTime = CommonTime() + 25000; // 25 second cooldown before the gag is ready to play the message again
 				
 				InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property)
 			} else {
@@ -550,25 +566,24 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 		
 		
 		if (property.ArousedTime < CommonTime()) {
+			
+			property.ArousedTime = CommonTime() + 2000;
+				
 			if (property.Aroused == false && C.ArousalSettings.Progress > 5) {
-				property.ArousedTime = CommonTime() + 10000; // 10 second cooldown before the gag is ready to play the message again
+				property.ArousedTime = CommonTime() + 15000; // 15 second cooldown before the gag is ready to play the message again
 				property.Aroused = true
 				InventoryItemMouthVoiceChangerGagTrigger_Aroused(C, property)
 			} else {
-				property.ArousedTime = CommonTime() + 2000;
 				if (property.Aroused == true && C.ArousalSettings.Progress < 4) {
 					property.Aroused = false
 				}
 			}
-			
-			
-			if (property.Edged == false && C.ArousalSettings.Progress > 97) {
-				property.ArousedTime = CommonTime() + 10000; // 10 second cooldown before the gag is ready to play the message again
+			if (property.Edged == false && C.ArousalSettings.Progress > 95) {
+				property.ArousedTime = CommonTime() + 15000; // 15 second cooldown before the gag is ready to play the message again
 				property.Edged = true
-				InventoryItemMouthVoiceChangerGagTrigger_Edge(C, property)
+				//InventoryItemMouthVoiceChangerGagTrigger_Edge(C, property)
 			} else {
-				property.ArousedTime = CommonTime() + 2000;
-				if (property.Edged == true && C.ArousalSettings.Progress < 95) {
+				if (property.Edged == true && C.ArousalSettings.Progress < 94) {
 					property.Edged = false
 				}
 			}
