@@ -98,7 +98,7 @@ function InventoryItemMouthVoiceChangerGagDraw() {
 	
 	if (InventoryGroupIsBlocked(C, C.FocusGroup.Name) || (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem))) {
 		// If the zone is blocked, just display some text informing the player that they can't access the lock
-		DrawText(DialogFind(Player, "CantChangeWhileLockedFuturistic"), 1500, 800, "white", "gray");
+		DrawText(DialogFind(Player, "CantChangeWhileLockedVoiceChangerGag"), 1500, 800, "white", "gray");
 	} else {
 		// Otherwise, draw the combination inputs
 		MainCanvas.textAlign = "right";
@@ -502,7 +502,7 @@ function InventoryItemMouthVoiceChangerGagValidate(C, Option) {
 	var Allowed = true;
 
 	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
-		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
+		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLockedVoiceChangerGag");
 		Allowed = false;
 	} 
 
