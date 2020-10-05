@@ -39,7 +39,7 @@ function InventoryItemMouthVoiceChangerGagLoad() {
 		KneelMessage: "",
 		TimerLength: "0",
 		TimerLength2: 0,
-		MsgTime: 0,
+		//MsgTime: 0,
 		Kneeling: false,
 		Aroused: false,
 		Edged: false,
@@ -54,7 +54,6 @@ function InventoryItemMouthVoiceChangerGagLoad() {
 	if (DialogFocusItem.Property.KneelMessage == null) DialogFocusItem.Property.KneelMessage = "";
 	if (DialogFocusItem.Property.TimerLength == null) DialogFocusItem.Property.TimerLength = "0";
 	if (DialogFocusItem.Property.TimerLength2 == null) DialogFocusItem.Property.TimerLength2 = 0;
-	if (DialogFocusItem.Property.MsgTime == null) DialogFocusItem.Property.MsgTime = 0;
 	if (DialogFocusItem.Property.Reset == null) DialogFocusItem.Property.Reset = false;
 	if (DialogFocusItem.Property.Aroused == null) DialogFocusItem.Property.Aroused = C.ArousalSettings.Progress > 5;
 	if (DialogFocusItem.Property.Edged == null) DialogFocusItem.Property.Edged = C.ArousalSettings.Progress > 97;
@@ -351,7 +350,7 @@ function InventoryItemMouthVoiceChangerGagClick() {
 					
 					
 					if (NewMsg != "") {
-						ChatRoomPublishCustomAction("VoiceChangerGagTimerEdgeMsgChange", false, Dictionary);
+						ChatRoomPublishCustomAction("VoiceChangerGagTimerEdgeChange", false, Dictionary);
 					} else {
 						ChatRoomPublishCustomAction("VoiceChangerGagTimerEdgeDisable", false, Dictionary);
 					}
@@ -378,7 +377,7 @@ function InventoryItemMouthVoiceChangerGagClick() {
 					
 					
 					if (NewMsg != "") {
-						ChatRoomPublishCustomAction("VoiceChangerGagTimerNonArousedMsgChange", false, Dictionary);
+						ChatRoomPublishCustomAction("VoiceChangerGagTimerNonArousedChange", false, Dictionary);
 					} else {
 						ChatRoomPublishCustomAction("VoiceChangerGagTimerNonArousedDisable", false, Dictionary);
 					}
@@ -395,6 +394,7 @@ function InventoryItemMouthVoiceChangerGagClick() {
 
 	// Exits the screen
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) {
+		CharacterRefresh(C);
 		InventoryItemMouthVoiceChangerGagExit();
 	}
 	
@@ -420,6 +420,7 @@ function InventoryItemMouthVoiceChangerGagExit() {
 	ElementRemove("TimerNonArousedMsg");
 	PreferenceMessage = "";
 	DialogFocusItem = null;
+	
 	if (DialogInventory != null) DialogMenuButtonBuild((Player.FocusGroup != null) ? Player : CurrentCharacter);
 }
 
@@ -453,7 +454,7 @@ function InventoryItemMouthVoiceChangerGagTrigger_Timer(C, property) {
 		}
 		//ChatRoomPublishCustomAction(Player.Name + " says: " + property.TimerMessage, false, Dictionary);
 	}
-	if (CurrentScreen == "ChatRoom") {
+	if (CurrentScreen != "ChatRoom") {
 		return true // To avoid queuing up messages
 	}
 	return false
@@ -517,91 +518,122 @@ function AssetsItemMouthVoiceChangerGagBeforeDraw(data) {
 }
 
 function InventoryItemMouthVoiceChangerGagrandomTime(property) {
-	return property.TimerLength2*(30000 + 90000*Math.random())
+	return Math.max(property.TimerLength2, 1)*(30000 + 60000*Math.random())
 }
 
 function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 	var C = data.C
-	//var persistentData = data.PersistentData();
 	var property = (data.Item.Property = data.Item.Property || {});
-	if (typeof property.MsgTime !== "number") property.MsgTime = CommonTime() + InventoryItemMouthVoiceChangerGagrandomTime(property);
-	if (property.Reset != null & property.Reset == true) {
-		property.Reset = false
-		property.MsgTime = CommonTime() + InventoryItemMouthVoiceChangerGagrandomTime(property);
-	}
+	var persistentData = data.PersistentData();
 	
 	
-	if (typeof property.OrgTime !== "number") property.OrgTime = CommonTime() + 1000;
-	if (typeof property.ArousedTime !== "number") property.ArousedTime = CommonTime() + 1000;
-	if (typeof property.KneelTime !== "number") property.KneelTime = CommonTime() + 1000;
+	if (C == Player) {
+		if (typeof persistentData.MsgTime !== "number") persistentData.MsgTime = CommonTime() + InventoryItemMouthVoiceChangerGagrandomTime(property);
+		//if (typeof property.OrgTime !== "number") property.OrgTime = CommonTime() + 1000;
+		//if (typeof property.ArousedTime !== "number") property.ArousedTime = CommonTime() + 1000;
+		//if (typeof property.KneelTime !== "number") property.KneelTime = CommonTime() + 1000;
+		
+		
+		var time = CommonTime()
+		
+		if (property.Reset != null && property.Reset == true && property.TimerLength2 > 0) {
+			property.Reset = false
+			persistentData.MsgTime = time + InventoryItemMouthVoiceChangerGagrandomTime(property);
+		}
+		
 
-	if (C == Player && CurrentScreen == "ChatRoom") { // We don't want all of these timers going off and tracking every player
-		
-		if (property.MsgTime < CommonTime()) {
-			//var wasBlinking = property.Type === "Blink";
-			//property.Type = wasBlinking ? null : "Blink";
-			var success = InventoryItemMouthVoiceChangerGagTrigger_Timer(C, property)
-			var timeToNextRefresh = InventoryItemMouthVoiceChangerGagrandomTime(property);//wasBlinking ? 4000 : 1000;
-			
-			// In the case where there is no TImer message but there is an Edge message, we want to be able to make the edge message appear more often.
-			// So if the conditions for the timer are not met, but there is a valid timer, we shorten the timer to 5 seconds to make it more likely that the timer will happen.
-			
-			if (success == false && (property.TimerMessage != "" || property.TimerEdgeMessage != "" || property.TimerNonArousedMessage != "")) {
-				timeToNextRefresh = 5000
-			}
-			
-			property.MsgTime = CommonTime() + timeToNextRefresh;
+		if (CurrentScreen == "ChatRoom") { // We don't want all of these timers going off and tracking every player
 			
 			
-			//AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);
-			//AnimationRequestDraw(data.C);
-		}
-		
-		if (property.OrgTime < CommonTime()) {
-			if (C.ArousalSettings.OrgasmStage > 1) {
-				property.OrgTime = CommonTime() + 25000; // 25 second cooldown before the gag is ready to play the message again
+			
+			if (persistentData.MsgTime < time) {
 				
-				InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property)
-			} else {
-				property.OrgTime = CommonTime() + 2000;
-			}
-		}
-		
-		
-		if (property.ArousedTime < CommonTime()) {
-			
-			property.ArousedTime = CommonTime() + 2000;
-				
-			if (property.Aroused == false && C.ArousalSettings.Progress > 5) {
-				property.ArousedTime = CommonTime() + 15000; // 15 second cooldown before the gag is ready to play the message again
-				property.Aroused = true
-				InventoryItemMouthVoiceChangerGagTrigger_Aroused(C, property)
-			} else {
-				if (property.Aroused == true && C.ArousalSettings.Progress < 4) {
-					property.Aroused = false
+				CharacterRefresh(C);
+				// Sometimes the timer doesnt get refreshed and the timer gives a message when you enter the menu. This fixes that.
+				if (persistentData.MsgTime < time) {
+					var success = InventoryItemMouthVoiceChangerGagTrigger_Timer(C, property)
+					var timeToNextRefresh = InventoryItemMouthVoiceChangerGagrandomTime(property);//wasBlinking ? 4000 : 1000;
+					
+					// In the case where there is no Timer message but there is an Edge message, we want to be able to make the edge message appear more often.
+					// So if the conditions for the timer are not met, but there is a valid timer, we shorten the timer to 5 seconds to make it more likely that the timer will happen.
+					
+					if (success == false && (property.TimerMessage != "" || property.TimerEdgeMessage != "" || property.TimerNonArousedMessage != "")) {
+						timeToNextRefresh = 5000
+					}
+					
+					persistentData.MsgTime = time + timeToNextRefresh;
+					
+					//AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);
+					//AnimationRequestDraw(data.C);
 				}
 			}
-			if (property.Edged == false && C.ArousalSettings.Progress > 95) {
-				property.ArousedTime = CommonTime() + 15000; // 15 second cooldown before the gag is ready to play the message again
-				property.Edged = true
-				//InventoryItemMouthVoiceChangerGagTrigger_Edge(C, property)
-			} else {
-				if (property.Edged == true && C.ArousalSettings.Progress < 94) {
-					property.Edged = false
+			
+			if (property.OrgTime < time) {
+				if (C.ArousalSettings.OrgasmStage > 1) {
+					property.OrgTime = time + 25000; // 25 second cooldown before the gag is ready to play the message again
+					
+					InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property)
+				} else {
+					property.OrgTime = time + 2000;
 				}
 			}
-		}
-		
-		
-		if (property.KneelTime < CommonTime()) {
-			property.KneelTime = CommonTime() + 1500;
 			
-			if (property.Kneeling == false && C.IsKneeling()) {
-				InventoryItemMouthVoiceChangerGagTrigger_Kneel(C, property)
-				property.Kneeling = true
-			} else if (property.Kneeling == true && C.IsKneeling() == false) {
-				InventoryItemMouthVoiceChangerGagTrigger_Stand(C, property)
-				property.Kneeling = false
+			
+			if (property.ArousedTime < time) {
+				
+				property.ArousedTime = time + 2000;
+					
+				if (property.Aroused == false && C.ArousalSettings.Progress > 5) {
+					property.ArousedTime = time + 15000; // 15 second cooldown before the gag is ready to play the message again
+					property.Aroused = true
+					InventoryItemMouthVoiceChangerGagTrigger_Aroused(C, property)
+				} else {
+					if (property.Aroused == true && C.ArousalSettings.Progress < 4) {
+						property.Aroused = false
+					}
+				}
+				if (property.Edged == false && C.ArousalSettings.Progress > 95) {
+					property.ArousedTime = time + 15000; // 15 second cooldown before the gag is ready to play the message again
+					property.Edged = true
+					//InventoryItemMouthVoiceChangerGagTrigger_Edge(C, property)
+				} else {
+					if (property.Edged == true && C.ArousalSettings.Progress < 94) {
+						property.Edged = false
+					}
+				}
+			}
+			
+			
+			if (property.KneelTime < time) {
+				property.KneelTime = time + 1500;
+				
+				if (property.Kneeling == false && C.IsKneeling()) {
+					InventoryItemMouthVoiceChangerGagTrigger_Kneel(C, property)
+					property.Kneeling = true
+				} else if (property.Kneeling == true && C.IsKneeling() == false) {
+					InventoryItemMouthVoiceChangerGagTrigger_Stand(C, property)
+					property.Kneeling = false
+				}
+			}
+		} else {
+			
+			// Keep gag timers going if the player leaves chat. This is to prevent all the timers from appearing at once as soon as they return to a room.
+			if (persistentData.MsgTime < time) {
+				
+				persistentData.MsgTime = time + InventoryItemMouthVoiceChangerGagrandomTime(property)
+			}
+			
+			if (property.OrgTime < time) {
+				property.OrgTime = time + 2000;
+			}
+			
+			if (property.ArousedTime < time) {
+				property.Aroused = C.ArousalSettings.Progress > 5;
+				property.Edged = C.ArousalSettings.Progress > 97;
+			}
+			if (property.KneelTime < time) {
+				property.KneelTime = time + 1500;
+				property.Kneeling = C.IsKneeling();
 			}
 		}
 	}
