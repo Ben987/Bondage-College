@@ -529,9 +529,9 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 	
 	if (C == Player) {
 		if (typeof persistentData.MsgTime !== "number") persistentData.MsgTime = CommonTime() + InventoryItemMouthVoiceChangerGagrandomTime(property);
-		//if (typeof property.OrgTime !== "number") property.OrgTime = CommonTime() + 1000;
-		//if (typeof property.ArousedTime !== "number") property.ArousedTime = CommonTime() + 1000;
-		//if (typeof property.KneelTime !== "number") property.KneelTime = CommonTime() + 1000;
+		if (typeof persistentData.OrgTime !== "number") persistentData.OrgTime = CommonTime() + 1000;
+		if (typeof persistentData.ArousedTime !== "number") persistentData.ArousedTime = CommonTime() + 1000;
+		if (typeof persistentData.KneelTime !== "number") persistentData.KneelTime = CommonTime() + 1000;
 		
 		
 		var time = CommonTime()
@@ -568,23 +568,23 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 				}
 			}
 			
-			if (property.OrgTime < time) {
+			if (persistentData.OrgTime < time) {
 				if (C.ArousalSettings.OrgasmStage > 1) {
-					property.OrgTime = time + 25000; // 25 second cooldown before the gag is ready to play the message again
+					persistentData.OrgTime = time + 25000; // 25 second cooldown before the gag is ready to play the message again
 					
 					InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property)
 				} else {
-					property.OrgTime = time + 2000;
+					persistentData.OrgTime = time + 2000;
 				}
 			}
 			
 			
-			if (property.ArousedTime < time) {
+			if (persistentData.ArousedTime < time) {
 				
-				property.ArousedTime = time + 2000;
+				persistentData.ArousedTime = time + 2000;
 					
 				if (property.Aroused == false && C.ArousalSettings.Progress > 5) {
-					property.ArousedTime = time + 15000; // 15 second cooldown before the gag is ready to play the message again
+					persistentData.ArousedTime = time + 15000; // 15 second cooldown before the gag is ready to play the message again
 					property.Aroused = true
 					InventoryItemMouthVoiceChangerGagTrigger_Aroused(C, property)
 				} else {
@@ -593,7 +593,7 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 					}
 				}
 				if (property.Edged == false && C.ArousalSettings.Progress > 95) {
-					property.ArousedTime = time + 15000; // 15 second cooldown before the gag is ready to play the message again
+					persistentData.ArousedTime = time + 15000; // 15 second cooldown before the gag is ready to play the message again
 					property.Edged = true
 					//InventoryItemMouthVoiceChangerGagTrigger_Edge(C, property)
 				} else {
@@ -604,8 +604,8 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 			}
 			
 			
-			if (property.KneelTime < time) {
-				property.KneelTime = time + 1500;
+			if (persistentData.KneelTime < time) {
+				persistentData.KneelTime = time + 1500;
 				
 				if (property.Kneeling == false && C.IsKneeling()) {
 					InventoryItemMouthVoiceChangerGagTrigger_Kneel(C, property)
@@ -623,16 +623,16 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 				persistentData.MsgTime = time + InventoryItemMouthVoiceChangerGagrandomTime(property)
 			}
 			
-			if (property.OrgTime < time) {
-				property.OrgTime = time + 2000;
+			if (persistentData.OrgTime < time) {
+				persistentData.OrgTime = time + 2000;
 			}
 			
-			if (property.ArousedTime < time) {
+			if (persistentData.ArousedTime < time) {
 				property.Aroused = C.ArousalSettings.Progress > 5;
 				property.Edged = C.ArousalSettings.Progress > 97;
 			}
-			if (property.KneelTime < time) {
-				property.KneelTime = time + 1500;
+			if (persistentData.KneelTime < time) {
+				persistentData.KneelTime = time + 1500;
 				property.Kneeling = C.IsKneeling();
 			}
 		}
