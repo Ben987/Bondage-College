@@ -2186,6 +2186,14 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "MuzzleGag", Fetish: ["Leather"], Value: 70, Difficulty: 6, Time: 20, AllowLock: true, DefaultColor: "#404040", BuyGroup: "MuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"] },
+			{
+				Name: "VoiceChangerGag", Fetish: ["Metal"], Value: 120, Difficulty: 4, Time: 10, AllowLock: true, DefaultColor: ["Default"], BuyGroup: "VoiceChangerGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["GagLight", "BlockMouth"], AllowEffect: ["GagMedium", "GagTotal"], AllowType: ["Harness", "Muzzle", "MsgTime", "TimerMessage", "TimerEdgeMessage","TimerNonArousedMessage", "Edged", "OrgMessage", "ArousedMessage", "StandMessage", "KneelMessage", "TimerLength", "TimerLength2", "Aroused"], HideItem: ["", "", "ItemNoseNoseRing"], Extended: true, AlwaysExtend: true, DynamicBeforeDraw: true, DynamicScriptDraw: true,
+				Layer: [
+					{ Name: "Ball", AllowColorize: true, HasType: false },
+					{ Name: "Gag", AllowColorize: true, HasType: true },
+				]
+			},
+			
 			{ Name: "RegularSleepingPill", Value: -1, Enable: false, Wear: false, Bonus: [{ Factor: 3, Type: "KidnapSneakiness" }] },
 			{ Name: "PantiesMask", Fetish: ["Lingerie"], Value: 20, Time: 15, Random: false, BuyGroup: "PantiesMask", Hide: ["Mouth"], Effect: ["BlockMouth", "GagVeryLight"], HideItem: ["ItemNoseNoseRing"] },
 			{
