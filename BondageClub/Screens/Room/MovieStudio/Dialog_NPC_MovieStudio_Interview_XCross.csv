@@ -1,5 +1,6 @@
 PlayerGagged,,,(There's a huge X shaped cross.),,
 0,,,(There's a huge X shaped cross.),,
+0,,(Take some pictures.),(The camera follows you as you take pictures of the cross and many bondage devices in the room.),"DoActivity(""InterviewTakePicture"")","CanDoActivity(""InterviewTakePicture"")"
 0,10,(Restrain yourself on the X cross.),"(Starting with the legs and finishing with the hands, you slowly restrain yourself on the huge X cross.)","DoActivity(""InterviewCrossRestrain"")","CanDoActivity(""InterviewCrossRestrain"")"
 0,,(Restrain yourself on the X cross.),(You try to restrain yourself on the cross but you'll need some cuffs on your wrists and ankles first.),,"!CanDoActivity(""InterviewCrossRestrain"")"
 0,,(Pretend to be restrained on it.),"(You stretch your arms and legs to fit the shape of the cross, without being really restrained.)","DoActivity(""CrossPretend"")",

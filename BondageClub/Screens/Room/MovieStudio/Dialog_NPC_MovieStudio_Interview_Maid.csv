@@ -108,3 +108,7 @@ PlayerGagged,,,That gag looks great on you.  It sounds good also.  (She laughs.)
 250,,(Leave her.),,DialogLeave(),
 300,,,(The maid seems very nervous.  She stares at the Mistress and doesn't notice you anymore.),,
 300,,(Leave her.),,DialogLeave(),
+310,,,"(The maid is fully restrained, it's a good opportunity to take pictures for the interview.)",,
+310,,(Step back and take pictures.),(You take a few steps back and snap a few pictures of the maid getting teased by the Mistress.),"DoActivity(""InterviewMaidPictureBack"")",
+310,,(Get closer and take pictures.),(You get closer and take pictures or her tight restraints and her heavy struggling.),"DoActivity(""InterviewMaidPictureClose"")",
+310,,(Leave her.),,DialogLeave(),
