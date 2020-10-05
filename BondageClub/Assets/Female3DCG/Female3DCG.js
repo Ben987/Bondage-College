@@ -2192,12 +2192,20 @@ var AssetFemale3DCG = [
 					{ Name: "Ball", AllowColorize: true, HasType: false },
 					{ Name: "Mask" , AllowColorize: true, HasType: false },
 				]
-			},{
+			},
+			{
 				Name: "FuturisticHarnessPanelGag", Fetish: ["Metal"], Value: -1, Difficulty: 6, Time: 15, AllowLock: true, DefaultColor: ["#50913C", "Default"], BuyGroup: "FuturisticPanelGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["GagLight"], AllowEffect: ["BlockMouth", "GagMedium", "GagTotal"], AllowType: ["Padded", "Ball", "Plug"], HideItem: ["ItemNoseNoseRing"], Extended: true,
 				Layer: [
 					{ Name: "Ball", AllowColorize: true, HasType: false },
 					{ Name: "Straps" , AllowColorize: true, HasType: false },
 					{ Name: "Mask" , AllowColorize: true, HasType: false },
+				]
+			},
+			{
+				Name: "VoiceChangerGag", Fetish: ["Metal"], Value: 120, Difficulty: 4, Time: 10, AllowLock: true, DefaultColor: ["Default"], BuyGroup: "VoiceChangerGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["GagLight", "BlockMouth"], AllowEffect: ["GagMedium", "GagTotal"], AllowType: ["Harness", "Muzzle", "MsgTime", "TimerMessage", "TimerEdgeMessage","TimerNonArousedMessage", "Edged", "OrgMessage", "ArousedMessage", "StandMessage", "KneelMessage", "TimerLength", "TimerLength2", "Aroused"], HideItem: ["", "", "ItemNoseNoseRing"], Extended: true, AlwaysExtend: true, DynamicBeforeDraw: true, DynamicScriptDraw: true,
+				Layer: [
+					{ Name: "Ball", AllowColorize: true, HasType: false },
+					{ Name: "Gag", AllowColorize: true, HasType: true },
 				]
 			},
 			{ Name: "RegularSleepingPill", Value: -1, Enable: false, Wear: false, Bonus: [{ Factor: 3, Type: "KidnapSneakiness" }] },

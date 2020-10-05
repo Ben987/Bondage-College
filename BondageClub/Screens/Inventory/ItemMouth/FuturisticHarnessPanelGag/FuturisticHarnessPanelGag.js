@@ -1,3 +1,4 @@
+  
 "use strict";
 
 // Loads the item extension properties
@@ -29,5 +30,3 @@ function InventoryItemMouthFuturisticHarnessPanelGagPublishAction(C, Option) {
 function InventoryItemMouthFuturisticHarnessPanelNpcDialog(C, Option) {
 	InventoryItemMouthFuturisticPanelNpcDialog(C, Option);
 }
-
-
