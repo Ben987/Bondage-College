@@ -553,7 +553,7 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 				if (persistentData.MsgTime < time) {
 					
 					var success = true
-					if (Math.abs(persistentData.MsgTime < time) < 10000) // If we missed it by more than 10 seconds then we don't play the message. Otherwise it happens on chat room entry
+					if (Math.abs(persistentData.MsgTime < time) < 5000) // If we missed it by more than 10 seconds then we don't play the message. Otherwise it happens on chat room entry
 						success = InventoryItemMouthVoiceChangerGagTrigger_Timer(C, property)
 					
 					var timeToNextRefresh = InventoryItemMouthVoiceChangerGagrandomTime(property);//wasBlinking ? 4000 : 1000;
@@ -575,8 +575,7 @@ function AssetsItemMouthVoiceChangerGagScriptDraw(data) {
 			if (persistentData.OrgTime < time) {
 				if (C.ArousalSettings.OrgasmStage > 1) {
 					persistentData.OrgTime = time + 25000; // 25 second cooldown before the gag is ready to play the message again
-					if (Math.abs(persistentData.MsgTime - time) < 5000) // If we missed it by more than 5 seconds then we don't play the message. Otherwise it happens on chat room entry
-						InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property)
+					InventoryItemMouthVoiceChangerGagTrigger_Orgasm(C, property)
 				} else {
 					persistentData.OrgTime = time + 2000;
 				}
