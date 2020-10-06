@@ -1,6 +1,6 @@
 "use strict";
 var MovieStudioBackground = "MovieStudio";
-var MovieStudioDirectory = null;
+var MovieStudioDirector = null;
 var MovieStudioCurrentMovie = "";
 var MovieStudioCurrentScene = "";
 var MovieStudioCurrentRole = "";
@@ -10,12 +10,20 @@ var MovieStudioTimer = null;
 var MovieStudioMeter = 0;
 var MovieStudioDecay = 0;
 var MovieStudioActivity = [];
+var MovieStudioMoney = 0;
+var MovieStudioOriginalClothes = null;
 
 /**
  * The player can play in a movie if she doesn't have any locked restraints
- * @returns {void} - TRUE if the player can play in a movie
+ * @returns {boolean} - TRUE if the player can play in a movie
  */
 function MovieStudioCanPlayInMovie() { return !InventoryCharacterHasLockedRestraint(Player) }
+
+/**
+ * Returns TRUE if the player can receive the camera as a payment
+ * @returns {boolean} - TRUE if the player can get the camera
+ */
+function MovieStudioCanGetCamera() { return !InventoryAvailable(Player, "Camera1", "ClothAccessory") }
 
 /**
  * When the player fails the movie, we jump back to the director
@@ -28,9 +36,9 @@ function MovieStudioFail() {
 	MovieStudioBackground = "MovieStudio";
 	CharacterRelease(Player);
 	CharacterSetActivePose(Player, null, true);
-	MovieStudioDirectory.CurrentDialog = DialogFind(MovieStudioDirectory, "FailIntro" + Math.floor(Math.random() * 4).toString());
-	MovieStudioDirectory.Stage = "Fail";
-	CharacterSetCurrent(MovieStudioDirectory);
+	MovieStudioDirector.CurrentDialog = DialogFind(MovieStudioDirector, "FailIntro" + Math.floor(Math.random() * 4).toString());
+	MovieStudioDirector.Stage = "Fail";
+	CharacterSetCurrent(MovieStudioDirector);
 }
 
 /**
@@ -57,39 +65,51 @@ function MovieStudioProcessDecay() {
 	if (CurrentTime >= MovieStudioTimer) {
 		if (MovieStudioMeter < 0) return MovieStudioFail();
 		if ((MovieStudioCurrentMovie == "Interview") && (MovieStudioCurrentScene == "1")) {
+			MovieStudioMoney = MovieStudioMoney + Math.floor(MovieStudioMeter / 10);
 			MovieStudioProgress(MovieStudioCurrentMovie, "2", "");
 			MovieStudioActor1 = null;
 			MovieStudioActor1 = CharacterLoadNPC("NPC_MovieStudio_Interview_Maid");
-			MovieStudioActor1.CurrentDialog = TextGet("MaidIntro" + (InventoryIsWorn(Player, "X-Cross", "ItemDevices") ? "Cross" : "NoCross") + Math.floor(Math.random() * 2).toString());
+			MovieStudioActor1.CurrentDialog = TextGet("InterviewMaidIntro" + (InventoryIsWorn(Player, "X-Cross", "ItemDevices") ? "Cross" : "NoCross") + Math.floor(Math.random() * 2).toString());
 			MovieStudioActor1.Stage = "0";
 			CharacterSetCurrent(MovieStudioActor1);
 			return;
 		}
 		if ((MovieStudioCurrentMovie == "Interview") && (MovieStudioCurrentScene == "2")) {
+			MovieStudioMoney = MovieStudioMoney + Math.floor(MovieStudioMeter / 10);
 			MovieStudioProgress(MovieStudioCurrentMovie, "3", "");
 			MovieStudioActor2 = null;
 			MovieStudioActor2 = CharacterLoadNPC("NPC_MovieStudio_Interview_Mistress");
-			MovieStudioActor2.CurrentDialog = TextGet("MistressIntro" + Math.floor(Math.random() * 4).toString());
+			MovieStudioActor2.CurrentDialog = TextGet("InterviewMistressIntro" + Math.floor(Math.random() * 4).toString());
 			MovieStudioActor2.Stage = "0";
 			MovieStudioActor1.Stage = "300";
 			CharacterSetCurrent(MovieStudioActor2);
+			return;
+		}
+		if ((MovieStudioCurrentMovie == "Interview") && (MovieStudioCurrentScene == "3")) {
+			MovieStudioMoney = MovieStudioMoney + Math.floor(MovieStudioMeter / 10);
+			MovieStudioDirector.CurrentDialog = TextGet("InterviewDirectorSuccess" + Math.floor(Math.random() * 4).toString());
+			MovieStudioDirector.Stage = "1030";
+			CharacterSetCurrent(MovieStudioDirector);
+			MovieStudioCurrentMovie = "";
+			MovieStudioCurrentScene = "";
 			return;
 		}
 	}
 }
 
 /**
- * Loads the Movie Studio introduction room screen
+ * Loads the Movie Studio introduction room screen and saves the player clothes
  * @returns {void} - Nothing
  */
 function MovieStudioLoad() {
-	if (MovieStudioDirectory == null) {		
-		MovieStudioDirectory = CharacterLoadNPC("NPC_MovieStudio_Director");
-		InventoryWear(MovieStudioDirectory, "Beret1", "Hat");
-		InventoryWear(MovieStudioDirectory, "SunGlasses1", "Glasses");
-		InventoryWear(MovieStudioDirectory, "AdmiralTop", "Cloth");
-		InventoryWear(MovieStudioDirectory, "AdmiralSkirt", "ClothLower");
-		MovieStudioDirectory.AllowItem = false;
+	if (MovieStudioOriginalClothes == null) MovieStudioOriginalClothes = Player.Appearance.slice(0);
+	if (MovieStudioDirector == null) {		
+		MovieStudioDirector = CharacterLoadNPC("NPC_MovieStudio_Director");
+		InventoryWear(MovieStudioDirector, "Beret1", "Hat");
+		InventoryWear(MovieStudioDirector, "SunGlasses1", "Glasses");
+		InventoryWear(MovieStudioDirector, "AdmiralTop", "Cloth");
+		InventoryWear(MovieStudioDirector, "AdmiralSkirt", "ClothLower");
+		MovieStudioDirector.AllowItem = false;
 	}
 }
 
@@ -102,7 +122,7 @@ function MovieStudioRun() {
 	// If there's no movie going on, the player can chat with the director.
 	if (MovieStudioCurrentMovie == "") {
 		DrawCharacter(Player, 500, 0, 1);
-		DrawCharacter(MovieStudioDirectory, 1000, 0, 1);
+		DrawCharacter(MovieStudioDirector, 1000, 0, 1);
 		if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png", TextGet("Leave"));
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
 		return;
@@ -146,8 +166,8 @@ function MovieStudioRun() {
  */
 function MovieStudioClick() {
 	if ((MovieStudioCurrentMovie == "") && MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
-	if ((MovieStudioCurrentMovie == "") && MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(MovieStudioDirectory);
-	if ((MovieStudioCurrentMovie == "") && MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if ((MovieStudioCurrentMovie == "") && MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(MovieStudioDirector);
+	if ((MovieStudioCurrentMovie == "") && MouseIn(1885, 25, 90, 90) && Player.CanWalk()) { MovieStudioOriginalClothes = null; CommonSetScreen("Room", "MainHall"); }
 	if ((MovieStudioCurrentMovie == "") && MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 	if ((MovieStudioCurrentMovie == "Interview") && (MovieStudioCurrentScene == "1") && MouseIn(250, 0, 500, 1000) && !InventoryIsWorn(Player, "X-Cross", "ItemDevices")) CharacterSetCurrent(MovieStudioActor1);
 	if ((MovieStudioCurrentMovie == "Interview") && (MovieStudioCurrentScene == "1") && MouseIn(1250, 0, 500, 1000)) CharacterSetCurrent(MovieStudioActor2);
@@ -156,6 +176,15 @@ function MovieStudioClick() {
 	if ((MovieStudioCurrentMovie == "Interview") && (MovieStudioCurrentScene == "3") && MouseIn(250, 0, 500, 1000)) CharacterSetCurrent(MovieStudioActor1);
 	if ((MovieStudioCurrentMovie == "Interview") && (MovieStudioCurrentScene == "3") && MouseIn(1250, 0, 500, 1000)) CharacterSetCurrent(MovieStudioActor2);
 	if ((MovieStudioCurrentMovie != "") && MouseIn(1855, 25, 90, 90)) { MovieStudioChangeMeter(-20); MovieStudioTimer = MovieStudioTimer - 60000; }
+}
+
+/**
+ * When the player needs to dress back in her original clothes after the play
+ * @returns {void} - Nothing
+ */
+function MovieStudioPlayerDressBack() {
+	Player.Appearance = MovieStudioOriginalClothes.slice(0);
+	CharacterRefresh(Player);
 }
 
 /**
@@ -188,6 +217,7 @@ function MovieStudioChange(Cloth) {
  * @returns {void} - Nothing
  */
 function MovieStudioProgress(Movie, Scene, Role) {
+	if (Role == "Journalist") MovieStudioMoney = 20;
 	MovieStudioTimer = CurrentTime + 600000;
 	MovieStudioMeter = 0;
 	MovieStudioDecay = CurrentTime + 5000;
@@ -323,7 +353,16 @@ function MovieStudioDoActivity(Activity) {
 	if (Activity == "InterviewMistressUngagPlayer") InventoryRemove(Player, "ItemMouth");
 	if (Activity == "InterviewMistressReleasePlayer") { CharacterRelease(Player); CharacterSetActivePose(Player, null, true); }
 	if (Activity == "InterviewMistressChangePlayerBack") MovieStudioChange("Journalist");
-	if (Activity == "InterviewMistressTakePicture") { InventoryWear(Player, "Camera1", "ClothAccessory", "Default"); CharacterFullRandomRestrain(MovieStudioActor1, "ALL"); MovieStudioActor1.Stage = "310"; }
+	if (Activity == "InterviewMistressTakePicture") {
+		InventoryWear(Player, "Camera1", "ClothAccessory", "Default");
+		CharacterRelease(MovieStudioActor1);
+		CharacterFullRandomRestrain(MovieStudioActor1, "ALL");
+		MovieStudioActor1.Stage = "310";
+	}
+	if (Activity == "InterviewMistressPrepareDungeon") MovieStudioActor1.Stage = "320";
+	if (Activity == "InterviewMaidRestainedNew") { CharacterRelease(MovieStudioActor1); CharacterFullRandomRestrain(MovieStudioActor1, "ALL"); }
+	if (Activity == "InterviewMistressFinalRestrainPlayer") { CharacterRelease(Player); CharacterFullRandomRestrain(Player, "ALL"); MovieStudioActor1.Stage = "330"; }
+	if (Activity == "InterviewMistressFinalPlayerNew") { CharacterRelease(Player); CharacterFullRandomRestrain(Player, "ALL"); }
 
 	// Check for decay
 	MovieStudioProcessDecay();
@@ -348,4 +387,22 @@ function MovieStudioCanDoActivity(Activity) {
 	if (Activity == "InterviewMaidDusterGag") return !InventoryIsWorn(MovieStudioActor1, "DusterGag", "ItemMouth");
 	if (Activity == "InterviewMaidCuffs") return !InventoryIsWorn(MovieStudioActor1, "LeatherCuffs", "ItemArms");
 	if (Activity == "InterviewMaidBreast") return InventoryIsWorn(MovieStudioActor1, "MaidOutfit1", "Cloth");
+}
+
+/**
+ * Adds the camera to the player inventory
+ * @returns {void} - Nothing
+ */
+function MovieStudioGetCamera() {
+	InventoryAdd(Player, "Camera1", "ClothAccessory");
+	InventoryWear(Player, "Camera1", "ClothAccessory", "Default");
+}
+
+/**
+ * Adds the movie salary to the player
+ * @returns {void} - Nothing
+ */
+function MovieStudioGetMoney() {
+	CharacterChangeMoney(Player, MovieStudioMoney);
+	MovieStudioDirector.CurrentDialog = DialogFind(MovieStudioDirector, "MovieSalary").replace("SALARYAMOUNT", (MovieStudioMoney).toString());
 }
