@@ -17,11 +17,12 @@ var MainHallTip = 0;
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping in the maid quarters
  */
 function MainHallIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 || expire > 604800000)  }
+
 /**
  * Checks for the dialog options to help the player know how much time is left before the maids can help them
  * @returns {boolean} - Returns TRUE if the remaining duration fits within the time range
  */
-function MainHallMaidsDisabledMinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; console.log(expire); return (expire < 600000)}
+function MainHallMaidsDisabledMinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 600000)}
 function MainHallMaidsDisabledHourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 600000 && expire < 3600000) }
 function MainHallMaidsDisabledDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000 && expire < 86400000) }
 function MainHallMaidsDisabledDaysLeft2() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 86400000 && expire < 172800000) }
@@ -31,6 +32,17 @@ function MainHallMaidsDisabledDaysLeft5() { var expire = LogValue("MaidsDisabled
 function MainHallMaidsDisabledDaysLeft6() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 432000000 && expire < 518400000) }
 function MainHallMaidsDisabledDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 518400000 && expire < 604800000) }
 function MainHallMaidsDisabledDaysLeft8() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 604800000) }
+
+/**
+ * Checks for the dialog options to help the maid determine which dialog options she can give the player to extend the duration
+ 
+ * @returns {boolean} - Returns TRUE if the remaining duration fits within the time range
+ */
+function MainHallMaidsDisabledAtLeast1HourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 3600000) }
+function MainHallMaidsDisabledAtLeast12HourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 43200000) }
+function MainHallMaidsDisabledAtLeastDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 86400000) }
+function MainHallMaidsDisabledAtLeastDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 259200000) }
+function MainHallMaidsDisabledAtLeastDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 604800000) }
 /**
  * Checks if the dialog option to trick the maid is available
  * @returns {boolean} - Returns TRUE if the maid can be tricked
@@ -310,10 +322,6 @@ function MainHallMaidReleasePlayer() {
 			
 			LogDelete("MaidsDisabled", "Maid")
 		}
-		if (LogQuery("MaidsDisabledHardcore", "Maid")) {
-			
-			LogDelete("MaidsDisabledHardcore", "Maid")
-		}
 		
 		MainHallMaid.Stage = "10";
 	} else MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "CannotRelease");
@@ -431,4 +439,10 @@ function MainHallMaidIntroductionDone() {
  */
 function MainHallKeyDown() {
 	Draw3DKeyDown();
+}
+
+
+function MainHallSetMaidsDisabled(minutes) {
+	var millis = minutes * 60000
+	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
 }

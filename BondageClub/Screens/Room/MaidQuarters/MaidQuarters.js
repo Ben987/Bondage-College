@@ -452,8 +452,3 @@ function MaidQuartersSetMaidsDisabled(minutes) {
 	var millis = minutes * 60000
 	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
 }
-function MaidQuartersSetMaidsDisabledHardcore(minutes) {
-	var millis = minutes * 60000 // Seconds for debug
-	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
-	LogAdd("MaidsDisabledHardcore", "Maid", CurrentTime + millis);
-}
