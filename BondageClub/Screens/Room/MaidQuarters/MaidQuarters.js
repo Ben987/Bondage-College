@@ -21,6 +21,18 @@ var MaidQuartersOnlineDrinkValue = 0;
 var MaidQuartersOnlineDrinkCustomer = [];
 var MaidQuartersOnlineDrinkFromOwner = false;
 
+// Returns TRUE if the player has maids disabled
+/**
+ * Checks if the player is helpless (maids disabled) or not.
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
+ */
+function MaidQuartersIsMaidsDisabled() { return (LogQuery("MaidsDisabled", "Maid")) }
+// Returns TRUE if the player is owned
+/**
+ * Checks if the player is owned or is in a trial
+ * @returns {boolean} - Returns true if the player is owned or in a trial
+ */
+function MaidQuartersPlayerHasOwner() { return (Player.Ownership != null) && (Player.Ownership.Stage != null) }
 // Returns TRUE if the player is dressed in a maid uniform or can take a specific chore
 /**
  * CHecks for appropriate dressing
@@ -61,7 +73,7 @@ function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("Lead
  * Checks, if the maid can release the player from her restraint
  * @returns {boolean} - Returns true, if the player can be released, false otherwise
  */
-function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLockedRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
+function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLockedRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) && !MaidQuartersIsMaidsDisabled()}
 /**
  * Checks, if the maid is unable to free the player
  * @returns {boolean} - Returns true, if the maid is unable to free the player, false otherwise
@@ -434,4 +446,14 @@ function MaidQuartersOnlineDrinkPay() {
  */
 function MaidQuartersNotFromOwner() {
 	MaidQuartersOnlineDrinkFromOwner = false;
+}
+
+function MaidQuartersSetMaidsDisabled(minutes) {
+	var millis = minutes * 60000
+	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
+}
+function MaidQuartersSetMaidsDisabledHardcore(minutes) {
+	var millis = minutes * 60000 // Seconds for debug
+	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
+	LogAdd("MaidsDisabledHardcore", "Maid", CurrentTime + millis);
 }

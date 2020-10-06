@@ -11,6 +11,26 @@ var MainHallHasLoverLock = false;
 var MainHallHasSlaveCollar = false;
 var MainHallTip = 0;
 
+// Returns TRUE if the player has maids disabled
+/**
+ * Checks if the player is helpless (maids disabled) or not.
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping in the maid quarters
+ */
+function MainHallIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 || expire > 604800000)  }
+/**
+ * Checks for the dialog options to help the player know how much time is left before the maids can help them
+ * @returns {boolean} - Returns TRUE if the remaining duration fits within the time range
+ */
+function MainHallMaidsDisabledMinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; console.log(expire); return (expire < 600000)}
+function MainHallMaidsDisabledHourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 600000 && expire < 3600000) }
+function MainHallMaidsDisabledDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000 && expire < 86400000) }
+function MainHallMaidsDisabledDaysLeft2() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 86400000 && expire < 172800000) }
+function MainHallMaidsDisabledDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 172800000 && expire < 259200000) }
+function MainHallMaidsDisabledDaysLeft4() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 259200000 && expire < 345600000) }
+function MainHallMaidsDisabledDaysLeft5() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 345600000 && expire < 432000000) }
+function MainHallMaidsDisabledDaysLeft6() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 432000000 && expire < 518400000) }
+function MainHallMaidsDisabledDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 518400000 && expire < 604800000) }
+function MainHallMaidsDisabledDaysLeft8() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 604800000) }
 /**
  * Checks if the dialog option to trick the maid is available
  * @returns {boolean} - Returns TRUE if the maid can be tricked
@@ -22,6 +42,11 @@ function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlock
  * @returns {boolean} - Returns true, if the player has either a lover or owner item on herself, false otherwise
  */
 function MainHallHasOwnerOrLoverItem() { return MainHallHasLoverLock || MainHallHasOwnerLock }
+/**
+ * Checks, if the player has an owner or lover lock on her or maids are disabled
+ * @returns {boolean} - Returns true, if the player has either a lover or owner item on herself or maids are disabled, false otherwise
+ */
+function MainHallHasOwnerOrLoverItemOrMaidsDisabled() { return MainHallHasLoverLock || MainHallHasOwnerLock || MainHallIsMaidsDisabled()}
 
 /**
  * Loads the main hall by setting up the NPCs, CSVs and global variables required.
@@ -279,6 +304,17 @@ function MainHallMaidReleasePlayer() {
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "AlreadyReleased");
 		CharacterRelease(Player);
 		CharacterReleaseFromLock(Player, "CombinationPadlock");
+		
+		// Added to remove maids being disabled
+		if (LogQuery("MaidsDisabled", "Maid")) {
+			
+			LogDelete("MaidsDisabled", "Maid")
+		}
+		if (LogQuery("MaidsDisabledHardcore", "Maid")) {
+			
+			LogDelete("MaidsDisabledHardcore", "Maid")
+		}
+		
 		MainHallMaid.Stage = "10";
 	} else MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "CannotRelease");
 }
