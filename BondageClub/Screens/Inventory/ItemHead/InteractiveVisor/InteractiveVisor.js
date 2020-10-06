@@ -8,10 +8,24 @@ var InventoryItemHeadInteractiveVisorOptions = [
 		},
 	},
 	{
+		Name: "LightTint",
+		Property: {
+			Type: "LightTint",
+			Effect: ["BlindLight", "Prone"],
+		},
+	},
+	{
+		Name: "HeavyTint",
+		Property: {
+			Type: "HeavyTint",
+			Effect: ["BlindNormal", "Prone"],
+		},
+	},
+	{
 		Name: "Blind",
 		Property: {
 			Type: "Blind",
-			Effect: ["BlindNormal", "Prone"],
+			Effect: ["BlindHeavy", "Prone"],
 		},
 	},
 ];
