@@ -40,6 +40,19 @@ HatSanta1Fabric,Hat
 HatSanta1Fur,Fur
 HatBonnet1Base,Bonnet
 HatBonnet1Lace,Lace
+HatPirateBandana1Bandana,Bandana
+HatPirateBandana1Skull,Skull
+HatPirateBandana1Dots,Dots
+HatCrown2Crown,Crown
+HatCrown2Jewels,Jewels
+HatCrown3Crown,Crown
+HatCrown3Jewels,Jewels
+HatPoliceWomanHatBadge,Badge
+HatPoliceWomanHatHat,Hat
+HatCaptainHat1Top,Top
+HatCaptainHat1Insignia,Insignia
+HatCaptainHat1Rope,Rope
+HatCaptainHat1Brim,Brim
 HairAccessory1KittenEars1Outer,Outer Ear
 HairAccessory1KittenEars1Inner,Inner Ear
 HairAccessory1FoxEars2Inner,Inner Ear
@@ -206,6 +219,18 @@ ItemMouthXLBoneGagBone,Bone
 ItemMouthXLBoneGagStraps,Straps
 ItemMouthDusterGagDuster,Duster
 ItemMouthDusterGagPanel,Panel
+ItemMouthPantiesMaskDarkStripes,Dark Stripes
+ItemMouthPantiesMaskLightStripes,Light Stripes
+ItemMouthShoeGagShoe,Shoe
+ItemMouthShoeGagStrap,Strap
+ItemMouthHarnessPanelGagPanel,Panel
+ItemMouthHarnessPanelGagStraps,Straps
+ItemMouthHarnessPanelGagMetal,Metal
+ItemMouthLipGagLips,Lips
+ItemMouthLipGagStraps,Straps
+ItemMouthLipGagRings,Rings
+ItemMouthMuzzleGagMuzzle,Muzzle
+ItemMouthMuzzleGagStraps,Straps
 ItemMouth2WiffleGagStrap,Strap
 ItemMouth2WiffleGagBall,Ball
 ItemMouth2HarnessBallGagBall,Ball
@@ -238,6 +263,18 @@ ItemMouth2XLBoneGagBone,Bone
 ItemMouth2XLBoneGagStraps,Straps
 ItemMouth2DusterGagDuster,Duster
 ItemMouth2DusterGagPanel,Panel
+ItemMouth2PantiesMaskDarkStripes,Dark Stripes
+ItemMouth2PantiesMaskLightStripes,Light Stripes
+ItemMouth2ShoeGagShoe,Shoe
+ItemMouth2ShoeGagStrap,Strap
+ItemMouth2HarnessPanelGagPanel,Panel
+ItemMouth2HarnessPanelGagStraps,Straps
+ItemMouth2HarnessPanelGagMetal,Metal
+ItemMouth2LipGagLips,Lips
+ItemMouth2LipGagStraps,Straps
+ItemMouth2LipGagRings,Rings
+ItemMouth2MuzzleGagMuzzle,Muzzle
+ItemMouth2MuzzleGagStraps,Straps
 ItemMouth3WiffleGagStrap,Strap
 ItemMouth3WiffleGagBall,Ball
 ItemMouth3HarnessBallGagBall,Ball
@@ -270,3 +307,19 @@ ItemMouth3XLBoneGagBone,Bone
 ItemMouth3XLBoneGagStraps,Straps
 ItemMouth3DusterGagDuster,Duster
 ItemMouth3DusterGagPanel,Panel
+ItemMouth3PantiesMaskDarkStripes,Dark Stripes
+ItemMouth3PantiesMaskLightStripes,Light Stripes
+ItemMouth3ShoeGagShoe,Shoe
+ItemMouth3ShoeGagStrap,Strap
+ItemMouth3HarnessPanelGagPanel,Panel
+ItemMouth3HarnessPanelGagStraps,Straps
+ItemMouth3HarnessPanelGagMetal,Metal
+ItemMouth3LipGagLips,Lips
+ItemMouth3LipGagStraps,Straps
+ItemMouth3LipGagRings,Rings
+ItemMouth3MuzzleGagMuzzle,Muzzle
+ItemMouth3MuzzleGagStraps,Straps
+MaskFoxMaskUpper,Upper
+MaskFoxMaskLower,Lower
+MaskKittyMask3Highlights,Highlights
+MaskKittyMask3Mask,Mask

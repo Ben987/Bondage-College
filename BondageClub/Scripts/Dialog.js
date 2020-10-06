@@ -310,10 +310,10 @@ function DialogPrerequisite(D) {
 }
 
 /**
- * Checks, if the player owns a key to unlock a given item or is able to unlock the item
- * @param {Character} C - The character whose inventory and ability to unlock the lock should be checked
+ * Checks whether the player is able to unlock the provided item on the provided character
+ * @param {Character} C - The character on whom the item is equipped
  * @param {Item} Item - The item that should be unlocked
- * @returns {boolean} - Returns true, if the character can unlock the given item, false otherwise
+ * @returns {boolean} - Returns true, if the player can unlock the given item, false otherwise
  */
 function DialogCanUnlock(C, Item) {
 	if ((C.ID != 0) && !Player.CanInteract()) return false;
@@ -356,6 +356,7 @@ function DialogIntro() {
  */
 function DialogLeave() {
 	if (DialogItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
+	DialogLeaveFocusItem();
 	DialogItemPermissionMode = false;
 	DialogActivityMode = false;
 	DialogItemToLock = null;
@@ -533,6 +534,17 @@ function DialogCanUseRemote(C, Item) {
 }
 
 /**
+ * Checks whether the player can color the given item on the given character
+ * @param {Character} C - The character on whom the item is equipped
+ * @param {Item} Item - The item to check the player's ability to color against
+ * @returns {boolean} - TRUE if the player is able to color the item, FALSE otherwise
+ */
+function DialogCanColor(C, Item) {
+	const CanUnlock = InventoryItemHasEffect(Item, "Lock", true) ? DialogCanUnlock(C, Item) : true;
+	return (Player.CanInteract() && CanUnlock) || DialogAlwaysAllowRestraint();
+}
+
+/**
  * Build the buttons in the top menu
  * @param {Character} C - The character for whom the dialog is prepared
  * @returns {void} - Nothing
@@ -568,7 +580,7 @@ function DialogMenuButtonBuild(C) {
 		if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Escape");
 		if (DialogCanUseRemote(C, Item)) DialogMenuButton.push("Remote");
 		if ((Item != null) && Item.Asset.Extended && ((Player.CanInteract()) || DialogAlwaysAllowRestraint() || Item.Asset.AlwaysInteract) && (!IsGroupBlocked || Item.Asset.AlwaysExtend) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer()))) DialogMenuButton.push("Use");
-		if ((Player.CanInteract()) || DialogAlwaysAllowRestraint()) DialogMenuButton.push("ColorPick");
+		if (DialogCanColor(C, Item)) DialogMenuButton.push("ColorPick");
 
 		// Make sure the target player zone is allowed for an activity
 		if ((C.FocusGroup.Activity != null) && ((!C.IsEnclose() && !Player.IsEnclose()) || C.ID == 0) && ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Zone != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive"))

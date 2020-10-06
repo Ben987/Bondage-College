@@ -1,5 +1,39 @@
 PlayerGagged,,,"Girl, I'm not going to try to translate your mumbles.",,
-0,,,(She looks at you from head to toes.)  What happened here?,,Player.IsRestrained()
+0,,,(She inpects your restraints and looks at you from head to toes.)  What happened here?,,Player.IsRestrained()
 0,,,(She looks at the maid and turns to you.)  What happened here?,,!Player.IsRestrained()
-0,,Who are you?,"I'm Mistress DialogCharacterName.  I've reserved this room, you should not be here.",DialogRemove(),
+0,,Who are you?,"I'm Mistress DialogCharacterName.  I've reserved this room, you should not be here.  What's going on?",DialogRemove(),
+0,,(Whimper in your gag.),(She stares at your gag and smirks.)  Let's remove that for now.  (She unstraps your gag and confiscates it.),"DoActivity(""InterviewMistressUngagPlayer"")",!Player.CanTalk()
+0,10,Your maid is really kinky.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,Player.IsRestrained()
+0,10,I started on my own and she continued.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,Player.IsRestrained()
+0,10,I fell into her trap.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,Player.IsRestrained()
+0,10,I had some fun with the maid.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,!Player.IsRestrained()
+0,10,The maid needed some discipline.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,!Player.IsRestrained()
+0,10,She wanted to get in trouble.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,!Player.IsRestrained()
 0,,(Leave her.),,DialogLeave(),
+10,20,I'm the journalist.,Oh really?  And for which company are you working for?,,
+10,20,I will be doing that interview.,Oh really?  And for which company are you working for?,,
+10,30,I guess I should go then.,Not so fast young lady.  You and the maid must be punished first.,,
+10,30,I'm sorry Miss.,"Sorry or not, you and the maid are getting punished.",,
+20,1000,City News.,"Very good, sorry about that, lets get you back in your clothes.",,!Player.IsRestrained()
+20,1000,City News.,"Very good, sorry about that, lets get you back in your clothes.  (She releases you from your restraints.)","DoActivity(""InterviewMistressReleasePlayer"")",Player.IsRestrained()
+20,30,The Daily Planet.,Very funny young lady.  You and the maid will be punished for that.,,
+20,30,The Daily Bugle.,Very funny young lady.  You and the maid will be punished for that.,,
+20,30,I forgot the name.,You're a horrible liar young lady.  You and the maid will be punished for that.,,
+30,40,You can't punish us!,I can and I will.  You two need to learn about strict discipline.,"DialogChangeReputation(""Dominant"", 2)",
+30,40,This isn't fair.,I make the rules here.  You two need to learn about strict discipline.,,
+30,40,(Sigh and bow your head.),Good girl.  You two need to learn about strict discipline.,"DialogChangeReputation(""Dominant"", -2)",
+40,,TO DO,TO DO,,
+40,,TO DO,TO DO,,
+1000,1010,"It's fine, I can do the interview like that.",Well aren't you a kinky journalist?  (She spanks your butt.)  Let's do that interview.,"DoActivity(""InterviewMistressSpankPlayer"")",
+1000,1010,"Yes, I should dress back up.",(You dress back up slowly as the camera follows your moves.)  Let's do that interview.,"DoActivity(""InterviewMistressChangePlayerBack"")",
+1010,1020,What about the maid?,She will get punished after the interview.  (She ponders.)  Unless you want to witness her punishment while we talk.,,
+1010,1020,Is the maid staying for the interview?,"She's not leaving, she will get punished after the interview.  (She ponders.)  Unless you want to witness her punishment while we talk.",,
+1010,1020,(Look at the maid.),"Don't worry about her, she will get punished after the interview.  (She ponders.)  Unless you want to witness her punishment while we talk.",,
+1020,1030,That's an interesting idea.,Grab your camera!  It will be a spicy interview.,,
+1020,1030,Punishment Miss?  Isn't it cruel?,Nonesense.  Grab your camera girl!  It will be a spicy interview.,"DialogChangeReputation(""Dominant"", -2)",
+1020,1030,Great idea!  Can I punish her also?,You can participate.  Grab your camera!  It will be a spicy interview.,"DialogChangeReputation(""Dominant"", 2)",
+1030,1040,(Get your camera to snap pictures.),(The Mistress grabs the maid and puts her into heavy bondage so you can take pictures.),"DoActivity(""InterviewMistressTakePicture"")","!CanDoActivity(""InterviewTakePicture"")"
+1030,1040,(Hold your camera to snap pictures.),(The Mistress grabs the maid and puts her into heavy bondage so you can take pictures.),"DoActivity(""InterviewMistressTakePicture"")","CanDoActivity(""InterviewTakePicture"")"
+1040,,,Do you have enough pictures?,,
+1040,,TO DO,TO DO,,
+1040,,(Look at the maid.),,DialogLeave(),

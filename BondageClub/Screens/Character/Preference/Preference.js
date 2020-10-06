@@ -1,6 +1,7 @@
 "use strict";
 var PreferenceBackground = "Sheet";
 var PreferenceMessage = "";
+var PreferenceSafewordConfirm = false;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
 var PreferenceChatColorThemeSelected = "";
@@ -384,7 +385,7 @@ function PreferenceRun() {
 	DrawCheckbox(500, 472, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
 	DrawCheckbox(500, 552, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
 	DrawCheckbox(500, 632, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
-	DrawCheckbox(500, 712, 64, 64, TextGet("EnableSafeword"), Player.GameplaySettings.EnableSafeword);
+	DrawCheckbox(500, 712, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
 
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
@@ -485,8 +486,23 @@ function PreferenceClick() {
 	if (MouseIn(500, 552, 64, 64)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
 	if (MouseIn(500, 632, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
 	if (MouseIn(500, 712, 64, 64)) {
-		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) Player.GameplaySettings.EnableSafeword = true;
-		else if (Player.GameplaySettings.EnableSafeword) Player.GameplaySettings.EnableSafeword = false;
+		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) { 
+			if (PreferenceSafewordConfirm) {
+				Player.GameplaySettings.EnableSafeword = true;
+				PreferenceSafewordConfirm = false; 
+			} else {
+				PreferenceSafewordConfirm = true; 
+			}
+		} else if (Player.GameplaySettings.EnableSafeword) {
+			if (PreferenceSafewordConfirm) {
+				Player.GameplaySettings.EnableSafeword = false;
+				PreferenceSafewordConfirm = false; 
+			} else {
+				PreferenceSafewordConfirm = true; 
+			}
+		}
+	} else {
+		PreferenceSafewordConfirm = false;
 	}
 }
 
@@ -634,14 +650,15 @@ function PreferenceSubscreenArousalRun() {
 		DrawBackNextButton(900, 633, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorSelf), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true)), "", () => "", () => "");
 		DrawBackNextButton(1605, 633, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorOther), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false)), "", () => "", () => "");
 
+		// Fetish elements
+		DrawBackNextButton(900, 463, 500, 64, TextGet("ArousalFetish" + PreferenceArousalFetishList[PreferenceArousalFetishIndex]), "White", "", () => "", () => "");
+		DrawBackNextButton(1455, 463, 450, 64, TextGet("ArousalFetishLove" + PreferenceArousalFetishFactor), PreferenceGetFactorColor(PreferenceGetFetishFactor(Player, PreferenceArousalFetishList[PreferenceArousalFetishIndex], false)), "", () => "", () => "");
 	}
 
 	// We always draw the active & stutter control
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(750, 193, 450, 64, TextGet("ArousalActive" + PreferenceArousalActiveList[PreferenceArousalActiveIndex]), "White", "", () => "", () => "");
 	DrawBackNextButton(900, 378, 500, 64, TextGet("ArousalStutter" + PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex]), "White", "", () => "", () => "");
-	DrawBackNextButton(900, 463, 500, 64, TextGet("ArousalFetish" + PreferenceArousalFetishList[PreferenceArousalFetishIndex]), "White", "", () => "", () => "");
-	DrawBackNextButton(1455, 463, 450, 64, TextGet("ArousalFetishLove" + PreferenceArousalFetishFactor), PreferenceGetFactorColor(PreferenceGetFetishFactor(Player, PreferenceArousalFetishList[PreferenceArousalFetishIndex], false)), "", () => "", () => "");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
 }

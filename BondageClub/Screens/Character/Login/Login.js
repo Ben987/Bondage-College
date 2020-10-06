@@ -141,7 +141,7 @@ function LoginRun() {
  * @returns {void} Nothing
  */
 function LoginValidCollar() {
- 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) {
+ 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "" || LogQuery("ReleasedCollar", "OwnerRule"))) {
  		InventoryRemove(Player, "ItemNeck");
 		if (CurrentScreen == "ChatRoom") {
 			ChatRoomCharacterItemUpdate(Player, "ItemNeck");

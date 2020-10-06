@@ -166,6 +166,7 @@ function MovieStudioClick() {
 function MovieStudioChange(Cloth) {
 	if (Cloth == "Journalist") {
 		CharacterNaked(Player);
+		InventoryWear(Player, "Camera1", "ClothAccessory", "Default");
 		InventoryWear(Player, "TeacherOutfit1", "Cloth", "Default");
 		InventoryWear(Player, "Glasses1", "Glasses", "#333333");
 		InventoryWear(Player, "Socks5", "Socks", "#444458");
@@ -319,6 +320,10 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(MovieStudioActor1, "X-Cross", "ItemDevices");
 		MovieStudioActor2.FixedImage = "Screens/Room/MovieStudio/Empty.png";
 	}
+	if (Activity == "InterviewMistressUngagPlayer") InventoryRemove(Player, "ItemMouth");
+	if (Activity == "InterviewMistressReleasePlayer") { CharacterRelease(Player); CharacterSetActivePose(Player, null, true); }
+	if (Activity == "InterviewMistressChangePlayerBack") MovieStudioChange("Journalist");
+	if (Activity == "InterviewMistressTakePicture") { InventoryWear(Player, "Camera1", "ClothAccessory", "Default"); CharacterFullRandomRestrain(MovieStudioActor1, "ALL"); MovieStudioActor1.Stage = "310"; }
 
 	// Check for decay
 	MovieStudioProcessDecay();
@@ -331,6 +336,7 @@ function MovieStudioDoActivity(Activity) {
  * @returns {boolean} - Returns TRUE if the activity can be done
  */
 function MovieStudioCanDoActivity(Activity) {
+	if (Activity == "InterviewTakePicture") return InventoryIsWorn(Player, "Camera1", "ClothAccessory");
 	if (Activity == "InterviewOpenFirstDrawer") return (InventoryGet(Player, "Cloth") != null);
 	if (Activity == "InterviewOpenSecondDrawer") return (InventoryGet(Player, "Cloth") == null);
 	if (Activity == "InterviewWearCorset") return !InventoryIsWorn(Player, "LatexCorset1", "Bra");

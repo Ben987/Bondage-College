@@ -191,10 +191,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		}
 
 		// Run any existing asset scripts
-		if (
-			(!C.AccountName.startsWith('Online-') || !(Player.OnlineSettings && Player.OnlineSettings.DisableAnimations))
-			&& (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)
-		) {
+		if (C.RunScripts && C.HasScriptedAssets) {
 			var DynamicAssets = C.Appearance.filter(CA => CA.Asset.DynamicScriptDraw);
 			DynamicAssets.forEach(Item =>
 				window["Assets" + Item.Asset.Group.Name + Item.Asset.Name + "ScriptDraw"]({
