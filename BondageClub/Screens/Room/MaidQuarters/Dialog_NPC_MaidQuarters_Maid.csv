@@ -45,12 +45,13 @@ ClubSlave,,(Leave her.),,DialogLeave(),,
 0,,,It's great to see you sister!  How can I help you?,,IsMaid,
 0,,(Nod yes.),(She removes your gag and smiles.)  Much better sweetie.  How can I help you?,MaidUngagPlayer(),CanUngag(),
 0,,(Nod yes.),(She checks your locks and frowns.)  I cannot help you girl.  Go find your owner.,,CannotUngag(),
+0,,(Nod yes.),(She chuckles) Not so fast girl. We can't help you until your time is up.,,IsMaidsDisabled(),
 0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.","Pleased to meet you too.  I'm DialogCharacterName, I'm responsible to find work for maids.",DialogRemove(),"DialogReputationLess(""Maid"", 9)",
 0,,What's going on in here?,Maids come here to get job assignments.  They can earn some money by working for the club.,,,
 0,,What kind of chores do maid do in the club?,"Cleaning, serving drinks, testing new devices, rescuing helpless people and more.",,,
 0,10,Can I become a maid?,"You could, if you're not afraid of work and you don't mind the uniform.",,"DialogReputationLess(""Maid"", 0)",
-0,100,Do you have work for me?,"Absolutely, these are the chores available for you.  (She shows you a list of maid tasks to complete.)",,"DialogReputationGreater(""Maid"", 1)",!IsMaidsDisabled()
-0,0,Do you have work for me?,"No, you can't work for the maids if you are on the no-help list",,"DialogReputationGreater(""Maid"", 1)",IsMaidsDisabled()
+0,100,Do you have work for me?,"Absolutely, these are the chores available for you.  (She shows you a list of maid tasks to complete.)",,CanDoWorkForMaids()
+0,0,Do you have work for me?,"No, you can't work for the maids if you are on the no-help list",,MaidQuartersCanDoWorkButMaidsDisabled()
 0,40,I'd like to become a full maid in the sorority.,That's awesome!  We would be glad to have you.  You really have the maid calling?,,CanBecomeMaid,
 0,,I'd like to become a full maid in the sorority.,You need to prove yourself first.  Do more work for the sorority and we'll accept you.,,CannotBecomeMaidYet,
 0,90,Who are the leaders in the sorority?,"The leaders are the head maids, they are dominant and experienced maids like you Miss.",,CanBecomeHeadMaid,

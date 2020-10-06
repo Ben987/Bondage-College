@@ -54,11 +54,8 @@ function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlock
  * @returns {boolean} - Returns true, if the player has either a lover or owner item on herself, false otherwise
  */
 function MainHallHasOwnerOrLoverItem() { return MainHallHasLoverLock || MainHallHasOwnerLock }
-/**
- * Checks, if the player has an owner or lover lock on her or maids are disabled
- * @returns {boolean} - Returns true, if the player has either a lover or owner item on herself or maids are disabled, false otherwise
- */
-function MainHallHasOwnerOrLoverItemOrMaidsDisabled() { return MainHallHasLoverLock || MainHallHasOwnerLock || MainHallIsMaidsDisabled()}
+
+
 
 /**
  * Loads the main hall by setting up the NPCs, CSVs and global variables required.

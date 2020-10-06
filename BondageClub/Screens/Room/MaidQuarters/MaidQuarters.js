@@ -21,18 +21,27 @@ var MaidQuartersOnlineDrinkValue = 0;
 var MaidQuartersOnlineDrinkCustomer = [];
 var MaidQuartersOnlineDrinkFromOwner = false;
 
+
 // Returns TRUE if the player has maids disabled
 /**
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
  */
-function MaidQuartersIsMaidsDisabled() { return (LogQuery("MaidsDisabled", "Maid")) }
-// Returns TRUE if the player is owned
+function MaidQuartersIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ) }
+
+// Returns TRUE if the player can work for the maids
 /**
- * Checks if the player is owned or is in a trial
- * @returns {boolean} - Returns true if the player is owned or in a trial
+ * Checks if the player is helpless (maids disabled) or not and also if they have reputation to do work
+ * @returns {boolean} - Returns true if the player has maids enabled and also has rep
  */
-function MaidQuartersPlayerHasOwner() { return (Player.Ownership != null) && (Player.Ownership.Stage != null) }
+function MaidQuartersCanDoWorkForMaids() { return (DialogReputationGreater("Maid", 1) && !MaidQuartersIsMaidsDisabled()) }
+// Returns TRUE if the player can work for the maids
+/**
+ * Checks if the player is helpless (maids disabled) or not and also if they have reputation to do work
+ * @returns {boolean} - Returns true if the player has maids enabled and also has rep
+ */
+function MaidQuartersCanDoWorkButMaidsDisabled() { return (DialogReputationGreater("Maid", 1) && MaidQuartersIsMaidsDisabled()) }
+
 // Returns TRUE if the player is dressed in a maid uniform or can take a specific chore
 /**
  * CHecks for appropriate dressing
@@ -98,7 +107,7 @@ function MaidQuartersOnlineDrinkIsRestrained() { return Player.IsRestrained() ||
  * Checks if the player can get ungagged by the maids
  * @returns {boolean} - Returns true, if the maids can remove the gag, false otherwise
  */
-function MaidQuartersCanUngag() { return (!Player.CanTalk() && !InventoryCharacterHasOwnerOnlyRestraint(Player)) }
+function MaidQuartersCanUngag() { return (!Player.CanTalk() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && !MaidQuartersIsMaidsDisabled()) }
 /**
  * Checks, if the maids are unable to remove the gag (if there is one)
  * @returns {boolean} - Returns true, if the player cannot be ungagged by the maids, false otherwise
