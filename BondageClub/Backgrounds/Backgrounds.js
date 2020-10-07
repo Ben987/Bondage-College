@@ -68,6 +68,8 @@ var BackgroundsList = [
     { Name: "XmasDay", Tag: [BackgroundsTagIndoor, BackgroundsTagSpecial] },
     { Name: "StreetNight", Tag: [BackgroundsTagOutdoor] },
     { Name: "SnowyStreet", Tag: [BackgroundsTagOutdoor, BackgroundsTagSpecial] },
+    { Name: "BoutiqueMain", Tag: [BackgroundsTagIndoor] },
+    { Name: "BoutiqueBack", Tag: [BackgroundsTagIndoor] },
     { Name: "DystopianCity", Tag: [BackgroundsTagOutdoor, BackgroundsTagSciFiFantasy] },
     { Name: "IndoorPool", Tag: [BackgroundsTagIndoor, BackgroundsTagAquatic, BackgroundsTagHouse] },
     { Name: "OutdoorPool", Tag: [BackgroundsTagOutdoor, BackgroundsTagAquatic] },

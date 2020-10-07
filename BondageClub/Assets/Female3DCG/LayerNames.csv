@@ -160,6 +160,10 @@ ItemNeckOrnateCollarGem,Gems
 ItemDevicesBedPillow,Pillow
 ItemDevicesBedMattress,Mattress
 ItemDevicesBedBedFrame,Frame
+ItemDevicesCoffinInside,Velvet
+ItemDevicesCoffinFrame,Frame
+ItemDevicesCoffinOpen,Lid (open)
+ItemDevicesCoffinClosed,Lid (closed)
 ItemAddonCoversOuter,Outer
 ItemAddonCoversInner,Inner
 ItemDevicesCageFrame,Frame
@@ -173,6 +177,8 @@ ItemDevicesChangingTableFrame,Frame
 ItemDevicesChangingTableTable,Tabletop
 ItemDevicesConcealingCloakFront,Cloak
 ItemDevicesConcealingCloakStrap,Straps
+ItemHoodPumpkinHeadFront,Front
+ItemHoodPumpkinHeadBack,Back
 ItemHoodAddonOldGasMaskLensesTube1Lenses,Lenses
 ItemHoodAddonOldGasMaskLensesTube1Tube1,Tube
 ItemHoodAddonOldGasMaskLensesTube2Lenses,Lenses
