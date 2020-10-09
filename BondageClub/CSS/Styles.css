@@ -177,3 +177,9 @@ TextArea {
 .select-items div:hover, .same-as-selected {
   background-color: cyan;
 }
+
+/* Custom fonts */
+@font-face {
+    font-family: 'Calligraffitti';
+    src: url('../Fonts/Calligraffitti/Calligraffitti-Regular.ttf');
+}

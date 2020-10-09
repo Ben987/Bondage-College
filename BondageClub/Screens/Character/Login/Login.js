@@ -317,7 +317,7 @@ function LoginResponse(C) {
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Game = C.Game;
-			Player.Description = C.Description;
+			Player.Description = (C.Description == null) ? "" : C.Description.substr(0, 1000);
 			Player.Creation = C.Creation;
 			Player.Wardrobe = CharacterDecompressWardrobe(C.Wardrobe);
 			WardrobeFixLength();
@@ -386,7 +386,7 @@ function LoginResponse(C) {
 
 			// Fixes a few items
 			var InventoryBeforeFixes = InventoryStringify(Player);
-			InventoryRemove(Player, "ItemMisc");
+			if (InventoryGet(Player, "ItemMisc") && (InventoryGet(Player, "ItemMisc").Asset.Name == "WoodenMaidTray" || InventoryGet(Player, "ItemMisc").Asset.Name == "WoodenMaidTrayFull" || InventoryGet(Player, "ItemMisc").Asset.Name == "WoodenPaddle")) InventoryRemove(Player, "ItemMisc");
 			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth", false);
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 			LoginValidCollar();
