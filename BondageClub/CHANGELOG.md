@@ -12,7 +12,7 @@ This changelog follows the format outlined in [keepachangelog.com](https://keepa
 
 Changelog last updated: 2020-10-09
 
-Last recorded PR: [#1478](https://github.com/Ben987/Bondage-College/pull/1478)
+Last recorded PR: [#1497](https://github.com/Ben987/Bondage-College/pull/1497)
 
 ## [R61]
 
@@ -85,6 +85,7 @@ Last recorded PR: [#1478](https://github.com/Ben987/Bondage-College/pull/1478)
 * Victor Reed - Added several new Halloween-themed items and background ([#1454](https://github.com/Ben987/Bondage-College/pull/1454))
 * Ellie - Added this changelog ([#1473](https://github.com/Ben987/Bondage-College/pull/1473))!
 * Ace, Gnarp - Added a new wooden sign item with customisable text ([#1477](https://github.com/Ben987/Bondage-College/pull/1477))
+* Nina - Added a ruler to the handheld toys ([#1497](https://github.com/Ben987/Bondage-College/pull/1497))
     
 ### [Removed]
 * Rui - Removed the deafness effect from the Pony Hood ([#1377](https://github.com/Ben987/Bondage-College/pull/1377))
