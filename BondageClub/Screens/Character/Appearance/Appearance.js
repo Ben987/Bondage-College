@@ -360,7 +360,7 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 	if (C.Pose != null)
 		for (let A = 0; A < C.Pose.length; A++)
 			for (let P = 0; P < Pose.length; P++)
-				if (Pose[P].Name == C.Pose[A])
+				if (Pose[P].Name === C.Pose[A])
 					if ((Pose[P].Hide != null) && (Pose[P].Hide.indexOf(GroupName) >= 0))
 						return false;
 	return true;
@@ -395,7 +395,7 @@ function CharacterApperanceSetHeightModifier(C) {
 		if (C.Pose != null) 
 			for (let A = 0; A < C.Pose.length; A++)
 				for (let P = 0; P < Pose.length; P++)
-					if (Pose[P].Name == C.Pose[A])
+					if (Pose[P].Name === C.Pose[A])
 						if (Pose[P].OverrideHeight != null) {
 							// Ignore kneel, if player is hogtied. Allows the use of a short chain on hogtied players
 							// Ignore overthehead if kneeling
@@ -924,23 +924,12 @@ function AppearanceClick() {
 					var CurrentItem = InventoryGet(C, C.FocusGroup.Name);
 					
 					if (CurrentItem && (CurrentItem.Asset.Name == Item.Asset.Name)) return;
-					if (InventoryIsPermissionBlocked(Player, Item.Asset.Name, Item.Asset.Group.Name)) {
-						Player.BlockItems = Player.BlockItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name);
-						Player.LimitedItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name });
-					}
-					else if (InventoryIsPermissionLimited(Player, Item.Asset.Name, Item.Asset.Group.Name))
-						Player.LimitedItems = C.LimitedItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name);
-					else
-						Player.BlockItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name });
-					ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
+					InventoryTogglePermission(Item, null);
 					
 				} else {
 					if (Block || Limited) return;
 					if (InventoryAllow(C, Item.Asset.Prerequisite)) {
 						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
-						// Update the inventory with the new worn item
-						DialogInventory = DialogInventory.map(DI => { DI.Worn = false; return DI; });
-						DialogInventory[I].Worn = true;
 					} else {
 						CharacterAppearanceHeaderTextTime = DialogTextDefaultTimer;
 						CharacterAppearanceHeaderText = DialogText;
@@ -1006,26 +995,6 @@ function CharacterAppearanceExit(C) {
  * @returns {void} - Nothing
  */
 function CharacterAppearanceReady(C) {
-
-	// Make sure the character has one item of each default type (not used for now)
-	if (CharacterAppearanceReturnRoom == "DO NOT USE")
-		for (let A = 0; A < AssetGroup.length; A++)
-			if ((AssetGroup[A].IsDefault) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) {
-
-				// Check to find at least one item from the group
-				var Found = false;
-				for (let P = 0; P < C.Appearance.length; P++)
-					if (C.Appearance[P].Asset.Group.Name == AssetGroup[A].Name)
-						Found = true;
-
-				// If we didn't found the group, we warn the user
-				if (!Found) {
-					CharacterAppearanceHeaderText = TextGet("MustPickItem") + " " + AssetGroup[A].Name;
-					return;
-				}
-
-			}
-
 	// Exits wardrobe mode
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceMode = "";

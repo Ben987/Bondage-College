@@ -5,7 +5,6 @@ var SkillModifierMin = -10
 var SkillLevelMaximum = 10;
 var SkillLevelMinimum = 0;
 var SkillBondageRatio = 1;
-var SkillBondageRatio = 1;
 
 /**
  * When the player progresses in a skill. Also validates the values to make sure they are within the proper ranges once changed. (level 0-10, progress 0-100)

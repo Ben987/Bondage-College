@@ -68,6 +68,8 @@ var BackgroundsList = [
     { Name: "XmasDay", Tag: [BackgroundsTagIndoor, BackgroundsTagSpecial] },
     { Name: "StreetNight", Tag: [BackgroundsTagOutdoor] },
     { Name: "SnowyStreet", Tag: [BackgroundsTagOutdoor, BackgroundsTagSpecial] },
+    { Name: "BoutiqueMain", Tag: [BackgroundsTagIndoor] },
+    { Name: "BoutiqueBack", Tag: [BackgroundsTagIndoor] },
     { Name: "DystopianCity", Tag: [BackgroundsTagOutdoor, BackgroundsTagSciFiFantasy] },
     { Name: "IndoorPool", Tag: [BackgroundsTagIndoor, BackgroundsTagAquatic, BackgroundsTagHouse] },
     { Name: "OutdoorPool", Tag: [BackgroundsTagOutdoor, BackgroundsTagAquatic] },
@@ -158,6 +160,11 @@ var BackgroundsList = [
     { Name: "SnowyStreetNight2", Tag: [BackgroundsTagOutdoor] },
     { Name: "SnowyTown1", Tag: [BackgroundsTagOutdoor] },
     { Name: "SnowyTown2", Tag: [BackgroundsTagOutdoor] },
+    { Name: "NightClub", Tag: [BackgroundsTagIndoor] },
+    { Name: "EgyptianExhibit", Tag: [BackgroundsTagIndoor] },
+    { Name: "SciFiOutdoors", Tag: [BackgroundsTagOutdoor, BackgroundsTagSciFiFantasy] },
+    { Name: "Castle", Tag: [BackgroundsTagOutdoor, BackgroundsTagSciFiFantasy] },
+    { Name: "EgyptianTomb", Tag: [BackgroundsTagIndoor] },
 ];
 
 /**

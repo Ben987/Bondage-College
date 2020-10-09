@@ -620,6 +620,10 @@ function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);
 	CharacterLoadCanvas(C);
+	// Label often looped through checks:
+	C.RunScripts = (!C.AccountName.startsWith('Online-') || !(Player.OnlineSettings && Player.OnlineSettings.DisableAnimations)) && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1);
+	C.HasScriptedAssets = !!C.Appearance.find(CA => CA.Asset.DynamicScriptDraw);
+	
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) {
 		ChatRoomRefreshChatSettings(C);
 		ServerPlayerAppearanceSync();
@@ -655,6 +659,10 @@ function CharacterRefresh(C, Push) {
 				DialogInventoryBuild(C, DialogInventoryOffset);
 			}
 			ActivityDialogBuild(C);
+		}
+		if (DialogColor != null) { 
+			if (ItemColorItem == null || InventoryGet(C, ItemColorItem.Asset.Group.Name) == null || InventoryGet(C, ItemColorItem.Asset.Group.Name).Asset.Name != ItemColorItem.Asset.Name)
+				ItemColorExit();
 		}
 	}
 }
@@ -695,7 +703,7 @@ function CharacterIsInUnderwear(C) {
 	for (let A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") &&
 			C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.Underwear &&
-			(C.IsNpc() || !(C.Appearance[A].Asset.Group.BodyCosplay && C.OnlineSharedSettings.BlockBodyCosplay)))
+			(C.IsNpc() || !(C.Appearance[A].Asset.Group.BodyCosplay && C.OnlineSharedSettings && C.OnlineSharedSettings.BlockBodyCosplay)))
 			return false;
 	return true;
 }
@@ -905,7 +913,7 @@ function CharacterSetActivePose(C, NewPose, ForceChange) {
 	}
 	
 	// If we reset to base, we remove the poses
-	if (C.ActivePose.length == 2 && C.ActivePose.includes("BaseUpper") && C.ActivePose.includes("BaseLower")) C.ActivePose = null;
+	if (C.ActivePose.filter(P => P !== "BaseUpper" && P !== "BaseLower").length == 0) C.ActivePose = null;
 	
 	CharacterRefresh(C, false);
 }

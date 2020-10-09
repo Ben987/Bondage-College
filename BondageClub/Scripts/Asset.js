@@ -12,6 +12,7 @@ var Pose = [];
  * @property {string | null} CopyLayerColor - if not null, specifies that this layer should always copy the color of the named layer
  * @property {string} [ColorGroup] - specifies the name of a color group that this layer belongs to. Any layers within the same color group
  * can be colored together via the item color UI
+ * @property {boolean} HideColoring - whether or not this layer can be coloured in the colouring UI
  * @property {string[] | null} AllowTypes - A list of allowed extended item types that this layer permits - the layer will only be drawn if
  * the item type matches one of these types. If null, the layer is considered to permit all extended types.
  * @property {boolean} HasType - whether or not the layer has separate assets per type. If not, the extended type will not be included in
@@ -154,6 +155,7 @@ function AssetAdd(NewAsset) {
 		DynamicAfterDraw: (typeof NewAsset.DynamicAfterDraw === 'boolean') ? NewAsset.DynamicAfterDraw : false,
 		DynamicScriptDraw: (typeof NewAsset.DynamicScriptDraw === 'boolean') ? NewAsset.DynamicScriptDraw : false,
 		HasType: (typeof NewAsset.HasType === 'boolean') ? NewAsset.HasType : true,
+		AllowColorizeAll: typeof NewAsset.AllowColorizeAll === 'boolean' ? NewAsset.AllowColorizeAll : true,
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	AssetAssignColorIndices(A);
@@ -188,6 +190,7 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		AllowColorize: AssetLayerAllowColorize(Layer, AssetDefinition),
 		CopyLayerColor: Layer.CopyLayerColor || null,
 		ColorGroup: Layer.ColorGroup,
+		HideColoring: typeof Layer.HideColoring === "boolean" ? Layer.HideColoring : false,
 		AllowTypes: Array.isArray(Layer.AllowTypes) ? Layer.AllowTypes : null,
 		HasType: typeof Layer.HasType === "boolean" ? Layer.HasType : A.HasType,
 		ParentGroupName: Layer.ParentGroup,

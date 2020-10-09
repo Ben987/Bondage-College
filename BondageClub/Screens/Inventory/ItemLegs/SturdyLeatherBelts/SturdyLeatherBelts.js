@@ -31,8 +31,7 @@ function InventoryItemLegsSturdyLeatherBeltsClick() {
 	ExtendedItemClick(InventoryItemLegsSturdyLeatherBeltsOptions);
 }
 
-function InventoryItemLegsSturdyLeatherBeltsValidate() {
-	var C = CharacterGetCurrent();
+function InventoryItemLegsSturdyLeatherBeltsValidate(C) {
 	var Allowed = true;
 
 	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {

@@ -28,3 +28,5 @@ Wardrobe
 Garde-robe
 Dress manually
 S'habillez manuellement
+Randomize clothes
+Objet aléatoire

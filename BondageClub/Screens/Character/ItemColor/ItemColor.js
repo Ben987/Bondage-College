@@ -181,7 +181,7 @@ function ItemColorDrawDefault(x, y) {
 			} else {
 				const layer = colorGroup.layers[layerPage - 1];
 				currentColors = colors[layer.ColorIndex];
-				groupName = colorGroupName + ": " + ItemColorLayerNames.get(asset.Group.Name + asset.Name + layer.Name);
+				groupName = colorGroupName + ": " + ItemColorLayerNames.get(asset.Group.Name + asset.Name + (layer.Name || ""));
 			}
 			buttonText = ItemColorGetColorButtonText(currentColors);
 			buttonColor = buttonText.startsWith("#") ? buttonText : "#fff";
@@ -455,7 +455,7 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 	ItemColorStateKey = itemKey;
 	const colorableLayers = ItemColorGetColorableLayers(item);
 	const groupMap = colorableLayers.reduce((groupLookup, layer) => {
-		const groupKey = layer.ColorGroup || layer.Name;
+		const groupKey = layer.ColorGroup || layer.Name || "";
 		(groupLookup[groupKey] || (groupLookup[groupKey] = [])).push(layer);
 		return groupLookup;
 	}, {});
@@ -470,7 +470,10 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 			};
 		})
 		.sort((g1, g2) => g1.colorIndex = g2.colorIndex);
-	colorGroups.unshift({ name: null, layers: [], colorIndex: -1 });
+
+	if (item.Asset.AllowColorizeAll) {
+		colorGroups.unshift({ name: null, layers: [], colorIndex: -1 });
+	}
 
 	let colors;
 	if (Array.isArray(item.Color)) {
@@ -532,7 +535,7 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
  * @returns {Layer[]} - The colourable layers
  */
 function ItemColorGetColorableLayers(item) {
-	return item.Asset.Layer.filter(layer => !layer.CopyLayerColor && layer.AllowColorize);
+	return item.Asset.Layer.filter(layer => !layer.CopyLayerColor && layer.AllowColorize && !layer.HideColoring);
 }
 
 /**
