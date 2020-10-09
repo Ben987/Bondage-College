@@ -8,6 +8,8 @@ ClothCorsetShirtShirt,Shirt
 ClothCorsetShirtCorset,Corset
 ClothAccessoryBouquetBase,Holder
 ClothAccessoryBouquetFlowers,Flowers
+ClothAccessoryCapeFront,Front
+ClothAccessoryCapeBack,Back
 NecklaceNecklaceLockChain,Chain
 NecklaceNecklaceLockLock,Lock
 NecklaceNecklaceKeyChain,Chain
@@ -158,6 +160,10 @@ ItemNeckOrnateCollarGem,Gems
 ItemDevicesBedPillow,Pillow
 ItemDevicesBedMattress,Mattress
 ItemDevicesBedBedFrame,Frame
+ItemDevicesCoffinInside,Velvet
+ItemDevicesCoffinFrame,Frame
+ItemDevicesCoffinOpen,Lid (open)
+ItemDevicesCoffinClosed,Lid (closed)
 ItemAddonCoversOuter,Outer
 ItemAddonCoversInner,Inner
 ItemDevicesCageFrame,Frame
@@ -171,6 +177,8 @@ ItemDevicesChangingTableFrame,Frame
 ItemDevicesChangingTableTable,Tabletop
 ItemDevicesConcealingCloakFront,Cloak
 ItemDevicesConcealingCloakStrap,Straps
+ItemHoodPumpkinHeadFront,Front
+ItemHoodPumpkinHeadBack,Back
 ItemHoodAddonOldGasMaskLensesTube1Lenses,Lenses
 ItemHoodAddonOldGasMaskLensesTube1Tube1,Tube
 ItemHoodAddonOldGasMaskLensesTube2Lenses,Lenses
@@ -329,3 +337,6 @@ MaskKittyMask3Mask,Mask
 ItemBreastFuturisticBraBra,Body
 ItemBreastFuturisticBraDisplay,Display
 ItemBreastFuturisticBraMesh,Mesh
+ItemPelvisFuturisticChastityBeltScreen,Screen
+ItemPelvisFuturisticChastityBeltMesh,Mesh
+ItemPelvisFuturisticChastityBeltBelt,Belt

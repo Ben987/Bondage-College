@@ -48,6 +48,8 @@ Cloth,ReverseBunnySuit,Reverse Bunny Suit Top
 Cloth,LeatherCropTop, Leather Crop Top
 Cloth,CorsetShirt,Corset Shirt
 Cloth,LeatherBolero,Leather Bolero
+Cloth,BondageBustier1,Bondage Bustier 1
+Cloth,BondageBustier2,Bondage Bustier 2
 ClothAccessory,,Cloth Accessory
 ClothAccessory,StudentOutfit3Scarf,Student Scarf
 ClothAccessory,StudentOutfit3Bow1,Student Bow 1
@@ -57,6 +59,7 @@ ClothAccessory,Bouquet,Bouquet of flowers
 ClothAccessory,FrillyApron,Frilly Apron
 ClothAccessory,BunnyCollarCuffs,Bunny Girl Accessories
 ClothAccessory,Camera1,Camera
+ClothAccessory,Cape,Cape
 Necklace,,Necklace
 Necklace,Necklace1,Fancy Necklace
 Necklace,Necklace2,Beaded Necklace
@@ -163,7 +166,7 @@ Panties,Diapers2,Plastic Covered Diaper
 Panties,Diapers3,Satin Covered Diaper
 Panties,Panties16,Frill Panties
 Panties,MaidPanties1,Maid Panties
-Panties,LatexPanties1,Latex Panties
+Panties,LatexPanties1,Crotchless Latex Panties
 Panties,WrapPanties1,Wrap Panties
 Panties,CrotchPanties1,Crotchless Briefs
 Panties,StringPanties1,G-String Panties
@@ -178,6 +181,7 @@ Panties,SexyBeachPanties1,Sexy Beach Panties
 Panties,ChinesePanties1,Chinese Panties
 Panties,LeatherStrapPanties1,Leather Strap Panties
 Panties,CowPrintedPanties,Cow Printed Panties
+Panties,LatexPanties2,Latex Panties
 Socks,,Socks
 Socks,Socks0,Ankle
 Socks,Socks1,Short
@@ -612,6 +616,7 @@ ItemPelvis,SleekLeatherChastityBelt,Sleek Leather Chastity Belt
 ItemPelvis,StuddedChastityBelt,Studded Chastity Belt
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
+ItemPelvis,FuturisticChastityBelt,Futuristic Chastity Belt
 ItemPelvis,OrnateChastityBelt,Ornate Chastity Belt
 ItemPelvis,SteelChastityPanties,Steel Chastity Panties
 ItemPelvis,HarnessPanties1,Bondage Harness
@@ -965,6 +970,7 @@ ItemMouth3,ShoeGag,Shoe Gag
 ItemHead,,Eyes
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
+ItemHead,InteractiveVisor,Interactive Visor
 ItemHead,LeatherSlimMask,Slim Leather Mask
 ItemHead,LeatherSlimMaskOpenMouth,Open Mouth Slim Mask
 ItemHead,LeatherSlimMaskOpenEyes,Open Eyes Mouth Slim Mask
@@ -993,6 +999,7 @@ ItemHood,LeatherHoodSealed,Sealed Leather Hood
 ItemHood,PolishedSteelHood,Polished Steel Hood
 ItemHood,InflatedBallHood,Inflatable Hood
 ItemHood,OldGasMask,Gas Mask
+ItemHood,PumpkinHead,Pumpkin Head
 ItemHood,SackHood,Sack Hood
 ItemHood,LeatherHoodSensDep,Sensory Deprivation Hood
 ItemHood,LatexHoodOpenHair,Open Hair Latex Hood
@@ -1043,6 +1050,9 @@ ItemDevices,BurlapSack,Burlap Sack
 ItemDevices,InflatableBodyBag,Inflatable Body Bag
 ItemDevices,BondageBench,Bondage Bench
 ItemDevices,TeddyBear,Teddy Bear Set
+ItemDevices,LittleMonster,Halloween Monster Set
+ItemDevices,Familiar,Halloween Familiar Set
+ItemDevices,Coffin,Vampire Coffin
 ItemDevices,OneBarPrison,One Bar Prison
 ItemDevices,TheDisplayFrame,Display Frame
 ItemDevices,Sybian,Sybian
