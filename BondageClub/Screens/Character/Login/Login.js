@@ -25,6 +25,7 @@ function LoginDoNextThankYou() {
 	LoginThankYou = CommonRandomItemFromList(LoginThankYou, LoginThankYouList);
 	CharacterRelease(Player, false);
 	CharacterAppearanceFullRandom(Player);
+	if (InventoryGet(Player, "ItemNeck") != null) InventoryRemove(Player, "ItemNeck", false);
 	CharacterFullRandomRestrain(Player);
 	LoginThankYouNext = CommonTime() + 4000;
 }
