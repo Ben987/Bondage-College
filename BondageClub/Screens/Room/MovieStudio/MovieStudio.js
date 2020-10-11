@@ -231,9 +231,11 @@ function MovieStudioProgress(Movie, Scene, Role) {
 		MovieStudioActor1 = CharacterLoadNPC("NPC_MovieStudio_Interview_Drawer");
 		MovieStudioActor1.FixedImage = "Screens/Room/MovieStudio/Drawer.png";
 		MovieStudioActor1.Stage = "0";
+		MovieStudioActor1.AllowItem = false;
 		MovieStudioActor2 = CharacterLoadNPC("NPC_MovieStudio_Interview_XCross");
 		MovieStudioActor2.FixedImage = "Screens/Room/MovieStudio/XCross.png";
 		MovieStudioActor2.Stage = "0";
+		MovieStudioActor2.AllowItem = false;
 	}
 	if (CurrentCharacter != null) DialogLeave();
 }
