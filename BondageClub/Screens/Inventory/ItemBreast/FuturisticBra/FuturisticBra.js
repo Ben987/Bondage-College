@@ -12,7 +12,6 @@ function InventoryItemBreastFuturisticBraDraw() {
 		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 		DrawText(DialogFind(Player, "VibeIntensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 450, "White", "Gray");
 
-
 		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 		
 		DrawButton(1175, 480, 200, 55, DialogFind(Player, "VibeOff"), (DialogFocusItem.Property.Intensity == -1) ? "#888888" : "White");
