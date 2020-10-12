@@ -16,7 +16,7 @@ InterviewMistressIntro0,"(A Club Mistress enters the room, her heels clicking on
 InterviewMistressIntro1,(A Club Mistress enters the room.  She stares at you two and crosses her arms.)  What are you two doing?
 InterviewMistressIntro2,(A Club Mistress enters the rooms.  She looks at you two and grins.)  What is happening here?
 InterviewMistressIntro3,(A Club Mistress enters the rooms.  Her eyes wander around and she seems to ponder.)  This is interesting.
-InterviewDirectorSuccess0,Cut!  The End!  Fin!  We have a film!  Congratulations!
-InterviewDirectorSuccess1,"Cut!  This is it girls, we made it!  Congratulations!"
-InterviewDirectorSuccess2,Cut!  Wonderful!  You will all become stars.  Congratulations!
-InterviewDirectorSuccess3,"Cut!  Filming is done, it's time to edit it.  Congratulations!"
+InterviewDirectorSuccess0,(The director stops the movie and cheers.)  Cut!  The End!  Fin!  We have a film!  Congratulations!
+InterviewDirectorSuccess1,"(The director stops the movie and cheers.)  Cut!  This is it girls, we made it!  Congratulations!"
+InterviewDirectorSuccess2,(The director stops the movie and cheers.)  Cut!  Wonderful!  You will all become stars.  Congratulations!
+InterviewDirectorSuccess3,"(The director stops the movie and cheers.)  Cut!  Filming is done, it's time to edit it.  Congratulations!"

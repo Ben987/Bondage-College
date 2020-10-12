@@ -244,6 +244,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryRemove(C, "HairAccessory1");
 		InventoryRemove(C, "HairAccessory2");
 		InventoryRemove(C, "HairAccessory3");
+		InventoryRemove(C, "Socks");
 	}
 
 }
@@ -689,7 +690,7 @@ function CharacterIsNaked(C) {
 	for (let A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") &&
 			C.Appearance[A].Asset.Group.AllowNone &&
-			(C.IsNpc() || !(C.Appearance[A].Asset.Group.BodyCosplay && C.OnlineSharedSettings.BlockBodyCosplay)))
+			(C.IsNpc() || !(C.Appearance[A].Asset.Group.BodyCosplay && C.OnlineSharedSettings && C.OnlineSharedSettings.BlockBodyCosplay)))
 			return false;
 	return true;
 }

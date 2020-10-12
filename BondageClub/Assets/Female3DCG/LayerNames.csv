@@ -157,6 +157,13 @@ ItemNeckHighCollarLeather,Leather
 ItemNeckHighCollarRings,Rings
 ItemNeckOrnateCollarCollar,Collar
 ItemNeckOrnateCollarGem,Gems
+ItemNeckAccessoriesCustomCollarTagTag,Tag
+ItemNeckAccessoriesCustomCollarTagText,Text
+ItemMiscWoodenSignSign,Sign
+ItemMiscWoodenSignRope,Rope
+ItemMiscWoodenSignText,Text
+ItemMiscWoodenSignRope,Rope
+ItemMiscWoodenSignText,Text
 ItemDevicesBedPillow,Pillow
 ItemDevicesBedMattress,Mattress
 ItemDevicesBedBedFrame,Frame
@@ -334,3 +341,9 @@ MaskFoxMaskUpper,Upper
 MaskFoxMaskLower,Lower
 MaskKittyMask3Highlights,Highlights
 MaskKittyMask3Mask,Mask
+ItemBreastFuturisticBraBra,Body
+ItemBreastFuturisticBraDisplay,Display
+ItemBreastFuturisticBraMesh,Mesh
+ItemPelvisFuturisticChastityBeltScreen,Screen
+ItemPelvisFuturisticChastityBeltMesh,Mesh
+ItemPelvisFuturisticChastityBeltBelt,Belt

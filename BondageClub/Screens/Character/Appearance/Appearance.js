@@ -551,6 +551,9 @@ function AppearanceRun() {
 
 	// In item coloring mode
 	if (CharacterAppearanceMode == "Color") {
+		// Leave the color picker if the item is gone.
+		if (!InventoryGet(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName)) ItemColorExit();
+		// Draw the color picker
 	    ItemColorDraw(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName, 1300, 25, 675, 950);
 	}
 

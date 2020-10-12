@@ -1,13 +1,16 @@
 PlayerGagged,,,That gag looks great on you.  It sounds good also.  (She laughs.),,
 0,,,"(A maid is cleaning the room, she turns to look at you.)  You look adorable on that cross.",,Player.IsRestrained()
 0,,,"(A maid is cleaning the room, she turns to look at you.)  I hope I'm not bothering you.",,!Player.IsRestrained()
-0,,Who are you?,"I'm DialogCharacterName the maid, I'm here to clean this room.",DialogRemove(),Player.IsRestrained()
+0,,Who are you?,"I'm DialogCharacterName the maid, I'm here to clean this room.","ChangeParameter(""Actor1"", ""Friendship"", ""1"")","CanDoActivity(""InterviewMaidFriendship0"")"
 0,100,Can you help me?,(She smiles.)  So you're stuck on the Saint Andrew's Cross?  Who strapped you on it?,,Player.IsRestrained()
 0,100,What is that cross?,(She giggles.)  This is called a Saint Andrew's Cross or X Cross.  Who strapped you on it?,,Player.IsRestrained()
 0,100,(Struggle on the cross.),(She laughs at you.)  That Saint Andrew's Cross don't want to let you go?  Who strapped you on it?,,Player.IsRestrained()
-0,10,Who are you?,"I'm DialogCharacterName the maid, I'm here to clean this room before the Mistress comes.",,!Player.IsRestrained()
-0,10,What are you doing here?,I'm here to clean this room before the Mistress comes.,,!Player.IsRestrained()
+0,10,What are you doing here?,I need to clean this room and bring fresh drinks before the Mistress comes.,,!Player.IsRestrained()
 0,10,Is the Mistress coming?,"Yes, I'm here to clean this room before she comes.",,!Player.IsRestrained()
+0,,Please tell me about your work.,"My job is to keep six play rooms clean, including this one.  It can get messy in the dungeons.  (She winks at you.)","ChangeParameter(""Actor1"", ""Friendship"", ""2"")","CanDoActivity(""InterviewMaidFriendship1"")"
+0,,You're doing a great job.,(She smiles.)  That's very nice of you.  I've worked very hard today so I appreciate it.,"ChangeParameter(""Actor1"", ""Friendship"", ""3"")","CanDoActivity(""InterviewMaidFriendship2"")"
+0,,"The pleasure is mine, my friend.",(She nods happily.)  You look so cute on that cross my friend.  Maybe I could take a break to play with you.,"ChangeParameter(""Actor1"", ""Friendship"", ""4"")","CanDoActivity(""InterviewMaidFriendshipRestrained3"")"
+0,,"The pleasure is mine, my friend.","(She nods happily.)  Too bad I'm working, we could explore the club together my friend.","ChangeParameter(""Actor1"", ""Friendship"", ""4"")","CanDoActivity(""InterviewMaidFriendshipUnrestrained3"")"
 0,,(Leave her.),,DialogLeave(),
 10,20,What is this room?,Isn't it obvious?  You're in one the dungeon play room.  Mistress reserved it for an event.,,
 10,20,Where are we?,Isn't it obvious?  You're in one the dungeon play room.  Mistress reserved it for an event.,,
@@ -122,3 +125,38 @@ PlayerGagged,,,That gag looks great on you.  It sounds good also.  (She laughs.)
 330,,,(The maid looks at you and giggles.),,
 330,,(Cuddle with her.),"(You clumsily rub on each other, sharing a kinky bondage cuddle.)","DoActivity(""InterviewMaidRestainedCuddle"")",
 330,,(Leave her.),,DialogLeave(),
+400,,,(The maid seems to be in pain from the spanking.)  What did we do to deserve that?,,
+400,401,(Spank her some more.),(The Mistress laughs and let you spank her a few times before splitting you two.)  That's enough.,"DoActivity(""InterviewMaidRestainedSpank"")",
+400,401,(Give her a hug.),(You give her a long naked hug.  The Mistress splits you two after a while.)  That's enough.,"DoActivity(""InterviewMaidRestainedHug"")",
+400,402,(Whisper something in her ear.),(You get close to her so you can whisper privately.),,
+400,,(Leave her.),,DialogLeave(),
+401,,,(The maid seems to be in pain from the spanking.)  I don't think we should talk.,,
+401,,(Leave her.),,DialogLeave(),
+402,403,What's going on here?,We're going to be punished by Mistress.  Do you think we deserve it?,,
+402,403,Is she really going to punish us?,I think she will.  Do you think we deserve it?,,
+403,401,We do deserve it.,"Maybe you're right, I hope it won't hurt too much.  Let's stop whispering, she's looking at us.",,
+403,401,We don't deserve it.,"Maybe you're right, BDSM isn't fair.  Let's stop whispering, she's looking at us.",,
+403,404,We should turn the tables.,(She giggles.)  You think we could do it my friend?  We might get in trouble.  What's your plan?,,"CanDoActivity(""InterviewMaidFriendship4"")"
+403,401,We should turn the tables.,"(She giggles.)  Don't be ridiculous, we'll get in trouble.  Let's stop whispering, she's looking at us.",,"!CanDoActivity(""InterviewMaidFriendship4"")"
+404,401,I run while you keep her busy.,"That's your plan?  Forget it!  Let's stop whispering, she's looking at us.",,
+404,405,I push her on the cross while you put her in cuffs.,That could work.  We will get in trouble for sure but it might be worth it.  We really do it my friend?,,
+404,401,I don't have a plan.,"That won't work then.  Let's stop whispering, she's looking at us.",,
+405,500,Let's do it!  (Try to push the Mistress on the cross.),,"DoActivity(""InterviewMistressOnCross"")",
+405,401,I'm too nervous.,"We should forget it then.  Let's stop whispering, she's looking at us.",,
+410,,,(The maid sighs in her gag and looks at you.),,
+410,411,(Spank her.),(The Mistress laughs and let you spank her a few times before splitting you two.)  That's enough.,"DoActivity(""InterviewMaidRestainedSpank"")",
+410,411,(Give her a hug.),(You give her a long naked hug.  The Mistress splits you two after a while.)  That's enough.,"DoActivity(""InterviewMaidRestainedHug"")",
+410,,(Leave her.),,DialogLeave(),
+411,,,(The maid stares at the Mistress and doesn't focus on you.),,
+411,,(Leave her.),,DialogLeave(),
+500,,,This is great!  We did it DialogPlayerName!  What should we do with the Mistress?,,
+500,,We are so devious.,We make the best duo my friend.  But what should we do with her?,DialogRemove(),
+500,501,We could torture her.,"This is devious, I love it.  What's your favorite torture weapon?",,
+500,,(Kiss her.),(You slowly French kiss each other in front of the raging Mistress.),"DoActivity(""InterviewMaidTurnTablesKiss"")",
+500,,(Leave her.),,DialogLeave(),
+501,,,What's your favorite torture weapon?,,
+501,,No need for any weapon.,(She nods as you both let go of your torture weapons.),"DoActivity(""InterviewMaidNoWeapon"")","CanDoActivity(""InterviewMaidNoWeapon"")"
+501,,The crop.,(She nods and gets two leather crops.  She then turns around to the Mistress with a smile.),"DoActivity(""InterviewMaidGetCrop"")","CanDoActivity(""InterviewMaidGetCrop"")"
+501,,The whip.,(She nods and gets two whips.  She then turns around to the Mistress with a grin.),"DoActivity(""InterviewMaidGetWhip"")","CanDoActivity(""InterviewMaidGetWhip"")"
+501,,The cattle prod.,(She nods and gets two cattle prods.  She then turns around to the Mistress with a wicked smile.),"DoActivity(""InterviewMaidGetProd"")","CanDoActivity(""InterviewMaidGetProd"")"
+501,,(Leave her.),,DialogLeave(),

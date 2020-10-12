@@ -212,6 +212,10 @@ function CommonDrawAppearanceBuild(C, {
 							L = OverridenData[key];
 							break;
 						}
+						case "AlphaMasks": { 
+							AlphaMasks = OverridenData[key];
+							break;
+						}
 					}
 				}
 			}
@@ -220,7 +224,7 @@ function CommonDrawAppearanceBuild(C, {
 		if (Color === "Default" && A.DefaultColor) {
 			Color = Array.isArray(A.DefaultColor) ? A.DefaultColor[Layer.ColorIndex] : A.DefaultColor;
 		}
-
+		
 		// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 		if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
 			drawImageColorize(
@@ -257,7 +261,7 @@ function CommonDrawAppearanceBuild(C, {
 		// Watch out for object references.
 		if (A.DynamicAfterDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
 			const DrawingData = {
-				C, X, Y, CA, Property, A, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
+				C, X, Y, CA, Property, Color, A, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
 			};
 			window["Assets" + A.Group.Name + A.Name + "AfterDraw"](DrawingData);
 		}

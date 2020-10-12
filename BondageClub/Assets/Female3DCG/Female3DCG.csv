@@ -616,6 +616,7 @@ ItemPelvis,SleekLeatherChastityBelt,Sleek Leather Chastity Belt
 ItemPelvis,StuddedChastityBelt,Studded Chastity Belt
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
+ItemPelvis,FuturisticChastityBelt,Futuristic Chastity Belt
 ItemPelvis,OrnateChastityBelt,Ornate Chastity Belt
 ItemPelvis,SteelChastityPanties,Steel Chastity Panties
 ItemPelvis,HarnessPanties1,Bondage Harness
@@ -676,6 +677,7 @@ ItemNipplesPiercings,BellPiercing,Nipple Bell Piercings
 ItemBreast,,Breasts
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,PolishedChastityBra,Polished Chastity Bra
+ItemBreast,FuturisticBra,Futuristic Chastity Bra
 ItemBreast,OrnateChastityBra,Ornate Chastity Bra
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip
@@ -767,6 +769,7 @@ ItemHands,SpankingToysElectricToothbrush,Electric Toothbrush
 ItemHands,SpankingToysToothbrush,Toothbrush
 ItemHands,SpankingToysShockWand,Shock Wand
 ItemHands,SpankingToysLotion,Lotion
+ItemHands,SpankingToysRuler,Ruler
 ItemHands,HoofMittens, Hoof Mittens
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
@@ -968,6 +971,7 @@ ItemMouth3,ShoeGag,Shoe Gag
 ItemHead,,Eyes
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
+ItemHead,InteractiveVisor,Interactive Visor
 ItemHead,LeatherSlimMask,Slim Leather Mask
 ItemHead,LeatherSlimMaskOpenMouth,Open Mouth Slim Mask
 ItemHead,LeatherSlimMaskOpenEyes,Open Eyes Mouth Slim Mask
@@ -1035,6 +1039,7 @@ ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
+ItemMisc,WoodenSign,Wooden Sign
 ItemDevices,,Body
 ItemDevices,WoodenBox,Wooden Box
 ItemDevices,SmallWoodenBox,Small Wooden Box
