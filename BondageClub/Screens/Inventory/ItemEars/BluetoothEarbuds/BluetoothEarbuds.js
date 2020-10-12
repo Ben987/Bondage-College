@@ -26,16 +26,21 @@ function InventoryItemEarsBluetoothEarbudsClick() {
 
 /**
  * Forwards the call to InventoryItemEarsHeadphoneEarPlugsPublishAction 
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @param {Option} PreviousOption - The previously selected Option
  * @returns {void} - Nothing
  */
-function InventoryItemEarsBluetoothEarbudsPublishAction() {
-	InventoryItemEarsHeadphoneEarPlugsPublishAction();
+function InventoryItemEarsBluetoothEarbudsPublishAction(C, Option, PreviousOption) {
+	InventoryItemEarsHeadphoneEarPlugsPublishAction(C, Option, PreviousOption);
 }
 
 /**
  * Forwards the call to 	InventoryItemEarsHeadphoneEarPlugsNpcDialog 
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
  * @returns {void} - Nothing
  */
-function InventoryItemEarsBluetoothEarbudsNpcDialog() {
-	InventoryItemEarsHeadphoneEarPlugsNpcDialog();
+function InventoryItemEarsBluetoothEarbudsNpcDialog(C, Option) {
+	InventoryItemEarsHeadphoneEarPlugsNpcDialog(C, Option);
 }
