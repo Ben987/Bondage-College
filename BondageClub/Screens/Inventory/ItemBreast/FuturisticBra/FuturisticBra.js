@@ -33,7 +33,7 @@ function InventoryItemBreastFuturisticBraDraw() {
 
 	}
 	else {
-		DrawButton(1200, 200, 600, 600, "ACCESS DENIED", "#ff0000");
+		DrawButton(1200, 200, 600, 600, DialogFind(Player, "AccessDenied"), "#ff0000");
 	}		
 }
 

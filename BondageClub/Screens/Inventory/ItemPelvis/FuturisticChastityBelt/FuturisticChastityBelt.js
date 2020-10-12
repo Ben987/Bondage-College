@@ -39,7 +39,7 @@ function InventoryItemPelvisFuturisticChastityBeltDraw() {
         DrawButton(1200, 480, 250, 65, DialogFind(Player, "ChastityOpenBack"), (DialogFocusItem.Property.Type == null) ? "#888888" : "White");
     }
     else {
-        DrawButton(1200, 200, 600, 600, "ACCESS DENIED", "#ff0000");
+        DrawButton(1200, 200, 600, 600, DialogFind(Player, "AccessDenied"), "#ff0000");
     }
 }
 
