@@ -333,12 +333,12 @@ function ActivityOrgasmGameGenerate(Progress) {
  * @returns {void} - Nothing
  */
 function ActivityOrgasmPrepare(C) {
-	if (C.IsEdged()) {
+	if (C.IsEdged() || C.Effect.includes("OrgasmLock")) {
 		C.ArousalSettings.Progress = 95;
 		return;
 	}
 
-	if ((C.ID == 0) || C.IsNpc()) {
+	if (((C.ID == 0) || C.IsNpc()) && !C.Effect.includes("OrgasmLock")) {
 
 		// Starts the timer and exits from dialog if necessary
 		C.ArousalSettings.OrgasmTimer = (C.ID == 0) ? CurrentTime + 5000 : CurrentTime + (Math.random() * 10000) + 5000;
