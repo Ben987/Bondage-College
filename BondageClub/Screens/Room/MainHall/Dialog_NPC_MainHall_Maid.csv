@@ -35,7 +35,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,40,(Nod yes.),(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.,,HasOwnerLockk&&!IsMaidsDisabled
 0,100,(Nod yes.),"(She shakes her head) Hang in there. You have less than 10 minutes to go.",,MaidsDisabledMinutesLeft()
 0,100,(Nod yes.),"(She shakes her head) You have about an hour left.",,MaidsDisabledHourLeft()
-0,100,(Nod yes.),"(She shakes her head) You have a whole day of struggling ahead of you.",,MaidsDisabledDaysLeft1()
+0,100,(Nod yes.),"(She shakes her head) You have a day of struggling ahead of you.",,MaidsDisabledDaysLeft1()
 0,100,(Nod yes.),"(She laughs) You have 2 days to go. Hang tight.",,MaidsDisabledDaysLeft2()
 0,100,(Nod yes.),"(She caresses your face). You have 3 days to go. Hope you're having fun.",,MaidsDisabledDaysLeft3()
 0,100,(Nod yes.),"(She giggles). Having fun yet? You have 4 days to go.",,MaidsDisabledDaysLeft4()
@@ -126,11 +126,8 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 100,,(Frown and leave her.),,DialogLeave(),
 103,,(Leave.),,DialogLeave(),
 104,103,(Ask for 10 more minutes),"You will be helpless for ten more minutes, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(10),MaidsDisabledMinutesLeft()
-104,103,(Ask for 1 more hour),"You will be helpless for one more hour, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(60),MaidsDisabledAtLeast1HourLeft()
-104,103,(Ask for the next 12 hours),"You will be helpless for the next 12 hours, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(720),MaidsDisabledAtLeast12HourLeft()
-104,103,(Ask for the next 24 hours),"You will be helpless for the next 24 hours, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(1440),MaidsDisabledAtLeastDaysLeft1()
-104,103,(Ask for 3 more days),"You will be helpless for 3 days, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(4320),MaidsDisabledAtLeastDaysLeft3()
-104,103,(Ask for another week),"You will be helpless for one week, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(10080),MainHallMaidsDisabledAtLeastDaysLeft7()
+104,103,(Ask for 30 more minutes),"You will be helpless for 30 more minutes, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(30),MaidsDisabledAtLeast30MinutesLeft()
+104,103,(Ask for 1 more hour),"You will be helpless for the next hour, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(60),MaidsDisabledAtLeast1HourLeft()
 104,103,(Back out),"(She smiles and slaps your butt) Fair enough. Now go struggle some more.",,MainHallMaidsDisabledAtLeastDaysLeft7()
 1000,1001,"Yes, it's my very first time.","It's fine.  I have a few important questions before I let you in, and I need honest answers.",,
 1000,1001,"No, I've been here before.","Very well.  Before I let you in, we need to review the most important rules.  Will you give me honest answers?",,
