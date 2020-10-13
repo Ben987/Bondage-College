@@ -233,7 +233,7 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.BlindDisableExamine !== "boolean") C.GameplaySettings.BlindDisableExamine = false;
 	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
-	if (typeof C.GameplaySettings.MaidsButton !== "boolean") C.GameplaySettings.MaidsButton = true;
+	if (typeof C.GameplaySettings.MaidButton !== "boolean") C.GameplaySettings.MaidButton = true;
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
