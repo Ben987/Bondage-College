@@ -414,8 +414,21 @@ function ActivityTimerProgress(C, Progress) {
 
 	// Changes the current arousal progress value
 	C.ArousalSettings.Progress = C.ArousalSettings.Progress + Progress;
+	// Decrease the vibratorlevel to 0 if not being aroused, while also updating the change time to reset the vibrator animation
+	if (Progress < 0) {
+		if (C.ArousalSettings.VibratorLevel != 0) {
+			C.ArousalSettings.VibratorLevel = 0
+			C.ArousalSettings.ChangeTime = CommonTime()
+		}
+	}
+	
 	if (C.ArousalSettings.Progress < 0) C.ArousalSettings.Progress = 0;
 	if (C.ArousalSettings.Progress > 100) C.ArousalSettings.Progress = 100;
+	
+	// Update the recent change time, so that on other player's screens the character's arousal meter will vibrate again when vibes start
+	if (C.ArousalSettings.Progress == 0) {
+		C.ArousalSettings.ChangeTime = CommonTime()
+	}
 
 	// Out of orgasm mode, it can affect facial expressions at every 10 steps
 	if ((C.ArousalSettings.OrgasmTimer == null) || (typeof C.ArousalSettings.OrgasmTimer !== "number") || isNaN(C.ArousalSettings.OrgasmTimer) || (C.ArousalSettings.OrgasmTimer < CurrentTime))
@@ -426,6 +439,22 @@ function ActivityTimerProgress(C, Progress) {
 	if (C.ArousalSettings.Progress == 100) ActivityOrgasmPrepare(C);
 
 }
+
+/**
+ * Set the current vibrator level for drawing purposes 
+ * @param {Character} C - Character for which the timer is progressing
+ * @param {number} Level - Level from 0 to 4 (higher = more vibration)
+ * @returns {void} - Nothing
+ */
+function ActivityVibratorLevel(C, Level) {
+	if (C.ArousalSettings != null) {
+		if (Level != C.ArousalSettings.VibratorLevel) {
+			C.ArousalSettings.VibratorLevel = Level
+			C.ArousalSettings.ChangeTime = CommonTime()
+		}
+	}
+}
+
 
 /**
  * Calculates the progress one character does on another right away

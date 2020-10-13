@@ -71,6 +71,11 @@ ArousalActiveNoMeter,Allow without a meter
 ArousalActiveManual,Allow with a manual meter
 ArousalActiveHybrid,Allow with a hybrid meter
 ArousalActiveAutomatic,Allow with a locked meter
+VFX,Arousal meter visuals
+VFXInactive,Bare Meter
+VFXSolid,Solid Glow
+VFXAnimatedTemp,Temporary Animation
+VFXAnimated,Constant Animation
 ArousalVisible,Meter visibility:
 ArousalVisibleAll,Show arousal to everyone
 ArousalVisibleAccess,Show if they have access
