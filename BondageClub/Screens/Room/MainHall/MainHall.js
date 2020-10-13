@@ -11,6 +11,35 @@ var MainHallHasLoverLock = false;
 var MainHallHasSlaveCollar = false;
 var MainHallTip = 0;
 
+var MainHallRemoveLockTypes = [
+	"CombinationPadlock",
+]
+
+/**
+ * Checks to see if the player needs help in any way
+ * @returns {boolean} - True if player has any restraints or locks, False otherwise
+ */
+function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
+	var needsHelp = false
+	
+	for (let E = Player.Appearance.length - 1; E >= 0; E--) {
+		if (!needsHelp) {
+			if (Player.Appearance[E].Asset.IsRestraint) {
+				needsHelp = true
+			}
+			
+			for (let L = 0; L < MainHallRemoveLockTypes.length; L++) {
+				if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == MainHallRemoveLockTypes[L]))) {
+					needsHelp = true
+				}
+			}
+		}
+	}
+	
+	return needsHelp && !MainHallHasOwnerOrLoverItem()
+}
+
+
 /**
  * Checks if the dialog option to trick the maid is available
  * @returns {boolean} - Returns TRUE if the maid can be tricked
@@ -289,7 +318,9 @@ function MainHallMaidReleasePlayer() {
 			if ((MainHallMaid.Dialog[D].Stage == "0") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "AlreadyReleased");
 		CharacterRelease(Player);
-		CharacterReleaseFromLock(Player, "CombinationPadlock");
+		for (let L = 0; L < MainHallRemoveLockTypes.length; L++) {
+			CharacterReleaseFromLock(Player, MainHallRemoveLockTypes[L]);
+		}
 		MainHallMaid.Stage = "10";
 	} else MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "CannotRelease");
 }
