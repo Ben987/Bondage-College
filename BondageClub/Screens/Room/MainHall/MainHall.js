@@ -157,15 +157,15 @@ function MainHallRun() {
 		if ((MainHallStartEventTimer != null) && (MainHallNextEventTimer != null)) {
 			DrawText(TextGet("RescueIsComing"), 1750, 925, "White", "Black");
 			DrawProgressBar(1525, 955, 450, 35, (1 - ((MainHallNextEventTimer - CommonTime()) / (MainHallNextEventTimer - MainHallStartEventTimer))) * 100);
-		} else if (Player.GameplaySettings.MaidButton) {
-			
-			DrawButton(1885, 900, 90, 90, "", "White", "Icons/ServiceBell.png", TextGet("RequestMaid"));
-		} else {
+		} else if (Player.GameplaySettings.AutoMaid) {
 			MainHallStartEventTimer = CommonTime();
 			MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
+		} else {
+			DrawText(TextGet("OnlinePlayers") + " " + CurrentOnlinePlayers.toString(), 1650, 960, "White", "Black");
+			DrawButton(1885, 900, 90, 90, "", "White", "Icons/ServiceBell.png", TextGet("RequestMaid"));
+			
 		}
 	} else {
-		DrawText(TextGet("OnlinePlayers") + " " + CurrentOnlinePlayers.toString(), 1750, 960, "White", "Black");
 		
 		MainHallStartEventTimer = null;
 		MainHallNextEventTimer = null;
