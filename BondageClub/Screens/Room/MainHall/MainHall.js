@@ -142,17 +142,7 @@ function MainHallRun() {
 		DrawButton(25, 265, 90, 90, "", "White", "Icons/Refreshsments.png", TextGet("Cafe"));
 	}
 
-	// Check if there's a new maid rescue event to trigger
-	if (!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()) {
-		if (MainHallNextEventTimer == null) {
-			MainHallStartEventTimer = CommonTime();
-			MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
-		}
-	} else {
-		MainHallStartEventTimer = null;
-		MainHallNextEventTimer = null;
-	}
-	
+
 	// If we must send a maid to rescue the player
 	if ((MainHallNextEventTimer != null) && (CommonTime() >= MainHallNextEventTimer)) {
 		MainHallMaid.Stage = "0";
@@ -162,11 +152,24 @@ function MainHallRun() {
 		MainHallNextEventTimer = null;
 	}
 	
-	// If we must show a progress bar for the rescue maid.  If not, we show the number of online players
-	if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()) && (MainHallStartEventTimer != null) && (MainHallNextEventTimer != null)) {
-		DrawText(TextGet("RescueIsComing"), 1750, 925, "White", "Black");
-		DrawProgressBar(1525, 955, 450, 35, (1 - ((MainHallNextEventTimer - CommonTime()) / (MainHallNextEventTimer - MainHallStartEventTimer))) * 100);
-	} else DrawText(TextGet("OnlinePlayers") + " " + CurrentOnlinePlayers.toString(), 1750, 960, "White", "Black");
+	// If we must show a progress bar for the rescue maid.  If not, we show the number of online players or a button to request the maid
+	if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled())) {
+		if ((MainHallStartEventTimer != null) && (MainHallNextEventTimer != null)) {
+			DrawText(TextGet("RescueIsComing"), 1750, 925, "White", "Black");
+			DrawProgressBar(1525, 955, 450, 35, (1 - ((MainHallNextEventTimer - CommonTime()) / (MainHallNextEventTimer - MainHallStartEventTimer))) * 100);
+		} else if (Player.GameplaySettings.MaidButton) {
+			
+			DrawButton(1885, 900, 90, 90, "", "White", "Icons/ServiceBell.png", TextGet("RequestMaid"));
+		} else {
+			MainHallStartEventTimer = CommonTime();
+			MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
+		}
+	} else {
+		DrawText(TextGet("OnlinePlayers") + " " + CurrentOnlinePlayers.toString(), 1750, 960, "White", "Black");
+		
+		MainHallStartEventTimer = null;
+		MainHallNextEventTimer = null;
+	}
 
 }
 
@@ -264,6 +267,17 @@ function MainHallClick() {
 
 		// Cafe
 		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Cafe");
+	}
+	
+	
+	if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()) && (MainHallStartEventTimer == null) && (MainHallNextEventTimer == null)) {
+		
+		if ((MouseX >=   1885) && (MouseX <  1975) && (MouseY >= 900) && (MouseY < 990)) {
+			if (MainHallNextEventTimer == null) {
+				MainHallStartEventTimer = CommonTime();
+				MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
+			}
+		}
 	}
 
 }

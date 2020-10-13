@@ -45,6 +45,7 @@ AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 SensDepSetting,Sensory deprivation setting
 SensDepNames,Hide names
 SensDepTotal,Total
+MaidButton,Require button click to call maids
 BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height
