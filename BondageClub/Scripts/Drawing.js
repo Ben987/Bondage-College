@@ -148,7 +148,7 @@ function DrawArousalGlow(X, Y, Zoom, Level, Animated, Orgasm) {
 			Rx = -Level/2 + Level * Math.random()
 			Ry = -Level/2 + Level * Math.random()
 		}
-		if (!Animated || (Level > 0 || CommonTime() % 667 > 333))
+		if (!Animated || (Level > 0 || CommonTime() % 1000 > 500))
 			DrawImageZoomCanvas("Screens/Character/Player/ArousalMeter_Glow_" + Math.max(0, Math.min(Math.floor(Level), 4)) + ".png", MainCanvas, 0, 0, 300, 700, X-100*Zoom+Rx, Y-100*Zoom+Ry, 300 * Zoom, 700 * Zoom);
 	}
 }
