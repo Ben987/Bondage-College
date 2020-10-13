@@ -153,22 +153,19 @@ function MainHallRun() {
 	}
 	
 	// If we must show a progress bar for the rescue maid.  If not, we show the number of online players or a button to request the maid
-	if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled())) {
-		if ((MainHallStartEventTimer != null) && (MainHallNextEventTimer != null)) {
-			DrawText(TextGet("RescueIsComing"), 1750, 925, "White", "Black");
-			DrawProgressBar(1525, 955, 450, 35, (1 - ((MainHallNextEventTimer - CommonTime()) / (MainHallNextEventTimer - MainHallStartEventTimer))) * 100);
-		} else if (Player.GameplaySettings.AutoMaid) {
+	if ((MainHallStartEventTimer == null) && (MainHallNextEventTimer == null)) {
+		if ( Player.GameplaySettings.AutoMaid && ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()))) {
 			MainHallStartEventTimer = CommonTime();
 			MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
 		} else {
 			DrawText(TextGet("OnlinePlayers") + " " + CurrentOnlinePlayers.toString(), 1650, 960, "White", "Black");
 			DrawButton(1885, 900, 90, 90, "", "White", "Icons/ServiceBell.png", TextGet("RequestMaid"));
-			
 		}
-	} else {
 		
-		MainHallStartEventTimer = null;
-		MainHallNextEventTimer = null;
+
+	} else {
+		DrawText(TextGet("RescueIsComing"), 1750, 925, "White", "Black");
+		DrawProgressBar(1525, 955, 450, 35, (1 - ((MainHallNextEventTimer - CommonTime()) / (MainHallNextEventTimer - MainHallStartEventTimer))) * 100);
 	}
 
 }
@@ -270,7 +267,7 @@ function MainHallClick() {
 	}
 	
 	
-	if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()) && (MainHallStartEventTimer == null) && (MainHallNextEventTimer == null)) {
+	if ((MainHallStartEventTimer == null) && (MainHallNextEventTimer == null)) {
 		
 		if ((MouseX >=   1885) && (MouseX <  1975) && (MouseY >= 900) && (MouseY < 990)) {
 			if (MainHallNextEventTimer == null) {
