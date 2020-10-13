@@ -261,7 +261,7 @@ ClubSlave,,(Leave her.),,DialogLeave(),,
 607,610,Let me try this for 10 minutes and see how it feels,"You will be helpless for ten minutes, and the maids will not rescue you, nor will our associates in the photography club assist you. Is this what you want?",,,
 607,611,Give me half an hour,"You will be helpless for 30 minutes, and the maids will not rescue you, nor will our associates in the photography club assist you. Is this what you want?",,,
 607,612,I want to be bound for one hour,"You will be helpless for 1 hour, and the maids will not rescue you, nor will our associates in the photography club assist you. Is this what you want?",,,
-607,608,I was looking for something more... permanent.,"(She giggles) Legally we can only keep you so long.",,,
+607,607,I was looking for something more... permanent.,"(She giggles) Legally we can only keep you so long.",,,
 607,0,This seems too much for me. (Go back),"(She nods) Everyone is different. There's no shame in that.",,,
 
 610,607,Let me consider the other options first...,"We can add your name to our no-help list. You can set the amount of time it will be active for up to one week.",,,
