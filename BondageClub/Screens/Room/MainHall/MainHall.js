@@ -16,13 +16,13 @@ var MainHallTip = 0;
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping in the maid quarters
  */
-function MainHallIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 || expire > 604800000)  }
+function MainHallIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0)  }
 
 /**
  * Checks for the dialog options to help the player know how much time is left before the maids can help them
  * @returns {boolean} - Returns TRUE if the remaining duration fits within the time range
  */
-function MainHallMaidsDisabledMinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 600000)}
+function MainHallMaidsDisabledMinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire > 0  && expire < 600000)}
 function MainHallMaidsDisabledHourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 600000 && expire < 3600000) }
 function MainHallMaidsDisabledDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000 && expire < 86400000) }
 function MainHallMaidsDisabledDaysLeft2() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 86400000 && expire < 172800000) }
@@ -55,6 +55,11 @@ function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlock
  * @returns {boolean} - Returns true, if the player has either a lover or owner item on herself, false otherwise
  */
 function MainHallHasOwnerOrLoverItem() { return MainHallHasLoverLock || MainHallHasOwnerLock }
+function MainHallHasOwnerOrLoverItemAndMaidsNotDisabled() { return MainHallHasOwnerOrLoverItem() && !MainHallIsMaidsDisabled() }
+function MainHallHasNoOwnerOrLoverItemAndMaidsNotDisabled() { return !MainHallHasOwnerOrLoverItem() && !MainHallIsMaidsDisabled() }
+function MainHallHasOwnerItemAndMaidsNotDisabled() { return MainHallHasOwnerLock && !MainHallIsMaidsDisabled() }
+function MainHallHasLoverItemAndMaidsNotDisabled() { return MainHallHasLoverLock && !MainHallIsMaidsDisabled() }
+function MainHallHasSlaveCollarAndMaidsNotDisabled() { return MainHallHasSlaveCollar && !MainHallIsMaidsDisabled() }
 
 
 
@@ -181,7 +186,7 @@ function MainHallRun() {
 	if (!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()) {
 		if (MainHallNextEventTimer == null) {
 			MainHallStartEventTimer = CommonTime();
-			MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
+			MainHallNextEventTimer = CommonTime() + 400 + Math.floor(Math.random() * 400);
 		}
 	} else {
 		MainHallStartEventTimer = null;
