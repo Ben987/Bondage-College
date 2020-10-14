@@ -108,11 +108,13 @@ function MaidQuartersOnlineDrinkIsRestrained() { return Player.IsRestrained() ||
  * @returns {boolean} - Returns true, if the maids can remove the gag, false otherwise
  */
 function MaidQuartersCanUngag() { return (!Player.CanTalk() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && !MaidQuartersIsMaidsDisabled()) }
+function MaidQuartersCanUngagAndMaidsDisabled() { return MaidQuartersIsMaidsDisabled() && (!Player.CanTalk()) }
 /**
  * Checks, if the maids are unable to remove the gag (if there is one)
  * @returns {boolean} - Returns true, if the player cannot be ungagged by the maids, false otherwise
  */
 function MaidQuartersCannotUngag() { return (!Player.CanTalk() && InventoryCharacterHasOwnerOnlyRestraint(Player)) }
+function MaidQuartersCannotUngagAndMaidsNotDisabled() { return !MaidQuartersIsMaidsDisabled() && (!Player.CanTalk() && InventoryCharacterHasOwnerOnlyRestraint(Player)) }
 
 /**
  * Loads the maid quarters. This function is called dynamically, as soon, as the player enters the maid quarters
