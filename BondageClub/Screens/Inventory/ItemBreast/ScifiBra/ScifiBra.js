@@ -1,7 +1,7 @@
 "use strict";
-function InventoryItemBreastFuturisticBraLoad() { FuturisticChastityLoad(); }
+function InventoryItemBreastScifiBraLoad() { ScifiChastityLoad(); }
 
-function InventoryItemBreastFuturisticBraDraw() {
+function InventoryItemBreastScifiBraDraw() {
 	
 	if (AccessValidation()) {
 		
@@ -37,7 +37,7 @@ function InventoryItemBreastFuturisticBraDraw() {
 	}		
 }
 
-function InventoryItemBreastFuturisticBraClick() {
+function InventoryItemBreastScifiBraClick() {
 	
 	if (MouseIn(1885, 25, 90, 85)) {
 		DialogFocusItem = null;
@@ -51,26 +51,26 @@ function InventoryItemBreastFuturisticBraClick() {
 		var C = CharacterGetCurrent() || CharacterAppearanceSelection;
 		if (CurrentScreen == "ChatRoom") {
 			DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-			InventoryItemBreastFuturisticBraLoad();
+			InventoryItemBreastScifiBraLoad();
 		}
 		
 		if (MouseIn(1885, 25, 90, 85)) DialogFocusItem = null;
-		if (MouseIn(1175, 480, 200, 55) && (DialogFocusItem.Property.Intensity != -1)) FuturisticChastitySetIntensity(-1 - DialogFocusItem.Property.Intensity);
-		if (MouseIn(1400, 480, 200, 55) && (DialogFocusItem.Property.Intensity != 0)) FuturisticChastitySetIntensity(0 - DialogFocusItem.Property.Intensity);
-		if (MouseIn(1625, 480, 200, 55) && (DialogFocusItem.Property.Intensity != 1)) FuturisticChastitySetIntensity(1 - DialogFocusItem.Property.Intensity);
-		if (MouseIn(1175, 550, 200, 55) && (DialogFocusItem.Property.Intensity != 2)) FuturisticChastitySetIntensity(2 - DialogFocusItem.Property.Intensity);
-		if (MouseIn(1400, 550, 200, 55) && (DialogFocusItem.Property.Intensity != 3)) FuturisticChastitySetIntensity(3 - DialogFocusItem.Property.Intensity);
+		if (MouseIn(1175, 480, 200, 55) && (DialogFocusItem.Property.Intensity != -1)) ScifiChastitySetIntensity(-1 - DialogFocusItem.Property.Intensity);
+		if (MouseIn(1400, 480, 200, 55) && (DialogFocusItem.Property.Intensity != 0)) ScifiChastitySetIntensity(0 - DialogFocusItem.Property.Intensity);
+		if (MouseIn(1625, 480, 200, 55) && (DialogFocusItem.Property.Intensity != 1)) ScifiChastitySetIntensity(1 - DialogFocusItem.Property.Intensity);
+		if (MouseIn(1175, 550, 200, 55) && (DialogFocusItem.Property.Intensity != 2)) ScifiChastitySetIntensity(2 - DialogFocusItem.Property.Intensity);
+		if (MouseIn(1400, 550, 200, 55) && (DialogFocusItem.Property.Intensity != 3)) ScifiChastitySetIntensity(3 - DialogFocusItem.Property.Intensity);
 
-		if (MouseIn(1200, 870, 200, 55) && (!DialogFocusItem.Property.Effect.includes("OrgasmLock"))) FuturisticChastityLockOrgasm(true);
-		if (MouseIn(1550, 870, 200, 55) && (DialogFocusItem.Property.Effect.includes("OrgasmLock"))) FuturisticChastityLockOrgasm(false);
+		if (MouseIn(1200, 870, 200, 55) && (!DialogFocusItem.Property.Effect.includes("OrgasmLock"))) ScifiChastityLockOrgasm(true);
+		if (MouseIn(1550, 870, 200, 55) && (DialogFocusItem.Property.Effect.includes("OrgasmLock"))) ScifiChastityLockOrgasm(false);
 	
 		if (MouseIn(1175, 770, 64, 64) && (CurrentScreen == "ChatRoom")) {
 			DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
 		}
-		if (MouseIn(1175, 700, 200, 55) && (DialogFocusItem.Property.ShockLevel != 0)) FuturisticChastitySetShockLevel(0 - DialogFocusItem.Property.ShockLevel);
-		if (MouseIn(1400, 700, 200, 55) && (DialogFocusItem.Property.ShockLevel != 1)) FuturisticChastitySetShockLevel(1 - DialogFocusItem.Property.ShockLevel);
-		if (MouseIn(1625, 700, 200, 55) && (DialogFocusItem.Property.ShockLevel != 2)) FuturisticChastitySetShockLevel(2 - DialogFocusItem.Property.ShockLevel);
-		if (Player.CanInteract() && MouseIn(1625, 770, 200, 55)) FuturisticChastityShockTrigger();
+		if (MouseIn(1175, 700, 200, 55) && (DialogFocusItem.Property.ShockLevel != 0)) ScifiChastitySetShockLevel(0 - DialogFocusItem.Property.ShockLevel);
+		if (MouseIn(1400, 700, 200, 55) && (DialogFocusItem.Property.ShockLevel != 1)) ScifiChastitySetShockLevel(1 - DialogFocusItem.Property.ShockLevel);
+		if (MouseIn(1625, 700, 200, 55) && (DialogFocusItem.Property.ShockLevel != 2)) ScifiChastitySetShockLevel(2 - DialogFocusItem.Property.ShockLevel);
+		if (Player.CanInteract() && MouseIn(1625, 770, 200, 55)) ScifiChastityShockTrigger();
 	}
 	else {
 		if (MouseIn(1200, 200, 600, 600)) {
