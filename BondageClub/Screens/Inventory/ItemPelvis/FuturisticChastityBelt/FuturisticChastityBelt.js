@@ -83,22 +83,24 @@ function InventoryItemPelvisFuturisticChastityBeltClick() {
 			var Dictionary = [
 				{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 				{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+				{ Tag: "belt", Text: DialogFocusItem.Asset.Description.toLowerCase() },
 			];
-			ChatRoomPublishCustomAction(msg, true, Dictionary);
 			DialogFocusItem.Property.Type = "ClosedBack";
 			DialogFocusItem.Property.Block = ["ItemButt"];
 			ChatRoomCharacterUpdate(C)
+			ChatRoomPublishCustomAction(msg, true, Dictionary);
 		}
 		if (MouseIn(1200, 480, 250, 65) && (DialogFocusItem.Property.Type != null)) {
 			var msg = "ChastityBeltBackShield" + "OpenBack";
 			var Dictionary = [
 				{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 				{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+				{ Tag: "belt", Text: DialogFocusItem.Asset.Description.toLowerCase() },
 			];
-			ChatRoomPublishCustomAction(msg, true, Dictionary);
 			DialogFocusItem.Property.Type = null;
 			DialogFocusItem.Property.Block = null;
 			ChatRoomCharacterUpdate(C)
+			ChatRoomPublishCustomAction(msg, true, Dictionary);
 		}
 	}
 	else {
@@ -108,11 +110,9 @@ function InventoryItemPelvisFuturisticChastityBeltClick() {
 			ExtendedItemPermissionMode = false;
 			return;
 		}
-	}		
+	}
 }
 
-function InventoryItemPelvisFuturisticChastityBeltPublishAction(C, Option) { InventoryItemPelvisMetalChastityBeltPublishAction(C, Option); }
-function InventoryItemPelvisFuturisticChastityBeltValidate(C) {  return InventoryItemPelvisMetalChastityBeltValidate(C); }
 function InventoryItemPelvisFuturisticChastityBeltNpcDialog(C, Option) { InventoryItemPelvisMetalChastityBeltNpcDialog(C, Option); }
 
 function FuturisticChastityLoad() {
@@ -140,7 +140,10 @@ function FuturisticChastityLockOrgasm(OrgasmLock) {
 	CharacterLoadEffect(C);
     if (C.ID == 0) ServerPlayerAppearanceSync();
 
-    ChatRoomPublishCustomAction(DialogFocusItem.Asset.Name + ((OrgasmLock == true) ? "OrgasmLockOn" : "OrgasmLockOff"), true, [{Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber}]);
+	var Dictionary = [];
+	Dictionary.push({Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});
+    ChatRoomPublishCustomAction("Futuristic" + ((OrgasmLock == true) ? "OrgasmLockOn" : "OrgasmLockOff"), true, Dictionary);
 }
 
 function FuturisticChastitySetIntensity(Modifier) {
@@ -162,7 +165,10 @@ function FuturisticChastitySetIntensity(Modifier) {
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 	
-	ChatRoomPublishCustomAction(DialogFocusItem.Asset.Name + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity, true, [{Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber}]);
+	var Dictionary = [];
+	Dictionary.push({Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});
+	ChatRoomPublishCustomAction("Futuristic" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity, true, Dictionary);
 }
 
 function FuturisticChastitySetShockLevel(Modifier) {
@@ -177,10 +183,9 @@ function FuturisticChastitySetShockLevel(Modifier) {
 	DialogFocusItem.Property.ShockLevel = DialogFocusItem.Property.ShockLevel + Modifier;
 	if (DialogFocusItem.Property.ShowText && CurrentScreen == "ChatRoom") {
 		var Dictionary = [];
-		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-		Dictionary.push({Tag: "AssetName", AssetName: DialogFocusItem.Asset.Name});
-		ChatRoomPublishCustomAction(DialogFocusItem.Asset.Name + "ShockSet" + DialogFocusItem.Property.ShockLevel, true, Dictionary);
+		Dictionary.push({Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber});
+		Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});
+		ChatRoomPublishCustomAction("Futuristic" + "ShockSet" + DialogFocusItem.Property.ShockLevel, true, Dictionary);
 	}
 	else if (CurrentScreen == "ChatRoom")
         DialogFocusItem = null;
@@ -202,15 +207,9 @@ function FuturisticChastityShockTrigger() {
 
 	var Dictionary = [];
 	Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
-	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
-	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-	Dictionary.push({Tag: "AssetName", AssetName: DialogFocusItem.Asset.Name});
-	Dictionary.push({ Tag: "ActivityName", Text: "ShockItem" });
-	Dictionary.push({ Tag: "ActivityGroup", Text: DialogFocusItem.Asset.Group.Name });
-	Dictionary.push({ AssetName: DialogFocusItem.Asset.Name });
-	Dictionary.push({ AssetGroupName: DialogFocusItem.Asset.Group.Name });
-		
-    ChatRoomPublishCustomAction(DialogFocusItem.Asset.Name + "ShockTrigger" + DialogFocusItem.Property.ShockLevel, true, Dictionary);
+	Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
+	Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});		
+    ChatRoomPublishCustomAction("Futuristic" + "ShockTrigger" + DialogFocusItem.Property.ShockLevel, true, Dictionary);
     
     CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
     CharacterSetFacialExpression(C, "Blush", "ShockLow", 15);
