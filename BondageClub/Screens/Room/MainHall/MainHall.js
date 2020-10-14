@@ -23,15 +23,15 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
 	var needsHelp = false
 	
 	for (let E = Player.Appearance.length - 1; E >= 0; E--) {
-		if (!needsHelp) {
-			if (Player.Appearance[E].Asset.IsRestraint) {
+		if (Player.Appearance[E].Asset.IsRestraint) {
+			needsHelp = true;
+			break;
+		}
+		
+		for (let L = 0; L < MainHallRemoveLockTypes.length; L++) {
+			if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == MainHallRemoveLockTypes[L]))) {
 				needsHelp = true
-			}
-			
-			for (let L = 0; L < MainHallRemoveLockTypes.length; L++) {
-				if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == MainHallRemoveLockTypes[L]))) {
-					needsHelp = true
-				}
+				break;
 			}
 		}
 	}
@@ -183,7 +183,7 @@ function MainHallRun() {
 	
 	// If we must show a progress bar for the rescue maid.  If not, we show the number of online players or a button to request the maid
 	if ((MainHallStartEventTimer == null) && (MainHallNextEventTimer == null)) {
-		if ( Player.GameplaySettings.AutoMaid && ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()))) {
+		if ( (!Player.GameplaySettings || !Player.GameplaySettings.DisableAutoMaid) && ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()))) {
 			MainHallStartEventTimer = CommonTime();
 			MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
 		} else {
@@ -298,7 +298,7 @@ function MainHallClick() {
 	
 	if ((MainHallStartEventTimer == null) && (MainHallNextEventTimer == null)) {
 		
-		if ((MouseX >=   1885) && (MouseX <  1975) && (MouseY >= 900) && (MouseY < 990)) {
+		if (MouseIn(1885, 900, 90, 90)) {
 			if (MainHallNextEventTimer == null) {
 				MainHallStartEventTimer = CommonTime();
 				MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
