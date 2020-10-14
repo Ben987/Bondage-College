@@ -10,23 +10,20 @@ function InventoryItemBreastScifiBraDraw() {
 			DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 1, 127 + Math.floor(Math.random() * 3) - 1, 221, 221);
 		else DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
 		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-		DrawText(DialogFind(Player, "VibeIntensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 450, "White", "Gray");
+		DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 450, "White", "Gray");
 
 		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 		
-		DrawButton(1175, 480, 200, 55, DialogFind(Player, "VibeOff"), (DialogFocusItem.Property.Intensity == -1) ? "#888888" : "White");
-        DrawButton(1400, 480, 200, 55, DialogFind(Player, "VibeLow"), (DialogFocusItem.Property.Intensity == 0) ? "#888888" : "White");
-        DrawButton(1625, 480, 200, 55, DialogFind(Player, "VibeMedium"), (DialogFocusItem.Property.Intensity == 1) ? "#888888" : "White");
-        DrawButton(1175, 550, 200, 55, DialogFind(Player, "VibeHigh"), (DialogFocusItem.Property.Intensity == 2) ? "#888888" : "White");
-		DrawButton(1400, 550, 200, 55, DialogFind(Player, "VibeMaximum"), (DialogFocusItem.Property.Intensity == 3) ? "#888888" : "White");
+		DrawButton(1175, 480, 200, 55, DialogFind(Player, "TurnOff"), (DialogFocusItem.Property.Intensity == -1) ? "#888888" : "White");
+        DrawButton(1400, 480, 200, 55, DialogFind(Player, "Low"), (DialogFocusItem.Property.Intensity == 0) ? "#888888" : "White");
+        DrawButton(1625, 480, 200, 55, DialogFind(Player, "Medium"), (DialogFocusItem.Property.Intensity == 1) ? "#888888" : "White");
+        DrawButton(1175, 550, 200, 55, DialogFind(Player, "High"), (DialogFocusItem.Property.Intensity == 2) ? "#888888" : "White");
+		DrawButton(1400, 550, 200, 55, DialogFind(Player, "Maximum"), (DialogFocusItem.Property.Intensity == 3) ? "#888888" : "White");
 		
-        DrawButton(1200, 870, 200, 55, "Lock Orgasm", (DialogFocusItem.Property.Effect.includes("OrgasmLock")) ? "#888888" : "White");
-        DrawButton(1550, 870, 200, 55, "Unlock Orgasm", (!DialogFocusItem.Property.Effect.includes("OrgasmLock")) ? "#888888" : "White");
-		
-		DrawText(DialogFind(Player, "ShockIntensity" + DialogFocusItem.Property.ShockLevel.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 670, "White", "Gray");
-		DrawButton(1175, 700, 200, 55, DialogFind(Player, "ShockLow"), (DialogFocusItem.Property.ShockLevel == 0) ? "#888888" : "White");
-		DrawButton(1400, 700, 200, 55, DialogFind(Player, "ShockMedium"), (DialogFocusItem.Property.ShockLevel == 1) ? "#888888" : "White");
-		DrawButton(1625, 700, 200, 55, DialogFind(Player, "ShockHigh"), (DialogFocusItem.Property.ShockLevel == 2) ? "#888888" : "White");
+		DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.ShockLevel.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 670, "White", "Gray");
+		DrawButton(1175, 700, 200, 55, DialogFind(Player, "Low"), (DialogFocusItem.Property.ShockLevel == 0) ? "#888888" : "White");
+		DrawButton(1400, 700, 200, 55, DialogFind(Player, "Medium"), (DialogFocusItem.Property.ShockLevel == 1) ? "#888888" : "White");
+		DrawButton(1625, 700, 200, 55, DialogFind(Player, "High"), (DialogFocusItem.Property.ShockLevel == 2) ? "#888888" : "White");
 		if (CurrentScreen == "ChatRoom") DrawButton(1175, 770, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
 		if (CurrentScreen == "ChatRoom") DrawText(DialogFind(Player, "ShockCollarShowChat"), 1420, 800, "White", "Gray");
 		DrawButton(1625, 770, 200, 55, DialogFind(Player, "TriggerShock"), (!Player.CanInteract()) ? "#888888" : "White");
@@ -60,9 +57,6 @@ function InventoryItemBreastScifiBraClick() {
 		if (MouseIn(1625, 480, 200, 55) && (DialogFocusItem.Property.Intensity != 1)) ScifiChastitySetIntensity(1 - DialogFocusItem.Property.Intensity);
 		if (MouseIn(1175, 550, 200, 55) && (DialogFocusItem.Property.Intensity != 2)) ScifiChastitySetIntensity(2 - DialogFocusItem.Property.Intensity);
 		if (MouseIn(1400, 550, 200, 55) && (DialogFocusItem.Property.Intensity != 3)) ScifiChastitySetIntensity(3 - DialogFocusItem.Property.Intensity);
-
-		if (MouseIn(1200, 870, 200, 55) && (!DialogFocusItem.Property.Effect.includes("OrgasmLock"))) ScifiChastityLockOrgasm(true);
-		if (MouseIn(1550, 870, 200, 55) && (DialogFocusItem.Property.Effect.includes("OrgasmLock"))) ScifiChastityLockOrgasm(false);
 	
 		if (MouseIn(1175, 770, 64, 64) && (CurrentScreen == "ChatRoom")) {
 			DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
