@@ -5,7 +5,7 @@ var normal_yoffset = 0
 var large_yoffset = 4
 var xlarge_yoffset = 7
 
-var InventoryItemMouthFuturisticPanelGagOptions = [
+var InventoryItemBreastFuturisticBraOptions = [
 	{
 		Name: "Show",
 		Property: {
@@ -113,11 +113,11 @@ function InventoryItemBreastFuturisticBraClick() {
 			if (DialogFocusItem.Property.Type == "Solid" && MouseIn(1250, 900, 500, 64)) {
 				DialogFocusItem.Property.Type = ""
 				if (CurrentScreen == "ChatRoom")
-					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemMouthFuturisticPanelGagOptions[0])
+					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemBreastFuturisticBraOptions[0])
 			} else if (MouseIn(1550, 900, 500, 64)) {
 				DialogFocusItem.Property.Type = "Solid"
 				if (CurrentScreen == "ChatRoom")
-					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemMouthFuturisticPanelGagOptions[1])
+					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemBreastFuturisticBraOptions[1])
 			}
 			
 			CharacterRefresh(C, true);

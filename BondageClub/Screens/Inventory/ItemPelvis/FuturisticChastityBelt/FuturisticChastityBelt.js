@@ -26,9 +26,7 @@ function InventoryItemPelvisFuturisticChastityBeltClick() {
 }
 
 function InventoryItemPelvisFuturisticChastityBeltExit() {
-	ElementRemove("PasswordField");
-	
-	DialogFocusItem = null;
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
 }
 
 function InventoryItemPelvisFuturisticChastityBeltPublishAction(C, Option) { InventoryItemPelvisMetalChastityBeltPublishAction(C, Option); }

@@ -65,10 +65,8 @@ function InventoryItemHeadInteractiveVisorPublishAction(C, Option) {
 }
 
 
-function InventoryItemMouthFuturisticPanelGagExit() {
-	ElementRemove("PasswordField");
-	
-	DialogFocusItem = null;
+function InventoryItemHeadInteractiveVisorExit() {
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
 }
 
 function InventoryItemHeadInteractiveVisorValidate(C, Option) {

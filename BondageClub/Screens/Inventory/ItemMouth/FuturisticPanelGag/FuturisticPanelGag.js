@@ -59,9 +59,7 @@ var FuturisticAccessDeniedMessage = ""
 
 // In the exit function, add:
 /*
-	ElementRemove("PasswordField");
-
-	DialogFocusItem = null;
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
 */
 
 
@@ -84,7 +82,8 @@ function InventoryItemMouthFuturisticPanelGagLoad() {
 // Load the futuristic item ACCESS DENIED screen
 function InventoryItemMouthFuturisticPanelGagLoadAccessDenied() {
 	ElementCreateInput("PasswordField", "text", "", "12");
-	FuturisticAccessDeniedMessage = ""
+	if (!FuturisticAccessDeniedMessage)
+		FuturisticAccessDeniedMessage = ""
 }
 
 // Draw the futuristic item ACCESS DENIED screen
@@ -111,6 +110,7 @@ function InventoryItemMouthFuturisticPanelGagDrawAccessDenied() {
 // Click the futuristic item ACCESS DENIED screen
 function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 	if (MouseIn(1885, 25, 90, 90)) InventoryItemMouthFuturisticPanelGagExit()
+		
 	if (MouseIn(1400, 800, 200, 64)) {
 		FuturisticAccessDeniedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
 		var vol = 1
@@ -121,18 +121,20 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 		if (CurrentScreen == "ChatRoom") {
 			InventoryItemMouthFuturisticPanelGagPublishAccessDenied((Player.FocusGroup != null) ? Player : CurrentCharacter)
 		}
-	} else {
-		FuturisticAccessDeniedMessage = ""
 	}
 }
 
 
 
+function InventoryItemMouthFuturisticPanelGagExitAccessDenied() {
+	ElementRemove("PasswordField");
+	FuturisticAccessDeniedMessage = ""
+	DialogFocusItem = null;
+}
+
 	
 function InventoryItemMouthFuturisticPanelGagExit() {
-	ElementRemove("PasswordField");
-	
-	DialogFocusItem = null;
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
 }
 
 // Draw the item extension screen
