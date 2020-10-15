@@ -63,6 +63,11 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 	if (MouseIn(1885, 25, 90, 90)) InventoryItemMouthFuturisticPanelGagExit()
 	if (MouseIn(1400, 800, 200, 64)) {
 		PreferenceMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
+		var vol = 1
+		if (Player.AudioSettings && Player.AudioSettings.Volume) {
+			vol = Player.AudioSettings.Volume
+		}
+		AudioPlayInstantSound("Audio/AccessDenied.mp3", vol)
 	}
 }
 
