@@ -31,15 +31,27 @@ var InventoryItemHeadInteractiveVisorOptions = [
 ];
 
 function InventoryItemHeadInteractiveVisorLoad() {
-	ExtendedItemLoad(InventoryItemHeadInteractiveVisorOptions, "SelectVisorType");
+	 var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+	} else
+		ExtendedItemLoad(InventoryItemHeadInteractiveVisorOptions, "SelectVisorType");
 }
 
 function InventoryItemHeadInteractiveVisorDraw() {
-	ExtendedItemDraw(InventoryItemHeadInteractiveVisorOptions, "InteractiveVisorHeadType");
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+	} else
+		ExtendedItemDraw(InventoryItemHeadInteractiveVisorOptions, "InteractiveVisorHeadType");
 }
 
 function InventoryItemHeadInteractiveVisorClick() {
-	ExtendedItemClick(InventoryItemHeadInteractiveVisorOptions);
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+	} else
+		ExtendedItemClick(InventoryItemHeadInteractiveVisorOptions);
 }
 
 function InventoryItemHeadInteractiveVisorPublishAction(C, Option) {
@@ -53,6 +65,11 @@ function InventoryItemHeadInteractiveVisorPublishAction(C, Option) {
 }
 
 
+function InventoryItemMouthFuturisticPanelGagExit() {
+	ElementRemove("PasswordField");
+	
+	DialogFocusItem = null;
+}
 
 function InventoryItemHeadInteractiveVisorValidate(C, Option) {
 	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag

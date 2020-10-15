@@ -1,10 +1,35 @@
 "use strict";
 
-function InventoryItemPelvisFuturisticChastityBeltLoad() { InventoryItemPelvisMetalChastityBeltLoad(); }
+function InventoryItemPelvisFuturisticChastityBeltLoad() {
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+	} else
+		InventoryItemPelvisMetalChastityBeltLoad();
+}
 
-function InventoryItemPelvisFuturisticChastityBeltDraw() { InventoryItemPelvisMetalChastityBeltDraw(); }
+function InventoryItemPelvisFuturisticChastityBeltDraw() {
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+	} else
+		InventoryItemPelvisMetalChastityBeltDraw();
+	
+}
 
-function InventoryItemPelvisFuturisticChastityBeltClick() { InventoryItemPelvisMetalChastityBeltClick(); }
+function InventoryItemPelvisFuturisticChastityBeltClick() {
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+	} else
+		InventoryItemPelvisMetalChastityBeltClick();
+}
+
+function InventoryItemPelvisFuturisticChastityBeltExit() {
+	ElementRemove("PasswordField");
+	
+	DialogFocusItem = null;
+}
 
 function InventoryItemPelvisFuturisticChastityBeltPublishAction(C, Option) { InventoryItemPelvisMetalChastityBeltPublishAction(C, Option); }
 

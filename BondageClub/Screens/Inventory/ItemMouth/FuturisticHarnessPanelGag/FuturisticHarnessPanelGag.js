@@ -15,7 +15,9 @@ function InventoryItemMouthFuturisticHarnessPanelGagClick() {
 	InventoryItemMouthFuturisticPanelGagClick();
 }
 
-
+function InventoryItemMouthFuturisticHarnessPanelGagExit() {
+	InventoryItemMouthFuturisticPanelGagExit();
+}
 
 function InventoryItemMouthFuturisticHarnessPanelGagValidate(C, Option) {
 	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);

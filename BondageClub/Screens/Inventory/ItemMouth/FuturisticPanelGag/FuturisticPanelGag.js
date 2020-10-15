@@ -24,6 +24,53 @@ var InventoryItemMouthFuturisticPanelGagOptions = [
 	},
 ];
 
+
+var FuturisticAccessDeniedMessage = ""
+
+// How to make your item futuristic!
+
+// In the load function, add this before your load function, without changing functions from the futuristic panel gag functions. Just make sure your item loads after the panel gag and not before in index.html:
+/*
+ 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+	} else
+*/
+
+
+
+// In the draw function, add:
+/*
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+	} else
+*/
+
+
+// In the click function, add:
+/*
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+	} else
+*/
+
+
+// In the exit function, add:
+/*
+	ElementRemove("PasswordField");
+
+	DialogFocusItem = null;
+*/
+
+
+// In the validate function, add:
+/*
+ 	return InventoryItemMouthFuturisticPanelGagValidate(C, Option)
+*/
+
+
 // Loads the item extension properties
 function InventoryItemMouthFuturisticPanelGagLoad() {
  	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -37,7 +84,7 @@ function InventoryItemMouthFuturisticPanelGagLoad() {
 // Load the futuristic item ACCESS DENIED screen
 function InventoryItemMouthFuturisticPanelGagLoadAccessDenied() {
 	ElementCreateInput("PasswordField", "text", "", "12");
-	PreferenceMessage = ""
+	FuturisticAccessDeniedMessage = ""
 }
 
 // Draw the futuristic item ACCESS DENIED screen
@@ -54,7 +101,7 @@ function InventoryItemMouthFuturisticPanelGagDrawAccessDenied() {
 	DrawText(DialogFind(Player, "FuturisticItemPassword"), 1500, 700, "White", "Gray");
 	DrawButton(1400, 800, 200, 64, DialogFind(Player, "FuturisticItemLogIn"), "White", "");
 	
-	if (PreferenceMessage != "") DrawText(PreferenceMessage, 1500, 963, "Red", "Black");
+	if (FuturisticAccessDeniedMessage && FuturisticAccessDeniedMessage != "") DrawText(FuturisticAccessDeniedMessage, 1500, 963, "Red", "Black");
 	
 }
 
@@ -62,12 +109,14 @@ function InventoryItemMouthFuturisticPanelGagDrawAccessDenied() {
 function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 	if (MouseIn(1885, 25, 90, 90)) InventoryItemMouthFuturisticPanelGagExit()
 	if (MouseIn(1400, 800, 200, 64)) {
-		PreferenceMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
+		FuturisticAccessDeniedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
 		var vol = 1
 		if (Player.AudioSettings && Player.AudioSettings.Volume) {
 			vol = Player.AudioSettings.Volume
 		}
 		AudioPlayInstantSound("Audio/AccessDenied.mp3", vol)
+	} else {
+		FuturisticAccessDeniedMessage = ""
 	}
 }
 
@@ -93,7 +142,7 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMouthFuturisticPanelGagClick() {
-		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else
@@ -108,7 +157,7 @@ function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
 	if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
 		Allowed = false;
-	} 
+	}
 
 	return Allowed;
 }
