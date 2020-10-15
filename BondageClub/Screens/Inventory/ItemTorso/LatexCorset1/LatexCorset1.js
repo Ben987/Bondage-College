@@ -15,8 +15,9 @@ var InventoryItemTorsoLatexCorset1Options = [
 ];
 
 // Loads the item extension properties
-function InventoryItemTorsoLatexCorset1Load() {
-	GartersByDefault()
+function InventoryItemTorsoLatexCorset1Load(IsCloth) {
+	if(IsCloth == null) IsCloth = false;
+	GartersByDefault(IsCloth)
 	ExtendedItemLoad(InventoryItemTorsoLatexCorset1Options, "SelectStyle");
 }
 
@@ -32,21 +33,26 @@ function InventoryItemTorsoLatexCorset1Click(IsCloth) {
 	ExtendedItemClick(InventoryItemTorsoLatexCorset1Options, IsCloth);
 }
 
-function GartersByDefault() {
+function GartersByDefault(IsCloth) {
+	if(IsCloth == null) IsCloth = false;
 	if (DialogFocusItem.Property == null) {
 		DialogFocusItem.Property = { Type: "Garter" };
-		const C = CharacterGetCurrent();
-		CharacterRefresh(C);
-		if (CurrentScreen == "ChatRoom") {
-			ChatRoomCharacterUpdate(C)
+		if(IsCloth == false) {
+			const C = CharacterGetCurrent();
+			CharacterRefresh(C);
+			if (CurrentScreen == "ChatRoom") {
+				ChatRoomCharacterUpdate(C)
+			}
 		}
 	}
 	if (DialogFocusItem.Property.Type == null) {
 		DialogFocusItem.Property.Type = "Garter";
-		const C = CharacterGetCurrent();
-		CharacterRefresh(C);
-		if (CurrentScreen == "ChatRoom") {
-			ChatRoomCharacterUpdate(C)
+		if(IsCloth == false) {
+			const C = CharacterGetCurrent();
+			CharacterRefresh(C);
+			if (CurrentScreen == "ChatRoom") {
+				ChatRoomCharacterUpdate(C)
+			}
 		}
 	}
 }

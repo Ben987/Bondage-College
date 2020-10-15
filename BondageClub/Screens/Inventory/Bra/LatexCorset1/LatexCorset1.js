@@ -1,7 +1,7 @@
 "use strict";
 
 // Loads the item extension properties
-function InventoryBraLatexCorset1Load() { InventoryItemTorsoLatexCorset1Load() }
+function InventoryBraLatexCorset1Load() { InventoryItemTorsoLatexCorset1Load(true) }
 
 // Draw the item extension screen
 function InventoryBraLatexCorset1Draw() { InventoryItemTorsoLatexCorset1Draw(true) }
