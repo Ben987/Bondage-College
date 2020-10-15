@@ -118,6 +118,9 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 			vol = Player.AudioSettings.Volume
 		}
 		AudioPlayInstantSound("Audio/AccessDenied.mp3", vol)
+		if (CurrentScreen == "ChatRoom") {
+			InventoryItemMouthFuturisticPanelGagPublishAccessDenied((Player.FocusGroup != null) ? Player : CurrentCharacter)
+		}
 	} else {
 		FuturisticAccessDeniedMessage = ""
 	}
@@ -172,6 +175,17 @@ function InventoryItemMouthFuturisticPanelGagPublishAction(C, Option) {
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
 	];
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
+
+function InventoryItemMouthFuturisticPanelGagPublishAccessDenied(C) {
+	var msg = "FuturisticItemLoginLoginAttempt"
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name}
+	];
+	
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
