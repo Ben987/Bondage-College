@@ -55,14 +55,7 @@ function InventoryItemHeadInteractiveVisorPublishAction(C, Option) {
 
 
 function InventoryItemHeadInteractiveVisorValidate(C, Option) {
-	var Allowed = true;
-
-	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
-		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLockedFuturisticVisor");
-		Allowed = false;
-	} 
-
-	return Allowed;
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
 }
 
 function InventoryItemHeadInteractiveVisorNpcDialog(C, Option) {

@@ -26,17 +26,73 @@ var InventoryItemMouthFuturisticPanelGagOptions = [
 
 // Loads the item extension properties
 function InventoryItemMouthFuturisticPanelGagLoad() {
-	ExtendedItemLoad(InventoryItemMouthFuturisticPanelGagOptions, "SelectGagType");
+ 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+	} else
+		ExtendedItemLoad(InventoryItemMouthFuturisticPanelGagOptions, "SelectGagType");
+}
+
+
+// Load the futuristic item ACCESS DENIED screen
+function InventoryItemMouthFuturisticPanelGagLoadAccessDenied() {
+	ElementCreateInput("PasswordField", "text", "", "12");
+	PreferenceMessage = ""
+}
+
+// Draw the futuristic item ACCESS DENIED screen
+function InventoryItemMouthFuturisticPanelGagDrawAccessDenied() {
+	DrawRect(1387, 225, 225, 275, "white");
+	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
+	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
+	
+	
+	DrawText(DialogFind(Player, "FuturisticItemLoginScreen"), 1500, 600, "White", "Gray");
+	
+	
+	ElementPosition("PasswordField", 1505, 750, 350);
+	DrawText(DialogFind(Player, "FuturisticItemPassword"), 1500, 700, "White", "Gray");
+	DrawButton(1400, 800, 200, 64, DialogFind(Player, "FuturisticItemLogIn"), "White", "");
+	
+	if (PreferenceMessage != "") DrawText(PreferenceMessage, 1500, 963, "Red", "Black");
+	
+}
+
+// Click the futuristic item ACCESS DENIED screen
+function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
+	if (MouseIn(1885, 25, 90, 90)) InventoryItemMouthFuturisticPanelGagExit()
+	if (MouseIn(1400, 800, 200, 64)) {
+		PreferenceMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
+	}
+}
+
+
+
+	
+function InventoryItemMouthFuturisticPanelGagExit() {
+	ElementRemove("PasswordField");
+	
+	DialogFocusItem = null;
 }
 
 // Draw the item extension screen
 function InventoryItemMouthFuturisticPanelGagDraw() {
-	ExtendedItemDraw(InventoryItemMouthFuturisticPanelGagOptions, "FuturisticPanelGagMouthType");
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+	} else
+		ExtendedItemDraw(InventoryItemMouthFuturisticPanelGagOptions, "FuturisticPanelGagMouthType");
 }
+
+
 
 // Catches the item extension clicks
 function InventoryItemMouthFuturisticPanelGagClick() {
-	ExtendedItemClick(InventoryItemMouthFuturisticPanelGagOptions);
+		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+	} else
+		ExtendedItemClick(InventoryItemMouthFuturisticPanelGagOptions);
 }
 
 
@@ -44,7 +100,7 @@ function InventoryItemMouthFuturisticPanelGagClick() {
 function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
 	var Allowed = true;
 
-	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+	if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
 		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
 		Allowed = false;
 	} 
