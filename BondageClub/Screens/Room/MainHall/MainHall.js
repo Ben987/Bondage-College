@@ -300,6 +300,7 @@ function MainHallClick() {
 		
 		if (MouseIn(1885, 900, 90, 90)) {
 			if (MainHallNextEventTimer == null) {
+				AudioPlayInstantSound("Audio/BellSmall.mp3", 1)
 				MainHallStartEventTimer = CommonTime();
 				MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
 			}
