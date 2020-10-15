@@ -208,7 +208,7 @@ function InventoryItemBreastFuturisticBraDynamicAudio(data) {
 function AssetsItemBreastFuturisticBraAfterDraw({
     C, A, X, Y, Property, drawCanvas, drawCanvasBlink, AlphaMasks, L, G, Color
 }) { 
-	if (L === "_Text" && Property.Type != "Solid") {
+	if (L === "_Text" && Property && Property.Type != "Solid") {
 		
 		var offset = normal_yoffset
 		if (G == "_Large") offset = large_yoffset
