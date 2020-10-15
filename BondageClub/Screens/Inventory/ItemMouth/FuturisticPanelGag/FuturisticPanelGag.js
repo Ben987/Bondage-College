@@ -103,6 +103,9 @@ function InventoryItemMouthFuturisticPanelGagDrawAccessDenied() {
 	
 	if (FuturisticAccessDeniedMessage && FuturisticAccessDeniedMessage != "") DrawText(FuturisticAccessDeniedMessage, 1500, 963, "Red", "Black");
 	
+	
+	
+	
 }
 
 // Click the futuristic item ACCESS DENIED screen

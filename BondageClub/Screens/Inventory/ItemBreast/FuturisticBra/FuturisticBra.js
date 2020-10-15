@@ -5,6 +5,22 @@ var normal_yoffset = 0
 var large_yoffset = 4
 var xlarge_yoffset = 7
 
+var InventoryItemMouthFuturisticPanelGagOptions = [
+	{
+		Name: "Show",
+		Property: {
+			Type: null,
+		},
+	},
+	{
+		Name: "Solid",
+		Property: {
+			Type: "Solid",
+		},
+	},
+];
+
+
 // Loads the item extension properties
 function InventoryItemBreastFuturisticBraLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { HeartRate: 0, HeartIcon: false };
@@ -64,6 +80,14 @@ function InventoryItemBreastFuturisticBraDraw() {
 	DrawText(DialogFind(Player, "FuturisticBraPlayerBreathing") + " " + DialogFind(Player, "FuturisticBraPlayerBreathing" + current_breathing), 1500, 780, "White", "Gray");
 	DrawText(DialogFind(Player, "FuturisticBraPlayerTracking"), 1500, 830, "White", "Gray");
 	
+	// If the player can modify 
+	if (InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		if (DialogFocusItem.Property.Type == "Solid") {
+			DrawButton(1250, 900, 200, 64, DialogFind(Player, "FuturisticBraPlayerShow"), "White", "");
+		} else {
+			DrawButton(1550, 900, 200, 64, DialogFind(Player, "FuturisticBraPlayerSolid"), "White", "");
+		}
+	}
 	
 	
 	/*
@@ -80,7 +104,36 @@ function InventoryItemBreastFuturisticBraDraw() {
 function InventoryItemBreastFuturisticBraClick() {
 	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
 	
+	if (MouseIn(1250, 900, 500, 64)) {
+		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+		
+		// If the player can modify 
+		if (InventoryItemMouthFuturisticPanelGagValidate(C)) {
+			
+			if (DialogFocusItem.Property.Type == "Solid" && MouseIn(1250, 900, 500, 64)) {
+				DialogFocusItem.Property.Type = ""
+				if (CurrentScreen == "ChatRoom")
+					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemMouthFuturisticPanelGagOptions[0])
+			} else if (MouseIn(1550, 900, 500, 64)) {
+				DialogFocusItem.Property.Type = "Solid"
+				if (CurrentScreen == "ChatRoom")
+					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemMouthFuturisticPanelGagOptions[1])
+			}
+			
+			CharacterRefresh(C, true);
+			ChatRoomCharacterUpdate(C);
+		}
+	}
 	
+}
+
+function InventoryItemBreastFuturisticBraPublishAction(C, Option) {
+	var msg = "InventoryItemBreastFuturisticBraSet" + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
 /*
@@ -155,7 +208,7 @@ function InventoryItemBreastFuturisticBraDynamicAudio(data) {
 function AssetsItemBreastFuturisticBraAfterDraw({
     C, A, X, Y, Property, drawCanvas, drawCanvasBlink, AlphaMasks, L, G, Color
 }) { 
-	if (L === "_Text") {
+	if (L === "_Text" && Property.Type != "Solid") {
 		
 		var offset = normal_yoffset
 		if (G == "_Large") offset = large_yoffset
@@ -198,7 +251,8 @@ function AssetsItemBreastFuturisticBraScriptDraw(data) {
 	if (persistentData.UpdateTime < CommonTime()) {
 		var update = InventoryItemBreastFuturisticBraUpdate(data.C)
 		property.HeartRate = update.bpm;
-		property.Type = (update.breathing == "Action") ? "Heart" : null;
+		if (property.Type != "Solid")
+			property.Type = (update.breathing == "Action") ? "Heart" : null;
 		
 		var timeToNextRefresh = 1100;
 		persistentData.UpdateTime = CommonTime() + timeToNextRefresh;
