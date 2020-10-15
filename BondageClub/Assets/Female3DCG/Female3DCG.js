@@ -1614,11 +1614,12 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "MetalChastityBra", Fetish: ["Metal"], Value: 60, Difficulty: 50, Time: 15, AllowLock: true, Audio: "CuffsMetal", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }] },
 			{ Name: "PolishedChastityBra", Fetish: ["Metal"], Value: 100, Difficulty: 50, Time: 15, AllowLock: true, Audio: "CuffsMetal", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }] },
-			{ Name: "FuturisticBra", Fetish: ["Metal"], Value: 120, Difficulty: 50, Time: 10, AllowLock: true, DefaultColor: ["#50913C", "#889FA7", "Default"], Audio: "CuffsMetal", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }],
+			{ Name: "FuturisticBra", Fetish: ["Metal"], Value: 120, Difficulty: 50, Time: 10, AllowLock: true, DefaultColor: ["#50913C", "#FFFFFF", "#889FA7", "Default"], AllowType: ["", "Heart"], Audio: "CuffsMetal", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }], Extended: true, AlwaysExtend: true, DynamicAfterDraw: true,  DynamicScriptDraw: true,
 				Layer: [
-					{ Name: "Display" },
-					{ Name: "Mesh" },
-					{ Name: "Bra" },
+					{ Name: "Display", AllowColorize: true , HasType: false},
+					{ Name: "Text" , AllowColorize: true , AllowTypes: ["", "Heart"]},
+					{ Name: "Mesh" , AllowColorize: true , HasType: false},
+					{ Name: "Bra" , AllowColorize: true , HasType: false},
 				]
 			},
 			{
@@ -2879,7 +2880,7 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "ClothBlindfold", Value: 15, Time: 5, DefaultColor: "#A0A0A0", Hide: ["Glasses"], Effect: ["BlindLight", "Prone"] },
 			{ Name: "LeatherBlindfold", Fetish: ["Leather"], Value: 30, Time: 5, AllowLock: true, DefaultColor: "#404040", Hide: ["Glasses"], Effect: ["BlindNormal", "Prone"] },
-			{ Name: "InteractiveVisor", Fetish: ["Metal"], BuyGroup: "FuturisticVisor", Value: 50, Time: 5, AllowLock: true, Hide: ["ItemNoseNoseRing", "MaskFuturisticVisor"], Effect: ["Prone"], AllowEffect: ["BlindNormal", "BlindHeavy", "BlindLight"], AllowType: ["LightTint", "HeavyTint", "Blind"], Extended: true },
+			{ Name: "InteractiveVisor", Fetish: ["Metal"], BuyGroup: "FuturisticVisor", Value: 50, Time: 5, AllowLock: true, Hide: ["ItemNoseNoseRing", "MaskFuturisticVisor"], Effect: ["Prone"], AllowEffect: ["BlindNormal", "BlindHeavy", "BlindLight"], AllowType: ["LightTint", "HeavyTint", "Blind"], Extended: true, AlwaysExtend: true },
 			{ Name: "LeatherSlimMask", Fetish: ["Leather"], Value: 70, Difficulty: 50, Time: 15, AllowLock: true, DefaultColor: "#555555", Prerequisite: ["NotHogtied"], Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3"], Effect: ["BlindHeavy", "Prone", "GagLight", "BlockMouth"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemNose"] },
 			{ Name: "LeatherSlimMaskOpenMouth", Fetish: ["Leather"], Value: 70, Difficulty: 50, Time: 15, AllowLock: true, DefaultColor: "#555555", Prerequisite: ["NotHogtied"], Hide: ["Glasses"], Effect: ["BlindHeavy", "Prone"], Block: ["ItemEars", "ItemNose"] },
 			{ Name: "LeatherSlimMaskOpenEyes", Fetish: ["Leather"], Value: 70, Difficulty: 50, Time: 15, AllowLock: true, DefaultColor: "#555555", Prerequisite: ["NotHogtied"], Hide: ["ItemMouth", "ItemMouth2", "ItemMouth3"], Effect: ["GagLight", "BlockMouth"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemNose"] },
