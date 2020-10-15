@@ -300,7 +300,11 @@ function MainHallClick() {
 		
 		if (MouseIn(1885, 900, 90, 90)) {
 			if (MainHallNextEventTimer == null) {
-				AudioPlayInstantSound("Audio/BellSmall.mp3", 1)
+				var vol = 1
+				if (Player.AudioSettings && Player.AudioSettings.Volume) {
+					vol = Player.AudioSettings.Volume
+				}
+				AudioPlayInstantSound("Audio/BellSmall.mp3", vol)
 				MainHallStartEventTimer = CommonTime();
 				MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
 			}
