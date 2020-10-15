@@ -225,10 +225,6 @@ function CommonDrawAppearanceBuild(C, {
 			Color = Array.isArray(A.DefaultColor) ? A.DefaultColor[Layer.ColorIndex] : A.DefaultColor;
 		}
 		
-		if (AG.Name == "ItemBreast") {
-			var a = 1
-		}
-		
 		// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 		if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
 			drawImageColorize(
