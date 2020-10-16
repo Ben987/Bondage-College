@@ -736,7 +736,7 @@ var AssetFemale3DCG = [
 		Group: "Gloves",
 		ParentGroup: "BodyUpper",
 		ParentColor: "Bra",
-		Priority: 28,
+		Priority: 24,
 		Default: false,
 		Clothing: true,
 		Underwear: true,
