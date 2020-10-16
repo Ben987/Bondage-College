@@ -1,6 +1,6 @@
 "use strict";
 
-var FuturisticChastityBeltShockCooldownOrgasm = 10000 // 10 sec
+var FuturisticChastityBeltShockCooldownOrgasm = 15000 // 15 sec
 var FuturisticChastityBeltShockCooldownTamper = 1000 // 1 sec
 var FuturisticChastityBeltShockCooldownStruggle = 20000 // 20 sec
 var FuturisticChastityBeltShockCooldownSpeak = 5000 // 5 seconds
