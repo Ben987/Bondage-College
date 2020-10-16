@@ -753,6 +753,22 @@ function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked) {
 }
 
 /**
+ * Draws a checkbox component
+ * @param {number} Left - Position of the component from the left of the canvas
+ * @param {number} Top - Position of the component from the top of the canvas
+ * @param {number} Width - Width of the component
+ * @param {number} Height - Height of the component
+ * @param {string} Text - Label associated with the checkbox
+ * @param {boolean} IsChecked - Whether or not the checkbox is checked
+ * @param {string} Color - Color of the text
+ * @returns {void} - Nothing
+ */
+function DrawCheckboxColor(Left, Top, Width, Height, Text, IsChecked, Color) {
+	DrawText(Text, Left + 100, Top + 33, Color, "Gray");
+	DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
+}
+
+/**
  * Draw a back & next button component
  * @param {number} Left - Position of the component from the left of the canvas
  * @param {number} Top - Position of the component from the top of the canvas
@@ -960,6 +976,14 @@ function DrawProcess() {
 
 	// Draws the 3D objects
 	Draw3DProcess();
+	
+	// Leave dialogs AFTER drawing everything
+	// If needed
+	// Used to support items that remove you from the dialog during the draw phase
+	if (DialogLeaveDueToItem) {
+		DialogLeaveDueToItem = false
+		DialogLeave()
+	}
 
 }
 

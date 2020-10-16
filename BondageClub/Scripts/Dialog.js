@@ -36,6 +36,7 @@ var DialogSortOrderUsable = 3;
 var DialogSortOrderUnusable = 4;
 var DialogSortOrderBlocked = 5;
 var DialogSelfMenuSelected = null;
+var DialogLeaveDueToItem = false; // This allows dynamic items to call DialogLeave() without crashing the game
 /**
  * The list of menu types available when clicking on yourself
  * @const
@@ -361,7 +362,8 @@ function DialogLeave() {
 	DialogActivityMode = false;
 	DialogItemToLock = null;
 	Player.FocusGroup = null;
-	CurrentCharacter.FocusGroup = null;
+	if (CurrentCharacter)
+		CurrentCharacter.FocusGroup = null;
 	DialogInventory = null;
 	CurrentCharacter = null;
 	DialogSelfMenuSelected = null;
@@ -424,7 +426,8 @@ function DialogLeaveItemMenu() {
 	DialogEndExpression();
 	DialogItemToLock = null;
 	Player.FocusGroup = null;
-	CurrentCharacter.FocusGroup = null;
+	if (CurrentCharacter)
+		CurrentCharacter.FocusGroup = null;
 	DialogInventory = null;
 	DialogProgress = -1;
 	DialogColor = null;
