@@ -5,6 +5,8 @@ var InventoryItemHeadInteractiveVisorOptions = [
 		Name: "Transparent",
 		Property: {
 			Type: null,
+			SelfUnlock: true,
+			Effect: [],
 		},
 	},
 	{
