@@ -196,6 +196,7 @@ function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType)
 		Dictionary.push({ Tag: "ActivityGroup", Text: Item.Asset.Group.Name });
 		Dictionary.push({ AssetName: Item.Asset.Name });
 		Dictionary.push({ AssetGroupName: Item.Asset.Group.Name });
+		Dictionary.push({ Automatic: true });
 			
 		ServerSend("ChatRoomChat", { Content: "FuturisticChastityBeltShock" + ShockType, Type: "Action", Dictionary });
 	}
