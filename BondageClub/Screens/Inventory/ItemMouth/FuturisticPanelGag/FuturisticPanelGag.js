@@ -5,7 +5,14 @@ var InventoryItemMouthFuturisticPanelGagOptions = [
 		Name: "Padded",
 		Property: {
 			Type: null,
-			Effect: ["BlockMouth", "GagLight"],
+			Effect: ["BlockMouth"],
+		},
+	},
+	{
+		Name: "LightBall",
+		Property: {
+			Type: "LightBall",
+			Effect: ["BlockMouth", "GagVeryLight"],
 		},
 	},
 	{
@@ -74,8 +81,11 @@ function InventoryItemMouthFuturisticPanelGagLoad() {
  	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
-	} else
+	} else {
+		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: "Padded", AutoPunish: 0};
+		if (DialogFocusItem.Property.AutoPunish == null) DialogFocusItem.Property.AutoPunish = 0;
 		ExtendedItemLoad(InventoryItemMouthFuturisticPanelGagOptions, "SelectGagType");
+	}
 }
 
 
@@ -143,7 +153,7 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else
-		ExtendedItemDraw(InventoryItemMouthFuturisticPanelGagOptions, "FuturisticPanelGagMouthType");
+		ExtendedItemDraw(InventoryItemMouthFuturisticPanelGagOptions, "FuturisticPanelGagMouthType", 4, false);
 }
 
 
@@ -154,7 +164,7 @@ function InventoryItemMouthFuturisticPanelGagClick() {
 	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else
-		ExtendedItemClick(InventoryItemMouthFuturisticPanelGagOptions);
+		ExtendedItemClick(InventoryItemMouthFuturisticPanelGagOptions, false, 4, false);
 }
 
 
@@ -170,6 +180,30 @@ function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
 	return Allowed;
 }
 
+
+function InventoryItemMouthFuturisticPanelGagTrigger(C, Item, Option) {
+	
+	
+	ExtendedItemSetType(C, InventoryItemMouthFuturisticPanelGagOptions, InventoryItemMouthFuturisticPanelGagOptions[OptionLevel], true)
+	InventoryItemMouthFuturisticPanelGagPublishActionTrigger(C, Item, InventoryItemMouthFuturisticPanelGagOptions[OptionLevel])
+	
+}
+	
+
+function InventoryItemMouthFuturisticPanelGagPublishActionTrigger(C, Item, Option) {
+	var msg = "FuturisticPanelGagMouthSetAuto" + Option.Name;
+	
+	var Dictionary = [
+		{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: "AssetName", AssetName: Item.Asset.Name },
+		{ Automatic: true },
+	];
+	if (Item.Property.ItemMemberNumber) Dictionary.push({ Tag: "ItemMemberNumber", MemberNumber: Item.Property.ItemMemberNumber });
+	if (CurrentScreen == "ChatRoom") {
+		ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary });
+		ChatRoomCharacterItemUpdate(C, Item.Asset.Group.Name);
+	}
+}
 
 function InventoryItemMouthFuturisticPanelGagPublishAction(C, Option) {
 	var msg = "FuturisticPanelGagMouthSet" + Option.Name;
