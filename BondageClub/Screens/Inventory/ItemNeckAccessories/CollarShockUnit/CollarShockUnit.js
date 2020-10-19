@@ -19,12 +19,12 @@ function InventoryItemNeckAccessoriesCollarShockUnitDraw() {
 	if (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1375, 550, 200, 55, DialogFind(Player, "Medium"), "White");
 	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1650, 550, 200, 55, DialogFind(Player, "High"), "White");
 	
-	DrawText(DialogFind(Player, "Sensitivity" + DialogFocusItem.Property.Sensitivity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 660, "White", "Gray");
+	DrawText(DialogFind(Player, "Sensitivity" + (DialogFocusItem.Property.Sensitivity-1).toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 660, "White", "Gray");
 	
 	if (DialogFocusItem.Property.Sensitivity != 0) DrawButton(1100, 700, 150, 55, DialogFind(Player, "TurnOff"), "White");
 	if (DialogFocusItem.Property.Sensitivity != 1) DrawButton(1300, 700, 150, 55, DialogFind(Player, "Low"), "White");
 	if (DialogFocusItem.Property.Sensitivity != 2) DrawButton(1500, 700, 150, 55, DialogFind(Player, "Medium"), "White");
-	if (DialogFocusItem.Property.Sensitivity != 3) DrawButton(1700, 700, 150, 55, DialogFind(Player, "Maximum"), "White");
+	if (DialogFocusItem.Property.Sensitivity != 3) DrawButton(1700, 700, 150, 55, DialogFind(Player, "High"), "White");
 	
 	if (CurrentScreen == "ChatRoom") DrawButton(1125, 780, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
 	if (CurrentScreen == "ChatRoom") DrawText(DialogFind(Player, "ShockCollarShowChat"), 1370, 813, "White", "Gray");
@@ -34,7 +34,7 @@ function InventoryItemNeckAccessoriesCollarShockUnitDraw() {
 // Catches the item extension clicks
 function InventoryItemNeckAccessoriesCollarShockUnitClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1325) && (MouseX <= 1389) && (MouseY >= 700) && (MouseY <= 764) && (CurrentScreen == "ChatRoom")) {
+	if ((MouseX >= 1125) && (MouseX <= 1189) && (MouseY >= 780) && (MouseY <= 844) && (CurrentScreen == "ChatRoom")) {
 		DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
 	}
 	if ((MouseX >= 1100) && (MouseX <= 1300) && (MouseY >= 550) && (MouseY <= 605) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(0 - DialogFocusItem.Property.Intensity);
@@ -97,7 +97,7 @@ function InventoryItemNeckAccessoriesCollarShockUnitSetSensitivity(Modifier) {
 }
 
 
-function InventoryItemNeckAccessoriesCollarShockUnitUpdate(Property) {
+function InventoryItemNeckAccessoriesCollarShockUnitUpdate(data) {
 	var Item = data.Item
 	// Punish the player if they speak
 	if (Item.Property.Sensitivity && Item.Property.Sensitivity > 0) {
@@ -131,14 +131,15 @@ function InventoryItemNeckAccessoriesCollarShockUnitTriggerAutomatic(data) {
 	var msg = "TriggerShock" + data.Item.Property.Intensity;
 	var C = data.C
 	
-	var Dictionary = [
-		{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
-		{ Tag: "AssetName", AssetName: data.Item.Asset.Name },
-		{ Automatic: true },
-	];
-	if (CurrentScreen == "ChatRoom") {
+	
+	if (CurrentScreen == "ChatRoom" && data.Item.Property.ShowText) {
+		var Dictionary = [
+			{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
+			{ Tag: "AssetName", AssetName: data.Item.Asset.Name },
+			{ Automatic: true },
+		];
 		ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary });
-		ChatRoomCharacterItemUpdate(C, Item.Asset.Group.Name);
+		ChatRoomCharacterItemUpdate(C, data.Item.Asset.Group.Name);
 	}
 		
     CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
@@ -164,14 +165,14 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger(data) {
 	Dictionary.push({ Tag: "ActivityGroup", Text: DialogFocusItem.Asset.Group.Name });
 	Dictionary.push({ AssetName: DialogFocusItem.Asset.Name });
 	Dictionary.push({ AssetGroupName: DialogFocusItem.Asset.Group.Name });
-		
-	ChatRoomPublishCustomAction("TriggerShock" + DialogFocusItem.Property.Intensity, true, Dictionary);
-		
+	
 	if (C.ID == Player.ID) {
 		// The Player shocks herself
 		ActivityArousalItem(C, C, DialogFocusItem.Asset);
 	}
-	
+		
+	ChatRoomPublishCustomAction("TriggerShock" + DialogFocusItem.Property.Intensity, true, Dictionary);
+			
     CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
     CharacterSetFacialExpression(C, "Blush", "Soft", 15);
     CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
