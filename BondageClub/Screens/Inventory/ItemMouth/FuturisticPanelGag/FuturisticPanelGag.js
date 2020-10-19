@@ -377,12 +377,15 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
 		var LastMessages = data.PersistentData().LastMessageLen
 		var GagTriggerPunish = false
 		
-		if (Item.Property.AutoPunish == 3 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages)
+		if (Item.Property.AutoPunish == 3 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*"))
 			GagTriggerPunish = true
 		if (Item.Property.AutoPunish == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")
 			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].length > 25 || ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()))
 			GagTriggerPunish = true
 		if (Item.Property.AutoPunish == 1 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")
 			&& ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase())
 			GagTriggerPunish = true
 		
