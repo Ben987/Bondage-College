@@ -2105,6 +2105,13 @@ var AssetFemale3DCG = [
 					{ Name: "Rings" }
 				]
 			},
+			{
+				Name: "FuturisticCollar", Fetish: ["Metal"], Value: 100, Difficulty: 50, Time: 12, DefaultColor: ["#40812C", "Default"], AllowLock: true, Extended: true,
+				Layer: [
+					{ Name: "Display" },
+					{ Name: "Band" },
+				]
+			},
 			{ Name: "LeatherChoker", Fetish: ["Leather"], Value: 10, Difficulty: 50, Time: 5, AllowLock: true },
 			{ Name: "PetCollar", Fetish: ["Leather", "Pet"], Value: -1, Difficulty: 50, Time: 5, AllowLock: true },
 			{ Name: "MaidCollar", Fetish: ["Lingerie"], Value: 30, Difficulty: 50, Time: 5, AllowLock: true },
