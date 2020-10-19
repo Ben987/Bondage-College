@@ -2,8 +2,7 @@
 
 var FuturisticChastityBeltShockCooldownOrgasm = 15000 // 15 sec
 var FuturisticChastityBeltShockCooldownTamper = 1000 // 1 sec
-var FuturisticChastityBeltShockCooldownStruggle = 20000 // 20 sec
-var FuturisticChastityBeltShockCooldownSpeak = 5000 // 5 seconds
+var FuturisticChastityBeltShockCooldownStruggle = 30000 // 30 sec
 
 var InventoryItemPelvisFuturisticChastityBeltTamperZones = [
 	"ItemPelvis",
@@ -15,12 +14,11 @@ function InventoryItemPelvisFuturisticChastityBeltLoad() {
 	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else{
-		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { NextShockTime: 0, PunishStruggle: false , PunishStruggleOther: false , PunishOrgasm: false, PunishSpeech: false, ChatMessage: false,  CloseBack: false, };
+		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { NextShockTime: 0, PunishStruggle: false , PunishStruggleOther: false , PunishOrgasm: false, ChatMessage: false,  CloseBack: false, };
 		if (DialogFocusItem.Property.NextShockTime == null) DialogFocusItem.Property.NextShockTime = 0;
 		if (DialogFocusItem.Property.PunishStruggle == null) DialogFocusItem.Property.PunishStruggle = false;
 		if (DialogFocusItem.Property.PunishStruggleOther == null) DialogFocusItem.Property.PunishStruggleOther = false;
 		if (DialogFocusItem.Property.PunishOrgasm == null) DialogFocusItem.Property.PunishOrgasm = false;
-		if (DialogFocusItem.Property.PunishSpeech == null) DialogFocusItem.Property.PunishSpeech = false;
 		if (DialogFocusItem.Property.ChatMessage == null) DialogFocusItem.Property.ChatMessage = false;
 	}
 }
@@ -46,7 +44,6 @@ function InventoryItemPelvisFuturisticChastityBeltDraw() {
 		DrawCheckboxColor(1100, 620, 64, 64, DialogFind(Player, "FuturisticChastityBeltPunishStruggle"), DialogFocusItem.Property.PunishStruggle, "White");
 		DrawCheckboxColor(1100, 690, 64, 64, DialogFind(Player, "FuturisticChastityBeltPunishStruggleOther"), DialogFocusItem.Property.PunishStruggleOther, "White");
 		DrawCheckboxColor(1100, 760, 64, 64, DialogFind(Player, "FuturisticChastityBeltPunishOrgasm"), DialogFocusItem.Property.PunishOrgasm, "White");
-		DrawCheckboxColor(1100, 830, 64, 64, DialogFind(Player, "FuturisticChastityBeltPunishSpeech"), DialogFocusItem.Property.PunishSpeech, "White");
 		MainCanvas.textAlign = "center";
 
 		if (DialogFocusItem.Property.Type == "ClosedBack") {
@@ -78,9 +75,6 @@ function InventoryItemPelvisFuturisticChastityBeltClick() {
 		} else if (MouseIn(1100, 760, 64, 64)) {
 			DialogFocusItem.Property.PunishOrgasm = !DialogFocusItem.Property.PunishOrgasm
 			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishOrgasm", DialogFocusItem.Property.PunishOrgasm)
-		} else if (MouseIn(1100, 830, 64, 64)) {
-			DialogFocusItem.Property.PunishSpeech = !DialogFocusItem.Property.PunishSpeech
-			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishSpeech", DialogFocusItem.Property.PunishSpeech)
 		} else if (MouseIn(1250, 910, 500, 64)) {
 			if (DialogFocusItem.Property.Type == "ClosedBack") {
 				if (MouseIn(1250, 910, 200, 64)) {
@@ -143,7 +137,7 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 			}
 		}
 		// Punish the player if they struggle anywhere
-		if (Item.Property.PunishStruggleOther && Player.FocusGroup && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0 && DialogProgress > 60) {
+		if (Item.Property.PunishStruggleOther && Player.FocusGroup && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0 && DialogProgress > 80) {
 			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther")
 			Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownStruggle // Longer cooldown to allow some possibilty of kinky escape
 			DialogProgressStruggleCount = 0
@@ -164,20 +158,6 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 				vol = Player.AudioSettings.Volume
 			}
 			AudioPlayInstantSound("Audio/Shocks.mp3", vol)
-		}
-		// Punish the player if they speak
-		if (Item.Property.PunishSpeech) {
-			
-			var LastMessages = data.PersistentData().LastMessageLen
-			if (ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages) {
-				AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Speech")
-				Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownSpeak // Difficult to have two orgasms in 10 seconds
-				var vol = 1
-				if (Player.AudioSettings && Player.AudioSettings.Volume) {
-					vol = Player.AudioSettings.Volume
-				}
-				AudioPlayInstantSound("Audio/Shocks.mp3", vol)
-			}
 		}
 	}
 }
