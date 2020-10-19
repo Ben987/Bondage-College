@@ -2094,6 +2094,12 @@ var AssetFemale3DCG = [
 					{ Name: "Light", AllowTypes: ["Blink"], HideColoring: true },
 				], DynamicBeforeDraw: true, DynamicScriptDraw: true,
 			},
+			{
+				Name: "AutoShockCollar", Fetish: ["Leather", "Masochism"], Value: -1, Difficulty: 50, Time: 15, Random: false, AllowLock: true, BuyGroup: "ShockCollar", Effect: ["ReceiveShock"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }], AllowType: ["", "Blink", "Sensitivity"], Extended: true, AlwaysExtend: true, Activity: "ShockItem", Layer: [
+					{ Name: "Collar", HasType: false, AllowTypes: ["", "Blink"] },
+					{ Name: "Light", AllowTypes: ["Blink"], HideColoring: true },
+				], DynamicBeforeDraw: true, DynamicScriptDraw: true,
+			},
 			{ Name: "ShockCollarRemote", Value: -1, Random: false, Wear: false, BuyGroup: "ShockCollar", Activity: "ShockItem", Effect: ["TriggerShock"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }, { Name: "Soft", Group: "Blush", Timer: 15 }, { Name: "Closed", Group: "Eyes", Timer: 5 }] },
 			{ Name: "BatCollar", Fetish: ["Leather"], Value: 25, Difficulty: 50, Time: 5, AllowLock: true },
 			{ Name: "PostureCollar", Fetish: ["Leather"], Value: 40, Difficulty: 50, Time: 5, AllowLock: true },
