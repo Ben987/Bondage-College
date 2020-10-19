@@ -80,17 +80,18 @@ function InventoryItemNeckFuturisticCollarClick() {
 			}
 			
 			var CollarAction = 0 // 0 - nothing, 1 - Lock, 2 - Unlock
-			if (FuturisticCollarItems.length > 0 && lockedItems < FuturisticCollarItems.length) {
-
-				if (MouseIn(1250, 650, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "MetalPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "MetalPadlock"); CollarAction = 1}
-				else if (MouseIn(1550, 650, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "ExclusivePadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "ExclusivePadlock"); CollarAction = 1}
-				else if (MouseIn(1250, 710, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "TimerPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "TimerPadlock"); CollarAction = 1}
-				else if (MouseIn(1550, 710, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "MistressPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "MistressPadlock"); CollarAction = 1}
-				else if (MouseIn(1250, 770, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "LoversPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "LoversPadlock"); CollarAction = 1}
-				else if (MouseIn(1550, 770, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "OwnerPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "OwnerPadlock"); CollarAction = 1}
+			if (FuturisticCollarItems.length > 0 ) {
+				
+				if (lockedItems < FuturisticCollarItems.length) {
+					if (MouseIn(1250, 650, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "MetalPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "MetalPadlock"); CollarAction = 1}
+					else if (MouseIn(1550, 650, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "ExclusivePadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "ExclusivePadlock"); CollarAction = 1}
+					else if (MouseIn(1250, 710, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "TimerPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "TimerPadlock"); CollarAction = 1}
+					else if (MouseIn(1550, 710, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "MistressPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "MistressPadlock"); CollarAction = 1}
+					else if (MouseIn(1250, 770, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "LoversPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "LoversPadlock"); CollarAction = 1}
+					else if (MouseIn(1550, 770, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "OwnerPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "OwnerPadlock"); CollarAction = 1}
+				}
 			}
-			
-			else if (MouseIn(1400, 880, 200, 55) && FuturisticCollarItemsUnlockable.length > 0) { InventoryItemNeckFuturisticCollarUnlock(C); CollarAction = 2}
+			if (MouseIn(1400, 880, 200, 55) && FuturisticCollarItemsUnlockable.length > 0) { InventoryItemNeckFuturisticCollarUnlock(C); CollarAction = 2}
 			
 			if (CollarAction > 0) {
 				InventoryItemNeckFuturisticCollarExit();
@@ -142,7 +143,7 @@ function InventoryItemNeckFuturisticCollarGetItems(C, OnlyUnlockable) {
 	var ItemList = []
 	
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Name.indexOf("Collar") == -1) &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Group.Name != "ItemNeck") &&
 			(C.Appearance[E].Asset.AllowLock)
 			&& (!OnlyUnlockable || (InventoryGetLock(C.Appearance[E]) != null && InventoryItemHasEffect(C.Appearance[E], "Lock", true) && DialogCanUnlock(C, C.Appearance[E])))) {
 				ItemList.push(C.Appearance[E])
@@ -158,7 +159,7 @@ function InventoryItemNeckFuturisticCollarValidate(C, Option) {
 
 function InventoryItemNeckFuturisticCollarLockdown(C, LockType) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Name.indexOf("Collar") == -1) &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Group.Name != "ItemNeck") &&
 			(C.Appearance[E].Asset.AllowLock && InventoryGetLock(C.Appearance[E]) == null)) {
 				InventoryLock(C, C.Appearance[E], LockType, Player.MemberNumber);
 				var Lock = InventoryGetLock(C.Appearance[E])
@@ -173,7 +174,7 @@ function InventoryItemNeckFuturisticCollarLockdown(C, LockType) {
 
 function InventoryItemNeckFuturisticCollarUnlock(C) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Name.indexOf("Collar") == -1) &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Group.Name != "ItemNeck") &&
 			(InventoryGetLock(C.Appearance[E]) != null && InventoryItemHasEffect(C.Appearance[E], "Lock", true) && DialogCanUnlock(C, C.Appearance[E]))) {
 				InventoryUnlock(C, C.Appearance[E])
 		}
