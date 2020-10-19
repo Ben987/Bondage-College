@@ -271,9 +271,13 @@
 
 	NEXT VERSION:
 
-	DONE - Turn tables on owner NPC and allow NPC slaves to turn tables on you. (50 Dominant reputation difference)
-	
-	TO DO - Build credit list from Github log	
+	TO DO - Add categories to controversial assets so they can be filtered
+	TO DO - Add a new screen to filter asset categories, called from room creation and room admin screen
+	TO DO - Make filtered room assets invisible when drawing the character
+	TO DO - Prevent adding filtered room assets on a character
+	TO DO - LARP - Introduce a levelling system which should not impact the % that much
+	TO DO - LARP - Make sure the game can still run if the organiser disconnects, or pause the game if it's the case
+	TO DO - LARP - Allow a regular room to become a LARP room and a LARP room to become a regular room
 	TO DO - Proof Read
 	TO DO - Patreon Import/Update
 
@@ -305,7 +309,6 @@
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
-	//ServerURL = "https://bondage-club-server.azurewebsites.net/";
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
