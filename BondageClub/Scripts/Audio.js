@@ -65,6 +65,10 @@ var AudioActions = [
 		Sound: "CuffsMetal"
 	},
 	{
+		IsAction: (data) => ["FuturisticChastityBeltShock"].find(A => data.Content.includes(A)),
+		Sound: "Shocks"
+	},
+	{
 		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "TriggerShock"].find(A => data.Content.includes(A)),
 		GetAudioInfo: (data) => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data)
 	},

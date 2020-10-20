@@ -129,11 +129,11 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 				Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownTamper // Very quick cooldown. Can't have players taking off their chastity belt easily~
 				DialogProgressStruggleCount = 0
 				DialogLeaveDueToItem = true
-				var vol = 1
+				/*var vol = 1
 				if (Player.AudioSettings && Player.AudioSettings.Volume) {
 					vol = Player.AudioSettings.Volume
 				}
-				AudioPlayInstantSound("Audio/Shocks.mp3", vol)
+				AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
 			}
 		}
 		// Punish the player if they struggle anywhere
@@ -143,21 +143,21 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 			DialogProgressStruggleCount = 0
 			DialogProgress = 0
 			DialogLeaveDueToItem = true
-			var vol = 1
+			/*var vol = 1
 			if (Player.AudioSettings && Player.AudioSettings.Volume) {
 				vol = Player.AudioSettings.Volume
 			}
-			AudioPlayInstantSound("Audio/Shocks.mp3", vol)
+			AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
 		}
 		// Punish the player if they orgasm
 		if (Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
 			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Orgasm")
 			Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownOrgasm // Difficult to have two orgasms in 10 seconds
-			var vol = 1
+			/*var vol = 1
 			if (Player.AudioSettings && Player.AudioSettings.Volume) {
 				vol = Player.AudioSettings.Volume
 			}
-			AudioPlayInstantSound("Audio/Shocks.mp3", vol)
+			AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
 		}
 	}
 }
