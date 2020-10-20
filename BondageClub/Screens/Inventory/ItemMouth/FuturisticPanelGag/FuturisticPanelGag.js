@@ -263,7 +263,7 @@ function InventoryItemMouthFuturisticPanelGagGetOption(Options, OptionType) {
 
 
 function InventoryItemMouthFuturisticPanelGagPublishActionTrigger(C, Item, Option, Deflate) {
-	var msg = "FuturisticPanelGagMouthSetAuto" + ((Deflate) ? "Deflate" : "") + Option.Name;
+	var msg = "FuturisticPanelGagMouthSetAuto" + ((Deflate) ? "Deflate" : "Inflate") + Option.Name;
 	
 	var Dictionary = [
 		{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
@@ -325,7 +325,7 @@ function InventoryItemMouthFuturisticPanelGagTrigger(C, Item, Reset) {
 			InventoryItemMouthFuturisticPanelGagPublishActionTrigger(C, Item, InventoryItemMouthFuturisticPanelGagOptions[OptionLevel], Reset)
 		Item.Property.OriginalSetting = OriginalItemSetting // After automatically changing it, we put it back to original setting
 		
-		var vol = 1
+		/*var vol = 1
 		if (Player.AudioSettings && Player.AudioSettings.Volume) {
 			vol = Player.AudioSettings.Volume
 		}
@@ -333,6 +333,7 @@ function InventoryItemMouthFuturisticPanelGagTrigger(C, Item, Reset) {
 			AudioPlayInstantSound("Audio/Deflation.mp3", vol)
 		else
 			AudioPlayInstantSound("Audio/Inflation.mp3", vol)
+		*/
 	}
 }
 	

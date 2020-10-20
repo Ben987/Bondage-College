@@ -65,6 +65,14 @@ var AudioActions = [
 		Sound: "CuffsMetal"
 	},
 	{
+		IsAction: (data) => ["FuturisticPanelGagMouthSetAutoInflate"].find(A => data.Content.includes(A)),
+		Sound: "Inflation"
+	},
+	{
+		IsAction: (data) => ["FuturisticPanelGagMouthSetAutoDeflate"].find(A => data.Content.includes(A)),
+		Sound: "Deflation"
+	},
+	{
 		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "TriggerShock"].find(A => data.Content.includes(A)),
 		GetAudioInfo: (data) => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data)
 	},
