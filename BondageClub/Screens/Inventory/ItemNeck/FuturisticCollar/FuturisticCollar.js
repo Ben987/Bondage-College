@@ -96,14 +96,14 @@ function InventoryItemNeckFuturisticCollarClick() {
 			if (CollarAction > 0) {
 				InventoryItemNeckFuturisticCollarExit();
 				
-				var vol = 1
+				/*var vol = 1
 				if (Player.AudioSettings && Player.AudioSettings.Volume) {
 					vol = Player.AudioSettings.Volume
 				}
 				if (CollarAction == 1) 
 					AudioPlayInstantSound("Audio/HydraulicLock.mp3", vol)
 				else
-					AudioPlayInstantSound("Audio/HydraulicUnlock.mp3", vol)
+					AudioPlayInstantSound("Audio/HydraulicUnlock.mp3", vol)*/
 				
 			}
 		}
@@ -168,8 +168,20 @@ function InventoryItemNeckFuturisticCollarLockdown(C, LockType) {
 	ChatRoomCharacterUpdate(C);
 	CharacterRefresh(C, true);
 	
-	if (CurrentScreen == "ChatRoom")	
-		ServerSend("ChatRoomChat", { Content: " feels her bindings tightening around her body with a hiss as they lock themselves automatically.", Type: "Emote" });
+
+	
+	if (CurrentScreen == "ChatRoom")	{
+		var Message;
+		var Dictionary = [
+			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+			{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		];
+
+		Message = "FuturisticCollarTriggerLockdown";
+
+		ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
+	}
+		//ServerSend("ChatRoomChat", { Content: " feels her bindings tightening around her body with a hiss as they lock themselves automatically.", Type: "Emote" });
 }
 
 function InventoryItemNeckFuturisticCollarUnlock(C) {
@@ -182,6 +194,18 @@ function InventoryItemNeckFuturisticCollarUnlock(C) {
 	ChatRoomCharacterUpdate(C);
 	CharacterRefresh(C, true);
 	
-	if (CurrentScreen == "ChatRoom")	
-	 ServerSend("ChatRoomChat", { Content: " 's bindings unlock with a hiss.", Type: "Emote" });
+	if (CurrentScreen == "ChatRoom")	{
+		var Message;
+		var Dictionary = [
+			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+			{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		];
+
+		Message = "FuturisticCollarTriggerUnlock";
+		
+		ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
+	}
+	
+	//if (CurrentScreen == "ChatRoom")	
+	// ServerSend("ChatRoomChat", { Content: " 's bindings unlock with a hiss.", Type: "Emote" });
 }

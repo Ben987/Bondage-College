@@ -2106,7 +2106,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "FuturisticCollar", Fetish: ["Metal"], Value: 100, Difficulty: 50, Time: 12, DefaultColor: ["#40812C", "Default"], AllowLock: true, Extended: true,
+				Name: "FuturisticCollar", Fetish: ["Metal"], Value: 100, Difficulty: 50, Time: 12, Audio: "FuturisticApply", DefaultColor: ["#40812C", "Default"], AllowLock: true, Extended: true,
 				Layer: [
 					{ Name: "Display" },
 					{ Name: "Band" },
