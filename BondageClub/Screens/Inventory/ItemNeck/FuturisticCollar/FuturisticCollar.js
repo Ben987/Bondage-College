@@ -101,9 +101,9 @@ function InventoryItemNeckFuturisticCollarClick() {
 					vol = Player.AudioSettings.Volume
 				}
 				if (CollarAction == 1) 
-					AudioPlayInstantSound("Audio/LockLarge.mp3", vol)
+					AudioPlayInstantSound("Audio/HydraulicLock.mp3", vol)
 				else
-					AudioPlayInstantSound("Audio/UnlockSmall.mp3", vol)
+					AudioPlayInstantSound("Audio/HydraulicUnlock.mp3", vol)
 				
 			}
 		}
