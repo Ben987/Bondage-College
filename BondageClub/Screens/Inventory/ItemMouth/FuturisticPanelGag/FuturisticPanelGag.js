@@ -31,7 +31,6 @@ var InventoryItemMouthFuturisticPanelGagOptions = [
 	},
 ];
 
-
 // How to make your item futuristic!
 
 // In the load function, add this before your load function, without changing functions from the futuristic panel gag functions. Just make sure your item loads after the panel gag and not before in index.html:
