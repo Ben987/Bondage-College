@@ -2,7 +2,7 @@
 var ChatBlockItemBackground = "IntroductionDark";
 var ChatBlockItemList = ["ABDL", "SciFi"];
 var ChatBlockItemCategory = [];
-var ChatBlockItemReturnScreen = "";
+var ChatBlockItemReturnData = {};
 
 /**
  * Loads the chat room item blocking screen
@@ -43,5 +43,8 @@ function ChatBlockItemClick() {
  * @returns {void} - Nothing
  */
 function ChatBlockItemExit() {
-	CommonSetScreen("Online", ChatBlockItemReturnScreen);
+	CommonSetScreen("Online", ChatBlockItemReturnData.Screen);
+	ElementValue("InputName", ChatBlockItemReturnData.Name);
+	ElementValue("InputDescription", ChatBlockItemReturnData.Description);
+	ElementValue("InputSize", ChatBlockItemReturnData.Limit);
 }

@@ -156,10 +156,10 @@ function ChatCreateRoom() {
  * @returns {void} - Nothing
  */
 function ChatCreateBlockItems() {
+	ChatBlockItemBackground = ChatCreateBackground;
+	ChatBlockItemReturnData = { Screen: "ChatCreate", Name: ElementValue("InputName"), Description: ElementValue("InputDescription"), Limit: ElementValue("InputSize") };
 	ElementRemove("InputName");
 	ElementRemove("InputDescription");
 	ElementRemove("InputSize");
-	ChatBlockItemBackground = ChatCreateBackground;
-	ChatBlockItemReturnScreen = "ChatCreate";
 	CommonSetScreen("Online", "ChatBlockItem");
 }

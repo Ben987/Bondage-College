@@ -119,7 +119,7 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 	var Item = data.Item
 	if (Item.Property.NextShockTime - CurrentTime <= 0) {
 		// Punish the player if they try to mess with the groin area
-		if (Item.Property.PunishStruggle && Player.FocusGroup && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0) {
+		if (Item.Property.PunishStruggle && Player.FocusGroup && DialogProgress >= 0 && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0) {
 			var inFocus = false
 			for (var Z = 0; Z < InventoryItemPelvisFuturisticChastityBeltTamperZones.length; Z++)
 				if (Player.FocusGroup.Name == InventoryItemPelvisFuturisticChastityBeltTamperZones[Z])
