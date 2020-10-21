@@ -104,6 +104,7 @@ function ActivityDialogBuild(C) {
 					for (let P = 0; P < Activity.Prerequisite.length; P++) {
 						if ((Activity.Prerequisite[P] == "UseMouth") && (Player.IsMouthBlocked() || !Player.CanTalk())) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseTongue") && Player.IsMouthBlocked()) Allow = false;
+						else if ((Activity.Prerequisite[P] == "TargetMouthBlocked") && !C.IsMouthBlocked()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "IsGagged") && Player.CanTalk()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "SelfOnly") && C.ID != 0) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseHands") && !Player.CanInteract()) Allow = false;
