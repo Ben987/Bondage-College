@@ -64,7 +64,10 @@ function ChatSearchClick() {
 		if (ChatSearchMode == "" && Array.isArray(ChatSearchResult) && (ChatSearchResult.length >= 1)) ChatSearchJoin();
 	}
 	if (MouseIn(980, 898, 280, 64)) ChatSearchQuery();
-	if (MouseIn(1280, 898, 280, 64)) CommonSetScreen("Online", "ChatCreate");
+	if (MouseIn(1280, 898, 280, 64)) {
+		ChatBlockItemCategory = [];
+		CommonSetScreen("Online", "ChatCreate");
+	}
 	if (MouseIn(1585, 885, 90, 90)) { 
 		ChatSearchResultOffset += ChatSearchRoomsPerPage;
 		if (ChatSearchResultOffset >= ChatSearchResult.length + (ChatSearchMode != "Filter" ? 0 : ChatSearchIgnoredRooms.length)) ChatSearchResultOffset = 0;

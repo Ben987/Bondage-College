@@ -4,6 +4,7 @@ RoomDescription,A short description or what's going on
 RoomPrivate,Private (Need exact name to find it)
 RoomBackground,Select the background
 RoomSize,"Room maximum size, from 2 to 10 members"
+BlockItems,Block Items
 Create,Create
 Cancel,Cancel
 ShowAll,Selection
