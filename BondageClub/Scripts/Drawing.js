@@ -6,6 +6,7 @@
 "use strict";
 var MainCanvas;
 var ColorCanvas;
+var DialogLeaveDueToItem = false
 
 // A bank of all the chached images
 var DrawCacheImage = {};
