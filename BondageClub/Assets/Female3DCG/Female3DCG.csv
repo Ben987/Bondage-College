@@ -72,6 +72,7 @@ Necklace,BlackHeart,Black Heart
 Suit,,Upper Suit
 Suit,Catsuit,Catsuit
 Suit,SeamlessCatsuit, Seamless Catsuit
+Suit,PilotSuit,Pilot Suit
 Suit,SeethroughSuit,See-through Suit
 Suit,SeethroughSuitZip,See-through Zipsuit
 Suit,ReverseBunnySuit,Reverse Bunny Suit
@@ -104,6 +105,7 @@ ClothLower,PleatedSkirt,Pleated Skirt
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
+SuitLower,PilotSuit,Pilot Suit
 SuitLower,SeethroughSuit,See-through Suit
 SuitLower,SeethroughSuitZip,See-through Zipsuit
 SuitLower,ReverseBunnySuit,Reverse Bunny Suit
@@ -778,6 +780,7 @@ ItemNeck,LeatherCollarBow,Bow Collar
 ItemNeck,SlaveCollar,Slave Collar
 ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
+ItemNeck,AutoShockCollar,Automatic Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemNeck,BatCollar,Bat Collar
 ItemNeck,PostureCollar,Posture Collar
@@ -806,6 +809,7 @@ ItemNeckAccessories,CustomNameTag,Custom Tag
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
 ItemNeckAccessories,CollarShockUnit,Shock Unit
+ItemNeckAccessories,CollarAutoShockUnit,Automatic Shock Unit
 ItemNeckAccessories,ShockCollarRemote,Shock Collar Remote
 ItemNeckAccessories,CollarNameTag,Name Tag
 ItemNeckAccessories,CollarNameTagOval,Oval Name Tag

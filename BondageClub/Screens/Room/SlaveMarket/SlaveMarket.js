@@ -200,7 +200,6 @@ function SlaveMarketPlayerAuctionTransfer() {
 	var C = PrivateCharacter[PrivateCharacter.length - 1];
 	NPCTraitSet(C, "Dominant", 50 + Math.floor(Math.random() * 51));
 	C.Love = 30;
-	Player.Owner = "NPC-" + C.Name;
 	NPCEventAdd(C, "EndSubTrial", CurrentTime + NPCLongEventDelay(C));
 	ServerPrivateCharacterSync();
 }

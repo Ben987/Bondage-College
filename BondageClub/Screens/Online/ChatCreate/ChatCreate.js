@@ -61,8 +61,10 @@ function ChatCreateRun() {
 	DrawBackNextButton(900, 640, 350, 65, DialogFind(Player, ChatCreateBackgroundSelect), "White", null,
 		() => DialogFind(Player, (ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
 		() => DialogFind(Player, (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
-	DrawButton(600, 800, 300, 65, TextGet("Create"), "White");
-	DrawButton(1100, 800, 300, 65, TextGet("Cancel"), "White");
+	DrawButton(450, 800, 300, 65, TextGet("BlockItems"), "White");
+	DrawButton(850, 800, 300, 65, TextGet("Create"), "White");
+	DrawButton(1250, 800, 300, 65, TextGet("Cancel"), "White");
+
 }
 
 /**
@@ -91,15 +93,11 @@ function ChatCreateClick() {
 		document.getElementById("InputSize").style.display = "none";
 	}
 
-	// If the user wants to create a room
-	if ((MouseX >= 600) && (MouseX < 900) && (MouseY >= 800) && (MouseY < 865)) {
-		ChatCreateRoom();
-	}
+	// When the bottom buttons are used
+	if (MouseIn(450, 800, 300, 65)) ChatCreateBlockItems();
+	if (MouseIn(850, 800, 300, 65)) ChatCreateRoom();
+	if (MouseIn(1250, 800, 300, 65)) ChatCreateExit();
 
-	// When the user cancels
-	if ((MouseX >= 1100) && (MouseX < 1400) && (MouseY >= 800) && (MouseY < 865)) {
-		ChatCreateExit();
-	}
 }
 
 /**
@@ -146,8 +144,22 @@ function ChatCreateRoom() {
 		Background: ChatCreateBackgroundSelect,
 		Private: ChatCreatePrivate,
 		Space: ChatRoomSpace,
-		Limit: ElementValue("InputSize").trim()
+		Limit: ElementValue("InputSize").trim(),
+		BlockCategory: ChatBlockItemCategory
 	};
 	ServerSend("ChatRoomCreate", NewRoom);
 	ChatCreateMessage = "CreatingRoom";
+}
+
+/**
+ * When we need to enter the item blocking screen
+ * @returns {void} - Nothing
+ */
+function ChatCreateBlockItems() {
+	ElementRemove("InputName");
+	ElementRemove("InputDescription");
+	ElementRemove("InputSize");
+	ChatBlockItemBackground = ChatCreateBackground;
+	ChatBlockItemReturnScreen = "ChatCreate";
+	CommonSetScreen("Online", "ChatBlockItem");
 }

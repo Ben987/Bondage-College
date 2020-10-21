@@ -37,9 +37,8 @@ function CharacterAppearanceBuildAssets(C) {
 
 }
 
-// 
 /**
- * Makes sure the character appearance is valid from inventory and asset requirement
+ * Makes sure the character appearance is valid from inventory and asset requirement. This function is called during the login process.
  * @param {Character} C - The character whose appearance is checked
  * @returns {void} - Nothing
  */
@@ -54,7 +53,7 @@ function CharacterAppearanceValidate(C) {
 		}
 
 	// Remove items flagged as "Remove At Login"
-	if (!Player.GameplaySettings || !Player.GameplaySettings.DisableAutoRemoveLogin)
+	if (LogQuery("Committed", "Asylum") || !Player.GameplaySettings || !Player.GameplaySettings.DisableAutoRemoveLogin)
 		for (let A = C.Appearance.length - 1; A >= 0; A--)
 			if (C.Appearance[A].Asset.RemoveAtLogin) {
 				C.Appearance.splice(A, 1);
@@ -522,7 +521,7 @@ function AppearanceRun() {
 				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
 				const ColorButtonText = ItemColorGetColorButtonText(Color);
 				const ColorButtonColor = ColorButtonText.startsWith("#") ? ColorButtonText : "#fff";
-				const CanCycleColors = !!Item && WardrobeGroupAccessible(C, AssetGroup[A]) && Item.Asset.ColorableLayerCount > 0;
+				const CanCycleColors = !!Item && WardrobeGroupAccessible(C, AssetGroup[A]) && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1);
 				const CanPickColor = CanCycleColors && AssetGroup[A].AllowColorize;
 				const ColorIsSimple = ItemColorIsSimple(Item);
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, ColorButtonText, CanCycleColors ? ColorButtonColor : "#aaa", null, null, !CanCycleColors);
@@ -796,7 +795,7 @@ function AppearanceClick() {
 			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++) {
 				const Item = InventoryGet(C, AssetGroup[A].Name);
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") &&
-				    WardrobeGroupAccessible(C, AssetGroup[A]) && Item && Item.Asset.ColorableLayerCount > 0)
+				    WardrobeGroupAccessible(C, AssetGroup[A]) && Item && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
 						CharacterAppearanceNextColor(C, AssetGroup[A].Name);
 			}
