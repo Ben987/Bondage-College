@@ -9,6 +9,9 @@ var AudioList = [
 	{ Name: "ChainLong", File: "ChainLong" },
 	{ Name: "ChainShort", File: "ChainShort" },
 	{ Name: "CuffsMetal", File: "CuffsMetal" },
+	{ Name: "FuturisticApply", File: "FuturisticApply" },
+	{ Name: "HydraulicLock", File: "HydraulicLock" },
+	{ Name: "HydraulicUnlock", File: "HydraulicUnlock" },
 	{ Name: "Deflation", File: "Deflation" },
 	{ Name: "DuctTape", File: "DuctTape18" },
 	{ Name: "Inflation", File: "Inflation" },
@@ -37,6 +40,8 @@ var AudioActions = [
 	{ Action: "TimerRelease", Sound: "Unlock" },
 	{ Action: "ActionUnlock", Sound: "Unlock" },
 	{ Action: "ActionUnlockAndRemove", Sound: "Unlock" },
+	{ Action: "FuturisticCollarTriggerLockdown", Sound: "HydraulicLock" },
+	{ Action: "FuturisticCollarTriggerUnlock", Sound: "HydraulicUnlock" },
 	{ Action: "ActionLock", GetAudioInfo: AudioPlayAssetSound },
 	{
 		IsAction: (data) => ["ActionUse", "ActionSwap"].includes(data.Content) && data.Sender !== Player.MemberNumber,
