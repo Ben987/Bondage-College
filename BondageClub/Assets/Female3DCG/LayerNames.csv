@@ -348,3 +348,12 @@ ItemBreastFuturisticBraText,Text
 ItemPelvisFuturisticChastityBeltScreen,Screen
 ItemPelvisFuturisticChastityBeltMesh,Mesh
 ItemPelvisFuturisticChastityBeltBelt,Belt
+SuitLowerPilotSuitLayer1,Suit
+SuitLowerPilotSuitLayer2,Highlights
+SuitLowerPilotSuitLayer3,Center
+SuitLowerPilotSuitLayer4,Underlayment
+SuitPilotSuitLayer1,Suit
+SuitPilotSuitLayer2,Highlights
+SuitPilotSuitLayer3,Center
+SuitPilotSuitLayer4,Arms
+SuitPilotSuitFeet,Feet

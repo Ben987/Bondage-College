@@ -1,5 +1,4 @@
 "use strict";
-
 var FuturisticChastityBeltShockCooldownOrgasm = 15000 // 15 sec
 var FuturisticChastityBeltShockCooldownTamper = 1000 // 1 sec
 var FuturisticChastityBeltShockCooldownStruggle = 30000 // 30 sec
@@ -8,6 +7,7 @@ var InventoryItemPelvisFuturisticChastityBeltTamperZones = [
 	"ItemPelvis",
 	"ItemButt",
 ]
+
 
 function InventoryItemPelvisFuturisticChastityBeltLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -113,6 +113,7 @@ function InventoryItemPelvisFuturisticChastityBeltValidate(C) {
 
 
 function InventoryItemPelvisFuturisticChastityBeltNpcDialog(C, Option) { InventoryItemPelvisMetalChastityBeltNpcDialog(C, Option); }
+
 
 function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 	var Item = data.Item
