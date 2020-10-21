@@ -1914,6 +1914,13 @@ var AssetFemale3DCG = [
 					{ Name: "Straps" }
 				]
 			},
+			{
+				Name: "FuturisticArmbinder", Category: ["Sci Fi"], Fetish: ["Metal"], Priority: 6, Value: 80, Difficulty: 10, SelfBondage: 6, Time: 25, RemoveTime: 10, AllowLock: true, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], SelfUnlock: false,
+				Layer: [
+					{ Name: "Binder" , ParentGroup: null, },
+					{ Name: "Straps" , ParentGroup: null,Priority: 31, Left: 0, Top: 0,  }
+				]
+			},
 			{ Name: "SeamlessLatexArmbinder", Fetish: ["Latex"], Priority: 6, Value: 60, Difficulty: 10, SelfBondage: 7, Time: 25, RemoveTime: 10, AllowLock: true, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], SelfUnlock: false },
 			{
 				Name: "FullBodyLeatherHarness", Fetish: ["Leather"], Priority: 29, Value: 60, Difficulty: 14, SelfBondage: 6, Time: 20, RemoveTime: 15, AllowLock: true, SetPose: ["BackElbowTouch", "LegsClosed"], AllowPose: ["Kneel"], Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "NotShackled"], Effect: ["Block", "Prone"], SelfUnlock: false,
