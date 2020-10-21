@@ -123,7 +123,7 @@ function InventoryItemNeckFuturisticCollarCanLock(C, LockType) {
 		
 
 		
-	if (LockItem && !(InventoryIsPermissionBlocked(C, LockItem, "ItemMisc") || !InventoryCheckLimitedPermission(C, LockItem))) {
+	if (LockItem && !(InventoryIsPermissionBlocked(C, LockType, "ItemMisc") || !InventoryCheckLimitedPermission(C, LockItem))) {
 	
 
 
