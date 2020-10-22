@@ -91,6 +91,12 @@ TailStrapsFoxTailStrap2Tip,Tip
 ItemFeetOrnateAnkleCuffsCuffs,Cuffs
 ItemFeetOrnateAnkleCuffsGems,Gems
 ItemLegsOrnateLegCuffsCuffs,Cuffs
+ItemFeetFuturisticAnkleCuffsCuffs,Cuffs
+ItemFeetFuturisticAnkleCuffsDisplay,Display
+ItemLegsFuturisticLegCuffsCuffs,Cuffs
+ItemLegsFuturisticLegCuffsDisplay,Display
+ItemLegsFuturisticCuffsCuffs,Cuffs
+ItemLegsFuturisticCuffsDisplay,Display
 ItemLegsOrnateLegCuffsGems,Gems
 ItemLegsLegBinderLatex,Binder
 ItemLegsLegBinderBelts,Belts
