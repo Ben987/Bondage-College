@@ -31,7 +31,7 @@ function MainHallMaidsDisabledDaysLeft4() { var expire = LogValue("MaidsDisabled
 function MainHallMaidsDisabledDaysLeft5() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 345600000 && expire < 432000000) }
 function MainHallMaidsDisabledDaysLeft6() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 432000000 && expire < 518400000) }
 function MainHallMaidsDisabledDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 518400000 && expire < 604800000) }
-function MainHallMaidsDisabledDaysLeft8() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 604800000) }
+function MainHallMaidsDisabledDaysLeft8() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000) }//604800000) }
 
 /**
  * Checks for the dialog options to help the maid determine which dialog options she can give the player to extend the duration
@@ -186,7 +186,7 @@ function MainHallRun() {
 	if (!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()) {
 		if (MainHallNextEventTimer == null) {
 			MainHallStartEventTimer = CommonTime();
-			MainHallNextEventTimer = CommonTime() + 400 + Math.floor(Math.random() * 400);
+			MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
 		}
 	} else {
 		MainHallStartEventTimer = null;

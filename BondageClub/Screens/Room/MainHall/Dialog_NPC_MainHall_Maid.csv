@@ -44,7 +44,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,100,(Nod yes.),"I still can't let you go. You have 5 days to go.",,MaidsDisabledDaysLeft5()
 0,100,(Nod yes.),"(She slaps your butt). I can't help you, my dear. Have fun.",,MaidsDisabledDaysLeft6()
 0,100,(Nod yes.),"(She looks at her clipboard, amazed). One whole week. Good luck dear.",,MaidsDisabledDaysLeft7()
-0,103,(Nod yes.),"(She looks at her clipboard and pauses) Actually, you're not on my list. I'll help you! (Failed to get time remaining. Please report this bug to the wiki. You will be released)",MaidReleasePlayer(),MaidsDisabledDaysLeft8()
+0,103,(Nod. You encountered a bug.),"(She looks at her clipboard and pauses) Actually, you're not on my list. I'll help you! (Failed to get time remaining. Please report this bug to the Discord. You will be released)",MaidReleasePlayer(),MaidsDisabledDaysLeft8()
 0,104,(Shake your head firmly and plead for more.),"(She looks at her clipboard) Is that so. I can extend your period of helplessness if you want. (She goes over a list of durations and waits for you to answer)",,IsMaidsDisabled()
 0,40,"Yes, can you release me?",(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.,,HasOwnerItemAndMaidsNotDisabled()
 0,70,"Yes, can you change my collar?",(She checks the lock and frowns.) That is a slave collar. Your Mistress might not be pleased if I change it.,,HasSlaveCollarAndMaidsNotDisabled()
