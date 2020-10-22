@@ -98,7 +98,7 @@ function InventoryItemArmsFuturisticCuffsValidate(C, Option) {
  * @returns {void} - Nothing
  */
 function InventoryItemArmsFuturisticCuffsPublishAction(C, Option, PreviousOption) {
-	var msg = "LeatherCuffsRestrain" + Option.Name;
+	var msg = "FuturisticCuffsRestrain" + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
