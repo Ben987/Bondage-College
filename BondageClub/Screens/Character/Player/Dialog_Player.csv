@@ -646,6 +646,8 @@ FuturisticChastityBeltSetPunishStruggleOff,,,SourceCharacter disables the tamper
 FuturisticChastityBeltSetPunishStruggleOtherOff,,,SourceCharacter configures DestinationCharacter belt to allow struggling.,,
 FuturisticChastityBeltOpenBack,,,Open Back,,
 FuturisticChastityBeltClosedBack,,,Closed Back,,
+FuturisticChastityBeltSetOpenBack,,,SourceCharacter disables the shield from the back of DestinationCharacter belt.,,
+FuturisticChastityBeltSetClosedBack,,,SourceCharacter enables the shield on the back of DestinationCharacter belt.,,
 FuturisticChastityBeltTime,,,Time until recharged:,,
 FuturisticChastityBeltTimeReady,,,Punishment Charged,,
 FuturisticChastityBeltShockOrgasm,,,DestinationCharacterName belt detects an orgasm and shocks her!,,

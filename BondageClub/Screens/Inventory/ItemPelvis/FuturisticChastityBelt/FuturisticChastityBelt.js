@@ -94,7 +94,15 @@ function InventoryItemPelvisFuturisticChastityBeltExit() {
 	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
 }
 
-function InventoryItemPelvisFuturisticChastityBeltPublishAction(C, Option) { InventoryItemPelvisMetalChastityBeltPublishAction(C, Option); }
+function InventoryItemPelvisFuturisticChastityBeltPublishAction(C, Option) {
+
+	var msg = "FuturisticChastityBeltSet" + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
+} 
 
 function InventoryItemPelvisFuturisticChastityBeltPublishMode(C, Setting, Active) { 
 	var msg = "FuturisticChastityBeltSet" + Setting + ((Active) ? "On" : "Off");
