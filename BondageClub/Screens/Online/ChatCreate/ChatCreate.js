@@ -61,9 +61,9 @@ function ChatCreateRun() {
 	DrawBackNextButton(900, 640, 350, 65, DialogFind(Player, ChatCreateBackgroundSelect), "White", null,
 		() => DialogFind(Player, (ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
 		() => DialogFind(Player, (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
-	DrawButton(450, 800, 300, 65, TextGet("BlockItems"), "White");
-	DrawButton(850, 800, 300, 65, TextGet("Create"), "White");
-	DrawButton(1250, 800, 300, 65, TextGet("Cancel"), "White");
+	DrawButton(850, 775, 300, 65, TextGet("BlockItems"), "White");
+	DrawButton(600, 900, 300, 65, TextGet("Create"), "White");
+	DrawButton(1100, 900, 300, 65, TextGet("Cancel"), "White");
 
 }
 
@@ -94,9 +94,9 @@ function ChatCreateClick() {
 	}
 
 	// When the bottom buttons are used
-	if (MouseIn(450, 800, 300, 65)) ChatCreateBlockItems();
-	if (MouseIn(850, 800, 300, 65)) ChatCreateRoom();
-	if (MouseIn(1250, 800, 300, 65)) ChatCreateExit();
+	if (MouseIn(850, 775, 300, 65)) ChatCreateBlockItems();
+	if (MouseIn(600, 900, 300, 65)) ChatCreateRoom();
+	if (MouseIn(1100, 900, 300, 65)) ChatCreateExit();
 
 }
 
@@ -156,7 +156,6 @@ function ChatCreateRoom() {
  * @returns {void} - Nothing
  */
 function ChatCreateBlockItems() {
-	ChatBlockItemBackground = ChatCreateBackground;
 	ChatBlockItemReturnData = { Screen: "ChatCreate", Name: ElementValue("InputName"), Description: ElementValue("InputDescription"), Limit: ElementValue("InputSize") };
 	ElementRemove("InputName");
 	ElementRemove("InputDescription");

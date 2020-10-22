@@ -1,5 +1,5 @@
 "use strict";
-var ChatBlockItemBackground = "IntroductionDark";
+var ChatBlockItemBackground = "Sheet";
 var ChatBlockItemList = ["ABDL", "SciFi"];
 var ChatBlockItemCategory = [];
 var ChatBlockItemReturnData = {};
@@ -16,10 +16,10 @@ function ChatBlockItemLoad() {
  * @returns {void} - Nothing
  */
 function ChatBlockItemRun() {
-	DrawText(TextGet("Title"), 1000, 150, "White", "Gray");
+	DrawText(TextGet("Title"), 1000, 150, "Black", "Gray");
 	for (let L = 0; L < ChatBlockItemList.length; L++) {
 		DrawButton(600, 300 + L * 100, 64, 64, "", "White", (ChatBlockItemCategory.indexOf(ChatBlockItemList[L]) >= 0) ? "Icons/Checked.png" : "");
-		DrawText(TextGet(ChatBlockItemList[L]), 1000, 332 + L * 100, "White", "Gray");
+		DrawText(TextGet(ChatBlockItemList[L]), 1000, 332 + L * 100, "Black", "Gray");
 	}
 	DrawButton(850, 800, 300, 65, TextGet("Return"), "White");
 }
@@ -44,7 +44,11 @@ function ChatBlockItemClick() {
  */
 function ChatBlockItemExit() {
 	CommonSetScreen("Online", ChatBlockItemReturnData.Screen);
-	ElementValue("InputName", ChatBlockItemReturnData.Name);
-	ElementValue("InputDescription", ChatBlockItemReturnData.Description);
-	ElementValue("InputSize", ChatBlockItemReturnData.Limit);
+	if (ChatBlockItemReturnData.Screen == "ChatCreate") {
+		ElementValue("InputName", ChatBlockItemReturnData.Name);
+		ElementValue("InputDescription", ChatBlockItemReturnData.Description);
+		ElementValue("InputSize", ChatBlockItemReturnData.Limit);
+	}
+	if (ChatBlockItemReturnData.Screen == "ChatAdmin")
+		ChatBlockItemCategory = ChatAdminBlockCategory;
 }

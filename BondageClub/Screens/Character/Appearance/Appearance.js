@@ -289,7 +289,7 @@ function CharacterAppearanceSortLayers(C) {
 	var layers = C.Appearance.reduce((layersAcc, item) => {
 		var asset = item.Asset;
 		// Only include layers for visible assets
-		if (asset.Visible && CharacterAppearanceVisible(C, asset.Name, asset.Group.Name)) {
+		if (asset.Visible && CharacterAppearanceVisible(C, asset.Name, asset.Group.Name) && InventoryChatRoomAllow(asset.Category)) {
 			// Check if we need to draw a different variation (from type property)
 			var type = (item.Property && item.Property.Type) || "";
 			// Only include layers that permit the current type (if AllowTypes is not defined, also include the layer)

@@ -809,12 +809,24 @@ function InventoryIsKey(Item) {
 }
 
 /**
- * Serialises the provided character's inventory into a string for easy comparisons, inventory items are uniquely identified by their name
- * and group
+ * Serialises the provided character's inventory into a string for easy comparisons, inventory items are uniquely identified by their name and group
  * @param {Character} C - The character whose inventory we should serialise
  * @return {string} - A simple string representation of the character's inventory
  */
 function InventoryStringify(C) {
 	if (!C || !Array.isArray(C.Inventory)) return "";
 	return C.Inventory.map(({ Name, Group }) => Group + Name ).join();
+}
+
+/**
+ * Returns TRUE if the inventory category is blocked in the current chat room
+ * @param {array} Category - An array of string containing all the categories to validate
+ * @return {boolean} - TRUE if it's blocked
+ */
+function InventoryChatRoomAllow(Category) {
+	if ((CurrentScreen == "ChatRoom") && (Category != null) && (Category.length > 0) && (ChatRoomData != null) && (ChatRoomData.BlockCategory != null) && (ChatRoomData.BlockCategory.length > 0))
+		for (let C = 0; C < Category.length; C++)
+			if (ChatRoomData.BlockCategory.indexOf(Category[C]) >= 0)
+				return false;
+	return true;
 }

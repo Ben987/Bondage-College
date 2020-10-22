@@ -657,7 +657,7 @@ function DialogInventoryBuild(C, Offset) {
 			// Second, we add everything from the victim inventory
 			for (let A = 0; A < C.Inventory.length; A++)
 				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
-					var DialogSortOrder = C.Inventory[A].Asset.DialogSortOverride != null ? C.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+					var DialogSortOrder = C.Inventory[A].Asset.DialogSortOverride != null ? C.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(C.Inventory[A].Asset.Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
 					DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrder);
 				}
 
@@ -665,14 +665,14 @@ function DialogInventoryBuild(C, Offset) {
 			if (C.ID != 0)
 				for (let A = 0; A < Player.Inventory.length; A++)
 					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
-						var DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+						var DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(Player.Inventory[A].Asset.Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
 						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrder);
 					}
 
 			// Fourth, we add all free items (especially useful for clothes)
 			for (let A = 0; A < Asset.length; A++)
 				if ((Asset[A].Group.Name == C.FocusGroup.Name) && (Asset[A].Value == 0) && Asset[A].DynamicAllowInventoryAdd(C)) {
-					var DialogSortOrder = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride : (InventoryAllow(C, Asset[A].Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+					var DialogSortOrder = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride : (InventoryAllow(C, Asset[A].Prerequisite, false) && InventoryChatRoomAllow(Asset[A].Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
 					DialogInventoryAdd(C, { Asset: Asset[A] }, false, DialogSortOrder);
 				}
 
@@ -1122,7 +1122,7 @@ function DialogItemClick(ClickItem) {
 	// Cannot change item if the previous one is locked or blocked by another group
 	if ((CurrentItem == null) || !InventoryItemHasEffect(CurrentItem, "Lock", true)) {
 		if (!InventoryGroupIsBlocked(C))
-			if (InventoryAllow(C, ClickItem.Asset.Prerequisite))
+			if (InventoryAllow(C, ClickItem.Asset.Prerequisite) && InventoryChatRoomAllow(ClickItem.Asset.Category))
 				if ((CurrentItem == null) || (CurrentItem.Asset.Name != ClickItem.Asset.Name)) {
 					if (ClickItem.Asset.Wear) {
 
