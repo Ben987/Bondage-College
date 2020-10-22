@@ -91,7 +91,7 @@ var AudioActions = [
 		Sound: "Shocks"
 	},
 	{
-		IsAction: (data) => ["FuturisticChastityBeltClosedBack", "FuturisticChastityBeltOpenBack", "InventoryItemBreastFuturisticBraSet", "FuturisticHeelsSet"].find(A => data.Content.includes(A)),
+		IsAction: (data) => ["FuturisticChastityBeltClosedBack", "FuturisticChastityBeltOpenBack", "InventoryItemBreastFuturisticBraSet", "FuturisticHeelsSet", "FuturisticArmbinderSet", "FuturisticCuffsRestrain", "FuturisticLegCuffsRestrain", "FuturisticAnkleCuffsRestrain"].find(A => data.Content.includes(A)),
 		Sound: "SciFiConfigure"
 	},
 	{

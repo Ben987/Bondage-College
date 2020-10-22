@@ -515,6 +515,7 @@ ItemFeet,SturdyLeatherBelts,Sturdy Leather Belt
 ItemFeet,Irish8Cuffs,Irish 8 Feet Cuffs
 ItemFeet,DuctTape,Duct Tape
 ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
+ItemFeet,FuturisticAnkleCuffs,Futuristic Ankle Cuffs
 ItemFeet,OrnateAnkleCuffs,Ornate Ankle Cuffs
 ItemFeet,SpreaderMetal, Metal Leg Spreader
 ItemFeet,BallChain,Ball And Chain
@@ -531,6 +532,7 @@ ItemLegs,LeatherBelt,Leather Belt
 ItemLegs,SturdyLeatherBelts,Sturdy Leather Belt
 ItemLegs,DuctTape,Duct Tape
 ItemLegs,LeatherLegCuffs,Leather Leg Cuffs
+ItemLegs,FuturisticLegCuffs,Futuristic Leg Cuffs
 ItemLegs,OrnateLegCuffs,Ornate Leg Cuffs
 ItemLegs,LegBinder,Leg Binder
 ItemLegs,HobbleSkirt,Hobble Skirt
@@ -693,6 +695,7 @@ ItemArms,SturdyLeatherBelts,Sturdy Leather Belt
 ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,ArmbinderJacket,Armbinder Jacket
 ItemArms,LeatherCuffs,Leather Cuffs
+ItemArms,FuturisticCuffs,Futuristic Cuffs
 ItemArms,OrnateCuffs,Ornate Cuffs
 ItemArms,MittenChain1,Mittens Chain
 ItemArms,FourLimbsShackles,Four Limbs Shackles
