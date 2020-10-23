@@ -167,10 +167,10 @@ function CommonDrawAppearanceBuild(C, {
 		}
 
 		// Check if we need to copy the color of another asset
-		var InheritColor = Layer.InheritColor || (Color == "Default" ? (A.InheritColor || AG.InheritColor) : null);
+		var InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
 		if (InheritColor != null) {
 			var ParentAsset = InventoryGet(C, InheritColor);
-			if (ParentAsset != null) Color = ParentAsset.Color;
+			if (ParentAsset != null) Color = Array.isArray(ParentAsset.Color) ? ParentAsset.Color[0] : ParentAsset.Color;
 		}
 		
 		// Before drawing hook, receives all processed data. Any of them can be overriden if returned inside an object.
