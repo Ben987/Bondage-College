@@ -134,6 +134,7 @@ function AssetAdd(NewAsset) {
 		AllowType: NewAsset.AllowType,
 		DefaultColor: NewAsset.DefaultColor,
 		Audio: NewAsset.Audio,
+		Category: NewAsset.Category,
 		Fetish: NewAsset.Fetish,
 		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
@@ -374,4 +375,14 @@ function AssetCleanArray(AssetArray) {
 				break;
 			}
 	return CleanArray;
+}
+
+/**
+ * Gets an asset group by the asset family name and group name
+ * @param {string} Family - The asset family that the group belongs to
+ * @param {string} Group - The name of the asset group to find
+ * @returns {*} - The asset group matching the provided family and group name
+ */
+function AssetGroupGet(Family, Group) {
+    return AssetGroup.find(g => g.Family === Family && g.Name === Group);
 }

@@ -230,6 +230,7 @@ function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) 
  * @returns {void} Nothing
  */
 function ExtendedItemSetType(C, Options, Option, IsCloth) {
+    DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 	var FunctionPrefix = ExtendedItemFunctionPrefix();
 
 	// An extendable item may provide a validation function. Returning false from the validation function will drop out of
@@ -245,7 +246,6 @@ function ExtendedItemSetType(C, Options, Option, IsCloth) {
 		return;
 	}
 
-	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 	if (CurrentScreen == "ChatRoom") {
 		// Call the item's load function
 		CommonCallFunctionByName(FunctionPrefix + "Load");

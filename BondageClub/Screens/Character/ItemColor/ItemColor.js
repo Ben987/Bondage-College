@@ -29,7 +29,7 @@
  * }}
  */
 const ItemColorConfig = {
-	buttonSpacing: 26,
+	buttonSpacing: 20,
 	buttonSize: 65,
 	headerButtonSize: 90,
 	colorPickerButtonWidth: 65,
@@ -73,16 +73,9 @@ let ItemColorGroupNames;
  * @returns {void} - Nothing
  */
 function ItemColorLoad(c, item, x, y, width, height) {
+	ItemColorReset();
 	ItemColorCharacter = c;
 	ItemColorItem = item;
-	ItemColorCurrentMode = ItemColorMode.DEFAULT;
-	ItemColorStateKey = null;
-	ItemColorState = null;
-	ItemColorPage = 0;
-	ItemColorLayerPages = {};
-	ItemColorPickerBackup = null;
-	ItemColorPickerIndices = [];
-	ItemColorExitListeners = [];
 	ItemColorBackup = AppearanceItemStringify(item);
 	ItemColorStateBuild(c, item, x, y, width, height);
 	if (ItemColorState.simpleMode) {
@@ -113,13 +106,19 @@ function ItemColorDraw(c, group, x, y, width, height) {
 	if (ItemColorCurrentMode === ItemColorMode.DEFAULT && ItemColorState.pageCount > 1) {
 		DrawButton(ItemColorState.paginationButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Next.png", ItemColorText.get("Next"));
 	}
+	if (typeof navigator !== 'undefined' && navigator.clipboard && ItemColorCurrentMode === ItemColorMode.COLOR_PICKER) {
+		DrawButton(
+			ItemColorState.exportButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Export.png",
+		);
+		DrawButton(
+			ItemColorState.importButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Import.png",
+		);
+	}
 	DrawButton(
 		ItemColorState.cancelButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Cancel.png",
-		ItemColorText.get("Cancel"),
 	);
 	DrawButton(
 		ItemColorState.saveButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Accept.png",
-		ItemColorText.get("Accept"),
 	);
 
 	const contentY = ItemColorState.contentY;
@@ -227,7 +226,20 @@ function ItemColorClick(c, group, x, y, width, height) {
 	ItemColorStateBuild(c, item, x, y, width, height);
 
 	const headerButtonSize = ItemColorConfig.headerButtonSize;
+	if (typeof navigator !== 'undefined' && navigator.clipboard) {
+		if (MouseIn(ItemColorState.exportButtonX, y, headerButtonSize, headerButtonSize)) {
+			navigator.clipboard.writeText(ElementValue("InputColor"));
+			return;
+		}
 
+		if (MouseIn(ItemColorState.importButtonX, y, headerButtonSize, headerButtonSize)) {
+			navigator.clipboard.readText()
+				.then(txt => ElementValue("InputColor", txt))
+				.catch(err => console.err("Clipboard error: " + err));
+			return;
+		}
+	}
+	
 	if (MouseIn(ItemColorState.cancelButtonX, y, headerButtonSize, headerButtonSize)) {
 		return ItemColorExit();
 	}
@@ -312,8 +324,10 @@ function ItemColorExit() {
 			return ItemColorPickerCancel();
 		case ItemColorMode.DEFAULT:
 		default:
-			Object.assign(ItemColorItem, AppearanceItemParse(ItemColorBackup));
-			CharacterLoadCanvas(ItemColorCharacter);
+			if (ItemColorBackup && ItemColorCharacter) {
+				Object.assign(ItemColorItem, AppearanceItemParse(ItemColorBackup));
+				CharacterLoadCanvas(ItemColorCharacter);
+			}
 			ItemColorFireExit(false);
 	}
 }
@@ -500,13 +514,15 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 	const paginationButtonX = x + width - 3 * headerButtonSize - 2 * buttonSpacing;
 	const cancelButtonX = x + width - 2 * headerButtonSize - buttonSpacing;
 	const saveButtonX = x + width - headerButtonSize;
+	const importButtonX = x + width - 3 * headerButtonSize - 2 * buttonSpacing;
+	const exportButtonX = x + width - 4 * headerButtonSize - 3 * buttonSpacing;
 	const colorPickerButtonX = x + width - colorPickerButtonWidth;
 	const colorDisplayButtonX = colorPickerButtonX - buttonSpacing - colorDisplayWidth;
 	const contentY = y + ItemColorConfig.headerButtonSize + buttonSpacing;
 	const groupButtonWidth = colorDisplayButtonX - buttonSpacing - x;
 	const pageSize = Math.floor((height - headerButtonSize - buttonSpacing) / (buttonHeight + buttonSpacing));
 	const pageCount = Math.ceil(colorGroups.length / pageSize);
-	const colorInputWidth = Math.min(300, width - 3 * (headerButtonSize + buttonSpacing));
+	const colorInputWidth = Math.min(220, width - 3 * (headerButtonSize + buttonSpacing));
 	const colorInputX = x + 0.5 * colorInputWidth;
 	const colorInputY = y + 0.5 * headerButtonSize;
 
@@ -526,6 +542,8 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 		colorInputWidth,
 		colorInputX,
 		colorInputY,
+		exportButtonX,
+		importButtonX,
 	};
 }
 
@@ -593,7 +611,25 @@ function ItemColorOnExit(callback) {
  */
 function ItemColorFireExit(save) {
 	ItemColorExitListeners.forEach(listener => listener(ItemColorCharacter, ItemColorItem, save));
+	ItemColorReset();
+}
+
+/**
+ * Resets color UI related global variables back to their default states.
+ * @returns {void} - Nothing
+ */
+function ItemColorReset() {
+	ItemColorCharacter = null;
+	ItemColorItem = null;
+	ItemColorCurrentMode = ItemColorMode.DEFAULT;
+	ItemColorStateKey = null;
+	ItemColorState = null;
+	ItemColorPage = 0;
+	ItemColorLayerPages = {};
+	ItemColorPickerBackup = null;
+	ItemColorPickerIndices = [];
 	ItemColorExitListeners = [];
+	ItemColorBackup = null;
 	ItemColorLayerNames = null;
 	ItemColorGroupNames = null;
 }

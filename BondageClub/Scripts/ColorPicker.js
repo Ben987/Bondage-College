@@ -10,6 +10,7 @@
 
 var ColorPickerX, ColorPickerY, ColorPickerWidth, ColorPickerHeight;
 var ColorPickerInitialHSV, ColorPickerLastHSV, ColorPickerHSV, ColorPickerCallback, ColorPickerSourceElement;
+var ColorPickerCSS;
 
 var ColorPickerHueBarHeight = 40;
 var ColorPickerSVPanelGap = 20;
@@ -174,13 +175,13 @@ function ColorPickerSelectFromPallete(Event) {
  * @returns {void} - Nothing
  */
 function ColorPickerNotify() {
-    var Color = ColorPickerHSVToCSS(ColorPickerHSV);
+	ColorPickerCSS = ColorPickerHSVToCSS(ColorPickerHSV);
     if (ColorPickerCallback) {
-        ColorPickerCallback(Color);
+        ColorPickerCallback(ColorPickerCSS);
     }
 
     if (ColorPickerSourceElement) {
-        ColorPickerSourceElement.value = Color;
+        ColorPickerSourceElement.value = ColorPickerCSS;
     }
 }
 
@@ -209,7 +210,7 @@ function ColorPickerCSSColorEquals(Color1, Color2) {
     // convert short hand hex color to standard format
     if (Color1.length == 4) Color1 = "#" + Color1[1] + Color1[1] + Color1[2] + Color1[2] + Color1[3] + Color1[3];
     if (Color2.length == 4) Color2 = "#" + Color2[1] + Color2[1] + Color2[2] + Color2[2] + Color2[3] + Color2[3];
-    return Color1 == Color2;
+    return Color1 === Color2;
 }
 
 /**
@@ -255,6 +256,7 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
         ColorPickerInitialHSV = Object.assign({}, HSV);
         ColorPickerLastHSV =  Object.assign({}, HSV);
         ColorPickerHSV =  Object.assign({}, HSV);
+        ColorPickerCSS = Color;
         ColorPickerRemoveEventListener();   // remove possible duplicated attached event listener, just in case
         ColorPickerAttachEventListener();
     } else {
@@ -262,12 +264,12 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
         if (ColorPickerSourceElement != null) {
             var UserInputColor = ColorPickerSourceElement.value.trim().toUpperCase();
             if (CommonIsColor(UserInputColor)) {
-                var PrevColor = ColorPickerHSVToCSS(ColorPickerHSV).toUpperCase();
-                if (!ColorPickerCSSColorEquals(UserInputColor, PrevColor)) {
+                if (!ColorPickerCSSColorEquals(UserInputColor, ColorPickerCSS)) {
                     if (ColorPickerCallback) {
                         // Fire callback due to source element changed by user interaction
                         ColorPickerCallback(UserInputColor);
                     }
+                    ColorPickerCSS = UserInputColor;
                     ColorPickerHSV = ColorPickerCSSToHSV(UserInputColor, ColorPickerHSV);
                 }
             }

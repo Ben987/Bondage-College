@@ -42,6 +42,17 @@ function InventoryItemPelvisMetalChastityBeltPublishAction(C, Option) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
+function InventoryItemPelvisMetalChastityBeltValidate(C) {
+	var Allowed = true;
+
+	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");
+		Allowed = false;
+	} 
+
+	return Allowed;
+}
+
 function InventoryItemPelvisMetalChastityBeltNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "Chastity" + Option.Name, "ItemPelvis");
 }

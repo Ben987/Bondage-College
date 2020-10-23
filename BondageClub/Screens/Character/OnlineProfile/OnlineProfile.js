@@ -46,7 +46,7 @@ function OnlineProfileClick() {
 function OnlineProfileExit(Save) {
     // If the current character is the player, we update the description
     if ((InformationSheetSelection.ID == 0) && (InformationSheetSelection.Description != ElementValue("DescriptionInput").trim()) && Save) {
-        InformationSheetSelection.Description = ElementValue("DescriptionInput").trim();
+        InformationSheetSelection.Description = ElementValue("DescriptionInput").trim().substr(0, 1000);
         ServerSend("AccountUpdate", { Description: InformationSheetSelection.Description });
         ChatRoomCharacterUpdate(InformationSheetSelection);
     }
