@@ -135,15 +135,19 @@ function ChatSearchNormalDraw() {
 			Y = 25;
 			for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
 
-				// Builds the friend list as a hover text
+				// Determine the hover text starting position to ensure there's enough room
 				let Height = 58;
-				let ListHeight = Height * (1 + ChatSearchResult[C].Friends.length);
+				let ListHeight = Height * ((ChatSearchResult[C].Friends.length > 0 ? 1 : 0) + ChatSearchResult[C].Friends.length + (ChatSearchResult[C].BlockCategory.length > 0 ? 1 : 0));
 				let ListY = Math.min(Y, 872 - ListHeight);
+
+				// Builds the friend list as hover text
 				if (MouseIn(X, Y, 630, 85) && ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0) {
 					DrawTextWrap(TextGet("FriendsInRoom") + " " + ChatSearchResult[C].Name, (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
-					for (let F = 0; F < ChatSearchResult[C].Friends.length; F++)
-						DrawTextWrap(ChatSearchResult[C].Friends[F].MemberName + " (" + ChatSearchResult[C].Friends[F].MemberNumber + ")", (X > 1000) ? 685 : X + 660, ListY + (F + 1) * Height, 630, Height, "black", "#FFFF88", 1);
-					ListY = ListY + (ChatSearchResult[C].Friends.length + 1) * Height;
+					ListY += Height;
+					for (let F = 0; F < ChatSearchResult[C].Friends.length; F++) {
+						DrawTextWrap(ChatSearchResult[C].Friends[F].MemberName + " (" + ChatSearchResult[C].Friends[F].MemberNumber + ")", (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
+						ListY += Height;
+					}
 				}
 
 				// Builds the blocked categories list below it
@@ -152,6 +156,7 @@ function ChatSearchNormalDraw() {
 					for (let B = 0; B < ChatSearchResult[C].BlockCategory.length; B++)
 						Block = Block + ((B > 0) ? ", " : " ") + TextGet(ChatSearchResult[C].BlockCategory[B]);
 					DrawTextWrap(Block, (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FF8888", 1);
+					ListY += Height;
 				}
 
 				// Moves the next window position
