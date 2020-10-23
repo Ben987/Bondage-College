@@ -6,10 +6,6 @@ function InventoryItemNeckAccessoriesCustomCollarTagLoad() {
 	var MustRefresh = false;
 	
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
-	if (DialogFocusItem.Property.Color == null) {
-		DialogFocusItem.Property.Color = "#000000";
-		MustRefresh = true;
-	}
 	if (DialogFocusItem.Property.Text == null) {
 		DialogFocusItem.Property.Text = "Tag";
 		MustRefresh = true;
@@ -21,7 +17,6 @@ function InventoryItemNeckAccessoriesCustomCollarTagLoad() {
 	
 	// Only create the inputs if the item isn't locked
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		ElementCreateInput("Color", "text", DialogFocusItem.Property.Color, "7");
 		ElementCreateInput("TagText", "text", DialogFocusItem.Property.Text, "9");
 	}
 }
@@ -35,11 +30,8 @@ function InventoryItemNeckAccessoriesCustomCollarTagDraw() {
     
     // Tag data
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		ElementPosition("Color", 1375, 600, 250);
 		ElementPosition("TagText", 1375, 680, 250);
-		DrawButton(1500, 571, 350, 64, DialogFind(Player, "CustomTagColor"), CommonIsColor(ElementValue("Color")) ? "White" : "#888", "");
 		DrawButton(1500, 651, 350, 64, DialogFind(Player, "CustomTagText"), ElementValue("TagText").match(InventoryItemNeckAccessoriesCustomCollarTagAllowedChars) ? "White" : "#888", "");
-		DrawButton(1350, 731, 350, 64, DialogFind(Player, "CustomTagBoth"), CommonIsColor(ElementValue("Color")) && ElementValue("TagText").match(InventoryItemNeckAccessoriesCustomCollarTagAllowedChars) ? "White" : "#888", "");
 	} else {
 		DrawText(DialogFind(Player, "SelectCollarNameTagTypeLocked"), 1500, 500, "white", "gray");
     }
@@ -51,24 +43,11 @@ function InventoryItemNeckAccessoriesCustomCollarTagClick() {
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		// Change values if they are different and the tag is not locked
 		if ((MouseX >= 1500) && (MouseX <= 1850)) {
-			// Changes the color
-			if ((MouseY >= 571) && (MouseY <= 635) && CommonIsColor(ElementValue("Color")) && DialogFocusItem.Property.Text !== ElementValue("Color")) {
-				DialogFocusItem.Property.Color = ElementValue("Color");
-				InventoryItemNeckAccessoriesCustomCollarTagChange();
-			}
-
 			// Changes the text
 			if ((MouseY >= 671) && (MouseY <= 735) && DialogFocusItem.Property.Text !== ElementValue("TagText") && ElementValue("TagText").match(InventoryItemNeckAccessoriesCustomCollarTagAllowedChars)) {
 				DialogFocusItem.Property.Text = ElementValue("TagText");
 				InventoryItemNeckAccessoriesCustomCollarTagChange();
 			}
-		}
-
-		// Changes both
-		if (MouseIn(1350, 731, 350, 64) && CommonIsColor(ElementValue("Color")) && (DialogFocusItem.Property.Text !== ElementValue("Color") || DialogFocusItem.Property.Text !== ElementValue("TagText")) && ElementValue("TagText").match(InventoryItemNeckAccessoriesCustomCollarTagAllowedChars)) {
-			DialogFocusItem.Property.Text = ElementValue("TagText");
-			DialogFocusItem.Property.Color = ElementValue("Color");
-			InventoryItemNeckAccessoriesCustomCollarTagChange();
 		}
 	}
 	// Exits the screen
@@ -79,7 +58,6 @@ function InventoryItemNeckAccessoriesCustomCollarTagClick() {
 
 // Leaves the extended screen
 function InventoryItemNeckAccessoriesCustomCollarTagExit() {
-	ElementRemove("Color");
 	ElementRemove("TagText");
 	PreferenceMessage = "";
 	DialogFocusItem = null;
@@ -101,22 +79,23 @@ function InventoryItemNeckAccessoriesCustomCollarTagChange() {
 
 // Drawing function for the text on the tag
 function AssetsItemNeckAccessoriesCustomCollarTagAfterDraw({
-    C, A, X, Y, Property, drawCanvas, drawCanvasBlink, AlphaMasks
+    C, A, X, Y, Property, drawCanvas, drawCanvasBlink, AlphaMasks, L, Color
 }) { 
+	if (L === "_Text") {
+		// We set up a canvas
+		const Height = 50;
+		const Width = 45;
+		const TempCanvas = AnimationGenerateTempCanvas(C, A, Width, Height);
     
-	// We set up a canvas
-	const Height = 50;
-	const Width = 45;
-	const TempCanvas = AnimationGenerateTempCanvas(C, A, Width, Height);
+		// We draw the desired info on that canvas
+		let context = TempCanvas.getContext('2d');
+		context.font = "14px serif";
+		context.fillStyle = Color;
+		context.textAlign = "center";
+		context.fillText((Property && Property.Text.match(InventoryItemNeckAccessoriesCustomCollarTagAllowedChars) ? Property.Text : "Tag"), Width / 2, Width / 2, Width);
     
-    // We draw the desired info on that canvas
-    let context = TempCanvas.getContext('2d');
-	context.font = "14px serif";
-    context.fillStyle = (Property ? Property.Color : null) || "#000000";
-    context.textAlign = "center";
-    context.fillText((Property && Property.Text.match(InventoryItemNeckAccessoriesCustomCollarTagAllowedChars) ? Property.Text : "Tag"), Width / 2, Width / 2, Width);
-    
-    // We print the canvas to the character based on the asset position
-    drawCanvas(TempCanvas, X + 227.5, Y + 30, AlphaMasks);
-    drawCanvasBlink(TempCanvas, X + 227.5, Y + 30, AlphaMasks);
+		// We print the canvas to the character based on the asset position
+		drawCanvas(TempCanvas, X + 227.5, Y + 30, AlphaMasks);
+		drawCanvasBlink(TempCanvas, X + 227.5, Y + 30, AlphaMasks);
+	}
 }

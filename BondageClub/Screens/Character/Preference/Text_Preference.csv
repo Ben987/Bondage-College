@@ -1,10 +1,18 @@
 Preferences,- Preferences -
+GeneralPreferences,- General Preferences -
 ChatPreferences,- Chat Preferences -
 AudioPreferences,- Audio Preferences -
 ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
 SecurityPreferences,- Security Preferences -
 VisibilityPreferences,- Item Preferences -
 OnlinePreferences,- Online Preferences -
+HomepageGeneral,General
+HomepageChat,Chat
+HomepageAudio,Audio
+HomepageArousal,Arousal
+HomepageSecurity,Security
+HomepageVisibility,Item Visibility
+HomepageOnline,Online
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -45,11 +53,13 @@ AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 SensDepSetting,Sensory deprivation setting
 SensDepNames,Hide names
 SensDepTotal,Total
+DisableAutoMaid,Maids come automatically when restrained
 BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
 EnableSafeword,Allow Safeword use (Cannot enable while bound).
+ConfirmSafeword,(Click to confirm) Allow Safeword use (Cannot enable while bound).
 EnableWardrobeIcon, Show Wardrobe icon to others while in the appearance menu.
 AllowFullWardrobeAccess,Allow others to alter your whole appearance.
 BlockBodyCosplay,Prevent others from changing cosplay items.

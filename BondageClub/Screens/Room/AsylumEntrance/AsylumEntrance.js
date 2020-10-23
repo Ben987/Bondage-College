@@ -117,7 +117,7 @@ function AsylumEntranceWearPatientClothes(C) {
 	InventoryRemove(C, "Shoes");
 	InventoryRemove(C, "Gloves");
 	InventoryRemove(C, "HairAccessory1");
-	if (C.IsNpc() || !C.OnlineSharedSettings.BlockBodyCosplay) {
+	if (C.IsNpc() || C.OnlineSharedSettings && !C.OnlineSharedSettings.BlockBodyCosplay) {
 		InventoryRemove(C, "HairAccessory2");
 		InventoryRemove(C, "Wings");
 		InventoryRemove(C, "TailStraps");
@@ -223,8 +223,9 @@ function AsylumEntranceFightNurseEnd() {
  */
 function AsylumEntrancePlayerJacket(Pose) {
 	InventoryWear(Player, "StraitJacket", "ItemArms", "Default", 3);
-	Player.FocusGroup = { Name: "ItemArms" };
-	InventoryItemArmsStraitJacketSetPose(Pose);
+    Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemArms");
+    const Option = InventoryItemArmsStraitJacketOptions.find(o => o.Name === Pose);
+    ExtendedItemSetType(Player, InventoryItemArmsStraitJacketOptions, Option);
 	Player.FocusGroup = null;
 }
 

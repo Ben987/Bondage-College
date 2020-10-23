@@ -28,6 +28,7 @@ const InventoryItemArmsHempRopeOptions = [
 	}, {
 		Name: "SimpleHogtie",
 		BondageLevel: 2,
+		Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "SimpleHogtie", Effect: ["Block", "Prone"], SetPose: ["Hogtied"], Difficulty: 2 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
 	}, {

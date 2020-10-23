@@ -244,6 +244,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryRemove(C, "HairAccessory1");
 		InventoryRemove(C, "HairAccessory2");
 		InventoryRemove(C, "HairAccessory3");
+		InventoryRemove(C, "Socks");
 	}
 
 }
@@ -620,6 +621,10 @@ function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);
 	CharacterLoadCanvas(C);
+	// Label often looped through checks:
+	C.RunScripts = (!C.AccountName.startsWith('Online-') || !(Player.OnlineSettings && Player.OnlineSettings.DisableAnimations)) && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1);
+	C.HasScriptedAssets = !!C.Appearance.find(CA => CA.Asset.DynamicScriptDraw);
+	
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) {
 		ChatRoomRefreshChatSettings(C);
 		ServerPlayerAppearanceSync();
@@ -656,9 +661,15 @@ function CharacterRefresh(C, Push) {
 			}
 			ActivityDialogBuild(C);
 		}
-		if (DialogColor != null) { 
-			if (ItemColorItem == null || InventoryGet(C, ItemColorItem.Asset.Group.Name) == null || InventoryGet(C, ItemColorItem.Asset.Group.Name).Asset.Name != ItemColorItem.Asset.Name)
+		if (DialogColor != null) {
+			const FocusItem = C && C.FocusGroup ? InventoryGet(C, C.FocusGroup.Name) : null;
+			if ((ItemColorItem && !FocusItem) || (!ItemColorItem && FocusItem) || InventoryGetItemProperty(ItemColorItem, "Name") !== InventoryGetItemProperty(FocusItem, "Name")) {
 				ItemColorExit();
+				DialogColor = null;
+				DialogColorSelect = null;
+				ElementRemove("InputColor");
+				DialogMenuButtonBuild(C);
+			}
 		}
 	}
 }
@@ -685,7 +696,7 @@ function CharacterIsNaked(C) {
 	for (let A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") &&
 			C.Appearance[A].Asset.Group.AllowNone &&
-			(C.IsNpc() || !(C.Appearance[A].Asset.Group.BodyCosplay && C.OnlineSharedSettings.BlockBodyCosplay)))
+			(C.IsNpc() || !(C.Appearance[A].Asset.Group.BodyCosplay && C.OnlineSharedSettings && C.OnlineSharedSettings.BlockBodyCosplay)))
 			return false;
 	return true;
 }

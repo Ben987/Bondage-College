@@ -35,6 +35,12 @@ ActivityRubItem,Item Rub
 ActivityRollItem,Item Roll
 ActivityPourItem,Item Pour
 ActivityShockItem,Item Shock
+ActivityMoanGag,Moan into Gag
+ActivityMoanGagWhimper,Whimper into Gag
+ActivityMoanGagAngry,Shout into Gag
+ActivityMoanGagGroan,Groan into Gag
+ActivityMoanGagTalk,Talk into Gag
+ActivityGagKiss,Kiss on Gag
 Orgasm0,"SourceCharacter trembles and moans loudly, getting a powerful orgasm."
 Orgasm1,"SourceCharacter thrashes and loses all control, getting an intense orgasm."
 Orgasm2,"SourceCharacter screams silently and rocks her hips, getting a wonderful orgasm."
@@ -242,6 +248,12 @@ ChatSelf-ItemMouth-Nibble,SourceCharacter nibbles her lips.
 ChatSelf-ItemMouth-Caress,SourceCharacter caresses and wipes her mouth clean.
 ChatSelf-ItemMouth-Bite,SourceCharacter bites her lips.
 ChatSelf-ItemMouth-HandGag,SourceCharacter clamps her hand over her mouth.
+ChatSelf-ItemMouth-MoanGag,SourceCharacter moans into her gag.
+ChatSelf-ItemMouth-MoanGagWhimper,SourceCharacter whimpers pleadingly into her gag.
+ChatSelf-ItemMouth-MoanGagAngry,SourceCharacter screams furiously into her gag.
+ChatSelf-ItemMouth-MoanGagGroan,SourceCharacter groans desperately into her gag.
+ChatSelf-ItemMouth-MoanGagTalk,SourceCharacter mumbles incoherently into her gag.
+ChatOther-ItemMouth-GagKiss,SourceCharacter gives TargetCharacter a kiss on her gag.
 ChatOther-ItemMouth-Bite,SourceCharacter bites TargetCharacter's lips.
 ChatOther-ItemMouth-Kiss,SourceCharacter kisses TargetCharacter's lips.
 ChatOther-ItemMouth-FrenchKiss,SourceCharacter shares a long French kiss with TargetCharacter.
@@ -273,7 +285,6 @@ ChatOther-ItemNose-Caress,SourceCharacter caresses TargetCharacter's nose.
 ChatOther-ItemNose-Pull,SourceCharacter pulls TargetCharacter's nose.
 ChatOther-ItemNose-Rub,SourceCharacter rubs TargetCharacter's nose.
 ChatOther-ItemNose-Nibble,SourceCharacter nibbles TargetCharacter's nose.
-ChatOther-ItemNose-Bite,SourceCharacter bites TargetCharacter's nose.
 ChatOther-ItemNose-Choke,SourceCharacter pinches  TargetCharacter's nostrils closed.
 ChatOther-ItemNose-Lick,SourceCharacter licks  TargetCharacter's nose.
 ChatOther-ItemNose-Bite,SourceCharacter bites TargetCharacter's nose.
@@ -292,4 +303,3 @@ ChatOther-ItemEars-Nibble,SourceCharacter nibbles TargetCharacter's ear.
 ChatOther-ItemEars-Pinch,SourceCharacter pinches TargetCharacter's ear.
 ChatOther-ItemEars-Caress,SourceCharacter caresses TargetCharacter's ear.
 ChatOther-ItemEars-Whisper,SourceCharacter whispers slowly in TargetCharacter's ear.
-

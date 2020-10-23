@@ -7,8 +7,17 @@ var AudioList = [
 	{ Name: "BellMedium", File: "BellMedium" },
 	{ Name: "BellSmall", File: "BellSmall" },
 	{ Name: "ChainLong", File: "ChainLong" },
+	{ Name: "SciFiEffect", File: "SciFiEffect" },
+	{ Name: "SciFiPump", File: "SciFiPump" },
+	{ Name: "SciFiConfigure", File: "SciFiConfigure" },
+	{ Name: "SciFiBeeps1", File: "SciFiBeeps1" },
+	{ Name: "SciFiBeeps2", File: "SciFiBeeps2" },
+	{ Name: "SciFiBeeps3", File: "SciFiBeeps3" },
 	{ Name: "ChainShort", File: "ChainShort" },
 	{ Name: "CuffsMetal", File: "CuffsMetal" },
+	{ Name: "FuturisticApply", File: "FuturisticApply" },
+	{ Name: "HydraulicLock", File: "HydraulicLock" },
+	{ Name: "HydraulicUnlock", File: "HydraulicUnlock" },
 	{ Name: "Deflation", File: "Deflation" },
 	{ Name: "DuctTape", File: "DuctTape18" },
 	{ Name: "Inflation", File: "Inflation" },
@@ -37,9 +46,13 @@ var AudioActions = [
 	{ Action: "TimerRelease", Sound: "Unlock" },
 	{ Action: "ActionUnlock", Sound: "Unlock" },
 	{ Action: "ActionUnlockAndRemove", Sound: "Unlock" },
+	{ Action: "FuturisticCollarTriggerLockdown", Sound: "HydraulicLock" },
+	{ Action: "FuturisticCollarTriggerUnlock", Sound: "HydraulicUnlock" },
 	{ Action: "ActionLock", GetAudioInfo: AudioPlayAssetSound },
-	{ Action: "ActionUse", GetAudioInfo: AudioPlayAssetSound },
-	{ Action: "ActionSwap", GetAudioInfo: AudioPlayAssetSound },
+	{
+		IsAction: (data) => ["ActionUse", "ActionSwap"].includes(data.Content) && data.Sender !== Player.MemberNumber,
+		GetAudioInfo: AudioPlayAssetSound,
+	},
 	{
 		IsAction: (data) => data.Content.indexOf("ActionActivity") == 0,
 		GetAudioInfo: AudioPlayAssetSound
@@ -48,6 +61,15 @@ var AudioActions = [
 		IsAction: (data) => ["pumps", "Suctightens", "InflatableBodyBagRestrain"].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
 	},
+	{
+		IsAction: (data) => ["InteractiveVisorHeadSet"].find(A => data.Content.includes(A)),
+		Sound: "SciFiEffect"
+	},
+	{
+		IsAction: (data) => ["FuturisticPanelGagMouthSetLightBall", "FuturisticPanelGagMouthSetBall", "FuturisticPanelGagMouthSetPadded", "FuturisticPanelGagMouthSetPlug"].find(A => data.Content.includes(A)),
+		Sound: "SciFiPump"
+	},
+	
 	{
 		IsAction: (data) => ["deflates", "Sucloosens"].find(A => data.Content.includes(A)),
 		Sound: "Deflation"
@@ -63,6 +85,26 @@ var AudioActions = [
 	{
 		IsAction: (data) => ["ShacklesRestrain", "Ornate"].find(A => data.Content.includes(A)),
 		Sound: "CuffsMetal"
+	},
+	{
+		IsAction: (data) => ["FuturisticChastityBeltShock"].find(A => data.Content.includes(A)),
+		Sound: "Shocks"
+	},
+	{
+		IsAction: (data) => ["FuturisticChastityBeltSetClosedBack", "FuturisticChastityBeltSetOpenBack", "InventoryItemBreastFuturisticBraSet", "FuturisticHeelsSet", "FuturisticArmbinderSet", "FuturisticCuffsRestrain", "FuturisticLegCuffsRestrain", "FuturisticAnkleCuffsRestrain"].find(A => data.Content.includes(A)),
+		Sound: "SciFiConfigure"
+	},
+	{
+		IsAction: (data) => ["FuturisticChastityBeltSetPunish", "FuturisticPanelGagMouthSetAutoPunish", ].find(A => data.Content.includes(A)),
+		GetAudioInfo: AudioSciFiBeepSounds
+	},	
+	{
+		IsAction: (data) => ["FuturisticPanelGagMouthSetAutoInflate"].find(A => data.Content.includes(A)),
+		Sound: "Inflation"
+	},
+	{
+		IsAction: (data) => ["FuturisticPanelGagMouthSetAutoDeflate"].find(A => data.Content.includes(A)),
+		Sound: "Deflation"
 	},
 	{
 		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "TriggerShock"].find(A => data.Content.includes(A)),
@@ -216,4 +258,15 @@ function AudioVibratorSounds(data) {
 	}
 
 	return [Sound, Level * 3];
+}
+
+function AudioSciFiBeepSounds() {
+	var AudioRandomNumber = Math.random();
+	
+	if (AudioRandomNumber < 0.33) {
+		return ["SciFiBeeps1", 4]
+	} else if (AudioRandomNumber > 0.67) {
+		return ["SciFiBeeps2", 4]
+	}
+	return ["SciFiBeeps3", 4];
 }
