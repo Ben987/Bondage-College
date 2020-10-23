@@ -91,15 +91,13 @@ var AudioActions = [
 		Sound: "Shocks"
 	},
 	{
-		IsAction: (data) => ["FuturisticChastityBeltClosedBack", "FuturisticChastityBeltOpenBack", "InventoryItemBreastFuturisticBraSet", "FuturisticHeelsSet", "FuturisticArmbinderSet"].find(A => data.Content.includes(A)),
+		IsAction: (data) => ["FuturisticChastityBeltSetClosedBack", "FuturisticChastityBeltSetOpenBack", "InventoryItemBreastFuturisticBraSet", "FuturisticHeelsSet", "FuturisticArmbinderSet", "FuturisticCuffsRestrain", "FuturisticLegCuffsRestrain", "FuturisticAnkleCuffsRestrain"].find(A => data.Content.includes(A)),
 		Sound: "SciFiConfigure"
 	},
 	{
 		IsAction: (data) => ["FuturisticChastityBeltSetPunish", "FuturisticPanelGagMouthSetAutoPunish", ].find(A => data.Content.includes(A)),
 		GetAudioInfo: AudioSciFiBeepSounds
-	},
-	
-	
+	},	
 	{
 		IsAction: (data) => ["FuturisticPanelGagMouthSetAutoInflate"].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
