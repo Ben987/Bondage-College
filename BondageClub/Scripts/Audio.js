@@ -97,9 +97,7 @@ var AudioActions = [
 	{
 		IsAction: (data) => ["FuturisticChastityBeltSetPunish", "FuturisticPanelGagMouthSetAutoPunish", ].find(A => data.Content.includes(A)),
 		GetAudioInfo: AudioSciFiBeepSounds
-	},
-	
-	
+	},	
 	{
 		IsAction: (data) => ["FuturisticPanelGagMouthSetAutoInflate"].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
