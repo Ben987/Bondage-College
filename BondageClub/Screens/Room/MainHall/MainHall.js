@@ -10,6 +10,7 @@ var MainHallHasOwnerLock = false;
 var MainHallHasLoverLock = false;
 var MainHallHasSlaveCollar = false;
 var MainHallTip = 0;
+var MainHallMaidWasCalledManually = false;
 
 var MainHallRemoveLockTypes = [
 	"CombinationPadlock",
@@ -179,6 +180,7 @@ function MainHallRun() {
 		CharacterSetCurrent(MainHallMaid);
 		MainHallStartEventTimer = null;
 		MainHallNextEventTimer = null;
+		MainHallMaidWasCalledManually = false
 	}
 	
 	// If we must show a progress bar for the rescue maid.  If not, we show the number of online players or a button to request the maid
@@ -191,10 +193,15 @@ function MainHallRun() {
 			DrawButton(1885, 900, 90, 90, "", "White", "Icons/ServiceBell.png", TextGet("RequestMaid"));
 		}
 		
-
+		MainHallMaidWasCalledManually = false
 	} else {
-		DrawText(TextGet("RescueIsComing"), 1750, 925, "White", "Black");
-		DrawProgressBar(1525, 955, 450, 35, (1 - ((MainHallNextEventTimer - CommonTime()) / (MainHallNextEventTimer - MainHallStartEventTimer))) * 100);
+		if (!MainHallMaidWasCalledManually && !((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()))) {
+			MainHallStartEventTimer = null
+			MainHallNextEventTimer = null
+		} else {
+			DrawText(TextGet("RescueIsComing"), 1750, 925, "White", "Black");
+			DrawProgressBar(1525, 955, 450, 35, (1 - ((MainHallNextEventTimer - CommonTime()) / (MainHallNextEventTimer - MainHallStartEventTimer))) * 100);
+		}
 	}
 
 }
@@ -307,6 +314,7 @@ function MainHallClick() {
 				AudioPlayInstantSound("Audio/BellSmall.mp3", vol)
 				MainHallStartEventTimer = CommonTime();
 				MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
+				MainHallMaidWasCalledManually = true;
 			}
 		}
 	}
