@@ -955,6 +955,7 @@ var AssetFemale3DCG = [
 
 	{
 		Group: "HairBack",
+		ParentColor: "HairFront",
 		Priority: 5,
 		Left: 50,
 		Top: 0,
@@ -964,12 +965,12 @@ var AssetFemale3DCG = [
 			{ Name: "HairBack23", Priority: 39 },
 			{ Name: "HairBack24", Priority: 39 }
 		],
-		Color: ["#6a3628", "#202020", "#dcc787", "#6c2132", "#999999", "#dddddd", "#e781b1", "#81e7b1", "#81b1e7", "#eeee99", "#ee9999", "#ee99ee"]
+		Color: ["Default", "#6a3628", "#202020", "#dcc787", "#6c2132", "#999999", "#dddddd", "#e781b1", "#81e7b1", "#81b1e7", "#eeee99", "#ee9999", "#ee99ee"],
+		InheritColor: "HairFront"
 	},
 
 	{
 		Group: "HairFront",
-		ParentColor: "HairBack",
 		Priority: 52,
 		Left: 150,
 		Top: 50,
