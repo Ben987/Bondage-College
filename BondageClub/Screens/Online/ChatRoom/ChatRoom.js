@@ -126,12 +126,12 @@ function ChatRoomCanPerformCharacterAction() { return ChatRoomCanAssistStand() |
  * Checks if the target character can be helped back on her feet. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
  * @returns {boolean} - Whether or not the target character can stand
  */
-function ChatRoomCanAssistStand() { return Player.CanInteract() && CurrentCharacter.AllowItem && CurrentCharacter.ActivePose != null && CurrentCharacter.CanKneel() }
+function ChatRoomCanAssistStand() { return Player.CanInteract() && CurrentCharacter.AllowItem && CurrentCharacter.ActivePose != null && CurrentCharacter.ActivePose.indexOf("Kneel") >= 0 && CurrentCharacter.CanKneel() }
 /**
  * Checks if the target character can be helped down on her knees. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
  * @returns {boolean} - Whether or not the target character can stand
  */
-function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharacter.AllowItem  && CurrentCharacter.CanKneel() && CurrentCharacter.ActivePose == null}
+function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharacter.AllowItem && CurrentCharacter.CanKneel() && (CurrentCharacter.ActivePose == null || CurrentCharacter.ActivePose.indexOf("Kneel") < 0) }
 /**
  * Checks if the player can stop the current character from leaving.
  * @returns {boolean} - TRUE if the current character is slowed down and can be interacted with.
@@ -1314,8 +1314,9 @@ function ChatRoomStruggleAssist() {
  * @returns {void} - Nothing
  */
 function ChatRoomKneelStandAssist() { 
-	ServerSend("ChatRoomChat", { Content: (CurrentCharacter.ActivePose == null) ? "HelpKneelDown" : "HelpStandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }, { Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber }] });
-	CharacterSetActivePose(CurrentCharacter, (CurrentCharacter.ActivePose == null) ? "Kneel" : null, true);
+	let IsStanding = CurrentCharacter.ActivePose == null || CurrentCharacter.ActivePose.indexOf("Kneel") < 0;
+	ServerSend("ChatRoomChat", { Content: IsStanding ? "HelpKneelDown" : "HelpStandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }, { Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber }] });
+	CharacterSetActivePose(CurrentCharacter, IsStanding ? "Kneel" : null, true);
 	ChatRoomCharacterUpdate(CurrentCharacter);
 }
 
