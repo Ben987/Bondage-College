@@ -25,7 +25,7 @@ var GamblingToothpickCount = 0; // available Toothpicks
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping in the maid quarters
  */
-function GamblingIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 || expire > 604800000)  }
+function GamblingIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0)  }
 
 
 // Returns TRUE if a dialog is permitted
