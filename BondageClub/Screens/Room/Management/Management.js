@@ -25,7 +25,7 @@ var ManagementTimer = 0;
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
  */
-function ManagementIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ) }
+function ManagementIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CommonTime() ; return (expire > 0 ) }
 /**
  * Checks if the player has a special title such as maid, mistress, kidnapper, etc.
  * @returns {boolean} - TRUE if the player has a special title.

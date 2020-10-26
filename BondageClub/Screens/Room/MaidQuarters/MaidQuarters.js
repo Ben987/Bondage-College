@@ -473,5 +473,5 @@ function MaidQuartersNotFromOwner() {
 
 function MaidQuartersSetMaidsDisabled(minutes) {
 	var millis = minutes * 60000
-	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
+	LogAdd("MaidsDisabled", "Maid", CommonTime() + millis);
 }
