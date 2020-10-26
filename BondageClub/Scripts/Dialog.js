@@ -680,7 +680,7 @@ function DialogInventoryBuild(C, Offset) {
 
 			// Fourth, we add all free items (especially useful for clothes)
 			for (let A = 0; A < Asset.length; A++)
-				if ((Asset[A].Group.Name == C.FocusGroup.Name) && (Asset[A].Value == 0) && Asset[A].DynamicAllowInventoryAdd(C) && (Asset[A].Name != "SpankingToys")) {
+				if ((Asset[A].Group.Name == C.FocusGroup.Name) && (Asset[A].Value == 0) && Asset[A].DynamicAllowInventoryAdd(C)) {
 					var DialogSortOrder = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride : (InventoryAllow(C, Asset[A].Prerequisite, false) && InventoryChatRoomAllow(Asset[A].Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
 					DialogInventoryAdd(C, { Asset: Asset[A] }, false, DialogSortOrder);
 				}
