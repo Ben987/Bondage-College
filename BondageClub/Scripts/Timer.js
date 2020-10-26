@@ -8,6 +8,14 @@ var TimerLastArousalProgressCount = 0;
 var TimerLastArousalDecay = 0;
 
 /**
+ * Returns the current time from the local computer clock
+ * @returns {number} - Returns the number of milliseconds
+ */
+function TimerGetTime() {
+	return new Date().getTime();
+}
+
+/**
  * Returns a string of the time remaining on a given timer
  * @param {number} T - Time to convert to a string in ms 
  * @returns {string} - The time string in the DD:HH:MM:SS format (Days and hours not displayed if it contains none)

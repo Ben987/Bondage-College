@@ -235,17 +235,20 @@ function ElementPosition(ElementID, X, Y, W, H) {
 
 	// Sets the element style
 	var E = document.getElementById(ElementID);
-	Object.assign(E.style, {
-		fontSize: Font + "px",
-		fontFamily: "Arial",
-		position: "absolute",
-		left: Left + "px",
-		top: Top + "px",
-		width: Width + "px",
-		height: Height + "px",
-		display: "inline"
-	});
-
+	if (E) {
+		Object.assign(E.style, {
+			fontSize: Font + "px",
+			fontFamily: "Arial",
+			position: "absolute",
+			left: Left + "px",
+			top: Top + "px",
+			width: Width + "px",
+			height: Height + "px",
+			display: "inline"
+		});
+	} else {
+		console.warn("A call to ElementPosition was made on non-existent element with ID '" + ElementID + "'");
+	}
 }
 
 /** 

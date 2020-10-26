@@ -1,24 +1,24 @@
 PlayerGagged,,,That gag looks great on you.  It sounds good also.  (She laughs.),,
-0,,,"(A maid is cleaning the room, she turns to look at you.)  You look adorable on that cross.",,Player.IsRestrained()
-0,,,"(A maid is cleaning the room, she turns to look at you.)  I hope I'm not bothering you.",,!Player.IsRestrained()
+0,,,(A maid is cleaning the room.  She turns to look at you.)  You look adorable on that cross.,,Player.IsRestrained()
+0,,,(A maid is cleaning the room.  She turns to look at you.)  I hope I'm not bothering you.,,!Player.IsRestrained()
 0,,Who are you?,"I'm DialogCharacterName the maid, I'm here to clean this room.","ChangeParameter(""Actor1"", ""Friendship"", ""1"")","CanDoActivity(""InterviewMaidFriendship0"")"
-0,100,Can you help me?,(She smiles.)  So you're stuck on the Saint Andrew's Cross?  Who strapped you on it?,,Player.IsRestrained()
+0,100,Can you help me?,"(She smiles.)  So, you're stuck on the Saint Andrew's Cross?  Who strapped you on it?",,Player.IsRestrained()
 0,100,What is that cross?,(She giggles.)  This is called a Saint Andrew's Cross or X Cross.  Who strapped you on it?,,Player.IsRestrained()
 0,100,(Struggle on the cross.),(She laughs at you.)  That Saint Andrew's Cross don't want to let you go?  Who strapped you on it?,,Player.IsRestrained()
 0,10,What are you doing here?,I need to clean this room and bring fresh drinks before the Mistress comes.,,!Player.IsRestrained()
 0,10,Is the Mistress coming?,"Yes, I'm here to clean this room before she comes.",,!Player.IsRestrained()
-0,,Please tell me about your work.,"My job is to keep six play rooms clean, including this one.  It can get messy in the dungeons.  (She winks at you.)","ChangeParameter(""Actor1"", ""Friendship"", ""2"")","CanDoActivity(""InterviewMaidFriendship1"")"
-0,,You're doing a great job.,(She smiles.)  That's very nice of you.  I've worked very hard today so I appreciate it.,"ChangeParameter(""Actor1"", ""Friendship"", ""3"")","CanDoActivity(""InterviewMaidFriendship2"")"
+0,,Please tell me about your work.,"My job is to keep six playrooms clean, including this one.  It can get messy in the dungeons.  (She winks at you.)","ChangeParameter(""Actor1"", ""Friendship"", ""2"")","CanDoActivity(""InterviewMaidFriendship1"")"
+0,,You're doing a great job.,"(She smiles.)  That's very nice of you.  I've worked very hard today, so I appreciate it.","ChangeParameter(""Actor1"", ""Friendship"", ""3"")","CanDoActivity(""InterviewMaidFriendship2"")"
 0,,"The pleasure is mine, my friend.",(She nods happily.)  You look so cute on that cross my friend.  Maybe I could take a break to play with you.,"ChangeParameter(""Actor1"", ""Friendship"", ""4"")","CanDoActivity(""InterviewMaidFriendshipRestrained3"")"
-0,,"The pleasure is mine, my friend.","(She nods happily.)  Too bad I'm working, we could explore the club together my friend.","ChangeParameter(""Actor1"", ""Friendship"", ""4"")","CanDoActivity(""InterviewMaidFriendshipUnrestrained3"")"
+0,,"The pleasure is mine, my friend.",(She nods happily.)  Too bad I'm working now.  We could explore the club together my friend.,"ChangeParameter(""Actor1"", ""Friendship"", ""4"")","CanDoActivity(""InterviewMaidFriendshipUnrestrained3"")"
 0,,(Leave her.),,DialogLeave(),
-10,20,What is this room?,Isn't it obvious?  You're in one the dungeon play room.  Mistress reserved it for an event.,,
-10,20,Where are we?,Isn't it obvious?  You're in one the dungeon play room.  Mistress reserved it for an event.,,
-20,30,A dungeon play room?,Dominants can bring submissives here to get punished or simply to have some bondage fun.  Are you a Dominant or a submissive?,,
+10,20,What is this room?,Isn't it obvious?  You're in one the dungeon playroom.  Mistress reserved it for an event.,,
+10,20,Where are we?,Isn't it obvious?  You're in one the dungeon playroom.  Mistress reserved it for an event.,,
+20,30,A dungeon playroom?,Dominants can bring submissives here to get punished or simply to have some bondage fun.  Are you a Dominant or a submissive?,,
 20,30,What goes on in here?,Dominants can bring submissives here to get punished or simply to have some bondage fun.  Are you a Dominant or a submissive?,,
 20,30,Tell me about this place.,Dominants can bring submissives here to get punished or simply to have some bondage fun.  Are you a Dominant or a submissive?,,
 30,200,I'm a Dominant for sure.,(She nods politely.)  Dommes have lots of control in a dungeon like this.,"DialogChangeReputation(""Dominant"", 3)",
-30,200,I'm independant.,You're probably a Dominant.  Dommes have lots of control in a dungeon like this.,"DialogChangeReputation(""Dominant"", 1)",
+30,200,I'm independent.,You're probably a Dominant.  Dommes have lots of control in a dungeon like this.,"DialogChangeReputation(""Dominant"", 1)",
 30,50,I don't know.,I'll help you figure it out.  (She locks your cuffs behind your back.),"DoActivity(""InterviewMaidCuffPlayer"")","!CanDoActivity(""InterviewMaidCuffPlayer"")"
 30,50,I'm probably a submissive.,There's something missing in your setup then.  (She locks your cuffs behind your back.),"DoActivity(""InterviewMaidCuffPlayer"")","!CanDoActivity(""InterviewMaidCuffPlayer"")"
 30,50,I don't know.,I'll help you figure it out.  (She gets some cuffs from the drawer and locks them on you.),"DoActivity(""InterviewMaidCuffPlayer"")","CanDoActivity(""InterviewMaidCuffPlayer"")"
@@ -49,8 +49,8 @@ PlayerGagged,,,That gag looks great on you.  It sounds good also.  (She laughs.)
 130,150,I could clean with you.,"(She ponders.)  Fine.  If you clean this place with me, I'll let you go.  Do we have a deal?",,
 130,,Let me think.  (Leave her.),,DialogLeave(),
 140,141,It would be my pleasure Miss.,"You're a good sub aren't you?  You better please me fast, I have work to do before the Mistress comes.","DialogChangeReputation(""Dominant"", -2)",
-140,141,It's a kinky deal for sure.,"A great deal!  But you better do it quick, I have work to do before the Mistress comes.",,
-140,141,"Get naked, it will be easy.","Aren't you a pushy sub?  You better do it quick, I have work to do before the Mistress comes.","DialogChangeReputation(""Dominant"", 2)",
+140,141,It's a kinky deal for sure.,A great deal!  But you better do it quick.  I have work to do before the Mistress comes.,,
+140,141,"Get naked, it will be easy.",Aren't you a pushy sub?  You better do it quick.  I have work to do before the Mistress comes.,"DialogChangeReputation(""Dominant"", 2)",
 141,142,I'll do my best.,(She checks the clock and quickly gets naked.)  Now I need to prepare you to work.,"DoActivity(""InterviewMaidStrip"")",
 141,142,(Nod rapidly.),(She checks the clock and quickly gets naked.)  Now I need to prepare you to work.,"DoActivity(""InterviewMaidStrip"")",
 142,143,Very well Miss.,"(She restrains you on your knees, facing her vulva.)  Time to pay your dept.","DoActivity(""InterviewRestrainForOral"")",
@@ -59,17 +59,17 @@ PlayerGagged,,,That gag looks great on you.  It sounds good also.  (She laughs.)
 143,,(Kiss her vulva.),(The camera zooms on you as you kiss her vulva slowly.),"DoActivity(""InterviewMaidOral1"")",
 143,,(Lick her clitoris.),(You lick her clitoris slowly as she moans from the pleasure.),"DoActivity(""InterviewMaidOral2"")",
 143,,(Lick her pussy lips.),(You lick her pussy lips as she trembles and grabs on your hair.),"DoActivity(""InterviewMaidOral3"")",
-143,,(Push your tongue inside.),(You push your tongue inside as the camero zooms on her vagina.),"DoActivity(""InterviewMaidOral4"")",
-143,,(Explore inside.),"(You explore deep inside with your tongue, as she jerks from the ectasy.)","DoActivity(""InterviewMaidOral5"")",
+143,,(Push your tongue inside.),(You push your tongue inside as the camera zooms on her vagina.),"DoActivity(""InterviewMaidOral4"")",
+143,,(Explore inside.),"(You explore deep inside with your tongue, as she jerks from the ecstasy.)","DoActivity(""InterviewMaidOral5"")",
 143,,This is unfair!,BDSM isn't fair girl.  Get to work.  (She tightens your cuffs.),"DoActivity(""InterviewMaidTighten"")",
 143,,(Look around.),,DialogLeave(),
 150,,,"(The cleaning maid looks at you.)  If you clean this place with me, I'll let you go.  Do we have a deal?",,
 150,151,"Very well, let me go and I'll clean with you.","No, no, no, I will let you go when you're done cleaning.",,
 150,151,We have a deal.  Now release me.,"No, no, no, I will let you go when you're done cleaning.",,
 150,,Let me think.  (Leave her.),,DialogLeave(),
-151,152,That won't work.,Sure it will.  Let me show you.  (She restrains you securily and straps a duster gag.),"DoActivity(""InterviewRestrainMaid"")",
-151,152,Are you nuts?,I'll teach you some manners.  (She restrains you securily and straps a duster gag.),"DoActivity(""InterviewRestrainMaid"")",
-151,152,How is that possible?,Let me demonstrate.  (She restrains you securily and straps a duster gag.),"DoActivity(""InterviewRestrainMaid"")",
+151,152,That won't work.,"Sure, it will.  Let me show you.  (She restrains you securely and straps a duster gag.)","DoActivity(""InterviewRestrainMaid"")",
+151,152,Are you nuts?,I'll teach you some manners.  (She restrains you securely and straps a duster gag.),"DoActivity(""InterviewRestrainMaid"")",
+151,152,How is that possible?,Let me demonstrate.  (She restrains you securely and straps a duster gag.),"DoActivity(""InterviewRestrainMaid"")",
 152,153,(Struggle in your restraints.),You're not getting out.  (She spanks your butt.)  Now start dusting.,,
 152,153,(Grumble in the gag.),Grumbling will not help you to get out.  Now start dusting.,,
 152,153,(Bow your head.),Good girl.  (She pets your head.)  Now start dusting.,,
@@ -83,10 +83,10 @@ PlayerGagged,,,That gag looks great on you.  It sounds good also.  (She laughs.)
 200,210,Control is my middle name.,"(She bows her head.)  Dominants like you can order submissives around, get them bound and gagged.  They can also control them sexually.","DialogChangeReputation(""Dominant"", 2)",
 200,210,Being in control sounds good.,"(She blushes.)  Dominants like you can order submissives around, get them bound and gagged.  They can also control them sexually.",,
 210,220,Submissives like you?,(She freezes for a few seconds and blushes.)  Well...  Miss...  I did...  I did not mean...,,
-210,220,You like to be controlled don't you?,(She freezes for a few seconds and blushes.)  Well...  Miss...  I did...  I did not mean...,,
+210,220,"You like to be controlled, don't you?",(She freezes for a few seconds and blushes.)  Well...  Miss...  I did...  I did not mean...,,
 220,230,Submit to me now.,(She bows her head and slowly gets on her knees.)  Yes Miss.  I'm under your control.,"DoActivity(""InterviewMaidKneel"")",
 220,230,What does your submissive heart tell you?,(She bows her head and slowly gets on her knees.)  I feel like getting on my knees for you Miss.,"DoActivity(""InterviewMaidKneel"")",
-220,230,Get on your knees girl.,(She bows her head and slowly gets on her knees.)  Yes Miss.  Of course Miss.,"DoActivity(""InterviewMaidKneel"")",
+220,230,"Get on your knees, girl.",(She bows her head and slowly gets on her knees.)  Yes Miss.  Of course.,"DoActivity(""InterviewMaidKneel"")",
 220,230,(Point to the ground.),"(She stays silent, bows her head and slowly gets on her knees.)","DoActivity(""InterviewMaidKneel"")",
 230,240,You belong to me now.,(She bows her head.)  How can I serve you Miss?,,
 230,240,I've always wanted a maid.,(She looks up at you and nods.)  How can I serve you Miss?,,
@@ -111,11 +111,11 @@ PlayerGagged,,,That gag looks great on you.  It sounds good also.  (She laughs.)
 250,,(Leave her.),,DialogLeave(),
 300,,,(The maid seems very nervous.  She stares at the Mistress and doesn't notice you anymore.),,
 300,,(Leave her.),,DialogLeave(),
-310,,,"(The maid is fully restrained, it's a good opportunity to take pictures for the interview.)",,
+310,,,(The maid is fully restrained.  It's a good opportunity to take pictures for the interview.),,
 310,,(Step back and take pictures.),(You take a few steps back and snap a few pictures of the maid getting teased by the Mistress.),"DoActivity(""InterviewMaidPictureBack"")",
 310,,(Get closer and take pictures.),(You get closer and take pictures or her tight restraints and her heavy struggling.),"DoActivity(""InterviewMaidPictureClose"")",
 310,,(Leave her.),,DialogLeave(),
-320,,,"(The maid is fully restrained, the Mistress has more items you could use on her.)",,
+320,,,(The maid is fully restrained.  The Mistress has more items you could use on her.),,
 320,,(Step back and take pictures.),(You take a few steps back and snap a few pictures of the maid getting teased by the Mistress.),"DoActivity(""InterviewMaidPictureBack"")",
 320,,(Get closer and take pictures.),(You get closer and take pictures or her tight restraints and her heavy struggling.),"DoActivity(""InterviewMaidPictureClose"")",
 320,,(Try new restraints on her.),(The Mistress gives you new restraints to try on her as the camera follows the scene.),"DoActivity(""InterviewMaidRestainedNew"")",
@@ -139,7 +139,7 @@ PlayerGagged,,,That gag looks great on you.  It sounds good also.  (She laughs.)
 403,404,We should turn the tables.,(She giggles.)  You think we could do it my friend?  We might get in trouble.  What's your plan?,,"CanDoActivity(""InterviewMaidFriendship4"")"
 403,401,We should turn the tables.,"(She giggles.)  Don't be ridiculous, we'll get in trouble.  Let's stop whispering, she's looking at us.",,"!CanDoActivity(""InterviewMaidFriendship4"")"
 404,401,I run while you keep her busy.,"That's your plan?  Forget it!  Let's stop whispering, she's looking at us.",,
-404,405,I push her on the cross while you put her in cuffs.,That could work.  We will get in trouble for sure but it might be worth it.  We really do it my friend?,,
+404,405,I push her on the cross while you put her in cuffs.,"That could work.  We will get in trouble for sure, but it might be worth it.  We really do it my friend?",,
 404,401,I don't have a plan.,"That won't work then.  Let's stop whispering, she's looking at us.",,
 405,500,Let's do it!  (Try to push the Mistress on the cross.),,"DoActivity(""InterviewMistressOnCross"")",
 405,401,I'm too nervous.,"We should forget it then.  Let's stop whispering, she's looking at us.",,

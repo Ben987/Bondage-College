@@ -1,10 +1,18 @@
 Preferences,- Preferences -
+GeneralPreferences,- General Preferences -
 ChatPreferences,- Chat Preferences -
 AudioPreferences,- Audio Preferences -
 ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
 SecurityPreferences,- Security Preferences -
 VisibilityPreferences,- Item Preferences -
 OnlinePreferences,- Online Preferences -
+HomepageGeneral,General
+HomepageChat,Chat
+HomepageAudio,Audio
+HomepageArousal,Arousal
+HomepageSecurity,Security
+HomepageVisibility,Item Visibility
+HomepageOnline,Online
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -45,6 +53,7 @@ AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 SensDepSetting,Sensory deprivation setting
 SensDepNames,Hide names
 SensDepTotal,Total
+DisableAutoMaid,Maids come automatically when restrained
 BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height

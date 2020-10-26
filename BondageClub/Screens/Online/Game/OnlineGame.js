@@ -110,6 +110,18 @@ function OnlineGameLoadStatus() {
 }
 
 /**
+ * Returns TRUE if the MemberPlayer supplied is still in the current chat room
+ * @param {number} MemberNumber - The number to validate
+ * @returns {boolean} - Returns TRUE if that number is still in the room
+ */
+function OnlineGameCharacterInChatRoom(MemberNumber) {
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
+		if (ChatRoomCharacter[C].MemberNumber == MemberNumber)
+			return true;
+	return false;
+}
+ 
+/**
  * Draws the online game images/text needed on the characters
  * @param {Character} C - Character to draw the info for
  * @param {number} X - Position of the character the X axis
@@ -122,8 +134,8 @@ function OnlineGameDrawCharacter(C, X, Y, Zoom) {
 		GameLARPDrawIcon(C, X + 70 * Zoom, Y + 800 * Zoom, 0.6 * Zoom);
 		if ((GameLARPPlayer.length > 0) && (C.MemberNumber == GameLARPPlayer[GameLARPTurnPosition].MemberNumber) && (GameLARPStatus == "Running") && (GameLARPTurnFocusCharacter == null)) {
 			MainCanvas.font = "72px Arial";
-			var Time = Math.ceil((GameLARPTurnTimer - CurrentTime) / 1000);
-			DrawText(((Time < 0) || (Time > 20)) ? OnlineGameDictionaryText("TimerNA") : Time.toString(), X + 250 * Zoom, Y + 830 * Zoom, "Red", "Black");
+			var Time = Math.ceil((GameLARPTurnTimer - TimerGetTime()) / 1000);
+			DrawText(((Time < 0) || (Time > GameLARPTimerDelay[GameLARPTimerDelay.length - 1])) ? OnlineGameDictionaryText("TimerNA") : Time.toString(), X + 250 * Zoom, Y + 830 * Zoom, "Red", "Black");
 			MainCanvas.font = "36px Arial";
 		}
 	}

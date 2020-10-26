@@ -186,7 +186,7 @@ function MovieStudioClick() {
  */
 function MovieStudioPlayerDressBack() {
 	Player.Appearance = MovieStudioOriginalClothes.slice(0);
-	CharacterRefresh(Player);
+	CharacterRelease(Player);
 }
 
 /**

@@ -3,36 +3,37 @@ var GameLARPBackground = "Sheet";
 var GameLARPClass = [
 	{
 		Name: "Matron",
-		Bonus: [0.25, 0.00],
+		Bonus: [0.20, 0.00],
 		Ability: ["Charge", "Control", "Detain"]
 	},
 	{
 		Name: "Seducer",
-		Bonus: [0.20, 0.05],
+		Bonus: [0.16, 0.04],
 		Ability: ["Expose", "Inspire", "Seduce"]
 	},
 	{
 		Name: "Trickster",
-		Bonus: [0.15, 0.10],
+		Bonus: [0.12, 0.08],
 		Ability: ["Confuse", "Hide", "Immobilize"]
 	},
 	{
 		Name: "Artist",
-		Bonus: [0.10, 0.15],
+		Bonus: [0.08, 0.12],
 		Ability: ["Cheer", "Costume", "Evasion"]
 	},
 	{
 		Name: "Servant",
-		Bonus: [0.05, 0.20],
+		Bonus: [0.04, 0.16],
 		Ability: ["Rescue", "Silence", "Ungag"]
 	},
 	{
 		Name: "Protector",
-		Bonus: [0.00, 0.25],
+		Bonus: [0.00, 0.20],
 		Ability: ["Cover", "Dress", "Support"]
 	},
 ];
 var GameLARPTeamList = ["None", "Red", "Green", "Blue", "Yellow", "Cyan", "Purple", "Orange", "White", "Gray", "Black"];
+var GameLARPTimerDelay = [20, 60];
 var GameLARPEntryClass = "";
 var GameLARPEntryTeam = "";
 var GameLARPStatus = "";
@@ -46,6 +47,7 @@ var GameLARPTurnAdmin = 0;
 var GameLARPTurnPosition = 0;
 var GameLARPTurnAscending = true;
 var GameLARPTurnTimer = null;
+var GameLARPTurnTimerDelay = GameLARPTimerDelay[0];
 var GameLARPTurnFocusCharacter = null;
 var GameLARPTurnFocusGroup = null;
 
@@ -79,6 +81,11 @@ function GameLARPDrawIcon(C, X, Y, Zoom) {
  * @returns {void} - Nothing
  */
 function GameLARPLoad() {
+	if (Player.Game == null) Player.Game = {};
+	if (Player.Game.LARP == null) Player.Game.LARP = {};
+	if (Player.Game.LARP.Class == null) Player.Game.LARP.Class = GameLARPClass[0].Name;
+	if (Player.Game.LARP.Team == null) Player.Game.LARP.Team = GameLARPTeamList[0];
+	if (Player.Game.LARP.TimerDelay == null) Player.Game.LARP.TimerDelay = GameLARPTimerDelay[0];
 	GameLARPEntryClass = Player.Game.LARP.Class;
 	GameLARPEntryTeam = Player.Game.LARP.Team;
 	if (GameLARPStatus == "") GameLARPProgress = [];
@@ -95,16 +102,19 @@ function GameLARPRun() {
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("Title"), 550, 125, "Black", "Gray");
 	DrawText(TextGet("SelectClass"), 550, 225, "Black", "Gray");
-	DrawText(TextGet("SelectTeam"), 550, 325, "Black", "Gray");
+	DrawText(TextGet("SelectTeam"), 550, 425, "Black", "Gray");
 	if (GameLARPStatus != "") DrawText(TextGet("Class" + Player.Game.LARP.Class), 900, 225, "Black", "Gray");
-	if (GameLARPStatus != "") DrawText(TextGet("Color" + Player.Game.LARP.Team), 900, 325, "Black", "Gray");
-	DrawText(TextGet((GameLARPStatus == "") ? "StartCondition" : "RunningGame"), 550, 425, "Black", "Gray");
+	DrawText(TextGet("LevelProgress"), 550, 325, "Black", "Gray");
+	DrawText(GameLARPGetClassLevel(Player.Game.LARP) + " (" + Math.floor(GameLARPGetClassProgress(Player.Game.LARP) / 10).toString() + "%)", 900, 325, "Black", "Gray");
+	if (GameLARPStatus != "") DrawText(TextGet("Color" + Player.Game.LARP.Team), 900, 425, "Black", "Gray");
+	DrawText(TextGet((GameLARPStatus == "") ? "StartCondition" : "RunningGame"), 550, 525, "Black", "Gray");
 	MainCanvas.textAlign = "center";
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	if (GameLARPStatus == "") DrawBackNextButton(900, 193, 400, 64, TextGet("Class" + Player.Game.LARP.Class), "White", "", () => "", () => "");
-	if (GameLARPStatus == "") DrawBackNextButton(900, 293, 400, 64, TextGet("Color" + Player.Game.LARP.Team), "White", "", () => "", () => "");
-	GameLARPDrawIcon(Player, 1400, 200, 1.5);
-	if (GameLARPCanLaunchGame()) DrawButton(550, 500, 400, 65, TextGet("StartGame"), "White");
+	if (GameLARPStatus == "") DrawBackNextButton(900, 393, 400, 64, TextGet("Color" + Player.Game.LARP.Team), "White", "", () => "", () => "");
+	GameLARPDrawIcon(Player, 1400, 225, 2);
+	if (GameLARPCanLaunchGame()) DrawBackNextButton(550, 600, 400, 65, TextGet("TimerDelay" + Player.Game.LARP.TimerDelay), "White", "", () => "", () => "");
+	if (GameLARPCanLaunchGame()) DrawButton(1050, 600, 400, 65, TextGet("StartGame"), "White");
 
 }
 
@@ -115,8 +125,8 @@ function GameLARPRun() {
 function GameLARPRunProcess() {
 
 	// If the player is an admin, she can make player skip their turns
-	if ((GameLARPStatus == "Running") && (CurrentTime > GameLARPTurnTimer) && GameLARPIsAdmin(Player)) {
-		GameLARPTurnTimer = CurrentTime + 20000;
+	if ((GameLARPStatus == "Running") && (TimerGetTime() > GameLARPTurnTimer) && GameLARPIsAdmin(Player)) {
+		GameLARPTurnTimer = TimerGetTime() + (GameLARPTurnTimerDelay * 1000);
 		ServerSend("ChatRoomGame", { GameProgress: "Skip" });
 	}
 
@@ -161,8 +171,8 @@ function GameLARPRunProcess() {
 
 			// Draw the timer
 			MainCanvas.font = "108px Arial";
-			var Time = Math.ceil((GameLARPTurnTimer - CurrentTime) / 1000);
-			DrawText(((Time < 0) || (Time > 20)) ? OnlineGameDictionaryText("TimerNA") : Time.toString(), 250, 800, "Red", "White");
+			var Time = Math.ceil((GameLARPTurnTimer - TimerGetTime()) / 1000);
+			DrawText(((Time < 0) || (Time > GameLARPTimerDelay[GameLARPTimerDelay.length - 1])) ? OnlineGameDictionaryText("TimerNA") : Time.toString(), 250, 800, "Red", "White");
 			MainCanvas.font = "36px Arial";
 
 		}
@@ -205,6 +215,7 @@ function GameLARPClickOption(Name) {
  * @returns {boolean} - Returns TRUE if the click was handled by this LARP click handler
  */
 function GameLARPClickProcess() {
+
 	// Do not handle any click if no character is selected, a target is required here
 	if (GameLARPTurnFocusCharacter == null) return false;
 
@@ -252,8 +263,10 @@ function GameLARPClickProcess() {
  * Starts a LARP match.
  * @returns {void} - Nothing
  */
-function GameLARPStartProcess() { 
-	GameLARPTurnTimer = CurrentTime + 20000;
+function GameLARPStartProcess() {
+	
+	// Gives a delay in seconds, based on the player preference
+	GameLARPTurnTimer = TimerGetTime() + (GameLARPTurnTimerDelay * 1000);
 
 	// Notices everyone in the room that the game starts
 	var Dictionary = [];
@@ -286,15 +299,25 @@ function GameLARPClick() {
 		else Index = (Index >= GameLARPClass.length - 1) ? 0 : Index + 1;		
 		Player.Game.LARP.Class = GameLARPClass[Index].Name;
 	}
-	
+
 	// When the user selects a new team
-	if (MouseIn(900, 293, 400, 64) && (GameLARPStatus == "")) {
+	if (MouseIn(900, 393, 400, 64) && (GameLARPStatus == "")) {
 		if (MouseX <= 1100) Player.Game.LARP.Team = (GameLARPTeamList.indexOf(Player.Game.LARP.Team) <= 0) ? GameLARPTeamList[GameLARPTeamList.length - 1] : GameLARPTeamList[GameLARPTeamList.indexOf(Player.Game.LARP.Team) - 1];
 		else Player.Game.LARP.Team = (GameLARPTeamList.indexOf(Player.Game.LARP.Team) >= GameLARPTeamList.length - 1) ? GameLARPTeamList[0] : GameLARPTeamList[GameLARPTeamList.indexOf(Player.Game.LARP.Team) + 1];
 	}
+
+	// When the user selects a new timer delay
+	if (MouseIn(550, 600, 400, 65) && GameLARPCanLaunchGame()) {
+		if (MouseX <= 750) Player.Game.LARP.TimerDelay = (GameLARPTimerDelay.indexOf(Player.Game.LARP.TimerDelay) <= 0) ? GameLARPTimerDelay[GameLARPTimerDelay.length - 1] : GameLARPTimerDelay[GameLARPTimerDelay.indexOf(Player.Game.LARP.TimerDelay) - 1];
+		else Player.Game.LARP.TimerDelay = (GameLARPTimerDelay.indexOf(Player.Game.LARP.TimerDelay) >= GameLARPTimerDelay.length - 1) ? GameLARPTimerDelay[0] : GameLARPTimerDelay[GameLARPTimerDelay.indexOf(Player.Game.LARP.TimerDelay) + 1];
+	}
 	
 	// If the administrator wants to start the game
-	if (MouseIn(550, 500, 400, 64) && GameLARPCanLaunchGame()) {
+	if (MouseIn(1050, 600, 400, 65) && GameLARPCanLaunchGame()) {
+
+		// Updates the player data
+		ServerSend("AccountUpdate", { Game: Player.Game });
+		ChatRoomCharacterUpdate(Player);
 
 		// Shuffles all players in the chat room
 		for (let C = 0; C < ChatRoomCharacter.length; C++) {
@@ -304,7 +327,7 @@ function GameLARPClick() {
 			}
 		}
 
-		// Give time for the server to shuffle the room.
+		// Give time for the server to shuffle the room
 		setTimeout(GameLARPStartProcess, 4000);
 		CommonSetScreen("Online", "ChatRoom");
 
@@ -375,7 +398,15 @@ function GameLARPGetBonus(Target, BonusType) {
 	for (let C = 0; C < GameLARPClass.length; C++)
 		if (Target.Game.LARP.Class == GameLARPClass[C].Name)
 			ClassBonus = GameLARPClass[C].Bonus[BonusType];
-		
+
+	// Gets the class level bonus (0 gives no bonus, 10 gives a 50% to class bonus)
+	var LevelBonus = 0;
+	if ((Target.Game.LARP.Level != null) && (ClassBonus > 0))
+		for (let L = 0; L < Target.Game.LARP.Level.length; L++)
+			if ((Target.Game.LARP.Level[L].Name == Target.Game.LARP.Class) && (Target.Game.LARP.Level[L].Level != null) && (typeof Target.Game.LARP.Level[L].Level === "number"))
+				if ((Target.Game.LARP.Level[L].Level >= 0) && (Target.Game.LARP.Level[L].Level <= 10))
+					LevelBonus = Math.round((ClassBonus * 0.05 * Target.Game.LARP.Level[L].Level) * 100) / 100;
+
 	// The ability bonuses only work for a full cycle (GameLARPPlayer.length * 2)
 	var AbilityBonus = 0;
 	for (let P = ((GameLARPProgress.length - GameLARPPlayer.length * 2 + 1 > 0) ? GameLARPProgress.length - GameLARPPlayer.length * 2 + 1 : 0); P < GameLARPProgress.length; P++)
@@ -387,7 +418,7 @@ function GameLARPGetBonus(Target, BonusType) {
 		}
 
 	// Returns both bonuses
-	return ClassBonus + AbilityBonus;
+	return ClassBonus + LevelBonus + AbilityBonus;
 
 }
 
@@ -752,10 +783,10 @@ function GameLARPAddChatLog(Msg, Source, Target, Description, RNG, Odds, Color) 
  */
 function GameLARPNewTurnPublish(NewPlayerPosition, Ascending, Msg) {
 
-	// Sets the new position and turn order, the timer is 20 seconds (10 seconds if arms are restrained), then publish in the chat log
+	// Sets the new position and turn order, the timer is divided by 2 if the are restrained, then publish in the chat log
 	GameLARPTurnPosition = NewPlayerPosition;
 	GameLARPTurnAscending = Ascending;
-	GameLARPTurnTimer = CurrentTime + (GameLARPPlayer[GameLARPTurnPosition].CanInteract() ? 20000 : 10000);
+	GameLARPTurnTimer = TimerGetTime() + (GameLARPTurnTimerDelay * (GameLARPPlayer[GameLARPTurnPosition].CanInteract() ? 1000 : 500));
 	GameLARPAddChatLog(Msg, Player, GameLARPPlayer[GameLARPTurnPosition], "", 0, 0);
 
 }
@@ -791,6 +822,65 @@ function GameLARPBuildPlayerList() {
 }
 
 /**
+ * Each time a game is over, in victory or defeat, the player progresses toward the next class level
+ * @param {number} Progress - The progress factor to apply
+ * @returns {void} - Nothing
+ */
+function GameLARPLevelProgress(NewProgress) {
+	if (NewProgress > 50) NewProgress = 50;
+	if (Player.Game.LARP.Level == null) Player.Game.LARP.Level = [];
+	var Level = 0;
+	var Progress = 0;
+	var Found = false;
+	for (let L = 0; L < Player.Game.LARP.Level.length; L++)
+		if (Player.Game.LARP.Level[L].Name == Player.Game.LARP.Class) {
+			Level = Player.Game.LARP.Level[L].Level;
+			Progress = Player.Game.LARP.Level[L].Progress;
+			Found = true;
+		}
+	if (Found == false) Player.Game.LARP.Level.push({ Name: Player.Game.LARP.Class, Level: 0, Progress: 0 });
+	if (Level >= 10) return;
+	NewProgress = NewProgress * (12 - Level) * 5;
+	if (Progress + NewProgress >= 1000) {
+		Level++;
+		Progress = 0;
+	} else Progress = Progress + NewProgress;
+	for (let L = 0; L < Player.Game.LARP.Level.length; L++)
+		if (Player.Game.LARP.Level[L].Name == Player.Game.LARP.Class) {
+			Player.Game.LARP.Level[L].Level = Level;
+			Player.Game.LARP.Level[L].Progress = Progress;
+		}
+}
+
+/**
+ * Returns the class level for a LARP player, based on their LARP object
+ * @param {object} LARP - The LARP object, coming from the Character.Game object
+ * @returns {number} - The level between 0 and 10
+ */
+function GameLARPGetClassLevel(LARP) {
+	if (LARP.Level == null) return 0;
+	for (let L = 0; L < LARP.Level.length; L++)
+		if ((LARP.Level[L].Name == LARP.Class) && (typeof LARP.Level[L].Level === "number"))
+			if ((LARP.Level[L].Level >= 0) && (LARP.Level[L].Level <= 10))
+				return LARP.Level[L].Level;
+	return 0;
+}
+
+/**
+ * Returns the class level progress for a LARP player, based on their LARP object
+ * @param {object} LARP - The LARP object, coming from the Character.Game object
+ * @returns {number} - The level progress between 0 and 1000
+ */
+function GameLARPGetClassProgress(LARP) {
+	if (LARP.Level == null) return 0;
+	for (let L = 0; L < LARP.Level.length; L++)
+		if ((LARP.Level[L].Name == LARP.Class) && (typeof LARP.Level[L].Progress === "number"))
+			if ((LARP.Level[L].Progress >= 0) && (LARP.Level[L].Progress <= 1000))
+				return LARP.Level[L].Progress;
+	return 0;
+}
+	
+/**
  * Moves forward in the LARP game. If there are less than 2 teams with free arms, the game is over.
  * @returns {boolean} - Returns TRUE if the game ends and runs the end scripts.
  */
@@ -799,7 +889,7 @@ function GameLARPContinue() {
 	// See if there's at least 2 teams in which players have free arms, return TRUE if that's the case
 	var Team = "";
 	for (let C = 0; C < GameLARPPlayer.length; C++)
-		if ((GameLARPPlayer[C].Game.LARP.Team != "") && (GameLARPPlayer[C].Game.LARP.Team != "None") && (InventoryGet(GameLARPPlayer[C], "ItemArms") == null)) {
+		if ((GameLARPPlayer[C].Game.LARP.Team != "") && (GameLARPPlayer[C].Game.LARP.Team != "None") && (InventoryGet(GameLARPPlayer[C], "ItemArms") == null) && OnlineGameCharacterInChatRoom(GameLARPPlayer[C].MemberNumber)) {
 			if (Team == "")
 				Team = GameLARPPlayer[C].Game.LARP.Team;
 			else
@@ -809,6 +899,9 @@ function GameLARPContinue() {
 
 	// If there's a winning team, we announce it and stop the game
 	if (Team != "") {
+
+		// Progresses toward the next class level
+		GameLARPLevelProgress(GameLARPProgress.length);
 
 		// Shows the winning team and updates the player status
 		GameLARPAddChatLog("EndGame", Player, Player, OnlineGameDictionaryText("Team" + Team), 0, 0, "#0000B0");
@@ -855,13 +948,17 @@ function GameLARPProcess(P) {
 			GameLARPTurnAscending = true;
 			GameLARPBuildPlayerList();
 			GameLARPProgress = [];
+			for (let C = 0; C < GameLARPPlayer.length; C++)
+				if (ChatRoomData.Admin.indexOf(GameLARPPlayer[C].MemberNumber) >= 0)
+					GameLARPTurnTimerDelay = GameLARPPlayer[C].Game.LARP.TimerDelay;
+			if ((typeof GameLARPTurnTimerDelay !== "number") || (GameLARPTurnTimerDelay < GameLARPTimerDelay[0]) || (GameLARPTurnTimerDelay > GameLARPTimerDelay[GameLARPTimerDelay.length - 1])) GameLARPTurnTimerDelay = GameLARPTimerDelay[0];
 			GameLARPNewTurn("TurnStart");
 		}
 
 		// The turn administrator can skip turns after the delay has ran out
 		if ((GameLARPStatus == "Running") && (GameLARPTurnAdmin == P.Sender) && (P.Data.GameProgress == "Skip")) {
 			GameLARPProgress.push({ Sender: P.Sender, Time: CurrentTime, RNG: P.RNG, Data: P.Data });
-			GameLARPNewTurn("TurnSkip");
+			if (GameLARPContinue()) GameLARPNewTurn("TurnSkip");
 		}
 
 		// The current turn player can trigger an action

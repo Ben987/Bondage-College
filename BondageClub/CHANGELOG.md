@@ -10,9 +10,9 @@ This changelog follows the format outlined in [keepachangelog.com](https://keepa
 
 **Note to contributors:** To avoid merge conflicts, please don't update this file yourself in your PRs - one of the developers will update the changelog with your change before your PR is merged.
 
-Changelog last updated: 2020-10-09
+Changelog last updated: 2020-10-15
 
-Last recorded PR: [#1497](https://github.com/Ben987/Bondage-College/pull/1497)
+Last recorded PR: [#1579](https://github.com/Ben987/Bondage-College/pull/1579)
 
 ## [R61]
 
@@ -123,6 +123,10 @@ Last recorded PR: [#1497](https://github.com/Ben987/Bondage-College/pull/1497)
 * Ace - Fixed an issue where HTML form controls for some screens would not be removed when having an orgasm ([#1527](https://github.com/Ben987/Bondage-College/pull/1527))
 * Ace - Added missing assets for Hair Ribbon 2 in the suspension pose ([#1529](https://github.com/Ben987/Bondage-College/pull/1529))
 * Ada - Prevented random kidnappers from removing lover-locked items ([#1531](https://github.com/Ben987/Bondage-College/pull/1531))
+* Ace - Fix for online maid drinks mission softlocked when the dray was lost ([#1568](https://github.com/Ben987/Bondage-College/pull/1568))
+* Ace - Fix for the chatroom search pages not resetting when doing a new search ([#1566](https://github.com/Ben987/Bondage-College/pull/1566))
+* Nina - Fix for the list of friends being drawn in the wrong position for rooms in the last row ([#1558](https://github.com/Ben987/Bondage-College/pull/1558))
+* Wultir - Fix for the afk emote not always being set as expected ([#1557](https://github.com/Ben987/Bondage-College/pull/1557))
 
 ### [Technical]
 * Ace - New dynamic asset framework ([#1324](https://github.com/Ben987/Bondage-College/pull/1324))
@@ -140,3 +144,10 @@ Last recorded PR: [#1497](https://github.com/Ben987/Bondage-College/pull/1497)
     * Ace - [#1367](https://github.com/Ben987/Bondage-College/pull/1367), [#1365](https://github.com/Ben987/Bondage-College/pull/1365), [#1351](https://github.com/Ben987/Bondage-College/pull/1351), [#1369](https://github.com/Ben987/Bondage-College/pull/1369), [#1374](https://github.com/Ben987/Bondage-College/pull/1374), [#1398](https://github.com/Ben987/Bondage-College/pull/1398), [#1362](https://github.com/Ben987/Bondage-College/pull/1362), [#1395](https://github.com/Ben987/Bondage-College/pull/1395), [#1396](https://github.com/Ben987/Bondage-College/pull/1396), [#1400](https://github.com/Ben987/Bondage-College/pull/1400), [#1410](https://github.com/Ben987/Bondage-College/pull/1410), [#1405](https://github.com/Ben987/Bondage-College/pull/1405), [#1403](https://github.com/Ben987/Bondage-College/pull/1403), [#1401](https://github.com/Ben987/Bondage-College/pull/1401), [#1429](https://github.com/Ben987/Bondage-College/pull/1429), [#1414](https://github.com/Ben987/Bondage-College/pull/1414), [#1402](https://github.com/Ben987/Bondage-College/pull/1402), [#1382](https://github.com/Ben987/Bondage-College/pull/1382), [#1425](https://github.com/Ben987/Bondage-College/pull/1425), [#1424](https://github.com/Ben987/Bondage-College/pull/1424), [#1423](https://github.com/Ben987/Bondage-College/pull/1423), [#1431](https://github.com/Ben987/Bondage-College/pull/1431), [#1404](https://github.com/Ben987/Bondage-College/pull/1404), [#1412](https://github.com/Ben987/Bondage-College/pull/1412), [#1413](https://github.com/Ben987/Bondage-College/pull/1413), [#1418](https://github.com/Ben987/Bondage-College/pull/1418), [#1420](https://github.com/Ben987/Bondage-College/pull/1420), [#1421](https://github.com/Ben987/Bondage-College/pull/1421), [#1422](https://github.com/Ben987/Bondage-College/pull/1422), [#1455](https://github.com/Ben987/Bondage-College/pull/1455), [#1456](https://github.com/Ben987/Bondage-College/pull/1456), [#1457](https://github.com/Ben987/Bondage-College/pull/1457), [#1430](https://github.com/Ben987/Bondage-College/pull/1430), [#1467](https://github.com/Ben987/Bondage-College/pull/1467), [#1417](https://github.com/Ben987/Bondage-College/pull/1417), [#1487](https://github.com/Ben987/Bondage-College/pull/1487), [#1469](https://github.com/Ben987/Bondage-College/pull/1469), [#1470](https://github.com/Ben987/Bondage-College/pull/1470), [#1491](https://github.com/Ben987/Bondage-College/pull/1491), [#1499](https://github.com/Ben987/Bondage-College/pull/1499), [#1466](https://github.com/Ben987/Bondage-College/pull/1466), [#1498](https://github.com/Ben987/Bondage-College/pull/1498), [#1503](https://github.com/Ben987/Bondage-College/pull/1503), [#1502](https://github.com/Ben987/Bondage-College/pull/1502), [#1501](https://github.com/Ben987/Bondage-College/pull/1501), [#1521](https://github.com/Ben987/Bondage-College/pull/1521)
     * Ellie - [#1389](https://github.com/Ben987/Bondage-College/pull/1389), [#1479](https://github.com/Ben987/Bondage-College/pull/1479), [#1490](https://github.com/Ben987/Bondage-College/pull/1490), [#1514](https://github.com/Ben987/Bondage-College/pull/1514)
     * Aeren - [#1510](https://github.com/Ben987/Bondage-College/pull/1510)
+
+### [Beta fixes]
+* Nina - [#1536](https://github.com/Ben987/Bondage-College/pull/1536),  [#1561](https://github.com/Ben987/Bondage-College/pull/1561),  [#1552](https://github.com/Ben987/Bondage-College/pull/1552),  [#1555](https://github.com/Ben987/Bondage-College/pull/1555),  [#1554](https://github.com/Ben987/Bondage-College/pull/1554)
+* Ellie - [#1543](https://github.com/Ben987/Bondage-College/pull/1543),  [#1565](https://github.com/Ben987/Bondage-College/pull/1565),  [#1562](https://github.com/Ben987/Bondage-College/pull/1562),  [#1546](https://github.com/Ben987/Bondage-College/pull/1546), [#1578](https://github.com/Ben987/Bondage-College/pull/1578)
+* Wultir - [#1551](https://github.com/Ben987/Bondage-College/pull/1551)
+* Ace -  [#1538](https://github.com/Ben987/Bondage-College/pull/1538), [#1539](https://github.com/Ben987/Bondage-College/pull/1539),  [#1540](https://github.com/Ben987/Bondage-College/pull/1540),  [#1541](https://github.com/Ben987/Bondage-College/pull/1541),  [#1542](https://github.com/Ben987/Bondage-College/pull/1542),  [#1544](https://github.com/Ben987/Bondage-College/pull/1544),  [#1545](https://github.com/Ben987/Bondage-College/pull/1545),  [#1548](https://github.com/Ben987/Bondage-College/pull/1548),  [#1563](https://github.com/Ben987/Bondage-College/pull/1563),  [#1567](https://github.com/Ben987/Bondage-College/pull/1567),  [#1572](https://github.com/Ben987/Bondage-College/pull/1572), [#1579](https://github.com/Ben987/Bondage-College/pull/1579)
+* Firefly - [#1575](https://github.com/Ben987/Bondage-College/pull/1575)

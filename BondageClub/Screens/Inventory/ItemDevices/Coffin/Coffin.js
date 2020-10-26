@@ -52,7 +52,7 @@ function InventoryItemDevicesCoffinPublishAction(C, Option) {
 	var msg = "CoffinSet" + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-		{ Tag: "TargetCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
 	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }

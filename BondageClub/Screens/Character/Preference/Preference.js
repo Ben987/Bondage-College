@@ -2,8 +2,10 @@
 var PreferenceBackground = "Sheet";
 var PreferenceMessage = "";
 var PreferenceSafewordConfirm = false;
+var PreferenceMaidsButton = true;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
+var PreferenceSubscreenList = ["General", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility"];
 var PreferenceChatColorThemeSelected = "";
 var PreferenceChatColorThemeList = ["Light", "Dark"];
 var PreferenceChatColorThemeIndex = 0;
@@ -234,6 +236,7 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.BlindDisableExamine !== "boolean") C.GameplaySettings.BlindDisableExamine = false;
 	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
+	if (typeof C.GameplaySettings.DisableAutoMaid !== "boolean") C.GameplaySettings.DisableAutoMaid = false;
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
@@ -320,7 +323,6 @@ function PreferenceLoad() {
 
 	// Sets up the player label color
 	if (!CommonIsColor(Player.LabelColor)) Player.LabelColor = "#ffffff";
-	PreferenceMainScreenLoad();
 	PreferenceInit(Player);
 
 	// Sets the chat themes
@@ -361,18 +363,27 @@ function PreferenceLoad() {
  * @returns {void} - Nothing
  */
 function PreferenceRun() {
-
 	// If a subscreen is active, draw that instead
-	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatRun();
-	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioRun();
-	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalRun();
-	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityRun();
-	if (PreferenceSubscreen == "Visibility") return PreferenceSubscreenVisibilityRun();
-	if (PreferenceSubscreen == "Online") return PreferenceSubscreenOnlineRun();
+	if (PreferenceSubscreen != "") return CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreen + "Run()");
+	
+	// Draw the player & controls
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
-	// Draw the online preferences
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("Preferences"), 500, 125, "Black", "Gray");
+	MainCanvas.textAlign = "center";
+
+	for (let A = 0; A < PreferenceSubscreenList.length; A++) {
+		DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
+		DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
+	}
+}
+
+function PreferenceSubscreenGeneralRun() {
+	// Draw the online preferences
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("GeneralPreferences"), 500, 125, "Black", "Gray");
 	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
 	DrawText(TextGet("CharacterLabelColor"), 500, 225, "Black", "Gray");
 	ElementPosition("InputCharacterLabelColor", 990, 212, 250);
@@ -386,10 +397,11 @@ function PreferenceRun() {
 	DrawText(TextGet("VFX"), 800, 508, "Black", "Gray");
 
 	// Checkboxes
-	DrawCheckbox(500, 552, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
-	DrawCheckbox(500, 632, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
-	DrawCheckbox(500, 712, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
-	DrawCheckbox(500, 792, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
+	DrawCheckbox(500, 472, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
+	DrawCheckbox(500, 552, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
+	DrawCheckbox(500, 632, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
+	DrawCheckbox(500, 712, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
+	DrawCheckbox(500, 792, 64, 64, TextGet("DisableAutoMaid"), !Player.GameplaySettings.DisableAutoMaid);
 
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
@@ -407,12 +419,6 @@ function PreferenceRun() {
 		ColorPickerDraw(1250, 185, 675, 830, document.getElementById(PreferenceColorPick));
 	} else {
 		ColorPickerHide();
-		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");
-		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Audio.png");
-		DrawButton(1815, 420, 90, 90, "", "White", "Icons/Activity.png");
-		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Lock.png");
-		DrawButton(1815, 650, 90, 90, "", "White", "Icons/Private.png");
-		DrawButton(1815, 765, 90, 90, "", "White", "Icons/Online.png");
 	}
 }
 
@@ -421,55 +427,30 @@ function PreferenceRun() {
  * @returns {void} - Nothing
  */
 function PreferenceClick() {
+	// Pass the click into the opened subscreen
+	if (PreferenceSubscreen != "") return CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreen + "Click()");
 
-	// If a subscreen is active, process that instead
-	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatClick();
-	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioClick();
-	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalClick();
-	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityClick();
-	if (PreferenceSubscreen == "Visibility") return PreferenceSubscreenVisibilityClick();
-	if (PreferenceSubscreen == "Online") return PreferenceSubscreenOnlineClick();
+	// Exit button
+	if (MouseIn(1815, 75, 90, 90)) {
+		PreferenceExit();
+	}
 
+	// Open the selected subscreen
+	for (let A = 0; A < PreferenceSubscreenList.length; A++) {
+		if (MouseIn(500 + 500 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
+			if (typeof window["PreferenceSubscreen" + PreferenceSubscreenList[A] + "Load"] === "function") {
+				CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreenList[A] + "Load()");
+			}
+			PreferenceSubscreen = PreferenceSubscreenList[A];
+			break;
+		}
+	}
+}
+
+function PreferenceSubscreenGeneralClick() {
 	// If the user clicks on "Exit"
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
-
-	// If the user clicks on the chat settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Chat";
-	}
-
-	// If the user clicks on the audio settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Audio";
-	}
-
-	// If the user clicks on the arousal settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 420) && (MouseY < 510) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Arousal";
-	}
-
-	// If the user clicks on the security settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 535) && (MouseY < 625) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		ElementCreateInput("InputEmailOld", "text", "", "100");
-		ElementCreateInput("InputEmailNew", "text", "", "100");
-		ServerSend("AccountQuery", { Query: "EmailStatus" });
-		PreferenceSubscreen = "Security";
-	}
-
-	// If the user clicks on the visibility settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 650) && (MouseY < 740) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Visibility";
-	}
-
-	// If the user clicks on the online settings button
-	if (MouseIn(1815, 765, 90, 90) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Online";
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+		PreferenceSubscreenGeneralExit();
 	}
 
 	// If we must change the restrain permission level
@@ -517,6 +498,7 @@ function PreferenceClick() {
 	} else {
 		PreferenceSafewordConfirm = false;
 	}
+	if (MouseIn(500, 792, 64, 64)) Player.GameplaySettings.DisableAutoMaid = !Player.GameplaySettings.DisableAutoMaid;
 }
 
 /**
@@ -525,24 +507,20 @@ function PreferenceClick() {
  * @returns {void} - Nothing
  */
 function PreferenceExit() {
-	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
-		Player.LabelColor = ElementValue("InputCharacterLabelColor");
-		var P = {
-			ItemPermission: Player.ItemPermission,
-			LabelColor: Player.LabelColor,
-			ChatSettings: Player.ChatSettings,
-			VisualSettings: Player.VisualSettings,
-			AudioSettings: Player.AudioSettings,
-			GameplaySettings: Player.GameplaySettings,
-			ArousalSettings: Player.ArousalSettings,
-			OnlineSettings: Player.OnlineSettings,
-			OnlineSharedSettings: Player.OnlineSharedSettings
-		};
-		ServerSend("AccountUpdate", P);
-		PreferenceMessage = "";
-		PreferenceMainScreenExit();
-		CommonSetScreen("Character", "InformationSheet");
-	} else PreferenceMessage = "ErrorInvalidColor";
+	var P = {
+		ItemPermission: Player.ItemPermission,
+		LabelColor: Player.LabelColor,
+		ChatSettings: Player.ChatSettings,
+		VisualSettings: Player.VisualSettings,
+		AudioSettings: Player.AudioSettings,
+		GameplaySettings: Player.GameplaySettings,
+		ArousalSettings: Player.ArousalSettings,
+		OnlineSettings: Player.OnlineSettings,
+		OnlineSharedSettings: Player.OnlineSharedSettings
+	};
+	ServerSend("AccountUpdate", P);
+	PreferenceMessage = "";
+	CommonSetScreen("Character", "InformationSheet");
 }
 
 /**
@@ -699,9 +677,6 @@ function PreferenceSubscreenSecurityRun() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenVisibilityRun() {
-	// Load the full asset list on the first call
-	if (PreferenceVisibilityGroupList.length == 0) PreferenceVisibilityLoad();
-
 	DrawCharacter(Player, 50, 50, 0.9);
 
 	// Exit buttons
@@ -741,9 +716,8 @@ function PreferenceSubscreenVisibilityRun() {
 function PreferenceSubscreenAudioClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
 		PreferenceSubscreen = "";
-		PreferenceMainScreenLoad();
 	}
 
 	// Volume increase/decrease control
@@ -804,7 +778,6 @@ function PreferenceSubscreenChatClick() {
 	// If the user clicked the exit icon to return to the main screen
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
-		PreferenceMainScreenLoad();
 	}
 
 }
@@ -812,9 +785,8 @@ function PreferenceSubscreenChatClick() {
 function PreferenceSubscreenOnlineClick() {
 	const OnlineSettings = Player.OnlineSettings;
 	const OnlineSharedSettings = Player.OnlineSharedSettings;
-	if (MouseIn(1815, 75, 90, 90) && PreferenceColorPick == "") {
+	if (MouseIn(1815, 75, 90, 90)) {
 		PreferenceSubscreen = "";
-		PreferenceMainScreenLoad();
 	}
 	else if (MouseIn(500, 225, 64, 64)) OnlineSettings.AutoBanBlackList = !OnlineSettings.AutoBanBlackList;
 	else if (MouseIn(500, 305, 64, 64)) OnlineSettings.AutoBanGhostList = !OnlineSettings.AutoBanGhostList;
@@ -838,10 +810,9 @@ function PreferenceSubscreenOnlineClick() {
 function PreferenceSubscreenArousalClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
 		PreferenceSubscreen = "";
 		Player.FocusGroup = null;
-		PreferenceMainScreenLoad();
 	}
 
 	// Arousal active control
@@ -945,11 +916,10 @@ function PreferenceSubscreenArousalClick() {
 function PreferenceSubscreenSecurityClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
 		PreferenceSubscreen = "";
 		ElementRemove("InputEmailOld");
 		ElementRemove("InputEmailNew");
-		PreferenceMainScreenLoad();
 	}
 
 	// If we must update the email
@@ -1032,7 +1002,7 @@ function PreferenceSubscreenVisibilityClick() {
 }
 
 /** Load the full list of items and clothes along with the player settings for them */
-function PreferenceVisibilityLoad() {
+function PreferenceSubscreenVisibilityLoad() {
 	PreferenceVisibilityHiddenList = Player.HiddenItems.slice();
 	PreferenceVisibilityBlockList = Player.BlockItems.slice();
 
@@ -1128,14 +1098,13 @@ function PreferenceVisibilityExit(SaveChanges) {
 	PreferenceVisibilityHiddenList = [];
 	PreferenceVisibilityBlockList = [];
 	PreferenceSubscreen = "";
-	PreferenceMainScreenLoad();
 }
 
 /**
- * Loads the Preferences screen. Is called dynamically, when the player enters the preferences dialog for the first time
+ * Loads the Preferences screen.
  * @returns {void} - Nothing
  */
-function PreferenceMainScreenLoad() {
+function PreferenceSubscreenGeneralLoad() {
 	ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
 }
 
@@ -1143,8 +1112,23 @@ function PreferenceMainScreenLoad() {
  * Exists the preference screen. Cleans up elements that are not needed anymore
  * @returns {void} - Nothing
  */
-function PreferenceMainScreenExit() {
-	ElementRemove("InputCharacterLabelColor");
+function PreferenceSubscreenGeneralExit() {
+	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
+		Player.LabelColor = ElementValue("InputCharacterLabelColor");
+		PreferenceMessage = "";
+		ElementRemove("InputCharacterLabelColor");
+		PreferenceSubscreen = "";
+	} else PreferenceMessage = "ErrorInvalidColor";
+}
+
+/**
+ * Loads the Preferences screen.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenSecurityLoad() {
+	ElementCreateInput("InputEmailOld", "text", "", "100");
+	ElementCreateInput("InputEmailNew", "text", "", "100");
+	ServerSend("AccountQuery", { Query: "EmailStatus" });
 }
 
 /**

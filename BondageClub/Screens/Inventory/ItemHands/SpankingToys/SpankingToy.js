@@ -116,6 +116,10 @@ const InventoryItemHandsSpankingToysOptions = [
 		Name: "Ruler",
 		Property: { Type: "Ruler" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }]
+	}, {
+		Name: "Sword",
+		Property: { Type: "Sword" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
 	},
 ];
 

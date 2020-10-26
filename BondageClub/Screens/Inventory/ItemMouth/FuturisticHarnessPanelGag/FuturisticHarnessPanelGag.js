@@ -15,7 +15,9 @@ function InventoryItemMouthFuturisticHarnessPanelGagClick() {
 	InventoryItemMouthFuturisticPanelGagClick();
 }
 
-
+function InventoryItemMouthFuturisticHarnessPanelGagExit() {
+	InventoryItemMouthFuturisticPanelGagExit();
+}
 
 function InventoryItemMouthFuturisticHarnessPanelGagValidate(C, Option) {
 	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
@@ -27,7 +29,13 @@ function InventoryItemMouthFuturisticHarnessPanelGagPublishAction(C, Option) {
 }
 
 function InventoryItemMouthFuturisticHarnessPanelNpcDialog(C, Option) {
-	InventoryItemMouthFuturisticPanelNpcDialog(C, Option);
+	InventoryItemMouthFuturisticPanelGagNpcDialog(C, Option);
 }
 
 
+function AssetsItemMouthFuturisticHarnessPanelGagScriptDraw(data) {
+	AssetsItemMouthFuturisticPanelGagScriptDraw(data)
+}
+function AssetsItemMouthFuturisticHarnessPanelGagBeforeDraw(data) {
+	return AssetsItemMouthFuturisticPanelGagBeforeDraw(data)
+}

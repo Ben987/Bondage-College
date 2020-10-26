@@ -44,8 +44,9 @@ RemoveVibratingEgg,,,"Pity, we just got started.",,
 0,,Please use some toys on me.,She points to her restraints.,,PhotographicSubIsRestrained()
 0,40,Please take off your clothes.,Where should I start?,,!PhotographicSubIsRestrained()
 0,,Please change your pose.,"Alright, how is this?",SubChangePose(),PhotographicSubCanKeel()
-0,,(Nod for help.),I'll help you right away.  (She releases you.),PlayerRelease(),IsRestrainedWithoutLock()
-0,,(Nod for help.),"(She checks your locks.)  I'm sorry, you'll need to get a maid for that.",,IsRestrainedWithLock()
+0,,(Nod for help.),I'll help you right away.  (She releases you.),PlayerRelease(),PhotographicIsRestrainedWithoutLockAndMaidsNotDisabled()
+0,,(Nod for help.),"(She checks your locks.)  I'm sorry, you'll need to get a maid for that.",,PhotographicIsRestrainedWithLockAndMaidsNotDisabled()
+0,,(Nod for help.),"I'm sorry, the maids told me not to help you.",,PhotographicIsMaidsDisabledAndRestrained()
 0,,Goodbye. (Leave her.),,DialogLeave(),
 10,,(Remove hat.),"Go on, don't be shy.","PlayerClothRemove(""Hat"")",PlayerHatAvailable()
 10,,(Remove gloves.),"Go on, don't be shy.","PlayerClothRemove(""Gloves"")",PlayerGlovesAvailable()

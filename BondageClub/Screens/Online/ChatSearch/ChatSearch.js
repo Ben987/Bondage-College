@@ -64,7 +64,10 @@ function ChatSearchClick() {
 		if (ChatSearchMode == "" && Array.isArray(ChatSearchResult) && (ChatSearchResult.length >= 1)) ChatSearchJoin();
 	}
 	if (MouseIn(980, 898, 280, 64)) ChatSearchQuery();
-	if (MouseIn(1280, 898, 280, 64)) CommonSetScreen("Online", "ChatCreate");
+	if (MouseIn(1280, 898, 280, 64)) {
+		ChatBlockItemCategory = [];
+		CommonSetScreen("Online", "ChatCreate");
+	}
 	if (MouseIn(1585, 885, 90, 90)) { 
 		ChatSearchResultOffset += ChatSearchRoomsPerPage;
 		if (ChatSearchResultOffset >= ChatSearchResult.length + (ChatSearchMode != "Filter" ? 0 : ChatSearchIgnoredRooms.length)) ChatSearchResultOffset = 0;
@@ -99,7 +102,8 @@ function ChatSearchExit() {
  * Draws the list of rooms in normal mode.
  * @returns {void} - Nothing
  */
-function ChatSearchNormalDraw() { 
+function ChatSearchNormalDraw() {
+
 	// If we can show the chat room search result in normal mode
 	if (Array.isArray(ChatSearchResult) && (ChatSearchResult.length >= 1)) {
 			
@@ -130,15 +134,29 @@ function ChatSearchNormalDraw() {
 			X = 25;
 			Y = 25;
 			for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + ChatSearchRoomsPerPage); C++) {
-				
-				// Builds the friend list and shows it
-				if (MouseIn(X, Y, 630, 85) && ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0) {
-					let ListHeight = 60 * (1 + ChatSearchResult[C].Friends.length);
-					let ListY = Math.min(Y, 872 - ListHeight);
 
-					DrawTextWrap(TextGet("FriendsInRoom") + " " + ChatSearchResult[C].Name, (X > 1000) ? 685 : X + 660, ListY, 630, 60, "black", "#FFFF88", 1);
-					for (let F = 0; F < ChatSearchResult[C].Friends.length; F++)
-						DrawTextWrap(ChatSearchResult[C].Friends[F].MemberName + " (" + ChatSearchResult[C].Friends[F].MemberNumber + ")", (X > 1000) ? 685 : X + 660, ListY + 60 + F * 60, 630, 60, "black", "#FFFF88", 1);
+				// Determine the hover text starting position to ensure there's enough room
+				let Height = 58;
+				let ListHeight = Height * ((ChatSearchResult[C].Friends.length > 0 ? 1 : 0) + ChatSearchResult[C].Friends.length + (ChatSearchResult[C].BlockCategory.length > 0 ? 1 : 0));
+				let ListY = Math.min(Y, 872 - ListHeight);
+
+				// Builds the friend list as hover text
+				if (MouseIn(X, Y, 630, 85) && ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0) {
+					DrawTextWrap(TextGet("FriendsInRoom") + " " + ChatSearchResult[C].Name, (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
+					ListY += Height;
+					for (let F = 0; F < ChatSearchResult[C].Friends.length; F++) {
+						DrawTextWrap(ChatSearchResult[C].Friends[F].MemberName + " (" + ChatSearchResult[C].Friends[F].MemberNumber + ")", (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
+						ListY += Height;
+					}
+				}
+
+				// Builds the blocked categories list below it
+				if (MouseIn(X, Y, 630, 85) && (ChatSearchResult[C].BlockCategory != null) && (ChatSearchResult[C].BlockCategory.length > 0)) {
+					let Block = TextGet("Block");
+					for (let B = 0; B < ChatSearchResult[C].BlockCategory.length; B++)
+						Block = Block + ((B > 0) ? ", " : " ") + TextGet(ChatSearchResult[C].BlockCategory[B]);
+					DrawTextWrap(Block, (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FF8888", 1);
+					ListY += Height;
 				}
 
 				// Moves the next window position
@@ -317,6 +335,7 @@ function ChatSearchResponse(data) {
  */
 function ChatSearchResultResponse(data) { 
 	ChatSearchResult = data;
+	ChatSearchResultOffset = 0;
 	ChatSearchQuerySort();
 }
 

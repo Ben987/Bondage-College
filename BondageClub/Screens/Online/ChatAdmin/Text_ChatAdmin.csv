@@ -10,7 +10,6 @@ QuickbanBlackList,Ban blacklist
 QuickbanGhostList,Ban ghostlist
 AdminOnly,Room settings can only be updated by administrators
 Background,Background
-ShowAll,Selection
 Save,Save
 Exit,Exit
 Cancel,Cancel
@@ -18,3 +17,4 @@ UpdatingRoom,Updating the chat room...
 ResponseRoomAlreadyExist,This room name is already taken
 ResponseAccountError,"Account error, please try to relog"
 ResponseInvalidRoomData,Invalid chat room data detected
+BlockCategory,Block Items

@@ -36,6 +36,7 @@ var DialogSortOrderUsable = 3;
 var DialogSortOrderUnusable = 4;
 var DialogSortOrderBlocked = 5;
 var DialogSelfMenuSelected = null;
+var DialogLeaveDueToItem = false; // This allows dynamic items to call DialogLeave() without crashing the game
 /**
  * The list of menu types available when clicking on yourself
  * @const
@@ -167,7 +168,7 @@ function DialogLogQuery(LogType, LogGroup) { return LogQuery(LogType, LogGroup);
  * @param {string} Allow - The flag to set. Either "TRUE" or "FALSE"
  * @returns {boolean} - The boolean version of the flag
  */
-function DialogAllowItem(Allow) { return CurrentCharacter.AllowItem = (Allow.toUpperCase().trim() == "TRUE"); } // 
+function DialogAllowItem(Allow) { return CurrentCharacter.AllowItem = (Allow.toUpperCase().trim() == "TRUE"); }
 
 /**
  * Returns the value of the AllowItem flag of a given character
@@ -339,6 +340,15 @@ function DialogCanUnlock(C, Item) {
 }
 
 /**
+ * Some specific screens like the movie studio cannot allow the player to use items on herself, return FALSE if it's the case
+ * @returns {boolean} - Returns TRUE if we allow using items
+ */
+function DialogAllowItemScreenException() {
+	if ((CurrentScreen == "MovieStudio") && (MovieStudioCurrentMovie != "")) return false;
+	return true;
+}
+
+/**
  * Returns the current character dialog intro
  * @returns {string} - The name of the current dialog, if such a dialog exists, any empty string otherwise
  */
@@ -361,7 +371,8 @@ function DialogLeave() {
 	DialogActivityMode = false;
 	DialogItemToLock = null;
 	Player.FocusGroup = null;
-	CurrentCharacter.FocusGroup = null;
+	if (CurrentCharacter)
+		CurrentCharacter.FocusGroup = null;
 	DialogInventory = null;
 	CurrentCharacter = null;
 	DialogSelfMenuSelected = null;
@@ -424,7 +435,8 @@ function DialogLeaveItemMenu() {
 	DialogEndExpression();
 	DialogItemToLock = null;
 	Player.FocusGroup = null;
-	CurrentCharacter.FocusGroup = null;
+	if (CurrentCharacter)
+		CurrentCharacter.FocusGroup = null;
 	DialogInventory = null;
 	DialogProgress = -1;
 	DialogColor = null;
@@ -540,8 +552,9 @@ function DialogCanUseRemote(C, Item) {
  * @returns {boolean} - TRUE if the player is able to color the item, FALSE otherwise
  */
 function DialogCanColor(C, Item) {
+	const ItemColorable = !Item || (Item && Item.Asset && Item.Asset.ColorableLayerCount > 0);
 	const CanUnlock = InventoryItemHasEffect(Item, "Lock", true) ? DialogCanUnlock(C, Item) : true;
-	return (Player.CanInteract() && CanUnlock) || DialogAlwaysAllowRestraint();
+	return (Player.CanInteract() && CanUnlock && ItemColorable) || DialogAlwaysAllowRestraint();
 }
 
 /**
@@ -653,7 +666,7 @@ function DialogInventoryBuild(C, Offset) {
 			// Second, we add everything from the victim inventory
 			for (let A = 0; A < C.Inventory.length; A++)
 				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
-					var DialogSortOrder = C.Inventory[A].Asset.DialogSortOverride != null ? C.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+					var DialogSortOrder = C.Inventory[A].Asset.DialogSortOverride != null ? C.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(C.Inventory[A].Asset.Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
 					DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrder);
 				}
 
@@ -661,14 +674,14 @@ function DialogInventoryBuild(C, Offset) {
 			if (C.ID != 0)
 				for (let A = 0; A < Player.Inventory.length; A++)
 					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
-						var DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+						var DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(Player.Inventory[A].Asset.Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
 						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrder);
 					}
 
 			// Fourth, we add all free items (especially useful for clothes)
 			for (let A = 0; A < Asset.length; A++)
-				if ((Asset[A].Group.Name == C.FocusGroup.Name) && (Asset[A].Value == 0) && Asset[A].DynamicAllowInventoryAdd(C)) {
-					var DialogSortOrder = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride : (InventoryAllow(C, Asset[A].Prerequisite, false)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+				if ((Asset[A].Group.Name == C.FocusGroup.Name) && (Asset[A].Value == 0) && Asset[A].DynamicAllowInventoryAdd(C) && (Asset[A].Name != "SpankingToys")) {
+					var DialogSortOrder = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride : (InventoryAllow(C, Asset[A].Prerequisite, false) && InventoryChatRoomAllow(Asset[A].Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
 					DialogInventoryAdd(C, { Asset: Asset[A] }, false, DialogSortOrder);
 				}
 
@@ -1118,7 +1131,7 @@ function DialogItemClick(ClickItem) {
 	// Cannot change item if the previous one is locked or blocked by another group
 	if ((CurrentItem == null) || !InventoryItemHasEffect(CurrentItem, "Lock", true)) {
 		if (!InventoryGroupIsBlocked(C))
-			if (InventoryAllow(C, ClickItem.Asset.Prerequisite))
+			if (InventoryAllow(C, ClickItem.Asset.Prerequisite) && InventoryChatRoomAllow(ClickItem.Asset.Category))
 				if ((CurrentItem == null) || (CurrentItem.Asset.Name != ClickItem.Asset.Name)) {
 					if (ClickItem.Asset.Wear) {
 
@@ -1179,7 +1192,7 @@ function DialogClick() {
 	}
 
 	// If the user clicked on the interaction character or herself, we check to build the item menu
-	if ((CurrentCharacter.AllowItem || (MouseX < 500)) && (MouseX >= 0) && (MouseX <= 1000) && (MouseY >= 0) && (MouseY < 1000) && ((CurrentCharacter.ID != 0) || (MouseX > 500)) && (DialogIntro() != "")) {
+	if ((CurrentCharacter.AllowItem || (MouseX < 500)) && (MouseX >= 0) && (MouseX <= 1000) && (MouseY >= 0) && (MouseY < 1000) && ((CurrentCharacter.ID != 0) || (MouseX > 500)) && (DialogIntro() != "") && DialogAllowItemScreenException()) {
 		DialogLeaveItemMenu();
 		DialogLeaveFocusItem();
 		var C = (MouseX < 500) ? Player : CurrentCharacter;

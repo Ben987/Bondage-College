@@ -11,7 +11,7 @@ LARPTeamOrange,Orange
 LARPTeamWhite,White
 LARPTeamGray,Gray
 LARPTeamBlack,Black
-LARPTimerNA,NA
+LARPTimerNA,0
 LARPEndGame,The game is over!  TeamName team wins.  Enjoy your spoils of war.
 LARPTurnStart,TargetName (TargetNumber) plays first and starts the game.
 LARPTurnSkip,The turn is skipped.  TargetName (TargetNumber) plays.

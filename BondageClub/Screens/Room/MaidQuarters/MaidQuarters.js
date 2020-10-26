@@ -21,6 +21,27 @@ var MaidQuartersOnlineDrinkValue = 0;
 var MaidQuartersOnlineDrinkCustomer = [];
 var MaidQuartersOnlineDrinkFromOwner = false;
 
+
+// Returns TRUE if the player has maids disabled
+/**
+ * Checks if the player is helpless (maids disabled) or not.
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
+ */
+function MaidQuartersIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ) }
+
+// Returns TRUE if the player can work for the maids
+/**
+ * Checks if the player is helpless (maids disabled) or not and also if they have reputation to do work
+ * @returns {boolean} - Returns true if the player has maids enabled and also has rep
+ */
+function MaidQuartersCanDoWorkForMaids() { return (DialogReputationGreater("Maid", 1) && !MaidQuartersIsMaidsDisabled()) }
+// Returns TRUE if the player can work for the maids
+/**
+ * Checks if the player is helpless (maids disabled) or not and also if they have reputation to do work
+ * @returns {boolean} - Returns true if the player has maids enabled and also has rep
+ */
+function MaidQuartersCanDoWorkButMaidsDisabled() { return (DialogReputationGreater("Maid", 1) && MaidQuartersIsMaidsDisabled()) }
+
 // Returns TRUE if the player is dressed in a maid uniform or can take a specific chore
 /**
  * CHecks for appropriate dressing
@@ -61,7 +82,7 @@ function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("Lead
  * Checks, if the maid can release the player from her restraint
  * @returns {boolean} - Returns true, if the player can be released, false otherwise
  */
-function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLockedRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
+function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLockedRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) && !MaidQuartersIsMaidsDisabled()}
 /**
  * Checks, if the maid is unable to free the player
  * @returns {boolean} - Returns true, if the maid is unable to free the player, false otherwise
@@ -86,12 +107,14 @@ function MaidQuartersOnlineDrinkIsRestrained() { return Player.IsRestrained() ||
  * Checks if the player can get ungagged by the maids
  * @returns {boolean} - Returns true, if the maids can remove the gag, false otherwise
  */
-function MaidQuartersCanUngag() { return (!Player.CanTalk() && !InventoryCharacterHasOwnerOnlyRestraint(Player)) }
+function MaidQuartersCanUngag() { return (!Player.CanTalk() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && !MaidQuartersIsMaidsDisabled()) }
+function MaidQuartersCanUngagAndMaidsDisabled() { return MaidQuartersIsMaidsDisabled() && (!Player.CanTalk()) }
 /**
  * Checks, if the maids are unable to remove the gag (if there is one)
  * @returns {boolean} - Returns true, if the player cannot be ungagged by the maids, false otherwise
  */
 function MaidQuartersCannotUngag() { return (!Player.CanTalk() && InventoryCharacterHasOwnerOnlyRestraint(Player)) }
+function MaidQuartersCannotUngagAndMaidsNotDisabled() { return !MaidQuartersIsMaidsDisabled() && (!Player.CanTalk() && InventoryCharacterHasOwnerOnlyRestraint(Player)) }
 
 /**
  * Loads the maid quarters. This function is called dynamically, as soon, as the player enters the maid quarters
@@ -134,7 +157,19 @@ function MaidQuartersClick() {
 	if (!DailyJobSubSearchIsActive() && (MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
 		ManagementClubSlaveDialog(MaidQuartersMaid);
 		CharacterSetCurrent(MaidQuartersMaid);
-		if (MaidQuartersMaid.Stage == "285") MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, (MaidQuartersOnlineDrinkCompleted()) ? "MaidDrinkOnlineComplete" : "MaidDrinkOnlineIncomplete");
+		if (MaidQuartersMaid.Stage == "285") { 
+			let MaidDialog = "";
+			if (MaidQuartersOnlineDrinkCompleted()) MaidDialog = "MaidDrinkOnlineComplete";
+			if (!MaidQuartersOnlineDrinkCompleted()) {
+				if (!InventoryGet(Player, "ItemMisc") || InventoryGet(Player, "ItemMisc").Asset.Name !== "WoodenMaidTrayFull") { 
+					MaidDialog = "MaidDrinkOnlineIncompleteMissingTray";
+					InventoryWear(Player, "WoodenMaidTrayFull", "ItemMisc");
+				} else {
+					MaidDialog = "MaidDrinkOnlineIncomplete";
+				}
+			}
+			MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, MaidDialog);
+		}
 	}
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
@@ -434,4 +469,9 @@ function MaidQuartersOnlineDrinkPay() {
  */
 function MaidQuartersNotFromOwner() {
 	MaidQuartersOnlineDrinkFromOwner = false;
+}
+
+function MaidQuartersSetMaidsDisabled(minutes) {
+	var millis = minutes * 60000
+	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
 }
