@@ -22,6 +22,29 @@ var MaidQuartersOnlineDrinkCustomer = [];
 var MaidQuartersOnlineDrinkFromOwner = false;
 
 
+
+// Returns TRUE if the player has spent at least 90 minutes with maids disabled. Unlocks the ability to disable maids for 6 hours
+/**
+ * Checks if the player's MaidsDisablingRank is greater or equal than 90
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
+ */
+function MaidQuartersIsMaidsDisablingRank1() {return (LogValue("MaidsDisablingRank", "Maid")  >= 90 ) }
+
+// Returns TRUE if the player has spent at least 12 hours with maids disabled. Unlocks the ability to disable maids for 12 hours
+/**
+ * Checks if the player's MaidsDisablingRank is greater or equal than 720
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
+ */
+function MaidQuartersIsMaidsDisablingRank2() {return (LogValue("MaidsDisablingRank", "Maid")  >= 720 ) }
+
+// Returns TRUE if the player has spent at least 3 days with maids disabled. Unlocks the ability to disable maids for 3 days at a time
+/**
+ * Checks if the player's MaidsDisablingRank is greater or equal than 4320
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
+ */
+function MaidQuartersIsMaidsDisablingRank3() {return (LogValue("MaidsDisablingRank", "Maid")  >= 4320 ) }
+
+
 // Returns TRUE if the player has maids disabled
 /**
  * Checks if the player is helpless (maids disabled) or not.
@@ -474,4 +497,6 @@ function MaidQuartersNotFromOwner() {
 function MaidQuartersSetMaidsDisabled(minutes) {
 	var millis = minutes * 60000
 	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
+	var currentrank = (LogValue("MaidsDisablingRank", "Maid")) ? LogValue("MaidsDisablingRank", "Maid") : 0
+	LogAdd("MaidsDisablingRank", "Maid", currentrank + Math.floor(minutes));
 }

@@ -41,6 +41,28 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
 }
 
 
+// Returns TRUE if the player has spent at least 90 minutes with maids disabled. Unlocks the ability to disable maids for 6 hours
+/**
+ * Checks if the player's MaidsDisablingRank is greater or equal than 90
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
+ */
+function MainHallIsMaidsDisablingRank1() {return (LogValue("MaidsDisablingRank", "Maid")  >= 90 ) }
+
+// Returns TRUE if the player has spent at least 12 hours with maids disabled. Unlocks the ability to disable maids for 12 hours
+/**
+ * Checks if the player's MaidsDisablingRank is greater or equal than 720
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
+ */
+function MainHallIsMaidsDisablingRank2() {return (LogValue("MaidsDisablingRank", "Maid")  >= 720 ) }
+
+// Returns TRUE if the player has spent at least 3 days with maids disabled. Unlocks the ability to disable maids for 3 days at a time
+/**
+ * Checks if the player's MaidsDisablingRank is greater or equal than 4320
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
+ */
+function MainHallIsMaidsDisablingRank3() {return (LogValue("MaidsDisablingRank", "Maid")  >= 4320 ) }
+
+
 // Returns TRUE if the player has maids disabled
 /**
  * Checks if the player is helpless (maids disabled) or not.
@@ -61,7 +83,7 @@ function MainHallMaidsDisabledDaysLeft4() { var expire = LogValue("MaidsDisabled
 function MainHallMaidsDisabledDaysLeft5() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 345600000 && expire < 432000000) }
 function MainHallMaidsDisabledDaysLeft6() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 432000000 && expire < 518400000) }
 function MainHallMaidsDisabledDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 518400000 && expire < 604800000) }
-function MainHallMaidsDisabledDaysLeft8() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000) }//604800000) }
+function MainHallMaidsDisabledDaysLeft8() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 259300000) }//604800000) }
 
 /**
  * Checks for the dialog options to help the maid determine which dialog options she can give the player to extend the duration
@@ -70,7 +92,9 @@ function MainHallMaidsDisabledDaysLeft8() { var expire = LogValue("MaidsDisabled
  */
 function MainHallMaidsDisabledAtLeast30MinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 1800000) }
 function MainHallMaidsDisabledAtLeast1HourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 3600000) }
-function MainHallMaidsDisabledAtLeast12HourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 43200000) }
+function MainHallMaidsDisabledAtLeast6HoursLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 21600000 && MainHallIsMaidsDisablingRank1()) }
+function MainHallMaidsDisabledAtLeast12HoursLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 43200000 && MainHallIsMaidsDisablingRank2()) }
+function MainHallMaidsDisabledAtLeast72HoursLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 259200000 && MainHallIsMaidsDisablingRank3()) }
 function MainHallMaidsDisabledAtLeastDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 86400000) }
 function MainHallMaidsDisabledAtLeastDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 259200000) }
 function MainHallMaidsDisabledAtLeastDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 604800000) }
@@ -500,7 +524,11 @@ function MainHallKeyDown() {
 }
 
 
+
 function MainHallSetMaidsDisabled(minutes) {
 	var millis = minutes * 60000
+	var minutesleft = Math.max(0, Math.floor((LogValue("MaidsDisabled", "Maid") - CommonTime()) / 60000))
 	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
+	LogAdd("MaidsDisablingRank", "Maid", LogValue("MaidsDisablingRank", "Maid") + Math.max(0, minutes-minutesleft));
+	
 }
