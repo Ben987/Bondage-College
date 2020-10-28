@@ -689,7 +689,7 @@ function ChatRoomSendChat() {
 		else if (msg != "") {
 
 			// If message starts with "(" and has no other parenthesis, treat is as OOC
-			if (msg.indexOf("(") == 0 && msg.indexOf("(", 1) == -1 && msg.indexOf(")") == -1) {
+			if (Player.ChatSettings.AutoOOC && msg.indexOf("(") == 0 && msg.indexOf("(", 1) == -1 && msg.indexOf(")") == -1) {
 				msg = "/ooc " + msg.substr(1);
 			}
 

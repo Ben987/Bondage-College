@@ -206,6 +206,7 @@ function PreferenceInit(C) {
 	if (C.ChatSettings.ShowAutomaticMessages == null) C.ChatSettings.ShowAutomaticMessages = false;
 	if (C.ChatSettings.WhiteSpace == null) C.ChatSettings.WhiteSpace = "Preserve";
 	if (C.ChatSettings.ColorActivities == null) C.ChatSettings.ColorActivities = true;
+	if (C.ChatSettings.AutoOOC == null) C.ChatSettings.AutoOOC = false;
 	if (!C.VisualSettings) C.VisualSettings = { ForceFullHeight: false };
 
 	// Sets the default audio settings
@@ -547,6 +548,7 @@ function PreferenceSubscreenChatRun() {
 	DrawCheckbox(1200, 492, 64, 64, TextGet("ShowAutomaticMessages"), Player.ChatSettings.ShowAutomaticMessages);
 	DrawCheckbox(1200, 572, 64, 64, TextGet("PreserveWhitespace"), Player.ChatSettings.WhiteSpace == "Preserve");
 	DrawCheckbox(1200, 652, 64, 64, TextGet("ColorActivities"), Player.ChatSettings.ColorActivities);
+	DrawCheckbox(1200, 732, 64, 64, TextGet("AutoOOC"), Player.ChatSettings.AutoOOC);
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
 		() => TextGet((PreferenceChatColorThemeIndex == 0) ? PreferenceChatColorThemeList[PreferenceChatColorThemeList.length - 1] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex - 1]),
@@ -741,6 +743,7 @@ function PreferenceSubscreenChatClick() {
 	if (MouseIn(1200, 492, 64, 64)) Player.ChatSettings.ShowAutomaticMessages = !Player.ChatSettings.ShowAutomaticMessages;
 	if (MouseIn(1200, 572, 64, 64)) Player.ChatSettings.WhiteSpace = Player.ChatSettings.WhiteSpace == "Preserve" ? "" : "Preserve";
 	if (MouseIn(1200, 652, 64, 64)) Player.ChatSettings.ColorActivities = !Player.ChatSettings.ColorActivities;
+	if (MouseIn(1200, 732, 64, 64)) Player.ChatSettings.AutoOOC = !Player.ChatSettings.AutoOOC;
 
 	// If the user used one of the BackNextButtons
 	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 190) && (MouseY < 270)) {
