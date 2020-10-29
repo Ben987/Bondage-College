@@ -2140,7 +2140,10 @@ var AssetFemale3DCG = [
 		],
 		Activity: ["Bite", "Kiss", "Lick", "Nibble", "Caress", "MassageHands", "Choke", "TickleItem", "RubItem", "RollItem"],
 		Asset: [
-			{ Name: "LeatherCollar", Fetish: ["Leather"], Value: 20, Difficulty: 50, Time: 5, AllowLock: true },
+			{ Name: "LeatherCollar", Fetish: ["Leather"], Value: 20, Difficulty: 50, Time: 5, AllowLock: true, Layer: [
+				{ Name: "Collar"},
+				{ Name: "Ring"}
+			] },
 			{ Name: "LeatherCollarBell", Fetish: ["Leather"], Value: 30, Difficulty: 50, Time: 5, AllowLock: true },
 			{ Name: "LeatherCollarBow", Fetish: ["Leather"], Value: 25, Difficulty: 50, Time: 5, AllowLock: true },
 			{ Name: "SlaveCollar", Value: -1, Difficulty: 50, Time: 5, Enable: false, Random: false, OwnerOnly: true, Effect: ["Lock"], AllowBlock: ["ItemMouth", "ItemMouth2", "ItemMouth3"], AllowEffect: ["GagNormal"], AllowType: ["SteelPosture", "LeatherPosture", "PetCollar", "HighCollar", "LeatherCollarBell", "LeatherCollarBow", "MaidCollar", "BatCollar", "HighSecurityCollar", "SpikeCollar", "BordelleCollar", "LeatherCorsetCollar", "StrictPostureCollar", "LatexPostureCollar", "HeartCollar", "NobleCorsetCollar", "OrnateCollar", "LoveLeatherCollar", "SlenderSteelCollar", "HeartLinkChoker", "NeckRope"], Extended: true },
@@ -2159,7 +2162,13 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "ShockCollarRemote", Value: -1, Random: false, Wear: false, BuyGroup: "ShockCollar", Activity: "ShockItem", Effect: ["TriggerShock"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }, { Name: "Soft", Group: "Blush", Timer: 15 }, { Name: "Closed", Group: "Eyes", Timer: 5 }] },
 			{ Name: "BatCollar", Fetish: ["Leather"], Value: 25, Difficulty: 50, Time: 5, AllowLock: true },
-			{ Name: "PostureCollar", Fetish: ["Leather"], Value: 40, Difficulty: 50, Time: 5, AllowLock: true },
+			{ Name: "PostureCollar", Fetish: ["Leather"], Value: 40, Difficulty: 50, Time: 5, AllowLock: true, Layer: [
+				{ Name: "Collar" },
+				{ Name: "Ring1", ColorGroup: "Rings"},
+				{ Name: "Ring2", ColorGroup: "Rings"},
+				{ Name: "Ring3", ColorGroup: "Rings"}
+
+			] },
 			{ Name: "SteelPostureCollar", Fetish: ["Metal"], Value: 60, Difficulty: 50, Time: 5, AllowLock: true, Audio: "CuffsMetal" },
 			{ Name: "DogCollar", Fetish: ["Leather", "Pet"], Value: 20, Difficulty: 50, Time: 5, Random: false, AllowLock: true },
 			{ Name: "SpikeCollar", Fetish: ["Leather", "Metal", "Pet"], Value: 40, Difficulty: 50, Time: 5, AllowLock: true },
@@ -2177,7 +2186,10 @@ var AssetFemale3DCG = [
 					{ Name: "Band" },
 				]
 			},
-			{ Name: "LeatherChoker", Fetish: ["Leather"], Value: 10, Difficulty: 50, Time: 5, AllowLock: true },
+			{ Name: "LeatherChoker", Fetish: ["Leather"], Value: 10, Difficulty: 50, Time: 5, AllowLock: true, Layer: [
+				{ Name: "Metal" },
+				{ Name: "Leather" }
+			] },
 			{ Name: "PetCollar", Fetish: ["Leather", "Pet"], Value: -1, Difficulty: 50, Time: 5, AllowLock: true },
 			{ Name: "MaidCollar", Fetish: ["Lingerie"], Value: 30, Difficulty: 50, Time: 5, AllowLock: true },
 			{ Name: "BordelleCollar", Fetish: ["Leather"], Value: 30, Difficulty: 50, Time: 5, AllowLock: true },
