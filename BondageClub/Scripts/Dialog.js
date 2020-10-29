@@ -498,7 +498,7 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 			return;
 
 	// If the item is blocked, we show it at the end of the list
-	if (InventoryIsPermissionBlocked(C, NewInv.Asset.Name, NewInv.Asset.Group.Name) || !InventoryCheckLimitedPermission(C, NewInv))
+	if (InventoryIsPermissionBlocked(C, NewInv.Asset.DynamicName(Player), NewInv.Asset.DynamicGroupName) || !InventoryCheckLimitedPermission(C, NewInv))
 		SortOrder = DialogSortOrderBlocked;
 
 	// Creates a new dialog inventory item
