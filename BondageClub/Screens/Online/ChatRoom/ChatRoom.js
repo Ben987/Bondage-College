@@ -662,6 +662,7 @@ function ChatRoomSendChat() {
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary });
 
 		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0)) {
+			
 
 			// The player can emote an action using * or /me (for those IRC or Skype users), it doesn't garble
 			// The command /action or ** does not add the player's name to it
@@ -687,10 +688,11 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
 		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
 		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
-		else {
+		else if (!((m.indexOf("(") == 0 || m.indexOf("/ooc") == 0) && Player.ImmersionSettings && Player.ImmersionSettings.BlockGaggedOOC && !Player.CanTalk())) {
 
 			// Regular chat can be garbled with a gag
-			if ((msg != "") && (ChatRoomTargetMemberNumber == null)) ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });
+			if ((msg != "") && (ChatRoomTargetMemberNumber == null))
+				ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });
 
 			// The whispers get sent to the server and shown on the client directly
 			if ((msg != "") && (ChatRoomTargetMemberNumber != null)) {
@@ -714,9 +716,10 @@ function ChatRoomSendChat() {
 					if (Refocus) ElementFocus("InputChat");
 				}
 			}
-
+		}	else {
+				// Throw an error message
+				ChatRoomMessage({ Content: "ChatRoomBlockGaggedOOC", Type: "Action", Sender: Player.MemberNumber });
 		}
-
 		// Clears the chat text message
 		ElementValue("InputChat", "");
 

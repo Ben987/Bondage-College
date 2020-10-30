@@ -236,6 +236,11 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.ImmersionLockSetting !== "boolean") C.GameplaySettings.ImmersionLockSetting = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 	if (typeof C.GameplaySettings.DisableAutoMaid !== "boolean") C.GameplaySettings.DisableAutoMaid = false;
+	
+	
+	// Sets the default immersion settings
+	if (!C.ImmersionSettings) C.ImmersionSettings = {};
+	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
@@ -491,7 +496,9 @@ function PreferenceSubscreenImmersionRun() {
 	
 	DrawCheckbox(500, 272, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
 	DrawCheckbox(500, 352, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
+	DrawCheckbox(500, 432, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC);
 	DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
+	
 
 	DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
 
@@ -526,6 +533,9 @@ function PreferenceSubscreenImmersionClick() {
 	if (MouseIn(500, 352, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
+	if (MouseIn(500, 432, 64, 64) && 
+		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
 	
 	
 	if (MouseIn(500, 800, 64, 64) && 
