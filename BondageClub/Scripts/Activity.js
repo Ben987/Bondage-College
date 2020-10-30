@@ -107,6 +107,7 @@ function ActivityDialogBuild(C) {
 						else if ((Activity.Prerequisite[P] == "TargetMouthBlocked") && !C.IsMouthBlocked()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "IsGagged") && Player.CanTalk()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "SelfOnly") && C.ID != 0) Allow = false;
+						else if ((Activity.Prerequisite[P] == "TargetKneeling") && !C.IsKneeling()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseHands") && !Player.CanInteract()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseArms") && (!Player.CanInteract() && (InventoryGet(Player, "ItemArms") || InventoryGroupIsBlocked(Player, "ItemArms")))) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseFeet") && !Player.CanWalk()) Allow = false;

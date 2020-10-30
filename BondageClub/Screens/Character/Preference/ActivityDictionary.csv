@@ -43,6 +43,7 @@ ActivityMoanGagTalk,Talk into Gag
 ActivityGagKiss,Kiss on Gag
 ActivityWiggle,Wiggle
 ActivityNod,Nod
+ActivitySit,Sit
 ActivityStruggleArms,Struggle
 ActivityStruggleLegs,Struggle
 Orgasm0,"SourceCharacter trembles and moans loudly, getting a powerful orgasm."
@@ -117,6 +118,7 @@ ChatOther-ItemLegs-Spank,SourceCharacter spanks TargetCharacter's thigh.
 ChatOther-ItemLegs-Caress,SourceCharacter caresses TargetCharacter's thigh.
 ChatOther-ItemLegs-MassageHands,SourceCharacter massages TargetCharacter's thigh.
 ChatOther-ItemLegs-Grope,SourceCharacter gropes TargetCharacter's thigh.
+ChatOther-ItemLegs-Sit,SourceCharacter sits in TargetCharacter's lap.
 ChatSelf-ItemVulva-MasturbateHand,SourceCharacter masturbates her pussy.
 ChatSelf-ItemVulva-Caress,SourceCharacter caresses her pussy.
 ChatOther-ItemVulva-MasturbateHand,SourceCharacter masturbates TargetCharacter's pussy with her fingers.
