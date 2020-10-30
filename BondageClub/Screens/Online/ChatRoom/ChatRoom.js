@@ -709,7 +709,7 @@ function ChatRoomSendChat() {
 				div.setAttribute('data-time', ChatRoomCurrentTime());
 				div.setAttribute('data-sender', Player.MemberNumber.toString());
 				if (msg.toLowerCase().startsWith("/ooc ")) {
-					div.innerHTML = "OOC " + TextGet("WhisperTo") + " " + TargetName + ": " + msg.substr(5);
+					div.innerHTML = TextGet("OOCWhisperTo") + " " + TargetName + ": " + msg.substr(5);
 				} else {
 					div.innerHTML = TextGet("WhisperTo") + " " + TargetName + ": " + SpeechGarble(Player, msg);
 				}
@@ -971,14 +971,14 @@ function ChatRoomMessage(data) {
 			// Prepares the HTML tags
 			if (data.Type != null) {
 				if (data.Type == "Chat" || data.Type == "Whisper") {
-					let isOOC = data.Content.toLowerCase().startsWith("/ooc ");
+					const isOOC = data.Content.toLowerCase().startsWith("/ooc ");
 
 					msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray');
 					if (data.Type == "Whisper") msg += '; font-style: italic';
 					msg += ';">';
 
 					if (isOOC) {
-						msg += "[OOC] " + SenderCharacter.Name;
+						msg +=  TextGet("OOCTag") + " " + SenderCharacter.Name;
 					} else if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) {
 						msg += SpeechGarble(SenderCharacter, SenderCharacter.Name);
 					} else {
