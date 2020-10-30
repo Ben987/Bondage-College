@@ -305,7 +305,8 @@ function ChatRoomDrawCharacter(DoClick) {
 					CharacterSetCurrent(ChatRoomCharacter[C]);
 
 				} else
-					if (!LogQuery("BlockWhisper", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1) || (Player.Ownership.MemberNumber == ChatRoomCharacter[C].MemberNumber) || !ChatRoomOwnerInside())
+					if ((!LogQuery("BlockWhisper", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1) || (Player.Ownership.MemberNumber == ChatRoomCharacter[C].MemberNumber) || !ChatRoomOwnerInside())
+						&& !(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (Player.GetDeafLevel() >= 3) && (Player.Effect.indexOf("BlindHeavy") >= 0)))
 						ChatRoomTargetMemberNumber = ((ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) || (ChatRoomCharacter[C].ID == 0)) ? null : ChatRoomCharacter[C].MemberNumber;
 				break;
 			}
@@ -1266,8 +1267,8 @@ function ChatRoomRefreshChatSettings(C) {
 	if (C.ChatSettings) {
 		for (let property in C.ChatSettings)
 			ElementSetDataAttribute("TextAreaChatLog", property, C.ChatSettings[property]);
-		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepNames" || C.GameplaySettings.SensDepChatLog == "SensDepTotal") && (C.GetDeafLevel() >= 3) && (C.Effect.indexOf("BlindHeavy") >= 0)) ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden");
-		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepTotal") && (C.GetDeafLevel() >= 3) && (C.Effect.indexOf("BlindHeavy") >= 0)) {
+		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepNames" || C.GameplaySettings.SensDepChatLog == "SensDepTotal" || C.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (C.GetDeafLevel() >= 3) && (C.Effect.indexOf("BlindHeavy") >= 0)) ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden");
+		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepTotal" || C.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (C.GetDeafLevel() >= 3) && (C.Effect.indexOf("BlindHeavy") >= 0)) {
 			ElementSetDataAttribute("TextAreaChatLog", "DisplayTimestamps", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "ColorNames", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "ColorActions", "false");

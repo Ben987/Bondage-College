@@ -5,7 +5,7 @@ var PreferenceSafewordConfirm = false;
 var PreferenceMaidsButton = true;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
-var PreferenceSubscreenList = ["General", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility"];
+var PreferenceSubscreenList = ["General", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion"];
 var PreferenceChatColorThemeSelected = "";
 var PreferenceChatColorThemeList = ["Light", "Dark"];
 var PreferenceChatColorThemeIndex = 0;
@@ -15,7 +15,7 @@ var PreferenceChatEnterLeaveIndex = 0;
 var PreferenceChatMemberNumbersSelected = "";
 var PreferenceChatMemberNumbersList = ["Always", "Never", "OnMouseover"];
 var PreferenceChatMemberNumbersIndex = 0;
-var PreferenceSettingsSensDepList = ["Normal", "SensDepNames", "SensDepTotal"];
+var PreferenceSettingsSensDepList = ["Normal", "SensDepNames", "SensDepTotal", "SensDepExtreme"];
 var PreferenceSettingsSensDepIndex = 0;
 var PreferenceSettingsVolumeList = [1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 var PreferenceSettingsVolumeIndex = 0;
@@ -233,6 +233,7 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.SensDepChatLog !== "string") C.GameplaySettings.SensDepChatLog = "Normal";
 	if (typeof C.GameplaySettings.BlindDisableExamine !== "boolean") C.GameplaySettings.BlindDisableExamine = false;
 	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
+	if (typeof C.GameplaySettings.ImmersionLockSetting !== "boolean") C.GameplaySettings.ImmersionLockSetting = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 	if (typeof C.GameplaySettings.DisableAutoMaid !== "boolean") C.GameplaySettings.DisableAutoMaid = false;
 
@@ -390,19 +391,12 @@ function PreferenceSubscreenGeneralRun() {
 	DrawButton(1140, 187, 65, 65, "", "White", "Icons/Color.png");
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
-	DrawText(TextGet("SensDepSetting"), 800, 428, "Black", "Gray");
 
 	// Checkboxes
-	DrawCheckbox(500, 472, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
-	DrawCheckbox(500, 552, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
-	DrawCheckbox(500, 632, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
-	DrawCheckbox(500, 712, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
-	DrawCheckbox(500, 792, 64, 64, TextGet("DisableAutoMaid"), !Player.GameplaySettings.DisableAutoMaid);
+	DrawCheckbox(500, 432, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
+	DrawCheckbox(500, 512, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
+	DrawCheckbox(500, 592, 64, 64, TextGet("DisableAutoMaid"), !Player.GameplaySettings.DisableAutoMaid);
 
-	MainCanvas.textAlign = "center";
-	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
-		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
-		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
 
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
@@ -463,10 +457,8 @@ function PreferenceSubscreenGeneralClick() {
 	}
 
 	// Preference check boxes
-	if (MouseIn(500, 472, 64, 64)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
-	if (MouseIn(500, 552, 64, 64)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
-	if (MouseIn(500, 632, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
-	if (MouseIn(500, 712, 64, 64)) {
+	if (MouseIn(500, 432, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
+	if (MouseIn(500, 512, 64, 64)) {
 		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) { 
 			if (PreferenceSafewordConfirm) {
 				Player.GameplaySettings.EnableSafeword = true;
@@ -485,7 +477,60 @@ function PreferenceSubscreenGeneralClick() {
 	} else {
 		PreferenceSafewordConfirm = false;
 	}
-	if (MouseIn(500, 792, 64, 64)) Player.GameplaySettings.DisableAutoMaid = !Player.GameplaySettings.DisableAutoMaid;
+	if (MouseIn(500, 592, 64, 64)) Player.GameplaySettings.DisableAutoMaid = !Player.GameplaySettings.DisableAutoMaid;
+}
+
+
+function PreferenceSubscreenImmersionRun() {
+	// Draw the online preferences
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("ImmersionPreferences"), 500, 125, "Black", "Gray");
+	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
+	
+	// Immersion Settings
+	
+	DrawCheckbox(500, 272, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
+	DrawCheckbox(500, 352, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
+	DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
+
+	DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
+
+	MainCanvas.textAlign = "center";
+	DrawBackNextButton(500, 192, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
+		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
+		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
+
+	// Draw the player & controls
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+}
+
+function PreferenceSubscreenImmersionClick() {
+	// If the user clicks on "Exit"
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
+		PreferenceSubscreen = "";
+	}
+
+	// If we must change audio gameplay or visual settings
+	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 192) && (MouseY < 256) && 
+		(!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained()))) {
+		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
+		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
+		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
+	}
+
+	// Preference check boxes
+	if (MouseIn(500, 272, 64, 64) && 
+		(!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained())))
+			Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
+	if (MouseIn(500, 352, 64, 64) && 
+		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+			Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
+	
+	
+	if (MouseIn(500, 800, 64, 64) && 
+		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+			Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
 }
 
 /**
@@ -1123,5 +1168,5 @@ function PreferenceSubscreenSecurityLoad() {
  * @returns {boolean} - Return true if sensory deprivation is active, false otherwise
  */
 function PreferenceIsPlayerInSensDep() {
-	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal")) && (Player.GetDeafLevel() >= 3) && (Player.Effect.indexOf("BlindHeavy") >= 0));
+	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal") || (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme")) && (Player.GetDeafLevel() >= 3) && (Player.Effect.indexOf("BlindHeavy") >= 0));
 }

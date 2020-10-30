@@ -6,6 +6,7 @@ ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
 SecurityPreferences,- Security Preferences -
 VisibilityPreferences,- Item Preferences -
 OnlinePreferences,- Online Preferences -
+ImmersionPreferences,- Immersion Preferences -
 HomepageGeneral,General
 HomepageChat,Chat
 HomepageAudio,Audio
@@ -13,6 +14,7 @@ HomepageArousal,Arousal
 HomepageSecurity,Security
 HomepageVisibility,Item Visibility
 HomepageOnline,Online
+HomepageImmersion,Immersion
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -50,9 +52,11 @@ AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
+ImmersionLockSetting,Lock this menu while bound
 SensDepSetting,Sensory deprivation setting
 SensDepNames,Hide names
 SensDepTotal,Total
+SensDepExtreme,Total (no whispers)
 DisableAutoMaid,Maids come automatically when restrained
 BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
