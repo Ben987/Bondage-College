@@ -366,7 +366,12 @@ function ChatRoomTarget() {
 				TargetName = ChatRoomCharacter[C].Name;
 		if (TargetName == null) ChatRoomTargetMemberNumber = null;
 	}
-	document.getElementById("InputChat").placeholder = (ChatRoomTargetMemberNumber == null) ? TextGet("PublicChat") : TextGet("WhisperTo") + " " + TargetName;
+	let placeholder = TextGet("PublicChat");
+	if (ChatRoomTargetMemberNumber != null) {
+		placeholder = Player.ChatSettings.OOCWhispers ? TextGet("OOCWhisperTo") : TextGet("WhisperTo");
+		placeholder += " " + TargetName;
+	}
+	document.getElementById("InputChat").placeholder = placeholder;
 }
 
 /**
@@ -687,6 +692,11 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
 		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
 		else if (msg != "") {
+
+			// If player whispers and wants all whispers to be OOC
+			if (ChatRoomTargetMemberNumber != null && Player.ChatSettings.OOCWhispers && !msg.startsWith("(")) {
+				msg = "(" + msg;
+			}
 
 			// If message starts with "(" and has no other parenthesis, treat is as OOC
 			if (Player.ChatSettings.AutoOOC && msg.indexOf("(") == 0 && msg.indexOf("(", 1) == -1 && msg.indexOf(")") == -1) {
