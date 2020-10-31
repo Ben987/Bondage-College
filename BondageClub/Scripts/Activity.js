@@ -107,9 +107,12 @@ function ActivityDialogBuild(C) {
 						else if ((Activity.Prerequisite[P] == "TargetMouthBlocked") && !C.IsMouthBlocked()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "IsGagged") && Player.CanTalk()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "SelfOnly") && C.ID != 0) Allow = false;
+						else if ((Activity.Prerequisite[P] == "TargetKneeling") && !C.IsKneeling()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseHands") && !Player.CanInteract()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseArms") && (!Player.CanInteract() && (InventoryGet(Player, "ItemArms") || InventoryGroupIsBlocked(Player, "ItemArms")))) Allow = false;
 						else if ((Activity.Prerequisite[P] == "UseFeet") && !Player.CanWalk()) Allow = false;
+						else if ((Activity.Prerequisite[P] == "CantUseArms") && !(!Player.CanInteract() && (InventoryGet(Player, "ItemArms") || InventoryGroupIsBlocked(Player, "ItemArms")))) Allow = false;
+						else if ((Activity.Prerequisite[P] == "CantUseFeet") && Player.CanWalk()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "TargetCanUseTongue") && C.IsMouthBlocked()) Allow = false;
 						else if ((Activity.Prerequisite[P] == "TargetMouthOpen") && (C.FocusGroup.Name == "ItemMouth") && (InventoryGet(C, "ItemMouth") && !C.IsMouthOpen())) Allow = false;
 						else if ((Activity.Prerequisite[P] == "VulvaEmpty")  && (C.FocusGroup.Name == "ItemVulva") && C.IsVulvaFull()) Allow = false;
@@ -417,8 +420,21 @@ function ActivityTimerProgress(C, Progress) {
 
 	// Changes the current arousal progress value
 	C.ArousalSettings.Progress = C.ArousalSettings.Progress + Progress;
+	// Decrease the vibratorlevel to 0 if not being aroused, while also updating the change time to reset the vibrator animation
+	if (Progress < 0) {
+		if (C.ArousalSettings.VibratorLevel != 0) {
+			C.ArousalSettings.VibratorLevel = 0
+			C.ArousalSettings.ChangeTime = CommonTime()
+		}
+	}
+	
 	if (C.ArousalSettings.Progress < 0) C.ArousalSettings.Progress = 0;
 	if (C.ArousalSettings.Progress > 100) C.ArousalSettings.Progress = 100;
+	
+	// Update the recent change time, so that on other player's screens the character's arousal meter will vibrate again when vibes start
+	if (C.ArousalSettings.Progress == 0) {
+		C.ArousalSettings.ChangeTime = CommonTime()
+	}
 
 	// Out of orgasm mode, it can affect facial expressions at every 10 steps
 	if ((C.ArousalSettings.OrgasmTimer == null) || (typeof C.ArousalSettings.OrgasmTimer !== "number") || isNaN(C.ArousalSettings.OrgasmTimer) || (C.ArousalSettings.OrgasmTimer < CurrentTime))
@@ -429,6 +445,22 @@ function ActivityTimerProgress(C, Progress) {
 	if (C.ArousalSettings.Progress == 100) ActivityOrgasmPrepare(C);
 
 }
+
+/**
+ * Set the current vibrator level for drawing purposes 
+ * @param {Character} C - Character for which the timer is progressing
+ * @param {number} Level - Level from 0 to 4 (higher = more vibration)
+ * @returns {void} - Nothing
+ */
+function ActivityVibratorLevel(C, Level) {
+	if (C.ArousalSettings != null) {
+		if (Level != C.ArousalSettings.VibratorLevel) {
+			C.ArousalSettings.VibratorLevel = Level
+			C.ArousalSettings.ChangeTime = CommonTime()
+		}
+	}
+}
+
 
 /**
  * Calculates the progress one character does on another right away
