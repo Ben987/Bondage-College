@@ -163,6 +163,14 @@ ItemArmsChains,Chains
 ItemArmsChainsSuspension,Suspension Chain
 ItemNeckHighCollarLeather,Leather
 ItemNeckHighCollarRings,Rings
+ItemNeckPostureCollarCollar,Collar
+ItemNeckPostureCollarRing1,Middle Ring
+ItemNeckPostureCollarRing2,Left Ring
+ItemNeckPostureCollarRing3,Right Ring
+ItemNeckLeatherCollarCollar,Collar
+ItemNeckLeatherCollarRing,Ring
+ItemNeckLeatherChokerLeather,Leather
+ItemNeckLeatherChokerMetal,Metal
 ItemNeckFuturisticCollarBand,Band
 ItemNeckFuturisticCollarDisplay,Display
 ItemNeckOrnateCollarCollar,Collar

@@ -125,17 +125,17 @@ const InventoryItemHandsSpankingToysOptions = [
 
 // Loads the item extension properties
 function InventoryItemHandsSpankingToysLoad() {
-	ExtendedItemLoad(InventorySpankingToysOwnedToys(), "SelectSpankingToysType");
+	ExtendedItemLoad(InventorySpankingToysAvailableToys(CharacterGetCurrent()), "SelectSpankingToysType");
 }
 
 // Draw the item extension screen
 function InventoryItemHandsSpankingToysDraw() {
-	ExtendedItemDraw(InventorySpankingToysOwnedToys(), "SpankingToysType");
+	ExtendedItemDraw(InventorySpankingToysAvailableToys(CharacterGetCurrent()), "SpankingToysType");
 }
 
 // Catches the item extension clicks
 function InventoryItemHandsSpankingToysClick() {
-	ExtendedItemClick(InventorySpankingToysOwnedToys());
+	ExtendedItemClick(InventorySpankingToysAvailableToys(CharacterGetCurrent()));
 }
 
 function InventoryItemHandsSpankingToysPublishAction(C, Option) {
@@ -152,11 +152,16 @@ function InventoryItemHandsSpankingToysNpcDialog(C, Option) {
 }
 
 /**
- * Returns a list of the spanking toys that the player owns
+ * Returns a list of the spanking toys that can be equipped to the character
+ * @param {Character} C - The character the toy will be given to
  * @returns {ExtendedItemOption[]} The subset of SpankingToys options the player can select from
  */
-function InventorySpankingToysOwnedToys() {
-	return InventoryItemHandsSpankingToysOptions.filter(x => Player.Inventory.map(i => i.Name).includes("SpankingToys" + x.Name));
+function InventorySpankingToysAvailableToys(C) {
+	// Toys the player or target character owns
+	let PlayerToys = Player.Inventory.map(i => i.Name).filter(x => x.match(/SpankingToys\w/));
+	let TargetToys = C.Inventory.map(i => i.Name).filter(x => x.match(/SpankingToys\w/));
+	let AvailableToys = PlayerToys.concat(TargetToys.filter(T => !PlayerToys.includes(T)));
+	return InventoryItemHandsSpankingToysOptions.filter(x => AvailableToys.includes("SpankingToys" + x.Name));
 }
 
 // Get the type of spanking toy that the character is holding

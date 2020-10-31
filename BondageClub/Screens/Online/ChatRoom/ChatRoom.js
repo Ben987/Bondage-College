@@ -366,7 +366,12 @@ function ChatRoomTarget() {
 				TargetName = ChatRoomCharacter[C].Name;
 		if (TargetName == null) ChatRoomTargetMemberNumber = null;
 	}
-	document.getElementById("InputChat").placeholder = (ChatRoomTargetMemberNumber == null) ? TextGet("PublicChat") : TextGet("WhisperTo") + " " + TargetName;
+	let placeholder = TextGet("PublicChat");
+	if (ChatRoomTargetMemberNumber != null) {
+		placeholder = Player.ChatSettings.OOCWhispers ? TextGet("OOCWhisperTo") : TextGet("WhisperTo");
+		placeholder += " " + TargetName;
+	}
+	document.getElementById("InputChat").placeholder = placeholder;
 }
 
 /**
@@ -686,13 +691,23 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
 		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
 		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
-		else {
+		else if (msg != "") {
 
-			// Regular chat can be garbled with a gag
-			if ((msg != "") && (ChatRoomTargetMemberNumber == null)) ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });
+			// If player whispers and wants all whispers to be OOC
+			if (ChatRoomTargetMemberNumber != null && Player.ChatSettings.OOCWhispers && !msg.startsWith("(")) {
+				msg = "(" + msg;
+			}
 
-			// The whispers get sent to the server and shown on the client directly
-			if ((msg != "") && (ChatRoomTargetMemberNumber != null)) {
+			// If message starts with "(" and has no other parenthesis, treat is as OOC
+			if (Player.ChatSettings.AutoOOC && msg.indexOf("(") == 0 && msg.indexOf("(", 1) == -1 && msg.indexOf(")") == -1) {
+				msg = "/ooc " + msg.substr(1);
+			}
+
+			if (ChatRoomTargetMemberNumber == null) {
+				// Regular chat
+				ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });
+			} else {
+				// The whispers get sent to the server and shown on the client directly
 				ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Target: ChatRoomTargetMemberNumber });
 				var TargetName = "";
 				for (let C = 0; C < ChatRoomCharacter.length; C++)
@@ -703,7 +718,11 @@ function ChatRoomSendChat() {
 				div.setAttribute('class', 'ChatMessage ChatMessageWhisper');
 				div.setAttribute('data-time', ChatRoomCurrentTime());
 				div.setAttribute('data-sender', Player.MemberNumber.toString());
-				div.innerHTML = TextGet("WhisperTo") + " " + TargetName + ": " + msg;
+				if (msg.toLowerCase().startsWith("/ooc ")) {
+					div.innerHTML = TextGet("OOCWhisperTo") + " " + TargetName + ": " + msg.substr(5);
+				} else {
+					div.innerHTML = TextGet("WhisperTo") + " " + TargetName + ": " + SpeechGarble(Player, msg);
+				}
 
 				var Refocus = document.activeElement.id == "InputChat";
 				var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
@@ -961,12 +980,28 @@ function ChatRoomMessage(data) {
 
 			// Prepares the HTML tags
 			if (data.Type != null) {
-				if (data.Type == "Chat") {
-					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
-					else if (Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
-					else msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
+				if (data.Type == "Chat" || data.Type == "Whisper") {
+					const isOOC = data.Content.toLowerCase().startsWith("/ooc ");
+
+					msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray');
+					if (data.Type == "Whisper") msg += '; font-style: italic';
+					msg += ';">';
+
+					if (isOOC) {
+						msg +=  TextGet("OOCTag") + " " + SenderCharacter.Name;
+					} else if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) {
+						msg += SpeechGarble(SenderCharacter, SenderCharacter.Name);
+					} else {
+						msg += SenderCharacter.Name;
+					}
+					msg += ':</span> ';
+
+					if (isOOC) {
+						msg += ChatRoomHTMLEntities(data.Content.substr(5));
+					} else {
+						msg += ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
+					}
 				}
-				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {
 					if (msg.indexOf("*") == 0) msg = msg + "*";
 					else if ((msg.indexOf("'") == 0) || (msg.indexOf(",") == 0)) msg = "*" + SenderCharacter.Name + msg + "*";
