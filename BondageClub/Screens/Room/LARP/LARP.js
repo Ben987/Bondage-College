@@ -40,11 +40,7 @@ function LARPClick() {
 	if (!DailyJobSubSearchIsActive() && MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(LARPOrganiser);	
 	if (MouseIn(1885, 25, 90, 90)) CommonSetScreen("Room", "MainHall");
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
-	if (MouseIn(1885, 265, 90, 90) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) {
-		Player.Game.LARP.Team = "None";
-		ServerSend("AccountUpdate", { Game: Player.Game });
-		ChatRoomStart("LARP", "LARP", "LARP", "WrestlingRingDark", BackgroundsTagList);
-	}
+	if (MouseIn(1885, 265, 90, 90) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) ChatRoomStart("", "LARP", "LARP", "WrestlingRingDark", BackgroundsTagList);
 	DailyJobSubSearchClick();
 }
 

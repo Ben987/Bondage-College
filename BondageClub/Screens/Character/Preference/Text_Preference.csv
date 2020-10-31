@@ -5,6 +5,7 @@ AudioPreferences,- Audio Preferences -
 ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
 SecurityPreferences,- Security Preferences -
 VisibilityPreferences,- Item Preferences -
+VFXPreferences,- Graphical Preferences -
 OnlinePreferences,- Online Preferences -
 ImmersionPreferences,- Immersion Preferences -
 HomepageGeneral,General
@@ -15,6 +16,7 @@ HomepageSecurity,Security
 HomepageVisibility,Item Visibility
 HomepageOnline,Online
 HomepageImmersion,Immersion
+HomepageGraphics,Graphics
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"

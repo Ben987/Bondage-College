@@ -14,7 +14,7 @@ var ChatCreateBackgroundList = null;
 function ChatCreateLoad() {
 
 	// Resets the room game statuses
-	if ((ChatRoomSpace == "LARP") && (Player.Game.LARP.Status != "")) {
+	if ((ChatRoomGame == "LARP") && (Player.Game.LARP.Status != "")) {
 		Player.Game.LARP.Status = "";
 		ServerSend("AccountUpdate", { Game: Player.Game });
 	}
@@ -137,13 +137,13 @@ function ChatCreateResponse(data) {
 function ChatCreateRoom() {
 	ChatRoomPlayerCanJoin = true;
 	ChatRoomPlayerJoiningAsAdmin = true;
-	// Push the new room
 	var NewRoom = {
 		Name: ElementValue("InputName").trim(),
 		Description: ElementValue("InputDescription").trim(),
 		Background: ChatCreateBackgroundSelect,
 		Private: ChatCreatePrivate,
 		Space: ChatRoomSpace,
+		Game: ChatRoomGame,
 		Limit: ElementValue("InputSize").trim(),
 		BlockCategory: ChatBlockItemCategory
 	};

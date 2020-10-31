@@ -5,6 +5,8 @@ var ChatAdminBackgroundIndex = 0;
 var ChatAdminBackgroundSelect = "";
 var ChatAdminPrivate = false;
 var ChatAdminLocked = false;
+var ChatAdminGame = "";
+var ChatAdminGameList = ["", "LARP"];
 var ChatAdminBackgroundSelected = null;
 var ChatAdminTemporaryData = null;
 var ChatAdminBlockCategory = [];
@@ -21,6 +23,7 @@ function ChatAdminLoad() {
 	if (ChatAdminBackgroundIndex < 0) ChatAdminBackgroundIndex = 0;
 	ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
 	ChatAdminBlockCategory = ChatRoomData.BlockCategory;
+	ChatAdminGame = ChatRoomGame;
 
 	// Prepares the controls to edit a room
 	ElementCreateInput("InputName", "text", ChatAdminTemporaryData ? ChatAdminTemporaryData.Name : ChatRoomData.Name, "20");
@@ -75,13 +78,14 @@ function ChatAdminRun() {
 	DrawButton(695, 770, 250, 65, TextGet("QuickbanBlackList"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
 	DrawButton(975, 770, 250, 65, TextGet("QuickbanGhostList"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
 
-	// Background selection
+	// Background selection, block button and game selection
 	DrawImageResize("Backgrounds/" + ChatAdminBackgroundSelect + "Dark.jpg", 1300, 75, 600, 350);
 	DrawBackNextButton(1300, 450, 500, 60, DialogFind(Player, ChatAdminBackgroundSelect), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null,
 		() => DialogFind(Player, (ChatAdminBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatAdminBackgroundIndex - 1]),
 		() => DialogFind(Player, (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatAdminBackgroundIndex + 1]), !ChatRoomPlayerIsAdmin());
 	DrawButton(1840, 450, 60, 60, "", ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", "Icons/Small/Preference.png", null, !ChatRoomPlayerIsAdmin());
-	DrawButton(1450, 575, 300, 60, TextGet("BlockCategory"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
+	DrawButton(1300, 575, 275, 60, TextGet("BlockCategory"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
+	DrawBackNextButton(1625, 575, 275, 60, TextGet("Game" + ChatAdminGame), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, () => "", () => "");
 
 	// Private and Locked check boxes
 	DrawText(TextGet("RoomPrivate"), 1384, 740, "Black", "Gray");
@@ -114,8 +118,17 @@ function ChatAdminClick() {
 			ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
 		}
 
+		// When we select a new game type
+		if (MouseIn(1625, 575, 275, 60)) {
+			let Index = ChatAdminGameList.indexOf(ChatAdminGame);
+			Index = Index + ((MouseX < 1763) ? -1 : 1);
+			if (Index < 0) Index = ChatAdminGameList.length - 1;
+			if (Index >= ChatAdminGameList.length) Index = 0;
+			ChatAdminGame = ChatAdminGameList[Index];
+		}
+
 		// Background selection button and item block button (Save values before entering)
-		if (MouseIn(1300, 75, 600, 350) || MouseIn(1840, 450, 60, 60) || MouseIn(1450, 575, 300, 60)) {
+		if (MouseIn(1300, 75, 600, 350) || MouseIn(1840, 450, 60, 60) || MouseIn(1300, 575, 275, 60)) {
 			ChatAdminTemporaryData = {
 				Name: ElementValue("InputName"),
 				Description: ElementValue("InputDescription"),
@@ -130,7 +143,7 @@ function ChatAdminClick() {
 			ElementRemove("InputSize");
 			ElementRemove("InputAdminList");
 			ElementRemove("InputBanList");
-			if (MouseIn(1450, 575, 300, 60)) {
+			if (MouseIn(1300, 575, 275, 60)) {
 				ChatBlockItemReturnData = { Screen: "ChatAdmin" };
 				ChatBlockItemCategory = ChatAdminBlockCategory;
 				CommonSetScreen("Online", "ChatBlockItem");
@@ -183,9 +196,10 @@ function ChatAdminUpdateRoom() {
 		Description: ElementValue("InputDescription").trim(),
 		Background: ChatAdminBackgroundSelect,
 		Limit: ElementValue("InputSize").trim(),
-		BlockCategory: ChatAdminBlockCategory,
 		Admin: CommonConvertStringToArray(ElementValue("InputAdminList").trim()),
 		Ban: CommonConvertStringToArray(ElementValue("InputBanList").trim()),
+		BlockCategory: ChatAdminBlockCategory,
+		Game: ChatAdminGame,
 		Private: ChatAdminPrivate,
 		Locked: ChatAdminLocked
 	};

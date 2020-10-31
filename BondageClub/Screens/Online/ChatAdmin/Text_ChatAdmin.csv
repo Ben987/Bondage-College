@@ -18,3 +18,5 @@ ResponseRoomAlreadyExist,This room name is already taken
 ResponseAccountError,"Account error, please try to relog"
 ResponseInvalidRoomData,Invalid chat room data detected
 BlockCategory,Block Items
+Game,No Game
+GameLARP,LARP
