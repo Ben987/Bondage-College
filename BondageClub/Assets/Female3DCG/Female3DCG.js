@@ -3379,7 +3379,7 @@ var AssetFemale3DCG = [
 					{ Name: "Straps" }
 				]
 			},
-			{ Name: "ToeTape", Priority: 28, Fetish: ["Tape"], Extended: true, Value: 50, BuyGroup: "DuctTape", Audio: "DuctTape", Difficulty: 2, Time: 10, RemoveTime: 5, Prerequisite: "ToeTied", SetPose: ["LegsClosed"], AllowType: ["Full"], AllowActivePose: ["Kneel"] },
+			{ Name: "ToeTape", Fetish: ["Tape"], Extended: true, Value: 50, BuyGroup: "DuctTape", Audio: "DuctTape", Difficulty: 2, Time: 10, RemoveTime: 5, Prerequisite: "ToeTied", SetPose: ["LegsClosed"], AllowType: ["Full"], AllowActivePose: ["Kneel"] },
 			{ Name: "Zipties", Value: 20, Difficulty: 6, Time: 5, RemoveTime: 6, BuyGroup: "Zipties", Audio: "ZipTie", Prerequisite: "ToeTied", SetPose: ["LegsClosed"], Effect: ["Freeze", "Prone"], AllowActivePose: ["Kneel"] },
 			AssetSpankingToys
 		],
