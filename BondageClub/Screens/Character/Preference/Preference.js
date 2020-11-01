@@ -555,6 +555,7 @@ function PreferenceExit() {
 		VisualSettings: Player.VisualSettings,
 		AudioSettings: Player.AudioSettings,
 		GameplaySettings: Player.GameplaySettings,
+		ImmersionSettings: Player.ImmersionSettings,
 		ArousalSettings: Player.ArousalSettings,
 		OnlineSettings: Player.OnlineSettings,
 		OnlineSharedSettings: Player.OnlineSharedSettings

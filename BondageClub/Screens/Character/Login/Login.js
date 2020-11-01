@@ -349,6 +349,7 @@ function LoginResponse(C) {
 			Player.VisualSettings = C.VisualSettings;
 			Player.AudioSettings = C.AudioSettings;
 			Player.GameplaySettings = C.GameplaySettings;
+			Player.ImmersionSettings = C.ImmersionSettings;
 			Player.ArousalSettings = C.ArousalSettings;
 			Player.OnlineSettings = C.OnlineSettings;
 			Player.OnlineSharedSettings = C.OnlineSharedSettings;
