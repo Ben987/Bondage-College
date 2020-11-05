@@ -218,7 +218,7 @@ function DrawArousalMeter(C, X, Y, Zoom) {
  * @returns {void} - Nothing
  */
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
-	if ((C != null) && ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet"))) {
+	if ((C != null) && ((C.ID == 0) || (Player.GetBlindLevel() < 3) || (CurrentScreen == "InformationSheet"))) {
 
 		// If there's a fixed image to draw instead of the character
 		if (C.FixedImage != null) {
@@ -326,7 +326,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 
 		// Draw the character name below herself
 		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
-			if (!Player.IsBlind()) {
+			if (!Player.IsBlind() || (Player.GameplaySettings && Player.GameplaySettings.SensDepChatLog == "SensDepLight")) {
 				MainCanvas.font = "30px Arial";
 				DrawText(C.Name, X + 255 * Zoom, Y + 980 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? Zoom : Zoom / HeightRatio), (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 				MainCanvas.font = "36px Arial";
@@ -1000,9 +1000,10 @@ function DrawProcess() {
 	if ((B != null) && (B != "")) {
 		var DarkFactor = 1.0;
 		if ((CurrentModule != "Character") && (B != "Sheet")) {
-			if (Player.Effect.indexOf("BlindHeavy") >= 0) DarkFactor = 0.0;
-			else if (Player.Effect.indexOf("BlindNormal") >= 0) DarkFactor = 0.15;
-			else if (Player.Effect.indexOf("BlindLight") >= 0) DarkFactor = 0.3;
+			const blindLevel = Player.GetBlindLevel();
+			if (blindLevel >= 3) DarkFactor = 0.0;
+			else if (blindLevel == 2) DarkFactor = 0.15;
+			else if (blindLevel == 1) DarkFactor = 0.3;
 			else if (CurrentCharacter != null || ShopStarted) DarkFactor = 0.5;
 		}
 		if (DarkFactor > 0.0) DrawImage("Backgrounds/" + B + ".jpg", 0, 0);

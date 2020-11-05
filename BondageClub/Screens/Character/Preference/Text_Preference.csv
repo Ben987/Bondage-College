@@ -59,6 +59,7 @@ AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
 BlockGaggedOOC,Prevent Out-Of-Character chat while gagged
 SensDepSetting,Sensory deprivation setting
+SensDepLight,Light
 SensDepNames,Hide names
 SensDepTotal,Total
 SensDepExtreme,Total (no whispers)
