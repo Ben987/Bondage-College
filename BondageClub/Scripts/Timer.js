@@ -65,13 +65,10 @@ function TimerInventoryRemove() {
 						delete Character[C].Appearance[A].Property.ShowTimer;
 						delete Character[C].Appearance[A].Property.EnableRandomInput;
 						delete Character[C].Appearance[A].Property.MemberNumberList;
-						if (Character[C].Appearance[A].Property.Effect != null) {
+						if (Character[C].Appearance[A].Property.Effect != null)
 							for (let E = 0; E < Character[C].Appearance[A].Property.Effect.length; E++)
 								if (Character[C].Appearance[A].Property.Effect[E] == "Lock")
 									Character[C].Appearance[A].Property.Effect.splice(E, 1);
-							if (!Character[C].Appearance[A].Property.Effect.length) Character[C].Appearance[A].Property.Effect = undefined;
-						}
-
 
 						// If we're removing a lock and we're in a chatroom, send a chatroom message
 						if (LockName && CurrentScreen === "ChatRoom") {
