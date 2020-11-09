@@ -23,9 +23,10 @@ Last recorded PR: [#1635](https://github.com/Ben987/Bondage-College/pull/1635)
     * New Futuristic Heels, Collar, Armbinder, Arm/Leg/Ankle Cuffs
 * Ben - Added the ability to block item categories from rooms
 * Victor Reed - Added a new Cryogenic Capsule item ([#1553](https://github.com/Ben987/Bondage-College/pull/1553))
-* Emily R - Added two new items ([#1556](https://github.com/Ben987/Bondage-College/pull/1556))
+* Emily R - Added several new items ([#1556](https://github.com/Ben987/Bondage-College/pull/1556), [#1640](https://github.com/Ben987/Bondage-College/pull/1640))
     * A Foam Sword handheld toy
     * New Latex Elbow Gloves
+    * A new Open Face Hood item
 * Ace - Added the variants of the Cow Tail and Bunny Tail items to the tail strap slot ([#1549](https://github.com/Ben987/Bondage-College/pull/1549))
 * Ace - Added new import/export color buttons to the color picker to allow players to copy/paste color codes (feature may not be available in some older browsers) ([#1550](https://github.com/Ben987/Bondage-College/pull/1550))
 * Wultir - Added the new vibrator modes to the taped clit & nipple eggs ([#1597](https://github.com/Ben987/Bondage-College/pull/1597))
@@ -47,6 +48,9 @@ Last recorded PR: [#1635](https://github.com/Ben987/Bondage-College/pull/1635)
     * A preference to lock the Immersion preferences screen when the player is bound
     * A new "Total (no whispers)" sensory deprivation setting
 * jomshir98 - Added a new "Light" sensory deprivation setting where player names will be visible and the blindfolds/hoods will never completely black out the screen ([#1635](https://github.com/Ben987/Bondage-College/pull/1635))
+* Emily R/Nina - Added a new GP-9 Gas Mask item ([#1638](https://github.com/Ben987/Bondage-College/pull/1638), [#1639](https://github.com/Ben987/Bondage-College/pull/1639))
+* Ben - Added some more story paths to the Movie Studio
+* Emily R - Added a new latex room chatroom background, available in both normal chatrooms and the Asylum ([#1640](https://github.com/Ben987/Bondage-College/pull/1640))
 
 ### [Removed]
 * Ben - Removed the futuristic items from the random NPC pool
@@ -88,6 +92,7 @@ Last recorded PR: [#1635](https://github.com/Ben987/Bondage-College/pull/1635)
 * Nina - Fixed an issue where vibrators set to "Edge" on certain zones would allow players to orgasm ([#1623](https://github.com/Ben987/Bondage-College/pull/1623))
 * Nina - Fixed an issue with the Metal Leg Spreader and the Wooden leg cuffs when the target player was kneeling ([#1624](https://github.com/Ben987/Bondage-College/pull/1624))
 * Ellie - Fixed an issue where changing the vibrator settings on the Mermaid Tail would cause its locks to fall off ([#1633](https://github.com/Ben987/Bondage-College/pull/1633))
+* Nina - Fixed an issue where unlocking a gag would break the gag's speech garbling effect ([#1637](https://github.com/Ben987/Bondage-College/pull/1637))
 
 ### [Technical]
 * Many technical changes, fixes and improvements:
