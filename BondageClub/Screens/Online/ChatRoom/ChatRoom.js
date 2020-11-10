@@ -702,6 +702,7 @@ function ChatRoomSendChat() {
 			// If player whispers and wants all whispers to be OOC
 			if (ChatRoomTargetMemberNumber != null && Player.ChatSettings.OOCWhispers && !msg.startsWith("(")) {
 				msg = "(" + msg;
+				ChatRoomLastMessage[ChatRoomLastMessage.length - 1] = msg;
 			}
 
 			// If message starts with "(" and has no other parenthesis, treat is as OOC
