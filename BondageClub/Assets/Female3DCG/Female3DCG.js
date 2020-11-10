@@ -488,7 +488,12 @@ var AssetFemale3DCG = [
 					{ Name: "Fur" }
 				]
 			},
-			{ Name: "SocksStriped1", Value: 10 },
+			{
+				Name: "SocksStriped1", Value: 10, Layer: [
+					{ Name: "Light" },
+					{ Name: "Dark" },
+				]
+			},
 			{ Name: "LatexSocks1", Fetish: ["Latex"], Value: 30 },
 			{ Name: "FootlessSocks1", Value: 15 },
 			{ Name: "ReverseBunnySuit", Fetish: ["Nylon", "Pet"], Priority: 22, Value: 100, BuyGroup: "ReverseBunnySuit" },
