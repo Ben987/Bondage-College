@@ -208,8 +208,8 @@ function PreferenceInit(C) {
 	if (C.ChatSettings.ShowAutomaticMessages == null) C.ChatSettings.ShowAutomaticMessages = false;
 	if (C.ChatSettings.WhiteSpace == null) C.ChatSettings.WhiteSpace = "Preserve";
 	if (C.ChatSettings.ColorActivities == null) C.ChatSettings.ColorActivities = true;
-	if (C.ChatSettings.AutoOOC == null) C.ChatSettings.AutoOOC = false;
-	if (C.ChatSettings.OOCWhispers == null) C.ChatSettings.OOCWhispers = false;
+	delete C.ChatSettings.AutoOOC;
+	delete C.ChatSettings.OOCWhispers;
 	if (!C.VisualSettings) C.VisualSettings = { ForceFullHeight: false };
 
 	// Sets the default audio settings
@@ -602,8 +602,6 @@ function PreferenceSubscreenChatRun() {
 	DrawCheckbox(1200, 492, 64, 64, TextGet("ShowAutomaticMessages"), Player.ChatSettings.ShowAutomaticMessages);
 	DrawCheckbox(1200, 572, 64, 64, TextGet("PreserveWhitespace"), Player.ChatSettings.WhiteSpace == "Preserve");
 	DrawCheckbox(1200, 652, 64, 64, TextGet("ColorActivities"), Player.ChatSettings.ColorActivities);
-	DrawCheckbox(1200, 732, 64, 64, TextGet("AutoOOC"), Player.ChatSettings.AutoOOC);
-	DrawCheckbox(1200, 812, 64, 64, TextGet("OOCWhispers"), Player.ChatSettings.OOCWhispers);
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
 		() => TextGet((PreferenceChatColorThemeIndex == 0) ? PreferenceChatColorThemeList[PreferenceChatColorThemeList.length - 1] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex - 1]),
@@ -844,8 +842,6 @@ function PreferenceSubscreenChatClick() {
 		if (MouseYIn(492, 64)) Player.ChatSettings.ShowAutomaticMessages = !Player.ChatSettings.ShowAutomaticMessages;
 		if (MouseYIn(572, 64)) Player.ChatSettings.WhiteSpace = Player.ChatSettings.WhiteSpace == "Preserve" ? "" : "Preserve";
 		if (MouseYIn(652, 64)) Player.ChatSettings.ColorActivities = !Player.ChatSettings.ColorActivities;
-		if (MouseYIn(732, 64)) Player.ChatSettings.AutoOOC = !Player.ChatSettings.AutoOOC;
-		if (MouseYIn(812, 64)) Player.ChatSettings.OOCWhispers = !Player.ChatSettings.OOCWhispers;
 	}
 
 	// If the user used one of the BackNextButtons

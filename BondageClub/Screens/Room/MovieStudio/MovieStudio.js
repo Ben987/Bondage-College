@@ -23,7 +23,13 @@ function MovieStudioCanPlayInMovie() { return !InventoryCharacterHasLockedRestra
  * Returns TRUE if the player can receive the camera as a payment
  * @returns {boolean} - TRUE if the player can get the camera
  */
-function MovieStudioCanGetCamera() { return !InventoryAvailable(Player, "Camera1", "ClothAccessory") }
+function MovieStudioCanGetCamera() { return (!InventoryAvailable(Player, "Camera1", "ClothAccessory") && (MovieStudioCurrentRole == "Journalist")) }
+
+/**
+ * Returns TRUE if the player can receive the gavel as a payment
+ * @returns {boolean} - TRUE if the player can get the gavel
+ */
+function MovieStudioCanGetGavel() { return (!InventoryAvailable(Player, "SpankingToysGavel", "ItemHands") && (MovieStudioCurrentRole == "Mistress") && (MovieStudioActor1.TrialDone)) }
 
 /**
  * When the player fails the movie, we jump back to the director
@@ -503,13 +509,13 @@ function MovieStudioDoActivity(Activity) {
 		CharacterSetFacialExpression(MovieStudioActor2, "Eyes", "Angry", 5);
 		CharacterSetFacialExpression(MovieStudioActor2, "Eyes2", "Angry", 5);
 	}
-	if (Activity == "InterviewMistressSpankLazyMaid") {
+	if ((Activity == "InterviewMistressSpankLazyMaid") || (Activity == "InterviewMistressCourtSpankMaid") || (Activity == "InterviewMistressMaidCleanSpank")) {
 		CharacterSetFacialExpression(MovieStudioActor1, "Blush", "Medium", 5);
 		CharacterSetFacialExpression(MovieStudioActor1, "Eyes", "Closed", 5);
 		CharacterSetFacialExpression(MovieStudioActor1, "Eyes2", "Closed", 5);
 	}
 	if (Activity == "InterviewMistressStartTrial") {
-		MovieStudioActor1.CanTurnTables = false;
+		MovieStudioActor1.TrialDone = true;
 		MovieStudioActor1.Stage = "2100";
 		MovieStudioActor2.Stage = "2100";
 		InventoryWear(Player, "SpankingToys", "ItemHands");
@@ -518,10 +524,75 @@ function MovieStudioDoActivity(Activity) {
 		DialogLeave();
 	}
 	if (Activity == "InterviewMistressSkipTrial") {
-		MovieStudioActor1.CanTurnTables = true;
+		MovieStudioActor1.TrialDone = false;
 		MovieStudioActor1.Stage = "2200";
 		MovieStudioActor2.Stage = "2200";
 	}
+	if (Activity == "InterviewMistressMaidStrapToClean") {
+		CharacterSetActivePose(MovieStudioActor1, null, true);
+		CharacterRelease(MovieStudioActor1);
+		InventoryWearRandom(MovieStudioActor1, "ItemLegs");
+		InventoryWearRandom(MovieStudioActor1, "ItemArms");
+		InventoryWear(MovieStudioActor1, "DusterGag", "ItemMouth");
+	}
+	if (Activity == "InterviewMistressMaidCleanGrope") {
+		CharacterSetFacialExpression(MovieStudioActor1, "Blush", "High", 8);
+		CharacterSetFacialExpression(MovieStudioActor1, "Eyes", "Horny", 8);
+		CharacterSetFacialExpression(MovieStudioActor1, "Eyes2", "Horny", 8);
+	}
+	if (Activity == "InterviewMistressCourtMasturbate") {
+		CharacterSetFacialExpression(Player, "Blush", "High", 8);
+		CharacterSetFacialExpression(Player, "Eyes", "Horny", 8);
+		CharacterSetFacialExpression(Player, "Eyes2", "Horny", 8);
+	}
+	if (Activity == "InterviewMistressCourtRestrainMaid") {
+		CharacterSetActivePose(MovieStudioActor1, null, true);
+		CharacterRelease(MovieStudioActor1);
+		InventoryWearRandom(MovieStudioActor1, "ItemFeet");
+		InventoryWearRandom(MovieStudioActor1, "ItemLegs");
+		InventoryWearRandom(MovieStudioActor1, "ItemArms");
+	}
+	if ((Activity == "InterviewMistressInterviewRestrainJournalist") || (Activity == "InterviewMistressCourtRestrainJournalist") || (Activity == "InterviewMistressPunishRestrain")) {
+		CharacterSetActivePose(CurrentCharacter, null, true);
+		CharacterRelease(CurrentCharacter);
+		InventoryWearRandom(CurrentCharacter, "ItemFeet");
+		InventoryWearRandom(CurrentCharacter, "ItemLegs");
+		InventoryWearRandom(CurrentCharacter, "ItemArms");
+	}
+	if ((Activity == "InterviewMistressInterviewReleaseJournalist") || (Activity == "InterviewMistressPunishRelease")) {
+		CharacterSetActivePose(CurrentCharacter, null, true);
+		CharacterRelease(CurrentCharacter);
+		if (!MovieStudioActor1.IsRestrained() && !MovieStudioActor2.IsRestrained() && !MovieStudioActor1.TrialDone) {
+			MovieStudioActor1.Stage = "2300";
+			MovieStudioActor2.Stage = "2250";
+			CharacterSetCurrent(MovieStudioActor2);
+			CharacterSetFacialExpression(MovieStudioActor2, "Blush", "Medium", 8);
+			CharacterSetFacialExpression(MovieStudioActor2, "Eyes", "Angry", 8);
+			CharacterSetFacialExpression(MovieStudioActor2, "Eyes2", "Angry", 8);
+			CharacterSetFacialExpression(Player, "Eyes", "Closed", 8);
+			CharacterSetFacialExpression(Player, "Eyes2", "Closed", 8);
+			MovieStudioActor2.CurrentDialog = TextGet("InterviewMistressTurnTablesOnPlayer");
+		}
+	}
+	if ((Activity == "InterviewMistressInterviewFlirt") || (Activity == "InterviewMistressPunishSlap")) {
+		CharacterSetFacialExpression(CurrentCharacter, "Blush", "Medium", 8);
+		CharacterSetFacialExpression(CurrentCharacter, "Eyes", "Dazed", 8);
+		CharacterSetFacialExpression(CurrentCharacter, "Eyes2", "Dazed", 8);
+	}
+	if (Activity == "InterviewMistressPunishGag") InventoryWearRandom(CurrentCharacter, "ItemMouth");
+	if (Activity == "InterviewMistressPunishCross") {
+		InventoryWear(CurrentCharacter, "LeatherCuffs", "ItemArms");
+		InventoryWear(CurrentCharacter, "LeatherLegCuffs", "ItemLegs");
+		InventoryWear(CurrentCharacter, "LeatherAnkleCuffs", "ItemFeet");
+		InventoryWear(CurrentCharacter, "X-Cross", "ItemDevices");
+	}
+	if ((Activity == "InterviewMistressPunishSpank") || (Activity == "InterviewMistressPunishGavel")) {
+		CharacterSetFacialExpression(CurrentCharacter, "Blush", "Medium", 8);
+		CharacterSetFacialExpression(CurrentCharacter, "Eyes", "Angry", 8);
+		CharacterSetFacialExpression(CurrentCharacter, "Eyes2", "Angry", 8);
+	}
+	if (Activity == "InterviewMistressTurnTablesArms") InventoryWearRandom(Player, "ItemArms");
+	if (Activity == "InterviewMistressTurnTablesLegs") { InventoryWearRandom(Player, "ItemFeet"); InventoryWearRandom(Player, "ItemLegs"); }
 
 	// Check for decay
 	MovieStudioProcessDecay();
@@ -572,6 +643,9 @@ function MovieStudioCanDoActivity(Activity) {
 	if (Activity == "InterviewMistressCrop") return ((InventoryGet(Player, "ItemHands") != null) && (InventoryGet(Player, "ItemHands").Property.Type == "Crop"));
 	if (Activity == "InterviewMistressWhip") return ((InventoryGet(Player, "ItemHands") != null) && (InventoryGet(Player, "ItemHands").Property.Type == "Whip"));
 	if (Activity == "InterviewMistressProd") return ((InventoryGet(Player, "ItemHands") != null) && (InventoryGet(Player, "ItemHands").Property.Type == "CattleProd"));
+	if (Activity == "InterviewMistressPunishCross") return !InventoryIsWorn(CurrentCharacter, "X-Cross", "ItemDevices");
+	if (Activity == "InterviewMistressPunishGavel") return InventoryIsWorn(Player, "SpankingToys", "ItemHands");
+	return false;
 }
 
 /**

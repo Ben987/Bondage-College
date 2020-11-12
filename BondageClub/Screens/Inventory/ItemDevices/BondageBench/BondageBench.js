@@ -12,11 +12,11 @@ var InventoryItemDevicesBondageBenchOptions = [
 	},
 	{
 		Name: "Light",
+		SelfBondageLevel: 2,
 		Prerequisite: ["NoOuterClothes"],
 		Property: {
 			Type: "Light",
 			Difficulty: 2,
-			SelfBondage: 2,
 			AllowLock: true,
 			SetPose: ["LegsClosed", "BaseUpper"],
 			Effect: ["Block", "Prone", "Freeze", "Mounted"],
@@ -25,11 +25,11 @@ var InventoryItemDevicesBondageBenchOptions = [
 	},
 	{
 		Name: "Normal",
+		SelfBondageLevel: 3,
 		Prerequisite: ["NoOuterClothes"],
 		Property: {
 			Type: "Normal",
 			Difficulty: 3,
-			SelfBondage: 3,
 			AllowLock: true,
 			SetPose: ["LegsClosed", "BaseUpper"],
 			Effect: ["Block", "Prone", "Freeze", "Mounted"],
@@ -38,11 +38,11 @@ var InventoryItemDevicesBondageBenchOptions = [
 	},
 	{
 		Name: "Heavy",
+		SelfBondageLevel: 6,
 		Prerequisite: ["NoOuterClothes"],
 		Property: {
 			Type: "Heavy",
 			Difficulty: 6,
-			SelfBondage: 6,
 			AllowLock: true,
 			SetPose: ["LegsClosed", "BaseUpper"],
 			Effect: ["Block", "Prone", "Freeze", "Mounted"],
@@ -51,11 +51,11 @@ var InventoryItemDevicesBondageBenchOptions = [
 	},
 	{
 		Name: "Full",
+		SelfBondageLevel: 9,
 		Prerequisite: ["NoOuterClothes"],
 		Property: {
 			Type: "Full",
 			Difficulty: 9,
-			SelfBondage: 9,
 			AllowLock: true,
 			SetPose: ["LegsClosed", "BaseUpper"],
 			Effect: ["Block", "Prone", "Freeze", "Mounted"],

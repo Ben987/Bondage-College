@@ -537,7 +537,7 @@ function VibratorModeStateUpdateRest(C, Arousal, TimeSinceLastChange, OldIntensi
  */
 function VibratorModeSetProperty(Item, Property) {
 	Property = VibratorModeSetDynamicProperties(Property);
-	if (Array.isArray(Item.Property.Effect)) {
+	if (Item.Property && Array.isArray(Item.Property.Effect)) {
 		Item.Property.Effect.forEach(Effect => {
 			if (!["Egged", "Vibrating", "Edged"].includes(Effect)) {
 				Property.Effect.push(Effect);
