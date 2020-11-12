@@ -6,6 +6,9 @@ ClothDressFurFabric,Dress
 ClothDressFurFur,Fur
 ClothCorsetShirtShirt,Shirt
 ClothCorsetShirtCorset,Corset
+ClothCollegeOutfit1Shirt,Shirt
+ClothCollegeOutfit1Tie,Tie
+ClothCollegeOutfit1Skirt,Skirt
 ClothAccessoryBouquetBase,Holder
 ClothAccessoryBouquetFlowers,Flowers
 ClothAccessoryCapeFront,Front
@@ -38,6 +41,8 @@ SocksSocks6Sock,Sock
 SocksSocks6Frill,Trim
 SocksSocksFurFabric,Sock
 SocksSocksFurFur,Fur
+SocksSocksStriped1Light,Light Stripes
+SocksSocksStriped1Dark,Dark Stripes
 HatSanta1Fabric,Hat
 HatSanta1Fur,Fur
 HatBonnet1Base,Bonnet
@@ -219,6 +224,10 @@ ItemHoodAddonOldGasMaskLensesTube2Lenses,Lenses
 ItemHoodAddonOldGasMaskLensesTube2Tube2,Tube
 ItemHoodAddonOldGasMaskLensesRebreatherLenses,Lenses
 ItemHoodAddonOldGasMaskLensesRebreatherRebreather,Lenses
+ItemHoodGP9GasMaskMouth,Mouthpiece
+ItemHoodGP9GasMaskLens,Lens
+ItemHoodGP9GasMaskMask,Mask
+ItemHoodGP9GasMaskEdges,Edges
 ItemBootsLockingBoots1Boots,Boots
 ItemBootsLockingBoots1Straps,Straps
 ItemBootsFuturisticHeelsShoes,Body

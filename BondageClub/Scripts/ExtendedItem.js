@@ -335,10 +335,16 @@ function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage, IsClot
  * of the requirements they do not meet
  */
 function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
-	if (IsSelfBondage && SkillGetLevelReal(Player, "SelfBondage") < Option.SelfBondageLevel) {
-		return DialogFind(Player, "RequireSelfBondage" + Option.SelfBondageLevel);
-	} else if (!IsSelfBondage && SkillGetLevelReal(Player, "Bondage") < Option.BondageLevel) {
-		return DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", Option.BondageLevel);
+	if (IsSelfBondage) {
+		let RequiredLevel = Option.SelfBondageLevel || Math.max(DialogFocusItem.Asset.SelfBondage, Option.BondageLevel);
+		if (SkillGetLevelReal(Player, "SelfBondage") < RequiredLevel) {
+			return DialogFind(Player, "RequireSelfBondage" + RequiredLevel);
+		}
+	} else {
+		let RequiredLevel = Option.BondageLevel;
+		if (SkillGetLevelReal(Player, "Bondage") < RequiredLevel) {
+			return DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", RequiredLevel);
+		}
 	}
 	return null;
 }

@@ -137,7 +137,10 @@ function ChatSearchNormalDraw() {
 
 				// Determine the hover text starting position to ensure there's enough room
 				let Height = 58;
-				let ListHeight = Height * ((ChatSearchResult[C].Friends.length > 0 ? 1 : 0) + ChatSearchResult[C].Friends.length + (ChatSearchResult[C].BlockCategory.length > 0 ? 1 : 0));
+				let ListHeight = Height * (
+					(ChatSearchResult[C].Friends.length > 0 ? 1 : 0) + ChatSearchResult[C].Friends.length
+					+ (ChatSearchResult[C].BlockCategory.length > 0 ? 1 : 0)
+					+ (ChatSearchResult[C].Game != "" ? 1 : 0));
 				let ListY = Math.min(Y, 872 - ListHeight);
 
 				// Builds the friend list as hover text

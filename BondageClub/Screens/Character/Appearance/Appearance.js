@@ -336,13 +336,14 @@ function CharacterAppearanceSortLayers(C) {
 }
 
 /**
- * Determines wether an item or a whole item group is visible or not
+ * Determines whether an item or a whole item group is visible or not
  * @param {Character} C - The character whose assets are checked
  * @param {string} AssetName - The name of the asset to check
  * @param {string} GroupName - The name of the item group to check
+ * @param {boolean} Recursive - If TRUE, then other items which are themselves hidden will not hide this item. Parameterising this prevents infinite loops.
  * @returns {boolean} - Returns TRUE if we can show the item or the item group
  */
-function CharacterAppearanceVisible(C, AssetName, GroupName) {
+function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 	if (CharacterAppearanceItemIsHidden(AssetName, GroupName)) {
 		C.HasHiddenItems = true;
 		return false;
@@ -350,10 +351,19 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if (CharacterAppearanceItemIsHidden(C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) continue;
-		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) return false;
-		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) return false;
-		if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) return false;
-		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.HideItem != null) && (C.Appearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) return false;
+		let HidingItem = false;
+		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
+		else if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
+		else if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		else if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.HideItem != null) && (C.Appearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		if (HidingItem) {
+			if (Recursive) {
+				if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name, false)) {
+					return false;
+				}
+			}
+			else return false;
+		}
 	}
 
 	if (C.Pose != null)

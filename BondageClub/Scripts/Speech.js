@@ -54,8 +54,8 @@ function SpeechGetGagLevel(C, AssetGroup) {
 		if (item.Asset.Group.Name === AssetGroup) {
 			var EffectArray = [];
 			if (item.Property &&
-			    Array.isArray(item.Property.Effect) &&
-			    !(typeof item.Property.Type === "undefined" && item.Property.Effect.length === 1 && item.Property.Effect[0] === "Lock")
+				Array.isArray(item.Property.Effect) &&
+				!(typeof item.Property.Type === "undefined")
 			) EffectArray = item.Property.Effect;
 			else if (Array.isArray(item.Asset.Effect)) EffectArray = item.Asset.Effect;
 			else if (Array.isArray(item.Asset.Group.Effect)) EffectArray = item.Asset.Group.Effect;
