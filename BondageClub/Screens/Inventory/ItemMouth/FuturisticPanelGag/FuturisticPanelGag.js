@@ -179,7 +179,7 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 		var autopunish = "Off" 
 		if (DialogFocusItem.Property.AutoPunish == 0) {}
 		else if (DialogFocusItem.Property.AutoPunish == 1) {autopunish = "Low"}
-		else if (DialogFocusItem.Property.AutoPunish == 2) {autopunish = "High"}
+		else if (DialogFocusItem.Property.AutoPunish == 2) {autopunish = "Medium"}
 		else {autopunish = "Maximum"}
 		
 		DrawText(DialogFind(Player, "FuturisticPanelGagMouthButtonAutoPunish") + " " + autopunish, 1500, 770, "White", "Gray");
