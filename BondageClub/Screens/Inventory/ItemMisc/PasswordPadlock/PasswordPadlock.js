@@ -47,7 +47,7 @@ function InventoryItemMiscPasswordPadlockDraw() {
 		(DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.LockMemberNumber != Player.MemberNumber))) {
 			// Normal lock interface
 			if (DialogFocusSourceItem && DialogFocusSourceItem.Property && DialogFocusSourceItem.Property.Hint)
-				DrawText(DialogFocusSourceItem.Property.Hint, 1500, 700, "white", "gray");
+				DrawText("\"" + DialogFocusSourceItem.Property.Hint + "\"", 1500, 700, "white", "gray");
 			MainCanvas.textAlign = "right";
 			DrawText(DialogFind(Player, "PasswordPadlockOld"), 1490, 805, "white", "gray");
 			ElementPosition("Password", 1640, 805, 250);
