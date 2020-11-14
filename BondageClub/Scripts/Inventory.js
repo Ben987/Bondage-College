@@ -665,6 +665,9 @@ function InventoryUnlock(C, Item) {
 		Item.Property.Effect.splice(Item.Property.Effect.indexOf("Lock"), 1);
 		delete Item.Property.LockedBy;
 		delete Item.Property.RemoveTimer;
+		delete Item.Property.LockSet;
+		delete Item.Property.Password;
+		delete Item.Property.Hint;
 		delete Item.Property.LockMemberNumber;
 		CharacterRefresh(C);
 	}
