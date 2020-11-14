@@ -129,14 +129,23 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 	if (MouseIn(1885, 25, 90, 90)) InventoryItemMouthFuturisticPanelGagExit()
 		
 	if (MouseIn(1400, 800, 200, 64)) {
-		FuturisticAccessDeniedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
-		var vol = 1
-		if (Player.AudioSettings && Player.AudioSettings.Volume) {
-			vol = Player.AudioSettings.Volume
-		}
-		AudioPlayInstantSound("Audio/AccessDenied.mp3", vol)
-		if (CurrentScreen == "ChatRoom") {
-			InventoryItemMouthFuturisticPanelGagPublishAccessDenied((Player.FocusGroup != null) ? Player : CurrentCharacter)
+		var pw = ElementValue("PasswordField").toUpperCase()
+		if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy == "PasswordPadlock" && pw == DialogFocusItem.Property.Password) {
+			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+			InventoryItemMiscPasswordPadlockUnlock(C, DialogFocusItem)
+			DialogFocusItem = null
+			Player.FocusGroup = null
+			InventoryItemMouthFuturisticPanelGagExit();
+		} else {
+			FuturisticAccessDeniedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
+			var vol = 1
+			if (Player.AudioSettings && Player.AudioSettings.Volume) {
+				vol = Player.AudioSettings.Volume
+			}
+			AudioPlayInstantSound("Audio/AccessDenied.mp3", vol)
+			if (CurrentScreen == "ChatRoom") {
+				InventoryItemMouthFuturisticPanelGagPublishAccessDenied((Player.FocusGroup != null) ? Player : CurrentCharacter)
+			}
 		}
 	}
 }

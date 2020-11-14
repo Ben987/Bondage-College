@@ -14,6 +14,7 @@ var MainHallMaidWasCalledManually = false;
 
 var MainHallRemoveLockTypes = [
 	"CombinationPadlock",
+	"PasswordPadlock",
 ]
 
 /**
