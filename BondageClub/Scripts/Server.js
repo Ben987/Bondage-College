@@ -410,8 +410,8 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
 							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
 							if (C.Appearance[A].Property.Password != null) NA.Property.Password = C.Appearance[A].Property.Password; else delete NA.Property.Password;
-							if (C.Appearance[A].Property.Hint != null) NA.Property.CombinationNumber = C.Appearance[A].Property.Hint; else delete NA.Property.Hint;
-							if (C.Appearance[A].Property.LockSet != null) NA.Property.CombinationNumber = C.Appearance[A].Property.LockSet; else delete NA.Property.LockSet;
+							if (C.Appearance[A].Property.Hint != null) NA.Property.Hint = C.Appearance[A].Property.Hint; else delete NA.Property.Hint;
+							if (C.Appearance[A].Property.LockSet != null) NA.Property.LockSet = C.Appearance[A].Property.LockSet; else delete NA.Property.LockSet;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
 							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
@@ -440,9 +440,9 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
 							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
-							if (C.Appearance[A].Property.Password != null) NA.Property.CombinationNumber = C.Appearance[A].Property.Password; else delete NA.Property.Password;
-							if (C.Appearance[A].Property.Hint != null) NA.Property.CombinationNumber = C.Appearance[A].Property.Hint; else delete NA.Property.Hint;
-							if (C.Appearance[A].Property.LockSet != null) NA.Property.CombinationNumber = C.Appearance[A].Property.LockSet; else delete NA.Property.LockSet;
+							if (C.Appearance[A].Property.Password != null) NA.Property.Password = C.Appearance[A].Property.Password; else delete NA.Property.Password;
+							if (C.Appearance[A].Property.Hint != null) NA.Property.Hint = C.Appearance[A].Property.Hint; else delete NA.Property.Hint;
+							if (C.Appearance[A].Property.LockSet != null) NA.Property.LockSet = C.Appearance[A].Property.LockSet; else delete NA.Property.LockSet;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
 							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
