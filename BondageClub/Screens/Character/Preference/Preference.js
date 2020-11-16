@@ -246,6 +246,8 @@ function PreferenceInit(C) {
 	// Sets the default immersion settings
 	if (!C.ImmersionSettings) C.ImmersionSettings = {};
 	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
+	if (typeof C.ImmersionSettings.ReturnToChatRoom !== "boolean") C.ImmersionSettings.ReturnToChatRoom = false;
+	if (typeof C.ImmersionSettings.LastChatRoom !== "string") C.ImmersionSettings.LastChatRoom = "";
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
@@ -498,6 +500,9 @@ function PreferenceSubscreenImmersionRun() {
 	DrawCheckbox(500, 432, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC);
 	DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
 	
+	
+	DrawCheckbox(1200, 272, 64, 64, TextGet("ReturnToChatRoom"), Player.ImmersionSettings.ReturnToChatRoom);
+	
 
 	DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
 
@@ -535,6 +540,12 @@ function PreferenceSubscreenImmersionClick() {
 	if (MouseIn(500, 432, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
+			
+			
+			
+	if (MouseIn(1200, 272, 64, 64) && 
+		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+			Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
 	
 	
 	if (MouseIn(500, 800, 64, 64) && 

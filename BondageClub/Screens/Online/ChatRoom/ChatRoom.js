@@ -20,6 +20,7 @@ var ChatRoomStruggleAssistBonus = 0;
 var ChatRoomStruggleAssistTimer = 0;
 var ChatRoomSlowtimer = 0;
 var ChatRoomSlowStop = false;
+var ChatRoomLastName = ""
 
 /**
  * Checks if the player can add the current character to her whitelist. 
@@ -207,6 +208,7 @@ function ChatRoomStart(Space, Game, LeaveRoom, Background, BackgroundTagList) {
 	ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundTagList);
 	BackgroundSelectionTagList = BackgroundTagList;
 	CommonSetScreen("Online", "ChatSearch");
+	
 }
 
 /**
@@ -384,6 +386,16 @@ function ChatRoomTarget() {
  * @returns {void} - Nothing.
  */
 function ChatRoomRun() {
+	
+	if (Player.ImmersionSettings && ChatRoomLastName != ChatRoomData.Name) {
+		ChatRoomLastName = ChatRoomData.Name
+		Player.ImmersionSettings.LastChatRoom = ChatRoomData.Name
+		var P = {
+			ImmersionSettings: Player.ImmersionSettings,
+		};
+		ServerSend("AccountUpdate", P);
+	}
+	
 
 	// Draws the chat room controls
 	ChatRoomCreateElement();
@@ -413,6 +425,11 @@ function ChatRoomRun() {
 			ElementRemove("TextAreaChatLog");
 			ServerSend("ChatRoomLeave", "");
 			CommonSetScreen("Online", "ChatSearch");
+			Player.ImmersionSettings.LastChatRoom = ""
+			var P = {
+				ImmersionSettings: Player.ImmersionSettings,
+			};
+			ServerSend("AccountUpdate", P);
 		}
 	}
 
@@ -493,6 +510,11 @@ function ChatRoomClick() {
 		ServerSend("ChatRoomLeave", "");
 		CommonSetScreen("Online", "ChatSearch");
 		CharacterDeleteAllOnline();
+		Player.ImmersionSettings.LastChatRoom = ""
+		var P = {
+			ImmersionSettings: Player.ImmersionSettings,
+		};
+		ServerSend("AccountUpdate", P);
 	}
 
 	// When the player is slow and attempts to leave
@@ -1090,11 +1112,14 @@ function ChatRoomSync(data) {
 			if (ChatRoomCharacter.length == data.Character.length + 1) {
 				ChatRoomCharacter = ChatRoomCharacter.filter(A => data.Character.some(B => A.MemberNumber == B.MemberNumber));
 				ChatRoomData = data;
+				
 				return;
 			}
 			else if (ChatRoomCharacter.length == data.Character.length - 1) {
 				ChatRoomCharacter.push(CharacterLoadOnline(data.Character[data.Character.length - 1], data.SourceMemberNumber));
 				ChatRoomData = data;
+				
+				
 				return;
 			}
 		}
