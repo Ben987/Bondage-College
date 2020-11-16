@@ -66,6 +66,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
 		IsSlow: function () { return (this.Effect.indexOf("Slow") >= 0) },
+		IsHandsCovered: function () { return (this.Effect.indexOf("HandsCovered") >= 0) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
 		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
 		IsMouthOpen: function() { return this.Effect.indexOf("OpenMouth") >= 0 },

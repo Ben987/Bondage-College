@@ -20,7 +20,81 @@ var ChatRoomStruggleAssistBonus = 0;
 var ChatRoomStruggleAssistTimer = 0;
 var ChatRoomSlowtimer = 0;
 var ChatRoomSlowStop = false;
+var ChatRoomDoorTimer = 0;
+var ChatRoomDoorfailtimer = 0;
+var ChatRoomDorFailLevel = 0;
 
+var ChatRoomLastBackground = ""
+var ChatRoomBackgroundIndoors = false
+var ChatRoomIndoorKeywords = [
+	"Introduction",
+	"Office",
+	"Room",
+	"AbandonedBuilding",
+	"Asylum",
+	"Balcony",
+	"Bar",
+	"Cafe",
+	"Hotel",
+	"Chamber",
+	"Boudoir",
+	"Boutique",
+	"Detention",
+	"Cell",
+	"Lounge",
+	"Confessions",
+	"Theater",
+	"Chalet",
+	"Dungeon",
+	"Dressing",
+	"Exhibit",
+	"Tomb",
+	"Gambling",
+	"Management",
+	"Vages",
+	"Kitchen",
+	"KidnapLeague",
+	"Magic",
+	"Quarters",
+	"Hall",
+	"Studio",
+	"Nursery",
+	"Club",
+	"Private",
+	"Basement",
+	"Research",
+	"Rooftop",
+	"Saloon",
+	"Hospital",
+	"Shibari",
+	"Shop",
+	"Apartment",
+	"Casino",
+	"Cellar",
+	"Corridor",
+	"Vault",
+	"Cabin",
+	"XmasDay",
+	"XmasEve",
+	]
+
+/**
+ * Checks if the chat room is currently indoors. You don't need to be able to turn a doorknob to leave an outdoor area :)
+ * @returns {boolean} - TRUE if the current room is indoors
+ */
+function ChatRoomBackgroundIsIndoors() {
+	if (ChatRoomData && ChatRoomData.Background != ChatRoomLastBackground) {
+		ChatRoomLastBackground = ChatRoomData.Background
+		ChatRoomBackgroundIndoors = false
+		for (let B = 0; B < ChatRoomIndoorKeywords.length; B++) {
+			if (ChatRoomLastBackground.indexOf(ChatRoomIndoorKeywords[B]) >= 0) {
+				ChatRoomBackgroundIndoors = true
+			}
+		}
+	}
+	
+	return ChatRoomBackgroundIndoors
+}
 /**
  * Checks if the player can add the current character to her whitelist. 
  * @returns {boolean} - TRUE if the current character is not in the player's whitelist nor blacklist. 
@@ -118,6 +192,11 @@ function ChatRoomHasSwapTarget() { return (ChatRoomSwapTarget != null) }
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanAssistStruggle() { return CurrentCharacter.AllowItem && !CurrentCharacter.CanInteract() }
+/**
+ * Checks if the player can help the current character to struggle free.
+ * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
+ */
+function ChatRoomCanAssistDoor() { return CurrentCharacter.AllowItem && !CurrentCharacter.CanInteract() && Player.CanInteract() && ChatRoomCanLeave() && CurrentCharacter.IsHandsCovered() && ChatRoomBackgroundIsIndoors()}
 /**
  * Checks if the character options menu is available.
  * @returns {boolean} - Whether or not the player can interact with the target character
@@ -409,12 +488,22 @@ function ChatRoomRun() {
 		if ((CurrentTime > ChatRoomSlowtimer) && (ChatRoomSlowtimer != 0)) {
 			ChatRoomSlowtimer = 0;
 			ChatRoomSlowStop = false;
-			ElementRemove("InputChat");
-			ElementRemove("TextAreaChatLog");
-			ServerSend("ChatRoomLeave", "");
-			CommonSetScreen("Online", "ChatSearch");
+			if (!(Player.IsHandsCovered() && ChatRoomBackgroundIsIndoors()) || ChatRoomDoorTimer != 0) {
+				ElementRemove("InputChat");
+				ElementRemove("TextAreaChatLog");
+				ServerSend("ChatRoomLeave", "");
+				CommonSetScreen("Online", "ChatSearch");
+				CharacterDeleteAllOnline();
+				ChatRoomDoorTimer = 0
+				ChatRoomDoorfailtimer = 0
+			} else { // When the player has hands covered and cant work the doorknob
+			ServerSend("ChatRoomChat", { Content: "DoorFail"+ChatRoomDorFailLevel, Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+			ChatRoomDoorfailtimer = 0; // No timer, since there already is one (have to leave slowly again)
+			if (ChatRoomDorFailLevel < 3) ChatRoomDorFailLevel += 1
+			}
 		}
 	}
+	
 
 	// If the player is slow and was stopped from leaving by another player
 	if ((ChatRoomSlowStop == true) && Player.IsSlow()) {
@@ -424,11 +513,15 @@ function ChatRoomRun() {
 			 ChatRoomSlowStop = false;
 		}
 	}
+	
+	
+	if ((ChatRoomDoorTimer != 0) && (CurrentTime > ChatRoomDoorTimer)) ChatRoomDoorTimer = 0
+	if ((ChatRoomDoorfailtimer != 0) && (CurrentTime > ChatRoomDoorfailtimer)) ChatRoomDoorfailtimer = 0
 
 	// Draws the top buttons in pink if they aren't available
-	if (!Player.IsSlow() || (ChatRoomSlowtimer == 0 && !ChatRoomCanLeave())){
+	if ((!Player.IsSlow()) || (ChatRoomSlowtimer == 0 && !ChatRoomCanLeave())){
 		if (ChatRoomSlowtimer != 0) ChatRoomSlowtimer = 0;
-		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? (((Player.IsHandsCovered() && ChatRoomBackgroundIsIndoors()) && ChatRoomDoorTimer == 0) ? "#FFFF00" : "White") : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
 	}	
 	
 	if (ChatRoomGame == "") DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
@@ -488,11 +581,20 @@ function ChatRoomClick() {
 
 	// When the user leaves
 	if (MouseIn(1005, 0, 120, 62) && ChatRoomCanLeave() && !Player.IsSlow()) {
-		ElementRemove("InputChat");
-		ElementRemove("TextAreaChatLog");
-		ServerSend("ChatRoomLeave", "");
-		CommonSetScreen("Online", "ChatSearch");
-		CharacterDeleteAllOnline();
+		if (!(Player.IsHandsCovered() && ChatRoomBackgroundIsIndoors()) || ChatRoomDoorTimer != 0) {
+			ElementRemove("InputChat");
+			ElementRemove("TextAreaChatLog");
+			ServerSend("ChatRoomLeave", "");
+			CommonSetScreen("Online", "ChatSearch");
+			CharacterDeleteAllOnline();
+			ChatRoomDoorTimer = 0
+			ChatRoomDoorfailtimer = 0
+		} else {
+			// When the player has hands covered and cant work the doorknob
+			ServerSend("ChatRoomChat", { Content: "DoorFail"+ChatRoomDorFailLevel, Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+			ChatRoomDoorfailtimer = CurrentTime + (3000); // Put a timer to prevent chat spam from clicking the button repeatedly
+			if (ChatRoomDorFailLevel < 3) ChatRoomDorFailLevel += 1
+		}
 	}
 
 	// When the player is slow and attempts to leave
@@ -511,7 +613,6 @@ function ChatRoomClick() {
 		}
 
 	}
-
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
 	if (MouseIn(1179, 2, 120, 62) && (ChatRoomGame == "")) {
 		var L = document.getElementById("TextAreaChatLog");
@@ -565,6 +666,7 @@ function ChatRoomClick() {
  */
 function ChatRoomCanLeave() {
 	if (!Player.CanWalk()) return false; // Cannot leave if cannot walk
+	if (ChatRoomDoorfailtimer != 0 && ChatRoomDoorTimer == 0) return false; // Cannot leave if one has failed to open the door
 	if (!ChatRoomData.Locked || ChatRoomPlayerIsAdmin()) return true; // Can leave if the room isn't locked or is an administrator
 	for (let C = 0; C < ChatRoomCharacter.length; C++)
 		if (ChatRoomData.Admin.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0)
@@ -883,6 +985,9 @@ function ChatRoomMessage(data) {
 					if (msg == "SlowStop"){
 						ChatRoomSlowtimer = CurrentTime + 45000;
 						ChatRoomSlowStop = true;
+					} 
+					if (msg == "DoorHelp"){
+						ChatRoomDoorTimer = CurrentTime + 30000;
 					} 
 				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
 				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
@@ -1358,6 +1463,20 @@ function ChatRoomStopLeave(){
 	Dictionary.push({Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber});
 	ServerSend("ChatRoomChat", { Content: "SlowStop", Type: "Action", Dictionary: Dictionary});
 	ServerSend("ChatRoomChat", { Content: "SlowStop", Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
+	DialogLeave();
+}
+
+
+/**
+ * Triggered when a character stops another character from leaving.
+ * @returns {void} - Nothing
+ */
+function ChatRoomDoorAssist(){
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	Dictionary.push({Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber});
+	ServerSend("ChatRoomChat", { Content: "DoorHelp", Type: "Action", Dictionary: Dictionary});
+	ServerSend("ChatRoomChat", { Content: "DoorHelp", Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
 	DialogLeave();
 }
 

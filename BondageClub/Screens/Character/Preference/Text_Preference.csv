@@ -56,6 +56,7 @@ AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
 BlockGaggedOOC,Prevent Out-Of-Character chat while gagged
+NeedHelpDoors,Require help leaving rooms when hands are covered
 SensDepSetting,Sensory deprivation setting
 SensDepLight,Light
 SensDepNames,Hide names

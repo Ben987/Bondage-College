@@ -246,6 +246,7 @@ function PreferenceInit(C) {
 	// Sets the default immersion settings
 	if (!C.ImmersionSettings) C.ImmersionSettings = {};
 	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
+	if (typeof C.ImmersionSettings.NeedHelpDoors !== "boolean") C.ImmersionSettings.NeedHelpDoors = false;
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
@@ -496,6 +497,7 @@ function PreferenceSubscreenImmersionRun() {
 	DrawCheckbox(500, 272, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
 	DrawCheckbox(500, 352, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
 	DrawCheckbox(500, 432, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC);
+	DrawCheckbox(500, 512, 64, 64, TextGet("NeedHelpDoors"), Player.ImmersionSettings.NeedHelpDoors);
 	DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
 	
 
@@ -535,6 +537,9 @@ function PreferenceSubscreenImmersionClick() {
 	if (MouseIn(500, 432, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
+	if (MouseIn(500, 512, 64, 64) && 
+		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+			Player.ImmersionSettings.NeedHelpDoors = !Player.ImmersionSettings.NeedHelpDoors;
 	
 	
 	if (MouseIn(500, 800, 64, 64) && 
