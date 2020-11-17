@@ -418,7 +418,7 @@ function ChatRoomSetLastChatRoom(room) {
 		LastChatRoomPrivate: Player.LastChatRoomPrivate,
 		LastChatRoomSize: Player.LastChatRoomSize,
 		LastChatRoomDesc: Player.LastChatRoomDesc,
-		LastChatRoomAdmin: Player.LastChatRoomAdmin,
+		LastChatRoomAdmin: Player.LastChatRoomAdmin.toString(),
 		
 	};
 	ServerSend("AccountUpdate", P);
