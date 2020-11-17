@@ -128,7 +128,7 @@ function ChatRoomCanPerformCharacterAction() { return ChatRoomCanAssistStand() |
  * Checks if the target character can be helped back on her feet. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
  * @returns {boolean} - Whether or not the target character can stand
  */
-function ChatRoomCanAssistStand() { return Player.CanInteract() && CurrentCharacter.AllowItem && (CurrentCharacter.CanStandAssisted() || Player.CanKneel()) && CurrentCharacter.IsKneeling() }
+function ChatRoomCanAssistStand() { return Player.CanInteract() && CurrentCharacter.AllowItem && (CurrentCharacter.CanKneelAssisted() || Player.CanKneel()) && CurrentCharacter.IsKneeling() }
 /**
  * Checks if the target character can be helped down on her knees. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
  * @returns {boolean} - Whether or not the target character can stand
@@ -137,7 +137,7 @@ function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharac
  * Checks if the player character can attempt to stand up. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose, but it forces the player to do a minigame.
  * @returns {boolean} - Whether or not the player character can stand
  */
-function ChatRoomCanAttemptStand() { return (Player.CanStandAssisted() || Player.CanKneel()) && Player.IsKneeling() }
+function ChatRoomCanAttemptStand() { return (Player.CanKneelAssisted() || Player.CanKneel()) && Player.IsKneeling() }
 /**
  * Checks if the player character can attempt to get down on her knees. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose, but it forces the player to do a minigame.
  * @returns {boolean} - Whether or not the player character can stand
