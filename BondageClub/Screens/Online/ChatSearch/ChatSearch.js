@@ -320,6 +320,7 @@ function ChatSearchClickPermission() {
 		}
 	}
 }
+
  
 /**
  * Handles the reception of the server response when joining a room or when getting banned/kicked
@@ -334,11 +335,7 @@ function ChatSearchResponse(data) {
 			ElementRemove("TextAreaChatLog");
 			CommonSetScreen("Online", "ChatSearch");
 			CharacterDeleteAllOnline();
-			Player.ImmersionSettings.LastChatRoom = ""
-			var P = {
-				ImmersionSettings: Player.ImmersionSettings,
-			};
-			ServerSend("AccountUpdate", P);
+			CharSearchSetLastChatRoom("")
 		}
 		ChatSearchMessage = "Response" + data;
 	}
@@ -354,11 +351,11 @@ function ChatSearchResultResponse(data) {
 	ChatSearchResultOffset = 0;
 	ChatSearchQuerySort();
 	
-	if (Player.ImmersionSettings && Player.ImmersionSettings.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
+	if (Player.ImmersionSettings && Player.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
 		var found = false
 		for (let R = 0; R < data.length; R++) {
 			var room = data[R]
-			if (room.Name == Player.ImmersionSettings.LastChatRoom && room.MemberCount < room.MemberLimit && room.Game == "") {
+			if (room.Name == Player.LastChatRoom && room.MemberCount < room.MemberLimit && room.Game == "") {
 				var RoomName = room.Name;
 				if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
 					found = true
@@ -370,11 +367,7 @@ function ChatSearchResultResponse(data) {
 			}
 		}
 		if (!found) {
-			Player.ImmersionSettings.LastChatRoom = ""
-			var P = {
-				ImmersionSettings: Player.ImmersionSettings,
-			};
-			ServerSend("AccountUpdate", P);
+			ChatRoomSetLastChatRoom("")
 		}
 	}
 }
@@ -386,15 +379,11 @@ function ChatSearchResultResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
-	if (Player.ImmersionSettings && Player.ImmersionSettings.LastChatRoom != "") {
+	if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "") {
 		if (Player.ImmersionSettings.ReturnToChatRoom) {
-			Query = Player.ImmersionSettings.LastChatRoom
+			Query = Player.LastChatRoom
 		} else {
-			Player.ImmersionSettings.LastChatRoom = ""
-			var P = {
-				ImmersionSettings: Player.ImmersionSettings,
-			};
-			ServerSend("AccountUpdate", P);
+			ChatRoomSetLastChatRoom("")
 		}
 	}
 	if (ChatSearchLastQuerySearch != Query || ChatSearchLastQuerySearchHiddenRooms != ChatSearchIgnoredRooms.length || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 

@@ -140,6 +140,20 @@ function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharac
  */
 function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Player.CanInteract() && CurrentCharacter.AllowItem ) }
 
+
+/**
+ * Updates the account to set the last chat room
+ * @param {string} room - room to set it to. "" to reset.
+ * @returns {void} - Nothing
+ */
+function ChatRoomSetLastChatRoom(room) {
+	Player.LastChatRoom = room
+	var P = {
+		LastChatRoom: Player.LastChatRoom,
+	};
+	ServerSend("AccountUpdate", P);
+}
+
 /**
  * Creates the chat room input elements.
  * @returns {void} - Nothing.
@@ -389,11 +403,7 @@ function ChatRoomRun() {
 	
 	if (Player.ImmersionSettings && ChatRoomLastName != ChatRoomData.Name) {
 		ChatRoomLastName = ChatRoomData.Name
-		Player.ImmersionSettings.LastChatRoom = ChatRoomData.Name
-		var P = {
-			ImmersionSettings: Player.ImmersionSettings,
-		};
-		ServerSend("AccountUpdate", P);
+		ChatRoomSetLastChatRoom(ChatRoomData.Name)
 	}
 	
 
@@ -425,11 +435,7 @@ function ChatRoomRun() {
 			ElementRemove("TextAreaChatLog");
 			ServerSend("ChatRoomLeave", "");
 			CommonSetScreen("Online", "ChatSearch");
-			Player.ImmersionSettings.LastChatRoom = ""
-			var P = {
-				ImmersionSettings: Player.ImmersionSettings,
-			};
-			ServerSend("AccountUpdate", P);
+			ChatRoomSetLastChatRoom("")
 		}
 	}
 
@@ -510,11 +516,7 @@ function ChatRoomClick() {
 		ServerSend("ChatRoomLeave", "");
 		CommonSetScreen("Online", "ChatSearch");
 		CharacterDeleteAllOnline();
-		Player.ImmersionSettings.LastChatRoom = ""
-		var P = {
-			ImmersionSettings: Player.ImmersionSettings,
-		};
-		ServerSend("AccountUpdate", P);
+		ChatRoomSetLastChatRoom("")
 	}
 
 	// When the player is slow and attempts to leave

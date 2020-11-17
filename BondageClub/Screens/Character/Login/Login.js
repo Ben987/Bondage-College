@@ -330,6 +330,9 @@ function LoginResponse(C) {
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 
+			// Load the last chat room
+			Player.LastChatRoom = C.LastChatRoom;
+
 			// Loads the ownership data
 			Player.Ownership = C.Ownership;
 			if ((Player.Ownership != null) && (Player.Ownership.Name != null))

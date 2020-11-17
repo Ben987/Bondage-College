@@ -129,16 +129,12 @@ function MainHallLoad() {
 	CommonReadCSV("NoArravVar", "Room", "Prison", "Dialog_NPC_Prison_Police");
 	CommonReadCSV("NoArravVar", "Character", "Relog", "Text_Relog");
 
-	if (Player.ImmersionSettings && Player.ImmersionSettings.LastChatRoom != "") {
+	if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "") {
 		// We return to the chat room that the player was last in		
 		if (Player.ImmersionSettings.ReturnToChatRoom) {
 			ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList);
 		} else {
-			Player.ImmersionSettings.LastChatRoom = ""
-			var P = {
-				ImmersionSettings: Player.ImmersionSettings,
-			};
-			ServerSend("AccountUpdate", P);
+			ChatRoomSetLastChatRoom("")
 		}
 	}
 
