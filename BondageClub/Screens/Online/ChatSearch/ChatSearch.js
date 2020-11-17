@@ -367,7 +367,7 @@ function ChatSearchResultResponse(data) {
 			}
 		}
 		if (!found) {
-			if (Player.LastChatRoomAdmin && Player.LastChatRoomBG && Player.LastChatRoomPrivate && Player.LastChatRoomSize && Player.LastChatRoomDesc) {
+			if (Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.LastChatRoomAdmin && Player.LastChatRoomBG && Player.LastChatRoomPrivate && Player.LastChatRoomSize && Player.LastChatRoomDesc) {
 				ChatRoomPlayerCanJoin = true;
 				ChatRoomPlayerJoiningAsAdmin = true;
 				var block = []

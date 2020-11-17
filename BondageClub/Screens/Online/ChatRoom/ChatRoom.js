@@ -433,7 +433,7 @@ function ChatRoomSetLastChatRoom(room) {
 function ChatRoomRun() {
 	
 	
-	if (Player.ImmersionSettings && ChatRoomData && Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
+	if (Player.ImmersionSettings && ChatRoomData && Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.ImmersionSettings.ReturnToChatRoom && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
 		var UpdatedRoom = {
 			Name: ChatRoomData.Name,
 			Description: ChatRoomData.Description,
