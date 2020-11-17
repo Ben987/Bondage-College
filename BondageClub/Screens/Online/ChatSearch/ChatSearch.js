@@ -367,23 +367,29 @@ function ChatSearchResultResponse(data) {
 			}
 		}
 		if (!found) {
-			if (Player.LastChatRoomBG) {
+			if (Player.LastChatRoomAdmin && Player.LastChatRoomBG && Player.LastChatRoomPrivate && Player.LastChatRoomSize && Player.LastChatRoomDesc) {
 				ChatRoomPlayerCanJoin = true;
 				ChatRoomPlayerJoiningAsAdmin = true;
 				var block = []
 				if (ChatBlockItemCategory) block = ChatBlockItemCategory
 				var NewRoom = {
-					Name: Player.Name.trim(),
-					Description: "",
+					Name: Player.LastChatRoom.trim(),
+					Description: Player.LastChatRoomDesc.trim(),
 					Background: Player.LastChatRoomBG,
-					Private: false,
+					Private: Player.LastChatRoomPrivate,
 					Space: "",
 					Game: "",
-					Limit: "10".trim(),
+					Admin: [Player.MemberNumber],
+					Limit: ("" + Math.min(Math.max(Player.LastChatRoomSize, 2), 10)).trim(),
 					BlockCategory: block
 				};
 				ServerSend("ChatRoomCreate", NewRoom);
 				ChatCreateMessage = "CreatingRoom";
+				
+				if (Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.LastChatRoomAdmin) {
+					NewRoom.Admin = Player.LastChatRoomAdmin
+					ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: NewRoom, Action: "Update" });
+				}
 			} else {
 				ChatRoomSetLastChatRoom("")
 			}

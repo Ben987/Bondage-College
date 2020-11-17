@@ -333,6 +333,10 @@ function LoginResponse(C) {
 			// Load the last chat room
 			Player.LastChatRoom = C.LastChatRoom;
 			Player.LastChatRoomBG = C.LastChatRoomBG;
+			Player.LastChatRoomPrivate = C.LastChatRoomPrivate;
+			Player.LastChatRoomSize = C.LastChatRoomSize;
+			Player.LastChatRoomDesc = C.LastChatRoomDesc;
+			Player.LastChatRoomAdmin = C.LastChatRoomAdmin;
 
 			// Loads the ownership data
 			Player.Ownership = C.Ownership;

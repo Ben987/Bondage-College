@@ -22,6 +22,10 @@ var ChatRoomSlowtimer = 0;
 var ChatRoomSlowStop = false;
 var ChatRoomLastName = ""
 var ChatRoomLastBG = ""
+var ChatRoomLastPrivate = false
+var ChatRoomLastSize = 0
+var ChatRoomLastDesc = ""
+var ChatRoomLastAdmin = []
 
 /**
  * Checks if the player can add the current character to her whitelist. 
@@ -142,25 +146,6 @@ function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharac
 function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Player.CanInteract() && CurrentCharacter.AllowItem ) }
 
 
-/**
- * Updates the account to set the last chat room
- * @param {string} room - room to set it to. "" to reset.
- * @returns {void} - Nothing
- */
-function ChatRoomSetLastChatRoom(room) {
-	Player.LastChatRoom = room
-	if (room != "") {
-		if (ChatRoomData && ChatRoomData.Background)
-			Player.LastChatRoomBG = ChatRoomData.Background
-	} else {
-		Player.LastChatRoomBG = ""
-	}
-	var P = {
-		LastChatRoom: Player.LastChatRoom,
-		LastChatRoomBG: Player.LastChatRoomBG,
-	};
-	ServerSend("AccountUpdate", P);
-}
 
 /**
  * Creates the chat room input elements.
@@ -211,6 +196,8 @@ function ChatRoomLoad() {
 	ChatRoomCreateElement();
 	ChatRoomCharacterUpdate(Player);
 	ActivityChatRoomArousalSync(Player);
+	
+
 }
 
 /**
@@ -404,13 +391,54 @@ function ChatRoomTarget() {
 }
 
 /**
+ * Updates the account to set the last chat room
+ * @param {string} room - room to set it to. "" to reset.
+ * @returns {void} - Nothing
+ */
+function ChatRoomSetLastChatRoom(room) {
+	Player.LastChatRoom = room
+	if (room != "") {
+		if (ChatRoomData && ChatRoomData.Background)
+			Player.LastChatRoomBG = ChatRoomData.Background
+		if (ChatRoomData && ChatRoomData.Private)
+			Player.LastChatRoomPrivate = ChatRoomData.Private
+		if (ChatRoomData && ChatRoomData.Limit)
+			Player.LastChatRoomSize = ChatRoomData.Limit
+		if (ChatRoomData && ChatRoomData.Description)
+			Player.LastChatRoomDesc = ChatRoomData.Description
+		if (ChatRoomData && ChatRoomData.Admin)
+			Player.LastChatRoomAdmin = ChatRoomData.Admin
+	} else {
+		Player.LastChatRoomBG = ""
+		Player.LastChatRoomPrivate = false
+	}
+	var P = {
+		LastChatRoom: Player.LastChatRoom,
+		LastChatRoomBG: Player.LastChatRoomBG,
+		LastChatRoomPrivate: Player.LastChatRoomPrivate,
+		LastChatRoomSize: Player.LastChatRoomSize,
+		LastChatRoomDesc: Player.LastChatRoomDesc,
+		LastChatRoomAdmin: Player.LastChatRoomAdmin,
+		
+	};
+	ServerSend("AccountUpdate", P);
+}
+
+
+/**
  * Runs the chatroom screen.
  * @returns {void} - Nothing.
  */
 function ChatRoomRun() {
 	
-	if (Player.ImmersionSettings && (ChatRoomLastName != ChatRoomData.Name || ChatRoomLastBG != ChatRoomData.Background)) {
+	if (Player.ImmersionSettings && (ChatRoomLastName != ChatRoomData.Name || ChatRoomLastBG != ChatRoomData.Background || ChatRoomLastSize != ChatRoomData.Limit || ChatRoomLastPrivate != ChatRoomData.Private || ChatRoomLastDesc != ChatRoomData.Description || ChatRoomLastAdmin != ChatRoomData.Admin)) {
 		ChatRoomLastName = ChatRoomData.Name
+		ChatRoomLastBG = ChatRoomData.Background
+		ChatRoomLastSize = ChatRoomData.Limit
+		ChatRoomLastPrivate = ChatRoomData.Private
+		ChatRoomLastDesc = ChatRoomData.Description
+		ChatRoomLastAdmin = ChatRoomData.Admin
+		
 		ChatRoomSetLastChatRoom(ChatRoomData.Name)
 	}
 	
