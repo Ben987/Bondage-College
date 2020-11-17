@@ -388,7 +388,7 @@ function ChatSearchResultResponse(data) {
 				
 				if (Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.LastChatRoomAdmin) {
 					NewRoom.Admin = Player.LastChatRoomAdmin
-					ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: NewRoom, Action: "Update" });
+					ChatRoomNewRoomToUpdate = NewRoom
 				}
 			} else {
 				ChatRoomSetLastChatRoom("")

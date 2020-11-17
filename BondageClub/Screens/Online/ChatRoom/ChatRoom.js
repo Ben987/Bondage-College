@@ -26,6 +26,7 @@ var ChatRoomLastPrivate = false
 var ChatRoomLastSize = 0
 var ChatRoomLastDesc = ""
 var ChatRoomLastAdmin = []
+var ChatRoomNewRoomToUpdate = null
 
 /**
  * Checks if the player can add the current character to her whitelist. 
@@ -430,6 +431,24 @@ function ChatRoomSetLastChatRoom(room) {
  * @returns {void} - Nothing.
  */
 function ChatRoomRun() {
+	
+	
+	if (Player.ImmersionSettings && ChatRoomData && Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
+		var UpdatedRoom = {
+			Name: ChatRoomData.Name,
+			Description: ChatRoomData.Description,
+			Background: ChatRoomData.Background,
+			Limit: ChatRoomData.Limit,
+			Admin: Player.LastChatRoomAdmin,
+			Ban: ChatRoomData.Ban,
+			BlockCategory: ChatRoomData.BlockCategory,
+			Game: ChatRoomData.Game,
+			Private: ChatRoomData.Private,
+			Locked: ChatRoomData.Locked
+		};
+		ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: UpdatedRoom, Action: "Update" });
+		ChatRoomNewRoomToUpdate = null
+	}
 	
 	if (Player.ImmersionSettings && (ChatRoomLastName != ChatRoomData.Name || ChatRoomLastBG != ChatRoomData.Background || ChatRoomLastSize != ChatRoomData.Limit || ChatRoomLastPrivate != ChatRoomData.Private || ChatRoomLastDesc != ChatRoomData.Description || ChatRoomLastAdmin != ChatRoomData.Admin)) {
 		ChatRoomLastName = ChatRoomData.Name
