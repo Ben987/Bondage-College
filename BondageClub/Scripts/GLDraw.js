@@ -368,6 +368,7 @@ function GLDrawLoadImage(gl, url) {
         if (Img) {
             GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
         } else {
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 0, 0]));
             Img = new Image();
             GLDrawImageCache.set(url, Img);
 
