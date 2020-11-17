@@ -36,7 +36,8 @@ function GetUpLoad() {
 		MiniGameTimer = CommonTime() + GetUpGameDuration // 5 seconds base
 		GetUpChallenge = 0
 	} else {
-		MiniGameTimer = CommonTime() + GetUpGameDuration + 1000 * (MiniGameDifficulty-SkillGetLevel(Player, "Evasion")*0.33) // One extra second per challenge level, minus a third of a second per evasion.
+		GetUpGameDuration = 5000 + 1000 * (MiniGameDifficulty-SkillGetLevel(Player, "Evasion")*0.33)
+		MiniGameTimer = CommonTime() + GetUpGameDuration // One extra second per challenge level, minus a third of a second per evasion.
 		GetUpChallenge = MiniGameDifficulty
 	}
 	
@@ -44,16 +45,16 @@ function GetUpLoad() {
 }
 
 function GetUpPhysics(delta) {
-	var timeElapsed = (MiniGameTimer - CommonTime()) / 1000
+	var timeElapsed = 3 + (GetUpGameDuration +  CommonTime() - MiniGameTimer) / 2000
 	
 	if (CommonTime() > GetUpNextTick) {
-		GetUpNextTick = CommonTime() + 500
-		GetUpAcceleration = -timeElapsed*0.75 + 1.25*timeElapsed*Math.random()
+		GetUpNextTick = CommonTime() + 400
+		GetUpAcceleration = -timeElapsed*1 + 1.3*timeElapsed*Math.random()
 	}
 	GetUpVelocity = Math.min(GetUpVelocity, GetUpVelocity + GetUpAcceleration * 0.25)
 	
 	if (Math.abs(GetUpPosition) <= GetUpMaxPosition)
-		GetUpPosition += GetUpVelocity / 1000 * delta * 3
+		GetUpPosition += GetUpVelocity / 1000 * delta * 3.5
 	
 	
 	GetUpPosition = Math.max(-GetUpMaxPosition*1.1, Math.min(GetUpPosition, GetUpMaxPosition*1.1))
