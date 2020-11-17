@@ -351,7 +351,7 @@ function ChatSearchResultResponse(data) {
 	ChatSearchResultOffset = 0;
 	ChatSearchQuerySort();
 	
-	if (Player.ImmersionSettings && Player.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
+	if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
 		var found = false
 		for (let R = 0; R < data.length; R++) {
 			var room = data[R]
@@ -367,7 +367,26 @@ function ChatSearchResultResponse(data) {
 			}
 		}
 		if (!found) {
-			ChatRoomSetLastChatRoom("")
+			if (Player.LastChatRoomBG) {
+				ChatRoomPlayerCanJoin = true;
+				ChatRoomPlayerJoiningAsAdmin = true;
+				var block = []
+				if (ChatBlockItemCategory) block = ChatBlockItemCategory
+				var NewRoom = {
+					Name: Player.Name.trim(),
+					Description: "",
+					Background: Player.LastChatRoomBG,
+					Private: false,
+					Space: "",
+					Game: "",
+					Limit: "10".trim(),
+					BlockCategory: block
+				};
+				ServerSend("ChatRoomCreate", NewRoom);
+				ChatCreateMessage = "CreatingRoom";
+			} else {
+				ChatRoomSetLastChatRoom("")
+			}
 		}
 	}
 }

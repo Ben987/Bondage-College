@@ -21,6 +21,7 @@ var ChatRoomStruggleAssistTimer = 0;
 var ChatRoomSlowtimer = 0;
 var ChatRoomSlowStop = false;
 var ChatRoomLastName = ""
+var ChatRoomLastBG = ""
 
 /**
  * Checks if the player can add the current character to her whitelist. 
@@ -148,8 +149,15 @@ function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Play
  */
 function ChatRoomSetLastChatRoom(room) {
 	Player.LastChatRoom = room
+	if (room != "") {
+		if (ChatRoomData && ChatRoomData.Background)
+			Player.LastChatRoomBG = ChatRoomData.Background
+	} else {
+		Player.LastChatRoomBG = ""
+	}
 	var P = {
 		LastChatRoom: Player.LastChatRoom,
+		LastChatRoomBG: Player.LastChatRoomBG,
 	};
 	ServerSend("AccountUpdate", P);
 }
@@ -401,7 +409,7 @@ function ChatRoomTarget() {
  */
 function ChatRoomRun() {
 	
-	if (Player.ImmersionSettings && ChatRoomLastName != ChatRoomData.Name) {
+	if (Player.ImmersionSettings && (ChatRoomLastName != ChatRoomData.Name || ChatRoomLastBG != ChatRoomData.Background)) {
 		ChatRoomLastName = ChatRoomData.Name
 		ChatRoomSetLastChatRoom(ChatRoomData.Name)
 	}

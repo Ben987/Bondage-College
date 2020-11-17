@@ -332,6 +332,7 @@ function LoginResponse(C) {
 
 			// Load the last chat room
 			Player.LastChatRoom = C.LastChatRoom;
+			Player.LastChatRoomBG = C.LastChatRoomBG;
 
 			// Loads the ownership data
 			Player.Ownership = C.Ownership;
