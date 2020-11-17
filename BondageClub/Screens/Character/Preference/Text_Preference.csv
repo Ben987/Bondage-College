@@ -57,7 +57,7 @@ AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
 BlockGaggedOOC,Prevent OOC chat while gagged
 ReturnToChatRoom,Return to chatrooms on relog
-ReturnToChatRoomAdmin,Recreate chatrooms if missing on relog
+ReturnToChatRoomAdmin,Auto-remake (if safeword on/maids off)
 SensDepSetting,Sensory deprivation
 SensDepLight,Light
 SensDepNames,Hide names
