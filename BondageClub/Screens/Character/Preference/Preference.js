@@ -246,6 +246,8 @@ function PreferenceInit(C) {
 	// Sets the default immersion settings
 	if (!C.ImmersionSettings) C.ImmersionSettings = {};
 	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
+	if (typeof C.ImmersionSettings.SlowWhenLegsBound !== "boolean") C.ImmersionSettings.SlowWhenLegsBound = false;
+	if (typeof C.ImmersionSettings.AllowHopping !== "boolean") C.ImmersionSettings.AllowHopping = false;
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
@@ -496,7 +498,12 @@ function PreferenceSubscreenImmersionRun() {
 	DrawCheckbox(500, 272, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
 	DrawCheckbox(500, 352, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
 	DrawCheckbox(500, 432, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC);
+	DrawCheckbox(500, 592, 64, 64, TextGet("SlowWhenLegsBound"), Player.ImmersionSettings.SlowWhenLegsBound);
+	DrawCheckbox(500, 672, 64, 64, TextGet("AllowHopping"), Player.ImmersionSettings.AllowHopping);
 	DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
+	
+	
+	
 	
 
 	DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
@@ -535,6 +542,17 @@ function PreferenceSubscreenImmersionClick() {
 	if (MouseIn(500, 432, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
+	
+	
+	
+	
+	
+	if (MouseIn(500, 592, 64, 64) && 
+		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+			Player.ImmersionSettings.SlowWhenLegsBound = !Player.ImmersionSettings.SlowWhenLegsBound;
+	if (MouseIn(500, 672, 64, 64) && 
+		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+			Player.ImmersionSettings.AllowHopping = !Player.ImmersionSettings.AllowHopping;
 	
 	
 	if (MouseIn(500, 800, 64, 64) && 

@@ -63,6 +63,8 @@ SensDepTotal,Total
 SensDepExtreme,Total (no whispers)
 DisableAutoMaid,Maids come automatically when restrained
 BlindDisableExamine,Disable examining people when blind
+AllowHopping,Allow hopping out of rooms
+SlowWhenLegsBound,Slow player when legs are bound
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
