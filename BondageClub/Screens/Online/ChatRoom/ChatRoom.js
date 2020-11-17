@@ -26,57 +26,6 @@ var ChatRoomDorFailLevel = 0;
 
 var ChatRoomLastBackground = ""
 var ChatRoomBackgroundIndoors = false
-var ChatRoomIndoorKeywords = [
-	"Introduction",
-	"Office",
-	"Room",
-	"AbandonedBuilding",
-	"Asylum",
-	"Balcony",
-	"Bar",
-	"Cafe",
-	"Hotel",
-	"Chamber",
-	"Boudoir",
-	"Boutique",
-	"Detention",
-	"Cell",
-	"Lounge",
-	"Confessions",
-	"Theater",
-	"Chalet",
-	"Dungeon",
-	"Dressing",
-	"Exhibit",
-	"Tomb",
-	"Gambling",
-	"Management",
-	"Vages",
-	"Kitchen",
-	"KidnapLeague",
-	"Magic",
-	"Quarters",
-	"Hall",
-	"Studio",
-	"Nursery",
-	"Club",
-	"Private",
-	"Basement",
-	"Research",
-	"Rooftop",
-	"Saloon",
-	"Hospital",
-	"Shibari",
-	"Shop",
-	"Apartment",
-	"Casino",
-	"Cellar",
-	"Corridor",
-	"Vault",
-	"Cabin",
-	"XmasDay",
-	"XmasEve",
-	]
 
 /**
  * Checks if the chat room is currently indoors. You don't need to be able to turn a doorknob to leave an outdoor area :)
@@ -86,9 +35,10 @@ function ChatRoomBackgroundIsIndoors() {
 	if (ChatRoomData && ChatRoomData.Background != ChatRoomLastBackground) {
 		ChatRoomLastBackground = ChatRoomData.Background
 		ChatRoomBackgroundIndoors = false
-		for (let B = 0; B < ChatRoomIndoorKeywords.length; B++) {
-			if (ChatRoomLastBackground.indexOf(ChatRoomIndoorKeywords[B]) >= 0) {
-				ChatRoomBackgroundIndoors = true
+		for (let B = 0; B < BackgroundsList.length; B++) {
+			    { Name: "Introduction", Tag: [BackgroundsTagIndoor, BackgroundsTagClub] },
+			if (BackgroundsList[B].Name == ChatRoomLastBackground) {
+				ChatRoomBackgroundIndoors = BackgroundsList[B].Tag.find(item => { return item === BackgroundsTagIndoor } ) != null
 			}
 		}
 	}
