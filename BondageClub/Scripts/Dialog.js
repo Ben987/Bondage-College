@@ -344,7 +344,8 @@ function DialogCanUnlock(C, Item) {
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.OwnerOnly == true)) return Item.Asset.Enable && C.IsOwnedByPlayer();
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.LoverOnly == true)) return Item.Asset.Enable && C.IsLoverOfPlayer();
 	if (InventoryGetItemProperty(Item, "SelfUnlock") == false && (!Player.CanInteract() || C.ID == 0)) return false;
-	if (InventoryGetLock(Item).Asset.ExclusiveUnlock && (Player.MemberNumber != Item.Property.LockMemberNumber)) return false;
+	if (InventoryGetLock(Item).Asset.ExclusiveUnlock && !(Player.MemberNumber == Item.Property.LockMemberNumber ||
+		(Item.Property.MemberNumberList && CommonConvertStringToArray(Item.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) return false;
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
 	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && !Item.Property.LockedBy.startsWith("Owner")) return true;
 	var UnlockName = "Unlock-" + Item.Asset.Name;

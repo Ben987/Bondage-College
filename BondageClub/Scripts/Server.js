@@ -249,6 +249,7 @@ function ServerValidateProperties(C, Item) {
 			    )) {
 				delete Item.Property.LockedBy;
 				delete Item.Property.LockMemberNumber;
+				delete Item.Property.LockMemberNumberList;
 				delete Item.Property.CombinationNumber;
 				delete Item.Property.RemoveTimer;
 				delete Item.Property.MaxTimer;
@@ -284,6 +285,7 @@ function ServerValidateProperties(C, Item) {
 				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || ((C.Ownership.MemberNumber != Item.Property.LockMemberNumber) && (C.MemberNumber != Item.Property.LockMemberNumber)))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
+					delete Item.Property.LockMemberNumberList;
 					delete Item.Property.CombinationNumber;
 					delete Item.Property.RemoveTimer;
 					delete Item.Property.MaxTimer;
@@ -298,6 +300,7 @@ function ServerValidateProperties(C, Item) {
 				if (Lock.Asset.LoverOnly && ((Item.Property.LockMemberNumber == null) || ((C.GetLoversNumbers().indexOf(Item.Property.LockMemberNumber) < 0) && (C.MemberNumber != Item.Property.LockMemberNumber)))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
+					delete Item.Property.LockMemberNumberList;
 					delete Item.Property.CombinationNumber;
 					delete Item.Property.RemoveTimer;
 					delete Item.Property.MaxTimer;
@@ -396,6 +399,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						if (C.Appearance[A].Property) {
 							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
+							if (C.Appearance[A].Property.LockMemberNumberList != null) NA.Property.LockMemberNumberList = C.Appearance[A].Property.LockMemberNumberList; else delete NA.Property.LockMemberNumberList;
 							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
@@ -424,6 +428,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						if (C.Appearance[A].Property) {
 							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
+							if (C.Appearance[A].Property.LockMemberNumberList != null) NA.Property.LockMemberNumberList = C.Appearance[A].Property.LockMemberNumberList; else delete NA.Property.LockMemberNumberList;
 							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
