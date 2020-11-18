@@ -660,6 +660,10 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				if (Item.Property == null) Item.Property = {};
 				if (Item.Property.Effect == null) Item.Property.Effect = [];
 				if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
+				if (Item.Property.Effect.indexOf("MemberNumberList") < 0) {
+					if (!Item.Property) Item.Property = {}
+					if (!Item.Property.MemberNumberList) Item.Property.MemberNumberList = "" + MemberNumber
+				}
 				Item.Property.LockedBy = Lock.Asset.Name;
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
@@ -681,6 +685,7 @@ function InventoryUnlock(C, Item) {
 		delete Item.Property.LockedBy;
 		delete Item.Property.RemoveTimer;
 		delete Item.Property.LockMemberNumber;
+		delete Item.Property.LockMemberNumberList;
 		CharacterRefresh(C);
 	}
 }
