@@ -50,7 +50,6 @@ var DialogLockPickProgressSkillLose = 0;
 var DialogLockPickProgressChallenge = 0;
 var DialogLockPickProgressMaxTries = 0;
 var DialogLockPickProgressCurrentTries = 0;
-var DialogLockPickJamTime = 0;
 var DialogLockPickSuccessTime = 0;
 
 var DialogLockMenu = false
@@ -618,11 +617,7 @@ function DialogMenuButtonBuild(C) {
 				|| ((Item != null) && (C.ID == 0) && !Player.CanInteract() && InventoryItemHasEffect(Item, "Block", true) && IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked))
 				DialogMenuButton.push("Unlock");
 			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract()) && InventoryItemIsPickable(Item) && !IsGroupBlocked) {
-				if (DialogLockPickJamTime > CurrentTime) {
-					DialogMenuButton.push("PickLockJammed");
-				} else {
-					DialogMenuButton.push("PickLock");
-				}
+				DialogMenuButton.push("PickLock");
 			}
 			if (IsItemLocked && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
 				DialogMenuButton.push("InspectLock");
@@ -1028,7 +1023,11 @@ function DialogLockPickProgressStart(C, Item) {
 		var NumTries = NumPins * 4
 		// At 4 pins we have a base of 16 tries, with 10 maximum permutions possible
 		// At 10 pins we have a base of 40 tries, with 55 maximum permutions possible
-		NumTries = Math.max(NumPins, NumTries - Math.max(0, -2*S)) // subtract 2 tries per negative skill 
+		NumTries = Math.floor(Math.max(NumPins*1.5, NumTries - Math.max(
+			Math.max(0, -S)*Math.max(0, -S)/3,
+			Math.max(0, -S-S*NumPins/5)
+			))) // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
+				// negative skill of 6 subtracts 12 from all locks
 	
 
 		DialogLockPickProgressMaxTries = NumTries;
@@ -1754,11 +1753,7 @@ function DialogLockPickClick(C) {
 					
 					
 					
-				
-					if (DialogLockPickProgressCurrentTries / DialogLockPickProgressMaxTries > 0.4) { // Enough to gauge the difficulty without committing too hard
-						// Jam the lock
-						DialogLockPickJamTime = CurrentTime + 60000
-					}
+
 					break;
 				}
 			}
@@ -1818,13 +1813,10 @@ function DialogDrawLockpickProgress(C) {
 
 	
 	DrawText(DialogFind(Player, "LockpickTriesRemaining") + (DialogLockPickProgressMaxTries - DialogLockPickProgressCurrentTries), X, 212, "white");
-	if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries)
-		DrawText(DialogFind(Player, "LockpickJammed"), X, 262, "white");
-	else
+	if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries)
 		DrawText(DialogFind(Player, "LockpickFailed"), X, 262, "red");
 		
-	if (DialogLockPickJamTime > 0 && DialogLockPickJamTime < CurrentTime)
-		DialogLockPickJamTime = 0
+
 	DrawText(DialogFind(Player, "LockpickIntro"), X, 800, "white");
 	DrawText(DialogFind(Player, "LockpickIntro2"), X, 850, "white");
 	
@@ -1837,7 +1829,6 @@ function DialogDrawLockpickProgress(C) {
 				InventoryUnlock(C, item)
 			}
 		}
-		DialogLockPickJamTime = 0
 		SkillProgress("LockPicking", DialogLockPickProgressSkill);
 		// The player can use another item right away, for another character we jump back to her reaction
 		if (C.ID == 0) {
