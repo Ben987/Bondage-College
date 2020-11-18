@@ -344,7 +344,7 @@ function DialogCanUnlock(C, Item) {
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.LoverOnly == true)) return Item.Asset.Enable && C.IsLoverOfPlayer();
 	if (InventoryGetItemProperty(Item, "SelfUnlock") == false && (!Player.CanInteract() || C.ID == 0)) return false;
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
-	if (InventoryGetLock(Item).Asset.ExclusiveUnlock && !(Item.Property.MemberNumberList && CommonConvertStringToArray("" + Item.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0)) return false;
+	if (InventoryGetLock(Item).Asset.ExclusiveUnlock && (!Item.Property.MemberNumberList || !(Item.Property.MemberNumberList && CommonConvertStringToArray("" + Item.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) return false;
 	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && !Item.Property.LockedBy.startsWith("Owner")) return true;
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
@@ -987,8 +987,8 @@ function DialogLockPickProgressStart(C, Item) {
 		DialogLockPickImpossiblePins = [];
 		DialogLockPickProgressItem = Item;
 		DialogLockPickProgressOperation = DialogLockPickProgressGetOperation(C, Item);
-		DialogLockPickProgressSkill = NumPins*NumPins/2+8*Math.max(0, -S)*Math.max(0, -S); // Scales squarely, so that more difficult locks provide bigger reward!
-		DialogLockPickProgressSkillLose = NumPins*NumPins/2 // Even if you lose you get some reward. You get this no matter what if you run out of tries.
+		DialogLockPickProgressSkill = 8*Math.max(0, -S)*Math.max(0, -S); // Scales squarely, so that more difficult locks provide bigger reward!
+		DialogLockPickProgressSkillLose = Math.min(Math.floor(DialogLockPickProgressSkill/1.5), NumPins*NumPins/2) // Even if you lose you get some reward. You get this no matter what if you run out of tries.
 		DialogLockPickProgressChallenge = S * -1;
 		DialogLockPickProgressCurrentTries = 0;
 		DialogLockPickSuccessTime = 0
@@ -1746,7 +1746,7 @@ function DialogLockPickClick(C) {
 						var order = DialogLockPickImpossiblePins.indexOf(P)/DialogLockPickSet.length * skill/10 // At higher skills you can see which pins are later in the order
 						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.7*order+Math.random()*0.6*(1.0 - skill/15))
 						
-						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && C.ID == 0) 
+						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && DialogLockPickSet.filter(x => x==false).length > 0 ) 
 							SkillProgress("LockPicking", DialogLockPickProgressSkillLose);
 					}
 					
@@ -1812,7 +1812,7 @@ function DialogDrawLockpickProgress(C) {
 
 	
 	DrawText(DialogFind(Player, "LockpickTriesRemaining") + (DialogLockPickProgressMaxTries - DialogLockPickProgressCurrentTries), X, 212, "white");
-	if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries)
+	if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries && DialogLockPickSuccessTime == 0)
 		DrawText(DialogFind(Player, "LockpickFailed"), X, 262, "red");
 		
 
