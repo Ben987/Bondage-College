@@ -45,6 +45,7 @@ var AudioActions = [
 	{ Action: "ActionAddLock", Sound: "LockSmall" },
 	{ Action: "TimerRelease", Sound: "Unlock" },
 	{ Action: "ActionUnlock", Sound: "Unlock" },
+	{ Action: "ActionPick", Sound: "Unlock" },
 	{ Action: "ActionUnlockAndRemove", Sound: "Unlock" },
 	{ Action: "FuturisticCollarTriggerLockdown", Sound: "HydraulicLock" },
 	{ Action: "FuturisticCollarTriggerUnlock", Sound: "HydraulicUnlock" },

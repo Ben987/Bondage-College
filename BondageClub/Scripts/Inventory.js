@@ -497,6 +497,19 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 }
 
 /**
+* Returns TRUE if an item lock is pickable
+* @param {AppearanceItem} Item - The item from appearance that must be validated
+* @returns {Boolean} - TRUE if IsPickable is on the item
+*/
+function InventoryItemIsPickable(Item) {
+	if (!Item) return null;
+	var lock = InventoryGetLock(Item)
+	if (lock && lock.Asset && lock.Asset.IsPickable) return true;
+	else return false;
+	
+}
+
+/**
  * Returns the value of a given property of an appearance item, prioritizes the Property object.
  * @param {object} Item - The appearance item to scan 
  * @param {string} PropertyName - The property name to get.
@@ -709,6 +722,7 @@ function InventoryConfiscateKey() {
 	InventoryDelete(Player, "MetalCuffsKey", "ItemMisc");
 	InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
 	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
+	InventoryDelete(Player, "HighSecurityPadlockKey", "ItemMisc");
 }
 
 /**
