@@ -9,7 +9,7 @@ function InventoryItemMiscHighSecurityPadlockLoad() {
 
 	// Only create the inputs if the zone isn't blocked
 	if (!InventoryGroupIsBlocked(C, C.FocusGroup.Name)) {
-		if (DialogFocusSourceItem != null && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.MemberNumberList))) {
+		if (DialogFocusSourceItem != null && ((DialogFocusSourceItem.Property.MemberNumberList && CommonConvertStringToArray(DialogFocusSourceItem.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) {
 			ElementCreateTextArea("MemberNumberList");
 			document.getElementById("MemberNumberList").setAttribute("maxLength", 250);
 			document.getElementById("MemberNumberList").setAttribute("autocomplete", "off");
@@ -29,7 +29,7 @@ function InventoryItemMiscHighSecurityPadlockDraw() {
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null)) 
 		DrawText(DialogFind(Player, "LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 650, "white", "gray");
 	
-	if (!InventoryGroupIsBlocked(C, C.FocusGroup.Name)&& (DialogFocusSourceItem != null && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.MemberNumberList)))) {
+	if (!InventoryGroupIsBlocked(C, C.FocusGroup.Name)&& (DialogFocusSourceItem != null && ((DialogFocusSourceItem.Property.MemberNumberList && CommonConvertStringToArray(DialogFocusSourceItem.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0)))) {
 		DrawText(DialogFind(Player, "HighSecuritySaveIntro"), 1500, 600, "white", "gray");
 		ElementPosition("MemberNumberList", 1510, 780, 300, 170);
 		DrawButton(1385, 920, 230, 64, DialogFind(Player, "HighSecuritySave"), "White", "");
@@ -42,7 +42,7 @@ function InventoryItemMiscHighSecurityPadlockDraw() {
 // Catches the item extension clicks
 function InventoryItemMiscHighSecurityPadlockClick() {
 	var C = CharacterGetCurrent();
-	if (MouseIn(1385, 920, 230, 64) && !InventoryGroupIsBlocked(C, C.FocusGroup.Name)&& (DialogFocusSourceItem != null && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.MemberNumberList)))) {
+	if (MouseIn(1385, 920, 230, 64) && !InventoryGroupIsBlocked(C, C.FocusGroup.Name)&& (DialogFocusSourceItem != null && ((DialogFocusSourceItem.Property.MemberNumberList && CommonConvertStringToArray(DialogFocusSourceItem.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0)))) {
 		if (DialogFocusSourceItem != null && DialogFocusSourceItem.Property != null) {
 			DialogFocusSourceItem.Property.MemberNumberList = 
 				CommonConvertArrayToString(CommonConvertStringToArray(ElementValue("MemberNumberList").trim())) // Convert to array and back; can only save strings on server
@@ -63,6 +63,7 @@ function InventoryItemMiscHighSecurityPadlockClick() {
 			}
 			else {
 				CharacterRefresh(C);
+				InventoryItemMiscCombinationPadlockExit();
 			}
 		}
 		
