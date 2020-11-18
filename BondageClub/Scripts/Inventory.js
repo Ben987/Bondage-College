@@ -685,7 +685,7 @@ function InventoryUnlock(C, Item) {
 		delete Item.Property.LockedBy;
 		delete Item.Property.RemoveTimer;
 		delete Item.Property.LockMemberNumber;
-		delete Item.Property.LockMemberNumberList;
+		delete Item.Property.MemberNumberList;
 		CharacterRefresh(C);
 	}
 }
