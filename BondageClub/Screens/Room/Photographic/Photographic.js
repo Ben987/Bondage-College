@@ -7,6 +7,14 @@ var PhotographicCurrendGroup = null;
 var PhotographicSubAppearance = null;
 var PhotographicSelectText = "";
 
+
+// Returns TRUE if the player has maids disabled
+/**
+ * Checks if the player is helpless (maids disabled) or not.
+ * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
+ */
+function PhotographicIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ) }
+
 function PhotographicPlayerCanChangeCloth() {return Player.CanChange() && !Player.IsRestrained()}
 function PhotographicPlayerHatAvailable() {return PhotographicAppearanceAvailable(Player, "Hat");}
 function PhotographicPlayerGlovesAvailable() {return PhotographicAppearanceAvailable(Player, "Gloves");}
@@ -30,8 +38,11 @@ function PhotographicSubCanAskForPhoto() {return Player.CanTalk() && !Photograph
 function PhotographicSubCanWinkForPhoto() {return !Player.CanTalk() && !PhotographicSub.IsRestrained()}
 function PhotographicSubCanKeel() {return PhotographicSub.CanKneel()}
 
-function PhotographicIsRestrainedWithLock() { return (Player.IsRestrained() && InventoryCharacterHasLockedRestraint(Player)) };
+function PhotographicIsRestrainedWithLock() { return (Player.IsRestrained() && (InventoryCharacterHasLockedRestraint(Player))) };
 function PhotographicIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)) };
+function PhotographicIsRestrainedWithLockAndMaidsNotDisabled() { return (Player.IsRestrained() && (InventoryCharacterHasLockedRestraint(Player)) && !PhotographicIsMaidsDisabled()) };
+function PhotographicIsRestrainedWithoutLockAndMaidsNotDisabled() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player) && !PhotographicIsMaidsDisabled()) };
+function PhotographicIsMaidsDisabledAndRestrained() { return (Player.IsRestrained() && PhotographicIsMaidsDisabled() ) }
 
 function PhotographicLoad() {
 	if (PhotographicSub == null) {

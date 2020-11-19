@@ -152,8 +152,7 @@ function VibratorModeLoad(Options) {
 	if (!Property || !Property.Mode) {
 		Options = (Options && Options.length) ? Options : [VibratorModeSet.STANDARD];
 		var FirstOption = VibratorModeOptions[Options[0]][0] || VibratorModeOptions[VibratorModeSet.STANDARD][0];
-		DialogFocusItem.Property = Object.assign({}, Property, FirstOption.Property);
-		VibratorModeSetDynamicProperties(DialogFocusItem.Property);
+		VibratorModeSetProperty(DialogFocusItem, FirstOption.Property);
 		var C = CharacterGetCurrent();
 		CharacterRefresh(C);
 		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
@@ -180,7 +179,7 @@ function VibratorModeDrawHeader() {
 
 	var X = 1389;
 	var Y = 102;
-	if (DialogFocusItem.Property.Intensity >= 0) {
+	if ((DialogFocusItem != null) && (DialogFocusItem.Property != null) && (DialogFocusItem.Property.Intensity != null) && (DialogFocusItem.Property.Intensity >= 0)) {
 		X += Math.floor(Math.random() * 3) - 1;
 		Y += Math.floor(Math.random() * 3) - 1;
 	}
@@ -250,8 +249,7 @@ function VibratorModeSetMode(Option) {
 	var C = CharacterGetCurrent();
 	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 	var OldIntensity = DialogFocusItem.Property.Intensity;
-	var Property = DialogFocusItem.Property = Object.assign({}, DialogFocusItem.Property, Option.Property);
-	VibratorModeSetDynamicProperties(Property);
+	VibratorModeSetProperty(DialogFocusItem, Option.Property);
 	CharacterRefresh(C);
 	ChatRoomCharacterItemUpdate(C, C.FocusGroup.Name);
 
@@ -261,9 +259,9 @@ function VibratorModeSetMode(Option) {
 		{ Tag: "AssetName", AssetName: DialogFocusItem.Asset.Name },
 	];
 
-	if (Property.Intensity !== OldIntensity) {
-		var Direction = Property.Intensity > OldIntensity ? "Increase" : "Decrease";
-		Message = "Vibe" + Direction + "To" + Property.Intensity;
+	if (DialogFocusItem.Property.Intensity !== OldIntensity) {
+		var Direction = DialogFocusItem.Property.Intensity > OldIntensity ? "Increase" : "Decrease";
+		Message = "Vibe" + Direction + "To" + DialogFocusItem.Property.Intensity;
 	} else {
 		Message = "VibeModeChange";
 		Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
@@ -278,8 +276,11 @@ function VibratorModeSetMode(Option) {
  * @returns {void} - Nothing
  */
 function VibratorModeSetDynamicProperties(Property) {
-	if (typeof Property.Intensity === "function") Property.Intensity = Property.Intensity();
-	if (typeof Property.Effect === "function") Property.Effect = Property.Effect(Property.Intensity);
+	const NewProperty = Object.assign({}, Property);
+	if (typeof NewProperty.Intensity === "function") NewProperty.Intensity = NewProperty.Intensity();
+	if (typeof NewProperty.Effect === "function") NewProperty.Effect = NewProperty.Effect(NewProperty.Intensity);
+	else NewProperty.Effect = JSON.parse(JSON.stringify(Property.Effect || []))
+	return NewProperty;
 }
 
 /**
@@ -322,7 +323,7 @@ function VibratorModeUpdateRandom(Item, C, PersistentData) {
 	var OldIntensity = Item.Property.Intensity;
 	var Intensity = CommonRandomItemFromList(OldIntensity, [-1, 0, 1, 2, 3]);
 	var Effect = Intensity === -1 ? ["Egged"] : ["Egged", "Vibrating"];
-	Object.assign(Item.Property, { Intensity, Effect });
+	VibratorModeSetProperty(Item, { Intensity, Effect });
 	// Next update in 1-3 minutes
 	PersistentData.ChangeTime = Math.floor(CommonTime() + OneMinute + Math.random() * 2 * OneMinute);
 	VibratorModePublish(C, Item, OldIntensity, Intensity);
@@ -341,7 +342,7 @@ function VibratorModeUpdateEscalate(Item, C, PersistentData) {
 	// As intensity increases, time between updates decreases
 	var TimeFactor = Math.pow((5 - Intensity), 1.8);
 	var TimeToNextUpdate = (8000 + Math.random() * 4000) * TimeFactor;
-	Object.assign(Item.Property, { Intensity, Effect: ["Egged", "Vibrating"] });
+	VibratorModeSetProperty(Item, { Intensity, Effect: ["Egged", "Vibrating"] });
 	PersistentData.ChangeTime = Math.floor(CommonTime() + TimeToNextUpdate);
 	VibratorModePublish(C, Item, OldIntensity, Intensity);
 }
@@ -381,7 +382,7 @@ function VibratorModeUpdateEdge(Item, C, PersistentData) {
 	var OneMinute = 60000;
 	var OldIntensity = Item.Property.Intensity;
 	var Intensity = Math.min(Item.Property.Intensity + 1, 3);
-	Object.assign(Item.Property, { Intensity, Effect: ["Egged", "Vibrating", "Edged"] });
+	VibratorModeSetProperty(Item, { Intensity, Effect: ["Egged", "Vibrating", "Edged"] });
 	if (Intensity === 3) {
 		// If we've hit max intensity, no more changes needed
 		PersistentData.ChangeTime = Infinity;
@@ -425,7 +426,7 @@ function VibratorModeUpdateStateBased(Item, C, PersistentData, TransitionsFromDe
 	if (State === VibratorModeState.DENY || Item.Property.Mode === VibratorMode.DENY) Effect.push("Edged");
 	if (Intensity !== -1) Effect.push("Vibrating");
 
-	Object.assign(Item.Property, { State, Intensity, Effect });
+	VibratorModeSetProperty(Item, { State, Intensity, Effect });
 	Object.assign(PersistentData, {
 		ChangeTime: CommonTime() + 5000,
 		LastChange: Intensity !== OldIntensity ? CommonTime() : PersistentData.LastChange,
@@ -525,6 +526,25 @@ function VibratorModeStateUpdateRest(C, Arousal, TimeSinceLastChange, OldIntensi
 		Intensity = CommonRandomItemFromList(OldIntensity, [0, 1, 2, 3]);
 	}
 	return { State, Intensity };
+}
+
+/**
+ * Correctly sets the Property on a vibrator according to the new property. This function preserves persistent effects on the item like lock
+ * effects.
+ * @param {Item[]} Item - The item on which to set the new properties
+ * @param {object} Property - The new properties to set. The Property object may include dynamic setter functions
+ * @returns {void} - Nothing
+ */
+function VibratorModeSetProperty(Item, Property) {
+	Property = VibratorModeSetDynamicProperties(Property);
+	if (Item.Property && Array.isArray(Item.Property.Effect)) {
+		Item.Property.Effect.forEach(Effect => {
+			if (!["Egged", "Vibrating", "Edged"].includes(Effect)) {
+				Property.Effect.push(Effect);
+			}
+		});
+	}
+	Item.Property = Object.assign({}, Item.Property, Property);
 }
 
 /**

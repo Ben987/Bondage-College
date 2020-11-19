@@ -50,7 +50,7 @@ function InformationSheetRun() {
 
 	// Shows the LARP class
 	if ((C.Game != null) && (C.Game.LARP != null) && (C.Game.LARP.Class != null))
-		DrawText(TextGet("LARPClass") + " " + TextGet("LARPClass" + C.Game.LARP.Class), 550, 500, "Black", "Gray");
+		DrawText(TextGet("LARPClass") + " " + TextGet("LARPClass" + C.Game.LARP.Class) + " (" + GameLARPGetClassLevel(C.Game.LARP) + ")", 550, 500, "Black", "Gray");
 
 	// For the current player or an online player
 	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;

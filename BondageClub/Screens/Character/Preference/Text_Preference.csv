@@ -1,10 +1,22 @@
 Preferences,- Preferences -
+GeneralPreferences,- General Preferences -
 ChatPreferences,- Chat Preferences -
 AudioPreferences,- Audio Preferences -
 ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
 SecurityPreferences,- Security Preferences -
 VisibilityPreferences,- Item Preferences -
+VFXPreferences,- Graphical Preferences -
 OnlinePreferences,- Online Preferences -
+ImmersionPreferences,- Immersion Preferences -
+HomepageGeneral,General
+HomepageChat,Chat
+HomepageAudio,Audio
+HomepageArousal,Arousal
+HomepageSecurity,Security
+HomepageVisibility,Item Visibility
+HomepageOnline,Online
+HomepageImmersion,Immersion
+HomepageGraphics,Graphics
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -42,9 +54,14 @@ AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
+ImmersionLockSetting,Lock this menu while bound
+BlockGaggedOOC,Prevent Out-Of-Character chat while gagged
 SensDepSetting,Sensory deprivation setting
+SensDepLight,Light
 SensDepNames,Hide names
 SensDepTotal,Total
+SensDepExtreme,Total (no whispers)
+DisableAutoMaid,Maids come automatically when restrained
 BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height
@@ -71,6 +88,11 @@ ArousalActiveNoMeter,Allow without a meter
 ArousalActiveManual,Allow with a manual meter
 ArousalActiveHybrid,Allow with a hybrid meter
 ArousalActiveAutomatic,Allow with a locked meter
+VFX,Arousal meter visuals
+VFXInactive,Bare Meter
+VFXSolid,Solid Glow
+VFXAnimatedTemp,Temporary Animation
+VFXAnimated,Constant Animation
 ArousalVisible,Meter visibility:
 ArousalVisibleAll,Show arousal to everyone
 ArousalVisibleAccess,Show if they have access

@@ -165,6 +165,8 @@ var BackgroundsList = [
     { Name: "SciFiOutdoors", Tag: [BackgroundsTagOutdoor, BackgroundsTagSciFiFantasy] },
     { Name: "Castle", Tag: [BackgroundsTagOutdoor, BackgroundsTagSciFiFantasy] },
     { Name: "EgyptianTomb", Tag: [BackgroundsTagIndoor] },
+    { Name: "PoolBottom", Tag: [BackgroundsTagAquatic] },
+    { Name: "LatexRoom", Tag: [BackgroundsTagIndoor, BackgroundsTagDungeon, BackgroundsTagAsylum] },
 ];
 
 /**

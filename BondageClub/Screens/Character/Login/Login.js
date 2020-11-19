@@ -4,10 +4,10 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Desch", "Dini", "Epona", "Escurse", "Fluffythewhat", 
-						 "Greendragon", "John", "Michal", "Mindtie", "Misa", "MuchyCat", "Mzklopyu", "Nera", "Nick", "Overlord", 
-						 "Rashiash", "Ray", "Reire", "Robin", "Rutherford", "Ryner", "Samuel", "Setsu", "Shadow", "Sky", 
-						 "Tam", "Thomas", "Trent", "William", "Xepherio"];
+var LoginThankYouList = ["Abby", "Aylea", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Dini", "Epona", "Escurse", "FanRunner", 
+						 "Fluffythewhat", "Greendragon", "Jin", "Joe", "KamiKaze", "KBgamer", "Kimuriel", "Michal", "Michel", "Mike", 
+						 "Mindtie", "Misa", "Nick", "Overlord", "Rashiash", "Ray", "Rika", "Rutherford", "Ryner", "Samuel", 
+						 "Setsu", "Shadow", "Sky", "Tam", "Thomas", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -349,6 +349,7 @@ function LoginResponse(C) {
 			Player.VisualSettings = C.VisualSettings;
 			Player.AudioSettings = C.AudioSettings;
 			Player.GameplaySettings = C.GameplaySettings;
+			Player.ImmersionSettings = C.ImmersionSettings;
 			Player.ArousalSettings = C.ArousalSettings;
 			Player.OnlineSettings = C.OnlineSettings;
 			Player.OnlineSharedSettings = C.OnlineSharedSettings;

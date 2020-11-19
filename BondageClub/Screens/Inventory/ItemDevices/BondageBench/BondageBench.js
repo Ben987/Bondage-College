@@ -1,92 +1,116 @@
 "use strict";
 
-// Loads the item extension properties
+var InventoryItemDevicesBondageBenchOptions = [
+	{
+		Name: "None",
+		Property: {
+			Type: null,
+			Difficulty: 0,
+			AllowLock: false,
+			SetPose: ["LegsClosed"],
+			Effect: ["Mounted"],
+		},
+	},
+	{
+		Name: "Light",
+		SelfBondageLevel: 2,
+		Prerequisite: ["NoOuterClothes"],
+		Property: {
+			Type: "Light",
+			Difficulty: 2,
+			SetPose: ["LegsClosed", "BaseUpper"],
+			Effect: ["Block", "Prone", "Freeze", "Mounted"],
+			Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+		},
+	},
+	{
+		Name: "Normal",
+		SelfBondageLevel: 3,
+		Prerequisite: ["NoOuterClothes"],
+		Property: {
+			Type: "Normal",
+			Difficulty: 3,
+			SetPose: ["LegsClosed", "BaseUpper"],
+			Effect: ["Block", "Prone", "Freeze", "Mounted"],
+			Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+		},
+	},
+	{
+		Name: "Heavy",
+		SelfBondageLevel: 6,
+		Prerequisite: ["NoOuterClothes"],
+		Property: {
+			Type: "Heavy",
+			Difficulty: 6,
+			SetPose: ["LegsClosed", "BaseUpper"],
+			Effect: ["Block", "Prone", "Freeze", "Mounted"],
+			Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+		},
+	},
+	{
+		Name: "Full",
+		SelfBondageLevel: 9,
+		Prerequisite: ["NoOuterClothes"],
+		Property: {
+			Type: "Full",
+			Difficulty: 9,
+			SetPose: ["LegsClosed", "BaseUpper"],
+			Effect: ["Block", "Prone", "Freeze", "Mounted"],
+			Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+		},
+	},
+];
+
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemDevicesBondageBenchLoad() {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	var addonItem = InventoryGet(C, "ItemAddon");
-	if (addonItem != null && addonItem.Name == ("BondageBenchStraps")) {
-		DialogExtendItem(addonItem);
-		return;
-	}
-
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
+	ExtendedItemLoad(InventoryItemDevicesBondageBenchOptions, "BondageBenchStrapsSelectTightness");
 }
 
-// Draw the item extension screen
+/**
+ * Draw the item extension screen
+ * @returns {void} - Nothing
+ */
 function InventoryItemDevicesBondageBenchDraw() {
-
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	var strapsBlocked = InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null;
-	var itemBlocked = InventoryGet(C, "ItemAddon") != null;
-	var BondageBenchStraps = InventoryItemCreate(C, "ItemAddon", "BondageBenchStraps");
-	var itemPermissionBlocked = InventoryIsPermissionBlocked(C, "BondageBenchStraps", "ItemAddon") || !InventoryCheckLimitedPermission(C, BondageBenchStraps);
-
-	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
-	DrawText(DialogFind(Player, "BondageBenchSelectType"), 1500, 500, "white", "gray");
-	DrawButton(1389, 550, 225, 225, "", (InventoryGet(C, "ItemAddon") != null || strapsBlocked) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/StrapUp.png", 1389, 550);
-	DrawText(DialogFind(Player, "BondageBenchPoseStrapUp"), 1500, 800, "white", "gray");
-
-	// Draw the message if the player is wearing clothes
-	if (strapsBlocked) {
-		DrawTextWrap(DialogFind(Player, "RemoveClothesForItem"), 1100, 850, 800, 160, "White");
-	} else if (itemBlocked) { 
-		DrawTextWrap(DialogFind(Player, "ItemAddonRemoveAddon"), 1100, 850, 800, 160, "White");
-	} else if (itemPermissionBlocked) { 
-		DrawTextWrap(DialogFind(Player, "ItemAddonUsedWithWrongPermissions"), 1100, 850, 800, 160, "White");
-	}
+	ExtendedItemDraw(InventoryItemDevicesBondageBenchOptions, "BondageBenchStrapsPose");
 }
 
-// Catches the item extension clicks
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemDevicesBondageBenchClick() {
-	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (MouseIn(1389, 550, 225, 225) && InventoryGet(C, "ItemAddon") == null) InventoryItemDevicesBondageBenchSetPose("StrapUp");
+	ExtendedItemClick(InventoryItemDevicesBondageBenchOptions);
 }
 
-// Sets the cuffs pose (wrist, elbow, both or none)
-function InventoryItemDevicesBondageBenchSetPose(NewPose) {
-
-	// Gets the current item and character
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemDevicesBondageBenchLoad();
-	}
-
-	var BondageBenchStraps = InventoryItemCreate(C, "ItemAddon", "BondageBenchStraps");
-
-	// Do not continue if the item is blocked
-	if (InventoryIsPermissionBlocked(C, "BondageBenchStraps", "ItemAddon") || !InventoryCheckLimitedPermission(C, BondageBenchStraps)) return;
-
-	// Cannot be used with clothes or other addons
-	if ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "ClothLower") != null)) return;
-	if (InventoryGet(C, "ItemAddon") != null) return;
-
-	// Adds the strap and focus on it
-	if (NewPose == "StrapUp") {
-		InventoryWear(C, "BondageBenchStraps", "ItemAddon", DialogColorSelect);
-		DialogFocusItem = InventoryGet(C, "ItemAddon");
-	}
-
-	// Refreshes the character and chatroom
-	CharacterRefresh(C);
-	var msg = "BondageBenchRestrain" + ((NewPose == null) ? "None" : NewPose);
-	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-	Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @param {Option} PreviousOption - The previously selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemDevicesBondageBenchPublishAction(C, Option, PreviousOption) {
+	var msg = "BondageBenchStrapsRestrain" + ((!Option.Property.Type) ? "None" : Option.Property.Type);
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
-	ChatRoomCharacterItemUpdate(C, "ItemAddon");
+}
 
-	// Rebuilds the inventory menu
-	if (DialogInventory != null) {
-		DialogFocusItem = null;
-		DialogMenuButtonBuild(C);
-	}
-
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemDevicesBondageBenchNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "InventoryItemDevicesBondageBenchNPCReaction" + Option.Name, "ItemDevices");
 }

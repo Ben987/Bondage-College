@@ -37,9 +37,8 @@ function CharacterAppearanceBuildAssets(C) {
 
 }
 
-// 
 /**
- * Makes sure the character appearance is valid from inventory and asset requirement
+ * Makes sure the character appearance is valid from inventory and asset requirement. This function is called during the login process.
  * @param {Character} C - The character whose appearance is checked
  * @returns {void} - Nothing
  */
@@ -54,7 +53,7 @@ function CharacterAppearanceValidate(C) {
 		}
 
 	// Remove items flagged as "Remove At Login"
-	if (!Player.GameplaySettings || !Player.GameplaySettings.DisableAutoRemoveLogin)
+	if (LogQuery("Committed", "Asylum") || !Player.GameplaySettings || !Player.GameplaySettings.DisableAutoRemoveLogin)
 		for (let A = C.Appearance.length - 1; A >= 0; A--)
 			if (C.Appearance[A].Asset.RemoveAtLogin) {
 				C.Appearance.splice(A, 1);
@@ -290,7 +289,7 @@ function CharacterAppearanceSortLayers(C) {
 	var layers = C.Appearance.reduce((layersAcc, item) => {
 		var asset = item.Asset;
 		// Only include layers for visible assets
-		if (asset.Visible && CharacterAppearanceVisible(C, asset.Name, asset.Group.Name)) {
+		if (asset.Visible && CharacterAppearanceVisible(C, asset.Name, asset.Group.Name) && InventoryChatRoomAllow(asset.Category)) {
 			// Check if we need to draw a different variation (from type property)
 			var type = (item.Property && item.Property.Type) || "";
 			// Only include layers that permit the current type (if AllowTypes is not defined, also include the layer)
@@ -337,13 +336,14 @@ function CharacterAppearanceSortLayers(C) {
 }
 
 /**
- * Determines wether an item or a whole item group is visible or not
+ * Determines whether an item or a whole item group is visible or not
  * @param {Character} C - The character whose assets are checked
  * @param {string} AssetName - The name of the asset to check
  * @param {string} GroupName - The name of the item group to check
+ * @param {boolean} Recursive - If TRUE, then other items which are themselves hidden will not hide this item. Parameterising this prevents infinite loops.
  * @returns {boolean} - Returns TRUE if we can show the item or the item group
  */
-function CharacterAppearanceVisible(C, AssetName, GroupName) {
+function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 	if (CharacterAppearanceItemIsHidden(AssetName, GroupName)) {
 		C.HasHiddenItems = true;
 		return false;
@@ -351,10 +351,19 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if (CharacterAppearanceItemIsHidden(C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) continue;
-		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) return false;
-		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) return false;
-		if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) return false;
-		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.HideItem != null) && (C.Appearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) return false;
+		let HidingItem = false;
+		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
+		else if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
+		else if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		else if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.HideItem != null) && (C.Appearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		if (HidingItem) {
+			if (Recursive) {
+				if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name, false)) {
+					return false;
+				}
+			}
+			else return false;
+		}
 	}
 
 	if (C.Pose != null)
@@ -522,7 +531,7 @@ function AppearanceRun() {
 				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
 				const ColorButtonText = ItemColorGetColorButtonText(Color);
 				const ColorButtonColor = ColorButtonText.startsWith("#") ? ColorButtonText : "#fff";
-				const CanCycleColors = !!Item && WardrobeGroupAccessible(C, AssetGroup[A]) && Item.Asset.ColorableLayerCount > 0;
+				const CanCycleColors = !!Item && WardrobeGroupAccessible(C, AssetGroup[A]) && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1);
 				const CanPickColor = CanCycleColors && AssetGroup[A].AllowColorize;
 				const ColorIsSimple = ItemColorIsSimple(Item);
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, ColorButtonText, CanCycleColors ? ColorButtonColor : "#aaa", null, null, !CanCycleColors);
@@ -796,7 +805,7 @@ function AppearanceClick() {
 			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++) {
 				const Item = InventoryGet(C, AssetGroup[A].Name);
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") &&
-				    WardrobeGroupAccessible(C, AssetGroup[A]) && Item && Item.Asset.ColorableLayerCount > 0)
+				    WardrobeGroupAccessible(C, AssetGroup[A]) && Item && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
 						CharacterAppearanceNextColor(C, AssetGroup[A].Name);
 			}

@@ -134,6 +134,7 @@ function AssetAdd(NewAsset) {
 		AllowType: NewAsset.AllowType,
 		DefaultColor: NewAsset.DefaultColor,
 		Audio: NewAsset.Audio,
+		Category: NewAsset.Category,
 		Fetish: NewAsset.Fetish,
 		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
@@ -155,6 +156,7 @@ function AssetAdd(NewAsset) {
 		DynamicAfterDraw: (typeof NewAsset.DynamicAfterDraw === 'boolean') ? NewAsset.DynamicAfterDraw : false,
 		DynamicScriptDraw: (typeof NewAsset.DynamicScriptDraw === 'boolean') ? NewAsset.DynamicScriptDraw : false,
 		HasType: (typeof NewAsset.HasType === 'boolean') ? NewAsset.HasType : true,
+		AllowLockType: NewAsset.AllowLockType,
 		AllowColorizeAll: typeof NewAsset.AllowColorizeAll === 'boolean' ? NewAsset.AllowColorizeAll : true,
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);

@@ -168,7 +168,8 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "CuffedArms") return  (C.Effect.indexOf("CuffedArms") <= -1) ? "MustBeArmCuffedFirst" : "";
 	if (Prerequisite == "CuffedFeet") return (C.Effect.indexOf("CuffedFeet") <= -1) ? "MustBeFeetCuffedFirst" : "";
 	if (Prerequisite == "NoOuterClothes") return (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null) ? "RemoveClothesForItem" : "";
-
+	if (Prerequisite == "NoMaidTray") return ((InventoryGet(C, "ItemMisc") != null) && ( InventoryGet(C, "ItemMisc").Asset.Name == "WoodenMaidTray" || InventoryGet(C, "ItemMisc").Asset.Name == "WoodenMaidTrayFull")) ? "CannotBeUsedWhileServingDrinks" : "";
+	
 	// Checks for torso access based on clothes
 	var Cloth = InventoryGet(C, "Cloth");
 	if ((Prerequisite == "AccessTorso") && (Cloth != null) && !Cloth.Asset.Expose.includes("ItemTorso")) return "RemoveClothesForItem";
@@ -640,14 +641,18 @@ function InventoryHasLockableItems(C) {
 function InventoryLock(C, Item, Lock, MemberNumber) {
 	if (typeof Item === 'string') Item = InventoryGet(C, Item);
 	if (typeof Lock === 'string') Lock = { Asset: AssetGet(C.AssetFamily, "ItemMisc", Lock) };
-	if (Item && Lock && Item.Asset.AllowLock && Lock.Asset.IsLock) {
-		if (Item.Property == null) Item.Property = {};
-		if (Item.Property.Effect == null) Item.Property.Effect = [];
-		if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
-		Item.Property.LockedBy = Lock.Asset.Name;
-		if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
-		if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
-		CharacterRefresh(C);
+	if (Item && Lock && Lock.Asset.IsLock) {
+		if (Item.Asset.AllowLock && (!Item.Property || Item.Property.AllowLock !== false)) {
+			if (!Item.Asset.AllowLockType || Item.Asset.AllowLockType.includes(Item.Property.Type)) {
+				if (Item.Property == null) Item.Property = {};
+				if (Item.Property.Effect == null) Item.Property.Effect = [];
+				if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
+				Item.Property.LockedBy = Lock.Asset.Name;
+				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
+				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
+				CharacterRefresh(C, true);
+			}
+		}
 	}
 }
 
@@ -808,12 +813,24 @@ function InventoryIsKey(Item) {
 }
 
 /**
- * Serialises the provided character's inventory into a string for easy comparisons, inventory items are uniquely identified by their name
- * and group
+ * Serialises the provided character's inventory into a string for easy comparisons, inventory items are uniquely identified by their name and group
  * @param {Character} C - The character whose inventory we should serialise
  * @return {string} - A simple string representation of the character's inventory
  */
 function InventoryStringify(C) {
 	if (!C || !Array.isArray(C.Inventory)) return "";
 	return C.Inventory.map(({ Name, Group }) => Group + Name ).join();
+}
+
+/**
+ * Returns TRUE if the inventory category is blocked in the current chat room
+ * @param {array} Category - An array of string containing all the categories to validate
+ * @return {boolean} - TRUE if it's blocked
+ */
+function InventoryChatRoomAllow(Category) {
+	if ((CurrentScreen == "ChatRoom") && (Category != null) && (Category.length > 0) && (ChatRoomData != null) && (ChatRoomData.BlockCategory != null) && (ChatRoomData.BlockCategory.length > 0))
+		for (let C = 0; C < Category.length; C++)
+			if (ChatRoomData.BlockCategory.indexOf(Category[C]) >= 0)
+				return false;
+	return true;
 }

@@ -8,6 +8,14 @@ var TimerLastArousalProgressCount = 0;
 var TimerLastArousalDecay = 0;
 
 /**
+ * Returns the current time from the local computer clock
+ * @returns {number} - Returns the number of milliseconds
+ */
+function TimerGetTime() {
+	return new Date().getTime();
+}
+
+/**
  * Returns a string of the time remaining on a given timer
  * @param {number} T - Time to convert to a string in ms 
  * @returns {string} - The time string in the DD:HH:MM:SS format (Days and hours not displayed if it contains none)
@@ -57,13 +65,10 @@ function TimerInventoryRemove() {
 						delete Character[C].Appearance[A].Property.ShowTimer;
 						delete Character[C].Appearance[A].Property.EnableRandomInput;
 						delete Character[C].Appearance[A].Property.MemberNumberList;
-						if (Character[C].Appearance[A].Property.Effect != null) {
+						if (Character[C].Appearance[A].Property.Effect != null)
 							for (let E = 0; E < Character[C].Appearance[A].Property.Effect.length; E++)
 								if (Character[C].Appearance[A].Property.Effect[E] == "Lock")
 									Character[C].Appearance[A].Property.Effect.splice(E, 1);
-							if (!Character[C].Appearance[A].Property.Effect.length) Character[C].Appearance[A].Property.Effect = undefined;
-						}
-
 
 						// If we're removing a lock and we're in a chatroom, send a chatroom message
 						if (LockName && CurrentScreen === "ChatRoom") {
@@ -171,10 +176,12 @@ function TimerProcess(Timestamp) {
 							if (Character[C].ArousalSettings.ProgressTimer < 0) {
 								Character[C].ArousalSettings.ProgressTimer++;
 								ActivityTimerProgress(Character[C], -1);
+								ActivityVibratorLevel(Character[C], 0)
 							}
 							else {
 								Character[C].ArousalSettings.ProgressTimer--;
 								ActivityTimerProgress(Character[C], 1);
+								ActivityVibratorLevel(Character[C], 4); 
 							}
 						} else if (Character[C].IsEgged()) {
 
@@ -197,14 +204,15 @@ function TimerProcess(Timestamp) {
 							}
 
 							// Kicks the arousal timer faster from personal arousal
-							if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) ActivityTimerProgress(Character[C], 1);
-							if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) ActivityTimerProgress(Character[C], 1);
-							if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0) && (Character[C].ArousalSettings.Progress <= 95)) ActivityTimerProgress(Character[C], 1);
-							if ((Factor == 1) && (TimerLastArousalProgressCount % 6 == 0) && (Character[C].ArousalSettings.Progress <= 65)) ActivityTimerProgress(Character[C], 1);
-							if ((Factor == 0) && (TimerLastArousalProgressCount % 8 == 0) && (Character[C].ArousalSettings.Progress <= 35)) ActivityTimerProgress(Character[C], 1);
+							if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) {ActivityVibratorLevel(Character[C], 4); ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) {ActivityVibratorLevel(Character[C], 3); ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0)) {ActivityVibratorLevel(Character[C], 2); if (Character[C].ArousalSettings.Progress <= 95) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 1) && (TimerLastArousalProgressCount % 6 == 0)) {ActivityVibratorLevel(Character[C], 1); if (Character[C].ArousalSettings.Progress <= 65) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 0) && (TimerLastArousalProgressCount % 8 == 0)) {ActivityVibratorLevel(Character[C], 0); if (Character[C].ArousalSettings.Progress <= 35) ActivityTimerProgress(Character[C], 1);}
 
 						}
-
+					} else {
+						ActivityVibratorLevel(Character[C], 0);
 					}
 				}
 			}

@@ -47,7 +47,17 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		CanChange: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !ManagementIsClubSlave() && !LogQuery("BlockChange", "Rule") && (!LogQuery("BlockChange", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1))) },
 		IsProne: function () { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained: function () { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
-		IsBlind: function () { return ((this.Effect.indexOf("BlindLight") >= 0) || (this.Effect.indexOf("BlindNormal") >= 0) || (this.Effect.indexOf("BlindHeavy") >= 0)) },
+		/** Look for blindness effects and return the worst (limited by settings), Light: 1, Normal: 2, Heavy: 3 */
+		GetBlindLevel: function () {
+			let blindLevel = 0;
+			if (this.Effect.includes("BlindHeavy")) blindLevel = 3;
+			else if (this.Effect.includes("BlindNormal")) blindLevel = 2;
+			else if (this.Effect.includes("BlindLight")) blindLevel = 1;
+			// Light sensory deprivation setting limits blindness
+			if (this.GameplaySettings && this.GameplaySettings.SensDepChatLog == "SensDepLight") blindLevel = Math.min(2, blindLevel);
+			return blindLevel;
+		},
+		IsBlind: function () { return this.GetBlindLevel() > 0 },
 		IsEnclose: function () { return (this.Effect.indexOf("Enclose") >= 0) },
 		IsMounted: function () { return (this.Effect.indexOf("Mounted") >= 0) },
 		IsChaste: function () { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
@@ -1044,12 +1054,31 @@ function CharacterIsEdged(C) {
 		return false;
 	}
 
-	// Get every vibrating item on an orgasm zone
-	const VibratingItems = C.ArousalSettings.Zone
+	// Get all zones that allow an orgasm
+	let OrgasmZones = C.ArousalSettings.Zone
 		.filter(Zone => Zone.Orgasm)
-		.map(Zone => InventoryGet(C, Zone.Name))
+		.map(Zone => Zone.Name);
+
+	// Get every vibrating item acting on an orgasm zone
+	const VibratingItems = C.Appearance
+		.filter(A => OrgasmZones.indexOf(A.Asset.ArousalZone) >= 0)
 		.filter(Item => Item && Item.Property && typeof Item.Property.Intensity === "number" && Item.Property.Intensity >= 0);
 
 	// Return true if every vibrating item on an orgasm zone has the "Edged" effect
 	return !!VibratingItems.length && VibratingItems.every(Item => Item.Property.Effect && Item.Property.Effect.includes("Edged"));
+}
+
+/**
+ * Checks if the character is wearing an item flagged as a category in a blocked list
+ * @param {Character} C - The character to validate
+ * @param {Array} BlockList - An array of strings to validate
+ * @returns {boolean} - TRUE if the character is wearing a blocked item, FALSE otherwise
+ */
+function CharacterHasBlockedItem(C, BlockList) {
+	if ((BlockList == null) || !Array.isArray(BlockList) || (BlockList.length == 0)) return false;
+	for (let B = 0; B < BlockList.length; B++)
+		for (let A = 0; A < C.Appearance.length; A++)
+			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Category != null) && (C.Appearance[A].Asset.Category.indexOf(BlockList[B]) >= 0))
+				return true;
+	return false;
 }

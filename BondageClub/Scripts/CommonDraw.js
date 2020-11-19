@@ -167,10 +167,10 @@ function CommonDrawAppearanceBuild(C, {
 		}
 
 		// Check if we need to copy the color of another asset
-		var InheritColor = Layer.InheritColor || (Color == "Default" ? (A.InheritColor || AG.InheritColor) : null);
+		var InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
 		if (InheritColor != null) {
 			var ParentAsset = InventoryGet(C, InheritColor);
-			if (ParentAsset != null) Color = ParentAsset.Color;
+			if (ParentAsset != null) Color = Array.isArray(ParentAsset.Color) ? ParentAsset.Color[0] : ParentAsset.Color;
 		}
 		
 		// Before drawing hook, receives all processed data. Any of them can be overriden if returned inside an object.
@@ -178,7 +178,7 @@ function CommonDrawAppearanceBuild(C, {
 		// Watch out for object references.
 		if (A.DynamicBeforeDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
 			const DrawingData = {
-				C, X, Y, CA, Color, Property, A, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
+				C, X, Y, CA, Color, Property, A, G, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
 			};
 			const OverridenData = window["Assets" + A.Group.Name + A.Name + "BeforeDraw"](DrawingData);
 			if (typeof OverridenData == "object") {
@@ -261,7 +261,7 @@ function CommonDrawAppearanceBuild(C, {
 		// Watch out for object references.
 		if (A.DynamicAfterDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
 			const DrawingData = {
-				C, X, Y, CA, Property, Color, A, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
+				C, X, Y, CA, Property, Color, A, G, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
 			};
 			window["Assets" + A.Group.Name + A.Name + "AfterDraw"](DrawingData);
 		}

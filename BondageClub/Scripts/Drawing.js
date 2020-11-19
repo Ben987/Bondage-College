@@ -6,6 +6,7 @@
 "use strict";
 var MainCanvas;
 var ColorCanvas;
+var DialogLeaveDueToItem = false
 
 // A bank of all the chached images
 var DrawCacheImage = {};
@@ -130,6 +131,31 @@ function DrawGetImageOnError(Img, IsAsset) {
 }
 
 /**
+ * Draws the glow under the arousal meter under the screen
+ * @param {number} X - Position of the meter on the X axis
+ * @param {number} Y - Position of the meter on the Y axis
+ * @param {number} Zoom - Zoom factor
+ * @param {number} Level - Current vibration level on a scale of 0 to 4. Must be INTEGER
+ * @param {boolean} Animated - Whether or not animations should be played
+ * @param {boolean} Orgasm - Whether or not the meter is in recover from orgasm mode
+ * @returns {void} - Nothing
+ */
+function DrawArousalGlow(X, Y, Zoom, Level, Animated, AnimFactor, Orgasm) {
+	if (!Orgasm) {
+		var Rx = 0
+		var Ry = 0
+		
+		if (Level > 0 && Animated) {
+			Rx = -(1 + AnimFactor * Level/2) + (2 + AnimFactor * Level) * Math.random()
+			Ry = -(1 + AnimFactor * Level/2) + (2 + AnimFactor * Level) * Math.random()
+		}
+		if (!Animated || (Level > 0 || CommonTime() % 1000 > 500))
+			DrawImageZoomCanvas("Screens/Character/Player/ArousalMeter_Glow_" + Math.max(0, Math.min(Math.floor(Level), 4)) + ".png", MainCanvas, 0, 0, 300, 700, X-100*Zoom+Rx, Y-100*Zoom+Ry, 300 * Zoom, 700 * Zoom);
+	}
+}
+
+
+/**
  * Draws the arousal meter on screen
  * @param {number} X - Position of the meter on the X axis
  * @param {number} Y - Position of the meter on the Y axis
@@ -157,7 +183,23 @@ function DrawArousalMeter(C, X, Y, Zoom) {
 		if ((C.ID == 0) || ((C.ArousalSettings.Visible != null) && (C.ArousalSettings.Visible == "Access") && C.AllowItem) || ((C.ArousalSettings.Visible != null) && (C.ArousalSettings.Visible == "All")))
 			if ((C.ID == 0) || (Player.ArousalSettings.ShowOtherMeter == null) || Player.ArousalSettings.ShowOtherMeter) {
 				ActivitySetArousal(C, C.ArousalSettings.Progress);
+
+
+				
+				if (C.ArousalSettings != null && Player.ArousalSettings.VFX != "VFXInactive" && C.ArousalSettings.Progress > 0 && ((C.ArousalSettings.Active == "Automatic") || (C.ArousalSettings.Active == "Hybrid"))) {
+					var Progress = 0
+					if (!((C.ArousalSettings.VibratorLevel == null) || (typeof C.ArousalSettings.VibratorLevel !== "number") || isNaN(C.ArousalSettings.VibratorLevel))) {
+						Progress = C.ArousalSettings.VibratorLevel
+					}
+										
+					if (Progress >= 0) // -1 is disabled
+						var max_time = 5000 // 5 seconds
+						DrawArousalGlow(X + ((C.ArousalZoom ? 50 : 90) * Zoom), Y + ((C.ArousalZoom ? 200 : 400) * Zoom), C.ArousalZoom ? Zoom : Zoom * 0.2, Progress, Player.ArousalSettings.VFX == "VFXAnimated" || (Player.ArousalSettings.VFX == "VFXAnimatedTemp" && C.ArousalSettings.ChangeTime != null && CommonTime() - C.ArousalSettings.ChangeTime < max_time), Math.max(0, (max_time + C.ArousalSettings.ChangeTime - CommonTime())/ max_time), ((C.ArousalSettings.OrgasmTimer != null) && (typeof C.ArousalSettings.OrgasmTimer === "number") && !isNaN(C.ArousalSettings.OrgasmTimer) && (C.ArousalSettings.OrgasmTimer > 0)));
+				}
+				
 				DrawArousalThermometer(X + ((C.ArousalZoom ? 50 : 90) * Zoom), Y + ((C.ArousalZoom ? 200 : 400) * Zoom), C.ArousalZoom ? Zoom : Zoom * 0.2, C.ArousalSettings.Progress, (C.ArousalSettings.Active == "Automatic"), ((C.ArousalSettings.OrgasmTimer != null) && (typeof C.ArousalSettings.OrgasmTimer === "number") && !isNaN(C.ArousalSettings.OrgasmTimer) && (C.ArousalSettings.OrgasmTimer > 0)));
+
+				
 				if (C.ArousalZoom && (typeof C.ArousalSettings.OrgasmCount === "number") && (C.ArousalSettings.OrgasmCount >= 0) && (C.ArousalSettings.OrgasmCount <= 9999)) {
 					MainCanvas.font = Math.round(36 * Zoom).toString() + "px Arial";
 					DrawText(((C.ArousalSettings.OrgasmCount != null) ? C.ArousalSettings.OrgasmCount : 0).toString(), X + 100 * Zoom, Y + 655 * Zoom, "Black", "Gray");
@@ -176,7 +218,7 @@ function DrawArousalMeter(C, X, Y, Zoom) {
  * @returns {void} - Nothing
  */
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
-	if ((C != null) && ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet"))) {
+	if ((C != null) && ((C.ID == 0) || (Player.GetBlindLevel() < 3) || (CurrentScreen == "InformationSheet"))) {
 
 		// If there's a fixed image to draw instead of the character
 		if (C.FixedImage != null) {
@@ -284,7 +326,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 
 		// Draw the character name below herself
 		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
-			if (!Player.IsBlind()) {
+			if (!Player.IsBlind() || (Player.GameplaySettings && Player.GameplaySettings.SensDepChatLog == "SensDepLight")) {
 				MainCanvas.font = "30px Arial";
 				DrawText(C.Name, X + 255 * Zoom, Y + 980 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? Zoom : Zoom / HeightRatio), (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 				MainCanvas.font = "36px Arial";
@@ -753,6 +795,22 @@ function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked) {
 }
 
 /**
+ * Draws a checkbox component
+ * @param {number} Left - Position of the component from the left of the canvas
+ * @param {number} Top - Position of the component from the top of the canvas
+ * @param {number} Width - Width of the component
+ * @param {number} Height - Height of the component
+ * @param {string} Text - Label associated with the checkbox
+ * @param {boolean} IsChecked - Whether or not the checkbox is checked
+ * @param {string} Color - Color of the text
+ * @returns {void} - Nothing
+ */
+function DrawCheckboxColor(Left, Top, Width, Height, Text, IsChecked, Color) {
+	DrawText(Text, Left + 100, Top + 33, Color, "Gray");
+	DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
+}
+
+/**
  * Draw a back & next button component
  * @param {number} Left - Position of the component from the left of the canvas
  * @param {number} Top - Position of the component from the top of the canvas
@@ -942,9 +1000,10 @@ function DrawProcess() {
 	if ((B != null) && (B != "")) {
 		var DarkFactor = 1.0;
 		if ((CurrentModule != "Character") && (B != "Sheet")) {
-			if (Player.Effect.indexOf("BlindHeavy") >= 0) DarkFactor = 0.0;
-			else if (Player.Effect.indexOf("BlindNormal") >= 0) DarkFactor = 0.15;
-			else if (Player.Effect.indexOf("BlindLight") >= 0) DarkFactor = 0.3;
+			const blindLevel = Player.GetBlindLevel();
+			if (blindLevel >= 3) DarkFactor = 0.0;
+			else if (blindLevel == 2) DarkFactor = 0.15;
+			else if (blindLevel == 1) DarkFactor = 0.3;
 			else if (CurrentCharacter != null || ShopStarted) DarkFactor = 0.5;
 		}
 		if (DarkFactor > 0.0) DrawImage("Backgrounds/" + B + ".jpg", 0, 0);
@@ -960,6 +1019,14 @@ function DrawProcess() {
 
 	// Draws the 3D objects
 	Draw3DProcess();
+	
+	// Leave dialogs AFTER drawing everything
+	// If needed
+	// Used to support items that remove you from the dialog during the draw phase
+	if (DialogLeaveDueToItem) {
+		DialogLeaveDueToItem = false
+		DialogLeave()
+	}
 
 }
 
