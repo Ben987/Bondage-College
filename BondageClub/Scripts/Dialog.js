@@ -966,12 +966,13 @@ function DialogLockPickProgressStart(C, Item) {
 
 		// When struggling to pick a lock while being blocked from interacting (for the future if we allow picking locks while bound -Ada)
 		if (!Player.CanInteract() && (Item != null)) {
-			if (InventoryItemHasEffect(InventoryGet(Player, "ItemArms"), "Block", true)) S = S - 4; // Harder If arms are restrained
+			
+			if (InventoryItemHasEffect(InventoryGet(Player, "ItemArms"), "Block", true)) S = S - 3; // Harder If arms are restrained
 			if (InventoryItemHasEffect(InventoryGet(Player, "ItemHands"), "Block", true)) S = S - 50; // Impossible if hands are bound
-			if (!C.CanTalk()) S = S - 1; // A little harder while gagged
+			if (S > -6 && !C.CanTalk()) S = S - 1; // A little harder while gagged, but it wont make it impossible
 			// No bonus from struggle assist. Lockpicking is a solo activity!
 		}
-
+		
 		// Gets the number of pins on the lock
 		var NumPins = 4
 		if (LockRating >= 6) NumPins += 2 // 6 pins for the intricate lock
