@@ -1,6 +1,10 @@
 "use strict";
 
 var InventoryItemMiscHighSecurityPadlockPlayerCanUnlock = true
+var HighSecurityPadlockConfigOwner = true
+var HighSecurityPadlockConfigLover = true
+var HighSecurityPadlockConfigWhitelist = false
+
 
 // Loads the item extension properties
 function InventoryItemMiscHighSecurityPadlockLoad() {
@@ -54,8 +58,16 @@ function InventoryItemMiscHighSecurityPadlockDraw() {
 	
 	if (!InventoryGroupIsBlocked(C, C.FocusGroup.Name)&& (DialogFocusSourceItem != null && ((DialogFocusSourceItem.Property.MemberNumberList && CommonConvertStringToArray("" + DialogFocusSourceItem.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0)))) {
 		DrawText(DialogFind(Player, "HighSecuritySaveIntro"), 1500, 600, "white", "gray");
-		ElementPosition("MemberNumberList", 1510, 780, 300, 170);
-		DrawButton(1385, 920, 230, 64, DialogFind(Player, "HighSecuritySave"), "White", "");
+		ElementPosition("MemberNumberList", 1260, 780, 300, 170);
+		DrawButton(1135, 920, 230, 64, DialogFind(Player, "HighSecuritySave"), "White", "");
+		
+		MainCanvas.textAlign = "left";
+		DrawCheckboxColor(1450, 700, 64, 64, DialogFind(Player, "HighSecurityAppendOwner"), HighSecurityPadlockConfigOwner, "White");
+		DrawCheckboxColor(1450, 780, 64, 64, DialogFind(Player, "HighSecurityAppendLover"), HighSecurityPadlockConfigLover, "White");
+		DrawCheckboxColor(1450, 860, 64, 64, DialogFind(Player, "HighSecurityAppendWhitelist"), HighSecurityPadlockConfigWhitelist, "White");
+		MainCanvas.textAlign = "center";
+
+		
 		if (!InventoryItemMiscHighSecurityPadlockPlayerCanUnlock) {
 			DrawText(DialogFind(Player, "HighSecurityWarning"), 1500, 550, "red", "gray");
 		}
@@ -68,37 +80,59 @@ function InventoryItemMiscHighSecurityPadlockDraw() {
 // Catches the item extension clicks
 function InventoryItemMiscHighSecurityPadlockClick() {
 	var C = CharacterGetCurrent();
-	if (MouseIn(1385, 920, 230, 64) && !InventoryGroupIsBlocked(C, C.FocusGroup.Name)&& (DialogFocusSourceItem != null && ((DialogFocusSourceItem.Property.MemberNumberList && CommonConvertStringToArray("" + DialogFocusSourceItem.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0)))) {
-		if (DialogFocusSourceItem != null && DialogFocusSourceItem.Property != null) {
-			var list = CommonConvertStringToArray("" + ElementValue("MemberNumberList").trim())
-			if (!InventoryItemMiscHighSecurityPadlockPlayerCanUnlock && list.length > 1 && list.indexOf(Player.MemberNumber) >= 0 ) {
-				list = list.filter(x => x !== Player.MemberNumber);
+	if (!InventoryGroupIsBlocked(C, C.FocusGroup.Name)&& (DialogFocusSourceItem != null && ((DialogFocusSourceItem.Property.MemberNumberList && CommonConvertStringToArray("" + DialogFocusSourceItem.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0)))) {
+		if (MouseIn(1135, 920, 230, 64)) {
+			if (DialogFocusSourceItem != null && DialogFocusSourceItem.Property != null) {
+				var list = CommonConvertStringToArray("" + ElementValue("MemberNumberList").trim())
+				if (!InventoryItemMiscHighSecurityPadlockPlayerCanUnlock && list.length > 1 && list.indexOf(Player.MemberNumber) >= 0 ) {
+					list = list.filter(x => x !== Player.MemberNumber);
+				}
+				
+				for (let A = 0; A < C.Appearance.length; A++) {
+					if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
+						C.Appearance[A] = DialogFocusSourceItem;
+				}
+				
+				if (HighSecurityPadlockConfigOwner && Player.Owner && list.indexOf(Player.Owner) < 0) {
+					list.push(Player.Owner)
+				}
+				if (HighSecurityPadlockConfigLover && Player.Lovership) {
+					for (let L = 0; L < Player.Lovership.length; L++) {
+						if (list.indexOf(Player.Lovership[L]) < 0)
+							list.push(Player.Lovership[L].MemberNumber)
+					}
+				}
+				if (HighSecurityPadlockConfigWhitelist && Player.WhiteList) {
+					for (let L = 0; L < Player.WhiteList.length; L++) {
+						if (list.indexOf(Player.WhiteList[L]) < 0)
+							list.push(Player.WhiteList[L])
+					}
+				}
+				
+				DialogFocusSourceItem.Property.MemberNumberList = "" + 
+					CommonConvertArrayToString(list) // Convert to array and back; can only save strings on server
+				ElementValue("MemberNumberList", DialogFocusSourceItem.Property.MemberNumberList);
+				
+				if (CurrentScreen == "ChatRoom") {
+					var Dictionary = [];
+					Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+					Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+					Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
+					ChatRoomPublishCustomAction("HighSecurityUpdate", true, Dictionary);
+					InventoryItemMiscCombinationPadlockExit();
+				}
+				else {
+					CharacterRefresh(C);
+					InventoryItemMiscCombinationPadlockExit();
+				}
 			}
-			DialogFocusSourceItem.Property.MemberNumberList = "" + 
-				CommonConvertArrayToString(list) // Convert to array and back; can only save strings on server
-			ElementValue("MemberNumberList", DialogFocusSourceItem.Property.MemberNumberList);
 			
-			for (let A = 0; A < C.Appearance.length; A++) {
-				if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
-					C.Appearance[A] = DialogFocusSourceItem;
-			}
 			
-			if (CurrentScreen == "ChatRoom") {
-				var Dictionary = [];
-				Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-				Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-				Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
-				ChatRoomPublishCustomAction("HighSecurityUpdate", true, Dictionary);
-				InventoryItemMiscCombinationPadlockExit();
-			}
-			else {
-				CharacterRefresh(C);
-				InventoryItemMiscCombinationPadlockExit();
-			}
+			return;
 		}
-		
-		
-		return;
+		if (MouseIn(1450, 700, 64, 64)) {HighSecurityPadlockConfigOwner = !HighSecurityPadlockConfigOwner; return;}
+		if (MouseIn(1450, 780, 64, 64)) {HighSecurityPadlockConfigLover = !HighSecurityPadlockConfigLover; return;}
+		if (MouseIn(1450, 860, 64, 64)) {HighSecurityPadlockConfigWhitelist = !HighSecurityPadlockConfigWhitelist; return;}
 	}
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemMiscHighSecurityPadlockExit()
 	
