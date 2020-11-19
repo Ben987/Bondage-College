@@ -615,7 +615,7 @@ function DialogMenuButtonBuild(C) {
 			if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())
 				|| ((Item != null) && (C.ID == 0) && !Player.CanInteract() && InventoryItemHasEffect(Item, "Block", true) && IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked))
 				DialogMenuButton.push("Unlock");
-			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract()) && InventoryItemIsPickable(Item) && !IsGroupBlocked) {
+			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && !IsGroupBlocked) {
 				DialogMenuButton.push("PickLock");
 			}
 			if (IsItemLocked && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
@@ -958,14 +958,17 @@ function DialogLockPickProgressStart(C, Item) {
 			S = S - lock.Asset.PickDifficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
 			LockRating = lock.Asset.PickDifficulty // Some features of the minigame are independent of the relative skill level
 		}
+		if (Item.Asset && Item.Asset.Difficulty) {
+			S -= (Item.Difficulty - Item.Asset.Difficulty)/2 // Adds the bondage skill of the item but not the base difficulty!
+		}
 		
 		if (Player.IsEnclose() || Player.IsMounted()) S = S - 2; // A little harder if there's an enclosing or mounting item
 
 		// When struggling to pick a lock while being blocked from interacting (for the future if we allow picking locks while bound -Ada)
-		if ((C.ID == 0) && !C.CanInteract() && (Item != null)) {
-			if (!InventoryItemHasEffect(Item, "Block", true)) S = S - 4; // Non-blocking items become harder to struggle out when already blocked
-			if ((Item.Asset.Group.Name != "ItemArms") && InventoryItemHasEffect(InventoryGet(C, "ItemArms"), "Block", true)) S = S - 4; // Harder If we don't target the arms while arms are restrained
-			if ((Item.Asset.Group.Name != "ItemHands") && InventoryItemHasEffect(InventoryGet(C, "ItemHands"), "Block", true)) S = S - 4; // Harder If we don't target the hands while hands are restrained
+		if (!Player.CanInteract() && (Item != null)) {
+			if (InventoryItemHasEffect(InventoryGet(Player, "ItemArms"), "Block", true)) S = S - 4; // Harder If arms are restrained
+			if (InventoryItemHasEffect(InventoryGet(Player, "ItemHands"), "Block", true)) S = S - 50; // Impossible if hands are bound
+			if (!C.CanTalk()) S = S - 1; // A little harder while gagged
 			// No bonus from struggle assist. Lockpicking is a solo activity!
 		}
 
