@@ -496,6 +496,7 @@ function ChatRoomRun() {
 			ChatRoomSlowStop = false;
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
+			DialogLentLockpicks = false;
 			ServerSend("ChatRoomLeave", "");
 			CommonSetScreen("Online", "ChatSearch");
 		}
@@ -575,6 +576,7 @@ function ChatRoomClick() {
 	if (MouseIn(1005, 0, 120, 62) && ChatRoomCanLeave() && !Player.IsSlow()) {
 		ElementRemove("InputChat");
 		ElementRemove("TextAreaChatLog");
+		DialogLentLockpicks = false;
 		ServerSend("ChatRoomLeave", "");
 		CommonSetScreen("Online", "ChatSearch");
 		CharacterDeleteAllOnline();
@@ -1704,6 +1706,7 @@ function ChatRoomSetRule(data) {
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedForCell", Type: "Action", Dictionary: [{ Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
+			DialogLentLockpicks = false;
 			ServerSend("ChatRoomLeave", "");
 			CharacterDeleteAllOnline();
 			CellLock(TimerCell);
@@ -1733,6 +1736,7 @@ function ChatRoomSetRule(data) {
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedToServeDrinks", Type: "Action", Dictionary: [{ Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");
+			DialogLentLockpicks = false;
 			ServerSend("ChatRoomLeave", "");
 			CharacterDeleteAllOnline();
 			CommonSetScreen("Room", "MaidQuarters");
@@ -1832,6 +1836,7 @@ function ChatRoomSafewordRelease() {
 	ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRelease", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name}] });
 	ElementRemove("InputChat");
 	ElementRemove("TextAreaChatLog");
+			DialogLentLockpicks = false;
 	ServerSend("ChatRoomLeave", "");
 	CommonSetScreen("Online","ChatSearch");
 }
