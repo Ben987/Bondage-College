@@ -26,7 +26,7 @@ var InventoryItemArmsFuturisticCuffsOptions = [
 		Property: {
 			Type: "Elbow",
 			Difficulty: 4,
-			Effect: ["Block", "Prone"],
+			Effect: ["Block", "Prone", "NotSelfPickable"],
 			SetPose: ["BackElbowTouch"],
 			SelfUnlock: false,
 		},
@@ -36,7 +36,7 @@ var InventoryItemArmsFuturisticCuffsOptions = [
 		Property: {
 			Type: "Both",
 			Difficulty: 6,
-			Effect: ["Block", "Prone"],
+			Effect: ["Block", "Prone", "NotSelfPickable"],
 			SetPose: ["BackElbowTouch"],
 			SelfUnlock: false,
 		},
