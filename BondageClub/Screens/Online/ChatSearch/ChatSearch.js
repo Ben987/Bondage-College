@@ -335,7 +335,7 @@ function ChatSearchResponse(data) {
 			ElementRemove("TextAreaChatLog");
 			CommonSetScreen("Online", "ChatSearch");
 			CharacterDeleteAllOnline();
-			CharSearchSetLastChatRoom("")
+			ChatSearchSetLastChatRoom("")
 		}
 		ChatSearchMessage = "Response" + data;
 	}
