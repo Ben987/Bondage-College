@@ -3153,6 +3153,7 @@ var AssetFemale3DCG = [
 			{ Name: "LoversPadlockKey", Value: 40, Wear: false, LoverOnly: true, Effect: ["Unlock-LoversPadlock", "Unlock-LoversTimerPadlock"] },
 			{ Name: "MistressPadlockKey", Value: -1, Wear: false, Effect: ["Unlock-MistressPadlock", "Unlock-MistressTimerPadlock"] },
 			{ Name: "MetalCuffsKey", Value: 20, Time: 5, Wear: false, Effect: ["Unlock-MetalCuffs"] },
+			{ Name: "Lockpicks", Value: 25, Time: 5, Wear: false, Effect: ["Unlock-"] },
 			{ Name: "WoodenMaidTray", Value: -1, Enable: false },
 			{ Name: "WoodenMaidTrayFull", Value: -1, Enable: false },
 			{ Name: "WoodenPaddle", Value: -1, Enable: false },

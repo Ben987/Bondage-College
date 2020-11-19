@@ -728,6 +728,7 @@ function InventoryConfiscateKey() {
 	InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
 	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
 	InventoryDelete(Player, "HighSecurityPadlockKey", "ItemMisc");
+	InventoryDelete(Player, "Lockpicks", "ItemMisc");
 }
 
 /**

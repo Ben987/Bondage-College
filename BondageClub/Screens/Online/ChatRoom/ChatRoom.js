@@ -114,12 +114,14 @@ function ChatRoomCurrentCharacterIsAdmin() { return ((CurrentCharacter != null) 
  */
 function ChatRoomHasSwapTarget() { return (ChatRoomSwapTarget != null) }
 
-function ChatRoomHasHighSecurityLock(C, CC) {
+function ChatRoomHasHighSecurityLock(C, CC, OnlyHighSecurity) {
 	if (C.Appearance != null)
 		for (let A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Property.LockedBy == "HighSecurityPadlock" && C.Appearance[A].Property && C.Appearance[A].Property.MemberNumberList
+			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Asset.ExclusiveUnlock
+			&& (!OnlyHighSecurity || C.Appearance[A].Property.LockMemberNumber == Player.MemberNumber)
+			&& (!OnlyHighSecurity || (C.Appearance[A].Property.MemberNumberList
 			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0
-			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(CC.MemberNumber) < 0) // Make sure you have a lock they dont have the keys to
+			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(CC.MemberNumber) < 0))) // Make sure you have a lock they dont have the keys to
 				return true;
 	return false
 }
@@ -128,14 +130,8 @@ function ChatRoomHasHighSecurityLock(C, CC) {
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanGiveHighSecurityKeys() {
-	if (LogQuery("KeyDeposit", "Cell")) return false;
 	if (!CurrentCharacter.AllowItem) return false
- 	var UnlockName = "Unlock-HighSecurityPadlock";
-
-	// Need to own the keys to use this option
-	for (let I = 0; I < Player.Inventory.length; I++)
-		if (InventoryItemHasEffect(Player.Inventory[I], UnlockName)) return ChatRoomHasHighSecurityLock(Player, CurrentCharacter);
-	return false
+	return ChatRoomHasHighSecurityLock(Player, CurrentCharacter, true);
 }
 
 /**
@@ -143,17 +139,16 @@ function ChatRoomCanGiveHighSecurityKeys() {
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanGiveHighSecurityKeysAll() {
-	if (LogQuery("KeyDeposit", "Cell")) return false;
 	if (!CurrentCharacter.AllowItem) return false
-
-	return ChatRoomHasHighSecurityLock(Player, CurrentCharacter)
+	return ChatRoomHasHighSecurityLock(Player, CurrentCharacter, false)
 }
 
 function ChatRoomGiveHighSecurityKeys() {
 	var C = Player
 	if (C.Appearance != null)
 		for (let A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Property.LockedBy == "HighSecurityPadlock" && C.Appearance[A].Property && C.Appearance[A].Property.MemberNumberList
+			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Asset.ExclusiveUnlock
+			&& C.Appearance[A].Property.MemberNumberList
 			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0
 			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(CurrentCharacter.MemberNumber) < 0) // Make sure you have a lock they dont have the keys to
 				C.Appearance[A].Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList + "," + CurrentCharacter.MemberNumber
@@ -164,18 +159,23 @@ function ChatRoomGiveHighSecurityKeysAll() {
 	var C = Player
 	if (C.Appearance != null)
 		for (let A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Property.LockedBy == "HighSecurityPadlock" && C.Appearance[A].Property && C.Appearance[A].Property.MemberNumberList
+			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Asset.ExclusiveUnlock
+			&& (!C.Appearance[A].Property.MemberNumberList || C.Appearance[A].Property.LockMemberNumber == Player.MemberNumber)
+			&& (!C.Appearance[A].Property.MemberNumberList || (C.Appearance[A].Property.MemberNumberList
 			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0
-			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(CurrentCharacter.MemberNumber) < 0) // Make sure you have a lock they dont have the keys to
+			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(CurrentCharacter.MemberNumber) < 0))) // Make sure you have a lock they dont have the keys to
 			{
-				var list = CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList)
-				
-				if (list) {
-					list = list.filter(x => x !== Player.MemberNumber);
-					list.push(CurrentCharacter.MemberNumber)
-					C.Appearance[A].Property.MemberNumberList = "" + 
-						CommonConvertArrayToString(list) // Convert to array and back; can only save strings on server
+				if (C.Appearance[A].Property.MemberNumberList) {
+					var list = CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList)
+					
+					if (list) {
+						list = list.filter(x => x !== Player.MemberNumber);
+						list.push(CurrentCharacter.MemberNumber)
+						C.Appearance[A].Property.MemberNumberList = "" + 
+							CommonConvertArrayToString(list) // Convert to array and back; can only save strings on server
+					}
 				}
+				C.Appearance[A].Property.LockMemberNumber = CurrentCharacter.MemberNumber
 			}
 	CharacterRefresh(Player)
 	ChatRoomCharacterUpdate(Player);
