@@ -57,6 +57,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			if (this.GameplaySettings && this.GameplaySettings.SensDepChatLog == "SensDepLight") blindLevel = Math.min(2, blindLevel);
 			return blindLevel;
 		},
+		IsLocked: function () { return this.Effect.indexOf("Lock") > 0;},
 		IsBlind: function () { return this.GetBlindLevel() > 0 },
 		IsEnclose: function () { return (this.Effect.indexOf("Enclose") >= 0) },
 		IsMounted: function () { return (this.Effect.indexOf("Mounted") >= 0) },
@@ -469,6 +470,8 @@ function CharacterItemsHavePose(C, Pose) {
 	}
 	return false;
 }
+
+
 
 /**
  * Checks if a character has a pose type from items (not active pose unless an item lets it through)

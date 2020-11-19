@@ -53,7 +53,7 @@ var DialogLockPickProgressCurrentTries = 0;
 var DialogLockPickSuccessTime = 0;
 
 var DialogLockMenu = false
-
+var DialogLentLockpicks = false
 
 
 
@@ -616,12 +616,14 @@ function DialogMenuButtonBuild(C) {
 				|| ((Item != null) && (C.ID == 0) && !Player.CanInteract() && InventoryItemHasEffect(Item, "Block", true) && IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked))
 				DialogMenuButton.push("Unlock");
 			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && !IsGroupBlocked) {
-				
-				for (let I = 0; I < Player.Inventory.length; I++)
-					if (Player.Inventory[I].Name == "Lockpicks") {
-						DialogMenuButton.push("PickLock");
-						break;
-					}
+				if (DialogLentLockpicks) 
+					DialogMenuButton.push("PickLock");
+				else
+					for (let I = 0; I < Player.Inventory.length; I++)
+						if (Player.Inventory[I].Name == "Lockpicks") {
+							DialogMenuButton.push("PickLock");
+							break;
+						}
 					
 			}
 			if (IsItemLocked && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))

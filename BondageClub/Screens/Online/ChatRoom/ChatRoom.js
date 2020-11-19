@@ -114,24 +114,21 @@ function ChatRoomCurrentCharacterIsAdmin() { return ((CurrentCharacter != null) 
  */
 function ChatRoomHasSwapTarget() { return (ChatRoomSwapTarget != null) }
 
-function ChatRoomHasHighSecurityLock(C, CC, OnlyHighSecurity) {
-	if (C.Appearance != null)
-		for (let A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Asset.ExclusiveUnlock
-			&& (!OnlyHighSecurity || C.Appearance[A].Property.LockMemberNumber == Player.MemberNumber)
-			&& (!OnlyHighSecurity || (C.Appearance[A].Property.MemberNumberList
-			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0
-			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(CC.MemberNumber) < 0))) // Make sure you have a lock they dont have the keys to
-				return true;
-	return false
-}
 /**
  * Checks if the player can give the target character her high security keys.
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanGiveHighSecurityKeys() {
 	if (!CurrentCharacter.AllowItem) return false
-	return ChatRoomHasHighSecurityLock(Player, CurrentCharacter, true);
+	if (Player.Appearance != null)
+		for (let A = 0; A < Player.Appearance.length; A++)
+			if (Player.Appearance[A].Asset.IsRestraint && Player.Appearance[A].Property && Player.Appearance[A].Asset.ExclusiveUnlock
+			&& (Player.Appearance[A].Property.MemberNumberList)
+			&& (Player.Appearance[A].Property.MemberNumberList
+			&& CommonConvertStringToArray("" + Player.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0
+			&& CommonConvertStringToArray("" + Player.Appearance[A].Property.MemberNumberList).indexOf(CurrentCharacter.MemberNumber) < 0)) // Make sure you have a lock they dont have the keys to
+				return true;
+	return false
 }
 
 /**
@@ -140,7 +137,14 @@ function ChatRoomCanGiveHighSecurityKeys() {
  */
 function ChatRoomCanGiveHighSecurityKeysAll() {
 	if (!CurrentCharacter.AllowItem) return false
-	return ChatRoomHasHighSecurityLock(Player, CurrentCharacter, false)
+	if (Player.Appearance != null)
+		for (let A = 0; A < Player.Appearance.length; A++)
+			if (Player.Appearance[A].Asset.IsRestraint && Player.Appearance[A].Property && Player.Appearance[A].Asset.ExclusiveUnlock
+			&& (Player.Appearance[A].Property.MemberNumberList || (!OnlyHighSecurity && !Player.Appearance[A].Property.MemberNumberList && Player.Appearance[A].Property.LockMemberNumber == Player.MemberNumber))
+			&& (!Player.Appearance[A].Property.MemberNumberList
+			|| (CommonConvertStringToArray("" + Player.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) // Make sure you have a lock they dont have the keys to
+				return true;
+	return false
 }
 
 function ChatRoomGiveHighSecurityKeys() {
@@ -160,17 +164,17 @@ function ChatRoomGiveHighSecurityKeysAll() {
 	if (C.Appearance != null)
 		for (let A = 0; A < C.Appearance.length; A++)
 			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Asset.ExclusiveUnlock
-			&& (!C.Appearance[A].Property.MemberNumberList || C.Appearance[A].Property.LockMemberNumber == Player.MemberNumber)
+			&& (C.Appearance[A].Property.MemberNumberList || (!C.Appearance[A].Property.MemberNumberList && C.Appearance[A].Property.LockMemberNumber == Player.MemberNumber))
 			&& (!C.Appearance[A].Property.MemberNumberList || (C.Appearance[A].Property.MemberNumberList
-			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0
-			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(CurrentCharacter.MemberNumber) < 0))) // Make sure you have a lock they dont have the keys to
+			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) // Make sure you have a lock they dont have the keys to
 			{
 				if (C.Appearance[A].Property.MemberNumberList) {
 					var list = CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList)
 					
 					if (list) {
 						list = list.filter(x => x !== Player.MemberNumber);
-						list.push(CurrentCharacter.MemberNumber)
+						if (list.indexOf(CurrentCharacter.MemberNumber) < 0)
+							list.push(CurrentCharacter.MemberNumber)
 						C.Appearance[A].Property.MemberNumberList = "" + 
 							CommonConvertArrayToString(list) // Convert to array and back; can only save strings on server
 					}
@@ -187,12 +191,24 @@ function ChatRoomGiveHighSecurityKeysAll() {
  * Checks if the player can help the current character to struggle free.
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
+function ChatRoomCanGiveLockpicks() { 
+	if (CurrentCharacter.AllowItem && CurrentCharacter.IsLocked())
+		for (let I = 0; I < Player.Inventory.length; I++)
+			if (Player.Inventory[I].Name == "Lockpicks") {
+				return true;  
+			}
+	return false;
+}
+/**
+ * Checks if the player can help the current character by giving her lockpicks
+ * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
+ */
 function ChatRoomCanAssistStruggle() { return CurrentCharacter.AllowItem && !CurrentCharacter.CanInteract() }
 /**
  * Checks if the character options menu is available.
  * @returns {boolean} - Whether or not the player can interact with the target character
  */
-function ChatRoomCanPerformCharacterAction() { return ChatRoomCanAssistStand() ||  ChatRoomCanAssistKneel() || ChatRoomCanAssistStruggle()}
+function ChatRoomCanPerformCharacterAction() { return ChatRoomCanAssistStand() ||  ChatRoomCanAssistKneel() || ChatRoomCanAssistStruggle() || ChatRoomCanGiveLockpicks() || ChatRoomCanGiveHighSecurityKeys() || ChatRoomCanGiveHighSecurityKeysAll()}
 /**
  * Checks if the target character can be helped back on her feet. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
  * @returns {boolean} - Whether or not the target character can stand
@@ -214,7 +230,6 @@ function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Play
  * @returns {void} - Nothing.
  */
 function ChatRoomCreateElement() {
-
 	// Creates the chat box
 	if (document.getElementById("InputChat") == null) {
 		ElementCreateTextArea("InputChat");
@@ -954,6 +969,7 @@ function ChatRoomMessage(data) {
 						ChatRoomSlowtimer = CurrentTime + 45000;
 						ChatRoomSlowStop = true;
 					} 
+				if (msg == "GiveLockpicks") DialogLentLockpicks = true;
 				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
 				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
 				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
@@ -1409,6 +1425,20 @@ function ChatRoomStruggleAssist() {
 }
 
 /**
+ * Triggered when the player assists another player to by giving lockpicks
+ * @returns {void} - Nothing.
+ */
+function ChatRoomGiveLockpicks() {
+	var Dictionary = [];
+	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+	Dictionary.push({ Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber });
+	ServerSend("ChatRoomChat", { Content: "GiveLockpicks", Type: "Action", Dictionary: Dictionary });
+	ServerSend("ChatRoomChat", { Content: "GiveLockpicks", Type: "Hidden", Target: CurrentCharacter.MemberNumber });
+	DialogLeave();
+}
+
+
+/**
  * Triggered when a character makes another character kneel/stand.
  * @returns {void} - Nothing
  */
@@ -1652,7 +1682,7 @@ function ChatRoomSetRule(data) {
 
 		// Key rules
 		if (data.Content == "OwnerRuleKeyAllow") LogDelete("BlockKey", "OwnerRule");
-		if (data.Content == "OwnerRuleKeyConfiscate") InventoryConfiscateKey();
+		if (data.Content == "OwnerRuleKeyConfiscate") {InventoryConfiscateKey(); DialogLentLockpicks = false;}
 		if (data.Content == "OwnerRuleKeyBlock") LogAdd("BlockKey", "OwnerRule");
 		if (data.Content == "OwnerRuleSelfOwnerLockAllow") LogDelete("BlockOwnerLockSelf", "OwnerRule");
 		if (data.Content == "OwnerRuleSelfOwnerLockBlock") LogAdd("BlockOwnerLockSelf", "OwnerRule");
