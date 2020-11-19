@@ -618,7 +618,7 @@ function ServerPrivateCharacterSync() {
  */
 function ServerAccountQueryResult(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Query != null) && (typeof data.Query === "string") && (data.Result != null)) {
-		if (data.Query == "OnlineFriends") FriendListLoadFriendList(data.Result);
+		if (data.Query == "Friends") FriendListLoadFriendList(data.Result);
 		if (data.Query == "EmailStatus" && data.Result && document.getElementById("InputEmailOld"))
 			document.getElementById("InputEmailOld").placeholder = TextGet("UpdateEmailLinked");
 		if (data.Query == "EmailStatus" && !data.Result && document.getElementById("InputEmailNew"))
@@ -646,7 +646,7 @@ function ServerAccountBeep(data) {
 		if (ServerBeep.ChatRoomName != null)
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
 		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
-		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
+		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "Friends" });
 	}
 }
 

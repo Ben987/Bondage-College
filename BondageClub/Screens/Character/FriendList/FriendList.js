@@ -7,6 +7,7 @@ var FriendListMode = ["Friends", "Beeps", "Delete"];
 var FriendListModeIndex = 0;
 var FriendListShowBeep = -1;
 var FriendListBeepLog = [];
+let FriendListNextCheck = null;
 
 /**
  * Loads the online friend list from the server. This function is called dynamically, when the player invokes the friendlist dialog.
@@ -17,7 +18,8 @@ function FriendListLoad() {
 	ElementCreateDiv("FriendList");
 	ElementPositionFix("FriendList", 36, 0, 70, 2000, 930);
 	ElementContent("FriendList", FriendListContent);
-	ServerSend("AccountQuery", { Query: "OnlineFriends" });
+	ServerSend("AccountQuery", { Query: "Friends" });
+	FriendListNextCheck = Date.now() + 5000;
 }
 
 // 
@@ -27,13 +29,25 @@ function FriendListLoad() {
  * @returns {void} - Nothing
  */
 function FriendListRun() {
-	DrawText(TextGet("OnlineFriend"), 230, 35, "White", "Gray");
+	const mode = FriendListMode[FriendListModeIndex];
+	DrawText(TextGet(mode === "Beeps" ? "ListBeeps" : "ListFriends"), 230, 35, "White", "Gray");
 	DrawText(TextGet("MemberNumber"), 665, 35, "White", "Gray");
-	DrawText(TextGet("ChatRoomName"), 1100, 35, "White", "Gray");
-	DrawText(TextGet("Action" + FriendListMode[FriendListModeIndex]), 1535, 35, "White", "Gray");
+	if (mode === "Friends") {
+		DrawText(TextGet("ChatRoomName"), 1100, 35, "White", "Gray");
+		DrawText(TextGet("ActionFriends"), 1535, 35, "White", "Gray");
+	} else if (mode === "Beeps") {
+		DrawText(TextGet("ChatRoomName"), 1100, 35, "White", "Gray");
+	} else {
+		DrawText(TextGet("FriendType"), 1100, 35, "White", "Gray");
+		DrawText(TextGet("ActionDelete"), 1535, 35, "White", "Gray");
+	}
 	ElementPositionFix("FriendList", 36, 5, 75, 1985, 890);
 	DrawButton(1865, 5, 60, 60, "", "White", "Icons/Small/Next.png");
 	DrawButton(1935, 5, 60, 60, "", "White", "Icons/Small/Exit.png");
+	if (FriendListNextCheck !== null && Date.now() >= FriendListNextCheck) {
+		FriendListNextCheck = null;
+		ServerSend("AccountQuery", { Query: "Friends" });
+	}
 }
 
 /**
@@ -44,7 +58,7 @@ function FriendListClick() {
 	if ((MouseX >= 1865) && (MouseX < 1925) && (MouseY >= 5) && (MouseY < 65)) {
 		FriendListModeIndex++;
 		if (FriendListModeIndex >= FriendListMode.length) FriendListModeIndex = 0;
-		ServerSend("AccountQuery", { Query: "OnlineFriends" });
+		ServerSend("AccountQuery", { Query: "Friends" });
 	}
 	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 5) && (MouseY < 65)) FriendListExit();
 }
@@ -75,30 +89,46 @@ function FriendListExit() {
  * @returns {void} - Nothing
  */
 function FriendListLoadFriendList(data) {
-
+	FriendListNextCheck = Date.now() + 5000;
 	// Loads the header caption
-	var BeepCaption = DialogFind(Player, "Beep");
-	var DeleteCaption = DialogFind(Player, "Delete");
-	var ConfirmDeleteCaption = DialogFind(Player, "ConfirmDelete");
-	var PrivateRoomCaption = DialogFind(Player, "PrivateRoom");
-	var SentCaption = DialogFind(Player, "SentBeep");
-	var ReceivedCaption = DialogFind(Player, "ReceivedBeep");
-	var SpaceAsylumCaption = DialogFind(Player, "ChatRoomSpaceAsylum");
+	const BeepCaption = DialogFind(Player, "Beep");
+	const DeleteCaption = DialogFind(Player, "Delete");
+	const ConfirmDeleteCaption = DialogFind(Player, "ConfirmDelete");
+	const PrivateRoomCaption = DialogFind(Player, "PrivateRoom");
+	const OfflineCaption = DialogFind(Player, "Offline");
+	const SentCaption = DialogFind(Player, "SentBeep");
+	const ReceivedCaption = DialogFind(Player, "ReceivedBeep");
+	const SpaceAsylumCaption = DialogFind(Player, "ChatRoomSpaceAsylum");
+	const FriendTypeCaption = {
+		Owner: TextGet("TypeOwner"),
+		Lover: TextGet("TypeLover"),
+		Submissive: TextGet("TypeSubmissive"),
+		Friend: TextGet("TypeFriend")
+	};
 	FriendListContent = "";
 
-	// In Friend List mode, we show the friend list and allow doing beeps
-	if (FriendListMode[FriendListModeIndex] == "Friends")
-		for (let F = 0; F < data.length; F++) {
+	const mode = FriendListMode[FriendListModeIndex];
+
+	if (mode === "Friends") {
+		// In Friend List mode, we show the friend list and allow doing beeps
+		for (const friend of data.sort((a, b) => (a.ChatRoomName === "-Offline-" ? 10 : 0) + (b.ChatRoomName === "-Offline-" ? -10 : 0) + a.MemberName.localeCompare(b))) {
 			FriendListContent += "<div class='FriendListRow'>";
-			FriendListContent += "<div class='FriendListTextColumn FriendListFirstColumn'>" + data[F].MemberName + "</div>";
-			FriendListContent += "<div class='FriendListTextColumn'>" + data[F].MemberNumber.toString() + "</div>";
-			FriendListContent += "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : (data[F].ChatRoomSpace ? data[F].ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : '') + data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
-			FriendListContent += "<div class='FriendListLinkColumn' onClick='FriendListBeep(" + data[F].MemberNumber.toString() + ", \"" + data[F].MemberName.toString() + "\")'>" + BeepCaption + "</div>";
+			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${friend.MemberName} </div>`;
+			FriendListContent += `<div class='FriendListTextColumn'> ${friend.MemberNumber} </div>`;
+			if (friend.ChatRoomName === "-Offline-") {
+				FriendListContent += `<div class='FriendListTextColumn'> ${OfflineCaption} </div>`;
+			} else {
+				if (friend.ChatRoomName.startsWith("-")) {
+					FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomName.replace("-Private-", PrivateRoomCaption)} </div>`;
+				} else {
+					FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${friend.ChatRoomName} </div>`;
+				}
+				FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListBeep(${friend.MemberNumber}, "${friend.MemberName}")'> ${BeepCaption} </div>`;
+			}
 			FriendListContent += "</div>";
 		}
-
-	// In Beeps mode, we show all the beeps sent and received
-	if (FriendListMode[FriendListModeIndex] == "Beeps")
+	} else if (mode === "Beeps") {
+		// In Beeps mode, we show all the beeps sent and received
 		for (let B = FriendListBeepLog.length - 1; B >= 0; B--) {
 			FriendListContent += "<div class='FriendListRow'>";
 			FriendListContent += "<div class='FriendListTextColumn FriendListFirstColumn'>" + FriendListBeepLog[B].MemberName + "</div>";
@@ -107,18 +137,20 @@ function FriendListLoadFriendList(data) {
 			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].Sent) ? SentCaption : ReceivedCaption) + " " + TimerHourToString(FriendListBeepLog[B].Time) + "</div>";
 			FriendListContent += "</div>";
 		}
-
-	// In Delete mode, we show the friend list and allow the user to remove them
-	if (FriendListMode[FriendListModeIndex] == "Delete")
-		for (let F = 0; F < data.length; F++)
-			if ((data[F].Type == null) || (data[F].Type != "Submissive")) {
-				FriendListContent += "<div class='FriendListRow'>";
-				FriendListContent += "<div class='FriendListTextColumn FriendListFirstColumn'>" + data[F].MemberName + "</div>";
-				FriendListContent += "<div class='FriendListTextColumn'>" + data[F].MemberNumber.toString() + "</div>";
-				FriendListContent += "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : (data[F].ChatRoomSpace ? data[F].ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : '') + data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
-				FriendListContent += "<div class='FriendListLinkColumn' onClick='FriendListDelete(" + data[F].MemberNumber.toString() + ")'>" + ((FriendListConfirmDelete.indexOf(data[F].MemberNumber) >= 0) ? ConfirmDeleteCaption : DeleteCaption) + "</div>";
-				FriendListContent += "</div>";
+	} else if (mode === "Delete") {
+		// In Delete mode, we show the friend list and allow the user to remove them
+		for (const friend of data.sort((a, b) => a.MemberName.localeCompare(b))) {
+			FriendListContent += "<div class='FriendListRow'>";
+			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${friend.MemberName} </div>`;
+			FriendListContent += `<div class='FriendListTextColumn'> ${friend.MemberNumber} </div>`;
+			if (mode === "Delete") {
+				FriendListContent += `<div class='FriendListTextColumn'> ${FriendTypeCaption[friend.Type]} </div>`;
+				if (friend.Type === "Friend")
+					FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListDelete(${friend.MemberNumber})'> ${FriendListConfirmDelete.includes(friend.MemberNumber) ? ConfirmDeleteCaption : DeleteCaption} </div>`;
 			}
+			FriendListContent += "</div>";
+		}
+	}
 
 	// Loads the friend list div
 	ElementContent("FriendList", FriendListContent);
@@ -136,7 +168,7 @@ function FriendListDelete(MemberNumber) {
 		Player.FriendList.splice(Player.FriendList.indexOf(MemberNumber), 1);
 		ServerSend("AccountUpdate", { FriendList: Player.FriendList });
 	} else FriendListConfirmDelete.push(MemberNumber);
-	ServerSend("AccountQuery", { Query: "OnlineFriends" });
+	ServerSend("AccountQuery", { Query: "Friends" });
 }
 
 /**
