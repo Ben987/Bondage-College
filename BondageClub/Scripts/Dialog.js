@@ -331,6 +331,27 @@ function DialogPrerequisite(D) {
 }
 
 /**
+ * Checks whether the player has a key for the item
+ * @param {Character} C - The character on whom the item is equipped
+ * @param {Item} Item - The item that should be unlocked
+ * @returns {boolean} - Returns true, if the player can unlock the given item with a key, false otherwise
+ */
+function DialogHasKey(C, Item) {
+	var UnlockName = "Unlock-" + Item.Asset.Name;
+	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
+	for (let I = 0; I < Player.Inventory.length; I++)
+		if (InventoryItemHasEffect(Player.Inventory[I], UnlockName)) {
+			var Lock = InventoryGetLock(Item);
+			if (Lock != null) {
+				if (Lock.Asset.LoverOnly && !C.IsLoverOfPlayer()) return false;
+				if (Lock.Asset.OwnerOnly && !C.IsOwnedByPlayer()) return false;
+				return true;
+			} else return true;
+		}
+	return false
+}
+
+/**
  * Checks whether the player is able to unlock the provided item on the provided character
  * @param {Character} C - The character on whom the item is equipped
  * @param {Item} Item - The item that should be unlocked
@@ -346,18 +367,8 @@ function DialogCanUnlock(C, Item) {
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
 	if (InventoryGetLock(Item).Asset.ExclusiveUnlock && (!Item.Property.MemberNumberList || !(Item.Property.MemberNumberList && CommonConvertStringToArray("" + Item.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) return false;
 	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && !Item.Property.LockedBy.startsWith("Owner")) return true;
-	var UnlockName = "Unlock-" + Item.Asset.Name;
-	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
-	for (let I = 0; I < Player.Inventory.length; I++)
-		if (InventoryItemHasEffect(Player.Inventory[I], UnlockName)) {
-			var Lock = InventoryGetLock(Item);
-			if (Lock != null) {
-				if (Lock.Asset.LoverOnly && !C.IsLoverOfPlayer()) return false;
-				if (Lock.Asset.OwnerOnly && !C.IsOwnedByPlayer()) return false;
-				return true;
-			} else return true;
-		}
-	return false;
+
+	return DialogHasKey(C, Item);
 }
 
 /**
@@ -975,11 +986,22 @@ function DialogLockPickProgressStart(C, Item) {
 		// When struggling to pick a lock while being blocked from interacting (for the future if we allow picking locks while bound -Ada)
 		if (!Player.CanInteract() && (Item != null)) {
 			
-			if (InventoryItemHasEffect(InventoryGet(Player, "ItemArms"), "Block", true)) S = S - 2; // Harder If arms are restrained
-			if (InventoryItemHasEffect(InventoryGet(Player, "ItemHands"), "Block", true)) S = S - 50; // Impossible if hands are bound
 			if (InventoryItemHasEffect(Item, "NotSelfPickable", true)) S = S - 50; // Impossible if the item is such that it can't be picked alone (e.g yokes or elbow cuffs)
-			if (S > -6 && !C.CanTalk()) S = S - 1; // A little harder while gagged, but it wont make it impossible
-			// No bonus from struggle assist. Lockpicking is a solo activity!
+			else {
+				if (InventoryItemHasEffect(InventoryGet(Player, "ItemArms"), "Block", true)) S = S - 2; // Harder If arms are restrained
+				if (InventoryItemHasEffect(InventoryGet(Player, "ItemHands"), "Block", true)) {
+					if (DialogHasKey(Player, Item))// If you have keys, its just a matter of getting the keys into the lock~
+						S = S - 4;
+					else // Otherwise it's not possible to pick a lock. Too much dexterity required
+						S = S - 50;
+					// With key, the difficulty is as follows:
+					// Mittened and max Lockpinking, min bondage: Metal padlock is easy, intricate is also easy, anything above will be slightly more challenging than unmittened
+					// Mittened, arms bound, and max Lockpinking, min bondage: Metal padlock is easy, intricate is somewhat hard, high security is very hard, combo impossible
+				}
+				if (S > -6 && !C.CanTalk()) S = S - 1; // A little harder while gagged, but it wont make it impossible
+				if (S > -5 && !C.CanTalk()) S = S - 2; // A little harder while legs bound, but it wont make it impossible
+				// No bonus from struggle assist. Lockpicking is a solo activity!
+			}
 		}
 		
 		// Gets the number of pins on the lock
@@ -1759,8 +1781,13 @@ function DialogLockPickClick(C) {
 						var order = DialogLockPickImpossiblePins.indexOf(P)/DialogLockPickSet.length * skill/10 // At higher skills you can see which pins are later in the order
 						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.7*order+Math.random()*0.6*(1.0 - skill/15))
 						
-						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && DialogLockPickSet.filter(x => x==false).length > 0 ) 
+						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && DialogLockPickSet.filter(x => x==false).length > 0 ) {
 							SkillProgress("LockPicking", DialogLockPickProgressSkillLose);
+							if (DialogLentLockpicks) DialogLentLockpicks = false
+							if (CurrentScreen == "ChatRoom")
+								ChatRoomPublishCustomAction("LockPickBreak", true, [{ Tag: "DestinationCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }]);
+							
+						}
 					}
 					
 					
@@ -1825,8 +1852,9 @@ function DialogDrawLockpickProgress(C) {
 
 	
 	DrawText(DialogFind(Player, "LockpickTriesRemaining") + (DialogLockPickProgressMaxTries - DialogLockPickProgressCurrentTries), X, 212, "white");
-	if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries && DialogLockPickSuccessTime == 0)
+	if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries && DialogLockPickSuccessTime == 0) {
 		DrawText(DialogFind(Player, "LockpickFailed"), X, 262, "red");
+	}
 		
 
 	DrawText(DialogFind(Player, "LockpickIntro"), X, 800, "white");
