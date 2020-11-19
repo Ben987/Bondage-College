@@ -1000,7 +1000,9 @@ function DialogLockPickProgressStart(C, Item) {
 					// Mittened, arms bound, and max Lockpinking, min bondage: Metal padlock is easy, intricate is somewhat hard, high security is very hard, combo impossible
 				}
 				if (S > -6 && !C.CanTalk()) S = S - 1; // A little harder while gagged, but it wont make it impossible
-				if (S > -5 && !C.CanTalk()) S = S - 2; // A little harder while legs bound, but it wont make it impossible
+				if (S > -6 && InventoryItemHasEffect(InventoryGet(Player, "ItemLegs"), "Block", true)) S = S - 1; // A little harder while legs bound, but it wont make it impossible
+				if (S > -6 && InventoryItemHasEffect(InventoryGet(Player, "ItemFeet"), "Block", true)) S = S - 1; // A little harder while legs bound, but it wont make it impossible
+				if (S > -6 && InventoryGroupIsBlocked(Player, "ItemFeet")) S = S - 1; // A little harder while wearing something like a legbinder as well
 				// No bonus from struggle assist. Lockpicking is a solo activity!
 			}
 		}
