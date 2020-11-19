@@ -432,8 +432,11 @@ function ChatRoomSetLastChatRoom(room) {
  */
 function ChatRoomRun() {
 	
-	
+	// Set the admins of the new room
 	if (Player.ImmersionSettings && ChatRoomData && Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.ImmersionSettings.ReturnToChatRoom && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
+		if (Player.LastChatRoomAdmin.indexOf(Player.MemberNumber) < 0) { // Add the player if they are not an admin
+			Player.LastChatRoomAdmin.push(Player.MemberNumber)
+		}
 		var UpdatedRoom = {
 			Name: ChatRoomData.Name,
 			Description: ChatRoomData.Description,

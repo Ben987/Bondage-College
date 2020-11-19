@@ -367,8 +367,7 @@ function ChatSearchResultResponse(data) {
 			}
 		}
 		if (!found) {
-			if (((Player.GameplaySettings && Player.GameplaySettings.EnableSafeword) || MainHallIsMaidsDisabled())
-			&& Player.ImmersionSettings.ReturnToChatRoomAdmin
+			if (Player.ImmersionSettings.ReturnToChatRoomAdmin
 			&& Player.LastChatRoomAdmin
 			&& Player.LastChatRoomBG
 			&& Player.LastChatRoomPrivate != null
