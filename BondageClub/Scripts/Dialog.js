@@ -337,6 +337,11 @@ function DialogPrerequisite(D) {
  * @returns {boolean} - Returns true, if the player can unlock the given item with a key, false otherwise
  */
 function DialogHasKey(C, Item) {
+	if (InventoryGetItemProperty(Item, "SelfUnlock") == false && (!Player.CanInteract() || C.ID == 0)) return false;
+	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
+	if (InventoryGetLock(Item).Asset.ExclusiveUnlock && (!Item.Property.MemberNumberList || !(Item.Property.MemberNumberList && CommonConvertStringToArray("" + Item.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) return false;
+	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && !Item.Property.LockedBy.startsWith("Owner")) return true;
+
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
 	for (let I = 0; I < Player.Inventory.length; I++)
@@ -363,10 +368,6 @@ function DialogCanUnlock(C, Item) {
 	if (LogQuery("KeyDeposit", "Cell")) return false;
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.OwnerOnly == true)) return Item.Asset.Enable && C.IsOwnedByPlayer();
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.LoverOnly == true)) return Item.Asset.Enable && C.IsLoverOfPlayer();
-	if (InventoryGetItemProperty(Item, "SelfUnlock") == false && (!Player.CanInteract() || C.ID == 0)) return false;
-	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
-	if (InventoryGetLock(Item).Asset.ExclusiveUnlock && (!Item.Property.MemberNumberList || !(Item.Property.MemberNumberList && CommonConvertStringToArray("" + Item.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) return false;
-	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && !Item.Property.LockedBy.startsWith("Owner")) return true;
 
 	return DialogHasKey(C, Item);
 }
@@ -990,7 +991,7 @@ function DialogLockPickProgressStart(C, Item) {
 			else {
 				if (InventoryItemHasEffect(InventoryGet(Player, "ItemArms"), "Block", true)) S = S - 2; // Harder If arms are restrained
 				if (InventoryItemHasEffect(InventoryGet(Player, "ItemHands"), "Block", true)) {
-					if (DialogHasKey(Player, Item))// If you have keys, its just a matter of getting the keys into the lock~
+					if (!LogQuery("KeyDeposit", "Cell") && DialogHasKey(Player, Item))// If you have keys, its just a matter of getting the keys into the lock~
 						S = S - 4;
 					else // Otherwise it's not possible to pick a lock. Too much dexterity required
 						S = S - 50;
