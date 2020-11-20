@@ -324,6 +324,9 @@ function InventoryItemMouthFuturisticPanelGagTrigger(C, Item, Reset) {
 			InventoryItemMouthFuturisticPanelGagPublishActionTrigger(C, Item, InventoryItemMouthFuturisticPanelGagOptions[OptionLevel], Reset)
 		Item.Property.OriginalSetting = OriginalItemSetting // After automatically changing it, we put it back to original setting
 		
+		CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
+		CharacterSetFacialExpression(C, "Blush", "Extreme", 15);
+		
 		/*var vol = 1
 		if (Player.AudioSettings && Player.AudioSettings.Volume) {
 			vol = Player.AudioSettings.Volume
@@ -378,18 +381,19 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
 		var GagTriggerPunish = false
 		
 		if (Item.Property.AutoPunish == 3 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
-			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/"))
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
+				&& ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1])
 			GagTriggerPunish = true
 		if (Item.Property.AutoPunish == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
 			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
 			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].length > 25
-				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase())
-				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!'))))
+				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && (ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()
+				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!'))))))
 			GagTriggerPunish = true
 		if (Item.Property.AutoPunish == 1 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
 			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
-			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()
-				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!'))))
+			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && (ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()
+				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!')))))
 			GagTriggerPunish = true
 		
 		if (ChatRoomTargetMemberNumber != null) {
