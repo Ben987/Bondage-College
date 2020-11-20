@@ -6,7 +6,31 @@ var FuturisticChastityBeltShockCooldownStruggle = 30000 // 30 sec
 var InventoryItemPelvisFuturisticChastityBeltTamperZones = [
 	"ItemPelvis",
 	"ItemButt",
+	"ItemVulva",
 ]
+var InventoryItemPelvisFuturisticChastityBeltOptions = [	
+	{
+		Name: "OpenBack",
+		Property: {
+			Type: null,
+			Block: ["ItemVulva", "ItemVulvaPiercings"],
+		},
+	},
+	{
+		Name: "OpenFront",
+		Property: {
+			Type: "OpenFront",
+			Block: ["ItemButt"],
+		},
+	},
+	{
+		Name: "ClosedBack",
+		Property: {
+			Type: "ClosedBack",
+			Block: ["ItemButt", "ItemVulvaPiercings", "ItemVulva"],
+		},
+	},
+];
 
 
 function InventoryItemPelvisFuturisticChastityBeltLoad() {
@@ -46,10 +70,14 @@ function InventoryItemPelvisFuturisticChastityBeltDraw() {
 		DrawCheckboxColor(1100, 760, 64, 64, DialogFind(Player, "FuturisticChastityBeltPunishOrgasm"), DialogFocusItem.Property.PunishOrgasm, "White");
 		MainCanvas.textAlign = "center";
 
-		if (DialogFocusItem.Property.Type == "ClosedBack") {
-			DrawButton(1250, 910, 200, 64, DialogFind(Player, "FuturisticChastityBeltOpenBack"), "White", "");
-		} else {
-			DrawButton(1550, 910, 200, 64, DialogFind(Player, "FuturisticChastityBeltClosedBack"), "White", "");
+		if (DialogFocusItem.Property.Type != null) {
+			DrawButton(1225, 910, 150, 64, DialogFind(Player, "FuturisticChastityBeltOpenBack"), "White", "");
+		} 
+		if (DialogFocusItem.Property.Type != "OpenFront") {
+			DrawButton(1425, 910, 150, 64, DialogFind(Player, "FuturisticChastityBeltOpenFront"), "White", "");
+		}
+		if (DialogFocusItem.Property.Type != "ClosedBack") {
+			DrawButton(1625, 910, 150, 64, DialogFind(Player, "FuturisticChastityBeltClosedBack"), "White", "");
 		}
 
 		
@@ -75,14 +103,17 @@ function InventoryItemPelvisFuturisticChastityBeltClick() {
 		} else if (MouseIn(1100, 760, 64, 64)) {
 			DialogFocusItem.Property.PunishOrgasm = !DialogFocusItem.Property.PunishOrgasm
 			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishOrgasm", DialogFocusItem.Property.PunishOrgasm)
-		} else if (MouseIn(1250, 910, 500, 64)) {
-			if (DialogFocusItem.Property.Type == "ClosedBack") {
-				if (MouseIn(1250, 910, 200, 64)) {
-					ExtendedItemSetType(C, InventoryItemPelvisMetalChastityBeltOptions, InventoryItemPelvisMetalChastityBeltOptions[0], false)
-				}
-			} else if (MouseIn(1550, 910, 200, 64)) {
-				ExtendedItemSetType(C, InventoryItemPelvisMetalChastityBeltOptions, InventoryItemPelvisMetalChastityBeltOptions[1], false)
+		} else if (MouseIn(1200, 910, 600, 64)) {
+			if (MouseIn(1225, 910, 150, 64) && DialogFocusItem.Property.Type != null) {
+				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[0], false)
+			} 
+			if (MouseIn(1425, 910, 150, 64) && DialogFocusItem.Property.Type != "OpenFront") {
+				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[1], false)
 			}
+			if (MouseIn(1625, 910, 150, 64) && DialogFocusItem.Property.Type != "ClosedBack") {
+				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[2], false)
+			}
+
 		} 
 		
 		
