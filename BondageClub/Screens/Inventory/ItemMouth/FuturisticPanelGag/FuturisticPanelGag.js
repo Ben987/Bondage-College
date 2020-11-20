@@ -314,7 +314,7 @@ function InventoryItemMouthFuturisticPanelGagNpcDialog(C, Option) {
 }
 
 function InventoryItemMouthFuturisticPanelGagTrigger(C, Item, Reset) {
-	var OptionLevel = (Reset) ? InventoryItemMouthFuturisticPanelGagGetOption(InventoryItemMouthFuturisticPanelGagOptions, Item.Property.OriginalSetting)
+	var OptionLevel = (Reset) ? Math.max(InventoryItemMouthFuturisticPanelGagGetOption(InventoryItemMouthFuturisticPanelGagOptions, Item.Property.OriginalSetting), InventoryItemMouthFuturisticPanelGagGetOption(InventoryItemMouthFuturisticPanelGagOptions, Item.Property.Type) - 1)
 		: Math.min(InventoryItemMouthFuturisticPanelGagOptions.length, InventoryItemMouthFuturisticPanelGagGetOption(InventoryItemMouthFuturisticPanelGagOptions, Item.Property.Type) + 1);
 	
 	if (Reset || Item.Property.Type != "Plug") {
@@ -403,6 +403,12 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
 		} else if (Item.Property.AutoPunishUndoTime - CurrentTime <= 0 && Item.Property.Type && Item.Property.Type != Item.Property.OriginalSetting) {
 			// Deflate the gag back to the original setting after a while
 			InventoryItemMouthFuturisticPanelGagTrigger(Player, Item, true)
+			if (Item.Property.OriginalSetting != Item.Property.Type)
+				Item.Property.AutoPunishUndoTime = CurrentTime + AutoPunishUndoCD // Reset the deflation time
+			CharacterRefresh(Player, true); // Does not sync appearance while in the wardrobe
+			
+			// For a restraint, we might publish an action or change the dialog of a NPC
+			ChatRoomCharacterUpdate(Player);	
 		}
 	}
 	
