@@ -55,7 +55,7 @@ AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
-BlockGaggedOOC,Prevent Out-Of-Character chat while gagged
+BlockGaggedOOC,Prevent OOC & whispers while gagged
 SensDepSetting,Sensory deprivation setting
 SensDepLight,Light
 SensDepNames,Hide names
