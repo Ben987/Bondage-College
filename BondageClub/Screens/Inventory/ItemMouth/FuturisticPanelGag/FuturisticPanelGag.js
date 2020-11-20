@@ -200,8 +200,9 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 300000) DrawButton(1675, 570, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton300000"), "White", "");
 			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 900000) DrawButton(1675, 640, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton900000"), "White", "");
 			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 3600000) DrawButton(1675, 710, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton3600000"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000) DrawButton(1675, 780, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton72000000"), "White", "");
 			
-			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting) DrawButton(1675, 800, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButtonPump"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting) DrawButton(1675, 880, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButtonPump"), "White", "");
 		}
 		
 	}
@@ -247,8 +248,9 @@ function InventoryItemMouthFuturisticPanelGagClick() {
 		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 300000 && MouseIn(1675, 570, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 300000)
 		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 900000 && MouseIn(1675, 640, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 900000)
 		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 3600000 && MouseIn(1675, 710, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 3600000)
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000 && MouseIn(1675, 780, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 72000000)
 			
-		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting && MouseIn(1675, 800, 200, 64)) {
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting && MouseIn(1675, 880, 200, 64)) {
 			InventoryItemMouthFuturisticPanelGagTrigger(Player, DialogFocusItem, false)
 			DialogFocusItem.Property.AutoPunishUndoTime = CurrentTime + DialogFocusItem.Property.AutoPunishUndoTimeSetting // Reset the deflation time
 			CharacterRefresh(Player, true); // Does not sync appearance while in the wardrobe
