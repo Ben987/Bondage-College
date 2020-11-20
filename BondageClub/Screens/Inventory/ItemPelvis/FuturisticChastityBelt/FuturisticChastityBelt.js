@@ -177,17 +177,13 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 			}
 		}
 		// Punish the player if they struggle anywhere
-		if (Item.Property.PunishStruggleOther && Player.FocusGroup && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0 && DialogProgress > 80) {
+		if (Item.Property.PunishStruggleOther && Player.FocusGroup && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0 && DialogProgress > 50) {
 			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther")
 			Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownStruggle // Longer cooldown to allow some possibilty of kinky escape
 			DialogProgressStruggleCount = 0
 			DialogProgress = 0
 			DialogLeaveDueToItem = true
-			/*var vol = 1
-			if (Player.AudioSettings && Player.AudioSettings.Volume) {
-				vol = Player.AudioSettings.Volume
-			}
-			AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
+
 		}
 		// Punish the player if they orgasm
 		if (Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
@@ -205,22 +201,28 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 // Trigger a shock automatically
 function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType) { 
 
-
-	if (Item.Property && Item.Property.ChatMessage) {
-		var Dictionary = [];
-		Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
-		Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
-		Dictionary.push({ Tag: "SourceCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
-		Dictionary.push({Tag: "AssetName", AssetName: Item.Asset.Name});
-		Dictionary.push({ Tag: "ActivityName", Text: "ShockItem" });
-		Dictionary.push({ Tag: "ActivityGroup", Text: Item.Asset.Group.Name });
-		Dictionary.push({ AssetName: Item.Asset.Name });
-		Dictionary.push({ AssetGroupName: Item.Asset.Group.Name });
-		Dictionary.push({ Automatic: true });
-			
-		ServerSend("ChatRoomChat", { Content: "FuturisticChastityBeltShock" + ShockType, Type: "Action", Dictionary });
+	if (!CurrentScreen == "ChatRoom") {
+		var vol = 1
+		if (Player.AudioSettings && Player.AudioSettings.Volume) {
+			vol = Player.AudioSettings.Volume
+		}
+		AudioPlayInstantSound("Audio/Shocks.mp3", vol)
+	} else {
+		if (Item.Property && Item.Property.ChatMessage) {
+			var Dictionary = [];
+			Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
+			Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+			Dictionary.push({ Tag: "SourceCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+			Dictionary.push({Tag: "AssetName", AssetName: Item.Asset.Name});
+			Dictionary.push({ Tag: "ActivityName", Text: "ShockItem" });
+			Dictionary.push({ Tag: "ActivityGroup", Text: Item.Asset.Group.Name });
+			Dictionary.push({ AssetName: Item.Asset.Name });
+			Dictionary.push({ AssetGroupName: Item.Asset.Group.Name });
+			Dictionary.push({ Automatic: true });
+				
+			ServerSend("ChatRoomChat", { Content: "FuturisticChastityBeltShock" + ShockType, Type: "Action", Dictionary });
+		}
 	}
-	
     CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
     CharacterSetFacialExpression(C, "Blush", "Soft", 15);
     CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
@@ -234,7 +236,7 @@ function AssetsItemPelvisFuturisticChastityBeltScriptDraw(data) {
 	if (typeof persistentData.UpdateTime !== "number") persistentData.UpdateTime = CommonTime() + 4000;
 	if (typeof persistentData.LastMessageLen !== "number") persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
 
-	if (persistentData.UpdateTime < CommonTime() && data.C == Player && CurrentScreen == "ChatRoom") {
+	if (persistentData.UpdateTime < CommonTime() && data.C == Player) {
 		
 		if (CommonTime() > property.NextShockTime) {
 			AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data)
