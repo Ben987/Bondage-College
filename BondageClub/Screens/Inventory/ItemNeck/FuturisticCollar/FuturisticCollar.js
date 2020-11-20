@@ -160,7 +160,7 @@ function InventoryItemNeckFuturisticCollarValidate(C, Option) {
 function InventoryItemNeckFuturisticCollarLockdown(C, LockType) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
 		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) &&
-			(C.Appearance[E].Asset.AllowLock && InventoryGetLock(C.Appearance[E]) == null)) {
+			(C.Appearance[E].Asset.AllowLock && InventoryGetLock(C.Appearance[E]) == null))) {
 				InventoryLock(C, C.Appearance[E], LockType, Player.MemberNumber);
 				var Lock = InventoryGetLock(C.Appearance[E])
 		}
