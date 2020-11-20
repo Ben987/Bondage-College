@@ -508,7 +508,8 @@ function PreferenceSubscreenImmersionRun() {
 	
 	
 	DrawCheckbox(1200, 272, 64, 64, TextGet("ReturnToChatRoom"), Player.ImmersionSettings.ReturnToChatRoom);
-	DrawCheckbox(1200, 352, 64, 64, TextGet("ReturnToChatRoomAdmin"), Player.ImmersionSettings.ReturnToChatRoomAdmin);
+	DrawText(TextGet("ReturnToChatRoomMaid"), 1300, 347, "Black", "Gray");
+	DrawCheckbox(1200, 382, 64, 64, TextGet("ReturnToChatRoomAdmin"), Player.ImmersionSettings.ReturnToChatRoomAdmin);
 	
 
 	DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
@@ -553,7 +554,7 @@ function PreferenceSubscreenImmersionClick() {
 	if (MouseIn(1200, 272, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
-	if (MouseIn(1200, 352, 64, 64) && 
+	if (MouseIn(1200, 382, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
 	
