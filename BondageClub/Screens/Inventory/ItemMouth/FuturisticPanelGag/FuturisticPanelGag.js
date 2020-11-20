@@ -136,6 +136,12 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 			DialogFocusItem = null
 			Player.FocusGroup = null
 			InventoryItemMouthFuturisticPanelGagExit();
+		} else if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy == "CombinationPadlock" && pw == DialogFocusItem.Property.CombinationNumber) {
+			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+			InventoryItemMiscCombinationPadlockUnlock(C, DialogFocusItem)
+			DialogFocusItem = null
+			Player.FocusGroup = null
+			InventoryItemMouthFuturisticPanelGagExit();
 		} else {
 			FuturisticAccessDeniedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
 			var vol = 1
