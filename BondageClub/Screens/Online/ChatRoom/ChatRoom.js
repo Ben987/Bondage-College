@@ -26,6 +26,7 @@ var ChatRoomLastPrivate = false
 var ChatRoomLastSize = 0
 var ChatRoomLastDesc = ""
 var ChatRoomLastAdmin = []
+var ChatRoomRejoinTimer = 30*60000 // 30 minutes
 var ChatRoomNewRoomToUpdate = null
 
 /**
@@ -145,6 +146,12 @@ function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharac
  * @returns {boolean} - TRUE if the current character is slowed down and can be interacted with.
  */
 function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Player.CanInteract() && CurrentCharacter.AllowItem ) }
+
+/**
+ * Checks if the player has waited long enough to be able to call the maids
+ * @returns {boolean} - TRUE if the current character has been in the last chat room for more than 30 minutes 
+ */
+function ChatRoomCanCallMaids() { return (CurrentScreen == "ChatRoom" && (ChatRoomData && ChatRoomData.Game == "" && !(LogValue("Committed", "Asylum") >= CurrentTime)) &&  !Player.CanWalk() && Player.LastChatRoomTimer > 0 && Player.LastChatRoomTimer + ChatRoomRejoinTimer < CurrentTime) }
 
 
 
@@ -397,7 +404,6 @@ function ChatRoomTarget() {
  * @returns {void} - Nothing
  */
 function ChatRoomSetLastChatRoom(room) {
-	Player.LastChatRoom = room
 	if (room != "") {
 		if (ChatRoomData && ChatRoomData.Background)
 			Player.LastChatRoomBG = ChatRoomData.Background
@@ -409,10 +415,14 @@ function ChatRoomSetLastChatRoom(room) {
 			Player.LastChatRoomDesc = ChatRoomData.Description
 		if (ChatRoomData && ChatRoomData.Admin)
 			Player.LastChatRoomAdmin = ChatRoomData.Admin
+		if (Player.LastChatRoomTimer == 0 || !Player.LastChatRoomTimer || Player.LastChatRoom != room)
+			Player.LastChatRoomTimer = CurrentTime
 	} else {
 		Player.LastChatRoomBG = ""
 		Player.LastChatRoomPrivate = false
+		Player.LastChatRoomTimer = 0
 	}
+	Player.LastChatRoom = room
 	var P = {
 		LastChatRoom: Player.LastChatRoom,
 		LastChatRoomBG: Player.LastChatRoomBG,
@@ -420,6 +430,7 @@ function ChatRoomSetLastChatRoom(room) {
 		LastChatRoomSize: Player.LastChatRoomSize,
 		LastChatRoomDesc: Player.LastChatRoomDesc,
 		LastChatRoomAdmin: Player.LastChatRoomAdmin.toString(),
+		LastChatRoomTimer: Player.LastChatRoomTimer
 		
 	};
 	ServerSend("AccountUpdate", P);
@@ -1403,6 +1414,16 @@ function ChatRoomViewProfile() {
 		InformationSheetLoadCharacter(C);
 	}
 }
+
+/**
+ * Brings the player into the main hall and starts the maid punishment sequence
+ * @returns {void}
+ */
+function DialogCallMaids() { 
+	MainHallPunishFromChatroom();
+	CommonSetScreen("Room", "MainHall");
+}
+
 
 /**
  * Triggered when the player assists another player to struggle out, the bonus is evasion / 2 + 1, with penalties if the player is restrained.

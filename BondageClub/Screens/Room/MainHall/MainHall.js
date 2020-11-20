@@ -15,6 +15,14 @@ var MainHallMaidWasCalledManually = false;
 var MainHallRemoveLockTypes = [
 	"CombinationPadlock",
 ]
+var MainHallPunishmentList = [
+	{ItemMouth:"BallGag", ItemHead: "LeatherBlindfold", ItemHands: "DuctTape"},
+	{ItemMouth:"HarnessBallGag", ItemArms:"LeatherArmbinder",ItemLegs:"LegBinder",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"VibratingDildo",ItemBoots:"LockingHeels", ItemHead: "LeatherBlindfold", ItemHands: "LeatherMittens"},
+	{ItemMouth:"DildoPlugGag", ItemArms:"LeatherArmbinder",ItemLegs:"LeatherLegCuffs",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"VibratingEgg",ItemBoots:"LockingHeels", ItemHead: "LeatherBlindfold", ItemHands: "LeatherMittens"},
+	{ItemMouth:"LatexBallMuzzleGag", ItemArms:"LatexBoxtieLeotard",ItemLegs:"LegBinder",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"WiredEgg",ItemBoots:"LockingHeels", ItemHead: "LatexBlindfold", ItemHands: "LeatherMittens"},
+	{ItemMouth:"LatexBallMuzzleGag", ItemArms:"SeamlessStraitDress",ItemLegs:"HobbleSkirt",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"WiredEgg",ItemBoots:"LockingHeels", ItemHead: "SlimLeatherMask", ItemHands: "LeatherMittens"},
+
+]
 
 /**
  * Checks to see if the player needs help in any way
@@ -129,7 +137,7 @@ function MainHallLoad() {
 	CommonReadCSV("NoArravVar", "Room", "Prison", "Dialog_NPC_Prison_Police");
 	CommonReadCSV("NoArravVar", "Character", "Relog", "Text_Relog");
 
-	if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "") {
+	if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && !MainHallMaid.Stage == "1100") {
 		// We return to the chat room that the player was last in		
 		if (Player.ImmersionSettings.ReturnToChatRoom) {
 			ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList);
@@ -420,6 +428,94 @@ function MainHallFreeSarah() {
 	ReputationProgress("Dominant", -4);
 	SarahUnlock();
 	DialogLeave();
+}
+/**
+ * Triggered when the player calls the maids from a chat room
+ * @returns {void} - Nothing
+ */
+function MainHallPunishFromChatroom() {
+	MainHallMaid.Stage = "1100";
+	CharacterRelease(MainHallMaid);
+	CharacterSetCurrent(MainHallMaid);
+}
+/**
+ * Triggered when the maid unlocks the player from a chat room
+ * @returns {void} - Nothing
+ */
+function MainHallPunishFromChatroomEnd() {
+	CharacterRelease(Player);
+	MainHallMaidPunishmentPlayer();
+	// Apply one of several preset restraints
+	// Also  apply mistress locks to everything
+	var I = Math.floor(Math.random() * MainHallPunishmentList.length)
+	
+	MainHallPunishFromList(I)
+	
+	ChatRoomSetLastChatRoom("")
+}
+/**
+ * Triggered when the maid unlocks the player from a chat room
+ * @returns {void} - Nothing
+ */
+function MainHallPunishFromList(I) {
+	if (I == 0) { // We do rope bondage, excluding the feet, but with a ballgag
+
+		var RopeColor = "#F49EFF"
+		var roperand = Math.random()
+		if (roperand > 0.33) // Random chance of different color {
+			RopeColor = "#FF0000"
+		else if (roperand > 0.67)
+			RopeColor = "Default"
+		
+		
+		// Wears more item with higher levels
+		InventoryWear(Player, "HempRope", "ItemArms", RopeColor, Math.floor(Math.random()*10));
+		InventoryWear(Player, "HempRope", "ItemLegs", RopeColor, Math.floor(Math.random()*10));
+		InventoryWear(Player, "HempRope", "ItemFeet", RopeColor, Math.floor(Math.random()*10));
+		if (MainHallPunishmentList[I].ItemMouth) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemMouth, "ItemMouth", [RopeColor, "Default"], Math.floor(Math.random()*10)); InventoryLock(Player, "ItemMouth", "MistressPadlock", null);
+		}
+		if (Math.random() > 0.5) // Random chance of wrist elbow tie instead of boxtie
+			InventoryGet(Player, "ItemArms").Property = { Type: "WristElbowHarnessTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3};
+			
+		if (MainHallPunishmentList[I].ItemHands && Math.random() > 0.33) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemHands, "ItemHands", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHands", "MistressPadlock", null);
+		}
+	} else {
+	
+		if (MainHallPunishmentList[I].ItemVulva && InventoryGet(Player, "ItemVulva") == null) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemVulva, "ItemVulva");
+			InventoryGet(Player, "ItemVulva").Property = { Intensity: 1 };
+		}
+		if (MainHallPunishmentList[I].ItemPelvis && InventoryGet(Player, "ItemPelvis") == null) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemPelvis, "ItemPelvis", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemPelvis", "MistressPadlock", null);
+		}
+		if (MainHallPunishmentList[I].ItemBreast && InventoryGet(Player, "ItemBreast") == null) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemBreast, "ItemBreast", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemBreast", "MistressPadlock", null);
+		}
+		if (MainHallPunishmentList[I].ItemArms) {
+			var ArmsColor = "Default"
+			if (MainHallPunishmentList[I].ItemArms == "LatexBoxtieLeotard" || MainHallPunishmentList[I].ItemArms == "SeamlessStraitDress" ) {
+				ArmsColor = "#252525"
+			}
+			InventoryWear(Player, MainHallPunishmentList[I].ItemArms, "ItemArms", ArmsColor, Math.floor(Math.random()*10)); InventoryLock(Player, "ItemArms", "MistressPadlock", null);
+		}
+		if (MainHallPunishmentList[I].ItemLegs) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemLegs, "ItemLegs", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemLegs", "MistressPadlock", null);
+		}
+
+		if (MainHallPunishmentList[I].ItemMouth) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemMouth, "ItemMouth", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemMouth", "MistressPadlock", null);
+		}
+		if (MainHallPunishmentList[I].ItemHands && Math.random() > 0.33) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemHands, "ItemHands", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHands", "MistressPadlock", null);
+		}
+		if (MainHallPunishmentList[I].ItemHead && Math.random() > 0.33) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemHead, "ItemHead", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHead", "MistressPadlock", null);
+		}
+	}
+	
+	CharacterRefresh(Player);
 }
 
 /**
