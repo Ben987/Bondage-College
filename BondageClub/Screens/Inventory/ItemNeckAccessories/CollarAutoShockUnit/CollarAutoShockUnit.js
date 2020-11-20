@@ -120,6 +120,11 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitUpdate(data) {
 				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!'))))
 			ShockTriggerPunish = true
 		
+		
+		if (ChatRoomTargetMemberNumber != null) {
+			ShockTriggerPunish = false // No trigger on whispers
+		}
+		
 		if (ShockTriggerPunish) {
 			InventoryItemNeckAccessoriesCollarAutoShockUnitTriggerAutomatic(data)
 			ChatRoomCharacterUpdate(Player);

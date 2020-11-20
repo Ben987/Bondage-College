@@ -392,6 +392,10 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
 				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!'))))
 			GagTriggerPunish = true
 		
+		if (ChatRoomTargetMemberNumber != null) {
+			GagTriggerPunish = false // No trigger on whispers
+		}
+		
 		if (GagTriggerPunish) {
 			InventoryItemMouthFuturisticPanelGagTrigger(Player, Item, false)
 			Item.Property.AutoPunishUndoTime = CurrentTime + AutoPunishUndoCD // Reset the deflation time
