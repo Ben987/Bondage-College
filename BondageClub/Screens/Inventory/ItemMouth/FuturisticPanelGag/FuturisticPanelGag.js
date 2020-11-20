@@ -267,7 +267,6 @@ function InventoryItemMouthFuturisticPanelGagPublishActionTrigger(C, Item, Optio
 	var Dictionary = [
 		{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
 		{ Tag: "AssetName", AssetName: Item.Asset.Name },
-		{ Automatic: true },
 	];
 	if (Item.Property.ItemMemberNumber) Dictionary.push({ Tag: "ItemMemberNumber", MemberNumber: Item.Property.ItemMemberNumber });
 	if (CurrentScreen == "ChatRoom") {

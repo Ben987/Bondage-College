@@ -139,7 +139,6 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitTriggerAutomatic(data) {
 		var Dictionary = [
 			{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
 			{ Tag: "AssetName", AssetName: data.Item.Asset.Name },
-			{ Automatic: true },
 		];
 		ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary });
 		ChatRoomCharacterItemUpdate(C, data.Item.Asset.Group.Name);
