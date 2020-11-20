@@ -25,6 +25,7 @@ var DialogAllowBlush = false;
 var DialogAllowEyebrows = false;
 var DialogAllowFluids = false;
 var DialogFacialExpressions = [];
+var DialogFacialExpressionsSelected = -1;
 var DialogActivePoses = [];
 var DialogItemPermissionMode = false;
 var DialogExtendedMessage = "";
@@ -376,6 +377,7 @@ function DialogLeave() {
 	DialogInventory = null;
 	CurrentCharacter = null;
 	DialogSelfMenuSelected = null;
+	DialogFacialExpressionsSelected = -1;
 }
 
 /**
@@ -707,18 +709,16 @@ function DialogInventoryBuild(C, Offset) {
 function DialogFacialExpressionsBuild() {
 	DialogFacialExpressions = [];
 	for (let I = 0; I < Player.Appearance.length; I++) {
-		var PA = Player.Appearance[I];
-		var ExpressionList = PA.Asset.Group.AllowExpression;
+		const PA = Player.Appearance[I];
+		let ExpressionList = PA.Asset.Group.AllowExpression;
 		if (!ExpressionList || !ExpressionList.length || PA.Asset.Group.Name == "Eyes2") continue;
-		var Item = {};
+		ExpressionList = ExpressionList.slice();
+		if (!ExpressionList.includes(null)) ExpressionList.unshift(null);
+		const Item = {};
 		Item.Appearance = PA;
 		Item.Group = PA.Asset.Group.Name;
 		Item.CurrentExpression = (PA.Property == null) ? null : PA.Property.Expression;
-		var Index = ExpressionList.indexOf(Item.CurrentExpression);
-		Item.MenuExpression1 = (Index < 0) ? ExpressionList[ExpressionList.length - 1] : (Index == 0) ? null : ExpressionList[Index - 1];
-		Item.MenuExpression2 = Item.CurrentExpression;
-		Item.MenuExpression3 = (Index < 0) ? ExpressionList[0] : (Index == ExpressionList.length - 1) ? null : ExpressionList[Index + 1];
-		Item.MenuExpression4 = (Index < 0) ? ExpressionList[1] : (Index == ExpressionList.length - 2) ? null : ExpressionList[(Index + 2) % (ExpressionList.length + 1)];
+		Item.ExpressionList = ExpressionList;
 		DialogFacialExpressions.push(Item);
 	}
 	// Temporary (?) solution to make the facial elements appear in a more logical order, as their alphabetical order currently happens to match up
@@ -1334,7 +1334,7 @@ function DialogClick() {
 
 	// If the user clicked in the facial expression menu
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
-		if (MouseIn(410, 50, 90, 90) && DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DialogFindNextSubMenu();
+		if (MouseIn(390, 50, 90, 90) && DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DialogFindNextSubMenu();
 		if (!DialogSelfMenuSelected)
 			DialogClickExpressionMenu();
 		else
@@ -1660,7 +1660,7 @@ function DialogDraw() {
 
 	// Draw the menu for facial expressions if the player clicked on herself
 	if (CurrentCharacter.ID == 0) {
-		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DrawButton(410, 50, 90, 90, "", "White", "Icons/Next.png", DialogFind(Player, "NextPage"));
+		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DrawButton(390, 50, 90, 90, "", "White", "Icons/Next.png", DialogFind(Player, "NextPage"));
 		if (!DialogSelfMenuSelected)
 			DialogDrawExpressionMenu();
 		else
@@ -1716,34 +1716,29 @@ function DialogDrawExpressionMenu() {
 
 	// Draw the expression groups
 	DrawText(DialogFind(Player, "FacialExpression"), 165, 25, "White", "Black");
-	DrawButton(220, 50, 90, 90, "", "White", "Icons/WinkL.png", DialogFind(Player, "WinkLFacialExpressions"));
-	DrawButton(120, 50, 90, 90, "", "White", "Icons/WinkR.png", DialogFind(Player, "WinkRFacialExpressions"));
+	DrawButton(255, 50, 90, 90, "", "White", "Icons/WinkL.png", DialogFind(Player, "WinkLFacialExpressions"));
+	DrawButton(155, 50, 90, 90, "", "White", "Icons/WinkR.png", DialogFind(Player, "WinkRFacialExpressions"));
 	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearFacialExpressions"));
 	if (!DialogFacialExpressions || !DialogFacialExpressions.length) DialogFacialExpressionsBuild();
 	for (let I = 0; I < DialogFacialExpressions.length; I++) {
-		var FE = DialogFacialExpressions[I];
-		var OffsetY = 160 + 120 * I;
+		const FE = DialogFacialExpressions[I];
+		const OffsetY = 185 + 100 * I;
 
-		// Draw the back and forth arrow buttons
-		DrawButton(0, OffsetY, 45, 90, "", "White");
-		MainCanvas.beginPath();
-		MainCanvas.moveTo(30, OffsetY + 15);
-		MainCanvas.lineTo(15, OffsetY + 45);
-		MainCanvas.lineTo(30, OffsetY + 75);
-		MainCanvas.stroke();
-		DrawButton(455, OffsetY, 45, 90, "", "White");
-		MainCanvas.beginPath();
-		MainCanvas.moveTo(470, OffsetY + 15);
-		MainCanvas.lineTo(485, OffsetY + 45);
-		MainCanvas.lineTo(470, OffsetY + 75);
-		MainCanvas.stroke();
+		// Select expression category on hover
+		if (MouseIn(20, OffsetY, 90, 90)) {
+			DialogFacialExpressionsSelected = I;
+		}
 
-		// Draw the selection of facial expressions at current scroll position
-		DrawButton(55, OffsetY, 90, 90, "", (FE.MenuExpression1 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression1 ? "/" + FE.MenuExpression1 : "") + "/Icon.png");
-		DrawButton(155, OffsetY, 90, 90, "", (FE.MenuExpression2 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression2 ? "/" + FE.MenuExpression2 : "") + "/Icon.png");
-		DrawButton(255, OffsetY, 90, 90, "", (FE.MenuExpression3 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression3 ? "/" + FE.MenuExpression3 : "") + "/Icon.png");
-		DrawButton(355, OffsetY, 90, 90, "", (FE.MenuExpression4 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression4 ? "/" + FE.MenuExpression4 : "") + "/Icon.png");
+		DrawButton(20, OffsetY, 90, 90, "", I == DialogFacialExpressionsSelected ? "Cyan" : "White", "Assets/Female3DCG/" + FE.Group + (FE.CurrentExpression ? "/" + FE.CurrentExpression : "") + "/Icon.png");
 
+		// Draw the table with expressions
+		if (I == DialogFacialExpressionsSelected) {
+			for (let j = 0; j < FE.ExpressionList.length; j++) {
+				const EOffsetX = 155 + 100 * (j % 3);
+				const EOffsetY = 185 + 100 * Math.floor(j / 3);
+				DrawButton(EOffsetX, EOffsetY, 90, 90, "", (FE.ExpressionList[j] == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Group + (FE.ExpressionList[j] ? "/" + FE.ExpressionList[j] : "") + "/Icon.png");
+			}
+		}
 	}
 }
 
@@ -1751,62 +1746,39 @@ function DialogDrawExpressionMenu() {
  * Handles clicks in the dialog expression menu.
  * @returns {void} - Nothing
  */
-function DialogClickExpressionMenu() { 
+function DialogClickExpressionMenu() {
 	if (MouseIn(20, 50, 90, 90)) {
 		DialogFacialExpressions.forEach(FE => {
-			CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name);
+			CharacterSetFacialExpression(Player, FE.Group);
 			FE.CurrentExpression = null;
 		});
-	} else if (MouseIn(120, 50, 90, 90)) { 
-		var EyesExpression = WardrobeGetExpression(Player);
-		var CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
+	} else if (MouseIn(155, 50, 90, 90)) {
+		const EyesExpression = WardrobeGetExpression(Player);
+		const CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
 		CharacterSetFacialExpression(Player, "Eyes1", (EyesExpression.Eyes !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
-	} else if (MouseIn(220, 50, 90, 90)) { 
-		var EyesExpression = WardrobeGetExpression(Player);
-		var CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
+	} else if (MouseIn(255, 50, 90, 90)) {
+		const EyesExpression = WardrobeGetExpression(Player);
+		const CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
 		CharacterSetFacialExpression(Player, "Eyes2", (EyesExpression.Eyes2 !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
-	} else for (let I = 0; I < DialogFacialExpressions.length; I++) {
-		var FE = DialogFacialExpressions[I];
-		if ((MouseY >= 160 + 120 * I) && (MouseY <= (160 + 120 * I) + 90)) {
+	} else {
+		// Expression category buttons
+		for (let I = 0; I < DialogFacialExpressions.length; I++) {
+			if (MouseIn(20, 185 + 100 * I, 90, 90)) {
+				DialogFacialExpressionsSelected = I;
+			}
+		}
 
-			// Left arrow button
-			if (MouseX >= 0 && MouseX <= 45) {
-				FE.MenuExpression4 = FE.MenuExpression3;
-				FE.MenuExpression3 = FE.MenuExpression2;
-				FE.MenuExpression2 = FE.MenuExpression1;
-				var ExpressionList = FE.Appearance.Asset.Group.AllowExpression;
-				var Index = ExpressionList.indexOf(FE.MenuExpression1);
-				FE.MenuExpression1 = (Index < 0) ? ExpressionList[ExpressionList.length - 1] : (Index == 0) ? null : ExpressionList[Index - 1];
+		// Expression table
+		if (DialogFacialExpressionsSelected >= 0 && DialogFacialExpressionsSelected < DialogFacialExpressions.length) {
+			const FE = DialogFacialExpressions[DialogFacialExpressionsSelected];
+			for (let j = 0; j < FE.ExpressionList.length; j++) {
+				const EOffsetX = 155 + 100 * (j % 3);
+				const EOffsetY = 185 + 100 * Math.floor(j / 3);
+				if (MouseIn(EOffsetX, EOffsetY, 90, 90)) {
+					CharacterSetFacialExpression(Player, FE.Group, FE.ExpressionList[j]);
+					FE.CurrentExpression = FE.ExpressionList[j];
+				}
 			}
-
-			// Right arrow button
-			if (MouseX >= 455 && MouseX <= 500) {
-				FE.MenuExpression1 = FE.MenuExpression2;
-				FE.MenuExpression2 = FE.MenuExpression3;
-				FE.MenuExpression3 = FE.MenuExpression4;
-				var ExpressionList = FE.Appearance.Asset.Group.AllowExpression;
-				var Index = ExpressionList.indexOf(FE.MenuExpression4);
-				FE.MenuExpression4 = (Index < 0) ? ExpressionList[0] : (Index == ExpressionList.length - 1) ? null : ExpressionList[Index + 1];
-			}
-
-			// Expression choice
-			if (MouseX >= 55 && MouseX <= 145) {
-				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression1);
-				FE.CurrentExpression = FE.MenuExpression1;
-			}
-			if (MouseX >= 155 && MouseX <= 245) {
-				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression2);
-				FE.CurrentExpression = FE.MenuExpression2;
-			}
-			if (MouseX >= 255 && MouseX <= 345) {
-				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression3);
-				FE.CurrentExpression = FE.MenuExpression3;
-			}
-			if (MouseX >= 355 && MouseX <= 445) {
-				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression4);
-				FE.CurrentExpression = FE.MenuExpression4;
-			}
-
 		}
 	}
 }
