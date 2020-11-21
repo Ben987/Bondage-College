@@ -3546,7 +3546,7 @@ var ActivityFemale3DCG = [
 	{
 		Name: "GagKiss",
 		MaxProgress: 55,
-		Prerequisite: ["ZoneAccessible", "UseMouth", "TargetMouthBlocked"]
+		Prerequisite: ["UseMouth", "TargetMouthBlocked"]
 	},
 	{
 		Name: "FrenchKiss",
