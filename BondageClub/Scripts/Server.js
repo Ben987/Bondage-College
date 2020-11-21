@@ -647,8 +647,30 @@ function ServerAccountBeep(data) {
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
 		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
+		if (Player.ImmersionSettings && Player.ImmersionSettings.AllowPlayerLeashing) {
+			// Have to not be tethered, and need a leash
+			var canLeash = false
+			var isTrapped = false
+			var neckLock = ""
+			for (let A = 0; A < Player.Appearance.length; A++)
+				if ((Player.Appearance[A].Asset != null) && (Player.Appearance[A].Asset.Group.Family == Player.AssetFamily)) {
+					if (Player.Appearance[A].Asset.Name.indexOf("Leash") >= 0 || (Player.Appearance[A].Asset.Type && Player.Appearance[A].Asset.Type.indexOf("Leash"))) {
+						canLeash = true
+						if (Player.Appearance[A].Asset.Group == "ItemNeck") neckLock = InventoryGetLock(Player.Appearance[A])
+					}
+				}
+			if ((Player.Effect.indexOf("Tethered") >= 0) || (Player.Effect.indexOf("Mounted") >= 0)) isTrapped = true
+			
+			if (canLeash && !isTrapped) {
+				CurrentScreen = "ChatSearch"
+				
+				ServerSend("ChatRoomJoin", { Name: data.ChatRoomName });
+			}
+		}
 	}
 }
+
+
 
 /** Draws the last beep sent by the server if the timer is still valid, used during the drawing process */
 function ServerDrawBeep() {

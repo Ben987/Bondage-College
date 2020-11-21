@@ -246,6 +246,8 @@ function PreferenceInit(C) {
 	// Sets the default immersion settings
 	if (!C.ImmersionSettings) C.ImmersionSettings = {};
 	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
+	if (typeof C.ImmersionSettings.AllowPlayerLeashing !== "boolean") C.ImmersionSettings.AllowPlayerLeashing = false;
+	
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
@@ -498,6 +500,8 @@ function PreferenceSubscreenImmersionRun() {
 	DrawCheckbox(500, 432, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC);
 	DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
 	
+	
+	DrawCheckbox(1200, 462, 64, 64, TextGet("AllowPlayerLeashing"), Player.ImmersionSettings.AllowPlayerLeashing);
 
 	DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
 
@@ -535,8 +539,10 @@ function PreferenceSubscreenImmersionClick() {
 	if (MouseIn(500, 432, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
-	
-	
+	if (MouseIn(1200, 462, 64, 64) && 
+		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+			Player.ImmersionSettings.AllowPlayerLeashing = !Player.ImmersionSettings.AllowPlayerLeashing;
+				
 	if (MouseIn(500, 800, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
