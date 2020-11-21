@@ -351,6 +351,9 @@ function ChatSearchResultResponse(data) {
 	if (ChatRoomJoinLeash != "") {
 		for (let R = 0; R < ChatSearchResult.length; R++)
 			if (ChatSearchResult[R].Name == ChatRoomJoinLeash) {
+				ChatSearchLastQueryJoinTime = CommonTime();
+				ChatSearchLastQueryJoin = ChatSearchResult[R].Name;
+				ChatRoomPlayerCanJoin = true;
 				ServerSend("ChatRoomJoin", { Name: ChatSearchResult[R].Name });
 			}
 	}

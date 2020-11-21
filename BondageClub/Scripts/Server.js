@@ -647,23 +647,29 @@ function ServerAccountBeep(data) {
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
 		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
-		if (Player.ImmersionSettings && Player.ImmersionSettings.AllowPlayerLeashing) {
+		if (Player.ImmersionSettings && Player.ImmersionSettings.AllowPlayerLeashing && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 			// Have to not be tethered, and need a leash
 			var canLeash = false
 			var isTrapped = false
-			var neckLock = ""
+			var neckLock = null
 			for (let A = 0; A < Player.Appearance.length; A++)
 				if ((Player.Appearance[A].Asset != null) && (Player.Appearance[A].Asset.Group.Family == Player.AssetFamily)) {
 					if (Player.Appearance[A].Asset.Name.indexOf("Leash") >= 0 || (Player.Appearance[A].Asset.Type && Player.Appearance[A].Asset.Type.indexOf("Leash"))) {
 						canLeash = true
-						if (Player.Appearance[A].Asset.Group == "ItemNeck") neckLock = InventoryGetLock(Player.Appearance[A])
+						if (Player.Appearance[A].Asset.Group.Name == "ItemNeckRestraints")
+							neckLock = InventoryGetLock(Player.Appearance[A])
 					}
 				}
 			if ((Player.Effect.indexOf("Tethered") >= 0) || (Player.Effect.indexOf("Mounted") >= 0)) isTrapped = true
 			
 			if (canLeash && !isTrapped) {
-				CommonSetScreen("Room", "ChatSearch")
-				ChatRoomJoinLeash = data.ChatRoomName
+				if (!neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
+					(neckLock.Asset.OwnerOnly && Player.Ownership && Player.Ownership.MemberNumber == data.MemberNumber) ||
+					(neckLock.Asset.LoverOnly && Player.GetLoversNumbers() && Player.GetLoversNumbers().indexOf(data.MemberNumber) >= 0))
+				{
+					CommonSetScreen("Room", "ChatSearch")
+					ChatRoomJoinLeash = data.ChatRoomName
+				}
 			}
 		}
 	}
