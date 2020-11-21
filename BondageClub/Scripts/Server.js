@@ -654,7 +654,7 @@ function ServerAccountBeep(data) {
 			var neckLock = null
 			for (let A = 0; A < Player.Appearance.length; A++)
 				if ((Player.Appearance[A].Asset != null) && (Player.Appearance[A].Asset.Group.Family == Player.AssetFamily)) {
-					if (Player.Appearance[A].Asset.Name.indexOf("Leash") >= 0 || (Player.Appearance[A].Asset.Type && Player.Appearance[A].Asset.Type.indexOf("Leash"))) {
+					if (Player.Appearance[A].Asset.Name.indexOf("Leash") >= 0 || (Player.Appearance[A].Property && Player.Appearance[A].Property.Type && Player.Appearance[A].Property.Type.indexOf("Leash") >= 0)) {
 						canLeash = true
 						if (Player.Appearance[A].Asset.Group.Name == "ItemNeckRestraints")
 							neckLock = InventoryGetLock(Player.Appearance[A])
