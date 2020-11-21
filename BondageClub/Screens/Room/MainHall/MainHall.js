@@ -18,11 +18,17 @@ var MainHallRemoveLockTypes = [
 var MainHallPunishmentList = [
 	{ItemMouth:"BallGag", ItemHead: "LeatherBlindfold", ItemHands: "DuctTape"},
 	{ItemMouth:"HarnessBallGag", ItemArms:"LeatherArmbinder",ItemLegs:"LegBinder",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"VibratingDildo",ItemBoots:"LockingHeels", ItemHead: "LeatherBlindfold", ItemHands: "LeatherMittens"},
-	{ItemMouth:"DildoPlugGag", ItemArms:"LeatherArmbinder",ItemLegs:"LeatherLegCuffs",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"VibratingEgg",ItemBoots:"LockingHeels", ItemHead: "LeatherBlindfold", ItemHands: "LeatherMittens"},
+	{ItemMouth:"DildoPlugGag", ItemArms:"LeatherArmbinder",ItemLegs:"LeatherLegCuffs",ItemFeet:"LeatherAnkleCuffs",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"VibratingEgg",ItemBoots:"LockingHeels", ItemHead: "LeatherBlindfold", ItemHands: "LeatherMittens"},
 	{ItemMouth:"LatexBallMuzzleGag", ItemArms:"LatexBoxtieLeotard",ItemLegs:"LegBinder",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"WiredEgg",ItemBoots:"LockingHeels", ItemHead: "LatexBlindfold", ItemHands: "LeatherMittens"},
-	{ItemMouth:"LatexBallMuzzleGag", ItemArms:"SeamlessStraitDress",ItemLegs:"HobbleSkirt",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"WiredEgg",ItemBoots:"LockingHeels", ItemHead: "SlimLeatherMask", ItemHands: "LeatherMittens"},
+	{ItemMouth:"StitchedMuzzleGag", ItemArms:"StraitDress",ItemLegs:"HobbleSkirt",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"WiredEgg",ItemBoots:"LockingHeels", ItemHead: "SlimLeatherMask", ItemHands: "LeatherMittens"},
+	{ItemMouth:"MuzzleGag", ItemArms:"BoxTieArmbinder",ItemLegs:"LeatherBelt",ItemPelvis:"PolishedChastityBelt",ItemBreast:"PolishedChastityBra",ItemVulva:"VibratingEgg",ItemBoots:"LockingHeels", ItemHead: "LeatherBlindfold", ItemHands: "LeatherMittens"},
+	{ItemMouth:"HarnessPanelGag", ItemArms:"OrnateCuffs",ItemLegs:"OrnateLegCuffs",ItemFeet:"OrnateAnkleCuffs",ItemPelvis:"OrnateChastityBelt",ItemBreast:"OrnateChastityBra",ItemVulva:"VibratingDildo",ItemBoots:"LockingHeels", ItemHead: "FullBlindfold", ItemHands: "PolishedMittens"},
+	
 
 ]
+
+var MainHallPunishmentChoice = 0
+var MainHallRopeColor = "Default"
 
 /**
  * Checks to see if the player needs help in any way
@@ -437,62 +443,119 @@ function MainHallPunishFromChatroom() {
 	MainHallMaid.Stage = "1100";
 	CharacterRelease(MainHallMaid);
 	CharacterSetCurrent(MainHallMaid);
+	MainHallHasOwnerLock = InventoryCharacterHasOwnerOnlyRestraint(Player);
+	MainHallHasLoverLock = InventoryCharacterHasLoverOnlyRestraint(Player);
+	if (ReputationGet("Dominant") > 10) ReputationProgress("Dominant", -10);
+	if (ReputationGet("Dominant") < -10) ReputationProgress("Dominant", 10);
 }
 /**
  * Triggered when the maid unlocks the player from a chat room
  * @returns {void} - Nothing
  */
-function MainHallPunishFromChatroomEnd() {
+function MainHallPunishFromChatroomStartPunishment() {
 	CharacterRelease(Player);
-	MainHallMaidPunishmentPlayer();
+	CharacterNaked(Player);
+	LogAdd("BlockChange","Rule", CurrentTime + 3600000);
+	
 	// Apply one of several preset restraints
 	// Also  apply mistress locks to everything
 	var I = Math.floor(Math.random() * MainHallPunishmentList.length)
-	
-	MainHallPunishFromList(I)
-	
-	ChatRoomSetLastChatRoom("")
+	MainHallPunishmentChoice = I
 }
+
+
 /**
  * Triggered when the maid unlocks the player from a chat room
  * @returns {void} - Nothing
  */
-function MainHallPunishFromList(I) {
+function MainHallPunishFromListEnd() {
+	ChatRoomSetLastChatRoom("")
+}
+
+/**
+ * Triggered when the maid unlocks the player from a chat room
+ * @returns {void} - Nothing
+ */
+function MainHallPunishFromChatroomInsertToy() {
+	var I = MainHallPunishmentChoice
+	// We might lock in a toy under the chastity
+	if (MainHallPunishmentList[I].ItemVulva && InventoryGet(Player, "ItemVulva") == null) {
+		InventoryWear(Player, MainHallPunishmentList[I].ItemVulva, "ItemVulva");
+		InventoryGet(Player, "ItemVulva").Property = { Intensity: 1 };
+	}
+	
+	CharacterRefresh(Player);
+	
+	
+}
+
+/**
+ * Triggered when the maid unlocks the player from a chat room
+ * @returns {void} - Nothing
+ */
+function MainHallPunishFromChatroomApplyChastity() {
+	var I = MainHallPunishmentChoice
+	if (MainHallPunishmentList[I].ItemPelvis && InventoryGet(Player, "ItemPelvis") == null) {
+		InventoryWear(Player, MainHallPunishmentList[I].ItemPelvis, "ItemPelvis", "Default", Math.floor(Math.random()*10));
+	}
+	if (MainHallPunishmentList[I].ItemBreast && InventoryGet(Player, "ItemBreast") == null) {
+		InventoryWear(Player, MainHallPunishmentList[I].ItemBreast, "ItemBreast", "Default", Math.floor(Math.random()*10));
+	}
+	
+	CharacterRefresh(Player);
+}
+
+
+/**
+ * Triggered when the maid unlocks the player from a chat room
+ * @returns {void} - Nothing
+ */
+function MainHallPunishFromChatroomLockChastity() {
+	var I = MainHallPunishmentChoice
+	if (MainHallPunishmentList[I].ItemPelvis && InventoryGet(Player, "ItemPelvis") == null) {
+		InventoryLock(Player, "ItemPelvis", "MistressPadlock", null);
+	}
+	if (MainHallPunishmentList[I].ItemBreast && InventoryGet(Player, "ItemBreast") == null) {
+		InventoryLock(Player, "ItemBreast", "MistressPadlock", null);
+	}
+	
+	CharacterRefresh(Player);
+}
+
+/**
+ * Triggered when the maid unlocks the player from a chat room
+ * @returns {void} - Nothing
+ */
+function MainHallPunishFromChatroomGag() {
+	var I = MainHallPunishmentChoice
+	
+	if (MainHallPunishmentList[I].ItemMouth) {
+		InventoryWear(Player, MainHallPunishmentList[I].ItemMouth, "ItemMouth", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemMouth", "MistressPadlock", null);
+	}
+	CharacterRefresh(Player);
+}
+
+/**
+ * Triggered when the maid unlocks the player from a chat room
+ * @returns {void} - Nothing
+ */
+function MainHallPunishFromChatroomArms() {
+	var I = MainHallPunishmentChoice
 	if (I == 0) { // We do rope bondage, excluding the feet, but with a ballgag
 
-		var RopeColor = "#F49EFF"
+		MainHallRopeColor = "#F49EFF"
 		var roperand = Math.random()
 		if (roperand > 0.33) // Random chance of different color {
-			RopeColor = "#FF0000"
+			MainHallRopeColor = "#FF0000"
 		else if (roperand > 0.67)
-			RopeColor = "Default"
+			MainHallRopeColor = "Default"
 		
 		
 		// Wears more item with higher levels
-		InventoryWear(Player, "HempRope", "ItemArms", RopeColor, Math.floor(Math.random()*10));
-		InventoryWear(Player, "HempRope", "ItemLegs", RopeColor, Math.floor(Math.random()*10));
-		InventoryWear(Player, "HempRope", "ItemFeet", RopeColor, Math.floor(Math.random()*10));
-		if (MainHallPunishmentList[I].ItemMouth) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemMouth, "ItemMouth", [RopeColor, "Default"], Math.floor(Math.random()*10)); InventoryLock(Player, "ItemMouth", "MistressPadlock", null);
-		}
+		InventoryWear(Player, "HempRope", "ItemArms", MainHallRopeColor, Math.floor(Math.random()*10));
 		if (Math.random() > 0.5) // Random chance of wrist elbow tie instead of boxtie
 			InventoryGet(Player, "ItemArms").Property = { Type: "WristElbowHarnessTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3};
-			
-		if (MainHallPunishmentList[I].ItemHands && Math.random() > 0.33) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemHands, "ItemHands", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHands", "MistressPadlock", null);
-		}
 	} else {
-	
-		if (MainHallPunishmentList[I].ItemVulva && InventoryGet(Player, "ItemVulva") == null) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemVulva, "ItemVulva");
-			InventoryGet(Player, "ItemVulva").Property = { Intensity: 1 };
-		}
-		if (MainHallPunishmentList[I].ItemPelvis && InventoryGet(Player, "ItemPelvis") == null) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemPelvis, "ItemPelvis", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemPelvis", "MistressPadlock", null);
-		}
-		if (MainHallPunishmentList[I].ItemBreast && InventoryGet(Player, "ItemBreast") == null) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemBreast, "ItemBreast", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemBreast", "MistressPadlock", null);
-		}
 		if (MainHallPunishmentList[I].ItemArms) {
 			var ArmsColor = "Default"
 			if (MainHallPunishmentList[I].ItemArms == "LatexBoxtieLeotard" || MainHallPunishmentList[I].ItemArms == "SeamlessStraitDress" ) {
@@ -500,16 +563,41 @@ function MainHallPunishFromList(I) {
 			}
 			InventoryWear(Player, MainHallPunishmentList[I].ItemArms, "ItemArms", ArmsColor, Math.floor(Math.random()*10)); InventoryLock(Player, "ItemArms", "MistressPadlock", null);
 		}
+	}
+	
+	
+	if (MainHallPunishmentList[I].ItemHands && Math.random() > 0.33) {
+		InventoryWear(Player, MainHallPunishmentList[I].ItemHands, "ItemHands", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHands", "MistressPadlock", null);
+	}
+	CharacterRefresh(Player);
+}
+
+/**
+ * Triggered when the maid unlocks the player from a chat room
+ * @returns {void} - Nothing
+ */
+function MainHallPunishFromChatroomRest() {
+	var I = MainHallPunishmentChoice
+	
+	if (I == 0) { // We do rope bondage, excluding the feet, but with a ballgag
+		
+
+		InventoryWear(Player, "HempRope", "ItemLegs", MainHallRopeColor, Math.floor(Math.random()*10));
+
+			
+
+	} else {
+	
+
+
 		if (MainHallPunishmentList[I].ItemLegs) {
 			InventoryWear(Player, MainHallPunishmentList[I].ItemLegs, "ItemLegs", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemLegs", "MistressPadlock", null);
 		}
+		if (MainHallPunishmentList[I].ItemFeet) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemFeet, "ItemFeet", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemFeet", "MistressPadlock", null);
+		}
 
-		if (MainHallPunishmentList[I].ItemMouth) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemMouth, "ItemMouth", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemMouth", "MistressPadlock", null);
-		}
-		if (MainHallPunishmentList[I].ItemHands && Math.random() > 0.33) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemHands, "ItemHands", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHands", "MistressPadlock", null);
-		}
+
 		if (MainHallPunishmentList[I].ItemHead && Math.random() > 0.33) {
 			InventoryWear(Player, MainHallPunishmentList[I].ItemHead, "ItemHead", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHead", "MistressPadlock", null);
 		}
@@ -519,7 +607,12 @@ function MainHallPunishFromList(I) {
 	}
 	
 	CharacterRefresh(Player);
+	
+	
+	ChatRoomSetLastChatRoom("")
 }
+
+
 
 /**
  * Triggered when the maid unlocks the player from an owner
