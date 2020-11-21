@@ -513,6 +513,9 @@ function MainHallPunishFromList(I) {
 		if (MainHallPunishmentList[I].ItemHead && Math.random() > 0.33) {
 			InventoryWear(Player, MainHallPunishmentList[I].ItemHead, "ItemHead", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHead", "MistressPadlock", null);
 		}
+		if (MainHallPunishmentList[I].ItemBoots && Math.random() > 0.33) {
+			InventoryWear(Player, MainHallPunishmentList[I].ItemBoots, "ItemBoots", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemBoots", "MistressPadlock", null);
+		}
 	}
 	
 	CharacterRefresh(Player);
