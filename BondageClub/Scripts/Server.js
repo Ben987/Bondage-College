@@ -660,7 +660,7 @@ function ServerAccountBeep(data) {
 							neckLock = InventoryGetLock(Player.Appearance[A])
 					}
 				}
-			if ((Player.Effect.indexOf("Tethered") >= 0) || (Player.Effect.indexOf("Mounted") >= 0)) isTrapped = true
+			if ((Player.Effect.indexOf("Tethered") >= 0) || (Player.Effect.indexOf("Mounted") >= 0) || (Player.Effect.indexOf("Enclosed") >= 0)) isTrapped = true
 			
 			if (canLeash && !isTrapped) {
 				if (!neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
