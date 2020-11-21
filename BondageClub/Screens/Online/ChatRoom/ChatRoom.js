@@ -242,7 +242,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	var Y = ChatRoomCharacter.length <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
 	
 	
-	if (Player.GameplaySettings && Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && (Player.GetBlindLevel() >= 3)) {
+	if (Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3)) {
 		RenderSingle = true
 		Space = 500
 		Zoom = 1
