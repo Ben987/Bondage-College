@@ -662,9 +662,8 @@ function ServerAccountBeep(data) {
 			if ((Player.Effect.indexOf("Tethered") >= 0) || (Player.Effect.indexOf("Mounted") >= 0)) isTrapped = true
 			
 			if (canLeash && !isTrapped) {
-				CurrentScreen = "ChatSearch"
-				
-				ServerSend("ChatRoomJoin", { Name: data.ChatRoomName });
+				CommonSetScreen("Room", "ChatSearch")
+				ChatRoomJoinLeash = data.ChatRoomName
 			}
 		}
 	}
