@@ -241,6 +241,7 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.ImmersionLockSetting !== "boolean") C.GameplaySettings.ImmersionLockSetting = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 	if (typeof C.GameplaySettings.DisableAutoMaid !== "boolean") C.GameplaySettings.DisableAutoMaid = false;
+	if (typeof C.OnlineSharedSettings.DisablePickingLocksOnSelf !== "boolean") C.OnlineSharedSettings.DisablePickingLocksOnSelf = false;
 	
 	
 	// Sets the default immersion settings
@@ -407,6 +408,9 @@ function PreferenceSubscreenGeneralRun() {
 	DrawCheckbox(500, 402, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
 	DrawCheckbox(500, 482, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
 	DrawCheckbox(500, 562, 64, 64, TextGet("DisableAutoMaid"), !Player.GameplaySettings.DisableAutoMaid);
+	DrawCheckbox(500, 642, 64, 64, TextGet("DisablePickingLocksOnSelf"), Player.OnlineSharedSettings.DisablePickingLocksOnSelf);
+	
+	
 
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
@@ -482,6 +486,7 @@ function PreferenceSubscreenGeneralClick() {
 		PreferenceSafewordConfirm = false;
 	}
 	if (MouseIn(500, 562, 64, 64)) Player.GameplaySettings.DisableAutoMaid = !Player.GameplaySettings.DisableAutoMaid;
+	if (MouseIn(500, 642, 64, 64)) Player.OnlineSharedSettings.DisablePickingLocksOnSelf = !Player.OnlineSharedSettings.DisablePickingLocksOnSelf;
 }
 
 
@@ -628,6 +633,8 @@ function PreferenceSubscreenOnlineRun() {
 	DrawCheckbox(500, 705, 64, 64, TextGet("EnableWardrobeIcon"), Player.OnlineSettings.EnableWardrobeIcon);
 	DrawCheckbox(500, 785, 64, 64, TextGet("AllowFullWardrobeAccess"), Player.OnlineSharedSettings.AllowFullWardrobeAccess);
 	DrawCheckbox(500, 865, 64, 64, TextGet("BlockBodyCosplay"), Player.OnlineSharedSettings.BlockBodyCosplay);
+	
+	
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawCharacter(Player, 50, 50, 0.9);
 	MainCanvas.textAlign = "center";

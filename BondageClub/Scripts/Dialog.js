@@ -627,7 +627,7 @@ function DialogMenuButtonBuild(C) {
 			if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())
 				|| ((Item != null) && (C.ID == 0) && !Player.CanInteract() && InventoryItemHasEffect(Item, "Block", true) && IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked))
 				DialogMenuButton.push("Unlock");
-			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && !IsGroupBlocked) {
+			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && !IsGroupBlocked && (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf)) {
 				if (DialogLentLockpicks) 
 					DialogMenuButton.push("PickLock");
 				else
