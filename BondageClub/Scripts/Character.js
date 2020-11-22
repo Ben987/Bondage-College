@@ -331,7 +331,7 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
  */
 function CharacterLoadOnline(data, SourceMemberNumber) {
 
-	// Checks if the NPC already exists and returns it if it's the case
+	// Checks if the character already exists and returns it if it's the case
 	var Char = null;
 	if (data.ID.toString() == Player.OnlineID)
 		Char = Player;
