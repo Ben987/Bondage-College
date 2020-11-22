@@ -1786,9 +1786,11 @@ function DialogLockPickClick(C) {
 						
 						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && DialogLockPickSet.filter(x => x==false).length > 0 ) {
 							SkillProgress("LockPicking", DialogLockPickProgressSkillLose);
-							if (DialogLentLockpicks) DialogLentLockpicks = false
-							if (CurrentScreen == "ChatRoom")
-								ChatRoomPublishCustomAction("LockPickBreak", true, [{ Tag: "DestinationCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }]);
+							if (DialogLentLockpicks)  {
+								DialogLentLockpicks = false
+								if (CurrentScreen == "ChatRoom")
+									ChatRoomPublishCustomAction("LockPickBreak", true, [{ Tag: "DestinationCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }]);
+							}
 							
 						}
 					}
