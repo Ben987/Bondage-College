@@ -1,5 +1,6 @@
 "use strict";
 var Character = [];
+var NextCharacterId = 1;
 
 /**
  * Loads a character into the buffer, creates it if it does not exist
@@ -107,10 +108,11 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 	};
 
 	// If the character doesn't exist, we create it
-	if (CharacterID >= Character.length)
+	var CharacterIndex = Character.findIndex(c => c.ID == CharacterID);
+	if(CharacterIndex == -1)
 		Character.push(NewCharacter);
 	else
-		Character[CharacterID] = NewCharacter;
+		Character[CharacterIndex] = NewCharacter;
 
 	// Creates the inventory and default appearance
 	if (CharacterID == 0) {
@@ -272,7 +274,7 @@ function CharacterLoadNPC(NPCType) {
 			return Character[C];
 
 	// Randomize the new character
-	CharacterReset(Character.length, "Female3DCG");
+	CharacterReset(NextCharacterId++, "Female3DCG");
 	let C = Character[Character.length - 1];
 	C.AccountName = NPCType;
 	CharacterLoadCSVDialog(C);
@@ -350,7 +352,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 			}
 		
 		// Creates the new character from the online template
-		CharacterReset(Character.length, "Female3DCG");
+		CharacterReset(NextCharacterId++, "Female3DCG");
 		Char = Character[Character.length - 1];
 		Char.Name = data.Name;
 		Char.Lover = (data.Lover != null) ? data.Lover : "";
