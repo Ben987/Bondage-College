@@ -171,6 +171,9 @@ function NurseryLoadNurse() {
 
 // Checks players diapered is not obscured by Inappropriate cloth
 function NurseryClothCheck() {
+    if (NurseryNoHelpListDialog()) {
+        return;
+    }
 	NurseryPlayerInappropriateCloth = false;
 	if (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "CollegeOutfit1") NurseryPlayerInappropriateCloth = true;
 	if (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "MaidOutfit1") NurseryPlayerInappropriateCloth = true;
@@ -524,4 +527,17 @@ function NurseryGoodBehaviour() {
 			NurseryCoolDownTime = 0;
 		}
 	} else NurseryCoolDownTime = 0;
+}
+
+/**
+ * Checks if the Player is restrained and on the no-help list and if so, prevents any interaction
+ * @returns {boolean} - true, if the NoHelpList dialog executes
+ */
+function NurseryNoHelpListDialog() {
+	if (Player.IsOnNoHelpList() && Player.IsRestrained()) {
+        NurseryNurse.CurrentDialog = DialogFind(NurseryNurse, "NoHelpList");
+		NurseryNurse.Stage = 0;
+        return true;
+	}
+    return false;
 }

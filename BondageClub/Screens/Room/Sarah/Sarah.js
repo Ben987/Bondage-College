@@ -17,6 +17,7 @@ var SophieFightDone = false;
 var SophiePunishmentStage = 0;
 var SophieOrgasmGameCount = 0;
 var SophieOrgasmGamePleasure = 0;
+var SarahPlayerAppearance = null;
 
 // Returns TRUE if a dialog condition matches
 function SarahStatusIs(QueryStatus) { return (QueryStatus == SarahStatus) }
@@ -96,7 +97,7 @@ function SarahSetStatus() {
 
 // Loads the Sarah room
 function SarahLoad() {
-	
+
 	// Add the player if we need too
 	if (SarahCharacter.length == 0)
 		SarahCharacter.push(Player);
@@ -417,6 +418,7 @@ function SarahTransferAmandaToRoom() {
 
 // When Sophie gets too upset, she might kick the player out
 function SarahUpsetSophie(Offset) {
+    SarahSaveAppearanceForNoHelpList();
 	SophieUpsetCount = SophieUpsetCount + parseInt(Offset);
 	if (SophieUpsetCount >= 5) {
 		Sophie.CurrentDialog = DialogFind(Sophie, "ExpelPlayer");
@@ -458,7 +460,10 @@ function SarahFightSophieEnd() {
 	Sophie.Stage = (KidnapVictory) ? "60" : "70";
 	if (!KidnapVictory && Player.IsNaked()) Sophie.Stage = "50";
 	if (!KidnapVictory) CharacterRelease(Sophie);
-	else CharacterRelease(Player);
+    else if (Player.IsOnNoHelpList()) {
+        Player.Appearance = SarahPlayerAppearance;
+        CharacterRefresh(Player);
+    } else CharacterRelease(Player);
 	InventoryRemove(Sophie, "ItemHead");
 	InventoryRemove(Sophie, "ItemMouth");
 	InventoryRemove(Player, "ItemHead");
@@ -626,7 +631,13 @@ function SarahSophieOrgasmGame(Factor) {
 
 // When Sophie releases all the characters but Sarah
 function SarahSophieReleaseEveryoneButSarah() {
-	CharacterRelease(Player);
+	if (Player.IsOnNoHelpList()) {
+		Sophie.CurrentDialog = DialogFind(Sophie, "NoHelpList");
+		Player.Appearance = SarahPlayerAppearance;
+        CharacterRefresh(Player);
+    } else {
+        CharacterRelease(Player);
+    }
 	InventoryRemove(Player, "ItemPelvis");
 	InventoryRemove(Player, "ItemBreast");
 	InventoryRemove(Player, "ItemNipples");
@@ -782,4 +793,10 @@ function SarahSlaveOrgasmBuild(Pleasure, Bonus, Intensity) {
 function SarahSlaveReset() {
 	if (SarahIsInside()) Sarah.Stage = "200";
 	if (SarahAmandaIsInside()) Amanda.Stage = "0";
+}
+
+
+//Used to save for no-help list
+function SarahSaveAppearanceForNoHelpList() {
+    SarahPlayerAppearance = Player.Appearance.slice();
 }

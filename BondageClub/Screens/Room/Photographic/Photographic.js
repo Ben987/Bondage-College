@@ -13,7 +13,7 @@ var PhotographicSelectText = "";
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
  */
-function PhotographicIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ) }
+function PhotographicIsMaidsDisabled() { return Player.IsOnNoHelpList(); }
 
 function PhotographicPlayerCanChangeCloth() {return Player.CanChange() && !Player.IsRestrained()}
 function PhotographicPlayerHatAvailable() {return PhotographicAppearanceAvailable(Player, "Hat");}

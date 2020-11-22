@@ -25,7 +25,7 @@ var GamblingToothpickCount = 0; // available Toothpicks
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping in the maid quarters
  */
-function GamblingIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0)  }
+function GamblingIsMaidsDisabled() { return Player.IsOnNoHelpList(); }
 
 
 // Returns TRUE if a dialog is permitted
@@ -869,4 +869,14 @@ function GamblingStealDice() {
 		Player.CurrentDialog = TextGet("SuccessStolen");
 		LogAdd("Stolen", "BadGirl");
 	}
+}
+
+/**
+ * Sets the dialog for the second sub, if the player is on the no-help list
+ */
+function GamblingMaidsDisabledDialogSecondSub() {
+    if (GamblingIsMaidsDisabled()) {
+		GamblingSecondSub.CurrentDialog = DialogFind(GamblingSecondSub, "ActivityReleaseIntroNoMaids");
+        GamblingSecondSub.Stage = 0;
+    } 
 }

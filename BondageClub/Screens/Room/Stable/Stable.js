@@ -30,7 +30,7 @@ function StablePlayerIsCollared() {return StableCharacterAppearanceGroupAvailabl
 function StablePlayerOtherPony()  {return StableTrainer.Stage == "StableTrainingOtherPoniesBack" || StableTrainer.Stage == "StableTrainingEnd";}
 function StablePlayerIsolation()  {return StableTrainer.Stage == "StableTrainingIsolationBack";}
 function StableTrainingExercisesAvailable() {return (StableTrainerTrainingExercises > 0);}
-function StablePlayerAllowedPonyExamen() {return (!StablePlayerIsExamPony && StablePlayerIsPony && (SkillGetLevel(Player, "Dressage") >= 6));}
+function StablePlayerAllowedPonyExamen() { return (!StablePlayerIsExamPony && StablePlayerIsPony && (SkillGetLevel(Player, "Dressage") >= 6));}
 function StablePlayerDisallowedPonyExamen() {return (!StablePlayerIsExamPony && StablePlayerIsPony && (SkillGetLevel(Player, "Dressage") < 6));}
 function StablePlayerAllowedTrainerExamen() {return (!StablePlayerIsExamTrainer && StablePlayerIsTrainer && (SkillGetLevel(Player, "Dressage") >= 6) && (Player.Money > 99));}
 function StablePlayerDisallowedTrainerExamen() {return (!StablePlayerIsExamTrainer && StablePlayerIsTrainer && (SkillGetLevel(Player, "Dressage") < 6));}
@@ -127,13 +127,17 @@ function StableClick() {
 ////////////////////////////////////////////////////////////////////////////////////////////
 //Start the Demo for a Ponytraining
 function StableTrialPonyTraining() {
-	StableGenericProgressStart(60, 0, 0, "Screens/Room/Stable/toyhorse.png", "HorseStableDark", StableTrainer, null, 0, "StableTrainerToyHorseFin", 0, "StableTrainerToyHorseCancel", 2,  TextGet("Toyhorse"));
-	SkillProgress("Dressage", 15);
+	if (!StableNoHelpListDialog()) {
+        StableGenericProgressStart(60, 0, 0, "Screens/Room/Stable/toyhorse.png", "HorseStableDark", StableTrainer, null, 0, "StableTrainerToyHorseFin", 0, "StableTrainerToyHorseCancel", 2, TextGet("Toyhorse"));
+        SkillProgress("Dressage", 15);
+    }
 }
 
 //Start the Demo for a Trainer-training
 function StableTrialTrainerTraining() {
-	MiniGameStart("HorseWalk", "WhipPony", "StableTrialTrainerTrainingEnd");
+    if (!StableNoHelpListDialog()) {
+        MiniGameStart("HorseWalk", "WhipPony", "StableTrialTrainerTrainingEnd");
+    }
 }
 
 function StableTrialTrainerTrainingEnd() {
@@ -161,7 +165,10 @@ function StableCanBecomePony() {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomePonyCollarIntro");
 	} else if (Player.Money < 50) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomePonyMoneyIntro");
-	} else {
+	} else if (Player.IsOnNoHelpList() > 0 && Player.IsRestrained()){
+        StableTrainer.CurrentDialog = DialogFind(StableTrainer, "NoHelpList");
+        StableTrainer.Stage = 0;
+    } else {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomePonyTrueIntro");
 		StableTrainer.Stage = "StableBecomePonyTrue";
 	}
@@ -169,7 +176,10 @@ function StableCanBecomePony() {
 
 //Check if the Player can Start a Lesson
 function StablePlayerStartTrainingLesson() {
-	if (!StablePlayerIsCollared()) {
+	if (StableNoHelpListDialog()) {
+        return;
+    }
+    if (!StablePlayerIsCollared()) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStartCollar");
 	} else {
 		StablePlayerTrainingActiv = true;
@@ -705,7 +715,10 @@ function StableCanBecomeTrainer() {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomeTrainerEquipmentIntro");
 	} else if (Player.Money < 500) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomeTrainerMoneyIntro");
-	} else {
+	} else if (Player.IsOnNoHelpList() && Player.IsRestrained()) {
+        StableTrainer.CurrentDialog = DialogFind(StableTrainer, "NoHelpList");
+        StableTrainer.Stage = 0;
+    } else {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomeTrainerTrueIntro");
 		StableTrainer.Stage = "StableBecomeTrainerTrue";
 	}
@@ -1069,4 +1082,17 @@ function StableHideDice() {
 		LogDelete("Stolen", "BadGirl");
 		LogAdd("Hide", "BadGirl");
 	}
+}
+
+/**
+ * Checks if the Player is restrained and on the no-help list and if so, prevents any interaction
+ * @returns {boolean} - true, if the NoHelpList dialog executes
+ */
+function StableNoHelpListDialog(){
+    if (Player.IsOnNoHelpList() && Player.IsRestrained()) {
+        StableTrainer.CurrentDialog = DialogFind(StableTrainer, "NoHelpList");
+		StableTrainer.Stage = 0;
+        return true;
+	}
+    return false;
 }

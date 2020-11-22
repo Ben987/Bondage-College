@@ -41,7 +41,7 @@ RemoveSuspensionHempRope,,,"Finally, I'm back on firm ground.",,
 0,100,Let's play Catch the Fox.,Would you like to be the fox or the hunter?,"FoxController(""new"")",CanPlayFox()
 0,200,Let's play Street to Roissy.,"OK, you're on.","StreetRoissyController(""new"")",CanPlayStreetRoissy()
 0,300,Let's play Dare Six.,"I'm ready, let's go.","DaredSixController(""new"")",CanPlayDaredSix()
-0,50,(Struggle in your restraints.),Do you need help?,,Player.IsRestrained()
+0,50,(Struggle in your restraints.),Do you need help?,MaidsDisabledDialogSecondSub(),Player.IsRestrained()
 0,,Let's talk later. (Leave her.),,DialogLeave(),
 10,,Which games can I play with you?,"Depending on reputation and money: Catch the Fox, Street to Roissy or Dare Six.",,
 10,11,Can you explain the rules to me?,Not until you have a high enough reputation and some money.,CanPlayFox(),!CanPlayFox()
@@ -125,6 +125,7 @@ RemoveSuspensionHempRope,,,"Finally, I'm back on firm ground.",,
 330,0,(Cheer.),(She mumbles into the gag.),,
 340,0,(Mumble into the gag.),(She cheers.),,
 GamblingSecondSubTied,,,"(She shows you her restraints.) I would like to, but...",,
+ActivityReleaseIntroNoMaids,,,Sorry girl... No one here will help you...,,
 MaidRescue,,,(She struggles in her restraints.)  Can you release me?,,IsSubsRestrained()
 MaidRescue,,I'll go get help.  (Leave her.),,DialogLeave(),
 MaidRescue,,What happened here?,I lost a game and the winner just left me all tied up!,,

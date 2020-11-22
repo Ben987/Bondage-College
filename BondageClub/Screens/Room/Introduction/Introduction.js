@@ -189,7 +189,21 @@ function IntroductionSaveMaidOpinion() {
  * @returns {boolean} - Returns TRUE if the maid can restrain the player
  */
 function IntroductionAllowRestrainPlayer() {
-	return (Player.CanInteract() && IntroductionMaid.CanInteract());
+	return (Player.CanInteract() && IntroductionMaid.CanInteract() && !Player.IsOnNoHelpList());
+}
+
+/**
+ * Prevents overwriting bindings by the ropes of the maid, if you are on the no-help list
+ * @param {any} maidOpinionChange Changes maid opinion variable on some dialog options
+ * @returns {void} - Nothing
+ */
+function IntroductionNoHelpOverwriteProtection(maidOpinionChange) {
+	if (Player.IsOnNoHelpList() && Player.IsRestrained()) {
+        IntroductionMaid.CurrentDialog = DialogFind(IntroductionMaid, "NoHelpListDialog");
+        IntroductionMaid.Stage = "0";
+	} else if (maidOpinionChange != null) {
+        IntroductionChangeMaidOpinion(maidOpinionChange);
+    }
 }
 
 /**

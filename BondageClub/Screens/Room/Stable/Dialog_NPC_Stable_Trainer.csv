@@ -39,10 +39,10 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 0,,I want a trial trainer training.,"Ok, let us start.",TrialTrainerTraining(),PlayerIsNewby
 0,,I'm here for a training routine.,,PlayerStartTrainingLesson(),PlayerIsPony
 0,,I'm here for a pony exam.,You are not ready yet.  You have to train harder.,,StablePlayerDisallowedPonyExamen()
-0,60,I'm here for a pony exam.,Do you think the training was successful? Then I get 50 $ exam fee.,,StablePlayerAllowedPonyExamen()
+0,60,I'm here for a pony exam.,Do you think the training was successful? Then I get 50 $ exam fee.,NoHelpListDialog(),StablePlayerAllowedPonyExamen()
 0,,I'm here for a trainer exam.,You? Don't make me laugh.,,StablePlayerDisallowedTrainerExamen()
-0,65,I'm here for a trainer exam.,Do you think you're ready? Then pay the 50$.,,StablePlayerAllowedTrainerExamen()
-0,210,I want to train a pony.,That'll be a 10$ cleaning fee for your riding gear.,,PlayerIsTrainer
+0,65,I'm here for a trainer exam.,Do you think you're ready? Then pay the 50$.,NoHelpListDialog(),StablePlayerAllowedTrainerExamen()
+0,210,I want to train a pony.,That'll be a 10$ cleaning fee for your riding gear.,NoHelpListDialog(),PlayerIsTrainer
 0,,(End the training and dress back up.),(She begins to stow the bridle.),DressBackPlayer(),StablePlayerIsDressOff()
 0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
 11,12,"Here's the money, let's start.",(She puts it in her pocket.) Undress.,PayTheFee(),
@@ -265,3 +265,4 @@ StableExamTFailIntro,,,You failed in this exam. Continue training before you sig
 StableExamTFail,0,(Leave the exam course and dress back up.),Keep training and then try again.,PlayerTExamEnd(),
 StableExamTPassIntro,,,"Congratulations, you have passed all the exams.",,
 StableExamTPass,0,(Give the present trainers a whiskey (50$).),(They celebrate your success.) Hip Hip Hurray!,PlayerTExamPass(),
+NoHelpList,,,"Hold your horses! The maids told us not to free you!",,

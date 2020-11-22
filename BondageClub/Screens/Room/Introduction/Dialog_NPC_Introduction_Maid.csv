@@ -70,6 +70,7 @@ JobDojoIntro2200,,,Welcome back DialogPlayerName.  Would you like to test your e
 JobDojoIntro2201,,,"(She looks at you and bows politely.)  Welcome back, are you ready for another test?",,
 JobDojoIntro2202,,,Falling down and getting up is the biggest accomplishment.  Are you ready to try again?,,
 JobDojoIntro2203,,,Konichiwa!  (She smiles and bows politely.)  I trust you want to challenge the ropes again?,,
+NoHelpListDialog,,,"Sorry... I won't tie you up with my ropes, if you are already restrained otherwise since you are on the no-help list"...,,
 0,,,Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,IsHeadMaid
 0,,,(She stares at you.)  Hello naked girl.  Welcome to the introduction class.,,Player.IsNaked()
@@ -126,12 +127,12 @@ JobDojoIntro2203,,,Konichiwa!  (She smiles and bows politely.)  I trust you want
 40,200,Can I strap you up now?,"Not me I'm afraid, but we have someone here who would certainly enjoy being your victim.",ChangeMaidOpinion(1),!IsHeadMaid
 40,100,Can I strap you up now?,"I'm all yours if you want me, head maid DialogPlayerName.  I will not resist you.",ChangeMaidOpinion(1),IsHeadMaid
 40,100,Can we practice?,"Absolutely.  Would you prefer to restrain someone, or be tied up yourself?",,
-40,300,Can you tie me up now?,I can certainly tie you up.  It's a good time to practice.,ChangeMaidOpinion(-1),
+40,300,Can you tie me up now?,I can certainly tie you up.  It's a good time to practice.,NoHelpOverwriteProtection(-1),
 100,,,"You can practice your bondage skills here.  Would you prefer to restrain someone, or be tied up yourself?",,
 100,,I want to practice tying you up.,"(She blushes.)  Yes, head maid DialogPlayerName.  I will not resist you.",,IsHeadMaid
 100,200,I want to practice tying you up.,"You can't tie me up, but we have someone here who would certainly enjoy being your subject.",ChangeMaidOpinion(1),!IsHeadMaid
 100,200,Can I tie her up?,"Absolutely, you have the perfect candidate here to practice on.",ChangeMaidOpinion(1),
-100,300,I want to practice freeing myself.,Awesome!  If you're ready now I can get started.,ChangeMaidOpinion(-1),
+100,300,I want to practice freeing myself.,Awesome!  If you're ready now I can get started.,NoHelpOverwriteProtection(-1),
 100,,Who runs this club?,The Head Mistress is in charge.  You should go present yourself if you haven't already.,DialogRemove(),
 100,,Let's practice later.  (Leave her.),,DialogLeave(),
 200,220,I can use my favorite restraints on her?,"Of course, use anything you want on her.  She's very submissive, I'm sure she'll enjoy it.",,HasBasicItems
@@ -185,7 +186,7 @@ JobDojoIntro2203,,,Konichiwa!  (She smiles and bows politely.)  I trust you want
 270,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,CanTakeJob()
 270,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,CannotTakeJobDone()
 270,,Do you have any work for me?,(She giggles and shakes her head no.)  We are not in a good situation to hire you.,,CannotTakeJobRestrained()
-270,300,I want to practice freeing myself.,Of course!  If you're ready for the challenge I will tie you up.,,
+270,300,I want to practice freeing myself.,Of course!  If you're ready for the challenge I will tie you up.,NoHelpOverwriteProtection(),
 300,,,Are you ready to struggle against the ropes?,,Player.CanInteract()
 300,,,Get your arms free first if you want to practice struggling against my ropes.  Let me know when you're ready.,,!Player.CanInteract()
 300,310,"I'm ready, you can tie me up.",(She wraps a white nylon rope around your feet and does two knots.),"DialogWearItem(""NylonRope"", ""ItemFeet"")",AllowRestrainPlayer()
@@ -219,7 +220,7 @@ JobDojoIntro2203,,,Konichiwa!  (She smiles and bows politely.)  I trust you want
 370,400,Do you have any work for me?,"Yes, there are special jobs you could do for us today for a great salary.  Pick something you like.  (She shows you a notepad.)",,CanTakeJob()
 370,,Do you have any work for me?,"(She shakes her head no.)  Sorry, come back another day.",,CannotTakeJobDone()
 370,,Do you have any work for me?,(She giggles and shakes her head no.)  We are not in a good situation to hire you.,,CannotTakeJobRestrained()
-370,300,I want to practice freeing myself.,Again?  Well of course.  Are you ready to struggle now?,,
+370,300,I want to practice freeing myself.,Again?  Well of course.  Are you ready to struggle now?,NoHelpOverwriteProtection(),
 400,,,These are the special jobs you could do for us.  Pick something you like.  (She shows you a notepad.),,
 400,,What's the salary?,"Since it's a special job that I can only offer once per day, the salary is 100$.",DialogRemove(),
 400,410,Tell me about the puppy care job.,A club Mistress is too busy to take her puppy girls for a walk.  She's offering 100$ if you take good care of them.  Are you up for it?,,"JobAvailable(""DomPuppy"")"

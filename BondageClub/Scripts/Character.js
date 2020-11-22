@@ -47,6 +47,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		CanChange: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !ManagementIsClubSlave() && !LogQuery("BlockChange", "Rule") && (!LogQuery("BlockChange", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1))) },
 		IsProne: function () { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained: function () { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
+		IsOnNoHelpList: function () { return LogValue("MaidsDisabled", "Maid") - CurrentTime > 0 },
 		/** Look for blindness effects and return the worst (limited by settings), Light: 1, Normal: 2, Heavy: 3 */
 		GetBlindLevel: function () {
 			let blindLevel = 0;

@@ -27,7 +27,7 @@ var MaidQuartersOnlineDrinkFromOwner = false;
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
  */
-function MaidQuartersIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ) }
+function MaidQuartersIsMaidsDisabled() { return Player.IsOnNoHelpList(); }
 
 // Returns TRUE if the player can work for the maids
 /**

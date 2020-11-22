@@ -14,18 +14,19 @@ PlayerPunishmentStage8,,,Don't worry.  All the slaves will share the same steel 
 PlayerPunishmentStage9,,,(She produces a small remote and gives a devious smile.)  Let's hear you sing!,,
 SophieOrgasmGameVictory,,,"(As you feel the pleasure rising, you notice that you're the only one standing.  Mistress Sophie starts to applause you.)",,
 SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the pleasure of the egg.  You get a wonderful orgasm but lose the game.)",,
+NoHelpList,,,"Since you are on the no-help list I'll tie you up like before.",,
 0,,,(She swings her crop toward you and addresses you with a French accent.)  *Esclave*!  What are you doing here?,,IsClubSlave()
 0,,,(She greets you with a French accent.)  It's a *plaisir* to see you Mistress DialogPlayerName.  What brings you here?,,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,(She addresses you with a French accent.)  What are you doing here maid DialogPlayerName?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
 0,,,(She addresses you with a French accent.)  Who are you girl?  What are you doing here?,,
-0,10,"Mistress Sophie, it's always a pleasure.","Absolutely *Maitresse* DialogPlayerName, but I've reserved this room for the day.  What's the purpose of your visit?",,"DialogLogQuery(""ClubMistress"", ""Management"")"
+0,10,"Mistress Sophie, it's always a pleasure.","Absolutely *Maitresse* DialogPlayerName, but I've reserved this room for the day.  What's the purpose of your visit?",SaveAppearanceForNoHelpList(),"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,10,This room is mine.,(She stares at you.)  You must be confused *Maitresse* DialogPlayerName.  I've reserved this room for the day.,UpsetSophie(2),"DialogLogQuery(""ClubMistress"", ""Management"")"
-0,10,I was sent by the maid sorority.,The *sororite* sent you?  Impossible!  You're probably wrong girl.,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
+0,10,I was sent by the maid sorority.,The *sororite* sent you?  Impossible!  You're probably wrong girl.,SaveAppearanceForNoHelpList(),"DialogLogQuery(""JoinedSorority"", ""Maid"")"
 0,10,I'm here to clean the room Miss.,It's too early for room cleaning girl.  You're probably at the wrong place.,UpsetSophie(1),"DialogLogQuery(""JoinedSorority"", ""Maid"")"
 0,10,What are you doing here?,What am I doing here?  (She looks angry.)  I've reserved this room for the day!,UpsetSophie(2),
 0,10,I'm sorry.  I might be lost.,"Girl, this is a private room.  I've reserved it for the day.",UpsetSophie(1),
-0,10,Are you Mistress Sophie?,"*Oui*, why are you here little club slave?",,IsClubSlave()
-0,10,Are you Mistress Sophie?,"*Oui*, were you looking for me?",,!IsClubSlave()
+0,10,Are you Mistress Sophie?,"*Oui*, why are you here little club slave?",SaveAppearanceForNoHelpList(),IsClubSlave()
+0,10,Are you Mistress Sophie?,"*Oui*, were you looking for me?",SaveAppearanceForNoHelpList(),!IsClubSlave()
 0,,(Leave her.),,DialogLeave(),
 10,14,"So sorry, this maid is confused.",(She grins.)  And do you know what happens to *confuse* maids?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
 10,11,"Actually, I've wanted to meet you.",(She looks annoyed.)  Your timing is horrible.  What do you want from me?,UpsetSophie(1),

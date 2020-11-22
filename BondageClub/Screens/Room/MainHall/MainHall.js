@@ -46,7 +46,7 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping in the maid quarters
  */
-function MainHallIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0)  }
+function MainHallIsMaidsDisabled() { return Player.IsOnNoHelpList(); }
 
 /**
  * Checks for the dialog options to help the player know how much time is left before the maids can help them

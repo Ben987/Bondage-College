@@ -262,9 +262,13 @@ function PrisonCellRelease(C) {
 		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidReleaseIsAngry");
 	} else {
 		PrisonMaid.Stage = "22";
-		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidReleaseIsNotAngry");
 		Player.Appearance = PrisonPlayerAppearance;
-		CharacterRelease(C);
+		if (!Player.IsOnNoHelpList()) {
+			CharacterRelease(C);
+            PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidReleaseIsNotAngry");
+        } else {
+			PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonNoHelpList");
+        }
 		PrisonCellPlayerOut();
 		CharacterRefresh(C);
 	}
