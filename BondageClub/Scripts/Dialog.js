@@ -52,6 +52,9 @@ var DialogLockPickProgressChallenge = 0;
 var DialogLockPickProgressMaxTries = 0;
 var DialogLockPickProgressCurrentTries = 0;
 var DialogLockPickSuccessTime = 0;
+var DialogLockPickArousalTick = 0;
+var DialogLockPickArousalTickTime = 12000;
+var DialogLockPickArousalText = ""
 
 var DialogLockMenu = false
 var DialogLentLockpicks = false
@@ -963,6 +966,8 @@ function DialogProgressStart(C, PrevItem, NextItem) {
  */
 function DialogLockPickProgressStart(C, Item) {
 
+	DialogLockPickArousalText = ""
+	DialogLockPickArousalTick = 0
 
 	var lock = InventoryGetLock(Item)
 	var LockRating = 1
@@ -1777,6 +1782,7 @@ function DialogLockPickClick(C) {
 						
 						if (DialogLockPickOrder[current_pins] == P && DialogLockPickImpossiblePins.filter(x => x==P).length == 0) {
 							DialogLockPickSet[P] = true
+							DialogLockPickArousalText = ""; // Reset arousal text
 
 						}
 						var order = DialogLockPickImpossiblePins.indexOf(P)/DialogLockPickSet.length * skill/10 // At higher skills you can see which pins are later in the order
@@ -1858,35 +1864,73 @@ function DialogDrawLockpickProgress(C) {
 	if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries && DialogLockPickSuccessTime == 0) {
 		DrawText(DialogFind(Player, "LockpickFailed"), X, 262, "red");
 	}
+	if (DialogLockPickArousalText != "") {
+		DrawText(DialogLockPickArousalText, X, 170, "pink");
+	}
 		
 
 	DrawText(DialogFind(Player, "LockpickIntro"), X, 800, "white");
 	DrawText(DialogFind(Player, "LockpickIntro2"), X, 850, "white");
 	
-	if (CurrentTime > DialogLockPickSuccessTime && DialogLockPickSuccessTime != 0) {
-		DialogLockPickSuccessTime = 0
-		// Success!
-		if (Player.FocusGroup && C) {
-			var item = InventoryGet(C, Player.FocusGroup.Name)
-			if (item) {
-				InventoryUnlock(C, item)
+	if (DialogLockPickSuccessTime != 0) {
+		if (CurrentTime > DialogLockPickSuccessTime) {
+			DialogLockPickSuccessTime = 0
+			// Success!
+			if (C.FocusGroup && C) {
+				var item = InventoryGet(C, C.FocusGroup.Name)
+				if (item) {
+					InventoryUnlock(C, item)
+				}
+			}
+			SkillProgress("LockPicking", DialogLockPickProgressSkill);
+			// The player can use another item right away, for another character we jump back to her reaction
+			if (C.ID == 0) {
+				DialogInventoryBuild(C);
+				DialogLockPickOrder = null;
+				DialogLockMenu = false;
+				DialogMenuButtonBuild(C);
+				
+			} else {
+				DialogLeaveItemMenu();
+			}
+			if (CurrentScreen == "ChatRoom" && Player.FocusGroup) {
+				var item = InventoryGet(C, Player.FocusGroup.Name)
+				if (item)
+					ChatRoomPublishAction(C, item, null, true, "ActionPick");
 			}
 		}
-		SkillProgress("LockPicking", DialogLockPickProgressSkill);
-		// The player can use another item right away, for another character we jump back to her reaction
-		if (C.ID == 0) {
-			DialogInventoryBuild(C);
-			DialogLockPickOrder = null;
-			DialogLockMenu = false;
-			DialogMenuButtonBuild(C);
-			
+	} else {
+		if ( Player.ArousalSettings && Player.ArousalSettings.Progress > 20 && DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries && DialogLockPickProgressCurrentTries > 0) {
+			if (CurrentTime > DialogLockPickArousalTick) {
+				var arousalmaxtime = 2.6 - 2.0*Player.ArousalSettings.Progress/100
+				if (DialogLockPickArousalTick - CurrentTime > CurrentTime + DialogLockPickArousalTickTime*arousalmaxtime) {
+					DialogLockPickArousalTick = CurrentTime + DialogLockPickArousalTickTime*arousalmaxtime // In case it gets set out way too far
+				}
+				
+				if (DialogLockPickArousalTick > 0 && DialogLockPickSet.filter(x => x==true).length > 0) {
+					DialogLockPickArousalText = DialogFind(Player, "LockPickArousal")
+					if (DialogLockPickSet.filter(x => x==true).length < DialogLockPickSet.length) {
+						for (let P = DialogLockPickOrder.length; P >= 0; P--) {
+							if (DialogLockPickSet[DialogLockPickOrder[P]] == true) {
+								DialogLockPickOffsetTarget[DialogLockPickOrder[P]] = 0
+								DialogLockPickSet[DialogLockPickOrder[P]] = false
+								break;
+							}
+						}
+					}
+				}
+				
+				var arousalmod = (0.3 + Math.random()*0.7) * (arousalmaxtime) // happens very often at 100 arousal
+				DialogLockPickArousalTick = CurrentTime + DialogLockPickArousalTickTime * arousalmod
+			}
+			var alpha = "10"
+			if (DialogLockPickArousalTick - CurrentTime < 1000) alpha = "70"
+			else if (DialogLockPickArousalTick - CurrentTime < 2000) alpha = "50"
+			else if (DialogLockPickArousalTick - CurrentTime < 3000) alpha = "30"
+			else if (DialogLockPickArousalTick - CurrentTime < 5000) alpha = "20";
+			DrawRect(0, 0, 2000, 1000, "#FFB0B0" + alpha);
 		} else {
-			DialogLeaveItemMenu();
-		}
-		if (CurrentScreen == "ChatRoom" && Player.FocusGroup) {
-			var item = InventoryGet(C, Player.FocusGroup.Name)
-			if (item)
-				ChatRoomPublishAction(C, item, null, true, "ActionPick");
+			DialogLockPickArousalText = ""
 		}
 	}
 	
