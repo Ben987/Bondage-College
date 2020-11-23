@@ -47,7 +47,10 @@ function MaidQuartersCanDoWorkButMaidsDisabled() { return (DialogReputationGreat
  * CHecks for appropriate dressing
  * @returns {boolean} - Returns true if the player wears a maid dress and a maid hair band, false otherwise
  */
-function MaidQuartersPlayerInMaidUniform() { return ((CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "MaidOutfit1") && (CharacterAppearanceGetCurrentValue(Player, "Hat", "Name") == "MaidHairband1")) }
+function MaidQuartersPlayerInMaidUniform() {
+	const clothes = CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name");
+	return ((clothes == "MaidOutfit1" || clothes == "MaidOutfit2") && (CharacterAppearanceGetCurrentValue(Player, "Hat", "Name") == "MaidHairband1"))
+}
 /**
  * Checks, if the player is able to do the 'serve drinks' job
  * @returns {boolean} - Returns true, if the player can do the job, false otherwise
