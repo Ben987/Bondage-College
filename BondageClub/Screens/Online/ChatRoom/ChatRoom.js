@@ -232,12 +232,23 @@ function ChatRoomDrawCharacter(DoClick) {
 
 	// The darkness factors varies with blindness level (1 is bright, 0 is pitch black)
 	var DarkFactor = 1.0;
+	
+	var RenderSingle = false
 
 	// Determine the horizontal & vertical position and zoom levels to fit all characters evenly in the room
 	var Space = ChatRoomCharacter.length >= 2 ? 1000 / Math.min(ChatRoomCharacter.length, 5) : 500;
 	var Zoom = ChatRoomCharacter.length >= 3 ? Space / 400 : 1;
 	var X = ChatRoomCharacter.length >= 3 ? (Space - 500 * Zoom) / 2 : 0;
 	var Y = ChatRoomCharacter.length <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
+	
+	
+	if (Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3)) {
+		RenderSingle = true
+		Space = 500
+		Zoom = 1
+		X = 0
+		Y = 0
+	}
 
 	// If there's more than 2 characters, we apply a zoom factor, also apply the darkness factor if the player is blindfolded
 	if (!DoClick && Player.GetBlindLevel() < 3) {
@@ -256,6 +267,15 @@ function ChatRoomDrawCharacter(DoClick) {
 	for (let C = 0; C < ChatRoomCharacter.length; C++) {
 		var CharX = X + (C % 5) * Space;
 		var CharY = Y + Math.floor(C / 5) * 500;
+		if (RenderSingle) { // Only render the player!
+			if (ChatRoomCharacter[C].ID == 0) {
+				CharX = 0
+				CharY = 0
+			} else {
+				continue;
+			}
+			
+		}
 		if (DoClick) {
 			if (MouseIn(CharX, CharY, 450 * Zoom, 1000 * Zoom)) {
 				if ((MouseY <= CharY + 900 * Zoom) && (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine ? (!(Player.GetBlindLevel() >= 3) || ChatRoomCharacter[C].ID == Player.ID) : true)) {
@@ -697,7 +717,7 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
 		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
 		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
-		else if (msg != "" && !(m.indexOf("(") == 0 && Player.ImmersionSettings && Player.ImmersionSettings.BlockGaggedOOC && !Player.CanTalk())) {
+		else if (msg != "" && !((ChatRoomTargetMemberNumber != null || m.indexOf("(") == 0) && Player.ImmersionSettings && Player.ImmersionSettings.BlockGaggedOOC && !Player.CanTalk())) {
 			if (ChatRoomTargetMemberNumber == null) {
 				// Regular chat
 				ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });

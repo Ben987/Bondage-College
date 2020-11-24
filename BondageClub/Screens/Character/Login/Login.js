@@ -91,6 +91,7 @@ function LoginLoad() {
 
 	// Resets the player and other characters
 	Character = [];
+	CharacterNextId = 1;
 	CharacterReset(0, "Female3DCG");
 	LoginDoNextThankYou();
 	CharacterLoadCSVDialog(Player);
@@ -327,6 +328,7 @@ function LoginResponse(C) {
 			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
 			Player.LimitedItems = ((C.LimitedItems == null) || !Array.isArray(C.LimitedItems)) ? [] : C.LimitedItems;
 			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
+			Player.Difficulty = C.Difficulty;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 
@@ -350,6 +352,7 @@ function LoginResponse(C) {
 			Player.AudioSettings = C.AudioSettings;
 			Player.GameplaySettings = C.GameplaySettings;
 			Player.ImmersionSettings = C.ImmersionSettings;
+			Player.RestrictionSettings = C.RestrictionSettings;
 			Player.ArousalSettings = C.ArousalSettings;
 			Player.OnlineSettings = C.OnlineSettings;
 			Player.OnlineSharedSettings = C.OnlineSharedSettings;

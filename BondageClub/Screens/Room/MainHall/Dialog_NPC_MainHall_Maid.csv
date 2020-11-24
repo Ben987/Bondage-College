@@ -35,17 +35,17 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,40,(Nod yes.),(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.,,HasOwnerItemAndMaidsNotDisabled()
 0,45,(Nod yes.),(She checks your locks and frowns.)  Is that a lover lock?  Your lover might not be pleased if I release you.,,HasLoverItemAndMaidsNotDisabled()
 0,70,(Nod yes and point to your slave collar.),(She checks the lock and frowns.) That is a slave collar. Your Mistress might not be pleased if I change it.,,HasSlaveCollarAndMaidsNotDisabled()
-0,100,(Nod yes.),"(She shakes her head) Hang in there. You have less than 10 minutes to go.",,MaidsDisabledMinutesLeft()
-0,100,(Nod yes.),"(She shakes her head) You have about an hour left.",,MaidsDisabledHourLeft()
-0,100,(Nod yes.),"(She shakes her head) You have a day of struggling ahead of you.",,MaidsDisabledDaysLeft1()
-0,100,(Nod yes.),"(She laughs) You have 2 days to go. Hang tight.",,MaidsDisabledDaysLeft2()
-0,100,(Nod yes.),"(She caresses your face). You have 3 days to go. Hope you're having fun.",,MaidsDisabledDaysLeft3()
-0,100,(Nod yes.),"(She giggles). Having fun yet? You have 4 days to go.",,MaidsDisabledDaysLeft4()
-0,100,(Nod yes.),"I still can't let you go. You have 5 days to go.",,MaidsDisabledDaysLeft5()
-0,100,(Nod yes.),"(She slaps your butt). I can't help you, my dear. Have fun.",,MaidsDisabledDaysLeft6()
-0,100,(Nod yes.),"(She looks at her clipboard, amazed). One whole week. Good luck dear.",,MaidsDisabledDaysLeft7()
-0,103,(Nod. You encountered a bug.),"(She looks at her clipboard and pauses) Actually, you're not on my list. I'll help you! (Failed to get time remaining. Please report this bug to the Discord. You will be released)",MaidReleasePlayer(),MaidsDisabledDaysLeft8()
-0,104,(Shake your head firmly and plead for more.),"(She looks at her clipboard) Is that so. I can extend your period of helplessness if you want. (She goes over a list of durations and waits for you to answer)",,IsMaidsDisabled()
+0,100,(Nod yes.),"(She shakes her head no.)  I'm sorry, I cannot help hardcore or extreme members.  Change your membership or find someone in a chatroom.",,MaidsPlayingHardcore()
+0,100,(Nod yes.),(She shakes her head no.) Hang in there.  You have less than 10 minutes to go.,,MaidsDisabledMinutesLeft()
+0,100,(Nod yes.),(She shakes her head no.)  You have about an hour left.,,MaidsDisabledHourLeft()
+0,100,(Nod yes.),(She shakes her head no.)  You have a day of struggling ahead of you.,,MaidsDisabledDaysLeft1()
+0,100,(Nod yes.),(She laughs.)  You have 2 days to go.  Hang tight.,,MaidsDisabledDaysLeft2()
+0,100,(Nod yes.),(She caresses your face).  You have 3 days to go.  Hope you're having fun.,,MaidsDisabledDaysLeft3()
+0,100,(Nod yes.),(She giggles.)  Having fun yet?  You have 4 days to go.,,MaidsDisabledDaysLeft4()
+0,100,(Nod yes.),I still can't let you go.  You have 5 days to go.,,MaidsDisabledDaysLeft5()
+0,100,(Nod yes.),"(She slaps your butt.)  I can't help you, my dear.  Have fun.",,MaidsDisabledDaysLeft6()
+0,100,(Nod yes.),"(She looks at her clipboard, amazed.)  One whole week.  Good luck dear.",,MaidsDisabledDaysLeft7()
+0,104,(Shake your head firmly and plead for more.),(She looks at her clipboard.)  Is that so?  I can extend your period of helplessness if you want.  (She goes over a list of durations and waits for you to answer.),,MaidsDisabledBegForMore()
 0,40,"Yes, can you release me?",(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.,,HasOwnerItemAndMaidsNotDisabled()
 0,70,"Yes, can you change my collar?",(She checks the lock and frowns.) That is a slave collar. Your Mistress might not be pleased if I change it.,,HasSlaveCollarAndMaidsNotDisabled()
 0,1010,I'm fine.  But I have questions on the club.,Sure.  What would you like to know?,,
@@ -63,7 +63,6 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 32,,You're the best!  (Leave her.),,FreeSarah(),
 40,41,(Nod and whimper for help.),"I can help you girl, but you will be shamed for that.  Your reputation will be hurt.",,!IsMaidsDisabled()
 40,41,"I know, but can you still help me?","I can help you girl, but you will be shamed for that.  Your reputation will be hurt.",,!IsMaidsDisabled()
-40,101,"I know, but can you still help me?","I cannot help you girl. You made a deal earlier.",,!IsMaidsDisabled()
 40,,You're right.  Forget it then. (Leave her.),,DialogLeave(),
 40,,(Sigh and leave her.),,DialogLeave(),
 41,42,(Nod and bow your head.),"Very well.  (She releases you, strips you and confiscate your clothes.)",MaidShamePlayer(),
@@ -79,8 +78,8 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 43,1010,I have some questions on the club.,Sure.  What would you like to know?,,
 45,43,Please release me anyway.,"Well, that's something you should discuss with your lover.  (She releases you.)",MaidReleasePlayer(),
 45,43,(Nod slowly.),"Well, that's something you should discuss with your lover.  (She releases you.)",MaidReleasePlayer(),
-45,43,Forget it then.,"Alright!  Run to your lover.  (She spanks your butt and giggles.)",,
-45,43,(Shake your head no.),"Alright!  Run to your lover.  (She spanks your butt and giggles.)",,
+45,43,Forget it then.,Alright!  Run to your lover.  (She spanks your butt and giggles.),,
+45,43,(Shake your head no.),Alright!  Run to your lover.  (She spanks your butt and giggles.),,
 50,51,Why do you care?,"I'm doing my job.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
 50,51,Oops!  I forgot the rule.,"Rules are important.  Club slaves must stay naked, let me help you to strip.",,Player.CanTalk()
 50,51,Sorry.  I was tricked by someone.,"Make sure to remember the rules.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", -2)",Player.CanTalk()
@@ -118,17 +117,17 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 72,73,Why are you taking my clothes?,(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.,"DialogChangeReputation(""Dominant"", 2)",
 72,73,When can I dress back?,Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.,,
 72,73,I know I'm a bad submissive.,(She sighs.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.,"DialogChangeReputation(""Dominant"", -2)",
-72,73,(Bow your head in thanks.),Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
+72,73,(Bow your head in thanks.),Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.,,
 73,,"Very well, thank you.  (Leave her.)",,DialogLeave(),
 73,,"Fine, I'm going then.  (Leave her.)",,DialogLeave(),
 73,,(Grumble and leave.),,DialogLeave(),
 73,1010,I have some questions on the club.,Sure.  What would you like to know?,,
 100,,(Frown and leave her.),,DialogLeave(),
-103,,(Leave.),,DialogLeave(),
+103,,(Nod and leave her.),,DialogLeave(),
 104,103,(Ask for 10 more minutes),"You will be helpless for ten more minutes, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(10),MaidsDisabledMinutesLeft()
 104,103,(Ask for 30 more minutes),"You will be helpless for 30 more minutes, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(30),MaidsDisabledAtLeast30MinutesLeft()
 104,103,(Ask for 1 more hour),"You will be helpless for the next hour, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(60),MaidsDisabledAtLeast1HourLeft()
-104,103,(Back out),"(She smiles and slaps your butt) Fair enough. Now go struggle some more.",,MainHallMaidsDisabledAtLeastDaysLeft7()
+104,103,(Back out),(She smiles and slaps your butt) Fair enough. Now go struggle some more.,,MainHallMaidsDisabledAtLeastDaysLeft7()
 1000,1001,"Yes, it's my very first time.","It's fine.  I have a few important questions before I let you in, and I need honest answers.",,
 1000,1001,"No, I've been here before.","Very well.  Before I let you in, we need to review the most important rules.  Will you give me honest answers?",,
 1001,1002,Yes.  I will be honest.,"First, I need to make sure that you're an adult.  This place isn't for minors.  Are you an adult in your country?",,
@@ -156,4 +155,3 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 1010,,I want to learn about skills.,"There are different skills you can learn and get better with time and practice.  The maximum level is 10, the percentage is your current progress toward the next level.",,
 1010,1002,What are the most important rules again?,The first rule is that the club is only for adults.  This place isn't for minors.  Are you an adult in your country?,,
 1010,,(Thank her and leave her.),,DialogLeave(),
-
