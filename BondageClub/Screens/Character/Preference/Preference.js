@@ -246,13 +246,13 @@ function PreferenceInit(C) {
 	// Sets the default immersion settings
 	if (!C.ImmersionSettings) C.ImmersionSettings = {};
 	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
-	if (typeof C.ImmersionSettings.AllowPlayerLeashing !== "boolean") C.ImmersionSettings.AllowPlayerLeashing = false;
 	
 
 	if (!C.OnlineSettings) C.OnlineSettings = {};
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
 	if (C.OnlineSharedSettings.AllowFullWardrobeAccess == null) C.OnlineSharedSettings.AllowFullWardrobeAccess = false;
 	if (C.OnlineSharedSettings.BlockBodyCosplay == null) C.OnlineSharedSettings.BlockBodyCosplay = false;
+	if (typeof C.OnlineSharedSettings.AllowPlayerLeashing !== "boolean") C.OnlineSharedSettings.AllowPlayerLeashing = false;
 	// TODO: The following preferences were migrated September 2020 in for R61 - replace with standard preference code after a few months
 	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanBlackList", false);
 	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanGhostList", true);
@@ -501,7 +501,7 @@ function PreferenceSubscreenImmersionRun() {
 	DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
 	
 	
-	DrawCheckbox(1200, 462, 64, 64, TextGet("AllowPlayerLeashing"), Player.ImmersionSettings.AllowPlayerLeashing);
+	DrawCheckbox(1200, 462, 64, 64, TextGet("AllowPlayerLeashing"), Player.OnlineSharedSettings.AllowPlayerLeashing);
 
 	DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
 
@@ -541,7 +541,7 @@ function PreferenceSubscreenImmersionClick() {
 			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
 	if (MouseIn(1200, 462, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.ImmersionSettings.AllowPlayerLeashing = !Player.ImmersionSettings.AllowPlayerLeashing;
+			Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing;
 				
 	if (MouseIn(500, 800, 64, 64) && 
 		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))

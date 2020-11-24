@@ -634,41 +634,27 @@ function ServerAccountQueryResult(data) {
  */
 function ServerAccountBeep(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
-		ServerBeep.MemberNumber = data.MemberNumber;
-		ServerBeep.MemberName = data.MemberName;
-		ServerBeep.ChatRoomName = data.ChatRoomName;
-		ServerBeep.Timer = CurrentTime + 10000;
-		if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) {
-			ServerBeepAudio.volume = Player.AudioSettings.Volume;
-			ServerBeepAudio.play();
-		}
-		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
-		if (ServerBeep.ChatRoomName != null)
-			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
-		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
-		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
-		if (Player.ImmersionSettings && Player.ImmersionSettings.AllowPlayerLeashing && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
-			// Have to not be tethered, and need a leash
-			var canLeash = false
-			var isTrapped = false
-			var neckLock = null
-			for (let A = 0; A < Player.Appearance.length; A++)
-				if ((Player.Appearance[A].Asset != null) && (Player.Appearance[A].Asset.Group.Family == Player.AssetFamily)) {
-					if (Player.Appearance[A].Asset.Name.indexOf("Leash") >= 0 || (Player.Appearance[A].Property && Player.Appearance[A].Property.Type && Player.Appearance[A].Property.Type.indexOf("Leash") >= 0)) {
-						canLeash = true
-						if (Player.Appearance[A].Asset.Group.Name == "ItemNeckRestraints")
-							neckLock = InventoryGetLock(Player.Appearance[A])
-					}
-				}
-			if ((Player.Effect.indexOf("Tethered") >= 0) || (Player.Effect.indexOf("Mounted") >= 0) || (Player.Effect.indexOf("Enclosed") >= 0)) isTrapped = true
-			
-			if (canLeash && !isTrapped) {
-				if (!neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
-					(neckLock.Asset.OwnerOnly && Player.Ownership && Player.Ownership.MemberNumber == data.MemberNumber) ||
-					(neckLock.Asset.LoverOnly && Player.GetLoversNumbers() && Player.GetLoversNumbers().indexOf(data.MemberNumber) >= 0))
-				{
+			if (!data.BeepType || data.BeepType == "") {
+			ServerBeep.MemberNumber = data.MemberNumber;
+			ServerBeep.MemberName = data.MemberName;
+			ServerBeep.ChatRoomName = data.ChatRoomName;
+			ServerBeep.Timer = CurrentTime + 10000;
+			if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) {
+				ServerBeepAudio.volume = Player.AudioSettings.Volume;
+				ServerBeepAudio.play();
+			}
+			ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
+			if (ServerBeep.ChatRoomName != null)
+				ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
+			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
+			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
+		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber) {
+			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
+				if (ChatRoomCanBeLeashed(Player)) {
 					CommonSetScreen("Room", "ChatSearch")
 					ChatRoomJoinLeash = data.ChatRoomName
+				} else {
+					ChatRoomLeashPlayer = null
 				}
 			}
 		}

@@ -253,6 +253,7 @@ function ChatSearchJoin() {
 				ChatSearchLastQueryJoin = RoomName;
 				ChatRoomPlayerCanJoin = true;
 				ServerSend("ChatRoomJoin", { Name: RoomName });
+				ChatRoomPingLeashedPlayers()
 			}
 			
 		}
