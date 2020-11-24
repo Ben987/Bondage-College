@@ -988,5 +988,5 @@ function GameLARPProcess(P) {
  */
 function GameLARPReset() {
 	GameLARPStatus = "";
-	Player.Game.LARP.Status = "";
+	if ((Player.Game != null) && (Player.Game.LARP != null)) Player.Game.LARP.Status = "";
 }
