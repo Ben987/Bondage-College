@@ -36,7 +36,6 @@ function ChatRoomBackgroundIsIndoors() {
 		ChatRoomLastBackground = ChatRoomData.Background
 		ChatRoomBackgroundIndoors = false
 		for (let B = 0; B < BackgroundsList.length; B++) {
-			    { Name: "Introduction", Tag: [BackgroundsTagIndoor, BackgroundsTagClub] },
 			if (BackgroundsList[B].Name == ChatRoomLastBackground) {
 				ChatRoomBackgroundIndoors = BackgroundsList[B].Tag.find(item => { return item === BackgroundsTagIndoor } ) != null
 			}

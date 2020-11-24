@@ -100,7 +100,7 @@ AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
-NeedHelpDoors,Require help leaving rooms when hands are covered
+NeedHelpDoors,Bypass needing help leaving rooms when hands are covered
 BlockGaggedOOC,Prevent OOC & whispers while gagged
 SensDepSetting,Sensory deprivation setting
 SensDepLight,Light

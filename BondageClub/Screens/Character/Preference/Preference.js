@@ -248,7 +248,6 @@ function PreferenceInit(C) {
 	// Sets the default immersion settings
 	if (!C.ImmersionSettings) C.ImmersionSettings = {};
 	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
-	if (typeof C.ImmersionSettings.NeedHelpDoors !== "boolean") C.ImmersionSettings.NeedHelpDoors = false;
 
 	// Sets the default restriction settings
 	if (!C.RestrictionSettings) C.RestrictionSettings = {};
@@ -256,6 +255,9 @@ function PreferenceInit(C) {
 	if ((C.ID == 0) && (C.GetDifficulty() != 0)) C.RestrictionSettings.BypassStruggle = false;
 	if (typeof C.RestrictionSettings.SlowImmunity !== "boolean") C.RestrictionSettings.SlowImmunity = false;
 	if ((C.ID == 0) && (C.GetDifficulty() != 0)) C.RestrictionSettings.SlowImmunity = false;
+	if (typeof C.RestrictionSettings.NeedHelpDoors !== "boolean") C.RestrictionSettings.NeedHelpDoors = true;
+	if ((C.ID == 0) && (C.GetDifficulty() != 0)) C.RestrictionSettings.NeedHelpDoors = true;
+	
 
 	// Sets the default online settings
 	if (!C.OnlineSettings) C.OnlineSettings = {};
@@ -503,6 +505,7 @@ function PreferenceSubscreenRestrictionRun() {
 		DrawText(TextGet("RestrictionAccess"), 500, 225, "Black", "Gray");
 		DrawCheckbox(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"), Player.RestrictionSettings.BypassStruggle);
 		DrawCheckbox(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"), Player.RestrictionSettings.SlowImmunity);
+		DrawCheckbox(500, 525, 64, 64, TextGet("NeedHelpDoors"), !Player.RestrictionSettings.NeedHelpDoors);
 	} else {
 		DrawText(TextGet("RestrictionNoAccess"), 500, 225, "Black", "Gray");
 		DrawRect(500, 325, 64, 64, "#ebebe4");
@@ -511,6 +514,9 @@ function PreferenceSubscreenRestrictionRun() {
 		DrawRect(500, 425, 64, 64, "#ebebe4");
 		DrawEmptyRect(500, 425, 64, 64, "Black");
 		DrawText(TextGet("RestrictionSlowImmunity"), 600, 455, "Black", "Gray");
+		DrawRect(500, 525, 64, 64, "#ebebe4");
+		DrawEmptyRect(500, 525, 64, 64, "Black");
+		DrawText(TextGet("NeedHelpDoors"), 600, 555, "Black", "Gray");
 	}
 
 }
@@ -619,6 +625,7 @@ function PreferenceSubscreenRestrictionClick() {
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenDifficultyExit();
 	if (MouseIn(500, 325, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassStruggle = !Player.RestrictionSettings.BypassStruggle;
 	if (MouseIn(500, 425, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.SlowImmunity = !Player.RestrictionSettings.SlowImmunity;
+	if (MouseIn(500, 525, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.NeedHelpDoors = !Player.RestrictionSettings.NeedHelpDoors;
 }
 
 /**
@@ -636,7 +643,6 @@ function PreferenceSubscreenImmersionRun() {
 	DrawCheckbox(500, 272, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
 	DrawCheckbox(500, 352, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
 	DrawCheckbox(500, 432, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC);
-	DrawCheckbox(500, 512, 64, 64, TextGet("NeedHelpDoors"), Player.ImmersionSettings.NeedHelpDoors);
 	DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
 	DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
 	MainCanvas.textAlign = "center";
@@ -676,11 +682,9 @@ function PreferenceSubscreenImmersionClick() {
 		Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
 	if (MouseIn(500, 800, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 		Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
-  if (MouseIn(500, 800, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+    if (MouseIn(500, 800, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
-	if (MouseIn(500, 512, 64, 64) && 
-		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.ImmersionSettings.NeedHelpDoors = !Player.ImmersionSettings.NeedHelpDoors;
+
 }
 
 /**
