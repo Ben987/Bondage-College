@@ -84,9 +84,10 @@ function InventoryItemMouthFuturisticPanelGagLoad() {
 	} else {
 		ExtendedItemLoad(InventoryItemMouthFuturisticPanelGagOptions, "SelectGagType");
 		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Option: InventoryItemMouthFuturisticPanelGagOptions[0],
-			AutoPunish: 0, AutoPunishUndoTime: 0 , OriginalSetting: "Padded", ChatMessage: true};
+			AutoPunish: 0, AutoPunishUndoTime: 300000 , OriginalSetting: "Padded", ChatMessage: true};
 		if (DialogFocusItem.Property.AutoPunish == null) DialogFocusItem.Property.AutoPunish = 0;
 		if (DialogFocusItem.Property.AutoPunishUndoTime == null) DialogFocusItem.Property.AutoPunishUndoTime = 0;
+		if (DialogFocusItem.Property.AutoPunishUndoTimeSetting == null) DialogFocusItem.Property.AutoPunishUndoTimeSetting = 300000;
 		if (DialogFocusItem.Property.OriginalSetting == null) DialogFocusItem.Property.OriginalSetting = null;
 		if (DialogFocusItem.Property.ChatMessage == null) DialogFocusItem.Property.ChatMessage = true;
 		if (DialogFocusItem.Property.BlinkState == null) DialogFocusItem.Property.BlinkState = true;
@@ -169,11 +170,11 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 		
 		var type = "FuturisticPanelGagMouthType" + ((DialogFocusItem.Property.Type != null) ? DialogFocusItem.Property.Type : "Padded")
 		DrawText(DialogFind(Player, "FuturisticPanelGagMouthTypeDesc") + " " +
-			DialogFind(Player, type), 1500, 475, "White", "Gray");	
+			DialogFind(Player, type), 1350, 475, "White", "Gray");	
 				
 		MainCanvas.textAlign = "left";
-		DrawCheckbox(1100, 650, 64, 64, "", DialogFocusItem.Property.ChatMessage, "White");
-		DrawText(DialogFind(Player, "FuturisticPanelGagMouthButtonChatMessage"), 1200, 683, "White", "Gray");	
+		DrawCheckbox(1100, 890, 64, 64, "", DialogFocusItem.Property.ChatMessage, "White");
+		DrawText(DialogFind(Player, "FuturisticPanelGagMouthButtonChatMessage"), 1200, 923, "White", "Gray");	
 		MainCanvas.textAlign = "center";
 		
 		var autopunish = "Off" 
@@ -182,17 +183,26 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 		else if (DialogFocusItem.Property.AutoPunish == 2) {autopunish = "Medium"}
 		else {autopunish = "Maximum"}
 		
-		DrawText(DialogFind(Player, "FuturisticPanelGagMouthButtonAutoPunish") + " " + autopunish, 1500, 770, "White", "Gray");
+		DrawText(DialogFind(Player, "FuturisticPanelGagMouthButtonAutoPunish") + " " + autopunish, 1350, 683, "White", "Gray");
 		if (DialogFocusItem) {
-			if (DialogFocusItem.Property.Type != null) DrawButton(1250, 500, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypePadded"), "White", "");
-			if (DialogFocusItem.Property.Type != "LightBall") DrawButton(1550, 500, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypeLightBall"), "White", "");
-			if (DialogFocusItem.Property.Type != "Ball") DrawButton(1250, 570, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypeBall"), "White", "");
-			if (DialogFocusItem.Property.Type != "Plug") DrawButton(1550, 570, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypePlug"), "White", "");
+			if (DialogFocusItem.Property.Type != null) DrawButton(1100, 500, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypePadded"), "White", "");
+			if (DialogFocusItem.Property.Type != "LightBall") DrawButton(1400, 500, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypeLightBall"), "White", "");
+			if (DialogFocusItem.Property.Type != "Ball") DrawButton(1100, 570, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypeBall"), "White", "");
+			if (DialogFocusItem.Property.Type != "Plug") DrawButton(1400, 570, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypePlug"), "White", "");
 			
-			if (DialogFocusItem.Property.AutoPunish != 0) DrawButton(1250, 800, 200, 64, DialogFind(Player, "TurnOff"), "White", "");
-			if (DialogFocusItem.Property.AutoPunish != 1) DrawButton(1550, 800, 200, 64, DialogFind(Player, "Low"), "White", "");
-			if (DialogFocusItem.Property.AutoPunish != 2) DrawButton(1250, 870, 200, 64, DialogFind(Player, "Medium"), "White", "");
-			if (DialogFocusItem.Property.AutoPunish != 3) DrawButton(1550, 870, 200, 64, DialogFind(Player, "Maximum"), "White", "");
+			if (DialogFocusItem.Property.AutoPunish != 0) DrawButton(1100, 707, 200, 64, DialogFind(Player, "TurnOff"), "White", "");
+			if (DialogFocusItem.Property.AutoPunish != 1) DrawButton(1400, 707, 200, 64, DialogFind(Player, "Low"), "White", "");
+			if (DialogFocusItem.Property.AutoPunish != 2) DrawButton(1100, 777, 200, 64, DialogFind(Player, "Medium"), "White", "");
+			if (DialogFocusItem.Property.AutoPunish != 3) DrawButton(1400, 777, 200, 64, DialogFind(Player, "Maximum"), "White", "");
+			
+			DrawText(DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeSetting" + DialogFocusItem.Property.AutoPunishUndoTimeSetting), 1775, 475, "White", "Gray");	
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 120000) DrawButton(1675, 500, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton120000"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 300000) DrawButton(1675, 570, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton300000"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 900000) DrawButton(1675, 640, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton900000"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 3600000) DrawButton(1675, 710, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton3600000"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000) DrawButton(1675, 780, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton72000000"), "White", "");
+			
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting) DrawButton(1675, 880, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButtonPump"), "White", "");
 		}
 		
 	}
@@ -206,32 +216,46 @@ function InventoryItemMouthFuturisticPanelGagClick() {
 	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else {		
-		if (MouseIn(1885, 25, 90, 90)) InventoryItemPelvisFuturisticChastityBeltExit()
+		if (MouseIn(1885, 25, 90, 90)) InventoryItemMouthFuturisticPanelGagExit()
 			
-		else if (MouseIn(1100, 650, 64, 64)) DialogFocusItem.Property.ChatMessage = !DialogFocusItem.Property.ChatMessage
+		else if (MouseIn(1100, 890, 64, 64)) DialogFocusItem.Property.ChatMessage = !DialogFocusItem.Property.ChatMessage
 		
 		
-		else if (DialogFocusItem.Property.Type != null && MouseIn(1250, 500, 200, 64)) {
+		else if (DialogFocusItem.Property.Type != null && MouseIn(1100, 500, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0; 
 			DialogFocusItem.Property.OriginalSetting = null; 
 			ExtendedItemSetType(C, InventoryItemMouthFuturisticPanelGagOptions, InventoryItemMouthFuturisticPanelGagOptions[0], false)}
-		else if (DialogFocusItem.Property.Type != "LightBall" && MouseIn(1550, 500, 200, 64)) {
+		else if (DialogFocusItem.Property.Type != "LightBall" && MouseIn(1400, 500, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0;
 			DialogFocusItem.Property.OriginalSetting = "LightBall";
 			ExtendedItemSetType(C, InventoryItemMouthFuturisticPanelGagOptions, InventoryItemMouthFuturisticPanelGagOptions[1], false)}
-		else if (DialogFocusItem.Property.Type != "Ball" && MouseIn(1250, 570, 200, 64)) {
+		else if (DialogFocusItem.Property.Type != "Ball" && MouseIn(1100, 570, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0;
 			DialogFocusItem.Property.OriginalSetting = "Ball";
 			ExtendedItemSetType(C, InventoryItemMouthFuturisticPanelGagOptions, InventoryItemMouthFuturisticPanelGagOptions[2], false)}
-		else if (DialogFocusItem.Property.Type != "Plug" && MouseIn(1550, 570, 200, 64)) {
+		else if (DialogFocusItem.Property.Type != "Plug" && MouseIn(1400, 570, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0;
 			DialogFocusItem.Property.OriginalSetting = "Plug";
 		ExtendedItemSetType(C, InventoryItemMouthFuturisticPanelGagOptions, InventoryItemMouthFuturisticPanelGagOptions[3], false)}
 		
-		else if (DialogFocusItem.Property.AutoPunish != 0 && MouseIn(1250, 800, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 0)
-		else if (DialogFocusItem.Property.AutoPunish != 1 && MouseIn(1550, 800, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 1)
-		else if (DialogFocusItem.Property.AutoPunish != 2 && MouseIn(1250, 870, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 2)
-		else if (DialogFocusItem.Property.AutoPunish != 3 && MouseIn(1550, 870, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 3)
+		else if (DialogFocusItem.Property.AutoPunish != 0 && MouseIn(1100, 707, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 0)
+		else if (DialogFocusItem.Property.AutoPunish != 1 && MouseIn(1400, 707, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 1)
+		else if (DialogFocusItem.Property.AutoPunish != 2 && MouseIn(1100, 777, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 2)
+		else if (DialogFocusItem.Property.AutoPunish != 3 && MouseIn(1400, 777, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 3)
+			
+		
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 120000 && MouseIn(1675, 500, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 120000)
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 300000 && MouseIn(1675, 570, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 300000)
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 900000 && MouseIn(1675, 640, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 900000)
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 3600000 && MouseIn(1675, 710, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 3600000)
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000 && MouseIn(1675, 780, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 72000000)
+			
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting && MouseIn(1675, 880, 200, 64)) {
+			InventoryItemMouthFuturisticPanelGagTrigger(Player, DialogFocusItem, false)
+			DialogFocusItem.Property.AutoPunishUndoTime = CurrentTime + DialogFocusItem.Property.AutoPunishUndoTimeSetting // Reset the deflation time
+			CharacterRefresh(Player, true); // Does not sync appearance while in the wardrobe
+			ChatRoomCharacterUpdate(Player);	
+		}
 		
 	}
 }
@@ -279,6 +303,16 @@ function InventoryItemMouthFuturisticPanelGagPublishActionTrigger(C, Item, Optio
 function InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, Item, Level) {
 	Item.Property.AutoPunish = Level
 	var msg = "FuturisticPanelGagMouthSetAutoPunish" + Level;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
+
+function InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, Item, Time) {
+	Item.Property.AutoPunishUndoTimeSetting = Time
+	var msg = "FuturisticPanelGagMouthSetAutoPunishTime" + Time;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
@@ -374,7 +408,7 @@ function InventoryItemMouthFuturisticPanelGagSetOption(C, Options, Option, Item,
 function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
 	var Item = data.Item
 	// Punish the player if they speak
-	if (Item.Property.AutoPunish && Item.Property.AutoPunish > 0) {
+	if (Item.Property.AutoPunish && Item.Property.AutoPunish > 0 && Item.Property.AutoPunishUndoTimeSetting) {
 		
 		var LastMessages = data.PersistentData().LastMessageLen
 		var GagTriggerPunish = false
@@ -401,7 +435,7 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
 		
 		if (GagTriggerPunish) {
 			InventoryItemMouthFuturisticPanelGagTrigger(Player, Item, false)
-			Item.Property.AutoPunishUndoTime = CurrentTime + AutoPunishUndoCD // Reset the deflation time
+			Item.Property.AutoPunishUndoTime = CurrentTime + Item.Property.AutoPunishUndoTimeSetting // Reset the deflation time
 			CharacterRefresh(Player, true); // Does not sync appearance while in the wardrobe
 			
 			// For a restraint, we might publish an action or change the dialog of a NPC
@@ -411,7 +445,7 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
 			// Deflate the gag back to the original setting after a while
 			InventoryItemMouthFuturisticPanelGagTrigger(Player, Item, true)
 			if (Item.Property.OriginalSetting != Item.Property.Type)
-				Item.Property.AutoPunishUndoTime = CurrentTime + AutoPunishUndoCD // Reset the deflation time
+				Item.Property.AutoPunishUndoTime = CurrentTime + Item.Property.AutoPunishUndoTimeSetting // Reset the deflation time
 			CharacterRefresh(Player, true); // Does not sync appearance while in the wardrobe
 			
 			// For a restraint, we might publish an action or change the dialog of a NPC

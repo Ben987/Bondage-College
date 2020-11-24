@@ -9,6 +9,8 @@ ClothDressFurFabric,Dress
 ClothDressFurFur,Fur
 ClothCorsetShirtShirt,Shirt
 ClothCorsetShirtCorset,Corset
+ClothChineseDress2Dress,Main
+ClothChineseDress2Edges,Trim
 ClothCollegeOutfit1Shirt,Shirt
 ClothCollegeOutfit1Tie,Tie
 ClothCollegeOutfit1Skirt,Skirt
@@ -245,6 +247,9 @@ ItemMouthWiffleGagStrap,Strap
 ItemMouthWiffleGagBall,Ball
 ItemMouthHarnessBallGagBall,Ball
 ItemMouthHarnessBallGagHarness,Harness
+ItemMouthHarnessPonyBitsMetal, Metal
+ItemMouthHarnessPonyBitsStraps, Straps
+ItemMouthHarnessPonyBitsBobble, Bobble
 ItemMouthCupholderGagGag,Gag
 ItemMouthCupholderGagHolder,Holder
 ItemMouthCupholderGagCup,Cup
@@ -293,6 +298,9 @@ ItemMouth2WiffleGagStrap,Strap
 ItemMouth2WiffleGagBall,Ball
 ItemMouth2HarnessBallGagBall,Ball
 ItemMouth2HarnessBallGagHarness,Harness
+ItemMouth2HarnessPonyBitsMetal, Metal
+ItemMouth2HarnessPonyBitsStraps, Straps
+ItemMouth2HarnessPonyBitsBobble, Bobble
 ItemMouth2CupholderGagGag,Gag
 ItemMouth2CupholderGagHolder,Holder
 ItemMouth2CupholderGagCup,Cup
@@ -344,6 +352,9 @@ ItemMouth3DildoGagStrap,Strap
 ItemMouth3DildoGagDildo,Dildo
 ItemMouth3HarnessBallGag1Ball,Ball
 ItemMouth3HarnessBallGag1Strap,Strap
+ItemMouth3HarnessPonyBitsMetal, Metal
+ItemMouth3HarnessPonyBitsStraps, Straps
+ItemMouth3HarnessPonyBitsBobble, Bobble
 ItemMouth3BallGagBall,Ball
 ItemMouth3BallGagStrap,Strap
 ItemMouth3BallGagMaskStrap,Strap

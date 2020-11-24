@@ -22,6 +22,7 @@ var ChatRoomJoinLeash = ""
  * @returns {void} - Nothing
  */
 function ChatSearchLoad() {
+	if (ChatSearchLeaveRoom == "MainHall") ChatRoomGame = "";
 	if (ChatSearchSafewordAppearance == null) {
 		ChatSearchSafewordAppearance = Player.Appearance.slice(0);
 		ChatSearchSafewordPose = Player.ActivePose;
