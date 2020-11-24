@@ -1,5 +1,7 @@
 Preferences,- Preferences -
 GeneralPreferences,- General Preferences -
+DifficultyPreferences,- Multi Player Difficulty Preferences -
+RestrictionPreferences,- Restriction Preferences -
 ChatPreferences,- Chat Preferences -
 AudioPreferences,- Audio Preferences -
 ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
@@ -9,6 +11,8 @@ VFXPreferences,- Graphical Preferences -
 OnlinePreferences,- Online Preferences -
 ImmersionPreferences,- Immersion Preferences -
 HomepageGeneral,General
+HomepageDifficulty,Difficulty
+HomepageRestriction,Restriction
 HomepageChat,Chat
 HomepageAudio,Audio
 HomepageArousal,Arousal
@@ -17,6 +21,47 @@ HomepageVisibility,Item Visibility
 HomepageOnline,Online
 HomepageImmersion,Immersion
 HomepageGraphics,Graphics
+DifficultyTitle,The difficulty mode enforces BDSM restrictions in multi-player only.  Click for details.
+DifficultyLevel0,Roleplay
+Difficulty0Text0,Roleplay - This mode is fully open to customise your experience.
+Difficulty0Text1,It allows you to choose which restrictions or mechanisms to ignore.
+Difficulty0Text2,"You can select this mode any time, but you won't be able"
+Difficulty0Text3,to select the Hardcore or Extreme mode for seven days.
+Difficulty0Text4,
+DifficultyLevel1,Regular
+Difficulty1Text0,Regular - This default mode enforces the basic rules and restrictions.
+Difficulty1Text1,It's made to restrict you and keep you safe at the same time.
+Difficulty1Text2,Lots of options can be configured under this mode.
+Difficulty1Text3,"You can select this mode any time, but you won't be able"
+Difficulty1Text4,to select the Hardcore or Extreme mode for seven days.
+DifficultyLevel2,Hardcore
+Difficulty2Text0,Hardcore - This mode is geared for players wanting to be helpless.
+Difficulty2Text1,"No rescue maid will come, and no NPC will help you out."
+Difficulty2Text2,"No safeword can be used, you must find help from players."
+Difficulty2Text3,You must be a member for at least seven days to select this mode.
+Difficulty2Text4,You cannot select this if you've changed mode in the last seven days.
+DifficultyLevel3,Extreme
+Difficulty3Text0,Extreme - This mode is built for players wanting to be full slaves.
+Difficulty3Text1,"No rescue maid will come, and no NPC will help you out."
+Difficulty3Text2,No safeword can be used and you cannot leave your owner.
+Difficulty3Text3,"All immersion settings are maxed, and you cannot block any item."
+Difficulty3Text4,You cannot select this if you've changed mode in the last seven days.
+DifficultySummary0A,Easy mode - Restrictions and game mechanisms 
+DifficultySummary0B,can be ignored with toggles.  For pure roleplayers.
+DifficultySummary1A,"Normal mode - Basic restrictions are enforced, "
+DifficultySummary1B,many options to protect you.  For most players.
+DifficultySummary2A,"Hard mode - No rescue maids, no safeword and no "
+DifficultySummary2B,help from any NPC.  For players that want trouble.
+DifficultySummary3A,"Slavery mode - No maids, no safeword, no NPC help, "
+DifficultySummary3B,"no blocked items, cannot leave owner.  Fully helpless."
+DifficultyAlreadyPlayingOn,You're already playing on that difficulty mode.
+DifficultyWaitSevenDays,You need to wait NumberOfHours hours before you can activate this mode.
+DifficultyIAccept,I accept the consequences and want to use this mode.
+DifficultyChangeMode,Go
+RestrictionAccess,You can configure game restrictions to bypass in the multi-player environment.
+RestrictionNoAccess,Players using the Roleplay difficulty can configure multi-player restrictions to bypass.
+RestrictionBypassStruggle,Bypass the struggling mini-game.
+RestrictionSlowImmunity,Cannot be slowed down from leaving a room.
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -55,8 +100,8 @@ AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
-BlockGaggedOOC,Prevent Out-Of-Character chat while gagged
 NeedHelpDoors,Require help leaving rooms when hands are covered
+BlockGaggedOOC,Prevent OOC & whispers while gagged
 SensDepSetting,Sensory deprivation setting
 SensDepLight,Light
 SensDepNames,Hide names
@@ -78,7 +123,7 @@ UpdateEmailOld,Current email:
 UpdateEmailNew,New email:
 UpdateEmailEmpty,"No email saved, write here to add one"
 UpdateEmailLinked,"An email is linked, write it here to update it"
-UpdateEmailSuccess,Your email has been updated !
+UpdateEmailSuccess,Your email has been updated.
 UpdateEmailFailure,Current email does not match
 UpdateEmailInvalid,Invalid characters
 ArousalShowOtherMeter,Show other characters meter

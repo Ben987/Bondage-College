@@ -52,6 +52,7 @@ function LARPClick() {
 function LARPSelectClass(NewClass) {
 	if (ReputationGet("LARP") <= 0) DialogSetReputation("LARP", 1);
 	if (Player.Game == null) Player.Game = {};
-	Player.Game.LARP = { Class: NewClass };
+	if (Player.Game.LARP == null) Player.Game.LARP = {};
+	Player.Game.LARP.Class = NewClass;
 	ServerSend("AccountUpdate", { Game: Player.Game });
 }

@@ -179,7 +179,7 @@ function VibratorModeDrawHeader() {
 
 	var X = 1389;
 	var Y = 102;
-	if (DialogFocusItem.Property.Intensity >= 0) {
+	if ((DialogFocusItem != null) && (DialogFocusItem.Property != null) && (DialogFocusItem.Property.Intensity != null) && (DialogFocusItem.Property.Intensity >= 0)) {
 		X += Math.floor(Math.random() * 3) - 1;
 		Y += Math.floor(Math.random() * 3) - 1;
 	}
@@ -198,6 +198,7 @@ function VibratorModeDrawControls(Options, Y) {
 	Y = typeof Y === "number" ? Y : 450;
 	Options = Options || [VibratorModeSet.STANDARD];
 	var Property = DialogFocusItem.Property;
+	if (Property == null) return;
 	var ItemIntensity = DialogFind(Player, "Intensity" + Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description);
 	DrawText(ItemIntensity, 1500, Y, "white", "gray");
 
@@ -230,7 +231,7 @@ function VibratorModeClick(Options, Y) {
 			var X = 1175 + (I % 3) * 225;
 			if (I % 3 === 0) Y += 75;
 			if (MouseIn(X, Y, 200, 55)) {
-				if (Option.Property.Mode !== DialogFocusItem.Property.Mode)
+				if ((Option.Property != null) && (DialogFocusItem.Property != null) && (Option.Property.Mode !== DialogFocusItem.Property.Mode))
 					VibratorModeSetMode(Option);
 				return true;
 			}
