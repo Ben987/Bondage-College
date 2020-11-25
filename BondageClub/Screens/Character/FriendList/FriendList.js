@@ -18,8 +18,7 @@ function FriendListLoad() {
 	ElementCreateDiv("FriendList");
 	ElementPositionFix("FriendList", 36, 0, 70, 2000, 930);
 	ElementContent("FriendList", FriendListContent);
-	ServerSend("AccountQuery", { Query: "Friends" });
-	FriendListNextCheck = Date.now() + 5000;
+	ServerSend("AccountQuery", { Query: "OnlineFriends" });
 }
 
 // 
@@ -46,7 +45,7 @@ function FriendListRun() {
 	DrawButton(1935, 5, 60, 60, "", "White", "Icons/Small/Exit.png");
 	if (FriendListNextCheck !== null && Date.now() >= FriendListNextCheck) {
 		FriendListNextCheck = null;
-		ServerSend("AccountQuery", { Query: "Friends" });
+		ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
 }
 
@@ -58,7 +57,7 @@ function FriendListClick() {
 	if ((MouseX >= 1865) && (MouseX < 1925) && (MouseY >= 5) && (MouseY < 65)) {
 		FriendListModeIndex++;
 		if (FriendListModeIndex >= FriendListMode.length) FriendListModeIndex = 0;
-		ServerSend("AccountQuery", { Query: "Friends" });
+		ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
 	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 5) && (MouseY < 65)) FriendListExit();
 }
@@ -109,22 +108,46 @@ function FriendListLoadFriendList(data) {
 
 	const mode = FriendListMode[FriendListModeIndex];
 
+	let infoChanged = false;
+	data.forEach(friend => {
+		if (!Player.FriendNames.has(friend.MemberNumber)) {
+			Player.FriendNames.set(friend.MemberNumber, friend.MemberName);
+			infoChanged = true;
+		}
+		if (Player.SubmissivesList.has(friend.MemberNumber) != (friend.Type == "Submissive")) {
+			if (friend.Type == "Submissive") {
+				Player.SubmissivesList.add(friend.MemberNumber)
+			} else {
+				Player.SubmissivesList.delete(friend.MemberNumber)
+			}
+			infoChanged = true;
+		}
+	});
+	if (infoChanged) ServerPlayerRelationsSync();
+
 	if (mode === "Friends") {
+		const online = new Set();
 		// In Friend List mode, we show the friend list and allow doing beeps
-		for (const friend of data.sort((a, b) => (a.ChatRoomName === "-Offline-" ? 10 : 0) + (b.ChatRoomName === "-Offline-" ? -10 : 0) + a.MemberName.localeCompare(b))) {
+		for (const friend of data.sort((a, b) => a.MemberName.localeCompare(b))) {
+			online.add(friend.MemberNumber);
 			FriendListContent += "<div class='FriendListRow'>";
 			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${friend.MemberName} </div>`;
 			FriendListContent += `<div class='FriendListTextColumn'> ${friend.MemberNumber} </div>`;
-			if (friend.ChatRoomName === "-Offline-") {
-				FriendListContent += `<div class='FriendListTextColumn'> ${OfflineCaption} </div>`;
+			if (friend.ChatRoomName == null) friend.ChatRoomName = "-";
+			if (friend.ChatRoomName.startsWith("-")) {
+				FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomName.replace("-Private-", PrivateRoomCaption)} </div>`;
 			} else {
-				if (friend.ChatRoomName.startsWith("-")) {
-					FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomName.replace("-Private-", PrivateRoomCaption)} </div>`;
-				} else {
-					FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${friend.ChatRoomName} </div>`;
-				}
-				FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListBeep(${friend.MemberNumber}, "${friend.MemberName}")'> ${BeepCaption} </div>`;
+				FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${friend.ChatRoomName} </div>`;
 			}
+			FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListBeep(${friend.MemberNumber}, "${friend.MemberName}")'> ${BeepCaption} </div>`;
+			FriendListContent += "</div>";
+		}
+		for (const [k, v] of Array.from(Player.FriendNames).sort((a, b) => a[1].localeCompare(b[1]))) {
+			if (online.has(k)) continue;
+			FriendListContent += "<div class='FriendListRow'>";
+			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${v} </div>`;
+			FriendListContent += `<div class='FriendListTextColumn'> ${k} </div>`;
+			FriendListContent += `<div class='FriendListTextColumn'> ${OfflineCaption} </div>`;
 			FriendListContent += "</div>";
 		}
 	} else if (mode === "Beeps") {
@@ -139,15 +162,21 @@ function FriendListLoadFriendList(data) {
 		}
 	} else if (mode === "Delete") {
 		// In Delete mode, we show the friend list and allow the user to remove them
-		for (const friend of data.sort((a, b) => a.MemberName.localeCompare(b))) {
+		for (const [k, v] of Array.from(Player.FriendNames).sort((a, b) => a[1].localeCompare(b[1]))) {
 			FriendListContent += "<div class='FriendListRow'>";
-			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${friend.MemberName} </div>`;
-			FriendListContent += `<div class='FriendListTextColumn'> ${friend.MemberNumber} </div>`;
-			if (mode === "Delete") {
-				FriendListContent += `<div class='FriendListTextColumn'> ${FriendTypeCaption[friend.Type]} </div>`;
-				if (friend.Type === "Friend")
-					FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListDelete(${friend.MemberNumber})'> ${FriendListConfirmDelete.includes(friend.MemberNumber) ? ConfirmDeleteCaption : DeleteCaption} </div>`;
+			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${v} </div>`;
+			FriendListContent += `<div class='FriendListTextColumn'> ${k} </div>`;
+			let Type = "Friend";
+			if (Player.Ownership != null && Player.Ownership.MemberNumber === k) {
+				Type = "Owner";
+			} else if (Player.Lovership.some(lover => lover.MemberNumber == k)) {
+				Type = "Lover";
+			} else if (Player.SubmissivesList.has(k)) {
+				Type = "Submissive";
 			}
+			FriendListContent += `<div class='FriendListTextColumn'> ${FriendTypeCaption[Type]} </div>`;
+			if ((Type === "Friend" || Type === "Submissive") && Player.FriendList.includes(k))
+				FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListDelete(${k})'> ${FriendListConfirmDelete.includes(k) ? ConfirmDeleteCaption : DeleteCaption} </div>`;
 			FriendListContent += "</div>";
 		}
 	}
@@ -164,11 +193,13 @@ function FriendListLoadFriendList(data) {
  * @returns {void} - Nothing
  */
 function FriendListDelete(MemberNumber) {
-	if (FriendListConfirmDelete.indexOf(MemberNumber) >= 0) {
+	if (FriendListConfirmDelete.includes(MemberNumber) && Player.FriendList.includes(MemberNumber)) {
+		FriendListConfirmDelete.splice(FriendListConfirmDelete.indexOf(MemberNumber), 1);
 		Player.FriendList.splice(Player.FriendList.indexOf(MemberNumber), 1);
-		ServerSend("AccountUpdate", { FriendList: Player.FriendList });
+		Player.SubmissivesList.delete(MemberNumber);
+		ServerPlayerRelationsSync();
 	} else FriendListConfirmDelete.push(MemberNumber);
-	ServerSend("AccountQuery", { Query: "Friends" });
+	ServerSend("AccountQuery", { Query: "OnlineFriends" });
 }
 
 /**

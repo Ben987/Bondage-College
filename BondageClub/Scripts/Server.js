@@ -203,6 +203,26 @@ function ServerPlayerSkillSync() {
 	ServerSend("AccountUpdate", D);
 }
 
+/**
+ * Syncs player's relations and related info to the server.
+ * @returns {void} - Nothing
+ */
+function ServerPlayerRelationsSync() {
+	console.log("ServerPlayerRelationsSync()");
+	const D = {};
+	D.FriendList = Player.FriendList;
+	D.GhostList = Player.GhostList;
+	D.WhiteList = Player.WhiteList;
+	D.BlackList = Player.BlackList;
+	Array.from(Player.FriendNames.keys()).forEach(k => {
+		if (!Player.FriendList.includes(k) && !Player.SubmissivesList.has(k))
+			Player.FriendNames.delete(k);
+	})
+	D.FriendNames = LZString.compressToUTF16(JSON.stringify(Array.from(Player.FriendNames)));
+	D.SubmissivesList = LZString.compressToUTF16(JSON.stringify(Array.from(Player.SubmissivesList)));
+	ServerSend("AccountUpdate", D);
+}
+
 /** 
  * Prepares an appearance bundle so we can push it to the server. It minimizes it by keeping only the necessary information. (Asset name, group name, color, properties and difficulty)
  * @param {AppearanceArray} Appearance - The appearance array to bundle
@@ -618,7 +638,7 @@ function ServerPrivateCharacterSync() {
  */
 function ServerAccountQueryResult(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Query != null) && (typeof data.Query === "string") && (data.Result != null)) {
-		if (data.Query == "Friends") FriendListLoadFriendList(data.Result);
+		if (data.Query == "OnlineFriends") FriendListLoadFriendList(data.Result);
 		if (data.Query == "EmailStatus" && data.Result && document.getElementById("InputEmailOld"))
 			document.getElementById("InputEmailOld").placeholder = TextGet("UpdateEmailLinked");
 		if (data.Query == "EmailStatus" && !data.Result && document.getElementById("InputEmailNew"))
@@ -646,7 +666,7 @@ function ServerAccountBeep(data) {
 		if (ServerBeep.ChatRoomName != null)
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
 		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
-		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "Friends" });
+		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
 }
 
