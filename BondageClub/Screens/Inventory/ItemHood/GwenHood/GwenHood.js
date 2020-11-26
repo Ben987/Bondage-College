@@ -44,7 +44,7 @@ function InventoryItemHoodGwenHoodClick() {
 }
 
 function InventoryItemHoodGwenHoodPublishAction(C, Option, PreviousOption) {
-    var msg = "GwenHoodChangeStyle" + ((Option.Property.Type == null) ? "None" : Option.Property.Type);
+    var msg = "GwenHoodChangeStyle";
     var Dictionary = [
         { Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
         { Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
