@@ -11,10 +11,7 @@ var MainHallHasLoverLock = false;
 var MainHallHasSlaveCollar = false;
 var MainHallTip = 0;
 var MainHallMaidWasCalledManually = false;
-
-var MainHallRemoveLockTypes = [
-	"CombinationPadlock",
-]
+var MainHallRemoveLockTypes = ["CombinationPadlock"];
 
 /**
  * Checks to see if the player needs help in any way
@@ -36,36 +33,40 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
 			}
 		}
 	}
-	
-	return needsHelp && !MainHallHasOwnerOrLoverItem()
+
+	return needsHelp && !MainHallHasOwnerOrLoverItem();
+
 }
 
-
-// Returns TRUE if the player has maids disabled
 /**
- * Checks if the player is helpless (maids disabled) or not.
+ * Checks if the maid will help the player or not.  Maids are disabled from the quarters or when playing hardcore.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping in the maid quarters
  */
-function MainHallIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0)  }
+function MainHallIsMaidsDisabled() { return ((LogValue("MaidsDisabled", "Maid") > CurrentTime) || (Player.GetDifficulty() >= 2)) }
+
+/**
+ * Checks if the maid will not help the player because she's playing on hardcore
+ * @returns {boolean} - Returns TRUE if the difficulty is hardcore or more
+ */
+function MainHallMaidsPlayingHardcore() { return (Player.GetDifficulty() >= 2) }
 
 /**
  * Checks for the dialog options to help the player know how much time is left before the maids can help them
  * @returns {boolean} - Returns TRUE if the remaining duration fits within the time range
  */
-function MainHallMaidsDisabledMinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire > 0  && expire < 600000)}
-function MainHallMaidsDisabledHourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 600000 && expire < 3600000) }
-function MainHallMaidsDisabledDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000 && expire < 86400000) }
-function MainHallMaidsDisabledDaysLeft2() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 86400000 && expire < 172800000) }
-function MainHallMaidsDisabledDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 172800000 && expire < 259200000) }
-function MainHallMaidsDisabledDaysLeft4() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 259200000 && expire < 345600000) }
-function MainHallMaidsDisabledDaysLeft5() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 345600000 && expire < 432000000) }
-function MainHallMaidsDisabledDaysLeft6() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 432000000 && expire < 518400000) }
-function MainHallMaidsDisabledDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 518400000 && expire < 604800000) }
-function MainHallMaidsDisabledDaysLeft8() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000) }//604800000) }
+function MainHallMaidsDisabledMinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire > 0 && expire < 600000 && Player.GetDifficulty() < 2) }
+function MainHallMaidsDisabledHourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 600000 && expire < 3600000 && Player.GetDifficulty() < 2) }
+function MainHallMaidsDisabledDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000 && expire < 86400000 && Player.GetDifficulty() < 2) }
+function MainHallMaidsDisabledDaysLeft2() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 86400000 && expire < 172800000 && Player.GetDifficulty() < 2) }
+function MainHallMaidsDisabledDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 172800000 && expire < 259200000 && Player.GetDifficulty() < 2) }
+function MainHallMaidsDisabledDaysLeft4() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 259200000 && expire < 345600000 && Player.GetDifficulty() < 2) }
+function MainHallMaidsDisabledDaysLeft5() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 345600000 && expire < 432000000 && Player.GetDifficulty() < 2) }
+function MainHallMaidsDisabledDaysLeft6() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 432000000 && expire < 518400000 && Player.GetDifficulty() < 2) }
+function MainHallMaidsDisabledDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 518400000 && expire < 604800000 && Player.GetDifficulty() < 2) }
+function MainHallMaidsDisabledBegForMore() { return ((LogValue("MaidsDisabled", "Maid") > CurrentTime) && (Player.GetDifficulty() < 2)) }
 
 /**
  * Checks for the dialog options to help the maid determine which dialog options she can give the player to extend the duration
- 
  * @returns {boolean} - Returns TRUE if the remaining duration fits within the time range
  */
 function MainHallMaidsDisabledAtLeast30MinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 1800000) }
@@ -74,6 +75,7 @@ function MainHallMaidsDisabledAtLeast12HourLeft() { var expire = LogValue("Maids
 function MainHallMaidsDisabledAtLeastDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 86400000) }
 function MainHallMaidsDisabledAtLeastDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 259200000) }
 function MainHallMaidsDisabledAtLeastDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 604800000) }
+
 /**
  * Checks if the dialog option to trick the maid is available
  * @returns {boolean} - Returns TRUE if the maid can be tricked
@@ -91,9 +93,6 @@ function MainHallHasOwnerItemAndMaidsNotDisabled() { return MainHallHasOwnerLock
 function MainHallHasLoverItemAndMaidsNotDisabled() { return MainHallHasLoverLock && !MainHallIsMaidsDisabled() }
 function MainHallHasSlaveCollarAndMaidsNotDisabled() { return MainHallHasSlaveCollar && !MainHallIsMaidsDisabled() }
 function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItemAndMaidsNotDisabled() { return  MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() && !MainHallIsMaidsDisabled() }
-
-
-
 
 /**
  * Loads the main hall by setting up the NPCs, CSVs and global variables required.
@@ -171,7 +170,7 @@ function MainHallRun() {
 	DrawButton(1645, 145, 90, 90, "", "White", "Icons/Chat.png", TextGet("ChatRooms"));
 
 	// The options below are only available if the player can move
-	if (Player.CanWalk()) {
+	if (Player.CanWalk() && (!Player.IsRestrained() || !Player.GameplaySettings.OfflineLockedRestrained)) {
 
 		// Shop & Private Room
 		DrawButton(1765, 145, 90, 90, "", "White", "Icons/Shop.png", TextGet("Shop"));
@@ -212,8 +211,8 @@ function MainHallRun() {
 
 		// Cafe
 		DrawButton(25, 265, 90, 90, "", "White", "Icons/Refreshsments.png", TextGet("Cafe"));
-	}
 
+	}
 
 	// If we must send a maid to rescue the player
 	if ((MainHallNextEventTimer != null) && (CommonTime() >= MainHallNextEventTimer)) {

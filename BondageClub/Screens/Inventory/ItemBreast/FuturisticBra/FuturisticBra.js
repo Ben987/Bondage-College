@@ -42,7 +42,7 @@ function InventoryItemBreastFuturisticBraUpdate(C) {
 	
 	if (C.ArousalSettings && C.ArousalSettings.Progress > 0) {
 		var Progress = C.ArousalSettings.Progress
-		current_bpm += Math.floor(Progress*0.35)
+		current_bpm += Math.floor(Progress*0.60)
 		current_temp += Math.floor(Progress*0.1)/10
 		if ((C.ArousalSettings.OrgasmStage && C.ArousalSettings.OrgasmStage > 0) || (C.ArousalSettings.ProgressTimer && C.ArousalSettings.ProgressTimer > 1)) {
 			current_breathing = "Action"
