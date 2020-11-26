@@ -208,7 +208,6 @@ function ServerPlayerSkillSync() {
  * @returns {void} - Nothing
  */
 function ServerPlayerRelationsSync() {
-	console.log("ServerPlayerRelationsSync()");
 	const D = {};
 	D.FriendList = Player.FriendList;
 	D.GhostList = Player.GhostList;
