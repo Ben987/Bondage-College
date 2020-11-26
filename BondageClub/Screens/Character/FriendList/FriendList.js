@@ -175,8 +175,9 @@ function FriendListLoadFriendList(data) {
 				Type = "Submissive";
 			}
 			FriendListContent += `<div class='FriendListTextColumn'> ${FriendTypeCaption[Type]} </div>`;
-			if ((Type === "Friend" || Type === "Submissive") && Player.FriendList.includes(k))
+			if (Type === "Friend" && Player.FriendList.includes(k) || Type === "Submissive" && Player.SubmissivesList.has(k)) {
 				FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListDelete(${k})'> ${FriendListConfirmDelete.includes(k) ? ConfirmDeleteCaption : DeleteCaption} </div>`;
+			}
 			FriendListContent += "</div>";
 		}
 	}
@@ -193,9 +194,11 @@ function FriendListLoadFriendList(data) {
  * @returns {void} - Nothing
  */
 function FriendListDelete(MemberNumber) {
-	if (FriendListConfirmDelete.includes(MemberNumber) && Player.FriendList.includes(MemberNumber)) {
+	if (FriendListConfirmDelete.includes(MemberNumber)) {
 		FriendListConfirmDelete.splice(FriendListConfirmDelete.indexOf(MemberNumber), 1);
-		Player.FriendList.splice(Player.FriendList.indexOf(MemberNumber), 1);
+		if (Player.FriendList.includes(MemberNumber)) {
+			Player.FriendList.splice(Player.FriendList.indexOf(MemberNumber), 1);
+		}
 		Player.SubmissivesList.delete(MemberNumber);
 		ServerPlayerRelationsSync();
 	} else FriendListConfirmDelete.push(MemberNumber);
