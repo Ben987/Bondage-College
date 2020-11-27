@@ -28,7 +28,7 @@ var TitleList = [
 	{ Name: "PonyCold", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 3) } },
 	{ Name: "PonyFarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 2) } },
 	{ Name: "PonyFoal", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 1) } },
-	{ Name: "Switch", Requirement: function () { return ((ReputationGet("Dominant") >= -30) && (ReputationGet("Dominant") <= 30)) } },
+	{ Name: "Switch", Requirement: function () { return true } },
 	{ Name: "LittleOne", Requirement: function () { return ((ReputationGet("ABDL") >= 30) && (ReputationGet("ABDL") < 60)) } },
 	{ Name: "Baby", Requirement: function () { return (ReputationGet("ABDL") >= 60) } },
 	{ Name: "DL", Requirement: function () { return (ReputationGet("ABDL") >= 60) } },
