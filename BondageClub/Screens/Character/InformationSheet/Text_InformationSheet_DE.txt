@@ -13,11 +13,11 @@ Hausdame
 Maid
 Hausmädchen
 Bondage Maid
-Bondage Zofe
+Bondage-Hausmädchen
 Master Kidnapper
-Meister Entführer
+Meister Entführerin
 Kidnapper
-Entführer
+Entführerin
 Patient
 Patientin
 Permanent Patient
@@ -25,11 +25,11 @@ Dauerhafte Patientin
 Escaped Patient
 Entlaufene Patientin
 Nurse
-Kranken Schwester
+Krankenschwester
 Doctor
 Doktor
 College Student
-College-Schülerin
+College-Studentin
 Foal
 Fohlen
 Farm Horse
@@ -49,7 +49,7 @@ Fliegender Pegasus
 Majestic Alicorn
 Majestätischer Alicorn
 Little One
-Kleiner
+Kleine
 Diaper Lover
 Windel Liebhaber
 Member Number:
