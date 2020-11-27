@@ -10,6 +10,8 @@ Head Maid
 Главная Горничная
 Maid
 Горничная
+Bondage Maid
+Бондаж Горничная
 Master Kidnapper
 Мастер-Похититель
 Kidnapper
@@ -42,3 +44,15 @@ Shining Unicorn
 Сияющий Единорог
 Flying Pegasus
 Летающий Пегас
+Majestic Alicorn
+Величественный Аликорн
+Switch
+Переключатель
+Little One
+малыш
+Baby
+Младенец
+Diaper Lover
+Любитель Подгузников
+Bondage Baby
+Связывание Ребенка

@@ -10,6 +10,8 @@ Head Maid
 Maîtresse Servante
 Maid
 Servante
+Bondage Maid
+Servante Bondage
 Master Kidnapper
 Ace du Kidnapping
 Kidnapper
@@ -50,3 +52,15 @@ Houdini
 Houdini
 Patron
 Patronne
+Majestic Alicorn
+Majestueux Alicorn
+Switch
+Commutateur
+Little One
+Un Peu
+Baby
+Bébé
+Diaper Lover
+Couche Amant
+Bondage Baby
+La Servitude Bébé

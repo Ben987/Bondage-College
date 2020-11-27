@@ -10,6 +10,8 @@ Head Maid
 Hausdame
 Maid
 Hausmädchen
+Bondage Maid
+Bondage Zofe
 Master Kidnapper
 Kidnapper-Meisterin
 Kidnapper
@@ -42,3 +44,11 @@ Shining Unicorn
 Glänzendes Einhorn
 Flying Pegasus
 Fliegender Pegasus
+Majestic Alicorn
+Majestätischer Alicorn
+Switch
+Schalter
+Little One
+Kleiner
+Diaper Lover
+Windel Liebhaber
