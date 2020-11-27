@@ -32,7 +32,8 @@ var TitleList = [
 	{ Name: "LittleOne", Requirement: function () { return (ReputationGet("ABDL") >= 30) } },
 	{ Name: "Baby", Requirement: function () { return (ReputationGet("ABDL") >= 60) } },
 	{ Name: "DL", Requirement: function () { return (ReputationGet("ABDL") >= 60) } },
-	{ Name: "BondageBaby", Requirement: function () { return ((SkillGetLevel(Player, "Evasion")) >= 10 && (ReputationGet("ABDL") >= 100)) } }
+	{ Name: "BondageBaby", Requirement: function () { return ((SkillGetLevel(Player, "Evasion")) >= 10 && (ReputationGet("ABDL") >= 100)) } },
+	{ Name: "Duchess", Requirement: function () { return LogQuery("VivaLaRevolution", "Sarah") } }
 ];
 
 /**
