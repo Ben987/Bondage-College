@@ -107,6 +107,7 @@ SensDepLight,Light
 SensDepNames,Hide names
 SensDepTotal,Total
 SensDepExtreme,Total (no whispers)
+AllowPlayerLeashing,"While leashed, teleport to beep location"
 DisableAutoMaid,Maids come automatically when restrained
 DisablePickingLocksOnSelf,Locks on you can't be picked
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained

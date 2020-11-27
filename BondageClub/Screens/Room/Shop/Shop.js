@@ -296,7 +296,7 @@ function ShopJobRestrain() {
 	DialogChangeReputation("Dominant", -1);
 	while (true) {
 		ShopDemoItemGroup = CommonRandomItemFromList("", ShopDemoItemGroupList);
-		if (InventoryGet(Player, ShopDemoItemGroup) == null) break;
+		if ((InventoryGet(Player, ShopDemoItemGroup) == null) && !InventoryGroupIsBlocked(Player, ShopDemoItemGroup)) break;
 	}
 
 	// Add a random item on that body part and creates a customer
