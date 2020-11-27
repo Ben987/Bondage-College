@@ -360,10 +360,9 @@ function ChatSearchResultResponse(data) {
 				ChatSearchLastQueryJoin = ChatSearchResult[R].Name;
 				ChatRoomPlayerCanJoin = true;
 				ServerSend("ChatRoomJoin", { Name: ChatSearchResult[R].Name });
+				break;
 			}
-	}
-	ChatRoomJoinLeash = ""
-	if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
+	} else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
 		var found = false
 		for (let R = 0; R < data.length; R++) {
 			var room = data[R]
@@ -375,6 +374,7 @@ function ChatSearchResultResponse(data) {
 					ChatSearchLastQueryJoin = RoomName;
 					ChatRoomPlayerCanJoin = true;
 					ServerSend("ChatRoomJoin", { Name: RoomName });
+					break;
 				}
 			}
 		}
@@ -412,6 +412,7 @@ function ChatSearchResultResponse(data) {
 			}
 		}
 	}
+	ChatRoomJoinLeash = ""
 }
 
 /**
@@ -421,7 +422,7 @@ function ChatSearchResultResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
-  if (ChatRoomJoinLeash != "") {
+	if (ChatRoomJoinLeash != "") {
 		Query = ChatRoomJoinLeash
 	} else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "") {
 		if (Player.ImmersionSettings.ReturnToChatRoom) {
