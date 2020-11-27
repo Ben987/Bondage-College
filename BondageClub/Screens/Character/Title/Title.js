@@ -27,12 +27,12 @@ var TitleList = [
 	{ Name: "PonyWarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 4) } },
 	{ Name: "PonyCold", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 3) } },
 	{ Name: "PonyFarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 2) } },
-	{ Name: "PonyFoal", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 1) } },
+	{ Name: "PonyFoal", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") == 1) || ((SkillGetLevel(Player, "Dressage") >= 1) && (ReputationGet("ABDL") >= 60))) } },
 	{ Name: "Switch", Requirement: function () { return true } },
-	{ Name: "LittleOne", Requirement: function () { return ((ReputationGet("ABDL") >= 30) && (ReputationGet("ABDL") < 60)) } },
+	{ Name: "LittleOne", Requirement: function () { return (ReputationGet("ABDL") >= 30) } },
 	{ Name: "Baby", Requirement: function () { return (ReputationGet("ABDL") >= 60) } },
 	{ Name: "DL", Requirement: function () { return (ReputationGet("ABDL") >= 60) } },
-	{ Name: "BondageBaby", Requirement: function () { return ((SkillGetLevel(Player, "Evasion")) >= 10 && (ReputationGet("ABDL") >= 100)) } },
+	{ Name: "BondageBaby", Requirement: function () { return ((SkillGetLevel(Player, "Evasion")) >= 10 && (ReputationGet("ABDL") >= 100)) } }
 ];
 
 /**
