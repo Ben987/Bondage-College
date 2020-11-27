@@ -12,10 +12,12 @@ Head Maid
 Hausdame
 Maid
 Hausmädchen
+Bondage Maid
+Bondage Zofe
 Master Kidnapper
-Kidnapper-Meisterin
+Meister Entführer
 Kidnapper
-Kidnapperin
+Entführer
 Patient
 Patientin
 Permanent Patient
@@ -23,7 +25,7 @@ Dauerhafte Patientin
 Escaped Patient
 Entlaufene Patientin
 Nurse
-Schwester
+Kranken Schwester
 Doctor
 Doktor
 College Student
@@ -44,6 +46,14 @@ Shining Unicorn
 Glänzendes Einhorn
 Flying Pegasus
 Fliegender Pegasus
+Majestic Alicorn
+Majestätischer Alicorn
+Switch
+Switch
+Little One
+Kleiner
+Diaper Lover
+Windel Liebhaber
 Member Number:
 Mitgliedsnummer:
 -
