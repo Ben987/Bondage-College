@@ -1288,7 +1288,8 @@ function ChatRoomSync(data) {
 				ChatRoomData = data;
 				
 				if (ChatRoomLeashList.indexOf(data.SourceMemberNumber) >= 0) {
-					ChatRoomLeashList.splice(ChatRoomLeashList.indexOf(data.SourceMemberNumber), 1)
+					// Ping to make sure they are still leashed
+					ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: data.SourceMemberNumber });
 				}
 				
 				return;
@@ -1578,7 +1579,7 @@ function ChatRoomStopHoldLeash() {
  * Triggered when a dom enters the room
  * @returns {void} - Nothing.
  */
-function ChatRoomPingLeashedPlayers() {
+function ChatRoomPingLeashedPlayers(NoBeep) {
 	if (ChatRoomLeashList && ChatRoomLeashList.length > 0) {
 		for (let P = 0; P < ChatRoomLeashList.length; P++) {
 			ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: ChatRoomLeashList[P] });
