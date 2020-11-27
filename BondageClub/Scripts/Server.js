@@ -634,21 +634,34 @@ function ServerAccountQueryResult(data) {
  */
 function ServerAccountBeep(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
-		ServerBeep.MemberNumber = data.MemberNumber;
-		ServerBeep.MemberName = data.MemberName;
-		ServerBeep.ChatRoomName = data.ChatRoomName;
-		ServerBeep.Timer = CurrentTime + 10000;
-		if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) {
-			ServerBeepAudio.volume = Player.AudioSettings.Volume;
-			ServerBeepAudio.play();
+			if (!data.BeepType || data.BeepType == "") {
+			ServerBeep.MemberNumber = data.MemberNumber;
+			ServerBeep.MemberName = data.MemberName;
+			ServerBeep.ChatRoomName = data.ChatRoomName;
+			ServerBeep.Timer = CurrentTime + 10000;
+			if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) {
+				ServerBeepAudio.volume = Player.AudioSettings.Volume;
+				ServerBeepAudio.play();
+			}
+			ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
+			if (ServerBeep.ChatRoomName != null)
+				ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
+			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
+			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
+		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber) {
+			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
+				if (ChatRoomCanBeLeashed(Player)) {
+					CommonSetScreen("Room", "ChatSearch")
+					ChatRoomJoinLeash = data.ChatRoomName
+				} else {
+					ChatRoomLeashPlayer = null
+				}
+			}
 		}
-		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
-		if (ServerBeep.ChatRoomName != null)
-			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
-		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
-		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
 }
+
+
 
 /** Draws the last beep sent by the server if the timer is still valid, used during the drawing process */
 function ServerDrawBeep() {

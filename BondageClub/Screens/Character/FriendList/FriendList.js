@@ -145,6 +145,6 @@ function FriendListDelete(MemberNumber) {
  * @param {string} MemberName - The name of the player to beep
  */
 function FriendListBeep(MemberNumber, MemberName) {
-	ServerSend("AccountBeep", { MemberNumber: MemberNumber });
+	ServerSend("AccountBeep", { MemberNumber: MemberNumber, BeepType:""});
 	FriendListBeepLog.push({ MemberNumber: MemberNumber, MemberName: MemberName, ChatRoomName: ((ChatRoomData == null) ? null : ChatRoomData.Name), Sent: true, Time: new Date() });
 }
