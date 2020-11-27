@@ -1050,8 +1050,8 @@ function ChatRoomMessage(data) {
 					ChatRoomSlowStop = true;
 				} 
 				if (msg == "HoldLeash"){
-					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer) {
-						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
+					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer && ChatRoomLeashPlayer) {
+						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: ChatRoomLeashPlayer.MemberNumber });
 					}
 					if (ChatRoomCanBeLeashed(Player)) {
 						ChatRoomLeashPlayer = SenderCharacter.MemberNumber
@@ -1287,6 +1287,9 @@ function ChatRoomSync(data) {
 				ChatRoomCharacter.push(CharacterLoadOnline(data.Character[data.Character.length - 1], data.SourceMemberNumber));
 				ChatRoomData = data;
 				
+				if (ChatRoomLeashList.indexOf(data.SourceMemberNumber) >= 0) {
+					ChatRoomLeashList.splice(ChatRoomLeashList.indexOf(data.SourceMemberNumber), 1)
+				}
 				
 				return;
 			}
