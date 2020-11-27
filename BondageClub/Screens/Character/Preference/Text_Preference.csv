@@ -107,7 +107,7 @@ SensDepLight,Light
 SensDepNames,Hide names
 SensDepTotal,Total
 SensDepExtreme,Total (no whispers)
-AllowPlayerLeashing,"While leashed, teleport to beep location"
+AllowPlayerLeashing,"Players can drag you to another room when leashed"
 DisableAutoMaid,Maids come automatically when restrained
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
 GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
