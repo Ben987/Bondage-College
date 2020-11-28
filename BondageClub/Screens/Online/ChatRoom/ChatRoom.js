@@ -146,7 +146,7 @@ function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Play
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanHoldLeash() { return CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) < 0
-	&& ChatRoomCanBeLeashed(CurrentCharacter) && Player.FriendList.indexOf(CurrentCharacter.MemberNumber) >= 0}
+	&& ChatRoomCanBeLeashed(CurrentCharacter)}
 /**
  * Checks if the player can let go of the targeted player's leash
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
@@ -960,17 +960,14 @@ function ChatRoomMessage(data) {
 					ChatRoomSlowStop = true;
 				} 
 				if (msg == "HoldLeash"){
-					if (Player.FriendList.indexOf(SenderCharacter.MemberNumber) >= 0) {
-						if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer && ChatRoomLeashPlayer != null) {
-							ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: ChatRoomLeashPlayer });
-						}
-						if (ChatRoomCanBeLeashed(Player)) {
-							ChatRoomLeashPlayer = SenderCharacter.MemberNumber
-						} else {
-							ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
-						}
-					} else
-						ServerSend("ChatRoomChat", { Content: "RemoveLeashNotFriend", Type: "Hidden", Target: SenderCharacter.MemberNumber });
+					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer && ChatRoomLeashPlayer != null) {
+						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: ChatRoomLeashPlayer });
+					}
+					if (ChatRoomCanBeLeashed(Player)) {
+						ChatRoomLeashPlayer = SenderCharacter.MemberNumber
+					} else {
+						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
+					}
 				}
 				if (msg == "StopHoldLeash"){
 					if (SenderCharacter.MemberNumber == ChatRoomLeashPlayer) {
@@ -986,9 +983,6 @@ function ChatRoomMessage(data) {
 					if (ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber) >= 0) {
 						ChatRoomLeashList.splice(ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber), 1)
 					} 
-				} 
- 				if (msg == "RemoveLeashNotFriend"){
-					ServerSend("ChatRoomChat", { Content: "ChatRoomLeashNotFriend", Type: "Action", Target: Player.MemberNumber});
 				} 
 				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
 				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
