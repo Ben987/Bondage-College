@@ -653,7 +653,7 @@ function ServerAccountQueryResult(data) {
  */
 function ServerAccountBeep(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
-			if (!data.BeepType || data.BeepType == "") {
+		if (!data.BeepType || data.BeepType == "") {
 			ServerBeep.MemberNumber = data.MemberNumber;
 			ServerBeep.MemberName = data.MemberName;
 			ServerBeep.ChatRoomName = data.ChatRoomName;
