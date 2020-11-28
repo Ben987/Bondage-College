@@ -202,12 +202,18 @@ function MaidQuartersMaidUngagPlayer() {
  * @returns {void} - Nothing
  */
 function MaidQuartersWearMaidUniform() {
+	const InUniform = MaidQuartersPlayerInMaidUniform();
+
 	for (let ItemAssetGroupName in MaidQuartersItemClothPrev) {
 		MaidQuartersItemClothPrev[ItemAssetGroupName] = InventoryGet(Player, ItemAssetGroupName);
-		InventoryRemove(Player, ItemAssetGroupName);
+		if (!InUniform)
+			InventoryRemove(Player, ItemAssetGroupName);
 	}
-	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
-	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
+
+	if (!InUniform) {
+		InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
+		InventoryWear(Player, "MaidHairband1", "Hat", "Default");
+	}
 }
 
 /**
