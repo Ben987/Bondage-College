@@ -670,7 +670,7 @@ function ServerAccountBeep(data) {
 		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber) {
 			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashed(Player)) {
-					CommonSetScreen("Room", "ChatSearch")
+					ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList) //CommonSetScreen("Room", "ChatSearch")
 					ChatRoomJoinLeash = data.ChatRoomName
 				} else {
 					ChatRoomLeashPlayer = null

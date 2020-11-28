@@ -957,7 +957,7 @@ function ChatRoomMessage(data) {
 					ChatRoomSlowStop = true;
 				} 
 				if (msg == "HoldLeash"){
-					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer) {
+					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer && ChatRoomLeashPlayer != null) {
 						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: ChatRoomLeashPlayer });
 					}
 					if (ChatRoomCanBeLeashed(Player)) {
