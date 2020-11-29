@@ -35,7 +35,15 @@ function InformationSheetRun() {
 	DrawCharacter(C, 50, 50, 0.9);
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("Name") + " " + C.Name, 550, 125, "Black", "Gray");
-	DrawText(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, 200, (TitleIsForced(CurrentTitle)) ? "Red" : "Black", "Gray");
+	if (TitleIsForced(CurrentTitle)) {
+		DrawText(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, 200, "Red");
+	}
+	else if (TitleIsEarned(CurrentTitle)) {
+		DrawText(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, 200, Player.LabelColor, "Gray");
+	}
+	else {
+		DrawText(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, 200, "Black", "Gray");
+	}
 	DrawText(TextGet("MemberNumber") + " " + ((C.MemberNumber == null) ? TextGet("NoMemberNumber") : C.MemberNumber.toString()), 550, 275, "Black", "Gray");
 
 	// Some info are not available for online players

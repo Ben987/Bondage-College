@@ -48,8 +48,6 @@ Flying Pegasus
 Летающий Пегас
 Majestic Alicorn
 Величественный Аликорн
-Switch
-Переключатель
 Little One
 малыш
 Baby
@@ -58,6 +56,24 @@ Diaper Lover
 Любитель Подгузников
 Bondage Baby
 Связывание Ребенка
+Duchess
+Герцогиня
+Kitten
+Котёнок
+Puppy
+Щенок
+Foxy
+Лисий
+Bunny
+Кролик
+Doll
+Кукла
+Demon
+Демон
+Angel
+Ангел
+Succubus
+Суккуб
 Member Number:
 Номер Участника:
 -

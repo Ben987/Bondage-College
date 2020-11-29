@@ -13,7 +13,7 @@ Maîtresse Servante
 Maid
 Servante
 Bondage Maid
-Servante Bondage
+Servante de Bondage
 Master Kidnapper
 Ace du Kidnapping
 Kidnapper
@@ -51,17 +51,33 @@ Dame Chance
 Patron
 Patronne
 Majestic Alicorn
-Majestueux Alicorn
-Switch
-Commutateur
+Alicorne Majestieuse
 Little One
-Un Peu
+Petiotte
 Baby
 Bébé
 Diaper Lover
-Couche Amant
+Porteur de Couche
 Bondage Baby
-La Servitude Bébé
+Bébé attaché
+Duchess
+Duchesse
+Kitten
+Chaton
+Puppy
+Chiot
+Foxy
+Renarde
+Bunny
+Lapine
+Doll
+Poupée
+Demon
+Démon
+Angel
+Ange
+Succubus
+Succube
 Member Number:
 Numéro de Membre:
 -
