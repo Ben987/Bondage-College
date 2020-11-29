@@ -121,6 +121,13 @@ function InventoryItemNeckFuturisticCollarCanLock(C, LockType) {
 	InventoryAvailable(Player, LockType, "ItemMisc")
 	var LockItem = null	
 	// First, we check if the inventory already exists, exit if it's the case
+	for (let I = 0; I < Player.Inventory.length; I++)
+		if ((Player.Inventory[I].Name == LockType) && (Player.Inventory[I].Group == "ItemMisc")) {
+			LockItem = Player.Inventory[I]
+			break;
+		}
+	// Next we check if the target player has it, but not for the mistress, owner, or lover locks
+	if (LockItem == null && LockType != "MistressPadlock" && LockType != "LoversPadlock" && LockType != "OwnerPadlock")
 	for (let I = 0; I < C.Inventory.length; I++)
 		if ((C.Inventory[I].Name == LockType) && (C.Inventory[I].Group == "ItemMisc")) {
 			LockItem = C.Inventory[I]
@@ -149,7 +156,7 @@ function InventoryItemNeckFuturisticCollarGetItems(C, OnlyUnlockable) {
 	var ItemList = []
 	
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Group.Name != "ItemNeck") &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && (!OnlyUnlockable || C.Appearance[E].Asset.Group.Name != "ItemNeck")) &&
 			(C.Appearance[E].Asset.AllowLock)
 			&& (!OnlyUnlockable || (InventoryGetLock(C.Appearance[E]) != null && InventoryItemHasEffect(C.Appearance[E], "Lock", true) && DialogCanUnlock(C, C.Appearance[E])))) {
 				ItemList.push(C.Appearance[E])

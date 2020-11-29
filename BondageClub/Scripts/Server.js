@@ -203,6 +203,25 @@ function ServerPlayerSkillSync() {
 	ServerSend("AccountUpdate", D);
 }
 
+/**
+ * Syncs player's relations and related info to the server.
+ * @returns {void} - Nothing
+ */
+function ServerPlayerRelationsSync() {
+	const D = {};
+	D.FriendList = Player.FriendList;
+	D.GhostList = Player.GhostList;
+	D.WhiteList = Player.WhiteList;
+	D.BlackList = Player.BlackList;
+	Array.from(Player.FriendNames.keys()).forEach(k => {
+		if (!Player.FriendList.includes(k) && !Player.SubmissivesList.has(k))
+			Player.FriendNames.delete(k);
+	})
+	D.FriendNames = LZString.compressToUTF16(JSON.stringify(Array.from(Player.FriendNames)));
+	D.SubmissivesList = LZString.compressToUTF16(JSON.stringify(Array.from(Player.SubmissivesList)));
+	ServerSend("AccountUpdate", D);
+}
+
 /** 
  * Prepares an appearance bundle so we can push it to the server. It minimizes it by keeping only the necessary information. (Asset name, group name, color, properties and difficulty)
  * @param {AppearanceArray} Appearance - The appearance array to bundle
