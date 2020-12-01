@@ -104,8 +104,16 @@ function OnlineGameLoadStatus() {
 				GameLARPStatus = ChatRoomCharacter[C].Game.LARP.Status;
 				return;
 			}
-		GameLARPStatus = "";
+		GameLARPReset();
 	}
+}
+
+/**
+ * Resets the game status if needed when the chat room data is updated
+ * @returns {void} - Nothing
+ */
+function OnlineGameReset() {
+	if (ChatRoomGame != "LARP") GameLARPReset();
 }
 
 /**

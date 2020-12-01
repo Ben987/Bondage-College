@@ -905,8 +905,7 @@ function GameLARPContinue() {
 
 		// Shows the winning team and updates the player status
 		GameLARPAddChatLog("EndGame", Player, Player, OnlineGameDictionaryText("Team" + Team), 0, 0, "#0000B0");
-		GameLARPStatus = "";
-		Player.Game.LARP.Status = "";
+		GameLARPReset();
 		ServerSend("AccountUpdate", { Game: Player.Game });
 
 		// Calculate the reputation gained, the longer the game took, the higher it will rise the rep, times 2 if the player team won
@@ -981,4 +980,13 @@ function GameLARPProcess(P) {
 		}
 
 	}
+}
+
+/**
+ * Resets the LARP game so a new game might be started
+ * @returns {void} - Nothing
+ */
+function GameLARPReset() {
+	GameLARPStatus = "";
+	if ((Player.Game != null) && (Player.Game.LARP != null)) Player.Game.LARP.Status = "";
 }

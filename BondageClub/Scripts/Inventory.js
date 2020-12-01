@@ -642,14 +642,16 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 	if (typeof Item === 'string') Item = InventoryGet(C, Item);
 	if (typeof Lock === 'string') Lock = { Asset: AssetGet(C.AssetFamily, "ItemMisc", Lock) };
 	if (Item && Lock && Lock.Asset.IsLock) {
-		if (Item.Asset.AllowLock || Item.Asset.Extended && Item.Property && Item.Property.AllowLock !== false && Item.Asset.AllowLockType.indexOf(Item.Property.Type)>=0) {
-			if (Item.Property == null) Item.Property = {};
-			if (Item.Property.Effect == null) Item.Property.Effect = [];
-			if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
-			Item.Property.LockedBy = Lock.Asset.Name;
-			if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
-			if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
-			CharacterRefresh(C, true);
+		if (Item.Asset.AllowLock && (!Item.Property || Item.Property.AllowLock !== false)) {
+			if (!Item.Asset.AllowLockType || Item.Asset.AllowLockType.includes(Item.Property.Type)) {
+				if (Item.Property == null) Item.Property = {};
+				if (Item.Property.Effect == null) Item.Property.Effect = [];
+				if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
+				Item.Property.LockedBy = Lock.Asset.Name;
+				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
+				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
+				CharacterRefresh(C, true);
+			}
 		}
 	}
 }

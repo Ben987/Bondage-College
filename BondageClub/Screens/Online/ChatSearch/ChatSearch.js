@@ -15,12 +15,14 @@ var ChatSearchSafewordPose = null;
 var ChatSearchPreviousActivePose = null;
 var ChatSearchIgnoredRooms = [];
 var ChatSearchMode = "";
+var ChatRoomJoinLeash = ""
 
 /**
  * Loads the chat search screen properties, creates the inputs and loads up the first 24 rooms.
  * @returns {void} - Nothing
  */
 function ChatSearchLoad() {
+	if (ChatSearchLeaveRoom == "MainHall") ChatRoomGame = "";
 	if (ChatSearchSafewordAppearance == null) {
 		ChatSearchSafewordAppearance = Player.Appearance.slice(0);
 		ChatSearchSafewordPose = Player.ActivePose;
@@ -252,6 +254,7 @@ function ChatSearchJoin() {
 				ChatSearchLastQueryJoin = RoomName;
 				ChatRoomPlayerCanJoin = true;
 				ServerSend("ChatRoomJoin", { Name: RoomName });
+				ChatRoomPingLeashedPlayers()
 			}
 			
 		}
@@ -347,6 +350,16 @@ function ChatSearchResultResponse(data) {
 	ChatSearchResult = data;
 	ChatSearchResultOffset = 0;
 	ChatSearchQuerySort();
+	if (ChatRoomJoinLeash != "") {
+		for (let R = 0; R < ChatSearchResult.length; R++)
+			if (ChatSearchResult[R].Name == ChatRoomJoinLeash) {
+				ChatSearchLastQueryJoinTime = CommonTime();
+				ChatSearchLastQueryJoin = ChatSearchResult[R].Name;
+				ChatRoomPlayerCanJoin = true;
+				ServerSend("ChatRoomJoin", { Name: ChatSearchResult[R].Name });
+			}
+	}
+	ChatRoomJoinLeash = ""
 }
 
 /**
@@ -356,6 +369,10 @@ function ChatSearchResultResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
+	if (ChatRoomJoinLeash != "") {
+		Query = ChatRoomJoinLeash
+	}
+	
 	if (ChatSearchLastQuerySearch != Query || ChatSearchLastQuerySearchHiddenRooms != ChatSearchIgnoredRooms.length || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
 		ChatSearchLastQuerySearch = Query;
 		ChatSearchLastQuerySearchTime = CommonTime();

@@ -10,9 +10,9 @@ This changelog follows the format outlined in [keepachangelog.com](https://keepa
 
 **Note to contributors:** To avoid merge conflicts, please don't update this file yourself in your PRs - one of the developers will update the changelog with your change before your PR is merged.
 
-Changelog last updated: 2020-11-06
+Changelog last updated: 2020-11-16
 
-Last recorded PR: [#1635](https://github.com/Ben987/Bondage-College/pull/1635)
+Last recorded PR: [#1665](https://github.com/Ben987/Bondage-College/pull/1665)
 
 ## [R62]
 
@@ -37,7 +37,6 @@ Last recorded PR: [#1635](https://github.com/Ben987/Bondage-College/pull/1635)
     * Nod
     * Sit
     * Struggle
-"Moan/Whimper/Shout/Groan/Talk into Gag" and "Kiss on Gag" activities ([#1598](https://github.com/Ben987/Bondage-College/pull/1598))
 * Nina - Overhauled the main player preferences page ([#1599](https://github.com/Ben987/Bondage-College/pull/1599))
 * Ada - Added a "Request maid service" button to the main hall. The feature can be turned on in your General preferences ([#1564](https://github.com/Ben987/Bondage-College/pull/1564), [#1606](https://github.com/Ben987/Bondage-College/pull/1606))
 * Ben - Added a leveling system to LARP, along with the ability to set longer turn timers
@@ -51,6 +50,8 @@ Last recorded PR: [#1635](https://github.com/Ben987/Bondage-College/pull/1635)
 * Emily R/Nina - Added a new GP-9 Gas Mask item ([#1638](https://github.com/Ben987/Bondage-College/pull/1638), [#1639](https://github.com/Ben987/Bondage-College/pull/1639))
 * Ben - Added some more story paths to the Movie Studio
 * Emily R - Added a new latex room chatroom background, available in both normal chatrooms and the Asylum ([#1640](https://github.com/Ben987/Bondage-College/pull/1640))
+* Nina - Added multi-color support to the Striped Socks and the College Uniform ([#1644](https://github.com/Ben987/Bondage-College/pull/1644), [#1643](https://github.com/Ben987/Bondage-College/pull/1643))
+* Buizel - Added 21 new back hair styles ([#1660](https://github.com/Ben987/Bondage-College/pull/1660))
 
 ### [Removed]
 * Ben - Removed the futuristic items from the random NPC pool
@@ -100,6 +101,14 @@ Last recorded PR: [#1635](https://github.com/Ben987/Bondage-College/pull/1635)
     * Ada - [#1593](https://github.com/Ben987/Bondage-College/pull/1593), [#1594](https://github.com/Ben987/Bondage-College/pull/1594), [#1596](https://github.com/Ben987/Bondage-College/pull/1596), [#1595](https://github.com/Ben987/Bondage-College/pull/1595), [#1631](https://github.com/Ben987/Bondage-College/pull/1631)
     * Nina - [#1613](https://github.com/Ben987/Bondage-College/pull/1613), [#1614](https://github.com/Ben987/Bondage-College/pull/1614), [#1615](https://github.com/Ben987/Bondage-College/pull/1615), [#1625](https://github.com/Ben987/Bondage-College/pull/1625), [#1634](https://github.com/Ben987/Bondage-College/pull/1634)
     * Sandrine - [#1449](https://github.com/Ben987/Bondage-College/pull/1449)
+
+### [Beta fixes]
+
+* Nina - [#1642](https://github.com/Ben987/Bondage-College/pull/1642), [#1649](https://github.com/Ben987/Bondage-College/pull/1649), [#1653](https://github.com/Ben987/Bondage-College/pull/1653), [#1655](https://github.com/Ben987/Bondage-College/pull/1655), [#1656](https://github.com/Ben987/Bondage-College/pull/1656), [#1658](https://github.com/Ben987/Bondage-College/pull/1658), [#1659](https://github.com/Ben987/Bondage-College/pull/1659), [#1665](https://github.com/Ben987/Bondage-College/pull/1665)
+* Emily R - [#1646](https://github.com/Ben987/Bondage-College/pull/1646)
+* Ellie - [#1647](https://github.com/Ben987/Bondage-College/pull/1647), [#1657](https://github.com/Ben987/Bondage-College/pull/1657), [#1664](https://github.com/Ben987/Bondage-College/pull/1664)
+* jomshir98 - [#1648](https://github.com/Ben987/Bondage-College/pull/1648), [#1654](https://github.com/Ben987/Bondage-College/pull/1654)
+* Ada - [#1650](https://github.com/Ben987/Bondage-College/pull/1650), [#1651](https://github.com/Ben987/Bondage-College/pull/1651), [#1652](https://github.com/Ben987/Bondage-College/pull/1652), [#1661](https://github.com/Ben987/Bondage-College/pull/1661)
 
 ## [R61]
 

@@ -1,5 +1,6 @@
 "use strict";
 var Character = [];
+var CharacterNextId = 1;
 
 /**
  * Loads a character into the buffer, creates it if it does not exist
@@ -50,9 +51,18 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		/** Look for blindness effects and return the worst (limited by settings), Light: 1, Normal: 2, Heavy: 3 */
 		GetBlindLevel: function () {
 			let blindLevel = 0;
-			if (this.Effect.includes("BlindHeavy")) blindLevel = 3;
-			else if (this.Effect.includes("BlindNormal")) blindLevel = 2;
-			else if (this.Effect.includes("BlindLight")) blindLevel = 1;
+			let eyes1 = InventoryGet(this, "Eyes");
+			let eyes2 = InventoryGet(this, "Eyes2");
+			if (eyes1.Property && eyes1.Property.Expression && eyes2.Property && eyes2.Property.Expression) {
+				if ((eyes1.Property.Expression === "Closed") && (eyes2.Property.Expression === "Closed")) {
+					blindLevel = 3;
+				}
+			}
+			if (blindLevel == 0) {
+				if (this.Effect.includes("BlindHeavy")) blindLevel = 3;
+				else if (this.Effect.includes("BlindNormal")) blindLevel = 2;
+				else if (this.Effect.includes("BlindLight")) blindLevel = 1;
+			}
 			// Light sensory deprivation setting limits blindness
 			if (this.GameplaySettings && this.GameplaySettings.SensDepChatLog == "SensDepLight") blindLevel = Math.min(2, blindLevel);
 			return blindLevel;
@@ -65,7 +75,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
-		IsSlow: function () { return (this.Effect.indexOf("Slow") >= 0) },
+		IsSlow: function () { return (((this.Effect.indexOf("Slow") >= 0) || (this.Pose.indexOf("LegsClosed") >= 0) || (this.Pose.indexOf("Kneel") >= 0)) && ((this.ID != 0) || !this.RestrictionSettings.SlowImmunity)) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
 		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
 		IsMouthOpen: function() { return this.Effect.indexOf("OpenMouth") >= 0 },
@@ -104,13 +114,15 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HasNoItem: function () { return CharacterHasNoItem(this); },
 		IsEdged: function () { return CharacterIsEdged(this); },
 		IsNpc: function () { return (this.AccountName.substring(0, 4) === "NPC_" || this.AccountName.substring(0, 4) === "NPC-"); },
+		GetDifficulty: function () { return ((this.Difficulty == null) || (this.Difficulty.Level == null) || (typeof this.Difficulty.Level !== "number") || (this.Difficulty.Level < 0) || (this.Difficulty.Level > 3)) ? 1 : this.Difficulty.Level; }
 	};
 
 	// If the character doesn't exist, we create it
-	if (CharacterID >= Character.length)
+	var CharacterIndex = Character.findIndex(c => c.ID == CharacterID);
+	if (CharacterIndex == -1)
 		Character.push(NewCharacter);
 	else
-		Character[CharacterID] = NewCharacter;
+		Character[CharacterIndex] = NewCharacter;
 
 	// Creates the inventory and default appearance
 	if (CharacterID == 0) {
@@ -272,7 +284,7 @@ function CharacterLoadNPC(NPCType) {
 			return Character[C];
 
 	// Randomize the new character
-	CharacterReset(Character.length, "Female3DCG");
+	CharacterReset(CharacterNextId++, "Female3DCG");
 	let C = Character[Character.length - 1];
 	C.AccountName = NPCType;
 	CharacterLoadCSVDialog(C);
@@ -331,7 +343,7 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
  */
 function CharacterLoadOnline(data, SourceMemberNumber) {
 
-	// Checks if the NPC already exists and returns it if it's the case
+	// Checks if the character already exists and returns it if it's the case
 	var Char = null;
 	if (data.ID.toString() == Player.OnlineID)
 		Char = Player;
@@ -350,7 +362,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 			}
 		
 		// Creates the new character from the online template
-		CharacterReset(Character.length, "Female3DCG");
+		CharacterReset(CharacterNextId++, "Female3DCG");
 		Char = Character[Character.length - 1];
 		Char.Name = data.Name;
 		Char.Lover = (data.Lover != null) ? data.Lover : "";
@@ -359,6 +371,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		Char.Description = data.Description;
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
+		Char.Difficulty = data.Difficulty;
 		Char.AllowItem = false;
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
 		CharacterOnlineRefresh(Char, data, SourceMemberNumber);

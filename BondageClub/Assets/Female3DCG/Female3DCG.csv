@@ -674,6 +674,7 @@ ItemTorso,LatexCorset1,Latex Corset
 ItemTorso,LeatherStrapBra1,Leather Strap Bra
 ItemTorso,CrotchChain, Crotch Chain
 ItemTorso,StuddedHarness,Studded Harness
+ItemTorso,HeavyLatexCorset,Heavy Latex Corset
 ItemNipples,,Nipples
 ItemNipples,NippleClamp,Nipple Clamps
 ItemNipples,VibeNippleClamp,Vibrating Nipple Clamps
@@ -1052,6 +1053,7 @@ ItemHood,CanvasHood,Canvas Hood
 ItemHood,Pantyhose,Pantyhose
 ItemHood,GP9GasMask,GP-9 Gas Mask
 ItemHood,OpenFaceHood,Open Face Hood
+ItemHood,Gwenhood,Gwen Hood
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs

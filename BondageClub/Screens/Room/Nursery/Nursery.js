@@ -33,7 +33,9 @@ function NurseryPlayerLostBinky() { return Player.CanTalk() && !NurseryPlayerKee
 function NurseryPlayerLostBinkyAgain() { return Player.CanTalk() && NurseryPlayerKeepsLoosingBinky }
 function NurseryPlayerWearingBabyDress() { return (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress1" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress2" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress3") }
 function NurseryPlayerReadyToAppologise() { return (NurseryPlayerBadBabyStatus <= 1) }
-function NurseryPlayerDiapered() { return (CharacterAppearanceGetCurrentValue(Player, "Panties", "Name") == "Diapers1") }
+function NurseryPlayerDiapered() {
+	return (CharacterAppearanceGetCurrentValue(Player, "Panties", "Name").toUpperCase().indexOf("DIAPER", 0) >= 0);
+}
 function NurseryPlayerReadyDiapered() { return (NurseryPlayerDiapered() && !NurseryPlayerInappropriateCloth) }
 function NurseryPlayerCanRegress() { return !InventoryGet(Player, "ItemMouth3") && !InventoryGroupIsBlocked(Player, "ItemMouth3") }
 
