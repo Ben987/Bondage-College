@@ -370,7 +370,7 @@ function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
 	if (ChatRoomJoinLeash != "") {
-		Query = ChatRoomJoinLeash
+		Query = ChatRoomJoinLeash.toUpperCase().trim();
 	}
 	
 	if (ChatSearchLastQuerySearch != Query || ChatSearchLastQuerySearchHiddenRooms != ChatSearchIgnoredRooms.length || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
