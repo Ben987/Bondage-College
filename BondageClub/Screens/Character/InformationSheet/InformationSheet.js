@@ -39,7 +39,8 @@ function InformationSheetRun() {
 	DrawText(TextGet("MemberNumber") + " " + ((C.MemberNumber == null) ? TextGet("NoMemberNumber") : C.MemberNumber.toString()), 550, 275, "Black", "Gray");
 
 	// Some info are not available for online players
-	if (C.AccountName.indexOf("Online-") < 0) {
+	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
+	if (!OnlinePlayer) {
 		if (C.ID == 0) DrawText(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, "Black", "Gray");
 		else DrawText(TextGet("FriendsFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "PrivateRoomEntry")) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, "Black", "Gray");
 		if (C.ID == 0) DrawText(TextGet("Money") + " " + C.Money.toString() + " $", 550, 425, "Black", "Gray");
@@ -48,14 +49,13 @@ function InformationSheetRun() {
 		if (C.Creation != null) DrawText(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, "Black", "Gray");
 	}
 
-	// Shows the difficulty level
-	let Days = Math.floor((CurrentTime - (((C.Difficulty == null) || (C.Difficulty.LastChange == null) || (typeof C.Difficulty.LastChange !== "number")) ? C.Creation : C.Difficulty.LastChange)) / 86400000);
-	DrawText(TextGet("DifficultyLevel" + C.GetDifficulty()) + " " + TextGet("DifficultyTitle").replace("NumberOfDays", Days.toString()), 550, 500, "Black", "Gray");
-
 	// For the current player or an online player
-	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	if ((C.ID == 0) || OnlinePlayer) {
 
+		// Shows the difficulty level
+		let Days = Math.floor((CurrentTime - (((C.Difficulty == null) || (C.Difficulty.LastChange == null) || (typeof C.Difficulty.LastChange !== "number")) ? C.Creation : C.Difficulty.LastChange)) / 86400000);
+		DrawText(TextGet("DifficultyLevel" + C.GetDifficulty()) + " " + TextGet("DifficultyTitle").replace("NumberOfDays", Days.toString()), 550, 500, "Black", "Gray");
+	
 		// Shows the owner
 		if ((C.Ownership != null) && (C.Ownership.Name != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.Start != null) && (C.Ownership.Stage != null)) {
 			DrawText(TextGet("Owner") + " " + C.Ownership.Name + " (" + C.Ownership.MemberNumber + ")", 550, 575, "Black", "Gray");
