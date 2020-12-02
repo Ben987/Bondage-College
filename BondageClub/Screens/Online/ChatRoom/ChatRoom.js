@@ -154,7 +154,7 @@ function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Play
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanHoldLeash() { return CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) < 0
-	&& ChatRoomCanBeLeashed(CurrentCharacter) }
+	&& ChatRoomCanBeLeashed(CurrentCharacter)}
 /**
  * Checks if the player can let go of the targeted player's leash
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
@@ -657,7 +657,9 @@ function ChatRoomClick() {
 		ServerSend("ChatRoomLeave", "");
 		CommonSetScreen("Online", "ChatSearch");
 		CharacterDeleteAllOnline();
-		ChatRoomSetLastChatRoom("")
+		ChatRoomSetLastChatRoom("")		
+		// Clear leash since the player has escaped
+		ChatRoomLeashPlayer = ""
 	}
 
 	// When the player is slow and attempts to leave
@@ -1050,7 +1052,7 @@ function ChatRoomMessage(data) {
 					ChatRoomSlowStop = true;
 				} 
 				if (msg == "HoldLeash"){
-					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer && ChatRoomLeashPlayer) {
+					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer && ChatRoomLeashPlayer != null) {
 						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: ChatRoomLeashPlayer });
 					}
 					if (ChatRoomCanBeLeashed(Player)) {
@@ -1069,7 +1071,7 @@ function ChatRoomMessage(data) {
 						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
 					}
 				}
- 				if (msg == "RemoveLeash"){
+ 				if (msg == "RemoveLeash" || msg == "RemoveLeashNotFriend"){
 					if (ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber) >= 0) {
 						ChatRoomLeashList.splice(ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber), 1)
 					} 
@@ -1699,9 +1701,7 @@ function ChatRoomListManage(Operation, ListType) {
 	if (((Operation == "Add" || Operation == "Remove")) && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player[ListType] != null) && Array.isArray(Player[ListType])) {
 		if ((Operation == "Add") && (Player[ListType].indexOf(CurrentCharacter.MemberNumber) < 0)) Player[ListType].push(CurrentCharacter.MemberNumber);
 		if ((Operation == "Remove") && (Player[ListType].indexOf(CurrentCharacter.MemberNumber) >= 0)) Player[ListType].splice(Player[ListType].indexOf(CurrentCharacter.MemberNumber), 1);
-		var data = {};
-		data[ListType] = Player[ListType];
-		ServerSend("AccountUpdate", data);
+		ServerPlayerRelationsSync();
 		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
 	if (ListType == "GhostList") {
@@ -1723,7 +1723,7 @@ function ChatRoomListManipulation(Add, Remove, Message) {
 		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
 		if ((Remove != null) && (Remove.indexOf(C) >= 0)) Remove.splice(Remove.indexOf(C), 1);
 		if ((Player.GhostList == Add || Player.GhostList == Remove) && Character.find(Char => Char.MemberNumber == C)) CharacterRefresh(Character.find(Char => Char.MemberNumber == C), false);
-		ServerSend("AccountUpdate", { FriendList: Player.FriendList, GhostList: Player.GhostList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
+		ServerPlayerRelationsSync();
 		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
 }

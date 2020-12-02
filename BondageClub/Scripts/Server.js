@@ -203,6 +203,25 @@ function ServerPlayerSkillSync() {
 	ServerSend("AccountUpdate", D);
 }
 
+/**
+ * Syncs player's relations and related info to the server.
+ * @returns {void} - Nothing
+ */
+function ServerPlayerRelationsSync() {
+	const D = {};
+	D.FriendList = Player.FriendList;
+	D.GhostList = Player.GhostList;
+	D.WhiteList = Player.WhiteList;
+	D.BlackList = Player.BlackList;
+	Array.from(Player.FriendNames.keys()).forEach(k => {
+		if (!Player.FriendList.includes(k) && !Player.SubmissivesList.has(k))
+			Player.FriendNames.delete(k);
+	})
+	D.FriendNames = LZString.compressToUTF16(JSON.stringify(Array.from(Player.FriendNames)));
+	D.SubmissivesList = LZString.compressToUTF16(JSON.stringify(Array.from(Player.SubmissivesList)));
+	ServerSend("AccountUpdate", D);
+}
+
 /** 
  * Prepares an appearance bundle so we can push it to the server. It minimizes it by keeping only the necessary information. (Asset name, group name, color, properties and difficulty)
  * @param {AppearanceArray} Appearance - The appearance array to bundle
@@ -634,7 +653,7 @@ function ServerAccountQueryResult(data) {
  */
 function ServerAccountBeep(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
-			if (!data.BeepType || data.BeepType == "") {
+		if (!data.BeepType || data.BeepType == "") {
 			ServerBeep.MemberNumber = data.MemberNumber;
 			ServerBeep.MemberName = data.MemberName;
 			ServerBeep.ChatRoomName = data.ChatRoomName;
@@ -652,7 +671,15 @@ function ServerAccountBeep(data) {
 			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashed(Player)) {
 					ChatRoomJoinLeash = data.ChatRoomName
-					CommonSetScreen("Room", "ChatSearch")
+					
+					DialogLeave()
+					if (CurrentScreen == "ChatRoom") {
+						ElementRemove("InputChat");
+						ElementRemove("TextAreaChatLog");
+						ServerSend("ChatRoomLeave", "");
+						CommonSetScreen("Online", "ChatSearch");
+					}
+					else ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList) //CommonSetScreen("Room", "ChatSearch")
 				} else {
 					ChatRoomLeashPlayer = null
 				}

@@ -47,7 +47,10 @@ function MaidQuartersCanDoWorkButMaidsDisabled() { return (DialogReputationGreat
  * CHecks for appropriate dressing
  * @returns {boolean} - Returns true if the player wears a maid dress and a maid hair band, false otherwise
  */
-function MaidQuartersPlayerInMaidUniform() { return ((CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "MaidOutfit1") && (CharacterAppearanceGetCurrentValue(Player, "Hat", "Name") == "MaidHairband1")) }
+function MaidQuartersPlayerInMaidUniform() {
+	const clothes = CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name");
+	return ((clothes == "MaidOutfit1" || clothes == "MaidOutfit2") && (CharacterAppearanceGetCurrentValue(Player, "Hat", "Name") == "MaidHairband1"))
+}
 /**
  * Checks, if the player is able to do the 'serve drinks' job
  * @returns {boolean} - Returns true, if the player can do the job, false otherwise
@@ -199,12 +202,18 @@ function MaidQuartersMaidUngagPlayer() {
  * @returns {void} - Nothing
  */
 function MaidQuartersWearMaidUniform() {
+	const InUniform = MaidQuartersPlayerInMaidUniform();
+
 	for (let ItemAssetGroupName in MaidQuartersItemClothPrev) {
 		MaidQuartersItemClothPrev[ItemAssetGroupName] = InventoryGet(Player, ItemAssetGroupName);
-		InventoryRemove(Player, ItemAssetGroupName);
+		if (!InUniform)
+			InventoryRemove(Player, ItemAssetGroupName);
 	}
-	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
-	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
+
+	if (!InUniform) {
+		InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
+		InventoryWear(Player, "MaidHairband1", "Hat", "Default");
+	}
 }
 
 /**

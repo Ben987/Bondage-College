@@ -175,6 +175,9 @@ ItemArmsFuturisticArmbinderDisplay,Display
 ItemArmsFuturisticArmbinderBinder,Binder
 ItemArmsFuturisticArmbinderBand,Band
 ItemArmsFuturisticArmbinderStraps,Straps
+ItemHandsFuturisticMittensBody,Body
+ItemHandsFuturisticMittensMesh,Mesh
+ItemHandsFuturisticMittensDisplay,Display
 ItemNeckHighCollarLeather,Leather
 ItemNeckHighCollarRings,Rings
 ItemNeckPostureCollarCollar,Collar
@@ -407,6 +410,9 @@ ItemBreastFuturisticBraText,Text
 ItemPelvisFuturisticChastityBeltScreen,Screen
 ItemPelvisFuturisticChastityBeltMesh,Mesh
 ItemPelvisFuturisticChastityBeltBelt,Belt
+PantiesPilotPantiesLayer1,Suit
+PantiesPilotPantiesLayer2,Highlights
+PantiesPilotPantiesLayer3,Center
 SuitLowerPilotSuitLayer1,Suit
 SuitLowerPilotSuitLayer2,Highlights
 SuitLowerPilotSuitLayer3,Center
