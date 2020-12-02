@@ -405,7 +405,7 @@ function ChatSearchQuerySort() {
 }
 
 /**
- * Calculates starting offset for the ignored rooms list when displaying result filtering.
+ * Calculates starting offset for the ignored rooms list when displaying results in filter/permission mode.
  * @param {number} shownRooms - Number of rooms shown before the ignored rooms.
  * @returns {number} - Starting offset for ingored rooms
  */
