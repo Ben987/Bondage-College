@@ -610,11 +610,11 @@ function DialogMenuButtonBuild(C) {
 					ActivityDialogBuild(C);
 					if (DialogActivity.length > 0) DialogMenuButton.push("Activity");
 				}
-		
-		// Item permission enter/exit
+
+		// Item permission enter/exit, cannot be done in Extreme mode
 		if (C.ID == 0) {
 			if (DialogItemPermissionMode) DialogMenuButton.push("DialogNormalMode");
-			else DialogMenuButton.push("DialogPermissionMode");
+			else if (Player.GetDifficulty() <= 2) DialogMenuButton.push("DialogPermissionMode");
 		}
 
 	}

@@ -80,6 +80,9 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 31,,(Move her to the right.),(DialogCharacterName as been moved to the right at position CharacterPosition.  Would you like to move her further?),"AdminAction(""MoveRight"", ""false"")",
 31,0,(Back to main menu.),,,
 31,0,(Leave this menu.),,DialogLeave(),
+40,,,(Possible character actions.),,
+40,,(Hold on to her leash.),,HoldLeash(),CanHoldLeash()
+40,,(Let go of her leash.),,StopHoldLeash(),CanStopHoldLeash()
 40,0,(Help her stand.),(You help her up on her feet.),KneelStandAssist(),CanAssistStand()
 40,0,(Help her kneel.),(You help her down on her knees.),KneelStandAssist(),CanAssistKneel()
 40,0,(Help her to struggle free.),,StruggleAssist(),CanAssistStruggle()

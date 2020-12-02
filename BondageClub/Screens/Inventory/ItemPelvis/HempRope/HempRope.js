@@ -5,6 +5,9 @@ const HempRopePelvisOptions = [
 		Name: "Crotch",
 		Property: { Type: null, Difficulty: 1 }
 	}, {
+		Name: "OverPanties",
+		Property: { Type: "OverPanties", Difficulty: 1, OverridePriority: 21 }
+	}, {
 		Name: "SwissSeat",
 		BondageLevel: 4,
 		Property: { Type: "SwissSeat", Difficulty: 4 }

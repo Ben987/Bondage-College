@@ -11,10 +11,7 @@ var MainHallHasLoverLock = false;
 var MainHallHasSlaveCollar = false;
 var MainHallTip = 0;
 var MainHallMaidWasCalledManually = false;
-
-var MainHallRemoveLockTypes = [
-	"CombinationPadlock",
-]
+var MainHallRemoveLockTypes = ["CombinationPadlock"];
 
 /**
  * Checks to see if the player needs help in any way
@@ -36,10 +33,10 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
 			}
 		}
 	}
-	
-	return needsHelp && !MainHallHasOwnerOrLoverItem()
-}
 
+	return needsHelp && !MainHallHasOwnerOrLoverItem();
+
+}
 
 /**
  * Checks if the maid will help the player or not.  Maids are disabled from the quarters or when playing hardcore.
@@ -173,7 +170,7 @@ function MainHallRun() {
 	DrawButton(1645, 145, 90, 90, "", "White", "Icons/Chat.png", TextGet("ChatRooms"));
 
 	// The options below are only available if the player can move
-	if (Player.CanWalk()) {
+	if (Player.CanWalk() && (!Player.IsRestrained() || !Player.GameplaySettings.OfflineLockedRestrained)) {
 
 		// Shop & Private Room
 		DrawButton(1765, 145, 90, 90, "", "White", "Icons/Shop.png", TextGet("Shop"));

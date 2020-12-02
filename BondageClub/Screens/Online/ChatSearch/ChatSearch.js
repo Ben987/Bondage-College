@@ -15,6 +15,7 @@ var ChatSearchSafewordPose = null;
 var ChatSearchPreviousActivePose = null;
 var ChatSearchIgnoredRooms = [];
 var ChatSearchMode = "";
+var ChatRoomJoinLeash = ""
 
 /**
  * Loads the chat search screen properties, creates the inputs and loads up the first 24 rooms.
@@ -211,9 +212,13 @@ function ChatSearchPermissionDraw() {
 			}
 			ShownRooms++;
 		}
-		
+
+		const IgnoredRoomsOffset = ChatSearchCalculateIgnoredRoomsOffset(ShownRooms);
+		if (IgnoredRoomsOffset < 0)
+			return;
+
 		// Display ignored rooms that are no longer present
-		for (let C = ChatSearchResultOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
+		for (let C = IgnoredRoomsOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
 			var isIgnored = !ChatSearchResult.map(Room => Room.Name.toUpperCase()).includes(ChatSearchIgnoredRooms[C]);
 			if (isIgnored) {
 				var Hover = (MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85) && !CommonIsMobile;
@@ -253,6 +258,7 @@ function ChatSearchJoin() {
 				ChatSearchLastQueryJoin = RoomName;
 				ChatRoomPlayerCanJoin = true;
 				ServerSend("ChatRoomJoin", { Name: RoomName });
+				ChatRoomPingLeashedPlayers()
 			}
 			
 		}
@@ -296,8 +302,12 @@ function ChatSearchClickPermission() {
 		ShownRooms++;
 	}
 	
+	const IgnoredRoomsOffset = ChatSearchCalculateIgnoredRoomsOffset(ShownRooms);
+	if (IgnoredRoomsOffset < 0)
+		return;
+
 	// Clicks for the extra hidden rooms
-	for (let C = ChatSearchResultOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
+	for (let C = IgnoredRoomsOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
 		var isIgnored = !ChatSearchResult.map(Room => Room.Name.toUpperCase()).includes(ChatSearchIgnoredRooms[C]);
 		if (isIgnored) {
 			// If the click is valid
@@ -348,6 +358,16 @@ function ChatSearchResultResponse(data) {
 	ChatSearchResult = data;
 	ChatSearchResultOffset = 0;
 	ChatSearchQuerySort();
+	if (ChatRoomJoinLeash != "") {
+		for (let R = 0; R < ChatSearchResult.length; R++)
+			if (ChatSearchResult[R].Name == ChatRoomJoinLeash) {
+				ChatSearchLastQueryJoinTime = CommonTime();
+				ChatSearchLastQueryJoin = ChatSearchResult[R].Name;
+				ChatRoomPlayerCanJoin = true;
+				ServerSend("ChatRoomJoin", { Name: ChatSearchResult[R].Name });
+			}
+	}
+	ChatRoomJoinLeash = ""
 }
 
 /**
@@ -357,6 +377,10 @@ function ChatSearchResultResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
+	if (ChatRoomJoinLeash != "") {
+		Query = ChatRoomJoinLeash.toUpperCase().trim();
+	}
+	
 	if (ChatSearchLastQuerySearch != Query || ChatSearchLastQuerySearchHiddenRooms != ChatSearchIgnoredRooms.length || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
 		ChatSearchLastQuerySearch = Query;
 		ChatSearchLastQuerySearchTime = CommonTime();
@@ -378,4 +402,13 @@ function ChatSearchQuerySort() {
 	// Friendlist option overrides basic order, but keeps full rooms at the back for each number of each different total of friends.
 	if (Player.OnlineSettings && Player.OnlineSettings.SearchFriendsFirst)
 		ChatSearchResult.sort((R1, R2) => R2.Friends.length - R1.Friends.length);
+}
+
+/**
+ * Calculates starting offset for the ignored rooms list when displaying results in filter/permission mode.
+ * @param {number} shownRooms - Number of rooms shown before the ignored rooms.
+ * @returns {number} - Starting offset for ingored rooms
+ */
+function ChatSearchCalculateIgnoredRoomsOffset(shownRooms) {
+	return ChatSearchResultOffset + shownRooms - ChatSearchResult.length;
 }
