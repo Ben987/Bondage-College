@@ -1976,7 +1976,13 @@ var AssetFemale3DCG = [
 				Name: "LatexArmbinder", Fetish: ["Latex"], Priority: 6, Value: 60, Difficulty: 10, SelfBondage: 7, Time: 25, RemoveTime: 10, AllowLock: true, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], SelfUnlock: false,
 				Layer: [
 					{ Name: "Latex" },
-					{ Name: "Straps" }
+					{ Name: "Strap1", ColorGroup: ["BottomStrap"] },
+					{ Name: "Strap2", ColorGroup: ["TopStrap"] },
+					{ Name: "Hole2", ColorGroup: ["TopStrap"]},
+					{ Name: "Buckle2", ColorGroup: ["TopStrap"]},
+					{ Name: "Buckle1" ,ColorGroup: ["BottomStrap"] },
+					{ Name: "Hole1", ColorGroup: ["BottomStrap"] },
+					{ Name: "Laces"}
 				]
 			},
 			{
