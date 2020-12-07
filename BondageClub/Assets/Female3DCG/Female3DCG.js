@@ -532,6 +532,34 @@ var AssetFemale3DCG = [
 		],
 		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
+	{
+		Group: "RightAnklet",
+		ParentGroup: "BodyLower",
+		Priority: 22,
+		Clothing: true,
+		Left: 115,
+		Top: 500,
+		AllowPose: ["LegsClosed", "Kneel", "Hogtied", "Spread"],
+		Asset: [
+			{ Name: "BandAnklet", BuyGroup: ["BandAnklet"]}
+	
+		],
+		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},	{
+		Group: "LeftAnklet",
+		ParentGroup: "BodyLower",
+		Priority: 22,
+		Clothing: true,
+		Left: 115,
+		Top: 500,
+		AllowPose: ["LegsClosed", "Spread"],
+		Asset: [
+			{ Name: "BandAnklet", BuyGroup: ["BandAnklet"]}
+
+			
+		],
+		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
 
 	{
 		Group: "Shoes",
