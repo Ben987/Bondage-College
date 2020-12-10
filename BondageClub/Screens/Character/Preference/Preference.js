@@ -5,7 +5,7 @@ var PreferenceSafewordConfirm = false;
 var PreferenceMaidsButton = true;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
-var PreferenceSubscreenList = ["General", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics"];
+var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics"];
 var PreferenceChatColorThemeSelected = "";
 var PreferenceChatColorThemeList = ["Light", "Dark"];
 var PreferenceChatColorThemeIndex = 0;
@@ -46,7 +46,8 @@ var PreferenceVisibilityPreviewImg = null;
 var PreferenceVisibilityHiddenList = [];
 var PreferenceVisibilityBlockList = [];
 var PreferenceVisibilityResetClicked = false;
-
+var PreferenceDifficultyLevel = null;
+var PreferenceDifficultyAccept = false;
 /**
  * Gets the effect of a sexual activity on the player
  * @param {Character} C - The player who performs the sexual activity
@@ -240,18 +241,46 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
 	if (typeof C.GameplaySettings.ImmersionLockSetting !== "boolean") C.GameplaySettings.ImmersionLockSetting = false;
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
+	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.GameplaySettings.EnableSafeword = false;
 	if (typeof C.GameplaySettings.DisableAutoMaid !== "boolean") C.GameplaySettings.DisableAutoMaid = false;
 	if (typeof C.OnlineSharedSettings.DisablePickingLocksOnSelf !== "boolean") C.OnlineSharedSettings.DisablePickingLocksOnSelf = false;
+	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.OnlineSharedSettings.DisablePickingLocksOnSelf = true;
 	
 	
 	// Sets the default immersion settings
+	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.GameplaySettings.DisableAutoMaid = true;
+	if (typeof C.GameplaySettings.OfflineLockedRestrained !== "boolean") C.GameplaySettings.OfflineLockedRestrained = false;
+	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.GameplaySettings.OfflineLockedRestrained = true;
+
+	// Sets the default immersion settings, force them for Extreme mode
 	if (!C.ImmersionSettings) C.ImmersionSettings = {};
 	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
 
+	if ((C.ID == 0) && (C.GetDifficulty() >= 3)) {
+		Player.GameplaySettings.BlindDisableExamine = true;
+		Player.GameplaySettings.DisableAutoRemoveLogin = true;
+		Player.ImmersionSettings.BlockGaggedOOC = true;
+		Player.GameplaySettings.ImmersionLockSetting = true;
+		Player.OnlineSharedSettings.AllowPlayerLeashing = true;
+		PreferenceSettingsSensDepIndex = PreferenceSettingsSensDepList.length - 1;
+		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
+	}
+
+
+	// Sets the default restriction settings
+	if (!C.RestrictionSettings) C.RestrictionSettings = {};
+	if (typeof C.RestrictionSettings.BypassStruggle !== "boolean") C.RestrictionSettings.BypassStruggle = false;
+	if ((C.ID == 0) && (C.GetDifficulty() != 0)) C.RestrictionSettings.BypassStruggle = false;
+	if (typeof C.RestrictionSettings.SlowImmunity !== "boolean") C.RestrictionSettings.SlowImmunity = false;
+	if ((C.ID == 0) && (C.GetDifficulty() != 0)) C.RestrictionSettings.SlowImmunity = false;
+
+	// Sets the default online settings
 	if (!C.OnlineSettings) C.OnlineSettings = {};
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
 	if (C.OnlineSharedSettings.AllowFullWardrobeAccess == null) C.OnlineSharedSettings.AllowFullWardrobeAccess = false;
 	if (C.OnlineSharedSettings.BlockBodyCosplay == null) C.OnlineSharedSettings.BlockBodyCosplay = false;
+	if (typeof C.OnlineSharedSettings.AllowPlayerLeashing !== "boolean") C.OnlineSharedSettings.AllowPlayerLeashing = true;
+
 	// TODO: The following preferences were migrated September 2020 in for R61 - replace with standard preference code after a few months
 	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanBlackList", false);
 	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanGhostList", true);
@@ -332,6 +361,7 @@ function PreferenceMigrate(from, to, prefName, defaultValue) {
 function PreferenceLoad() {
 
 	// Sets up the player label color
+	PreferenceDifficultyLevel = null;
 	if (!CommonIsColor(Player.LabelColor)) Player.LabelColor = "#ffffff";
 	PreferenceInit(Player);
 
@@ -373,24 +403,31 @@ function PreferenceLoad() {
  * @returns {void} - Nothing
  */
 function PreferenceRun() {
+
 	// If a subscreen is active, draw that instead
 	if (PreferenceSubscreen != "") return CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreen + "Run()");
 	
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("Preferences"), 500, 125, "Black", "Gray");
 	MainCanvas.textAlign = "center";
 
+	// Draw all the buttons to access the submenus
 	for (let A = 0; A < PreferenceSubscreenList.length; A++) {
 		DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
 		DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
 	}
+
 }
 
+/**
+ * Handles click events in the preference screen that are propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenGeneralRun() {
+
 	// Draw the online preferences
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("GeneralPreferences"), 500, 125, "Black", "Gray");
@@ -404,22 +441,98 @@ function PreferenceSubscreenGeneralRun() {
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 
-	// Checkboxes
+	// Checkboxes (Some are not available when playing on Hardcore or Extreme)
 	DrawCheckbox(500, 402, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
-	DrawCheckbox(500, 482, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
-	DrawCheckbox(500, 562, 64, 64, TextGet("DisableAutoMaid"), !Player.GameplaySettings.DisableAutoMaid);
-	DrawCheckbox(500, 642, 64, 64, TextGet("DisablePickingLocksOnSelf"), Player.OnlineSharedSettings.DisablePickingLocksOnSelf);
-	
-	
+	if (Player.GetDifficulty() < 2) {
+		DrawCheckbox(500, 482, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
+		DrawCheckbox(500, 562, 64, 64, TextGet("DisableAutoMaid"), !Player.GameplaySettings.DisableAutoMaid);
+		DrawCheckbox(500, 642, 64, 64, TextGet("OfflineLockedRestrained"), Player.GameplaySettings.OfflineLockedRestrained);
+	  DrawCheckbox(500, 722, 64, 64, TextGet("DisablePickingLocksOnSelf"), Player.OnlineSharedSettings.DisablePickingLocksOnSelf);
+	} else DrawText(TextGet("GeneralHardcoreWarning"), 500, 562, "Red", "Gray");
 
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-	if (PreferenceColorPick != "") {
+	if (PreferenceColorPick != "")
 		ColorPickerDraw(1250, 185, 675, 830, document.getElementById(PreferenceColorPick));
-	} else {
+	else
 		ColorPickerHide();
+
+}
+
+/**
+ * Runs and draw the preference screen, difficulty subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenDifficultyRun() {
+
+	// Draw the character and the controls
+	MainCanvas.textAlign = "left";
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	DrawText(TextGet("DifficultyPreferences"), 500, 125, "Black", "Gray");
+
+	// When no level is selected, we allow to select one
+	if (PreferenceDifficultyLevel == null) {
+
+		// Draw the difficulty levels
+		DrawText(TextGet("DifficultyTitle"), 500, 225, "Black", "Gray");
+		for (let D = 0; D <= 3; D++) {
+			DrawText(TextGet("DifficultySummary" + D.toString() + "A"), 850, 325 + 150 * D, 1050, 120, "Black", "White");
+			DrawText(TextGet("DifficultySummary" + D.toString() + "B"), 850, 375 + 150 * D, 1050, 120, "Black", "White");
+		}
+
+		// Draw the difficulty buttons
+		MainCanvas.textAlign = "center";
+		for (let D = 0; D <= 3; D++)
+			DrawButton(500, 320 + 150 * D, 300, 64, TextGet("DifficultyLevel" + D.toString()), (D == Player.GetDifficulty()) ? "#DDFFDD" : "White", "");
+
+	} else {
+
+		// Draw the detailed texts
+		for (let T = 0; T <= 4; T++)
+			DrawText(TextGet("Difficulty" + PreferenceDifficultyLevel.toString() + "Text" + T.toString()), 500, 225 + 100 * T, 1050, 120, "Black", "White");
+
+		// Can only set to 2 or 3 if no change was done for 1 week
+		if (PreferenceDifficultyLevel != Player.GetDifficulty()) {
+			var LastChange = ((Player.Difficulty == null) || (Player.Difficulty.LastChange == null) || (typeof Player.Difficulty.LastChange !== "number")) ? Player.Creation : Player.Difficulty.LastChange;
+			if ((PreferenceDifficultyLevel <= 1) || (LastChange + 604800000 < CurrentTime)) {
+				DrawCheckbox(500, 700, 64, 64, TextGet("DifficultyIAccept"), PreferenceDifficultyAccept);
+				MainCanvas.textAlign = "center";
+				DrawButton(500, 825, 300, 64, TextGet("DifficultyChangeMode") + " " + TextGet("DifficultyLevel" + PreferenceDifficultyLevel.toString()), PreferenceDifficultyAccept ? "White" : "#ebebe4", "");
+			} else DrawText(TextGet("DifficultyWaitSevenDays").replace("NumberOfHours", Math.ceil((LastChange + 604800000 - CurrentTime) / 3600000).toString()), 500, 825, 1050, 120, "Black", "White");
+		} else DrawText(TextGet("DifficultyAlreadyPlayingOn"), 500, 825, 1050, 120, "Black", "White");
+		MainCanvas.textAlign = "center";
+
 	}
+
+}
+
+/**
+ * Runs and draw the preference screen, restriction subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenRestrictionRun() {
+
+	// Draw the character and the controls
+	MainCanvas.textAlign = "left";
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	DrawText(TextGet("RestrictionPreferences"), 500, 125, "Black", "Gray");
+	if (Player.GetDifficulty() == 0) {
+		DrawText(TextGet("RestrictionAccess"), 500, 225, "Black", "Gray");
+		DrawCheckbox(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"), Player.RestrictionSettings.BypassStruggle);
+		DrawCheckbox(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"), Player.RestrictionSettings.SlowImmunity);
+	} else {
+		DrawText(TextGet("RestrictionNoAccess"), 500, 225, "Black", "Gray");
+		DrawRect(500, 325, 64, 64, "#ebebe4");
+		DrawEmptyRect(500, 325, 64, 64, "Black");
+		DrawText(TextGet("RestrictionBypassStruggle"), 600, 355, "Black", "Gray");
+		DrawRect(500, 425, 64, 64, "#ebebe4");
+		DrawEmptyRect(500, 425, 64, 64, "Black");
+		DrawText(TextGet("RestrictionSlowImmunity"), 600, 455, "Black", "Gray");
+	}
+
 }
 
 /**
@@ -427,31 +540,32 @@ function PreferenceSubscreenGeneralRun() {
  * @returns {void} - Nothing
  */
 function PreferenceClick() {
+
 	// Pass the click into the opened subscreen
 	if (PreferenceSubscreen != "") return CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreen + "Click()");
 
 	// Exit button
-	if (MouseIn(1815, 75, 90, 90)) {
-		PreferenceExit();
-	}
+	if (MouseIn(1815, 75, 90, 90)) PreferenceExit();
 
 	// Open the selected subscreen
-	for (let A = 0; A < PreferenceSubscreenList.length; A++) {
+	for (let A = 0; A < PreferenceSubscreenList.length; A++)
 		if (MouseIn(500 + 500 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
-			if (typeof window["PreferenceSubscreen" + PreferenceSubscreenList[A] + "Load"] === "function") {
+			if (typeof window["PreferenceSubscreen" + PreferenceSubscreenList[A] + "Load"] === "function")
 				CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreenList[A] + "Load()");
-			}
 			PreferenceSubscreen = PreferenceSubscreenList[A];
 			break;
 		}
-	}
+
 }
 
+/**
+ * Handles the click events in the preference screen, general sub-screen, propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenGeneralClick() {
+
 	// If the user clicks on "Exit"
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
-		PreferenceSubscreenGeneralExit();
-	}
+	if (MouseIn(1815, 75, 90, 90) && (PreferenceColorPick == "")) PreferenceSubscreenGeneralExit();
 
 	// If we must change the restrain permission level
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
@@ -463,88 +577,137 @@ function PreferenceSubscreenGeneralClick() {
 	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick != "")) PreferenceColorPick = "";
 
-
 	// Preference check boxes
 	if (MouseIn(500, 402, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
-	if (MouseIn(500, 482, 64, 64)) {
-		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) { 
+	if (MouseIn(500, 482, 64, 64) && (Player.GetDifficulty() < 2)) {
+		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) {
 			if (PreferenceSafewordConfirm) {
 				Player.GameplaySettings.EnableSafeword = true;
 				PreferenceSafewordConfirm = false; 
-			} else {
-				PreferenceSafewordConfirm = true; 
-			}
+			} else PreferenceSafewordConfirm = true;
 		} else if (Player.GameplaySettings.EnableSafeword) {
 			if (PreferenceSafewordConfirm) {
 				Player.GameplaySettings.EnableSafeword = false;
-				PreferenceSafewordConfirm = false; 
-			} else {
-				PreferenceSafewordConfirm = true; 
+				PreferenceSafewordConfirm = false;
+			} else PreferenceSafewordConfirm = true;
+		}
+	} else PreferenceSafewordConfirm = false;
+	if (MouseIn(500, 562, 64, 64) && (Player.GetDifficulty() < 2)) Player.GameplaySettings.DisableAutoMaid = !Player.GameplaySettings.DisableAutoMaid;
+	if (MouseIn(500, 642, 64, 64) && (Player.GetDifficulty() < 2)) Player.GameplaySettings.OfflineLockedRestrained = !Player.GameplaySettings.OfflineLockedRestrained;
+	if (MouseIn(500, 722, 64, 64) && (Player.GetDifficulty() < 2)) Player.OnlineSharedSettings.DisablePickingLocksOnSelf = !Player.OnlineSharedSettings.DisablePickingLocksOnSelf;
+}
+
+/**
+ * Handles the click events in the preference screen, difficulty sub-screen, propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenDifficultyClick() {
+
+	// When no level is selected, the user can pick one to go into details
+	if (PreferenceDifficultyLevel == null) {
+		PreferenceDifficultyAccept = false;
+		if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenDifficultyExit();
+		for (let D = 0; D <= 3; D++)
+			if (MouseIn(500, 320 + 150 * D, 300, 64))
+				PreferenceDifficultyLevel = D;
+	} else {
+
+		// If a level is selected, the user must check to confirm
+		if (MouseIn(1815, 75, 90, 90)) PreferenceDifficultyLevel = null;
+		if (PreferenceDifficultyLevel != Player.GetDifficulty()) {
+			var LastChange = ((Player.Difficulty == null) || (Player.Difficulty.LastChange == null) || (typeof Player.Difficulty.LastChange !== "number")) ? Player.Creation : Player.Difficulty.LastChange;
+			if ((PreferenceDifficultyLevel <= 1) || (LastChange + 604800000 < CurrentTime)) {
+				if (MouseIn(500, 700, 64, 64)) PreferenceDifficultyAccept = !PreferenceDifficultyAccept;
+				if (MouseIn(500, 825, 300, 64) && PreferenceDifficultyAccept) {
+					Player.Difficulty = { LastChange: CurrentTime, Level: PreferenceDifficultyLevel };
+					ServerSend("AccountDifficulty", PreferenceDifficultyLevel);
+					PreferenceInit(Player);
+					LoginDifficulty();
+					PreferenceDifficultyLevel = null;
+					PreferenceSubscreenDifficultyExit();
+				}
 			}
 		}
-	} else {
-		PreferenceSafewordConfirm = false;
+
 	}
-	if (MouseIn(500, 562, 64, 64)) Player.GameplaySettings.DisableAutoMaid = !Player.GameplaySettings.DisableAutoMaid;
-	if (MouseIn(500, 642, 64, 64)) Player.OnlineSharedSettings.DisablePickingLocksOnSelf = !Player.OnlineSharedSettings.DisablePickingLocksOnSelf;
+
 }
 
+/**
+ * Handles the click events in the preference screen, restriction sub-screen, propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenRestrictionClick() {
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenDifficultyExit();
+	if (MouseIn(500, 325, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassStruggle = !Player.RestrictionSettings.BypassStruggle;
+	if (MouseIn(500, 425, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.SlowImmunity = !Player.RestrictionSettings.SlowImmunity;
+}
 
+/**
+ * Runs and draws the preference screen, immersion sub-screen
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenImmersionRun() {
-	// Draw the online preferences
-	MainCanvas.textAlign = "left";
-	DrawText(TextGet("ImmersionPreferences"), 500, 125, "Black", "Gray");
-	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
-	
-	// Immersion Settings
-	
-	DrawCheckbox(500, 272, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
-	DrawCheckbox(500, 352, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
-	DrawCheckbox(500, 432, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC);
-	DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
-	
 
-	DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
-
-	MainCanvas.textAlign = "center";
-	DrawBackNextButton(500, 192, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
-		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
-		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
-
-	// Draw the player & controls
+	// Draw the player & base controls
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("ImmersionPreferences"), 500, 125, "Black", "Gray");
+	// Cannot change any value under the Extreme difficulty mode
+	if (Player.GetDifficulty() <= 2) {
+		if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
+		DrawCheckbox(500, 272, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
+		DrawCheckbox(500, 352, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
+		DrawCheckbox(500, 432, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC);
+	   DrawCheckbox(500, 512, 64, 64, TextGet("AllowPlayerLeashing"), Player.OnlineSharedSettings.AllowPlayerLeashing);
+		DrawCheckbox(500, 800, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
+		DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
+		MainCanvas.textAlign = "center";
+		DrawBackNextButton(500, 192, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
+			() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
+			() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
+	} else {
+		MainCanvas.textAlign = "center";
+		DrawText(TextGet("ImmersionLocked"), 1200, 500, "Red", "Gray");
+	}
+
 }
 
+/**
+ * Handles the click events in the preference screen, immersion sub-screen, propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenImmersionClick() {
+
 	// If the user clicks on "Exit"
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
-		PreferenceSubscreen = "";
-	}
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
 
-	// If we must change audio gameplay or visual settings
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 192) && (MouseY < 256) && 
-		(!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained()))) {
-		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
-		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
-		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
-	}
+	// Cannot change any value under the Extreme difficulty mode
+	if (Player.GetDifficulty() <= 2) {
 
-	// Preference check boxes
-	if (MouseIn(500, 272, 64, 64) && 
-		(!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained())))
+
+		// If we must change audio gameplay or visual settings
+		if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 192) && (MouseY < 256) && (!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained()))) {
+			if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
+			else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
+			Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
+		}
+
+		// Preference check boxes
+		if (MouseIn(500, 272, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained())))
 			Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
-	if (MouseIn(500, 352, 64, 64) && 
-		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+		if (MouseIn(500, 352, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
-	if (MouseIn(500, 432, 64, 64) && 
-		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+		if (MouseIn(500, 432, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
-	
-	
-	if (MouseIn(500, 800, 64, 64) && 
-		(!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+		if (MouseIn(500, 512, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+			Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing;
+		if (MouseIn(500, 800, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
+
+	}
+
 }
 
 /**
@@ -561,6 +724,7 @@ function PreferenceExit() {
 		AudioSettings: Player.AudioSettings,
 		GameplaySettings: Player.GameplaySettings,
 		ImmersionSettings: Player.ImmersionSettings,
+		RestrictionSettings: Player.RestrictionSettings,
 		ArousalSettings: Player.ArousalSettings,
 		OnlineSettings: Player.OnlineSettings,
 		OnlineSharedSettings: Player.OnlineSharedSettings
@@ -726,35 +890,44 @@ function PreferenceSubscreenSecurityRun() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenVisibilityRun() {
-	DrawCharacter(Player, 50, 50, 0.9);
 
-	// Exit buttons
+	// Character and exit buttons
+	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1720, 60, 90, 90, "", "White", "Icons/Accept.png", TextGet("LeaveSave"));
 	DrawButton(1820, 60, 90, 90, "", "White", "Icons/Cancel.png", TextGet("LeaveNoSave"));
-
-	// Left-aligned text controls
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("VisibilityPreferences"), 500, 125, "Black", "Gray");
-	DrawText(TextGet("VisibilityGroup"), 500, 225, "Black", "Gray");
-	DrawText(TextGet("VisibilityAsset"), 500, 304, "Black", "Gray");
-	DrawCheckbox(500, 352, 64, 64, TextGet("VisibilityCheckboxHide"), PreferenceVisibilityHideChecked);
-	if (PreferenceVisibilityCanBlock) DrawCheckbox(500, 432, 64, 64, TextGet("VisibilityCheckboxBlock"), PreferenceVisibilityBlockChecked);
-	if (PreferenceVisibilityHideChecked) {
-		DrawImageResize("Screens/Character/Player/HiddenItem.png", 500, 516, 86, 86);
-		DrawText(TextGet("VisibilityWarning"), 600, 548, "Black", "Gray");
-	}
-	if (PreferenceVisibilityResetClicked) DrawText(TextGet("VisibilityResetDescription"), 500, 732, "Black", "Gray");
-	MainCanvas.textAlign = "center";
-
-	// Buttons
-	DrawBackNextButton(650, 193, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Description, "White", "", () => "", () => "");
-	DrawBackNextButton(650, 272, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Description, "White", "", () => "", () => "");
-	DrawButton(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64, TextGet("VisibilityReset"), "White", "");
 	
-	// Preview icon
-	DrawEmptyRect(1200, 193, 225, 225, "Black");
-	if (PreferenceVisibilityPreviewImg == null) DrawRect(1203, 196, 219, 219, "LightGray");
-	else DrawImageResize(PreferenceVisibilityPreviewImg, 1202, 195, 221, 221);
+	// Not available in Extreme mode
+	if (Player.GetDifficulty() <= 2) {
+
+		// Left-aligned text controls
+		DrawText(TextGet("VisibilityGroup"), 500, 225, "Black", "Gray");
+		DrawText(TextGet("VisibilityAsset"), 500, 304, "Black", "Gray");
+		DrawCheckbox(500, 352, 64, 64, TextGet("VisibilityCheckboxHide"), PreferenceVisibilityHideChecked);
+		if (PreferenceVisibilityCanBlock) DrawCheckbox(500, 432, 64, 64, TextGet("VisibilityCheckboxBlock"), PreferenceVisibilityBlockChecked);
+		if (PreferenceVisibilityHideChecked) {
+			DrawImageResize("Screens/Character/Player/HiddenItem.png", 500, 516, 86, 86);
+			DrawText(TextGet("VisibilityWarning"), 600, 548, "Black", "Gray");
+		}
+		if (PreferenceVisibilityResetClicked) DrawText(TextGet("VisibilityResetDescription"), 500, 732, "Black", "Gray");
+		MainCanvas.textAlign = "center";
+
+		// Buttons
+		DrawBackNextButton(650, 193, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Description, "White", "", () => "", () => "");
+		DrawBackNextButton(650, 272, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Description, "White", "", () => "", () => "");
+		DrawButton(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64, TextGet("VisibilityReset"), "White", "");
+		
+		// Preview icon
+		DrawEmptyRect(1200, 193, 225, 225, "Black");
+		if (PreferenceVisibilityPreviewImg == null) DrawRect(1203, 196, 219, 219, "LightGray");
+		else DrawImageResize(PreferenceVisibilityPreviewImg, 1202, 195, 221, 221);
+		
+	} else {
+		MainCanvas.textAlign = "center";
+		DrawText(TextGet("VisibilityLocked"), 1200, 500, "Red", "Gray");
+	}
+
 }
 
 /**
@@ -762,9 +935,9 @@ function PreferenceSubscreenVisibilityRun() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenGraphicsRun() {
-	DrawCharacter(Player, 50, 50, 0.9);
 
-	// Exit button
+	// Character and exit button
+	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
 	// Left-aligned text controls
@@ -785,22 +958,13 @@ function PreferenceSubscreenGraphicsRun() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenGraphicsClick() {
-
-	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
-		PreferenceSubscreen = "";
-	}
-
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) PreferenceSubscreen = "";
 	if (MouseIn(500, 212, 250, 64)) {
 		if (MouseX <= 625) PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.length + PreferenceSettingsVFXIndex - 1) % PreferenceSettingsVFXList.length;
 		else PreferenceSettingsVFXIndex = (PreferenceSettingsVFXIndex + 1) % PreferenceSettingsVFXList.length;
 		Player.ArousalSettings.VFX = PreferenceSettingsVFXList[PreferenceSettingsVFXIndex];
 	}
-
-
 }
-
-
 
 /**
  * Handles click events for the audio preference settings. 
@@ -810,9 +974,7 @@ function PreferenceSubscreenGraphicsClick() {
 function PreferenceSubscreenAudioClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
-		PreferenceSubscreen = "";
-	}
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) PreferenceSubscreen = "";
 
 	// Volume increase/decrease control
 	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
@@ -881,9 +1043,7 @@ function PreferenceSubscreenChatClick() {
 function PreferenceSubscreenOnlineClick() {
 	const OnlineSettings = Player.OnlineSettings;
 	const OnlineSharedSettings = Player.OnlineSharedSettings;
-	if (MouseIn(1815, 75, 90, 90)) {
-		PreferenceSubscreen = "";
-	}
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
 	else if (MouseIn(500, 225, 64, 64)) OnlineSettings.AutoBanBlackList = !OnlineSettings.AutoBanBlackList;
 	else if (MouseIn(500, 305, 64, 64)) OnlineSettings.AutoBanGhostList = !OnlineSettings.AutoBanGhostList;
 	else if (MouseIn(500, 385, 64, 64)) OnlineSettings.SearchShowsFullRooms = !OnlineSettings.SearchShowsFullRooms;
@@ -1037,51 +1197,54 @@ function PreferenceSubscreenSecurityClick() {
  */
 function PreferenceSubscreenVisibilityClick() {
 
-	// Group button
-	if (MouseIn(650, 193, 500, 64)) {
-		if (MouseX >= 900) {
-			PreferenceVisibilityGroupIndex++;
-			if (PreferenceVisibilityGroupIndex >= PreferenceVisibilityGroupList.length) PreferenceVisibilityGroupIndex = 0;
-		}
-		else {
-			PreferenceVisibilityGroupIndex--;
-			if (PreferenceVisibilityGroupIndex < 0) PreferenceVisibilityGroupIndex = PreferenceVisibilityGroupList.length - 1;
-		}
-		PreferenceVisibilityAssetIndex = 0;
-		PreferenceVisibilityAssetChanged(true);
-	}
+	// Most controls are not available in Extreme mode
+	if (Player.GetDifficulty() <= 2) {
 
-	// Asset button
-	if (MouseIn(650, 272, 500, 64)) {
-		if (MouseX >= 900) {
-			PreferenceVisibilityAssetIndex++;
-			if (PreferenceVisibilityAssetIndex >= PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length) PreferenceVisibilityAssetIndex = 0;
+		// Group button
+		if (MouseIn(650, 193, 500, 64)) {
+			if (MouseX >= 900) {
+				PreferenceVisibilityGroupIndex++;
+				if (PreferenceVisibilityGroupIndex >= PreferenceVisibilityGroupList.length) PreferenceVisibilityGroupIndex = 0;
+			}
+			else {
+				PreferenceVisibilityGroupIndex--;
+				if (PreferenceVisibilityGroupIndex < 0) PreferenceVisibilityGroupIndex = PreferenceVisibilityGroupList.length - 1;
+			}
+			PreferenceVisibilityAssetIndex = 0;
+			PreferenceVisibilityAssetChanged(true);
 		}
-		else {
-			PreferenceVisibilityAssetIndex--;
-			if (PreferenceVisibilityAssetIndex < 0) PreferenceVisibilityAssetIndex = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length - 1;
+
+		// Asset button
+		if (MouseIn(650, 272, 500, 64)) {
+			if (MouseX >= 900) {
+				PreferenceVisibilityAssetIndex++;
+				if (PreferenceVisibilityAssetIndex >= PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length) PreferenceVisibilityAssetIndex = 0;
+			}
+			else {
+				PreferenceVisibilityAssetIndex--;
+				if (PreferenceVisibilityAssetIndex < 0) PreferenceVisibilityAssetIndex = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length - 1;
+			}
+			PreferenceVisibilityAssetChanged(true);
 		}
-		PreferenceVisibilityAssetChanged(true);
-	}
 
-	// Hide checkbox
-	if (MouseIn(500, 352, 64, 64)) {
-		PreferenceVisibilityHideChange();
-		if (PreferenceVisibilityHideChecked != PreferenceVisibilityBlockChecked && PreferenceVisibilityCanBlock) PreferenceVisibilityBlockChange();
-	}
-
-	// Block checkbox
-	if (MouseIn(500, 432, 64, 64) && PreferenceVisibilityCanBlock) {
-		PreferenceVisibilityBlockChange();
-	}
-
-	// Reset button
-	if (MouseIn(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64)) {
-		if (PreferenceVisibilityResetClicked) {
-			Player.HiddenItems = [];
-			PreferenceVisibilityExit(true);
+		// Hide checkbox
+		if (MouseIn(500, 352, 64, 64)) {
+			PreferenceVisibilityHideChange();
+			if (PreferenceVisibilityHideChecked != PreferenceVisibilityBlockChecked && PreferenceVisibilityCanBlock) PreferenceVisibilityBlockChange();
 		}
-		else PreferenceVisibilityResetClicked = true;
+
+		// Block checkbox
+		if (MouseIn(500, 432, 64, 64) && PreferenceVisibilityCanBlock) PreferenceVisibilityBlockChange();
+
+		// Reset button
+		if (MouseIn(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64)) {
+			if (PreferenceVisibilityResetClicked) {
+				Player.HiddenItems = [];
+				PreferenceVisibilityExit(true);
+			}
+			else PreferenceVisibilityResetClicked = true;
+		}
+
 	}
 
 	// Confirm button
@@ -1092,9 +1255,8 @@ function PreferenceSubscreenVisibilityClick() {
 	}
 
 	// Cancel button
-	if (MouseIn(1820, 60, 90, 90)) {
-		PreferenceVisibilityExit(false);
-	}
+	if (MouseIn(1820, 60, 90, 90)) PreferenceVisibilityExit(false);
+
 }
 
 /** Load the full list of items and clothes along with the player settings for them */
@@ -1215,6 +1377,15 @@ function PreferenceSubscreenGeneralExit() {
 		ElementRemove("InputCharacterLabelColor");
 		PreferenceSubscreen = "";
 	} else PreferenceMessage = "ErrorInvalidColor";
+}
+
+/**
+ * Exists the difficulty screen. Cleans up elements that are not needed anymore
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenDifficultyExit() {
+	PreferenceMessage = "";
+	PreferenceSubscreen = "";
 }
 
 /**

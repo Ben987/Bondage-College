@@ -54,13 +54,11 @@ ReputationAsylumNegative,Asylum Patient:
 ReputationLARPPositive,LARP Battles:
 ReputationGamblingPositive,Gambling Hall:
 ReputationABDLPositive,ABDL:
-LARPClass,LARP Class:
-LARPClassMatron,Matron
-LARPClassSeducer,Seducer
-LARPClassTrickster,Trickster
-LARPClassServant,Servant
-LARPClassArtist,Artist
-LARPClassProtector,Protector
+DifficultyTitle,difficulty for NumberOfDays day(s)
+DifficultyLevel0,Roleplay
+DifficultyLevel1,Regular
+DifficultyLevel2,Hardcore
+DifficultyLevel3,Extreme
 Skill,- Skills -
 SkillNone,None
 SkillBondage,Bondage:

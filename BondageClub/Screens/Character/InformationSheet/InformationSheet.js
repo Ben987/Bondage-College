@@ -48,9 +48,9 @@ function InformationSheetRun() {
 		if (C.Creation != null) DrawText(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, "Black", "Gray");
 	}
 
-	// Shows the LARP class
-	if ((C.Game != null) && (C.Game.LARP != null) && (C.Game.LARP.Class != null))
-		DrawText(TextGet("LARPClass") + " " + TextGet("LARPClass" + C.Game.LARP.Class) + " (" + GameLARPGetClassLevel(C.Game.LARP) + ")", 550, 500, "Black", "Gray");
+	// Shows the difficulty level
+	let Days = Math.floor((CurrentTime - (((C.Difficulty == null) || (C.Difficulty.LastChange == null) || (typeof C.Difficulty.LastChange !== "number")) ? C.Creation : C.Difficulty.LastChange)) / 86400000);
+	DrawText(TextGet("DifficultyLevel" + C.GetDifficulty()) + " " + TextGet("DifficultyTitle").replace("NumberOfDays", Days.toString()), 550, 500, "Black", "Gray");
 
 	// For the current player or an online player
 	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;

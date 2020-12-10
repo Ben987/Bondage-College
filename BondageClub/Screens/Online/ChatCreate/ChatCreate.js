@@ -149,6 +149,8 @@ function ChatCreateRoom() {
 	};
 	ServerSend("ChatRoomCreate", NewRoom);
 	ChatCreateMessage = "CreatingRoom";
+	
+	ChatRoomPingLeashedPlayers()
 }
 
 /**

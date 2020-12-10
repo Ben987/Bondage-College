@@ -277,6 +277,22 @@ function LoginValidateArrays() {
 }
 
 /**
+ * Makes sure the difficulty restrictions are applied to the player
+ * @returns {void} Nothing
+ */
+function LoginDifficulty() {
+
+	// If Extreme mode, the player cannot control her blocked items
+	if (Player.GetDifficulty() >= 3) {
+		Player.BlockItems = [{Name: "CombinationPadlock", Group: "ItemMisc", Type: null}];
+		Player.LimitedItems = [];
+		Player.HiddenItems = [];
+		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems, HiddenItems: Player.HiddenItems });
+	}
+
+}
+
+/**
  * Handles player login response data
  * @param {Character | string} C - The Login response data - this will either be the player's character data if the
  * login was successful, or a string error message if the login failed.
@@ -328,8 +344,10 @@ function LoginResponse(C) {
 			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
 			Player.LimitedItems = ((C.LimitedItems == null) || !Array.isArray(C.LimitedItems)) ? [] : C.LimitedItems;
 			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
+			Player.Difficulty = C.Difficulty;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
-			WardrobeCharacter = [];
+			WardrobeCharacter = [];			
+			LoginDifficulty();
 
 			// Loads the ownership data
 			Player.Ownership = C.Ownership;
@@ -351,12 +369,15 @@ function LoginResponse(C) {
 			Player.AudioSettings = C.AudioSettings;
 			Player.GameplaySettings = C.GameplaySettings;
 			Player.ImmersionSettings = C.ImmersionSettings;
+			Player.RestrictionSettings = C.RestrictionSettings;
 			Player.ArousalSettings = C.ArousalSettings;
 			Player.OnlineSettings = C.OnlineSettings;
 			Player.OnlineSharedSettings = C.OnlineSharedSettings;
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
+			Player.FriendNames = typeof C.FriendNames === "string" ? new Map(JSON.parse(LZString.decompressFromUTF16(C.FriendNames))) : new Map();
+			Player.SubmissivesList = typeof C.SubmissivesList === "string" ? new Set(JSON.parse(LZString.decompressFromUTF16(C.SubmissivesList))) : new Set();
 			Player.GhostList = ((C.GhostList == null) || !Array.isArray(C.GhostList)) ? [] : C.GhostList;
 
 			// Loads the player character model and data
@@ -469,9 +490,7 @@ function LoginClick() {
 	}
 	
 	// Try to login
-	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) {
-		LoginDoLogin();
-	}
+	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) LoginDoLogin();
 
 	// If we must change the language
 	if ((MouseX >= 1025) && (MouseX <= 1225) && (MouseY >= 500) && (MouseY <= 560)) {

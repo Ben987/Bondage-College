@@ -49,8 +49,13 @@ function InventoryItemNeckFuturisticCollarDraw() {
 		}
 		
 		if (FuturisticCollarItemsUnlockable.length > 0) {
-			DrawButton(1400, 880, 200, 55, DialogFind(Player, "FuturisticCollarUnlock"), "White");
+			DrawButton(1400, 850, 200, 55, DialogFind(Player, "FuturisticCollarUnlock"), "White");
 		}
+		if (FuturisticCollarItems.length > 0) {
+			DrawButton(1400, 910, 200, 55, DialogFind(Player, "FuturisticCollarColor"), "White");
+		}
+		
+		
 	}
 }
 
@@ -79,7 +84,7 @@ function InventoryItemNeckFuturisticCollarClick() {
 				}
 			}
 			
-			var CollarAction = 0 // 0 - nothing, 1 - Lock, 2 - Unlock
+			var CollarAction = 0 // 0 - nothing, 1 - Lock, 2 - Unlock, 3 - Color
 			if (FuturisticCollarItems.length > 0 ) {
 				
 				if (lockedItems < FuturisticCollarItems.length) {
@@ -91,7 +96,8 @@ function InventoryItemNeckFuturisticCollarClick() {
 					else if (MouseIn(1550, 770, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "OwnerPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "OwnerPadlock"); CollarAction = 1}
 				}
 			}
-			if (MouseIn(1400, 880, 200, 55) && FuturisticCollarItemsUnlockable.length > 0) { InventoryItemNeckFuturisticCollarUnlock(C); CollarAction = 2}
+			if (MouseIn(1400, 850, 200, 55) && FuturisticCollarItemsUnlockable.length > 0) { InventoryItemNeckFuturisticCollarUnlock(C); CollarAction = 2}
+			if (MouseIn(1400, 910, 200, 55) && FuturisticCollarItems.length > 0 && DialogFocusItem) { InventoryItemNeckFuturisticCollarColor(C, DialogFocusItem); CollarAction = 3}
 			
 			if (CollarAction > 0) {
 				InventoryItemNeckFuturisticCollarExit();
@@ -115,6 +121,13 @@ function InventoryItemNeckFuturisticCollarCanLock(C, LockType) {
 	InventoryAvailable(Player, LockType, "ItemMisc")
 	var LockItem = null	
 	// First, we check if the inventory already exists, exit if it's the case
+	for (let I = 0; I < Player.Inventory.length; I++)
+		if ((Player.Inventory[I].Name == LockType) && (Player.Inventory[I].Group == "ItemMisc")) {
+			LockItem = Player.Inventory[I]
+			break;
+		}
+	// Next we check if the target player has it, but not for the mistress, owner, or lover locks
+	if (LockItem == null && LockType != "MistressPadlock" && LockType != "LoversPadlock" && LockType != "OwnerPadlock")
 	for (let I = 0; I < C.Inventory.length; I++)
 		if ((C.Inventory[I].Name == LockType) && (C.Inventory[I].Group == "ItemMisc")) {
 			LockItem = C.Inventory[I]
@@ -143,7 +156,7 @@ function InventoryItemNeckFuturisticCollarGetItems(C, OnlyUnlockable) {
 	var ItemList = []
 	
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Group.Name != "ItemNeck") &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && (!OnlyUnlockable || C.Appearance[E].Asset.Group.Name != "ItemNeck")) &&
 			(C.Appearance[E].Asset.AllowLock)
 			&& (!OnlyUnlockable || (InventoryGetLock(C.Appearance[E]) != null && InventoryItemHasEffect(C.Appearance[E], "Lock", true) && DialogCanUnlock(C, C.Appearance[E])))) {
 				ItemList.push(C.Appearance[E])
@@ -202,6 +215,46 @@ function InventoryItemNeckFuturisticCollarUnlock(C) {
 		];
 
 		Message = "FuturisticCollarTriggerUnlock";
+		
+		ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
+	}
+	
+	//if (CurrentScreen == "ChatRoom")	
+	// ServerSend("ChatRoomChat", { Content: " 's bindings unlock with a hiss.", Type: "Emote" });
+}
+
+function InventoryItemNeckFuturisticCollarColor(C, Item) {
+	for (let E = C.Appearance.length - 1; E >= 0; E--)
+		if (C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 && C.Appearance[E].Asset.Group.Name != "ItemNeck") {
+			
+			for (let L = C.Appearance[E].Asset.Layer.length - 1; L >= 0; L--) {
+				if (C.Appearance[E].Asset.Layer[L].Name == "Display" || C.Appearance[E].Asset.Layer[L].Name == "Screen") {
+					if (Item.Color[0] != "Default")
+						C.Appearance[E].Color[L] = Item.Color[0]
+					//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[0].ColorIndex
+				} else if (C.Appearance[E].Asset.Layer[L].Name != "Mesh" && C.Appearance[E].Asset.Layer[L].Name != "Text") {
+					if (Item.Color[1] != "Default")
+						C.Appearance[E].Color[L] = Item.Color[1]
+					//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[1].ColorIndex
+				} else if (C.Appearance[E].Asset.Layer[L].Name != "Text") {
+					if (Item.Color[2] != "Default")
+						C.Appearance[E].Color[L] = Item.Color[2]
+					//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[2].ColorIndex
+				}
+			}
+		}
+	
+	ChatRoomCharacterUpdate(C);
+	CharacterRefresh(C, true);
+	
+	if (CurrentScreen == "ChatRoom")	{
+		var Message;
+		var Dictionary = [
+			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+			{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		];
+
+		Message = "FuturisticCollarTriggerColor";
 		
 		ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
 	}
