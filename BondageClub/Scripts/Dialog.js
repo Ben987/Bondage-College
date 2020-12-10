@@ -628,7 +628,7 @@ function DialogMenuButtonBuild(C) {
 		if (DialogLockMenu) {
 			DialogMenuButton.push("LockCancel");
 			
-			if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())
+			if (IsItemLocked && !Player.IsBlind() && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())
 				|| ((Item != null) && (C.ID == 0) && !Player.CanInteract() && InventoryItemHasEffect(Item, "Block", true) && IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked))
 				DialogMenuButton.push("Unlock");
 			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && !IsGroupBlocked && (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf)) {
@@ -648,7 +648,7 @@ function DialogMenuButtonBuild(C) {
       if ((DialogInventory != null) && (DialogInventory.length > 12) && ((Player.CanInteract() && !IsGroupBlocked) || DialogItemPermissionMode)) DialogMenuButton.push("Next");
 			if (C.FocusGroup.Name == "ItemMouth" || C.FocusGroup.Name == "ItemMouth2" || C.FocusGroup.Name == "ItemMouth3") DialogMenuButton.push("ChangeLayersMouth");
 			if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())) {  DialogMenuButton.push("Remove"); }
-			if (IsItemLocked && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
+			if (IsItemLocked && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
 				DialogMenuButton.push("LockMenu");
 			if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (IsItemLocked && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Struggle");
 			if ((Item != null) && !IsItemLocked && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) {
@@ -971,6 +971,7 @@ function DialogLockPickProgressStart(C, Item) {
 
 	var lock = InventoryGetLock(Item)
 	var LockRating = 1
+	var LockPickingImpossible = false
 	if (Item != null && lock) {
 		// Gets the lock rating
 		
@@ -990,7 +991,11 @@ function DialogLockPickProgressStart(C, Item) {
 		// When struggling to pick a lock while being blocked from interacting (for the future if we allow picking locks while bound -Ada)
 		if (!Player.CanInteract() && (Item != null)) {
 			
-			if (InventoryItemHasEffect(Item, "NotSelfPickable", true)) S = S - 50; // Impossible if the item is such that it can't be picked alone (e.g yokes or elbow cuffs)
+			if (InventoryItemHasEffect(Item, "NotSelfPickable", true))
+			{
+				S = S - 50; 
+				LockPickingImpossible = true
+			} // Impossible if the item is such that it can't be picked alone (e.g yokes or elbow cuffs)
 			else {
 				if (InventoryItemHasEffect(InventoryGet(Player, "ItemArms"), "Block", true)) S = S - 2; // Harder If arms are restrained
 				if (InventoryItemHasEffect(InventoryGet(Player, "ItemHands"), "Block", true)) {
@@ -1002,10 +1007,17 @@ function DialogLockPickProgressStart(C, Item) {
 					// Mittened and max Lockpinking, min bondage: Metal padlock is easy, intricate is also easy, anything above will be slightly more challenging than unmittened
 					// Mittened, arms bound, and max Lockpinking, min bondage: Metal padlock is easy, intricate is somewhat hard, high security is very hard, combo impossible
 				}
-				if (S > -6 && !C.CanTalk()) S = S - 1; // A little harder while gagged, but it wont make it impossible
-				if (S > -6 && InventoryItemHasEffect(InventoryGet(Player, "ItemLegs"), "Block", true)) S = S - 1; // A little harder while legs bound, but it wont make it impossible
-				if (S > -6 && InventoryItemHasEffect(InventoryGet(Player, "ItemFeet"), "Block", true)) S = S - 1; // A little harder while legs bound, but it wont make it impossible
-				if (S > -6 && InventoryGroupIsBlocked(Player, "ItemFeet")) S = S - 1; // A little harder while wearing something like a legbinder as well
+				
+				if (S < -6) {
+					LockPickingImpossible = true // The above stuff can make picking the lock impossible. Everything else will make it incrementally harder
+				}
+				
+				if (!C.CanTalk()) S = S - 1; // A little harder while gagged, but it wont make it impossible
+				if (InventoryItemHasEffect(InventoryGet(Player, "ItemLegs"), "Block", true)) S = S - 1; // A little harder while legs bound, but it wont make it impossible
+				if (InventoryItemHasEffect(InventoryGet(Player, "ItemFeet"), "Block", true)) S = S - 1; // A little harder while legs bound, but it wont make it impossible
+				if (InventoryGroupIsBlocked(Player, "ItemFeet")) S = S - 1; // A little harder while wearing something like a legbinder as well
+				if (Player.IsBlind()) S = S - 3; // Much harder while blind
+				
 				// No bonus from struggle assist. Lockpicking is a solo activity!
 			}
 		}
@@ -1053,7 +1065,7 @@ function DialogLockPickProgressStart(C, Item) {
 		}
 		
 		var PickingImpossible = false
-		if (S < -6) {
+		if (S < -6 && LockPickingImpossible) {
 			PickingImpossible = true // if picking is impossible, then some pins will never set
 			DialogLockPickImpossiblePins.push(DialogLockPickOrder[DialogLockPickOrder.length-1])
 			if (NumPins >= 6) DialogLockPickImpossiblePins.push(DialogLockPickOrder[DialogLockPickOrder.length-2])
