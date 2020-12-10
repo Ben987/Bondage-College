@@ -631,7 +631,7 @@ function DialogMenuButtonBuild(C) {
 			if (IsItemLocked && !Player.IsBlind() && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())
 				|| ((Item != null) && (C.ID == 0) && !Player.CanInteract() && InventoryItemHasEffect(Item, "Block", true) && IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked))
 				DialogMenuButton.push("Unlock");
-			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && !IsGroupBlocked && (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf)) {
+			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf)) {
 				if (DialogLentLockpicks) 
 					DialogMenuButton.push("PickLock");
 				else
@@ -648,7 +648,7 @@ function DialogMenuButtonBuild(C) {
       if ((DialogInventory != null) && (DialogInventory.length > 12) && ((Player.CanInteract() && !IsGroupBlocked) || DialogItemPermissionMode)) DialogMenuButton.push("Next");
 			if (C.FocusGroup.Name == "ItemMouth" || C.FocusGroup.Name == "ItemMouth2" || C.FocusGroup.Name == "ItemMouth3") DialogMenuButton.push("ChangeLayersMouth");
 			if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())) {  DialogMenuButton.push("Remove"); }
-			if (IsItemLocked && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
+			if (IsItemLocked && (!Player.IsBlind() || (InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item))) && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
 				DialogMenuButton.push("LockMenu");
 			if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (IsItemLocked && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Struggle");
 			if ((Item != null) && !IsItemLocked && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) {
