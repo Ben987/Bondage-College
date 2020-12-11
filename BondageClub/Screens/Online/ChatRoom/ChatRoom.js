@@ -181,9 +181,9 @@ function ChatRoomCanBeLeashed(C) {
 	
 	if (canLeash && !isTrapped) {
 		if (!neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
-			(neckLock.Asset.OwnerOnly && C.Ownership && C.Ownership.MemberNumber == data.MemberNumber) ||
-			(neckLock.Asset.LoverOnly && C.GetLoversNumbers() && C.GetLoversNumbers().indexOf(data.MemberNumber) >= 0))
-		{
+			(neckLock.Asset.OwnerOnly && C.IsOwnedByPlayer()) ||
+			(neckLock.Asset.LoverOnly && C.IsLoverOfPlayer()) ||
+			C.ID == 0) {
 			return true
 		}
 	}
@@ -568,7 +568,7 @@ function ChatRoomClick() {
 		CharacterDeleteAllOnline();
 		
 		// Clear leash since the player has escaped
-		ChatRoomLeashPlayer = ""
+		ChatRoomLeashPlayer = null
 	}
 
 	// When the player is slow and attempts to leave
