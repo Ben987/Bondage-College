@@ -297,7 +297,7 @@ function ServerValidateProperties(C, Item) {
 				var Lock = InventoryGetLock(Item);
 				if ((Item.Property.Password != null) && (typeof Item.Property.Password == "string")) {
 					var Regex = /^[A-Z]+$/;
-					if (!Item.Property.Password.toUpperCase().match(Regex) || (Item.Property.Password.length > 6)) {
+					if (!Item.Property.Password.toUpperCase().match(Regex) || (Item.Property.Password.length > 8)) {
 						Item.Property.Password = "UNLOCK";
 					}
 				} else delete Item.Property.Password;
@@ -692,7 +692,7 @@ function ServerAccountBeep(data) {
 			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber) {
-			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
+			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing != false && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashed(Player)) {
 					
 					ChatRoomJoinLeash = data.ChatRoomName

@@ -145,13 +145,13 @@ function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Play
  * Checks if the player can grab the targeted player's leash
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
-function ChatRoomCanHoldLeash() { return CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) < 0
+function ChatRoomCanHoldLeash() { return CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing != false && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) < 0
 	&& ChatRoomCanBeLeashed(CurrentCharacter)}
 /**
  * Checks if the player can let go of the targeted player's leash
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
-function ChatRoomCanStopHoldLeash() { if (CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) >= 0) {
+function ChatRoomCanStopHoldLeash() { if (CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing != false && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) >= 0) {
 		if (ChatRoomCanBeLeashed(CurrentCharacter)) {
 			return true
 		} else {
@@ -181,9 +181,9 @@ function ChatRoomCanBeLeashed(C) {
 	
 	if (canLeash && !isTrapped) {
 		if (!neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
-			(neckLock.Asset.OwnerOnly && C.Ownership && C.Ownership.MemberNumber == data.MemberNumber) ||
-			(neckLock.Asset.LoverOnly && C.GetLoversNumbers() && C.GetLoversNumbers().indexOf(data.MemberNumber) >= 0))
-		{
+			(neckLock.Asset.OwnerOnly && C.IsOwnedByPlayer()) ||
+			(neckLock.Asset.LoverOnly && C.IsLoverOfPlayer()) ||
+			C.ID == 0) {
 			return true
 		}
 	}
@@ -512,7 +512,7 @@ function ChatRoomRun() {
 	DrawButton(1875, 2, 120, 60, "", "White", "Icons/Rectangle/Preference.png", TextGet("MenuAdmin"));
 
 	// In orgasm mode, we add a pink filter and different controls depending on the stage.  The pink filter shows a little above 90
-	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {
+	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {	
 		if ((Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
 			DrawRect(0, 0, 1003, 1000, "#FFB0B0B0");
 			DrawRect(1003, 0, 993, 63, "#FFB0B0B0");
@@ -526,7 +526,8 @@ function ChatRoomRun() {
 			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
 			ActivityOrgasmProgressBar(50, 970);
 		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99)) {
-			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6)) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
+			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6) ||
+				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3))) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
 			else if (ChatRoomCharacter.length == 3) DrawRect(0, 50, 1003, 900, "#FFB0B040");
 			else if (ChatRoomCharacter.length == 4) DrawRect(0, 150, 1003, 700, "#FFB0B040");
 			else if (ChatRoomCharacter.length == 5) DrawRect(0, 250, 1003, 500, "#FFB0B040");
@@ -568,7 +569,7 @@ function ChatRoomClick() {
 		CharacterDeleteAllOnline();
 		
 		// Clear leash since the player has escaped
-		ChatRoomLeashPlayer = ""
+		ChatRoomLeashPlayer = null
 	}
 
 	// When the player is slow and attempts to leave
