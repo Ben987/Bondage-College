@@ -52,7 +52,7 @@ var DialogSelfMenuOptions = [
 	},	
 	{
 		Name: "Pose",
-		IsAvailable: () => CurrentScreen == "ChatRoom",
+		IsAvailable: () => (CurrentScreen == "ChatRoom" || CurrentScreen == "Photographic"), 
 		Draw: DialogDrawPoseMenu,
 		Click: DialogClickPoseMenu,
 	},	
