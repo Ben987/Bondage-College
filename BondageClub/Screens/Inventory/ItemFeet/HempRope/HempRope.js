@@ -26,8 +26,23 @@ const HempRopeFeetOptions = [
 		Property: { Type: "Suspension", SetPose: ["LegsClosed", "Suspension"], Difficulty: 6 },
 		Expression: [{ Group: "Blush", Name: "High", Timer: 30 }],
 		Prerequisite: ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"]
+	}, {
+		Name: "BedSpreadEagle",
+		BondageLevel: 1,
+		Property: { Type: "BedSpreadEagle", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemLegs", "ItemBoots", "ItemDevices"], SetPose: ["Spread"], Difficulty: 5 },
+		Prerequisite: ["OnBed", "NoItemLegs"]
 	}
 ];
+
+function AssetsItemFeetHempRopeBeforeDraw(data) {
+    if (data.LayerType === "BedSpreadEagle") {
+        return {
+            X: data.X -125,
+            Y: data.Y -170,
+        };
+    }
+    return null;
+}
 
 function InventoryItemFeetHempRopeLoad() {
 	ExtendedItemLoad(HempRopeFeetOptions, "SelectRopeBondage");
