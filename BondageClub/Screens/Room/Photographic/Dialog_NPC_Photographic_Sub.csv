@@ -43,7 +43,7 @@ RemoveVibratingEgg,,,"Pity, we just got started.",,
 0,20,Please use some toys on me.,What should I use?,,!PhotographicSubIsRestrained()
 0,,Please use some toys on me.,She points to her restraints.,,PhotographicSubIsRestrained()
 0,40,Please take off your clothes.,Where should I start?,,!PhotographicSubIsRestrained()
-0,,Please change your pose.,"Alright, how is this?",SubChangePose(),PhotographicSubCanKeel()
+0,50,Please change your pose.,"Alright, what pose would you like?",,
 0,,(Nod for help.),I'll help you right away.  (She releases you.),PlayerRelease(),PhotographicIsRestrainedWithoutLockAndMaidsNotDisabled()
 0,,(Nod for help.),"(She checks your locks.)  I'm sorry, you'll need to get a maid for that.",,PhotographicIsRestrainedWithLockAndMaidsNotDisabled()
 0,,(Nod for help.),"I'm sorry, the maids told me not to help you.",,PhotographicIsMaidsDisabledAndRestrained()
@@ -77,6 +77,20 @@ RemoveVibratingEgg,,,"Pity, we just got started.",,
 40,,Take off your shoes.,(She steps out of her shoes.),"SubClothRemove(""Shoes"")",SubShoesAvailable()
 40,,Please dress back up.,"Alright, if you say so.",SubDressBack(),
 40,0,That's enough for now.,(She shows you a bright smile.),,
+50,51,Move your arms,How should I move them?,,"SubPoseCategoryAllowed(""BodyUpper"")"
+50,52,Move your legs,How should I stand?,,"SubPoseCategoryAllowed(""BodyLower"")"
+50,0,That's enough for now.,Alright then.,,
+51,,Relax your arms.,(She holds her arms casually in front.),"SubSetPose(""BodyUpper"")",
+51,,Hold your arms up.,(She lifts her arms up.),"SubSetPose(""Yoked"")",
+51,,Raise your arms high.,(She reaches above her head.),"SubSetPose(""OverTheHead"")",
+51,,Hold your hands together behind your back.,(She moves her hands behind her.),"SubSetPose(""BackBoxTie"")",
+51,,Show me your hands together behind you.,(She moves her hands out to the side.),"SubSetPose(""BackCuffs"")",
+51,,Touch your elbows together behind your back.,(She touches her wrists and elbows together behind herself.),"SubSetPose(""BackElbowTouch"")",
+51,50,That's enough for now.,Would you like any other pose?,,
+52,,Relax your legs.,(She stands upright.),"SubSetPose(""BaseLower"")",
+52,,Close your legs.,(She stands with her legs together.),"SubSetPose(""LegsClosed"")",
+52,,Kneel down.,(She kneels on the ground.),"SubSetPose(""Kneel"")",
+52,50,That's enough for now.,Would you like any other pose?,,
 100,,What's going on here?,In the photo studio you can make pictures and collect them.,,
 100,,What do the pictures cost?,"Nothing, this is a service of the club.",,
 100,,Why is the room so barren?,This is a neutral photo background.,,
