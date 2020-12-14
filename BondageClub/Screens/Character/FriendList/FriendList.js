@@ -97,7 +97,6 @@ function FriendListLoadFriendList(data) {
 	const DeleteCaption = DialogFind(Player, "Delete");
 	const ConfirmDeleteCaption = DialogFind(Player, "ConfirmDelete");
 	const PrivateRoomCaption = DialogFind(Player, "PrivateRoom");
-	const OfflineCaption = DialogFind(Player, "Offline");
 	const SentCaption = DialogFind(Player, "SentBeep");
 	const ReceivedCaption = DialogFind(Player, "ReceivedBeep");
 	const SpaceAsylumCaption = DialogFind(Player, "ChatRoomSpaceAsylum");
