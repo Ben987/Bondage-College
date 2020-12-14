@@ -4,7 +4,7 @@
 function InventoryItemMiscPasswordPadlockLoad() {
 	var C = CharacterGetCurrent();
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property == null)) DialogFocusSourceItem.Property = {};
-	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.Password == null)) DialogFocusSourceItem.Property.Password = "UNLOCK";
+	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.Password == null)) DialogFocusSourceItem.Property.Password = "PASSWORD";
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.Hint == null)) DialogFocusSourceItem.Property.Hint = "Take a guess...";
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockSet == null)) DialogFocusSourceItem.Property.LockSet = false;
 
@@ -13,13 +13,13 @@ function InventoryItemMiscPasswordPadlockLoad() {
 		if (DialogFocusSourceItem.Property && (DialogFocusSourceItem.Property.LockSet || 
 		(DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.LockMemberNumber != Player.MemberNumber))) {
 			// Normal lock interface
-			ElementCreateInput("Password", "text", "", "6");
+			ElementCreateInput("Password", "text", "", "8");
 			// the current code is shown for owners, lovers and the member whose number is on the padlock
 			if (DialogFocusSourceItem != null && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber)
 				|| C.IsOwnedByPlayer() || C.IsLoverOfPlayer())) document.getElementById("Password").placeholder = DialogFocusSourceItem.Property.Password;
 		} else {
 			// Set a password and hint
-			ElementCreateInput("SetPassword", "text", "", "6");
+			ElementCreateInput("SetPassword", "text", "", "8");
 			ElementCreateInput("SetHint", "text", "", "140");
 			// the current code is shown for owners, lovers and the member whose number is on the padlock
 			document.getElementById("SetPassword").placeholder = DialogFocusSourceItem.Property.Password;

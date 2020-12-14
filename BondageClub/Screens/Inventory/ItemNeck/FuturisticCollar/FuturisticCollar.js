@@ -236,7 +236,7 @@ function InventoryItemNeckFuturisticCollarColor(C, Item) {
 		if (C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 && C.Appearance[E].Asset.Group.Name != "ItemNeck") {
 			
 			for (let L = C.Appearance[E].Asset.Layer.length - 1; L >= 0; L--) {
-				if (C.Appearance[E].Asset.Layer[L].Name == "Display" || C.Appearance[E].Asset.Layer[L].Name == "Screen") {
+				if (C.Appearance[E].Asset.Layer[L].Name == "Display" || C.Appearance[E].Asset.Layer[L].Name == "Screen" || C.Appearance[E].Asset.Layer[L].Name == "Ball") {
 					if (Item.Color[0] != "Default")
 						C.Appearance[E].Color[L] = Item.Color[0]
 					//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[0].ColorIndex
