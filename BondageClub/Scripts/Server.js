@@ -297,7 +297,7 @@ function ServerValidateProperties(C, Item) {
 				var Lock = InventoryGetLock(Item);
 				if ((Item.Property.Password != null) && (typeof Item.Property.Password == "string")) {
 					var Regex = /^[A-Z]+$/;
-					if (!Item.Property.Password.toUpperCase().match(Regex) || (Item.Property.Password.length > 6)) {
+					if (!Item.Property.Password.toUpperCase().match(Regex) || (Item.Property.Password.length > 8)) {
 						Item.Property.Password = "UNLOCK";
 					}
 				} else delete Item.Property.Password;

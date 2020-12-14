@@ -34,19 +34,19 @@ function InformationSheetRun() {
 	var CurrentTitle = TitleGet(C);
 	DrawCharacter(C, 50, 50, 0.9);
 	MainCanvas.textAlign = "left";
-	DrawText(TextGet("Name") + " " + C.Name, 550, 125, "Black", "Gray");
-	DrawText(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, 200, (TitleIsForced(CurrentTitle)) ? "Red" : "Black", "Gray");
-	DrawText(TextGet("MemberNumber") + " " + ((C.MemberNumber == null) ? TextGet("NoMemberNumber") : C.MemberNumber.toString()), 550, 275, "Black", "Gray");
+	DrawTextFit(TextGet("Name") + " " + C.Name, 550, 125, 450, "Black", "Gray");
+	DrawTextFit(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, 200, 450, (TitleIsForced(CurrentTitle)) ? "Red" : "Black", "Gray");
+	DrawTextFit(TextGet("MemberNumber") + " " + ((C.MemberNumber == null) ? TextGet("NoMemberNumber") : C.MemberNumber.toString()), 550, 275, 450, "Black", "Gray");
 
 	// Some info are not available for online players
 	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	if (!OnlinePlayer) {
-		if (C.ID == 0) DrawText(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, "Black", "Gray");
-		else DrawText(TextGet("FriendsFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "PrivateRoomEntry")) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, "Black", "Gray");
-		if (C.ID == 0) DrawText(TextGet("Money") + " " + C.Money.toString() + " $", 550, 425, "Black", "Gray");
-		else if (C.Love != null) DrawText(InformationSheetGetLove(C.Love), 550, 425, "Black", "Gray");
+		if (C.ID == 0) DrawTextFit(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, 450, "Black", "Gray");
+		else DrawTextFit(TextGet("FriendsFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "PrivateRoomEntry")) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, 450, "Black", "Gray");
+		if (C.ID == 0) DrawTextFit(TextGet("Money") + " " + C.Money.toString() + " $", 550, 425, 450, "Black", "Gray");
+		else if (C.Love != null) DrawText(InformationSheetGetLove(C.Love), 550, 425, 450, "Black", "Gray");
 	} else {
-		if (C.Creation != null) DrawText(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, "Black", "Gray");
+		if (C.Creation != null) DrawTextFit(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, 450, "Black", "Gray");
 	}
 
 	// For the current player or an online player
@@ -54,19 +54,19 @@ function InformationSheetRun() {
 
 		// Shows the difficulty level
 		let Days = Math.floor((CurrentTime - (((C.Difficulty == null) || (C.Difficulty.LastChange == null) || (typeof C.Difficulty.LastChange !== "number")) ? C.Creation : C.Difficulty.LastChange)) / 86400000);
-		DrawText(TextGet("DifficultyLevel" + C.GetDifficulty()) + " " + TextGet("DifficultyTitle").replace("NumberOfDays", Days.toString()), 550, 500, "Black", "Gray");
+		DrawTextFit(TextGet("DifficultyLevel" + C.GetDifficulty()) + " " + TextGet("DifficultyTitle").replace("NumberOfDays", Days.toString()), 550, 500, 450, "Black", "Gray");
 	
 		// Shows the owner
 		if ((C.Ownership != null) && (C.Ownership.Name != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.Start != null) && (C.Ownership.Stage != null)) {
-			DrawText(TextGet("Owner") + " " + C.Ownership.Name + " (" + C.Ownership.MemberNumber + ")", 550, 575, "Black", "Gray");
-			DrawText(TextGet((C.Ownership.Stage == 0) ? "TrialFor" : "CollaredFor") + " " + (Math.floor((CurrentTime - C.Ownership.Start) / 86400000)).toString() + " " + TextGet("Days"), 550, 635, "Black", "Gray");
+			DrawTextFit(TextGet("Owner") + " " + C.Ownership.Name + " (" + C.Ownership.MemberNumber + ")", 550, 575, 450, "Black", "Gray");
+			DrawTextFit(TextGet((C.Ownership.Stage == 0) ? "TrialFor" : "CollaredFor") + " " + (Math.floor((CurrentTime - C.Ownership.Start) / 86400000)).toString() + " " + TextGet("Days"), 550, 635, 450, "Black", "Gray");
 		}
-		else { DrawText(TextGet("Owner") + " " + (((C.Owner == null) || (C.Owner == "")) ? TextGet("OwnerNone") : C.Owner.replace("NPC-", "")), 550, 575, "Black", "Gray"); }
+		else { DrawTextFit(TextGet("Owner") + " " + (((C.Owner == null) || (C.Owner == "")) ? TextGet("OwnerNone") : C.Owner.replace("NPC-", "")), 550, 575, 450, "Black", "Gray"); }
 
 		// Shows the member number and online permissions for other online players
 		if (C.ID != 0) {
-			DrawText(TextGet("ItemPermission"), 550, 815, "Black", "Gray");
-			DrawText(TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 875, "Black", "Gray");
+			DrawTextFit(TextGet("ItemPermission"), 550, 815, 450, "Black", "Gray");
+			DrawTextFit(TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 875, 450, "Black", "Gray");
 		}
 
 	}

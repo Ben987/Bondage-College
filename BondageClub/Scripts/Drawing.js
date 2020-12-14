@@ -705,9 +705,10 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
  * @param {number} Y - Position of the text on the Y axis
  * @param {number} Width - Width in which the text has to fit
  * @param {string} Color - Color of the text
+ * @param {string} BackColor - Color of the background
  * @returns {void} - Nothing
  */
-function DrawTextFit(Text, X, Y, Width, Color) {
+function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 
 	for (let S = 36; S >= 10; S = S - 2) {
 		MainCanvas.font = S.toString() + "px Arial";
@@ -715,6 +716,13 @@ function DrawTextFit(Text, X, Y, Width, Color) {
 		if (metrics.width <= Width)
 			break;
 	}
+	
+	// Draw a back color relief text if needed
+	if ((BackColor != null) && (BackColor != "")) {
+		MainCanvas.fillStyle = BackColor;
+		MainCanvas.fillText(Text, X + 1, Y + 1);
+	}
+	
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillText(Text, X, Y);
 	MainCanvas.font = "36px Arial";

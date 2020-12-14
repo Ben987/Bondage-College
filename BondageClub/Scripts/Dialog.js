@@ -437,8 +437,13 @@ function DialogLeaveItemMenu() {
 	DialogEndExpression();
 	DialogItemToLock = null;
 	Player.FocusGroup = null;
-	if (CurrentCharacter)
+	if (CurrentCharacter) {
+		if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber) {
+			CharacterAppearanceForceUpCharacter = 0;
+			CharacterApperanceSetHeightModifier(CurrentCharacter);
+		}
 		CurrentCharacter.FocusGroup = null;
+	}
 	DialogInventory = null;
 	DialogProgress = -1;
 	DialogColor = null;
