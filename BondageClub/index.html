@@ -355,9 +355,9 @@ function DocumentKeyDown(event) {
 			if (!DialogLeaveFocusItem())
 				DialogLeaveItemMenu();
 		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
-            DialogLeave();
-        } else if ((CurrentCharacter == null) && (CurrentScreen == "ChatRoom") && (document.getElementById("TextAreaChatLog") != null)) {
-            ElementScrollToEnd("TextAreaChatLog");
+			DialogLeave();
+		} else if ((CurrentCharacter == null) && (CurrentScreen == "ChatRoom") && (document.getElementById("TextAreaChatLog") != null)) {
+			ElementScrollToEnd("TextAreaChatLog");
 		}
 	}
 }
