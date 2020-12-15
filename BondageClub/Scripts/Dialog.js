@@ -372,8 +372,13 @@ function DialogLeave() {
 	DialogActivityMode = false;
 	DialogItemToLock = null;
 	Player.FocusGroup = null;
-	if (CurrentCharacter)
+	if (CurrentCharacter) {
+		if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber) {
+			CharacterAppearanceForceUpCharacter = 0;
+			CharacterApperanceSetHeightModifier(CurrentCharacter);
+		}
 		CurrentCharacter.FocusGroup = null;
+	}
 	DialogInventory = null;
 	CurrentCharacter = null;
 	DialogSelfMenuSelected = null;
@@ -438,10 +443,6 @@ function DialogLeaveItemMenu() {
 	DialogItemToLock = null;
 	Player.FocusGroup = null;
 	if (CurrentCharacter) {
-		if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber) {
-			CharacterAppearanceForceUpCharacter = 0;
-			CharacterApperanceSetHeightModifier(CurrentCharacter);
-		}
 		CurrentCharacter.FocusGroup = null;
 	}
 	DialogInventory = null;
