@@ -701,6 +701,12 @@ function ServerAccountBeep(data) {
 					if (CurrentScreen == "ChatRoom") {
 						ElementRemove("InputChat");
 						ElementRemove("TextAreaChatLog");
+						ElementRemove("InputName");
+						ElementRemove("InputDescription");
+						ElementRemove("InputSize");
+						ElementRemove("InputAdminList");
+						ElementRemove("InputBanList");
+						
 						ServerSend("ChatRoomLeave", "");
 						CommonSetScreen("Online", "ChatSearch");
 					}

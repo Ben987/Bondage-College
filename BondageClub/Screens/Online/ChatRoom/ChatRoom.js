@@ -171,14 +171,15 @@ function ChatRoomCanBeLeashed(C) {
 	var neckLock = null
 	for (let A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily)) {
-			if (C.Appearance[A].Asset.Name.indexOf("Leash") >= 0 || (C.Appearance[A].Property && C.Appearance[A].Property.Type && C.Appearance[A].Property.Type.indexOf("Leash") >= 0)) {
+			if (InventoryItemHasEffect(C.Appearance[A], "Leash", true)) {
 				canLeash = true
 				if (C.Appearance[A].Asset.Group.Name == "ItemNeckRestraints")
 					neckLock = InventoryGetLock(Player.Appearance[A])
+			} else if (InventoryItemHasEffect(C.Appearance[A], "Tethered", true) || InventoryItemHasEffect(C.Appearance[A], "Mounted", true) || InventoryItemHasEffect(C.Appearance[A], "Enclosed", true)){
+				isTrapped = true
 			}
 		}
-	if ((C.Effect.indexOf("Tethered") >= 0) || (C.Effect.indexOf("Mounted") >= 0) || (C.Effect.indexOf("Enclosed") >= 0)) isTrapped = true
-	
+
 	if (canLeash && !isTrapped) {
 		if (!neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
 			(neckLock.Asset.OwnerOnly && C.IsOwnedByPlayer()) ||

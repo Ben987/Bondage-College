@@ -29,7 +29,7 @@ var InventoryItemNoseNoseRingOptions = [
 		Name: "Leash",
 		Property: {
 			Type: "Leash",
-			Effect: [],
+			Effect: ["Leash"],
 			SetPose: [],
 		}, 
 	},
