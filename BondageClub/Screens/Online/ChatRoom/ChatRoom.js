@@ -677,6 +677,8 @@ function ChatRoomKeyDown() {
 		ElementValue("InputChat", ChatRoomLastMessage[ChatRoomLastMessageIndex]);
 	}
 
+	// On escape, scroll to the bottom of the chat
+	if (KeyPress == 27) ElementScrollToEnd("TextAreaChatLog");
 }
 
 /**
