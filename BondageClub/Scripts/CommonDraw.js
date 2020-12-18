@@ -224,7 +224,10 @@ function CommonDrawAppearanceBuild(C, {
 		if (Color === "Default" && A.DefaultColor) {
 			Color = Array.isArray(A.DefaultColor) ? A.DefaultColor[Layer.ColorIndex] : A.DefaultColor;
 		}
-		
+		if (Color != null && typeof Color !== "string") {
+			Color = "Default";
+		}
+
 		// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 		if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
 			drawImageColorize(

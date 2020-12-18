@@ -4,10 +4,10 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Abby", "Aylea", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Dini", "Epona", "Escurse", "FanRunner", 
-						 "Fluffythewhat", "Greendragon", "Jin", "Joe", "KamiKaze", "KBgamer", "Kimuriel", "Michal", "Michel", "Mike", 
-						 "Mindtie", "Misa", "Nick", "Overlord", "Rashiash", "Ray", "Rika", "Rutherford", "Ryner", "Samuel", 
-						 "Setsu", "Shadow", "Sky", "Tam", "Thomas", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
+var LoginThankYouList = ["Abby", "Anna", "Asuna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "EliseBlackthorn",
+						 "Epona", "Escurse", "FanRunner", "Fluffythewhat", "Greendragon", "Jin", "KamiKaze", "KBgamer", "Kimuriel", "Longwave",
+						 "Michal", "Michel", "Mike", "Mindtie", "Misa", "Nick", "Overlord", "Rashiash", "Ray", "Rika", "Rutherford", "Ryner",
+						 "Samuel", "SeraDenoir", "Setsu", "Shadow", "Somononon", "Tam", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -284,8 +284,8 @@ function LoginDifficulty() {
 
 	// If Extreme mode, the player cannot control her blocked items
 	if (Player.GetDifficulty() >= 3) {
-		Player.BlockItems = [{Name: "CombinationPadlock", Group: "ItemMisc", Type: null}];
-		Player.LimitedItems = [];
+		Player.BlockItems = [];
+		Player.LimitedItems = [{Name: "CombinationPadlock", Group: "ItemMisc", Type: null}, {Name: "PasswordPadlock", Group: "ItemMisc", Type: null}];
 		Player.HiddenItems = [];
 		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems, HiddenItems: Player.HiddenItems });
 	}
@@ -376,7 +376,17 @@ function LoginResponse(C) {
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
-			Player.FriendNames = typeof C.FriendNames === "string" ? new Map(JSON.parse(LZString.decompressFromUTF16(C.FriendNames))) : new Map();
+			// Attempt to parse friend names
+			if (typeof C.FriendNames === "string") { 
+				try {
+					Player.FriendNames = new Map(JSON.parse(LZString.decompressFromUTF16(C.FriendNames)));
+				} catch {
+					console.warn("An error occured while parsing friendnames, entries have been reset.");
+				}
+			}
+			if (Player.FriendNames == null) { 
+				Player.FriendNames = new Map();
+			}
 			Player.SubmissivesList = typeof C.SubmissivesList === "string" ? new Set(JSON.parse(LZString.decompressFromUTF16(C.SubmissivesList))) : new Set();
 			Player.GhostList = ((C.GhostList == null) || !Array.isArray(C.GhostList)) ? [] : C.GhostList;
 

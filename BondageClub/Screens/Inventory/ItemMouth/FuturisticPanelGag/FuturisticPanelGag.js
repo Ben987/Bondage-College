@@ -130,14 +130,29 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 	if (MouseIn(1885, 25, 90, 90)) InventoryItemMouthFuturisticPanelGagExit()
 		
 	if (MouseIn(1400, 800, 200, 64)) {
-		FuturisticAccessDeniedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
-		var vol = 1
-		if (Player.AudioSettings && Player.AudioSettings.Volume) {
-			vol = Player.AudioSettings.Volume
-		}
-		AudioPlayInstantSound("Audio/AccessDenied.mp3", vol)
-		if (CurrentScreen == "ChatRoom") {
-			InventoryItemMouthFuturisticPanelGagPublishAccessDenied((Player.FocusGroup != null) ? Player : CurrentCharacter)
+		var pw = ElementValue("PasswordField").toUpperCase()
+		if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy == "PasswordPadlock" && pw == DialogFocusItem.Property.Password) {
+			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+			InventoryItemMiscPasswordPadlockUnlock(C, DialogFocusItem)
+			DialogFocusItem = null
+			Player.FocusGroup = null
+			InventoryItemMouthFuturisticPanelGagExit();
+		} else if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy == "CombinationPadlock" && pw == DialogFocusItem.Property.CombinationNumber) {
+			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+			InventoryItemMiscCombinationPadlockUnlock(C, DialogFocusItem)
+			DialogFocusItem = null
+			Player.FocusGroup = null
+			InventoryItemMouthFuturisticPanelGagExit();
+		} else {
+			FuturisticAccessDeniedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
+			var vol = 1
+			if (Player.AudioSettings && Player.AudioSettings.Volume) {
+				vol = Player.AudioSettings.Volume
+			}
+			AudioPlayInstantSound("Audio/AccessDenied.mp3", vol)
+			if (CurrentScreen == "ChatRoom") {
+				InventoryItemMouthFuturisticPanelGagPublishAccessDenied((Player.FocusGroup != null) ? Player : CurrentCharacter)
+			}
 		}
 	}
 }
@@ -212,7 +227,7 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMouthFuturisticPanelGagClick() {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = CharacterGetCurrent();
 	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else {		
@@ -251,10 +266,10 @@ function InventoryItemMouthFuturisticPanelGagClick() {
 		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000 && MouseIn(1675, 780, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 72000000)
 			
 		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting && MouseIn(1675, 880, 200, 64)) {
-			InventoryItemMouthFuturisticPanelGagTrigger(Player, DialogFocusItem, false)
+			InventoryItemMouthFuturisticPanelGagTrigger(C, DialogFocusItem, false)
 			DialogFocusItem.Property.AutoPunishUndoTime = CurrentTime + DialogFocusItem.Property.AutoPunishUndoTimeSetting // Reset the deflation time
-			CharacterRefresh(Player, true); // Does not sync appearance while in the wardrobe
-			ChatRoomCharacterUpdate(Player);	
+			CharacterRefresh(C, true); // Does not sync appearance while in the wardrobe
+			ChatRoomCharacterUpdate(C);
 		}
 		
 	}
@@ -266,8 +281,11 @@ function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
 	var Allowed = true;
 
 	if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
-		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
-		Allowed = false;
+		var collar = InventoryGet(C, "ItemNeck")
+		if (collar && (!collar.Property || collar.Property.OpenPermission != true)) {
+			DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
+			Allowed = false;
+		}
 	}
 
 	return Allowed;

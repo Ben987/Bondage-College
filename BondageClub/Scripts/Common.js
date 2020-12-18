@@ -286,13 +286,26 @@ function CommonTime() {
 
 /**
  * Checks if a given value is a valid HEX color code
- * @param {string} Value - Potential HEX color code 
- * @returns {boolean} - Returns TRUE if the string is a valid HEX color 
+ * @param {string} Value - Potential HEX color code
+ * @returns {boolean} - Returns TRUE if the string is a valid HEX color
  */
 function CommonIsColor(Value) {
 	if ((Value == null) || (Value.length < 3)) return false;
 	if (/^#[0-9A-F]{3}$/i.test(Value)) Value = "#" + Value[1] + Value[1] + Value[2] + Value[2] + Value[3] + Value[3];	//convert short hand hex color to standard format
 	return /^#[0-9A-F]{6}$/i.test(Value);
+}
+
+/**
+ * Checks whether an item's color has a valid value that can be interpreted by the drawing
+ * functions. Valid values are null, undefined, strings, and an array containing any of the
+ * aforementioned types.
+ * @param {*} Color - The Color value to check
+ * @returns {boolean} - Returns TRUE if the color is a valid item color
+ */
+function CommonColorIsValid(Color) {
+	if (Color == null || typeof Color === "string") return true;
+	if (Array.isArray(Color)) return Color.every(C => C == null || typeof C === "string");
+	return false;
 }
 
 /**

@@ -3,11 +3,11 @@
 var InventoryItemHandsFuturisticMittensOptions = [
 	{
 		Name: "Mittens",
-		Property: { Type: null, Difficulty: 8, Effect: ["Block", "Prone", "HandsCovered"]},
+		Property: { Type: null, Difficulty: 8, Effect: ["Block", "Prone", "HandsCovered"], SelfUnlock: false},
 	},
 	{
 		Name: "Gloves",
-		Property: { Type: "Gloves", Difficulty: 0, Effect: [] },
+		Property: { Type: "Gloves", Difficulty: 0, Effect: [], SelfUnlock: true},
 	},
 ];
 
