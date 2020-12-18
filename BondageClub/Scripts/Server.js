@@ -698,9 +698,8 @@ function ServerAccountBeep(data) {
 					ChatRoomJoinLeash = data.ChatRoomName
 					
 					DialogLeave()
+					ChatRoomClearAllElements();
 					if (CurrentScreen == "ChatRoom") {
-						ElementRemove("InputChat");
-						ElementRemove("TextAreaChatLog");
 						ServerSend("ChatRoomLeave", "");
 						CommonSetScreen("Online", "ChatSearch");
 					}
