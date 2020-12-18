@@ -430,8 +430,8 @@ function ChatSearchResultResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
-	if (ChatRoomJoinLeash != "") {
-		Query = ChatRoomJoinLeash.toUpperCase().trim()
+	if (ChatRoomJoinLeash != null && ChatRoomJoinLeash != "") {
+		Query = ChatRoomJoinLeash.toUpperCase().trim();
 	} else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "") {
 		if (Player.ImmersionSettings.ReturnToChatRoom) {
 			Query = Player.LastChatRoom.toUpperCase().trim()

@@ -1,7 +1,7 @@
 Synchronizing with server, please wait...
 Synchronisation avec le serveur, veuillez patienter...
 A rescue maid is coming...
-Une servante de secours arrive...
+Une servante arrive bientôt...
 Online Members:
 Membres en ligne:
 Introduction Class
@@ -40,6 +40,8 @@ Visit the College
 Visiter le collège
 Leave the Club
 Quitter le Club
+Request maid service
+Demander une servante
 Sarah's Bedroom
 Chambre de Sarah
 Gambling by git4nick

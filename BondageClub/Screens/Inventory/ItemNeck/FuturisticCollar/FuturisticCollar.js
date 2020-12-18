@@ -5,7 +5,10 @@ function InventoryItemNeckFuturisticCollarLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
-	} 
+	} else {
+		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { OpenPermission: false };
+		if (DialogFocusItem.Property.OpenPermission == null) DialogFocusItem.Property.OpenPermission = false;
+	}
 }
 
 
@@ -17,10 +20,12 @@ function InventoryItemNeckFuturisticCollarDraw() {
 	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawRect(1387, 225, 225, 275, "white");
-		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
+		DrawRect(1387, 175, 225, 275, "white");
+		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 177, 221, 221);
+		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 425, 221, "black");
 		
+		DrawButton(1125, 475, 64, 64, "", "White", DialogFocusItem.Property.OpenPermission ? "Icons/Checked.png" : "");
+		DrawText(DialogFind(Player, "FuturisticCollarOpenPermission"), 1550, 500, "White", "Gray");
 		
 		var FuturisticCollarStatus = "NoItems"
 		var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
@@ -73,6 +78,7 @@ function InventoryItemNeckFuturisticCollarClick() {
 	} else {
 		
 		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemNeckFuturisticCollarExit();
+		else if (MouseIn(1125, 475, 64, 64)) InventoryItemNeckFuturisticCollarTogglePermission(C, DialogFocusItem);
 		else {
 		
 			var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
@@ -115,6 +121,8 @@ function InventoryItemNeckFuturisticCollarClick() {
 		}
 	}
 }
+
+
 
 
 function InventoryItemNeckFuturisticCollarCanLock(C, LockType) {
@@ -187,7 +195,7 @@ function InventoryItemNeckFuturisticCollarLockdown(C, LockType) {
 		var Message;
 		var Dictionary = [
 			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-			{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+			{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
 		];
 
 		Message = "FuturisticCollarTriggerLockdown";
@@ -211,7 +219,7 @@ function InventoryItemNeckFuturisticCollarUnlock(C) {
 		var Message;
 		var Dictionary = [
 			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-			{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+			{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
 		];
 
 		Message = "FuturisticCollarTriggerUnlock";
@@ -228,7 +236,7 @@ function InventoryItemNeckFuturisticCollarColor(C, Item) {
 		if (C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 && C.Appearance[E].Asset.Group.Name != "ItemNeck") {
 			
 			for (let L = C.Appearance[E].Asset.Layer.length - 1; L >= 0; L--) {
-				if (C.Appearance[E].Asset.Layer[L].Name == "Display" || C.Appearance[E].Asset.Layer[L].Name == "Screen") {
+				if (C.Appearance[E].Asset.Layer[L].Name == "Display" || C.Appearance[E].Asset.Layer[L].Name == "Screen" || C.Appearance[E].Asset.Layer[L].Name == "Ball") {
 					if (Item.Color[0] != "Default")
 						C.Appearance[E].Color[L] = Item.Color[0]
 					//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[0].ColorIndex
@@ -251,7 +259,7 @@ function InventoryItemNeckFuturisticCollarColor(C, Item) {
 		var Message;
 		var Dictionary = [
 			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-			{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+			{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
 		];
 
 		Message = "FuturisticCollarTriggerColor";
@@ -261,4 +269,27 @@ function InventoryItemNeckFuturisticCollarColor(C, Item) {
 	
 	//if (CurrentScreen == "ChatRoom")	
 	// ServerSend("ChatRoomChat", { Content: " 's bindings unlock with a hiss.", Type: "Emote" });
+}
+
+function InventoryItemNeckFuturisticCollarTogglePermission(C, Item) {
+	if (Item.Property && Item.Property.OpenPermission != null) {
+		Item.Property.OpenPermission = !Item.Property.OpenPermission
+		
+		ChatRoomCharacterUpdate(C);
+		CharacterRefresh(C, true);
+		
+		if (CurrentScreen == "ChatRoom")	{
+			var Message;
+			var Dictionary = [
+				{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+				{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
+			];
+
+			Message = "FuturisticCollarSetOpenPermission";
+			if (Item.Property.OpenPermission) Message = Message + "On";
+			else Message = Message + "Off";
+			
+			ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
+		}
+	}
 }

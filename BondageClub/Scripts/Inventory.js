@@ -425,13 +425,19 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 				if (!AssetToCheck.Name) {
 					// Just try to force remove a group, if no item is specified
 					InventoryRemove(C, AssetToCheck.Group, false);
-				} else if ((InventoryGet(C, AssetToCheck.Group)) && (InventoryGet(C, AssetToCheck.Group).Asset.Name == AssetToCheck.Name)) {
-					// If a name is specified and the item is worn, check if it's an extended item
-					if ((!InventoryGet(C, AssetToCheck.Group).Asset.Type) || (InventoryGet(C, AssetToCheck.Group).Asset.Type) && (InventoryGet(C, AssetToCheck.Group).Asset.Type === AssetToCheck.Type))
-						// if the item is not extended or the item is extended and the type matches, remove it
-						InventoryRemove(C, AssetToCheck.Group, false);
+				} else {
+					let AssetFound = InventoryGet(C, AssetToCheck.Group);
+					// If a name is specified check if the item is worn
+					if (AssetFound && (AssetFound.Asset.Name == AssetToCheck.Name))
+						// If there is no type check or there is a type check and the item type matches, remove it
+						if (AssetToCheck.Type) {
+							if (AssetFound.Property && AssetFound.Property.Type === AssetToCheck.Type)
+								InventoryRemove(C, AssetToCheck.Group, false);
+						} else {
+							InventoryRemove(C, AssetToCheck.Group, false);
+						}
 				}
-			} 
+			}
 		}
 
 	// Second loop to find the item again, and remove it from the character appearance
@@ -667,6 +673,9 @@ function InventoryUnlock(C, Item) {
 		Item.Property.Effect.splice(Item.Property.Effect.indexOf("Lock"), 1);
 		delete Item.Property.LockedBy;
 		delete Item.Property.RemoveTimer;
+		delete Item.Property.LockSet;
+		delete Item.Property.Password;
+		delete Item.Property.Hint;
 		delete Item.Property.LockMemberNumber;
 		CharacterRefresh(C);
 	}
