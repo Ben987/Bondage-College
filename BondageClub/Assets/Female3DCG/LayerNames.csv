@@ -132,6 +132,10 @@ ItemButtSuccubusHeartButtPlugTail,Tail
 ItemButtSuccubusHeartButtPlugHeart,Heart
 ItemPelvisOrnateChastityBeltBelt,Belt
 ItemPelvisOrnateChastityBeltGems,Gems
+ItemNipplesTapedVibeEggsEgg1,Left Vibe Egg
+ItemNipplesTapedVibeEggsEgg2,Right Vibe Egg
+ItemNipplesTapedVibeEggsTape1,Left Tape Strip
+ItemNipplesTapedVibeEggsTape2,Right Tape Strip
 ItemNipplesPiercingsVibeHeartPiercingsHeart,Heart
 ItemNipplesPiercingsVibeHeartPiercingsRing,Ring
 ItemBreastOrnateChastityBraBra,Bra
@@ -149,7 +153,13 @@ ItemArmsFullLatexSuitBase,Straps
 ItemArmsBondageBouquetBase,Holder
 ItemArmsBondageBouquetFlowers,Flowers
 ItemArmsLatexArmbinderLatex,Binder
-ItemArmsLatexArmbinderStraps,Straps
+ItemArmsLatexArmbinderLaces,Laces
+ItemArmsLatexArmbinderStrap1,Strap
+ItemArmsLatexArmbinderBuckle1,Buckle
+ItemArmsLatexArmbinderHole1,Buckle Hole
+ItemArmsLatexArmbinderStrap2,Strap
+ItemArmsLatexArmbinderBuckle2,Buckle
+ItemArmsLatexArmbinderHole2,Buckle Hole
 ItemArmsPrisonLockdownSuitSuit,Suit
 ItemArmsPrisonLockdownSuitBelts,Straps
 ItemArmsHighSecurityStraitJacketCrotch,Crotch Panel
@@ -175,6 +185,9 @@ ItemArmsFuturisticArmbinderDisplay,Display
 ItemArmsFuturisticArmbinderBinder,Binder
 ItemArmsFuturisticArmbinderBand,Band
 ItemArmsFuturisticArmbinderStraps,Straps
+ItemHandsFuturisticMittensBody,Body
+ItemHandsFuturisticMittensMesh,Mesh
+ItemHandsFuturisticMittensDisplay,Display
 ItemNeckHighCollarLeather,Leather
 ItemNeckHighCollarRings,Rings
 ItemNeckPostureCollarCollar,Collar
@@ -244,6 +257,11 @@ ItemBootsFuturisticHeelsShoes,Body
 ItemBootsFuturisticHeelsDisplay,Display
 ItemBootsLeatherFootMitts1Mitts,Mittens
 ItemBootsLeatherFootMitts1Straps,Straps
+ShoesBoots1Shoes,Inner
+ShoesBoots1Sides,Outer
+ShoesBoots1Laces,Laces
+ShoesSandalsRSTop,Top
+ShoesSandalsRSSoles,Soles
 ItemMouthWiffleGagStrap,Strap
 ItemMouthWiffleGagBall,Ball
 ItemMouthHarnessBallGagBall,Ball
@@ -407,6 +425,9 @@ ItemBreastFuturisticBraText,Text
 ItemPelvisFuturisticChastityBeltScreen,Screen
 ItemPelvisFuturisticChastityBeltMesh,Mesh
 ItemPelvisFuturisticChastityBeltBelt,Belt
+PantiesPilotPantiesLayer1,Suit
+PantiesPilotPantiesLayer2,Highlights
+PantiesPilotPantiesLayer3,Center
 SuitLowerPilotSuitLayer1,Suit
 SuitLowerPilotSuitLayer2,Highlights
 SuitLowerPilotSuitLayer3,Center
@@ -416,3 +437,4 @@ SuitPilotSuitLayer2,Highlights
 SuitPilotSuitLayer3,Center
 SuitPilotSuitLayer4,Arms
 SuitPilotSuitFeet,Feet
+

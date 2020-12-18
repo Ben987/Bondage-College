@@ -11,7 +11,7 @@ var MainHallHasLoverLock = false;
 var MainHallHasSlaveCollar = false;
 var MainHallTip = 0;
 var MainHallMaidWasCalledManually = false;
-var MainHallRemoveLockTypes = ["CombinationPadlock"];
+var MainHallRemoveLockTypes = ["CombinationPadlock", "PasswordPadlock"]
 
 /**
  * Checks to see if the player needs help in any way
@@ -212,6 +212,12 @@ function MainHallRun() {
 		// Cafe
 		DrawButton(25, 265, 90, 90, "", "White", "Icons/Refreshsments.png", TextGet("Cafe"));
 
+	} else {
+
+		// Special permission to enter the maid quarters if doing the maid serving drinks quest while being restrained
+		if (Player.CanWalk() && (InventoryIsWorn(Player, "WoodenMaidTray", "ItemMisc") || InventoryIsWorn(Player, "WoodenMaidTrayFull", "ItemMisc")))
+			DrawButton(1765, 265, 90, 90, "", "White", "Icons/Maid.png", TextGet("MaidQuarters"));
+
 	}
 
 	// If we must send a maid to rescue the player
@@ -300,7 +306,7 @@ function MainHallClick() {
 	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 145) && (MouseY < 235)) ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList);
 
 	// The options below are only available if the player can move
-	if (Player.CanWalk()) {
+	if (Player.CanWalk() && (!Player.IsRestrained() || !Player.GameplaySettings.OfflineLockedRestrained)) {
 
 		// Chat, Shop & Private Room
 		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Shop");
@@ -341,11 +347,18 @@ function MainHallClick() {
 
 		// Cafe
 		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Cafe");
+
+	} else {
+
+		// Special permission to enter the maid quarters if doing the maid serving drinks quest while being restrained
+		if (Player.CanWalk() && (InventoryIsWorn(Player, "WoodenMaidTray", "ItemMisc") || InventoryIsWorn(Player, "WoodenMaidTrayFull", "ItemMisc")))
+			if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 265) && (MouseY < 355))
+				MainHallWalk("MaidQuarters");
+
 	}
-	
-	
+
+	// When the player calls for a rescue maid
 	if ((MainHallStartEventTimer == null) && (MainHallNextEventTimer == null)) {
-		
 		if (MouseIn(1885, 900, 90, 90)) {
 			if (MainHallNextEventTimer == null) {
 				var vol = 1

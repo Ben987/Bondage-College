@@ -270,6 +270,9 @@ function ServerValidateProperties(C, Item) {
 				delete Item.Property.LockMemberNumber;
 				delete Item.Property.LockMemberNumberList;
 				delete Item.Property.CombinationNumber;
+				delete Item.Property.Password;
+				delete Item.Property.Hint;
+				delete Item.Property.LockSet;
 				delete Item.Property.RemoveTimer;
 				delete Item.Property.MaxTimer;
 				delete Item.Property.RemoveItem;
@@ -290,6 +293,15 @@ function ServerValidateProperties(C, Item) {
 						Item.Property.CombinationNumber = "0000";
 					}
 				} else delete Item.Property.CombinationNumber;
+				
+				// Make sure the password on the lock is valid, 6 letters only
+				var Lock = InventoryGetLock(Item);
+				if ((Item.Property.Password != null) && (typeof Item.Property.Password == "string")) {
+					var Regex = /^[A-Z]+$/;
+					if (!Item.Property.Password.toUpperCase().match(Regex) || (Item.Property.Password.length > 8)) {
+						Item.Property.Password = "UNLOCK";
+					}
+				} else delete Item.Property.Password;
 
 				// Make sure the remove timer on the lock is valid
 				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
@@ -306,6 +318,9 @@ function ServerValidateProperties(C, Item) {
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.LockMemberNumberList;
 					delete Item.Property.CombinationNumber;
+					delete Item.Property.Password;
+					delete Item.Property.Hint;
+					delete Item.Property.LockSet;
 					delete Item.Property.RemoveTimer;
 					delete Item.Property.MaxTimer;
 					delete Item.Property.RemoveItem;
@@ -321,6 +336,9 @@ function ServerValidateProperties(C, Item) {
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.LockMemberNumberList;
 					delete Item.Property.CombinationNumber;
+					delete Item.Property.Password;
+					delete Item.Property.Hint;
+					delete Item.Property.LockSet;
 					delete Item.Property.RemoveTimer;
 					delete Item.Property.MaxTimer;
 					delete Item.Property.RemoveItem;
@@ -420,6 +438,9 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
 							if (C.Appearance[A].Property.LockMemberNumberList != null) NA.Property.LockMemberNumberList = C.Appearance[A].Property.LockMemberNumberList; else delete NA.Property.LockMemberNumberList;
 							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
+							if (C.Appearance[A].Property.Password != null) NA.Property.Password = C.Appearance[A].Property.Password; else delete NA.Property.Password;
+							if (C.Appearance[A].Property.Hint != null) NA.Property.Hint = C.Appearance[A].Property.Hint; else delete NA.Property.Hint;
+							if (C.Appearance[A].Property.LockSet != null) NA.Property.LockSet = C.Appearance[A].Property.LockSet; else delete NA.Property.LockSet;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
 							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
@@ -429,7 +450,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							}
 						}
 						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, NA.Property.LockMemberNumber);
+						if (C.Appearance[A].Property && C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, NA.Property.LockMemberNumber);
 
 					}
 					Appearance.push(NA);
@@ -449,6 +470,9 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
 							if (C.Appearance[A].Property.LockMemberNumberList != null) NA.Property.LockMemberNumberList = C.Appearance[A].Property.LockMemberNumberList; else delete NA.Property.LockMemberNumberList;
 							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
+							if (C.Appearance[A].Property.Password != null) NA.Property.Password = C.Appearance[A].Property.Password; else delete NA.Property.Password;
+							if (C.Appearance[A].Property.Hint != null) NA.Property.Hint = C.Appearance[A].Property.Hint; else delete NA.Property.Hint;
+							if (C.Appearance[A].Property.LockSet != null) NA.Property.LockSet = C.Appearance[A].Property.LockSet; else delete NA.Property.LockSet;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
 							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
@@ -658,7 +682,7 @@ function ServerAccountQueryResult(data) {
  */
 function ServerAccountBeep(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
-			if (!data.BeepType || data.BeepType == "") {
+		if (!data.BeepType || data.BeepType == "") {
 			ServerBeep.MemberNumber = data.MemberNumber;
 			ServerBeep.MemberName = data.MemberName;
 			ServerBeep.ChatRoomName = data.ChatRoomName;
@@ -672,11 +696,21 @@ function ServerAccountBeep(data) {
 				ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
 			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
-		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber) {
-			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
+		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber && data.ChatRoomName) {
+			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing != false && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashed(Player)) {
-					CommonSetScreen("Room", "ChatSearch")
+					
 					ChatRoomJoinLeash = data.ChatRoomName
+					
+					DialogLeave()
+					if (CurrentScreen == "ChatRoom") {
+						ElementRemove("InputChat");
+						ElementRemove("TextAreaChatLog");
+						ServerSend("ChatRoomLeave", "");
+						CommonSetScreen("Online", "ChatSearch");
+					}
+					else ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList) //CommonSetScreen("Room", "ChatSearch")
+					
 				} else {
 					ChatRoomLeashPlayer = null
 				}
