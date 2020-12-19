@@ -117,11 +117,6 @@ Bra,Bra8,Lace and Satin
 Bra,Bra9,Strapless
 Bra,Bandeau1,Bandeau
 Bra,Bustier1,Satin Bustier
-Bra,Corset1,Corset + Garters
-Bra,Corset2,Corset
-Bra,Corset3,Half Cup Corset
-Bra,Corset4,Under Bust Corset
-Bra,Corset5,Floral Corset
 Bra,Bikini1,Frilled Bikini
 Bra,SexyBikini1,Demonique Bikini
 Bra,SexyBikini2,Micro Bikini
@@ -146,13 +141,18 @@ Bra,SexyBikiniBra1,Micro Bikini Top
 Bra,StarHarnessBra,Star Harness
 Bra,HeartTop,Heart Top
 Bra,ChineseBra1,Chinese Bra
-Bra,LatexCorset1,Latex Corset
 Bra,LeatherStrapBra1,Leather Strap Bra
 Bra,Swimsuit3,Swimsuit style 3
 Bra,Clamshell,Clamshell Bra
-Bra,LeatherCorsetTop1,Leather Corset Top
 Bra,CowPrintedBra,Cow Printed Bra
 Bra,StuddedHarness,Studded Harness
+Corset,Corset1,Corset + Garters
+Corset,Corset2,Corset
+Corset,Corset3,Half Cup Corset
+Corset,Corset4,Under Bust Corset
+Corset,Corset5,Floral Corset
+Corset,LatexCorset1,Latex Corset
+Corset,LeatherCorsetTop1,Leather Corset Top
 Panties,,Panties
 Panties,Panties1,Style 1
 Panties,Panties7,Style 2
