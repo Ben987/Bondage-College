@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html style="width:100%; height:100%; padding:0px; margin:0px;">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -250,7 +250,9 @@
 <script src="Screens/Inventory/ItemPelvis/MetalChastityBelt/MetalChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/PolishedChastityBelt/PolishedChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/FuturisticChastityBelt/FuturisticChastityBelt.js"></script>
+<script src="Screens/Inventory/ItemPelvis/FuturisticChastityBelt2/FuturisticChastityBelt2.js"></script>
 <script src="Screens/Inventory/ItemBreast/FuturisticBra/FuturisticBra.js"></script>
+<script src="Screens/Inventory/ItemBreast/FuturisticBra2/FuturisticBra2.js"></script>
 <script src="Screens/Inventory/ItemPelvis/OrnateChastityBelt/OrnateChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/StuddedChastityBelt/StuddedChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/HempRope/HempRope.js"></script>
@@ -261,6 +263,15 @@
 <script src="Screens/Inventory/ItemButt/ShockPlug/ShockPlug.js"></script>
 <script src="Screens/Inventory/ItemVulva/ShockDildo/ShockDildo.js"></script>
 <script src="Screens/Inventory/ItemNipples/ShockClamps/ShockClamps.js"></script>
+<script src="Screens/Inventory/ItemMouth/BallGag/BallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/BallGag/BallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/BallGag/BallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/HarnessBallGag/HarnessBallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/HarnessBallGag/HarnessBallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/HarnessBallGag/HarnessBallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/WiffleGag/WiffleGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/WiffleGag/WiffleGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/WiffleGag/WiffleGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/CupholderGag/CupholderGag.js"></script>
 <script src="Screens/Inventory/ItemMouth2/CupholderGag/CupholderGag.js"></script>
 <script src="Screens/Inventory/ItemMouth3/CupholderGag/CupholderGag.js"></script>
@@ -356,6 +367,8 @@ function DocumentKeyDown(event) {
 				DialogLeaveItemMenu();
 		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
 			DialogLeave();
+		} else if ((CurrentCharacter == null) && (CurrentScreen == "ChatRoom") && (document.getElementById("TextAreaChatLog") != null)) {
+			ElementScrollToEnd("TextAreaChatLog");
 		}
 	}
 }

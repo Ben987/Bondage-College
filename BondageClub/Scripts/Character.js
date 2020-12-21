@@ -55,14 +55,13 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			let eyes2 = InventoryGet(this, "Eyes2");
 			if (eyes1.Property && eyes1.Property.Expression && eyes2.Property && eyes2.Property.Expression) {
 				if ((eyes1.Property.Expression === "Closed") && (eyes2.Property.Expression === "Closed")) {
-					blindLevel = 3;
+					blindLevel += DialogFacialExpressionsSelectedBlindnessLevel;
 				}
 			}
-			if (blindLevel == 0) {
-				if (this.Effect.includes("BlindHeavy")) blindLevel = 3;
-				else if (this.Effect.includes("BlindNormal")) blindLevel = 2;
-				else if (this.Effect.includes("BlindLight")) blindLevel = 1;
-			}
+			if (this.Effect.includes("BlindHeavy")) blindLevel += 3;
+			else if (this.Effect.includes("BlindNormal")) blindLevel += 2;
+			else if (this.Effect.includes("BlindLight")) blindLevel += 1;
+			blindLevel = Math.min(3, blindLevel);
 			// Light sensory deprivation setting limits blindness
 			if (this.GameplaySettings && this.GameplaySettings.SensDepChatLog == "SensDepLight") blindLevel = Math.min(2, blindLevel);
 			return blindLevel;

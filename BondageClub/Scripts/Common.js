@@ -409,3 +409,35 @@ function CommonDebounce(func, wait) {
 		return result;
 	};
 }
+/**
+ * Creates a simple memoizer. 
+ * The memoized function does calculate its result exactly once and from that point on, uses
+ * the result stored in a local cache to speed up things.
+ * @param {function} func - The function to memoize
+ * @returns {any} - The result of the memoized function
+ */
+function CommonMemoize(func) {
+	var memo = {};
+	var slice = Array.prototype.slice;
+
+	var memoized = function () {
+		var index = [];
+		for (var i = 0; i < arguments.length; i++) {
+			if (typeof arguments[i] === "object") {
+				index.push(JSON.stringify(arguments[i]));
+			} else {
+				index.push(slice.call(arguments[i]));
+			}
+		} // for
+		if (!(index in memo)) {
+			memo[index] = func.apply(this, arguments);
+		}
+		return memo[index];
+	}; // function
+
+	// add a clear cache method
+	memoized.clearCache = function () {
+		memo = {};
+	}
+	return memoized;
+} // CommonMemoize

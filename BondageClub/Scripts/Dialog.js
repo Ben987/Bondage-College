@@ -26,6 +26,7 @@ var DialogAllowEyebrows = false;
 var DialogAllowFluids = false;
 var DialogFacialExpressions = [];
 var DialogFacialExpressionsSelected = -1;
+var DialogFacialExpressionsSelectedBlindnessLevel = 2;
 var DialogActivePoses = [];
 var DialogItemPermissionMode = false;
 var DialogExtendedMessage = "";
@@ -468,6 +469,10 @@ function DialogLeaveItemMenu() {
  */
 function DialogLeaveFocusItem() {
 	if (DialogFocusItem != null) {
+		if (DialogFocusItem.Asset.Extended) {
+			ExtendedItemExit();
+		}
+
 		var funcName = "Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Exit";
 		if (typeof window[funcName] === "function") {
 			window[funcName]();
@@ -1346,7 +1351,7 @@ function DialogClick() {
 
 	// If the user clicked in the facial expression menu
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
-		if (MouseIn(390, 50, 90, 90) && DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DialogFindNextSubMenu();
+		if (MouseIn(420, 50, 90, 90) && DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DialogFindNextSubMenu();
 		if (!DialogSelfMenuSelected)
 			DialogClickExpressionMenu();
 		else
@@ -1672,7 +1677,7 @@ function DialogDraw() {
 
 	// Draw the menu for facial expressions if the player clicked on herself
 	if (CurrentCharacter.ID == 0) {
-		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DrawButton(390, 50, 90, 90, "", "White", "Icons/Next.png", DialogFind(Player, "NextPage"));
+		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DrawButton(420, 50, 90, 90, "", "White", "Icons/Next.png", DialogFind(Player, "NextPage"));
 		if (!DialogSelfMenuSelected)
 			DialogDrawExpressionMenu();
 		else
@@ -1728,8 +1733,9 @@ function DialogDrawExpressionMenu() {
 
 	// Draw the expression groups
 	DrawText(DialogFind(Player, "FacialExpression"), 165, 25, "White", "Black");
-	DrawButton(255, 50, 90, 90, "", "White", "Icons/WinkL.png", DialogFind(Player, "WinkLFacialExpressions"));
-	DrawButton(155, 50, 90, 90, "", "White", "Icons/WinkR.png", DialogFind(Player, "WinkRFacialExpressions"));
+	DrawButton(320, 50, 90, 90, "", "White", "Icons/BlindToggle" + DialogFacialExpressionsSelectedBlindnessLevel + ".png", DialogFind(Player, "BlindToggleFacialExpressions"));
+	DrawButton(220, 50, 90, 90, "", "White", "Icons/WinkL.png", DialogFind(Player, "WinkLFacialExpressions"));
+	DrawButton(120, 50, 90, 90, "", "White", "Icons/WinkR.png", DialogFind(Player, "WinkRFacialExpressions"));
 	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearFacialExpressions"));
 	if (!DialogFacialExpressions || !DialogFacialExpressions.length) DialogFacialExpressionsBuild();
 	for (let I = 0; I < DialogFacialExpressions.length; I++) {
@@ -1759,14 +1765,18 @@ function DialogClickExpressionMenu() {
 			CharacterSetFacialExpression(Player, FE.Group);
 			FE.CurrentExpression = null;
 		});
-	} else if (MouseIn(155, 50, 90, 90)) {
+	} else if (MouseIn(120, 50, 90, 90)) {
 		const EyesExpression = WardrobeGetExpression(Player);
 		const CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
 		CharacterSetFacialExpression(Player, "Eyes1", (EyesExpression.Eyes !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
-	} else if (MouseIn(255, 50, 90, 90)) {
+	} else if (MouseIn(220, 50, 90, 90)) {
 		const EyesExpression = WardrobeGetExpression(Player);
 		const CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
 		CharacterSetFacialExpression(Player, "Eyes2", (EyesExpression.Eyes2 !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
+	} else if (MouseIn(320, 50, 90, 90)) {
+		DialogFacialExpressionsSelectedBlindnessLevel += 1;
+		if (DialogFacialExpressionsSelectedBlindnessLevel > 3)
+			DialogFacialExpressionsSelectedBlindnessLevel = 1;
 	} else {
 		// Expression category buttons
 		for (let I = 0; I < DialogFacialExpressions.length; I++) {

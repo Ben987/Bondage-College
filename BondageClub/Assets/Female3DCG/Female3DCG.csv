@@ -146,6 +146,7 @@ Bra,Swimsuit3,Swimsuit style 3
 Bra,Clamshell,Clamshell Bra
 Bra,CowPrintedBra,Cow Printed Bra
 Bra,StuddedHarness,Studded Harness
+Corset,,Corset
 Corset,Corset1,Corset + Garters
 Corset,Corset2,Corset
 Corset,Corset3,Half Cup Corset
@@ -229,6 +230,7 @@ Shoes,WoollyBootsTall,Woolly Boots
 Shoes,ThighHighLatexHeels,Latex Heels
 Shoes,Heels3,Multi-Strap Heels,
 Shoes,BarefootSandals1,Barefoot Sandals
+Shoes,LatexAnkleShoes, Latex Ankle Shoes
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Band2,Jeweled Band
@@ -654,6 +656,7 @@ ItemPelvis,StuddedChastityBelt,Studded Chastity Belt
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
 ItemPelvis,FuturisticChastityBelt,Futuristic Chastity Belt
+ItemPelvis,FuturisticChastityBelt2,Futuristic Chastity Panties
 ItemPelvis,OrnateChastityBelt,Ornate Chastity Belt
 ItemPelvis,SteelChastityPanties,Steel Chastity Panties
 ItemPelvis,HarnessPanties1,Bondage Harness
@@ -674,6 +677,7 @@ ItemTorso,AdultBabyHarness,Adult Baby Harness
 ItemTorso,HarnessBra1,Bondage Harness
 ItemTorso,HarnessBra2,Leather Strap Harness
 ItemTorso,Corset2,Corset
+ItemTorso,FuturisticHarness,Futuristic Harness
 ItemTorso,Corset3,Half Cup Corset
 ItemTorso,Corset4,Under Bust Corset
 ItemTorso,Corset5,Floral Corset
@@ -717,6 +721,7 @@ ItemBreast,,Breasts
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,PolishedChastityBra,Polished Chastity Bra
 ItemBreast,FuturisticBra,Futuristic Chastity Bra
+ItemBreast,FuturisticBra2,Futuristic Breast Harness
 ItemBreast,OrnateChastityBra,Ornate Chastity Bra
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip

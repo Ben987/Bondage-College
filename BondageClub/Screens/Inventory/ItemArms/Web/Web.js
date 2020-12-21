@@ -93,22 +93,41 @@ var InventoryItemArmsWebOptions = [
 ];
 
 
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsWebLoad() {
 	ExtendedItemLoad(InventoryItemArmsWebOptions, "WebBondageSelect");
 }
 
+/**
+ * Draw the item extension screen
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsWebDraw() {
 	ExtendedItemDraw(InventoryItemArmsWebOptions, "WebBondage");
 }
 
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsWebClick() {
 	ExtendedItemClick(InventoryItemArmsWebOptions);
 }
 
+/**
+ * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
+ * @param {Character} C - The character to check the options for
+ * @param {Option} Option - The next option to use on the character
+ * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
+ */
 function InventoryItemArmsWebValidate(C, Option) {
+	var Allowed = "";
+
 	// Validates some prerequisites before allowing more advanced poses
 	if (Option.Prerequisite) {
-		var Allowed = true;
 
 		// Remove the web temporarily for prerequisite-checking - we should still be able to change type if the web is the only thing that
 		// fails the prerequisite check
@@ -116,8 +135,7 @@ function InventoryItemArmsWebValidate(C, Option) {
 		InventoryRemove(C, "ItemArms");
 
 		if (!InventoryAllow(C, Option.Prerequisite, true)) {
-			DialogExtendedMessage = DialogText;
-			Allowed = false;
+			Allowed = DialogText;
 		}
 
 		// Re-add the web
@@ -127,10 +145,17 @@ function InventoryItemArmsWebValidate(C, Option) {
 		CharacterRefresh(C);
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 
-		return Allowed;
 	}
+	return Allowed;
 }
 
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @param {Option} PreviousOption - The previously selected Option
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsWebPublishAction(C, Option, PreviousOption) {
 	var NewIndex = InventoryItemArmsWebOptions.indexOf(Option);
 	var PreviousIndex = InventoryItemArmsWebOptions.indexOf(PreviousOption);
@@ -144,6 +169,15 @@ function InventoryItemArmsWebPublishAction(C, Option, PreviousOption) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsWebNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "ItemArmsWeb" + Option.Name, "ItemArms");
 }

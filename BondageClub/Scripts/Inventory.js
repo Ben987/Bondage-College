@@ -164,7 +164,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "CannotBeSuited") return ((InventoryGet(C, "ItemVulva") != null) && (InventoryGet(C, "ItemVulva").Asset.Name == "WandBelt")) ? "CannotHaveWand" : "";
 	if (Prerequisite == "CannotBeHogtiedWithAlphaHood") return ((InventoryGet(C, "ItemHood") != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite.indexOf("CanUseAlphaHood") >= 0)) ? Prerequisite : "";
 	if (Prerequisite == "AllFours") return CharacterItemsHavePose(C, "AllFours") ? "CannotUse" : "";
-	if (Prerequisite == "OnBed") return ((InventoryGet(C, "ItemDevices") == null) || (InventoryGet(C, "ItemDevices").Asset.Name != "Bed")) ? "MustBeOnBed" : "";
+	if (Prerequisite == "OnBed") return !C.Effect.includes("OnBed") ? "MustBeOnBed" : "";
 	if (Prerequisite == "CuffedArms") return  (C.Effect.indexOf("CuffedArms") <= -1) ? "MustBeArmCuffedFirst" : "";
 	if (Prerequisite == "CuffedFeet") return (C.Effect.indexOf("CuffedFeet") <= -1) ? "MustBeFeetCuffedFirst" : "";
 	if (Prerequisite == "NoOuterClothes") return (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null) ? "RemoveClothesForItem" : "";
