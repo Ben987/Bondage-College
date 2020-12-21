@@ -2106,6 +2106,18 @@ var AssetFemale3DCG = [
 				Effect: ["Block", "Prone"], AllowEffect: ["Block", "Prone", "Freeze"],
 				AllowType: ["Light", "Inflated", "Bloated", "Max"], 
 				Block: ["ItemBreast", "ItemButt", "ItemHands", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings"], SelfUnlock: false, Extended:true},
+				{ Name: "StrictLeatherPetCrawler", Fetish: ["Leather", "Pet"], Value: 150, Difficulty: 15, SelfBondage: 8, Time: 40, RemoveTime: 30, Random: false, AllowLock: true, DefaultColor: "#888888",
+					Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"],
+					Hide: ["Cloth", "ClothLower","Shoes", "ItemBoots", "ItemLegs", "ItemFeet"],
+					SetPose: ["BackElbowTouch", "Kneel", "LegsClosed"],
+					Effect: ["Block", "Prone", "ForceKneel"],
+					Block: ["ItemHands"],
+					SelfUnlock: false,
+					Layer:[
+						{ Name: "Arms", AllowColorize: true},
+						{ Name: "Legs", CopyLayerColor: "Arms", ParentGroup: "BodyLower"},
+					]
+				},
 			AssetSpankingToys
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
