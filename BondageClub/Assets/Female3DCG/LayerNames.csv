@@ -449,4 +449,6 @@ SuitPilotSuitLayer2,Highlights
 SuitPilotSuitLayer3,Center
 SuitPilotSuitLayer4,Arms
 SuitPilotSuitFeet,Feet
-
+CorsetCorset6Cloth,Cloth
+CorsetCorset6Leather,Leather
+CorsetCorset6Buttons,Buttons

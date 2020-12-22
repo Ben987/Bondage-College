@@ -211,7 +211,13 @@ var AssetFemale3DCG = [
 				]
 
 			},
-		{ Name: "BlackHeart", Value: 40, Left: 148, Top: 70, ParentGroup: null }
+		{ Name: "BlackHeart", Value: 40, Left: 148, Top: 70, ParentGroup: null },
+		{ Name: "ElegantHeartNecklace", Value: 30, Left:155, Top: 152, ParentGroup: null,
+			Layer: [
+				{ Name: "Necklace", AllowColorize: true },
+				{ Name: "Jewels", AllowColorize: true },
+			]
+	},
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
@@ -419,6 +425,7 @@ var AssetFemale3DCG = [
 		Group: "Corset",
 		ParentGroup: "BodyUpper",
 		Priority: 22,
+		Clothing: true,
 		Default: false,
 		Clothing: true,
 		Underwear: true,
@@ -439,6 +446,13 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "LeatherCorsetTop1", Fetish: ["Leather"], Left: 0, Top: 0, BuyGroup: "LeatherCorsetTop1", Priority: 25, Value: 60, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing", "ItemNipplesLactationPump"] },
+			{Name: "Corset6", Fetish: ["Lingerie"], Value: 40, DefaultColor:["#435331","#363535","#A08759"], Hide: ["ItemNipples", "ItemNipplesPiercings"], 
+			Layer:[
+				{ Name: "Cloth", AllowColorize: true},
+				{ Name: "Leather", AllowColorize: true},
+				{ Name: "Buttons", AllowColorize: true}
+			]
+		},
 		],
 		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
@@ -2146,6 +2160,18 @@ var AssetFemale3DCG = [
 				Effect: ["Block", "Prone"], AllowEffect: ["Block", "Prone", "Freeze"],
 				AllowType: ["Light", "Inflated", "Bloated", "Max"], 
 				Block: ["ItemBreast", "ItemButt", "ItemHands", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings"], SelfUnlock: false, Extended:true},
+				{ Name: "StrictLeatherPetCrawler", Fetish: ["Leather", "Pet"], Value: 150, Difficulty: 15, SelfBondage: 8, Time: 40, RemoveTime: 30, Random: false, AllowLock: true, DefaultColor: "#888888",
+					Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"],
+					Hide: ["Cloth", "ClothLower","Shoes", "ItemBoots", "ItemLegs", "ItemFeet"],
+					SetPose: ["BackElbowTouch", "Kneel", "LegsClosed"],
+					Effect: ["Block", "Prone", "ForceKneel"],
+					Block: ["ItemHands"],
+					SelfUnlock: false,
+					Layer:[
+						{ Name: "Arms", AllowColorize: true},
+						{ Name: "Legs", CopyLayerColor: "Arms", ParentGroup: "BodyLower"},
+					]
+				},
 			AssetSpankingToys
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
@@ -2726,6 +2752,13 @@ var AssetFemale3DCG = [
 				Name: "ShoeGag", Fetish: ["Leather"], Priority: 42, Value: 30, Difficulty: 4, Time: 20, DefaultColor: ["Default", "#000000" ], Random: false, BuyGroup: "ShoeGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["BlockMouth", "GagMedium"], Block: ["ItemMouth2", "ItemMouth3"], ExpressionTrigger: [{ Name: "Medium", Group: "Blush", Timer: 25 }, { Name: "Daydream", Group: "Eyes", Timer: 10 }], Layer: [
 					{ Name: "Shoe" },
 					{ Name: "Strap" },
+				]
+			},
+			{
+				Name: "FunnelGag", Value: 50, Difficulty: 4, Time: 20, Random: false, Prerequisite: "GagUnique", Hide: ["Mouth"], Effect: ["BlockMouth", "GagMedium"], Block: ["ItemMouth2", "ItemMouth3", "ItemHood"], AllowType: ["None", "Funnel"], AllowEffect: ["BlockMouth", "GagMedium"], Extended: true, Layer: [
+					{ Name: "Straps", AllowColorize: true, HasType: false },
+					{ Name: "Base", AllowColorize: false, HasType: false },
+					{ Name: "Funnel", Priority: 55, AllowColorize: false, AllowTypes: ["Funnel"] }
 				]
 			},
 			AssetSpankingToys

@@ -53,7 +53,7 @@ var DialogSelfMenuOptions = [
 	},	
 	{
 		Name: "Pose",
-		IsAvailable: () => CurrentScreen == "ChatRoom",
+		IsAvailable: () => (CurrentScreen == "ChatRoom" || CurrentScreen == "Photographic"), 
 		Draw: DialogDrawPoseMenu,
 		Click: DialogClickPoseMenu,
 	},	
@@ -1855,7 +1855,7 @@ function DialogClickPoseMenu() {
 			
 			if (MouseIn(OffsetX, OffsetY, 90, 90) && !IsActive && !CharacterItemsHavePoseType(Player, PoseGroup[0].Category, true)) { 
 				CharacterSetActivePose(Player, PoseGroup[P].Name);
-				ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
+				if (CurrentScreen == "ChatRoom") ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 			}
 		}
 	}

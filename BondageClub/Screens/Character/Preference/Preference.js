@@ -286,6 +286,8 @@ function PreferenceInit(C) {
 	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "SearchFriendsFirst", false);
 	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableAfkTimer", true);
 	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableWardrobeIcon", false);
+	// The following preferences were migrated in December 2020 for R64
+	PreferenceMigrate(C.ArousalSettings, C.OnlineSharedSettings, "AffectExpression", true);
 	
 	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
 	if (Player.AssetFamily == "Female3DCG") {

@@ -134,87 +134,154 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 }
 
 /**
-* Returns an error message if a prerequisite clashes with the character items and clothes
+* Returns an error message if a prerequisite clashes with the character's items and clothes
 * @param {Character} C - The character on which we check for prerequisites
 * @param {String} Prerequisite - The name of the prerequisite
 * @returns {String} - The error tag, can be converted to an error message
 */
 function InventoryPrerequisiteMessage(C, Prerequisite) {
+	switch (Prerequisite) {
+		// Basic prerequisites that can apply to many items
+		case "NoItemFeet": return (InventoryGet(C, "ItemFeet") != null) ? "MustFreeFeetFirst" : "";
+		case "NoItemArms": return (InventoryGet(C, "ItemArms") != null) ? "MustFreeArmsFirst" : "";
+		case "NoItemLegs": return (InventoryGet(C, "ItemLegs") != null) ? "MustFreeLegsFirst" : "";
+		case "NoItemHands": return (InventoryGet(C, "ItemHands") != null) ? "MustFreeHandsFirst" : "";
+		case "LegsOpen": return CharacterItemsHavePose(C, "LegsClosed") ? "LegsCannotOpen" : "";
+		case "NotKneeling": return CharacterItemsHavePose(C, "Kneel") ? "MustStandUpFirst" : "";
+		case "CanKneel": return C.Effect.includes("BlockKneel") ? "MustBeAbleToKneel" : "";
+		case "NotMounted": return C.Effect.includes("Mounted") ? "CannotBeUsedWhenMounted" : "";
+		case "NotHorse": return C.Pose.includes("Horse") ? "CannotBeUsedWhenMounted" : "";
+		case "NotSuspended": return C.Pose.includes("Suspension") || C.Pose.includes("SuspensionHogtied") ? "RemoveSuspensionForItem" : "";
+		case "NotHogtied": return C.Pose.includes("Hogtied") ? "ReleaseHogtieForItem" : "";
+		case "NotYoked": return CharacterItemsHavePose(C, "Yoked") ? "CannotBeUsedWhenYoked" : "";
+		case "NotKneelingSpread": return C.Pose.includes("KneelingSpread") ? "MustStandUpFirst" : "";
+		case "NotChaste": return C.Effect.includes("Chaste") ? "RemoveChastityFirst" : "";
+		case "NotChained": return C.Effect.includes("IsChained") ? "RemoveChainForItem" : "";
+		case "NoFeetSpreader": return InventoryIsItemInList(C, "ItemFeet", ["SpreaderMetal", "SpreaderVibratingDildoBar", "SpreaderDildoBar"]) ? "CannotBeUsedWithFeetSpreader" : "";
+		case "NotShackled": return C.Effect.includes("Shackled") ? "RemoveShacklesFirst" : "";
+		case "Collared": return (InventoryGet(C, "ItemNeck") == null) ? "MustCollaredFirst" : "";
+		case "CannotHaveWand": return InventoryIsItemInList(C, "ItemArms", ["FullLatexSuit"]) ? "CannotHaveWand" : "";
+		case "CannotBeSuited": return InventoryIsItemInList(C, "ItemVulva", ["WandBelt", "HempRopeBelt"]) ? "CannotHaveWand" : "";
+		case "CannotBeHogtiedWithAlphaHood": return InventoryDoesItemHavePrerequisite(C, "ItemHood", "CanUseAlphaHood") ? Prerequisite : "";
+		case "AllFours": return CharacterItemsHavePose(C, "AllFours") ? "CannotUse" : "";
+		case "OnBed": return !C.Effect.includes("OnBed") ? "MustBeOnBed" : "";
+		case "CuffedArms": return  !C.Effect.includes("CuffedArms") ? "MustBeArmCuffedFirst" : "";
+		case "CuffedFeet": return !C.Effect.includes("CuffedFeet") ? "MustBeFeetCuffedFirst" : "";
+		case "NoOuterClothes": return InventoryHasItemInAnyGroup(C, ["Cloth", "ClothLower"]) ? "RemoveClothesForItem" : "";
+		case "NoMaidTray": return InventoryIsItemInList(C, "ItemMisc", ["WoodenMaidTray", "WoodenMaidTrayFull"]) ? "CannotBeUsedWhileServingDrinks" : "";
 
-	// Basic prerequisites that can apply to many items
-	if (Prerequisite == "NoItemFeet") return (InventoryGet(C, "ItemFeet") != null) ? "MustFreeFeetFirst" : "";
-	if (Prerequisite == "NoItemArms") return (InventoryGet(C, "ItemArms") != null) ? "MustFreeArmsFirst" : "";
-	if (Prerequisite == "NoItemLegs") return (InventoryGet(C, "ItemLegs") != null) ? "MustFreeLegsFirst" : "";
-	if (Prerequisite == "NoItemHands") return (InventoryGet(C, "ItemHands") != null) ? "MustFreeHandsFirst" : "";
-	if (Prerequisite == "LegsOpen") return CharacterItemsHavePose(C, "LegsClosed") ? "LegsCannotOpen" : "";
-	if (Prerequisite == "NotKneeling") return CharacterItemsHavePose(C, "Kneel") ? "MustStandUpFirst" : "";
-	if (Prerequisite == "CanKneel") return (C.Effect.indexOf("BlockKneel") >= 0) ? "MustBeAbleToKneel" : "";
-	if (Prerequisite == "NotMounted") return (C.Effect.indexOf("Mounted") >= 0) ? "CannotBeUsedWhenMounted" : "";
-	if (Prerequisite == "NotHorse") return (C.Pose.indexOf("Horse") >= 0) ? "CannotBeUsedWhenMounted" : "";
-	if (Prerequisite == "NotSuspended") return ((C.Pose.indexOf("Suspension") >= 0) || (C.Pose.indexOf("SuspensionHogtied") >=0)) ? "RemoveSuspensionForItem" : "";
-	if (Prerequisite == "NotHogtied") return (C.Pose.indexOf("Hogtied") >= 0) ? "ReleaseHogtieForItem" : "";
-	if (Prerequisite == "NotYoked") return CharacterItemsHavePose(C, "Yoked") ? "CannotBeUsedWhenYoked" : "";
-	if (Prerequisite == "NotKneelingSpread") return (C.Pose.indexOf("KneelingSpread") >= 0) ? "MustStandUpFirst" : "";
-	if (Prerequisite == "NotChaste") return (C.Effect.indexOf("Chaste") >= 0) ? "RemoveChastityFirst" : "";
-	if (Prerequisite == "NotChained") return (C.Effect.indexOf("IsChained") >= 0) ? "RemoveChainForItem" : "";
-	if (Prerequisite == "NoFeetSpreader") return ((InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal" || InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderVibratingDildoBar" || InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderDildoBar")) ? "CannotBeUsedWithFeetSpreader" : "";
-	if (Prerequisite == "NotShackled") return (C.Effect.indexOf("Shackled") >= 0) ? "RemoveShacklesFirst" : "";
-	if (Prerequisite == "Collared") return (InventoryGet(C, "ItemNeck") == null) ? "MustCollaredFirst" : "";
-	if (Prerequisite == "CannotHaveWand") return ((InventoryGet(C, "ItemArms") != null) && (InventoryGet(C, "ItemArms").Asset.Name == "FullLatexSuit")) ? "CannotHaveWand" : "";
-	if (Prerequisite == "CannotBeSuited") return ((InventoryGet(C, "ItemVulva") != null) && (InventoryGet(C, "ItemVulva").Asset.Name == "WandBelt")) ? "CannotHaveWand" : "";
-	if (Prerequisite == "CannotBeHogtiedWithAlphaHood") return ((InventoryGet(C, "ItemHood") != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite.indexOf("CanUseAlphaHood") >= 0)) ? Prerequisite : "";
-	if (Prerequisite == "AllFours") return CharacterItemsHavePose(C, "AllFours") ? "CannotUse" : "";
-	if (Prerequisite == "OnBed") return !C.Effect.includes("OnBed") ? "MustBeOnBed" : "";
-	if (Prerequisite == "CuffedArms") return  (C.Effect.indexOf("CuffedArms") <= -1) ? "MustBeArmCuffedFirst" : "";
-	if (Prerequisite == "CuffedFeet") return (C.Effect.indexOf("CuffedFeet") <= -1) ? "MustBeFeetCuffedFirst" : "";
-	if (Prerequisite == "NoOuterClothes") return (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null) ? "RemoveClothesForItem" : "";
-	if (Prerequisite == "NoMaidTray") return ((InventoryGet(C, "ItemMisc") != null) && ( InventoryGet(C, "ItemMisc").Asset.Name == "WoodenMaidTray" || InventoryGet(C, "ItemMisc").Asset.Name == "WoodenMaidTrayFull")) ? "CannotBeUsedWhileServingDrinks" : "";
-	
-	// Checks for torso access based on clothes
-	var Cloth = InventoryGet(C, "Cloth");
-	if ((Prerequisite == "AccessTorso") && (Cloth != null) && !Cloth.Asset.Expose.includes("ItemTorso")) return "RemoveClothesForItem";
+		// Checks for torso access based on clothes
+		case "AccessTorso": return !InventoryDoesItemExposeGroup(C, "Cloth", "ItemTorso") ? "RemoveClothesForItem" : "";
 
-	// Breast items can be blocked by clothes
-	if ((Prerequisite == "AccessBreast") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemBreast"))
-			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) return "RemoveClothesForItem";
-	if ((Prerequisite == "AccessBreastSuitZip") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemNipplesPiercings"))
-		    || (InventoryGet(C, "Suit") != null && !InventoryGet(C, "Suit").Asset.Expose.includes("ItemNipplesPiercings")))) return "UnZipSuitForItem";
+		// Breast items can be blocked by clothes
+		case "AccessBreast": return !InventoryDoesItemExposeGroup(C, "Cloth", "ItemBreast") || !InventoryDoesItemExposeGroup(C, "Bra", "ItemBreast") ? "RemoveClothesForItem" : "";
+		case "AccessBreastSuitZip": return !InventoryDoesItemExposeGroup(C, "Cloth", "ItemNipplesPiercings") || !InventoryDoesItemExposeGroup(C, "Suit", "ItemNipplesPiercings") ? "UnZipSuitForItem" : "";
 
-	// Vulva/Butt items can be blocked by clothes, panties and some socks
-	if ((Prerequisite == "AccessVulva") && (((Cloth != null) && Cloth.Asset.Block != null && Cloth.Asset.Block.includes("ItemVulva"))
-			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
-			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
-			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) return "RemoveClothesForItem";
-	if ((Prerequisite == "AccessVulvaSuitZip") && (
-		(InventoryGet(C, "SuitLower") != null && !InventoryGet(C, "SuitLower").Asset.Expose.includes("ItemVulvaPiercings")))) return "UnZipSuitForItem";
+		// Vulva/Butt items can be blocked by clothes, panties and some socks
+		case "AccessVulva": return InventoryDoesItemBlockGroup(C, "Cloth", "ItemVulva")
+			|| !InventoryDoesItemExposeGroup(C, "ClothLower", "ItemVulva")
+			|| !InventoryDoesItemExposeGroup(C, "Panties", "ItemVulva")
+			|| InventoryDoesItemBlockGroup(C, "Socks", "ItemVulva")
+			? "RemoveClothesForItem" : "";
+		case "AccessVulvaSuitZip": return !InventoryDoesItemExposeGroup(C, "SuitLower", "ItemVulvaPiercings") ? "UnZipSuitForItem" : "";
 
-	// For body parts that must be naked
-	if ((Prerequisite == "NakedFeet") && ((InventoryGet(C, "ItemBoots") != null) || (InventoryGet(C, "Socks") != null) || (InventoryGet(C, "Shoes") != null))) return "RemoveClothesForItem";
-	if ((Prerequisite == "NakedHands") && ((InventoryGet(C, "ItemHands") != null) || (InventoryGet(C, "Gloves") != null))) return "RemoveClothesForItem";
+		// For body parts that must be naked
+		case "NakedFeet": return InventoryHasItemInAnyGroup(C, ["ItemBoots", "Socks", "Shoes"]) ? "RemoveClothesForItem" : "";
+		case "NakedHands": return InventoryHasItemInAnyGroup(C, ["ItemHands", "Gloves"]) ? "RemoveClothesForItem" : "";
 
-	// Toe Tied
-	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal" || InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderVibratingDildoBar" || InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderDildoBar")) return "LegsCannotClose";
-	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemLegs") != null) && (InventoryGet(C, "ItemLegs").Asset.Name == "WoodenHorse")) return "LegsCannotClose";
-	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "OneBarPrison")) return "LegsCannotClose";
-	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "SaddleStand")) return "LegsCannotClose";
+		// Toe Tied
+		case "ToeTied": return InventoryIsItemInList(C, "ItemFeet", ["SpreaderMetal", "SpreaderVibratingDildoBar", "SpreaderDildoBar"])
+			|| InventoryIsItemInList(C, "ItemLegs", ["WoodenHorse"])
+			|| InventoryIsItemInList(C, "ItemDevices", ["OneBarPrison", "SaddleStand"])
+			? "LegsCannotClose" : "";
 
-	// Display Frame
-	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "ItemArms") != null || InventoryGet(C, "ItemLegs") != null || InventoryGet(C, "ItemFeet") != null || InventoryGet(C, "ItemBoots") != null)) return "RemoveRestraintsFirst";
-	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null || InventoryGet(C, "Shoes") != null)) return "RemoveClothesForItem";
+		// Display Frame
+		case "DisplayFrame": return InventoryHasItemInAnyGroup(C, ["ItemArms", "ItemLegs", "ItemFeet", "ItemBoots"])
+			? "RemoveRestraintsFirst"
+			: InventoryHasItemInAnyGroup(C, ["Cloth", "ClothLower", "Shoes"])
+			? "RemoveClothesForItem" : "";
 
-	// Gas mask (Or face covering items going below the chin)
-	if (Prerequisite == "GasMask" && (InventoryGet(C, "ItemArms") != null && InventoryGet(C, "ItemArms").Asset.Name == "Pillory" || InventoryGet(C, "ItemDevices") != null && InventoryGet(C, "ItemDevices").Asset.Name == "TheDisplayFrame")) return "RemoveRestraintsFirst";
-	if (Prerequisite == "NotMasked"  && (InventoryGet(C, "ItemHood") != null) && (InventoryGet(C, "ItemHood").Asset.Name == "OldGasMask")) return "RemoveFaceMaskFirst";
-	
-	// Blocked remotes on self
-	if (Prerequisite == "RemotesAllowed" && LogQuery("BlockRemoteSelf", "OwnerRule") && C.ID == 0) return "OwnerBlockedRemotes";
-	
-	// Layered Gags, prevent gags from being equipped over other gags they are incompatible with
-	if (Prerequisite == "GagUnique" && C.FocusGroup) return InventoryPrerequisiteConflictingGags(C, ["GagFlat", "GagCorset", "GagUnique"]);
-	if (Prerequisite == "GagCorset" && C.FocusGroup) return InventoryPrerequisiteConflictingGags(C, ["GagCorset"]);
+		// Gas mask (Or face covering items going below the chin)
+		case "GasMask": return InventoryIsItemInList(C, "ItemArms", ["Pillory"]) || InventoryIsItemInList(C, "ItemDevices", ["TheDisplayFrame"]) ? "RemoveRestraintsFirst" : "";
+		case "NotMasked": return InventoryIsItemInList(C, "ItemHood", "OldGasMask") ? "RemoveFaceMaskFirst" : "";
 
-	// Returns no message, indicating that all prerequisites are fine
-	return "";
+		// Blocked remotes on self
+		case "RemotesAllowed": return LogQuery("BlockRemoteSelf", "OwnerRule") && C.ID === 0 ? "OwnerBlockedRemotes" : "";
+
+		// Layered Gags, prevent gags from being equipped over other gags they are incompatible with
+		case "GagUnique": return C.FocusGroup && InventoryPrerequisiteConflictingGags(C, ["GagFlat", "GagCorset", "GagUnique"]);
+		case "GagCorset": return C.FocusGroup && InventoryPrerequisiteConflictingGags(C, ["GagCorset"]);
+
+		// Returns no message, indicating that all prerequisites are fine
+		default: return "";
+	}
+}
+
+/**
+ * Prerequisite utility function that returns TRUE if the given character has an item equipped in the provided group
+ * whose name matches one of the names in the provided list.
+ * @param {Character} C - The character for whom to check equipped items
+ * @param {String} ItemGroup - The name of the item group to check
+ * @param {String[]} ItemList - A list of item names to check against
+ * @returns {boolean} - TRUE if the character has an item from the item list equipped in the named slot, FALSE
+ * otherwise
+ */
+function InventoryIsItemInList(C, ItemGroup, ItemList) {
+	const Item = InventoryGet(C, ItemGroup);
+	return Item && ItemList.includes(Item.Asset.Name);
+}
+
+/**
+ * Prerequisite utility function that returns TRUE if the given character has an item equipped in the provided group
+ * which has the provided prerequisite.
+ * @param {Character} C - The character whose items should be checked
+ * @param {String} ItemGroup - The name of the item group to check
+ * @param {String} Prerequisite - The name of the prerequisite to look for
+ * @returns {boolean} - TRUE if the character has an item equipped in the named slot which has the named prerequisite,
+ * FALSE otherwise
+ */
+function InventoryDoesItemHavePrerequisite(C, ItemGroup, Prerequisite) {
+	const Item = InventoryGet(C, ItemGroup);
+	return Item && Item.Asset.Prerequisite && Item.Asset.Prerequisite.includes(Prerequisite);
+}
+
+/**
+ * Prerequisite utility function that returns TRUE if the given character has an item equipped in the provided group
+ * which blocks the target group.
+ * @param {Character} C - The character whose items should be checked
+ * @param {String} ItemGroup - The name of the group whose item should be checked
+ * @param {String} TargetGroup - The name of the group that should be checked for being blocked
+ * @returns {boolean} - TRUE if the character has an item equipped in the named slot which blocks the target group,
+ * FALSE otherwise
+ */
+function InventoryDoesItemBlockGroup(C, ItemGroup, TargetGroup) {
+	const Item = InventoryGet(C, ItemGroup);
+	return Item && Item.Asset.Block && Item.Asset.Block.includes(TargetGroup);
+}
+
+/**
+ * Prerequisite utility function that returns TRUE if the given character has an item equipped in the provided group
+ * which exposes the target group.
+ * @param {Character} C - The character whose items should be checked
+ * @param {String} ItemGroup - The name of the group whose item should be checked
+ * @param {String} TargetGroup - The name of the group that should be checked for being exposed
+ * @returns {boolean} - TRUE if the character has an item equipped in the named slot which exposes the target group,
+ * FALSE otherwise
+ */
+function InventoryDoesItemExposeGroup(C, ItemGroup, TargetGroup) {
+	const Item = InventoryGet(C, ItemGroup);
+	return !Item || Item.Asset.Expose.includes(TargetGroup);
+}
+
+/**
+ * Prerequisite utility function that returns TRUE if the given character has an item equipped in any of the named group
+ * slots.
+ * @param {Character} C - The character whose items should be checked
+ * @param {String[]} GroupList - The list of groups to check for items in
+ * @returns {boolean} - TRUE if the character has any item equipped in any of the named groups, FALSE otherwise.
+ */
+function InventoryHasItemInAnyGroup(C, GroupList) {
+	return GroupList.some(GroupName => !!InventoryGet(C, GroupName));
 }
 
 /**

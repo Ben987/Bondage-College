@@ -33,3 +33,13 @@ function AssetsItemPelvisFuturisticChastityBelt2ScriptUpdatePlayer(data) {
 function AssetsItemPelvisFuturisticChastityBelt2ScriptDraw(data) {
 	AssetsItemPelvisFuturisticChastityBeltScriptDraw(data) 
 }
+
+function InventoryItemPelvisFuturisticChastityBelt2PublishAction(C, Option) {
+
+	var msg = "FuturisticChastityBeltSet" + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
+} 

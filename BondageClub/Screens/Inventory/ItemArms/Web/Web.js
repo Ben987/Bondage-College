@@ -53,7 +53,7 @@ var InventoryItemArmsWebOptions = [
 		Name: "Suspended",
 		BondageLevel: 4,
 		SelfBondageLevel: 8,
-		Prerequisite: ["NoFeetSpreader", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Prerequisite: ["NoFeetSpreader", "NotChained"],
 		Property: {
 			Type: "Suspended",
 			Difficulty: 6,
@@ -66,7 +66,7 @@ var InventoryItemArmsWebOptions = [
 		Name: "KneelingSuspended",
 		BondageLevel: 5,
 		SelfBondageLevel: 8,
-		Prerequisite: ["NoFeetSpreader", "NotChained", "CannotBeHogtiedWithAlphaHood"],
+		Prerequisite: ["NoFeetSpreader", "NotChained"],
 		Property: {
 			Type: "KneelingSuspended",
 			Difficulty: 8,
