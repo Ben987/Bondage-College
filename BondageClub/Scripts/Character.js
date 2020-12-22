@@ -954,10 +954,9 @@ function CharacterSetActivePose(C, NewPose, ForceChange) {
  * @param {group} AssetGroup - Asset group for the expression
  * @param {string} Expression - Name of the expression to use
  * @param {number} [Timer] - Optional: time the expression will last
- * @param {boolean} Push - Optional: Whether an update needs to be sent to players when in a chat room
  * @returns {void} - Nothing
  */
-function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer, Push) {
+function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
 	// A normal eye expression is triggered for both eyes
 	if (AssetGroup == "Eyes") CharacterSetFacialExpression(C, "Eyes2", Expression, Timer);
 	if (AssetGroup == "Eyes1") AssetGroup = "Eyes";
@@ -971,7 +970,7 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer, Push) {
 				if (C.Appearance[A].Property.Expression != Expression) {
 					C.Appearance[A].Property.Expression = Expression;
 					CharacterRefresh(C, false);
-					if (CurrentScreen == "ChatRoom" && (Push == null || Push == true)) {
+					if (CurrentScreen == "ChatRoom") {
 						if (C.ID == 0) ServerSend("ChatRoomCharacterExpressionUpdate", { Name: Expression, Group: AssetGroup, Appearance: ServerAppearanceBundle(C.Appearance) });
 						else ChatRoomCharacterUpdate(C);
 					}
