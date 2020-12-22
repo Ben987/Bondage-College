@@ -13,7 +13,7 @@ var InventoryItemBreastFuturisticBra2Options = [
 
 function InventoryItemBreastFuturisticBra2Load() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else
 		ExtendedItemLoad(InventoryItemBreastFuturisticBra2Options, "FuturisticBra2Type");
@@ -21,7 +21,7 @@ function InventoryItemBreastFuturisticBra2Load() {
 
 function InventoryItemBreastFuturisticBra2Draw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else
 		ExtendedItemDraw(InventoryItemBreastFuturisticBra2Options, "FuturisticBra2Type");
@@ -30,7 +30,7 @@ function InventoryItemBreastFuturisticBra2Draw() {
 
 function InventoryItemBreastFuturisticBra2Click() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else {
 		var DialogFocusItem_Temp = DialogFocusItem
@@ -67,7 +67,7 @@ function InventoryItemBreastFuturisticBra2PublishAction(C, Option) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemBreastFuturisticBra2Validate(C) { 
+function InventoryItemBreastFuturisticBra2Validate(C, Option) {
 	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
 }
 
