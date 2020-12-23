@@ -998,7 +998,6 @@ var AssetFemale3DCG = [
 
 	{
 		Group: "Wings",
-		ParentColor: "Bra",
 		Priority: 3,
 		Default: false,
 		Clothing: true,
