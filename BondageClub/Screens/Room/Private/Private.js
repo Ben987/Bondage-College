@@ -413,7 +413,11 @@ function PrivateRun() {
 
 	// Standard buttons
 	if (Player.CanWalk() && (Player.Cage == null)) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-	if (LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) DrawButton(1885, 145, 90, 90, "", "White", "Icons/Kneel.png");
+	if (LogQuery("RentRoom", "PrivateRoom")) {
+		if (Player.CanKneel()) DrawButton(1885, 145, 90, 90, "", "White", "Icons/Kneel.png");
+		DrawButton(1885, 745, 90, 90, "", "White", "Icons/CollegeBackground.png", TextGet("MainHallBackground"));
+		DrawButton(1885, 865, 90, 90, "", "White", "Icons/BedroomBackground.png", TextGet("PrivateRoomBackground"));
+	}
 
 	// In orgasm mode, we add a pink filter and different controls depending on the stage
 	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {
@@ -587,6 +591,27 @@ function PrivateClick() {
 	if (MouseIn(1885, 385, 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if (MouseIn(1885, 505, 90, 90) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange() && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
 	if (MouseIn(1885, 625, 90, 90) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset + 4 == PrivateCharacterMax) ? 0 : PrivateCharacterOffset + 4;
+	if (MouseIn(1885, 745, 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
+		if (Player.VisualSettings == null) Player.VisualSettings = {};
+		const backgrounds = BackgroundsGenerateList(BackgroundsTagList.concat(["Asylum"]));
+		const index = backgrounds.indexOf(MainHallBackground);
+		BackgroundSelectionMake(backgrounds, index, Name => {
+			Player.VisualSettings.MainHallBackground = Name;
+			ServerSend("AccountUpdate", { VisualSettings: Player.VisualSettings });
+		});
+	}
+	if (MouseIn(1885, 865, 90, 90) && LogQuery("RentRoom", "PrivateRoom")) {
+		if (Player.VisualSettings == null) Player.VisualSettings = {};
+		const backgrounds = BackgroundsGenerateList(BackgroundsTagList.concat(["Asylum"]));
+		const index = backgrounds.indexOf(PrivateBackground);
+		BackgroundSelectionMake(backgrounds, index, Name => {
+			Player.VisualSettings.PrivateRoomBackground = Name;
+			PrivateBackground = Name;
+			ServerSend("AccountUpdate", { VisualSettings: Player.VisualSettings });
+		});
+		
+	}
+	
 	if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) PrivateClickCharacter();
 	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
 

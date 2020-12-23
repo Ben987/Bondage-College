@@ -55,14 +55,13 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			let eyes2 = InventoryGet(this, "Eyes2");
 			if (eyes1.Property && eyes1.Property.Expression && eyes2.Property && eyes2.Property.Expression) {
 				if ((eyes1.Property.Expression === "Closed") && (eyes2.Property.Expression === "Closed")) {
-					blindLevel = 3;
+					blindLevel += DialogFacialExpressionsSelectedBlindnessLevel;
 				}
 			}
-			if (blindLevel == 0) {
-				if (this.Effect.includes("BlindHeavy")) blindLevel = 3;
-				else if (this.Effect.includes("BlindNormal")) blindLevel = 2;
-				else if (this.Effect.includes("BlindLight")) blindLevel = 1;
-			}
+			if (this.Effect.includes("BlindHeavy")) blindLevel += 3;
+			else if (this.Effect.includes("BlindNormal")) blindLevel += 2;
+			else if (this.Effect.includes("BlindLight")) blindLevel += 1;
+			blindLevel = Math.min(3, blindLevel);
 			// Light sensory deprivation setting limits blindness
 			if (this.GameplaySettings && this.GameplaySettings.SensDepChatLog == "SensDepLight") blindLevel = Math.min(2, blindLevel);
 			return blindLevel;
@@ -85,15 +84,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsLoverOfPlayer: function () { return this.IsLover(Player); },
 		IsLover: function (C) { return ((this.GetLoversNumbers().indexOf(C.MemberNumber) >= 0) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
-		GetLoversNumbers: function (MembersOnly) {
-			var LoversNumbers = [];
-			if (typeof this.Lovership == "undefined") return [];
-			for (let L = 0; L < this.Lovership.length; L++) {
-				if (this.Lovership[L].MemberNumber) { LoversNumbers.push(this.Lovership[L].MemberNumber); }
-				else if (this.Lovership[L].Name && (MembersOnly == null || MembersOnly == false)) { LoversNumbers.push(this.Lovership[L].Name); }
-			}
-			return LoversNumbers;
-		},
+		GetLoversNumbers: function (MembersOnly) { return CharacterGetLoversNumbers(this, MembersOnly); },
 		GetDeafLevel: function () {
 			var deafLevel = 0;
 			for (let A = 0; A < this.Appearance.length; A++) {
@@ -1094,4 +1085,21 @@ function CharacterHasBlockedItem(C, BlockList) {
 			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Category != null) && (C.Appearance[A].Asset.Category.indexOf(BlockList[B]) >= 0))
 				return true;
 	return false;
+}
+
+/**
+ * Retrieves the member numbers of the given character
+ * @param {Character} C - The character to retrieve the lovers numbers from
+ * @param {Boolean} [MembersOnly] - Whether to omit NPC lovers - defaults to false (NPCs will be included by default)
+ * @returns {Array<String | Number>} - A list of member numbers or NPC account names representing the lovers of the
+ * given character
+ */
+function CharacterGetLoversNumbers(C, MembersOnly) {
+	var LoversNumbers = [];
+	if (typeof C.Lovership == "undefined") return [];
+	for (let L = 0; L < C.Lovership.length; L++) {
+		if (C.Lovership[L].MemberNumber) { LoversNumbers.push(C.Lovership[L].MemberNumber); }
+		else if (C.Lovership[L].Name && (MembersOnly == null || MembersOnly == false)) { LoversNumbers.push(C.Lovership[L].Name); }
+	}
+	return LoversNumbers;
 }

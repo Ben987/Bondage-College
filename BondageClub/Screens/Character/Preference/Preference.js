@@ -200,7 +200,21 @@ function PreferenceLoadFetishFactor() {
  * @returns {void} - Nothing
  */
 function PreferenceInit(C) {
-
+	// Save settings for comparison
+	var PrefBefore = {
+		ItemPermission: C.ItemPermission,
+		LabelColor: C.LabelColor,
+		ChatSettings: C.ChatSettings,
+		VisualSettings: C.VisualSettings,
+		AudioSettings: C.AudioSettings,
+		GameplaySettings: C.GameplaySettings,
+		ImmersionSettings: C.ImmersionSettings,
+		RestrictionSettings: C.RestrictionSettings,
+		ArousalSettings: C.ArousalSettings,
+		OnlineSettings: C.OnlineSettings,
+		OnlineSharedSettings: C.OnlineSharedSettings
+	};
+	
 	// If the settings aren't set before, construct them to replicate the default behavior
 	if (!C.ChatSettings) C.ChatSettings = { DisplayTimestamps: true, ColorNames: true, ColorActions: true, ColorEmotes: true, ShowActivities: true, AutoBanGhostList: true, AutoBanBlackList: false, SearchShowsFullRooms: true, SearchFriendsFirst: false, ShowAutomaticMessages: false };
 	if (C.ChatSettings.DisplayTimestamps == null) C.ChatSettings.DisplayTimestamps = true;
@@ -333,6 +347,31 @@ function PreferenceInit(C) {
 	// Enables the AFK timer for the current player only
 	AfkTimerSetEnabled((C.ID == 0) && C.OnlineSettings && (C.OnlineSettings.EnableAfkTimer != false));
 
+	// Sync settings if anything changed
+	if (C.ID == 0) {
+		var PrefAfter = {
+			ItemPermission: Player.ItemPermission,
+			LabelColor: Player.LabelColor,
+			ChatSettings: Player.ChatSettings,
+			VisualSettings: Player.VisualSettings,
+			AudioSettings: Player.AudioSettings,
+			GameplaySettings: Player.GameplaySettings,
+			ImmersionSettings: Player.ImmersionSettings,
+			RestrictionSettings: Player.RestrictionSettings,
+			ArousalSettings: Player.ArousalSettings,
+			OnlineSettings: Player.OnlineSettings,
+			OnlineSharedSettings: Player.OnlineSharedSettings
+		};
+		var toUpdate = {}
+
+		for (let prop in PrefAfter)
+			if (JSON.stringify(PrefBefore[prop]) !== JSON.stringify(PrefAfter[prop]))
+				toUpdate[prop] = PrefAfter[prop];
+
+		if (Object.keys(toUpdate).length > 0) {
+			ServerSend("AccountUpdate", toUpdate);
+		}
+	}
 }
 
 /**
@@ -682,11 +721,12 @@ function PreferenceSubscreenImmersionClick() {
 	// Cannot change any value under the Extreme difficulty mode
 	if (Player.GetDifficulty() <= 2) {
 
-		// If we must change audio gameplay or visual settings
+		// If we must change sens dep settings
 		if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 192) && (MouseY < 256) && (!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained()))) {
 			if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 			else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 			Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
+			if (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") ChatRoomTargetMemberNumber = null;
 		}
 
 		// Preference check boxes
@@ -694,8 +734,10 @@ function PreferenceSubscreenImmersionClick() {
 			Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
 		if (MouseIn(500, 352, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
-		if (MouseIn(500, 432, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+		if (MouseIn(500, 432, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained()))) {
 			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
+			if (Player.ImmersionSettings.BlockGaggedOOC) ChatRoomTargetMemberNumber = null;
+		}
 		if (MouseIn(500, 512, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing;
 		if (MouseIn(500, 800, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))

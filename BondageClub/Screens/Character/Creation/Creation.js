@@ -89,6 +89,8 @@ function CreationResponse(data) {
 			Player.FriendList = [];
 			Player.GhostList = [];
 			Player.Lovership = [];
+			Player.FriendNames = new Map();
+			Player.SubmissivesList = new Set();
 
 			// Imports logs, inventory and Sarah status from the Bondage College
 			CreationMessage = "";

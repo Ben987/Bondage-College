@@ -11,11 +11,8 @@ var MainHallHasLoverLock = false;
 var MainHallHasSlaveCollar = false;
 var MainHallTip = 0;
 var MainHallMaidWasCalledManually = false;
-
-var MainHallRemoveLockTypes = [
-	"CombinationPadlock",
-	"PasswordPadlock",
-]
+var MainHallHasSeenHomeScreen = false;
+var MainHallRemoveLockTypes = ["CombinationPadlock", "PasswordPadlock"]
 
 /**
  * Checks to see if the player needs help in any way
@@ -111,7 +108,8 @@ function MainHallLoad() {
 		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 		ChatSearchPreviousActivePose = null;
 	}
-	MainHallBackground = "MainHall";
+	MainHallBackground = Player.VisualSettings && Player.VisualSettings.MainHallBackground && !MainHallHasSeenHomeScreen ? Player.VisualSettings.MainHallBackground : "MainHall";
+	MainHallHasSeenHomeScreen = true;
 	MainHallStartEventTimer = null;
 	MainHallNextEventTimer = null;
 	MainHallMaid = CharacterLoadNPC("NPC_MainHall_Maid");
@@ -215,6 +213,12 @@ function MainHallRun() {
 
 		// Cafe
 		DrawButton(25, 265, 90, 90, "", "White", "Icons/Refreshsments.png", TextGet("Cafe"));
+
+	} else {
+
+		// Special permission to enter the maid quarters if doing the maid serving drinks quest while being restrained
+		if (Player.CanWalk() && (InventoryIsWorn(Player, "WoodenMaidTray", "ItemMisc") || InventoryIsWorn(Player, "WoodenMaidTrayFull", "ItemMisc")))
+			DrawButton(1765, 265, 90, 90, "", "White", "Icons/Maid.png", TextGet("MaidQuarters"));
 
 	}
 
@@ -345,11 +349,18 @@ function MainHallClick() {
 
 		// Cafe
 		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Cafe");
+
+	} else {
+
+		// Special permission to enter the maid quarters if doing the maid serving drinks quest while being restrained
+		if (Player.CanWalk() && (InventoryIsWorn(Player, "WoodenMaidTray", "ItemMisc") || InventoryIsWorn(Player, "WoodenMaidTrayFull", "ItemMisc")))
+			if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 265) && (MouseY < 355))
+				MainHallWalk("MaidQuarters");
+
 	}
-	
-	
+
+	// When the player calls for a rescue maid
 	if ((MainHallStartEventTimer == null) && (MainHallNextEventTimer == null)) {
-		
 		if (MouseIn(1885, 900, 90, 90)) {
 			if (MainHallNextEventTimer == null) {
 				var vol = 1

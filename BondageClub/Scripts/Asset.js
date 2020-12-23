@@ -72,7 +72,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		DrawingTop: (NewAsset.Top == null) ? 0 : NewAsset.Top,
 		DrawingFullAlpha: (NewAsset.FullAlpha == null) ? true : NewAsset.FullAlpha,
 		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink,
-		InheritColor: NewAsset.InheritColor
+		InheritColor: NewAsset.InheritColor,
 	}
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
@@ -99,6 +99,7 @@ function AssetAdd(NewAsset) {
 		Expose: (NewAsset.Expose == null) ? [] : NewAsset.Expose,
 		Hide: (NewAsset.Hide == null) ? AssetCurrentGroup.Hide : NewAsset.Hide,
 		HideItem: NewAsset.HideItem,
+		HideItemExclude: NewAsset.HideItemExclude || [],
 		Require: NewAsset.Require,
 		SetPose: (NewAsset.SetPose == null) ? AssetCurrentGroup.SetPose : NewAsset.SetPose,
 		AllowPose: (NewAsset.AllowPose == null) ? AssetCurrentGroup.AllowPose : NewAsset.AllowPose,
@@ -158,6 +159,7 @@ function AssetAdd(NewAsset) {
 		HasType: (typeof NewAsset.HasType === 'boolean') ? NewAsset.HasType : true,
 		AllowLockType: NewAsset.AllowLockType,
 		AllowColorizeAll: typeof NewAsset.AllowColorizeAll === 'boolean' ? NewAsset.AllowColorizeAll : true,
+		AvailableLocations: NewAsset.AvailableLocations || [],
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	AssetAssignColorIndices(A);

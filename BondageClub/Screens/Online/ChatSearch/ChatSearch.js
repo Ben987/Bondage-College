@@ -377,7 +377,7 @@ function ChatSearchResultResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
-	if (ChatRoomJoinLeash != "") {
+	if (ChatRoomJoinLeash != null && ChatRoomJoinLeash != "") {
 		Query = ChatRoomJoinLeash.toUpperCase().trim();
 	}
 	

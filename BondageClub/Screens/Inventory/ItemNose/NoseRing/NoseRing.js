@@ -93,24 +93,22 @@ function InventoryItemNoseNoseRingNpcDialog(C, Option) {
  * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
  * @param {Character} C - The character wearing the item
  * @param {Option} Option - The next option to use on the character
- * @returns {boolean} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
+ * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
 function InventoryItemNoseNoseRingValidate(C, Option) {
-	var ChainShortPrerequisites = true;
+	var ChainShortPrerequisites = "";
 	switch (Option.Name) {
 		case "Base":
 			break;
 		case "ChainShort":
 			if (!InventoryAllow(C, ["NotSuspended", "CanKneel", "NotMounted"], true)){
-				DialogExtendedMessage = DialogText;
-				ChainShortPrerequisites = false;
+				ChainShortPrerequisites = DialogText;
 			} // if
 			break;
 		case "ChainLong":
 		case "Leash":
 			if (C.Pose.indexOf("Suspension") >= 0) {
-				DialogExtendedMessage = DialogFind(Player, "RemoveSuspensionForItem");
-				ChainShortPrerequisites = false;
+				ChainShortPrerequisites = DialogFind(Player, "RemoveSuspensionForItem");
 			} // if
 			break;
 	} // switch
