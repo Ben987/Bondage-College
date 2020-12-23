@@ -687,13 +687,6 @@ function ServerAccountBeep(data) {
 					DialogLeave()
 					ChatRoomClearAllElements();
 					if (CurrentScreen == "ChatRoom") {
-						ElementRemove("InputChat");
-						ElementRemove("TextAreaChatLog");
-						ElementRemove("InputName");
-						ElementRemove("InputDescription");
-						ElementRemove("InputSize");
-						ElementRemove("InputAdminList");
-						ElementRemove("InputBanList");
 						ServerSend("ChatRoomLeave", "");
 						CommonSetScreen("Online", "ChatSearch");
 					}
