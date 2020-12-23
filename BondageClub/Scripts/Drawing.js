@@ -765,7 +765,9 @@ function DrawText(Text, X, Y, Color, BackColor) {
  * @returns {void} - Nothing
  */
 function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled) {
-
+    if (ControllerActive == true) {
+    setButton(Left,Top)
+        }
 	// Draw the button rectangle (makes the background color cyan if the mouse is over it)
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);

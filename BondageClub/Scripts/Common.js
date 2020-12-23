@@ -181,9 +181,13 @@ function CommonKeyDown() {
 	if (CurrentCharacter == null) {
 		if (typeof window[CurrentScreen + "KeyDown"] === "function")
 			CommonDynamicFunction(CurrentScreen + "KeyDown()");
-	}
+    }
+    if (ControllerActive == true) {
+        ControllerSupportKeyDown();
+    }
 	else
-		DialogKeyDown();
+        DialogKeyDown();
+    
 }
 
 /**
@@ -273,7 +277,8 @@ function CommonSetScreen(NewModule, NewScreen) {
 	CurrentScreen = NewScreen;
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
-		CommonDynamicFunction(CurrentScreen + "Load()");
+        CommonDynamicFunction(CurrentScreen + "Load()");
+    if (ControllerActive == true) ClearButtons();
 }
 
 /**
