@@ -1,4 +1,7 @@
 "use strict";
+const CharacterCanvas_SizeY = 1000;
+const CharacterCanvas_SizeY_reserve = 400;
+
 /**
  * A callback function used for clearing a rectangular area of a canvas
  * @callback clearRect
@@ -45,13 +48,13 @@ function CommonDrawCanvasPrepare(C) {
 	if (C.Canvas == null) {
 		C.Canvas = document.createElement("canvas");
 		C.Canvas.width = 500;
-		C.Canvas.height = 1000;
-	} else C.Canvas.getContext("2d").clearRect(0, 0, 500, 1000);
+		C.Canvas.height = CharacterCanvas_SizeY + CharacterCanvas_SizeY_reserve;
+	} else C.Canvas.getContext("2d").clearRect(0, 0, 500, CharacterCanvas_SizeY + CharacterCanvas_SizeY_reserve);
 	if (C.CanvasBlink == null) {
 		C.CanvasBlink = document.createElement("canvas");
 		C.CanvasBlink.width = 500;
-		C.CanvasBlink.height = 1000;
-	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
+		C.CanvasBlink.height = CharacterCanvas_SizeY + CharacterCanvas_SizeY_reserve;
+	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, CharacterCanvas_SizeY + CharacterCanvas_SizeY_reserve);
 
 	C.MustDraw = true;
 }
@@ -307,4 +310,15 @@ function CommonDrawFindPose(C, AllowedPoses) {
 		});
 	}
 	return Pose;
+}
+
+/**
+ * Changes masks to compensate for added Y reserve space
+ * @param {[number, number, number, number][] | null} Masks - the Alpha masks to be fixed
+ */
+function CommonDrawFixMasks(Masks) {
+	if (Array.isArray(Masks)) {
+		return Masks.map(([x, y, w, h]) => [x, y + CharacterCanvas_SizeY_reserve, w, h]);
+	}
+	return Masks;
 }

@@ -264,7 +264,6 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		if ((Player != null) && (Player.VisualSettings != null) && (Player.VisualSettings.ForceFullHeight != null) && Player.VisualSettings.ForceFullHeight) HeightRatio = 1.0;
 		if (Zoom == null) Zoom = 1;
 		X += Zoom * Canvas.width * (1 - HeightRatio) / 2;
-		if ((C.Pose.indexOf("Suspension") < 0) && (C.Pose.indexOf("SuspensionHogtied") < 0)) Y += Zoom * Canvas.height * (1 - HeightRatio);
 
 		// If we must dark the Canvas characters
 		if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
@@ -288,17 +287,28 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			var CanvasH = document.createElement("canvas");
 			CanvasH.width = Canvas.width;
 			CanvasH.height = Canvas.height;
-			CanvasH.getContext("2d").rotate(Math.PI);
-			CanvasH.getContext("2d").translate(-Canvas.width, -Canvas.height);
-			// Render to the flipped canvas, and crop off the height modifier to prevent vertical overflow
-			CanvasH.getContext("2d").drawImage(Canvas, 0, 0, Canvas.width, Canvas.height - C.HeightModifier, 0, 0, Canvas.width, Canvas.height - C.HeightModifier);
+			const ctx = CanvasH.getContext("2d");
+			ctx.rotate(Math.PI);
+			ctx.translate(-Canvas.width, -Canvas.height);
+			// Render to the flipped canvas
+			ctx.drawImage(Canvas, 0, 0, Canvas.width, Canvas.height, 0, 0, Canvas.width, Canvas.height);
 			Canvas = CanvasH;
 		}
 
 		// Draw the character and applies the zoom ratio, the canvas to draw can be shrunk based on the height modifier
+		const Hmod = typeof C.HeightModifier == "number" ? C.HeightModifier : 0;
+		let H = CharacterCanvas_SizeY / HeightRatio;
+		let Shift = (C.Pose.includes("Suspension") ? 0 : C.Pose.includes("SuspensionHogtied") ? CharacterCanvas_SizeY_reserve : Canvas.height - H) + Hmod;
+		let Overflow = 0;
+		if (Shift < 0) {
+			Overflow = -Shift;
+			H += Shift;
+			Shift = 0;
+		}
+		MainCanvas.drawImage(Canvas, 0, Shift, Canvas.width, H, X, Y + Overflow * Zoom, Canvas.width * Zoom * HeightRatio, (CharacterCanvas_SizeY - Overflow) * Zoom);
+
+		if (!C.Pose.includes("Suspension") && !C.Pose.includes("SuspensionHogtied")) Y += Zoom * CharacterCanvas_SizeY * (1 - HeightRatio);
 		Zoom *= HeightRatio;
-		var H = Canvas.height + (((C.HeightModifier != null) && (C.HeightModifier < 0)) ? C.HeightModifier : 0);
-		MainCanvas.drawImage(Canvas, 0, 0, Canvas.width, H, X, Y - (C.HeightModifier * Zoom), Canvas.width * Zoom, H * Zoom);
 
 		// Applies a Y offset if the character is suspended
 		if (C.Pose.indexOf("Suspension") >= 0) Y += (Zoom * Canvas.height * (1 - HeightRatio) / HeightRatio);
