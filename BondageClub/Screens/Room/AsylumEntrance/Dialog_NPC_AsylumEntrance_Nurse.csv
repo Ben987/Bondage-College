@@ -17,6 +17,10 @@ ClubSlave,,(Leave her.),,DialogLeave(),
 0,30,I'd like to work as a nurse.,"You can, but you will lose your patient status and reputation.  Are you sure about that?",,"DialogReputationLess(""Asylum"", -1)"
 0,31,I'd like to work as a nurse.,Perfect!  We need staff to take care of our patients.  Are you ready to work now?,,"DialogReputationGreater(""Asylum"", 0)"
 0,,Can I get my own nurse uniform?,Of course.  Here you go nurse DialogPlayerName.  Wear it with pride.  (She gives you a nurse uniform.),GiveNurseUniform(),CanGetNurseUniform()
+0,,Can I get my own set of Asylum restraints?,We only give our most dedicated patients their own set of restraints. Talk to me again when you've taken some more treatments.,,PatientCannotGetRestraints()
+0,,Can I get my own set of Asylum restraints?,Of course. You're one of our most committed patients.  (She gives you a set of standard-issue Asylum restraints),GiveRestraints(),PatientCanGetRestraints()
+0,,Can I get my own set of Asylum restraints?,I'm afraid only our top doctors get their own set of restraints. Come back once you're a bit more experienced.,,NurseCannotGetRestraints()
+0,,Can I get my own set of Asylum restraints?,"Of course, doctor DialogPlayerName.  (She gives you a set of standard-issue Asylum restraints)",GiveRestraints(),NurseCanGetRestraints()
 0,,I must go.  (Leave her.),,DialogLeave(),
 10,,What goes in the asylum?,"The asylum is a place to relax, to forget about your stressful life for a while.  You can get therapies and mingle with patients and nurses.",,
 10,,Tell me about patients.,"Patients willingly commit themselves for a set time.  Until that time is up, they will receive therapies and will be locked in the asylum.",,

@@ -74,6 +74,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 101,,Do you have any necklaces?,,"Start(""Necklace"")",
 101,,Show me your gloves.,,"Start(""Gloves"")",
 101,,Maybe some shoes.,,"Start(""Shoes"")",
+101,,Do you have any Corsets?,,"Start(""Corset"")",
 101,100,What other types of clothes do you have?,We have all kinds of clothes,,
 101,0,I've changed my mind.,Can I help you with something else?,,
 110,,Can I see your bras?,,"Start(""Bra"")",

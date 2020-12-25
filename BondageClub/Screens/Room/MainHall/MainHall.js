@@ -2,7 +2,7 @@
 var MainHallBackground = "MainHall";
 var MainHallStartEventTimer = null;
 var MainHallNextEventTimer = null;
-var MainHallRandomEventOdds = 0; 
+var MainHallRandomEventOdds = 0;
 var MainHallMaid = null;
 var MainHallIsMaid = false;
 var MainHallIsHeadMaid = false;
@@ -19,13 +19,13 @@ var MainHallRemoveLockTypes = ["CombinationPadlock", "PasswordPadlock"]
  */
 function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
 	var needsHelp = false
-	
+
 	for (let E = Player.Appearance.length - 1; E >= 0; E--) {
 		if (Player.Appearance[E].Asset.IsRestraint) {
 			needsHelp = true;
 			break;
 		}
-		
+
 		for (let L = 0; L < MainHallRemoveLockTypes.length; L++) {
 			if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == MainHallRemoveLockTypes[L]))) {
 				needsHelp = true
@@ -99,7 +99,7 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItemAndMaidsNotDisabled() { 
  * @returns {void} - Nothing
  */
 function MainHallLoad() {
-	
+
 	// Loads the variables and dialog
 	ChatSearchSafewordAppearance = null;
 	CharacterSetActivePose(Player, null);
@@ -107,7 +107,7 @@ function MainHallLoad() {
 		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 		ChatSearchPreviousActivePose = null;
 	}
-	MainHallBackground = "MainHall";
+	MainHallBackground = Player.VisualSettings && Player.VisualSettings.MainHallBackground ? Player.VisualSettings.MainHallBackground : "MainHall";
 	MainHallStartEventTimer = null;
 	MainHallNextEventTimer = null;
 	MainHallMaid = CharacterLoadNPC("NPC_MainHall_Maid");
@@ -159,10 +159,10 @@ function MainHallRun() {
 
 	// Draws the character and main hall buttons
 	DrawCharacter(Player, 750, 0, 1);
-	MainCanvas.font = "italic 30px Arial";	
+	MainCanvas.font = "italic " + CommonGetFont(30);
 	DrawTextWrap(TextGet("Tip" + MainHallTip), 100, 800, 500, 200, "White");
-	MainCanvas.font = "36px Arial";	
-	
+	MainCanvas.font = CommonGetFont(36);
+
 	// Char, Dressing, Exit & Chat
 	DrawButton(1645, 25, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
 	if (Player.CanChange()) DrawButton(1765, 25, 90, 90, "", "White", "Icons/Dress.png", TextGet("Appearance"));
@@ -198,7 +198,7 @@ function MainHallRun() {
 
 		// Movie Studio (Must be able to change to enter it)
 		if (Player.CanChange()) DrawButton(1885, 745, 90, 90, "", "White", "Icons/MovieStudio.png", TextGet("MovieStudio"));
-		
+
 		// Draws the custom content rooms - Gambling, Prison & Photographic
 		DrawButton(265, 25, 90, 90, "", "White", "Icons/Camera.png", TextGet("Photographic"));
 		DrawButton(145, 25, 90, 90, "", "White", "Icons/Cage.png", TextGet("Prison"));
@@ -229,7 +229,7 @@ function MainHallRun() {
 		MainHallNextEventTimer = null;
 		MainHallMaidWasCalledManually = false
 	}
-	
+
 	// If we must show a progress bar for the rescue maid.  If not, we show the number of online players or a button to request the maid
 	if ((MainHallStartEventTimer == null) && (MainHallNextEventTimer == null)) {
 		if ( (!Player.GameplaySettings || !Player.GameplaySettings.DisableAutoMaid) && ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()))) {
@@ -239,7 +239,7 @@ function MainHallRun() {
 			DrawText(TextGet("OnlinePlayers") + " " + CurrentOnlinePlayers.toString(), 1650, 960, "White", "Black");
 			DrawButton(1885, 900, 90, 90, "", "White", "Icons/ServiceBell.png", TextGet("RequestMaid"));
 		}
-		
+
 		MainHallMaidWasCalledManually = false
 	} else {
 		if (!MainHallMaidWasCalledManually && !((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()))) {
@@ -255,7 +255,7 @@ function MainHallRun() {
 
 /**
  * Validates the player's move into a new room. Before entering the requested rooms, the player can be attacked by random kidnappers or intercepted by various NPC types
- * @param {string} RoomName - Name of the room the player is heading to 
+ * @param {string} RoomName - Name of the room the player is heading to
  * @returns {void} - Nothing
  */
 function MainHallWalk(RoomName) {
@@ -334,7 +334,7 @@ function MainHallClick() {
 
 		// Movie Studio (Must be able to change to enter it)
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 855) && Player.CanChange()) MainHallWalk("MovieStudio");
-		
+
 		// Custom content rooms - Gambling, Prison & Photographic
 		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Gambling");
 		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Prison");
@@ -390,7 +390,7 @@ function MainHallMaidReleasePlayer() {
 		}
 		// Added to remove maids being disabled
 		if (LogQuery("MaidsDisabled", "Maid")) {
-			
+
 			LogDelete("MaidsDisabled", "Maid")
 		}
 		MainHallMaid.Stage = "10";
@@ -411,7 +411,7 @@ function MainHallMaidAngry() {
 		if (Player.CanInteract()) {
 			InventoryWear(Player, "LeatherArmbinder", "ItemArms");
 			MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "TeachLesson");
-		}		
+		}
 	} else MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "Cower");
 }
 

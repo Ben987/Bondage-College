@@ -43,7 +43,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HasHiddenItems: false,
 		CanTalk: function () { return ((this.Effect.indexOf("GagVeryLight") < 0) && (this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagEasy") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagMedium") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagVeryHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0) && (this.Effect.indexOf("GagTotal2") < 0) && (this.Effect.indexOf("GagTotal3") < 0) && (this.Effect.indexOf("GagTotal4") < 0)) },
 		CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
-		CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || ((!CharacterItemsHavePose(this, "LegsClosed")) && (this.Pose.indexOf("Supension") < 0) && (this.Pose.indexOf("Hogtied") < 0)))) },
+		CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || (CharacterItemsHavePoseAvailable(this, "BodyLower", "Kneel") && (this.Pose.indexOf("Supension") < 0) && (this.Pose.indexOf("Hogtied") < 0)))) },
 		CanInteract: function () { return (this.Effect.indexOf("Block") < 0) },
 		CanChange: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !ManagementIsClubSlave() && !LogQuery("BlockChange", "Rule") && (!LogQuery("BlockChange", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1))) },
 		IsProne: function () { return (this.Effect.indexOf("Prone") >= 0) },
@@ -55,14 +55,13 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			let eyes2 = InventoryGet(this, "Eyes2");
 			if (eyes1.Property && eyes1.Property.Expression && eyes2.Property && eyes2.Property.Expression) {
 				if ((eyes1.Property.Expression === "Closed") && (eyes2.Property.Expression === "Closed")) {
-					blindLevel = 3;
+					blindLevel += DialogFacialExpressionsSelectedBlindnessLevel;
 				}
 			}
-			if (blindLevel == 0) {
-				if (this.Effect.includes("BlindHeavy")) blindLevel = 3;
-				else if (this.Effect.includes("BlindNormal")) blindLevel = 2;
-				else if (this.Effect.includes("BlindLight")) blindLevel = 1;
-			}
+			if (this.Effect.includes("BlindHeavy")) blindLevel += 3;
+			else if (this.Effect.includes("BlindNormal")) blindLevel += 2;
+			else if (this.Effect.includes("BlindLight")) blindLevel += 1;
+			blindLevel = Math.min(3, blindLevel);
 			// Light sensory deprivation setting limits blindness
 			if (this.GameplaySettings && this.GameplaySettings.SensDepChatLog == "SensDepLight") blindLevel = Math.min(2, blindLevel);
 			return blindLevel;
@@ -82,19 +81,13 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsMouthOpen: function() { return this.Effect.indexOf("OpenMouth") >= 0 },
 		IsVulvaFull: function() { return this.Effect.indexOf("FillVulva") >= 0 },
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
-		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
+		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || this.IsOwnedByMemberNumber(Player.MemberNumber)) },
+		IsOwnedByMemberNumber: function (memberNumber) { return (this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == memberNumber) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsLoverOfPlayer: function () { return this.IsLover(Player); },
-		IsLover: function (C) { return ((this.GetLoversNumbers().indexOf(C.MemberNumber) >= 0) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
-		GetLoversNumbers: function (MembersOnly) {
-			var LoversNumbers = [];
-			if (typeof this.Lovership == "undefined") return [];
-			for (let L = 0; L < this.Lovership.length; L++) {
-				if (this.Lovership[L].MemberNumber) { LoversNumbers.push(this.Lovership[L].MemberNumber); }
-				else if (this.Lovership[L].Name && (MembersOnly == null || MembersOnly == false)) { LoversNumbers.push(this.Lovership[L].Name); }
-			}
-			return LoversNumbers;
-		},
+		IsLover: function (C) { return (this.IsLoverOfMemberNumber(C.MemberNumber) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
+		IsLoverOfMemberNumber: function (memberNumber) { return this.GetLoversNumbers().indexOf(memberNumber) >= 0; },
+		GetLoversNumbers: function (MembersOnly) { return CharacterGetLoversNumbers(this, MembersOnly); },
 		GetDeafLevel: function () {
 			var deafLevel = 0;
 			for (let A = 0; A < this.Appearance.length; A++) {
@@ -464,6 +457,32 @@ function CharacterAddPose(C, NewPose) {
 }
 
 /**
+ * Checks if a certain pose is whitelisted and available for the pose menu
+ * @param {Character} C - Character to check for the pose
+ * @param {string} Type - Pose type to check for within items
+ * @param {string} Pose - Pose to check for whitelist
+ * @returns {boolean} - TRUE if the character has the pose available
+ */
+function CharacterItemsHavePoseAvailable(C, Type, Pose) {
+	var PossiblePoses = PoseFemale3DCG.filter(P => P.Category == Type || P.Category == "BodyFull").map(P => P.Name);
+
+	for (let A = 0; A < C.Appearance.length; A++) {
+		if (C.Appearance[A].Asset.WhitelistActivePose != null && C.Appearance[A].Asset.WhitelistActivePose.includes(Pose)) continue;
+		if (C.Appearance[A].Asset.AllowActivePose != null && (C.Appearance[A].Asset.AllowActivePose.find(P => PossiblePoses.includes(P) && C.AllowedActivePose.includes(P))))
+			return false;
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null) && (C.Appearance[A].Property.SetPose.find(P => PossiblePoses.includes(P))))
+			return false;
+		else
+			if (C.Appearance[A].Asset.SetPose != null && (C.Appearance[A].Asset.SetPose.find(P => PossiblePoses.includes(P))))
+				return false;
+			else
+				if (C.Appearance[A].Asset.Group.SetPose != null && (C.Appearance[A].Asset.Group.SetPose.find(P => PossiblePoses.includes(P))))
+					return false;
+	}
+	return true;
+}
+
+/**
  * Checks if a character has a pose from items (not active pose unless an item lets it through)
  * @param {Character} C - Character to check for the pose 
  * @param {string} Pose - Pose to check for within items
@@ -544,7 +563,7 @@ function CharacterLoadPose(C) {
 		
 		for (let P = 0; P < ActivePoses.length; P++) {
 			var HasPose = C.Pose.includes(ActivePoses[P].Name);
-			var IsAllowed = C.AllowedActivePose.includes(ActivePoses[P].Name);
+			var IsAllowed = C.AllowedActivePose.includes(ActivePoses[P].Name) && CharacterItemsHavePoseAvailable(Player, ActivePoses[P].Category, ActivePoses[P].Name);
 			var MissingGroup = !Poses.find(Pose => Pose.Category == "BodyFull") && !Poses.find(Pose => Pose.Category == ActivePoses[P].Category);
 			var IsFullBody = C.Pose.length > 0 && ActivePoses[P].Category == "BodyFull";
 			if (!HasPose && (IsAllowed || (MissingGroup && !IsFullBody)))
@@ -1097,4 +1116,21 @@ function CharacterHasBlockedItem(C, BlockList) {
 			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Category != null) && (C.Appearance[A].Asset.Category.indexOf(BlockList[B]) >= 0))
 				return true;
 	return false;
+}
+
+/**
+ * Retrieves the member numbers of the given character
+ * @param {Character} C - The character to retrieve the lovers numbers from
+ * @param {Boolean} [MembersOnly] - Whether to omit NPC lovers - defaults to false (NPCs will be included by default)
+ * @returns {Array<String | Number>} - A list of member numbers or NPC account names representing the lovers of the
+ * given character
+ */
+function CharacterGetLoversNumbers(C, MembersOnly) {
+	var LoversNumbers = [];
+	if (typeof C.Lovership == "undefined") return [];
+	for (let L = 0; L < C.Lovership.length; L++) {
+		if (C.Lovership[L].MemberNumber) { LoversNumbers.push(C.Lovership[L].MemberNumber); }
+		else if (C.Lovership[L].Name && (MembersOnly == null || MembersOnly == false)) { LoversNumbers.push(C.Lovership[L].Name); }
+	}
+	return LoversNumbers;
 }

@@ -65,8 +65,24 @@ const InventoryItemArmsHempRopeOptions = [
 		Prerequisite: ["NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+	}, {
+		Name: "BedSpreadEagle",
+		BondageLevel: 1,
+		Prerequisite: ["OnBed"],
+		Property: { Type: "BedSpreadEagle", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemDevices"], SetPose: ["Yoked"], Difficulty: 5 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
 	}
 ];
+
+function AssetsItemArmsHempRopeBeforeDraw(data) {
+    if (data.LayerType === "BedSpreadEagle") {
+        return {
+            X: data.X -50,
+            Y: data.Y -150,
+        };
+    }
+    return null;
+}
 
 function InventoryItemArmsHempRopeLoad() {
 	ExtendedItemLoad(InventoryItemArmsHempRopeOptions, "SelectRopeBondage");

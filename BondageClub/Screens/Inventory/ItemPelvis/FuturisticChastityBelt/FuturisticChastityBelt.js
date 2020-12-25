@@ -35,7 +35,7 @@ var InventoryItemPelvisFuturisticChastityBeltOptions = [
 
 function InventoryItemPelvisFuturisticChastityBeltLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else{
 		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { NextShockTime: 0, PunishStruggle: false , PunishStruggleOther: false , PunishOrgasm: false, ChatMessage: false,  CloseBack: false, };
@@ -49,7 +49,7 @@ function InventoryItemPelvisFuturisticChastityBeltLoad() {
 
 function InventoryItemPelvisFuturisticChastityBeltDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else if (DialogFocusItem && DialogFocusItem.Property) {
 		
@@ -87,7 +87,7 @@ function InventoryItemPelvisFuturisticChastityBeltDraw() {
 
 function InventoryItemPelvisFuturisticChastityBeltClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else {
 		if (MouseIn(1885, 25, 90, 90)) InventoryItemPelvisFuturisticChastityBeltExit()
