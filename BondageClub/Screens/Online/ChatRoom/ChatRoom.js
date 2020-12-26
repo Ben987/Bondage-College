@@ -514,9 +514,9 @@ function ChatRoomRun() {
 	
 	// Set the admins of the new room
 	if (Player.ImmersionSettings && ChatRoomData && Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.ImmersionSettings.ReturnToChatRoom && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
-		if (Player.LastChatRoomAdmin.indexOf(Player.MemberNumber) < 0) { // Add the player if they are not an admin
+		/*if (Player.LastChatRoomAdmin.indexOf(Player.MemberNumber) < 0) { // Add the player if they are not an admin
 			Player.LastChatRoomAdmin.push(Player.MemberNumber)
-		}
+		}*/
 		var UpdatedRoom = {
 			Name: ChatRoomData.Name,
 			Description: ChatRoomData.Description,
@@ -532,8 +532,11 @@ function ChatRoomRun() {
 		ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: UpdatedRoom, Action: "Update" });
 		ChatRoomNewRoomToUpdate = null
 	}
-	
-	if (Player.ImmersionSettings && (ChatRoomData && (!Player.BlackList || Player.BlackList.indexOf(ChatRoomData.SourceMemberNumber) < 0)) && (!ChatRoomData.Private || Player.FriendList.length > 0)
+	 
+	if (!(ChatRoomData && (!Player.BlackList || (ChatRoomData.Admin.length > 0 && Player.BlackList.indexOf(ChatRoomData.Admin[0]) < 0)) && (!ChatRoomData.Private || Player.FriendList.length > 0))) {
+		ChatRoomSetLastChatRoom("")
+	}
+	else if (Player.ImmersionSettings 
 		&& (ChatRoomLastName != ChatRoomData.Name || ChatRoomLastBG != ChatRoomData.Background || ChatRoomLastSize != ChatRoomData.Limit || ChatRoomLastPrivate != ChatRoomData.Private || ChatRoomLastDesc != ChatRoomData.Description || ChatRoomLastAdmin != ChatRoomData.Admin)) {
 		ChatRoomLastName = ChatRoomData.Name
 		ChatRoomLastBG = ChatRoomData.Background
