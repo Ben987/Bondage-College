@@ -12,7 +12,7 @@ var CutsceneStage = 0;
 
 /**
  * Checks if a variable is a number
- * @param {*} n - Variable to check for 
+ * @param {*} n - Variable to check for
  * @returns {boolean} - Returns TRUE if the variable is a finite number
  */
 function CommonIsNumeric(n) {
@@ -324,7 +324,7 @@ function CommonRandomItemFromList(ItemPrevious, ItemList) {
 /**
  * Converts a string of numbers split by commas to an array, sanitizes the array by removing all NaN or undefined elements.
  * @param {string} s - String of numbers split by commas
- * @returns {number[]} - Array of valid numbers from the given string 
+ * @returns {number[]} - Array of valid numbers from the given string
  */
 function CommonConvertStringToArray(s) {
 	var arr = [];
@@ -408,4 +408,48 @@ function CommonDebounce(func, wait) {
 		}
 		return result;
 	};
+}
+/**
+ * Creates a simple memoizer. 
+ * The memoized function does calculate its result exactly once and from that point on, uses
+ * the result stored in a local cache to speed up things.
+ * @param {function} func - The function to memoize
+ * @returns {any} - The result of the memoized function
+ */
+function CommonMemoize(func) {
+	var memo = {};
+	var slice = Array.prototype.slice;
+
+	var memoized = function () {
+		var index = [];
+		for (var i = 0; i < arguments.length; i++) {
+			if (typeof arguments[i] === "object") {
+				index.push(JSON.stringify(arguments[i]));
+			} else {
+				index.push(slice.call(arguments[i]));
+			}
+		} // for
+		if (!(index in memo)) {
+			memo[index] = func.apply(this, arguments);
+		}
+		return memo[index];
+	}; // function
+
+	// add a clear cache method
+	memoized.clearCache = function () {
+		memo = {};
+	}
+	return memoized;
+} // CommonMemoize
+
+// Get size + font
+function CommonGetFont(size) {
+  const font = (Player && Player.GraphicsSettings && Player.GraphicsSettings.Font) || "Arial";
+  return `${size}px ${font}`;
+}
+
+// Get the name of the font only
+function CommonGetFontName() {
+  const font = (Player && Player.GraphicsSettings && Player.GraphicsSettings.Font) || "Arial";
+  return `${font}`;
 }

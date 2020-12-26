@@ -170,10 +170,10 @@ function GameLARPRunProcess() {
 			DrawButton(50, 900, 400, 65, OnlineGameDictionaryText("BackToCharacters"), "White");
 
 			// Draw the timer
-			MainCanvas.font = "108px Arial";
+			MainCanvas.font = CommonGetFont(108);
 			var Time = Math.ceil((GameLARPTurnTimer - TimerGetTime()) / 1000);
 			DrawText(((Time < 0) || (Time > GameLARPTimerDelay[GameLARPTimerDelay.length - 1])) ? OnlineGameDictionaryText("TimerNA") : Time.toString(), 250, 800, "Red", "White");
-			MainCanvas.font = "36px Arial";
+			MainCanvas.font = CommonGetFont(36);
 
 		}
 
@@ -228,7 +228,7 @@ function GameLARPClickProcess() {
 			if (GameLARPInventoryOffset >= GameLARPInventory.length) GameLARPInventoryOffset = 0;
 		}
 		if (MouseIn(775, 20, 200, 60)) GameLARPTurnFocusGroup = null;
-		
+
 		// Checks if one of the 4x3 inventory square is clicked
 		var X = 15;
 		var Y = 110;
@@ -264,7 +264,7 @@ function GameLARPClickProcess() {
  * @returns {void} - Nothing
  */
 function GameLARPStartProcess() {
-	
+
 	// Gives a delay in seconds, based on the player preference
 	GameLARPTurnTimer = TimerGetTime() + (GameLARPTurnTimerDelay * 1000);
 
@@ -285,7 +285,7 @@ function GameLARPStartProcess() {
  * @returns {void} - Nothing
  */
 function GameLARPClick() {
-	
+
 	// When the user exits
 	if (MouseIn(1815, 75, 90, 90)) GameLARPExit();
 
@@ -296,7 +296,7 @@ function GameLARPClick() {
 			if (GameLARPClass[I].Name == Player.Game.LARP.Class)
 				Index = I;
 		if (MouseX <= 1100) Index = (Index <= 0) ? GameLARPClass.length - 1 : Index - 1;
-		else Index = (Index >= GameLARPClass.length - 1) ? 0 : Index + 1;		
+		else Index = (Index >= GameLARPClass.length - 1) ? 0 : Index + 1;
 		Player.Game.LARP.Class = GameLARPClass[Index].Name;
 	}
 
@@ -311,7 +311,7 @@ function GameLARPClick() {
 		if (MouseX <= 750) Player.Game.LARP.TimerDelay = (GameLARPTimerDelay.indexOf(Player.Game.LARP.TimerDelay) <= 0) ? GameLARPTimerDelay[GameLARPTimerDelay.length - 1] : GameLARPTimerDelay[GameLARPTimerDelay.indexOf(Player.Game.LARP.TimerDelay) - 1];
 		else Player.Game.LARP.TimerDelay = (GameLARPTimerDelay.indexOf(Player.Game.LARP.TimerDelay) >= GameLARPTimerDelay.length - 1) ? GameLARPTimerDelay[0] : GameLARPTimerDelay[GameLARPTimerDelay.indexOf(Player.Game.LARP.TimerDelay) + 1];
 	}
-	
+
 	// If the administrator wants to start the game
 	if (MouseIn(1050, 600, 400, 65) && GameLARPCanLaunchGame()) {
 
@@ -332,7 +332,7 @@ function GameLARPClick() {
 		CommonSetScreen("Online", "ChatRoom");
 
 	}
-	
+
 }
 
 /**
@@ -343,14 +343,14 @@ function GameLARPExit() {
 
 	// When the game isn't running, we allow to change the class or team
 	if (GameLARPStatus == "") {
-		
+
 		// Notices everyone in the room of the change, if there is any
 		if (GameLARPEntryClass != Player.Game.LARP.Class || GameLARPEntryTeam != Player.Game.LARP.Team) {
 			var Dictionary = [];
 			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
 			ServerSend("ChatRoomChat", { Content: "LARPChangeTeamClass", Type: "Action", Dictionary: Dictionary });
 		}
-		
+
 		// Updates the player and go back to the chat room
 		ServerSend("AccountUpdate", { Game: Player.Game });
 		ChatRoomCharacterUpdate(Player);
@@ -424,7 +424,7 @@ function GameLARPGetBonus(Target, BonusType) {
 
 /**
  * Gets the odds of successfully doing an offensive action on a given character.
- * @param {string} Action - Action attempted. 
+ * @param {string} Action - Action attempted.
  * @param {Character} Source - Character doing the move.
  * @param {Character} Target - Character targetted by the move.
  * @returns {number} - Odds of successfully doing an offensive action. The number has two decimals.
@@ -437,7 +437,7 @@ function GameLARPGetOdds(Action, Source, Target) {
 	// Struggling starts at 10% + 10% for each new unsuccessful tries, tightening the bonds will reset it to 10%
 	if (Action == "Struggle") {
 		Odds = 0.05;
-		for (let P = 0; P < GameLARPProgress.length; P++) 
+		for (let P = 0; P < GameLARPProgress.length; P++)
 			if ((GameLARPProgress[P].Success != null) && (GameLARPProgress[P].Data.GameProgress == "Action")) {
 				if ((GameLARPProgress[P].Sender == Source.MemberNumber) && (GameLARPProgress[P].Data.Target == Source.MemberNumber) && (GameLARPProgress[P].Data.Action == "Struggle") && !GameLARPProgress[P].Success) Odds = Odds + 0.05;
 				if ((GameLARPProgress[P].Sender == Source.MemberNumber) && (GameLARPProgress[P].Data.Target == Source.MemberNumber) && (GameLARPProgress[P].Data.Action == "Struggle") && GameLARPProgress[P].Success) Odds = 0.05;
@@ -577,7 +577,7 @@ function GameLARPBuildOption(Source, Target) {
 	// If the source clicks on herself, she can always pass her turn and do nothing
 	var Option = [];
 	if (Source.MemberNumber == Target.MemberNumber) Option.push({ Name: "Pass", Odds: GameLARPGetOdds("Pass", Source, Source) });
-	
+
 	// If seduce is in progress on the source, all she can do is pass her turn
 	var PassTurn = false;
 	for (let P = ((GameLARPProgress.length - GameLARPPlayer.length * 2 + 1 > 0) ? GameLARPProgress.length - GameLARPPlayer.length * 2 + 1 : 0); P < GameLARPProgress.length; P++) {
@@ -589,7 +589,7 @@ function GameLARPBuildOption(Source, Target) {
 	// If the source is restrained, she only has the struggle option on herself
 	if ((InventoryGet(Source, "ItemArms") != null) && (Source.MemberNumber == Target.MemberNumber))
 		Option.push({ Name: "Struggle", Odds: GameLARPGetOdds("Struggle", Source, Source) });
-	
+
 	// If "Hide" or "Cover" are in progress, no offensive abilities can be used
 	if (Source.Game.LARP.Team != Target.Game.LARP.Team) {
 
@@ -879,7 +879,7 @@ function GameLARPGetClassProgress(LARP) {
 				return LARP.Level[L].Progress;
 	return 0;
 }
-	
+
 /**
  * Moves forward in the LARP game. If there are less than 2 teams with free arms, the game is over.
  * @returns {boolean} - Returns TRUE if the game ends and runs the end scripts.

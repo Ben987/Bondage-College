@@ -46,7 +46,7 @@ Difficulty3Text1,"No rescue maid will come, and no NPC will help you out."
 Difficulty3Text2,No safeword can be used and you cannot leave your owner.
 Difficulty3Text3,"All immersion settings are maxed, and you cannot block any item."
 Difficulty3Text4,You cannot select this if you've changed mode in the last seven days.
-DifficultySummary0A,Easy mode - Restrictions and game mechanisms 
+DifficultySummary0A,Easy mode - Restrictions and game mechanisms
 DifficultySummary0B,can be ignored with toggles.  For pure roleplayers.
 DifficultySummary1A,"Normal mode - Basic restrictions are enforced, "
 DifficultySummary1B,many options to protect you.  For most players.
@@ -221,3 +221,14 @@ VisibilityResetDescription,This will reset all items to be visible. Click again 
 VisibilityLocked,All items are forced visible under the Extreme difficulty mode
 LeaveSave,Accept changes
 LeaveNoSave,Cancel changes
+GraphicsFont,Game Font
+Arial,Arial
+Times New Roman,Times New Roman
+Papyrus,Papyrus
+Comic Sans,Comic Sans
+Impact,Impact
+Verdana,Verdana
+Century Gothic,Century Gothic
+Georgia,Georgia
+Courier New,Courier New
+Copperplate,Copperplate

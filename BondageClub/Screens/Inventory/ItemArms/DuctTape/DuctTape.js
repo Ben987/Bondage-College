@@ -9,6 +9,7 @@ const InventoryItemArmsDuctTapeOptions = [
 	{
 		Name: "Bottom",
 		SelfBondageLevel: 4,
+		Prerequisite: ["NoOuterClothes"],
 		Property: {
 			Type: "Bottom",
 			SetPose: ["BackElbowTouch"],
@@ -18,6 +19,8 @@ const InventoryItemArmsDuctTapeOptions = [
 	},
 	{
 		Name: "Top",
+		SelfBondageLevel: 6,
+		Prerequisite: ["NoOuterClothes"],
 		Property: {
 			Type: "Top",
 			SetPose: ["BackElbowTouch"],
@@ -27,6 +30,8 @@ const InventoryItemArmsDuctTapeOptions = [
 	},
 	{
 		Name: "Full",
+		SelfBondageLevel: 8,
+		Prerequisite: ["NoOuterClothes"],
 		Property: {
 			Type: "Full",
 			SetPose: ["BackElbowTouch"],
@@ -36,6 +41,8 @@ const InventoryItemArmsDuctTapeOptions = [
 	},
 	{
 		Name: "Complete",
+		SelfBondageLevel: 10,
+		Prerequisite: ["NoOuterClothes"],
 		Property: {
 			Type: "Complete",
 			SetPose: ["BackElbowTouch"],
@@ -98,20 +105,4 @@ function InventoryItemArmsDuctTapePublishAction(C, Option, PreviousOption) {
  */
 function InventoryItemArmsDuctTapeNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "ItemArmsDuctTape" + Option.Name, "ItemArms");
-}
-
-/**
- * Validate function that checks, if the restrained character wears outer clothes. If so, the duct tape cannot be applied
- * @param {Character} C - The character wearing the item
- * @param {Option} Option - The option to be applied on the character. Not used in this item
- * @returns {boolean} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
- */
-function InventoryItemArmsDuctTapeValidate(C, Option) {
-	var Allowed = true;
-
-	if (InventoryGet(C, "Cloth") || InventoryGet(C, "ClothLower")) {
-		DialogExtendedMessage = DialogFind(Player, "RemoveClothesForItem", "ItemArms");
-		Allowed = false;
-	}
-	return Allowed;
 }

@@ -17,7 +17,7 @@ var InventoryItemFeetFuturisticAnkleCuffsOptions = [
 // Loads the item extension properties
 function InventoryItemFeetFuturisticAnkleCuffsLoad() {
  	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else
 		ExtendedItemLoad(InventoryItemFeetFuturisticAnkleCuffsOptions, "SelectBondagePosition");
@@ -26,7 +26,7 @@ function InventoryItemFeetFuturisticAnkleCuffsLoad() {
 // Draw the item extension screen
 function InventoryItemFeetFuturisticAnkleCuffsDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else
 		ExtendedItemDraw(InventoryItemFeetFuturisticAnkleCuffsOptions, "LeatherAnkleCuffsPose");
@@ -35,7 +35,7 @@ function InventoryItemFeetFuturisticAnkleCuffsDraw() {
 // Catches the item extension clicks
 function InventoryItemFeetFuturisticAnkleCuffsClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (!InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else
 		ExtendedItemClick(InventoryItemFeetFuturisticAnkleCuffsOptions);

@@ -22,7 +22,8 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 10,0,(Accept a trial period to become her submissive.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanStartTrial"")"
 10,11,(Offer her to end the trial and be fully collared.),(There's a 100$ fee to prepare the ceremony and get her a slave collar.  Will you pay now?),,"OwnershipOptionIs(""CanOfferEndTrial"")"
 10,0,(Accept her collar and begin the ceremony.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanEndTrial"")"
-10,100,"(Rules, restrictions & punishments.)","(Select the rule, restriction or punishment that you want to enforce.)",,IsCollaredByPlayer()
+10,100,"(Owner rules, restrictions & punishments.)","(Select the owner rule, restriction or punishment that you want to enforce.)",,IsCollaredByPlayer()
+10,200,"(Lover rules, restrictions & punishments.)","(Select the lover rule, restriction or punishment that you want to enforce on your lover.)",,IsLoverOfPlayer()
 10,,(Give her the money envelope.),,GiveMoneyForOwner(),CanGiveMoneyForOwner()
 10,0,(Ask her to be your girlfriend.),(The request has been sent.  She must accept it to start dating you.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginDating"")"
 10,0,(Accept to be her girlfriend.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginDating"")"
@@ -95,37 +96,42 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 100,160,(Forced labor.),(What kind of labor will she be forced to do?  Her salary will be given to you.),,
 100,170,(Collar options.),(Select the option.),,
 100,0,(Back to main menu.),(Main menu.),,
-110,100,(Allow her wardrobe access.),(She can now access her wardrobe and change clothes.),"SendRule(""ChangeAllow"")",
-110,100,(Block her wardrobe for 1 hour.),(Her wardrobe access will be blocked for the next hour.),"SendRule(""ChangeBlock1Hour"")",
-110,100,(Block her wardrobe for 1 day.),(Her wardrobe access will be blocked for the next day.),"SendRule(""ChangeBlock1Day"")",
-110,100,(Block her wardrobe for 1 week.),(Her wardrobe access will be blocked for the next week.),"SendRule(""ChangeBlock1Week"")",
-110,100,(Block her wardrobe until you allow it.),(Her wardrobe access will be blocked until you allow it again.),"SendRule(""ChangeBlock"")",
+110,100,(Allow her wardrobe access.),(She can now access her wardrobe and change clothes.),"SendOwnerRule(""ChangeAllow"")",
+110,100,(Block her wardrobe for 1 hour.),(Her wardrobe access will be blocked for the next hour.),"SendOwnerRule(""ChangeBlock1Hour"")",
+110,100,(Block her wardrobe for 1 day.),(Her wardrobe access will be blocked for the next day.),"SendOwnerRule(""ChangeBlock1Day"")",
+110,100,(Block her wardrobe for 1 week.),(Her wardrobe access will be blocked for the next week.),"SendOwnerRule(""ChangeBlock1Week"")",
+110,100,(Block her wardrobe until you allow it.),(Her wardrobe access will be blocked until you allow it again.),"SendOwnerRule(""ChangeBlock"")",
 110,0,(Back to main menu.),(Main menu.),,
-120,100,(Allow her to whisper.),(She can now whisper normally.),"SendRule(""WhisperAllow"")",
-120,100,(Forbid her to whisper when you're there.),(She cannot whisper to someone else when she's in the same room as you.),"SendRule(""WhisperBlock"")",
+120,100,(Allow her to whisper.),(She can now whisper normally.),"SendOwnerRule(""WhisperAllow"")","GetOwnerRule(""BlockWhisper"")"
+120,100,(Forbid her to whisper when you're there.),(She cannot whisper to someone else when she's in the same room as you.),"SendOwnerRule(""WhisperBlock"")","!GetOwnerRule(""BlockWhisper"")"
 120,0,(Back to main menu.),(Main menu.),,
-130,100,(Allow her to buy keys.),(The store will sell keys to her.),"SendRule(""KeyAllow"")",
-130,100,(Confiscate her keys.),(She lost all of her keys.),"SendRule(""KeyConfiscate"")",
-130,100,(Block her from buying keys.),(The store will not sell keys to her anymore.),"SendRule(""KeyBlock"")",
-130,100,(Allow her to use owner locks on herself.),(She will be able to use owner locks on herself.),"SendRule(""SelfOwnerLockAllow"")",
-130,100,(Block her from using owner locks on herself.),(She will not be able to use owner locks on herself anymore.),"SendRule(""SelfOwnerLockBlock"")",
+130,100,(Allow her to buy keys.),(The store will sell keys to her.),"SendOwnerRule(""KeyAllow"")","GetOwnerRule(""BlockKey"")"
+130,100,(Confiscate her keys.),(She lost all of her keys.),"SendOwnerRule(""KeyConfiscate"")",
+130,100,(Block her from buying keys.),(The store will not sell keys to her anymore.),"SendOwnerRule(""KeyBlock"")","!GetOwnerRule(""BlockKey"")"
+130,100,(Allow her to use owner locks on herself.),(She will be able to use owner locks on herself.),"SendOwnerRule(""SelfOwnerLockAllow"")","GetOwnerRule(""BlockOwnerLockSelf"")"
+130,100,(Block her from using owner locks on herself.),(She will not be able to use owner locks on herself anymore.),"SendOwnerRule(""SelfOwnerLockBlock"")","!GetOwnerRule(""BlockOwnerLockSelf"")"
 130,0,(Back to main menu.),(Main menu.),,
-140,100,(Allow her to buy remotes.),(The store will sell remotes to her.),"SendRule(""RemoteAllow"")",
-140,100,(Allow her to use remotes on herself.),(Her remotes will work on her now.),"SendRule(""RemoteAllowSelf"")"
-140,100,(Confiscate her remotes.),(She lost all of her remotes.),"SendRule(""RemoteConfiscate"")",
-140,100,(Block her from buying remotes.),(The store will not sell remotes to her anymore.),"SendRule(""RemoteBlock"")",
-140,100,(Block her from using remotes on herself),(Her remotes won't work on her anymore.),"SendRule(""RemoteBlockSelf"")"
+140,100,(Allow her to buy remotes.),(The store will sell remotes to her.),"SendOwnerRule(""RemoteAllow"")","GetOwnerRule(""BlockRemote"")"
+140,100,(Allow her to use remotes on herself.),(Her remotes will work on her now.),"SendOwnerRule(""RemoteAllowSelf"")","GetOwnerRule(""BlockRemoteSelf"")"
+140,100,(Confiscate her remotes.),(She lost all of her remotes.),"SendOwnerRule(""RemoteConfiscate"")",
+140,100,(Block her from buying remotes.),(The store will not sell remotes to her anymore.),"SendOwnerRule(""RemoteBlock"")","!GetOwnerRule(""BlockRemote"")"
+140,100,(Block her from using remotes on herself),(Her remotes won't work on her anymore.),"SendOwnerRule(""RemoteBlockSelf"")","!GetOwnerRule(""BlockRemoteSelf"")"
 140,0,(Back to main menu.),(Main menu.),,
 150,100,(Don't lock her up.),"(Select the rule, restriction or punishment that you want to enforce.)",,
-150,100,(Lock her for 5 minutes.),(She will be isolated and locked up for 5 minutes.),"SendRule(""TimerCell5"", ""Leave"")",
-150,100,(Lock her for 15 minutes.),(She will be isolated and locked up for 15 minutes.),"SendRule(""TimerCell15"", ""Leave"")",
-150,100,(Lock her for 30 minutes.),(She will be isolated and locked up for 30 minutes.),"SendRule(""TimerCell30"", ""Leave"")",
-150,100,(Lock her for 60 minutes.),(She will be isolated and locked up for 60 minutes.),"SendRule(""TimerCell60"", ""Leave"")",
+150,100,(Lock her for 5 minutes.),(She will be isolated and locked up for 5 minutes.),"SendOwnerRule(""TimerCell5"", ""Leave"")",
+150,100,(Lock her for 15 minutes.),(She will be isolated and locked up for 15 minutes.),"SendOwnerRule(""TimerCell15"", ""Leave"")",
+150,100,(Lock her for 30 minutes.),(She will be isolated and locked up for 30 minutes.),"SendOwnerRule(""TimerCell30"", ""Leave"")",
+150,100,(Lock her for 60 minutes.),(She will be isolated and locked up for 60 minutes.),"SendOwnerRule(""TimerCell60"", ""Leave"")",
 150,0,(Back to main menu.),(Main menu.),,
 160,100,(No forced labor.),"(Select the rule, restriction or punishment that you want to enforce.)",,
-160,100,(Force her to serve drinks as a maid.),(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.),"SendRule(""LaborMaidDrinks"", ""Quest"")",CanServeDrink()
+160,100,(Force her to serve drinks as a maid.),(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.),"SendOwnerRule(""LaborMaidDrinks"", ""Quest"")",CanServeDrink()
 160,,(Force her to serve drinks as a maid.),"(She needs to be a maid in the sorority, be able to talk and be able to walk to do that job for you.)",,!CanServeDrink()
 160,0,(Back to main menu.),(Main menu.),,
-170,100,(Release her from the slave collar.),(You remove her slave collar.),"SendRule(""CollarRelease"")",
-170,100,(Give her the slave collar.),(You lock the slave collar back on her.),"SendRule(""CollarWear"")",
+170,100,(Release her from the slave collar.),(You remove her slave collar.),"SendRule(""CollarRelease"")","!GetOwnerRule(""ReleasedCollar"")"
+170,100,(Give her the slave collar.),(You lock the slave collar back on her.),"SendRule(""CollarWear"")","GetOwnerRule(""ReleasedCollar"")"
 170,0,(Back to main menu.),(Main menu.),,
+200,200,(Allow her to use lovers locks on herself.),(She will be able to use lovers locks on herself.),"SendLoverRule(""SelfLoverLockAllow"")","GetLoverRule(""BlockLoverLockSelf"")"
+200,200,(Block her from using lovers locks on herself.),(She will not be able to use lovers locks on herself anymore.),"SendLoverRule(""SelfLoverLockBlock"")","!GetLoverRule(""BlockLoverLockSelf"")"
+200,200,(Allow her owner to use lovers locks on her.),(Her owner will be able to use lovers locks on her.),"SendLoverRule(""OwnerLoverLockAllow"")","GetLoverRule(""BlockLoverLockOwner"")"
+200,200,(Block her owner from using lovers locks on her.),(Her owner will not be able to use lovers locks on her anymore.),"SendLoverRule(""OwnerLoverLockBlock"")","!GetLoverRule(""BlockLoverLockOwner"")"
+200,0,(Back to main menu.),(Main menu.),,
