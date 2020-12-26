@@ -26,7 +26,6 @@ var ChatRoomLastPrivate = false
 var ChatRoomLastSize = 0
 var ChatRoomLastDesc = ""
 var ChatRoomLastAdmin = []
-var ChatRoomRejoinTimer = 30*60000 // 30 minutes
 var ChatRoomNewRoomToUpdate = null
 
 var ChatRoomLeashList = []
@@ -202,7 +201,7 @@ function ChatRoomCanBeLeashed(C) {
  * Checks if the player has waited long enough to be able to call the maids
  * @returns {boolean} - TRUE if the current character has been in the last chat room for more than 30 minutes 
  */
-function DialogCanCallMaids() { return (CurrentScreen == "ChatRoom" && (ChatRoomData && ChatRoomData.Game == "" && !(LogValue("Committed", "Asylum") >= CurrentTime)) &&  !Player.CanWalk() && Player.LastChatRoomTimer > 0 && Player.LastChatRoomTimer + ChatRoomRejoinTimer < CurrentTime) && !MainHallIsMaidsDisabled()}
+function DialogCanCallMaids() { return (CurrentScreen == "ChatRoom" && (ChatRoomData && ChatRoomData.Game == "" && !(LogValue("Committed", "Asylum") >= CurrentTime)) &&  !Player.CanWalk()) && !MainHallIsMaidsDisabled()}
 
 
 
@@ -488,12 +487,10 @@ function ChatRoomSetLastChatRoom(room) {
 			Player.LastChatRoomDesc = ChatRoomData.Description
 		if (ChatRoomData && ChatRoomData.Admin)
 			Player.LastChatRoomAdmin = ChatRoomData.Admin
-		if (Player.LastChatRoomTimer == 0 || !Player.LastChatRoomTimer || Player.LastChatRoom != room)
-			Player.LastChatRoomTimer = CurrentTime
+
 	} else {
 		Player.LastChatRoomBG = ""
 		Player.LastChatRoomPrivate = false
-		Player.LastChatRoomTimer = 0
 	}
 	Player.LastChatRoom = room
 	var P = {
@@ -503,7 +500,6 @@ function ChatRoomSetLastChatRoom(room) {
 		LastChatRoomSize: Player.LastChatRoomSize,
 		LastChatRoomDesc: Player.LastChatRoomDesc,
 		LastChatRoomAdmin: Player.LastChatRoomAdmin.toString(),
-		LastChatRoomTimer: Player.LastChatRoomTimer
 		
 	};
 	ServerSend("AccountUpdate", P);
@@ -537,7 +533,8 @@ function ChatRoomRun() {
 		ChatRoomNewRoomToUpdate = null
 	}
 	
-	if (Player.ImmersionSettings && (ChatRoomLastName != ChatRoomData.Name || ChatRoomLastBG != ChatRoomData.Background || ChatRoomLastSize != ChatRoomData.Limit || ChatRoomLastPrivate != ChatRoomData.Private || ChatRoomLastDesc != ChatRoomData.Description || ChatRoomLastAdmin != ChatRoomData.Admin)) {
+	if (Player.ImmersionSettings && (ChatRoomData && (!Player.BlackList || Player.BlackList.indexOf(ChatRoomData.SourceMemberNumber) < 0)) && (!ChatRoomData.Private || Player.FriendList.length > 0)
+		&& (ChatRoomLastName != ChatRoomData.Name || ChatRoomLastBG != ChatRoomData.Background || ChatRoomLastSize != ChatRoomData.Limit || ChatRoomLastPrivate != ChatRoomData.Private || ChatRoomLastDesc != ChatRoomData.Description || ChatRoomLastAdmin != ChatRoomData.Admin)) {
 		ChatRoomLastName = ChatRoomData.Name
 		ChatRoomLastBG = ChatRoomData.Background
 		ChatRoomLastSize = ChatRoomData.Limit
