@@ -2,17 +2,6 @@ var ButtonsX = [];
 var ButtonsY = [];
 var ControllerActive = true;
 var CurrentButton = 0;
-
-if (ControllerActive == true) {
-
-    function ClearButtons() {
-        ButtonsX = [];
-        ButtonsY = [];
-    }
-
-    function setButton(X, Y) {
-        if (ButtonsX.indexOf(X) < 0 || ButtonsY.indexOf(Y) < 0) {
-=======
 var ButtonsRepeat = false;
 var AxesRepeat = false;
 var IgnoreButton = false;
@@ -44,35 +33,10 @@ function setButton(X, Y) {
         X += 10;
         Y += 10;
         if (!ButtonExists(X, Y)) {
->>>>>>> Stashed changes
             ButtonsX.push(X);
             ButtonsY.push(Y);
         }
     }
-<<<<<<< Updated upstream
-
-    /**
-     * handles controller/keyboard inputs 
-     * @returns {void} Nothing
-     */
-    function ControllerSupportKeyDown() {
-/*i*/    if (KeyPress == 105) ControllerUp();
-/*k*/    if (KeyPress == 107) ControllerDown();
-/*j*/    if (KeyPress == 106) ControllerLeft();  //jump 5 up for now
-/*l*/    if (KeyPress == 108) ControllerRight(); //jump 5 down for now
-/*space*/if (KeyPress == 32)  ControllerClick(); 
-    }
-
-    function ControllerClick() {
-        CommonClick();
-    }
-
-    function ControllerUp() {
-        if (CurrentButton > 0) {
-            CurrentButton -= 1;
-            MouseX = ButtonsX[CurrentButton] + 10;
-            MouseY = ButtonsY[CurrentButton] + 10;
-=======
 }
 
 function ButtonExists(X, Y) {
@@ -628,37 +592,11 @@ function ControllerRight() {
             CurrentButton -= 1;
             MouseX = ButtonsX[CurrentButton];
             MouseY = ButtonsY[CurrentButton];
->>>>>>> Stashed changes
         }
     }
     function ControllerDown() {
         if (CurrentButton < ButtonsX.length - 1) {
             CurrentButton += 1;
-<<<<<<< Updated upstream
-            MouseX = ButtonsX[CurrentButton] + 10;
-            MouseY = ButtonsY[CurrentButton] + 10;
-        }
-    }
-    function ControllerLeft() {
-        ControllerUp();
-        ControllerUp();
-        ControllerUp();
-        ControllerUp();
-        ControllerUp();
-    }
-    function ControllerRight() {
-        ControllerDown();
-        ControllerDown();
-        ControllerDown();
-        ControllerDown();
-        ControllerDown();
-    }
-
-
-
-
-}
-=======
             MouseX = ButtonsX[CurrentButton];
             MouseY = ButtonsY[CurrentButton];
         }
@@ -666,4 +604,3 @@ function ControllerRight() {
 */
 
 
->>>>>>> Stashed changes
