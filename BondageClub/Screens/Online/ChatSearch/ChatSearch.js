@@ -396,12 +396,18 @@ function ChatSearchResultResponse(data) {
 				ChatRoomPlayerCanJoin = true;
 				ChatRoomPlayerJoiningAsAdmin = true;
 				var block = []
+				var ChatRoomName = Player.LastChatRoom;
+				var ChatRoomDesc = Player.LastChatRoomDesc;
+				if (Player.LastChatRoomPrivate) {
+					ChatRoomName = Player.Name + Player.MemberNumber
+					ChatRoomDesc = ""
+				}
 				if (ChatBlockItemCategory) block = ChatBlockItemCategory
 				var NewRoom = {
-					Name: Player.LastChatRoom.trim(),
-					Description: Player.LastChatRoomDesc.trim(),
+					Name: ChatRoomName.trim(),
+					Description: ChatRoomDesc.trim(),
 					Background: Player.LastChatRoomBG,
-					Private: Player.LastChatRoomPrivate,
+					Private: false,
 					Space: "",
 					Game: "",
 					Admin: [Player.MemberNumber],
