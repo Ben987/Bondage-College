@@ -197,18 +197,6 @@ function CommonClick() {
  * @returns {void} - Nothing
  */
 function CommonKeyDown() {
-<<<<<<< Updated upstream
-	if (CurrentCharacter == null) {
-		if (typeof window[CurrentScreen + "KeyDown"] === "function")
-			CommonDynamicFunction(CurrentScreen + "KeyDown()");
-    }
-    if (ControllerActive == true) {
-        ControllerSupportKeyDown();
-    }
-	else
-        DialogKeyDown();
-    
-=======
     if (CurrentCharacter == null) {
         if (typeof window[CurrentScreen + "KeyDown"] === "function")
             CommonDynamicFunction(CurrentScreen + "KeyDown()");
@@ -222,7 +210,6 @@ function CommonKeyDown() {
             ControllerSupportKeyDown();
         }
     }
->>>>>>> Stashed changes
 }
 
 /**
