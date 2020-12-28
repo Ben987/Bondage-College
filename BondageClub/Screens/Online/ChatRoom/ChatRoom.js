@@ -1138,19 +1138,18 @@ function ChatRoomMessage(data) {
 						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
 					}
 				}
- 				else if (msg == "RemoveLeash" || msg == "RemoveLeashNotFriend"){
+ 				else if (msg == "RemoveLeash" || msg == "RemoveLeashNotFriend") {
 					if (ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber) >= 0) {
 						ChatRoomLeashList.splice(ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber), 1)
 					} 
 				} 
-        if (msg == "GiveLockpicks") DialogLentLockpicks = true;
+				if (msg == "GiveLockpicks") DialogLentLockpicks = true;
 				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
 				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
 				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
 				if (msg.substring(0, 8) == "PayQuest") ChatRoomPayQuest(data);
 				if (msg.substring(0, 9) == "OwnerRule") data = ChatRoomSetRule(data);
 				if (data.Type == "Hidden") return;
-				}
  				return;
 			}
 
@@ -1640,7 +1639,7 @@ function ChatRoomGiveLockpicks() {
 	DialogLeave();
 }
 
-
+/*
  * Triggered when the player grabs another player's leash
  * @returns {void} - Nothing.
  */
