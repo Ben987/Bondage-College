@@ -586,7 +586,14 @@ function ChatRoomRun() {
 		ChatRoomNewRoomToUpdate = null
 	}
 	 
-	if (!(ChatRoomData && (!Player.BlackList || (ChatRoomData.Admin.length > 0 && Player.BlackList.indexOf(ChatRoomData.Admin[0]) < 0)) && (!ChatRoomData.Private || Player.FriendList.length > 0))) {
+	var OnlyPersonBlacklisted = (ChatRoomCharacter.length > 1) ? true : false;
+	
+	for (let I = 0; I < ChatRoomCharacter.length; I++) {
+		if (ChatRoomCharacter[I].ID != 0 && (Player.BlackList.indexOf(ChatRoomCharacter[I].MemberNumber) < 0 ||	Player.IsOwnedByMemberNumber(ChatRoomCharacter[I].MemberNumber))) {
+			OnlyPersonBlacklisted = false
+		}
+	}
+	if (!(ChatRoomData && (!Player.BlackList || !OnlyPersonBlacklisted) && (!ChatRoomData.Private || Player.FriendList.length > 0))) {
 		ChatRoomSetLastChatRoom("")
 	}
 	else if (Player.ImmersionSettings 
