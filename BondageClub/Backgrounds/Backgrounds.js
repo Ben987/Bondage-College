@@ -17,7 +17,7 @@ var BackgroundsTagDungeon = "Dungeon";
 var BackgroundsTagAsylum = "Asylum";
 
 /**
- * List of all tags
+ * List of all tags to create online chat rooms
  * @constant
  * @type {string[]}
  */
@@ -28,6 +28,17 @@ var BackgroundsTagList = [
     BackgroundsTagAquatic,
     BackgroundsTagSpecial,
     BackgroundsTagSciFiFantasy,
+    BackgroundsTagClub,
+    BackgroundsTagHouse,
+    BackgroundsTagDungeon
+];
+
+/**
+ * List of all tags to setup your main hall or private room
+ * @constant
+ * @type {string[]}
+ */
+var BackgroundsPrivateRoomTagList = [
     BackgroundsTagClub,
     BackgroundsTagHouse,
     BackgroundsTagDungeon
@@ -136,7 +147,7 @@ var BackgroundsList = [
     { Name: "PartyBasement", Tag: [BackgroundsTagIndoor, BackgroundsTagHouse] },
     { Name: "CosyChalet", Tag: [BackgroundsTagIndoor, BackgroundsTagHouse] },
     { Name: "BalconyNight", Tag: [BackgroundsTagOutdoor, BackgroundsTagHouse] },
-    { Name: "WrestlingRing", Tag: [BackgroundsTagIndoor, BackgroundsTagClub] },
+    { Name: "WrestlingRing", Tag: [BackgroundsTagIndoor] },
     { Name: "RustySaloon", Tag: [BackgroundsTagIndoor] },
     { Name: "OldFarm", Tag: [BackgroundsTagOutdoor] },
     { Name: "AsylumEntrance", Tag: [BackgroundsTagAsylum] },

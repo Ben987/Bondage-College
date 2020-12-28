@@ -46,7 +46,7 @@ Difficulty3Text1,"No rescue maid will come, and no NPC will help you out."
 Difficulty3Text2,No safeword can be used and you cannot leave your owner.
 Difficulty3Text3,"All immersion settings are maxed, and you cannot block any item."
 Difficulty3Text4,You cannot select this if you've changed mode in the last seven days.
-DifficultySummary0A,Easy mode - Restrictions and game mechanisms 
+DifficultySummary0A,Easy mode - Restrictions and game mechanisms
 DifficultySummary0B,can be ignored with toggles.  For pure roleplayers.
 DifficultySummary1A,"Normal mode - Basic restrictions are enforced, "
 DifficultySummary1B,many options to protect you.  For most players.
@@ -107,7 +107,7 @@ SensDepLight,Light
 SensDepNames,Hide names
 SensDepTotal,Total
 SensDepExtreme,Total (no whispers)
-AllowPlayerLeashing,"While leashed, teleport to beep location"
+AllowPlayerLeashing,"Players can drag you to rooms when leashed"
 DisableAutoMaid,Maids come automatically when restrained
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
 GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
@@ -202,6 +202,7 @@ ArousalZoneItemMouth,Mouth & Lips
 ArousalZoneItemHead,Head & Hair
 ArousalZoneItemNose,Nose
 ArousalZoneItemEars,Ears
+ArousalZoneItemHood,Head
 ArousalStutter,Speech stuttering:
 ArousalStutterNone,Never stutter
 ArousalStutterArousal,When you're aroused
@@ -217,3 +218,16 @@ VisibilityResetDescription,This will reset all items to be visible. Click again 
 VisibilityLocked,All items are forced visible under the Extreme difficulty mode
 LeaveSave,Accept changes
 LeaveNoSave,Cancel changes
+GraphicsFont,Game Font
+GraphicsFontDisclaimer,Fallback fonts will be used if your chosen font is unsupported on your device.
+Arial,Arial
+TimesNewRoman,Times New Roman
+Papyrus,Papyrus
+ComicSans,Comic Sans
+Impact,Impact
+Verdana,Verdana
+HelveticaNeue,Helvetica Neue
+CenturyGothic,Century Gothic
+Georgia,Georgia
+CourierNew,Courier New
+Copperplate,Copperplate

@@ -89,8 +89,8 @@ function ServerReconnecting() {
 	LoginUpdateMessage();
 }
 
-/** 
- * Callback used to parse received information related to the server 
+/**
+ * Callback used to parse received information related to the server
  * @param {{OnlinePlayers: number, Time: number}} data - Data object containing the server information
  * @returns {void} - Nothing
  */
@@ -99,7 +99,7 @@ function ServerInfo(data) {
 	if (data.Time != null) CurrentTime = data.Time;
 }
 
-/** 
+/**
  * Callback used when we are disconnected from the server, try to enter the reconnection mode (relog screen) if the user was logged in
  * @param {*} data - Error to log
  * @returns {void} - Nothing
@@ -203,10 +203,29 @@ function ServerPlayerSkillSync() {
 	ServerSend("AccountUpdate", D);
 }
 
+/**
+ * Syncs player's relations and related info to the server.
+ * @returns {void} - Nothing
+ */
+function ServerPlayerRelationsSync() {
+	const D = {};
+	D.FriendList = Player.FriendList;
+	D.GhostList = Player.GhostList;
+	D.WhiteList = Player.WhiteList;
+	D.BlackList = Player.BlackList;
+	Array.from(Player.FriendNames.keys()).forEach(k => {
+		if (!Player.FriendList.includes(k) && !Player.SubmissivesList.has(k))
+			Player.FriendNames.delete(k);
+	})
+	D.FriendNames = LZString.compressToUTF16(JSON.stringify(Array.from(Player.FriendNames)));
+	D.SubmissivesList = LZString.compressToUTF16(JSON.stringify(Array.from(Player.SubmissivesList)));
+	ServerSend("AccountUpdate", D);
+}
+
 /** 
  * Prepares an appearance bundle so we can push it to the server. It minimizes it by keeping only the necessary information. (Asset name, group name, color, properties and difficulty)
  * @param {AppearanceArray} Appearance - The appearance array to bundle
- * @returns {AppearanceBundle} - The appearance bundle created from the given appearance array 
+ * @returns {AppearanceBundle} - The appearance bundle created from the given appearance array
  */
 function ServerAppearanceBundle(Appearance) {
 	var Bundle = [];
@@ -226,11 +245,24 @@ function ServerAppearanceBundle(Appearance) {
  * Validates the properties for a given item to prevent griefing in multiplayer
  * @param {Character} C - The character the item will be applied to
  * @param {Item} Item - The item for which to validate the properties
+ * @param {Object} [Validation=null] - Validates the LockMemberNumber against the source
+ * @param {number} Validation.SourceMemberNumber - Source character MemberNumber
+ * @param {number} Validation.FromOwner - Indicates the source is an owner or herself
+ * @param {number} Validation.FromLoversOrOwner - Indicates the source is an lover or owner or herself
  * @returns {void} - Nothing
  */
-function ServerValidateProperties(C, Item) {
+function ServerValidateProperties(C, Item, Validation) {
 	// No validations for NPCs
 	if ((C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) return;
+
+	// Remove LockMemberNumber if the source is incorrect prior to all checks
+	if ((Item.Property != null) && (C.ID == 0) && (Validation != null) && (Validation.SourceMemberNumber != null)) {
+		var Lock = InventoryGetLock(Item);
+		if ((Lock != null) && (Lock.Asset != null)) {
+			if (!Validation.FromOwner && Lock.Asset.OwnerOnly) delete Item.Property.LockMemberNumber;
+			else if (!Validation.FromLoversOrOwner && Lock.Asset.LoverOnly) delete Item.Property.LockMemberNumber;
+		}
+	}
 
 	// For each effect on the item
 	if ((Item.Property != null) && (Item.Property.Effect != null)) {
@@ -250,6 +282,9 @@ function ServerValidateProperties(C, Item) {
 				delete Item.Property.LockedBy;
 				delete Item.Property.LockMemberNumber;
 				delete Item.Property.CombinationNumber;
+				delete Item.Property.Password;
+				delete Item.Property.Hint;
+				delete Item.Property.LockSet;
 				delete Item.Property.RemoveTimer;
 				delete Item.Property.MaxTimer;
 				delete Item.Property.RemoveItem;
@@ -270,6 +305,15 @@ function ServerValidateProperties(C, Item) {
 						Item.Property.CombinationNumber = "0000";
 					}
 				} else delete Item.Property.CombinationNumber;
+				
+				// Make sure the password on the lock is valid, 6 letters only
+				var Lock = InventoryGetLock(Item);
+				if ((Item.Property.Password != null) && (typeof Item.Property.Password == "string")) {
+					var Regex = /^[A-Z]+$/;
+					if (!Item.Property.Password.toUpperCase().match(Regex) || (Item.Property.Password.length > 8)) {
+						Item.Property.Password = "UNLOCK";
+					}
+				} else delete Item.Property.Password;
 
 				// Make sure the remove timer on the lock is valid
 				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
@@ -280,11 +324,17 @@ function ServerValidateProperties(C, Item) {
 					}
 				} else delete Item.Property.RemoveTimer;
 
+				var LockNumber = Item.Property.LockMemberNumber;
+				var OwnerNumber = C.Ownership && C.Ownership.MemberNumber;
+
 				// Make sure the owner lock is valid
-				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || ((C.Ownership.MemberNumber != Item.Property.LockMemberNumber) && (C.MemberNumber != Item.Property.LockMemberNumber)))) {
+				if (Lock.Asset.OwnerOnly && ((LockNumber == null) || ((LockNumber != C.MemberNumber) && (LockNumber != OwnerNumber)))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.CombinationNumber;
+					delete Item.Property.Password;
+					delete Item.Property.Hint;
+					delete Item.Property.LockSet;
 					delete Item.Property.RemoveTimer;
 					delete Item.Property.MaxTimer;
 					delete Item.Property.RemoveItem;
@@ -294,11 +344,13 @@ function ServerValidateProperties(C, Item) {
 					Item.Property.Effect.splice(E, 1);
 				}
 
-				// Make sure the lover lock is valid
-				if (Lock.Asset.LoverOnly && ((Item.Property.LockMemberNumber == null) || ((C.GetLoversNumbers().indexOf(Item.Property.LockMemberNumber) < 0) && (C.MemberNumber != Item.Property.LockMemberNumber)))) {
+				if (Lock.Asset.LoverOnly && ((LockNumber == null) || (C.GetLoversNumbers().length == 0) || ((LockNumber != C.MemberNumber) && !C.GetLoversNumbers().includes(LockNumber) && !((LockNumber == OwnerNumber) && ((C.ID != 0) || !LogQuery(C, "BlockLoverLockOwner", "LoverRule")))))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.CombinationNumber;
+					delete Item.Property.Password;
+					delete Item.Property.Hint;
+					delete Item.Property.LockSet;
 					delete Item.Property.RemoveTimer;
 					delete Item.Property.MaxTimer;
 					delete Item.Property.RemoveItem;
@@ -359,11 +411,11 @@ function ServerValidateProperties(C, Item) {
 
 /**
  * Loads the appearance assets from a server bundle that only contains the main info (no asset) and validates their properties to prevent griefing and respecting permissions in multiplayer
- * @param {Character} C - Character for which to load the appearance 
+ * @param {Character} C - Character for which to load the appearance
  * @param {string} AssetFamily - Family of assets used for the appearance array
  * @param {AppearanceBundle} Bundle - Bundled appearance
  * @param {number} SourceMemberNumber - Member number of the user who triggered the change
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
@@ -374,6 +426,12 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			B--;
 		}
 
+	// We do not check if the load is from the Player
+	var FromSelf = (SourceMemberNumber != null) && (SourceMemberNumber == C.MemberNumber);
+	var FromOwner = (SourceMemberNumber != null) && (C.Ownership != null) && ((SourceMemberNumber == C.Ownership.MemberNumber) || FromSelf);
+	var LoverNumbers = CharacterGetLoversNumbers(C);
+	var FromLoversOrOwner = (SourceMemberNumber != null) && (LoverNumbers.length != 0) && (LoverNumbers.includes(SourceMemberNumber) || FromOwner);
+
 	// Clears the appearance to begin
 	var Appearance = [];
 
@@ -383,60 +441,16 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly && !C.Appearance[A].Asset.LoverOnly) {
 				Appearance.push(C.Appearance[A]);
 			} else {
-				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
-					var NA = C.Appearance[A];
-					if (!C.Appearance[A].Asset.OwnerOnly) {
-
-						// If the owner-locked item is sent back from a non-owner, we allow to change some properties and lock it back with the owner lock
+				if ((!FromOwner && InventoryOwnerOnlyItem(C.Appearance[A])) || (!FromLoversOrOwner && InventoryLoverOnlyItem(C.Appearance[A]))) {
+					// If the owner-locked item is sent back from a non-owner, we allow to change some properties and lock it back with the owner lock
+					if (!C.Appearance[A].Asset.OwnerOnly && !C.Appearance[A].Asset.LoverOnly)  {
 						for (let B = 0; B < Bundle.length; B++)
-							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
-								NA.Property = Bundle[B].Property;
-
-						// Some Properties should not be changed
-						if (C.Appearance[A].Property) {
-							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
-							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
-							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
-							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
-							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
-							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
-							if (!NA.Property.EnableRandomInput || NA.Property.LockedBy != "OwnerTimerPadlock") {
-								if (C.Appearance[A].Property.MemberNumberList != null) NA.Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList; else delete NA.Property.MemberNumberList;
-								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = Math.round(C.Appearance[A].Property.RemoveTimer); else delete NA.Property.RemoveTimer;
+							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily)) {
+								ServerItemCopyProperty(C, C.Appearance[A], Bundle[B].Property);
+								break;
 							}
-						}
-						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, NA.Property.LockMemberNumber);
-
 					}
-					Appearance.push(NA);
-				}
-				if ((C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && InventoryLoverOnlyItem(C.Appearance[A])) {
-					var NA = C.Appearance[A];
-					if (!C.Appearance[A].Asset.LoverOnly) {
-
-						// If the lover-locked item is sent back from a non-lover, we allow to change some properties and lock it back with the lover lock
-						for (let B = 0; B < Bundle.length; B++)
-							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
-								NA.Property = Bundle[B].Property;
-
-						// Some Properties should not be changed
-						if (C.Appearance[A].Property) {
-							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
-							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
-							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
-							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
-							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
-							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
-							if (!NA.Property.EnableRandomInput || NA.Property.LockedBy != "LoversTimerPadlock") {
-								if (C.Appearance[A].Property.MemberNumberList != null) NA.Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList; else delete NA.Property.MemberNumberList;
-								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = Math.round(C.Appearance[A].Property.RemoveTimer); else delete NA.Property.RemoveTimer;
-							}
-						}
-						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Property.LockedBy == "LoversPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoversPadlock") }, NA.Property.LockMemberNumber);
-					}
-					Appearance.push(NA);
+					Appearance.push(C.Appearance[A]);
 				}
 			}
 		}
@@ -454,14 +468,10 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
 
 				// OwnerOnly items can only get update if it comes from owner
-				if (Asset[I].OwnerOnly && (C.ID == 0)) {
-					if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || ((C.Ownership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) break;
-				}
+				if (SourceMemberNumber != null && Asset[I].OwnerOnly && (C.ID == 0) && !FromOwner) break;
 
 				// LoverOnly items can only get update if it comes from lover
-				if (Asset[I].LoverOnly && (C.ID == 0)) {
-					if ((C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && (SourceMemberNumber != null)) break;
-				}
+				if (SourceMemberNumber != null && Asset[I].LoverOnly && (C.ID == 0) && !FromLoversOrOwner) break;
 
 				var ColorSchema = Asset[I].Group.ColorSchema;
 				var Color = Bundle[A].Color;
@@ -482,15 +492,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				// Sets the item properties and make sure a non-owner cannot add an owner lock
 				if (Bundle[A].Property != null) {
 					NA.Property = Bundle[A].Property;
-					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(NA)) {
-						var Lock = InventoryGetLock(NA);
-						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
-					}
-					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && InventoryLoverOnlyItem(NA)) {
-						var Lock = InventoryGetLock(NA);
-						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
-					}
-					ServerValidateProperties(C, NA);
+					ServerValidateProperties(C, NA, { SourceMemberNumber: SourceMemberNumber, FromOwner: FromOwner, FromLoversOrOwner: FromLoversOrOwner });
 				}
 
 				// Make sure we don't push an item if there's already an item in that slot
@@ -522,7 +524,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 			// Adds the missing appearance part, we copy the mirrored group if it is not found and it exists
 			if (!Found) {
-				if (AssetGroup[G].MirrorGroup) { 
+				if (AssetGroup[G].MirrorGroup) {
 					var MirroredAsset = null;
 					for (let A = 0; A < Appearance.length; A++)
 						if (Appearance[A].Asset.Group.Name == AssetGroup[G].MirrorGroup) {
@@ -554,6 +556,34 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 }
 
 /**
+ * Validates a new item properties to the item the character has
+ * @param {Character} C - Character for which to apply the update
+ * @param {Item} Item - The item the character has
+ * @param {Property} NewProperty - The new Property we want to set on the item
+ * @returns {void} - Nothing
+ */
+function ServerItemCopyProperty(C, Item, NewProperty) {
+	if (Item.Property == null) return;
+	if (Item.Property.LockedBy != null) NewProperty.LockedBy = Item.Property.LockedBy;
+	if (Item.Property.LockMemberNumber != null) NewProperty.LockMemberNumber = Item.Property.LockMemberNumber; else delete NewProperty.LockMemberNumber;
+	if (Item.Property.CombinationNumber != null) NewProperty.CombinationNumber = Item.Property.CombinationNumber; else delete NewProperty.CombinationNumber;
+	if (Item.Property.RemoveItem != null) NewProperty.RemoveItem = Item.Property.RemoveItem; else delete NewProperty.RemoveItem;
+	if (Item.Property.ShowTimer != null) NNewProperty.ShowTimer = Item.Property.ShowTimer; else delete NewProperty.ShowTimer;
+	if (Item.Property.EnableRandomInput != null) NewProperty.EnableRandomInput = Item.Property.EnableRandomInput; else delete NewProperty.EnableRandomInput;
+	if (!NewProperty.EnableRandomInput || NewProperty.LockedBy != "LoversTimerPadlock") {
+		if (Item.Property.MemberNumberList != null) NewProperty.MemberNumberList = Item.Property.MemberNumberList; else delete NewProperty.MemberNumberList;
+		if (Item.Property.RemoveTimer != null) NewProperty.RemoveTimer = Math.round(Item.Property.RemoveTimer); else delete NewProperty.RemoveTimer;
+	}
+	if (Item.Property.Password != null) NewProperty.Password = Item.Property.Password; else delete NewProperty.Password;
+	if (Item.Property.Hint != null) NewProperty.Hint = Item.Property.Hint; else delete NewProperty.Hint;
+	if (Item.Property.LockSet != null) NewProperty.LockSet = Item.Property.LockSet; else delete NewProperty.LockSet;
+	Item.Property = NewProperty;
+	ServerValidateProperties(C, Item);
+	if (Item.Property.LockedBy == "OwnerPadlock") InventoryLock(C, Item, { Asset: AssetGet(C.AssetFamily, "ItemMisc", "OwnerPadlock") }, NewProperty.LockMemberNumber);
+	else if (Item.Property.LockedBy == "LoversPadlock") InventoryLock(C, Item, { Asset: AssetGet(C.AssetFamily, "ItemMisc", "LoversPadlock") }, NewProperty.LockMemberNumber);
+}
+
+/**
  * Validates and returns a color against a color schema
  * @param {string} Color - The color to validate
  * @param {string[]} Schema - The color schema to validate against (a list of accepted Color values)
@@ -582,9 +612,9 @@ function ServerPlayerAppearanceSync() {
 
 }
 
-/** 
+/**
  * Syncs all the private room characters with the server
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function ServerPrivateCharacterSync() {
 	if (PrivateVendor != null) {
@@ -611,7 +641,7 @@ function ServerPrivateCharacterSync() {
 	}
 };
 
-/** 
+/**
  * Callback used to parse received information related to a query made by the player such as viewing their online friends or current email status
  * @param {object} data - Data object containing the query data
  * @returns {void} - Nothing
@@ -627,14 +657,14 @@ function ServerAccountQueryResult(data) {
 	}
 }
 
-/** 
+/**
  * Callback used to parse received information related to ta beep from another account
  * @param {object} data - Data object containing the beep object which contain at the very least a name and a member number
  * @returns {void} - Nothing
  */
 function ServerAccountBeep(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
-			if (!data.BeepType || data.BeepType == "") {
+		if (!data.BeepType || data.BeepType == "") {
 			ServerBeep.MemberNumber = data.MemberNumber;
 			ServerBeep.MemberName = data.MemberName;
 			ServerBeep.ChatRoomName = data.ChatRoomName;
@@ -648,11 +678,20 @@ function ServerAccountBeep(data) {
 				ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
 			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
-		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber) {
-			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
-				if (ChatRoomCanBeLeashed(Player)) {
-					CommonSetScreen("Room", "ChatSearch")
+		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber && data.ChatRoomName) {
+			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing != false && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
+				if (ChatRoomCanBeLeashedBy(data.MemberNumber, Player)) {
+					
 					ChatRoomJoinLeash = data.ChatRoomName
+					
+					DialogLeave()
+					ChatRoomClearAllElements();
+					if (CurrentScreen == "ChatRoom") {
+						ServerSend("ChatRoomLeave", "");
+						CommonSetScreen("Online", "ChatSearch");
+					}
+					else ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList) //CommonSetScreen("Room", "ChatSearch")
+					
 				} else {
 					ChatRoomLeashPlayer = null
 				}
@@ -668,7 +707,7 @@ function ServerDrawBeep() {
 	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
 }
 
-/** 
+/**
  * Callback used to parse received information related to the player ownership data
  * @param {object} data - Data object containing the Owner name and Ownership object
  * @returns {void} - Nothing
@@ -697,7 +736,7 @@ function ServerAccountOwnership(data) {
 
 }
 
-/** 
+/**
  * Callback used to parse received information related to the player lovership data
  * @param {object} data - Data object containing the Lovership array
  * @returns {void} - Nothing

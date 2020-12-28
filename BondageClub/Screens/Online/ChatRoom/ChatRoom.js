@@ -25,23 +25,23 @@ var ChatRoomLeashList = []
 var ChatRoomLeashPlayer = null
 
 /**
- * Checks if the player can add the current character to her whitelist. 
- * @returns {boolean} - TRUE if the current character is not in the player's whitelist nor blacklist. 
+ * Checks if the player can add the current character to her whitelist.
+ * @returns {boolean} - TRUE if the current character is not in the player's whitelist nor blacklist.
  */
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
 /**
- * Checks if the player can add the current character to her blacklist. 
- * @returns {boolean} - TRUE if the current character is not in the player's whitelist nor blacklist. 
+ * Checks if the player can add the current character to her blacklist.
+ * @returns {boolean} - TRUE if the current character is not in the player's whitelist nor blacklist.
  */
 function ChatRoomCanAddBlackList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
 /**
- * Checks if the player can remove the current character from her whitelist. 
- * @returns {boolean} - TRUE if the current character is in the player's whitelist, but not her blacklist. 
+ * Checks if the player can remove the current character from her whitelist.
+ * @returns {boolean} - TRUE if the current character is in the player's whitelist, but not her blacklist.
  */
 function ChatRoomCanRemoveWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 /**
- * Checks if the player can remove the current character from her blacklist. 
- * @returns {boolean} - TRUE if the current character is in the player's blacklist, but not her whitelist. 
+ * Checks if the player can remove the current character from her blacklist.
+ * @returns {boolean} - TRUE if the current character is in the player's blacklist, but not her whitelist.
  */
 function ChatRoomCanRemoveBlackList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 /**
@@ -92,6 +92,11 @@ function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (Current
  */
 function ChatRoomIsCollaredByPlayer() { return ((CurrentCharacter != null) && (CurrentCharacter.Ownership != null) && (CurrentCharacter.Ownership.Stage == 1) && (CurrentCharacter.Ownership.MemberNumber == Player.MemberNumber)) }
 /**
+ * Checks if the current character is lover of the player.
+ * @returns {boolean} - TRUE if the current character is lover of the player.
+ */
+function ChatRoomIsLoverOfPlayer() { return ((CurrentCharacter != null) && CurrentCharacter.GetLoversNumbers().includes(Player.MemberNumber)) }
+/**
  * Checks if the current character can serve drinks.
  * @returns {boolean} - TRUE if the character is a maid and is free.
  */
@@ -125,7 +130,7 @@ function ChatRoomCanAssistStruggle() { return CurrentCharacter.AllowItem && !Cur
  * Checks if the character options menu is available.
  * @returns {boolean} - Whether or not the player can interact with the target character
  */
-function ChatRoomCanPerformCharacterAction() { return ChatRoomCanAssistStand() ||  ChatRoomCanAssistKneel() || ChatRoomCanAssistStruggle()}
+function ChatRoomCanPerformCharacterAction() { return ChatRoomCanAssistStand() || ChatRoomCanAssistKneel() || ChatRoomCanAssistStruggle() || ChatRoomCanHoldLeash() || ChatRoomCanStopHoldLeash()}
 /**
  * Checks if the target character can be helped back on her feet. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
  * @returns {boolean} - Whether or not the target character can stand
@@ -145,13 +150,13 @@ function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Play
  * Checks if the player can grab the targeted player's leash
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
-function ChatRoomCanHoldLeash() { return CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) < 0
-	&& ChatRoomCanBeLeashed(CurrentCharacter) }
+function ChatRoomCanHoldLeash() { return CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing != false && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) < 0
+	&& ChatRoomCanBeLeashed(CurrentCharacter)}
 /**
  * Checks if the player can let go of the targeted player's leash
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
-function ChatRoomCanStopHoldLeash() { if (CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) >= 0) {
+function ChatRoomCanStopHoldLeash() { if (CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing != false && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) >= 0) {
 		if (ChatRoomCanBeLeashed(CurrentCharacter)) {
 			return true
 		} else {
@@ -165,26 +170,38 @@ function ChatRoomCanStopHoldLeash() { if (CurrentCharacter.AllowItem && Player.C
  * @returns {boolean} - TRUE if the player can be leashed
  */
 function ChatRoomCanBeLeashed(C) {
-	// Have to not be tethered, and need a leash
-	var canLeash = false
-	var isTrapped = false
-	var neckLock = null
-	for (let A = 0; A < C.Appearance.length; A++)
-		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily)) {
-			if (C.Appearance[A].Asset.Name.indexOf("Leash") >= 0 || (C.Appearance[A].Property && C.Appearance[A].Property.Type && C.Appearance[A].Property.Type.indexOf("Leash") >= 0)) {
-				canLeash = true
-				if (C.Appearance[A].Asset.Group.Name == "ItemNeckRestraints")
-					neckLock = InventoryGetLock(Player.Appearance[A])
+	return ChatRoomCanBeLeashedBy(Player.MemberNumber, C);
+}
+
+/**
+ * Checks if the targeted player is a valid leash target for the source member number
+ * @param {number} sourceMemberNumber - Member number of the source player
+ * @param {Character} C - Target player
+ * @returns {boolean} - TRUE if the player can be leashed
+ */
+function ChatRoomCanBeLeashedBy(sourceMemberNumber, C) {
+	if ((ChatRoomData && ChatRoomData.BlockCategory.indexOf("Leashing") < 0) || !ChatRoomData) {
+		// Have to not be tethered, and need a leash
+		var canLeash = false
+		var isTrapped = false
+		var neckLock = null
+		for (let A = 0; A < C.Appearance.length; A++)
+			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily)) {
+				if (InventoryItemHasEffect(C.Appearance[A], "Leash", true)) {
+					canLeash = true
+					if (C.Appearance[A].Asset.Group.Name == "ItemNeckRestraints")
+						neckLock = InventoryGetLock(C.Appearance[A])
+				} else if (InventoryItemHasEffect(C.Appearance[A], "Tethered", true) || InventoryItemHasEffect(C.Appearance[A], "Mounted", true) || InventoryItemHasEffect(C.Appearance[A], "Enclose", true)){
+					isTrapped = true
+				}
 			}
-		}
-	if ((C.Effect.indexOf("Tethered") >= 0) || (C.Effect.indexOf("Mounted") >= 0) || (C.Effect.indexOf("Enclosed") >= 0)) isTrapped = true
-	
-	if (canLeash && !isTrapped) {
-		if (!neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
-			(neckLock.Asset.OwnerOnly && C.Ownership && C.Ownership.MemberNumber == data.MemberNumber) ||
-			(neckLock.Asset.LoverOnly && C.GetLoversNumbers() && C.GetLoversNumbers().indexOf(data.MemberNumber) >= 0))
-		{
-			return true
+
+		if (canLeash && !isTrapped) {
+			if (!neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
+				(neckLock.Asset.OwnerOnly && C.IsOwnedByMemberNumber(sourceMemberNumber)) ||
+				(neckLock.Asset.LoverOnly && C.IsLoverOfMemberNumber(sourceMemberNumber))) {
+				return true
+			}
 		}
 	}
 	return false
@@ -239,6 +256,43 @@ function ChatRoomLoad() {
 	ChatRoomCreateElement();
 	ChatRoomCharacterUpdate(Player);
 	ActivityChatRoomArousalSync(Player);
+}
+
+/**
+ * Removes all elements that can be open in the chat room
+*/
+function ChatRoomClearAllElements() {
+	// Friendlist
+	ElementRemove("FriendList");
+	
+	// Admin
+	ElementRemove("InputName");
+	ElementRemove("InputDescription");
+	ElementRemove("InputSize");
+	ElementRemove("InputAdminList");
+	ElementRemove("InputBanList");
+	ElementRemove("InputBackground");
+	ElementRemove("TagDropDown");
+	
+	// Chatroom
+	ElementRemove("InputChat");
+	ElementRemove("TextAreaChatLog");
+	
+	// Dialog
+	DialogLeave()
+	
+	// Preferences
+	ElementRemove("InputEmailOld");
+	ElementRemove("InputEmailNew");
+	ElementRemove("InputCharacterLabelColor");
+	
+	// Profile
+    ElementRemove("DescriptionInput");
+	
+	// Wardrobe
+	ElementRemove("InputWardrobeName"); 
+	
+	
 }
 
 /**
@@ -375,6 +429,7 @@ function ChatRoomDrawCharacter(DoClick) {
 					ChatRoomOwnershipOption = "";
 					ChatRoomLovershipOption = "";
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
+					if (ChatRoomCharacter[C].IsOwnedByPlayer() || ChatRoomCharacter[C].IsLoverOfPlayer()) ServerSend("ChatRoomChat", { Content: "RuleInfoGet", Type: "Hidden", Target: ChatRoomCharacter[C].MemberNumber });
 					CharacterSetCurrent(ChatRoomCharacter[C]);
 
 				} else
@@ -399,12 +454,13 @@ function ChatRoomDrawCharacter(DoClick) {
 			DrawCharacter(ChatRoomCharacter[C], CharX, CharY, Zoom);
 			if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) DrawImage("Icons/Small/Whisper.png", CharX + 75 * Zoom, CharY + 950 * Zoom);
 
-			// Draw the friendlist / blacklist / whitelist icons
+			// Draw the ghostlist/friendlist, whitelist/blacklist, admin icons
 			if (ChatRoomCharacter[C].MemberNumber != null) {
-				if (Player.WhiteList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/WhiteList.png", CharX + 75 * Zoom, CharY);
-				else if (Player.BlackList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/BlackList.png", CharX + 75 * Zoom, CharY);
-				if (Player.GhostList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/GhostList.png", CharX + 375 * Zoom, CharY);
-				else if (Player.FriendList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/FriendList.png", CharX + 375 * Zoom, CharY);
+				if (Player.WhiteList.includes(ChatRoomCharacter[C].MemberNumber)) DrawImageResize("Icons/Small/WhiteList.png", CharX + 75 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
+				else if (Player.BlackList.includes(ChatRoomCharacter[C].MemberNumber)) DrawImageResize("Icons/Small/BlackList.png", CharX + 75 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
+				if (Array.isArray(ChatRoomData.Admin) && ChatRoomData.Admin.includes(ChatRoomCharacter[C].MemberNumber))  DrawImageResize("Icons/Small/Admin.png", CharX + 125 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
+				if (Player.GhostList.includes(ChatRoomCharacter[C].MemberNumber)) DrawImageResize("Icons/Small/GhostList.png", CharX + 375 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
+				else if (Player.FriendList.includes(ChatRoomCharacter[C].MemberNumber)) DrawImageResize("Icons/Small/FriendList.png", CharX + 375 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
 			}
 		}
 	}
@@ -481,8 +537,7 @@ function ChatRoomRun() {
 		if ((CurrentTime > ChatRoomSlowtimer) && (ChatRoomSlowtimer != 0)) {
 			ChatRoomSlowtimer = 0;
 			ChatRoomSlowStop = false;
-			ElementRemove("InputChat");
-			ElementRemove("TextAreaChatLog");
+			ChatRoomClearAllElements();
 			ServerSend("ChatRoomLeave", "");
 			CommonSetScreen("Online", "ChatSearch");
 		}
@@ -501,8 +556,8 @@ function ChatRoomRun() {
 	if (!Player.IsSlow() || (ChatRoomSlowtimer == 0 && !ChatRoomCanLeave())){
 		if (ChatRoomSlowtimer != 0) ChatRoomSlowtimer = 0;
 		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
-	}	
-	
+	}
+
 	if (ChatRoomGame == "") DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
 	else DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/GameOption.png", TextGet("MenuGameOption"));
 	DrawButton(1353, 2, 120, 60, "", (Player.CanKneel()) ? "White" : "Pink", "Icons/Rectangle/Kneel.png", TextGet("MenuKneel"));
@@ -511,7 +566,7 @@ function ChatRoomRun() {
 	DrawButton(1875, 2, 120, 60, "", "White", "Icons/Rectangle/Preference.png", TextGet("MenuAdmin"));
 
 	// In orgasm mode, we add a pink filter and different controls depending on the stage.  The pink filter shows a little above 90
-	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {
+	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {	
 		if ((Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
 			DrawRect(0, 0, 1003, 1000, "#FFB0B0B0");
 			DrawRect(1003, 0, 993, 63, "#FFB0B0B0");
@@ -525,7 +580,8 @@ function ChatRoomRun() {
 			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
 			ActivityOrgasmProgressBar(50, 970);
 		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99)) {
-			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6)) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
+			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6) ||
+				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3))) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
 			else if (ChatRoomCharacter.length == 3) DrawRect(0, 50, 1003, 900, "#FFB0B040");
 			else if (ChatRoomCharacter.length == 4) DrawRect(0, 150, 1003, 700, "#FFB0B040");
 			else if (ChatRoomCharacter.length == 5) DrawRect(0, 250, 1003, 500, "#FFB0B040");
@@ -560,11 +616,13 @@ function ChatRoomClick() {
 
 	// When the user leaves
 	if (MouseIn(1005, 0, 120, 62) && ChatRoomCanLeave() && !Player.IsSlow()) {
-		ElementRemove("InputChat");
-		ElementRemove("TextAreaChatLog");
+		ChatRoomClearAllElements();
 		ServerSend("ChatRoomLeave", "");
 		CommonSetScreen("Online", "ChatSearch");
 		CharacterDeleteAllOnline();
+		
+		// Clear leash since the player has escaped
+		ChatRoomLeashPlayer = null
 	}
 
 	// When the player is slow and attempts to leave
@@ -672,6 +730,8 @@ function ChatRoomKeyDown() {
 		ElementValue("InputChat", ChatRoomLastMessage[ChatRoomLastMessageIndex]);
 	}
 
+	// On escape, scroll to the bottom of the chat
+	if (KeyPress == 27) ElementScrollToEnd("TextAreaChatLog");
 }
 
 /**
@@ -946,47 +1006,53 @@ function ChatRoomMessage(data) {
 			var msg = ChatRoomHTMLEntities(data.Content);
 
 			// Hidden messages are processed separately, they are used by chat room mini-games / events
-			if ((data.Type != null) && (data.Type == "Hidden")) {
-				for (let A = 1; A <= 6; A++)
-					if (msg == "StruggleAssist" + A.toString()) {
+			if (data.Type == "Hidden") {
+				if (msg == "RuleInfoGet") ChatRoomGetLoadRules(SenderCharacter);
+				else if (msg == "RuleInfoSet") ChatRoomSetLoadRules(SenderCharacter, data.Dictionary);
+				else if (msg.startsWith("StruggleAssist")) {
+					var A = parseInt( msg.substr("StruggleAssist".length));
+					if ((A >= 1) && (A <= 7)) {
 						ChatRoomStruggleAssistTimer = CurrentTime + 60000;
 						ChatRoomStruggleAssistBonus = A;
 					}
-				if (msg == "SlowStop"){
+				}
+				else if (msg == "SlowStop"){
 					ChatRoomSlowtimer = CurrentTime + 45000;
 					ChatRoomSlowStop = true;
-				} 
-				if (msg == "HoldLeash"){
-					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer) {
-						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
+				}
+				else if (msg.startsWith("MaidDrinkPick")){
+					var A = parseInt(msg.substr("MaidDrinkPick".length));
+					if ((A == 0) || (A == 5) || (A == 10)) MaidQuartersOnlineDrinkPick(data.Sender, A);
+				}
+				else if (msg.startsWith("PayQuest")) ChatRoomPayQuest(data);
+				else if (msg.startsWith("OwnerRule")) data = ChatRoomSetRule(data);
+				else if (msg.startsWith("LoverRule")) data = ChatRoomSetRule(data);
+				else if (msg == "HoldLeash"){
+					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer && ChatRoomLeashPlayer != null) {
+						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: ChatRoomLeashPlayer });
 					}
-					if (ChatRoomCanBeLeashed(Player)) {
+					if (ChatRoomCanBeLeashedBy(SenderCharacter.MemberNumber, Player)) {
 						ChatRoomLeashPlayer = SenderCharacter.MemberNumber
 					} else {
 						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
 					}
 				}
-				if (msg == "StopHoldLeash"){
+				else if (msg == "StopHoldLeash"){
 					if (SenderCharacter.MemberNumber == ChatRoomLeashPlayer) {
 						ChatRoomLeashPlayer = null
 					}
 				}
 				if (msg == "PingHoldLeash"){ // The dom will ping all players on her leash list and ones that no longer have her as their leasher will remove it
-					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer || !ChatRoomCanBeLeashed(Player)) {
+					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer || !ChatRoomCanBeLeashedBy(SenderCharacter.MemberNumber, Player)) {
 						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
 					}
 				}
- 				if (msg == "RemoveLeash"){
+ 				else if (msg == "RemoveLeash" || msg == "RemoveLeashNotFriend"){
 					if (ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber) >= 0) {
 						ChatRoomLeashList.splice(ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber), 1)
 					} 
-				} 
-				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
-				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
-				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
-				if (msg.substring(0, 8) == "PayQuest") ChatRoomPayQuest(data);
-				if (msg.substring(0, 9) == "OwnerRule") data = ChatRoomSetRule(data);
-				if (data.Type == "Hidden") return;
+				}
+ 				return;
 			}
 
 			// Checks if the message is a notification about the user entering or leaving the room
@@ -1192,6 +1258,12 @@ function ChatRoomSync(data) {
 			else if (ChatRoomCharacter.length == data.Character.length - 1) {
 				ChatRoomCharacter.push(CharacterLoadOnline(data.Character[data.Character.length - 1], data.SourceMemberNumber));
 				ChatRoomData = data;
+				
+				if (ChatRoomLeashList.indexOf(data.SourceMemberNumber) >= 0) {
+					// Ping to make sure they are still leashed
+					ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: data.SourceMemberNumber });
+				}
+				
 				return;
 			}
 		}
@@ -1343,16 +1415,25 @@ function ChatRoomAllowChangeLockedItem(Data, Item) {
 function ChatRoomSyncItem(data) {
 	if ((data == null) || (typeof data !== "object") || (data.Source == null) || (typeof data.Source !== "number") || (data.Item == null) || (typeof data.Item !== "object") || (data.Item.Target == null) || (typeof data.Item.Target !== "number") || (data.Item.Group == null) || (typeof data.Item.Group !== "string")) return;
 	for (let C = 0; C < ChatRoomCharacter.length; C++)
-		if (ChatRoomCharacter[C].MemberNumber == data.Item.Target) {
+		if (ChatRoomCharacter[C].MemberNumber === data.Item.Target) {
+
+			var FromSelf = data.Source === data.Item.Target;
+			var FromOwner = (ChatRoomCharacter[C].Ownership != null) && ((data.Source === ChatRoomCharacter[C].Ownership.MemberNumber) || FromSelf);
+			var LoverNumbers = ChatRoomCharacter[C].GetLoversNumbers();
+			var FromLoversOrOwner = (LoverNumbers.length !== 0) && (LoverNumbers.includes(data.Source) || FromOwner || FromSelf);
 
 			// From another user, we prevent changing the item if the current item is locked by owner/lover locks
-			if (data.Source != data.Item.Target) {
+			if (!FromOwner) {
 				var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
-				if ((Item != null) && (ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item))
-					if (!ChatRoomAllowChangeLockedItem(data, Item))
-						return;
-				if ((Item != null) && (ChatRoomCharacter[C].GetLoversNumbers().indexOf(data.Source) < 0) && InventoryLoverOnlyItem(Item) && ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source)) && !ChatRoomAllowChangeLockedItem(data, Item))
+				if ((Item != null) && (InventoryOwnerOnlyItem(Item) || (!FromLoversOrOwner && InventoryLoverOnlyItem(Item)))) {
+					if (data.Item.Property == null) return;
+					if (Item.Asset.OwnerOnly) return;
+					if (Item.Asset.LoverOnly) return;
+					if (Item.Asset.Name === data.Item.Name) {
+						ServerItemCopyProperty(ChatRoomCharacter[C], Item, data.Item.Property)
+					}
 					return;
+				}
 			}
 
 			// If there's no name in the item packet, we remove the item instead of wearing it
@@ -1360,14 +1441,25 @@ function ChatRoomSyncItem(data) {
 			if ((data.Item.Name == null) || (data.Item.Name == "")) {
 				InventoryRemove(ChatRoomCharacter[C], data.Item.Group);
 			} else {
+				var Color = data.Item.Color;
+				if (!CommonColorIsValid(Color)) Color = "Default";
+
+				if (!FromOwner) {
+					var Item = { Asset: AssetGet(ChatRoomCharacter[C].AssetFamily, data.Item.Group, data.Item.Name), Property: data.Item.Property };
+					if (data.Item.Property != null)	ServerValidateProperties(ChatRoomCharacter[C], Item, { SourceMemberNumber: data.Source, FromOwner: FromOwner, FromLoversOrOwner: FromLoversOrOwner })
+					if (InventoryOwnerOnlyItem(Item) || (!FromLoversOrOwner && InventoryLoverOnlyItem(Item))) {
+						ChatRoomAllowCharacterUpdate = true;
+						return;
+					}
+				}
 
 				// Wear the item and applies locks and properties if we need to
-				InventoryWear(ChatRoomCharacter[C], data.Item.Name, data.Item.Group, data.Item.Color, data.Item.Difficulty);
+				InventoryWear(ChatRoomCharacter[C], data.Item.Name, data.Item.Group, Color, data.Item.Difficulty);
 				if (data.Item.Property != null) {
 					var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
 					if (Item != null) {
 						Item.Property = data.Item.Property;
-						ServerValidateProperties(ChatRoomCharacter[C], Item);
+						ServerValidateProperties(ChatRoomCharacter[C], Item, { SourceMemberNumber: data.Source, FromOwner: FromOwner, FromLoversOrOwner: FromLoversOrOwner });
 						CharacterRefresh(ChatRoomCharacter[C]);
 					}
 				}
@@ -1581,7 +1673,7 @@ function ChatRoomGetTransparentColor(Color) {
 
 /**
  * Adds or removes an online member to/from a specific list. (From the dialog menu)
- * @param {"Add" | "Remove"} Operation - Operation to perform. 
+ * @param {"Add" | "Remove"} Operation - Operation to perform.
  * @param {string} ListType - Name of the list to alter. (Whitelist, friendlist, blacklist, ghostlist)
  * @returns {void} - Nothing
  */
@@ -1589,9 +1681,7 @@ function ChatRoomListManage(Operation, ListType) {
 	if (((Operation == "Add" || Operation == "Remove")) && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player[ListType] != null) && Array.isArray(Player[ListType])) {
 		if ((Operation == "Add") && (Player[ListType].indexOf(CurrentCharacter.MemberNumber) < 0)) Player[ListType].push(CurrentCharacter.MemberNumber);
 		if ((Operation == "Remove") && (Player[ListType].indexOf(CurrentCharacter.MemberNumber) >= 0)) Player[ListType].splice(Player[ListType].indexOf(CurrentCharacter.MemberNumber), 1);
-		var data = {};
-		data[ListType] = Player[ListType];
-		ServerSend("AccountUpdate", data);
+		ServerPlayerRelationsSync();
 		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
 	if (ListType == "GhostList") {
@@ -1613,7 +1703,7 @@ function ChatRoomListManipulation(Add, Remove, Message) {
 		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
 		if ((Remove != null) && (Remove.indexOf(C) >= 0)) Remove.splice(Remove.indexOf(C), 1);
 		if ((Player.GhostList == Add || Player.GhostList == Remove) && Character.find(Char => Char.MemberNumber == C)) CharacterRefresh(Character.find(Char => Char.MemberNumber == C), false);
-		ServerSend("AccountUpdate", { FriendList: Player.FriendList, GhostList: Player.GhostList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
+		ServerPlayerRelationsSync();
 		setTimeout(() => ChatRoomCharacterUpdate(Player), 5000);
 	}
 }
@@ -1686,14 +1776,17 @@ function ChatRoomDrinkPick(DrinkType, Money) {
 	}
 }
 
+function ChatRoomSendLoverRule(RuleType, Option) { ChatRoomSendRule(RuleType, Option, "Lover"); }
+function ChatRoomSendOwnerRule(RuleType, Option) { ChatRoomSendRule(RuleType, Option, "Owner"); }
 /**
- * Sends a rule / restriction / punishment to the player's slave client, it will be handled on the slave's side when received.
+ * Sends a rule / restriction / punishment to the player's slave/lover client, it will be handled on the slave/lover's side when received.
  * @param {string} RuleType - The rule selected.
- * @param {"Quest" | "Leave"} [Option] - If the rule is a quest or we should just leave the dialog.
+ * @param {"Quest" | "Leave"} Option - If the rule is a quest or we should just leave the dialog.
+ * @param {"Owner" | "Lover"} Sender - Type of the sender
  * @returns {void} - Nothing
  */
-function ChatRoomSendRule(RuleType, Option) {
-	ServerSend("ChatRoomChat", { Content: "OwnerRule" + RuleType, Type: "Hidden", Target: CurrentCharacter.MemberNumber });
+function ChatRoomSendRule(RuleType, Option, Sender) {
+	ServerSend("ChatRoomChat", { Content: Sender + "Rule" + RuleType, Type: "Hidden", Target: CurrentCharacter.MemberNumber });
 	if (Option == "Quest") {
 		if (ChatRoomQuestGiven.indexOf(CurrentCharacter.MemberNumber) >= 0) ChatRoomQuestGiven.splice(ChatRoomQuestGiven.indexOf(CurrentCharacter.MemberNumber), 1);
 		ChatRoomQuestGiven.push(CurrentCharacter.MemberNumber);
@@ -1701,8 +1794,22 @@ function ChatRoomSendRule(RuleType, Option) {
 	if ((Option == "Leave") || (Option == "Quest")) DialogLeave();
 }
 
+function ChatRoomGetLoverRule(RuleType) { return ChatRoomGetRule(RuleType, "Lover"); }
+function ChatRoomGetOwnerRule(RuleType) { return ChatRoomGetRule(RuleType, "Owner"); }
+
 /**
- * Processes a rule sent to the player from her owner.
+ * Gets a rule from the current character
+ * @param {string} RuleType - The name of the rule to retrieve.
+ * @param {"Owner" | "Lover"} Sender - Type of the sender
+ * @returns {Rule} - The owner or lover rule corresponding to the requested rule name
+ */
+function ChatRoomGetRule(RuleType, Sender) {
+	return LogQueryRemote(CurrentCharacter, RuleType, Sender + "Rule");
+}
+
+
+/**
+ * Processes a rule sent to the player from her owner or from her lover.
  * @param {object} data - Received rule data object.
  * @returns {object} - Returns the data object, used to continue processing the chat message.
  */
@@ -1744,8 +1851,7 @@ function ChatRoomSetRule(data) {
 		if (data.Content == "OwnerRuleTimerCell60") TimerCell = 60;
 		if (TimerCell > 0) {
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedForCell", Type: "Action", Dictionary: [{ Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
-			ElementRemove("InputChat");
-			ElementRemove("TextAreaChatLog");
+			ChatRoomClearAllElements();
 			ServerSend("ChatRoomLeave", "");
 			CharacterDeleteAllOnline();
 			CellLock(TimerCell);
@@ -1767,14 +1873,13 @@ function ChatRoomSetRule(data) {
 			LogDelete("ReleasedCollar", "OwnerRule");
 			LoginValidCollar();
 		}
-		
+
 		// Forced labor
 		if (data.Content == "OwnerRuleLaborMaidDrinks" && Player.CanTalk()) {
 			CharacterSetActivePose(Player, null);
 			var D = TextGet("ActionGrabbedToServeDrinksIntro");
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedToServeDrinks", Type: "Action", Dictionary: [{ Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
-			ElementRemove("InputChat");
-			ElementRemove("TextAreaChatLog");
+			ChatRoomClearAllElements();
 			ServerSend("ChatRoomLeave", "");
 			CharacterDeleteAllOnline();
 			CommonSetScreen("Room", "MaidQuarters");
@@ -1787,6 +1892,19 @@ function ChatRoomSetRule(data) {
 		// Switches it to a server message to announce the new rule to the player
 		data.Type = "ServerMessage";
 
+		ChatRoomGetLoadRules(data.Sender);
+	}
+
+	// Only works if the sender is the lover of the player
+	if ((data != null) && Player.GetLoversNumbers().includes(data.Sender)) {
+		if (data.Content == "LoverRuleSelfLoverLockAllow") LogDelete("BlockLoverLockSelf", "LoverRule");
+		if (data.Content == "LoverRuleSelfLoverLockBlock") LogAdd("BlockLoverLockSelf", "LoverRule");
+		if (data.Content == "LoverRuleOwnerLoverLockAllow") LogDelete("BlockLoverLockOwner", "LoverRule");
+		if (data.Content == "LoverRuleOwnerLoverLockBlock") LogAdd("BlockLoverLockOwner", "LoverRule");
+
+		data.Type = "ServerMessage";
+
+		ChatRoomGetLoadRules(data.Sender);
 	}
 
 	// Returns the data packet
@@ -1872,13 +1990,12 @@ function ChatRoomSafewordRelease() {
 	CharacterReleaseTotal(Player);
 	CharacterRefresh(Player);
 	ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRelease", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name}] });
-	ElementRemove("InputChat");
-	ElementRemove("TextAreaChatLog");
+	ChatRoomClearAllElements();
 	ServerSend("ChatRoomLeave", "");
 	CommonSetScreen("Online","ChatSearch");
 }
 
-/** 
+/**
  * Concatenates the list of users to ban.
  * @param {boolean} IncludesBlackList - Adds the blacklist to the banlist
  * @param {boolean} IncludesGhostList - Adds the ghostlist to the banlist
@@ -1890,4 +2007,42 @@ function ChatRoomConcatenateBanList(IncludesBlackList, IncludesGhostList, Existi
 	if (IncludesBlackList) BanList = BanList.concat(Player.BlackList);
 	if (IncludesGhostList) BanList = BanList.concat(Player.GhostList);
 	return BanList.filter((MemberNumber, Idx, Arr) => Arr.indexOf(MemberNumber) == Idx);
+}
+
+/**
+ * Handles a request from another player to read the player's log entries that they are permitted to read. Lovers and
+ * owners can read certain entries from the player's log.
+ * @param {Character|number} C - A character object representing the requester, or the account number of the requester.
+ * @returns {void} - Nothing
+ */
+function ChatRoomGetLoadRules(C) {
+	if (typeof C === "number") {
+		C = ChatRoomCharacter.find(CC => CC.MemberNumber == C);
+	}
+	if (C == null) return;
+	if (Player.Ownership && Player.Ownership.MemberNumber != null && Player.Ownership.MemberNumber == C.MemberNumber) {
+		ServerSend("ChatRoomChat", {
+			Content: "RuleInfoSet",
+			Type: "Hidden",
+			Target: C.MemberNumber,
+			Dictionary: LogGetOwnerReadableRules(C.IsLoverOfPlayer()),
+		});
+	} else if (C.IsLoverOfPlayer()) {
+		ServerSend("ChatRoomChat", {
+			Content: "RuleInfoSet",
+			Type: "Hidden",
+			Target: C.MemberNumber,
+			Dictionary: LogGetLoverReadableRules(),
+		});
+	}
+}
+
+/**
+ * Handles a response from another player containing the rules that the current player is allowed to read.
+ * @param {Character} C - Character to set the rules on
+ * @param {Rule[]} Rule - An array of rules that the current player can read.
+ * @returns {void} - Nothing
+ */
+function ChatRoomSetLoadRules(C, Rule) {
+	if (Array.isArray(Rule)) C.Rule = Rule;
 }

@@ -11,8 +11,30 @@ var CommonCSVCache = {};
 var CutsceneStage = 0;
 
 /**
+ * A map of keys to common font stack definitions. Each stack definition is a
+ * two-item array whose first item is an ordered list of fonts, and whose
+ * second item is the generic fallback font family (e.g. sans-serif, serif,
+ * etc.)
+ * @constant
+ * @type {Object.<String, [String[], String]>}
+ */
+const CommonFontStacks = {
+	Arial: [["Arial"], "sans-serif"],
+	TimesNewRoman: [["Times New Roman", "Times"], "serif"],
+	Papyrus: [["Papyrus", "Ink Free", "Segoe Script", "Gabriola"], "fantasy"],
+	ComicSans: [["Comic Sans MS", "Comic Sans", "Brush Script MT", "Segoe Print"], "cursive"],
+	Impact: [["Impact", "Arial Black", "Franklin Gothic", "Arial"], "sans-serif"],
+	HelveticaNeue: [["Helvetica Neue", "Helvetica", "Arial"], "sans-serif"],
+	Verdana: [["Verdana", "Helvetica Neue", "Arial"], "sans-serif"],
+	CenturyGothic: [["Century Gothic", "Apple Gothic", "AppleGothic", "Futura"], "sans-serif"],
+	Georgia: [["Georgia", "Times"], "serif"],
+	CourierNew: [["Courier New", "Courier"], "monospace"],
+	Copperplate: [["Copperplate", "Copperplate Gothic Light"], "fantasy"],
+};
+
+/**
  * Checks if a variable is a number
- * @param {*} n - Variable to check for 
+ * @param {*} n - Variable to check for
  * @returns {boolean} - Returns TRUE if the variable is a finite number
  */
 function CommonIsNumeric(n) {
@@ -271,6 +293,8 @@ function CommonCallFunctionByName(FunctionName/*, ...args */) {
 function CommonSetScreen(NewModule, NewScreen) {
 	CurrentModule = NewModule;
 	CurrentScreen = NewScreen;
+	CommonGetFont.clearCache();
+	CommonGetFontName.clearCache();
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
 		CommonDynamicFunction(CurrentScreen + "Load()");
@@ -286,13 +310,26 @@ function CommonTime() {
 
 /**
  * Checks if a given value is a valid HEX color code
- * @param {string} Value - Potential HEX color code 
- * @returns {boolean} - Returns TRUE if the string is a valid HEX color 
+ * @param {string} Value - Potential HEX color code
+ * @returns {boolean} - Returns TRUE if the string is a valid HEX color
  */
 function CommonIsColor(Value) {
 	if ((Value == null) || (Value.length < 3)) return false;
 	if (/^#[0-9A-F]{3}$/i.test(Value)) Value = "#" + Value[1] + Value[1] + Value[2] + Value[2] + Value[3] + Value[3];	//convert short hand hex color to standard format
 	return /^#[0-9A-F]{6}$/i.test(Value);
+}
+
+/**
+ * Checks whether an item's color has a valid value that can be interpreted by the drawing
+ * functions. Valid values are null, undefined, strings, and an array containing any of the
+ * aforementioned types.
+ * @param {*} Color - The Color value to check
+ * @returns {boolean} - Returns TRUE if the color is a valid item color
+ */
+function CommonColorIsValid(Color) {
+	if (Color == null || typeof Color === "string") return true;
+	if (Array.isArray(Color)) return Color.every(C => C == null || typeof C === "string");
+	return false;
 }
 
 /**
@@ -311,7 +348,7 @@ function CommonRandomItemFromList(ItemPrevious, ItemList) {
 /**
  * Converts a string of numbers split by commas to an array, sanitizes the array by removing all NaN or undefined elements.
  * @param {string} s - String of numbers split by commas
- * @returns {number[]} - Array of valid numbers from the given string 
+ * @returns {number[]} - Array of valid numbers from the given string
  */
 function CommonConvertStringToArray(s) {
 	var arr = [];
@@ -396,3 +433,66 @@ function CommonDebounce(func, wait) {
 		return result;
 	};
 }
+/**
+ * Creates a simple memoizer. 
+ * The memoized function does calculate its result exactly once and from that point on, uses
+ * the result stored in a local cache to speed up things.
+ * @param {function} func - The function to memoize
+ * @returns {any} - The result of the memoized function
+ */
+function CommonMemoize(func) {
+	var memo = {};
+	var slice = Array.prototype.slice;
+
+	var memoized = function () {
+		var index = [];
+		for (var i = 0; i < arguments.length; i++) {
+			if (typeof arguments[i] === "object") {
+				index.push(JSON.stringify(arguments[i]));
+			} else {
+				index.push(slice.call(arguments[i]));
+			}
+		} // for
+		if (!(index in memo)) {
+			memo[index] = func.apply(this, arguments);
+		}
+		return memo[index];
+	}; // function
+
+	// add a clear cache method
+	memoized.clearCache = function () {
+		memo = {};
+	}
+	return memoized;
+} // CommonMemoize
+
+/**
+ * Memoized getter function. Returns a font string specifying the player's
+ * preferred font and the provided size. This is memoized as it is called on
+ * every frame in many cases.
+ * @function
+ * @param {Number} size - The font size that should be specified in the
+ * returned font string
+ * @returns {String} - A font string specifying the requested font size and
+ * the player's preferred font stack. For example:
+ * 12px "Courier New", "Courier", monospace
+ */
+const CommonGetFont = CommonMemoize((size) => {
+	return `${size}px ${CommonGetFontName()}`;
+});
+
+/**
+ * Memoized getter function. Returns a font string specifying the player's
+ * preferred font stack. This is memoized as it is called on every frame in
+ * many cases.
+ * @function
+ * @returns {String} - A font string specifying the player's preferred font
+ * stack. For example:
+ * "Courier New", "Courier", monospace
+ */
+const CommonGetFontName = CommonMemoize(() => {
+	const pref = Player && Player.GraphicsSettings && Player.GraphicsSettings.Font;
+	const fontStack = CommonFontStacks[pref] || CommonFontStacks.Arial;
+	const font = fontStack[0].map(fontName => `"${fontName}"`).join(", ");
+	return `${font}, ${fontStack[1]}`;
+});

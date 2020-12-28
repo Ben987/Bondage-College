@@ -108,5 +108,36 @@ function LogLoad(NewLog) {
 				LogAdd(NewLog[L].Name, NewLog[L].Group, NewLog[L].Value, false);
 
 	}
-	
+
+}
+
+/**
+ * Searches for an existing log entry on another character.
+ * @param {Character} C - Character to search on
+ * @param {string} QueryLogName - The name of the log to search for
+ * @param {string} QueryLogGroup - The name of the log's group
+ * @returns {boolean} - Returns TRUE if there is an existing log matching the Name/Group with no value or a value above the current time in ms.
+ */
+function LogQueryRemote(C, QueryLogName, QueryLogGroup) {
+	if (C.ID == 0) return LogQuery(QueryLogName, QueryLogGroup);
+	if (!C.Rule || !Array.isArray(C.Rule)) return false;
+	var R = C.Rule.find(R => R.Name == QueryLogName && R.Group == QueryLogGroup);
+	return (R != null) && ((R.Value == null) || (R.Value >= CurrenTime));
+}
+
+/**
+ * Filters the Player's log and returns the rule entries that the player's owner is allowed to see.
+ * @param {boolean} OwnerIsLover - Indicates that the requester is also the player's lover.
+ * @returns {Rule[]} - A list of rules that the player's owner is permitted to see
+ */
+function LogGetOwnerReadableRules(OwnerIsLover) {
+    return Log.filter(L => L.Group == "OwnerRule" || (L.Group == "LoverRule" && (OwnerIsLover || L.Name.includes("Owner"))));
+}
+
+/**
+ * Filters the Player's log and returns the rule entries that the player's lover is allowed to see.
+ * @returns {Rule[]} - A list of rules that the player's lover is permitted to see
+ */
+function LogGetLoverReadableRules() {
+    return Log.filter(L => L.Group == "LoverRule");
 }

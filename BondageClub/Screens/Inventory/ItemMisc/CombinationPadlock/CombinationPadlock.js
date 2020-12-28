@@ -43,6 +43,17 @@ function InventoryItemMiscCombinationPadlockDraw() {
 	}
 }
 
+
+function InventoryItemMiscCombinationPadlockUnlock(C, Item) {
+	delete Item.Property.CombinationNumber;
+	for (let A = 0; A < C.Appearance.length; A++) {
+		if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
+			C.Appearance[A] = Item;
+	}
+	InventoryUnlock(C, C.FocusGroup.Name);
+	ChatRoomPublishAction(C, Item, null, true, "ActionUnlock");
+}
+
 // Catches the item extension clicks
 function InventoryItemMiscCombinationPadlockClick() {
 	var C = CharacterGetCurrent();
@@ -52,13 +63,7 @@ function InventoryItemMiscCombinationPadlockClick() {
 		// Opens the padlock
 		if ((MouseY >= 771) && (MouseY <= 835)) {
 			if (ElementValue("CombinationNumber") == DialogFocusSourceItem.Property.CombinationNumber) {
-				delete DialogFocusSourceItem.Property.CombinationNumber;
-				for (let A = 0; A < C.Appearance.length; A++) {
-					if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
-						C.Appearance[A] = DialogFocusSourceItem;
-				}
-				InventoryUnlock(C, C.FocusGroup.Name);
-				ChatRoomPublishAction(C, Item, null, true, "ActionUnlock");
+				InventoryItemMiscCombinationPadlockUnlock(C, DialogFocusSourceItem)
 				InventoryItemMiscCombinationPadlockExit();
 			}
 
