@@ -5,7 +5,7 @@ var PreferenceSafewordConfirm = false;
 var PreferenceMaidsButton = true;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
-var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics"];
+var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics", "Controller"];
 var PreferenceChatColorThemeSelected = "";
 var PreferenceChatColorThemeList = ["Light", "Dark"];
 var PreferenceChatColorThemeIndex = 0;
@@ -50,6 +50,7 @@ var PreferenceDifficultyLevel = null;
 var PreferenceDifficultyAccept = false;
 var PreferenceGraphicsFontList = ["Arial", "TimesNewRoman", "Papyrus", "ComicSans", "Impact", "HelveticaNeue", "Verdana", "CenturyGothic", "Georgia", "CourierNew", "Copperplate"];
 var PreferenceGraphicsFontIndex = 0;
+var CalibrationStage = 0;
 
 /**
  * Gets the effect of a sexual activity on the player
@@ -461,10 +462,15 @@ function PreferenceRun() {
 	MainCanvas.textAlign = "center";
 
 	// Draw all the buttons to access the submenus
-	for (let A = 0; A < PreferenceSubscreenList.length; A++) {
-		DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
-		DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
-	}
+    for (let A = 0; A < PreferenceSubscreenList.length; A++) {
+        IgnoreButton = true;
+        DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
+        IgnoreButton = false;
+        DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
+        if (ControllerActive == true) {
+            setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
+        }
+    }
 
 }
 
@@ -585,8 +591,10 @@ function PreferenceSubscreenRestrictionRun() {
  * @returns {void} - Nothing
  */
 function PreferenceClick() {
-
-	// Pass the click into the opened subscreen
+    if (ControllerActive == true) {
+        ClearButtons();
+    }
+    // Pass the click into the opened subscreen
 	if (PreferenceSubscreen != "") return CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreen + "Click()");
 
 	// Exit button
@@ -799,6 +807,57 @@ function PreferenceSubscreenAudioRun() {
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length] * 100 + "%");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+}
+
+/**
+ * Sets the audio preferences for the player. Redirected to from the main Run function if the player is in the audio settings subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenControllerRun() {
+    if (CalibrationStage == 0) {
+        DrawCharacter(Player, 50, 50, 0.9);
+        MainCanvas.textAlign = "left";
+        DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
+        DrawText("Controller", 800, 225, "Black", "Gray");
+        DrawCheckbox(500, 272, 64, 64, "ControllerActive", ControllerActive);
+
+        DrawButton(500, 380, 400, 90, "", "White", "Icons/Controller.png");
+        DrawTextFit("Calibrate Controller", 590, 425, 310, "Black");
+
+        DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+    }
+    if (CalibrationStage == 1) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("Press A", 590, 425, 310, "Black");
+    }
+    if (CalibrationStage == 2) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("Press B", 590, 425, 310, "Black");
+    }
+    if (CalibrationStage == 3) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("Press X", 590, 425, 310, "Black");
+    }
+    if (CalibrationStage == 4) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("Press Y", 590, 425, 310, "Black");
+    }
+    if (CalibrationStage == 5) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("Press Up on Dpad", 590, 425, 310, "Black");
+    }
+    if (CalibrationStage == 6) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("Press Down on Dpad", 590, 425, 310, "Black");
+    }
+    if (CalibrationStage == 7) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("Press Left on Dpad", 590, 425, 310, "Black");
+    }
+    if (CalibrationStage == 8) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("Press Right on Dpad", 590, 425, 310, "Black");
+    }
 }
 
 /**
@@ -1050,6 +1109,29 @@ function PreferenceSubscreenAudioClick() {
 		if ((MouseY >= 432) && (MouseY < 496)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
 	}
 
+}
+/**
+ * Handles click events for the audio preference settings.  Redirected from the main Click function.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenControllerClick() {
+    
+    if (CalibrationStage == 0) {
+        if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) PreferenceSubscreen = "";
+
+        if (MouseIn(590, 425, 310, 90)) {
+            console.log("CalibrateClick")
+            CalibrationStage = 1;
+            Calibrating = true;
+        }
+
+        if ((MouseX >= 500) && (MouseX < 564)) {
+            if ((MouseY >= 272) && (MouseY < 336)) {
+                ControllerActive = !ControllerActive;
+                ClearButtons();
+            }
+        }
+    }
 }
 
 /**
