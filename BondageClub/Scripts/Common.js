@@ -302,13 +302,9 @@ function CommonSetScreen(NewModule, NewScreen) {
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
         CommonDynamicFunction(CurrentScreen + "Load()");
-<<<<<<< Updated upstream
-    if (ControllerActive == true) ClearButtons();
-=======
     if (ControllerActive == true) {
         ClearButtons();
     }
->>>>>>> Stashed changes
 }
 
 /**
