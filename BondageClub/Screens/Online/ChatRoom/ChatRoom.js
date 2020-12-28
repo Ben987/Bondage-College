@@ -593,7 +593,7 @@ function ChatRoomRun() {
 			OnlyPersonBlacklisted = false
 		}
 	}
-	if (!(ChatRoomData && (!Player.BlackList || !OnlyPersonBlacklisted) && (!ChatRoomData.Private || Player.FriendList.length > 0))) {
+	if (!(ChatRoomData && (!Player.BlackList || !OnlyPersonBlacklisted))) {
 		ChatRoomSetLastChatRoom("")
 	}
 	else if (Player.ImmersionSettings 
