@@ -589,7 +589,7 @@ function ChatRoomRun() {
 	var OnlyPersonBlacklisted = (ChatRoomCharacter.length > 1) ? true : false;
 	
 	for (let I = 0; I < ChatRoomCharacter.length; I++) {
-		if (ChatRoomCharacter[I].ID != 0 && (Player.BlackList.indexOf(ChatRoomCharacter[I].MemberNumber) < 0 ||	Player.IsOwnedByMemberNumber(ChatRoomCharacter[I].MemberNumber))) {
+		if (ChatRoomCharacter[I].ID != 0 && (Player.BlackList.indexOf(ChatRoomCharacter[I].MemberNumber) < 0 || Player.FriendList.indexOf(ChatRoomCharacter[I].MemberNumber) >= 0 || Player.IsOwnedByMemberNumber(ChatRoomCharacter[I].MemberNumber))) {
 			OnlyPersonBlacklisted = false
 		}
 	}
