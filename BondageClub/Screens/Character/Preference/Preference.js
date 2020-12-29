@@ -822,10 +822,22 @@ function PreferenceSubscreenControllerRun() {
         DrawCheckbox(500, 272, 64, 64, "ControllerActive", ControllerActive);
 
         DrawButton(500, 380, 400, 90, "", "White", "Icons/Controller.png");
-        DrawTextFit("Calibrate Controller", 590, 425, 310, "Black");
+        DrawTextFit("Map Buttons", 590, 425, 310, "Black");
 
-        DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+        DrawButton(500, 480, 400, 90, "", "White", "Icons/Controller.png");
+        DrawTextFit("Map Sticks", 590, 525, 310, "Black");
+
+        
     }
+    if (CalibrationStage == 101) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("move left stick up", 590, 425, 310, "Black");
+    }
+    if (CalibrationStage == 102) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit("move left stick right", 590, 425, 310, "Black");
+    }
+    DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
     if (CalibrationStage == 1) {
         MainCanvas.textAlign = "left";
         DrawTextFit("Press A", 590, 425, 310, "Black");
@@ -1115,13 +1127,22 @@ function PreferenceSubscreenAudioClick() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenControllerClick() {
-    
+    if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
+        PreferenceSubscreen = "";
+        CalibrationStage = 0;
+        Calibrating = false;
+    }
     if (CalibrationStage == 0) {
-        if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) PreferenceSubscreen = "";
+        
 
-        if (MouseIn(590, 425, 310, 90)) {
-            console.log("CalibrateClick")
+        if (MouseIn(590, 400, 310, 90)) {
+            //console.log("CalibrateClick")
             CalibrationStage = 1;
+            Calibrating = true;
+        }
+        if (MouseIn(590, 500, 310, 90)) {
+            //console.log("CalibrateClick")
+            CalibrationStage = 101;
             Calibrating = true;
         }
 
