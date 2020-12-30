@@ -538,7 +538,7 @@ function ChatRoomSetLastChatRoom(room) {
 			Player.LastChatRoomPrivate = ChatRoomData.Private
 		if (ChatRoomData && ChatRoomData.Limit)
 			Player.LastChatRoomSize = ChatRoomData.Limit
-		if (ChatRoomData && ChatRoomData.Description)
+		if (ChatRoomData && ChatRoomData.Description != null)
 			Player.LastChatRoomDesc = ChatRoomData.Description
 		if (ChatRoomData && ChatRoomData.Admin)
 			Player.LastChatRoomAdmin = ChatRoomData.Admin
