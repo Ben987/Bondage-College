@@ -511,27 +511,27 @@ function ChatRoomRun() {
 			ChatRoomSlowtimer = 0;
 			ChatRoomSlowStop = false;
 			if (!(Player.IsHandsCovered() && !Player.RestrictionSettings.SlowImmunity && ChatRoomBackgroundIsIndoors()) || ChatRoomDoorTimer != 0) {
-				ElementRemove("InputChat");
-				ElementRemove("TextAreaChatLog");
+				ChatRoomClearAllElements();
 				ServerSend("ChatRoomLeave", "");
 				CommonSetScreen("Online", "ChatSearch");
 				CharacterDeleteAllOnline();
 				ChatRoomDoorTimer = 0
 				ChatRoomDoorfailtimer = 0
 			} else { // When the player has hands covered and cant work the doorknob
-			ServerSend("ChatRoomChat", { Content: "DoorFail"+ChatRoomDorFailLevel, Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
-			ChatRoomDoorfailtimer = 0; // No timer, since there already is one (have to leave slowly again)
-			if (ChatRoomDorFailLevel < 3) ChatRoomDorFailLevel += 1
-			else {
-			  ServerSend("ChatRoomLeave", "");
-			  CommonSetScreen("Online", "ChatSearch");
-			  CharacterDeleteAllOnline();
+				ServerSend("ChatRoomChat", { Content: "DoorFail"+ChatRoomDorFailLevel, Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+				ChatRoomDoorfailtimer = 0; // No timer, since there already is one (have to leave slowly again)
+				if (ChatRoomDorFailLevel < 3) ChatRoomDorFailLevel += 1
+				else {
+					ChatRoomClearAllElements();
+					ServerSend("ChatRoomLeave", "");
+					CommonSetScreen("Online", "ChatSearch");
+					CharacterDeleteAllOnline();
 
-			  // Clear leash since the player has escaped
-			  ChatRoomLeashPlayer = null
-				ChatRoomDoorTimer = 0
-				ChatRoomDoorfailtimer = 0
-			}
+					// Clear leash since the player has escaped
+					ChatRoomLeashPlayer = null
+					ChatRoomDoorTimer = 0
+					ChatRoomDoorfailtimer = 0
+				}
 			}
 		}
 	}
@@ -615,8 +615,8 @@ function ChatRoomClick() {
 	// When the user leaves
 	if (MouseIn(1005, 0, 120, 62) && ChatRoomCanLeave() && !Player.IsSlow()) {
 		if (!(Player.IsHandsCovered() && !Player.RestrictionSettings.SlowImmunity && ChatRoomBackgroundIsIndoors()) || ChatRoomDoorTimer != 0) {
-      ElementRemove("InputChat");
-      ElementRemove("TextAreaChatLog");
+      
+	  ChatRoomClearAllElements();
       ServerSend("ChatRoomLeave", "");
       CommonSetScreen("Online", "ChatSearch");
       CharacterDeleteAllOnline();
@@ -631,12 +631,13 @@ function ChatRoomClick() {
 			ChatRoomDoorfailtimer = CurrentTime + (3000); // Put a timer to prevent chat spam from clicking the button repeatedly
 			if (ChatRoomDorFailLevel < 3) ChatRoomDorFailLevel += 1
 			else {
-			  ServerSend("ChatRoomLeave", "");
-			  CommonSetScreen("Online", "ChatSearch");
-			  CharacterDeleteAllOnline();
+				ChatRoomClearAllElements();
+				ServerSend("ChatRoomLeave", "");
+				CommonSetScreen("Online", "ChatSearch");
+				CharacterDeleteAllOnline();
 
-			  // Clear leash since the player has escaped
-			  ChatRoomLeashPlayer = null
+				// Clear leash since the player has escaped
+				ChatRoomLeashPlayer = null
 				ChatRoomDoorTimer = 0
 				ChatRoomDoorfailtimer = 0
 			}
@@ -1843,8 +1844,8 @@ function ChatRoomSetRule(data) {
 		if (data.Content == "OwnerRuleTimerCell60") TimerCell = 60;
 		if (TimerCell > 0) {
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedForCell", Type: "Action", Dictionary: [{ Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
-			ElementRemove("InputChat");
-			ElementRemove("TextAreaChatLog");
+			
+			ChatRoomClearAllElements();
 			ServerSend("ChatRoomLeave", "");
 			CharacterDeleteAllOnline();
 			CellLock(TimerCell);
@@ -1872,8 +1873,8 @@ function ChatRoomSetRule(data) {
 			CharacterSetActivePose(Player, null);
 			var D = TextGet("ActionGrabbedToServeDrinksIntro");
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedToServeDrinks", Type: "Action", Dictionary: [{ Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
-			ElementRemove("InputChat");
-			ElementRemove("TextAreaChatLog");
+			
+			ChatRoomClearAllElements();
 			ServerSend("ChatRoomLeave", "");
 			CharacterDeleteAllOnline();
 			CommonSetScreen("Room", "MaidQuarters");
@@ -1971,8 +1972,7 @@ function ChatRoomSafewordRelease() {
 	CharacterReleaseTotal(Player);
 	CharacterRefresh(Player);
 	ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRelease", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name}] });
-	ElementRemove("InputChat");
-	ElementRemove("TextAreaChatLog");
+	ChatRoomClearAllElements();
 	ServerSend("ChatRoomLeave", "");
 	CommonSetScreen("Online","ChatSearch");
 }
