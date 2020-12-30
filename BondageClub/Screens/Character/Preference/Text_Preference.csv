@@ -101,8 +101,7 @@ AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
 ReturnToChatRoom,Return to chatrooms on relog
-ReturnToChatRoomAdmin,Auto-remake rooms on relog
-ReturnToChatRoomMaid,(You can call maids after 30 min)
+ReturnToChatRoomAdmin,Auto-remake rooms
 ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
 BlockGaggedOOC,Prevent OOC & whispers while gagged
 SensDepSetting,Sensory deprivation setting
