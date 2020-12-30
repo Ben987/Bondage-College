@@ -91,6 +91,7 @@ function AssetAdd(NewAsset) {
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
 		Activity: (NewAsset.Activity == null) ? AssetCurrentGroup.Activity : NewAsset.Activity,
 		AllowActivity: NewAsset.AllowActivity,
+		AllowActivityOn: NewAsset.AllowActivityOn,
 		BuyGroup: NewAsset.BuyGroup,
 		PrerequisiteBuyGroups: NewAsset.PrerequisiteBuyGroups,
 		Effect: (NewAsset.Effect == null) ? AssetCurrentGroup.Effect : NewAsset.Effect,
