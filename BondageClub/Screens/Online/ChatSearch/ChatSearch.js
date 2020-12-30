@@ -392,7 +392,7 @@ function ChatSearchResultResponse(data) {
 			&& Player.LastChatRoomBG
 			&& Player.LastChatRoomPrivate != null
 			&& Player.LastChatRoomSize
-			&& Player.LastChatRoomDesc) {
+			&& Player.LastChatRoomDesc != null) {
 				ChatRoomPlayerCanJoin = true;
 				ChatRoomPlayerJoiningAsAdmin = true;
 				var block = []
