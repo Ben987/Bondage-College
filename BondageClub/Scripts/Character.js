@@ -75,7 +75,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
-		IsHandsCovered: function () { return ((this.Effect.indexOf("HandsCovered") >= 0) && ((this.ID != 0) || this.RestrictionSettings.NeedHelpDoors))},
+		IsHandsCovered: function () { return ((this.Effect.indexOf("HandsCovered") >= 0))},
 		IsSlow: function () { return (((this.Effect.indexOf("Slow") >= 0) || (this.Pose.indexOf("LegsClosed") >= 0) || (this.Pose.indexOf("Kneel") >= 0)) && ((this.ID != 0) || !this.RestrictionSettings.SlowImmunity)) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
 		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
