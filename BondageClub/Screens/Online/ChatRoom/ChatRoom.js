@@ -286,6 +286,7 @@ function ChatRoomStart(Space, Game, LeaveRoom, Background, BackgroundTagList) {
 	ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundTagList);
 	BackgroundSelectionTagList = BackgroundTagList;
 	CommonSetScreen("Online", "ChatSearch");
+	
 }
 
 /**
@@ -514,6 +515,7 @@ function ChatRoomRun() {
 				ChatRoomClearAllElements();
 				ServerSend("ChatRoomLeave", "");
 				CommonSetScreen("Online", "ChatSearch");
+				ChatRoomSetLastChatRoom("")
 				CharacterDeleteAllOnline();
 				ChatRoomDoorTimer = 0
 				ChatRoomDoorfailtimer = 0
@@ -525,6 +527,7 @@ function ChatRoomRun() {
 					ChatRoomClearAllElements();
 					ServerSend("ChatRoomLeave", "");
 					CommonSetScreen("Online", "ChatSearch");
+					ChatRoomSetLastChatRoom("")
 					CharacterDeleteAllOnline();
 
 					// Clear leash since the player has escaped
@@ -619,6 +622,7 @@ function ChatRoomClick() {
 	  ChatRoomClearAllElements();
       ServerSend("ChatRoomLeave", "");
       CommonSetScreen("Online", "ChatSearch");
+	  ChatRoomSetLastChatRoom("")
       CharacterDeleteAllOnline();
 
       // Clear leash since the player has escaped
@@ -634,6 +638,7 @@ function ChatRoomClick() {
 				ChatRoomClearAllElements();
 				ServerSend("ChatRoomLeave", "");
 				CommonSetScreen("Online", "ChatSearch");
+				ChatRoomSetLastChatRoom("")
 				CharacterDeleteAllOnline();
 
 				// Clear leash since the player has escaped
@@ -1975,6 +1980,7 @@ function ChatRoomSafewordRelease() {
 	ChatRoomClearAllElements();
 	ServerSend("ChatRoomLeave", "");
 	CommonSetScreen("Online","ChatSearch");
+	ChatRoomSetLastChatRoom("")
 }
 
 /** 
