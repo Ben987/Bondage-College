@@ -168,7 +168,7 @@ function ChatRoomCanAssistKneel() { return Player.CanInteract() && CurrentCharac
  * Checks if the player can stop the current character from leaving.
  * @returns {boolean} - TRUE if the current character is slowed down and can be interacted with.
  */
-function ChatRoomCanStopSlowPlayer() { return (CurrentCharacter.IsSlow() && Player.CanInteract() && CurrentCharacter.AllowItem ) }
+function ChatRoomCanStopSlowPlayer() { return ((CurrentCharacter.IsSlow() || CurrentCharacter.IsHandsCovered()) && Player.CanInteract() && CurrentCharacter.AllowItem ) }
 /**
  * Checks if the player can grab the targeted player's leash
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
@@ -510,7 +510,7 @@ function ChatRoomRun() {
 		if ((CurrentTime > ChatRoomSlowtimer) && (ChatRoomSlowtimer != 0)) {
 			ChatRoomSlowtimer = 0;
 			ChatRoomSlowStop = false;
-			if (!(Player.IsHandsCovered() && ChatRoomBackgroundIsIndoors()) || ChatRoomDoorTimer != 0) {
+			if (!(Player.IsHandsCovered() && !Player.RestrictionSettings.SlowImmunity && ChatRoomBackgroundIsIndoors()) || ChatRoomDoorTimer != 0) {
 				ElementRemove("InputChat");
 				ElementRemove("TextAreaChatLog");
 				ServerSend("ChatRoomLeave", "");
@@ -543,7 +543,7 @@ function ChatRoomRun() {
 	// Draws the top buttons in pink if they aren't available
 	if ((!Player.IsSlow()) || (ChatRoomSlowtimer == 0 && !ChatRoomCanLeave())){
 		if (ChatRoomSlowtimer != 0) ChatRoomSlowtimer = 0;
-		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? (((Player.IsHandsCovered() && ChatRoomBackgroundIsIndoors()) && ChatRoomDoorTimer == 0) ? "#FFFF00" : "White") : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
+		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? (((Player.IsHandsCovered() && !Player.RestrictionSettings.SlowImmunity && ChatRoomBackgroundIsIndoors()) && ChatRoomDoorTimer == 0) ? "#FFFF00" : "White") : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
 	}	
 	
 	if (ChatRoomGame == "") DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
@@ -604,7 +604,7 @@ function ChatRoomClick() {
 
 	// When the user leaves
 	if (MouseIn(1005, 0, 120, 62) && ChatRoomCanLeave() && !Player.IsSlow()) {
-		if (!(Player.IsHandsCovered() && ChatRoomBackgroundIsIndoors()) || ChatRoomDoorTimer != 0) {
+		if (!(Player.IsHandsCovered() && !Player.RestrictionSettings.SlowImmunity && ChatRoomBackgroundIsIndoors()) || ChatRoomDoorTimer != 0) {
       ElementRemove("InputChat");
       ElementRemove("TextAreaChatLog");
       ServerSend("ChatRoomLeave", "");
