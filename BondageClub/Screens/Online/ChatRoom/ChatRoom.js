@@ -522,6 +522,16 @@ function ChatRoomRun() {
 			ServerSend("ChatRoomChat", { Content: "DoorFail"+ChatRoomDorFailLevel, Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
 			ChatRoomDoorfailtimer = 0; // No timer, since there already is one (have to leave slowly again)
 			if (ChatRoomDorFailLevel < 3) ChatRoomDorFailLevel += 1
+			else {
+			  ServerSend("ChatRoomLeave", "");
+			  CommonSetScreen("Online", "ChatSearch");
+			  CharacterDeleteAllOnline();
+
+			  // Clear leash since the player has escaped
+			  ChatRoomLeashPlayer = null
+				ChatRoomDoorTimer = 0
+				ChatRoomDoorfailtimer = 0
+			}
 			}
 		}
 	}
@@ -616,12 +626,11 @@ function ChatRoomClick() {
 		ChatRoomDoorTimer = 0
 		ChatRoomDoorfailtimer = 0
 		} else {
-			if (ChatRoomDorFailLevel < 3) {
-				// When the player has hands covered and cant work the doorknob
-				ServerSend("ChatRoomChat", { Content: "DoorFail"+ChatRoomDorFailLevel, Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
-				ChatRoomDoorfailtimer = CurrentTime + (3000); // Put a timer to prevent chat spam from clicking the button repeatedly
-				ChatRoomDorFailLevel += 1
-			} else {
+			// When the player has hands covered and cant work the doorknob
+			ServerSend("ChatRoomChat", { Content: "DoorFail"+ChatRoomDorFailLevel, Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
+			ChatRoomDoorfailtimer = CurrentTime + (3000); // Put a timer to prevent chat spam from clicking the button repeatedly
+			if (ChatRoomDorFailLevel < 3) ChatRoomDorFailLevel += 1
+			else {
 			  ServerSend("ChatRoomLeave", "");
 			  CommonSetScreen("Online", "ChatSearch");
 			  CharacterDeleteAllOnline();
