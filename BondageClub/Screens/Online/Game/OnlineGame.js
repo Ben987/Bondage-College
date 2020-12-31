@@ -36,7 +36,7 @@ function OnlneGameDictionaryLoad() {
 /**
  * Searches in the dictionary for a specific keyword and returns the message linked to it
  * @param {string} KeyWord - Keyword of the text to look for
- * @returns {string} The text attached to the keyword, will return a missing text if it was not found 
+ * @returns {string} The text attached to the keyword, will return a missing text if it was not found
  */
 function OnlineGameDictionaryText(KeyWord) {
 	for (let D = 0; D < OnlineGameDictionary.length; D++)
@@ -127,23 +127,23 @@ function OnlineGameCharacterInChatRoom(MemberNumber) {
 			return true;
 	return false;
 }
- 
+
 /**
  * Draws the online game images/text needed on the characters
  * @param {Character} C - Character to draw the info for
  * @param {number} X - Position of the character the X axis
  * @param {number} Y - Position of the character the Y axis
  * @param {number} Zoom - Amount of zoom the character has (Height)
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function OnlineGameDrawCharacter(C, X, Y, Zoom) {
 	if ((CurrentModule == "Online") && (CurrentScreen == "ChatRoom") && (ChatRoomGame == "LARP")) {
 		GameLARPDrawIcon(C, X + 70 * Zoom, Y + 800 * Zoom, 0.6 * Zoom);
 		if ((GameLARPPlayer.length > 0) && (C.MemberNumber == GameLARPPlayer[GameLARPTurnPosition].MemberNumber) && (GameLARPStatus == "Running") && (GameLARPTurnFocusCharacter == null)) {
-			MainCanvas.font = "72px Arial";
+			MainCanvas.font = CommonGetFont(72);
 			var Time = Math.ceil((GameLARPTurnTimer - TimerGetTime()) / 1000);
 			DrawText(((Time < 0) || (Time > GameLARPTimerDelay[GameLARPTimerDelay.length - 1])) ? OnlineGameDictionaryText("TimerNA") : Time.toString(), X + 250 * Zoom, Y + 830 * Zoom, "Red", "Black");
-			MainCanvas.font = "36px Arial";
+			MainCanvas.font = CommonGetFont(36);
 		}
 	}
 }

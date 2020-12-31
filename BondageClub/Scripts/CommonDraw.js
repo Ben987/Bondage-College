@@ -167,10 +167,15 @@ function CommonDrawAppearanceBuild(C, {
 		}
 
 		// Check if we need to copy the color of another asset
-		var InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
+		let InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
+		let ColorInterited = false;
 		if (InheritColor != null) {
 			var ParentAsset = InventoryGet(C, InheritColor);
-			if (ParentAsset != null) Color = Array.isArray(ParentAsset.Color) ? ParentAsset.Color[0] : ParentAsset.Color;
+			if (ParentAsset != null) {
+				let ParentColor = Array.isArray(ParentAsset.Color) ? ParentAsset.Color[0] : ParentAsset.Color;
+				Color = CommonDrawColorValid(ParentColor, ParentAsset.Asset.Group) ? ParentColor : "Default";
+				ColorInterited = true;
+			}
 		}
 		
 		// Before drawing hook, receives all processed data. Any of them can be overriden if returned inside an object.
@@ -224,7 +229,8 @@ function CommonDrawAppearanceBuild(C, {
 		if (Color === "Default" && A.DefaultColor) {
 			Color = Array.isArray(A.DefaultColor) ? A.DefaultColor[Layer.ColorIndex] : A.DefaultColor;
 		}
-		if (Color != null && typeof Color !== "string") {
+
+		if (!ColorInterited && !CommonDrawColorValid(Color, AG)) {
 			Color = "Default";
 		}
 
@@ -269,6 +275,22 @@ function CommonDrawAppearanceBuild(C, {
 			window["Assets" + A.Group.Name + A.Name + "AfterDraw"](DrawingData);
 		}
 	});
+}
+
+/**
+ * Determines whether the provided color is valid
+ * @param {any} Color - The color
+ * @param {any} AssetGroup - The asset group the color is being used fo
+ * @returns {boolean} - Whether the color is valid
+ */
+function CommonDrawColorValid(Color, AssetGroup) {
+	if (Color != null && typeof Color !== "string") {
+		return false;
+	}
+	if (Color != null && Color.indexOf("#") != 0 && AssetGroup.ColorSchema.indexOf(Color) < 0) {
+		return false;
+	}
+	return true;
 }
 
 /**

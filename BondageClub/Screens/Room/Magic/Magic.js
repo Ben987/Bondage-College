@@ -11,29 +11,68 @@ var MagicPlayerAppearance = null;
 
 var MagicTrick = null;
 var MagicTrickList = ["ChangeBinds", "Dance", "BindAsstant", "BoxTiedLight", "GetCoin", "BoxTiedHeavy", "MilkCan", "WaterCell", "Song", "AsstantChange"];
+var MagicRestraintList = ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemArms", "ItemFeet", "ItemLegs", "ItemHead", "ItemMisc", "ItemDevices"];
 var MagicTrickCounter = 0;
 var MagicShowIncome = 0;
 var MagicShowState = 1;
-// 1 No Show
-// 2 Before Assist Redress
-// 3 After Assist Redress
-// 4 Assist is bind
-// 5 Assist is release
-// 6 To Sing a Song
-// 7 to Bind for Change
-// 8 After Change
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //General Room function
 ////////////////////////////////////////////////////////////////////////////////////////////
-// functions for Dialogs
-function MagicShowIsState(QState) { return ((QState == MagicShowState) ? true : false)}
-function MagicAssistantIsReleased() {return (MagicShowIsState(4) && !MagicAssistant.IsRestrained())}
-function MagicRestrainPerformerMinItem(MinItem) {return MagicRestrainMinItem(MagicPerformer, MinItem)}
-function MagicRestrainAssistantMinItem(MinItem) {return MagicRestrainMinItem(MagicAssistant, MinItem)}
-function MagicAssistantIsDressRestrain() {return (MagicShowIsState(8) && MagicAssistant.IsRestrained())}
-function MagicAssistantIsntDressRestrain() {return (MagicShowIsState(8) && !MagicAssistant.IsRestrained())}
 
+/**
+ * Checks, if the magic show currently has the given state
+ * 1 - No Show
+ * 2 - Before Assist Redress
+ * 3 - After Assist Redress
+ * 4 - Assistant is bound
+ * 5 - Assistant is released
+ * 6 - To Sing a Song
+ * 7 - To Bind for Change
+ * 8 - After Change
+ * @param {number} QState - The state that is queried
+ * @returns {boolean} - Returns true, if the queried state matches with the current state of the magic show, flase otherwise
+ */
+function MagicShowIsState(QState) { return ((QState == MagicShowState) ? true : false) }
+
+/**
+ * Checks, if the magician's assistant has been released
+ * @returns {boolean} - Returns true, if the assistant has been released, false otherwise
+ */
+function MagicAssistantIsReleased() { return (MagicShowIsState(4) && !MagicAssistant.IsRestrained()) }
+
+/**
+ * Checks, if the magician is bound by the minal required number of items (gag, arms, feet, legs, head)
+ * @param {number} MinItem - The minimal number of items that must be used on the magician
+ * @returns {boolean} - Returns true, if the required number of items is reached or exceeded, false otherwise
+ */
+function MagicRestrainPerformerMinItem(MinItem) { return MagicRestrainMinItem(MagicPerformer, MinItem) }
+
+/**
+ * Checks, if the magician's assistant is bound by the minal required number of items (gag, arms, feet, legs, head)
+ * @param {number} MinItem - The minimal number of items that must be used on the magician's assistant
+ * @returns {boolean} - Returns true, if the required number of items is reached or exceeded, false otherwise
+ */
+function MagicRestrainAssistantMinItem(MinItem) { return MagicRestrainMinItem(MagicAssistant, MinItem) }
+
+/**
+ * Checks wether the assistant is restrained and should redress
+ * @returns {boolean} - Returns true, if the assistant should redress and is currently restrained
+ */
+function MagicAssistantIsDressRestrain() { return (MagicShowIsState(8) && MagicAssistant.IsRestrained()) }
+
+/**
+ * Checks wether the assistant is free and should redress
+ * @returns {boolean} - Returns true, if the assistant should redress and is currently free
+ */
+function MagicAssistantIsntDressRestrain() { return (MagicShowIsState(8) && !MagicAssistant.IsRestrained()) }
+
+/**
+ * Checks, wether a given character is bound by the minal required number of items (gag, arms, feet, legs, head)
+ * @param {Character} C - The character to check
+ * @param {number} MinItem - The minimal required number of items
+ * @returns {boolean} - - Returns true, if the required number of items is reached or exceeded, false otherwise
+ */
 function MagicRestrainMinItem(C, MinItem) {
 	var CurItem = 0;
 	var GagApplied = false;
@@ -48,8 +87,10 @@ function MagicRestrainMinItem(C, MinItem) {
 	return (CurItem + (GagApplied ? 1 : 0)) >= MinItem;
 }
 
-
-// Loads the room characters with many restrains
+/**
+ * Loads the room characters, saves their inventories and starts the show
+ * @returns {void} - Nothing
+ */
 function MagicLoad() {
 	// Default load
 	if (MagicPerformer == null) {
@@ -65,7 +106,10 @@ function MagicLoad() {
 	}
 }
 
-// Run the Magic, draw all 3 characters
+/**
+ * Runs the magic screen, draws the player, the magician and the assistant as well as all required buttons
+ * @returns {void} - Nothing
+ */
 function MagicRun() {
 	DrawCharacter(Player, 250, 0, 1);
 	DrawCharacter(MagicPerformer, 750, 0, 1);
@@ -76,7 +120,10 @@ function MagicRun() {
 	//DrawButton(1885, 265, 90, 90, "", "White", "Icons/Magic.png");
 }
 
-// When the user clicks in the Magic
+/**
+ * Handles the click events in the magic screen
+ * @returns {void} - Nothing
+ */
 function MagicClick() {
 	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(MagicPerformer);
@@ -88,6 +135,10 @@ function MagicClick() {
 ////////////////////////////////////////////////////////////////////////////////////////////
 //Tricks
 ////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Changes the dresses of the player and the assistants and progresses the show state
+ * @returns {void} - Nothing
+ */
 function MagicTrickChangeDresses() {
 	CharacterNaked(Player);
 	CharacterNaked(MagicAssistant);
@@ -96,6 +147,10 @@ function MagicTrickChangeDresses() {
 	MagicShowState = 2;
 }
 
+/**
+ * Changes the dresses of player and assistant back and goes back to state 1
+ * @returns {void} - Nothing
+ */
 function MagicTrickChangeDressesBack() {
 	CharacterNaked(Player);
 	CharacterNaked(MagicAssistant);
@@ -104,6 +159,10 @@ function MagicTrickChangeDressesBack() {
 	MagicShowState = 1;
 }
 
+/**
+ * Randomly dresses the assistant and sets the show's state to 3
+ * @returns {void} - Nothing
+ */
 function MagicAssistantDress() {
 	CharacterNaked(MagicAssistant);
 	var ColorList = ["Default", "#aa8080", "#8080aa", "#aaaa80", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"];
@@ -117,16 +176,28 @@ function MagicAssistantDress() {
 	MagicShowState = 3;
 }
 
+/**
+ * Starts the magic show and sets all counters to 0
+ * @returns {void} - Nothing
+ */
 function MagicShowStart() {
 	MagicTrickCounter = 0;
 	MagicShowIncome = 0;
 }
 
+/**
+ * Adds money to the player's account. The longer she performs, the more money she earns
+ * @returns {void} - Nothing
+ */
 function MagicShowIncomeAdd() {
 	var I = (MagicTrickCounter < 15) ? MagicTrickCounter : 15;
 	MagicShowIncome = MagicShowIncome + I;
 }
 
+/**
+ * When the player leaves the show, she get's her money and is redressed in the things she wore at the start of the show
+ * @returns {void} - Nothing
+ */
 function MagicShowPayoff() {
 	MagicPerformer.CurrentDialog = MagicPerformer.CurrentDialog.replace("REPLACEMONEY", MagicShowIncome.toString());
 	CharacterChangeMoney(Player, MagicShowIncome);
@@ -137,6 +208,10 @@ function MagicShowPayoff() {
 	MagicShowState = 1;
 }
 
+/**
+ * Randomly selects the next magic trick and prepares the appropriate dialog
+ * @returns {void} - Nothing
+ */
 function MagicSelectTrick() {
 	//prepare tricks
 	MagicPerformer.AllowItem = false;
@@ -150,7 +225,7 @@ function MagicSelectTrick() {
 	hide assistant
 	*/
 	MagicTrick = CommonRandomItemFromList(MagicTrick, MagicTrickList);
-	
+
 	if (MagicTrick == "ChangeBinds") {
 		MagicPerformer.Stage = "100";
 		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "100");
@@ -165,19 +240,19 @@ function MagicSelectTrick() {
 	} else if (MagicTrick == "BoxTiedLight") {
 		MagicPerformer.Stage = "130";
 		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "130");
-	}  else if (MagicTrick == "GetCoin") {
+	} else if (MagicTrick == "GetCoin") {
 		MagicPerformer.Stage = "140";
 		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "140");
-	}  else if (MagicTrick == "BoxTiedHeavy") {
+	} else if (MagicTrick == "BoxTiedHeavy") {
 		MagicPerformer.Stage = "150";
 		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "150");
-	}  else if (MagicTrick == "MilkCan") {
+	} else if (MagicTrick == "MilkCan") {
 		MagicPerformer.Stage = "160";
 		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "160");
-	}  else if (MagicTrick == "WaterCell") {
+	} else if (MagicTrick == "WaterCell") {
 		MagicPerformer.Stage = "170";
 		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "170");
-	}  else if (MagicTrick == "Song") {
+	} else if (MagicTrick == "Song") {
 		MagicPerformer.Stage = "180";
 		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "180");
 		MagicAssistant.AllowItem = true;
@@ -188,6 +263,11 @@ function MagicSelectTrick() {
 	}
 }
 
+/**
+ * Copies the restraints currently on the magician randomly 
+ * either to the player or the assistant and gets the appropriate dialog option
+ * @returns {void} - Nothing
+ */
 function MagicTrickChangeBinds() {
 	var T = ((Math.random() < 0.5) ? Player : MagicAssistant);
 	MagicRestrainCopyTransfer(MagicPerformer, T);
@@ -203,6 +283,11 @@ function MagicTrickChangeBinds() {
 	}
 }
 
+/**
+ * Copies the restraints from the assistant to the player and
+ * picks the appropriate dialog options
+ * @returns {void} - Nothing
+ */
 function MagicTrickBindAsstant() {
 	MagicRestrainCopyTransfer(MagicAssistant, Player);
 	MagicAssistant.AllowItem = false;
@@ -210,6 +295,10 @@ function MagicTrickBindAsstant() {
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "121");
 }
 
+/**
+ * Binds the player lightly and places her in a wooden box
+ * @returns {void} - Nothing
+ */
 function MagicTrickBoxTiedLight() {
 	InventoryWear(Player, "NylonRope", "ItemFeet");
 	InventoryWear(Player, "NylonRope", "ItemLegs");
@@ -221,6 +310,10 @@ function MagicTrickBoxTiedLight() {
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "131");
 }
 
+/**
+ * Binds the player heavily and places her in a wooden box
+ * @returns {void} - Nothing
+ */
 function MagicTrickBoxTiedHeavy() {
 	InventoryWear(Player, "HempRope", "ItemFeet");
 	InventoryWear(Player, "HempRope", "ItemLegs");
@@ -232,6 +325,10 @@ function MagicTrickBoxTiedHeavy() {
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "151");
 }
 
+/**
+ * Places the player in the water filled milk can
+ * @returns {void} - Nothing
+ */
 function MagicTrickBoxMilkCan() {
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "MetalCuffs", "ItemArms");
@@ -241,6 +338,10 @@ function MagicTrickBoxMilkCan() {
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "161");
 }
 
+/**
+ * Places the player in the water torture cell
+ * @returns {void} - Nothing
+ */
 function MagicTrickBoxWaterCell() {
 	InventoryWear(Player, "HempRope", "ItemFeet"); 
 	InventoryGet(Player, "ItemFeet").Property = { Type: "Suspension", SetPose: ["LegsClosed", "Suspension"], Difficulty: 6 };
@@ -251,17 +352,29 @@ function MagicTrickBoxWaterCell() {
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "171");
 }
 
+/**
+ * If the player chooses to keep the magic coins, add them to her account
+ * @returns {void} - Nothing
+ */
 function MagicTrickGetCoin() {
 	var MagicMoney = Math.floor(Math.random() * 6) + 1;
 	MagicPerformer.CurrentDialog = MagicPerformer.CurrentDialog.replace("REPLACEMONEY", MagicMoney.toString());
 	CharacterChangeMoney(Player, MagicMoney);
 }
 
+/**
+ * If the player has to sing a song end the dialog and wait, what the player does with the assistant
+ * @returns {void} - Nothing
+ */
 function MagicSongLeavePerformer() {
 	MagicShowState = 6;
 	DialogLeave()
 }
 
+/**
+ * Bind the player and the assistant during the 'Sweet, sweet Gwendoline" song
+ * @returns {void} - Nothing
+ */
 function MagicSongGwendoyn() {
 	InventoryWear(Player, "HempRope", "ItemFeet");
 	InventoryWear(Player, "HempRope", "ItemLegs");
@@ -274,6 +387,10 @@ function MagicSongGwendoyn() {
 	MagicShowState = 4;
 }
 
+/**
+ * The player earns money with the performance of "Bad girl"
+ * @returns {void} - Nothing
+ */
 function MagicSongBadGirl() {
 	var MagicMoney = Math.floor(Math.random() * 6) + 6;
 	MagicAssistant.CurrentDialog = MagicAssistant.CurrentDialog.replace("REPLACEMONEY", MagicMoney.toString());
@@ -281,10 +398,18 @@ function MagicSongBadGirl() {
 	MagicShowState = 4;
 }
 
+/**
+ * Change the show's state after the assistant was released
+ * @returns {void} - Nothing
+ */
 function MagicAssistantRelese() {
 	MagicShowState = 5;
 }
 
+/**
+ * Dress the assistant in the player's clothes
+ * @returns {void} - Nothing
+ */
 function MagicTrickAsstantChange() {
 	CharacterDress(MagicAssistant, MagicPlayerAppearance);
 	CharacterRefresh(MagicAssistant);
@@ -293,6 +418,11 @@ function MagicTrickAsstantChange() {
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "191");
 }
 
+/**
+ * Ends the show. Release everybody, dress everybody back to their clothes 
+ * from the start and bring the player back to the mein hall
+ * @returns {void} - Nothing
+ */
 function MagicTrickEndPerformance() {
 	MagicPerformer.Stage = "0";
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "0");
@@ -307,21 +437,53 @@ function MagicTrickEndPerformance() {
 	CommonSetScreen("Room", "MainHall");
 }
 
+/**
+ * Removes a defined set of restraints from the character. If the adult baby harness chains are removed,
+ * mittens and harness are removed as well
+ * @param {Character} C - The character whose items should be removed
+ * @returns	{void} - Nothing
+ */
+function MagicRestrainRemove(C) {
+	let itemArms = InventoryGet(C, "ItemArms");
+
+	if ((itemArms != null) && (itemArms.Asset.Name === "MittenChain1")) {
+		// If the arms are restrained by the adult baby harness chain, remove the harness and the mittens as well
+		InventoryRemove(C, "ItemHands");
+		InventoryRemove(C, "ItemTorso");
+	}
+	MagicRestraintList.forEach(group => InventoryRemove(C, group));
+}
+
+/**
+ * Copies restraints from one character to another
+ * @param {Character} FromC - The source for all restraints
+ * @param {Character} ToC - The target of all restraints
+ * @returns	{void} - Nothing
+ */
 function MagicRestrainCopyTransfer(FromC, ToC) {
-	// Removes any previous appearance asset From second
-	for (let A = ToC.Appearance.length - 1; A >= 0; A--)
-		if ((ToC.Appearance[A].Asset != null) && ((ToC.Appearance[A].Asset.Group.Name == "ItemMouth") || (ToC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (ToC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (ToC.Appearance[A].Asset.Group.Name == "ItemArms") || (ToC.Appearance[A].Asset.Group.Name == "ItemFeet") || (ToC.Appearance[A].Asset.Group.Name == "ItemLegs") || (ToC.Appearance[A].Asset.Group.Name == "ItemHood") || (ToC.Appearance[A].Asset.Group.Name == "ItemHead") || (ToC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
-			ToC.Appearance.splice(A, 1);
-		}
+	var chainFound = false;
+
+	// Removes any previous appearance asset From second character
+	MagicRestrainRemove(ToC);
+
 	// Adds all appearance assets from the first character to the second
-	for (let A = 0; A < FromC.Appearance.length; A++)
-		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemHood") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices")))
-			ToC.Appearance.push(FromC.Appearance[A]);
-	// Removes any previous appearance asset From first
-	for (let A = FromC.Appearance.length-1; A >=0; A--)
-		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth2") || (FromC.Appearance[A].Asset.Group.Name == "ItemMouth3") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemHood") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
-			FromC.Appearance.splice(A, 1);
+	for (var A = 0; A < FromC.Appearance.length; A++) {
+		if ((FromC.Appearance[A].Asset != null) && (MagicRestraintList.indexOf(FromC.Appearance[A].Asset.Group.Name) >= 0)) {
+			if (FromC.Appearance[A].Asset.Name === "MittenChain1") {
+				chainFound = true;
+			}
+			InventoryWear(ToC, FromC.Appearance[A].Asset.Name, FromC.Appearance[A].Asset.Group.Name);
 		}
+	}
+	if (chainFound) {
+		// If the arms are restrained by the adult baby harness, add the harness and the mittens as well
+		InventoryWear(ToC, InventoryGet(FromC, "ItemTorso").Asset.Name, "ItemTorso");
+		InventoryWear(ToC, InventoryGet(FromC, "ItemHands").Asset.Name, "ItemHands");
+	}
+
+	// Removes any previous appearance asset From first
+	MagicRestrainRemove(FromC);
+
 	// Refreshes the second character and saves it if it's the player
 	CharacterRefresh(ToC);
 	CharacterRefresh(FromC);
