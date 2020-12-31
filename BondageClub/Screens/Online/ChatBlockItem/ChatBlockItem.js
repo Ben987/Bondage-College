@@ -1,6 +1,6 @@
 "use strict";
 var ChatBlockItemBackground = "Sheet";
-var ChatBlockItemList = ["ABDL", "SciFi"];
+var ChatBlockItemList = ["ABDL", "SciFi", "Leashing"];
 var ChatBlockItemCategory = [];
 var ChatBlockItemReturnData = {};
 

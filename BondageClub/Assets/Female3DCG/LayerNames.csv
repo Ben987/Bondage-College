@@ -24,6 +24,8 @@ NecklaceNecklaceKeyChain,Chain
 NecklaceNecklaceKeyKey,Key
 NecklaceIDCardString,Lanyard
 NecklaceIDCardCard,Card
+NecklaceElegantHeartNecklaceNecklace,Necklace
+NecklaceElegantHeartNecklaceJewels,Jewels
 SuitCatsuitBase,Suit
 SuitCatsuitZip,Zip
 SuitSeethroughSuitZipBase,Suit
@@ -103,6 +105,8 @@ ItemFeetOrnateAnkleCuffsGems,Gems
 ItemLegsOrnateLegCuffsCuffs,Cuffs
 ItemFeetFuturisticAnkleCuffsCuffs,Cuffs
 ItemFeetFuturisticAnkleCuffsDisplay,Display
+ItemFeetMedicalBedRestraintsBase,Bed Straps
+ItemFeetMedicalBedRestraintsStraps,Cuffs
 ItemLegsFuturisticLegCuffsCuffs,Cuffs
 ItemLegsFuturisticLegCuffsDisplay,Display
 ItemLegsFuturisticCuffsCuffs,Cuffs
@@ -114,6 +118,8 @@ ItemLegsHobbleSkirtLatex,Skirt
 ItemLegsHobbleSkirtBelts,Belts
 ItemLegsWoodenHorseFrame,Frame
 ItemLegsWoodenHorseWood,Wood
+ItemLegsMedicalBedRestraintsBase,Bed Straps
+ItemLegsMedicalBedRestraintsStraps,Cuffs
 ItemVulvaWandBeltBelt,Belt
 ItemVulvaWandBeltWand,Wand
 ItemVulvaHempRopeBeltRope,Rope
@@ -185,6 +191,8 @@ ItemArmsFuturisticArmbinderDisplay,Display
 ItemArmsFuturisticArmbinderBinder,Binder
 ItemArmsFuturisticArmbinderBand,Band
 ItemArmsFuturisticArmbinderStraps,Straps
+ItemArmsMedicalBedRestraintsBase,Bed Straps
+ItemArmsMedicalBedRestraintsStraps,Cuffs
 ItemHandsFuturisticMittensBody,Body
 ItemHandsFuturisticMittensMesh,Mesh
 ItemHandsFuturisticMittensDisplay,Display
@@ -421,13 +429,25 @@ MaskFoxMaskUpper,Upper
 MaskFoxMaskLower,Lower
 MaskKittyMask3Highlights,Highlights
 MaskKittyMask3Mask,Mask
+ItemTorsoFuturisticHarnessBand,Straps
+ItemTorsoFuturisticHarnessDisplay,Display
+ItemTorsoFuturisticHarnessMesh,Module
 ItemBreastFuturisticBraBra,Body
 ItemBreastFuturisticBraDisplay,Display
 ItemBreastFuturisticBraMesh,Mesh
 ItemBreastFuturisticBraText,Text
+ItemBreastFuturisticBra2Bra,Body
+ItemBreastFuturisticBra2Display,Display
+ItemBreastFuturisticBra2Mesh,Mesh
+ItemBreastFuturisticBra2Straps,Straps
 ItemPelvisFuturisticChastityBeltScreen,Screen
 ItemPelvisFuturisticChastityBeltMesh,Mesh
 ItemPelvisFuturisticChastityBeltBelt,Belt
+ItemPelvisFuturisticChastityBelt2Screen,Screen
+ItemPelvisFuturisticChastityBelt2Mesh,Mesh
+ItemPelvisFuturisticChastityBelt2Belt,Belt
+ItemPelvisFuturisticChastityBelt2Band,Band
+ItemPelvisFuturisticChastityBelt2Plug,Plug
 PantiesPilotPantiesLayer1,Suit
 PantiesPilotPantiesLayer2,Highlights
 PantiesPilotPantiesLayer3,Center
@@ -440,4 +460,6 @@ SuitPilotSuitLayer2,Highlights
 SuitPilotSuitLayer3,Center
 SuitPilotSuitLayer4,Arms
 SuitPilotSuitFeet,Feet
-
+CorsetCorset6Cloth,Cloth
+CorsetCorset6Leather,Leather
+CorsetCorset6Buttons,Buttons

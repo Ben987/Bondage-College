@@ -31,6 +31,7 @@ function ChatSearchLoad() {
 	ElementCreateInput("InputSearch", "text", "", "20");
 	ChatSearchQuery();
 	ChatSearchMessage = "";
+	
 }
 
 /**
@@ -46,7 +47,7 @@ function ChatSearchRun() {
 	
 	// Draw the bottom controls
 	if (ChatSearchMessage == "") ChatSearchMessage = "EnterName";
-	DrawText(TextGet(ChatSearchMessage), 255, 935, "White", "Gray");
+	DrawTextFit(TextGet(ChatSearchMessage), 255, 935, 490, "White", "Gray");
 	ElementPosition("InputSearch",  740, 926, 470);
 	DrawButton(980, 898, 280, 64, TextGet("SearchRoom"), "White");
 	DrawButton(1280, 898, 280, 64, TextGet("CreateRoom"), "White");
@@ -330,6 +331,7 @@ function ChatSearchClickPermission() {
 		}
 	}
 }
+
  
 /**
  * Handles the reception of the server response when joining a room or when getting banned/kicked
@@ -344,6 +346,7 @@ function ChatSearchResponse(data) {
 			ElementRemove("TextAreaChatLog");
 			CommonSetScreen("Online", "ChatSearch");
 			CharacterDeleteAllOnline();
+			ChatSearchSetLastChatRoom("")
 		}
 		ChatSearchMessage = "Response" + data;
 	}
@@ -365,7 +368,63 @@ function ChatSearchResultResponse(data) {
 				ChatSearchLastQueryJoin = ChatSearchResult[R].Name;
 				ChatRoomPlayerCanJoin = true;
 				ServerSend("ChatRoomJoin", { Name: ChatSearchResult[R].Name });
+				break;
 			}
+	} else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
+		var found = false
+		for (let R = 0; R < data.length; R++) {
+			var room = data[R]
+			if (room.Name == Player.LastChatRoom && room.MemberCount < room.MemberLimit && room.Game == "") {
+				var RoomName = room.Name;
+				if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
+					found = true
+					ChatSearchLastQueryJoinTime = CommonTime();
+					ChatSearchLastQueryJoin = RoomName;
+					ChatRoomPlayerCanJoin = true;
+					ServerSend("ChatRoomJoin", { Name: RoomName });
+					break;
+				}
+			}
+		}
+		if (!found) {
+			if (Player.ImmersionSettings.ReturnToChatRoomAdmin
+			&& Player.LastChatRoomAdmin
+			&& Player.LastChatRoomBG
+			&& Player.LastChatRoomPrivate != null
+			&& Player.LastChatRoomSize
+			&& Player.LastChatRoomDesc != null) {
+				ChatRoomPlayerCanJoin = true;
+				ChatRoomPlayerJoiningAsAdmin = true;
+				var block = []
+				var ChatRoomName = Player.LastChatRoom;
+				var ChatRoomDesc = Player.LastChatRoomDesc;
+				if (Player.LastChatRoomPrivate) {
+					ChatRoomName = Player.Name + Player.MemberNumber
+					ChatRoomDesc = ""
+				}
+				if (ChatBlockItemCategory) block = ChatBlockItemCategory
+				var NewRoom = {
+					Name: ChatRoomName.trim(),
+					Description: ChatRoomDesc.trim(),
+					Background: Player.LastChatRoomBG,
+					Private: false,
+					Space: "",
+					Game: "",
+					Admin: [Player.MemberNumber],
+					Limit: ("" + Math.min(Math.max(Player.LastChatRoomSize, 2), 10)).trim(),
+					BlockCategory: block
+				};
+				ServerSend("ChatRoomCreate", NewRoom);
+				ChatCreateMessage = "CreatingRoom";
+				
+				if (Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.LastChatRoomAdmin) {
+					NewRoom.Admin = Player.LastChatRoomAdmin
+					ChatRoomNewRoomToUpdate = NewRoom
+				}
+			} else {
+				ChatRoomSetLastChatRoom("")
+			}
+		}
 	}
 	ChatRoomJoinLeash = ""
 }
@@ -377,10 +436,16 @@ function ChatSearchResultResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
-	if (ChatRoomJoinLeash != "") {
+	if (ChatRoomJoinLeash != null && ChatRoomJoinLeash != "") {
 		Query = ChatRoomJoinLeash.toUpperCase().trim();
+	} else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "") {
+		if (Player.ImmersionSettings.ReturnToChatRoom) {
+			Query = Player.LastChatRoom.toUpperCase().trim()
+		} else {
+			ChatRoomSetLastChatRoom("")
+		}
 	}
-	
+
 	if (ChatSearchLastQuerySearch != Query || ChatSearchLastQuerySearchHiddenRooms != ChatSearchIgnoredRooms.length || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
 		ChatSearchLastQuerySearch = Query;
 		ChatSearchLastQuerySearchTime = CommonTime();

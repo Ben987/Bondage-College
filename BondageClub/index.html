@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html style="width:100%; height:100%; padding:0px; margin:0px;">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -12,6 +12,7 @@
 	<title>Bondage Club</title>
 	<link rel="icon" type="image/png" href="Icons/Logo.png">
 	<link rel="stylesheet" href="CSS/Styles.css">
+	<link rel="stylesheet" href="CSS/chessboard-0.3.0.css"></style>
 </head>
 
 <script src="Backgrounds/Backgrounds.js"></script>
@@ -89,6 +90,7 @@
 <script src="Screens/Room/CollegeTheater/CollegeTheater.js"></script>
 <script src="Screens/Room/CollegeDetention/CollegeDetention.js"></script>
 <script src="Screens/Room/CollegeTeacher/CollegeTeacher.js"></script>
+<script src="Screens/Room/CollegeChess/CollegeChess.js"></script>
 <script src="Screens/Room/LARP/LARP.js"></script>
 <script src="Screens/Room/MovieStudio/MovieStudio.js"></script>
 <script src="Screens/Room/Gambling/Gambling.js"></script>
@@ -109,6 +111,11 @@
 <script src="Screens/MiniGame/Tennis/Tennis.js"></script>
 <script src="Screens/MiniGame/PuppyWalker/PuppyWalker.js"></script>
 <script src="Screens/MiniGame/DojoStruggle/DojoStruggle.js"></script>
+<script src="Screens/MiniGame/Chess/jquery-3.2.1.min.js"></script>
+<script src="Screens/MiniGame/Chess/chess.min.js"></script>
+<script src="Screens/MiniGame/Chess/chessboard-0.3.0.js"></script>
+<script src="Screens/MiniGame/Chess/chess.js"></script>
+<script src="Screens/MiniGame/Chess/BondageChess.js"></script>
 <script src="Screens/Cutscene/PlayerCollaring/PlayerCollaring.js"></script>
 <script src="Screens/Cutscene/PlayerMistress/PlayerMistress.js"></script>
 <script src="Screens/Cutscene/NPCCollaring/NPCCollaring.js"></script>
@@ -250,7 +257,9 @@
 <script src="Screens/Inventory/ItemPelvis/MetalChastityBelt/MetalChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/PolishedChastityBelt/PolishedChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/FuturisticChastityBelt/FuturisticChastityBelt.js"></script>
+<script src="Screens/Inventory/ItemPelvis/FuturisticChastityBelt2/FuturisticChastityBelt2.js"></script>
 <script src="Screens/Inventory/ItemBreast/FuturisticBra/FuturisticBra.js"></script>
+<script src="Screens/Inventory/ItemBreast/FuturisticBra2/FuturisticBra2.js"></script>
 <script src="Screens/Inventory/ItemPelvis/OrnateChastityBelt/OrnateChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/StuddedChastityBelt/StuddedChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/HempRope/HempRope.js"></script>
@@ -261,6 +270,15 @@
 <script src="Screens/Inventory/ItemButt/ShockPlug/ShockPlug.js"></script>
 <script src="Screens/Inventory/ItemVulva/ShockDildo/ShockDildo.js"></script>
 <script src="Screens/Inventory/ItemNipples/ShockClamps/ShockClamps.js"></script>
+<script src="Screens/Inventory/ItemMouth/BallGag/BallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/BallGag/BallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/BallGag/BallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/HarnessBallGag/HarnessBallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/HarnessBallGag/HarnessBallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/HarnessBallGag/HarnessBallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/WiffleGag/WiffleGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/WiffleGag/WiffleGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/WiffleGag/WiffleGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/CupholderGag/CupholderGag.js"></script>
 <script src="Screens/Inventory/ItemMouth2/CupholderGag/CupholderGag.js"></script>
 <script src="Screens/Inventory/ItemMouth3/CupholderGag/CupholderGag.js"></script>
@@ -280,6 +298,7 @@
 <script src="Screens/Inventory/ItemMisc/WoodenSign/WoodenSign.js"></script>
 <script src="Screens/Inventory/ItemHood/GwenHood/GwenHood.js"></script>
 <script src="Screens/Inventory/ItemTorso/HeavyLatexCorset/HeavyLatexCorset.js"></script>
+<script src="Screens/Inventory/ItemMouth/FunnelGag/FunnelGag.js"></script>
 <script>
 
 /*
@@ -356,6 +375,8 @@ function DocumentKeyDown(event) {
 				DialogLeaveItemMenu();
 		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
 			DialogLeave();
+		} else if ((CurrentCharacter == null) && (CurrentScreen == "ChatRoom") && (document.getElementById("TextAreaChatLog") != null)) {
+			ElementScrollToEnd("TextAreaChatLog");
 		}
 	}
 }

@@ -21,28 +21,21 @@ var MaidQuartersOnlineDrinkValue = 0;
 var MaidQuartersOnlineDrinkCustomer = [];
 var MaidQuartersOnlineDrinkFromOwner = false;
 
-
-// Returns TRUE if the player has maids disabled
 /**
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
  */
 function MaidQuartersIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ) }
-
-// Returns TRUE if the player can work for the maids
 /**
  * Checks if the player is helpless (maids disabled) or not and also if they have reputation to do work
  * @returns {boolean} - Returns true if the player has maids enabled and also has rep
  */
 function MaidQuartersCanDoWorkForMaids() { return (DialogReputationGreater("Maid", 1) && !MaidQuartersIsMaidsDisabled()) }
-// Returns TRUE if the player can work for the maids
 /**
  * Checks if the player is helpless (maids disabled) or not and also if they have reputation to do work
  * @returns {boolean} - Returns true if the player has maids enabled and also has rep
  */
 function MaidQuartersCanDoWorkButMaidsDisabled() { return (DialogReputationGreater("Maid", 1) && MaidQuartersIsMaidsDisabled()) }
-
-// Returns TRUE if the player is dressed in a maid uniform or can take a specific chore
 /**
  * CHecks for appropriate dressing
  * @returns {boolean} - Returns true if the player wears a maid dress and a maid hair band, false otherwise

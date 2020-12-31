@@ -10,6 +10,8 @@ Head Maid
 Главная Горничная
 Maid
 Горничная
+Bondage Maid
+Бондаж Горничная
 Master Kidnapper
 Мастер-Похититель
 Kidnapper
@@ -42,3 +44,31 @@ Shining Unicorn
 Сияющий Единорог
 Flying Pegasus
 Летающий Пегас
+Majestic Alicorn
+Величественный Аликорн
+Little One
+малыш
+Baby
+Младенец
+Diaper Lover
+Любитель Подгузников
+Bondage Baby
+Связывание Ребенка
+Duchess
+Герцогиня
+Kitten
+Котёнок
+Puppy
+Щенок
+Foxy
+Лисий
+Bunny
+Кролик
+Doll
+Кукла
+Demon
+Демон
+Angel
+Ангел
+Succubus
+Суккуб

@@ -2,18 +2,34 @@
 Nom:
 Title:
 Titre:
+None
+Aucun
 Mistress
 Maîtresse
+Club Slave
+Esclave du Club
 Head Maid
 Maîtresse Servante
 Maid
 Servante
+Bondage Maid
+Servante de Bondage
 Master Kidnapper
 Ace du Kidnapping
 Kidnapper
 Kidnappeuse
-None
-Aucune
+Patient
+Patiente
+Permanent Patient
+Patiente permanente
+Escaped Patient
+Patiente évadée
+Nurse
+Infirmière
+Doctor
+Médecin
+College Student
+Étudiante
 Foal
 Poulain
 Farm Horse
@@ -30,6 +46,38 @@ Shining Unicorn
 Licorne Scintillante
 Flying Pegasus
 Pégase Volant
+Lady Luck
+Dame Chance
+Patron
+Patronne
+Majestic Alicorn
+Alicorne Majestieuse
+Little One
+Petiotte
+Baby
+Bébé
+Diaper Lover
+Porteur de Couche
+Bondage Baby
+Bébé attaché
+Duchess
+Duchesse
+Kitten
+Chaton
+Puppy
+Chiot
+Foxy
+Renarde
+Bunny
+Lapine
+Doll
+Poupée
+Demon
+Démon
+Angel
+Ange
+Succubus
+Succube
 Member Number:
 Numéro de Membre:
 -

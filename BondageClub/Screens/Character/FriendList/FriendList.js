@@ -29,14 +29,16 @@ function FriendListLoad() {
  */
 function FriendListRun() {
 	const mode = FriendListMode[FriendListModeIndex];
-	DrawText(TextGet(mode === "Beeps" ? "ListBeeps" : "ListFriends"), 230, 35, "White", "Gray");
 	DrawText(TextGet("MemberNumber"), 665, 35, "White", "Gray");
 	if (mode === "Friends") {
+		DrawText(TextGet("ListOnlineFriends"), 230, 35, "White", "Gray");
 		DrawText(TextGet("ChatRoomName"), 1100, 35, "White", "Gray");
 		DrawText(TextGet("ActionFriends"), 1535, 35, "White", "Gray");
 	} else if (mode === "Beeps") {
+		DrawText(TextGet("ListBeeps"), 230, 35, "White", "Gray");
 		DrawText(TextGet("ChatRoomName"), 1100, 35, "White", "Gray");
-	} else {
+	} else if (mode === "Delete") {
+		DrawText(TextGet("ListFriends"), 230, 35, "White", "Gray");
 		DrawText(TextGet("FriendType"), 1100, 35, "White", "Gray");
 		DrawText(TextGet("ActionDelete"), 1535, 35, "White", "Gray");
 	}
@@ -95,7 +97,6 @@ function FriendListLoadFriendList(data) {
 	const DeleteCaption = DialogFind(Player, "Delete");
 	const ConfirmDeleteCaption = DialogFind(Player, "ConfirmDelete");
 	const PrivateRoomCaption = DialogFind(Player, "PrivateRoom");
-	const OfflineCaption = DialogFind(Player, "Offline");
 	const SentCaption = DialogFind(Player, "SentBeep");
 	const ReceivedCaption = DialogFind(Player, "ReceivedBeep");
 	const SpaceAsylumCaption = DialogFind(Player, "ChatRoomSpaceAsylum");
@@ -127,10 +128,8 @@ function FriendListLoadFriendList(data) {
 	if (infoChanged) ServerPlayerRelationsSync();
 
 	if (mode === "Friends") {
-		const online = new Set();
 		// In Friend List mode, we show the friend list and allow doing beeps
 		for (const friend of data.sort((a, b) => a.MemberName.localeCompare(b))) {
-			online.add(friend.MemberNumber);
 			FriendListContent += "<div class='FriendListRow'>";
 			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${friend.MemberName} </div>`;
 			FriendListContent += `<div class='FriendListTextColumn'> ${friend.MemberNumber} </div>`;
@@ -141,14 +140,6 @@ function FriendListLoadFriendList(data) {
 				FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${friend.ChatRoomName} </div>`;
 			}
 			FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListBeep(${friend.MemberNumber}, "${friend.MemberName}")'> ${BeepCaption} </div>`;
-			FriendListContent += "</div>";
-		}
-		for (const [k, v] of Array.from(Player.FriendNames).sort((a, b) => a[1].localeCompare(b[1]))) {
-			if (online.has(k)) continue;
-			FriendListContent += "<div class='FriendListRow'>";
-			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${v} </div>`;
-			FriendListContent += `<div class='FriendListTextColumn'> ${k} </div>`;
-			FriendListContent += `<div class='FriendListTextColumn'> ${OfflineCaption} </div>`;
 			FriendListContent += "</div>";
 		}
 	} else if (mode === "Beeps") {
