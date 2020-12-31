@@ -340,10 +340,8 @@ function ChatSearchClickPermission() {
  */
 function ChatSearchResponse(data) {
 	if ((data != null) && (typeof data === "string") && (data != "")) {
-		if (((data == "RoomBanned") || (data == "RoomKicked")) && (CurrentScreen == "ChatRoom")) {
-			if (CurrentCharacter != null) DialogLeave();
-			ElementRemove("InputChat");
-			ElementRemove("TextAreaChatLog");
+		if (((data == "RoomBanned") || (data == "RoomKicked")) && ServerPlayerIsInChatRoom()) {
+			ChatRoomClearAllElements();
 			CommonSetScreen("Online", "ChatSearch");
 			CharacterDeleteAllOnline();
 			ChatSearchSetLastChatRoom("")
