@@ -12,6 +12,8 @@ var MainHallHasSlaveCollar = false;
 var MainHallTip = 0;
 var MainHallMaidWasCalledManually = false;
 
+var MainHallBeingPunished = false;
+var firstFrame = false;
 var MainHallRemoveLockTypes = ["CombinationPadlock", "PasswordPadlock"]
 
 var MainHallPunishmentList = [
@@ -144,15 +146,6 @@ function MainHallLoad() {
 	CommonReadCSV("NoArravVar", "Room", "Prison", "Dialog_NPC_Prison_Police");
 	CommonReadCSV("NoArravVar", "Character", "Relog", "Text_Relog");
 
-	if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && MainHallMaid.Stage != "1100") {
-		// We return to the chat room that the player was last in		
-		if (Player.ImmersionSettings.ReturnToChatRoom) {
-			ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList);
-		} else {
-			ChatRoomSetLastChatRoom("")
-		}
-	}
-
 }
 
 /**
@@ -160,26 +153,42 @@ function MainHallLoad() {
  * @returns {void} - Nothing
  */
 function MainHallRun() {
+	
+	if (!MainHallBeingPunished) {
+		
+		
+		if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && MainHallMaid.Stage == "0") {
+			if (firstFrame) {
+			// We return to the chat room that the player was last in		
+			if (Player.ImmersionSettings.ReturnToChatRoom) {
+				ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList);
+				return;
+			} else {
+				ChatRoomSetLastChatRoom("")
+			}
+			} else firstFrame = true
+		} else
 
-	// If the player is dressed up while being a club slave, the maid intercepts her
-	if ((CurrentCharacter == null) && ManagementIsClubSlave() && LogQuery("BlockChange", "Rule") && !Player.IsNaked() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
-		MainHallMaid.Stage = "50";
-		MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "ClubSlaveMustBeNaked");
-		CharacterRelease(MainHallMaid);
-		CharacterSetCurrent(MainHallMaid);
-		MainHallStartEventTimer = null;
-		MainHallNextEventTimer = null;
-		return;
-	}
+		// If the player is dressed up while being a club slave, the maid intercepts her
+		if ((CurrentCharacter == null) && ManagementIsClubSlave() && LogQuery("BlockChange", "Rule") && !Player.IsNaked() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
+			MainHallMaid.Stage = "50";
+			MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "ClubSlaveMustBeNaked");
+			CharacterRelease(MainHallMaid);
+			CharacterSetCurrent(MainHallMaid);
+			MainHallStartEventTimer = null;
+			MainHallNextEventTimer = null;
+			return;
+		} else
 
-	// If the player is a Mistress but her Dominant reputation has fallen
-	if ((CurrentCharacter == null) && LogQuery("ClubMistress", "Management") && (ReputationGet("Dominant") < 50) && Player.CanTalk() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
-		CommonSetScreen("Room", "Management");
-		CharacterSetCurrent(MainHallMaid);
-		CurrentScreen = "MainHall";
-		MainHallMaid.Stage = "60";
-		MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "MistressExpulsionIntro");
-		return;
+		// If the player is a Mistress but her Dominant reputation has fallen & stage is not 
+		if ((CurrentCharacter == null) && LogQuery("ClubMistress", "Management") && (ReputationGet("Dominant") < 50) && Player.CanTalk() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
+			CommonSetScreen("Room", "Management");
+			CharacterSetCurrent(MainHallMaid);
+			CurrentScreen = "MainHall";
+			MainHallMaid.Stage = "60";
+			MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "MistressExpulsionIntro");
+			return;
+		}
 	}
 
 	// Draws the character and main hall buttons
@@ -454,6 +463,7 @@ function MainHallFreeSarah() {
  * @returns {void} - Nothing
  */
 function MainHallPunishFromChatroom() {
+	MainHallBeingPunished = true;
 	MainHallMaid.Stage = "1100";
 	CharacterRelease(MainHallMaid);
 	CharacterSetCurrent(MainHallMaid);
@@ -461,6 +471,8 @@ function MainHallPunishFromChatroom() {
 	MainHallHasLoverLock = InventoryCharacterHasLoverOnlyRestraint(Player);
 	if (ReputationGet("Dominant") > 10) ReputationProgress("Dominant", -10);
 	if (ReputationGet("Dominant") < -10) ReputationProgress("Dominant", 10);
+	
+	
 }
 /**
  * Triggered when the maid unlocks the player from a chat room
@@ -622,7 +634,7 @@ function MainHallPunishFromChatroomRest() {
 	
 	CharacterRefresh(Player);
 	
-	
+	MainHallBeingPunished = false;
 	ChatRoomSetLastChatRoom("")
 }
 
