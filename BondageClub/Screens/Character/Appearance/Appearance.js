@@ -55,8 +55,8 @@ function CharacterAppearanceValidate(C) {
 	// Remove items flagged as "Remove At Login"
 	if (LogQuery("Committed", "Asylum") || !Player.GameplaySettings || !Player.GameplaySettings.DisableAutoRemoveLogin)
 		for (let A = C.Appearance.length - 1; A >= 0; A--)
-			if (C.Appearance[A].Asset.RemoveAtLogin) {
-				C.Appearance.splice(A, 1);
+			if (C.Appearance[A] && C.Appearance[A].Asset.RemoveAtLogin) {
+				InventoryRemove(C, C.Appearance[A].Asset.Group.Name, false);
 				Refresh = true;
 			}
 
