@@ -155,7 +155,7 @@ function DialogNaked(C) { CharacterNaked((C.toUpperCase().trim() == "PLAYER") ? 
  * Either the player (value: Player) or the current character (value: CurrentCharacter)
  * @returns {void} - Nothing
  */
-function DialogFullRandomRestrain(C) { CharacterFullRandomRestrain((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); } // Strips a character naked and removes the restrains
+function DialogFullRandomRestrain(C) { CharacterFullRandomRestrain((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); }
 
 /**
  * Checks, if a specific log has been registered with the player

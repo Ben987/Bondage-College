@@ -1141,6 +1141,7 @@ ItemDevices,SmallLocker,Small Locker
 ItemDevices,VentlessLocker,Ventless Locker
 ItemDevices,SmallVentlessLocker,Small Ventless Locker
 ItemDevices,ConcealingCloak,Concealing Cloak
+ItemDevices,TransportWoodenBox,Transport Box
 ItemHoodAddon,,Hood
 ItemHoodAddon,OldGasMaskLenses,Blinding Lenses
 ItemHoodAddon,OldGasMaskTube1,Gas Mask Tube
