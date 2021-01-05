@@ -1094,7 +1094,13 @@ function CharacterIsEdged(C) {
 	// Get every vibrating item acting on an orgasm zone
 	const VibratingItems = C.Appearance
 		.filter(A => OrgasmZones.indexOf(A.Asset.ArousalZone) >= 0)
-		.filter(Item => Item && Item.Property && typeof Item.Property.Intensity === "number" && Item.Property.Intensity >= 0);
+		.filter(Item => Item
+		                && Item.Property
+		                && Array.isArray(Item.Property.Effect)
+		                && Item.Property.Effect.includes("Vibrating")
+		                && typeof Item.Property.Intensity === "number"
+		                && Item.Property.Intensity >= 0,
+		);
 
 	// Return true if every vibrating item on an orgasm zone has the "Edged" effect
 	return !!VibratingItems.length && VibratingItems.every(Item => Item.Property.Effect && Item.Property.Effect.includes("Edged"));
