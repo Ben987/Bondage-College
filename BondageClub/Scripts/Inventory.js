@@ -533,9 +533,13 @@ function InventoryGroupIsBlocked(C, GroupName, Activity) {
 
     if (Activity) {
 		for (let E = 0; E < C.Appearance.length; E++) {
-			if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.AllowActivityOn != null) && (C.Appearance[E].Asset.AllowActivityOn.includes(GroupName))) Activity = true;
-			else if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.AllowActivityOn != null) && (C.Appearance[E].Property.AllowActivityOn.indexOf(GroupName) >= 0)) Activity = true;
-			else Activity = false;
+			if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.AllowActivityOn != null) && (C.Appearance[E].Asset.AllowActivityOn.includes(GroupName))){
+				Activity = true;
+				break;
+			} else if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.AllowActivityOn != null) && (C.Appearance[E].Property.AllowActivityOn.indexOf(GroupName) >= 0)){
+				Activity = true;
+				break;
+			} else Activity = false;
 		}
     }
 
