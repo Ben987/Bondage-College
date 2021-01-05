@@ -108,7 +108,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HasNoItem: function () { return CharacterHasNoItem(this); },
 		IsEdged: function () { return CharacterIsEdged(this); },
 		IsNpc: function () { return (this.AccountName.substring(0, 4) === "NPC_" || this.AccountName.substring(0, 4) === "NPC-"); },
-		GetDifficulty: function () { return ((this.Difficulty == null) || (this.Difficulty.Level == null) || (typeof this.Difficulty.Level !== "number") || (this.Difficulty.Level < 0) || (this.Difficulty.Level > 3)) ? 1 : this.Difficulty.Level; }
+		GetDifficulty: function () { return ((this.Difficulty == null) || (this.Difficulty.Level == null) || (typeof this.Difficulty.Level !== "number") || (this.Difficulty.Level < 0) || (this.Difficulty.Level > 3)) ? 1 : this.Difficulty.Level; },
+		IsInverted: function () { return this.Pose.indexOf("Suspension") >= 0; },
 	};
 
 	// If the character doesn't exist, we create it
@@ -1131,4 +1132,13 @@ function CharacterGetLoversNumbers(C, MembersOnly) {
 		else if (C.Lovership[L].Name && (MembersOnly == null || MembersOnly == false)) { LoversNumbers.push(C.Lovership[L].Name); }
 	}
 	return LoversNumbers;
+}
+
+/**
+ * Returns whether the character appears upside-down on the screen which may depend on the player's own inverted status
+ * @param {Character} C - The character to check
+ * @returns {boolean} - If TRUE, the character appears upside-down
+ */
+function CharacterAppearsInverted(C) {
+	return Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom ? Player.IsInverted() != C.IsInverted() : C.IsInverted();
 }

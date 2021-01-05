@@ -1376,7 +1376,7 @@ function DialogClick() {
  */
 function DialogClickedInZone(C, Zone, Zoom, X, Y) {
 	let Left = X + Zone[0] * Zoom;
-	let Top = C.Pose.indexOf("Suspension") >= 0 ? 1000 - (Y + (Zone[1] + Zone[3]) * Zoom) : Y + Zone[1] * Zoom;
+	let Top = CharacterAppearsInverted(C) ? 1000 - (Y + (Zone[1] + Zone[3]) * Zoom) : Y + Zone[1] * Zoom;
 	let Width = Zone[2] * Zoom;
 	let Height = Zone[3] * Zoom;
 	return MouseIn(Left, Top, Width, Height);

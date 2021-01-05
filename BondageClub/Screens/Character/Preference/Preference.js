@@ -214,7 +214,8 @@ function PreferenceInit(C) {
 		RestrictionSettings: C.RestrictionSettings,
 		ArousalSettings: C.ArousalSettings,
 		OnlineSettings: C.OnlineSettings,
-		OnlineSharedSettings: C.OnlineSharedSettings
+		OnlineSharedSettings: C.OnlineSharedSettings,
+		GraphicsSettings: Player.GraphicsSettings,
 	};
 	
 	// If the settings aren't set before, construct them to replicate the default behavior
@@ -364,7 +365,8 @@ function PreferenceInit(C) {
    // Graphical settings
    if (!C.GraphicsSettings) C.GraphicsSettings = {Font: "Arial"}
    if (!C.GraphicsSettings.Font) C.GraphicsSettings.Font = "Arial";
-   
+   if (typeof C.GraphicsSettings.InvertRoom !== "boolean") C.GraphicsSettings.InvertRoom = true;
+
 	// Sync settings if anything changed
 	if (C.ID == 0) {
 		var PrefAfter = {
@@ -1018,6 +1020,7 @@ function PreferenceSubscreenGraphicsRun() {
 	DrawText(TextGet("VFX"), 800, 246, "Black", "Gray");
 	DrawText(TextGet("GraphicsFont"), 800, 336, "Black", "Gray");
 	DrawTextFit(TextGet("GraphicsFontDisclaimer"), 500, 406, 1400, "Black", "Gray");
+	DrawCheckbox(500, 470, 64, 64, TextGet("GraphicsInvertRoom"), Player.GraphicsSettings.InvertRoom);
 
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 212, 250, 64, TextGet(Player.ArousalSettings.VFX), "White", "",
@@ -1047,6 +1050,7 @@ function PreferenceSubscreenGraphicsClick() {
 		CommonGetFont.clearCache();
 		CommonGetFontName.clearCache();
 	}
+	if (MouseIn(500, 470, 64, 64)) Player.GraphicsSettings.InvertRoom = !Player.GraphicsSettings.InvertRoom;
 }
 
 /**

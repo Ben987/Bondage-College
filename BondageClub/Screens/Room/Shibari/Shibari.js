@@ -34,7 +34,7 @@ function ShibariAllowPlayerBondage() { return !Player.IsRestrained() && !Shibari
  * Checks if the player can spank the Shibari dojo teacher.
  * @returns {boolean} - Returns TRUE if the player can spank the teacher.
  */
-function ShibariAllowSpank() { return (((CurrentCharacter.ID == ShibariTeacher.ID) ? (ShibariTeacher.Pose.indexOf("Suspension") >= 0) : (ShibariStudent.Pose.indexOf("Suspension") >= 0)) && Player.CanInteract()) }
+function ShibariAllowSpank() { return (((CurrentCharacter.ID == ShibariTeacher.ID) ? ShibariTeacher.IsInverted() : ShibariStudent.IsInverted()) && Player.CanInteract()); }
 /**
  * Checks if the given maid rescue scenario name is currently active in the shibari dojo.
  * @param {string} ScenarioName - Name of the scenario to check for.

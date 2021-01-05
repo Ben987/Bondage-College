@@ -276,7 +276,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		}
 
 		// If we must flip the canvas vertically
-		let IsInverted = C.Pose.indexOf("Suspension") >= 0;
+		let IsInverted = CharacterAppearsInverted(C);
 		if (IsInverted) {
 			var CanvasH = document.createElement("canvas");
 			CanvasH.width = Canvas.width;
@@ -348,7 +348,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 function DrawAssetGroupZone(C, Zone, Zoom, X, Y, Color, Thickness = 3, FillColor) {
 	for (let Z = 0; Z < Zone.length; Z++) {
 		let Left = X + Zone[Z][0] * Zoom;
-		let Top = C.Pose.indexOf("Suspension") >= 0 ? 1000 - (Y + (Zone[Z][1] + Zone[Z][3]) * Zoom) : Y + Zone[Z][1] * Zoom;
+		let Top = CharacterAppearsInverted(C) ? 1000 - (Y + (Zone[Z][1] + Zone[Z][3]) * Zoom) : Y + Zone[Z][1] * Zoom;
 		let Width = Zone[Z][2] * Zoom;
 		let Height = Zone[Z][3] * Zoom;
 
@@ -369,12 +369,14 @@ function DrawAssetGroupZone(C, Zone, Zoom, X, Y, Color, Thickness = 3, FillColor
  * @param {number} Y - Position of the image on the Y axis
  * @param {number} Width - Width of the image
  * @param {number} Height - Height of the image
+ * @param {boolean} Invert - Flips the image vertically
  * @returns {boolean} - whether the image was complete or not
  */
-function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
+function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height, Invert) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
+	if (Invert) Img = DrawInvertImage(Img);
 	Canvas.drawImage(Img, SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
 	return true;
 }
@@ -485,12 +487,14 @@ function DrawImageZoomMirror(Source, X, Y, Width, Height) {
  * @param {string} Source - URL of the image
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
+ * @param {boolean} Invert - Flips the image vertically
  * @returns {boolean} - whether the image was complete or not
  */
-function DrawImage(Source, X, Y) {
+function DrawImage(Source, X, Y, Invert) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
+	if (Invert) Img = DrawInvertImage(Img);
 	MainCanvas.drawImage(Img, X, Y);
 	return true;
 }
@@ -573,6 +577,21 @@ function DrawImageMirror(Source, X, Y) {
 	MainCanvas.drawImage(Img, X * -1, Y);
 	MainCanvas.restore();
 	return true;
+}
+
+/**
+ * Flips an image vertically
+ * @param {HTMLImageElement} Img - The image to be inverted
+ * @returns {HTMLCanvasElement} - Canvas with the inverted image
+ */
+function DrawInvertImage(Img) {
+	let ImgCanvas = document.createElement("canvas");
+	ImgCanvas.width = Img.width;
+	ImgCanvas.height = Img.height;
+	ImgCanvas.getContext("2d").scale(1, -1);
+	ImgCanvas.getContext("2d").translate(0, -ImgCanvas.height);
+	ImgCanvas.getContext("2d").drawImage(Img, 0, 0);
+	return ImgCanvas;
 }
 
 /**
@@ -999,7 +1018,10 @@ function DrawProcess() {
 			else if (blindLevel == 1) DarkFactor = 0.3;
 			else if (CurrentCharacter != null || ShopStarted) DarkFactor = 0.5;
 		}
-		if (DarkFactor > 0.0) DrawImage("Backgrounds/" + B + ".jpg", 0, 0);
+		if (DarkFactor > 0.0) {
+			let Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
+			DrawImage("Backgrounds/" + B + ".jpg", 0, 0, Invert);
+		}
 		if (DarkFactor < 1.0) DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
 	}
 
