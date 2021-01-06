@@ -1163,7 +1163,7 @@ function DialogItemClick(ClickItem) {
 
 	// Cannot change item if the previous one is locked or blocked by another group
 	if ((CurrentItem == null) || !InventoryItemHasEffect(CurrentItem, "Lock", true)) {
-		if (!InventoryGroupIsBlocked(C, null, true) && !ClickItem.Worn)
+		if (!InventoryGroupIsBlocked(C, null, true) && (!InventoryGroupIsBlocked(C) || !ClickItem.Worn))
 			if (InventoryAllow(C, ClickItem.Asset.Prerequisite) && InventoryChatRoomAllow(ClickItem.Asset.Category))
 				if ((CurrentItem == null) || (CurrentItem.Asset.Name != ClickItem.Asset.Name)) {
 					if (ClickItem.Asset.Wear) {
@@ -1533,7 +1533,12 @@ function DialogDrawItemMenu(C) {
 		if (InventoryGroupIsBlocked(C)) {
 			var tempDialogInventory = [];
 			for (let I = 0; I < DialogInventory.length; I++) {
-				if ((DialogInventory[I].Asset.Name == "SpankingToys") || DialogInventory[I].Worn) tempDialogInventory.push(DialogInventory[I]);
+				if ((DialogInventory[I].Asset.Name == "SpankingToys")) tempDialogInventory.push(DialogInventory[I]);
+			}
+			if (tempDialogInventory.length > 0) {
+				for (let I = 0; I < DialogInventory.length; I++) {
+					if (DialogInventory[I].Worn) tempDialogInventory.push(DialogInventory[I]);
+				}
 			}
 			DialogInventory = tempDialogInventory;
 		}
@@ -1564,7 +1569,10 @@ function DialogDrawItemMenu(C) {
 			}
 		}
 
-		if (DialogInventory.length > 0) return;
+		if (DialogInventory.length > 0) {
+			if (InventoryGroupIsBlocked(C)) DrawText(DialogFind(Player, "ZoneBlocked"), 1500, 700, "White", "Black");
+			return;
+		}
 	}
 
 	// If the player is progressing
