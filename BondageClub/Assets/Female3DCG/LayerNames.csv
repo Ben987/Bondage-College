@@ -252,6 +252,9 @@ ItemHoodPumpkinHeadFront,Front
 ItemHoodPumpkinHeadBack,Back
 ItemHoodLatexHoodOpenHairHair,Hair
 ItemHoodLatexHoodOpenHairHood,Hood
+ItemHoodLeatherHoodHood,Hood
+ItemHoodLeatherHoodCollar,Collar
+ItemHoodLeatherHoodSnaps,Snaps
 ItemHoodAddonOldGasMaskLensesTube1Lenses,Lenses
 ItemHoodAddonOldGasMaskLensesTube1Tube1,Tube
 ItemHoodAddonOldGasMaskLensesTube2Lenses,Lenses
@@ -463,3 +466,5 @@ SuitPilotSuitFeet,Feet
 CorsetCorset6Cloth,Cloth
 CorsetCorset6Leather,Leather
 CorsetCorset6Buttons,Buttons
+ItemEarsHeadphonesDark,Dark
+ItemEarsHeadphonesLight,Light
