@@ -68,6 +68,7 @@ function ServerSetConnected(connected, errorMessage) {
 		LoginErrorMessage = "";
 	} else {
 		LoginErrorMessage = errorMessage || "";
+		LoginSubmitted = false;
 	}
 	LoginUpdateMessage();
 }
