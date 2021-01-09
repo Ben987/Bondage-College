@@ -19,7 +19,7 @@ var CharacterAppearancePreviousEmoticon = "";
 var CharacterAppearanceMode = "";
 var CharacterAppearanceCloth = null;
 
-const CanvasUpperOverflow = 600;
+const CanvasUpperOverflow = 700;
 const CanvasLowerOverflow = 150;
 const CanvasDrawHeight = 1000 + CanvasUpperOverflow + CanvasLowerOverflow;
 

@@ -293,13 +293,15 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		let XOffset = CharacterAppearanceXOffset(C, HeightRatio);
 		let YOffset = CharacterAppearanceYOffset(C, HeightRatio);
 		
-		// Calculate the vertical parameters, factoring in the character's height ratio, modifiers and the excess canvas overflow
-		let YStart = CanvasUpperOverflow - YOffset / HeightRatio;
-		let SourceHeight = 1000 / HeightRatio;
+		// Calculate the vertical parameters. In certain cases, cut off anything above the Y value.
+		let YCutOff = YOffset >= 0 || CurrentScreen == "ChatRoom";
+		let YStart = CanvasUpperOverflow + (YCutOff ? -YOffset / HeightRatio : 0);
+		let SourceHeight = 1000 / HeightRatio + (YCutOff ? 0 : -YOffset / HeightRatio);
 		let SourceY = IsInverted ? Canvas.height - (YStart + SourceHeight) : YStart;
-		
-		// Draw the character into a 500x1000 space
-		MainCanvas.drawImage(Canvas, 0, SourceY, Canvas.width / HeightRatio, SourceHeight, X + XOffset * Zoom, Y, 500 * Zoom, 1000 * Zoom);
+		let DestY = (IsInverted || YCutOff) ? 0 : YOffset;
+
+		// Draw the character
+		MainCanvas.drawImage(Canvas, 0, SourceY, Canvas.width / HeightRatio, SourceHeight, X + XOffset * Zoom, Y + DestY * Zoom, 500 * Zoom, (1000 - DestY) * Zoom);
 
 		// Draw the arousal meter & game images on certain conditions
 		DrawArousalMeter(C, X, Y, Zoom);
