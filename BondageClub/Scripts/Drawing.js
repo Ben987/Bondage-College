@@ -317,11 +317,11 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 					var Color = "#80808040";
 					if (InventoryGroupIsBlocked(C, AssetGroup[A].Name)) Color = "#88000580";
 					else if (InventoryGet(C, AssetGroup[A].Name) != null) Color = "#D5A30080";
-					DrawAssetGroupZone(C, AssetGroup[A].Zone, HeightRatio * Zoom, X + XOffset * Zoom, Y + YOffset * Zoom, Color, 5);
+					DrawAssetGroupZone(C, AssetGroup[A].Zone, Zoom, X, Y, HeightRatio, Color, 5);
 				}
 
 			// Draw the focused zone in cyan
-			DrawAssetGroupZone(C, C.FocusGroup.Zone, HeightRatio * Zoom, X + XOffset * Zoom, Y + YOffset * Zoom, "cyan");
+			DrawAssetGroupZone(C, C.FocusGroup.Zone, Zoom, X, Y, HeightRatio, "cyan");
 		}
 
 		// Draw the character name below herself
@@ -342,20 +342,18 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
  * @param {number} Zoom - Height ratio of the character
  * @param {number} X - Position of the character on the X axis
  * @param {number} Y - Position of the character on the Y axis
+ * @param {number} HeightRatio - The displayed height ratio of the character
  * @param {string} Color - Color of the zone outline
  * @param {number} [Thickness=3] - Thickness of the outline
  * @param {string} FillColor - If non-empty, the color to fill the rectangle with
  * @returns {void} - Nothing
  */
-function DrawAssetGroupZone(C, Zone, Zoom, X, Y, Color, Thickness = 3, FillColor) {
+function DrawAssetGroupZone(C, Zone, Zoom, X, Y, HeightRatio, Color, Thickness = 3, FillColor) {
 	for (let Z = 0; Z < Zone.length; Z++) {
-		let Left = X + Zone[Z][0] * Zoom;
-		let Top = CharacterAppearsInverted(C) ? 1000 - (Y + (Zone[Z][1] + Zone[Z][3]) * Zoom) : Y + Zone[Z][1] * Zoom;
-		let Width = Zone[Z][2] * Zoom;
-		let Height = Zone[Z][3] * Zoom;
+		let CZ = DialogGetCharacterZone(C, Zone[Z], X, Y, Zoom, HeightRatio);
 
-		if (FillColor != null) DrawRect(Left, Top, Width, Height, FillColor);
-		DrawEmptyRect(Left, Top, Width, Height, Color, Thickness);
+		if (FillColor != null) DrawRect(CZ[0], CZ[1], CZ[2], CZ[3], FillColor);
+		DrawEmptyRect(CZ[0], CZ[1], CZ[2], CZ[3], Color, Thickness);
 	}
 }
 

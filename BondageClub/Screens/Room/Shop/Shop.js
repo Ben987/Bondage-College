@@ -150,8 +150,7 @@ function ShopClick() {
 				for (let A = 0; A < AssetGroup.length; A++)
 					if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
 						for (let Z = 0; Z < AssetGroup[A].Zone.length; Z++) {
-							let YOffset = CharacterAppearanceYOffset(ShopVendor, 1);
-							if (DialogClickedInZone(ShopVendor, AssetGroup[A].Zone[Z], 1, 500, YOffset)) {
+							if (DialogClickedInZone(ShopVendor, AssetGroup[A].Zone[Z], 1, 500, 0, 1)) {
 								ShopItemOffset = 0;
 								ShopVendor.FocusGroup = AssetGroup[A];
 								ShopSelectAsset = ShopAssetFocusGroup;

@@ -1229,12 +1229,11 @@ function DialogClick() {
 		DialogLeaveItemMenu();
 		DialogLeaveFocusItem();
 		var C = (MouseX < 500) ? Player : CurrentCharacter;
-		let X = CharacterAppearanceXOffset(C, C.HeightRatio) + (MouseX < 500 ? 0 : 500);
-		let Y = CharacterAppearanceYOffset(C, C.HeightRatio);
+		let X = MouseX < 500 ? 0 : 500;
 		for (let A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
 				for (let Z = 0; Z < AssetGroup[A].Zone.length; Z++)
-					if (DialogClickedInZone(C, AssetGroup[A].Zone[Z], C.HeightRatio, X, Y)) {
+					if (DialogClickedInZone(C, AssetGroup[A].Zone[Z], 1, X, 0, C.HeightRatio)) {
 						C.FocusGroup = AssetGroup[A];
 						DialogItemToLock = null;
 						DialogFocusItem = null;
@@ -1369,17 +1368,37 @@ function DialogClick() {
  * Returns whether the clicked co-ordinates are inside the asset zone
  * @param {Character} C - The character the click is on
  * @param {Array} Zone - The 4 part array of the rectangular asset zone on the character's body: [X, Y, Width, Height]
+ * @param {number} Zoom - The amount the character has been zoomed
  * @param {number} X - The X co-ordinate of the click
  * @param {number} Y - The Y co-ordinate of the click
- * @param {number} Zoom - The amount the character has been zoomed
+ * @param {number} HeightRatio - The displayed height ratio of the character
  * @returns {boolean} - If TRUE the click is inside the zone
  */
-function DialogClickedInZone(C, Zone, Zoom, X, Y) {
+function DialogClickedInZone(C, Zone, Zoom, X, Y, HeightRatio) {
+	let CZ = DialogGetCharacterZone(C, Zone, X, Y, Zoom, HeightRatio);
+	return MouseIn(CZ[0], CZ[1], CZ[2], CZ[3]);
+}
+
+/**
+ * Return the co-ordinates and dimensions of the asset group zone as it appears on screen
+ * @param {Character} C - The character the zone is calculated for
+ * @param {Array} Zone - The 4 part array of the rectangular asset zone: [X, Y, Width, Height]
+ * @param {number} X - The starting X co-ordinate of the character's position
+ * @param {number} Y - The starting Y co-ordinate of the character's position
+ * @param {number} Zoom - The amount the character has been zoomed
+ * @param {number} HeightRatio - The displayed height ratio of the character
+ * @returns {Array} - The 4 part array of the displayed rectangular asset zone: [X, Y, Width, Height]
+ */
+function DialogGetCharacterZone(C, Zone, X, Y, Zoom, HeightRatio) {
+	X += CharacterAppearanceXOffset(C, HeightRatio) * Zoom;
+	Y += CharacterAppearanceYOffset(C, HeightRatio) * Zoom;
+	Zoom *= HeightRatio;
+
 	let Left = X + Zone[0] * Zoom;
 	let Top = CharacterAppearsInverted(C) ? 1000 - (Y + (Zone[1] + Zone[3]) * Zoom) : Y + Zone[1] * Zoom;
 	let Width = Zone[2] * Zoom;
 	let Height = Zone[3] * Zoom;
-	return MouseIn(Left, Top, Width, Height);
+	return [Left, Top, Width, Height];
 }
 
 /**
