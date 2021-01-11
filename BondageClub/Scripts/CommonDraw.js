@@ -168,13 +168,13 @@ function CommonDrawAppearanceBuild(C, {
 
 		// Check if we need to copy the color of another asset
 		let InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
-		let ColorInterited = false;
+		let ColorInherited = false;
 		if (InheritColor != null) {
 			var ParentAsset = InventoryGet(C, InheritColor);
 			if (ParentAsset != null) {
 				let ParentColor = Array.isArray(ParentAsset.Color) ? ParentAsset.Color[0] : ParentAsset.Color;
 				Color = CommonDrawColorValid(ParentColor, ParentAsset.Asset.Group) ? ParentColor : "Default";
-				ColorInterited = true;
+				ColorInherited = true;
 			}
 		}
 		
@@ -230,7 +230,7 @@ function CommonDrawAppearanceBuild(C, {
 		if (Color === "Default" && A.DefaultColor) {
 			Color = Array.isArray(A.DefaultColor) ? A.DefaultColor[Layer.ColorIndex] : A.DefaultColor;
 		}
-		if (!ColorInterited && !CommonDrawColorValid(Color, AG)) {
+		if (!ColorInherited && !CommonDrawColorValid(Color, AG)) {
 			Color = "Default";
 		}
 

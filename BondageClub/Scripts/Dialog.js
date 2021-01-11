@@ -2349,7 +2349,9 @@ function DialogDrawExpressionMenu() {
 function DialogClickExpressionMenu() {
 	if (MouseIn(20, 50, 90, 90)) {
 		DialogFacialExpressions.forEach(FE => {
-			CharacterSetFacialExpression(Player, FE.Group);
+			let Color = null;
+			if (FE.Appearance.Asset.Group.AllowColorize && FE.Group !== "Eyes") Color = "Default";
+			CharacterSetFacialExpression(Player, FE.Group, null, null, Color);
 			FE.CurrentExpression = null;
 		});
 		if (DialogExpressionColor != null) ItemColorSaveAndExit();

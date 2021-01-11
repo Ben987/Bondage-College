@@ -456,6 +456,9 @@ MaskKittyMask3Mask,Mask
 ItemTorsoFuturisticHarnessBand,Straps
 ItemTorsoFuturisticHarnessDisplay,Display
 ItemTorsoFuturisticHarnessMesh,Module
+ItemTorsoFuturisticHarness2Band,Straps
+ItemTorsoFuturisticHarness2Display,Display
+ItemTorsoFuturisticHarness2Mesh,Module
 ItemBreastFuturisticBraBra,Body
 ItemBreastFuturisticBraDisplay,Display
 ItemBreastFuturisticBraMesh,Mesh

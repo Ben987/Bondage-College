@@ -301,7 +301,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		let DestY = (IsInverted || YCutOff) ? 0 : YOffset;
 
 		// Draw the character
-		MainCanvas.drawImage(Canvas, 0, SourceY, Canvas.width / HeightRatio, SourceHeight, X + XOffset * Zoom, Y + DestY * Zoom, 500 * Zoom, (1000 - DestY) * Zoom);
+		MainCanvas.drawImage(Canvas, 0, SourceY, Canvas.width, SourceHeight, X + XOffset * Zoom, Y + DestY * Zoom, 500 * HeightRatio * Zoom, (1000 - DestY) * Zoom);
 
 		// Draw the arousal meter & game images on certain conditions
 		DrawArousalMeter(C, X, Y, Zoom);

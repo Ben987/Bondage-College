@@ -5,12 +5,14 @@ var InventoryItemMouthWiffleGagOptions = [
 		Name: "Normal",
 		Property: {
 			Type: null,
+			Effect: ["BlockMouth", "GagNormal"],
 		},
 	},
 	{
 		Name: "Tight",
 		Property: {
 			Type: "Tight",
+			Effect: ["BlockMouth", "GagNormal"],
 		},
 	},
 ];
