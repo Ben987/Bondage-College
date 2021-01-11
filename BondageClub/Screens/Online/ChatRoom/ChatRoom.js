@@ -563,9 +563,9 @@ function ChatRoomRun() {
 	
 	// Set the admins of the new room
 	if (Player.ImmersionSettings && ChatRoomData && Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.ImmersionSettings.ReturnToChatRoom && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
-		/*if (Player.LastChatRoomAdmin.indexOf(Player.MemberNumber) < 0) { // Add the player if they are not an admin
+		if (Player.LastChatRoomAdmin.indexOf(Player.MemberNumber) < 0 && Player.LastChatRoomPrivate) { // Add the player if they are not an admin
 			Player.LastChatRoomAdmin.push(Player.MemberNumber)
-		}*/
+		}
 		var UpdatedRoom = {
 			Name: Player.LastChatRoom,
 			Description: Player.LastChatRoomDesc,
@@ -575,7 +575,7 @@ function ChatRoomRun() {
 			Ban: ChatRoomData.Ban,
 			BlockCategory: ChatRoomData.BlockCategory,
 			Game: ChatRoomData.Game,
-			Private: ChatRoomData.Private,
+			Private: Player.LastChatRoomPrivate,
 			Locked: ChatRoomData.Locked
 		};
 		ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: UpdatedRoom, Action: "Update" });
