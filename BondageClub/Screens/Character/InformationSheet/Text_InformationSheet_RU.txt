@@ -3,47 +3,77 @@
 Title:
 Титул:
 None
-Нет
+Никто
 Mistress
 Госпожа
 Club Slave
-Клуб Рабынь
+Клуб Рабов
 Head Maid
 Главная Горничная
 Maid
 Горничная
+Bondage Maid
+Бондаж Горничная
 Master Kidnapper
-Мастер-Похитительница
+Мастер-Похититель
 Kidnapper
-Похитительница
+Похититель
 Patient
-Пациентка
+Пациент
 Permanent Patient
-Постоянная Пациентка
+Постоянный Пациент
 Escaped Patient
-Сбежавшая Пациентка
+Сбежавший Пациент
 Nurse
 Медсестра
 Doctor
-Врач
+Доктор
 College Student
-студентка колледжа
+Студент Колледжа
 Foal
 Жеребенок
 Farm Horse
-Лошадинная Ферма 
+Лошадиная Ферма
 Cold Blood Horse
 Хладнокровная Лошадь
 Warm Blood Horse
-Обычная лошадь 
+Обычная Лошадь
 Hot Blood Horse
-Горячая Лошадь
+Горячая Лошадь 
 Wild Mustang
-дикий мустанг
+Дикий Мустанг
 Shining Unicorn
 Сияющий Единорог
 Flying Pegasus
 Летающий Пегас
+Majestic Alicorn
+Величественный Аликорн
+Little One
+малыш
+Baby
+Младенец
+Diaper Lover
+Любитель Подгузников
+Bondage Baby
+Связывание Ребенка
+Duchess
+Герцогиня
+Kitten
+Котёнок
+Puppy
+Щенок
+Foxy
+Лисий
+Bunny
+Кролик
+Doll
+Кукла
+Demon
+Демон
+Angel
+Ангел
+Succubus
+Суккуб
 Member Number:
 Номер Участника:
 -

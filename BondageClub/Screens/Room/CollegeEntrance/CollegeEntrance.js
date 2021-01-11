@@ -43,13 +43,14 @@ function CollegeEntranceRun() {
 	DrawCharacter(Player, 500, 0, 1);
 	DrawCharacter(CollegeEntranceStudent, 1000, 0, 1);
 	DrawButton(1885, 25, 90, 90, "", Player.CanWalk() ? "White" : "Pink", "Icons/Exit.png", TextGet("Exit"));
-	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
-	DrawButton(1885, 265, 90, 90, "", Player.CanChange() ? "White" : "Pink", "Icons/Dress.png", TextGet("Dress"));
-	DrawButton(1885, 385, 90, 90, "", CollegeEntranceCanGoTennis() ? "White" : "Pink", "Icons/Tennis.png", TextGet("Tennis"));
-	DrawButton(1885, 505, 90, 90, "", CollegeEntranceCanGoInside() ? "White" : "Pink", "Icons/Coffee.png", TextGet("Cafeteria"));
-	DrawButton(1885, 625, 90, 90, "", CollegeEntranceCanGoInside() ? "White" : "Pink", "Icons/Theater.png", TextGet("Theater"));
-	DrawButton(1885, 745, 90, 90, "", CollegeEntranceCanGoDetention() ? "White" : "Pink", "Icons/Cage.png", TextGet("Detention"));
-	DrawButton(1885, 865, 90, 90, "", CollegeEntranceCanGoTeacher() ? "White" : "Pink", "Icons/Couch.png", TextGet("Teacher"));
+	DrawButton(1885, 131, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
+	DrawButton(1885, 237, 90, 90, "", Player.CanChange() ? "White" : "Pink", "Icons/Dress.png", TextGet("Dress"));
+	DrawButton(1885, 343, 90, 90, "", CollegeEntranceCanGoTennis() ? "White" : "Pink", "Icons/Tennis.png", TextGet("Tennis"));
+	DrawButton(1885, 449, 90, 90, "", CollegeEntranceCanGoInside() ? "White" : "Pink", "Icons/Coffee.png", TextGet("Cafeteria"));
+	DrawButton(1885, 555, 90, 90, "", CollegeEntranceCanGoInside() ? "White" : "Pink", "Icons/Theater.png", TextGet("Theater"));
+	DrawButton(1885, 661, 90, 90, "", CollegeEntranceCanGoInside() ? "White" : "Pink", "Icons/Chess.png", TextGet("Chess"));
+	DrawButton(1885, 767, 90, 90, "", CollegeEntranceCanGoDetention() ? "White" : "Pink", "Icons/Cage.png", TextGet("Detention"));
+	DrawButton(1885, 873, 90, 90, "", CollegeEntranceCanGoTeacher() ? "White" : "Pink", "Icons/Couch.png", TextGet("Teacher"));
 }
 
 /**
@@ -60,13 +61,14 @@ function CollegeEntranceClick() {
 	if (MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(CollegeEntranceStudent);
 	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
-	if (MouseIn(1885, 265, 90, 90) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
-	if (MouseIn(1885, 385, 90, 90) && CollegeEntranceCanGoTennis()) CommonSetScreen("Room", "CollegeTennis");
-	if (MouseIn(1885, 505, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeCafeteria");
-	if (MouseIn(1885, 625, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeTheater");
-	if (MouseIn(1885, 745, 90, 90) && CollegeEntranceCanGoDetention()) CommonSetScreen("Room", "CollegeDetention");
-	if (MouseIn(1885, 865, 90, 90) && CollegeEntranceCanGoTeacher()) CommonSetScreen("Room", "CollegeTeacher");
+	if (MouseIn(1885, 131, 90, 90)) InformationSheetLoadCharacter(Player);
+	if (MouseIn(1885, 237, 90, 90) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+	if (MouseIn(1885, 343, 90, 90) && CollegeEntranceCanGoTennis()) CommonSetScreen("Room", "CollegeTennis");
+	if (MouseIn(1885, 449, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeCafeteria");
+	if (MouseIn(1885, 555, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeTheater");
+	if (MouseIn(1885, 661, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeChess");	
+	if (MouseIn(1885, 767, 90, 90) && CollegeEntranceCanGoDetention()) CommonSetScreen("Room", "CollegeDetention");
+	if (MouseIn(1885, 873, 90, 90) && CollegeEntranceCanGoTeacher()) CommonSetScreen("Room", "CollegeTeacher");
 }
 
 /**

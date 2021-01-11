@@ -74,6 +74,8 @@ ErrorInvalidColor,Put a valid hex #red-green-blue color
 ColorTheme,Color theme:
 Light,Light
 Dark,Dark
+Light2, Light 2,
+Dark2,Dark 2,
 EnterLeaveStyle,Enter/Leave message style:
 Normal,Normal
 Smaller,Smaller
@@ -100,6 +102,8 @@ AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
+ReturnToChatRoom,Return to chatrooms on relog
+ReturnToChatRoomAdmin,Auto-remake rooms
 ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
 BlockGaggedOOC,Prevent OOC & whispers while gagged
 SensDepSetting,Sensory deprivation setting
@@ -110,10 +114,10 @@ SensDepExtreme,Total (no whispers)
 AllowPlayerLeashing,"Players can drag you to rooms when leashed"
 DisableAutoMaid,Maids come automatically when restrained
 DisablePickingLocksOnSelf,Locks on you can't be picked
+BlindDisableExamine,Disable examining when blind
+DisableAutoRemoveLogin,Keep all restraints when relogging
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
 GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
-BlindDisableExamine,Disable examining people when blind
-DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
 EnableSafeword,Allow Safeword use (Cannot enable while bound)
@@ -220,13 +224,16 @@ VisibilityLocked,All items are forced visible under the Extreme difficulty mode
 LeaveSave,Accept changes
 LeaveNoSave,Cancel changes
 GraphicsFont,Game Font
+GraphicsFontDisclaimer,Fallback fonts will be used if your chosen font is unsupported on your device.
 Arial,Arial
-Times New Roman,Times New Roman
+TimesNewRoman,Times New Roman
 Papyrus,Papyrus
-Comic Sans,Comic Sans
+ComicSans,Comic Sans
 Impact,Impact
 Verdana,Verdana
-Century Gothic,Century Gothic
+HelveticaNeue,Helvetica Neue
+CenturyGothic,Century Gothic
 Georgia,Georgia
-Courier New,Courier New
+CourierNew,Courier New
 Copperplate,Copperplate
+GraphicsInvertRoom,Flip the room vertically when upside-down

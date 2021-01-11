@@ -58,6 +58,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		Underwear: (NewAsset.Underwear == null) ? false : NewAsset.Underwear,
 		BodyCosplay: (NewAsset.BodyCosplay == null) ? false : NewAsset.BodyCosplay,
 		Activity: NewAsset.Activity,
+		AllowActivityOn: NewAsset.AllowActivityOn,
 		Hide: NewAsset.Hide,
 		Block: NewAsset.Block,
 		Zone: NewAsset.Zone,
@@ -91,6 +92,7 @@ function AssetAdd(NewAsset) {
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
 		Activity: (NewAsset.Activity == null) ? AssetCurrentGroup.Activity : NewAsset.Activity,
 		AllowActivity: NewAsset.AllowActivity,
+		AllowActivityOn: (NewAsset.AllowActivityOn == null) ? AssetCurrentGroup.AllowActivityOn : NewAsset.AllowActivityOn,
 		BuyGroup: NewAsset.BuyGroup,
 		PrerequisiteBuyGroups: NewAsset.PrerequisiteBuyGroups,
 		Effect: (NewAsset.Effect == null) ? AssetCurrentGroup.Effect : NewAsset.Effect,
@@ -164,6 +166,7 @@ function AssetAdd(NewAsset) {
 		AllowLockType: NewAsset.AllowLockType,
 		AllowColorizeAll: typeof NewAsset.AllowColorizeAll === 'boolean' ? NewAsset.AllowColorizeAll : true,
 		AvailableLocations: NewAsset.AvailableLocations || [],
+		OverrideHeight: NewAsset.OverrideHeight,
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	AssetAssignColorIndices(A);

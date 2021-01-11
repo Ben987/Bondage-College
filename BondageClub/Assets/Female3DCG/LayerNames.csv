@@ -109,6 +109,8 @@ ItemFeetMedicalBedRestraintsBase,Bed Straps
 ItemFeetMedicalBedRestraintsStraps,Cuffs
 ItemLegsFuturisticLegCuffsCuffs,Cuffs
 ItemLegsFuturisticLegCuffsDisplay,Display
+ItemLegsCeilingShacklesChain,Chain
+ItemLegsCeilingShacklesCuffs,Cuffs
 ItemLegsFuturisticCuffsCuffs,Cuffs
 ItemLegsFuturisticCuffsDisplay,Display
 ItemLegsOrnateLegCuffsGems,Gems
@@ -136,6 +138,11 @@ ItemButtFoxTail2Base,Tail
 ItemButtFoxTail2Tip,Tip
 ItemButtSuccubusHeartButtPlugTail,Tail
 ItemButtSuccubusHeartButtPlugHeart,Heart
+ItemButtTailButtPlugTail,Tail
+ItemButtTailButtPlugRibbon,Ribbon
+ItemButtTailButtPlugBell,Bell
+ItemButtFoxTailsBases,Tails
+ItemButtFoxTailsTips,Tips
 ItemPelvisOrnateChastityBeltBelt,Belt
 ItemPelvisOrnateChastityBeltGems,Gems
 ItemNipplesTapedVibeEggsEgg1,Left Vibe Egg
@@ -245,10 +252,16 @@ ItemDevicesChangingTableFrame,Frame
 ItemDevicesChangingTableTable,Tabletop
 ItemDevicesConcealingCloakFront,Cloak
 ItemDevicesConcealingCloakStrap,Straps
+ItemDevicesTransportWoodenBoxBox,Box
+ItemDevicesTransportWoodenBoxWheelholders,Wheel Holders 
+ItemDevicesTransportWoodenBoxWheels,Wheels
 ItemHoodPumpkinHeadFront,Front
 ItemHoodPumpkinHeadBack,Back
 ItemHoodLatexHoodOpenHairHair,Hair
 ItemHoodLatexHoodOpenHairHood,Hood
+ItemHoodLeatherHoodHood,Hood
+ItemHoodLeatherHoodCollar,Collar
+ItemHoodLeatherHoodSnaps,Snaps
 ItemHoodAddonOldGasMaskLensesTube1Lenses,Lenses
 ItemHoodAddonOldGasMaskLensesTube1Tube1,Tube
 ItemHoodAddonOldGasMaskLensesTube2Lenses,Lenses
@@ -259,6 +272,8 @@ ItemHoodGP9GasMaskMouth,Mouthpiece
 ItemHoodGP9GasMaskLens,Lens
 ItemHoodGP9GasMaskMask,Mask
 ItemHoodGP9GasMaskEdges,Edges
+ItemHoodCanvasHoodHood,Canvas
+ItemHoodCanvasHoodText,Text
 ItemBootsLockingBoots1Boots,Boots
 ItemBootsLockingBoots1Straps,Straps
 ItemBootsFuturisticHeelsShoes,Body
@@ -307,6 +322,10 @@ ItemMouthBoneGagBone,Bone
 ItemMouthBoneGagStraps,Straps
 ItemMouthXLBoneGagBone,Bone
 ItemMouthXLBoneGagStraps,Straps
+ItemMouthHarnessPacifierGagHarness,Harness Straps
+ItemMouthHarnessPacifierGagMetal,Metal Parts
+ItemMouthHarnessPacifierGagPacifierOuter,Pacifier
+ItemMouthHarnessPacifierGagPacifierInner,Pacifier Ring
 ItemMouthDusterGagDuster,Duster
 ItemMouthDusterGagPanel,Panel
 ItemMouthPantiesMaskDarkStripes,Dark Stripes
@@ -354,6 +373,10 @@ ItemMouth2BoneGagBone,Bone
 ItemMouth2BoneGagStraps,Straps
 ItemMouth2XLBoneGagBone,Bone
 ItemMouth2XLBoneGagStraps,Straps
+ItemMouth2HarnessPacifierGagHarness,Harness Straps
+ItemMouth2HarnessPacifierGagMetal,Metal Parts
+ItemMouth2HarnessPacifierGagPacifierOuter,Pacifier
+ItemMouth2HarnessPacifierGagPacifierInner,Pacifier Ring
 ItemMouth2DusterGagDuster,Duster
 ItemMouth2DusterGagPanel,Panel
 ItemMouth2PantiesMaskDarkStripes,Dark Stripes
@@ -401,6 +424,10 @@ ItemMouth3BoneGagBone,Bone
 ItemMouth3BoneGagStraps,Straps
 ItemMouth3XLBoneGagBone,Bone
 ItemMouth3XLBoneGagStraps,Straps
+ItemMouth3HarnessPacifierGagHarness,Harness Straps
+ItemMouth3HarnessPacifierGagMetal,Metal Parts
+ItemMouth3HarnessPacifierGagPacifierOuter,Pacifier
+ItemMouth3HarnessPacifierGagPacifierInner,Pacifier Ring
 ItemMouth3DusterGagDuster,Duster
 ItemMouth3DusterGagPanel,Panel
 ItemMouthFuturisticPanelGagMask,Muzzle
@@ -460,3 +487,5 @@ SuitPilotSuitFeet,Feet
 CorsetCorset6Cloth,Cloth
 CorsetCorset6Leather,Leather
 CorsetCorset6Buttons,Buttons
+ItemEarsHeadphonesDark,Dark
+ItemEarsHeadphonesLight,Light

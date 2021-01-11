@@ -45,13 +45,13 @@ function CommonDrawCanvasPrepare(C) {
 	if (C.Canvas == null) {
 		C.Canvas = document.createElement("canvas");
 		C.Canvas.width = 500;
-		C.Canvas.height = 1000;
-	} else C.Canvas.getContext("2d").clearRect(0, 0, 500, 1000);
+		C.Canvas.height = CanvasDrawHeight;
+	} else C.Canvas.getContext("2d").clearRect(0, 0, 500, CanvasDrawHeight);
 	if (C.CanvasBlink == null) {
 		C.CanvasBlink = document.createElement("canvas");
 		C.CanvasBlink.width = 500;
-		C.CanvasBlink.height = 1000;
-	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
+		C.CanvasBlink.height = CanvasDrawHeight;
+	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, CanvasDrawHeight);
 
 	C.MustDraw = true;
 }
@@ -118,8 +118,8 @@ function CommonDrawAppearanceBuild(C, {
 			if ((!AlphaDef.Group || !AlphaDef.Group.length) &&
 				(!AlphaDef.Pose || !Array.isArray(AlphaDef.Pose) || !!CommonDrawFindPose(C, AlphaDef.Pose))) {
 				AlphaDef.Masks.forEach(rect => {
-					clearRect(rect[0], rect[1], rect[2], rect[3]);
-					clearRectBlink(rect[0], rect[1], rect[2], rect[3]);
+					clearRect(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3]);
+					clearRectBlink(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3]);
 				});
 			}
 		});
@@ -226,13 +226,17 @@ function CommonDrawAppearanceBuild(C, {
 			}
 		}
 
+		// Make any required changes to the colour
 		if (Color === "Default" && A.DefaultColor) {
 			Color = Array.isArray(A.DefaultColor) ? A.DefaultColor[Layer.ColorIndex] : A.DefaultColor;
 		}
-
 		if (!ColorInterited && !CommonDrawColorValid(Color, AG)) {
 			Color = "Default";
 		}
+
+		// Adjust for the increased canvas size
+		Y += CanvasUpperOverflow;
+		AlphaMasks = AlphaMasks.map(([x, y, w, h]) => [x, y + CanvasUpperOverflow, w, h]);
 
 		// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 		if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {

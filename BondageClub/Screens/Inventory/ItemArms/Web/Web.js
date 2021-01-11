@@ -88,6 +88,7 @@ var InventoryItemArmsWebOptions = [
 			Effect: ["Block", "Freeze", "Prone"],
 			Hide: ["Cloth", "ClothLower", "ClothAccessory", "Necklace", "Shoes", "Socks"],
 			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemDevices"],
+			OverrideHeight: { Height: 0, Priority: 51, HeightRatioProportion: 0 },
 		},
 	},
 ];

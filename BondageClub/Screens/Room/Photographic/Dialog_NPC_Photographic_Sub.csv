@@ -80,7 +80,7 @@ RemoveVibratingEgg,,,"Pity, we just got started.",,
 50,51,Move your arms,How should I move them?,,"SubPoseCategoryAllowed(""BodyUpper"")"
 50,52,Move your legs,How should I stand?,,"SubPoseCategoryAllowed(""BodyLower"")"
 50,0,That's enough for now.,Alright then.,,
-51,,Relax your arms.,(She holds her arms casually in front.),"SubSetPose(""BodyUpper"")",
+51,,Relax your arms.,(She holds her arms casually in front.),"SubSetPose(""BaseUpper"")",
 51,,Hold your arms up.,(She lifts her arms up.),"SubSetPose(""Yoked"")",
 51,,Raise your arms high.,(She reaches above her head.),"SubSetPose(""OverTheHead"")",
 51,,Hold your hands together behind your back.,(She moves her hands behind her.),"SubSetPose(""BackBoxTie"")",

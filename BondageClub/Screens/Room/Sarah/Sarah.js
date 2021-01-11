@@ -459,6 +459,7 @@ function SarahFightSophieEnd() {
 	if (!KidnapVictory && Player.IsNaked()) Sophie.Stage = "50";
 	if (!KidnapVictory) CharacterRelease(Sophie);
 	else CharacterRelease(Player);
+	if (KidnapVictory) LogAdd("KidnapSophie", "Sarah");
 	InventoryRemove(Sophie, "ItemHead");
 	InventoryRemove(Sophie, "ItemMouth");
 	InventoryRemove(Player, "ItemHead");

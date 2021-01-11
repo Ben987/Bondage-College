@@ -68,6 +68,7 @@ function ServerSetConnected(connected, errorMessage) {
 		LoginErrorMessage = "";
 	} else {
 		LoginErrorMessage = errorMessage || "";
+		LoginSubmitted = false;
 	}
 	LoginUpdateMessage();
 }
@@ -116,17 +117,7 @@ function ServerDisconnect(data) {
 		if (CurrentScreen != "Relog") {
 
 			// Exits out of the chat room or a sub screen of the chatroom, so we'll be able to get in again when we log back
-			if (
-				(CurrentScreen == "ChatRoom")
-				|| (CurrentScreen == "ChatAdmin")
-				|| (CurrentScreen == "GameLARP")
-				|| ((CurrentScreen == "Appearance") && (CharacterAppearanceReturnRoom == "ChatRoom"))
-				|| ((CurrentScreen == "InformationSheet") && (InformationSheetPreviousScreen == "ChatRoom"))
-				|| ((CurrentScreen == "Title") && (InformationSheetPreviousScreen == "ChatRoom"))
-				|| ((CurrentScreen == "OnlineProfile") && (InformationSheetPreviousScreen == "ChatRoom"))
-				|| ((CurrentScreen == "FriendList") && (InformationSheetPreviousScreen == "ChatRoom") && (FriendListReturn == null))
-				|| ((CurrentScreen == "Preference") && (InformationSheetPreviousScreen == "ChatRoom"))
-			) {
+			if (ServerPlayerIsInChatRoom()) {
 				RelogChatLog = document.getElementById("TextAreaChatLog").cloneNode(true);
 				RelogChatLog.id = "RelogChatLog";
 				RelogChatLog.name = "RelogChatLog";
@@ -144,6 +135,22 @@ function ServerDisconnect(data) {
 
 		}
 	}
+}
+
+/**
+ * Returns whether the player is currently in a chatroom or viewing a subscreen while in a chatroom
+ * @returns {boolean} - True if in a chatroom 
+ */
+function ServerPlayerIsInChatRoom() {
+	return (CurrentScreen == "ChatRoom")
+		|| (CurrentScreen == "ChatAdmin")
+		|| (CurrentScreen == "GameLARP")
+		|| ((CurrentScreen == "Appearance") && (CharacterAppearanceReturnRoom == "ChatRoom"))
+		|| ((CurrentScreen == "InformationSheet") && (InformationSheetPreviousScreen == "ChatRoom"))
+		|| ((CurrentScreen == "Title") && (InformationSheetPreviousScreen == "ChatRoom"))
+		|| ((CurrentScreen == "OnlineProfile") && (InformationSheetPreviousScreen == "ChatRoom"))
+		|| ((CurrentScreen == "FriendList") && (InformationSheetPreviousScreen == "ChatRoom") && (FriendListReturn == null))
+		|| ((CurrentScreen == "Preference") && (InformationSheetPreviousScreen == "ChatRoom"));
 }
 
 /** Sends a message with the given data to the server via socket.emit */
@@ -471,10 +478,10 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
 
 				// OwnerOnly items can only get update if it comes from owner
-				if (Asset[I].OwnerOnly && (C.ID == 0) && !FromOwner) break;
+				if (SourceMemberNumber != null && Asset[I].OwnerOnly && (C.ID == 0) && !FromOwner) break;
 
 				// LoverOnly items can only get update if it comes from lover
-				if (Asset[I].LoverOnly && (C.ID == 0) && !FromLoversOrOwner) break;
+				if (SourceMemberNumber != null && Asset[I].LoverOnly && (C.ID == 0) && !FromLoversOrOwner) break;
 
 				var ColorSchema = Asset[I].Group.ColorSchema;
 				var Color = Bundle[A].Color;
@@ -571,7 +578,7 @@ function ServerItemCopyProperty(C, Item, NewProperty) {
 	if (Item.Property.LockMemberNumber != null) NewProperty.LockMemberNumber = Item.Property.LockMemberNumber; else delete NewProperty.LockMemberNumber;
 	if (Item.Property.CombinationNumber != null) NewProperty.CombinationNumber = Item.Property.CombinationNumber; else delete NewProperty.CombinationNumber;
 	if (Item.Property.RemoveItem != null) NewProperty.RemoveItem = Item.Property.RemoveItem; else delete NewProperty.RemoveItem;
-	if (Item.Property.ShowTimer != null) NNewProperty.ShowTimer = Item.Property.ShowTimer; else delete NewProperty.ShowTimer;
+	if (Item.Property.ShowTimer != null) NewProperty.ShowTimer = Item.Property.ShowTimer; else delete NewProperty.ShowTimer;
 	if (Item.Property.EnableRandomInput != null) NewProperty.EnableRandomInput = Item.Property.EnableRandomInput; else delete NewProperty.EnableRandomInput;
 	if (!NewProperty.EnableRandomInput || NewProperty.LockedBy != "LoversTimerPadlock") {
 		if (Item.Property.MemberNumberList != null) NewProperty.MemberNumberList = Item.Property.MemberNumberList; else delete NewProperty.MemberNumberList;
@@ -684,7 +691,6 @@ function ServerAccountBeep(data) {
 		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber && data.ChatRoomName) {
 			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing != false && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashedBy(data.MemberNumber, Player)) {
-					
 					ChatRoomJoinLeash = data.ChatRoomName
 					
 					DialogLeave()
@@ -694,7 +700,6 @@ function ServerAccountBeep(data) {
 						CommonSetScreen("Online", "ChatSearch");
 					}
 					else ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList) //CommonSetScreen("Room", "ChatSearch")
-					
 				} else {
 					ChatRoomLeashPlayer = null
 				}

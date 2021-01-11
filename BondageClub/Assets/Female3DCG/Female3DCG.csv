@@ -232,6 +232,7 @@ Shoes,ThighHighLatexHeels,Latex Heels
 Shoes,Heels3,Multi-Strap Heels,
 Shoes,BarefootSandals1,Barefoot Sandals
 Shoes,LatexAnkleShoes, Latex Ankle Shoes
+Shoes,Flippers,Flippers
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Band2,Jeweled Band
@@ -736,6 +737,7 @@ ItemArms,SturdyLeatherBelts,Sturdy Leather Belt
 ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,ArmbinderJacket,Armbinder Jacket
 ItemArms,LeatherCuffs,Leather Cuffs
+ItemArms,CeilingShackles,Ceiling Shackles
 ItemArms,FuturisticCuffs,Futuristic Cuffs
 ItemArms,OrnateCuffs,Ornate Cuffs
 ItemArms,MittenChain1,Mittens Chain
@@ -1082,6 +1084,7 @@ ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
 ItemEars,HeadphoneEarPlugs,Headphone Ear Plugs
 ItemEars,BluetoothEarbuds,Bluetooth Earbuds
+ItemEars,Headphones,Headphones
 ItemMisc,,Body
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
@@ -1144,6 +1147,8 @@ ItemDevices,SmallLocker,Small Locker
 ItemDevices,VentlessLocker,Ventless Locker
 ItemDevices,SmallVentlessLocker,Small Ventless Locker
 ItemDevices,ConcealingCloak,Concealing Cloak
+ItemDevices,TransportWoodenBox,Transport Box
+ItemDevices,VacCube,Vac-Cube
 ItemHoodAddon,,Hood
 ItemHoodAddon,OldGasMaskLenses,Blinding Lenses
 ItemHoodAddon,OldGasMaskTube1,Gas Mask Tube
