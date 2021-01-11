@@ -1887,7 +1887,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "LeatherCuffs", Fetish: ["Leather"], Priority: 29, Value: 100, Left: 0, Top: 0, Difficulty: 3, Time: 20, Random: false, AllowLock: true, DefaultColor: "#404040", AllowPose: ["BackBoxTie", "BackElbowTouch", "OverTheHead", "BackCuffs", "Yoked"], Effect: ["CuffedArms"], AllowEffect: ["Block", "Prone"], AllowType: ["Wrist", "Elbow", "Both"], Extended: true, HasType: false, RemoveItemOnRemove: [{ Name: "X-Cross", Group: "ItemDevices" }] },
-			{ Name: "CeilingShackles", Fetish: ["Metal"], Priority: 29, Value: 100, Left: 0, Top: 0, Difficulty: 6, Time: 20, Random: false, AllowLock: true, AllowPose: ["OverTheHead", "Yoked"], Prerequisite: ["NotSuspended"], Effect: ["Block", "Prone", "BlockKneel", "IsChained"], SetPose: ["Yoked"], AllowType: ["Overhead"], Extended: true, HasType: false,
+			{ Name: "CeilingShackles", Fetish: ["Metal"], Priority: 29, Value: 100, Left: 0, Top: 0, Difficulty: 6, Time: 20, Random: false, AllowLock: true, AllowPose: ["OverTheHead", "Yoked"], Prerequisite: ["NotSuspended"], Effect: ["Block", "Prone", "BlockKneel", "Freeze", "IsChained"], SetPose: ["Yoked"], AllowType: ["Overhead"], Extended: true, HasType: false,
 				Layer: [
 					{ Name: "Chain", Top: -139, Priority: 6 },
 					{ Name: "Cuffs" }
