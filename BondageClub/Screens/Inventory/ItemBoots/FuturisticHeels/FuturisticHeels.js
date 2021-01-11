@@ -3,11 +3,11 @@
 var InventoryItemBootsFuturisticHeelsOptions = [
 	{
 		Name: "Shoes",
-		Property: {Type: null, Height: 6},
+		Property: { Type: null, HeightModifier: 6 },
 	},
 	{
 		Name: "Heel",
-		Property: { Type: "Heel", Height: 16 },
+		Property: { Type: "Heel", HeightModifier: 16 },
 	},
 ]
 
@@ -33,24 +33,7 @@ function InventoryItemBootsFuturisticHeelsClick() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else {
-		var DialogFocusItem_Temp = DialogFocusItem
-		var origHeight = 6
-		if (DialogFocusItem_Temp && DialogFocusItem_Temp.Property && DialogFocusItem_Temp.Asset) {
-			origHeight = DialogFocusItem_Temp.Property.Height
-		}
 		ExtendedItemClick(InventoryItemBootsFuturisticHeelsOptions);
-		// Set height because height isnt a property
-		if (DialogFocusItem_Temp && DialogFocusItem_Temp.Property && DialogFocusItem_Temp.Asset) {
-			if (origHeight != DialogFocusItem_Temp.Property.Height) {
-				DialogFocusItem_Temp.Height = DialogFocusItem_Temp.Property.Height
-				DialogFocusItem_Temp.Asset.HeightModifier = DialogFocusItem_Temp.Property.Height
-				
-				
-				CharacterRefresh(C, true); // Does not sync appearance while in the wardrobe
-				ChatRoomCharacterUpdate(C);
-			}
-			
-		}
 	}
 }
 

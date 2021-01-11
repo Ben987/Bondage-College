@@ -40,6 +40,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HiddenItems: [],
 		WhiteList: [],
 		HeightModifier: 0,
+		HeightRatio: 1,
 		HasHiddenItems: false,
 		CanTalk: function () { return ((this.Effect.indexOf("GagVeryLight") < 0) && (this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagEasy") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagMedium") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagVeryHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0) && (this.Effect.indexOf("GagTotal2") < 0) && (this.Effect.indexOf("GagTotal3") < 0) && (this.Effect.indexOf("GagTotal4") < 0)) },
 		CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
@@ -108,7 +109,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HasNoItem: function () { return CharacterHasNoItem(this); },
 		IsEdged: function () { return CharacterIsEdged(this); },
 		IsNpc: function () { return (this.AccountName.substring(0, 4) === "NPC_" || this.AccountName.substring(0, 4) === "NPC-"); },
-		GetDifficulty: function () { return ((this.Difficulty == null) || (this.Difficulty.Level == null) || (typeof this.Difficulty.Level !== "number") || (this.Difficulty.Level < 0) || (this.Difficulty.Level > 3)) ? 1 : this.Difficulty.Level; }
+		GetDifficulty: function () { return ((this.Difficulty == null) || (this.Difficulty.Level == null) || (typeof this.Difficulty.Level !== "number") || (this.Difficulty.Level < 0) || (this.Difficulty.Level > 3)) ? 1 : this.Difficulty.Level; },
+		IsInverted: function () { return this.Pose.indexOf("Suspension") >= 0; },
 	};
 
 	// If the character doesn't exist, we create it
@@ -612,7 +614,7 @@ function CharacterLoadCanvas(C) {
 	C.AppearanceLayers = CharacterAppearanceSortLayers(C);
 
 	// Sets the total height modifier for that character
-	CharacterApperanceSetHeightModifier(C);
+	CharacterAppearanceSetHeightModifiers(C);
 	
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
@@ -707,10 +709,9 @@ function CharacterRefresh(C, Push) {
 		if (DialogColor != null) {
 			const FocusItem = C && C.FocusGroup ? InventoryGet(C, C.FocusGroup.Name) : null;
 			if ((ItemColorItem && !FocusItem) || (!ItemColorItem && FocusItem) || InventoryGetItemProperty(ItemColorItem, "Name") !== InventoryGetItemProperty(FocusItem, "Name")) {
-				ItemColorExit();
+				ItemColorCancelAndExit();
 				DialogColor = null;
 				DialogColorSelect = null;
-				ElementRemove("InputColor");
 				DialogMenuButtonBuild(C);
 			}
 		}
@@ -977,7 +978,7 @@ function CharacterSetActivePose(C, NewPose, ForceChange) {
  * @param {number} [Timer] - Optional: time the expression will last
  * @returns {void} - Nothing
  */
-function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
+function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer, Color) {
 	// A normal eye expression is triggered for both eyes
 	if (AssetGroup == "Eyes") CharacterSetFacialExpression(C, "Eyes2", Expression, Timer);
 	if (AssetGroup == "Eyes1") AssetGroup = "Eyes";
@@ -990,9 +991,10 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
 				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
 				if (C.Appearance[A].Property.Expression != Expression) {
 					C.Appearance[A].Property.Expression = Expression;
-					CharacterRefresh(C, false);
+					if (Color && CommonColorIsValid(Color)) C.Appearance[A].Color = Color;
+					CharacterRefresh(C);
 					if (CurrentScreen == "ChatRoom") {
-						if (C.ID == 0) ServerSend("ChatRoomCharacterExpressionUpdate", { Name: Expression, Group: AssetGroup, Appearance: ServerAppearanceBundle(C.Appearance) });
+						if (C.ID == 0) ChatRoomCharacterItemUpdate(C, AssetGroup);
 						else ChatRoomCharacterUpdate(C);
 					}
 				}
@@ -1095,7 +1097,13 @@ function CharacterIsEdged(C) {
 	// Get every vibrating item acting on an orgasm zone
 	const VibratingItems = C.Appearance
 		.filter(A => OrgasmZones.indexOf(A.Asset.ArousalZone) >= 0)
-		.filter(Item => Item && Item.Property && typeof Item.Property.Intensity === "number" && Item.Property.Intensity >= 0);
+		.filter(Item => Item
+		                && Item.Property
+		                && Array.isArray(Item.Property.Effect)
+		                && Item.Property.Effect.includes("Vibrating")
+		                && typeof Item.Property.Intensity === "number"
+		                && Item.Property.Intensity >= 0,
+		);
 
 	// Return true if every vibrating item on an orgasm zone has the "Edged" effect
 	return !!VibratingItems.length && VibratingItems.every(Item => Item.Property.Effect && Item.Property.Effect.includes("Edged"));
@@ -1131,4 +1139,13 @@ function CharacterGetLoversNumbers(C, MembersOnly) {
 		else if (C.Lovership[L].Name && (MembersOnly == null || MembersOnly == false)) { LoversNumbers.push(C.Lovership[L].Name); }
 	}
 	return LoversNumbers;
+}
+
+/**
+ * Returns whether the character appears upside-down on the screen which may depend on the player's own inverted status
+ * @param {Character} C - The character to check
+ * @returns {boolean} - If TRUE, the character appears upside-down
+ */
+function CharacterAppearsInverted(C) {
+	return Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom ? Player.IsInverted() != C.IsInverted() : C.IsInverted();
 }

@@ -30,7 +30,7 @@ function InventoryItemMiscWoodenSignDraw() {
 
     ElementPosition("WoodenSignText1", 1505, 600, 350);
     ElementPosition("WoodenSignText2", 1505, 680, 350);
-    DrawButton(1330, 731, 340, 64, DialogFind(Player, "WoodenSignSaveText"), (ElementValue("WoodenSignText1") + ElementValue("WoodenSignText2")).match(InventoryItemMiscWoodenSignAllowedChars) ? "White" : "#888", "");
+    DrawButton(1330, 731, 340, 64, DialogFind(Player, "SaveText"), (ElementValue("WoodenSignText1") + ElementValue("WoodenSignText2")).match(InventoryItemMiscWoodenSignAllowedChars) ? "White" : "#888", "");
 }
 
 // Catches the item extension clicks

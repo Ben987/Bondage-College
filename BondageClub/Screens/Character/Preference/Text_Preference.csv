@@ -74,6 +74,8 @@ ErrorInvalidColor,Put a valid hex #red-green-blue color
 ColorTheme,Color theme:
 Light,Light
 Dark,Dark
+Light2, Light 2,
+Dark2,Dark 2,
 EnterLeaveStyle,Enter/Leave message style:
 Normal,Normal
 Smaller,Smaller
@@ -233,3 +235,4 @@ CenturyGothic,Century Gothic
 Georgia,Georgia
 CourierNew,Courier New
 Copperplate,Copperplate
+GraphicsInvertRoom,Flip the room vertically when upside-down

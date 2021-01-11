@@ -340,13 +340,10 @@ function ChatSearchClickPermission() {
  */
 function ChatSearchResponse(data) {
 	if ((data != null) && (typeof data === "string") && (data != "")) {
-		if (((data == "RoomBanned") || (data == "RoomKicked")) && (CurrentScreen == "ChatRoom")) {
-			if (CurrentCharacter != null) DialogLeave();
-			ElementRemove("InputChat");
-			ElementRemove("TextAreaChatLog");
+		if (((data == "RoomBanned") || (data == "RoomKicked")) && ServerPlayerIsInChatRoom()) {
+			ChatRoomClearAllElements();
 			CommonSetScreen("Online", "ChatSearch");
 			CharacterDeleteAllOnline();
-			ChatSearchSetLastChatRoom("")
 		}
 		ChatSearchMessage = "Response" + data;
 	}
@@ -372,18 +369,25 @@ function ChatSearchResultResponse(data) {
 			}
 	} else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
 		var found = false
+		var roomIsFull = false
 		for (let R = 0; R < data.length; R++) {
 			var room = data[R]
-			if (room.Name == Player.LastChatRoom && room.MemberCount < room.MemberLimit && room.Game == "") {
-				var RoomName = room.Name;
-				if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
-					found = true
-					ChatSearchLastQueryJoinTime = CommonTime();
-					ChatSearchLastQueryJoin = RoomName;
-					ChatRoomPlayerCanJoin = true;
-					ServerSend("ChatRoomJoin", { Name: RoomName });
+			if (room.Name == Player.LastChatRoom && room.Game == "") {
+				if (room.MemberCount < room.MemberLimit) {
+					var RoomName = room.Name;
+					if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
+						found = true
+						ChatSearchLastQueryJoinTime = CommonTime();
+						ChatSearchLastQueryJoin = RoomName;
+						ChatRoomPlayerCanJoin = true;
+						ServerSend("ChatRoomJoin", { Name: RoomName });
+						break;
+					}
+				} else {
+					roomIsFull = true
 					break;
 				}
+
 			}
 		}
 		if (!found) {
@@ -401,6 +405,8 @@ function ChatSearchResultResponse(data) {
 				if (Player.LastChatRoomPrivate) {
 					ChatRoomName = Player.Name + Player.MemberNumber
 					ChatRoomDesc = ""
+				} else if (roomIsFull) {
+					ChatRoomName = ChatRoomName + Player.MemberNumber
 				}
 				if (ChatBlockItemCategory) block = ChatBlockItemCategory
 				var NewRoom = {

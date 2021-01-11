@@ -378,7 +378,7 @@ function KidnapDrawMoveUpperHand() {
 function KidnapShowTimer() {
 	if ((KidnapMode == "SelectItem") || (KidnapMode == "SelectMove") || (KidnapMode == "UpperHand") || (KidnapMode == "ShowMove")) {
 		var Sec = Math.floor((KidnapTimer - CommonTime() + 1000) / 1000);
-		MainCanvas.font = "italic " + CommonGetFont(200) + " Narrow";
+		MainCanvas.font = "italic 300 " + CommonGetFont(200);
 		DrawText(Sec.toString(), (KidnapMode == "SelectItem") ? 500 : 1000, 500, (Sec <= 3) ? "red" : "white", "black");
 		MainCanvas.font = CommonGetFont(36);
 	}
@@ -390,7 +390,7 @@ function KidnapShowTimer() {
  * @returns {void} - Nothing
  */
 function KidnapTitle(Title) {
-	MainCanvas.font = "italic " + CommonGetFont(200) + " Narrow";
+	MainCanvas.font = "italic 300 " + CommonGetFont(200);
 	DrawText(Title, 1003, 503, "White");
 	DrawText(Title, 997, 497, "Red");
 	MainCanvas.font = CommonGetFont(36);
