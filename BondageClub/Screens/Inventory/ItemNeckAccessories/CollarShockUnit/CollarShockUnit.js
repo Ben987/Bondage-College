@@ -75,12 +75,13 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
 	Dictionary.push({ AssetName: DialogFocusItem.Asset.Name });
 	Dictionary.push({ AssetGroupName: DialogFocusItem.Asset.Group.Name });
 		
-	ChatRoomPublishCustomAction("TriggerShock" + DialogFocusItem.Property.Intensity, true, Dictionary);
+	ChatRoomPublishCustomAction("TriggerShock" + DialogFocusItem.Property.Intensity, false, Dictionary);
 		
 	if (C.ID == Player.ID) {
 		// The Player shocks herself
 		ActivityArousalItem(C, C, DialogFocusItem.Asset);
 	}
+	if (CurrentScreen == "ChatRoom") DialogLeave();
 	
     CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
     CharacterSetFacialExpression(C, "Blush", "Soft", 15);

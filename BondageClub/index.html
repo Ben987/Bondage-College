@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html style="width:100%; height:100%; padding:0px; margin:0px;">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -12,6 +12,7 @@
 	<title>Bondage Club</title>
 	<link rel="icon" type="image/png" href="Icons/Logo.png">
 	<link rel="stylesheet" href="CSS/Styles.css">
+	<link rel="stylesheet" href="CSS/chessboard-0.3.0.css">
 </head>
 
 <script src="Backgrounds/Backgrounds.js"></script>
@@ -89,6 +90,7 @@
 <script src="Screens/Room/CollegeTheater/CollegeTheater.js"></script>
 <script src="Screens/Room/CollegeDetention/CollegeDetention.js"></script>
 <script src="Screens/Room/CollegeTeacher/CollegeTeacher.js"></script>
+<script src="Screens/Room/CollegeChess/CollegeChess.js"></script>
 <script src="Screens/Room/LARP/LARP.js"></script>
 <script src="Screens/Room/MovieStudio/MovieStudio.js"></script>
 <script src="Screens/Room/Gambling/Gambling.js"></script>
@@ -110,6 +112,11 @@
 <script src="Screens/MiniGame/Tennis/Tennis.js"></script>
 <script src="Screens/MiniGame/PuppyWalker/PuppyWalker.js"></script>
 <script src="Screens/MiniGame/DojoStruggle/DojoStruggle.js"></script>
+<script src="Screens/MiniGame/Chess/jquery-3.2.1.min.js"></script>
+<script src="Screens/MiniGame/Chess/chess.min.js"></script>
+<script src="Screens/MiniGame/Chess/chessboard-0.3.0.js"></script>
+<script src="Screens/MiniGame/Chess/chess.js"></script>
+<script src="Screens/MiniGame/Chess/BondageChess.js"></script>
 <script src="Screens/Cutscene/PlayerCollaring/PlayerCollaring.js"></script>
 <script src="Screens/Cutscene/PlayerMistress/PlayerMistress.js"></script>
 <script src="Screens/Cutscene/NPCCollaring/NPCCollaring.js"></script>
@@ -136,6 +143,7 @@
 <script src="Screens/Inventory/ItemNeck/AutoShockCollar/AutoShockCollar.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarAutoShockUnit/CollarAutoShockUnit.js"></script>
+<script src="Screens/Inventory/ItemArms/CeilingShackles/CeilingShackles.js"></script>
 <script src="Screens/Inventory/ItemArms/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/StraitJacket/StraitJacket.js"></script>
@@ -155,6 +163,7 @@
 <script src="Screens/Inventory/ItemMisc/IntricatePadlock/IntricatePadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/TimerPadlock/TimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/CombinationPadlock/CombinationPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/PasswordPadlock/PasswordPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/MistressTimerPadlock/MistressTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerTimerPadlock/OwnerTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerPadlock/OwnerPadlock.js"></script>
@@ -177,6 +186,7 @@
 <script src="Screens/Inventory/ItemMouth/DildoPlugGag/DildoPlugGag.js"></script>
 <script src="Screens/Inventory/ItemHands/SpankingToys/SpankingToy.js"></script>
 <script src="Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
+<script src="Screens/Inventory/ItemTorso/LatexCorset1/LatexCorset1.js"></script>
 <script src="Screens/Inventory/ItemTorso/NylonRopeHarness/NylonRopeHarness.js"></script>
 <script src="Screens/Inventory/ItemFeet/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemArms/TightJacket/TightJacket.js"></script>
@@ -212,6 +222,7 @@
 <script src="Screens/Inventory/ItemDevices/CryoCapsule/CryoCapsule.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
 <script src="Screens/Inventory/ItemArms/FuturisticArmbinder/FuturisticArmbinder.js"></script>
+<script src="Screens/Inventory/ItemHands/FuturisticMittens/FuturisticMittens.js"></script>
 <script src="Screens/Inventory/ItemArms/CollarCuffs/CollarCuffs.js"></script>
 <script src="Screens/Inventory/ItemDevices/InflatableBodyBag/InflatableBodyBag.js"></script>
 <script src="Screens/Inventory/ItemArms/WristShackles/WristShackles.js"></script>
@@ -248,7 +259,9 @@
 <script src="Screens/Inventory/ItemPelvis/MetalChastityBelt/MetalChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/PolishedChastityBelt/PolishedChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/FuturisticChastityBelt/FuturisticChastityBelt.js"></script>
+<script src="Screens/Inventory/ItemPelvis/FuturisticChastityBelt2/FuturisticChastityBelt2.js"></script>
 <script src="Screens/Inventory/ItemBreast/FuturisticBra/FuturisticBra.js"></script>
+<script src="Screens/Inventory/ItemBreast/FuturisticBra2/FuturisticBra2.js"></script>
 <script src="Screens/Inventory/ItemPelvis/OrnateChastityBelt/OrnateChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/StuddedChastityBelt/StuddedChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/HempRope/HempRope.js"></script>
@@ -259,6 +272,15 @@
 <script src="Screens/Inventory/ItemButt/ShockPlug/ShockPlug.js"></script>
 <script src="Screens/Inventory/ItemVulva/ShockDildo/ShockDildo.js"></script>
 <script src="Screens/Inventory/ItemNipples/ShockClamps/ShockClamps.js"></script>
+<script src="Screens/Inventory/ItemMouth/BallGag/BallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/BallGag/BallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/BallGag/BallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/HarnessBallGag/HarnessBallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/HarnessBallGag/HarnessBallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/HarnessBallGag/HarnessBallGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/WiffleGag/WiffleGag.js"></script>
+<script src="Screens/Inventory/ItemMouth2/WiffleGag/WiffleGag.js"></script>
+<script src="Screens/Inventory/ItemMouth3/WiffleGag/WiffleGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/CupholderGag/CupholderGag.js"></script>
 <script src="Screens/Inventory/ItemMouth2/CupholderGag/CupholderGag.js"></script>
 <script src="Screens/Inventory/ItemMouth3/CupholderGag/CupholderGag.js"></script>
@@ -270,27 +292,40 @@
 <script src="Screens/Inventory/ItemArms/LatexSleevelessLeotard/LatexSleevelessLeotard.js"></script>
 <script src="Screens/Inventory/ItemArms/PrisonLockdownSuit/PrisonLockdownSuit.js"></script>
 <script src="Screens/Inventory/ItemArms/HighSecurityStraitJacket/HighSecurityStraitJacket.js"></script>
+<script src="Screens/Inventory/Corset/LatexCorset1/LatexCorset1.js"></script>
 <script src="Screens/Inventory/Necklace/NecklaceKey/NecklaceKey.js"></script>
 <script src="Screens/Inventory/Necklace/NecklaceLock/NecklaceLock.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CustomCollarTag.js/CustomCollarTag.js"></script>
 <script src="Screens/Inventory/ItemLegs/MermaidTail/MermaidTail.js"></script>
 <script src="Screens/Inventory/ItemMisc/WoodenSign/WoodenSign.js"></script>
+<script src="Screens/Inventory/ItemHood/GwenHood/GwenHood.js"></script>
+<script src="Screens/Inventory/ItemTorso/HeavyLatexCorset/HeavyLatexCorset.js"></script>
+<script src="Screens/Inventory/ItemMouth/FunnelGag/FunnelGag.js"></script>
+<script src="Screens/Inventory/ItemEars/Headphones/Headphones.js"></script>
+<script src="Screens/Inventory/ItemHood/CanvasHood/CanvasHood.js"></script>
 <script>
 
 /*
 
 	NEXT VERSION:
 
-	OK - Add categories to controversial assets so they can be filtered
-	OK - Add a new screen to filter asset categories, called from room creation and room admin screen
-	OK - Make filtered room assets invisible when drawing the character
-	OK - Prevent adding filtered room assets on a character
-	OK - LARP - Introduce a levelling system which should not impact the % that much
-	OK - LARP - Make sure the game can still run if the organiser disconnects, or pause the game if it's the case
-	OK - LARP - Allow admin to set the game timer (20 or 60 seconds timers for now)
-	OK - LARP - Allow a regular room to become a LARP room and a LARP room to become a regular room
-	IN PROGRESS - Movie Studio - Add Mistress role
+	DONE - Four difficulty modes:
+
+	A “roleplay/easy/casual” level could have all the possible toggles so you can configure your bondage club experience exactly as you want it.  
+	There could be toggles to skip the slow mode as Ada proposed or even toggles to skip the A+S struggle, it’s roleplay after all. 
+
+	A “regular/normal/default” level could have the basic restrictions, struggles, safewords, maid rescue, etc.  
+	It would be the current game we have with the current toggles.  A mix of chat room roleplay and game features.
+
+	A “hard/hardcore/no limit” level could be aimed for players that don’t want easy escapes.  No maid rescue, no safeword, no help from any NPC.
+
+	A “extreme/very hard/full slavery” level could be aimed for players that wants the full slave experience.  
+	No maid rescue, no safeword, no help from any NPC, no leaving your owner, no blocked items, all immersion settings to the max.
+
+	This means that an extreme submissive will not be able to ever leave her owner or get out of owner locks without her Mistress help.  The submissive is a full slave.
+
 	TO DO - Movie Studio - Add Maid role
+	
 	TO DO - Proof Read
 	TO DO - Patreon Import/Update
 
@@ -306,17 +341,6 @@
 	
 	Add a random punishment function to online chat room to roll a random punishment for a player or yourself, the punishment will be executed manually
 	
-	To better configure online experience in the club, add many toggles and a membership types that would allow you to use these toggles or not.  There would be two types of toggles and they would only affect the multiplayer side of the game:
-	Casual toggles: for casual players, these toggles would allow you to not be affected by blindness, by gags, by deafness, by sensory deprivation, by blocking items, by items that stops you or slow you down when leaving a room, etc.
-	Hardcore toggles: these would be extra immersion options to give you more trouble: no safeword, no rescue maid, no chastity removal with the club Mistress, automatically be dragged to your owner room when beeped, etc.
-	These toggles would be available for you or not, depending on your membership type:
-	Casual member: The casual member would have access to all toggles, all the time, without restriction.
-	Regular member (default): The regular member would only have access to the hardcore toggles.  All the casual toggles would be disabled and deactivated.
-	Hardcore member: The hardcore member wouldn’t have access to any toggle.  All casual toggles would be deactivated, and all hardcore toggles would be activated, without any user control.
-	When you check someone’s profile, you will be able to see what kind of member they are and for how long they are using that membership type.  For example: (Member type: Hardcore for 7 days).
-	In the management room, the club Mistress would allow you to change your membership type (maybe force a time delay between changes) and will explain the details of each membership type.
-	When you create an online chat room, you would be able to select (with check boxes) which type of members are accepted in that chat room, by default we would allow all membership types.  Players that are not allowed in these chat rooms would not find them when they search or be able to join them.
-
 */
 
 // When the code is loaded, we start the game engine
@@ -355,6 +379,8 @@ function DocumentKeyDown(event) {
 				DialogLeaveItemMenu();
 		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
 			DialogLeave();
+		} else if ((CurrentCharacter == null) && (CurrentScreen == "ChatRoom") && (document.getElementById("TextAreaChatLog") != null)) {
+			ElementScrollToEnd("TextAreaChatLog");
 		}
 	}
 }

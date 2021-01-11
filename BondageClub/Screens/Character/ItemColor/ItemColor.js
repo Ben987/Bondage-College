@@ -241,7 +241,7 @@ function ItemColorClick(c, group, x, y, width, height) {
 	}
 	
 	if (MouseIn(ItemColorState.cancelButtonX, y, headerButtonSize, headerButtonSize)) {
-		return ItemColorExit();
+		return ItemColorExitClick();
 	}
 
 	if (MouseIn(ItemColorState.saveButtonX, y, headerButtonSize, headerButtonSize)) {
@@ -318,7 +318,7 @@ function ItemColorPaginationClick() {
  *  Handles exit button clicks on the item color UI
  *  @returns {void} - Nothing
  */
-function ItemColorExit() {
+function ItemColorExitClick() {
 	switch (ItemColorCurrentMode) {
 		case ItemColorMode.COLOR_PICKER:
 			return ItemColorPickerCancel();
@@ -330,6 +330,32 @@ function ItemColorExit() {
 			}
 			ItemColorFireExit(false);
 	}
+}
+
+/**
+ * Saves any item color changes and exits the item color screen completely
+ * @returns {void} - Nothing
+ */
+function ItemColorSaveAndExit() {
+	if (ItemColorCurrentMode === ItemColorMode.COLOR_PICKER) {
+		ElementRemove("InputColor");
+		ColorPickerHide();
+	}
+	ItemColorFireExit(true);
+}
+
+/**
+ * Discards any item color changes and exits the item color screen completely
+ * @returns {void} - Nothing
+ */
+function ItemColorCancelAndExit() {
+	if (ItemColorBackup && ItemColorCharacter) {
+		Object.assign(ItemColorItem, AppearanceItemParse(ItemColorBackup));
+		CharacterLoadCanvas(ItemColorCharacter);
+	}
+	ElementRemove("InputColor");
+	ColorPickerHide();
+	ItemColorFireExit(false);
 }
 
 /**

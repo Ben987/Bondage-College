@@ -24,7 +24,7 @@ var KidnapMoveType = ["BruteForce", "Domination", "Sneakiness", "Manipulation", 
 var KidnapUpperHandMoveType = ["Cloth", "ItemNeck", "ItemFeet", "ItemMouth", "UndoCloth", "UndoItemNeck", "UndoItemFeet", "UndoItemMouth", "Mercy"];
 var KidnapMoveMap = [
 	[1, 2, 0, 1, 2], // Brute force
-	[0, 1, 1, 2, 2], // Domination 
+	[0, 1, 1, 2, 2], // Domination
 	[2, 1, 1, 0, 2], // Sneakiness
 	[1, 0, 2, 1, 2], // Manipulation
 	[0, 0, 0, 0, 0] // Passive
@@ -38,9 +38,9 @@ var KidnapMoveMap = [
  */
 function KidnapLoadStats(C, Bonus) {
 	C.KidnapStat = [
-		SkillGetLevel(C, KidnapMoveType[0]) + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[0]) + Bonus + 5, 
-		SkillGetLevel(C, KidnapMoveType[1]) + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[1]) + Bonus + 5, 
-		SkillGetLevel(C, KidnapMoveType[2]) + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[2]) + Bonus + 5, 
+		SkillGetLevel(C, KidnapMoveType[0]) + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[0]) + Bonus + 5,
+		SkillGetLevel(C, KidnapMoveType[1]) + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[1]) + Bonus + 5,
+		SkillGetLevel(C, KidnapMoveType[2]) + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[2]) + Bonus + 5,
 		SkillGetLevel(C, KidnapMoveType[3]) + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[3]) + Bonus + 5
 	];
 }
@@ -208,7 +208,7 @@ function KidnapShowMove() {
 
 /**
  * Checks if a given move is effective against a given character
- * @param {Character} C - Character for which to check if the move is 
+ * @param {Character} C - Character for which to check if the move is
  * @param {number} MoveType - Type of move to check for
  * @returns {boolean} - Returns TRUE if the move for that person is effective
  */
@@ -224,7 +224,7 @@ function KidnapMoveEffective(C, MoveType) {
  * @returns {void} - Nothing
  */
 function KidnapSelectMove(PlayerMove) {
-	
+
 	// Gets both moves effectiveness
 	var OpponentMove = KidnapAIMove();
 	var PM = KidnapMoveMap[PlayerMove][OpponentMove];
@@ -234,7 +234,7 @@ function KidnapSelectMove(PlayerMove) {
 	// Keep the move to show it later
 	KidnapPlayerMove = PlayerMove;
 	KidnapOpponentMove = OpponentMove;
-	
+
 	// If the move is effective, we lower the willpower and show it as text
 	if (PM >= 1) {
 		var Damage = parseInt(Player.KidnapStat[PlayerMove]);
@@ -250,15 +250,15 @@ function KidnapSelectMove(PlayerMove) {
 		if (PlayerMove == OpponentMove) Damage = Damage - parseInt(Player.KidnapStat[PlayerMove]);
 		if (Damage < 0) Damage = 0;
 		Player.KidnapWillpower = parseInt(Player.KidnapWillpower) - Damage;
-		KidnapResultPlayer = Player.Name + " " + TextGet("Lost") + " " + Damage.toString() + " " + TextGet("Willpower");		
+		KidnapResultPlayer = Player.Name + " " + TextGet("Lost") + " " + Damage.toString() + " " + TextGet("Willpower");
 	} else KidnapResultPlayer = Player.Name + " " + TextGet("NoLost");
-	
+
 	// Builds the "Upperhand" text
 	KidnapResultUpperHand = "";
 	KidnapUpperHandVictim = null;
 	if (PM >= 2) { KidnapUpperHandVictim = KidnapOpponent; KidnapResultUpperHand = Player.Name + " " + TextGet("UpperHand"); }
 	if (OM >= 2) { KidnapUpperHandVictim = Player; KidnapResultUpperHand = KidnapOpponent.Name + " " + TextGet("UpperHand"); }
-	
+
 	// If both players have 0 willpower, they go back to 1 in a sudden death
 	if (Player.KidnapWillpower < 0) Player.KidnapWillpower = 0;
 	if (KidnapOpponent.KidnapWillpower < 0) KidnapOpponent.KidnapWillpower = 0;
@@ -284,12 +284,12 @@ function KidnapSelectMove(PlayerMove) {
  * @returns {void} - Nothing
  */
 function KidnapSelectMoveUpperHand(PlayerMove) {
-	
+
 	// Stripping or undoing something is automatic
-	if ((PlayerMove == 0) || (PlayerMove == 4) || (PlayerMove == 5) || (PlayerMove == 6) || (PlayerMove == 7)) 
+	if ((PlayerMove == 0) || (PlayerMove == 4) || (PlayerMove == 5) || (PlayerMove == 6) || (PlayerMove == 7))
 		if (KidnapUpperHandMoveAvailable(PlayerMove, true))
 			KidnapSetMode("SelectMove");
-		
+
 	// Apply an item enters another mode with a focused group
 	if ((PlayerMove == 1) || (PlayerMove == 2) || (PlayerMove == 3))
 		if (KidnapUpperHandMoveAvailable(PlayerMove, false))
@@ -378,9 +378,9 @@ function KidnapDrawMoveUpperHand() {
 function KidnapShowTimer() {
 	if ((KidnapMode == "SelectItem") || (KidnapMode == "SelectMove") || (KidnapMode == "UpperHand") || (KidnapMode == "ShowMove")) {
 		var Sec = Math.floor((KidnapTimer - CommonTime() + 1000) / 1000);
-		MainCanvas.font = "italic 200px Arial Narrow"; 
-		DrawText(Sec.toString(), (KidnapMode == "SelectItem") ? 500 : 1000, 500, (Sec <= 3) ? "red" : "white", "black"); 
-		MainCanvas.font = "36px Arial";
+		MainCanvas.font = "italic 300 " + CommonGetFont(200);
+		DrawText(Sec.toString(), (KidnapMode == "SelectItem") ? 500 : 1000, 500, (Sec <= 3) ? "red" : "white", "black");
+		MainCanvas.font = CommonGetFont(36);
 	}
 }
 
@@ -390,10 +390,10 @@ function KidnapShowTimer() {
  * @returns {void} - Nothing
  */
 function KidnapTitle(Title) {
-	MainCanvas.font = "italic 200px Arial Narrow";
+	MainCanvas.font = "italic 300 " + CommonGetFont(200);
 	DrawText(Title, 1003, 503, "White");
 	DrawText(Title, 997, 497, "Red");
-	MainCanvas.font = "36px Arial";
+	MainCanvas.font = CommonGetFont(36);
 }
 
 /**
@@ -401,11 +401,11 @@ function KidnapTitle(Title) {
  * @returns {void} - Nothing
  */
 function KidnapShowItem() {
-	
+
 	// Draw the header
 	DrawText(TextGet("SelectItemToUse"), 1375, 50, "white", "black");
 	DrawButton(1750, 25, 225, 65, TextGet("Cancel"), "White");
-	
+
 	// For each items in the player inventory
 	var X = 1000;
 	var Y = 125;
@@ -420,7 +420,7 @@ function KidnapShowItem() {
 			Y = Y + 300;
 		}
 	}
-	
+
 }
 
 /**
@@ -469,7 +469,7 @@ function KidnapClick() {
 		KidnapSetMode("SelectMove");
 		return;
 	}
-	
+
 	// When the user selects a regular move
 	if (KidnapMode == "SelectMove") {
 		for (let M = 0; M < 4; M++)
@@ -479,7 +479,7 @@ function KidnapClick() {
 			KidnapSurrender();
 		return;
 	}
-	
+
 	// When the user selects a upper hand move
 	if ((KidnapMode == "UpperHand") && (KidnapUpperHandVictim.ID > 0)) {
 		for (let M = 0; M <= 8; M++)
@@ -491,7 +491,7 @@ function KidnapClick() {
 	// If we must cancel out and don't select any item
 	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 90))
 		KidnapSetMode("SelectMove");
-	
+
 	// If the user clicks on one of the items to be applied to the opponent
 	if ((KidnapMode == "SelectItem") && (MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000)) {
 
@@ -515,7 +515,7 @@ function KidnapClick() {
 			}
 
 		}
-		
+
 	}
 
 }

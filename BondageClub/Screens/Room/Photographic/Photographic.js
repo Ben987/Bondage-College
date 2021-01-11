@@ -36,7 +36,6 @@ function PhotographicSubBraAvailable() {return (PhotographicAppearanceAvailable(
 function PhotographicSubPantiesAvailable() {return (PhotographicAppearanceAvailable(PhotographicSub, "Panties")&&!PhotographicAppearanceAvailable(PhotographicSub, "Cloth")&&!PhotographicAppearanceAvailable(PhotographicSub, "ClothLower"));}
 function PhotographicSubCanAskForPhoto() {return Player.CanTalk() && !PhotographicSub.IsRestrained()}
 function PhotographicSubCanWinkForPhoto() {return !Player.CanTalk() && !PhotographicSub.IsRestrained()}
-function PhotographicSubCanKeel() {return PhotographicSub.CanKneel()}
 
 function PhotographicIsRestrainedWithLock() { return (Player.IsRestrained() && (InventoryCharacterHasLockedRestraint(Player))) };
 function PhotographicIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)) };
@@ -137,10 +136,13 @@ function PhotographicSubDressBack() {
 	CharacterDress(PhotographicSub, PhotographicSubAppearance);
 }
 
-function PhotographicSubChangePose() {
-	CharacterSetActivePose(PhotographicSub, (PhotographicSub.ActivePose == null) ? "Kneel" : null, true);
+function PhotographicSubPoseCategoryAllowed(PoseCategory) {
+	return !CharacterItemsHavePoseType(PhotographicSub, PoseCategory, true);
 }
 
+function PhotographicSubSetPose(PoseName) {
+	CharacterSetActivePose(PhotographicSub, PoseName);
+}
 
 function PhotographicSubClothRemove(Group) {
 	InventoryRemove(PhotographicSub, Group); 

@@ -45,13 +45,13 @@ function CommonDrawCanvasPrepare(C) {
 	if (C.Canvas == null) {
 		C.Canvas = document.createElement("canvas");
 		C.Canvas.width = 500;
-		C.Canvas.height = 1000;
-	} else C.Canvas.getContext("2d").clearRect(0, 0, 500, 1000);
+		C.Canvas.height = CanvasDrawHeight;
+	} else C.Canvas.getContext("2d").clearRect(0, 0, 500, CanvasDrawHeight);
 	if (C.CanvasBlink == null) {
 		C.CanvasBlink = document.createElement("canvas");
 		C.CanvasBlink.width = 500;
-		C.CanvasBlink.height = 1000;
-	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
+		C.CanvasBlink.height = CanvasDrawHeight;
+	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, CanvasDrawHeight);
 
 	C.MustDraw = true;
 }
@@ -118,8 +118,8 @@ function CommonDrawAppearanceBuild(C, {
 			if ((!AlphaDef.Group || !AlphaDef.Group.length) &&
 				(!AlphaDef.Pose || !Array.isArray(AlphaDef.Pose) || !!CommonDrawFindPose(C, AlphaDef.Pose))) {
 				AlphaDef.Masks.forEach(rect => {
-					clearRect(rect[0], rect[1], rect[2], rect[3]);
-					clearRectBlink(rect[0], rect[1], rect[2], rect[3]);
+					clearRect(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3]);
+					clearRectBlink(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3]);
 				});
 			}
 		});
@@ -167,10 +167,15 @@ function CommonDrawAppearanceBuild(C, {
 		}
 
 		// Check if we need to copy the color of another asset
-		var InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
+		let InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
+		let ColorInherited = false;
 		if (InheritColor != null) {
 			var ParentAsset = InventoryGet(C, InheritColor);
-			if (ParentAsset != null) Color = Array.isArray(ParentAsset.Color) ? ParentAsset.Color[0] : ParentAsset.Color;
+			if (ParentAsset != null) {
+				let ParentColor = Array.isArray(ParentAsset.Color) ? ParentAsset.Color[0] : ParentAsset.Color;
+				Color = CommonDrawColorValid(ParentColor, ParentAsset.Asset.Group) ? ParentColor : "Default";
+				ColorInherited = true;
+			}
 		}
 		
 		// Before drawing hook, receives all processed data. Any of them can be overriden if returned inside an object.
@@ -221,10 +226,18 @@ function CommonDrawAppearanceBuild(C, {
 			}
 		}
 
+		// Make any required changes to the colour
 		if (Color === "Default" && A.DefaultColor) {
 			Color = Array.isArray(A.DefaultColor) ? A.DefaultColor[Layer.ColorIndex] : A.DefaultColor;
 		}
-		
+		if (!ColorInherited && !CommonDrawColorValid(Color, AG)) {
+			Color = "Default";
+		}
+
+		// Adjust for the increased canvas size
+		Y += CanvasUpperOverflow;
+		AlphaMasks = AlphaMasks.map(([x, y, w, h]) => [x, y + CanvasUpperOverflow, w, h]);
+
 		// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 		if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
 			drawImageColorize(
@@ -266,6 +279,22 @@ function CommonDrawAppearanceBuild(C, {
 			window["Assets" + A.Group.Name + A.Name + "AfterDraw"](DrawingData);
 		}
 	});
+}
+
+/**
+ * Determines whether the provided color is valid
+ * @param {any} Color - The color
+ * @param {any} AssetGroup - The asset group the color is being used fo
+ * @returns {boolean} - Whether the color is valid
+ */
+function CommonDrawColorValid(Color, AssetGroup) {
+	if (Color != null && typeof Color !== "string") {
+		return false;
+	}
+	if (Color != null && Color.indexOf("#") != 0 && AssetGroup.ColorSchema.indexOf(Color) < 0) {
+		return false;
+	}
+	return true;
 }
 
 /**

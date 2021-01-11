@@ -42,7 +42,7 @@ function InventoryItemBreastFuturisticBraUpdate(C) {
 	
 	if (C.ArousalSettings && C.ArousalSettings.Progress > 0) {
 		var Progress = C.ArousalSettings.Progress
-		current_bpm += Math.floor(Progress*0.35)
+		current_bpm += Math.floor(Progress*0.60)
 		current_temp += Math.floor(Progress*0.1)/10
 		if ((C.ArousalSettings.OrgasmStage && C.ArousalSettings.OrgasmStage > 0) || (C.ArousalSettings.ProgressTimer && C.ArousalSettings.ProgressTimer > 1)) {
 			current_breathing = "Action"
@@ -81,7 +81,7 @@ function InventoryItemBreastFuturisticBraDraw() {
 	DrawText(DialogFind(Player, "FuturisticBraPlayerTracking"), 1500, 830, "White", "Gray");
 	
 	// If the player can modify 
-	if (InventoryItemMouthFuturisticPanelGagValidate(C)) {
+	if (InventoryItemMouthFuturisticPanelGagValidate(C) == "") {
 		if (DialogFocusItem.Property.Type == "Solid") {
 			DrawButton(1250, 900, 200, 64, DialogFind(Player, "FuturisticBraPlayerShow"), "White", "");
 		} else {
@@ -108,7 +108,7 @@ function InventoryItemBreastFuturisticBraClick() {
 		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 		
 		// If the player can modify 
-		if (InventoryItemMouthFuturisticPanelGagValidate(C)) {
+		if (InventoryItemMouthFuturisticPanelGagValidate(C) == "") {
 			
 			if (DialogFocusItem.Property.Type == "Solid" && MouseIn(1250, 900, 500, 64)) {
 				DialogFocusItem.Property.Type = ""

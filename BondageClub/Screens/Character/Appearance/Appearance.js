@@ -19,6 +19,10 @@ var CharacterAppearancePreviousEmoticon = "";
 var CharacterAppearanceMode = "";
 var CharacterAppearanceCloth = null;
 
+const CanvasUpperOverflow = 700;
+const CanvasLowerOverflow = 150;
+const CanvasDrawHeight = 1000 + CanvasUpperOverflow + CanvasLowerOverflow;
+
 /**
  * Builds all the assets that can be used to dress up the character
  * @param {Character} C - The character whose appearance is modified
@@ -55,8 +59,8 @@ function CharacterAppearanceValidate(C) {
 	// Remove items flagged as "Remove At Login"
 	if (LogQuery("Committed", "Asylum") || !Player.GameplaySettings || !Player.GameplaySettings.DisableAutoRemoveLogin)
 		for (let A = C.Appearance.length - 1; A >= 0; A--)
-			if (C.Appearance[A].Asset.RemoveAtLogin) {
-				C.Appearance.splice(A, 1);
+			if (C.Appearance[A] && C.Appearance[A].Asset.RemoveAtLogin) {
+				InventoryRemove(C, C.Appearance[A].Asset.Group.Name, false);
 				Refresh = true;
 			}
 
@@ -185,7 +189,8 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 				var SelectedAsset = InventoryGetRandom(C, AssetGroup[A].Name, R);
 				var SelectedColor = SelectedAsset.Group.ColorSchema[Math.floor(Math.random() * SelectedAsset.Group.ColorSchema.length)];
 				if ((SelectedAsset.Group.ColorSchema[0] == "Default") && (Math.random() < 0.5)) SelectedColor = "Default";
-				if (SelectedAsset.Group.ParentColor != "")
+				if (SelectedAsset.Group.InheritColor != null) SelectedColor = "Default";
+				else if (SelectedAsset.Group.ParentColor != "")
 					if (CharacterAppearanceGetCurrentValue(C, SelectedAsset.Group.ParentColor, "Color") != "None")
 						SelectedColor = CharacterAppearanceGetCurrentValue(C, SelectedAsset.Group.ParentColor, "Color");
 				// Rare chance of keeping eyes of a different color
@@ -352,7 +357,7 @@ function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if (CharacterAppearanceItemIsHidden(C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) continue;
 		let HidingItem = false;
-		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
+		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0) && !C.Appearance[A].Asset.HideItemExclude.includes(GroupName + AssetName)) HidingItem = true;
 		else if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
 		else if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
 		else if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.HideItem != null) && (C.Appearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
@@ -389,30 +394,54 @@ function CharacterAppearanceItemIsHidden(AssetName, GroupName) {
 }
 
 /**
- * Calculates and sets the height modifier which determines the character's vertical position on screen
- * @param {Character} C - The character whose height must be calculated
+ * Calculates and sets the height modifier which affects the character's vertical position on screen
+ * @param {Character} C - The character whose height modifier must be calculated
  * @returns {void} - Nothing
  */
-function CharacterApperanceSetHeightModifier(C) {
+function CharacterAppearanceSetHeightModifiers(C) {
 	if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
+		// If the "Up" button was clicked, move the character to the top
 		C.HeightModifier = 0;
+		C.HeightRatioProportion = 1;
 	} else {
-		var Height = 0;
-		for (let A = 0; A < C.Appearance.length; A++)
-			if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name))
-				Height += C.Appearance[A].Asset.HeightModifier;
-		if (C.Pose != null) 
-			for (let A = 0; A < C.Pose.length; A++)
-				for (let P = 0; P < Pose.length; P++)
-					if (Pose[P].Name === C.Pose[A])
-						if (Pose[P].OverrideHeight != null) {
-							// Ignore kneel, if player is hogtied. Allows the use of a short chain on hogtied players
-							// Ignore overthehead if kneeling
-							if (!((Pose[P].Name == "Kneel") && (C.Pose.indexOf("Hogtied") >= 0)) && !((Pose[P].Name == "OverTheHead") && (C.Pose.indexOf("Kneel") >= 0)))
-								Height = Pose[P].OverrideHeight;
-						}
+		let Height = 0;
+		let HeightRatioProportion = 1;
+
+		// Check if there is any setting to override the standard asset height modifiers
+		let HeightOverrides = [];
+		let PoseOverrides = Pose.filter(P => C.Pose != null && C.Pose.indexOf(P.Name) >= 0 && P.OverrideHeight != null).map(P => P.OverrideHeight);
+		let AssetOverrides = C.Appearance.filter(A => A.Asset.OverrideHeight != null).map(A => A.Asset.OverrideHeight);
+		let PropertyOverrides = C.Appearance.filter(A => A.Property && A.Property.OverrideHeight != null).map(A => A.Property.OverrideHeight);
+		HeightOverrides = HeightOverrides.concat(PoseOverrides, AssetOverrides, PropertyOverrides);
+
+		if (HeightOverrides.length > 0) {
+			// Use the override with highest priority
+			let TopOverride = HeightOverrides.reduce((a, b) => a.Priority >= b.Priority ? a : b);
+			Height = TopOverride.Height || 0;
+			if (TopOverride.HeightRatioProportion != null) HeightRatioProportion = TopOverride.HeightRatioProportion;
+		}
+		else {
+			// Adjust the height based on modifiers on the assets
+			for (let A = 0; A < C.Appearance.length; A++)
+				if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
+					if (C.Appearance[A].Property && C.Appearance[A].Property.HeightModifier != null) Height += C.Appearance[A].Property.HeightModifier;
+					else Height += C.Appearance[A].Asset.HeightModifier;
+				}
+		}
+		
+		// Limit values affectable by Property settings in case invalid values were set via console
+		if (Height > CanvasLowerOverflow) Height = CanvasLowerOverflow;
+		if (Height < -CanvasUpperOverflow) Height = -CanvasUpperOverflow;
+		if (HeightRatioProportion > 1) HeightRatioProportion = 1;
+		if (HeightRatioProportion < 0) HeightRatioProportion = 0;
+
+		// Set the final modifier values for the character
 		C.HeightModifier = Height;
+		C.HeightRatioProportion = HeightRatioProportion;
 	}
+
+	// Set the height ratio here to avoid lookin it up when drawing. The setting can make all characters full height
+	C.HeightRatio = Player.VisualSettings && Player.VisualSettings.ForceFullHeight ? 1 : CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
 }
 
 /**
@@ -460,6 +489,27 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 }
 
 /**
+ * Repositions the character horizonally to centre them, since shorter characters will shrink towards the left
+ * @param {Character} C - The character to reposition
+ * @param {number} HeightRatio - The character's height ratio
+ * @returns {number} - The amount to move the character along the X co-ordinate
+ */
+function CharacterAppearanceXOffset(C, HeightRatio) {
+	return 500 * (1 - HeightRatio) / 2;
+}
+
+/**
+ * Repositions the character vertically towards the bottom of the canvas (the 'floor'), since shorter characters will be shrunk towards the top
+ * HeightRatioProportion controls how much of this offset applies with 1 (max) positioning them on the "floor" and 0 (min) leaving them up at the 'ceiling'
+ * @param {Character} C - The character to reposition
+ * @param {number} HeightRatio - The character's height ratio
+ * @returns {number} - The amounnt to move the character along the Y co-ordinate
+ */
+function CharacterAppearanceYOffset(C, HeightRatio) {
+	return 1000 * (1 - HeightRatio) * C.HeightRatioProportion - C.HeightModifier * HeightRatio;
+}
+
+/**
  * Loads the character appearance screen and keeps a backup of the previous appearance. The function name is created dynamically.
  * @returns {void} - Nothing
  */
@@ -490,11 +540,10 @@ function AppearanceRun() {
 		if (C.ID == 0) CharacterAppearanceHeaderText = TextGet("SelectYourAppearance");
 		else CharacterAppearanceHeaderText = TextGet("SelectSomeoneAppearance").replace("TargetCharacterName", C.Name);
 	}
-	DrawCharacter(C, -600, (C.IsKneeling()) ? -1100 : -100, 4, false);
+	DrawCharacter(C, -600, -100 + 4 * C.HeightModifier, 4, false);
 	DrawCharacter(C, 750, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 400, 40, "White", "Black");
 
-	
 	// When there is an extended item
 	if (DialogFocusItem != null) {
 		CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
@@ -561,7 +610,7 @@ function AppearanceRun() {
 	// In item coloring mode
 	if (CharacterAppearanceMode == "Color") {
 		// Leave the color picker if the item is gone.
-		if (!InventoryGet(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName)) ItemColorExit();
+		if (!InventoryGet(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName)) ItemColorCancelAndExit();
 		// Draw the color picker
 	    ItemColorDraw(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName, 1300, 25, 675, 950);
 	}
@@ -572,7 +621,7 @@ function AppearanceRun() {
 		// Draw the wardrobe top controls & buttons
 		if (!DialogItemPermissionMode && InventoryGet(C, C.FocusGroup.Name) && InventoryGet(C, C.FocusGroup.Name).Asset.Extended) DrawButton(1183, 25, 90, 90, "", "White", "Icons/Use.png", DialogFind(Player, "Use"));
 		if (C.ID == 0 && !DialogItemPermissionMode) DrawButton(1300, 25, 90, 90, "", "White", "Icons/WearRandom.png", TextGet("WearRandom"));
-		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
+		if (C.ID == 0) DrawButton(1417, 25, 90, 90, "", (Player.GetDifficulty() >= 3) ? "Pink" : "White", DialogItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, DialogItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 		if (!DialogItemPermissionMode) DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
 		if (DialogInventory.length > 9) DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 		
@@ -885,7 +934,7 @@ function AppearanceClick() {
 	if (CharacterAppearanceMode == "Cloth") {
 
 		// Extends the current item
-		if (MouseIn(1183, 25, 90, 90)) { 
+		if (MouseIn(1183, 25, 90, 90)) {
 			var Item = InventoryGet(C, C.FocusGroup.Name);
 			if (Item && Item.Asset.Extended) DialogExtendItem(Item);
 		}
@@ -896,11 +945,11 @@ function AppearanceClick() {
 		}
 
 		// Swaps between normal and permission mode
-		if (C.ID == 0 && MouseIn(1417, 25, 90, 90)) { 
+		if (C.ID == 0 && MouseIn(1417, 25, 90, 90) && (Player.GetDifficulty() <= 2)) {
 			DialogItemPermissionMode = !DialogItemPermissionMode;
 			DialogInventoryBuild(C);
 		}
-		
+
 		// Strips the current item
 		if (!DialogItemPermissionMode && (MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115))
 			CharacterAppearanceSetItem(C, C.FocusGroup.Name, null);
@@ -977,7 +1026,7 @@ function AppearanceExit() {
 	}
 
 	if (CharacterAppearanceMode === "Color") {
-		return ItemColorExit();
+		return ItemColorExitClick();
 	}
 
 	if (CharacterAppearanceMode != "") {

@@ -324,7 +324,7 @@ ClubSlaveIntro1,,Have fun girl.  (Leave her.),,MainHall(),Player.CanTalk()
 ClubSlaveIntro1,,(Ignore her.),,MainHall(),
 ClubSlaveIntroText2,,,(A naked girl sees you in the hall and comes to greet you.)  Greetings Miss.  Welcome to the Bondage Club.,,
 ClubSlaveIntro2,ClubSlave,Hello there.,(She bows her head.)  Do you require my services Miss?,,Player.CanTalk()
-ClubSlaveIntro2,ClubSlave,Who are you girl?,(She bows her head.)  I'm slave DialogCharacterName Miss.  Do you need my services?,,Player.CanTalk()
+ClubSlaveIntro2,ClubSlave,Who are you girl?,(She bows her head.)  I'm a club slave Miss.  Do you need my services?,,Player.CanTalk()
 ClubSlaveIntro2,ClubSlave,You seem well trained slave.,(She smiles and nods.)  Thank you Miss.  Do you require my services?,"DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
 ClubSlaveIntro2,ClubSlave,(Mumble in your gag.),Are you also a submissive Miss?  Do you require my services?,"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
 ClubSlaveIntro2,,I don't have time for you.  (Leave her.),,MainHall(),Player.CanTalk()
@@ -360,7 +360,7 @@ ClubSlave,,(Struggle and beg for help.),"(She shakes her head no.)  I'm sorry Mi
 ClubSlave,ClubSlavePlay,(Play with her.),(You start to play with her.),,
 ClubSlave,,Will you visit my room after your contract?,"I'm sorry Miss, I'm too busy today.  Maybe another time.",ClubSlaveVisitRoom(),
 ClubSlave,,(Leave her.),,MainHall(),
-ClubSlaveTalk,,Who are you?,I'm slave DialogCharacterName Miss.  It's a pleasure to meet you.,"ClubSlaveActiviy(""Talk"", 0)",
+ClubSlaveTalk,,Who are you?,I'm a simple club slave Miss.  It's a pleasure to meet you.,"ClubSlaveActiviy(""Talk"", 0)",
 ClubSlaveTalk,,Why are you naked?,"It's the rule Miss, all club slaves under contract must be naked.","ClubSlaveActiviy(""Talk"", 0)",
 ClubSlaveTalk,,What's a club slave?,We take a one-hour contract with management and get paid to please club members.,"ClubSlaveActiviy(""Talk"", 0)",
 ClubSlaveTalk,,Can I become a club slave?,"It's only for true submissives, go to the club management and ask if you're eligible.","ClubSlaveActiviy(""Talk"", -3)",

@@ -5,6 +5,7 @@ TitleMistress,Mistress
 TitleClubSlave,Club Slave
 TitleHeadMaid,Head Maid
 TitleMaid,Maid
+TitleBondageMaid,Bondage Maid
 TitleMasterKidnapper,Master Kidnapper
 TitleKidnapper,Kidnapper
 TitlePatient,Patient
@@ -25,6 +26,21 @@ TitlePonyHot,Hot Blood Horse
 TitlePonyWild,Wild Mustang
 TitlePonyUnicorn,Shining Unicorn
 TitlePonyPegasus,Flying Pegasus
+TitlePonyAlicorn,Majestic Alicorn
+TitleLittleOne,Little One
+TitleBaby,Baby
+TitleDL,Diaper Lover
+TitleBondageBaby,Bondage Baby
+TitleDuchess,Duchess
+TitleSwitch,Switch
+TitleKitten,Kitten
+TitlePuppy,Puppy
+TitleFoxy,Foxy
+TitleBunny,Bunny
+TitleDoll,Doll
+TitleDemon,Demon
+TitleAngel,Angel
+TitleSuccubus,Succubus
 MemberNumber,Member Number:
 NoMemberNumber,-
 Relationships,- Relationships -
@@ -54,13 +70,11 @@ ReputationAsylumNegative,Asylum Patient:
 ReputationLARPPositive,LARP Battles:
 ReputationGamblingPositive,Gambling Hall:
 ReputationABDLPositive,ABDL:
-LARPClass,LARP Class:
-LARPClassMatron,Matron
-LARPClassSeducer,Seducer
-LARPClassTrickster,Trickster
-LARPClassServant,Servant
-LARPClassArtist,Artist
-LARPClassProtector,Protector
+DifficultyTitle,difficulty for NumberOfDays day(s)
+DifficultyLevel0,Roleplay
+DifficultyLevel1,Regular
+DifficultyLevel2,Hardcore
+DifficultyLevel3,Extreme
 Skill,- Skills -
 SkillNone,None
 SkillBondage,Bondage:

@@ -58,6 +58,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		Underwear: (NewAsset.Underwear == null) ? false : NewAsset.Underwear,
 		BodyCosplay: (NewAsset.BodyCosplay == null) ? false : NewAsset.BodyCosplay,
 		Activity: NewAsset.Activity,
+		AllowActivityOn: NewAsset.AllowActivityOn,
 		Hide: NewAsset.Hide,
 		Block: NewAsset.Block,
 		Zone: NewAsset.Zone,
@@ -72,7 +73,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		DrawingTop: (NewAsset.Top == null) ? 0 : NewAsset.Top,
 		DrawingFullAlpha: (NewAsset.FullAlpha == null) ? true : NewAsset.FullAlpha,
 		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink,
-		InheritColor: NewAsset.InheritColor
+		InheritColor: NewAsset.InheritColor,
 	}
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
@@ -91,6 +92,7 @@ function AssetAdd(NewAsset) {
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
 		Activity: (NewAsset.Activity == null) ? AssetCurrentGroup.Activity : NewAsset.Activity,
 		AllowActivity: NewAsset.AllowActivity,
+		AllowActivityOn: (NewAsset.AllowActivityOn == null) ? AssetCurrentGroup.AllowActivityOn : NewAsset.AllowActivityOn,
 		BuyGroup: NewAsset.BuyGroup,
 		PrerequisiteBuyGroups: NewAsset.PrerequisiteBuyGroups,
 		Effect: (NewAsset.Effect == null) ? AssetCurrentGroup.Effect : NewAsset.Effect,
@@ -99,10 +101,12 @@ function AssetAdd(NewAsset) {
 		Expose: (NewAsset.Expose == null) ? [] : NewAsset.Expose,
 		Hide: (NewAsset.Hide == null) ? AssetCurrentGroup.Hide : NewAsset.Hide,
 		HideItem: NewAsset.HideItem,
+		HideItemExclude: NewAsset.HideItemExclude || [],
 		Require: NewAsset.Require,
 		SetPose: (NewAsset.SetPose == null) ? AssetCurrentGroup.SetPose : NewAsset.SetPose,
 		AllowPose: (NewAsset.AllowPose == null) ? AssetCurrentGroup.AllowPose : NewAsset.AllowPose,
 		AllowActivePose: (NewAsset.AllowActivePose == null) ? AssetCurrentGroup.AllowActivePose : NewAsset.AllowActivePose,
+		WhitelistActivePose: (NewAsset.WhitelistActivePose == null) ? AssetCurrentGroup.WhitelistActivePose : NewAsset.WhitelistActivePose,
 		Value: (NewAsset.Value == null) ? 0 : NewAsset.Value,
 		Difficulty: (NewAsset.Difficulty == null) ? 0 : NewAsset.Difficulty,
 		SelfBondage: (NewAsset.SelfBondage == null) ? 0 : NewAsset.SelfBondage,
@@ -158,6 +162,8 @@ function AssetAdd(NewAsset) {
 		HasType: (typeof NewAsset.HasType === 'boolean') ? NewAsset.HasType : true,
 		AllowLockType: NewAsset.AllowLockType,
 		AllowColorizeAll: typeof NewAsset.AllowColorizeAll === 'boolean' ? NewAsset.AllowColorizeAll : true,
+		AvailableLocations: NewAsset.AvailableLocations || [],
+		OverrideHeight: NewAsset.OverrideHeight,
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	AssetAssignColorIndices(A);

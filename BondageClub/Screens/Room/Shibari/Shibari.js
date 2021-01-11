@@ -34,7 +34,7 @@ function ShibariAllowPlayerBondage() { return !Player.IsRestrained() && !Shibari
  * Checks if the player can spank the Shibari dojo teacher.
  * @returns {boolean} - Returns TRUE if the player can spank the teacher.
  */
-function ShibariAllowSpank() { return (((CurrentCharacter.ID == ShibariTeacher.ID) ? (ShibariTeacher.Pose.indexOf("Suspension") >= 0) : (ShibariStudent.Pose.indexOf("Suspension") >= 0)) && Player.CanInteract()) }
+function ShibariAllowSpank() { return (((CurrentCharacter.ID == ShibariTeacher.ID) ? ShibariTeacher.IsInverted() : ShibariStudent.IsInverted()) && Player.CanInteract()); }
 /**
  * Checks if the given maid rescue scenario name is currently active in the shibari dojo.
  * @param {string} ScenarioName - Name of the scenario to check for.
@@ -96,7 +96,11 @@ function ShibariRandomBondage(C, Level) {
 			InventoryGet(C, "ItemArms").Property = { Type: null };
 			if (Level == 1) InventoryGet(C, "ItemFeet").Property = { Type: "Suspension", SetPose: ["Suspension", "LegsClosed"], Difficulty: 0, Effect: [] };
 			if (Level == 2) InventoryGet(C, "ItemArms").Property = { Type: "Hogtied", SetPose: ["Hogtied"], Difficulty: 0, Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], Effect: ["Block", "Freeze", "Prone"] };
-			if (Level == 3) InventoryGet(C, "ItemArms").Property = { Type: "SuspensionHogtied", SetPose: ["Hogtied", "SuspensionHogtied"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], Difficulty: 0, Effect: ["Block", "Freeze", "Prone"] };
+			if (Level == 3) {
+				let SuspensionHogtiedProperty = InventoryItemArmsHempRopeOptions.find(O => O.Name == "SuspensionHogtied").Property;
+				SuspensionHogtiedProperty.Difficulty = 0;
+				InventoryGet(C, "ItemArms").Property = SuspensionHogtiedProperty;
+			}
 		}
 		CharacterRefresh(C);
 	}

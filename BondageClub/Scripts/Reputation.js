@@ -96,8 +96,8 @@ function ReputationProgress(RepType, Value) {
 		if ((V > -70) && (V <= -30)) ReputationChange(RepType, Value * 2);
 		if ((V >= -100) && (V <= -70)) ReputationChange(RepType, Value * 4);
 	} else {
-		if ((V >= -100) && (V <= -70)) ReputationChange(RepType, Math.floor(Value / 3));
-		if ((V > -70) && (V <= -30)) ReputationChange(RepType, Math.floor(Value / 2));
+		if ((V >= -100) && (V <= -70)) ReputationChange(RepType, Math.floor(Value * -1 / 3) * -1);
+		if ((V > -70) && (V <= -30)) ReputationChange(RepType, Math.floor(Value * -1 / 2) * -1);
 		if ((V > -30) && (V < 30)) ReputationChange(RepType, Value);
 		if ((V >= 30) && (V < 70)) ReputationChange(RepType, Value * 2);
 		if ((V >= 70) && (V <= 100)) ReputationChange(RepType, Value * 4);
