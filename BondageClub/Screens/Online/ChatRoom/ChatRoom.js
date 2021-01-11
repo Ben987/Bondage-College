@@ -567,10 +567,10 @@ function ChatRoomRun() {
 			Player.LastChatRoomAdmin.push(Player.MemberNumber)
 		}*/
 		var UpdatedRoom = {
-			Name: ChatRoomData.Name,
-			Description: ChatRoomData.Description,
-			Background: ChatRoomData.Background,
-			Limit: ChatRoomData.Limit,
+			Name: Player.LastChatRoom,
+			Description: Player.LastChatRoomDesc,
+			Background: Player.LastChatRoomBG,
+			Limit: "" + Player.LastChatRoomSize,
 			Admin: Player.LastChatRoomAdmin,
 			Ban: ChatRoomData.Ban,
 			BlockCategory: ChatRoomData.BlockCategory,
