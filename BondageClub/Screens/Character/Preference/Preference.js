@@ -270,9 +270,9 @@ function PreferenceInit(C) {
 	if (!C.ImmersionSettings) C.ImmersionSettings = {};
 	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
 	if (typeof C.ImmersionSettings.ReturnToChatRoom !== "boolean") C.ImmersionSettings.ReturnToChatRoom = false;
-	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.ImmersionSettings.ReturnToChatRoom = true;
+	if ((C.ID == 0) && (C.GetDifficulty() >= 3)) C.ImmersionSettings.ReturnToChatRoom = true;
 	if (typeof C.ImmersionSettings.ReturnToChatRoomAdmin !== "boolean") C.ImmersionSettings.ReturnToChatRoomAdmin = false;
-	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.ImmersionSettings.ReturnToChatRoomAdmin = true;
+	if ((C.ID == 0) && (C.GetDifficulty() >= 3)) C.ImmersionSettings.ReturnToChatRoomAdmin = true;
 	if (typeof C.LastChatRoom !== "string") C.LastChatRoom = "";
 	if (typeof C.LastChatRoomBG !== "string") C.LastChatRoomBG = "";
 	if (typeof C.LastChatRoomPrivate !== "boolean") C.LastChatRoomPrivate = false;
