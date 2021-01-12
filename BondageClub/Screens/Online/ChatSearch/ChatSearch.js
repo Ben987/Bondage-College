@@ -344,6 +344,7 @@ function ChatSearchResponse(data) {
 			ChatRoomClearAllElements();
 			CommonSetScreen("Online", "ChatSearch");
 			CharacterDeleteAllOnline();
+			ChatRoomSetLastChatRoom("");
 		}
 		ChatSearchMessage = "Response" + data;
 	}
