@@ -2368,7 +2368,7 @@ var AssetFemale3DCG = [
 		],
 		Activity: ["Bite", "Kiss", "Lick", "Nibble", "Caress", "MassageHands", "Choke", "TickleItem", "RubItem", "RollItem"],
 		Asset: [
-			{ Name: "LeatherCollar", Fetish: ["Leather"], Value: 20, Difficulty: 50, Time: 5, AllowLock: true, Layer: [
+			{ Name: "LeatherCollar", Fetish: ["Leather"], DefaultColor: ["#000000", "Default"], Value: 20, Difficulty: 50, Time: 5, AllowLock: true, Layer: [
 				{ Name: "Collar"},
 				{ Name: "Ring"}
 			] },
@@ -2390,7 +2390,7 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "ShockCollarRemote", Value: -1, Random: false, Wear: false, BuyGroup: "ShockCollar", Activity: "ShockItem", Effect: ["TriggerShock"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }, { Name: "Soft", Group: "Blush", Timer: 15 }, { Name: "Closed", Group: "Eyes", Timer: 5 }] },
 			{ Name: "BatCollar", Fetish: ["Leather"], Value: 25, Difficulty: 50, Time: 5, AllowLock: true },
-			{ Name: "PostureCollar", Fetish: ["Leather"], Effect: ["FixedHead"], Value: 40, Difficulty: 50, Time: 5, AllowLock: true, Layer: [
+			{ Name: "PostureCollar", Fetish: ["Leather"], Effect: ["FixedHead"], DefaultColor: ["#000000", "Default", "Default", "Default"], Value: 40, Difficulty: 50, Time: 5, AllowLock: true, Layer: [
 				{ Name: "Collar" },
 				{ Name: "Ring1", ColorGroup: "Rings"},
 				{ Name: "Ring2", ColorGroup: "Rings"},
@@ -2415,7 +2415,7 @@ var AssetFemale3DCG = [
 					{ Name: "Mesh",  HasType: false},
 				]
 			},
-			{ Name: "LeatherChoker", Fetish: ["Leather"], Value: 10, Difficulty: 50, Time: 5, AllowLock: true, Layer: [
+			{ Name: "LeatherChoker", Fetish: ["Leather"], DefaultColor: ["Default", "#000000"], Value: 10, Difficulty: 50, Time: 5, AllowLock: true, Layer: [
 				{ Name: "Metal" },
 				{ Name: "Leather" }
 			] },
