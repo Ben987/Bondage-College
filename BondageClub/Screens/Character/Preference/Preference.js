@@ -802,7 +802,8 @@ function PreferenceExit() {
 		ArousalSettings: Player.ArousalSettings,
 		OnlineSettings: Player.OnlineSettings,
 		OnlineSharedSettings: Player.OnlineSharedSettings,
-        GraphicsSettings: Player.GraphicsSettings
+		GraphicsSettings: Player.GraphicsSettings,
+		LimitedItems: Player.LimitedItems,
 	};
 	ServerSend("AccountUpdate", P);
 	PreferenceMessage = "";
