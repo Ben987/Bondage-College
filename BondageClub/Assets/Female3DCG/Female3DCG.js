@@ -3810,7 +3810,6 @@ var PoseFemale3DCG = [
 	},
 	{
 		Name: "Suspension",
-		Category: "BodyFull",
 		OverrideHeight: { Height: -150, Priority: 40 },
 		Hide: []
 	},
