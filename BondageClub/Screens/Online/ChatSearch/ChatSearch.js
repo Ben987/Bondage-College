@@ -344,6 +344,7 @@ function ChatSearchResponse(data) {
 			ChatRoomClearAllElements();
 			CommonSetScreen("Online", "ChatSearch");
 			CharacterDeleteAllOnline();
+			ChatRoomSetLastChatRoom("");
 		}
 		ChatSearchMessage = "Response" + data;
 	}
@@ -402,18 +403,19 @@ function ChatSearchResultResponse(data) {
 				var block = []
 				var ChatRoomName = Player.LastChatRoom;
 				var ChatRoomDesc = Player.LastChatRoomDesc;
-				if (Player.LastChatRoomPrivate) {
+				/*if (Player.LastChatRoomPrivate) {
 					ChatRoomName = Player.Name + Player.MemberNumber
 					ChatRoomDesc = ""
-				} else if (roomIsFull) {
-					ChatRoomName = ChatRoomName + Player.MemberNumber
+				} else*/
+				if (roomIsFull) {
+					ChatRoomName = ChatRoomName.substring(0, Math.min(ChatRoomName.length, 16)) + Math.floor(1+Math.random() * 998); // Added 
 				}
 				if (ChatBlockItemCategory) block = ChatBlockItemCategory
 				var NewRoom = {
 					Name: ChatRoomName.trim(),
 					Description: ChatRoomDesc.trim(),
 					Background: Player.LastChatRoomBG,
-					Private: false,
+					Private: Player.LastChatRoomPrivate,
 					Space: "",
 					Game: "",
 					Admin: [Player.MemberNumber],

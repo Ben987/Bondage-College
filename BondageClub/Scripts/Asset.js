@@ -74,6 +74,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		DrawingFullAlpha: (NewAsset.FullAlpha == null) ? true : NewAsset.FullAlpha,
 		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink,
 		InheritColor: NewAsset.InheritColor,
+		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose : [],
 	}
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
@@ -167,6 +168,8 @@ function AssetAdd(NewAsset) {
 		AllowColorizeAll: typeof NewAsset.AllowColorizeAll === 'boolean' ? NewAsset.AllowColorizeAll : true,
 		AvailableLocations: NewAsset.AvailableLocations || [],
 		OverrideHeight: NewAsset.OverrideHeight,
+		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose :
+			Array.isArray(AssetCurrentGroup.FreezeActivePose) ? AssetCurrentGroup.FreezeActivePose : [],
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	AssetAssignColorIndices(A);

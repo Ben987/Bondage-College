@@ -265,7 +265,7 @@ function ServerValidateProperties(C, Item, Validation) {
 	// Remove LockMemberNumber if the source is incorrect prior to all checks
 	if ((Item.Property != null) && (C.ID == 0) && (Validation != null) && (Validation.SourceMemberNumber != null)) {
 		var Lock = InventoryGetLock(Item);
-		if ((Lock != null) && (Lock.Asset != null)) {
+		if ((Lock != null) && (Lock.Property != null)) {
 			if (!Validation.FromOwner && Lock.Asset.OwnerOnly) delete Item.Property.LockMemberNumber;
 			else if (!Validation.FromLoversOrOwner && Lock.Asset.LoverOnly) delete Item.Property.LockMemberNumber;
 		}

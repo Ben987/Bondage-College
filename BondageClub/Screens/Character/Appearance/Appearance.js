@@ -612,7 +612,7 @@ function AppearanceRun() {
 		// Leave the color picker if the item is gone.
 		if (!InventoryGet(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName)) ItemColorCancelAndExit();
 		// Draw the color picker
-	    ItemColorDraw(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName, 1300, 25, 675, 950);
+	    ItemColorDraw(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName, 1200, 25, 775, 950, true);
 	}
 
 	// In cloth selection mode
@@ -872,7 +872,7 @@ function AppearanceClick() {
 							CharacterAppearanceColorPickerGroupName = AssetGroup[A].Name;
 							CharacterAppearanceColorPickerBackup =
 								CharacterAppearanceGetCurrentValue(C, CharacterAppearanceColorPickerGroupName, "Color");
-							ItemColorLoad(C, Item, 1300, 25, 675, 950);
+							ItemColorLoad(C, Item, 1200, 25, 775, 950, true);
 							ItemColorOnExit(() => CharacterAppearanceMode = "");
 						}
 					}
@@ -927,7 +927,7 @@ function AppearanceClick() {
 
 	// In item coloring mode
 	if (CharacterAppearanceMode == "Color") {
-		ItemColorClick(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName, 1300, 25, 675, 950);
+		ItemColorClick(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName, 1200, 25, 775, 950, true);
 	}
 
 	// In cloth selection mode

@@ -10,9 +10,9 @@ This changelog follows the format outlined in [keepachangelog.com](https://keepa
 
 **Note to contributors:** To avoid merge conflicts, please don't update this file yourself in your PRs - one of the developers will update the changelog with your change before your PR is merged.
 
-Changelog last updated: 2021-01-10
+Changelog last updated: 2021-01-13
 
-Last recorded PR: [#1868](https://github.com/Ben987/Bondage-College/pull/1868)
+Last recorded PR: [#1894](https://github.com/Ben987/Bondage-College/pull/1894)
 
 ## [R64]
 
@@ -34,7 +34,7 @@ Last recorded PR: [#1868](https://github.com/Ben987/Bondage-College/pull/1868)
     * Futuristic Chastity Panties
     * Futuristic Breast Harness
     * Futuristic Harness
-* Emily R - Added 3 new items ([#1817](https://github.com/Ben987/Bondage-College/pull/1817), [#1843](https://github.com/Ben987/Bondage-College/pull/1843), [#1857](https://github.com/Ben987/Bondage-College/pull/1857)) 
+* Emily R - Added 3 new items ([#1817](https://github.com/Ben987/Bondage-College/pull/1817), [#1843](https://github.com/Ben987/Bondage-College/pull/1843), [#1857](https://github.com/Ben987/Bondage-College/pull/1857), [#1891](https://github.com/Ben987/Bondage-College/pull/1891)) 
     * Funnel Gag
     * Headphones
     * Flippers
@@ -59,6 +59,7 @@ Last recorded PR: [#1868](https://github.com/Ben987/Bondage-College/pull/1868)
 * Ellie - Added the ability to add custom text to the Canvas Hood ([#1861](https://github.com/Ben987/Bondage-College/pull/1861))
 * Ellie - Added new alternative light & dark chatroom themes ([#1862](https://github.com/Ben987/Bondage-College/pull/1862))
 * Nina - Added multicolor support to the Kitty Butt Plug and the Fox Tails butt plug ([#1863](https://github.com/Ben987/Bondage-College/pull/1863))
+* Leah - Added a new "Outside Cells" background for the Asylum ([#1884](https://github.com/Ben987/Bondage-College/pull/1884))
 
 ### [Removed]
 
@@ -88,7 +89,7 @@ Last recorded PR: [#1868](https://github.com/Ben987/Bondage-College/pull/1868)
 * Ellie - Fixed clipping issues with the Open Crotch Straitdress when worn over lower body clothing ([#1829](https://github.com/Ben987/Bondage-College/pull/1829))
 * Nina - Fixed an issue when players get banned/kicked from a chatoom whilst in another screen ([#1841](https://github.com/Ben987/Bondage-College/pull/1841))
 * Ellie - Fixed an issue with the Deny and Edge vibrator modes not working in combination with some items ([#1842](https://github.com/Ben987/Bondage-College/pull/1842))
-* Nina - Fixed the longstanding issue of tails not being visible when hogtied or suspension hogtied ([#1847](https://github.com/Ben987/Bondage-College/pull/1847), [#1868](https://github.com/Ben987/Bondage-College/pull/1868))
+* Nina - Fixed the longstanding issue of tails not being visible in the hogtied/all fours poses ([#1847](https://github.com/Ben987/Bondage-College/pull/1847), [#1868](https://github.com/Ben987/Bondage-College/pull/1868), [#1878](https://github.com/Ben987/Bondage-College/pull/1878))
 * Jomshir - Fixed an issue where disconnects would sometimes result in the relog screen not working properly ([#1856](https://github.com/Ben987/Bondage-College/pull/1856))
 * Nina - Fixed a bug where the photography studio NPC wouldn't pose correctly when telling her to relax her arms ([#1858](https://github.com/Ben987/Bondage-College/pull/1858))
 * Nina - Fixed an error at the end of the stable exam ([#1864](https://github.com/Ben987/Bondage-College/pull/1864))
@@ -110,7 +111,10 @@ Last recorded PR: [#1868](https://github.com/Ben987/Bondage-College/pull/1868)
 
 ### [Beta Fixes]
 
-* None... yet!
+* Ellie - [#1870](https://github.com/Ben987/Bondage-College/pull/1870), [#1871](https://github.com/Ben987/Bondage-College/pull/1871), [#1872](https://github.com/Ben987/Bondage-College/pull/1872), [#1882](https://github.com/Ben987/Bondage-College/pull/1882), [#1886](https://github.com/Ben987/Bondage-College/pull/1886)
+* Ada - [#1874](https://github.com/Ben987/Bondage-College/pull/1874), [#1875](https://github.com/Ben987/Bondage-College/pull/1875), [#1876](https://github.com/Ben987/Bondage-College/pull/1876), [#1877](https://github.com/Ben987/Bondage-College/pull/1877), [#1880](https://github.com/Ben987/Bondage-College/pull/1880), [#1887](https://github.com/Ben987/Bondage-College/pull/1887)
+* Nina - [#1878](https://github.com/Ben987/Bondage-College/pull/1878), [#1879](https://github.com/Ben987/Bondage-College/pull/1879), [#1881](https://github.com/Ben987/Bondage-College/pull/1881), [#1883](https://github.com/Ben987/Bondage-College/pull/1883), [#1892](https://github.com/Ben987/Bondage-College/pull/1892), [#1894](https://github.com/Ben987/Bondage-College/pull/1894)
+* Jomshir - [#1889](https://github.com/Ben987/Bondage-College/pull/1889)
 
 ## [R63]
 

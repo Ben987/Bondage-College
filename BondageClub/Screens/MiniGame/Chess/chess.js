@@ -302,6 +302,7 @@ function MiniGameChessStart(Depth) {
 	if (document.getElementById("DivChessBoard") == null) {
 		var div = document.createElement("div");
 		div.setAttribute("ID", "DivChessBoard");
+		div.className = "HideOnDisconnect";
 		div.style.width = "600px";
 		div.style.height = "600px";
 		document.body.appendChild(div);

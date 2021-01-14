@@ -14,6 +14,9 @@ function RelogLoad() {
 	var Elements = document.getElementsByClassName("HideOnPopup");
 	for (let E = 0; E < Elements.length; E++)
 		Elements[E].style.display = "none";
+	Elements = document.getElementsByClassName("HideOnDisconnect");
+	for (let E = 0; E < Elements.length; E++)
+		Elements[E].style.display = "none";
 
 	// Resets login variables and sets the login message
 	LoginStatusReset(null, true);

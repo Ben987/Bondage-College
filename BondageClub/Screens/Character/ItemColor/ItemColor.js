@@ -70,14 +70,15 @@ let ItemColorGroupNames;
  * @param {number} y - The y-coordinate at which to draw the UI
  * @param {number} width - The width the UI should be drawn at
  * @param {number} height - The height the UI should be drawn at
+ * @param {boolean} includeResetButton - Whether or not to include the "Reset to default" button
  * @returns {void} - Nothing
  */
-function ItemColorLoad(c, item, x, y, width, height) {
+function ItemColorLoad(c, item, x, y, width, height, includeResetButton) {
 	ItemColorReset();
 	ItemColorCharacter = c;
 	ItemColorItem = item;
 	ItemColorBackup = AppearanceItemStringify(item);
-	ItemColorStateBuild(c, item, x, y, width, height);
+	ItemColorStateBuild(c, item, x, y, width, height, includeResetButton);
 	if (ItemColorState.simpleMode) {
 		ItemColorOpenPicker(ItemColorState.colorGroups[0]);
 	}
@@ -93,30 +94,39 @@ function ItemColorLoad(c, item, x, y, width, height) {
  * @param {number} y - The y-coordinate at which to draw the UI
  * @param {number} width - The width the UI should be drawn at
  * @param {number} height - The height the UI should be drawn at
+ * @param {boolean} includeResetButton - Whether or not to include the "Reset to default" button
  * @returns {void} - Nothing
  */
-function ItemColorDraw(c, group, x, y, width, height) {
+function ItemColorDraw(c, group, x, y, width, height, includeResetButton) {
 	const item = InventoryGet(c, group);
 	if (!item) {
 		return;
 	}
-	ItemColorStateBuild(c, item, x, y, width, height);
+	ItemColorStateBuild(c, item, x, y, width, height, includeResetButton);
 
 	const headerButtonSize = ItemColorConfig.headerButtonSize;
+
 	if (ItemColorCurrentMode === ItemColorMode.DEFAULT && ItemColorState.pageCount > 1) {
-		DrawButton(ItemColorState.paginationButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Next.png", ItemColorText.get("Next"));
-	}
-	if (typeof navigator !== 'undefined' && navigator.clipboard && ItemColorCurrentMode === ItemColorMode.COLOR_PICKER) {
 		DrawButton(
-			ItemColorState.exportButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Export.png",
-		);
-		DrawButton(
-			ItemColorState.importButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Import.png",
+			ItemColorState.paginationButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Next.png",
+			ItemColorText.get("Next"),
 		);
 	}
+
+	if (ItemColorCurrentMode === ItemColorMode.COLOR_PICKER) {
+		if (ItemColorState.drawImportExport) {
+			DrawButton(ItemColorState.exportButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Export.png");
+			DrawButton(ItemColorState.importButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Import.png");
+		}
+		if (includeResetButton) {
+			DrawButton(ItemColorState.resetButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Reset.png");
+		}
+	}
+
 	DrawButton(
 		ItemColorState.cancelButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Cancel.png",
 	);
+
 	DrawButton(
 		ItemColorState.saveButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Accept.png",
 	);
@@ -202,6 +212,7 @@ function ItemColorDrawDefault(x, y) {
  * @const {function(): void}
  */
 const ItemColorOnPickerChange = CommonDebounce((color) => {
+	console.log(color);
 	const newColors = ItemColorState.colors.slice();
 	ItemColorPickerIndices.forEach(i => newColors[i] = color);
 	ItemColorItem.Color = newColors;
@@ -216,36 +227,40 @@ const ItemColorOnPickerChange = CommonDebounce((color) => {
  * @param {number} y - The y-coordinate at which the UI was drawn
  * @param {number} width - The width with which the UI was drawn
  * @param {number} height - The height with which the UI was drawn
+ * @param {boolean} includeResetButton - Whether or not to include the "Reset to default" button
  * @returns {void} - Nothing
  */
-function ItemColorClick(c, group, x, y, width, height) {
+function ItemColorClick(c, group, x, y, width, height, includeResetButton) {
 	const item = InventoryGet(c, group);
 	if (!item) {
 		return;
 	}
-	ItemColorStateBuild(c, item, x, y, width, height);
+	ItemColorStateBuild(c, item, x, y, width, height, includeResetButton);
 
 	const headerButtonSize = ItemColorConfig.headerButtonSize;
-	if (typeof navigator !== 'undefined' && navigator.clipboard) {
-		if (MouseIn(ItemColorState.exportButtonX, y, headerButtonSize, headerButtonSize)) {
-			navigator.clipboard.writeText(ElementValue("InputColor"));
-			return;
-		}
 
-		if (MouseIn(ItemColorState.importButtonX, y, headerButtonSize, headerButtonSize)) {
-			navigator.clipboard.readText()
-				.then(txt => ElementValue("InputColor", txt))
-				.catch(err => console.err("Clipboard error: " + err));
-			return;
-		}
-	}
-	
 	if (MouseIn(ItemColorState.cancelButtonX, y, headerButtonSize, headerButtonSize)) {
 		return ItemColorExitClick();
 	}
 
 	if (MouseIn(ItemColorState.saveButtonX, y, headerButtonSize, headerButtonSize)) {
 		return ItemColorSaveClick();
+	}
+
+	if (ItemColorCurrentMode === ItemColorMode.COLOR_PICKER) {
+		if (ItemColorState.drawImportExport && MouseIn(ItemColorState.exportButtonX, y, headerButtonSize, headerButtonSize)) {
+			return navigator.clipboard.writeText(ElementValue("InputColor"));
+		}
+
+		if (ItemColorState.drawImportExport && MouseIn(ItemColorState.importButtonX, y, headerButtonSize, headerButtonSize)) {
+			return navigator.clipboard.readText()
+				.then(txt => ElementValue("InputColor", txt))
+				.catch(err => console.err("Clipboard error: " + err));
+		}
+
+		if (includeResetButton && MouseIn(ItemColorState.resetButtonX, y, headerButtonSize, headerButtonSize)) {
+			return ElementValue("InputColor", "Default");
+		}
 	}
 
 	if (
@@ -482,9 +497,10 @@ function ItemColorPreviousLayer(colorGroup) {
  * @param {number} y - The y-coordinate at which to draw the UI
  * @param {number} width - The width the UI should be drawn at
  * @param {number} height - The height the UI should be drawn at
+ * @param {boolean} includeResetButton - Whether or not to include the "Reset to default" button
  * @returns {void} - Nothing
  */
-function ItemColorStateBuild(c, item, x, y, width, height) {
+function ItemColorStateBuild(c, item, x, y, width, height, includeResetButton) {
 	ItemColorCharacter = c;
 	ItemColorItem = item;
 	const itemKey = AppearanceItemStringify({ item, x, y, width, height });
@@ -537,18 +553,28 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 	const buttonHeight = ItemColorConfig.buttonSize;
 	const headerButtonSize = ItemColorConfig.headerButtonSize;
 
+	const drawImportExport = typeof navigator !== "undefined" && navigator.clipboard;
 	const paginationButtonX = x + width - 3 * headerButtonSize - 2 * buttonSpacing;
 	const cancelButtonX = x + width - 2 * headerButtonSize - buttonSpacing;
 	const saveButtonX = x + width - headerButtonSize;
-	const importButtonX = x + width - 3 * headerButtonSize - 2 * buttonSpacing;
-	const exportButtonX = x + width - 4 * headerButtonSize - 3 * buttonSpacing;
+	let importButtonX = 0;
+	let exportButtonX = 0;
+	let resetButtonX = 0;
+	if (drawImportExport) {
+		importButtonX = x + width - 3 * headerButtonSize - 2 * buttonSpacing;
+		exportButtonX = x + width - 4 * headerButtonSize - 3 * buttonSpacing;
+		resetButtonX = x + width - 5 * headerButtonSize - 4 * buttonSpacing;
+	} else {
+		resetButtonX = x + width - 3 * headerButtonSize - 2 * buttonSpacing;
+	}
 	const colorPickerButtonX = x + width - colorPickerButtonWidth;
 	const colorDisplayButtonX = colorPickerButtonX - buttonSpacing - colorDisplayWidth;
 	const contentY = y + ItemColorConfig.headerButtonSize + buttonSpacing;
 	const groupButtonWidth = colorDisplayButtonX - buttonSpacing - x;
 	const pageSize = Math.floor((height - headerButtonSize - buttonSpacing) / (buttonHeight + buttonSpacing));
 	const pageCount = Math.ceil(colorGroups.length / pageSize);
-	const colorInputWidth = Math.min(220, width - 3 * (headerButtonSize + buttonSpacing));
+	const buttonCount = includeResetButton ? 5 : 4;
+	const colorInputWidth = Math.min(220, width - buttonCount * (headerButtonSize + buttonSpacing));
 	const colorInputX = x + 0.5 * colorInputWidth;
 	const colorInputY = y + 0.5 * headerButtonSize;
 
@@ -570,6 +596,8 @@ function ItemColorStateBuild(c, item, x, y, width, height) {
 		colorInputY,
 		exportButtonX,
 		importButtonX,
+		resetButtonX,
+		drawImportExport,
 	};
 }
 

@@ -334,6 +334,9 @@ function LoginResponse(C) {
 			CurrentScreen = RelogData.Screen;
 			CurrentCharacter = RelogData.Character;
 			TextLoad();
+			var Elements = document.getElementsByClassName("HideOnDisconnect");
+			for (let E = 0; E < Elements.length; E++)
+				Elements[E].style.display = "";
 			if ((ChatRoomData != null) && (ChatRoomData.Name != null) && (ChatRoomData.Name != "") && (RelogChatLog != null)) {
 				CommonSetScreen("Online", "ChatSearch");
 				ChatRoomPlayerCanJoin = true;
