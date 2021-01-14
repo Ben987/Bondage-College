@@ -89,6 +89,7 @@ ColorNames,Color names
 ColorActions,Color actions
 ColorEmotes,Color emotes
 ColorActivities,Color Activities
+NewNotifications,Notifications for new messages
 ShowActivities,Show sexual activities & orgasms
 AutoBanBlackList,Ban blacklist when creating a room
 AutoBanGhostList,Ban ghostlist when creating a room

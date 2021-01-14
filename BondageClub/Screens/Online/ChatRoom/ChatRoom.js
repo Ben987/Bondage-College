@@ -27,9 +27,9 @@ var ChatRoomLastSize = 0
 var ChatRoomLastDesc = ""
 var ChatRoomLastAdmin = []
 var ChatRoomNewRoomToUpdate = null
-
 var ChatRoomLeashList = []
 var ChatRoomLeashPlayer = null
+var ChatRoomNewMessageCount = 0;
 
 /**
  * Checks if the player can add the current character to her whitelist.
@@ -688,6 +688,8 @@ function ChatRoomRun() {
 	// Runs any needed online game script
 	OnlineGameRun();
 
+	// Clear any new message notification once they are seen
+	ChatRoomNotificationCheck();
 }
 
 /**
@@ -1254,12 +1256,15 @@ function ChatRoomMessage(data) {
 					} else {
 						msg += ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
 					}
+
+					ChatRoomNotificationIncrement();
 				}
 				else if (data.Type == "Emote") {
 					if (msg.indexOf("*") == 0) msg = msg + "*";
 					else if ((msg.indexOf("'") == 0) || (msg.indexOf(",") == 0)) msg = "*" + SenderCharacter.Name + msg + "*";
 					else if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
+					ChatRoomNotificationIncrement();
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
 				else if (data.Type == "ServerMessage") msg = "<b>" + msg + "</b>";
@@ -2153,4 +2158,45 @@ function ChatRoomGetLoadRules(C) {
  */
 function ChatRoomSetLoadRules(C, Rule) {
 	if (Array.isArray(Rule)) C.Rule = Rule;
+}
+
+/** 
+ * Returns whether the most recent chat message is on screen
+ * @returns {boolean} - TRUE if the screen has focus and the chat log is scrolled to the bottom
+ */
+function ChatRoomNewMessageVisible() {
+	if (!document.hasFocus()) return false;
+	else return ElementIsScrolledToEnd("TextAreaChatLog");
+}
+
+/**
+ * Remove the notifications if there are new messages that have been seen
+ * @returns {void} - Nothing
+ */
+function ChatRoomNotificationCheck() {
+	if (ChatRoomNewMessageCount > 0 && ChatRoomNewMessageVisible()) {
+		ChatRoomNewMessageCount = 0;
+		ChatRoomSetNotification(0);
+	}
+}
+
+/**
+ * Increase the number of unseen messages in the notifications
+ * @returns {void} - Nothing
+ */
+function ChatRoomNotificationIncrement() {
+	if (Player.ChatSettings.NewNotifications && ChatRoomNewMessageVisible() == false) {
+		ChatRoomNewMessageCount += 1;
+		ChatRoomSetNotification(ChatRoomNewMessageCount);
+	}
+}
+
+/**
+ * Sets or clears notifications in the tab header
+ * @param {number} NewCount - The number to display. If 0, no notification will appear
+ * @returns {void} - Nothing
+ */
+function ChatRoomSetNotification(NewCount) {
+	let Prefix = (NewCount == null || NewCount == 0) ? "" : "(" + NewCount.toString() + ") ";
+	document.title = Prefix + "Bondage Club";
 }
