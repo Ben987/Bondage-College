@@ -765,6 +765,10 @@ function InventoryUnlock(C, Item) {
 		delete Item.Property.Password;
 		delete Item.Property.Hint;
 		delete Item.Property.LockMemberNumber;
+		delete Item.Property.Password;
+		delete Item.Property.CombinationNumber;
+		delete Item.Property.LockSet;
+		delete Item.Property.Hint;
 		CharacterRefresh(C);
 	}
 }
