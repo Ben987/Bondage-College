@@ -3445,7 +3445,7 @@ var AssetFemale3DCG = [
 			{ Name: "TimerPadlock", Value: 80, Wear: false, Effect: [], IsLock: true, MaxTimer: 300, RemoveTimer: 300 },
 			{ Name: "CombinationPadlock", Value: 100, Random: false, Wear: false, Effect: [], IsLock: true, AllowType: ["CombinationNumber"]},
 			{ Name: "PasswordPadlock", Value: 100, BuyGroup: "PasswordPadlock", Random: false, Wear: false, Effect: [], IsLock: true, AllowType: ["Password", "Hint", "LockSet"]},
-			{ Name: "TimerPasswordPadlock", Value: -1, BuyGroup: "PasswordPadlock", Random: false, Wear: false, Effect: [], IsLock: true, AllowType: ["Password", "Hint", "LockSet"], MaxTimer: 604800, RemoveTimer: 300 },
+			{ Name: "TimerPasswordPadlock", Value: -1, BuyGroup: "PasswordPadlock", Random: false, Wear: false, Effect: [], IsLock: true, AllowType: ["Password", "Hint", "LockSet"], MaxTimer: 14400, RemoveTimer: 300 },
 			{ Name: "OwnerPadlock", Value: 60, Time: 10, Wear: false, OwnerOnly: true, Effect: [], IsLock: true },
 			{ Name: "OwnerTimerPadlock", Value: 100, Wear: false, OwnerOnly: true, Effect: [], IsLock: true, MaxTimer: 604800, RemoveTimer: 300 },
 			{ Name: "LoversPadlock", Value: 60, Time: 10, Wear: false, LoverOnly: true, Effect: [], IsLock: true },
