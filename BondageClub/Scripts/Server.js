@@ -20,7 +20,6 @@ var ServerBeep = {};
 var ServerBeepAudio = new Audio();
 var ServerIsConnected = false;
 var ServerReconnectCount = 0;
-var ServerDidDisconnect = false;
 
 /** Loads the server by attaching the socket events and their respective callbacks */
 function ServerInit() {
@@ -33,7 +32,7 @@ function ServerInit() {
 	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
 	ServerSocket.on("LoginResponse", function (data) { LoginResponse(data); });
 	ServerSocket.on("disconnect", function (data) { ServerDisconnect(); });
-	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data); });
+	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data, true); });
 	ServerSocket.on("ChatRoomSearchResult", function (data) { ChatSearchResultResponse(data); });
 	ServerSocket.on("ChatRoomSearchResponse", function (data) { ChatSearchResponse(data); });
 	ServerSocket.on("ChatRoomCreateResponse", function (data) { ChatCreateResponse(data); });
@@ -62,7 +61,6 @@ function ServerInit() {
  */
 function ServerSetConnected(connected, errorMessage) {
 	ServerIsConnected = connected;
-	ServerDidDisconnect = !connected;
 	if (connected) {
 		ServerReconnectCount = 0;
 		LoginErrorMessage = "";
@@ -103,15 +101,26 @@ function ServerInfo(data) {
 /**
  * Callback used when we are disconnected from the server, try to enter the reconnection mode (relog screen) if the user was logged in
  * @param {*} data - Error to log
+ * @param {boolean} [close=false] - close the transport
  * @returns {void} - Nothing
  */
-function ServerDisconnect(data) {
+function ServerDisconnect(data, close = false) {
+	if (!ServerIsConnected) return;
 	console.warn("Server connection lost");
+	const ShouldRelog = Player.Name != "";
+	let msg = ShouldRelog ? "Disconnected" : "ErrorDisconnectedFromServer";
 	if (data) {
 		console.warn(data);
+		msg = data;
 	}
-	var ShouldRelog = Player.Name != "";
-	ServerSetConnected(false, ShouldRelog ? "Disconnected" : "ErrorDisconnectedFromServer");
+	ServerSetConnected(false, msg);
+	if (close) {
+		ServerSocket.disconnect();
+		// If the error was duplicated login, we want to reconnect
+		if (data === "ErrorDuplicatedLogin") {
+			ServerInit();
+		}
+	}
 
 	if (ShouldRelog) {
 		if (CurrentScreen != "Relog") {

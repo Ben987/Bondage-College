@@ -81,19 +81,6 @@ function PasswordResetClick() {
 		} else PasswordResetMessage = TextGet("InvalidEmail");
 	}
 
-	// If we must try to login (make sure we don't send the login query twice)
-	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560) && !LoginSubmitted) {
-		var Name = ElementValue("InputName");
-		var Password = ElementValue("InputPassword");
-		var letters = /^[a-zA-Z0-9]+$/;
-		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-		    LoginSetSubmitted();
-			ServerSend("AccountLogin", { AccountName: Name, Password: Password } );
-		}
-		else LoginStatusReset("InvalidNamePassword");
-		LoginUpdateMessage();
-	}
-
 	// If we must send the reset number info to the server
 	if ((MouseX >= 675) && (MouseX <= 975) && (MouseY >= 890) && (MouseY <= 950)) {
 		
