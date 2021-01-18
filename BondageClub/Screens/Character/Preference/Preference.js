@@ -20,7 +20,9 @@ var PreferenceSettingsSensDepIndex = 0;
 var PreferenceSettingsVFXList = ["VFXInactive", "VFXSolid", "VFXAnimatedTemp", "VFXAnimated"];
 var PreferenceSettingsVFXIndex = 0;
 var PreferenceSettingsVolumeList = [1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+var PreferenceSettingsSensitivityList = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var PreferenceSettingsVolumeIndex = 0;
+var PreferenceSettingsSensitivityIndex = 13;
 var PreferenceEmailStatusReceived = false;
 var PreferenceArousalActiveList = ["Inactive", "NoMeter", "Manual", "Hybrid", "Automatic"];
 var PreferenceArousalActiveIndex = 0;
@@ -414,7 +416,7 @@ function PreferenceLoad() {
 	PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave) < 0) ? 0 : PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave);
 	PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers) < 0) ? 0 : PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers);
 	PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog) < 0) ? 0 : PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog);
-	PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
+    PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
 	PreferenceArousalActiveIndex = (PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active) < 0) ? 0 : PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active);
 	PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX) < 0) ? 0 : PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX);
 	PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible) < 0) ? 0 : PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible);
@@ -818,7 +820,7 @@ function PreferenceSubscreenControllerRun() {
         DrawCharacter(Player, 50, 50, 0.9);
         MainCanvas.textAlign = "left";
         DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
-        DrawText(TextGet("Controller"), 800, 225, "Black", "Gray");
+        DrawText(TextGet("Sensitivity"), 800, 225, "Black", "Gray");
         DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
 
         DrawButton(500, 380, 400, 90, "", "White", "Icons/Controller.png");
@@ -827,7 +829,10 @@ function PreferenceSubscreenControllerRun() {
         DrawButton(500, 480, 400, 90, "", "White", "Icons/Controller.png");
         DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
 
-        
+        MainCanvas.textAlign = "center";
+        DrawBackNextButton(500, 193, 250, 64, Sensitivity, "White", "",
+            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
+            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length] );
     }
     if (CalibrationStage == 101) {
         MainCanvas.textAlign = "left";
@@ -1133,7 +1138,13 @@ function PreferenceSubscreenControllerClick() {
         Calibrating = false;
     }
     if (CalibrationStage == 0) {
-        
+
+
+        if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
+            if (MouseX <= 625) PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityList.length + PreferenceSettingsSensitivityIndex - 1) % PreferenceSettingsSensitivityList.length;
+            else PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length;
+            Sensitivity = PreferenceSettingsSensitivityList[PreferenceSettingsSensitivityIndex];
+        }
 
         if (MouseIn(590, 400, 310, 90)) {
             //console.log("CalibrateClick")

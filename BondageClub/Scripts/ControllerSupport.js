@@ -1,4 +1,4 @@
-var ButtonsX = [];
+var ButtonsX = [];//there probably is a way to use just one list, but i don't want to bother and this works anyway
 var ButtonsY = [];
 var ControllerActive = true;
 var CurrentButton = 0;
@@ -17,21 +17,29 @@ var ControllerStickDown = 1;
 var ControllerDPadUp = 12;
 var ControllerDPadDown = 13;
 var ControllerDPadLeft = 14;
-var ControllerDPadRight = 15;
+var ControllerDPadRight = 10;
 var Calibrating = false;
 var Stick = false;
 var waitasec = false;
+var Sensitivity = 5;
+var IgnoreStick = [];
 
 
 
 
 
-
+/**
+ *removes all buttons from the lists 
+ */
 function ClearButtons() {
     ButtonsX = [];
     ButtonsY = [];
 }
-
+/**
+ * adds a button to the lists
+ * @param {any} X X value of the button
+ * @param {any} Y Y value of the button
+ */
 function setButton(X, Y) {
     if (IgnoreButton == false) {
         X += 10;
@@ -42,32 +50,52 @@ function setButton(X, Y) {
         }
     }
 }
-
+/**
+ * checks, wether a button is already in the lists (i realise now, that i could have used .includes but it works)
+ * @param {any} X X value of the button
+ * @param {any} Y Y value of the button
+ */
 function ButtonExists(X, Y) {
-    var fff = 0; //just a var for counting
+    var g = 0;
     var ButtonExists = false;
-    while (fff < ButtonsX.length) {
-        if (ButtonsX[fff] == X && ButtonsY[fff] == Y) {
+    while (g < ButtonsX.length) {
+        if (ButtonsX[g] == X && ButtonsY[g] == Y) {
             ButtonExists = true;
         }
-        fff += 1;
+        g += 1;
     }
     return ButtonExists;
 }
 
-
+/**
+ * reads the axes data and moves the pointer or calibrates the stick
+ * @param {any} axes the raw data of all axes of the controller
+ */
 function ControllerAxis(axes) {
+
+    //if a value is over 1, it is from a d-pad (some d-pads register as buttons, some d-pads register like this)
+    var g = 0;
+    while (g < axes.length) {
+        if (Math.abs(axes[g]) > 1 && IgnoreStick.includes(g)==false) {
+            IgnoreStick.push(g);
+        }
+        g += 1;
+    }
     if (Calibrating == false) {
         var g = 0;
         while (g < axes.length && Stick == false) {
-            if (Math.abs(axes[g]) > 0.1) {
+            if (Math.abs(axes[g]) > 0.1 && IgnoreStick.includes(g) == false) {
                 Stick = true;
             }
             g += 1;
         }
         if (Stick == true && ControllerActive == true) {
-            MouseY += axes[ControllerStickUpDown] * ControllerStickDown * 5;
-            MouseX += axes[ControllerStickLeftRight] * ControllerStickRight * 5;
+            if (Math.abs(axes[ControllerStickUpDown]) > 0.01) {
+                MouseY += axes[ControllerStickUpDown] * ControllerStickDown * Sensitivity;
+            }
+            if (Math.abs(axes[ControllerStickLeftRight]) > 0.01) {
+                MouseX += axes[ControllerStickLeftRight] * ControllerStickRight * Sensitivity;
+            }
             if (MouseX < 0) {
                 MouseX = 0;
             }
@@ -80,6 +108,7 @@ function ControllerAxis(axes) {
             if (MouseY > 1000) {
                 MouseY = 1000;
             }
+           
         }
     }
     if (Calibrating == true) {
