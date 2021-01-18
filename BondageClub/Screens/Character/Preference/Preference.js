@@ -818,57 +818,57 @@ function PreferenceSubscreenControllerRun() {
         DrawCharacter(Player, 50, 50, 0.9);
         MainCanvas.textAlign = "left";
         DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
-        DrawText("Controller", 800, 225, "Black", "Gray");
-        DrawCheckbox(500, 272, 64, 64, "ControllerActive", ControllerActive);
+        DrawText(TextGet("Controller"), 800, 225, "Black", "Gray");
+        DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
 
         DrawButton(500, 380, 400, 90, "", "White", "Icons/Controller.png");
-        DrawTextFit("Map Buttons", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("MapButtons"), 590, 425, 310, "Black");
 
         DrawButton(500, 480, 400, 90, "", "White", "Icons/Controller.png");
-        DrawTextFit("Map Sticks", 590, 525, 310, "Black");
+        DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
 
         
     }
     if (CalibrationStage == 101) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("move left stick up", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("MoveLeftStickUp"), 590, 425, 310, "Black");
     }
     if (CalibrationStage == 102) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("move left stick right", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("MoveLeftStickRight"), 590, 425, 310, "Black");
     }
     DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
     if (CalibrationStage == 1) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("Press A", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("PressA"), 590, 425, 310, "Black");
     }
     if (CalibrationStage == 2) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("Press B", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("PressB"), 590, 425, 310, "Black");
     }
     if (CalibrationStage == 3) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("Press X", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("PressX"), 590, 425, 310, "Black");
     }
     if (CalibrationStage == 4) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("Press Y", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("PressY"), 590, 425, 310, "Black");
     }
     if (CalibrationStage == 5) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("Press Up on Dpad", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("PressUpOnDpad"), 590, 425, 310, "Black");
     }
     if (CalibrationStage == 6) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("Press Down on Dpad", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("PressDownOnDpad"), 590, 425, 310, "Black");
     }
     if (CalibrationStage == 7) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("Press Left on Dpad", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("PressLeftOnDpad"), 590, 425, 310, "Black");
     }
     if (CalibrationStage == 8) {
         MainCanvas.textAlign = "left";
-        DrawTextFit("Press Right on Dpad", 590, 425, 310, "Black");
+        DrawTextFit(TextGet("PressRightOnDpad"), 590, 425, 310, "Black");
     }
 }
 

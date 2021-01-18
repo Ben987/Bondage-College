@@ -109,7 +109,7 @@ SensDepLight,Light
 SensDepNames,Hide names
 SensDepTotal,Total
 SensDepExtreme,Total (no whispers)
-AllowPlayerLeashing,"Players can drag you to rooms when leashed"
+AllowPlayerLeashing,Players can drag you to rooms when leashed
 DisableAutoMaid,Maids come automatically when restrained
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
 GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
@@ -233,3 +233,17 @@ CenturyGothic,Century Gothic
 Georgia,Georgia
 CourierNew,Courier New
 Copperplate,Copperplate
+Controller,Controller
+ControllerActive,Controller Active
+MapButtons,Map Buttons
+MapSticks,Map Sticks
+MoveLeftStickUp,move left stick up
+MoveLeftStickRight,move left stick right
+PressA,Press A
+PressB,Press B
+PressX,Press X
+PressY,Press Y
+PressUpOnDpad,Press Up on Dpad
+PressDownOnDpad,Press Down on Dpad
+PressLeftOnDpad,Press Left on Dpad
+PressRightOnDpad,Press Right on Dpad
