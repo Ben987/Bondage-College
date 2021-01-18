@@ -1,11 +1,11 @@
-var ButtonsX = [];//there probably is a way to use just one list, but i don't want to bother and this works anyway
-var ButtonsY = [];
+var ControllerButtonsX = [];//there probably is a way to use just one list, but i don't want to bother and this works anyway
+var ControllerButtonsY = [];
 var ControllerActive = true;
-var CurrentButton = 0;
-var ButtonsRepeat = false;
-var AxesRepeat = false;
-var IgnoreButton = false;
-var AxesRepeatTime = 0;
+var ControllerCurrentButton = 0;
+var ControllerButtonsRepeat = false;
+var ControllerAxesRepeat = false;
+var ControllerIgnoreButton = false;
+var ControllerAxesRepeatTime = 0;
 var ControllerA = 1;
 var ControllerB = 0;
 var ControllerX = 3;
@@ -19,10 +19,10 @@ var ControllerDPadDown = 13;
 var ControllerDPadLeft = 14;
 var ControllerDPadRight = 10;
 var Calibrating = false;
-var Stick = false;
+var ControllerStick = false;
 var waitasec = false;
 var Sensitivity = 5;
-var IgnoreStick = [];
+var ControllerIgnoreStick = [];
 
 
 
@@ -32,8 +32,8 @@ var IgnoreStick = [];
  *removes all buttons from the lists 
  */
 function ClearButtons() {
-    ButtonsX = [];
-    ButtonsY = [];
+    ControllerButtonsX = [];
+    ControllerButtonsY = [];
 }
 /**
  * adds a button to the lists
@@ -41,12 +41,12 @@ function ClearButtons() {
  * @param {any} Y Y value of the button
  */
 function setButton(X, Y) {
-    if (IgnoreButton == false) {
+    if (ControllerIgnoreButton == false) {
         X += 10;
         Y += 10;
         if (!ButtonExists(X, Y)) {
-            ButtonsX.push(X);
-            ButtonsY.push(Y);
+            ControllerButtonsX.push(X);
+            ControllerButtonsY.push(Y);
         }
     }
 }
@@ -58,8 +58,8 @@ function setButton(X, Y) {
 function ButtonExists(X, Y) {
     var g = 0;
     var ButtonExists = false;
-    while (g < ButtonsX.length) {
-        if (ButtonsX[g] == X && ButtonsY[g] == Y) {
+    while (g < ControllerButtonsX.length) {
+        if (ControllerButtonsX[g] == X && ControllerButtonsY[g] == Y) {
             ButtonExists = true;
         }
         g += 1;
@@ -76,20 +76,20 @@ function ControllerAxis(axes) {
     //if a value is over 1, it is from a d-pad (some d-pads register as buttons, some d-pads register like this)
     var g = 0;
     while (g < axes.length) {
-        if (Math.abs(axes[g]) > 1 && IgnoreStick.includes(g)==false) {
-            IgnoreStick.push(g);
+        if (Math.abs(axes[g]) > 1 && ControllerIgnoreStick.includes(g)==false) {
+            ControllerIgnoreStick.push(g);
         }
         g += 1;
     }
     if (Calibrating == false) {
         var g = 0;
-        while (g < axes.length && Stick == false) {
-            if (Math.abs(axes[g]) > 0.1 && IgnoreStick.includes(g) == false) {
-                Stick = true;
+        while (g < axes.length && ControllerStick == false) {
+            if (Math.abs(axes[g]) > 0.1 && ControllerIgnoreStick.includes(g) == false) {
+                ControllerStick = true;
             }
             g += 1;
         }
-        if (Stick == true && ControllerActive == true) {
+        if (ControllerStick == true && ControllerActive == true) {
             if (Math.abs(axes[ControllerStickUpDown]) > 0.01) {
                 MouseY += axes[ControllerStickUpDown] * ControllerStickDown * Sensitivity;
             }
@@ -112,7 +112,7 @@ function ControllerAxis(axes) {
         }
     }
     if (Calibrating == true) {
-        if (CalibrationStage == 101) {
+        if (PreferenceCalibrationStage == 101) {
             var g = 0;
             var f = false;
             while (g < axes.length && f == false) {
@@ -125,13 +125,13 @@ function ControllerAxis(axes) {
                         ControllerStickDown = 1;
                     }
                     waitasec = true;
-                    CalibrationStage = 102;
+                    PreferenceCalibrationStage = 102;
                     f = true;
                 }
                 g += 1;
             }
         }
-        if (CalibrationStage == 102) {
+        if (PreferenceCalibrationStage == 102) {
             if (waitasec == true) {
                 var g = 0;
                 var f = false;
@@ -157,7 +157,7 @@ function ControllerAxis(axes) {
                         if (axes[g] < 0) {
                             ControllerStickRight = -1;
                         }
-                        CalibrationStage = 0;
+                        PreferenceCalibrationStage = 0;
                         Calibrating = false;
                         f = true;
                     }
@@ -174,11 +174,11 @@ function ControllerAxis(axes) {
  */
 function ControllerButton(buttons) {
     if (ControllerActive == true) {
-        if (ButtonsRepeat == false) {
+        if (ControllerButtonsRepeat == false) {
             if (Calibrating == false) {
                 if (buttons[ControllerA].pressed == true) {
                     ControllerClick();
-                    ButtonsRepeat = true;
+                    ControllerButtonsRepeat = true;
                 }
 
                 if (buttons[ControllerB].pressed == true) {
@@ -192,161 +192,161 @@ function ControllerButton(buttons) {
                     } else if ((CurrentCharacter == null) && (CurrentScreen == "ChatRoom") && (document.getElementById("TextAreaChatLog") != null)) {
                         ElementScrollToEnd("TextAreaChatLog");
                     }
-                    ButtonsRepeat = true;
+                    ControllerButtonsRepeat = true;
                 }
 
                 if (buttons[ControllerX].pressed == true) {
                     KeyPress = 65;
                     DialogKeyDown();
-                    ButtonsRepeat = true;
+                    ControllerButtonsRepeat = true;
                 }
 
                 if (buttons[ControllerY].pressed == true) {
                     KeyPress = 97;
                     DialogKeyDown();
-                    ButtonsRepeat = true;
+                    ControllerButtonsRepeat = true;
                 }
 
                 if (buttons[ControllerDPadUp].pressed == true) {
-                    Stick = true;
+                    ControllerStick = true;
                     ControllerUp();
-                    ButtonsRepeat = true;
+                    ControllerButtonsRepeat = true;
                 }
                 if (buttons[ControllerDPadDown].pressed == true) {
-                    Stick = true;
+                    ControllerStick = true;
                     ControllerDown();
-                    ButtonsRepeat = true;
+                    ControllerButtonsRepeat = true;
                 }
                 if (buttons[ControllerDPadLeft].pressed == true) {
-                    Stick = true;
+                    ControllerStick = true;
                     ControllerLeft();
-                    ButtonsRepeat = true;
+                    ControllerButtonsRepeat = true;
                 }
                 if (buttons[ControllerDPadRight].pressed == true) {
-                    Stick = true;
+                    ControllerStick = true;
                     ControllerRight();
-                    ButtonsRepeat = true;
+                    ControllerButtonsRepeat = true;
                 }
             }
-            if (ButtonsRepeat == false) {
+            if (ControllerButtonsRepeat == false) {
                 if (Calibrating == true) {
-                    if (ButtonsRepeat == false) {
-                        if (CalibrationStage == 1) {
+                    if (ControllerButtonsRepeat == false) {
+                        if (PreferenceCalibrationStage == 1) {
                             var g = 0;
                             var h = false;
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerA = g;
                                     h = true;
-                                    CalibrationStage = 2;
-                                    ButtonsRepeat = true;
+                                    PreferenceCalibrationStage = 2;
+                                    ControllerButtonsRepeat = true;
                                 }
                                 g += 1;
                             }
                         }
                     }
 
-                    if (ButtonsRepeat == false) {
-                        if (CalibrationStage == 2) {
+                    if (ControllerButtonsRepeat == false) {
+                        if (PreferenceCalibrationStage == 2) {
                             var g = 0;
                             var h = false;
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerB = g;
                                     h = true;
-                                    CalibrationStage = 3;
-                                    ButtonsRepeat = true;
+                                    PreferenceCalibrationStage = 3;
+                                    ControllerButtonsRepeat = true;
                                 }
                                 g += 1;
                             }
                         }
                     }
-                    if (ButtonsRepeat == false) {
-                        if (CalibrationStage == 3) {
+                    if (ControllerButtonsRepeat == false) {
+                        if (PreferenceCalibrationStage == 3) {
                             var g = 0;
                             var h = false;
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerX = g;
                                     h = true;
-                                    CalibrationStage = 4;
-                                    ButtonsRepeat = true;
+                                    PreferenceCalibrationStage = 4;
+                                    ControllerButtonsRepeat = true;
                                 }
                                 g += 1;
                             }
                         }
                     }
-                    if (ButtonsRepeat == false) {
-                        if (CalibrationStage == 4) {
+                    if (ControllerButtonsRepeat == false) {
+                        if (PreferenceCalibrationStage == 4) {
                             var g = 0;
                             var h = false;
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerY = g;
                                     h = true;
-                                    CalibrationStage = 5;
-                                    ButtonsRepeat = true;
+                                    PreferenceCalibrationStage = 5;
+                                    ControllerButtonsRepeat = true;
                                 }
                                 g += 1;
                             }
                         }
                     }
-                    if (ButtonsRepeat == false) {
-                        if (CalibrationStage == 5) {
+                    if (ControllerButtonsRepeat == false) {
+                        if (PreferenceCalibrationStage == 5) {
                             var g = 0;
                             var h = false;
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerDPadUp = g;
                                     h = true;
-                                    CalibrationStage = 6;
-                                    ButtonsRepeat = true;
+                                    PreferenceCalibrationStage = 6;
+                                    ControllerButtonsRepeat = true;
                                 }
                                 g += 1;
                             }
                         }
                     }
-                    if (ButtonsRepeat == false) {
-                        if (CalibrationStage == 6) {
+                    if (ControllerButtonsRepeat == false) {
+                        if (PreferenceCalibrationStage == 6) {
                             var g = 0;
                             var h = false;
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerDPadDown = g;
                                     h = true;
-                                    CalibrationStage = 7;
-                                    ButtonsRepeat = true;
+                                    PreferenceCalibrationStage = 7;
+                                    ControllerButtonsRepeat = true;
                                 }
                                 g += 1;
                             }
                         }
                     }
-                    if (ButtonsRepeat == false) {
-                        if (CalibrationStage == 7) {
+                    if (ControllerButtonsRepeat == false) {
+                        if (PreferenceCalibrationStage == 7) {
                             var g = 0;
                             var h = false;
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerDPadLeft = g;
                                     h = true;
-                                    CalibrationStage = 8;
-                                    ButtonsRepeat = true;
+                                    PreferenceCalibrationStage = 8;
+                                    ControllerButtonsRepeat = true;
                                 }
                                 g += 1;
                             }
                         }
                     }
-                    if (ButtonsRepeat == false) {
-                        if (CalibrationStage == 8) {
+                    if (ControllerButtonsRepeat == false) {
+                        if (PreferenceCalibrationStage == 8) {
                             var g = 0;
                             var h = false;
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerDPadRight = g;
                                     h = true;
-                                    CalibrationStage = 0;
+                                    PreferenceCalibrationStage = 0;
                                     Calibrating = 0;
-                                    ButtonsRepeat = true;
+                                    ControllerButtonsRepeat = true;
                                 }
                                 g += 1;
                             }
@@ -357,7 +357,7 @@ function ControllerButton(buttons) {
         }
 
 
-        if (ButtonsRepeat == true) {
+        if (ControllerButtonsRepeat == true) {
             var g = 0;
             var h = false;
             while (g < buttons.length && h == false) {
@@ -367,7 +367,7 @@ function ControllerButton(buttons) {
                 g += 1
             }
             if (h == false) {
-                ButtonsRepeat = false;
+                ControllerButtonsRepeat = false;
             }
         }
     }
@@ -391,9 +391,9 @@ function ControllerSupportKeyDown() {
  */
 function ControllerClick() {
     if (ControllerActive == true) {
-        if (Stick == false) {
-            MouseX = ButtonsX[CurrentButton];
-            MouseY = ButtonsY[CurrentButton];
+        if (ControllerStick == false) {
+            MouseX = ControllerButtonsX[ControllerCurrentButton];
+            MouseY = ControllerButtonsY[ControllerCurrentButton];
         }
         CommonClick();
     }
@@ -403,22 +403,22 @@ function ControllerClick() {
  * (all the commented stuff in the function is for debugging)
  */
 function ControllerUp() {
-    MouseX = ButtonsX[CurrentButton];
-    MouseY = ButtonsY[CurrentButton];
+    MouseX = ControllerButtonsX[ControllerCurrentButton];
+    MouseY = ControllerButtonsY[ControllerCurrentButton];
     // console.log("starting search");
-    if (CurrentButton > ButtonsX.length) CurrentButton = 0;
-    var CurrentY = ButtonsY[CurrentButton];
-    var CurrentX = ButtonsX[CurrentButton];
+    if (ControllerCurrentButton > ControllerButtonsX.length) ControllerCurrentButton = 0;
+    var CurrentY = ControllerButtonsY[ControllerCurrentButton];
+    var CurrentX = ControllerButtonsX[ControllerCurrentButton];
     var found = false;
     while (CurrentY > 0 && found == false) {
         CurrentY -= 1;
         var f = 0;
-        while (f < ButtonsX.length && found == false) {
-            if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+        while (f < ControllerButtonsX.length && found == false) {
+            if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                 found = true;
                 MouseX = CurrentX;
                 MouseY = CurrentY;
-                CurrentButton = f;
+                ControllerCurrentButton = f;
                 //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
             }
             f += 1;
@@ -427,9 +427,9 @@ function ControllerUp() {
     }
     if (found == false) {
         // console.log("round 2");
-        var CurrentY = ButtonsY[CurrentButton];
-        var CurrentX = ButtonsX[CurrentButton];
-        var CurrentXX = ButtonsX[CurrentButton];
+        var CurrentY = ControllerButtonsY[ControllerCurrentButton];
+        var CurrentX = ControllerButtonsX[ControllerCurrentButton];
+        var CurrentXX = ControllerButtonsX[ControllerCurrentButton];
         while (CurrentY > 0 && found == false) {
             CurrentY -= 1;
             var OffsetX = 0;
@@ -437,12 +437,12 @@ function ControllerUp() {
                 OffsetX += 1;
                 CurrentX = CurrentXX + OffsetX;
                 var f = 0;
-                while (f < ButtonsX.length && found == false) {
-                    if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+                while (f < ControllerButtonsX.length && found == false) {
+                    if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                         found = true;
                         MouseX = CurrentX;
                         MouseY = CurrentY;
-                        CurrentButton = f;
+                        ControllerCurrentButton = f;
                         //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
                     }
                     f += 1;
@@ -450,12 +450,12 @@ function ControllerUp() {
                 }
                 CurrentX = CurrentXX - OffsetX;
                 var f = 0;
-                while (f < ButtonsX.length && found == false) {
-                    if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+                while (f < ControllerButtonsX.length && found == false) {
+                    if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                         found = true;
                         MouseX = CurrentX;
                         MouseY = CurrentY;
-                        CurrentButton = f;
+                        ControllerCurrentButton = f;
                         //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
                     }
                     f += 1;
@@ -475,22 +475,22 @@ function ControllerUp() {
  * same as ControllerUp()
  */
 function ControllerDown() {
-    MouseX = ButtonsX[CurrentButton];
-    MouseY = ButtonsY[CurrentButton];
+    MouseX = ControllerButtonsX[ControllerCurrentButton];
+    MouseY = ControllerButtonsY[ControllerCurrentButton];
     // console.log("starting search");
-    if (CurrentButton > ButtonsX.length) CurrentButton = 0;
-    var CurrentY = ButtonsY[CurrentButton];
-    var CurrentX = ButtonsX[CurrentButton];
+    if (ControllerCurrentButton > ControllerButtonsX.length) ControllerCurrentButton = 0;
+    var CurrentY = ControllerButtonsY[ControllerCurrentButton];
+    var CurrentX = ControllerButtonsX[ControllerCurrentButton];
     var found = false;
     while (CurrentY < 1000 && found == false) {
         CurrentY += 1;
         var f = 0;
-        while (f < ButtonsX.length && found == false) {
-            if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+        while (f < ControllerButtonsX.length && found == false) {
+            if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                 found = true;
                 MouseX = CurrentX;
                 MouseY = CurrentY;
-                CurrentButton = f;
+                ControllerCurrentButton = f;
                 //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
             }
             f += 1;
@@ -499,9 +499,9 @@ function ControllerDown() {
     }
     if (CurrentY >= 1000 && found == false) {
         // console.log("round 2");
-        var CurrentY = ButtonsY[CurrentButton];
-        var CurrentX = ButtonsX[CurrentButton];
-        var CurrentXX = ButtonsX[CurrentButton];
+        var CurrentY = ControllerButtonsY[ControllerCurrentButton];
+        var CurrentX = ControllerButtonsX[ControllerCurrentButton];
+        var CurrentXX = ControllerButtonsX[ControllerCurrentButton];
         while (CurrentY < 1000 && found == false) {
             CurrentY += 1;
             var OffsetX = 0;
@@ -509,12 +509,12 @@ function ControllerDown() {
                 OffsetX += 1;
                 CurrentX = CurrentXX + OffsetX;
                 var f = 0;
-                while (f < ButtonsX.length && found == false) {
-                    if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+                while (f < ControllerButtonsX.length && found == false) {
+                    if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                         found = true;
                         MouseX = CurrentX;
                         MouseY = CurrentY;
-                        CurrentButton = f;
+                        ControllerCurrentButton = f;
                         //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
                     }
                     f += 1;
@@ -522,12 +522,12 @@ function ControllerDown() {
                 }
                 CurrentX = CurrentXX - OffsetX;
                 var f = 0;
-                while (f < ButtonsX.length && found == false) {
-                    if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+                while (f < ControllerButtonsX.length && found == false) {
+                    if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                         found = true;
                         MouseX = CurrentX;
                         MouseY = CurrentY;
-                        CurrentButton = f;
+                        ControllerCurrentButton = f;
                         //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
                     }
                     f += 1;
@@ -547,22 +547,22 @@ function ControllerDown() {
  * same as ControllerUp()
  */
 function ControllerLeft() {
-    MouseX = ButtonsX[CurrentButton];
-    MouseY = ButtonsY[CurrentButton];
+    MouseX = ControllerButtonsX[ControllerCurrentButton];
+    MouseY = ControllerButtonsY[ControllerCurrentButton];
     // console.log("starting search");
-    if (CurrentButton > ButtonsX.length) CurrentButton = 0;
-    var CurrentY = ButtonsY[CurrentButton];
-    var CurrentX = ButtonsX[CurrentButton];
+    if (ControllerCurrentButton > ControllerButtonsX.length) ControllerCurrentButton = 0;
+    var CurrentY = ControllerButtonsY[ControllerCurrentButton];
+    var CurrentX = ControllerButtonsX[ControllerCurrentButton];
     var found = false;
     while (CurrentX > 0 && found == false) {
         CurrentX -= 1;
         var f = 0;
-        while (f < ButtonsX.length && found == false) {
-            if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+        while (f < ControllerButtonsX.length && found == false) {
+            if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                 found = true;
                 MouseX = CurrentX;
                 MouseY = CurrentY;
-                CurrentButton = f;
+                ControllerCurrentButton = f;
                 //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
             }
             f += 1;
@@ -571,9 +571,9 @@ function ControllerLeft() {
     }
     if (found == false) {
         // console.log("round 2");
-        var CurrentY = ButtonsY[CurrentButton];
-        var CurrentX = ButtonsX[CurrentButton];
-        var CurrentYY = ButtonsY[CurrentButton];
+        var CurrentY = ControllerButtonsY[ControllerCurrentButton];
+        var CurrentX = ControllerButtonsX[ControllerCurrentButton];
+        var CurrentYY = ControllerButtonsY[ControllerCurrentButton];
         while (CurrentX > 0 && found == false) {
             CurrentX -= 1;
             var OffsetY = 0;
@@ -581,12 +581,12 @@ function ControllerLeft() {
                 OffsetY += 1;
                 CurrentY = CurrentYY + OffsetY;
                 var f = 0;
-                while (f < ButtonsX.length && found == false) {
-                    if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+                while (f < ControllerButtonsX.length && found == false) {
+                    if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                         found = true;
                         MouseX = CurrentX;
                         MouseY = CurrentY;
-                        CurrentButton = f;
+                        ControllerCurrentButton = f;
                         //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
                     }
                     f += 1;
@@ -594,12 +594,12 @@ function ControllerLeft() {
                 }
                 CurrentY = CurrentYY - OffsetY;
                 var f = 0;
-                while (f < ButtonsX.length && found == false) {
-                    if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+                while (f < ControllerButtonsX.length && found == false) {
+                    if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                         found = true;
                         MouseX = CurrentX;
                         MouseY = CurrentY;
-                        CurrentButton = f;
+                        ControllerCurrentButton = f;
                         //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
                     }
                     f += 1;
@@ -619,22 +619,22 @@ function ControllerLeft() {
  * same as ControllerUp()
  */
 function ControllerRight() {
-    MouseX = ButtonsX[CurrentButton];
-    MouseY = ButtonsY[CurrentButton];
+    MouseX = ControllerButtonsX[ControllerCurrentButton];
+    MouseY = ControllerButtonsY[ControllerCurrentButton];
     // console.log("starting search");
-    if (CurrentButton > ButtonsX.length) CurrentButton = 0;
-    var CurrentY = ButtonsY[CurrentButton];
-    var CurrentX = ButtonsX[CurrentButton];
+    if (ControllerCurrentButton > ControllerButtonsX.length) ControllerCurrentButton = 0;
+    var CurrentY = ControllerButtonsY[ControllerCurrentButton];
+    var CurrentX = ControllerButtonsX[ControllerCurrentButton];
     var found = false;
     while (CurrentX <= 2000 && found == false) {
         CurrentX += 1;
         var f = 0;
-        while (f < ButtonsX.length && found == false) {
-            if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+        while (f < ControllerButtonsX.length && found == false) {
+            if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                 found = true;
                 MouseX = CurrentX;
                 MouseY = CurrentY;
-                CurrentButton = f;
+                ControllerCurrentButton = f;
                 //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
             }
             f += 1;
@@ -643,9 +643,9 @@ function ControllerRight() {
     }
     if (found == false) {
         // console.log("round 2");
-        var CurrentY = ButtonsY[CurrentButton];
-        var CurrentX = ButtonsX[CurrentButton];
-        var CurrentYY = ButtonsY[CurrentButton];
+        var CurrentY = ControllerButtonsY[ControllerCurrentButton];
+        var CurrentX = ControllerButtonsX[ControllerCurrentButton];
+        var CurrentYY = ControllerButtonsY[ControllerCurrentButton];
         while (CurrentX < 2000 && found == false) {
             CurrentX += 1;
             var OffsetY = 0;
@@ -653,12 +653,12 @@ function ControllerRight() {
                 OffsetY += 1;
                 CurrentY = CurrentYY + OffsetY;
                 var f = 0;
-                while (f < ButtonsX.length && found == false) {
-                    if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+                while (f < ControllerButtonsX.length && found == false) {
+                    if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                         found = true;
                         MouseX = CurrentX;
                         MouseY = CurrentY;
-                        CurrentButton = f;
+                        ControllerCurrentButton = f;
                         //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
                     }
                     f += 1;
@@ -666,12 +666,12 @@ function ControllerRight() {
                 }
                 CurrentY = CurrentYY - OffsetY;
                 var f = 0;
-                while (f < ButtonsX.length && found == false) {
-                    if (CurrentY == ButtonsY[f] && CurrentX == ButtonsX[f]) {
+                while (f < ControllerButtonsX.length && found == false) {
+                    if (CurrentY == ControllerButtonsY[f] && CurrentX == ControllerButtonsX[f]) {
                         found = true;
                         MouseX = CurrentX;
                         MouseY = CurrentY;
-                        CurrentButton = f;
+                        ControllerCurrentButton = f;
                         //console.log("found at X=" + CurrentX + ", Y=" + CurrentY);
                     }
                     f += 1;

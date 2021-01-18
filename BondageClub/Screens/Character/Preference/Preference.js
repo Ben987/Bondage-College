@@ -52,7 +52,7 @@ var PreferenceDifficultyLevel = null;
 var PreferenceDifficultyAccept = false;
 var PreferenceGraphicsFontList = ["Arial", "TimesNewRoman", "Papyrus", "ComicSans", "Impact", "HelveticaNeue", "Verdana", "CenturyGothic", "Georgia", "CourierNew", "Copperplate"];
 var PreferenceGraphicsFontIndex = 0;
-var CalibrationStage = 0;
+var PreferenceCalibrationStage = 0;
 
 /**
  * Gets the effect of a sexual activity on the player
@@ -465,9 +465,9 @@ function PreferenceRun() {
 
 	// Draw all the buttons to access the submenus
     for (let A = 0; A < PreferenceSubscreenList.length; A++) {
-        IgnoreButton = true;
+        ControllerIgnoreButton = true;
         DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
-        IgnoreButton = false;
+        ControllerIgnoreButton = false;
         DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
         if (ControllerActive == true) {
             setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
@@ -816,7 +816,7 @@ function PreferenceSubscreenAudioRun() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenControllerRun() {
-    if (CalibrationStage == 0) {
+    if (PreferenceCalibrationStage == 0) {
         DrawCharacter(Player, 50, 50, 0.9);
         MainCanvas.textAlign = "left";
         DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
@@ -834,44 +834,44 @@ function PreferenceSubscreenControllerRun() {
             () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
             () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length] );
     }
-    if (CalibrationStage == 101) {
+    if (PreferenceCalibrationStage == 101) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("MoveLeftStickUp"), 590, 425, 310, "Black");
     }
-    if (CalibrationStage == 102) {
+    if (PreferenceCalibrationStage == 102) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("MoveLeftStickRight"), 590, 425, 310, "Black");
     }
     DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-    if (CalibrationStage == 1) {
+    if (PreferenceCalibrationStage == 1) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("PressA"), 590, 425, 310, "Black");
     }
-    if (CalibrationStage == 2) {
+    if (PreferenceCalibrationStage == 2) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("PressB"), 590, 425, 310, "Black");
     }
-    if (CalibrationStage == 3) {
+    if (PreferenceCalibrationStage == 3) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("PressX"), 590, 425, 310, "Black");
     }
-    if (CalibrationStage == 4) {
+    if (PreferenceCalibrationStage == 4) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("PressY"), 590, 425, 310, "Black");
     }
-    if (CalibrationStage == 5) {
+    if (PreferenceCalibrationStage == 5) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("PressUpOnDpad"), 590, 425, 310, "Black");
     }
-    if (CalibrationStage == 6) {
+    if (PreferenceCalibrationStage == 6) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("PressDownOnDpad"), 590, 425, 310, "Black");
     }
-    if (CalibrationStage == 7) {
+    if (PreferenceCalibrationStage == 7) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("PressLeftOnDpad"), 590, 425, 310, "Black");
     }
-    if (CalibrationStage == 8) {
+    if (PreferenceCalibrationStage == 8) {
         MainCanvas.textAlign = "left";
         DrawTextFit(TextGet("PressRightOnDpad"), 590, 425, 310, "Black");
     }
@@ -1134,10 +1134,10 @@ function PreferenceSubscreenAudioClick() {
 function PreferenceSubscreenControllerClick() {
     if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
         PreferenceSubscreen = "";
-        CalibrationStage = 0;
+        PreferenceCalibrationStage = 0;
         Calibrating = false;
     }
-    if (CalibrationStage == 0) {
+    if (PreferenceCalibrationStage == 0) {
 
 
         if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
@@ -1148,12 +1148,12 @@ function PreferenceSubscreenControllerClick() {
 
         if (MouseIn(590, 400, 310, 90)) {
             //console.log("CalibrateClick")
-            CalibrationStage = 1;
+            PreferenceCalibrationStage = 1;
             Calibrating = true;
         }
         if (MouseIn(590, 500, 310, 90)) {
             //console.log("CalibrateClick")
-            CalibrationStage = 101;
+            PreferenceCalibrationStage = 101;
             Calibrating = true;
         }
 

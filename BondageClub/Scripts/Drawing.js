@@ -787,10 +787,10 @@ function DrawText(Text, X, Y, Color, BackColor) {
 function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled) {
     if (ControllerActive == true) {
         setButton(Left, Top);
-        if (Stick == false) {
-            DrawRect(ButtonsX[CurrentButton] - 20, ButtonsY[CurrentButton] - 20, 10, 10, "Cyan");
+        if (ControllerStick == false) {
+            DrawRect(ControllerButtonsX[ControllerCurrentButton] - 20, ControllerButtonsY[ControllerCurrentButton] - 20, 10, 10, "Cyan");
         }
-        if (Stick == true) {
+        if (ControllerStick == true) {
             DrawRect(MouseX - 5, MouseY - 5, 10, 10, "Cyan");
         }
     }
