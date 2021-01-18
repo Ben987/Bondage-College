@@ -68,7 +68,7 @@ function ButtonExists(X, Y) {
 }
 
 /**
- * reads the axes data and moves the pointer or calibrates the stick
+ * handles the sitck input
  * @param {any} axes the raw data of all axes of the controller
  */
 function ControllerAxis(axes) {
@@ -168,7 +168,10 @@ function ControllerAxis(axes) {
     }
 }
 
-
+/**
+ * handles button input
+ * @param {any} buttons raw buttons data
+ */
 function ControllerButton(buttons) {
     if (ControllerActive == true) {
         if (ButtonsRepeat == false) {
@@ -373,7 +376,7 @@ function ControllerButton(buttons) {
 
 //uncomment to test it with keyboard
 /**
- * handles controller/keyboard inputs 
+ * handles keyboard inputs in controller mode 
  * @returns {void} Nothing
  */
 function ControllerSupportKeyDown() {
@@ -383,7 +386,9 @@ function ControllerSupportKeyDown() {
 /*l*///    if (KeyPress == 108) ControllerRight();
 /*space*///if (KeyPress == 32) ControllerClick();
 }
-
+/**
+ * A -> Click
+ */
 function ControllerClick() {
     if (ControllerActive == true) {
         if (Stick == false) {
@@ -393,7 +398,10 @@ function ControllerClick() {
         CommonClick();
     }
 }
-
+/**
+ * moves the pointer to either a button in a straight line above it or the closest one above
+ * (all the commented stuff in the function is for debugging)
+ */
 function ControllerUp() {
     MouseX = ButtonsX[CurrentButton];
     MouseY = ButtonsY[CurrentButton];
@@ -463,7 +471,9 @@ function ControllerUp() {
         // console.log("not found");
     }
 }
-
+/**
+ * same as ControllerUp()
+ */
 function ControllerDown() {
     MouseX = ButtonsX[CurrentButton];
     MouseY = ButtonsY[CurrentButton];
@@ -533,7 +543,9 @@ function ControllerDown() {
         // console.log("not found");
     }
 }
-
+/**
+ * same as ControllerUp()
+ */
 function ControllerLeft() {
     MouseX = ButtonsX[CurrentButton];
     MouseY = ButtonsY[CurrentButton];
@@ -603,7 +615,9 @@ function ControllerLeft() {
         // console.log("not found");
     }
 }
-
+/**
+ * same as ControllerUp()
+ */
 function ControllerRight() {
     MouseX = ButtonsX[CurrentButton];
     MouseY = ButtonsY[CurrentButton];
@@ -673,26 +687,5 @@ function ControllerRight() {
         // console.log("not found");
     }
 }
-
-
-
-
-
-//old version (just in case i need it at some point)
- /*   function ControllerUp() {
-        if (CurrentButton > 0) {
-            CurrentButton -= 1;
-            MouseX = ButtonsX[CurrentButton];
-            MouseY = ButtonsY[CurrentButton];
-        }
-    }
-    function ControllerDown() {
-        if (CurrentButton < ButtonsX.length - 1) {
-            CurrentButton += 1;
-            MouseX = ButtonsX[CurrentButton];
-            MouseY = ButtonsY[CurrentButton];
-        }
-    }
-*/
 
 
