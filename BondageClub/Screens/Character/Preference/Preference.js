@@ -823,10 +823,10 @@ function PreferenceSubscreenControllerRun() {
         DrawText(TextGet("Sensitivity"), 800, 225, "Black", "Gray");
         DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
 
-        DrawButton(500, 380, 400, 90, "", "White", "Icons/Controller.png");
+        DrawButton(500, 380, 400, 90, "", "White");
         DrawTextFit(TextGet("MapButtons"), 590, 425, 310, "Black");
 
-        DrawButton(500, 480, 400, 90, "", "White", "Icons/Controller.png");
+        DrawButton(500, 480, 400, 90, "", "White");
         DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
 
         MainCanvas.textAlign = "center";
