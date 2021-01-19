@@ -112,7 +112,6 @@ function ControllerAxis(axes) {
         }
     }
     if (Calibrating == true) {
-        console.log(axes)
         if (PreferenceCalibrationStage == 101) {
             var g = 0;
             var f = false;
