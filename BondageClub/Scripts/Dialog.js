@@ -1763,7 +1763,7 @@ function DialogDraw() {
 
 		// Draw the 'Up' reposition button if some zones are offscreen
 		if (CurrentCharacter != null && CurrentCharacter.HeightModifier != null && CurrentCharacter.HeightModifier < -90 && CurrentCharacter.FocusGroup != null)
-			DrawButton(510, 25, 90, 90, "", "White", "Icons/Up.png", DialogFind(Player, "UpPosition"));
+			DrawButton(510, 50, 90, 90, "", "White", "Icons/Up.png", DialogFind(Player, "UpPosition"));
 
 	} else {
 
