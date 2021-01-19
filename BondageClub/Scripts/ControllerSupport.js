@@ -2,7 +2,7 @@ var ControllerButtonsX = [];//there probably is a way to use just one list, but 
 var ControllerButtonsY = [];
 var ControllerActive = true;
 var ControllerCurrentButton = 0;
-var ControllerButtonsRepeat = false;
+var ControllerButtonsRepeat = true;
 var ControllerAxesRepeat = false;
 var ControllerIgnoreButton = false;
 var ControllerAxesRepeatTime = 0;
@@ -14,16 +14,16 @@ var ControllerStickUpDown = 1;
 var ControllerStickLeftRight = 0;
 var ControllerStickRight = 1;
 var ControllerStickDown = 1;
-var ControllerDPadUp = 12;
-var ControllerDPadDown = 13;
-var ControllerDPadLeft = 14;
-var ControllerDPadRight = 10;
+var ControllerDPadUp = 4;
+var ControllerDPadDown = 5;
+var ControllerDPadLeft = 6;
+var ControllerDPadRight = 7;
 var Calibrating = false;
 var ControllerStick = false;
 var waitasec = false;
-var Sensitivity = 5;
+var ControllerSensitivity = 5;
 var ControllerIgnoreStick = [];
-
+var ControllerDeadZone = 0.01;
 
 
 
@@ -90,11 +90,11 @@ function ControllerAxis(axes) {
             g += 1;
         }
         if (ControllerStick == true && ControllerActive == true) {
-            if (Math.abs(axes[ControllerStickUpDown]) > 0.01) {
-                MouseY += axes[ControllerStickUpDown] * ControllerStickDown * Sensitivity;
+            if (Math.abs(axes[ControllerStickUpDown]) > ControllerDeadZone) {
+                MouseY += axes[ControllerStickUpDown] * ControllerStickDown * ControllerSensitivity;
             }
-            if (Math.abs(axes[ControllerStickLeftRight]) > 0.01) {
-                MouseX += axes[ControllerStickLeftRight] * ControllerStickRight * Sensitivity;
+            if (Math.abs(axes[ControllerStickLeftRight]) > ControllerDeadZone) {
+                MouseX += axes[ControllerStickLeftRight] * ControllerStickRight * ControllerSensitivity;
             }
             if (MouseX < 0) {
                 MouseX = 0;
@@ -112,11 +112,12 @@ function ControllerAxis(axes) {
         }
     }
     if (Calibrating == true) {
+        console.log(axes)
         if (PreferenceCalibrationStage == 101) {
             var g = 0;
             var f = false;
             while (g < axes.length && f == false) {
-                if (Math.abs(axes[g]) > 0.8) {
+                if (Math.abs(axes[g]) > 0.8 && ControllerIgnoreStick.includes(g) == false) {
                     ControllerStickUpDown = g;
                     if (axes[g] > 0) {
                         ControllerStickDown = -1;
@@ -136,7 +137,7 @@ function ControllerAxis(axes) {
                 var g = 0;
                 var f = false;
                 while (g < axes.length) {
-                    if (Math.abs(axes[g]) > 0.1) {
+                    if (Math.abs(axes[g]) > 0.1 && ControllerIgnoreStick.includes(g) == false) {
                         f = true;
                     }
                     g += 1;
@@ -149,7 +150,7 @@ function ControllerAxis(axes) {
                 var g = 0;
                 var f = false;
                 while (g < axes.length && f == false) {
-                    if (Math.abs(axes[g]) > 0.8) {
+                    if (Math.abs(axes[g]) > 0.8 && ControllerIgnoreStick.includes(g) == false) {
                         ControllerStickLeftRight = g;
                         if (axes[g] > 0) {
                             ControllerStickRight = 1;

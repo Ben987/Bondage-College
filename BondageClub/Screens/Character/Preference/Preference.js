@@ -21,8 +21,10 @@ var PreferenceSettingsVFXList = ["VFXInactive", "VFXSolid", "VFXAnimatedTemp", "
 var PreferenceSettingsVFXIndex = 0;
 var PreferenceSettingsVolumeList = [1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 var PreferenceSettingsSensitivityList = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var PreferenceSettingsDeadZoneList = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 var PreferenceSettingsVolumeIndex = 0;
 var PreferenceSettingsSensitivityIndex = 13;
+var PreferenceSettingsDeadZoneIndex = 1;
 var PreferenceEmailStatusReceived = false;
 var PreferenceArousalActiveList = ["Inactive", "NoMeter", "Manual", "Hybrid", "Automatic"];
 var PreferenceArousalActiveIndex = 0;
@@ -821,6 +823,7 @@ function PreferenceSubscreenControllerRun() {
         MainCanvas.textAlign = "left";
         DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
         DrawText(TextGet("Sensitivity"), 800, 225, "Black", "Gray");
+        DrawText(TextGet("DeadZone"), 800, 625, "Black", "Gray");
         DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
 
         DrawButton(500, 380, 400, 90, "", "White");
@@ -830,9 +833,13 @@ function PreferenceSubscreenControllerRun() {
         DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
 
         MainCanvas.textAlign = "center";
-        DrawBackNextButton(500, 193, 250, 64, Sensitivity, "White", "",
+        DrawBackNextButton(500, 193, 250, 64, ControllerSensitivity, "White", "",
             () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
-            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length] );
+            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length]);
+        MainCanvas.textAlign = "center";
+        DrawBackNextButton(500, 593, 250, 64, ControllerDeadZone, "White", "",
+            () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + PreferenceSettingsDeadZoneList.length - 1) % PreferenceSettingsDeadZoneList.length],
+            () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length] );
     }
     if (PreferenceCalibrationStage == 101) {
         MainCanvas.textAlign = "left";
@@ -1143,7 +1150,12 @@ function PreferenceSubscreenControllerClick() {
         if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
             if (MouseX <= 625) PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityList.length + PreferenceSettingsSensitivityIndex - 1) % PreferenceSettingsSensitivityList.length;
             else PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length;
-            Sensitivity = PreferenceSettingsSensitivityList[PreferenceSettingsSensitivityIndex];
+            ControllerSensitivity = PreferenceSettingsSensitivityList[PreferenceSettingsSensitivityIndex];
+        }
+        if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 593) && (MouseY < 657)) {
+            if (MouseX <= 625) PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneList.length + PreferenceSettingsDeadZoneIndex - 1) % PreferenceSettingsDeadZoneList.length;
+            else PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length;
+            ControllerDeadZone = PreferenceSettingsDeadZoneList[PreferenceSettingsDeadZoneIndex];
         }
 
         if (MouseIn(590, 400, 310, 90)) {
