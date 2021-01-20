@@ -118,11 +118,14 @@ function ControllerAxis(axes) {
             while (g < axes.length && f == false) {
                 if (Math.abs(axes[g]) > 0.8 && ControllerIgnoreStick.includes(g) == false) {
                     ControllerStickUpDown = g;
+                    Player.ControllerSettings.ControllerStickUpDown = g;
                     if (axes[g] > 0) {
                         ControllerStickDown = -1;
+                        Player.ControllerSettings.ControllerStickDown = -1;
                     }
                     if (axes[g] < 0) {
                         ControllerStickDown = 1;
+                        Player.ControllerSettings.ControllerStickDown = 1;
                     }
                     waitasec = true;
                     PreferenceCalibrationStage = 102;
@@ -151,11 +154,14 @@ function ControllerAxis(axes) {
                 while (g < axes.length && f == false) {
                     if (Math.abs(axes[g]) > 0.8 && ControllerIgnoreStick.includes(g) == false) {
                         ControllerStickLeftRight = g;
+                        Player.ControllerSettings.ControllerStickLeftRight = g;
                         if (axes[g] > 0) {
                             ControllerStickRight = 1;
+                            Player.ControllerSettings.ControllerStickRight = 1;
                         }
                         if (axes[g] < 0) {
                             ControllerStickRight = -1;
+                            Player.ControllerSettings.ControllerStickRight = -1;
                         }
                         PreferenceCalibrationStage = 0;
                         Calibrating = false;
@@ -237,6 +243,7 @@ function ControllerButton(buttons) {
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerA = g;
+                                    Player.ControllerSettings.ControllerA = g;
                                     h = true;
                                     PreferenceCalibrationStage = 2;
                                     ControllerButtonsRepeat = true;
@@ -253,6 +260,7 @@ function ControllerButton(buttons) {
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerB = g;
+                                    Player.ControllerSettings.ControllerB = g;
                                     h = true;
                                     PreferenceCalibrationStage = 3;
                                     ControllerButtonsRepeat = true;
@@ -268,6 +276,7 @@ function ControllerButton(buttons) {
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerX = g;
+                                    Player.ControllerSettings.ControllerX = g;
                                     h = true;
                                     PreferenceCalibrationStage = 4;
                                     ControllerButtonsRepeat = true;
@@ -283,6 +292,7 @@ function ControllerButton(buttons) {
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerY = g;
+                                    Player.ControllerSettings.ControllerY = g;
                                     h = true;
                                     PreferenceCalibrationStage = 5;
                                     ControllerButtonsRepeat = true;
@@ -298,6 +308,7 @@ function ControllerButton(buttons) {
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerDPadUp = g;
+                                    Player.ControllerSettings.ControllerDPadUp = g;
                                     h = true;
                                     PreferenceCalibrationStage = 6;
                                     ControllerButtonsRepeat = true;
@@ -313,6 +324,7 @@ function ControllerButton(buttons) {
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerDPadDown = g;
+                                    Player.ControllerSettings.ControllerDPadDown = g;
                                     h = true;
                                     PreferenceCalibrationStage = 7;
                                     ControllerButtonsRepeat = true;
@@ -328,6 +340,7 @@ function ControllerButton(buttons) {
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerDPadLeft = g;
+                                    Player.ControllerSettings.ControllerDPadLeft = g;
                                     h = true;
                                     PreferenceCalibrationStage = 8;
                                     ControllerButtonsRepeat = true;
@@ -345,6 +358,7 @@ function ControllerButton(buttons) {
                                     ControllerDPadRight = g;
                                     h = true;
                                     PreferenceCalibrationStage = 0;
+                                    Player.ControllerSettings.PreferenceCalibrationStage = 0;
                                     Calibrating = 0;
                                     ControllerButtonsRepeat = true;
                                 }

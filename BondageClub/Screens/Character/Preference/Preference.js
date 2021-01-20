@@ -219,7 +219,8 @@ function PreferenceInit(C) {
 		RestrictionSettings: C.RestrictionSettings,
 		ArousalSettings: C.ArousalSettings,
 		OnlineSettings: C.OnlineSettings,
-		OnlineSharedSettings: C.OnlineSharedSettings
+		OnlineSharedSettings: C.OnlineSharedSettings,
+        ControllerSettings: C.ControllerSettings
 	};
 	
 	// If the settings aren't set before, construct them to replicate the default behavior
@@ -242,6 +243,60 @@ function PreferenceInit(C) {
 	if (typeof C.AudioSettings.PlayBeeps !== "boolean") C.AudioSettings.PlayBeeps = false;
 	if (typeof C.AudioSettings.PlayItem !== "boolean") C.AudioSettings.PlayItem = false;
 	if (typeof C.AudioSettings.PlayItemPlayerOnly !== "boolean") C.AudioSettings.PlayItemPlayerOnly = false;
+
+
+    // Sets the default controller settings
+    if (!C.ControllerSettings) C.ControllerSettings = {
+        ControllerSensitivity: 5,
+        ControllerDeadZone: 0.01,
+        ControllerA: 1,
+        ControllerB: 0,
+        ControllerX: 3,
+        ControllerY: 2,
+        ControllerStickUpDown: 1,
+        ControllerStickLeftRight: 0,
+        ControllerStickRight: 1,
+        ControllerStickDown: 1,
+        ControllerDPadUp: 4,
+        ControllerDPadDown: 5,
+        ControllerDPadLeft: 6,
+        ControllerDPadRight: 7
+    };
+    if (typeof C.ControllerSettings.ControllerSensitivity !== "number") C.ControllerSettings.ControllerSensitivity = 5;
+    if (typeof C.ControllerSettings.ControllerDeadZone !== "number") C.ControllerSettings.ControllerDeadZone = 0.01;
+    if (typeof C.ControllerSettings.ControllerA !== "number") C.ControllerSettings.ControllerA = 1;
+    if (typeof C.ControllerSettings.ControllerB !== "number") C.ControllerSettings.ControllerB = 0;
+    if (typeof C.ControllerSettings.ControllerX !== "number") C.ControllerSettings.ControllerX = 3;
+    if (typeof C.ControllerSettings.ControllerY !== "number") C.ControllerSettings.ControllerY = 2;
+    if (typeof C.ControllerSettings.ControllerStickUpDown !== "number") C.ControllerSettings.ControllerStickUpDown = 1;
+    if (typeof C.ControllerSettings.ControllerStickLeftRight !== "number") C.ControllerSettings.ControllerStickLeftRight = 0;
+    if (typeof C.ControllerSettings.ControllerStickRight !== "number") C.ControllerSettings.ControllerStickRight = 1;
+    if (typeof C.ControllerSettings.ControllerStickDown !== "number") C.ControllerSettings.ControllerStickDown = 1;
+    if (typeof C.ControllerSettings.ControllerDPadUp !== "number") C.ControllerSettings.ControllerDPadUp = 4;
+    if (typeof C.ControllerSettings.ControllerDPadDown !== "number") C.ControllerSettings.ControllerDPadDown = 5;
+    if (typeof C.ControllerSettings.ControllerDPadLeft !== "number") C.ControllerSettings.ControllerDPadLeft = 6;
+    if (typeof C.ControllerSettings.ControllerDPadRight !== "number") C.ControllerSettings.ControllerDPadRight = 7;
+    if (typeof C.ControllerSettings.ControllerActive !== "boolean") C.ControllerSettings.ControllerActive = false;
+
+    ControllerSensitivity = C.ControllerSettings.ControllerSensitivity;
+    ControllerDeadZone = C.ControllerSettings.ControllerDeadZone;
+    PreferenceSettingsSensitivityIndex = PreferenceSettingsSensitivityList.indexOf(Player.ControllerSettings.ControllerSensitivity);
+    PreferenceSettingsDeadZoneIndex = PreferenceSettingsDeadZoneList.indexOf(Player.ControllerSettings.ControllerDeadZone);
+    ControllerA = C.ControllerSettings.ControllerA;
+    ControllerB = C.ControllerSettings.ControllerB;
+    ControllerX = C.ControllerSettings.ControllerX;
+    ControllerY = C.ControllerSettings.ControllerY;
+    ControllerStickUpDown = C.ControllerSettings.ControllerStickUpDown;
+    ControllerStickLeftRight = C.ControllerSettings.ControllerStickLeftRight;
+    ControllerStickRight = C.ControllerSettings.ControllerStickRight;
+    ControllerStickDown = C.ControllerSettings.ControllerStickDown;
+    ControllerDPadUp = C.ControllerSettings.ControllerDPadUp;
+    ControllerDPadDown = C.ControllerSettings.ControllerDPadDown;
+    ControllerDPadLeft = C.ControllerSettings.ControllerDPadLeft;
+    ControllerDPadRight = C.ControllerSettings.ControllerDPadRight;
+    ControllerActive = C.ControllerSettings.ControllerActive;
+
+
 
 	// Sets the default arousal settings
 	if (!C.ArousalSettings) C.ArousalSettings = { Active: "Hybrid", Visible: "Access", ShowOtherMeter: true, AffectExpression: true, AffectStutter: "All", Progress: 0, ProgressTimer: 0, VibratorLevel: 0, VFX: "VFXAnimatedTemp", ChangeTime: CommonTime(), Activity: [], Zone: [] };
@@ -372,7 +427,8 @@ function PreferenceInit(C) {
 			ArousalSettings: Player.ArousalSettings,
 			OnlineSettings: Player.OnlineSettings,
 			OnlineSharedSettings: Player.OnlineSharedSettings,
-            GraphicsSettings: Player.GraphicsSettings
+            GraphicsSettings: Player.GraphicsSettings,
+            ControllerSettings: Player.ControllerSettings
 		};
 		var toUpdate = {}
 
@@ -787,7 +843,8 @@ function PreferenceExit() {
 		ArousalSettings: Player.ArousalSettings,
 		OnlineSettings: Player.OnlineSettings,
 		OnlineSharedSettings: Player.OnlineSharedSettings,
-        GraphicsSettings: Player.GraphicsSettings
+        GraphicsSettings: Player.GraphicsSettings,
+        ControllerSettings: Player.ControllerSettings
 	};
 	ServerSend("AccountUpdate", P);
 	PreferenceMessage = "";
@@ -833,11 +890,11 @@ function PreferenceSubscreenControllerRun() {
         DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
 
         MainCanvas.textAlign = "center";
-        DrawBackNextButton(500, 193, 250, 64, ControllerSensitivity, "White", "",
+        DrawBackNextButton(500, 193, 250, 64, Player.ControllerSettings.ControllerSensitivity, "White", "",
             () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
             () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length]);
         MainCanvas.textAlign = "center";
-        DrawBackNextButton(500, 593, 250, 64, ControllerDeadZone, "White", "",
+        DrawBackNextButton(500, 593, 250, 64, Player.ControllerSettings.ControllerDeadZone, "White", "",
             () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + PreferenceSettingsDeadZoneList.length - 1) % PreferenceSettingsDeadZoneList.length],
             () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length] );
     }
@@ -1150,12 +1207,14 @@ function PreferenceSubscreenControllerClick() {
         if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
             if (MouseX <= 625) PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityList.length + PreferenceSettingsSensitivityIndex - 1) % PreferenceSettingsSensitivityList.length;
             else PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length;
-            ControllerSensitivity = PreferenceSettingsSensitivityList[PreferenceSettingsSensitivityIndex];
+            Player.ControllerSettings.ControllerSensitivity = PreferenceSettingsSensitivityList[PreferenceSettingsSensitivityIndex];
+            ControllerSensitivity = Player.ControllerSettings.ControllerSensitivity;
         }
         if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 593) && (MouseY < 657)) {
             if (MouseX <= 625) PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneList.length + PreferenceSettingsDeadZoneIndex - 1) % PreferenceSettingsDeadZoneList.length;
             else PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length;
-            ControllerDeadZone = PreferenceSettingsDeadZoneList[PreferenceSettingsDeadZoneIndex];
+            Player.ControllerSettings.ControllerDeadZone = PreferenceSettingsDeadZoneList[PreferenceSettingsDeadZoneIndex];
+            ControllerDeadZone = Player.ControllerSettings.ControllerDeadZone;
         }
 
         if (MouseIn(590, 400, 310, 90)) {
@@ -1172,6 +1231,7 @@ function PreferenceSubscreenControllerClick() {
         if ((MouseX >= 500) && (MouseX < 564)) {
             if ((MouseY >= 272) && (MouseY < 336)) {
                 ControllerActive = !ControllerActive;
+                Player.ControllerSettings.ControllerActive = ControllerActive;
                 ClearButtons();
             }
         }
