@@ -1616,6 +1616,11 @@ function ChatRoomViewProfile() {
  * @returns {void}
  */
 function DialogCallMaids() { 
+	ChatRoomSlowtimer = 0;
+	ChatRoomSlowStop = false;
+	ChatRoomClearAllElements();
+	ChatRoomSetLastChatRoom("")
+	ServerSend("ChatRoomLeave", "");
 	MainHallPunishFromChatroom();
 	CommonSetScreen("Room", "MainHall");
 }
