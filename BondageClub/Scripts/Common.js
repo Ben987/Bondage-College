@@ -9,6 +9,7 @@ var CurrentOnlinePlayers = 0;
 var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
+var Notifications = {};
 
 /**
  * A map of keys to common font stack definitions. Each stack definition is a
@@ -495,3 +496,45 @@ const CommonGetFontName = CommonMemoize(() => {
 	const font = fontStack[0].map(fontName => `"${fontName}"`).join(", ");
 	return `${font}, ${fontStack[1]}`;
 });
+
+/**
+ * Increase the reported number of a notifications by one and updates the header
+ * @param {string} Type - The type of notification
+ * @returns {void}
+ */
+function CommonNotificationIncrement(Type) {
+	Notifications[Type] = (Notifications[Type] || 0) + 1;
+	CommonNotificationUpdate();
+}
+
+/**
+ * Sets the number of notifications for a type back to zero and updates the header
+ * @param {any} Type - The type of notification
+ * @returns {void}
+ */
+function CommonNotificationReset(Type) {
+	if (Notifications[Type] != null && Notifications[Type] != 0) {
+		Notifications[Type] = 0;
+		CommonNotificationUpdate();
+	}
+}
+
+/**
+ * Sets the number of notifications to zero
+ * @returns {void}
+ */
+function CommonNotificationResetAll() {
+	Notifications = {};
+	CommonNotificationUpdate();
+}
+
+/**
+ * Sets or clears notifications in the tab header
+ * @returns {void} - Nothing
+ */
+function CommonNotificationUpdate() {
+	let total = 0;
+	for (let key in Notifications) total += Notifications[key];
+	let prefix = total == 0 ? "" : "(" + total.toString() + ") ";
+	document.title = prefix + "Bondage Club";
+}
