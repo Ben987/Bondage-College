@@ -12,6 +12,6 @@ function InventoryItemButtBunnyTailVibePlugClick() {
 	VibratorModeClick([VibratorModeSet.STANDARD, VibratorModeSet.ADVANCED]);
 }
 
-function AssetsItemuttBunnyTailVibePlugScriptDraw(data) {
+function AssetsItemButtBunnyTailVibePlugScriptDraw(data) {
 	VibratorModeScriptDraw(data);
 }
