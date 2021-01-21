@@ -2,7 +2,9 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 0,,,(You can use or remove items by selecting specific body regions on yourself.),,
 0,10,(Adjust your bondage skill.),"(By default, you restrain using your full bondage skill.  You can use less of your skill and make it easier for your victims to escape.)",,"DialogSkillGreater(""Bondage"", 1)"
 0,20,(Adjust your evasion skill.),"(By default, you struggle using your full evasion skill.  You can use less of your skill and make it harder for you to struggle free.)",,"DialogSkillGreater(""Evasion"", 1)"
-0,0,(Call the maids for help),"(The maids will be here shortly...)",DialogCallMaids(),DialogCanCallMaids()
+0,100,(Call the maids for help),"(The maids are not supposed to take room calls. This will result in punishment and public humiliation. Are you sure?)",,DialogCanCallMaids()
+100,0,(Yes! Get me out of this room!),"(The maids will be here shortly...)",DialogCallMaids(),DialogCanCallMaids()
+100,0,"(No, don't call the maids.)","(You can use or remove items by selecting specific body regions on yourself.)",,
 0,30,(Room administrator action.),"(As a room administrator, you can take these actions.)",,DialogChatRoomPlayerIsAdmin()
 0,90,(Use your safeword.),"(A safeword is serious and should not be used to cheat.  It can revert your clothes and restraints to when you entered the lobby, or release you completely.)",,DialogChatRoomCanSafeword()
 0,0,(View your current rules.),(Here are your currently active rules.),DialogViewOwnerRules(),DialogCanViewRules()

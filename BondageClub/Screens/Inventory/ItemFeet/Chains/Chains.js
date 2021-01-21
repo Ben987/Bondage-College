@@ -3,12 +3,12 @@ var InventoryItemFeetChainsOptions = [
 	{
 		Name: "Basic",
 		BondageLevel: 0,
-		Property: { Type: null, Difficulty: 0, SetPose: null },
+		Property: { Type: null, Difficulty: 0, SetPose: ["LegsClosed"] },
 	},
 	{
 		Name: "Strict",
 		BondageLevel: 2,
-		Property: { Type: "Strict", Difficulty: 2, SetPose: null },
+		Property: { Type: "Strict", Difficulty: 2, SetPose: ["LegsClosed"] },
 	},
 	{
 		Name: "Suspension",

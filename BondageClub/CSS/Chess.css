@@ -1,0 +1,14 @@
+/* Fixes for square overflow in Firefox (overwrites default styling) */
+.row-5277c {
+  display: flex;
+}
+
+.clearfix-7da63 {
+  display: none;
+}
+
+.notation-322f9 {
+  right: 0;
+  width: auto !important;
+  padding-right: 3px;
+}
