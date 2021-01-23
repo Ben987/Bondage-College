@@ -359,7 +359,6 @@ function ControllerButton(buttons) {
                                     Player.ControllerSettings.ControllerDPadRight = g;
                                     h = true;
                                     PreferenceCalibrationStage = 0;
-                                    Player.ControllerSettings.PreferenceCalibrationStage = 0;
                                     Calibrating = 0;
                                     ControllerButtonsRepeat = true;
                                 }
