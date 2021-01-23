@@ -17,10 +17,12 @@ function InventoryItemMiscHighSecurityPadlockLoad() {
 	// Only create the inputs if the zone isn't blocked
 	if (!InventoryGroupIsBlocked(C, C.FocusGroup.Name)) {
 		if (DialogFocusSourceItem != null && ((DialogFocusSourceItem.Property.MemberNumberList && CommonConvertStringToArray("" + DialogFocusSourceItem.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) {
-			ElementCreateTextArea("MemberNumberList");
-			document.getElementById("MemberNumberList").setAttribute("maxLength", 250);
-			document.getElementById("MemberNumberList").setAttribute("autocomplete", "off");
-			ElementValue("MemberNumberList", DialogFocusSourceItem.Property.MemberNumberList);
+			if (!(ElementValue("MemberNumberList") && "" + ElementValue("MemberNumberList").length > 1)) { // Only update if there isnt text already..
+				ElementCreateTextArea("MemberNumberList");
+				document.getElementById("MemberNumberList").setAttribute("maxLength", 250);
+				document.getElementById("MemberNumberList").setAttribute("autocomplete", "off");
+				ElementValue("MemberNumberList", DialogFocusSourceItem.Property.MemberNumberList);
+			}
 			
 			if (!InventoryItemMiscHighSecurityPadlockPlayerHasKeys(C, DialogFocusItem)) {
 				InventoryItemMiscHighSecurityPadlockPlayerCanUnlock = false
