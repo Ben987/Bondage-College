@@ -212,7 +212,6 @@ function ItemColorDrawDefault(x, y) {
  * @const {function(): void}
  */
 const ItemColorOnPickerChange = CommonDebounce((color) => {
-	console.log(color);
 	const newColors = ItemColorState.colors.slice();
 	ItemColorPickerIndices.forEach(i => newColors[i] = color);
 	ItemColorItem.Color = newColors;
