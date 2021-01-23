@@ -218,9 +218,6 @@ function DrawArousalMeter(C, X, Y, Zoom) {
  * @returns {void} - Nothing
  */
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
-    if (ControllerActive == true) {
-        setButton(X+100, Y+200)
-    }
 	if ((C != null) && ((C.ID == 0) || (Player.GetBlindLevel() < 3) || (CurrentScreen == "InformationSheet"))) {
 
 		// If there's a fixed image to draw instead of the character
@@ -352,48 +349,13 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
  * @param {string} FillColor - If non-empty, the color to fill the rectangle with
  * @returns {void} - Nothing
  */
+function DrawAssetGroupZone(C, Zone, Zoom, X, Y, HeightRatio, Color, Thickness = 3, FillColor) {
+	for (let Z = 0; Z < Zone.length; Z++) {
+		let CZ = DialogGetCharacterZone(C, Zone[Z], X, Y, Zoom, HeightRatio);
 
-function DrawAssetGroupZone(C, Zone, HeightRatio, X, Y, Color, Thickness = 3) {
-    for (let Z = 0; Z < Zone.length; Z++)
-        if (C.Pose.indexOf("Suspension") >= 0) {
-            DrawEmptyRect((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color, Thickness);
-            if (ControllerActive == true) {
-                setButton((((HeightRatio * Zone[Z][0]) + X)) | 0, (((1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier)) | 0);
-                }
-        }
-        else {
-            DrawEmptyRect((HeightRatio * Zone[Z][0]) + X, HeightRatio * (Zone[Z][1] - C.HeightModifier) + Y, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color, Thickness);
-            if (ControllerActive == true) {
-                setButton((((HeightRatio * Zone[Z][0]) + X)) | 0, ((HeightRatio * (Zone[Z][1] - C.HeightModifier) + Y)) | 0);
-            }
-        }
-}
-
-/**
- * Draws an asset group zone background over the character
- * @param {Character} C - Character for which to draw the zone
- * @param {number[][]} Zone - Zone to be drawn
- * @param {number} HeightRatio - Height ratio of the character
- * @param {number} X - Position of the character on the X axis
- * @param {number} Y - Position of the character on the Y axis
- * @param {string} Color - Color of the zone background
- * @returns {void} - Nothing
- */
-function DrawAssetGroupZoneBackground(C, Zone, HeightRatio, X, Y, Color) {
-    for (let Z = 0; Z < Zone.length; Z++)
-        if (C.Pose.indexOf("Suspension") >= 0) {
-            DrawRect((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color);
-/*            if (ControllerActive == true) {
-                setButton((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier);
-            }*/
-        }
-        else {
-            DrawRect((HeightRatio * Zone[Z][0]) + X, HeightRatio * (Zone[Z][1] - C.HeightModifier) + Y, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color);
-            /*if (ControllerActive == true) {
-                setButton((HeightRatio * Zone[Z][0]) + X, HeightRatio * (Zone[Z][1] - C.HeightModifier) + Y);
-            }*/
-        }
-
+		if (FillColor != null) DrawRect(CZ[0], CZ[1], CZ[2], CZ[3], FillColor);
+		DrawEmptyRect(CZ[0], CZ[1], CZ[2], CZ[3], Color, Thickness);
+	}
 }
 
 /**
@@ -679,9 +641,7 @@ function GetWrapTextSize(Text, Width, MaxLine) {
  * @returns {void} - Nothing
  */
 function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) {
-    if (ControllerActive == true) {
-        setButton(X, Y);
-    }
+
 	// Draw the rectangle if we need too
 	if (BackColor != null) {
 		MainCanvas.beginPath();
@@ -754,6 +714,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
  * @returns {void} - Nothing
  */
 function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
+
 	for (let S = 36; S >= 10; S = S - 2) {
 		MainCanvas.font = CommonGetFont(S.toString());
 		var metrics = MainCanvas.measureText(Text);
@@ -809,15 +770,7 @@ function DrawText(Text, X, Y, Color, BackColor) {
  * @returns {void} - Nothing
  */
 function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled) {
-    if (ControllerActive == true) {
-        setButton(Left, Top);
-        if (ControllerStick == false) {
-            DrawRect(ControllerButtonsX[ControllerCurrentButton] - 20, ControllerButtonsY[ControllerCurrentButton] - 20, 10, 10, "Cyan");
-        }
-        if (ControllerStick == true) {
-            DrawRect(MouseX - 5, MouseY - 5, 10, 10, "Cyan");
-        }
-    }
+
 	// Draw the button rectangle (makes the background color cyan if the mouse is over it)
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
