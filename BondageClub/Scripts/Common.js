@@ -11,6 +11,9 @@ var CommonCSVCache = {};
 var CutsceneStage = 0;
 
 /**
+ * A map of keys to common font stack definitions. Each stack definition is a	
+ * two-item array whose first item is an ordered list of fonts, and whose	
+ * second item is the generic fallback font family (e.g. sans-serif, serif,
  * etc.)
  * @constant
  * @type {Object.<String, [String[], String]>}
