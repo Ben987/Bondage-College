@@ -356,6 +356,7 @@ function ControllerButton(buttons) {
                             while (g < buttons.length && h == false) {
                                 if (buttons[g].pressed == true) {
                                     ControllerDPadRight = g;
+                                    Player.ControllerSettings.ControllerDPadRight = g;
                                     h = true;
                                     PreferenceCalibrationStage = 0;
                                     Player.ControllerSettings.PreferenceCalibrationStage = 0;

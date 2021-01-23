@@ -261,7 +261,7 @@ function PreferenceInit(C) {
         ControllerDPadUp: 4,
         ControllerDPadDown: 5,
         ControllerDPadLeft: 6,
-        ControllerDPadRight: 7
+        ControllerDPadRight: 7,
     };
     if (typeof C.ControllerSettings.ControllerSensitivity !== "number") C.ControllerSettings.ControllerSensitivity = 5;
     if (typeof C.ControllerSettings.ControllerDeadZone !== "number") C.ControllerSettings.ControllerDeadZone = 0.01;
