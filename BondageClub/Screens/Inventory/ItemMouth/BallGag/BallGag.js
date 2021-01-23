@@ -5,18 +5,21 @@ var InventoryItemMouthBallGagOptions = [
 		Name: "Normal",
 		Property: {
 			Type: null,
+			Effect: ["BlockMouth", "GagMedium"],
 		},
 	},
 	{
 		Name: "Shiny",
 		Property: {
 			Type: "Shiny",
+			Effect: ["BlockMouth", "GagMedium"],
 		},
 	},
 	{
 		Name: "Tight",
 		Property: {
 			Type: "Tight",
+			Effect: ["BlockMouth", "GagMedium"],
 		},
 	},
 ];

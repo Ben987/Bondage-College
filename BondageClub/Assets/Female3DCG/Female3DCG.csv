@@ -232,6 +232,7 @@ Shoes,ThighHighLatexHeels,Latex Heels
 Shoes,Heels3,Multi-Strap Heels,
 Shoes,BarefootSandals1,Barefoot Sandals
 Shoes,LatexAnkleShoes, Latex Ankle Shoes
+Shoes,Flippers,Flippers
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Band2,Jeweled Band
@@ -651,6 +652,7 @@ ItemButt,BunnyTailVibePlug,Bunny Tail Vibe Plug
 ItemButt,EggVibePlugXXL,Egg Vibe Plug XXL
 ItemButt,ShockPlug,Shock Plug
 ItemButt,CowTail,Cow Tail
+ItemButt,HollowButtPlug,Hollow Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -681,6 +683,7 @@ ItemTorso,HarnessBra1,Bondage Harness
 ItemTorso,HarnessBra2,Leather Strap Harness
 ItemTorso,Corset2,Corset
 ItemTorso,FuturisticHarness,Futuristic Harness
+ItemTorso,FuturisticHarness2,Futuristic Full Harness
 ItemTorso,Corset3,Half Cup Corset
 ItemTorso,Corset4,Under Bust Corset
 ItemTorso,Corset5,Floral Corset
@@ -736,6 +739,7 @@ ItemArms,SturdyLeatherBelts,Sturdy Leather Belt
 ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,ArmbinderJacket,Armbinder Jacket
 ItemArms,LeatherCuffs,Leather Cuffs
+ItemArms,CeilingShackles,Ceiling Shackles
 ItemArms,FuturisticCuffs,Futuristic Cuffs
 ItemArms,OrnateCuffs,Ornate Cuffs
 ItemArms,MittenChain1,Mittens Chain
@@ -846,11 +850,11 @@ ItemNeck,PetCollar,Pet Collar
 ItemNeck,MaidCollar,Maid Collar
 ItemNeck,BordelleCollar,Bordelle Collar
 ItemNeck,LoveLeatherCollar,Lover Leather Collar
-ItemNeck,StrictPostureCollar,Strict Posture Collar
 ItemNeck,NobleCorsetCollar,Noble Corset Collar
+ItemNeck,StrictPostureCollar,Strict Posture Collar
 ItemNeck,HeartCollar,Heart Collar
-ItemNeck,LatexPostureCollar,Latex Posture Collar Gag
 ItemNeck,LeatherCorsetCollar,Leather Corset Collar Gag
+ItemNeck,LatexPostureCollar,Latex Posture Collar Gag
 ItemNeck,HighSecurityCollar,High Security Collar
 ItemNeck,OrnateCollar,Ornate Collar
 ItemNeck,SlenderSteelCollar,Slender Steel Collar
@@ -1082,6 +1086,7 @@ ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
 ItemEars,HeadphoneEarPlugs,Headphone Ear Plugs
 ItemEars,BluetoothEarbuds,Bluetooth Earbuds
+ItemEars,Headphones,Headphones
 ItemMisc,,Body
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
@@ -1141,6 +1146,8 @@ ItemDevices,SmallLocker,Small Locker
 ItemDevices,VentlessLocker,Ventless Locker
 ItemDevices,SmallVentlessLocker,Small Ventless Locker
 ItemDevices,ConcealingCloak,Concealing Cloak
+ItemDevices,TransportWoodenBox,Transport Box
+ItemDevices,VacCube,Vac-Cube
 ItemHoodAddon,,Hood
 ItemHoodAddon,OldGasMaskLenses,Blinding Lenses
 ItemHoodAddon,OldGasMaskTube1,Gas Mask Tube

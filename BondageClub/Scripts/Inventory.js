@@ -521,17 +521,32 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 * Returns TRUE if the body area (Asset Group) for a character is blocked and cannot be used
 * @param {Character} C - The character on which we validate the group
 * @param {String} GroupName - The name of the asset group (body area)
+* @param {Boolean} Activity - if TRUE check if activity is allowed on the asset group 
 * @returns {Boolean} - TRUE if the group is blocked
 */
-function InventoryGroupIsBlocked(C, GroupName) {
+function InventoryGroupIsBlocked(C, GroupName, Activity) {
 
+	if (Activity == null) Activity = false;
+	
 	// Default to characters focused group
 	if (GroupName == null) GroupName = C.FocusGroup.Name;
 
+    if (Activity) {
+		for (let E = 0; E < C.Appearance.length; E++) {
+			if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.AllowActivityOn != null) && (C.Appearance[E].Asset.AllowActivityOn.includes(GroupName))){
+				Activity = true;
+				break;
+			} else if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.AllowActivityOn != null) && (C.Appearance[E].Property.AllowActivityOn.indexOf(GroupName) >= 0)){
+				Activity = true;
+				break;
+			} else Activity = false;
+		}
+    }
+
 	// Items can block each other (hoods blocks gags, belts blocks eggs, etc.)
 	for (let E = 0; E < C.Appearance.length; E++) {
-		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(GroupName))) return true;
-		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && Array.isArray(C.Appearance[E].Property.Block) && (C.Appearance[E].Property.Block.indexOf(GroupName) >= 0)) return true;
+		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(GroupName)) && !Activity) return true;
+		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && Array.isArray(C.Appearance[E].Property.Block) && (C.Appearance[E].Property.Block.indexOf(GroupName) >= 0) && !Activity) return true;
 	}
 
 	// If another character is enclosed, items other than the enclosing one cannot be used
@@ -573,11 +588,17 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
  * Returns the value of a given property of an appearance item, prioritizes the Property object.
  * @param {object} Item - The appearance item to scan 
  * @param {string} PropertyName - The property name to get.
- * @returns {any} - The value of the requested property for the given item. Returns undefined if the property or the item itself does not exist.
+ * @param {boolean} CheckGroup - Whether or not to fall back to the item's group if the property is not found on
+ * Property or Asset.
+ * @returns {any} - The value of the requested property for the given item. Returns undefined if the property or the
+ * item itself does not exist.
  */
-function InventoryGetItemProperty(Item, PropertyName) {
+function InventoryGetItemProperty(Item, PropertyName, CheckGroup) {
     if (!Item || !PropertyName || !Item.Asset) return;
-    return (Item.Property && typeof Item.Property[PropertyName] !== "undefined" ? Item.Property : Item.Asset)[PropertyName];
+    let Property = Item.Property && Item.Property[PropertyName];
+    if (typeof Property === "undefined") Property = Item.Asset[PropertyName];
+    if (typeof Property === "undefined" && CheckGroup) Property = Item.Asset.Group[PropertyName];
+    return Property;
 }
 
 /**

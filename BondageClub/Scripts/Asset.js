@@ -58,6 +58,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		Underwear: (NewAsset.Underwear == null) ? false : NewAsset.Underwear,
 		BodyCosplay: (NewAsset.BodyCosplay == null) ? false : NewAsset.BodyCosplay,
 		Activity: NewAsset.Activity,
+		AllowActivityOn: NewAsset.AllowActivityOn,
 		Hide: NewAsset.Hide,
 		Block: NewAsset.Block,
 		Zone: NewAsset.Zone,
@@ -73,6 +74,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		DrawingFullAlpha: (NewAsset.FullAlpha == null) ? true : NewAsset.FullAlpha,
 		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink,
 		InheritColor: NewAsset.InheritColor,
+		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose : [],
 	}
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
@@ -91,6 +93,7 @@ function AssetAdd(NewAsset) {
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
 		Activity: (NewAsset.Activity == null) ? AssetCurrentGroup.Activity : NewAsset.Activity,
 		AllowActivity: NewAsset.AllowActivity,
+		AllowActivityOn: (NewAsset.AllowActivityOn == null) ? AssetCurrentGroup.AllowActivityOn : NewAsset.AllowActivityOn,
 		BuyGroup: NewAsset.BuyGroup,
 		PrerequisiteBuyGroups: NewAsset.PrerequisiteBuyGroups,
 		Effect: (NewAsset.Effect == null) ? AssetCurrentGroup.Effect : NewAsset.Effect,
@@ -161,6 +164,9 @@ function AssetAdd(NewAsset) {
 		AllowLockType: NewAsset.AllowLockType,
 		AllowColorizeAll: typeof NewAsset.AllowColorizeAll === 'boolean' ? NewAsset.AllowColorizeAll : true,
 		AvailableLocations: NewAsset.AvailableLocations || [],
+		OverrideHeight: NewAsset.OverrideHeight,
+		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose :
+			Array.isArray(AssetCurrentGroup.FreezeActivePose) ? AssetCurrentGroup.FreezeActivePose : [],
 	}
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	AssetAssignColorIndices(A);

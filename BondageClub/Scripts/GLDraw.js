@@ -22,7 +22,7 @@ window.addEventListener('load', GLDrawLoad);
 function GLDrawLoad() {
     GLDrawCanvas = document.createElement("canvas");
     GLDrawCanvas.width = 1000;
-    GLDrawCanvas.height = 1000;
+    GLDrawCanvas.height = CanvasDrawHeight;
     GLVersion = "webgl2";
     var gl = GLDrawCanvas.getContext(GLVersion);
     if (!gl) { GLVersion = "webgl"; gl = GLDrawCanvas.getContext(GLVersion); }
@@ -76,7 +76,7 @@ function GLDrawInitCharacterCanvas(canvas) {
     if (canvas == null) {
         canvas = document.createElement("canvas");
         canvas.width = 1000;
-        canvas.height = 1000;
+        canvas.height = CanvasDrawHeight;
     }
     if (canvas.GL == null) {
         canvas.GL = canvas.getContext(GLVersion);
@@ -85,7 +85,7 @@ function GLDrawInitCharacterCanvas(canvas) {
             return GLDrawInitCharacterCanvas(null);
         }
     } else {
-        GLDrawClearRect(canvas.GL, 0, 0, 1000, 1000);
+        GLDrawClearRect(canvas.GL, 0, 0, 1000, CanvasDrawHeight);
     }
     if (canvas.GL.program == null) {
         GLDrawMakeGLProgam(canvas.GL);
@@ -468,11 +468,11 @@ function GLDrawHexToRGBA(color) {
  * @returns {void} - Nothing 
  */
 function GLDrawAppearanceBuild(C) {
-    GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, 1000);
+    GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, CanvasDrawHeight);
     CommonDrawCanvasPrepare(C);
     CommonDrawAppearanceBuild(C, {
-		clearRect: (x, y, w, h) => GLDrawClearRect(GLDrawCanvas.GL, x, 1000 - y - h, w, h),
-		clearRectBlink: (x, y, w, h) => GLDrawClearRectBlink(GLDrawCanvas.GL, x, 1000 - y - h, w, h),
+		clearRect: (x, y, w, h) => GLDrawClearRect(GLDrawCanvas.GL, x, CanvasDrawHeight - y - h, w, h),
+		clearRectBlink: (x, y, w, h) => GLDrawClearRectBlink(GLDrawCanvas.GL, x, CanvasDrawHeight - y - h, w, h),
 		drawImage: (src, x, y, alphaMasks) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, null, null, alphaMasks),
 		drawImageBlink: (src, x, y, alphaMasks) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, null, null, alphaMasks),
 		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, color, fullAlpha, alphaMasks),

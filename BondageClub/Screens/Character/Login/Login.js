@@ -4,10 +4,11 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Abby", "Anna", "Asuna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "EliseBlackthorn",
+var LoginThankYouList = ["Abby", "Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "EliseBlackthorn",
 						 "Epona", "Escurse", "FanRunner", "Fluffythewhat", "Greendragon", "Jin", "KamiKaze", "KBgamer", "Kimuriel", "Longwave",
-						 "Michal", "Michel", "Mike", "Mindtie", "Misa", "Nick", "Overlord", "Rashiash", "Ray", "Rika", "Rutherford", "Ryner",
-						 "Samuel", "SeraDenoir", "Setsu", "Shadow", "Somononon", "Tam", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
+						 "Michal", "Michel", "Mike", "Mindtie", "Misa", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Ramtam",
+						 "Rashiash", "Ray", "Rika", "Rutherford", "Ryner", "Samuel", "Sayari", "SeraDenoir", "Shadow", "Somononon", 
+						 "Stephanie", "Tam", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -334,6 +335,9 @@ function LoginResponse(C) {
 			CurrentScreen = RelogData.Screen;
 			CurrentCharacter = RelogData.Character;
 			TextLoad();
+			var Elements = document.getElementsByClassName("HideOnDisconnect");
+			for (let E = 0; E < Elements.length; E++)
+				Elements[E].style.display = "";
 			if ((ChatRoomData != null) && (ChatRoomData.Name != null) && (ChatRoomData.Name != "") && (RelogChatLog != null)) {
 				CommonSetScreen("Online", "ChatSearch");
 				ChatRoomPlayerCanJoin = true;
@@ -370,6 +374,16 @@ function LoginResponse(C) {
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 			LoginDifficulty();
+
+			// Load the last chat room
+			Player.LastChatRoom = C.LastChatRoom;
+			Player.LastChatRoomBG = C.LastChatRoomBG;
+			Player.LastChatRoomPrivate = C.LastChatRoomPrivate;
+			Player.LastChatRoomSize = C.LastChatRoomSize;
+			Player.LastChatRoomDesc = C.LastChatRoomDesc;
+			Player.LastChatRoomTimer = C.LastChatRoomTimer;
+			if (typeof C.LastChatRoomAdmin == "string")
+				Player.LastChatRoomAdmin = CommonConvertStringToArray(C.LastChatRoomAdmin);
 
 			// Loads the ownership data
 			Player.Ownership = C.Ownership;

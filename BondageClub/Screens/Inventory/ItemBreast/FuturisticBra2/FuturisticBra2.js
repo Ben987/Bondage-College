@@ -33,24 +33,7 @@ function InventoryItemBreastFuturisticBra2Click() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else {
-		var DialogFocusItem_Temp = DialogFocusItem
-		var origHeight = 6
-		if (DialogFocusItem_Temp && DialogFocusItem_Temp.Property && DialogFocusItem_Temp.Asset) {
-			origHeight = DialogFocusItem_Temp.Property.Height
-		}
 		ExtendedItemClick(InventoryItemBreastFuturisticBra2Options);
-		// Set height because height isnt a property
-		if (DialogFocusItem_Temp && DialogFocusItem_Temp.Property && DialogFocusItem_Temp.Asset) {
-			if (origHeight != DialogFocusItem_Temp.Property.Height) {
-				DialogFocusItem_Temp.Height = DialogFocusItem_Temp.Property.Height
-				DialogFocusItem_Temp.Asset.HeightModifier = DialogFocusItem_Temp.Property.Height
-				
-				
-				CharacterRefresh(C, true); // Does not sync appearance while in the wardrobe
-				ChatRoomCharacterUpdate(C);
-			}
-			
-		}
 	}
 }
 

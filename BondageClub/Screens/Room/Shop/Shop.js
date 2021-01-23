@@ -149,13 +149,14 @@ function ShopClick() {
 			if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000))
 				for (let A = 0; A < AssetGroup.length; A++)
 					if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
-						for (let Z = 0; Z < AssetGroup[A].Zone.length; Z++)
-							if ((MouseX - 500 >= AssetGroup[A].Zone[Z][0]) && (MouseY >= AssetGroup[A].Zone[Z][1] - ShopVendor.HeightModifier) && (MouseX - 500 <= AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) && (MouseY <= AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - ShopVendor.HeightModifier)) {
+						for (let Z = 0; Z < AssetGroup[A].Zone.length; Z++) {
+							if (DialogClickedInZone(ShopVendor, AssetGroup[A].Zone[Z], 1, 500, 0, 1)) {
 								ShopItemOffset = 0;
 								ShopVendor.FocusGroup = AssetGroup[A];
 								ShopSelectAsset = ShopAssetFocusGroup;
 								ShopCartBuild();
 							}
+						}
 
 		// For each items in the assets with a value
 		var X = 1000;

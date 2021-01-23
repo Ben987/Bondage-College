@@ -155,3 +155,39 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 1010,,I want to learn about skills.,"There are different skills you can learn and get better with time and practice.  The maximum level is 10, the percentage is your current progress toward the next level.",,
 1010,1002,What are the most important rules again?,The first rule is that the club is only for adults.  This place isn't for minors.  Are you an adult in your country?,,
 1010,,(Thank her and leave her.),,DialogLeave(),
+1100,,,"(A pair of maids cut you loose and bring you to the main hall.)  You poor thing...",,Player.IsNaked()
+1100,,,"(A pair of maids cut you loose and drag you to the main hall.)  Oh how the tables have turned, head maid DialogPlayerName...",,IsHeadMaid
+1100,,,"(A pair of maids cut you loose and drag you to the main hall.)  My my, what have we here...",,IsMaid
+1100,,,"(A pair of maids cut you loose and bring you to the main hall.)  Hello there, are you in trouble? Do you need help?",,!IsMaid
+1100,1101,(Blush and plead for help.),"Sure. But first we need to have a talk.",,!HasOwnerOrLoverItem()
+1100,1101,Please help me...,"Sure. But first we need to have a talk.",,!HasOwnerOrLoverItem()
+1100,1101,(Shake your head and refuse help),"Not so fast, girl. We need to talk.",,!HasOwnerOrLoverItem()
+1100,1200,(Blush and nod for help.),"(She checks your locks) You can talk with the next maid about getting your locks removed. This will hurt your reputation though.",,HasOwnerOrLoverItem()
+1100,1200,Please help me...,"(She checks your locks) You can talk with the next maid about getting your locks removed. This will hurt your reputation though.",,HasOwnerOrLoverItem()
+1100,1200,(Shake your head and refuse help),"Fair enough. You seem to be in a predicament already, so I don't need to punish you for calling room service. This will hurt your reputation though.",,HasOwnerOrLoverItem()
+1101,1102,(Nod slowly.),"Room service is meant for truly bad situations. If we just answered calls as they came, the sorority would be swamped with work.",,!Player.CanTalk()
+1101,1102,What for?,"Room service is meant for truly bad situations. If we just answered calls as they came, the sorority would be swamped with work.",,Player.CanTalk()
+1102,1103,(Mmmph.),"That's why we have regular patrols. In any case, it is club policy to punish you.",,!Player.CanTalk()
+1102,1103,But that's your job!,"That's why we have regular patrols. In any case, it is club policy to publicly shame you.",,Player.CanTalk()
+1103,1104,(Mumble incoherently in your gag),"Don't worry, at least you'll be able to find the maids yourself next time~",,!Player.CanTalk()
+1103,1104,That's ridiculous! I needed help!,"Don't worry, at least you'll be able to find the maids yourself next time~",,Player.CanTalk()
+1104,1105,(Sigh and resign to your punishment.),"(She strips you) First, your clothes need to come off.",PunishFromChatroomStartPunishment(),
+1104,1105,"I accept my punishment, miss.","(She strips you) First, your clothes need to come off.",PunishFromChatroomStartPunishment(),
+1105,1107,"(Cooperate)","Next, we need to cover up those important bits (She pulls out a chastity belt and buckles it around your waist.)",PunishFromChatroomApplyChastity(),!Player.IsChaste()
+1105,1109,(Wait for her to finish),"(She looks at you and giggles) Looks like your naughty bits are already covered up. (She pulls out a gag and forces it into your mouth)",PunishFromChatroomGag(),Player.IsChaste()
+1105,1106,(Protest),"Perhaps you need a little motivation (She stuffs a vibrator into your body)",PunishFromChatroomInsertToy(),!Player.IsChaste()
+1106,1107,This seems a bit kinky for a punishment...,"You'll be enjoying it, girl. (She pulls out a chastity belt and traps the vibrator in.)",PunishFromChatroomApplyChastity(),
+1106,1107,,"(She giggles) It's going to stay in there a while~ (She pulls out a chastity belt and locks the vibrator in.)",PunishFromChatroomApplyChastity(),
+1107,1108,(Tug on the belt),"You won't be taking that off anytime soon. (She locks the chastity belt)",PunishFromChatroomLockChastity(),
+1107,1108,"(Put your hands behind your back) Is that all, miss?","We're just getting started. (She locks the chastity belt)",PunishFromChatroomLockChastity(),
+1108,1109,What's next?,"Good girls need to wear their gags.",PunishFromChatroomGag(),
+1108,1109,(Scream and moan) This isn't fair!,"Looks like we need to plug up that mouth of yours. (She gags you)",PunishFromChatroomGag(),
+1109,1110,(Moan with pleasure),"Seems like you'll enjoy the next part, too. (She binds your arms)",PunishFromChatroomArms(),
+1109,1110,(Whimper into your gag),"(She laughs) That's not the only freedom you'll be losing. (She binds your arms)",PunishFromChatroomArms(),
+1109,1110,(Stay quiet),"Next, we need to make sure you know your place (She binds your arms)",PunishFromChatroomArms(),
+1109,1110,(Try to take off the gag),"(She slaps you) Not so fast, girl! (She pins your arms and binds you)",PunishFromChatroomArms(),
+1110,1201,(Struggle in your bindings),"(She finishes restraining you and slaps you on the butt) Have fun, girl.",PunishFromChatroomRest(),
+1110,1201,(Relax and stay quiet),"(She finishes restraining you and slaps you on the breast) Now go enjoy yourself.",PunishFromChatroomRest(),
+1201,,(Leave her.),,DialogLeave(),
+1200,,(Sigh and leave her.),,DialogLeave(),
+

@@ -47,10 +47,12 @@ function InventoryItemLegsOrnateLegCuffsSetPose(NewPose) {
 		delete DialogFocusItem.Property.SetPose;
 		delete DialogFocusItem.Property.Effect;
 		delete DialogFocusItem.Property.Difficulty;
+		deleteDialogFocusItem.Property.FreezeActivePose;
 	} else if (NewPose == "Closed") {
 		DialogFocusItem.Property.SetPose = ["LegsClosed"];
 		DialogFocusItem.Property.Effect = ["Prone", "KneelFreeze"];
 		DialogFocusItem.Property.Difficulty = 6;
+		DialogFocusItem.Property.FreezeActivePose = ["BodyLower"]
 	}
 
 	// Adds the lock effect back if it was padlocked

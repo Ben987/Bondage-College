@@ -2,30 +2,46 @@
 var TitleBackground = "Sheet";
 var TitleList = [
 	{ Name: "None", Requirement: function () { return true } },
-	{ Name: "Mistress", Requirement: function () { return LogQuery("ClubMistress", "Management") } },
+	{ Name: "Mistress", Requirement: function () { return LogQuery("ClubMistress", "Management") }, Earned: true },
 	{ Name: "ClubSlave", Requirement: function () { return ManagementIsClubSlave() }, Force: true },
-	{ Name: "Maid", Requirement: function () { return (LogQuery("JoinedSorority", "Maid") && !LogQuery("LeadSorority", "Maid")) } },
-	{ Name: "HeadMaid", Requirement: function () { return LogQuery("LeadSorority", "Maid") } },
-	{ Name: "Kidnapper", Requirement: function () { return ((ReputationGet("Kidnap") >= 50) && (ReputationGet("Kidnap") < 100)) } },
-	{ Name: "MasterKidnapper", Requirement: function () { return (ReputationGet("Kidnap") >= 100) } },
-	{ Name: "Patient", Requirement: function () { return ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") > -100)) } },
-	{ Name: "PermanentPatient", Requirement: function () { return (ReputationGet("Asylum") <= -100) } },
+	{ Name: "Maid", Requirement: function () { return (LogQuery("JoinedSorority", "Maid") && !LogQuery("LeadSorority", "Maid")) }, Earned: true },
+	{ Name: "HeadMaid", Requirement: function () { return LogQuery("LeadSorority", "Maid") }, Earned: true },
+	{ Name: "BondageMaid", Requirement: function () { return ((LogQuery("JoinedSorority", "Maid") || LogQuery("LeadSorority", "Maid")) && SkillGetLevel(Player, "Evasion") >= 10) }, Earned: true },
+	{ Name: "Kidnapper", Requirement: function () { return ((ReputationGet("Kidnap") >= 50) && (ReputationGet("Kidnap") < 100)) }, Earned: true },
+	{ Name: "MasterKidnapper", Requirement: function () { return (ReputationGet("Kidnap") >= 100) }, Earned: true },
+	{ Name: "Patient", Requirement: function () { return ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") > -100)) }, Earned: true },
+	{ Name: "PermanentPatient", Requirement: function () { return (ReputationGet("Asylum") <= -100) }, Earned: true },
 	{ Name: "EscapedPatient", Requirement: function () { return (LogValue("Escaped", "Asylum") >= CurrentTime) }, Force: true },
-	{ Name: "Nurse", Requirement: function () { return ((ReputationGet("Asylum") >= 50) && (ReputationGet("Asylum") < 100)) } },
-	{ Name: "Doctor", Requirement: function () { return (ReputationGet("Asylum") >= 100) } },
-	{ Name: "LadyLuck", Requirement: function () { return (ReputationGet("Gambling") >= 100) } },
-	{ Name: "Patron", Requirement: function () { return CheatAllow } },
-	{ Name: "CollegeStudent", Requirement: function () { return LogQuery("BondageCollege", "Import") } },
-	{ Name: "Nawashi", Requirement: function () { return (SkillGetLevel(Player, "Bondage") >= 10) } },
-	{ Name: "Houdini", Requirement: function () { return (SkillGetLevel(Player, "Evasion") >= 10) } },
-	{ Name: "PonyPegasus", Requirement: function () { return (SkillGetLevel(Player, "Dressage") >= 10) } },
-	{ Name: "PonyUnicorn", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 8) && (SkillGetLevel(Player, "Dressage") <= 9)) } },
-	{ Name: "PonyWild", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 6) && (SkillGetLevel(Player, "Dressage") <= 7)) } },
-	{ Name: "PonyHot", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 5) } },
-	{ Name: "PonyWarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 4) } },
-	{ Name: "PonyCold", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 3) } },
-	{ Name: "PonyFarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 2) } },
-	{ Name: "PonyFoal", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 1) } }
+	{ Name: "Nurse", Requirement: function () { return ((ReputationGet("Asylum") >= 50) && (ReputationGet("Asylum") < 100)) }, Earned: true },
+	{ Name: "Doctor", Requirement: function () { return (ReputationGet("Asylum") >= 100) }, Earned: true },
+	{ Name: "LadyLuck", Requirement: function () { return (ReputationGet("Gambling") >= 100) }, Earned: true },
+	{ Name: "Patron", Requirement: function () { return CheatAllow }, Earned: true },
+	{ Name: "CollegeStudent", Requirement: function () { return LogQuery("BondageCollege", "Import") }, Earned: true },
+	{ Name: "Nawashi", Requirement: function () { return (SkillGetLevel(Player, "Bondage") >= 10) }, Earned: true },
+	{ Name: "Houdini", Requirement: function () { return (SkillGetLevel(Player, "Evasion") >= 10) }, Earned: true },
+	{ Name: "PonyAlicorn", Requirement: function () { return (SkillGetLevel(Player, "Dressage") >= 10) }, Earned: true },
+	{ Name: "PonyPegasus", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 8) && (SkillGetLevel(Player, "Dressage") <= 9)) }, Earned: true },
+	{ Name: "PonyUnicorn", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 7) }, Earned: true },
+	{ Name: "PonyWild", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 6) }, Earned: true },
+	{ Name: "PonyHot", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 5) }, Earned: true },
+	{ Name: "PonyWarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 4) }, Earned: true },
+	{ Name: "PonyCold", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 3) }, Earned: true },
+	{ Name: "PonyFarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 2) }, Earned: true },
+	{ Name: "PonyFoal", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") == 1) || ((SkillGetLevel(Player, "Dressage") >= 1) && (ReputationGet("ABDL") >= 1))) }, Earned: true },
+	{ Name: "Duchess", Requirement: function () { return LogQuery("KidnapSophie", "Sarah") }, Earned: true},
+	{ Name: "LittleOne", Requirement: function () { return (ReputationGet("ABDL") >= 1) }, Earned: true },
+	{ Name: "Baby", Requirement: function () { return (ReputationGet("ABDL") >= 1) }, Earned: true },
+	{ Name: "DL", Requirement: function () { return (ReputationGet("ABDL") >= 1) }, Earned: true },
+	{ Name: "BondageBaby", Requirement: function () { return ((SkillGetLevel(Player, "Evasion")) >= 10 && (ReputationGet("ABDL") >= 1)) }, Earned: true },
+	{ Name: "Switch", Requirement: function () { return true } },
+	{ Name: "Kitten", Requirement: function () { return true } },
+	{ Name: "Puppy", Requirement: function () { return true } },
+	{ Name: "Foxy", Requirement: function () { return true } },
+	{ Name: "Bunny", Requirement: function () { return true } },
+	{ Name: "Doll", Requirement: function () { return true } },
+	{ Name: "Demon", Requirement: function () { return true } },
+	{ Name: "Angel", Requirement: function () { return true } },
+	{ Name: "Succubus", Requirement: function () { return true } }
 ];
 
 /**
@@ -70,7 +86,7 @@ function TitleGet(C) {
 }
 
 /**
- * CHecks, if the given title is forced a forced title like 'Club Slave' or 'Escaped Patient'
+ * Checks, if the given title is forced a forced title like 'Club Slave' or 'Escaped Patient'
  * @param {string} Title - The title to check
  * @returns {void} - Nothing
  */
@@ -78,6 +94,19 @@ function TitleIsForced(Title) {
 	if ((Title == null) || (Title == "") || (Title == "None")) return false;
 	for (let T = 0; T < TitleList.length; T++)
 		if ((Title == TitleList[T].Name) && (TitleList[T].Force != null) && TitleList[T].Force)
+			return true;
+	return false;
+}
+
+/**
+ * Checks, if the given title is earned a earned title is any title that doesn't always return true such as 'Switch', 'Doll' & 'Angel'
+ * @param {string} Title - The title to check
+ * @returns {void} - Nothing
+ */
+function TitleIsEarned(Title) {
+	if ((Title == null) || (Title == "") || (Title == "None")) return false;
+	for (let T = 0; T < TitleList.length; T++)
+		if ((Title == TitleList[T].Name) && (TitleList[T].Earned != null) && TitleList[T].Earned)
 			return true;
 	return false;
 }

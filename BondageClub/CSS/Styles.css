@@ -55,15 +55,62 @@ TextArea {
 	font-style: italic;
 	color: silver;
 }
-#TextAreaChatLog[data-colortheme=dark] {
-	background-color: #111;
-	color: #eee;
+#TextAreaChatLog[data-colortheme=dark], #TextAreaChatLog[data-colortheme="dark2"] {
+  background-color: #111;
+  color: #eee;
 }
 #TextAreaChatLog[data-colortheme=dark] .ChatMessageName {
-	text-shadow: 0.05em 0.05em #eee;
+  text-shadow: 0.05em 0.05em #eee;
 }
-#TextAreaChatLog[data-colortheme=dark] .ChatMessageWhisper {
-	color: #555;
+#TextAreaChatLog[data-colortheme=dark] .ChatMessageWhisper, #TextAreaChatLog[data-colortheme="dark2"] .ChatMessageWhisper {
+  color: #555;
+}
+#TextAreaChatLog[data-colortheme="dark2"], #TextAreaChatLog[data-colortheme="light2"] {
+  font-size: 1.6rem !important;
+}
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessage, #TextAreaChatLog[data-colortheme="light2"] .ChatMessage {
+  font-size: 1.4rem;
+  line-height: 1.4em;
+  padding: 0.1em;
+  padding-right: 2em;
+}
+#TextAreaChatLog[data-colortheme="light2"] .ChatMessage {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessage {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessageEmote,
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessageAction,
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessageActivity,
+#TextAreaChatLog[data-colortheme="light2"] .ChatMessageEmote,
+#TextAreaChatLog[data-colortheme="light2"] .ChatMessageAction,
+#TextAreaChatLog[data-colortheme="light2"] .ChatMessageActivity {
+  font-size: 0.8em;
+}
+#TextAreaChatLog[data-colortheme="light2"] .ChatMessageName {
+  text-shadow: 0 0 0.12em rgba(0, 0, 0, .5);
+}
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessageName {
+  text-shadow: 0 0 0.12em rgba(255, 255, 255, .4);
+}
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessage::before,
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessage::after,
+#TextAreaChatLog[data-colortheme="light2"] .ChatMessage::before,
+#TextAreaChatLog[data-colortheme="light2"] .ChatMessage::after {
+  position: absolute;
+  float: none;
+  line-height: 1;
+  font-size: 0.5em;
+  right: 0.2em;
+}
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessage::before,
+#TextAreaChatLog[data-colortheme="light2"] .ChatMessage::before {
+  top: 0.4em;
+}
+#TextAreaChatLog[data-colortheme="dark2"] .ChatMessage::after,
+#TextAreaChatLog[data-colortheme="light2"] .ChatMessage::after {
+  top: 1.6em;
 }
 #TextAreaChatLog[data-enterleave=smaller] .ChatMessageEnterLeave {
 	font-size: 0.5em;
@@ -182,4 +229,9 @@ TextArea {
 @font-face {
     font-family: 'Calligraffitti';
     src: url('../Fonts/Calligraffitti/Calligraffitti-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Saira Stencil One';
+  src: url('../Fonts/Saira Stencil One/SairaStencilOne-Regular.ttf');
 }

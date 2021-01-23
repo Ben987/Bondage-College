@@ -1,7 +1,7 @@
 "use strict";
 var FuturisticChastityBeltShockCooldownOrgasm = 15000 // 15 sec
 var FuturisticChastityBeltShockCooldownTamper = 1000 // 1 sec
-var FuturisticChastityBeltShockCooldownStruggle = 30000 // 30 sec
+var FuturisticChastityBeltShockCooldownStruggle = 15000 // 15 sec
 
 var InventoryItemPelvisFuturisticChastityBeltTamperZones = [
 	"ItemPelvis",
