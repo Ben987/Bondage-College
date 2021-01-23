@@ -361,7 +361,7 @@ function LoginResponse(C) {
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Game = C.Game;
-			Player.Description = (C.Description == null) ? "" : C.Description.substr(0, 1000);
+			Player.Description = (C.Description == null) ? "" : C.Description.substr(0, 10000);
 			Player.Creation = C.Creation;
 			Player.Wardrobe = CharacterDecompressWardrobe(C.Wardrobe);
 			WardrobeFixLength();
