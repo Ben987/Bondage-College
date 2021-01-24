@@ -1094,6 +1094,7 @@ ItemMisc,HighSecurityPadlock,High-Security Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
 ItemMisc,CombinationPadlock,Combination Padlock
 ItemMisc,PasswordPadlock,Password Lock
+ItemMisc,TimerPasswordPadlock,Timer Password Lock
 ItemMisc,OwnerPadlock,Owner Padlock
 ItemMisc,OwnerTimerPadlock,Owner Timer Padlock
 ItemMisc,LoversPadlock,Lovers Padlock

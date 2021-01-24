@@ -783,6 +783,7 @@ function InventoryUnlock(C, Item) {
 		delete Item.Property.Hint;
 		delete Item.Property.LockMemberNumber;
 		delete Item.Property.MemberNumberList;
+		delete Item.Property.CombinationNumber;
 		CharacterRefresh(C);
 	}
 }
