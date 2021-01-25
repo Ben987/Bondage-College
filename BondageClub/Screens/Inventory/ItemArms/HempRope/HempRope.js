@@ -30,7 +30,8 @@ const InventoryItemArmsHempRopeOptions = [
 		BondageLevel: 2,
 		Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "SimpleHogtie", Effect: ["Block", "Prone"], SetPose: ["Hogtied"], Difficulty: 2 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
+		SelfBlockCheck: true,
 	}, {
 		Name: "TightBoxtie",
 		BondageLevel: 3,
@@ -46,19 +47,22 @@ const InventoryItemArmsHempRopeOptions = [
 		BondageLevel: 4,
 		Prerequisite: ["NotMounted", "NotSuspended"],
 		Property: { Type: "KneelingHogtie", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Kneel", "BackElbowTouch"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		SelfBlockCheck: true,
 	}, {
 		Name: "Hogtied",
 		BondageLevel: 4,
 		Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		SelfBlockCheck: true,
 	}, {
 		Name: "AllFours",
 		BondageLevel: 6,
 		Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["AllFours"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		SelfBlockCheck: true,
 	}, {
 		Name: "SuspensionHogtied",
 		BondageLevel: 8,

@@ -127,8 +127,8 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 160,100,(Force her to serve drinks as a maid.),(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.),"SendOwnerRule(""LaborMaidDrinks"", ""Quest"")",CanServeDrink()
 160,,(Force her to serve drinks as a maid.),"(She needs to be a maid in the sorority, be able to talk and be able to walk to do that job for you.)",,!CanServeDrink()
 160,0,(Back to main menu.),(Main menu.),,
-170,100,(Release her from the slave collar.),(You remove her slave collar.),"SendRule(""CollarRelease"")","!GetOwnerRule(""ReleasedCollar"")"
-170,100,(Give her the slave collar.),(You lock the slave collar back on her.),"SendRule(""CollarWear"")","GetOwnerRule(""ReleasedCollar"")"
+170,100,(Release her from the slave collar.),(You remove her slave collar.),"SendOwnerRule(""CollarRelease"")","!GetOwnerRule(""ReleasedCollar"")"
+170,100,(Give her the slave collar.),(You lock the slave collar back on her.),"SendOwnerRule(""CollarWear"")","GetOwnerRule(""ReleasedCollar"")"
 170,0,(Back to main menu.),(Main menu.),,
 200,200,(Allow her to use lovers locks on herself.),(She will be able to use lovers locks on herself.),"SendLoverRule(""SelfLoverLockAllow"")","GetLoverRule(""BlockLoverLockSelf"")"
 200,200,(Block her from using lovers locks on herself.),(She will not be able to use lovers locks on herself anymore.),"SendLoverRule(""SelfLoverLockBlock"")","!GetLoverRule(""BlockLoverLockSelf"")"

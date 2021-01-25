@@ -3,13 +3,13 @@ var InventoryItemFeetOrnateAnkleCuffsOptions = [
 	{
 		Name: "None",
 		Property: {
-			Type: null, SetPose: null, Difficulty: null, Effect: null
+			Type: null, SetPose: null, Difficulty: null, Effect: null, FreezeActivePose: [],
 		}
 	},
 	{
 		Name: "Closed",
 		Property: {
-			Type: "Closed", Effect: ["Prone", "Freeze"], SetPose: ["LegsClosed"], Difficulty: 6
+			Type: "Closed", Effect: ["Prone", "Freeze"], SetPose: ["LegsClosed"], Difficulty: 6, FreezeActivePose: ["BodyLower"],
 		}
 	}
 ];

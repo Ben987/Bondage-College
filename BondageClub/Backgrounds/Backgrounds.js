@@ -179,6 +179,11 @@ var BackgroundsList = [
     { Name: "PoolBottom", Tag: [BackgroundsTagAquatic] },
     { Name: "LatexRoom", Tag: [BackgroundsTagIndoor, BackgroundsTagDungeon, BackgroundsTagAsylum] },
     { Name: "OutsideCells", Tag: [BackgroundsTagAsylum] },
+	{ Name: "WesternStreet", Tag: [BackgroundsTagOutdoor] },
+	{ Name: "Desert", Tag: [BackgroundsTagOutdoor] },
+	{ Name: "Ranch", Tag: [BackgroundsTagOutdoor] },
+	{ Name: "Wagons", Tag: [BackgroundsTagOutdoor] },
+	{ Name: "OutdoorPool2", Tag: [BackgroundsTagOutdoor, BackgroundsTagAquatic] },
 ];
 
 /**

@@ -65,13 +65,18 @@ function TimerInventoryRemove() {
 						delete Character[C].Appearance[A].Property.ShowTimer;
 						delete Character[C].Appearance[A].Property.EnableRandomInput;
 						delete Character[C].Appearance[A].Property.MemberNumberList;
+						delete Character[C].Appearance[A].Property.Password;
+						delete Character[C].Appearance[A].Property.CombinationNumber;
+						delete Character[C].Appearance[A].Property.LockSet;
+						delete Character[C].Appearance[A].Property.Hint;
+						
 						if (Character[C].Appearance[A].Property.Effect != null)
 							for (let E = 0; E < Character[C].Appearance[A].Property.Effect.length; E++)
 								if (Character[C].Appearance[A].Property.Effect[E] == "Lock")
 									Character[C].Appearance[A].Property.Effect.splice(E, 1);
 
 						// If we're removing a lock and we're in a chatroom, send a chatroom message
-						if (LockName && CurrentScreen === "ChatRoom") {
+						if (LockName && ServerPlayerIsInChatRoom()) {
 							var Dictionary = [
 								{Tag: "DestinationCharacterName", Text: Character[C].Name, MemberNumber: Character[C].MemberNumber},
 								{Tag: "FocusAssetGroup", AssetGroupName: Character[C].Appearance[A].Asset.Group.Name},

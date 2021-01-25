@@ -30,7 +30,8 @@ const HempRopeFeetOptions = [
 		Name: "BedSpreadEagle",
 		BondageLevel: 1,
 		Property: { Type: "BedSpreadEagle", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemLegs", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemLegs", "ItemBoots"], SetPose: ["Spread"], Difficulty: 5 },
-		Prerequisite: ["OnBed", "NoItemLegs"]
+		Prerequisite: ["OnBed", "NoItemLegs", "LegsOpen"],
+		SelfBlockCheck: true,
 	}
 ];
 

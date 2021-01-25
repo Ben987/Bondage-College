@@ -8,6 +8,7 @@ function InventoryItemNeckFuturisticCollarLoad() {
 	} else {
 		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { OpenPermission: false };
 		if (DialogFocusItem.Property.OpenPermission == null) DialogFocusItem.Property.OpenPermission = false;
+		if (DialogFocusItem.Property.BlockRemotes == null) DialogFocusItem.Property.BlockRemotes = false;
 	}
 }
 
@@ -20,12 +21,14 @@ function InventoryItemNeckFuturisticCollarDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawRect(1387, 175, 225, 275, "white");
-		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 177, 221, 221);
-		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 425, 221, "black");
+		DrawRect(1407, 175, 185, 235, "white");
+		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1409, 177, 181, 181);
+		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 385, 181, "black");
 		
-		DrawButton(1125, 475, 64, 64, "", "White", DialogFocusItem.Property.OpenPermission ? "Icons/Checked.png" : "");
-		DrawText(DialogFind(Player, "FuturisticCollarOpenPermission"), 1550, 500, "White", "Gray");
+		DrawButton(1125, 425, 64, 64, "", "White", DialogFocusItem.Property.OpenPermission ? "Icons/Checked.png" : "");
+		DrawText(DialogFind(Player, "FuturisticCollarOpenPermission"), 1550, 450, "White", "Gray");
+		DrawButton(1125, 495, 64, 64, "", "White", DialogFocusItem.Property.BlockRemotes ? "Icons/Checked.png" : "");
+		DrawText(DialogFind(Player, "FuturisticCollarBlockRemotes"), 1450, 520, "White", "Gray");
 		
 		var FuturisticCollarStatus = "NoItems"
 		var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
@@ -78,7 +81,8 @@ function InventoryItemNeckFuturisticCollarClick() {
 	} else {
 		
 		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemNeckFuturisticCollarExit();
-		else if (MouseIn(1125, 475, 64, 64)) InventoryItemNeckFuturisticCollarTogglePermission(C, DialogFocusItem);
+		else if (MouseIn(1125, 425, 64, 64)) InventoryItemNeckFuturisticCollarTogglePermission(C, DialogFocusItem);
+		else if (MouseIn(1125, 495, 64, 64)) InventoryItemNeckFuturisticCollarToggleRemotes(C, DialogFocusItem);
 		else {
 		
 			var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
@@ -287,6 +291,54 @@ function InventoryItemNeckFuturisticCollarTogglePermission(C, Item) {
 
 			Message = "FuturisticCollarSetOpenPermission";
 			if (Item.Property.OpenPermission) Message = Message + "On";
+			else Message = Message + "Off";
+			
+			ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
+		}
+	}
+}
+
+
+function InventoryItemNeckFuturisticCollarToggleRemotes(C, Item) {
+	if (Item.Property && Item.Property.BlockRemotes != null) {
+		Item.Property.BlockRemotes = !Item.Property.BlockRemotes
+		
+		// Default the previous Property and Type to the first option if not found on the current item
+		var PreviousProperty = DialogFocusItem.Property;
+
+		// Create a new Property object based on the previous one
+		var NewProperty = Object.assign({}, PreviousProperty);
+		
+		
+		NewProperty.Effect = [];
+
+		// If the item is locked, ensure it has the "Lock" effect
+		if (NewProperty.LockedBy && !(NewProperty.Effect || []).includes("Lock")) {
+			NewProperty.Effect = (NewProperty.Effect || []);
+			NewProperty.Effect.push("Lock");
+		}
+		
+		// If the item is locked, ensure it has the "Lock" effect
+		if (Item.Property.BlockRemotes) {
+			NewProperty.Effect = (NewProperty.Effect || []);
+			NewProperty.Effect.push("BlockRemotes");
+		}
+
+		DialogFocusItem.Property = NewProperty;
+		
+		
+		ChatRoomCharacterUpdate(C);
+		CharacterRefresh(C, true);
+		
+		if (CurrentScreen == "ChatRoom")	{
+			var Message;
+			var Dictionary = [
+				{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+				{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
+			];
+
+			Message = "FuturisticCollarSetBlockRemotes";
+			if (Item.Property.BlockRemotes) Message = Message + "On";
 			else Message = Message + "Off";
 			
 			ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
