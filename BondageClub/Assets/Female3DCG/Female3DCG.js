@@ -1717,9 +1717,7 @@ var AssetFemale3DCG = [
 					{ Name: "Mesh", AllowColorize: true, ParentGroup: null, Priority: 15,},
 					{ Name: "Display2", AllowColorize: true, CopyLayerColor: "Display", ParentGroup: null,},
 					{ Name: "Band2", AllowColorize: true, CopyLayerColor: "Band" },
-					{ Name: "Mesh2", AllowColorize: true, CopyLayerColor: "Mesh", ParentGroup: null,},
 					
-					, Priority: 15, 
 				]
 			},
 			{ Name: "Corset3", Fetish: ["Lingerie"], Priority: 22, Value: 25, Difficulty: 8, Time: 15, RemoveTime: 10, AllowLock: true, BuyGroup: "Corset3", Prerequisite: "AccessTorso", Hide: ["ItemNipples", "ItemNipplesPiercings"] },
