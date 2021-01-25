@@ -88,6 +88,9 @@ const AssetType = {
 	AllowBlock: "[String]",
 	AllowType: "[String]",
 	DefaultColor: "String | [String]",
+	Opacity: "Number",
+	MinOpacity: "Number",
+	MaxOpacity: "Number",
 	Audio: "String",
 	Category: "[String]",
 	Fetish: "[String]",
@@ -134,7 +137,11 @@ const AssetLayerType = {
 	Alpha: "[{ Group: Maybe [String], Pose: Maybe [String], Masks: [(Number, Number, Number, Number)] }]",
 	Left: "Number",
 	Top: "Number",
-	HideAs: "{ Group: String, Asset: String }"
+	HideAs: "{ Group: String, Asset: String }",
+	HasImage: "Boolean",
+	Opacity: "Number",
+	MinOpacity: "Number",
+	MaxOpacity: "Number"
 };
 
 module.exports = { AssetGroupType, AssetType, AssetLayerType };
