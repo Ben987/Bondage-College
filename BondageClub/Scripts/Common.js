@@ -301,12 +301,29 @@ function CommonDynamicFunctionParams(FunctionName) {
  *  function will not log to console if the provided function name does not exist as a global function.
  * @param {string} FunctionName - The name of the global function to call
  * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
  */
 function CommonCallFunctionByName(FunctionName/*, ...args */) {
 	var Function = window[FunctionName];
 	if (typeof Function === "function") {
 		var args = Array.prototype.slice.call(arguments, 1);
 		return Function.apply(null, args);
+	}
+}
+
+/**
+ * Behaves exactly like CommonCallFunctionByName, but logs a warning if the function name is invalid.
+ * @param {string} FunctionName - The name of the global function to call
+ * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
+ */
+function CommonCallFunctionByNameWarn(FunctionName/*, ...args */) {
+	var Function = window[FunctionName];
+	if (typeof Function === "function") {
+		var args = Array.prototype.slice.call(arguments, 1);
+		return Function.apply(null, args);
+	} else {
+		console.warn(`Attempted to call invalid function "${FunctionName}"`);
 	}
 }
 

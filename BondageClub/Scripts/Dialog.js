@@ -599,7 +599,9 @@ function DialogCanUseRemote(C, Item) {
 		// If the item is lover-only, the player must have the appropriate remote, be a lover of the character, and match the member number on the item
 		return C.IsLoverOfPlayer() && Item.Property && Item.Property.ItemMemberNumber === Player.MemberNumber && InventoryAvailable(Player, "LoversVibratorRemote", "ItemVulva");
 	} else {
-		// Otherwise, the player must have a vibrator remote
+		
+		// Otherwise, the player must have a vibrator remote and some items can block remotes
+		if (C.Effect.indexOf("BlockRemotes") >= 0) return false;	
 		return InventoryAvailable(Player, "VibratorRemote", "ItemVulva");
 	}
 }

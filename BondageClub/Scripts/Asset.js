@@ -141,6 +141,9 @@ function AssetAdd(NewAsset) {
 		AllowBlock: NewAsset.AllowBlock,
 		AllowType: NewAsset.AllowType,
 		DefaultColor: NewAsset.DefaultColor,
+		Opacity: AssetParseOpacity(NewAsset.Opacity),
+		MinOpacity: typeof NewAsset.MinOpacity === "number" ? AssetParseOpacity(NewAsset.MinOpacity) : 1,
+		MaxOpacity: typeof NewAsset.MaxOpacity === "number" ? AssetParseOpacity(NewAsset.MaxOpacity) : 1,
 		Audio: NewAsset.Audio,
 		Category: NewAsset.Category,
 		Fetish: NewAsset.Fetish,
@@ -171,6 +174,8 @@ function AssetAdd(NewAsset) {
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose :
 			Array.isArray(AssetCurrentGroup.FreezeActivePose) ? AssetCurrentGroup.FreezeActivePose : [],
 	}
+	if (A.MinOpacity > A.Opacity) A.MinOpacity = A.Opacity;
+	if (A.MaxOpacity < A.Opacity) A.MaxOpacity = A.Opacity;
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	AssetAssignColorIndices(A);
 	// Unwearable assets are not visible but can be overwritten
@@ -199,7 +204,7 @@ function AssetBuildLayer(AssetDefinition, A) {
  * @return {Layer} - A Layer object representing the drawable properties of the given layer
  */
 function AssetMapLayer(Layer, AssetDefinition, A, I) {
-	return {
+	const L = {
 		Name: Layer.Name || null,
 		AllowColorize: AssetLayerAllowColorize(Layer, AssetDefinition),
 		CopyLayerColor: Layer.CopyLayerColor || null,
@@ -216,7 +221,21 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		DrawingLeft: Layer.Left,
 		DrawingTop: Layer.Top,
 		HideAs: Layer.HideAs,
+		HasImage: typeof Layer.HasImage === "boolean" ? Layer.HasImage : true,
+		Opacity: typeof Layer.Opacity === "number" ? AssetParseOpacity(Layer.Opacity) : 1,
+		MinOpacity: typeof Layer.MinOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MinOpacity,
+		MaxOpacity: typeof Layer.MaxOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MaxOpacity,
 	};
+	if (L.MinOpacity > L.Opacity) L.MinOpacity = L.Opacity;
+	if (L.MaxOpacity < L.Opacity) L.MaxOpacity = L.Opacity;
+	return L;
+}
+
+function AssetParseOpacity(opacity) {
+	if (typeof opacity === "number" && !isNaN(opacity)) {
+		return Math.max(0, Math.min(1, opacity));
+	}
+	return 1;
 }
 
 /**
