@@ -152,6 +152,18 @@ const InventoryItemHandsSpankingToysOptions = [
 		Name: "LongSock",
 		Property: { Type: "LongSock" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Baguette",
+		Property: { Type: "Baguette" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Panties",
+		Property: { Type: "Panties" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "TapeRoll",
+		Property: { Type: "TapeRoll" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
 	},
 ];
 
