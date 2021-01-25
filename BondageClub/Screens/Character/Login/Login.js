@@ -319,7 +319,7 @@ function LoginDifficulty() {
 function LoginExtremeItemSettings() {
 	Player.BlockItems = [];
 	// If the permissions are "Owner/Lover/Whitelist" don't limit the locks so that whitelist can use them
-	Player.LimitedItems = (Player.ItemPermission == 3) ? [] : [{ Name: "CombinationPadlock", Group: "ItemMisc", Type: null }, { Name: "PasswordPadlock", Group: "ItemMisc", Type: null }, {Name: "TimerPasswordPadlock", Group: "ItemMisc", Type: null}];
+	Player.LimitedItems = (Player.ItemPermission == 3) ? [] : MainHallStrongLocks;
 	Player.HiddenItems = [];
 }
 
