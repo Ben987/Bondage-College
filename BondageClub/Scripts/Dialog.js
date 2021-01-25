@@ -560,7 +560,9 @@ function DialogCanUseRemote(C, Item) {
 		// If the item is lover-only, the player must have the appropriate remote, be a lover of the character, and match the member number on the item
 		return C.IsLoverOfPlayer() && Item.Property && Item.Property.ItemMemberNumber === Player.MemberNumber && InventoryAvailable(Player, "LoversVibratorRemote", "ItemVulva");
 	} else {
-		// Otherwise, the player must have a vibrator remote
+		
+		// Otherwise, the player must have a vibrator remote and some items can block remotes
+		if (C.Effect.indexOf("BlockRemotes") >= 0) return false;	
 		return InventoryAvailable(Player, "VibratorRemote", "ItemVulva");
 	}
 }
@@ -1215,7 +1217,7 @@ function DialogItemClick(ClickItem) {
 function DialogClick() {
 
 	// If the user clicked the Up button, move the character up to the top of the screen
-	if ((CurrentCharacter.HeightModifier < -90) && (CurrentCharacter.FocusGroup != null) && (MouseX >= 510) && (MouseX < 600) && (MouseY >= 25) && (MouseY < 115)) {
+	if ((CurrentCharacter.HeightModifier < -90) && (CurrentCharacter.FocusGroup != null) && MouseIn (510,50,90,90)) {
 		CharacterAppearanceForceUpCharacter = CurrentCharacter.MemberNumber;
 		CurrentCharacter.HeightModifier = 0;
 		return;
@@ -1227,7 +1229,7 @@ function DialogClick() {
 	}
 
 	// If the user clicked on the interaction character or herself, we check to build the item menu
-	if ((CurrentCharacter.AllowItem || (MouseX < 500)) && (MouseX >= 0) && (MouseX <= 1000) && (MouseY >= 0) && (MouseY < 1000) && ((CurrentCharacter.ID != 0) || (MouseX > 500)) && (DialogIntro() != "") && DialogAllowItemScreenException()) {
+	if ((CurrentCharacter.AllowItem || (MouseX < 500)) && MouseIn(0,0,1000,1000) && ((CurrentCharacter.ID != 0) || (MouseX > 500)) && (DialogIntro() != "") && DialogAllowItemScreenException()) {
 		DialogLeaveItemMenu();
 		DialogLeaveFocusItem();
 		var C = (MouseX < 500) ? Player : CurrentCharacter;
@@ -1763,7 +1765,7 @@ function DialogDraw() {
 
 		// Draw the 'Up' reposition button if some zones are offscreen
 		if (CurrentCharacter != null && CurrentCharacter.HeightModifier != null && CurrentCharacter.HeightModifier < -90 && CurrentCharacter.FocusGroup != null)
-			DrawButton(510, 25, 90, 90, "", "White", "Icons/Up.png", DialogFind(Player, "UpPosition"));
+			DrawButton(510, 50, 90, 90, "", "White", "Icons/Up.png", DialogFind(Player, "UpPosition"));
 
 	} else {
 

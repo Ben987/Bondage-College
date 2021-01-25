@@ -454,10 +454,10 @@ function CharacterAppearanceBuildCanvas(C) {
 	CommonDrawAppearanceBuild(C, {
 		clearRect: (x, y, w, h) => C.Canvas.getContext("2d").clearRect(x, y, w, h),
 		clearRectBlink: (x, y, w, h) => C.CanvasBlink.getContext("2d").clearRect(x, y, w, h),
-		drawImage: (src, x, y, alphaMasks) => DrawImageCanvas(src, C.Canvas.getContext("2d"), x, y, alphaMasks),
-		drawImageBlink: (src, x, y, alphaMasks) => DrawImageCanvas(src, C.CanvasBlink.getContext("2d"), x, y, alphaMasks),
-		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks) => DrawImageCanvasColorize(src, C.Canvas.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks),
-		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks) => DrawImageCanvasColorize(src, C.CanvasBlink.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks),
+		drawImage: (src, x, y, alphaMasks, opacity) => DrawImageCanvas(src, C.Canvas.getContext("2d"), x, y, alphaMasks, opacity),
+		drawImageBlink: (src, x, y, alphaMasks, opacity) => DrawImageCanvas(src, C.CanvasBlink.getContext("2d"), x, y, alphaMasks, opacity),
+		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks, opacity) => DrawImageCanvasColorize(src, C.Canvas.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity),
+		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks, opacity) => DrawImageCanvasColorize(src, C.CanvasBlink.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity),
 		drawCanvas: (Img, x, y, alphaMasks) => DrawCanvas(Img, C.Canvas.getContext("2d"), x, y, alphaMasks),
 		drawCanvasBlink: (Img, x, y, alphaMasks) => DrawCanvas(Img, C.CanvasBlink.getContext("2d"), x, y, alphaMasks),
 	});

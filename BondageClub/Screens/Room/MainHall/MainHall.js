@@ -14,7 +14,7 @@ var MainHallMaidWasCalledManually = false;
 
 var MainHallBeingPunished = false;
 var firstFrame = false;
-var MainHallRemoveLockTypes = ["CombinationPadlock", "PasswordPadlock"]
+var MainHallRemoveLockTypes = ["CombinationPadlock", "PasswordPadlock", "TimerPasswordPadlock"]
 
 var MainHallPunishmentList = [
 	{ItemMouth:"BallGag", ItemHead: "LeatherBlindfold", ItemHands: "DuctTape"},

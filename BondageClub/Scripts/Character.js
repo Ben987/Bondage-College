@@ -692,10 +692,14 @@ function CharacterRefresh(C, Push) {
 	if (Current && C.ID == Current.ID) {
 		if (DialogFocusItem && DialogFocusItem.Asset) {
 			if (!DialogFocusItem.Asset.IsLock) {
-				DialogFocusItem = C.Appearance.find(Item =>
+				let DFI = C.Appearance.find(Item =>
 					Item.Asset.Name == DialogFocusItem.Asset.Name && Item.Asset.Group.Name == DialogFocusItem.Asset.Group.Name
 				);
-				if (DialogFocusItem && DialogFocusItem.Asset.Extended && typeof window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"] === "function") window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"]();
+				if (!DFI) DialogLeaveFocusItem();
+				else {
+					DialogFocusItem = DFI;
+					if (DialogFocusItem && DialogFocusItem.Asset.Extended && typeof window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"] === "function") window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"]();
+				}
 			} else {
 				var DFSI = DialogFocusSourceItem && DialogFocusSourceItem.Asset && C.Appearance.find(Item =>
 					Item.Asset.Name == DialogFocusSourceItem.Asset.Name && Item.Asset.Group.Name == DialogFocusSourceItem.Asset.Group.Name
