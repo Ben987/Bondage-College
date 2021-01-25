@@ -21,15 +21,15 @@ function InventoryItemNeckFuturisticCollarDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawRect(1407, 175, 185, 235, "white");
-		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1409, 177, 181, 181);
-		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 385, 181, "black");
+		DrawRect(1407, 145, 185, 235, "white");
+		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1409, 147, 181, 181);
+		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 355, 181, "black");
 		
 
 		DrawButton(1125, 395, 64, 64, "", "White", DialogFocusItem.Property.OpenPermission ? "Icons/Checked.png" : "");
-		DrawText(DialogFind(Player, "FuturisticCollarOpenPermission"), 1550, 450, "White", "Gray");
+		DrawText(DialogFind(Player, "FuturisticCollarOpenPermission"), 1550, 425, "White", "Gray");
 		DrawButton(1125, 465, 64, 64, "", "White", DialogFocusItem.Property.BlockRemotes ? "Icons/Checked.png" : "");
-		DrawText(DialogFind(Player, "FuturisticCollarBlockRemotes"), 1450, 520, "White", "Gray");
+		DrawText(DialogFind(Player, "FuturisticCollarBlockRemotes"), 1450, 495, "White", "Gray");
 		
 		var FuturisticCollarStatus = "NoItems"
 		var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
