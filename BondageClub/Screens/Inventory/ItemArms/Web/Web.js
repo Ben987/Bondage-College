@@ -48,6 +48,7 @@ var InventoryItemArmsWebOptions = [
 			Hide: ["Cloth", "ClothLower", "ClothAccessory", "Necklace", "Shoes", "Socks"],
 			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemDevices"],
 		},
+		SelfBlockCheck: true,
 	},
 	{
 		Name: "Suspended",
@@ -90,6 +91,7 @@ var InventoryItemArmsWebOptions = [
 			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemDevices"],
 			OverrideHeight: { Height: 0, Priority: 51, HeightRatioProportion: 0 },
 		},
+		SelfBlockCheck: true,
 	},
 ];
 
@@ -116,38 +118,6 @@ function InventoryItemArmsWebDraw() {
  */
 function InventoryItemArmsWebClick() {
 	ExtendedItemClick(InventoryItemArmsWebOptions);
-}
-
-/**
- * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
- * @param {Character} C - The character to check the options for
- * @param {Option} Option - The next option to use on the character
- * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
- */
-function InventoryItemArmsWebValidate(C, Option) {
-	var Allowed = "";
-
-	// Validates some prerequisites before allowing more advanced poses
-	if (Option.Prerequisite) {
-
-		// Remove the web temporarily for prerequisite-checking - we should still be able to change type if the web is the only thing that
-		// fails the prerequisite check
-		var Web = InventoryGet(C, "ItemArms");
-		InventoryRemove(C, "ItemArms");
-
-		if (!InventoryAllow(C, Option.Prerequisite, true)) {
-			Allowed = DialogText;
-		}
-
-		// Re-add the web
-		var DifficultyFactor = Web.Difficulty - Web.Asset.Difficulty;
-		CharacterAppearanceSetItem(C, "ItemArms", Web.Asset, Web.Color, DifficultyFactor, null, false);
-		InventoryGet(C, "ItemArms").Property = Web.Property;
-		CharacterRefresh(C);
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-
-	}
-	return Allowed;
 }
 
 /**

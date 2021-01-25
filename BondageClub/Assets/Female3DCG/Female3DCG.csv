@@ -652,6 +652,7 @@ ItemButt,BunnyTailVibePlug,Bunny Tail Vibe Plug
 ItemButt,EggVibePlugXXL,Egg Vibe Plug XXL
 ItemButt,ShockPlug,Shock Plug
 ItemButt,CowTail,Cow Tail
+ItemButt,HollowButtPlug,Hollow Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -1092,6 +1093,7 @@ ItemMisc,IntricatePadlock,Intricate Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
 ItemMisc,CombinationPadlock,Combination Padlock
 ItemMisc,PasswordPadlock,Password Lock
+ItemMisc,TimerPasswordPadlock,Timer Password Lock
 ItemMisc,OwnerPadlock,Owner Padlock
 ItemMisc,OwnerTimerPadlock,Owner Timer Padlock
 ItemMisc,LoversPadlock,Lovers Padlock
@@ -1161,6 +1163,8 @@ ItemAddon,BedRopes,Bed Ropes
 ItemAddon,BedStraps,Bed Straps
 ItemAddon,BedTape,Bed Tape
 ItemAddon,BedChains,Bed Chains
+ItemAddon,CeilingRope,Ceiling Rope
+ItemAddon,CeilingChain,Ceiling Chain
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels

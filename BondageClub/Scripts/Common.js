@@ -173,16 +173,42 @@ function CommonReadCSV(Array, Path, Screen, File) {
 }
 
 /**
- * AJAX utility to get a file and return its content
+ * AJAX utility to get a file and return its content. By default will retry requests 10 times
  * @param {string} Path - Path of the resource to request
  * @param {function} Callback - Callback to execute once the resource is received
+ * @param {number} [RetriesLeft] - How many more times to retry if the request fails - after this hits zero, an error will be logged
  * @returns {void} - Nothing
  */
-function CommonGet(Path, Callback) {
+function CommonGet(Path, Callback, RetriesLeft) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", Path);
-	xhr.onreadystatechange = function () { if (this.readyState == 4) Callback.bind(this)(xhr); };
+	xhr.onloadend = function() {
+		// For non-error responses, call the callback
+		if (this.status < 400) Callback.bind(this)(xhr);
+		// Otherwise, retry
+		else CommonGetRetry(Path, Callback, RetriesLeft);
+	};
+	xhr.onerror = function() { CommonGetRetry(Path, Callback, RetriesLeft); };
 	xhr.send(null);
+}
+
+/**
+ * Retry handler for CommonGet requests. Exponentially backs off retry attempts up to a limit of 1 minute. By default,
+ * retries up to a maximum of 10 times.
+ * @param {string} Path - The path of the resource to request
+ * @param {function} Callback - Callback to execute once the resource is received
+ * @param {number} [RetriesLeft] - How many more times to retry - after this hits zero, an error will be logged
+ * @returns {void} - Nothing
+ */
+function CommonGetRetry(Path, Callback, RetriesLeft) {
+	if (typeof RetriesLeft !== "number") RetriesLeft = 10;
+	if (RetriesLeft <= 0) {
+		console.error(`GET request to ${Path} failed - no more retries`);
+	} else {
+		const retrySeconds = Math.min(Math.pow(2, Math.max(0, 10 - RetriesLeft)), 60);
+		console.warn(`GET request to ${Path} failed - retrying in ${retrySeconds} second${retrySeconds === 1 ? "" : "s"}...`);
+		setTimeout(() => CommonGet(Path, Callback, RetriesLeft - 1), retrySeconds * 1000);
+	}
 }
 
 /**
@@ -276,12 +302,29 @@ function CommonDynamicFunctionParams(FunctionName) {
  *  function will not log to console if the provided function name does not exist as a global function.
  * @param {string} FunctionName - The name of the global function to call
  * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
  */
 function CommonCallFunctionByName(FunctionName/*, ...args */) {
 	var Function = window[FunctionName];
 	if (typeof Function === "function") {
 		var args = Array.prototype.slice.call(arguments, 1);
 		return Function.apply(null, args);
+	}
+}
+
+/**
+ * Behaves exactly like CommonCallFunctionByName, but logs a warning if the function name is invalid.
+ * @param {string} FunctionName - The name of the global function to call
+ * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
+ */
+function CommonCallFunctionByNameWarn(FunctionName/*, ...args */) {
+	var Function = window[FunctionName];
+	if (typeof Function === "function") {
+		var args = Array.prototype.slice.call(arguments, 1);
+		return Function.apply(null, args);
+	} else {
+		console.warn(`Attempted to call invalid function "${FunctionName}"`);
 	}
 }
 

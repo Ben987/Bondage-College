@@ -239,13 +239,9 @@ ItemDevicesCryoCapsuleInside,Bottom
 ItemDevicesCryoCapsuleFrame,Frame
 ItemDevicesCryoCapsuleOpen,Lid (open)
 ItemDevicesCryoCapsuleClosed,Lid (closed)
-ItemAddonCoversOuter,Outer
-ItemAddonCoversInner,Inner
 ItemDevicesCageFrame,Frame
 ItemDevicesCageMesh,Mesh
 ItemDevicesCageTint,Tint
-ItemNoseNoseHookBand,Strap
-ItemNoseNoseHookHook,Hook
 ItemDevicesX-CrossCross,Frame
 ItemDevicesX-CrossPadding,Padding
 ItemDevicesChangingTableFrame,Frame
@@ -253,8 +249,14 @@ ItemDevicesChangingTableTable,Tabletop
 ItemDevicesConcealingCloakFront,Cloak
 ItemDevicesConcealingCloakStrap,Straps
 ItemDevicesTransportWoodenBoxBox,Box
-ItemDevicesTransportWoodenBoxWheelholders,Wheel Holders 
+ItemDevicesTransportWoodenBoxWheelholders,Wheel Holders
 ItemDevicesTransportWoodenBoxWheels,Wheels
+ItemDevicesWoodenBoxBack,Wood
+ItemDevicesWoodenBoxText,Text
+ItemAddonCoversOuter,Outer
+ItemAddonCoversInner,Inner
+ItemNoseNoseHookBand,Strap
+ItemNoseNoseHookHook,Hook
 ItemHoodPumpkinHeadFront,Front
 ItemHoodPumpkinHeadBack,Back
 ItemHoodLatexHoodOpenHairHair,Hair
