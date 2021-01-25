@@ -124,6 +124,10 @@ const InventoryItemHandsSpankingToysOptions = [
 		Name: "Sword",
 		Property: { Type: "Sword" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
+	}, {
+		Name: "Spatula",
+		Property: { Type: "Spatula" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
 	},
 ];
 
