@@ -1010,7 +1010,7 @@ function DialogLockPickProgressStart(C, Item) {
 		// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to pick)
 		var S = 0;
 		S = S + SkillGetWithRatio("LockPicking"); // Add the player evasion level (modified by the effectiveness ratio)
-		if (lock.Asset.PickDifficulty != null) {
+		if (lock.Asset.PickDifficulty && lock.Asset.PickDifficulty > 0) {
 			S = S - lock.Asset.PickDifficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
 			LockRating = lock.Asset.PickDifficulty // Some features of the minigame are independent of the relative skill level
 		}
