@@ -164,6 +164,10 @@ const InventoryItemHandsSpankingToysOptions = [
 		Name: "TapeRoll",
 		Property: { Type: "TapeRoll" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Spatula",
+		Property: { Type: "Spatula" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
 	},
 ];
 

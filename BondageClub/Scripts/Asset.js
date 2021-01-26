@@ -63,7 +63,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		Block: NewAsset.Block,
 		Zone: NewAsset.Zone,
 		SetPose: NewAsset.SetPose,
-		AllowPose: NewAsset.AllowPose,
+		AllowPose: Array.isArray(NewAsset.AllowPose) ? NewAsset.AllowPose : [],
 		AllowExpression: NewAsset.AllowExpression,
 		Effect: NewAsset.Effect,
 		MirrorGroup: (NewAsset.MirrorGroup == null) ? "" : NewAsset.MirrorGroup,
@@ -105,13 +105,16 @@ function AssetAdd(NewAsset) {
 		HideItemExclude: NewAsset.HideItemExclude || [],
 		Require: NewAsset.Require,
 		SetPose: (NewAsset.SetPose == null) ? AssetCurrentGroup.SetPose : NewAsset.SetPose,
-		AllowPose: (NewAsset.AllowPose == null) ? AssetCurrentGroup.AllowPose : NewAsset.AllowPose,
+		AllowPose: Array.isArray(NewAsset.AllowPose) ? NewAsset.AllowPose : AssetCurrentGroup.AllowPose,
+		HideForPose: Array.isArray(NewAsset.HideForPose) ? NewAsset.HideForPose : [],
+		OverrideAllowPose: NewAsset.OverrideAllowPose,
 		AllowActivePose: (NewAsset.AllowActivePose == null) ? AssetCurrentGroup.AllowActivePose : NewAsset.AllowActivePose,
 		WhitelistActivePose: (NewAsset.WhitelistActivePose == null) ? AssetCurrentGroup.WhitelistActivePose : NewAsset.WhitelistActivePose,
 		Value: (NewAsset.Value == null) ? 0 : NewAsset.Value,
 		Difficulty: (NewAsset.Difficulty == null) ? 0 : NewAsset.Difficulty,
 		SelfBondage: (NewAsset.SelfBondage == null) ? 0 : NewAsset.SelfBondage,
 		SelfUnlock: (NewAsset.SelfUnlock == null) ? true : NewAsset.SelfUnlock,
+		ExclusiveUnlock: (NewAsset.ExclusiveUnlock == null) ? true : NewAsset.ExclusiveUnlock,
 		Random: (NewAsset.Random == null) ? true : NewAsset.Random,
 		RemoveAtLogin: (NewAsset.RemoveAtLogin == null) ? false : NewAsset.RemoveAtLogin,
 		WearTime: (NewAsset.Time == null) ? 0 : NewAsset.Time,
@@ -130,6 +133,8 @@ function AssetAdd(NewAsset) {
 		AlwaysInteract: (NewAsset.AlwaysInteract == null) ? false : NewAsset.AlwaysInteract,
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
+		IsPickable: (NewAsset.IsPickable == null) ? false : NewAsset.IsPickable,
+		PickDifficulty: (NewAsset.PickDifficulty == null) ? false : NewAsset.PickDifficulty,
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
 		LoverOnly: (NewAsset.LoverOnly == null) ? false : NewAsset.LoverOnly,
 		ExpressionTrigger: NewAsset.ExpressionTrigger,
@@ -138,6 +143,9 @@ function AssetAdd(NewAsset) {
 		AllowBlock: NewAsset.AllowBlock,
 		AllowType: NewAsset.AllowType,
 		DefaultColor: NewAsset.DefaultColor,
+		Opacity: AssetParseOpacity(NewAsset.Opacity),
+		MinOpacity: typeof NewAsset.MinOpacity === "number" ? AssetParseOpacity(NewAsset.MinOpacity) : 1,
+		MaxOpacity: typeof NewAsset.MaxOpacity === "number" ? AssetParseOpacity(NewAsset.MaxOpacity) : 1,
 		Audio: NewAsset.Audio,
 		Category: NewAsset.Category,
 		Fetish: NewAsset.Fetish,
@@ -168,6 +176,8 @@ function AssetAdd(NewAsset) {
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose :
 			Array.isArray(AssetCurrentGroup.FreezeActivePose) ? AssetCurrentGroup.FreezeActivePose : [],
 	}
+	if (A.MinOpacity > A.Opacity) A.MinOpacity = A.Opacity;
+	if (A.MaxOpacity < A.Opacity) A.MaxOpacity = A.Opacity;
 	A.Layer = AssetBuildLayer(NewAsset, A);
 	AssetAssignColorIndices(A);
 	// Unwearable assets are not visible but can be overwritten
@@ -196,7 +206,7 @@ function AssetBuildLayer(AssetDefinition, A) {
  * @return {Layer} - A Layer object representing the drawable properties of the given layer
  */
 function AssetMapLayer(Layer, AssetDefinition, A, I) {
-	return {
+	const L = {
 		Name: Layer.Name || null,
 		AllowColorize: AssetLayerAllowColorize(Layer, AssetDefinition),
 		CopyLayerColor: Layer.CopyLayerColor || null,
@@ -213,7 +223,21 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		DrawingLeft: Layer.Left,
 		DrawingTop: Layer.Top,
 		HideAs: Layer.HideAs,
+		HasImage: typeof Layer.HasImage === "boolean" ? Layer.HasImage : true,
+		Opacity: typeof Layer.Opacity === "number" ? AssetParseOpacity(Layer.Opacity) : 1,
+		MinOpacity: typeof Layer.MinOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MinOpacity,
+		MaxOpacity: typeof Layer.MaxOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MaxOpacity,
 	};
+	if (L.MinOpacity > L.Opacity) L.MinOpacity = L.Opacity;
+	if (L.MaxOpacity < L.Opacity) L.MaxOpacity = L.Opacity;
+	return L;
+}
+
+function AssetParseOpacity(opacity) {
+	if (typeof opacity === "number" && !isNaN(opacity)) {
+		return Math.max(0, Math.min(1, opacity));
+	}
+	return 1;
 }
 
 /**

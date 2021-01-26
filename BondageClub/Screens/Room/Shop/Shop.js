@@ -167,7 +167,7 @@ function ShopClick() {
 				// If the item isn't already owned and the player has enough money, we buy it
 				if (InventoryAvailable(Player, ShopCart[A].Name, ShopCart[A].Group.Name)) ShopText = TextGet("AlreadyOwned");
 				else if (ShopCart[A].Value > Player.Money) ShopText = TextGet("NotEnoughMoney");
-				else if (LogQuery("BlockKey", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && ((ShopCart[A].Name == "MetalCuffsKey") || (ShopCart[A].Name == "MetalPadlockKey") || (ShopCart[A].Name == "IntricatePadlockKey"))) ShopText = TextGet("CannotSellKey");
+				else if (LogQuery("BlockKey", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && ((ShopCart[A].Name == "Lockpicks") || (ShopCart[A].Name == "MetalCuffsKey") || (ShopCart[A].Name == "MetalPadlockKey") || (ShopCart[A].Name == "IntricatePadlockKey") || (ShopCart[A].Name == "HighSecurityPadlockKey"))) ShopText = TextGet("CannotSellKey");
 				else if (LogQuery("BlockRemote", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (ShopCart[A].Name == "VibratorRemote" || ShopCart[A].Name == "LoversVibratorRemote")) ShopText = TextGet("CannotSellRemote");
 				else {
 

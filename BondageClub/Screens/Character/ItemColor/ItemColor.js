@@ -686,3 +686,21 @@ function ItemColorReset() {
 	ItemColorLayerNames = null;
 	ItemColorGroupNames = null;
 }
+
+/**
+ * Check whether the current colors of the item match the item's default colors
+ * @param {Item} Item - The appearance item to check
+ * @returns {boolean} - Whether the item has default color(s)
+ */
+function ItemColorIsDefault(Item) {
+	const Color = Item.Color;
+	const AssetDefault = Item.Asset.DefaultColor;
+	if (typeof Color === "string") return (Color === "Default" || (typeof AssetDefault === "string" && Color === AssetDefault));
+	if (Array.isArray(Color)) {
+		for (let C = 0; C < Color.length; C++) {
+			if (Color[C] !== "Default" && !(AssetDefault !== null && AssetDefault.length >= C && Color[C] === AssetDefault[C]))
+				return false;
+		}
+	}
+	return true;
+}

@@ -13,8 +13,8 @@ var MainHallTip = 0;
 var MainHallMaidWasCalledManually = false;
 
 var MainHallBeingPunished = false;
-var firstFrame = false;
-var MainHallRemoveLockTypes = ["CombinationPadlock", "PasswordPadlock"]
+var MainHallFirstFrame = false;
+var MainHallStrongLocks = [{ Name: "CombinationPadlock", Group: "ItemMisc", Type: null }, { Name: "PasswordPadlock", Group: "ItemMisc", Type: null }, { Name: "TimerPasswordPadlock", Group: "ItemMisc", Type: null }];
 
 var MainHallPunishmentList = [
 	{ItemMouth:"BallGag", ItemHead: "LeatherBlindfold", ItemHands: "DuctTape"},
@@ -44,8 +44,9 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
 			break;
 		}
 
-		for (let L = 0; L < MainHallRemoveLockTypes.length; L++) {
-			if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == MainHallRemoveLockTypes[L]))) {
+		let LockList = MainHallStrongLocks.map(L => L.Name);
+		for (let L = 0; L < LockList.length; L++) {
+			if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == LockList[L]))) {
 				needsHelp = true
 				break;
 			}
@@ -158,7 +159,7 @@ function MainHallRun() {
 		
 		
 		if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && MainHallMaid.Stage == "0") {
-			if (firstFrame) {
+			if (MainHallFirstFrame) {
 			// We return to the chat room that the player was last in		
 			if (Player.ImmersionSettings.ReturnToChatRoom) {
 				ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList);
@@ -166,7 +167,7 @@ function MainHallRun() {
 			} else {
 				ChatRoomSetLastChatRoom("")
 			}
-			} else firstFrame = true
+			} else MainHallFirstFrame = true
 		} else
 
 		// If the player is dressed up while being a club slave, the maid intercepts her
@@ -419,8 +420,9 @@ function MainHallMaidReleasePlayer() {
 			if ((MainHallMaid.Dialog[D].Stage == "0") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "AlreadyReleased");
 		CharacterRelease(Player);
-		for (let L = 0; L < MainHallRemoveLockTypes.length; L++) {
-			CharacterReleaseFromLock(Player, MainHallRemoveLockTypes[L]);
+		let LockList = MainHallStrongLocks.map(L => L.Name);
+		for (let L = 0; L < LockList.length; L++) {
+			CharacterReleaseFromLock(Player, LockList[L]);
 		}
 		// Added to remove maids being disabled
 		if (LogQuery("MaidsDisabled", "Maid")) {

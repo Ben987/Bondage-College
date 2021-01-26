@@ -79,6 +79,7 @@ Skill,- Skills -
 SkillNone,None
 SkillBondage,Bondage:
 SkillSelfBondage,Self-bondage:
+SkillLockPicking,Lock-Picking:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
 SkillDressage,Dressage:
