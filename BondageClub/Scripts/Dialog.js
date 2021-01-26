@@ -1119,7 +1119,7 @@ function DialogLockPickProgressStart(C, Item) {
 				// negative skill of 6 subtracts 12 from all locks
 	
 
-		DialogLockPickProgressMaxTries = NumTries;
+		DialogLockPickProgressMaxTries = NumTries - NumPins;
 
 	}
 }
@@ -1858,12 +1858,13 @@ function DialogLockPickClick(C) {
 				var XX = X - PinWidth/2 + (0.5-DialogLockPickSet.length/2 + P) * PinSpacing
 				if (MouseIn(XX + PinSpacing/2, Y - PinHeight, PinSpacing, PinWidth+PinHeight)) {
 					if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
-						DialogLockPickProgressCurrentTries += 1
 						
 						if (DialogLockPickOrder[current_pins] == P && DialogLockPickImpossiblePins.filter(x => x==P).length == 0) {
 							DialogLockPickSet[P] = true
 							DialogLockPickArousalText = ""; // Reset arousal text
 
+						} else {
+							DialogLockPickProgressCurrentTries += 1
 						}
 						var order = Math.max(0, DialogLockPickOrder.indexOf(P)-current_pins)/Math.max(1, DialogLockPickSet.length-current_pins) * (0.25+0.75*skill/10) // At higher skills you can see which pins are later in the order
 						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.8*order)
