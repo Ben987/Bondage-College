@@ -1545,7 +1545,7 @@ function DialogClick() {
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 15) && (MouseY <= 105)) DialogMenuButtonClick();
 
 			// If the user clicks on one of the items
-			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter, null, null))) && (DialogProgress < 0 && !DialogLockPickOrder) && (DialogColor == null)) {
+			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter, null, true))) && (DialogProgress < 0 && !DialogLockPickOrder) && (DialogColor == null)) {
 				// For each items in the player inventory
 				var X = 1000;
 				var Y = 125;
@@ -2052,7 +2052,7 @@ function DialogDrawItemMenu(C) {
 	} else ColorPickerHide();
 
 	// In item permission mode, the player can choose which item he allows other users to mess with.  Allowed items have a green background.  Disallowed have a red background. Limited have an orange background
-	if ((DialogItemPermissionMode && (C.ID == 0) && (DialogProgress < 0 && !DialogLockPickOrder)) || (Player.CanInteract() && (DialogProgress < 0 && !DialogLockPickOrder) && !InventoryGroupIsBlocked(C, null, null))) {
+	if ((DialogItemPermissionMode && (C.ID == 0) && (DialogProgress < 0 && !DialogLockPickOrder)) || (Player.CanInteract() && (DialogProgress < 0 && !DialogLockPickOrder) && !InventoryGroupIsBlocked(C, null, true))) {
 
 		
 		if (DialogInventory == null) DialogInventoryBuild(C);
