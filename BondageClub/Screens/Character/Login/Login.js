@@ -361,6 +361,9 @@ function LoginResponse(C) {
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Game = C.Game;
+			if (typeof C.Description === "string" && C.Description.startsWith("--compressed-")) {
+				C.Description = LZString.decompressFromUTF16(C.Description.substr(13));
+			}
 			Player.Description = (C.Description == null) ? "" : C.Description.substr(0, 10000);
 			Player.Creation = C.Creation;
 			Player.Wardrobe = CharacterDecompressWardrobe(C.Wardrobe);

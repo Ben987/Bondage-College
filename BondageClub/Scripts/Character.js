@@ -348,6 +348,11 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 			if (Character[C].AccountName == "Online-" + data.ID.toString())
 				Char = Character[C];
 
+	// Decompresses description
+	if (typeof data.Description === "string" && data.Description.startsWith("--compressed-")) {
+		data.Description = LZString.decompressFromUTF16(data.Description.substr(13));
+	}
+
 	// If the character isn't found
 	if (Char == null) {
 		// We delete the duplicate character if the person relogged.
@@ -364,7 +369,6 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		Char.Lover = (data.Lover != null) ? data.Lover : "";
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.Title = data.Title;
-		Char.Description = data.Description;
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
 		Char.Difficulty = data.Difficulty;

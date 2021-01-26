@@ -47,7 +47,7 @@ function OnlineProfileExit(Save) {
     // If the current character is the player, we update the description
     if ((InformationSheetSelection.ID == 0) && (InformationSheetSelection.Description != ElementValue("DescriptionInput").trim()) && Save) {
         InformationSheetSelection.Description = ElementValue("DescriptionInput").trim().substr(0, 10000);
-        ServerSend("AccountUpdate", { Description: InformationSheetSelection.Description });
+        ServerSend("AccountUpdate", { Description: "--compressed-" + LZString.compressToUTF16(InformationSheetSelection.Description) });
         ChatRoomCharacterUpdate(InformationSheetSelection);
     }
     ElementRemove("DescriptionInput");
