@@ -1,4 +1,4 @@
-Enter your online description (1000 characters maximum)
-Gib deine Online-Beschreibung ein (maximal 1000 Zeichen)
+Enter your online description (10000 characters maximum)
+Gib deine Online-Beschreibung ein (maximal 10000 Zeichen)
 CharacterName's online description
 CharacterNames Online-Beschreibung
