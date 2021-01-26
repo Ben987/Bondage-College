@@ -110,17 +110,9 @@ function CollegeEntranceIsWearingTennisClothes() {
 function CollegeEntranceIsWearingCollegeClothes() {
 	let CurrentClothes = InventoryGet(Player, "Cloth");
 	if (CurrentClothes == null) return false;
-	else {
-		if (CurrentClothes.Asset.Name != "CollegeOutfit1") return false;
-		let CurrColor = CurrentClothes.Color;
-		if (typeof CurrColor == "string" && CurrColor != "Default") return false;
-		else if (Array.isArray(CurrColor)) {
-			if (CurrColor[0] != "Default"
-				|| !(CurrColor[1] == "#202020" || CurrColor[1] == "Default")
-				|| CurrColor[2] != "Default")
-				return false;
-		}
-	}
+	else if (CurrentClothes.Asset.Name != "CollegeOutfit1") return false;
+	else if (!ItemColorIsDefault(CurrentClothes)) return false;
+
 	if (InventoryGet(Player, "Socks") == null) return false;
 	if (InventoryGet(Player, "Shoes") == null) return false;
 	if (InventoryGet(Player, "Wings") != null) return false;

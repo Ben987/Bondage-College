@@ -5,7 +5,7 @@ var PreferenceSafewordConfirm = false;
 var PreferenceMaidsButton = true;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
-var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics"];
+var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics", "Notifications"];
 var PreferenceChatColorThemeSelected = "";
 var PreferenceChatColorThemeList = ["Light", "Dark", "Light2", "Dark2"];
 var PreferenceChatColorThemeIndex = 0;
@@ -216,6 +216,7 @@ function PreferenceInit(C) {
 		OnlineSettings: C.OnlineSettings,
 		OnlineSharedSettings: C.OnlineSharedSettings,
 		GraphicsSettings: Player.GraphicsSettings,
+		NotificationSettings: Player.NotificationSettings,
 	};
 	
 	// If the settings aren't set before, construct them to replicate the default behavior
@@ -372,6 +373,12 @@ function PreferenceInit(C) {
    if (!C.GraphicsSettings.Font) C.GraphicsSettings.Font = "Arial";
    if (typeof C.GraphicsSettings.InvertRoom !== "boolean") C.GraphicsSettings.InvertRoom = true;
 
+	// Notification settings
+	if (!C.NotificationSettings) C.NotificationSettings = {};
+	if (typeof C.NotificationSettings.Beeps !== "boolean") C.NotificationSettings.Beeps = true;
+	if (typeof C.NotificationSettings.Chat !== "boolean") C.NotificationSettings.Chat = true;
+	if (typeof C.NotificationSettings.ChatActions !== "boolean") C.NotificationSettings.ChatActions = false;
+
 	// Sync settings if anything changed
 	if (C.ID == 0) {
 		var PrefAfter = {
@@ -386,7 +393,8 @@ function PreferenceInit(C) {
 			ArousalSettings: Player.ArousalSettings,
 			OnlineSettings: Player.OnlineSettings,
 			OnlineSharedSettings: Player.OnlineSharedSettings,
-            GraphicsSettings: Player.GraphicsSettings
+			GraphicsSettings: Player.GraphicsSettings,
+			NotificationSettings: Player.NotificationSettings,
 		};
 		var toUpdate = {}
 
@@ -636,6 +644,7 @@ function PreferenceSubscreenGeneralClick() {
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
 		Player.ItemPermission++;
 		if (Player.ItemPermission > 5) Player.ItemPermission = 0;
+		if (Player.GetDifficulty() >= 3) LoginExtremeItemSettings();
 	}
 
 	// If we must show/hide/use the color picker
@@ -807,7 +816,9 @@ function PreferenceExit() {
 		ArousalSettings: Player.ArousalSettings,
 		OnlineSettings: Player.OnlineSettings,
 		OnlineSharedSettings: Player.OnlineSharedSettings,
-        GraphicsSettings: Player.GraphicsSettings
+		GraphicsSettings: Player.GraphicsSettings,
+		NotificationSettings: Player.NotificationSettings,
+		LimitedItems: Player.LimitedItems,
 	};
 	ServerSend("AccountUpdate", P);
 	PreferenceMessage = "";
@@ -1504,4 +1515,45 @@ function PreferenceSubscreenSecurityLoad() {
  */
 function PreferenceIsPlayerInSensDep() {
 	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal") || (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme")) && (Player.GetDeafLevel() >= 3) && (Player.GetBlindLevel() >= 3));
+}
+
+/**
+ * Sets the notifications preferences for a player. Redirected to from the main Run function if the player is in the notifications settings subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenNotificationsRun() {
+
+	// Character and exit button
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+
+	// Left-aligned text controls
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("NotificationsPreferences"), 500, 125, "Black", "Gray");
+	DrawText(TextGet("NotificationsChatRooms"), 500, 225, "Black", "Gray");
+	DrawCheckbox(500, 270, 64, 64, TextGet("NotificationsBeeps"), Player.NotificationSettings.Beeps);
+	DrawCheckbox(500, 350, 64, 64, TextGet("NotificationsChat"), Player.NotificationSettings.Chat);
+	DrawCheckbox(600, 430, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
+	MainCanvas.textAlign = "center";
+
+	// Reset button
+	DrawButton(500, 800, 380, 64, TextGet("NotificationsReset"), "White");
+}
+
+/**
+ * Handles the click events for the notifications settings of a player.  Redirected from the main Click function.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenNotificationsClick() {
+
+	// If the user clicked the exit icon to return to the main screen
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
+
+	// Checkboxes
+	if (MouseIn(500, 270, 64, 64)) Player.NotificationSettings.Beeps = !Player.NotificationSettings.Beeps;
+	if (MouseIn(500, 350, 64, 64)) Player.NotificationSettings.Chat = !Player.NotificationSettings.Chat;
+	if (MouseIn(600, 430, 64, 64)) Player.NotificationSettings.ChatActions = !Player.NotificationSettings.ChatActions;
+
+	// Reset button
+	if (MouseIn(500, 800, 380, 64)) CommonNotificationResetAll();
 }

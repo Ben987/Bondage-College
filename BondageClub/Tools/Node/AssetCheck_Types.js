@@ -31,7 +31,8 @@ const AssetGroupType = {
 	FullAlpha: "Maybe Boolean",
 	Blink: "Maybe Boolean",
 	InheritColor: "Maybe String",
-	FreezeActivePose: "Maybe [String]"
+	FreezeActivePose: "Maybe [String]",
+
 };
 
 const AssetType = {
@@ -56,12 +57,15 @@ const AssetType = {
 	Require: "[String]",
 	SetPose: "[String]",
 	AllowPose: "[String]",
+	HideForPose: "[String]",
+	OverrideAllowPose: "[String]",
 	AllowActivePose: "[String]",
 	WhitelistActivePose: "[String]",
 	Value: "Number",
 	Difficulty: "Number",
 	SelfBondage: "Number",
 	SelfUnlock: "Boolean",
+	ExclusiveUnlock: "Boolean",
 	Random: "Boolean",
 	RemoveAtLogin: "Boolean",
 	Time: "Number",
@@ -80,6 +84,7 @@ const AssetType = {
 	AlwaysInteract: "Boolean",
 	AllowLock: "Boolean",
 	IsLock: "Boolean",
+	PickDifficulty: "Maybe Number",
 	OwnerOnly: "Boolean",
 	LoverOnly: "Boolean",
 	ExpressionTrigger: "[{ Name: String, Group: String, Timer: Number }]",
@@ -88,6 +93,9 @@ const AssetType = {
 	AllowBlock: "[String]",
 	AllowType: "[String]",
 	DefaultColor: "String | [String]",
+	Opacity: "Number",
+	MinOpacity: "Number",
+	MaxOpacity: "Number",
 	Audio: "String",
 	Category: "[String]",
 	Fetish: "[String]",
@@ -134,7 +142,11 @@ const AssetLayerType = {
 	Alpha: "[{ Group: Maybe [String], Pose: Maybe [String], Masks: [(Number, Number, Number, Number)] }]",
 	Left: "Number",
 	Top: "Number",
-	HideAs: "{ Group: String, Asset: String }"
+	HideAs: "{ Group: String, Asset: String }",
+	HasImage: "Boolean",
+	Opacity: "Number",
+	MinOpacity: "Number",
+	MaxOpacity: "Number"
 };
 
 module.exports = { AssetGroupType, AssetType, AssetLayerType };
