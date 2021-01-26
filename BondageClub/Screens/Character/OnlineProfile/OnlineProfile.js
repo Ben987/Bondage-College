@@ -48,8 +48,8 @@ function OnlineProfileExit(Save) {
     if ((InformationSheetSelection.ID == 0) && (InformationSheetSelection.Description != ElementValue("DescriptionInput").trim()) && Save) {
         InformationSheetSelection.Description = ElementValue("DescriptionInput").trim().substr(0, 10000);
         let Description = InformationSheetSelection.Description;
-        const CompressedDescription = "--compressed-" + LZString.compressToUTF16(Description)
-        if (CompressedDescription.length < Description.length || Description.startsWith("--compressed-")) {
+        const CompressedDescription = "╬" + LZString.compressToUTF16(Description)
+        if (CompressedDescription.length < Description.length || Description.startsWith("╬")) {
             Description = CompressedDescription;
         }
         ServerSend("AccountUpdate", { Description });

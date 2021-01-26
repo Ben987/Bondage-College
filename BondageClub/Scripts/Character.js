@@ -349,8 +349,8 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 				Char = Character[C];
 
 	// Decompresses description
-	if (typeof data.Description === "string" && data.Description.startsWith("--compressed-")) {
-		data.Description = LZString.decompressFromUTF16(data.Description.substr(13));
+	if (typeof data.Description === "string" && data.Description.startsWith("╬")) {
+		data.Description = LZString.decompressFromUTF16(data.Description.substr(1));
 	}
 
 	// If the character isn't found
