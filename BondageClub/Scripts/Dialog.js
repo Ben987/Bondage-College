@@ -1830,7 +1830,7 @@ function DialogDrawStruggleProgress(C) {
 		// Reset the the character's position
 		if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
 			CharacterAppearanceForceUpCharacter = 0;
-			CharacterApperanceSetHeightModifier(C);
+			CharacterAppearanceSetHeightModifier(C);
 		}
 
 		// Rebuilds the menu
@@ -2106,77 +2106,6 @@ function DialogDrawItemMenu(C) {
 	// If the player is progressing
 	if (DialogProgress >= 0) {
 		DialogDrawStruggleProgress(C)
-    // Draw one or both items
-		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) {
-			DrawItemPreview(1200, 250, DialogProgressPrevItem);
-			DrawItemPreview(1575, 250, DialogProgressNextItem);
-		} else DrawItemPreview(1387, 250, (DialogProgressPrevItem != null) ? DialogProgressPrevItem : DialogProgressNextItem);
-
-		// Add or subtract to the automatic progression, doesn't move in color picking mode
-		DialogProgress = DialogProgress + DialogProgressAuto;
-		if (DialogProgress < 0) DialogProgress = 0;
-		
-		// We cancel out if at least one of the following cases apply: a new item conflicts with this, the player can no longer interact, something else was added first, the item was already removed
-		if (InventoryGroupIsBlocked(C) || (C != Player && !Player.CanInteract()) || (DialogProgressNextItem == null && !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name)) || (DialogProgressNextItem != null && !InventoryAllow(C, DialogProgressNextItem.Asset.Prerequisite)) || (DialogProgressNextItem != null && DialogProgressPrevItem != null && ((InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name) && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name).Asset.Name != DialogProgressPrevItem.Asset.Name) || !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name))) || (DialogProgressNextItem != null && DialogProgressPrevItem == null && InventoryGet(C, DialogProgressNextItem.Asset.Group.Name))) {
-			if (DialogProgress > 0)
-				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true, "interrupted");
-			else
-				DialogLeave();
-			DialogProgress = -1;
-			return;
-		}
-
-		// Draw the current operation and progress
-		if (DialogProgressAuto < 0) DrawText(DialogFind(Player, "Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
-		DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
-		DrawProgressBar(1200, 700, 600, 100, DialogProgress);
-		DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
-
-		// If the operation is completed
-		if (DialogProgress >= 100) {
-
-			// Stops the dialog sounds
-			AudioDialogStop();
-
-			// Removes the item & associated items if needed, then wears the new one 
-			InventoryRemove(C, C.FocusGroup.Name);
-			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetWithRatio("Bondage"), Player.MemberNumber);
-
-			// The player can use another item right away, for another character we jump back to her reaction
-			if (C.ID == 0) {
-				if (DialogProgressNextItem == null) SkillProgress("Evasion", DialogProgressSkill);
-				if ((DialogProgressPrevItem == null) && (DialogProgressNextItem != null)) SkillProgress("SelfBondage", (DialogProgressSkill + DialogProgressNextItem.Asset.SelfBondage) * 2);
-				if ((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) {
-					DialogInventoryBuild(C);
-					DialogProgress = -1;
-					DialogColor = null;
-				}
-			} else {
-				if (DialogProgressNextItem != null) SkillProgress("Bondage", DialogProgressSkill);
-				if (((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) && (CurrentScreen != "ChatRoom")) {
-					C.CurrentDialog = DialogFind(C, ((DialogProgressNextItem == null) ? ("Remove" + DialogProgressPrevItem.Asset.Name) : DialogProgressNextItem.Asset.Name), ((DialogProgressNextItem == null) ? "Remove" : "") + C.FocusGroup.Name);
-					DialogLeaveItemMenu();
-				}
-			}
-
-			// Check to open the extended menu of the item.  In a chat room, we publish the result for everyone
-			if ((DialogProgressNextItem != null) && DialogProgressNextItem.Asset.Extended) {
-				DialogInventoryBuild(C);
-				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, false);
-				DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
-			} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
-
-			// Reset the the character's position
-			if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
-				CharacterAppearanceForceUpCharacter = 0;
-				CharacterAppearanceSetHeightModifiers(C);
-			}
-
-			// Rebuilds the menu
-			DialogEndExpression();
-			if (C.FocusGroup != null) DialogMenuButtonBuild(C);
-
-		}
 		return;
 	}
 	// If the player is lockpicking
