@@ -308,7 +308,7 @@ function LoginDifficulty() {
 	// If Extreme mode, the player cannot control her blocked items
 	if (Player.GetDifficulty() >= 3) {
 		Player.BlockItems = [];
-		Player.LimitedItems = [{Name: "CombinationPadlock", Group: "ItemMisc", Type: null}, {Name: "PasswordPadlock", Group: "ItemMisc", Type: null}];
+		Player.LimitedItems = [{Name: "CombinationPadlock", Group: "ItemMisc", Type: null}, {Name: "PasswordPadlock", Group: "ItemMisc", Type: null}, {Name: "TimerPasswordPadlock", Group: "ItemMisc", Type: null}];
 		Player.HiddenItems = [];
 		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems, HiddenItems: Player.HiddenItems });
 	}
@@ -410,6 +410,8 @@ function LoginResponse(C) {
 			Player.OnlineSettings = C.OnlineSettings;
 			Player.OnlineSharedSettings = C.OnlineSharedSettings;
 			Player.ControllerSettings = C.ControllerSettings;
+			Player.GraphicsSettings = C.GraphicsSettings;
+			Player.NotificationSettings = C.NotificationSettings;
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
@@ -426,8 +428,7 @@ function LoginResponse(C) {
 			}
 			Player.SubmissivesList = typeof C.SubmissivesList === "string" ? new Set(JSON.parse(LZString.decompressFromUTF16(C.SubmissivesList))) : new Set();
 			Player.GhostList = ((C.GhostList == null) || !Array.isArray(C.GhostList)) ? [] : C.GhostList;
-         Player.GraphicsSettings = C.GraphicsSettings;
-
+			
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
 			InventoryLoad(Player, C.Inventory);

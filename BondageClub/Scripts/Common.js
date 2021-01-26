@@ -9,6 +9,7 @@ var CurrentOnlinePlayers = 0;
 var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
+var Notifications = {};
 
 /**
  * A map of keys to common font stack definitions. Each stack definition is a	
@@ -308,12 +309,29 @@ function CommonDynamicFunctionParams(FunctionName) {
  *  function will not log to console if the provided function name does not exist as a global function.
  * @param {string} FunctionName - The name of the global function to call
  * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
  */
 function CommonCallFunctionByName(FunctionName/*, ...args */) {
 	var Function = window[FunctionName];
 	if (typeof Function === "function") {
 		var args = Array.prototype.slice.call(arguments, 1);
 		return Function.apply(null, args);
+	}
+}
+
+/**
+ * Behaves exactly like CommonCallFunctionByName, but logs a warning if the function name is invalid.
+ * @param {string} FunctionName - The name of the global function to call
+ * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
+ */
+function CommonCallFunctionByNameWarn(FunctionName/*, ...args */) {
+	var Function = window[FunctionName];
+	if (typeof Function === "function") {
+		var args = Array.prototype.slice.call(arguments, 1);
+		return Function.apply(null, args);
+	} else {
+		console.warn(`Attempted to call invalid function "${FunctionName}"`);
 	}
 }
 
@@ -531,3 +549,45 @@ const CommonGetFontName = CommonMemoize(() => {
 	const font = fontStack[0].map(fontName => `"${fontName}"`).join(", ");
 	return `${font}, ${fontStack[1]}`;
 });
+
+/**
+ * Increase the reported number of a notifications by one and updates the header
+ * @param {string} Type - The type of notification
+ * @returns {void}
+ */
+function CommonNotificationIncrement(Type) {
+	Notifications[Type] = (Notifications[Type] || 0) + 1;
+	CommonNotificationUpdate();
+}
+
+/**
+ * Sets the number of notifications for a type back to zero and updates the header
+ * @param {any} Type - The type of notification
+ * @returns {void}
+ */
+function CommonNotificationReset(Type) {
+	if (Notifications[Type] != null && Notifications[Type] != 0) {
+		Notifications[Type] = 0;
+		CommonNotificationUpdate();
+	}
+}
+
+/**
+ * Sets the number of notifications to zero
+ * @returns {void}
+ */
+function CommonNotificationResetAll() {
+	Notifications = {};
+	CommonNotificationUpdate();
+}
+
+/**
+ * Sets or clears notifications in the tab header
+ * @returns {void} - Nothing
+ */
+function CommonNotificationUpdate() {
+	let total = 0;
+	for (let key in Notifications) total += Notifications[key];
+	let prefix = total == 0 ? "" : "(" + total.toString() + ") ";
+	document.title = prefix + "Bondage Club";
+}

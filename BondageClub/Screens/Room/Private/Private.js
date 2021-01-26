@@ -1100,7 +1100,7 @@ function PrivateSelectPunishment() {
 		if ((PrivatePunishment == "ChastityBelt") && !Player.IsVulvaChaste() && (NPCTraitGet(CurrentCharacter, "Frigid") >= 0)) break;
 		if ((PrivatePunishment == "ChastityBra") && !Player.IsBreastChaste() && (NPCTraitGet(CurrentCharacter, "Frigid") >= 0)) break;
 		if ((PrivatePunishment == "ForceNaked") && Player.CanChange() && (NPCTraitGet(CurrentCharacter, "Horny") >= 0)) break;
-		if ((PrivatePunishment == "ConfiscateKey") && (InventoryAvailable(Player, "MetalCuffsKey", "ItemMisc") || InventoryAvailable(Player, "MetalPadlockKey", "ItemMisc") || InventoryAvailable(Player, "IntricatePadlockKey", "ItemMisc"))) break;
+		if ((PrivatePunishment == "ConfiscateKey") && (InventoryAvailable(Player, "MetalCuffsKey", "ItemMisc") || InventoryAvailable(Player, "MetalPadlockKey", "ItemMisc") || InventoryAvailable(Player, "IntricatePadlockKey", "ItemMisc") || InventoryAvailable(Player, "HighSecurityPadlockKey", "ItemMisc"))) break;
 		if ((PrivatePunishment == "ConfiscateCrop") && (InventoryAvailable(Player, "LeatherCrop", "ItemPelvis") || InventoryAvailable(Player, "LeatherCrop", "ItemBreast"))) break;
 		if ((PrivatePunishment == "ConfiscateWhip") && (InventoryAvailable(Player, "LeatherWhip", "ItemPelvis") || InventoryAvailable(Player, "LeatherWhip", "ItemBreast"))) break;
 		if ((PrivatePunishment == "SleepCage") && LogQuery("Cage", "PrivateRoom") && !LogQuery("SleepCage", "Rule")) break;

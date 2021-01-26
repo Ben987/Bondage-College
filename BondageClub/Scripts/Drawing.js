@@ -240,7 +240,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		if (C.RunScripts && C.HasScriptedAssets) {
 			var DynamicAssets = C.Appearance.filter(CA => CA.Asset.DynamicScriptDraw);
 			DynamicAssets.forEach(Item =>
-				window["Assets" + Item.Asset.Group.Name + Item.Asset.Name + "ScriptDraw"]({
+				CommonCallFunctionByNameWarn(`Assets${Item.Asset.Group.Name}${Item.Asset.Name}ScriptDraw`, {
 					C, Item, PersistentData: () => AnimationPersistentDataGet(C, Item.Asset)
 				})
 			);
@@ -414,23 +414,28 @@ function DrawImageResize(Source, X, Y, Width, Height) {
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
  * @param {number[][]} AlphaMasks - A list of alpha masks to apply to the asset
+ * @param {number} Opacity - The opacity at which to draw the image
  * @returns {boolean} - whether the image was complete or not
  */
-function DrawImageCanvas(Source, Canvas, X, Y, AlphaMasks) {
+function DrawImageCanvas(Source, Canvas, X, Y, AlphaMasks, Opacity) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
+	let SourceImage = Img;
 	if (AlphaMasks && AlphaMasks.length) {
-		var tmpCanvas = document.createElement("canvas");
+		SourceImage = document.createElement("canvas");
 		tmpCanvas.width = Img.width;
 		tmpCanvas.height = Img.height;
 		var ctx = tmpCanvas.getContext('2d');
 		ctx.drawImage(Img, 0, 0);
 		AlphaMasks.forEach(([x, y, w, h]) => ctx.clearRect(x - X, y - Y, w, h));
 		Canvas.drawImage(tmpCanvas, X, Y);
-	} else {
-		Canvas.drawImage(Img, X, Y);
 	}
+	Opacity = typeof Opacity === "number" ? Opacity : 1;
+	Canvas.save();
+	Canvas.globalAlpha = Opacity;
+	Canvas.drawImage(SourceImage, X, Y);
+	Canvas.restore();
 	return true;
 }
 
@@ -518,9 +523,10 @@ function DrawImage(Source, X, Y, Invert) {
  * @param {string} HexColor - Color of the image to draw
  * @param {boolean} FullAlpha - Whether or not it is drawn in full alpha mode
  * @param {number[][]} AlphaMasks - A list of alpha masks to apply to the asset
+ * @param {number} Opacity - The opacity at which to draw the image
  * @returns {boolean} - whether the image was complete or not
  */
-function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha, AlphaMasks) {
+function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha, AlphaMasks, Opacity) {
 
 	// Make sure that the starting image is loaded
 	var Img = DrawGetImage(Source);
@@ -565,7 +571,11 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 	if (AlphaMasks && AlphaMasks.length) {
 		AlphaMasks.forEach(([x, y, w, h]) => ctx.clearRect(x - X, y - Y, w, h));
 	}
+	Opacity = typeof Opacity === "number" ? Opacity : 1;
+	Canvas.save();
+	Canvas.globalAlpha = Opacity;
 	Canvas.drawImage(ctx.canvas, 0, 0, Img.width, Img.height, X, Y, Img.width * Zoom, Img.height * Zoom);
+	Canvas.restore();
 
 	return true;
 }

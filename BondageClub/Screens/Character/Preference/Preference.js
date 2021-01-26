@@ -5,7 +5,7 @@ var PreferenceSafewordConfirm = false;
 var PreferenceMaidsButton = true;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
-var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics", "Controller"];
+var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics", "Controller", "Notifications"];
 var PreferenceChatColorThemeSelected = "";
 var PreferenceChatColorThemeList = ["Light", "Dark", "Light2", "Dark2"];
 var PreferenceChatColorThemeIndex = 0;
@@ -222,6 +222,7 @@ function PreferenceInit(C) {
 		OnlineSharedSettings: C.OnlineSharedSettings,
 		GraphicsSettings: Player.GraphicsSettings,
     ControllerSettings: C.ControllerSettings,
+		NotificationSettings: Player.NotificationSettings,
 	};
 	
 	// If the settings aren't set before, construct them to replicate the default behavior
@@ -322,6 +323,11 @@ function PreferenceInit(C) {
 	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
 	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.GameplaySettings.EnableSafeword = false;
 	if (typeof C.GameplaySettings.DisableAutoMaid !== "boolean") C.GameplaySettings.DisableAutoMaid = false;
+	if (typeof C.OnlineSharedSettings.DisablePickingLocksOnSelf !== "boolean") C.OnlineSharedSettings.DisablePickingLocksOnSelf = false;
+	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.OnlineSharedSettings.DisablePickingLocksOnSelf = true;
+	
+	
+	// Sets the default immersion settings
 	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.GameplaySettings.DisableAutoMaid = true;
 	if (typeof C.GameplaySettings.OfflineLockedRestrained !== "boolean") C.GameplaySettings.OfflineLockedRestrained = false;
 	if ((C.ID == 0) && (C.GetDifficulty() >= 2)) C.GameplaySettings.OfflineLockedRestrained = true;
@@ -427,6 +433,12 @@ function PreferenceInit(C) {
    if (!C.GraphicsSettings.Font) C.GraphicsSettings.Font = "Arial";
    if (typeof C.GraphicsSettings.InvertRoom !== "boolean") C.GraphicsSettings.InvertRoom = true;
 
+	// Notification settings
+	if (!C.NotificationSettings) C.NotificationSettings = {};
+	if (typeof C.NotificationSettings.Beeps !== "boolean") C.NotificationSettings.Beeps = true;
+	if (typeof C.NotificationSettings.Chat !== "boolean") C.NotificationSettings.Chat = true;
+	if (typeof C.NotificationSettings.ChatActions !== "boolean") C.NotificationSettings.ChatActions = false;
+
 	// Sync settings if anything changed
 	if (C.ID == 0) {
 		var PrefAfter = {
@@ -441,8 +453,9 @@ function PreferenceInit(C) {
 			ArousalSettings: Player.ArousalSettings,
 			OnlineSettings: Player.OnlineSettings,
 			OnlineSharedSettings: Player.OnlineSharedSettings,
-            GraphicsSettings: Player.GraphicsSettings,
-            ControllerSettings: Player.ControllerSettings
+      ControllerSettings: Player.ControllerSettings,
+			GraphicsSettings: Player.GraphicsSettings,
+			NotificationSettings: Player.NotificationSettings,
 		};
 		var toUpdate = {}
 
@@ -573,6 +586,7 @@ function PreferenceSubscreenGeneralRun() {
 		DrawCheckbox(500, 482, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
 		DrawCheckbox(500, 562, 64, 64, TextGet("DisableAutoMaid"), !Player.GameplaySettings.DisableAutoMaid);
 		DrawCheckbox(500, 642, 64, 64, TextGet("OfflineLockedRestrained"), Player.GameplaySettings.OfflineLockedRestrained);
+	  DrawCheckbox(500, 722, 64, 64, TextGet("DisablePickingLocksOnSelf"), Player.OnlineSharedSettings.DisablePickingLocksOnSelf);
 	} else DrawText(TextGet("GeneralHardcoreWarning"), 500, 562, "Red", "Gray");
 
 	// Draw the player & controls
@@ -721,7 +735,7 @@ function PreferenceSubscreenGeneralClick() {
 	} else PreferenceSafewordConfirm = false;
 	if (MouseIn(500, 562, 64, 64) && (Player.GetDifficulty() < 2)) Player.GameplaySettings.DisableAutoMaid = !Player.GameplaySettings.DisableAutoMaid;
 	if (MouseIn(500, 642, 64, 64) && (Player.GetDifficulty() < 2)) Player.GameplaySettings.OfflineLockedRestrained = !Player.GameplaySettings.OfflineLockedRestrained;
-
+	if (MouseIn(500, 722, 64, 64) && (Player.GetDifficulty() < 2)) Player.OnlineSharedSettings.DisablePickingLocksOnSelf = !Player.OnlineSharedSettings.DisablePickingLocksOnSelf;
 }
 
 /**
@@ -826,7 +840,7 @@ function PreferenceSubscreenImmersionClick() {
 			if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 			else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 			Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
-			if (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") ChatRoomTargetMemberNumber = null;
+			if (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") ChatRoomSetTarget(null);
 		}
 
 		// Preference check boxes
@@ -836,7 +850,7 @@ function PreferenceSubscreenImmersionClick() {
 			Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
 		if (MouseIn(500, 432, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained()))) {
 			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
-			if (Player.ImmersionSettings.BlockGaggedOOC) ChatRoomTargetMemberNumber = null;
+			if (Player.ImmersionSettings.BlockGaggedOOC) ChatRoomSetTarget(null);
 		}
 		if (MouseIn(500, 512, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing;
@@ -869,8 +883,9 @@ function PreferenceExit() {
 		ArousalSettings: Player.ArousalSettings,
 		OnlineSettings: Player.OnlineSettings,
 		OnlineSharedSettings: Player.OnlineSharedSettings,
-        GraphicsSettings: Player.GraphicsSettings,
-        ControllerSettings: Player.ControllerSettings
+    ControllerSettings: Player.ControllerSettings,
+		GraphicsSettings: Player.GraphicsSettings,
+		NotificationSettings: Player.NotificationSettings,
 	};
 	ServerSend("AccountUpdate", P);
 	PreferenceMessage = "";
@@ -1015,6 +1030,8 @@ function PreferenceSubscreenOnlineRun() {
 	DrawCheckbox(500, 705, 64, 64, TextGet("EnableWardrobeIcon"), Player.OnlineSettings.EnableWardrobeIcon);
 	DrawCheckbox(500, 785, 64, 64, TextGet("AllowFullWardrobeAccess"), Player.OnlineSharedSettings.AllowFullWardrobeAccess);
 	DrawCheckbox(500, 865, 64, 64, TextGet("BlockBodyCosplay"), Player.OnlineSharedSettings.BlockBodyCosplay);
+	
+	
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawCharacter(Player, 50, 50, 0.9);
 	MainCanvas.textAlign = "center";
@@ -1682,4 +1699,45 @@ function PreferenceSubscreenSecurityLoad() {
  */
 function PreferenceIsPlayerInSensDep() {
 	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal") || (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme")) && (Player.GetDeafLevel() >= 3) && (Player.GetBlindLevel() >= 3));
+}
+
+/**
+ * Sets the notifications preferences for a player. Redirected to from the main Run function if the player is in the notifications settings subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenNotificationsRun() {
+
+	// Character and exit button
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+
+	// Left-aligned text controls
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("NotificationsPreferences"), 500, 125, "Black", "Gray");
+	DrawText(TextGet("NotificationsChatRooms"), 500, 225, "Black", "Gray");
+	DrawCheckbox(500, 270, 64, 64, TextGet("NotificationsBeeps"), Player.NotificationSettings.Beeps);
+	DrawCheckbox(500, 350, 64, 64, TextGet("NotificationsChat"), Player.NotificationSettings.Chat);
+	DrawCheckbox(600, 430, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
+	MainCanvas.textAlign = "center";
+
+	// Reset button
+	DrawButton(500, 800, 380, 64, TextGet("NotificationsReset"), "White");
+}
+
+/**
+ * Handles the click events for the notifications settings of a player.  Redirected from the main Click function.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenNotificationsClick() {
+
+	// If the user clicked the exit icon to return to the main screen
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
+
+	// Checkboxes
+	if (MouseIn(500, 270, 64, 64)) Player.NotificationSettings.Beeps = !Player.NotificationSettings.Beeps;
+	if (MouseIn(500, 350, 64, 64)) Player.NotificationSettings.Chat = !Player.NotificationSettings.Chat;
+	if (MouseIn(600, 430, 64, 64)) Player.NotificationSettings.ChatActions = !Player.NotificationSettings.ChatActions;
+
+	// Reset button
+	if (MouseIn(500, 800, 380, 64)) CommonNotificationResetAll();
 }
