@@ -1014,9 +1014,9 @@ function DialogLockPickProgressStart(C, Item) {
 			S = S - lock.Asset.PickDifficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
 			LockRating = lock.Asset.PickDifficulty // Some features of the minigame are independent of the relative skill level
 		}
-		if (Item.Asset && Item.Asset.Difficulty) {
-			S -= BondageLevel/2 // Adds the bondage skill of the item but not the base difficulty!
-		}
+		//if (Item.Asset && Item.Asset.Difficulty) {
+		//	S -= BondageLevel/2 // Adds the bondage skill of the item but not the base difficulty!
+		//}
 		
 		if (Player.IsEnclose() || Player.IsMounted()) S = S - 2; // A little harder if there's an enclosing or mounting item
 
@@ -1113,8 +1113,8 @@ function DialogLockPickProgressStart(C, Item) {
 
 		// At 4 pins we have a base of 16 tries, with 10 maximum permutions possible
 		// At 10 pins we have a base of 40-30 tries, with 55 maximum permutions possible
-		var NumTries = Math.floor(Math.max(NumPins * (2.5 - BondageLevel/10),
-				NumPins * (4 - BondageLevel/10) - Math.max(0, DialogLockPickProgressChallenge)*NumPins/4))
+		var NumTries = Math.floor(Math.max(NumPins * (2 - BondageLevel/10),
+				NumPins * (4 - BondageLevel/10) - Math.max(0, DialogLockPickProgressChallenge + BondageLevel/2)*NumPins/4))
 			    // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
 				// negative skill of 6 subtracts 12 from all locks
 	
