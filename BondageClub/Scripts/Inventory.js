@@ -586,6 +586,19 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 }
 
 /**
+* Returns TRUE if an item lock is pickable
+* @param {AppearanceItem} Item - The item from appearance that must be validated
+* @returns {Boolean} - TRUE if PickDifficulty is on the item
+*/
+function InventoryItemIsPickable(Item) {
+	if (!Item) return null;
+	var lock = InventoryGetLock(Item)
+	if (lock && lock.Asset && lock.Asset.PickDifficulty) return true;
+	else return false;
+	
+}
+
+/**
  * Returns the value of a given property of an appearance item, prioritizes the Property object.
  * @param {object} Item - The appearance item to scan 
  * @param {string} PropertyName - The property name to get.
@@ -742,6 +755,10 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				if (Item.Property == null) Item.Property = {};
 				if (Item.Property.Effect == null) Item.Property.Effect = [];
 				if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
+				if (Item.Property.Effect.indexOf("MemberNumberList") < 0) {
+					if (!Item.Property) Item.Property = {}
+					if (!Item.Property.MemberNumberList) Item.Property.MemberNumberList = "" + MemberNumber
+				}
 				Item.Property.LockedBy = Lock.Asset.Name;
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
@@ -766,6 +783,7 @@ function InventoryUnlock(C, Item) {
 		delete Item.Property.Password;
 		delete Item.Property.Hint;
 		delete Item.Property.LockMemberNumber;
+		delete Item.Property.MemberNumberList;
 		delete Item.Property.CombinationNumber;
 		CharacterRefresh(C);
 	}
@@ -808,6 +826,8 @@ function InventoryConfiscateKey() {
 	InventoryDelete(Player, "MetalCuffsKey", "ItemMisc");
 	InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
 	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
+	InventoryDelete(Player, "HighSecurityPadlockKey", "ItemMisc");
+	InventoryDelete(Player, "Lockpicks", "ItemMisc");
 }
 
 /**

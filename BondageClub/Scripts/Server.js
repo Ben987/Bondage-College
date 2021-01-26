@@ -395,6 +395,7 @@ function ServerDeleteLock(Property) {
 	if (Property) {
 		delete Property.LockedBy;
 		delete Property.LockMemberNumber;
+		delete Property.LockMemberNumberList;
 		delete Property.CombinationNumber;
 		delete Property.Password;
 		delete Property.Hint;
@@ -686,6 +687,7 @@ function ServerAccountBeep(data) {
 				ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
 			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
+			if (Player.NotificationSettings.Beeps && !document.hasFocus()) CommonNotificationIncrement("Beep");
 		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber && data.ChatRoomName) {
 			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing != false && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashedBy(data.MemberNumber, Player)) {
@@ -710,7 +712,10 @@ function ServerAccountBeep(data) {
 
 /** Draws the last beep sent by the server if the timer is still valid, used during the drawing process */
 function ServerDrawBeep() {
-	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
+	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) {
+		DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
+		if (document.hasFocus()) CommonNotificationReset("Beep");
+	}
 }
 
 /**

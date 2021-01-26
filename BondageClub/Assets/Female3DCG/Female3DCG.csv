@@ -828,6 +828,7 @@ ItemHands,SpankingToysShockWand,Shock Wand
 ItemHands,SpankingToysLotion,Lotion
 ItemHands,SpankingToysRuler,Ruler
 ItemHands,SpankingToysSword,Foam Sword
+ItemHands,SpankingToysSpatula,Spatula
 ItemHands,HoofMittens, Hoof Mittens
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
@@ -1090,6 +1091,7 @@ ItemEars,Headphones,Headphones
 ItemMisc,,Body
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
+ItemMisc,HighSecurityPadlock,High-Security Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
 ItemMisc,CombinationPadlock,Combination Padlock
 ItemMisc,PasswordPadlock,Password Lock
@@ -1102,11 +1104,13 @@ ItemMisc,MistressPadlock,Mistress Padlock
 ItemMisc,MistressTimerPadlock,Mistress Timer Padlock
 ItemMisc,ExclusivePadlock,Exclusive Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
+ItemMisc,HighSecurityPadlockKey,High-Security Padlock Keys
 ItemMisc,IntricatePadlockKey,Intricate Padlock Key
 ItemMisc,OwnerPadlockKey,Owner Padlock Key
 ItemMisc,LoversPadlockKey,Lovers Padlock Key
 ItemMisc,MistressPadlockKey,Mistress Padlock Key
 ItemMisc,MetalCuffsKey,Metal Cuffs Key
+ItemMisc,Lockpicks,Lockpicks
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
@@ -1123,6 +1127,7 @@ ItemDevices,BurlapSack,Burlap Sack
 ItemDevices,InflatableBodyBag,Inflatable Body Bag
 ItemDevices,BondageBench,Bondage Bench
 ItemDevices,TeddyBear,Teddy Bear Set
+ItemDevices,BBQ,Grill
 ItemDevices,LittleMonster,Halloween Monster Set
 ItemDevices,Familiar,Halloween Familiar Set
 ItemDevices,Coffin,Vampire Coffin

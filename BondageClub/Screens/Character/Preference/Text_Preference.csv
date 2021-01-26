@@ -10,6 +10,7 @@ VisibilityPreferences,- Item Preferences -
 VFXPreferences,- Graphical Preferences -
 OnlinePreferences,- Online Preferences -
 ImmersionPreferences,- Immersion Preferences -
+NotificationsPreferences,- Notification Preferences -
 HomepageGeneral,General
 HomepageDifficulty,Difficulty
 HomepageRestriction,Restriction
@@ -21,6 +22,7 @@ HomepageVisibility,Item Visibility
 HomepageOnline,Online
 HomepageImmersion,Immersion
 HomepageGraphics,Graphics
+HomepageNotifications,Notifications
 DifficultyTitle,The difficulty mode enforces BDSM restrictions in multi-player only.  Click for details.
 DifficultyLevel0,Roleplay
 Difficulty0Text0,Roleplay - This mode is fully open to customise your experience.
@@ -113,6 +115,7 @@ SensDepTotal,Total
 SensDepExtreme,Total (no whispers)
 AllowPlayerLeashing,"Players can drag you to rooms when leashed"
 DisableAutoMaid,Maids come automatically when restrained
+DisablePickingLocksOnSelf,Locks on you can't be picked
 BlindDisableExamine,Disable examining when blind
 DisableAutoRemoveLogin,Keep all restraints when relogging
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
@@ -236,3 +239,8 @@ Georgia,Georgia
 CourierNew,Courier New
 Copperplate,Copperplate
 GraphicsInvertRoom,Flip the room vertically when upside-down
+NotificationsChatRooms,Raise notifications for:
+NotificationsBeeps,Missed beeps
+NotificationsChat,Unread messages in chat rooms
+NotificationsChatActions,Include item and arousal activity messages
+NotificationsReset,Reset Notifications

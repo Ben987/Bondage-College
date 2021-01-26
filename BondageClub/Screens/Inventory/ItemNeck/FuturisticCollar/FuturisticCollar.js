@@ -21,14 +21,15 @@ function InventoryItemNeckFuturisticCollarDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawRect(1407, 175, 185, 235, "white");
-		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1409, 177, 181, 181);
-		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 385, 181, "black");
+		DrawRect(1407, 145, 185, 235, "white");
+		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1409, 147, 181, 181);
+		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 355, 181, "black");
 		
-		DrawButton(1125, 425, 64, 64, "", "White", DialogFocusItem.Property.OpenPermission ? "Icons/Checked.png" : "");
-		DrawText(DialogFind(Player, "FuturisticCollarOpenPermission"), 1550, 450, "White", "Gray");
-		DrawButton(1125, 495, 64, 64, "", "White", DialogFocusItem.Property.BlockRemotes ? "Icons/Checked.png" : "");
-		DrawText(DialogFind(Player, "FuturisticCollarBlockRemotes"), 1450, 520, "White", "Gray");
+
+		DrawButton(1125, 395, 64, 64, "", "White", DialogFocusItem.Property.OpenPermission ? "Icons/Checked.png" : "");
+		DrawText(DialogFind(Player, "FuturisticCollarOpenPermission"), 1550, 425, "White", "Gray");
+		DrawButton(1125, 465, 64, 64, "", "White", DialogFocusItem.Property.BlockRemotes ? "Icons/Checked.png" : "");
+		DrawText(DialogFind(Player, "FuturisticCollarBlockRemotes"), 1450, 495, "White", "Gray");
 		
 		var FuturisticCollarStatus = "NoItems"
 		var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
@@ -45,11 +46,13 @@ function InventoryItemNeckFuturisticCollarDraw() {
 			else if (lockedItems == FuturisticCollarItems.length) FuturisticCollarStatus = "FullyLocked"
 		}
 		
-		DrawText(DialogFind(Player, "FuturisticCollarOptions" + FuturisticCollarStatus), 1500, 600, "White", "Gray");
+		DrawText(DialogFind(Player, "FuturisticCollarOptions" + FuturisticCollarStatus), 1500, 560, "White", "Gray");
 		
 		if (FuturisticCollarItems.length > 0 && lockedItems < FuturisticCollarItems.length) {
-			if (InventoryItemNeckFuturisticCollarCanLock(C, "MetalPadlock", "ItemMisc")) DrawButton(1250, 650, 200, 55, DialogFind(Player, "FuturisticCollarLockMetal"), "White");
-			if (InventoryItemNeckFuturisticCollarCanLock(C, "ExclusivePadlock", "ItemMisc")) DrawButton(1550, 650, 200, 55, DialogFind(Player, "FuturisticCollarLockExclusive"), "White");
+			if (InventoryItemNeckFuturisticCollarCanLock(C, "MetalPadlock", "ItemMisc")) DrawButton(1250, 590, 200, 55, DialogFind(Player, "FuturisticCollarLockMetal"), "White");
+			if (InventoryItemNeckFuturisticCollarCanLock(C, "ExclusivePadlock", "ItemMisc")) DrawButton(1550, 590, 200, 55, DialogFind(Player, "FuturisticCollarLockExclusive"), "White");
+			if (InventoryItemNeckFuturisticCollarCanLock(C, "IntricatePadlock", "ItemMisc")) DrawButton(1250, 650, 200, 55, DialogFind(Player, "FuturisticCollarLockIntricate"), "White");
+			if (InventoryItemNeckFuturisticCollarCanLock(C, "HighSecurityPadlock", "ItemMisc")) DrawButton(1550, 650, 200, 55, DialogFind(Player, "FuturisticCollarLockHighSec"), "White");
 			if (InventoryItemNeckFuturisticCollarCanLock(C, "TimerPadlock", "ItemMisc")) DrawButton(1250, 710, 200, 55, DialogFind(Player, "FuturisticCollarLockTimer"), "White");
 			if (InventoryItemNeckFuturisticCollarCanLock(C, "MistressPadlock", "ItemMisc")) DrawButton(1550, 710, 200, 55, DialogFind(Player, "FuturisticCollarLockMistress"), "White");
 			if (InventoryItemNeckFuturisticCollarCanLock(C, "LoversPadlock", "ItemMisc")) DrawButton(1250, 770, 200, 55, DialogFind(Player, "FuturisticCollarLockLover"), "White");
@@ -81,8 +84,8 @@ function InventoryItemNeckFuturisticCollarClick() {
 	} else {
 		
 		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemNeckFuturisticCollarExit();
-		else if (MouseIn(1125, 425, 64, 64)) InventoryItemNeckFuturisticCollarTogglePermission(C, DialogFocusItem);
-		else if (MouseIn(1125, 495, 64, 64)) InventoryItemNeckFuturisticCollarToggleRemotes(C, DialogFocusItem);
+		else if (MouseIn(1125, 395, 64, 64)) InventoryItemNeckFuturisticCollarTogglePermission(C, DialogFocusItem);
+		else if (MouseIn(1125, 465, 64, 64)) InventoryItemNeckFuturisticCollarToggleRemotes(C, DialogFocusItem);
 		else {
 		
 			var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
@@ -98,8 +101,10 @@ function InventoryItemNeckFuturisticCollarClick() {
 			if (FuturisticCollarItems.length > 0 ) {
 				
 				if (lockedItems < FuturisticCollarItems.length) {
-					if (MouseIn(1250, 650, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "MetalPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "MetalPadlock"); CollarAction = 1}
-					else if (MouseIn(1550, 650, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "ExclusivePadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "ExclusivePadlock"); CollarAction = 1}
+					if (MouseIn(1250, 590, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "MetalPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "MetalPadlock"); CollarAction = 1}
+					else if (MouseIn(1550, 590, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "ExclusivePadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "ExclusivePadlock"); CollarAction = 1}
+					if (MouseIn(1250, 650, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "IntricatePadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "IntricatePadlock"); CollarAction = 1}
+					else if (MouseIn(1550, 650, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "HighSecurityPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "HighSecurityPadlock"); CollarAction = 1}
 					else if (MouseIn(1250, 710, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "TimerPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "TimerPadlock"); CollarAction = 1}
 					else if (MouseIn(1550, 710, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "MistressPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "MistressPadlock"); CollarAction = 1}
 					else if (MouseIn(1250, 770, 200, 55) && InventoryItemNeckFuturisticCollarCanLock(C, "LoversPadlock", "ItemMisc")) { InventoryItemNeckFuturisticCollarLockdown(C, "LoversPadlock"); CollarAction = 1}
