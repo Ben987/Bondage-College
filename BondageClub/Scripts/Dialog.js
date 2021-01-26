@@ -1866,8 +1866,8 @@ function DialogLockPickClick(C) {
 							DialogLockPickArousalText = ""; // Reset arousal text
 
 						}
-						var order = DialogLockPickImpossiblePins.indexOf(P)/DialogLockPickSet.length * skill/10 // At higher skills you can see which pins are later in the order
-						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.7*order+Math.random()*0.6*(1.0 - skill/15))
+						var order = DialogLockPickOrder.indexOf(P)/DialogLockPickSet.length * (0.25+0.75*skill/10) // At higher skills you can see which pins are later in the order
+						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.8*order)
 						
 						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && DialogLockPickSet.filter(x => x==false).length > 0 ) {
 							SkillProgress("LockPicking", DialogLockPickProgressSkillLose);
