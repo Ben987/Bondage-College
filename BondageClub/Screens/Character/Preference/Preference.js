@@ -242,7 +242,11 @@ function PreferenceInit(C) {
 
 	// Sets the default arousal settings
 	if (!C.ArousalSettings) C.ArousalSettings = { Active: "Hybrid", Visible: "Access", ShowOtherMeter: true, AffectExpression: true, AffectStutter: "All", Progress: 0, ProgressTimer: 0, VibratorLevel: 0, VFX: "VFXAnimatedTemp", ChangeTime: CommonTime(), Activity: [], Zone: [] };
-	if (typeof C.ArousalSettings.Active !== "string") C.ArousalSettings.Active = "Hybrid";
+	if (typeof C.ArousalSettings.Active !== "string") C.ArousalSettings.Active = "Automatic";
+	if (C.ImmersionSettings.LockArousal) {
+		C.ArousalSettings.Active = "Automatic";
+		PreferenceArousalActiveIndex = PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active)
+	}
 	if (typeof C.ArousalSettings.Visible !== "string") C.ArousalSettings.Visible = "Access";
 	if (typeof C.ArousalSettings.ShowOtherMeter !== "boolean") C.ArousalSettings.ShowOtherMeter = true;
 	if (typeof C.ArousalSettings.AffectExpression !== "boolean") C.ArousalSettings.AffectExpression = true;
@@ -279,6 +283,8 @@ function PreferenceInit(C) {
 	if ((C.ID == 0) && (C.GetDifficulty() >= 3)) C.ImmersionSettings.ReturnToChatRoom = true;
 	if (typeof C.ImmersionSettings.ReturnToChatRoomAdmin !== "boolean") C.ImmersionSettings.ReturnToChatRoomAdmin = false;
 	if ((C.ID == 0) && (C.GetDifficulty() >= 3)) C.ImmersionSettings.ReturnToChatRoomAdmin = true;
+	if (typeof C.ImmersionSettings.LockArousal !== "boolean") C.ImmersionSettings.LockArousal = false;
+	if ((C.ID == 0) && (C.GetDifficulty() >= 3)) C.ImmersionSettings.LockArousal = true;
 	if (typeof C.LastChatRoom !== "string") C.LastChatRoom = "";
 	if (typeof C.LastChatRoomBG !== "string") C.LastChatRoomBG = "";
 	if (typeof C.LastChatRoomPrivate !== "boolean") C.LastChatRoomPrivate = false;
@@ -305,10 +311,12 @@ function PreferenceInit(C) {
 		Player.GameplaySettings.BlindDisableExamine = true;
 		Player.GameplaySettings.DisableAutoRemoveLogin = true;
 		Player.ImmersionSettings.BlockGaggedOOC = true;
+		Player.ImmersionSettings.LockArousal = true;
 		Player.ImmersionSettings.ReturnToChatRoom = true;
 		Player.ImmersionSettings.ReturnToChatRoomAdmin = true;
 		Player.GameplaySettings.ImmersionLockSetting = true;
 		Player.OnlineSharedSettings.AllowPlayerLeashing = true;
+		
 		PreferenceSettingsSensDepIndex = PreferenceSettingsSensDepList.length - 1;
 		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
 	}
@@ -743,7 +751,14 @@ function PreferenceSubscreenImmersionRun() {
 		DrawCheckbox(500, 592, 64, 64, TextGet("ReturnToChatRoom"), Player.ImmersionSettings.ReturnToChatRoom);
 		if (Player.ImmersionSettings.ReturnToChatRoom)
 			DrawCheckbox(1300, 592, 64, 64, TextGet("ReturnToChatRoomAdmin"), Player.ImmersionSettings.ReturnToChatRoomAdmin);
+		
+		DrawCheckbox(500, 672, 64, 64, TextGet("LockArousal"), Player.ImmersionSettings.LockArousal);
+		
+		
 		DrawCheckbox(500, 832, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
+		
+		
+		
 		DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
 		MainCanvas.textAlign = "center";
 		DrawBackNextButton(500, 192, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
@@ -791,6 +806,13 @@ function PreferenceSubscreenImmersionClick() {
 				Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
 		if (Player.ImmersionSettings.ReturnToChatRoom && MouseIn(1300, 592, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 				Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
+		if (MouseIn(500, 672, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained()))) {
+				Player.ImmersionSettings.LockArousal = !Player.ImmersionSettings.LockArousal;
+				if (Player.ImmersionSettings.LockArousal) {
+					Player.ArousalSettings.Active = "Automatic";
+					PreferenceArousalActiveIndex = PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active)
+				}
+		}
 		if (MouseIn(500, 832, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
 
@@ -1179,7 +1201,7 @@ function PreferenceSubscreenArousalClick() {
 	}
 
 	// Arousal active control
-	if ((MouseX >= 750) && (MouseX < 1200) && (MouseY >= 193) && (MouseY < 257)) {
+	if ((MouseX >= 750) && (MouseX < 1200) && (MouseY >= 193) && (MouseY < 257) && !Player.ImmersionSettings.LockArousal) {
 		if (MouseX <= 975) PreferenceArousalActiveIndex = (PreferenceArousalActiveList.length + PreferenceArousalActiveIndex - 1) % PreferenceArousalActiveList.length;
 		else PreferenceArousalActiveIndex = (PreferenceArousalActiveIndex + 1) % PreferenceArousalActiveList.length;
 		Player.ArousalSettings.Active = PreferenceArousalActiveList[PreferenceArousalActiveIndex];

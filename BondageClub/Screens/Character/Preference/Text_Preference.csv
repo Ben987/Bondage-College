@@ -106,6 +106,7 @@ AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
 ReturnToChatRoom,Return to chatrooms on relog
 ReturnToChatRoomAdmin,Auto-remake rooms
+LockArousal,Lock the arousal meter on
 ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
 BlockGaggedOOC,Prevent OOC & whispers while gagged
 SensDepSetting,Sensory deprivation setting
