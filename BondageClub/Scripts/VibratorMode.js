@@ -175,7 +175,7 @@ function VibratorModeDraw(Options) {
  */
 function VibratorModeDrawHeader() {
 	var Asset = DialogFocusItem.Asset;
-	var AssetPath = "Assets/" + Asset.Group.Family + "/" + Asset.Group.Name + "/Preview/" + Asset.Name + ".png";
+	var AssetPath = "Assets/" + Asset.Group.Family + "/" + Asset.DynamicGroupName + "/Preview/" + Asset.Name + ".png";
 
 	var X = 1389;
 	var Y = 102;

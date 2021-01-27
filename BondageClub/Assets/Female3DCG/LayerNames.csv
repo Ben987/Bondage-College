@@ -77,6 +77,9 @@ HairAccessory1FoxEars3Strap,Strap
 HairAccessory1FoxEars3Bell,Bell
 HairAccessory1BunnyEars2Outer,Outer
 HairAccessory1BunnyEars2Inner,Inner
+HairAccessory1HaloGlow,Glow
+HairAccessory1HaloBase,Body
+HairAccessory1HaloCore,Core
 HairAccessory2KittenEars1Outer,Outer Ear
 HairAccessory2KittenEars1Inner,Inner Ear
 HairAccessory2FoxEars2Inner,Inner Ear
@@ -87,6 +90,9 @@ HairAccessory2FoxEars3Strap,Strap
 HairAccessory2FoxEars3Bell,Bell
 HairAccessory2BunnyEars2Outer,Outer
 HairAccessory2BunnyEars2Inner,Inner
+HairAccessory3HaloGlow,Glow
+HairAccessory3HaloBase,Body
+HairAccessory3HaloCore,Core
 GlovesGlovesFurFabric,Glove
 GlovesGlovesFurFur,Fur
 TailStrapsTailStrapTail,Tail
@@ -103,6 +109,8 @@ TailStrapsFoxTailStrap2Tip,Tip
 ItemFeetOrnateAnkleCuffsCuffs,Cuffs
 ItemFeetOrnateAnkleCuffsGems,Gems
 ItemLegsOrnateLegCuffsCuffs,Cuffs
+ItemFeetFloorShacklesChain,Chain
+ItemFeetFloorShacklesCuffs,Cuffs
 ItemFeetFuturisticAnkleCuffsCuffs,Cuffs
 ItemFeetFuturisticAnkleCuffsDisplay,Display
 ItemFeetMedicalBedRestraintsBase,Bed Straps

@@ -1408,7 +1408,7 @@ function PreferenceVisibilityAssetChanged(RefreshCheckboxes) {
 
 	// Get the preview image path
 	if (PreferenceVisibilityHideChecked) PreferenceVisibilityPreviewImg = "Icons/HiddenItem.png";
-	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Asset.Group.Family + "/" + CurrAsset.Asset.Group.Name + "/Preview/" + CurrAsset.Asset.Name + ".png";
+	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Asset.Group.Family + "/" + CurrAsset.Asset.DynamicGroupName + "/Preview/" + CurrAsset.Asset.Name + ".png";
 
 	PreferenceVisibilityResetClicked = false;
 }
