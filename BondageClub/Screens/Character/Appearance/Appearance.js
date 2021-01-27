@@ -551,10 +551,12 @@ function AppearanceMenuBuild(C) {
 			break;
 		case "Cloth":
 			if (!DialogItemPermissionMode) {
-				if (InventoryGet(C, C.FocusGroup.Name) && InventoryGet(C, C.FocusGroup.Name).Asset.Extended) AppearanceMenu.push("Use");
+				let Item = InventoryGet(C, C.FocusGroup.Name);
+				if (Item && Item.Asset.Extended) AppearanceMenu.push("Use");
 				if (C.ID === 0) AppearanceMenu.push("WearRandom");
 				if (C.ID === 0 && Player.GetDifficulty() < 3) AppearanceMenu.push("DialogPermissionMode");
 				AppearanceMenu.push("Naked");
+				if (Item && DialogCanColor(C, Item)) AppearanceMenu.push(ItemColorIsSimple(Item) ? "ColorPick" : "MultiColorPick");
 			}
 			if (DialogInventory.length > 9) AppearanceMenu.push("Next");
 			break;
@@ -905,18 +907,12 @@ function AppearanceClick() {
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") &&
 				    WardrobeGroupAccessible(C, AssetGroup[A]) && AssetGroup[A].AllowColorize && Item && Item.Asset.ColorableLayerCount > 0)
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95)) {
-						if (Item) {
-							// Keeps the previous color in backup and creates a text box to enter the color
-							CharacterAppearanceMode = "Color";
-							CharacterAppearanceColorPickerGroupName = AssetGroup[A].Name;
-							CharacterAppearanceColorPickerBackup =
-								CharacterAppearanceGetCurrentValue(C, CharacterAppearanceColorPickerGroupName, "Color");
-							ItemColorLoad(C, Item, 1200, 25, 775, 950, true);
-							ItemColorOnExit(() => CharacterAppearanceMode = "");
-						}
+						AppearanceItemColor(C, Item, AssetGroup[A].Name, "");
 					}
 			}
 	}
+
+	
 
 	// In wardrobe mode
 	if (CharacterAppearanceMode == "Wardrobe") {
@@ -971,6 +967,7 @@ function AppearanceClick() {
 					if (Block || Limited) return;
 					if (InventoryAllow(C, Item.Asset.Prerequisite)) {
 						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
+						AppearanceMenuBuild(C);
 					} else {
 						CharacterAppearanceHeaderTextTime = DialogTextDefaultTimer;
 						CharacterAppearanceHeaderText = DialogText;
@@ -1041,6 +1038,12 @@ function AppearanceMenuClick(C) {
 					if (Button === "Next") {
 						DialogInventoryOffset = DialogInventoryOffset + 9;
 						if (DialogInventoryOffset >= DialogInventory.length) DialogInventoryOffset = 0;
+					}
+
+					// Opens the color picker
+					if (Button === "ColorPick" || Button === "MultiColorPick") {
+						let Item = InventoryGet(C, C.FocusGroup.Name);
+						AppearanceItemColor(C, Item, C.FocusGroup.Name, "Cloth");
 					}
 
 					// Cancels the selected cloth and reverts it back
@@ -1231,4 +1234,21 @@ function AppearanceItemParse(stringified) {
         }
         return value;
     });
+}
+
+/**
+ * Opens the color picker for a selected item
+ * @param {Character} C - The character the appearance is being changed for
+ * @param {Item} Item - The currently selected item
+ * @param {string} AssetGroup - The focused group
+ * @param {string} CurrentMode - The mode to revert to on exiting the color picker
+ * @returns {void}
+ */
+function AppearanceItemColor(C, Item, AssetGroup, CurrentMode) {
+	// Keeps the previous color in backup and creates a text box to enter the color
+	CharacterAppearanceMode = "Color";
+	CharacterAppearanceColorPickerGroupName = AssetGroup;
+	CharacterAppearanceColorPickerBackup = CharacterAppearanceGetCurrentValue(C, CharacterAppearanceColorPickerGroupName, "Color");
+	ItemColorLoad(C, Item, 1200, 25, 775, 950, true);
+	ItemColorOnExit(() => CharacterAppearanceMode = CurrentMode);
 }
