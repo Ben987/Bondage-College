@@ -912,8 +912,6 @@ function AppearanceClick() {
 			}
 	}
 
-	
-
 	// In wardrobe mode
 	if (CharacterAppearanceMode == "Wardrobe") {
 
