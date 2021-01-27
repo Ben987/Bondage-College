@@ -326,7 +326,7 @@ function ChatRoomCreateElement() {
 	// Creates the chat box
 	if (document.getElementById("InputChat") == null) {
 		ElementCreateTextArea("InputChat");
-		document.getElementById("InputChat").setAttribute("maxLength", 250);
+		document.getElementById("InputChat").setAttribute("maxLength", 1000);
 		document.getElementById("InputChat").setAttribute("autocomplete", "off");
 		ElementFocus("InputChat");
 	} else if (document.getElementById("InputChat").style.display == "none") ElementFocus("InputChat");
@@ -1258,7 +1258,7 @@ function ChatRoomMessage(data) {
 						ChatRoomLeashPlayer = null
 					}
 				}
-				if (msg == "PingHoldLeash"){ // The dom will ping all players on her leash list and ones that no longer have her as their leasher will remove it
+				else if (msg == "PingHoldLeash"){ // The dom will ping all players on her leash list and ones that no longer have her as their leasher will remove it
 					if (SenderCharacter.MemberNumber != ChatRoomLeashPlayer || !ChatRoomCanBeLeashedBy(SenderCharacter.MemberNumber, Player)) {
 						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
 					}
@@ -1268,14 +1268,10 @@ function ChatRoomMessage(data) {
 						ChatRoomLeashList.splice(ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber), 1)
 					} 
 				} 
-				if (msg == "GiveLockpicks") DialogLentLockpicks = true;
-				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
-				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
-				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
-				if (msg.substring(0, 8) == "PayQuest") ChatRoomPayQuest(data);
-				if (msg.substring(0, 9) == "OwnerRule") data = ChatRoomSetRule(data);
+				else if (msg == "GiveLockpicks") DialogLentLockpicks = true;
+
+				// If the message is still hidden after any modifications, stop processing
 				if (data.Type == "Hidden") return;
- 				return;
 			}
 
 			// Checks if the message is a notification about the user entering or leaving the room

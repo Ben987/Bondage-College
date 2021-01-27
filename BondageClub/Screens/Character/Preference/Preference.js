@@ -712,6 +712,7 @@ function PreferenceSubscreenGeneralClick() {
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
 		Player.ItemPermission++;
 		if (Player.ItemPermission > 5) Player.ItemPermission = 0;
+		if (Player.GetDifficulty() >= 3) LoginExtremeItemSettings();
 	}
 
 	// If we must show/hide/use the color picker
@@ -886,6 +887,7 @@ function PreferenceExit() {
     ControllerSettings: Player.ControllerSettings,
 		GraphicsSettings: Player.GraphicsSettings,
 		NotificationSettings: Player.NotificationSettings,
+		LimitedItems: Player.LimitedItems,
 	};
 	ServerSend("AccountUpdate", P);
 	PreferenceMessage = "";
@@ -1592,7 +1594,7 @@ function PreferenceVisibilityAssetChanged(RefreshCheckboxes) {
 
 	// Get the preview image path
 	if (PreferenceVisibilityHideChecked) PreferenceVisibilityPreviewImg = "Icons/HiddenItem.png";
-	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Asset.Group.Family + "/" + CurrAsset.Asset.Group.Name + "/Preview/" + CurrAsset.Asset.Name + ".png";
+	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Asset.Group.Family + "/" + CurrAsset.Asset.DynamicGroupName + "/Preview/" + CurrAsset.Asset.Name + ".png";
 
 	PreferenceVisibilityResetClicked = false;
 }

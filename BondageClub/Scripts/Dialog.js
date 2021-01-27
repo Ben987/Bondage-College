@@ -1005,17 +1005,18 @@ function DialogLockPickProgressStart(C, Item) {
 	var LockPickingImpossible = false
 	if (Item != null && lock) {
 		// Gets the lock rating
+		var BondageLevel = (Item.Difficulty - Item.Asset.Difficulty)
 		
 		// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to pick)
 		var S = 0;
 		S = S + SkillGetWithRatio("LockPicking"); // Add the player evasion level (modified by the effectiveness ratio)
-		if (lock.Asset.PickDifficulty != null) {
+		if (lock.Asset.PickDifficulty && lock.Asset.PickDifficulty > 0) {
 			S = S - lock.Asset.PickDifficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
 			LockRating = lock.Asset.PickDifficulty // Some features of the minigame are independent of the relative skill level
 		}
-		if (Item.Asset && Item.Asset.Difficulty) {
-			S -= (Item.Difficulty - Item.Asset.Difficulty)/2 // Adds the bondage skill of the item but not the base difficulty!
-		}
+		//if (Item.Asset && Item.Asset.Difficulty) {
+		//	S -= BondageLevel/2 // Adds the bondage skill of the item but not the base difficulty!
+		//}
 		
 		if (Player.IsEnclose() || Player.IsMounted()) S = S - 2; // A little harder if there's an enclosing or mounting item
 
@@ -1110,18 +1111,15 @@ function DialogLockPickProgressStart(C, Item) {
 			if (NumPins >= 8) DialogLockPickImpossiblePins.push(DialogLockPickOrder[DialogLockPickOrder.length-3])
 		}
 
-		var NumTries = NumPins * 4
 		// At 4 pins we have a base of 16 tries, with 10 maximum permutions possible
-		// At 10 pins we have a base of 40 tries, with 55 maximum permutions possible
-		NumTries = Math.floor(Math.max(NumPins*1.5, NumTries - Math.max(
-			Math.max(0, -S)*Math.max(0, -S)/3,
-			Math.max(0, -S-S*NumPins/5)
-			))) // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
+		// At 10 pins we have a base of 40-30 tries, with 55 maximum permutions possible
+		var NumTries = Math.floor(Math.max(NumPins * (2.25 - BondageLevel/10),
+				NumPins * (4 - BondageLevel/10) - Math.max(0, DialogLockPickProgressChallenge*NumPins/4) - BondageLevel/2))
+			    // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
 				// negative skill of 6 subtracts 12 from all locks
 	
 
-		DialogLockPickProgressMaxTries = NumTries;
-
+		DialogLockPickProgressMaxTries = NumTries - NumPins;
 	}
 }
 
@@ -1545,7 +1543,7 @@ function DialogClick() {
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 15) && (MouseY <= 105)) DialogMenuButtonClick();
 
 			// If the user clicks on one of the items
-			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter, null, null))) && (DialogProgress < 0 && !DialogLockPickOrder) && (DialogColor == null)) {
+			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter, null, true))) && (DialogProgress < 0 && !DialogLockPickOrder) && (DialogColor == null)) {
 				// For each items in the player inventory
 				var X = 1000;
 				var Y = 125;
@@ -1830,7 +1828,7 @@ function DialogDrawStruggleProgress(C) {
 		// Reset the the character's position
 		if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
 			CharacterAppearanceForceUpCharacter = 0;
-			CharacterApperanceSetHeightModifier(C);
+			CharacterAppearanceSetHeightModifiers(C);
 		}
 
 		// Rebuilds the menu
@@ -1859,15 +1857,15 @@ function DialogLockPickClick(C) {
 				var XX = X - PinWidth/2 + (0.5-DialogLockPickSet.length/2 + P) * PinSpacing
 				if (MouseIn(XX + PinSpacing/2, Y - PinHeight, PinSpacing, PinWidth+PinHeight)) {
 					if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
-						DialogLockPickProgressCurrentTries += 1
 						
 						if (DialogLockPickOrder[current_pins] == P && DialogLockPickImpossiblePins.filter(x => x==P).length == 0) {
 							DialogLockPickSet[P] = true
 							DialogLockPickArousalText = ""; // Reset arousal text
-
+						} else {
+							DialogLockPickProgressCurrentTries += 1
 						}
-						var order = DialogLockPickImpossiblePins.indexOf(P)/DialogLockPickSet.length * skill/10 // At higher skills you can see which pins are later in the order
-						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.7*order+Math.random()*0.6*(1.0 - skill/15))
+						var order = Math.max(0, DialogLockPickOrder.indexOf(P)-current_pins)/Math.max(1, DialogLockPickSet.length-current_pins) * (0.25+0.75*skill/10) // At higher skills you can see which pins are later in the order
+						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.8*order)
 						
 						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && DialogLockPickSet.filter(x => x==false).length > 0 ) {
 							SkillProgress("LockPicking", DialogLockPickProgressSkillLose);
@@ -2052,7 +2050,7 @@ function DialogDrawItemMenu(C) {
 	} else ColorPickerHide();
 
 	// In item permission mode, the player can choose which item he allows other users to mess with.  Allowed items have a green background.  Disallowed have a red background. Limited have an orange background
-	if ((DialogItemPermissionMode && (C.ID == 0) && (DialogProgress < 0 && !DialogLockPickOrder)) || (Player.CanInteract() && (DialogProgress < 0 && !DialogLockPickOrder) && !InventoryGroupIsBlocked(C, null, null))) {
+	if ((DialogItemPermissionMode && (C.ID == 0) && (DialogProgress < 0 && !DialogLockPickOrder)) || (Player.CanInteract() && (DialogProgress < 0 && !DialogLockPickOrder) && !InventoryGroupIsBlocked(C, null, true))) {
 
 		
 		if (DialogInventory == null) DialogInventoryBuild(C);
@@ -2084,11 +2082,11 @@ function DialogDrawItemMenu(C) {
 			DrawRect(X, Y, 225, 275, (DialogItemPermissionMode && C.ID == 0) ?
 				(Item.Worn ? "gray" : Block ? Hover ? "red" : "pink" : Limit ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") :
 				((Hover && !Blocked) ? "cyan" : Item.Worn ? "pink" : Blocked ? "red" : Unusable ? "gray" : "white"));
-            if (!CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name)) {
-                if (ControllerActive == true) setButton(X + 2, Y + 2);
-                if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
-                else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
-            }
+      if (!CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name)) {
+          if (ControllerActive == true) setButton(X + 2, Y + 2);
+          if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
+          else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
+      }
 			else DrawImageResize("Icons/HiddenItem.png", X + 2, Y + 2, 221, 221);
 			DrawTextFit(Item.Asset.DynamicDescription(Player), X + 112, Y + 250, 221, "black");
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
@@ -2108,77 +2106,6 @@ function DialogDrawItemMenu(C) {
 	// If the player is progressing
 	if (DialogProgress >= 0) {
 		DialogDrawStruggleProgress(C)
-    // Draw one or both items
-		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) {
-			DrawItemPreview(1200, 250, DialogProgressPrevItem);
-			DrawItemPreview(1575, 250, DialogProgressNextItem);
-		} else DrawItemPreview(1387, 250, (DialogProgressPrevItem != null) ? DialogProgressPrevItem : DialogProgressNextItem);
-
-		// Add or subtract to the automatic progression, doesn't move in color picking mode
-		DialogProgress = DialogProgress + DialogProgressAuto;
-		if (DialogProgress < 0) DialogProgress = 0;
-		
-		// We cancel out if at least one of the following cases apply: a new item conflicts with this, the player can no longer interact, something else was added first, the item was already removed
-		if (InventoryGroupIsBlocked(C) || (C != Player && !Player.CanInteract()) || (DialogProgressNextItem == null && !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name)) || (DialogProgressNextItem != null && !InventoryAllow(C, DialogProgressNextItem.Asset.Prerequisite)) || (DialogProgressNextItem != null && DialogProgressPrevItem != null && ((InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name) && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name).Asset.Name != DialogProgressPrevItem.Asset.Name) || !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name))) || (DialogProgressNextItem != null && DialogProgressPrevItem == null && InventoryGet(C, DialogProgressNextItem.Asset.Group.Name))) {
-			if (DialogProgress > 0)
-				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true, "interrupted");
-			else
-				DialogLeave();
-			DialogProgress = -1;
-			return;
-		}
-
-		// Draw the current operation and progress
-		if (DialogProgressAuto < 0) DrawText(DialogFind(Player, "Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
-		DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
-		DrawProgressBar(1200, 700, 600, 100, DialogProgress);
-		DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
-
-		// If the operation is completed
-		if (DialogProgress >= 100) {
-
-			// Stops the dialog sounds
-			AudioDialogStop();
-
-			// Removes the item & associated items if needed, then wears the new one 
-			InventoryRemove(C, C.FocusGroup.Name);
-			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetWithRatio("Bondage"), Player.MemberNumber);
-
-			// The player can use another item right away, for another character we jump back to her reaction
-			if (C.ID == 0) {
-				if (DialogProgressNextItem == null) SkillProgress("Evasion", DialogProgressSkill);
-				if ((DialogProgressPrevItem == null) && (DialogProgressNextItem != null)) SkillProgress("SelfBondage", (DialogProgressSkill + DialogProgressNextItem.Asset.SelfBondage) * 2);
-				if ((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) {
-					DialogInventoryBuild(C);
-					DialogProgress = -1;
-					DialogColor = null;
-				}
-			} else {
-				if (DialogProgressNextItem != null) SkillProgress("Bondage", DialogProgressSkill);
-				if (((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) && (CurrentScreen != "ChatRoom")) {
-					C.CurrentDialog = DialogFind(C, ((DialogProgressNextItem == null) ? ("Remove" + DialogProgressPrevItem.Asset.Name) : DialogProgressNextItem.Asset.Name), ((DialogProgressNextItem == null) ? "Remove" : "") + C.FocusGroup.Name);
-					DialogLeaveItemMenu();
-				}
-			}
-
-			// Check to open the extended menu of the item.  In a chat room, we publish the result for everyone
-			if ((DialogProgressNextItem != null) && DialogProgressNextItem.Asset.Extended) {
-				DialogInventoryBuild(C);
-				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, false);
-				DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
-			} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
-
-			// Reset the the character's position
-			if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
-				CharacterAppearanceForceUpCharacter = 0;
-				CharacterAppearanceSetHeightModifiers(C);
-			}
-
-			// Rebuilds the menu
-			DialogEndExpression();
-			if (C.FocusGroup != null) DialogMenuButtonBuild(C);
-
-		}
 		return;
 	}
 	// If the player is lockpicking
@@ -2196,7 +2123,7 @@ function DialogDrawItemMenu(C) {
 	if (FocusItem != null) {
 		if (InventoryItemHasEffect(FocusItem, "Vibrating", true)) {
 			DrawRect(1387, 250, 225, 275, "white");
-			DrawImageResize("Assets/" + FocusItem.Asset.Group.Family + "/" + FocusItem.Asset.Group.Name + "/Preview/" + FocusItem.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 2, 252 + Math.floor(Math.random() * 3) - 2, 221, 221);
+			DrawImageResize("Assets/" + FocusItem.Asset.Group.Family + "/" + FocusItem.Asset.DynamicGroupName + "/Preview/" + FocusItem.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 2, 252 + Math.floor(Math.random() * 3) - 2, 221, 221);
 			DrawTextFit(FocusItem.Asset.Description, 1497, 500, 221, "black");
 		}
 		else DrawItemPreview(1387, 250, FocusItem);

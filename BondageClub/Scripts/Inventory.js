@@ -593,7 +593,7 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 function InventoryItemIsPickable(Item) {
 	if (!Item) return null;
 	var lock = InventoryGetLock(Item)
-	if (lock && lock.Asset && lock.Asset.PickDifficulty) return true;
+	if (lock && lock.Asset && lock.Asset.PickDifficulty && lock.Asset.PickDifficulty > 0) return true;
 	else return false;
 	
 }

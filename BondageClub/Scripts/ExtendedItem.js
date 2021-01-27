@@ -143,9 +143,9 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 	
 	// Draw the header and item
 	DrawRect(1387, 55, 225, 275, "white");
-	DrawImageResize("Assets/" + Asset.Group.Family + "/" + Asset.Group.Name + "/Preview/" + Asset.Name + ".png", 1389, 57, 221, 221);
+	DrawImageResize("Assets/" + Asset.Group.Family + "/" + Asset.DynamicGroupName + "/Preview/" + Asset.Name + ".png", 1389, 57, 221, 221);
 	DrawTextFit(Asset.Description, 1500, 310, 221, "black");
-	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");;		
+	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 
 	// Draw the possible variants and their requirements, arranged based on the number per page
     for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {

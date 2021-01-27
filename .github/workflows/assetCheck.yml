@@ -1,0 +1,23 @@
+name: Asset check
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  asset-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./BondageClub/Tools/Node
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: Run Asset check
+      run: npm run -s assetcheck
