@@ -129,10 +129,10 @@ function TimerPrivateOwnerBeep() {
 	if ((Player.Owner != "") && (Player.Ownership == null) && (CurrentScreen != "Private") && (CurrentScreen != "ChatRoom") && (CurrentScreen != "InformationSheet") && (CurrentScreen != "FriendList") && (CurrentScreen != "Cell") && PrivateOwnerInRoom())
 		if ((Math.floor(Math.random() * 500) == 1) && !LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && !LogQuery("Committed", "Asylum")) {
 			ServerBeep.Timer = CurrentTime + 15000;
-			ServerBeep.Message = DialogFind(Player, "BeepFromOwner");
+			ServerBeep.Message = GetPlayerDialog("BeepFromOwner");
 			LogAdd("OwnerBeepActive", "PrivateRoom");
 			LogAdd("OwnerBeepTimer", "PrivateRoom", CurrentTime + 120000);
-			FriendListBeepLog.push({ MemberName: Player.Owner, ChatRoomName: DialogFind(Player, "YourRoom"), Sent: false, Time: new Date() });
+			FriendListBeepLog.push({ MemberName: Player.Owner, ChatRoomName: GetPlayerDialog("YourRoom"), Sent: false, Time: new Date() });
 		}
 }
 

@@ -707,9 +707,9 @@ function ServerAccountBeep(data) {
 				ServerBeepAudio.volume = Player.AudioSettings.Volume;
 				ServerBeepAudio.play();
 			}
-			ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
+			ServerBeep.Message = GetPlayerDialog("BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 			if (ServerBeep.ChatRoomName != null)
-				ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
+				ServerBeep.Message = ServerBeep.Message + " " + GetPlayerDialog("InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? GetPlayerDialog("InAsylum") : '');
 			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 			if (Player.NotificationSettings.Beeps && !document.hasFocus()) CommonNotificationIncrement("Beep");

@@ -62,7 +62,7 @@ function InventoryHairAccessory3HaloDraw() {
 	ElementPosition(InventoryHairAccessory3HaloBrightnessInputId, 1725, 430, 400);
 	MainCanvas.textAlign = "center";
 
-	DrawTextFit(DialogFind(Player, "InventoryHairAccessory3HaloType"), 1500, 530, 800, "#fff", "#000");
+	DrawTextFit(GetPlayerDialog("InventoryHairAccessory3HaloType"), 1500, 530, 800, "#fff", "#000");
 
 	InventoryHairAccessory3HaloOptions.forEach((option, i) => {
 		const x = ExtendedXY[InventoryHairAccessory3HaloOptions.length][i][0];
@@ -71,7 +71,7 @@ function InventoryHairAccessory3HaloDraw() {
 
 		DrawButton(x, y, 225, 275, "", isSelected ? "#888" : "#fff", null, null, isSelected);
 		DrawImage("Screens/Inventory/" + asset.DynamicGroupName + "/" + asset.Name + "/" + option.Name + ".png", x + 2, y);
-		DrawTextFit(DialogFind(Player, "InventoryHairAccessory3HaloType" + option.Name), x + 112, y + 250, 225, "#000");
+		DrawTextFit(GetPlayerDialog("InventoryHairAccessory3HaloType" + option.Name), x + 112, y + 250, 225, "#000");
 	});
 }
 

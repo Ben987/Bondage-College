@@ -112,7 +112,7 @@ function ExtendedItemLoad(Options, DialogKey) {
 
 	if (ExtendedItemOffsets[ExtendedItemOffsetKey()] == null) ExtendedItemSetOffset(0);
 
-	DialogExtendedMessage = DialogFind(Player, DialogKey);
+	DialogExtendedMessage = GetPlayerDialog(DialogKey);
 }
 
 /**
@@ -165,14 +165,14 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 
 		DrawButton(X, Y, 225, 55 + ImageHeight, "", Color, null, null, IsSelected);
 		if (ShowImages) DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X + 2, Y);
-		DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
+		DrawTextFit(GetPlayerDialog(DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
 		if (ControllerActive == true) {
 			setButton(X + 112, Y + 30 + ImageHeight);
 		}
 	}
 	
 	// Permission mode toggle is always available
-	DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
+	DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", GetPlayerDialog(ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 }
 
 /**
@@ -344,12 +344,12 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 	if (IsSelfBondage) {
 		let RequiredLevel = Option.SelfBondageLevel || Math.max(DialogFocusItem.Asset.SelfBondage, Option.BondageLevel);
 		if (SkillGetLevelReal(Player, "SelfBondage") < RequiredLevel) {
-			return DialogFind(Player, "RequireSelfBondage" + RequiredLevel);
+			return GetPlayerDialog("RequireSelfBondage" + RequiredLevel);
 		}
 	} else {
 		let RequiredLevel = Option.BondageLevel;
 		if (SkillGetLevelReal(Player, "Bondage") < RequiredLevel) {
-			return DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", RequiredLevel);
+			return GetPlayerDialog("RequireBondageLevel").replace("ReqLevel", RequiredLevel);
 		}
 	}
 
@@ -368,7 +368,7 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 	} else {
 		const OldEffect= DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Effect;
 		if (OldEffect && OldEffect.includes("Lock") && Option.Property.AllowLock === false) {
-			DialogExtendedMessage = DialogFind(Player, "ExtendedItemUnlockBeforeChange");
+			DialogExtendedMessage = GetPlayerDialog("ExtendedItemUnlockBeforeChange");
 			return DialogExtendedMessage;
 		}
 	}

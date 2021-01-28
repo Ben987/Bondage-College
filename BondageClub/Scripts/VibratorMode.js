@@ -199,7 +199,7 @@ function VibratorModeDrawControls(Options, Y) {
 	Options = Options || [VibratorModeSet.STANDARD];
 	var Property = DialogFocusItem.Property;
 	if (Property == null) return;
-	var ItemIntensity = DialogFind(Player, "Intensity" + Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description);
+	var ItemIntensity = GetPlayerDialog("Intensity" + Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description);
 	DrawText(ItemIntensity, 1500, Y, "white", "gray");
 
 	Options.forEach((OptionName) => {
@@ -208,7 +208,7 @@ function VibratorModeDrawControls(Options, Y) {
 			var X = 1175 + (I % 3) * 225;
 			if (I % 3 === 0) Y += 75;
 			var Color = Property.Mode === Option.Property.Mode ? "#888" : "White";
-			DrawButton(X, Y, 200, 55, DialogFind(Player, Option.Name), Color);
+			DrawButton(X, Y, 200, 55, GetPlayerDialog(Option.Name), Color);
 		});
 		Y += 40;
 	});

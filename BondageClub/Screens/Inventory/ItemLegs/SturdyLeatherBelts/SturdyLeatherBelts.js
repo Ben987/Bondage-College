@@ -50,9 +50,9 @@ function InventoryItemLegsSturdyLeatherBeltsValidate(C) {
 	var Allowed = "";
 
 	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true) && !DialogCanUnlock(C, DialogFocusItem)) {
-		Allowed = DialogFind(Player, "CantChangeWhileLocked");
+		Allowed = GetPlayerDialog("CantChangeWhileLocked");
 	} else if (InventoryGet(C, "ClothLower") != null) {
-		Allowed = DialogFind(Player, "RemoveClothesForItem");
+		Allowed = GetPlayerDialog("RemoveClothesForItem");
 	}
 
 	return Allowed;

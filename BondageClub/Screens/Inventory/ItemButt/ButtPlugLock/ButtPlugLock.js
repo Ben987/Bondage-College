@@ -29,16 +29,16 @@ function InventoryItemButtButtPlugLockDraw() {
 	var ChainShortPrerequisites = InventoryItemButtButtPlugLockChainShortPrerequesites(C);
 
 	// Draw the possible poses
-	DrawText(DialogFind(Player, InventoryItemButtButtPlugLockMessage), 1500, 500, "white", "gray");
+	DrawText(GetPlayerDialog(InventoryItemButtButtPlugLockMessage), 1500, 500, "white", "gray");
 	DrawButton(1000, 550, 225, 225, "", ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type == null)) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Base.png", 1000, 550);
-	DrawText(DialogFind(Player, "ButtPlugLockPoseBase"), 1125, 800, "white", "gray");
+	DrawText(GetPlayerDialog("ButtPlugLockPoseBase"), 1125, 800, "white", "gray");
 	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "ChainShort") || !ChainShortPrerequisites) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/ChainShort.png", 1250, 550);
-	DrawText(DialogFind(Player, "ButtPlugLockPoseChainShort"), 1375, 800, "white", "gray");
+	DrawText(GetPlayerDialog("ButtPlugLockPoseChainShort"), 1375, 800, "white", "gray");
 	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "ChainLong") || C.Pose.indexOf("Suspension") >= 0) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/ChainLong.png", 1500, 550);
-	DrawText(DialogFind(Player, "ButtPlugLockPoseChainLong"), 1625, 800, "white", "gray");
+	DrawText(GetPlayerDialog("ButtPlugLockPoseChainLong"), 1625, 800, "white", "gray");
 }
 
 // Catches the item extension clicks

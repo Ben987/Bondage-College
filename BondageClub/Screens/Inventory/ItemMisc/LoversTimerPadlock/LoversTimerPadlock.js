@@ -17,44 +17,44 @@ function InventoryItemMiscLoversTimerPadlockDraw() {
     var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
     if ((DialogFocusItem == null) || (DialogFocusSourceItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscLoversTimerPadlockExit(); return; }
     if (DialogFocusSourceItem.Property.ShowTimer) {
-        DrawText(DialogFind(Player, "TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
-    } else { DrawText(DialogFind(Player, "TimerUnknown"), 1500, 150, "white", "gray"); }
+        DrawText(GetPlayerDialog("TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
+    } else { DrawText(GetPlayerDialog("TimerUnknown"), 1500, 150, "white", "gray"); }
     DrawRect(1387, 225, 225, 275, "white");
     DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
     DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-    DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
+    DrawText(GetPlayerDialog(DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
 
     // Draw the settings
     if (Player.CanInteract() && (C.IsLoverOfPlayer())) {
         MainCanvas.textAlign = "left";
         DrawButton(1100, 666, 64, 64, "", "White", (DialogFocusSourceItem.Property.RemoveItem) ? "Icons/Checked.png" : "");
-        DrawText(DialogFind(Player, "RemoveItemWithTimer"), 1200, 698, "white", "gray");
+        DrawText(GetPlayerDialog("RemoveItemWithTimer"), 1200, 698, "white", "gray");
         DrawButton( 1100, 746, 64, 64, "", "White", (DialogFocusSourceItem.Property.ShowTimer) ? "Icons/Checked.png" : "");
         DrawText(DialogFind(Player,"ShowItemWithTimerRemaining"), 1200, 778, "white", "gray");
         DrawButton(1100, 826, 64, 64, "", "White", (DialogFocusSourceItem.Property.EnableRandomInput) ? "Icons/Checked.png" : "");
-        DrawText(DialogFind(Player, "EnableRandomInput"), 1200, 858, "white", "gray");
+        DrawText(GetPlayerDialog("EnableRandomInput"), 1200, 858, "white", "gray");
         MainCanvas.textAlign = "center";
     } else {
         if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
-            DrawText(DialogFind(Player, "LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
-        DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Detail"), 1500, 800, "white", "gray");
-        DrawText(DialogFind(Player, (DialogFocusSourceItem.Property.RemoveItem) ? "WillRemoveItemWithTimer" : "WontRemoveItemWithTimer"), 1500, 868, "white", "gray");
+            DrawText(GetPlayerDialog("LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
+        DrawText(GetPlayerDialog(DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Detail"), 1500, 800, "white", "gray");
+        DrawText(GetPlayerDialog((DialogFocusSourceItem.Property.RemoveItem) ? "WillRemoveItemWithTimer" : "WontRemoveItemWithTimer"), 1500, 868, "white", "gray");
     }
 
     // Draw buttons to add/remove time if available
     if (Player.CanInteract() && (C.IsLoverOfPlayer())) {
-        DrawButton(1100, 910, 250, 70, DialogFind(Player, "AddTimerTime"), "White");
-        DrawBackNextButton(1400, 910, 250, 70, LoverTimerChooseList[LoverTimerChooseIndex] + " " + DialogFind(Player, "Hours"), "White", "",
-            () => LoverTimerChooseList[(LoverTimerChooseList.length + LoverTimerChooseIndex - 1) % LoverTimerChooseList.length] + " " + DialogFind(Player, "Hours"),
-            () => LoverTimerChooseList[(LoverTimerChooseIndex + 1) % LoverTimerChooseList.length] + " " + DialogFind(Player, "Hours"));
+        DrawButton(1100, 910, 250, 70, GetPlayerDialog("AddTimerTime"), "White");
+        DrawBackNextButton(1400, 910, 250, 70, LoverTimerChooseList[LoverTimerChooseIndex] + " " + GetPlayerDialog("Hours"), "White", "",
+            () => LoverTimerChooseList[(LoverTimerChooseList.length + LoverTimerChooseIndex - 1) % LoverTimerChooseList.length] + " " + GetPlayerDialog("Hours"),
+            () => LoverTimerChooseList[(LoverTimerChooseIndex + 1) % LoverTimerChooseList.length] + " " + GetPlayerDialog("Hours"));
     }
     else if (Player.CanInteract() && DialogFocusSourceItem.Property.EnableRandomInput) {
         for (let I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++) {
             if (DialogFocusSourceItem.Property.MemberNumberList[I] == Player.MemberNumber) return;
         }
-        DrawButton(1100, 910, 250, 70, "- 2 " + DialogFind(Player, "Hours"), "White");
-        DrawButton(1400, 910, 250, 70, DialogFind(Player, "Random"), "White");
-        DrawButton(1700, 910, 250, 70, "+ 2 " + DialogFind(Player, "Hours"), "White");
+        DrawButton(1100, 910, 250, 70, "- 2 " + GetPlayerDialog("Hours"), "White");
+        DrawButton(1400, 910, 250, 70, GetPlayerDialog("Random"), "White");
+        DrawButton(1700, 910, 250, 70, "+ 2 " + GetPlayerDialog("Hours"), "White");
     }
 }
 

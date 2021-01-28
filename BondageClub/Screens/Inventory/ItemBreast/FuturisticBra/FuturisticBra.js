@@ -74,30 +74,30 @@ function InventoryItemBreastFuturisticBraDraw() {
 	var current_temp = update.temp
 		
 	
-	DrawText(DialogFind(Player, "FuturisticBraPlayerDesc") + " " + C.MemberNumber, 1500, 600, "White", "Gray");
-	DrawText(DialogFind(Player, "FuturisticBraPlayerHeartRate") + " " + current_bpm + " " + DialogFind(Player, "FuturisticBraPlayerHeartRateBPM"), 1500, 680, "White", "Gray");
-	DrawText(DialogFind(Player, "FuturisticBraPlayerTemp") + " " + current_temp + DialogFind(Player, "FuturisticBraPlayerTempC"), 1500, 730, "White", "Gray");
-	DrawText(DialogFind(Player, "FuturisticBraPlayerBreathing") + " " + DialogFind(Player, "FuturisticBraPlayerBreathing" + current_breathing), 1500, 780, "White", "Gray");
-	DrawText(DialogFind(Player, "FuturisticBraPlayerTracking"), 1500, 830, "White", "Gray");
+	DrawText(GetPlayerDialog("FuturisticBraPlayerDesc") + " " + C.MemberNumber, 1500, 600, "White", "Gray");
+	DrawText(GetPlayerDialog("FuturisticBraPlayerHeartRate") + " " + current_bpm + " " + GetPlayerDialog("FuturisticBraPlayerHeartRateBPM"), 1500, 680, "White", "Gray");
+	DrawText(GetPlayerDialog("FuturisticBraPlayerTemp") + " " + current_temp + GetPlayerDialog("FuturisticBraPlayerTempC"), 1500, 730, "White", "Gray");
+	DrawText(GetPlayerDialog("FuturisticBraPlayerBreathing") + " " + GetPlayerDialog("FuturisticBraPlayerBreathing" + current_breathing), 1500, 780, "White", "Gray");
+	DrawText(GetPlayerDialog("FuturisticBraPlayerTracking"), 1500, 830, "White", "Gray");
 	
 	// If the player can modify 
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) == "") {
 		if (DialogFocusItem.Property.Type == "Solid") {
-			DrawButton(1250, 900, 200, 64, DialogFind(Player, "FuturisticBraPlayerShow"), "White", "");
+			DrawButton(1250, 900, 200, 64, GetPlayerDialog("FuturisticBraPlayerShow"), "White", "");
 		} else {
-			DrawButton(1550, 900, 200, 64, DialogFind(Player, "FuturisticBraPlayerSolid"), "White", "");
+			DrawButton(1550, 900, 200, 64, GetPlayerDialog("FuturisticBraPlayerSolid"), "White", "");
 		}
 	}
 	
 	
 	/*
-	DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
-	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "Low"), "White");
-	if (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Medium"), "White");
-	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1375, 710, 200, 55, DialogFind(Player, "High"), "White");
+	DrawText(GetPlayerDialog("Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
+	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1200, 650, 200, 55, GetPlayerDialog("Low"), "White");
+	if (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1550, 650, 200, 55, GetPlayerDialog("Medium"), "White");
+	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1375, 710, 200, 55, GetPlayerDialog("High"), "White");
 	if (CurrentScreen == "ChatRoom") DrawButton(1325, 800, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
-	if (CurrentScreen == "ChatRoom") DrawText(DialogFind(Player, "ShockCollarShowChat"), 1570, 833, "White", "Gray");
-	DrawButton(1375, 900, 200, 55, DialogFind(Player, "TriggerShock"), "White");*/
+	if (CurrentScreen == "ChatRoom") DrawText(GetPlayerDialog("ShockCollarShowChat"), 1570, 833, "White", "Gray");
+	DrawButton(1375, 900, 200, 55, GetPlayerDialog("TriggerShock"), "White");*/
 }
 
 // Catches the item extension clicks

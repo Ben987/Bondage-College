@@ -37,9 +37,9 @@ function InventoryItemHoodCanvasHoodDraw() {
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	const updateAllowed = InventoryItemHoodCanvasHoodAllowedChars.test(InventoryItemHoodCanvasHoodGetText());
-	DrawTextFit(DialogFind(Player, "CanvasHoodLabel"), 1505, 620, 350, "#fff", "#000");
+	DrawTextFit(GetPlayerDialog("CanvasHoodLabel"), 1505, 620, 350, "#fff", "#000");
 	ElementPosition(InventoryItemHoodCanvasHoodInputId, 1505, 680, 350);
-	DrawButton(1330, 731, 340, 64, DialogFind(Player, "SaveText"), updateAllowed ? "White" : "#888", "");
+	DrawButton(1330, 731, 340, 64, GetPlayerDialog("SaveText"), updateAllowed ? "White" : "#888", "");
 }
 
 /**
