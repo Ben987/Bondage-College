@@ -225,6 +225,136 @@ TextArea {
   background-color: cyan;
 }
 
+input[type=text]:invalid {
+  background-color: #fbb;
+  box-shadow: 0 0 3px 2px #c22;
+}
+
+/* Range Inputs - WebKit */
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background-color: transparent;
+  cursor: pointer;
+  /* Increases the hitbox of the slider to make it easier to select */
+  padding: 1% 0;
+  margin: -1% 0;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range].Vertical {
+  transform: rotate(270deg);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 25%;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 8px -2px rgba(0, 0, 0, 0.5);
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -0.4em;
+  background-color: #ccc;
+}
+
+input[type=range][data-thumb=lock]::-webkit-slider-thumb,
+input[type=range][data-thumb=blindfold]::-webkit-slider-thumb,
+input[type=range][data-thumb=lightbulb]::-webkit-slider-thumb {
+  background-color: transparent;
+  box-shadow: none;
+  background-position: center;
+  background-size: cover;
+  border: 0;
+  font-size: 1.5em;
+  border-radius: 0;
+}
+input[type=range][data-thumb=lock].Vertical::-webkit-slider-thumb,
+input[type=range][data-thumb=blindfold].Vertical::-webkit-slider-thumb,
+input[type=range][data-thumb=lightbulb].Vertical::-webkit-slider-thumb {
+  transform: rotate(90deg);
+}
+
+input[type=range][data-thumb=lock]::-webkit-slider-thumb {
+  background-image: url("../Assets/Female3DCG/ItemMisc/Preview/MetalPadlock.png");
+  width: 0.5em;
+}
+
+input[type=range][data-thumb=blindfold]::-webkit-slider-thumb {
+  background-image: url("../Assets/Female3DCG/ItemHead/Preview/StuddedBlindfold.png");
+}
+
+input[type=range][data-thumb=lightbulb]::-webkit-slider-thumb {
+  background-image: url("../Icons/Lightbulb.png");
+  width: 0.6em;
+}
+
+/* Range Inputs - Firefox */
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 25%;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid rgba(128, 128, 128, 0.25);
+  border-radius: 3px;
+}
+
+input[type=range]::-moz-range-thumb {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 8px -2px rgba(0, 0, 0, 0.5);
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+input[type=range][data-thumb=lock]::-moz-range-thumb,
+input[type=range][data-thumb=blindfold]::-moz-range-thumb,
+input[type=range][data-thumb=lightbulb]::-moz-range-thumb {
+  background-color: transparent;
+  box-shadow: none;
+  background-position: center;
+  background-size: cover;
+  border: 0;
+  font-size: 1.5em;
+  border-radius: 0;
+}
+
+input[type=range][data-thumb=lock].Vertical::-moz-range-thumb,
+input[type=range][data-thumb=blindfold].Vertical::-moz-range-thumb,
+input[type=range][data-thumb=lightbulb].Vertical::-moz-range-thumb {
+  transform: rotate(90deg);
+}
+
+input[type=range][data-thumb=lock]::-moz-range-thumb {
+  background-image: url("../Assets/Female3DCG/ItemMisc/Preview/MetalPadlock.png");
+  width: 0.5em;
+}
+
+input[type=range][data-thumb=blindfold]::-moz-range-thumb {
+  background-image: url("../Assets/Female3DCG/ItemHead/Preview/StuddedBlindfold.png");
+}
+
+input[type=range][data-thumb=lightbulb]::-moz-range-thumb {
+  background-image: url("../Icons/Lightbulb.png");
+  width: 0.6em;
+}
+
 /* Custom fonts */
 @font-face {
     font-family: 'Calligraffitti';

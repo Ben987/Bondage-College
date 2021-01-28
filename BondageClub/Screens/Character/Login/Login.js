@@ -4,10 +4,11 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Abby", "Anna", "Asuna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "EliseBlackthorn",
+var LoginThankYouList = ["Abby", "Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "EliseBlackthorn",
 						 "Epona", "Escurse", "FanRunner", "Fluffythewhat", "Greendragon", "Jin", "KamiKaze", "KBgamer", "Kimuriel", "Longwave",
-						 "Michal", "Michel", "Mike", "Mindtie", "Misa", "Nick", "Overlord", "Rashiash", "Ray", "Rika", "Rutherford", "Ryner",
-						 "Samuel", "SeraDenoir", "Setsu", "Shadow", "Somononon", "Tam", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
+						 "Michal", "Michel", "Mike", "Mindtie", "Misa", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Ramtam",
+						 "Rashiash", "Ray", "Rika", "Rutherford", "Ryner", "Samuel", "Sayari", "SeraDenoir", "Shadow", "Somononon", 
+						 "Stephanie", "Tam", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -119,6 +120,7 @@ function LoginRun() {
 	if (LoginCredits != null) LoginDrawCredits();
 
 	if (!LoginMessage) LoginUpdateMessage();
+	const CanLogin = ServerIsConnected && !LoginSubmitted;
 
 	// Draw the login controls
 	DrawText(TextGet("Welcome"), 1000, 50, "White", "Black");
@@ -127,11 +129,11 @@ function LoginRun() {
 	ElementPosition("InputName", 1000, 260, 500);
 	DrawText(TextGet("Password"), 1000, 350, "White", "Black");
 	ElementPosition("InputPassword", 1000, 410, 500);
-	DrawButton(775, 500, 200, 60, TextGet("Login"), "White", "");
+	DrawButton(775, 500, 200, 60, TextGet("Login"), CanLogin ? "White" : "Grey", "");
 	DrawButton(1025, 500, 200, 60, TextGet("Language"), "White", "");
 	DrawText(TextGet("CreateNewCharacter"), 1000, 670, "White", "Black");
-	DrawButton(825, 740, 350, 60, TextGet("NewCharacter"), "White", "");
-	DrawButton(825, 870, 350, 60, TextGet(CheatAllow ? "Cheats" : "PasswordReset"), "White", "");
+	DrawButton(825, 740, 350, 60, TextGet("NewCharacter"), CanLogin ? "White" : "Grey", "");
+	DrawButton(825, 870, 350, 60, TextGet(CheatAllow ? "Cheats" : "PasswordReset"), CheatAllow || CanLogin ? "White" : "Grey", "");
 
 	// Draw the character and thank you bubble
 	DrawCharacter(LoginCharacter, 1400, 100, 0.9);
@@ -306,13 +308,22 @@ function LoginDifficulty() {
 
 	// If Extreme mode, the player cannot control her blocked items
 	if (Player.GetDifficulty() >= 3) {
-		Player.BlockItems = [];
-		Player.LimitedItems = [{Name: "CombinationPadlock", Group: "ItemMisc", Type: null}, {Name: "PasswordPadlock", Group: "ItemMisc", Type: null}];
-		Player.HiddenItems = [];
+		LoginExtremeItemSettings();
 		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems, HiddenItems: Player.HiddenItems });
 	}
-
 }
+
+/**
+ * Set the item permissions for the Extreme difficulty
+ * @returns {void} Nothing
+ */
+function LoginExtremeItemSettings() {
+	Player.BlockItems = [];
+	// If the permissions are "Owner/Lover/Whitelist" don't limit the locks so that whitelist can use them
+	Player.LimitedItems = (Player.ItemPermission == 3) ? [] : MainHallStrongLocks;
+	Player.HiddenItems = [];
+}
+
 
 /**
  * Handles player login response data
@@ -334,6 +345,9 @@ function LoginResponse(C) {
 			CurrentScreen = RelogData.Screen;
 			CurrentCharacter = RelogData.Character;
 			TextLoad();
+			var Elements = document.getElementsByClassName("HideOnDisconnect");
+			for (let E = 0; E < Elements.length; E++)
+				Elements[E].style.display = "";
 			if ((ChatRoomData != null) && (ChatRoomData.Name != null) && (ChatRoomData.Name != "") && (RelogChatLog != null)) {
 				CommonSetScreen("Online", "ChatSearch");
 				ChatRoomPlayerCanJoin = true;
@@ -357,7 +371,10 @@ function LoginResponse(C) {
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Game = C.Game;
-			Player.Description = (C.Description == null) ? "" : C.Description.substr(0, 1000);
+			if (typeof C.Description === "string" && C.Description.startsWith("╬")) {
+				C.Description = LZString.decompressFromUTF16(C.Description.substr(1));
+			}
+			Player.Description = (C.Description == null) ? "" : C.Description.substr(0, 10000);
 			Player.Creation = C.Creation;
 			Player.Wardrobe = CharacterDecompressWardrobe(C.Wardrobe);
 			WardrobeFixLength();
@@ -369,8 +386,7 @@ function LoginResponse(C) {
 			Player.Difficulty = C.Difficulty;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
-			LoginDifficulty();
-
+			
 			// Load the last chat room
 			Player.LastChatRoom = C.LastChatRoom;
 			Player.LastChatRoomBG = C.LastChatRoomBG;
@@ -405,6 +421,9 @@ function LoginResponse(C) {
 			Player.ArousalSettings = C.ArousalSettings;
 			Player.OnlineSettings = C.OnlineSettings;
 			Player.OnlineSharedSettings = C.OnlineSharedSettings;
+			Player.ControllerSettings = C.ControllerSettings;
+			Player.GraphicsSettings = C.GraphicsSettings;
+			Player.NotificationSettings = C.NotificationSettings;
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
@@ -421,7 +440,7 @@ function LoginResponse(C) {
 			}
 			Player.SubmissivesList = typeof C.SubmissivesList === "string" ? new Set(JSON.parse(LZString.decompressFromUTF16(C.SubmissivesList))) : new Set();
 			Player.GhostList = ((C.GhostList == null) || !Array.isArray(C.GhostList)) ? [] : C.GhostList;
-         Player.GraphicsSettings = C.GraphicsSettings;
+			LoginDifficulty();
 
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
@@ -514,21 +533,21 @@ function LoginResponse(C) {
 function LoginClick() {
 
 	// Opens the cheat panel
-	if (CheatAllow && ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 870) && (MouseY <= 930))) {
+	if (CheatAllow && MouseIn(825, 870, 350, 60)) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CommonSetScreen("Character", "Cheat");
 	}
 
 	// Opens the password reset screen
-	if (!CheatAllow && ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 870) && (MouseY <= 930))) {
+	if (!CheatAllow && ServerIsConnected && MouseIn(825, 870, 350, 60)) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CommonSetScreen("Character", "PasswordReset");
 	}
 
 	// If we must create a new character
-	if ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 740) && (MouseY <= 800)) {
+	if (ServerIsConnected && MouseIn(825, 740, 350, 60)) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CharacterAppearanceSetDefault(Player);
@@ -539,10 +558,10 @@ function LoginClick() {
 	}
 
 	// Try to login
-	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) LoginDoLogin();
+	if (MouseIn(775, 500, 200, 60)) LoginDoLogin();
 
 	// If we must change the language
-	if ((MouseX >= 1025) && (MouseX <= 1225) && (MouseY >= 500) && (MouseY <= 560)) {
+	if (MouseIn(1025, 500, 200, 60)) {
 		TranslationNextLanguage();
 		TextLoad();
 		ActivityDictionaryLoad();
@@ -567,7 +586,7 @@ function LoginKeyDown() {
 function LoginDoLogin() {
 
     // Ensure the login request is not sent twice
-	if (!LoginSubmitted) {
+	if (!LoginSubmitted && ServerIsConnected) {
 		var Name = ElementValue("InputName");
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;

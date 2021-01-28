@@ -169,6 +169,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 		case "CuffedFeet": return !C.Effect.includes("CuffedFeet") ? "MustBeFeetCuffedFirst" : "";
 		case "NoOuterClothes": return InventoryHasItemInAnyGroup(C, ["Cloth", "ClothLower"]) ? "RemoveClothesForItem" : "";
 		case "NoMaidTray": return InventoryIsItemInList(C, "ItemMisc", ["WoodenMaidTray", "WoodenMaidTrayFull"]) ? "CannotBeUsedWhileServingDrinks" : "";
+        case "CanBeCeilingTethered": return InventoryHasItemInAnyGroup(C, ["ItemArms", "ItemTorso", "ItemNeck", "ItemPelvis"]) ? "" : "AddItemsToUse";
 
 		// Checks for torso access based on clothes
 		case "AccessTorso": return !InventoryDoesItemExposeGroup(C, "Cloth", "ItemTorso") ? "RemoveClothesForItem" : "";
@@ -585,14 +586,33 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 }
 
 /**
+* Returns TRUE if an item lock is pickable
+* @param {AppearanceItem} Item - The item from appearance that must be validated
+* @returns {Boolean} - TRUE if PickDifficulty is on the item
+*/
+function InventoryItemIsPickable(Item) {
+	if (!Item) return null;
+	var lock = InventoryGetLock(Item)
+	if (lock && lock.Asset && lock.Asset.PickDifficulty && lock.Asset.PickDifficulty > 0) return true;
+	else return false;
+	
+}
+
+/**
  * Returns the value of a given property of an appearance item, prioritizes the Property object.
  * @param {object} Item - The appearance item to scan 
  * @param {string} PropertyName - The property name to get.
- * @returns {any} - The value of the requested property for the given item. Returns undefined if the property or the item itself does not exist.
+ * @param {boolean} CheckGroup - Whether or not to fall back to the item's group if the property is not found on
+ * Property or Asset.
+ * @returns {any} - The value of the requested property for the given item. Returns undefined if the property or the
+ * item itself does not exist.
  */
-function InventoryGetItemProperty(Item, PropertyName) {
+function InventoryGetItemProperty(Item, PropertyName, CheckGroup) {
     if (!Item || !PropertyName || !Item.Asset) return;
-    return (Item.Property && typeof Item.Property[PropertyName] !== "undefined" ? Item.Property : Item.Asset)[PropertyName];
+    let Property = Item.Property && Item.Property[PropertyName];
+    if (typeof Property === "undefined") Property = Item.Asset[PropertyName];
+    if (typeof Property === "undefined" && CheckGroup) Property = Item.Asset.Group[PropertyName];
+    return Property;
 }
 
 /**
@@ -735,6 +755,10 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				if (Item.Property == null) Item.Property = {};
 				if (Item.Property.Effect == null) Item.Property.Effect = [];
 				if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
+				if (Item.Property.Effect.indexOf("MemberNumberList") < 0) {
+					if (!Item.Property) Item.Property = {}
+					if (!Item.Property.MemberNumberList) Item.Property.MemberNumberList = "" + MemberNumber
+				}
 				Item.Property.LockedBy = Lock.Asset.Name;
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
@@ -759,6 +783,9 @@ function InventoryUnlock(C, Item) {
 		delete Item.Property.Password;
 		delete Item.Property.Hint;
 		delete Item.Property.LockMemberNumber;
+		delete Item.Property.MemberNumberList;
+		delete Item.Property.CombinationNumber;
+		delete Item.Property.LockPickSeed;
 		CharacterRefresh(C);
 	}
 }
@@ -800,6 +827,8 @@ function InventoryConfiscateKey() {
 	InventoryDelete(Player, "MetalCuffsKey", "ItemMisc");
 	InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
 	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
+	InventoryDelete(Player, "HighSecurityPadlockKey", "ItemMisc");
+	InventoryDelete(Player, "Lockpicks", "ItemMisc");
 }
 
 /**

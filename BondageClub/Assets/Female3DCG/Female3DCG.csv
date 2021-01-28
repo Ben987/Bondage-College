@@ -269,6 +269,7 @@ HairAccessory3,GiantBow1, Giant Bow 1
 HairAccessory3,HairFlower1, Flower
 HairAccessory3,WeddingVeil1,Wedding Veil
 HairAccessory3,HairFeathers1,Feathers
+HairAccessory3,Halo,Halo
 HairAccessory1,,Hair Accessory (All)
 HairAccessory1,Ears1,Ears Small
 HairAccessory1,Ears2,Ears Large
@@ -302,6 +303,7 @@ HairAccessory1,MouseEars1,Mouse Ears 1
 HairAccessory1,MouseEars2,Mouse Ears 2
 HairAccessory1,ElfEars,Elf Ears
 HairAccessory1,CowHorns,Cow Horns
+HairAccessory1,Halo,Halo
 HairAccessory2,,Ears
 HairAccessory2,Ears1,Ears Small
 HairAccessory2,Ears2,Ears Large
@@ -550,6 +552,7 @@ ItemFeet,SturdyLeatherBelts,Sturdy Leather Belt
 ItemFeet,Irish8Cuffs,Irish 8 Feet Cuffs
 ItemFeet,DuctTape,Duct Tape
 ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
+ItemFeet,FloorShackles,Floor Shackles
 ItemFeet,FuturisticAnkleCuffs,Futuristic Ankle Cuffs
 ItemFeet,OrnateAnkleCuffs,Ornate Ankle Cuffs
 ItemFeet,SpreaderMetal, Metal Leg Spreader
@@ -652,6 +655,7 @@ ItemButt,BunnyTailVibePlug,Bunny Tail Vibe Plug
 ItemButt,EggVibePlugXXL,Egg Vibe Plug XXL
 ItemButt,ShockPlug,Shock Plug
 ItemButt,CowTail,Cow Tail
+ItemButt,HollowButtPlug,Hollow Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -827,6 +831,17 @@ ItemHands,SpankingToysShockWand,Shock Wand
 ItemHands,SpankingToysLotion,Lotion
 ItemHands,SpankingToysRuler,Ruler
 ItemHands,SpankingToysSword,Foam Sword
+ItemHands,SpankingToysVibeRemote,Vibrator Remote
+ItemHands,SpankingToysShockRemote,Shock Remote
+ItemHands,SpankingToysTowel,Towel
+ItemHands,SpankingToysRopeCoilLong,Rope Coil (Long)
+ItemHands,SpankingToysRopeCoilShort,Rope Coil (Short)
+ItemHands,SpankingToysBallgag,Ballgag
+ItemHands,SpankingToysLongSock,Long Sock
+ItemHands,SpankingToysBaguette,Baguette
+ItemHands,SpankingToysPanties,Panties
+ItemHands,SpankingToysTapeRoll,Duct Tape Roll
+ItemHands,SpankingToysSpatula,Spatula
 ItemHands,HoofMittens, Hoof Mittens
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
@@ -849,11 +864,11 @@ ItemNeck,PetCollar,Pet Collar
 ItemNeck,MaidCollar,Maid Collar
 ItemNeck,BordelleCollar,Bordelle Collar
 ItemNeck,LoveLeatherCollar,Lover Leather Collar
-ItemNeck,StrictPostureCollar,Strict Posture Collar
 ItemNeck,NobleCorsetCollar,Noble Corset Collar
+ItemNeck,StrictPostureCollar,Strict Posture Collar
 ItemNeck,HeartCollar,Heart Collar
-ItemNeck,LatexPostureCollar,Latex Posture Collar Gag
 ItemNeck,LeatherCorsetCollar,Leather Corset Collar Gag
+ItemNeck,LatexPostureCollar,Latex Posture Collar Gag
 ItemNeck,HighSecurityCollar,High Security Collar
 ItemNeck,OrnateCollar,Ornate Collar
 ItemNeck,SlenderSteelCollar,Slender Steel Collar
@@ -1089,9 +1104,11 @@ ItemEars,Headphones,Headphones
 ItemMisc,,Body
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
+ItemMisc,HighSecurityPadlock,High-Security Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
 ItemMisc,CombinationPadlock,Combination Padlock
 ItemMisc,PasswordPadlock,Password Lock
+ItemMisc,TimerPasswordPadlock,Timer Password Lock
 ItemMisc,OwnerPadlock,Owner Padlock
 ItemMisc,OwnerTimerPadlock,Owner Timer Padlock
 ItemMisc,LoversPadlock,Lovers Padlock
@@ -1100,11 +1117,13 @@ ItemMisc,MistressPadlock,Mistress Padlock
 ItemMisc,MistressTimerPadlock,Mistress Timer Padlock
 ItemMisc,ExclusivePadlock,Exclusive Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
+ItemMisc,HighSecurityPadlockKey,High-Security Padlock Keys
 ItemMisc,IntricatePadlockKey,Intricate Padlock Key
 ItemMisc,OwnerPadlockKey,Owner Padlock Key
 ItemMisc,LoversPadlockKey,Lovers Padlock Key
 ItemMisc,MistressPadlockKey,Mistress Padlock Key
 ItemMisc,MetalCuffsKey,Metal Cuffs Key
+ItemMisc,Lockpicks,Lockpicks
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
@@ -1121,6 +1140,7 @@ ItemDevices,BurlapSack,Burlap Sack
 ItemDevices,InflatableBodyBag,Inflatable Body Bag
 ItemDevices,BondageBench,Bondage Bench
 ItemDevices,TeddyBear,Teddy Bear Set
+ItemDevices,BBQ,Grill
 ItemDevices,LittleMonster,Halloween Monster Set
 ItemDevices,Familiar,Halloween Familiar Set
 ItemDevices,Coffin,Vampire Coffin
@@ -1145,6 +1165,7 @@ ItemDevices,SmallLocker,Small Locker
 ItemDevices,VentlessLocker,Ventless Locker
 ItemDevices,SmallVentlessLocker,Small Ventless Locker
 ItemDevices,ConcealingCloak,Concealing Cloak
+ItemDevices,PetBed,Pet Bed
 ItemDevices,TransportWoodenBox,Transport Box
 ItemDevices,VacCube,Vac-Cube
 ItemHoodAddon,,Hood
@@ -1161,6 +1182,8 @@ ItemAddon,BedRopes,Bed Ropes
 ItemAddon,BedStraps,Bed Straps
 ItemAddon,BedTape,Bed Tape
 ItemAddon,BedChains,Bed Chains
+ItemAddon,CeilingRope,Ceiling Rope
+ItemAddon,CeilingChain,Ceiling Chain
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels

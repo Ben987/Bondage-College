@@ -10,6 +10,8 @@ VisibilityPreferences,- Item Preferences -
 VFXPreferences,- Graphical Preferences -
 OnlinePreferences,- Online Preferences -
 ImmersionPreferences,- Immersion Preferences -
+ControllerPreferences,- Controller Preferences -
+NotificationsPreferences,- Notification Preferences -
 HomepageGeneral,General
 HomepageDifficulty,Difficulty
 HomepageRestriction,Restriction
@@ -21,6 +23,8 @@ HomepageVisibility,Item Visibility
 HomepageOnline,Online
 HomepageImmersion,Immersion
 HomepageGraphics,Graphics
+HomepageController,Controller
+HomepageNotifications,Notifications
 DifficultyTitle,The difficulty mode enforces BDSM restrictions in multi-player only.  Click for details.
 DifficultyLevel0,Roleplay
 Difficulty0Text0,Roleplay - This mode is fully open to customise your experience.
@@ -113,6 +117,7 @@ SensDepTotal,Total
 SensDepExtreme,Total (no whispers)
 AllowPlayerLeashing,"Players can drag you to rooms when leashed"
 DisableAutoMaid,Maids come automatically when restrained
+DisablePickingLocksOnSelf,Locks on you can't be picked
 BlindDisableExamine,Disable examining when blind
 DisableAutoRemoveLogin,Keep all restraints when relogging
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
@@ -236,3 +241,23 @@ Georgia,Georgia
 CourierNew,Courier New
 Copperplate,Copperplate
 GraphicsInvertRoom,Flip the room vertically when upside-down
+Sensitivity,Sensitivity
+ControllerActive,Controller Active
+MapButtons,Map Buttons
+MapSticks,Map Sticks
+MoveLeftStickUp,move left stick up
+MoveLeftStickRight,move left stick right
+PressA,Press A
+PressB,Press B
+PressX,Press X
+PressY,Press Y
+PressUpOnDpad,Press Up on Dpad
+PressDownOnDpad,Press Down on Dpad
+PressLeftOnDpad,Press Left on Dpad
+PressRightOnDpad,Press Right on Dpad
+DeadZone,Dead Zone
+NotificationsChatRooms,Raise notifications for:
+NotificationsBeeps,Missed beeps
+NotificationsChat,Unread messages in chat rooms
+NotificationsChatActions,Include item and arousal activity messages
+NotificationsReset,Reset Notifications

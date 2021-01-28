@@ -6,6 +6,7 @@
     "changelog": "node GenerateChangelog",
     "lint": "eslint --config ./.eslintrc.js ../../Assets/Female3DCG/Female3DCG.js",
     "lint:fix": "eslint --fix --config ./.eslintrc.js ../../Assets/Female3DCG/Female3DCG.js",
+    "assetcheck": "node AssetCheck",
     "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
   "repository": {
@@ -23,5 +24,8 @@
     "eslint": "^6.8.0",
     "eslint-plugin-sort-keys-custom": "^2.0.0",
     "marked": "^1.2.3"
+  },
+  "dependencies": {
+    "type-check": "^0.4.0"
   }
 }

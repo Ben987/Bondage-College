@@ -511,6 +511,7 @@ function SarahTransferSophieToRoom(Love) {
 	var ItemsToEarn = [];
 	ItemsToEarn.push({Name: "LeatherCuffs", Group: "ItemArms"});
 	ItemsToEarn.push({Name: "LeatherCuffsKey", Group: "ItemArms"});
+	ItemsToEarn.push({Name: "SpankingToysBaguette", Group: "ItemHands"});
 	InventoryAddMany(Player, ItemsToEarn);
 	CharacterRelease(Sophie);
 	CharacterArchetypeClothes(Sophie, "Mistress", "#333333");

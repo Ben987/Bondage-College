@@ -124,6 +124,50 @@ const InventoryItemHandsSpankingToysOptions = [
 		Name: "Sword",
 		Property: { Type: "Sword" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
+	}, {
+		Name: "VibeRemote",
+		Property: { Type: "VibeRemote" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	}, {
+		Name: "ShockRemote",
+		Property: { Type: "ShockRemote" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Towel",
+		Property: { Type: "Towel" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "RopeCoilLong",
+		Property: { Type: "RopeCoilLong" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "RopeCoilShort",
+		Property: { Type: "RopeCoilShort" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Ballgag",
+		Property: { Type: "Ballgag" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "LongSock",
+		Property: { Type: "LongSock" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Baguette",
+		Property: { Type: "Baguette" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Panties",
+		Property: { Type: "Panties" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "TapeRoll",
+		Property: { Type: "TapeRoll" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Spatula",
+		Property: { Type: "Spatula" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
 	},
 ];
 

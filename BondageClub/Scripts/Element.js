@@ -52,7 +52,7 @@ function ElementCreateTextArea(ID) {
  * @param {string} Type - Type of the input tag to create.
  * @param {string} Value - Value of the input tag to create.
  * @param {string} MaxLength - Maximum input tag of the input to create.
- * @returns {void} - Nothing
+ * @returns {HTMLInputElement} - The created HTML input element
  */
 function ElementCreateInput(ID, Type, Value, MaxLength) {
 	if (document.getElementById(ID) == null) {
@@ -66,6 +66,41 @@ function ElementCreateInput(ID, Type, Value, MaxLength) {
 		Input.addEventListener("keydown", KeyDown);
 		Input.className = "HideOnPopup";
 		document.body.appendChild(Input);
+		return Input;
+	}
+}
+
+/**
+ * Creates a new range input element in the main document. Does not create a new element if there is already an
+ * existing one with the same id
+ * @param {string} id - The id of the input tag to create
+ * @param {number} value - The initial value of the input
+ * @param {number} min - The minimum value of the input
+ * @param {number} max - The maximum value of the input
+ * @param {number} step - The increment size of the input
+ * @param {string} [thumbIcon] - The icon to use for the range input's "thumb" (handle). Can currently be set to "lock"
+ * or "blindfold". If not set, the slider will have a default appearance with no custom thumb.
+ * @param {boolean} [vertical] - Whether this range input is a vertical slider (defaults to false)
+ * @returns {HTMLInputElement} - The created HTML input element
+ */
+function ElementCreateRangeInput(id, value, min, max, step, thumbIcon, vertical) {
+	if (document.getElementById(id) == null) {
+		const input = document.createElement("input");
+		input.setAttribute("id", id);
+		input.setAttribute("name", id);
+		input.setAttribute("type", "range");
+		input.removeAttribute("readonly");
+		input.setAttribute("min", min);
+		input.setAttribute("max", max);
+		input.setAttribute("step", step);
+		input.value = value;
+		if (thumbIcon) input.setAttribute("data-thumb", thumbIcon);
+		input.setAttribute("onfocus", "this.removeAttribute('readonly');");
+		input.addEventListener("keydown", KeyDown);
+		input.classList.add("HideOnPopup");
+		if (vertical) input.classList.add("Vertical");
+		document.body.appendChild(input);
+		return input;
 	}
 }
 
@@ -213,6 +248,15 @@ function ElementRemove(ID) {
  */
 function ElementPosition(ElementID, X, Y, W, H) {
 
+	var E = document.getElementById(ElementID);
+
+	// For a vertical slider, swap the width and the height (the transformation is handled by CSS)
+	if (E.tagName.toLowerCase() === "input" && E.getAttribute("type") === "range" && E.classList.contains("Vertical")) {
+		var tmp = W;
+		W = H;
+		H = tmp;
+	}
+
 	// Different positions based on the width/height ratio
 	var Font;
 	var Height;
@@ -234,7 +278,6 @@ function ElementPosition(ElementID, X, Y, W, H) {
 	}
 
 	// Sets the element style
-	var E = document.getElementById(ElementID);
 	if (E) {
 		Object.assign(E.style, {
 			fontSize: Font + "px",

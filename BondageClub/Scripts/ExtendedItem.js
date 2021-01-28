@@ -143,29 +143,32 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 	
 	// Draw the header and item
 	DrawRect(1387, 55, 225, 275, "white");
-	DrawImageResize("Assets/" + Asset.Group.Family + "/" + Asset.Group.Name + "/Preview/" + Asset.Name + ".png", 1389, 57, 221, 221);
+	DrawImageResize("Assets/" + Asset.Group.Family + "/" + Asset.DynamicGroupName + "/Preview/" + Asset.Name + ".png", 1389, 57, 221, 221);
 	DrawTextFit(Asset.Description, 1500, 310, 221, "black");
-	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");;		
+	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 
 	// Draw the possible variants and their requirements, arranged based on the number per page
-	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
-		var PageOffset = I - ItemOptionsOffset;
-		var X = XYPositions[OptionsPerPage][PageOffset][0];
-		var Y = XYPositions[OptionsPerPage][PageOffset][1];
-		
-		var Option = Options[I];
-		var Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
-		var FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, IsSelfBondage);
-		var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
-		var Blocked = InventoryIsPermissionBlocked(C, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
-		var Limited = !InventoryCheckLimitedPermission(C, DialogFocusItem, Option.Property.Type);
-		var PlayerBlocked = InventoryIsPermissionBlocked(Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
-		var PlayerLimited = InventoryIsPermissionLimited(Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
-		var Color = ExtendedItemPermissionMode ? ((C.ID == 0 && IsSelected) || Option.Property.Type == null ? "#888888" : PlayerBlocked ? Hover ? "red" : "pink" : PlayerLimited ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") : (IsSelected ? "#888888" : (Blocked || Limited) ? "Red" : FailSkillCheck ? "Pink" : Hover ? "Cyan" : "White");
+    for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
+        var PageOffset = I - ItemOptionsOffset;
+        var X = XYPositions[OptionsPerPage][PageOffset][0];
+        var Y = XYPositions[OptionsPerPage][PageOffset][1];
+
+        var Option = Options[I];
+        var Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
+        var FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, IsSelfBondage);
+        var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
+        var Blocked = InventoryIsPermissionBlocked(C, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
+        var Limited = !InventoryCheckLimitedPermission(C, DialogFocusItem, Option.Property.Type);
+        var PlayerBlocked = InventoryIsPermissionBlocked(Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
+        var PlayerLimited = InventoryIsPermissionLimited(Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
+        var Color = ExtendedItemPermissionMode ? ((C.ID == 0 && IsSelected) || Option.Property.Type == null ? "#888888" : PlayerBlocked ? Hover ? "red" : "pink" : PlayerLimited ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") : (IsSelected ? "#888888" : (Blocked || Limited) ? "Red" : FailSkillCheck ? "Pink" : Hover ? "Cyan" : "White");
 
 		DrawButton(X, Y, 225, 55 + ImageHeight, "", Color, null, null, IsSelected);
 		if (ShowImages) DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X + 2, Y);
 		DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
+		if (ControllerActive == true) {
+			setButton(X + 112, Y + 30 + ImageHeight);
+		}
 	}
 	
 	// Permission mode toggle is always available
@@ -350,14 +353,16 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 		}
 	}
 
-	// An extendable item may provide a validation function. Returning a non-empty sring from the validation function will
+	// An extendable item may provide a validation function. Returning a non-empty string from the validation function will
 	// drop out of this function, and the new type will not be applied.
 	if (typeof window[FunctionPrefix + "Validate"] === "function") {
 		let ValidateResult = CommonCallFunctionByName(FunctionPrefix + "Validate", C, Option);
 		if (ValidateResult != "") {
 			return ValidateResult;
 		}
-	} else if (Option.Prerequisite != null && !InventoryAllow(C, Option.Prerequisite, true)) {
+	} else if (Option.Prerequisite != null && Option.SelfBlockCheck && !ExtendedItemSelfProofRequirementCheck(C, Option.Prerequisite)) {
+		return DialogText;
+	} else if (Option.Prerequisite != null && !Option.SelfBlockCheck && !InventoryAllow(C, Option.Prerequisite, true)) {
 		// Otherwise use the standard prerequisite check
 		return DialogText;
 	} else {
@@ -369,6 +374,33 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 	}
 
 	return "";
+}
+
+/**
+ * Removes the item temporarily before validation in case the current type fails the prerequisite check, since it will be replaced
+ * @param {Character} C - The character wearing the item
+ * @param {(Array|String)} Prerequisite - An array of prerequisites or a string for a single prerequisite
+ * @returns {boolean} - Whether the new option passes validation
+ */
+function ExtendedItemSelfProofRequirementCheck(C, Prerequisite) {
+	let Allowed = true;
+
+	// Remove the item temporarily for prerequisite-checking
+	let CurrentItem = InventoryGet(C, C.FocusGroup.Name);
+	InventoryRemove(C, C.FocusGroup.Name);
+
+	if (!InventoryAllow(C, Prerequisite, true)) {
+		Allowed = false;
+	}
+
+	// Re-add the item
+	let DifficultyFactor = CurrentItem.Difficulty - CurrentItem.Asset.Difficulty;
+	CharacterAppearanceSetItem(C, C.FocusGroup.Name, CurrentItem.Asset, CurrentItem.Color, DifficultyFactor, null, false);
+	InventoryGet(C, C.FocusGroup.Name).Property = CurrentItem.Property;
+	CharacterRefresh(C);
+	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+
+	return Allowed;
 }
 
 /**

@@ -13,6 +13,7 @@
 	<link rel="icon" type="image/png" href="Icons/Logo.png">
 	<link rel="stylesheet" href="CSS/Styles.css">
 	<link rel="stylesheet" href="CSS/chessboard-0.3.0.css">
+	<link rel="stylesheet" href="CSS/Chess.css">
 </head>
 
 <script src="Backgrounds/Backgrounds.js"></script>
@@ -32,6 +33,7 @@
 <script src="Scripts/Character.js"></script>
 <script src="Scripts/CharacterName.js"></script>
 <script src="Scripts/ColorPicker.js"></script>
+<script src="Scripts/ControllerSupport.js"></script>
 <script src="Scripts/Dialog.js"></script>
 <script src="Scripts/Speech.js"></script>
 <script src="Scripts/Text.js"></script>
@@ -163,7 +165,9 @@
 <script src="Screens/Inventory/ItemMisc/IntricatePadlock/IntricatePadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/TimerPadlock/TimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/CombinationPadlock/CombinationPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/HighSecurityPadlock/HighSecurityPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/PasswordPadlock/PasswordPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/TimerPasswordPadlock/TimerPasswordPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/MistressTimerPadlock/MistressTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerTimerPadlock/OwnerTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerPadlock/OwnerPadlock.js"></script>
@@ -222,6 +226,8 @@
 <script src="Screens/Inventory/ItemDevices/CryoCapsule/CryoCapsule.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
 <script src="Screens/Inventory/ItemArms/FuturisticArmbinder/FuturisticArmbinder.js"></script>
+<script src="Screens/Inventory/ItemAddon/CeilingChain/CeilingChain.js"></script>
+<script src="Screens/Inventory/ItemAddon/CeilingRope/CeilingRope.js"></script>
 <script src="Screens/Inventory/ItemHands/FuturisticMittens/FuturisticMittens.js"></script>
 <script src="Screens/Inventory/ItemArms/CollarCuffs/CollarCuffs.js"></script>
 <script src="Screens/Inventory/ItemDevices/InflatableBodyBag/InflatableBodyBag.js"></script>
@@ -303,6 +309,10 @@
 <script src="Screens/Inventory/ItemMouth/FunnelGag/FunnelGag.js"></script>
 <script src="Screens/Inventory/ItemEars/Headphones/Headphones.js"></script>
 <script src="Screens/Inventory/ItemHood/CanvasHood/CanvasHood.js"></script>
+<script src="Screens/Inventory/ItemDevices/Vacbed/Vacbed.js"></script>
+<script src="Screens/Inventory/ItemDevices/WoodenBox/WoodenBox.js"></script>
+<script src="Screens/Inventory/HairAccessory3/Halo/Halo.js"></script>
+<script src="Screens/Inventory/HairAccessory1/Halo/Halo.js"></script>
 <script>
 
 /*
@@ -352,6 +362,7 @@ window.onload = function() {
 	DrawLoad();
 	AssetLoadAll();
 	CommonSetScreen("Character", "Login");
+	ControllerActive = false;
 	ServerInit();
 	MainRun(0);
 };
@@ -428,6 +439,49 @@ function LoseFocus(event) {
 	}
 }
  
+</script>
+
+
+
+<div id="axes" style="display: flex; flex-direction: column;"></div>
+<script>
+    if (ControllerActive == true) {
+        window.addEventListener('gamepadconnected', (event) => {
+            const update = () => {
+                const output = document.getElementById('axes');
+                output.innerHTML = '';
+
+                for (const gamepad of navigator.getGamepads()) {
+                    if (!gamepad) continue;
+                    for (const [index, axis] of gamepad.axes.entries()) {
+                        ControllerAxis(gamepad.axes);
+                    }
+                }
+                requestAnimationFrame(update);
+            };
+            update();
+        });
+    }
+</script>
+<div id="buttons" style="display: flex; flex-direction: column;"></div>
+<script>
+    if (ControllerActive == true) {
+        window.addEventListener('gamepadconnected', (event) => {
+            const update = () => {
+                const output = document.getElementById('buttons');
+                output.innerHTML = '';
+
+                for (const gamepad of navigator.getGamepads()) {
+                    if (!gamepad) continue;
+                    for (const [index, button] of gamepad.buttons.entries()) {
+                        ControllerButton(gamepad.buttons);
+                    }
+                }
+                requestAnimationFrame(update);
+            };
+            update();
+        });
+    }
 </script>
 
 <body style="width:100%; height:100%; background-color:black; margin:0px; padding:0px; overflow:hidden;">
