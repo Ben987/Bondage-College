@@ -3,14 +3,14 @@
 const HempRopeTorsoOptions = [
 	{
 		Name: "Crotch",
-		Property: { Type: null, Difficulty: 1 }
+		Property: { Type: null, Difficulty: 1, Effect: ["CrotchRope"] }
 	}, {
 		Name: "Waist",
 		Property: { Type: "Waist" , Difficulty: 1 }
 	}, {
 		Name: "Harness",
 		BondageLevel: 2,
-		Property: { Type: "Harness" , Difficulty: 1 }
+		Property: { Type: "Harness" , Difficulty: 1 , Effect: ["CrotchRope"]}
 	}, {
 		Name: "Star",
 		BondageLevel: 3,
@@ -18,7 +18,7 @@ const HempRopeTorsoOptions = [
 	}, {
 		Name: "Diamond",
 		BondageLevel: 4,
-		Property: { Type: "Diamond" , Difficulty: 3 }
+		Property: { Type: "Diamond" , Difficulty: 3, Effect: ["CrotchRope"] }
 	}
 ];
 

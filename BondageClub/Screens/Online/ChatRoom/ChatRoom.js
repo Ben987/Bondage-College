@@ -31,6 +31,31 @@ var ChatRoomLeashList = [];
 var ChatRoomLeashPlayer = null;
 var ChatRoomTargetDirty = false;
 var ChatRoomUnreadMessages = false;
+// Chance of a chat message popping up reminding you of your plugs/crotch rope at 0 arousal. Chance is for each item, but only one message appears, with priority to ones with higher chance
+const ChatRoomArousalMsg_Chance = {
+	"Kneel" : 0.1,
+	"Walk" : 0.33,
+	"StruggleFail" : 0.4,
+	"StruggleAction" : 0.05,
+	} 
+const ChatRoomArousalMsg_ChanceScaling = {
+	"Kneel" : 0.8,
+	"Walk" : 0.67,
+	"StruggleFail" : 0.4,
+	"StruggleAction" : 0.2,
+	} 
+const ChatRoomArousalMsg_ChanceVibeMod = {
+	"Kneel" : 0.0,
+	"Walk" : 0.8,
+	"StruggleFail" : 0.6,
+	"StruggleAction" : 0.3,
+	} 
+const ChatRoomArousalMsg_ChanceInflationMod = {
+	"Kneel" : 0.1,
+	"Walk" : 0.5,
+	"StruggleFail" : 0.4,
+	"StruggleAction" : 0.2,
+	} 
 
 /**
  * Checks if the player can add the current character to her whitelist.
@@ -669,6 +694,98 @@ function ChatRoomSetLastChatRoom(room) {
 	ServerSend("AccountUpdate", P);
 }
 
+/**
+ * Triggers a chat room event for things like plugs and crotch ropes, will send a chat message if the chance is right.
+ * @returns {void} - Nothing.
+ */
+function ChatRoomStimulationMessage(Context) {
+	if (CurrentScreen == "ChatRoom") {
+		var C = Player
+		if (Context == null || Context == "") Context = "StruggleAction"
+		
+		var modBase = 0
+		var modArousal = 0
+		var modVibe = 0
+		var modInflation = 0
+		
+		if (ChatRoomArousalMsg_Chance[Context]) modBase = ChatRoomArousalMsg_Chance[Context]
+		if (ChatRoomArousalMsg_ChanceScaling[Context]) modArousal = ChatRoomArousalMsg_ChanceScaling[Context]
+		if (ChatRoomArousalMsg_ChanceVibeMod[Context]) modVibe = ChatRoomArousalMsg_ChanceVibeMod[Context]
+		if (ChatRoomArousalMsg_ChanceInflationMod[Context]) modInflation = ChatRoomArousalMsg_ChanceInflationMod[Context]
+
+		// Decide the trigger message
+		var trigPriority = 0.0
+		var trigMsg = ""
+		var trigPlug = ""
+		for (let A = 0; A < C.Appearance.length; A++)
+			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily)) {
+				var trigChance = 0
+				var trigMsgTemp = ""
+				var Intensity = InventoryGetItemProperty(C.Appearance[A], "Intensity", true)
+				if (InventoryItemHasEffect(C.Appearance[A], "CrotchRope", true)) {
+					if (trigChance == 0) trigChance = modBase
+					trigMsgTemp = "CrotchRope"
+				} else if (Intensity > 0) {
+					if (trigChance == 0 && modVibe > 0) trigChance = modBase // Some things are not affected by vibration, like kneeling
+					trigChance += modVibe * Intensity
+					trigMsgTemp = "Vibe"
+					if (InventoryItemHasEffect(C.Appearance[A], "FillVulva", true) && Math.random() < 0.5) {
+						trigMsgTemp = "VibePlugFront"
+						if (trigPlug == "Back") trigPlug = "Both"
+						else trigPlug = "Front"
+					}
+					if (InventoryItemHasEffect(C.Appearance[A], "IsPlugged", true) && Math.random() < 0.5) {
+						if (trigMsgTemp == "Vibe")
+							trigMsgTemp = "VibePlugFront"
+						if (trigPlug == "Front") trigPlug = "Both"
+						else trigPlug = "Back"
+					}
+				} else {
+					if (InventoryItemHasEffect(C.Appearance[A], "FillVulva", true)){
+						if (trigChance == 0) trigChance = modBase
+						trigMsgTemp = "PlugFront"
+						if (trigPlug == "Back") trigPlug = "Both"
+						else trigPlug = "Front"
+					}
+					if (InventoryItemHasEffect(C.Appearance[A], "IsPlugged", true)) {
+						if (trigChance == 0) trigChance = modBase
+						if (trigMsgTemp == "")
+							trigMsgTemp = "PlugBack"
+						if (trigPlug == "Front") trigPlug = "Both"
+						else trigPlug = "Back"
+					}
+				}
+				if (trigMsgTemp != "" && Player.ArousalSettings && Player.ArousalSettings.Progress > 0) {
+					trigChance += modArousal * Player.ArousalSettings.Progress/100
+				}
+				if (trigMsgTemp != "") {
+					var Inflation = InventoryGetItemProperty(C.Appearance[A], "InflateLevel", true)
+					if (Inflation > 0 && typeof parseInt(Inflation) == "number") {
+						trigChance += modInflation * parseInt(Inflation)/4
+					}
+				}
+				
+				if (trigPlug == "Both") {
+					if ((trigMsgTemp == "VibePlugFront" || trigMsgTemp == "VibePlugBack"
+					|| trigMsgTemp == "PlugFront" || trigMsgTemp == "PlugBack") && Math.random() > 0.7)
+						trigMsgTemp = "PlugBoth"
+				}
+					
+				if (trigMsgTemp != "" && Math.random() < trigChance && trigChance >= trigPriority) {
+					trigPriority = trigChance
+					trigMsg = trigMsgTemp
+				}
+				
+			}
+		
+		// Now we have a trigger message, hopefully!
+		if (trigMsg != "") {
+			var index = Math.floor(Math.random() * 3)
+			ChatRoomMessage({ Content: "ChatRoomStimulationMessage"+trigMsg+""+index, Type: "Action", Sender: Player.MemberNumber });
+		}
+	}
+}
+
 
 /**
  * Runs the chatroom screen.
@@ -877,6 +994,7 @@ function ChatRoomClick() {
 	if (MouseIn(1353, 0, 120, 62) && Player.CanKneel()) {
 		ServerSend("ChatRoomChat", { Content: (Player.ActivePose == null) ? "KneelDown" : "StandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
 		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
+		ChatRoomStimulationMessage("Kneel")
 		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 	}
 
@@ -1831,6 +1949,7 @@ function ChatRoomPingLeashedPlayers(NoBeep) {
 function ChatRoomKneelStandAssist() { 
 	ServerSend("ChatRoomChat", { Content: !CurrentCharacter.IsKneeling() ? "HelpKneelDown" : "HelpStandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }, { Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber }] });
 	CharacterSetActivePose(CurrentCharacter, !CurrentCharacter.IsKneeling() ? "Kneel" : null, true);
+	ChatRoomStimulationMessage("Kneel")
 	ChatRoomCharacterUpdate(CurrentCharacter);
 }
 

@@ -506,6 +506,10 @@ function ActivityRun(C, Activity) {
 		Dictionary.push({ Tag: "ActivityName", Text: Activity.Name });
 		ServerSend("ChatRoomChat", { Content: ((C.ID == 0) ? "ChatSelf-" : "ChatOther-") + C.FocusGroup.Name + "-" + Activity.Name, Type: "Activity", Dictionary: Dictionary });
 
+		if (C.ID == 0 && Activity.Name.indexOf("Struggle") >= 0 )
+			
+			ChatRoomStimulationMessage("StruggleAction")
+		
 		// Exits from dialog to see the result
 		DialogLeave();
 

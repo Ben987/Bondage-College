@@ -342,6 +342,8 @@ function CommonSetScreen(NewModule, NewScreen) {
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
 		CommonDynamicFunction(CurrentScreen + "Load()");
+	
+	ChatRoomStimulationMessage("Walk")
 }
 
 /**
