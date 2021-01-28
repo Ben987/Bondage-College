@@ -309,6 +309,19 @@ function ServerValidateProperties(C, Item, Validation) {
 						Item.Property.CombinationNumber = "0000";
 					}
 				} else delete Item.Property.CombinationNumber;
+				
+				
+				// Make sure the seed on the lock is valid
+				var Lock = InventoryGetLock(Item);
+				if ((Item.Property.LockPickSeed != null) && (typeof Item.Property.LockPickSeed == "string")) {
+					var conv = CommonConvertStringToArray(Item.Property.LockPickSeed)
+					for (let PP = 0; PP < conv.length; PP++) {
+						if (typeof conv[PP] != "number") {
+							delete Item.Property.LockPickSeed;
+							break;
+						}
+					}
+				} else delete Item.Property.LockPickSeed;
 
 				// Make sure the password on the lock is valid, 6 letters only
 				var Lock = InventoryGetLock(Item);
@@ -415,6 +428,7 @@ function ServerDeleteLock(Property) {
 		delete Property.ShowTimer;
 		delete Property.EnableRandomInput;
 		delete Property.MemberNumberList;
+		delete Property.LockPickSeed;
 		if (Array.isArray(Property.Effect)) {
 			Property.Effect = Property.Effect.filter(E => E !== "Lock");
 		}
@@ -595,6 +609,8 @@ function ServerItemCopyProperty(C, Item, NewProperty) {
 	if (Item.Property.Password != null) NewProperty.Password = Item.Property.Password; else delete NewProperty.Password;
 	if (Item.Property.Hint != null) NewProperty.Hint = Item.Property.Hint; else delete NewProperty.Hint;
 	if (Item.Property.LockSet != null) NewProperty.LockSet = Item.Property.LockSet; else delete NewProperty.LockSet;
+	
+	if (Item.Property.LockPickSeed != null) NewProperty.LockPickSeed = Item.Property.LockPickSeed; else delete NewProperty.LockPickSeed;
 	Item.Property = NewProperty;
 	ServerValidateProperties(C, Item);
 	if (Item.Property.LockedBy == "OwnerPadlock") InventoryLock(C, Item, { Asset: AssetGet(C.AssetFamily, "ItemMisc", "OwnerPadlock") }, NewProperty.LockMemberNumber);

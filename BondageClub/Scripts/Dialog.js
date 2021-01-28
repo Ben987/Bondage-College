@@ -1096,6 +1096,7 @@ function DialogLockPickProgressStart(C, Item) {
 		
 		
 		
+		
 		for (let P = 0; P < NumPins; P++) {
 			DialogLockPickOrder.push(P)
 			DialogLockPickSet.push(false)
@@ -1111,6 +1112,22 @@ function DialogLockPickProgressStart(C, Item) {
 			DialogLockPickOrder[j] = temp;
 		}
 		
+		// Initialize persistent pins
+		if ((Item.Property == null)) Item.Property = {};
+		if (Item.Property != null)
+			if ((Item.Property.LockPickSeed == null) || (typeof Item.Property.LockPickSeed != "string")) Item.Property.LockPickSeed = CommonConvertArrayToString(DialogLockPickOrder);
+			else {
+				var conv = CommonConvertStringToArray(Item.Property.LockPickSeed)
+				for (let PP = 0; PP < conv.length; PP++) {
+						if (typeof conv[PP] != "number") {
+							Item.Property.LockPickSeed = CommonConvertArrayToString(DialogLockPickOrder)
+							conv = DialogLockPickOrder
+							break;
+						}
+					}
+				DialogLockPickOrder = conv
+			}
+		
 		var PickingImpossible = false
 		if (S < -6 && LockPickingImpossible) {
 			PickingImpossible = true // if picking is impossible, then some pins will never set
@@ -1121,8 +1138,8 @@ function DialogLockPickProgressStart(C, Item) {
 
 		// At 4 pins we have a base of 16 tries, with 10 maximum permutions possible
 		// At 10 pins we have a base of 40-30 tries, with 55 maximum permutions possible
-		var NumTries = Math.floor(Math.max(NumPins * (2.5 - BondageLevel/10),
-				NumPins * (4 - BondageLevel/10) - Math.max(0, DialogLockPickProgressChallenge*NumPins/4) - BondageLevel/2))
+		var NumTries = Math.floor(Math.max(NumPins * (2.25 - BondageLevel/10),
+				NumPins * (4 - BondageLevel/10) - Math.max(0, DialogLockPickProgressChallenge*NumPins/4) - BondageLevel/1.5))
 			    // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
 				// negative skill of 6 subtracts 12 from all locks
 	
