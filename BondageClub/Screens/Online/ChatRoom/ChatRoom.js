@@ -204,11 +204,11 @@ function ChatRoomGiveHighSecurityKeysAll() {
 
 
 /**
- * Checks if the player can help the current character to struggle free.
+ * Checks if the player can help the current character by giving them a lockpick
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanGiveLockpicks() { 
-	if (CurrentCharacter.AllowItem && CurrentCharacter.IsLocked())
+	if (CurrentCharacter.AllowItem && CurrentCharacter.IsLocked() && Player.CanInteract())
 		for (let I = 0; I < Player.Inventory.length; I++)
 			if (Player.Inventory[I].Name == "Lockpicks") {
 				return true;  
