@@ -41,8 +41,10 @@ var DialogSortOrderBlocked = 5;
 var DialogSelfMenuSelected = null;
 var DialogLeaveDueToItem = false; // This allows dynamic items to call DialogLeave() without crashing the game
 
+var DialogLockPickItem = null;
 var DialogLockPickOrder = null;
 var DialogLockPickSet = null;
+var DialogLockPickSetFalse = null;
 var DialogLockPickOffset = null;
 var DialogLockPickOffsetTarget = null;
 var DialogLockPickImpossiblePins = null;
@@ -54,12 +56,15 @@ var DialogLockPickProgressChallenge = 0;
 var DialogLockPickProgressMaxTries = 0;
 var DialogLockPickProgressCurrentTries = 0;
 var DialogLockPickSuccessTime = 0;
+var DialogLockPickFailTime = 0;
 var DialogLockPickArousalTick = 0;
 var DialogLockPickArousalTickTime = 12000;
 var DialogLockPickArousalText = ""
+var DialogLockPickFailTimeout = 30000
 
 var DialogLockMenu = false
 var DialogLentLockpicks = false
+var DialogLockPickTotalTries = 0
 
 
 
@@ -644,6 +649,8 @@ function DialogMenuButtonBuild(C) {
 		// Pushes all valid main buttons, based on if the player is restrained, has a blocked group, has the key, etc.
 		var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
 		var IsGroupBlocked = InventoryGroupIsBlocked(C);
+		var CanAccessLockpicks = Player.CanInteract() || Player.CanWalk() // If the character can access her tools. Maybe in the future you will be able to hide a lockpick in your panties :>
+		
 
 		if (DialogLockMenu) {
 			DialogMenuButton.push("LockCancel");
@@ -654,7 +661,7 @@ function DialogMenuButtonBuild(C) {
 			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && (C.ID == 0 || (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf))) {
 				if (DialogLentLockpicks) 
 					DialogMenuButton.push("PickLock");
-				else
+				else if (CanAccessLockpicks)
 					for (let I = 0; I < Player.Inventory.length; I++)
 						if (Player.Inventory[I].Name == "Lockpicks") {
 							DialogMenuButton.push("PickLock");
@@ -999,6 +1006,9 @@ function DialogLockPickProgressStart(C, Item) {
 
 	DialogLockPickArousalText = ""
 	DialogLockPickArousalTick = 0
+	if (Item) {
+		DialogLockPickItem = Item
+	}
 
 	var lock = InventoryGetLock(Item)
 	var LockRating = 1
@@ -1074,23 +1084,27 @@ function DialogLockPickProgressStart(C, Item) {
 		// Prepares the progress bar and timer
 		DialogLockPickOrder = [];
 		DialogLockPickSet = [];
+		DialogLockPickSetFalse = [];
 		DialogLockPickOffset = [];
 		DialogLockPickOffsetTarget = [];
 		DialogLockPickImpossiblePins = [];
 		DialogLockPickProgressItem = Item;
 		DialogLockPickProgressOperation = DialogLockPickProgressGetOperation(C, Item);
-		DialogLockPickProgressSkill = 8*Math.max(0, -S)*Math.max(0, -S); // Scales squarely, so that more difficult locks provide bigger reward!
-		DialogLockPickProgressSkillLose = Math.min(Math.floor(DialogLockPickProgressSkill/1.5), NumPins*NumPins/2) // Even if you lose you get some reward. You get this no matter what if you run out of tries.
+		DialogLockPickProgressSkill = Math.floor(NumPins*NumPins/2) + Math.floor(Math.max(0, -S)*Math.max(0, -S)); // Scales squarely, so that more difficult locks provide bigger reward!
+		DialogLockPickProgressSkillLose = NumPins*NumPins/2 // Even if you lose you get some reward. You get this no matter what if you run out of tries.
 		DialogLockPickProgressChallenge = S * -1;
 		DialogLockPickProgressCurrentTries = 0;
 		DialogLockPickSuccessTime = 0
+		DialogLockPickFailTime = 0
 		DialogMenuButtonBuild(C);
+		
 		
 		
 		
 		for (let P = 0; P < NumPins; P++) {
 			DialogLockPickOrder.push(P)
 			DialogLockPickSet.push(false)
+			DialogLockPickSetFalse.push(false)
 			DialogLockPickOffset.push(0)
 			DialogLockPickOffsetTarget.push(0)
 		}
@@ -1103,6 +1117,22 @@ function DialogLockPickProgressStart(C, Item) {
 			DialogLockPickOrder[j] = temp;
 		}
 		
+		// Initialize persistent pins
+		if ((Item.Property == null)) Item.Property = {};
+		if (Item.Property != null)
+			if ((Item.Property.LockPickSeed == null) || (typeof Item.Property.LockPickSeed != "string")) {Item.Property.LockPickSeed = CommonConvertArrayToString(DialogLockPickOrder); DialogLockPickTotalTries = 0}
+			else {
+				var conv = CommonConvertStringToArray(Item.Property.LockPickSeed)
+				for (let PP = 0; PP < conv.length; PP++) {
+						if (typeof conv[PP] != "number") {
+							Item.Property.LockPickSeed = CommonConvertArrayToString(DialogLockPickOrder)
+							conv = DialogLockPickOrder
+							break;
+						}
+					}
+				DialogLockPickOrder = conv
+			}
+		
 		var PickingImpossible = false
 		if (S < -6 && LockPickingImpossible) {
 			PickingImpossible = true // if picking is impossible, then some pins will never set
@@ -1113,8 +1143,8 @@ function DialogLockPickProgressStart(C, Item) {
 
 		// At 4 pins we have a base of 16 tries, with 10 maximum permutions possible
 		// At 10 pins we have a base of 40-30 tries, with 55 maximum permutions possible
-		var NumTries = Math.floor(Math.max(NumPins * (2.25 - BondageLevel/10),
-				NumPins * (4 - BondageLevel/10) - Math.max(0, DialogLockPickProgressChallenge*NumPins/4) - BondageLevel/2))
+		var NumTries = Math.max(Math.floor(NumPins * (1.5 - 0.3*BondageLevel/10)),
+				Math.ceil(NumPins * (3.25 - BondageLevel/10) - Math.max(0, (DialogLockPickProgressChallenge + BondageLevel/2)*1.5)))
 			    // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
 				// negative skill of 6 subtracts 12 from all locks
 	
@@ -1851,7 +1881,9 @@ function DialogLockPickClick(C) {
 	var PinHeight = 200
 	var skill = Math.min(10, SkillGetWithRatio("LockPicking"))
 	var current_pins = DialogLockPickSet.filter(x => x==true).length
-	if (current_pins < DialogLockPickSet.length)
+	var false_set_chance = 0.75 - 0.15 * skill/10
+	var unset_false_set_chance = 0.1 + 0.1 * skill/10
+	if (current_pins < DialogLockPickSet.length && LogValue("FailedLockPick", "LockPick") < CurrentTime)
 		for (let P = 0; P < DialogLockPickSet.length; P++) {
 			if (!DialogLockPickSet[P]) {
 				var XX = X - PinWidth/2 + (0.5-DialogLockPickSet.length/2 + P) * PinSpacing
@@ -1859,13 +1891,35 @@ function DialogLockPickClick(C) {
 					if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
 						
 						if (DialogLockPickOrder[current_pins] == P && DialogLockPickImpossiblePins.filter(x => x==P).length == 0) {
+							// Successfully set the pin
 							DialogLockPickSet[P] = true
 							DialogLockPickArousalText = ""; // Reset arousal text
+							// We also unset any false set pins
+							if (current_pins+1 < DialogLockPickOrder.length && DialogLockPickSetFalse[DialogLockPickOrder[current_pins+1]] == true) {
+								DialogLockPickSetFalse[DialogLockPickOrder[current_pins+1]] = false
+								DialogLockPickProgressCurrentTries += 1
+							}
 						} else {
-							DialogLockPickProgressCurrentTries += 1
+							// There is a chance we false set
+							if (Math.random() < false_set_chance) {
+								DialogLockPickSetFalse[P] = true
+							} else if (DialogLockPickSetFalse[P] == false) {
+							// Otherwise: fail
+								DialogLockPickProgressCurrentTries += 1
+								DialogLockPickTotalTries += 1
+							}
+						}
+						if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
+							for (let PP = 0; PP < DialogLockPickSetFalse.length; PP++) {
+								if (P != PP && DialogLockPickSetFalse[PP] == true && Math.random() < unset_false_set_chance) {
+									DialogLockPickSetFalse[PP] = false;
+									DialogLockPickProgressCurrentTries += 1
+									break;
+								}
+							}
 						}
 						var order = Math.max(0, DialogLockPickOrder.indexOf(P)-current_pins)/Math.max(1, DialogLockPickSet.length-current_pins) * (0.25+0.75*skill/10) // At higher skills you can see which pins are later in the order
-						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.8*order)
+						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P] || DialogLockPickSetFalse[P]) ? PinHeight : PinHeight*(0.1+0.8*order)
 						
 						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && DialogLockPickSet.filter(x => x==false).length > 0 ) {
 							SkillProgress("LockPicking", DialogLockPickProgressSkillLose);
@@ -1923,10 +1977,10 @@ function DialogDrawLockpickProgress(C) {
 			else
 				DialogLockPickOffset[P] += 1 + Math.abs(DialogLockPickOffsetTarget[P] - DialogLockPickOffset[P])/4
 		}
-		if (DialogLockPickOffset[P] > DialogLockPickOffsetTarget[P]) {
+		if (DialogLockPickOffset[P] >= DialogLockPickOffsetTarget[P]) {
 			if (DialogLockPickOffsetTarget[P] != 0)
 				DialogLockPickOffset[P] = DialogLockPickOffsetTarget[P]
-			if (DialogLockPickOffsetTarget[P] != PinHeight) {
+			if (DialogLockPickOffsetTarget[P] != PinHeight || (!DialogLockPickSetFalse[P] && !DialogLockPickSet[P])) {
 				DialogLockPickOffsetTarget[P] = 0
 				DialogLockPickOffset[P] -= 1 + Math.abs(DialogLockPickOffsetTarget[P] - DialogLockPickOffset[P])/8
 			}
@@ -1940,11 +1994,30 @@ function DialogDrawLockpickProgress(C) {
 
 	
 	DrawText(DialogFind(Player, "LockpickTriesRemaining") + (DialogLockPickProgressMaxTries - DialogLockPickProgressCurrentTries), X, 212, "white");
-	if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries && DialogLockPickSuccessTime == 0) {
-		DrawText(DialogFind(Player, "LockpickFailed"), X, 262, "red");
-	}
-	if (DialogLockPickArousalText != "") {
-		DrawText(DialogLockPickArousalText, X, 170, "pink");
+	if (LogValue("FailedLockPick", "LockPick") > CurrentTime)
+		DrawText(DialogFind(Player, "LockpickFailedTimeout") + TimerToString(LogValue("FailedLockPick", "LockPick") - CurrentTime), X, 262, "red");
+	else {
+		if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries && DialogLockPickSuccessTime == 0) {
+			if (DialogLockPickFailTime > 0) {
+				if (DialogLockPickFailTime < CurrentTime) {
+					DialogLockPickFailTime = 0
+					
+					DialogLockPickProgressStart(C, DialogLockPickItem)
+					
+				}
+				else {
+					DrawText(DialogFind(Player, "LockpickFailed"), X, 262, "red");
+				}
+			} else if (Math.random() < 0.25 && DialogLockPickTotalTries > 5) { // DialogLockPickTotalTries is meant to give players a bit of breathing room so they don't get tired right away
+				LogAdd("FailedLockPick", "LockPick", CurrentTime + DialogLockPickFailTimeout);
+				DialogLockPickFailTime = CurrentTime + DialogLockPickFailTimeout;
+				DialogLockPickTotalTries = 0
+			} else 
+				DialogLockPickFailTime = CurrentTime + 1500
+		}
+		if (DialogLockPickArousalText != "") {
+			DrawText(DialogLockPickArousalText, X, 170, "pink");
+		}
 	}
 		
 
