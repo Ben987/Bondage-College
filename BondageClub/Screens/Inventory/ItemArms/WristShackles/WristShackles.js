@@ -3,8 +3,8 @@ var InventoryItemArmsWristShacklesOptions = [
 	{
 		Name: "InFront",
 		Property: {
-			Type: null,
-		},
+			Type: null
+		}
 	},
 	{
 		Name: "Behind",
@@ -12,9 +12,18 @@ var InventoryItemArmsWristShacklesOptions = [
 			Type: "Behind",
 			SetPose: ["BackCuffs"],
 			Effect: ["Block", "Prone"],
-			Difficulty: 3,
-		},
+			Difficulty: 3
+		}
 	},
+	{
+		Name: "Overhead",
+		Property: {
+			Type: "Overhead",
+			SetPose: ["OverTheHead"],
+			Effect: ["Block", "Prone"],
+			Difficulty: 3
+		}
+	}
 ];
 
 // Loads the item extension properties
@@ -23,7 +32,7 @@ function InventoryItemArmsWristShacklesLoad() {
 }
 
 // Draw the item extension screen
-function InventoryItemArmsWristShacklesDraw() {	
+function InventoryItemArmsWristShacklesDraw() {
 	ExtendedItemDraw(InventoryItemArmsWristShacklesOptions, "WristShacklesPose");
 }
 
@@ -37,7 +46,7 @@ function InventoryItemArmsWristShacklesPublishAction(C, Option) {
 	var msg = "WristShacklesRestrain" + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber }
 	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }

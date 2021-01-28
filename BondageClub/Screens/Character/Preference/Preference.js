@@ -5,7 +5,7 @@ var PreferenceSafewordConfirm = false;
 var PreferenceMaidsButton = true;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
-var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics", "Notifications"];
+var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics", "Controller", "Notifications"];
 var PreferenceChatColorThemeSelected = "";
 var PreferenceChatColorThemeList = ["Light", "Dark", "Light2", "Dark2"];
 var PreferenceChatColorThemeIndex = 0;
@@ -20,7 +20,11 @@ var PreferenceSettingsSensDepIndex = 0;
 var PreferenceSettingsVFXList = ["VFXInactive", "VFXSolid", "VFXAnimatedTemp", "VFXAnimated"];
 var PreferenceSettingsVFXIndex = 0;
 var PreferenceSettingsVolumeList = [1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+var PreferenceSettingsSensitivityList = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var PreferenceSettingsDeadZoneList = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 var PreferenceSettingsVolumeIndex = 0;
+var PreferenceSettingsSensitivityIndex = 13;
+var PreferenceSettingsDeadZoneIndex = 1;
 var PreferenceEmailStatusReceived = false;
 var PreferenceArousalActiveList = ["Inactive", "NoMeter", "Manual", "Hybrid", "Automatic"];
 var PreferenceArousalActiveIndex = 0;
@@ -50,6 +54,7 @@ var PreferenceDifficultyLevel = null;
 var PreferenceDifficultyAccept = false;
 var PreferenceGraphicsFontList = ["Arial", "TimesNewRoman", "Papyrus", "ComicSans", "Impact", "HelveticaNeue", "Verdana", "CenturyGothic", "Georgia", "CourierNew", "Copperplate"];
 var PreferenceGraphicsFontIndex = 0;
+var PreferenceCalibrationStage = 0;
 
 /**
  * Gets the effect of a sexual activity on the player
@@ -216,6 +221,7 @@ function PreferenceInit(C) {
 		OnlineSettings: C.OnlineSettings,
 		OnlineSharedSettings: C.OnlineSharedSettings,
 		GraphicsSettings: Player.GraphicsSettings,
+    ControllerSettings: C.ControllerSettings,
 		NotificationSettings: Player.NotificationSettings,
 	};
 	
@@ -239,6 +245,60 @@ function PreferenceInit(C) {
 	if (typeof C.AudioSettings.PlayBeeps !== "boolean") C.AudioSettings.PlayBeeps = false;
 	if (typeof C.AudioSettings.PlayItem !== "boolean") C.AudioSettings.PlayItem = false;
 	if (typeof C.AudioSettings.PlayItemPlayerOnly !== "boolean") C.AudioSettings.PlayItemPlayerOnly = false;
+
+
+    // Sets the default controller settings
+    if (!C.ControllerSettings) C.ControllerSettings = {
+        ControllerSensitivity: 5,
+        ControllerDeadZone: 0.01,
+        ControllerA: 1,
+        ControllerB: 0,
+        ControllerX: 3,
+        ControllerY: 2,
+        ControllerStickUpDown: 1,
+        ControllerStickLeftRight: 0,
+        ControllerStickRight: 1,
+        ControllerStickDown: 1,
+        ControllerDPadUp: 4,
+        ControllerDPadDown: 5,
+        ControllerDPadLeft: 6,
+        ControllerDPadRight: 7,
+    };
+    if (typeof C.ControllerSettings.ControllerSensitivity !== "number") C.ControllerSettings.ControllerSensitivity = 5;
+    if (typeof C.ControllerSettings.ControllerDeadZone !== "number") C.ControllerSettings.ControllerDeadZone = 0.01;
+    if (typeof C.ControllerSettings.ControllerA !== "number") C.ControllerSettings.ControllerA = 1;
+    if (typeof C.ControllerSettings.ControllerB !== "number") C.ControllerSettings.ControllerB = 0;
+    if (typeof C.ControllerSettings.ControllerX !== "number") C.ControllerSettings.ControllerX = 3;
+    if (typeof C.ControllerSettings.ControllerY !== "number") C.ControllerSettings.ControllerY = 2;
+    if (typeof C.ControllerSettings.ControllerStickUpDown !== "number") C.ControllerSettings.ControllerStickUpDown = 1;
+    if (typeof C.ControllerSettings.ControllerStickLeftRight !== "number") C.ControllerSettings.ControllerStickLeftRight = 0;
+    if (typeof C.ControllerSettings.ControllerStickRight !== "number") C.ControllerSettings.ControllerStickRight = 1;
+    if (typeof C.ControllerSettings.ControllerStickDown !== "number") C.ControllerSettings.ControllerStickDown = 1;
+    if (typeof C.ControllerSettings.ControllerDPadUp !== "number") C.ControllerSettings.ControllerDPadUp = 4;
+    if (typeof C.ControllerSettings.ControllerDPadDown !== "number") C.ControllerSettings.ControllerDPadDown = 5;
+    if (typeof C.ControllerSettings.ControllerDPadLeft !== "number") C.ControllerSettings.ControllerDPadLeft = 6;
+    if (typeof C.ControllerSettings.ControllerDPadRight !== "number") C.ControllerSettings.ControllerDPadRight = 7;
+    if (typeof C.ControllerSettings.ControllerActive !== "boolean") C.ControllerSettings.ControllerActive = false;
+
+    ControllerSensitivity = C.ControllerSettings.ControllerSensitivity;
+    ControllerDeadZone = C.ControllerSettings.ControllerDeadZone;
+    PreferenceSettingsSensitivityIndex = PreferenceSettingsSensitivityList.indexOf(Player.ControllerSettings.ControllerSensitivity);
+    PreferenceSettingsDeadZoneIndex = PreferenceSettingsDeadZoneList.indexOf(Player.ControllerSettings.ControllerDeadZone);
+    ControllerA = C.ControllerSettings.ControllerA;
+    ControllerB = C.ControllerSettings.ControllerB;
+    ControllerX = C.ControllerSettings.ControllerX;
+    ControllerY = C.ControllerSettings.ControllerY;
+    ControllerStickUpDown = C.ControllerSettings.ControllerStickUpDown;
+    ControllerStickLeftRight = C.ControllerSettings.ControllerStickLeftRight;
+    ControllerStickRight = C.ControllerSettings.ControllerStickRight;
+    ControllerStickDown = C.ControllerSettings.ControllerStickDown;
+    ControllerDPadUp = C.ControllerSettings.ControllerDPadUp;
+    ControllerDPadDown = C.ControllerSettings.ControllerDPadDown;
+    ControllerDPadLeft = C.ControllerSettings.ControllerDPadLeft;
+    ControllerDPadRight = C.ControllerSettings.ControllerDPadRight;
+    ControllerActive = C.ControllerSettings.ControllerActive;
+
+
 
 	// Sets the default arousal settings
 	if (!C.ArousalSettings) C.ArousalSettings = { Active: "Hybrid", Visible: "Access", ShowOtherMeter: true, AffectExpression: true, AffectStutter: "All", Progress: 0, ProgressTimer: 0, VibratorLevel: 0, VFX: "VFXAnimatedTemp", ChangeTime: CommonTime(), Activity: [], Zone: [] };
@@ -393,6 +453,7 @@ function PreferenceInit(C) {
 			ArousalSettings: Player.ArousalSettings,
 			OnlineSettings: Player.OnlineSettings,
 			OnlineSharedSettings: Player.OnlineSharedSettings,
+      ControllerSettings: Player.ControllerSettings,
 			GraphicsSettings: Player.GraphicsSettings,
 			NotificationSettings: Player.NotificationSettings,
 		};
@@ -440,7 +501,7 @@ function PreferenceLoad() {
 	PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave) < 0) ? 0 : PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave);
 	PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers) < 0) ? 0 : PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers);
 	PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog) < 0) ? 0 : PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog);
-	PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
+    PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
 	PreferenceArousalActiveIndex = (PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active) < 0) ? 0 : PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active);
 	PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX) < 0) ? 0 : PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX);
 	PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible) < 0) ? 0 : PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible);
@@ -488,10 +549,15 @@ function PreferenceRun() {
 	MainCanvas.textAlign = "center";
 
 	// Draw all the buttons to access the submenus
-	for (let A = 0; A < PreferenceSubscreenList.length; A++) {
-		DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
-		DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
-	}
+    for (let A = 0; A < PreferenceSubscreenList.length; A++) {
+        ControllerIgnoreButton = true;
+        DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
+        ControllerIgnoreButton = false;
+        DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
+        if (ControllerActive == true) {
+            setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
+        }
+    }
 
 }
 
@@ -613,8 +679,10 @@ function PreferenceSubscreenRestrictionRun() {
  * @returns {void} - Nothing
  */
 function PreferenceClick() {
-
-	// Pass the click into the opened subscreen
+    if (ControllerActive == true) {
+        ClearButtons();
+    }
+    // Pass the click into the opened subscreen
 	if (PreferenceSubscreen != "") return CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreen + "Click()");
 
 	// Exit button
@@ -816,6 +884,7 @@ function PreferenceExit() {
 		ArousalSettings: Player.ArousalSettings,
 		OnlineSettings: Player.OnlineSettings,
 		OnlineSharedSettings: Player.OnlineSharedSettings,
+    ControllerSettings: Player.ControllerSettings,
 		GraphicsSettings: Player.GraphicsSettings,
 		NotificationSettings: Player.NotificationSettings,
 		LimitedItems: Player.LimitedItems,
@@ -842,6 +911,77 @@ function PreferenceSubscreenAudioRun() {
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length] * 100 + "%");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+}
+
+/**
+ * Sets the audio preferences for the player. Redirected to from the main Run function if the player is in the audio settings subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenControllerRun() {
+    if (PreferenceCalibrationStage == 0) {
+        DrawCharacter(Player, 50, 50, 0.9);
+        MainCanvas.textAlign = "left";
+        DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
+        DrawText(TextGet("Sensitivity"), 800, 225, "Black", "Gray");
+        DrawText(TextGet("DeadZone"), 800, 625, "Black", "Gray");
+        DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
+
+        DrawButton(500, 380, 400, 90, "", "White");
+        DrawTextFit(TextGet("MapButtons"), 590, 425, 310, "Black");
+
+        DrawButton(500, 480, 400, 90, "", "White");
+        DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
+
+        MainCanvas.textAlign = "center";
+        DrawBackNextButton(500, 193, 250, 64, Player.ControllerSettings.ControllerSensitivity, "White", "",
+            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
+            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length]);
+        MainCanvas.textAlign = "center";
+        DrawBackNextButton(500, 593, 250, 64, Player.ControllerSettings.ControllerDeadZone, "White", "",
+            () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + PreferenceSettingsDeadZoneList.length - 1) % PreferenceSettingsDeadZoneList.length],
+            () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length] );
+    }
+    if (PreferenceCalibrationStage == 101) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("MoveLeftStickUp"), 590, 425, 310, "Black");
+    }
+    if (PreferenceCalibrationStage == 102) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("MoveLeftStickRight"), 590, 425, 310, "Black");
+    }
+    DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+    if (PreferenceCalibrationStage == 1) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("PressA"), 590, 425, 310, "Black");
+    }
+    if (PreferenceCalibrationStage == 2) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("PressB"), 590, 425, 310, "Black");
+    }
+    if (PreferenceCalibrationStage == 3) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("PressX"), 590, 425, 310, "Black");
+    }
+    if (PreferenceCalibrationStage == 4) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("PressY"), 590, 425, 310, "Black");
+    }
+    if (PreferenceCalibrationStage == 5) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("PressUpOnDpad"), 590, 425, 310, "Black");
+    }
+    if (PreferenceCalibrationStage == 6) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("PressDownOnDpad"), 590, 425, 310, "Black");
+    }
+    if (PreferenceCalibrationStage == 7) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("PressLeftOnDpad"), 590, 425, 310, "Black");
+    }
+    if (PreferenceCalibrationStage == 8) {
+        MainCanvas.textAlign = "left";
+        DrawTextFit(TextGet("PressRightOnDpad"), 590, 425, 310, "Black");
+    }
 }
 
 /**
@@ -1095,6 +1235,52 @@ function PreferenceSubscreenAudioClick() {
 		if ((MouseY >= 432) && (MouseY < 496)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
 	}
 
+}
+/**
+ * Handles click events for the audio preference settings.  Redirected from the main Click function.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenControllerClick() {
+    if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
+        PreferenceSubscreen = "";
+        PreferenceCalibrationStage = 0;
+        Calibrating = false;
+    }
+    if (PreferenceCalibrationStage == 0) {
+
+
+        if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
+            if (MouseX <= 625) PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityList.length + PreferenceSettingsSensitivityIndex - 1) % PreferenceSettingsSensitivityList.length;
+            else PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length;
+            Player.ControllerSettings.ControllerSensitivity = PreferenceSettingsSensitivityList[PreferenceSettingsSensitivityIndex];
+            ControllerSensitivity = Player.ControllerSettings.ControllerSensitivity;
+        }
+        if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 593) && (MouseY < 657)) {
+            if (MouseX <= 625) PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneList.length + PreferenceSettingsDeadZoneIndex - 1) % PreferenceSettingsDeadZoneList.length;
+            else PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length;
+            Player.ControllerSettings.ControllerDeadZone = PreferenceSettingsDeadZoneList[PreferenceSettingsDeadZoneIndex];
+            ControllerDeadZone = Player.ControllerSettings.ControllerDeadZone;
+        }
+
+        if (MouseIn(590, 400, 310, 90)) {
+            //console.log("CalibrateClick")
+            PreferenceCalibrationStage = 1;
+            Calibrating = true;
+        }
+        if (MouseIn(590, 500, 310, 90)) {
+            //console.log("CalibrateClick")
+            PreferenceCalibrationStage = 101;
+            Calibrating = true;
+        }
+
+        if ((MouseX >= 500) && (MouseX < 564)) {
+            if ((MouseY >= 272) && (MouseY < 336)) {
+                ControllerActive = !ControllerActive;
+                Player.ControllerSettings.ControllerActive = ControllerActive;
+                ClearButtons();
+            }
+        }
+    }
 }
 
 /**
