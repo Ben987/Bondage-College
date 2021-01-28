@@ -958,7 +958,7 @@ function ChatRoomAttemptStandMinigameEnd() {
 		}
 	}
 	
-	CommonSetScreen("Room", "ChatRoom");	
+	CommonSetScreen("Online", "ChatRoom");	
 }
 
 /**
