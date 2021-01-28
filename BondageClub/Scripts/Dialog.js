@@ -2082,11 +2082,11 @@ function DialogDrawItemMenu(C) {
 			DrawRect(X, Y, 225, 275, (DialogItemPermissionMode && C.ID == 0) ?
 				(Item.Worn ? "gray" : Block ? Hover ? "red" : "pink" : Limit ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") :
 				((Hover && !Blocked) ? "cyan" : Item.Worn ? "pink" : Blocked ? "red" : Unusable ? "gray" : "white"));
-            if (!CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name)) {
-                if (ControllerActive == true) setButton(X + 2, Y + 2);
-                if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
-                else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
-            }
+			if (!CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name)) {
+				if (ControllerActive == true) setButton(X + 2, Y + 2);
+				if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
+				else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
+			}
 			else DrawImageResize("Icons/HiddenItem.png", X + 2, Y + 2, 221, 221);
 			DrawTextFit(Item.Asset.DynamicDescription(Player), X + 112, Y + 250, 221, "black");
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
@@ -2179,9 +2179,9 @@ function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
  * @returns {void} - Nothing
  */
 function DialogDraw() {
-    if (ControllerActive == true) {
-        ClearButtons();
-    }
+	if (ControllerActive == true) {
+		ClearButtons();
+	}
 	// Draw both the player and the interaction character
 	if (CurrentCharacter.ID != 0) DrawCharacter(Player, 0, 0, 1);
 	DrawCharacter(CurrentCharacter, 500, 0, 1);

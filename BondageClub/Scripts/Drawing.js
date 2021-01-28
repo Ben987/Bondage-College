@@ -220,9 +220,9 @@ function DrawArousalMeter(C, X, Y, Zoom) {
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	if ((C != null) && ((C.ID == 0) || (Player.GetBlindLevel() < 3) || (CurrentScreen == "InformationSheet"))) {
 
-        if (ControllerActive == true) {
-            setButton(X + 100, Y + 200)
-        }
+		if (ControllerActive == true) {
+			setButton(X + 100, Y + 200)
+		}
 
 		// If there's a fixed image to draw instead of the character
 		if (C.FixedImage != null) {
@@ -358,11 +358,11 @@ function DrawAssetGroupZone(C, Zone, Zoom, X, Y, HeightRatio, Color, Thickness =
 		let CZ = DialogGetCharacterZone(C, Zone[Z], X, Y, Zoom, HeightRatio);
 
 		if (FillColor != null) DrawRect(CZ[0], CZ[1], CZ[2], CZ[3], FillColor);
-        DrawEmptyRect(CZ[0], CZ[1], CZ[2], CZ[3], Color, Thickness);
+		DrawEmptyRect(CZ[0], CZ[1], CZ[2], CZ[3], Color, Thickness);
 
-        if (ControllerActive == true) {
-            setButton(Math.round(CZ[0]), Math.round(CZ[1]));
-        }
+		if (ControllerActive == true) {
+			setButton(Math.round(CZ[0]), Math.round(CZ[1]));
+		}
 	}
 }
 
@@ -659,9 +659,9 @@ function GetWrapTextSize(Text, Width, MaxLine) {
  * @returns {void} - Nothing
  */
 function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) {
-    if (ControllerActive == true) {
-        setButton(X, Y);
-    }
+	if (ControllerActive == true) {
+		setButton(X, Y);
+	}
 	// Draw the rectangle if we need too
 	if (BackColor != null) {
 		MainCanvas.beginPath();
@@ -790,10 +790,10 @@ function DrawText(Text, X, Y, Color, BackColor) {
  * @returns {void} - Nothing
  */
 function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled) {
-    
-    if (ControllerActive == true) {
-        setButton(Left, Top);
-    }
+
+	if (ControllerActive == true) {
+		setButton(Left, Top);
+	}
 
 	// Draw the button rectangle (makes the background color cyan if the mouse is over it)
 	MainCanvas.beginPath();

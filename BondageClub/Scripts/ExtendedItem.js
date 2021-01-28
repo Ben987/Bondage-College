@@ -163,13 +163,13 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
         var PlayerLimited = InventoryIsPermissionLimited(Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
         var Color = ExtendedItemPermissionMode ? ((C.ID == 0 && IsSelected) || Option.Property.Type == null ? "#888888" : PlayerBlocked ? Hover ? "red" : "pink" : PlayerLimited ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") : (IsSelected ? "#888888" : (Blocked || Limited) ? "Red" : FailSkillCheck ? "Pink" : Hover ? "Cyan" : "White");
 
-        DrawButton(X, Y, 225, 55 + ImageHeight, "", Color, null, null, IsSelected);
-        if (ShowImages) DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X + 2, Y);
-        DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
-        if (ControllerActive == true) {
-            DrawTextFit(X + 112, Y + 30 + ImageHeight);
-        }
-    }
+		DrawButton(X, Y, 225, 55 + ImageHeight, "", Color, null, null, IsSelected);
+		if (ShowImages) DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X + 2, Y);
+		DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
+		if (ControllerActive == true) {
+			setButton(X + 112, Y + 30 + ImageHeight);
+		}
+	}
 	
 	// Permission mode toggle is always available
 	DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));

@@ -249,9 +249,9 @@ function TimerProcess(Timestamp) {
 
 	}
 
-    if (ControllerActive == true) {
-        DrawRect(MouseX - 5, MouseY - 5, 10, 10, "Cyan");
-    }
+	if (ControllerActive == true) {
+		DrawRect(MouseX - 5, MouseY - 5, 10, 10, "Cyan");
+	}
 
     // Launches the main again for the next frame
 	requestAnimationFrame(MainRun);
