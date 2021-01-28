@@ -1897,6 +1897,7 @@ function DialogLockPickClick(C) {
 							// We also unset any false set pins
 							if (current_pins+1 < DialogLockPickOrder.length && DialogLockPickSetFalse[DialogLockPickOrder[current_pins+1]] == true) {
 								DialogLockPickSetFalse[DialogLockPickOrder[current_pins+1]] = false
+								DialogLockPickProgressCurrentTries += 1
 							}
 						} else {
 							// There is a chance we false set
@@ -1908,10 +1909,13 @@ function DialogLockPickClick(C) {
 								DialogLockPickTotalTries += 1
 							}
 						}
-						for (let PP = 0; PP < DialogLockPickSetFalse.length; PP++) {
-							if (P != PP && DialogLockPickSetFalse[PP] == true && Math.random() < unset_false_set_chance) {
-								DialogLockPickSetFalse[PP] = false;
-								break;
+						if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
+							for (let PP = 0; PP < DialogLockPickSetFalse.length; PP++) {
+								if (P != PP && DialogLockPickSetFalse[PP] == true && Math.random() < unset_false_set_chance) {
+									DialogLockPickSetFalse[PP] = false;
+									DialogLockPickProgressCurrentTries += 1
+									break;
+								}
 							}
 						}
 						var order = Math.max(0, DialogLockPickOrder.indexOf(P)-current_pins)/Math.max(1, DialogLockPickSet.length-current_pins) * (0.25+0.75*skill/10) // At higher skills you can see which pins are later in the order
