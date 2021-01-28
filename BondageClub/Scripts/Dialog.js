@@ -41,6 +41,7 @@ var DialogSortOrderBlocked = 5;
 var DialogSelfMenuSelected = null;
 var DialogLeaveDueToItem = false; // This allows dynamic items to call DialogLeave() without crashing the game
 
+var DialogLockPickItem = null;
 var DialogLockPickOrder = null;
 var DialogLockPickSet = null;
 var DialogLockPickOffset = null;
@@ -54,6 +55,7 @@ var DialogLockPickProgressChallenge = 0;
 var DialogLockPickProgressMaxTries = 0;
 var DialogLockPickProgressCurrentTries = 0;
 var DialogLockPickSuccessTime = 0;
+var DialogLockPickFailTime = 0;
 var DialogLockPickArousalTick = 0;
 var DialogLockPickArousalTickTime = 12000;
 var DialogLockPickArousalText = ""
@@ -644,6 +646,8 @@ function DialogMenuButtonBuild(C) {
 		// Pushes all valid main buttons, based on if the player is restrained, has a blocked group, has the key, etc.
 		var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
 		var IsGroupBlocked = InventoryGroupIsBlocked(C);
+		var CanAccessLockpicks = Player.CanInteract() || Player.CanWalk() // If the character can access her tools. Maybe in the future you will be able to hide a lockpick in your panties :>
+		
 
 		if (DialogLockMenu) {
 			DialogMenuButton.push("LockCancel");
@@ -654,7 +658,7 @@ function DialogMenuButtonBuild(C) {
 			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && (C.ID == 0 || (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf))) {
 				if (DialogLentLockpicks) 
 					DialogMenuButton.push("PickLock");
-				else
+				else if (CanAccessLockpicks)
 					for (let I = 0; I < Player.Inventory.length; I++)
 						if (Player.Inventory[I].Name == "Lockpicks") {
 							DialogMenuButton.push("PickLock");
@@ -999,6 +1003,9 @@ function DialogLockPickProgressStart(C, Item) {
 
 	DialogLockPickArousalText = ""
 	DialogLockPickArousalTick = 0
+	if (Item) {
+		DialogLockPickItem = Item
+	}
 
 	var lock = InventoryGetLock(Item)
 	var LockRating = 1
@@ -1079,11 +1086,12 @@ function DialogLockPickProgressStart(C, Item) {
 		DialogLockPickImpossiblePins = [];
 		DialogLockPickProgressItem = Item;
 		DialogLockPickProgressOperation = DialogLockPickProgressGetOperation(C, Item);
-		DialogLockPickProgressSkill = 8*Math.max(0, -S)*Math.max(0, -S); // Scales squarely, so that more difficult locks provide bigger reward!
-		DialogLockPickProgressSkillLose = Math.min(Math.floor(DialogLockPickProgressSkill/1.5), NumPins*NumPins/2) // Even if you lose you get some reward. You get this no matter what if you run out of tries.
+		DialogLockPickProgressSkill = Math.floor(NumPins*NumPins/2) + Math.floor(Math.max(0, -S)*Math.max(0, -S)); // Scales squarely, so that more difficult locks provide bigger reward!
+		DialogLockPickProgressSkillLose = NumPins*NumPins/2 // Even if you lose you get some reward. You get this no matter what if you run out of tries.
 		DialogLockPickProgressChallenge = S * -1;
 		DialogLockPickProgressCurrentTries = 0;
 		DialogLockPickSuccessTime = 0
+		DialogLockPickFailTime = 0
 		DialogMenuButtonBuild(C);
 		
 		
@@ -1113,7 +1121,7 @@ function DialogLockPickProgressStart(C, Item) {
 
 		// At 4 pins we have a base of 16 tries, with 10 maximum permutions possible
 		// At 10 pins we have a base of 40-30 tries, with 55 maximum permutions possible
-		var NumTries = Math.floor(Math.max(NumPins * (2.25 - BondageLevel/10),
+		var NumTries = Math.floor(Math.max(NumPins * (2.5 - BondageLevel/10),
 				NumPins * (4 - BondageLevel/10) - Math.max(0, DialogLockPickProgressChallenge*NumPins/4) - BondageLevel/2))
 			    // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
 				// negative skill of 6 subtracts 12 from all locks
@@ -1941,7 +1949,15 @@ function DialogDrawLockpickProgress(C) {
 	
 	DrawText(DialogFind(Player, "LockpickTriesRemaining") + (DialogLockPickProgressMaxTries - DialogLockPickProgressCurrentTries), X, 212, "white");
 	if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries && DialogLockPickSuccessTime == 0) {
-		DrawText(DialogFind(Player, "LockpickFailed"), X, 262, "red");
+		if (DialogLockPickFailTime > 0) {
+			if (DialogLockPickFailTime < CurrentTime) {
+				DialogLockPickFailTime = 0
+				
+				DialogLockPickProgressStart(C, DialogLockPickItem)
+				
+			} else 
+				DrawText(DialogFind(Player, "LockpickFailed"), X, 262, "red");
+		} else DialogLockPickFailTime = CurrentTime + 1500
 	}
 	if (DialogLockPickArousalText != "") {
 		DrawText(DialogLockPickArousalText, X, 170, "pink");
