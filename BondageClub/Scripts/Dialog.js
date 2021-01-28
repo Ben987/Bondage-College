@@ -44,6 +44,7 @@ var DialogLeaveDueToItem = false; // This allows dynamic items to call DialogLea
 var DialogLockPickItem = null;
 var DialogLockPickOrder = null;
 var DialogLockPickSet = null;
+var DialogLockPickSetFalse = null;
 var DialogLockPickOffset = null;
 var DialogLockPickOffsetTarget = null;
 var DialogLockPickImpossiblePins = null;
@@ -1081,6 +1082,7 @@ function DialogLockPickProgressStart(C, Item) {
 		// Prepares the progress bar and timer
 		DialogLockPickOrder = [];
 		DialogLockPickSet = [];
+		DialogLockPickSetFalse = [];
 		DialogLockPickOffset = [];
 		DialogLockPickOffsetTarget = [];
 		DialogLockPickImpossiblePins = [];
@@ -1100,6 +1102,7 @@ function DialogLockPickProgressStart(C, Item) {
 		for (let P = 0; P < NumPins; P++) {
 			DialogLockPickOrder.push(P)
 			DialogLockPickSet.push(false)
+			DialogLockPickSetFalse.push(false)
 			DialogLockPickOffset.push(0)
 			DialogLockPickOffsetTarget.push(0)
 		}
@@ -1876,6 +1879,8 @@ function DialogLockPickClick(C) {
 	var PinHeight = 200
 	var skill = Math.min(10, SkillGetWithRatio("LockPicking"))
 	var current_pins = DialogLockPickSet.filter(x => x==true).length
+	var false_set_chance = 0.75 - 0.35 * skill/10
+	var unset_false_set_chance = 0.1 + 0.1 * skill/10
 	if (current_pins < DialogLockPickSet.length)
 		for (let P = 0; P < DialogLockPickSet.length; P++) {
 			if (!DialogLockPickSet[P]) {
@@ -1884,13 +1889,29 @@ function DialogLockPickClick(C) {
 					if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
 						
 						if (DialogLockPickOrder[current_pins] == P && DialogLockPickImpossiblePins.filter(x => x==P).length == 0) {
+							// Successfully set the pin
 							DialogLockPickSet[P] = true
 							DialogLockPickArousalText = ""; // Reset arousal text
+							// We also unset any false set pins
+							if (current_pins+1 < DialogLockPickOrder.length && DialogLockPickSetFalse[current_pins+1] == true) {
+								DialogLockPickSetFalse[current_pins+1] = false
+							}
 						} else {
-							DialogLockPickProgressCurrentTries += 1
+							// There is a chance we false set
+							if (Math.random() < false_set_chance && current_pins+1 < DialogLockPickOrder.length && DialogLockPickOrder[current_pins+1] != P) {
+								DialogLockPickSetFalse[P] = true
+							} else
+							// Otherwise: fail
+								DialogLockPickProgressCurrentTries += 1
+						}
+						for (let PP = 0; PP < DialogLockPickSetFalse.length; PP++) {
+							if (P != PP && DialogLockPickSetFalse[PP] == true && Math.random() < unset_false_set_chance) {
+								DialogLockPickSetFalse[PP] = false;
+								break;
+							}
 						}
 						var order = Math.max(0, DialogLockPickOrder.indexOf(P)-current_pins)/Math.max(1, DialogLockPickSet.length-current_pins) * (0.25+0.75*skill/10) // At higher skills you can see which pins are later in the order
-						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.8*order)
+						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P] || DialogLockPickSetFalse[P]) ? PinHeight : PinHeight*(0.1+0.8*order)
 						
 						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && DialogLockPickSet.filter(x => x==false).length > 0 ) {
 							SkillProgress("LockPicking", DialogLockPickProgressSkillLose);
@@ -1948,10 +1969,10 @@ function DialogDrawLockpickProgress(C) {
 			else
 				DialogLockPickOffset[P] += 1 + Math.abs(DialogLockPickOffsetTarget[P] - DialogLockPickOffset[P])/4
 		}
-		if (DialogLockPickOffset[P] > DialogLockPickOffsetTarget[P]) {
+		if (DialogLockPickOffset[P] >= DialogLockPickOffsetTarget[P]) {
 			if (DialogLockPickOffsetTarget[P] != 0)
 				DialogLockPickOffset[P] = DialogLockPickOffsetTarget[P]
-			if (DialogLockPickOffsetTarget[P] != PinHeight) {
+			if (DialogLockPickOffsetTarget[P] != PinHeight || (!DialogLockPickSetFalse[P] && !DialogLockPickSet[P])) {
 				DialogLockPickOffsetTarget[P] = 0
 				DialogLockPickOffset[P] -= 1 + Math.abs(DialogLockPickOffsetTarget[P] - DialogLockPickOffset[P])/8
 			}
