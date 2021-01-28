@@ -845,22 +845,30 @@ function DrawCheckboxColor(Left, Top, Width, Height, Text, IsChecked, Color) {
  * @param {string} BackText - Text for the back button tooltip
  * @param {string} NextText - Text for the next button tooltip
  * @param {boolean} [Disabled] - Disables the hovering options if set to true
+ * @param {number} ArrowWidth - How much of the button the previous/next sections cover. By default, half each.
  * @returns {void} - Nothing
  */
-function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText, Disabled) {
+function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText, Disabled, ArrowWidth) {
+	// Set the widths of the previous/next sections to be colored cyan when hovering over them
+	// By default each covers half the width, together covering the whole button
+	if (ArrowWidth == null || ArrowWidth > Width / 2) ArrowWidth = Width / 2;
+	const LeftSplit = Left + ArrowWidth;
+	const RightSplit = Left + Width - ArrowWidth;
 
-	// Draw the button rectangle (makes half of the background cyan colored if the mouse is over it)
-	var Split = Left + Width / 2;
+	// Draw the button rectangle
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillRect(Left, Top, Width, Height);
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled) {
 		MainCanvas.fillStyle = "Cyan";
-		if (MouseX > Split) {
-			MainCanvas.fillRect(Split, Top, Width / 2, Height);
+		if (MouseX > RightSplit) {
+			MainCanvas.fillRect(RightSplit, Top, ArrowWidth, Height);
+		}
+		else if (MouseX <= LeftSplit) {
+			MainCanvas.fillRect(Left, Top, ArrowWidth, Height);
 		} else {
-			MainCanvas.fillRect(Left, Top, Width / 2, Height);
+			MainCanvas.fillRect(Left + ArrowWidth, Top, Width - ArrowWidth * 2, Height);
 		}
 	}
 	MainCanvas.lineWidth = '2';
@@ -895,7 +903,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !Disabled)
-		DrawButtonHover(Left, Top, Width, Height, (MouseX > Split) ? NextText() : BackText());
+		DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? NextText() : MouseX >= RightSplit ? BackText() : "");
 
 }
 
