@@ -227,19 +227,19 @@ function CommonClick() {
  * @returns {void} - Nothing
  */
 function CommonKeyDown() {
-    if (CurrentCharacter == null) {
-        if (typeof window[CurrentScreen + "KeyDown"] === "function")
-            CommonDynamicFunction(CurrentScreen + "KeyDown()");
-        if (ControllerActive == true) {
-            ControllerSupportKeyDown();
-        }
-    }
-    else {
-        DialogKeyDown();
-        if (ControllerActive == true) {
-            ControllerSupportKeyDown();
-        }
-    }
+	if (CurrentCharacter == null) {
+		if (typeof window[CurrentScreen + "KeyDown"] === "function")
+			CommonDynamicFunction(CurrentScreen + "KeyDown()");
+		if (ControllerActive == true) {
+			ControllerSupportKeyDown();
+		}
+	}
+	else {
+		DialogKeyDown();
+		if (ControllerActive == true) {
+			ControllerSupportKeyDown();
+		}
+	}
 }
 
 /**
@@ -348,10 +348,10 @@ function CommonSetScreen(NewModule, NewScreen) {
 	CommonGetFontName.clearCache();
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
-        CommonDynamicFunction(CurrentScreen + "Load()");
-    if (ControllerActive == true) {
-        ClearButtons();
-    }
+		CommonDynamicFunction(CurrentScreen + "Load()");
+	if (ControllerActive == true) {
+		ClearButtons();
+	}
 }
 
 /**
