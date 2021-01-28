@@ -78,7 +78,7 @@ function GetUpRun() {
 			GetUpEnd(true)
 		}
 		SkillProgress("Evasion",  GetUpChallenge/2 + 1);
-	} else {
+	} else if (Time < MiniGameTimer) {
 		GetUpPhysics(TimerRunInterval)
 	}
 	if (Math.abs(GetUpPosition) > GetUpMaxPosition) {
