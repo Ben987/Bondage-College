@@ -1143,8 +1143,8 @@ function DialogLockPickProgressStart(C, Item) {
 
 		// At 4 pins we have a base of 16 tries, with 10 maximum permutions possible
 		// At 10 pins we have a base of 40-30 tries, with 55 maximum permutions possible
-		var NumTries = Math.floor(Math.max(NumPins * (1.5 - 0.3*BondageLevel/10),
-				NumPins * (3.25 - BondageLevel/10) - Math.max(0, (DialogLockPickProgressChallenge + BondageLevel/2)*1.5)))
+		var NumTries = Math.max(Math.floor(NumPins * (1.5 - 0.3*BondageLevel/10)),
+				Math.ceil(NumPins * (3.25 - BondageLevel/10) - Math.max(0, (DialogLockPickProgressChallenge + BondageLevel/2)*1.5)))
 			    // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
 				// negative skill of 6 subtracts 12 from all locks
 	
