@@ -706,7 +706,7 @@ function MainHallMistressExpulsion() {
 function MainHallMaidIntroduction() {
 	if (!LogQuery("IntroductionDone", "MainHall") && Player.CanTalk()) {
 		MainHallMaid.Stage = "1000";
-		MainHallMaid.CurrentDialog = GetPlayerDialog("IntroductionMaidGreetings");
+		MainHallMaid.CurrentDialog = DialogFindPlayer("IntroductionMaidGreetings");
 		CharacterSetCurrent(MainHallMaid);
 		MainHallMaid.AllowItem = false;
 	}

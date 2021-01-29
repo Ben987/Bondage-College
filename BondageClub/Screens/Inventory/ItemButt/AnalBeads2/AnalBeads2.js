@@ -18,11 +18,11 @@ function InventoryItemButtAnalBeads2Draw() {
 	DrawRect(1387, 225, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	DrawText(GetPlayerDialog("BeadsCount") + DialogFocusItem.Property.InsertedBeads.toString(), 1500, 600, "White", "Gray");
-	if (DialogFocusItem.Property.InsertedBeads > 1) DrawButton(1200, 700, 250, 65, GetPlayerDialog("RemoveBead"), "White");
-	if (DialogFocusItem.Property.InsertedBeads < 5) DrawButton(1550, 700, 250, 65, GetPlayerDialog("InsertBead"), "White");
-	if (DialogFocusItem.Property.InsertedBeads < 5) DrawButton(1550, 800, 250, 65, GetPlayerDialog("MaximumBeads"), "White");
-	if (DialogFocusItem.Property.InsertedBeads > 1) DrawButton(1200, 800, 250, 65, GetPlayerDialog("MinimumBeads"), "White");
+	DrawText(DialogFindPlayer("BeadsCount") + DialogFocusItem.Property.InsertedBeads.toString(), 1500, 600, "White", "Gray");
+	if (DialogFocusItem.Property.InsertedBeads > 1) DrawButton(1200, 700, 250, 65, DialogFindPlayer("RemoveBead"), "White");
+	if (DialogFocusItem.Property.InsertedBeads < 5) DrawButton(1550, 700, 250, 65, DialogFindPlayer("InsertBead"), "White");
+	if (DialogFocusItem.Property.InsertedBeads < 5) DrawButton(1550, 800, 250, 65, DialogFindPlayer("MaximumBeads"), "White");
+	if (DialogFocusItem.Property.InsertedBeads > 1) DrawButton(1200, 800, 250, 65, DialogFindPlayer("MinimumBeads"), "White");
 }
 
 // Catches the item extension clicks

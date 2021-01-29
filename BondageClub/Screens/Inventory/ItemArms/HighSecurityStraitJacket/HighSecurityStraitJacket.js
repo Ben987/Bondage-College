@@ -99,7 +99,7 @@ function InventoryItemArmsHighSecurityStraitJacketLoad() {
 		CharacterRefresh(C);
 		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 	}
-	DialogExtendedMessage = GetPlayerDialog("ItemArmsHighSecurityStraitJacketSelectBase");
+	DialogExtendedMessage = DialogFindPlayer("ItemArmsHighSecurityStraitJacketSelectBase");
 }
 
 function InventoryItemArmsHighSecurityStraitJacketCall(functionMap) {
@@ -117,7 +117,7 @@ function InventoryItemArmsHighSecurityStraitJacketClick() {
 
 function InventoryItemArmsHighSecurityStraitJacketPageTransition(newPage) {
 	InventoryItemArmsHighSecurityStraitJacketPage = newPage;
-	DialogExtendedMessage = GetPlayerDialog("ItemArmsHighSecurityStraitJacketSelect" + newPage);
+	DialogExtendedMessage = DialogFindPlayer("ItemArmsHighSecurityStraitJacketSelect" + newPage);
 }
 
 function InventoryItemArmsHighSecurityStraitJacketDrawCommon(buttonDefinitions) {
@@ -133,7 +133,7 @@ function InventoryItemArmsHighSecurityStraitJacketDrawCommon(buttonDefinitions) 
 		var y = 450 + (Math.floor(i / 2) * 300);
 		DrawButton(x, y, 225, 225, "", buttonDefinition[2] || "#fff");
 		DrawImage(buttonDefinition[0], x, y);
-		DrawText(GetPlayerDialog(buttonDefinition[1]), x + 113, y - 20, "#fff", "#808080");
+		DrawText(DialogFindPlayer(buttonDefinition[1]), x + 113, y - 20, "#fff", "#808080");
 	});
 }
 
@@ -238,13 +238,13 @@ function InventoryItemArmsHighSecurityStraitJacketSetType(option) {
 
 	// Lock check - cannot change type if you can't unlock the item
 	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
-		DialogExtendedMessage = GetPlayerDialog("CantChangeWhileLocked");
+		DialogExtendedMessage = DialogFindPlayer("CantChangeWhileLocked");
 		return;
 	}
 
 	// Self bondage requirement check
 	if (option.SelfBondage && C.ID === 0 && SkillGetLevelReal(C, "SelfBondage") < option.SelfBondage) {
-		DialogExtendedMessage = GetPlayerDialog("RequireSelfBondage" + option.SelfBondage);
+		DialogExtendedMessage = DialogFindPlayer("RequireSelfBondage" + option.SelfBondage);
 		return;
 	}
 

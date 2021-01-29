@@ -122,7 +122,7 @@ function InventoryItemNeckSlaveCollarDraw() {
 
             // In regular mode, the owner can select the collar model and change the offset to get the next 8 models
             ColorPickerHide();
-			DrawText(GetPlayerDialog("SlaveCollarSelectType"), 1500, 250, "white", "gray");
+			DrawText(DialogFindPlayer("SlaveCollarSelectType"), 1500, 250, "white", "gray");
 			DrawButton(1665, 25, 90, 90, "", "White", "Icons/Next.png");
 			DrawButton(1775, 25, 90, 90, "", (DialogFocusItem.Color != null && DialogFocusItem.Color != "Default" && DialogFocusItem.Color != "None") ? DialogFocusItem.Color : "White", "Icons/ColorPick.png");
 			for (let I = InventoryItemNeckSlaveCollarOffset; I < InventoryItemNeckSlaveCollarTypes.length && I < InventoryItemNeckSlaveCollarOffset + 8; I++) {

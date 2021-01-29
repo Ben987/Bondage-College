@@ -58,26 +58,26 @@ function InventoryItemPelvisFuturisticChastityBeltDraw() {
 		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 		if (DialogFocusItem.Property.NextShockTime - CurrentTime > 0)
-			DrawText(GetPlayerDialog("FuturisticChastityBeltTime") + " " + TimerToString(DialogFocusItem.Property.NextShockTime - CurrentTime), 1500, 475, "White", "Gray");
+			DrawText(DialogFindPlayer("FuturisticChastityBeltTime") + " " + TimerToString(DialogFocusItem.Property.NextShockTime - CurrentTime), 1500, 475, "White", "Gray");
 		else
-			DrawText(GetPlayerDialog("FuturisticChastityBeltTimeReady"), 1500, 475, "White", "Gray");
+			DrawText(DialogFindPlayer("FuturisticChastityBeltTimeReady"), 1500, 475, "White", "Gray");
 
 
 		MainCanvas.textAlign = "left";
-		DrawCheckboxColor(1100, 550, 64, 64, GetPlayerDialog("FuturisticChastityBeltPunishChatMessage"), DialogFocusItem.Property.ChatMessage, "White");
-		DrawCheckboxColor(1100, 620, 64, 64, GetPlayerDialog("FuturisticChastityBeltPunishStruggle"), DialogFocusItem.Property.PunishStruggle, "White");
-		DrawCheckboxColor(1100, 690, 64, 64, GetPlayerDialog("FuturisticChastityBeltPunishStruggleOther"), DialogFocusItem.Property.PunishStruggleOther, "White");
-		DrawCheckboxColor(1100, 760, 64, 64, GetPlayerDialog("FuturisticChastityBeltPunishOrgasm"), DialogFocusItem.Property.PunishOrgasm, "White");
+		DrawCheckboxColor(1100, 550, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishChatMessage"), DialogFocusItem.Property.ChatMessage, "White");
+		DrawCheckboxColor(1100, 620, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishStruggle"), DialogFocusItem.Property.PunishStruggle, "White");
+		DrawCheckboxColor(1100, 690, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishStruggleOther"), DialogFocusItem.Property.PunishStruggleOther, "White");
+		DrawCheckboxColor(1100, 760, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishOrgasm"), DialogFocusItem.Property.PunishOrgasm, "White");
 		MainCanvas.textAlign = "center";
 
 		if (DialogFocusItem.Property.Type != null) {
-			DrawButton(1225, 910, 150, 64, GetPlayerDialog("FuturisticChastityBeltOpenBack"), "White", "");
+			DrawButton(1225, 910, 150, 64, DialogFindPlayer("FuturisticChastityBeltOpenBack"), "White", "");
 		} 
 		if (DialogFocusItem.Property.Type != "OpenFront") {
-			DrawButton(1425, 910, 150, 64, GetPlayerDialog("FuturisticChastityBeltOpenFront"), "White", "");
+			DrawButton(1425, 910, 150, 64, DialogFindPlayer("FuturisticChastityBeltOpenFront"), "White", "");
 		}
 		if (DialogFocusItem.Property.Type != "ClosedBack") {
-			DrawButton(1625, 910, 150, 64, GetPlayerDialog("FuturisticChastityBeltClosedBack"), "White", "");
+			DrawButton(1625, 910, 150, 64, DialogFindPlayer("FuturisticChastityBeltClosedBack"), "White", "");
 		}
 
 		

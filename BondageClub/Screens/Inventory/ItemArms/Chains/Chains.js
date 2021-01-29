@@ -118,7 +118,7 @@ function InventoryItemArmsChainsValidate(C, Option) {
 	var Allowed = "";
 
 	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		Allowed = GetPlayerDialog("CantChangeWhileLocked");
+		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	} else if (Option.Prerequisite) {
 		if (!ExtendedItemSelfProofRequirementCheck(C, Option.Prerequisite)) {
 			Allowed = DialogText;

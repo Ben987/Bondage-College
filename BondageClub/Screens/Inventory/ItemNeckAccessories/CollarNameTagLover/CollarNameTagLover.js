@@ -15,12 +15,12 @@ function InventoryItemNeckAccessoriesCollarNameTagLoverDraw() {
 
 	// Draw the possible tags
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		DrawText(GetPlayerDialog("SelectCollarNameTagLoverType"), 1500, 500, "white", "gray");
+		DrawText(DialogFindPlayer("SelectCollarNameTagLoverType"), 1500, 500, "white", "gray");
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;
 		var Y = 530;
 		for (let T = 0; T < List.length; T++) {
-			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, GetPlayerDialog("CollarNameTagLoverType" + List[T]), "White");
+			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFindPlayer("CollarNameTagLoverType" + List[T]), "White");
 			X = X + 210;
 			if (T % 5 == 4) { 
 				X = 955; 
@@ -29,7 +29,7 @@ function InventoryItemNeckAccessoriesCollarNameTagLoverDraw() {
 		}
 	}
 	else {
-		DrawText(GetPlayerDialog("SelectCollarNameTagLoverTypeLocked"), 1500, 500, "white", "gray");
+		DrawText(DialogFindPlayer("SelectCollarNameTagLoverTypeLocked"), 1500, 500, "white", "gray");
 	}
 }
 

@@ -22,24 +22,24 @@ function InventoryItemMiscCombinationPadlockDraw() {
 	DrawRect(1387, 225, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	DrawText(GetPlayerDialog(DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
+	DrawText(DialogFindPlayer(DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
-		DrawText(GetPlayerDialog("LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
+		DrawText(DialogFindPlayer("LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
 
 	if (InventoryGroupIsBlocked(C, C.FocusGroup.Name)) {
 		// If the zone is blocked, just display some text informing the player that they can't access the lock
-		DrawText(GetPlayerDialog("LockZoneBlocked"), 1500, 800, "white", "gray");
+		DrawText(DialogFindPlayer("LockZoneBlocked"), 1500, 800, "white", "gray");
 	} else {
 		// Otherwise, draw the combination inputs
 		MainCanvas.textAlign = "right";
-		DrawText(GetPlayerDialog("CombinationOld"), 1400, 803, "white", "gray");
-		DrawText(GetPlayerDialog("CombinationNew"), 1400, 883, "white", "gray");
+		DrawText(DialogFindPlayer("CombinationOld"), 1400, 803, "white", "gray");
+		DrawText(DialogFindPlayer("CombinationNew"), 1400, 883, "white", "gray");
 		MainCanvas.textAlign = "center";
 		ElementPosition("CombinationNumber", 1500, 800, 125);
 		ElementPosition("NewCombinationNumber", 1500, 880, 125);
-		DrawButton(1600, 771, 350, 64, GetPlayerDialog("CombinationEnter"), "White", "");
-		DrawButton(1600, 851, 350, 64, GetPlayerDialog("CombinationChange"), "White", "");
-		if (PreferenceMessage != "") DrawText(GetPlayerDialog(PreferenceMessage), 1500, 963, "Red", "Black");
+		DrawButton(1600, 771, 350, 64, DialogFindPlayer("CombinationEnter"), "White", "");
+		DrawButton(1600, 851, 350, 64, DialogFindPlayer("CombinationChange"), "White", "");
+		if (PreferenceMessage != "") DrawText(DialogFindPlayer(PreferenceMessage), 1500, 963, "Red", "Black");
 	}
 }
 

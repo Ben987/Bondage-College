@@ -93,13 +93,13 @@ function FriendListLoadFriendList(data) {
 	FriendListNextCheck = CurrentTime + 30000;
 
 	// Loads the header caption
-	const BeepCaption = GetPlayerDialog("Beep");
-	const DeleteCaption = GetPlayerDialog("Delete");
-	const ConfirmDeleteCaption = GetPlayerDialog("ConfirmDelete");
-	const PrivateRoomCaption = GetPlayerDialog("PrivateRoom");
-	const SentCaption = GetPlayerDialog("SentBeep");
-	const ReceivedCaption = GetPlayerDialog("ReceivedBeep");
-	const SpaceAsylumCaption = GetPlayerDialog("ChatRoomSpaceAsylum");
+	const BeepCaption = DialogFindPlayer("Beep");
+	const DeleteCaption = DialogFindPlayer("Delete");
+	const ConfirmDeleteCaption = DialogFindPlayer("ConfirmDelete");
+	const PrivateRoomCaption = DialogFindPlayer("PrivateRoom");
+	const SentCaption = DialogFindPlayer("SentBeep");
+	const ReceivedCaption = DialogFindPlayer("ReceivedBeep");
+	const SpaceAsylumCaption = DialogFindPlayer("ChatRoomSpaceAsylum");
 	const FriendTypeCaption = {
 		Owner: TextGet("TypeOwner"),
 		Lover: TextGet("TypeLover"),

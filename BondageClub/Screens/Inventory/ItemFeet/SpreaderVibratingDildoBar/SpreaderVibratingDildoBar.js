@@ -13,15 +13,15 @@ function InventoryItemFeetSpreaderVibratingDildoBarDraw() {
 		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 1, 227 + Math.floor(Math.random() * 3) - 1, 221, 221);
 	else DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	DrawText(GetPlayerDialog("Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
-	if (DialogFocusItem.Property.Intensity > -1) DrawButton(1200, 650, 200, 55, GetPlayerDialog("TurnOff"), "White");
-	if (DialogFocusItem.Property.Intensity < 0) DrawButton(1550, 650, 200, 55, GetPlayerDialog("Low"), "White");
-	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1550, 650, 200, 55, GetPlayerDialog("Low"), "White");
-	if (DialogFocusItem.Property.Intensity < 1) DrawButton(1200, 710, 200, 55, GetPlayerDialog("Medium"), "White");
-	if (DialogFocusItem.Property.Intensity > 1) DrawButton(1200, 710, 200, 55, GetPlayerDialog("Medium"), "White");
-	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 710, 200, 55, GetPlayerDialog("High"), "White");
-	if (DialogFocusItem.Property.Intensity > 2) DrawButton(1550, 710, 200, 55, GetPlayerDialog("High"), "White");
-	if (DialogFocusItem.Property.Intensity < 3) DrawButton(1375, 770, 200, 55, GetPlayerDialog("Maximum"), "White");
+	DrawText(DialogFindPlayer("Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
+	if (DialogFocusItem.Property.Intensity > -1) DrawButton(1200, 650, 200, 55, DialogFindPlayer("TurnOff"), "White");
+	if (DialogFocusItem.Property.Intensity < 0) DrawButton(1550, 650, 200, 55, DialogFindPlayer("Low"), "White");
+	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1550, 650, 200, 55, DialogFindPlayer("Low"), "White");
+	if (DialogFocusItem.Property.Intensity < 1) DrawButton(1200, 710, 200, 55, DialogFindPlayer("Medium"), "White");
+	if (DialogFocusItem.Property.Intensity > 1) DrawButton(1200, 710, 200, 55, DialogFindPlayer("Medium"), "White");
+	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 710, 200, 55, DialogFindPlayer("High"), "White");
+	if (DialogFocusItem.Property.Intensity > 2) DrawButton(1550, 710, 200, 55, DialogFindPlayer("High"), "White");
+	if (DialogFocusItem.Property.Intensity < 3) DrawButton(1375, 770, 200, 55, DialogFindPlayer("Maximum"), "White");
 }
 
 // Catches the item extension clicks

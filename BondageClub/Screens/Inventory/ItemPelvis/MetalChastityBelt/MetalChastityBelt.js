@@ -65,7 +65,7 @@ function InventoryItemPelvisMetalChastityBeltValidate(C) {
 	var Allowed = "";
 
 	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
-		Allowed = GetPlayerDialog("CantChangeWhileLocked");
+		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	}
 
 	return Allowed;

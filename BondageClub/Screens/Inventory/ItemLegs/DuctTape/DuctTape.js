@@ -78,7 +78,7 @@ function InventoryItemLegsDuctTapeValidate(C, Option) {
 	var Allowed = "";
 
 	if (Option.Property.Type != null && InventoryGet(C, "ClothLower")) {
-		Allowed = GetPlayerDialog("RemoveClothesForItem");
+		Allowed = DialogFindPlayer("RemoveClothesForItem");
 	}
 	return Allowed;
 }
