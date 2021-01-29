@@ -336,6 +336,462 @@ function DialogStrengthStart(C, PrevItem, NextItem) {
 
 
 
+
+
+
+////////////////////////////STRUGGLE MINIGAME: USE FLEXIBILITY//////////////////////////////
+/*
+Represents squeezing out of a restraint by being limber or having good leverage
+
+Does not get more difficult with a lock on the item
+Tightness of the item has extra weight
+
+Game description: 
+*/
+
+
+/**
+ * Starts the dialog progress bar for struggling out of bondage and keeps the items that needs to be added / swapped / removed.
+ * First the challenge level is calculated based on the base item difficulty, the skill of the rigger and the escapee and modified, if
+ * the escapee is bound in a way. Also blushing and drooling, as well as playing a sound is handled in this function.
+ * @param {Character} C - The character who tries to struggle
+ * @param {Item} PrevItem - The item, the character wants to struggle out of
+ * @param {Item} [NextItem] - The item that should substitute the first one
+ * @returns {void} - Nothing
+ */
+function DialogFlexibilityStart(C, PrevItem, NextItem) {
+
+	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
+	var S = 0;
+	if ((PrevItem != null) && (C.ID == 0)) {
+		S = S + SkillGetWithRatio("Evasion"); // Add the player evasion level (modified by the effectiveness ratio)
+		if (PrevItem.Difficulty != null) S = S - PrevItem.Difficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
+		if ((PrevItem.Property != null) && (PrevItem.Property.Difficulty != null)) S = S - PrevItem.Property.Difficulty; // Subtract the additional item difficulty for expanded items only
+	}
+	if ((C.ID != 0) || ((C.ID == 0) && (PrevItem == null))) S = S + SkillGetLevel(Player, "Bondage"); // Adds the bondage skill if no previous item or playing with another player
+	if (Player.IsEnclose() || Player.IsMounted()) S = S - 4; // Harder if there's an enclosing or mounting item
+	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(C, PrevItem)) S = S - 2; // Locking the item has less effect on flexibility escapes
+
+	// When struggling to remove or swap an item while being blocked from interacting
+	if ((C.ID == 0) && !C.CanInteract() && (PrevItem != null)) {
+		if (!InventoryItemHasEffect(PrevItem, "Block", true)) S = S - 4; // Non-blocking items become harder to struggle out when already blocked
+		if ((PrevItem.Asset.Group.Name != "ItemArms") && InventoryItemHasEffect(InventoryGet(C, "ItemArms"), "Block", true)) S = S - 4; // Harder If we don't target the arms while arms are restrained
+		if ((PrevItem.Asset.Group.Name != "ItemLegs") && InventoryItemHasEffect(InventoryGet(C, "ItemLegs"), "Block", true)) S = S - 4; // Harder If we don't target the legs while arms are restrained
+		if ((PrevItem.Asset.Group.Name != "ItemHands") && InventoryItemHasEffect(InventoryGet(C, "ItemHands"), "Block", true)) S = S - 1; // Harder If we don't target the hands while hands are restrained 
+		if ((PrevItem.Asset.Group.Name != "ItemTorso") && InventoryItemHasEffect(InventoryGet(C, "ItemTorso"), "Block", true)) S = S - 1; // A little harder if you are in a corset or harness
+		if ((PrevItem.Asset.Group.Name != "ItemFeet") && InventoryItemHasEffect(InventoryGet(C, "ItemFeet"), "Block", true)) S = S - 2; // Harder if you can't split your feet apart
+		if ((PrevItem.Asset.Group.Name != "ItemNeck") && InventoryItemHasEffect(InventoryGet(C, "ItemNeck"), "Block", true)) S = S - 1; // Neck collars are restrictive
+
+		if ((ChatRoomStruggleAssistTimer >= CurrentTime) && (ChatRoomStruggleAssistBonus >= 1) && (ChatRoomStruggleAssistBonus <= 6)) S = S + ChatRoomStruggleAssistBonus; // If assisted by another player, the player can get a bonus to struggle out
+	}
+
+	// Gets the standard time to do the operation
+	var Timer = 0;
+	if ((PrevItem != null) && (PrevItem.Asset != null) && (PrevItem.Asset.RemoveTime != null)) Timer = Timer + PrevItem.Asset.RemoveTime; // Adds the time to remove the previous item
+	if ((NextItem != null) && (NextItem.Asset != null) && (NextItem.Asset.WearTime != null)) Timer = Timer + NextItem.Asset.WearTime; // Adds the time to add the new item
+	if (Player.IsBlind() || (Player.Effect.indexOf("Suspension") >= 0)) Timer = Timer * 2; // Double the time if suspended from the ceiling or blind
+	if (Timer < 1) Timer = 1; // Nothing shorter than 1 second
+
+	// If there's a locking item, we add the time of that lock
+	if ((PrevItem != null) && (NextItem == null) && InventoryItemHasEffect(PrevItem, "Lock", true) && DialogCanUnlock(C, PrevItem)) {
+		var Lock = InventoryGetLock(PrevItem);
+		if ((Lock != null) && (Lock.Asset != null) && (Lock.Asset.RemoveTime != null)) Timer = Timer + Lock.Asset.RemoveTime;
+	}
+
+	// Prepares the progress bar and timer
+	DialogProgress = 0;
+	DialogProgressAuto = TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
+	DialogProgressPrevItem = PrevItem;
+	DialogProgressNextItem = NextItem;
+	DialogProgressOperation = DialogProgressGetOperation(C, PrevItem, NextItem);
+	DialogProgressSkill = Timer;
+	DialogProgressChallenge = S * -1;
+	DialogProgressStruggleCount = 0;
+	DialogItemToLock = null;
+	DialogMenuButtonBuild(C);
+
+	// The progress bar will not go down if the player can use her hands for a new item, or if she has the key for the locked item
+	if ((DialogProgressAuto < 0) && Player.CanInteract() && (PrevItem == null)) DialogProgressAuto = 0;
+	if ((DialogProgressAuto < 0) && Player.CanInteract() && (PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && !InventoryItemHasEffect(PrevItem, "Mounted", true)) DialogProgressAuto = 0;
+
+	// Roleplay users can bypass the struggle mini-game with a toggle
+	if ((CurrentScreen == "ChatRoom") && ((DialogProgressChallenge <= 6) || (DialogProgressAuto >= 0)) && Player.RestrictionSettings.BypassStruggle) {
+		DialogProgressAuto = 1;
+		DialogProgressSkill = 5;
+	}
+
+	// If there's no current blushing, we update the blushing state while struggling
+	DialogAllowBlush = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Blush") == null) || (InventoryGet(C, "Blush").Property == null) || (InventoryGet(C, "Blush").Property.Expression == null)));
+	DialogAllowEyebrows = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Eyebrows") == null) || (InventoryGet(C, "Eyebrows").Property == null) || (InventoryGet(C, "Eyebrows").Property.Expression == null)));
+	DialogAllowFluids = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Fluids") == null) || (InventoryGet(C, "Fluids").Property == null) || (InventoryGet(C, "Fluids").Property.Expression == null)));
+
+	// Applying or removing specific items can trigger an audio sound to play
+	if ((PrevItem && PrevItem.Asset) || (NextItem && NextItem.Asset)) {
+		var AudioFile = (NextItem && NextItem.Asset) ? NextItem.Asset.Audio : PrevItem.Asset.Audio;
+		if (AudioFile != null) AudioDialogStart("Audio/" + AudioGetFileName(AudioFile) + ".mp3");
+	}
+
+}
+
+/**
+ * Draw the struggle dialog
+ * @param {Character} C - The character for whom the struggle dialog is drawn. That can be the player or another character.
+ * @returns {void} - Nothing
+ */
+function DialogDrawFlexibilityProgress(C) {
+	// Draw one or both items
+	if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) {
+		DrawItemPreview(1200, 250, DialogProgressPrevItem);
+		DrawItemPreview(1575, 250, DialogProgressNextItem);
+	} else DrawItemPreview(1387, 250, (DialogProgressPrevItem != null) ? DialogProgressPrevItem : DialogProgressNextItem);
+
+	// Add or subtract to the automatic progression, doesn't move in color picking mode
+	DialogProgress = DialogProgress + DialogProgressAuto;
+	if (DialogProgress < 0) DialogProgress = 0;
+	
+	// We cancel out if at least one of the following cases apply: a new item conflicts with this, the player can no longer interact, something else was added first, the item was already removed
+	if (InventoryGroupIsBlocked(C) || (C != Player && !Player.CanInteract()) || (DialogProgressNextItem == null && !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name)) || (DialogProgressNextItem != null && !InventoryAllow(C, DialogProgressNextItem.Asset.Prerequisite)) || (DialogProgressNextItem != null && DialogProgressPrevItem != null && ((InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name) && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name).Asset.Name != DialogProgressPrevItem.Asset.Name) || !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name))) || (DialogProgressNextItem != null && DialogProgressPrevItem == null && InventoryGet(C, DialogProgressNextItem.Asset.Group.Name))) {
+		if (DialogProgress > 0)
+			ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true, "interrupted");
+		else
+			DialogLeave();
+		DialogProgress = -1;
+		DialogLockMenu = false
+		return;
+	}
+
+	// Draw the current operation and progress
+	if (DialogProgressAuto < 0) DrawText(DialogFind(Player, "Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
+	DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
+	DrawProgressBar(1200, 700, 600, 100, DialogProgress);
+	DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
+
+	// If the operation is completed
+	if (DialogProgress >= 100) {
+
+		// Stops the dialog sounds
+		AudioDialogStop();
+
+		// Removes the item & associated items if needed, then wears the new one 
+		InventoryRemove(C, C.FocusGroup.Name);
+		if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetWithRatio("Bondage"), Player.MemberNumber);
+
+		// The player can use another item right away, for another character we jump back to her reaction
+		if (C.ID == 0) {
+			if (DialogProgressNextItem == null) SkillProgress("Evasion", DialogProgressSkill);
+			if ((DialogProgressPrevItem == null) && (DialogProgressNextItem != null)) SkillProgress("SelfBondage", (DialogProgressSkill + DialogProgressNextItem.Asset.SelfBondage) * 2);
+			if ((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) {
+				DialogInventoryBuild(C);
+				DialogProgress = -1;
+				DialogColor = null;
+			}
+		} else {
+			if (DialogProgressNextItem != null) SkillProgress("Bondage", DialogProgressSkill);
+			if (((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) && (CurrentScreen != "ChatRoom")) {
+				C.CurrentDialog = DialogFind(C, ((DialogProgressNextItem == null) ? ("Remove" + DialogProgressPrevItem.Asset.Name) : DialogProgressNextItem.Asset.Name), ((DialogProgressNextItem == null) ? "Remove" : "") + C.FocusGroup.Name);
+				DialogLeaveItemMenu();
+			}
+		}
+
+		// Check to open the extended menu of the item.  In a chat room, we publish the result for everyone
+		if ((DialogProgressNextItem != null) && DialogProgressNextItem.Asset.Extended) {
+			DialogInventoryBuild(C);
+			ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, false);
+			DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
+		} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
+
+		// Reset the the character's position
+		if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
+			CharacterAppearanceForceUpCharacter = 0;
+			CharacterAppearanceSetHeightModifiers(C);
+		}
+
+		// Rebuilds the menu
+		DialogEndExpression();
+		if (C.FocusGroup != null) DialogMenuButtonBuild(C);
+
+	}
+	return;
+}
+
+
+
+/**
+ * Starts the dialog progress bar and keeps the items that needs to be added / swaped / removed. 
+ * The change of facial expressions during struggling is done here
+ * @param {boolean} Reverse - If set to true, the progress is decreased
+ * @returns {void} - Nothing
+ */
+function DialogFlexibility(Reverse) {
+	
+	// Progress calculation
+	var P = 42 / (DialogProgressSkill * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
+	P = P * (100 / (DialogProgress + 50));  // Faster when the dialog starts, longer when it ends	
+	if ((DialogProgressChallenge > 6) && (DialogProgress > 50) && (DialogProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
+	P = P * (Reverse ? -1 : 1); // Reverses the progress if the user pushed the same key twice
+
+	// Sets the new progress and writes the "Impossible" message if we need to
+	DialogProgress = DialogProgress + P;
+	if (DialogProgress < 0) DialogProgress = 0;
+	if ((DialogProgress >= 100) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgress = 99;
+	if (!Reverse) DialogProgressStruggleCount++;
+	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFind(Player, "Impossible");
+
+	// At 15 hit: low blush, 50: Medium and 125: High
+	if (DialogAllowBlush && !Reverse) {
+		if (DialogProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
+		if (DialogProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
+		if (DialogProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+	}
+
+	// At 15 hit: Start drooling
+	if (DialogAllowFluids && !Reverse) {
+		if (DialogProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Fluids", "DroolMessy");
+	}
+
+	// Over 50 progress, the character frowns
+	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (DialogProgress >= 50) ? "Angry" : null);
+
+	
+}
+
+////////////////////////////STRUGGLE MINIGAME: DEXTERITY//////////////////////////////
+/*
+Represents using a sharp object or corner to undo the buckles on a restraint 
+Much easier if you have legs, arms, hands, toes, or mouth free than brute force
+Much harder if you have neither
+Extremely ineffective if there is a lock on the item
+
+Game description: 
+*/
+
+
+
+/**
+ * Starts the dialog progress bar for struggling out of bondage and keeps the items that needs to be added / swapped / removed.
+ * First the challenge level is calculated based on the base item difficulty, the skill of the rigger and the escapee and modified, if
+ * the escapee is bound in a way. Also blushing and drooling, as well as playing a sound is handled in this function.
+ * @param {Character} C - The character who tries to struggle
+ * @param {Item} PrevItem - The item, the character wants to struggle out of
+ * @param {Item} [NextItem] - The item that should substitute the first one
+ * @returns {void} - Nothing
+ */
+function DialogDexterityStart(C, PrevItem, NextItem) {
+
+	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
+	var S = 0;
+	if ((PrevItem != null) && (C.ID == 0)) {
+		S = S + SkillGetWithRatio("Evasion"); // Add the player evasion level (modified by the effectiveness ratio)
+		if (PrevItem.Difficulty != null) S = S - PrevItem.Difficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
+		if ((PrevItem.Property != null) && (PrevItem.Property.Difficulty != null)) S = S - PrevItem.Property.Difficulty; // Subtract the additional item difficulty for expanded items only
+	}
+	if ((C.ID != 0) || ((C.ID == 0) && (PrevItem == null))) S = S + SkillGetLevel(Player, "Bondage"); // Adds the bondage skill if no previous item or playing with another player
+	if (Player.IsEnclose() || Player.IsMounted()) S = S - 1; // A little harder if there's an enclosing or mounting item
+	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(C, PrevItem)) S = S - 12; // Very hard to struggle from a locked item
+
+	// When struggling to remove or swap an item while being blocked from interacting
+	if ((C.ID == 0) && !C.CanInteract() && (PrevItem != null)) {
+		if (!InventoryItemHasEffect(PrevItem, "Block", true)) S = S - 2; // Non-blocking items become slightly harder to struggle out when already blocked
+		var blockedAreas = 0
+		
+		if (InventoryItemHasEffect(InventoryGet(C, "ItemArms"), "Block", true) || InventoryGroupIsBlocked(Player, "ItemArms")) {S = S - 2; blockedAreas += 1;} // Harder if arms are blocked
+		if (InventoryItemHasEffect(InventoryGet(C, "ItemLegs"), "Block", true) || InventoryGroupIsBlocked(Player, "ItemLegs")) blockedAreas += 1;
+		if (InventoryItemHasEffect(InventoryGet(C, "ItemHands"), "Block", true) || InventoryGroupIsBlocked(Player, "ItemHands")) blockedAreas += 1;
+		if (!C.CanTalk()) blockedAreas += 1;
+		if (InventoryItemHasEffect(InventoryGet(C, "ItemFeet"), "Block", true) || InventoryGroupIsBlocked(Player, "ItemFeet")) blockedAreas += 1;
+ 		if (InventoryItemHasEffect(InventoryGet(C, "ItemBoots"), "Block", true) || InventoryGroupIsBlocked(Player, "ItemBoots")) blockedAreas += 1; 
+		
+		if (blockedAreas >= 1) S = S - 1; // Little bit harder if only one area is blocked, but you can still manipulate using other parts...
+		if (blockedAreas >= 2) S = S - 2; // But wait, it gets harder...
+		if (blockedAreas >= 3) S = S - 3; // And harder....
+		if (blockedAreas >= 4) S = S - 4; // After a certain point it's pointless
+		if (blockedAreas >= 5) S = S - 5; // After a certain point it's pointless
+		
+		if (Player.IsBlind()) S = S - 2; // Harder if blind
+		if ((ChatRoomStruggleAssistTimer >= CurrentTime) && (ChatRoomStruggleAssistBonus >= 1) && (ChatRoomStruggleAssistBonus <= 6)) S = S + ChatRoomStruggleAssistBonus; // If assisted by another player, the player can get a bonus to struggle out
+	}
+
+	// Gets the standard time to do the operation
+	var Timer = 0;
+	if ((PrevItem != null) && (PrevItem.Asset != null) && (PrevItem.Asset.RemoveTime != null)) Timer = Timer + PrevItem.Asset.RemoveTime; // Adds the time to remove the previous item
+	if ((NextItem != null) && (NextItem.Asset != null) && (NextItem.Asset.WearTime != null)) Timer = Timer + NextItem.Asset.WearTime; // Adds the time to add the new item
+	if (Player.IsBlind() || (Player.Effect.indexOf("Suspension") >= 0)) Timer = Timer * 2; // Double the time if suspended from the ceiling or blind
+	if (Timer < 1) Timer = 1; // Nothing shorter than 1 second
+
+	// If there's a locking item, we add the time of that lock
+	if ((PrevItem != null) && (NextItem == null) && InventoryItemHasEffect(PrevItem, "Lock", true) && DialogCanUnlock(C, PrevItem)) {
+		var Lock = InventoryGetLock(PrevItem);
+		if ((Lock != null) && (Lock.Asset != null) && (Lock.Asset.RemoveTime != null)) Timer = Timer + Lock.Asset.RemoveTime;
+	}
+
+	// Prepares the progress bar and timer
+	DialogProgress = 0;
+	DialogProgressAuto = TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
+	DialogProgressPrevItem = PrevItem;
+	DialogProgressNextItem = NextItem;
+	DialogProgressOperation = DialogProgressGetOperation(C, PrevItem, NextItem);
+	DialogProgressSkill = Timer;
+	DialogProgressChallenge = S * -1;
+	DialogProgressStruggleCount = 0;
+	DialogItemToLock = null;
+	DialogMenuButtonBuild(C);
+
+	// The progress bar will not go down if the player can use her hands for a new item, or if she has the key for the locked item
+	if ((DialogProgressAuto < 0) && Player.CanInteract() && (PrevItem == null)) DialogProgressAuto = 0;
+	if ((DialogProgressAuto < 0) && Player.CanInteract() && (PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && !InventoryItemHasEffect(PrevItem, "Mounted", true)) DialogProgressAuto = 0;
+
+	// Roleplay users can bypass the struggle mini-game with a toggle
+	if ((CurrentScreen == "ChatRoom") && ((DialogProgressChallenge <= 6) || (DialogProgressAuto >= 0)) && Player.RestrictionSettings.BypassStruggle) {
+		DialogProgressAuto = 1;
+		DialogProgressSkill = 5;
+	}
+
+	// If there's no current blushing, we update the blushing state while struggling
+	DialogAllowBlush = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Blush") == null) || (InventoryGet(C, "Blush").Property == null) || (InventoryGet(C, "Blush").Property.Expression == null)));
+	DialogAllowEyebrows = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Eyebrows") == null) || (InventoryGet(C, "Eyebrows").Property == null) || (InventoryGet(C, "Eyebrows").Property.Expression == null)));
+	DialogAllowFluids = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Fluids") == null) || (InventoryGet(C, "Fluids").Property == null) || (InventoryGet(C, "Fluids").Property.Expression == null)));
+
+	// Applying or removing specific items can trigger an audio sound to play
+	if ((PrevItem && PrevItem.Asset) || (NextItem && NextItem.Asset)) {
+		var AudioFile = (NextItem && NextItem.Asset) ? NextItem.Asset.Audio : PrevItem.Asset.Audio;
+		if (AudioFile != null) AudioDialogStart("Audio/" + AudioGetFileName(AudioFile) + ".mp3");
+	}
+
+}
+
+/**
+ * Draw the struggle dialog
+ * @param {Character} C - The character for whom the struggle dialog is drawn. That can be the player or another character.
+ * @returns {void} - Nothing
+ */
+function DialogDrawDexterityProgress(C) {
+	// Draw one or both items
+	if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) {
+		DrawItemPreview(1200, 250, DialogProgressPrevItem);
+		DrawItemPreview(1575, 250, DialogProgressNextItem);
+	} else DrawItemPreview(1387, 250, (DialogProgressPrevItem != null) ? DialogProgressPrevItem : DialogProgressNextItem);
+
+	// Add or subtract to the automatic progression, doesn't move in color picking mode
+	DialogProgress = DialogProgress + DialogProgressAuto;
+	if (DialogProgress < 0) DialogProgress = 0;
+	
+	// We cancel out if at least one of the following cases apply: a new item conflicts with this, the player can no longer interact, something else was added first, the item was already removed
+	if (InventoryGroupIsBlocked(C) || (C != Player && !Player.CanInteract()) || (DialogProgressNextItem == null && !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name)) || (DialogProgressNextItem != null && !InventoryAllow(C, DialogProgressNextItem.Asset.Prerequisite)) || (DialogProgressNextItem != null && DialogProgressPrevItem != null && ((InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name) && InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name).Asset.Name != DialogProgressPrevItem.Asset.Name) || !InventoryGet(C, DialogProgressPrevItem.Asset.Group.Name))) || (DialogProgressNextItem != null && DialogProgressPrevItem == null && InventoryGet(C, DialogProgressNextItem.Asset.Group.Name))) {
+		if (DialogProgress > 0)
+			ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true, "interrupted");
+		else
+			DialogLeave();
+		DialogProgress = -1;
+		DialogLockMenu = false
+		return;
+	}
+
+	// Draw the current operation and progress
+	if (DialogProgressAuto < 0) DrawText(DialogFind(Player, "Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
+	DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
+	DrawProgressBar(1200, 700, 600, 100, DialogProgress);
+	DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
+
+	// If the operation is completed
+	if (DialogProgress >= 100) {
+
+		// Stops the dialog sounds
+		AudioDialogStop();
+
+		// Removes the item & associated items if needed, then wears the new one 
+		InventoryRemove(C, C.FocusGroup.Name);
+		if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetWithRatio("Bondage"), Player.MemberNumber);
+
+		// The player can use another item right away, for another character we jump back to her reaction
+		if (C.ID == 0) {
+			if (DialogProgressNextItem == null) SkillProgress("Evasion", DialogProgressSkill);
+			if ((DialogProgressPrevItem == null) && (DialogProgressNextItem != null)) SkillProgress("SelfBondage", (DialogProgressSkill + DialogProgressNextItem.Asset.SelfBondage) * 2);
+			if ((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) {
+				DialogInventoryBuild(C);
+				DialogProgress = -1;
+				DialogColor = null;
+			}
+		} else {
+			if (DialogProgressNextItem != null) SkillProgress("Bondage", DialogProgressSkill);
+			if (((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) && (CurrentScreen != "ChatRoom")) {
+				C.CurrentDialog = DialogFind(C, ((DialogProgressNextItem == null) ? ("Remove" + DialogProgressPrevItem.Asset.Name) : DialogProgressNextItem.Asset.Name), ((DialogProgressNextItem == null) ? "Remove" : "") + C.FocusGroup.Name);
+				DialogLeaveItemMenu();
+			}
+		}
+
+		// Check to open the extended menu of the item.  In a chat room, we publish the result for everyone
+		if ((DialogProgressNextItem != null) && DialogProgressNextItem.Asset.Extended) {
+			DialogInventoryBuild(C);
+			ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, false);
+			DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
+		} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
+
+		// Reset the the character's position
+		if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
+			CharacterAppearanceForceUpCharacter = 0;
+			CharacterAppearanceSetHeightModifiers(C);
+		}
+
+		// Rebuilds the menu
+		DialogEndExpression();
+		if (C.FocusGroup != null) DialogMenuButtonBuild(C);
+
+	}
+	return;
+}
+
+
+
+/**
+ * Starts the dialog progress bar and keeps the items that needs to be added / swaped / removed. 
+ * The change of facial expressions during struggling is done here
+ * @param {boolean} Reverse - If set to true, the progress is decreased
+ * @returns {void} - Nothing
+ */
+function DialogDexterity(Reverse) {
+	
+	// Progress calculation
+	var P = 42 / (DialogProgressSkill * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
+	P = P * (100 / (DialogProgress + 50));  // Faster when the dialog starts, longer when it ends	
+	if ((DialogProgressChallenge > 6) && (DialogProgress > 50) && (DialogProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
+	P = P * (Reverse ? -1 : 1); // Reverses the progress if the user pushed the same key twice
+
+	// Sets the new progress and writes the "Impossible" message if we need to
+	DialogProgress = DialogProgress + P;
+	if (DialogProgress < 0) DialogProgress = 0;
+	if ((DialogProgress >= 100) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgress = 99;
+	if (!Reverse) DialogProgressStruggleCount++;
+	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFind(Player, "Impossible");
+
+	// At 15 hit: low blush, 50: Medium and 125: High
+	if (DialogAllowBlush && !Reverse) {
+		if (DialogProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
+		if (DialogProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
+		if (DialogProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+	}
+
+	// At 15 hit: Start drooling
+	if (DialogAllowFluids && !Reverse) {
+		if (DialogProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Fluids", "DroolMessy");
+	}
+
+	// Over 50 progress, the character frowns
+	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (DialogProgress >= 50) ? "Angry" : null);
+
+	
+}
+
+
+////////////////////////////STRUGGLE MINIGAME: LOCK PICKING//////////////////////////////
+/*
+Game description: There is a persistent, correct combination which you must find. You have to set the pins in order, but many pins will set falsely, and you will only discover this after attempting to set other pins.
+Meanwhile, you have a limited number of pin uses before you have to restart. Restart too many times, and you will become tired for 30s and be unable to pick during that time!
+
+Only applies to locks at the moment
+*/
+
+
+
 /**
  * Advances the lock picking dialog
  * @returns {void} - Nothing
@@ -413,46 +869,9 @@ function DialogLockPickClick(C) {
 }
 
 
-
-
-
-////////////////////////////STRUGGLE MINIGAME: USE FLEXIBILITY//////////////////////////////
-/*
-Represents squeezing out of a restraint by being limber or having good leverage
-
-Does not get more difficult with a lock on the item
-Tightness of the item has extra weight
-
-Game description: 
-*/
-
-
-
-////////////////////////////STRUGGLE MINIGAME: DEXTERITY//////////////////////////////
-/*
-Represents using a sharp object or corner to undo the buckles on a restraint 
-Much easier if you have hands, toes, or mouth free than brute force
-Much harder if you have neither
-Extremely ineffective if there is a lock on the item
-
-Game description: 
-*/
-
-
-/**
-var DialogLockPickOrder = null;
-var DialogLockPickSet = null;
-var DialogLockPickImpossiblePins = null;
-var DialogLockPickProgressItem = null;
-var DialogLockPickProgressOperation = "";
-var DialogLockPickProgressSkill = 0;
-var DialogLockPickProgressChallenge = 0;
-var DialogLockPickProgressMaxTries = 0;
-var DialogLockPickProgressCurrentTries = 0;
- * Draw the lockpicking dialog
- * @param {Character} C - The character for whom the lockpicking dialog is drawn. That can be the player or another character.
- * @returns {void} - Nothing
- */
+ 
+ 
+ 
 function DialogDrawLockpickProgress(C) {
 	// Place where to draw the pins
 	var X = 1475
@@ -580,17 +999,6 @@ function DialogDrawLockpickProgress(C) {
 	}
 	
 }
-
-////////////////////////////STRUGGLE MINIGAME: LOCK PICKING//////////////////////////////
-/*
-Game description: There is a persistent, correct combination which you must find. You have to set the pins in order, but many pins will set falsely, and you will only discover this after attempting to set other pins.
-Meanwhile, you have a limited number of pin uses before you have to restart. Restart too many times, and you will become tired for 30s and be unable to pick during that time!
-
-Only applies to locks at the moment
-*/
-
-
-
 
 
 
