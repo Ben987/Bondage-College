@@ -793,7 +793,7 @@ function ChatRoomStimulationMessage(Context) {
 		// Now we have a trigger message, hopefully!
 		if (trigMsg != "") {
 			// Increase player arousal to the zone
-			ActivityEffectFlat(Player, Player, arousalAmount*2, trigGroup, 1)
+			ActivityEffectFlat(Player, Player, arousalAmount, trigGroup, 1)
 	
 			if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
 			

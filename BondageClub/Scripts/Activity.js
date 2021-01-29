@@ -194,13 +194,13 @@ function ActivityEffectFlat(S, C, Amount, Z, Count) {
 	if ((Count == null) || (Count == undefined) || (Count == 0)) Count = 1;
 
 	// Calculates the next progress factor
-	var Factor = 0; // Check how much the character likes the activity, from -10 to +10
+	var Factor = Amount; // Check how much the character likes the activity, from -10 to +10
 	Factor = Factor + (PreferenceGetZoneFactor(C, Z) * 5) - 10; // The zone used also adds from -10 to +10
 	Factor = Factor + Math.floor((Math.random() * 8)); // Random 0 to 7 bonus
 	if ((C.ID != S.ID) && (((C.ID != 0) && C.IsLoverOfPlayer()) || ((C.ID == 0) && S.IsLoverOfPlayer()))) Factor = Factor + Math.floor((Math.random() * 8)); // Another random 0 to 7 bonus if the target is the player's lover
 	Factor = Factor + ActivityFetishFactor(C) * 2; // Adds a fetish factor based on the character preferences
 	Factor = Factor + Math.round(Factor * (Count - 1) / 3); // if the action is done repeatedly, we apply a multiplication factor based on the count
-	ActivitySetArousalTimerFlat(C, Amount, Z, Factor);
+	ActivitySetArousalTimer(C, null, Z, Factor);
 
 }
 
@@ -249,7 +249,7 @@ function ActivitySetArousalTimer(C, Activity, Zone, Progress) {
 	if (Progress > 25) Progress = 25;
 
 	// Make sure we do not allow orgasms if the activity (MaxProgress) or the zone (AllowOrgasm) doesn't allow it
-	var Max = ((Activity.MaxProgress == null) || (Activity.MaxProgress > 100)) ? 100 : Activity.MaxProgress;
+	var Max = ((Activity == null || Activity.MaxProgress == null) || (Activity.MaxProgress > 100)) ? 100 : Activity.MaxProgress;
 	if ((Max > 95) && !PreferenceGetZoneOrgasm(C, Zone)) Max = 95;
 	if ((Max > 67) && (Zone == "ActivityOnOther")) Max = 67;
 	if ((Progress > 0) && (C.ArousalSettings.Progress + Progress > Max)) Progress = (Max - C.ArousalSettings.Progress >= 0) ? Max - C.ArousalSettings.Progress : 0;
@@ -262,35 +262,6 @@ function ActivitySetArousalTimer(C, Activity, Zone, Progress) {
 
 }
 
-/**
- * Sets a arousal progress on a timer, can trigger orgasm
- * @param {Character} C - The character for which to set the timer for
- * @param {object} Activity - The activity for which the timer is for
- * @param {string} Zone - The target zone of the activity
- * @param {number} Progress - Progress to set
- * @return {void} - Nothing
- */
-function ActivitySetArousalTimerFlat(C, Amount, Zone, Progress) {
-
-	// If there's already a progress timer running, we add it's value but divide it by 2 to lessen the impact, the progress must be between -25 and 25
-	if ((C.ArousalSettings.ProgressTimer == null) || (typeof C.ArousalSettings.ProgressTimer !== "number") || isNaN(C.ArousalSettings.ProgressTimer)) C.ArousalSettings.ProgressTimer = 0;
-	Progress = Math.round((C.ArousalSettings.ProgressTimer / 2) + Progress);
-	if (Progress < -25) Progress = -25;
-	if (Progress > 25) Progress = 25;
-
-	// Make sure we do not allow orgasms if the activity (MaxProgress) or the zone (AllowOrgasm) doesn't allow it
-	var Max = 100;
-	if ((Max > 95) && !PreferenceGetZoneOrgasm(C, Zone)) Max = 95;
-	if ((Max > 67) && (Zone == "ActivityOnOther")) Max = 67;
-	if ((Progress > 0) && (C.ArousalSettings.Progress + Progress > Max)) Progress = (Max - C.ArousalSettings.Progress >= 0) ? Max - C.ArousalSettings.Progress : 0;
-
-	// If we must apply a progress timer change, we publish it
-	if ((C.ArousalSettings.ProgressTimer == null) || (C.ArousalSettings.ProgressTimer != Progress)) {
-		C.ArousalSettings.ProgressTimer = Progress;
-		ActivityChatRoomArousalSync(C);
-	}
-
-}
 
 /**
  * Draws the arousal progress bar at the given coordinates for every orgasm timer.
