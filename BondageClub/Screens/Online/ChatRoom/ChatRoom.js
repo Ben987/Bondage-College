@@ -699,7 +699,7 @@ function ChatRoomSetLastChatRoom(room) {
  * @returns {void} - Nothing.
  */
 function ChatRoomStimulationMessage(Context) {
-	if (CurrentScreen == "ChatRoom") {
+	if (CurrentScreen == "ChatRoom" && Player.ImmersionSettings && Player.ImmersionSettings.StimulationEvents) {
 		var C = Player
 		if (Context == null || Context == "") Context = "StruggleAction"
 		

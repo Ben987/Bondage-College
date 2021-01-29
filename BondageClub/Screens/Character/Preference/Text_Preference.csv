@@ -110,6 +110,7 @@ ReturnToChatRoom,Return to chatrooms on relog
 ReturnToChatRoomAdmin,Auto-remake rooms
 ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
 BlockGaggedOOC,Prevent OOC & whispers while gagged
+StimulationEvents,Events while plugged or vibed
 SensDepSetting,Sensory deprivation setting
 SensDepLight,Light
 SensDepNames,Hide names

@@ -342,6 +342,7 @@ function CommonCallFunctionByNameWarn(FunctionName/*, ...args */) {
  * @returns {void} - Nothing
  */
 function CommonSetScreen(NewModule, NewScreen) {
+	var prevScreen = CurrentScreen
 	CurrentModule = NewModule;
 	CurrentScreen = NewScreen;
 	CommonGetFont.clearCache();
@@ -349,7 +350,8 @@ function CommonSetScreen(NewModule, NewScreen) {
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
 		CommonDynamicFunction(CurrentScreen + "Load()");
-	ChatRoomStimulationMessage("Walk")
+	if (prevScreen == "ChatSearch")
+		ChatRoomStimulationMessage("Walk")
 	if (ControllerActive == true) {
 		ClearButtons();
 	}
