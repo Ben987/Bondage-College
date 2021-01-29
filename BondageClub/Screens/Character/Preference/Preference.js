@@ -453,7 +453,6 @@ function PreferenceInitPlayer() {
 			toUpdate[prop] = C[prop];
 
 	if (Object.keys(toUpdate).length > 0) {
-		console.log("Updating player preferences: ", toUpdate);
 		ServerSend("AccountUpdate", toUpdate);
 	}
 }

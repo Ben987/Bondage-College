@@ -123,9 +123,6 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 
 	// Creates the inventory and default appearance
 	if (CharacterID == 0) {
-		if (Player !== undefined) {
-			throw Error("Attempt to re-init character 0!");
-		}
 		Player = NewCharacter;
 		CharacterAppearanceSetDefault(NewCharacter);
 	}
