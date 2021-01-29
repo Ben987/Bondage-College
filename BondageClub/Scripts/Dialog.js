@@ -1252,7 +1252,7 @@ function DialogClick() {
 		else {
 
 			// If the user wants to speed up the add / swap / remove progress
-			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 600) && (MouseY < 1000) && (DialogProgress >= 0)) DialogStruggleClick(false);
+			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 400) && (MouseY < 1000) && (DialogProgress >= 0)) DialogStruggleClick(false);
 			
 			// If the user wants to pick a lock
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 200) && (MouseY < 1000) && (DialogLockPickOrder)) {DialogLockPickClick(CurrentCharacter); return;}
