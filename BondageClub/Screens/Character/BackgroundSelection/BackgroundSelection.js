@@ -50,7 +50,7 @@ function BackGroundSelectionSort(a, b) {
  */
 function BackgroundSelectionLoad() {
 	BackgroundSelectionSelect = BackgroundSelectionList[BackgroundSelectionIndex];
-	BackgroundSelectionSelectName = DialogFind(Player, BackgroundSelectionSelect);
+	BackgroundSelectionSelectName = DialogFindPlayer(BackgroundSelectionSelect);
 	BackgroundSelectionOffset = Math.floor(BackgroundSelectionIndex / BackgroundSelectionSize) * BackgroundSelectionSize;
 	BackgroundSelectionBackground = BackgroundSelectionList[BackgroundSelectionIndex] || "Introduction";
 	BackgroundSelectionView = BackgroundSelectionAll.slice(0).sort(BackGroundSelectionSort);
@@ -168,7 +168,7 @@ function BackgroundSelectionClick() {
 			if (BackgroundSelectionIndex >= BackgroundSelectionView.length) BackgroundSelectionIndex = 0;
 			if (BackgroundSelectionIndex < 0) BackgroundSelectionIndex = BackgroundSelectionView.length - 1;
 			BackgroundSelectionSelect = BackgroundSelectionView[BackgroundSelectionIndex].Name;
-			BackgroundSelectionSelectName = DialogFind(Player, BackgroundSelectionSelect);
+			BackgroundSelectionSelectName = DialogFindPlayer(BackgroundSelectionSelect);
 			BackgroundSelectionBackground = BackgroundSelectionSelect;
 		}
 		X += 450 + 35;

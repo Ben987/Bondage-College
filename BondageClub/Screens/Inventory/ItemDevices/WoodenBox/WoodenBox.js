@@ -62,10 +62,10 @@ function InventoryItemDevicesWoodenBoxDraw() {
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	MainCanvas.textAlign = "right";
-	DrawTextFit(DialogFind(Player, "WoodenBoxOpacityLabel"), 1475, 500, 400, "#fff", "#000");
+	DrawTextFit(DialogFindPlayer("WoodenBoxOpacityLabel"), 1475, 500, 400, "#fff", "#000");
 	ElementPosition(InventoryItemDevicesWoodenBoxOpacityInputId, 1725, 500, 400);
 
-	DrawTextFit(DialogFind(Player, "WoodenBoxTextLabel"), 1475, 580, 400, "#fff", "#000");
+	DrawTextFit(DialogFindPlayer("WoodenBoxTextLabel"), 1475, 580, 400, "#fff", "#000");
 	ElementPosition(InventoryItemDevicesWoodenBoxTextInputId, 1725, 580, 400);
 	MainCanvas.textAlign = "center";
 }

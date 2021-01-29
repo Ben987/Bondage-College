@@ -29,17 +29,17 @@ function InventoryItemHoodOldGasMaskDraw() {
 	var lensesTube2IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLensesTube2", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lensesTube2);
 	var lensesRebreatherIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLensesRebreather", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lensesRebreather);
 
-	DrawButton(1250, 520, 200, 55, DialogFind(Player, "OldGasMaskLenses"), itemBlocked || lensesIsBlocked ? "#888" : "White");
-	DrawButton(1550, 520, 200, 55, DialogFind(Player, "OldGasMaskTubeA"), itemBlocked || tube1IsBlocked ? "#888" : "White");
-	DrawButton(1250, 600, 200, 55, DialogFind(Player, "OldGasMaskRebreather"), itemBlocked || rebreatherIsBlocked ? "#888" : "White");
-	DrawButton(1550, 600, 200, 55, DialogFind(Player, "OldGasMaskTubeB"), itemBlocked || tube2IsBlocked ? "#888" : "White");
-	DrawButton(1250, 680, 200, 55, DialogFind(Player, "OldGasMaskLensesTube1"), itemBlocked || lensesTube1IsBlocked ? "#888" : "White");
-	DrawButton(1550, 680, 200, 55, DialogFind(Player, "OldGasMaskLensesTube2"), itemBlocked || lensesTube2IsBlocked ? "#888" : "White");
-	DrawButton(1250, 760, 200, 55, DialogFind(Player, "OldGasMaskLensesRebreather"), itemBlocked || lensesRebreatherIsBlocked ? "#888" : "White");
+	DrawButton(1250, 520, 200, 55, DialogFindPlayer("OldGasMaskLenses"), itemBlocked || lensesIsBlocked ? "#888" : "White");
+	DrawButton(1550, 520, 200, 55, DialogFindPlayer("OldGasMaskTubeA"), itemBlocked || tube1IsBlocked ? "#888" : "White");
+	DrawButton(1250, 600, 200, 55, DialogFindPlayer("OldGasMaskRebreather"), itemBlocked || rebreatherIsBlocked ? "#888" : "White");
+	DrawButton(1550, 600, 200, 55, DialogFindPlayer("OldGasMaskTubeB"), itemBlocked || tube2IsBlocked ? "#888" : "White");
+	DrawButton(1250, 680, 200, 55, DialogFindPlayer("OldGasMaskLensesTube1"), itemBlocked || lensesTube1IsBlocked ? "#888" : "White");
+	DrawButton(1550, 680, 200, 55, DialogFindPlayer("OldGasMaskLensesTube2"), itemBlocked || lensesTube2IsBlocked ? "#888" : "White");
+	DrawButton(1250, 760, 200, 55, DialogFindPlayer("OldGasMaskLensesRebreather"), itemBlocked || lensesRebreatherIsBlocked ? "#888" : "White");
 
 	// Draw the message if the player is wearing an addon
 	if (tube1IsBlocked || tube2IsBlocked || lensesIsBlocked || rebreatherIsBlocked || lensesTube1IsBlocked || lensesTube2IsBlocked || lensesRebreatherIsBlocked) { 
-		DrawTextWrap(DialogFind(Player, "ItemAddonsSomeWrongPermissions"), 1100, 850, 800, 160, "White");
+		DrawTextWrap(DialogFindPlayer("ItemAddonsSomeWrongPermissions"), 1100, 850, 800, 160, "White");
 	}
 }
 

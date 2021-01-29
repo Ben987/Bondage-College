@@ -15,12 +15,12 @@ function InventoryItemNeckAccessoriesCollarNameTagPetDraw() {
 
 	// Draw the possible tags
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		DrawText(DialogFind(Player, "SelectCollarNameTagPetType"), 1500, 500, "white", "gray");
+		DrawText(DialogFindPlayer("SelectCollarNameTagPetType"), 1500, 500, "white", "gray");
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;
 		var Y = 530;
 		for (let T = 0; T < List.length; T++) {
-			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFind(Player, "CollarNameTagPetType" + List[T]), "White");
+			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFindPlayer("CollarNameTagPetType" + List[T]), "White");
 			X = X + 210;
 			if (T % 5 == 4) { 
 				X = 955; 
@@ -29,7 +29,7 @@ function InventoryItemNeckAccessoriesCollarNameTagPetDraw() {
 		}
 	}
 	else {
-		DrawText(DialogFind(Player, "SelectCollarNameTagPetTypeLocked"), 1500, 500, "white", "gray");
+		DrawText(DialogFindPlayer("SelectCollarNameTagPetTypeLocked"), 1500, 500, "white", "gray");
 	}
 }
 
