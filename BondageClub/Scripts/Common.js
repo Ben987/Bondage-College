@@ -350,7 +350,7 @@ function CommonSetScreen(NewModule, NewScreen) {
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
 		CommonDynamicFunction(CurrentScreen + "Load()");
-	if (prevScreen == "ChatSearch")
+	if (prevScreen == "ChatSearch" || prevScreen == "ChatCreate")
 		ChatRoomStimulationMessage("Walk")
 	if (ControllerActive == true) {
 		ClearButtons();
