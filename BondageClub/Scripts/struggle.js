@@ -37,7 +37,9 @@ var DialogProgressChooseNextItem = null;
 // For flexibility
 var DialogProgressFlexCircles = []
 var DialogProgressFlexTimer = 0
-var DialogProgressFlexCirclesRate = 1000
+var DialogProgressFlexMaxX = 200
+var DialogProgressFlexMaxY = 150
+var DialogProgressFlexCirclesRate = 200
 
 // For dexterity
 var DialogProgressDexTarget = 0
@@ -89,7 +91,7 @@ function DialogDrawStruggleProgress(C) {
  * @returns {void} - Nothing
  */
 function DialogKeyDown() {
-	if (((KeyPress == 65) || (KeyPress == 83) || (KeyPress == 97) || (KeyPress == 115)) && (DialogProgress >= 0) && (DialogColor == null)) {
+	if (((KeyPress == 65) || (KeyPress == 83) || (KeyPress == 97) || (KeyPress == 115)) && (DialogProgress >= 0) && (DialogColor == null) && (DialogProgressCurrentMinigame == "Strength")) {
 		DialogStrength((DialogProgressLastKeyPress == KeyPress));
 		DialogProgressLastKeyPress = KeyPress;
 	}
@@ -131,12 +133,13 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	
 }
 
-function DialogProgressAutoDraw(C) {
+function DialogProgressAutoDraw(C, Offset) {
+	if (!Offset) Offset = 0
 	// Draw one or both items
 	if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) {
-		DrawItemPreview(1200, 250, DialogProgressPrevItem);
-		DrawItemPreview(1575, 250, DialogProgressNextItem);
-	} else DrawItemPreview(1387, 250, (DialogProgressPrevItem != null) ? DialogProgressPrevItem : DialogProgressNextItem);
+		DrawItemPreview(1200, 250 + Offset, DialogProgressPrevItem);
+		DrawItemPreview(1575, 250 + Offset, DialogProgressNextItem);
+	} else DrawItemPreview(1387, 250 + Offset, (DialogProgressPrevItem != null) ? DialogProgressPrevItem : DialogProgressNextItem);
 
 	// Add or subtract to the automatic progression, doesn't move in color picking mode
 	DialogProgress = DialogProgress + DialogProgressAuto;
@@ -434,7 +437,6 @@ function DialogFlexibilityStart(C, PrevItem, NextItem) {
 	
 	DialogProgressFlexCircles = []
 	DialogProgressFlexTimer = 0
-	DialogProgressFlexCirclesRate = 1000
 
 	// The progress bar will not go down if the player can use her hands for a new item, or if she has the key for the locked item
 	if ((DialogProgressAuto < 0) && Player.CanInteract() && (PrevItem == null)) DialogProgressAuto = 0;
@@ -465,13 +467,44 @@ function DialogFlexibilityStart(C, PrevItem, NextItem) {
  * @returns {void} - Nothing
  */
 function DialogDrawFlexibilityProgress(C) {
-	DialogProgressAutoDraw(C)
+	
+	if (DialogProgressFlexTimer < CurrentTime) {
+		DialogProgressFlexTimer = CurrentTime + DialogProgressFlexCirclesRate + DialogProgressFlexCirclesRate * Math.random()
+		DialogProgressFlexCircles.push({
+			X: Math.random()*DialogProgressFlexMaxX*2 - DialogProgressFlexMaxX,
+			Y: -DialogProgressFlexMaxY,
+			Size: 37 + Math.floor(Math.random() * 50),
+			Velocity: Math.random()*3 + 1,
+		})
+	}
+	
+	for (let RR = 0; RR < DialogProgressFlexCircles.length; RR++) {
+		var R = DialogProgressFlexCircles[RR]
+		if (R.X && R.Y && R.Size) {
+			DrawImageResize("Icons/Struggle/Rope.png", 1485 + R.X - R.Size, 625+ R.Y - R.Size, R.Size*2, R.Size*2);
+		}
 
+		if (R.Y && R.Velocity)
+			R.Y += (R.Velocity + Math.max(0, -DialogProgressAuto))
+	}
+	
+	for (let RR = 0; RR < DialogProgressFlexCircles.length; RR++) {
+		var R = DialogProgressFlexCircles[RR]
+		if (R.Y > DialogProgressFlexMaxY) {
+			if (!((CurrentScreen == "ChatRoom") && ((DialogProgressChallenge <= 6) || (DialogProgressAuto >= 0)) && Player.RestrictionSettings.BypassStruggle)) 
+				DialogFlexibility(true)
+			DialogProgressFlexCircles.splice(RR,1)
+			break;
+		}
+	}
+	
+	DialogProgressAutoDraw(C, -150)
+	
 	// Draw the current operation and progress
-	if (DialogProgressAuto < 0) DrawText(DialogFind(Player, "Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
-	DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
-	DrawProgressBar(1200, 700, 600, 100, DialogProgress);
-	DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
+	if (DialogProgressAuto < 0) DrawText(DialogFind(Player, "Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 425, "White", "Black");
+	DrawText(DialogProgressOperation, 1500, 476, "White", "Black");
+	DrawProgressBar(1200, 800, 600, 100, DialogProgress);
+	DrawText(DialogFind(Player, "ProgressFlex"), 1500, 950, "White", "Black");
 
 	DialogProgressCheckEnd(C)
 }
@@ -486,9 +519,25 @@ function DialogDrawFlexibilityProgress(C) {
  */
 function DialogFlexibility(Reverse) {
 	
+	if (!Reverse) {
+		var end = true
+		for (let RR = 0; RR < DialogProgressFlexCircles.length; RR++) {
+			var R = DialogProgressFlexCircles[RR]
+			if (R.X && R.Y && R.Size) {
+				var Smod = (CommonIsMobile) ? 2 : 1
+				if (MouseIn(1485 + R.X - R.Size*Smod, 625 + R.Y - R.Size*Smod, R.Size*2*Smod, R.Size*2*Smod)) {
+					end = false;
+					DialogProgressFlexCircles.splice(RR,1)
+					break
+				}
+			}
+		}
+		if (end) return;
+	}
+	
 	// Progress calculation
-	var P = 42 / (DialogProgressSkill * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
-	P = P * (100 / (DialogProgress + 50));  // Faster when the dialog starts, longer when it ends	
+	var P = 60 / (DialogProgressSkill/3 * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
+	
 	if ((DialogProgressChallenge > 6) && (DialogProgress > 50) && (DialogProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
 	P = P * (Reverse ? -1 : 1); // Reverses the progress if the user pushed the same key twice
 
@@ -496,7 +545,7 @@ function DialogFlexibility(Reverse) {
 	DialogProgress = DialogProgress + P;
 	if (DialogProgress < 0) DialogProgress = 0;
 	if ((DialogProgress >= 100) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgress = 99;
-	if (!Reverse) DialogProgressStruggleCount++;
+	if (!Reverse) DialogProgressStruggleCount += 3;
 	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFind(Player, "Impossible");
 
 	// At 15 hit: low blush, 50: Medium and 125: High
@@ -506,9 +555,9 @@ function DialogFlexibility(Reverse) {
 		if (DialogProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
 	}
 
-	// At 15 hit: Start drooling
+	// At 25 hit: Start one eye closed
 	if (DialogAllowFluids && !Reverse) {
-		if (DialogProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Fluids", "DroolMessy");
+		if (DialogProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes2", "Closed");
 	}
 
 	// Over 50 progress, the character frowns
@@ -674,9 +723,10 @@ function DialogDexterity(Reverse) {
 	
 	
 	// Progress calculation
-	var P = 200 / (DialogProgressSkill/4 * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
+	var P = 200 / (DialogProgressSkill/3.5 * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
 	if ((DialogProgressChallenge > 6) && (DialogProgress > 50) && (DialogProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
-	P = P * Math.max(-0.5, Math.min(1, (85 - Math.abs(DialogProgressDexTarget - DialogProgressDexCurrent))/75)); // Reverses the progress if too far
+	var distMult = Math.max(-0.5, Math.min(1, (85 - Math.abs(DialogProgressDexTarget - DialogProgressDexCurrent))/75));
+	P = P * distMult // Reverses the progress if too far
 
 	if (P > 0) {
 		DialogProgressDexTarget = Math.random() * 2 * DialogProgressDexMax - DialogProgressDexMax
@@ -686,18 +736,23 @@ function DialogDexterity(Reverse) {
 	DialogProgress = DialogProgress + P;
 	if (DialogProgress < 0) DialogProgress = 0;
 	if ((DialogProgress >= 100) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgress = 99;
-	if (!Reverse) DialogProgressStruggleCount += 5;
+	DialogProgressStruggleCount += Math.max(1, 3*(distMult + 0.5));
 	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFind(Player, "Impossible");
 
 	// At 15 hit: low blush, 50: Medium and 125: High
-	if (DialogAllowBlush && !Reverse) {
+	if (DialogAllowBlush) {
 		if (DialogProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
 		if (DialogProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
 		if (DialogProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
 	}
+	
+	// At 25 hit: Eyes look glazed
+	if (DialogAllowFluids) {
+		if (DialogProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes", "Dazed");
+	}
 
 	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (DialogProgress >= 50) ? "Angry" : null);
+	if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (DialogProgress >= 50) ? "Angry" : null);
 
 	
 }
