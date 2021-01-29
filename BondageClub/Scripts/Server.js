@@ -417,7 +417,6 @@ function ServerDeleteLock(Property) {
 	if (Property) {
 		delete Property.LockedBy;
 		delete Property.LockMemberNumber;
-		delete Property.LockMemberNumberList;
 		delete Property.CombinationNumber;
 		delete Property.Password;
 		delete Property.Hint;
@@ -428,6 +427,7 @@ function ServerDeleteLock(Property) {
 		delete Property.ShowTimer;
 		delete Property.EnableRandomInput;
 		delete Property.MemberNumberList;
+		delete Property.MemberNumberListKeys;
 		delete Property.LockPickSeed;
 		if (Array.isArray(Property.Effect)) {
 			Property.Effect = Property.Effect.filter(E => E !== "Lock");
@@ -606,6 +606,7 @@ function ServerItemCopyProperty(C, Item, NewProperty) {
 		if (Item.Property.MemberNumberList != null) NewProperty.MemberNumberList = Item.Property.MemberNumberList; else delete NewProperty.MemberNumberList;
 		if (Item.Property.RemoveTimer != null) NewProperty.RemoveTimer = Math.round(Item.Property.RemoveTimer); else delete NewProperty.RemoveTimer;
 	}
+	if (Item.Property.MemberNumberListKeys != null) NewProperty.MemberNumberListKeys = Item.Property.MemberNumberListKeys; else delete NewProperty.MemberNumberListKeys;
 	if (Item.Property.Password != null) NewProperty.Password = Item.Property.Password; else delete NewProperty.Password;
 	if (Item.Property.Hint != null) NewProperty.Hint = Item.Property.Hint; else delete NewProperty.Hint;
 	if (Item.Property.LockSet != null) NewProperty.LockSet = Item.Property.LockSet; else delete NewProperty.LockSet;

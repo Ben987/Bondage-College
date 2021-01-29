@@ -350,7 +350,7 @@ function DialogPrerequisite(D) {
 function DialogHasKey(C, Item) {
 	if (InventoryGetItemProperty(Item, "SelfUnlock") == false && (!Player.CanInteract() || C.ID == 0)) return false;
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
-	if (InventoryGetLock(Item) && InventoryGetLock(Item).Asset.ExclusiveUnlock && (!Item.Property.MemberNumberList || !(Item.Property.MemberNumberList && CommonConvertStringToArray("" + Item.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) return false;
+	if (InventoryGetLock(Item) && InventoryGetLock(Item).Asset.ExclusiveUnlock && (!Item.Property.MemberNumberListKeys || !(Item.Property.MemberNumberListKeys && CommonConvertStringToArray("" + Item.Property.MemberNumberListKeys).indexOf(Player.MemberNumber) >= 0))) return false;
 	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && !Item.Property.LockedBy.startsWith("Owner")) return true;
 
 	var UnlockName = "Unlock-" + Item.Asset.Name;

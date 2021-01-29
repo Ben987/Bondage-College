@@ -759,6 +759,7 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 					if (!Item.Property) Item.Property = {}
 					if (!Item.Property.MemberNumberList) Item.Property.MemberNumberList = "" + MemberNumber
 				}
+				
 				Item.Property.LockedBy = Lock.Asset.Name;
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
@@ -784,6 +785,7 @@ function InventoryUnlock(C, Item) {
 		delete Item.Property.Hint;
 		delete Item.Property.LockMemberNumber;
 		delete Item.Property.MemberNumberList;
+		delete Item.Property.MemberNumberListKeys;
 		delete Item.Property.CombinationNumber;
 		delete Item.Property.LockPickSeed;
 		CharacterRefresh(C);
