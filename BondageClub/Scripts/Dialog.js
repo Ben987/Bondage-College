@@ -466,7 +466,7 @@ function DialogLeaveItemMenu() {
 	DialogInventory = null;
 	DialogProgress = -1;
 	DialogLockMenu = false
-	DialogLockPickOrder = null;
+	StruggleLockPickOrder = null;
 	DialogColor = null;
 	DialogMenuButton = [];
 	if (DialogItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
@@ -614,11 +614,11 @@ function DialogMenuButtonBuild(C) {
 		DialogMenuButton.push("ColorSelect");
 		return;
 	}
-	if (DialogLockPickOrder)
+	if (StruggleLockPickOrder)
 		DialogMenuButton.push("LockCancel");
 
 	// Out of struggle mode, we calculate which buttons to show in the UI
-	if ((DialogProgress < 0) && !DialogLockPickOrder && !DialogActivityMode) {
+	if ((DialogProgress < 0) && !StruggleLockPickOrder && !DialogActivityMode) {
 
 		// Pushes all valid main buttons, based on if the player is restrained, has a blocked group, has the key, etc.
 		var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
@@ -840,7 +840,7 @@ function DialogProgressGetOperation(C, PrevItem, NextItem) {
  * @param {Item} NextItem - The second item that's part of the action
  * @returns {string} - The appropriate dialog option
  */
-function DialogLockPickProgressGetOperation(C, Item) {
+function StruggleLockPickProgressGetOperation(C, Item) {
 	var lock = InventoryGetLock(Item)
 	if ((Item != null && lock != null)) {
 		if (lock.Name == "CombinationPadlock" || lock.Name == "PasswordPadlock") return DialogFind(Player, "Decoding");
@@ -934,21 +934,21 @@ function DialogMenuButtonClick() {
 					if (CurrentScreen == "ChatRoom") ChatRoomPublishAction(C, Item, null, true, "ActionUnlock");
 					else DialogInventoryBuild(C);
 					DialogLockMenu = false
-				} else DialogProgressStart(C, Item, null);
-				DialogLockPickOrder = null
+				} else StruggleProgressStart(C, Item, null);
+				StruggleLockPickOrder = null
 				DialogLockMenu = false
 				return;
 			}
 
 			// Remove/Struggle Icon - Starts the struggling mini-game (can be impossible to complete)
 			else if (((DialogMenuButton[I] == "Remove") || (DialogMenuButton[I] == "Struggle") || (DialogMenuButton[I] == "Dismount") || (DialogMenuButton[I] == "Escape")) && (Item != null)) {
-				DialogProgressStart(C, Item, null);
+				StruggleProgressStart(C, Item, null);
 				return;
 			}
 			
 			// Remove/Struggle Icon - Starts the struggling mini-game (can be impossible to complete)
 			else if (((DialogMenuButton[I] == "PickLock")) && (Item != null)) {
-				DialogLockPickProgressStart(C, Item);
+				StruggleLockPickProgressStart(C, Item);
 				return;
 			}
 
@@ -1001,7 +1001,7 @@ function DialogMenuButtonClick() {
 			// When the user cancels out of lock menu, we recall the original color
 			else if (Item && DialogMenuButton[I] == "LockCancel") {
 				DialogLockMenu = false
-				DialogLockPickOrder = null
+				StruggleLockPickOrder = null
 				DialogMenuButtonBuild(C);
 				return;
 			}
@@ -1133,7 +1133,7 @@ function DialogItemClick(ClickItem) {
 					if (ClickItem.Asset.Wear) {
 
 						// Check if selfbondage is allowed for the item if used on self
-						if ((ClickItem.Asset.SelfBondage <= 0) || (SkillGetLevel(Player, "SelfBondage") >= ClickItem.Asset.SelfBondage) || (C.ID != 0) || DialogAlwaysAllowRestraint()) DialogProgressStart(C, CurrentItem, ClickItem);
+						if ((ClickItem.Asset.SelfBondage <= 0) || (SkillGetLevel(Player, "SelfBondage") >= ClickItem.Asset.SelfBondage) || (C.ID != 0) || DialogAlwaysAllowRestraint()) StruggleProgressStart(C, CurrentItem, ClickItem);
 						else if (ClickItem.Asset.SelfBondage <= 10) DialogSetText("RequireSelfBondage" + ClickItem.Asset.SelfBondage);
 						else DialogSetText("CannotUseOnSelf");
 
@@ -1160,7 +1160,7 @@ function DialogItemClick(ClickItem) {
 	// If the item can unlock another item or simply show dialog text (not wearable)
 	if (InventoryAllow(C, ClickItem.Asset.Prerequisite))
 		if (InventoryItemHasEffect(ClickItem, "Unlock-" + CurrentItem.Asset.Name))
-			DialogProgressStart(C, CurrentItem, null);
+			StruggleProgressStart(C, CurrentItem, null);
 		else
 			if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
 				DialogExtendItem(CurrentItem);
@@ -1214,7 +1214,7 @@ function DialogClick() {
 	}
 
 	// In activity mode, we check if the user clicked on an activity box
-	if (DialogActivityMode && (DialogProgress < 0 && !DialogLockPickOrder) && (DialogColor == null) && ((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)))
+	if (DialogActivityMode && (DialogProgress < 0 && !StruggleLockPickOrder) && (DialogColor == null) && ((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)))
 		if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000)) {
 
 			// For each activities in the list
@@ -1252,16 +1252,16 @@ function DialogClick() {
 		else {
 
 			// If the user wants to speed up the add / swap / remove progress
-			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 400) && (MouseY < 1000) && (DialogProgress >= 0)) DialogStruggleClick(false);
+			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 400) && (MouseY < 1000) && (DialogProgress >= 0)) StruggleClick(false);
 			
 			// If the user wants to pick a lock
-			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 200) && (MouseY < 1000) && (DialogLockPickOrder)) {DialogLockPickClick(CurrentCharacter); return;}
+			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 200) && (MouseY < 1000) && (StruggleLockPickOrder)) {StruggleLockPickClick(CurrentCharacter); return;}
 
 			// If the user wants to click on one of icons in the item menu
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 15) && (MouseY <= 105)) DialogMenuButtonClick();
 
 			// If the user clicks on one of the items
-			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter, null, true))) && (DialogProgress < 0 && !DialogLockPickOrder) && (DialogColor == null)) {
+			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter, null, true))) && (DialogProgress < 0 && !StruggleLockPickOrder) && (DialogColor == null)) {
 				// For each items in the player inventory
 				var X = 1000;
 				var Y = 125;
@@ -1405,7 +1405,7 @@ function DialogSetText(NewText) {
  */
 function DialogExtendItem(Item, SourceItem) {
 	DialogProgress = -1;
-	DialogLockPickOrder = null
+	StruggleLockPickOrder = null
 	DialogLockMenu = false
 	DialogColor = null;
 	DialogFocusItem = Item;
@@ -1496,7 +1496,7 @@ function DialogDrawItemMenu(C) {
 
 	// Draws the top menu text & icons
 	if (DialogMenuButton == null) DialogMenuButtonBuild(CharacterGetCurrent());
-	if ((DialogColor == null) && Player.CanInteract() && (DialogProgress < 0 && !DialogLockPickOrder) && !InventoryGroupIsBlocked(C) && DialogMenuButton.length < 8) DrawTextWrap((!DialogItemPermissionMode) ? DialogText : DialogFind(Player, "DialogPermissionMode"), 1000, 0, 975 - DialogMenuButton.length * 110, 125, "White", null, 3);
+	if ((DialogColor == null) && Player.CanInteract() && (DialogProgress < 0 && !StruggleLockPickOrder) && !InventoryGroupIsBlocked(C) && DialogMenuButton.length < 8) DrawTextWrap((!DialogItemPermissionMode) ? DialogText : DialogFind(Player, "DialogPermissionMode"), 1000, 0, 975 - DialogMenuButton.length * 110, 125, "White", null, 3);
 	for (let I = DialogMenuButton.length - 1; I >= 0; I--) {
 		let ButtonColor = (DialogMenuButton[I] == "ColorPick") && (DialogColorSelect != null) ? DialogColorSelect : "White";
 		let ButtonImage = DialogMenuButton[I] == "ColorPick" && !ItemColorIsSimple(FocusItem) ? "MultiColorPick" : DialogMenuButton[I];
@@ -1512,7 +1512,7 @@ function DialogDrawItemMenu(C) {
 	} else ColorPickerHide();
 
 	// In item permission mode, the player can choose which item he allows other users to mess with.  Allowed items have a green background.  Disallowed have a red background. Limited have an orange background
-	if ((DialogItemPermissionMode && (C.ID == 0) && (DialogProgress < 0 && !DialogLockPickOrder)) || (Player.CanInteract() && (DialogProgress < 0 && !DialogLockPickOrder) && !InventoryGroupIsBlocked(C, null, true))) {
+	if ((DialogItemPermissionMode && (C.ID == 0) && (DialogProgress < 0 && !StruggleLockPickOrder)) || (Player.CanInteract() && (DialogProgress < 0 && !StruggleLockPickOrder) && !InventoryGroupIsBlocked(C, null, true))) {
 
 		
 		if (DialogInventory == null) DialogInventoryBuild(C);
@@ -1567,11 +1567,11 @@ function DialogDrawItemMenu(C) {
 
 	// If the player is progressing
 	if (DialogProgress >= 0) {
-		DialogDrawStruggleProgress(C)
+		StruggleDrawStruggleProgress(C)
 		return;
 	}
 	// If the player is lockpicking
-	if (DialogLockPickOrder) {
+	if (StruggleLockPickOrder) {
 		DialogDrawLockpickProgress(C)
 		return;
 	}

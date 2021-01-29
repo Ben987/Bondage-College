@@ -235,7 +235,7 @@ function CommonKeyDown() {
 		}
 	}
 	else {
-		DialogKeyDown();
+		StruggleKeyDown();
 		if (ControllerActive == true) {
 			ControllerSupportKeyDown();
 		}

@@ -203,13 +203,13 @@ function ControllerButton(buttons) {
 
 				if (buttons[ControllerX].pressed == true) {
 					KeyPress = 65;
-					DialogKeyDown();
+					StruggleKeyDown();
 					ControllerButtonsRepeat = true;
 				}
 
 				if (buttons[ControllerY].pressed == true) {
 					KeyPress = 97;
-					DialogKeyDown();
+					StruggleKeyDown();
 					ControllerButtonsRepeat = true;
 				}
 
