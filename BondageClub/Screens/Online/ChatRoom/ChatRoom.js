@@ -365,7 +365,7 @@ function ChatRoomCreateElement() {
 		ElementCreateDiv("TextAreaChatLog");
 		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 859);
 		ElementScrollToEnd("TextAreaChatLog");
-		ChatRoomRefreshChatSettings(Player);
+		ChatRoomRefreshChatSettings();
 
 		// If we relog, we reload the previous chat log
 		if (RelogChatLog != null) {
@@ -376,7 +376,7 @@ function ChatRoomCreateElement() {
 
 	} else if (document.getElementById("TextAreaChatLog").style.display == "none") {
 		setTimeout(() => ElementScrollToEnd("TextAreaChatLog"), 100);
-		ChatRoomRefreshChatSettings(Player);
+		ChatRoomRefreshChatSettings();
 	}
 
 }
@@ -1855,16 +1855,20 @@ function ChatRoomSyncItem(data) {
 }
 
 /**
- * Refreshes the chat log elements for a specified character.
- * @param {Character} C - Character for which the chat is refreshed (Player)
+ * Refreshes the chat log elements for Player
  * @returns {void} - Nothing.
  */
-function ChatRoomRefreshChatSettings(C) {
-	if (C.ChatSettings) {
-		for (let property in C.ChatSettings)
-			ElementSetDataAttribute("TextAreaChatLog", property, C.ChatSettings[property]);
-		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepNames" || C.GameplaySettings.SensDepChatLog == "SensDepTotal" || C.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (C.GetDeafLevel() >= 3) && (Player.GetBlindLevel() >= 3)) ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden");
-		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepTotal" || C.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (C.GetDeafLevel() >= 3) && (Player.GetBlindLevel() >= 3)) {
+function ChatRoomRefreshChatSettings() {
+	if (Player.ChatSettings) {
+		for (let property in Player.ChatSettings)
+			ElementSetDataAttribute("TextAreaChatLog", property, Player.ChatSettings[property]);
+		if (Player.GameplaySettings &&
+			(Player.GameplaySettings.SensDepChatLog == "SensDepNames" || Player.GameplaySettings.SensDepChatLog == "SensDepTotal" || Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") &&
+			(Player.GetDeafLevel() >= 3) &&
+			(Player.GetBlindLevel() >= 3)) {
+			ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden");
+		}
+		if (Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepTotal" || Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (Player.GetDeafLevel() >= 3) && (Player.GetBlindLevel() >= 3)) {
 			ElementSetDataAttribute("TextAreaChatLog", "DisplayTimestamps", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "ColorNames", "false");
 			ElementSetDataAttribute("TextAreaChatLog", "ColorActions", "false");

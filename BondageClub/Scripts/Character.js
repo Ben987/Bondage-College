@@ -123,6 +123,9 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 
 	// Creates the inventory and default appearance
 	if (CharacterID == 0) {
+		if (Player !== undefined) {
+			throw Error("Attempt to re-init character 0!");
+		}
 		Player = NewCharacter;
 		CharacterAppearanceSetDefault(NewCharacter);
 	}
@@ -697,7 +700,7 @@ function CharacterRefresh(C, Push) {
 	C.HasScriptedAssets = !!C.Appearance.find(CA => CA.Asset.DynamicScriptDraw);
 	
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) {
-		ChatRoomRefreshChatSettings(C);
+		ChatRoomRefreshChatSettings();
 		ServerPlayerAppearanceSync();
 	}
 	// Also refresh the current dialog menu if the refreshed character is the current character.

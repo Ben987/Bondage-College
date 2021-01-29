@@ -420,16 +420,16 @@ function LoginResponse(C) {
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
 			Player.ItemPermission = C.ItemPermission;
+			Player.ArousalSettings = C.ArousalSettings;
 			Player.ChatSettings = C.ChatSettings;
 			Player.VisualSettings = C.VisualSettings;
 			Player.AudioSettings = C.AudioSettings;
+			Player.ControllerSettings = C.ControllerSettings;
 			Player.GameplaySettings = C.GameplaySettings;
 			Player.ImmersionSettings = C.ImmersionSettings;
 			Player.RestrictionSettings = C.RestrictionSettings;
-			Player.ArousalSettings = C.ArousalSettings;
 			Player.OnlineSettings = C.OnlineSettings;
 			Player.OnlineSharedSettings = C.OnlineSharedSettings;
-			Player.ControllerSettings = C.ControllerSettings;
 			Player.GraphicsSettings = C.GraphicsSettings;
 			Player.NotificationSettings = C.NotificationSettings;
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
@@ -458,7 +458,7 @@ function LoginResponse(C) {
 			SkillLoad(C.Skill);
 
 			// Calls the preference init to make sure the preferences are loaded correctly
-			PreferenceInit(Player);
+			PreferenceInitPlayer();
 			if (Player.VisualSettings) {
 				if (Player.VisualSettings.PrivateRoomBackground) PrivateBackground = Player.VisualSettings.PrivateRoomBackground;
 				if (Player.VisualSettings.MainHallBackground) MainHallBackground = Player.VisualSettings.MainHallBackground;
