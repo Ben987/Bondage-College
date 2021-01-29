@@ -68,7 +68,7 @@ function InventoryItemArmsTightJacketClick() {
 function InventoryItemArmsTightJacketValidate(C) {
 	var Allowed = "";
 	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
-		Allowed = DialogFind(Player, "CantChangeWhileLocked");
+		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	}
 	return Allowed;
 }
