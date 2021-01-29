@@ -196,8 +196,6 @@ function ActivityEffectFlat(S, C, Amount, Z, Count) {
 	// Calculates the next progress factor
 	var Factor = Amount; // Check how much the character likes the activity, from -10 to +10
 	Factor = Factor + (PreferenceGetZoneFactor(C, Z) * 5) - 10; // The zone used also adds from -10 to +10
-	Factor = Factor + Math.floor((Math.random() * 8)); // Random 0 to 7 bonus
-	if ((C.ID != S.ID) && (((C.ID != 0) && C.IsLoverOfPlayer()) || ((C.ID == 0) && S.IsLoverOfPlayer()))) Factor = Factor + Math.floor((Math.random() * 8)); // Another random 0 to 7 bonus if the target is the player's lover
 	Factor = Factor + ActivityFetishFactor(C) * 2; // Adds a fetish factor based on the character preferences
 	Factor = Factor + Math.round(Factor * (Count - 1) / 3); // if the action is done repeatedly, we apply a multiplication factor based on the count
 	ActivitySetArousalTimer(C, null, Z, Factor);
