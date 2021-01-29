@@ -523,6 +523,10 @@ function StruggleDrawFlexibilityProgress(C) {
 		}
 	}
 	
+	if (StruggleFlexibilityCheck()) {
+		StruggleFlexibility(false, true)
+	}
+	
 	StruggleProgressAutoDraw(C, -150)
 	
 	// Draw the current operation and progress
@@ -535,6 +539,26 @@ function StruggleDrawFlexibilityProgress(C) {
 }
 
 
+/**
+ * Checks for collision with the mouse
+ * @param {boolean} Reverse - If set to true, the progress is decreased
+ * @returns {boolean} - Nothing
+ */
+function StruggleFlexibilityCheck() {
+	
+	for (let RR = 0; RR < StruggleProgressFlexCircles.length; RR++) {
+		var R = StruggleProgressFlexCircles[RR]
+
+		if (R.X && R.Y && R.Size) {
+			var Smod = (CommonIsMobile) ? 2 : 1
+			if (MouseIn(1485 + R.X - R.Size*Smod, 625 + R.Y - R.Size*Smod, R.Size*2*Smod, R.Size*2*Smod)) {
+				StruggleProgressFlexCircles.splice(RR,1)
+				return true;
+			}
+		}
+	}
+	return false;
+}
 
 /**
  * Starts the dialog progress bar and keeps the items that needs to be added / swaped / removed. 
@@ -542,22 +566,10 @@ function StruggleDrawFlexibilityProgress(C) {
  * @param {boolean} Reverse - If set to true, the progress is decreased
  * @returns {void} - Nothing
  */
-function StruggleFlexibility(Reverse) {
+function StruggleFlexibility(Reverse, Hover) {
 	
-	if (!Reverse) {
-		var end = true
-		for (let RR = 0; RR < StruggleProgressFlexCircles.length; RR++) {
-			var R = StruggleProgressFlexCircles[RR]
-			if (R.X && R.Y && R.Size) {
-				var Smod = (CommonIsMobile) ? 2 : 1
-				if (MouseIn(1485 + R.X - R.Size*Smod, 625 + R.Y - R.Size*Smod, R.Size*2*Smod, R.Size*2*Smod)) {
-					end = false;
-					StruggleProgressFlexCircles.splice(RR,1)
-					break
-				}
-			}
-		}
-		if (end) return;
+	if (!Reverse && !Hover) {
+		if (!StruggleFlexibilityCheck()) return;
 	}
 	
 	// Progress calculation
