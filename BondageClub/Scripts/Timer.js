@@ -209,11 +209,12 @@ function TimerProcess(Timestamp) {
 							}
 
 							// Kicks the arousal timer faster from personal arousal
-							if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) {ActivityVibratorLevel(Character[C], 4); ActivityTimerProgress(Character[C], 1);}
-							if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) {ActivityVibratorLevel(Character[C], 3); ActivityTimerProgress(Character[C], 1);}
-							if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0)) {ActivityVibratorLevel(Character[C], 2); if (Character[C].ArousalSettings.Progress <= 95) ActivityTimerProgress(Character[C], 1);}
-							if ((Factor == 1) && (TimerLastArousalProgressCount % 6 == 0)) {ActivityVibratorLevel(Character[C], 1); if (Character[C].ArousalSettings.Progress <= 65) ActivityTimerProgress(Character[C], 1);}
-							if ((Factor == 0) && (TimerLastArousalProgressCount % 8 == 0)) {ActivityVibratorLevel(Character[C], 0); if (Character[C].ArousalSettings.Progress <= 35) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor >= 4)) {ActivityVibratorLevel(Character[C], 4); if (TimerLastArousalProgressCount % 2 == 0)ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 3)) {ActivityVibratorLevel(Character[C], 3); if (TimerLastArousalProgressCount % 3 == 0) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 2)) {ActivityVibratorLevel(Character[C], 2); if (Character[C].ArousalSettings.Progress <= 95 && TimerLastArousalProgressCount % 4 == 0) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 1)) {ActivityVibratorLevel(Character[C], 1); if (Character[C].ArousalSettings.Progress <= 65 && TimerLastArousalProgressCount % 6 == 0) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 0)) {ActivityVibratorLevel(Character[C], 1); if (Character[C].ArousalSettings.Progress <= 35 && TimerLastArousalProgressCount % 8 == 0) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == -1)) {ActivityVibratorLevel(Character[C], 0);}
 
 						}
 					} else {
