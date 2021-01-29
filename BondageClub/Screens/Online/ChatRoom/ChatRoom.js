@@ -716,7 +716,9 @@ function ChatRoomStimulationMessage(Context) {
 		// Decide the trigger message
 		var trigPriority = 0.0
 		var trigMsg = ""
+		var trigGroup = ""
 		var trigPlug = ""
+		var arousalAmount = 0 // Increases based on how many items
 		for (let A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily)) {
 				var trigChance = 0
@@ -725,18 +727,22 @@ function ChatRoomStimulationMessage(Context) {
 				if (InventoryItemHasEffect(C.Appearance[A], "CrotchRope", true)) {
 					if (trigChance == 0) trigChance = modBase
 					trigMsgTemp = "CrotchRope"
+					arousalAmount += 2
 				} else if (Intensity > 0) {
 					if (trigChance == 0 && modVibe > 0) trigChance = modBase // Some things are not affected by vibration, like kneeling
 					trigChance += modVibe * Intensity
 					trigMsgTemp = "Vibe"
+					arousalAmount += Intensity
 					if (InventoryItemHasEffect(C.Appearance[A], "FillVulva", true) && Math.random() < 0.5) {
 						trigMsgTemp = "VibePlugFront"
+						arousalAmount += 1
 						if (trigPlug == "Back") trigPlug = "Both"
 						else trigPlug = "Front"
 					}
 					if (InventoryItemHasEffect(C.Appearance[A], "IsPlugged", true) && Math.random() < 0.5) {
 						if (trigMsgTemp == "Vibe")
 							trigMsgTemp = "VibePlugFront"
+						arousalAmount += 1
 						if (trigPlug == "Front") trigPlug = "Both"
 						else trigPlug = "Back"
 					}
@@ -744,6 +750,7 @@ function ChatRoomStimulationMessage(Context) {
 					if (InventoryItemHasEffect(C.Appearance[A], "FillVulva", true)){
 						if (trigChance == 0) trigChance = modBase
 						trigMsgTemp = "PlugFront"
+						arousalAmount += 1
 						if (trigPlug == "Back") trigPlug = "Both"
 						else trigPlug = "Front"
 					}
@@ -751,6 +758,7 @@ function ChatRoomStimulationMessage(Context) {
 						if (trigChance == 0) trigChance = modBase
 						if (trigMsgTemp == "")
 							trigMsgTemp = "PlugBack"
+						arousalAmount += 1
 						if (trigPlug == "Front") trigPlug = "Both"
 						else trigPlug = "Back"
 					}
@@ -762,24 +770,33 @@ function ChatRoomStimulationMessage(Context) {
 					var Inflation = InventoryGetItemProperty(C.Appearance[A], "InflateLevel", true)
 					if (Inflation > 0 && typeof parseInt(Inflation) == "number") {
 						trigChance += modInflation * parseInt(Inflation)/4
+						arousalAmount += parseInt(Inflation)/2
 					}
 				}
 				
 				if (trigPlug == "Both") {
 					if ((trigMsgTemp == "VibePlugFront" || trigMsgTemp == "VibePlugBack"
-					|| trigMsgTemp == "PlugFront" || trigMsgTemp == "PlugBack") && Math.random() > 0.7)
+					|| trigMsgTemp == "PlugFront" || trigMsgTemp == "PlugBack") && Math.random() > 0.7) {
 						trigMsgTemp = "PlugBoth"
+						arousalAmount += 1
+					}
 				}
 					
 				if (trigMsgTemp != "" && Math.random() < trigChance && trigChance >= trigPriority) {
 					trigPriority = trigChance
 					trigMsg = trigMsgTemp
+					trigGroup = C.Appearance[A].Asset.Group.Name
 				}
 				
 			}
 		
 		// Now we have a trigger message, hopefully!
 		if (trigMsg != "") {
+			// Increase player arousal to the zone
+			ActivityEffectFlat(Player, Player, arousalAmount*2, trigGroup, 1)
+	
+			if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
+			
 			var index = Math.floor(Math.random() * 3)
 			ChatRoomMessage({ Content: "ChatRoomStimulationMessage"+trigMsg+""+index, Type: "Action", Sender: Player.MemberNumber });
 		}
