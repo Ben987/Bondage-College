@@ -20,33 +20,33 @@ function InventoryItemPelvisLoveChastityBeltDraw() {
   else DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
   DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
   if ((DialogFocusItem.Property.Type == "Shock") || (DialogFocusItem.Property.Type == "Vibe"))
-    DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 550, "White", "Gray");
+    DrawText(DialogFindPlayer("Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 550, "White", "Gray");
 
 
   DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 
   if (CharacterGetCurrent().IsOwnedByPlayer()) {
 
-    if ((DialogFocusItem.Property.Type == "Vibe") && (DialogFocusItem.Property.Intensity > -1)) DrawButton(1200, 600, 250, 65, DialogFind(Player, "TurnOff"), "White");
+    if ((DialogFocusItem.Property.Type == "Vibe") && (DialogFocusItem.Property.Intensity > -1)) DrawButton(1200, 600, 250, 65, DialogFindPlayer("TurnOff"), "White");
     if (DialogFocusItem.Property.Type == "Shock") {
-      DrawButton(1200, 600, 250, 65, DialogFind(Player, "TriggerShock"), "White");
+      DrawButton(1200, 600, 250, 65, DialogFindPlayer("TriggerShock"), "White");
       if (CurrentScreen == "ChatRoom" || true) {
         DrawButton(1200, 900, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
-        DrawText(DialogFind(Player, "ShockCollarShowChat"), 1445, 933, "White", "Gray");
+        DrawText(DialogFindPlayer("ShockCollarShowChat"), 1445, 933, "White", "Gray");
       }
     }
-    if (InventoryItemPelvisLoveChastityBeltIntensityCanDecrease()) DrawButton(1200, 700, 250, 65, DialogFind(Player, "Decrease"), "White");
-    if (InventoryItemPelvisLoveChastityBeltIntensityCanIncrease()) DrawButton(1550, 700, 250, 65, DialogFind(Player, "Increase"), "White");
+    if (InventoryItemPelvisLoveChastityBeltIntensityCanDecrease()) DrawButton(1200, 700, 250, 65, DialogFindPlayer("Decrease"), "White");
+    if (InventoryItemPelvisLoveChastityBeltIntensityCanIncrease()) DrawButton(1550, 700, 250, 65, DialogFindPlayer("Increase"), "White");
 
-    DrawButton(1550, 800, 250, 65, DialogFind(Player, DialogFocusItem.Property.LockButt ? "LoveChastityBeltUnlockButt" : "LoveChastityBeltLockButt"), "White");
+    DrawButton(1550, 800, 250, 65, DialogFindPlayer(DialogFocusItem.Property.LockButt ? "LoveChastityBeltUnlockButt" : "LoveChastityBeltLockButt"), "White");
 
     if ((DialogFocusItem.Property.Type == "Closed") || (DialogFocusItem.Property.Type == "Vibe") || (DialogFocusItem.Property.Type == "Shock")) {
-      DrawButton(1200, 800, 250, 65, DialogFind(Player, "LoveChastityBeltUnlock" + DialogFocusItem.Property.Type), "White");
+      DrawButton(1200, 800, 250, 65, DialogFindPlayer("LoveChastityBeltUnlock" + DialogFocusItem.Property.Type), "White");
     } else {
-      DrawButton(1200, 800, 250, 65, DialogFind(Player, "LoveChastityBeltAddShield"), "White");
+      DrawButton(1200, 800, 250, 65, DialogFindPlayer("LoveChastityBeltAddShield"), "White");
       if (InventoryItemPelvisLoveChastityBeltCanInsert(CharacterGetCurrent())) {
-        DrawButton(1200, 900, 250, 65, DialogFind(Player, "LoveChastityBeltAddVibe"), "White");
-        DrawButton(1550, 900, 250, 65, DialogFind(Player, "LoveChastityBeltAddShock"), "White");
+        DrawButton(1200, 900, 250, 65, DialogFindPlayer("LoveChastityBeltAddVibe"), "White");
+        DrawButton(1550, 900, 250, 65, DialogFindPlayer("LoveChastityBeltAddShock"), "White");
       }
     }
   }

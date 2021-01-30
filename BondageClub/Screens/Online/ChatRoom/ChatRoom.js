@@ -31,6 +31,33 @@ var ChatRoomLeashList = [];
 var ChatRoomLeashPlayer = null;
 var ChatRoomTargetDirty = false;
 var ChatRoomUnreadMessages = false;
+// Chance of a chat message popping up reminding you of your plugs/crotch rope at 0 arousal. Chance is for each item, but only one message appears, with priority to ones with higher chance
+const ChatRoomArousalMsg_Chance = {
+	"Kneel" : 0.1,
+	"Walk" : 0.33,
+	"StruggleFail" : 0.4,
+	"StruggleAction" : 0.05,
+	} 
+const ChatRoomArousalMsg_ChanceScaling = {
+	"Kneel" : 0.8,
+	"Walk" : 0.67,
+	"StruggleFail" : 0.4,
+	"StruggleAction" : 0.2,
+	} 
+const ChatRoomArousalMsg_ChanceVibeMod = {
+	"Kneel" : 0.0,
+	"Walk" : 0.8,
+	"StruggleFail" : 0.6,
+	"StruggleAction" : 0.3,
+	} 
+const ChatRoomArousalMsg_ChanceInflationMod = {
+	"Kneel" : 0.1,
+	"Walk" : 0.5,
+	"StruggleFail" : 0.4,
+	"StruggleAction" : 0.2,
+	} 
+
+var ChatRoomPinkFlashTime = 0;
 
 /**
  * Checks if the player can add the current character to her whitelist.
@@ -138,11 +165,11 @@ function ChatRoomCanGiveHighSecurityKeys() {
 	if (!CurrentCharacter.AllowItem) return false
 	if (Player.Appearance != null)
 		for (let A = 0; A < Player.Appearance.length; A++)
-			if (Player.Appearance[A].Asset.IsRestraint && Player.Appearance[A].Property && Player.Appearance[A].Asset.ExclusiveUnlock
-			&& (Player.Appearance[A].Property.MemberNumberList)
-			&& (Player.Appearance[A].Property.MemberNumberList
-			&& CommonConvertStringToArray("" + Player.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0
-			&& CommonConvertStringToArray("" + Player.Appearance[A].Property.MemberNumberList).indexOf(CurrentCharacter.MemberNumber) < 0)) // Make sure you have a lock they dont have the keys to
+			if (Player.Appearance[A].Asset.IsRestraint && Player.Appearance[A].Property && InventoryGetLock(Player.Appearance[A]) && InventoryGetLock(Player.Appearance[A]).Asset.ExclusiveUnlock
+			&& (Player.Appearance[A].Property.MemberNumberListKeys)
+			&& (Player.Appearance[A].Property.MemberNumberListKeys
+			&& CommonConvertStringToArray("" + Player.Appearance[A].Property.MemberNumberListKeys).indexOf(Player.MemberNumber) >= 0
+			&& CommonConvertStringToArray("" + Player.Appearance[A].Property.MemberNumberListKeys).indexOf(CurrentCharacter.MemberNumber) < 0)) // Make sure you have a lock they dont have the keys to
 				return true;
 	return false
 }
@@ -155,10 +182,10 @@ function ChatRoomCanGiveHighSecurityKeysAll() {
 	if (!CurrentCharacter.AllowItem) return false
 	if (Player.Appearance != null)
 		for (let A = 0; A < Player.Appearance.length; A++)
-			if (Player.Appearance[A].Asset.IsRestraint && Player.Appearance[A].Property && Player.Appearance[A].Asset.ExclusiveUnlock
-			&& (Player.Appearance[A].Property.MemberNumberList || (!Player.Appearance[A].Property.MemberNumberList && Player.Appearance[A].Property.LockMemberNumber == Player.MemberNumber))
-			&& (!Player.Appearance[A].Property.MemberNumberList
-			|| (CommonConvertStringToArray("" + Player.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) // Make sure you have a lock they dont have the keys to
+			if (Player.Appearance[A].Asset.IsRestraint && Player.Appearance[A].Property && InventoryGetLock(Player.Appearance[A]) && InventoryGetLock(Player.Appearance[A]).Asset.ExclusiveUnlock
+			&& (Player.Appearance[A].Property.MemberNumberListKeys || (!Player.Appearance[A].Property.MemberNumberListKeys && Player.Appearance[A].Property.LockMemberNumber == Player.MemberNumber))
+			&& (!Player.Appearance[A].Property.MemberNumberListKeys
+			|| (CommonConvertStringToArray("" + Player.Appearance[A].Property.MemberNumberListKeys).indexOf(Player.MemberNumber) >= 0))) // Make sure you have a lock they dont have the keys to
 				return true;
 	return false
 }
@@ -167,11 +194,11 @@ function ChatRoomGiveHighSecurityKeys() {
 	var C = Player
 	if (C.Appearance != null)
 		for (let A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Asset.ExclusiveUnlock
-			&& C.Appearance[A].Property.MemberNumberList
-			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0
-			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(CurrentCharacter.MemberNumber) < 0) // Make sure you have a lock they dont have the keys to
-				C.Appearance[A].Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList + "," + CurrentCharacter.MemberNumber
+			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && InventoryGetLock(Player.Appearance[A]) && InventoryGetLock(Player.Appearance[A]).Asset.ExclusiveUnlock
+			&& C.Appearance[A].Property.MemberNumberListKeys
+			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberListKeys).indexOf(Player.MemberNumber) >= 0
+			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberListKeys).indexOf(CurrentCharacter.MemberNumber) < 0) // Make sure you have a lock they dont have the keys to
+				C.Appearance[A].Property.MemberNumberListKeys = C.Appearance[A].Property.MemberNumberListKeys + "," + CurrentCharacter.MemberNumber
 	CharacterRefresh(Player)
 	ChatRoomCharacterUpdate(Player);
 }
@@ -179,19 +206,19 @@ function ChatRoomGiveHighSecurityKeysAll() {
 	var C = Player
 	if (C.Appearance != null)
 		for (let A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && C.Appearance[A].Asset.ExclusiveUnlock
-			&& (C.Appearance[A].Property.MemberNumberList || (!C.Appearance[A].Property.MemberNumberList && C.Appearance[A].Property.LockMemberNumber == Player.MemberNumber))
-			&& (!C.Appearance[A].Property.MemberNumberList || (C.Appearance[A].Property.MemberNumberList
-			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) // Make sure you have a lock they dont have the keys to
+			if (C.Appearance[A].Asset.IsRestraint && C.Appearance[A].Property && InventoryGetLock(Player.Appearance[A]) && InventoryGetLock(Player.Appearance[A]).Asset.ExclusiveUnlock
+			&& (C.Appearance[A].Property.MemberNumberListKeys || (!C.Appearance[A].Property.MemberNumberListKeys && C.Appearance[A].Property.LockMemberNumber == Player.MemberNumber))
+			&& (!C.Appearance[A].Property.MemberNumberListKeys || (C.Appearance[A].Property.MemberNumberListKeys
+			&& CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberListKeys).indexOf(Player.MemberNumber) >= 0))) // Make sure you have a lock they dont have the keys to
 			{
-				if (C.Appearance[A].Property.MemberNumberList) {
-					var list = CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberList)
+				if (C.Appearance[A].Property.MemberNumberListKeys) {
+					var list = CommonConvertStringToArray("" + C.Appearance[A].Property.MemberNumberListKeys)
 					
 					if (list) {
 						list = list.filter(x => x !== Player.MemberNumber);
 						if (list.indexOf(CurrentCharacter.MemberNumber) < 0)
 							list.push(CurrentCharacter.MemberNumber)
-						C.Appearance[A].Property.MemberNumberList = "" + 
+						C.Appearance[A].Property.MemberNumberListKeys = "" + 
 							CommonConvertArrayToString(list) // Convert to array and back; can only save strings on server
 					}
 				}
@@ -669,6 +696,119 @@ function ChatRoomSetLastChatRoom(room) {
 	ServerSend("AccountUpdate", P);
 }
 
+/**
+ * Triggers a chat room event for things like plugs and crotch ropes, will send a chat message if the chance is right.
+ * @returns {void} - Nothing.
+ */
+function ChatRoomStimulationMessage(Context) {
+	if (CurrentScreen == "ChatRoom" && Player.ImmersionSettings && Player.ImmersionSettings.StimulationEvents) {
+		var C = Player
+		if (Context == null || Context == "") Context = "StruggleAction"
+		
+		var modBase = 0
+		var modArousal = 0
+		var modVibe = 0
+		var modInflation = 0
+		
+		if (ChatRoomArousalMsg_Chance[Context]) modBase = ChatRoomArousalMsg_Chance[Context]
+		if (ChatRoomArousalMsg_ChanceScaling[Context]) modArousal = ChatRoomArousalMsg_ChanceScaling[Context]
+		if (ChatRoomArousalMsg_ChanceVibeMod[Context]) modVibe = ChatRoomArousalMsg_ChanceVibeMod[Context]
+		if (ChatRoomArousalMsg_ChanceInflationMod[Context]) modInflation = ChatRoomArousalMsg_ChanceInflationMod[Context]
+
+		// Decide the trigger message
+		var trigPriority = 0.0
+		var trigMsg = ""
+		var trigGroup = ""
+		var trigPlug = ""
+		var arousalAmount = 0 // Increases based on how many items
+		for (let A = 0; A < C.Appearance.length; A++)
+			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily)) {
+				var trigChance = 0
+				var trigMsgTemp = ""
+				var Intensity = InventoryGetItemProperty(C.Appearance[A], "Intensity", true)
+				if (InventoryItemHasEffect(C.Appearance[A], "CrotchRope", true)) {
+					if (trigChance == 0) trigChance = modBase
+					trigMsgTemp = "CrotchRope"
+					arousalAmount += 2
+				} else if (Intensity > 0) {
+					if (trigChance == 0 && modVibe > 0) trigChance = modBase // Some things are not affected by vibration, like kneeling
+					trigChance += modVibe * Intensity
+					trigMsgTemp = "Vibe"
+					arousalAmount += Intensity
+					if (InventoryItemHasEffect(C.Appearance[A], "FillVulva", true) && Math.random() < 0.5) {
+						trigMsgTemp = "VibePlugFront"
+						arousalAmount += 1
+						if (trigPlug == "Back") trigPlug = "Both"
+						else trigPlug = "Front"
+					}
+					if (InventoryItemHasEffect(C.Appearance[A], "IsPlugged", true) && Math.random() < 0.5) {
+						if (trigMsgTemp == "Vibe")
+							trigMsgTemp = "VibePlugFront"
+						arousalAmount += 1
+						if (trigPlug == "Front") trigPlug = "Both"
+						else trigPlug = "Back"
+					}
+				} else {
+					if (InventoryItemHasEffect(C.Appearance[A], "FillVulva", true)){
+						if (trigChance == 0) trigChance = modBase
+						trigMsgTemp = "PlugFront"
+						arousalAmount += 1
+						if (trigPlug == "Back") trigPlug = "Both"
+						else trigPlug = "Front"
+					}
+					if (InventoryItemHasEffect(C.Appearance[A], "IsPlugged", true)) {
+						if (trigChance == 0) trigChance = modBase
+						if (trigMsgTemp == "")
+							trigMsgTemp = "PlugBack"
+						arousalAmount += 1
+						if (trigPlug == "Front") trigPlug = "Both"
+						else trigPlug = "Back"
+					}
+				}
+				if (trigMsgTemp != "" && Player.ArousalSettings && Player.ArousalSettings.Progress > 0) {
+					trigChance += modArousal * Player.ArousalSettings.Progress/100
+				}
+				if (trigMsgTemp != "") {
+					var Inflation = InventoryGetItemProperty(C.Appearance[A], "InflateLevel", true)
+					if (Inflation > 0 && typeof parseInt(Inflation) == "number") {
+						trigChance += modInflation * parseInt(Inflation)/4
+						arousalAmount += parseInt(Inflation)/2
+					}
+				}
+				
+				if (trigPlug == "Both") {
+					if ((trigMsgTemp == "VibePlugFront" || trigMsgTemp == "VibePlugBack"
+					|| trigMsgTemp == "PlugFront" || trigMsgTemp == "PlugBack") && Math.random() > 0.7) {
+						trigMsgTemp = "PlugBoth"
+						arousalAmount += 1
+					}
+				}
+					
+				if (trigMsgTemp != "" && Math.random() < trigChance && trigChance >= trigPriority) {
+					trigPriority = trigChance
+					trigMsg = trigMsgTemp
+					trigGroup = C.Appearance[A].Asset.Group.Name
+				}
+				
+			}
+		
+		// Now we have a trigger message, hopefully!
+		if (trigMsg != "") {
+			// Increase player arousal to the zone
+			ActivityEffectFlat(Player, Player, arousalAmount, trigGroup, 1)
+	
+			if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
+			
+			ChatRoomPinkFlashTime = CommonTime() + (Math.random() + arousalAmount/2.4) * 500
+			
+			CharacterSetFacialExpression(Player, "Blush", "VeryHigh", Math.ceil((ChatRoomPinkFlashTime - CommonTime())/250));
+			
+			var index = Math.floor(Math.random() * 3)
+			ChatRoomMessage({ Content: "ChatRoomStimulationMessage"+trigMsg+""+index, Type: "Action", Sender: Player.MemberNumber });
+		}
+	}
+}
+
 
 /**
  * Runs the chatroom screen.
@@ -777,7 +917,7 @@ function ChatRoomRun() {
 	DrawButton(1875, 2, 120, 60, "", "White", "Icons/Rectangle/Preference.png", TextGet("MenuAdmin"));
 
 	// In orgasm mode, we add a pink filter and different controls depending on the stage.  The pink filter shows a little above 90
-	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {	
+	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {
 		if ((Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
 			DrawRect(0, 0, 1003, 1000, "#FFB0B0B0");
 			DrawRect(1003, 0, 993, 63, "#FFB0B0B0");
@@ -798,6 +938,19 @@ function ChatRoomRun() {
 			else if (ChatRoomCharacter.length == 5) DrawRect(0, 250, 1003, 500, "#FFB0B040");
 		}
 	}
+	
+	if ((Player.ImmersionSettings != null && Player.GraphicsSettings != null) && (Player.ImmersionSettings.StimulationEvents && Player.GraphicsSettings.StimulationFlash) && ChatRoomPinkFlashTime > CommonTime()) {
+		var FlashTime = ChatRoomPinkFlashTime - CommonTime() // ChatRoomPinkFlashTime is the end of the flash. The flash is brighter based on the distance to the end.
+		var PinkFlashAlpha = Math.max(0, Math.min(255, Math.floor(140 * (1 - Math.exp(-FlashTime/2500))))).toString(16);
+		if (PinkFlashAlpha.length < 2) PinkFlashAlpha = "0" + PinkFlashAlpha
+			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6) ||
+				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3)))
+													DrawRect(0, 0, 1003, 1000, "#FFB0B0" + PinkFlashAlpha);
+			else if (ChatRoomCharacter.length == 3) DrawRect(0, 50, 1003, 900, "#FFB0B0" + PinkFlashAlpha);
+			else if (ChatRoomCharacter.length == 4) DrawRect(0, 150, 1003, 700, "#FFB0B0" + PinkFlashAlpha);
+			else if (ChatRoomCharacter.length == 5) DrawRect(0, 250, 1003, 500, "#FFB0B0" + PinkFlashAlpha);
+	}
+	
 
 	// Runs any needed online game script
 	OnlineGameRun();
@@ -876,7 +1029,9 @@ function ChatRoomClick() {
 	// When the user character kneels
 	if (MouseIn(1353, 0, 120, 62) && Player.CanKneel()) {
 		ServerSend("ChatRoomChat", { Content: (Player.ActivePose == null) ? "KneelDown" : "StandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
+		ChatRoomStimulationMessage("Kneel")
 		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
+		ChatRoomStimulationMessage("Kneel")
 		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 	}
 
@@ -1282,7 +1437,7 @@ function ChatRoomMessage(data) {
 			// Replace actions by the content of the dictionary
 			if (data.Type && ((data.Type == "Action") || (data.Type == "ServerMessage"))) {
 				if (data.Type == "ServerMessage") msg = "ServerMessage" + msg;
-				msg = DialogFind(Player, msg);
+				msg = DialogFindPlayer(msg);
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
 					var SourceCharacter = null;
@@ -1299,15 +1454,15 @@ function ChatRoomMessage(data) {
 
 							// Alters the message displayed in the chat room log, and stores the source & target in case they're required later
 							if ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName")) {
-								msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "DestinationCharacter")) ? DialogFind(Player, "Her") : (PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text) + DialogFind(Player, "'s")));
+								msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "DestinationCharacter")) ? DialogFindPlayer("Her") : (PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFindPlayer("Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text) + DialogFindPlayer("'s")));
 								TargetMemberNumber = dictionary[D].MemberNumber;
 							}
 							else if ((dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName")) {
-								msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "TargetCharacter")) ? DialogFind(Player, "Herself") : (PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text)));
+								msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "TargetCharacter")) ? DialogFindPlayer("Herself") : (PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFindPlayer("Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text)));
 								TargetMemberNumber = dictionary[D].MemberNumber;
 							}
 							else if (dictionary[D].Tag == "SourceCharacter") {
-								msg = msg.replace(dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFind(Player, "Someone") : ChatRoomHTMLEntities(dictionary[D].Text));
+								msg = msg.replace(dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFindPlayer("Someone") : ChatRoomHTMLEntities(dictionary[D].Text));
 								for (let T = 0; T < ChatRoomCharacter.length; T++)
 									if (ChatRoomCharacter[T].MemberNumber == dictionary[D].MemberNumber)
 										SourceCharacter = ChatRoomCharacter[T];
@@ -1319,7 +1474,7 @@ function ChatRoomMessage(data) {
 									IsPlayerInvolved = true;
 
 						}
-						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, ChatRoomHTMLEntities(dictionary[D].TextToLookUp)).toLowerCase());
+						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFindPlayer(ChatRoomHTMLEntities(dictionary[D].TextToLookUp)).toLowerCase());
 						else if (dictionary[D].AssetName) {
 							for (let A = 0; A < Asset.length; A++)
 								if (Asset[A].Name == dictionary[D].AssetName) {
@@ -1381,7 +1536,7 @@ function ChatRoomMessage(data) {
 				else if (data.Type == "Emote") {
 					if (msg.indexOf("*") == 0) msg = msg + "*";
 					else if ((msg.indexOf("'") == 0) || (msg.indexOf(",") == 0)) msg = "*" + SenderCharacter.Name + msg + "*";
-					else if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
+					else if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFindPlayer("Someone") + " " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
@@ -1401,7 +1556,7 @@ function ChatRoomMessage(data) {
 				var ActivityCounter = 1;
 				if (data.Dictionary != null)
 					for (let D = 0; D < data.Dictionary.length; D++) {
-						if (data.Dictionary[D].MemberNumber != null) msg = msg.replace(data.Dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (data.Dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFind(Player, "Someone") : ChatRoomHTMLEntities(data.Dictionary[D].Text));
+						if (data.Dictionary[D].MemberNumber != null) msg = msg.replace(data.Dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (data.Dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFindPlayer("Someone") : ChatRoomHTMLEntities(data.Dictionary[D].Text));
 						if ((data.Dictionary[D].MemberNumber != null) && (data.Dictionary[D].Tag == "TargetCharacter")) TargetMemberNumber = data.Dictionary[D].MemberNumber;
 						if (data.Dictionary[D].Tag == "ActivityName") ActivityName = data.Dictionary[D].Text;
 						if (data.Dictionary[D].Tag == "ActivityGroup") ActivityGroup = data.Dictionary[D].Text;
@@ -1831,6 +1986,7 @@ function ChatRoomPingLeashedPlayers(NoBeep) {
 function ChatRoomKneelStandAssist() { 
 	ServerSend("ChatRoomChat", { Content: !CurrentCharacter.IsKneeling() ? "HelpKneelDown" : "HelpStandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }, { Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber }] });
 	CharacterSetActivePose(CurrentCharacter, !CurrentCharacter.IsKneeling() ? "Kneel" : null, true);
+	ChatRoomStimulationMessage("Kneel")
 	ChatRoomCharacterUpdate(CurrentCharacter);
 }
 

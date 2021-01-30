@@ -25,6 +25,12 @@ const CanvasUpperOverflow = 700;
 const CanvasLowerOverflow = 150;
 const CanvasDrawHeight = 1000 + CanvasUpperOverflow + CanvasLowerOverflow;
 
+const AppearancePermissionColors = {
+	red: ["pink", "red"],
+	amber: ["#fed8b1", "orange"],
+	green: ["lime", "green"],
+};
+
 /**
  * Builds all the assets that can be used to dress up the character
  * @param {Character} C - The character whose appearance is modified
@@ -347,7 +353,8 @@ function CharacterAppearanceSortLayers(C) {
  * @param {Character} C - The character whose assets are checked
  * @param {string} AssetName - The name of the asset to check
  * @param {string} GroupName - The name of the item group to check
- * @param {boolean} Recursive - If TRUE, then other items which are themselves hidden will not hide this item. Parameterising this prevents infinite loops.
+ * @param {boolean} Recursive - If TRUE, then other items which are themselves hidden will not hide this item. Parameterising this prevents
+ *     infinite loops.
  * @returns {boolean} - Returns TRUE if we can show the item or the item group
  */
 function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
@@ -501,8 +508,9 @@ function CharacterAppearanceXOffset(C, HeightRatio) {
 }
 
 /**
- * Repositions the character vertically towards the bottom of the canvas (the 'floor'), since shorter characters will be shrunk towards the top
- * HeightRatioProportion controls how much of this offset applies with 1 (max) positioning them on the "floor" and 0 (min) leaving them up at the 'ceiling'
+ * Repositions the character vertically towards the bottom of the canvas (the 'floor'), since shorter characters will be shrunk towards the
+ * top HeightRatioProportion controls how much of this offset applies with 1 (max) positioning them on the "floor" and 0 (min) leaving them
+ * up at the 'ceiling'
  * @param {Character} C - The character to reposition
  * @param {number} HeightRatio - The character's height ratio
  * @returns {number} - The amounnt to move the character along the Y co-ordinate
@@ -655,23 +663,19 @@ function AppearanceRun() {
 
 	// In cloth selection mode
 	if (CharacterAppearanceMode == "Cloth") {
-
 		// Prepares a 3x3 square of clothes to present all the possible options
-		var X = 1250;
-		var Y = 125;
+		let X = 1250;
+		let Y = 125;
 		for (let I = DialogInventoryOffset; (I < DialogInventory.length) && (I < DialogInventoryOffset + 9); I++) {
-			var Item = DialogInventory[I];
-			var Hover = (MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile;
-			var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
-			var Limit = InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name);
-			var Unusable = DialogInventory[I].SortOrder.startsWith(DialogSortOrderUnusable.toString());
-			var Blocked = DialogInventory[I].SortOrder.startsWith(DialogSortOrderBlocked.toString());
-			DrawRect(X, Y, 225, 275, (DialogItemPermissionMode && C.ID == 0) ?
-				(Item.Worn ? "gray" : Block ? Hover ? "red" : "pink" : Limit ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") :
-				((Hover && !Blocked) ? "cyan" : Item.Worn ? "pink" : Blocked ? "red" : Unusable ? "gray" : "white"));
-			if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
-			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
-			DrawTextFit(Item.Asset.DynamicDescription(Player), X + 112, Y + 250, 221, "black");
+			const Item = DialogInventory[I];
+			const Hover = MouseIn(X, Y, 225, 275) && !CommonIsMobile;
+			const Background = AppearanceGetPreviewImageColor(C, Item, Hover);
+			const Vibrating = Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true);
+			const Hidden = CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name);
+
+			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.Description, { Background });
+			else DrawAssetPreview(X, Y, Item.Asset, {Background, Vibrating});
+
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;
 			if (X > 1800) {
@@ -679,9 +683,31 @@ function AppearanceRun() {
 				Y = Y + 300;
 			}
 		}
-
 	}
+}
 
+/**
+ * Calculates the background color of the preview image for and item
+ * @param {Character} C - The character whose appearance we are viewing
+ * @param {Item} item - The item to calculate the color for
+ * @param {boolean} hover - Whether or not the item is currently hovering over the preview image
+ * @returns {string} - A CSS color string determining the color that the preview icon should be drawn in
+ */
+function AppearanceGetPreviewImageColor(C, item, hover) {
+	if (DialogItemPermissionMode && C.ID === 0) {
+		let permission = "green";
+		if (InventoryIsPermissionBlocked(C, item.Asset.DynamicName(Player), item.Asset.DynamicGroupName)) permission = "red";
+		else if (InventoryIsPermissionLimited(C, item.Asset.Name, item.Asset.Group.Name)) permission = "amber";
+		return item.Worn ? "gray" : AppearancePermissionColors[permission][hover ? 1 : 0];
+	} else {
+		const Unusable = item.SortOrder.startsWith(DialogSortOrderUnusable.toString());
+		const Blocked = item.SortOrder.startsWith(DialogSortOrderBlocked.toString());
+		if (hover && !Blocked) return "cyan";
+		else if (item.Worn) return "pink";
+		else if (Blocked) return "red";
+		else if (Unusable) return "gray";
+		else return "white";
+	}
 }
 
 /**
@@ -857,14 +883,13 @@ function AppearanceClick() {
 	// When there is an extended item
 	if (DialogFocusItem != null) {
 		CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
-		return;
 	}
 
 	// Selecting a button in the row at the top
-	if (MouseYIn(25, 90)) AppearanceMenuClick(C);
+	else if (MouseYIn(25, 90)) AppearanceMenuClick(C);
 	
 	// In regular dress-up mode
-	if (CharacterAppearanceMode == "") {
+	else if (CharacterAppearanceMode == "") {
 
 		// If we must remove/restore to default the item
 		if ((MouseX >= 1210) && (MouseX < 1275) && (MouseY >= 145) && (MouseY < 975))
@@ -891,6 +916,7 @@ function AppearanceClick() {
 								DialogInventoryBuild(C);
 								CharacterAppearanceCloth = InventoryGet(C, C.FocusGroup.Name);
 								CharacterAppearanceMode = "Cloth";
+								return;
 							}
 						}
 		}
@@ -920,7 +946,7 @@ function AppearanceClick() {
 	}
 
 	// In wardrobe mode
-	if (CharacterAppearanceMode == "Wardrobe") {
+	else if (CharacterAppearanceMode == "Wardrobe") {
 
 		// In warehouse mode, we draw the 12 possible warehouse slots for the character to save & load
 		if ((MouseX >= 1300) && (MouseX < 1800) && (MouseY >= 430) && (MouseY < 970))
@@ -944,12 +970,12 @@ function AppearanceClick() {
 	}
 
 	// In item coloring mode
-	if (CharacterAppearanceMode == "Color") {
+	else if (CharacterAppearanceMode == "Color") {
 		ItemColorClick(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName, 1200, 25, 775, 950, true);
 	}
 
 	// In cloth selection mode
-	if (CharacterAppearanceMode == "Cloth") {
+	else if (CharacterAppearanceMode == "Cloth") {
 
 		// Prepares a 3x3 square of clothes to present all the possible options
 		var X = 1250;
@@ -957,9 +983,6 @@ function AppearanceClick() {
 		for (let I = DialogInventoryOffset; (I < DialogInventory.length) && (I < DialogInventoryOffset + 9); I++) {
 			if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
 				var Item = DialogInventory[I];
-				var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
-				var CreatedItem = InventoryItemCreate(C, Item.Asset.Group.Name, Item.Asset.Name);
-				var Limited = !InventoryCheckLimitedPermission(C, CreatedItem);
 				// In permission mode, we toggle the settings for an item
 				if (DialogItemPermissionMode) {
 					
@@ -969,7 +992,7 @@ function AppearanceClick() {
 					InventoryTogglePermission(Item, null);
 					
 				} else {
-					if (Block || Limited) return;
+					if (InventoryBlockedOrLimited(C, Item)) return;
 					if (InventoryAllow(C, Item.Asset.Prerequisite)) {
 						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
 						AppearanceMenuBuild(C);

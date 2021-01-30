@@ -46,7 +46,7 @@ var PreferenceVisibilityAssetIndex = 0;
 var PreferenceVisibilityHideChecked = false;
 var PreferenceVisibilityBlockChecked = false;
 var PreferenceVisibilityCanBlock = true;
-var PreferenceVisibilityPreviewImg = null;
+var PreferenceVisibilityPreviewAsset = null;
 var PreferenceVisibilityHiddenList = [];
 var PreferenceVisibilityBlockList = [];
 var PreferenceVisibilityResetClicked = false;
@@ -335,6 +335,7 @@ function PreferenceInit(C) {
 	// Sets the default immersion settings
 	if (!C.ImmersionSettings) C.ImmersionSettings = {};
 	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
+	if (typeof C.ImmersionSettings.StimulationEvents !== "boolean") C.ImmersionSettings.StimulationEvents = true;
 	if (typeof C.ImmersionSettings.ReturnToChatRoom !== "boolean") C.ImmersionSettings.ReturnToChatRoom = false;
 	if ((C.ID == 0) && (C.GetDifficulty() >= 3)) C.ImmersionSettings.ReturnToChatRoom = true;
 	if (typeof C.ImmersionSettings.ReturnToChatRoomAdmin !== "boolean") C.ImmersionSettings.ReturnToChatRoomAdmin = false;
@@ -365,6 +366,7 @@ function PreferenceInit(C) {
 		Player.GameplaySettings.BlindDisableExamine = true;
 		Player.GameplaySettings.DisableAutoRemoveLogin = true;
 		Player.ImmersionSettings.BlockGaggedOOC = true;
+		Player.ImmersionSettings.StimulationEvents = true;
 		Player.ImmersionSettings.ReturnToChatRoom = true;
 		Player.ImmersionSettings.ReturnToChatRoomAdmin = true;
 		Player.GameplaySettings.ImmersionLockSetting = true;
@@ -432,6 +434,7 @@ function PreferenceInit(C) {
    if (!C.GraphicsSettings) C.GraphicsSettings = {Font: "Arial"}
    if (!C.GraphicsSettings.Font) C.GraphicsSettings.Font = "Arial";
    if (typeof C.GraphicsSettings.InvertRoom !== "boolean") C.GraphicsSettings.InvertRoom = true;
+   if (typeof C.GraphicsSettings.StimulationFlashes !== "boolean") C.GraphicsSettings.StimulationFlashes = true;
 
 	// Notification settings
 	if (!C.NotificationSettings) C.NotificationSettings = {};
@@ -811,6 +814,7 @@ function PreferenceSubscreenImmersionRun() {
 		DrawCheckbox(500, 592, 64, 64, TextGet("ReturnToChatRoom"), Player.ImmersionSettings.ReturnToChatRoom);
 		if (Player.ImmersionSettings.ReturnToChatRoom)
 			DrawCheckbox(1300, 592, 64, 64, TextGet("ReturnToChatRoomAdmin"), Player.ImmersionSettings.ReturnToChatRoomAdmin);
+		DrawCheckbox(500, 672, 64, 64, TextGet("StimulationEvents"), Player.ImmersionSettings.StimulationEvents);
 		DrawCheckbox(500, 832, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
 		DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
 		MainCanvas.textAlign = "center";
@@ -859,6 +863,8 @@ function PreferenceSubscreenImmersionClick() {
 				Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
 		if (Player.ImmersionSettings.ReturnToChatRoom && MouseIn(1300, 592, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 				Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
+		if (MouseIn(500, 672, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
+				Player.ImmersionSettings.StimulationEvents = !Player.ImmersionSettings.StimulationEvents;
 		if (MouseIn(500, 832, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
 
@@ -1152,10 +1158,9 @@ function PreferenceSubscreenVisibilityRun() {
 		DrawButton(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64, TextGet("VisibilityReset"), "White", "");
 
 		// Preview icon
-		DrawEmptyRect(1200, 193, 225, 225, "Black");
-		if (PreferenceVisibilityPreviewImg == null) DrawRect(1203, 196, 219, 219, "LightGray");
-		else DrawImageResize(PreferenceVisibilityPreviewImg, 1202, 195, 221, 221);
+		if (PreferenceVisibilityHideChecked) DrawPreviewBox(1200, 193, "Icons/HiddenItem.png", "", { Border: true });
 
+		else DrawAssetPreview(1200, 193, PreferenceVisibilityPreviewAsset, {Description: "", Border: true});
 	} else {
 		MainCanvas.textAlign = "center";
 		DrawText(TextGet("VisibilityLocked"), 1200, 500, "Red", "Gray");
@@ -1180,6 +1185,7 @@ function PreferenceSubscreenGraphicsRun() {
 	DrawText(TextGet("GraphicsFont"), 800, 336, "Black", "Gray");
 	DrawTextFit(TextGet("GraphicsFontDisclaimer"), 500, 406, 1400, "Black", "Gray");
 	DrawCheckbox(500, 470, 64, 64, TextGet("GraphicsInvertRoom"), Player.GraphicsSettings.InvertRoom);
+	DrawCheckbox(500, 550, 64, 64, TextGet("GraphicsStimulationFlash"), Player.GraphicsSettings.StimulationFlash);
 
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 212, 250, 64, TextGet(Player.ArousalSettings.VFX), "White", "",
@@ -1210,6 +1216,7 @@ function PreferenceSubscreenGraphicsClick() {
 		CommonGetFontName.clearCache();
 	}
 	if (MouseIn(500, 470, 64, 64)) Player.GraphicsSettings.InvertRoom = !Player.GraphicsSettings.InvertRoom;
+	if (MouseIn(500, 550, 64, 64)) Player.GraphicsSettings.StimulationFlash = !Player.GraphicsSettings.StimulationFlash;
 }
 
 /**
@@ -1593,8 +1600,7 @@ function PreferenceVisibilityAssetChanged(RefreshCheckboxes) {
 	PreferenceVisibilityCanBlock = (WornItem == null || WornItem.Asset.Name != CurrAsset.Asset.Name) && !CurrAsset.Limited;
 
 	// Get the preview image path
-	if (PreferenceVisibilityHideChecked) PreferenceVisibilityPreviewImg = "Icons/HiddenItem.png";
-	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Asset.Group.Family + "/" + CurrAsset.Asset.DynamicGroupName + "/Preview/" + CurrAsset.Asset.Name + ".png";
+	PreferenceVisibilityPreviewAsset = CurrAsset.Asset;
 
 	PreferenceVisibilityResetClicked = false;
 }

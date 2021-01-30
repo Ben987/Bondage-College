@@ -45,7 +45,7 @@ function InventoryItemArmsPrisonLockdownSuitLoad() {
 
 function InventoryItemArmsPrisonLockdownSuitSetPage(Page) {
 	InventoryItemArmsPrisonLockdownSuitPage = Page;
-	DialogExtendedMessage = DialogFind(Player, "ItemArmsPrisonLockdownSuitSelect" + Page);
+	DialogExtendedMessage = DialogFindPlayer("ItemArmsPrisonLockdownSuitSelect" + Page);
 }
 
 function InventoryItemArmsPrisonLockdownSuitDraw() {
@@ -63,11 +63,11 @@ function InventoryItemArmsPrisonLockdownSuitDrawBase() {
 
 	DrawButton(1175, 550, 225, 225, "", "white");
 	DrawImage("Screens/Inventory/" + A.Group.Name + "/" + A.Name + "/" + (DialogFocusItem.Property.Type || "Free") + ".png", 1175, 550);
-	DrawText(DialogFind(Player, "ItemArmsPrisonLockdownSuitStraps"), 1288, 800, "white", "gray");
+	DrawText(DialogFindPlayer("ItemArmsPrisonLockdownSuitStraps"), 1288, 800, "white", "gray");
 
 	DrawButton(1600, 550, 225, 225, "", "white");
 	DrawImage("Screens/Inventory/" + A.Group.Name + "/" + A.Name + "/Shock.png", 1600, 550);
-	DrawText(DialogFind(Player, "ItemArmsPrisonLockdownSuitShock"), 1713, 800, "white", "gray");
+	DrawText(DialogFindPlayer("ItemArmsPrisonLockdownSuitShock"), 1713, 800, "white", "gray");
 }
 
 function InventoryItemArmsPrisonLockdownSuitDrawStraps() {

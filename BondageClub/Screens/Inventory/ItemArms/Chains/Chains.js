@@ -2,14 +2,14 @@
 
 const InventoryItemArmsChainsOptions = [
 	{
-		Name: "BoxTie",
-		BondageLevel: null,
-		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 }
-	}, {
 		Name: "WristTie",
 		BondageLevel: null,
 		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
 		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
+	}, {
+		Name: "BoxTie",
+		BondageLevel: null,
+		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 }
 	}, {
 		Name: "ChainCuffs",
 		BondageLevel: null,
@@ -118,7 +118,7 @@ function InventoryItemArmsChainsValidate(C, Option) {
 	var Allowed = "";
 
 	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		Allowed = DialogFind(Player, "CantChangeWhileLocked");
+		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	} else if (Option.Prerequisite) {
 		if (!ExtendedItemSelfProofRequirementCheck(C, Option.Prerequisite)) {
 			Allowed = DialogText;

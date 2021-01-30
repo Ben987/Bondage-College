@@ -15,13 +15,13 @@ function InventoryItemLegsOrnateLegCuffsDraw() {
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	// Draw the possible poses
-	DrawText(DialogFind(Player, "SelectBondagePosition"), 1500, 500, "white", "gray");
+	DrawText(DialogFindPlayer("SelectBondagePosition"), 1500, 500, "white", "gray");
 	DrawButton(1250, 550, 225, 225, "", (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/None.png", 1250, 550);
-	DrawText(DialogFind(Player, "OrnateLegCuffsPoseNone"), 1365, 800, "white", "gray");
+	DrawText(DialogFindPlayer("OrnateLegCuffsPoseNone"), 1365, 800, "white", "gray");
 	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Closed")) ? "#888888" : "Closed");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Closed.png", 1500, 550);
-	DrawText(DialogFind(Player, "OrnateLegCuffsPoseClosed"), 1610, 800, "white", "gray");
+	DrawText(DialogFindPlayer("OrnateLegCuffsPoseClosed"), 1610, 800, "white", "gray");
 }
 
 // Catches the item extension clicks

@@ -759,6 +759,8 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 					if (!Item.Property) Item.Property = {}
 					if (!Item.Property.MemberNumberList) Item.Property.MemberNumberList = "" + MemberNumber
 				}
+				
+				if (!Item.Property.MemberNumberListKeys && Lock.Asset.Name == "HighSecurityPadlock") Item.Property.MemberNumberListKeys = "" + MemberNumber
 				Item.Property.LockedBy = Lock.Asset.Name;
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
@@ -784,6 +786,7 @@ function InventoryUnlock(C, Item) {
 		delete Item.Property.Hint;
 		delete Item.Property.LockMemberNumber;
 		delete Item.Property.MemberNumberList;
+		delete Item.Property.MemberNumberListKeys;
 		delete Item.Property.CombinationNumber;
 		delete Item.Property.LockPickSeed;
 		CharacterRefresh(C);
@@ -917,6 +920,19 @@ function InventoryCheckLimitedPermission(C, Item, ItemType) {
 	if ((C.ID == 0) || C.IsLoverOfPlayer() || C.IsOwnedByPlayer()) return true;
 	if ((C.ItemPermission < 3) && !(C.WhiteList.indexOf(Player.MemberNumber) < 0)) return true;
 	return false;
+}
+
+/**
+ * Returns TRUE if a specific item / asset is blocked or limited for the player by the character item permissions
+ * @param {Character} C - The character on which we check the permissions
+ * @param {Item} Item - The item being interacted with
+ * @param {String} ItemType - The asset type to scan
+ * @returns {Boolean} - Returns TRUE if the item cannot be used
+ */
+function InventoryBlockedOrLimited(C, Item, ItemType) {
+	let Blocked = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName, ItemType);
+	let Limited = !InventoryCheckLimitedPermission(C, Item, ItemType);
+	return Blocked || Limited;
 }
 
 /**
