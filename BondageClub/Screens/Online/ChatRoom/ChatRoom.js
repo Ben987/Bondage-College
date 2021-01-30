@@ -800,9 +800,9 @@ function ChatRoomStimulationMessage(Context) {
 	
 			if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
 			
-			ChatRoomPinkFlashTime = CurrentTime + (Math.random() + arousalAmount/2.4) * 500
+			ChatRoomPinkFlashTime = CommonTime() + (Math.random() + arousalAmount/2.4) * 500
 			
-			CharacterSetFacialExpression(Player, "Blush", "VeryHigh", Math.ceil((ChatRoomPinkFlashTime - CurrentTime)/250));
+			CharacterSetFacialExpression(Player, "Blush", "VeryHigh", Math.ceil((ChatRoomPinkFlashTime - CommonTime())/250));
 			
 			
 			var index = Math.floor(Math.random() * 3)
@@ -941,8 +941,8 @@ function ChatRoomRun() {
 		}
 	}
 	
-	if ((Player.ImmersionSettings != null && Player.GraphicsSettings != null) && (Player.ImmersionSettings.StimulationEvents && Player.GraphicsSettings.StimulationFlash) && ChatRoomPinkFlashTime > CurrentTime) {
-		var FlashTime = ChatRoomPinkFlashTime - CurrentTime // ChatRoomPinkFlashTime is the end of the flash. The flash is brighter based on the distance to the end.
+	if ((Player.ImmersionSettings != null && Player.GraphicsSettings != null) && (Player.ImmersionSettings.StimulationEvents && Player.GraphicsSettings.StimulationFlash) && ChatRoomPinkFlashTime > CommonTime()) {
+		var FlashTime = ChatRoomPinkFlashTime - CommonTime() // ChatRoomPinkFlashTime is the end of the flash. The flash is brighter based on the distance to the end.
 		var PinkFlashAlpha = Math.max(0, Math.min(255, Math.floor(140 * (1 - Math.exp(-FlashTime/2500))))).toString(16);
 		if (PinkFlashAlpha.length < 2) PinkFlashAlpha = "0" + PinkFlashAlpha
 			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6) ||
