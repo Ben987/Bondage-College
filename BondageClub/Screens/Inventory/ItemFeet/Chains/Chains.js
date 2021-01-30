@@ -84,7 +84,7 @@ function InventoryItemFeetChainsValidate(C, Option) {
 	if (Option.Prerequisite != null && !InventoryAllow(C, Option.Prerequisite, true)) {
 		Allowed = DialogText;
 	} else if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		Allowed = DialogFind(Player, "CantChangeWhileLocked");
+		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	}
 
 	return Allowed;

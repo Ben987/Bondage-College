@@ -112,7 +112,7 @@ function ExtendedItemLoad(Options, DialogKey) {
 
 	if (ExtendedItemOffsets[ExtendedItemOffsetKey()] == null) ExtendedItemSetOffset(0);
 
-	DialogExtendedMessage = DialogFind(Player, DialogKey);
+	DialogExtendedMessage = DialogFindPlayer(DialogKey);
 }
 
 /**
@@ -142,34 +142,35 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 	}
 	
 	// Draw the header and item
-	DrawRect(1387, 55, 225, 275, "white");
-	DrawImageResize("Assets/" + Asset.Group.Family + "/" + Asset.DynamicGroupName + "/Preview/" + Asset.Name + ".png", 1389, 57, 221, 221);
-	DrawTextFit(Asset.Description, 1500, 310, 221, "black");
+	DrawAssetPreview(1387, 55, Asset);
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 
 	// Draw the possible variants and their requirements, arranged based on the number per page
-	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
-		var PageOffset = I - ItemOptionsOffset;
-		var X = XYPositions[OptionsPerPage][PageOffset][0];
-		var Y = XYPositions[OptionsPerPage][PageOffset][1];
-		
-		var Option = Options[I];
-		var Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
-		var FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, IsSelfBondage);
-		var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
-		var Blocked = InventoryIsPermissionBlocked(C, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
-		var Limited = !InventoryCheckLimitedPermission(C, DialogFocusItem, Option.Property.Type);
-		var PlayerBlocked = InventoryIsPermissionBlocked(Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
-		var PlayerLimited = InventoryIsPermissionLimited(Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
-		var Color = ExtendedItemPermissionMode ? ((C.ID == 0 && IsSelected) || Option.Property.Type == null ? "#888888" : PlayerBlocked ? Hover ? "red" : "pink" : PlayerLimited ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") : (IsSelected ? "#888888" : (Blocked || Limited) ? "Red" : FailSkillCheck ? "Pink" : Hover ? "Cyan" : "White");
+    for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
+        var PageOffset = I - ItemOptionsOffset;
+        var X = XYPositions[OptionsPerPage][PageOffset][0];
+        var Y = XYPositions[OptionsPerPage][PageOffset][1];
+
+        var Option = Options[I];
+        var Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
+        var FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, IsSelfBondage);
+        var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
+        var Blocked = InventoryIsPermissionBlocked(C, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
+        var Limited = !InventoryCheckLimitedPermission(C, DialogFocusItem, Option.Property.Type);
+        var PlayerBlocked = InventoryIsPermissionBlocked(Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
+        var PlayerLimited = InventoryIsPermissionLimited(Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
+        var Color = ExtendedItemPermissionMode ? ((C.ID == 0 && IsSelected) || Option.Property.Type == null ? "#888888" : PlayerBlocked ? Hover ? "red" : "pink" : PlayerLimited ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") : (IsSelected ? "#888888" : (Blocked || Limited) ? "Red" : FailSkillCheck ? "Pink" : Hover ? "Cyan" : "White");
 
 		DrawButton(X, Y, 225, 55 + ImageHeight, "", Color, null, null, IsSelected);
 		if (ShowImages) DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X + 2, Y);
-		DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
+		DrawTextFit(DialogFindPlayer(DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
+		if (ControllerActive == true) {
+			setButton(X + 112, Y + 30 + ImageHeight);
+		}
 	}
 	
 	// Permission mode toggle is always available
-	DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
+	DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFindPlayer(ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 }
 
 /**
@@ -341,12 +342,12 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 	if (IsSelfBondage) {
 		let RequiredLevel = Option.SelfBondageLevel || Math.max(DialogFocusItem.Asset.SelfBondage, Option.BondageLevel);
 		if (SkillGetLevelReal(Player, "SelfBondage") < RequiredLevel) {
-			return DialogFind(Player, "RequireSelfBondage" + RequiredLevel);
+			return DialogFindPlayer("RequireSelfBondage" + RequiredLevel);
 		}
 	} else {
 		let RequiredLevel = Option.BondageLevel;
 		if (SkillGetLevelReal(Player, "Bondage") < RequiredLevel) {
-			return DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", RequiredLevel);
+			return DialogFindPlayer("RequireBondageLevel").replace("ReqLevel", RequiredLevel);
 		}
 	}
 
@@ -365,7 +366,7 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 	} else {
 		const OldEffect= DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Effect;
 		if (OldEffect && OldEffect.includes("Lock") && Option.Property.AllowLock === false) {
-			DialogExtendedMessage = DialogFind(Player, "ExtendedItemUnlockBeforeChange");
+			DialogExtendedMessage = DialogFindPlayer("ExtendedItemUnlockBeforeChange");
 			return DialogExtendedMessage;
 		}
 	}

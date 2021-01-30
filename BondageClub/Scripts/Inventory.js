@@ -785,6 +785,7 @@ function InventoryUnlock(C, Item) {
 		delete Item.Property.LockMemberNumber;
 		delete Item.Property.MemberNumberList;
 		delete Item.Property.CombinationNumber;
+		delete Item.Property.LockPickSeed;
 		CharacterRefresh(C);
 	}
 }

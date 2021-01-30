@@ -421,6 +421,7 @@ function LoginResponse(C) {
 			Player.ArousalSettings = C.ArousalSettings;
 			Player.OnlineSettings = C.OnlineSettings;
 			Player.OnlineSharedSettings = C.OnlineSharedSettings;
+			Player.ControllerSettings = C.ControllerSettings;
 			Player.GraphicsSettings = C.GraphicsSettings;
 			Player.NotificationSettings = C.NotificationSettings;
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;

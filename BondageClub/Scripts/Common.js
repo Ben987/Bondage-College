@@ -12,8 +12,8 @@ var CutsceneStage = 0;
 var Notifications = {};
 
 /**
- * A map of keys to common font stack definitions. Each stack definition is a
- * two-item array whose first item is an ordered list of fonts, and whose
+ * A map of keys to common font stack definitions. Each stack definition is a	
+ * two-item array whose first item is an ordered list of fonts, and whose	
  * second item is the generic fallback font family (e.g. sans-serif, serif,
  * etc.)
  * @constant
@@ -230,9 +230,16 @@ function CommonKeyDown() {
 	if (CurrentCharacter == null) {
 		if (typeof window[CurrentScreen + "KeyDown"] === "function")
 			CommonDynamicFunction(CurrentScreen + "KeyDown()");
+		if (ControllerActive == true) {
+			ControllerSupportKeyDown();
+		}
 	}
-	else
+	else {
 		DialogKeyDown();
+		if (ControllerActive == true) {
+			ControllerSupportKeyDown();
+		}
+	}
 }
 
 /**
@@ -342,6 +349,9 @@ function CommonSetScreen(NewModule, NewScreen) {
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
 		CommonDynamicFunction(CurrentScreen + "Load()");
+	if (ControllerActive == true) {
+		ClearButtons();
+	}
 }
 
 /**

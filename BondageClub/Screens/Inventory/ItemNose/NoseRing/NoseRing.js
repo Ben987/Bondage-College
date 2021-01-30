@@ -108,7 +108,7 @@ function InventoryItemNoseNoseRingValidate(C, Option) {
 		case "ChainLong":
 		case "Leash":
 			if (C.Pose.indexOf("Suspension") >= 0) {
-				ChainShortPrerequisites = DialogFind(Player, "RemoveSuspensionForItem");
+				ChainShortPrerequisites = DialogFindPlayer("RemoveSuspensionForItem");
 			} // if
 			break;
 	} // switch

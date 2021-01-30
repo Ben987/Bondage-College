@@ -41,8 +41,10 @@ var DialogSortOrderBlocked = 5;
 var DialogSelfMenuSelected = null;
 var DialogLeaveDueToItem = false; // This allows dynamic items to call DialogLeave() without crashing the game
 
+var DialogLockPickItem = null;
 var DialogLockPickOrder = null;
 var DialogLockPickSet = null;
+var DialogLockPickSetFalse = null;
 var DialogLockPickOffset = null;
 var DialogLockPickOffsetTarget = null;
 var DialogLockPickImpossiblePins = null;
@@ -54,13 +56,18 @@ var DialogLockPickProgressChallenge = 0;
 var DialogLockPickProgressMaxTries = 0;
 var DialogLockPickProgressCurrentTries = 0;
 var DialogLockPickSuccessTime = 0;
+var DialogLockPickFailTime = 0;
 var DialogLockPickArousalTick = 0;
 var DialogLockPickArousalTickTime = 12000;
 var DialogLockPickArousalText = ""
+var DialogLockPickFailTimeout = 30000
 
 var DialogLockMenu = false
 var DialogLentLockpicks = false
+var DialogLockPickTotalTries = 0
 
+/** @type {Map<string, string>} */
+var PlayerDialog = new Map();
 
 
 /**
@@ -644,6 +651,8 @@ function DialogMenuButtonBuild(C) {
 		// Pushes all valid main buttons, based on if the player is restrained, has a blocked group, has the key, etc.
 		var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
 		var IsGroupBlocked = InventoryGroupIsBlocked(C);
+		var CanAccessLockpicks = Player.CanInteract() || Player.CanWalk() // If the character can access her tools. Maybe in the future you will be able to hide a lockpick in your panties :>
+		
 
 		if (DialogLockMenu) {
 			DialogMenuButton.push("LockCancel");
@@ -654,7 +663,7 @@ function DialogMenuButtonBuild(C) {
 			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && (C.ID == 0 || (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf))) {
 				if (DialogLentLockpicks) 
 					DialogMenuButton.push("PickLock");
-				else
+				else if (CanAccessLockpicks)
 					for (let I = 0; I < Player.Inventory.length; I++)
 						if (Player.Inventory[I].Name == "Lockpicks") {
 							DialogMenuButton.push("PickLock");
@@ -838,17 +847,17 @@ function DialogActivePoseMenuBuild() {
  * @returns {string} - The appropriate dialog option
  */
 function DialogProgressGetOperation(C, PrevItem, NextItem) {
-	if ((PrevItem != null) && (NextItem != null)) return DialogFind(Player, "Swapping");
-	if ((C.ID == 0) && (PrevItem != null) && (SkillGetRatio("Evasion") != 1)) return DialogFind(Player, "Using" + (SkillGetRatio("Evasion") * 100).toString());
-	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(C, PrevItem)) return DialogFind(Player, "Struggling");
-	if ((PrevItem != null) && !Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Block", true)) return DialogFind(Player, "Struggling");
-	if (InventoryItemHasEffect(PrevItem, "Lock", true)) return DialogFind(Player, "Unlocking");
-	if ((PrevItem != null) && InventoryItemHasEffect(PrevItem, "Mounted", true)) return DialogFind(Player, "Dismounting");
-	if ((PrevItem != null) && InventoryItemHasEffect(PrevItem, "Enclose", true)) return DialogFind(Player, "Escaping");
-	if (PrevItem != null) return DialogFind(Player, "Removing");
-	if ((PrevItem == null) && (NextItem != null) && (SkillGetRatio("Bondage") != 1)) return DialogFind(Player, "Using" + (SkillGetRatio("Bondage") * 100).toString());
-	if (InventoryItemHasEffect(NextItem, "Lock", true)) return DialogFind(Player, "Locking");
-	if ((PrevItem == null) && (NextItem != null)) return DialogFind(Player, "Adding");
+	if ((PrevItem != null) && (NextItem != null)) return DialogFindPlayer("Swapping");
+	if ((C.ID == 0) && (PrevItem != null) && (SkillGetRatio("Evasion") != 1)) return DialogFindPlayer("Using" + (SkillGetRatio("Evasion") * 100).toString());
+	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(C, PrevItem)) return DialogFindPlayer("Struggling");
+	if ((PrevItem != null) && !Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Block", true)) return DialogFindPlayer("Struggling");
+	if (InventoryItemHasEffect(PrevItem, "Lock", true)) return DialogFindPlayer("Unlocking");
+	if ((PrevItem != null) && InventoryItemHasEffect(PrevItem, "Mounted", true)) return DialogFindPlayer("Dismounting");
+	if ((PrevItem != null) && InventoryItemHasEffect(PrevItem, "Enclose", true)) return DialogFindPlayer("Escaping");
+	if (PrevItem != null) return DialogFindPlayer("Removing");
+	if ((PrevItem == null) && (NextItem != null) && (SkillGetRatio("Bondage") != 1)) return DialogFindPlayer("Using" + (SkillGetRatio("Bondage") * 100).toString());
+	if (InventoryItemHasEffect(NextItem, "Lock", true)) return DialogFindPlayer("Locking");
+	if ((PrevItem == null) && (NextItem != null)) return DialogFindPlayer("Adding");
 	return "...";
 }
 
@@ -862,9 +871,9 @@ function DialogProgressGetOperation(C, PrevItem, NextItem) {
 function DialogLockPickProgressGetOperation(C, Item) {
 	var lock = InventoryGetLock(Item)
 	if ((Item != null && lock != null)) {
-		if (lock.Name == "CombinationPadlock" || lock.Name == "PasswordPadlock") return DialogFind(Player, "Decoding");
-		if (Item.Asset.Name.indexOf("Futuristic") >= 0 || Item.Asset.Name.indexOf("Interactive") >= 0) return DialogFind(Player, "Hacking");
-		return DialogFind(Player, "Picking");
+		if (lock.Name == "CombinationPadlock" || lock.Name == "PasswordPadlock") return DialogFindPlayer("Decoding");
+		if (Item.Asset.Name.indexOf("Futuristic") >= 0 || Item.Asset.Name.indexOf("Interactive") >= 0) return DialogFindPlayer("Hacking");
+		return DialogFindPlayer("Picking");
 	}
 	return "...";
 }
@@ -888,7 +897,7 @@ function DialogStruggle(Reverse) {
 	if (DialogProgress < 0) DialogProgress = 0;
 	if ((DialogProgress >= 100) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgress = 99;
 	if (!Reverse) DialogProgressStruggleCount++;
-	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFind(Player, "Impossible");
+	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFindPlayer("Impossible");
 
 	// At 15 hit: low blush, 50: Medium and 125: High
 	if (DialogAllowBlush && !Reverse) {
@@ -999,6 +1008,9 @@ function DialogLockPickProgressStart(C, Item) {
 
 	DialogLockPickArousalText = ""
 	DialogLockPickArousalTick = 0
+	if (Item) {
+		DialogLockPickItem = Item
+	}
 
 	var lock = InventoryGetLock(Item)
 	var LockRating = 1
@@ -1074,23 +1086,27 @@ function DialogLockPickProgressStart(C, Item) {
 		// Prepares the progress bar and timer
 		DialogLockPickOrder = [];
 		DialogLockPickSet = [];
+		DialogLockPickSetFalse = [];
 		DialogLockPickOffset = [];
 		DialogLockPickOffsetTarget = [];
 		DialogLockPickImpossiblePins = [];
 		DialogLockPickProgressItem = Item;
 		DialogLockPickProgressOperation = DialogLockPickProgressGetOperation(C, Item);
-		DialogLockPickProgressSkill = 8*Math.max(0, -S)*Math.max(0, -S); // Scales squarely, so that more difficult locks provide bigger reward!
-		DialogLockPickProgressSkillLose = Math.min(Math.floor(DialogLockPickProgressSkill/1.5), NumPins*NumPins/2) // Even if you lose you get some reward. You get this no matter what if you run out of tries.
+		DialogLockPickProgressSkill = Math.floor(NumPins*NumPins/2) + Math.floor(Math.max(0, -S)*Math.max(0, -S)); // Scales squarely, so that more difficult locks provide bigger reward!
+		DialogLockPickProgressSkillLose = NumPins*NumPins/2 // Even if you lose you get some reward. You get this no matter what if you run out of tries.
 		DialogLockPickProgressChallenge = S * -1;
 		DialogLockPickProgressCurrentTries = 0;
 		DialogLockPickSuccessTime = 0
+		DialogLockPickFailTime = 0
 		DialogMenuButtonBuild(C);
+		
 		
 		
 		
 		for (let P = 0; P < NumPins; P++) {
 			DialogLockPickOrder.push(P)
 			DialogLockPickSet.push(false)
+			DialogLockPickSetFalse.push(false)
 			DialogLockPickOffset.push(0)
 			DialogLockPickOffsetTarget.push(0)
 		}
@@ -1103,6 +1119,22 @@ function DialogLockPickProgressStart(C, Item) {
 			DialogLockPickOrder[j] = temp;
 		}
 		
+		// Initialize persistent pins
+		if ((Item.Property == null)) Item.Property = {};
+		if (Item.Property != null)
+			if ((Item.Property.LockPickSeed == null) || (typeof Item.Property.LockPickSeed != "string")) {Item.Property.LockPickSeed = CommonConvertArrayToString(DialogLockPickOrder); DialogLockPickTotalTries = 0}
+			else {
+				var conv = CommonConvertStringToArray(Item.Property.LockPickSeed)
+				for (let PP = 0; PP < conv.length; PP++) {
+						if (typeof conv[PP] != "number") {
+							Item.Property.LockPickSeed = CommonConvertArrayToString(DialogLockPickOrder)
+							conv = DialogLockPickOrder
+							break;
+						}
+					}
+				DialogLockPickOrder = conv
+			}
+		
 		var PickingImpossible = false
 		if (S < -6 && LockPickingImpossible) {
 			PickingImpossible = true // if picking is impossible, then some pins will never set
@@ -1113,8 +1145,8 @@ function DialogLockPickProgressStart(C, Item) {
 
 		// At 4 pins we have a base of 16 tries, with 10 maximum permutions possible
 		// At 10 pins we have a base of 40-30 tries, with 55 maximum permutions possible
-		var NumTries = Math.floor(Math.max(NumPins * (2.25 - BondageLevel/10),
-				NumPins * (4 - BondageLevel/10) - Math.max(0, DialogLockPickProgressChallenge*NumPins/4) - BondageLevel/2))
+		var NumTries = Math.max(Math.floor(NumPins * (1.5 - 0.3*BondageLevel/10)),
+				Math.ceil(NumPins * (3.25 - BondageLevel/10) - Math.max(0, (DialogLockPickProgressChallenge + BondageLevel/2)*1.5)))
 			    // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
 				// negative skill of 6 subtracts 12 from all locks
 	
@@ -1343,7 +1375,7 @@ function DialogPublishAction(C, ClickItem) {
 			}
 			else {
 				var intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
-				var D = (DialogFind(Player, TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacterName", C.Name);
+				var D = (DialogFindPlayer(TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacterName", C.Name);
 				if (D != "") {
 					InventoryExpressionTrigger(C, ClickItem);
 					C.CurrentDialog = "(" + D + ")";
@@ -1675,7 +1707,7 @@ function DialogFindNextSubMenu() {
  */
 function DialogSetText(NewText) {
 	DialogTextDefaultTimer = CommonTime() + 5000;
-	DialogText = DialogFind(Player, NewText);
+	DialogText = DialogFindPlayer(NewText);
 }
 
 /**
@@ -1731,14 +1763,14 @@ function DialogDrawActivityMenu(C) {
 
 	// Gets the default text that will reset after 5 seconds
 	var SelectedGroup = (Player.FocusGroup != null) ? Player.FocusGroup.Description : CurrentCharacter.FocusGroup.Description;
-	if (DialogTextDefault == "") DialogTextDefault = DialogFind(Player, "SelectActivityGroup").replace("GroupName", SelectedGroup.toLowerCase());
+	if (DialogTextDefault == "") DialogTextDefault = DialogFindPlayer("SelectActivityGroup").replace("GroupName", SelectedGroup.toLowerCase());
 	if (DialogTextDefaultTimer < CommonTime()) DialogText = DialogTextDefault;
 
 	// Draws the top menu text & icons
 	if (DialogMenuButton == null) DialogMenuButtonBuild((Player.FocusGroup != null) ? Player : CurrentCharacter);
 	if (DialogMenuButton.length < 8) DrawTextWrap(DialogText, 1000, 0, 975 - DialogMenuButton.length * 110, 125, "White");
 	for (let I = DialogMenuButton.length - 1; I >= 0; I--)
-		DrawButton(1885 - I * 110, 15, 90, 90, "", "White", "Icons/" + DialogMenuButton[I] + ".png", DialogFind(Player, DialogMenuButton[I]));
+		DrawButton(1885 - I * 110, 15, 90, 90, "", "White", "Icons/" + DialogMenuButton[I] + ".png", DialogFindPlayer(DialogMenuButton[I]));
 
 	// Prepares a 4x3 square selection with all activities in the buffer
 	var X = 1000;
@@ -1766,9 +1798,9 @@ function DialogDrawActivityMenu(C) {
 function DialogDrawStruggleProgress(C) {
 	// Draw one or both items
 	if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) {
-		DrawItemPreview(1200, 250, DialogProgressPrevItem);
-		DrawItemPreview(1575, 250, DialogProgressNextItem);
-	} else DrawItemPreview(1387, 250, (DialogProgressPrevItem != null) ? DialogProgressPrevItem : DialogProgressNextItem);
+		DrawAssetPreview(1200, 250, DialogProgressPrevItem.Asset);
+		DrawAssetPreview(1575, 250, DialogProgressNextItem.Asset);
+	} else DrawAssetPreview(1387, 250, (DialogProgressPrevItem != null) ? DialogProgressPrevItem.Asset : DialogProgressNextItem.Asset);
 
 	// Add or subtract to the automatic progression, doesn't move in color picking mode
 	DialogProgress = DialogProgress + DialogProgressAuto;
@@ -1786,10 +1818,10 @@ function DialogDrawStruggleProgress(C) {
 	}
 
 	// Draw the current operation and progress
-	if (DialogProgressAuto < 0) DrawText(DialogFind(Player, "Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
+	if (DialogProgressAuto < 0) DrawText(DialogFindPlayer("Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
 	DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
 	DrawProgressBar(1200, 700, 600, 100, DialogProgress);
-	DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
+	DrawText(DialogFindPlayer((CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
 
 	// If the operation is completed
 	if (DialogProgress >= 100) {
@@ -1851,7 +1883,9 @@ function DialogLockPickClick(C) {
 	var PinHeight = 200
 	var skill = Math.min(10, SkillGetWithRatio("LockPicking"))
 	var current_pins = DialogLockPickSet.filter(x => x==true).length
-	if (current_pins < DialogLockPickSet.length)
+	var false_set_chance = 0.75 - 0.15 * skill/10
+	var unset_false_set_chance = 0.1 + 0.1 * skill/10
+	if (current_pins < DialogLockPickSet.length && LogValue("FailedLockPick", "LockPick") < CurrentTime)
 		for (let P = 0; P < DialogLockPickSet.length; P++) {
 			if (!DialogLockPickSet[P]) {
 				var XX = X - PinWidth/2 + (0.5-DialogLockPickSet.length/2 + P) * PinSpacing
@@ -1859,13 +1893,35 @@ function DialogLockPickClick(C) {
 					if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
 						
 						if (DialogLockPickOrder[current_pins] == P && DialogLockPickImpossiblePins.filter(x => x==P).length == 0) {
+							// Successfully set the pin
 							DialogLockPickSet[P] = true
 							DialogLockPickArousalText = ""; // Reset arousal text
+							// We also unset any false set pins
+							if (current_pins+1 < DialogLockPickOrder.length && DialogLockPickSetFalse[DialogLockPickOrder[current_pins+1]] == true) {
+								DialogLockPickSetFalse[DialogLockPickOrder[current_pins+1]] = false
+								DialogLockPickProgressCurrentTries += 1
+							}
 						} else {
-							DialogLockPickProgressCurrentTries += 1
+							// There is a chance we false set
+							if (Math.random() < false_set_chance) {
+								DialogLockPickSetFalse[P] = true
+							} else if (DialogLockPickSetFalse[P] == false) {
+							// Otherwise: fail
+								DialogLockPickProgressCurrentTries += 1
+								DialogLockPickTotalTries += 1
+							}
+						}
+						if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
+							for (let PP = 0; PP < DialogLockPickSetFalse.length; PP++) {
+								if (P != PP && DialogLockPickSetFalse[PP] == true && Math.random() < unset_false_set_chance) {
+									DialogLockPickSetFalse[PP] = false;
+									DialogLockPickProgressCurrentTries += 1
+									break;
+								}
+							}
 						}
 						var order = Math.max(0, DialogLockPickOrder.indexOf(P)-current_pins)/Math.max(1, DialogLockPickSet.length-current_pins) * (0.25+0.75*skill/10) // At higher skills you can see which pins are later in the order
-						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P]) ? PinHeight : PinHeight*(0.1+0.8*order)
+						DialogLockPickOffsetTarget[P] = (DialogLockPickSet[P] || DialogLockPickSetFalse[P]) ? PinHeight : PinHeight*(0.1+0.8*order)
 						
 						if (DialogLockPickProgressCurrentTries == DialogLockPickProgressMaxTries && DialogLockPickSet.filter(x => x==false).length > 0 ) {
 							SkillProgress("LockPicking", DialogLockPickProgressSkillLose);
@@ -1923,10 +1979,10 @@ function DialogDrawLockpickProgress(C) {
 			else
 				DialogLockPickOffset[P] += 1 + Math.abs(DialogLockPickOffsetTarget[P] - DialogLockPickOffset[P])/4
 		}
-		if (DialogLockPickOffset[P] > DialogLockPickOffsetTarget[P]) {
+		if (DialogLockPickOffset[P] >= DialogLockPickOffsetTarget[P]) {
 			if (DialogLockPickOffsetTarget[P] != 0)
 				DialogLockPickOffset[P] = DialogLockPickOffsetTarget[P]
-			if (DialogLockPickOffsetTarget[P] != PinHeight) {
+			if (DialogLockPickOffsetTarget[P] != PinHeight || (!DialogLockPickSetFalse[P] && !DialogLockPickSet[P])) {
 				DialogLockPickOffsetTarget[P] = 0
 				DialogLockPickOffset[P] -= 1 + Math.abs(DialogLockPickOffsetTarget[P] - DialogLockPickOffset[P])/8
 			}
@@ -1938,19 +1994,38 @@ function DialogDrawLockpickProgress(C) {
 			DrawImageResize("Screens/MiniGame/Lockpick/Arrow.png", XX, Y + 25, PinWidth, PinWidth);
 	}
 
-	
-	DrawText(DialogFind(Player, "LockpickTriesRemaining") + (DialogLockPickProgressMaxTries - DialogLockPickProgressCurrentTries), X, 212, "white");
-	if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries && DialogLockPickSuccessTime == 0) {
-		DrawText(DialogFind(Player, "LockpickFailed"), X, 262, "red");
-	}
-	if (DialogLockPickArousalText != "") {
-		DrawText(DialogLockPickArousalText, X, 170, "pink");
-	}
-		
 
-	DrawText(DialogFind(Player, "LockpickIntro"), X, 800, "white");
-	DrawText(DialogFind(Player, "LockpickIntro2"), X, 850, "white");
-	
+	DrawText(DialogFindPlayer("LockpickTriesRemaining") + (DialogLockPickProgressMaxTries - DialogLockPickProgressCurrentTries), X, 212, "white");
+	if (LogValue("FailedLockPick", "LockPick") > CurrentTime)
+		DrawText(DialogFindPlayer("LockpickFailedTimeout") + TimerToString(LogValue("FailedLockPick", "LockPick") - CurrentTime), X, 262, "red");
+	else {
+		if (DialogLockPickProgressCurrentTries >= DialogLockPickProgressMaxTries && DialogLockPickSuccessTime == 0) {
+			if (DialogLockPickFailTime > 0) {
+				if (DialogLockPickFailTime < CurrentTime) {
+					DialogLockPickFailTime = 0
+					
+					DialogLockPickProgressStart(C, DialogLockPickItem)
+					
+				}
+				else {
+					DrawText(DialogFindPlayer("LockpickFailed"), X, 262, "red");
+				}
+			} else if (Math.random() < 0.25 && DialogLockPickTotalTries > 5) { // DialogLockPickTotalTries is meant to give players a bit of breathing room so they don't get tired right away
+				LogAdd("FailedLockPick", "LockPick", CurrentTime + DialogLockPickFailTimeout);
+				DialogLockPickFailTime = CurrentTime + DialogLockPickFailTimeout;
+				DialogLockPickTotalTries = 0
+			} else 
+				DialogLockPickFailTime = CurrentTime + 1500
+		}
+		if (DialogLockPickArousalText != "") {
+			DrawText(DialogLockPickArousalText, X, 170, "pink");
+		}
+	}
+
+
+	DrawText(DialogFindPlayer("LockpickIntro"), X, 800, "white");
+	DrawText(DialogFindPlayer("LockpickIntro2"), X, 850, "white");
+
 	if (DialogLockPickSuccessTime != 0) {
 		if (CurrentTime > DialogLockPickSuccessTime) {
 			DialogLockPickSuccessTime = 0
@@ -1985,9 +2060,9 @@ function DialogDrawLockpickProgress(C) {
 				if (DialogLockPickArousalTick - CurrentTime > CurrentTime + DialogLockPickArousalTickTime*arousalmaxtime) {
 					DialogLockPickArousalTick = CurrentTime + DialogLockPickArousalTickTime*arousalmaxtime // In case it gets set out way too far
 				}
-				
+
 				if (DialogLockPickArousalTick > 0 && DialogLockPickSet.filter(x => x==true).length > 0) {
-					DialogLockPickArousalText = DialogFind(Player, "LockPickArousal")
+					DialogLockPickArousalText = DialogFindPlayer("LockPickArousal")
 					if (DialogLockPickSet.filter(x => x==true).length < DialogLockPickSet.length) {
 						for (let P = DialogLockPickOrder.length; P >= 0; P--) {
 							if (DialogLockPickSet[DialogLockPickOrder[P]] == true) {
@@ -2029,16 +2104,16 @@ function DialogDrawItemMenu(C) {
 	}
 
 	// Gets the default text that will reset after 5 seconds
-	if (DialogTextDefault == "") DialogTextDefault = DialogFind(Player, "SelectItemGroup").replace("GroupName", C.FocusGroup.Description.toLowerCase());
+	if (DialogTextDefault == "") DialogTextDefault = DialogFindPlayer("SelectItemGroup").replace("GroupName", C.FocusGroup.Description.toLowerCase());
 	if (DialogTextDefaultTimer < CommonTime()) DialogText = DialogTextDefault;
 
 	// Draws the top menu text & icons
 	if (DialogMenuButton == null) DialogMenuButtonBuild(CharacterGetCurrent());
-	if ((DialogColor == null) && Player.CanInteract() && (DialogProgress < 0 && !DialogLockPickOrder) && !InventoryGroupIsBlocked(C) && DialogMenuButton.length < 8) DrawTextWrap((!DialogItemPermissionMode) ? DialogText : DialogFind(Player, "DialogPermissionMode"), 1000, 0, 975 - DialogMenuButton.length * 110, 125, "White", null, 3);
+	if ((DialogColor == null) && Player.CanInteract() && (DialogProgress < 0 && !DialogLockPickOrder) && !InventoryGroupIsBlocked(C) && DialogMenuButton.length < 8) DrawTextWrap((!DialogItemPermissionMode) ? DialogText : DialogFindPlayer("DialogPermissionMode"), 1000, 0, 975 - DialogMenuButton.length * 110, 125, "White", null, 3);
 	for (let I = DialogMenuButton.length - 1; I >= 0; I--) {
 		let ButtonColor = (DialogMenuButton[I] == "ColorPick") && (DialogColorSelect != null) ? DialogColorSelect : "White";
 		let ButtonImage = DialogMenuButton[I] == "ColorPick" && !ItemColorIsSimple(FocusItem) ? "MultiColorPick" : DialogMenuButton[I];
-		let ButtonHoverText = (DialogColor == null) ? DialogFind(Player, DialogMenuButton[I]) : null;
+		let ButtonHoverText = (DialogColor == null) ? DialogFindPlayer(DialogMenuButton[I]) : null;
 		DrawButton(1885 - I * 110, 15, 90, 90, "", ButtonColor, "Icons/" + ButtonImage + ".png", ButtonHoverText);
 	}
 	
@@ -2059,7 +2134,7 @@ function DialogDrawItemMenu(C) {
 		if (!DialogItemPermissionMode && InventoryGroupIsBlocked(C)) {
 			var tempDialogInventory = [];
 			for (let I = 0; I < DialogInventory.length; I++) {
-				if ((DialogInventory[I].Asset.Name == "SpankingToys")) tempDialogInventory.push(DialogInventory[I]);
+				if ((DialogInventory[I].Asset.Name == "SpankingToys") && (C.FocusGroup.Name != "ItemHands")) tempDialogInventory.push(DialogInventory[I]);
 			}
 			if (tempDialogInventory.length > 0) {
 				for (let I = 0; I < DialogInventory.length; I++) {
@@ -2073,20 +2148,15 @@ function DialogDrawItemMenu(C) {
 		var X = 1000;
 		var Y = 125;
 		for (let I = DialogInventoryOffset; (I < DialogInventory.length) && (I < DialogInventoryOffset + 12); I++) {
-			var Item = DialogInventory[I];
-			var Hover = (MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile;
-			var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
-			var Limit = InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name);
-			var Unusable = DialogInventory[I].SortOrder.startsWith(DialogSortOrderUnusable.toString());
-			var Blocked = DialogInventory[I].SortOrder.startsWith(DialogSortOrderBlocked.toString());
-			DrawRect(X, Y, 225, 275, (DialogItemPermissionMode && C.ID == 0) ?
-				(Item.Worn ? "gray" : Block ? Hover ? "red" : "pink" : Limit ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") :
-				((Hover && !Blocked) ? "cyan" : Item.Worn ? "pink" : Blocked ? "red" : Unusable ? "gray" : "white"));
-			if (!CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name))
-				if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
-				else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
-			else DrawImageResize("Icons/HiddenItem.png", X + 2, Y + 2, 221, 221);
-			DrawTextFit(Item.Asset.DynamicDescription(Player), X + 112, Y + 250, 221, "black");
+			const Item = DialogInventory[I];
+			const Hover = MouseIn(X, Y, 225, 275) && !CommonIsMobile;
+			const Background = AppearanceGetPreviewImageColor(C, Item, Hover);
+			const Vibrating = Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true);
+			const Hidden = CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name);
+
+			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.DynamicDescription(Player), { Background });
+			else DrawAssetPreview(X, Y, Item.Asset, { C: Player, Background, Vibrating });
+
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;
 			if (X > 1800) {
@@ -2096,7 +2166,7 @@ function DialogDrawItemMenu(C) {
 		}
 
 		if (DialogInventory.length > 0) {
-			if (!DialogItemPermissionMode && InventoryGroupIsBlocked(C)) DrawText(DialogFind(Player, "ZoneBlocked"), 1500, 700, "White", "Black");
+			if (!DialogItemPermissionMode && InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
 			return;
 		}
 	}
@@ -2112,25 +2182,31 @@ function DialogDrawItemMenu(C) {
 		return;
 	}
 
-	
-	
-	
-	
+
+
+
+
 
 	// If we must draw the current item from the group
 	if (FocusItem != null) {
-		if (InventoryItemHasEffect(FocusItem, "Vibrating", true)) {
-			DrawRect(1387, 250, 225, 275, "white");
-			DrawImageResize("Assets/" + FocusItem.Asset.Group.Family + "/" + FocusItem.Asset.DynamicGroupName + "/Preview/" + FocusItem.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 2, 252 + Math.floor(Math.random() * 3) - 2, 221, 221);
-			DrawTextFit(FocusItem.Asset.Description, 1497, 500, 221, "black");
-		}
-		else DrawItemPreview(1387, 250, FocusItem);
+		const Vibrating = InventoryItemHasEffect(FocusItem, "Vibrating", true);
+		DrawAssetPreview(1387, 250, FocusItem.Asset, { C, Vibrating });
 	}
 
 	// Show the no access text
-	if (InventoryGroupIsBlocked(C)) DrawText(DialogFind(Player, "ZoneBlocked"), 1500, 700, "White", "Black");
-	else DrawText(DialogFind(Player, "AccessBlocked"), 1500, 700, "White", "Black");
+	if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
+	else DrawText(DialogFindPlayer("AccessBlocked"), 1500, 700, "White", "Black");
 
+}
+
+/**
+ * Searches in the dialog for a specific stage keyword and returns that dialog option if we find it, error otherwise
+ * @param {string} KeyWord - The key word to search for
+ * @returns {string}
+ */
+function DialogFindPlayer(KeyWord) {
+	const res = PlayerDialog.get(KeyWord);
+	return res !== undefined ? res : `MISSING PLAYER DIALOG: ${KeyWord}`;
 }
 
 /**
@@ -2177,14 +2253,16 @@ function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
  * @returns {void} - Nothing
  */
 function DialogDraw() {
-
+	if (ControllerActive == true) {
+		ClearButtons();
+	}
 	// Draw both the player and the interaction character
 	if (CurrentCharacter.ID != 0) DrawCharacter(Player, 0, 0, 1);
 	DrawCharacter(CurrentCharacter, 500, 0, 1);
 
 	// Draw the menu for facial expressions if the player clicked on herself
 	if (CurrentCharacter.ID == 0) {
-		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DrawButton(420, 50, 90, 90, "", "White", "Icons/Next.png", DialogFind(Player, "NextPage"));
+		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DrawButton(420, 50, 90, 90, "", "White", "Icons/Next.png", DialogFindPlayer("NextPage"));
 		if (!DialogSelfMenuSelected)
 			DialogDrawExpressionMenu();
 		else
@@ -2207,7 +2285,7 @@ function DialogDraw() {
 
 		// Draw the 'Up' reposition button if some zones are offscreen
 		if (CurrentCharacter != null && CurrentCharacter.HeightModifier != null && CurrentCharacter.HeightModifier < -90 && CurrentCharacter.FocusGroup != null)
-			DrawButton(510, 50, 90, 90, "", "White", "Icons/Up.png", DialogFind(Player, "UpPosition"));
+			DrawButton(510, 50, 90, 90, "", "White", "Icons/Up.png", DialogFindPlayer("UpPosition"));
 
 	} else {
 
@@ -2239,11 +2317,11 @@ function DialogDraw() {
 function DialogDrawExpressionMenu() {
 
 	// Draw the expression groups
-	DrawText(DialogFind(Player, "FacialExpression"), 165, 25, "White", "Black");
+	DrawText(DialogFindPlayer("FacialExpression"), 165, 25, "White", "Black");
 	if (typeof DialogFacialExpressionsSelected === 'number' && DialogFacialExpressionsSelected >= 0 && DialogFacialExpressionsSelected < DialogFacialExpressions.length && DialogFacialExpressions[DialogFacialExpressionsSelected].Appearance.Asset.Group.AllowColorize && DialogFacialExpressions[DialogFacialExpressionsSelected].Group !== "Eyes") {
-		DrawButton(320, 50, 90, 90, "", "White", "Icons/ColorPick.png", DialogFind(Player, "ColorChange"));
+		DrawButton(320, 50, 90, 90, "", "White", "Icons/ColorPick.png", DialogFindPlayer("ColorChange"));
 	}
-	DrawButton(220, 50, 90, 90, "", "White", "Icons/BlindToggle" + DialogFacialExpressionsSelectedBlindnessLevel + ".png", DialogFind(Player, "BlindToggleFacialExpressions"));
+	DrawButton(220, 50, 90, 90, "", "White", "Icons/BlindToggle" + DialogFacialExpressionsSelectedBlindnessLevel + ".png", DialogFindPlayer("BlindToggleFacialExpressions"));
 	const Expression = WardrobeGetExpression(Player);
 	const Eye1Closed = Expression.Eyes === "Closed";
 	const Eye2Closed = Expression.Eyes2 === "Closed";
@@ -2251,8 +2329,8 @@ function DialogDrawExpressionMenu() {
 	if (Eye1Closed && Eye2Closed) WinkIcon = "WinkBoth";
 	else if (Eye1Closed) WinkIcon = "WinkR";
 	else if (Eye2Closed) WinkIcon = "WinkL";
-	DrawButton(120, 50, 90, 90, "", "White", `Icons/${WinkIcon}.png`, DialogFind(Player, "WinkFacialExpressions"));
-	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearFacialExpressions"));
+	DrawButton(120, 50, 90, 90, "", "White", `Icons/${WinkIcon}.png`, DialogFindPlayer("WinkFacialExpressions"));
+	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFindPlayer("ClearFacialExpressions"));
 	if (!DialogFacialExpressions || !DialogFacialExpressions.length) DialogFacialExpressionsBuild();
 	for (let I = 0; I < DialogFacialExpressions.length; I++) {
 		const FE = DialogFacialExpressions[I];
@@ -2346,7 +2424,7 @@ function DialogClickExpressionMenu() {
  */
 function DialogDrawPoseMenu() { 
 	// Draw the pose groups
-	DrawText(DialogFind(Player, "PoseMenu"), 250, 100, "White", "Black");
+	DrawText(DialogFindPlayer("PoseMenu"), 250, 100, "White", "Black");
 
 	if (!DialogActivePoses || !DialogActivePoses.length) DialogActivePoseMenuBuild();
 	
@@ -2415,7 +2493,7 @@ function DialogViewOwnerRules() {
  */
 function DialogDrawOwnerRulesMenu() { 
 	// Draw the pose groups
-	DrawText(DialogFind(Player, "OwnerRulesMenu"), 230, 100, "White", "Black");
+	DrawText(DialogFindPlayer("OwnerRulesMenu"), 230, 100, "White", "Black");
 
 	var ToDisplay = [];
 	
@@ -2430,7 +2508,7 @@ function DialogDrawOwnerRulesMenu() {
 	
 	for (let I = 0; I < ToDisplay.length; I++) { 
 		var OffsetY = 230 + 100 * I;
-		DrawText(DialogFind(Player, "OwnerRulesMenu" + ToDisplay[I].Tag) + (ToDisplay[I].Value ?  " " + TimerToString(ToDisplay[I].Value - CurrentTime) : ""), 250, OffsetY, "White", "Black");
+		DrawText(DialogFindPlayer("OwnerRulesMenu" + ToDisplay[I].Tag) + (ToDisplay[I].Value ?  " " + TimerToString(ToDisplay[I].Value - CurrentTime) : ""), 250, OffsetY, "White", "Black");
 	}
 }
 

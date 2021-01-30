@@ -49,7 +49,7 @@ function InventoryItemArmsCeilingShacklesClick() {
  * @returns {void} - Nothing
  */
 function InventoryItemArmsCeilingShacklesPublishAction(C, Option, PreviousOption) {
-	var msg = "CeilingShacklesRestrain" + Option.Name;
+	var msg = "CeilingShacklesRestrain" + (C.Pose.includes("Suspension") ? "Suspension" : "") + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber }
