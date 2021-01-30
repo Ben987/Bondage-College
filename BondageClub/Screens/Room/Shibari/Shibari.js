@@ -150,7 +150,7 @@ function ShibariRun() {
 	DrawCharacter(ShibariStudent, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-	if (Player.CanChange()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png");
+	if (Player.CanChange()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/DressReset.png");
 	if (Player.CanChange()) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Naked.png");
 }
 
