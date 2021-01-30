@@ -557,7 +557,7 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 			return;
 
 	// If the item is blocked, we show it at the end of the list
-	if (InventoryIsPermissionBlocked(C, NewInv.Asset.DynamicName(Player), NewInv.Asset.DynamicGroupName) || !InventoryCheckLimitedPermission(C, NewInv))
+	if (InventoryBlockedOrLimited(C, NewInv))
 		SortOrder = DialogSortOrderBlocked;
 
 	// Creates a new dialog inventory item
@@ -1388,11 +1388,8 @@ function DialogItemClick(ClickItem) {
 		return;
 	}
 
-	// If the item is blocked for that character, we do not use it
-	if (InventoryIsPermissionBlocked(C, ClickItem.Asset.DynamicName(Player), ClickItem.Asset.DynamicGroupName)) return;
-
-	// If the item is limited for that character, based on item permissions
-	if (!InventoryCheckLimitedPermission(C, ClickItem)) return;
+	// If the item is blocked or limited for that character, we do not use it
+	if (InventoryBlockedOrLimited(C, ClickItem)) return;
 
 	// If we must apply a lock to an item (can trigger a daily job)
 	if (DialogItemToLock != null) {

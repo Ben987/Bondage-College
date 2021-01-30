@@ -956,9 +956,6 @@ function AppearanceClick() {
 		for (let I = DialogInventoryOffset; (I < DialogInventory.length) && (I < DialogInventoryOffset + 9); I++) {
 			if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
 				var Item = DialogInventory[I];
-				var Block = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName);
-				var CreatedItem = InventoryItemCreate(C, Item.Asset.Group.Name, Item.Asset.Name);
-				var Limited = !InventoryCheckLimitedPermission(C, CreatedItem);
 				// In permission mode, we toggle the settings for an item
 				if (DialogItemPermissionMode) {
 					
@@ -968,7 +965,7 @@ function AppearanceClick() {
 					InventoryTogglePermission(Item, null);
 					
 				} else {
-					if (Block || Limited) return;
+					if (InventoryBlockedOrLimited(C, Item)) return;
 					if (InventoryAllow(C, Item.Asset.Prerequisite)) {
 						CharacterAppearanceSetItem(C, C.FocusGroup.Name, DialogInventory[I].Asset);
 					} else {

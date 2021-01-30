@@ -21,13 +21,13 @@ function InventoryItemHoodOldGasMaskDraw() {
 	var lensesRebreather = InventoryItemCreate(C, "ItemHoodAddon", "OldGasMaskLensesRebreather");
 
 	var itemBlocked = InventoryGet(C, "ItemHoodAddon") != null;
-	var tube1IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskTube1", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, tube1);
-	var tube2IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskTube2", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, tube2);
-	var rebreatherIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskRebreather", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, rebreather);
-	var lensesIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLenses", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lenses);
-	var lensesTube1IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLensesTube1", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lensesTube1);
-	var lensesTube2IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLensesTube2", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lensesTube2);
-	var lensesRebreatherIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLensesRebreather", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lensesRebreather);
+	var tube1IsBlocked = InventoryBlockedOrLimited(C, tube1);
+	var tube2IsBlocked = InventoryBlockedOrLimited(C, tube2);
+	var rebreatherIsBlocked = InventoryBlockedOrLimited(C, rebreather);
+	var lensesIsBlocked = InventoryBlockedOrLimited(C, lenses);
+	var lensesTube1IsBlocked = InventoryBlockedOrLimited(C, lensesTube1);
+	var lensesTube2IsBlocked = InventoryBlockedOrLimited(C, lensesTube2);
+	var lensesRebreatherIsBlocked = InventoryBlockedOrLimited(C, lensesRebreather);
 
 	DrawButton(1250, 520, 200, 55, DialogFind(Player, "OldGasMaskLenses"), itemBlocked || lensesIsBlocked ? "#888" : "White");
 	DrawButton(1550, 520, 200, 55, DialogFind(Player, "OldGasMaskTubeA"), itemBlocked || tube1IsBlocked ? "#888" : "White");
@@ -73,7 +73,7 @@ function InventoryItemHoodOldGasMaskSetItem(itemName) {
 
 	var item = InventoryItemCreate(C, "ItemHoodAddon", itemName);
 	// Do not continue if the item is blocked by permissions
-	if (InventoryIsPermissionBlocked(C, itemName, "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, item)) return;
+	if (InventoryBlockedOrLimited(C, item)) return;
 	
 	// Wear the item
 	InventoryWear(C, itemName, "ItemHoodAddon", DialogColorSelect);

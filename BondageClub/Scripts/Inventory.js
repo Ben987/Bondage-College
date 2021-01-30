@@ -919,6 +919,19 @@ function InventoryCheckLimitedPermission(C, Item, ItemType) {
 }
 
 /**
+ * Returns TRUE if a specific item / asset is blocked or limited for the player by the character item permissions
+ * @param {Character} C - The character on which we check the permissions
+ * @param {Item} Item - The item being interacted with
+ * @param {String} ItemType - The asset type to scan
+ * @returns {Boolean} - Returns TRUE if the item cannot be used
+ */
+function InventoryBlockedOrLimited(C, Item, ItemType) {
+	let Blocked = InventoryIsPermissionBlocked(C, Item.Asset.DynamicName(Player), Item.Asset.DynamicGroupName, ItemType);
+	let Limited = !InventoryCheckLimitedPermission(C, Item, ItemType);
+	return Blocked || Limited;
+}
+
+/**
  * Returns TRUE if the item is a key, having the effect of unlocking other items
  * @param {Item} Item - The item to validate
  * @returns {Boolean} - TRUE if item is a key
