@@ -31,9 +31,9 @@ function InventoryItemNeckAccessoriesCustomCollarTagDraw() {
     // Tag data
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		ElementPosition("TagText", 1375, 680, 250);
-		DrawButton(1500, 651, 350, 64, DialogFind(Player, "CustomTagText"), ElementValue("TagText").match(InventoryItemNeckAccessoriesCustomCollarTagAllowedChars) ? "White" : "#888", "");
+		DrawButton(1500, 651, 350, 64, DialogFindPlayer("CustomTagText"), ElementValue("TagText").match(InventoryItemNeckAccessoriesCustomCollarTagAllowedChars) ? "White" : "#888", "");
 	} else {
-		DrawText(DialogFind(Player, "SelectCollarNameTagTypeLocked"), 1500, 500, "white", "gray");
+		DrawText(DialogFindPlayer("SelectCollarNameTagTypeLocked"), 1500, 500, "white", "gray");
     }
 }
 

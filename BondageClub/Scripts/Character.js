@@ -167,14 +167,14 @@ function CharacterRandomName(C) {
  */
 function CharacterBuildDialog(C, CSV) {
 
-	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
+	const OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	C.Dialog = [];
 	// For each lines in the file
 	for (let L = 0; L < CSV.length; L++)
 		if ((CSV[L][0] != null) && (CSV[L][0] != "")) {
 
 			// Creates a dialog object
-			var D = {};
+			const D = {};
 			D.Stage = CSV[L][0];
 			if ((CSV[L][1] != null) && (CSV[L][1].trim() != "")) D.NextStage = CSV[L][1];
 			if ((CSV[L][2] != null) && (CSV[L][2].trim() != "")) D.Option = CSV[L][2].replace("DialogCharacterName", C.Name).replace("DialogPlayerName", Player.Name);
@@ -190,6 +190,12 @@ function CharacterBuildDialog(C, CSV) {
 	// Translate the dialog if needed
 	TranslationDialog(C);
 
+	if (C === Player) {
+		for (const D of C.Dialog) {
+			if (typeof D.Result === "string")
+				PlayerDialog.set(D.Stage, D.Result);
+		}
+	}
 }
 
 /**
@@ -1126,7 +1132,7 @@ function CharacterIsEdged(C) {
 		                && Array.isArray(Item.Property.Effect)
 		                && Item.Property.Effect.includes("Vibrating")
 		                && typeof Item.Property.Intensity === "number"
-		                && Item.Property.Intensity >= 0,
+		                && Item.Property.Intensity >= 0
 		);
 
 	// Return true if every vibrating item on an orgasm zone has the "Edged" effect

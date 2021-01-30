@@ -131,7 +131,7 @@ function InventoryItemArmsWebPublishAction(C, Option, PreviousOption) {
 	var NewIndex = InventoryItemArmsWebOptions.indexOf(Option);
 	var PreviousIndex = InventoryItemArmsWebOptions.indexOf(PreviousOption);
 	var msg = "ArmsWebSet" + Option.Name;
-	var ActionDialog = DialogFind(Player, NewIndex > PreviousIndex ? "tightens" : "loosens", "ItemArms");
+	var ActionDialog = DialogFindPlayer(NewIndex > PreviousIndex ? "tightens" : "loosens");
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber },

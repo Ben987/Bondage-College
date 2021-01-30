@@ -220,6 +220,10 @@ function DrawArousalMeter(C, X, Y, Zoom) {
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	if ((C != null) && ((C.ID == 0) || (Player.GetBlindLevel() < 3) || (CurrentScreen == "InformationSheet"))) {
 
+		if (ControllerActive == true) {
+			setButton(X + 100, Y + 200)
+		}
+
 		// If there's a fixed image to draw instead of the character
 		if (C.FixedImage != null) {
 			DrawImageZoomCanvas(C.FixedImage, MainCanvas, 0, 0, 500, 1000, X, Y, 500 * Zoom, 1000 * Zoom);
@@ -355,6 +359,10 @@ function DrawAssetGroupZone(C, Zone, Zoom, X, Y, HeightRatio, Color, Thickness =
 
 		if (FillColor != null) DrawRect(CZ[0], CZ[1], CZ[2], CZ[3], FillColor);
 		DrawEmptyRect(CZ[0], CZ[1], CZ[2], CZ[3], Color, Thickness);
+
+		if (ControllerActive == true) {
+			setButton(Math.round(CZ[0]), Math.round(CZ[1]));
+		}
 	}
 }
 
@@ -651,7 +659,9 @@ function GetWrapTextSize(Text, Width, MaxLine) {
  * @returns {void} - Nothing
  */
 function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) {
-
+	if (ControllerActive == true) {
+		setButton(X, Y);
+	}
 	// Draw the rectangle if we need too
 	if (BackColor != null) {
 		MainCanvas.beginPath();
@@ -780,6 +790,10 @@ function DrawText(Text, X, Y, Color, BackColor) {
  * @returns {void} - Nothing
  */
 function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled) {
+
+	if (ControllerActive == true) {
+		setButton(Left, Top);
+	}
 
 	// Draw the button rectangle (makes the background color cyan if the mouse is over it)
 	MainCanvas.beginPath();
@@ -1057,14 +1071,49 @@ function DrawProcess() {
 }
 
 /**
- * Draws the item preview box
- * @param {number} X - Position of the item on the X axis
- * @param {number} Y - Position of the item on the Y axis
- * @param {Item} Item - The item to draw the preview for
+ * Draws an asset's preview box
+ * @param {number} X - Position of the preview box on the X axis
+ * @param {number} Y - Position of the preview box on the Y axis
+ * @param {Asset} Asset - The asset to draw the preview for
+ * @Param {object} [Options] - Additional optional drawing options
+ * @param {Character} Options.[C] - The character using the item (used to calculate dynamic item descriptions/previews)
+ * @param {string} Options.Description - The preview box description
+ * @param {string} Options.[Background] - The background color to draw the preview box in - defaults to white
+ * @param {string} Options.[Foreground] - The foreground (text) color to draw the description in - defaults to black
+ * @param {boolean} Options.[Vibrating] - Whether or not to add vibration effects to the item - defaults to false
+ * @param {boolean} Options.[Border] - Whether or not to draw a border around the preview box
  * @returns {void} - Nothing
  */
-function DrawItemPreview(X, Y, Item) {
-	DrawRect(X, Y, 225, 275, "white");
-	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
-	DrawTextFit(Item.Asset.Description, X + 110, Y + 250, 221, "black");
+function DrawAssetPreview(X, Y, Asset, Options) {
+	let {C, Description, Background, Foreground, Vibrating, Border} = (Options || {});
+	const DynamicPreviewIcon = C ? Asset.DynamicPreviewIcon(C) : "";
+	const Path = `Assets/${Asset.Group.Family}/${Asset.DynamicGroupName}/Preview/${Asset.Name}${DynamicPreviewIcon}.png`;
+	if (Description == null) Description = C ? Asset.DynamicDescription(C) : Asset.Description;
+	DrawPreviewBox(X, Y, Path, Description, { Background, Foreground, Vibrating, Border });
+}
+
+/**
+ * Draws an item preview box for the provided image path
+ * @param {number} X - Position of the preview box on the X axis
+ * @param {number} Y - Position of the preview box on the Y axis
+ * @param {string} Path - The path of the image to draw
+ * @param {string} Description - The preview box description
+ * @param {object} [Options] - Additional optional drawing options
+ * @param {string} Options.[Background] - The background color to draw the preview box in - defaults to white
+ * @param {string} Options.[Foreground] - The foreground (text) color to draw the description in - defaults to black
+ * @param {boolean} Options.[Vibrating] - Whether or not to add vibration effects to the item - defaults to false
+ * @param {boolean} Options.[Border] - Whether or not to draw a border around the preview box
+ * @returns {void} - Nothing
+ */
+function DrawPreviewBox(X, Y, Path, Description, Options) {
+	let {Background, Foreground, Vibrating, Border} = (Options || {});
+	Background = Background || "#fff";
+	Foreground = Foreground || "#000";
+	const Height = Description ? 275 : 225;
+	DrawRect(X, Y, 225, Height, Background);
+	if (Border) DrawEmptyRect(X, Y, 225, Height, Foreground);
+	const ImageX = Vibrating ? X + 1 + Math.floor(Math.random() * 3) : X + 2;
+	const ImageY = Vibrating ? Y + 1 + Math.floor(Math.random() * 3) : Y + 2;
+	DrawImageResize(Path, ImageX, ImageY, 221, 221);
+	if (Description) DrawTextFit(Description, X + 110, Y + 250, 221, Foreground);
 }

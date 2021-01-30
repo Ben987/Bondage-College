@@ -410,10 +410,11 @@ function KidnapShowItem() {
 	var X = 1000;
 	var Y = 125;
 	for (let I = 0; I < DialogInventory.length; I++) {
-		DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : DialogInventory[I].Worn ? "pink" : "white");
-		DrawImageResize("Assets/" + DialogInventory[I].Asset.Group.Family + "/" + DialogInventory[I].Asset.DynamicGroupName + "/Preview/" + DialogInventory[I].Asset.Name + ".png", X + 2, Y + 2, 221, 221);
-		DrawTextFit(DialogInventory[I].Asset.Description, X + 112, Y + 250, 221, "black");
-		if (DialogInventory[I].Icon != "") DrawImage("Icons/" + DialogInventory[I].Icon + ".png", X + 2, Y + 110);
+		const Item = DialogInventory[I];
+		const Hover = MouseIn(X, Y, 225, 275) && !CommonIsMobile;
+		const Background = Hover ? "cyan" : DialogInventory[I].Worn ? "pink" : "#fff";
+		DrawAssetPreview(X, Y, Item.Asset, { Background });
+
 		X = X + 250;
 		if (X > 1800) {
 			X = 1000;
