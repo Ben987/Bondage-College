@@ -76,12 +76,12 @@ function ShopRun() {
 		var X = 1000;
 		var Y = 125;
 		for (let A = ShopItemOffset; (A < ShopCart.length && A < ShopItemOffset + 12); A++) {
-			DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : "white");
-			if (!CharacterAppearanceItemIsHidden(ShopCart[A].Name, ShopCart[A].Group.Name)) 
-                DrawImageResize("Assets/" + ShopCart[A].Group.Family + "/" + ShopCart[A].DynamicGroupName + "/Preview/" + ShopCart[A].Name + ".png", X + 2, Y + 2, 221, 221);
-			else 
-                DrawImageResize("Icons/HiddenItem.png", X + 2, Y + 2, 221, 221);
-			DrawTextFit(ShopCart[A].Description + " " + ShopCart[A].Value.toString() + " $", X + 112, Y + 250, 221, (InventoryAvailable(Player, ShopCart[A].Name, ShopCart[A].Group.Name)) ? "green" : "red");
+			const Hidden = CharacterAppearanceItemIsHidden(ShopCart[A].Name, ShopCart[A].Group.Name);
+			const Description = ShopCart[A].Description + " " + ShopCart[A].Value.toString() + " $";
+			const Background = MouseIn(X, Y, 225, 275) && !CommonIsMobile ? "cyan" : "#fff";
+			const Foreground = InventoryAvailable(Player, ShopCart[A].Name, ShopCart[A].Group.Name) ? "green" : "red";
+			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Description, { Background, Foreground });
+			else DrawAssetPreview(X, Y, ShopCart[A], { Description, Background, Foreground });
 			X = X + 250;
 			if (X > 1800) {
 				X = 1000;
@@ -99,7 +99,8 @@ function ShopRun() {
 }
 
 /**
- * Checks if an asset is from the focus group and if it can be bought. An asset can be shown if it has a value greater than 0. (0 is a default item, -1 is a non-purchasable item)
+ * Checks if an asset is from the focus group and if it can be bought. An asset can be shown if it has a value greater than 0. (0 is a
+ * default item, -1 is a non-purchasable item)
  * @param {Asset} Asset - The asset to check for availability
  * @returns {boolean} - Returns TRUE if the item is purchasable and part of the focus group.
  */
@@ -108,7 +109,8 @@ function ShopAssetFocusGroup(Asset) {
 }
 
 /**
- * Checks if an asset can be bought. An asset is considered missing if it is not owned and has a value greater than 0. (0 is a default item, -1 is a non-purchasable item)
+ * Checks if an asset can be bought. An asset is considered missing if it is not owned and has a value greater than 0. (0 is a default
+ * item, -1 is a non-purchasable item)
  * @param {Asset} Asset - The asset to check for availability
  * @returns {boolean} - Returns TRUE if the item is purchasable and unowned.
  */
@@ -288,7 +290,8 @@ function ShopVendorBondage() {
 }
 
 /**
- * Restrains the player with a random shop item before the shop demo job starts. The customer will have a 50/50 chance of being willing to release the player
+ * Restrains the player with a random shop item before the shop demo job starts. The customer will have a 50/50 chance of being willing to
+ * release the player
  * @returns {void} - Nothing
  */
 function ShopJobRestrain() {

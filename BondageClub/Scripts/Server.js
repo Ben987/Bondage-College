@@ -309,6 +309,19 @@ function ServerValidateProperties(C, Item, Validation) {
 						Item.Property.CombinationNumber = "0000";
 					}
 				} else delete Item.Property.CombinationNumber;
+				
+				
+				// Make sure the seed on the lock is valid
+				var Lock = InventoryGetLock(Item);
+				if ((Item.Property.LockPickSeed != null) && (typeof Item.Property.LockPickSeed == "string")) {
+					var conv = CommonConvertStringToArray(Item.Property.LockPickSeed)
+					for (let PP = 0; PP < conv.length; PP++) {
+						if (typeof conv[PP] != "number") {
+							delete Item.Property.LockPickSeed;
+							break;
+						}
+					}
+				} else delete Item.Property.LockPickSeed;
 
 				// Make sure the password on the lock is valid, 6 letters only
 				var Lock = InventoryGetLock(Item);
@@ -404,7 +417,6 @@ function ServerDeleteLock(Property) {
 	if (Property) {
 		delete Property.LockedBy;
 		delete Property.LockMemberNumber;
-		delete Property.LockMemberNumberList;
 		delete Property.CombinationNumber;
 		delete Property.Password;
 		delete Property.Hint;
@@ -415,6 +427,8 @@ function ServerDeleteLock(Property) {
 		delete Property.ShowTimer;
 		delete Property.EnableRandomInput;
 		delete Property.MemberNumberList;
+		delete Property.MemberNumberListKeys;
+		delete Property.LockPickSeed;
 		if (Array.isArray(Property.Effect)) {
 			Property.Effect = Property.Effect.filter(E => E !== "Lock");
 		}
@@ -592,9 +606,12 @@ function ServerItemCopyProperty(C, Item, NewProperty) {
 		if (Item.Property.MemberNumberList != null) NewProperty.MemberNumberList = Item.Property.MemberNumberList; else delete NewProperty.MemberNumberList;
 		if (Item.Property.RemoveTimer != null) NewProperty.RemoveTimer = Math.round(Item.Property.RemoveTimer); else delete NewProperty.RemoveTimer;
 	}
+	if (Item.Property.MemberNumberListKeys != null) NewProperty.MemberNumberListKeys = Item.Property.MemberNumberListKeys; else delete NewProperty.MemberNumberListKeys;
 	if (Item.Property.Password != null) NewProperty.Password = Item.Property.Password; else delete NewProperty.Password;
 	if (Item.Property.Hint != null) NewProperty.Hint = Item.Property.Hint; else delete NewProperty.Hint;
 	if (Item.Property.LockSet != null) NewProperty.LockSet = Item.Property.LockSet; else delete NewProperty.LockSet;
+	
+	if (Item.Property.LockPickSeed != null) NewProperty.LockPickSeed = Item.Property.LockPickSeed; else delete NewProperty.LockPickSeed;
 	Item.Property = NewProperty;
 	ServerValidateProperties(C, Item);
 	if (Item.Property.LockedBy == "OwnerPadlock") InventoryLock(C, Item, { Asset: AssetGet(C.AssetFamily, "ItemMisc", "OwnerPadlock") }, NewProperty.LockMemberNumber);
@@ -691,9 +708,9 @@ function ServerAccountBeep(data) {
 				ServerBeepAudio.volume = Player.AudioSettings.Volume;
 				ServerBeepAudio.play();
 			}
-			ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
+			ServerBeep.Message = DialogFindPlayer("BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 			if (ServerBeep.ChatRoomName != null)
-				ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
+				ServerBeep.Message = ServerBeep.Message + " " + DialogFindPlayer("InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFindPlayer("InAsylum") : '');
 			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 			if (Player.NotificationSettings.Beeps && !document.hasFocus()) CommonNotificationIncrement("Beep");

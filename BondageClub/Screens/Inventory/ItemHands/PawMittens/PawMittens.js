@@ -16,13 +16,13 @@ function InventoryItemHandsPawMittensDraw() {
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	// Draw the possible options
-	DrawText(DialogFind(Player, "SelectFeature"), 1500, 500, "white", "gray");
+	DrawText(DialogFindPlayer("SelectFeature"), 1500, 500, "white", "gray");
 	DrawButton(1250, 550, 225, 225, "", "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/AdultBabyHarness.png", 1250, 550);
-	DrawText(DialogFind(Player, "mittenstoharness"), 1375, 800, "white", "gray");
+	DrawText(DialogFindPlayer("mittenstoharness"), 1375, 800, "white", "gray");
 
 	// Draw the message if present
-	if (InventoryItemHandsPawMittensMsg != null) DrawTextWrap(DialogFind(Player, InventoryItemHandsPawMittensMsg), 1100, 850, 800, 160, "White");
+	if (InventoryItemHandsPawMittensMsg != null) DrawTextWrap(DialogFindPlayer(InventoryItemHandsPawMittensMsg), 1100, 850, 800, 160, "White");
 
 }
 

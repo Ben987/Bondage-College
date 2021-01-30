@@ -1949,18 +1949,18 @@ var AssetFemale3DCG = [
 			{ Name: "Manacles", Fetish: ["Metal"], Value: 120, Difficulty: 16, SelfBondage: 1, Time: 30, Random: false, AllowLock: true, Prerequisite: ["NoItemFeet", "NotMounted", "NotSuspended", "NotHogtied", "NotKneelingSpread"], SetPose: ["BackBoxTie", "Kneel"], Effect: ["Block", "Freeze", "Prone", "ForceKneel"], Block: ["ItemFeet"], AllowActivityOn: ["ItemFeet"]},
 			{ Name: "FullBodyShackles", Fetish: ["Metal"], Value: 150, Difficulty: 18, Random: false, AllowLock: true, Audio: "ChainLong", Prerequisite: ["NoItemFeet", "NotMounted", "NotSuspended", "NotHogtied", "NotKneelingSpread"], AllowPose: ["LegsClosed", "Kneel"], Effect: ["Prone", "Shackled"], Block: ["ItemFeet"], AllowActivityOn: ["ItemFeet"], SetPose: ["BaseUpper"] },
 			{
-				Name: "WristShackles", Fetish: ["Metal"], Value: 80, Difficulty: 6, Time: 20, Random: false, AllowLock: true, Audio: "CuffsMetal", Extended: true, ParentGroup: null,
-				AllowPose: ["BackCuffs"],
+				Name: "WristShackles", Fetish: ["Metal"], Top: 0, Value: 80, Difficulty: 6, Time: 20, Random: false, AllowLock: true, Audio: "CuffsMetal", Extended: true, ParentGroup: null, HasType: false,
+				AllowPose: ["BackCuffs", "OverTheHead"],
 				Effect: ["Prone"],
 				AllowEffect: ["Block", "Prone"],
-				AllowType: ["Behind"],
+				AllowType: ["Behind", "Overhead"],
 				SetPose: ["BaseUpper"],
 				Layer: [
-					{ Name: "Cuffs", HasType: false },
-					{ Name: "Chain", HasType: false },
+					{ Name: "Cuffs" },
+					{ Name: "Chain" },
 				]
 			},
-			{ 
+			{
 				Name: "StraitLeotard", Fetish: ["Latex"], Value: 120, Priority: 23, Difficulty: 13, SelfBondage: 7, Time: 35, RemoveTime: 20, AllowLock: true, DefaultColor: "#70C0C0", Hide: ["Cloth", "ItemNipplesPiercings", "ItemVulvaPiercings", "Corset"], HideItemExclude: ["CorsetCorset1", "CorsetLatexCorset1"], HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemNipplesLactationPump"], SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemHands"], SelfUnlock: false,
 				Layer: [
 					{ Name: "Lower" },
@@ -2282,8 +2282,19 @@ var AssetFemale3DCG = [
 		Zone: [[10, 400, 90, 200], [400, 400, 90, 200]],
 		Activity: ["Bite", "Kiss", "PoliteKiss", "Lick", "Suck", "Nibble", "Spank", "Caress", "TakeCare"],
 		Asset: [
-			{ Name: "PaddedMittens", Fetish: ["ABDL"], Value: 40, Difficulty: 4, SelfBondage: 2, Time: 15, AllowLock: true, DefaultColor: "#bbbbbb", AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Effect: ["Block", "Prone"], Extended: true },
-			{ Name: "PawMittens", Fetish: ["ABDL", "Pet"], Value: 50, Difficulty: 4, SelfBondage: 1, Time: 15, AllowLock: true, DefaultColor: "#bbbbbb", AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Effect: ["Block", "Prone"], Extended: true },
+			{ Name: "PaddedMittens", Fetish: ["ABDL"], Value: 40, Difficulty: 4, SelfBondage: 2, Time: 15, AllowLock: true, DefaultColor: "#bbbbbb", AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Effect: ["Block", "Prone"], Extended: true, Layer: [
+					{ Name: "Gloves", AllowColorize: true},
+					{ Name: "Straps", AllowColorize: true},
+					{ Name: "Buckles", AllowColorize: true},
+				]
+			},
+			{ Name: "PawMittens", Fetish: ["ABDL", "Pet"], Value: 50, Difficulty: 4, SelfBondage: 1, Time: 15, AllowLock: true, DefaultColor: ["#bbbbbb","#bbbbbb","#bbbbbb","#B38295"], AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Effect: ["Block", "Prone"], Extended: true, Layer: [
+					{ Name: "Gloves", AllowColorize: true},
+					{ Name: "Straps", AllowColorize: true},
+					{ Name: "Buckles", AllowColorize: true},
+					{ Name: "Paws", AllowColorize: true},
+				]
+			},
 			{ Name: "LeatherMittens", Fetish: ["Leather"], Value: 60, Difficulty: 5, SelfBondage: 4, Time: 15, RemoveTime: 5, AllowLock: true, AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"] },
 			{ Name: "FuturisticMittens", Fetish: ["Metal"], Category: ["SciFi"], Value: 70, Difficulty: 5, SelfBondage: 0, Time: 5, RemoveTime: 5, Audio: "FuturisticApply", Random: false, AllowLock: true, DefaultColor: ["#93C48C", "#3B7F2C", "Default"], AllowPose: ["OverTheHead", "BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], SetPose: ["TapedHands"], Effect: [], AllowEffect: ["Block", "Prone"], SelfUnlock: false, AllowType: ["Gloves"], Extended: true, AlwaysExtend: true,
 			Layer: [
@@ -3509,8 +3520,8 @@ var AssetFemale3DCG = [
 		Zone: [[10, 0, 90, 200]],
 		Asset: [
 			{ Name: "MetalPadlock", Value: 15, Time: 10, Wear: false, Effect: [], IsLock: true},
-			{ Name: "IntricatePadlock", Value: 50, Time: 30, Wear: false, Effect: [], IsLock: true, PickDifficulty: 7, ExclusiveUnlock: true},
-			{ Name: "HighSecurityPadlock", Value: 60, Time: 10, Wear: false, Effect: [], IsLock: true, PickDifficulty: 10, ExclusiveUnlock: true},
+			{ Name: "IntricatePadlock", Value: 50, Time: 30, Wear: false, Effect: [], IsLock: true, PickDifficulty: 7, ExclusiveUnlock: true, AllowType: ["LockPickSeed"]},
+			{ Name: "HighSecurityPadlock", Value: 60, Time: 10, Wear: false, Effect: [], IsLock: true, PickDifficulty: 10, ExclusiveUnlock: true, AllowType: ["LockPickSeed"]},
 			{ Name: "TimerPadlock", Value: 80, Wear: false, Effect: [], IsLock: true, MaxTimer: 300, RemoveTimer: 300 },
 			{ Name: "CombinationPadlock", Value: 100, Random: false, Wear: false, Effect: [], IsLock: true, AllowType: ["CombinationNumber"]},
 			{ Name: "PasswordPadlock", Value: 100, BuyGroup: "PasswordPadlock", Random: false, Wear: false, Effect: [], IsLock: true, AllowType: ["Password", "Hint", "LockSet"]},
@@ -3523,8 +3534,6 @@ var AssetFemale3DCG = [
 			{ Name: "MistressTimerPadlock", Value: -1, Wear: false, Effect: [], IsLock: true, MaxTimer: 14400, RemoveTimer: 300 },
 			{ Name: "ExclusivePadlock", Value: 50, Time: 10, Wear: false, Effect: [], IsLock: true},
 			{ Name: "MetalPadlockKey", Value: 10, Wear: false, Effect: ["Unlock-MetalPadlock"] },
-			{ Name: "HighSecurityPadlockKey", Value: 10, Wear: false, Effect: ["Unlock-HighSecurityPadlock"] },
-			{ Name: "IntricatePadlockKey", Value: 30, Wear: false, Effect: ["Unlock-IntricatePadlock"] },
 			{ Name: "OwnerPadlockKey", Value: 60, Wear: false, OwnerOnly: true, Effect: ["Unlock-OwnerPadlock", "Unlock-OwnerTimerPadlock"] },
 			{ Name: "LoversPadlockKey", Value: 40, Wear: false, LoverOnly: true, Effect: ["Unlock-LoversPadlock", "Unlock-LoversTimerPadlock"] },
 			{ Name: "MistressPadlockKey", Value: -1, Wear: false, Effect: ["Unlock-MistressPadlock", "Unlock-MistressTimerPadlock"] },
@@ -3559,6 +3568,7 @@ var AssetFemale3DCG = [
 				Prerequisite: ["NotSuspended", "NotHogtied", "NotHorse"],
 				Effect: ["Prone", "Enclose", "Freeze"],
 				AllowEffect: ["Prone", "Enclose", "BlindNormal", "GagLight", "Freeze"],
+				AllowPose: ["Kneel"],
 				HideItem: ["ShoesFlippers"],
 				Alpha: [{ Group: ["Cloth", "ClothLower", "TailStraps", "Wings", "ItemButt", "ItemArms"], Masks: [[0, 0, 90, 1000], [400, 0, 100, 1000]] }],
 				Layer: [

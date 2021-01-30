@@ -174,18 +174,9 @@ function VibratorModeDraw(Options) {
  * @returns {void} - Nothing
  */
 function VibratorModeDrawHeader() {
-	var Asset = DialogFocusItem.Asset;
-	var AssetPath = "Assets/" + Asset.Group.Family + "/" + Asset.DynamicGroupName + "/Preview/" + Asset.Name + ".png";
-
-	var X = 1389;
-	var Y = 102;
-	if ((DialogFocusItem != null) && (DialogFocusItem.Property != null) && (DialogFocusItem.Property.Intensity != null) && (DialogFocusItem.Property.Intensity >= 0)) {
-		X += Math.floor(Math.random() * 3) - 1;
-		Y += Math.floor(Math.random() * 3) - 1;
-	}
-	DrawRect(1387, 100, 225, 275, "white");
-	DrawImageResize(AssetPath, X, Y, 221, 221);
-	DrawTextFit(Asset.Description, 1500, 350, 221, "black");
+	const Asset = DialogFocusItem.Asset;
+	const Vibrating = DialogFocusItem.Property && DialogFocusItem.Property.Intensity != null && DialogFocusItem.Property.Intensity >= 0;
+	DrawAssetPreview(1387, 100, Asset, { Vibrating });
 }
 
 /**
@@ -199,7 +190,7 @@ function VibratorModeDrawControls(Options, Y) {
 	Options = Options || [VibratorModeSet.STANDARD];
 	var Property = DialogFocusItem.Property;
 	if (Property == null) return;
-	var ItemIntensity = DialogFind(Player, "Intensity" + Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description);
+	var ItemIntensity = DialogFindPlayer("Intensity" + Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description);
 	DrawText(ItemIntensity, 1500, Y, "white", "gray");
 
 	Options.forEach((OptionName) => {
@@ -208,7 +199,7 @@ function VibratorModeDrawControls(Options, Y) {
 			var X = 1175 + (I % 3) * 225;
 			if (I % 3 === 0) Y += 75;
 			var Color = Property.Mode === Option.Property.Mode ? "#888" : "White";
-			DrawButton(X, Y, 200, 55, DialogFind(Player, Option.Name), Color);
+			DrawButton(X, Y, 200, 55, DialogFindPlayer(Option.Name), Color);
 		});
 		Y += 40;
 	});

@@ -68,7 +68,7 @@ function InventoryItemArmsTightJacketCrotchClick() {
 function InventoryItemArmsTightJacketCrotchValidate(C) {
 	var Allowed = "";
 	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true) && !DialogCanUnlock(C, DialogFocusItem)) {
-		Allowed = DialogFind(Player, "CantChangeWhileLocked");
+		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	}
 	return Allowed;
 }

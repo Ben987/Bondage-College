@@ -7,7 +7,7 @@ function InventoryItemVulvaLoversVibratorLoad() {
 function InventoryItemVulvaLoversVibratorDraw() {
 	var { Asset, Property } = DialogFocusItem;
 	VibratorModeDrawHeader();
-	var ItemMemberNumber = DialogFind(Player, "ItemMemberNumber").replace("Item", Asset.Description);
+	var ItemMemberNumber = DialogFindPlayer("ItemMemberNumber").replace("Item", Asset.Description);
 	DrawText(ItemMemberNumber + " " + Property.ItemMemberNumber, 1500, 450, "white", "gray");
 	VibratorModeDrawControls([VibratorModeSet.STANDARD, VibratorModeSet.ADVANCED], 525);
 }

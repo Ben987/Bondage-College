@@ -85,6 +85,7 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 41,0,(Lend her some lockpicks.),(You give her some lockpicks to struggle out with until she leaves the room),GiveLockpicks(),CanGiveLockpicks()
 41,0,(Give her a spare key to your locks.),(You give her an extra key to your private padlocks),GiveHighSecurityKeys(),CanGiveHighSecurityKeys()
 41,0,(Hand over the keys to your locks.),(You give her the keys to your private padlocks),GiveHighSecurityKeysAll(),CanGiveHighSecurityKeysAll()
+41,0,(Back to main menu.),(Main menu.),,
 40,,,(Possible character actions.),,
 40,,(Hold on to her leash.),,HoldLeash(),CanHoldLeash()
 40,,(Let go of her leash.),,StopHoldLeash(),CanStopHoldLeash()

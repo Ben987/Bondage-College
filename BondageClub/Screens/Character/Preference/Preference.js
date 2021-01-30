@@ -46,7 +46,7 @@ var PreferenceVisibilityAssetIndex = 0;
 var PreferenceVisibilityHideChecked = false;
 var PreferenceVisibilityBlockChecked = false;
 var PreferenceVisibilityCanBlock = true;
-var PreferenceVisibilityPreviewImg = null;
+var PreferenceVisibilityPreviewAsset = null;
 var PreferenceVisibilityHiddenList = [];
 var PreferenceVisibilityBlockList = [];
 var PreferenceVisibilityResetClicked = false;
@@ -1158,10 +1158,9 @@ function PreferenceSubscreenVisibilityRun() {
 		DrawButton(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64, TextGet("VisibilityReset"), "White", "");
 
 		// Preview icon
-		DrawEmptyRect(1200, 193, 225, 225, "Black");
-		if (PreferenceVisibilityPreviewImg == null) DrawRect(1203, 196, 219, 219, "LightGray");
-		else DrawImageResize(PreferenceVisibilityPreviewImg, 1202, 195, 221, 221);
+		if (PreferenceVisibilityHideChecked) DrawPreviewBox(1200, 193, "Icons/HiddenItem.png", "", { Border: true });
 
+		else DrawAssetPreview(1200, 193, PreferenceVisibilityPreviewAsset, {Description: "", Border: true});
 	} else {
 		MainCanvas.textAlign = "center";
 		DrawText(TextGet("VisibilityLocked"), 1200, 500, "Red", "Gray");
@@ -1601,8 +1600,7 @@ function PreferenceVisibilityAssetChanged(RefreshCheckboxes) {
 	PreferenceVisibilityCanBlock = (WornItem == null || WornItem.Asset.Name != CurrAsset.Asset.Name) && !CurrAsset.Limited;
 
 	// Get the preview image path
-	if (PreferenceVisibilityHideChecked) PreferenceVisibilityPreviewImg = "Icons/HiddenItem.png";
-	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Asset.Group.Family + "/" + CurrAsset.Asset.DynamicGroupName + "/Preview/" + CurrAsset.Asset.Name + ".png";
+	PreferenceVisibilityPreviewAsset = CurrAsset.Asset;
 
 	PreferenceVisibilityResetClicked = false;
 }

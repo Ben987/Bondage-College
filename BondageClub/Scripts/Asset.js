@@ -114,7 +114,7 @@ function AssetAdd(NewAsset) {
 		Difficulty: (NewAsset.Difficulty == null) ? 0 : NewAsset.Difficulty,
 		SelfBondage: (NewAsset.SelfBondage == null) ? 0 : NewAsset.SelfBondage,
 		SelfUnlock: (NewAsset.SelfUnlock == null) ? true : NewAsset.SelfUnlock,
-		ExclusiveUnlock: (NewAsset.ExclusiveUnlock == null) ? true : NewAsset.ExclusiveUnlock,
+		ExclusiveUnlock: (NewAsset.ExclusiveUnlock == null) ? false : NewAsset.ExclusiveUnlock,
 		Random: (NewAsset.Random == null) ? true : NewAsset.Random,
 		RemoveAtLogin: (NewAsset.RemoveAtLogin == null) ? false : NewAsset.RemoveAtLogin,
 		WearTime: (NewAsset.Time == null) ? 0 : NewAsset.Time,

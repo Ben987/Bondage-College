@@ -186,7 +186,7 @@ function GamblingRun() {
 	if ((ReputationGet("Gambling") > 20) || MaidQuartersCurrentRescue == "Gambling") DrawCharacter(GamblingSecondSub, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-	if (Player.CanInteract()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png"); //Only Dess Back after loose Game
+	if (Player.CanInteract()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/DressReset.png"); //Only Dess Back after loose Game
 	//BadGirlsClub
 	if (GamblingCanStealDice()) DrawButton(1885, 385, 90, 90, "", "White", "Icons/DiceTheft.png", TextGet("DiceTheft"));
 }
