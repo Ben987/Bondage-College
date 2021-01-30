@@ -59,32 +59,6 @@ const ChatRoomArousalMsg_ChanceInflationMod = {
 
 var ChatRoomPinkFlashTime = 0;
 
-// Chance of a chat message popping up reminding you of your plugs/crotch rope at 0 arousal. Chance is for each item, but only one message appears, with priority to ones with higher chance
-const ChatRoomArousalMsg_Chance = {
-	"Kneel" : 0.1,
-	"Walk" : 0.33,
-	"StruggleFail" : 0.4,
-	"StruggleAction" : 0.05,
-	} 
-const ChatRoomArousalMsg_ChanceScaling = {
-	"Kneel" : 0.8,
-	"Walk" : 0.67,
-	"StruggleFail" : 0.4,
-	"StruggleAction" : 0.2,
-	} 
-const ChatRoomArousalMsg_ChanceVibeMod = {
-	"Kneel" : 0.0,
-	"Walk" : 0.8,
-	"StruggleFail" : 0.6,
-	"StruggleAction" : 0.3,
-	} 
-const ChatRoomArousalMsg_ChanceInflationMod = {
-	"Kneel" : 0.1,
-	"Walk" : 0.5,
-	"StruggleFail" : 0.4,
-	"StruggleAction" : 0.2,
-	} 
-
 /**
  * Checks if the player can add the current character to her whitelist.
  * @returns {boolean} - TRUE if the current character is not in the player's whitelist nor blacklist.
