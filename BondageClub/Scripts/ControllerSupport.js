@@ -180,6 +180,46 @@ function ControllerAxis(axes) {
  */
 function ControllerButton(buttons) {
 	if (ControllerActive == true) {
+
+		//makes sure that no value is undefined
+		if (buttons[ControllerA] == undefined) {
+			ControllerA = 1;
+		}
+		if (buttons[ControllerB] == undefined) {
+			ControllerB = 0;
+		}
+		if (buttons[ControllerX] == undefined) {
+			ControllerX = 3;
+		}
+		if (buttons[ControllerY] == undefined) {
+			ControllerY = 2;
+		}
+		if (buttons[ControllerStickUpDown] == undefined) {
+			ControllerStickUpDown = 1;
+		}
+		if (buttons[ControllerStickLeftRight] == undefined) {
+			ControllerStickLeftRight = 0;
+		}
+		if (buttons[ControllerStickRight] == undefined) {
+			ControllerStickRight = 1;
+		}
+		if (buttons[ControllerStickDown] == undefined) {
+			ControllerStickDown = 1;
+		}
+		if (buttons[ControllerDPadUp] == undefined) {
+			ControllerDPadUp = 4;
+		}
+		if (buttons[ControllerDPadDown] == undefined) {
+			ControllerDPadDown = 5;
+		}
+		if (buttons[ControllerDPadLeft] == undefined) {
+			ControllerDPadLeft = 6;
+		}
+		if (buttons[ControllerDPadRight] == undefined) {
+			ControllerDPadRight = 7;
+		}
+
+
 		if (ControllerButtonsRepeat == false) {
 			if (Calibrating == false) {
 				if (buttons[ControllerA].pressed == true) {

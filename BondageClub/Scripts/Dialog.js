@@ -1821,8 +1821,12 @@ function DialogDrawStruggleProgress(C) {
 	if (DialogProgressAuto < 0) DrawText(DialogFindPlayer("Challenge") + " " + ((DialogProgressStruggleCount >= 50) ? DialogProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
 	DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
 	DrawProgressBar(1200, 700, 600, 100, DialogProgress);
-	DrawText(DialogFindPlayer((CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
-
+	if (ControllerActive == false) {
+		DrawText(DialogFindPlayer((CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
+	}
+	if (ControllerActive == true) {
+		DrawText(DialogFindPlayer((CommonIsMobile) ? "ProgressClick" : "ProgressKeysController"), 1500, 900, "White", "Black");
+	}
 	// If the operation is completed
 	if (DialogProgress >= 100) {
 
