@@ -429,9 +429,7 @@ function StruggleFlexibilityStart(C, PrevItem, NextItem) {
 		if ((PrevItem.Asset.Group.Name != "ItemArms") && InventoryItemHasEffect(InventoryGet(C, "ItemArms"), "Block", true)) S = S - 4; // Harder If we don't target the arms while arms are restrained
 		if ((PrevItem.Asset.Group.Name != "ItemLegs") && InventoryItemHasEffect(InventoryGet(C, "ItemLegs"), "Block", true)) S = S - 4; // Harder If we don't target the legs while arms are restrained
 		if ((PrevItem.Asset.Group.Name != "ItemHands") && InventoryItemHasEffect(InventoryGet(C, "ItemHands"), "Block", true)) S = S - 1; // Harder If we don't target the hands while hands are restrained 
-		if ((PrevItem.Asset.Group.Name != "ItemTorso") && InventoryItemHasEffect(InventoryGet(C, "ItemTorso"), "Block", true)) S = S - 1; // A little harder if you are in a corset or harness
 		if ((PrevItem.Asset.Group.Name != "ItemFeet") && InventoryItemHasEffect(InventoryGet(C, "ItemFeet"), "Block", true)) S = S - 2; // Harder if you can't split your feet apart
-		if ((PrevItem.Asset.Group.Name != "ItemNeck") && InventoryItemHasEffect(InventoryGet(C, "ItemNeck"), "Block", true)) S = S - 1; // Neck collars are restrictive
 
 	if ((PrevItem.Asset.Group.Name == "ItemMouth") || (PrevItem.Asset.Group.Name == "ItemMouth2") || (PrevItem.Asset.Group.Name == "ItemMouth3") || (PrevItem.Asset.Group.Name == "ItemNeck") || (PrevItem.Asset.Group.Name == "ItemHood")) S = S - 4; // The head is not very flexible
 
