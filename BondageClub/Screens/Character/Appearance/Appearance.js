@@ -882,6 +882,7 @@ function CharacterAppearanceSetColorForGroup(C, Color, Group) {
 function AppearanceClick() {
 	var C = CharacterAppearanceSelection;
 
+	ClearButtons();
 	// When there is an extended item
 	if (DialogFocusItem != null) {
 		CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
