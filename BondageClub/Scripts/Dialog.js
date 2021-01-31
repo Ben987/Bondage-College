@@ -423,7 +423,7 @@ function DialogLeave() {
 	if (CurrentCharacter) {
 		if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber) {
 			CharacterAppearanceForceUpCharacter = 0;
-			CharacterApperanceSetHeightModifier(CurrentCharacter);
+			CharacterAppearanceSetHeightModifiers(CurrentCharacter);
 		}
 		CurrentCharacter.FocusGroup = null;
 	}
