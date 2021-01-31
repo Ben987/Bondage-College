@@ -1111,6 +1111,7 @@ function DrawPreviewBox(X, Y, Path, Description, Options) {
 	Foreground = Foreground || "#000";
 	const Height = Description ? 275 : 225;
 	DrawRect(X, Y, 225, Height, Background);
+	setButton(X, Y);
 	if (Border) DrawEmptyRect(X, Y, 225, Height, Foreground);
 	const ImageX = Vibrating ? X + 1 + Math.floor(Math.random() * 3) : X + 2;
 	const ImageY = Vibrating ? Y + 1 + Math.floor(Math.random() * 3) : Y + 2;
