@@ -874,7 +874,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	MainCanvas.rect(Left, Top, Width, Height);
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillRect(Left, Top, Width, Height);
-	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled) {
+	if (MouseIn(Left, Top, Width, Height) && !CommonIsMobile && !Disabled) {
 		MainCanvas.fillStyle = "Cyan";
 		if (MouseX > RightSplit) {
 			MainCanvas.fillRect(RightSplit, Top, ArrowWidth, Height);
@@ -884,6 +884,12 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 		} else {
 			MainCanvas.fillRect(Left + ArrowWidth, Top, Width - ArrowWidth * 2, Height);
 		}
+	}
+	else if (CommonIsMobile && ArrowWidth < Width / 2) {
+		// Fill in the arrow regions on mobile
+		MainCanvas.fillStyle = "lightgrey";
+		MainCanvas.fillRect(Left, Top, ArrowWidth, Height);
+		MainCanvas.fillRect(RightSplit, Top, ArrowWidth, Height);
 	}
 	MainCanvas.lineWidth = '2';
 	MainCanvas.strokeStyle = 'black';
