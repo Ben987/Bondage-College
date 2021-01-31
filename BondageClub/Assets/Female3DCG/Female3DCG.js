@@ -3754,6 +3754,12 @@ var AssetFemale3DCG = [
 					{ Name: "Highlights", ParentGroup: null, AllowColorize: false },
 				]
 			},
+			{
+				Name: "PetBowl", Value: 20, Time: 5, IsRestraint: false, DefaultColor: ["Default", "#000000"], AllowPose: ["Suspension"], HideForPose: ["Suspension"], Extended: true, DynamicBeforeDraw: true, DynamicAfterDraw: true, Layer: [
+					{ Name: "Bowl", Top: 885, Left: 300 },
+					{ Name: "Text", HasImage: false, Top: 905, Left: 335 },
+				]
+			},
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
