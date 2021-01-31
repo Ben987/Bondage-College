@@ -677,7 +677,7 @@ function AppearanceRun() {
 
 			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.Description, { Background });
 			else DrawAssetPreview(X, Y, Item.Asset, {Background, Vibrating});
-
+			setButton(X, Y);
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;
 			if (X > 1800) {

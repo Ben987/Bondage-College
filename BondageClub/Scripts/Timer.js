@@ -251,9 +251,8 @@ function TimerProcess(Timestamp) {
 	}
 
 	if (ControllerActive == true) {
-		if (MouseX == undefined || MouseY == undefined) {
-			MouseX = 0;
-			MouseY = 0;
+		if (ControllerCurrentButton > ControllerButtonsX.length) {
+			ControllerCurrentButton = 0;
 		}
 		DrawRect(MouseX - 5, MouseY - 5, 10, 10, "Cyan");
 	}
