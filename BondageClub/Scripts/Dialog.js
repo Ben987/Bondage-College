@@ -431,6 +431,7 @@ function DialogLeave() {
 	CurrentCharacter = null;
 	DialogSelfMenuSelected = null;
 	DialogFacialExpressionsSelected = -1;
+	ClearButtons();
 }
 
 /**
