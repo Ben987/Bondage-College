@@ -1066,7 +1066,7 @@ function CharacterCompressWardrobe(Wardrobe) {
 			var Arr = [];
 			if (Wardrobe[W] != null)
 				for (let A = 0; A < Wardrobe[W].length; A++)
-					Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color]);
+					Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color, Wardrobe[W][A].Property]);
 			CompressedWardrobe.push(Arr);
 		}
 		return LZString.compressToUTF16(JSON.stringify(CompressedWardrobe));
@@ -1087,7 +1087,7 @@ function CharacterDecompressWardrobe(Wardrobe) {
 			for (let W = 0; W < CompressedWardrobe.length; W++) {
 				var Arr = [];
 				for (let A = 0; A < CompressedWardrobe[W].length; A++)
-					Arr.push({ Name: CompressedWardrobe[W][A][0], Group: CompressedWardrobe[W][A][1], Color: CompressedWardrobe[W][A][2] });
+					Arr.push({ Name: CompressedWardrobe[W][A][0], Group: CompressedWardrobe[W][A][1], Color: CompressedWardrobe[W][A][2], Property: CompressedWardrobe[W][A][3]});
 				DecompressedWardrobe.push(Arr);
 			}
 		}
