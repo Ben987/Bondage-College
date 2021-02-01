@@ -7,11 +7,8 @@ function InventoryItemNeckAccessoriesCollarNameTagLoad() {
 
 // Draw the item extension screen
 function InventoryItemNeckAccessoriesCollarNameTagDraw() {
-	
 	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
 	// Draw the possible tags
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {

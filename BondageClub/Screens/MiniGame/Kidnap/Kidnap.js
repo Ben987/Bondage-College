@@ -334,6 +334,7 @@ function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
 	KidnapOpponentClothLower = InventoryGet(Opponent, "ClothLower");
 	KidnapOpponent = Opponent;
 	KidnapBackground = Background;
+	MiniGameCheatAvailable = (CheatFactor("MiniGameBonus", 0) == 0);
 	CurrentCharacter = null;
 	Player.KidnapMaxWillpower = 20 + (SkillGetLevel(Player, "Willpower") * 2);
 	Player.KidnapWillpower = Player.KidnapMaxWillpower;
@@ -519,4 +520,15 @@ function KidnapClick() {
 
 	}
 
+}
+
+/**
+ * Handles the key press in the kidnap mini game, the C cheat key can help you recover some lost willpower
+ * @returns {void} - Nothing
+ */
+function KidnapKeyDown() {
+	if (MiniGameCheatKeyDown()) {
+		Player.KidnapWillpower = Player.KidnapWillpower + 6;
+		if (Player.KidnapWillpower > Player.KidnapMaxWillpower) Player.KidnapWillpower = Player.KidnapMaxWillpower;
+	}
 }

@@ -11,9 +11,7 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitLoad() {
 
 // Draw the item extension screen
 function InventoryItemNeckAccessoriesCollarAutoShockUnitDraw() {
-	DrawRect(1387, 205, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 207, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 455, 221, "black");
+	DrawAssetPreview(1387, 205, DialogFocusItem.Asset);
 	DrawText(DialogFindPlayer("Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 520, "White", "Gray");
 	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1100, 550, 200, 55, DialogFindPlayer("Low"), "White");
 	if (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1375, 550, 200, 55, DialogFindPlayer("Medium"), "White");

@@ -123,16 +123,13 @@ function InventoryItemArmsHighSecurityStraitJacketPageTransition(newPage) {
 function InventoryItemArmsHighSecurityStraitJacketDrawCommon(buttonDefinitions) {
 	var A = DialogFocusItem.Asset;
 	// Draw the header and item
-	DrawRect(1387, 55, 225, 275, "#fff");
-	DrawImageResize("Assets/" + A.Group.Family + "/" + A.Group.Name + "/Preview/" + A.Name + ".png", 1389, 57, 221, 221);
-	DrawTextFit(A.Description, 1500, 310, 221, "#000");
+	DrawAssetPreview(1387, 55, A);
 	DrawText(DialogExtendedMessage, 1500, 375, "#fff", "#808080");
 
 	buttonDefinitions.forEach((buttonDefinition, i) => {
 		var x = 1200 + (i % 2 * 387);
 		var y = 450 + (Math.floor(i / 2) * 300);
-		DrawButton(x, y, 225, 225, "", buttonDefinition[2] || "#fff");
-		DrawImage(buttonDefinition[0], x, y);
+		DrawPreviewBox(x, y, buttonDefinition[0], "", { Background: buttonDefinition[2], Hover: true })
 		DrawText(DialogFindPlayer(buttonDefinition[1]), x + 113, y - 20, "#fff", "#808080");
 	});
 }

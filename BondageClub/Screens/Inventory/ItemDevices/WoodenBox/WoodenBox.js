@@ -55,11 +55,7 @@ function InventoryItemDevicesWoodenBoxLoad() {
  */
 function InventoryItemDevicesWoodenBoxDraw() {
 	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize(
-		"Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name +
-		".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
 	MainCanvas.textAlign = "right";
 	DrawTextFit(DialogFindPlayer("WoodenBoxOpacityLabel"), 1475, 500, 400, "#fff", "#000");
@@ -165,7 +161,7 @@ function InventoryItemDevicesWoodenBoxGetInputOpacity() {
 	return Number(ElementValue(InventoryItemDevicesWoodenBoxOpacityInputId));
 }
 
-function AssetsItemDevicesWoodenBoxAfterDraw({ C, A, X, Y, L, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color, Opacity }) {
+function AssetsItemDevicesWoodenBoxAfterDraw({ C, A, X, Y, L, Pose, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color, Opacity }) {
 	if (L === "_Text") {
 		// We set up a canvas
 		const height = 900;
@@ -204,9 +200,12 @@ function AssetsItemDevicesWoodenBoxAfterDraw({ C, A, X, Y, L, Property, drawCanv
 		context.fillText(text, width / 2, height / 2, textWidth);
 		context.restore();
 
+		let drawY = Y + 300;
+		if (Pose === "Kneel/") drawY -= 250;
+
 		// We print the canvas on the character based on the asset position
-		drawCanvas(TempCanvas, X + 90, Y + 300, AlphaMasks);
-		drawCanvasBlink(TempCanvas, X + 90, Y + 300, AlphaMasks);
+		drawCanvas(TempCanvas, X + 90, drawY, AlphaMasks);
+		drawCanvasBlink(TempCanvas, X + 90, drawY, AlphaMasks);
 	}
 }
 

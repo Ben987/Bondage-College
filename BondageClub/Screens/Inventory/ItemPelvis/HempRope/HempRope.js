@@ -3,10 +3,10 @@
 const HempRopePelvisOptions = [
 	{
 		Name: "Crotch",
-		Property: { Type: null, Difficulty: 1 }
+		Property: { Type: null, Difficulty: 1, Effect: ["CrotchRope"] }
 	}, {
 		Name: "OverPanties",
-		Property: { Type: "OverPanties", Difficulty: 1, OverridePriority: 21 }
+		Property: { Type: "OverPanties", Difficulty: 1, OverridePriority: 21, Effect: ["CrotchRope"]}
 	}, {
 		Name: "SwissSeat",
 		BondageLevel: 4,

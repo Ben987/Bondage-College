@@ -43,12 +43,10 @@ function InventoryItemMiscTimerPasswordPadlockLoad() {
 function InventoryItemMiscTimerPasswordPadlockDraw() {
     if ((DialogFocusItem == null) || (DialogFocusSourceItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscTimerPasswordPadlockExit(); return; }
     if (DialogFocusSourceItem.Property.ShowTimer) {
-        DrawText(DialogFindPlayer("TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
+        DrawText(DialogFindPlayer("TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 100, "white", "gray");
     } else { DrawText(DialogFindPlayer("TimerUnknown"), 1500, 150, "white", "gray"); }
 	var C = CharacterGetCurrent();
-	DrawRect(1412, 225, 175, 225, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1414, 227, 171, 171);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 425, 171, "black");
+	DrawAssetPreview(1387, 175, DialogFocusItem.Asset);
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
 	DrawText(DialogFindPlayer("LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 500, "white", "gray");
 

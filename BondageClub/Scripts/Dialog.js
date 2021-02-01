@@ -326,8 +326,10 @@ function DialogPrerequisite(D) {
 function DialogHasKey(C, Item) {
 	if (InventoryGetItemProperty(Item, "SelfUnlock") == false && (!Player.CanInteract() || C.ID == 0)) return false;
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
-	if (InventoryGetLock(Item) && InventoryGetLock(Item).Asset.ExclusiveUnlock && (!Item.Property.MemberNumberList || !(Item.Property.MemberNumberList && CommonConvertStringToArray("" + Item.Property.MemberNumberList).indexOf(Player.MemberNumber) >= 0))) return false;
+	if (InventoryGetLock(Item) && InventoryGetLock(Item).Asset.ExclusiveUnlock && ((!Item.Property.MemberNumberListKeys && Item.Property.LockMemberNumber != Player.MemberNumber) || (Item.Property.MemberNumberListKeys && CommonConvertStringToArray("" + Item.Property.MemberNumberListKeys).indexOf(Player.MemberNumber) < 0))) return false;
 	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && !Item.Property.LockedBy.startsWith("Owner")) return true;
+
+    if (InventoryGetLock(Item).Asset.ExclusiveUnlock) return true;
 
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
@@ -395,7 +397,7 @@ function DialogLeave() {
 	if (CurrentCharacter) {
 		if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber) {
 			CharacterAppearanceForceUpCharacter = 0;
-			CharacterApperanceSetHeightModifier(CurrentCharacter);
+			CharacterAppearanceSetHeightModifiers(CurrentCharacter);
 		}
 		CurrentCharacter.FocusGroup = null;
 	}
@@ -403,6 +405,7 @@ function DialogLeave() {
 	CurrentCharacter = null;
 	DialogSelfMenuSelected = null;
 	DialogFacialExpressionsSelected = -1;
+	ClearButtons();
 }
 
 /**
@@ -538,7 +541,7 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 			return;
 
 	// If the item is blocked, we show it at the end of the list
-	if (InventoryIsPermissionBlocked(C, NewInv.Asset.DynamicName(Player), NewInv.Asset.DynamicGroupName) || !InventoryCheckLimitedPermission(C, NewInv))
+	if (InventoryBlockedOrLimited(C, NewInv))
 		SortOrder = DialogSortOrderBlocked;
 
 	// Creates a new dialog inventory item
@@ -832,6 +835,7 @@ function DialogMenuButtonClick() {
 			// Exit Icon - Go back to the character dialog
 			if (DialogMenuButton[I] == "Exit") {
 				if (DialogItemPermissionMode) ChatRoomCharacterUpdate(Player);
+				if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) ChatRoomStimulationMessage("StruggleFail")
 				DialogLeaveItemMenu();
 				return;
 			}
@@ -1068,11 +1072,8 @@ function DialogItemClick(ClickItem) {
 		return;
 	}
 
-	// If the item is blocked for that character, we do not use it
-	if (InventoryIsPermissionBlocked(C, ClickItem.Asset.DynamicName(Player), ClickItem.Asset.DynamicGroupName)) return;
-
-	// If the item is limited for that character, based on item permissions
-	if (!InventoryCheckLimitedPermission(C, ClickItem)) return;
+	// If the item is blocked or limited for that character, we do not use it
+	if (InventoryBlockedOrLimited(C, ClickItem)) return;
 
 	// If we must apply a lock to an item (can trigger a daily job)
 	if (DialogItemToLock != null) {
@@ -1479,7 +1480,7 @@ function DialogDrawItemMenu(C) {
 		if (DialogInventory == null) DialogInventoryBuild(C);
 
 		//If only activities are allowed, only add items to the DialogInventory, which can be used for interactions
-		if (InventoryGroupIsBlocked(C)) {
+		if (!DialogItemPermissionMode && InventoryGroupIsBlocked(C)) {
 			var tempDialogInventory = [];
 			for (let I = 0; I < DialogInventory.length; I++) {
 				if ((DialogInventory[I].Asset.Name == "SpankingToys") && (C.FocusGroup.Name != "ItemHands")) tempDialogInventory.push(DialogInventory[I]);
@@ -1514,7 +1515,7 @@ function DialogDrawItemMenu(C) {
 		}
 
 		if (DialogInventory.length > 0) {
-			if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
+			if (!DialogItemPermissionMode && InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
 			return;
 		}
 	}

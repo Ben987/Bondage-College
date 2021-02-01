@@ -52,10 +52,7 @@ function InventoryItemPelvisFuturisticChastityBeltDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else if (DialogFocusItem && DialogFocusItem.Property) {
-		
-		DrawRect(1387, 125, 225, 275, "white");
-		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+		DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
 		if (DialogFocusItem.Property.NextShockTime - CurrentTime > 0)
 			DrawText(DialogFindPlayer("FuturisticChastityBeltTime") + " " + TimerToString(DialogFocusItem.Property.NextShockTime - CurrentTime), 1500, 475, "White", "Gray");

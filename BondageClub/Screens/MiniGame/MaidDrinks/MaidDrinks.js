@@ -277,6 +277,10 @@ function MaidDrinksKeyDown() {
 		if ((KeyPress == MaidDrinksKeyUpper[2]) || (KeyPress == MaidDrinksKeyLower[2])) MoveType = 2;
 		if ((KeyPress == MaidDrinksKeyUpper[3]) || (KeyPress == MaidDrinksKeyLower[3])) MoveType = 3;
 		MaidDrinksDoMove(MoveType);
+		if (MiniGameCheatKeyDown()) {
+			MiniGameProgress = MiniGameProgress + 15;
+			if (MiniGameProgress >= 100) MiniGameProgress = 99;
+		}
 	}
 	
 }

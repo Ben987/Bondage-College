@@ -21,10 +21,7 @@ function InventoryItemNeckFuturisticCollarDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawRect(1407, 145, 185, 235, "white");
-		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1409, 147, 181, 181);
-		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 355, 181, "black");
-		
+		DrawAssetPreview(1387, 75, DialogFocusItem.Asset);
 
 		DrawButton(1125, 395, 64, 64, "", "White", DialogFocusItem.Property.OpenPermission ? "Icons/Checked.png" : "");
 		DrawText(DialogFindPlayer("FuturisticCollarOpenPermission"), 1550, 425, "White", "Gray");
@@ -153,7 +150,7 @@ function InventoryItemNeckFuturisticCollarCanLock(C, LockType) {
 		
 
 		
-	if (LockItem && !(InventoryIsPermissionBlocked(C, LockType, "ItemMisc") || !InventoryCheckLimitedPermission(C, LockItem))) {
+	if (LockItem && !(InventoryBlockedOrLimited(C, LockItem))) {
 	
 
 

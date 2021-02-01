@@ -62,18 +62,15 @@ function InventoryItemBreastFuturisticBraUpdate(C) {
 
 // Draw the item extension screen
 function InventoryItemBreastFuturisticBraDraw() {
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
+
+	var C = CharacterGetCurrent();
 	
 	var update = InventoryItemBreastFuturisticBraUpdate(C)
 	var current_bpm = update.bpm
 	var current_breathing = update.breathing
 	var current_temp = update.temp
-		
-	
+
 	DrawText(DialogFindPlayer("FuturisticBraPlayerDesc") + " " + C.MemberNumber, 1500, 600, "White", "Gray");
 	DrawText(DialogFindPlayer("FuturisticBraPlayerHeartRate") + " " + current_bpm + " " + DialogFindPlayer("FuturisticBraPlayerHeartRateBPM"), 1500, 680, "White", "Gray");
 	DrawText(DialogFindPlayer("FuturisticBraPlayerTemp") + " " + current_temp + DialogFindPlayer("FuturisticBraPlayerTempC"), 1500, 730, "White", "Gray");

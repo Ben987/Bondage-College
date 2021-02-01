@@ -103,10 +103,8 @@ function InventoryItemMouthFuturisticPanelGagLoadAccessDenied() {
 
 // Draw the futuristic item ACCESS DENIED screen
 function InventoryItemMouthFuturisticPanelGagDrawAccessDenied() {
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	
+	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
+
 	DrawText(DialogFindPlayer("FuturisticItemLoginScreen"), 1500, 600, "White", "Gray");
 	
 	ElementPosition("PasswordField", 1505, 750, 350);
@@ -174,9 +172,7 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawRect(1387, 75, 225, 275, "white");
-		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 77, 221, 221);
-		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 325, 221, "black");
+		DrawAssetPreview(1387, 75, DialogFocusItem.Asset);
 
 		if (DialogFocusItem.Property.AutoPunishUndoTime - CurrentTime > 0)
 			DrawText(DialogFindPlayer("FuturisticPanelGagMouthDeflationTime") + " " + TimerToString(DialogFocusItem.Property.AutoPunishUndoTime - CurrentTime), 1500, 415, "White", "Gray");		

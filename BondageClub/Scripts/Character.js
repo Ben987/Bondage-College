@@ -697,7 +697,7 @@ function CharacterRefresh(C, Push) {
 	C.HasScriptedAssets = !!C.Appearance.find(CA => CA.Asset.DynamicScriptDraw);
 	
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) {
-		ChatRoomRefreshChatSettings(C);
+		ChatRoomRefreshChatSettings();
 		ServerPlayerAppearanceSync();
 	}
 	// Also refresh the current dialog menu if the refreshed character is the current character.

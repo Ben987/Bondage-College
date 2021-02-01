@@ -207,7 +207,7 @@ Socks,LatexSocks1,Latex Socks
 Socks,FootlessSocks1,Footless Socks
 Socks,ReverseBunnySuit,Reverse Bunny Suit Stockings
 Socks,LeatherSocks1,Short Leather Socks
-Socks,Pantyhose2,Crochless Pantyhose
+Socks,Pantyhose2,Crotchless Pantyhose
 Socks,CowPrintedSocks,Cow Printed Socks
 RightAnklet,,Anklet (Right)
 RightAnklet,BandAnklet,Band Anklet
@@ -599,7 +599,7 @@ ItemVulva,TapeStrips,Tape Strips
 ItemVulva,BenWaBalls,Pair Of Ben Wa Balls
 ItemVulva,HeavyWeightClamp,Heavy Weight Clamp
 ItemVulva,FullLatexSuitWand,Wand
-ItemVulva,ClitAndDildoVibratorbelt,Clit&Dildo Vibrating belt
+ItemVulva,ClitAndDildoVibratorbelt,Clit & Dildo Vibrating belt
 ItemVulva,HempRopeBelt,Hemp Rope Wand Belt
 ItemVulva,WiredEgg,Wired Vibrating Egg
 ItemVulva,LoversVibrator,Lovers Vibrator
@@ -1117,8 +1117,6 @@ ItemMisc,MistressPadlock,Mistress Padlock
 ItemMisc,MistressTimerPadlock,Mistress Timer Padlock
 ItemMisc,ExclusivePadlock,Exclusive Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
-ItemMisc,HighSecurityPadlockKey,High-Security Padlock Keys
-ItemMisc,IntricatePadlockKey,Intricate Padlock Key
 ItemMisc,OwnerPadlockKey,Owner Padlock Key
 ItemMisc,LoversPadlockKey,Lovers Padlock Key
 ItemMisc,MistressPadlockKey,Mistress Padlock Key
@@ -1168,6 +1166,7 @@ ItemDevices,ConcealingCloak,Concealing Cloak
 ItemDevices,PetBed,Pet Bed
 ItemDevices,TransportWoodenBox,Transport Box
 ItemDevices,VacCube,Vac-Cube
+ItemDevices,PetBowl,Pet Bowl
 ItemHoodAddon,,Hood
 ItemHoodAddon,OldGasMaskLenses,Blinding Lenses
 ItemHoodAddon,OldGasMaskTube1,Gas Mask Tube

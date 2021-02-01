@@ -1,7 +1,7 @@
 "use strict";
 var CheatBackground = "Sheet";
 var CheatAllow = false;
-var CheatList = ["DoubleReputation", "DoubleSkill", "DoubleMoney", "DoubleItemSpeed", "BlockRandomKidnap", "SkipTrialPeriod", "AutoShowTraits", "NoLoveDecay"];
+var CheatList = ["DoubleReputation", "DoubleSkill", "DoubleMoney", "DoubleItemSpeed", "BlockRandomKidnap", "SkipTrialPeriod", "AutoShowTraits", "NoLoveDecay", "CantLoseMistress", "FreeCollegeOutfit", "MiniGameBonus", "FreeNPCDress", "ChangeNPCTrait"];
 var CheatBonusList = ["DoubleMoney", "DoubleSkill"];
 var CheatBonusFactor = 2;
 var CheatBonusTime = 1552967946711;
@@ -79,8 +79,8 @@ function CheatRun() {
 	// List all the cheats
 	MainCanvas.textAlign = "left";
 	for (let C = 0; C < CheatList.length; C++) {
-		DrawButton(150, 115 + (C * 100), 64, 64, "", "White", CheatActive(CheatList[C]) ? "Icons/Checked.png" : "");
-		DrawText(TextGet(CheatList[C]), 250, 147 + (C * 100), "Black", "Gray");		
+		DrawButton(150 + Math.floor(C / 8) * 850, 115 + ((C % 8) * 100), 64, 64, "", "White", CheatActive(CheatList[C]) ? "Icons/Checked.png" : "");
+		DrawText(TextGet(CheatList[C]), 250 + Math.floor(C / 8) * 850, 147 + ((C % 8) * 100), "Black", "Gray");		
 	}
 
 	// Draw the exit button
@@ -100,7 +100,7 @@ function CheatClick() {
 	
 	// When the user activates an option
 	for (let C = 0; C < CheatList.length; C++)
-		if (MouseIn(150, 115 + (C * 100), 64, 64)) {
+		if (MouseIn(150 + Math.floor(C / 8) * 850, 115 + ((C % 8) * 100), 64, 64)) {
 			var CheatName = CheatList[C];
 			if (CheatActivated.indexOf(CheatName) >= 0)
 				CheatActivated.splice(CheatActivated.indexOf(CheatName), 1);

@@ -2,14 +2,14 @@
 
 const InventoryItemArmsChainsOptions = [
 	{
-		Name: "BoxTie",
-		BondageLevel: null,
-		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 }
-	}, {
 		Name: "WristTie",
 		BondageLevel: null,
 		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
 		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
+	}, {
+		Name: "BoxTie",
+		BondageLevel: null,
+		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 }
 	}, {
 		Name: "ChainCuffs",
 		BondageLevel: null,

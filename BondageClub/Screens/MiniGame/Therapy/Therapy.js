@@ -11,6 +11,7 @@ var TherapyStress = 0;
  * @returns {void} - Nothing
  */
 function TherapyLoad() {
+	TherapyMoves = [0, 0, 0, 0, 0, 0];
 	TherapyGenerateMoveTimer = CurrentTime + 5000;
 	TherapyStress = 0;
 	MiniGameDifficultyRatio = 2000;
@@ -135,4 +136,15 @@ function TherapyClick() {
 
 	}
 
+}
+
+/**
+ * Handles the key press in the therapy mini game, the C cheat key reduces the patient stress
+ * @returns {void} - Nothing
+ */
+function TherapyKeyDown() {
+	if (MiniGameCheatKeyDown()) {
+		TherapyStress = TherapyStress - 4;
+		if (TherapyStress < 0) TherapyStress = 0;
+	}
 }

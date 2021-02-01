@@ -134,6 +134,8 @@ function CommonDrawAppearanceBuild(C, {
 			if ((Property && Property.Expression && AG.AllowExpression.includes(Property.Expression)))
 				Expression = Property.Expression + "/";
 
+		let GroupName = A.DynamicGroupName;
+
 		// Find the X and Y position to draw on
 		var X = Layer.DrawingLeft != null ? Layer.DrawingLeft : (A.DrawingLeft != null ? A.DrawingLeft : AG.DrawingLeft);
 		var Y = Layer.DrawingTop != null ? Layer.DrawingTop : (A.DrawingTop != null ? A.DrawingTop : AG.DrawingTop);
@@ -141,7 +143,7 @@ function CommonDrawAppearanceBuild(C, {
 			C.Pose.forEach(CP => {
 				var PoseDef = PoseFemale3DCG.find(P => P.Name === CP && P.MovePosition);
 				if (PoseDef) {
-					var MovePosition = PoseDef.MovePosition.find(MP => MP.Group === AG.Name);
+					var MovePosition = PoseDef.MovePosition.find(MP => MP.Group === GroupName);
 					if (MovePosition) {
 						X += MovePosition.X;
 						Y += MovePosition.Y;
@@ -184,7 +186,6 @@ function CommonDrawAppearanceBuild(C, {
 			}
 		}
 
-		let GroupName = A.DynamicGroupName;
 
 		// Before drawing hook, receives all processed data. Any of them can be overriden if returned inside an object.
 		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects. 
@@ -207,7 +208,7 @@ function CommonDrawAppearanceBuild(C, {
 							break;
 						}
 						case "GroupName": {
-							GroupName = OverridenData[key];
+							GroupName = OverriddenData[key];
 							break;
 						}
 						case "Color": {

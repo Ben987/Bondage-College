@@ -19,9 +19,7 @@ function InventoryItemMiscLoversTimerPadlockDraw() {
     if (DialogFocusSourceItem.Property.ShowTimer) {
         DrawText(DialogFindPlayer("TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
     } else { DrawText(DialogFindPlayer("TimerUnknown"), 1500, 150, "white", "gray"); }
-    DrawRect(1387, 225, 225, 275, "white");
-    DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-    DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
+    DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
     DrawText(DialogFindPlayer(DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
 
     // Draw the settings
