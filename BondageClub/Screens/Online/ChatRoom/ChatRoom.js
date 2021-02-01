@@ -477,7 +477,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	// The player's current blindness level
 	const BlindLevel = Player.GetBlindLevel();
 	// The darkness factors varies with blindness level (1 is bright, 0 is pitch black)
-	var DarkFactor = 1.0;
+	const DarkFactor = CharacterGetDarkFactor(Player);
 	
 	// The number of characters to show in the room
 	var RenderSingle = Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (BlindLevel >= 3);
@@ -491,14 +491,12 @@ function ChatRoomDrawCharacter(DoClick) {
 	var InvertRoom = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
 	
 	// If there's more than 2 characters, we apply a zoom factor, also apply the darkness factor if the player is blindfolded
-	if (!DoClick && BlindLevel < 3) {
+	if (!DoClick && DarkFactor > 0) {
 
 		// Draws the zoomed background
 		DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ".jpg", MainCanvas, 500 * (2 - 1 / Zoom), 0, 1000 / Zoom, 1000, 0, Y, 1000, 1000 * Zoom, InvertRoom);
 
 		// Draws a black overlay if the character is blind
-		if (BlindLevel == 2) DarkFactor = 0.15;
-		else if (BlindLevel == 1) DarkFactor = 0.3;
 		if (DarkFactor < 1.0) DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
 
 	}
@@ -579,7 +577,7 @@ function ChatRoomDrawCharacter(DoClick) {
 		else {
 
 			// Draw the background a second time for characters 6 to 10 (we do it here to correct clipping errors from the first part)
-			if ((C == 5) && (BlindLevel < 3)) {
+			if ((C == 5) && (DarkFactor > 0)) {
 				DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ".jpg", MainCanvas, 0, 0, 2000, 1000, 0, 500, 1000, 500, InvertRoom);
 				if (DarkFactor < 1.0) DrawRect(0, 500, 1000, 500, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
 			}
@@ -908,12 +906,13 @@ function ChatRoomRun() {
 		DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
 	}
 
-	if (ChatRoomGame == "") DrawButton(1150, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
-	else DrawButton(1150, 2, 120, 60, "", "White", "Icons/Rectangle/GameOption.png", TextGet("MenuGameOption"));
-	DrawButton(1295, 2, 120, 60, "", (Player.CanKneel()) ? "White" : "Pink", "Icons/Rectangle/Kneel.png", TextGet("MenuKneel"));
-	DrawButton(1440, 2, 120, 60, "", "White", "Icons/Rectangle/Eye" + ChatRoomHideIconState.toString() + ".png", TextGet("MenuIcons"));
-	DrawButton(1585, 2, 120, 60, "", (Player.CanChange() && OnlineGameAllowChange()) ? "White" : "Pink", "Icons/Rectangle/Dress.png", TextGet("MenuDress"));
-	DrawButton(1730, 2, 120, 60, "", "White", "Icons/Rectangle/Character.png", TextGet("MenuProfile"));
+	if (ChatRoomGame == "") DrawButton(1129, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
+	else DrawButton(1129, 2, 120, 60, "", "White", "Icons/Rectangle/GameOption.png", TextGet("MenuGameOption"));
+	DrawButton(1254, 2, 120, 60, "", (Player.CanKneel()) ? "White" : "Pink", "Icons/Rectangle/Kneel.png", TextGet("MenuKneel"));
+	DrawButton(1378, 2, 120, 60, "", "White", "Icons/Rectangle/Eye" + ChatRoomHideIconState.toString() + ".png", TextGet("MenuIcons"));
+	DrawButton(1502, 2, 120, 60, "", "White", "Icons/Rectangle/Camera.png", TextGet("MenuCamera"));
+	DrawButton(1626, 2, 120, 60, "", (Player.CanChange() && OnlineGameAllowChange()) ? "White" : "Pink", "Icons/Rectangle/Dress.png", TextGet("MenuDress"));
+	DrawButton(1751, 2, 120, 60, "", "White", "Icons/Rectangle/Character.png", TextGet("MenuProfile"));
 	DrawButton(1875, 2, 120, 60, "", "White", "Icons/Rectangle/Preference.png", TextGet("MenuAdmin"));
 
 	// In orgasm mode, we add a pink filter and different controls depending on the stage.  The pink filter shows a little above 90
@@ -930,7 +929,7 @@ function ChatRoomRun() {
 			if (Player.ArousalSettings.OrgasmStage == 1) DrawButton(ActivityOrgasmGameButtonX, ActivityOrgasmGameButtonY, 250, 64, ActivityOrgasmResistLabel, "White");
 			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
 			ActivityOrgasmProgressBar(50, 970);
-		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99)) {
+		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99) && !CommonPhotoMode) {
 			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6) ||
 				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3))) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
 			else if (ChatRoomCharacter.length == 3) DrawRect(0, 50, 1003, 900, "#FFB0B040");
@@ -1012,7 +1011,7 @@ function ChatRoomClick() {
 	}
 
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
-	if (MouseIn(1150, 2, 120, 62) && (ChatRoomGame == "")) {
+	if (MouseIn(1129, 2, 120, 62) && (ChatRoomGame == "")) {
 		var L = document.getElementById("TextAreaChatLog");
 		while (L.childElementCount > 20)
 			L.removeChild(L.childNodes[0]);
@@ -1020,14 +1019,14 @@ function ChatRoomClick() {
 	}
 
 	// The cut button can become the game option button if there's an online game going on
-	if (MouseIn(1150, 2, 120, 62) && (ChatRoomGame != "")) {
+	if (MouseIn(1129, 2, 120, 62) && (ChatRoomGame != "")) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		CommonSetScreen("Online", "Game" + ChatRoomGame);
 	}
 
 	// When the user character kneels
-	if (MouseIn(1295, 0, 120, 62) && Player.CanKneel()) {
+	if (MouseIn(1254, 0, 120, 62) && Player.CanKneel()) {
 		ServerSend("ChatRoomChat", { Content: (Player.ActivePose == null) ? "KneelDown" : "StandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
 		ChatRoomStimulationMessage("Kneel")
 		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
@@ -1036,13 +1035,16 @@ function ChatRoomClick() {
 	}
 
 	// When the user toggles icon visibility
-	if (MouseIn(1440, 0, 120, 62)) {
+	if (MouseIn(1378, 0, 120, 62)) {
 		ChatRoomHideIconState += 1;
 		if (ChatRoomHideIconState > 3) ChatRoomHideIconState = 0;
 	}
 
+	// When the user takes a photo of the room
+	if (MouseIn(1502, 0, 120, 62)) ChatRoomPhotoFullRoom();
+
 	// When the user wants to change clothes
-	if (MouseIn(1585, 0, 120, 62) && Player.CanChange() && OnlineGameAllowChange()) {
+	if (MouseIn(1626, 0, 120, 62) && Player.CanChange() && OnlineGameAllowChange()) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		CharacterAppearanceReturnRoom = "ChatRoom";
@@ -1051,7 +1053,7 @@ function ChatRoomClick() {
 	}
 
 	// When the user checks her profile
-	if (MouseIn(1730, 0, 120, 62)) {
+	if (MouseIn(1751, 0, 120, 62)) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		InformationSheetLoadCharacter(Player);
@@ -2499,4 +2501,62 @@ function ChatRoomNotificationCheck() {
 function ChatRoomNewMessageVisible() {
 	if (!document.hasFocus()) return false;
 	else return ElementIsScrolledToEnd("TextAreaChatLog");
+}
+
+/**
+ * Take a screenshot of all characters in the chatroom
+ * @returns {void} - Nothing
+ */
+function ChatRoomPhotoFullRoom() {
+	// Get the room dimensions
+	let RenderSingle = Player.GameplaySettings && Player.GameplaySettings.SensDepChatLog === "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3;
+	let CharacterCount = RenderSingle ? 1 : ChatRoomCharacter.length;
+	let Space = CharacterCount >= 2 ? 1000 / Math.min(CharacterCount, 5) : 500;
+	let Zoom = CharacterCount >= 3 && CharacterCount < 6 ? Space / 400 : 1;
+	let Y = CharacterCount <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
+	let Width = CharacterCount === 1 ? 500 : 1000;
+
+	// Take the photo
+	ChatRoomPhoto(0, Y, Width, 1000 * Zoom, ChatRoomCharacter);
+}
+
+/**
+ * Take a screenshot of the player and current character
+ * @returns {void} - Nothing
+ */
+function ChatRoomPhotoCurrentCharacters() {
+	ChatRoomPhoto(0, 0, 1000, 1000, [Player, CurrentCharacter]);
+}
+
+/**
+ * Take a screenshot in a chatroom, temporary removing emoticons
+ * @param {number} Left - Position of the area to capture from the left of the canvas
+ * @param {number} Top - Position of the area to capture from the top of the canvas
+ * @param {number} Width - Width of the area to capture
+ * @param {number} Height - Height of the area to capture
+ * @param {any} Characters - The characters that will be included in the screenshot
+ * @returns {void} - Nothing
+ */
+function ChatRoomPhoto(Left, Top, Width, Height, Characters) {
+	// Temporarily remove AFK emoticons
+	let CharsToReset = [];
+	for (let CR = 0; CR < Characters.length; CR++) {
+		let C = Characters[CR];
+		let Emoticon = C.Appearance.find(A => A.Asset.Group.Name == "Emoticon");
+		if (Emoticon && Emoticon.Property && Emoticon.Property.Expression == "Afk") {
+			CharsToReset.push(C);
+			Emoticon.Property.Expression = null;
+			CharacterRefresh(C, false);
+		}
+	}
+
+	// Take the photo
+	CommonTakePhoto(Left, Top, Width, Height);
+
+	// Revert temporary changes
+	for (let CR = 0; CR < CharsToReset.length; CR++) {
+		let C = CharsToReset[CR];
+		C.Appearance.find(A => A.Asset.Group.Name == "Emoticon").Property.Expression = "Afk";
+		CharacterRefresh(C, false);
+	}
 }
