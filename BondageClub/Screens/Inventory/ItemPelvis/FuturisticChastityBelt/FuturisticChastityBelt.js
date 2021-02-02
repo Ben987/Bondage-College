@@ -1,7 +1,5 @@
 "use strict";
 var FuturisticChastityBeltShockCooldownOrgasm = 15000 // 15 sec
-var FuturisticChastityBeltShockCooldownTamper = 500 // Quick
-var FuturisticChastityBeltShockCooldownStruggle = 500 // Quick
 
 var InventoryItemPelvisFuturisticChastityBeltTamperZones = [
 	"ItemPelvis",
@@ -153,35 +151,34 @@ function InventoryItemPelvisFuturisticChastityBeltNpcDialog(C, Option) { Invento
 
 function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 	var Item = data.Item
-	if (Item.Property.NextShockTime - CurrentTime <= 0) {
-		// Punish the player if they try to mess with the groin area
-		if (Item.Property.PunishStruggle && Player.FocusGroup && (DialogProgress >= 0 || DialogLockPickProgressCurrentTries > 0) && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0) {
-			var inFocus = false
-			for (var Z = 0; Z < InventoryItemPelvisFuturisticChastityBeltTamperZones.length; Z++)
-				if (Player.FocusGroup.Name == InventoryItemPelvisFuturisticChastityBeltTamperZones[Z])
-					inFocus = true
-			
-			if (inFocus) {
-				AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Struggle")
-				Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownTamper // Very quick cooldown. Can't have players taking off their chastity belt easily~
-				DialogProgressStruggleCount = 0
-				DialogLeaveDueToItem = true
-				/*var vol = 1
-				if (Player.AudioSettings && Player.AudioSettings.Volume) {
-					vol = Player.AudioSettings.Volume
-				}
-				AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
-			}
-		}
-		// Punish the player if they struggle anywhere
-		if (Item.Property.PunishStruggleOther && Player.FocusGroup && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0 && (DialogProgress > 50 || DialogLockPickCurrentTries > 2)) {
-			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther")
-			Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownStruggle // Longer cooldown to allow some possibilty of kinky escape
+	// Punish the player if they try to mess with the groin area
+	if (Item.Property.PunishStruggle && Player.FocusGroup && (DialogProgress >= 0 || DialogLockPickProgressCurrentTries > 0) && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0) {
+		var inFocus = false
+		for (var Z = 0; Z < InventoryItemPelvisFuturisticChastityBeltTamperZones.length; Z++)
+			if (Player.FocusGroup.Name == InventoryItemPelvisFuturisticChastityBeltTamperZones[Z])
+				inFocus = true
+		
+		if (inFocus) {
+			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Struggle")
 			DialogProgressStruggleCount = 0
-			DialogProgress = 0
 			DialogLeaveDueToItem = true
-
+			/*var vol = 1
+			if (Player.AudioSettings && Player.AudioSettings.Volume) {
+				vol = Player.AudioSettings.Volume
+			}
+			AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
 		}
+	}
+	// Punish the player if they struggle anywhere
+	if (Item.Property.PunishStruggleOther && Player.FocusGroup && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0 && (DialogProgress > 50 || DialogLockPickProgressCurrentTries > 2)) {
+		AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther")
+		DialogProgressStruggleCount = 0
+		DialogProgress = 0
+		DialogLeaveDueToItem = true
+
+	}
+		
+	if (Item.Property.NextShockTime - CurrentTime <= 0) {
 		// Punish the player if they orgasm
 		if (Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
 			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Orgasm")
