@@ -1,7 +1,7 @@
 "use strict";
 var FuturisticChastityBeltShockCooldownOrgasm = 15000 // 15 sec
-var FuturisticChastityBeltShockCooldownTamper = 1000 // 1 sec
-var FuturisticChastityBeltShockCooldownStruggle = 15000 // 15 sec
+var FuturisticChastityBeltShockCooldownTamper = 500 // Quick
+var FuturisticChastityBeltShockCooldownStruggle = 500 // Quick
 
 var InventoryItemPelvisFuturisticChastityBeltTamperZones = [
 	"ItemPelvis",
@@ -54,10 +54,10 @@ function InventoryItemPelvisFuturisticChastityBeltDraw() {
 	} else if (DialogFocusItem && DialogFocusItem.Property) {
 		DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
-		if (DialogFocusItem.Property.NextShockTime - CurrentTime > 0)
+		/*if (DialogFocusItem.Property.NextShockTime - CurrentTime > 0)
 			DrawText(DialogFindPlayer("FuturisticChastityBeltTime") + " " + TimerToString(DialogFocusItem.Property.NextShockTime - CurrentTime), 1500, 475, "White", "Gray");
 		else
-			DrawText(DialogFindPlayer("FuturisticChastityBeltTimeReady"), 1500, 475, "White", "Gray");
+			DrawText(DialogFindPlayer("FuturisticChastityBeltTimeReady"), 1500, 475, "White", "Gray");*/
 
 
 		MainCanvas.textAlign = "left";
