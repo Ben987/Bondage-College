@@ -89,13 +89,82 @@ function InventoryItemVulvaFuturisticVibratorExit() {
 		ElementRemove("FuturisticVibe" + ItemVulvaFuturisticVibratorTriggers[I]);
 }
 
+function InventoryItemVulvaFuturisticVibratorDetectMsg(msg, TriggerValues) {
+	for (let I = 0; I < TriggerValues.length; I++) {
+		if (msg.includes(TriggerValues[I].toUpperCase())) return ItemVulvaFuturisticVibratorTriggers[I]
+	}
+	return ""
+}
+
+function InventoryItemVulvaFuturisticVibratorGetMode(Item, Increase) {
+	if (Item.Property.Mode == VibratorMode.MAXIMUM) return (Increase ? VibratorMode.MAXIMUM : VibratorMode.HIGH);
+	if (Item.Property.Mode == VibratorMode.HIGH) return (Increase ? VibratorMode.MAXIMUM : VibratorMode.MEDIUM);
+	if (Item.Property.Mode == VibratorMode.MEDIUM) return (Increase ? VibratorMode.HIGH : VibratorMode.LOW);
+	if (Item.Property.Mode == VibratorMode.LOW) return (Increase ? VibratorMode.MEDIUM : VibratorMode.OFF);
+	
+	return (Increase ? ((Item.Property.Mode == VibratorMode.OFF) ? VibratorMode.LOW : VibratorMode.MAXIMUM ): VibratorMode.LOW);
+}
+
+function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option) {
+	var OldIntensity = Item.Property.Intensity;
+	VibratorModeSetProperty(Item, Option.Property);
+	CharacterRefresh(C);
+	ChatRoomCharacterItemUpdate(C, Item.Asset.Group.Name);
+
+	if (CurrentScreen == "ChatRoom") {
+		var Message;
+		var Dictionary = [
+			{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
+			{ Tag: "AssetName", AssetName: Item.Asset.Name },
+		];
+
+		if (Item.Property.Intensity !== OldIntensity) {
+			var Direction = Item.Property.Intensity > OldIntensity ? "Increase" : "Decrease";
+			Message = "Vibe" + Direction + "To" + Item.Property.Intensity;
+		} else {
+			Message = "VibeModeChange";
+			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+		}
+
+		Dictionary.push({ Automatic: true });
+		ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
+	}
+    CharacterSetFacialExpression(C, "Blush", "Soft", 5);
+}
+
+function InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, LastTime) {
+	if (!Item || !Item.Property || !Item.Property.TriggerValues) return;
+	var TriggerValues = Item.Property.TriggerValues.split(',')
+	for (let CH = 0; CH < ChatRoomChatLog.length; CH++) {
+		if (ChatRoomChatLog[CH].Time > LastTime) {
+			var msg = InventoryItemVulvaFuturisticVibratorDetectMsg(ChatRoomChatLog[CH].Chat.toUpperCase(), TriggerValues)
+			
+			if (msg != "") {
+				if (msg == "Edge") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.EDGE))
+				if (msg == "Deny") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.DENY))
+				if (msg == "Tease") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.TEASE))
+				if (msg == "Random") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.RANDOM))
+				if (msg == "Disable") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.OFF))
+				if (msg == "Increase") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, true)))
+				if (msg == "Decrease") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, false)))
+			}
+			
+		}
+	}
+	
+}
 
 function AssetsItemVulvaFuturisticVibratorScriptDraw(data) {
 	var PersistentData = data.PersistentData();
+	var C = data.C;
+	var Item = data.Item;
+	// Only run updates on the player and NPCs
+	if (C.ID !== 0 && C.MemberNumber !== null) return;
 	
 	if (typeof PersistentData.CheckTime !== "number") PersistentData.CheckTime = CommonTime() + FuturisticVibratorCheckChatTime;
 
 	if (CommonTime() > PersistentData.CheckTime) {
+		InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, PersistentData.CheckTime - FuturisticVibratorCheckChatTime)
 		
 		PersistentData.CheckTime = CommonTime() + FuturisticVibratorCheckChatTime;
 	}

@@ -1536,10 +1536,16 @@ function ChatRoomMessage(data) {
 					}
 					msg += ':</span> ';
 
+						
 					if (data.Type == "Whisper") {
 						msg += ChatRoomHTMLEntities(data.Content);
+						ChatRoomChatLog.push({Chat: ChatRoomHTMLEntities(data.Content), Time: CommonTime()})
 					} else {
 						msg += ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
+						ChatRoomChatLog.push({Chat: ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content, true)), Time: CommonTime()})
+					}
+					if (ChatRoomChatLog.length > 6) { // Keep it short
+						ChatRoomChatLog.splice(0, 1)
 					}
 				}
 				else if (data.Type == "Emote") {
