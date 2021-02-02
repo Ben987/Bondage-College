@@ -1528,8 +1528,12 @@ function ChatRoomMessage(data) {
 					if (data.Type == "Whisper") msg += '; font-style: italic';
 					msg += ';">';
 
+					// Garble names
 					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber && data.Type != "Whisper") {
-						msg += SpeechGarble(SenderCharacter, SenderCharacter.Name);
+						if ((Player.GetDeafLevel() >= 4))
+							msg += DialogFindPlayer("Someone")
+						else 
+							msg += SpeechGarble(SenderCharacter, SenderCharacter.Name, true);
 					} else {
 						msg += SenderCharacter.Name;
 					}
