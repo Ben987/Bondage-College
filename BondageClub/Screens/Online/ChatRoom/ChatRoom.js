@@ -1445,6 +1445,7 @@ function ChatRoomMessage(data) {
 			// Replace actions by the content of the dictionary
 			if (data.Type && ((data.Type == "Action") || (data.Type == "ServerMessage"))) {
 				if (data.Type == "ServerMessage") msg = "ServerMessage" + msg;
+				var orig_msg = msg
 				msg = DialogFindPlayer(msg);
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
@@ -1506,6 +1507,16 @@ function ChatRoomMessage(data) {
 					// For automatic messages, do not show the message if the player is not involved, depending on their preferences
 					if (Automatic && !IsPlayerInvolved && !Player.ChatSettings.ShowAutomaticMessages) {
 						return;
+					}
+					
+					// When the player is in total sensory deprivation, hide messages if the player is not involved
+					if (Player.ImmersionSettings.SenseDepMessages && !IsPlayerInvolved && PreferenceIsPlayerInSensDep()) {
+						return;
+					}
+					
+					// Handle stimulation
+					if ((orig_msg == "HelpKneelDown" || orig_msg == "HelpStandUp") && (TargetMemberNumber != null) && (TargetMemberNumber == Player.MemberNumber)) {
+						ChatRoomStimulationMessage("Kneel")
 					}
 
 					// If another player is using an item which applies an activity on the current player, apply the effect here
@@ -1570,11 +1581,18 @@ function ChatRoomMessage(data) {
 						if (data.Dictionary[D].Tag == "ActivityGroup") ActivityGroup = data.Dictionary[D].Text;
 						if (data.Dictionary[D].ActivityCounter != null) ActivityCounter = data.Dictionary[D].ActivityCounter;
 					}
+					
+
 
 				// If the player does the activity on herself or an NPC, we calculate the result right away
 				if ((data.Type === "Action") || ((TargetMemberNumber == Player.MemberNumber) && (SenderCharacter.MemberNumber != Player.MemberNumber)))
 					if ((Player.ArousalSettings == null) || (Player.ArousalSettings.Active == null) || (Player.ArousalSettings.Active == "Hybrid") || (Player.ArousalSettings.Active == "Automatic"))
 						ActivityEffect(SenderCharacter, Player, ActivityName, ActivityGroup, ActivityCounter);
+
+				// When the player is in total sensory deprivation, hide messages if the player is not involved
+				if (Player.ImmersionSettings.SenseDepMessages && TargetMemberNumber != Player.MemberNumber && SenderCharacter.MemberNumber != Player.MemberNumber && PreferenceIsPlayerInSensDep()) {
+					return;
+				}
 
 				// Exits before outputting the text if the player doesn't want to see the sexual activity messages
 				if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
@@ -1998,7 +2016,6 @@ function ChatRoomPingLeashedPlayers(NoBeep) {
 function ChatRoomKneelStandAssist() { 
 	ServerSend("ChatRoomChat", { Content: !CurrentCharacter.IsKneeling() ? "HelpKneelDown" : "HelpStandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }, { Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber }] });
 	CharacterSetActivePose(CurrentCharacter, !CurrentCharacter.IsKneeling() ? "Kneel" : null, true);
-	ChatRoomStimulationMessage("Kneel")
 	ChatRoomCharacterUpdate(CurrentCharacter);
 }
 
