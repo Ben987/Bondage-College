@@ -28,12 +28,17 @@ function InventoryItemVulvaFuturisticVibratorDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawAssetPreview(1387, 75, DialogFocusItem.Asset);
+		DrawAssetPreview(1387, 50, DialogFocusItem.Asset);
 		for (let I = 0; I <= ItemVulvaFuturisticVibratorTriggers.length; I++) {
 				if (I < ItemVulvaFuturisticVibratorTriggers.length) {
 					MainCanvas.textAlign = "right";
 					DrawText(DialogFindPlayer("FuturisticVibrator" + ItemVulvaFuturisticVibratorTriggers[I]), 1400, 450+60*I, "white", "gray");
 					MainCanvas.textAlign = "center";
+					var mode = DialogFindPlayer("Off" )
+					if (DialogFocusItem.Property && DialogFocusItem.Property.Mode) {
+						mode = DialogFindPlayer(DialogFocusItem.Property.Mode)
+					}
+					DrawText(DialogFindPlayer("CurrentMode" ) + mode, 1500, 375, "white", "gray");
 					ElementPosition("FuturisticVibe" + ItemVulvaFuturisticVibratorTriggers[I], 1650, 450+60*I, 400);
 				} else
 					DrawButton(1325, 450+60*I, 350, 64, DialogFindPlayer("FuturisticVibratorSaveVoiceCommands"), "White", "");
