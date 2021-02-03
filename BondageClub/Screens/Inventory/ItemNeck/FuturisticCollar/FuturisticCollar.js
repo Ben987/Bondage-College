@@ -81,7 +81,7 @@ function InventoryItemNeckFuturisticCollarClick() {
 	} else {
 		
 		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemNeckFuturisticCollarExit();
-		else if (MouseIn(1125, 395, 64, 64)) InventoryItemNeckFuturisticCollarTogglePermission(C, DialogFocusItem);
+		else if (MouseIn(1125, 395, 64, 64) && InventoryItemMouthFuturisticPanelGagValidate(C) == "") InventoryItemNeckFuturisticCollarTogglePermission(C, DialogFocusItem);
 		else if (MouseIn(1125, 465, 64, 64)) InventoryItemNeckFuturisticCollarToggleRemotes(C, DialogFocusItem);
 		else {
 		
