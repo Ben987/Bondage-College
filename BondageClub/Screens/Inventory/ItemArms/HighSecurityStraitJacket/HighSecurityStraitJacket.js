@@ -99,7 +99,7 @@ function InventoryItemArmsHighSecurityStraitJacketLoad() {
 		CharacterRefresh(C);
 		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 	}
-	DialogExtendedMessage = DialogFind(Player, "ItemArmsHighSecurityStraitJacketSelectBase");
+	DialogExtendedMessage = DialogFindPlayer("ItemArmsHighSecurityStraitJacketSelectBase");
 }
 
 function InventoryItemArmsHighSecurityStraitJacketCall(functionMap) {
@@ -117,23 +117,20 @@ function InventoryItemArmsHighSecurityStraitJacketClick() {
 
 function InventoryItemArmsHighSecurityStraitJacketPageTransition(newPage) {
 	InventoryItemArmsHighSecurityStraitJacketPage = newPage;
-	DialogExtendedMessage = DialogFind(Player, "ItemArmsHighSecurityStraitJacketSelect" + newPage);
+	DialogExtendedMessage = DialogFindPlayer("ItemArmsHighSecurityStraitJacketSelect" + newPage);
 }
 
 function InventoryItemArmsHighSecurityStraitJacketDrawCommon(buttonDefinitions) {
 	var A = DialogFocusItem.Asset;
 	// Draw the header and item
-	DrawRect(1387, 55, 225, 275, "#fff");
-	DrawImageResize("Assets/" + A.Group.Family + "/" + A.Group.Name + "/Preview/" + A.Name + ".png", 1389, 57, 221, 221);
-	DrawTextFit(A.Description, 1500, 310, 221, "#000");
+	DrawAssetPreview(1387, 55, A);
 	DrawText(DialogExtendedMessage, 1500, 375, "#fff", "#808080");
 
 	buttonDefinitions.forEach((buttonDefinition, i) => {
 		var x = 1200 + (i % 2 * 387);
 		var y = 450 + (Math.floor(i / 2) * 300);
-		DrawButton(x, y, 225, 225, "", buttonDefinition[2] || "#fff");
-		DrawImage(buttonDefinition[0], x, y);
-		DrawText(DialogFind(Player, buttonDefinition[1]), x + 113, y - 20, "#fff", "#808080");
+		DrawPreviewBox(x, y, buttonDefinition[0], "", { Background: buttonDefinition[2], Hover: true })
+		DrawText(DialogFindPlayer(buttonDefinition[1]), x + 113, y - 20, "#fff", "#808080");
 	});
 }
 
@@ -238,13 +235,13 @@ function InventoryItemArmsHighSecurityStraitJacketSetType(option) {
 
 	// Lock check - cannot change type if you can't unlock the item
 	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
-		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked");
+		DialogExtendedMessage = DialogFindPlayer("CantChangeWhileLocked");
 		return;
 	}
 
 	// Self bondage requirement check
 	if (option.SelfBondage && C.ID === 0 && SkillGetLevelReal(C, "SelfBondage") < option.SelfBondage) {
-		DialogExtendedMessage = DialogFind(Player, "RequireSelfBondage" + option.SelfBondage);
+		DialogExtendedMessage = DialogFindPlayer("RequireSelfBondage" + option.SelfBondage);
 		return;
 	}
 

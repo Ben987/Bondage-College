@@ -11,24 +11,22 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitLoad() {
 
 // Draw the item extension screen
 function InventoryItemNeckAccessoriesCollarAutoShockUnitDraw() {
-	DrawRect(1387, 205, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 207, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 455, 221, "black");
-	DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 520, "White", "Gray");
-	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1100, 550, 200, 55, DialogFind(Player, "Low"), "White");
-	if (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1375, 550, 200, 55, DialogFind(Player, "Medium"), "White");
-	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1650, 550, 200, 55, DialogFind(Player, "High"), "White");
-	
-	DrawText(DialogFind(Player, "Sensitivity" + (DialogFocusItem.Property.Sensitivity-1).toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 660, "White", "Gray");
-	
-	if (DialogFocusItem.Property.Sensitivity != 0) DrawButton(1100, 700, 150, 55, DialogFind(Player, "TurnOff"), "White");
-	if (DialogFocusItem.Property.Sensitivity != 1) DrawButton(1300, 700, 150, 55, DialogFind(Player, "Low"), "White");
-	if (DialogFocusItem.Property.Sensitivity != 2) DrawButton(1500, 700, 150, 55, DialogFind(Player, "Medium"), "White");
-	if (DialogFocusItem.Property.Sensitivity != 3) DrawButton(1700, 700, 150, 55, DialogFind(Player, "High"), "White");
-	
+	DrawAssetPreview(1387, 205, DialogFocusItem.Asset);
+	DrawText(DialogFindPlayer("Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 520, "White", "Gray");
+	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1100, 550, 200, 55, DialogFindPlayer("Low"), "White");
+	if (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1375, 550, 200, 55, DialogFindPlayer("Medium"), "White");
+	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1650, 550, 200, 55, DialogFindPlayer("High"), "White");
+
+	DrawText(DialogFindPlayer("Sensitivity" + (DialogFocusItem.Property.Sensitivity-1).toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 660, "White", "Gray");
+
+	if (DialogFocusItem.Property.Sensitivity != 0) DrawButton(1100, 700, 150, 55, DialogFindPlayer("TurnOff"), "White");
+	if (DialogFocusItem.Property.Sensitivity != 1) DrawButton(1300, 700, 150, 55, DialogFindPlayer("Low"), "White");
+	if (DialogFocusItem.Property.Sensitivity != 2) DrawButton(1500, 700, 150, 55, DialogFindPlayer("Medium"), "White");
+	if (DialogFocusItem.Property.Sensitivity != 3) DrawButton(1700, 700, 150, 55, DialogFindPlayer("High"), "White");
+
 	if (CurrentScreen == "ChatRoom") DrawButton(1125, 780, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
-	if (CurrentScreen == "ChatRoom") DrawText(DialogFind(Player, "ShockCollarShowChat"), 1370, 813, "White", "Gray");
-	DrawButton(1600, 790, 200, 55, DialogFind(Player, "TriggerShock"), "White");
+	if (CurrentScreen == "ChatRoom") DrawText(DialogFindPlayer("ShockCollarShowChat"), 1370, 813, "White", "Gray");
+	DrawButton(1600, 790, 200, 55, DialogFindPlayer("TriggerShock"), "White");
 }
 
 // Catches the item extension clicks

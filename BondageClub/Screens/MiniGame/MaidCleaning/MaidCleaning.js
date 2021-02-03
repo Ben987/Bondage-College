@@ -126,6 +126,18 @@ function MaidCleaningDoMove() {
 }
 
 /**
+ * The player can use the C key to cheat and add 10 extra seconds to win the game
+ * @returns {void} - Nothing
+ */
+function MaidCleaningKeyDown() {
+	if (MiniGameCheatKeyDown()) {
+		MiniGameTimer = MiniGameTimer + 10000;
+		if (MiniGameTimer > CommonTime() + 60000)
+			MiniGameTimer = CommonTime() + 60000;
+	}
+}
+
+/**
  * Handles clicks during the maid cleaning minigame. On mobile, we need to move the player on a click.
  */
 function MaidCleaningClick() {

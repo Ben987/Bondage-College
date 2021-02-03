@@ -3,7 +3,7 @@ var InventoryItemButtButtPlugLockMessage = "SelectAttachmentState";
 
 // Loads the item extension properties
 function InventoryItemButtButtPlugLockLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Restrain: null };
 	InventoryItemButtButtPlugLockMessage = "SelectAttachmentState";
 }
 
@@ -18,41 +18,38 @@ function InventoryItemButtButtPlugLockChainShortPrerequesites(C) {
 
 // Draw the item extension screen
 function InventoryItemButtButtPlugLockDraw() {
-
-	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	const A = DialogFocusItem.Asset;
+	const Property = DialogFocusItem.Property;
 
 	// Variables to check if short chain can be applied
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	var ChainShortPrerequisites = InventoryItemButtButtPlugLockChainShortPrerequesites(C);
+	const C = CharacterGetCurrent();
+	const ChainShortPrerequisites = InventoryItemButtButtPlugLockChainShortPrerequesites(C);
+
+	// Draw the header and item
+	DrawAssetPreview(1387, 125, A);
+
 
 	// Draw the possible poses
-	DrawText(DialogFind(Player, InventoryItemButtButtPlugLockMessage), 1500, 500, "white", "gray");
-	DrawButton(1000, 550, 225, 225, "", ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type == null)) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Base.png", 1000, 550);
-	DrawText(DialogFind(Player, "ButtPlugLockPoseBase"), 1125, 800, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "ChainShort") || !ChainShortPrerequisites) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/ChainShort.png", 1250, 550);
-	DrawText(DialogFind(Player, "ButtPlugLockPoseChainShort"), 1375, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "ChainLong") || C.Pose.indexOf("Suspension") >= 0) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/ChainLong.png", 1500, 550);
-	DrawText(DialogFind(Player, "ButtPlugLockPoseChainLong"), 1625, 800, "white", "gray");
+	DrawText(DialogFindPlayer(InventoryItemButtButtPlugLockMessage), 1500, 500, "white", "gray");
+
+	DrawPreviewBox(1000, 550, `${AssetGetInventoryPath(A)}/Base.png`, DialogFindPlayer("ButtPlugLockPoseBase"), {Hover: true, Disabled: Property.Type === null});
+	DrawPreviewBox(1250, 550, `${AssetGetInventoryPath(A)}/ChainShort.png`, DialogFindPlayer("ButtPlugLockPoseChainShort"), {Hover: true, Disabled: Property.Type === "ChainShort" || !ChainShortPrerequisites});
+	DrawPreviewBox(1500, 550, `${AssetGetInventoryPath(A)}/ChainLong.png`, DialogFindPlayer("ButtPlugLockPoseChainLong"), {Hover: true, Disabled: Property.Type === "ChainLong" || C.Pose.includes("Suspension")});
 }
 
 // Catches the item extension clicks
 function InventoryItemButtButtPlugLockClick() {
+	const Property = DialogFocusItem.Property
 
 	// Variables to check if short chain can be applied
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	var ChainShortPrerequisites = InventoryItemButtButtPlugLockChainShortPrerequesites(C);
+	const C = CharacterGetCurrent();
+	const ChainShortPrerequisites = InventoryItemButtButtPlugLockChainShortPrerequesites(C);
 
 	// Trigger click handlers
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemButtButtPlugLockSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainShort")) && ChainShortPrerequisites) InventoryItemButtButtPlugLockSetPose("ChainShort");
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainLong"))) InventoryItemButtButtPlugLockSetPose("ChainLong");
+	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
+	else if (MouseIn(1000, 550, 225, 275) && (Property.Restrain != null)) InventoryItemButtButtPlugLockSetPose(null);
+	else if (MouseIn(1250, 550, 225, 275) && ((Property.Restrain == null) || (Property.Restrain != "ChainShort")) && ChainShortPrerequisites) InventoryItemButtButtPlugLockSetPose("ChainShort");
+	else if (MouseIn(1500, 550, 225, 275) && ((Property.Restrain == null) || (Property.Restrain != "ChainLong")) && !C.Pose.includes("Suspension")) InventoryItemButtButtPlugLockSetPose("ChainLong");
 }
 
 

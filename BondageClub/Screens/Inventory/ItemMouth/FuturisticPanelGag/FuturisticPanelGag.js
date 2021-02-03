@@ -103,15 +103,13 @@ function InventoryItemMouthFuturisticPanelGagLoadAccessDenied() {
 
 // Draw the futuristic item ACCESS DENIED screen
 function InventoryItemMouthFuturisticPanelGagDrawAccessDenied() {
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	
-	DrawText(DialogFind(Player, "FuturisticItemLoginScreen"), 1500, 600, "White", "Gray");
+	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
+
+	DrawText(DialogFindPlayer("FuturisticItemLoginScreen"), 1500, 600, "White", "Gray");
 	
 	ElementPosition("PasswordField", 1505, 750, 350);
-	DrawText(DialogFind(Player, "FuturisticItemPassword"), 1500, 700, "White", "Gray");
-	DrawButton(1400, 800, 200, 64, DialogFind(Player, "FuturisticItemLogIn"), "White", "");
+	DrawText(DialogFindPlayer("FuturisticItemPassword"), 1500, 700, "White", "Gray");
+	DrawButton(1400, 800, 200, 64, DialogFindPlayer("FuturisticItemLogIn"), "White", "");
 	
 	if (FuturisticAccessDeniedMessage && FuturisticAccessDeniedMessage != "") DrawText(FuturisticAccessDeniedMessage, 1500, 963, "Red", "Black");
 	
@@ -142,7 +140,7 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 			Player.FocusGroup = null
 			InventoryItemMouthFuturisticPanelGagExit();
 		} else {
-			FuturisticAccessDeniedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
+			FuturisticAccessDeniedMessage = DialogFindPlayer("CantChangeWhileLockedFuturistic");
 			var vol = 1
 			if (Player.AudioSettings && Player.AudioSettings.Volume) {
 				vol = Player.AudioSettings.Volume
@@ -174,50 +172,48 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawRect(1387, 75, 225, 275, "white");
-		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 77, 221, 221);
-		DrawTextFit(DialogFocusItem.Asset.Description, 1500, 325, 221, "black");
-		
+		DrawAssetPreview(1387, 75, DialogFocusItem.Asset);
+
 		if (DialogFocusItem.Property.AutoPunishUndoTime - CurrentTime > 0)
-			DrawText(DialogFind(Player, "FuturisticPanelGagMouthDeflationTime") + " " + TimerToString(DialogFocusItem.Property.AutoPunishUndoTime - CurrentTime), 1500, 415, "White", "Gray");		
-		
+			DrawText(DialogFindPlayer("FuturisticPanelGagMouthDeflationTime") + " " + TimerToString(DialogFocusItem.Property.AutoPunishUndoTime - CurrentTime), 1500, 415, "White", "Gray");		
+
 		var type = "FuturisticPanelGagMouthType" + ((DialogFocusItem.Property.Type != null) ? DialogFocusItem.Property.Type : "Padded")
-		DrawText(DialogFind(Player, "FuturisticPanelGagMouthTypeDesc") + " " +
-			DialogFind(Player, type), 1350, 475, "White", "Gray");	
-				
+		DrawText(DialogFindPlayer("FuturisticPanelGagMouthTypeDesc") + " " +
+			DialogFindPlayer(type), 1350, 475, "White", "Gray");	
+
 		MainCanvas.textAlign = "left";
 		DrawCheckbox(1100, 890, 64, 64, "", DialogFocusItem.Property.ChatMessage, "White");
-		DrawText(DialogFind(Player, "FuturisticPanelGagMouthButtonChatMessage"), 1200, 923, "White", "Gray");	
+		DrawText(DialogFindPlayer("FuturisticPanelGagMouthButtonChatMessage"), 1200, 923, "White", "Gray");	
 		MainCanvas.textAlign = "center";
-		
+
 		var autopunish = "Off" 
 		if (DialogFocusItem.Property.AutoPunish == 0) {}
 		else if (DialogFocusItem.Property.AutoPunish == 1) {autopunish = "Low"}
 		else if (DialogFocusItem.Property.AutoPunish == 2) {autopunish = "Medium"}
 		else {autopunish = "Maximum"}
-		
-		DrawText(DialogFind(Player, "FuturisticPanelGagMouthButtonAutoPunish") + " " + autopunish, 1350, 683, "White", "Gray");
+
+		DrawText(DialogFindPlayer("FuturisticPanelGagMouthButtonAutoPunish") + " " + autopunish, 1350, 683, "White", "Gray");
 		if (DialogFocusItem) {
-			if (DialogFocusItem.Property.Type != null) DrawButton(1100, 500, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypePadded"), "White", "");
-			if (DialogFocusItem.Property.Type != "LightBall") DrawButton(1400, 500, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypeLightBall"), "White", "");
-			if (DialogFocusItem.Property.Type != "Ball") DrawButton(1100, 570, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypeBall"), "White", "");
-			if (DialogFocusItem.Property.Type != "Plug") DrawButton(1400, 570, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthTypePlug"), "White", "");
-			
-			if (DialogFocusItem.Property.AutoPunish != 0) DrawButton(1100, 707, 200, 64, DialogFind(Player, "TurnOff"), "White", "");
-			if (DialogFocusItem.Property.AutoPunish != 1) DrawButton(1400, 707, 200, 64, DialogFind(Player, "Low"), "White", "");
-			if (DialogFocusItem.Property.AutoPunish != 2) DrawButton(1100, 777, 200, 64, DialogFind(Player, "Medium"), "White", "");
-			if (DialogFocusItem.Property.AutoPunish != 3) DrawButton(1400, 777, 200, 64, DialogFind(Player, "Maximum"), "White", "");
-			
-			DrawText(DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeSetting" + DialogFocusItem.Property.AutoPunishUndoTimeSetting), 1775, 475, "White", "Gray");	
-			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 120000) DrawButton(1675, 500, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton120000"), "White", "");
-			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 300000) DrawButton(1675, 570, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton300000"), "White", "");
-			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 900000) DrawButton(1675, 640, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton900000"), "White", "");
-			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 3600000) DrawButton(1675, 710, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton3600000"), "White", "");
-			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000) DrawButton(1675, 780, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButton72000000"), "White", "");
-			
-			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting) DrawButton(1675, 880, 200, 64, DialogFind(Player, "FuturisticPanelGagMouthDeflationTimeButtonPump"), "White", "");
+			if (DialogFocusItem.Property.Type != null) DrawButton(1100, 500, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthTypePadded"), "White", "");
+			if (DialogFocusItem.Property.Type != "LightBall") DrawButton(1400, 500, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthTypeLightBall"), "White", "");
+			if (DialogFocusItem.Property.Type != "Ball") DrawButton(1100, 570, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthTypeBall"), "White", "");
+			if (DialogFocusItem.Property.Type != "Plug") DrawButton(1400, 570, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthTypePlug"), "White", "");
+
+			if (DialogFocusItem.Property.AutoPunish != 0) DrawButton(1100, 707, 200, 64, DialogFindPlayer("TurnOff"), "White", "");
+			if (DialogFocusItem.Property.AutoPunish != 1) DrawButton(1400, 707, 200, 64, DialogFindPlayer("Low"), "White", "");
+			if (DialogFocusItem.Property.AutoPunish != 2) DrawButton(1100, 777, 200, 64, DialogFindPlayer("Medium"), "White", "");
+			if (DialogFocusItem.Property.AutoPunish != 3) DrawButton(1400, 777, 200, 64, DialogFindPlayer("Maximum"), "White", "");
+
+			DrawText(DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeSetting" + DialogFocusItem.Property.AutoPunishUndoTimeSetting), 1775, 475, "White", "Gray");	
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 120000) DrawButton(1675, 500, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeButton120000"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 300000) DrawButton(1675, 570, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeButton300000"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 900000) DrawButton(1675, 640, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeButton900000"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 3600000) DrawButton(1675, 710, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeButton3600000"), "White", "");
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000) DrawButton(1675, 780, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeButton72000000"), "White", "");
+
+			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting) DrawButton(1675, 880, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeButtonPump"), "White", "");
 		}
-		
+
 	}
 }
 
@@ -286,7 +282,7 @@ function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
 	if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
 		var collar = InventoryGet(C, "ItemNeck")
 		if (collar && (!collar.Property || collar.Property.OpenPermission != true)) {
-			Allowed = DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLockedFuturistic");
+			Allowed = DialogExtendedMessage = DialogFindPlayer("CantChangeWhileLockedFuturistic");
 		}
 	}
 

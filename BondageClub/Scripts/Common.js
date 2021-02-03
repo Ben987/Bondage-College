@@ -10,6 +10,7 @@ var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
 var Notifications = {};
+var CommonPhotoMode = false;
 
 /**
  * A map of keys to common font stack definitions. Each stack definition is a	
@@ -342,6 +343,7 @@ function CommonCallFunctionByNameWarn(FunctionName/*, ...args */) {
  * @returns {void} - Nothing
  */
 function CommonSetScreen(NewModule, NewScreen) {
+	var prevScreen = CurrentScreen
 	CurrentModule = NewModule;
 	CurrentScreen = NewScreen;
 	CommonGetFont.clearCache();
@@ -349,6 +351,8 @@ function CommonSetScreen(NewModule, NewScreen) {
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
 		CommonDynamicFunction(CurrentScreen + "Load()");
+	if (prevScreen == "ChatSearch" || prevScreen == "ChatCreate")
+		ChatRoomStimulationMessage("Walk")
 	if (ControllerActive == true) {
 		ClearButtons();
 	}
@@ -590,4 +594,31 @@ function CommonNotificationUpdate() {
 	for (let key in Notifications) total += Notifications[key];
 	let prefix = total == 0 ? "" : "(" + total.toString() + ") ";
 	document.title = prefix + "Bondage Club";
+}
+
+function CommonTakePhoto(Left, Top, Width, Height) {
+	CommonPhotoMode = true;
+
+	// Ensure everything is redrawn once in photo-mode
+	DrawProcess();
+
+	// Capture screen as image URL
+	let ImgData = document.getElementById("MainCanvas").getContext('2d').getImageData(Left, Top, Width, Height);
+	let PhotoCanvas = document.createElement('canvas');
+	PhotoCanvas.width = Width;
+	PhotoCanvas.height = Height;
+	PhotoCanvas.getContext('2d').putImageData(ImgData, 0, 0);
+	let PhotoImg = PhotoCanvas.toDataURL("image/png");
+
+	// Open the image in a new window
+	if (CommonGetBrowser().Name === "Chrome") {
+		// Chrome does not allow loading data URLs in the top frame
+		let newWindow = window.open('about:blank', '_blank');
+		newWindow.document.write("<img src='" + PhotoImg + "' alt='from canvas'/>");
+	}
+	else {
+		window.open(PhotoImg);
+	}
+	
+	CommonPhotoMode = false;
 }

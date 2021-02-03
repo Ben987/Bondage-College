@@ -151,9 +151,11 @@ function GameLARPRunProcess() {
 			var X = 15;
 			var Y = 110;
 			for (let A = GameLARPInventoryOffset; (A < GameLARPInventory.length) && (A < GameLARPInventoryOffset + 12); A++) {
-				DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : "white");
-				DrawImageResize("Assets/" + Player.AssetFamily + "/" + GameLARPInventory[A].DynamicGroupName + "/Preview/" + GameLARPInventory[A].Name + ".png", X + 2, Y + 2, 221, 221);
-				DrawTextFit(GameLARPInventory[A].Description, X + 112, Y + 250, 221, "black");
+				const Item = GameLARPInventory[A];
+				const Hover = MouseIn(X, Y, 225, 275) && !CommonIsMobile;
+				const Hidden = CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name);
+				if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.Description, { Background: Hover ? "cyan" : "#fff" });
+
 				X = X + 250;
 				if (X > 800) {
 					X = 15;

@@ -9,20 +9,18 @@ function InventoryItemMiscTimerPadlockLoad() {
 // Draw the extension screen
 function InventoryItemMiscTimerPadlockDraw() {
 	if ((DialogFocusItem == null) || (DialogFocusSourceItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscTimerPadlockExit(); return; }
-	DrawText(DialogFind(Player, "TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
+	DrawText(DialogFindPlayer("TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
+	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
+	DrawText(DialogFindPlayer(DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
-		DrawText(DialogFind(Player, "LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
+		DrawText(DialogFindPlayer("LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
 	if ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) && Player.CanInteract()) {
 		MainCanvas.textAlign = "left";
 		DrawButton(1100, 836, 64, 64, "", "White", (DialogFocusSourceItem.Property.RemoveItem) ? "Icons/Checked.png" : "");	
-		DrawText(DialogFind(Player, "RemoveItemWithTimer"), 1200, 868, "white", "gray");
+		DrawText(DialogFindPlayer("RemoveItemWithTimer"), 1200, 868, "white", "gray");
 		MainCanvas.textAlign = "center";
-	} else DrawText(DialogFind(Player, (DialogFocusSourceItem.Property.RemoveItem) ? "WillRemoveItemWithTimer" : "WontRemoveItemWithTimer"), 1500, 868, "white", "gray");
-	if (Player.CanInteract()) DrawButton(1350, 910, 300, 65, DialogFind(Player, "RestartTimer"), "White");
+	} else DrawText(DialogFindPlayer((DialogFocusSourceItem.Property.RemoveItem) ? "WillRemoveItemWithTimer" : "WontRemoveItemWithTimer"), 1500, 868, "white", "gray");
+	if (Player.CanInteract()) DrawButton(1350, 910, 300, 65, DialogFindPlayer("RestartTimer"), "White");
 }
 
 // Catches the item extension clicks

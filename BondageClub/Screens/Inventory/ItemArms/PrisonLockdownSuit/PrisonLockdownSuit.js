@@ -45,7 +45,7 @@ function InventoryItemArmsPrisonLockdownSuitLoad() {
 
 function InventoryItemArmsPrisonLockdownSuitSetPage(Page) {
 	InventoryItemArmsPrisonLockdownSuitPage = Page;
-	DialogExtendedMessage = DialogFind(Player, "ItemArmsPrisonLockdownSuitSelect" + Page);
+	DialogExtendedMessage = DialogFindPlayer("ItemArmsPrisonLockdownSuitSelect" + Page);
 }
 
 function InventoryItemArmsPrisonLockdownSuitDraw() {
@@ -56,18 +56,14 @@ function InventoryItemArmsPrisonLockdownSuitDrawBase() {
 	var A = DialogFocusItem.Asset;
 
 	// Draw the header and item
-	DrawRect(1387, 55, 225, 275, "white");
-	DrawImageResize("Assets/" + A.Group.Family + "/" + A.Group.Name + "/Preview/" + A.Name + ".png", 1389, 57, 221, 221);
-	DrawTextFit(A.Description, 1500, 310, 221, "black");
+	DrawAssetPreview(1387, 55, A);
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 
-	DrawButton(1175, 550, 225, 225, "", "white");
-	DrawImage("Screens/Inventory/" + A.Group.Name + "/" + A.Name + "/" + (DialogFocusItem.Property.Type || "Free") + ".png", 1175, 550);
-	DrawText(DialogFind(Player, "ItemArmsPrisonLockdownSuitStraps"), 1288, 800, "white", "gray");
+	DrawPreviewBox(1175, 550, `${AssetGetInventoryPath(A)}/${DialogFocusItem.Property.Type || "Free"}.png`, "", { Hover: true });
+	DrawText(DialogFindPlayer("ItemArmsPrisonLockdownSuitStraps"), 1288, 800, "white", "gray");
 
-	DrawButton(1600, 550, 225, 225, "", "white");
-	DrawImage("Screens/Inventory/" + A.Group.Name + "/" + A.Name + "/Shock.png", 1600, 550);
-	DrawText(DialogFind(Player, "ItemArmsPrisonLockdownSuitShock"), 1713, 800, "white", "gray");
+	DrawPreviewBox(1600, 550, `${AssetGetInventoryPath(A)}/Shock.png`, "", { Hover: true });
+	DrawText(DialogFindPlayer("ItemArmsPrisonLockdownSuitShock"), 1713, 800, "white", "gray");
 }
 
 function InventoryItemArmsPrisonLockdownSuitDrawStraps() {

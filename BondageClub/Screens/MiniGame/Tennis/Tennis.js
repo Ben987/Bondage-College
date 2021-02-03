@@ -184,3 +184,11 @@ function TennisClick() {
 		CommonDynamicFunction(MiniGameReturnFunction + "()");
 
 }
+
+/**
+ * Handles the key press in the tennis mini game, the C cheat key gives you one point toward winning
+ * @returns {void} - Nothing
+ */
+function TennisKeyDown() {
+	if (MiniGameCheatKeyDown()) TennisCharacterLeftPoint++;
+}

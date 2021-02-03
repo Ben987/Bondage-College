@@ -114,7 +114,7 @@ function AssetAdd(NewAsset) {
 		Difficulty: (NewAsset.Difficulty == null) ? 0 : NewAsset.Difficulty,
 		SelfBondage: (NewAsset.SelfBondage == null) ? 0 : NewAsset.SelfBondage,
 		SelfUnlock: (NewAsset.SelfUnlock == null) ? true : NewAsset.SelfUnlock,
-		ExclusiveUnlock: (NewAsset.ExclusiveUnlock == null) ? true : NewAsset.ExclusiveUnlock,
+		ExclusiveUnlock: (NewAsset.ExclusiveUnlock == null) ? false : NewAsset.ExclusiveUnlock,
 		Random: (NewAsset.Random == null) ? true : NewAsset.Random,
 		RemoveAtLogin: (NewAsset.RemoveAtLogin == null) ? false : NewAsset.RemoveAtLogin,
 		WearTime: (NewAsset.Time == null) ? 0 : NewAsset.Time,
@@ -418,4 +418,23 @@ function AssetCleanArray(AssetArray) {
  */
 function AssetGroupGet(Family, Group) {
     return AssetGroup.find(g => g.Family === Family && g.Name === Group);
+}
+
+/**
+ * Utility function for retrieving the preview image directory path for an asset
+ * @param {Asset} A - The asset whose preview path to retrieve
+ * @returns {string} - The path to the asset's preview image directory
+ */
+function AssetGetPreviewPath(A) {
+	return `Assets/${A.Group.Family}/${A.DynamicGroupName}/Preview`;
+}
+
+/**
+ * Utility function for retrieving the base path of an asset's inventory directory, where extended item scripts are
+ * held
+ * @param {Asset} A - The asset whose inventory path to retrieve
+ * @returns {string} - The path to the asset's inventory directory
+ */
+function AssetGetInventoryPath(A) {
+	return `Screens/Inventory/${A.DynamicGroupName}/${A.Name}`;
 }

@@ -167,14 +167,14 @@ function CharacterRandomName(C) {
  */
 function CharacterBuildDialog(C, CSV) {
 
-	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
+	const OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	C.Dialog = [];
 	// For each lines in the file
 	for (let L = 0; L < CSV.length; L++)
 		if ((CSV[L][0] != null) && (CSV[L][0] != "")) {
 
 			// Creates a dialog object
-			var D = {};
+			const D = {};
 			D.Stage = CSV[L][0];
 			if ((CSV[L][1] != null) && (CSV[L][1].trim() != "")) D.NextStage = CSV[L][1];
 			if ((CSV[L][2] != null) && (CSV[L][2].trim() != "")) D.Option = CSV[L][2].replace("DialogCharacterName", C.Name).replace("DialogPlayerName", Player.Name);
@@ -190,6 +190,12 @@ function CharacterBuildDialog(C, CSV) {
 	// Translate the dialog if needed
 	TranslationDialog(C);
 
+	if (C === Player) {
+		for (const D of C.Dialog) {
+			if (typeof D.Result === "string")
+				PlayerDialog.set(D.Stage, D.Result);
+		}
+	}
 }
 
 /**
@@ -691,7 +697,7 @@ function CharacterRefresh(C, Push) {
 	C.HasScriptedAssets = !!C.Appearance.find(CA => CA.Asset.DynamicScriptDraw);
 	
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) {
-		ChatRoomRefreshChatSettings(C);
+		ChatRoomRefreshChatSettings();
 		ServerPlayerAppearanceSync();
 	}
 	// Also refresh the current dialog menu if the refreshed character is the current character.
@@ -1126,7 +1132,7 @@ function CharacterIsEdged(C) {
 		                && Array.isArray(Item.Property.Effect)
 		                && Item.Property.Effect.includes("Vibrating")
 		                && typeof Item.Property.Intensity === "number"
-		                && Item.Property.Intensity >= 0,
+		                && Item.Property.Intensity >= 0
 		);
 
 	// Return true if every vibrating item on an orgasm zone has the "Edged" effect
@@ -1184,4 +1190,13 @@ function CharacterCanKneel(C) {
 	if (C.Pose == null) return true;
 	if (C.Pose.includes("Suspension") || C.Pose.includes("Hogtied")) return false;
 	return C.CanChangeToPose("Kneel");
+}
+
+function CharacterGetDarkFactor(C) {
+	let DarkFactor = 1.0;
+	if (C.GetBlindLevel() >= 3) DarkFactor = 0.0;
+	else if (CommonPhotoMode) DarkFactor = 1.0;
+	else if (C.GetBlindLevel() == 2) DarkFactor = 0.15;
+	else if (C.GetBlindLevel() == 1) DarkFactor = 0.3;
+	return DarkFactor;
 }

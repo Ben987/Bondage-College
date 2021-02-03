@@ -33,15 +33,13 @@ function InventoryItemMiscPasswordPadlockLoad() {
 // Draw the extension screen
 function InventoryItemMiscPasswordPadlockDraw() {
 	var C = CharacterGetCurrent();
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
+	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
-		DrawText(DialogFind(Player, "LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 600, "white", "gray");
+		DrawText(DialogFindPlayer("LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 600, "white", "gray");
 
 	if (InventoryGroupIsBlocked(C, C.FocusGroup.Name)) {
 		// If the zone is blocked, just display some text informing the player that they can't access the lock
-		DrawText(DialogFind(Player, "LockZoneBlocked"), 1500, 800, "white", "gray");
+		DrawText(DialogFindPlayer("LockZoneBlocked"), 1500, 800, "white", "gray");
 	} else {
 		if (DialogFocusSourceItem.Property && (DialogFocusSourceItem.Property.LockSet || 
 		(DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.LockMemberNumber != Player.MemberNumber))) {
@@ -49,20 +47,20 @@ function InventoryItemMiscPasswordPadlockDraw() {
 			if (DialogFocusSourceItem && DialogFocusSourceItem.Property && DialogFocusSourceItem.Property.Hint)
 				DrawText("\"" + DialogFocusSourceItem.Property.Hint + "\"", 1500, 700, "white", "gray");
 			MainCanvas.textAlign = "right";
-			DrawText(DialogFind(Player, "PasswordPadlockOld"), 1490, 805, "white", "gray");
+			DrawText(DialogFindPlayer("PasswordPadlockOld"), 1490, 805, "white", "gray");
 			ElementPosition("Password", 1640, 805, 250);
 			MainCanvas.textAlign = "center";
-			DrawButton(1370, 871, 250, 64, DialogFind(Player, "PasswordPadlockEnter"), "White", "");
-			if (PreferenceMessage != "") DrawText(DialogFind(Player, PreferenceMessage), 1500, 963, "Red", "Black");
+			DrawButton(1370, 871, 250, 64, DialogFindPlayer("PasswordPadlockEnter"), "White", "");
+			if (PreferenceMessage != "") DrawText(DialogFindPlayer(PreferenceMessage), 1500, 963, "Red", "Black");
 		} else {
 			ElementPosition("SetHint", 1643, 700, 550);
 			ElementPosition("SetPassword", 1491, 770, 250);
 			MainCanvas.textAlign = "left";
-			DrawText(DialogFind(Player, "PasswordPadlockSetHint"), 1100, 703, "white", "gray");
-			DrawText(DialogFind(Player, "PasswordPadlockSetPassword"), 1100, 773, "white", "gray");
+			DrawText(DialogFindPlayer("PasswordPadlockSetHint"), 1100, 703, "white", "gray");
+			DrawText(DialogFindPlayer("PasswordPadlockSetPassword"), 1100, 773, "white", "gray");
 			MainCanvas.textAlign = "center";
-			DrawButton(1360, 871, 250, 64, DialogFind(Player, "PasswordPadlockChangePassword"), "White", "");
-			if (PreferenceMessage != "") DrawText(DialogFind(Player, PreferenceMessage), 1500, 963, "Red", "Black");
+			DrawButton(1360, 871, 250, 64, DialogFindPlayer("PasswordPadlockChangePassword"), "White", "");
+			if (PreferenceMessage != "") DrawText(DialogFindPlayer(PreferenceMessage), 1500, 963, "Red", "Black");
 		}
 	}
 }

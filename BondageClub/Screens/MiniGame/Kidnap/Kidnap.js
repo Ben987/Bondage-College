@@ -334,6 +334,7 @@ function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
 	KidnapOpponentClothLower = InventoryGet(Opponent, "ClothLower");
 	KidnapOpponent = Opponent;
 	KidnapBackground = Background;
+	MiniGameCheatAvailable = (CheatFactor("MiniGameBonus", 0) == 0);
 	CurrentCharacter = null;
 	Player.KidnapMaxWillpower = 20 + (SkillGetLevel(Player, "Willpower") * 2);
 	Player.KidnapWillpower = Player.KidnapMaxWillpower;
@@ -410,10 +411,11 @@ function KidnapShowItem() {
 	var X = 1000;
 	var Y = 125;
 	for (let I = 0; I < DialogInventory.length; I++) {
-		DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : DialogInventory[I].Worn ? "pink" : "white");
-		DrawImageResize("Assets/" + DialogInventory[I].Asset.Group.Family + "/" + DialogInventory[I].Asset.DynamicGroupName + "/Preview/" + DialogInventory[I].Asset.Name + ".png", X + 2, Y + 2, 221, 221);
-		DrawTextFit(DialogInventory[I].Asset.Description, X + 112, Y + 250, 221, "black");
-		if (DialogInventory[I].Icon != "") DrawImage("Icons/" + DialogInventory[I].Icon + ".png", X + 2, Y + 110);
+		const Item = DialogInventory[I];
+		const Hover = MouseIn(X, Y, 225, 275) && !CommonIsMobile;
+		const Background = Hover ? "cyan" : DialogInventory[I].Worn ? "pink" : "#fff";
+		DrawAssetPreview(X, Y, Item.Asset, { Background });
+
 		X = X + 250;
 		if (X > 1800) {
 			X = 1000;
@@ -518,4 +520,15 @@ function KidnapClick() {
 
 	}
 
+}
+
+/**
+ * Handles the key press in the kidnap mini game, the C cheat key can help you recover some lost willpower
+ * @returns {void} - Nothing
+ */
+function KidnapKeyDown() {
+	if (MiniGameCheatKeyDown()) {
+		Player.KidnapWillpower = Player.KidnapWillpower + 6;
+		if (Player.KidnapWillpower > Player.KidnapMaxWillpower) Player.KidnapWillpower = Player.KidnapMaxWillpower;
+	}
 }

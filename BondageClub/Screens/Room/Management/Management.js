@@ -375,7 +375,7 @@ function ManagementClick() {
 	if (MouseIn(250, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (MouseIn(750, 0, 500, 1000) && !ManagementEmpty) {		
 		if ((ManagementMistress.Stage == "0") && ManagementIsClubSlave()) ManagementMistress.Stage = "350";
-		if ((ManagementMistress.Stage == "0") && (ReputationGet("Dominant") < 50) && LogQuery("ClubMistress", "Management")) {
+		if ((ManagementMistress.Stage == "0") && (ReputationGet("Dominant") < 50) && (CheatFactor("CantLoseMistress", 0) == 1) && LogQuery("ClubMistress", "Management")) {
 			ManagementMistress.Stage = "500";
 			ManagementMistress.CurrentDialog = DialogFind(ManagementMistress, "MistressExpulsion");
 		}

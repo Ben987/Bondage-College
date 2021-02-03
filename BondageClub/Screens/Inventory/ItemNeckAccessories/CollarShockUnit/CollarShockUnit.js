@@ -9,16 +9,14 @@ function InventoryItemNeckAccessoriesCollarShockUnitLoad() {
 
 // Draw the item extension screen
 function InventoryItemNeckAccessoriesCollarShockUnitDraw() {
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
-	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "Low"), "White");
-	if (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Medium"), "White");
-	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1375, 710, 200, 55, DialogFind(Player, "High"), "White");
+	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
+	DrawText(DialogFindPlayer("Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
+	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1200, 650, 200, 55, DialogFindPlayer("Low"), "White");
+	if (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1550, 650, 200, 55, DialogFindPlayer("Medium"), "White");
+	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1375, 710, 200, 55, DialogFindPlayer("High"), "White");
 	if (CurrentScreen == "ChatRoom") DrawButton(1325, 800, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
-	if (CurrentScreen == "ChatRoom") DrawText(DialogFind(Player, "ShockCollarShowChat"), 1570, 833, "White", "Gray");
-	DrawButton(1375, 900, 200, 55, DialogFind(Player, "TriggerShock"), "White");
+	if (CurrentScreen == "ChatRoom") DrawText(DialogFindPlayer("ShockCollarShowChat"), 1570, 833, "White", "Gray");
+	DrawButton(1375, 900, 200, 55, DialogFindPlayer("TriggerShock"), "White");
 }
 
 // Catches the item extension clicks

@@ -7,20 +7,17 @@ function InventoryItemNeckAccessoriesCollarNameTagOvalLoad() {
 
 // Draw the item extension screen
 function InventoryItemNeckAccessoriesCollarNameTagOvalDraw() {
-	
 	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
 	// Draw the possible tags
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		DrawText(DialogFind(Player, "SelectCollarNameTagOvalType"), 1500, 500, "white", "gray");
+		DrawText(DialogFindPlayer("SelectCollarNameTagOvalType"), 1500, 500, "white", "gray");
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;
 		var Y = 530;
 		for (let T = 0; T < List.length; T++) {
-			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFind(Player, "CollarNameTagOvalType" + List[T]), "White");
+			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFindPlayer("CollarNameTagOvalType" + List[T]), "White");
 			X = X + 210;
 			if (T % 5 == 4) { 
 				X = 955; 
@@ -29,7 +26,7 @@ function InventoryItemNeckAccessoriesCollarNameTagOvalDraw() {
 		}
 	}
 	else {
-		DrawText(DialogFind(Player, "SelectCollarNameTagOvalTypeLocked"), 1500, 500, "white", "gray");
+		DrawText(DialogFindPlayer("SelectCollarNameTagOvalTypeLocked"), 1500, 500, "white", "gray");
 	}
 }
 

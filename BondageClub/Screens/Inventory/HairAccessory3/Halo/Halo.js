@@ -51,27 +51,25 @@ function InventoryHairAccessory3HaloDraw() {
 	const property = DialogFocusItem.Property;
 
 	// Draw the header and item
-	DrawRect(1387, 55, 225, 275, "white");
-	DrawImageResize(
-		"Assets/" + asset.Group.Family + "/" + asset.DynamicGroupName + "/Preview/" + asset.Name +
-		".png", 1389, 57, 221, 221);
-	DrawTextFit(asset.Description, 1500, 310, 221, "black");
+	DrawAssetPreview(1387, 55, asset);
 
-	MainCanvas.textAlign = "right";
-	DrawTextFit("Brightness", 1475, 430, 400, "#fff", "#000");
-	ElementPosition(InventoryHairAccessory3HaloBrightnessInputId, 1725, 430, 400);
+	MainCanvas.textAlign = "left";
+	DrawTextFit(DialogFindPlayer("InventoryHairAccessory3HaloBrightness"), 1185, 430, 200, "#fff", "#000");
+	ElementPosition(InventoryHairAccessory3HaloBrightnessInputId, 1630, 430, 400);
 	MainCanvas.textAlign = "center";
 
-	DrawTextFit(DialogFind(Player, "InventoryHairAccessory3HaloType"), 1500, 530, 800, "#fff", "#000");
+	DrawTextFit(DialogFindPlayer("InventoryHairAccessory3HaloType"), 1500, 530, 800, "#fff", "#000");
 
 	InventoryHairAccessory3HaloOptions.forEach((option, i) => {
 		const x = ExtendedXY[InventoryHairAccessory3HaloOptions.length][i][0];
 		const y = ExtendedXY[InventoryHairAccessory3HaloOptions.length][i][1] + 80;
 		const isSelected = property.Type === option.Property.Type;
+		const description = DialogFindPlayer(`InventoryHairAccessory3HaloType${option.Name}`);
 
-		DrawButton(x, y, 225, 275, "", isSelected ? "#888" : "#fff", null, null, isSelected);
-		DrawImage("Screens/Inventory/" + asset.DynamicGroupName + "/" + asset.Name + "/" + option.Name + ".png", x + 2, y);
-		DrawTextFit(DialogFind(Player, "InventoryHairAccessory3HaloType" + option.Name), x + 112, y + 250, 225, "#000");
+		DrawPreviewBox(
+			x, y, `${AssetGetInventoryPath(asset)}/${option.Name}.png`, description,
+			{ Border: true, Hover: true, Disabled: isSelected },
+		);
 	});
 }
 

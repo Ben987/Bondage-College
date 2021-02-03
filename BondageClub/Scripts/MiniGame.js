@@ -9,6 +9,7 @@ var MiniGameReturnFunction = "";
 var MiniGameProgress = -1;
 var MiniGameTimer = 0;
 var MiniGameEnded = false;
+var MiniGameCheatAvailable = false;
 
 /**
  * Starts a given mini game at a set difficulty and keeps
@@ -28,5 +29,17 @@ function MiniGameStart(GameType, Difficulty, ReturnFunction) {
 	MiniGameProgress = -1;
 	MiniGameTimer = 0;
 	MiniGameEnded = false;
+	MiniGameCheatAvailable = (CheatFactor("MiniGameBonus", 0) == 0);
 	CommonSetScreen("MiniGame", GameType);
+}
+
+/**
+ * Checks if the C key is being pressed and if cheats are available
+ * @returns {void} - TRUE if C and cheats are allowed
+ */
+function MiniGameCheatKeyDown() {
+	if (MiniGameCheatAvailable && ((KeyPress == 67) || (KeyPress == 99))) {
+		MiniGameCheatAvailable = false;
+		return true;
+	} else return false;
 }

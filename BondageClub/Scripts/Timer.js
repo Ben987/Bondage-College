@@ -129,10 +129,10 @@ function TimerPrivateOwnerBeep() {
 	if ((Player.Owner != "") && (Player.Ownership == null) && (CurrentScreen != "Private") && (CurrentScreen != "ChatRoom") && (CurrentScreen != "InformationSheet") && (CurrentScreen != "FriendList") && (CurrentScreen != "Cell") && PrivateOwnerInRoom())
 		if ((Math.floor(Math.random() * 500) == 1) && !LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && !LogQuery("Committed", "Asylum")) {
 			ServerBeep.Timer = CurrentTime + 15000;
-			ServerBeep.Message = DialogFind(Player, "BeepFromOwner");
+			ServerBeep.Message = DialogFindPlayer("BeepFromOwner");
 			LogAdd("OwnerBeepActive", "PrivateRoom");
 			LogAdd("OwnerBeepTimer", "PrivateRoom", CurrentTime + 120000);
-			FriendListBeepLog.push({ MemberName: Player.Owner, ChatRoomName: DialogFind(Player, "YourRoom"), Sent: false, Time: new Date() });
+			FriendListBeepLog.push({ MemberName: Player.Owner, ChatRoomName: DialogFindPlayer("YourRoom"), Sent: false, Time: new Date() });
 		}
 }
 
@@ -209,11 +209,12 @@ function TimerProcess(Timestamp) {
 							}
 
 							// Kicks the arousal timer faster from personal arousal
-							if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) {ActivityVibratorLevel(Character[C], 4); ActivityTimerProgress(Character[C], 1);}
-							if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) {ActivityVibratorLevel(Character[C], 3); ActivityTimerProgress(Character[C], 1);}
-							if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0)) {ActivityVibratorLevel(Character[C], 2); if (Character[C].ArousalSettings.Progress <= 95) ActivityTimerProgress(Character[C], 1);}
-							if ((Factor == 1) && (TimerLastArousalProgressCount % 6 == 0)) {ActivityVibratorLevel(Character[C], 1); if (Character[C].ArousalSettings.Progress <= 65) ActivityTimerProgress(Character[C], 1);}
-							if ((Factor == 0) && (TimerLastArousalProgressCount % 8 == 0)) {ActivityVibratorLevel(Character[C], 0); if (Character[C].ArousalSettings.Progress <= 35) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor >= 4)) {ActivityVibratorLevel(Character[C], 4); if (TimerLastArousalProgressCount % 2 == 0)ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 3)) {ActivityVibratorLevel(Character[C], 3); if (TimerLastArousalProgressCount % 3 == 0) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 2)) {ActivityVibratorLevel(Character[C], 2); if (Character[C].ArousalSettings.Progress <= 95 && TimerLastArousalProgressCount % 4 == 0) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 1)) {ActivityVibratorLevel(Character[C], 1); if (Character[C].ArousalSettings.Progress <= 65 && TimerLastArousalProgressCount % 6 == 0) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == 0)) {ActivityVibratorLevel(Character[C], 1); if (Character[C].ArousalSettings.Progress <= 35 && TimerLastArousalProgressCount % 8 == 0) ActivityTimerProgress(Character[C], 1);}
+							if ((Factor == -1)) {ActivityVibratorLevel(Character[C], 0);}
 
 						}
 					} else {
@@ -250,6 +251,9 @@ function TimerProcess(Timestamp) {
 	}
 
 	if (ControllerActive == true) {
+		if (ControllerCurrentButton >= ControllerButtonsX.length) {
+			ControllerCurrentButton = 0;
+		}
 		DrawRect(MouseX - 5, MouseY - 5, 10, 10, "Cyan");
 	}
 

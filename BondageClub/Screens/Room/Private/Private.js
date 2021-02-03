@@ -316,6 +316,11 @@ function PrivatePlayerCanTurnTables() { return (!Player.IsRestrained() && (Reput
  * @returns {boolean} - TRUE if turning the tables is possible
  */
 function PrivateSubCanTurnTables() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && !Player.IsOwned() && !PrivateOwnerInRoom() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
+/**
+ * Checks if it's possible to use cheats on an NPC
+ * @returns {boolean} - TRUE if we allow NPC cheats
+ */
+function PrivateNPCAllowCheat() { return (CheatFactor("ChangeNPCTrait", 0) == 0) }
 
 /**
  * Loads the private room screen and the vendor NPC.
@@ -770,7 +775,7 @@ function PrivateChange(NewCloth) {
 	if (NewCloth == "Naked") CharacterNaked(CurrentCharacter);
 	if (NewCloth == "Custom") {
 		PrivateNPCInteraction(10);
-		CharacterChangeMoney(Player, -50);
+		if (CheatFactor("FreeNPCDress", 0) != 0) CharacterChangeMoney(Player, -50);
 		PrivateCharacterNewClothes = CurrentCharacter;
 		DialogLeave();
 		CharacterAppearanceLoadCharacter(PrivateCharacterNewClothes);
@@ -1416,4 +1421,13 @@ function PrivateSubTurnTablesDone() {
 	Player.Owner = "NPC-" + CurrentCharacter.Name;
 	ServerPlayerSync();
 
+}
+
+/**
+ * When the player triggers a cheat on a NPC
+ * @returns {void} - Nothing.
+ */
+function PrivateNPCCheat(Type) {
+	if (Type == "TraitDominant") NPCTraitSet(CurrentCharacter, "Dominant", (NPCTraitGet(CurrentCharacter, "Dominant") >= 90) ? 100 : NPCTraitGet(CurrentCharacter, "Dominant") + 10);
+	if (Type == "TraitSubmissive") NPCTraitSet(CurrentCharacter, "Dominant", (NPCTraitGet(CurrentCharacter, "Dominant") <= -90) ? -100 : NPCTraitGet(CurrentCharacter, "Dominant") - 10);
 }

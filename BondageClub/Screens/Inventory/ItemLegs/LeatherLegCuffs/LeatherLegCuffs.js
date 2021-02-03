@@ -7,21 +7,19 @@ function InventoryItemLegsLeatherLegCuffsLoad() {
 
 // Draw the item extension screen
 function InventoryItemLegsLeatherLegCuffsDraw() {
-	
+	const A = DialogFocusItem.Asset;
+	const Property = DialogFocusItem.Property;
+	const InventoryPath = AssetGetInventoryPath(A);
+
 	// Draw the header and item
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	DrawAssetPreview(1387, 125, A);
 
 	// Draw the possible poses
-	DrawText(DialogFind(Player, "SelectBondagePosition"), 1500, 500, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/None.png", 1250, 550);
-	DrawText(DialogFind(Player, "LeatherLegCuffsPoseNone"), 1365, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Closed")) ? "#888888" : "Closed");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Closed.png", 1500, 550);
-	DrawText(DialogFind(Player, "LeatherLegCuffsPoseClosed"), 1610, 800, "white", "gray");
+	DrawText(DialogFindPlayer("SelectBondagePosition"), 1500, 500, "white", "gray");
+	DrawPreviewBox(1250, 550, `${InventoryPath}/None.png`, "", {Hover: true, Disabled: Property.Restrain == null});
+	DrawText(DialogFindPlayer("LeatherLegCuffsPoseNone"), 1365, 800, "white", "gray");
+	DrawPreviewBox(1500, 550, `${InventoryPath}/Closed.png`, "", {Hover: true, Disabled: Property.Restrain === "Closed"});
+	DrawText(DialogFindPlayer("LeatherLegCuffsPoseClosed"), 1610, 800, "white", "gray");
 }
 
 // Catches the item extension clicks

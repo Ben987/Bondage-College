@@ -30,16 +30,12 @@ function InventoryItemHoodCanvasHoodLoad() {
  */
 function InventoryItemHoodCanvasHoodDraw() {
 	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize(
-		"Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name +
-		".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
 	const updateAllowed = InventoryItemHoodCanvasHoodAllowedChars.test(InventoryItemHoodCanvasHoodGetText());
-	DrawTextFit(DialogFind(Player, "CanvasHoodLabel"), 1505, 620, 350, "#fff", "#000");
+	DrawTextFit(DialogFindPlayer("CanvasHoodLabel"), 1505, 620, 350, "#fff", "#000");
 	ElementPosition(InventoryItemHoodCanvasHoodInputId, 1505, 680, 350);
-	DrawButton(1330, 731, 340, 64, DialogFind(Player, "SaveText"), updateAllowed ? "White" : "#888", "");
+	DrawButton(1330, 731, 340, 64, DialogFindPlayer("SaveText"), updateAllowed ? "White" : "#888", "");
 }
 
 /**

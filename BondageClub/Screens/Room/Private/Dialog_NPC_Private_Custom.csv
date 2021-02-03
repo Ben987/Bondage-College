@@ -385,6 +385,7 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 0,,(Play with her.),(She pushes you back.)  Hold on girl.  I'm not in the mood for that.,,!AllowRestain(),WontPlay,Dominant|Frigid
 0,,(Play with her.),"(She swiftly pushes you back, almost making you fall.)  Sorry to be so harsh, but I must clearly decline your offer.",,!AllowRestain(),WontPlay,Polite|Violent
 0,,(Play with her.),(She blocks you right away.)  Shit!  Don't be foolish.  I'm the freaking boss in here and I decide.,,!AllowRestain(),WontPlay,Rude|Serious
+0,90,(Use cheats on her.),(Which cheat would you like to use on her?),,NPCAllowCheat(),,
 0,,(Leave her.),,DialogLeave(),,,
 10,,,What's on your mind?,,,,
 10,,Tell me about you.,There's not much to tell.  I enjoy BDSM like everyone here.,DialogRemove(),,NPCProfile,
@@ -571,6 +572,9 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 42,0,Making love will only be better.,"(She nods slowly.)  It will, sweetie.  What would you like to do now?",,,,
 42,0,I hope we'll never argue.,(She raises an eyebrow.)  Don't talk about that.  What would you like to do now?,NPCInteraction(-3),,,
 42,0,I hope we'll be together forever.,(She smiles at you.)  Let's make it work my love.  What would you like to do now?,NPCInteraction(3),,,
+90,,(Make her more Dominant.),(She's now a little more Dominant.),"NPCCheat(""TraitDominant"")",,,
+90,,(Make her more submissive.),(She's now a little more submissive.),"NPCCheat(""TraitSubmissive"")",,,
+90,0,(Leave her.),(She seems curious.)  What would you like to do?,DialogLeave(),,,
 100,,,What would you like to do?,,,,
 100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),PlayTickle,
 100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),PlayTickle,Playful|Peaceful
@@ -681,6 +685,7 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1000,,"Mistress, can I wear something else now?",Stop thinking about your body and your clothes and focus on serving me.  Wait until the time is up.,,"DialogLogQuery(""BlockChange"", ""Rule"")",DomCanChange,Frigid
 1000,,"Mistress, can I wear something else now?","Girl, if you complain too much, I'll have to extend the time.  You need to wait.",,"DialogLogQuery(""BlockChange"", ""Rule"")",DomCanChange,Serious
 1000,,"Mistress, can I wear something else now?","Not yet my subbie, you need to wait a little more.",,"DialogLogQuery(""BlockChange"", ""Rule"")",DomCanChange,Playful
+1000,1090,(Use cheats on her.),(Which cheat would you like to use on her?),,NPCAllowCheat(),,
 1000,,(Leave her.),,DialogLeave(),,,
 1001,,,(She looks angry.)  What do you want now?,,,DomAngry,
 1001,,,(She looks angry.)  What the fuck?,,,DomAngry,Rude
@@ -851,6 +856,9 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1058,0,I hope we can still be friends.,"Yes, lets hope it won't ruin our friendship.  What would you like to do now?",NPCInteraction(5),,,
 1058,0,Let's talk about something else.,Yes.  What would you like to do now?,,,,
 1058,0,I'm glad this collar is gone.,You could have told me sooner you know?  What would you like to do now?,NPCInteraction(-5),,,
+1090,,(Make her more Dominant.),(She's now a little more Dominant.),"NPCCheat(""TraitDominant"")",,,
+1090,,(Make her more submissive.),(She's now a little more submissive.),"NPCCheat(""TraitSubmissive"")",,,
+1090,1000,(Leave her.),(She seems curious.)  What would you like to do my girl?,DialogLeave(),,,
 ActivityStop,,,Fine!  (She pushes you back.)  You can play without me girl.,,,DomActivityStop,
 ActivityStop,,,(She pushes you back.)  If you cannot obey then you're not worth my time.,,,DomActivityStop,Wise
 ActivityStop,,,(She pushes you back.)  Back off!,,,DomActivityStop,Dumb
@@ -1276,6 +1284,7 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2000,,(Point at the floor then upward.),(She nods and stands up.),"DialogSetPose(CurrentCharacter, """")",CanStandUpGagged(),,
 2000,,Stand up.,(She wiggles her restrained legs and shrugs.),,CannotStandUp(),,
 2000,2100,(Play with her.),"(You move closer, ready to play with her.)",,AllowRestain(),,
+2000,2090,(Use cheats on her.),(Which cheat would you like to use on her?),,NPCAllowCheat(),,
 2000,,(Leave her.),,DialogLeave(),,,
 2010,,,Is there anything else you want to talk about Mistress?,,,SubIntroTalk,
 2010,,,"Mistress, do you still want to talk?",,,SubIntroTalk,Dominant|Dumb
@@ -1477,6 +1486,9 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2085,1013,I'm so happy Mistress!,(She smiles.)  So am I.  You are now under my control girl.  Be a good submissive.,NPCInteraction(5),,,
 2085,1013,Wow!  It happened so fast.,(She nods.)  That's right.  You are now under my control girl.  Be a good submissive.,,,,
 2085,1013,Is it too late to change my mind?,"(She frowns.)  Don't worry about making decisions anymore, I will control you.  Be a good submissive.",NPCInteraction(-5),,,
+2090,,(Make her more Dominant.),(She's now a little more Dominant.),"NPCCheat(""TraitDominant"")",,,
+2090,,(Make her more submissive.),(She's now a little more submissive.),"NPCCheat(""TraitSubmissive"")",,,
+2090,2000,(Leave her.),(She seems curious.)  What would you like to do Mistress?,DialogLeave(),,,
 2100,,,What would you like to do Mistress?,,,,
 2100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),SubPlayTickle,
 2100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),SubPlayTickle,Playful|Peaceful

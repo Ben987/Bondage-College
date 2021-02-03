@@ -69,29 +69,13 @@ function PhotographicClick() {
 		CommonSetScreen("Room", "MainHall");
 	}
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanInteract()) PhotographicCanvasToPng(750);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanInteract()) CommonTakePhoto(750, 0, 500, 1000);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)  && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 }
 
-function PhotographicCanvasToPng(x) {
-	var PhotographicCanOld = document.getElementById("MainCanvas");
-    var PhotographicCtx = PhotographicCanOld.getContext('2d');
-	//Normal: 250 = Player, 750 = npc
-	//Dialog: 0 = Player, 500 = npc
-	var PhotographicImageData = PhotographicCtx.getImageData(x, 0, 500, 1000);
-	var PhotographicCanNew = document.createElement('canvas');
-	PhotographicCanNew.width = 500;
-	PhotographicCanNew.height = 1000;
-    var PhotographicNewCtx = PhotographicCanNew.getContext('2d');
-    PhotographicNewCtx.putImageData(PhotographicImageData, 0, 0);
-	var d = PhotographicCanNew.toDataURL("image/png");
-	var w = window.open('about:blank','image from canvas');
-	w.document.write("<img src='"+d+"' alt='from canvas'/>");
-}
-
 function PhotographicShotThePlayerPhoto() {
-	PhotographicCanvasToPng(0);
+	CommonTakePhoto(0, 0, 500, 1000);
 }
 
 function PhotographicPlayerClothRemove(Group) {

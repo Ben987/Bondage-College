@@ -66,9 +66,6 @@ function DrawLoad() {
 	MainCanvas.textAlign = "center";
 	MainCanvas.textBaseline = "middle";
 
-	// Loads the 3D engine as well
-	Draw3DLoad();
-
 }
 
 /**
@@ -230,12 +227,6 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			return;
 		}
 
-		// Shortcuts drawing the character to 3D if needed
-		if (Draw3DEnabled) {
-			Draw3DCharacter(C, X, Y, Zoom, IsHeightResizeAllowed);
-			return;
-		}
-
 		// Run any existing asset scripts
 		if (C.RunScripts && C.HasScriptedAssets) {
 			var DynamicAssets = C.Appearance.filter(CA => CA.Asset.DynamicScriptDraw);
@@ -260,14 +251,14 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 
 		// There's 2 different canvas, one blinking and one that doesn't
 		var seconds = new Date().getTime();
-		var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
+		var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0 && !CommonPhotoMode) ? C.CanvasBlink : C.Canvas;
 
 		// If we must dark the Canvas characters
 		if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
 			var CanvasH = document.createElement("canvas");
 			CanvasH.width = Canvas.width;
 			CanvasH.height = Canvas.height;
-			var DarkFactor = (Player.Effect.indexOf("BlindNormal") >= 0) ? 0.3 : 0.6;
+			var DarkFactor = Math.min(CharacterGetDarkFactor(Player) * 2, 1);
 			var ctx = CanvasH.getContext('2d');
 			ctx.drawImage(Canvas, 0, 0);
 			// Overlay black rectangle.
@@ -308,10 +299,12 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		MainCanvas.drawImage(Canvas, 0, SourceY, Canvas.width, SourceHeight, X + XOffset * Zoom, Y + DestY * Zoom, 500 * HeightRatio * Zoom, (1000 - DestY) * Zoom);
 
 		// Draw the arousal meter & game images on certain conditions
-		DrawArousalMeter(C, X, Y, Zoom);
-		OnlineGameDrawCharacter(C, X, Y, Zoom);
-		if (C.HasHiddenItems) DrawImageZoomCanvas("Screens/Character/Player/HiddenItem.png", MainCanvas, 0, 0, 86, 86, X + 54 * Zoom, Y + 880 * Zoom, 70 * Zoom, 70 * Zoom);
-
+		if (CurrentScreen != "ChatRoom" || ChatRoomHideIconState <= 1) {
+			DrawArousalMeter(C, X, Y, Zoom);
+			OnlineGameDrawCharacter(C, X, Y, Zoom);
+			if (C.HasHiddenItems) DrawImageZoomCanvas("Screens/Character/Player/HiddenItem.png", MainCanvas, 0, 0, 86, 86, X + 54 * Zoom, Y + 880 * Zoom, 70 * Zoom, 70 * Zoom);
+		}
+		
 		// Draws the character focus zones if we need too
 		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null) && (CurrentScreen != "Preference") && (DialogColor == null)) {
 
@@ -329,10 +322,10 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		}
 
 		// Draw the character name below herself
-		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
+		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online" && !(CurrentScreen == "ChatRoom" && ChatRoomHideIconState >= 3)) || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
 			if (!Player.IsBlind() || (Player.GameplaySettings && Player.GameplaySettings.SensDepChatLog == "SensDepLight")) {
 				MainCanvas.font = CommonGetFont(30);
-				let NameOffset = CurrentScreen == "ChatRoom" && ChatRoomCharacter.length > 5 && CurrentCharacter == null ? -4 : 0;
+				let NameOffset = CurrentScreen == "ChatRoom" && (ChatRoomCharacter.length > 5 || (ChatRoomCharacter.length == 5 && CommonPhotoMode)) && CurrentCharacter == null ? -4 : 0;
 				DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom + NameOffset, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 				MainCanvas.font = CommonGetFont(36);
 			}
@@ -859,23 +852,37 @@ function DrawCheckboxColor(Left, Top, Width, Height, Text, IsChecked, Color) {
  * @param {string} BackText - Text for the back button tooltip
  * @param {string} NextText - Text for the next button tooltip
  * @param {boolean} [Disabled] - Disables the hovering options if set to true
+ * @param {number} ArrowWidth - How much of the button the previous/next sections cover. By default, half each.
  * @returns {void} - Nothing
  */
-function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText, Disabled) {
+function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText, Disabled, ArrowWidth) {
+	// Set the widths of the previous/next sections to be colored cyan when hovering over them
+	// By default each covers half the width, together covering the whole button
+	if (ArrowWidth == null || ArrowWidth > Width / 2) ArrowWidth = Width / 2;
+	const LeftSplit = Left + ArrowWidth;
+	const RightSplit = Left + Width - ArrowWidth;
 
-	// Draw the button rectangle (makes half of the background cyan colored if the mouse is over it)
-	var Split = Left + Width / 2;
+	// Draw the button rectangle
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillRect(Left, Top, Width, Height);
-	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled) {
+	if (MouseIn(Left, Top, Width, Height) && !CommonIsMobile && !Disabled) {
 		MainCanvas.fillStyle = "Cyan";
-		if (MouseX > Split) {
-			MainCanvas.fillRect(Split, Top, Width / 2, Height);
-		} else {
-			MainCanvas.fillRect(Left, Top, Width / 2, Height);
+		if (MouseX > RightSplit) {
+			MainCanvas.fillRect(RightSplit, Top, ArrowWidth, Height);
 		}
+		else if (MouseX <= LeftSplit) {
+			MainCanvas.fillRect(Left, Top, ArrowWidth, Height);
+		} else {
+			MainCanvas.fillRect(Left + ArrowWidth, Top, Width - ArrowWidth * 2, Height);
+		}
+	}
+	else if (CommonIsMobile && ArrowWidth < Width / 2) {
+		// Fill in the arrow regions on mobile
+		MainCanvas.fillStyle = "lightgrey";
+		MainCanvas.fillRect(Left, Top, ArrowWidth, Height);
+		MainCanvas.fillRect(RightSplit, Top, ArrowWidth, Height);
 	}
 	MainCanvas.lineWidth = '2';
 	MainCanvas.strokeStyle = 'black';
@@ -909,7 +916,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !Disabled)
-		DrawButtonHover(Left, Top, Width, Height, (MouseX > Split) ? NextText() : BackText());
+		DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? NextText() : MouseX >= RightSplit ? BackText() : "");
 
 }
 
@@ -1037,11 +1044,8 @@ function DrawProcess() {
 	if ((B != null) && (B != "")) {
 		var DarkFactor = 1.0;
 		if ((CurrentModule != "Character") && (B != "Sheet")) {
-			const blindLevel = Player.GetBlindLevel();
-			if (blindLevel >= 3) DarkFactor = 0.0;
-			else if (blindLevel == 2) DarkFactor = 0.15;
-			else if (blindLevel == 1) DarkFactor = 0.3;
-			else if (CurrentCharacter != null || ShopStarted) DarkFactor = 0.5;
+			DarkFactor = CharacterGetDarkFactor(Player);
+			if (DarkFactor == 1 && (CurrentCharacter != null || ShopStarted) && !CommonPhotoMode) DarkFactor = 0.5;
 		}
 		if (DarkFactor > 0.0) {
 			let Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
@@ -1057,9 +1061,6 @@ function DrawProcess() {
 	// Draws beep from online player sent by the server
 	ServerDrawBeep();
 
-	// Draws the 3D objects
-	Draw3DProcess();
-
 	// Leave dialogs AFTER drawing everything
 	// If needed
 	// Used to support items that remove you from the dialog during the draw phase
@@ -1071,14 +1072,58 @@ function DrawProcess() {
 }
 
 /**
- * Draws the item preview box
- * @param {number} X - Position of the item on the X axis
- * @param {number} Y - Position of the item on the Y axis
- * @param {Item} Item - The item to draw the preview for
+ * Draws an asset's preview box
+ * @param {number} X - Position of the preview box on the X axis
+ * @param {number} Y - Position of the preview box on the Y axis
+ * @param {Asset} A - The asset to draw the preview for
+ * @Param {object} [Options] - Additional optional drawing options
+ * @param {Character} Options.[C] - The character using the item (used to calculate dynamic item descriptions/previews)
+ * @param {string} [Options.Description] - The preview box description
+ * @param {string} [Options.Background] - The background color to draw the preview box in - defaults to white
+ * @param {string} [Options.Foreground] - The foreground (text) color to draw the description in - defaults to black
+ * @param {boolean} [Options.Vibrating] - Whether or not to add vibration effects to the item - defaults to false
+ * @param {boolean} [Options.Border] - Whether or not to draw a border around the preview box
+ * @param {boolean} [Options.Hover] - Whether or not the button should enable hover behaviour (background color change)
+ * @param {string} [Options.HoverBackground] - The background color that should be used on mouse hover, if any
+ * @param {boolean} [Options.Disabled] - Whether or not the element is disabled (prevents hover functionality)
  * @returns {void} - Nothing
  */
-function DrawItemPreview(X, Y, Item) {
-	DrawRect(X, Y, 225, 275, "white");
-	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.DynamicGroupName + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
-	DrawTextFit(Item.Asset.Description, X + 110, Y + 250, 221, "black");
+function DrawAssetPreview(X, Y, A, Options) {
+	let {C, Description, Background, Foreground, Vibrating, Border, Hover, HoverBackground, Disabled} = (Options || {});
+	const DynamicPreviewIcon = C ? A.DynamicPreviewIcon(C) : "";
+	const Path = `${AssetGetPreviewPath(A)}/${A.Name}${DynamicPreviewIcon}.png`;
+	if (Description == null) Description = C ? A.DynamicDescription(C) : A.Description;
+	DrawPreviewBox(X, Y, Path, Description, { Background, Foreground, Vibrating, Border, Hover, HoverBackground, Disabled });
+}
+
+/**
+ * Draws an item preview box for the provided image path
+ * @param {number} X - Position of the preview box on the X axis
+ * @param {number} Y - Position of the preview box on the Y axis
+ * @param {string} Path - The path of the image to draw
+ * @param {string} Description - The preview box description
+ * @param {object} [Options] - Additional optional drawing options
+ * @param {string} [Options.Background] - The background color to draw the preview box in - defaults to white
+ * @param {string} [Options.Foreground] - The foreground (text) color to draw the description in - defaults to black
+ * @param {boolean} [Options.Vibrating] - Whether or not to add vibration effects to the item - defaults to false
+ * @param {boolean} [Options.Border] - Whether or not to draw a border around the preview box
+ * @param {boolean} [Options.Hover] - Whether or not the button should enable hover behaviour (background color change)
+ * @param {string} [Options.HoverBackground] - The background color that should be used on mouse hover, if any
+ * @param {boolean} [Options.Disabled] - Whether or not the element is disabled (prevents hover functionality)
+ * @returns {void} - Nothing
+ */
+function DrawPreviewBox(X, Y, Path, Description, Options) {
+	let {Background, Foreground, Vibrating, Border, Hover, HoverBackground, Disabled} = (Options || {});
+	const Height = Description ? 275 : 225;
+	Background = Background || "#fff";
+	Foreground = Foreground || "#000";
+	if (Disabled === true) Background = "#888";
+	else if (Hover && MouseHovering(X, Y, 225, Height)) Background = (HoverBackground || "cyan");
+	DrawRect(X, Y, 225, Height, Background);
+	setButton(X, Y);
+	if (Border) DrawEmptyRect(X, Y, 225, Height, Foreground);
+	const ImageX = Vibrating ? X + 1 + Math.floor(Math.random() * 3) : X + 2;
+	const ImageY = Vibrating ? Y + 1 + Math.floor(Math.random() * 3) : Y + 2;
+	DrawImageResize(Path, ImageX, ImageY, 221, 221);
+	if (Description) DrawTextFit(Description, X + 110, Y + 250, 221, Foreground);
 }

@@ -24,13 +24,11 @@ function InventoryItemMiscWoodenSignLoad() {
 // Draw the extension screen
 function InventoryItemMiscWoodenSignDraw() {
     // Draw the header and item
-    DrawRect(1387, 125, 225, 275, "white");
-    DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-    DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
     ElementPosition("WoodenSignText1", 1505, 600, 350);
     ElementPosition("WoodenSignText2", 1505, 680, 350);
-    DrawButton(1330, 731, 340, 64, DialogFind(Player, "SaveText"), (ElementValue("WoodenSignText1") + ElementValue("WoodenSignText2")).match(InventoryItemMiscWoodenSignAllowedChars) ? "White" : "#888", "");
+    DrawButton(1330, 731, 340, 64, DialogFindPlayer("SaveText"), (ElementValue("WoodenSignText1") + ElementValue("WoodenSignText2")).match(InventoryItemMiscWoodenSignAllowedChars) ? "White" : "#888", "");
 }
 
 // Catches the item extension clicks

@@ -7,9 +7,7 @@ function InventoryItemHoodOldGasMaskLoad() {
 
 // Draw the item extension screen
 function InventoryItemHoodOldGasMaskDraw() {
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
+	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
 
 	var C = CharacterGetCurrent();
 	var tube1 = InventoryItemCreate(C, "ItemHoodAddon", "OldGasMaskTube1");
@@ -21,25 +19,25 @@ function InventoryItemHoodOldGasMaskDraw() {
 	var lensesRebreather = InventoryItemCreate(C, "ItemHoodAddon", "OldGasMaskLensesRebreather");
 
 	var itemBlocked = InventoryGet(C, "ItemHoodAddon") != null;
-	var tube1IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskTube1", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, tube1);
-	var tube2IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskTube2", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, tube2);
-	var rebreatherIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskRebreather", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, rebreather);
-	var lensesIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLenses", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lenses);
-	var lensesTube1IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLensesTube1", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lensesTube1);
-	var lensesTube2IsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLensesTube2", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lensesTube2);
-	var lensesRebreatherIsBlocked = InventoryIsPermissionBlocked(C, "OldGasMaskLensesRebreather", "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, lensesRebreather);
+	var tube1IsBlocked = InventoryBlockedOrLimited(C, tube1);
+	var tube2IsBlocked = InventoryBlockedOrLimited(C, tube2);
+	var rebreatherIsBlocked = InventoryBlockedOrLimited(C, rebreather);
+	var lensesIsBlocked = InventoryBlockedOrLimited(C, lenses);
+	var lensesTube1IsBlocked = InventoryBlockedOrLimited(C, lensesTube1);
+	var lensesTube2IsBlocked = InventoryBlockedOrLimited(C, lensesTube2);
+	var lensesRebreatherIsBlocked = InventoryBlockedOrLimited(C, lensesRebreather);
 
-	DrawButton(1250, 520, 200, 55, DialogFind(Player, "OldGasMaskLenses"), itemBlocked || lensesIsBlocked ? "#888" : "White");
-	DrawButton(1550, 520, 200, 55, DialogFind(Player, "OldGasMaskTubeA"), itemBlocked || tube1IsBlocked ? "#888" : "White");
-	DrawButton(1250, 600, 200, 55, DialogFind(Player, "OldGasMaskRebreather"), itemBlocked || rebreatherIsBlocked ? "#888" : "White");
-	DrawButton(1550, 600, 200, 55, DialogFind(Player, "OldGasMaskTubeB"), itemBlocked || tube2IsBlocked ? "#888" : "White");
-	DrawButton(1250, 680, 200, 55, DialogFind(Player, "OldGasMaskLensesTube1"), itemBlocked || lensesTube1IsBlocked ? "#888" : "White");
-	DrawButton(1550, 680, 200, 55, DialogFind(Player, "OldGasMaskLensesTube2"), itemBlocked || lensesTube2IsBlocked ? "#888" : "White");
-	DrawButton(1250, 760, 200, 55, DialogFind(Player, "OldGasMaskLensesRebreather"), itemBlocked || lensesRebreatherIsBlocked ? "#888" : "White");
+	DrawButton(1250, 520, 200, 55, DialogFindPlayer("OldGasMaskLenses"), itemBlocked || lensesIsBlocked ? "#888" : "White");
+	DrawButton(1550, 520, 200, 55, DialogFindPlayer("OldGasMaskTubeA"), itemBlocked || tube1IsBlocked ? "#888" : "White");
+	DrawButton(1250, 600, 200, 55, DialogFindPlayer("OldGasMaskRebreather"), itemBlocked || rebreatherIsBlocked ? "#888" : "White");
+	DrawButton(1550, 600, 200, 55, DialogFindPlayer("OldGasMaskTubeB"), itemBlocked || tube2IsBlocked ? "#888" : "White");
+	DrawButton(1250, 680, 200, 55, DialogFindPlayer("OldGasMaskLensesTube1"), itemBlocked || lensesTube1IsBlocked ? "#888" : "White");
+	DrawButton(1550, 680, 200, 55, DialogFindPlayer("OldGasMaskLensesTube2"), itemBlocked || lensesTube2IsBlocked ? "#888" : "White");
+	DrawButton(1250, 760, 200, 55, DialogFindPlayer("OldGasMaskLensesRebreather"), itemBlocked || lensesRebreatherIsBlocked ? "#888" : "White");
 
 	// Draw the message if the player is wearing an addon
 	if (tube1IsBlocked || tube2IsBlocked || lensesIsBlocked || rebreatherIsBlocked || lensesTube1IsBlocked || lensesTube2IsBlocked || lensesRebreatherIsBlocked) { 
-		DrawTextWrap(DialogFind(Player, "ItemAddonsSomeWrongPermissions"), 1100, 850, 800, 160, "White");
+		DrawTextWrap(DialogFindPlayer("ItemAddonsSomeWrongPermissions"), 1100, 850, 800, 160, "White");
 	}
 }
 
@@ -73,7 +71,7 @@ function InventoryItemHoodOldGasMaskSetItem(itemName) {
 
 	var item = InventoryItemCreate(C, "ItemHoodAddon", itemName);
 	// Do not continue if the item is blocked by permissions
-	if (InventoryIsPermissionBlocked(C, itemName, "ItemHoodAddon") || !InventoryCheckLimitedPermission(C, item)) return;
+	if (InventoryBlockedOrLimited(C, item)) return;
 	
 	// Wear the item
 	InventoryWear(C, itemName, "ItemHoodAddon", DialogColorSelect);

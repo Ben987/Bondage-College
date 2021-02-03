@@ -112,10 +112,12 @@ function DojoStruggleClick() {
 }
 
 /**
- * Handles key presses during the dojo struggle mini game. A space bar is handled just like a click is.
+ * Handles key presses during the dojo struggle mini game. A space bar is handled just like a click is.  The C cheat key has a little less impulse.
  * @returns {void} - Nothing
  */
 function DojoStruggleKeyDown() {
 	if (!MiniGameEnded && (KeyPress == 32))
 		DojoStruggleImpulse = 86;
+	if (MiniGameCheatAvailable && ((KeyPress == 67) || (KeyPress == 99)))
+		DojoStruggleImpulse = 76;
 }
