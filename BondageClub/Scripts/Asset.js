@@ -172,6 +172,8 @@ function AssetAdd(NewAsset) {
 		AllowColorizeAll: typeof NewAsset.AllowColorizeAll === 'boolean' ? NewAsset.AllowColorizeAll : true,
 		AvailableLocations: NewAsset.AvailableLocations || [],
 		OverrideHeight: NewAsset.OverrideHeight,
+		Consumable: (typeof NewAsset.Consumable === 'boolean') ? NewAsset.Consumable : false,
+		Condition: NewAsset.Condition,
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose :
 			Array.isArray(AssetCurrentGroup.FreezeActivePose) ? AssetCurrentGroup.FreezeActivePose : [],
 	}

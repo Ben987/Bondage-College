@@ -42,6 +42,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HeightModifier: 0,
 		HeightRatio: 1,
 		HasHiddenItems: false,
+		Conditions: [],
 		CanTalk: function () { return ((this.Effect.indexOf("GagVeryLight") < 0) && (this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagEasy") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagMedium") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagVeryHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0) && (this.Effect.indexOf("GagTotal2") < 0) && (this.Effect.indexOf("GagTotal3") < 0) && (this.Effect.indexOf("GagTotal4") < 0)) },
 		CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
 		CanKneel: function () { return CharacterCanKneel(this); },
@@ -332,6 +333,7 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.LimitedItems = Array.isArray(data.LimitedItems) ? data.LimitedItems : [];
 	if (Char.ID != 0) Char.WhiteList = data.WhiteList;
 	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
+	Char.Conditions = Array.isArray(data.Conditions) ? data.Conditions : [];
 	if (Char.ID == 0) LoginValidCollar();
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Inventory == null) || (Char.Inventory.length == 0))) InventoryLoad(Char, data.Inventory);
 	CharacterLoadEffect(Char);
@@ -401,7 +403,8 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 			else
 				for (let C = 0; C < ChatRoomData.Character.length; C++)
 					if (ChatRoomData.Character[C].ID == data.ID)
-						if (ChatRoomData.Character[C].Appearance.length != data.Appearance.length)
+						if ((ChatRoomData.Character[C].Appearance.length != data.Appearance.length) ||
+							(ChatRoomData.Character[C].Conditions.length != data.Conditions.length))
 							Refresh = true;
 						else
 							for (let A = 0; A < data.Appearance.length && !Refresh; A++) {
@@ -624,6 +627,11 @@ function CharacterLoadEffect(C) {
 		else
 			if (C.Appearance[A].Asset.Group.Effect != null)
 				CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
+	}
+	if (C.Conditions) {
+		for (let i = 0; i < C.Conditions.length; i++) {
+			CharacterAddEffect(C, [C.Conditions[i].Effect]);
+		}
 	}
 }
 
@@ -1033,6 +1041,20 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer, Color) {
 			}
 		}
 	}
+}
+
+/**
+ * Creates a timed condition by adding the appropriate effect to the character and then sets an expiration timer.
+ * @param {Character} C - The character to apply the condition on
+ * @param {Array.<string>} Effect - An array of effects that should be applied to the character
+ * @param {number} Timer - The time the effect should last (iin seconds)
+ * @returns {void} - Nothing
+ */
+function CharacterSetTimedCondition(C, Effect, Timer) {
+	CharacterAddEffect(C, Effect);
+	TimerCharacterRemoveConditionSet(C, Effect, Timer);
+	ChatRoomCharacterUpdate(C);
+
 }
 
 /**

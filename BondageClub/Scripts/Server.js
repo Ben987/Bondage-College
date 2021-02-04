@@ -162,7 +162,12 @@ function ServerPlayerIsInChatRoom() {
 		|| ((CurrentScreen == "Preference") && (InformationSheetPreviousScreen == "ChatRoom"));
 }
 
-/** Sends a message with the given data to the server via socket.emit */
+/** 
+ * Sends a message with the given data to the server via socket.emit
+ * @param {String} Message - The type of the transfered data package
+ * @param {Object} Data - The data package to transfer
+ * @returns {void} - Nothing
+ */
 function ServerSend(Message, Data) {
 	ServerSocket.emit(Message, Data);
 }
@@ -642,6 +647,7 @@ function ServerPlayerAppearanceSync() {
 		var D = {};
 		D.AssetFamily = Player.AssetFamily;
 		D.Appearance = ServerAppearanceBundle(Player.Appearance);
+		D.Conditions = Player.Conditions;
 		ServerSend("AccountUpdate", D);
 	}
 

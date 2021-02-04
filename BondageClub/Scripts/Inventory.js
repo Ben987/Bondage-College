@@ -356,9 +356,23 @@ function InventoryGet(C, AssetGroup) {
 */
 function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty, MemberNumber) {
 	for (let A = 0; A < Asset.length; A++)
-		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup)) {
-			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null || ItemColor == "Default") && Asset[A].DefaultColor != null) ? Asset[A].DefaultColor : ItemColor, Difficulty, MemberNumber);
-			InventoryExpressionTrigger(C, InventoryGet(C, AssetGroup));
+		if ((Asset[A].Name === AssetName) && (Asset[A].Group.Name === AssetGroup)) {
+			if (!Asset[A].Consumable) {
+				CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null) || (ItemColor == "Default")) ? Asset[A].DefaultColor : ItemColor, Difficulty, MemberNumber);
+				InventoryExpressionTrigger(C, InventoryGet(C, AssetGroup));
+			} else {
+				// set effects manually for 'consumable' items as they are not part of the character appearance
+				if (Asset[A].DynamicExpressionTrigger(C)) {
+					for (let E = 0; E < Asset[A].DynamicExpressionTrigger(C).length; E++) {
+						CharacterSetFacialExpression(C, Asset[A].DynamicExpressionTrigger(C)[E].Group, Asset[A].DynamicExpressionTrigger(C)[E].Name, Asset[A].DynamicExpressionTrigger(C)[E].Timer);
+					}
+				}
+				if (Asset[A].Condition) {
+					for (let E = 0; E < Asset[A].Condition.length; E++) {
+						CharacterSetTimedCondition(C, Asset[A].Condition[E].Effect, Asset[A].Condition[E].Timer);
+					}
+				}
+			}
 			return;
 		}
 }
@@ -621,12 +635,13 @@ function InventoryGetItemProperty(Item, PropertyName, CheckGroup) {
 * @param {AppearanceItem} Item - The item from appearance that we must validate
 */
 function InventoryExpressionTrigger(C, Item) {
-	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger(C) != null))
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger(C) != null)) {
 		for (let E = 0; E < Item.Asset.DynamicExpressionTrigger(C).length; E++) {
 			var Ex = InventoryGet(C, Item.Asset.DynamicExpressionTrigger(C)[E].Group);
 			if ((Ex == null) || (Ex.Property == null) || (Ex.Property.Expression == null) || (Ex.Property.Expression == ""))
 				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger(C)[E].Group, Item.Asset.DynamicExpressionTrigger(C)[E].Name, Item.Asset.DynamicExpressionTrigger(C)[E].Timer);
 		}
+	}
 }
 
 /**

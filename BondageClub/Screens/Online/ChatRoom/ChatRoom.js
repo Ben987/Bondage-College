@@ -1341,7 +1341,8 @@ function ChatRoomCharacterUpdate(C) {
 		var data = {
 			ID: (C.ID == 0) ? Player.OnlineID : C.AccountName.replace("Online-", ""),
 			ActivePose: C.ActivePose,
-			Appearance: ServerAppearanceBundle(C.Appearance)
+			Appearance: ServerAppearanceBundle(C.Appearance),
+			Conditions: C.Conditions,
 		};
 		ServerSend("ChatRoomCharacterUpdate", data);
 	}

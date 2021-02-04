@@ -51,8 +51,8 @@ function TimerInventoryRemove() {
 
 	// Cycles through all items items for all offline characters (player + NPC)
 	for (let C = 0; C < Character.length; C++)
-		if ((Character[C].ID == 0) || (Character[C].MemberNumber == null))
-			for (let A = 0; A < Character[C].Appearance.length; A++)
+		if ((Character[C].ID == 0) || (Character[C].MemberNumber == null)) {
+			for (let A = 0; A < Character[C].Appearance.length; A++) {
 				if ((Character[C].Appearance[A].Property != null) && (Character[C].Appearance[A].Property.RemoveTimer != null))
 					if ((typeof Character[C].Appearance[A].Property.RemoveTimer == "number") && (Character[C].Appearance[A].Property.RemoveTimer <= CurrentTime)) {
 						var LockName = Character[C].Appearance[A].Property.LockedBy;
@@ -78,11 +78,11 @@ function TimerInventoryRemove() {
 						// If we're removing a lock and we're in a chatroom, send a chatroom message
 						if (LockName && ServerPlayerIsInChatRoom()) {
 							var Dictionary = [
-								{Tag: "DestinationCharacterName", Text: Character[C].Name, MemberNumber: Character[C].MemberNumber},
-								{Tag: "FocusAssetGroup", AssetGroupName: Character[C].Appearance[A].Asset.Group.Name},
-								{Tag: "LockName", AssetName: LockName}
+								{ Tag: "DestinationCharacterName", Text: Character[C].Name, MemberNumber: Character[C].MemberNumber },
+								{ Tag: "FocusAssetGroup", AssetGroupName: Character[C].Appearance[A].Asset.Group.Name },
+								{ Tag: "LockName", AssetName: LockName }
 							];
-							ServerSend("ChatRoomChat", {Content: "TimerRelease", Type: "Action", Dictionary});
+							ServerSend("ChatRoomChat", { Content: "TimerRelease", Type: "Action", Dictionary });
 						}
 
 						// If we must remove the linked item from the character or the facial expression
@@ -94,12 +94,26 @@ function TimerInventoryRemove() {
 							else
 								CharacterRefresh(Character[C]);
 
-						// Sync with the server and exit
+						// Sync with the server
 						if (Character[C].ID == 0) ChatRoomCharacterUpdate(Character[C]);
 						else ServerPrivateCharacterSync();
-						return;
-
 					}
+			} // for Appearance
+			if (Character[C].Conditions != null) {
+				for (let i = Character[C].Conditions.length -1; i >= 0; i--) {
+					if ((Character[C].Conditions[i].RemoveTimer) <= CurrentTime) {
+						let eff = Character[C].Conditions[i].Effect;
+						if (Character[C].Effect != null)
+							for (let E = 0; E < Character[C].Effect.length; E++)
+								if (Character[C].Effect[E] === eff)
+									Character[C].Effect.splice(E, 1);
+						Character[C].Conditions.splice(i, 1);
+					}
+				} // for Conditions
+				if (Character[C].ID == 0) ChatRoomCharacterUpdate(Character[C]);
+				else ServerPrivateCharacterSync();
+			}
+		}	
 
 }
 
@@ -283,5 +297,22 @@ function TimermsToTime(s) {
 	var mins = s % 60;
 	var hrs = (s - mins) / 60;
 	return pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
-	
+}
+
+function TimerCharacterRemoveConditionSet(C, Effect, Timer) {
+	for (let E = 0; E < Effect.length; E++) {
+		let found = false;
+		let i = 0;
+		while (i < C.Conditions.length && !found) {
+			if (C.Conditions[i].Effect === Effect[E]) found = true;
+			i++;
+		}
+		if (!found) {
+			let NewCondition = {
+				Effect: Effect[E],
+				RemoveTimer: Math.round(CurrentTime + Timer * 1000),
+			}
+			C.Conditions.push(NewCondition);
+		}
+	}
 }

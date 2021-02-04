@@ -749,7 +749,7 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 	} else if (ItemAsset != null) ItemColor = ItemAsset.DefaultColor ? ItemAsset.DefaultColor : ItemAsset.Group.ColorSchema[0];
 
 	// Add the new item to the character appearance
-	if (ItemAsset != null) {
+	if (ItemAsset != null && !ItemAsset.Consumable) {
 		var NA = {
 			Asset: ItemAsset,
 			Difficulty: parseInt((ItemAsset.Difficulty == null) ? 0 : ItemAsset.Difficulty) + parseInt(DifficultyFactor),
