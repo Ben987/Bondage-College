@@ -3480,7 +3480,7 @@ var AssetFemale3DCG = [
 																							"e1m0b0br3", "e1m1b0br3", "e1m2b0br3", "e1m3b0br3",
 																							"e2m0b0br3", "e2m1b0br3", "e2m2b0br3", "e2m3b0br3",
 																							"e3m0b0br3", "e3m1b0br3", "e3m2b0br3", "e3m3b0br3",]},
-					{ Name: "Blush2", AllowColorize: false, HasType: false, CopyLayerColor: "Blush1", Left: 190, Top: 100, AllowTypes:[
+					{ Name: "Blush2", AllowColorize: true, HasType: false, CopyLayerColor: "Blush1", Left: 190, Top: 100, AllowTypes:[
 																						"e0m0b1br0", "e0m1b1br0", "e0m2b1br0", "e0m3b1br0",
 																							"e1m0b1br0", "e1m1b1br0", "e1m2b1br0", "e1m3b1br0",
 																							"e2m0b1br0", "e2m1b1br0", "e2m2b1br0", "e2m3b1br0",
@@ -3497,7 +3497,7 @@ var AssetFemale3DCG = [
 																							"e1m0b1br3", "e1m1b1br3", "e1m2b1br3", "e1m3b1br3",
 																							"e2m0b1br3", "e2m1b1br3", "e2m2b1br3", "e2m3b1br3",
 																							"e3m0b1br3", "e3m1b1br3", "e3m2b1br3", "e3m3b1br3",]},
-					{ Name: "Blush3", AllowColorize: false, HasType: false, CopyLayerColor: "Blush1", Left: 190, Top: 100, AllowTypes:[
+					{ Name: "Blush3", AllowColorize: true, HasType: false, CopyLayerColor: "Blush1", Left: 190, Top: 100, AllowTypes:[
 																						"e0m0b2br0", "e0m1b2br0", "e0m2b2br0", "e0m3b2br0",
 																							"e1m0b2br0", "e1m1b2br0", "e1m2b2br0", "e1m3b2br0",
 																							"e2m0b2br0", "e2m1b2br0", "e2m2b2br0", "e2m3b2br0",
@@ -3514,7 +3514,7 @@ var AssetFemale3DCG = [
 																							"e1m0b2br3", "e1m1b2br3", "e1m2b2br3", "e1m3b2br3",
 																							"e2m0b2br3", "e2m1b2br3", "e2m2b2br3", "e2m3b2br3",
 																							"e3m0b2br3", "e3m1b2br3", "e3m2b2br3", "e3m3b2br3",]},
-					{ Name: "Blush4", AllowColorize: false, HasType: false, CopyLayerColor: "Blush1", Left: 190, Top: 100, AllowTypes:[
+					{ Name: "Blush4", AllowColorize: true, HasType: false, CopyLayerColor: "Blush1", Left: 190, Top: 100, AllowTypes:[
 																						"e0m0b3br0", "e0m1b3br0", "e0m2b3br0", "e0m3b3br0",
 																							"e1m0b3br0", "e1m1b3br0", "e1m2b3br0", "e1m3b3br0",
 																							"e2m0b3br0", "e2m1b3br0", "e2m2b3br0", "e2m3b3br0",
@@ -3548,7 +3548,7 @@ var AssetFemale3DCG = [
 																							"e0m0b1br3", "e0m1b1br3", "e0m2b1br3", "e0m3b1br3",
 																							"e0m0b2br3", "e0m1b2br3", "e0m2b2br3", "e0m3b2br3",
 																							"e0m0b3br3", "e0m1b3br3", "e0m2b3br3", "e0m3b3br3",]},
-					{ Name: "Eyes2", AllowColorize: false, HasType: false, CopyLayerColor: "Eyes1", Left: 200, Top: 145, AllowTypes:[
+					{ Name: "Eyes2", AllowColorize: true, HasType: false, CopyLayerColor: "Eyes1", Left: 200, Top: 145, AllowTypes:[
 																						"e1m0b0br0", "e1m1b0br0", "e1m2b0br0", "e1m3b0br0",
 																							"e1m0b1br0", "e1m1b1br0", "e1m2b1br0", "e1m3b1br0",
 																							"e1m0b2br0", "e1m1b2br0", "e1m2b2br0", "e1m3b2br0",
@@ -3565,7 +3565,7 @@ var AssetFemale3DCG = [
 																							"e1m0b1br3", "e1m1b1br3", "e1m2b1br3", "e1m3b1br3",
 																							"e1m0b2br3", "e1m1b2br3", "e1m2b2br3", "e1m3b2br3",
 																							"e1m0b3br3", "e1m1b3br3", "e1m2b3br3", "e1m3b3br3",]},
-					{ Name: "Eyes3", AllowColorize: false, HasType: false, CopyLayerColor: "Eyes1", Left: 200, Top: 145, AllowTypes:[
+					{ Name: "Eyes3", AllowColorize: true, HasType: false, CopyLayerColor: "Eyes1", Left: 200, Top: 145, AllowTypes:[
 																						"e2m0b0br0", "e2m1b0br0", "e2m2b0br0", "e2m3b0br0",
 																							"e2m0b1br0", "e2m1b1br0", "e2m2b1br0", "e2m3b1br0",
 																							"e2m0b2br0", "e2m1b2br0", "e2m2b2br0", "e2m3b2br0",
@@ -3582,7 +3582,7 @@ var AssetFemale3DCG = [
 																							"e2m0b1br3", "e2m1b1br3", "e2m2b1br3", "e2m3b1br3",
 																							"e2m0b2br3", "e2m1b2br3", "e2m2b2br3", "e2m3b2br3",
 																							"e2m0b3br3", "e2m1b3br3", "e2m2b3br3", "e2m3b3br3",]},
-					{ Name: "Eyes4", AllowColorize: false, HasType: false, CopyLayerColor: "Eyes1", Left: 200, Top: 145, AllowTypes:[
+					{ Name: "Eyes4", AllowColorize: true, HasType: false, CopyLayerColor: "Eyes1", Left: 200, Top: 145, AllowTypes:[
 																						"e3m0b0br0", "e3m1b0br0", "e3m2b0br0", "e3m3b0br0",
 																							"e3m0b1br0", "e3m1b1br0", "e3m2b1br0", "e3m3b1br0",
 																							"e3m0b2br0", "e3m1b2br0", "e3m2b2br0", "e3m3b2br0",
@@ -3617,7 +3617,7 @@ var AssetFemale3DCG = [
 																							"e0m0b1br3", "e1m0b1br3", "e2m0b1br3", "e3m0b1br3",
 																							"e0m0b2br3", "e1m0b2br3", "e2m0b2br3", "e3m0b2br3",
 																							"e0m0b3br3", "e1m0b3br3", "e2m0b3br3", "e3m0b3br3",]},
-					{ Name: "Mouth2", AllowColorize: false, HasType: false, CopyLayerColor: "Mouth1", Left: 235, Top: 180, AllowTypes:[
+					{ Name: "Mouth2", AllowColorize: true, HasType: false, CopyLayerColor: "Mouth1", Left: 235, Top: 180, AllowTypes:[
 																						"e0m1b0br0", "e1m1b0br0", "e2m1b0br0", "e3m1b0br0",
 																							"e0m1b1br0", "e1m1b1br0", "e2m1b1br0", "e3m1b1br0",
 																							"e0m1b2br0", "e1m1b2br0", "e2m1b2br0", "e3m1b2br0",
@@ -3634,7 +3634,7 @@ var AssetFemale3DCG = [
 																							"e0m1b1br3", "e1m1b1br3", "e2m1b1br3", "e3m1b1br3",
 																							"e0m1b2br3", "e1m1b2br3", "e2m1b2br3", "e3m1b2br3",
 																							"e0m1b3br3", "e1m1b3br3", "e2m1b3br3", "e3m1b3br3",]},
-					{ Name: "Mouth3", AllowColorize: false, HasType: false, CopyLayerColor: "Mouth1", Left: 235, Top: 180, AllowTypes:[
+					{ Name: "Mouth3", AllowColorize: true, HasType: false, CopyLayerColor: "Mouth1", Left: 235, Top: 180, AllowTypes:[
 																						"e0m2b0br0", "e1m2b0br0", "e2m2b0br0", "e3m2b0br0",
 																							"e0m2b1br0", "e1m2b1br0", "e2m2b1br0", "e3m2b1br0",
 																							"e0m2b2br0", "e1m2b2br0", "e2m2b2br0", "e3m2b2br0",
@@ -3651,7 +3651,7 @@ var AssetFemale3DCG = [
 																							"e0m2b1br3", "e1m2b1br3", "e2m2b1br3", "e3m2b1br3",
 																							"e0m2b2br3", "e1m2b2br3", "e2m2b2br3", "e3m2b2br3",
 																							"e0m2b3br3", "e1m2b3br3", "e2m2b3br3", "e3m2b3br3",]},
-					{ Name: "Mouth4", AllowColorize: false, HasType: false, CopyLayerColor: "Mouth1", Left: 235, Top: 180, AllowTypes:[
+					{ Name: "Mouth4", AllowColorize: true, HasType: false, CopyLayerColor: "Mouth1", Left: 235, Top: 180, AllowTypes:[
 																						"e0m3b0br0", "e1m3b0br0", "e2m3b0br0", "e3m3b0br0",
 																							"e0m3b1br0", "e1m3b1br0", "e2m3b1br0", "e3m3b1br0",
 																							"e0m3b2br0", "e1m3b2br0", "e2m3b2br0", "e3m3b2br0",
