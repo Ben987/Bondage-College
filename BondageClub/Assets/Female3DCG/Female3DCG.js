@@ -3461,7 +3461,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "KirugumiMask", Fetish: ["Latex"], Value: 50, Priority: 51, Difficulty: 15, Time: 10, Random: false, AllowLock: true, Prerequisite: ["GasMask"], DefaultColor: ["#9A7F76", "Default"], Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Mask"], HideItem: ["ItemHeadSnorkel"], Effect: ["BlockMouth"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemHead", "ItemNose", "ItemEars"], RemoveItemOnRemove: [{ Group: "ItemHoodAddon", Name: "" }], Layer: [
+				Name: "KirugumiMask", Fetish: ["Latex"], Value: 50, Priority: 51, Difficulty: 15, Time: 10, Random: false, AllowLock: true, Prerequisite: ["GasMask"], DefaultColor: ["#9A7F76", "Default"], Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Mask"], HideItem: ["ItemHeadSnorkel"], Effect: ["BlockMouth"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemHead", "ItemNose", "ItemEars"], RemoveItemOnRemove: [{ Group: "ItemHoodAddon", Name: "" }], Layer: [
 					{ Name: "Mask", AllowColorize: true, HasType: false },
 					{ Name: "Blush1", AllowColorize: true, HasType: false, Left: 190, Top: 100, AllowTypes:[null,
 																						"e0m0b0br0", "e0m1b0br0", "e0m2b0br0", "e0m3b0br0",

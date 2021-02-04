@@ -163,7 +163,7 @@ function InventoryItemHoodKirugumiMaskMapButtonDefinition(option) {
 
 function InventoryItemHoodKirugumiMaskDrawBase() {
 	var A = DialogFocusItem.Asset;
-	var DialogPrefix = "ItemArmsHighSecurityStraitJacketConfigure";
+	var DialogPrefix = "ItemHoodKirugumiMaskConfigure";
 	var currentConfig = InventoryItemHoodKirugumiMaskParseCurrent();
 	InventoryItemHoodKirugumiMaskDrawCommon([
 		["Screens/Inventory/" + A.Group.Name + "/" + A.Name + "/e" + currentConfig[0] + ".png", DialogPrefix + "Eyes"],
@@ -331,7 +331,7 @@ function InventoryItemHoodKirugumiMaskMergeOptions(e, m, b, br) {
 	}, {
 		Type: `e${e}m${m}b${b}br${br}`,
 		Difficulty: 15,
-		Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck", "ItemHead", "ItemNose", "ItemEars"],
+		Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemHead", "ItemNose", "ItemEars"],
 		Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Mask"],
 		HideItem: ["ItemHeadSnorkel"],
 	});
