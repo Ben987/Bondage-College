@@ -417,12 +417,11 @@ function DrawImageCanvas(Source, Canvas, X, Y, AlphaMasks, Opacity) {
 	let SourceImage = Img;
 	if (AlphaMasks && AlphaMasks.length) {
 		SourceImage = document.createElement("canvas");
-		tmpCanvas.width = Img.width;
-		tmpCanvas.height = Img.height;
-		var ctx = tmpCanvas.getContext('2d');
+		SourceImage.width = Img.width;
+		SourceImage.height = Img.height;
+		var ctx = SourceImage.getContext('2d');
 		ctx.drawImage(Img, 0, 0);
 		AlphaMasks.forEach(([x, y, w, h]) => ctx.clearRect(x - X, y - Y, w, h));
-		Canvas.drawImage(tmpCanvas, X, Y);
 	}
 	Opacity = typeof Opacity === "number" ? Opacity : 1;
 	Canvas.save();
