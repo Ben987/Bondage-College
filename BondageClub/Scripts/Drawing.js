@@ -704,6 +704,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 		MainCanvas.stroke();
 		MainCanvas.closePath();
 	}
+	if (!Text) return;
 
 	// Sets the text size if there's a maximum number of lines
 	let TextSize;
@@ -763,6 +764,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
  * @returns {void} - Nothing
  */
 function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
+	if (!Text) return;
 
 	for (let S = 36; S >= 10; S = S - 2) {
 		MainCanvas.font = CommonGetFont(S.toString());
@@ -792,6 +794,7 @@ function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
  * @returns {void} - Nothing
  */
 function DrawText(Text, X, Y, Color, BackColor) {
+	if (!Text) return;
 
 	// Draw a back color relief text if needed
 	if ((BackColor != null) && (BackColor != "")) {
