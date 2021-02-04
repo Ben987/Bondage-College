@@ -459,7 +459,7 @@ function DrawImageCanvas(Source, Canvas, X, Y, AlphaMasks, Opacity) {
 		TempCanvas.canvas.height = Img.height;
 		TempCanvas.drawImage(Img, 0, 0);
 		AlphaMasks.forEach(([x, y, w, h]) => TempCanvas.clearRect(x - X, y - Y, w, h));
-		Canvas.drawImage(TempCanvas.canvas, X, Y);
+		SourceImage = TempCanvas.canvas;
 	}
 	Opacity = typeof Opacity === "number" ? Opacity : 1;
 	Canvas.save();
