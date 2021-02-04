@@ -3463,7 +3463,7 @@ var AssetFemale3DCG = [
 			{
 				Name: "KirugumiMask", Fetish: ["Latex"], Value: 50, Priority: 51, Difficulty: 15, Time: 10, Random: false, AllowLock: true, Prerequisite: ["GasMask"], DefaultColor: ["#9A7F76", "Default"], Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Mask"], HideItem: ["ItemHeadSnorkel"], Effect: ["BlockMouth"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemHead", "ItemNose", "ItemEars"], RemoveItemOnRemove: [{ Group: "ItemHoodAddon", Name: "" }], Layer: [
 					{ Name: "Mask", AllowColorize: true, HasType: false },
-					{ Name: "Blush1", AllowColorize: true, HasType: false, Left: 190, Top: 100, AllowTypes:[null,
+					{ Name: "Blush1", AllowColorize: true, HasType: false, Left: 190, Top: 100, AllowTypes:[
 																						"e0m0b0br0", "e0m1b0br0", "e0m2b0br0", "e0m3b0br0",
 																							"e1m0b0br0", "e1m1b0br0", "e1m2b0br0", "e1m3b0br0",
 																							"e2m0b0br0", "e2m1b0br0", "e2m2b0br0", "e2m3b0br0",
@@ -3531,7 +3531,7 @@ var AssetFemale3DCG = [
 																							"e1m0b3br3", "e1m1b3br3", "e1m2b3br3", "e1m3b3br3",
 																							"e2m0b3br3", "e2m1b3br3", "e2m2b3br3", "e2m3b3br3",
 																							"e3m0b3br3", "e3m1b3br3", "e3m2b3br3", "e3m3b3br3",]},
-					{ Name: "Eyes1", AllowColorize: true, HasType: false, Left: 200, Top: 145, AllowTypes:[null,
+					{ Name: "Eyes1", AllowColorize: true, HasType: false, Left: 200, Top: 145, AllowTypes:[
 																						"e0m0b0br0", "e0m1b0br0", "e0m2b0br0", "e0m3b0br0",
 																							"e0m0b1br0", "e0m1b1br0", "e0m2b1br0", "e0m3b1br0",
 																							"e0m0b2br0", "e0m1b2br0", "e0m2b2br0", "e0m3b2br0",
@@ -3600,7 +3600,7 @@ var AssetFemale3DCG = [
 																							"e3m0b2br3", "e3m1b2br3", "e3m2b2br3", "e3m3b2br3",
 																							"e3m0b3br3", "e3m1b3br3", "e3m2b3br3", "e3m3b3br3",]},
 					// CopyLayerColor: "Back"
-					{ Name: "Mouth1", AllowColorize: true, HasType: false, Left: 235, Top: 180, AllowTypes:[null,
+					{ Name: "Mouth1", AllowColorize: true, HasType: false, Left: 235, Top: 180, AllowTypes:[
 																						"e0m0b0br0", "e1m0b0br0", "e2m0b0br0", "e3m0b0br0",
 																							"e0m0b1br0", "e1m0b1br0", "e2m0b1br0", "e3m0b1br0",
 																							"e0m0b2br0", "e1m0b2br0", "e2m0b2br0", "e3m0b2br0",
@@ -3669,7 +3669,7 @@ var AssetFemale3DCG = [
 																							"e0m3b2br3", "e1m3b2br3", "e2m3b2br3", "e3m3b2br3",
 																							"e0m3b3br3", "e1m3b3br3", "e2m3b3br3", "e3m3b3br3",]},
 					
-					{ Name: "Brows1", AllowColorize: false, HasType: false, Left: 200, Top: 120, AllowTypes:[null,
+					{ Name: "Brows1", AllowColorize: false, HasType: false, Left: 200, Top: 120, AllowTypes:[
 																						"e0m0b0br0", "e0m1b0br0", "e0m2b0br0", "e0m3b0br0",
 																							"e0m0b1br0", "e0m1b1br0", "e0m2b1br0", "e0m3b1br0",
 																							"e0m0b2br0", "e0m1b2br0", "e0m2b2br0", "e0m3b2br0",
