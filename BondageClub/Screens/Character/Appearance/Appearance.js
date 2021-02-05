@@ -363,9 +363,14 @@ function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 		return false;
 	}
 
+
+
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if (CharacterAppearanceItemIsHidden(C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) continue;
 		let HidingItem = false;
+		if (AssetName.includes("Chastity") && C.Appearance[A].Asset.Name.includes("Strait")) {
+		    var a = 1
+	    }
 		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0) && !C.Appearance[A].Asset.HideItemExclude.includes(GroupName + AssetName)) HidingItem = true;
 		else if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
 		else if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;

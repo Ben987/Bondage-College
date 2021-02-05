@@ -3,12 +3,12 @@
 var InventoryItemArmsFuturisticStraitjacketOptions = [
 	{
 		Name: "HandsFront",
-		Property: { Type: null,
+		Property: { Type: "HandsFront",
 				HideItem: ["ItemButtAnalBeads2",
 					// Chastity belts
-					"LeatherChastityBelt", "SleekLeatherChastityBelt", "StuddedChastityBelt", "MetalChastityBelt", "PolishedChastityBelt", "FuturisticChastityBelt", "FuturisticChastityBelt2", "OrnateChastityBelt", "SteelChastityPanties", "LoveChastityBelt",
+					"ItemPelvisLeatherChastityBelt", "ItemPelvisSleekLeatherChastityBelt", "ItemPelvisStuddedChastityBelt", "ItemPelvisMetalChastityBelt", "ItemPelvisPolishedChastityBelt", "ItemPelvisFuturisticChastityBelt", "ItemPelvisFuturisticChastityBelt2", "ItemPelvisOrnateChastityBelt", "ItemPelvisSteelChastityPanties", "ItemPelvisLoveChastityBelt",
 					// Chastity bras
-					"MetalChastityBra", "PolishedChastityBra", "FuturisticBra", "FuturisticBra2", "OrnateChastityBra"
+					"ItemBreastMetalChastityBra", "ItemBreastPolishedChastityBra", "ItemBreastFuturisticBra", "ItemBreastFuturisticBra2", "ItemBreastOrnateChastityBra"
 				],
 				Block: ["ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemBreast", "ItemHands"],
 				},
@@ -18,16 +18,16 @@ var InventoryItemArmsFuturisticStraitjacketOptions = [
 		Property: { Type: "HandsBack",
 				HideItem: ["ItemButtAnalBeads2",
 					// Chastity belts
-					"LeatherChastityBelt", "SleekLeatherChastityBelt", "StuddedChastityBelt", "MetalChastityBelt", "PolishedChastityBelt", "FuturisticChastityBelt", "FuturisticChastityBelt2", "OrnateChastityBelt", "SteelChastityPanties", "LoveChastityBelt",
+					"ItemPelvisLeatherChastityBelt", "ItemPelvisSleekLeatherChastityBelt", "ItemPelvisStuddedChastityBelt", "ItemPelvisMetalChastityBelt", "ItemPelvisPolishedChastityBelt", "ItemPelvisFuturisticChastityBelt", "ItemPelvisFuturisticChastityBelt2", "ItemPelvisOrnateChastityBelt", "ItemPelvisSteelChastityPanties", "ItemPelvisLoveChastityBelt",
 					// Chastity bras
-					"MetalChastityBra", "PolishedChastityBra", "FuturisticBra", "FuturisticBra2", "OrnateChastityBra"
+					"ItemBreastMetalChastityBra", "ItemBreastPolishedChastityBra", "ItemBreastFuturisticBra", "ItemBreastFuturisticBra2", "ItemBreastOrnateChastityBra"
 				],
 				Block: ["ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemBreast", "ItemHands"],
 				},
 	},
 	{
 		Name: "HandsFrontChastity",
-		Property: { Type: "HandsFrontChastity",
+		Property: { Type: null,
 				HideItem: ["ItemButtAnalBeads2"],
 				Block: ["ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemHands"],
 				},
