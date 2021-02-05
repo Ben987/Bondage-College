@@ -1744,23 +1744,15 @@ var AssetFemale3DCG = [
 			{ Name: "HarnessBra1", Fetish: ["Leather"], Priority: 20, Value: 30, Difficulty: 8, Time: 15, RemoveTime: 10, HideItem: ["ItemNipplesLactationPump"], AllowLock: true, BuyGroup: "HarnessBra1", Prerequisite: "AccessTorso", Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
 			{ Name: "HarnessBra2", Fetish: ["Leather"], Priority: 20, Value: 40, Difficulty: 8, Time: 15, RemoveTime: 10, HideItem: ["ItemNipplesLactationPump"], AllowLock: true, BuyGroup: "HarnessBra2", Prerequisite: "AccessTorso", Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
 			{ Name: "Corset2", Fetish: ["Lingerie"], Priority: 22, Value: 30, Difficulty: 8, Time: 15, RemoveTime: 10, AllowLock: true, Left: 150, BuyGroup: "Corset2", Prerequisite: "AccessTorso", Hide: ["ItemNipples", "ItemNipplesPiercings"], OverrideAllowPose: ["Hogtied"], DynamicGroupName: "Corset" },
-			{ Name: "FuturisticHarness", Fetish: ["Metal"], Category: ["SciFi"], Value: 25, BuyGroup: "FuturisticHarness", Difficulty: 15, Time: 15, RemoveTime: 10, Audio: "FuturisticApply", DefaultColor: ["#50913C", "Default", "#889FA7"], AllowLock: true, DrawLocks: false, Prerequisite: "AccessTorso", HideForPose: ["Hogtied", "AllFours"], Extended: true,
+			{ Name: "FuturisticHarness", Fetish: ["Metal"], Category: ["SciFi"], Value: 30, Difficulty: 20, Time: 17, RemoveTime: 12, Audio: "FuturisticApply", DefaultColor: ["#50913C", "Default", "#889FA7"], AllowLock: true, DrawLocks: false, Prerequisite: "AccessTorso", HideForPose: ["AllFours"], Extended: true, AllowType: ["Upper", "Lower"],
 				Layer:[
-					{ Name: "Display", AllowColorize: true, ParentGroup: null,},
-					{ Name: "Band", AllowColorize: true },
-					{ Name: "Mesh", AllowColorize: true, ParentGroup: null,},
-					{ Name: "Lock", AllowColorize: true, HasType: false, ParentGroup: null},
-				]
-			},
-			{ Name: "FuturisticHarness2", Fetish: ["Metal"], Category: ["SciFi"], Value: -1, BuyGroup: "FuturisticHarness", Difficulty: 20, Time: 17, RemoveTime: 12, Audio: "FuturisticApply", DefaultColor: ["#50913C", "Default", "#889FA7"], AllowLock: true, DrawLocks: false, Prerequisite: "AccessTorso", HideForPose: ["AllFours"], Extended: true,
-				Layer:[
-					{ Name: "Display", AllowColorize: true, ParentGroup: null, Priority: 15,},
-					{ Name: "Band", AllowColorize: true, Priority: 15 },
-					{ Name: "Mesh", AllowColorize: true, ParentGroup: null, Priority: 15,},
-					{ Name: "Display2", AllowColorize: true, CopyLayerColor: "Display", ParentGroup: null,},
-					{ Name: "Band2", AllowColorize: true, CopyLayerColor: "Band" },
-					{ Name: "Lock", AllowColorize: true, HasType: false, ParentGroup: null},
-					{ Name: "Lock2", CopyLayerColor: "Lock", HasType: false, ParentGroup: null},
+					{ Name: "Display", AllowColorize: true, ParentGroup: null, Priority: 15, AllowTypes: ["", "Lower"], HasType: false},
+					{ Name: "Band", AllowColorize: true, Priority: 15 , AllowTypes: ["", "Lower"], HasType: false},
+					{ Name: "Mesh", AllowColorize: true, ParentGroup: null, Priority: 15, AllowTypes: ["", "Lower"], HasType: false},
+					{ Name: "Lock", AllowColorize: true, HasType: false, ParentGroup: null, AllowTypes: ["", "Lower"], HasType: false},
+					{ Name: "Display2", AllowColorize: true, CopyLayerColor: "Display", ParentGroup: null, AllowTypes: ["", "Upper"], HasType: false},
+					{ Name: "Band2", AllowColorize: true, CopyLayerColor: "Band", AllowTypes: ["", "Upper"], HasType: false},
+					{ Name: "Lock2", CopyLayerColor: "Lock", HasType: false, ParentGroup: null, AllowTypes: ["", "Upper"], HasType: false},
 					
 				]
 			},
