@@ -174,6 +174,9 @@ function AssetAdd(NewAsset) {
 		OverrideHeight: NewAsset.OverrideHeight,
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose :
 			Array.isArray(AssetCurrentGroup.FreezeActivePose) ? AssetCurrentGroup.FreezeActivePose : [],
+		DrawLocks: typeof NewAsset.DrawLocks === 'boolean' ? NewAsset.DrawLocks : true,
+		AllowExpression: NewAsset.AllowExpression,
+		MirrorExpression: NewAsset.MirrorExpression,
 	}
 	if (A.MinOpacity > A.Opacity) A.MinOpacity = A.Opacity;
 	if (A.MaxOpacity < A.Opacity) A.MaxOpacity = A.Opacity;
@@ -226,6 +229,8 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		Opacity: typeof Layer.Opacity === "number" ? AssetParseOpacity(Layer.Opacity) : 1,
 		MinOpacity: typeof Layer.MinOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MinOpacity,
 		MaxOpacity: typeof Layer.MaxOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MaxOpacity,
+		LockLayer: typeof Layer.LockLayer === "boolean" ? Layer.LockLayer : false,
+		MirrorExpression: Layer.MirrorExpression,
 	};
 	if (L.MinOpacity > L.Opacity) L.MinOpacity = L.Opacity;
 	if (L.MaxOpacity < L.Opacity) L.MaxOpacity = L.Opacity;

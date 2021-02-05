@@ -314,6 +314,7 @@
 <script src="Screens/Inventory/ItemHood/CanvasHood/CanvasHood.js"></script>
 <script src="Screens/Inventory/ItemDevices/Vacbed/Vacbed.js"></script>
 <script src="Screens/Inventory/ItemDevices/WoodenBox/WoodenBox.js"></script>
+<script src="Screens/Inventory/ItemDevices/TransportWoodenBox/TransportWoodenBox.js"></script>
 <script src="Screens/Inventory/HairAccessory3/Halo/Halo.js"></script>
 <script src="Screens/Inventory/HairAccessory1/Halo/Halo.js"></script>
 <script>
@@ -408,7 +409,7 @@ function Click(event) {
 }
 
 // When the user touches the screen (mobile only), we fire the click event for other screens
-function Touch(event) {
+function TouchStart(event) {
 	if (CommonIsMobile) {
 		var rect = document.getElementById("MainCanvas").getBoundingClientRect();
 		if (document.body.clientWidth <= document.body.clientHeight * 2) {
@@ -417,9 +418,9 @@ function Touch(event) {
 		} else {
 			MouseX = Math.round((event.touches[0].clientX - rect.left) * 1000 / document.body.clientHeight);
 			MouseY = Math.round((event.touches[0].clientY - rect.top) * 1000 / document.body.clientHeight);
-		}		
+		}
 		CommonClick();
-	} 
+	}
 }
 
 // When mouse move, we keep the mouse position for other scripts
@@ -441,7 +442,7 @@ function LoseFocus(event) {
 		MouseY = -1;
 	}
 }
- 
+
 </script>
 
 
@@ -488,6 +489,6 @@ function LoseFocus(event) {
 </script>
 
 <body style="width:100%; height:100%; background-color:black; margin:0px; padding:0px; overflow:hidden;">
-	<canvas id="MainCanvas" Width="2000" Height="1000" onClick="Click(event);" onTouchStart="Touch(event);" onMouseMove="MouseMove(event);" onMouseLeave="LoseFocus(event);"></canvas>
+	<canvas id="MainCanvas" Width="2000" Height="1000" onClick="Click(event);" onTouchStart="TouchStart(event);" onMouseMove="MouseMove(event);" onMouseLeave="LoseFocus(event);"></canvas>
 </body>
 </html>

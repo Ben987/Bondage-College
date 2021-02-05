@@ -126,7 +126,8 @@ function InventoryItemDevicesWoodenBoxExit() {
 	const C = CharacterGetCurrent();
 	const item = DialogFocusItem;
 
-	InventoryItemDevicesWoodenBoxSetOpacity(item.Property, InventoryItemDevicesWoodenBoxGetInputOpacity());
+	let setOpacity = window[`Inventory${item.Asset.Group.Name}${item.Asset.Name}SetOpacity`] || InventoryItemDevicesWoodenBoxSetOpacity;
+	setOpacity(item.Property, InventoryItemDevicesWoodenBoxGetInputOpacity());
 	const text = InventoryItemDevicesWoodenBoxGetText();
 	if (DynamicDrawTextRegex.test(text)) item.Property.Text = text;
 
