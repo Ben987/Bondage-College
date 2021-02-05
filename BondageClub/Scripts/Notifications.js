@@ -6,9 +6,9 @@ var Notifications = {};
  * @param {string} Type - The type of notification
  * @returns {void}
  */
-function CommonNotificationIncrement(Type) {
+function NotificationsIncrement(Type) {
 	Notifications[Type] = (Notifications[Type] || 0) + 1;
-	CommonNotificationUpdate();
+	NotificationsUpdate();
 }
 
 /**
@@ -16,10 +16,10 @@ function CommonNotificationIncrement(Type) {
  * @param {any} Type - The type of notification
  * @returns {void}
  */
-function CommonNotificationReset(Type) {
+function NotificationsReset(Type) {
 	if (Notifications[Type] != null && Notifications[Type] != 0) {
 		Notifications[Type] = 0;
-		CommonNotificationUpdate();
+		NotificationsUpdate();
 	}
 }
 
@@ -27,16 +27,16 @@ function CommonNotificationReset(Type) {
  * Sets the number of notifications to zero
  * @returns {void}
  */
-function CommonNotificationResetAll() {
+function NotificationsResetAll() {
 	Notifications = {};
-	CommonNotificationUpdate();
+	NotificationsUpdate();
 }
 
 /**
  * Sets or clears notifications in the tab header
  * @returns {void} - Nothing
  */
-function CommonNotificationUpdate() {
+function NotificationsUpdate() {
 	let total = 0;
 	for (let key in Notifications) total += Notifications[key];
 	let prefix = total == 0 ? "" : "(" + total.toString() + ") ";
@@ -47,10 +47,10 @@ function CommonNotificationUpdate() {
  * Increase the number of unread messages in the notifications
  * @returns {void} - Nothing
  */
-function ChatRoomNotification() {
-	if (!ChatRoomNewMessageVisible()) {
+function NotificationsChatRoomIncrement() {
+	if (!NotificationsChatRoomNewMessageVisible()) {
 		ChatRoomUnreadMessages = true;
-		CommonNotificationIncrement("Chat");
+		NotificationsIncrement("Chat");
 	}
 }
 
@@ -58,10 +58,10 @@ function ChatRoomNotification() {
  * Remove the notifications if there are new messages that have been seen
  * @returns {void} - Nothing
  */
-function ChatRoomNotificationCheck() {
-	if (ChatRoomUnreadMessages && ChatRoomNewMessageVisible()) {
+function NotificationsChatRoomCheck() {
+	if (ChatRoomUnreadMessages && NotificationsChatRoomNewMessageVisible()) {
 		ChatRoomUnreadMessages = false;
-		CommonNotificationReset("Chat");
+		NotificationsReset("Chat");
 	}
 }
 
@@ -69,7 +69,7 @@ function ChatRoomNotificationCheck() {
  * Returns whether the most recent chat message is on screen
  * @returns {boolean} - TRUE if the screen has focus and the chat log is scrolled to the bottom
  */
-function ChatRoomNewMessageVisible() {
+function NotificationsChatRoomNewMessageVisible() {
 	if (!document.hasFocus()) return false;
 	else return ElementIsScrolledToEnd("TextAreaChatLog");
 }

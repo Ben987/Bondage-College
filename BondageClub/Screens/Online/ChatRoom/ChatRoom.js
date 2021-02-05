@@ -956,7 +956,7 @@ function ChatRoomRun() {
 	OnlineGameRun();
 
 	// Clear any new message notification once they are seen
-	ChatRoomNotificationCheck();
+	NotificationsChatRoomCheck();
 }
 
 /**
@@ -1529,7 +1529,7 @@ function ChatRoomMessage(data) {
 					if (!Player.AudioSettings.PlayItemPlayerOnly || IsPlayerInvolved)
 						AudioPlayContent(data);
 
-					if (data.Type == "Action" && IsPlayerInvolved && Player.NotificationSettings.ChatActions) ChatRoomNotification();
+					if (data.Type == "Action" && IsPlayerInvolved && Player.NotificationSettings.ChatActions) NotificationsChatRoomIncrement();
 				}
 			}
 
@@ -1572,7 +1572,7 @@ function ChatRoomMessage(data) {
 				else if (data.Type == "Action") msg = "(" + msg + ")";
 				else if (data.Type == "ServerMessage") msg = "<b>" + msg + "</b>";
 
-				if (Player.NotificationSettings.Chat && (data.Type == "Chat" || data.Type == "Whisper" || data.Type == "Emote")) ChatRoomNotification();
+				if (Player.NotificationSettings.Chat && (data.Type == "Chat" || data.Type == "Whisper" || data.Type == "Emote")) NotificationsChatRoomIncrement();
 			}
 
 			// Outputs the sexual activities text and runs the activity if the player is targeted
@@ -1608,7 +1608,7 @@ function ChatRoomMessage(data) {
 				// Exits before outputting the text if the player doesn't want to see the sexual activity messages
 				if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
 
-				if (TargetMemberNumber == Player.MemberNumber && Player.NotificationSettings.ChatActions) ChatRoomNotification();
+				if (TargetMemberNumber == Player.MemberNumber && Player.NotificationSettings.ChatActions) NotificationsChatRoomIncrement();
 			}
 
 			// Adds the message and scrolls down unless the user has scrolled up

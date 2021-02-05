@@ -1735,5 +1735,5 @@ function PreferenceSubscreenNotificationsClick() {
 	if (MouseIn(600, 430, 64, 64)) Player.NotificationSettings.ChatActions = !Player.NotificationSettings.ChatActions;
 
 	// Reset button
-	if (MouseIn(500, 800, 380, 64)) CommonNotificationResetAll();
+	if (MouseIn(500, 800, 380, 64)) NotificationsResetAll();
 }
