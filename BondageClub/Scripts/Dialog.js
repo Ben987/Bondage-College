@@ -422,7 +422,7 @@ function DialogLeave() {
 	Player.FocusGroup = null;
 	if (CurrentCharacter) {
 		if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber) {
-			CharacterAppearanceForceUpCharacter = 0;
+			CharacterAppearanceForceUpCharacter = -1;
 			CharacterAppearanceSetHeightModifiers(CurrentCharacter);
 		}
 		CurrentCharacter.FocusGroup = null;
@@ -1524,7 +1524,7 @@ function DialogClick() {
 
 	// If the user clicked anywhere outside the current character item zones, ensure the position is corrected
 	if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber && ((MouseX < 500) || (MouseX > 1000) || (CurrentCharacter.FocusGroup == null))) {
-		CharacterAppearanceForceUpCharacter = 0;
+		CharacterAppearanceForceUpCharacter = -1;
 		CharacterAppearanceSetHeightModifiers(CurrentCharacter);
 	}
 
@@ -1864,7 +1864,7 @@ function DialogDrawStruggleProgress(C) {
 
 		// Reset the the character's position
 		if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
-			CharacterAppearanceForceUpCharacter = 0;
+			CharacterAppearanceForceUpCharacter = -1;
 			CharacterAppearanceSetHeightModifiers(C);
 		}
 

@@ -259,11 +259,17 @@ ItemDevicesX-CrossCross,Frame
 ItemDevicesX-CrossPadding,Padding
 ItemDevicesChangingTableFrame,Frame
 ItemDevicesChangingTableTable,Tabletop
+ItemDevicesCribFrame,Frame
+ItemDevicesCribMattress,Mattress
+ItemDevicesCribPillow,Pillow
+ItemDevicesCribPillowTrim,Pillow Trim
+ItemDevicesCribPlushies,Plushies
 ItemDevicesConcealingCloakFront,Cloak
 ItemDevicesConcealingCloakStrap,Straps
-ItemDevicesTransportWoodenBoxBox,Box
+ItemDevicesTransportWoodenBoxBack,Wood
 ItemDevicesTransportWoodenBoxWheelholders,Wheel Holders
 ItemDevicesTransportWoodenBoxWheels,Wheels
+ItemDevicesTransportWoodenBoxText,Text
 ItemDevicesWoodenBoxBack,Wood
 ItemDevicesWoodenBoxText,Text
 ItemDevicesPetBowlBowl,Bowl
@@ -526,4 +532,5 @@ ItemHandsPawMittensGloves,Gloves
 ItemHandsPawMittensStraps,Straps
 ItemHandsPawMittensBuckles,Buckles
 ItemHandsPawMittensPaws,Paws
-
+ItemHeadBlackoutLensesLeft,Left Lens
+ItemHeadBlackoutLensesRight,Right Lens

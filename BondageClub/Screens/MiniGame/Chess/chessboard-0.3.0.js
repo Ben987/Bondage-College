@@ -563,7 +563,6 @@ function buildBoardContainer() {
 /*
 var buildSquare = function(color, size, id) {
   var html = '<div class="' + CSS.square + ' ' + CSS[color] + '" ' +
-  'style="width: ' + size + 'px; height: ' + size + 'px" ' +
   'id="' + id + '">';
 
   if (cfg.showNotation === true) {
@@ -599,7 +598,6 @@ function buildBoard(orientation) {
 
       html += '<div class="' + CSS.square + ' ' + CSS[squareColor] + ' ' +
         'square-' + square + '" ' +
-        'style="width: ' + SQUARE_SIZE + 'px; height: ' + SQUARE_SIZE + 'px" ' +
         'id="' + SQUARE_ELS_IDS[square] + '" ' +
         'data-square="' + square + '">';
 
@@ -656,16 +654,13 @@ function buildPiece(piece, hidden, id) {
   if (id && typeof id === 'string') {
     html += 'id="' + id + '" ';
   }
-  let NEW_SIZE = (MainCanvas.height / 8);
   html += 'alt="" ' +
   'class="' + CSS.piece + '" ' +
-  'data-piece="' + piece + '" ' +
-  'style="width: ' + NEW_SIZE + 'px;' +
-  'height: ' + NEW_SIZE + 'px;';
+  'data-piece="' + piece + '" ';
   if (hidden === true) {
-    html += 'display:none;';
+    html += 'style="display:none;" ';
   }
-  html += '" />';
+  html += '/>';
 
   return html;
 }
