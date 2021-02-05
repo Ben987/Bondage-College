@@ -59,8 +59,6 @@ function InventoryItemTorsoFuturisticHarnessClick() {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
 	} else {
 		
-		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemTorsoFuturisticHarnessExit();
-		
 		ExtendedItemClick(InventoryItemTorsoFuturisticHarnessOptions);
 		
 		var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
