@@ -2214,7 +2214,7 @@ var AssetFemale3DCG = [
 					{ Name: "Binder" , ParentGroup: null, AllowTypes: [""], Priority: 6, Left: 50, Top: 200,	},
 					{ Name: "Band" , ParentGroup: null, AllowTypes: [""], Priority: 6, Left: 50, Top: 200,	},
 					{ Name: "Straps", Priority: 31, HasType: false,  Left: 0, Top: 0,  },
-					{ Name: "Lock", AllowColorize: true, HasType: false, Priority: 31, ParentGroup: null},
+					{ Name: "Lock", AllowColorize: true, Priority: 31, ParentGroup: null},
 				]
 			},
 			{ Name: "SeamlessLatexArmbinder", Fetish: ["Latex"], Priority: 6, Value: 60, Difficulty: 10, SelfBondage: 7, Time: 25, RemoveTime: 10, AllowLock: true, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], SelfUnlock: false },
