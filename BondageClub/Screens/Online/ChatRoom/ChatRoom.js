@@ -2501,37 +2501,6 @@ function ChatRoomSetLoadRules(C, Rule) {
 }
 
 /**
- * Increase the number of unread messages in the notifications
- * @returns {void} - Nothing
- */
-function ChatRoomNotification() {
-	if (!ChatRoomNewMessageVisible()) {
-		ChatRoomUnreadMessages = true;
-		CommonNotificationIncrement("Chat");
-	}
-}
-
-/**
- * Remove the notifications if there are new messages that have been seen
- * @returns {void} - Nothing
- */
-function ChatRoomNotificationCheck() {
-	if (ChatRoomUnreadMessages && ChatRoomNewMessageVisible()) {
-		ChatRoomUnreadMessages = false;
-		CommonNotificationReset("Chat");
-	}
-}
-
-/**
- * Returns whether the most recent chat message is on screen
- * @returns {boolean} - TRUE if the screen has focus and the chat log is scrolled to the bottom
- */
-function ChatRoomNewMessageVisible() {
-	if (!document.hasFocus()) return false;
-	else return ElementIsScrolledToEnd("TextAreaChatLog");
-}
-
-/**
  * Take a screenshot of all characters in the chatroom
  * @returns {void} - Nothing
  */
