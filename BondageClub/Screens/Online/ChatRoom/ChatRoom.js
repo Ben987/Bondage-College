@@ -1611,24 +1611,33 @@ function ChatRoomMessage(data) {
 				if (TargetMemberNumber == Player.MemberNumber && Player.NotificationSettings.ChatActions) ChatRoomNotification();
 			}
 
-			// Adds the message and scrolls down unless the user has scrolled up
-			var div = document.createElement("div");
-			div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + MsgEnterLeave);
-			div.setAttribute('data-time', ChatRoomCurrentTime());
-			div.setAttribute('data-sender', data.Sender);
-			if (data.Type == "Emote" || data.Type == "Action" || data.Type == "Activity")
-				div.setAttribute('style', 'background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';');
-			div.innerHTML = msg;
+			if (!(
+					Player.ImmersionSettings.SenseDepMessages && PreferenceIsPlayerInSensDep() && SenderCharacter.ID != 0 && (Player.GetDeafLevel() >= 4)
+						&& (
+								data.Type == "Chat" ||
+								(data.Type == "Emote" && !msg.toLowerCase().includes(Player.Name.toLowerCase()))
+						)
+				)) {
 
-			// Returns the focus on the chat box
-			var Refocus = document.activeElement.id == "InputChat";
-			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
-			if (document.getElementById("TextAreaChatLog") != null) {
-				document.getElementById("TextAreaChatLog").appendChild(div);
-				if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
-				if (Refocus) ElementFocus("InputChat");
+				// Adds the message and scrolls down unless the user has scrolled up
+				var div = document.createElement("div");
+				div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + MsgEnterLeave);
+				div.setAttribute('data-time', ChatRoomCurrentTime());
+				div.setAttribute('data-sender', data.Sender);
+				if (data.Type == "Emote" || data.Type == "Action" || data.Type == "Activity")
+					div.setAttribute('style', 'background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';');
+				div.innerHTML = msg;
+
+				// Returns the focus on the chat box
+				var Refocus = document.activeElement.id == "InputChat";
+				var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
+				if (document.getElementById("TextAreaChatLog") != null) {
+					document.getElementById("TextAreaChatLog").appendChild(div);
+					if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
+					if (Refocus) ElementFocus("InputChat");
+				}
+				
 			}
-
 		}
 	}
 }
