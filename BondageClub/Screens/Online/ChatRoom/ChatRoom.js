@@ -1612,7 +1612,7 @@ function ChatRoomMessage(data) {
 			}
 
 			if (!(
-					Player.ImmersionSettings.SenseDepMessages && PreferenceIsPlayerInSensDep() && SenderCharacter.ID != 0 && (Player.GetDeafLevel() >= 4)
+					Player.ImmersionSettings.SenseDepMessages && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" || Player.GameplaySettings.SensDepChatLog == "SensDepTotal") && PreferenceIsPlayerInSensDep() && SenderCharacter.ID != 0 && (Player.GetDeafLevel() >= 4)
 						&& (
 								data.Type == "Chat" ||
 								(data.Type == "Emote" && !msg.toLowerCase().includes(Player.Name.toLowerCase()))
