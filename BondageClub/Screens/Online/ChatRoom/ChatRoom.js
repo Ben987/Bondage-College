@@ -1571,7 +1571,7 @@ function ChatRoomMessage(data) {
 						
 						for (let C = 0; C < ChatRoomCharacter.length; C++) {
 							if (ChatRoomCharacter[C] && ChatRoomCharacter[C].Name && ChatRoomCharacter[C].ID != 0)
-								msg = msg.replace(ChatRoomCharacter[C].Name, DialogFindPlayer("Someone"))
+								msg = msg.replace(ChatRoomCharacter[C].Name.charAt(0).toUpperCase() + ChatRoomCharacter[C].Name.slice(1), DialogFindPlayer("Someone"))
 						}
 					}
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
