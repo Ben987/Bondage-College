@@ -11,6 +11,9 @@ var CommonCSVCache = {};
 var CutsceneStage = 0;
 
 var CommonPhotoMode = false;
+var GameVersion = "R0";
+const GameVersionFormat = /^R([0-9]+)(?:Beta([0-9]+))?$/;
+var CommonVersionUpdated = false;
 
 /**
  * A map of keys to common font stack definitions. Each stack definition is a	
@@ -628,4 +631,21 @@ function CommonUnpackItemArray(arr) {
 		}
 	}
 	return res;
+}
+
+/**
+ * Compares two version numbers and returns -1/0/1 if Other number is smaller/same/larger than Current one
+ * @param {string} Current Current version number
+ * @param {string} Other Other version number
+ * @returns {-1|0|1} Comparsion result
+ */
+function CommonCompareVersion(Current, Other) {
+	const CurrentMatch = GameVersionFormat.exec(Current);
+	const OtherMatch = GameVersionFormat.exec(Other);
+	if (CurrentMatch == null || OtherMatch == null || isNaN(CurrentMatch[1]) || isNaN(OtherMatch[1])) return -1;
+	if (CurrentMatch[1] !== OtherMatch[1]) return Math.sign(Number.parseInt(OtherMatch[1]) - Number.parseInt(CurrentMatch[1]));
+	const CurrentSubversion = Number.parseInt(CurrentMatch[2]) || Infinity;
+	const OtherSubversion = Number.parseInt(OtherMatch[2]) || Infinity;
+	if (CurrentSubversion == OtherSubversion) return 0;
+	return Math.sign(OtherSubversion - CurrentSubversion);
 }

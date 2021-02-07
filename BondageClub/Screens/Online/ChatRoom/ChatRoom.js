@@ -556,6 +556,10 @@ function ChatRoomDrawCharacterOverlay(C, CharX, CharY, Zoom) {
 		if (Array.isArray(ChatRoomData.Admin) && ChatRoomData.Admin.includes(C.MemberNumber)) {
 			DrawImageResize("Icons/Small/Admin.png", CharX + 125 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
 		}
+		// Warning icon when game versions don't match
+		if (C.OnlineSharedSettings && C.OnlineSharedSettings.GameVersion !== GameVersion) {
+			DrawImageResize("Icons/Small/Warning.png", CharX + 325 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
+		}
 		if (Player.GhostList.includes(C.MemberNumber)) {
 			DrawImageResize("Icons/Small/GhostList.png", CharX + 375 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
 		} else if (Player.FriendList.includes(C.MemberNumber)) {

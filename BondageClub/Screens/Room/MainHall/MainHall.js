@@ -172,6 +172,15 @@ function MainHallRun() {
 			} else MainHallFirstFrame = true;
 		} else {
 
+			// If the player logged into new version
+			if (CurrentCharacter == null && CommonVersionUpdated && MainHallMaid.Dialog != null && MainHallMaid.Dialog.length > 0) {
+				CommonVersionUpdated = false;
+				CharacterSetCurrent(MainHallMaid);
+				MainHallMaid.Stage = "200";
+				MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "ClubUpdated");
+				return;
+			}
+
 			// If the player is dressed up while being a club slave, the maid intercepts her
 			if ((CurrentCharacter == null) && ManagementIsClubSlave() && LogQuery("BlockChange", "Rule") && !Player.IsNaked() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
 				MainHallMaid.Stage = "50";
@@ -416,6 +425,13 @@ function MainHallClick() {
 		}
 	}
 
+}
+
+/**
+ * Triggered when the player chooses to open changelog.
+ */
+function MainHallOpenChangelog() {
+	window.open("./changelog.html", "_blank");
 }
 
 /**
