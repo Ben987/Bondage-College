@@ -901,6 +901,11 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	const LeftSplit = Left + ArrowWidth;
 	const RightSplit = Left + Width - ArrowWidth;
 
+	if (ControllerActive == true) {
+		setButton(Left, Top);
+		setButton(Left + Width - ArrowWidth, Top);
+	}
+
 	// Draw the button rectangle
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
@@ -931,6 +936,9 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	// Draw the text or image
 	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
+	if (ControllerActive == true) {
+		setButton(Left + Width / 2, Top);
+	}
 
 	// Draw the back arrow
 	MainCanvas.beginPath();
