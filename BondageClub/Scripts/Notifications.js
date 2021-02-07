@@ -1,5 +1,6 @@
 ﻿"use strict";
 var Notifications = {};
+var NotificationsAudio = new Audio("Audio/BeepAlarm.mp3");
 
 /**
  * Increase the reported number of a notifications by one and updates the header
@@ -7,7 +8,14 @@ var Notifications = {};
  * @returns {void}
  */
 function NotificationsIncrement(Type) {
+	// Increase the number for the type by 1
 	Notifications[Type] = (Notifications[Type] || 0) + 1;
+	// Play a beep for the first notification for a type
+	if (Notifications[Type] === 1 && Player.NotificationSettings.Audio && Type !== "Beep") {
+		NotificationsAudio.volume = Player.AudioSettings.Volume;
+		NotificationsAudio.play();
+	}
+	// Update the title
 	NotificationsUpdate();
 }
 

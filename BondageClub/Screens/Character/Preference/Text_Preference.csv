@@ -259,6 +259,7 @@ PressDownOnDpad,Press Down on Dpad
 PressLeftOnDpad,Press Left on Dpad
 PressRightOnDpad,Press Right on Dpad
 DeadZone,Dead Zone
+NotificationsAudio,Audio alert for notifications
 NotificationsChatRooms,Raise notifications for:
 NotificationsBeeps,Missed beeps
 NotificationsChat,Unread messages in chat rooms

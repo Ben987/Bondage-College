@@ -366,6 +366,7 @@ function PreferenceInitPlayer() {
 
 	// Notification settings
 	if (!C.NotificationSettings) C.NotificationSettings = {};
+	if (typeof C.NotificationSettings.Audio !== "boolean") C.NotificationSettings.Audio = false;
 	if (typeof C.NotificationSettings.Beeps !== "boolean") C.NotificationSettings.Beeps = true;
 	if (typeof C.NotificationSettings.Chat !== "boolean") C.NotificationSettings.Chat = true;
 	if (typeof C.NotificationSettings.ChatActions !== "boolean") C.NotificationSettings.ChatActions = false;
@@ -903,6 +904,7 @@ function PreferenceSubscreenAudioRun() {
 	DrawCheckbox(500, 272, 64, 64, TextGet("AudioPlayBeeps"), Player.AudioSettings.PlayBeeps);
 	DrawCheckbox(500, 352, 64, 64, TextGet("AudioPlayItem"), Player.AudioSettings.PlayItem);
 	DrawCheckbox(500, 432, 64, 64, TextGet("AudioPlayItemPlayerOnly"), Player.AudioSettings.PlayItemPlayerOnly);
+	DrawCheckbox(500, 512, 64, 64, TextGet("NotificationsAudio"), Player.NotificationSettings.Audio);
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 193, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
@@ -1229,6 +1231,7 @@ function PreferenceSubscreenAudioClick() {
 		if ((MouseY >= 272) && (MouseY < 336)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
 		if ((MouseY >= 352) && (MouseY < 416)) Player.AudioSettings.PlayItem = !Player.AudioSettings.PlayItem;
 		if ((MouseY >= 432) && (MouseY < 496)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
+		if ((MouseY >= 512) && (MouseY < 576)) Player.NotificationSettings.Audio = !Player.NotificationSettings.Audio;
 	}
 
 }
@@ -1711,24 +1714,25 @@ function PreferenceSubscreenNotificationsRun() {
 	// Left-aligned text controls
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("NotificationsPreferences"), 500, 125, "Black", "Gray");
-	DrawText(TextGet("NotificationsChatRooms"), 500, 225, "Black", "Gray");
-	DrawCheckbox(500, 270, 64, 64, TextGet("NotificationsBeeps"), Player.NotificationSettings.Beeps);
-	DrawCheckbox(500, 350, 64, 64, TextGet("NotificationsChat"), Player.NotificationSettings.Chat);
+	DrawCheckbox(500, 190, 64, 64, TextGet("NotificationsAudio"), Player.NotificationSettings.Audio);
+	DrawText(TextGet("NotificationsChatRooms"), 500, 305, "Black", "Gray");
+	DrawCheckbox(500, 350, 64, 64, TextGet("NotificationsBeeps"), Player.NotificationSettings.Beeps);
+	DrawCheckbox(500, 430, 64, 64, TextGet("NotificationsChat"), Player.NotificationSettings.Chat);
 	if (Player.NotificationSettings.Chat) {
-		DrawCheckbox(600, 430, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
+		DrawCheckbox(600, 510, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
 	} else {
-		DrawCheckboxDisabled(600, 430, 64, 64, TextGet("NotificationsChatActions"));
+		DrawCheckboxDisabled(600, 510, 64, 64, TextGet("NotificationsChatActions"));
 	}
-	DrawCheckbox(500, 510, 64, 64, TextGet("NotificationsChatJoin"), Player.NotificationSettings.ChatJoin.Enabled);
-	DrawText("Only:", 600, 622, "Black", "Gray");
+	DrawCheckbox(500, 590, 64, 64, TextGet("NotificationsChatJoin"), Player.NotificationSettings.ChatJoin.Enabled);
+	DrawText("Only:", 600, 702, "Black", "Gray");
 	if (Player.NotificationSettings.ChatJoin.Enabled) {
-		DrawCheckbox(775, 590, 64, 64, TextGet("NotificationsChatJoinOwner"), Player.NotificationSettings.ChatJoin.Owner);
-		DrawCheckbox(1075, 590, 64, 64, TextGet("NotificationsChatJoinLovers"), Player.NotificationSettings.ChatJoin.Lovers);
-		DrawCheckbox(1375, 590, 64, 64, TextGet("NotificationsChatJoinFriendlist"), Player.NotificationSettings.ChatJoin.Friendlist);
+		DrawCheckbox(775, 670, 64, 64, TextGet("NotificationsChatJoinOwner"), Player.NotificationSettings.ChatJoin.Owner);
+		DrawCheckbox(1075, 670, 64, 64, TextGet("NotificationsChatJoinLovers"), Player.NotificationSettings.ChatJoin.Lovers);
+		DrawCheckbox(1375, 670, 64, 64, TextGet("NotificationsChatJoinFriendlist"), Player.NotificationSettings.ChatJoin.Friendlist);
 	} else {
-		DrawCheckboxDisabled(775, 590, 64, 64, TextGet("NotificationsChatJoinOwner"));
-		DrawCheckboxDisabled(1075, 590, 64, 64, TextGet("NotificationsChatJoinLovers"));
-		DrawCheckboxDisabled(1375, 590, 64, 64, TextGet("NotificationsChatJoinFriendlist"));
+		DrawCheckboxDisabled(775, 670, 64, 64, TextGet("NotificationsChatJoinOwner"));
+		DrawCheckboxDisabled(1075, 670, 64, 64, TextGet("NotificationsChatJoinLovers"));
+		DrawCheckboxDisabled(1375, 670, 64, 64, TextGet("NotificationsChatJoinFriendlist"));
 	}
 	MainCanvas.textAlign = "center";
 
@@ -1747,10 +1751,11 @@ function PreferenceSubscreenNotificationsClick() {
 
 	// Checkboxes
 	const settings = Player.NotificationSettings;
-	if (MouseIn(500, 270, 64, 64)) settings.Beeps = !settings.Beeps;
-	if (MouseIn(500, 350, 64, 64)) settings.Chat = !settings.Chat;
-	if (MouseIn(600, 430, 64, 64)) settings.ChatActions = !settings.ChatActions && settings.Chat;
-	if (MouseIn(500, 510, 64, 64)) {
+	if (MouseIn(500, 190, 64, 64)) settings.Audio = !settings.Audio;
+	if (MouseIn(500, 350, 64, 64)) settings.Beeps = !settings.Beeps;
+	if (MouseIn(500, 430, 64, 64)) settings.Chat = !settings.Chat;
+	if (MouseIn(600, 510, 64, 64)) settings.ChatActions = !settings.ChatActions && settings.Chat;
+	if (MouseIn(500, 590, 64, 64)) {
 		settings.ChatJoin.Enabled = !settings.ChatJoin.Enabled;
 		if (!settings.ChatJoin.Enabled) {
 			settings.ChatJoin.Owner = false;
@@ -1758,11 +1763,10 @@ function PreferenceSubscreenNotificationsClick() {
 			settings.ChatJoin.Friendlist = false;
 		}
 	}
-	if (MouseIn(775, 590, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Owner = !settings.ChatJoin.Owner;
-	if (MouseIn(1075, 590, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Lovers = !settings.ChatJoin.Lovers;
-	if (MouseIn(1375, 590, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Friendlist = !settings.ChatJoin.Friendlist;
+	if (MouseIn(775, 670, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Owner = !settings.ChatJoin.Owner;
+	if (MouseIn(1075, 670, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Lovers = !settings.ChatJoin.Lovers;
+	if (MouseIn(1375, 670, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Friendlist = !settings.ChatJoin.Friendlist;
 	
 	// Reset button
 	if (MouseIn(500, 800, 380, 64)) NotificationsResetAll();
 }
-
