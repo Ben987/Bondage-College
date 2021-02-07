@@ -659,12 +659,8 @@ function PreferenceSubscreenRestrictionRun() {
 		DrawCheckbox(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"), Player.RestrictionSettings.SlowImmunity);
 	} else {
 		DrawText(TextGet("RestrictionNoAccess"), 500, 225, "Black", "Gray");
-		DrawRect(500, 325, 64, 64, "#ebebe4");
-		DrawEmptyRect(500, 325, 64, 64, "Black");
-		DrawText(TextGet("RestrictionBypassStruggle"), 600, 355, "Black", "Gray");
-		DrawRect(500, 425, 64, 64, "#ebebe4");
-		DrawEmptyRect(500, 425, 64, 64, "Black");
-		DrawText(TextGet("RestrictionSlowImmunity"), 600, 455, "Black", "Gray");
+		DrawCheckboxDisabled(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"));
+		DrawCheckboxDisabled(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"));
 	}
 
 }
@@ -1718,13 +1714,22 @@ function PreferenceSubscreenNotificationsRun() {
 	DrawText(TextGet("NotificationsChatRooms"), 500, 225, "Black", "Gray");
 	DrawCheckbox(500, 270, 64, 64, TextGet("NotificationsBeeps"), Player.NotificationSettings.Beeps);
 	DrawCheckbox(500, 350, 64, 64, TextGet("NotificationsChat"), Player.NotificationSettings.Chat);
-	DrawCheckbox(600, 430, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
+	if (Player.NotificationSettings.Chat) {
+		DrawCheckbox(600, 430, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
+	} else {
+		DrawCheckboxDisabled(600, 430, 64, 64, TextGet("NotificationsChatActions"));
+	}
 	DrawCheckbox(500, 510, 64, 64, TextGet("NotificationsChatJoin"), Player.NotificationSettings.ChatJoin.Enabled);
 	DrawText("Only:", 600, 622, "Black", "Gray");
-	DrawCheckbox(775, 590, 64, 64, TextGet("NotificationsChatJoinOwner"), Player.NotificationSettings.ChatJoin.Owner);
-	DrawCheckbox(1075, 590, 64, 64, TextGet("NotificationsChatJoinLovers"), Player.NotificationSettings.ChatJoin.Lovers);
-	DrawCheckbox(1375, 590, 64, 64, TextGet("NotificationsChatJoinFriendlist"), Player.NotificationSettings.ChatJoin.Friendlist);
-
+	if (Player.NotificationSettings.ChatJoin.Enabled) {
+		DrawCheckbox(775, 590, 64, 64, TextGet("NotificationsChatJoinOwner"), Player.NotificationSettings.ChatJoin.Owner);
+		DrawCheckbox(1075, 590, 64, 64, TextGet("NotificationsChatJoinLovers"), Player.NotificationSettings.ChatJoin.Lovers);
+		DrawCheckbox(1375, 590, 64, 64, TextGet("NotificationsChatJoinFriendlist"), Player.NotificationSettings.ChatJoin.Friendlist);
+	} else {
+		DrawCheckboxDisabled(775, 590, 64, 64, TextGet("NotificationsChatJoinOwner"));
+		DrawCheckboxDisabled(1075, 590, 64, 64, TextGet("NotificationsChatJoinLovers"));
+		DrawCheckboxDisabled(1375, 590, 64, 64, TextGet("NotificationsChatJoinFriendlist"));
+	}
 	MainCanvas.textAlign = "center";
 
 	// Reset button
@@ -1744,7 +1749,7 @@ function PreferenceSubscreenNotificationsClick() {
 	const settings = Player.NotificationSettings;
 	if (MouseIn(500, 270, 64, 64)) settings.Beeps = !settings.Beeps;
 	if (MouseIn(500, 350, 64, 64)) settings.Chat = !settings.Chat;
-	if (MouseIn(600, 430, 64, 64)) settings.ChatActions = !settings.ChatActions;
+	if (MouseIn(600, 430, 64, 64)) settings.ChatActions = !settings.ChatActions && settings.Chat;
 	if (MouseIn(500, 510, 64, 64)) {
 		settings.ChatJoin.Enabled = !settings.ChatJoin.Enabled;
 		if (!settings.ChatJoin.Enabled) {
@@ -1760,3 +1765,4 @@ function PreferenceSubscreenNotificationsClick() {
 	// Reset button
 	if (MouseIn(500, 800, 380, 64)) NotificationsResetAll();
 }
+
