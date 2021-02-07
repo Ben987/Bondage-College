@@ -369,7 +369,12 @@ function PreferenceInitPlayer() {
 	if (typeof C.NotificationSettings.Beeps !== "boolean") C.NotificationSettings.Beeps = true;
 	if (typeof C.NotificationSettings.Chat !== "boolean") C.NotificationSettings.Chat = true;
 	if (typeof C.NotificationSettings.ChatActions !== "boolean") C.NotificationSettings.ChatActions = false;
-
+	if (C.NotificationSettings.ChatJoin == undefined) C.NotificationSettings.ChatJoin = {};
+	if (typeof C.NotificationSettings.ChatJoin.Enabled !== "boolean") C.NotificationSettings.ChatJoin.Enabled = false;
+	if (typeof C.NotificationSettings.ChatJoin.Owner !== "boolean") C.NotificationSettings.ChatJoin.Owner = false;
+	if (typeof C.NotificationSettings.ChatJoin.Lovers !== "boolean") C.NotificationSettings.ChatJoin.Lovers = false;
+	if (typeof C.NotificationSettings.ChatJoin.Friendlist !== "boolean") C.NotificationSettings.ChatJoin.Friendlist = false;
+	
 	// Forces some preferences depending on difficulty
 
 	// Difficulty: non-Roleplay settings
@@ -1714,6 +1719,12 @@ function PreferenceSubscreenNotificationsRun() {
 	DrawCheckbox(500, 270, 64, 64, TextGet("NotificationsBeeps"), Player.NotificationSettings.Beeps);
 	DrawCheckbox(500, 350, 64, 64, TextGet("NotificationsChat"), Player.NotificationSettings.Chat);
 	DrawCheckbox(600, 430, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
+	DrawCheckbox(500, 510, 64, 64, TextGet("NotificationsChatJoin"), Player.NotificationSettings.ChatJoin.Enabled);
+	DrawText("Only:", 600, 622, "Black", "Gray");
+	DrawCheckbox(775, 590, 64, 64, TextGet("NotificationsChatJoinOwner"), Player.NotificationSettings.ChatJoin.Owner);
+	DrawCheckbox(1075, 590, 64, 64, TextGet("NotificationsChatJoinLovers"), Player.NotificationSettings.ChatJoin.Lovers);
+	DrawCheckbox(1375, 590, 64, 64, TextGet("NotificationsChatJoinFriendlist"), Player.NotificationSettings.ChatJoin.Friendlist);
+
 	MainCanvas.textAlign = "center";
 
 	// Reset button
@@ -1733,7 +1744,19 @@ function PreferenceSubscreenNotificationsClick() {
 	if (MouseIn(500, 270, 64, 64)) Player.NotificationSettings.Beeps = !Player.NotificationSettings.Beeps;
 	if (MouseIn(500, 350, 64, 64)) Player.NotificationSettings.Chat = !Player.NotificationSettings.Chat;
 	if (MouseIn(600, 430, 64, 64)) Player.NotificationSettings.ChatActions = !Player.NotificationSettings.ChatActions;
-
+	if (MouseIn(500, 510, 64, 64)) {
+		let settings = Player.NotificationSettings.ChatJoin;
+		settings.Enabled = !settings.Enabled;
+		if (!settings.Enabled) {
+			settings.Owner = false;
+			settings.Lovers = false;
+			settings.Friendlist = false;
+		}
+	}
+	if (MouseIn(775, 590, 64, 64) && Player.NotificationSettings.ChatJoin.Enabled) Player.NotificationSettings.ChatJoin.Owner = !Player.NotificationSettings.ChatJoin.Owner;
+	if (MouseIn(1075, 590, 64, 64) && Player.NotificationSettings.ChatJoin.Enabled) Player.NotificationSettings.ChatJoin.Lovers = !Player.NotificationSettings.ChatJoin.Lovers;
+	if (MouseIn(1375, 590, 64, 64) && Player.NotificationSettings.ChatJoin.Enabled) Player.NotificationSettings.ChatJoin.Friendlist = !Player.NotificationSettings.ChatJoin.Friendlist;
+	
 	// Reset button
 	if (MouseIn(500, 800, 380, 64)) NotificationsResetAll();
 }

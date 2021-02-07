@@ -264,3 +264,7 @@ NotificationsBeeps,Missed beeps
 NotificationsChat,Unread messages in chat rooms
 NotificationsChatActions,Include item and arousal activity messages
 NotificationsReset,Reset Notifications
+NotificationsChatJoin,Players entering chat rooms while away
+NotificationsChatJoinOwner,Owner
+NotificationsChatJoinLovers,Lovers
+NotificationsChatJoinFriendlist,Friends

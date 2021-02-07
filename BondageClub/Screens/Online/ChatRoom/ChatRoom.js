@@ -955,8 +955,8 @@ function ChatRoomRun() {
 	// Runs any needed online game script
 	OnlineGameRun();
 
-	// Clear any new message notification once they are seen
-	NotificationsChatRoomCheck();
+	// Clear any notifications if needed
+	NotificationsChatRoomReset();
 }
 
 /**
@@ -1672,9 +1672,11 @@ function ChatRoomSync(data) {
 				return;
 			}
 			else if (ChatRoomCharacter.length == data.Character.length - 1) {
-				ChatRoomCharacter.push(CharacterLoadOnline(data.Character[data.Character.length - 1], data.SourceMemberNumber));
+				let C = CharacterLoadOnline(data.Character[data.Character.length - 1], data.SourceMemberNumber);
+				ChatRoomCharacter.push(C);
 				ChatRoomData = data;
-				
+				NotificationsChatRoomJoin(C);
+
 				if (ChatRoomLeashList.indexOf(data.SourceMemberNumber) >= 0) {
 					// Ping to make sure they are still leashed
 					ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: data.SourceMemberNumber });

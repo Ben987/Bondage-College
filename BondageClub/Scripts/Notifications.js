@@ -39,7 +39,7 @@ function NotificationsResetAll() {
 function NotificationsUpdate() {
 	let total = 0;
 	for (let key in Notifications) total += Notifications[key];
-	let prefix = total == 0 ? "" : "(" + total.toString() + ") ";
+	const prefix = total == 0 ? "" : "(" + total.toString() + ") ";
 	document.title = prefix + "Bondage Club";
 }
 
@@ -58,10 +58,16 @@ function NotificationsChatRoomIncrement() {
  * Remove the notifications if there are new messages that have been seen
  * @returns {void} - Nothing
  */
-function NotificationsChatRoomCheck() {
+function NotificationsChatRoomReset() {
+	// If there were new messages that are now read
 	if (ChatRoomUnreadMessages && NotificationsChatRoomNewMessageVisible()) {
 		ChatRoomUnreadMessages = false;
 		NotificationsReset("Chat");
+	}
+
+	// If someone joined the room earlier
+	if (Notifications["ChatJoin"] > 0) {
+		NotificationsReset("ChatJoin");
 	}
 }
 
@@ -72,4 +78,25 @@ function NotificationsChatRoomCheck() {
 function NotificationsChatRoomNewMessageVisible() {
 	if (!document.hasFocus()) return false;
 	else return ElementIsScrolledToEnd("TextAreaChatLog");
+}
+
+/**
+ * Raise a notification when particular people enter the room the player is in
+ * @param {Character} C - The player that joined the room
+ * @returns {void} - Nothing
+ */
+function NotificationsChatRoomJoin(C) {
+	if (!document.hasFocus()) {
+		const settings = Player.NotificationSettings.ChatJoin;
+		if (settings.Enabled) {
+			let notify = false;
+
+			if (!settings.Owner && !settings.Lovers && !settings.FriendList) notify = true;
+			else if (settings.Owner && C.IsOwner()) notify = true;
+			else if (settings.Lovers && C.IsLoverOfPlayer()) notify = true;
+			else if (settings.FriendList && Player.FriendList.contains(C.MemberNumber)) notify = true;
+
+			if (notify) NotificationsIncrement("ChatJoin");
+		}
+	}
 }
