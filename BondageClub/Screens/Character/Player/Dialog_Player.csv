@@ -23,15 +23,8 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 20,0,(Use very little of your evasion skill.  25%),(You will now use very little of your evasion skill when trying to struggle free.  25%),"DialogSetSkillRatio(""Evasion"", 25)",
 20,0,(Use none of your evasion skill.  0%),(You will now use none of your evasion skill when trying to struggle free.  0%),"DialogSetSkillRatio(""Evasion"", 0)",
 20,0,(Don't change your skill.),(You can use or remove items by selecting specific body regions on yourself.),,
-30,0,(Swap position with someone else.),,"DialogChatRoomAdminAction(""Swap"")",!DialogChatRoomHasSwapTarget()
-30,0,(Cancel position swap.),,"DialogChatRoomAdminAction(""SwapCancel"")",DialogChatRoomHasSwapTarget()
-30,31,(Move to the left.),(You have moved to the left at position CharacterPosition.  Would you like to move further?),"DialogChatRoomAdminAction(""MoveLeft"")",
-30,31,(Move to the right.),(You have moved to the right at position CharacterPosition.  Would you like to move further?),"DialogChatRoomAdminAction(""MoveRight"")",
+30,0,(Move Character.),(Move started.),"DialogChatRoomAdminAction(""Move"")",
 30,0,(Back to main menu.),(Main menu.),,
-31,,(Move to the left.),(You have moved to the left at position CharacterPosition.  Would you like to move further?),"DialogChatRoomAdminAction(""MoveLeft"", ""false"")",
-31,,(Move to the right.),(You have moved to the right at position CharacterPosition.  Would you like to move further?),"DialogChatRoomAdminAction(""MoveRight"", ""false"")",
-31,0,(Back to main menu.),,,
-31,0,(Leave this menu.),,DialogLeave(),
 90,91,(Revert Character.),(This will revert your character's clothes and restraints back to how they were when you entered the lobby. Use this if you were forced into restraints against your consent. Are you sure you want to revert your character?),,
 90,92,(Release Character.),(This will immediately release you of ALL restraints you are wearing and return you to the Main Lobby. Use this only if you are stuck in restraints and nobody can or wants to help you. Are you sure about this?),,
 90,0,(Don't use Safeword.),(You can use or remove items by selecting specific body regions on yourself.),,

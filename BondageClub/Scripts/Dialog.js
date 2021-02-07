@@ -1890,14 +1890,6 @@ function DialogChatRoomAdminAction(ActionType, Publish) {
 }
 
 /**
- * Checks if a chat room player swap is in progress
- * @returns {boolean} - Returns true, if a swap is in progress, false otherwise
- */
-function DialogChatRoomHasSwapTarget() {
-	return ChatRoomHasSwapTarget();
-}
-
-/**
  * Leave the dialog and revert back to a safe state, when the player uses her safe word
  * @returns {void} - Nothing
  */
@@ -1910,7 +1902,7 @@ function DialogChatRoomSafewordRevert() {
  * Leave the dialog and release the player of all restraints before returning them to the Main Lobby
  * @returns {void} - Nothing
  */
- function DialogChatRoomSafewordRelease() {
- 	DialogLeave();
- 	ChatRoomSafewordRelease();
- }
+function DialogChatRoomSafewordRelease() {
+	DialogLeave();
+	ChatRoomSafewordRelease();
+}
