@@ -1741,21 +1741,21 @@ function PreferenceSubscreenNotificationsClick() {
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
 
 	// Checkboxes
-	if (MouseIn(500, 270, 64, 64)) Player.NotificationSettings.Beeps = !Player.NotificationSettings.Beeps;
-	if (MouseIn(500, 350, 64, 64)) Player.NotificationSettings.Chat = !Player.NotificationSettings.Chat;
-	if (MouseIn(600, 430, 64, 64)) Player.NotificationSettings.ChatActions = !Player.NotificationSettings.ChatActions;
+	const settings = Player.NotificationSettings;
+	if (MouseIn(500, 270, 64, 64)) settings.Beeps = !settings.Beeps;
+	if (MouseIn(500, 350, 64, 64)) settings.Chat = !settings.Chat;
+	if (MouseIn(600, 430, 64, 64)) settings.ChatActions = !settings.ChatActions;
 	if (MouseIn(500, 510, 64, 64)) {
-		let settings = Player.NotificationSettings.ChatJoin;
-		settings.Enabled = !settings.Enabled;
-		if (!settings.Enabled) {
-			settings.Owner = false;
-			settings.Lovers = false;
-			settings.Friendlist = false;
+		settings.ChatJoin.Enabled = !settings.ChatJoin.Enabled;
+		if (!settings.ChatJoin.Enabled) {
+			settings.ChatJoin.Owner = false;
+			settings.ChatJoin.Lovers = false;
+			settings.ChatJoin.Friendlist = false;
 		}
 	}
-	if (MouseIn(775, 590, 64, 64) && Player.NotificationSettings.ChatJoin.Enabled) Player.NotificationSettings.ChatJoin.Owner = !Player.NotificationSettings.ChatJoin.Owner;
-	if (MouseIn(1075, 590, 64, 64) && Player.NotificationSettings.ChatJoin.Enabled) Player.NotificationSettings.ChatJoin.Lovers = !Player.NotificationSettings.ChatJoin.Lovers;
-	if (MouseIn(1375, 590, 64, 64) && Player.NotificationSettings.ChatJoin.Enabled) Player.NotificationSettings.ChatJoin.Friendlist = !Player.NotificationSettings.ChatJoin.Friendlist;
+	if (MouseIn(775, 590, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Owner = !settings.ChatJoin.Owner;
+	if (MouseIn(1075, 590, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Lovers = !settings.ChatJoin.Lovers;
+	if (MouseIn(1375, 590, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Friendlist = !settings.ChatJoin.Friendlist;
 	
 	// Reset button
 	if (MouseIn(500, 800, 380, 64)) NotificationsResetAll();

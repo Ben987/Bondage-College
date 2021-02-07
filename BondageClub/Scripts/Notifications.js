@@ -66,9 +66,7 @@ function NotificationsChatRoomReset() {
 	}
 
 	// If someone joined the room earlier
-	if (Notifications["ChatJoin"] > 0) {
-		NotificationsReset("ChatJoin");
-	}
+	NotificationsReset("ChatJoin");
 }
 
 /**
