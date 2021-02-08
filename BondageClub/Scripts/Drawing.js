@@ -270,7 +270,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		}
 
 		// There's 2 different canvas, one blinking and one that doesn't
-		let Canvas = (Math.round(CurrentTime / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
+		let Canvas = (Math.round(CurrentTime / 400) % C.BlinkFactor == 0 && !CommonPhotoMode) ? C.CanvasBlink : C.Canvas;
 
 		// Initialize the working canvas
 		CharacterCanvas.canvas.width = Canvas.width;
@@ -880,6 +880,21 @@ function DrawCheckboxColor(Left, Top, Width, Height, Text, IsChecked, Color) {
 }
 
 /**
+ * Draw a grey-filled rectangle to represent a disabled checkbox
+ * @param {number} Left - Position of the component from the left of the canvas
+ * @param {number} Top - Position of the component from the top of the canvas
+ * @param {number} Width - Width of the component
+ * @param {number} Height - Height of the component
+ * @param {string} Text - The text to follow the checkbox
+ * @returns {void} - Nothing
+ */
+function DrawCheckboxDisabled(Left, Top, Width, Height, Text) {
+	DrawRect(Left, Top, Width, Height, "#ebebe4");
+	DrawEmptyRect(Left, Top, Width, Height, "Black", 2);
+	DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
+}
+
+/**
  * Draw a back & next button component
  * @param {number} Left - Position of the component from the left of the canvas
  * @param {number} Top - Position of the component from the top of the canvas
@@ -900,6 +915,11 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (ArrowWidth == null || ArrowWidth > Width / 2) ArrowWidth = Width / 2;
 	const LeftSplit = Left + ArrowWidth;
 	const RightSplit = Left + Width - ArrowWidth;
+
+	if (ControllerActive == true) {
+		setButton(Left, Top);
+		setButton(Left + Width - ArrowWidth, Top);
+	}
 
 	// Draw the button rectangle
 	MainCanvas.beginPath();
@@ -931,6 +951,9 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	// Draw the text or image
 	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
+	if (ControllerActive == true) {
+		setButton(Left + Width / 2, Top);
+	}
 
 	// Draw the back arrow
 	MainCanvas.beginPath();

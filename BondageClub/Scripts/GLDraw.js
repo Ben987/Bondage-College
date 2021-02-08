@@ -62,9 +62,7 @@ function GLDrawMakeGLProgam(gl) {
 
 	gl.program.u_alpha = gl.getUniformLocation(gl.program, "u_alpha");
     gl.programFull.u_color = gl.getUniformLocation(gl.programFull, "u_color");
-	gl.programFull.u_alpha = gl.getUniformLocation(gl.programFull, "u_alpha");
     gl.programHalf.u_color = gl.getUniformLocation(gl.programHalf, "u_color");
-	gl.programHalf.u_alpha = gl.getUniformLocation(gl.programHalf, "u_alpha");
 
     gl.textureCache = new Map();
     gl.maskCache = new Map();
@@ -152,7 +150,6 @@ var GLDrawFragmentShaderSourceFullAlpha = `
   uniform sampler2D u_texture;
   uniform sampler2D u_alpha_texture;
   uniform vec4 u_color;
-  uniform float u_alpha;
 
   void main() {
     vec4 texColor = texture2D(u_texture, v_texcoord);
@@ -161,7 +158,6 @@ var GLDrawFragmentShaderSourceFullAlpha = `
     if (alphaColor.w < ` + GLDrawAlphaThreshold + `) discard;
     float t = (texColor.x + texColor.y + texColor.z) / 383.0;
     gl_FragColor = u_color * vec4(t, t, t, texColor.w);
-    gl_FragColor.a *= u_alpha;
   }
 `;
 
@@ -178,7 +174,6 @@ var GLDrawFragmentShaderSourceHalfAlpha = `
   uniform sampler2D u_texture;
   uniform sampler2D u_alpha_texture;
   uniform vec4 u_color;
-  uniform float u_alpha;
 
   void main() {
     vec4 texColor = texture2D(u_texture, v_texcoord);
@@ -191,7 +186,6 @@ var GLDrawFragmentShaderSourceHalfAlpha = `
     } else {
       gl_FragColor = u_color * vec4(t, t, t, texColor.w);
     }
-    gl_FragColor.a *= u_alpha;
   }
 `;
 
@@ -299,14 +293,14 @@ function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks,
     gl.uniformMatrix4fv(program.u_matrix, false, matrix);
     gl.uniform1i(program.u_texture, 0);
     gl.uniform1i(program.u_alpha_texture, 1);
-	gl.uniform1f(program.u_alpha, opacity);
+	if (program.u_alpha != null) gl.uniform1f(program.u_alpha, opacity);
 
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, tex.texture);
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_2D, mask);
 
-    if (program.u_color != null) gl.uniform4fv(program.u_color, GLDrawHexToRGBA(color));
+    if (program.u_color != null) gl.uniform4fv(program.u_color, GLDrawHexToRGBA(color, opacity));
 
     gl.drawArrays(gl.TRIANGLES, 0, 6);
 }
@@ -466,13 +460,14 @@ function GLDrawClearRect(gl, x, y, width, height) {
 /**
  * Converts a hex color to a RGBA color
  * @param {string} color - Hex color code to convert to RGBA
+ * @param {number} alpha - The alpha value to use for the resulting RGBA
  * @return {string} - Converted color code
  */
-function GLDrawHexToRGBA(color) {
+function GLDrawHexToRGBA(color, alpha = 1) {
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     color = color.replace(shorthandRegex, function (m, r, g, b) { return r + r + g + g + b + b; });
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16), 1] : [0, 0, 0, 1];
+    return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16), alpha] : [0, 0, 0, alpha];
 }
 
 /**

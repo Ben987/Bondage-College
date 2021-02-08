@@ -152,6 +152,7 @@ const AssetLayerType = {
 	MaxOpacity: "Number",
 	LockLayer: "Boolean",
 	MirrorExpression: "String",
+	AllowModuleTypes: "[String]",
 };
 
 module.exports = { AssetGroupType, AssetType, AssetLayerType };
