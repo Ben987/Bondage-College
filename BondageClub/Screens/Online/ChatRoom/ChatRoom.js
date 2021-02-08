@@ -15,7 +15,6 @@ var ChatRoomQuestGiven = [];
 var ChatRoomSpace = "";
 var ChatRoomGame = "";
 var ChatRoomMoveTarget = null;
-var ChatRoomMoveFirstMove = true;
 var ChatRoomHelpSeen = false;
 var ChatRoomAllowCharacterUpdate = true;
 var ChatRoomStruggleAssistBonus = 0;
@@ -535,7 +534,7 @@ function ChatRoomDrawCharacter(DoClick) {
 		}
 		if (DoClick) {
 			if (MouseIn(CharX, CharY, Space, 1000 * Zoom)) {
-				return ChatRoomClickCharacter(ChatRoomCharacter[C], CharX, CharY, Zoom, (MouseX - CharX) / Zoom, (MouseY - CharY) / Zoom);
+				return ChatRoomClickCharacter(ChatRoomCharacter[C], CharX, CharY, Zoom, (MouseX - CharX) / Zoom, (MouseY - CharY) / Zoom, C);
 			}
 		} else {
 
@@ -549,7 +548,7 @@ function ChatRoomDrawCharacter(DoClick) {
 			DrawCharacter(ChatRoomCharacter[C], CharX, CharY, Zoom);
 
 			if (ChatRoomCharacter[C].MemberNumber != null) {
-				ChatRoomDrawCharacterOverlay(ChatRoomCharacter[C], CharX, CharY, Zoom);
+				ChatRoomDrawCharacterOverlay(ChatRoomCharacter[C], CharX, CharY, Zoom, C);
 			}
 		}
 	}
@@ -561,8 +560,9 @@ function ChatRoomDrawCharacter(DoClick) {
  * @param {number} CharX Character's X position on canvas
  * @param {number} CharY Character's Y position on canvas
  * @param {number} Zoom Room zoom
+ * @param {number} Pos Index of target character
  */
-function ChatRoomDrawCharacterOverlay(C, CharX, CharY, Zoom) {
+function ChatRoomDrawCharacterOverlay(C, CharX, CharY, Zoom, Pos) {
 	// Draw the ghostlist/friendlist, whitelist/blacklist, admin icons
 	if (ChatRoomHideIconState == 0) {
 		if (Player.WhiteList.includes(C.MemberNumber)) {
@@ -590,19 +590,19 @@ function ChatRoomDrawCharacterOverlay(C, CharX, CharY, Zoom) {
 			ChatRoomMoveTarget = null;
 		} else {
 			if (ChatRoomMoveTarget === C.MemberNumber) {
-				if (MoveTargetPos > 0) {
-					DrawButton(CharX + 100 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom, "", "White");
-					DrawImageResize("Icons/Prev.png", CharX + 102 * Zoom, CharY + 752 * Zoom, 86 * Zoom, 86 * Zoom);
-				}
 				DrawButton(CharX + 200 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom, "", "White");
 				DrawImageResize("Icons/Remove.png", CharX + 202 * Zoom, CharY + 752 * Zoom, 86 * Zoom, 86 * Zoom);
-				if (MoveTargetPos + 1 < ChatRoomCharacter.length) {
-					DrawButton(CharX + 300 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom, "", "White");
-					DrawImageResize("Icons/Next.png", CharX + 302 * Zoom, CharY + 752 * Zoom, 86 * Zoom, 86 * Zoom);
-				}
 			} else {
+				if (Pos < MoveTargetPos) {
+					DrawButton(CharX + 100 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom, "", "White");
+					DrawImageResize("Icons/Here.png", CharX + 102 * Zoom, CharY + 752 * Zoom, 86 * Zoom, 86 * Zoom);
+				}
 				DrawButton(CharX + 200 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom, "", "White");
 				DrawImageResize("Icons/Swap.png", CharX + 202 * Zoom, CharY + 752 * Zoom, 86 * Zoom, 86 * Zoom);
+				if (Pos > MoveTargetPos) {
+					DrawButton(CharX + 300 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom, "", "White");
+					DrawImageResize("Icons/Here.png", CharX + 302 * Zoom, CharY + 752 * Zoom, 86 * Zoom, 86 * Zoom);
+				}
 			}
 		}
 	}
@@ -616,8 +616,9 @@ function ChatRoomDrawCharacterOverlay(C, CharX, CharY, Zoom) {
  * @param {number} Zoom Room zoom
  * @param {number} ClickX Click X postion relative to character, without zoom
  * @param {number} ClickY Click Y postion relative to character, without zoom
+ * @param {number} Pos Index of target character
  */
-function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY) {
+function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY, Pos) {
 
 	// Click on name
 	if (ClickY > 900) {
@@ -644,34 +645,36 @@ function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY) {
 		if (MoveTargetPos < 0) {
 			ChatRoomMoveTarget = null;
 		} else {
-			if (ChatRoomMoveTarget === C.MemberNumber) {
-				if (MoveTargetPos > 0 && MouseIn(CharX + 100 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom)) {
-					// Move left
+			if (Pos < MoveTargetPos && MouseIn(CharX + 100 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom)) {
+				// Move left
+				for (let i = 0; i < MoveTargetPos - Pos; i++) {
 					ServerSend("ChatRoomAdmin", {
 						MemberNumber: ChatRoomMoveTarget,
 						Action: "MoveLeft",
-						Publish: ChatRoomMoveFirstMove
+						Publish: i === 0
 					});
-					ChatRoomMoveFirstMove = false;
-				} else if (MouseIn(CharX + 200 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom)) {
-					ChatRoomMoveTarget = null;
-				} else if (MoveTargetPos + 1 < ChatRoomCharacter.length && MouseIn(CharX + 300 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom)) {
-					// Move right
+				}
+				ChatRoomMoveTarget = null
+			} else if (MouseIn(CharX + 200 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom)) {
+				// Swap or cancel
+				if (ChatRoomMoveTarget !== C.MemberNumber) {
+					ServerSend("ChatRoomAdmin", {
+						MemberNumber: Player.ID,
+						TargetMemberNumber: ChatRoomMoveTarget,
+						DestinationMemberNumber: C.MemberNumber,
+						Action: "Swap"
+					});
+				}
+				ChatRoomMoveTarget = null;
+			} else if ( Pos > MoveTargetPos && MouseIn(CharX + 300 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom)) {
+				// Move right
+				for (let i = 0; i < Pos - MoveTargetPos; i++) {
 					ServerSend("ChatRoomAdmin", {
 						MemberNumber: ChatRoomMoveTarget,
 						Action: "MoveRight",
-						Publish: ChatRoomMoveFirstMove
+						Publish: i === 0
 					});
-					ChatRoomMoveFirstMove = false;
 				}
-			} else if (MouseIn(CharX + 200 * Zoom, CharY + 750 * Zoom, 90 * Zoom, 90 * Zoom)) {
-				// Swap
-				ServerSend("ChatRoomAdmin", {
-					MemberNumber: Player.ID,
-					TargetMemberNumber: ChatRoomMoveTarget,
-					DestinationMemberNumber: C.MemberNumber,
-					Action: "Swap"
-				});
 				ChatRoomMoveTarget = null;
 			}
 			return;
@@ -2229,7 +2232,6 @@ function ChatRoomAdminAction(ActionType, Publish) {
 	if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && ChatRoomPlayerIsAdmin()) {
 		if (ActionType == "Move") {
 			ChatRoomMoveTarget = CurrentCharacter.MemberNumber;
-			ChatRoomMoveFirstMove = true;
 		} else {
 			ServerSend("ChatRoomAdmin", { MemberNumber: CurrentCharacter.MemberNumber, Action: ActionType, Publish: ((Publish == null) || (Publish != "false")) });
 		}
