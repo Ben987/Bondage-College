@@ -902,6 +902,9 @@ ItemNeckRestraints,CollarLeashTaken,Pulled Leash
 ItemNeckRestraints,ChainLeash,Chain Leash
 ItemNeckRestraints,ChainLeashTaken,Pulled Chain Leash
 ItemNeckRestraints,CollarChainMedium,Medium Chain
+ItemNeckRestraints,CollarRopeLong,Long Rope
+ItemNeckRestraints,CollarRopeShort,Short Rope
+ItemNeckRestraints,CollarRopeMedium,Medium Rope
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
