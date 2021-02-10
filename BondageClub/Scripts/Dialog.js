@@ -314,6 +314,12 @@ function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom" && Pl
 function DialogCanViewRules() { return (Player.Ownership != null) && (Player.Ownership.Stage == 1) }
 
 /**
+ * Checks if the chat room allows the photograph feature to be used.
+ * @returns {boolean} - TRUE if the player can take a photo.
+ */
+function DialogChatRoomCanTakePhotos() { return CurrentScreen == "ChatRoom" && ChatRoomCanTakePhotos(); }
+
+/**
  * Checks the prerequisite for a given dialog
  * @param {number} D - Index of the dialog to check
  * @returns {boolean} - Returns true, if the prerequisite is met, false otherwise
@@ -2267,7 +2273,7 @@ function DialogDraw() {
 
 	// Draw the menu for facial expressions if the player clicked on herself
 	if (CurrentCharacter.ID == 0) {
-		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DrawButton(420, 50, 90, 90, "", "White", "Icons/Next.png", DialogFindPlayer("NextPage"));
+		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1 && !CommonPhotoMode) DrawButton(420, 50, 90, 90, "", "White", "Icons/Next.png", DialogFindPlayer("NextPage"));
 		if (!DialogSelfMenuSelected)
 			DialogDrawExpressionMenu();
 		else
