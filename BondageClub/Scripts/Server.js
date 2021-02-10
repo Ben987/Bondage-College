@@ -273,7 +273,7 @@ function ServerValidateProperties(C, Item, Validation) {
 
 	// Remove LockMemberNumber if the source is incorrect prior to all checks
 	if ((Item.Property != null) && (C.ID == 0) && (Validation != null) && (Validation.SourceMemberNumber != null)) {
-		var Lock = InventoryGetLock(Item);
+		const Lock = InventoryGetLock(Item);
 		if ((Lock != null) && (Lock.Property != null)) {
 			if (!Validation.FromOwner && Lock.Asset.OwnerOnly) delete Item.Property.LockMemberNumber;
 			else if (!Validation.FromLoversOrOwner && Lock.Asset.LoverOnly) delete Item.Property.LockMemberNumber;
@@ -302,9 +302,9 @@ function ServerValidateProperties(C, Item, Validation) {
 			if ((Effect == "Lock") && (InventoryGetLock(Item) != null)) {
 
 				// Make sure the combination number on the lock is valid, 4 digits only
-				var Lock = InventoryGetLock(Item);
+				const Lock = InventoryGetLock(Item);
 				if ((Item.Property.CombinationNumber != null) && (typeof Item.Property.CombinationNumber == "string")) {
-					var Regex = /^[0-9]+$/;
+					const Regex = /^[0-9]+$/;
 					if (!Item.Property.CombinationNumber.match(Regex) || (Item.Property.CombinationNumber.length != 4)) {
 						Item.Property.CombinationNumber = "0000";
 					}
@@ -312,7 +312,6 @@ function ServerValidateProperties(C, Item, Validation) {
 				
 				
 				// Make sure the seed on the lock is valid
-				var Lock = InventoryGetLock(Item);
 				if ((Item.Property.LockPickSeed != null) && (typeof Item.Property.LockPickSeed == "string")) {
 					var conv = CommonConvertStringToArray(Item.Property.LockPickSeed)
 					for (let PP = 0; PP < conv.length; PP++) {
@@ -324,9 +323,8 @@ function ServerValidateProperties(C, Item, Validation) {
 				} else delete Item.Property.LockPickSeed;
 
 				// Make sure the password on the lock is valid, 6 letters only
-				var Lock = InventoryGetLock(Item);
 				if ((Item.Property.Password != null) && (typeof Item.Property.Password == "string")) {
-					var Regex = /^[A-Z]+$/;
+					const Regex = /^[A-Z]+$/;
 					if (!Item.Property.Password.toUpperCase().match(Regex) || (Item.Property.Password.length > 8)) {
 						Item.Property.Password = "UNLOCK";
 					}
@@ -602,7 +600,7 @@ function ServerItemCopyProperty(C, Item, NewProperty) {
 	if (Item.Property.RemoveItem != null) NewProperty.RemoveItem = Item.Property.RemoveItem; else delete NewProperty.RemoveItem;
 	if (Item.Property.ShowTimer != null) NewProperty.ShowTimer = Item.Property.ShowTimer; else delete NewProperty.ShowTimer;
 	if (Item.Property.EnableRandomInput != null) NewProperty.EnableRandomInput = Item.Property.EnableRandomInput; else delete NewProperty.EnableRandomInput;
-	if (!NewProperty.EnableRandomInput || NewProperty.LockedBy != "LoversTimerPadlock") {
+	if (!NewProperty.EnableRandomInput || !["LoversTimerPadlock", "OwnerTimerPadlock"].includes(NewProperty.LockedBy)) {
 		if (Item.Property.MemberNumberList != null) NewProperty.MemberNumberList = Item.Property.MemberNumberList; else delete NewProperty.MemberNumberList;
 		if (Item.Property.RemoveTimer != null) NewProperty.RemoveTimer = Math.round(Item.Property.RemoveTimer); else delete NewProperty.RemoveTimer;
 	}

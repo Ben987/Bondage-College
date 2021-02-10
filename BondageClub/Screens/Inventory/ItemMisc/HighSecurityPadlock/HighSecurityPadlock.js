@@ -91,13 +91,14 @@ function InventoryItemMiscHighSecurityPadlockClick() {
 						C.Appearance[A] = DialogFocusSourceItem;
 				}
 				
-				if (HighSecurityPadlockConfigOwner && Player.Owner && list.indexOf(Player.Owner) < 0) {
-					list.push(Player.Owner)
+				if (HighSecurityPadlockConfigOwner && Player.Ownership && Player.Ownership.MemberNumber != null && list.indexOf(Player.Ownership.MemberNumber) < 0) {
+					list.push(Player.Ownership.MemberNumber);
 				}
 				if (HighSecurityPadlockConfigLover && Player.Lovership) {
 					for (let L = 0; L < Player.Lovership.length; L++) {
-						if (list.indexOf(Player.Lovership[L]) < 0)
-							list.push(Player.Lovership[L].MemberNumber)
+						const lover = Player.Lovership[L];
+						if (lover.MemberNumber != null && list.indexOf(lover.MemberNumber) < 0)
+							list.push(Player.Lovership[L].MemberNumber);
 					}
 				}
 				if (HighSecurityPadlockConfigWhitelist && Player.WhiteList) {

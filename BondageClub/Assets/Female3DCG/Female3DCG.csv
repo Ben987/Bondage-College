@@ -687,7 +687,6 @@ ItemTorso,HarnessBra1,Bondage Harness
 ItemTorso,HarnessBra2,Leather Strap Harness
 ItemTorso,Corset2,Corset
 ItemTorso,FuturisticHarness,Futuristic Harness
-ItemTorso,FuturisticHarness2,Futuristic Full Harness
 ItemTorso,Corset3,Half Cup Corset
 ItemTorso,Corset4,Under Bust Corset
 ItemTorso,Corset5,Floral Corset
@@ -731,7 +730,7 @@ ItemBreast,,Breasts
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,PolishedChastityBra,Polished Chastity Bra
 ItemBreast,FuturisticBra,Futuristic Chastity Bra
-ItemBreast,FuturisticBra2,Futuristic Breast Harness
+ItemBreast,FuturisticBra2,Futuristic Bra
 ItemBreast,OrnateChastityBra,Ornate Chastity Bra
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip
@@ -795,6 +794,7 @@ ItemArms,WoodenCuffs,Wooden Cuffs
 ItemArms,InflatableStraightLeotard,Inflatable Strait Leotard
 ItemArms,StrictLeatherPetCrawler,Strict Leather Pet Crawler
 ItemArms,MedicalBedRestraints,Medical Bed Restraints
+ItemArms,TransportJacket,Transport Jacket
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens

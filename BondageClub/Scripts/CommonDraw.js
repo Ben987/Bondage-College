@@ -264,7 +264,7 @@ function CommonDrawAppearanceBuild(C, {
 		Y += CanvasUpperOverflow;
 		AlphaMasks = AlphaMasks.map(([x, y, w, h]) => [x, y + CanvasUpperOverflow, w, h]);
 
-		const HideForPose = !!Pose && A.HideForPose.find(P => Pose === P + "/");
+		const HideForPose = !!Pose && (A.HideForPose.find(P => Pose === P + "/") || Layer.HideForPose.find(P => Pose === P + "/"));
 		const ItemLocked = !!(Property && Property.LockedBy);
 
 		if (!HideForPose) {
