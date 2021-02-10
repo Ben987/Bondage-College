@@ -96,7 +96,7 @@ function InventoryItemVulvaFuturisticVibratorExit() {
 
 function InventoryItemVulvaFuturisticVibratorDetectMsg(msg, TriggerValues) {
 	for (let I = 0; I < TriggerValues.length; I++) {
-		if (msg.includes(TriggerValues[I].toUpperCase())) return ItemVulvaFuturisticVibratorTriggers[I]
+		if (msg.indexOf('(') != 0 && msg.includes(TriggerValues[I].toUpperCase())) return ItemVulvaFuturisticVibratorTriggers[I]
 	}
 	return ""
 }
