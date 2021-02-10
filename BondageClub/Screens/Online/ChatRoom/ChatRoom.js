@@ -1563,7 +1563,7 @@ function ChatRoomMessage(data) {
 					}
 					
 					// Handle stimulation
-					if ((orig_msg == "HelpKneelDown" || orig_msg == "HelpStandUp") && ((TargetMemberNumber != null) && (TargetMemberNumber == Player.MemberNumber)) || ((SenderCharacter.MemberNumber != null) && (SenderCharacter.MemberNumber == Player.MemberNumber))) {
+					if ((orig_msg == "HelpKneelDown" || orig_msg == "HelpStandUp") && ((TargetMemberNumber != null && TargetMemberNumber == Player.MemberNumber) || (SenderCharacter.MemberNumber != null && SenderCharacter.MemberNumber == Player.MemberNumber))) {
 						ChatRoomStimulationMessage("Kneel")
 					}
 
