@@ -937,7 +937,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 			MainCanvas.fillRect(Left + ArrowWidth, Top, Width - ArrowWidth * 2, Height);
 		}
 	}
-	else if (CommonIsMobile && ArrowWidth < Width / 2) {
+	else if (CommonIsMobile && ArrowWidth < Width / 2 && !Disabled) {
 		// Fill in the arrow regions on mobile
 		MainCanvas.fillStyle = "lightgrey";
 		MainCanvas.fillRect(Left, Top, ArrowWidth, Height);
@@ -978,7 +978,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !Disabled)
-		DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? NextText() : MouseX >= RightSplit ? BackText() : "");
+		DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? BackText() : MouseX >= RightSplit ? NextText() : "");
 
 }
 
