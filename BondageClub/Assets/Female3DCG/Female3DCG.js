@@ -1997,7 +1997,7 @@ var AssetFemale3DCG = [
 					{ Name: "Sides", AllowColorize: true, HasType: false},
 					{ Name: "Display", AllowColorize: true, HasType: false, ParentGroup: null},
 					{ Name: "Band", AllowColorize: true, HasType: false},
-					{ Name: "Lock", LockLayer: true,AllowColorize: true, HasType: false, ParentGroup: null},
+					{ Name: "Lock", LockLayer: true,AllowColorize: true, ParentGroup: null},
 					{ Name: "GlovesBack", CopyLayerColor: "Lower", HasType: false, Priority: 14, AllowTypes: ["HandsBack", "HandsBackChastity"]},
 					{ Name: "Gloves", CopyLayerColor: "Lower", HasType: false, Priority: 23, AllowTypes: ["HandsFront", ""]},
 				]
