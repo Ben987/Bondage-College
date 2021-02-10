@@ -1908,7 +1908,7 @@ function DialogLockPickClick(C) {
 							}
 						} else {
 							// There is a chance we false set
-							if (Math.random() < false_set_chance) {
+							if (Math.random() < false_set_chance && DialogLockPickImpossiblePins.filter(x => x==P).length == 0) {
 								DialogLockPickSetFalse[P] = true
 							} else if (DialogLockPickSetFalse[P] == false) {
 							// Otherwise: fail
