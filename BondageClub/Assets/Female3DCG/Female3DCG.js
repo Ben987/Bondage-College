@@ -2769,7 +2769,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "FuturisticHarnessBallGag", Category: ["SciFi"], Fetish: ["Metal"], Value: -1, Difficulty: 6, Time: 15, Random: false, AllowLock: true, DrawLocks: false, DefaultColor: ["#50913C", "Default", "Default", "Default"], BuyGroup: "FuturisticPanelGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["BlockMouth"], AllowEffect: ["BlockMouth", "GagLight", "GagMedium", "GagTotal"], AllowType: ["LightBall", "Ball", "Plug", "AutoPunish", "AutoPunishUndoTime", "AutoPunishUndoTimeSetting", "OriginalSetting", "ChatMessage"], Extended: true, AlwaysExtend: true,DynamicScriptDraw: true,DynamicBeforeDraw: true, Audio: "FuturisticApply",
+				Name: "FuturisticHarnessBallGag", Category: ["SciFi"], Fetish: ["Metal"], Value: -1, Difficulty: 6, Time: 15, Random: false, AllowLock: true, DrawLocks: false, DefaultColor: ["#50913C", "Default", "Default", "Default"], BuyGroup: "FuturisticPanelGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["BlockMouth", "GagLight"], AllowEffect: ["BlockMouth", "GagLight", "GagMedium", "GagTotal"], AllowType: ["LightBall", "Ball", "Plug", "AutoPunish", "AutoPunishUndoTime", "AutoPunishUndoTimeSetting", "OriginalSetting", "ChatMessage"], Extended: true, AlwaysExtend: true,DynamicScriptDraw: true,DynamicBeforeDraw: true, Audio: "FuturisticApply",
 				Layer: [
 					{ Name: "Ball", AllowColorize: true, HasType: false },
 					{ Name: "Mask" , AllowColorize: true, HasType: false },
