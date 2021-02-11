@@ -840,7 +840,8 @@ function ChatRoomStimulationMessage(Context) {
 		// Now we have a trigger message, hopefully!
 		if (trigMsg != "") {
 			// Increase player arousal to the zone
-			ActivityEffectFlat(Player, Player, arousalAmount, trigGroup, 1)
+			if (!Player.IsEdged() && Player.ArousalSettings && Player.ArousalSettings.Progress && Player.ArousalSettings.Progress < 70 - arousalAmount)
+				ActivityEffectFlat(Player, Player, arousalAmount, trigGroup, 1)
 	
 			if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
 			
@@ -1076,7 +1077,6 @@ function ChatRoomClick() {
 	// When the user character kneels
 	if (MouseIn(1254, 0, 120, 62) && Player.CanKneel()) {
 		ServerSend("ChatRoomChat", { Content: (Player.ActivePose == null) ? "KneelDown" : "StandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
-		ChatRoomStimulationMessage("Kneel")
 		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 		ChatRoomStimulationMessage("Kneel")
 		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
@@ -1563,7 +1563,7 @@ function ChatRoomMessage(data) {
 					}
 					
 					// Handle stimulation
-					if ((orig_msg == "HelpKneelDown" || orig_msg == "HelpStandUp") && ((TargetMemberNumber != null) && (TargetMemberNumber == Player.MemberNumber)) || ((SenderCharacter.MemberNumber != null) && (SenderCharacter.MemberNumber == Player.MemberNumber))) {
+					if ((orig_msg == "HelpKneelDown" || orig_msg == "HelpStandUp") && ((TargetMemberNumber != null && TargetMemberNumber == Player.MemberNumber) || (SenderCharacter.MemberNumber != null && SenderCharacter.MemberNumber == Player.MemberNumber))) {
 						ChatRoomStimulationMessage("Kneel")
 					}
 

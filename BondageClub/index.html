@@ -412,28 +412,18 @@ function Click(event) {
 
 // When the user touches the screen (mobile only), we fire the click event for other screens
 function TouchStart(event) {
-	if (CommonIsMobile) {
-		var rect = document.getElementById("MainCanvas").getBoundingClientRect();
-		if (document.body.clientWidth <= document.body.clientHeight * 2) {
-			MouseX = Math.round((event.touches[0].clientX - rect.left) * 2000 / document.body.clientWidth);
-			MouseY = Math.round((event.touches[0].clientY - rect.top) * 2000 / document.body.clientWidth);
-		} else {
-			MouseX = Math.round((event.touches[0].clientX - rect.left) * 1000 / document.body.clientHeight);
-			MouseY = Math.round((event.touches[0].clientY - rect.top) * 1000 / document.body.clientHeight);
-		}
+	if (CommonIsMobile && MainCanvas) {
+		MouseX = Math.round((event.touches[0].clientX - MainCanvas.canvas.offsetLeft) * 2000 / MainCanvas.canvas.offsetWidth);
+		MouseY = Math.round((event.touches[0].clientY - MainCanvas.canvas.offsetTop) * 1000 / MainCanvas.canvas.offsetHeight);
 		CommonClick();
 	}
 }
 
 // When mouse move, we keep the mouse position for other scripts
 function MouseMove(event) {
-	var rect = document.getElementById("MainCanvas").getBoundingClientRect();
-	if (document.body.clientWidth <= document.body.clientHeight * 2) {
-		MouseX = Math.round((event.clientX - rect.left) * 2000 / document.body.clientWidth);
-		MouseY = Math.round((event.clientY - rect.top) * 2000 / document.body.clientWidth);
-	} else {
-		MouseX = Math.round((event.clientX - rect.left) * 1000 / document.body.clientHeight);
-		MouseY = Math.round((event.clientY - rect.top) * 1000 / document.body.clientHeight);
+	if (MainCanvas) {
+		MouseX = Math.round((event.clientX - MainCanvas.canvas.offsetLeft) * 2000 / MainCanvas.canvas.offsetWidth);
+		MouseY = Math.round((event.clientY - MainCanvas.canvas.offsetTop) * 1000 / MainCanvas.canvas.offsetHeight);
 	}
 }
 

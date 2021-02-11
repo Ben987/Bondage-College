@@ -111,9 +111,13 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 function InventoryLoad(C, Inventory) {
 	if (Inventory == null) return;
 	if (typeof Inventory === "string") {
-		var Inv = JSON.parse(LZString.decompressFromUTF16(Inventory));
-		for (let I = 0; I < Inv.length; I++)
-			InventoryAdd(C, Inv[I][0], Inv[I][1], false);
+		try {
+			var Inv = JSON.parse(LZString.decompressFromUTF16(Inventory));
+			for (let I = 0; I < Inv.length; I++)
+				InventoryAdd(C, Inv[I][0], Inv[I][1], false);
+		} catch(err) {
+			console.log("Error while loading compressed inventory, no inventory loaded.");
+		}
 	}
 	if (typeof Inventory === "object")
 		for (let I = 0; I < Inventory.length; I++)

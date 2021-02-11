@@ -1617,8 +1617,8 @@ var AssetFemale3DCG = [
 			{ Name: "VibratingDildoPlug", Value: 60, Time: 10, Visible: false, BuyGroup: "VibratingDildo", Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], Effect: ["IsPlugged", "Egged"], AllowEffect: ["IsPlugged", "Egged", "Vibrating", "Edged"], DynamicScriptDraw: true },
 			{ Name: "BunnyTailPlug1", Fetish: ["Pet"], Value: 1, Time: 10, Visible: false, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
 			{ Name: "BunnyTailPlug2", Fetish: ["Pet"], Value: 1, Time: 10, Visible: false, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
-			{ Name: "EggVibePlugXXL", Effect: ["IsPlugged", "Egged"], Value: 90, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"], Visible: false, DynamicScriptDraw: true },
 			{ Name: "BunnyTailVibePlug", Fetish: ["Pet"], Effect: ["IsPlugged", "Egged"], Value: 75, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"], Visible: false, DynamicScriptDraw: true },
+			{ Name: "EggVibePlugXXL", Effect: ["IsPlugged", "Egged"], Value: 90, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"], Visible: false, DynamicScriptDraw: true },
 			{ Name: "ShockPlug", Fetish: ["Masochism"], Value: 60, Time: 10, Visible: false, Extended: true, AlwaysExtend: true, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }], Activity: "ShockItem" },
 			{ Name: "Cowtail", Fetish: ["Pet"], BuyGroup: "CowTails", Value: 20, Time: 10, Top: 80, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], AllowPose: ["AllFours"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
 			{ Name: "HollowButtPlug", Value: 15, Time: 10, Visible: false, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }] },
@@ -1985,7 +1985,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "FuturisticStraitjacket", Category: ["SciFi"], Fetish: ["Latex"], Value: 100, Priority: 15, Difficulty: 13, SelfBondage: 4, Time: 35, RemoveTime: 15, Audio: "FuturisticApply", AllowLock: true, DrawLocks: false, DefaultColor: ["#528FD1", "#8EADC4", "##A4A4A4", "#93C48C", "Default"],
+				Name: "FuturisticStraitjacket", Category: ["SciFi"], Fetish: ["Latex"], Value: 100, Priority: 15, Difficulty: 13, SelfBondage: 4, Time: 35, RemoveTime: 15, Audio: "FuturisticApply", AllowLock: true, DrawLocks: false, DefaultColor: ["#528FD1", "#8EADC4", "#A4A4A4", "#93C48C", "Default"],
 				Hide: ["Cloth", "ItemNipplesPiercings", "ItemVulvaPiercings", "ItemVulva", "ItemVulvaPiercings"],
 				Block: ["ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemHands"],
 				AllowBlock: ["ItemPelvis", "ItemBreast"],
@@ -2303,7 +2303,7 @@ var AssetFemale3DCG = [
 				],
 			},
 			{
-				Name: "TransportJacket", Value: 100, Difficulty: 7, Time: 25, RemoveTime: 15, AllowLock: true, DrawLocks: false, Left: 100, AllowPose: ["LegsClosed", "Horse", "KneelingSpread", "Spread"], SetPose: ["BackElbowTouch"], Extended: true, DynamicAfterDraw: true,
+				Name: "TransportJacket", Value: 100, Difficulty: 7, Time: 25, RemoveTime: 15, AllowLock: true, DrawLocks: false, Left: 100, AllowPose: ["Kneel", "LegsClosed", "Horse", "KneelingSpread", "Spread"], SetPose: ["BackElbowTouch"], Extended: true, DynamicAfterDraw: true,
 				DefaultColor: ["#888", "#801612", "#888", "#eee", "#801612", "#888"],
 				AllowType: ["Shorts", "ShortsAndStraps"],
 				Effect: ["Block", "Prone"],

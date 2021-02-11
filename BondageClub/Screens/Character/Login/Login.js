@@ -451,7 +451,7 @@ function LoginResponse(C) {
 			LoginDifficulty();
 
 			// Loads the player character model and data
-			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
+			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber);
 			InventoryLoad(Player, C.Inventory);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);

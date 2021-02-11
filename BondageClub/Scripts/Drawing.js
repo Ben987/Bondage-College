@@ -937,7 +937,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 			MainCanvas.fillRect(Left + ArrowWidth, Top, Width - ArrowWidth * 2, Height);
 		}
 	}
-	else if (CommonIsMobile && ArrowWidth < Width / 2) {
+	else if (CommonIsMobile && ArrowWidth < Width / 2 && !Disabled) {
 		// Fill in the arrow regions on mobile
 		MainCanvas.fillStyle = "lightgrey";
 		MainCanvas.fillRect(Left, Top, ArrowWidth, Height);
@@ -978,7 +978,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !Disabled)
-		DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? NextText() : MouseX >= RightSplit ? BackText() : "");
+		DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? BackText() : MouseX >= RightSplit ? NextText() : "");
 
 }
 
@@ -1085,18 +1085,6 @@ function DrawWindowResize() {
 	if ((DrawScreenWidth != W) || (DrawScreenHeight != H)) {
 		DrawScreenWidth = W;
 		DrawScreenHeight = H;
-		const Scale = (W <= H * 2) ? 2000 / W : 1000 / H;
-		const MainCanvasRect = MainCanvas.canvas.getBoundingClientRect();
-		MouseMove = function MouseMove(event) {
-			MouseX = Math.round((event.clientX - MainCanvasRect.left) * Scale);
-			MouseY = Math.round((event.clientY - MainCanvasRect.top) * Scale);
-		}
-		TouchStart = function TouchStart(event) {
-			if (!CommonIsMobile) return;
-			MouseX = Math.round((event.touches[0].clientX - MainCanvasRect.left) * Scale);
-			MouseY = Math.round((event.touches[0].clientY - MainCanvasRect.top) * Scale);
-			CommonClick();
-		}
 	}
 }
 

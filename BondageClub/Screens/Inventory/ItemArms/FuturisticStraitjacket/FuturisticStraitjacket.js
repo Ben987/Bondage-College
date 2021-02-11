@@ -10,6 +10,7 @@ var InventoryItemArmsFuturisticStraitjacketOptions = [
 					// Chastity bras
 					"ItemBreastMetalChastityBra", "ItemBreastPolishedChastityBra", "ItemBreastFuturisticBra", "ItemBreastFuturisticBra2", "ItemBreastOrnateChastityBra"
 				],
+				Hide: ["Bra", "Panties"],
 				Block: ["ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemBreast", "ItemHands"],
 				},
 	},
@@ -22,6 +23,7 @@ var InventoryItemArmsFuturisticStraitjacketOptions = [
 					// Chastity bras
 					"ItemBreastMetalChastityBra", "ItemBreastPolishedChastityBra", "ItemBreastFuturisticBra", "ItemBreastFuturisticBra2", "ItemBreastOrnateChastityBra"
 				],
+				Hide: ["Bra", "Panties"],
 				Block: ["ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemBreast", "ItemHands"],
 				},
 	},
