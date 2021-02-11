@@ -1907,13 +1907,13 @@ function DialogLockPickClick(C) {
 								DialogLockPickProgressCurrentTries += 1
 							}
 						} else {
+							DialogLockPickTotalTries += 1
 							// There is a chance we false set
 							if (Math.random() < false_set_chance && DialogLockPickImpossiblePins.filter(x => x==P).length == 0) {
 								DialogLockPickSetFalse[P] = true
 							} else if (DialogLockPickSetFalse[P] == false) {
 							// Otherwise: fail
 								DialogLockPickProgressCurrentTries += 1
-								DialogLockPickTotalTries += 1
 							}
 						}
 						if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
@@ -2039,6 +2039,7 @@ function DialogDrawLockpickProgress(C) {
 				var item = InventoryGet(C, C.FocusGroup.Name)
 				if (item) {
 					InventoryUnlock(C, item)
+					if (CurrentScreen == "ChatRoom") ChatRoomPublishAction(C, item, null, true, "ActionPick");
 				}
 			}
 			SkillProgress("LockPicking", DialogLockPickProgressSkill);
@@ -2051,11 +2052,6 @@ function DialogDrawLockpickProgress(C) {
 				
 			} else {
 				DialogLeaveItemMenu();
-			}
-			if (CurrentScreen == "ChatRoom" && Player.FocusGroup) {
-				var item = InventoryGet(C, Player.FocusGroup.Name)
-				if (item)
-					ChatRoomPublishAction(C, item, null, true, "ActionPick");
 			}
 		}
 	} else {
