@@ -116,18 +116,6 @@ function CommonDrawAppearanceBuild(C, {
 			}
 		}
 
-		// If we must apply alpha masks to the current image as it is being drawn
-		Layer.Alpha.forEach(AlphaDef => {
-			// If no groups are defined and the character's pose matches one of the allowed poses (or no poses are defined)
-			if ((!AlphaDef.Group || !AlphaDef.Group.length) &&
-			    (!AlphaDef.Pose || !Array.isArray(AlphaDef.Pose) || !!CommonDrawFindPose(C, AlphaDef.Pose))) {
-				AlphaDef.Masks.forEach(rect => {
-					clearRect(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3]);
-					clearRectBlink(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3]);
-				});
-			}
-		});
-
 		// Check if we need to draw a different expression (for facial features)
 		var Expression = "";
 		if (AG.AllowExpression && AG.AllowExpression.length)
@@ -151,6 +139,29 @@ function CommonDrawAppearanceBuild(C, {
 				}
 			});
 		}
+
+		// Offset Y to counteract height modifiers for fixed-position assets
+		let YFixedOffset = 0;
+		if (A.FixedPosition) {
+			if (C.IsInverted()) {
+				YFixedOffset = -Y + 1000 - (Y + CharacterAppearanceYOffset(C, C.HeightRatio) / C.HeightRatio);
+			} else {
+				YFixedOffset = C.HeightModifier + 1000 * (1 - C.HeightRatio) * (1 - C.HeightRatioProportion) / C.HeightRatio;
+			}
+		}
+		Y += YFixedOffset;
+		
+		// If we must apply alpha masks to the current image as it is being drawn
+		Layer.Alpha.forEach(AlphaDef => {
+			// If no groups are defined and the character's pose matches one of the allowed poses (or no poses are defined)
+			if ((!AlphaDef.Group || !AlphaDef.Group.length) &&
+				(!AlphaDef.Pose || !Array.isArray(AlphaDef.Pose) || !!CommonDrawFindPose(C, AlphaDef.Pose))) {
+				AlphaDef.Masks.forEach(rect => {
+					clearRect(rect[0], rect[1] + CanvasUpperOverflow + YFixedOffset, rect[2], rect[3]);
+					clearRectBlink(rect[0], rect[1] + CanvasUpperOverflow + YFixedOffset, rect[2], rect[3]);
+				});
+			}
+		});
 
 		// Check if we need to draw a different variation (from type property)
 		var Type = (Property && Property.Type) || "";
@@ -254,7 +265,9 @@ function CommonDrawAppearanceBuild(C, {
 
 		// Adjust for the increased canvas size
 		Y += CanvasUpperOverflow;
-		AlphaMasks = AlphaMasks.map(([x, y, w, h]) => [x, y + CanvasUpperOverflow, w, h]);
+		AlphaMasks = AlphaMasks.map(([x, y, w, h]) => [x, y + CanvasUpperOverflow + YFixedOffset, w, h]);
+
+		const Rotate = A.FixedPosition && C.IsInverted();
 
 		const HideForPose = !!Pose && A.HideForPose.find(P => Pose === P + "/");
 
@@ -266,11 +279,11 @@ function CommonDrawAppearanceBuild(C, {
 					drawImageColorize(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y,
 						Color,
-						AG.DrawingFullAlpha, AlphaMasks, Opacity,
+						AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
 					);
 					drawImageColorizeBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y,
-						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity,
+						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
 					);
 				} else {
 					var ColorName = ((Color == null) || (Color == "Default") || (Color == "") || (Color.length == 1) ||
@@ -278,12 +291,12 @@ function CommonDrawAppearanceBuild(C, {
 					drawImage(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + ColorName + L + ".png",
 						X, Y,
-						AlphaMasks, Opacity,
+						AlphaMasks, Opacity, Rotate,
 					);
 					drawImageBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + ColorName + L +
 						".png",
-						X, Y, AlphaMasks, Opacity,
+						X, Y, AlphaMasks, Opacity, Rotate,
 					);
 				}
 			}

@@ -124,6 +124,7 @@ const AssetType = {
 	AvailableLocations: "[String]",
 	OverrideHeight: "{ Height: Number, Priority: Number, HeightRatioProportion: Maybe Number }",
 	FreezeActivePose: "[String]",
+	FixedPosition: "Boolean",
 	Layer: "[Object]"
 };
 

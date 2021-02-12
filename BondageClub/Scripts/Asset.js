@@ -174,6 +174,7 @@ function AssetAdd(NewAsset) {
 		OverrideHeight: NewAsset.OverrideHeight,
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose :
 			Array.isArray(AssetCurrentGroup.FreezeActivePose) ? AssetCurrentGroup.FreezeActivePose : [],
+		FixedPosition: typeof NewAsset.FixedPosition === 'boolean' ? NewAsset.FixedPosition : false,
 	}
 	if (A.MinOpacity > A.Opacity) A.MinOpacity = A.Opacity;
 	if (A.MaxOpacity < A.Opacity) A.MaxOpacity = A.Opacity;
