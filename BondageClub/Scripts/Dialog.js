@@ -1865,7 +1865,7 @@ function DialogDrawStruggleProgress(C) {
 		// Reset the the character's position
 		if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
 			CharacterAppearanceForceUpCharacter = -1;
-			CharacterRefresh(CurrentCharacter, false);
+			CharacterRefresh(C, false);
 		}
 
 		// Rebuilds the menu
