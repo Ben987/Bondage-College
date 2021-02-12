@@ -26,9 +26,6 @@ function ChessLoad() {
  */
 function ChessRun() {
 
-	// Resize the board if needed
-	MiniGameChessResize();
-
 	// Applies restraints or strip if there are special rules
 	CollegeChessGameProgress();
 

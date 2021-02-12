@@ -993,3 +993,10 @@ function RhythmGameRun() {
     }
     else RhythmGameKernel.update();
 }
+
+/**
+ * Handles the clicks in the rhythm mini-game.
+ * @returns {void} - Nothing
+ */
+function RhythmGameClick() {
+}

@@ -47,12 +47,15 @@
 <script src="Scripts/Translation.js"></script>
 <script src="Scripts/Activity.js"></script>
 <script src="Scripts/ExtendedItem.js"></script>
+<script src="Scripts/ModularItem.js"></script>
 <script src="Screens/Character/ItemColor/ItemColor.js"></script>
 <script src="Scripts/LZString.js"></script>
 <script src="Scripts/VibratorMode.js"></script>
 <script src="Scripts/socket.io/socket.io.js"></script>
 <script src="Scripts/DynamicDraw.js"></script>
+<script src="Scripts/Notifications.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
+<script src="Assets/Female3DCG/Female3DCGExtended.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
 <script src="Screens/Character/Appearance/Appearance.js"></script>
 <script src="Screens/Character/Creation/Creation.js"></script>
@@ -185,7 +188,6 @@
 <script src="Screens/Inventory/ItemFeet/FuturisticAnkleCuffs/FuturisticAnkleCuffs.js"></script>
 <script src="Screens/Inventory/ItemNeck/FuturisticCollar/FuturisticCollar.js"></script>
 <script src="Screens/Inventory/ItemTorso/FuturisticHarness/FuturisticHarness.js"></script>
-<script src="Screens/Inventory/ItemTorso/FuturisticHarness2/FuturisticHarness2.js"></script>
 <script src="Screens/Inventory/ItemMouth/DildoPlugGag/DildoPlugGag.js"></script>
 <script src="Screens/Inventory/ItemHands/SpankingToys/SpankingToy.js"></script>
 <script src="Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
@@ -225,6 +227,7 @@
 <script src="Screens/Inventory/ItemDevices/CryoCapsule/CryoCapsule.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
 <script src="Screens/Inventory/ItemArms/FuturisticArmbinder/FuturisticArmbinder.js"></script>
+<script src="Screens/Inventory/ItemArms/FuturisticStraitjacket/FuturisticStraitjacket.js"></script>
 <script src="Screens/Inventory/ItemAddon/CeilingChain/CeilingChain.js"></script>
 <script src="Screens/Inventory/ItemAddon/CeilingRope/CeilingRope.js"></script>
 <script src="Screens/Inventory/ItemHands/FuturisticMittens/FuturisticMittens.js"></script>
@@ -298,7 +301,6 @@
 <script src="Screens/Inventory/ItemArms/LatexBoxtieLeotard/LatexBoxtieLeotard.js"></script>
 <script src="Screens/Inventory/ItemArms/LatexSleevelessLeotard/LatexSleevelessLeotard.js"></script>
 <script src="Screens/Inventory/ItemArms/PrisonLockdownSuit/PrisonLockdownSuit.js"></script>
-<script src="Screens/Inventory/ItemArms/HighSecurityStraitJacket/HighSecurityStraitJacket.js"></script>
 <script src="Screens/Inventory/Corset/LatexCorset1/LatexCorset1.js"></script>
 <script src="Screens/Inventory/Necklace/NecklaceKey/NecklaceKey.js"></script>
 <script src="Screens/Inventory/Necklace/NecklaceLock/NecklaceLock.js"></script>
@@ -313,8 +315,10 @@
 <script src="Screens/Inventory/ItemHood/CanvasHood/CanvasHood.js"></script>
 <script src="Screens/Inventory/ItemDevices/Vacbed/Vacbed.js"></script>
 <script src="Screens/Inventory/ItemDevices/WoodenBox/WoodenBox.js"></script>
+<script src="Screens/Inventory/ItemDevices/TransportWoodenBox/TransportWoodenBox.js"></script>
 <script src="Screens/Inventory/HairAccessory3/Halo/Halo.js"></script>
 <script src="Screens/Inventory/HairAccessory1/Halo/Halo.js"></script>
+<script src="Screens/Inventory/ItemArms/TransportJacket/TransportJacket.js"></script>
 <script>
 
 /*
@@ -408,28 +412,18 @@ function Click(event) {
 
 // When the user touches the screen (mobile only), we fire the click event for other screens
 function TouchStart(event) {
-	if (CommonIsMobile) {
-		var rect = document.getElementById("MainCanvas").getBoundingClientRect();
-		if (document.body.clientWidth <= document.body.clientHeight * 2) {
-			MouseX = Math.round((event.touches[0].clientX - rect.left) * 2000 / document.body.clientWidth);
-			MouseY = Math.round((event.touches[0].clientY - rect.top) * 2000 / document.body.clientWidth);
-		} else {
-			MouseX = Math.round((event.touches[0].clientX - rect.left) * 1000 / document.body.clientHeight);
-			MouseY = Math.round((event.touches[0].clientY - rect.top) * 1000 / document.body.clientHeight);
-		}
+	if (CommonIsMobile && MainCanvas) {
+		MouseX = Math.round((event.touches[0].clientX - MainCanvas.canvas.offsetLeft) * 2000 / MainCanvas.canvas.offsetWidth);
+		MouseY = Math.round((event.touches[0].clientY - MainCanvas.canvas.offsetTop) * 1000 / MainCanvas.canvas.offsetHeight);
 		CommonClick();
 	}
 }
 
 // When mouse move, we keep the mouse position for other scripts
 function MouseMove(event) {
-	var rect = document.getElementById("MainCanvas").getBoundingClientRect();
-	if (document.body.clientWidth <= document.body.clientHeight * 2) {
-		MouseX = Math.round((event.clientX - rect.left) * 2000 / document.body.clientWidth);
-		MouseY = Math.round((event.clientY - rect.top) * 2000 / document.body.clientWidth);
-	} else {
-		MouseX = Math.round((event.clientX - rect.left) * 1000 / document.body.clientHeight);
-		MouseY = Math.round((event.clientY - rect.top) * 1000 / document.body.clientHeight);
+	if (MainCanvas) {
+		MouseX = Math.round((event.clientX - MainCanvas.canvas.offsetLeft) * 2000 / MainCanvas.canvas.offsetWidth);
+		MouseY = Math.round((event.clientY - MainCanvas.canvas.offsetTop) * 1000 / MainCanvas.canvas.offsetHeight);
 	}
 }
 

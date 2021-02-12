@@ -270,7 +270,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		}
 
 		// There's 2 different canvas, one blinking and one that doesn't
-		let Canvas = (Math.round(CurrentTime / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
+		let Canvas = (Math.round(CurrentTime / 400) % C.BlinkFactor == 0 && !CommonPhotoMode) ? C.CanvasBlink : C.Canvas;
 
 		// Initialize the working canvas
 		CharacterCanvas.canvas.width = Canvas.width;
@@ -721,6 +721,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 		MainCanvas.stroke();
 		MainCanvas.closePath();
 	}
+	if (!Text) return;
 
 	// Sets the text size if there's a maximum number of lines
 	let TextSize;
@@ -780,6 +781,7 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
  * @returns {void} - Nothing
  */
 function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
+	if (!Text) return;
 
 	for (let S = 36; S >= 10; S = S - 2) {
 		MainCanvas.font = CommonGetFont(S.toString());
@@ -809,6 +811,7 @@ function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
  * @returns {void} - Nothing
  */
 function DrawText(Text, X, Y, Color, BackColor) {
+	if (!Text) return;
 
 	// Draw a back color relief text if needed
 	if ((BackColor != null) && (BackColor != "")) {
@@ -894,6 +897,21 @@ function DrawCheckboxColor(Left, Top, Width, Height, Text, IsChecked, Color) {
 }
 
 /**
+ * Draw a grey-filled rectangle to represent a disabled checkbox
+ * @param {number} Left - Position of the component from the left of the canvas
+ * @param {number} Top - Position of the component from the top of the canvas
+ * @param {number} Width - Width of the component
+ * @param {number} Height - Height of the component
+ * @param {string} Text - The text to follow the checkbox
+ * @returns {void} - Nothing
+ */
+function DrawCheckboxDisabled(Left, Top, Width, Height, Text) {
+	DrawRect(Left, Top, Width, Height, "#ebebe4");
+	DrawEmptyRect(Left, Top, Width, Height, "Black", 2);
+	DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
+}
+
+/**
  * Draw a back & next button component
  * @param {number} Left - Position of the component from the left of the canvas
  * @param {number} Top - Position of the component from the top of the canvas
@@ -915,6 +933,11 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	const LeftSplit = Left + ArrowWidth;
 	const RightSplit = Left + Width - ArrowWidth;
 
+	if (ControllerActive == true) {
+		setButton(Left, Top);
+		setButton(Left + Width - ArrowWidth, Top);
+	}
+
 	// Draw the button rectangle
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
@@ -931,7 +954,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 			MainCanvas.fillRect(Left + ArrowWidth, Top, Width - ArrowWidth * 2, Height);
 		}
 	}
-	else if (CommonIsMobile && ArrowWidth < Width / 2) {
+	else if (CommonIsMobile && ArrowWidth < Width / 2 && !Disabled) {
 		// Fill in the arrow regions on mobile
 		MainCanvas.fillStyle = "lightgrey";
 		MainCanvas.fillRect(Left, Top, ArrowWidth, Height);
@@ -945,6 +968,9 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	// Draw the text or image
 	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
+	if (ControllerActive == true) {
+		setButton(Left + Width / 2, Top);
+	}
 
 	// Draw the back arrow
 	MainCanvas.beginPath();
@@ -969,7 +995,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !Disabled)
-		DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? NextText() : MouseX >= RightSplit ? BackText() : "");
+		DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? BackText() : MouseX >= RightSplit ? NextText() : "");
 
 }
 
@@ -1076,18 +1102,6 @@ function DrawWindowResize() {
 	if ((DrawScreenWidth != W) || (DrawScreenHeight != H)) {
 		DrawScreenWidth = W;
 		DrawScreenHeight = H;
-		const Scale = (W <= H * 2) ? 2000 / W : 1000 / H;
-		const MainCanvasRect = MainCanvas.canvas.getBoundingClientRect();
-		MouseMove = function MouseMove(event) {
-			MouseX = Math.round((event.clientX - MainCanvasRect.left) * Scale);
-			MouseY = Math.round((event.clientY - MainCanvasRect.top) * Scale);
-		}
-		TouchStart = function TouchStart(event) {
-			if (!CommonIsMobile) return;
-			MouseX = Math.round((event.touches[0].clientX - MainCanvasRect.left) * Scale);
-			MouseY = Math.round((event.touches[0].clientY - MainCanvasRect.top) * Scale);
-			CommonClick();
-		}
 	}
 }
 
@@ -1112,15 +1126,15 @@ function DrawProcess() {
 		}
 		if (DarkFactor > 0.0) {
 			const Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
-			DrawImage("Backgrounds/" + B + ".jpg", 0, 0, Invert);
+			if (!DrawImage("Backgrounds/" + B + ".jpg", 0, 0, Invert)) {
+				// Draw empty background to overdraw old content if background image isn't ready
+				DrawRect(0, 0, 2000, 1000, "#000");
+			}
 		}
 		if (DarkFactor < 1.0) DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
 	}
 
-	// Draws the dialog screen or current screen if there's no loaded character
-	if (CurrentCharacter != null) DialogDraw();
-	else if (!RefreshDrawFunction) DrawRun();
-	else {
+	if (RefreshDrawFunction) {
 		DrawRun = DrawRunMap.get(CurrentScreen);
 		if (DrawRun == null) {
 			if (typeof window[CurrentScreen + "Run"] === 'function') {
@@ -1131,8 +1145,11 @@ function DrawProcess() {
 				DrawRun = () => { };
 			}
 		}
-		DrawRun();
 	}
+
+	// Draws the dialog screen or current screen if there's no loaded character
+	if (CurrentCharacter != null) DialogDraw();
+	else DrawRun();
 
 	// Draws beep from online player sent by the server
 	ServerDrawBeep();

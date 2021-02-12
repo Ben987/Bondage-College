@@ -111,9 +111,13 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 function InventoryLoad(C, Inventory) {
 	if (Inventory == null) return;
 	if (typeof Inventory === "string") {
-		var Inv = JSON.parse(LZString.decompressFromUTF16(Inventory));
-		for (let I = 0; I < Inv.length; I++)
-			InventoryAdd(C, Inv[I][0], Inv[I][1], false);
+		try {
+			var Inv = JSON.parse(LZString.decompressFromUTF16(Inventory));
+			for (let I = 0; I < Inv.length; I++)
+				InventoryAdd(C, Inv[I][0], Inv[I][1], false);
+		} catch(err) {
+			console.log("Error while loading compressed inventory, no inventory loaded.");
+		}
 	}
 	if (typeof Inventory === "object")
 		for (let I = 0; I < Inventory.length; I++)
@@ -755,10 +759,6 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				if (Item.Property == null) Item.Property = {};
 				if (Item.Property.Effect == null) Item.Property.Effect = [];
 				if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
-				if (Item.Property.Effect.indexOf("MemberNumberList") < 0) {
-					if (!Item.Property) Item.Property = {}
-					if (!Item.Property.MemberNumberList) Item.Property.MemberNumberList = "" + MemberNumber
-				}
 				
 				if (!Item.Property.MemberNumberListKeys && Lock.Asset.Name == "HighSecurityPadlock") Item.Property.MemberNumberListKeys = "" + MemberNumber
 				Item.Property.LockedBy = Lock.Asset.Name;

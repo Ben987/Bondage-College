@@ -117,10 +117,18 @@ function CommonDrawAppearanceBuild(C, {
 		}
 
 		// Check if we need to draw a different expression (for facial features)
-		var Expression = "";
-		if (AG.AllowExpression && AG.AllowExpression.length)
-			if ((Property && Property.Expression && AG.AllowExpression.includes(Property.Expression)))
-				Expression = Property.Expression + "/";
+		let Expression = "";
+		let CurrentExpression = InventoryGetItemProperty(CA, "Expression");
+		if (!CurrentExpression && Layer.MirrorExpression) {
+			const MirroredItem = InventoryGet(C, Layer.MirrorExpression);
+			CurrentExpression = InventoryGetItemProperty(MirroredItem, "Expression");
+		}
+		if (CurrentExpression) {
+			const AllowExpression = InventoryGetItemProperty(CA, "AllowExpression", true);
+			if (CurrentExpression && AllowExpression && AllowExpression.includes(CurrentExpression)) {
+				Expression = CurrentExpression + "/";
+			}
+		}
 
 		let GroupName = A.DynamicGroupName;
 
@@ -269,10 +277,11 @@ function CommonDrawAppearanceBuild(C, {
 
 		const Rotate = A.FixedPosition && C.IsInverted();
 
-		const HideForPose = !!Pose && A.HideForPose.find(P => Pose === P + "/");
+		const HideForPose = !!Pose && (A.HideForPose.find(P => Pose === P + "/") || Layer.HideForPose.find(P => Pose === P + "/"));
+		const ItemLocked = !!(Property && Property.LockedBy);
 
 		if (!HideForPose) {
-			if (Layer.HasImage) {
+			if (Layer.HasImage && (!Layer.LockLayer || ItemLocked)) {
 				// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply
 				// that text)
 				if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
@@ -302,15 +311,15 @@ function CommonDrawAppearanceBuild(C, {
 			}
 
 			// If the item has been locked
-			if (Property && Property.LockedBy) {
-
+			if (ItemLocked && A.DrawLocks) {
 				// How many layers should be drawn for the asset
-				var DrawableLayerCount = C.AppearanceLayers.filter(AL => AL.Asset === A).length;
+				const DrawableLayerCount = C.AppearanceLayers.filter(AL => AL.Asset === A).length;
 
 				// If we just drew the last drawable layer for this asset, draw the lock too (never colorized)
 				if (DrawableLayerCount === LayerCounts[CountKey]) {
 					drawImage(
-						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + (A.HasType ? Type : "") + "_Lock.png",
+						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + (A.HasType ? Type : "") +
+						"_Lock.png",
 						X, Y, AlphaMasks,
 					);
 					drawImageBlink(

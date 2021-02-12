@@ -7,7 +7,7 @@ var FuturisticVibratorCheckChatTime = 1000; // Checks chat every 1 sec
 function InventoryItemVulvaFuturisticVibratorLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else {
 		VibratorModeLoad([VibratorModeSet.ADVANCED, VibratorModeSet.STANDARD]);
 		if ((DialogFocusItem != null) && (DialogFocusItem.Property != null) && (DialogFocusItem.Property.TriggerValues == null)) DialogFocusItem.Property.TriggerValues = CommonConvertArrayToString(ItemVulvaFuturisticVibratorTriggers);
@@ -96,7 +96,7 @@ function InventoryItemVulvaFuturisticVibratorExit() {
 
 function InventoryItemVulvaFuturisticVibratorDetectMsg(msg, TriggerValues) {
 	for (let I = 0; I < TriggerValues.length; I++) {
-		if (msg.includes(TriggerValues[I].toUpperCase())) return ItemVulvaFuturisticVibratorTriggers[I]
+		if (msg.indexOf('(') != 0 && msg.includes(TriggerValues[I].toUpperCase())) return ItemVulvaFuturisticVibratorTriggers[I]
 	}
 	return ""
 }
