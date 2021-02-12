@@ -3887,7 +3887,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "PetBowl", Value: 20, Time: 5, IsRestraint: false, DefaultColor: ["Default", "#000000"], Extended: true, DynamicAfterDraw: true, FixedPosition: true, Layer: [
+				Name: "PetBowl", Value: 20, Time: 5, IsRestraint: false, DefaultColor: ["Default", "#000000"], AllowPose: ["Suspension"], HideForPose: ["Suspension"], Extended: true, DynamicBeforeDraw: true, DynamicAfterDraw: true, Layer: [
 					{ Name: "Bowl", Top: 885, Left: 300 },
 					{ Name: "Text", HasImage: false, Top: 905, Left: 335 },
 				]
