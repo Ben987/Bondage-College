@@ -24,10 +24,6 @@ var DialogLeaveDueToItem = false;
 const DrawCacheImage = new Map;
 let DrawCacheLoadedImages = 0;
 let DrawCacheTotalImages = 0;
-var DrawScreenWidth = -1;
-var DrawScreenHeight = -1;
-
-window.addEventListener('resize', DrawWindowResize);
 
 /**
  * Converts a hex color string to a RGB color
@@ -82,11 +78,6 @@ function DrawLoad() {
 	MainCanvas.textAlign = "center";
 	MainCanvas.textBaseline = "middle";
 
-	// Deferred resize is necessary since some rare cases canvas gets oversized without this (especially on mobile)
-	setTimeout(DrawWindowResize, 1000);
-	setTimeout(DrawWindowResize, 3000);
-	setTimeout(DrawWindowResize, 5000);
-	if (CommonIsMobile) setTimeout(DrawWindowResize, 10000);
 }
 
 /**
@@ -1089,20 +1080,6 @@ function DrawProgressBar(X, Y, W, H, Progress) {
 	DrawRect(X, Y, W, H, "white");
 	DrawRect(X + 2, Y + 2, Math.floor((W - 4) * Progress / 100), H - 4, "#66FF66");
 	DrawRect(Math.floor(X + 2 + (W - 4) * Progress / 100), Y + 2, Math.floor((W - 4) * (100 - Progress) / 100), H - 4, "red");
-}
-
-function DrawWindowResize() {
-	if (!MainCanvas) return;
-
-	// Gets the Width and Height differently on mobile and regular browsers
-	const W = (CommonIsMobile) ? document.documentElement.clientWidth : window.innerWidth;
-	const H = (CommonIsMobile) ? document.documentElement.clientHeight : window.innerHeight;
-
-	// If we need to resize, we keep the 2x1 ratio
-	if ((DrawScreenWidth != W) || (DrawScreenHeight != H)) {
-		DrawScreenWidth = W;
-		DrawScreenHeight = H;
-	}
 }
 
 /**

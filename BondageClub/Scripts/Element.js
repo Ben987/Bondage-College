@@ -258,31 +258,21 @@ function ElementPosition(ElementID, X, Y, W, H) {
 	}
 
 	// Different positions based on the width/height ratio
-	var Font;
-	var Height;
-	var Left;
-	var Width;
-	var Top;
-	if (DrawScreenWidth <= DrawScreenHeight * 2) {
-		Font = (DrawScreenWidth / 50);
-		Height = H ? (H * DrawScreenWidth / 2000) : (Font * 1.15);
-		Left = ((X - (W / 2)) * DrawScreenWidth / 2000);
-		Width = (W * DrawScreenWidth / 2000) - 18;
-		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4) - (Height / 2);
-	} else {
-		Font = (DrawScreenHeight / 25);
-		Height = H ? (H * DrawScreenHeight / 1000) : (Font * 1.15);
-		Left = ((X - (W / 2)) * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
-		Width = (W * DrawScreenHeight / 1000) - 18;
-		Top = (Y * DrawScreenHeight / 1000) - (Height / 2);
-	}
+	const CanvasBox = MainCanvas.canvas.getBoundingClientRect();
+	const HRatio = CanvasBox.height / 1000;
+	const WRatio = CanvasBox.width / 2000;
+	const Font = CanvasBox.width <= CanvasBox.height * 2 ? CanvasBox.width / 50 : CanvasBox.height / 25;
+	const Height = H ? H * HRatio : Font * 1.15;
+	const Width = W * WRatio - 18;
+	const Top = CanvasBox.top + Y * HRatio - Height / 2;
+	const Left = CanvasBox.left + (X - W / 2) * WRatio;
 
 	// Sets the element style
 	if (E) {
 		Object.assign(E.style, {
 			fontSize: Font + "px",
 			fontFamily: CommonGetFontName(),
-			position: "absolute",
+			position: "fixed",
 			left: Left + "px",
 			top: Top + "px",
 			width: Width + "px",
@@ -306,30 +296,21 @@ function ElementPosition(ElementID, X, Y, W, H) {
 function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 	// Different positions based on the width/height ratio
-	var Left;
-	var Width;
-	var Top;
-	var Height;
-	if (DrawScreenWidth <= DrawScreenHeight * 2) {
-		Font = Font * DrawScreenWidth / 2000;
-		Left = X * DrawScreenWidth / 2000;
-		Width = W * DrawScreenWidth / 2000;
-		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4);
-		Height = H * DrawScreenWidth / 2000;
-	} else {
-		Font = Font * DrawScreenHeight / 1000;
-		Left = (X * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
-		Width = W * DrawScreenHeight / 1000;
-		Top = Y * DrawScreenHeight / 1000;
-		Height = H * DrawScreenHeight / 1000;
-	}
+	const CanvasBox = MainCanvas.canvas.getBoundingClientRect();
+	const HRatio = CanvasBox.height / 1000;
+	const WRatio = CanvasBox.width / 2000;
+	Font *= Math.max(HRatio, WRatio);
+	const Top = CanvasBox.top + Y * HRatio;
+	const Height = H * HRatio;
+	const Left = CanvasBox.left + X * WRatio;
+	const Width = W * WRatio;
 
 	// Sets the element style
 	var E = document.getElementById(ElementID);
 	Object.assign(E.style, {
 		fontSize: Font + "px",
 		fontFamily: CommonGetFontName(),
-		position: "absolute",
+		position: "fixed",
 		left: Left + "px",
 		top: Top + "px",
 		width: Width + "px",
