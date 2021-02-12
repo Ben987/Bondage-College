@@ -3670,18 +3670,19 @@ var AssetFemale3DCG = [
 		Zone: [[10, 600, 90, 400], [400, 600, 90, 400]],
 		Asset: [
 			{
-				Name: "WoodenBox", Value: 60, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", RemoveAtLogin: true, DefaultColor: ["Default", "#600"], SetPose: ["BaseLower"], Extended: true, DynamicAfterDraw: true, MinOpacity: 0, Opacity: 0,
+				Name: "WoodenBox", Value: 60, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", RemoveAtLogin: true, DefaultColor: ["Default", "#600"], SetPose: ["BaseLower"], Extended: true, DynamicAfterDraw: true, MinOpacity: 0, Opacity: 0, FixedPosition: true,
 				AllowType: ["NWSE"],
 				Prerequisite: ["NotSuspended", "NotHogtied", "NotHorse"],
 				Effect: ["Prone", "Enclose", "Freeze"],
 				AllowEffect: ["Prone", "Enclose", "BlindNormal", "GagLight", "Freeze"],
-				AllowPose: ["Kneel"],
-				HideItem: ["ShoesFlippers"],
-				Alpha: [{ Group: ["Cloth", "ClothLower", "TailStraps", "Wings", "ItemButt", "ItemArms"], Masks: [[0, 0, 90, 1000], [400, 0, 100, 1000]] }],
 				Layer: [
 					{ Name: "Back", Priority: 1, MinOpacity: 1, HasType: false },
 					{ Name: "Panel", CopyLayerColor: "Back", HasType: false },
-					{ Name: "Text", HasImage: false, HasType: false }
+					{ Name: "Text", HasImage: false, HasType: false },
+					{
+						Name: "Frame", CopyLayerColor: "Back", MinOpacity: 1, HasType: false,
+						Alpha: [{ Masks: [[0, -50, 500, 80], [0, 10, 45, 980], [445, 10, 55, 980], [0, 990, 500, 110]] }],
+					},
 				],
 			},
 			{ Name: "SmallWoodenBox", Value: 40, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "CanKneel"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "BlindNormal", "GagLight", "Freeze"], HideItem: ["ShoesFlippers"], Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999]] }], RemoveAtLogin: true },
@@ -3856,17 +3857,18 @@ var AssetFemale3DCG = [
 				],
 			},
 			{
-				Name: "TransportWoodenBox", Value: 60, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", DefaultColor: ["Default", "Default", "Default", "#600"], Extended: true, RemoveAtLogin: true, SetPose: ["BaseLower"], MinOpacity: 0, Opacity: 0, DynamicAfterDraw: true,
+				Name: "TransportWoodenBox", Value: 60, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", DefaultColor: ["Default", "Default", "Default", "#600"], Extended: true, RemoveAtLogin: true, SetPose: ["BaseLower"], MinOpacity: 0, Opacity: 0, DynamicAfterDraw: true, FixedPosition: true,
 				AllowType: ["NWSE"],
-				AllowPose: ["Kneel"],
 				Prerequisite: ["NotSuspended", "NotHogtied"],
 				Effect: ["Prone", "Enclose", "Freeze", "Leash"],
 				AllowEffect: ["Prone", "Enclose", "BlindNormal", "GagLight", "Freeze", "Leash"],
-				HideItem: ["ShoesFlippers"],
-				Alpha: [{ Group: ["Cloth", "ClothLower", "TailStraps", "Wings", "ItemButt", "ItemArms"], Masks: [[0, 0, 90, 1000], [400, 0, 100, 1000]] }],
-				 Layer: [
+				Layer: [
 					{ Name: "Back", Priority: 1, MinOpacity: 1, HasType: false },
 					{ Name: "Panel", CopyLayerColor: "Back", HasType: false },
+					{
+						Name: "Frame", CopyLayerColor: "Back", MinOpacity: 1, HasType: false,
+						Alpha: [{ Masks: [[0, -50, 500, 80], [0, 10, 45, 980], [445, 10, 55, 980], [0, 990, 500, 110]] }],
+					},
 					{ Name: "Wheelholders", MinOpacity: 1, HasType: false },
 					{ Name: "Wheels", MinOpacity: 1, HasType: false },
 					{ Name: "Text", HasImage: false, HasType: false },
