@@ -423,7 +423,7 @@ function DialogLeave() {
 	if (CurrentCharacter) {
 		if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber) {
 			CharacterAppearanceForceUpCharacter = -1;
-			CharacterAppearanceSetHeightModifiers(CurrentCharacter);
+			CharacterRefresh(CurrentCharacter, false);
 		}
 		CurrentCharacter.FocusGroup = null;
 	}
@@ -1525,7 +1525,7 @@ function DialogClick() {
 	// If the user clicked anywhere outside the current character item zones, ensure the position is corrected
 	if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber && ((MouseX < 500) || (MouseX > 1000) || (CurrentCharacter.FocusGroup == null))) {
 		CharacterAppearanceForceUpCharacter = -1;
-		CharacterAppearanceSetHeightModifiers(CurrentCharacter);
+		CharacterRefresh(CurrentCharacter, false);
 	}
 
 	// In activity mode, we check if the user clicked on an activity box
@@ -1865,7 +1865,7 @@ function DialogDrawStruggleProgress(C) {
 		// Reset the the character's position
 		if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
 			CharacterAppearanceForceUpCharacter = -1;
-			CharacterAppearanceSetHeightModifiers(C);
+			CharacterRefresh(CurrentCharacter, false);
 		}
 
 		// Rebuilds the menu
