@@ -14,7 +14,11 @@ var MainHallMaidWasCalledManually = false;
 
 var MainHallBeingPunished = false;
 var MainHallFirstFrame = false;
-var MainHallStrongLocks = [{ Name: "CombinationPadlock", Group: "ItemMisc", Type: null }, { Name: "PasswordPadlock", Group: "ItemMisc", Type: null }, { Name: "TimerPasswordPadlock", Group: "ItemMisc", Type: null }];
+var MainHallStrongLocks = [{ Name: "CombinationPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "PasswordPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "TimerPasswordPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "HighSecurityPadlock", Group: "ItemMisc", Type: null },
+];
 
 var MainHallPunishmentList = [
 	{ItemMouth:"BallGag", ItemHead: "LeatherBlindfold", ItemHands: "DuctTape"},
