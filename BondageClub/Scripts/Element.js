@@ -258,14 +258,13 @@ function ElementPosition(ElementID, X, Y, W, H) {
 	}
 
 	// Different positions based on the width/height ratio
-	const CanvasBox = MainCanvas.canvas.getBoundingClientRect();
-	const HRatio = CanvasBox.height / 1000;
-	const WRatio = CanvasBox.width / 2000;
-	const Font = CanvasBox.width <= CanvasBox.height * 2 ? CanvasBox.width / 50 : CanvasBox.height / 25;
+	const HRatio = MainCanvas.canvas.clientHeight / 1000;
+	const WRatio = MainCanvas.canvas.clientWidth / 2000;
+	const Font = MainCanvas.canvas.clientWidth <= MainCanvas.canvas.clientHeight * 2 ? MainCanvas.canvas.clientWidth / 50 : MainCanvas.canvas.clientHeight / 25;
 	const Height = H ? H * HRatio : Font * 1.15;
 	const Width = W * WRatio - 18;
-	const Top = CanvasBox.top + Y * HRatio - Height / 2;
-	const Left = CanvasBox.left + (X - W / 2) * WRatio;
+	const Top = MainCanvas.canvas.offsetTop + Y * HRatio - Height / 2;
+	const Left = MainCanvas.canvas.offsetLeft + (X - W / 2) * WRatio;
 
 	// Sets the element style
 	if (E) {
@@ -296,13 +295,12 @@ function ElementPosition(ElementID, X, Y, W, H) {
 function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 	// Different positions based on the width/height ratio
-	const CanvasBox = MainCanvas.canvas.getBoundingClientRect();
-	const HRatio = CanvasBox.height / 1000;
-	const WRatio = CanvasBox.width / 2000;
+	const HRatio = MainCanvas.canvas.clientHeight / 1000;
+	const WRatio = MainCanvas.canvas.clientWidth / 2000;
 	Font *= Math.max(HRatio, WRatio);
-	const Top = CanvasBox.top + Y * HRatio;
+	const Top = MainCanvas.canvas.offsetTop + Y * HRatio;
 	const Height = H * HRatio;
-	const Left = CanvasBox.left + X * WRatio;
+	const Left = MainCanvas.canvas.offsetLeft + X * WRatio;
 	const Width = W * WRatio;
 
 	// Sets the element style
