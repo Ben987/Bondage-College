@@ -413,9 +413,16 @@ function Click(event) {
 // When the user touches the screen (mobile only), we fire the click event for other screens
 function TouchStart(/** @type {TouchEvent} */ event) {
 	if (CommonIsMobile && MainCanvas) {
-		MouseX = Math.round((event.touches[0].pageX - MainCanvas.canvas.offsetLeft) * 2000 / MainCanvas.canvas.clientWidth);
-		MouseY = Math.round((event.touches[0].pageY - MainCanvas.canvas.offsetTop) * 1000 / MainCanvas.canvas.clientHeight);
+		TouchMove(event.touches[0]);
 		CommonClick();
+	}
+}
+
+// When touch moves, we keep it's position for other scripts
+function TouchMove(/** @type {Touch} */ touch) {
+	if (MainCanvas) {
+		MouseX = Math.round((touch.pageX - MainCanvas.canvas.offsetLeft) * 2000 / MainCanvas.canvas.clientWidth);
+		MouseY = Math.round((touch.pageY - MainCanvas.canvas.offsetTop) * 1000 / MainCanvas.canvas.clientHeight);
 	}
 }
 
