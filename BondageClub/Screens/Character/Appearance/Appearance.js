@@ -699,7 +699,7 @@ function AppearanceRun() {
 function AppearanceGetPreviewImageColor(C, item, hover) {
 	if (DialogItemPermissionMode && C.ID === 0) {
 		let permission = "green";
-		if (InventoryIsPermissionBlocked(C, item.Asset.DynamicName(Player), item.Asset.DynamicGroupName)) permission = "red";
+		if (InventoryIsPermissionBlocked(C, item.Asset.Name, item.Asset.Group.Name)) permission = "red";
 		else if (InventoryIsPermissionLimited(C, item.Asset.Name, item.Asset.Group.Name)) permission = "amber";
 		return item.Worn ? "gray" : AppearancePermissionColors[permission][hover ? 1 : 0];
 	} else {
