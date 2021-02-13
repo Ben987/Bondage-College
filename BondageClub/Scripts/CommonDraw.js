@@ -193,6 +193,9 @@ function CommonDrawAppearanceBuild(C, {
 			Color = Color[Layer.ColorIndex] || AG.ColorSchema[0];
 		}
 
+		// Fix to legacy appearance data when Hands could be different to BodyUpper
+		if (GroupName === "Hands") Color = "Default";
+
 		// Check if we need to copy the color of another asset
 		let InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
 		let ColorInherited = false;

@@ -1241,7 +1241,7 @@ var AssetFemale3DCG = [
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "AllFours"],
 		Asset: ["Default"],
 		InheritColor: "BodyUpper",
-		Color: ["Default", "White", "Asian", "Black"],
+		Color: ["Default"],
 	},
 	
 	{
