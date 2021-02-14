@@ -2030,6 +2030,7 @@ function DialogDrawLockpickProgress(C) {
 
 	DrawText(DialogFindPlayer("LockpickIntro"), X, 800, "white");
 	DrawText(DialogFindPlayer("LockpickIntro2"), X, 850, "white");
+	DrawText(DialogFindPlayer("LockpickIntro3"), X, 900, "white");
 
 	if (DialogLockPickSuccessTime != 0) {
 		if (CurrentTime > DialogLockPickSuccessTime) {
