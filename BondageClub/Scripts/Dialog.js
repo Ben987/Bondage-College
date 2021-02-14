@@ -2039,7 +2039,7 @@ function DialogDrawLockpickProgress(C) {
 				var item = InventoryGet(C, C.FocusGroup.Name)
 				if (item) {
 					InventoryUnlock(C, item)
-					if (CurrentScreen == "ChatRoom") ChatRoomPublishAction(C, item, null, true, "ActionPick");
+					if (CurrentScreen == "ChatRoom") ChatRoomPublishAction(C, item, null, C.ID !== 0, "ActionPick");
 				}
 			}
 			SkillProgress("LockPicking", DialogLockPickProgressSkill);
