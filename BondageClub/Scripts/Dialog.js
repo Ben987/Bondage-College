@@ -939,7 +939,12 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	}
 	if ((C.ID != 0) || ((C.ID == 0) && (PrevItem == null))) S = S + SkillGetLevel(Player, "Bondage"); // Adds the bondage skill if no previous item or playing with another player
 	if (Player.IsEnclose() || Player.IsMounted()) S = S - 2; // A little harder if there's an enclosing or mounting item
-	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(C, PrevItem)) S = S - 4; // Harder to struggle from a locked item
+	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(C, PrevItem)) {
+		S = S - 4; // Harder to struggle from a locked item
+		var lock = InventoryGetLock(PrevItem);
+		if (lock && lock.Asset && lock.Asset.OwnerOnly) S = S - 50; // Owner locks are extremely powerful
+		if (lock && lock.Asset && lock.Asset.LoverOnly) S = S - 4; // Lover locks are more powerful
+	}
 
 	// When struggling to remove or swap an item while being blocked from interacting
 	if ((C.ID == 0) && !C.CanInteract() && (PrevItem != null)) {
