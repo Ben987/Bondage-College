@@ -389,7 +389,6 @@ function PreferenceInitPlayer() {
 		C.GameplaySettings.EnableSafeword = false;
 		C.GameplaySettings.DisableAutoMaid = true;
 		C.GameplaySettings.OfflineLockedRestrained = true;
-		C.OnlineSharedSettings.DisablePickingLocksOnSelf = true;
 	}
 
 	// Difficulty: Extreme settings
