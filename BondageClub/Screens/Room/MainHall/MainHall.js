@@ -127,7 +127,9 @@ function MainHallLoad() {
 	MainHallBackground = Player.VisualSettings && Player.VisualSettings.MainHallBackground ? Player.VisualSettings.MainHallBackground : "MainHall";
 	MainHallStartEventTimer = null;
 	MainHallNextEventTimer = null;
-	MainHallMaid = CharacterLoadNPC("NPC_MainHall_Maid");
+	if (!Player.ImmersionSettings.ReturnToChatRoom || Player.LastChatRoom === "" || MainHallBeingPunished ) {
+		MainHallMaid = CharacterLoadNPC("NPC_MainHall_Maid");
+	}
 	MainHallIsMaid = LogQuery("JoinedSorority", "Maid");
 	MainHallIsHeadMaid = LogQuery("LeadSorority", "Maid");
 	MainHallHasOwnerLock = InventoryCharacterHasOwnerOnlyRestraint(Player);
@@ -157,7 +159,7 @@ function MainHallRun() {
 	if (!MainHallBeingPunished) {
 
 		// We return to the last online chat room if possible
-		if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && MainHallMaid.Stage == "0") {
+		if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && (MainHallMaid === null || MainHallMaid.Stage === "0")) {
 			if (MainHallFirstFrame) {
 				if (Player.ImmersionSettings.ReturnToChatRoom) {
 					ChatRoomStart("", "", "MainHall", "IntroductionDark", BackgroundsTagList);
@@ -255,7 +257,7 @@ function MainHallRun() {
 	}
 
 	// If we must send a maid to rescue the player
-	if ((MainHallNextEventTimer != null) && (CommonTime() >= MainHallNextEventTimer)) {
+	if (MainHallMaid !== null && (MainHallNextEventTimer != null) && (CommonTime() >= MainHallNextEventTimer)) {
 		MainHallMaid.Stage = "0";
 		CharacterRelease(MainHallMaid);
 		CharacterSetCurrent(MainHallMaid);
