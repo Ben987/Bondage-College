@@ -451,10 +451,10 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 		}
 
 	// We do not check if the load is from the Player
-	var FromSelf = (SourceMemberNumber != null) && (SourceMemberNumber == C.MemberNumber);
-	var FromOwner = (SourceMemberNumber != null) && (C.Ownership != null) && ((SourceMemberNumber == C.Ownership.MemberNumber) || FromSelf);
-	var LoverNumbers = CharacterGetLoversNumbers(C);
-	var FromLoversOrOwner = (SourceMemberNumber != null) && (LoverNumbers.length != 0) && (LoverNumbers.includes(SourceMemberNumber) || FromOwner);
+	const FromSelf = SourceMemberNumber == null || SourceMemberNumber === C.MemberNumber;
+	const FromOwner = C.Ownership != null && (SourceMemberNumber === C.Ownership.MemberNumber || FromSelf);
+	const LoverNumbers = CharacterGetLoversNumbers(C);
+	const FromLoversOrOwner = LoverNumbers.length > 0 && (LoverNumbers.includes(SourceMemberNumber) || FromOwner || FromSelf);
 
 	// Clears the appearance to begin
 	var Appearance = [];
