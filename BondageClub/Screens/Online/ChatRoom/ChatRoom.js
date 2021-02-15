@@ -1074,9 +1074,10 @@ function ChatRoomClick() {
 
 	// When the user character kneels
 	if (MouseIn(1254, 0, 120, 62) && Player.CanKneel()) {
-		ServerSend("ChatRoomChat", { Content: (Player.ActivePose == null) ? "KneelDown" : "StandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
-		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
-		ChatRoomStimulationMessage("Kneel")
+		const PlayerIsKneeling = Player.ActivePose && Player.ActivePose.includes("Kneel");
+		ServerSend("ChatRoomChat", { Content: PlayerIsKneeling ? "StandUp" : "KneelDown", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
+		CharacterSetActivePose(Player, PlayerIsKneeling ? "BaseLower" : "Kneel");
+		ChatRoomStimulationMessage("Kneel");
 		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 	}
 
