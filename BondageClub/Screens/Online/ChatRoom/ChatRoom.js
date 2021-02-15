@@ -163,7 +163,6 @@ function ChatRoomHasSwapTarget() { return (ChatRoomSwapTarget != null) }
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanGiveHighSecurityKeys() {
-	if (!CurrentCharacter.AllowItem) return false
 	if (Player.Appearance != null)
 		for (let A = 0; A < Player.Appearance.length; A++)
 			if (Player.Appearance[A].Asset.IsRestraint && Player.Appearance[A].Property && InventoryGetLock(Player.Appearance[A]) && InventoryGetLock(Player.Appearance[A]).Asset.ExclusiveUnlock
@@ -180,7 +179,6 @@ function ChatRoomCanGiveHighSecurityKeys() {
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanGiveHighSecurityKeysAll() {
-	if (!CurrentCharacter.AllowItem) return false
 	if (Player.Appearance != null)
 		for (let A = 0; A < Player.Appearance.length; A++)
 			if (Player.Appearance[A].Asset.IsRestraint && Player.Appearance[A].Property && InventoryGetLock(Player.Appearance[A]) && InventoryGetLock(Player.Appearance[A]).Asset.ExclusiveUnlock
@@ -236,7 +234,7 @@ function ChatRoomGiveHighSecurityKeysAll() {
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
 function ChatRoomCanGiveLockpicks() { 
-	if (CurrentCharacter.AllowItem && Player.CanInteract())
+	if (Player.CanInteract())
 		for (let I = 0; I < Player.Inventory.length; I++)
 			if (Player.Inventory[I].Name == "Lockpicks") {
 				return true;  
