@@ -1854,3 +1854,8 @@ ItemArmsTransportJacketSetNoShortsShorts,,,SourceCharacter attaches shorts to De
 ItemArmsTransportJacketSetShortsAndStrapsShorts,,,SourceCharacter removes the reinforcing straps from DestinationCharacter AssetName,,
 ItemArmsTransportJacketSetNoShortsShortsAndStraps,,,SourceCharacter attaches shorts and reinforcing straps to DestinationCharacter AssetName,,
 ItemArmsTransportJacketSetShortsShortsAndStraps,,,SourceCharacter reinforces DestinationCharacter AssetName with sturdy straps,,
+SelectPoleType,,,Select Pole state,,
+PoleTypeUntied,,,Untie from pole,,
+PoleTypeTied,,,Tie to pole,,
+DevicesPoleSetUntied,,,SourceCharacter ties TargetCharacter to the pole.,,
+DevicesPoleSetTied,,,SourceCharacter unties TargetCharacter from the pole.,,
