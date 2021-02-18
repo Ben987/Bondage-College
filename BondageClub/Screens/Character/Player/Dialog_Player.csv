@@ -1783,7 +1783,6 @@ ItemArmsHighSecurityStraitJacketSets0,,,SourceCharacter removes the crotch strap
 ItemArmsHighSecurityStraitJacketSets1,,,SourceCharacter secures DestinationCharacter straitjacket with a single crotch strap,,
 ItemArmsHighSecurityStraitJacketSets2,,,SourceCharacter secures DestinationCharacter straitjacket with a double crotch strap,,
 ItemArmsHighSecurityStraitJacketSets3,,,SourceCharacter secures DestinationCharacter straitjacket with a triple crotch strap,,
-
 ItemHoodKirugumiMaskSelectBase,,,Configure mask,,
 ItemHoodKirugumiMaskSelectEyes,,,Configure eyes,,
 ItemHoodKirugumiMaskSelectMouth,,,Configure mouth,,
@@ -1813,7 +1812,6 @@ ItemHoodKirugumiMaskSetEyes,,,SourceCharacter changes the eyes on DestinationCha
 ItemHoodKirugumiMaskSetMouth,,,SourceCharacter changes the mouth on DestinationCharacter mask,,
 ItemHoodKirugumiMaskSetBlush,,,SourceCharacter changes the blush on DestinationCharacter mask,,
 ItemHoodKirugumiMaskSetBrows,,,SourceCharacter changes the eyebrows on DestinationCharacter mask,,
-
 SelectPriorityType,,,Select the visibility,,
 ClothPriorityTypeNormal,,,Revealed,,
 ClothPriorityTypeTucked,,,Tucked in,,
