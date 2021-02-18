@@ -673,7 +673,7 @@ function DialogMenuButtonBuild(C) {
 							break;
 						}
 			}
-			if (IsItemLocked && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
+			if (IsItemLocked && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
 				DialogMenuButton.push("InspectLock");
 			
 		} else {
