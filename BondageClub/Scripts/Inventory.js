@@ -765,9 +765,10 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
 				
-				ServerSend("AccountTamperLock", {TargetMemberNumber: C.MemberNumber, Group: Item.Asset.Group.Name, LockType: Lock.Asset.Name});
 				
 				CharacterRefresh(C, true);
+				
+				ServerSend("AccountTamperLock", {TargetMemberNumber: C.MemberNumber, Group: Item.Asset.Group.Name, LockType: Lock.Asset.Name});
 			}
 		}
 	}

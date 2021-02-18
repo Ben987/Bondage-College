@@ -170,7 +170,7 @@ function InventoryItemNeckFuturisticCollarGetItems(C, OnlyUnlockable) {
 	var ItemList = []
 	
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && (!OnlyUnlockable || C.Appearance[E].Asset.Group.Name != "ItemNeck")) &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0 || C.Appearance[E].Asset.Name.indexOf("Electronic") >= 0) && (!OnlyUnlockable || C.Appearance[E].Asset.Group.Name != "ItemNeck")) &&
 			(C.Appearance[E].Asset.AllowLock)
 			&& (!OnlyUnlockable || (InventoryGetLock(C.Appearance[E]) != null && InventoryItemHasEffect(C.Appearance[E], "Lock", true) && DialogCanUnlock(C, C.Appearance[E])))) {
 				ItemList.push(C.Appearance[E])

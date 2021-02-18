@@ -252,6 +252,9 @@ ItemNeckOrnateCollarCollar,Collar
 ItemNeckOrnateCollarGem,Gems
 ItemNeckAccessoriesCustomCollarTagTag,Tag
 ItemNeckAccessoriesCustomCollarTagText,Text
+ItemNeckAccessoriesElectronicTagTag,Tag
+ItemNeckAccessoriesElectronicTagDisplay,Display
+ItemNeckAccessoriesElectronicTagText,Text
 ItemMiscWoodenSignSign,Sign
 ItemMiscWoodenSignRope,Rope
 ItemMiscWoodenSignText,Text
