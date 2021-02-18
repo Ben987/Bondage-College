@@ -337,9 +337,11 @@
 window.onload = function() {
 //	CheatImport();
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
-	GameVersion = "R65Beta1";
+	GameVersion = "R65";
 	if (!GameVersionFormat.test(GameVersion)) {
-		console.warn("Set GameVersion is not valid!");
+		console.warn("GameVersion is not valid!");
+	} else {
+		console.log(`Loading BondageClub version: ${GameVersion}`);
 	}
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
