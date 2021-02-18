@@ -51,6 +51,7 @@ function ServerInit() {
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
 	ServerSocket.on("AccountLovership", function (data) { ServerAccountLovership(data); });
+	ServerSocket.on("AccountTamperLock", function (data) { ServerAccountTamperLock(data); });
 	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
@@ -784,5 +785,29 @@ function ServerAccountLovership(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lovership != null) && (typeof data.Lovership === "object")) {
 		Player.Lovership = data.Lovership;
 		LoginLoversItems();
+	}
+}
+
+
+/**
+ * Callback used to parse received information related to the player's tampering data
+ * @param {object} data - Data object containing the TamperLock array
+ * @returns {void} - Nothing
+ */
+function ServerAccountTamperLock(data) {
+
+	// If we get a result for a specific member number, we show that option in the online dialog
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.TamperLock != null) && (typeof data.TamperLock === "object"))
+		if (ChatRoomCharacter) {
+			for (let A = 0; A < ChatRoomCharacter.length; A++) 
+				if ((ChatRoomCharacter[A]) && (ChatRoomCharacter[A].MemberNumber == data.MemberNumber)) {
+					ChatRoomCharacter[A].TamperLock = data.TamperLock;
+					break;
+				}
+		}
+
+	// If we must update the character TamperLock data
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.TamperLock != null) && (typeof data.TamperLock === "object")) {
+		Player.TamperLock = data.TamperLock;
 	}
 }

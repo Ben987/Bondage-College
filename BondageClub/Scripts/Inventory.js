@@ -764,6 +764,9 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				Item.Property.LockedBy = Lock.Asset.Name;
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
+				
+				ServerSend("AccountTamperLock", {TargetMemberNumber: C.MemberNumber, Group: Item.Asset.Group.Name, LockType: Lock.Asset.Name});
+				
 				CharacterRefresh(C, true);
 			}
 		}
@@ -840,6 +843,7 @@ function InventoryConfiscateKey() {
 function InventoryConfiscateRemote() {
 	InventoryDelete(Player, "VibratorRemote", "ItemVulva");
 	InventoryDelete(Player, "VibratorRemote", "ItemNipples");
+	InventoryDelete(Player, "SpankingToysVibeRemote", "ItemHands");
 	InventoryDelete(Player, "LoversVibratorRemote", "ItemVulva");
 }
 
