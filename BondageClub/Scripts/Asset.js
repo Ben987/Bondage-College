@@ -327,6 +327,9 @@ function AssetBuildDescription(Family, CSV) {
 
 	for (const line of CSV) {
 		if (Array.isArray(line) && line.length === 3) {
+			if (map.has(`${line[0]}:${line[1]}`)) {
+				console.warn("Duplicate Asset Description: ", line);
+			}
 			map.set(`${line[0]}:${line[1]}`, line[2]);
 		} else {
 			console.warn("Bad Asset Description line: ", line);
@@ -353,7 +356,7 @@ function AssetBuildDescription(Family, CSV) {
 
 		const res = map.get(`${A.Group.Name}:${A.Name}`);
 		if (res === undefined) {
-			A.Description = `MISSING ASSET DESCRIPTION: ${A.Name}`;
+			A.Description = `MISSING ASSET DESCRIPTION: ${A.Group.Name}:${A.Name}`;
 		} else {
 			A.Description = res;
 		}

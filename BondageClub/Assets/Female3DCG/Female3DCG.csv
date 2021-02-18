@@ -151,7 +151,7 @@ Bra,HeartTop,Heart Top
 Bra,ChineseBra1,Chinese Bra
 Bra,LeatherStrapBra1,Leather Strap Bra
 Bra,Swimsuit3,Swimsuit style 3
-Bra,Clamshell,Clamshell Bra
+Bra,ClamShell,Clamshell Bra
 Bra,CowPrintedBra,Cow Printed Bra
 Bra,StuddedHarness,Studded Harness
 Corset,,Corset
@@ -664,7 +664,7 @@ ItemButt,BunnyTailPlug2,Brown Bunny Tail Plug
 ItemButt,BunnyTailVibePlug,Bunny Tail Vibe Plug
 ItemButt,EggVibePlugXXL,Egg Vibe Plug XXL
 ItemButt,ShockPlug,Shock Plug
-ItemButt,CowTail,Cow Tail
+ItemButt,Cowtail,Cow Tail
 ItemButt,HollowButtPlug,Hollow Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
@@ -886,7 +886,7 @@ ItemNeck,SlenderSteelCollar,Slender Steel Collar
 ItemNeck,HeartLinkChoker, Heart-Link Choker
 ItemNeck,NeckRope,Neck Rope
 ItemNeckAccessories,,Collar
-ItemNeckAccessories,CustomNameTag,Custom Tag
+ItemNeckAccessories,CustomCollarTag,Custom Tag
 ItemNeckAccessories,ElectronicTag,Electronic Tag
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
@@ -1111,7 +1111,7 @@ ItemHood,CanvasHood,Canvas Hood
 ItemHood,Pantyhose,Pantyhose
 ItemHood,GP9GasMask,GP-9 Gas Mask
 ItemHood,OpenFaceHood,Open Face Hood
-ItemHood,Gwenhood,Gwen Hood
+ItemHood,GwenHood,Gwen Hood
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
