@@ -38,24 +38,35 @@ const ChatRoomArousalMsg_Chance = {
 	"Walk" : 0.33,
 	"StruggleFail" : 0.4,
 	"StruggleAction" : 0.05,
+	"Gag" : 0,
 	} 
 const ChatRoomArousalMsg_ChanceScaling = {
 	"Kneel" : 0.8,
 	"Walk" : 0.67,
 	"StruggleFail" : 0.4,
 	"StruggleAction" : 0.2,
+	"Gag" : 0,
 	} 
 const ChatRoomArousalMsg_ChanceVibeMod = {
 	"Kneel" : 0.0,
 	"Walk" : 0.8,
 	"StruggleFail" : 0.6,
 	"StruggleAction" : 0.3,
+	"Gag" : 0,
 	} 
 const ChatRoomArousalMsg_ChanceInflationMod = {
 	"Kneel" : 0.1,
 	"Walk" : 0.5,
 	"StruggleFail" : 0.4,
 	"StruggleAction" : 0.2,
+	"Gag" : 0,
+	} 
+const ChatRoomArousalMsg_ChanceGagMod = {
+	"Kneel" : 0,
+	"Walk" : 0,
+	"StruggleFail" : 0,
+	"StruggleAction" : 0,
+	"Gag" : 0.1,
 	} 
 var ChatRoomPinkFlashTime = 0;
 var ChatRoomHideIconState = 0;
@@ -752,11 +763,13 @@ function ChatRoomStimulationMessage(Context) {
 		var modArousal = 0
 		var modVibe = 0
 		var modInflation = 0
+		var modGag = 0
 		
 		if (ChatRoomArousalMsg_Chance[Context]) modBase = ChatRoomArousalMsg_Chance[Context]
 		if (ChatRoomArousalMsg_ChanceScaling[Context]) modArousal = ChatRoomArousalMsg_ChanceScaling[Context]
 		if (ChatRoomArousalMsg_ChanceVibeMod[Context]) modVibe = ChatRoomArousalMsg_ChanceVibeMod[Context]
 		if (ChatRoomArousalMsg_ChanceInflationMod[Context]) modInflation = ChatRoomArousalMsg_ChanceInflationMod[Context]
+		if (ChatRoomArousalMsg_ChanceGagMod[Context]) modGag = ChatRoomArousalMsg_ChanceGagMod[Context]
 
 		// Decide the trigger message
 		var trigPriority = 0.0
@@ -826,6 +839,18 @@ function ChatRoomStimulationMessage(Context) {
 						arousalAmount += 1
 					}
 				}
+				
+				
+				if (InventoryItemHasEffect(C.Appearance[A], "GagTotal", true) || InventoryItemHasEffect(C.Appearance[A], "GagTotal2", true)) {
+					if (trigChance == 0 && modGag > 0) trigChance = modBase // Some things are not affected by vibration, like kneeling
+					trigChance += modGag
+					
+					
+					if (trigChance > 0) {
+						arousalAmount += 12
+					    trigMsgTemp = "Gag"
+					}
+				}
 					
 				if (trigMsgTemp != "" && Math.random() < trigChance && trigChance >= trigPriority) {
 					trigPriority = trigChance
@@ -838,7 +863,7 @@ function ChatRoomStimulationMessage(Context) {
 		// Now we have a trigger message, hopefully!
 		if (trigMsg != "") {
 			// Increase player arousal to the zone
-			if (!Player.IsEdged() && Player.ArousalSettings && Player.ArousalSettings.Progress && Player.ArousalSettings.Progress < 70 - arousalAmount)
+			if (!Player.IsEdged() && Player.ArousalSettings && Player.ArousalSettings.Progress && Player.ArousalSettings.Progress < 70 - arousalAmount && trigMsgTemp != "Gag")
 				ActivityEffectFlat(Player, Player, arousalAmount, trigGroup, 1)
 	
 			if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
@@ -1259,6 +1284,7 @@ function ChatRoomSendChat() {
 			if (ChatRoomTargetMemberNumber == null) {
 				// Regular chat
 				ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });
+				ChatRoomStimulationMessage("Gag");
 			} else {
 				// The whispers get sent to the server and shown on the client directly
 				ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Target: ChatRoomTargetMemberNumber });
