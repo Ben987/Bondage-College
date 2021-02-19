@@ -289,23 +289,26 @@ function LoginValideBuyGroups() {
  * @returns {void} Nothing
  */
 function LoginValidateArrays() {
+	let update = false;
 	var CleanBlockItems = AssetCleanArray(Player.BlockItems);
 	if (CleanBlockItems.length != Player.BlockItems.length) {
 		Player.BlockItems = CleanBlockItems;
-		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
+		update = true;
 	}
 
 	var CleanLimitedItems = AssetCleanArray(Player.LimitedItems);
 	if (CleanLimitedItems.length != Player.LimitedItems.length) {
 		Player.LimitedItems = CleanLimitedItems;
-		ServerSend("AccountUpdate", { LimitedItems: Player.LimitedItems });
+		update = true;
 	}
 
 	var CleanHiddenItems = AssetCleanArray(Player.HiddenItems);
 	if (CleanHiddenItems.length != Player.HiddenItems.length) {
 		Player.HiddenItems = CleanHiddenItems;
-		ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems });
+		update = true;
 	}
+	if (update)
+		ServerPlayerBlockItemsSync();
 }
 
 /**
@@ -317,7 +320,7 @@ function LoginDifficulty() {
 	// If Extreme mode, the player cannot control her blocked items
 	if (Player.GetDifficulty() >= 3) {
 		LoginExtremeItemSettings();
-		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems, HiddenItems: Player.HiddenItems });
+		ServerPlayerBlockItemsSync();
 	}
 }
 
