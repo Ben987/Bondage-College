@@ -101,7 +101,7 @@ function InventoryItemVulvaFuturisticVibratorGetMode(Item, Increase) {
 	return (Increase ? ((Item.Property.Mode == VibratorMode.OFF) ? VibratorMode.LOW : VibratorMode.MAXIMUM ): VibratorMode.LOW);
 }
 
-function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option) {
+function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option, Source) {
 	var OldIntensity = Item.Property.Intensity;
 	VibratorModeSetProperty(Item, Option.Property);
 	CharacterRefresh(C);
@@ -119,7 +119,7 @@ function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option) {
 			Message = "Vibe" + Direction + "To" + Item.Property.Intensity;
 		} else {
 			Message = "VibeModeChange";
-			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+			Dictionary.push({ Tag: "SourceCharacter", Text: (Source) ? Source.Name : Player.Name, MemberNumber: (Source) ? Source.MemberNumber : Player.MemberNumber });
 		}
 
 		Dictionary.push({ Automatic: true });
