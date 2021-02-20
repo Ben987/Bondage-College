@@ -3610,7 +3610,7 @@ var AssetFemale3DCG = [
 			{ Name: "HeavyDutyEarPlugs", Value: 30, Difficulty: 50, Time: 5, Visible: false, Effect: ["DeafHeavy"] },
 			{ Name: "HeadphoneEarPlugs", Value: 50, Difficulty: 50, Time: 5, Visible: false, Effect: [""], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Off", "Light", "Heavy", "NoiseCancelling"], Extended: true },
 			{ Name: "BluetoothEarbuds", Value: 50, Difficulty: 50, Time: 5, Visible: false, Effect: [""], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Off", "Light", "Heavy", "NoiseCancelling"], Extended: true, AlwaysExtend: true },
-			{ Name: "FuturisticEarphones", Priority: 54, Category: ["SciFi"], Value: 60, Difficulty: 50, Top: 20, Time: 12, DefaultColor: ["Default", "#50913C"], AllowLock: true, DrawLocks: false, Random: false, Effect: [""], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Off", "Light", "Heavy", "NoiseCancelling"], Extended: true, AlwaysExtend: true, HasType: false,
+			{ Name: "FuturisticEarphones", Priority: 8, Category: ["SciFi"], Value: 60, Difficulty: 50, Top: 20, Time: 12, DefaultColor: ["Default", "#50913C"], AllowLock: true, DrawLocks: false, Random: false, Effect: [""], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Off", "Light", "Heavy", "NoiseCancelling"], Extended: true, AlwaysExtend: true, HasType: false,
 				Layer: [
 					{ Name: "Band" },
 					{ Name: "Display" },
