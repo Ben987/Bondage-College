@@ -2666,9 +2666,6 @@ function ChatRoomPhoto(Left, Top, Width, Height, Characters) {
 			CharacterRefresh(C, false);
 		}
 	}
-	// Apply icon hiding
-	const CurrIconState = ChatRoomHideIconState;
-	ChatRoomHideIconState = 3;
 
 	// Take the photo
 	CommonTakePhoto(Left, Top, Width, Height);
@@ -2679,5 +2676,4 @@ function ChatRoomPhoto(Left, Top, Width, Height, Characters) {
 		C.Appearance.find(A => A.Asset.Group.Name == "Emoticon").Property.Expression = "Afk";
 		CharacterRefresh(C, false);
 	}
-	ChatRoomHideIconState = CurrIconState;
 }
