@@ -1726,33 +1726,22 @@ function ChatRoomSync(data) {
 			} else return;
 		}
 
-		// If someone enters or leaves the chat room only that character must be updated
-		if (!Joining && ChatRoomCharacter && ChatRoomData && (ChatRoomData.Name == data.Name)) {
-			if (ChatRoomCharacter.length == data.Character.length + 1) {
-				ChatRoomCharacter = ChatRoomCharacter.filter(A => data.Character.some(B => A.MemberNumber == B.MemberNumber));
-				ChatRoomData = data;
-				
-				return;
-			}
-			else if (ChatRoomCharacter.length == data.Character.length - 1) {
-				let C = CharacterLoadOnline(data.Character[data.Character.length - 1], data.SourceMemberNumber);
-				ChatRoomCharacter.push(C);
-				ChatRoomData = data;
-				NotificationsChatRoomJoin(C);
-
-				if (ChatRoomLeashList.indexOf(data.SourceMemberNumber) >= 0) {
+		// Load the characters
+		const OldChatRoomCharacter = ChatRoomCharacter || [];
+		ChatRoomCharacter = [];
+		for (let C = 0; C < data.Character.length; C++) {
+			const Char = CharacterLoadOnline(data.Character[C], data.SourceMemberNumber);
+			ChatRoomCharacter.push(Char);
+			// Special cases when someone joins the room
+			if (!Joining && !OldChatRoomCharacter.includes(Char)) {
+				console.log("Join: ", Char);
+				NotificationsChatRoomJoin(Char);
+				if (ChatRoomLeashList.includes(Char.MemberNumber)) {
 					// Ping to make sure they are still leashed
-					ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: data.SourceMemberNumber });
+					ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: Char.MemberNumber });
 				}
-				
-				return;
 			}
 		}
-
-		// Load the characters
-		ChatRoomCharacter = [];
-		for (let C = 0; C < data.Character.length; C++)
-			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C], data.SourceMemberNumber));
 
 		// Keeps a copy of the previous version
 		ChatRoomData = data;
