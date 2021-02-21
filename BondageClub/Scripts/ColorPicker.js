@@ -105,26 +105,15 @@ function ColorPickerEndPick() {
  * @returns {{X: number, Y: number}} - Coordinates of the click/touch event on the canvas
  */
 function ColorPickerGetCoordinates(Event) {
-    var X, Y;
     if (Event.changedTouches) {
         // Mobile
         var Touch = Event.changedTouches[0];
-        X = Touch.clientX;
-        Y = Touch.clientY;
+        TouchMove(Touch);
     } else {
         // PC
-        X = Event.clientX;
-        Y = Event.clientY;
+        MouseMove(Event);
     }
 
-    var rect = document.getElementById("MainCanvas").getBoundingClientRect();
-	if (document.body.clientWidth <= document.body.clientHeight * 2) {
-		MouseX = Math.round((X - rect.left) * 2000 / document.body.clientWidth);
-		MouseY = Math.round((Y - rect.top) * 2000 / document.body.clientWidth);
-	} else {
-		MouseX = Math.round((X - rect.left) * 1000 / document.body.clientHeight);
-		MouseY = Math.round((Y - rect.top) * 1000 / document.body.clientHeight);
-    }
     return { X: MouseX, Y: MouseY };
 }
 

@@ -127,7 +127,8 @@ const AssetType = {
 	DrawLocks: "Boolean",
 	AllowExpression: "[String]",
 	MirrorExpression: "String",
-	Layer: "[Object]",
+	FixedPosition: "Boolean",
+	Layer: "[Object]"
 };
 
 const AssetLayerType = {
@@ -152,6 +153,7 @@ const AssetLayerType = {
 	MaxOpacity: "Number",
 	LockLayer: "Boolean",
 	MirrorExpression: "String",
+	HideForPose: "[String]",
 	AllowModuleTypes: "[String]",
 };
 

@@ -5,10 +5,10 @@ var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
 var LoginThankYouList = ["Abby", "Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "EliseBlackthorn",
-						 "Epona", "Escurse", "FanRunner", "Fluffythewhat", "Greendragon", "Jin", "KamiKaze", "KBgamer", "Kimuriel", "Longwave",
-						 "Michal", "Michel", "Mike", "Mindtie", "Misa", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Ramtam",
-						 "Rashiash", "Ray", "Rika", "Rutherford", "Ryner", "Samuel", "Sayari", "SeraDenoir", "Shadow", "Somononon", 
-						 "Stephanie", "Tam", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
+						 "Epona", "Escurse", "FanRunner", "Greendragon", "KamiKaze", "KBgamer", "Kimuriel", "Longwave", "Michal", "Michel", 
+						 "Mike", "Mindtie", "Misa", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Ramtam", "Rashiash", "Ray", 
+						 "Rika", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "Somononon", "Stephanie", "Tam", "Trent", 
+						 "Troubadix", "William", "Xepherio", "Yurei", "Znarf"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -451,7 +451,7 @@ function LoginResponse(C) {
 			LoginDifficulty();
 
 			// Loads the player character model and data
-			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
+			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber);
 			InventoryLoad(Player, C.Inventory);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);

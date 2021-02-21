@@ -1,4 +1,6 @@
 PlayerGagged,,,(She looks at your gag and giggles.),,
+0,,,(A girl is restrained in the room you're supposed to clean.)  Excuse me maid?  I think I'm stuck.,,
+0,,(Check the room.),,DialogLeave(),
 2000,,,"(A club member is restrained in your room.  She struggles in her cuffs.)  Hello there, I think I got in trouble.",,CurrentCharacter.IsRestrained()
 2000,,,"(A club member restrained a maid in your room.)  Hello there.  As you can see, this maid seems to enjoy trouble.",,!CurrentCharacter.IsRestrained()
 2000,2010,What's going on here?,"To make a long story short: I was exploring this dungeon, a maid came in, she locked these cuffs on me, and here I am now.",,CurrentCharacter.IsRestrained()

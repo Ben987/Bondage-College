@@ -358,19 +358,19 @@ function DialogPrerequisite(D) {
 function DialogHasKey(C, Item) {
 	if (InventoryGetItemProperty(Item, "SelfUnlock") == false && (!Player.CanInteract() || C.ID == 0)) return false;
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
-	if (InventoryGetLock(Item) && InventoryGetLock(Item).Asset.ExclusiveUnlock && ((!Item.Property.MemberNumberListKeys && Item.Property.LockMemberNumber != Player.MemberNumber) || (Item.Property.MemberNumberListKeys && CommonConvertStringToArray("" + Item.Property.MemberNumberListKeys).indexOf(Player.MemberNumber) < 0))) return false;
+	const lock = InventoryGetLock(Item);
 	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && !Item.Property.LockedBy.startsWith("Owner")) return true;
+	if (lock && lock.Asset.ExclusiveUnlock && ((!Item.Property.MemberNumberListKeys && Item.Property.LockMemberNumber != Player.MemberNumber) || (Item.Property.MemberNumberListKeys && CommonConvertStringToArray("" + Item.Property.MemberNumberListKeys).indexOf(Player.MemberNumber) < 0))) return false;
 
-    if (InventoryGetLock(Item).Asset.ExclusiveUnlock) return true;
+    if (lock && lock.Asset.ExclusiveUnlock) return true;
 
 	var UnlockName = "Unlock-" + Item.Asset.Name;
-	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
+	if ((Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
 	for (let I = 0; I < Player.Inventory.length; I++)
 		if (InventoryItemHasEffect(Player.Inventory[I], UnlockName)) {
-			var Lock = InventoryGetLock(Item);
-			if (Lock != null) {
-				if (Lock.Asset.LoverOnly && !C.IsLoverOfPlayer()) return false;
-				if (Lock.Asset.OwnerOnly && !C.IsOwnedByPlayer()) return false;
+			if (lock != null) {
+				if (lock.Asset.LoverOnly && !C.IsLoverOfPlayer()) return false;
+				if (lock.Asset.OwnerOnly && !C.IsOwnedByPlayer()) return false;
 				return true;
 			} else return true;
 		}
@@ -429,7 +429,7 @@ function DialogLeave() {
 	if (CurrentCharacter) {
 		if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber) {
 			CharacterAppearanceForceUpCharacter = -1;
-			CharacterAppearanceSetHeightModifiers(CurrentCharacter);
+			CharacterRefresh(CurrentCharacter, false);
 		}
 		CurrentCharacter.FocusGroup = null;
 	}
@@ -1193,7 +1193,7 @@ function DialogMenuButtonClick() {
 			// Exit Icon - Go back to the character dialog
 			if (DialogMenuButton[I] == "Exit") {
 				if (DialogItemPermissionMode) ChatRoomCharacterUpdate(Player);
-				if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) ChatRoomStimulationMessage("StruggleFail")
+				if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0) && (DialogProgress > 0)) ChatRoomStimulationMessage("StruggleFail")
 				DialogLeaveItemMenu();
 				return;
 			}
@@ -1531,7 +1531,7 @@ function DialogClick() {
 	// If the user clicked anywhere outside the current character item zones, ensure the position is corrected
 	if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber && ((MouseX < 500) || (MouseX > 1000) || (CurrentCharacter.FocusGroup == null))) {
 		CharacterAppearanceForceUpCharacter = -1;
-		CharacterAppearanceSetHeightModifiers(CurrentCharacter);
+		CharacterRefresh(CurrentCharacter, false);
 	}
 
 	// In activity mode, we check if the user clicked on an activity box
@@ -1871,7 +1871,7 @@ function DialogDrawStruggleProgress(C) {
 		// Reset the the character's position
 		if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
 			CharacterAppearanceForceUpCharacter = -1;
-			CharacterAppearanceSetHeightModifiers(C);
+			CharacterRefresh(C, false);
 		}
 
 		// Rebuilds the menu
@@ -1913,13 +1913,13 @@ function DialogLockPickClick(C) {
 								DialogLockPickProgressCurrentTries += 1
 							}
 						} else {
+							DialogLockPickTotalTries += 1
 							// There is a chance we false set
-							if (Math.random() < false_set_chance) {
+							if (Math.random() < false_set_chance && DialogLockPickImpossiblePins.filter(x => x==P).length == 0) {
 								DialogLockPickSetFalse[P] = true
 							} else if (DialogLockPickSetFalse[P] == false) {
 							// Otherwise: fail
 								DialogLockPickProgressCurrentTries += 1
-								DialogLockPickTotalTries += 1
 							}
 						}
 						if (DialogLockPickProgressCurrentTries < DialogLockPickProgressMaxTries) {
@@ -2036,6 +2036,7 @@ function DialogDrawLockpickProgress(C) {
 
 	DrawText(DialogFindPlayer("LockpickIntro"), X, 800, "white");
 	DrawText(DialogFindPlayer("LockpickIntro2"), X, 850, "white");
+	DrawText(DialogFindPlayer("LockpickIntro3"), X, 900, "white");
 
 	if (DialogLockPickSuccessTime != 0) {
 		if (CurrentTime > DialogLockPickSuccessTime) {
@@ -2045,6 +2046,7 @@ function DialogDrawLockpickProgress(C) {
 				var item = InventoryGet(C, C.FocusGroup.Name)
 				if (item) {
 					InventoryUnlock(C, item)
+					if (CurrentScreen == "ChatRoom") ChatRoomPublishAction(C, item, null, C.ID !== 0, "ActionPick");
 				}
 			}
 			SkillProgress("LockPicking", DialogLockPickProgressSkill);
@@ -2057,11 +2059,6 @@ function DialogDrawLockpickProgress(C) {
 				
 			} else {
 				DialogLeaveItemMenu();
-			}
-			if (CurrentScreen == "ChatRoom" && Player.FocusGroup) {
-				var item = InventoryGet(C, Player.FocusGroup.Name)
-				if (item)
-					ChatRoomPublishAction(C, item, null, true, "ActionPick");
 			}
 		}
 	} else {
@@ -2368,7 +2365,7 @@ function DialogClickExpressionMenu() {
 	if (MouseIn(20, 50, 90, 90)) {
 		DialogFacialExpressions.forEach(FE => {
 			let Color = null;
-			if (FE.Appearance.Asset.Group.AllowColorize && FE.Group !== "Eyes") Color = "Default";
+			if (FE.Appearance.Asset.Group.AllowColorize && FE.Group !== "Eyes" && FE.Group !== "Mouth") Color = "Default";
 			CharacterSetFacialExpression(Player, FE.Group, null, null, Color);
 			FE.CurrentExpression = null;
 		});

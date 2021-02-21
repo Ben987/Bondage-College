@@ -67,7 +67,17 @@ const ModularItemChatSetting = {
 	PER_OPTION: "perOption",
 };
 
+/**
+ * How many modules/options to show per page of the modular item screen
+ * @const {number}
+ */
 const ModularItemsPerPage = 8;
+
+/**
+ * Memoized requirements check function
+ * @type {function(Character, ExtendedItemOption): string}
+ */
+const ModularItemRequirementCheckMessageMemo = CommonMemoize(ModularItemRequirementMessageCheck);
 
 /**
  * Registers a modular extended item. This automatically creates the item's load, draw and click functions. It will
@@ -236,8 +246,8 @@ function ModularItemMapOptionToButtonDefinition(option, i, module, { asset, dial
 	const optionName = `${module.Key}${i}`;
 	let color = "#fff";
 	if (DialogFocusItem.Property.Type && DialogFocusItem.Property.Type.includes(optionName)) color = "#888";
-	else if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) color = "pink";
-	else if (ExtendedItemRequirementCheckMessageMemo(option, C.ID === 0)) color = "pink";
+	// else if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) color = "pink";
+	else if (ModularItemRequirementCheckMessageMemo(option)) color = "pink";
 	return [
 		`${AssetGetInventoryPath(asset)}/${optionName}.png`,
 		`${dialogOptionPrefix}${optionName}`,
@@ -296,6 +306,7 @@ function ModularItemCreateClickBaseFunction(data) {
 			{ paginate, positions },
 			() => {
 				ExtendedItemExit();
+				ModularItemRequirementCheckMessageMemo.clearCache();
 				DialogFocusItem = null;
 			},
 			i => {
@@ -449,7 +460,7 @@ function ModularItemSetType(module, index, data) {
 	const C = CharacterGetCurrent();
 	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 	const option = module.Options[index];
-	const requirementMessage = ExtendedItemRequirementCheckMessage(option, C.ID === 0);
+	const requirementMessage = ModularItemRequirementMessageCheck(option);
 	if (requirementMessage) {
 		DialogExtendedMessage = requirementMessage;
 		return;
@@ -533,6 +544,22 @@ function ModularItemGenerateAllowType({ modules }, predicate) {
 	});
 	if (predicate) return allowType.filter(predicate);
 	else return allowType;
+}
+
+/**
+ * Checks whether the given option can be selected on the currently selected modular item
+ * @param {ExtendedItemOption} option - The selected option
+ * @returns {string|null} - Returns a string user message if the option's requirements have not been met, otherwise
+ * returns nothing
+ */
+function ModularItemRequirementMessageCheck(option) {
+	const C = CharacterGetCurrent();
+	// Lock check - cannot change type if you can't unlock the item
+	if (DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+		return DialogFindPlayer("CantChangeWhileLocked");
+	} else {
+		return ExtendedItemRequirementCheckMessage(option, C.ID === 0);
+	}
 }
 
 /**

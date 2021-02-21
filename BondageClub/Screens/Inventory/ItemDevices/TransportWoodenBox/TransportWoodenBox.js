@@ -22,6 +22,10 @@ function InventoryItemDevicesTransportWoodenBoxSetOpacity(property, opacity) {
 	});
 }
 
+function InventoryItemDevicesTransportWoodenBoxExit() {
+	InventoryItemDevicesWoodenBoxExit();
+}
+
 function AssetsItemDevicesTransportWoodenBoxAfterDraw(options) {
 	AssetsItemDevicesWoodenBoxAfterDraw(options);
 }

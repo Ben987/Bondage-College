@@ -111,9 +111,13 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 function InventoryLoad(C, Inventory) {
 	if (Inventory == null) return;
 	if (typeof Inventory === "string") {
-		var Inv = JSON.parse(LZString.decompressFromUTF16(Inventory));
-		for (let I = 0; I < Inv.length; I++)
-			InventoryAdd(C, Inv[I][0], Inv[I][1], false);
+		try {
+			var Inv = JSON.parse(LZString.decompressFromUTF16(Inventory));
+			for (let I = 0; I < Inv.length; I++)
+				InventoryAdd(C, Inv[I][0], Inv[I][1], false);
+		} catch(err) {
+			console.log("Error while loading compressed inventory, no inventory loaded.");
+		}
 	}
 	if (typeof Inventory === "object")
 		for (let I = 0; I < Inventory.length; I++)
@@ -157,7 +161,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 		case "NotKneelingSpread": return C.Pose.includes("KneelingSpread") ? "MustStandUpFirst" : "";
 		case "NotChaste": return C.Effect.includes("Chaste") ? "RemoveChastityFirst" : "";
 		case "NotChained": return C.Effect.includes("IsChained") ? "RemoveChainForItem" : "";
-		case "NoFeetSpreader": return InventoryIsItemInList(C, "ItemFeet", ["SpreaderMetal", "SpreaderVibratingDildoBar", "SpreaderDildoBar"]) ? "CannotBeUsedWithFeetSpreader" : "";
+		case "NoFeetSpreader": return InventoryIsItemInList(C, "ItemFeet", ["SpreaderMetal", "SpreaderVibratingDildoBar", "SpreaderDildoBar", "FloorShackles"]) ? "CannotBeUsedWithFeetSpreader" : "";
 		case "NotShackled": return C.Effect.includes("Shackled") ? "RemoveShacklesFirst" : "";
 		case "Collared": return (InventoryGet(C, "ItemNeck") == null) ? "MustCollaredFirst" : "";
 		case "CannotHaveWand": return InventoryIsItemInList(C, "ItemArms", ["FullLatexSuit"]) ? "CannotHaveWand" : "";
@@ -169,7 +173,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 		case "CuffedFeet": return !C.Effect.includes("CuffedFeet") ? "MustBeFeetCuffedFirst" : "";
 		case "NoOuterClothes": return InventoryHasItemInAnyGroup(C, ["Cloth", "ClothLower"]) ? "RemoveClothesForItem" : "";
 		case "NoMaidTray": return InventoryIsItemInList(C, "ItemMisc", ["WoodenMaidTray", "WoodenMaidTrayFull"]) ? "CannotBeUsedWhileServingDrinks" : "";
-        case "CanBeCeilingTethered": return InventoryHasItemInAnyGroup(C, ["ItemArms", "ItemTorso", "ItemNeck", "ItemPelvis"]) ? "" : "AddItemsToUse";
+		case "CanBeCeilingTethered": return InventoryHasItemInAnyGroup(C, ["ItemArms", "ItemTorso", "ItemPelvis"]) ? "" : "AddItemsToUse";
 
 		// Checks for torso access based on clothes
 		case "AccessTorso": return !InventoryDoesItemExposeGroup(C, "Cloth", "ItemTorso") ? "RemoveClothesForItem" : "";
@@ -191,7 +195,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 		case "NakedHands": return InventoryHasItemInAnyGroup(C, ["ItemHands", "Gloves"]) ? "RemoveClothesForItem" : "";
 
 		// Toe Tied
-		case "ToeTied": return InventoryIsItemInList(C, "ItemFeet", ["SpreaderMetal", "SpreaderVibratingDildoBar", "SpreaderDildoBar"])
+		case "ToeTied": return InventoryIsItemInList(C, "ItemFeet", ["SpreaderMetal", "SpreaderVibratingDildoBar", "SpreaderDildoBar", "FloorShackles"])
 			|| InventoryIsItemInList(C, "ItemLegs", ["WoodenHorse"])
 			|| InventoryIsItemInList(C, "ItemDevices", ["OneBarPrison", "SaddleStand"])
 			? "LegsCannotClose" : "";
@@ -755,10 +759,6 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				if (Item.Property == null) Item.Property = {};
 				if (Item.Property.Effect == null) Item.Property.Effect = [];
 				if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
-				if (Item.Property.Effect.indexOf("MemberNumberList") < 0) {
-					if (!Item.Property) Item.Property = {}
-					if (!Item.Property.MemberNumberList) Item.Property.MemberNumberList = "" + MemberNumber
-				}
 				
 				if (!Item.Property.MemberNumberListKeys && Lock.Asset.Name == "HighSecurityPadlock") Item.Property.MemberNumberListKeys = "" + MemberNumber
 				Item.Property.LockedBy = Lock.Asset.Name;
@@ -841,6 +841,7 @@ function InventoryConfiscateRemote() {
 	InventoryDelete(Player, "VibratorRemote", "ItemVulva");
 	InventoryDelete(Player, "VibratorRemote", "ItemNipples");
 	InventoryDelete(Player, "LoversVibratorRemote", "ItemVulva");
+	InventoryDelete(Player, "SpankingToysVibeRemote", "ItemHands");
 }
 
 /**
