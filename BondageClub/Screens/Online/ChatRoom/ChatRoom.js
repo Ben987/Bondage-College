@@ -1734,7 +1734,6 @@ function ChatRoomSync(data) {
 			ChatRoomCharacter.push(Char);
 			// Special cases when someone joins the room
 			if (!Joining && !OldChatRoomCharacter.includes(Char)) {
-				console.log("Join: ", Char);
 				NotificationsChatRoomJoin(Char);
 				if (ChatRoomLeashList.includes(Char.MemberNumber)) {
 					// Ping to make sure they are still leashed
