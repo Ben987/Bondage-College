@@ -569,22 +569,16 @@ function CommonTakePhoto(Left, Top, Width, Height) {
 	DrawProcess();
 
 	// Capture screen as image URL
-	let ImgData = document.getElementById("MainCanvas").getContext('2d').getImageData(Left, Top, Width, Height);
+	const ImgData = document.getElementById("MainCanvas").getContext('2d').getImageData(Left, Top, Width, Height);
 	let PhotoCanvas = document.createElement('canvas');
 	PhotoCanvas.width = Width;
 	PhotoCanvas.height = Height;
 	PhotoCanvas.getContext('2d').putImageData(ImgData, 0, 0);
-	let PhotoImg = PhotoCanvas.toDataURL("image/png");
+	const PhotoImg = PhotoCanvas.toDataURL("image/png");
 
 	// Open the image in a new window
-	if (CommonGetBrowser().Name === "Chrome") {
-		// Chrome does not allow loading data URLs in the top frame
-		let newWindow = window.open('about:blank', '_blank');
-		newWindow.document.write("<img src='" + PhotoImg + "' alt='from canvas'/>");
-	}
-	else {
-		window.open(PhotoImg);
-	}
-	
+	let newWindow = window.open('about:blank', '_blank');
+	newWindow.document.write("<img src='" + PhotoImg + "' alt='from canvas'/>");
+
 	CommonPhotoMode = false;
 }
