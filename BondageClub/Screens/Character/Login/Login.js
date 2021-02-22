@@ -5,10 +5,10 @@ var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
 var LoginThankYouList = ["Abby", "Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "EliseBlackthorn",
-						 "Epona", "Escurse", "FanRunner", "Fluffythewhat", "Greendragon", "Jin", "KamiKaze", "KBgamer", "Kimuriel", "Longwave",
-						 "Michal", "Michel", "Mike", "Mindtie", "Misa", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Ramtam",
-						 "Rashiash", "Ray", "Rika", "Rutherford", "Ryner", "Samuel", "Sayari", "SeraDenoir", "Shadow", "Somononon", 
-						 "Stephanie", "Tam", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
+						 "Epona", "Escurse", "FanRunner", "Greendragon", "KamiKaze", "KBgamer", "Kimuriel", "Longwave", "Michal", "Michel", 
+						 "Mike", "Mindtie", "Misa", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Ramtam", "Rashiash", "Ray", 
+						 "Rika", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "Somononon", "Stephanie", "Tam", "Trent", 
+						 "Troubadix", "William", "Xepherio", "Yurei", "Znarf"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -388,13 +388,15 @@ function LoginResponse(C) {
 			WardrobeFixLength();
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
-			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
-			Player.LimitedItems = ((C.LimitedItems == null) || !Array.isArray(C.LimitedItems)) ? [] : C.LimitedItems;
+			Player.BlockItems = Array.isArray(C.BlockItems) ? C.BlockItems :
+				typeof C.BlockItems === "object" && C.BlockItems ? CommonUnpackItemArray(C.BlockItems) : [];
+			Player.LimitedItems = Array.isArray(C.LimitedItems) ? C.LimitedItems :
+				typeof C.LimitedItems === "object" && C.LimitedItems ? CommonUnpackItemArray(C.LimitedItems) : [];
 			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
 			Player.Difficulty = C.Difficulty;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
-			
+
 			// Load the last chat room
 			Player.LastChatRoom = C.LastChatRoom;
 			Player.LastChatRoomBG = C.LastChatRoomBG;
@@ -451,7 +453,7 @@ function LoginResponse(C) {
 			LoginDifficulty();
 
 			// Loads the player character model and data
-			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
+			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber);
 			InventoryLoad(Player, C.Inventory);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);

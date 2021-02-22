@@ -273,6 +273,7 @@ function ExtendedItemSetType(C, Options, Option, IsCloth) {
 			// If we're in a chatroom, call the item's publish function to publish a message to the chatroom
 			CommonCallFunctionByName(FunctionPrefix + "PublishAction", C, Option, PreviousOption);
 		} else {
+			CommonCallFunctionByName(FunctionPrefix + "Exit");
 			DialogFocusItem = null;
 			if (C.ID === 0) {
 				// Player is using the item on herself
@@ -353,7 +354,7 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 		return DialogText;
 	} else {
 		const OldEffect= DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Effect;
-		if (OldEffect && OldEffect.includes("Lock") && Option.Property.AllowLock === false) {
+		if (OldEffect && OldEffect.includes("Lock") && Option.Property && Option.Property.AllowLock === false) {
 			DialogExtendedMessage = DialogFindPlayer("ExtendedItemUnlockBeforeChange");
 			return DialogExtendedMessage;
 		}

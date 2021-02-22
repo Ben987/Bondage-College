@@ -233,6 +233,33 @@ function VibratorModeClick(Options, Y) {
 }
 
 /**
+ * Gets a vibrator mode from VibratorModeOptions
+ * @param {VibratorMode} ModeName - The name of the mode from VibratorMode, e.g. VibratorMode.OFF
+ * @returns {ExtendedItemOption} - The option gotten
+ */
+function VibratorModeGetOption(ModeName) {
+	var result = null;
+	
+	[VibratorModeSet.STANDARD, VibratorModeSet.ADVANCED].some((OptionName) => {
+		var OptionGroup = VibratorModeOptions[OptionName];
+		var Handled = OptionGroup.some((Option, I) => {
+			if ((Option.Property != null) && (Option.Property.Mode == ModeName)) {
+				result = Option
+				return true
+			}
+			return false;
+		});
+		return Handled;
+	});
+	
+	if (result) return result	
+	return VibratorModeOptions.Standard[0]
+	
+}
+
+
+
+/**
  * Sets a new mode for a vibrating item and publishes a corresponding chatroom message
  * @param {ExtendedItemOption} Option - The extended item option defining the new mode to be set
  * @returns {void} - Nothing
@@ -261,6 +288,8 @@ function VibratorModeSetMode(Option) {
 
 	ChatRoomPublishCustomAction(Message, false, Dictionary);
 }
+
+
 
 /**
  * Helper function to set dynamic properties on an item

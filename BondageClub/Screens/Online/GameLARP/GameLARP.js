@@ -151,10 +151,11 @@ function GameLARPRunProcess() {
 			var X = 15;
 			var Y = 110;
 			for (let A = GameLARPInventoryOffset; (A < GameLARPInventory.length) && (A < GameLARPInventoryOffset + 12); A++) {
-				const Item = GameLARPInventory[A];
+				const asset = GameLARPInventory[A];
 				const Hover = MouseIn(X, Y, 225, 275) && !CommonIsMobile;
-				const Hidden = CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name);
-				if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.Description, { Background: Hover ? "cyan" : "#fff" });
+				const Hidden = CharacterAppearanceItemIsHidden(asset.Name, asset.Group.Name);
+				if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", asset.Description, { Background: Hover ? "cyan" : "#fff" });
+				else DrawAssetPreview(X, Y, asset, {Hover: true});
 
 				X = X + 250;
 				if (X > 800) {

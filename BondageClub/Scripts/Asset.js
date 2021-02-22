@@ -81,7 +81,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 }
 
 // Adds a new asset to the main list
-function AssetAdd(NewAsset) {
+function AssetAdd(NewAsset, ExtendedConfig) {
 	var A = {
 		Name: NewAsset.Name,
 		Description: NewAsset.Name,
@@ -174,6 +174,10 @@ function AssetAdd(NewAsset) {
 		OverrideHeight: NewAsset.OverrideHeight,
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose :
 			Array.isArray(AssetCurrentGroup.FreezeActivePose) ? AssetCurrentGroup.FreezeActivePose : [],
+		DrawLocks: typeof NewAsset.DrawLocks === 'boolean' ? NewAsset.DrawLocks : true,
+		AllowExpression: NewAsset.AllowExpression,
+		MirrorExpression: NewAsset.MirrorExpression,
+		FixedPosition: typeof NewAsset.FixedPosition === 'boolean' ? NewAsset.FixedPosition : false,
 	}
 	if (A.MinOpacity > A.Opacity) A.MinOpacity = A.Opacity;
 	if (A.MaxOpacity < A.Opacity) A.MaxOpacity = A.Opacity;
@@ -182,6 +186,27 @@ function AssetAdd(NewAsset) {
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
+	if (A.Extended && ExtendedConfig) AssetBuildExtended(A, ExtendedConfig);
+}
+
+/**
+ * Constructs extended item functions for an asset, if extended item configuration exists for the asset.
+ * @param {Asset} A - The asset to configure
+ * @param {ExtendedItemConfig} ExtendedConfig - The extended item configuration object for the asset's family
+ * @returns {void} - Nothing
+ */
+function AssetBuildExtended(A, ExtendedConfig) {
+	const GroupConfig = ExtendedConfig[AssetCurrentGroup.Name];
+	if (GroupConfig) {
+		const AssetConfig = GroupConfig[A.Name];
+		if (AssetConfig) {
+			switch (AssetConfig.Archetype) {
+				case ExtendedArchetype.MODULAR:
+					ModularItemRegister(A, AssetConfig.Config);
+					break;
+			}
+		}
+	}
 }
 
 /**
@@ -226,6 +251,10 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		Opacity: typeof Layer.Opacity === "number" ? AssetParseOpacity(Layer.Opacity) : 1,
 		MinOpacity: typeof Layer.MinOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MinOpacity,
 		MaxOpacity: typeof Layer.MaxOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MaxOpacity,
+		LockLayer: typeof Layer.LockLayer === "boolean" ? Layer.LockLayer : false,
+		MirrorExpression: Layer.MirrorExpression,
+		HideForPose: Array.isArray(Layer.HideForPose) ? Layer.HideForPose : [],
+		AllowModuleTypes: Layer.AllowModuleTypes,
 	};
 	if (L.MinOpacity > L.Opacity) L.MinOpacity = L.Opacity;
 	if (L.MaxOpacity < L.Opacity) L.MaxOpacity = L.Opacity;
@@ -344,7 +373,7 @@ function AssetLoadDescription(Family) {
 }
 
 // Loads a specific asset file
-function AssetLoad(A, Family) {
+function AssetLoad(A, Family, ExtendedConfig) {
 
 	// For each group in the asset file
 	var G;
@@ -355,11 +384,12 @@ function AssetLoad(A, Family) {
 
 		// Add each assets in the group 1 by 1
 		var I;
-		for (I = 0; I < A[G].Asset.length; I++)
+		for (I = 0; I < A[G].Asset.length; I++) {
 			if (A[G].Asset[I].Name == null)
-				AssetAdd({ Name: A[G].Asset[I] });
+				AssetAdd({ Name: A[G].Asset[I] }, ExtendedConfig);
 			else
-				AssetAdd(A[G].Asset[I]);
+				AssetAdd(A[G].Asset[I], ExtendedConfig);
+		}
 
 	}
 
@@ -372,7 +402,7 @@ function AssetLoad(A, Family) {
 function AssetLoadAll() {
 	Asset = [];
 	AssetGroup = [];
-	AssetLoad(AssetFemale3DCG, "Female3DCG");
+	AssetLoad(AssetFemale3DCG, "Female3DCG", AssetFemale3DCGExtended);
 	Pose = PoseFemale3DCG;
 }
 

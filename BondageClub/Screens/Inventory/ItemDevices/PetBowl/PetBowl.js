@@ -1,12 +1,15 @@
-const InventoryItemDevicesPetBowlAllowedChars = /^(?:\w|[ ~!$#%*+-])*$/;
 const InventoryItemDevicesPetBowlMaxLength = 12;
 const InventoryItemDevicesPetBowlInputId = "InventoryItemDevicesPetBowlText";
+const InventoryItemDevicesPetBowlFont = "'Saira Stencil One', 'Arial', sans-serif";
 
 /**
  * Loads the extended item properties
  * @returns {void} - Nothing
  */
 function InventoryItemDevicesPetBowlLoad() {
+	// Load the font
+	DynamicDrawLoadFont(InventoryItemDevicesPetBowlFont);
+
 	const C = CharacterGetCurrent();
 	let MustRefresh = false;
 
@@ -21,7 +24,8 @@ function InventoryItemDevicesPetBowlLoad() {
 		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 	}
 
-	ElementCreateInput(InventoryItemDevicesPetBowlInputId, "text", Property.Text, InventoryItemDevicesPetBowlMaxLength);
+	const input = ElementCreateInput(InventoryItemDevicesPetBowlInputId, "text", Property.Text, InventoryItemDevicesPetBowlMaxLength);
+	if (input) input.pattern = DynamicDrawTextInputPattern;
 }
 
 /**
@@ -30,23 +34,9 @@ function InventoryItemDevicesPetBowlLoad() {
  */
 function InventoryItemDevicesPetBowlDraw() {
 	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize(
-		"Assets/" +
-			DialogFocusItem.Asset.Group.Family +
-			"/" +
-			DialogFocusItem.Asset.Group.Name +
-			"/Preview/" +
-			DialogFocusItem.Asset.Name +
-			".png",
-		1389,
-		127,
-		221,
-		221
-	);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
-	const updateAllowed = InventoryItemDevicesPetBowlAllowedChars.test(InventoryItemDevicesPetBowlGetText());
+	const updateAllowed = DynamicDrawTextRegex.test(InventoryItemDevicesPetBowlGetText());
 	DrawTextFit(DialogFindPlayer("PetBowlLabel"), 1505, 620, 350, "#fff", "#000");
 	ElementPosition(InventoryItemDevicesPetBowlInputId, 1505, 680, 350);
 	DrawButton(1330, 731, 340, 64, DialogFindPlayer("SaveText"), updateAllowed ? "White" : "#888", "");
@@ -63,7 +53,7 @@ function InventoryItemDevicesPetBowlClick() {
 	}
 
 	const text = InventoryItemDevicesPetBowlGetText();
-	if (MouseIn(1330, 731, 340, 64) && InventoryItemDevicesPetBowlAllowedChars.test(text)) {
+	if (MouseIn(1330, 731, 340, 64) && DynamicDrawTextRegex.test(text)) {
 		DialogFocusItem.Property.Text = text;
 		InventoryItemDevicesPetBowlChange(text);
 	}
@@ -117,74 +107,30 @@ function AssetsItemDevicesPetBowlBeforeDraw({ C, Y }) {
  * curvature of the bowl.
  * @returns {void} - Nothing
  */
-function AssetsItemDevicesPetBowlAfterDraw({
-	C,
-	A,
-	X,
-	Y,
-	L,
-	Property,
-	drawCanvas,
-	drawCanvasBlink,
-	AlphaMasks,
-	Color
-}) {
+function AssetsItemDevicesPetBowlAfterDraw({ C, A, X, Y, L, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color }) {
 	if (L === "_Text") {
 		// Fetch the text property and assert that it matches the character
 		// and length requirements
 		let text = (Property && Property.Text) || "";
-		if (!InventoryItemDevicesPetBowlAllowedChars.test(text)) text = "";
+		if (!DynamicDrawTextRegex.test(text)) text = "";
 		text = text.substring(0, InventoryItemDevicesPetBowlMaxLength);
 
 		// Prepare a temporary canvas to draw the text to
 		const height = 60;
 		const width = 130;
-		const angle = -Math.min(text.length * 0.021, 0.08) * Math.PI;
-		const radius = -450;
-
 		const tempCanvas = AnimationGenerateTempCanvas(C, A, width, height);
-		const context = tempCanvas.getContext("2d");
+		const ctx = tempCanvas.getContext("2d");
 
-		// Each character is assigned a small angle - the angle assigned to
-		// spaces is proportionately less
-		const spaceWeight = 0.4;
-		let weight = 0;
-		for (let i = 0; i < text.length; i++) {
-			if (text[i] === " ") weight += spaceWeight;
-			else weight += 1;
-		}
-		const characterAngle = angle / weight;
-		const spaceAngle = (spaceWeight * angle) / weight;
-		const fontSize = Math.min(36, 256 / Math.pow(text.length, 1.1));
-
-		// Prepare the canvas context with the appropriate styling
-		context.textAlign = "center";
-		context.font = `${fontSize}px 'Saira Stencil One', 'Arial', sans-serif`;
-		context.fillStyle = Color;
-
-		// Dummy text fill to force the browser to load the font (otherwise it
-		// won't get loaded until after the first time the text has been
-		// populated, causing the first draw to fallback)
-		context.fillText("", 0, 0);
-
-		// Prepare the canvas by translating off the center position and
-		// rotating to where the arc of text should start
-		context.save();
-		context.translate(width / 2, radius + 50);
-		context.rotate(-0.5 * (angle + characterAngle));
-
-		// Draw each character in turn, rotating the canvas between characters
-		for (var n = 0; n < text.length; n++) {
-			var char = text[n];
-			context.rotate(char === " " ? spaceAngle : characterAngle);
-			context.save();
-			context.translate(0, -radius);
-			context.fillText(char, 0, 0);
-			context.restore();
-		}
-
-		// Restore the canvas back to its original position
-		context.restore();
+		DynamicDrawTextArc(text, ctx, width / 2, 42, {
+			fontSize: 36,
+			fontFamily: InventoryItemDevicesPetBowlFont,
+			width,
+			color: Color,
+			angle: Math.PI,
+			direction: DynamicDrawTextDirection.ANTICLOCKWISE,
+			textCurve: DynamicDrawTextCurve.SMILEY,
+			radius: 350,
+		});
 
 		// Draw the temporary canvas onto the main canvas
 		drawCanvas(tempCanvas, X, Y, AlphaMasks);

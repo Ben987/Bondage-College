@@ -7,7 +7,14 @@ canvas {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	position: absolute;
+  position: absolute;
+  width: 100%;
+}
+@media (min-aspect-ratio: 2/1) {
+  canvas {
+    width: unset;
+    height: 100%;
+  }
 }
 TextArea {
 	resize: none;

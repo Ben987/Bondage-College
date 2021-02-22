@@ -62,9 +62,7 @@ function GLDrawMakeGLProgam(gl) {
 
 	gl.program.u_alpha = gl.getUniformLocation(gl.program, "u_alpha");
     gl.programFull.u_color = gl.getUniformLocation(gl.programFull, "u_color");
-	gl.programFull.u_alpha = gl.getUniformLocation(gl.programFull, "u_alpha");
     gl.programHalf.u_color = gl.getUniformLocation(gl.programHalf, "u_color");
-	gl.programHalf.u_alpha = gl.getUniformLocation(gl.programHalf, "u_alpha");
 
     gl.textureCache = new Map();
     gl.maskCache = new Map();
@@ -152,7 +150,6 @@ var GLDrawFragmentShaderSourceFullAlpha = `
   uniform sampler2D u_texture;
   uniform sampler2D u_alpha_texture;
   uniform vec4 u_color;
-  uniform float u_alpha;
 
   void main() {
     vec4 texColor = texture2D(u_texture, v_texcoord);
@@ -161,7 +158,6 @@ var GLDrawFragmentShaderSourceFullAlpha = `
     if (alphaColor.w < ` + GLDrawAlphaThreshold + `) discard;
     float t = (texColor.x + texColor.y + texColor.z) / 383.0;
     gl_FragColor = u_color * vec4(t, t, t, texColor.w);
-    gl_FragColor.a *= u_alpha;
   }
 `;
 
@@ -178,7 +174,6 @@ var GLDrawFragmentShaderSourceHalfAlpha = `
   uniform sampler2D u_texture;
   uniform sampler2D u_alpha_texture;
   uniform vec4 u_color;
-  uniform float u_alpha;
 
   void main() {
     vec4 texColor = texture2D(u_texture, v_texcoord);
@@ -191,7 +186,6 @@ var GLDrawFragmentShaderSourceHalfAlpha = `
     } else {
       gl_FragColor = u_color * vec4(t, t, t, texColor.w);
     }
-    gl_FragColor.a *= u_alpha;
   }
 `;
 
@@ -258,7 +252,7 @@ function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
  * @param {number} opacity - The opacity at which to draw the image
  * @returns {void} - Nothing
  */
-function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks, opacity) { GLDrawImage(url, gl, dstX, dstY, 500, color, fullAlpha, alphaMasks, opacity); }
+function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks, opacity, rotate) { GLDrawImage(url, gl, dstX, dstY, 500, color, fullAlpha, alphaMasks, opacity, rotate); }
 /**
  * Draws an image from a given url to a WebGLRenderingContext
  * @param {string} url - URL of the image to render
@@ -272,11 +266,13 @@ function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks, opa
  * @param {number} opacity - The opacity at which to draw the image
  * @returns {void} - Nothing
  */
-function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks, opacity) {
+function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks, opacity, rotate = false) {
     offsetX = offsetX || 0;
 	opacity = typeof opacity === "number" ? opacity : 1;
     var tex = GLDrawLoadImage(gl, url);
     var mask = GLDrawLoadMask(gl, tex.width, tex.height, dstX, dstY, alphaMasks);
+    if (rotate) dstX = 500 - dstX;
+    const sign = rotate ? -1 : 1;
 
     var program = (color == null) ? gl.program : (fullAlpha ? gl.programFull : gl.programHalf);
 
@@ -294,19 +290,19 @@ function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks,
 
     var matrix = m4.orthographic(0, gl.canvas.width, gl.canvas.height, 0, -1, 1);
     matrix = m4.translate(matrix, dstX + offsetX, dstY, 0);
-    matrix = m4.scale(matrix, tex.width, tex.height, 1);
+    matrix = m4.scale(matrix, sign * tex.width, sign * tex.height, 1);
 
     gl.uniformMatrix4fv(program.u_matrix, false, matrix);
     gl.uniform1i(program.u_texture, 0);
     gl.uniform1i(program.u_alpha_texture, 1);
-	gl.uniform1f(program.u_alpha, opacity);
+	if (program.u_alpha != null) gl.uniform1f(program.u_alpha, opacity);
 
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, tex.texture);
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_2D, mask);
 
-    if (program.u_color != null) gl.uniform4fv(program.u_color, GLDrawHexToRGBA(color));
+    if (program.u_color != null) gl.uniform4fv(program.u_color, GLDrawHexToRGBA(color, opacity));
 
     gl.drawArrays(gl.TRIANGLES, 0, 6);
 }
@@ -374,6 +370,7 @@ function GLDrawLoadImage(gl, url) {
         if (Img) {
             GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
         } else {
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 0, 0]));
             Img = new Image();
             GLDrawImageCache.set(url, Img);
 
@@ -466,13 +463,14 @@ function GLDrawClearRect(gl, x, y, width, height) {
 /**
  * Converts a hex color to a RGBA color
  * @param {string} color - Hex color code to convert to RGBA
+ * @param {number} alpha - The alpha value to use for the resulting RGBA
  * @return {string} - Converted color code
  */
-function GLDrawHexToRGBA(color) {
+function GLDrawHexToRGBA(color, alpha = 1) {
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     color = color.replace(shorthandRegex, function (m, r, g, b) { return r + r + g + g + b + b; });
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16), 1] : [0, 0, 0, 1];
+    return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16), alpha] : [0, 0, 0, alpha];
 }
 
 /**
@@ -486,10 +484,10 @@ function GLDrawAppearanceBuild(C) {
     CommonDrawAppearanceBuild(C, {
 		clearRect: (x, y, w, h) => GLDrawClearRect(GLDrawCanvas.GL, x, CanvasDrawHeight - y - h, w, h),
 		clearRectBlink: (x, y, w, h) => GLDrawClearRectBlink(GLDrawCanvas.GL, x, CanvasDrawHeight - y - h, w, h),
-		drawImage: (src, x, y, alphaMasks, opacity) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, null, null, alphaMasks, opacity),
-		drawImageBlink: (src, x, y, alphaMasks, opacity) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, null, null, alphaMasks, opacity),
-		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks, opacity) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, color, fullAlpha, alphaMasks, opacity),
-		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks, opacity) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, color, fullAlpha, alphaMasks, opacity),
+		drawImage: (src, x, y, alphaMasks, opacity, rotate) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, null, null, alphaMasks, opacity, rotate),
+		drawImageBlink: (src, x, y, alphaMasks, opacity, rotate) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, null, null, alphaMasks, opacity, rotate),
+		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, color, fullAlpha, alphaMasks, opacity, rotate),
+		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, color, fullAlpha, alphaMasks, opacity, rotate),
 		drawCanvas: (Img, x, y, alphaMasks) => GLDraw2DCanvas(GLDrawCanvas.GL, Img, x, y, alphaMasks),
 		drawCanvasBlink: (Img, x, y, alphaMasks) => GLDraw2DCanvasBlink(GLDrawCanvas.GL, Img, x, y, alphaMasks),
 	});
