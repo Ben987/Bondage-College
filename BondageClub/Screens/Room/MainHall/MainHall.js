@@ -491,7 +491,6 @@ function MainHallPunishFromChatroom() {
 function MainHallPunishFromChatroomStartPunishment() {
 	CharacterRelease(Player);
 	CharacterNaked(Player);
-	//LogAdd("BlockChange","Rule", CurrentTime + 3600000);
 	
 	// Apply one of several preset restraints
 	// Also  apply mistress locks to everything
