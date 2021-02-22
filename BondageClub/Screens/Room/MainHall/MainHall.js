@@ -493,7 +493,7 @@ function MainHallPunishFromChatroomStartPunishment() {
 	CharacterNaked(Player);
 	
 	// Apply one of several preset restraints
-	// Also  apply mistress locks to everything
+	// Also  apply timer locks to everything
 	var I = Math.floor(Math.random() * MainHallPunishmentList.length)
 	MainHallPunishmentChoice = I
 }
