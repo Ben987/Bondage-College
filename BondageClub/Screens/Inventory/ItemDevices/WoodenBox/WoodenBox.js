@@ -1,16 +1,32 @@
-const InventoryItemDevicesWoodenBoxAllowedChars = /^(?:\w|[ ~!$#%*+])*$/;
-const InventoryItemDevicesWoodenBoxInputPattern = "(?:\\w|[ ~!$#%*+])*";
 const InventoryItemDevicesWoodenBoxMaxLength = 20;
 const InventoryItemDevicesWoodenBoxTextInputId = "InventoryItemDevicesWoodenBoxText";
 const InventoryItemDevicesWoodenBoxOpacityInputId = "InventoryItemDevicesWoodenBoxOpacity";
+const InventoryItemDevicesWoodenBoxFont = "'Saira Stencil One', 'Arial', sans-serif";
 
 let InventoryItemDevicesWoodenBoxOriginalText = null;
+
+let InventoryItemDevicesWoodenBoxOptions = [
+	{
+		Name: "SWNE",
+		Property: { Type: null },
+		from: [0, 1],
+		to: [1, 0],
+	},
+	{
+		Name: "NWSE",
+		Property: { Type: "NWSE" },
+		from: [0, 0],
+		to: [1, 1],
+	},
+];
 
 /**
  * Loads the wooden box's extended item properties
  * @returns {void} - Nothing
  */
 function InventoryItemDevicesWoodenBoxLoad() {
+	DynamicDrawLoadFont(InventoryItemDevicesWoodenBoxFont);
+
 	const C = CharacterGetCurrent();
 	const item = DialogFocusItem;
 	let mustRefresh = false;
@@ -25,7 +41,10 @@ function InventoryItemDevicesWoodenBoxLoad() {
 		InventoryItemDevicesWoodenBoxSetOpacity(Property, Property.Opacity);
 		mustRefresh = true;
 	}
-
+	if (!InventoryItemDevicesWoodenBoxOptions.find(option => option.Property.Type === Property.Type)) {
+		Property.Type = InventoryItemDevicesWoodenBoxOptions[0].Property.Type;
+		mustRefresh = true;
+	}
 
 	if (mustRefresh) {
 		CharacterRefresh(C);
@@ -39,7 +58,7 @@ function InventoryItemDevicesWoodenBoxLoad() {
 	const textInput = ElementCreateInput(
 		InventoryItemDevicesWoodenBoxTextInputId, "text", Property.Text, InventoryItemDevicesWoodenBoxMaxLength);
 	if (textInput) {
-		textInput.pattern = InventoryItemDevicesWoodenBoxInputPattern;
+		textInput.pattern = DynamicDrawTextInputPattern;
 		textInput.addEventListener("input", (e) => InventoryItemDevicesWoodenBoxTextChange(C, item, e.target.value));
 	}
 
@@ -54,8 +73,10 @@ function InventoryItemDevicesWoodenBoxLoad() {
  * @returns {void} - Nothing
  */
 function InventoryItemDevicesWoodenBoxDraw() {
+	const asset = DialogFocusItem.Asset;
+
 	// Draw the header and item
-	DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
+	DrawAssetPreview(1387, 125, asset);
 
 	MainCanvas.textAlign = "right";
 	DrawTextFit(DialogFindPlayer("WoodenBoxOpacityLabel"), 1475, 500, 400, "#fff", "#000");
@@ -64,6 +85,18 @@ function InventoryItemDevicesWoodenBoxDraw() {
 	DrawTextFit(DialogFindPlayer("WoodenBoxTextLabel"), 1475, 580, 400, "#fff", "#000");
 	ElementPosition(InventoryItemDevicesWoodenBoxTextInputId, 1725, 580, 400);
 	MainCanvas.textAlign = "center";
+
+	DrawTextFit(DialogFindPlayer("WoodenBoxTypeLabel"), 1500, 660, 800, "#fff", "#000");
+
+	InventoryItemDevicesWoodenBoxOptions.forEach((option, i) => {
+		const x = ExtendedXY[InventoryItemDevicesWoodenBoxOptions.length][i][0];
+		const isSelected = DialogFocusItem.Property.Type === option.Property.Type;
+		DrawPreviewBox(x, 700, `${AssetGetInventoryPath(asset)}/${option.Name}.png`, "", {
+			Border: true,
+			Hover: true,
+			Disabled: isSelected,
+		});
+	});
 }
 
 /**
@@ -75,6 +108,14 @@ function InventoryItemDevicesWoodenBoxClick() {
 	if (MouseIn(1885, 25, 90, 90)) {
 		return InventoryItemDevicesWoodenBoxExit();
 	}
+
+	InventoryItemDevicesWoodenBoxOptions.some((option, i) => {
+		const x = ExtendedXY[InventoryItemDevicesWoodenBoxOptions.length][i][0];
+		if (MouseIn(x, 700, 225, 275)) {
+			DialogFocusItem.Property.Type = option.Property.Type;
+			CharacterRefresh(CharacterGetCurrent(), false);
+		}
+	});
 }
 
 /**
@@ -85,9 +126,10 @@ function InventoryItemDevicesWoodenBoxExit() {
 	const C = CharacterGetCurrent();
 	const item = DialogFocusItem;
 
-	InventoryItemDevicesWoodenBoxSetOpacity(item.Property, InventoryItemDevicesWoodenBoxGetInputOpacity());
+	let setOpacity = window[`Inventory${item.Asset.Group.Name}${item.Asset.Name}SetOpacity`] || InventoryItemDevicesWoodenBoxSetOpacity;
+	setOpacity(item.Property, InventoryItemDevicesWoodenBoxGetInputOpacity());
 	const text = InventoryItemDevicesWoodenBoxGetText();
-	if (InventoryItemDevicesWoodenBoxAllowedChars.test(text)) item.Property.Text = text;
+	if (DynamicDrawTextRegex.test(text)) item.Property.Text = text;
 
 	if (CurrentScreen === "ChatRoom" && text !== InventoryItemDevicesWoodenBoxOriginalText) {
 		const dictionary = [
@@ -134,6 +176,7 @@ function InventoryItemDevicesWoodenBoxSetOpacity(property, opacity) {
  * @returns {void} - Nothing
  */
 const InventoryItemDevicesWoodenBoxOpacityChange = CommonDebounce((C, item, opacity) => {
+	item = DialogFocusItem || item;
 	item.Property.Opacity = Number(opacity);
 	CharacterRefresh(C, false);
 }, 100);
@@ -143,69 +186,69 @@ const InventoryItemDevicesWoodenBoxOpacityChange = CommonDebounce((C, item, opac
  * @returns {void} - Nothing
  */
 const InventoryItemDevicesWoodenBoxTextChange = CommonDebounce((C, item, text) => {
-	if (InventoryItemDevicesWoodenBoxAllowedChars.test(text)) {
+	item = DialogFocusItem || item;
+	if (DynamicDrawTextRegex.test(text)) {
 		item.Property.Text = text.substring(0, InventoryItemDevicesWoodenBoxMaxLength);
 		CharacterRefresh(C, false);
 	}
 }, 200);
 
 /**
- * Fetches the current input text, trimmed appropriately
- * @returns {string} - The text in the wooden box's input element
+ * Fetches the current text input value, trimmed appropriately
+ * @returns {string} - The text in the wooden box's text input element
  */
 function InventoryItemDevicesWoodenBoxGetText() {
 	return ElementValue(InventoryItemDevicesWoodenBoxTextInputId).substring(0, InventoryItemDevicesWoodenBoxMaxLength);
 }
 
+/**
+ * Fetches the current opacity input value, parsed to a number
+ * @returns {number} - The value of the wooden box's opacity input slider
+ */
 function InventoryItemDevicesWoodenBoxGetInputOpacity() {
 	return Number(ElementValue(InventoryItemDevicesWoodenBoxOpacityInputId));
 }
 
-function AssetsItemDevicesWoodenBoxAfterDraw({ C, A, X, Y, L, Pose, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color, Opacity }) {
+/**
+ * Dynamic AfterDraw function. Draws text onto the box.
+ * @param {object} DrawingData - The dynamic drawing data
+ * @returns {void} - Nothing
+ */
+function AssetsItemDevicesWoodenBoxAfterDraw({ C, A, X, Y, L, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color, Opacity }) {
 	if (L === "_Text") {
-		// We set up a canvas
 		const height = 900;
 		const width = 310;
-		const TempCanvas = AnimationGenerateTempCanvas(C, A, width, height);
+		const tmpCanvas = AnimationGenerateTempCanvas(C, A, width, height);
+		const ctx = tmpCanvas.getContext("2d");
 
 		let text = Property && Property.Text || "";
-		if (!InventoryItemDevicesWoodenBoxAllowedChars.test(text)) text = "";
+		if (!DynamicDrawTextRegex.test(text)) text = "";
 		text = text.substring(0, InventoryItemDevicesWoodenBoxMaxLength);
 
-		let fontHeight = 96;
+		let from = [0, 1];
+		let to = [1, 0];
 
-		const angle = Math.atan(height / width);
-		const hypotenuse = Math.sqrt(Math.pow(height, 2) + Math.pow(width, 2));
-		const textWidth = hypotenuse - 2 * (height / width) * (fontHeight / 2);
+		if (Property && Property.Type) {
+			const option = InventoryItemDevicesWoodenBoxOptions.find(o => o.Property.Type === Property.Type);
+			if (option) {
+				from = option.from;
+				to = option.to;
+			}
+		}
 
-		let context = TempCanvas.getContext("2d");
+		from = [width * from[0], height * from[1]];
+		to = [width * to[0], height * to[1]];
 
-		context.textAlign = "center";
-		context.font = `${fontHeight}px 'Saira Stencil One', 'Arial', sans-serif`;
-		context.fillStyle = Color;
-		context.textBaseline = "middle";
-
-		// Dummy text fill to force the browser to load the font (otherwise it
-		// won't get loaded until after the first time the text has been
-		// populated, causing the first draw to fallback)
-		context.fillText("", 0, 0);
-
-		const rgb = DrawHexToRGB(Color);
-
-		context.save();
-		context.translate(width / 2, height / 2);
-		context.rotate(-angle);
-		context.translate(-width / 2, -height / 2);
-		context.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${0.7 * Opacity})`;
-		context.fillText(text, width / 2, height / 2, textWidth);
-		context.restore();
-
-		let drawY = Y + 300;
-		if (Pose === "Kneel/") drawY -= 250;
+		const { r, g, b } = DrawHexToRGB(Color);
+		DynamicDrawTextFromTo(text, ctx, from, to, {
+			fontSize: 96,
+			fontFamily: InventoryItemDevicesWoodenBoxFont,
+			color: `rgba(${r}, ${g}, ${b}, ${0.7 * Opacity})`,
+		});
 
 		// We print the canvas on the character based on the asset position
-		drawCanvas(TempCanvas, X + 90, drawY, AlphaMasks);
-		drawCanvasBlink(TempCanvas, X + 90, drawY, AlphaMasks);
+		drawCanvas(tmpCanvas, X + 90, Y + 300, AlphaMasks);
+		drawCanvasBlink(tmpCanvas, X + 90, Y + 300, AlphaMasks);
 	}
 }
 

@@ -1,12 +1,16 @@
 const InventoryItemHoodCanvasHoodAllowedChars = /^(?:\w|[ ~!$#%*+])*$/;
 const InventoryItemHoodCanvasHoodMaxLength = 12;
 const InventoryItemHoodCanvasHoodInputId = "InventoryItemHoodCanvasHoodText";
+const InventoryItemHoodCanvasHoodFont = "'Saira Stencil One', 'Arial', sans-serif";
 
 /**
  * Loads the canvas hood's extended item properties
  * @returns {void} - Nothing
  */
 function InventoryItemHoodCanvasHoodLoad() {
+	// Load the font
+	DynamicDrawLoadFont(InventoryItemHoodCanvasHoodFont);
+
 	const C = CharacterGetCurrent();
 	let MustRefresh = false;
 
@@ -107,57 +111,23 @@ function AssetsItemHoodCanvasHoodAfterDraw({ C, A, X, Y, L, Property, drawCanvas
 		text = text.substring(0, InventoryItemHoodCanvasHoodMaxLength);
 
 		// Prepare a temporary canvas to draw the text to
-		const height = 60;
-		const width = 130;
+		const height = 50;
+		const width = 120;
 		const tempCanvas = AnimationGenerateTempCanvas(C, A, width, height);
-		const context = tempCanvas.getContext("2d");
+		const ctx = tempCanvas.getContext("2d");
 
-		// Each character is assigned a small angle - the angle assigned to
-		// spaces is proportionately less
-		const angle = Math.min(text.length * 0.021, 0.08) * Math.PI;
-		const spaceWeight = 0.4;
-		let weight = 0;
-		for (let i = 0; i < text.length; i++) {
-			if (text[i] === " ") weight += spaceWeight;
-			else weight += 1;
-		}
-		const characterAngle = angle / weight;
-		const spaceAngle = spaceWeight * angle / weight;
-		const radius = 450;
-		const fontSize = Math.min(36, 256 / Math.pow(text.length, 1.1));
+		DynamicDrawTextArc(text, ctx, width / 2, height / 2, {
+			fontSize: 36,
+			fontFamily: InventoryItemHoodCanvasHoodFont,
+			width,
+			color: Color,
+		});
 
-		// Prepare the canvas context with the appropriate styling
-		context.textAlign = "center";
-		context.font = `${fontSize}px 'Saira Stencil One', 'Arial', sans-serif`;
-		context.fillStyle = Color;
-
-		// Dummy text fill to force the browser to load the font (otherwise it
-		// won't get loaded until after the first time the text has been
-		// populated, causing the first draw to fallback)
-		context.fillText("", 0, 0);
-
-		// Prepare the canvas by translating off the center position and
-		// rotating to where the arc of text should start
-		context.save();
-		context.translate(65, 500);
-		context.rotate(-1 * angle / 2);
-		context.rotate(-1 * (angle / weight) / 2);
-
-		// Draw each character in turn, rotating the canvas between characters
-		for (var n = 0; n < text.length; n++) {
-			var char = text[n];
-			context.rotate(char === " " ? spaceAngle : characterAngle);
-			context.save();
-			context.translate(0, -1 * radius);
-			context.fillText(char, 0, 0);
-			context.restore();
-		}
-
-		// Restore the canvas back to its original position
-		context.restore();
+		const drawX = X + (200 - width) / 2;
+		const drawY = Y + 80;
 
 		// Draw the temporary canvas onto the main canvas
-		drawCanvas(tempCanvas, X + 35, Y + 55, AlphaMasks);
-		drawCanvasBlink(tempCanvas, X + 35, Y + 55, AlphaMasks);
+		drawCanvas(tempCanvas, drawX, drawY, AlphaMasks);
+		drawCanvasBlink(tempCanvas, drawX, drawY, AlphaMasks);
 	}
 }

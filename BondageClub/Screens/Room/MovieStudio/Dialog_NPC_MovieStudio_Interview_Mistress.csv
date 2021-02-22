@@ -139,3 +139,11 @@ PunishmentChastity,400,Not a chastity belt!,Damn right.  You will both be locked
 1080,,(Whimper and struggle.),It's not tight enough?  Let me find something else for you.  (She changes your restraints and smiles.),"DoActivity(""InterviewMistressFinalPlayerNew"")",
 1080,,(Offer your butt.),(She grabs you and spanks your butt really hard as the camera zooms in.)  It was too tempting.,"DoActivity(""InterviewMistressFinalPlayerSpank"")",
 1080,,(Check on the maid.),,DialogLeave(),
+2000,2010,I found a girl strapped up.,"This is none of your business, you're supposed to clean the room.  Is the room ready?  I will inspect it.",,
+2000,2010,I'm here to clean the room.,"Good girl, is the room ready?  I will inspect it.",,
+2000,2010,(Stay silent.),(She looks around.)  Is the room ready?  I will inspect it.,,
+2000,2010,(Struggle in your cuffs.),(She struggles for the camera.)  Stop struggling and start cleaning.  Is the room ready?  I will inspect it.,"DoActivity(""InterviewMistressPlayerStruggle"")",!Player.CanInteract()
+2010,,,"(She stares at you.)  Alright little maid, is the room clean and ready?  I will inspect it.",,
+2010,,The place is ready to inspect Mistress.,TO DO,,
+2010,,(Do a maid curtsies.),TO DO,,
+2010,,(Check the room.),,DialogLeave(),

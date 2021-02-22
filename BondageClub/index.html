@@ -47,11 +47,15 @@
 <script src="Scripts/Translation.js"></script>
 <script src="Scripts/Activity.js"></script>
 <script src="Scripts/ExtendedItem.js"></script>
+<script src="Scripts/ModularItem.js"></script>
 <script src="Screens/Character/ItemColor/ItemColor.js"></script>
 <script src="Scripts/LZString.js"></script>
 <script src="Scripts/VibratorMode.js"></script>
 <script src="Scripts/socket.io/socket.io.js"></script>
+<script src="Scripts/DynamicDraw.js"></script>
+<script src="Scripts/Notifications.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
+<script src="Assets/Female3DCG/Female3DCGExtended.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
 <script src="Screens/Character/Appearance/Appearance.js"></script>
 <script src="Screens/Character/Creation/Creation.js"></script>
@@ -179,12 +183,12 @@
 <script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/FuturisticPanelGag/FuturisticPanelGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/FuturisticHarnessPanelGag/FuturisticHarnessPanelGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/FuturisticHarnessBallGag/FuturisticHarnessBallGag.js"></script>
 <script src="Screens/Inventory/ItemArms/FuturisticCuffs/FuturisticCuffs.js"></script>
 <script src="Screens/Inventory/ItemLegs/FuturisticLegCuffs/FuturisticLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/FuturisticAnkleCuffs/FuturisticAnkleCuffs.js"></script>
 <script src="Screens/Inventory/ItemNeck/FuturisticCollar/FuturisticCollar.js"></script>
 <script src="Screens/Inventory/ItemTorso/FuturisticHarness/FuturisticHarness.js"></script>
-<script src="Screens/Inventory/ItemTorso/FuturisticHarness2/FuturisticHarness2.js"></script>
 <script src="Screens/Inventory/ItemMouth/DildoPlugGag/DildoPlugGag.js"></script>
 <script src="Screens/Inventory/ItemHands/SpankingToys/SpankingToy.js"></script>
 <script src="Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
@@ -224,6 +228,7 @@
 <script src="Screens/Inventory/ItemDevices/CryoCapsule/CryoCapsule.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
 <script src="Screens/Inventory/ItemArms/FuturisticArmbinder/FuturisticArmbinder.js"></script>
+<script src="Screens/Inventory/ItemArms/FuturisticStraitjacket/FuturisticStraitjacket.js"></script>
 <script src="Screens/Inventory/ItemAddon/CeilingChain/CeilingChain.js"></script>
 <script src="Screens/Inventory/ItemAddon/CeilingRope/CeilingRope.js"></script>
 <script src="Screens/Inventory/ItemHands/FuturisticMittens/FuturisticMittens.js"></script>
@@ -250,6 +255,7 @@
 <script src="Screens/Inventory/ItemFeet/OrnateAnkleCuffs/OrnateAnkleCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/FullLatexSuit/FullLatexSuit.js"></script>
 <script src="Screens/Inventory/ItemVulva/FullLatexSuitWand/FullLatexSuitWand.js"></script>
+<script src="Screens/Inventory/ItemVulva/FuturisticVibrator/FuturisticVibrator.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherArmbinder/LeatherArmbinder.js"></script>
 <script src="Screens/Inventory/ItemArms/BitchSuit/BitchSuit.js"></script>
 <script src="Screens/Inventory/ItemArms/TightJacketCrotch/TightJacketCrotch.js"></script>
@@ -296,7 +302,6 @@
 <script src="Screens/Inventory/ItemArms/LatexBoxtieLeotard/LatexBoxtieLeotard.js"></script>
 <script src="Screens/Inventory/ItemArms/LatexSleevelessLeotard/LatexSleevelessLeotard.js"></script>
 <script src="Screens/Inventory/ItemArms/PrisonLockdownSuit/PrisonLockdownSuit.js"></script>
-<script src="Screens/Inventory/ItemArms/HighSecurityStraitJacket/HighSecurityStraitJacket.js"></script>
 <script src="Screens/Inventory/Corset/LatexCorset1/LatexCorset1.js"></script>
 <script src="Screens/Inventory/Necklace/NecklaceKey/NecklaceKey.js"></script>
 <script src="Screens/Inventory/Necklace/NecklaceLock/NecklaceLock.js"></script>
@@ -311,51 +316,27 @@
 <script src="Screens/Inventory/ItemHood/CanvasHood/CanvasHood.js"></script>
 <script src="Screens/Inventory/ItemDevices/Vacbed/Vacbed.js"></script>
 <script src="Screens/Inventory/ItemDevices/WoodenBox/WoodenBox.js"></script>
+<script src="Screens/Inventory/ItemDevices/TransportWoodenBox/TransportWoodenBox.js"></script>
 <script src="Screens/Inventory/HairAccessory3/Halo/Halo.js"></script>
 <script src="Screens/Inventory/HairAccessory1/Halo/Halo.js"></script>
+<script src="Screens/Inventory/ItemArms/TransportJacket/TransportJacket.js"></script>
+<script src="Screens/Inventory/ItemDevices/Pole/Pole.js"></script>
 <script>
 
 /*
 
 	NEXT VERSION:
 
-	DONE - Four difficulty modes:
-
-	A “roleplay/easy/casual” level could have all the possible toggles so you can configure your bondage club experience exactly as you want it.  
-	There could be toggles to skip the slow mode as Ada proposed or even toggles to skip the A+S struggle, it’s roleplay after all. 
-
-	A “regular/normal/default” level could have the basic restrictions, struggles, safewords, maid rescue, etc.  
-	It would be the current game we have with the current toggles.  A mix of chat room roleplay and game features.
-
-	A “hard/hardcore/no limit” level could be aimed for players that don’t want easy escapes.  No maid rescue, no safeword, no help from any NPC.
-
-	A “extreme/very hard/full slavery” level could be aimed for players that wants the full slave experience.  
-	No maid rescue, no safeword, no help from any NPC, no leaving your owner, no blocked items, all immersion settings to the max.
-
-	This means that an extreme submissive will not be able to ever leave her owner or get out of owner locks without her Mistress help.  The submissive is a full slave.
-
 	TO DO - Movie Studio - Add Maid role
-	
+	TO DO - Bondage RPG - Patreon survey first
 	TO DO - Proof Read
 	TO DO - Patreon Import/Update
 
-	FUTURE VERSION:
-	
-	Each restraint will have different ways (mini-games) to try to struggle out of it:
-		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
-		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
-		3. Be Clever (Rope, Yokes, Cages & Boxes, Cuffs & Manacles, Locking Boots, Collars) - Memory Game: Simon Says
-		4. Use Dexterity (Rope, Jackets & Suits, One Bar & Bench & Bag, Mittens, Body Harnesses, Gags with harness, Collars) - Timing Game: Stop the moving object at the right position
-		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
-		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
-	
-	Add a random punishment function to online chat room to roll a random punishment for a player or yourself, the punishment will be executed manually
-	
 */
 
 // When the code is loaded, we start the game engine
 window.onload = function() {
-	CheatImport();
+//	CheatImport();
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
@@ -405,29 +386,26 @@ function Click(event) {
 }
 
 // When the user touches the screen (mobile only), we fire the click event for other screens
-function Touch(event) {
-	if (CommonIsMobile) {
-		var rect = document.getElementById("MainCanvas").getBoundingClientRect();
-		if (document.body.clientWidth <= document.body.clientHeight * 2) {
-			MouseX = Math.round((event.touches[0].clientX - rect.left) * 2000 / document.body.clientWidth);
-			MouseY = Math.round((event.touches[0].clientY - rect.top) * 2000 / document.body.clientWidth);
-		} else {
-			MouseX = Math.round((event.touches[0].clientX - rect.left) * 1000 / document.body.clientHeight);
-			MouseY = Math.round((event.touches[0].clientY - rect.top) * 1000 / document.body.clientHeight);
-		}		
+function TouchStart(/** @type {TouchEvent} */ event) {
+	if (CommonIsMobile && MainCanvas) {
+		TouchMove(event.touches[0]);
 		CommonClick();
-	} 
+	}
+}
+
+// When touch moves, we keep it's position for other scripts
+function TouchMove(/** @type {Touch} */ touch) {
+	if (MainCanvas) {
+		MouseX = Math.round((touch.pageX - MainCanvas.canvas.offsetLeft) * 2000 / MainCanvas.canvas.clientWidth);
+		MouseY = Math.round((touch.pageY - MainCanvas.canvas.offsetTop) * 1000 / MainCanvas.canvas.clientHeight);
+	}
 }
 
 // When mouse move, we keep the mouse position for other scripts
-function MouseMove(event) {
-	var rect = document.getElementById("MainCanvas").getBoundingClientRect();
-	if (document.body.clientWidth <= document.body.clientHeight * 2) {
-		MouseX = Math.round((event.clientX - rect.left) * 2000 / document.body.clientWidth);
-		MouseY = Math.round((event.clientY - rect.top) * 2000 / document.body.clientWidth);
-	} else {
-		MouseX = Math.round((event.clientX - rect.left) * 1000 / document.body.clientHeight);
-		MouseY = Math.round((event.clientY - rect.top) * 1000 / document.body.clientHeight);
+function MouseMove(/** @type {MouseEvent} */ event) {
+	if (MainCanvas) {
+		MouseX = Math.round(event.offsetX * 2000 / MainCanvas.canvas.clientWidth);
+		MouseY = Math.round(event.offsetY * 1000 / MainCanvas.canvas.clientHeight);
 	}
 }
 
@@ -438,7 +416,7 @@ function LoseFocus(event) {
 		MouseY = -1;
 	}
 }
- 
+
 </script>
 
 
@@ -485,6 +463,6 @@ function LoseFocus(event) {
 </script>
 
 <body style="width:100%; height:100%; background-color:black; margin:0px; padding:0px; overflow:hidden;">
-	<canvas id="MainCanvas" Width="2000" Height="1000" onClick="Click(event);" onTouchStart="Touch(event);" onMouseMove="MouseMove(event);" onMouseLeave="LoseFocus(event);"></canvas>
+	<canvas id="MainCanvas" Width="2000" Height="1000" onClick="Click(event);" onTouchStart="TouchStart(event);" onMouseMove="MouseMove(event);" onMouseLeave="LoseFocus(event);"></canvas>
 </body>
 </html>

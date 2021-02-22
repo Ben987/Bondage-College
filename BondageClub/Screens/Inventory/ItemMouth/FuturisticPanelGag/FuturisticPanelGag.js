@@ -262,7 +262,7 @@ function InventoryItemMouthFuturisticPanelGagClick() {
 		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000 && MouseIn(1675, 780, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 72000000)
 			
 		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting && MouseIn(1675, 880, 200, 64)) {
-			InventoryItemMouthFuturisticPanelGagTrigger(C, DialogFocusItem, false)
+			InventoryItemMouthFuturisticPanelGagTrigger(C, DialogFocusItem, false, InventoryItemMouthFuturisticPanelGagOptions)
 			DialogFocusItem.Property.AutoPunishUndoTime = CurrentTime + DialogFocusItem.Property.AutoPunishUndoTimeSetting // Reset the deflation time
 			CharacterRefresh(C, true); // Does not sync appearance while in the wardrobe
 			ChatRoomCharacterUpdate(C);
@@ -369,19 +369,20 @@ function InventoryItemMouthFuturisticPanelGagNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "ItemMouthPlugGag" + Option.Name, "ItemMouth");
 }
 
-function InventoryItemMouthFuturisticPanelGagTrigger(C, Item, Reset) {
-	var OptionLevel = (Reset) ? Math.max(InventoryItemMouthFuturisticPanelGagGetOption(InventoryItemMouthFuturisticPanelGagOptions, Item.Property.OriginalSetting), InventoryItemMouthFuturisticPanelGagGetOption(InventoryItemMouthFuturisticPanelGagOptions, Item.Property.Type) - 1)
-		: Math.min(InventoryItemMouthFuturisticPanelGagOptions.length, InventoryItemMouthFuturisticPanelGagGetOption(InventoryItemMouthFuturisticPanelGagOptions, Item.Property.Type) + 1);
+function InventoryItemMouthFuturisticPanelGagTrigger(C, Item, Reset, Options) {
+	var OptionLevel = (Reset) ? Math.max(InventoryItemMouthFuturisticPanelGagGetOption(Options, Item.Property.OriginalSetting), InventoryItemMouthFuturisticPanelGagGetOption(Options, Item.Property.Type) - 1)
+		: Math.min(Options.length, InventoryItemMouthFuturisticPanelGagGetOption(Options, Item.Property.Type) + 1);
 	
 	if (Reset || Item.Property.Type != "Plug") {
 		var OriginalItemSetting = Item.Property.OriginalSetting
-		InventoryItemMouthFuturisticPanelGagSetOption(C, InventoryItemMouthFuturisticPanelGagOptions, InventoryItemMouthFuturisticPanelGagOptions[OptionLevel], Item)
+		InventoryItemMouthFuturisticPanelGagSetOption(C, Options, Options[OptionLevel], Item)
 		if (CurrentScreen == "ChatRoom" && Item.Property.ChatMessage)
-			InventoryItemMouthFuturisticPanelGagPublishActionTrigger(C, Item, InventoryItemMouthFuturisticPanelGagOptions[OptionLevel], Reset)
+			InventoryItemMouthFuturisticPanelGagPublishActionTrigger(C, Item, Options[OptionLevel], Reset)
 		Item.Property.OriginalSetting = OriginalItemSetting // After automatically changing it, we put it back to original setting
 		
 		CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
 		CharacterSetFacialExpression(C, "Blush", "Extreme", 15);
+		CharacterSetFacialExpression(C, "Eyes", "Lewd", 5);
 		
 		/*var vol = 1
 		if (Player.AudioSettings && Player.AudioSettings.Volume) {
@@ -426,7 +427,7 @@ function InventoryItemMouthFuturisticPanelGagSetOption(C, Options, Option, Item,
 	}
 }
 
-function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
+function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data, Options) {
 	var Item = data.Item
 	// Punish the player if they speak
 	if (Item.Property.AutoPunish && Item.Property.AutoPunish > 0 && Item.Property.AutoPunishUndoTimeSetting) {
@@ -455,7 +456,7 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
 		}
 		
 		if (GagTriggerPunish) {
-			InventoryItemMouthFuturisticPanelGagTrigger(Player, Item, false)
+			InventoryItemMouthFuturisticPanelGagTrigger(Player, Item, false, Options)
 			Item.Property.AutoPunishUndoTime = CurrentTime + Item.Property.AutoPunishUndoTimeSetting // Reset the deflation time
 			CharacterRefresh(Player, true); // Does not sync appearance while in the wardrobe
 			
@@ -464,7 +465,7 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data) {
 
 		} else if (Item.Property.AutoPunishUndoTime - CurrentTime <= 0 && Item.Property.Type && Item.Property.Type != Item.Property.OriginalSetting) {
 			// Deflate the gag back to the original setting after a while
-			InventoryItemMouthFuturisticPanelGagTrigger(Player, Item, true)
+			InventoryItemMouthFuturisticPanelGagTrigger(Player, Item, true, Options)
 			if (Item.Property.OriginalSetting != Item.Property.Type)
 				Item.Property.AutoPunishUndoTime = CurrentTime + Item.Property.AutoPunishUndoTimeSetting // Reset the deflation time
 			CharacterRefresh(Player, true); // Does not sync appearance while in the wardrobe
@@ -487,7 +488,7 @@ function AssetsItemMouthFuturisticPanelGagScriptDraw(data) {
 	if (persistentData.UpdateTime < CommonTime() && data.C == Player) {
 		if (CurrentScreen == "ChatRoom") {
 		
-			AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data)
+			AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data, InventoryItemMouthFuturisticPanelGagOptions)
 			
 			persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
 		}

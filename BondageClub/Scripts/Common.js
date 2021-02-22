@@ -9,7 +9,7 @@ var CurrentOnlinePlayers = 0;
 var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
-var Notifications = {};
+
 var CommonPhotoMode = false;
 
 /**
@@ -555,47 +555,13 @@ const CommonGetFontName = CommonMemoize(() => {
 });
 
 /**
- * Increase the reported number of a notifications by one and updates the header
- * @param {string} Type - The type of notification
- * @returns {void}
- */
-function CommonNotificationIncrement(Type) {
-	Notifications[Type] = (Notifications[Type] || 0) + 1;
-	CommonNotificationUpdate();
-}
-
-/**
- * Sets the number of notifications for a type back to zero and updates the header
- * @param {any} Type - The type of notification
- * @returns {void}
- */
-function CommonNotificationReset(Type) {
-	if (Notifications[Type] != null && Notifications[Type] != 0) {
-		Notifications[Type] = 0;
-		CommonNotificationUpdate();
-	}
-}
-
-/**
- * Sets the number of notifications to zero
- * @returns {void}
- */
-function CommonNotificationResetAll() {
-	Notifications = {};
-	CommonNotificationUpdate();
-}
-
-/**
- * Sets or clears notifications in the tab header
+ * Take a screenshot of specified area in "photo mode" and open the image in a new tab
+ * @param {number} Left - Position of the area to capture from the left of the canvas
+ * @param {number} Top - Position of the area to capture from the top of the canvas
+ * @param {number} Width - Width of the area to capture
+ * @param {number} Height - Height of the area to capture
  * @returns {void} - Nothing
  */
-function CommonNotificationUpdate() {
-	let total = 0;
-	for (let key in Notifications) total += Notifications[key];
-	let prefix = total == 0 ? "" : "(" + total.toString() + ") ";
-	document.title = prefix + "Bondage Club";
-}
-
 function CommonTakePhoto(Left, Top, Width, Height) {
 	CommonPhotoMode = true;
 
@@ -619,6 +585,47 @@ function CommonTakePhoto(Left, Top, Width, Height) {
 	else {
 		window.open(PhotoImg);
 	}
-	
+
 	CommonPhotoMode = false;
+}
+
+/**
+ * Takes an array of items and converts it to record format
+ * @param { { Group: string; Name: string; Type?: string|null }[] } arr The array of items
+ * @returns { { [group: string]: { [name: string]: string[] } } } Output in object foramat
+ */
+function CommonPackItemArray(arr) {
+	const res = {};
+	for (const I of arr) {
+		let G = res[I.Group];
+		if (G === undefined) {
+			G = res[I.Group] = {};
+		}
+		let A = G[I.Name];
+		if (A === undefined) {
+			A = G[I.Name] = [];
+		}
+		const T = I.Type || "";
+		if (!A.includes(T)) {
+			A.push(T);
+		}
+	}
+	return res;
+}
+
+/**
+ * Takes an record format of items and converts it to array
+ * @param { { [group: string]: { [name: string]: string[] } } } arr Object defining items
+ * @return { { Group: string; Name: string; Type?: string }[] } The array of items
+ */
+function CommonUnpackItemArray(arr) {
+	const res = [];
+	for (const G of Object.keys(arr)) {
+		for (const A of Object.keys(arr[G])) {
+			for (const T of arr[G][A]) {
+				res.push({ Group: G, Name: A, Type: T ? T : undefined });
+			}
+		}
+	}
+	return res;
 }

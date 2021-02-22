@@ -170,7 +170,7 @@ function ShopClick() {
 				if (InventoryAvailable(Player, ShopCart[A].Name, ShopCart[A].Group.Name)) ShopText = TextGet("AlreadyOwned");
 				else if (ShopCart[A].Value > Player.Money) ShopText = TextGet("NotEnoughMoney");
 				else if (LogQuery("BlockKey", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && ((ShopCart[A].Name == "Lockpicks") || (ShopCart[A].Name == "MetalCuffsKey") || (ShopCart[A].Name == "MetalPadlockKey") || (ShopCart[A].Name == "IntricatePadlockKey") || (ShopCart[A].Name == "HighSecurityPadlockKey"))) ShopText = TextGet("CannotSellKey");
-				else if (LogQuery("BlockRemote", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (ShopCart[A].Name == "VibratorRemote" || ShopCart[A].Name == "LoversVibratorRemote")) ShopText = TextGet("CannotSellRemote");
+				else if (LogQuery("BlockRemote", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (ShopCart[A].Name == "VibratorRemote" || ShopCart[A].Name == "LoversVibratorRemote" || ShopCart[A].Name === "SpankingToysVibeRemote")) ShopText = TextGet("CannotSellRemote");
 				else {
 
 					// Add the item and removes the money
@@ -298,9 +298,12 @@ function ShopJobRestrain() {
 
 	// First, we find a body part where we can use the item
 	DialogChangeReputation("Dominant", -1);
-	while (true) {
-		ShopDemoItemGroup = CommonRandomItemFromList("", ShopDemoItemGroupList);
-		if ((InventoryGet(Player, ShopDemoItemGroup) == null) && !InventoryGroupIsBlocked(Player, ShopDemoItemGroup)) break;
+	const availableGroups = ShopJobFilterAvailableGroups();
+	if (availableGroups.length > 0) {
+		ShopDemoItemGroup = CommonRandomItemFromList("", availableGroups);
+	} else {
+		ShopVendor.Stage = 30;
+		return;
 	}
 
 	// Add a random item on that body part and creates a customer
@@ -327,4 +330,23 @@ function ShopJobStart() {
 	EmptyCharacter.push(Player);
 	EmptyCharacter.push(ShopCustomer);
 	CommonSetScreen("Room", "Empty");
+}
+
+/**
+ * Filters the list of shop demo items down to the groups that are currently available on the player
+ * @returns {string[]} - The filtered list demo item groups that are both empty and unblocked
+ */
+function ShopJobFilterAvailableGroups() {
+	return ShopDemoItemGroupList.filter((group) => {
+		return !InventoryGet(Player, group) && !InventoryGroupIsBlocked(Player, group);
+	});
+}
+
+/**
+ * Checks whether or not the player is able to retry the shop job after completing one
+ * @returns {boolean} - Returns true if the player is able to continue running shop jobs (are able to interact, not all
+ * demo item groups are occupied/blocked)
+ */
+function ShopJobCanGoAgain() {
+	return Player.CanInteract() && ShopJobFilterAvailableGroups().length > 0;
 }

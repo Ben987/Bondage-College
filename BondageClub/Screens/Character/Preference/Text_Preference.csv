@@ -108,6 +108,7 @@ AudioPlayItemPlayerOnly,Only play item sounds if you're involved
 ImmersionLockSetting,Lock this menu while bound
 ReturnToChatRoom,Return to chatrooms on relog
 ReturnToChatRoomAdmin,Auto-remake rooms
+SenseDepMessages,Hide others' messages
 ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
 BlockGaggedOOC,Prevent OOC & whispers while gagged
 StimulationEvents,Events while plugged or vibed
@@ -258,8 +259,13 @@ PressDownOnDpad,Press Down on Dpad
 PressLeftOnDpad,Press Left on Dpad
 PressRightOnDpad,Press Right on Dpad
 DeadZone,Dead Zone
+NotificationsAudio,Audio alert for notifications
 NotificationsChatRooms,Raise notifications for:
 NotificationsBeeps,Missed beeps
 NotificationsChat,Unread messages in chat rooms
 NotificationsChatActions,Include item and arousal activity messages
 NotificationsReset,Reset Notifications
+NotificationsChatJoin,Players entering chat rooms while away
+NotificationsChatJoinOwner,Owner
+NotificationsChatJoinLovers,Lovers
+NotificationsChatJoinFriendlist,Friends
