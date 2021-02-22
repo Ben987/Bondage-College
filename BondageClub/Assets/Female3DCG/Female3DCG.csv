@@ -456,8 +456,10 @@ HairFront,HairFront13,Style 13
 HairFront,HairFront13b,Style 13b
 HairFront,HairFront14,Style 14
 HairFront,HairFront14b,Style 14b
-HairFront,HairFront1,Style 15
-HairFront,HairFront1,Style 16
+HairFront,HairFront15,Style 15
+HairFront,HairFront16,Style 16
+HairFront,HairFront17,Style 17
+HairFront,HairFront17b,Style 17b
 HairBack,,Back Hair
 HairBack,HairNone,None
 HairBack,HairBack1,Style 1
@@ -1178,6 +1180,7 @@ ItemDevices,PetBed,Pet Bed
 ItemDevices,TransportWoodenBox,Transport Box
 ItemDevices,VacCube,Vac-Cube
 ItemDevices,PetBowl,Pet Bowl
+ItemDevices,Pole,Pole
 ItemHoodAddon,,Hood
 ItemHoodAddon,OldGasMaskLenses,Blinding Lenses
 ItemHoodAddon,OldGasMaskTube1,Gas Mask Tube

@@ -93,6 +93,15 @@ function AsylumMeetingBuyVibratingWand() {
 }
 
 /**
+ * The player buys lockpicks from the left hand patient
+ * @returns {void} - Nothing
+ */
+function AsylumMeetingBuyLockPicks() {
+	InventoryAdd(Player, "Lockpicks", "ItemMisc");
+	CharacterChangeMoney(Player, -40);
+}
+
+/**
  * The player pays the left hand patient to release her
  * @returns {void} - Nothing
  */

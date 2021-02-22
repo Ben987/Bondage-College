@@ -281,7 +281,7 @@ function ServerValidateProperties(C, Item, Validation) {
 	}
 
 	// For each effect on the item
-	if ((Item.Property != null) && (Item.Property.Effect != null)) {
+	if ((Item.Property != null) && Array.isArray(Item.Property.Effect)) {
 		for (let E = Item.Property.Effect.length - 1; E >= 0; E--) {
 
 			// Make sure the item or its subtype can be locked, remove any lock that's invalid

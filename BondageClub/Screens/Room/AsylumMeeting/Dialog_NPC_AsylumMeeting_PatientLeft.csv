@@ -16,6 +16,7 @@ PlayerGagged,,,"Get that gag off or stop talking, you're driving me nuts.",,
 10,,What can you provide?,"What do you need?  A smoke?  A vibrator?  Some help with a jacket?  I'm here for you, and your money.",,
 10,11,I want a cigarette.,"Sure, the price is 1$ per smoke, do you want one?",,
 10,12,I want a vibrator.,"I have a vibrating wand I can sell you.  It's used and it's not cheap, it goes for 80$.  Do you want it?",,"!DialogInventoryAvailable(""VibratingWand"", ""ItemVulva"")"
+10,13,I want lock picks.,"I have a bunch of hairpins from one of the nurses. They're pretty hard to come by, though. It'll cost 40$ for a pair.",,"!DialogInventoryAvailable(""Lockpicks"", ""ItemMisc"")"
 10,,I want to get out of here.,"I can't help you there.  You can always try to fight your way out, but you'll get in trouble later.",,
 10,,Can I tie you up?,"Forget it girl.  I'm here to do business, not to struggle.",,"DialogReputationLess(""Asylum"", -1)"
 10,40,Will you tie me up?,Bondage is free but freedom has a price.  How tight do you want it?,,CanRestrainPlayer()
@@ -24,6 +25,8 @@ PlayerGagged,,,"Get that gag off or stop talking, you're driving me nuts.",,
 11,10,I've changed my mind.,Whatever!  Anything else you need?,,
 12,10,It's a deal!  (Pay her 80$),(She sells you the used vibrating wand and grins.)  Have fun!  I'm sure you'll get popular with that toy.,BuyVibratingWand(),DialogMoneyGreater(80)
 12,10,No way!  80$ for a used vibrator!,Don't take it then.  I'm sure you'll come crawling back later to get it.,,
+13,10,Sounds good!  (Pay her 40$),(She gives you a pair of hairpins you can use as lockpicks.)  Don't get yourself in too much trouble.,BuyLockPicks(),DialogMoneyGreater(40)
+13,10,Sounds like price gouging...,Whatever!  Anything else you need?,,
 20,,Can you do it for free?,No way.  You pay or you stay like that.,DialogRemove(),
 20,0,(Nod yes.),It's a pleasure to do business with you.  (She releases you and smirks.)  Anything else you need?,ReleaseForMoney(),DialogMoneyGreater(10)
 20,0,(Whimper and beg.),Stop begging.  You pay or you stay like that.,,

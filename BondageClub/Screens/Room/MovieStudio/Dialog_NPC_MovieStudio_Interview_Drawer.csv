@@ -20,9 +20,10 @@ PlayerGagged,,,(There's a small wooden drawer.),,
 30,,(Wear the collar.),"(You put on the leather collar, hearing a small locking click when you attach it.)","DoActivity(""InterviewWearCollar"")","CanDoActivity(""InterviewWearCollar"")"
 30,0,(Close it.),(You close the third drawer.),,
 1000,,,(There's a small wooden drawer.),,
-1000,1010,(Open the first one.),(There are a few duster gags in the first drawer.),,
-1000,1020,(Open the second one.),(There are many dusters in the second drawer.),,
-1000,1030,(Open the third one.),(There are a few electric items in the third drawer.),,
+1000,1010,(Open the first one.),(There are a few duster gags in the first drawer.),,Player.CanInteract()
+1000,1020,(Open the second one.),(There are many dusters in the second drawer.),,Player.CanInteract()
+1000,1030,(Open the third one.),(There are a few electric items in the third drawer.),,Player.CanInteract()
+1000,,(Dust the drawer.),(You dust the drawer as the camera zooms on your gag.),,!Player.CanTalk()
 1000,,(Leave it.),,DialogLeave(),
 1010,1000,(Wear the duster gag.),(You strap the duster gag around your head as the camera zooms on you.),"DoActivity(""InterviewWearDusterGag"")","CanDoActivity(""InterviewWearDusterGag"")"
 1010,1000,(Leave the duster gag inside.),(You slowly remove the duster gag and try not to drool on your outfit.),"DoActivity(""InterviewRemoveGag"")","!CanDoActivity(""InterviewWearDusterGag"")"
