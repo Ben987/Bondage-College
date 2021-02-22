@@ -152,7 +152,7 @@ function InventoryItemPelvisFuturisticChastityBeltNpcDialog(C, Option) { Invento
 function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 	var Item = data.Item
 	// Punish the player if they try to mess with the groin area
-	if (Item.Property.PunishStruggle && Player.FocusGroup && (DialogProgress >= 0 || DialogLockPickProgressCurrentTries > 0) && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0) {
+	if (Item.Property.PunishStruggle && Player.FocusGroup && (StruggleProgress >= 0 || StruggleLockPickProgressCurrentTries > 0) && StruggleProgressPrevItem != null && StruggleProgressStruggleCount > 0) {
 		var inFocus = false
 		for (var Z = 0; Z < InventoryItemPelvisFuturisticChastityBeltTamperZones.length; Z++)
 			if (Player.FocusGroup.Name == InventoryItemPelvisFuturisticChastityBeltTamperZones[Z])
@@ -160,7 +160,7 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 		
 		if (inFocus) {
 			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Struggle")
-			DialogProgressStruggleCount = 0
+			StruggleProgressStruggleCount = 0
 			DialogLeaveDueToItem = true
 			/*var vol = 1
 			if (Player.AudioSettings && Player.AudioSettings.Volume) {
@@ -170,10 +170,10 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 		}
 	}
 	// Punish the player if they struggle anywhere
-	if (Item.Property.PunishStruggleOther && Player.FocusGroup && DialogProgressPrevItem != null && DialogProgressStruggleCount > 0 && (DialogProgress > 50 || DialogLockPickProgressCurrentTries > 2)) {
+	if (Item.Property.PunishStruggleOther && Player.FocusGroup && StruggleProgressPrevItem != null && StruggleProgressStruggleCount > 0 && (StruggleProgress > 50 || StruggleLockPickProgressCurrentTries > 2)) {
 		AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther")
-		DialogProgressStruggleCount = 0
-		DialogProgress = 0
+		StruggleProgressStruggleCount = 0
+		StruggleProgress = 0
 		DialogLeaveDueToItem = true
 
 	}

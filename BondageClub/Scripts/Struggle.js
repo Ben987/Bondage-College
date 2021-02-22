@@ -116,7 +116,7 @@ function StruggleProgressGetOperation(C, PrevItem, NextItem) {
  * @returns {void} - Nothing
  */
 function StruggleKeyDown() {
-	if (((KeyPress == 65) || (KeyPress == 83) || (KeyPress == 97) || (KeyPress == 115)) && (DialogProgress >= 0) && (DialogColor == null) && (StruggleProgressCurrentMinigame == "Strength")) {
+	if (((KeyPress == 65) || (KeyPress == 83) || (KeyPress == 97) || (KeyPress == 115)) && (StruggleProgress >= 0) && (DialogColor == null) && (StruggleProgressCurrentMinigame == "Strength")) {
 		StruggleStrength((StruggleProgressLastKeyPress == KeyPress));
 		StruggleProgressLastKeyPress = KeyPress;
 	}
@@ -148,7 +148,7 @@ function StruggleProgressStart(C, PrevItem, NextItem) {
 	StruggleProgressChooseNextItem = NextItem
 	StruggleProgressCurrentMinigame = ""
 	
-	DialogProgress = 0;
+	StruggleProgress = 0;
 	DialogMenuButtonBuild(C);
 		
 	if (C != Player || PrevItem == null) {
@@ -167,16 +167,16 @@ function StruggleProgressAutoDraw(C, Offset) {
 	} else DrawAssetPreview(1387, 250 + Offset, (StruggleProgressPrevItem != null) ? StruggleProgressPrevItem.Asset : StruggleProgressNextItem.Asset);
 
 	// Add or subtract to the automatic progression, doesn't move in color picking mode
-	DialogProgress = DialogProgress + StruggleProgressAuto;
-	if (DialogProgress < 0) DialogProgress = 0;
+	StruggleProgress = StruggleProgress + StruggleProgressAuto;
+	if (StruggleProgress < 0) StruggleProgress = 0;
 	
 	// We cancel out if at least one of the following cases apply: a new item conflicts with this, the player can no longer interact, something else was added first, the item was already removed
 	if (InventoryGroupIsBlocked(C) || (C != Player && !Player.CanInteract()) || (StruggleProgressNextItem == null && !InventoryGet(C, StruggleProgressPrevItem.Asset.Group.Name)) || (StruggleProgressNextItem != null && !InventoryAllow(C, StruggleProgressNextItem.Asset.Prerequisite)) || (StruggleProgressNextItem != null && StruggleProgressPrevItem != null && ((InventoryGet(C, StruggleProgressPrevItem.Asset.Group.Name) && InventoryGet(C, StruggleProgressPrevItem.Asset.Group.Name).Asset.Name != StruggleProgressPrevItem.Asset.Name) || !InventoryGet(C, StruggleProgressPrevItem.Asset.Group.Name))) || (StruggleProgressNextItem != null && StruggleProgressPrevItem == null && InventoryGet(C, StruggleProgressNextItem.Asset.Group.Name))) {
-		if (DialogProgress > 0)
+		if (StruggleProgress > 0)
 			ChatRoomPublishAction(C, StruggleProgressPrevItem, StruggleProgressNextItem, true, "interrupted");
 		else
 			DialogLeave();
-		DialogProgress = -1;
+		StruggleProgress = -1;
 		DialogLockMenu = false
 		return;
 	}
@@ -184,7 +184,7 @@ function StruggleProgressAutoDraw(C, Offset) {
 
 function StruggleProgressCheckEnd(C) {
 	// If the operation is completed
-	if (DialogProgress >= 100) {
+	if (StruggleProgress >= 100) {
 
 		// Stops the dialog sounds
 		AudioDialogStop();
@@ -199,7 +199,7 @@ function StruggleProgressCheckEnd(C) {
 			if ((StruggleProgressPrevItem == null) && (StruggleProgressNextItem != null)) SkillProgress("SelfBondage", (StruggleProgressSkill + StruggleProgressNextItem.Asset.SelfBondage) * 2);
 			if ((StruggleProgressNextItem == null) || !StruggleProgressNextItem.Asset.Extended) {
 				DialogInventoryBuild(C);
-				DialogProgress = -1;
+				StruggleProgress = -1;
 				DialogColor = null;
 			}
 		} else {
@@ -219,8 +219,8 @@ function StruggleProgressCheckEnd(C) {
 
 		// Reset the the character's position
 		if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
-			CharacterAppearanceForceUpCharacter = 0;
-			CharacterAppearanceSetHeightModifiers(C);
+			CharacterAppearanceForceUpCharacter = -1;
+			CharacterRefresh(C, false);
 		}
 
 		// Rebuilds the menu
@@ -241,6 +241,7 @@ Game description: Mash A and S until you get out
 */
 
 
+
 /**
  * Draw the struggle dialog
  * @param {Character} C - The character for whom the struggle dialog is drawn. That can be the player or another character.
@@ -252,7 +253,7 @@ function StruggleDrawStrengthProgress(C) {
 	// Draw the current operation and progress
 	if (StruggleProgressAuto < 0) DrawText(DialogFindPlayer("Challenge") + " " + ((StruggleProgressStruggleCount >= 50) ? StruggleProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
 	DrawText(StruggleProgressOperation, 1500, 650, "White", "Black");
-	DrawProgressBar(1200, 700, 600, 100, DialogProgress);
+	DrawProgressBar(1200, 700, 600, 100, StruggleProgress);
 	if (ControllerActive == false) {
 		DrawText(DialogFindPlayer((CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
 	}
@@ -275,14 +276,14 @@ function StruggleStrength(Reverse) {
 	
 	// Progress calculation
 	var P = 42 / (StruggleProgressSkill * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
-	P = P * (100 / (DialogProgress + 50));  // Faster when the dialog starts, longer when it ends	
-	if ((StruggleProgressChallenge > 6) && (DialogProgress > 50) && (StruggleProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
+	P = P * (100 / (StruggleProgress + 50));  // Faster when the dialog starts, longer when it ends	
+	if ((StruggleProgressChallenge > 6) && (StruggleProgress > 50) && (StruggleProgressAuto < 0)) P = P * (1 - ((StruggleProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
 	P = P * (Reverse ? -1 : 1); // Reverses the progress if the user pushed the same key twice
 
 	// Sets the new progress and writes the "Impossible" message if we need to
-	DialogProgress = DialogProgress + P;
-	if (DialogProgress < 0) DialogProgress = 0;
-	if ((DialogProgress >= 100) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) DialogProgress = 99;
+	StruggleProgress = StruggleProgress + P;
+	if (StruggleProgress < 0) StruggleProgress = 0;
+	if ((StruggleProgress >= 100) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgress = 99;
 	if (!Reverse) StruggleProgressStruggleCount++;
 	if ((StruggleProgressStruggleCount >= 50) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgressOperation = DialogFindPlayer("Impossible");
 
@@ -299,7 +300,7 @@ function StruggleStrength(Reverse) {
 	}
 
 	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (DialogProgress >= 50) ? "Angry" : null);
+	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
 
 	
 }
@@ -349,7 +350,7 @@ function StruggleStrengthStart(C, PrevItem, NextItem) {
 	}
 
 	// Prepares the progress bar and timer
-	DialogProgress = 0;
+	StruggleProgress = 0;
 	StruggleProgressAuto = TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
 	StruggleProgressPrevItem = PrevItem;
 	StruggleProgressNextItem = NextItem;
@@ -456,7 +457,7 @@ function StruggleFlexibilityStart(C, PrevItem, NextItem) {
 	}
 
 	// Prepares the progress bar and timer
-	DialogProgress = 0;
+	StruggleProgress = 0;
 	StruggleProgressAuto = TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
 	StruggleProgressPrevItem = PrevItem;
 	StruggleProgressNextItem = NextItem;
@@ -540,7 +541,7 @@ function StruggleDrawFlexibilityProgress(C) {
 	// Draw the current operation and progress
 	if (StruggleProgressAuto < 0) DrawText(DialogFindPlayer("Challenge") + " " + ((StruggleProgressStruggleCount >= 50) ? StruggleProgressChallenge.toString() : "???"), 1500, 425, "White", "Black");
 	DrawText(StruggleProgressOperation, 1500, 476, "White", "Black");
-	DrawProgressBar(1200, 800, 600, 100, DialogProgress);
+	DrawProgressBar(1200, 800, 600, 100, StruggleProgress);
 	DrawText(DialogFindPlayer("ProgressFlex"), 1500, 950, "White", "Black");
 
 	StruggleProgressCheckEnd(C)
@@ -583,13 +584,13 @@ function StruggleFlexibility(Reverse, Hover) {
 	// Progress calculation
 	var P = 60 / (StruggleProgressSkill/3 * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
 	
-	if ((StruggleProgressChallenge > 6) && (DialogProgress > 50) && (StruggleProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
+	if ((StruggleProgressChallenge > 6) && (StruggleProgress > 50) && (StruggleProgressAuto < 0)) P = P * (1 - ((StruggleProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
 	P = P * (Reverse ? -1 : 1); // Reverses the progress if the user pushed the same key twice
 
 	// Sets the new progress and writes the "Impossible" message if we need to
-	DialogProgress = DialogProgress + P;
-	if (DialogProgress < 0) DialogProgress = 0;
-	if ((DialogProgress >= 100) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) DialogProgress = 99;
+	StruggleProgress = StruggleProgress + P;
+	if (StruggleProgress < 0) StruggleProgress = 0;
+	if ((StruggleProgress >= 100) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgress = 99;
 	if (!Reverse) StruggleProgressStruggleCount += 3;
 	if ((StruggleProgressStruggleCount >= 50) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgressOperation = DialogFindPlayer("Impossible");
 
@@ -606,7 +607,7 @@ function StruggleFlexibility(Reverse, Hover) {
 	}
 
 	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (DialogProgress >= 50) ? "Angry" : null);
+	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
 
 	
 }
@@ -686,7 +687,7 @@ function StruggleDexterityStart(C, PrevItem, NextItem) {
 	}
 
 	// Prepares the progress bar and timer
-	DialogProgress = 0;
+	StruggleProgress = 0;
 	StruggleProgressAuto = TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
 	StruggleProgressPrevItem = PrevItem;
 	StruggleProgressNextItem = NextItem;
@@ -755,7 +756,7 @@ function StruggleDrawDexterityProgress(C) {
 	// Draw the current operation and progress
 	if (StruggleProgressAuto < 0) DrawText(DialogFindPlayer("Challenge") + " " + ((StruggleProgressStruggleCount >= 50) ? StruggleProgressChallenge.toString() : "???"), 1500, 150, "White", "Black");
 	DrawText(StruggleProgressOperation, 1500, 600, "White", "Black");
-	DrawProgressBar(1200, 800, 600, 100, DialogProgress);
+	DrawProgressBar(1200, 800, 600, 100, StruggleProgress);
 	DrawText(DialogFindPlayer("ProgressDex"), 1500, 950, "White", "Black");
 
 	StruggleProgressCheckEnd(C)
@@ -774,7 +775,7 @@ function StruggleDexterity(Reverse) {
 	
 	// Progress calculation
 	var P = 200 / (StruggleProgressSkill/3.5 * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
-	if ((StruggleProgressChallenge > 6) && (DialogProgress > 50) && (StruggleProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
+	if ((StruggleProgressChallenge > 6) && (StruggleProgress > 50) && (StruggleProgressAuto < 0)) P = P * (1 - ((StruggleProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
 	var distMult = Math.max(-0.5, Math.min(1, (85 - Math.abs(StruggleProgressDexTarget - StruggleProgressDexCurrent))/75));
 	P = P * distMult // Reverses the progress if too far
 
@@ -783,9 +784,9 @@ function StruggleDexterity(Reverse) {
 	}
 
 	// Sets the new progress and writes the "Impossible" message if we need to
-	DialogProgress = DialogProgress + P;
-	if (DialogProgress < 0) DialogProgress = 0;
-	if ((DialogProgress >= 100) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) DialogProgress = 99;
+	StruggleProgress = StruggleProgress + P;
+	if (StruggleProgress < 0) StruggleProgress = 0;
+	if ((StruggleProgress >= 100) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgress = 99;
 	StruggleProgressStruggleCount += Math.max(1, 3*(distMult + 0.5));
 	if ((StruggleProgressStruggleCount >= 50) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgressOperation = DialogFindPlayer("Impossible");
 
@@ -802,7 +803,7 @@ function StruggleDexterity(Reverse) {
 	}
 
 	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (DialogProgress >= 50) ? "Angry" : null);
+	if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
 
 	
 }
@@ -849,13 +850,13 @@ function StruggleLockPickClick(C) {
 								StruggleLockPickProgressCurrentTries += 1
 							}
 						} else {
+							StruggleLockPickTotalTries += 1
 							// There is a chance we false set
-							if (Math.random() < false_set_chance) {
+							if (Math.random() < false_set_chance && StruggleLockPickImpossiblePins.filter(x => x==P).length == 0) {
 								StruggleLockPickSetFalse[P] = true
 							} else if (StruggleLockPickSetFalse[P] == false) {
 							// Otherwise: fail
 								StruggleLockPickProgressCurrentTries += 1
-								StruggleLockPickTotalTries += 1
 							}
 						}
 						if (StruggleLockPickProgressCurrentTries < StruggleLockPickProgressMaxTries) {
@@ -894,11 +895,22 @@ function StruggleLockPickClick(C) {
 	}
 }
 
-
  
- 
- 
-function DialogDrawLockpickProgress(C) {
+/**
+var StruggleLockPickOrder = null;
+var StruggleLockPickSet = null;
+var StruggleLockPickImpossiblePins = null;
+var StruggleLockPickProgressItem = null;
+var StruggleLockPickProgressOperation = "";
+var StruggleLockPickProgressSkill = 0;
+var StruggleLockPickProgressChallenge = 0;
+var StruggleLockPickProgressMaxTries = 0;
+var StruggleLockPickProgressCurrentTries = 0;
+ * Draw the lockpicking dialog
+ * @param {Character} C - The character for whom the lockpicking dialog is drawn. That can be the player or another character.
+ * @returns {void} - Nothing
+ */
+function StruggleDrawLockpickProgress(C) {
 	// Place where to draw the pins
 	var X = 1475
 	var Y = 500
@@ -930,7 +942,7 @@ function DialogDrawLockpickProgress(C) {
 			DrawImageResize("Screens/MiniGame/Lockpick/Arrow.png", XX, Y + 25, PinWidth, PinWidth);
 	}
 
-	
+
 	DrawText(DialogFindPlayer("LockpickTriesRemaining") + (StruggleLockPickProgressMaxTries - StruggleLockPickProgressCurrentTries), X, 212, "white");
 	if (LogValue("FailedLockPick", "LockPick") > CurrentTime)
 		DrawText(DialogFindPlayer("LockpickFailedTimeout") + TimerToString(LogValue("FailedLockPick", "LockPick") - CurrentTime), X, 262, "red");
@@ -957,11 +969,12 @@ function DialogDrawLockpickProgress(C) {
 			DrawText(StruggleLockPickArousalText, X, 170, "pink");
 		}
 	}
-		
+
 
 	DrawText(DialogFindPlayer("LockpickIntro"), X, 800, "white");
 	DrawText(DialogFindPlayer("LockpickIntro2"), X, 850, "white");
-	
+	DrawText(DialogFindPlayer("LockpickIntro3"), X, 900, "white");
+
 	if (StruggleLockPickSuccessTime != 0) {
 		if (CurrentTime > StruggleLockPickSuccessTime) {
 			StruggleLockPickSuccessTime = 0
@@ -970,6 +983,7 @@ function DialogDrawLockpickProgress(C) {
 				var item = InventoryGet(C, C.FocusGroup.Name)
 				if (item) {
 					InventoryUnlock(C, item)
+					if (CurrentScreen == "ChatRoom") ChatRoomPublishAction(C, item, null, C.ID !== 0, "ActionPick");
 				}
 			}
 			SkillProgress("LockPicking", StruggleLockPickProgressSkill);
@@ -983,11 +997,6 @@ function DialogDrawLockpickProgress(C) {
 			} else {
 				DialogLeaveItemMenu();
 			}
-			if (CurrentScreen == "ChatRoom" && Player.FocusGroup) {
-				var item = InventoryGet(C, Player.FocusGroup.Name)
-				if (item)
-					ChatRoomPublishAction(C, item, null, true, "ActionPick");
-			}
 		}
 	} else {
 		if ( Player.ArousalSettings && Player.ArousalSettings.Progress > 20 && StruggleLockPickProgressCurrentTries < StruggleLockPickProgressMaxTries && StruggleLockPickProgressCurrentTries > 0) {
@@ -996,7 +1005,7 @@ function DialogDrawLockpickProgress(C) {
 				if (StruggleLockPickArousalTick - CurrentTime > CurrentTime + StruggleLockPickArousalTickTime*arousalmaxtime) {
 					StruggleLockPickArousalTick = CurrentTime + StruggleLockPickArousalTickTime*arousalmaxtime // In case it gets set out way too far
 				}
-				
+
 				if (StruggleLockPickArousalTick > 0 && StruggleLockPickSet.filter(x => x==true).length > 0) {
 					StruggleLockPickArousalText = DialogFindPlayer("LockPickArousal")
 					if (StruggleLockPickSet.filter(x => x==true).length < StruggleLockPickSet.length) {
@@ -1200,3 +1209,7 @@ function StruggleLockPickProgressStart(C, Item) {
 		StruggleLockPickProgressMaxTries = NumTries - NumPins;
 	}
 }
+
+
+
+
