@@ -281,7 +281,7 @@ function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
 
 	if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
 		var collar = InventoryGet(C, "ItemNeck")
-		if (collar && (!collar.Property || collar.Property.OpenPermission != true)) {
+		if (!collar || (!collar.Property || collar.Property.OpenPermission != true)) {
 			Allowed = DialogExtendedMessage = DialogFindPlayer("CantChangeWhileLockedFuturistic");
 		}
 	}
