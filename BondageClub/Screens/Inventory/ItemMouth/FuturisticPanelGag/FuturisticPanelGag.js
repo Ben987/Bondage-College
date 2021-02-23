@@ -38,6 +38,8 @@ var AutoPunishKeywords = [
 "scream",
 "whine",
 "growl",
+"laugh",
+"giggle",
 ]
 
 var AutoPunishGagActionFlag = false;
