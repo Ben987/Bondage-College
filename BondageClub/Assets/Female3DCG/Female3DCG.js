@@ -4317,30 +4317,35 @@ var ActivityFemale3DCG = [
 	{
 		Name: "MoanGag",
 		MaxProgress: 60,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},
 	{
 		Name: "MoanGagTalk",
 		MaxProgress: 10,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},
 	{
 		Name: "MoanGagWhimper",
 		MaxProgress: 40,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},
 	{
 		Name: "MoanGagAngry",
 		MaxProgress: 10,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},
 	{
 		Name: "MoanGagGroan",
 		MaxProgress: 30,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},
