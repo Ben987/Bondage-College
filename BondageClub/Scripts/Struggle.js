@@ -37,7 +37,7 @@ var StruggleProgressChooseNextItem = null;
 // For flexibility
 var StruggleProgressFlexCircles = []
 var StruggleProgressFlexTimer = 0
-var StruggleProgressFlexMaxX = 200
+var StruggleProgressFlexMaxX = 300
 var StruggleProgressFlexMaxY = 150
 var StruggleProgressFlexCirclesRate = 200
 
@@ -559,7 +559,7 @@ function StruggleFlexibilityCheck() {
 		var R = StruggleProgressFlexCircles[RR]
 
 		if (R.X && R.Y && R.Size) {
-			var Smod = (CommonIsMobile) ? 2 : 1
+			var Smod = (CommonIsMobile) ? 1.0 : 0.5
 			if (MouseIn(1485 + R.X - R.Size*Smod, 625 + R.Y - R.Size*Smod, R.Size*2*Smod, R.Size*2*Smod)) {
 				StruggleProgressFlexCircles.splice(RR,1)
 				return true;
