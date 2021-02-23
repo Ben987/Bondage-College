@@ -14,8 +14,13 @@ function KinkyDungeonLoad() {
 	CharacterReleaseTotal(KinkyDungeonPlayer)
 	CharacterNaked(KinkyDungeonPlayer)
 	InventoryWear(KinkyDungeonPlayer, "WitchHat1", "Hat")
-	InventoryWear(KinkyDungeonPlayer, "WeddingDress1", "Cloth")
-	CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, "#444444", "Cloth");
+	InventoryWear(KinkyDungeonPlayer, "Dress3", "Cloth")
+	InventoryWear(KinkyDungeonPlayer, "Socks4", "Socks")
+	InventoryWear(KinkyDungeonPlayer, "Heels3", "Shoes")
+	
+	
+	CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, "#444444", "Socks");
+	CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, "#222222", "Shoes");
 	
 	KinkyDungeonState = "Menu"
 }
@@ -55,7 +60,7 @@ function KinkyDungeonClick() {
 	}
 	if (KinkyDungeonState == "Menu") {
 		if (MouseIn(1075, 750, 350, 64)) {
-			KinkyDungeonCreateMap(1)
+			KinkyDungeonInitialize(1)
 			KinkyDungeonState = "Game"
 		}
 	} else if (KinkyDungeonState == "Game") {

@@ -12,6 +12,10 @@ var CutsceneStage = 0;
 
 var CommonPhotoMode = false;
 
+String.prototype.replaceAt=function(index, character) {
+      return this.substr(0, index) + character + this.substr(index+character.length);
+    }
+
 /**
  * A map of keys to common font stack definitions. Each stack definition is a	
  * two-item array whose first item is an ordered list of fonts, and whose	

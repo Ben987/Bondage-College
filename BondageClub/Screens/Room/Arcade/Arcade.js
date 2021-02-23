@@ -33,6 +33,13 @@ function ArcadeCanPlayGames() {
 	return head && head.Asset && (head.Asset.Name == "InteractiveVRHeadset" || head.Asset.Name == "InteractiveVisor");
 }
 
+/**
+ * Determines whether or not the player needs to rent a headset
+ * @returns {bool} - Whether or not the player needs to rent a headset
+ */
+function ArcadeNeedToRent() {
+	return !ArcadeCanPlayGames() && !DialogInventoryAvailable("InteractiveVRHeadset", "ItemHead");
+}
 
 
 /**
