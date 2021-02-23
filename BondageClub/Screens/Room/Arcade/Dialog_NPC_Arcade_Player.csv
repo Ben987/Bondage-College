@@ -1,0 +1,3 @@
+PlayerGagged,,,"Why are you gagged?",,
+0,,,(She is has a headset on and is busy playing.),,
+0,0,(Leave her.),,DialogLeave(),

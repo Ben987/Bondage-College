@@ -1083,6 +1083,33 @@ function DrawProgressBar(X, Y, W, H, Progress) {
 }
 
 /**
+ * Gets the player's custom background based on type
+ * @returns {string} - Custom background if applicable, otherwise ""
+ */
+function DrawGetCustomBackground() {
+	var blindfold = InventoryGet(Player, "ItemHead")
+	var hood = InventoryGet(Player, "ItemHood")
+	var customBG = ""
+	
+	if (blindfold && blindfold.Asset && blindfold.Asset.CustomBlindBackground) {
+		var type = "None"
+		if (blindfold.Property && blindfold.Property.Type && blindfold.Asset.CustomBlindBackground[blindfold.Property.Type] != null)
+			type = blindfold.Property.Type
+		if (blindfold.Asset.CustomBlindBackground[type])
+			customBG = blindfold.Asset.CustomBlindBackground[type]
+	} else if (hood && hood.Asset && hood.Asset.CustomBlindBackground) {
+				var type = "None"
+		if (hood.Property && hood.Property.Type && hood.Asset.CustomBlindBackground[hood.Property.Type])
+			type = hood.Property.Type
+		if (hood.Asset.CustomBlindBackground[type])
+			customBG = hood.Asset.CustomBlindBackground[type]
+	}
+	
+	return customBG
+}
+
+
+/**
  * Constantly looping draw process. Draws beeps, handles the screen size, handles the current blindfold state and draws the current screen.
  * @returns {void} - Nothing
  */
@@ -1094,21 +1121,32 @@ function DrawProcess() {
 	}
 
 	// Gets the current screen background and draw it, it becomes darker in dialog mode or if the character is blindfolded
-	const B = window[CurrentScreen + "Background"];
+	var B = window[CurrentScreen + "Background"];
+	
+	
+	
 	if ((B != null) && (B != "")) {
 		let DarkFactor = 1.0;
 		if ((CurrentModule != "Character") && (B != "Sheet")) {
 			DarkFactor = CharacterGetDarkFactor(Player);
 			if (DarkFactor == 1 && (CurrentCharacter != null || ShopStarted) && !CommonPhotoMode) DarkFactor = 0.5;
 		}
-		if (DarkFactor > 0.0) {
-			const Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
+		const Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
+		if (DarkFactor == 0.0) {
+			var customBG = DrawGetCustomBackground()
+			
+			if (customBG != "") {
+				B = customBG
+			}
+		}
+		
+		if (DarkFactor > 0.0 || customBG != "") {
 			if (!DrawImage("Backgrounds/" + B + ".jpg", 0, 0, Invert)) {
 				// Draw empty background to overdraw old content if background image isn't ready
 				DrawRect(0, 0, 2000, 1000, "#000");
 			}
 		}
-		if (DarkFactor < 1.0) DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
+		if (DarkFactor < 1.0 && customBG == "") DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
 	}
 
 	if (RefreshDrawFunction) {

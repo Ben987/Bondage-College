@@ -148,6 +148,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		Audio: NewAsset.Audio,
 		Category: NewAsset.Category,
 		Fetish: NewAsset.Fetish,
+		CustomBlindBackground: NewAsset.CustomBlindBackground,
 		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
 		BodyCosplay: (NewAsset.BodyCosplay == null) ? ((AssetCurrentGroup.BodyCosplay == null) ? false : AssetCurrentGroup.BodyCosplay) : NewAsset.BodyCosplay,

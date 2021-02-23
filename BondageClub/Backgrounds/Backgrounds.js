@@ -184,6 +184,7 @@ var BackgroundsList = [
 	{ Name: "Ranch", Tag: [BackgroundsTagOutdoor] },
 	{ Name: "Wagons", Tag: [BackgroundsTagOutdoor] },
 	{ Name: "OutdoorPool2", Tag: [BackgroundsTagOutdoor, BackgroundsTagAquatic] },
+    { Name: "SynthWave", Tag: [BackgroundsTagOutdoor, BackgroundsTagSciFiFantasy] },
 ];
 
 /**

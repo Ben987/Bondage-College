@@ -504,9 +504,18 @@ function ChatRoomDrawCharacter(DoClick) {
 		// Draws the zoomed background
 		DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ".jpg", MainCanvas, 500 * (2 - 1 / Zoom), 0, 1000 / Zoom, 1000, 0, Y, 1000, 1000 * Zoom, InvertRoom);
 
-		// Draws a black overlay if the character is blind
-		if (DarkFactor < 1.0) DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
-
+		// Draws a black screen or an overlay if the character is blind
+		if (DarkFactor < 1.0) {
+			DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
+		}
+	} else if (DarkFactor == 0) {
+		var customBG = DrawGetCustomBackground()
+		
+		
+		if (customBG != "") {
+			// Draws the zoomed background
+			DrawImageZoomCanvas("Backgrounds/" + customBG + ".jpg", MainCanvas, 500 * (2 - 1 / Zoom), 0, 1000 / Zoom, 1000, 0, Y, 1000, 1000 * Zoom, InvertRoom);
+		}
 	}
 
 	// Draw the characters (in click mode, we can open the character menu or start whispering to them)
