@@ -764,8 +764,6 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				Item.Property.LockedBy = Lock.Asset.Name;
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
-				
-				
 				CharacterRefresh(C, true);
 			}
 		}
