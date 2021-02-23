@@ -61,16 +61,30 @@ function KinkyDungeonCreateMap(MapParams) {
 	var rooms = []
 	var openness = MapParams["openness"]
 	var tunnellength = MapParams["tunnellength"]
-	var roomcount = 20
+	var roomcount = 50
 	
 	
 	for (let R = 0; R < roomcount; R++) {
 		var size = 1+Math.floor(Math.random() * (openness))
-		rooms.push({
-			x: 1 + Math.floor(Math.random() * (width - 1 - size)),
-			y: 1 + Math.floor(Math.random() * (height - 1 - size)),
-			size: size,
-		})
+		var x = 1 + Math.floor(Math.random() * (width - 1 - size))
+		var y = 1 + Math.floor(Math.random() * (height - 1 - size))
+		var occupied = false;
+		
+		
+		for (let RR = 0; RR < rooms.length; RR++) {
+			if (Math.abs(rooms[RR].x - x) < rooms[RR].size + size
+				&& Math.abs(rooms[RR].y - y) < rooms[RR].size + size) {
+				occupied = true;
+				break;
+			}
+		}
+		
+		if (!occupied)
+			rooms.push({
+				x: x,
+				y: y,
+				size: size,
+			})
 	}
 	
 	for (let R = 0; R < rooms.length; R++) {
@@ -93,6 +107,13 @@ function KinkyDungeonMapSet(X, Y, SetTo) {
 		return true;
 	}
 	return false;
+}
+
+function KinkyDungeonMapGet(X, Y) {
+	var height = KinkyDungeonGrid.split('\n').length
+	var width = KinkyDungeonGrid.split('\n')[0].length
+	
+	return KinkyDungeonGrid[X + Y*(width+1)]
 }
 
 

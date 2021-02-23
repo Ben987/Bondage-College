@@ -34,6 +34,15 @@ function ArcadeCanPlayGames() {
 }
 
 /**
+ * Determines whether or not the player can play games and is gagged
+ * @returns {bool} - Whether or not the player has a headset and is gagged
+ */
+function ArcadeCanPlayGamesAndGagged() {
+	var head = InventoryGet(Player, "ItemHead");
+	return !Player.CanTalk() && head && head.Asset && (head.Asset.Name == "InteractiveVRHeadset" || head.Asset.Name == "InteractiveVisor");
+}
+
+/**
  * Determines whether or not the player needs to rent a headset
  * @returns {bool} - Whether or not the player needs to rent a headset
  */

@@ -1,3 +1,6 @@
-PlayerGagged,,,"Why are you gagged?",,
+PlayerGagged,,,(She thinks your gagged mumbling is part of the game),,
 0,,,(She is has a headset on and is busy playing.),,
+0,10,HEY!!!,(She peeks out from under her headset.) What's up?,,
+10,0,Do you need some help getting to a higher level?,"Nah, not right now. (She goes back to her game)",,
+10,0,Nothing.,"Don't bother me, then. (She goes back to her game)",,
 0,0,(Leave her.),,DialogLeave(),
