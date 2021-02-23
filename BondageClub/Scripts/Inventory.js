@@ -767,8 +767,6 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				
 				
 				CharacterRefresh(C, true);
-				
-				ServerSend("AccountTamperLock", {TargetMemberNumber: C.MemberNumber, Group: Item.Asset.Group.Name, LockType: Lock.Asset.Name});
 			}
 		}
 	}

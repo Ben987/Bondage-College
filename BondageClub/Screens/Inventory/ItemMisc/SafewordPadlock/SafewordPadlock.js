@@ -32,18 +32,6 @@ function InventoryItemMiscSafewordPadlockDraw() {
 	var C = CharacterGetCurrent();
 	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
 	
-	
-	
-	if (C.TamperLock && C.FocusGroup && C.FocusGroup.Name && C.TamperLock[C.FocusGroup.Name]) {
-		var TamperInfo = TamperInfo = C.TamperLock[C.FocusGroup.Name]
-		if (TamperInfo.AppliedBy && TamperInfo.AppliedByName && TamperInfo.LastChange) {
-			var time = new Date(TamperInfo.LastChange - new Date().getTimezoneOffset() * 60000 )
-			DrawText(DialogFindPlayer("TamperLockSetBy") + " " + TamperInfo.AppliedByName + " (" + TamperInfo.AppliedBy.toString() + ")", 1500, 560, "white", "gray");
-			DrawText(DialogFindPlayer("TamperLockSetTime") + " " + time.toLocaleDateString(), 1500, 625, "white", "gray");
-		} else {
-			DrawText("This is a bug, please report it in the discord", 1500, 600, "white", "gray");
-		}
-	} else 	
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
 		DrawText(DialogFindPlayer("LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 600, "white", "gray");
 
