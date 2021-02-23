@@ -30,7 +30,7 @@ function ArcadeCanAskForHeadsetHelpGagged() {
  */
 function ArcadeCanPlayGames() {
 	var head = InventoryGet(Player, "ItemHead");
-	return head && head.Asset && !(head.Asset.Name == "InteractiveVRHeadset" || head.Asset.Name == "InteractiveVisor");
+	return head && head.Asset && (head.Asset.Name == "InteractiveVRHeadset" || head.Asset.Name == "InteractiveVisor");
 }
 
 
@@ -41,6 +41,16 @@ function ArcadeCanPlayGames() {
  */
 function ArcadePutOnHeadset() {
 	InventoryWear(Player, "InteractiveVRHeadset","ItemHead");
+}
+
+
+/**
+ * Places a headset on the player and charges them 10
+ * @returns {void} - Nothing
+ */
+function ArcadeBuyHeadset() {
+	InventoryWear(Player, "InteractiveVRHeadset","ItemHead");
+	CharacterChangeMoney(Player, -10);
 }
 
 
@@ -65,6 +75,8 @@ function ArcadeRun() {
 	DrawCharacter(ArcadePlayer, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
+	if (ArcadeCanPlayGames()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/KinkyDungeon.png");
+		else DrawButton(1885, 265, 90, 90, "", "Pink", "Icons/KinkyDungeon.png");
 }
 
 /**
@@ -81,6 +93,35 @@ function ArcadeClick() {
 		ArcadePlayer.Stage = "0";
 		CharacterSetCurrent(ArcadePlayer);
 	}
+	
+	if (ArcadeCanPlayGames()) {
+		if (MouseIn(1885, 265, 90, 90)) ArcadeKinkyDungeonStart(ReputationGet("Gaming"))
+	} 
+	
 	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+}
+
+/**
+ * Starts the kinky dungeon game
+ * @param {number} PlayerLevel - The player's current level in the game
+ * @returns {void} - Nothing
+ */
+function ArcadeKinkyDungeonStart(PlayerLevel) {
+	
+	KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
+	
+	MiniGameStart("KinkyDungeon", PlayerLevel, "ArcadeKinkyDungeonEnd");
+}
+
+/**
+ * Ends the therapy mini-game as a nurse, plays with reputation and money
+ * @returns {void} - Nothing
+ */
+function ArcadeKinkyDungeonEnd() {
+	CommonSetScreen("Room", "Arcade");
+
+	if (MiniGameVictory) {
+		ReputationChange("Gaming", Math.max(ReputationGet("Gaming"), MiniGameKinkyDungeonCheckpoint))
+	}
 }

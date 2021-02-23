@@ -1,0 +1,20 @@
+Intro,"You are a wizard most high, descending into the darkest dungeons."
+Intro2,"You must collect the Mistress' Staff, an artifact of untold power."
+Intro3,"Are you ready to venture forth and claim victory? "
+
+GameStart,Start New Game
+LoadGame,Load From Checkpoint
+
+CurrentLevel,Current Level: 
+
+DungeonName0,-Graveyard-
+DungeonName1,-Catacombs-
+DungeonName2,-Underground Jungle-
+DungeonName3,-Lost Temple-
+DungeonName4,-Fungal Caverns-
+DungeonName5,-The Bellows-
+DungeonName6,-Underground Desert-
+DungeonName7,-Kingdom of Ice-
+DungeonName8,-Marble Halls-
+DungeonName9,-Ancient Laboratory-
+DungeonName10,-The Starlit Balcony-
