@@ -103,6 +103,7 @@ ClothLower,JeansShorts,Jeans Shorts
 ClothLower,Leggings1,Short Leggings
 ClothLower,Leggings2,Long Leggings
 ClothLower,PleatedSkirt,Pleated Skirt
+ClothLower,LongSkirt1,Long Skirt
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
@@ -456,8 +457,10 @@ HairFront,HairFront13,Style 13
 HairFront,HairFront13b,Style 13b
 HairFront,HairFront14,Style 14
 HairFront,HairFront14b,Style 14b
-HairFront,HairFront1,Style 15
-HairFront,HairFront1,Style 16
+HairFront,HairFront15,Style 15
+HairFront,HairFront16,Style 16
+HairFront,HairFront17,Style 17
+HairFront,HairFront17b,Style 17b
 HairBack,,Back Hair
 HairBack,HairNone,None
 HairBack,HairBack1,Style 1
@@ -884,6 +887,7 @@ ItemNeck,HeartLinkChoker, Heart-Link Choker
 ItemNeck,NeckRope,Neck Rope
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CustomNameTag,Custom Tag
+ItemNeckAccessories,ElectronicTag,Electronic Tag
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
 ItemNeckAccessories,CollarShockUnit,Shock Unit
@@ -910,6 +914,9 @@ ItemNeckRestraints,CollarLeashTaken,Pulled Leash
 ItemNeckRestraints,ChainLeash,Chain Leash
 ItemNeckRestraints,ChainLeashTaken,Pulled Chain Leash
 ItemNeckRestraints,CollarChainMedium,Medium Chain
+ItemNeckRestraints,CollarRopeLong,Long Rope
+ItemNeckRestraints,CollarRopeShort,Short Rope
+ItemNeckRestraints,CollarRopeMedium,Medium Rope
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
@@ -1127,6 +1134,7 @@ ItemMisc,LoversTimerPadlock,Lovers Timer Padlock
 ItemMisc,MistressPadlock,Mistress Padlock
 ItemMisc,MistressTimerPadlock,Mistress Timer Padlock
 ItemMisc,ExclusivePadlock,Exclusive Padlock
+ItemMisc,SafewordPadlock,Safeword Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
 ItemMisc,OwnerPadlockKey,Owner Padlock Key
 ItemMisc,LoversPadlockKey,Lovers Padlock Key
@@ -1178,6 +1186,7 @@ ItemDevices,PetBed,Pet Bed
 ItemDevices,TransportWoodenBox,Transport Box
 ItemDevices,VacCube,Vac-Cube
 ItemDevices,PetBowl,Pet Bowl
+ItemDevices,Pole,Pole
 ItemHoodAddon,,Hood
 ItemHoodAddon,OldGasMaskLenses,Blinding Lenses
 ItemHoodAddon,OldGasMaskTube1,Gas Mask Tube

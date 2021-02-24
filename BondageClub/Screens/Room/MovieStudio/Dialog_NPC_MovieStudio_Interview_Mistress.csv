@@ -139,3 +139,32 @@ PunishmentChastity,400,Not a chastity belt!,Damn right.  You will both be locked
 1080,,(Whimper and struggle.),It's not tight enough?  Let me find something else for you.  (She changes your restraints and smiles.),"DoActivity(""InterviewMistressFinalPlayerNew"")",
 1080,,(Offer your butt.),(She grabs you and spanks your butt really hard as the camera zooms in.)  It was too tempting.,"DoActivity(""InterviewMistressFinalPlayerSpank"")",
 1080,,(Check on the maid.),,DialogLeave(),
+2000,2010,I found a girl strapped up.,"This is none of your business, you're supposed to clean the room.  Is the room ready?  I will inspect it.",,
+2000,2010,I'm here to clean the room.,"Good girl, is the room ready?  I will inspect it.",,
+2000,2010,(Stay silent.),(She looks around.)  Is the room ready?  I will inspect it.,,
+2000,2010,(Struggle in your cuffs.),(She struggles for the camera.)  Stop struggling and start cleaning.  Is the room ready?  I will inspect it.,"DoActivity(""InterviewMistressPlayerStruggle"")",!Player.CanInteract()
+2010,,,"(She stares at you.)  Alright little maid, is the room clean and ready?  I will inspect it.",,
+2010,,The place is ready to inspect Mistress.,TO DO,,"CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,,(Do a maid curtsies.),TO DO,,"CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,2020,The place is ready to inspect Mistress.,(She gets angry and stares at a throne.)  Does this throne look clean?  Is it suitable for me to sit on it?,,"!CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,2020,(Do a maid curtsies.),(She gets angry and stares at a throne.)  Does this throne look clean?  Is it suitable for me to sit on it?,,"!CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,,(Clean the room for her.),(She follows you as you clean the room sexily.  She snaps her finger each time you miss a spot.),"DoActivity(""InterviewMaidCleanForMistress"")","CanDoActivity(""InterviewMaidCleanForMistress"")"
+2010,,I don't have any cleaning tools.,(She grumbles and quickly straps a duster gag around your head.)  Get to work!,"DoActivity(""InterviewMaidGagFromMistress"")","!CanDoActivity(""InterviewMaidCleanForMistress"")"
+2010,,(Check the room.),,DialogLeave(),
+2020,2030,I can clean it some more.,"Too late girl, since there's nowhere to sit, I'll make a proper seat.",,Player.CanTalk()
+2020,2030,It looks clean to me.,"Well you're wrong, and since there's nowhere to sit, I'll make a proper seat.",,Player.CanTalk()
+2020,2030,I guess it could be better.,"You're right, and since there's nowhere to sit, I'll make a proper seat.",,Player.CanTalk()
+2020,2030,(Nod your head.),"Well you're wrong, and since there's nowhere to sit, I'll make a proper seat.",,!Player.CanTalk()
+2020,2030,(Shake your head no.),"You're right, and since there's nowhere to sit, I'll make a proper seat.",,!Player.CanTalk()
+2030,2040,What do you mean?,You will understand very soon.  (She strips you naked as the camera focus on you.),"DoActivity(""InterviewMaidStripByMistress"")",Player.CanTalk()
+2030,2040,I don't like it.,It doesn't matter.  (She strips you naked as the camera focus on you.),"DoActivity(""InterviewMaidStripByMistress"")",Player.CanTalk()
+2030,2040,(Stare at her curisouly.),You will understand very soon.  (She strips you naked as the camera focus on you.),"DoActivity(""InterviewMaidStripByMistress"")",!Player.CanTalk()
+2030,2040,(Stay silent.),(She strips you naked as the camera focus on you.),"DoActivity(""InterviewMaidStripByMistress"")",!Player.CanTalk()
+2040,2050,You're so kinky.  (Wink at her.),You're having fun aren't you?  (She takes a chain and wrap it around your feet.),"DoActivity(""InterviewMaidChainByMistress1"")",
+2040,2050,I cannot clean without my uniform.,You won't be cleaning anymore.  (She takes a chain and wrap it around your feet.),"DoActivity(""InterviewMaidChainByMistress1"")",
+2040,2050,Should I go Miss?,You're not going anywhere.  (She takes a chain and wrap it around your feet.),"DoActivity(""InterviewMaidChainByMistress1"")",
+2050,2060,What's going on?,Aren't you curious?  (She uses a second chain and lock it around your legs.),"DoActivity(""InterviewMaidChainByMistress2"")",
+2050,2060,(Tug on the chain.),You're not getting out girl.  (She uses a second chain and lock it around your legs.),"DoActivity(""InterviewMaidChainByMistress2"")",
+2060,,TO DO,TO DO,,
+2060,,TO DO,TO DO,,
+2060,,TO DO,TO DO,,

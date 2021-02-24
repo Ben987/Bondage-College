@@ -518,6 +518,13 @@ function ActivityRun(C, Activity) {
 		if ((C.ID == 0) || C.IsNpc())
 			ActivityEffect(Player, C, Activity, C.FocusGroup.Name);
 
+	if (C.ID == 0) {
+		if (Activity.MakeSound) {
+			AutoPunishGagActionFlag = true
+			AutoShockGagActionFlag = true
+		}
+	}
+
 	// If the player does the activity on someone else, we calculate the progress for the player right away
 	ActivityRunSelf(Player, C, Activity);
 

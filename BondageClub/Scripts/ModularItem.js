@@ -94,13 +94,7 @@ function ModularItemRegister(asset, config) {
 	ModularItemCreateDrawFunction(data);
 	ModularItemCreateClickFunction(data);
 	asset.AllowType = ModularItemGenerateAllowType(data);
-	asset.Layer.forEach((layer) => {
-		if (Array.isArray(layer.AllowModuleTypes)) {
-			layer.AllowTypes = ModularItemGenerateAllowType(data, (type) => {
-				return layer.AllowModuleTypes.some((moduleType) => type.includes(moduleType));
-			});
-		}
-	});
+	asset.Layer.forEach((layer) => ModularItemGenerateLayerAllowTypes(layer, data));
 }
 
 /**
@@ -236,16 +230,17 @@ function ModularItemCreateDrawBaseFunction(data) {
 /**
  * Maps a modular item option to a button definition for rendering the option's button.
  * @param {ModularItemOption} option - The option to draw a button for
- * @param {number} i - The option's index within its parent module
+ * @param {number} optionIndex - The option's index within its parent module
  * @param {ModularItemModule} module - A reference to the option's parent module
  * @param {ModularItemData} data - The modular item's data
+ * @param {number} currentOptionIndex - The currently selected option index for the module
  * @returns {ModularItemButtonDefinition} - A button definition array representing the provided option
  */
-function ModularItemMapOptionToButtonDefinition(option, i, module, { asset, dialogOptionPrefix }) {
+function ModularItemMapOptionToButtonDefinition(option, optionIndex, module, { asset, dialogOptionPrefix }, currentOptionIndex) {
 	const C = CharacterGetCurrent();
-	const optionName = `${module.Key}${i}`;
+	const optionName = `${module.Key}${optionIndex}`;
 	let color = "#fff";
-	if (DialogFocusItem.Property.Type && DialogFocusItem.Property.Type.includes(optionName)) color = "#888";
+	if (currentOptionIndex === optionIndex) color = "#888";
 	// else if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) color = "pink";
 	else if (ModularItemRequirementCheckMessageMemo(option)) color = "pink";
 	return [
@@ -290,7 +285,10 @@ function ModularItemDrawCommon(moduleName, buttonDefinitions, { asset, pages, dr
  * @returns {void} - Nothing
  */
 function ModularItemDrawModule(module, data) {
-	const buttonDefinitions = module.Options.map((option, i) => ModularItemMapOptionToButtonDefinition(option, i, module, data));
+	const moduleIndex = data.modules.indexOf(module);
+	const currentValues = ModularItemParseCurrent(data);
+	const buttonDefinitions = module.Options.map(
+		(option, i) => ModularItemMapOptionToButtonDefinition(option, i, module, data, currentValues[moduleIndex]));
 	ModularItemDrawCommon(module.Name, buttonDefinitions, data);
 }
 
@@ -337,7 +335,7 @@ function ModularItemClickModule(module, data) {
 			const pageStart = pageNumber * ModularItemsPerPage;
 			const page = module.Options.slice(pageStart, pageStart + ModularItemsPerPage);
 			const selected = page[i];
-			if (selected) ModularItemSetType(module, i, data);
+			if (selected) ModularItemSetType(module, pageStart + i, data);
 		},
 		(delta) => ModularItemChangePage(module.Name, delta, data),
 	);
@@ -527,23 +525,50 @@ function ModularItemAddToArray(dest, src) {
 }
 
 /**
- * Generates and sets the AllowType property on an asset based on its modular item data.
+ * Generates an AllowType property for an asset based on its modular item data.
  * @param {ModularItemData} data - The modular item's data
  * @param {function(string): boolean} [predicate] - An optional predicate for filtering the resulting types
- * @returns {void} - Nothing
+ * @returns {string[]} - The generated AllowType array
  */
 function ModularItemGenerateAllowType({ modules }, predicate) {
-	let allowType = [""];
+	let allowType = [{}];
 	modules.forEach((module) => {
-		let newAllowType = [];
+		let newCombinations = [];
 		module.Options.forEach((option, i) => {
-			const newTypes = allowType.map(type => `${type}${module.Key}${i}`);
-			newAllowType = newAllowType.concat(newTypes);
+			const newTypes = allowType.map(moduleValues => Object.assign({}, moduleValues, { [module.Key]: i }));
+			newCombinations = newCombinations.concat(newTypes);
 		});
-		allowType = newAllowType;
+		allowType = newCombinations;
 	});
-	if (predicate) return allowType.filter(predicate);
-	else return allowType;
+	if (predicate) allowType = allowType.filter(predicate);
+	return allowType.map(combination => {
+		return modules.map(module => `${module.Key}${combination[module.Key]}`).join("");
+	});
+}
+
+/**
+ * Generates and sets the AllowTypes property on an asset layer based on its AllowModuleTypes property.
+ * @param {Layer} layer - The layer to generate AllowTypes for
+ * @param {ModularItemData} data - The modular item's data
+ * @returns {void} - Nothing
+ */
+function ModularItemGenerateLayerAllowTypes(layer, data) {
+	if (Array.isArray(layer.AllowModuleTypes)) {
+		const allowedModuleCombinations = layer.AllowModuleTypes.map((shorthand) => {
+			const regex = /([a-zA-Z]+)(\d+)/g;
+			const values = [];
+			let match;
+			while (match = regex.exec(shorthand)) {
+				values.push([match[1], Number.parseInt(match[2])]);
+			}
+			return values;
+		});
+		layer.AllowTypes = ModularItemGenerateAllowType(data, (combination) => {
+			return allowedModuleCombinations.some(allowedCombination => {
+				return allowedCombination.every(combo => combination[combo[0]] === combo[1]);
+			});
+		});
+	}
 }
 
 /**
@@ -578,7 +603,7 @@ function ModularItemRequirementMessageCheck(option) {
  * for the item.
  * @property {string} Key - The unique key for this module - this is used as a prefix to designate option names. Each
  * options in the module will be named with the module's key, followed by the index of the option within the module's
- * Options array
+ * Options array. Keys should be alphabetical only (a-z, A-Z)
  * @property {ModularItemOption[]} Options - The list of option definitions that can be chosen within this module.
  *
  * An object describing a single option within a module for a modular item.

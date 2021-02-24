@@ -119,9 +119,16 @@ function InventoryLoad(C, Inventory) {
 			console.log("Error while loading compressed inventory, no inventory loaded.");
 		}
 	}
-	if (typeof Inventory === "object")
+	if (Array.isArray(Inventory)) {
 		for (let I = 0; I < Inventory.length; I++)
 			InventoryAdd(C, Inventory[I].Name, Inventory[I].Group, false);
+	} else if (typeof Inventory === "object") {
+		for (const G of Object.keys(Inventory)) {
+			for (const A of Inventory[G]) {
+				InventoryAdd(C, A, G, false);
+			}
+		}
+	}
 }
 
 /**

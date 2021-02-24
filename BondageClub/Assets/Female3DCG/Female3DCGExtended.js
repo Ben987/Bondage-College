@@ -87,44 +87,47 @@ const AssetFemale3DCGExtended = {
 				Modules: [
 					{
 						Name: "Eyes", Key: "e",
-						Options: [ // All options are merely cosmetic
-							{},
-							{},
-							{}, 
-							{},
-						],
+						Options: [{}, {}, {}, {}], // All options are merely cosmetic
 					},
 					{
 						Name: "Mouth", Key: "m",
-						Options: [ // All options are merely cosmetic
-							{},
-							{},
-							{}, 
-							{},
-						],
+						Options: [{}, {}, {}, {}], // All options are merely cosmetic,
 					},
 					{
 						Name: "Blush", Key: "b",
-						Options: [ // All options are merely cosmetic
-							{},
-							{},
-							{}, 
-							{},
-						],
+						Options: [{}, {}, {}, {}], // All options are merely cosmetic,
 					},
 					{
 						Name: "Brows", Key: "br",
-						Options: [ // All options are merely cosmetic
-							{},
-							{},
-							{}, 
-							{},
-						],
+						Options: [{}, {}, {}, {}], // All options are merely cosmetic,
 					},
 				],
 			},
 		}, // KirugumiMask
 	}, // ItemHood
+	ItemDevices: {
+		Crib: {
+			Archetype: ExtendedArchetype.MODULAR,
+			Config: {
+				Modules: [
+					{
+						Name: "Gate", Key: "g",
+						Options: [
+							{}, // g0 - Gate open
+							{ Property: { Difficulty: 15 } }, // g1 - Gate closed
+						],
+					},
+					{
+						Name: "Plushies", Key: "p",
+						Options: [
+							{}, // p0 - No plushies
+							{}, // p1 - Plushies
+						],
+					},
+				],
+			},
+		}, // Crib
+	}, // ItemDevices
 };
 
 /**
