@@ -396,6 +396,11 @@ function LoginResponse(C) {
 			Player.LimitedItems = Array.isArray(C.LimitedItems) ? C.LimitedItems :
 				typeof C.LimitedItems === "object" && C.LimitedItems ? CommonUnpackItemArray(C.LimitedItems) : [];
 			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
+			// TODO: Migration code; remove after few versions (added R66)
+			if (Array.isArray(C.BlockItems) || Array.isArray(C.LimitedItems)) {
+				ServerPlayerBlockItemsSync();
+			}
+
 			Player.Difficulty = C.Difficulty;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
