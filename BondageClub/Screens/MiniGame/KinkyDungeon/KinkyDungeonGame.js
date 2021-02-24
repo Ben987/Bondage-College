@@ -7,15 +7,25 @@ var KinkyDungeonMapIndex = [];
 
 var KinkyDungeonGrid = ""
 var KinkyDungeonGrid_Last = ""
-var KinkyDungeonGridSize = 72
-var KinkyDungeonGridWidth = 19
-var KinkyDungeonGridHeight = 11
+var KinkyDungeonGridSize = 50
+var KinkyDungeonGridWidth = 27
+var KinkyDungeonGridHeight = 15
 
 
 var KinkyDungeonSpriteSize = 72
 
 var KinkyDungeonCanvas = document.createElement("canvas");
 var KinkyDungeonContext = null
+var KinkyDungeonCanvasFow = document.createElement("canvas");
+var KinkyDungeonContextFow = null
+var KinkyDungeonCanvasPlayer = document.createElement("canvas");
+var KinkyDungeonContextPlayer = null
+
+var KinkyDungeonEntities = []
+var KinkyDungeonTerrain = []
+var KinkyDungeonPlayerEntity = null
+
+var KinkyDungeonMapBrightness = 5
 
 function KinkyDungeonInitialize(Level, Random) {
 	MiniGameKinkyDungeonLevel = Level
@@ -23,6 +33,7 @@ function KinkyDungeonInitialize(Level, Random) {
 	for (let I = 1; I < 10; I++)
 		KinkyDungeonMapIndex.push(I)
 
+	// Option to shuffle the dungeon types besides the initial one (graveyard)
 	if (Random) {
 		/* Randomize array in-place using Durstenfeld shuffle algorithm */
 		// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -42,6 +53,15 @@ function KinkyDungeonInitialize(Level, Random) {
 	KinkyDungeonContext = KinkyDungeonCanvas.getContext("2d")
 	KinkyDungeonCanvas.width = KinkyDungeonGridSize*KinkyDungeonGridWidth;
 	KinkyDungeonCanvas.height = KinkyDungeonGridSize*KinkyDungeonGridHeight;
+
+	KinkyDungeonContextFow = KinkyDungeonCanvasFow.getContext("2d")
+	KinkyDungeonCanvasFow.width = KinkyDungeonCanvas.width
+	KinkyDungeonCanvasFow.height = KinkyDungeonCanvas.height;
+	
+	
+	KinkyDungeonContextPlayer = KinkyDungeonCanvasPlayer.getContext("2d")
+	KinkyDungeonCanvasPlayer.width = KinkyDungeonGridSize
+	KinkyDungeonCanvasPlayer.height = KinkyDungeonGridSize;
 }
 // Starts the the game at a specified level
 function KinkyDungeonCreateMap(MapParams) {
@@ -74,7 +94,28 @@ function KinkyDungeonCreateMap(MapParams) {
 	
 	var openness = MapParams["openness"]
 	var density = MapParams["density"]
+	var doodadchance = MapParams["doodadchance"]
 	KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density)	
+	
+	KinkyDungeonReplaceDoodads(doodadchance, width, height) // Replace random internal walls with doodads
+	
+	
+	
+	// Place the player!
+	KinkyDungeonPlayerEntity = {Type:"Player", x: 1, y:startpos}
+	KinkyDungeonEntities.push(KinkyDungeonPlayerEntity)
+	
+	// Set map brightness
+	KinkyDungeonMapBrightness = MapParams["brightness"]
+}
+
+function KinkyDungeonReplaceDoodads(Chance, width, height) {
+	for (let X = 1; X < width; X += 1)
+		for (let Y = 1; Y < height; Y += 1)
+			if (KinkyDungeonMapGet(X, Y) == '1' && Math.random() < Chance) {
+				KinkyDungeonMapSet(X, Y, 'X')
+			}
+				
 }
 
 function KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density) {
@@ -143,8 +184,8 @@ function KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density) 
 		delete WallsList[wall.x + "," + wall.y]
 		
 		// Chance of spawning a room!
-		if (Math.random() < 0.07 - 0.015*density) {
-			var size = 1+Math.floor(Math.random() * (openness))
+		if (Math.random() < 0.1 - 0.015*density) {
+			var size = 1+Math.ceil(Math.random() * (openness))
 			
 			// We open up the tiles
 			for (let XX = wall.x; XX < wall.x +size; XX++)
@@ -197,6 +238,8 @@ function KinkyDungeonMapGet(X, Y) {
 	return KinkyDungeonGrid[X + Y*(width+1)]
 }
 
+const canvasOffsetX = 500
+const canvasOffsetY = 164
 
 // Draw function for the game portion
 function KinkyDungeonDrawGame() {
@@ -205,6 +248,8 @@ function KinkyDungeonDrawGame() {
 	DrawText(TextGet("CurrentLevel") + MiniGameKinkyDungeonLevel, 1000, 72, "white", "silver");
 	DrawText(TextGet("DungeonName" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]), 1500, 72, "white", "silver");
 	
+	
+	var movedirection = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x*KinkyDungeonGridSize + canvasOffsetX, KinkyDungeonPlayerEntity.y*KinkyDungeonGridSize + canvasOffsetY)
 	
 	if (KinkyDungeonCanvas) {
 		
@@ -216,23 +261,104 @@ function KinkyDungeonDrawGame() {
 			var rows = KinkyDungeonGrid.split('\n')
 			for (let R = 0; R < rows.length; R++)  {
 				for (let X = 0; X < rows[R].length; X++)  {
-					if (rows[R][X] == "1")
-						DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/Wall" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSize, R*KinkyDungeonGridSize, KinkyDungeonGridSize, KinkyDungeonGridSize, false)
-					else DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/Floor" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSize, R*KinkyDungeonGridSize, KinkyDungeonGridSize, KinkyDungeonGridSize, false)
+					var sprite = "Floor"
+					if (rows[R][X] == "1") sprite = "Wall"
+					else if (rows[R][X] == "X") sprite = "Doodad"
+						
+					DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/" + sprite + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSize, R*KinkyDungeonGridSize, KinkyDungeonGridSize, KinkyDungeonGridSize, false)
 				}
 			}
 			
 			//KinkyDungeonGrid_Last = KinkyDungeonGrid
 		}
 		
-		MainCanvas.drawImage(KinkyDungeonCanvas, 500, 164);
+		// Draw fog of war
+		var rows = KinkyDungeonGrid.split('\n')
+		for (let Y = 0; Y < rows.length; Y++)  {
+			for (let X = 0; X < rows[Y].length; X++)  {
+				var dist = Math.sqrt((X - KinkyDungeonPlayerEntity.x) * (X - KinkyDungeonPlayerEntity.x) + (Y - KinkyDungeonPlayerEntity.y) * (Y - KinkyDungeonPlayerEntity.y))
+				
+				KinkyDungeonContext.beginPath();
+				KinkyDungeonContext.fillStyle = "rgba(0,0,0," + Math.max(0.0,1.0 - Math.min(1.0, 2*(KinkyDungeonMapBrightness - dist)/KinkyDungeonMapBrightness)) + ")";
+				
+				KinkyDungeonContext.fillRect(X*KinkyDungeonGridSize, Y*KinkyDungeonGridSize, KinkyDungeonGridSize, KinkyDungeonGridSize);
+				KinkyDungeonContext.fill()
+				
+
+			}
+		}
+		
+		// Draw targeting reticule
+		if ((movedirection.x != 0 || movedirection.y != 0)) {
+			KinkyDungeonContext.beginPath();
+			KinkyDungeonContext.rect((movedirection.x + KinkyDungeonPlayerEntity.x)*KinkyDungeonGridSize, (movedirection.y + KinkyDungeonPlayerEntity.y)*KinkyDungeonGridSize, KinkyDungeonGridSize, KinkyDungeonGridSize);
+			KinkyDungeonContext.lineWidth = 3;
+			KinkyDungeonContext.strokeStyle = "#ff4444";
+			KinkyDungeonContext.stroke()
+		}
+		MainCanvas.drawImage(KinkyDungeonCanvas, canvasOffsetX, canvasOffsetY);
+		
 	}
+	
+	CharacterSetFacialExpression(KinkyDungeonPlayer, "Emoticon", null);
+	
+	// Draw the player no matter what
+	KinkyDungeonContextPlayer.fillStyle = "rgba(0,0,0,1.0)";
+	KinkyDungeonContextPlayer.fillRect(0, 0, KinkyDungeonCanvasPlayer.width, KinkyDungeonCanvasPlayer.height);
+	KinkyDungeonContextPlayer.fill()
+	DrawCharacter(KinkyDungeonPlayer, -KinkyDungeonGridSize/2, 0, KinkyDungeonGridSize/250, false, KinkyDungeonContextPlayer)
+	
+	
+
+	MainCanvas.drawImage(KinkyDungeonCanvasPlayer,  KinkyDungeonPlayerEntity.x*KinkyDungeonGridSize + canvasOffsetX, KinkyDungeonPlayerEntity.y*KinkyDungeonGridSize + canvasOffsetY); 
+	 
 }
 
+// returns an object containing coordinates of which direction the player will move after a click, plus a time multiplier
+function KinkyDungeonGetDirection(PX, PY) {
+	const dx = MouseX - PX - KinkyDungeonGridSize / 2
+	const dy = MouseY - PY - KinkyDungeonGridSize / 2
+	
+	var X = 0;
+	var Y = 0;
+	
+	// Cardinal directions first - up down left right
+	if (dy > 0 && Math.abs(dx) < Math.abs(dy)/2.61312593) Y = 1
+	else if (dy < 0 && Math.abs(dx) < Math.abs(dy)/2.61312593) Y = -1
+	else if (dx > 0 && Math.abs(dy) < Math.abs(dx)/2.61312593) X = 1
+	else if (dx < 0 && Math.abs(dy) < Math.abs(dx)/2.61312593) X = -1
+	
+	// Diagonals
+	else if (dy > 0 && dx > dy/2.61312593) {Y = 1; X = 1}
+	else if (dy > 0 && -dx > dy/2.61312593) {Y = 1; X = -1}
+	else if (dy < 0 && dx > -dy/2.61312593) {Y = -1; X = 1}
+	else if (dy < 0 && -dx > -dy/2.61312593) {Y = -1; X = -1}
+	
+	return {x:X, y:Y, delta:Math.sqrt(X*X+Y*Y)}
+}
 
 
 // Click function for the game portion
 function KinkyDungeonClickGame(Level) {
+	// First we handle buttons
+	
+	
+	// If no buttons are clicked then we handle move
+	
+	//{
+		var movedirection = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x*KinkyDungeonGridSize + canvasOffsetX, KinkyDungeonPlayerEntity.y*KinkyDungeonGridSize + canvasOffsetY)
+		var moveX = movedirection.x + KinkyDungeonPlayerEntity.x
+		var moveY = movedirection.y + KinkyDungeonPlayerEntity.y
+		var moveObject = KinkyDungeonMapGet(moveX, moveY)
+		if (moveObject == '0') { // If the player can move to an empy space
+			KinkyDungeonPlayerEntity.x = moveX
+			KinkyDungeonPlayerEntity.y = moveY
+			KinkyDungeonAdvanceTime(movedirection.delta)
+		}
+	//}
+}
 
+function KinkyDungeonAdvanceTime(delta) {
+	// Here we move enemies and such
 }
 
