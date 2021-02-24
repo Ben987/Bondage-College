@@ -4,7 +4,8 @@ var MiniGameKinkyDungeonCheckpoint = 0;
 var MiniGameKinkyDungeonLevel = 1;
 var KinkyDungeonMapIndex = [];
 
-
+var KinkyDungeonLightGrid = ""
+var KinkyDungeonUpdateLightGrid = true
 var KinkyDungeonGrid = ""
 var KinkyDungeonGrid_Last = ""
 var KinkyDungeonGridSize = 50
@@ -95,10 +96,15 @@ function KinkyDungeonCreateMap(MapParams) {
 	var openness = MapParams["openness"]
 	var density = MapParams["density"]
 	var doodadchance = MapParams["doodadchance"]
+	var treasurechance = 0.33 // Chance a treasure chest will appear in a suitable location
+	var treasurecount = MapParams["chestcount"] // Max treasure chest count
+	var doorchance = MapParams["doorchance"] // Max treasure chest count
 	KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density)	
 	
 	KinkyDungeonReplaceDoodads(doodadchance, width, height) // Replace random internal walls with doodads
 	
+	KinkyDungeonPlaceChests(treasurechance, treasurecount, width, height) // Place treasure chests inside dead ends
+	KinkyDungeonPlaceDoors(doorchance, width, height) // Place treasure chests inside dead ends
 	
 	
 	// Place the player!
@@ -108,6 +114,71 @@ function KinkyDungeonCreateMap(MapParams) {
 	// Set map brightness
 	KinkyDungeonMapBrightness = MapParams["brightness"]
 }
+
+function KinkyDungeonPlaceChests(treasurechance, treasurecount, width, height) {
+	var chestlist = []
+
+	// Populate the chests
+	for (let X = 1; X < width; X += 1)
+		for (let Y = 1; Y < height; Y += 1)
+			if (KinkyDungeonMapGet(X, Y) == '0' && Math.random() < treasurechance) {
+				// Check the 3x3 area
+				var wallcount = 0
+				for (let XX = X-1; XX <= X+1; XX += 1)
+					for (let YY = Y-1; YY <= Y+1; YY += 1)
+						if (!(XX == X && YY == Y) && (KinkyDungeonMapGet(XX, YY) == '1' || KinkyDungeonMapGet(XX, YY) == 'X'))
+							wallcount += 1
+				if (wallcount == 7) {
+					chestlist.push({x:X, y:Y})
+				}
+			}
+	
+	// Truncate down to max chest count in a location-neutral way
+    var count = 0;
+    while (count < treasurecount &&  chestlist.length > 0) {
+    	var N = Math.floor(Math.random()*chestlist.length)
+    	var chest = chestlist[N]
+    	KinkyDungeonMapSet(chest.x, chest.y, 'C')
+        chestlist.splice(N, 1)
+        count += 1;
+    }
+
+    console.log("Created " + count + " chests")
+}
+
+
+function KinkyDungeonPlaceDoors(doorchance, width, height) {
+	var chestlist = []
+
+	// Populate the doors
+	for (let X = 1; X < width; X += 1)
+		for (let Y = 1; Y < height; Y += 1)
+			if (KinkyDungeonMapGet(X, Y) == '0' && Math.random() < doorchance) {
+				// Check the 3x3 area
+				var wallcount = 0
+				var up = false
+				var down = false
+				var left = false
+				var right = false
+				for (let XX = X-1; XX <= X+1; XX += 1)
+					for (let YY = Y-1; YY <= Y+1; YY += 1) {
+					    var get = KinkyDungeonMapGet(XX, YY)
+						if (!(XX == X && YY == Y) && (get == '1' || get == 'X' || get == 'C')) {
+							wallcount += 1 // Get number of adjacent walls
+							if (XX == X+1 && YY == Y && get == '1') right = true
+							else if (XX == X-1 && YY == Y && get == '1') left = true
+							else if (XX == X && YY == Y+1 && get == '1') down = true
+							else if (XX == X && YY == Y-1 && get == '1') up = true
+						} else if (get == 'D') // No adjacent doors
+							wallcount = 100
+					}
+				console.log("Updown: " + (up && down) + ", leftright: " + (left && right))
+				if (wallcount < 5 && ((up && down) != (left && right))) { // Requirements: 4 doors and either a set in up/down or left/right but not both
+					KinkyDungeonMapSet(X, Y, 'D')
+				}
+			}
+}
+
 
 function KinkyDungeonReplaceDoodads(Chance, width, height) {
 	for (let X = 1; X < width; X += 1)
@@ -238,6 +309,24 @@ function KinkyDungeonMapGet(X, Y) {
 	return KinkyDungeonGrid[X + Y*(width+1)]
 }
 
+function KinkyDungeonLightSet(X, Y, SetTo) {
+	var height = KinkyDungeonGridHeight
+	var width = KinkyDungeonGridWidth
+	
+	if (X >= 0 && X <= width-1 && Y >= 0 && Y <= height-1) {
+		KinkyDungeonLightGrid = KinkyDungeonLightGrid.replaceAt(X + Y*(width+1), SetTo)
+		return true;
+	}
+	return false;
+}
+
+function KinkyDungeonLightGet(X, Y) {
+	var height = KinkyDungeonLightGrid.split('\n').length
+	var width = KinkyDungeonLightGrid.split('\n')[0].length
+	
+	return KinkyDungeonLightGrid[X + Y*(width+1)]
+}
+
 const canvasOffsetX = 500
 const canvasOffsetY = 164
 
@@ -254,6 +343,8 @@ function KinkyDungeonDrawGame() {
 	if (KinkyDungeonCanvas) {
 		
 		if (KinkyDungeonGrid_Last != KinkyDungeonGrid) {
+			
+			
 			KinkyDungeonContext.fillStyle = "rgba(20,20,20.0,1.0)";
 			KinkyDungeonContext.fillRect(0, 0, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height);
 			KinkyDungeonContext.fill()
@@ -264,6 +355,8 @@ function KinkyDungeonDrawGame() {
 					var sprite = "Floor"
 					if (rows[R][X] == "1") sprite = "Wall"
 					else if (rows[R][X] == "X") sprite = "Doodad"
+					else if (rows[R][X] == "C") sprite = "Chest"
+					else if (rows[R][X] == "D") sprite = "Door"
 						
 					DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/" + sprite + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSize, R*KinkyDungeonGridSize, KinkyDungeonGridSize, KinkyDungeonGridSize, false)
 				}
@@ -272,17 +365,30 @@ function KinkyDungeonDrawGame() {
 			//KinkyDungeonGrid_Last = KinkyDungeonGrid
 		}
 		
+		// Get lighting grid
+		if (KinkyDungeonUpdateLightGrid) {
+			KinkyDungeonUpdateLightGrid = false
+			KinkyDungeonMakeLightMap(KinkyDungeonGridWidth, KinkyDungeonGridHeight, [{x: KinkyDungeonPlayerEntity.x, y:KinkyDungeonPlayerEntity.y, brightness: KinkyDungeonMapBrightness}])
+		}
+			
+		
 		// Draw fog of war
-		var rows = KinkyDungeonGrid.split('\n')
+		var rows = KinkyDungeonLightGrid.split('\n')
+		for (let R = 0; R < rows.length; R++)  {
+			for (let X = 0; X < rows[R].length; X++)  {
+				KinkyDungeonContext.beginPath();
+				KinkyDungeonContext.fillStyle = "rgba(0,0,0," + Math.max(0, 1-Number(rows[R][X])/3) + ")";
+				
+				KinkyDungeonContext.fillRect(X*KinkyDungeonGridSize, R*KinkyDungeonGridSize, KinkyDungeonGridSize, KinkyDungeonGridSize);
+				KinkyDungeonContext.fill()
+			}
+		}
+		
 		for (let Y = 0; Y < rows.length; Y++)  {
 			for (let X = 0; X < rows[Y].length; X++)  {
 				var dist = Math.sqrt((X - KinkyDungeonPlayerEntity.x) * (X - KinkyDungeonPlayerEntity.x) + (Y - KinkyDungeonPlayerEntity.y) * (Y - KinkyDungeonPlayerEntity.y))
 				
-				KinkyDungeonContext.beginPath();
-				KinkyDungeonContext.fillStyle = "rgba(0,0,0," + Math.max(0.0,1.0 - Math.min(1.0, 2*(KinkyDungeonMapBrightness - dist)/KinkyDungeonMapBrightness)) + ")";
 				
-				KinkyDungeonContext.fillRect(X*KinkyDungeonGridSize, Y*KinkyDungeonGridSize, KinkyDungeonGridSize, KinkyDungeonGridSize);
-				KinkyDungeonContext.fill()
 				
 
 			}
@@ -350,9 +456,13 @@ function KinkyDungeonClickGame(Level) {
 		var moveX = movedirection.x + KinkyDungeonPlayerEntity.x
 		var moveY = movedirection.y + KinkyDungeonPlayerEntity.y
 		var moveObject = KinkyDungeonMapGet(moveX, moveY)
-		if (moveObject == '0') { // If the player can move to an empy space
-			KinkyDungeonPlayerEntity.x = moveX
-			KinkyDungeonPlayerEntity.y = moveY
+		if (moveObject == '0' || moveObject == 'D') { // If the player can move to an empy space or a door
+			if (moveObject == 'D') { // Open the door
+				KinkyDungeonMapSet(moveX, moveY, '0')
+			} else {
+				KinkyDungeonPlayerEntity.x = moveX
+				KinkyDungeonPlayerEntity.y = moveY
+			}
 			KinkyDungeonAdvanceTime(movedirection.delta)
 		}
 	//}
@@ -360,5 +470,6 @@ function KinkyDungeonClickGame(Level) {
 
 function KinkyDungeonAdvanceTime(delta) {
 	// Here we move enemies and such
+	KinkyDungeonUpdateLightGrid = true
 }
 
