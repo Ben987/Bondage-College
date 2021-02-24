@@ -580,11 +580,11 @@ function InventoryGroupIsBlocked(C, GroupName, Activity) {
 function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 	if (!Item) return null;
 	if (!Effect) {
-		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.length > 0) || (CheckProperties && Item.Property && Item.Property.Effect)) return true;
+		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.length > 0) || (CheckProperties && Item.Property && Array.isArray(Item.Property.Effect))) return true;
 		else return false;
 	}
 	else {
-		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (CheckProperties && Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
+		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (CheckProperties && Item.Property && Array.isArray(Item.Property.Effect) && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
 		else return false;
 	}
 }
