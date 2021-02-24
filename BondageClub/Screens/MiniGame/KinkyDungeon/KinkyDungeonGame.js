@@ -47,27 +47,22 @@ function KinkyDungeonInitialize(Level, Random) {
 function KinkyDungeonCreateMap(MapParams) {
 	KinkyDungeonGrid = ""
 	
+	// Generate the grid
 	for (let X = 0; X < KinkyDungeonGridHeight; X++) {
 		for (let Y = 0; Y < KinkyDungeonGridWidth; Y++)
 			KinkyDungeonGrid = KinkyDungeonGrid + '1'
 		KinkyDungeonGrid = KinkyDungeonGrid + '\n'
 	}
 	
+	// We only rerender the map when the grid changes
 	KinkyDungeonGrid_Last = ""
 	
-	
+	// Setup variables
 	
 	var rows = KinkyDungeonGrid.split('\n')
-	
-	
 	var height = KinkyDungeonGridHeight
 	var width = KinkyDungeonGridWidth
-	
 	var startpos = 1 + 2*Math.floor(Math.random()*0.5 * (height - 2))
-	var endpos = 1 + 2*Math.floor(Math.random()*0.5 * (height - 2))
-	
-	
-	
 	
 	// MAP GENERATION
 	
@@ -75,61 +70,25 @@ function KinkyDungeonCreateMap(MapParams) {
 	KinkyDungeonMapSet(1, startpos, '0', VisitedRooms)
 	//KinkyDungeonMapSet(rows[0].length-2, endpos, '0')
 	
-	// Use primm algorithm
+	// Use primm algorithm with modification to spawn random rooms in the maze
 	
 	var openness = MapParams["openness"]
 	var density = MapParams["density"]
-	
-	KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density)
-	
-	// Add rooms
-	/*var rooms = []
-	var openness = MapParams["openness"]
-	var tunnellength = MapParams["tunnellength"]
-	var roomcount = 50
-	
-	for (let R = 0; R < roomcount; R++) {
-		var size = 1+Math.floor(Math.random() * (openness))
-		var x = 1 + 2*Math.floor(Math.random()*0.5 * (width - 1 - size))
-		var y = 1 + 2*Math.floor(Math.random()*0.5 * (height - 1 - size))
-		var occupied = false;
-		
-		
-		for (let RR = 0; RR < rooms.length; RR++) {
-			if (Math.abs(rooms[RR].x - x) < rooms[RR].size + size
-				&& Math.abs(rooms[RR].y - y) < rooms[RR].size + size) {
-				occupied = true;
-				break;
-			}
-		}
-		
-		if (!occupied)
-			rooms.push({
-				x: x,
-				y: y,
-				size: size,
-			})
-	}
-	
-	for (let R = 0; R < rooms.length; R++) {
-		const room = rooms[R]
-		for (let X = 0; X < room.size; X++)
-			for (let Y = 0; Y < room.size; Y++)
-				KinkyDungeonMapSet(room.x+X, room.y+Y, '0')
-
-	}*/
-	
-	
+	KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density)	
 }
 
 function KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density) {
+	// Variable setup
+	
 	var Walls = {}
 	var WallsList = {}
 	var VisitedCells = {}
 	
+	// Initialize the first cell in our Visited Cells list
+	
 	VisitedCells[VisitedRooms[0].x + "," + VisitedRooms[0].y] = {x:VisitedRooms[0].x, y:VisitedRooms[0].y}
 	
-	// Walls are basically even/odd pairs
+	// Walls are basically even/odd pairs.
 	for (let X = 2; X < width; X += 2)
 		for (let Y = 1; Y < height; Y += 2)
 			if (KinkyDungeonMapGet(X, Y) == '1') {
@@ -140,8 +99,11 @@ function KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density) 
 			if (KinkyDungeonMapGet(X, Y) == '1') {
 				Walls[X + "," + Y] = {x:X, y:Y}
 			}
-			
+		
+	// Setup the wallslist for the first room
 	KinkyDungeonMazeWalls(VisitedRooms[0], Walls, WallsList)
+	
+	// Per a randomized primm algorithm from Wikipedia, we loop through the list of walls until there are no more walls
 	
 	var WallKeys = Object.keys(WallsList)
 	var CellKeys = Object.keys(VisitedCells)
@@ -150,6 +112,8 @@ function KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density) 
 		var I = Math.floor(Math.random() * WallKeys.length)
 		var wall = Walls[WallKeys[I]]
 		var unvisitedCell = null
+		
+		// Check if wall is horizontal or vertical and determine if there is a single unvisited cell on the other side of the wall
 		if (wall.x % 2 == 0) { //horizontal wall
 			if (!VisitedCells[(wall.x-1) + "," + wall.y]) unvisitedCell = {x:wall.x-1, y:wall.y}
 			if (!VisitedCells[(wall.x+1) + "," + wall.y]) {
@@ -164,6 +128,7 @@ function KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density) 
 			}
 		}
 		
+		// We only add a new cell if only one of the cells is unvisited
 		if (unvisitedCell) {
 			delete Walls[wall.x + "," + wall.y]
 
@@ -174,12 +139,14 @@ function KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density) 
 			KinkyDungeonMazeWalls(unvisitedCell, Walls, WallsList)
 		}
 
+		// Either way we remove this wall from consideration
 		delete WallsList[wall.x + "," + wall.y]
 		
 		// Chance of spawning a room!
-		if (Math.random() < 0.07 - 0.01*density) {
+		if (Math.random() < 0.07 - 0.015*density) {
 			var size = 1+Math.floor(Math.random() * (openness))
 			
+			// We open up the tiles
 			for (let XX = wall.x; XX < wall.x +size; XX++)
 				for (let YY = wall.y; YY < wall.y+size; YY++) {
 					KinkyDungeonMapSet(XX, YY, '0')
@@ -188,13 +155,14 @@ function KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density) 
 					delete Walls[XX + "," + YY]
 				}
 				
+			// We also remove all walls inside the room from consideration!
 			for (let XX = wall.x; XX < wall.x +size; XX++)
 				for (let YY = wall.y; YY < wall.y+size; YY++) {
 					delete WallsList[XX + "," + YY]
 				}
 		}
 		
-		
+		// Update keys
 		
 		WallKeys = Object.keys(WallsList)
 		CellKeys = Object.keys(VisitedCells)
