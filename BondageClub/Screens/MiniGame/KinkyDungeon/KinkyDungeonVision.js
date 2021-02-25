@@ -1,5 +1,5 @@
 // Lots of good info here: http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html#permissivecode
-// For this implementation I decided that a variant of shadow casting would be ideal
+// For this implementation I decided that ray calculations are too much so I just did a terraria style lighting system
 // -Ada
 
 var KinkyDungeonTransparentObjects = "0C"
@@ -26,32 +26,68 @@ function KinkyDungeonMakeLightMap(width, height, Lights) {
 		// Main grid square loop
 		for (let X = 0; X < KinkyDungeonGridWidth; X++) {
 			for (let Y = 0; Y < KinkyDungeonGridHeight; Y++) {
-				var currBrightness = Number(KinkyDungeonLightGet(X, Y))
-				var brighestNeighbor = currBrightness
-				// Check neighbors
-				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X-1, Y)))
-					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X-1, Y)))
-				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X+1, Y)))
-					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X+1, Y)))
-				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X, Y-1)))
-					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X, Y-1)))
-				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X, Y+1)))
-					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X, Y+1)))
-				
-				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X-1, Y-1)))
-					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X-1, Y-1))-(Math.random() > 0.4 ? 1 : 0))
-				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X+1, Y+1)))
-					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X+1, Y+1))-(Math.random() > 0.4 ? 1 : 0))
-				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X+1, Y-1)))
-					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X+1, Y-1))-(Math.random() > 0.4 ? 1 : 0))
-				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X-1, Y+1)))
-					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X-1, Y+1))-(Math.random() > 0.4 ? 1 : 0))
-				
-				if (brighestNeighbor > currBrightness && brighestNeighbor > 1) {
-					KinkyDungeonLightSet(X, Y, "" + (brighestNeighbor-1))
+				var tile = KinkyDungeonMapGet(X, Y)
+				if (KinkyDungeonTransparentObjects.includes(tile)) {
+					var brightness = KinkyDungeonLightGet(X, Y)
+					if (brightness > 0) {
+						var nearbywalls = 0
+						for (let XX = X-1; XX <= X+1; XX++)
+							for (let YY = Y-1; YY <= Y+1; YY++)
+								if (!KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(XX, YY))) nearbywalls += 1
+						
+						if (nearbywalls > 3 && brightness <= 3) brightness -= 1
+						
+						if (brightness > 0) {
+							if (Number(KinkyDungeonLightGet(X-1, Y)) < brightness) KinkyDungeonLightSet(X-1, Y, "" + (brightness - 1))
+							if (Number(KinkyDungeonLightGet(X+1, Y)) < brightness) KinkyDungeonLightSet(X+1, Y, "" + (brightness - 1))
+							if (Number(KinkyDungeonLightGet(X, Y-1)) < brightness) KinkyDungeonLightSet(X, Y-1, "" + (brightness - 1))
+							if (Number(KinkyDungeonLightGet(X, Y+1)) < brightness) KinkyDungeonLightSet(X, Y+1, "" + (brightness - 1))
+								
+							if (brightness > 1) {
+								if (Number(KinkyDungeonLightGet(X-1, Y-1)) < brightness) KinkyDungeonLightSet(X-1, Y-1, "" + (brightness - 1-(Math.random() > 0.4 ? 1 : 0)))
+								if (Number(KinkyDungeonLightGet(X-1, Y+1)) < brightness) KinkyDungeonLightSet(X-1, Y+1, "" + (brightness - 1-(Math.random() > 0.4 ? 1 : 0)))
+								if (Number(KinkyDungeonLightGet(X+1, Y-1)) < brightness) KinkyDungeonLightSet(X+1, Y-1, "" + (brightness - 1-(Math.random() > 0.4 ? 1 : 0)))
+								if (Number(KinkyDungeonLightGet(X+1, Y+1)) < brightness) KinkyDungeonLightSet(X+1, Y+1, "" + (brightness - 1-(Math.random() > 0.4 ? 1 : 0)))
+							}
+						}
+					}
 				}
 			}
 		}
+				
+				/*var currBrightness = Number(KinkyDungeonLightGet(X, Y))
+				var brighestNeighbor = currBrightness
+				
+				// Light doesn't travel efficiently along walls
+				var againstWall = 0
+				
+				// Check neighbors
+				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X-1, Y)))
+					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X-1, Y))); else againstWall += 1
+				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X+1, Y)))
+					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X+1, Y))); else againstWall += 1
+				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X, Y-1)))
+					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X, Y-1))); else againstWall += 1
+				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X, Y+1)))
+					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X, Y+1))); else againstWall += 1
+				
+				
+				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X-1, Y-1)))
+					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X-1, Y-1))-(Math.random() > 0.4 ? 1 : 0)); else againstWall += 1
+				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X+1, Y+1)))
+					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X+1, Y+1))-(Math.random() > 0.4 ? 1 : 0)); else againstWall += 1
+				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X+1, Y-1)))
+					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X+1, Y-1))-(Math.random() > 0.4 ? 1 : 0)); else againstWall += 1
+				if (KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(X-1, Y+1)))
+					brighestNeighbor = Math.max(brighestNeighbor, Number(KinkyDungeonLightGet(X-1, Y+1))-(Math.random() > 0.4 ? 1 : 0)); else againstWall += 1
+				
+				if (againstWall > 4)
+					brighestNeighbor -= 1
+				
+				if (brighestNeighbor > currBrightness && brighestNeighbor > 1) {
+					KinkyDungeonLightSet(X, Y, "" + (brighestNeighbor-1))
+				}*/
+			
 	}
 	
 }

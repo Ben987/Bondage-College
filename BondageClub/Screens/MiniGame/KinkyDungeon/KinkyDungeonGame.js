@@ -368,7 +368,7 @@ function KinkyDungeonDrawGame() {
 		// Get lighting grid
 		if (KinkyDungeonUpdateLightGrid) {
 			KinkyDungeonUpdateLightGrid = false
-			KinkyDungeonMakeLightMap(KinkyDungeonGridWidth, KinkyDungeonGridHeight, [{x: KinkyDungeonPlayerEntity.x, y:KinkyDungeonPlayerEntity.y, brightness: KinkyDungeonMapBrightness}])
+			KinkyDungeonMakeLightMap(KinkyDungeonGridWidth, KinkyDungeonGridHeight, [ {x: KinkyDungeonPlayerEntity.x, y:KinkyDungeonPlayerEntity.y, brightness: KinkyDungeonMapBrightness}])
 		}
 			
 		
