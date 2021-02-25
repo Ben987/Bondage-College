@@ -6,6 +6,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 8,
 		"chestcount" : 2,
 		"doorchance" : 0.67,
+		"rubblechance" : 0.7,
 	},
 	{
 		"openness" : 0,
@@ -14,6 +15,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 6,
 		"chestcount" : 3,
 		"doorchance" : 0.9,
+		"rubblechance" : 0.6,
 	},
 	{
 		"openness" : 2,
@@ -22,6 +24,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 7,
 		"chestcount" : 4,
 		"doorchance" : 0.2,
+		"rubblechance" : 0.5,
 	},
 	{
 		"openness" : 2,
@@ -30,6 +33,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 8,
 		"chestcount" : 4,
 		"doorchance" : 0.9,
+		"rubblechance" : 0.7,
 	},
 	{
 		"openness" : 4,
@@ -38,6 +42,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 7,
 		"chestcount" : 5,
 		"doorchance" : 0.05,
+		"rubblechance" : 0.9,
 	},
 	{
 		"openness" : 1,
@@ -46,6 +51,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 8,
 		"chestcount" : 5,
 		"doorchance" : 0.67,
+		"rubblechance" : 0.7,
 	},
 	{
 		"openness" : 4,
@@ -54,6 +60,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 5,
 		"chestcount" : 5,
 		"doorchance" : 0.0,
+		"rubblechance" : 0.3,
 	},
 	{
 		"openness" : 2,
@@ -62,6 +69,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 4,
 		"chestcount" : 5,
 		"doorchance" : 0.8,
+		"rubblechance" : 0.5,
 	},
 	{
 		"openness" : 4,
@@ -70,6 +78,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 8,
 		"chestcount" : 6,
 		"doorchance" : 1.0,
+		"rubblechance" : 0.7,
 	},
 	{
 		"openness" : 2,
@@ -78,6 +87,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 4,
 		"chestcount" : 6,
 		"doorchance" : 1.0,
+		"rubblechance" : 0.6,
 	},
 	{
 		"openness" : 10,
@@ -86,6 +96,7 @@ var KinkyDungeonMapParams = [
 		"brightness" : 100,
 		"chestcount" : 0,
 		"doorchance" : 1.0,
+		"rubblechance" : 1.0,
 	},
 	
 ];

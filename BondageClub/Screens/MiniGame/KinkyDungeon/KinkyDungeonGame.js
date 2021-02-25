@@ -33,7 +33,7 @@ var KinkyDungeonPlayerEntity = null
 
 var KinkyDungeonMapBrightness = 5
 
-var KinkyDungeonMovableTiles = "0DCSsr" // Objects which can be moved into: floors, doors, and chests
+var KinkyDungeonMovableTiles = "0DCSsRr" // Objects which can be moved into: floors, doors, and chests
 
 function KinkyDungeonSetCheckPoint() {
 	MiniGameKinkyDungeonCheckpoint = Math.floor(MiniGameKinkyDungeonLevel / 10)
@@ -110,12 +110,13 @@ function KinkyDungeonCreateMap(MapParams) {
 	var doodadchance = MapParams["doodadchance"]
 	var treasurechance = 0.5 // Chance for an extra chest
 	var treasurecount = MapParams["chestcount"] // Max treasure chest count
+	var rubblechance = MapParams["rubblechance"] // Chance of lootable rubble
 	var doorchance = MapParams["doorchance"] // Max treasure chest count
 	KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density)	
 	
 	KinkyDungeonReplaceDoodads(doodadchance, width, height) // Replace random internal walls with doodads
 	
-	KinkyDungeonPlaceChests(treasurechance, treasurecount, width, height) // Place treasure chests inside dead ends
+	KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, width, height) // Place treasure chests inside dead ends
 	KinkyDungeonPlaceDoors(doorchance, width, height) // Place treasure chests inside dead ends
 	
 	KinkyDungeonPlaceStairs(startpos, width, height) // Place the start and end locations
@@ -129,7 +130,7 @@ function KinkyDungeonCreateMap(MapParams) {
 	
 }
 
-function KinkyDungeonPlaceChests(treasurechance, treasurecount, width, height) {
+function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, width, height) {
 	var chestlist = []
 
 	// Populate the chests
@@ -160,7 +161,8 @@ function KinkyDungeonPlaceChests(treasurechance, treasurecount, width, height) {
 		} else {
 			var N = Math.floor(Math.random()*chestlist.length)
 			var chest = chestlist[N]
-			KinkyDungeonMapSet(chest.x, chest.y, 'r')
+			if (Math.random() < rubblechance) KinkyDungeonMapSet(chest.x, chest.y, 'R')
+				else KinkyDungeonMapSet(chest.x, chest.y, 'r')
 			chestlist.splice(N, 1)
 		}
     }
@@ -416,7 +418,8 @@ function KinkyDungeonDrawGame() {
 					else if (rows[R][X] == "C") sprite = "Chest"
 					else if (rows[R][X] == "c") sprite = "ChestOpen"
 					else if (rows[R][X] == "D") sprite = "Door"
-					else if (rows[R][X] == "r") sprite = "Rubble"
+					else if (rows[R][X] == "R") sprite = "Rubble"
+					else if (rows[R][X] == "r") sprite = "RubbleLooted"
 					else if (rows[R][X] == "S") sprite = "StairsUp"
 					else if (rows[R][X] == "s") sprite = "StairsDown"
 						
@@ -538,10 +541,10 @@ function KinkyDungeonClickGame(Level) {
 				KinkyDungeonPlayerEntity.y = moveY
 			}
 			
-			if (moveObject == 'r') {
+			if (moveObject == 'R') {
 				KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble")
 				
-				KinkyDungeonMapSet(moveX, moveY, '0')
+				KinkyDungeonMapSet(moveX, moveY, 'r')
 			}
 			
 			KinkyDungeonAdvanceTime(movedirection.delta)
