@@ -2,10 +2,14 @@ Intro,"You are a wizard most high, descending into the darkest dungeons."
 Intro2,"You must collect the Mistress' Staff, an artifact of untold power."
 Intro3,"Are you ready to venture forth and claim victory? "
 
+End,"You have reached the end of the playable portion."
+End2,"Come back later for new dungeons!"
+
 GameStart,Start New Game
 LoadGame,Load From Checkpoint
 
-CurrentLevel,Current Level: 
+CurrentLevel,"Current Level: "
+CurrentGold,"Gold: "
 
 DungeonName0,-Graveyard-
 DungeonName1,-Catacombs-
@@ -18,3 +22,8 @@ DungeonName7,-Kingdom of Ice-
 DungeonName8,-Marble Halls-
 DungeonName9,-Ancient Laboratory-
 DungeonName10,-The Starlit Balcony-
+
+LootRubbleFail,You search through the debris but find nothing of note
+LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
+
+LootChestGold,The chest contains gold! (+XXX gold)
