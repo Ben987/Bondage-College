@@ -643,6 +643,15 @@ var AssetFemale3DCG = [
 				{ Name: "Shoes",  AllowColorize: false }
 					]
 			},
+			{ Name: "DeluxeBoots", Fetish: ["Leather"], Value: -1, Alpha: [{Masks: [[180, 900, 50, 100], [280, 900, 50, 100] ] }], DefaultColor: ["#9F0D0D","#700A0A","#700A0A","#9F0D0D"], Height: 35,
+				Layer: [
+					{ Name: "Boots", AllowColorize: true},
+					{ Name: "Laces", AllowColorize: true},
+					{ Name: "Heels", AllowColorize: true},
+					{ Name: "Straps", AllowColorize: true},
+					{ Name: "Buckles", AllowColorize: false},
+					]
+			},
 		],
 		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
@@ -2621,6 +2630,13 @@ var AssetFemale3DCG = [
 				{ Name: "Text" }
 				]  
 			},
+			{
+				Name: "ElectronicTag", Value: 50, Difficulty: 20, Time: 5, Random: false, IsRestraint: false, AllowLock: true, DrawLocks: false, DefaultColor: ["#40812C", "Default", "#000000"], Prerequisite: "Collared", DynamicAfterDraw: true, Extended: true, Layer: [
+				{ Name: "Display" },
+				{ Name: "Tag" },
+				{ Name: "Text" }
+				]  
+			},
 			{ Name: "CollarBell", Fetish: ["Metal", "Pet"], Value: 5, Difficulty: 3, Time: 5, Random: false, AllowLock: true, Prerequisite: "Collared", Audio: "BellMedium" },
 			{ Name: "CollarBow", Fetish: ["Lingerie"], Value: 5, Difficulty: 1, Time: 5, Random: false, Prerequisite: "Collared" },
 			{
@@ -3668,6 +3684,7 @@ var AssetFemale3DCG = [
 			{ Name: "MistressPadlock", Value: -1, Time: 10, Wear: false, Effect: [], IsLock: true},
 			{ Name: "MistressTimerPadlock", Value: -1, Wear: false, Effect: [], IsLock: true, MaxTimer: 14400, RemoveTimer: 300 },
 			{ Name: "ExclusivePadlock", Value: 50, Time: 10, Wear: false, Effect: [], IsLock: true},
+			{ Name: "SafewordPadlock", Value: 40, Random: false, Wear: false, Effect: [], IsLock: true, AllowType: ["Password", "Hint", "LockSet"]},
 			{ Name: "MetalPadlockKey", Value: 10, Wear: false, Effect: ["Unlock-MetalPadlock"] },
 			{ Name: "OwnerPadlockKey", Value: 60, Wear: false, OwnerOnly: true, Effect: ["Unlock-OwnerPadlock", "Unlock-OwnerTimerPadlock"] },
 			{ Name: "LoversPadlockKey", Value: 40, Wear: false, LoverOnly: true, Effect: ["Unlock-LoversPadlock", "Unlock-LoversTimerPadlock"] },
@@ -4323,30 +4340,35 @@ var ActivityFemale3DCG = [
 	{
 		Name: "MoanGag",
 		MaxProgress: 60,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},
 	{
 		Name: "MoanGagTalk",
 		MaxProgress: 10,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},
 	{
 		Name: "MoanGagWhimper",
 		MaxProgress: 40,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},
 	{
 		Name: "MoanGagAngry",
 		MaxProgress: 10,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},
 	{
 		Name: "MoanGagGroan",
 		MaxProgress: 30,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
 	},

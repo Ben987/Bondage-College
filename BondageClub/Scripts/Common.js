@@ -114,6 +114,8 @@ function CommonParseCSV(str) {
 	var quote = false;  // true means we're inside a quoted field
 	var c;
 	var col;
+	// We remove whitespace on start and end
+	str = str.trim();
 
 	// iterate over each character, keep track of current row and column (of the returned array)
 	for (let row = col = c = 0; c < str.length; c++) {
@@ -240,7 +242,7 @@ function CommonKeyDown() {
 		}
 	}
 	else {
-		DialogKeyDown();
+		StruggleKeyDown();
 		if (ControllerActive == true) {
 			ControllerSupportKeyDown();
 		}
@@ -573,22 +575,16 @@ function CommonTakePhoto(Left, Top, Width, Height) {
 	DrawProcess();
 
 	// Capture screen as image URL
-	let ImgData = document.getElementById("MainCanvas").getContext('2d').getImageData(Left, Top, Width, Height);
+	const ImgData = document.getElementById("MainCanvas").getContext('2d').getImageData(Left, Top, Width, Height);
 	let PhotoCanvas = document.createElement('canvas');
 	PhotoCanvas.width = Width;
 	PhotoCanvas.height = Height;
 	PhotoCanvas.getContext('2d').putImageData(ImgData, 0, 0);
-	let PhotoImg = PhotoCanvas.toDataURL("image/png");
+	const PhotoImg = PhotoCanvas.toDataURL("image/png");
 
 	// Open the image in a new window
-	if (CommonGetBrowser().Name === "Chrome") {
-		// Chrome does not allow loading data URLs in the top frame
-		let newWindow = window.open('about:blank', '_blank');
-		newWindow.document.write("<img src='" + PhotoImg + "' alt='from canvas'/>");
-	}
-	else {
-		window.open(PhotoImg);
-	}
+	let newWindow = window.open('about:blank', '_blank');
+	newWindow.document.write("<img src='" + PhotoImg + "' alt='from canvas'/>");
 
 	CommonPhotoMode = false;
 }

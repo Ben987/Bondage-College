@@ -884,7 +884,7 @@ function PreferenceExit() {
 		NotificationSettings: Player.NotificationSettings,
 		ItemPermission: Player.ItemPermission,
 		LabelColor: Player.LabelColor,
-		LimitedItems: Player.LimitedItems,
+		LimitedItems: CommonPackItemArray(Player.LimitedItems),
 	};
 	ServerSend("AccountUpdate", P);
 	PreferenceMessage = "";
@@ -1644,7 +1644,7 @@ function PreferenceVisibilityCheckboxChanged(List, CheckSetting) {
  * @returns {void} - Nothing
  */
 function PreferenceVisibilityExit(SaveChanges) {
-	if (SaveChanges) ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems, BlockItems: Player.BlockItems });
+	if (SaveChanges) ServerPlayerBlockItemsSync();
 
 	PreferenceVisibilityGroupList = [];
 	PreferenceVisibilityHiddenList = [];

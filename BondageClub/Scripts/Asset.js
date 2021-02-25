@@ -324,29 +324,44 @@ function AssetAssignColorIndices(A) {
 // Builds the asset description from the CSV file
 function AssetBuildDescription(Family, CSV) {
 
-	// For each assets in the family
-	var L = 0;
-	for (let A = 0; A < Asset.length; A++)
-		if (Asset[A].Group.Family == Family) {
+	const map = new Map();
 
-			// Checks if the group matches
-			if ((CSV[L] != null) && (CSV[L][0] != null) && (CSV[L][0].trim() != "") && (Asset[A].Group.Name == CSV[L][0].trim())) {
-
-				// If we must put the group description
-				if (((CSV[L][1] == null) || (CSV[L][1].trim() == "")) && ((CSV[L][2] != null) && (CSV[L][2].trim() != ""))) {
-					Asset[A].Group.Description = CSV[L][2].trim();
-					L++;
-				}
-
-				// If we must put the asset description
-				if ((CSV[L][1] != null) && (CSV[L][1].trim() != "") && (CSV[L][2] != null) && (CSV[L][2].trim() != "")) {
-					Asset[A].Description = CSV[L][2].trim();
-					L++;
-				}
-
+	for (const line of CSV) {
+		if (Array.isArray(line) && line.length === 3) {
+			if (map.has(`${line[0]}:${line[1]}`)) {
+				console.warn("Duplicate Asset Description: ", line);
 			}
-
+			map.set(`${line[0]}:${line[1]}`, line[2]);
+		} else {
+			console.warn("Bad Asset Description line: ", line);
 		}
+	}
+
+	// For each asset group in family
+	for (const G of AssetGroup) {
+		if (G.Family !== Family)
+			continue;
+
+		const res = map.get(`${G.Name}:`);
+		if (res === undefined) {
+			G.Description = `MISSING ASSETGROUP DESCRIPTION: ${G.Name}`;
+		} else {
+			G.Description = res;
+		}
+	}
+
+	// For each asset in the family
+	for (const A of Asset) {
+		if (A.Group.Family !== Family)
+			continue;
+
+		const res = map.get(`${A.Group.Name}:${A.Name}`);
+		if (res === undefined) {
+			A.Description = `MISSING ASSET DESCRIPTION: ${A.Group.Name}:${A.Name}`;
+		} else {
+			A.Description = res;
+		}
+	}
 
 	// Translates the descriptions to a foreign language
 	TranslationAsset(Family);

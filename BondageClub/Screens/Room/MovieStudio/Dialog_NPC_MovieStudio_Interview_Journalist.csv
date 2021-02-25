@@ -62,10 +62,22 @@ PlayerGagged,,,(She looks at your gag and giggles.),,
 190,,(Clean the journalist.),(She giggles as you dust her.  She takes a few pictures of you in your bondage.),"DoActivity(""InterviewMaidCleanJournalist"")",
 190,,(Struggle for the camera.),(You struggle sensually for the camera and moan loudly for the viewers.),"DoActivity(""InterviewMaidStruggleSexy"")",
 190,,(Check the room.),,DialogLeave(),
-1000,,,Can you please release me or ask her to relase me?  I have an interview to do.,,
+1000,,,Can you please release me or ask her to help me?  I have an interview to do.,,
+1000,,(Clean her.),(You clean her sensually as the Mistress smirks.),"DoActivity(""InterviewMaidCleanJournalist"")","CanDoActivity(""InterviewMaidCleanForMistress"")"
+1000,,(Release her.),(The Mistress gets in front of you and instructs you to clean first.),,
 1000,,(Check the room.),,DialogLeave(),
-1100,,,Thanks for helping.  (She winks at you.)  Right on time for the interview.,,
+1100,,,Thanks for helping.  (She winks at you.)  Right on time for the interview.  Finish your cleaning so we can start.,,
 1100,,(Check the room.),,DialogLeave(),
+1200,,,"This is intense, you maids don't have it easy in the club.",,
+1200,,Can you help me?,"I'm not allowed, but I can probably tickle you.  (She tickles your tummy and laughs with you.)","DoActivity(""InterviewMaidTickleByJournalist"")",
+1200,,(Rub against her leg.),"(She smiles at you and caresses you slowly.)  I wish I had time for you, but I have an interview to do.","DoActivity(""InterviewMaidCaressByJournalist"")","!CanDoActivity(""InterviewMaidReturnFavor"")"
+1200,1210,(Rub against her leg.),(She smiles at you and caresses you slowly.)  Would you like to cum?  I owe you one.,"DoActivity(""InterviewMaidReturnFavorByJournalist"")","CanDoActivity(""InterviewMaidReturnFavor"")"
+1200,,(Check the room.),,DialogLeave(),
+1210,1220,Oh yes!  Please.,"My pleasure!   (She masturbates you skillfully as the Mistress smirks, giving you an orgasm in front of the camera.)","DoActivity(""InterviewMaidReturnFavorOrgasmByJournalist"")",
+1210,1200,"No, I'm good.","Too bad, you lost your chance maid.  (She giggles.)",,
+1220,1200,Wow!  Thanks.,"You deserved that orgasm, I owed it to you.  Now I have an interview to do.",,
+1220,1200,That was pretty nice.,"You deserved that orgasm, I owed it to you.  Now I have an interview to do.",,
+1220,1200,(Try to catch your breath.),"You deserved that orgasm, I owed it to you.  Now I have an interview to do.",,
 2000,,,"(A club member is restrained in your room.  She struggles in her cuffs.)  Hello there, I think I got in trouble.",,CurrentCharacter.IsRestrained()
 2000,,,"(A club member restrained a maid in your room.)  Hello there.  As you can see, this maid seems to enjoy trouble.",,!CurrentCharacter.IsRestrained()
 2000,2010,What's going on here?,"To make a long story short: I was exploring this dungeon, a maid came in, she locked these cuffs on me, and here I am now.",,CurrentCharacter.IsRestrained()

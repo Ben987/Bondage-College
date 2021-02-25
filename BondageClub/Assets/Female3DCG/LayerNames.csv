@@ -252,6 +252,9 @@ ItemNeckOrnateCollarCollar,Collar
 ItemNeckOrnateCollarGem,Gems
 ItemNeckAccessoriesCustomCollarTagTag,Tag
 ItemNeckAccessoriesCustomCollarTagText,Text
+ItemNeckAccessoriesElectronicTagTag,Tag
+ItemNeckAccessoriesElectronicTagDisplay,Display
+ItemNeckAccessoriesElectronicTagText,Text
 ItemMiscWoodenSignSign,Sign
 ItemMiscWoodenSignRope,Rope
 ItemMiscWoodenSignText,Text
@@ -334,6 +337,11 @@ ShoesSandalsRSTop,Top
 ShoesSandalsRSSoles,Soles
 ShoesFlippersShoes,Shoes
 ShoesFlippersFins,Fins
+ShoesDeluxeBootsBoots,Outer
+ShoesDeluxeBootsLaces,Inner & Laces
+ShoesDeluxeBootsHeels,Heels
+ShoesDeluxeBootsStraps,Straps
+ShoesDeluxeBootsBuckles,Buckles
 ItemMouthWiffleGagStrap,Strap
 ItemMouthWiffleGagBall,Ball
 ItemMouthHarnessBallGagBall,Ball
