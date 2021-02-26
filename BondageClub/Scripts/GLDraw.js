@@ -42,7 +42,7 @@ function GLDrawLoad() {
         console.log("WebGL: Context restored.");
     }, false);
     
-    //console.log("WebGL Drawing enabled: '" + GLVersion + "'");
+    console.log("WebGL Drawing enabled: '" + GLVersion + "'");
 }
 
 /**

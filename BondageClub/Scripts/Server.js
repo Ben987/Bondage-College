@@ -75,7 +75,7 @@ function ServerSetConnected(connected, errorMessage) {
  * Callback when receiving a "connect" event on the socket - this will be called on initial connection and on successful reconnects.
  */
 function ServerConnect() {
-	//console.info("Server connection established");
+	console.info("Server connection established");
 	ServerSetConnected(true);
 }
 
