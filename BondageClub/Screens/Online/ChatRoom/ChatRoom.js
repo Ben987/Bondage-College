@@ -414,6 +414,8 @@ function ChatRoomLoad() {
 function ChatRoomClearAllElements() {
 	// Friendlist
 	ElementRemove("FriendList");
+	FriendListBeepMenuClose();
+	FriendListModeIndex = 0;
 	
 	// Admin
 	ElementRemove("InputName");

@@ -713,6 +713,11 @@ function ServerAccountQueryResult(data) {
 function ServerAccountBeep(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
 		if (!data.BeepType || data.BeepType == "") {
+			if (typeof data.Message === "string") {
+				data.Message = data.Message.substr(0, 1000);
+			} else {
+				delete data.Message;
+			}
 			ServerBeep.MemberNumber = data.MemberNumber;
 			ServerBeep.MemberName = data.MemberName;
 			ServerBeep.ChatRoomName = data.ChatRoomName;
@@ -721,10 +726,21 @@ function ServerAccountBeep(data) {
 				ServerBeepAudio.volume = Player.AudioSettings.Volume;
 				ServerBeepAudio.play();
 			}
-			ServerBeep.Message = DialogFindPlayer("BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
+			ServerBeep.Message = `${DialogFindPlayer("BeepFrom")} ${ServerBeep.MemberName} (${ServerBeep.MemberNumber})`;
 			if (ServerBeep.ChatRoomName != null)
 				ServerBeep.Message = ServerBeep.Message + " " + DialogFindPlayer("InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFindPlayer("InAsylum") : '');
-			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
+			if (data.Message) {
+				ServerBeep.Message += `; ${DialogFindPlayer("BeepWithMessage")}`
+			}
+			FriendListBeepLog.push({
+				MemberNumber: data.MemberNumber,
+				MemberName: data.MemberName,
+				ChatRoomName: data.ChatRoomName,
+				ChatRoomSpace: data.ChatRoomSpace,
+				Sent: false,
+				Time: new Date(),
+				Message: data.Message
+			});
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 			if (Player.NotificationSettings.Beeps && !document.hasFocus()) NotificationsIncrement("Beep");
 		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber && data.ChatRoomName) {
