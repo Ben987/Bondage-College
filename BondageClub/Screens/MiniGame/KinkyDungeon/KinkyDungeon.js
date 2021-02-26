@@ -79,3 +79,15 @@ function KinkyDungeonClick() {
 function KinkyDungeonExit() {
 	CommonDynamicFunction(MiniGameReturnFunction + "()");
 }
+
+/**
+ * Handles key presses during the mini game. (Both keyboard and mobile)
+ * @returns {void} - Nothing
+ */
+function KinkyDungeonKeyDown() {
+
+	if (KinkyDungeonState == "Game")
+	KinkyDungeonKeyDown();
+
+	
+}

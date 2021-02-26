@@ -5,11 +5,23 @@ Intro3,"Are you ready to venture forth and claim victory? "
 End,"You have reached the end of the playable portion."
 End2,"Come back later for new dungeons!"
 
+StatArousal,"Arousal: "
+StatStamina,"Stamina: "
+StatWillpower,"Willpower: "
+
 GameStart,Start New Game
 LoadGame,Load From Checkpoint
 
 CurrentLevel,"Current Level: "
 CurrentGold,"Gold: "
+CurrentLockpicks,"Lockpicks: "
+CurrentKeyRed,"Red Keys: "
+CurrentKeyGreen,"Green Keys: "
+CurrentKeyBlue,"Blue Keys: "
+CurrentKnife,"Knife: "
+CurrentKnifeMagic,"Mag. Knife: "
+
+ClimbDown,"You climb down the stairs to the next level"
 
 DungeonName0,-Graveyard-
 DungeonName1,-Catacombs-
@@ -27,3 +39,9 @@ LootRubbleFail,You search through the debris but find nothing of note
 LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
 
 LootChestGold,The chest contains gold! (+XXX gold)
+
+NameBlindZombie,Shambling Zombie
+NameRat,Angry Rat
+
+AttackBlindZombie,"The zombie slips a restraint on you! (+RestraintAdded)"
+AttackRat,"The angry rat nibbles at your toes! (-DamageTaken WP)"
