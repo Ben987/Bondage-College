@@ -5,7 +5,7 @@ var InventoryItemDevicesCoffinOptions = [
 		Name: "Open",
 		Property: {
 			Type: null,
-			Difficulty:-2,
+			Difficulty: 0,
 			Effect: ["Freeze"],
 			SelfUnlock: true
 		}
@@ -14,7 +14,7 @@ var InventoryItemDevicesCoffinOptions = [
 		Name: "Closed",
 		Property: {
 			Type: "Closed",
-			Difficulty:4,
+			Difficulty: 50,
 			Effect: ["Freeze", "GagMedium", "Prone", "Enclose", "BlindLight"],
 			SelfUnlock: false
 		}

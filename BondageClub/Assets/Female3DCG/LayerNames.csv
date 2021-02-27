@@ -252,6 +252,9 @@ ItemNeckOrnateCollarCollar,Collar
 ItemNeckOrnateCollarGem,Gems
 ItemNeckAccessoriesCustomCollarTagTag,Tag
 ItemNeckAccessoriesCustomCollarTagText,Text
+ItemNeckAccessoriesElectronicTagTag,Tag
+ItemNeckAccessoriesElectronicTagDisplay,Display
+ItemNeckAccessoriesElectronicTagText,Text
 ItemMiscWoodenSignSign,Sign
 ItemMiscWoodenSignRope,Rope
 ItemMiscWoodenSignText,Text
@@ -334,6 +337,11 @@ ShoesSandalsRSTop,Top
 ShoesSandalsRSSoles,Soles
 ShoesFlippersShoes,Shoes
 ShoesFlippersFins,Fins
+ShoesDeluxeBootsBoots,Outer
+ShoesDeluxeBootsLaces,Inner & Laces
+ShoesDeluxeBootsHeels,Heels
+ShoesDeluxeBootsStraps,Straps
+ShoesDeluxeBootsBuckles,Buckles
 ItemMouthWiffleGagStrap,Strap
 ItemMouthWiffleGagBall,Ball
 ItemMouthHarnessBallGagBall,Ball
@@ -403,6 +411,9 @@ ItemMouthFuturisticHarnessBallGagMask,Ball
 ItemMouthFuturisticHarnessBallGagBall,Display
 ItemMouthFuturisticHarnessBallGagLight,Light
 ItemMouthFuturisticHarnessBallGagLock,Lock
+ItemMouthGasMaskGagMask,Mask
+ItemMouthGasMaskGagSides,Sides
+ItemMouthGasMaskGagHighlights,Highlights
 ItemMouth2WiffleGagStrap,Strap
 ItemMouth2WiffleGagBall,Ball
 ItemMouth2HarnessBallGagBall,Ball
@@ -454,6 +465,9 @@ ItemMouth2LipGagStraps,Straps
 ItemMouth2LipGagRings,Rings
 ItemMouth2MuzzleGagMuzzle,Muzzle
 ItemMouth2MuzzleGagStraps,Straps
+ItemMouth2GasMaskGagMask,Mask
+ItemMouth2GasMaskGagSides,Sides
+ItemMouth2GasMaskGagHighlights,Highlights
 ItemMouth3WiffleGagStrap,Strap
 ItemMouth3WiffleGagBall,Ball
 ItemMouth3HarnessBallGagBall,Ball
@@ -507,6 +521,9 @@ ItemMouth3MuzzleGagMuzzle,Muzzle
 ItemMouth3MuzzleGagStraps,Straps
 ItemMouth3CageMuzzleStrap,Straps
 ItemMouth3CageMuzzleMuzzle,Cage
+ItemMouth3GasMaskGagMask,Mask
+ItemMouth3GasMaskGagSides,Sides
+ItemMouth3GasMaskGagHighlights,Highlights
 MaskFoxMaskUpper,Upper
 MaskFoxMaskLower,Lower
 MaskKittyMask3Highlights,Highlights

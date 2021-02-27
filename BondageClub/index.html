@@ -33,6 +33,7 @@
 <script src="Scripts/CharacterName.js"></script>
 <script src="Scripts/ColorPicker.js"></script>
 <script src="Scripts/ControllerSupport.js"></script>
+<script src="Scripts/Struggle.js"></script>
 <script src="Scripts/Dialog.js"></script>
 <script src="Scripts/Speech.js"></script>
 <script src="Scripts/Text.js"></script>
@@ -167,6 +168,7 @@
 <script src="Screens/Inventory/ItemMisc/CombinationPadlock/CombinationPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/HighSecurityPadlock/HighSecurityPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/PasswordPadlock/PasswordPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/SafewordPadlock/SafewordPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/TimerPasswordPadlock/TimerPasswordPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/MistressTimerPadlock/MistressTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerTimerPadlock/OwnerTimerPadlock.js"></script>
@@ -277,7 +279,6 @@
 <script src="Screens/Inventory/ItemPelvis/StuddedChastityBelt/StuddedChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemBoots/FuturisticHeels/FuturisticHeels.js"></script>
-<script src="Screens/Inventory/ItemDevices/Crib/Crib.js"></script>
 <script src="Screens/Inventory/ItemMouth/MilkBottle/MilkBottle.js"></script>
 <script src="Screens/Inventory/ItemNose/NoseRing/NoseRing.js"></script>
 <script src="Screens/Inventory/ItemButt/ShockPlug/ShockPlug.js"></script>
@@ -306,6 +307,7 @@
 <script src="Screens/Inventory/Necklace/NecklaceKey/NecklaceKey.js"></script>
 <script src="Screens/Inventory/Necklace/NecklaceLock/NecklaceLock.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CustomCollarTag.js/CustomCollarTag.js"></script>
+<script src="Screens/Inventory/ItemNeckAccessories/ElectronicTag/ElectronicTag.js"></script>
 <script src="Screens/Inventory/ItemLegs/MermaidTail/MermaidTail.js"></script>
 <script src="Screens/Inventory/ItemMisc/WoodenSign/WoodenSign.js"></script>
 <script src="Screens/Inventory/ItemHood/GwenHood/GwenHood.js"></script>
@@ -338,6 +340,7 @@
 window.onload = function() {
 //	CheatImport();
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
+	GameVersion = "R65";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
 	DrawLoad();

@@ -357,6 +357,12 @@ function PreferenceInitPlayer() {
 	if (typeof C.OnlineSharedSettings.BlockBodyCosplay !== "boolean") C.OnlineSharedSettings.BlockBodyCosplay = false;
 	if (typeof C.OnlineSharedSettings.AllowPlayerLeashing !== "boolean") C.OnlineSharedSettings.AllowPlayerLeashing = true;
 	if (typeof C.OnlineSharedSettings.DisablePickingLocksOnSelf !== "boolean") C.OnlineSharedSettings.DisablePickingLocksOnSelf = false;
+	if (C.OnlineSharedSettings.GameVersion !== GameVersion) {
+		if (CommonCompareVersion(GameVersion, C.OnlineSharedSettings.GameVersion) < 0) {
+			CommonVersionUpdated = true;
+		}
+		C.OnlineSharedSettings.GameVersion = GameVersion;
+	}
 
 	// Graphical settings
 	if (!C.GraphicsSettings) C.GraphicsSettings = {}
@@ -884,7 +890,7 @@ function PreferenceExit() {
 		NotificationSettings: Player.NotificationSettings,
 		ItemPermission: Player.ItemPermission,
 		LabelColor: Player.LabelColor,
-		LimitedItems: Player.LimitedItems,
+		LimitedItems: CommonPackItemArray(Player.LimitedItems),
 	};
 	ServerSend("AccountUpdate", P);
 	PreferenceMessage = "";
@@ -1644,7 +1650,7 @@ function PreferenceVisibilityCheckboxChanged(List, CheckSetting) {
  * @returns {void} - Nothing
  */
 function PreferenceVisibilityExit(SaveChanges) {
-	if (SaveChanges) ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems, BlockItems: Player.BlockItems });
+	if (SaveChanges) ServerPlayerBlockItemsSync();
 
 	PreferenceVisibilityGroupList = [];
 	PreferenceVisibilityHiddenList = [];

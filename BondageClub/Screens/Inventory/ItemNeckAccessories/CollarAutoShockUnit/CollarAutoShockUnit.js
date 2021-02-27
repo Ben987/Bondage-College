@@ -1,6 +1,8 @@
 "use strict";
 
 
+var AutoShockGagActionFlag = false;
+
 // Loads the item extension properties
 function InventoryItemNeckAccessoriesCollarAutoShockUnitLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Intensity: 0, Sensitivity: 0, ShowText: true };
@@ -97,16 +99,34 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitSetSensitivity(Modifier)
 
 function InventoryItemNeckAccessoriesCollarAutoShockUnitUpdate(data) {
 	var Item = data.Item
+	if (Item.Property.Sensitivity < 3)
+		AutoShockGagActionFlag = false
+	
 	// Punish the player if they speak
 	if (Item.Property.Sensitivity && Item.Property.Sensitivity > 0) {
 		
 		var LastMessages = data.PersistentData().LastMessageLen
 		var ShockTriggerPunish = false
+		var keywords = false;
+		var gagaction = false;
 		
-		if (Item.Property.Sensitivity == 3 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
-			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
-				&& ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1])
-			ShockTriggerPunish = true
+		if (Item.Property.Sensitivity == 3) {
+			if (AutoShockGagActionFlag == true) {
+				gagaction = true
+				AutoShockGagActionFlag = false
+			} else for (let K = 0; K < AutoPunishKeywords.length; K++) {
+				if (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes(AutoPunishKeywords[K])) {
+					keywords = true;
+					break;
+				}
+			}
+		}
+		
+		if (Item.Property.Sensitivity == 3 && (gagaction || (ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1]
+			 && (!ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
+			|| (keywords && (ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/me") || ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")))))))
+			GagTriggerPunish = true
 		if (Item.Property.Sensitivity == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
 			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
 			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].length > 25

@@ -172,6 +172,15 @@ function MainHallRun() {
 			} else MainHallFirstFrame = true;
 		} else {
 
+			// If the player logged into new version
+			if (CurrentCharacter == null && CommonVersionUpdated && MainHallMaid.Dialog != null && MainHallMaid.Dialog.length > 0) {
+				CommonVersionUpdated = false;
+				CharacterSetCurrent(MainHallMaid);
+				MainHallMaid.Stage = "200";
+				MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "ClubUpdated");
+				return;
+			}
+
 			// If the player is dressed up while being a club slave, the maid intercepts her
 			if ((CurrentCharacter == null) && ManagementIsClubSlave() && LogQuery("BlockChange", "Rule") && !Player.IsNaked() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
 				MainHallMaid.Stage = "50";
@@ -419,6 +428,14 @@ function MainHallClick() {
 }
 
 /**
+ * Triggered when the player chooses to open changelog.
+ */
+function MainHallOpenChangelog() {
+	window.open("./changelog.html", "_blank");
+	DialogLeave();
+}
+
+/**
  * Triggered when the player asks for release, the player is freed from restraints and any combo locks
  * @returns {void} - Nothing
  */
@@ -491,10 +508,9 @@ function MainHallPunishFromChatroom() {
 function MainHallPunishFromChatroomStartPunishment() {
 	CharacterRelease(Player);
 	CharacterNaked(Player);
-	LogAdd("BlockChange","Rule", CurrentTime + 3600000);
 	
 	// Apply one of several preset restraints
-	// Also  apply mistress locks to everything
+	// Also  apply timer locks to everything
 	var I = Math.floor(Math.random() * MainHallPunishmentList.length)
 	MainHallPunishmentChoice = I
 }
@@ -549,10 +565,10 @@ function MainHallPunishFromChatroomApplyChastity() {
 function MainHallPunishFromChatroomLockChastity() {
 	var I = MainHallPunishmentChoice
 	if (MainHallPunishmentList[I].ItemPelvis && InventoryGet(Player, "ItemPelvis") == null) {
-		InventoryLock(Player, "ItemPelvis", "MistressPadlock", null);
+		InventoryLock(Player, "ItemPelvis", "TimerPadlock", null);
 	}
 	if (MainHallPunishmentList[I].ItemBreast && InventoryGet(Player, "ItemBreast") == null) {
-		InventoryLock(Player, "ItemBreast", "MistressPadlock", null);
+		InventoryLock(Player, "ItemBreast", "TimerPadlock", null);
 	}
 	
 	CharacterRefresh(Player);
@@ -566,7 +582,7 @@ function MainHallPunishFromChatroomGag() {
 	var I = MainHallPunishmentChoice
 	
 	if (MainHallPunishmentList[I].ItemMouth) {
-		InventoryWear(Player, MainHallPunishmentList[I].ItemMouth, "ItemMouth", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemMouth", "MistressPadlock", null);
+		InventoryWear(Player, MainHallPunishmentList[I].ItemMouth, "ItemMouth", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemMouth", "TimerPadlock", null);
 	}
 	CharacterRefresh(Player);
 }
@@ -597,13 +613,13 @@ function MainHallPunishFromChatroomArms() {
 			if (MainHallPunishmentList[I].ItemArms == "LatexBoxtieLeotard" || MainHallPunishmentList[I].ItemArms == "SeamlessStraitDress" ) {
 				ArmsColor = "#252525"
 			}
-			InventoryWear(Player, MainHallPunishmentList[I].ItemArms, "ItemArms", ArmsColor, Math.floor(Math.random()*10)); InventoryLock(Player, "ItemArms", "MistressPadlock", null);
+			InventoryWear(Player, MainHallPunishmentList[I].ItemArms, "ItemArms", ArmsColor, Math.floor(Math.random()*10)); InventoryLock(Player, "ItemArms", "TimerPadlock", null);
 		}
 	}
 	
 	
 	if (MainHallPunishmentList[I].ItemHands && Math.random() > 0.33) {
-		InventoryWear(Player, MainHallPunishmentList[I].ItemHands, "ItemHands", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHands", "MistressPadlock", null);
+		InventoryWear(Player, MainHallPunishmentList[I].ItemHands, "ItemHands", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHands", "TimerPadlock", null);
 	}
 	CharacterRefresh(Player);
 }
@@ -627,18 +643,18 @@ function MainHallPunishFromChatroomRest() {
 
 
 		if (MainHallPunishmentList[I].ItemLegs) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemLegs, "ItemLegs", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemLegs", "MistressPadlock", null);
+			InventoryWear(Player, MainHallPunishmentList[I].ItemLegs, "ItemLegs", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemLegs", "TimerPadlock", null);
 		}
 		if (MainHallPunishmentList[I].ItemFeet) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemFeet, "ItemFeet", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemFeet", "MistressPadlock", null);
+			InventoryWear(Player, MainHallPunishmentList[I].ItemFeet, "ItemFeet", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemFeet", "TimerPadlock", null);
 		}
 
 
 		if (MainHallPunishmentList[I].ItemHead && Math.random() > 0.33) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemHead, "ItemHead", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHead", "MistressPadlock", null);
+			InventoryWear(Player, MainHallPunishmentList[I].ItemHead, "ItemHead", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHead", "TimerPadlock", null);
 		}
 		if (MainHallPunishmentList[I].ItemBoots && Math.random() > 0.33) {
-			InventoryWear(Player, MainHallPunishmentList[I].ItemBoots, "ItemBoots", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemBoots", "MistressPadlock", null);
+			InventoryWear(Player, MainHallPunishmentList[I].ItemBoots, "ItemBoots", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemBoots", "TimerPadlock", null);
 		}
 	}
 	

@@ -103,6 +103,7 @@ ClothLower,JeansShorts,Jeans Shorts
 ClothLower,Leggings1,Short Leggings
 ClothLower,Leggings2,Long Leggings
 ClothLower,PleatedSkirt,Pleated Skirt
+ClothLower,LongSkirt1,Long Skirt
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
@@ -150,7 +151,7 @@ Bra,HeartTop,Heart Top
 Bra,ChineseBra1,Chinese Bra
 Bra,LeatherStrapBra1,Leather Strap Bra
 Bra,Swimsuit3,Swimsuit style 3
-Bra,Clamshell,Clamshell Bra
+Bra,ClamShell,Clamshell Bra
 Bra,CowPrintedBra,Cow Printed Bra
 Bra,StuddedHarness,Studded Harness
 Corset,,Corset
@@ -235,10 +236,11 @@ Shoes,SandalsRS,Rhinestone Sandals
 Shoes,PawBoots,Paw Boots
 Shoes,WoollyBootsTall,Woolly Boots
 Shoes,ThighHighLatexHeels,Latex Heels
-Shoes,Heels3,Multi-Strap Heels,
+Shoes,Heels3,Multi-Strap Heels
 Shoes,BarefootSandals1,Barefoot Sandals
 Shoes,LatexAnkleShoes, Latex Ankle Shoes
 Shoes,Flippers,Flippers
+Shoes,DeluxeBoots,Deluxe Mistress Boots
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Band2,Jeweled Band
@@ -460,6 +462,8 @@ HairFront,HairFront15,Style 15
 HairFront,HairFront16,Style 16
 HairFront,HairFront17,Style 17
 HairFront,HairFront17b,Style 17b
+HairFront,HairFront18,Style 18
+HairFront,HairFront19,Style 19
 HairBack,,Back Hair
 HairBack,HairNone,None
 HairBack,HairBack1,Style 1
@@ -502,6 +506,7 @@ HairBack,HairBack42,Style 37
 HairBack,HairBack43,Style 38
 HairBack,HairBack44,Style 39
 HairBack,HairBack45,Style 40
+HairBack,HairBack46,Style 41
 Eyes,,Left eye
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
@@ -552,6 +557,10 @@ Emoticon,,Emoticon
 Emoticon,Emoticon,Emoticon
 Eyebrows,,Eyebrows
 Eyebrows,Eyebrows1,Eyebrows
+Hands,,Hands
+Hands,Default,Default
+Head,,Head
+Head,Default,Default
 ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
@@ -663,7 +672,7 @@ ItemButt,BunnyTailPlug2,Brown Bunny Tail Plug
 ItemButt,BunnyTailVibePlug,Bunny Tail Vibe Plug
 ItemButt,EggVibePlugXXL,Egg Vibe Plug XXL
 ItemButt,ShockPlug,Shock Plug
-ItemButt,CowTail,Cow Tail
+ItemButt,Cowtail,Cow Tail
 ItemButt,HollowButtPlug,Hollow Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
@@ -824,6 +833,7 @@ ItemHands,SpankingToysTennisRacket,Tennis Racket
 ItemHands,SpankingToysGavel,Gavel
 ItemHands,SpankingToysFeather,Feather
 ItemHands,SpankingToysFeatherDuster,Feather Duster
+ItemHands,SpankingToysLongDuster,Long Duster
 ItemHands,SpankingToysIceCube,Ice Cube
 ItemHands,SpankingToysWartenbergWheel,Wartenberg Wheel
 ItemHands,SpankingToysVibratingWand,Vibrating Wand
@@ -885,7 +895,8 @@ ItemNeck,SlenderSteelCollar,Slender Steel Collar
 ItemNeck,HeartLinkChoker, Heart-Link Choker
 ItemNeck,NeckRope,Neck Rope
 ItemNeckAccessories,,Collar
-ItemNeckAccessories,CustomNameTag,Custom Tag
+ItemNeckAccessories,CustomCollarTag,Custom Tag
+ItemNeckAccessories,ElectronicTag,Electronic Tag
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
 ItemNeckAccessories,CollarShockUnit,Shock Unit
@@ -912,6 +923,9 @@ ItemNeckRestraints,CollarLeashTaken,Pulled Leash
 ItemNeckRestraints,ChainLeash,Chain Leash
 ItemNeckRestraints,ChainLeashTaken,Pulled Chain Leash
 ItemNeckRestraints,CollarChainMedium,Medium Chain
+ItemNeckRestraints,CollarRopeLong,Long Rope
+ItemNeckRestraints,CollarRopeShort,Short Rope
+ItemNeckRestraints,CollarRopeMedium,Medium Rope
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
@@ -1106,7 +1120,7 @@ ItemHood,CanvasHood,Canvas Hood
 ItemHood,Pantyhose,Pantyhose
 ItemHood,GP9GasMask,GP-9 Gas Mask
 ItemHood,OpenFaceHood,Open Face Hood
-ItemHood,Gwenhood,Gwen Hood
+ItemHood,GwenHood,Gwen Hood
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
@@ -1129,6 +1143,7 @@ ItemMisc,LoversTimerPadlock,Lovers Timer Padlock
 ItemMisc,MistressPadlock,Mistress Padlock
 ItemMisc,MistressTimerPadlock,Mistress Timer Padlock
 ItemMisc,ExclusivePadlock,Exclusive Padlock
+ItemMisc,SafewordPadlock,Safeword Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
 ItemMisc,OwnerPadlockKey,Owner Padlock Key
 ItemMisc,LoversPadlockKey,Lovers Padlock Key

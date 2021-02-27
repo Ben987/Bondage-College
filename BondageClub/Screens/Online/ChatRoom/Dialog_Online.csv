@@ -10,7 +10,7 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 0,40,(Character actions.),(Possible character actions.),,CanPerformCharacterAction()
 0,41,(Security actions.),(Possible security actions.),,CanPerformSecurityAction()
 0,,(Stop her from leaving.),,StopLeave(),CanStopSlowPlayer()
-0,,(Have a photo taken.),,PhotoCurrentCharacters(),
+0,,(Have a photo taken.),,PhotoCurrentCharacters(),ChatRoomCanTakePhotos()
 0,,(Leave this menu.),,DialogLeave(),
 10,,(Add to item whitelist.),(This member is now on your item permission whitelist.  She will have higher access to restrain or free you.),"ListManage(""Add"", ""WhiteList"")",CanAddWhiteList()
 10,,(Remove from item whitelist.),(This member is no longer on your item permission whitelist.),"ListManage(""Remove"", ""WhiteList"")",CanRemoveWhiteList()
@@ -72,17 +72,10 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 24,0,(Back to main menu.),(Main menu.),,
 30,0,(Call the maids to escort her out of the room.),,"AdminAction(""Kick"")",
 30,0,(Ban her from the room.),,"AdminAction(""Ban"")",
-30,0,(Swap her position with someone else.),,"AdminAction(""Swap"")",!HasSwapTarget()
-30,0,(Cancel position swap.),,"AdminAction(""SwapCancel"")",HasSwapTarget()
-30,31,(Move her to the left.),(DialogCharacterName as been moved to the left at position CharacterPosition.  Would you like to move her further?),"AdminAction(""MoveLeft"")",
-30,31,(Move her to the right.),(DialogCharacterName as been moved to the right at position CharacterPosition.  Would you like to move her further?),"AdminAction(""MoveRight"")",
+30,0,(Move Character.),(Move started.),"AdminAction(""Move"")",
 30,0,(Promote her as room administrator.),,"AdminAction(""Promote"")",!CurrentCharacterIsAdmin()
 30,0,(Demote her from room administration.),,"AdminAction(""Demote"")",CurrentCharacterIsAdmin()
 30,0,(Back to main menu.),(Main menu.),,
-31,,(Move her to the left.),(DialogCharacterName as been moved to the left at position CharacterPosition.  Would you like to move her further?),"AdminAction(""MoveLeft"", ""false"")",
-31,,(Move her to the right.),(DialogCharacterName as been moved to the right at position CharacterPosition.  Would you like to move her further?),"AdminAction(""MoveRight"", ""false"")",
-31,0,(Back to main menu.),,,
-31,0,(Leave this menu.),,DialogLeave(),
 41,0,(Lend her some lockpicks.),(You give her some lockpicks to struggle out with until she leaves the room),GiveLockpicks(),CanGiveLockpicks()
 41,0,(Give her a spare key to your locks.),(You give her an extra key to your private padlocks),GiveHighSecurityKeys(),CanGiveHighSecurityKeys()
 41,0,(Hand over the keys to your locks.),(You give her the keys to your private padlocks),GiveHighSecurityKeysAll(),CanGiveHighSecurityKeysAll()
