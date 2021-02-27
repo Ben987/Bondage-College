@@ -23,6 +23,32 @@ function InformationSheetGetLove(Love) {
 }
 
 /**
+ * This function is executed, when the information screen is loaded. Defines the buttons on the right hand side
+ * and adds functions for the event handlers. These can either be existing functions or on the fly defined inline functions
+ * @returns {void} - Nothing
+ */
+function InformationSheetLoad() {
+	ElementCreateButton("btnExit", "", "Icons/Exit.png", "Exit", "left", InformationSheetExit);
+	ElementCreateButton("btnTitle", "", "Icons/Title.png", "Title", "left", InformationSheetCurrySetScreen("Title"));
+	ElementCreateButton("btnPref", "", "Icons/Preference.png", "Preferences", "left", InformationSheetCurrySetScreen("Preference"));
+	ElementCreateButton("btnFriends", "", "Icons/FriendList.png", "Friends", "left", InformationSheetCurrySetScreen("FriendList"));
+	ElementCreateButton("btnIntro", "", "Icons/Introduction.png", "Online Profile", "left", InformationSheetCurrySetScreen("OnlineProfile"));
+	ElementCreateButton("btnNext", "", "Icons/Next.png", "Next Page", "left", () => (InformationSheetSecondScreen = !InformationSheetSecondScreen));
+}
+
+/**
+ * Creates a curried callback for setting the information sheet screen
+ * @param {string} ScreenName - The name of the screen that the curried function should switch to
+ * @returns {function(): void} - A curried function that clears information sheet buttons and sets the relevant screen
+ */
+function InformationSheetCurrySetScreen(ScreenName) {
+	return () => {
+		InformationSheetButtonsRemove();
+		CommonSetScreen("Character", ScreenName);
+	};
+}
+
+/**
  * Main function of the character info screen. It's called continuously, so be careful 
  * to add time consuming functions or loops here
  * @returns {void} - Nothing
@@ -31,6 +57,7 @@ function InformationSheetRun() {
 
 	// Draw the character base values
 	var C = InformationSheetSelection;
+	var FontSize = 36;
 	var CurrentTitle = TitleGet(C);
 	DrawCharacter(C, 50, 50, 0.9);
 	MainCanvas.textAlign = "left";
@@ -73,16 +100,16 @@ function InformationSheetRun() {
 
 	// Draw the buttons on the right side
 	MainCanvas.textAlign = "center";
-	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	ElementPositionFix("btnExit", FontSize, 1815, 75, 90, 90);
 	if (C.ID == 0) {
-		if (!TitleIsForced(CurrentTitle)) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Title.png");
-		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Preference.png");
-		DrawButton(1815, 420, 90, 90, "", "White", "Icons/FriendList.png");
-		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Introduction.png");
-		DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
+		if (!TitleIsForced(CurrentTitle)) ElementPositionFix("btnTitle", FontSize, 1815, 190, 90, 90);
+		ElementPositionFix("btnPref", FontSize, 1815, 305, 90, 90);
+		ElementPositionFix("btnFriends", FontSize, 1815, 420, 90, 90);
+		ElementPositionFix("btnIntro", FontSize, 1815, 535, 90, 90);
+		ElementPositionFix("btnNext", FontSize, 1815, 765, 90, 90);
 	} else if (OnlinePlayer) {
-		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Introduction.png");
-		DrawButton(1815, 765, 90, 90, "", "White", "Icons/Next.png");
+		ElementPositionFix("btnIntro", FontSize, 1815, 190, 90, 90);
+		ElementPositionFix("btnNext", FontSize, 1815, 765, 90, 90);
 	}
 
 	// Draw the second screen for reputation & skills
@@ -172,22 +199,20 @@ function InformationSheetSecondScreenRun() {
 }
 
 /**
- * Handles the click events on the screen
+ * Handles the click events on the screen. Not really used anymore, because we now have DOM buttons.
+ * Just kept around for consistency reasons.
  * @returns {void} - Nothing
  */
 function InformationSheetClick() {
-	var C = InformationSheetSelection;
-	if (MouseIn(1815, 75, 90, 90)) InformationSheetExit();
-	if (C.ID == 0) {
-		if (MouseIn(1815, 190, 90, 90) && !TitleIsForced(TitleGet(C))) CommonSetScreen("Character", "Title");
-		if (MouseIn(1815, 305, 90, 90)) CommonSetScreen("Character", "Preference");
-		if (MouseIn(1815, 420, 90, 90)) CommonSetScreen("Character", "FriendList");
-		if (MouseIn(1815, 535, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
-		if (MouseIn(1815, 765, 90, 90)) InformationSheetSecondScreen = !InformationSheetSecondScreen;
-	} else if (C.AccountName.indexOf("Online-") >= 0) {
-		if (MouseIn(1815, 190, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
-		if (MouseIn(1815, 765, 90, 90)) InformationSheetSecondScreen = !InformationSheetSecondScreen;
-	}
+}
+
+function InformationSheetButtonsRemove() {
+	ElementRemove("btnExit");
+	ElementRemove("btnTitle");
+	ElementRemove("btnPref");
+	ElementRemove("btnFriends");
+	ElementRemove("btnIntro");
+	ElementRemove("btnNext");
 }
 
 /**
@@ -195,6 +220,8 @@ function InformationSheetClick() {
  * @returns {void} - Nothing
  */
 function InformationSheetExit() {
+	// clean up
+	InformationSheetButtonsRemove();
 	InformationSheetSecondScreen = false;
 	CommonSetScreen(InformationSheetPreviousModule, InformationSheetPreviousScreen);
 }

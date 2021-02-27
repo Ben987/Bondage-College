@@ -31,10 +31,47 @@ function ElementContent(ID, Content) {
 }
 
 /**
- * Creates a new text area element in the main document. Does not create a new element if there is already an existing one with the same ID
- * @param {string} ID - The id of the text area to create.
+ * Function to add a button to the current screen.
+ * @param {string} ID - A name for the button to create.
+ * @param {string} label - Text that should be displayed on the button. Use either this or an image.
+ * @param {string} image - Path to an image that should be displayed within the button. 
+ * Use either this or assign a label to the button
+ * @param {string} hoverText - Text for a tool tip that is shown, when the mouse hovers over the button
+ * @param {string} hoverPos - Hint for the positioning of the tool tip. 
+ * Valid values are "bottom", "top", "right" or "left". If no value is given, "left" is used
+ * @param {function} func - A function for the 'click' event handler. Code within this function is executed,
+ * as soon as the user clicks on the button (or hits enter on the button)
  * @returns {void} - Nothing
  */
+function ElementCreateButton(ID, label, image, hoverText, hoverPos, func) {
+	if (!document.getElementById(ID)) {
+		const button = document.createElement("button");
+		button.className = "button";
+		button.setAttribute("type", "button");
+		button.setAttribute("ID", ID);
+		button.setAttribute("Name", ID);
+		if (image) button.style.backgroundImage = "url(" + DrawGetImage(image).src + ")";
+		if (label) {
+			const span = document.createElement("span");
+			span.classList.add("buttonContent")
+			span.innerText = label;
+			button.appendChild(span);
+		} else if (hoverText) {
+			button.setAttribute("aria-label", hoverText);
+		}
+		if (hoverText) {
+			if (!["left", "right", "top", "bottom"].includes(hoverPos)) hoverPos = "left";
+			var toolTip = document.createElement(ID + "_tooltip");
+			toolTip.classList.add("tooltip", hoverPos);
+			toolTip.innerText = hoverText;
+			button.appendChild(toolTip);
+		}
+		if (typeof func === "function") button.addEventListener("click", func);
+		document.body.appendChild(button);
+	}
+}
+
+// Creates a new text area element in the main document
 function ElementCreateTextArea(ID) {
 	if (document.getElementById(ID) == null) {
 		var TextArea = document.createElement("TextArea");

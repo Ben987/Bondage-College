@@ -187,6 +187,74 @@ TextArea {
 	color: cyan !important;
 }
 
+.button {
+  border: 2px solid black;
+  color: black;
+  background-color: white;
+  background-size: cover;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 0.15em;
+}
+
+.button:hover, .button:focus {
+	background-color: cyan;
+	color: white;
+}
+
+.button > .tooltip {
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+	position: absolute;
+	background-color: #fffb8f;
+	border-radius: 2px;
+	visibility: hidden;
+	color: black;
+	z-index: 1;
+    padding: .25em;
+	border: 2px solid;
+	opacity: 0;
+  	transition: opacity 0.5s;
+	white-space: nowrap;
+}
+
+.button > .tooltip.left, .button > .tooltip.right {
+	top: 50%;
+	transform: translateY(-50%);
+	margin: 0 0.25em;
+}
+
+.button > .tooltip.top, .button > .tooltip.bottom {
+	left: 50%;
+	transform: translateX(-50%);
+	margin: 0.25em 0;
+}
+
+.button > .tooltip.left {
+	right: 100%;
+}
+
+.button > .tooltip.right {
+	left: 100%;
+}
+
+.button > .tooltip.top {
+	bottom: 100%;
+}
+
+.button > .tooltip.bottom {
+	top: 100%;
+}
+
+.button:hover > .tooltip, .button:focus > .tooltip {
+	visibility: visible;
+	opacity: 1;
+}
+
+.button:focus, .button:active {
+	outline: 0;
+}
+
 .custom-select {
   position: relative;
   font-family: Arial, sans-serif;
