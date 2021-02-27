@@ -75,6 +75,8 @@ function KinkyDungeonDefaultStats() {
 	KinkyDungeonStatWillpower = KinkyDungeonStatWillpowerMax
 	
 	KinkyDungeonMovePoints = 0
+	KinkyDungeonInventory = []
+	KinkyDungeonPlayerTags = []
 }
 
 function KinkyDungeonGetVisionRadius() {

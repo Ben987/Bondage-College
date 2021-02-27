@@ -54,9 +54,11 @@ AttackBlindZombie,"The zombie caresses your body! (-DamageTaken WP)"
 AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
 
 RestraintDuctTapeArms,Tape
+RestraintDuctTapeLegs,Tape
 RestraintDuctTapeFeet,Tape
 RestraintDuctTapeHead,Tape
 RestraintDuctTapeMouth,Tape
 RestraintDuctTapeBoots,Tape
 RestraintDuctTapeFeet,Tape
+RestraintDuctTapeHeadMummy, Tape Covering
 RestraintStuffing,Mouth Stuffing

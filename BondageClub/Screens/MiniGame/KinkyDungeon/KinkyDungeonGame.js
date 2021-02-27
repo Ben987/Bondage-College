@@ -148,7 +148,8 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	
 	// Place the player!
 	KinkyDungeonPlayerEntity = {Type:"Player", x: 1, y:startpos}
-
+	KinkyDungeonUpdateStats(0)
+	
 	// Place enemies after player
 	KinkyDungeonPlaceEnemies(MapParams["enemytags"], Floor, width, height)
 	
