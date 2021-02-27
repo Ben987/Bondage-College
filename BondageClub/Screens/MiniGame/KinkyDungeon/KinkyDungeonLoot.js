@@ -31,6 +31,7 @@ function KinkyDungeonLoot(Level, Index, Type) {
 			KinkyDungeonTextMessageTime = lootWeights[L].loot.messageTime
 			KinkyDungeonTextMessage = TextGet(lootWeights[L].loot.message)
 			KinkyDungeonTextMessageColor = lootWeights[L].loot.messageColor
+			KinkyDungeonTextMessagePriority = 0
 
 			KinkyDungeonLootEvent(lootWeights[L].loot, Index)
 			

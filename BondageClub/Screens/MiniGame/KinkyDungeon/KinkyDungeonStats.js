@@ -8,16 +8,17 @@ var KinkyDungeonStatArousalRegenStaminaRegenFactor = -0.9 // Stamina drain per t
 // Stamina -- your MP. Used to cast spells and also struggle
 var KinkyDungeonStatStaminaMax = 100
 var KinkyDungeonStatStamina = KinkyDungeonStatStaminaMax
-var KinkyDungeonStatStaminaRegen = 1 
+var KinkyDungeonStatStaminaRegen = 4
+var KinkyDungeonStatStaminaRegenPerSlowLevel = -0.33 // It costs stamina to move while bound
 
 // Willpower -- your HP. When it falls to 0, your character gives up and accepts her fate
 var KinkyDungeonStatWillpowerMax = 100
 var KinkyDungeonStatWillpower = KinkyDungeonStatWillpowerMax
-var KinkyDungeonStatWillpowerRegen = 0.1
+var KinkyDungeonStatWillpowerRegen = 1.0
 
 // Willpower loss
 var KinkyDungeonWillpowerLossOnOrgasm = 5
-var KinkyDungeonWillpowerDrainLowStamina = 1.1
+var KinkyDungeonWillpowerDrainLowStamina = -1.1 // Willpower slowly drains when totally exhausted
 var KinkyDungeonWillpowerDrainLowStaminaThreshold = 10 // Threshold at which willpower starts to drain
 
 // Current Status
@@ -34,7 +35,7 @@ var KinkyDungeonSlowLevel = 0 // Adds to the number of move points you need befo
 var KinkyDungeonMovePoints = 0
 
 var KinkyDungeonBlindLevel = 0 // Blind level 1: -33% vision, blind level 2: -67% vision, Blind level 3: Vision radius = 1
-var KinkyDungeonDeaf = false // Deafness makes it impossible to see monsters in dim light, and reduces your vision radius to 0 if you are fully blind (blind level 3)
+var KinkyDungeonDeaf = false // Deafness reduces your vision radius to 0 if you are fully blind (blind level 3)
 
 // Other stats
 var KinkyDungeonGold = 0
@@ -52,7 +53,9 @@ var KinkyDungeonBlueKeys = 0
 var KinkyDungeonNormalBlades = 1
 var KinkyDungeonEnchantedBlades = 0
 
-
+// Your inventory contains items that are on you
+var KinkyDungeonInventory = []
+var KinkyDungeonPlayerTags = []
 
 function KinkyDungeonDefaultStats() {
 	KinkyDungeonGold = 0
@@ -75,11 +78,12 @@ function KinkyDungeonDefaultStats() {
 }
 
 function KinkyDungeonGetVisionRadius() {
-	return Math.max((KinkyDungeonDeaf) ? 0 : 1, Math.floor(KinkyDungeonMapBrightness*(1.0 - 0.33 * KinkyDungeonBlindLevel)))
+	return Math.max((KinkyDungeonDeaf) ? 0 : (KinkyDungeonBlindLevel > 2) ? 1 : 3, Math.floor(KinkyDungeonMapBrightness*(1.0 - 0.33 * KinkyDungeonBlindLevel)))
 }
 
 function KinkyDungeonDealDamage(dmg) {
 	KinkyDungeonStatWillpower -= dmg
+	return dmg
 }
 
 function KinkyDungeonDrawStats(x, y, width, heightPerBar) {
@@ -117,6 +121,25 @@ function KinkyDungeonUpdateStats(delta) {
 	// If below a threshold, willpower starts to drain
 	if (KinkyDungeonStatStamina <= KinkyDungeonWillpowerDrainLowStaminaThreshold) willpowerRate += KinkyDungeonWillpowerDrainLowStamina
 	
+	// Update the player tags based on the player's groups
+	KinkyDungeonPlayerTags = KinkyDungeonUpdateRestraints(delta)
+	
+	KinkyDungeonBlindLevel = Math.max(0, KinkyDungeonPlayer.GetBlindLevel())
+	KinkyDungeonDeaf = KinkyDungeonPlayer.IsDeaf()
+	
+	// Slowness calculation
+	KinkyDungeonSlowLevel = 0
+	if (KinkyDungeonPlayer.IsMounted() || KinkyDungeonPlayer.Effect.indexOf("Tethered") >= 0 || KinkyDungeonPlayer.IsEnclose()) {KinkyDungeonSlowLevel = 100; KinkyDungeonMovePoints = 0;}
+	else {
+		if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemLegs"), "Block", true) || InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemLegs"), "KneelFreeze", true)) KinkyDungeonSlowLevel += 1
+		if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemFeet"), "Block", true) || InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemFeet"), "Freeze", true)) KinkyDungeonSlowLevel += 1
+		if (InventoryGet(KinkyDungeonPlayer, "ItemBoots") && InventoryGet(KinkyDungeonPlayer, "ItemBoots").Difficulty > 0) KinkyDungeonSlowLevel += 1
+		if (KinkyDungeonPlayer.Pose.includes("Kneel")) KinkyDungeonSlowLevel = Math.max(2, KinkyDungeonSlowLevel + 1)
+		if (KinkyDungeonPlayer.Pose.includes("Hogtied")) KinkyDungeonSlowLevel = Math.max(3, KinkyDungeonSlowLevel + 1)
+	}
+
+	
+	
 	
 	// Cap off the values between 0 and maximum
 	KinkyDungeonStatArousal = Math.max(0, Math.min(KinkyDungeonStatArousal + arousalRate*delta, KinkyDungeonStatArousalMax))
@@ -126,7 +149,7 @@ function KinkyDungeonUpdateStats(delta) {
 
 // StimulationLevel - 0: Physical touching
 // StimulationLevel - 1: Direct vibrator contact
-// StimulationLevel - 2: Internal vibrator or magic, edging blocks
+// StimulationLevel - 2: Powerful vibrator or magic, edging blocks
 // StimulationLevel - 3: Bypass edging
 function KinkyDungeonCanOrgasm(StimulationLevel) {
 	if (KinkyDungeonStatArousal <= 100) return false; // Need to be at 100

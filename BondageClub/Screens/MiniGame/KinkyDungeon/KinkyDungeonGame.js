@@ -18,7 +18,7 @@ var KinkyDungeonGridHeightDisplay = 9
 
 var KinkyDungeonMoveDirection = KinkyDungeonGetDirection(0, 0)
 
-
+var KinkyDungeonTextMessagePriority = 0
 var KinkyDungeonTextMessage = ""
 var KinkyDungeonTextMessageTime = 0
 var KinkyDungeonTextMessageColor = "white"
@@ -56,6 +56,10 @@ function KinkyDungeonSetCheckPoint() {
 }
 
 function KinkyDungeonInitialize(Level, Random) {
+	CharacterReleaseTotal(KinkyDungeonPlayer)
+	KinkyDungeonDressPlayer()
+	
+	KinkyDungeonTextMessage = "" 
 	KinkyDungeonDefaultStats()
 	MiniGameKinkyDungeonLevel = Level
 	KinkyDungeonSetCheckPoint()
@@ -165,7 +169,7 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 		var X = 1 + Math.floor(Math.random()*(width - 1))
 		var Y = 1 + Math.floor(Math.random()*(height - 1))
 		
-		if (Math.sqrt((X - KinkyDungeonPlayerEntity.x) * (X - KinkyDungeonPlayerEntity.x) + (Y - KinkyDungeonPlayerEntity.y) * (Y - KinkyDungeonPlayerEntity.y)) && KinkyDungeonMovableTiles.includes(KinkyDungeonMapGet(X, Y))) {
+		if (Math.sqrt((X - KinkyDungeonPlayerEntity.x) * (X - KinkyDungeonPlayerEntity.x) + (Y - KinkyDungeonPlayerEntity.y) * (Y - KinkyDungeonPlayerEntity.y)) && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(X, Y))) {
 			var tags = []
 			if (KinkyDungeonMapGet(X, Y) == 'R' || KinkyDungeonMapGet(X, Y) == 'r') tags.push("rubble")
 			
@@ -542,7 +546,7 @@ function KinkyDungeonGetDirection(dx, dy) {
 	var X = 0;
 	var Y = 0;
 	
-	if (Math.abs(dx) < 0.9 && Math.abs(dy) < 0.9)
+	if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5)
 		return {x:0, y:0, delta:1}
 	
 	// Cardinal directions first - up down left right
@@ -619,6 +623,7 @@ function KinkyDungeonMove(moveDirection) {
 	var moveY = moveDirection.y + KinkyDungeonPlayerEntity.y
 	var moveObject = KinkyDungeonMapGet(moveX, moveY)
 	if (KinkyDungeonMovableTiles.includes(moveObject) && KinkyDungeonNoEnemy(moveX, moveY)) { // If the player can move to an empy space or a door
+	
 		if (moveObject == 's') { // Go down the next stairs
 			MiniGameKinkyDungeonLevel += 1
 			KinkyDungeonSetCheckPoint()
@@ -639,21 +644,35 @@ function KinkyDungeonMove(moveDirection) {
 			KinkyDungeonLoot(MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint], "chest")
 			KinkyDungeonMapSet(moveX, moveY, 'c')
 		} else {// Move
-			KinkyDungeonMovePoints += moveDirection.delta
-			
-			if (KinkyDungeonMovePoints > KinkyDungeonSlowLevel) {
-				KinkyDungeonPlayerEntity.x = moveX
-				KinkyDungeonPlayerEntity.y = moveY
-				KinkyDungeonMovePoints = 0
+			if (KinkyDungeonStatStamina > 0) {
+				KinkyDungeonMovePoints += moveDirection.delta
+				
+				if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel+1) {
+					KinkyDungeonPlayerEntity.x = moveX
+					KinkyDungeonPlayerEntity.y = moveY
+					KinkyDungeonMovePoints = 0
+				}
+				
+				if (moveDirection.x != 0 || moveDirection.y != 0)
+					KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta
+				else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax && 1 > KinkyDungeonTextMessagePriority) {
+					KinkyDungeonTextMessageTime = 2
+					
+					KinkyDungeonTextMessage = TextGet("Wait")
+					KinkyDungeonTextMessagePriority = 0
+					KinkyDungeonTextMessageColor = "lightgreen"
+				}
+				
+				if (moveObject == 'R') {
+					KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble")
+					
+					KinkyDungeonMapSet(moveX, moveY, 'r')
+				}
 			}
 		}
 		
-		if (moveObject == 'R') {
-			KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble")
-			
-			KinkyDungeonMapSet(moveX, moveY, 'r')
-		}
-		
+
+
 		KinkyDungeonAdvanceTime(moveDirection.delta)
 	}
 }
@@ -663,9 +682,16 @@ function KinkyDungeonAdvanceTime(delta) {
 	// Here we move enemies and such
 	KinkyDungeonUpdateLightGrid = true
 	if (KinkyDungeonTextMessageTime > 0) KinkyDungeonTextMessageTime -= 1
+		else KinkyDungeonTextMessagePriority = 0
 	
 	// Updates the character's stats
 	KinkyDungeonUpdateEnemies(delta)
 	KinkyDungeonUpdateStats(delta)
+	
+	if (KinkyDungeonStatWillpower == 0) {
+		KinkyDungeonState = "Lose"
+	}
+	
+	
 }
 

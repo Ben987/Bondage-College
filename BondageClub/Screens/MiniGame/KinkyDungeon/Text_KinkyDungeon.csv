@@ -2,12 +2,18 @@ Intro,"You are a wizard most high, descending into the darkest dungeons."
 Intro2,"You must collect the Mistress' Staff, an artifact of untold power."
 Intro3,"Are you ready to venture forth and claim victory? "
 
+End,"Bound and exhausted, you have succumbed ."
+End2,"Today the dungeon claims another girl, as it has before."
+End3,"Perhaps you may come to enjoy your new life."
+
 End,"You have reached the end of the playable portion."
 End2,"Come back later for new dungeons!"
 
 StatArousal,"Arousal: "
 StatStamina,"Stamina: "
 StatWillpower,"Willpower: "
+
+Wait,"You pause and regain some breath"
 
 GameStart,Start New Game
 LoadGame,Load From Checkpoint
@@ -40,8 +46,17 @@ LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
 
 LootChestGold,The chest contains gold! (+XXX gold)
 
-NameBlindZombie,Shambling Zombie
-NameRat,Angry Rat
+NameBlindZombie,Moaning Zombie
+NameRat,Filthy Rat
 
-AttackBlindZombie,"The zombie slips a restraint on you! (+RestraintAdded)"
-AttackRat,"The angry rat nibbles at your toes! (-DamageTaken WP)"
+AttackBlindZombieBind,"The zombie slips a restraint on you! (+RestraintAdded)"
+AttackBlindZombie,"The zombie caresses your body! (-DamageTaken WP)"
+AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
+
+RestraintDuctTapeArms,Tape
+RestraintDuctTapeFeet,Tape
+RestraintDuctTapeHead,Tape
+RestraintDuctTapeMouth,Tape
+RestraintDuctTapeBoots,Tape
+RestraintDuctTapeFeet,Tape
+RestraintStuffing,Mouth Stuffing

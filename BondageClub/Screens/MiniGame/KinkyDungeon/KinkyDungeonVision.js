@@ -35,7 +35,7 @@ function KinkyDungeonMakeLightMap(width, height, Lights) {
 							for (let YY = Y-1; YY <= Y+1; YY++)
 								if (!KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(XX, YY))) nearbywalls += 1
 						
-						if (nearbywalls > 3 && brightness <= 3) brightness -= 1
+						if (nearbywalls > 3 && brightness <= 3 && X != KinkyDungeonPlayerEntity.x && Y != KinkyDungeonPlayerEntity.y) brightness -= 1
 						
 						if (brightness > 0) {
 							if (Number(KinkyDungeonLightGet(X-1, Y)) < brightness) KinkyDungeonLightSet(X-1, Y, "" + (brightness - 1))
