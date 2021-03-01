@@ -1,7 +1,7 @@
 "use strict";
 var InventoryItemArmsDuctTapeMessage = "SelectTapeWrapping";
 
-var InventoryItemArmsDuctTapeOptions = [
+const InventoryItemArmsDuctTapeOptions = [
 	{
 		Name: "Arms",
 		Property: {Type: null, Difficulty: 1},

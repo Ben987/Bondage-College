@@ -1,6 +1,6 @@
 "use strict";
 
-var InventoryItemLegsDuctTapeOptions = [
+const InventoryItemLegsDuctTapeOptions = [
 	{
 		Name: "Legs",
 		Property: { Type: null, Difficulty: 0 }
