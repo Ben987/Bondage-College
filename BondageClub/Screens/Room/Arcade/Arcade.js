@@ -4,6 +4,8 @@ var ArcadeEmployee = null;
 var ArcadePlayer = null;
 var ArcadeAskedFor = null;
 var ArcadePrice = 0;
+var ArcadeDeviousChallenge = false;
+var ArcadeCannotDoDeviousChallenge = false;
 //
 
 /**
@@ -60,6 +62,9 @@ function ArcadePutOnHeadset() {
 }
 
 
+
+
+
 /**
  * Places a headset on the player and charges them 10
  * @returns {void} - Nothing
@@ -67,6 +72,36 @@ function ArcadePutOnHeadset() {
 function ArcadeBuyHeadset() {
 	InventoryWear(Player, "InteractiveVRHeadset","ItemHead");
 	CharacterChangeMoney(Player, -10);
+}
+
+
+
+/**
+ * Toggles the Devious Dungeon Challenge
+ * @returns {void} - Nothing
+ */
+function ArcadeToggleDeviousChallenge() {
+	ArcadeDeviousChallenge = !ArcadeDeviousChallenge
+	if (ArcadeDeviousChallenge)
+		LogAdd("DeviousChallenge", "Arcade", 1, true)
+	else
+		LogDelete("DeviousChallenge", "Arcade", true)
+}
+
+/**
+ * Returns the deviouschallenge
+ * @returns {bool} - ArcadeDeviousChallenge
+ */
+function ArcadeDeviousChallengeAllowed() {
+	return !ArcadeDeviousChallenge && !ArcadeCannotDoDeviousChallenge
+}
+
+/**
+ * Returns the deviouschallenge
+ * @returns {bool} - ArcadeDeviousChallenge
+ */
+function ArcadeDeviousChallengeEnabled() {
+	return ArcadeDeviousChallenge
 }
 
 
@@ -78,6 +113,14 @@ function ArcadeLoad() {
 	ArcadeEmployee = CharacterLoadNPC("NPC_Arcade_Employee");
 	ArcadePlayer = CharacterLoadNPC("NPC_Arcade_Player");
 	InventoryWear(ArcadePlayer, "InteractiveVRHeadset","ItemHead");
+	
+	if (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player)) {
+		ArcadeDeviousChallenge = LogValue("DeviousChallenge", "Arcade") == 1
+		ArcadeCannotDoDeviousChallenge = false
+	}
+	else
+		ArcadeCannotDoDeviousChallenge = true
+	
 }
 
 /**

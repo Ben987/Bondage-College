@@ -205,15 +205,23 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 		if (!InventoryGroupIsBlocked(KinkyDungeonPlayer, restraint.Group) || Bypass) {
 			KinkyDungeonRemoveRestraint(restraint.Group)
 			InventoryWear(KinkyDungeonPlayer, restraint.Asset, restraint.Group)
+			if (ArcadeDeviousChallenge && restraint.Group != "ItemHead" && !InventoryGroupIsBlocked(Player, restraint.Group)) InventoryWear(Player, restraint.Asset, restraint.Group)
 			if (restraint.Type) {
 				KinkyDungeonPlayer.FocusGroup = AssetGroupGet("Female3DCG", restraint.Group)
 				const options = window["Inventory" + restraint.Group + restraint.Asset + "Options"]
 				const option = options.find(o => o.Name === restraint.Type);
 				ExtendedItemSetType(KinkyDungeonPlayer, options, option);
+				if (ArcadeDeviousChallenge && !InventoryGroupIsBlocked(Player, restraint.Group) && restraint.Group != "ItemHead") {
+					Player.FocusGroup = AssetGroupGet("Female3DCG", restraint.Group)
+					ExtendedItemSetType(Player, options, option);
+					Player.FocusGroup = null
+				}
 				KinkyDungeonPlayer.FocusGroup = null
 			}
 			if (restraint.Color) {
 				CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, restraint.Color, restraint.Group);
+				if (ArcadeDeviousChallenge && !InventoryGroupIsBlocked(Player, restraint.Group) && restraint.Group != "ItemHead")
+					CharacterAppearanceSetColorForGroup(Player, restraint.Color, restraint.Group);
 			}
 			KinkyDungeonInventory.push({restraint: restraint, tightness: tight, lock: ""})
 		}
@@ -230,6 +238,8 @@ function KinkyDungeonRemoveRestraint(Group) {
 			if (item.restraint && item.restraint.Group == Group) {
 				KinkyDungeonInventory.splice(I, 1);
 				InventoryRemove(KinkyDungeonPlayer, Group)
+				if (ArcadeDeviousChallenge && !InventoryGroupIsBlocked(Player, restraint.Group) && Group != "ItemHead")
+					InventoryRemove(Player, Group)
 				return true;
 			}
 		}

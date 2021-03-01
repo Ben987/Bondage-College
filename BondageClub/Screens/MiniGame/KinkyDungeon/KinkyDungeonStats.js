@@ -18,11 +18,11 @@ var KinkyDungeonStaminaRate = KinkyDungeonStatStaminaRegen
 // Willpower -- your HP. When it falls to 0, your character gives up and accepts her fate
 var KinkyDungeonStatWillpowerMax = 100
 var KinkyDungeonStatWillpower = KinkyDungeonStatWillpowerMax
-var KinkyDungeonStatWillpowerRegen = 1.0
+var KinkyDungeonStatWillpowerRegen = 0.1
 
 // Willpower loss
 var KinkyDungeonWillpowerLossOnOrgasm = -5
-var KinkyDungeonWillpowerDrainLowStamina = -1.0 // Willpower does not regen when totally exhausted
+var KinkyDungeonWillpowerDrainLowStamina = -0.1 // Willpower does not regen when totally exhausted
 var KinkyDungeonWillpowerDrainLowStaminaThreshold = 33 // Threshold at which willpower starts to drain
 var KinkyDungeonStatWillpowerCostStruggleFail = -1.0 // Cost when failing a struggle
 

@@ -49,6 +49,10 @@ function KinkyDungeonRun() {
 		DrawText(TextGet("Intro"), 1250, 400, "white", "silver");
 		DrawText(TextGet("Intro2"), 1250, 500, "white", "silver");
 		DrawText(TextGet("Intro3"), 1250, 600, "white", "silver");
+		
+		if (ArcadeDeviousChallenge) 
+			DrawText(TextGet("DeviousChallenge"), 1250, 925, "white", "silver");
+		
 		DrawButton(1075, 750, 350, 64, TextGet("GameStart"), "White", "");
 	} else if (KinkyDungeonState == "Lose") {
 		// Draw temp start screen

@@ -58,4 +58,5 @@ function KinkyDungeonLootEvent(Loot, Index) {
 
 function KinkyDungeonAddGold(value) {
 	KinkyDungeonGold += value
+	if (ArcadeDeviousChallenge) CharacterChangeMoney(Player, Math.floor(value/10))
 }
