@@ -29,6 +29,20 @@ function KinkyDungeonLoad() {
 	KinkyDungeonDressPlayer()
 	
 	KinkyDungeonState = "Menu"
+	
+	for (let G = 0; G < KinkyDungeonStruggleGroupsBase.length; G++) {
+		var group = KinkyDungeonStruggleGroupsBase[G]
+		if (group == "ItemM") {
+			if (InventoryGet(Player, "ItemMouth"))
+				KinkyDungeonRestraintsLocked.push("ItemMouth")
+			if (InventoryGet(Player, "ItemMouth2"))
+				KinkyDungeonRestraintsLocked.push("ItemMouth2")
+			if (InventoryGet(Player, "ItemMouth3"))
+				KinkyDungeonRestraintsLocked.push("ItemMouth3")
+		}
+		if (InventoryGet(Player, group))
+			KinkyDungeonRestraintsLocked.push(group)
+	}
 }
 
 /**

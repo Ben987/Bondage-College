@@ -7,6 +7,11 @@
 
 // Note that there is a complex formula for how the chances are manipulated based on whether your arms are bound. Items that bind the arms are generally unaffected, and items that bind the hands are unaffected, but they do affect each other
 
+// Power is a scale of how powerful the restraint is supposed to be. It should roughly match the difficulty of the item, but can be higher for special items. Power 10 or higher might be totally impossible to struggle out of. 
+
+// These are groups that the game is not allowed to remove because they were tied at the beginning
+var KinkyDungeonRestraintsLocked = []
+
 var KinkyDungeonRestraints = [
 	{name: "DuctTapeArms", Asset: "DuctTape", Color: "#AA2222", Group: "ItemArms", magic: false, power: -2, weight: 1, escapeChance: {"Struggle": 0.3, "Cut": 0.9, "Remove": 0.5}, enemyTags: {"ribbonRestraints":2}, playerTags: {"ItemArmsFull":8}, minLevel: 0, floors: [0, 1, 2, 3]},
 	{name: "DuctTapeFeet", Asset: "DuctTape", Color: "#AA2222", Group: "ItemFeet", magic: false, power: -2, weight: 1, escapeChance: {"Struggle": 0.3, "Cut": 0.9, "Remove": 0.5}, enemyTags: {"ribbonRestraints":2}, playerTags: {"ItemLegsFull":8}, minLevel: 0, floors: [0, 1, 2, 3]},
@@ -42,14 +47,14 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 		
 	
 	if (!KinkyDungeonPlayer.CanInteract) escapeChance /= 2
-	if (struggleGroup.group != "ItemArms" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.005*restraint.restraint.power), escapeChance - 0.25)
-	if (struggleGroup.group != "ItemHands" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.005*restraint.restraint.power), escapeChance - 0.25)
+	if (struggleGroup.group != "ItemArms" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
+	if (struggleGroup.group != "ItemHands" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
 	
 	if (InventoryGroupIsBlocked(KinkyDungeonPlayer, struggleGroup.group)) escapeChance = 0
 	
 	if (escapeChance > 0) {
 		for (let T = 0; T < restraint.tightness; T++) {
-			escapeChance *= 0.9 // Tougher for each tightness, however struggling will reduce the tightness
+			escapeChance *= 0.8 // Tougher for each tightness, however struggling will reduce the tightness
 		}
 	}
 		
@@ -203,9 +208,9 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 	var tight = (Tightness) ? Tightness : 0
 	if (restraint) {
 		if (!InventoryGroupIsBlocked(KinkyDungeonPlayer, restraint.Group) || Bypass) {
-			KinkyDungeonRemoveRestraint(restraint.Group)
+			KinkyDungeonRemoveRestraint(restraint.Group, restraint.power)
 			InventoryWear(KinkyDungeonPlayer, restraint.Asset, restraint.Group)
-			if (ArcadeDeviousChallenge && restraint.Group != "ItemHead" && !InventoryGroupIsBlocked(Player, restraint.Group) && 
+			if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && restraint.Group != "ItemHead" && !InventoryGroupIsBlocked(Player, restraint.Group) && (!InventoryGet(Player, restraint.Group) || (restraint.power > InventoryGet(Player, restraint.Group).Difficulty)) &&
 				(!InventoryGetLock(InventoryGet(Player, restraint.Group))
 				|| (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false)))
 					InventoryWear(Player, restraint.Asset, restraint.Group)
@@ -214,7 +219,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 				const options = window["Inventory" + restraint.Group + restraint.Asset + "Options"]
 				const option = options.find(o => o.Name === restraint.Type);
 				ExtendedItemSetType(KinkyDungeonPlayer, options, option);
-				if (ArcadeDeviousChallenge && !InventoryGroupIsBlocked(Player, restraint.Group) && 
+				if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) && (!InventoryGet(Player, restraint.Group) || (restraint.power > InventoryGet(Player, restraint.Group).Difficulty)) &&
 					(!InventoryGetLock(InventoryGet(Player, restraint.Group)) || (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false))
 					&& restraint.Group != "ItemHead") {
 					Player.FocusGroup = AssetGroupGet("Female3DCG", restraint.Group)
@@ -225,7 +230,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 			}
 			if (restraint.Color) {
 				CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, restraint.Color, restraint.Group);
-				if (ArcadeDeviousChallenge && !InventoryGroupIsBlocked(Player, restraint.Group) && 
+				if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) && (!InventoryGet(Player, restraint.Group) || (restraint.power > InventoryGet(Player, restraint.Group).Difficulty)) &&
 					(!InventoryGetLock(InventoryGet(Player, restraint.Group)) || (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false))
 					&& restraint.Group != "ItemHead")
 					CharacterAppearanceSetColorForGroup(Player, restraint.Color, restraint.Group);
@@ -239,22 +244,23 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 	return 0
 }
 
-function KinkyDungeonRemoveRestraint(Group) {
+function KinkyDungeonRemoveRestraint(Group, Power) {
+	if (!Power) Power = 100
 	for (let I = 0; I < KinkyDungeonInventory.length; I++) {
 			var item = KinkyDungeonInventory[I]
-			if (item.restraint && item.restraint.Group == Group || InventoryGet(Player, Group)) {
-				if (item.restraint && item.restraint.Group == Group )
-				    KinkyDungeonInventory.splice(I, 1);
-				InventoryRemove(KinkyDungeonPlayer, Group)
-				if (ArcadeDeviousChallenge && !InventoryGroupIsBlocked(Player, Group) && 
+			if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(Group) && InventoryGet(Player, Group)  && !InventoryGroupIsBlocked(Player, Group) && (!InventoryGet(Player, Group) || (Power >= InventoryGet(Player, Group).Difficulty)) &&
 					(!InventoryGetLock(InventoryGet(Player, Group)) || (InventoryGetLock(InventoryGet(Player, Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, Group)).Asset.LoverOnly == false))
 					&& Group != "ItemHead") {
-					InventoryRemove(Player, Group)
-					if (Group == "ItemNeck") {
-						InventoryRemove(Player, "ItemNeckAccessories");
-						InventoryRemove(Player, "ItemNeckRestraints");
-					}
+				InventoryRemove(Player, Group)
+				if (Group == "ItemNeck") {
+					InventoryRemove(Player, "ItemNeckAccessories");
+					InventoryRemove(Player, "ItemNeckRestraints");
 				}
+			}
+			if ((item.restraint && item.restraint.Group == Group)) {
+				KinkyDungeonInventory.splice(I, 1);
+				InventoryRemove(KinkyDungeonPlayer, Group)
+				
 				return true;
 			}
 		}

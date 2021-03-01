@@ -1,4 +1,24 @@
 var KinkyDungeonStruggleGroups = []
+var KinkyDungeonStruggleGroupsBase = [
+		"ItemHead",
+		"ItemHood",
+		"ItemM",
+		"ItemEars",
+		"ItemArms",
+		"ItemNeck",
+		"ItemHands",
+		"ItemBreast",
+		"ItemNipples",
+		"ItemNipplesPiercings",
+		"ItemPelvis",
+		"ItemTorso",
+		"ItemLegs",
+		"ItemButt",
+		"ItemVulva",
+		"ItemVulvaPiercings",
+		"ItemFeet",
+		"ItemBoots",
+	]
 var KinkyDungeonDrawStruggle = true
 
 // Draw function for the game portion
@@ -165,26 +185,7 @@ function KinkyDungeonHandleHUD() {
 }
 
 function KinkyDungeonUpdateStruggleGroups() {
-	var struggleGroups = [
-		"ItemHead",
-		"ItemHood",
-		"ItemM",
-		"ItemEars",
-		"ItemArms",
-		"ItemNeck",
-		"ItemHands",
-		"ItemBreast",
-		"ItemNipples",
-		"ItemNipplesPiercings",
-		"ItemPelvis",
-		"ItemTorso",
-		"ItemLegs",
-		"ItemButt",
-		"ItemVulva",
-		"ItemVulvaPiercings",
-		"ItemFeet",
-		"ItemBoots",
-	]
+	var struggleGroups = KinkyDungeonStruggleGroupsBase
 	KinkyDungeonStruggleGroups = []
 	
 	for (let S = 0; S < struggleGroups.length; S++) {

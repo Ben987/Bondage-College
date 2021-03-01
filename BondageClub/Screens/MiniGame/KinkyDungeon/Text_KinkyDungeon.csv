@@ -80,7 +80,7 @@ KinkyDungeonStruggleUnlockSuccess,"You unlock the TargetRestraint."
 KinkyDungeonStruggleStruggleSuccess,"You manage to squeeze out of the TargetRestraint!"
 KinkyDungeonStrugglePickSuccess,"You pick the lock on the TargetRestraint!"
 KinkyDungeonStruggleRemoveSuccess,"You unfasten the TargetRestraint and get it off your body!"
-KinkyDungeonStruggleCutSuccess,"You cut the TargetRestraint enough to remove it!"
+KinkyDungeonStruggleCutSuccess,"You cut the TargetRestraint off!"
 
 KinkyRedLock," (Red lock)"
 KinkyGreenLock," (Green lock)"
