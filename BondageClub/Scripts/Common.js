@@ -12,7 +12,7 @@ var CutsceneStage = 0;
 
 var CommonPhotoMode = false;
 var GameVersion = "R0";
-const GameVersionFormat = /^R([0-9]+)(?:Beta([0-9]+))?$/;
+const GameVersionFormat = /^R([0-9]+)(?:(Alpha|Beta)([0-9]+)?)?$/;
 var CommonVersionUpdated = false;
 
 /**
@@ -639,9 +639,20 @@ function CommonCompareVersion(Current, Other) {
 	const CurrentMatch = GameVersionFormat.exec(Current);
 	const OtherMatch = GameVersionFormat.exec(Other);
 	if (CurrentMatch == null || OtherMatch == null || isNaN(CurrentMatch[1]) || isNaN(OtherMatch[1])) return -1;
-	if (CurrentMatch[1] !== OtherMatch[1]) return Math.sign(Number.parseInt(OtherMatch[1]) - Number.parseInt(CurrentMatch[1]));
-	const CurrentSubversion = Number.parseInt(CurrentMatch[2]) || Infinity;
-	const OtherSubversion = Number.parseInt(OtherMatch[2]) || Infinity;
-	if (CurrentSubversion == OtherSubversion) return 0;
-	return Math.sign(OtherSubversion - CurrentSubversion);
+	const CurrentVer = [
+		Number.parseInt(CurrentMatch[1]),
+		CurrentMatch[2] === "Alpha" ? 1 : CurrentMatch[2] === "Beta" ? 2 : 3,
+		Number.parseInt(CurrentMatch[3]) || 0
+	];
+	const OtherVer = [
+		Number.parseInt(OtherMatch[1]),
+		OtherMatch[2] === "Alpha" ? 1 : OtherMatch[2] === "Beta" ? 2 : 3,
+		Number.parseInt(OtherMatch[3]) || 0
+	];
+	for (let i = 0; i < 3; i++) {
+		if (CurrentVer[i] !== OtherVer[i]) {
+			return Math.sign(OtherVer[i] - CurrentVer[i]);
+		}
+	}
+	return 0;
 }
