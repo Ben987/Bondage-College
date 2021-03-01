@@ -75,7 +75,7 @@ function KinkyDungeonRun() {
  * @returns {void} - Nothing
  */
 function KinkyDungeonClick() {
-	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) {
+	if (MouseIn(1885, 25, 90, 90)) {
 		KinkyDungeonExit()
 	}
 	if (KinkyDungeonState == "Menu" || KinkyDungeonState == "Lose") {

@@ -4,8 +4,8 @@ Intro3,"Are you ready to venture forth and claim victory? "
 
 DeviousChallenge,"Devious Dungeon Challenge is enabled."
 
-End,"Bound and exhausted, you have succumbed ."
-End2,"Today the dungeon claims another girl, as it has before."
+End,"Today the dungeon claims another helpless girl."
+End2,"Bound and exhausted, you cannot hope to continue."
 End3,"Perhaps you may come to enjoy your new life."
 
 End,"You have reached the end of the playable portion."
@@ -59,6 +59,7 @@ AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
 
 
 PlayerAttack,"You attack the TargetEnemy for DamageDealt damage!"
+PlayerMiss,"You miss the TargetEnemy!"
 KinkyDungeonStruggleStruggleFail,"You tug on the TargetRestraint but fail to make progress."
 KinkyDungeonStrugglePickFail,"You try to unlock the TargetRestraint but can't reach the lock."
 KinkyDungeonStrugglePickBreak,"You try to unlock the TargetRestraint but break your lockpick."
