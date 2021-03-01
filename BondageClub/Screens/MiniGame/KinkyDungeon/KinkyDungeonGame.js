@@ -65,6 +65,7 @@ function KinkyDungeonInitialize(Level, Random) {
 	KinkyDungeonDressPlayer()
 	
 	KinkyDungeonTextMessage = "" 
+	KinkyDungeonActionMessage = "" 
 	KinkyDungeonDefaultStats()
 	MiniGameKinkyDungeonLevel = Level
 	KinkyDungeonSetCheckPoint()

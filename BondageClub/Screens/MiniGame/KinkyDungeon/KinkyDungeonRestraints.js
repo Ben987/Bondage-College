@@ -208,9 +208,9 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 	var tight = (Tightness) ? Tightness : 0
 	if (restraint) {
 		if (!InventoryGroupIsBlocked(KinkyDungeonPlayer, restraint.Group) || Bypass) {
-			KinkyDungeonRemoveRestraint(restraint.Group, restraint.power)
+			KinkyDungeonRemoveRestraint(restraint.Group)
 			InventoryWear(KinkyDungeonPlayer, restraint.Asset, restraint.Group)
-			if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && restraint.Group != "ItemHead" && !InventoryGroupIsBlocked(Player, restraint.Group) && (!InventoryGet(Player, restraint.Group) || (restraint.power > InventoryGet(Player, restraint.Group).Difficulty)) &&
+			if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && restraint.Group != "ItemHead" && !InventoryGroupIsBlocked(Player, restraint.Group) && 
 				(!InventoryGetLock(InventoryGet(Player, restraint.Group))
 				|| (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false)))
 					InventoryWear(Player, restraint.Asset, restraint.Group)
@@ -219,7 +219,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 				const options = window["Inventory" + restraint.Group + restraint.Asset + "Options"]
 				const option = options.find(o => o.Name === restraint.Type);
 				ExtendedItemSetType(KinkyDungeonPlayer, options, option);
-				if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) && (!InventoryGet(Player, restraint.Group) || (restraint.power > InventoryGet(Player, restraint.Group).Difficulty)) &&
+				if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) &&
 					(!InventoryGetLock(InventoryGet(Player, restraint.Group)) || (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false))
 					&& restraint.Group != "ItemHead") {
 					Player.FocusGroup = AssetGroupGet("Female3DCG", restraint.Group)
@@ -230,7 +230,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 			}
 			if (restraint.Color) {
 				CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, restraint.Color, restraint.Group);
-				if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) && (!InventoryGet(Player, restraint.Group) || (restraint.power > InventoryGet(Player, restraint.Group).Difficulty)) &&
+				if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) &&
 					(!InventoryGetLock(InventoryGet(Player, restraint.Group)) || (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false))
 					&& restraint.Group != "ItemHead")
 					CharacterAppearanceSetColorForGroup(Player, restraint.Color, restraint.Group);
@@ -244,11 +244,10 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 	return 0
 }
 
-function KinkyDungeonRemoveRestraint(Group, Power) {
-	if (!Power) Power = 100
+function KinkyDungeonRemoveRestraint(Group) {
 	for (let I = 0; I < KinkyDungeonInventory.length; I++) {
 			var item = KinkyDungeonInventory[I]
-			if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(Group) && InventoryGet(Player, Group)  && !InventoryGroupIsBlocked(Player, Group) && (!InventoryGet(Player, Group) || (Power >= InventoryGet(Player, Group).Difficulty)) &&
+			if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(Group) && InventoryGet(Player, Group)  && !InventoryGroupIsBlocked(Player, Group) &&
 					(!InventoryGetLock(InventoryGet(Player, Group)) || (InventoryGetLock(InventoryGet(Player, Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, Group)).Asset.LoverOnly == false))
 					&& Group != "ItemHead") {
 				InventoryRemove(Player, Group)
