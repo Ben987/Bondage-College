@@ -114,7 +114,7 @@ function CommonParseCSV(str) {
 	var c;
 	var col;
 	// We remove whitespace on start and end
-	str = str.trim();
+	str = str.replace(/\r\n/g, '\n').trim();
 
 	// iterate over each character, keep track of current row and column (of the returned array)
 	for (let row = col = c = 0; c < str.length; c++) {
