@@ -1,6 +1,6 @@
 var KinkyDungeonEnemies = [
-	{name: "BlindZombie", tags: ["zombie", "melee", "simpleRestraints"], AI: "wander", visionRadius: 1, maxhp: 2, minLevel:0, weight:4, movePoints: 3, attackPoints: 3, attack: "MeleeBindWill", power: 1, fullBoundBonus: 9, terrainTags: {}, floors:[0], },
-	{name: "Rat", tags: ["beast", "melee"], AI: "guard", visionRadius: 4, visionradius: 1, maxhp: 1, minLevel:0, weight:1, movePoints: 1.5, attackPoints: 2, attack: "MeleeWill", power: 1, terrainTags: {"rubble":20}, floors:[0, 1, 2, 3]},
+	{name: "BlindZombie", tags: ["zombie", "melee", "ribbonRestraints"], hp: 10, AI: "wander", visionRadius: 1, maxhp: 6, minLevel:0, weight:4, movePoints: 3, attackPoints: 3, attack: "MeleeBind", power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {}, floors:[0], },
+	{name: "Rat", tags: ["beast", "melee"], hp: 4, AI: "guard", visionRadius: 4, visionradius: 1, maxhp: 4, minLevel:0, weight:1, movePoints: 1.5, attackPoints: 2, attack: "MeleeWill", power: 4, dmgType: "pain", terrainTags: {"rubble":20}, floors:[0, 1, 2, 3]},
 
 ]
 
@@ -70,6 +70,23 @@ function KinkyDungeonDrawEnemiesWarning(canvasOffsetX, canvasOffsetY, CamX, CamY
 function KinkyDungeonUpdateEnemies(delta) {
 	for (let E = 0; E < KinkyDungeonEntities.length; E++) {
 		var enemy = KinkyDungeonEntities[E]
+		
+		// Delete the enemy
+		if (enemy.hp <= 0) {
+			KinkyDungeonEntities.splice(E, 1)
+			E -= 1
+			if (enemy == KinkyDungeonKilledEnemy && enemy.Enemy.maxhp > KinkyDungeonActionMessagePriority-1) {
+				
+				KinkyDungeonActionMessageTime = 2
+				KinkyDungeonActionMessage = TextGet("Kill"+enemy.Enemy.name)
+				KinkyDungeonActionMessageColor = "orange"
+				KinkyDungeonActionMessagePriority = 1
+				
+				KinkyDungeonKilledEnemy = null
+			}
+			continue;
+		}
+		
 		var AI = enemy.Enemy.AI
 		var idle = true
 		if (!enemy.warningTiles) enemy.warningTiles = []
@@ -139,15 +156,16 @@ function KinkyDungeonUpdateEnemies(delta) {
 					else if (enemy.Enemy.fullBoundBonus)
 						willpowerDamage += enemy.Enemy.fullBoundBonus // Some enemies deal bonus damage if they cannot put a binding on you
 				}
-				if (enemy.Enemy.attack.includes("Will")) {
-					willpowerDamage += enemy.Enemy.power
+				if (enemy.Enemy.attack.includes("Will") || willpowerDamage > 0) {
+					if (willpowerDamage == 0)
+						willpowerDamage += enemy.Enemy.power
 					replace.push({keyword:"DamageTaken", value: willpowerDamage})
 					msgColor = "#ff8888"
 				}
 				var happened = 0
 				var bound = 0
-				happened += KinkyDungeonDealDamage(willpowerDamage)
-				bound += KinkyDungeonAddRestraint(restraintAdd) * 10
+				happened += KinkyDungeonDealDamage({damage: willpowerDamage, type: enemy.Enemy.dmgType})
+				bound += KinkyDungeonAddRestraint(restraintAdd, enemy.Enemy.power) * 10
 				happened += bound
 
 				if (happened > 0 && happened > KinkyDungeonTextMessagePriority) {
@@ -178,12 +196,17 @@ function KinkyDungeonUpdateEnemies(delta) {
 
 function KinkyDungeonNoEnemy(x, y, Player) {
 	
-	for (let E = 0; E < KinkyDungeonEntities.length; E++) {
-		if (KinkyDungeonEntities[E].x == x && KinkyDungeonEntities[E].y == y)
-			return false;
-	}
+	if (KinkyDungeonEnemyAt(x, y)) return false
 	if (Player && (KinkyDungeonPlayerEntity.x == x && KinkyDungeonPlayerEntity.y == y)) return false
 	return true
+}
+
+function KinkyDungeonEnemyAt(x, y) {
+	for (let E = 0; E < KinkyDungeonEntities.length; E++) {
+		if (KinkyDungeonEntities[E].x == x && KinkyDungeonEntities[E].y == y)
+			return KinkyDungeonEntities[E];
+	}
+	return null
 }
 
 function KinkyDungeonEnemyTryMove(enemy, Direction, delta, x, y) {

@@ -10,6 +10,10 @@ var KinkyDungeonStatStaminaMax = 100
 var KinkyDungeonStatStamina = KinkyDungeonStatStaminaMax
 var KinkyDungeonStatStaminaRegen = 4
 var KinkyDungeonStatStaminaRegenPerSlowLevel = -0.33 // It costs stamina to move while bound
+var KinkyDungeonStatStaminaCostStruggle = -16 // It costs stamina to struggle
+var KinkyDungeonStatStaminaCostTool = -8 // It costs stamina to pick or cut, but less
+var KinkyDungeonStatStaminaCostAttack = -12 // Cost to attack
+var KinkyDungeonStaminaRate = KinkyDungeonStatStaminaRegen
 
 // Willpower -- your HP. When it falls to 0, your character gives up and accepts her fate
 var KinkyDungeonStatWillpowerMax = 100
@@ -17,9 +21,10 @@ var KinkyDungeonStatWillpower = KinkyDungeonStatWillpowerMax
 var KinkyDungeonStatWillpowerRegen = 1.0
 
 // Willpower loss
-var KinkyDungeonWillpowerLossOnOrgasm = 5
-var KinkyDungeonWillpowerDrainLowStamina = -1.1 // Willpower slowly drains when totally exhausted
-var KinkyDungeonWillpowerDrainLowStaminaThreshold = 10 // Threshold at which willpower starts to drain
+var KinkyDungeonWillpowerLossOnOrgasm = -5
+var KinkyDungeonWillpowerDrainLowStamina = -1.0 // Willpower does not regen when totally exhausted
+var KinkyDungeonWillpowerDrainLowStaminaThreshold = 33 // Threshold at which willpower starts to drain
+var KinkyDungeonStatWillpowerCostStruggleFail = -1.0 // Cost when failing a struggle
 
 // Current Status
 var KinkyDungeonStatBeltLevel = 0 // Chastity bra does not add belt level
@@ -53,6 +58,15 @@ var KinkyDungeonBlueKeys = 0
 var KinkyDungeonNormalBlades = 1
 var KinkyDungeonEnchantedBlades = 0
 
+var KinkyDungeonKnifeBreakChance = 0.1
+var KinkyDungeonKeyJamChance = 0.33
+var KinkyDungeonKeyPickBreakChance = 0.25
+
+// Combat
+var KinkyDungeonPlayerDamage = 2
+var KinkyDungeonPlayerDamageMax = 2
+var KinkyDungeonPlayerDamageType = "pain"
+
 // Your inventory contains items that are on you
 var KinkyDungeonInventory = []
 var KinkyDungeonPlayerTags = []
@@ -69,6 +83,7 @@ function KinkyDungeonDefaultStats() {
 	KinkyDungeonStatArousalMax = 100
 	KinkyDungeonStatStaminaMax = 100
 	KinkyDungeonStatWillpowerMax = 100
+	KinkyDungeonStaminaRate = KinkyDungeonStatStaminaRegen
 	
 	KinkyDungeonStatArousal = 0
 	KinkyDungeonStatStamina = KinkyDungeonStatStaminaMax
@@ -77,13 +92,19 @@ function KinkyDungeonDefaultStats() {
 	KinkyDungeonMovePoints = 0
 	KinkyDungeonInventory = []
 	KinkyDungeonPlayerTags = []
+	
+	KinkyDungeonPlayerDamage = KinkyDungeonPlayerDamageMax
+	KinkyDungeonPlayerDamageType = "pain"
+
 }
 
 function KinkyDungeonGetVisionRadius() {
 	return Math.max((KinkyDungeonDeaf) ? 0 : (KinkyDungeonBlindLevel > 2) ? 1 : 3, Math.floor(KinkyDungeonMapBrightness*(1.0 - 0.33 * KinkyDungeonBlindLevel)))
 }
 
-function KinkyDungeonDealDamage(dmg) {
+function KinkyDungeonDealDamage(Damage) {
+	var dmg = Damage.damage
+	var type = Damage.type
 	KinkyDungeonStatWillpower -= dmg
 	return dmg
 }
@@ -114,11 +135,11 @@ function KinkyDungeonDrawStats(x, y, width, heightPerBar) {
 function KinkyDungeonUpdateStats(delta) {
 	// Initialize
 	var arousalRate = KinkyDungeonStatArousalRegen
-	var staminaRate = KinkyDungeonStatStaminaRegen
+	KinkyDungeonStaminaRate = KinkyDungeonStatStaminaRegen
 	var willpowerRate = KinkyDungeonStatWillpowerRegen
 	
 	// Arousal reduces staminal regen
-	staminaRate += KinkyDungeonStatArousal / 100 * KinkyDungeonStatArousalRegenStaminaRegenFactor
+	KinkyDungeonStaminaRate += KinkyDungeonStatArousal / 100 * KinkyDungeonStatArousalRegenStaminaRegenFactor
 	
 	// If below a threshold, willpower starts to drain
 	if (KinkyDungeonStatStamina <= KinkyDungeonWillpowerDrainLowStaminaThreshold) willpowerRate += KinkyDungeonWillpowerDrainLowStamina
@@ -136,16 +157,27 @@ function KinkyDungeonUpdateStats(delta) {
 		if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemLegs"), "Block", true) || InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemLegs"), "KneelFreeze", true)) KinkyDungeonSlowLevel += 1
 		if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemFeet"), "Block", true) || InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemFeet"), "Freeze", true)) KinkyDungeonSlowLevel += 1
 		if (InventoryGet(KinkyDungeonPlayer, "ItemBoots") && InventoryGet(KinkyDungeonPlayer, "ItemBoots").Difficulty > 0) KinkyDungeonSlowLevel += 1
-		if (KinkyDungeonPlayer.Pose.includes("Kneel")) KinkyDungeonSlowLevel = Math.max(2, KinkyDungeonSlowLevel + 1)
-		if (KinkyDungeonPlayer.Pose.includes("Hogtied")) KinkyDungeonSlowLevel = Math.max(3, KinkyDungeonSlowLevel + 1)
+		if (KinkyDungeonPlayer.Pose.includes("Kneel")) KinkyDungeonSlowLevel = Math.max(3, KinkyDungeonSlowLevel + 1)
+		if (KinkyDungeonPlayer.Pose.includes("Hogtied")) KinkyDungeonSlowLevel = Math.max(5, KinkyDungeonSlowLevel + 1)
 	}
 
+	// Unarmed damage calc
+	KinkyDungeonPlayerDamage = KinkyDungeonPlayerDamageMax
+	if (!KinkyDungeonPlayer.CanInteract()) {
+		KinkyDungeonPlayerDamage /= 2
+	}
+	if (!KinkyDungeonPlayer.CanWalk()) {
+		KinkyDungeonPlayerDamage /= 2
+	}
+	if (KinkyDungeonPlayer.Pose.includes("Hogtied") || KinkyDungeonPlayer.Pose.includes("Kneel")) {
+		KinkyDungeonPlayerDamage /= 2
+	}
 	
-	
+	KinkyDungeonUpdateStruggleGroups()
 	
 	// Cap off the values between 0 and maximum
 	KinkyDungeonStatArousal = Math.max(0, Math.min(KinkyDungeonStatArousal + arousalRate*delta, KinkyDungeonStatArousalMax))
-	KinkyDungeonStatStamina = Math.max(0, Math.min(KinkyDungeonStatStamina + staminaRate*delta, KinkyDungeonStatStaminaMax))
+	KinkyDungeonStatStamina = Math.max(0, Math.min(KinkyDungeonStatStamina + KinkyDungeonStaminaRate*delta, KinkyDungeonStatStaminaMax))
 	KinkyDungeonStatWillpower = Math.max(0, Math.min(KinkyDungeonStatWillpower + willpowerRate*delta, KinkyDungeonStatWillpowerMax))
 }
 

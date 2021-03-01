@@ -23,6 +23,11 @@ var KinkyDungeonTextMessage = ""
 var KinkyDungeonTextMessageTime = 0
 var KinkyDungeonTextMessageColor = "white"
 
+var KinkyDungeonActionMessagePriority = 0
+var KinkyDungeonActionMessage = ""
+var KinkyDungeonActionMessageTime = 0
+var KinkyDungeonActionMessageColor = "white"
+
 var KinkyDungeonSpriteSize = 72
 
 var KinkyDungeonCanvas = document.createElement("canvas");
@@ -169,8 +174,9 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 	while (count < enemyCount && tries < 1000) {
 		var X = 1 + Math.floor(Math.random()*(width - 1))
 		var Y = 1 + Math.floor(Math.random()*(height - 1))
+		var playerDist = 4
 		
-		if (Math.sqrt((X - KinkyDungeonPlayerEntity.x) * (X - KinkyDungeonPlayerEntity.x) + (Y - KinkyDungeonPlayerEntity.y) * (Y - KinkyDungeonPlayerEntity.y)) && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(X, Y))) {
+		if (Math.sqrt((X - KinkyDungeonPlayerEntity.x) * (X - KinkyDungeonPlayerEntity.x) + (Y - KinkyDungeonPlayerEntity.y) * (Y - KinkyDungeonPlayerEntity.y)) > playerDist && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(X, Y))) {
 			var tags = []
 			if (KinkyDungeonMapGet(X, Y) == 'R' || KinkyDungeonMapGet(X, Y) == 'r') tags.push("rubble")
 			
@@ -443,103 +449,7 @@ function KinkyDungeonLightGet(X, Y) {
 const canvasOffsetX = 500
 const canvasOffsetY = 164
 
-// Draw function for the game portion
-function KinkyDungeonDrawGame() {
-		
-	DrawText(TextGet("CurrentLevel") + MiniGameKinkyDungeonLevel, 750, 42, "white", "silver");
-	DrawText(TextGet("DungeonName" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]), 1500, 42, "white", "silver");
-	
-	if (KinkyDungeonTextMessageTime > 0)
-		DrawText(KinkyDungeonTextMessage, 1150, 112, KinkyDungeonTextMessageColor, "silver");
-	
-	
-	var CamX = Math.max(0, Math.min(KinkyDungeonGridWidth - KinkyDungeonGridWidthDisplay, KinkyDungeonPlayerEntity.x - Math.floor(KinkyDungeonGridWidthDisplay/2)))
-	var CamY = Math.max(0, Math.min(KinkyDungeonGridHeight - KinkyDungeonGridHeightDisplay, KinkyDungeonPlayerEntity.y - Math.floor(KinkyDungeonGridHeightDisplay/2)))
 
-	KinkyDungeonMoveDirection = KinkyDungeonGetDirection(
-		(MouseX - ((KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay + canvasOffsetX + KinkyDungeonGridSizeDisplay / 2))/KinkyDungeonGridSizeDisplay,
-		(MouseY - ((KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay + canvasOffsetY + KinkyDungeonGridSizeDisplay / 2))/KinkyDungeonGridSizeDisplay)
-	
-
-	if (KinkyDungeonCanvas) {
-		
-		if (KinkyDungeonGrid_Last != KinkyDungeonGrid) {
-			
-			
-			KinkyDungeonContext.fillStyle = "rgba(20,20,20.0,1.0)";
-			KinkyDungeonContext.fillRect(0, 0, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height);
-			KinkyDungeonContext.fill()
-			// Draw the grid
-			var rows = KinkyDungeonGrid.split('\n')
-			for (let R = 0; R < KinkyDungeonGridHeightDisplay; R++)  {
-				for (let X = 0; X < KinkyDungeonGridWidthDisplay; X++)  {
-					var sprite = "Floor"
-					if (rows[R+CamY][X+CamX] == "1") sprite = "Wall"
-					else if (rows[R+CamY][X+CamX] == "X") sprite = "Doodad"
-					else if (rows[R+CamY][X+CamX] == "C") sprite = "Chest"
-					else if (rows[R+CamY][X+CamX] == "c") sprite = "ChestOpen"
-					else if (rows[R+CamY][X+CamX] == "D") sprite = "Door"
-					else if (rows[R+CamY][X+CamX] == "d") sprite = "DoorOpen"
-					else if (rows[R+CamY][X+CamX] == "R") sprite = "Rubble"
-					else if (rows[R+CamY][X+CamX] == "r") sprite = "RubbleLooted"
-					else if (rows[R+CamY][X+CamX] == "S") sprite = "StairsUp"
-					else if (rows[R+CamY][X+CamX] == "s") sprite = "StairsDown"
-						
-					DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/Floor" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + "/" + sprite + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSizeDisplay, R*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
-				}
-			}
-			
-			//KinkyDungeonGrid_Last = KinkyDungeonGrid
-		}
-		
-		// Get lighting grid
-		if (KinkyDungeonUpdateLightGrid) {
-			KinkyDungeonUpdateLightGrid = false
-			KinkyDungeonMakeLightMap(KinkyDungeonGridWidth, KinkyDungeonGridHeight, [ {x: KinkyDungeonPlayerEntity.x, y:KinkyDungeonPlayerEntity.y, brightness: KinkyDungeonGetVisionRadius() }])
-		}
-			
-		KinkyDungeonContext.drawImage(KinkyDungeonCanvasPlayer,  (KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay); 
-		KinkyDungeonDrawEnemiesWarning(canvasOffsetX, canvasOffsetY, CamX, CamY, KinkyDungeonGridSizeDisplay)
-		KinkyDungeonDrawEnemies(canvasOffsetX, canvasOffsetY, CamX, CamY, KinkyDungeonGridSizeDisplay)
-		
-		// Draw fog of war
-		var rows = KinkyDungeonLightGrid.split('\n')
-		for (let R = 0; R < KinkyDungeonGridHeightDisplay; R++)  {
-			for (let X = 0; X < KinkyDungeonGridWidthDisplay; X++)  {
-				KinkyDungeonContext.beginPath();
-				KinkyDungeonContext.fillStyle = "rgba(0,0,0," + Math.max(0, 1-Number(rows[R+CamY][X+CamX])/3) + ")";
-				
-				KinkyDungeonContext.fillRect(X*KinkyDungeonGridSizeDisplay, R*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay);
-				KinkyDungeonContext.fill()
-			}
-		}
-				
-		// Draw targeting reticule
-		if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height) && (KinkyDungeonMoveDirection.x != 0 || KinkyDungeonMoveDirection.y != 0)) {
-			KinkyDungeonContext.beginPath();
-			KinkyDungeonContext.rect((KinkyDungeonMoveDirection.x + KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonMoveDirection.y + KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay);
-			KinkyDungeonContext.lineWidth = 3;
-			KinkyDungeonContext.strokeStyle = "#ff4444";
-			KinkyDungeonContext.stroke()
-		}
-		MainCanvas.drawImage(KinkyDungeonCanvas, canvasOffsetX, canvasOffsetY);
-				
-		
-		// Draw the stats
-		KinkyDungeonDrawStats(canvasOffsetX + KinkyDungeonCanvas.width+10, canvasOffsetY, 1975 - (canvasOffsetX + KinkyDungeonCanvas.width+5), 100)
-	}
-	
-	CharacterSetFacialExpression(KinkyDungeonPlayer, "Emoticon", null);
-	
-	// Draw the player no matter what
-	KinkyDungeonContextPlayer.fillStyle = "rgba(0,0,0,1.0)";
-	KinkyDungeonContextPlayer.fillRect(0, 0, KinkyDungeonCanvasPlayer.width, KinkyDungeonCanvasPlayer.height);
-	KinkyDungeonContextPlayer.fill()
-	DrawCharacter(KinkyDungeonPlayer, -KinkyDungeonGridSizeDisplay/2, 0, KinkyDungeonGridSizeDisplay/250, false, KinkyDungeonContextPlayer)
-	
-	
-
-}
 
 // returns an object containing coordinates of which direction the player will move after a click, plus a time multiplier
 function KinkyDungeonGetDirection(dx, dy) {
@@ -587,7 +497,7 @@ function KinkyDungeonGetDirectionRandom(dx, dy) {
 // Click function for the game portion
 function KinkyDungeonClickGame(Level) {
 	// First we handle buttons
-	
+	if (!KinkyDungeonHandleHUD())
 	// beep
 	
 	// If no buttons are clicked then we handle move
@@ -622,59 +532,65 @@ function KinkyDungeonKeyDown() {
 function KinkyDungeonMove(moveDirection) {
 	var moveX = moveDirection.x + KinkyDungeonPlayerEntity.x
 	var moveY = moveDirection.y + KinkyDungeonPlayerEntity.y
-	var moveObject = KinkyDungeonMapGet(moveX, moveY)
-	if (KinkyDungeonMovableTiles.includes(moveObject) && KinkyDungeonNoEnemy(moveX, moveY)) { // If the player can move to an empy space or a door
-	
-		if (moveObject == 's') { // Go down the next stairs
-			MiniGameKinkyDungeonLevel += 1
-			KinkyDungeonSetCheckPoint()
-			
-			
-			KinkyDungeonTextMessageTime = 2
-			KinkyDungeonTextMessage = "ClimbDown"
-			KinkyDungeonTextMessageColor = "#ffffff"
-			
-			if (MiniGameKinkyDungeonCheckpoint >= 1) {
-				KinkyDungeonState = "End"
-				MiniGameVictory = true
-			}
-			KinkyDungeonCreateMap(KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]], KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
-		} else if (moveObject == 'D') { // Open the door
-			KinkyDungeonMapSet(moveX, moveY, 'd')
-		} else if (moveObject == 'C') { // Open the chest
-			KinkyDungeonLoot(MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint], "chest")
-			KinkyDungeonMapSet(moveX, moveY, 'c')
-		} else {// Move
-			if (KinkyDungeonStatStamina > 0) {
-				KinkyDungeonMovePoints += moveDirection.delta
-				
-				if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel+1) {
-					KinkyDungeonPlayerEntity.x = moveX
-					KinkyDungeonPlayerEntity.y = moveY
-					KinkyDungeonMovePoints = 0
-				}
-				
-				if (moveDirection.x != 0 || moveDirection.y != 0)
-					KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta
-				else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax && 1 > KinkyDungeonTextMessagePriority) {
-					KinkyDungeonTextMessageTime = 2
-					
-					KinkyDungeonTextMessage = TextGet("Wait")
-					KinkyDungeonTextMessagePriority = 0
-					KinkyDungeonTextMessageColor = "lightgreen"
-				}
-				
-				if (moveObject == 'R') {
-					KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble")
-					
-					KinkyDungeonMapSet(moveX, moveY, 'r')
-				}
-			}
-		}
+	var Enemy = KinkyDungeonEnemyAt(moveX, moveY)
+	if (Enemy && KinkyDungeonStatStamina + KinkyDungeonStaminaRate >= KinkyDungeonStatStaminaCostAttack) {
+		KinkyDungeonAttackEnemy(Enemy, {damage: KinkyDungeonPlayerDamage, type: KinkyDungeonPlayerDamageType})
 		
-
-
-		KinkyDungeonAdvanceTime(moveDirection.delta)
+		KinkyDungeonStatStamina += KinkyDungeonStatStaminaCostAttack
+				
+		KinkyDungeonAdvanceTime(1)
+	} else {
+		var moveObject = KinkyDungeonMapGet(moveX, moveY)
+		if (KinkyDungeonMovableTiles.includes(moveObject) && KinkyDungeonNoEnemy(moveX, moveY)) { // If the player can move to an empy space or a door
+		
+			if (moveObject == 's') { // Go down the next stairs
+				MiniGameKinkyDungeonLevel += 1
+				KinkyDungeonSetCheckPoint()
+				
+				
+				KinkyDungeonTextMessageTime = 2
+				KinkyDungeonTextMessage = "ClimbDown"
+				KinkyDungeonTextMessageColor = "#ffffff"
+				
+				if (MiniGameKinkyDungeonCheckpoint >= 1) {
+					KinkyDungeonState = "End"
+					MiniGameVictory = true
+				}
+				KinkyDungeonCreateMap(KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]], KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
+			} else if (moveObject == 'D') { // Open the door
+				KinkyDungeonMapSet(moveX, moveY, 'd')
+			} else if (moveObject == 'C') { // Open the chest
+				KinkyDungeonLoot(MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint], "chest")
+				KinkyDungeonMapSet(moveX, moveY, 'c')
+			} else {// Move
+				if (KinkyDungeonStatStamina > 0) {
+					KinkyDungeonMovePoints += moveDirection.delta
+					
+					if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel+1) {
+						KinkyDungeonPlayerEntity.x = moveX
+						KinkyDungeonPlayerEntity.y = moveY
+						KinkyDungeonMovePoints = 0
+					}
+					
+					if (KinkyDungeonSlowLevel > 0 && (moveDirection.x != 0 || moveDirection.y != 0))
+						KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta
+					else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax && 1 > KinkyDungeonTextMessagePriority) {
+						KinkyDungeonActionMessageTime = 2
+						
+						KinkyDungeonActionMessage = TextGet("Wait")
+						KinkyDungeonActionMessagePriority = 0
+						KinkyDungeonActionMessageColor = "lightgreen"
+					}
+					
+					if (moveObject == 'R') {
+						KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble")
+						
+						KinkyDungeonMapSet(moveX, moveY, 'r')
+					}
+				}
+			}
+			KinkyDungeonAdvanceTime(moveDirection.delta)
+		}
 	}
 }
 
@@ -683,7 +599,9 @@ function KinkyDungeonAdvanceTime(delta) {
 	// Here we move enemies and such
 	KinkyDungeonUpdateLightGrid = true
 	if (KinkyDungeonTextMessageTime > 0) KinkyDungeonTextMessageTime -= 1
-		else KinkyDungeonTextMessagePriority = 0
+	if (KinkyDungeonTextMessageTime <= 0) KinkyDungeonTextMessagePriority = 0
+	if (KinkyDungeonActionMessageTime > 0) KinkyDungeonActionMessageTime -= 1
+	if (KinkyDungeonActionMessageTime <= 0) KinkyDungeonActionMessagePriority = 0
 	
 	// Updates the character's stats
 	KinkyDungeonUpdateEnemies(delta)

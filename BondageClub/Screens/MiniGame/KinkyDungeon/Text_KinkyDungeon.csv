@@ -47,18 +47,76 @@ LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
 LootChestGold,The chest contains gold! (+XXX gold)
 
 NameBlindZombie,Moaning Zombie
+KillBlindZombie,"The zombie moans and collapses to the ground."
 NameRat,Filthy Rat
+KillRat,"The rat skitters back into a hole in the wall."
 
-AttackBlindZombieBind,"The zombie slips a restraint on you! (+RestraintAdded)"
+AttackBlindZombieBind,"The zombie's charms attach to your body (+RestraintAdded)"
 AttackBlindZombie,"The zombie caresses your body! (-DamageTaken WP)"
 AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
 
-RestraintDuctTapeArms,Tape
-RestraintDuctTapeLegs,Tape
-RestraintDuctTapeFeet,Tape
-RestraintDuctTapeHead,Tape
-RestraintDuctTapeMouth,Tape
-RestraintDuctTapeBoots,Tape
-RestraintDuctTapeFeet,Tape
-RestraintDuctTapeHeadMummy, Tape Covering
+
+PlayerAttack,"You attack the TargetEnemy for DamageDealt damage!"
+KinkyDungeonStruggleStruggleFail,"You tug on the TargetRestraint but fail to make progress."
+KinkyDungeonStrugglePickFail,"You try to unlock the TargetRestraint but can't reach the lock."
+KinkyDungeonStrugglePickBreak,"You try to unlock the TargetRestraint but break your lockpick."
+KinkyDungeonStruggleRemoveFail,"You try to undo the TargetRestraint but can't reach far enough."
+KinkyDungeonStruggleCutFail,"You try to cut the TargetRestraint but can't get through the material."
+KinkyDungeonStruggleCutBreak,"You break your knife trying to cut the TargetRestraint."
+KinkyDungeonStruggleUnlockFail,"You try to unlock the TargetRestraint but you can't reach the lock!"
+
+KinkyDungeonStruggleUnlockNoRedKey,"The red padlock only accepts red keys."
+KinkyDungeonStruggleUnlockNoGreenKey,"The green padlock only accepts green keys."
+KinkyDungeonStruggleUnlockNoYellowKey,"The yellow padlock requires a red and a blue key."
+KinkyDungeonStruggleUnlockNoBlueKey,"The magical lock only accepts blue keys."
+KinkyDungeonStruggleUnlockNoUnknownKey,"You don't have a key for this lock."
+
+KinkyDungeonStruggleUnlockJammed,"The key sticks in the lock and jams!"
+
+KinkyDungeonStruggleUnlockSuccess,"You unlock the TargetRestraint."
+KinkyDungeonStruggleStruggleSuccess,"You manage to squeeze out of the TargetRestraint!"
+KinkyDungeonStrugglePickSuccess,"You pick the lock on the TargetRestraint!"
+KinkyDungeonStruggleRemoveSuccess,"You unfasten the TargetRestraint and get it off your body!"
+KinkyDungeonStruggleCutSuccess,"You cut the TargetRestraint enough to remove it!"
+
+KinkyRedLock," (Red lock)"
+KinkyGreenLock," (Green lock)"
+KinkyBlueLock," (Blue lock)"
+KinkyYellowLock," (Yellow lock)"
+
+
+RestraintDuctTapeArms,Charms
+RestraintDuctTapeLegs,Charms
+RestraintDuctTapeFeet,Charms
+RestraintDuctTapeHead,Charms
+RestraintDuctTapeMouth,Charms
+RestraintDuctTapeBoots,Charms
+RestraintDuctTapeFeet,Charms
+RestraintDuctTapeHeadMummy,Charm Covering
+RestraintDuctTapeArmsMummy,Charm Covering
+RestraintDuctTapeFeetMummy,Charm Covering
+RestraintDuctTapeLegsMummy,Charm Covering
 RestraintStuffing,Mouth Stuffing
+
+KinkyDungeonGroupItemHead,Face
+KinkyDungeonGroupItemHood,Head
+KinkyDungeonGroupItemMouth,Mouth
+KinkyDungeonGroupItemMouth2,Mouth
+KinkyDungeonGroupItemMouth3,Mouth
+KinkyDungeonGroupItemEars,Ears
+KinkyDungeonGroupItemNeck,Collar
+KinkyDungeonGroupItemNeckRestraints,Neck
+KinkyDungeonGroupItemArms,Arms
+KinkyDungeonGroupItemHands,Hands
+KinkyDungeonGroupItemTorso,Torso
+KinkyDungeonGroupItemBreast,Bra
+KinkyDungeonGroupItemPelvis,Belt
+KinkyDungeonGroupItemVulva,Vulva
+KinkyDungeonGroupItemVulvaPiercings,Piercings
+KinkyDungeonGroupItemNipplesPiercings,Piercings
+KinkyDungeonGroupItemNipples,Nipples
+KinkyDungeonGroupItemButt,Butt
+KinkyDungeonGroupItemLegs,Legs
+KinkyDungeonGroupItemFeet,Ankles
+KinkyDungeonGroupItemBoots,Feet
+KinkyDungeonGroupItemDevices,Device

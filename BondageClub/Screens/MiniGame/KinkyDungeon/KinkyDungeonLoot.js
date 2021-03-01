@@ -28,10 +28,12 @@ function KinkyDungeonLoot(Level, Index, Type) {
 	for (let L = lootWeights.length - 1; L >= 0; L--) {
 		if (selection > lootWeights[L].weight) {
 			
-			KinkyDungeonTextMessageTime = lootWeights[L].loot.messageTime
-			KinkyDungeonTextMessage = TextGet(lootWeights[L].loot.message)
-			KinkyDungeonTextMessageColor = lootWeights[L].loot.messageColor
-			KinkyDungeonTextMessagePriority = 0
+			if (1 > KinkyDungeonActionMessagePriority) {
+				KinkyDungeonActionMessageTime = lootWeights[L].loot.messageTime
+				KinkyDungeonActionMessage = TextGet(lootWeights[L].loot.message)
+				KinkyDungeonActionMessageColor = lootWeights[L].loot.messageColor
+				KinkyDungeonActionMessagePriority = 1
+			}
 
 			KinkyDungeonLootEvent(lootWeights[L].loot, Index)
 			
@@ -44,11 +46,11 @@ function KinkyDungeonLoot(Level, Index, Type) {
 function KinkyDungeonLootEvent(Loot, Index) {
 	if (Loot.name == "gold") {
 		var value = Math.ceil((30 + 70 * Math.random()) * (1 + Index/2))
-		KinkyDungeonTextMessage = KinkyDungeonTextMessage.replace("XXX", value)
+		KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
 		KinkyDungeonAddGold(value)
 	} else if (Loot.name == "smallgold") {
 		var value = Math.ceil((1 + 9 * Math.random()) * (1 + Index/2))
-		KinkyDungeonTextMessage = KinkyDungeonTextMessage.replace("XXX", value)
+		KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
 		KinkyDungeonAddGold(value)
 	}
 }
