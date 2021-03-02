@@ -573,14 +573,16 @@ function KinkyDungeonMove(moveDirection) {
 						KinkyDungeonMovePoints = 0
 					}
 					
-					if (KinkyDungeonSlowLevel > 0 && (moveDirection.x != 0 || moveDirection.y != 0))
-						KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta
-					else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax && 1 > KinkyDungeonTextMessagePriority) {
-						KinkyDungeonActionMessageTime = 2
-						
-						KinkyDungeonActionMessage = TextGet("Wait")
-						KinkyDungeonActionMessagePriority = 0
-						KinkyDungeonActionMessageColor = "lightgreen"
+					if (KinkyDungeonSlowLevel > 0) {
+						if ((moveDirection.x != 0 || moveDirection.y != 0))
+							KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta
+						else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax && 1 > KinkyDungeonTextMessagePriority) {
+							KinkyDungeonActionMessageTime = 2
+							
+							KinkyDungeonActionMessage = TextGet("Wait")
+							KinkyDungeonActionMessagePriority = 0
+							KinkyDungeonActionMessageColor = "lightgreen"
+						}
 					}
 					
 					if (moveObject == 'R') {

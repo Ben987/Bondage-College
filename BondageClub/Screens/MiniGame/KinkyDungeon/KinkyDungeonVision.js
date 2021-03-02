@@ -2,7 +2,7 @@
 // For this implementation I decided that ray calculations are too much so I just did a terraria style lighting system
 // -Ada
 
-var KinkyDungeonTransparentObjects = KinkyDungeonMovableTiles
+var KinkyDungeonTransparentObjects = KinkyDungeonMovableTiles.replace("D", "")
 
 function KinkyDungeonMakeLightMap(width, height, Lights) {
 	KinkyDungeonLightGrid = ""
