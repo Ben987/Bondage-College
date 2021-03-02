@@ -1084,23 +1084,6 @@ function DrawProgressBar(X, Y, W, H, Progress) {
 }
 
 /**
- * Draws a progress bar with color
- * @param {number} X - Position of the bar on the X axis
- * @param {number} Y - Position of the bar on the Y axis
- * @param {number} W - Width of the bar
- * @param {number} H - Height of the bar
- * @param {number} Progress - Current progress to display on the bar
- * @param {string} ColorFG - Color of the first part of the bar
- * @param {string} ColorFG - Color of the bar background
- * @returns {void} - Nothing
- */
-function DrawProgressBarColor(X, Y, W, H, Progress, ColorFG, ColorBG) {
-	DrawRect(X, Y, W, H, "white");
-	DrawRect(X + 2, Y + 2, Math.floor((W - 4) * Progress / 100), H - 4, ColorFG);
-	DrawRect(Math.floor(X + 2 + (W - 4) * Progress / 100), Y + 2, Math.floor((W - 4) * (100 - Progress) / 100), H - 4, ColorBG);
-}
-
-/**
  * Gets the player's custom background based on type
  * @returns {string} - Custom background if applicable, otherwise ""
  */
