@@ -128,7 +128,8 @@ const AssetType = {
 	AllowExpression: "[String]",
 	MirrorExpression: "String",
 	FixedPosition: "Boolean",
-	Layer: "[Object]"
+	Layer: "[Object]",
+	CustomBlindBackground: "[{ Number: Number, Number: String }]",
 };
 
 const AssetLayerType = {
