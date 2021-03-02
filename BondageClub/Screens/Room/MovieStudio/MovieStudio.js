@@ -21,15 +21,21 @@ function MovieStudioCanPlayInMovie() { return !InventoryCharacterHasLockedRestra
 
 /**
  * Returns TRUE if the player can receive the camera as a payment
- * @returns {boolean} - TRUE if the player can get the camera
+ * @returns {boolean} - TRUE if the player can get the item
  */
 function MovieStudioCanGetCamera() { return (!InventoryAvailable(Player, "Camera1", "ClothAccessory") && (MovieStudioCurrentRole == "Journalist")) }
 
 /**
  * Returns TRUE if the player can receive the gavel as a payment
- * @returns {boolean} - TRUE if the player can get the gavel
+ * @returns {boolean} - TRUE if the player can get the item
  */
 function MovieStudioCanGetGavel() { return (!InventoryAvailable(Player, "SpankingToysGavel", "ItemHands") && (MovieStudioCurrentRole == "Mistress") && (MovieStudioActor1.TrialDone)) }
+
+/**
+ * Returns TRUE if the player can receive the long duster as a payment
+ * @returns {boolean} - TRUE if the player can get the item
+ */
+function MovieStudioCanGetLongDuster() { return (!InventoryAvailable(Player, "SpankingToysLongDuster", "ItemHands") && (MovieStudioCurrentRole == "Maid") && (MovieStudioActor1.CanGetLongDuster)) }
 
 /**
  * When the player fails the movie, we jump back to the director
@@ -730,6 +736,23 @@ function MovieStudioDoActivity(Activity) {
 	if (Activity == "InterviewMaidReturnFavorByJournalist") { CharacterSetFacialExpression(Player, "Eyes", "Dazed", 8); CharacterSetFacialExpression(Player, "Eyes2", "Dazed", 8); MovieStudioActor2.OweFavor = false; }
 	if (Activity == "InterviewMaidReturnFavorOrgasmByJournalist") { CharacterSetFacialExpression(Player, "Eyes", "Horny", 10); CharacterSetFacialExpression(Player, "Eyes2", "Horny", 10); }
 	if (Activity == "InterviewMaidGaggedByMistress") InventoryWearRandom(Player, "ItemMouth");
+	if (Activity == "InterviewMaidPrepareDrinks") {
+		MovieStudioTimer = MovieStudioTimer - 120000;
+		CharacterRelease(Player);
+		InventoryWear(Player, "WoodenMaidTrayFull", "ItemMisc");
+		CharacterRelease(MovieStudioActor2);
+		CharacterNaked(MovieStudioActor2);
+		InventoryWearRandom(MovieStudioActor2, "ItemFeet");
+		InventoryWearRandom(MovieStudioActor2, "ItemLegs");
+		InventoryWearRandom(MovieStudioActor2, "ItemArms");
+		MovieStudioActor2.Stage = "1300";
+		MovieStudioActor1.CanGetLongDuster = (InventoryIsWorn(Player, "SpankingToys", "ItemHands") && (InventoryGet(Player, "ItemHands").Property.Type == "LongDuster"));
+	}
+	if ((Activity == "InterviewMaidHelpDrink") || (Activity == "InterviewMaidHelpDust") || (Activity == "InterviewMaidHelpTickle") || (Activity == "InterviewMaidHelpSpank") || (Activity == "InterviewMaidHelpCaress")) {
+		CharacterSetFacialExpression(MovieStudioActor2, "Blush", "Medium", 8);
+		CharacterSetFacialExpression(MovieStudioActor2, "Eyes", "Closed", 8);
+		CharacterSetFacialExpression(MovieStudioActor2, "Eyes2", "Closed", 8);
+	}
 
 	// Check for decay
 	MovieStudioProcessDecay();
@@ -813,6 +836,17 @@ function MovieStudioGetGavel() {
 	InventoryAdd(Player, "SpankingToysGavel", "ItemHands");
 	InventoryWear(Player, "SpankingToys", "ItemHands");
 	InventoryGet(Player, "ItemHands").Property = { Type: "Gavel" };
+	CharacterRefresh(Player);
+}
+
+/**
+ * Adds the long duster to the player inventory
+ * @returns {void} - Nothing
+ */
+function MovieStudioGetLongDuster() {
+	InventoryAdd(Player, "SpankingToysLongDuster", "ItemHands");
+	InventoryWear(Player, "SpankingToys", "ItemHands");
+	InventoryGet(Player, "ItemHands").Property = { Type: "LongDuster" };
 	CharacterRefresh(Player);
 }
 

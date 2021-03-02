@@ -51,6 +51,7 @@ FailIntro3,,,Cut!  That doesn't work hun.  You forgot to spice up your play.,,
 1050,1060,How much does it pay?,,GetMoney(),
 1050,1060,No need for money.  I'd like that camera though.,"The journalist camera?  It's yours then, you deserve it.  (She gives you the camera.)",GetCamera(),CanGetCamera()
 1050,1060,No need for money.  I'd like that gavel though.,"The wooden gavel from the trial?  Keep it, you deserve it.  (She gives you the gavel.)",GetGavel(),CanGetGavel()
+1050,1060,No need for money.  I'd like that long duster though.,"Of course, the duster is yours hun.  You kept it for the full play, you deserve it.  (She gives you the long duster.)",GetLongDuster(),CanGetLongDuster()
 1060,1070,Thanks a lot.,"My pleasure.  We'll probably shoot another movie soon, come back later.",,
 1060,1070,I might do another movie.,"Great!  We'll probably shoot another movie soon, come back later.",,
 1070,,,We are done filming for now.  Please come back later.,,

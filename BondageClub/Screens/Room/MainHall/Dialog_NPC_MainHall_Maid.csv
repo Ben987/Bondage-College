@@ -128,6 +128,9 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 104,103,(Ask for 30 more minutes),"You will be helpless for 30 more minutes, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(30),MaidsDisabledAtLeast30MinutesLeft()
 104,103,(Ask for 1 more hour),"You will be helpless for the next hour, and the maids will not rescue you, nor will our associates in the photography club assist you.",SetMaidsDisabled(60),MaidsDisabledAtLeast1HourLeft()
 104,103,(Back out),(She smiles and slaps your butt) Fair enough. Now go struggle some more.,,MainHallMaidsDisabledAtLeastDaysLeft7()
+ClubUpdated,,,Welcome back! The Club went through some renovation since you last visited.,,
+200,,(Open changelog.),Welcome back! The Club went through some renovation since you last visited.,OpenChangelog(),
+200,,Thank you. (Leave her.),,DialogLeave(),
 1000,1001,"Yes, it's my very first time.","It's fine.  I have a few important questions before I let you in, and I need honest answers.",,
 1000,1001,"No, I've been here before.","Very well.  Before I let you in, we need to review the most important rules.  Will you give me honest answers?",,
 1001,1002,Yes.  I will be honest.,"First, I need to make sure that you're an adult.  This place isn't for minors.  Are you an adult in your country?",,

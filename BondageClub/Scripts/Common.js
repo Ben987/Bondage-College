@@ -11,6 +11,9 @@ var CommonCSVCache = {};
 var CutsceneStage = 0;
 
 var CommonPhotoMode = false;
+var GameVersion = "R0";
+const GameVersionFormat = /^R([0-9]+)(?:(Alpha|Beta)([0-9]+)?)?$/;
+var CommonVersionUpdated = false;
 
 String.prototype.replaceAt=function(index, character) {
       return this.substr(0, index) + character + this.substr(index+character.length);
@@ -115,7 +118,7 @@ function CommonParseCSV(str) {
 	var c;
 	var col;
 	// We remove whitespace on start and end
-	str = str.trim();
+	str = str.replace(/\r\n/g, '\n').trim();
 
 	// iterate over each character, keep track of current row and column (of the returned array)
 	for (let row = col = c = 0; c < str.length; c++) {
@@ -628,4 +631,32 @@ function CommonUnpackItemArray(arr) {
 		}
 	}
 	return res;
+}
+
+/**
+ * Compares two version numbers and returns -1/0/1 if Other number is smaller/same/larger than Current one
+ * @param {string} Current Current version number
+ * @param {string} Other Other version number
+ * @returns {-1|0|1} Comparsion result
+ */
+function CommonCompareVersion(Current, Other) {
+	const CurrentMatch = GameVersionFormat.exec(Current);
+	const OtherMatch = GameVersionFormat.exec(Other);
+	if (CurrentMatch == null || OtherMatch == null || isNaN(CurrentMatch[1]) || isNaN(OtherMatch[1])) return -1;
+	const CurrentVer = [
+		Number.parseInt(CurrentMatch[1]),
+		CurrentMatch[2] === "Alpha" ? 1 : CurrentMatch[2] === "Beta" ? 2 : 3,
+		Number.parseInt(CurrentMatch[3]) || 0
+	];
+	const OtherVer = [
+		Number.parseInt(OtherMatch[1]),
+		OtherMatch[2] === "Alpha" ? 1 : OtherMatch[2] === "Beta" ? 2 : 3,
+		Number.parseInt(OtherMatch[3]) || 0
+	];
+	for (let i = 0; i < 3; i++) {
+		if (CurrentVer[i] !== OtherVer[i]) {
+			return Math.sign(OtherVer[i] - CurrentVer[i]);
+		}
+	}
+	return 0;
 }

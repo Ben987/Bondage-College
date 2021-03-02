@@ -144,8 +144,8 @@ PunishmentChastity,400,Not a chastity belt!,Damn right.  You will both be locked
 2000,2010,(Stay silent.),(She looks around.)  Is the room ready?  I will inspect it.,,
 2000,2010,(Struggle in your cuffs.),(She struggles for the camera.)  Stop struggling and start cleaning.  Is the room ready?  I will inspect it.,"DoActivity(""InterviewMistressPlayerStruggle"")",!Player.CanInteract()
 2010,,,"(She stares at you.)  Alright little maid, is the room clean and ready?  I will inspect it.",,
-2010,,The place is ready to inspect Mistress.,TO DO,,"CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
-2010,,(Do a maid curtsies.),TO DO,,"CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,2200,The place is ready to inspect Mistress.,"(She walks around the room to inspect it and smiles.)  Well done little maid, the sorority can be proud.",,"CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,2200,(Do a maid curtsies.),"(She walks around the room to inspect it and smiles.)  Well done little maid, the sorority can be proud.",,"CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
 2010,2020,The place is ready to inspect Mistress.,(She gets angry and stares at a throne.)  Does this throne look clean?  Is it suitable for me to sit on it?,,"!CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
 2010,2020,(Do a maid curtsies.),(She gets angry and stares at a throne.)  Does this throne look clean?  Is it suitable for me to sit on it?,,"!CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
 2010,,(Clean the room for her.),(She follows you as you clean the room sexily.  She snaps her finger each time you miss a spot.),"DoActivity(""InterviewMaidCleanForMistress"")","CanDoActivity(""InterviewMaidCleanForMistress"")"
@@ -191,3 +191,14 @@ PunishmentChastity,400,Not a chastity belt!,Damn right.  You will both be locked
 2120,,(Stand strong.),"(You stand strong and pretend it doesn't hurt, as the Mistress plants her nails in your skin while talking.)","DoActivity(""InterviewMaidStandStrong"")",
 2120,,(Listen to the interview.),(The Mistress stays on you and talks about the Bondage Club with the journalist.),"DoActivity(""InterviewMaidListenInterview"")",
 2120,,(Check the room.),(You try to check the room but the Mistress grabs your hair and prevents you.),"DoActivity(""InterviewMaidFailCheck"")",
+2200,2210,My pleasure Miss.,"Good girl, now stay quiet and go fetch some drinks for me and my guess.",,Player.CanTalk()
+2200,2210,Don't mention it.,Now stay quiet and go fetch some drinks for me and my guess.,,Player.CanTalk()
+2200,2210,Should I leave?,No!  You stay quiet and go fetch some drinks for me and my guess.,,Player.CanTalk()
+2200,2210,(Nod happily.),Good girl.  Go fetch some drinks for me and my guess.,,
+2200,2210,(Stay silent.),Good girl.  Go fetch some drinks for me and my guess.,,
+2210,,I don't know how to make drinks.,(She snaps her fingers.)  Girl!  Don't make me angry!,DialogRemove(),Player.CanTalk()
+2210,2220,Very well Miss.  (Go prepare drinks.),"(You exit the scene and the movie crew cleans you up, giving you some drinks.  When you come back, you find the journalist naked and fully restrained.)","DoActivity(""InterviewMaidPrepareDrinks"")",Player.CanTalk()
+2210,2220,(Nod and go prepare drinks.),"(You exit the scene and the movie crew cleans you up, giving you some drinks.  When you come back, you find the journalist naked and fully restrained.)","DoActivity(""InterviewMaidPrepareDrinks"")",
+2220,,,(She plays with the journalist and tease her as she answers questions.),,
+2220,,Do you need anything else Miss?,"I'm good, but make sure our guest feels right at home.  (She winks at you.)",,
+2220,,(Check the room.),,DialogLeave(),

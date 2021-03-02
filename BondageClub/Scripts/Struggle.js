@@ -151,7 +151,7 @@ function StruggleProgressStart(C, PrevItem, NextItem) {
 	StruggleProgress = 0;
 	DialogMenuButtonBuild(C);
 		
-	if (C != Player || PrevItem == null) {
+	if (C != Player || PrevItem == null || (Player.CanInteract() && (PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && !InventoryItemHasEffect(PrevItem, "Mounted", true))) {
 		StruggleProgressCurrentMinigame = "Strength"
 		StruggleStrengthStart(C, StruggleProgressChoosePrevItem, StruggleProgressChooseNextItem);
 	}
@@ -304,7 +304,6 @@ function StruggleStrength(Reverse) {
 
 	
 }
-
 /**
  * Starts the dialog progress bar for struggling out of bondage and keeps the items that needs to be added / swapped / removed.
  * First the challenge level is calculated based on the base item difficulty, the skill of the rigger and the escapee and modified, if
@@ -314,9 +313,7 @@ function StruggleStrength(Reverse) {
  * @param {Item} [NextItem] - The item that should substitute the first one
  * @returns {void} - Nothing
  */
-function StruggleStrengthStart(C, PrevItem, NextItem) {
-
-	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
+function StruggleStrengthGetDifficulty(C, PrevItem, NextItem) {
 	var S = 0;
 	if ((PrevItem != null) && (C.ID == 0)) {
 		S = S + SkillGetWithRatio("Evasion"); // Add the player evasion level (modified by the effectiveness ratio)
@@ -348,14 +345,33 @@ function StruggleStrengthStart(C, PrevItem, NextItem) {
 		var Lock = InventoryGetLock(PrevItem);
 		if ((Lock != null) && (Lock.Asset != null) && (Lock.Asset.RemoveTime != null)) Timer = Timer + Lock.Asset.RemoveTime;
 	}
+	
+	return {difficulty: S, auto: TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5)), timer: Timer};
+}
+
+/**
+ * Starts the dialog progress bar for struggling out of bondage and keeps the items that needs to be added / swapped / removed.
+ * First the challenge level is calculated based on the base item difficulty, the skill of the rigger and the escapee and modified, if
+ * the escapee is bound in a way. Also blushing and drooling, as well as playing a sound is handled in this function.
+ * @param {Character} C - The character who tries to struggle
+ * @param {Item} PrevItem - The item, the character wants to struggle out of
+ * @param {Item} [NextItem] - The item that should substitute the first one
+ * @returns {void} - Nothing
+ */
+function StruggleStrengthStart(C, PrevItem, NextItem) {
+
+	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
+	var StruggleDiff = StruggleStrengthGetDifficulty(C, PrevItem, NextItem)
+	var S = StruggleDiff.difficulty;
+	
 
 	// Prepares the progress bar and timer
 	StruggleProgress = 0;
-	StruggleProgressAuto = TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
+	StruggleProgressAuto = StruggleDiff.auto;  // S: -9 is floor level to always give a false hope
 	StruggleProgressPrevItem = PrevItem;
 	StruggleProgressNextItem = NextItem;
 	StruggleProgressOperation = StruggleProgressGetOperation(C, PrevItem, NextItem);
-	StruggleProgressSkill = Timer;
+	StruggleProgressSkill = StruggleDiff.timer;
 	StruggleProgressChallenge = S * -1;
 	StruggleProgressLastKeyPress = 0;
 	StruggleProgressStruggleCount = 0;
@@ -1072,7 +1088,7 @@ function StruggleLockPickProgressStart(C, Item) {
 	var LockPickingImpossible = false
 	if (Item != null && lock) {
 		// Gets the lock rating
-		var BondageLevel = (Item.Difficulty - Item.Asset.Difficulty)
+		var BondageLevel = Item.Difficulty - Item.Asset.Difficulty
 		
 		// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to pick)
 		var S = 0;
@@ -1206,7 +1222,7 @@ function StruggleLockPickProgressStart(C, Item) {
 				// negative skill of 6 subtracts 12 from all locks
 	
 
-		StruggleLockPickProgressMaxTries = NumTries - NumPins;
+		StruggleLockPickProgressMaxTries = Math.max(1, NumTries - NumPins);
 	}
 }
 

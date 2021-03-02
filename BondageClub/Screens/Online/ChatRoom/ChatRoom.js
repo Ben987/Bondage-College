@@ -21,6 +21,8 @@ var ChatRoomStruggleAssistBonus = 0;
 var ChatRoomStruggleAssistTimer = 0;
 var ChatRoomSlowtimer = 0;
 var ChatRoomSlowStop = false;
+
+var ChatRoomGetUpTimer = 0;
 var ChatRoomLastName = "";
 var ChatRoomLastBG = "";
 var ChatRoomLastPrivate = false;
@@ -279,9 +281,22 @@ function ChatRoomCanAssistStand() {
  * Checks if the target character can be helped down on her knees. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose and removes certain checks that are not required for someone else to help a person kneel down.
  * @returns {boolean} - Whether or not the target character can stand
  */
+
 function ChatRoomCanAssistKneel() {
 	return Player.CanInteract() && CurrentCharacter.AllowItem && CharacterItemsHavePoseAvailable(CurrentCharacter, "BodyLower", "Kneel") && !CharacterDoItemsSetPose(CurrentCharacter, "Kneel") && !CurrentCharacter.IsKneeling()
 }
+
+/**
+* Checks if the player character can attempt to stand up. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose, but it forces the player to do a minigame.
+ * @returns {boolean} - Whether or not the player character can stand
+ */
+function ChatRoomCanAttemptStand() { return CharacterItemsHavePoseAvailable(Player, "BodyLower", "Kneel") && !CharacterDoItemsSetPose(Player, "Kneel") && Player.IsKneeling()}
+/**
+ * Checks if the player character can attempt to get down on her knees. This is different than CurrentCharacter.CanKneel() because it listens for the current active pose, but it forces the player to do a minigame.
+ * @returns {boolean} - Whether or not the player character can stand
+ */
+function ChatRoomCanAttemptKneel() { return CharacterItemsHavePoseAvailable(Player, "BodyLower", "Kneel") && !CharacterDoItemsSetPose(Player, "Kneel") && !Player.IsKneeling() }
+
 /**
  * Checks if the player can stop the current character from leaving.
  * @returns {boolean} - TRUE if the current character is slowed down and can be interacted with.
@@ -414,6 +429,8 @@ function ChatRoomLoad() {
 function ChatRoomClearAllElements() {
 	// Friendlist
 	ElementRemove("FriendList");
+	FriendListBeepMenuClose();
+	FriendListModeIndex = 0;
 	
 	// Admin
 	ElementRemove("InputName");
@@ -581,6 +598,10 @@ function ChatRoomDrawCharacterOverlay(C, CharX, CharY, Zoom, Pos) {
 		}
 		if (Array.isArray(ChatRoomData.Admin) && ChatRoomData.Admin.includes(C.MemberNumber)) {
 			DrawImageResize("Icons/Small/Admin.png", CharX + 125 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
+		}
+		// Warning icon when game versions don't match
+		if (C.OnlineSharedSettings && C.OnlineSharedSettings.GameVersion !== GameVersion) {
+			DrawImageResize("Icons/Small/Warning.png", CharX + 325 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
 		}
 		if (Player.GhostList.includes(C.MemberNumber)) {
 			DrawImageResize("Icons/Small/GhostList.png", CharX + 375 * Zoom, CharY, 50 * Zoom, 50 * Zoom);
@@ -1048,6 +1069,10 @@ function ChatRoomRun() {
 			CommonSetScreen("Online", "ChatSearch");
 		}
 	}
+	
+	if (CurrentTime > ChatRoomGetUpTimer) {
+		ChatRoomGetUpTimer = 0
+	}
 
 	// If the player is slow and was stopped from leaving by another player
 	if ((ChatRoomSlowStop == true) && PlayerIsSlow) {
@@ -1122,10 +1147,15 @@ function ChatRoomMenuDraw() {
 		if (Button === "Exit") continue; // handled in ChatRoomRun()
 		const ImageSuffix = Button === "Icons" ? ChatRoomHideIconState.toString() : "";
 		if (Button === "Exit" && !ChatRoomCanLeave()
-			|| (Button === "Kneel" && !Player.CanKneel())
+			|| (Button === "Kneel" && (!Player.CanKneel() && !(ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel()))))
 			|| (Button === "Dress" && (!Player.CanChange() || !OnlineGameAllowChange())))
 			ButtonColor = "Pink";
-		else ButtonColor = "White";
+		else if (Button === "Kneel" && (!Player.CanKneel() && ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())))
+      ButtonColor = "#FFFF00"
+    else ButtonColor = "White";
+    
+    (Player.CanKneel()) ? "White" : ((ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())) ? "#FFFF00" : "Pink")
+    
 		DrawButton(1005 + Space * B, 2, 120, 60, "", ButtonColor, "Icons/Rectangle/" + Button + ImageSuffix + ".png", TextGet("Menu" + Button));
 	}
 }
@@ -1206,13 +1236,25 @@ function ChatRoomMenuClick() {
 					break;
 				case "Kneel":
 					// When the user character kneels
-					if (Player.CanKneel()) {
+           if (Player.CanKneel()) {
 						const PlayerIsKneeling = Player.ActivePose && Player.ActivePose.includes("Kneel");
 						ServerSend("ChatRoomChat", { Content: PlayerIsKneeling ? "StandUp" : "KneelDown", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
 						CharacterSetActivePose(Player, PlayerIsKneeling ? "BaseLower" : "Kneel");
 						ChatRoomStimulationMessage("Kneel");
 						ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
-					}
+          } else if (ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())) { // If the player can theoretically get up, we start a minigame!
+            var diff = 0
+            if (Player.IsBlind()) diff += 1
+            if (Player.IsDeaf()) diff += 1
+            if (InventoryGet(Player, "ItemTorso") || InventoryGroupIsBlocked(Player, "ItemTorso")) diff += 1
+            if (InventoryGroupIsBlocked(Player, "ItemHands")) diff += 1
+            if (InventoryGet(Player, "ItemArms")) diff += 1
+            if (InventoryGet(Player, "ItemLegs") || InventoryGroupIsBlocked(Player, "ItemLegs")) diff += 1
+            if (InventoryGet(Player, "ItemFeet") || InventoryGroupIsBlocked(Player, "ItemFeet")) diff += 1
+            if (InventoryGet(Player, "ItemBoots")) diff += 2
+
+            MiniGameStart("GetUp", diff, "ChatRoomAttemptStandMinigameEnd");
+          }
 					break;
 				case "Icons":
 					// When the user toggles icon visibility
@@ -1248,6 +1290,29 @@ function ChatRoomMenuClick() {
 			}
 		}
 	}
+}
+
+function ChatRoomAttemptStandMinigameEnd() {
+	
+	if (MiniGameVictory)  {
+		if (MiniGameType == "GetUp"){
+			ServerSend("ChatRoomChat", { Content: (!Player.IsKneeling()) ? "KneelDownPass" : "StandUpPass", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
+			CharacterSetActivePose(Player, (!Player.IsKneeling()) ? "Kneel" : null, true);
+			ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
+		}
+	} else {
+		if (MiniGameType == "GetUp") {
+			ChatRoomGetUpTimer = CurrentTime + 15000
+			ServerSend("ChatRoomChat", { Content: (!Player.IsKneeling()) ? "KneelDownFail" : "StandUpFail", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
+			if (!Player.IsKneeling()) {
+				CharacterSetFacialExpression(Player, "Eyebrows", "Soft", 15);
+				CharacterSetFacialExpression(Player, "Blush", "Soft", 15);
+				CharacterSetFacialExpression(Player, "Eyes", "Dizzy", 15);
+			}
+		}
+	}
+	
+	CommonSetScreen("Online", "ChatRoom");	
 }
 
 /**

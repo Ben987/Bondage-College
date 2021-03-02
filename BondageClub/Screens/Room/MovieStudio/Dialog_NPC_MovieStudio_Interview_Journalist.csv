@@ -78,6 +78,13 @@ PlayerGagged,,,(She looks at your gag and giggles.),,
 1220,1200,Wow!  Thanks.,"You deserved that orgasm, I owed it to you.  Now I have an interview to do.",,
 1220,1200,That was pretty nice.,"You deserved that orgasm, I owed it to you.  Now I have an interview to do.",,
 1220,1200,(Try to catch your breath.),"You deserved that orgasm, I owed it to you.  Now I have an interview to do.",,
+1300,,,Thanks for bringing some drinks.  Can you help me to drink it?  (She laughs.),,
+1300,,(Help her to drink.),(You slowly help her to drink as the camera zooms on her mouth and naked body.),"DoActivity(""InterviewMaidHelpDrink"")",
+1300,,(Dust her.),(You dust her as she struggles and laughs madly.)  You're not helping the interview!,"DoActivity(""InterviewMaidHelpDust"")","CanDoActivity(""InterviewMaidCleanForMistress"")"
+1300,,(Tickle her.),(She laughs out loud while trying to ask questions.)  Eeeeeyaahaha!  This is not funny!,"DoActivity(""InterviewMaidHelpTickle"")",
+1300,,(Spank her.),(She jumps from the pain as you spank her mid-interview.)  Ow!  What kind of maid are you?,"DoActivity(""InterviewMaidHelpSpank"")",
+1300,,(Caress her.),"(She tries to ask questions but moans loudly and blushes.)  Oooooooh!  Aaah, ah, another question?","DoActivity(""InterviewMaidHelpCaress"")",
+1300,,(Check the room.),,DialogLeave(),
 2000,,,"(A club member is restrained in your room.  She struggles in her cuffs.)  Hello there, I think I got in trouble.",,CurrentCharacter.IsRestrained()
 2000,,,"(A club member restrained a maid in your room.)  Hello there.  As you can see, this maid seems to enjoy trouble.",,!CurrentCharacter.IsRestrained()
 2000,2010,What's going on here?,"To make a long story short: I was exploring this dungeon, a maid came in, she locked these cuffs on me, and here I am now.",,CurrentCharacter.IsRestrained()

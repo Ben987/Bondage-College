@@ -357,6 +357,12 @@ function PreferenceInitPlayer() {
 	if (typeof C.OnlineSharedSettings.BlockBodyCosplay !== "boolean") C.OnlineSharedSettings.BlockBodyCosplay = false;
 	if (typeof C.OnlineSharedSettings.AllowPlayerLeashing !== "boolean") C.OnlineSharedSettings.AllowPlayerLeashing = true;
 	if (typeof C.OnlineSharedSettings.DisablePickingLocksOnSelf !== "boolean") C.OnlineSharedSettings.DisablePickingLocksOnSelf = false;
+	if (C.OnlineSharedSettings.GameVersion !== GameVersion) {
+		if (CommonCompareVersion(GameVersion, C.OnlineSharedSettings.GameVersion) < 0) {
+			CommonVersionUpdated = true;
+		}
+		C.OnlineSharedSettings.GameVersion = GameVersion;
+	}
 
 	// Graphical settings
 	if (!C.GraphicsSettings) C.GraphicsSettings = {}
