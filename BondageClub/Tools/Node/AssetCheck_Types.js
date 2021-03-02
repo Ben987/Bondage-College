@@ -129,7 +129,7 @@ const AssetType = {
 	MirrorExpression: "String",
 	FixedPosition: "Boolean",
 	Layer: "[Object]",
-	CustomBlindBackground: "[{ Number: Number, Number: String }]",
+	CustomBlindBackground: "[Object]",
 };
 
 const AssetLayerType = {
