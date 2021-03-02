@@ -151,7 +151,7 @@ function StruggleProgressStart(C, PrevItem, NextItem) {
 	StruggleProgress = 0;
 	DialogMenuButtonBuild(C);
 		
-	if (C != Player || PrevItem == null || (-StruggleStrengthGetDifficulty(C, PrevItem, NextItem).difficulty < 2 && StruggleStrengthGetDifficulty(C, PrevItem, NextItem).auto > 0)) {
+	if (C != Player || PrevItem == null || (Player.CanInteract() && (PrevItem != null) && (!InventoryItemHasEffect(PrevItem, "Lock", true) || DialogCanUnlock(C, PrevItem)) && !InventoryItemHasEffect(PrevItem, "Mounted", true))) {
 		StruggleProgressCurrentMinigame = "Strength"
 		StruggleStrengthStart(C, StruggleProgressChoosePrevItem, StruggleProgressChooseNextItem);
 	}
