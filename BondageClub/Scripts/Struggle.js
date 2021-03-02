@@ -1072,7 +1072,7 @@ function StruggleLockPickProgressStart(C, Item) {
 	var LockPickingImpossible = false
 	if (Item != null && lock) {
 		// Gets the lock rating
-		var BondageLevel = Math.min(10, Item.Difficulty - Item.Asset.Difficulty)
+		var BondageLevel = Item.Difficulty - Item.Asset.Difficulty
 		
 		// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to pick)
 		var S = 0;
@@ -1206,7 +1206,7 @@ function StruggleLockPickProgressStart(C, Item) {
 				// negative skill of 6 subtracts 12 from all locks
 	
 
-		StruggleLockPickProgressMaxTries = NumTries - NumPins;
+		StruggleLockPickProgressMaxTries = Math.max(1, NumTries - NumPins);
 	}
 }
 
