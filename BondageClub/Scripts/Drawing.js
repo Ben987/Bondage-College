@@ -225,9 +225,7 @@ function DrawArousalMeter(C, X, Y, Zoom) {
  * @param {boolean} IsHeightResizeAllowed - Whether or not the settings allow for the height modifier to be applied
  * @returns {void} - Nothing
  */
-function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
-	if (!DrawCanvas) DrawCanvas = MainCanvas
-	
+function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {	
 	if ((C != null) && ((C.ID == 0) || (Player.GetBlindLevel() < 3 || CurrentModule == "MiniGame") || (CurrentScreen == "InformationSheet"))) {
 
 		if (ControllerActive == true) {
@@ -236,7 +234,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 
 		// If there's a fixed image to draw instead of the character
 		if (C.FixedImage != null) {
-			DrawImageZoomCanvas(C.FixedImage, DrawCanvas, 0, 0, 500, 1000, X, Y, 500 * Zoom, 1000 * Zoom);
+			DrawImageZoomCanvas(C.FixedImage, MainCanvas, 0, 0, 500, 1000, X, Y, 500 * Zoom, 1000 * Zoom);
 			return;
 		}
 
@@ -308,13 +306,13 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 		const DestY = (IsInverted || YCutOff) ? 0 : YOffset;
 
 		// Draw the character
-		DrawCanvas.drawImage(Canvas, 0, SourceY, Canvas.width, SourceHeight, X + XOffset * Zoom, Y + DestY * Zoom, 500 * HeightRatio * Zoom, (1000 - DestY) * Zoom);
+		MainCanvas.drawImage(Canvas, 0, SourceY, Canvas.width, SourceHeight, X + XOffset * Zoom, Y + DestY * Zoom, 500 * HeightRatio * Zoom, (1000 - DestY) * Zoom);
 
 		// Draw the arousal meter & game images on certain conditions
 		if (CurrentScreen != "ChatRoom" || ChatRoomHideIconState <= 1) {
 			DrawArousalMeter(C, X, Y, Zoom);
 			OnlineGameDrawCharacter(C, X, Y, Zoom);
-			if (C.HasHiddenItems) DrawImageZoomCanvas("Screens/Character/Player/HiddenItem.png", DrawCanvas, 0, 0, 86, 86, X + 54 * Zoom, Y + 880 * Zoom, 70 * Zoom, 70 * Zoom);
+			if (C.HasHiddenItems) DrawImageZoomCanvas("Screens/Character/Player/HiddenItem.png", MainCanvas, 0, 0, 86, 86, X + 54 * Zoom, Y + 880 * Zoom, 70 * Zoom, 70 * Zoom);
 		}
 		
 		// Draws the character focus zones if we need too
@@ -336,10 +334,10 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 		// Draw the character name below herself
 		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online" && !(CurrentScreen == "ChatRoom" && ChatRoomHideIconState >= 3)) || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
 			if (!Player.IsBlind() || (Player.GameplaySettings && Player.GameplaySettings.SensDepChatLog == "SensDepLight")) {
-				DrawCanvas.font = CommonGetFont(30);
+				MainCanvas.font = CommonGetFont(30);
 				const NameOffset = CurrentScreen == "ChatRoom" && (ChatRoomCharacter.length > 5 || (ChatRoomCharacter.length == 5 && CommonPhotoMode)) && CurrentCharacter == null ? -4 : 0;
 				DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom + NameOffset, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
-				DrawCanvas.font = CommonGetFont(36);
+				MainCanvas.font = CommonGetFont(36);
 			}
 
 	}
