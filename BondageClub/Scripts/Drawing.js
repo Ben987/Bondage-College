@@ -1146,6 +1146,7 @@ function DrawProcess() {
 	
 	
 	if ((B != null) && (B != "")) {
+		var customBG = ""
 		let DarkFactor = 1.0;
 		if ((CurrentModule != "Character" && CurrentModule != "MiniGame") && (B != "Sheet")) {
 			DarkFactor = CharacterGetDarkFactor(Player);
@@ -1153,7 +1154,7 @@ function DrawProcess() {
 		}
 		const Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
 		if (DarkFactor == 0.0) {
-			var customBG = DrawGetCustomBackground()
+			customBG = DrawGetCustomBackground()
 			
 			if (customBG != "") {
 				B = customBG
