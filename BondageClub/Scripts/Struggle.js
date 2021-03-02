@@ -1072,7 +1072,7 @@ function StruggleLockPickProgressStart(C, Item) {
 	var LockPickingImpossible = false
 	if (Item != null && lock) {
 		// Gets the lock rating
-		var BondageLevel = (Item.Difficulty - Item.Asset.Difficulty)
+		var BondageLevel = Math.min(10, Item.Difficulty - Item.Asset.Difficulty)
 		
 		// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to pick)
 		var S = 0;
