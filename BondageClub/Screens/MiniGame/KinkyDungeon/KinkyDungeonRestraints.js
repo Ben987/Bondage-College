@@ -171,7 +171,8 @@ function KinkyDungeonGetRestraint(enemy, Level, Index, Bypass) {
 	for (let L = 0; L < KinkyDungeonRestraints.length; L++) {
 		var restraint = KinkyDungeonRestraints[L]
 		var asset = InventoryGet(KinkyDungeonPlayer, restraint.Group)
-		if (Level >= restraint.minLevel && restraint.floors.includes(Index) && (!asset || (asset.Difficulty < restraint.power && (!asset.Property || asset.Property.Difficulty < restraint.power))) && (!InventoryGroupIsBlocked(KinkyDungeonPlayer, restraint.Group) || Bypass)) {
+		var currentRestraint = KinkyDungeonGetRestraintItem(restraint.group)
+		if (Level >= restraint.minLevel && restraint.floors.includes(Index) && (!asset || (asset.Difficulty < restraint.power && (!currentRestraint || !currentRestraint.restraint || currentRestraint.restraint.power < restraint.power))) && (!InventoryGroupIsBlocked(KinkyDungeonPlayer, restraint.Group) || Bypass)) {
 			restraintWeights.push({restraint: restraint, weight: restraintWeightTotal})
 			restraintWeightTotal += restraint.weight
 			for (let T = 0; T < enemy.tags.length; T++)
@@ -209,11 +210,11 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 	if (restraint) {
 		if (!InventoryGroupIsBlocked(KinkyDungeonPlayer, restraint.Group) || Bypass) {
 			KinkyDungeonRemoveRestraint(restraint.Group)
-			InventoryWear(KinkyDungeonPlayer, restraint.Asset, restraint.Group)
+			InventoryWear(KinkyDungeonPlayer, restraint.Asset, restraint.Group, restraint.power)
 			if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && restraint.Group != "ItemHead" && !InventoryGroupIsBlocked(Player, restraint.Group) && 
 				(!InventoryGetLock(InventoryGet(Player, restraint.Group))
 				|| (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false)))
-					InventoryWear(Player, restraint.Asset, restraint.Group)
+					InventoryWear(Player, restraint.Asset, restraint.Group, restraint.power)
 			if (restraint.Type) {
 				KinkyDungeonPlayer.FocusGroup = AssetGroupGet("Female3DCG", restraint.Group)
 				const options = window["Inventory" + restraint.Group + restraint.Asset + "Options"]
