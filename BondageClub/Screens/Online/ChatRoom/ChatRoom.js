@@ -2191,7 +2191,8 @@ function DialogCallMaids() {
 	ChatRoomClearAllElements();
 	ChatRoomSetLastChatRoom("")
 	ServerSend("ChatRoomLeave", "");
-	MainHallPunishFromChatroom();
+	if (!Player.RestrictionSettings || !Player.RestrictionSettings.BypassNPCPunishments)
+		MainHallPunishFromChatroom();
 	CommonSetScreen("Room", "MainHall");
 }
 

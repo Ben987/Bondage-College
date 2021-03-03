@@ -340,6 +340,7 @@ function PreferenceInitPlayer() {
 	if (!C.RestrictionSettings) C.RestrictionSettings = {};
 	if (typeof C.RestrictionSettings.BypassStruggle !== "boolean") C.RestrictionSettings.BypassStruggle = false;
 	if (typeof C.RestrictionSettings.SlowImmunity !== "boolean") C.RestrictionSettings.SlowImmunity = false;
+	if (typeof C.RestrictionSettings.BypassNPCPunishments !== "boolean") C.RestrictionSettings.BypassNPCPunishments = false;
 
 	// Online settings
 	if (!C.OnlineSettings) C.OnlineSettings = {};
@@ -388,6 +389,7 @@ function PreferenceInitPlayer() {
 	if (C.GetDifficulty() >= 1) {
 		C.RestrictionSettings.BypassStruggle = false;
 		C.RestrictionSettings.SlowImmunity = false;
+		C.RestrictionSettings.BypassNPCPunishments = false;
 	}
 
 	// Difficulty: Hardcore settings
@@ -663,6 +665,7 @@ function PreferenceSubscreenRestrictionRun() {
 		DrawText(TextGet("RestrictionAccess"), 500, 225, "Black", "Gray");
 		DrawCheckbox(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"), Player.RestrictionSettings.BypassStruggle);
 		DrawCheckbox(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"), Player.RestrictionSettings.SlowImmunity);
+		DrawCheckbox(500, 525, 64, 64, TextGet("RestrictionBypassNPCPunishments"), Player.RestrictionSettings.BypassNPCPunishments);
 	} else {
 		DrawText(TextGet("RestrictionNoAccess"), 500, 225, "Black", "Gray");
 		DrawCheckboxDisabled(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"));
@@ -780,6 +783,8 @@ function PreferenceSubscreenRestrictionClick() {
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenDifficultyExit();
 	if (MouseIn(500, 325, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassStruggle = !Player.RestrictionSettings.BypassStruggle;
 	if (MouseIn(500, 425, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.SlowImmunity = !Player.RestrictionSettings.SlowImmunity;
+	if (MouseIn(500, 525, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassNPCPunishments = !Player.RestrictionSettings.BypassNPCPunishments;
+	
 }
 
 /**

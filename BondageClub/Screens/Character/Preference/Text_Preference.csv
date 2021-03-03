@@ -66,6 +66,7 @@ RestrictionAccess,You can configure game restrictions to bypass in the multi-pla
 RestrictionNoAccess,Players using the Roleplay difficulty can configure multi-player restrictions to bypass.
 RestrictionBypassStruggle,Bypass the struggling mini-game.
 RestrictionSlowImmunity,Cannot be slowed down from leaving a room.
+RestrictionBypassNPCPunishments,Bypass some NPC punishments
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"

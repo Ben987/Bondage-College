@@ -772,7 +772,8 @@ function ManagementMistressPay() {
  * @returns {void} - Nothing.
  */
 function ManagementMistressKicked() {
-	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
+	if (!Player.RestrictionSettings || !Player.RestrictionSettings.BypassNPCPunishments)
+		LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
 	LogDelete("ClubMistress", "Management");
 	LoginMistressItems();
 	ReputationProgress("Dominant", -6);
