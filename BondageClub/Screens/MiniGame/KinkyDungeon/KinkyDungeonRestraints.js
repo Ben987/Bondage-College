@@ -46,7 +46,7 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 	var escapeChance = (restraint.restraint.escapeChance[StruggleType]) ? restraint.restraint.escapeChance[StruggleType] : 1.0
 		
 	
-	if (!KinkyDungeonPlayer.CanInteract) escapeChance /= 2
+	if (!KinkyDungeonPlayer.CanInteract()) escapeChance /= 2
 	if (struggleGroup.group != "ItemArms" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
 	if (struggleGroup.group != "ItemHands" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
 	

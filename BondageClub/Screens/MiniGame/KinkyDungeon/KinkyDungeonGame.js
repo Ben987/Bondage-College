@@ -43,9 +43,9 @@ var KinkyDungeonPlayerEntity = null
 
 var KinkyDungeonMapBrightness = 5
 
-var KinkyDungeonMovableTilesEnemy = "0CSsRrd" // Objects which can be moved into: floors, doors, and chests
-var KinkyDungeonMovableTilesSmartEnemy = "D" + KinkyDungeonMovableTilesEnemy //Smart enemies can move through these
-var KinkyDungeonMovableTiles = "C" + KinkyDungeonMovableTilesSmartEnemy // Player can move through these
+var KinkyDungeonMovableTilesEnemy = "0SsRrd" // Objects which can be moved into: floors, debris, open doors, staircases
+var KinkyDungeonMovableTilesSmartEnemy = "D" + KinkyDungeonMovableTilesEnemy //Smart enemies can open doors as well
+var KinkyDungeonMovableTiles = "C" + KinkyDungeonMovableTilesSmartEnemy // Player can open chests
 
 
 var KinkyDungeonKeyLower = [87+32, 65+32, 83+32, 68+32, 81+32, 45+32, 90+32, 43+32]; // WASD
@@ -146,6 +146,9 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	var rubblechance = MapParams["rubblechance"] // Chance of lootable rubble
 	var doorchance = MapParams["doorchance"] // Max treasure chest count
 	KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density)	
+	
+	KinkyDungeonGroundItems = [] // Clear items on the ground
+	KinkyDungeonBullets = [] // Clear all bullets
 	
 	KinkyDungeonReplaceDoodads(doodadchance, width, height) // Replace random internal walls with doodads
 	KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, width, height) // Place treasure chests inside dead ends
@@ -589,6 +592,8 @@ function KinkyDungeonMove(moveDirection) {
 						KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble")
 						
 						KinkyDungeonMapSet(moveX, moveY, 'r')
+					} else {
+						KinkyDungeonItemCheck(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, MiniGameKinkyDungeonLevel)
 					}
 				}
 			}

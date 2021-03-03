@@ -123,3 +123,5 @@ KinkyDungeonGroupItemLegs,Legs
 KinkyDungeonGroupItemFeet,Ankles
 KinkyDungeonGroupItemBoots,Feet
 KinkyDungeonGroupItemDevices,Device
+
+ItemPickupGold,"You picked up XXX gold."
