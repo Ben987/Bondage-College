@@ -14,7 +14,6 @@
  */
 
 "use strict";
-/** @type {import("socket.io-client").Socket} */
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
 var ServerBeep = {};
@@ -26,12 +25,13 @@ var ServerReconnectCount = 0;
 function ServerInit() {
 	ServerSocket = io(ServerURL);
 	ServerSocket.on("connect", ServerConnect);
-	ServerSocket.on("disconnect", function () { ServerDisconnect(); });
-	ServerSocket.io.on("reconnect_attempt", ServerReconnecting);
+	ServerSocket.on("reconnecting", ServerReconnecting);
+	ServerSocket.on("event", function (data) { console.log(data); });
 	ServerSocket.on("ServerMessage", function (data) { console.log(data); });
 	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data); });
 	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
 	ServerSocket.on("LoginResponse", function (data) { LoginResponse(data); });
+	ServerSocket.on("disconnect", function (data) { ServerDisconnect(); });
 	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data, true); });
 	ServerSocket.on("ChatRoomSearchResult", function (data) { ChatSearchResultResponse(data); });
 	ServerSocket.on("ChatRoomSearchResponse", function (data) { ChatSearchResponse(data); });
