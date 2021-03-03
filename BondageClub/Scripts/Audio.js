@@ -124,10 +124,13 @@ var AudioActions = [
  * @returns {void} - Nothing
  */
 function AudioPlayInstantSound(src, volume) {
-	var audio = new Audio();
-	audio.src = src;
-	audio.volume = Math.max(0, Math.min(volume, 1));
-	audio.play();
+	const vol = volume != null ? volume : Player.AudioSettings.Volume;
+	if (vol > 0) {
+		var audio = new Audio();
+		audio.src = src;
+		audio.volume = Math.min(vol, 1);
+		audio.play();
+	}
 }
 
 /**

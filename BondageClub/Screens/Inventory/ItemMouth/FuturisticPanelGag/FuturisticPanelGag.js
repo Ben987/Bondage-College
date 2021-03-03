@@ -154,11 +154,7 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 			InventoryItemMouthFuturisticPanelGagExit();
 		} else {
 			FuturisticAccessDeniedMessage = DialogFindPlayer("CantChangeWhileLockedFuturistic");
-			var vol = 1
-			if (Player.AudioSettings && Player.AudioSettings.Volume) {
-				vol = Player.AudioSettings.Volume
-			}
-			AudioPlayInstantSound("Audio/AccessDenied.mp3", vol)
+			AudioPlayInstantSound("Audio/AccessDenied.mp3");
 			if (CurrentScreen == "ChatRoom") {
 				InventoryItemMouthFuturisticPanelGagPublishAccessDenied((Player.FocusGroup != null) ? Player : CurrentCharacter)
 			}

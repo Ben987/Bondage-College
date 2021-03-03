@@ -195,12 +195,8 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 // Trigger a shock automatically
 function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType) { 
 
-	if (!CurrentScreen == "ChatRoom") {
-		var vol = 1
-		if (Player.AudioSettings && Player.AudioSettings.Volume) {
-			vol = Player.AudioSettings.Volume
-		}
-		AudioPlayInstantSound("Audio/Shocks.mp3", vol)
+	if (!(CurrentScreen == "ChatRoom")) {
+		AudioPlayInstantSound("Audio/Shocks.mp3");
 	} else {
 		if (Item.Property && Item.Property.ChatMessage) {
 			var Dictionary = [];
