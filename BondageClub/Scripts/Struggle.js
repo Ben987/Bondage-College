@@ -1015,26 +1015,49 @@ function StruggleDrawLockpickProgress(C) {
 			}
 		}
 	} else {
-		if ( Player.ArousalSettings && Player.ArousalSettings.Progress > 20 && StruggleLockPickProgressCurrentTries < StruggleLockPickProgressMaxTries && StruggleLockPickProgressCurrentTries > 0) {
+		if ( Player.ArousalSettings && (Player.ArousalSettings.Active != "Inactive" && Player.ArousalSettings.Active != "NoMeter") && Player.ArousalSettings.Progress > 20 && StruggleLockPickProgressCurrentTries < StruggleLockPickProgressMaxTries && StruggleLockPickProgressCurrentTries > 0) {
 			if (CurrentTime > StruggleLockPickArousalTick) {
 				var arousalmaxtime = 2.6 - 2.0*Player.ArousalSettings.Progress/100
 				if (StruggleLockPickArousalTick - CurrentTime > CurrentTime + StruggleLockPickArousalTickTime*arousalmaxtime) {
 					StruggleLockPickArousalTick = CurrentTime + StruggleLockPickArousalTickTime*arousalmaxtime // In case it gets set out way too far
 				}
-
-				if (StruggleLockPickArousalTick > 0 && StruggleLockPickSet.filter(x => x==true).length > 0) {
-					StruggleLockPickArousalText = DialogFindPlayer("LockPickArousal")
-					if (StruggleLockPickSet.filter(x => x==true).length < StruggleLockPickSet.length) {
-						for (let P = StruggleLockPickOrder.length; P >= 0; P--) {
-							if (StruggleLockPickSet[StruggleLockPickOrder[P]] == true) {
-								StruggleLockPickOffsetTarget[StruggleLockPickOrder[P]] = 0
-								StruggleLockPickSet[StruggleLockPickOrder[P]] = false
-								break;
+				var totalSet = StruggleLockPickSet.filter(x => x==true).length + StruggleLockPickSetFalse.filter(x => x==true).length
+				if (StruggleLockPickArousalTick > 0 && totalSet > 0) {
+					var RealUnsetChance = StruggleLockPickSet.filter(x => x==true).length / (totalSet)
+					if (Math.random() < RealUnsetChance) {
+						if (StruggleLockPickSet.filter(x => x==true).length > 0) {
+							if (StruggleLockPickSet.filter(x => x==true).length < StruggleLockPickSet.length) {
+								for (let P = StruggleLockPickOrder.length; P >= 0; P--) {
+									if (StruggleLockPickSet[StruggleLockPickOrder[P]] == true) {
+										StruggleLockPickOffsetTarget[StruggleLockPickOrder[P]] = 0
+										StruggleLockPickSet[StruggleLockPickOrder[P]] = false
+										break;
+									}
+								}
+							}
+						}
+					} else {
+						if (StruggleLockPickSetFalse.filter(x => x==true).length > 0) {
+							if (StruggleLockPickSetFalse.filter(x => x==true).length < StruggleLockPickSetFalse.length) {
+								var looped = false;
+								var startLoop = Math.floor(Math.random() * StruggleLockPickOrder.length)
+								var P = startLoop;
+								while (!looped) {
+									if (StruggleLockPickSetFalse[P] == true) {
+										StruggleLockPickOffsetTarget[P] = 0
+										StruggleLockPickSetFalse[P] = false
+										break;
+									}
+									P += 1
+									if (P >= StruggleLockPickOrder.length) P = 0
+									if (P == startLoop) looped = true
+								}
 							}
 						}
 					}
+										
+					StruggleLockPickArousalText = DialogFindPlayer("LockPickArousal")
 				}
-				
 				var arousalmod = (0.3 + Math.random()*0.7) * (arousalmaxtime) // happens very often at 100 arousal
 				StruggleLockPickArousalTick = CurrentTime + StruggleLockPickArousalTickTime * arousalmod
 			}
