@@ -17,7 +17,6 @@
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
 var ServerBeep = {};
-var ServerBeepAudio = new Audio();
 var ServerIsConnected = false;
 var ServerReconnectCount = 0;
 
@@ -51,7 +50,6 @@ function ServerInit() {
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
 	ServerSocket.on("AccountLovership", function (data) { ServerAccountLovership(data); });
-	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
 /**
@@ -722,9 +720,8 @@ function ServerAccountBeep(data) {
 			ServerBeep.MemberName = data.MemberName;
 			ServerBeep.ChatRoomName = data.ChatRoomName;
 			ServerBeep.Timer = CurrentTime + 10000;
-			if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) {
-				ServerBeepAudio.volume = Player.AudioSettings.Volume;
-				ServerBeepAudio.play();
+			if (Player.AudioSettings.PlayBeeps) {
+				AudioPlayInstantSound("Audio/BeepAlarm.mp3");
 			}
 			ServerBeep.Message = `${DialogFindPlayer("BeepFrom")} ${ServerBeep.MemberName} (${ServerBeep.MemberNumber})`;
 			if (ServerBeep.ChatRoomName != null)

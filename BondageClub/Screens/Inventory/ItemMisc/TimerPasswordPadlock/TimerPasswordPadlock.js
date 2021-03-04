@@ -28,8 +28,8 @@ function InventoryItemMiscTimerPasswordPadlockLoad() {
 				|| C.IsOwnedByPlayer() || C.IsLoverOfPlayer())) document.getElementById("Password").placeholder = DialogFocusSourceItem.Property.Password;
 		} else {
 			// Set a password and hint
-			ElementCreateInput("SetPassword", "text", "", "8");
 			ElementCreateInput("SetHint", "text", "", "140");
+			ElementCreateInput("SetPassword", "text", "", "8");
 			// the current code is shown for owners, lovers and the member whose number is on the padlock
 			document.getElementById("SetPassword").placeholder = DialogFocusSourceItem.Property.Password;
 			document.getElementById("SetHint").placeholder = DialogFocusSourceItem.Property.Hint;
