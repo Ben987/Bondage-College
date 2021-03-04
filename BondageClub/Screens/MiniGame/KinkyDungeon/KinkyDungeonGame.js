@@ -547,21 +547,7 @@ function KinkyDungeonMove(moveDirection) {
 		var moveObject = KinkyDungeonMapGet(moveX, moveY)
 		if (KinkyDungeonMovableTiles.includes(moveObject) && KinkyDungeonNoEnemy(moveX, moveY)) { // If the player can move to an empy space or a door
 		
-			if (moveObject == 's') { // Go down the next stairs
-				MiniGameKinkyDungeonLevel += 1
-				KinkyDungeonSetCheckPoint()
-				
-				
-				KinkyDungeonTextMessageTime = 2
-				KinkyDungeonTextMessage = "ClimbDown"
-				KinkyDungeonTextMessageColor = "#ffffff"
-				
-				if (MiniGameKinkyDungeonCheckpoint >= 1) {
-					KinkyDungeonState = "End"
-					MiniGameVictory = true
-				}
-				KinkyDungeonCreateMap(KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]], KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
-			} else if (moveObject == 'D') { // Open the door
+			if (moveObject == 'D') { // Open the door
 				KinkyDungeonMapSet(moveX, moveY, 'd')
 			} else if (moveObject == 'C') { // Open the chest
 				KinkyDungeonLoot(MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint], "chest")
@@ -592,8 +578,6 @@ function KinkyDungeonMove(moveDirection) {
 						KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble")
 						
 						KinkyDungeonMapSet(moveX, moveY, 'r')
-					} else {
-						KinkyDungeonItemCheck(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, MiniGameKinkyDungeonLevel)
 					}
 				}
 			}
@@ -612,8 +596,27 @@ function KinkyDungeonAdvanceTime(delta) {
 	if (KinkyDungeonActionMessageTime <= 0) KinkyDungeonActionMessagePriority = 0
 	
 	// Updates the character's stats
+	KinkyDungeonItemCheck(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, MiniGameKinkyDungeonLevel)
 	KinkyDungeonUpdateEnemies(delta)
 	KinkyDungeonUpdateStats(delta)
+	
+	
+	if (KinkyDungeonMapGet(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y) == 's') { // Go down the next stairs
+		MiniGameKinkyDungeonLevel += 1
+		KinkyDungeonSetCheckPoint()
+		
+		
+		KinkyDungeonActionMessagePriority = 10
+		KinkyDungeonActionMessageTime = 1
+		KinkyDungeonActionMessage = "ClimbDown"
+		KinkyDungeonActionMessageColor = "#ffffff"
+		
+		if (MiniGameKinkyDungeonCheckpoint >= 1) {
+			KinkyDungeonState = "End"
+			MiniGameVictory = true
+		}
+		KinkyDungeonCreateMap(KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]], KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
+	}
 	
 	if (KinkyDungeonStatWillpower == 0) {
 		KinkyDungeonState = "Lose"
