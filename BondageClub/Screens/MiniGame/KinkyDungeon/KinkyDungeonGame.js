@@ -608,7 +608,7 @@ function KinkyDungeonAdvanceTime(delta) {
 		
 		KinkyDungeonActionMessagePriority = 10
 		KinkyDungeonActionMessageTime = 1
-		KinkyDungeonActionMessage = "ClimbDown"
+		KinkyDungeonActionMessage = TextGet("ClimbDown")
 		KinkyDungeonActionMessageColor = "#ffffff"
 		
 		if (MiniGameKinkyDungeonCheckpoint >= 1) {

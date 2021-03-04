@@ -93,6 +93,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 		
 		var AI = enemy.Enemy.AI
 		var idle = true
+		var moved = false
 		if (!enemy.warningTiles) enemy.warningTiles = []
 		var playerDist = Math.sqrt((enemy.x - KinkyDungeonPlayerEntity.x)*(enemy.x - KinkyDungeonPlayerEntity.x) + (enemy.y - KinkyDungeonPlayerEntity.y)*(enemy.y - KinkyDungeonPlayerEntity.y))
 		
@@ -102,7 +103,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 				for (let T = 0; T < 8; T++) { // try 8 times
 					var dir = KinkyDungeonGetDirection(10*(Math.random()-0.5), 10*(Math.random()-0.5))
 					if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
-						KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)
+						if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
 						idle = false
 						break;
 					}
@@ -120,7 +121,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 					var dir = KinkyDungeonGetDirectionRandom(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
 					if (T > 5) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10)
 					if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
-						KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)
+						if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
 						idle = false
 						break;
 					}
@@ -130,7 +131,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 					var dir = KinkyDungeonGetDirectionRandom(enemy.gx - enemy.x, enemy.gy - enemy.y)
 					if (T > 5) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10)
 					if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
-						KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)
+						if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
 						idle = false
 						break;
 					}
@@ -138,7 +139,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 		}
 		playerDist = Math.sqrt((enemy.x - KinkyDungeonPlayerEntity.x)*(enemy.x - KinkyDungeonPlayerEntity.x) + (enemy.y - KinkyDungeonPlayerEntity.y)*(enemy.y - KinkyDungeonPlayerEntity.y))
 		
-		if (enemy.Enemy.attack.includes("Melee") && playerDist < enemy.Enemy.attackRange + 0.5) {//Player is adjacent
+		if (!moved && enemy.Enemy.attack.includes("Melee") && playerDist < enemy.Enemy.attackRange + 0.5) {//Player is adjacent
 			idle = false;
 		
 			var dir = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)

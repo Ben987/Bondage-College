@@ -87,6 +87,8 @@ KinkyGreenLock," (Green lock)"
 KinkyBlueLock," (Blue lock)"
 KinkyYellowLock," (Yellow lock)"
 
+ClimbDown,"You climb down to the next level"
+
 
 RestraintDuctTapeArms,Charms
 RestraintDuctTapeLegs,Charms
@@ -125,3 +127,35 @@ KinkyDungeonGroupItemBoots,Feet
 KinkyDungeonGroupItemDevices,Device
 
 ItemPickupGold,"You picked up XXX gold."
+
+
+KinkyDungeonBookElements,Ars Pyrotecnica
+KinkyDungeonBookConjure,Codex Imaginus
+KinkyDungeonBookIllusion,Clavicula Romantica
+KinkyDungeonBookElementsDescription,A book of elemental magic
+KinkyDungeonBookConjureDescription,A book about conjuration
+KinkyDungeonBookIllusionDescription,A book of manipulative spells
+
+
+KinkyDungeonComponents,"Components: "
+KinkyDungeonComponentsVerbal,"Verbal"
+KinkyDungeonComponentsArms,"Arm Movements"
+KinkyDungeonComponentsLegs,"Leg Gestures"
+
+KinkyDungeonBookNextPage,Next Page
+KinkyDungeonBookLastPage,Last Page
+
+KinkyDungeonSpellFirebolt,Firebolt
+KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage
+KinkyDungeonSpellSnare,Snare
+KinkyDungeonSpellDescriptionSnare,An invisible circle on the grounds that binds anyone who walks on it for Duration turns
+KinkyDungeonSpellFlash,Flash
+KinkyDungeonSpellDescriptionFlash,A flash of light which renders anyone caught within blind for Duration turns
+
+KinkyDungeonInventory,"Open Inventory"
+KinkyDungeonMagic,"Open Magic"
+KinkyDungeonGame,"Return to Game"
+
+KinkyDungeonSpell0,"Choose as Spell 1"
+KinkyDungeonSpell1,"Choose as Spell 2"
+KinkyDungeonSpell2,"Choose as Spell 3"

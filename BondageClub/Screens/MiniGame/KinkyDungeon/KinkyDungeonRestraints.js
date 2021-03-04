@@ -32,7 +32,7 @@ var KinkyDungeonRestraints = [
 		enemyTags: {"ribbonRestraints":1}, playerTags: {"ItemFeetFull":3}, minLevel: 0, floors: [0, 1, 2, 3]},
 	
 	
-	{name: "Stuffing", Asset: "ClothStuffing", Group: "ItemMouth", power: -20, weight: 1, escapeChance: {"Struggle": 1, "Cut": 1, "Remove": 1}, enemyTags: {"ribbonRestraints":8}, playerTags: {}, minLevel: 0, floors: [0, 1, 2, 3, 4, 5, 6, 7]},
+	{name: "Stuffing", Asset: "ClothStuffing", Group: "ItemMouth", power: -20, weight: 1, escapeChance: {"Struggle": 10, "Cut": 10, "Remove": 10}, enemyTags: {"ribbonRestraints":8}, playerTags: {}, minLevel: 0, floors: [0, 1, 2, 3, 4, 5, 6, 7]},
 ]
 
 
