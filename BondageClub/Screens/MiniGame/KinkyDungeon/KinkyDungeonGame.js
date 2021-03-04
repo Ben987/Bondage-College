@@ -151,9 +151,9 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	KinkyDungeonBullets = [] // Clear all bullets
 	
 	KinkyDungeonReplaceDoodads(doodadchance, width, height) // Replace random internal walls with doodads
+	KinkyDungeonPlaceStairs(startpos, width, height) // Place the start and end locations
 	KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, width, height) // Place treasure chests inside dead ends
 	KinkyDungeonPlaceDoors(doorchance, width, height) // Place treasure chests inside dead ends
-	KinkyDungeonPlaceStairs(startpos, width, height) // Place the start and end locations
 	
 	// Place the player!
 	KinkyDungeonPlayerEntity = {Type:"Player", x: 1, y:startpos}

@@ -1,0 +1,8 @@
+
+function KinkyDungeonHandleInventory() {
+	
+}
+
+function KinkyDungeonDrawInventory() {
+	
+}
