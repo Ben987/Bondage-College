@@ -696,8 +696,7 @@ function MainHallMaidChangeCollarPlayer() {
  */
 function MainHallMaidPunishmentPlayer() {
 	CharacterNaked(Player);
-	if (!Player.RestrictionSettings || !Player.RestrictionSettings.BypassNPCPunishments)
-		LogAdd("BlockChange","Rule", CurrentTime + 3600000);
+	LogAdd("BlockChange","Rule", CurrentTime + 3600000);
 	if (ReputationGet("Dominant") > 10) ReputationProgress("Dominant", -10);
 	if (ReputationGet("Dominant") < -10) ReputationProgress("Dominant", 10);
 }
