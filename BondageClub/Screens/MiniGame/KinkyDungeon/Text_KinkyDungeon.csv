@@ -144,6 +144,7 @@ KinkyDungeonComponentsLegs,"Leg Gestures"
 
 KinkyDungeonBookNextPage,Next Page
 KinkyDungeonBookLastPage,Last Page
+KinkyDungeonBookRandomPage,Random Page (your hands are tied)
 
 KinkyDungeonSpellFirebolt,Firebolt
 KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage
@@ -156,6 +157,15 @@ KinkyDungeonInventory,"Open Inventory"
 KinkyDungeonMagic,"Open Magic"
 KinkyDungeonGame,"Return to Game"
 
+
+KinkyDungeonMagicLevel,"Level: "
+KinkyDungeonMagicCost,"Stamina Cost: "
+KinkyDungeonMagicExhaustion, "Blocks regen"
+KinkyDungeonMagicExhaustion2, "for TimeTaken turns"
+
 KinkyDungeonSpell0,"Choose as Spell 1"
 KinkyDungeonSpell1,"Choose as Spell 2"
 KinkyDungeonSpell2,"Choose as Spell 3"
+KinkyDungeonSpellChoice0, "Current Spell 1: "
+KinkyDungeonSpellChoice1, "Current Spell 2: "
+KinkyDungeonSpellChoice2, "Current Spell 3: "

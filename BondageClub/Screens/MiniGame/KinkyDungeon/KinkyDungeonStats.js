@@ -19,6 +19,7 @@ var KinkyDungeonStaminaRate = KinkyDungeonStatStaminaRegen
 var KinkyDungeonStatWillpowerMax = 100
 var KinkyDungeonStatWillpower = KinkyDungeonStatWillpowerMax
 var KinkyDungeonStatWillpowerRegen = 0.1
+var KinkyDungeonStatWillpowerExhaustion = 0; // When casting spells, your willpower regen is stopped for this many turns
 
 // Willpower loss
 var KinkyDungeonWillpowerLossOnOrgasm = -5
@@ -88,6 +89,7 @@ function KinkyDungeonDefaultStats() {
 	KinkyDungeonStatArousal = 0
 	KinkyDungeonStatStamina = KinkyDungeonStatStaminaMax
 	KinkyDungeonStatWillpower = KinkyDungeonStatWillpowerMax
+	KinkyDungeonStatWillpowerExhaustion = 0
 	
 	KinkyDungeonMovePoints = 0
 	KinkyDungeonInventory = []
@@ -123,12 +125,12 @@ function KinkyDungeonDrawStats(x, y, width, heightPerBar) {
 	var i = 3
 	DrawText(TextGet("CurrentGold") + KinkyDungeonGold, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;
 	DrawText(TextGet("CurrentLockpicks") + KinkyDungeonLockpicks, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;
+	DrawText(TextGet("CurrentKnife") + KinkyDungeonNormalBlades, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;
 	
+	if (KinkyDungeonEnchantedBlades > 0) {DrawText(TextGet("CurrentKnifeMagic") + KinkyDungeonEnchantedBlades, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;}
 	if (KinkyDungeonRedKeys > 0) {DrawText(TextGet("CurrentKeyRed") + KinkyDungeonRedKeys, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;}
 	if (KinkyDungeonGreenKeys > 0) {DrawText(TextGet("CurrentKeyGreen") + KinkyDungeonGreenKeys, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;}
 	if (KinkyDungeonBlueKeys > 0) {DrawText(TextGet("CurrentKeyBlue") + KinkyDungeonBlueKeys, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;}
-	if (KinkyDungeonNormalBlades > 0) {DrawText(TextGet("CurrentKnife") + KinkyDungeonNormalBlades, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;}
-	if (KinkyDungeonEnchantedBlades > 0) {DrawText(TextGet("CurrentKnifeMagic") + KinkyDungeonEnchantedBlades, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;}
 }
 
 

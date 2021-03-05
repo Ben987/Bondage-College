@@ -63,6 +63,7 @@ function KinkyDungeonSetCheckPoint() {
 function KinkyDungeonInitialize(Level, Random) {
 	CharacterReleaseTotal(KinkyDungeonPlayer)
 	KinkyDungeonDressPlayer()
+	KinkyDungeonDrawState = "Game"
 	
 	KinkyDungeonTextMessage = "" 
 	KinkyDungeonActionMessage = "" 
