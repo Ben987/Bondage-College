@@ -54,7 +54,7 @@ var KinkyDungeonKeyNumpad = [56, 52, 50, 54, 55, 57, 49, 51]; // Numpad
 
 var KinkyDungeonKeyWait = [32, 53]; // Space and 5
 
-
+var KinkyDungeonTargetingSpell = null
 
 function KinkyDungeonSetCheckPoint() {
 	MiniGameKinkyDungeonCheckpoint = Math.floor(MiniGameKinkyDungeonLevel / 10)

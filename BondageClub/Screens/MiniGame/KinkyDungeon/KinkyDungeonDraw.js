@@ -199,6 +199,31 @@ function KinkyDungeonHandleHUD() {
 		//else 
 		if (MouseIn(1000, 925, 325, 60)) { KinkyDungeonDrawState = "Magic"}
 		else if (MouseIn(510, 925, 120, 60)) { KinkyDungeonDrawStruggle = !KinkyDungeonDrawStruggle; return false;}
+		
+		if (!KinkyDungeonTargetingSpell) {
+			var spell = null
+			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]] && MouseIn(1405, 895, 90, 90)) {
+				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
+			}
+			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]] && MouseIn(1605, 895, 90, 90)) {
+				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
+			}
+			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]] && MouseIn(1805, 895, 90, 90)) {
+				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
+			}
+			if (spell) {
+				// Handle spell activation
+				KinkyDungeonTargetingSpell = spell
+				
+				if (KinkyDungeonActionMessagePriority <= 1) {
+					KinkyDungeonActionMessageTime = 1
+					KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellTarget" + spell.name)
+					KinkyDungeonActionMessageColor = "white"
+					KinkyDungeonActionMessagePriority = 2
+				}
+			}
+		}
+		
 		if (KinkyDungeonStruggleGroups)
 			for (let S = 0; S < KinkyDungeonStruggleGroups.length; S++) {
 				var sg = KinkyDungeonStruggleGroups[S]

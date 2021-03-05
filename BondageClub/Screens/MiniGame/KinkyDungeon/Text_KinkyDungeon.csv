@@ -148,10 +148,16 @@ KinkyDungeonBookRandomPage,Random Page (your hands are tied)
 
 KinkyDungeonSpellFirebolt,Firebolt
 KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage
+KinkyDungeonSpellCastFirebolt,You a hurl a firebolt!
+KinkyDungeonSpellTargetFirebolt,Choose aim direction
 KinkyDungeonSpellSnare,Snare
 KinkyDungeonSpellDescriptionSnare,An invisible circle on the grounds that binds anyone who walks on it for Duration turns
+KinkyDungeonSpellCastSnare,You set an invisible trap!
+KinkyDungeonSpellTargetSnare,Select where to put the trap (it will be invisible)
 KinkyDungeonSpellFlash,Flash
 KinkyDungeonSpellDescriptionFlash,A flash of light which renders anyone caught within blind for Duration turns
+KinkyDungeonSpellCastFlash,You charge up a bright flash!
+KinkyDungeonSpellTargetFlash,Select where to center the flash (SpellArea radius)
 
 KinkyDungeonInventory,"Open Inventory"
 KinkyDungeonMagic,"Open Magic"
