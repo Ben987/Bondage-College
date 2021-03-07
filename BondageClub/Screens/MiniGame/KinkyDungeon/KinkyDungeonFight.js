@@ -1,6 +1,7 @@
 var KinkyDungeonKilledEnemy = null
 
 var KinkyDungeonMissChancePerBlind = 0.3 // Max 3
+var KinkyDungeonBullets = [] // Bullets on the game board
 
 function KinkyDungeonEvasion(Enemy) {
 	var hitChance = 1.0
@@ -40,4 +41,21 @@ function KinkyDungeonDamageEnemy(Enemy, Damage) {
 
 function KinkyDungeonAttackEnemy(Enemy, Damage) {
 	KinkyDungeonDamageEnemy(Enemy, Damage)
+}
+
+function KinkyDungeonDrawFight(canvasOffsetX, canvasOffsetY, CamX, CamY) {
+	for (let E = 0; E < KinkyDungeonBullets.length; E++) {
+		var bullet = KinkyDungeonBullets[E]
+		var sprite = bullet.name
+		if (KinkyDungeonBullets[E].x >= CamX && KinkyDungeonBullets[E].y >= CamY && KinkyDungeonBullets[E].x < CamX + KinkyDungeonGridWidthDisplay && KinkyDungeonBullets[E].y < CamY + KinkyDungeonGridHeightDisplay) {
+			DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/Enemies/" + sprite + ".png",
+				KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
+				(KinkyDungeonBullets[E].x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonBullets[E].y - CamY)*KinkyDungeonGridSizeDisplay,
+				KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
+				
+				
+		}
+		
+
+	}
 }
