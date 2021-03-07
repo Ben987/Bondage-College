@@ -393,6 +393,7 @@ function PreferenceInitPlayer() {
 	if (typeof NS.ChatJoin.Subs !== "boolean") NS.ChatJoin.Subs = false;
 	if (typeof NS.Audio !== undefined) delete NS.Audio;
 	if (typeof NS.Disconnect !== "object") NS.Disconnect = PreferenceInitNotificationSetting(NS.Disconnect, defaultAudio);
+	if (typeof NS.Larp !== "object") NS.Larp = PreferenceInitNotificationSetting(NS.Larp, defaultAudio, NotificationEventType.NONE);
 	if (typeof NS.Test !== "object") NS.Test = PreferenceInitNotificationSetting(NS.Test, defaultAudio, NotificationAlertType.TITLEPREFIX);
 	C.NotificationSettings = NS;
 
@@ -1818,6 +1819,7 @@ function PreferenceSubscreenNotificationsRun() {
 		DrawCheckboxDisabled(1540, 475, 64, 64, TextGet("NotificationsChatJoinSubs"));
 	}
 	PreferenceNotificationsDrawSetting(500, 555, TextGet("NotificationsDisconnect"), NS.Disconnect);
+	PreferenceNotificationsDrawSetting(500, 635, TextGet("NotificationsLarp"), NS.Larp);
 	PreferenceNotificationsDrawSetting(500, 820, "", NS.Test);
 	MainCanvas.textAlign = "center";
 
@@ -1872,6 +1874,7 @@ function PreferenceSubscreenNotificationsClick() {
 		if (MouseIn(1540, 475, 64, 64)) NS.ChatJoin.Subs = !NS.ChatJoin.Subs;
 	}
 	PreferenceNotificationsClickSetting(500, 555, NS.Disconnect, NotificationEventType.DISCONNECT);
+	PreferenceNotificationsClickSetting(500, 635, NS.Larp, NotificationEventType.LARP);
 	PreferenceNotificationsClickSetting(500, 820, NS.Test);
 
 	// Test buttons

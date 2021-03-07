@@ -277,6 +277,7 @@ NotificationsChatJoinLovers,Lovers
 NotificationsChatJoinFriendlist,Friends
 NotificationsChatJoinSubs,Owned Subs
 NotificationsDisconnect,Disconnect from the game
+NotificationsLarp,Your turn in a LARP game
 NotificationsTestRaise,Raise a test notification
 NotificationsTestReset,Clear raised notifications
 NotificationsTestMessage,Hello there!

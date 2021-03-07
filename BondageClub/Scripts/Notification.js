@@ -10,6 +10,7 @@ const NotificationEventType = {
 	BEEP: "Beep",
 	DISCONNECT: "Disconnect",
 	TEST: "Test",
+	LARP: "Larp",
 };
 
 /**
@@ -161,6 +162,7 @@ function NotificationLoad() {
 	NotificationEvents[NotificationEventType.BEEP] = new NotificationEvent(NotificationEventType.BEEP, Player.NotificationSettings.Beeps);
 	NotificationEvents[NotificationEventType.DISCONNECT] = new NotificationEvent(NotificationEventType.DISCONNECT, Player.NotificationSettings.Disconnect);
 	NotificationEvents[NotificationEventType.TEST] = new NotificationEvent(NotificationEventType.TEST, Player.NotificationSettings.Test);
+	NotificationEvents[NotificationEventType.LARP] = new NotificationEvent(NotificationEventType.LARP, Player.NotificationSettings.Larp);
 
 	// Create the alert and audio type lists for the Preferences screen
 	NotificationAlertTypeList.push(NotificationAlertType.NONE);
