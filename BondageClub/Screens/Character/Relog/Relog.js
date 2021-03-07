@@ -57,6 +57,8 @@ function RelogRun() {
 	DrawButton(675, 750, 300, 60, TextGet("LogBack"), CanLogin ? "White" : "Grey", "");
 	DrawButton(1025, 750, 300, 60, TextGet("GiveUp"), "White", "");
 
+	// Reset any disconnect notifications
+	NotificationReset(NotificationEventType.DISCONNECT);
 }
 
 /**

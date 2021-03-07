@@ -142,6 +142,11 @@ function ServerDisconnect(data, close = false) {
 
 		}
 	}
+
+	// Raise a notification to alert the user
+	if (!document.hasFocus()) {
+		NotificationRaise(NotificationEventType.DISCONNECT);
+	}
 }
 
 /**
@@ -739,7 +744,14 @@ function ServerAccountBeep(data) {
 				Message: data.Message
 			});
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
-			if (Player.NotificationSettings.Beeps && !document.hasFocus()) NotificationsIncrement("Beep");
+			if (!document.hasFocus()) {
+				NotificationRaise(NotificationEventType.BEEP, {
+					memberNumber: data.MemberNumber,
+					characterName: data.MemberName,
+					chatRoomName: data.ChatRoomName,
+					body: data.Message
+				});
+			}
 		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber && data.ChatRoomName) {
 			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing != false && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashedBy(data.MemberNumber, Player)) {
@@ -766,7 +778,9 @@ function ServerAccountBeep(data) {
 function ServerDrawBeep() {
 	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) {
 		DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
-		if (document.hasFocus()) NotificationsReset("Beep");
+		if (document.hasFocus()) {
+			NotificationReset(NotificationEventType.BEEP);
+		}
 	}
 }
 

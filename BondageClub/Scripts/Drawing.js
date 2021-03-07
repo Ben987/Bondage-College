@@ -1235,3 +1235,21 @@ function DrawPreviewBox(X, Y, Path, Description, Options) {
 	DrawImageResize(Path, ImageX, ImageY, 221, 221);
 	if (Description) DrawTextFit(Description, X + 110, Y + 250, 221, Foreground);
 }
+
+/**
+ * Takes a rectangular subsection of the character's canvas and returns it as a new canvas
+ * @param {any} C - The character to draw part of
+ * @param {any} Left - The starting X co-ordinate of the section to take in C.Canvas
+ * @param {any} Top - The starting Y co-ordinate (offset by CanvasUpperOverflow) of the section to take in C.Canvas
+ * @param {any} Width - The width of the section to take
+ * @param {any} Height - The height of the section to take
+ * @returns {HTMLCanvasElement} - The segment of the character canvas
+ */
+function DrawCharacterSegment(C, Left, Top, Width, Height) {
+	const ImgData = C.Canvas.getContext('2d').getImageData(Left, CanvasUpperOverflow + Top, Width, Height);
+	let ImgCanvas = document.createElement('canvas');
+	ImgCanvas.width = Width;
+	ImgCanvas.height = Height;
+	ImgCanvas.getContext('2d').putImageData(ImgData, 0, 0);
+	return ImgCanvas;
+}

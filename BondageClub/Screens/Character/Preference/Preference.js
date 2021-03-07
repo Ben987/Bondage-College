@@ -273,6 +273,7 @@ function PreferenceInitPlayer() {
 	if (typeof C.AudioSettings.PlayBeeps !== "boolean") C.AudioSettings.PlayBeeps = false;
 	if (typeof C.AudioSettings.PlayItem !== "boolean") C.AudioSettings.PlayItem = false;
 	if (typeof C.AudioSettings.PlayItemPlayerOnly !== "boolean") C.AudioSettings.PlayItemPlayerOnly = false;
+	if (typeof C.AudioSettings.Notifications !== "boolean") C.AudioSettings.Notifications = false;
 
 	// Controller settings
 	if (!C.ControllerSettings) C.ControllerSettings = {};
@@ -372,17 +373,29 @@ function PreferenceInitPlayer() {
 	if (typeof C.GraphicsSettings.StimulationFlashes !== "boolean") C.GraphicsSettings.StimulationFlashes = true;
 
 	// Notification settings
-	if (!C.NotificationSettings) C.NotificationSettings = {};
-	if (typeof C.NotificationSettings.Audio !== "boolean") C.NotificationSettings.Audio = false;
-	if (typeof C.NotificationSettings.Beeps !== "boolean") C.NotificationSettings.Beeps = true;
-	if (typeof C.NotificationSettings.Chat !== "boolean") C.NotificationSettings.Chat = true;
-	if (typeof C.NotificationSettings.ChatActions !== "boolean") C.NotificationSettings.ChatActions = false;
-	if (C.NotificationSettings.ChatJoin == undefined) C.NotificationSettings.ChatJoin = {};
-	if (typeof C.NotificationSettings.ChatJoin.Enabled !== "boolean") C.NotificationSettings.ChatJoin.Enabled = false;
-	if (typeof C.NotificationSettings.ChatJoin.Owner !== "boolean") C.NotificationSettings.ChatJoin.Owner = false;
-	if (typeof C.NotificationSettings.ChatJoin.Lovers !== "boolean") C.NotificationSettings.ChatJoin.Lovers = false;
-	if (typeof C.NotificationSettings.ChatJoin.Friendlist !== "boolean") C.NotificationSettings.ChatJoin.Friendlist = false;
-	
+	let NS = C.NotificationSettings;
+	if (!NS) NS = {};
+	const defaultAudio = typeof NS.Audio === "boolean" && NS.Audio ? NotificationAudioType.FIRST : NotificationAudioType.NONE;
+	if (typeof NS.Beeps !== "object") NS.Beeps = PreferenceInitNotificationSetting(NS.Beeps, defaultAudio, NotificationAlertType.POPUP);
+	if (typeof NS.Chat !== "undefined") { NS.ChatMessage = NS.Chat; delete NS.Chat; }
+	if (typeof NS.ChatMessage !== "object") NS.ChatMessage = PreferenceInitNotificationSetting(NS.ChatMessage, defaultAudio);
+	if (typeof NS.ChatMessage.IncludeActions !== "boolean") NS.ChatMessage.IncludeActions = false;
+	if (typeof NS.ChatActions !== undefined) delete NS.ChatActions;
+	if (typeof NS.ChatJoin !== "object") NS.ChatJoin = PreferenceInitNotificationSetting(NS.ChatJoin, defaultAudio);
+	if (NS.ChatJoin.Enabled !== undefined) {
+		NS.ChatJoin.AlertType = NS.ChatJoin.Enabled ? NotificationAlertType.TITLEPREFIX : NotificationAlertType.NONE;
+		NS.ChatJoin.Audio = NotificationAudioType.NONE;
+		delete NS.ChatJoin.Enabled;
+	}
+	if (typeof NS.ChatJoin.Owner !== "boolean") NS.ChatJoin.Owner = false;
+	if (typeof NS.ChatJoin.Lovers !== "boolean") NS.ChatJoin.Lovers = false;
+	if (typeof NS.ChatJoin.Friendlist !== "boolean") NS.ChatJoin.Friendlist = false;
+	if (typeof NS.ChatJoin.Subs !== "boolean") NS.ChatJoin.Subs = false;
+	if (typeof NS.Audio !== undefined) delete NS.Audio;
+	if (typeof NS.Disconnect !== "object") NS.Disconnect = PreferenceInitNotificationSetting(NS.Disconnect, defaultAudio);
+	if (typeof NS.Test !== "object") NS.Test = PreferenceInitNotificationSetting(NS.Test, defaultAudio, NotificationAlertType.TITLEPREFIX);
+	C.NotificationSettings = NS;
+
 	// Forces some preferences depending on difficulty
 
 	// Difficulty: non-Roleplay settings
@@ -470,6 +483,21 @@ function PreferenceInitPlayer() {
 	if (Object.keys(toUpdate).length > 0) {
 		ServerSend("AccountUpdate", toUpdate);
 	}
+}
+
+/**
+ * Initialise the Notifications settings, converting the old boolean types to objects
+ * @param {NotificationSetting} setting - The individual setting
+ * @param {NotificationAudioType} audio - The audio setting
+ * @param {NotificationAlertType} defaultAlertType - The default AlertType to use
+ * @returns {void} - Nothing
+ */
+function PreferenceInitNotificationSetting(setting, audio, defaultAlertType) {
+	const alertType = typeof setting === "boolean" && setting === true ? NotificationAlertType.TITLEPREFIX : defaultAlertType || NotificationAlertType.NONE;
+	setting = {};
+	setting.AlertType = alertType;
+	setting.Audio = audio;
+	return setting;
 }
 
 /**
@@ -914,7 +942,7 @@ function PreferenceSubscreenAudioRun() {
 	DrawCheckbox(500, 272, 64, 64, TextGet("AudioPlayBeeps"), Player.AudioSettings.PlayBeeps);
 	DrawCheckbox(500, 352, 64, 64, TextGet("AudioPlayItem"), Player.AudioSettings.PlayItem);
 	DrawCheckbox(500, 432, 64, 64, TextGet("AudioPlayItemPlayerOnly"), Player.AudioSettings.PlayItemPlayerOnly);
-	DrawCheckbox(500, 512, 64, 64, TextGet("NotificationsAudio"), Player.NotificationSettings.Audio);
+	DrawCheckbox(500, 512, 64, 64, TextGet("AudioNotifications"), Player.AudioSettings.Notifications);
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 193, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
@@ -1227,7 +1255,7 @@ function PreferenceSubscreenGraphicsClick() {
 function PreferenceSubscreenAudioClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) PreferenceSubscreen = "";
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) PreferenceSubscreenAudioExit();
 
 	// Volume increase/decrease control
 	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
@@ -1241,10 +1269,27 @@ function PreferenceSubscreenAudioClick() {
 		if ((MouseY >= 272) && (MouseY < 336)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
 		if ((MouseY >= 352) && (MouseY < 416)) Player.AudioSettings.PlayItem = !Player.AudioSettings.PlayItem;
 		if ((MouseY >= 432) && (MouseY < 496)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
-		if ((MouseY >= 512) && (MouseY < 576)) Player.NotificationSettings.Audio = !Player.NotificationSettings.Audio;
+		if ((MouseY >= 512) && (MouseY < 576)) Player.AudioSettings.Notifications = !Player.AudioSettings.Notifications;
+	}
+}
+
+/**
+ * Exists the preference screen.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenAudioExit() {
+	// If audio has been disabled for notifications, disable each individual notification audio setting
+	if (!Player.AudioSettings.Notifications) {
+		let NS = Player.NotificationSettings;
+		NS.Beeps.Audio = 0;
+		NS.ChatMessage.Audio = 0;
+		NS.ChatJoin.Audio = 0;
+		NS.Disconnect.Audio = 0;
 	}
 
+	PreferenceSubscreen = "";
 }
+
 /**
  * Handles click events for the audio preference settings.  Redirected from the main Click function.
  * @returns {void} - Nothing
@@ -1712,6 +1757,29 @@ function PreferenceIsPlayerInSensDep() {
 }
 
 /**
+ * Loads the preference screen. This function is called dynamically, when the character enters the preference screen for the first time
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenNotificationsLoad() {
+	const NS = Player.NotificationSettings;
+	PreferenceNotificationsCheckSetting(NS.Beeps);
+	PreferenceNotificationsCheckSetting(NS.ChatMessage);
+	PreferenceNotificationsCheckSetting(NS.ChatJoin);
+	PreferenceNotificationsCheckSetting(NS.Disconnect);
+	PreferenceNotificationsCheckSetting(NS.Test);
+}
+
+/**
+ * If the setting's alert type is not allowed for this session, e.g. from using a new device/browser, reset it to 'None'
+ * @param {NotificationSetting} setting - The notifications setting to check
+ * @returns {void} - Nothing
+ */
+function PreferenceNotificationsCheckSetting(setting) {
+	const type = NotificationAlertTypeList.find(N => N === setting.AlertType);
+	if (type == null) setting.AlertType = NotificationAlertTypeList[0];
+}
+
+/**
  * Sets the notifications preferences for a player. Redirected to from the main Run function if the player is in the notifications settings subscreen
  * @returns {void} - Nothing
  */
@@ -1723,31 +1791,62 @@ function PreferenceSubscreenNotificationsRun() {
 
 	// Left-aligned text controls
 	MainCanvas.textAlign = "left";
+	const NS = Player.NotificationSettings;
 	DrawText(TextGet("NotificationsPreferences"), 500, 125, "Black", "Gray");
-	DrawCheckbox(500, 190, 64, 64, TextGet("NotificationsAudio"), Player.NotificationSettings.Audio);
-	DrawText(TextGet("NotificationsChatRooms"), 500, 305, "Black", "Gray");
-	DrawCheckbox(500, 350, 64, 64, TextGet("NotificationsBeeps"), Player.NotificationSettings.Beeps);
-	DrawCheckbox(500, 430, 64, 64, TextGet("NotificationsChat"), Player.NotificationSettings.Chat);
-	if (Player.NotificationSettings.Chat) {
-		DrawCheckbox(600, 510, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
+	DrawText(TextGet("NotificationsExplanation"), 500, 190, "Black", "Gray");
+	DrawEmptyRect(1190, 92, 510, 125, "Black", 2);
+	DrawImage("Icons/Audio1.png", 1202, 97);
+	DrawText(TextGet("NotificationsAudioExplanation1"), 1275, 125, "Black", "Gray");
+	DrawText(TextGet("NotificationsAudioExplanation2"), 1200, 190, "Black", "Gray");
+	PreferenceNotificationsDrawSetting(500, 235, TextGet("NotificationsBeeps"), NS.Beeps);
+	PreferenceNotificationsDrawSetting(500, 315, TextGet("NotificationsChatMessage"), NS.ChatMessage);
+	if (NS.ChatMessage.AlertType > 0) {
+		DrawCheckbox(1260, 315, 64, 64, TextGet("NotificationsChatActions"), NS.ChatMessage.IncludeActions);
 	} else {
-		DrawCheckboxDisabled(600, 510, 64, 64, TextGet("NotificationsChatActions"));
+		DrawCheckboxDisabled(1250, 315, 64, 64, TextGet("NotificationsChatActions"));
 	}
-	DrawCheckbox(500, 590, 64, 64, TextGet("NotificationsChatJoin"), Player.NotificationSettings.ChatJoin.Enabled);
-	DrawText("Only:", 600, 702, "Black", "Gray");
-	if (Player.NotificationSettings.ChatJoin.Enabled) {
-		DrawCheckbox(775, 670, 64, 64, TextGet("NotificationsChatJoinOwner"), Player.NotificationSettings.ChatJoin.Owner);
-		DrawCheckbox(1075, 670, 64, 64, TextGet("NotificationsChatJoinLovers"), Player.NotificationSettings.ChatJoin.Lovers);
-		DrawCheckbox(1375, 670, 64, 64, TextGet("NotificationsChatJoinFriendlist"), Player.NotificationSettings.ChatJoin.Friendlist);
+	PreferenceNotificationsDrawSetting(500, 395, TextGet("NotificationsChatJoin"), NS.ChatJoin);
+	DrawText(TextGet("NotificationsChatJoinOnly"), 550, 507, "Black", "Gray");
+	if (NS.ChatJoin.AlertType > 0) {
+		DrawCheckbox(700, 475, 64, 64, TextGet("NotificationsChatJoinOwner"), NS.ChatJoin.Owner);
+		DrawCheckbox(980, 475, 64, 64, TextGet("NotificationsChatJoinLovers"), NS.ChatJoin.Lovers);
+		DrawCheckbox(1260, 475, 64, 64, TextGet("NotificationsChatJoinFriendlist"), NS.ChatJoin.Friendlist);
+		DrawCheckbox(1540, 475, 64, 64, TextGet("NotificationsChatJoinSubs"), NS.ChatJoin.Subs);
 	} else {
-		DrawCheckboxDisabled(775, 670, 64, 64, TextGet("NotificationsChatJoinOwner"));
-		DrawCheckboxDisabled(1075, 670, 64, 64, TextGet("NotificationsChatJoinLovers"));
-		DrawCheckboxDisabled(1375, 670, 64, 64, TextGet("NotificationsChatJoinFriendlist"));
+		DrawCheckboxDisabled(700, 475, 64, 64, TextGet("NotificationsChatJoinOwner"));
+		DrawCheckboxDisabled(980, 475, 64, 64, TextGet("NotificationsChatJoinLovers"));
+		DrawCheckboxDisabled(1260, 475, 64, 64, TextGet("NotificationsChatJoinFriendlist"));
+		DrawCheckboxDisabled(1540, 475, 64, 64, TextGet("NotificationsChatJoinSubs"));
 	}
+	PreferenceNotificationsDrawSetting(500, 555, TextGet("NotificationsDisconnect"), NS.Disconnect);
+	PreferenceNotificationsDrawSetting(500, 820, "", NS.Test);
 	MainCanvas.textAlign = "center";
 
-	// Reset button
-	DrawButton(500, 800, 380, 64, TextGet("NotificationsReset"), "White");
+	// Test buttons
+	DrawEmptyRect(500, 795, 1400, 0, "Black", 1);
+	DrawButton(800, 820, 450, 64, TextGet("NotificationsTestRaise"), "White");
+	DrawButton(1286, 820, 450, 64, TextGet("NotificationsTestReset"), "White");
+}
+
+/**
+ * Draws the two checkbox row for a notifications setting
+ * @param {number} Left - The X co-ordinate the row starts on
+ * @param {number} Top - The Y co-ordinate the row starts on
+ * @param {string} Text - The text for the setting's description
+ * @param {NotificationSetting} Setting - The player setting the row corresponds to
+ * @returns {void} - Nothing
+ */
+function PreferenceNotificationsDrawSetting(Left, Top, Text, Setting) {
+	MainCanvas.textAlign = "center";
+	DrawBackNextButton(Left, Top, 164, 64, TextGet("NotificationsAlertType" + Setting.AlertType.toString()), "White", null, () => "", () => "");
+	MainCanvas.textAlign = "left";
+	const Enabled = Setting.AlertType > 0;
+	if (Enabled) {
+		DrawButton(Left + 200, Top, 64, 64, "", "White", "Icons/Audio" + Setting.Audio.toString() + ".png");
+	} else {
+		DrawCheckboxDisabled(Left + 200, Top, 64, 64, "");
+	}
+	DrawText(Text, Left + 300, Top + 33, "Black", "Gray");
 }
 
 /**
@@ -1757,26 +1856,78 @@ function PreferenceSubscreenNotificationsRun() {
 function PreferenceSubscreenNotificationsClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
+	if (MouseIn(1815, 75, 90, 90)) PreferenceNotificationsExit();
 
 	// Checkboxes
-	const settings = Player.NotificationSettings;
-	if (MouseIn(500, 190, 64, 64)) settings.Audio = !settings.Audio;
-	if (MouseIn(500, 350, 64, 64)) settings.Beeps = !settings.Beeps;
-	if (MouseIn(500, 430, 64, 64)) settings.Chat = !settings.Chat;
-	if (MouseIn(600, 510, 64, 64)) settings.ChatActions = !settings.ChatActions && settings.Chat;
-	if (MouseIn(500, 590, 64, 64)) {
-		settings.ChatJoin.Enabled = !settings.ChatJoin.Enabled;
-		if (!settings.ChatJoin.Enabled) {
-			settings.ChatJoin.Owner = false;
-			settings.ChatJoin.Lovers = false;
-			settings.ChatJoin.Friendlist = false;
-		}
+	const NS = Player.NotificationSettings;
+	PreferenceNotificationsClickSetting(500, 235, NS.Beeps, NotificationEventType.BEEP);
+	PreferenceNotificationsClickSetting(500, 315, NS.ChatMessage, NotificationEventType.CHATMESSAGE);
+	if (MouseIn(1260, 315, 64, 64) && NS.ChatMessage.AlertType > 0) {
+		NS.ChatMessage.IncludeActions = !NS.ChatMessage.IncludeActions;
 	}
-	if (MouseIn(775, 670, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Owner = !settings.ChatJoin.Owner;
-	if (MouseIn(1075, 670, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Lovers = !settings.ChatJoin.Lovers;
-	if (MouseIn(1375, 670, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Friendlist = !settings.ChatJoin.Friendlist;
-	
-	// Reset button
-	if (MouseIn(500, 800, 380, 64)) NotificationsResetAll();
+	PreferenceNotificationsClickSetting(500, 395, NS.ChatJoin, NotificationEventType.CHATJOIN);
+	if (NS.ChatJoin.AlertType > 0) {
+		if (MouseIn(700, 475, 64, 64)) NS.ChatJoin.Owner = !NS.ChatJoin.Owner;
+		if (MouseIn(980, 475, 64, 64)) NS.ChatJoin.Lovers = !NS.ChatJoin.Lovers;
+		if (MouseIn(1260, 475, 64, 64)) NS.ChatJoin.Friendlist = !NS.ChatJoin.Friendlist;
+		if (MouseIn(1540, 475, 64, 64)) NS.ChatJoin.Subs = !NS.ChatJoin.Subs;
+	}
+	PreferenceNotificationsClickSetting(500, 555, NS.Disconnect, NotificationEventType.DISCONNECT);
+	PreferenceNotificationsClickSetting(500, 820, NS.Test);
+
+	// Test buttons
+	if (MouseIn(800, 820, 450, 64)) {
+		NotificationRaise(NotificationEventType.TEST, { body: TextGet("NotificationsTestMessage"), character: Player, useCharAsIcon: true });
+	}
+	if (MouseIn(1286, 820, 450, 64)) NotificationResetAll();
+}
+
+/** Handles the click events within a multi-checkbox settings row.
+ * @param {number} Left - The X co-ordinate the row starts on
+ * @param {number} Top - The Y co-ordinate the row starts on
+ * @param {NotificationSetting} Setting - The player setting the row corresponds to
+ * @param {NotificationEventType} EventType - The event type the setting corresponds to
+ * @returns {void} - Nothing
+ */
+function PreferenceNotificationsClickSetting(Left, Top, Setting, EventType) {
+
+	// Toggle the alert type
+	if (MouseIn(Left, Top, 164, 64)) {
+		if (MouseXIn(Left, 83)) {
+			let prevType = NotificationAlertTypeList.findIndex(N => N === Setting.AlertType) - 1;
+			if (prevType < 0) prevType = NotificationAlertTypeList.length - 1;
+			Setting.AlertType = NotificationAlertTypeList[prevType];
+		}
+		else if (MouseXIn(Left + 83, 83)) {
+			let nextType = NotificationAlertTypeList.findIndex(N => N === Setting.AlertType) + 1;
+			if (nextType > NotificationAlertTypeList.length - 1) nextType = 0;
+			Setting.AlertType = NotificationAlertTypeList[nextType];
+		}
+		if (EventType) NotificationReset(EventType);
+	}
+
+	// Toggle the audio type
+	if (MouseIn(Left + 200, Top, 64, 64) && Setting.AlertType > 0) {
+		let nextType = NotificationAudioTypeList.findIndex(N => N === Setting.Audio) + 1;
+		if (nextType > NotificationAudioTypeList.length - 1) nextType = 0;
+		Setting.Audio = NotificationAudioTypeList[nextType];
+	}
+}
+
+/**
+ * Exits the preference screen. Resets the test notifications.
+ * @returns {void} - Nothing
+ */
+function PreferenceNotificationsExit() {
+
+	//If any of the settings now have audio, enable the AudioSettings setting
+	const NS = Player.NotificationSettings;
+	if (NS.Beeps.Audio > 0
+		|| NS.ChatMessage.Audio > 0
+		|| NS.ChatJoin.Audio > 0
+		|| NS.Disconnect.Audio > 0)
+		Player.AudioSettings.Notifications = true;
+
+	NotificationReset(NotificationEventType.TEST);
+	PreferenceSubscreen = "";
 }

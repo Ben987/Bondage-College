@@ -106,6 +106,7 @@ AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
+AudioNotifications,Allow audio alerts for notifications
 ImmersionLockSetting,Lock this menu while bound
 ReturnToChatRoom,Return to chatrooms on relog
 ReturnToChatRoomAdmin,Auto-remake rooms
@@ -260,13 +261,22 @@ PressDownOnDpad,Press Down on Dpad
 PressLeftOnDpad,Press Left on Dpad
 PressRightOnDpad,Press Right on Dpad
 DeadZone,Dead Zone
-NotificationsAudio,Audio alert for notifications
-NotificationsChatRooms,Raise notifications for:
-NotificationsBeeps,Missed beeps
-NotificationsChat,Unread messages in chat rooms
-NotificationsChatActions,Include item and arousal activity messages
-NotificationsReset,Reset Notifications
-NotificationsChatJoin,Players entering chat rooms while away
+NotificationsAlertType0,Off
+NotificationsAlertType1,(1) in title
+NotificationsAlertType2,Popup
+NotificationsExplanation,Raise notifications for missed events:
+NotificationsAudioExplanation1,: Play a sound for only
+NotificationsAudioExplanation2,the first occurence of an event
+NotificationsBeeps,Beeps
+NotificationsChatMessage,Messages in chat rooms
+NotificationsChatActions,Include item/activity messages
+NotificationsChatJoin,Players entering chat rooms
+NotificationsChatJoinOnly,Only:
 NotificationsChatJoinOwner,Owner
 NotificationsChatJoinLovers,Lovers
 NotificationsChatJoinFriendlist,Friends
+NotificationsChatJoinSubs,Owned Subs
+NotificationsDisconnect,Disconnect from the game
+NotificationsTestRaise,Raise a test notification
+NotificationsTestReset,Clear raised notifications
+NotificationsTestMessage,Hello there!

@@ -477,6 +477,7 @@ function LoginResponse(C) {
 			}
 			ActivitySetArousal(Player, 0);
 			ActivityTimerProgress(Player, 0);
+			NotificationLoad();
 
 			// Loads the dialog and removes the login controls
 			CharacterLoadCSVDialog(Player);
