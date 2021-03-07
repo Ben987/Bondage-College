@@ -1280,11 +1280,10 @@ function PreferenceSubscreenAudioClick() {
 function PreferenceSubscreenAudioExit() {
 	// If audio has been disabled for notifications, disable each individual notification audio setting
 	if (!Player.AudioSettings.Notifications) {
-		let NS = Player.NotificationSettings;
-		NS.Beeps.Audio = 0;
-		NS.ChatMessage.Audio = 0;
-		NS.ChatJoin.Audio = 0;
-		NS.Disconnect.Audio = 0;
+		for (const setting in Player.NotificationSettings) {
+			let audio = Player.NotificationSettings[setting].Audio;
+			if (typeof audio === 'number' && audio > 0) Player.NotificationSettings[setting].Audio = NotificationAudioType.NONE;
+		}
 	}
 
 	PreferenceSubscreen = "";
@@ -1920,13 +1919,13 @@ function PreferenceNotificationsClickSetting(Left, Top, Setting, EventType) {
  */
 function PreferenceNotificationsExit() {
 
-	//If any of the settings now have audio, enable the AudioSettings setting
-	const NS = Player.NotificationSettings;
-	if (NS.Beeps.Audio > 0
-		|| NS.ChatMessage.Audio > 0
-		|| NS.ChatJoin.Audio > 0
-		|| NS.Disconnect.Audio > 0)
-		Player.AudioSettings.Notifications = true;
+	//If any of the settings now have audio enabled, enable the AudioSettings setting as well
+	let enableAudio = false;
+	for (const setting in Player.NotificationSettings) {
+		let audio = Player.NotificationSettings[setting].Audio;
+		if (typeof audio === 'number' && audio > 0) enableAudio = true;
+	}
+	if (enableAudio) Player.AudioSettings.Notifications = true;
 
 	NotificationReset(NotificationEventType.TEST);
 	PreferenceSubscreen = "";
