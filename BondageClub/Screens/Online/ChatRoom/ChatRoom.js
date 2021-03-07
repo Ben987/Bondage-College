@@ -1160,16 +1160,17 @@ function ChatRoomMenuDraw() {
 		let Button = ChatRoomMenuButtons[B];
 		if (Button === "Exit") continue; // handled in ChatRoomRun()
 		const ImageSuffix = Button === "Icons" ? ChatRoomHideIconState.toString() : "";
-		if (Button === "Exit" && !ChatRoomCanLeave()
-			|| (Button === "Kneel" && (!Player.CanKneel() && !(ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel()))))
-			|| (Button === "Dress" && (!Player.CanChange() || !OnlineGameAllowChange())))
+		if (Button === "Kneel" && !Player.CanKneel()) {
+			if (ChatRoomGetUpTimer === 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())) {
+				ButtonColor = "Yellow";
+			} else {
+				ButtonColor = "Pink";
+			}
+		} else if (Button === "Dress" && (!Player.CanChange() || !OnlineGameAllowChange())) {
 			ButtonColor = "Pink";
-		else if (Button === "Kneel" && (!Player.CanKneel() && ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())))
-      ButtonColor = "#FFFF00"
-    else ButtonColor = "White";
-    
-    (Player.CanKneel()) ? "White" : ((ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())) ? "#FFFF00" : "Pink")
-    
+		} else {
+			ButtonColor = "White";
+		}
 		DrawButton(1005 + Space * B, 2, 120, 60, "", ButtonColor, "Icons/Rectangle/" + Button + ImageSuffix + ".png", TextGet("Menu" + Button));
 	}
 }
