@@ -266,7 +266,7 @@ NotificationsAlertType1,(1) in title
 NotificationsAlertType2,Popup
 NotificationsExplanation,Raise notifications for missed events:
 NotificationsAudioExplanation1,: Play a sound for only
-NotificationsAudioExplanation2,the first occurence of an event
+NotificationsAudioExplanation2,the first occurrence of an event
 NotificationsBeeps,Beeps
 NotificationsChatMessage,Messages in chat rooms
 NotificationsChatActions,Include item/activity messages
