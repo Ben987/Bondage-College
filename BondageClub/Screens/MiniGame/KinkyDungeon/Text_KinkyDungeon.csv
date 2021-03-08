@@ -57,8 +57,9 @@ AttackBlindZombieBind,"The zombie's charms attach to your body (+RestraintAdded)
 AttackBlindZombie,"The zombie caresses your body! (-DamageTaken WP)"
 AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
 
-
+KinkyDungeonNoMana,"You do not have enough stamina to cast the spell!"
 PlayerAttack,"You attack the TargetEnemy for DamageDealt damage!"
+PlayerRanged,"Your attack hits the TargetEnemy for DamageDealt damage!"
 PlayerMiss,"You miss the TargetEnemy!"
 KinkyDungeonStruggleStruggleFail,"You tug on the TargetRestraint but fail to make progress."
 KinkyDungeonStrugglePickFail,"You try to unlock the TargetRestraint but can't reach the lock."

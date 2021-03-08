@@ -2,6 +2,9 @@ var KinkyDungeonKilledEnemy = null
 
 var KinkyDungeonMissChancePerBlind = 0.3 // Max 3
 var KinkyDungeonBullets = [] // Bullets on the game board
+var KinkyDungeonBulletsID = {} // Bullets on the game board
+
+var KinkyDungeonOpenObjects = KinkyDungeonTransparentObjects // Objects bullets can pass thru
 
 function KinkyDungeonEvasion(Enemy) {
 	var hitChance = 1.0
@@ -14,7 +17,7 @@ function KinkyDungeonEvasion(Enemy) {
 	return false;
 }
 
-function KinkyDungeonDamageEnemy(Enemy, Damage) {
+function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg) {
 	var dmg = Damage.damage
 	var type = Damage.type
 	var hit = false;
@@ -30,11 +33,12 @@ function KinkyDungeonDamageEnemy(Enemy, Damage) {
 		
 		
 	}
-	
-	KinkyDungeonActionMessageTime = 2
-	KinkyDungeonActionMessage = (hit) ? TextGet("PlayerAttack").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)).replace("DamageDealt", dmg) : TextGet("PlayerMiss").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name))
-	KinkyDungeonActionMessageColor = (hit) ? "orange" : "red"
-	KinkyDungeonActionMessagePriority = 1
+	if (!NoMsg) {
+		KinkyDungeonActionMessageTime = 2
+		KinkyDungeonActionMessage = (hit) ? TextGet((Ranged) ? "PlayerRanged" : "PlayerAttack").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)).replace("DamageDealt", dmg) : TextGet("PlayerMiss").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name))
+		KinkyDungeonActionMessageColor = (hit) ? "orange" : "red"
+		KinkyDungeonActionMessagePriority = 1
+	}
 	
 
 }
@@ -43,17 +47,100 @@ function KinkyDungeonAttackEnemy(Enemy, Damage) {
 	KinkyDungeonDamageEnemy(Enemy, Damage)
 }
 
+function KinkyDungeonUpdateBullets(delta) {
+	for (let E = 0; E < KinkyDungeonBullets.length; E++) {
+		var b = KinkyDungeonBullets[E]
+		var d = delta
+		
+		while (d > 0) {
+			var dt = d - Math.max(0, d - 1)
+			if (b.born) b.born = false
+			else {
+				b.xx += b.vx * dt
+				b.yy += b.vy * dt
+			}
+			
+			b.x = Math.round(b.xx)
+			b.y = Math.round(b.yy)
+			
+			d -= 1
+			
+			if (!KinkyDungeonBulletsCheckCollision(b)) {
+				d = 0
+				KinkyDungeonBullets.splice(E, 1)
+				KinkyDungeonBulletsID[b.spriteID] = null
+				E -= 1
+			}
+		}
+	}
+}
+
+function KinkyDungeonUpdateBulletsCollisions(delta) {
+	for (let E = 0; E < KinkyDungeonBullets.length; E++) {
+		var b = KinkyDungeonBullets[E]
+		
+		if (!KinkyDungeonBulletsCheckCollision(b)) {
+			KinkyDungeonBullets.splice(E, 1)
+			KinkyDungeonBulletsID[b.spriteID] = null
+			E -= 1
+		}
+	}
+}
+
+function KinkyDungeonBulletsCheckCollision(bullet) {
+	var mapItem = KinkyDungeonMapGet(bullet.x, bullet.y)
+	if (!KinkyDungeonOpenObjects.includes(mapItem)) return false
+	
+	for (let L = 0; L < KinkyDungeonEntities.length; L++) {
+		var enemy = KinkyDungeonEntities[L]
+		if (enemy.x == bullet.x && enemy.y == bullet.y) {
+			KinkyDungeonDamageEnemy(enemy, bullet.bullet.damage, true, bullet.bullet.NoMsg)
+			
+			return false
+		}
+	}
+	return true
+}
+
+function KinkyDungeonLaunchBullet(x, y, targetx, targety, speed, bullet) {
+	var direction = Math.atan2(targety - y, targetx - x)
+	var vx = Math.cos(direction) * speed
+	var vy = Math.sin(direction) * speed
+	KinkyDungeonBullets.push({born: true, x:x, y:y, vx:vx, vy:vy, xx:x, yy:y, spriteID:bullet.name + CommonTime(), bullet:bullet})
+}
+
 function KinkyDungeonDrawFight(canvasOffsetX, canvasOffsetY, CamX, CamY) {
 	for (let E = 0; E < KinkyDungeonBullets.length; E++) {
-		var bullet = KinkyDungeonBullets[E]
+		var bullet = KinkyDungeonBullets[E].bullet
 		var sprite = bullet.name
+		var spriteCanvas = KinkyDungeonBulletsID[KinkyDungeonBullets[E].spriteID]
+		if (!spriteCanvas) {
+			spriteCanvas = document.createElement("canvas");
+			spriteCanvas.width = bullet.width*KinkyDungeonSpriteSize
+			spriteCanvas.height = bullet.height*KinkyDungeonSpriteSize
+			KinkyDungeonBulletsID[KinkyDungeonBullets[E].spriteID] = spriteCanvas;
+			
+		}
+		
+		var Img = DrawGetImage("Screens/Minigame/KinkyDungeon/Bullets/" + sprite + ".png", 0, 0)
+		
+		var spriteContext = spriteCanvas.getContext("2d")
+		var direction = Math.atan2(KinkyDungeonBullets[E].vy, KinkyDungeonBullets[E].vx)
+		
+		// Rotate the canvas
+		spriteContext.translate(spriteCanvas.width/2, spriteCanvas.height/2);
+		spriteContext.rotate(direction);
+		spriteContext.translate(-spriteCanvas.width/2, -spriteCanvas.height/2);
+
+		// Draw the sprite
+		spriteContext.clearRect(0, 0, spriteCanvas.width, spriteCanvas.height);
+		spriteContext.drawImage(Img, 0, 0);
+		
+		// Reset the transformation
+		spriteContext.setTransform(1, 0, 0, 1, 0, 0);
+		
 		if (KinkyDungeonBullets[E].x >= CamX && KinkyDungeonBullets[E].y >= CamY && KinkyDungeonBullets[E].x < CamX + KinkyDungeonGridWidthDisplay && KinkyDungeonBullets[E].y < CamY + KinkyDungeonGridHeightDisplay) {
-			DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/Enemies/" + sprite + ".png",
-				KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
-				(KinkyDungeonBullets[E].x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonBullets[E].y - CamY)*KinkyDungeonGridSizeDisplay,
-				KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
-				
-				
+			KinkyDungeonContext.drawImage(spriteCanvas,  (KinkyDungeonBullets[E].x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonBullets[E].y - CamY)*KinkyDungeonGridSizeDisplay); 				
 		}
 		
 

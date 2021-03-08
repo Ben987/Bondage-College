@@ -94,7 +94,6 @@ function KinkyDungeonInitialize(Level, Random) {
 	KinkyDungeonCanvasPlayer.height = KinkyDungeonGridSizeDisplay;
 		
 	KinkyDungeonContext = KinkyDungeonCanvas.getContext("2d")
-	KinkyDungeonCanvas.width = KinkyDungeonCanvasPlayer.width*KinkyDungeonGridWidthDisplay;
 	KinkyDungeonCanvas.height = KinkyDungeonCanvasPlayer.height*KinkyDungeonGridHeightDisplay;
 
 	KinkyDungeonContextFow = KinkyDungeonCanvasFow.getContext("2d")
@@ -112,6 +111,7 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	var height = MapParams["min_height"] + 2*Math.floor(0.5*Math.random() * (MapParams["max_height"] - MapParams["min_height"]))
 	var width = MapParams["min_width"] + 2*Math.floor(0.5*Math.random() * (MapParams["max_width"] - MapParams["min_width"]))
 	
+	KinkyDungeonCanvas.width = KinkyDungeonCanvasPlayer.width*KinkyDungeonGridWidthDisplay;
 	KinkyDungeonGridHeight = height
 	KinkyDungeonGridWidth = width
 	
@@ -502,11 +502,19 @@ function KinkyDungeonGetDirectionRandom(dx, dy) {
 // Click function for the game portion
 function KinkyDungeonClickGame(Level) {
 	// First we handle buttons
-	if (!KinkyDungeonHandleHUD())
+	if (KinkyDungeonHandleHUD()) {
+		
+	}
 	// beep
 	
 	// If no buttons are clicked then we handle move
-	if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
+	else if (KinkyDungeonTargetingSpell) {
+		if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
+			KinkyDungeonCastSpell(KinkyDungeonTargetX, KinkyDungeonTargetY, KinkyDungeonTargetingSpell)
+			KinkyDungeonAdvanceTime(1)
+		}
+		KinkyDungeonTargetingSpell = null
+	} else if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
 		KinkyDungeonMove(KinkyDungeonMoveDirection)
 	}
 }
@@ -598,7 +606,9 @@ function KinkyDungeonAdvanceTime(delta) {
 	
 	// Updates the character's stats
 	KinkyDungeonItemCheck(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, MiniGameKinkyDungeonLevel)
+	KinkyDungeonUpdateBullets(delta)
 	KinkyDungeonUpdateEnemies(delta)
+	KinkyDungeonUpdateBulletsCollisions(delta)
 	KinkyDungeonUpdateStats(delta)
 	
 	

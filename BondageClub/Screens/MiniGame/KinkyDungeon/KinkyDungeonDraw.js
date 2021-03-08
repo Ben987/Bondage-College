@@ -86,6 +86,7 @@ function KinkyDungeonDrawGame() {
 			KinkyDungeonContext.drawImage(KinkyDungeonCanvasPlayer,  (KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay); 
 			KinkyDungeonDrawEnemiesWarning(canvasOffsetX, canvasOffsetY, CamX, CamY, KinkyDungeonGridSizeDisplay)
 			KinkyDungeonDrawEnemies(canvasOffsetX, canvasOffsetY, CamX, CamY, KinkyDungeonGridSizeDisplay)
+			KinkyDungeonDrawFight(canvasOffsetX, canvasOffsetY, CamX, CamY, KinkyDungeonGridSizeDisplay)
 			
 			// Draw fog of war
 			var rows = KinkyDungeonLightGrid.split('\n')
@@ -100,12 +101,29 @@ function KinkyDungeonDrawGame() {
 			}
 					
 			// Draw targeting reticule
-			if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height) && (KinkyDungeonMoveDirection.x != 0 || KinkyDungeonMoveDirection.y != 0)) {
-				KinkyDungeonContext.beginPath();
-				KinkyDungeonContext.rect((KinkyDungeonMoveDirection.x + KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonMoveDirection.y + KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay);
-				KinkyDungeonContext.lineWidth = 3;
-				KinkyDungeonContext.strokeStyle = "#ff4444";
-				KinkyDungeonContext.stroke()
+
+			if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
+				if (KinkyDungeonTargetingSpell) {
+					KinkyDungeonTargetX = Math.round((MouseX - KinkyDungeonGridSizeDisplay/2 - canvasOffsetX)/KinkyDungeonGridSizeDisplay) + CamX
+					KinkyDungeonTargetY = Math.round((MouseY - KinkyDungeonGridSizeDisplay/2 - canvasOffsetY)/KinkyDungeonGridSizeDisplay) + CamY
+					
+					KinkyDungeonContext.beginPath();
+					KinkyDungeonContext.rect((KinkyDungeonTargetX - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonTargetY - CamY)*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay);
+					KinkyDungeonContext.lineWidth = 3;
+					KinkyDungeonContext.strokeStyle = "#88AAFF";
+					KinkyDungeonContext.stroke()
+					
+					DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/Target.png",
+						KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
+						(KinkyDungeonMoveDirection.x + KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonMoveDirection.y + KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay,
+						KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
+				} else if ((KinkyDungeonMoveDirection.x != 0 || KinkyDungeonMoveDirection.y != 0)) {
+					KinkyDungeonContext.beginPath();
+					KinkyDungeonContext.rect((KinkyDungeonMoveDirection.x + KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonMoveDirection.y + KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay);
+					KinkyDungeonContext.lineWidth = 3;
+					KinkyDungeonContext.strokeStyle = "#ff4444";
+					KinkyDungeonContext.stroke()
+				}
 			}
 			MainCanvas.drawImage(KinkyDungeonCanvas, canvasOffsetX, canvasOffsetY);
 					
@@ -116,9 +134,10 @@ function KinkyDungeonDrawGame() {
 		CharacterSetFacialExpression(KinkyDungeonPlayer, "Emoticon", null);
 		
 		// Draw the player no matter what
-		KinkyDungeonContextPlayer.fillStyle = "rgba(0,0,0,1.0)";
-		KinkyDungeonContextPlayer.fillRect(0, 0, KinkyDungeonCanvasPlayer.width, KinkyDungeonCanvasPlayer.height);
-		KinkyDungeonContextPlayer.fill()
+		//KinkyDungeonContextPlayer.fillStyle = "rgba(0,0,0,1.0)";
+		//KinkyDungeonContextPlayer.fillRect(0, 0, KinkyDungeonCanvasPlayer.width, KinkyDungeonCanvasPlayer.height);
+		//KinkyDungeonContextPlayer.fill()
+		KinkyDungeonContextPlayer.clearRect(0, 0, KinkyDungeonCanvasPlayer.width, KinkyDungeonCanvasPlayer.height)
 		DrawCharacter(KinkyDungeonPlayer, -KinkyDungeonGridSizeDisplay/2, 0, KinkyDungeonGridSizeDisplay/250, false, KinkyDungeonContextPlayer)
 		
 		// Draw the struggle buttons if applicable
@@ -197,19 +216,40 @@ function KinkyDungeonHandleHUD() {
 	if (KinkyDungeonDrawState == "Game") {
 		//if (MouseIn(650, 925, 325, 60)) { KinkyDungeonDrawState = "Inventory"}
 		//else 
-		if (MouseIn(1000, 925, 325, 60)) { KinkyDungeonDrawState = "Magic"}
-		else if (MouseIn(510, 925, 120, 60)) { KinkyDungeonDrawStruggle = !KinkyDungeonDrawStruggle; return false;}
+		if (MouseIn(1000, 925, 325, 60)) { KinkyDungeonDrawState = "Magic"; return true;}
+		else if (MouseIn(510, 925, 120, 60)) { KinkyDungeonDrawStruggle = !KinkyDungeonDrawStruggle; return true;}
 		
 		if (!KinkyDungeonTargetingSpell) {
 			var spell = null
 			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]] && MouseIn(1405, 895, 90, 90)) {
-				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
+				if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]].level) <= KinkyDungeonStatStamina)
+					spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
+				else if (4 >= KinkyDungeonActionMessagePriority) {
+					KinkyDungeonActionMessageTime = 1
+					KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+					KinkyDungeonActionMessageColor = "red"
+					KinkyDungeonActionMessagePriority = 4
+				}
 			}
 			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]] && MouseIn(1605, 895, 90, 90)) {
-				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
+				if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]].level) <= KinkyDungeonStatStamina)
+					spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
+				else if (4 >= KinkyDungeonActionMessagePriority) {
+					KinkyDungeonActionMessageTime = 1
+					KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+					KinkyDungeonActionMessageColor = "red"
+					KinkyDungeonActionMessagePriority = 4
+				}
 			}
 			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]] && MouseIn(1805, 895, 90, 90)) {
-				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
+				if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]].level) <= KinkyDungeonStatStamina)
+					spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
+				else if (4 >= KinkyDungeonActionMessagePriority) {
+					KinkyDungeonActionMessageTime = 1
+					KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+					KinkyDungeonActionMessageColor = "red"
+					KinkyDungeonActionMessagePriority = 4
+				}
 			}
 			if (spell) {
 				// Handle spell activation
@@ -221,6 +261,7 @@ function KinkyDungeonHandleHUD() {
 					KinkyDungeonActionMessageColor = "white"
 					KinkyDungeonActionMessagePriority = 2
 				}
+				return true;
 			}
 		}
 		
@@ -244,11 +285,11 @@ function KinkyDungeonHandleHUD() {
 
 			}
 	} else if (KinkyDungeonDrawState == "Magic") {
-		if (MouseIn(1000, 925, 325, 60)) { KinkyDungeonDrawState = "Game"}
-		else KinkyDungeonHandleMagic()
+		if (MouseIn(1000, 925, 325, 60)) { KinkyDungeonDrawState = "Game"; return true;}
+		else return KinkyDungeonHandleMagic()
 	} else if (KinkyDungeonDrawState == "Inventory") {
-		if (MouseIn(650, 925, 325, 60)) { KinkyDungeonDrawState = "Game"}
-		else KinkyDungeonHandleInventory()
+		if (MouseIn(650, 925, 325, 60)) { KinkyDungeonDrawState = "Game"; return true;}
+		else return KinkyDungeonHandleInventory()
 	}
 		
 	return false

@@ -137,7 +137,12 @@ function KinkyDungeonDrawStats(x, y, width, heightPerBar) {
 function KinkyDungeonUpdateStats(delta) {
 	// Initialize
 	var arousalRate = KinkyDungeonStatArousalRegen
-	KinkyDungeonStaminaRate = KinkyDungeonStatStaminaRegen
+	if (KinkyDungeonStatWillpowerExhaustion > 0) {
+		KinkyDungeonStatWillpowerExhaustion = Math.max(0, KinkyDungeonStatWillpowerExhaustion - delta)
+		KinkyDungeonStaminaRate = 0
+	} else {
+		KinkyDungeonStaminaRate = KinkyDungeonStatStaminaRegen
+	}
 	var willpowerRate = KinkyDungeonStatWillpowerRegen
 	
 	// Arousal reduces staminal regen

@@ -17,7 +17,7 @@ var KinkyDungeonCurrentPage = 0
 var KinkyDungeonBooks = ["Elements", "Conjure", "Illusion"]
 
 var KinkyDungeonSpells = [
-	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", power: 3, delay: 0, range: 50, damage: "fire"}, // Throws a fireball in a direction that moves 1 square each turn
+	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", power: 8, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
 	{name: "Snare", exhaustion: 3, components: ["Legs"], level:1, type:"trap", time: 10, delay: 1, range: 3, damage: "stun", playerEvent: {name: "MagicRope", time: 10}}, // Creates a magic rope trap that creates magic ropes for 10 seconds on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
 	{name: "Flash", exhaustion: 2, components: ["Verbal"], level:1, type:"aoe", time: 10, range: 4, power: 3, size: 1, damage: "blind"}, // Start with flash, an explosion with a 1 turn delay and a 3 tile radius. If you are caught in the radius, you also get blinded temporarily!
 ]
@@ -38,17 +38,32 @@ function KinkyDungeonGetCost(Level) {
 	return cost
 }
 
+function KinkyDungeonCastSpell(targetX, targetY, spell) {
+	if (spell.type == "bolt") {
+		KinkyDungeonLaunchBullet(KinkyDungeonPlayerEntity.x + KinkyDungeonMoveDirection.x, KinkyDungeonPlayerEntity.y + KinkyDungeonMoveDirection.y, targetX, targetY, spell.speed, {name:spell.name, width:1, height:1, damage: {damage:spell.power, type:spell.damage}})
+	}
+	
+	KinkyDungeonStatWillpowerExhaustion += spell.exhaustion + 1
+	KinkyDungeonStatStamina -= KinkyDungeonGetCost(spell.level)
+}
+
+
+
 function KinkyDungeonHandleMagic() {
 	if (KinkyDungeonPlayer.CanInteract()) { // Allow turning pages
 		if (KinkyDungeonCurrentPage > 0 && MouseIn(canvasOffsetX + 100, canvasOffsetY + 483*KinkyDungeonBookScale, 250, 60)) {
 			KinkyDungeonCurrentPage -= 1
+			return true;
 		}
 		if (KinkyDungeonCurrentPage < KinkyDungeonSpells.length-1 && MouseIn(canvasOffsetX + 640*KinkyDungeonBookScale - 325, canvasOffsetY + 483*KinkyDungeonBookScale, 250, 60)) {
 			KinkyDungeonCurrentPage += 1
+			return true;
 		}
 	} else if (MouseIn(canvasOffsetX + 640*KinkyDungeonBookScale/2 - 250, canvasOffsetY + 483*KinkyDungeonBookScale, 500, 60)) {
 		KinkyDungeonCurrentPage = Math.floor(Math.random(KinkyDungeonSpells.length))
+		return true;
 	}
+	return false;
 }
 
 // https://stackoverflow.com/questions/14484787/wrap-text-in-javascript
