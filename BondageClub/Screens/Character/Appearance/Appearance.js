@@ -21,6 +21,7 @@ var CharacterAppearanceMode = "";
 var CharacterAppearanceMenuMode = "";
 var CharacterAppearanceCloth = null;
 var AppearanceMenu = [];
+var AppearancePreviews = [];
 
 const CanvasUpperOverflow = 700;
 const CanvasLowerOverflow = 150;
@@ -566,7 +567,7 @@ function AppearanceMenuBuild(C) {
 				if (Item && Item.Asset.Extended) AppearanceMenu.push("Use");
 				if (C.ID === 0) AppearanceMenu.push("WearRandom");
 				if (C.ID === 0 && Player.GetDifficulty() < 3) AppearanceMenu.push("DialogPermissionMode");
-				AppearanceMenu.push("Naked");
+				if (C.FocusGroup.AllowNone) AppearanceMenu.push("Naked");
 				if (Item && DialogCanColor(C, Item)) AppearanceMenu.push(ItemColorIsSimple(Item) ? "ColorPick" : "MultiColorPick");
 			}
 			if (DialogInventory.length > 9) AppearanceMenu.push("Next");
@@ -628,7 +629,7 @@ function AppearanceRun() {
 					() => WardrobeGroupAccessible(C, AssetGroup[A]) ? CharacterAppearanceNextItem(C, AssetGroup[A].Name, false, true) : "",
 					() => WardrobeGroupAccessible(C, AssetGroup[A]) ? CharacterAppearanceNextItem(C, AssetGroup[A].Name, true, true) : "",
 					!WardrobeGroupAccessible(C, AssetGroup[A]),
-					AssetGroup[A].AllowNone ? 65 : null);
+					AssetGroup[A].AllowNone || AssetGroup[A].PreviewZone ? 65 : null);
 				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
 				const ColorButtonText = ItemColorGetColorButtonText(Color);
 				const ColorButtonColor = ColorButtonText.startsWith("#") ? ColorButtonText : "#fff";
@@ -677,6 +678,11 @@ function AppearanceRun() {
 			const Hidden = CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name);
 
 			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.Description, { Background });
+			else if (C.FocusGroup.PreviewZone) {
+				const Z = C.FocusGroup.PreviewZone;
+				const PreviewCanvas = DrawCharacterSegment(AppearancePreviews[I], Z[0], Z[1], Z[2], Z[3]);
+				DrawCanvasPreview(X, Y, PreviewCanvas, Item.Asset.Description, { Background });
+			}
 			else DrawAssetPreview(X, Y, Item.Asset, {Background, Vibrating});
 			setButton(X, Y);
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
@@ -721,6 +727,38 @@ function AppearanceMenuDraw() {
 	const X = 2000 - AppearanceMenu.length * 117;
 	for (let B = 0; B < AppearanceMenu.length; B++) {
 		DrawButton(X + 117 * B, 25, 90, 90, "", "White", "Icons/" + AppearanceMenu[B] + ".png", TextGet(AppearanceMenu[B]));
+	}
+}
+
+/**
+ * Create a list of characters with different items from the group applied, to use as the preview images
+ * @param {Character} C - The character that the dialog inventory has been loaded for
+ * @returns {void} - Nothing
+ */
+function AppearancePreviewBuild(C) {
+	if (C.FocusGroup && C.FocusGroup.PreviewZone && DialogInventory) {
+		AppearancePreviews = [];
+		const baseAppearance = C.Appearance.filter(A => A.Asset.Group.Category === "Appearance");
+		DialogInventory.forEach(item => {
+			let PreviewChar = CharacterLoadSimple("AppearancePreview-" + item.Asset.Name);
+			PreviewChar.Appearance = Array.from(baseAppearance);
+			CharacterAppearanceSetItem(PreviewChar, item.Asset.Group.Name, item.Asset, null, null, null, false);
+			CharacterLoadCanvas(PreviewChar);
+			AppearancePreviews.push(PreviewChar);
+		});
+	}
+}
+
+/**
+ * Delete all characters created for preview images
+ * @returns {void} - Nothing
+ */
+function AppearancePreviewCleanup() {
+	AppearancePreviews = [];
+	for (let C = Character.length - 1; C >= 0; C--) {
+		if (Character[C].AccountName.startsWith("AppearancePreview-")) {
+			CharacterDelete(Character[C].AccountName);
+		}
 	}
 }
 
@@ -913,7 +951,7 @@ function AppearanceClick() {
 			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && WardrobeGroupAccessible(C, AssetGroup[A]))
 					if (MouseYIn(145 + (A - CharacterAppearanceOffset) * 95, 65))
-						if (!AssetGroup[A].AllowNone) {
+						if (!AssetGroup[A].AllowNone && !AssetGroup[A].PreviewZone) {
 							CharacterAppearanceNextItem(C, AssetGroup[A].Name, MouseX > 1500);
 						}
 						else {
@@ -1094,6 +1132,7 @@ function AppearanceMenuClick(C) {
 							InventoryGet(C, C.FocusGroup.Name).Property = CharacterAppearanceCloth.Property;
 							CharacterRefresh(C, false);
 						}
+						if (C.FocusGroup.PreviewZone) AppearancePreviewCleanup();
 						C.FocusGroup = null;
 						AppearanceExit();
 					}
@@ -1106,6 +1145,7 @@ function AppearanceMenuClick(C) {
 							DialogInventoryBuild(C);
 						}
 						else {
+							if (C.FocusGroup.PreviewZone) AppearancePreviewCleanup();
 							C.FocusGroup = null;
 							AppearanceExit();
 						}
@@ -1295,5 +1335,13 @@ function AppearanceItemColor(C, Item, AssetGroup, CurrentMode) {
 	CharacterAppearanceColorPickerGroupName = AssetGroup;
 	CharacterAppearanceColorPickerBackup = CharacterAppearanceGetCurrentValue(C, CharacterAppearanceColorPickerGroupName, "Color");
 	ItemColorLoad(C, Item, 1200, 25, 775, 950, true);
-	ItemColorOnExit(() => CharacterAppearanceMode = CurrentMode);
+	ItemColorOnExit(() => {
+		CharacterAppearanceMode = CurrentMode;
+		if (C.FocusGroup && C.FocusGroup.PreviewZone) {
+			const item = InventoryGet(C, C.FocusGroup.Name);
+			if (CharacterAppearanceColorPickerBackup !== item.Color) {
+				AppearancePreviewBuild(C);
+			}
+		}
+	});
 }

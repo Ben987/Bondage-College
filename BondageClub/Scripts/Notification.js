@@ -90,7 +90,7 @@ class NotificationEvent {
 			let titleEnd = "";
 			let C = data.character;
 			if (!C && data.memberNumber) C = Character.find(C => C.MemberNumber === data.memberNumber);
-			if (C && 'icon' in Notification.prototype) icon = DrawCharacterSegment(C, 160, 50, 165, 165).toDataURL("image/png");
+			if (C && 'icon' in Notification.prototype) icon = DrawCharacterSegment(C, 168, 50, 164, 164).toDataURL("image/png");
 			if (data.characterName) titleStart = data.characterName + " - ";
 			else if (C) titleStart = C.Name + " - ";
 			if (data.chatRoomName) titleEnd = DialogFindPlayer("NotificationTitleFromRoom").replace("ChatRoomName", "\'" + data.chatRoomName + "\'");

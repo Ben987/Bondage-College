@@ -702,7 +702,7 @@ function DialogMenuButtonBuild(C) {
  * @returns {void} - Nothing
  */
 function DialogInventorySort() {
-	DialogInventory.sort((a, b) => (a.SortOrder > b.SortOrder) ? 1 : ((b.SortOrder > a.SortOrder) ? -1 : 0));
+	DialogInventory.sort((a, b) => a.SortOrder.localeCompare(b.SortOrder, undefined, { numeric: true, sensitivity: 'base' }));
 }
 
 // 
@@ -774,10 +774,10 @@ function DialogInventoryBuild(C, Offset) {
 			}
 		}
 
-		// Rebuilds the dialog menu and it's buttons
+		// Rebuilds the dialog menu, its buttons and the preview icons if required
 		DialogInventorySort();
 		DialogMenuButtonBuild(C);
-
+		AppearancePreviewBuild(C);
 	}
 }
 
