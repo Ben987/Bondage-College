@@ -12,7 +12,7 @@ var MiniGameEnded = false;
 var MiniGameCheatAvailable = false;
 
 function MiniGameLoad() {
-	if (CurrentScreen == "Kidnap") CurrentDarkFactor = 0.5;
+	if (CurrentScreen == "Kidnap" || CurrentScreen == "HorseWalk") CurrentDarkFactor = 0.5;
 }
 
 /**

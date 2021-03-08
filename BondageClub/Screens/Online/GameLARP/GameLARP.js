@@ -138,7 +138,7 @@ function GameLARPRunProcess() {
 
 		// Draw the room dark background
 		DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ".jpg", MainCanvas, 500, 0, 1000, 1000, 0, 0, 1000, 1000);
-		DrawRect(0, 1000, 1000, "rgba(0,0,0," + 0.5 + ")");
+		DrawRect(0, 0, 1000, 1000, "rgba(0,0,0," + 0.5 + ")");
 
 		// In inventory selection mode
 		if (GameLARPTurnFocusGroup != null) {

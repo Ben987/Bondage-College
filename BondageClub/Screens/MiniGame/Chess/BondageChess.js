@@ -1,5 +1,5 @@
 "use strict";
-var ChessBackground = "CollegeClassDark";
+var ChessBackground = "CollegeClass";
 var ChessCharacterLeft = null;
 var ChessCharacterRight = null;
 var ChessEndStatus = "";
@@ -13,6 +13,7 @@ var ChessMajorPieceBlack = 8;
  * @returns {void} - Nothing
  */
 function ChessLoad() {
+	CurrentDarkFactor = 0.5;
 	ChessMinorPieceWhite = 8;
 	ChessMajorPieceWhite = 8;
 	ChessMinorPieceBlack = 8;
