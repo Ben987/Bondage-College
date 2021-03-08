@@ -31,6 +31,19 @@ var InventoryItemMouthFuturisticPanelGagOptions = [
 	},
 ];
 
+var AutoPunishKeywords = [
+"moan",
+"whimper",
+"shout",
+"scream",
+"whine",
+"growl",
+"laugh",
+"giggle",
+]
+
+var AutoPunishGagActionFlag = false;
+
 // How to make your item futuristic!
 
 // In the load function, add this before your load function, without changing functions from the 
@@ -141,11 +154,7 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 			InventoryItemMouthFuturisticPanelGagExit();
 		} else {
 			FuturisticAccessDeniedMessage = DialogFindPlayer("CantChangeWhileLockedFuturistic");
-			var vol = 1
-			if (Player.AudioSettings && Player.AudioSettings.Volume) {
-				vol = Player.AudioSettings.Volume
-			}
-			AudioPlayInstantSound("Audio/AccessDenied.mp3", vol)
+			AudioPlayInstantSound("Audio/AccessDenied.mp3");
 			if (CurrentScreen == "ChatRoom") {
 				InventoryItemMouthFuturisticPanelGagPublishAccessDenied((Player.FocusGroup != null) ? Player : CurrentCharacter)
 			}
@@ -281,7 +290,7 @@ function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
 
 	if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
 		var collar = InventoryGet(C, "ItemNeck")
-		if (collar && (!collar.Property || collar.Property.OpenPermission != true)) {
+		if (!collar || (!collar.Property || collar.Property.OpenPermission != true)) {
 			Allowed = DialogExtendedMessage = DialogFindPlayer("CantChangeWhileLockedFuturistic");
 		}
 	}
@@ -430,14 +439,32 @@ function InventoryItemMouthFuturisticPanelGagSetOption(C, Options, Option, Item,
 function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data, Options) {
 	var Item = data.Item
 	// Punish the player if they speak
+	if (Item.Property.AutoPunish < 3)
+		AutoPunishGagActionFlag = false
+	
 	if (Item.Property.AutoPunish && Item.Property.AutoPunish > 0 && Item.Property.AutoPunishUndoTimeSetting) {
 		
 		var LastMessages = data.PersistentData().LastMessageLen
 		var GagTriggerPunish = false
+		var keywords = false;
+		var gagaction = false;
 		
-		if (Item.Property.AutoPunish == 3 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
-			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
-				&& ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1])
+		if (Item.Property.AutoPunish == 3) {
+			if (AutoPunishGagActionFlag == true) {
+				gagaction = true
+				AutoPunishGagActionFlag = false
+			} else for (let K = 0; K < AutoPunishKeywords.length; K++) {
+				if (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes(AutoPunishKeywords[K])) {
+					keywords = true;
+					break;
+				}
+			}
+		}
+		
+		if (Item.Property.AutoPunish == 3 && (gagaction || (ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1]
+			 && (!ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
+			|| (keywords && (ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/me") || ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")))))))
 			GagTriggerPunish = true
 		if (Item.Property.AutoPunish == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
 			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")

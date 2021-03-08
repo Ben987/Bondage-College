@@ -10,8 +10,11 @@ var CurrentDarkFactor = 1.0;
 var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
-var Notifications = {};
+
 var CommonPhotoMode = false;
+var GameVersion = "R0";
+const GameVersionFormat = /^R([0-9]+)(?:(Alpha|Beta)([0-9]+)?)?$/;
+var CommonVersionUpdated = false;
 
 /**
  * A map of keys to common font stack definitions. Each stack definition is a	
@@ -111,6 +114,8 @@ function CommonParseCSV(str) {
 	var quote = false;  // true means we're inside a quoted field
 	var c;
 	var col;
+	// We remove whitespace on start and end
+	str = str.replace(/\r\n/g, '\n').trim();
 
 	// iterate over each character, keep track of current row and column (of the returned array)
 	for (let row = col = c = 0; c < str.length; c++) {
@@ -237,7 +242,7 @@ function CommonKeyDown() {
 		}
 	}
 	else {
-		DialogKeyDown();
+		StruggleKeyDown();
 		if (ControllerActive == true) {
 			ControllerSupportKeyDown();
 		}
@@ -557,47 +562,13 @@ const CommonGetFontName = CommonMemoize(() => {
 });
 
 /**
- * Increase the reported number of a notifications by one and updates the header
- * @param {string} Type - The type of notification
- * @returns {void}
- */
-function CommonNotificationIncrement(Type) {
-	Notifications[Type] = (Notifications[Type] || 0) + 1;
-	CommonNotificationUpdate();
-}
-
-/**
- * Sets the number of notifications for a type back to zero and updates the header
- * @param {any} Type - The type of notification
- * @returns {void}
- */
-function CommonNotificationReset(Type) {
-	if (Notifications[Type] != null && Notifications[Type] != 0) {
-		Notifications[Type] = 0;
-		CommonNotificationUpdate();
-	}
-}
-
-/**
- * Sets the number of notifications to zero
- * @returns {void}
- */
-function CommonNotificationResetAll() {
-	Notifications = {};
-	CommonNotificationUpdate();
-}
-
-/**
- * Sets or clears notifications in the tab header
+ * Take a screenshot of specified area in "photo mode" and open the image in a new tab
+ * @param {number} Left - Position of the area to capture from the left of the canvas
+ * @param {number} Top - Position of the area to capture from the top of the canvas
+ * @param {number} Width - Width of the area to capture
+ * @param {number} Height - Height of the area to capture
  * @returns {void} - Nothing
  */
-function CommonNotificationUpdate() {
-	let total = 0;
-	for (let key in Notifications) total += Notifications[key];
-	let prefix = total == 0 ? "" : "(" + total.toString() + ") ";
-	document.title = prefix + "Bondage Club";
-}
-
 function CommonTakePhoto(Left, Top, Width, Height) {
 	CommonPhotoMode = true;
 
@@ -605,22 +576,85 @@ function CommonTakePhoto(Left, Top, Width, Height) {
 	DrawProcess();
 
 	// Capture screen as image URL
-	let ImgData = document.getElementById("MainCanvas").getContext('2d').getImageData(Left, Top, Width, Height);
+	const ImgData = document.getElementById("MainCanvas").getContext('2d').getImageData(Left, Top, Width, Height);
 	let PhotoCanvas = document.createElement('canvas');
 	PhotoCanvas.width = Width;
 	PhotoCanvas.height = Height;
 	PhotoCanvas.getContext('2d').putImageData(ImgData, 0, 0);
-	let PhotoImg = PhotoCanvas.toDataURL("image/png");
+	const PhotoImg = PhotoCanvas.toDataURL("image/png");
 
 	// Open the image in a new window
-	if (CommonGetBrowser().Name === "Chrome") {
-		// Chrome does not allow loading data URLs in the top frame
-		let newWindow = window.open('about:blank', '_blank');
-		newWindow.document.write("<img src='" + PhotoImg + "' alt='from canvas'/>");
-	}
-	else {
-		window.open(PhotoImg);
-	}
-	
+	let newWindow = window.open('about:blank', '_blank');
+	newWindow.document.write("<img src='" + PhotoImg + "' alt='from canvas'/>");
+
 	CommonPhotoMode = false;
+}
+
+/**
+ * Takes an array of items and converts it to record format
+ * @param { { Group: string; Name: string; Type?: string|null }[] } arr The array of items
+ * @returns { { [group: string]: { [name: string]: string[] } } } Output in object foramat
+ */
+function CommonPackItemArray(arr) {
+	const res = {};
+	for (const I of arr) {
+		let G = res[I.Group];
+		if (G === undefined) {
+			G = res[I.Group] = {};
+		}
+		let A = G[I.Name];
+		if (A === undefined) {
+			A = G[I.Name] = [];
+		}
+		const T = I.Type || "";
+		if (!A.includes(T)) {
+			A.push(T);
+		}
+	}
+	return res;
+}
+
+/**
+ * Takes an record format of items and converts it to array
+ * @param { { [group: string]: { [name: string]: string[] } } } arr Object defining items
+ * @return { { Group: string; Name: string; Type?: string }[] } The array of items
+ */
+function CommonUnpackItemArray(arr) {
+	const res = [];
+	for (const G of Object.keys(arr)) {
+		for (const A of Object.keys(arr[G])) {
+			for (const T of arr[G][A]) {
+				res.push({ Group: G, Name: A, Type: T ? T : undefined });
+			}
+		}
+	}
+	return res;
+}
+
+/**
+ * Compares two version numbers and returns -1/0/1 if Other number is smaller/same/larger than Current one
+ * @param {string} Current Current version number
+ * @param {string} Other Other version number
+ * @returns {-1|0|1} Comparsion result
+ */
+function CommonCompareVersion(Current, Other) {
+	const CurrentMatch = GameVersionFormat.exec(Current);
+	const OtherMatch = GameVersionFormat.exec(Other);
+	if (CurrentMatch == null || OtherMatch == null || isNaN(CurrentMatch[1]) || isNaN(OtherMatch[1])) return -1;
+	const CurrentVer = [
+		Number.parseInt(CurrentMatch[1]),
+		CurrentMatch[2] === "Alpha" ? 1 : CurrentMatch[2] === "Beta" ? 2 : 3,
+		Number.parseInt(CurrentMatch[3]) || 0
+	];
+	const OtherVer = [
+		Number.parseInt(OtherMatch[1]),
+		OtherMatch[2] === "Alpha" ? 1 : OtherMatch[2] === "Beta" ? 2 : 3,
+		Number.parseInt(OtherMatch[3]) || 0
+	];
+	for (let i = 0; i < 3; i++) {
+		if (CurrentVer[i] !== OtherVer[i]) {
+			return Math.sign(OtherVer[i] - CurrentVer[i]);
+		}
+	}
+	return 0;
 }

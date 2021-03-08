@@ -5,6 +5,7 @@ var CharacterAppearanceNumPerPage = 9;
 var CharacterAppearanceHeaderText = "";
 var CharacterAppearanceHeaderTextTime = 0;
 var CharacterAppearanceBackup = null;
+var CharacterAppearanceInProgressBackup = null;
 var CharacterAppearanceAssets = [];
 var CharacterAppearanceColorPickerGroupName = "";
 var CharacterAppearanceColorPickerBackup = "";
@@ -14,7 +15,7 @@ var CharacterAppearanceReturnRoom = "MainHall";
 var CharacterAppearanceReturnModule = "Room";
 var CharacterAppearanceWardrobeOffset = 0;
 var CharacterAppearanceWardrobeText = "";
-var CharacterAppearanceForceUpCharacter = 0;
+var CharacterAppearanceForceUpCharacter = -1;
 var CharacterAppearancePreviousEmoticon = "";
 var CharacterAppearanceMode = "";
 var CharacterAppearanceMenuMode = "";
@@ -363,6 +364,8 @@ function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 		return false;
 	}
 
+
+
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if (CharacterAppearanceItemIsHidden(C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) continue;
 		let HidingItem = false;
@@ -463,10 +466,10 @@ function CharacterAppearanceBuildCanvas(C) {
 	CommonDrawAppearanceBuild(C, {
 		clearRect: (x, y, w, h) => C.Canvas.getContext("2d").clearRect(x, y, w, h),
 		clearRectBlink: (x, y, w, h) => C.CanvasBlink.getContext("2d").clearRect(x, y, w, h),
-		drawImage: (src, x, y, alphaMasks, opacity) => DrawImageCanvas(src, C.Canvas.getContext("2d"), x, y, alphaMasks, opacity),
-		drawImageBlink: (src, x, y, alphaMasks, opacity) => DrawImageCanvas(src, C.CanvasBlink.getContext("2d"), x, y, alphaMasks, opacity),
-		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks, opacity) => DrawImageCanvasColorize(src, C.Canvas.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity),
-		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks, opacity) => DrawImageCanvasColorize(src, C.CanvasBlink.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity),
+		drawImage: (src, x, y, alphaMasks, opacity, rotate) => DrawImageCanvas(src, C.Canvas.getContext("2d"), x, y, alphaMasks, opacity, rotate),
+		drawImageBlink: (src, x, y, alphaMasks, opacity, rotate) => DrawImageCanvas(src, C.CanvasBlink.getContext("2d"), x, y, alphaMasks, opacity, rotate),
+		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => DrawImageCanvasColorize(src, C.Canvas.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity, rotate),
+		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => DrawImageCanvasColorize(src, C.CanvasBlink.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity, rotate),
 		drawCanvas: (Img, x, y, alphaMasks) => DrawCanvas(Img, C.Canvas.getContext("2d"), x, y, alphaMasks),
 		drawCanvasBlink: (Img, x, y, alphaMasks) => DrawCanvas(Img, C.CanvasBlink.getContext("2d"), x, y, alphaMasks),
 	});
@@ -572,7 +575,7 @@ function AppearanceMenuBuild(C) {
 	
 	// Add the exit buttons
 	if (CharacterAppearanceMode !== "Color") {
-		if (!DialogItemPermissionMode && CharacterAppearanceMode != "Wardrobe") AppearanceMenu.push("Cancel");
+		if (!DialogItemPermissionMode) AppearanceMenu.push("Cancel");
 		AppearanceMenu.push("Accept");
 	}
 }
@@ -696,7 +699,7 @@ function AppearanceRun() {
 function AppearanceGetPreviewImageColor(C, item, hover) {
 	if (DialogItemPermissionMode && C.ID === 0) {
 		let permission = "green";
-		if (InventoryIsPermissionBlocked(C, item.Asset.DynamicName(Player), item.Asset.DynamicGroupName)) permission = "red";
+		if (InventoryIsPermissionBlocked(C, item.Asset.Name, item.Asset.Group.Name)) permission = "red";
 		else if (InventoryIsPermissionLimited(C, item.Asset.Name, item.Asset.Group.Name)) permission = "amber";
 		return item.Worn ? "gray" : AppearancePermissionColors[permission][hover ? 1 : 0];
 	} else {
@@ -1042,7 +1045,16 @@ function AppearanceMenuClick(C) {
 						if (CharacterAppearanceWardrobeOffset >= Player.Wardrobe.length) CharacterAppearanceWardrobeOffset = 0;
 					}
 					if (Button === "Naked") CharacterAppearanceStripLayer(C);
-					if (Button === "Accept") AppearanceExit();
+					if (Button === "Cancel") {
+						CharacterAppearanceRestore(C, CharacterAppearanceInProgressBackup);
+						CharacterRefresh(C, false);
+						CharacterAppearanceInProgressBackup = null;
+						AppearanceExit();
+					}
+					if (Button === "Accept") {
+						CharacterAppearanceInProgressBackup = null;
+						AppearanceExit();
+					}
 					break;
 				case "Cloth":
 					// Extends the current item
@@ -1228,6 +1240,7 @@ function CharacterAppearanceWardrobeLoad(C) {
 	ElementCreateInput("InputWardrobeName", "text", C.Name, "20");
 	CharacterAppearanceMode = "Wardrobe";
 	CharacterAppearanceWardrobeText = TextGet("WardrobeNameInfo");
+	CharacterAppearanceInProgressBackup = CharacterAppearanceStringify(C);
 }
 
 /**

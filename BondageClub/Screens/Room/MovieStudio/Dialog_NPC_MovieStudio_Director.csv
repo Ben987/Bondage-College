@@ -22,7 +22,7 @@ FailIntro3,,,Cut!  That doesn't work hun.  You forgot to spice up your play.,,
 1000,,I want to play in that movie.,"(She checks your locks.)  Sorry hun, get yourself unlocked first if you want to be a star.",,!CanPlayInMovie()
 1000,0,I'm not interested.,"Fine, make some room for the next movie star then.",,
 1010,1020,I'll be the journalist.,The starring role!  You will do fine hun.,,
-1010,,I'll be the maid.,"Sorry maid DialogPlayerName, this role is already taken today.  Maybe it will be available later.",,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
+1010,1200,I'll be the maid.,I'm sure you can play that role maid DialogPlayerName.,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
 1010,,I'll be the maid.,"Sorry, this role is for real maids only.",,"!DialogLogQuery(""JoinedSorority"", ""Maid"")"
 1010,1100,I'll be the Mistress.,"Of course, Mistress DialogPlayerName.  This role will be perfect for you.",,"DialogLogQuery(""ClubMistress"", ""Management"")"
 1010,,I'll be the Mistress.,"Sorry, this role is for real Mistresses only.",,"!DialogLogQuery(""ClubMistress"", ""Management"")"
@@ -51,6 +51,7 @@ FailIntro3,,,Cut!  That doesn't work hun.  You forgot to spice up your play.,,
 1050,1060,How much does it pay?,,GetMoney(),
 1050,1060,No need for money.  I'd like that camera though.,"The journalist camera?  It's yours then, you deserve it.  (She gives you the camera.)",GetCamera(),CanGetCamera()
 1050,1060,No need for money.  I'd like that gavel though.,"The wooden gavel from the trial?  Keep it, you deserve it.  (She gives you the gavel.)",GetGavel(),CanGetGavel()
+1050,1060,No need for money.  I'd like that long duster though.,"Of course, the duster is yours hun.  You kept it for the full play, you deserve it.  (She gives you the long duster.)",GetLongDuster(),CanGetLongDuster()
 1060,1070,Thanks a lot.,"My pleasure.  We'll probably shoot another movie soon, come back later.",,
 1060,1070,I might do another movie.,"Great!  We'll probably shoot another movie soon, come back later.",,
 1070,,,We are done filming for now.  Please come back later.,,
@@ -67,6 +68,22 @@ FailIntro3,,,Cut!  That doesn't work hun.  You forgot to spice up your play.,,
 1140,1150,I'm ready to shoot.,Great!  You can use your regular Mistress clothes for the role.  (A maid helps you to change.),"Change(""Mistress"")",
 1140,0,I've changed my mind.,This is perfectly fine.  We will try to find another Mistress then.,,
 1150,,(Start the movie.),,"Progress(""Interview"", ""3"", ""Mistress"")",
+1200,1210,Tell me of the role.,"You enter the set on the second scene, you were sent by a Mistress to clean a dungeon.  There will be a surprise when you enter.",,
+1200,1210,What should I do?,"You enter the set on the second scene, you were sent by a Mistress to clean a dungeon.  There will be a surprise when you enter.",,
+1210,1220,What surprise?,"You will find a journalist, but you don't know about her.  She will be bound in skimpy clothes on the X-Cross.",,
+1210,1220,I find the journalist?,"Yes, but you don't know that she's the journalist.  She will be bound in skimpy clothes on the X-Cross.",,
+1210,1220,(Listen to her.),"You will find a journalist, but you don't know about her.  She will be bound in skimpy clothes on the X-Cross.",,
+1220,1230,I tease her?,"Do whatever is on your mind, but make sure the scene is hot.  The camera needs to love what you do for ten minutes.",,
+1220,1230,I masturbate her?,"Of course!  Do whatever is on your mind, but make sure the scene is hot.  The camera needs to love what you do for ten minutes.",,
+1220,1230,I tickle her?,"Sure!  Do whatever is on your mind, but make sure the scene is hot.  The camera needs to love what you do for ten minutes.",,
+1220,1230,I release her?,"You can, but make sure whatever you do next is hot.  The camera needs to love what you do for ten minutes.",,
+1230,1240,And after ten minutes?,"A Mistress will come in for the third scene, she will take control of the set.  Obey her or get in trouble, it's all good.",,
+1230,1240,What's the next scene?,"A Mistress will come in for the third scene, she will take control of the set.  Obey her or get in trouble, it's all good.",,
+1240,1250,I'm ready to shoot.,"Wonderful!  You can use the regular or skimpy maid outfit for that role, which one do you prefer?",,
+1240,0,I've changed my mind.,"It's alright, but go clean somewhere else, we need to find another maid.",,
+1250,1260,I'll wear the regular outfit.,(She yells at the crew and helps you to change.)  Alright team!   Time is money!  Let's get ready to shoot!,"Change(""Maid"")",
+1250,1260,I'll wear the skimpy outfit.,(She yells at the crew and helps you to change.)  Alright team!   Time is money!  Let's get ready to shoot!,"Change(""MaidSkimpy"")",
+1260,,(Start the movie.),,"Progress(""Interview"", ""2"", ""Maid"")",
 MovieSalary,,,(She checks her purse and gives you SALARYAMOUNT $.)  Here's your salary hun.  You deserve it.,,
 Fail,Fail2,What?  You're stopping the movie?,That movie wasn't going anywhere.  We can't produce a boring film.  Dress back up.,PlayerDressBack(),
 Fail,Fail2,Wait!  It was about to get hot.,You're cold as ice.  We can't produce a boring film.  Dress back up.,PlayerDressBack(),

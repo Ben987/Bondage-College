@@ -17,7 +17,6 @@
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
 var ServerBeep = {};
-var ServerBeepAudio = new Audio();
 var ServerIsConnected = false;
 var ServerReconnectCount = 0;
 
@@ -51,7 +50,6 @@ function ServerInit() {
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
 	ServerSocket.on("AccountLovership", function (data) { ServerAccountLovership(data); });
-	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
 /**
@@ -75,7 +73,7 @@ function ServerSetConnected(connected, errorMessage) {
  * Callback when receiving a "connect" event on the socket - this will be called on initial connection and on successful reconnects.
  */
 function ServerConnect() {
-	console.info("Server connection established");
+	//console.info("Server connection established");
 	ServerSetConnected(true);
 }
 
@@ -178,15 +176,33 @@ function ServerPlayerSync() {
 }
 
 /**
- * Syncs the full player inventory to the server. The inventory is a stringified object compressed with LZString
+ * Syncs the full player inventory to the server.
  * @returns {void} - Nothing
  */
 function ServerPlayerInventorySync() {
-	var Inv = [];
-	for (let I = 0; I < Player.Inventory.length; I++)
-		if (Player.Inventory[I].Asset != null)
-			Inv.push([Player.Inventory[I].Asset.Name, Player.Inventory[I].Asset.Group.Name]);
-	ServerSend("AccountUpdate", { Inventory: LZString.compressToUTF16(JSON.stringify(Inv)) });
+	const Inv = {};
+	for (let I = 0; I < Player.Inventory.length; I++) {
+		if (Player.Inventory[I].Asset != null) {
+			let G = Inv[Player.Inventory[I].Asset.Group.Name];
+			if (G === undefined) {
+				G = Inv[Player.Inventory[I].Asset.Group.Name] = [];
+			}
+			G.push(Player.Inventory[I].Asset.Name);
+		}
+	}
+	ServerSend("AccountUpdate", { Inventory: Inv });
+}
+
+/**
+ * Syncs player's blocked, limited and hidden items to the server
+ * @returns {void} - Nothing
+ */
+function ServerPlayerBlockItemsSync() {
+	ServerSend("AccountUpdate", {
+		BlockItems: CommonPackItemArray(Player.BlockItems),
+		LimitedItems: CommonPackItemArray(Player.LimitedItems),
+		HiddenItems: Player.HiddenItems
+	});
 }
 
 /**
@@ -273,7 +289,7 @@ function ServerValidateProperties(C, Item, Validation) {
 
 	// Remove LockMemberNumber if the source is incorrect prior to all checks
 	if ((Item.Property != null) && (C.ID == 0) && (Validation != null) && (Validation.SourceMemberNumber != null)) {
-		var Lock = InventoryGetLock(Item);
+		const Lock = InventoryGetLock(Item);
 		if ((Lock != null) && (Lock.Property != null)) {
 			if (!Validation.FromOwner && Lock.Asset.OwnerOnly) delete Item.Property.LockMemberNumber;
 			else if (!Validation.FromLoversOrOwner && Lock.Asset.LoverOnly) delete Item.Property.LockMemberNumber;
@@ -281,7 +297,7 @@ function ServerValidateProperties(C, Item, Validation) {
 	}
 
 	// For each effect on the item
-	if ((Item.Property != null) && (Item.Property.Effect != null)) {
+	if ((Item.Property != null) && Array.isArray(Item.Property.Effect)) {
 		for (let E = Item.Property.Effect.length - 1; E >= 0; E--) {
 
 			// Make sure the item or its subtype can be locked, remove any lock that's invalid
@@ -302,9 +318,9 @@ function ServerValidateProperties(C, Item, Validation) {
 			if ((Effect == "Lock") && (InventoryGetLock(Item) != null)) {
 
 				// Make sure the combination number on the lock is valid, 4 digits only
-				var Lock = InventoryGetLock(Item);
+				const Lock = InventoryGetLock(Item);
 				if ((Item.Property.CombinationNumber != null) && (typeof Item.Property.CombinationNumber == "string")) {
-					var Regex = /^[0-9]+$/;
+					const Regex = /^[0-9]+$/;
 					if (!Item.Property.CombinationNumber.match(Regex) || (Item.Property.CombinationNumber.length != 4)) {
 						Item.Property.CombinationNumber = "0000";
 					}
@@ -312,7 +328,6 @@ function ServerValidateProperties(C, Item, Validation) {
 				
 				
 				// Make sure the seed on the lock is valid
-				var Lock = InventoryGetLock(Item);
 				if ((Item.Property.LockPickSeed != null) && (typeof Item.Property.LockPickSeed == "string")) {
 					var conv = CommonConvertStringToArray(Item.Property.LockPickSeed)
 					for (let PP = 0; PP < conv.length; PP++) {
@@ -324,9 +339,8 @@ function ServerValidateProperties(C, Item, Validation) {
 				} else delete Item.Property.LockPickSeed;
 
 				// Make sure the password on the lock is valid, 6 letters only
-				var Lock = InventoryGetLock(Item);
 				if ((Item.Property.Password != null) && (typeof Item.Property.Password == "string")) {
-					var Regex = /^[A-Z]+$/;
+					const Regex = /^[A-Z]+$/;
 					if (!Item.Property.Password.toUpperCase().match(Regex) || (Item.Property.Password.length > 8)) {
 						Item.Property.Password = "UNLOCK";
 					}
@@ -453,10 +467,10 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 		}
 
 	// We do not check if the load is from the Player
-	var FromSelf = (SourceMemberNumber != null) && (SourceMemberNumber == C.MemberNumber);
-	var FromOwner = (SourceMemberNumber != null) && (C.Ownership != null) && ((SourceMemberNumber == C.Ownership.MemberNumber) || FromSelf);
-	var LoverNumbers = CharacterGetLoversNumbers(C);
-	var FromLoversOrOwner = (SourceMemberNumber != null) && (LoverNumbers.length != 0) && (LoverNumbers.includes(SourceMemberNumber) || FromOwner);
+	const FromSelf = SourceMemberNumber == null || SourceMemberNumber === C.MemberNumber;
+	const FromOwner = C.Ownership != null && (SourceMemberNumber === C.Ownership.MemberNumber || FromSelf);
+	const LoverNumbers = CharacterGetLoversNumbers(C);
+	const FromLoversOrOwner = LoverNumbers.length > 0 && (LoverNumbers.includes(SourceMemberNumber) || FromOwner || FromSelf);
 
 	// Clears the appearance to begin
 	var Appearance = [];
@@ -489,6 +503,9 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 		const Limited = C.ID == 0 && InventoryIsPermissionLimited(C, Bundle[A].Name, Bundle[A].Group, Type) && (SourceMemberNumber != null) && SourceMemberNumber !== Player.MemberNumber && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || ((C.Ownership.MemberNumber != SourceMemberNumber))) && ((C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0)) && ((C.ItemPermission > 3) || C.WhiteList.indexOf(SourceMemberNumber) < 0);
 		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group, Type)  || Limited) && OnlineGameAllowBlockItems()) continue;
 
+		// Skip items if there's already an item in that slot
+		if (Appearance.find(item => item.Asset.Group.Family === AssetFamily && item.Asset.Group.Name === Bundle[A].Group)) continue;
+
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (let I = 0; I < Asset.length; I++)
 			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
@@ -498,6 +515,9 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 				// LoverOnly items can only get update if it comes from lover
 				if (SourceMemberNumber != null && Asset[I].LoverOnly && (C.ID == 0) && !FromLoversOrOwner) break;
+
+				// Make sure we don't push an item that's disabled, coming from another player
+				if (!Asset[I].Enable && !Asset[I].OwnerOnly && !Asset[I].LoverOnly && (SourceMemberNumber != null) && (C.ID == 0)) break;
 
 				var ColorSchema = Asset[I].Group.ColorSchema;
 				var Color = Bundle[A].Color;
@@ -527,17 +547,8 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					ServerValidateProperties(C, NA, { SourceMemberNumber: SourceMemberNumber, FromOwner: FromOwner, FromLoversOrOwner: FromLoversOrOwner });
 				}
 
-				// Make sure we don't push an item if there's already an item in that slot
-				var CanPush = true;
-				for (let P = 0; P < Appearance.length; P++)
-					if (Appearance[P].Asset.Group.Name == NA.Asset.Group.Name) {
-						CanPush = false;
-						break;
-					}
+				Appearance.push(NA);
 
-				// Make sure we don't push an item that's disabled, coming from another player
-				if (CanPush && !NA.Asset.Enable && !NA.Asset.OwnerOnly && !NA.Asset.LoverOnly && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
-				if (CanPush) Appearance.push(NA);
 				break;
 
 			}
@@ -602,7 +613,7 @@ function ServerItemCopyProperty(C, Item, NewProperty) {
 	if (Item.Property.RemoveItem != null) NewProperty.RemoveItem = Item.Property.RemoveItem; else delete NewProperty.RemoveItem;
 	if (Item.Property.ShowTimer != null) NewProperty.ShowTimer = Item.Property.ShowTimer; else delete NewProperty.ShowTimer;
 	if (Item.Property.EnableRandomInput != null) NewProperty.EnableRandomInput = Item.Property.EnableRandomInput; else delete NewProperty.EnableRandomInput;
-	if (!NewProperty.EnableRandomInput || NewProperty.LockedBy != "LoversTimerPadlock") {
+	if (!NewProperty.EnableRandomInput || !["LoversTimerPadlock", "OwnerTimerPadlock"].includes(NewProperty.LockedBy)) {
 		if (Item.Property.MemberNumberList != null) NewProperty.MemberNumberList = Item.Property.MemberNumberList; else delete NewProperty.MemberNumberList;
 		if (Item.Property.RemoveTimer != null) NewProperty.RemoveTimer = Math.round(Item.Property.RemoveTimer); else delete NewProperty.RemoveTimer;
 	}
@@ -700,20 +711,35 @@ function ServerAccountQueryResult(data) {
 function ServerAccountBeep(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
 		if (!data.BeepType || data.BeepType == "") {
+			if (typeof data.Message === "string") {
+				data.Message = data.Message.substr(0, 1000);
+			} else {
+				delete data.Message;
+			}
 			ServerBeep.MemberNumber = data.MemberNumber;
 			ServerBeep.MemberName = data.MemberName;
 			ServerBeep.ChatRoomName = data.ChatRoomName;
 			ServerBeep.Timer = CurrentTime + 10000;
-			if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) {
-				ServerBeepAudio.volume = Player.AudioSettings.Volume;
-				ServerBeepAudio.play();
+			if (Player.AudioSettings.PlayBeeps) {
+				AudioPlayInstantSound("Audio/BeepAlarm.mp3");
 			}
-			ServerBeep.Message = DialogFindPlayer("BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
+			ServerBeep.Message = `${DialogFindPlayer("BeepFrom")} ${ServerBeep.MemberName} (${ServerBeep.MemberNumber})`;
 			if (ServerBeep.ChatRoomName != null)
 				ServerBeep.Message = ServerBeep.Message + " " + DialogFindPlayer("InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFindPlayer("InAsylum") : '');
-			FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
+			if (data.Message) {
+				ServerBeep.Message += `; ${DialogFindPlayer("BeepWithMessage")}`
+			}
+			FriendListBeepLog.push({
+				MemberNumber: data.MemberNumber,
+				MemberName: data.MemberName,
+				ChatRoomName: data.ChatRoomName,
+				ChatRoomSpace: data.ChatRoomSpace,
+				Sent: false,
+				Time: new Date(),
+				Message: data.Message
+			});
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
-			if (Player.NotificationSettings.Beeps && !document.hasFocus()) CommonNotificationIncrement("Beep");
+			if (Player.NotificationSettings.Beeps && !document.hasFocus()) NotificationsIncrement("Beep");
 		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber && data.ChatRoomName) {
 			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing != false && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashedBy(data.MemberNumber, Player)) {
@@ -740,7 +766,7 @@ function ServerAccountBeep(data) {
 function ServerDrawBeep() {
 	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) {
 		DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
-		if (document.hasFocus()) CommonNotificationReset("Beep");
+		if (document.hasFocus()) NotificationsReset("Beep");
 	}
 }
 

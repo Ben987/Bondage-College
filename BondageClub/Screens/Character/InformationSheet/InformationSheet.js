@@ -160,10 +160,10 @@ function InformationSheetSecondScreenRun() {
 		SkillGetLevel(C, "Evasion");
 		if ((C.ID == 0) && (SkillModifier != 0)) {
 			var PlusSign = (SkillModifier > 0) ? "+" : "";
-			DrawText(TextGet("SkillModifier"), 1425, 575, "Black", "Gray");
-			DrawText(TextGet("SkillBondage") + " " + PlusSign + SkillModifier, 1425, 650, "Black", "Gray");
-			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1425, 725, "Black", "Gray");
-			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1425, 800, "Black", "Gray");
+			DrawText(TextGet("SkillModifier"), 1425, 650, "Black", "Gray");
+			DrawText(TextGet("SkillBondage") + " " + PlusSign + SkillModifier, 1425, 725, "Black", "Gray");
+			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1425, 800, "Black", "Gray");
+			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1425, 875, "Black", "Gray");
 		}
 
 	}

@@ -76,7 +76,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
-		IsSlow: function () { return (((this.Effect.indexOf("Slow") >= 0) || (this.Pose.indexOf("LegsClosed") >= 0) || (this.Pose.indexOf("Kneel") >= 0)) && ((this.ID != 0) || !this.RestrictionSettings.SlowImmunity)) },
+		IsSlow: function () { return (((this.Effect.indexOf("Slow") >= 0) || (this.Pose.indexOf("LegsClosed") >= 0 && ((this.Effect.indexOf("KneelFreeze") >= 0) || InventoryGroupIsBlocked(this, "ItemLegs"))) || (this.Pose.indexOf("Kneel") >= 0)) && ((this.ID != 0) || !this.RestrictionSettings.SlowImmunity)) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
 		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
 		IsMouthOpen: function() { return this.Effect.indexOf("OpenMouth") >= 0 },
@@ -265,13 +265,14 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryAdd(C, "MistressPadlock", "ItemMisc", false);
 		InventoryAdd(C, "MistressTimerPadlock","ItemMisc", false);
 		InventoryAdd(C, "MistressPadlockKey", "ItemMisc", false);
+		InventoryAdd(C, "DeluxeBoots", "Shoes", false);
 		InventoryRemove(C, "ClothAccessory");
 		InventoryRemove(C, "HairAccessory1");
 		InventoryRemove(C, "HairAccessory2");
 		InventoryRemove(C, "HairAccessory3");
 		InventoryRemove(C, "Socks");
 	}
-
+	
 }
 
 /**
@@ -355,10 +356,17 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 			if (Character[C].AccountName == "Online-" + data.ID.toString())
 				Char = Character[C];
 
-	// Decompresses description
+	// Decompresses data
 	if (typeof data.Description === "string" && data.Description.startsWith("╬")) {
 		data.Description = LZString.decompressFromUTF16(data.Description.substr(1));
 	}
+	if (data.BlockItems && typeof data.BlockItems === "object" && !Array.isArray(data.BlockItems)) {
+		data.BlockItems = CommonUnpackItemArray(data.BlockItems);
+	}
+	if (data.LimitedItems && typeof data.LimitedItems === "object" && !Array.isArray(data.LimitedItems)) {
+		data.LimitedItems = CommonUnpackItemArray(data.LimitedItems);
+	}
+	data.WhiteList.sort((a, b) => a - b);
 
 	// If the character isn't found
 	if (Char == null) {
@@ -419,7 +427,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		if (!Refresh && (JSON.stringify(Char.ArousalSettings) !== JSON.stringify(data.ArousalSettings))) Refresh = true;
 		if (!Refresh && (JSON.stringify(Char.OnlineSharedSettings) !== JSON.stringify(data.OnlineSharedSettings))) Refresh = true;
 		if (!Refresh && (JSON.stringify(Char.Game) !== JSON.stringify(data.Game))) Refresh = true;
-		if (!Refresh && (data.Inventory != null) && (Char.Inventory.length != data.Inventory.length)) Refresh = true;
+		if (!Refresh && (JSON.stringify(Char.WhiteList) !== JSON.stringify(data.WhiteList))) Refresh = true;
 		if (!Refresh && (data.BlockItems != null) && (Char.BlockItems.length != data.BlockItems.length)) Refresh = true;
 		if (!Refresh && (data.LimitedItems != null) && (Char.LimitedItems.length != data.LimitedItems.length)) Refresh = true;
 
@@ -1066,7 +1074,7 @@ function CharacterCompressWardrobe(Wardrobe) {
 			var Arr = [];
 			if (Wardrobe[W] != null)
 				for (let A = 0; A < Wardrobe[W].length; A++)
-					Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color]);
+					Arr.push([Wardrobe[W][A].Name, Wardrobe[W][A].Group, Wardrobe[W][A].Color, Wardrobe[W][A].Property]);
 			CompressedWardrobe.push(Arr);
 		}
 		return LZString.compressToUTF16(JSON.stringify(CompressedWardrobe));
@@ -1087,7 +1095,7 @@ function CharacterDecompressWardrobe(Wardrobe) {
 			for (let W = 0; W < CompressedWardrobe.length; W++) {
 				var Arr = [];
 				for (let A = 0; A < CompressedWardrobe[W].length; A++)
-					Arr.push({ Name: CompressedWardrobe[W][A][0], Group: CompressedWardrobe[W][A][1], Color: CompressedWardrobe[W][A][2] });
+					Arr.push({ Name: CompressedWardrobe[W][A][0], Group: CompressedWardrobe[W][A][1], Color: CompressedWardrobe[W][A][2], Property: CompressedWardrobe[W][A][3]});
 				DecompressedWardrobe.push(Arr);
 			}
 		}

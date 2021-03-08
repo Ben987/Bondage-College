@@ -6,7 +6,7 @@ const InventoryItemMiscWoodenSignFont = "'Calligraffitti', cursive";
 function InventoryItemMiscWoodenSignLoad() {
 	DynamicDrawLoadFont(InventoryItemMiscWoodenSignFont);
 
-    var C = CharacterGetCurrent();
+	var C = CharacterGetCurrent();
 	var MustRefresh = false;
 
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
@@ -63,21 +63,21 @@ function InventoryItemMiscWoodenSignExit() {
 }
 
 // When the text is changed
-function InventoryItemMiscWoodenSignChange() { 
-    var C = CharacterGetCurrent();
-    CharacterRefresh(C);
-    if (CurrentScreen == "ChatRoom") {
-        var Dictionary = [];
-        Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-        Dictionary.push({ Tag: "TargetCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
-        ChatRoomPublishCustomAction("WoodenSignChange", true, Dictionary);
+function InventoryItemMiscWoodenSignChange() {
+	var C = CharacterGetCurrent();
+	CharacterRefresh(C);
+	if (CurrentScreen == "ChatRoom") {
+		var Dictionary = [];
+		Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+		Dictionary.push({ Tag: "TargetCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
+		ChatRoomPublishCustomAction("WoodenSignChange", true, Dictionary);
 		InventoryItemMiscWoodenSignExit();
-    }
+	}
 }
- 
+
 // Drawing function for the after-render
 function AssetsItemMiscWoodenSignAfterDraw({
-    C, A, X, Y, L, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color
+	C, A, X, Y, L, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color
 }) {
 	if (L === "_Text") {
 		// We set up a canvas
@@ -98,6 +98,13 @@ function AssetsItemMiscWoodenSignAfterDraw({
 			effect: DynamicDrawTextEffect.BURN,
 			width,
 		};
+
+		// Reposition and orient the text when hanging upside-down
+		if (C.IsInverted()) {
+			ctx.rotate(Math.PI);
+			ctx.translate(-tempCanvas.width, -tempCanvas.height);
+			Y -= 168;
+		}
 
 		DynamicDrawText(text1, ctx, width / 2, height / (isAlone ? 2 : 2.25), drawOptions);
 		DynamicDrawText(text2, ctx, width / 2, height / (isAlone ? 2 : 1.75), drawOptions);

@@ -116,23 +116,19 @@ function CommonDrawAppearanceBuild(C, {
 			}
 		}
 
-		// If we must apply alpha masks to the current image as it is being drawn
-		Layer.Alpha.forEach(AlphaDef => {
-			// If no groups are defined and the character's pose matches one of the allowed poses (or no poses are defined)
-			if ((!AlphaDef.Group || !AlphaDef.Group.length) &&
-			    (!AlphaDef.Pose || !Array.isArray(AlphaDef.Pose) || !!CommonDrawFindPose(C, AlphaDef.Pose))) {
-				AlphaDef.Masks.forEach(rect => {
-					clearRect(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3]);
-					clearRectBlink(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3]);
-				});
-			}
-		});
-
 		// Check if we need to draw a different expression (for facial features)
-		var Expression = "";
-		if (AG.AllowExpression && AG.AllowExpression.length)
-			if ((Property && Property.Expression && AG.AllowExpression.includes(Property.Expression)))
-				Expression = Property.Expression + "/";
+		let Expression = "";
+		let CurrentExpression = InventoryGetItemProperty(CA, "Expression");
+		if (!CurrentExpression && Layer.MirrorExpression) {
+			const MirroredItem = InventoryGet(C, Layer.MirrorExpression);
+			CurrentExpression = InventoryGetItemProperty(MirroredItem, "Expression");
+		}
+		if (CurrentExpression) {
+			const AllowExpression = InventoryGetItemProperty(CA, "AllowExpression", true);
+			if (CurrentExpression && AllowExpression && AllowExpression.includes(CurrentExpression)) {
+				Expression = CurrentExpression + "/";
+			}
+		}
 
 		let GroupName = A.DynamicGroupName;
 
@@ -151,6 +147,29 @@ function CommonDrawAppearanceBuild(C, {
 				}
 			});
 		}
+
+		// Offset Y to counteract height modifiers for fixed-position assets
+		let YFixedOffset = 0;
+		if (A.FixedPosition) {
+			if (C.IsInverted()) {
+				YFixedOffset = -Y + 1000 - (Y + CharacterAppearanceYOffset(C, C.HeightRatio) / C.HeightRatio);
+			} else {
+				YFixedOffset = C.HeightModifier + 1000 * (1 - C.HeightRatio) * (1 - C.HeightRatioProportion) / C.HeightRatio;
+			}
+		}
+		Y += YFixedOffset;
+		
+		// If we must apply alpha masks to the current image as it is being drawn
+		Layer.Alpha.forEach(AlphaDef => {
+			// If no groups are defined and the character's pose matches one of the allowed poses (or no poses are defined)
+			if ((!AlphaDef.Group || !AlphaDef.Group.length) &&
+				(!AlphaDef.Pose || !Array.isArray(AlphaDef.Pose) || !!CommonDrawFindPose(C, AlphaDef.Pose))) {
+				AlphaDef.Masks.forEach(rect => {
+					clearRect(rect[0], rect[1] + CanvasUpperOverflow + YFixedOffset, rect[2], rect[3]);
+					clearRectBlink(rect[0], rect[1] + CanvasUpperOverflow + YFixedOffset, rect[2], rect[3]);
+				});
+			}
+		});
 
 		// Check if we need to draw a different variation (from type property)
 		var Type = (Property && Property.Type) || "";
@@ -173,6 +192,9 @@ function CommonDrawAppearanceBuild(C, {
 		if (Array.isArray(Color)) {
 			Color = Color[Layer.ColorIndex] || AG.ColorSchema[0];
 		}
+
+		// Fix to legacy appearance data when Hands could be different to BodyUpper
+		if (GroupName === "Hands") Color = "Default";
 
 		// Check if we need to copy the color of another asset
 		let InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
@@ -254,23 +276,26 @@ function CommonDrawAppearanceBuild(C, {
 
 		// Adjust for the increased canvas size
 		Y += CanvasUpperOverflow;
-		AlphaMasks = AlphaMasks.map(([x, y, w, h]) => [x, y + CanvasUpperOverflow, w, h]);
+		AlphaMasks = AlphaMasks.map(([x, y, w, h]) => [x, y + CanvasUpperOverflow + YFixedOffset, w, h]);
 
-		const HideForPose = !!Pose && A.HideForPose.find(P => Pose === P + "/");
+		const Rotate = A.FixedPosition && C.IsInverted();
+
+		const HideForPose = !!Pose && (A.HideForPose.find(P => Pose === P + "/") || Layer.HideForPose.find(P => Pose === P + "/"));
+		const ItemLocked = !!(Property && Property.LockedBy);
 
 		if (!HideForPose) {
-			if (Layer.HasImage) {
+			if (Layer.HasImage && (!Layer.LockLayer || ItemLocked)) {
 				// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply
 				// that text)
 				if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
 					drawImageColorize(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y,
 						Color,
-						AG.DrawingFullAlpha, AlphaMasks, Opacity,
+						AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
 					);
 					drawImageColorizeBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y,
-						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity,
+						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
 					);
 				} else {
 					var ColorName = ((Color == null) || (Color == "Default") || (Color == "") || (Color.length == 1) ||
@@ -278,26 +303,26 @@ function CommonDrawAppearanceBuild(C, {
 					drawImage(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + ColorName + L + ".png",
 						X, Y,
-						AlphaMasks, Opacity,
+						AlphaMasks, Opacity, Rotate,
 					);
 					drawImageBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + ColorName + L +
 						".png",
-						X, Y, AlphaMasks, Opacity,
+						X, Y, AlphaMasks, Opacity, Rotate,
 					);
 				}
 			}
 
 			// If the item has been locked
-			if (Property && Property.LockedBy) {
-
+			if (ItemLocked && A.DrawLocks) {
 				// How many layers should be drawn for the asset
-				var DrawableLayerCount = C.AppearanceLayers.filter(AL => AL.Asset === A).length;
+				const DrawableLayerCount = C.AppearanceLayers.filter(AL => AL.Asset === A).length;
 
 				// If we just drew the last drawable layer for this asset, draw the lock too (never colorized)
 				if (DrawableLayerCount === LayerCounts[CountKey]) {
 					drawImage(
-						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + (A.HasType ? Type : "") + "_Lock.png",
+						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + (A.HasType ? Type : "") +
+						"_Lock.png",
 						X, Y, AlphaMasks,
 					);
 					drawImageBlink(

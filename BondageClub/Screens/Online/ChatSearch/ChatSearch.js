@@ -32,7 +32,7 @@ function ChatSearchLoad() {
 	ElementCreateInput("InputSearch", "text", "", "20");
 	ChatSearchQuery();
 	ChatSearchMessage = "";
-	CommonNotificationReset("Chat");
+	NotificationsReset("Chat");
 }
 
 /**
@@ -431,6 +431,7 @@ function ChatSearchResultResponse(data) {
 					ChatRoomNewRoomToUpdate = NewRoom
 				}
 			} else {
+				ChatSearchMessage = roomIsFull ? "ResponseRoomFull" : "ResponseCannotFindRoom";
 				ChatRoomSetLastChatRoom("")
 			}
 		}
@@ -444,7 +445,7 @@ function ChatSearchResultResponse(data) {
  */
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
-	// Prevent spam searching the same thing.
+	
 	if (ChatRoomJoinLeash != null && ChatRoomJoinLeash != "") {
 		Query = ChatRoomJoinLeash.toUpperCase().trim();
 	} else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "") {
@@ -455,6 +456,7 @@ function ChatSearchQuery() {
 		}
 	}
 
+	// Prevent spam searching the same thing.
 	if (ChatSearchLastQuerySearch != Query || ChatSearchLastQuerySearchHiddenRooms != ChatSearchIgnoredRooms.length || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
 		ChatSearchLastQuerySearch = Query;
 		ChatSearchLastQuerySearchTime = CommonTime();
@@ -462,6 +464,8 @@ function ChatSearchQuery() {
 		ChatSearchResult = [];
 		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace, Game: ChatRoomGame, FullRooms: (Player.OnlineSettings && Player.OnlineSettings.SearchShowsFullRooms), Ignore: ChatSearchIgnoredRooms });
 	}
+
+	ChatSearchMessage = "EnterName";
 }
 
 /**

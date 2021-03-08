@@ -1,4 +1,90 @@
 PlayerGagged,,,(She looks at your gag and giggles.),,
+0,,,(A girl is restrained in the room you're supposed to clean.)  Excuse me maid?  I think I'm stuck.,,
+0,10,Who are you?,"I'm not from the club, I'm a journalist.  I came here for an interview.",,
+0,10,Are you a slave?,"No!  I'm not from the club, I'm a journalist.  I came here for an interview.",,
+0,10,Are you ticklish?  (Tickle her.),"Eeeaaahhhahah!  Wait!  There's a mistake!  I'm a journalist, I came here for an interview.","DoActivity(""InterviewMaidTickleJournalist"")",Player.CanTalk()
+0,10,(Dust her with the gag.),"(She struggles against the cross and laughs.)  What are you doing?  I'm a journalist, I came here for an interview.","DoActivity(""InterviewMaidDusterGagJournalist"")",!Player.CanTalk()
+0,,(Check the room.),,DialogLeave(),
+10,20,Why are you restrained?,"I came in advance, and found these items, and this cross, and well...",,
+10,20,That's not very credible.,"It's true!  I came in advance, and found these items, and this cross, and well...",,
+10,20,(Listen to her story.),"I came in advance, and found these items, and this cross, and well...",,
+20,30,You trapped yourself?,"(She blushes.)  Yes, this is so silly.  Can you help me out?",,
+20,30,That's very funny.,No!  This is not funny!  (She blushes.)  Can you help me out?,,Player.CanTalk()
+20,30,(Giggle in your gag.),This is not funny!  (She blushes.)  Can you help me out?,,!Player.CanTalk()
+30,,,Please!  Will you help me out?,,
+30,40,(Play with her.),(You move close to her.)  What are you doing?  Why aren't you releasing me?,,
+30,100,(Release her.),,"DoActivity(""InterviewMaidReleaseJournalist"")",
+30,,(Check the room.),,DialogLeave(),
+40,,,What are you doing?  Why aren't you releasing me?,,
+40,,(Tickle her.),(You tickle her without mercy.)  Haaaaaaeeehahaha!  Stop that!  You need to release me!,"DoActivity(""InterviewMaidTickleJournalist"")",
+40,,(Caress her.),(She moans a little as you caress her slowly.)  Oh!  What kind of maid are you?,"DoActivity(""InterviewMaidCaressJournalist"")",
+40,,(Spank her.),(You spank her swiftly.)  Ow!  That hurts!  You're not helping much you know.,"DoActivity(""InterviewMaidSpankJournalist"")",
+40,,(Masturbate her.),"(She moans loudly and trembles.)  Aaaahh!  Slow down little maid, I have an interview to do.","DoActivity(""InterviewMaidMasturbateJournalist"")",
+40,,(Dust her with the gag.),(She struggles against the cross and laughs.)  Eeeeyyaaahahahah!,"DoActivity(""InterviewMaidDusterGagJournalist"")",!Player.CanTalk()
+40,,(Tickle her with the feather duster.),(You dust her slowly as she laughs on the cross.)  Hhheeooooaahaha!  Stop it!,"DoActivity(""InterviewMaidFeatherDusterJournalist"")","CanDoActivity(""InterviewMaidFeatherDusterJournalist"")"
+40,,(Caress her with the long duster.),(You dust her slowly as she moans a little.)  Heeeeeeey!  I'm not dusty!,"DoActivity(""InterviewMaidLongDusterJournalist"")","CanDoActivity(""InterviewMaidLongDusterJournalist"")"
+40,,(Use the toothbrush on her.),(You tickle her with the toothbrush as she trashes on the cross.)  Hey!  This is not how you use a toothbrush.,"DoActivity(""InterviewMaidToothbrushJournalist"")","CanDoActivity(""InterviewMaidToothbrushJournalist"")"
+40,50,(Masturbate her with the wand.),(She screams of pleasure as you masturbate her.)  Oh yes!  Yes!  Can I cum?  Please!,"DoActivity(""InterviewMaidWandOrgasmJournalist"")","CanDoActivity(""InterviewMaidWandOrgasmJournalist"")"
+40,,(Masturbate her with the wand.),(She yells loudly and gets another quick orgasm.)  Aaaaaaaaaah!  Enough!  This is too much!,"DoActivity(""InterviewMaidWandRepeatOrgasmJournalist"")","CanDoActivity(""InterviewMaidWandRepeatOrgasmJournalist"")"
+40,100,(Release her.),,"DoActivity(""InterviewMaidReleaseJournalist"")",
+40,,(Check the room.),,DialogLeave(),
+50,,Do you deserve it?,"(She nods rapidly.)  Oh yes!  I need it!  Please, please, please.",DialogRemove(),
+50,40,(Give her an orgasm.),(She trembles madly as you give her a strong orgasm on the cross.)  Aaaaaah!  Yes!  You're the best maid ever.  I owe you one.,"DoActivity(""InterviewMaidAllowOrgasmJournalist"")",
+50,40,(Deny her orgasm.),(She pouts and struggles against the cross.)  So unfair!  Let me go then!,,
+100,,,Thanks for helping me out.  Right on time for the interview.,,
+100,110,That's what maids are for.,You're very sweet you know?  Are you a submissive?,,
+100,110,My pleasure Miss.,You're very sweet you know?  Are you a submissive?,,
+100,,(Check the room.),,DialogLeave(),
+110,120,"Yes, I'm a sub.","This is nice, and you love to be controlled?  I could dominate you.",,
+110,120,"I'm a switch, both sub and Domme.",You look more submissive to me.  Do you enjoy being controlled?  I could dominate you.,,
+110,120,I'm a Dominant actually.,You don't look very Dominant.  Are you sure you don't enjoy being controlled?  I could dominate you.,,
+120,,,Would you like to be controlled?  I could dominate you.,,
+120,130,"Yes, you can control me Miss.","(She giggles.)  This is great!  Give me your hands, I will use the cuffs on you.",,
+120,,I need to work.  (Check the room.),,DialogLeave(),
+130,140,Very well.  (Give your hands.),(She grabs your arms and snaps some cuffs on you.)  Is it too tight?,"DoActivity(""InterviewCuffPlayer"")",
+130,140,Hold on.  (Take a step back.),"(She takes two steps forward, grab your arms and snaps some cuffs on you.)  Is it too tight?","DoActivity(""InterviewCuffPlayer"")",
+140,150,It's fine Miss.,Very good.  And how flexible are you little maid?,,
+140,150,I've seen worse.,Alright.  How flexible are you little maid?,,
+140,150,It's a little tight.,(She checks on the cuffs for safety.)  How flexible are you little maid?,,
+150,160,I'm pretty flexible.,"This is great, because I have a wicked position in mind.  (She straps the cuffs, so your elbows are touching behind your back.)","DoActivity(""InterviewCuffElbowPlayer"")",
+150,160,I'm not very flexible.,I won't go too hard on you then.  (She straps the cuffs behind your back in a box tie position.),"DoActivity(""InterviewCuffBoxTiePlayer"")",
+160,170,You know the cuffs Miss.,"(She smirks.)  I'm not a member, but this is fun.  Let's not forget the legs.",,
+160,170,That's very secure.,"(She smirks.)  I'm not a member, but this is fun.  Let's not forget the legs.",,
+160,170,(Struggle for fun.),(The camera follows you as you struggle.)  Let's not forget the legs.,"DoActivity(""InterviewMaidStruggleFun"")",
+170,180,I have a room to clean.,"That's true!  Don't worry, you will be able to clean.  (She snaps your leg cuffs together.)","DoActivity(""InterviewCuffLegsPlayer"")",
+170,180,Of course.  (Close your legs.),"Don't worry for your job, you will be able to clean.  (She snaps your leg cuffs together.)","DoActivity(""InterviewCuffLegsPlayer"")",
+180,190,How can I clean like that?,You worry too much.  (She searches around and finds a duster gag to use on you.)  Time to clean!,"DoActivity(""InterviewWearDusterGag"")",
+180,190,You're not making my job easier.,You worry too much.  (She searches around and finds a duster gag to use on you.)  Time to clean!,"DoActivity(""InterviewWearDusterGag"")",
+180,190,I will need a duster gag.,Great idea!  (She searches around and finds a duster gag to use on you.)  Time to clean!,"DoActivity(""InterviewWearDusterGag"")",
+190,,,Get cleaning little bound maid.,,
+190,,(Clean the furniture.),"(You hop around the room and clean the furniture with your duster gag, doing publicity for the club.)","DoActivity(""InterviewMaidCleanFurniture"")",
+190,,(Clean the torture items.),(You go to the torture item wall and dust the whips and crops as the camera zooms on the items.),"DoActivity(""InterviewMaidCleanTorture"")",
+190,,(Clean the journalist.),(She giggles as you dust her.  She takes a few pictures of you in your bondage.),"DoActivity(""InterviewMaidCleanJournalist"")",
+190,,(Struggle for the camera.),(You struggle sensually for the camera and moan loudly for the viewers.),"DoActivity(""InterviewMaidStruggleSexy"")",
+190,,(Check the room.),,DialogLeave(),
+1000,,,Can you please release me or ask her to help me?  I have an interview to do.,,
+1000,,(Clean her.),(You clean her sensually as the Mistress smirks.),"DoActivity(""InterviewMaidCleanJournalist"")","CanDoActivity(""InterviewMaidCleanForMistress"")"
+1000,,(Release her.),(The Mistress gets in front of you and instructs you to clean first.),,
+1000,,(Check the room.),,DialogLeave(),
+1100,,,Thanks for helping.  (She winks at you.)  Right on time for the interview.  Finish your cleaning so we can start.,,
+1100,,(Check the room.),,DialogLeave(),
+1200,,,"This is intense, you maids don't have it easy in the club.",,
+1200,,Can you help me?,"I'm not allowed, but I can probably tickle you.  (She tickles your tummy and laughs with you.)","DoActivity(""InterviewMaidTickleByJournalist"")",
+1200,,(Rub against her leg.),"(She smiles at you and caresses you slowly.)  I wish I had time for you, but I have an interview to do.","DoActivity(""InterviewMaidCaressByJournalist"")","!CanDoActivity(""InterviewMaidReturnFavor"")"
+1200,1210,(Rub against her leg.),(She smiles at you and caresses you slowly.)  Would you like to cum?  I owe you one.,"DoActivity(""InterviewMaidReturnFavorByJournalist"")","CanDoActivity(""InterviewMaidReturnFavor"")"
+1200,,(Check the room.),,DialogLeave(),
+1210,1220,Oh yes!  Please.,"My pleasure!   (She masturbates you skillfully as the Mistress smirks, giving you an orgasm in front of the camera.)","DoActivity(""InterviewMaidReturnFavorOrgasmByJournalist"")",
+1210,1200,"No, I'm good.","Too bad, you lost your chance maid.  (She giggles.)",,
+1220,1200,Wow!  Thanks.,"You deserved that orgasm, I owed it to you.  Now I have an interview to do.",,
+1220,1200,That was pretty nice.,"You deserved that orgasm, I owed it to you.  Now I have an interview to do.",,
+1220,1200,(Try to catch your breath.),"You deserved that orgasm, I owed it to you.  Now I have an interview to do.",,
+1300,,,Thanks for bringing some drinks.  Can you help me to drink it?  (She laughs.),,
+1300,,(Help her to drink.),(You slowly help her to drink as the camera zooms on her mouth and naked body.),"DoActivity(""InterviewMaidHelpDrink"")",
+1300,,(Dust her.),(You dust her as she struggles and laughs madly.)  You're not helping the interview!,"DoActivity(""InterviewMaidHelpDust"")","CanDoActivity(""InterviewMaidCleanForMistress"")"
+1300,,(Tickle her.),(She laughs out loud while trying to ask questions.)  Eeeeeyaahaha!  This is not funny!,"DoActivity(""InterviewMaidHelpTickle"")",
+1300,,(Spank her.),(She jumps from the pain as you spank her mid-interview.)  Ow!  What kind of maid are you?,"DoActivity(""InterviewMaidHelpSpank"")",
+1300,,(Caress her.),"(She tries to ask questions but moans loudly and blushes.)  Oooooooh!  Aaah, ah, another question?","DoActivity(""InterviewMaidHelpCaress"")",
+1300,,(Check the room.),,DialogLeave(),
 2000,,,"(A club member is restrained in your room.  She struggles in her cuffs.)  Hello there, I think I got in trouble.",,CurrentCharacter.IsRestrained()
 2000,,,"(A club member restrained a maid in your room.)  Hello there.  As you can see, this maid seems to enjoy trouble.",,!CurrentCharacter.IsRestrained()
 2000,2010,What's going on here?,"To make a long story short: I was exploring this dungeon, a maid came in, she locked these cuffs on me, and here I am now.",,CurrentCharacter.IsRestrained()
@@ -55,7 +141,7 @@ PlayerGagged,,,(She looks at your gag and giggles.),,
 2200,,(Check the room.),,DialogLeave(),
 2210,,,I can't believe I'm getting punished.,,
 2210,,(Restrain her.),(You pick up new restraints for her as the camera follows the rigging.)  Don't make it too tight.,"DoActivity(""InterviewMistressPunishRestrain"")",
-2210,,(Gag her.),(She shakes her head no as you pick up a gag for her mouth.),"DoActivity(""InterviewMistressPunishGag"")",
+2210,,(Gag her.),"(She shakes her head no, as you pick up a gag for her mouth.)","DoActivity(""InterviewMistressPunishGag"")",
 2210,,(Strap her on the cross.),(You push her against the big cross and strap her tight on it.)  This is beyond unfair.,"DoActivity(""InterviewMistressPunishCross"")","CanDoActivity(""InterviewMistressPunishCross"")"
 2210,,(Release her.),(She seems grateful as you release her from her restraints.)  Thanks...  I guess.,"DoActivity(""InterviewMistressPunishRelease"")",CurrentCharacter.IsRestrained()
 2210,,(Spank her.),(You spank her pretty hard as she whimpers from the pain.)  This is so humiliating.,"DoActivity(""InterviewMistressPunishSpank"")",

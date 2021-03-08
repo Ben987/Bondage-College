@@ -81,7 +81,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 }
 
 // Adds a new asset to the main list
-function AssetAdd(NewAsset) {
+function AssetAdd(NewAsset, ExtendedConfig) {
 	var A = {
 		Name: NewAsset.Name,
 		Description: NewAsset.Name,
@@ -148,6 +148,7 @@ function AssetAdd(NewAsset) {
 		Audio: NewAsset.Audio,
 		Category: NewAsset.Category,
 		Fetish: NewAsset.Fetish,
+		CustomBlindBackground: NewAsset.CustomBlindBackground,
 		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
 		BodyCosplay: (NewAsset.BodyCosplay == null) ? ((AssetCurrentGroup.BodyCosplay == null) ? false : AssetCurrentGroup.BodyCosplay) : NewAsset.BodyCosplay,
@@ -174,6 +175,10 @@ function AssetAdd(NewAsset) {
 		OverrideHeight: NewAsset.OverrideHeight,
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose :
 			Array.isArray(AssetCurrentGroup.FreezeActivePose) ? AssetCurrentGroup.FreezeActivePose : [],
+		DrawLocks: typeof NewAsset.DrawLocks === 'boolean' ? NewAsset.DrawLocks : true,
+		AllowExpression: NewAsset.AllowExpression,
+		MirrorExpression: NewAsset.MirrorExpression,
+		FixedPosition: typeof NewAsset.FixedPosition === 'boolean' ? NewAsset.FixedPosition : false,
 	}
 	if (A.MinOpacity > A.Opacity) A.MinOpacity = A.Opacity;
 	if (A.MaxOpacity < A.Opacity) A.MaxOpacity = A.Opacity;
@@ -182,6 +187,27 @@ function AssetAdd(NewAsset) {
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
+	if (A.Extended && ExtendedConfig) AssetBuildExtended(A, ExtendedConfig);
+}
+
+/**
+ * Constructs extended item functions for an asset, if extended item configuration exists for the asset.
+ * @param {Asset} A - The asset to configure
+ * @param {ExtendedItemConfig} ExtendedConfig - The extended item configuration object for the asset's family
+ * @returns {void} - Nothing
+ */
+function AssetBuildExtended(A, ExtendedConfig) {
+	const GroupConfig = ExtendedConfig[AssetCurrentGroup.Name];
+	if (GroupConfig) {
+		const AssetConfig = GroupConfig[A.Name];
+		if (AssetConfig) {
+			switch (AssetConfig.Archetype) {
+				case ExtendedArchetype.MODULAR:
+					ModularItemRegister(A, AssetConfig.Config);
+					break;
+			}
+		}
+	}
 }
 
 /**
@@ -226,6 +252,10 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		Opacity: typeof Layer.Opacity === "number" ? AssetParseOpacity(Layer.Opacity) : 1,
 		MinOpacity: typeof Layer.MinOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MinOpacity,
 		MaxOpacity: typeof Layer.MaxOpacity === "number" ? AssetParseOpacity(Layer.Opacity) : A.MaxOpacity,
+		LockLayer: typeof Layer.LockLayer === "boolean" ? Layer.LockLayer : false,
+		MirrorExpression: Layer.MirrorExpression,
+		HideForPose: Array.isArray(Layer.HideForPose) ? Layer.HideForPose : [],
+		AllowModuleTypes: Layer.AllowModuleTypes,
 	};
 	if (L.MinOpacity > L.Opacity) L.MinOpacity = L.Opacity;
 	if (L.MaxOpacity < L.Opacity) L.MaxOpacity = L.Opacity;
@@ -294,29 +324,44 @@ function AssetAssignColorIndices(A) {
 // Builds the asset description from the CSV file
 function AssetBuildDescription(Family, CSV) {
 
-	// For each assets in the family
-	var L = 0;
-	for (let A = 0; A < Asset.length; A++)
-		if (Asset[A].Group.Family == Family) {
+	const map = new Map();
 
-			// Checks if the group matches
-			if ((CSV[L] != null) && (CSV[L][0] != null) && (CSV[L][0].trim() != "") && (Asset[A].Group.Name == CSV[L][0].trim())) {
-
-				// If we must put the group description
-				if (((CSV[L][1] == null) || (CSV[L][1].trim() == "")) && ((CSV[L][2] != null) && (CSV[L][2].trim() != ""))) {
-					Asset[A].Group.Description = CSV[L][2].trim();
-					L++;
-				}
-
-				// If we must put the asset description
-				if ((CSV[L][1] != null) && (CSV[L][1].trim() != "") && (CSV[L][2] != null) && (CSV[L][2].trim() != "")) {
-					Asset[A].Description = CSV[L][2].trim();
-					L++;
-				}
-
+	for (const line of CSV) {
+		if (Array.isArray(line) && line.length === 3) {
+			if (map.has(`${line[0]}:${line[1]}`)) {
+				console.warn("Duplicate Asset Description: ", line);
 			}
-
+			map.set(`${line[0]}:${line[1]}`, line[2].trim());
+		} else {
+			console.warn("Bad Asset Description line: ", line);
 		}
+	}
+
+	// For each asset group in family
+	for (const G of AssetGroup) {
+		if (G.Family !== Family)
+			continue;
+
+		const res = map.get(`${G.Name}:`);
+		if (res === undefined) {
+			G.Description = `MISSING ASSETGROUP DESCRIPTION: ${G.Name}`;
+		} else {
+			G.Description = res;
+		}
+	}
+
+	// For each asset in the family
+	for (const A of Asset) {
+		if (A.Group.Family !== Family)
+			continue;
+
+		const res = map.get(`${A.Group.Name}:${A.Name}`);
+		if (res === undefined) {
+			A.Description = `MISSING ASSET DESCRIPTION: ${A.Group.Name}:${A.Name}`;
+		} else {
+			A.Description = res;
+		}
+	}
 
 	// Translates the descriptions to a foreign language
 	TranslationAsset(Family);
@@ -344,7 +389,7 @@ function AssetLoadDescription(Family) {
 }
 
 // Loads a specific asset file
-function AssetLoad(A, Family) {
+function AssetLoad(A, Family, ExtendedConfig) {
 
 	// For each group in the asset file
 	var G;
@@ -355,11 +400,12 @@ function AssetLoad(A, Family) {
 
 		// Add each assets in the group 1 by 1
 		var I;
-		for (I = 0; I < A[G].Asset.length; I++)
+		for (I = 0; I < A[G].Asset.length; I++) {
 			if (A[G].Asset[I].Name == null)
-				AssetAdd({ Name: A[G].Asset[I] });
+				AssetAdd({ Name: A[G].Asset[I] }, ExtendedConfig);
 			else
-				AssetAdd(A[G].Asset[I]);
+				AssetAdd(A[G].Asset[I], ExtendedConfig);
+		}
 
 	}
 
@@ -372,7 +418,7 @@ function AssetLoad(A, Family) {
 function AssetLoadAll() {
 	Asset = [];
 	AssetGroup = [];
-	AssetLoad(AssetFemale3DCG, "Female3DCG");
+	AssetLoad(AssetFemale3DCG, "Female3DCG", AssetFemale3DCGExtended);
 	Pose = PoseFemale3DCG;
 }
 

@@ -126,7 +126,8 @@ function InventoryItemDevicesWoodenBoxExit() {
 	const C = CharacterGetCurrent();
 	const item = DialogFocusItem;
 
-	InventoryItemDevicesWoodenBoxSetOpacity(item.Property, InventoryItemDevicesWoodenBoxGetInputOpacity());
+	let setOpacity = window[`Inventory${item.Asset.Group.Name}${item.Asset.Name}SetOpacity`] || InventoryItemDevicesWoodenBoxSetOpacity;
+	setOpacity(item.Property, InventoryItemDevicesWoodenBoxGetInputOpacity());
 	const text = InventoryItemDevicesWoodenBoxGetText();
 	if (DynamicDrawTextRegex.test(text)) item.Property.Text = text;
 
@@ -213,7 +214,7 @@ function InventoryItemDevicesWoodenBoxGetInputOpacity() {
  * @param {object} DrawingData - The dynamic drawing data
  * @returns {void} - Nothing
  */
-function AssetsItemDevicesWoodenBoxAfterDraw({ C, A, X, Y, L, Pose, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color, Opacity }) {
+function AssetsItemDevicesWoodenBoxAfterDraw({ C, A, X, Y, L, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color, Opacity }) {
 	if (L === "_Text") {
 		const height = 900;
 		const width = 310;
@@ -245,12 +246,9 @@ function AssetsItemDevicesWoodenBoxAfterDraw({ C, A, X, Y, L, Pose, Property, dr
 			color: `rgba(${r}, ${g}, ${b}, ${0.7 * Opacity})`,
 		});
 
-		let drawY = Y + 300;
-		if (Pose === "Kneel/") drawY -= 250;
-
 		// We print the canvas on the character based on the asset position
-		drawCanvas(tmpCanvas, X + 90, drawY, AlphaMasks);
-		drawCanvasBlink(tmpCanvas, X + 90, drawY, AlphaMasks);
+		drawCanvas(tmpCanvas, X + 90, Y + 300, AlphaMasks);
+		drawCanvasBlink(tmpCanvas, X + 90, Y + 300, AlphaMasks);
 	}
 }
 

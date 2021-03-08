@@ -19,8 +19,8 @@ function InventoryItemMiscPasswordPadlockLoad() {
 				|| C.IsOwnedByPlayer() || C.IsLoverOfPlayer())) document.getElementById("Password").placeholder = DialogFocusSourceItem.Property.Password;
 		} else {
 			// Set a password and hint
-			ElementCreateInput("SetPassword", "text", "", "8");
 			ElementCreateInput("SetHint", "text", "", "140");
+			ElementCreateInput("SetPassword", "text", "", "8");
 			// the current code is shown for owners, lovers and the member whose number is on the padlock
 			document.getElementById("SetPassword").placeholder = DialogFocusSourceItem.Property.Password;
 			document.getElementById("SetHint").placeholder = DialogFocusSourceItem.Property.Hint;
@@ -45,7 +45,7 @@ function InventoryItemMiscPasswordPadlockDraw() {
 		(DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.LockMemberNumber != Player.MemberNumber))) {
 			// Normal lock interface
 			if (DialogFocusSourceItem && DialogFocusSourceItem.Property && DialogFocusSourceItem.Property.Hint)
-				DrawText("\"" + DialogFocusSourceItem.Property.Hint + "\"", 1500, 700, "white", "gray");
+				DrawTextWrap("\"" + DialogFocusSourceItem.Property.Hint + "\"", 1000, 640, 1000, 120, null, null, 2);
 			MainCanvas.textAlign = "right";
 			DrawText(DialogFindPlayer("PasswordPadlockOld"), 1490, 805, "white", "gray");
 			ElementPosition("Password", 1640, 805, 250);

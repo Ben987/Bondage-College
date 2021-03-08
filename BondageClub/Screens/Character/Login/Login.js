@@ -5,10 +5,10 @@ var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
 var LoginThankYouList = ["Abby", "Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "EliseBlackthorn",
-						 "Epona", "Escurse", "FanRunner", "Fluffythewhat", "Greendragon", "Jin", "KamiKaze", "KBgamer", "Kimuriel", "Longwave",
-						 "Michal", "Michel", "Mike", "Mindtie", "Misa", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Ramtam",
-						 "Rashiash", "Ray", "Rika", "Rutherford", "Ryner", "Samuel", "Sayari", "SeraDenoir", "Shadow", "Somononon", 
-						 "Stephanie", "Tam", "Trent", "Troubadix", "William", "Xepherio", "Yurei"];
+						 "Epona", "Escurse", "FanRunner", "Greendragon", "KamiKaze", "KBgamer", "Kimuriel", "Longwave", "Michal", "Michel", 
+						 "Mike", "Mindtie", "Misa", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Ramtam", "Rashiash", "Ray", 
+						 "Rika", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "Somononon", "Stephanie", "Tam", "Trent", 
+						 "Troubadix", "William", "Xepherio", "Yurei", "Znarf"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -182,6 +182,7 @@ function LoginMistressItems() {
 		InventoryAdd(Player, "MistressPadlock", "ItemMisc", false);
 		InventoryAdd(Player, "MistressPadlockKey", "ItemMisc", false);
 		InventoryAdd(Player, "MistressTimerPadlock", "ItemMisc", false);
+		InventoryAdd(Player, "DeluxeBoots", "Shoes", false);
 	} else {
 		InventoryDelete(Player, "MistressPadlock", "ItemMisc", false);
 		InventoryDelete(Player, "MistressPadlockKey", "ItemMisc", false);
@@ -190,6 +191,7 @@ function LoginMistressItems() {
 		InventoryDelete(Player, "MistressBoots", "Shoes", false);
 		InventoryDelete(Player, "MistressTop", "Cloth", false);
 		InventoryDelete(Player, "MistressBottom", "ClothLower", false);
+		InventoryDelete(Player, "DeluxeBoots", "Shoes", false);
 	}
 }
 
@@ -289,23 +291,26 @@ function LoginValideBuyGroups() {
  * @returns {void} Nothing
  */
 function LoginValidateArrays() {
+	let update = false;
 	var CleanBlockItems = AssetCleanArray(Player.BlockItems);
 	if (CleanBlockItems.length != Player.BlockItems.length) {
 		Player.BlockItems = CleanBlockItems;
-		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
+		update = true;
 	}
 
 	var CleanLimitedItems = AssetCleanArray(Player.LimitedItems);
 	if (CleanLimitedItems.length != Player.LimitedItems.length) {
 		Player.LimitedItems = CleanLimitedItems;
-		ServerSend("AccountUpdate", { LimitedItems: Player.LimitedItems });
+		update = true;
 	}
 
 	var CleanHiddenItems = AssetCleanArray(Player.HiddenItems);
 	if (CleanHiddenItems.length != Player.HiddenItems.length) {
 		Player.HiddenItems = CleanHiddenItems;
-		ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems });
+		update = true;
 	}
+	if (update)
+		ServerPlayerBlockItemsSync();
 }
 
 /**
@@ -317,7 +322,7 @@ function LoginDifficulty() {
 	// If Extreme mode, the player cannot control her blocked items
 	if (Player.GetDifficulty() >= 3) {
 		LoginExtremeItemSettings();
-		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems, HiddenItems: Player.HiddenItems });
+		ServerPlayerBlockItemsSync();
 	}
 }
 
@@ -388,13 +393,20 @@ function LoginResponse(C) {
 			WardrobeFixLength();
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
-			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
-			Player.LimitedItems = ((C.LimitedItems == null) || !Array.isArray(C.LimitedItems)) ? [] : C.LimitedItems;
+			Player.BlockItems = Array.isArray(C.BlockItems) ? C.BlockItems :
+				typeof C.BlockItems === "object" && C.BlockItems ? CommonUnpackItemArray(C.BlockItems) : [];
+			Player.LimitedItems = Array.isArray(C.LimitedItems) ? C.LimitedItems :
+				typeof C.LimitedItems === "object" && C.LimitedItems ? CommonUnpackItemArray(C.LimitedItems) : [];
 			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
+			// TODO: Migration code; remove after few versions (added R66)
+			if (Array.isArray(C.BlockItems) || Array.isArray(C.LimitedItems)) {
+				ServerPlayerBlockItemsSync();
+			}
+
 			Player.Difficulty = C.Difficulty;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
-			
+
 			// Load the last chat room
 			Player.LastChatRoom = C.LastChatRoom;
 			Player.LastChatRoomBG = C.LastChatRoomBG;
@@ -451,7 +463,7 @@ function LoginResponse(C) {
 			LoginDifficulty();
 
 			// Loads the player character model and data
-			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
+			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber);
 			InventoryLoad(Player, C.Inventory);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);

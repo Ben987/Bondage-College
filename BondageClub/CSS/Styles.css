@@ -9,11 +9,10 @@ canvas {
 	right: 0;
   position: absolute;
   width: 100%;
-  height: 50vw;
 }
 @media (min-aspect-ratio: 2/1) {
   canvas {
-    width: 200vh;
+    width: unset;
     height: 100%;
   }
 }
@@ -185,6 +184,50 @@ TextArea {
 	cursor: pointer;
 }
 .FriendListLinkColumn:Hover{
+	color: cyan !important;
+}
+
+#FriendListBeep {
+	background: #000000AA;
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid white;
+	padding: 0 !important;
+	padding-bottom: 1% !important;
+}
+#FriendListBeep > div {
+	background: #999;
+	border: white solid 2px;
+	padding: .5em;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	height: 80%;
+	align-items: center;
+}
+#FriendListBeep > div > * {
+	margin-top: .5em;
+}
+#FriendListBeep > div > div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+#FriendListBeep textarea {
+	width: 30em;
+	height: 100%;
+	font: inherit;
+}
+#FriendListBeep a {
+	width: 50%;
+	margin: auto;
+	text-align: center;
+	text-decoration: underline;
+	user-select: none;
+	cursor: pointer;
+}
+#FriendListBeep a:hover {
 	color: cyan !important;
 }
 

@@ -340,6 +340,7 @@ function PreferenceInitPlayer() {
 	if (!C.RestrictionSettings) C.RestrictionSettings = {};
 	if (typeof C.RestrictionSettings.BypassStruggle !== "boolean") C.RestrictionSettings.BypassStruggle = false;
 	if (typeof C.RestrictionSettings.SlowImmunity !== "boolean") C.RestrictionSettings.SlowImmunity = false;
+	if (typeof C.RestrictionSettings.BypassNPCPunishments !== "boolean") C.RestrictionSettings.BypassNPCPunishments = false;
 
 	// Online settings
 	if (!C.OnlineSettings) C.OnlineSettings = {};
@@ -357,6 +358,12 @@ function PreferenceInitPlayer() {
 	if (typeof C.OnlineSharedSettings.BlockBodyCosplay !== "boolean") C.OnlineSharedSettings.BlockBodyCosplay = false;
 	if (typeof C.OnlineSharedSettings.AllowPlayerLeashing !== "boolean") C.OnlineSharedSettings.AllowPlayerLeashing = true;
 	if (typeof C.OnlineSharedSettings.DisablePickingLocksOnSelf !== "boolean") C.OnlineSharedSettings.DisablePickingLocksOnSelf = false;
+	if (C.OnlineSharedSettings.GameVersion !== GameVersion) {
+		if (CommonCompareVersion(GameVersion, C.OnlineSharedSettings.GameVersion) < 0) {
+			CommonVersionUpdated = true;
+		}
+		C.OnlineSharedSettings.GameVersion = GameVersion;
+	}
 
 	// Graphical settings
 	if (!C.GraphicsSettings) C.GraphicsSettings = {}
@@ -366,16 +373,23 @@ function PreferenceInitPlayer() {
 
 	// Notification settings
 	if (!C.NotificationSettings) C.NotificationSettings = {};
+	if (typeof C.NotificationSettings.Audio !== "boolean") C.NotificationSettings.Audio = false;
 	if (typeof C.NotificationSettings.Beeps !== "boolean") C.NotificationSettings.Beeps = true;
 	if (typeof C.NotificationSettings.Chat !== "boolean") C.NotificationSettings.Chat = true;
 	if (typeof C.NotificationSettings.ChatActions !== "boolean") C.NotificationSettings.ChatActions = false;
-
+	if (C.NotificationSettings.ChatJoin == undefined) C.NotificationSettings.ChatJoin = {};
+	if (typeof C.NotificationSettings.ChatJoin.Enabled !== "boolean") C.NotificationSettings.ChatJoin.Enabled = false;
+	if (typeof C.NotificationSettings.ChatJoin.Owner !== "boolean") C.NotificationSettings.ChatJoin.Owner = false;
+	if (typeof C.NotificationSettings.ChatJoin.Lovers !== "boolean") C.NotificationSettings.ChatJoin.Lovers = false;
+	if (typeof C.NotificationSettings.ChatJoin.Friendlist !== "boolean") C.NotificationSettings.ChatJoin.Friendlist = false;
+	
 	// Forces some preferences depending on difficulty
 
 	// Difficulty: non-Roleplay settings
 	if (C.GetDifficulty() >= 1) {
 		C.RestrictionSettings.BypassStruggle = false;
 		C.RestrictionSettings.SlowImmunity = false;
+		C.RestrictionSettings.BypassNPCPunishments = false;
 	}
 
 	// Difficulty: Hardcore settings
@@ -383,7 +397,6 @@ function PreferenceInitPlayer() {
 		C.GameplaySettings.EnableSafeword = false;
 		C.GameplaySettings.DisableAutoMaid = true;
 		C.GameplaySettings.OfflineLockedRestrained = true;
-		C.OnlineSharedSettings.DisablePickingLocksOnSelf = true;
 	}
 
 	// Difficulty: Extreme settings
@@ -572,12 +585,12 @@ function PreferenceSubscreenGeneralRun() {
 
 	// Checkboxes (Some are not available when playing on Hardcore or Extreme)
 	DrawCheckbox(500, 402, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
+	DrawCheckbox(500, 482, 64, 64, TextGet("DisablePickingLocksOnSelf"), Player.OnlineSharedSettings.DisablePickingLocksOnSelf);
 	if (Player.GetDifficulty() < 2) {
-		DrawCheckbox(500, 482, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
+		DrawCheckbox(500, 722, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword);
 		DrawCheckbox(500, 562, 64, 64, TextGet("DisableAutoMaid"), !Player.GameplaySettings.DisableAutoMaid);
 		DrawCheckbox(500, 642, 64, 64, TextGet("OfflineLockedRestrained"), Player.GameplaySettings.OfflineLockedRestrained);
-		DrawCheckbox(500, 722, 64, 64, TextGet("DisablePickingLocksOnSelf"), Player.OnlineSharedSettings.DisablePickingLocksOnSelf);
-	} else DrawText(TextGet("GeneralHardcoreWarning"), 500, 562, "Red", "Gray");
+	} else DrawText(TextGet("GeneralHardcoreWarning"), 500, 622, "Red", "Gray");
 
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
@@ -652,14 +665,11 @@ function PreferenceSubscreenRestrictionRun() {
 		DrawText(TextGet("RestrictionAccess"), 500, 225, "Black", "Gray");
 		DrawCheckbox(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"), Player.RestrictionSettings.BypassStruggle);
 		DrawCheckbox(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"), Player.RestrictionSettings.SlowImmunity);
+		DrawCheckbox(500, 525, 64, 64, TextGet("RestrictionBypassNPCPunishments"), Player.RestrictionSettings.BypassNPCPunishments);
 	} else {
 		DrawText(TextGet("RestrictionNoAccess"), 500, 225, "Black", "Gray");
-		DrawRect(500, 325, 64, 64, "#ebebe4");
-		DrawEmptyRect(500, 325, 64, 64, "Black");
-		DrawText(TextGet("RestrictionBypassStruggle"), 600, 355, "Black", "Gray");
-		DrawRect(500, 425, 64, 64, "#ebebe4");
-		DrawEmptyRect(500, 425, 64, 64, "Black");
-		DrawText(TextGet("RestrictionSlowImmunity"), 600, 455, "Black", "Gray");
+		DrawCheckboxDisabled(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"));
+		DrawCheckboxDisabled(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"));
 	}
 
 }
@@ -711,7 +721,8 @@ function PreferenceSubscreenGeneralClick() {
 
 	// Preference check boxes
 	if (MouseIn(500, 402, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
-	if (MouseIn(500, 482, 64, 64) && (Player.GetDifficulty() < 2)) {
+	if (MouseIn(500, 482, 64, 64) ) Player.OnlineSharedSettings.DisablePickingLocksOnSelf = !Player.OnlineSharedSettings.DisablePickingLocksOnSelf;
+	if (MouseIn(500, 722, 64, 64) && (Player.GetDifficulty() < 2)) {
 		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) {
 			if (PreferenceSafewordConfirm) {
 				Player.GameplaySettings.EnableSafeword = true;
@@ -726,7 +737,6 @@ function PreferenceSubscreenGeneralClick() {
 	} else PreferenceSafewordConfirm = false;
 	if (MouseIn(500, 562, 64, 64) && (Player.GetDifficulty() < 2)) Player.GameplaySettings.DisableAutoMaid = !Player.GameplaySettings.DisableAutoMaid;
 	if (MouseIn(500, 642, 64, 64) && (Player.GetDifficulty() < 2)) Player.GameplaySettings.OfflineLockedRestrained = !Player.GameplaySettings.OfflineLockedRestrained;
-	if (MouseIn(500, 722, 64, 64) && (Player.GetDifficulty() < 2)) Player.OnlineSharedSettings.DisablePickingLocksOnSelf = !Player.OnlineSharedSettings.DisablePickingLocksOnSelf;
 }
 
 /**
@@ -773,6 +783,8 @@ function PreferenceSubscreenRestrictionClick() {
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenDifficultyExit();
 	if (MouseIn(500, 325, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassStruggle = !Player.RestrictionSettings.BypassStruggle;
 	if (MouseIn(500, 425, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.SlowImmunity = !Player.RestrictionSettings.SlowImmunity;
+	if (MouseIn(500, 525, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassNPCPunishments = !Player.RestrictionSettings.BypassNPCPunishments;
+	
 }
 
 /**
@@ -883,7 +895,7 @@ function PreferenceExit() {
 		NotificationSettings: Player.NotificationSettings,
 		ItemPermission: Player.ItemPermission,
 		LabelColor: Player.LabelColor,
-		LimitedItems: Player.LimitedItems,
+		LimitedItems: CommonPackItemArray(Player.LimitedItems),
 	};
 	ServerSend("AccountUpdate", P);
 	PreferenceMessage = "";
@@ -902,6 +914,7 @@ function PreferenceSubscreenAudioRun() {
 	DrawCheckbox(500, 272, 64, 64, TextGet("AudioPlayBeeps"), Player.AudioSettings.PlayBeeps);
 	DrawCheckbox(500, 352, 64, 64, TextGet("AudioPlayItem"), Player.AudioSettings.PlayItem);
 	DrawCheckbox(500, 432, 64, 64, TextGet("AudioPlayItemPlayerOnly"), Player.AudioSettings.PlayItemPlayerOnly);
+	DrawCheckbox(500, 512, 64, 64, TextGet("NotificationsAudio"), Player.NotificationSettings.Audio);
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 193, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
@@ -1228,6 +1241,7 @@ function PreferenceSubscreenAudioClick() {
 		if ((MouseY >= 272) && (MouseY < 336)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
 		if ((MouseY >= 352) && (MouseY < 416)) Player.AudioSettings.PlayItem = !Player.AudioSettings.PlayItem;
 		if ((MouseY >= 432) && (MouseY < 496)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
+		if ((MouseY >= 512) && (MouseY < 576)) Player.NotificationSettings.Audio = !Player.NotificationSettings.Audio;
 	}
 
 }
@@ -1641,7 +1655,7 @@ function PreferenceVisibilityCheckboxChanged(List, CheckSetting) {
  * @returns {void} - Nothing
  */
 function PreferenceVisibilityExit(SaveChanges) {
-	if (SaveChanges) ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems, BlockItems: Player.BlockItems });
+	if (SaveChanges) ServerPlayerBlockItemsSync();
 
 	PreferenceVisibilityGroupList = [];
 	PreferenceVisibilityHiddenList = [];
@@ -1710,10 +1724,26 @@ function PreferenceSubscreenNotificationsRun() {
 	// Left-aligned text controls
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("NotificationsPreferences"), 500, 125, "Black", "Gray");
-	DrawText(TextGet("NotificationsChatRooms"), 500, 225, "Black", "Gray");
-	DrawCheckbox(500, 270, 64, 64, TextGet("NotificationsBeeps"), Player.NotificationSettings.Beeps);
-	DrawCheckbox(500, 350, 64, 64, TextGet("NotificationsChat"), Player.NotificationSettings.Chat);
-	DrawCheckbox(600, 430, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
+	DrawCheckbox(500, 190, 64, 64, TextGet("NotificationsAudio"), Player.NotificationSettings.Audio);
+	DrawText(TextGet("NotificationsChatRooms"), 500, 305, "Black", "Gray");
+	DrawCheckbox(500, 350, 64, 64, TextGet("NotificationsBeeps"), Player.NotificationSettings.Beeps);
+	DrawCheckbox(500, 430, 64, 64, TextGet("NotificationsChat"), Player.NotificationSettings.Chat);
+	if (Player.NotificationSettings.Chat) {
+		DrawCheckbox(600, 510, 64, 64, TextGet("NotificationsChatActions"), Player.NotificationSettings.ChatActions);
+	} else {
+		DrawCheckboxDisabled(600, 510, 64, 64, TextGet("NotificationsChatActions"));
+	}
+	DrawCheckbox(500, 590, 64, 64, TextGet("NotificationsChatJoin"), Player.NotificationSettings.ChatJoin.Enabled);
+	DrawText("Only:", 600, 702, "Black", "Gray");
+	if (Player.NotificationSettings.ChatJoin.Enabled) {
+		DrawCheckbox(775, 670, 64, 64, TextGet("NotificationsChatJoinOwner"), Player.NotificationSettings.ChatJoin.Owner);
+		DrawCheckbox(1075, 670, 64, 64, TextGet("NotificationsChatJoinLovers"), Player.NotificationSettings.ChatJoin.Lovers);
+		DrawCheckbox(1375, 670, 64, 64, TextGet("NotificationsChatJoinFriendlist"), Player.NotificationSettings.ChatJoin.Friendlist);
+	} else {
+		DrawCheckboxDisabled(775, 670, 64, 64, TextGet("NotificationsChatJoinOwner"));
+		DrawCheckboxDisabled(1075, 670, 64, 64, TextGet("NotificationsChatJoinLovers"));
+		DrawCheckboxDisabled(1375, 670, 64, 64, TextGet("NotificationsChatJoinFriendlist"));
+	}
 	MainCanvas.textAlign = "center";
 
 	// Reset button
@@ -1730,10 +1760,23 @@ function PreferenceSubscreenNotificationsClick() {
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
 
 	// Checkboxes
-	if (MouseIn(500, 270, 64, 64)) Player.NotificationSettings.Beeps = !Player.NotificationSettings.Beeps;
-	if (MouseIn(500, 350, 64, 64)) Player.NotificationSettings.Chat = !Player.NotificationSettings.Chat;
-	if (MouseIn(600, 430, 64, 64)) Player.NotificationSettings.ChatActions = !Player.NotificationSettings.ChatActions;
-
+	const settings = Player.NotificationSettings;
+	if (MouseIn(500, 190, 64, 64)) settings.Audio = !settings.Audio;
+	if (MouseIn(500, 350, 64, 64)) settings.Beeps = !settings.Beeps;
+	if (MouseIn(500, 430, 64, 64)) settings.Chat = !settings.Chat;
+	if (MouseIn(600, 510, 64, 64)) settings.ChatActions = !settings.ChatActions && settings.Chat;
+	if (MouseIn(500, 590, 64, 64)) {
+		settings.ChatJoin.Enabled = !settings.ChatJoin.Enabled;
+		if (!settings.ChatJoin.Enabled) {
+			settings.ChatJoin.Owner = false;
+			settings.ChatJoin.Lovers = false;
+			settings.ChatJoin.Friendlist = false;
+		}
+	}
+	if (MouseIn(775, 670, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Owner = !settings.ChatJoin.Owner;
+	if (MouseIn(1075, 670, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Lovers = !settings.ChatJoin.Lovers;
+	if (MouseIn(1375, 670, 64, 64) && settings.ChatJoin.Enabled) settings.ChatJoin.Friendlist = !settings.ChatJoin.Friendlist;
+	
 	// Reset button
-	if (MouseIn(500, 800, 380, 64)) CommonNotificationResetAll();
+	if (MouseIn(500, 800, 380, 64)) NotificationsResetAll();
 }
