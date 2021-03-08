@@ -32,7 +32,7 @@ const AssetGroupType = {
 	Blink: "Maybe Boolean",
 	InheritColor: "Maybe String",
 	FreezeActivePose: "Maybe [String]",
-	PreviewZone: "Maybe [(Number, Number, Number, Number)]",
+	PreviewZone: "Maybe (Number, Number, Number, Number)",
 };
 
 const AssetType = {
