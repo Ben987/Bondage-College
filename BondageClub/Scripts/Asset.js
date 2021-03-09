@@ -75,6 +75,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink,
 		InheritColor: NewAsset.InheritColor,
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose : [],
+		PreviewZone: NewAsset.PreviewZone,
 	}
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;

@@ -76,7 +76,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
-		IsSlow: function () { return (((this.Effect.indexOf("Slow") >= 0) || (this.Pose.indexOf("LegsClosed") >= 0) || (this.Pose.indexOf("Kneel") >= 0)) && ((this.ID != 0) || !this.RestrictionSettings.SlowImmunity)) },
+		IsSlow: function () { return (((this.Effect.indexOf("Slow") >= 0) || (this.Pose.indexOf("LegsClosed") >= 0 && ((this.Effect.indexOf("KneelFreeze") >= 0) || InventoryGroupIsBlocked(this, "ItemLegs"))) || (this.Pose.indexOf("Kneel") >= 0)) && ((this.ID != 0) || !this.RestrictionSettings.SlowImmunity)) },
 		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
 		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
 		IsMouthOpen: function() { return this.Effect.indexOf("OpenMouth") >= 0 },
@@ -317,6 +317,26 @@ function CharacterLoadNPC(NPCType) {
 	// Returns the new character
 	return C;
 
+}
+
+/**
+ * Create a minimal character object
+ * @param {string} AccName - The account name to give to the character
+ * @returns {Character} - The created character
+ */
+function CharacterLoadSimple(AccName) {
+	// Checks if the character already exists and returns it if it's the case
+	for (let C = 0; C < Character.length; C++)
+		if (Character[C].AccountName === AccName)
+			return Character[C];
+
+	// Create the new character
+	CharacterReset(CharacterNextId++, "Female3DCG");
+	let C = Character[Character.length - 1];
+	C.AccountName = AccName;
+	
+	// Returns the new character
+	return C;
 }
 
 /**
@@ -1214,6 +1234,11 @@ function CharacterCanKneel(C) {
 	return C.CanChangeToPose("Kneel");
 }
 
+/**
+ * Determines how much the character's view should be darkened based on their blind level. 1 is fully visible, 0 is pitch black.
+ * @param {any} C - The character to check
+ * @returns {number} - The number between 0 (bright) and 1 (dark) that determines screen darkness
+ */
 function CharacterGetDarkFactor(C) {
 	let DarkFactor = 1.0;
 	if (C.GetBlindLevel() >= 3) DarkFactor = 0.0;
