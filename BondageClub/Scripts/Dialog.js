@@ -711,13 +711,16 @@ function DialogInventorySort() {
  * the player's inventory and the character's inventory for that group
  * @param {Character} C - The character whose inventory must be built
  * @param {number} [Offset] - The offset to be at, if specified.
+ * @param {boolean} [redrawPreviews=false] - If TRUE and if building a list of preview character images, redraw the canvases
  * @returns {void} - Nothing
  */
-function DialogInventoryBuild(C, Offset) {
+function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 
 	// Make sure there's a focused group
 	DialogInventoryOffset = Offset;
 	if (DialogInventoryOffset == null) DialogInventoryOffset = 0;
+
+	const DialogInventoryBefore = DialogInventoryStringified(C);
 	DialogInventory = [];
 	if (C.FocusGroup != null) {
 
@@ -774,11 +777,24 @@ function DialogInventoryBuild(C, Offset) {
 			}
 		}
 
-		// Rebuilds the dialog menu, its buttons and the preview icons if required
+		// Rebuilds the dialog menu and its buttons
 		DialogInventorySort();
 		DialogMenuButtonBuild(C);
-		AppearancePreviewBuild(C);
+
+		// Build the list of preview images
+		const DialogInventoryAfter = DialogInventoryStringified(C);
+		const redraw = redrawPreviews || (DialogInventoryBefore !== DialogInventoryAfter);
+		AppearancePreviewBuild(C, redraw);
 	}
+}
+
+/**
+ * Create a stringified list of the group and the assets currently in the dialog inventory
+ * @param {Character} C - The character the dialog inventory has been built for
+ * @returns {string} - The list of assets as a string
+ */
+function DialogInventoryStringified(C) {
+	return (C.FocusGroup ? C.FocusGroup.Name : "") + (DialogInventory ? JSON.stringify(DialogInventory.map(I => I.Asset.Name).sort()) : "");
 }
 
 /**

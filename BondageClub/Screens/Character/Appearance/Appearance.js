@@ -733,17 +733,20 @@ function AppearanceMenuDraw() {
 /**
  * Create a list of characters with different items from the group applied, to use as the preview images
  * @param {Character} C - The character that the dialog inventory has been loaded for
+ * @param {boolean} buildCanvases - Determines whether the preview canvases need to be (re)built, e.g. for the initial load or due to an appearance change
  * @returns {void} - Nothing
  */
-function AppearancePreviewBuild(C) {
+function AppearancePreviewBuild(C, buildCanvases) {
+	AppearancePreviews = [];
 	if (C.FocusGroup && C.FocusGroup.PreviewZone && DialogInventory) {
-		AppearancePreviews = [];
-		const baseAppearance = C.Appearance.filter(A => A.Asset.Group.Category === "Appearance");
+		const baseAppearance = buildCanvases ? C.Appearance.filter(A => A.Asset.Group.Category === "Appearance") : null;
 		DialogInventory.forEach(item => {
 			let PreviewChar = CharacterLoadSimple("AppearancePreview-" + item.Asset.Name);
-			PreviewChar.Appearance = Array.from(baseAppearance);
-			CharacterAppearanceSetItem(PreviewChar, item.Asset.Group.Name, item.Asset, null, null, null, false);
-			CharacterLoadCanvas(PreviewChar);
+			if (buildCanvases) {
+				PreviewChar.Appearance = Array.from(baseAppearance);
+				CharacterAppearanceSetItem(PreviewChar, item.Asset.Group.Name, item.Asset, null, null, null, false);
+				CharacterLoadCanvas(PreviewChar);
+			}
 			AppearancePreviews.push(PreviewChar);
 		});
 	}
@@ -960,7 +963,7 @@ function AppearanceClick() {
 							else {
 								// Open the clothing group screen
 								C.FocusGroup = AssetGroup[A];
-								DialogInventoryBuild(C);
+								DialogInventoryBuild(C, null, true);
 								CharacterAppearanceCloth = InventoryGet(C, C.FocusGroup.Name);
 								CharacterAppearanceMode = "Cloth";
 								return;
@@ -1201,6 +1204,7 @@ function CharacterAppearanceExit(C) {
 	CharacterAppearanceReturnRoom = "MainHall";
 	CharacterAppearanceReturnModule = "Room";
 	CharacterAppearanceHeaderText = "";
+	AppearancePreviewCleanup();
 }
 
 /**
@@ -1340,7 +1344,7 @@ function AppearanceItemColor(C, Item, AssetGroup, CurrentMode) {
 		if (C.FocusGroup && C.FocusGroup.PreviewZone) {
 			const item = InventoryGet(C, C.FocusGroup.Name);
 			if (CharacterAppearanceColorPickerBackup !== item.Color) {
-				AppearancePreviewBuild(C);
+				AppearancePreviewBuild(C, true);
 			}
 		}
 	});
