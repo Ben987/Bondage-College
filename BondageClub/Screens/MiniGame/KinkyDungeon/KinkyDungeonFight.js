@@ -33,7 +33,7 @@ function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg) {
 		
 		
 	}
-	if (!NoMsg) {
+	if (!NoMsg && 1 >= KinkyDungeonActionMessagePriority) {
 		KinkyDungeonActionMessageTime = 2
 		KinkyDungeonActionMessage = (hit) ? TextGet((Ranged) ? "PlayerRanged" : "PlayerAttack").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)).replace("DamageDealt", dmg) : TextGet("PlayerMiss").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name))
 		KinkyDungeonActionMessageColor = (hit) ? "orange" : "red"
@@ -51,13 +51,14 @@ function KinkyDungeonUpdateBullets(delta) {
 	for (let E = 0; E < KinkyDungeonBullets.length; E++) {
 		var b = KinkyDungeonBullets[E]
 		var d = delta
+		if (b.born >= 0) b.born -= 1
 		
 		while (d > 0) {
 			var dt = d - Math.max(0, d - 1)
-			if (b.born) b.born = false
-			else {
+			if (b.born < 0) {
 				b.xx += b.vx * dt
 				b.yy += b.vy * dt
+				b.time -= delta
 			}
 			
 			b.x = Math.round(b.xx)
@@ -65,11 +66,13 @@ function KinkyDungeonUpdateBullets(delta) {
 			
 			d -= 1
 			
-			if (!KinkyDungeonBulletsCheckCollision(b)) {
+			
+			if (!KinkyDungeonBulletsCheckCollision(b) || (b.bullet.lifetime > 0 && b.time <= 0)) {
 				d = 0
 				KinkyDungeonBullets.splice(E, 1)
 				KinkyDungeonBulletsID[b.spriteID] = null
 				E -= 1
+				KinkyDungeonBulletHit(b, 2)
 			}
 		}
 	}
@@ -83,30 +86,38 @@ function KinkyDungeonUpdateBulletsCollisions(delta) {
 			KinkyDungeonBullets.splice(E, 1)
 			KinkyDungeonBulletsID[b.spriteID] = null
 			E -= 1
+			KinkyDungeonBulletHit(b, 1)
 		}
+	}
+}
+
+function KinkyDungeonBulletHit(b, born) {
+	if (b.bullet.hit == "") {
+		KinkyDungeonBullets.push({born: born, time:1, x:b.x, y:b.y, vx:0, vy:0, xx:b.x, yy:b.y, spriteID:b.bullet.name+"Hit" + CommonTime(), bullet:{lifetime: 1, passthrough:true, name:b.bullet.name+"Hit", width:b.bullet.width, height:b.bullet.height}})
 	}
 }
 
 function KinkyDungeonBulletsCheckCollision(bullet) {
 	var mapItem = KinkyDungeonMapGet(bullet.x, bullet.y)
-	if (!KinkyDungeonOpenObjects.includes(mapItem)) return false
+	if (!bullet.bullet.passthrough && !KinkyDungeonOpenObjects.includes(mapItem)) return false
 	
-	for (let L = 0; L < KinkyDungeonEntities.length; L++) {
-		var enemy = KinkyDungeonEntities[L]
-		if (enemy.x == bullet.x && enemy.y == bullet.y) {
-			KinkyDungeonDamageEnemy(enemy, bullet.bullet.damage, true, bullet.bullet.NoMsg)
-			
-			return false
+	if (bullet.bullet.damage)
+		for (let L = 0; L < KinkyDungeonEntities.length; L++) {
+			var enemy = KinkyDungeonEntities[L]
+			if (enemy.x == bullet.x && enemy.y == bullet.y) {
+				KinkyDungeonDamageEnemy(enemy, bullet.bullet.damage, true, bullet.bullet.NoMsg)
+				
+				return false
+			}
 		}
-	}
 	return true
 }
 
 function KinkyDungeonLaunchBullet(x, y, targetx, targety, speed, bullet) {
-	var direction = Math.atan2(targety - y, targetx - x)
+	var direction = Math.atan2(targety, targetx)
 	var vx = Math.cos(direction) * speed
 	var vy = Math.sin(direction) * speed
-	KinkyDungeonBullets.push({born: true, x:x, y:y, vx:vx, vy:vy, xx:x, yy:y, spriteID:bullet.name + CommonTime(), bullet:bullet})
+	KinkyDungeonBullets.push({born: 1, time:bullet.lifetime, x:x, y:y, vx:vx, vy:vy, xx:x, yy:y, spriteID:bullet.name + CommonTime(), bullet:bullet})
 }
 
 function KinkyDungeonDrawFight(canvasOffsetX, canvasOffsetY, CamX, CamY) {

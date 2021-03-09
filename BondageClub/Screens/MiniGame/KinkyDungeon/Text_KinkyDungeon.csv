@@ -19,6 +19,23 @@ Wait,"You pause and regain some breath"
 
 GameStart,Start New Game
 LoadGame,Load From Checkpoint
+GameReturnToMenu,Save Keybindings
+GameConfigKeys,Change Keybindings
+
+KinkyDungeonKeyUp,Up
+KinkyDungeonKeyDown,Down
+KinkyDungeonKeyLeft,Left
+KinkyDungeonKeyRight,Right
+KinkyDungeonKeyUpLeft,Up Left
+KinkyDungeonKeyUpRight,Up Right
+KinkyDungeonKeyDownLeft,Down Left
+KinkyDungeonKeyDownRight,Down Right
+KinkyDungeonKeySpell1,Spell 1
+KinkyDungeonKeySpell2,Spell 2
+KinkyDungeonKeySpell3,Spell 3
+KinkyDungeonKeyWait,Wait
+KinkyDungeonCurrentPress,"Current Key Pressed"
+KinkyDungeonCurrentPressInfo,"Press a key, then press a button to set that key"
 
 CurrentLevel,"Current Level: "
 CurrentGold,"Gold: "

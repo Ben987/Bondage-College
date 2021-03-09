@@ -220,49 +220,9 @@ function KinkyDungeonHandleHUD() {
 		else if (MouseIn(510, 925, 120, 60)) { KinkyDungeonDrawStruggle = !KinkyDungeonDrawStruggle; return true;}
 		
 		if (!KinkyDungeonTargetingSpell) {
-			var spell = null
-			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]] && MouseIn(1405, 895, 90, 90)) {
-				if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]].level) <= KinkyDungeonStatStamina)
-					spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
-				else if (4 >= KinkyDungeonActionMessagePriority) {
-					KinkyDungeonActionMessageTime = 1
-					KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
-					KinkyDungeonActionMessageColor = "red"
-					KinkyDungeonActionMessagePriority = 4
-				}
-			}
-			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]] && MouseIn(1605, 895, 90, 90)) {
-				if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]].level) <= KinkyDungeonStatStamina)
-					spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
-				else if (4 >= KinkyDungeonActionMessagePriority) {
-					KinkyDungeonActionMessageTime = 1
-					KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
-					KinkyDungeonActionMessageColor = "red"
-					KinkyDungeonActionMessagePriority = 4
-				}
-			}
-			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]] && MouseIn(1805, 895, 90, 90)) {
-				if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]].level) <= KinkyDungeonStatStamina)
-					spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
-				else if (4 >= KinkyDungeonActionMessagePriority) {
-					KinkyDungeonActionMessageTime = 1
-					KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
-					KinkyDungeonActionMessageColor = "red"
-					KinkyDungeonActionMessagePriority = 4
-				}
-			}
-			if (spell) {
-				// Handle spell activation
-				KinkyDungeonTargetingSpell = spell
-				
-				if (KinkyDungeonActionMessagePriority <= 1) {
-					KinkyDungeonActionMessageTime = 1
-					KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellTarget" + spell.name)
-					KinkyDungeonActionMessageColor = "white"
-					KinkyDungeonActionMessagePriority = 2
-				}
-				return true;
-			}
+			if (KinkyDungeonHandleSpell()) return true
+		} else {
+			KinkyDungeonSpellPress = 0
 		}
 		
 		if (KinkyDungeonStruggleGroups)
