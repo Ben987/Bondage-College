@@ -33,7 +33,6 @@ var ChatRoomNewRoomToUpdate = null;
 var ChatRoomLeashList = [];
 var ChatRoomLeashPlayer = null;
 var ChatRoomTargetDirty = false;
-var ChatRoomUnreadMessages = false;
 // Chance of a chat message popping up reminding you of your plugs/crotch rope at 0 arousal. Chance is for each item, but only one message appears, with priority to ones with higher chance
 const ChatRoomArousalMsg_Chance = {
 	"Kneel" : 0.1,
@@ -1145,8 +1144,8 @@ function ChatRoomRun() {
 	// Runs any needed online game script
 	OnlineGameRun();
 
-	// Clear any notifications if needed
-	NotificationsChatRoomReset();
+	// Clear notifications if needed
+	ChatRoomNotificationReset();
 }
 
 /**
@@ -1160,16 +1159,17 @@ function ChatRoomMenuDraw() {
 		let Button = ChatRoomMenuButtons[B];
 		if (Button === "Exit") continue; // handled in ChatRoomRun()
 		const ImageSuffix = Button === "Icons" ? ChatRoomHideIconState.toString() : "";
-		if (Button === "Exit" && !ChatRoomCanLeave()
-			|| (Button === "Kneel" && (!Player.CanKneel() && !(ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel()))))
-			|| (Button === "Dress" && (!Player.CanChange() || !OnlineGameAllowChange())))
+		if (Button === "Kneel" && !Player.CanKneel()) {
+			if (ChatRoomGetUpTimer === 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())) {
+				ButtonColor = "Yellow";
+			} else {
+				ButtonColor = "Pink";
+			}
+		} else if (Button === "Dress" && (!Player.CanChange() || !OnlineGameAllowChange())) {
 			ButtonColor = "Pink";
-		else if (Button === "Kneel" && (!Player.CanKneel() && ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())))
-      ButtonColor = "#FFFF00"
-    else ButtonColor = "White";
-    
-    (Player.CanKneel()) ? "White" : ((ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())) ? "#FFFF00" : "Pink")
-    
+		} else {
+			ButtonColor = "White";
+		}
 		DrawButton(1005 + Space * B, 2, 120, 60, "", ButtonColor, "Icons/Rectangle/" + Button + ImageSuffix + ".png", TextGet("Menu" + Button));
 	}
 }
@@ -1790,7 +1790,9 @@ function ChatRoomMessage(data) {
 					if (!Player.AudioSettings.PlayItemPlayerOnly || IsPlayerInvolved)
 						AudioPlayContent(data);
 
-					if (data.Type == "Action" && IsPlayerInvolved && SenderCharacter.MemberNumber !== Player.MemberNumber && Player.NotificationSettings.ChatActions) NotificationsChatRoomIncrement();
+					// Raise a notification if required
+					if (data.Type === "Action" && IsPlayerInvolved)
+						ChatRoomNotificationRaiseChatMessage(SenderCharacter, msg, true);
 				}
 			}
 
@@ -1811,18 +1813,16 @@ function ChatRoomMessage(data) {
 						msg += SenderCharacter.Name;
 					}
 					msg += ':</span> ';
+					
+					const chatMsg = ChatRoomHTMLEntities(data.Type === "Whisper" ? data.Content : SpeechGarble(SenderCharacter, data.Content));
+					msg += chatMsg;
+					ChatRoomChatLog.push({ Chat: chatMsg, Time: CommonTime() });
 
-						
-					if (data.Type == "Whisper") {
-						msg += ChatRoomHTMLEntities(data.Content);
-						ChatRoomChatLog.push({Chat: ChatRoomHTMLEntities(data.Content), Time: CommonTime()})
-					} else {
-						msg += ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content));
-						ChatRoomChatLog.push({Chat: ChatRoomHTMLEntities(SpeechGarble(SenderCharacter, data.Content, true)), Time: CommonTime()})
-					}
 					if (ChatRoomChatLog.length > 6) { // Keep it short
 						ChatRoomChatLog.splice(0, 1)
 					}
+					
+					ChatRoomNotificationRaiseChatMessage(SenderCharacter, chatMsg, false);
 				}
 				else if (data.Type == "Emote") {
 					if (msg.indexOf("*") == 0) msg = msg + "*";
@@ -1836,12 +1836,11 @@ function ChatRoomMessage(data) {
 						}
 					}
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
+
+					ChatRoomNotificationRaiseChatMessage(SenderCharacter, msg, false);
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
 				else if (data.Type == "ServerMessage") msg = "<b>" + msg + "</b>";
-
-				if (Player.NotificationSettings.Chat && SenderCharacter.MemberNumber !== Player.MemberNumber
-					&& (data.Type == "Chat" || data.Type == "Whisper" || data.Type == "Emote")) NotificationsChatRoomIncrement();
 			}
 
 			// Outputs the sexual activities text and runs the activity if the player is targeted
@@ -1877,7 +1876,9 @@ function ChatRoomMessage(data) {
 				// Exits before outputting the text if the player doesn't want to see the sexual activity messages
 				if ((Player.ChatSettings != null) && (Player.ChatSettings.ShowActivities != null) && !Player.ChatSettings.ShowActivities) return;
 
-				if (TargetMemberNumber === Player.MemberNumber && SenderCharacter.MemberNumber !== Player.MemberNumber && Player.NotificationSettings.ChatActions) NotificationsChatRoomIncrement();
+				// Raise a notification if required
+				if (TargetMemberNumber === Player.MemberNumber)
+					ChatRoomNotificationRaiseChatMessage(SenderCharacter, msg, true);
 			}
 
 			if (!(
@@ -1949,7 +1950,9 @@ function ChatRoomSync(data) {
 			ChatRoomCharacter.push(Char);
 			// Special cases when someone joins the room
 			if (!Joining && !OldChatRoomCharacter.includes(Char)) {
-				NotificationsChatRoomJoin(Char);
+				if (ChatRoomNotificationRaiseChatJoin(Char)) {
+					NotificationRaise(NotificationEventType.CHATJOIN, { characterName: Char.Name });
+				}
 				if (ChatRoomLeashList.includes(Char.MemberNumber)) {
 					// Ping to make sure they are still leashed
 					ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: Char.MemberNumber });
@@ -2807,4 +2810,59 @@ function ChatRoomPhoto(Left, Top, Width, Height, Characters) {
 		C.Appearance.find(A => A.Asset.Group.Name == "Emoticon").Property.Expression = "Afk";
 		CharacterRefresh(C, false);
 	}
+}
+
+/**
+ * Returns whether the most recent chat message is on screen
+ * @returns {boolean} - TRUE if the screen has focus and the chat log is scrolled to the bottom
+ */
+function ChatRoomNotificationNewMessageVisible() {
+	return document.hasFocus() && ElementIsScrolledToEnd("TextAreaChatLog");
+}
+
+/**
+ * Raise a notification for the new chat message if required
+ * @param {Character} C - The character that sent the message
+ * @param {string} msg - The text of the message
+ * @param {boolean} isAction - If TRUE the chat message was an automatic action or activity rather than a manually typed message
+ * @returns {void} - Nothing
+ */
+function ChatRoomNotificationRaiseChatMessage(C, msg, isAction) {
+	if (C.ID !== 0
+		&& Player.NotificationSettings.ChatMessage.AlertType !== NotificationAlertType.NONE
+		&& (!isAction || Player.NotificationSettings.ChatMessage.IncludeActions)
+		&& !ChatRoomNotificationNewMessageVisible())
+	{
+		NotificationRaise(NotificationEventType.CHATMESSAGE, { body: msg, character: C, useCharAsIcon: true });
+	}
+}
+
+/**
+ * Resets any previously raised Chat Message or Chatroom Join notifications if required
+ * @returns {void} - Nothing
+ */
+function ChatRoomNotificationReset() {
+	if (CurrentScreen !== "ChatRoom" || ChatRoomNotificationNewMessageVisible()) {
+		NotificationReset(NotificationEventType.CHATMESSAGE);
+	}
+	NotificationReset(NotificationEventType.CHATJOIN);
+}
+
+/**
+ * Returns whether a notification should be raised for the character entering a chatroom
+ * @param {Character} C - The character that entered the room
+ * @returns {boolean} - Whether a notification should be raised
+ */
+function ChatRoomNotificationRaiseChatJoin(C) {
+	let raise = false;
+	if (!document.hasFocus()) {
+		const settings = Player.NotificationSettings.ChatJoin;
+		if (settings.AlertType === NotificationAlertType.NONE) raise = false;
+		else if (!settings.Owner && !settings.Lovers && !settings.FriendList && !settings.Subs) raise = true;
+		else if (settings.Owner && C.IsOwner()) raise = true;
+		else if (settings.Lovers && C.IsLoverOfPlayer()) raise = true;
+		else if (settings.FriendList && Player.FriendList.contains(C.MemberNumber)) raise = true;
+		else if (settings.Subs && C.IsOwnedByPlayer()) raise = true;
+	}
+	return raise;
 }
