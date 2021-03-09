@@ -18,9 +18,9 @@ function KinkyDungeonEvasion(Enemy) {
 }
 
 function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg, Spell) {
-	var dmg = Damage.damage
+	var dmg = (Damage) ? Damage.damage : 0
 	if (!dmg) dmg = 0
-	var type = Damage.type
+	var type = (Damage) ? Damage.type : ""
 	var effect = false
 
 	if (Damage) {
