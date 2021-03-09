@@ -775,12 +775,24 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 	if (!Text) return;
 
-	for (let S = 36; S >= 10; S = S - 2) {
+	// If it doesn't fit, test with smaller and smaller fonts until it fits
+	let S;
+	for (S = 36; S >= 10; S = S - 2) {
 		MainCanvas.font = CommonGetFont(S.toString());
 		const metrics = MainCanvas.measureText(Text);
 		if (metrics.width <= Width)
 			break;
 	}
+
+	// Cuts the text if it would go over the box
+    if (S <= 10) {
+        while (Text.length > 0) {
+            Text = Text.substr(1);
+            const metrics = MainCanvas.measureText(Text);
+            if (metrics.width <= Width)
+                break;
+        }
+    }
 
 	// Draw a back color relief text if needed
 	if ((BackColor != null) && (BackColor != "")) {
@@ -788,9 +800,11 @@ function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 		MainCanvas.fillText(Text, X + 1, Y + 1);
 	}
 
+	// Restores the font size
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillText(Text, X, Y);
 	MainCanvas.font = CommonGetFont(36);
+
 }
 
 /**
