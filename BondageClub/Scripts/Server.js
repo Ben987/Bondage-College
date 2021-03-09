@@ -14,6 +14,7 @@
  */
 
 "use strict";
+/** @type {import("socket.io-client").Socket} */
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
 var ServerBeep = {};
@@ -24,13 +25,12 @@ var ServerReconnectCount = 0;
 function ServerInit() {
 	ServerSocket = io(ServerURL);
 	ServerSocket.on("connect", ServerConnect);
-	ServerSocket.on("reconnecting", ServerReconnecting);
-	ServerSocket.on("event", function (data) { console.log(data); });
+	ServerSocket.on("disconnect", function () { ServerDisconnect(); });
+	ServerSocket.io.on("reconnect_attempt", ServerReconnecting);
 	ServerSocket.on("ServerMessage", function (data) { console.log(data); });
 	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data); });
 	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
 	ServerSocket.on("LoginResponse", function (data) { LoginResponse(data); });
-	ServerSocket.on("disconnect", function (data) { ServerDisconnect(); });
 	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data, true); });
 	ServerSocket.on("ChatRoomSearchResult", function (data) { ChatSearchResultResponse(data); });
 	ServerSocket.on("ChatRoomSearchResponse", function (data) { ChatSearchResponse(data); });
@@ -141,6 +141,11 @@ function ServerDisconnect(data, close = false) {
 			CommonSetScreen("Character", "Relog");
 
 		}
+	}
+
+	// Raise a notification to alert the user
+	if (!document.hasFocus()) {
+		NotificationRaise(NotificationEventType.DISCONNECT);
 	}
 }
 
@@ -739,7 +744,14 @@ function ServerAccountBeep(data) {
 				Message: data.Message
 			});
 			if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
-			if (Player.NotificationSettings.Beeps && !document.hasFocus()) NotificationsIncrement("Beep");
+			if (!document.hasFocus()) {
+				NotificationRaise(NotificationEventType.BEEP, {
+					memberNumber: data.MemberNumber,
+					characterName: data.MemberName,
+					chatRoomName: data.ChatRoomName,
+					body: data.Message
+				});
+			}
 		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber && data.ChatRoomName) {
 			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing != false && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashedBy(data.MemberNumber, Player)) {
@@ -766,7 +778,9 @@ function ServerAccountBeep(data) {
 function ServerDrawBeep() {
 	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) {
 		DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
-		if (document.hasFocus()) NotificationsReset("Beep");
+		if (document.hasFocus()) {
+			NotificationReset(NotificationEventType.BEEP);
+		}
 	}
 }
 
