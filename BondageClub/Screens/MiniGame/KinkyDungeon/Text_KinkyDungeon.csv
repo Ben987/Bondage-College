@@ -62,6 +62,7 @@ DungeonName10,-The Starlit Balcony-
 
 LootRubbleFail,You search through the debris but find nothing of note
 LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
+LootRubbleKnife,You find a rusty knife among the rocks
 
 LootChestGold,The chest contains gold! (+XXX gold)
 

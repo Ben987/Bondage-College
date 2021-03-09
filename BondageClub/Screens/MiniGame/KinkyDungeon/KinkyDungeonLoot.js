@@ -1,10 +1,11 @@
 var KinkyDungeonLootTable = {
 	"rubble": [
-		{name: "nothing", minLevel: 0, weight:1, message:"LootRubbleFail", messageColor:"#CCCCCC", messageTime: 5, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
-		{name: "smallgold", minLevel: 0, weight:2, message:"LootRubbleSmallGold", messageColor:"#CCCCCC", messageTime: 6, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "nothing", minLevel: 0, weight:5, message:"LootRubbleFail", messageColor:"#aaaaaa", messageTime: 5, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "smallgold", minLevel: 0, weight:10, message:"LootRubbleSmallGold", messageColor:"yellow", messageTime: 6, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "knife", minLevel: 0, weight:3, message:"LootRubbleKnife", messageColor:"lightgreen", messageTime: 6, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
 	],
 	"chest": [
-		{name: "gold", minLevel: 0, weight:1, message:"LootChestGold", messageColor:"#CCCCCC", messageTime: 7, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "gold", minLevel: 0, weight:1, message:"LootChestGold", messageColor:"yellow", messageTime: 7, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
 	],
 	
 	
@@ -27,15 +28,17 @@ function KinkyDungeonLoot(Level, Index, Type) {
 	
 	for (let L = lootWeights.length - 1; L >= 0; L--) {
 		if (selection > lootWeights[L].weight) {
+			var replace = false
 			
 			if (1 > KinkyDungeonActionMessagePriority) {
 				KinkyDungeonActionMessageTime = lootWeights[L].loot.messageTime
 				KinkyDungeonActionMessage = TextGet(lootWeights[L].loot.message)
 				KinkyDungeonActionMessageColor = lootWeights[L].loot.messageColor
 				KinkyDungeonActionMessagePriority = 1
+				replace = true
 			}
 
-			KinkyDungeonLootEvent(lootWeights[L].loot, Index)
+			KinkyDungeonLootEvent(lootWeights[L].loot, Index, replace)
 			
 			break;
 		}
@@ -43,15 +46,19 @@ function KinkyDungeonLoot(Level, Index, Type) {
 	
 }
 
-function KinkyDungeonLootEvent(Loot, Index) {
+function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 	if (Loot.name == "gold") {
 		var value = Math.ceil((30 + 70 * Math.random()) * (1 + Index/2))
-		KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
 		KinkyDungeonAddGold(value)
 	} else if (Loot.name == "smallgold") {
 		var value = Math.ceil((1 + 9 * Math.random()) * (1 + Index/2))
-		KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
 		KinkyDungeonAddGold(value)
+	} else if (Loot.name == "knife") {
+		KinkyDungeonNormalBlades += 1
 	}
 }
 
