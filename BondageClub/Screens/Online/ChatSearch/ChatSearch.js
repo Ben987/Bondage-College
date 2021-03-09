@@ -32,7 +32,7 @@ function ChatSearchLoad() {
 	ElementCreateInput("InputSearch", "text", "", "20");
 	ChatSearchQuery();
 	ChatSearchMessage = "";
-	NotificationsReset("Chat");
+	ChatRoomNotificationReset();
 }
 
 /**

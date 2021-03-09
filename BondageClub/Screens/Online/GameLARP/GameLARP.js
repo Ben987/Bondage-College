@@ -183,6 +183,8 @@ function GameLARPRunProcess() {
 
 	}
 
+	// Reset any notification that may have been raised
+	NotificationReset(NotificationEventType.LARP);
 }
 
 /**
@@ -807,11 +809,15 @@ function GameLARPNewTurn(Msg) {
 	GameLARPTurnFocusGroup = null;
 
 	// Cycles in the game player array ascending or descending and shifts the position
-	if ((GameLARPTurnAscending) && (GameLARPTurnPosition < GameLARPPlayer.length - 1)) return GameLARPNewTurnPublish(GameLARPTurnPosition + 1, true, Msg);
-	if ((GameLARPTurnAscending) && (GameLARPTurnPosition == GameLARPPlayer.length - 1)) return GameLARPNewTurnPublish(GameLARPTurnPosition, false, Msg);
-	if ((!GameLARPTurnAscending) && (GameLARPTurnPosition > 0)) return GameLARPNewTurnPublish(GameLARPTurnPosition - 1, false, Msg);
-	if ((!GameLARPTurnAscending) && (GameLARPTurnPosition == 0)) return GameLARPNewTurnPublish(GameLARPTurnPosition, true, Msg);
+	if ((GameLARPTurnAscending) && (GameLARPTurnPosition < GameLARPPlayer.length - 1)) GameLARPNewTurnPublish(GameLARPTurnPosition + 1, true, Msg);
+	else if ((GameLARPTurnAscending) && (GameLARPTurnPosition == GameLARPPlayer.length - 1)) GameLARPNewTurnPublish(GameLARPTurnPosition, false, Msg);
+	else if ((!GameLARPTurnAscending) && (GameLARPTurnPosition > 0)) GameLARPNewTurnPublish(GameLARPTurnPosition - 1, false, Msg);
+	else if ((!GameLARPTurnAscending) && (GameLARPTurnPosition == 0)) GameLARPNewTurnPublish(GameLARPTurnPosition, true, Msg);
 
+	// Raise a notification if it's the player's turn and they're away
+	if (!document.hasFocus() && GameLARPPlayer[GameLARPTurnPosition].ID === 0) {
+		NotificationRaise(NotificationEventType.LARP);
+	}
 }
 
 /**

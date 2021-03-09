@@ -306,6 +306,26 @@ function CharacterLoadNPC(NPCType) {
 }
 
 /**
+ * Create a minimal character object
+ * @param {string} AccName - The account name to give to the character
+ * @returns {Character} - The created character
+ */
+function CharacterLoadSimple(AccName) {
+	// Checks if the character already exists and returns it if it's the case
+	for (let C = 0; C < Character.length; C++)
+		if (Character[C].AccountName === AccName)
+			return Character[C];
+
+	// Create the new character
+	CharacterReset(CharacterNextId++, "Female3DCG");
+	let C = Character[Character.length - 1];
+	C.AccountName = AccName;
+	
+	// Returns the new character
+	return C;
+}
+
+/**
  * Sets up an online character
  * @param {Character} Char - Online character to set up
  * @param {object} data - Character data received
@@ -1200,6 +1220,12 @@ function CharacterCanKneel(C) {
 	return C.CanChangeToPose("Kneel");
 }
 
+/**
+ * Determines how much the character's view should be darkened based on their blind level. 1 is fully visible, 0 is pitch black.
+ * @param {any} C - The character to check
+ * @param {number} [Factor=1.0] - The base factor for darkening; used for example in dialogues and minigames
+ * @returns {number} The number between 0 (bright) and 1 (dark) that determines screen darkness
+ */
 function CharacterGetDarkFactor(C, Factor = 1.0) {
 	let DarkFactor = Factor;
 	if (C.GetBlindLevel() >= 3) DarkFactor = 0.0;
