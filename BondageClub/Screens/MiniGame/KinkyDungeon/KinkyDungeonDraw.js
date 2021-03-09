@@ -21,6 +21,7 @@ var KinkyDungeonStruggleGroupsBase = [
 	]
 var KinkyDungeonDrawStruggle = true
 var KinkyDungeonDrawState = "Game"
+var KinkyDungeonSpellValid = false
 
 // Draw function for the game portion
 function KinkyDungeonDrawGame() {
@@ -113,10 +114,21 @@ function KinkyDungeonDrawGame() {
 					KinkyDungeonContext.strokeStyle = "#88AAFF";
 					KinkyDungeonContext.stroke()
 					
-					DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/Target.png",
-						KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
-						(KinkyDungeonMoveDirection.x + KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonMoveDirection.y + KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay,
-						KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
+					KinkyDungeonSpellValid = (KinkyDungeonTargetingSpell.projectile || KinkyDungeonTargetingSpell.range >= Math.sqrt((KinkyDungeonTargetX - KinkyDungeonPlayerEntity.x) *(KinkyDungeonTargetX - KinkyDungeonPlayerEntity.x) + (KinkyDungeonTargetY - KinkyDungeonPlayerEntity.y) * (KinkyDungeonTargetY - KinkyDungeonPlayerEntity.y))) && 
+						(KinkyDungeonTargetingSpell.projectile || KinkyDungeonTargetingSpell.CastInWalls || KinkyDungeonOpenObjects.includes(KinkyDungeonMapGet(KinkyDungeonTargetX, KinkyDungeonTargetY))) &&
+						(!KinkyDungeonTargetingSpell.WallsOnly || !KinkyDungeonOpenObjects.includes(KinkyDungeonMapGet(KinkyDungeonTargetX, KinkyDungeonTargetY)))
+					
+					if (KinkyDungeonSpellValid)
+						if (KinkyDungeonTargetingSpell.projectile)
+							DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/Target.png",
+								KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
+								(KinkyDungeonMoveDirection.x + KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonMoveDirection.y + KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay,
+								KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
+						else
+							DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/Target.png",
+								KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
+								(KinkyDungeonTargetX - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonTargetY - CamY)*KinkyDungeonGridSizeDisplay,
+								KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)	
 				} else if ((KinkyDungeonMoveDirection.x != 0 || KinkyDungeonMoveDirection.y != 0)) {
 					KinkyDungeonContext.beginPath();
 					KinkyDungeonContext.rect((KinkyDungeonMoveDirection.x + KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonMoveDirection.y + KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay);

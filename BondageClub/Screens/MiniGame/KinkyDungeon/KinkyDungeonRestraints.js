@@ -33,6 +33,10 @@ var KinkyDungeonRestraints = [
 	
 	
 	{name: "Stuffing", Asset: "ClothStuffing", Group: "ItemMouth", power: -20, weight: 1, escapeChance: {"Struggle": 10, "Cut": 10, "Remove": 10}, enemyTags: {"ribbonRestraints":8}, playerTags: {}, minLevel: 0, floors: [0, 1, 2, 3, 4, 5, 6, 7]},
+	
+	{name: "WeakMagicRopeArms", Asset: "HempRope", Color: "#ff88AA", Group: "ItemArms", magic: false, power: 5, weight: 1, escapeChance: {"Struggle": 0.2, "Cut": 0.67, "Remove": 0.3}, enemyTags: {"ropeMagicWeak":2}, playerTags: {}, minLevel: 0, floors: []},
+	{name: "WeakMagicRopeLegs", Asset: "HempRope", Type: "FullBinding", Color: "#ff88AA", Group: "ItemLegs", magic: false, power: 3, weight: 1, escapeChance: {"Struggle": 0.2, "Cut": 0.67, "Remove": 0.3}, enemyTags: {"ropeMagicWeak":2}, playerTags: {}, minLevel: 0, floors: []},
+	
 ]
 
 
@@ -162,6 +166,15 @@ function KinkyDungeonGetRestraintItem(group) {
 		}
 	}
 	return null;
+}
+
+
+function KinkyDungeonGetRestraintByName(Name) {
+	for (let L = 0; L < KinkyDungeonRestraints.length; L++) {
+		var restraint = KinkyDungeonRestraints[L]
+		if (restraint.name == Name) return restraint;
+	}
+	return null
 }
 
 function KinkyDungeonGetRestraint(enemy, Level, Index, Bypass) {

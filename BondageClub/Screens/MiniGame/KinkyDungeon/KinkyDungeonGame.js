@@ -181,11 +181,14 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 		if (Math.sqrt((X - KinkyDungeonPlayerEntity.x) * (X - KinkyDungeonPlayerEntity.x) + (Y - KinkyDungeonPlayerEntity.y) * (Y - KinkyDungeonPlayerEntity.y)) > playerDist && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(X, Y))) {
 			var tags = []
 			if (KinkyDungeonMapGet(X, Y) == 'R' || KinkyDungeonMapGet(X, Y) == 'r') tags.push("rubble")
+			if (Floor % 10 >= 5) tags.push("secondhalf")
+			if (Floor % 10 >= 8) tags.push("lastthird")
 			
 			var Enemy = KinkyDungeonGetEnemy(tags, Floor, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
 			if (Enemy) {
 				KinkyDungeonEntities.push({Enemy: Enemy, x:X, y:Y, hp: Enemy.maxhp, movePoints: 0, attackPoints: 0})
-				count += 1
+				if (Enemy.tags.includes("minor")) count += 0.2; else count += 1; // Minor enemies count as 1/5th of an enemy
+				if (Enemy.tags.includes("elite")) count += 1 // Elite enemies count as 2 normal enemies
 				console.log("Created a " + Enemy.name)
 			}
 		}
@@ -506,11 +509,13 @@ function KinkyDungeonClickGame(Level) {
 	
 	// If no buttons are clicked then we handle move
 	else if (KinkyDungeonTargetingSpell) {
-		if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
-			KinkyDungeonCastSpell(KinkyDungeonTargetX, KinkyDungeonTargetY, KinkyDungeonTargetingSpell)
-			KinkyDungeonAdvanceTime(1)
+		if (KinkyDungeonSpellValid) {
+			if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
+				KinkyDungeonCastSpell(KinkyDungeonTargetX, KinkyDungeonTargetY, KinkyDungeonTargetingSpell)
+				KinkyDungeonAdvanceTime(1)
+			}
+			KinkyDungeonTargetingSpell = null
 		}
-		KinkyDungeonTargetingSpell = null
 	} else if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
 		KinkyDungeonMove(KinkyDungeonMoveDirection)
 	}
@@ -605,6 +610,8 @@ function KinkyDungeonMove(moveDirection) {
 				}
 			}
 			KinkyDungeonAdvanceTime(moveDirection.delta)
+		} else {
+			if (KinkyDungeonGetVisionRadius() <= 1) KinkyDungeonAdvanceTime(1)
 		}
 	}
 }

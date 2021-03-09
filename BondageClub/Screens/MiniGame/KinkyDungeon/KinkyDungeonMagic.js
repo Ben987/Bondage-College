@@ -17,9 +17,9 @@ var KinkyDungeonCurrentPage = 0
 var KinkyDungeonBooks = ["Elements", "Conjure", "Illusion"]
 
 var KinkyDungeonSpells = [
-	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", power: 3, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
-	{name: "Snare", exhaustion: 3, components: ["Legs"], level:1, type:"trap", time: 10, delay: 1, range: 3, damage: "stun", playerEvent: {name: "MagicRope", time: 10}}, // Creates a magic rope trap that creates magic ropes for 10 seconds on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
-	{name: "Flash", exhaustion: 2, components: ["Verbal"], level:1, type:"aoe", time: 10, range: 4, power: 3, size: 1, damage: "blind"}, // Start with flash, an explosion with a 1 turn delay and a 3 tile radius. If you are caught in the radius, you also get blinded temporarily!
+	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", power: 3, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
+	{name: "Snare", exhaustion: 1, components: ["Legs"], level:1, type:"inert", projectile:false, onhit:"lingering", lifetime:-1, time: 10, delay: 1, range: 3, damage: "stun", playerEffect: {name: "MagicRope", time: 3}}, // Creates a magic rope trap that creates magic ropes on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
+	{name: "Flash", exhaustion: 3, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"aoe", time: 3, delay: 1, range: 2.5, size: 3, aoe: 1.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 3}}, // Start with flash, an explosion with a 1 turn delay and a 1.5 tile radius. If you are caught in the radius, you also get blinded temporarily!
 ]
 
 var KinkyDungeonSpellChoices = [0, 1, 2]
@@ -32,34 +32,90 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 
 var KinkyDungeonSpellPress = 0
 
+
+function KinkyDungeonPlayerEffect(playerEffect, spell) {
+	if (playerEffect.name == "Blind") {
+		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time)
+		if (KinkyDungeonActionMessagePriority <= 5) {
+			KinkyDungeonActionMessageTime = playerEffect.time
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonBlindSelf")
+			KinkyDungeonActionMessageColor = "red"
+			KinkyDungeonActionMessagePriority = 5
+		}
+	} else if (playerEffect.name == "MagicRope") {
+		
+		KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("WeakMagicRopeArms"))
+		KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("WeakMagicRopeLegs"))
+		
+		
+		if (KinkyDungeonActionMessagePriority <= 5) {
+			KinkyDungeonActionMessageTime = playerEffect.time
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonMagicRopeSelf")
+			KinkyDungeonActionMessageColor = "red"
+			KinkyDungeonActionMessagePriority = 5
+		}
+	}
+}
+
+function KinkyDungeoCheckComponents(spell) {
+	var failedcomp = []
+	if (spell.components.includes("Verbal") && !KinkyDungeonPlayer.CanTalk()) failedcomp.push("Verbal")
+	if (spell.components.includes("Arms") && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) failedcomp.push("Arms")
+	if (spell.components.includes("Legs") && !KinkyDungeonPlayer.CanWalk()) failedcomp.push("Legs")
+	
+	return failedcomp
+}
+
 function KinkyDungeonHandleSpell() {
 	var spell = null
 	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]] && (MouseIn(1405, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[0])) {
-		if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]].level) <= KinkyDungeonStatStamina)
-			spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
-		else if (4 >= KinkyDungeonActionMessagePriority) {
+		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]).length == 0) {
+			if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]].level) <= KinkyDungeonStatStamina)
+				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
+			else if (4 >= KinkyDungeonActionMessagePriority) {
+				KinkyDungeonActionMessageTime = 1
+				KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+				KinkyDungeonActionMessageColor = "red"
+				KinkyDungeonActionMessagePriority = 4
+			}
+		} else if (4 >= KinkyDungeonActionMessagePriority) {
 			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]])[0])
 			KinkyDungeonActionMessageColor = "red"
 			KinkyDungeonActionMessagePriority = 4
 		}
+		
 	}
 	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]] && (MouseIn(1605, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[1])) {
-		if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]].level) <= KinkyDungeonStatStamina)
-			spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
-		else if (4 >= KinkyDungeonActionMessagePriority) {
+		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]).length == 0) {
+			if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]].level) <= KinkyDungeonStatStamina)
+				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
+			else if (4 >= KinkyDungeonActionMessagePriority) {
+				KinkyDungeonActionMessageTime = 1
+				KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+				KinkyDungeonActionMessageColor = "red"
+				KinkyDungeonActionMessagePriority = 4
+			}
+		} else if (4 >= KinkyDungeonActionMessagePriority) {
 			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]])[0])
 			KinkyDungeonActionMessageColor = "red"
 			KinkyDungeonActionMessagePriority = 4
-		}
+		}		
 	}
 	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]] && (MouseIn(1805, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[2])) {
-		if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]].level) <= KinkyDungeonStatStamina)
-			spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
-		else if (4 >= KinkyDungeonActionMessagePriority) {
+		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]).length == 0) {
+			if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]].level) <= KinkyDungeonStatStamina)
+				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
+			else if (4 >= KinkyDungeonActionMessagePriority) {
+				KinkyDungeonActionMessageTime = 1
+				KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+				KinkyDungeonActionMessageColor = "red"
+				KinkyDungeonActionMessagePriority = 4
+			}
+		} else if (4 >= KinkyDungeonActionMessagePriority) {
 			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]])[0])
 			KinkyDungeonActionMessageColor = "red"
 			KinkyDungeonActionMessagePriority = 4
 		}
@@ -91,8 +147,14 @@ function KinkyDungeonGetCost(Level) {
 function KinkyDungeonCastSpell(targetX, targetY, spell) {
 	if (spell.type == "bolt") {
 		KinkyDungeonLaunchBullet(KinkyDungeonPlayerEntity.x + KinkyDungeonMoveDirection.x, KinkyDungeonPlayerEntity.y + KinkyDungeonMoveDirection.y,
-		targetX-KinkyDungeonPlayerEntity.x,targetY - KinkyDungeonPlayerEntity.y,
-		spell.speed, {name:spell.name, width:1, height:1, lifetime:-1, passthrough:false, hit:"", damage: {damage:spell.power, type:spell.damage}})
+			targetX-KinkyDungeonPlayerEntity.x,targetY - KinkyDungeonPlayerEntity.y,
+			spell.speed, {name:spell.name, width:1, height:1, lifetime:-1, passthrough:false, hit:spell.onhit, damage: {damage:spell.power, type:spell.damage, time:spell.time}, spell: spell})
+	} else if (spell.type == "inert") {
+		var sz = spell.size
+		if (!sz) sz = 1
+		KinkyDungeonLaunchBullet(targetX, targetY,
+			KinkyDungeonMoveDirection.x,KinkyDungeonMoveDirection.y,
+			0, {name:spell.name, width:sz, height:sz, lifetime:spell.delay, passthrough:(spell.CastInWalls || spell.WallsOnly), hit:spell.onhit, damage: null, spell: spell})
 	}
 	
 	if (2 >= KinkyDungeonActionMessagePriority) {

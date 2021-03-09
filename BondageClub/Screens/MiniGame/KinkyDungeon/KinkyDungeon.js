@@ -18,7 +18,8 @@ function KinkyDungeonDressPlayer() {
 	CharacterNaked(KinkyDungeonPlayer)
 	
 	InventoryWear(KinkyDungeonPlayer, "WitchHat1", "Hat")
-	InventoryWear(KinkyDungeonPlayer, "Dress3", "Cloth")
+	InventoryWear(KinkyDungeonPlayer, "SteampunkCorsetTop1", "Cloth")
+	InventoryWear(KinkyDungeonPlayer, "LatexSkirt1", "ClothLower")
 	InventoryWear(KinkyDungeonPlayer, "Socks4", "Socks")
 	InventoryWear(KinkyDungeonPlayer, "Heels3", "Shoes")
 	

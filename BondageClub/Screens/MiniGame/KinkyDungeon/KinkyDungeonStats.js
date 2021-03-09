@@ -41,6 +41,7 @@ var KinkyDungeonSlowLevel = 0 // Adds to the number of move points you need befo
 var KinkyDungeonMovePoints = 0
 
 var KinkyDungeonBlindLevel = 0 // Blind level 1: -33% vision, blind level 2: -67% vision, Blind level 3: Vision radius = 1
+var KinkyDungeonStatBlind = 0 // Used for temporary blindness
 var KinkyDungeonDeaf = false // Deafness reduces your vision radius to 0 if you are fully blind (blind level 3)
 
 // Other stats
@@ -101,7 +102,7 @@ function KinkyDungeonDefaultStats() {
 }
 
 function KinkyDungeonGetVisionRadius() {
-	return Math.max((KinkyDungeonDeaf) ? 0 : (KinkyDungeonBlindLevel > 2) ? 1 : 3, Math.floor(KinkyDungeonMapBrightness*(1.0 - 0.33 * KinkyDungeonBlindLevel)))
+	return Math.max((KinkyDungeonDeaf || KinkyDungeonStatBlind > 0) ? 1 : (KinkyDungeonBlindLevel > 2) ? 2 : 3, Math.floor(KinkyDungeonMapBrightness*(1.0 - 0.33 * KinkyDungeonBlindLevel)))
 }
 
 function KinkyDungeonDealDamage(Damage) {
@@ -155,6 +156,7 @@ function KinkyDungeonUpdateStats(delta) {
 	KinkyDungeonPlayerTags = KinkyDungeonUpdateRestraints(delta)
 	
 	KinkyDungeonBlindLevel = Math.max(0, KinkyDungeonPlayer.GetBlindLevel())
+	if (KinkyDungeonStatBlind > 0) KinkyDungeonBlindLevel = 3
 	KinkyDungeonDeaf = KinkyDungeonPlayer.IsDeaf()
 	
 	// Slowness calculation
@@ -186,6 +188,7 @@ function KinkyDungeonUpdateStats(delta) {
 	KinkyDungeonStatArousal = Math.max(0, Math.min(KinkyDungeonStatArousal + arousalRate*delta, KinkyDungeonStatArousalMax))
 	KinkyDungeonStatStamina = Math.max(0, Math.min(KinkyDungeonStatStamina + KinkyDungeonStaminaRate*delta, KinkyDungeonStatStaminaMax))
 	KinkyDungeonStatWillpower = Math.max(0, Math.min(KinkyDungeonStatWillpower + willpowerRate*delta, KinkyDungeonStatWillpowerMax))
+	KinkyDungeonStatBlind = Math.max(0, KinkyDungeonStatBlind - delta)
 }
 
 // StimulationLevel - 0: Physical touching

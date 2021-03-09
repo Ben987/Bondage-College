@@ -67,16 +67,22 @@ LootChestGold,The chest contains gold! (+XXX gold)
 
 NameBlindZombie,Moaning Zombie
 KillBlindZombie,"The zombie moans and collapses to the ground."
-NameRat,Filthy Rat
-KillRat,"The rat skitters back into a hole in the wall."
-
 AttackBlindZombieBind,"The zombie's charms attach to your body (+RestraintAdded)"
 AttackBlindZombie,"The zombie caresses your body! (-DamageTaken WP)"
+
+NameFastZombie,Ravenous Zombie
+KillFastZombie,"The zombie screeches and tumbles to the floor."
+AttackFastZombieBind,"The zombie viciously wraps you in charms (+RestraintAdded)"
+AttackFastZombie,"The zombie gropes your body! (-DamageTaken WP)"
+
+NameRat,Filthy Rat
+KillRat,"The rat skitters back into a hole in the wall."
 AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
 
 KinkyDungeonNoMana,"You do not have enough stamina to cast the spell!"
 PlayerAttack,"You attack the TargetEnemy for DamageDealt damage!"
-PlayerRanged,"Your attack hits the TargetEnemy for DamageDealt damage!"
+PlayerRanged,"Your AttackName hits the TargetEnemy for DamageDealt damage!"
+KinkyDungeonBasicAttack,attack
 PlayerMiss,"You miss the TargetEnemy!"
 KinkyDungeonStruggleStruggleFail,"You tug on the TargetRestraint but fail to make progress."
 KinkyDungeonStrugglePickFail,"You try to unlock the TargetRestraint but can't reach the lock."
@@ -120,6 +126,8 @@ RestraintDuctTapeArmsMummy,Charm Covering
 RestraintDuctTapeFeetMummy,Charm Covering
 RestraintDuctTapeLegsMummy,Charm Covering
 RestraintStuffing,Mouth Stuffing
+RestraintWeakMagicRopeArms,Weak Magic Rope
+RestraintWeakMagicRopeLegs,Weak Magic Rope
 
 KinkyDungeonGroupItemHead,Face
 KinkyDungeonGroupItemHood,Head
@@ -159,6 +167,9 @@ KinkyDungeonComponents,"Components: "
 KinkyDungeonComponentsVerbal,"Verbal"
 KinkyDungeonComponentsArms,"Arm Movements"
 KinkyDungeonComponentsLegs,"Leg Gestures"
+KinkyDungeonComponentsFailVerbal,"The incantation comes out as a garbled mess!"
+KinkyDungeonComponentsFailArms,"You can't raise your arms to cast the spell!"
+KinkyDungeonComponentsFailLegs,"Your feet are too clumsy to perform the magic gesture!"
 
 KinkyDungeonBookNextPage,Next Page
 KinkyDungeonBookLastPage,Last Page
@@ -176,6 +187,9 @@ KinkyDungeonSpellFlash,Flash
 KinkyDungeonSpellDescriptionFlash,A flash of light which renders anyone caught within blind for Duration turns
 KinkyDungeonSpellCastFlash,You charge up a bright flash!
 KinkyDungeonSpellTargetFlash,Select where to center the flash (SpellArea radius)
+
+KinkyDungeonBlindSelf,"You blinded yourself with your own magic!"
+KinkyDungeonMagicRopeSelf,"Your own rope trap springs upon you!"
 
 KinkyDungeonInventory,"Open Inventory"
 KinkyDungeonMagic,"Open Magic"
