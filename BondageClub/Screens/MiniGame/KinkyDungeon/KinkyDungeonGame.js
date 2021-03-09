@@ -646,11 +646,9 @@ function KinkyDungeonAdvanceTime(delta) {
 		if (MiniGameKinkyDungeonCheckpoint >= 1) {
 			KinkyDungeonState = "End"
 			MiniGameVictory = true
-		}
-		KinkyDungeonCreateMap(KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]], MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
-	}
-	
-	if (KinkyDungeonStatWillpower == 0) {
+		} else 
+			KinkyDungeonCreateMap(KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]], MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
+	} else if (KinkyDungeonStatWillpower == 0) {
 		KinkyDungeonState = "Lose"
 	}
 	

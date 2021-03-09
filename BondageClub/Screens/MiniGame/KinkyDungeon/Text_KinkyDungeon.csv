@@ -8,8 +8,8 @@ End,"Today the dungeon claims another helpless girl."
 End2,"Bound and exhausted, you cannot hope to continue."
 End3,"Perhaps you may come to enjoy your new life."
 
-End,"You have reached the end of the playable portion."
-End2,"Come back later for new dungeons!"
+EndWin,"You have reached the end of the playable portion."
+EndWin2,"Come back later for new dungeons!"
 
 StatArousal,"Arousal: "
 StatStamina,"Stamina: "
