@@ -94,8 +94,8 @@ function KinkyDungeonRun() {
 		KinkyDungeonDrawGame();
 	} else if (KinkyDungeonState == "End") {
 		// Draw temp start screen
-		DrawText(TextGet("End"), 1250, 400, "white", "silver");
-		DrawText(TextGet("End2"), 1250, 500, "white", "silver");
+		DrawText(TextGet("EndWin"), 1250, 400, "white", "silver");
+		DrawText(TextGet("EndWin2"), 1250, 500, "white", "silver");
 	} else if (KinkyDungeonState == "Keybindings") {
 		// Draw temp start screen
 		DrawButton(1075, 750, 350, 64, TextGet("GameReturnToMenu"), "White", "");

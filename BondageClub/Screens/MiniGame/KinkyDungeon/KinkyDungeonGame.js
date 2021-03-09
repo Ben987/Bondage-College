@@ -509,13 +509,13 @@ function KinkyDungeonClickGame(Level) {
 	
 	// If no buttons are clicked then we handle move
 	else if (KinkyDungeonTargetingSpell) {
-		if (KinkyDungeonSpellValid) {
-			if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
+		if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
+			if (KinkyDungeonSpellValid) {
 				KinkyDungeonCastSpell(KinkyDungeonTargetX, KinkyDungeonTargetY, KinkyDungeonTargetingSpell)
 				KinkyDungeonAdvanceTime(1)
+				KinkyDungeonTargetingSpell = null
 			}
-			KinkyDungeonTargetingSpell = null
-		}
+		} else KinkyDungeonTargetingSpell = null
 	} else if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
 		KinkyDungeonMove(KinkyDungeonMoveDirection)
 	}
@@ -646,11 +646,9 @@ function KinkyDungeonAdvanceTime(delta) {
 		if (MiniGameKinkyDungeonCheckpoint >= 1) {
 			KinkyDungeonState = "End"
 			MiniGameVictory = true
-		}
-		KinkyDungeonCreateMap(KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]], KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
-	}
-	
-	if (KinkyDungeonStatWillpower == 0) {
+		} else 
+			KinkyDungeonCreateMap(KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]], MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
+	} else if (KinkyDungeonStatWillpower == 0) {
 		KinkyDungeonState = "Lose"
 	}
 	

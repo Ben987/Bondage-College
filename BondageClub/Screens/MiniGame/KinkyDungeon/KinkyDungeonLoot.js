@@ -48,12 +48,12 @@ function KinkyDungeonLoot(Level, Index, Type) {
 
 function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 	if (Loot.name == "gold") {
-		var value = Math.ceil((30 + 70 * Math.random()) * (1 + Index/2))
+		var value = Math.ceil((25 + 25 * Math.random()) * (1 + Index/2))
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
 		KinkyDungeonAddGold(value)
 	} else if (Loot.name == "smallgold") {
-		var value = Math.ceil((1 + 9 * Math.random()) * (1 + Index/2))
+		var value = Math.ceil((1 + 4 * Math.random()) * (1 + Index))
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
 		KinkyDungeonAddGold(value)
@@ -65,5 +65,5 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 
 function KinkyDungeonAddGold(value) {
 	KinkyDungeonGold += value
-	if (ArcadeDeviousChallenge) CharacterChangeMoney(Player, Math.ceil(value/10))
+	if (ArcadeDeviousChallenge) CharacterChangeMoney(Player, Math.round(value/10))
 }
