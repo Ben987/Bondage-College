@@ -463,14 +463,14 @@ function ChatRoomClearAllElements() {
 	ElementRemove("InputEmailOld");
 	ElementRemove("InputEmailNew");
 	ElementRemove("InputCharacterLabelColor");
+	PreferenceSubscreen = "";
 	
 	// Profile
     ElementRemove("DescriptionInput");
 	
 	// Wardrobe
 	ElementRemove("InputWardrobeName"); 
-	
-	
+	CharacterAppearanceMode = "";
 }
 
 /**
