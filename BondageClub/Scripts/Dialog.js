@@ -719,6 +719,8 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 	// Make sure there's a focused group
 	DialogInventoryOffset = Offset;
 	if (DialogInventoryOffset == null) DialogInventoryOffset = 0;
+
+	const DialogInventoryBefore = DialogInventoryStringified(C);
 	DialogInventory = [];
 	if (C.FocusGroup != null) {
 
@@ -778,8 +780,21 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 		// Rebuilds the dialog menu and its buttons
 		DialogInventorySort();
 		DialogMenuButtonBuild(C);
-		AppearancePreviewBuild(C, redrawPreviews);
+
+		// Build the list of preview images
+		const DialogInventoryAfter = DialogInventoryStringified(C);
+		const redraw = redrawPreviews || (DialogInventoryBefore !== DialogInventoryAfter);
+		AppearancePreviewBuild(C, redraw);
 	}
+}
+
+/**
+ * Create a stringified list of the group and the assets currently in the dialog inventory
+ * @param {Character} C - The character the dialog inventory has been built for
+ * @returns {string} - The list of assets as a string
+ */
+function DialogInventoryStringified(C) {
+	return (C.FocusGroup ? C.FocusGroup.Name : "") + (DialogInventory ? JSON.stringify(DialogInventory.map(I => I.Asset.Name).sort()) : "");
 }
 
 /**
