@@ -1888,8 +1888,8 @@ ItemArmsTransportJacketSetShortsShortsAndStraps,,,SourceCharacter reinforces Des
 SelectPoleType,,,Select Pole state,,
 PoleTypeUntied,,,Untie from pole,,
 PoleTypeTied,,,Tie to pole,,
-DevicesPoleSetUntied,,,SourceCharacter ties TargetCharacter to the pole.,,
-DevicesPoleSetTied,,,SourceCharacter unties TargetCharacter from the pole.,,
+DevicesPoleSetUntied,,,SourceCharacter unties TargetCharacter from the pole.,,
+DevicesPoleSetTied,,,SourceCharacter ties TargetCharacter to the pole.,,
 SelectEyePatchType,,,Select an eyepatch style.
 EyePatchTypeLeft,,,Left,,
 EyePatchTypeRight,,,Right,,
