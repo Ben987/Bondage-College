@@ -1819,8 +1819,8 @@ function ChatRoomMessage(data) {
 					if (ChatRoomChatLog.length > 6) { // Keep it short
 						ChatRoomChatLog.splice(0, 1)
 					}
-					
-					ChatRoomNotificationRaiseChatMessage(SenderCharacter, chatMsg, false);
+					if (!(Player.ImmersionSettings.SenseDepMessages && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" || Player.GameplaySettings.SensDepChatLog == "SensDepTotal") && PreferenceIsPlayerInSensDep() && SenderCharacter.ID != 0 && (Player.GetDeafLevel() >= 4)))
+						ChatRoomNotificationRaiseChatMessage(SenderCharacter, chatMsg, false);
 				}
 				else if (data.Type == "Emote") {
 					if (msg.indexOf("*") == 0) msg = msg + "*";
@@ -1834,8 +1834,9 @@ function ChatRoomMessage(data) {
 						}
 					}
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
-
-					ChatRoomNotificationRaiseChatMessage(SenderCharacter, msg, false);
+					if (!(Player.ImmersionSettings.SenseDepMessages && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" || Player.GameplaySettings.SensDepChatLog == "SensDepTotal") && PreferenceIsPlayerInSensDep() && SenderCharacter.ID != 0 && (Player.GetDeafLevel() >= 4)
+											&& (!msg.toLowerCase().includes(Player.Name.toLowerCase()))))
+						ChatRoomNotificationRaiseChatMessage(SenderCharacter, msg, false);
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
 				else if (data.Type == "ServerMessage") msg = "<b>" + msg + "</b>";
