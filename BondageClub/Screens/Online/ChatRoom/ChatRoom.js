@@ -67,7 +67,7 @@ const ChatRoomArousalMsg_ChanceGagMod = {
 	"Walk" : 0,
 	"StruggleFail" : 0,
 	"StruggleAction" : 0,
-	"Gag" : 0.1,
+	"Gag" : 0.3,
 	} 
 var ChatRoomPinkFlashTime = 0;
 var ChatRoomHideIconState = 0;
