@@ -1952,7 +1952,7 @@ var AssetFemale3DCG = [
 			{
 				Name: "MetalCuffs", Fetish: ["Metal"], Priority: 29, Value: 40, Difficulty: 5, Time: 5, Audio: "LockSmall", Extended: true, 
 				SetPose: ["BaseUpper"],
-				Effect: ["Prone"],
+				Effect: ["Lock", "Prone"],
 				AllowPose: ["BackCuffs"],
 				AllowEffect: ["Block", "Prone"],
 				AllowType: ["BehindBack"]

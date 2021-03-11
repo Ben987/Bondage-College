@@ -11,7 +11,7 @@ var InventoryItemArmsMetalCuffsOptions = [
 		Property: {
 			Type: "BehindBack",
 			SetPose: ["BackCuffs"],
-			Effect: ["Block", "Prone"]
+			Effect: ["Lock", "Block", "Prone"]
 		}
 	}
 ];
