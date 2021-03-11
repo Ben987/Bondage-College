@@ -103,6 +103,9 @@ function CreationResponse(data) {
 			PreferenceInitPlayer();
 			ActivitySetArousal(Player, 0);
 
+			// New accounts aren't updating from old version
+			CommonVersionUpdated = false;
+
 			// Flush the controls and enters the main hall
 			ServerPlayerAppearanceSync();
 			ElementRemove("InputCharacter");
