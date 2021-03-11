@@ -1257,6 +1257,7 @@ function ChatRoomMenuClick() {
           } else if (ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())) { // If the player can theoretically get up, we start a minigame!
             var diff = 0
             if (Player.IsBlind()) diff += 1
+            if (Player.IsKneeling()) diff += 2
             if (Player.IsDeaf()) diff += 1
             if (InventoryGet(Player, "ItemTorso") || InventoryGroupIsBlocked(Player, "ItemTorso")) diff += 1
             if (InventoryGroupIsBlocked(Player, "ItemHands")) diff += 1
