@@ -186,7 +186,7 @@ function InventoryItemNeckFuturisticCollarValidate(C, Option) {
 
 function InventoryItemNeckFuturisticCollarLockdown(C, LockType) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0 || C.Appearance[E].Asset.Name.indexOf("Electronic") >= 0) &&
 			(C.Appearance[E].Asset.AllowLock && InventoryGetLock(C.Appearance[E]) == null))) {
 				InventoryLock(C, C.Appearance[E], LockType, Player.MemberNumber);
 				var Lock = InventoryGetLock(C.Appearance[E])
@@ -213,7 +213,7 @@ function InventoryItemNeckFuturisticCollarLockdown(C, LockType) {
 
 function InventoryItemNeckFuturisticCollarUnlock(C) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Group.Name != "ItemNeck") &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0 || C.Appearance[E].Asset.Name.indexOf("Electronic") >= 0) && C.Appearance[E].Asset.Group.Name != "ItemNeck") &&
 			(InventoryGetLock(C.Appearance[E]) != null && InventoryItemHasEffect(C.Appearance[E], "Lock", true) && DialogCanUnlock(C, C.Appearance[E]))) {
 				InventoryUnlock(C, C.Appearance[E])
 		}
@@ -239,7 +239,7 @@ function InventoryItemNeckFuturisticCollarUnlock(C) {
 
 function InventoryItemNeckFuturisticCollarColor(C, Item) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 && C.Appearance[E].Asset.Group.Name != "ItemNeck") {
+		if (C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 && C.Appearance[E].Asset.Group.Name != "ItemNeck" || C.Appearance[E].Asset.Name.indexOf("Electronic") >= 0) {
 			
 			for (let L = C.Appearance[E].Asset.Layer.length - 1; L >= 0; L--) {
 				if (C.Appearance[E].Asset.Layer[L].Name == "Lock") {
