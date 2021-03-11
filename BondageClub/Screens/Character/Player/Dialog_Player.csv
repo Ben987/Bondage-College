@@ -848,6 +848,7 @@ FuturisticCollarSetOpenPermissionOff,,,DestinationCharacterName bindings now can
 FuturisticCollarBlockRemotes,,,Block remotes on the wearer,,
 FuturisticCollarSetBlockRemotesOn,,,DestinationCharacterName vibrator remotes are now locked.,,
 FuturisticCollarSetBlockRemotesOff,,,DestinationCharacterName vibrator remotes are now unlocked.,,
+FuturisticCollarOptionsLockout,,,Collar settings are locked,,
 FuturisticCollarOptions,,,Current Status:,,
 FuturisticCollarOptionsNoLocks,,,Unlocked,,
 FuturisticCollarOptionsPartialLocks,,,Partially Locked,,

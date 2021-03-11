@@ -21,7 +21,11 @@ function InventoryItemNeckFuturisticCollarDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawAssetPreview(1387, 75, DialogFocusItem.Asset);
+		DrawAssetPreview(1387, 65, DialogFocusItem.Asset);
+		
+		if ((DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem))) {
+			DrawText(DialogFindPlayer("FuturisticCollarOptionsLockout"), 1500, 375, "White", "Gray");
+		}
 
 		DrawButton(1125, 395, 64, 64, "", "White", DialogFocusItem.Property.OpenPermission ? "Icons/Checked.png" : "");
 		DrawText(DialogFindPlayer("FuturisticCollarOpenPermission"), 1550, 425, "White", "Gray");
@@ -82,7 +86,7 @@ function InventoryItemNeckFuturisticCollarClick() {
 		
 		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemNeckFuturisticCollarExit();
 		else if (MouseIn(1125, 395, 64, 64) && !(DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem))) InventoryItemNeckFuturisticCollarTogglePermission(C, DialogFocusItem);
-		else if (MouseIn(1125, 465, 64, 64)) InventoryItemNeckFuturisticCollarToggleRemotes(C, DialogFocusItem);
+		else if (MouseIn(1125, 465, 64, 64) && !(DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem))) InventoryItemNeckFuturisticCollarToggleRemotes(C, DialogFocusItem);
 		else {
 		
 			var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
