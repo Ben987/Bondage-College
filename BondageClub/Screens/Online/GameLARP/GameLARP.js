@@ -183,7 +183,7 @@ function GameLARPRunProcess() {
 	}
 
 	// Reset any notification that may have been raised
-	NotificationReset(NotificationEventType.LARP);
+	if (document.hasFocus()) NotificationReset(NotificationEventType.LARP);
 }
 
 /**

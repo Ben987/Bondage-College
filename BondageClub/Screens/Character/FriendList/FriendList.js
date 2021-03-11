@@ -261,7 +261,7 @@ function FriendListLoadFriendList(data) {
 			}
 			FriendListContent += "</div>";
 		}
-		NotificationReset(NotificationEventType.BEEP);
+		if (document.hasFocus()) NotificationReset(NotificationEventType.BEEP);
 	} else if (mode === "Delete") {
 		// In Delete mode, we show the friend list and allow the user to remove them
 		for (const [k, v] of Array.from(Player.FriendNames).sort((a, b) => a[1].localeCompare(b[1]))) {

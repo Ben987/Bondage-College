@@ -58,7 +58,7 @@ function RelogRun() {
 	DrawButton(1025, 750, 300, 60, TextGet("GiveUp"), "White", "");
 
 	// Reset any disconnect notifications
-	NotificationReset(NotificationEventType.DISCONNECT);
+	if (document.hasFocus()) NotificationReset(NotificationEventType.DISCONNECT);
 }
 
 /**
