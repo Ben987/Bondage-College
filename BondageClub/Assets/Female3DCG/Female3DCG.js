@@ -529,7 +529,7 @@ var AssetFemale3DCG = [
 		Underwear: true,
 		Left: 125,
 		Top: 400,
-		AllowPose: ["LegsClosed", "Kneel", "Hogtied", "Spread"],
+		AllowPose: ["LegsClosed", "Kneel", "Spread", "Hogtied"],
 		Asset: [
 			"Socks0", "Socks1", "Socks2", "Socks3", "Socks4", "Socks5",
 			{ Name: "Stockings1", Fetish: ["Nylon"], BuyGroup: "Stockings1"},
@@ -604,7 +604,7 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		Left: 115,
 		Top: 500,
-		AllowPose: ["LegsClosed", "Kneel", "Hogtied", "Spread"],
+		AllowPose: ["LegsClosed", "Kneel", "Spread", "Hogtied"],
 		Asset: [
 			{ Name: "Shoes1", Height: 6 },
 			{ Name: "Shoes2", Height: 6 },
