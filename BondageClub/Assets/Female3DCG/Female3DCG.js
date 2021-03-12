@@ -2989,8 +2989,8 @@ var AssetFemale3DCG = [
 			{
 				Name: "LargeDildo", Value: 20, Difficulty: 1, Time: 10, DefaultColor: "#333333", BuyGroup: "LargeDildo", Hide: ["Mouth"], Effect: ["BlockMouth", "GagLight"], ExpressionTrigger: [{ Name: "Raised", Group: "Eyebrows", Timer: 10 }],
 				Layer: [
-					{ Name: "Lips", AllowColorize: false },
-					{ Name: "Dildo", AllowColorize: true }
+					{ Name: "Dildo", AllowColorize: true },
+					{ Name: "Lips", AllowColorize: false }
 				]
 			},
 			{ Name: "ChloroformCloth", Value: 40, Time: 2, Random: false, Hide: ["Mouth"], HideItem: ["ItemNoseNoseRing"], Effect: ["BlockMouth", "GagVeryLight"], ExpressionTrigger: [{ Name: "High", Group: "Blush", Timer: 20 }, { Name: "Soft", Group: "Eyebrows", Timer: 180 }, { Name: "Wink", Group: "Eyes", Timer: 180 }] },
