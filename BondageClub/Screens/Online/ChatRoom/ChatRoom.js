@@ -576,9 +576,19 @@ function ChatRoomDrawCharacter(DoClick) {
 		} else {
 
 			// Draw the background a second time for characters 6 to 10 (we do it here to correct clipping errors from the first part)
-			if ((C == 5) && (DarkFactor > 0)) {
-				DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ".jpg", MainCanvas, 0, 0, 2000, 1000, 0, 500, 1000, 500, InvertRoom);
-				if (DarkFactor < 1.0) DrawRect(0, 500, 1000, 500, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
+			if ((C == 5)) {
+				if (DarkFactor > 0) {
+					DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ".jpg", MainCanvas, 0, 0, 2000, 1000, 0, 500, 1000, 500, InvertRoom);
+					if (DarkFactor < 1.0) DrawRect(0, 500, 1000, 500, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
+				} else if (DarkFactor == 0) {
+					var customBG = DrawGetCustomBackground()
+					
+					
+					if (customBG != "") {
+						// Draws the zoomed background
+						DrawImageZoomCanvas("Backgrounds/" + customBG + ".jpg", MainCanvas, 0, 0, 2000, 1000, 0, 500, 1000, 500, InvertRoom);
+					}
+				}
 			}
 
 			// Draw the character
