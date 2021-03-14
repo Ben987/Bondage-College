@@ -953,10 +953,10 @@ function ChatRoomStimulationMessage(Context) {
 					trigChance += modArousal * Player.ArousalSettings.Progress/100
 				}
 				if (trigMsgTemp != "") {
-					var Inflation = InventoryGetItemProperty(C.Appearance[A], "InflateLevel", true)
-					if (Inflation > 0 && typeof parseInt(Inflation) == "number") {
-						trigChance += modInflation * parseInt(Inflation)/4
-						arousalAmount += parseInt(Inflation)/2
+					const Inflation = InventoryGetItemProperty(C.Appearance[A], "InflateLevel", true);
+					if (typeof Inflation === "number" && Inflation > 0) {
+						trigChance += modInflation * Inflation/4;
+						arousalAmount += Inflation/2;
 					}
 				}
 				
