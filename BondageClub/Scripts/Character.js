@@ -50,18 +50,20 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsProne: function () { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained: function () { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
 		/** Look for blindness effects and return the worst (limited by settings), Light: 1, Normal: 2, Heavy: 3 */
-		GetBlindLevel: function () {
+		GetBlindLevel: function (eyesOnly = false) {
 			let blindLevel = 0;
-			let eyes1 = InventoryGet(this, "Eyes");
-			let eyes2 = InventoryGet(this, "Eyes2");
+			const eyes1 = InventoryGet(this, "Eyes");
+			const eyes2 = InventoryGet(this, "Eyes2");
 			if (eyes1.Property && eyes1.Property.Expression && eyes2.Property && eyes2.Property.Expression) {
 				if ((eyes1.Property.Expression === "Closed") && (eyes2.Property.Expression === "Closed")) {
 					blindLevel += DialogFacialExpressionsSelectedBlindnessLevel;
 				}
 			}
-			if (this.Effect.includes("BlindHeavy")) blindLevel += 3;
-			else if (this.Effect.includes("BlindNormal")) blindLevel += 2;
-			else if (this.Effect.includes("BlindLight")) blindLevel += 1;
+			if (!eyesOnly) {
+				if (this.Effect.includes("BlindHeavy")) blindLevel += 3;
+				else if (this.Effect.includes("BlindNormal")) blindLevel += 2;
+				else if (this.Effect.includes("BlindLight")) blindLevel += 1;
+			}
 			blindLevel = Math.min(3, blindLevel);
 			// Light sensory deprivation setting limits blindness
 			if (this.GameplaySettings && this.GameplaySettings.SensDepChatLog == "SensDepLight") blindLevel = Math.min(2, blindLevel);
@@ -1222,14 +1224,16 @@ function CharacterCanKneel(C) {
 
 /**
  * Determines how much the character's view should be darkened based on their blind level. 1 is fully visible, 0 is pitch black.
- * @param {any} C - The character to check
- * @returns {number} - The number between 0 (bright) and 1 (dark) that determines screen darkness
+ * @param {Character} C - The character to check
+ * @param {boolean} eyesOnly - If TRUE only check whether the character has eyes closed, and ignore item effects
+ * @returns {number} - The number between 0 (dark) and 1 (bright) that determines screen darkness
  */
-function CharacterGetDarkFactor(C) {
+function CharacterGetDarkFactor(C, eyesOnly = false) {
 	let DarkFactor = 1.0;
-	if (C.GetBlindLevel() >= 3) DarkFactor = 0.0;
+	const blindLevel = C.GetBlindLevel(eyesOnly);
+	if (blindLevel >= 3) DarkFactor = 0.0;
 	else if (CommonPhotoMode) DarkFactor = 1.0;
-	else if (C.GetBlindLevel() == 2) DarkFactor = 0.15;
-	else if (C.GetBlindLevel() == 1) DarkFactor = 0.3;
+	else if (blindLevel === 2) DarkFactor = 0.15;
+	else if (blindLevel === 1) DarkFactor = 0.3;
 	return DarkFactor;
 }
