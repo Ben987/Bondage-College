@@ -17,6 +17,7 @@ var MiniGameChessGame = null;
 function MiniGameChessStart(Depth) {
 	const MinMaxDepth = Depth;
 	const PauseDepth = 2;
+	const chessOnMoveEvent = new Event('chessOnMove');
 
 	/**
 	 * Evaluates current chess board relative to player
@@ -134,6 +135,9 @@ function MiniGameChessStart(Depth) {
 		game.move(move);
 		// Update board positions
 		board.position(game.fen());
+
+		// Announce a move was made
+		document.dispatchEvent(chessOnMoveEvent);
 	}
 
 	// Handles what to do after human makes move.
@@ -151,6 +155,9 @@ function MiniGameChessStart(Depth) {
 
 		// Log the move
 		//console.log(move)
+
+		// Announce a move was made
+		document.dispatchEvent(chessOnMoveEvent);
 
 		// make move for black
 		window.setTimeout(function () {

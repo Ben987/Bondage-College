@@ -27,9 +27,6 @@ function ChessLoad() {
  */
 function ChessRun() {
 
-	// Applies restraints or strip if there are special rules
-	CollegeChessGameProgress();
-
 	// Draw the characters
 	DrawCharacter(ChessCharacterLeft, 0, 0, 1);
 	DrawCharacter(ChessCharacterRight, 1500, 0, 1);

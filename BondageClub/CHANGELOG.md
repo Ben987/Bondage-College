@@ -11,9 +11,9 @@ This changelog follows the format outlined in [keepachangelog.com](https://keepa
 
 **Note to contributors:** To avoid merge conflicts, please don't update this file yourself in your PRs - one of the developers will update the changelog with your change before your PR is merged.
 
-Changelog last updated: 2021-03-09
+Changelog last updated: 2021-03-13
 
-Last recorded PR: [#2194](https://github.com/Ben987/Bondage-College/pull/2194)
+Last recorded PR: [#2210](https://github.com/Ben987/Bondage-College/pull/2210)
 
 ## [R66]
 
@@ -82,12 +82,24 @@ Last recorded PR: [#2194](https://github.com/Ben987/Bondage-College/pull/2194)
 * Jomshir - Created a new item saving format to reduce server message sizes ([#2137](https://github.com/Ben987/Bondage-College/pull/2137), [Server #68](https://github.com/Ben987/Bondage-Club-Server/pull/68) [#2138](https://github.com/Ben987/Bondage-College/pull/2138))
 * Technical changes, fixes and improvements:
     * Ellie - [#2119](https://github.com/Ben987/Bondage-College/pull/2119), [#2062](https://github.com/Ben987/Bondage-College/pull/2062)
-    * Nina - [#2061](https://github.com/Ben987/Bondage-College/pull/2137), [#2161](https://github.com/Ben987/Bondage-College/pull/2161), [#2181](https://github.com/Ben987/Bondage-College/pull/2181)
+    * Nina - [#2061](https://github.com/Ben987/Bondage-College/pull/2061), [#2161](https://github.com/Ben987/Bondage-College/pull/2161), [#2181](https://github.com/Ben987/Bondage-College/pull/2181)
     * Jomshir - [#2153](https://github.com/Ben987/Bondage-College/pull/2153), [#2129](https://github.com/Ben987/Bondage-College/pull/2129), [#2162](https://github.com/Ben987/Bondage-College/pull/2162), [Server 70](https://github.com/Ben987/Bondage-Club-Server/pull/70), [Server 71](https://github.com/Ben987/Bondage-Club-Server/pull/71), [#2171](https://github.com/Ben987/Bondage-College/pull/2171), [#2173](https://github.com/Ben987/Bondage-College/pull/2173), [#2180](https://github.com/Ben987/Bondage-College/pull/2180)
 
 ### [Beta Fixes]
 
-* None... yet!
+* Nina - Fixed an issue where notifications would still show up for messages when the player had message-hiding turned on in sensory deprivation ([#2197](https://github.com/Ben987/Bondage-College/pull/2197))
+* Nina - Fixed an issue where the wooden sign would render above enclosing items like the wooden box ([#2198](https://github.com/Ben987/Bondage-College/pull/2198))
+* Nina - Fixed an issue where the tie/untie chatroom messages for the Pole item were the wrong way around ([#2199](https://github.com/Ben987/Bondage-College/pull/2199))
+* TessaTech - Fixed an issue where the behind back pose for the metal cuffs would add too much difficulty ([#2200](https://github.com/Ben987/Bondage-College/pull/2200))
+* Nina - Fixed an issue where being kicked or leashed out of a chatroom could cause the game text to be misaligned ([#2201](https://github.com/Ben987/Bondage-College/pull/2201))
+* Ada - Increased the frequency of gag-related stimulation messages from 10% to 30% ([#2203](https://github.com/Ben987/Bondage-College/pull/2203))
+* Ellie - Fixed an issue where the "Virtual World" background would not render properly in the VR Headset ([#2204](https://github.com/Ben987/Bondage-College/pull/2204))
+* Ada - Tweaked the stand up/kneel minigame so that it is slightly harder to stand up than to kneel ([#2206](https://github.com/Ben987/Bondage-College/pull/2206))
+* Emily R - Fixed an issue where the new Camisole would render above several items that it shouldn't ([#2207](https://github.com/Ben987/Bondage-College/pull/2207))
+* Ada - Fixed an issue where the Electronic Tag was not being colored by the Futuristic Collar ([#2208](https://github.com/Ben987/Bondage-College/pull/2208))
+* Nina - Fixed an issue where the Deluxe Mistress Boots would cut holes out of the bed and other items ([#2209](https://github.com/Ben987/Bondage-College/pull/2209))
+* Jomshir - Fixed an issue where new players would be shown the changelog on account creation ([#2211](https://github.com/Ben987/Bondage-College/pull/2211))
+* DoberBit - Changed the Futuristic Gag to trigger for Cyrillic characters ([#2210](https://github.com/Ben987/Bondage-College/pull/2210))
 
 ## [R65]
 

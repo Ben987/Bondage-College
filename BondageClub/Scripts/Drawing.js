@@ -1137,30 +1137,31 @@ function DrawProcess() {
 
 	// Gets the current screen background and draw it, it becomes darker in dialog mode or if the character is blindfolded
 	var B = window[CurrentScreen + "Background"];
-		
+
 	if ((B != null) && (B != "")) {
-		var customBG = ""
+		var customBG = "";
 		let DarkFactor = CurrentDarkFactor;
 		if ((CurrentModule != "Character" && CurrentModule != "MiniGame") && (B != "Sheet")) {
-			DarkFactor = CharacterGetDarkFactor(Player, DarkFactor);
+			DarkFactor *= CharacterGetDarkFactor(Player, DarkFactor);
 			if (DarkFactor == 1 && (CurrentCharacter != null || ShopStarted) && !CommonPhotoMode) DarkFactor = 0.5;
 		}
 		const Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
 		if (DarkFactor == 0.0) {
-			customBG = DrawGetCustomBackground()
-			
+			customBG = DrawGetCustomBackground();
+
 			if (customBG != "") {
-				B = customBG
+				B = customBG;
+				DarkFactor = CharacterGetDarkFactor(Player, true);
 			}
 		}
-		
-		if (DarkFactor > 0.0 || customBG != "") {
+
+		if (DarkFactor > 0.0) {
 			if (!DrawImage("Backgrounds/" + B + ".jpg", 0, 0, Invert)) {
 				// Draw empty background to overdraw old content if background image isn't ready
 				DrawRect(0, 0, 2000, 1000, "#000");
 			}
 		}
-		if (DarkFactor < 1.0 && customBG == "") DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
+		if (DarkFactor < 1.0) DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
 	}
 
 	if (RefreshDrawFunction) {
@@ -1187,8 +1188,8 @@ function DrawProcess() {
 	// If needed
 	// Used to support items that remove you from the dialog during the draw phase
 	if (DialogLeaveDueToItem) {
-		DialogLeaveDueToItem = false
-		DialogLeave()
+		DialogLeaveDueToItem = false;
+		DialogLeave();
 	}
 
 }
