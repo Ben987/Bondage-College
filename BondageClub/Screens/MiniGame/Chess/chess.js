@@ -14,7 +14,7 @@ var MiniGameChessBoard = null;
 var MiniGameChessGame = null;
 
 // Starts the chess with a depth (difficulty)
-function MiniGameChessStart(Depth) {
+function MiniGameChessStart(Depth, PlayerColor) {
 	const MinMaxDepth = Depth;
 	const PauseDepth = 2;
 	const chessOnMoveEvent = new Event('chessOnMove');
@@ -171,9 +171,9 @@ function MiniGameChessStart(Depth) {
 	let board;
 	let game = new Chess();
 
-	// Check before pick pieces that it is white and game is not over
+	// Check before pick pieces that it is the player's color and game is not over
 	function onDragStart(source, piece, position, orientation) {
-		if (game.game_over() === true || moveInProgress || piece.search(/^b/) !== -1) {
+		if (game.game_over() === true || moveInProgress || piece.search(PlayerColor) === -1) {
 			return false;
 		}
 	}
@@ -197,6 +197,7 @@ function MiniGameChessStart(Depth) {
 		draggable: true,
 		position: "start",
 		pieceTheme: "Screens/MiniGame/Chess/{piece}.png",
+		orientation: PlayerColor === "w" ? "white" : "black",
 		// Handlers for user actions
 		onDragStart: onDragStart,
 		onDrop: onDrop,
@@ -209,4 +210,11 @@ function MiniGameChessStart(Depth) {
 	game.reset();
 	MiniGameChessBoard = board;
 	MiniGameChessGame = game;
+
+	// Opponent starts
+	if (PlayerColor === "b") {
+		window.setTimeout(function () {
+			makeMove(MinMaxDepth);
+		}, 200);
+	}
 }
