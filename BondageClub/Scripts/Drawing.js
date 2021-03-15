@@ -1140,9 +1140,9 @@ function DrawProcess() {
 
 	if ((B != null) && (B != "")) {
 		var customBG = "";
-		let DarkFactor = CurrentDarkFactor;
+		let DarkFactor = 1.0;
 		if ((CurrentModule != "Character" && CurrentModule != "MiniGame") && (B != "Sheet")) {
-			DarkFactor *= CharacterGetDarkFactor(Player, DarkFactor);
+			DarkFactor *= CharacterGetDarkFactor(Player) * CurrentDarkFactor;
 			if (DarkFactor == 1 && (CurrentCharacter != null || ShopStarted) && !CommonPhotoMode) DarkFactor = 0.5;
 		}
 		const Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
