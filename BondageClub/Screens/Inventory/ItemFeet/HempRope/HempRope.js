@@ -23,7 +23,7 @@ const HempRopeFeetOptions = [
 	}, {
 		Name: "Suspension",
 		BondageLevel: 6,
-		Property: { Type: "Suspension", SetPose: ["LegsClosed", "Suspension"], Difficulty: 6 },
+		Property: { Type: "Suspension", SetPose: ["LegsClosed", "Suspension"], AllowActivePose: [], Difficulty: 6 },
 		Expression: [{ Group: "Blush", Name: "High", Timer: 30 }],
 		Prerequisite: ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"]
 	}, {

@@ -848,6 +848,7 @@ FuturisticCollarSetOpenPermissionOff,,,DestinationCharacterName bindings now can
 FuturisticCollarBlockRemotes,,,Block remotes on the wearer,,
 FuturisticCollarSetBlockRemotesOn,,,DestinationCharacterName vibrator remotes are now locked.,,
 FuturisticCollarSetBlockRemotesOff,,,DestinationCharacterName vibrator remotes are now unlocked.,,
+FuturisticCollarOptionsLockout,,,Collar settings are locked,,
 FuturisticCollarOptions,,,Current Status:,,
 FuturisticCollarOptionsNoLocks,,,Unlocked,,
 FuturisticCollarOptionsPartialLocks,,,Partially Locked,,
@@ -1888,8 +1889,8 @@ ItemArmsTransportJacketSetShortsShortsAndStraps,,,SourceCharacter reinforces Des
 SelectPoleType,,,Select Pole state,,
 PoleTypeUntied,,,Untie from pole,,
 PoleTypeTied,,,Tie to pole,,
-DevicesPoleSetUntied,,,SourceCharacter ties TargetCharacter to the pole.,,
-DevicesPoleSetTied,,,SourceCharacter unties TargetCharacter from the pole.,,
+DevicesPoleSetUntied,,,SourceCharacter unties TargetCharacter from the pole.,,
+DevicesPoleSetTied,,,SourceCharacter ties TargetCharacter to the pole.,,
 SelectEyePatchType,,,Select an eyepatch style.
 EyePatchTypeLeft,,,Left,,
 EyePatchTypeRight,,,Right,,

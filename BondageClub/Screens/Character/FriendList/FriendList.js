@@ -7,7 +7,6 @@ var FriendListMode = ["Friends", "Beeps", "Delete"];
 var FriendListModeIndex = 0;
 /** @type {FriendListBeepLogMessage[]} */
 var FriendListBeepLog = [];
-let FriendListNextCheck = null;
 /** @type {number|null} MemberNumber of the player to send beep to */
 let FriendListBeepTarget = null;
 
@@ -60,8 +59,6 @@ function FriendListRun() {
 	}
 	DrawButton(1865, 5, 60, 60, "", "White", "Icons/Small/Next.png");
 	DrawButton(1935, 5, 60, 60, "", "White", "Icons/Small/Exit.png");
-	if ((FriendListNextCheck !== null) && (CurrentTime >= FriendListNextCheck))
-		ServerSend("AccountQuery", { Query: "OnlineFriends" });
 }
 
 /** 
@@ -189,9 +186,6 @@ function FriendListExit() {
  */
 function FriendListLoadFriendList(data) {
 
-	// Refresh the friend list automatically again in 30 seconds
-	FriendListNextCheck = CurrentTime + 30000;
-
 	// Loads the header caption
 	const BeepCaption = DialogFindPlayer("Beep");
 	const DeleteCaption = DialogFindPlayer("Delete");
@@ -261,7 +255,7 @@ function FriendListLoadFriendList(data) {
 			}
 			FriendListContent += "</div>";
 		}
-		NotificationReset(NotificationEventType.BEEP);
+		if (document.hasFocus()) NotificationReset(NotificationEventType.BEEP);
 	} else if (mode === "Delete") {
 		// In Delete mode, we show the friend list and allow the user to remove them
 		for (const [k, v] of Array.from(Player.FriendNames).sort((a, b) => a[1].localeCompare(b[1]))) {
