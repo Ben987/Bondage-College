@@ -596,7 +596,7 @@ function ChatRoomDrawBackground(Background, Y, Zoom, DarkFactor, InvertRoom) {
 
 		// Draw an overlay if the character is partially blinded
 		if (DarkFactor < 1.0) {
-			DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
+			DrawRect(0, Y, 1000, 1000 - Y, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
 		}
 	}
 }
