@@ -77,21 +77,23 @@ function InventoryItemNeckAccessoriesElectronicTagChange() {
 
 // Drawing function for the text on the tag
 function AssetsItemNeckAccessoriesElectronicTagAfterDraw({
-    C, A, X, Y, Property, drawCanvas, drawCanvasBlink, AlphaMasks, L, Color
-}) { 
+	C, A, X, Y, Property, drawCanvas, drawCanvasBlink, AlphaMasks, L, Color
+}) {
 	if (L === "_Text") {
 		// We set up a canvas
 		const Height = 50;
 		const Width = 45;
 		const TempCanvas = AnimationGenerateTempCanvas(C, A, Width, Height);
-    
+
+		const text = Property && typeof Property.Text === "string" && InventoryItemNeckAccessoriesCustomCollarTagAllowedChars.test(Property.Text) ? Property.Text : "Tag";
+
 		// We draw the desired info on that canvas
 		let context = TempCanvas.getContext('2d');
 		context.font = "14px sansserif";
 		context.fillStyle = Color;
 		context.textAlign = "center";
-		context.fillText((Property && Property.Text.match(InventoryItemNeckAccessoriesCustomCollarTagAllowedChars) ? Property.Text : "Tag"), Width / 2, Width / 2, Width);
-    
+		context.fillText(text, Width / 2, Width / 2, Width);
+
 		// We print the canvas to the character based on the asset position
 		drawCanvas(TempCanvas, X + 228.5, Y + 30, AlphaMasks);
 		drawCanvasBlink(TempCanvas, X + 228.5, Y + 30, AlphaMasks);

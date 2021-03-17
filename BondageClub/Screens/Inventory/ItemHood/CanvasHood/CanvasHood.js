@@ -1,3 +1,4 @@
+"use strict";
 const InventoryItemHoodCanvasHoodAllowedChars = /^(?:\w|[ ~!$#%*+])*$/;
 const InventoryItemHoodCanvasHoodMaxLength = 12;
 const InventoryItemHoodCanvasHoodInputId = "InventoryItemHoodCanvasHoodText";
@@ -106,8 +107,7 @@ function AssetsItemHoodCanvasHoodAfterDraw({ C, A, X, Y, L, Property, drawCanvas
 	if (L === "_Text") {
 		// Fetch the text property and assert that it matches the character
 		// and length requirements
-		let text = Property && Property.Text || "";
-		if (!InventoryItemHoodCanvasHoodAllowedChars.test(text)) text = "";
+		let text = Property && typeof Property.Text === "string" && InventoryItemHoodCanvasHoodAllowedChars.test(Property.Text) ? Property.Text : "";
 		text = text.substring(0, InventoryItemHoodCanvasHoodMaxLength);
 
 		// Prepare a temporary canvas to draw the text to
