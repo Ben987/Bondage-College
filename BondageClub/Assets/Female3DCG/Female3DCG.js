@@ -3694,22 +3694,22 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "LightDutyEarPlugs", Value: 15, Difficulty: 50, Time: 5, Visible: false, Effect: ["DeafLight"] },
 			{ Name: "HeavyDutyEarPlugs", Value: 30, Difficulty: 50, Time: 5, Visible: false, Effect: ["DeafHeavy"] },
-			{ Name: "HeadphoneEarPlugs", Value: 50, Difficulty: 50, Time: 5, Visible: false, Effect: [""], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Light", "Heavy", "NoiseCancelling"], Extended: true },
-			{ Name: "BluetoothEarbuds", Value: 50, Difficulty: 50, Time: 5, Visible: false, Effect: [""], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Light", "Heavy", "NoiseCancelling"], Extended: true, AlwaysExtend: true },
-			{ Name: "FuturisticEarphones", Priority: 54, Category: ["SciFi"], Value: 60, Difficulty: 50, Top: 20, Time: 12, DefaultColor: ["Default", "#50913C"], AllowLock: true, DrawLocks: false, Random: false, Effect: [""], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Light", "Heavy", "NoiseCancelling"], Extended: true, AlwaysExtend: true, HasType: false,
+			{ Name: "HeadphoneEarPlugs", Value: 50, Difficulty: 50, Time: 5, Visible: false, Effect: [], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Light", "Heavy", "NoiseCancelling"], Extended: true },
+			{ Name: "BluetoothEarbuds", Value: 50, Difficulty: 50, Time: 5, Visible: false, Effect: [], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Light", "Heavy", "NoiseCancelling"], Extended: true, AlwaysExtend: true },
+			{ Name: "FuturisticEarphones", Priority: 54, Category: ["SciFi"], Value: 60, Difficulty: 50, Top: 20, Time: 12, DefaultColor: ["Default", "#50913C"], AllowLock: true, DrawLocks: false, Random: false, Effect: [], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Light", "Heavy", "NoiseCancelling"], Extended: true, AlwaysExtend: true, HasType: false,
 				Layer: [
 					{ Name: "Band" },
 					{ Name: "Display" },
 					{ Name: "Lock", LockLayer: true,AllowColorize: true, HasType: false, ParentGroup: null},
 				]
 			},
-			{ 
-				Name: "Headphones", Priority: 54, Value: 50, Time: 5, Random: false, Top: 20, Effect: [""], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Light", "Heavy"], Extended: true, AlwaysExtend: true, HasType: false,
+			{
+				Name: "Headphones", Priority: 54, Value: 50, Time: 5, Random: false, Top: 20, Effect: [], AllowEffect: ["DeafLight", "DeafHeavy", "DeafTotal"], AllowType: ["Light", "Heavy", "NoiseCancelling"], Extended: true, AlwaysExtend: true, HasType: false,
 				Layer: [
 					{ Name: "Light" },
 					{ Name: "Dark" },
 				]
-			},				
+			},
 			AssetSpankingToys
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
