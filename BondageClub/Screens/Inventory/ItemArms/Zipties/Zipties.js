@@ -20,15 +20,15 @@ const ZiptiesArmsOptions = [
 		Name: "ZipWristLight",
 		Property: { Type: "ZipWristLight", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
-    }, {
+	}, {
 		Name: "ZipWristMedium",
 		Property: { Type: "ZipWristMedium", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
-    }, {
+	}, {
 		Name: "ZipWristFull",
 		Property: { Type: "ZipWristFull", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
-    }, {
+	}, {
 		Name: "ZipWrist",
 		Property: { Type: "ZipWrist", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
