@@ -679,7 +679,7 @@ function AppearanceRun() {
 			const Hidden = CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name);
 
 			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.Description, { Background });
-			else if (C.FocusGroup.PreviewZone) {
+			else if (C.FocusGroup && C.FocusGroup.PreviewZone) {
 				const Z = C.FocusGroup.PreviewZone;
 				const PreviewCanvas = DrawCharacterSegment(AppearancePreviews[I], Z[0], Z[1], Z[2], Z[3]);
 				DrawCanvasPreview(X, Y, PreviewCanvas, Item.Asset.Description, { Background });
