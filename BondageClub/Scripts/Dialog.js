@@ -1554,11 +1554,6 @@ function DialogDrawItemMenu(C) {
 		return;
 	}
 
-
-
-
-
-
 	// If we must draw the current item from the group
 	if (FocusItem != null) {
 		const Vibrating = InventoryItemHasEffect(FocusItem, "Vibrating", true);
@@ -1567,7 +1562,8 @@ function DialogDrawItemMenu(C) {
 
 	// Show the no access text
 	if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
-	else DrawText(DialogFindPlayer("AccessBlocked"), 1500, 700, "White", "Black");
+	else if (DialogInventory.length > 0) DrawText(DialogFindPlayer("AccessBlocked"), 1500, 700, "White", "Black");
+	else DrawText(DialogFindPlayer("NoItems"), 1500, 700, "White", "Black");
 
 }
 
