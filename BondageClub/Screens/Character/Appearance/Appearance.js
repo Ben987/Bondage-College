@@ -1141,7 +1141,6 @@ function AppearanceMenuClick(C) {
 							CharacterRefresh(C, false);
 						}
 						if (C.FocusGroup.PreviewZone) AppearancePreviewCleanup();
-						C.FocusGroup = null;
 						AppearanceExit();
 					}
 
@@ -1154,7 +1153,6 @@ function AppearanceMenuClick(C) {
 						}
 						else {
 							if (C.FocusGroup.PreviewZone) AppearancePreviewCleanup();
-							C.FocusGroup = null;
 							AppearanceExit();
 						}
 					}
@@ -1188,6 +1186,8 @@ function AppearanceExit() {
 		CharacterAppearanceHeaderText = "";
 		ElementRemove("InputWardrobeName");
 	} else CharacterAppearanceExit(CharacterAppearanceSelection);
+
+	CharacterAppearanceSelection.FocusGroup = null;
 }
 
 /**
