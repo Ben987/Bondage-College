@@ -1951,11 +1951,10 @@ var AssetFemale3DCG = [
 			},
 			{
 				Name: "MetalCuffs", Fetish: ["Metal"], Priority: 29, Value: 40, Difficulty: 5, Time: 5, Audio: "LockSmall", Extended: true, 
-				SetPose: ["BaseUpper"],
-				Effect: ["Lock", "Prone"],
+				SetPose: ["BackCuffs"],
+				Effect: ["Lock", "Block", "Prone"],
 				AllowPose: ["BackCuffs"],
-				AllowEffect: ["Block", "Prone"],
-				AllowType: ["BehindBack"]
+				AllowType: ["InFront"]
 			},
 			{ Name: "SturdyLeatherBelts", Fetish: ["Leather"], Value: 50, Difficulty: 5, SelfBondage: 4, Time: 20, AllowLock: true, BuyGroup: "SturdyLeatherBelts", SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone", "NotSelfPickable"], AllowType: ["Two", "Three"], Extended: true, SelfUnlock: false },
 			{
