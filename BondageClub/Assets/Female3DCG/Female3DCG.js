@@ -152,6 +152,7 @@ var AssetFemale3DCG = [
 		Priority: 32,
 		Default: false,
 		Clothing: true,
+		PreviewZone: [0, 200, 500, 500],
 		Asset: [
 			{ Name: "StudentOutfit3Scarf", Priority: 34, Left: 200, Top: 250 },
 			{ Name: "StudentOutfit3Bow1", Priority: 34, Left: 200, Top: 250 },
@@ -1019,6 +1020,7 @@ var AssetFemale3DCG = [
 		BodyCosplay: true,
 		Left: 0,
 		Top: 150,
+		PreviewZone: [0, 200, 500, 500],
 		Asset: [
 			{ Name: "TailStrap", Fetish: ["Pet"], Value: 30, Top: 180, Layer: [
 				{ Name: "Tail"},
