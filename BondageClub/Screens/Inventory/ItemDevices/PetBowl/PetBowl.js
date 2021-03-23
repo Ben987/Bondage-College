@@ -1,3 +1,4 @@
+"use strict";
 const InventoryItemDevicesPetBowlMaxLength = 12;
 const InventoryItemDevicesPetBowlInputId = "InventoryItemDevicesPetBowlText";
 const InventoryItemDevicesPetBowlFont = "'Saira Stencil One', 'Arial', sans-serif";
@@ -111,8 +112,7 @@ function AssetsItemDevicesPetBowlAfterDraw({ C, A, X, Y, L, Property, drawCanvas
 	if (L === "_Text") {
 		// Fetch the text property and assert that it matches the character
 		// and length requirements
-		let text = (Property && Property.Text) || "";
-		if (!DynamicDrawTextRegex.test(text)) text = "";
+		let text = Property && typeof Property.Text === "string" && DynamicDrawTextRegex.test(Property.Text) ? Property.Text : "";
 		text = text.substring(0, InventoryItemDevicesPetBowlMaxLength);
 
 		// Prepare a temporary canvas to draw the text to

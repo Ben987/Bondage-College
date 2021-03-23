@@ -5,38 +5,38 @@ var InventoryItemButtButtPumpOptions = [
 		Name: "Empty",
 		Property: {
 			Type: null,
-			InflateLevel: "0",
+			InflateLevel: 0,
 		},
 	},
 	{
 		Name: "Light",
 		Property: {
 			Type: "Light",
-			InflateLevel: "1",
+			InflateLevel: 1,
 		},
 	},
 	{
 		Name: "Inflated",
 		Property: {
 			Type: "Inflated",
-			InflateLevel: "2",
+			InflateLevel: 2,
 		},
 	},
 	{
 		Name: "Bloated",
 		Property: {
 			Type: "Bloated",
-			InflateLevel: "3",
+			InflateLevel: 3,
 		},
 	},
 	{
 		Name: "Maximum",
 		Property: {
 			Type: "Maximum",
-			InflateLevel: "4",
+			InflateLevel: 4,
 		},
 	},
-]
+];
 
 /**
  * Loads the item extension properties
@@ -72,7 +72,7 @@ function InventoryItemButtButtPumpClick() {
 function InventoryItemButtButtPumpPublishAction(C, Option, PreviousOption) {
 	var NewIndex = InventoryItemButtButtPumpOptions.indexOf(Option);
 	var PreviousIndex = InventoryItemButtButtPumpOptions.indexOf(PreviousOption);
-	var msg = "BPumps" + ((NewIndex > PreviousIndex) ? "pumps" : "deflates") + "To" + Option.Property.InflateLevel;
+	var msg = "BPumps" + ((NewIndex > PreviousIndex) ? "pumps" : "deflates") + "To" + Option.Property.InflateLevel.toString();
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },

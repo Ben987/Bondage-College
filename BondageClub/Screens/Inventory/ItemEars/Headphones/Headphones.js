@@ -24,6 +24,13 @@ var InventoryItemEarsHeadphonesOptions = [
 			Effect: ["DeafHeavy"],
 		},
 	},
+	{
+		Name: "NoiseCancelling",
+		Property: {
+			Type: "NoiseCancelling",
+			Effect: ["DeafTotal"],
+		},
+	},
 ];
 
 /**

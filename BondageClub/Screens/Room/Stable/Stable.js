@@ -1062,6 +1062,7 @@ function StableCharacterAppearanceGroupAvailable(C, AppearanceGroup) {
 // Try to Hide the Dice for BadGirlsClub
 function StableHideDice() {
 	if (Math.random() < 0.25) {
+		LogAdd("Caught", "BadGirl");
 		PrisonMeetPoliceIntro("HorseStable");
 	} else {
 		CharacterSetCurrent(Player);

@@ -275,6 +275,7 @@
 <script src="Screens/Inventory/ItemPelvis/PolishedChastityBelt/PolishedChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/FuturisticChastityBelt/FuturisticChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/FuturisticChastityBelt2/FuturisticChastityBelt2.js"></script>
+<script src="Screens/Inventory/ItemPelvis/SciFiPleasurePanties/SciFiPleasurePanties.js"></script>
 <script src="Screens/Inventory/ItemBreast/FuturisticBra/FuturisticBra.js"></script>
 <script src="Screens/Inventory/ItemBreast/FuturisticBra2/FuturisticBra2.js"></script>
 <script src="Screens/Inventory/ItemPelvis/OrnateChastityBelt/OrnateChastityBelt.js"></script>
@@ -320,6 +321,7 @@
 <script src="Screens/Inventory/ItemHood/CanvasHood/CanvasHood.js"></script>
 <script src="Screens/Inventory/ItemDevices/Vacbed/Vacbed.js"></script>
 <script src="Screens/Inventory/ItemDevices/WoodenBox/WoodenBox.js"></script>
+<script src="Screens/Inventory/ItemDevices/PetBed/PetBed.js"></script>
 <script src="Screens/Inventory/ItemDevices/TransportWoodenBox/TransportWoodenBox.js"></script>
 <script src="Screens/Inventory/HairAccessory3/Halo/Halo.js"></script>
 <script src="Screens/Inventory/HairAccessory1/Halo/Halo.js"></script>
@@ -333,7 +335,71 @@
 
 	NEXT VERSION:
 
-	TO DO - Bondage RPG - Single Player Side First
+	Bondage Club RPG
+
+	Kidnapping mini-game - BDSM system changes - BDS is divided by 2 once used, doesn't heal automatically
+
+	B - Brute force (great VS domination, weak vs sneakiness)
+	Starts at 6 +1 for items:
+	Strapon Panties, Racket, Duster gag, HarnessPonyBits
+	Divided by 2 if stripped
+
+	D - Domination (great VS sneakiness, weak vs brute force)
+	Starts at 6 +1 for items:
+	Mistress Top, Gavel, Nurse Outfit, Pillory
+	Divided by 2 if gagged
+
+	S - Sneakiness (great VS brute force, weak vs domination)
+	Starts at 6 +1 for items:
+	Camera, Sleeping pills, Long duster, Studded Blindfold
+	Divided by 2 if feet are restrained
+
+	M - Meditate (Heals BDS back to full, weak against everything)
+	This skill must be timed correctly, it doesn’t damage but restores BDS back to full to be ready to attack once again.
+
+	Create an AI to pick the best option with some randomness
+
+
+	New "Rival Club" room accessible from the main hall.
+
+	That room will contain an NPC that gives missions to infiltrate a rival club: Pandora's Box
+
+	New "Infiltration" skill, earned after each mission (successful or not)
+
+	Each level in infiltration allows the user to pick a perk to help in infiltration missions:
+
+	Strength - +2 Brute force in Pandora's box
+	Charisma - +2 Domination in Pandora's box
+	Agility - +2 Sneakiness in Pandora's box
+	Resilience - +5 willpower in Pandora's box
+	Endurance - +5 willpower in Pandora's box
+	Lockpicking - One free lockpicking without mini-game
+	Keen eye - One free switch found without mini-game
+	Running - Skip one fight free, lose the opponent
+	Mapping - 1 less rooms to find final objective
+	Forgery - Skip entry maid that checks papers
+	Begging - Less time in prison if the mission fails
+	Bribery - Pay less to get out of prison freely
+	Negotiation - A little more money after each successful mission
+
+	Perks can be assigned/trained as the user wants it, before every mission.
+
+	When ready, the mission starts, a maid in red greets the player which infiltrates Pandora's box.  The rival club will have a few unique backgrounds.
+
+	The missions can be:
+	-	Rescue a kidnapped girl
+	-	Kidnap someone for a prisoner exchange
+	-	Find a stolen item
+	-	Steal some documents
+
+	Starts in room #1 with many arrows to move to random rooms #2, #3, etc.  From #2 you could reach #4 #5, etc.  Each room has its background and NPC(s).  Some NPCs will fight the player, others will need help, some will simply chat.  Some doors will be locked, needing a mini-game to unlock it.  Some rooms will have hidden switches to find by clicking everywhere, some rooms could have traps.  Willpower is carried throughout the infiltration.  If it reaches zero, the player surrenders and gets jailed for X minutes, or can bribe her way out.  A successful mission will give some money to the player and might allow her to make new friends for her private room.
+
+	Second phase ideas: 
+	-	When the player gets jailed, another online player could take the mission to go rescue her. If she succeeds, they both end up in a multiplayer room and can roleplay together.  If she fails, she gets thrown in jail with the other girl, in a multiplayer room with a cell setting, maybe raising the time sentence for both girls.
+	-	As your infiltration skill rises, you could become famous (infamous) in the rival club and they could try to kidnap you as you wander in the regular bondage club.  They could also kidnap your friends in your private room, and you could take special missions to go rescue them.
+	-	Owned online players or lover online players could also get kidnapped, the player could receive a ransom note.  If the players pay, she could free her lover or sub right away.  If the player doesn’t pay, she could start a mission to free them or let them rot in jail for X more minutes. 
+
+	TO DO - Proof-reading
 	TO DO - Patreon Import/Update
 
 */
@@ -342,7 +408,7 @@
 window.onload = function() {
 //	CheatImport();
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
-	GameVersion = "R66Beta2";
+	GameVersion = "R66";
 	console.log("Version: " + GameVersion + ", Server: " + ServerURL);
 	if (!GameVersionFormat.test(GameVersion)) console.error("GameVersion is not valid!");
 	CommonIsMobile = CommonDetectMobile();

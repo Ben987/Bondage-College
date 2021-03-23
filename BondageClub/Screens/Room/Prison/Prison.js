@@ -43,7 +43,7 @@ function PrisonPlayerIsFeetTied()   {return PrisonCharacterAppearanceAvailable(P
 function PrisonPlayerIsOTMGag()     {return PrisonCharacterAppearanceAvailable(Player, "ClothGag", "ItemMouth");}
 function PrisonPlayerIsStriped()    {return !(PrisonCharacterAppearanceGroupAvailable(Player, "Cloth"));}
 function PrisonPlayerIsBadGirl()    {return LogQuery("Joined", "BadGirl");}
-function PrisonPlayerIsBadGirlThief()	{return (LogQuery("Joined", "BadGirl") && (LogQuery("Stolen", "BadGirl") || LogQuery("Hide", "BadGirl")));}
+function PrisonPlayerIsBadGirlThief()	{return (LogQuery("Joined", "BadGirl") && (LogQuery("Stolen", "BadGirl") || LogQuery("Hide", "BadGirl") || LogQuery("Caught", "BadGirl")));}
 function PrisonPlayerHasSleepingPills()	{return (InventoryAvailable(Player, "RegularSleepingPill", "ItemMouth"));}
 function PrisonPlayerHasSpankingToys() {return (InventoryAvailable(Player, "SpankingToys", "ItemHands"));}
 function PrisonPlayerHasKeys() {return (InventoryAvailable(Player, "MetalPadlockKey", "ItemMisc") || InventoryAvailable(Player, "IntricatePadlockKey", "ItemMisc") ||  InventoryAvailable(Player, "MetalCuffsKey", "ItemMisc"));}
@@ -590,13 +590,16 @@ release/entlassung
 //Determine how strongly the player is wanted for MainHall
 function PrisonWantedPlayer() {
 	var i;
-	if (LogQuery("Hide", "BadGirl")) return 7;
+	if (LogQuery("Caught", "BadGirl")) return 9;
+	else if (LogQuery("Hide", "BadGirl")) return 7;
 	else if (LogQuery("Stolen", "BadGirl")) return 4;
 	else if (LogQuery("Joined", "BadGirl")) return 1;
 }
 
 //Catch by Police in MainHall
 function PrisonMeetPoliceIntro(RoomBackground) {
+	var aggressive = PrisonWantedPlayer() >= 4;
+
 	CommonSetScreen("Room", "Prison");
 	PrisonBackground = RoomBackground; //"MainHall","Gambling","HorseStable"
 	PrisonPolice = null;
@@ -605,12 +608,64 @@ function PrisonMeetPoliceIntro(RoomBackground) {
 	PrisonPolice.AllowItem = false;
 	PrisonWearPoliceEquipment(PrisonPolice);
 	CharacterSetCurrent(PrisonPolice);
-	PrisonPolice.Stage = "Catch";
-	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchIntro");
+	PrisonPolice.Stage = aggressive ? "CatchAggressive" : "Catch";
+	PrisonPolice.CurrentDialog = aggressive ? DialogFind(PrisonPolice, "CatchIntroAggressive") : DialogFind(PrisonPolice, "CatchIntro");
+}
+
+function PrisonPutHandsInTheAir() {
+	CharacterSetActivePose(Player, "Yoked", true);
+	if (Math.floor(PrisonWantedPlayer() * Math.random()) >= 3) {
+		// cop yells at player to raise her hands higher
+		PrisonPolice.Stage = "CatchAggressiveHigher";
+		PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveHandsHigher");
+	} else {
+		PrisonPolice.Stage = "CatchAggressive2";
+		PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveHandsInAir");
+	}
+}
+
+function PrisonRaiseHandsHigher() {
+	CharacterSetActivePose(Player, "OverTheHead", true);
+	PrisonPolice.Stage = "CatchAggressive2";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveHandsInAir");
+}
+
+function PrisonCatchKneel() {
+	CharacterSetActivePose(Player, "Kneel", false);
+	PrisonPolice.Stage = "CatchAggressive3";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveKneeling");
+}
+
+function PrisonCatchHandcuffed() {
+	InventoryWear(Player, "MetalCuffs", "ItemArms");
+	PrisonPolice.Stage = "CatchAggressive4";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveHandcuffed");
+}
+
+// player fails to escape if they try after kneeling, Police puts them in hogtie as punishment
+function PrisonCatchKneelingEscape() {
+	CharacterSetActivePose(Player, null, true);
+	InventoryWear(Player, "Chains", "ItemArms", "Default", 3);
+	InventoryGet(Player, "ItemArms").Property = { Type: "Hogtied", SetPose: ["Hogtied"], Difficulty: 0, Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], Effect: ["Block", "Freeze", "Prone"] };
+	CharacterRefresh(Player);
+	PrisonPolice.Stage = "CatchAggressive5";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveFailedEscape");
+}
+
+function PrisonCatchComplain() {
+	InventoryWear(Player, "BallGag", "ItemMouth");
+	PrisonPolice.Stage = "CatchAggressive6";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveComplained");
+}
+
+function PrisonCatchAdmitDefeat() {
+	PrisonPolice.Stage = "CatchAggressive6";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveAdmittedDefeat");
 }
 
 //When a fight starts between the player and the Police
 function PrisonFightPolice() {
+	CharacterSetActivePose(Player, null, true);
 	KidnapStart(PrisonPolice, PrisonBackground, 5 + Math.floor(Math.random() * 5), "PrisonFightPoliceEnd()");
 }
 
@@ -658,7 +713,7 @@ function PrisonSetBehavior(Behavior) {
 }
 
 function PrisonArrestHandoverDices() {
-	LogDelete("Stolen", "BadGirl");
+	PrisonDiceBack();
 	PrisonSetBehavior(2);
 }
 
@@ -680,7 +735,7 @@ function PrisonArrestHandoverSpankingToys() {
 }
 
 function PrisonArrestStripOuterCloth() {
-	CharacterUnderwear(Player, Player.Appearance);
+	CharacterAppearanceStripLayer(Player);
 	PrisonSetBehavior(-1);
 }
 
@@ -694,6 +749,8 @@ function PrisonArrestStripUnderware() {
 }
 
 function PrisonArrestSuit() {
+	// reset character pose
+	CharacterSetActivePose(Player, null, true);
 	InventoryWear(Player, "TShirt1", "Cloth", "#644000");
 	InventoryWear(Player, "Pajama1", "ClothLower", "#ffa500");
 	InventoryWear(Player, "Socks2", "Socks", "#CCCCCC");
@@ -728,7 +785,7 @@ function PrisonArrestEquipmentSearch() {
 }
 
 function PrisonArrestConfiscatDices() {
-	LogDelete("Stolen", "BadGirl");
+	PrisonDiceBack();
 	PrisonSetBehavior(-2);
 	PrisonArrestEquipmentSearch();
 }
@@ -766,6 +823,7 @@ function PrisonArrestLeave() {
 function PrisonDiceBack() {
 	LogDelete("Stolen", "BadGirl");
 	LogDelete("Hide", "BadGirl");
+	LogDelete("Caught", "BadGirl");
 }
 
 

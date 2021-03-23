@@ -1,76 +1,68 @@
 "use strict";
 
-// Loads the item extension properties
+const InventoryItemLegsLeatherLegCuffsOptions = [
+	{
+		Name: "None",
+		Property: { Type: null },
+	},
+	{
+		Name: "Closed",
+		Property: {
+			Type: "Closed",
+			SetPose: ["LegsClosed"],
+			Effect: ["Prone", "KneelFreeze", "Slow"],
+			FreezeActivePose: ["BodyLower"],
+			Difficulty: 6,
+		},
+	},
+];
+
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemLegsLeatherLegCuffsLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
+	ExtendedItemLoad(InventoryItemLegsLeatherLegCuffsOptions, "SelectBondagePosition");
 }
 
-// Draw the item extension screen
+/**
+ * Draw the item extension screen
+ * @returns {void} - Nothing
+ */
 function InventoryItemLegsLeatherLegCuffsDraw() {
-	const A = DialogFocusItem.Asset;
-	const Property = DialogFocusItem.Property;
-	const InventoryPath = AssetGetInventoryPath(A);
-
-	// Draw the header and item
-	DrawAssetPreview(1387, 125, A);
-
-	// Draw the possible poses
-	DrawText(DialogFindPlayer("SelectBondagePosition"), 1500, 500, "white", "gray");
-	DrawPreviewBox(1250, 550, `${InventoryPath}/None.png`, "", {Hover: true, Disabled: Property.Restrain == null});
-	DrawText(DialogFindPlayer("LeatherLegCuffsPoseNone"), 1365, 800, "white", "gray");
-	DrawPreviewBox(1500, 550, `${InventoryPath}/Closed.png`, "", {Hover: true, Disabled: Property.Restrain === "Closed"});
-	DrawText(DialogFindPlayer("LeatherLegCuffsPoseClosed"), 1610, 800, "white", "gray");
+	ExtendedItemDraw(InventoryItemLegsLeatherLegCuffsOptions, "LeatherLegCuffsPose");
 }
 
-// Catches the item extension clicks
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemLegsLeatherLegCuffsClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemLegsLeatherLegCuffsSetPose(null);
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Closed"))) InventoryItemLegsLeatherLegCuffsSetPose("Closed");
+	ExtendedItemClick(InventoryItemLegsLeatherLegCuffsOptions);
 }
 
-// Sets the cuffs pose (wrist, elbow, both or none)
-function InventoryItemLegsLeatherLegCuffsSetPose(NewPose) {
-
-	// Gets the current item and character
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemLegsLeatherLegCuffsLoad();
-	}
-
-	// Sets the new pose with it's effects
-	DialogFocusItem.Property.Restrain = NewPose;
-	if (NewPose == null) {
-		delete DialogFocusItem.Property.SetPose;
-		delete DialogFocusItem.Property.Effect;
-		delete DialogFocusItem.Property.Difficulty;
-		delete DialogFocusItem.Property.FreezeActivePose;
-	} else if (NewPose == "Closed") {
-		DialogFocusItem.Property.SetPose = ["LegsClosed"];
-		DialogFocusItem.Property.Effect = ["Prone", "KneelFreeze", "Slow"];
-		DialogFocusItem.Property.FreezeActivePose = ["BodyLower"];
-		DialogFocusItem.Property.Difficulty = 6;
-	}
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
-
-	// Refreshes the character and chatroom
-	CharacterRefresh(C);
-	var msg = "LeatherLegCuffsRestrain" + ((NewPose == null) ? "None" : NewPose);
-	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemLegsLeatherLegCuffsPublishAction(C, Option) {
+	const msg = "LeatherLegCuffsRestrain" + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
 
-	// Rebuilds the inventory menu
-	if (DialogInventory != null) {
-		DialogFocusItem = null;
-		DialogMenuButtonBuild(C);
-	}
-
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on
+ * a per-NPC basis.
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemLegsLeatherLegCuffsNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "ItemLegsLeatherLegCuffs" + Option.Name, "ItemLegs");
 }

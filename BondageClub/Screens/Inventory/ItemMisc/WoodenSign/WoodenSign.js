@@ -10,8 +10,11 @@ function InventoryItemMiscWoodenSignLoad() {
 	var MustRefresh = false;
 
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
-	if (DialogFocusItem.Property.Text == null && DialogFocusItem.Property.Text2 == null) {
+	if (typeof DialogFocusItem.Property.Text !== "string") {
 		DialogFocusItem.Property.Text = "";
+		MustRefresh = true;
+	}
+	if (typeof DialogFocusItem.Property.Text2 !== "string") {
 		DialogFocusItem.Property.Text2 = "";
 		MustRefresh = true;
 	}
@@ -87,9 +90,9 @@ function AssetsItemMiscWoodenSignAfterDraw({
 		const ctx = tempCanvas.getContext("2d");
 
 		// One line of text will be centered
-		const isAlone = Property && (Property.Text == "" || Property.Text2 == "");
-		const text1 = (Property && Property.Text.match(DynamicDrawTextRegex) ? Property.Text : "♠");
-		const text2 = (Property && Property.Text2.match(DynamicDrawTextRegex) ? Property.Text2 : "♠");
+		const text1 = (Property && typeof Property.Text === "string" && DynamicDrawTextRegex.test(Property.Text) ? Property.Text : "♠");
+		const text2 = (Property && typeof Property.Text2 === "string" && DynamicDrawTextRegex.test(Property.Text2) ? Property.Text2 : "♠");
+		const isAlone = !text1 || !text2;
 
 		const drawOptions = {
 			fontSize: 30,

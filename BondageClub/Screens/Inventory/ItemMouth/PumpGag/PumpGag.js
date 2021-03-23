@@ -5,7 +5,7 @@ var InventoryItemMouthPumpGagOptions = [
 		Name: "Empty",
 		Property: {
 			Type: null,
-			InflateLevel: "0",
+			InflateLevel: 0,
 			Difficulty: 0,
 			Effect: ["BlockMouth"],
 		},
@@ -14,7 +14,7 @@ var InventoryItemMouthPumpGagOptions = [
 		Name: "Light",
 		Property: {
 			Type: "Light",
-			InflateLevel: "1",
+			InflateLevel: 1,
 			Difficulty: 2,
 			Effect: ["BlockMouth","GagLight"],
 		},
@@ -23,7 +23,7 @@ var InventoryItemMouthPumpGagOptions = [
 		Name: "Inflated",
 		Property: {
 			Type: "Inflated",
-			InflateLevel: "2",
+			InflateLevel: 2,
 			Difficulty: 4,
 			Effect: ["BlockMouth","GagEasy"],
 		},
@@ -32,7 +32,7 @@ var InventoryItemMouthPumpGagOptions = [
 		Name: "Bloated",
 		Property: {
 			Type: "Bloated",
-			InflateLevel: "3",
+			InflateLevel: 3,
 			Difficulty: 6,
 			Effect: ["BlockMouth","GagMedium"],
 		},
@@ -41,7 +41,7 @@ var InventoryItemMouthPumpGagOptions = [
 		Name: "Maximum",
 		Property: {
 			Type: "Maximum",
-			InflateLevel: "4",
+			InflateLevel: 4,
 			Difficulty: 8,
 			Effect: ["BlockMouth","GagVeryHeavy"],
 		},
@@ -73,7 +73,7 @@ function InventoryItemMouthPumpGagClick() {
 function InventoryItemMouthPumpGagPublishAction(C, Option, PreviousOption) {
 	var NewIndex = InventoryItemMouthPumpGagOptions.indexOf(Option);
 	var PreviousIndex = InventoryItemMouthPumpGagOptions.indexOf(PreviousOption);
-	var msg = "PumpGag" + ((NewIndex > PreviousIndex) ? "pumps" : "deflates") + "To" + Option.Property.InflateLevel;
+	var msg = "PumpGag" + ((NewIndex > PreviousIndex) ? "pumps" : "deflates") + "To" + Option.Property.InflateLevel.toString();
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },

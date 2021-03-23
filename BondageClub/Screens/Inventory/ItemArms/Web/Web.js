@@ -13,7 +13,6 @@ var InventoryItemArmsWebOptions = [
 		Property: {
 			Type: "Wrapped",
 			Difficulty: 2,
-			Prerequisite: ["NoFeetSpreader"],
 			AllowPose: ["Kneel"],
 			SetPose: ["LegsClosed", "BackElbowTouch"],
 			Effect: ["Block", "Freeze", "Prone"],
@@ -28,7 +27,6 @@ var InventoryItemArmsWebOptions = [
 		Property: {
 			Type: "Cocooned",
 			Difficulty: 4,
-			Prerequisite: ["NoFeetSpreader"],
 			AllowPose: ["Kneel"],
 			SetPose: ["LegsClosed", "BackElbowTouch"],
 			Effect: ["Block", "Freeze", "Prone"],
