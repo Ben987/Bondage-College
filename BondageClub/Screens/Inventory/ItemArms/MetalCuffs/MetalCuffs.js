@@ -3,16 +3,15 @@ var InventoryItemArmsMetalCuffsOptions = [
 	{
 		Name: "InFront",
 		Property: {
-			Type: null
+			Type: "InFront",
+			SetPose: ["BaseUpper"],
 		}
 	},
 	{
 		Name: "BehindBack",
 		Property: {
-			Type: "BehindBack",
+			Type: null,
 			SetPose: ["BackCuffs"],
-			Effect: ["Block", "Prone"],
-			Difficulty: 3
 		}
 	}
 ];

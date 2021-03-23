@@ -410,7 +410,7 @@ function InventoryLocked(C, AssetGroup, CheckProperties) {
 * @returns {void} - Nothing
 */
 function InventoryWearRandom(C, GroupName, Difficulty, Refresh, MustOwn) {
-	if (!InventoryLocked(C, GroupName)) {
+	if (!InventoryLocked(C, GroupName, true)) {
 		var IsClothes = false;
 
 		// Finds the asset group and make sure it's not blocked
@@ -580,19 +580,22 @@ function InventoryGroupIsBlocked(C, GroupName, Activity) {
 /**
 * Returns TRUE if an item has a specific effect
 * @param {AppearanceItem} Item - The item from appearance that must be validated
-* @param {String} Effect - The name of the effect to validate, can be undefined to check for any effect
-* @param {Boolean} CheckProperties - Set to TRUE to check for item extra properties
-* @returns {Boolean} - TRUE if the effect is on the item
+* @param {string} [Effect] - The name of the effect to validate, can be undefined to check for any effect
+* @param {boolean} [CheckProperties=true] - If properties should be checked (defaults to `true`)
+* @returns {boolean} `true` if the effect is on the item
 */
-function InventoryItemHasEffect(Item, Effect, CheckProperties) {
-	if (!Item) return null;
+function InventoryItemHasEffect(Item, Effect, CheckProperties = true) {
+	if (!Item) return false;
 	if (!Effect) {
-		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.length > 0) || (CheckProperties && Item.Property && Item.Property.Effect)) return true;
-		else return false;
-	}
-	else {
-		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (CheckProperties && Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
-		else return false;
+		return !!(
+			(Item.Asset && Array.isArray(Item.Asset.Effect) && Item.Asset.Effect.length > 0) ||
+			(CheckProperties && Item.Property && Array.isArray(Item.Property.Effect) && Item.Property.Effect.length > 0)
+		);
+	} else {
+		return !!(
+			(Item.Asset && Array.isArray(Item.Asset.Effect) && Item.Asset.Effect.includes(Effect)) ||
+			(CheckProperties && Item.Property && Array.isArray(Item.Property.Effect) && Item.Property.Effect.includes(Effect))
+		);
 	}
 }
 

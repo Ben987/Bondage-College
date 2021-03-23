@@ -333,7 +333,7 @@ function DialogHasKey(C, Item) {
 	if (InventoryGetItemProperty(Item, "SelfUnlock") == false && (!Player.CanInteract() || C.ID == 0)) return false;
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
 	const lock = InventoryGetLock(Item);
-	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && !Item.Property.LockedBy.startsWith("Owner")) return true;
+	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && Item.Property.LockedBy && !Item.Property.LockedBy.startsWith("Owner")) return true;
 	if (lock && lock.Asset.ExclusiveUnlock && ((!Item.Property.MemberNumberListKeys && Item.Property.LockMemberNumber != Player.MemberNumber) || (Item.Property.MemberNumberListKeys && CommonConvertStringToArray("" + Item.Property.MemberNumberListKeys).indexOf(Player.MemberNumber) < 0))) return false;
 
     if (lock && lock.Asset.ExclusiveUnlock) return true;
@@ -1554,11 +1554,6 @@ function DialogDrawItemMenu(C) {
 		return;
 	}
 
-
-
-
-
-
 	// If we must draw the current item from the group
 	if (FocusItem != null) {
 		const Vibrating = InventoryItemHasEffect(FocusItem, "Vibrating", true);
@@ -1567,7 +1562,8 @@ function DialogDrawItemMenu(C) {
 
 	// Show the no access text
 	if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
-	else DrawText(DialogFindPlayer("AccessBlocked"), 1500, 700, "White", "Black");
+	else if (DialogInventory.length > 0) DrawText(DialogFindPlayer("AccessBlocked"), 1500, 700, "White", "Black");
+	else DrawText(DialogFindPlayer("NoItems"), 1500, 700, "White", "Black");
 
 }
 

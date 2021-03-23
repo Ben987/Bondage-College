@@ -178,7 +178,9 @@ function NotificationLoad() {
  * @returns {void} - Nothing
  */
 function NotificationRaise(eventType, data = {}) {
-	NotificationEvents[eventType].raise(data);
+	if (NotificationEvents) {
+		NotificationEvents[eventType].raise(data);
+	}
 }
 
 /**
@@ -187,7 +189,9 @@ function NotificationRaise(eventType, data = {}) {
  * @returns {void} - Nothing
  */
 function NotificationReset(eventType) {
-	NotificationEvents[eventType].reset(true);
+	if (NotificationEvents) {
+		NotificationEvents[eventType].reset(true);
+	}
 }
 
 /**

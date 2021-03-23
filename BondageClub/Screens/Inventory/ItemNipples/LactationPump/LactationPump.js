@@ -5,35 +5,35 @@ var InventoryItemNipplesLactationPumpOptions = [
 		Name: "Off",
 		Property: {
 			Type: null,
-			SuctionLevel: "0",
+			SuctionLevel: 0,
 		},
 	},
 	{
 		Name: "LowSuction",
 		Property: {
 			Type: "LowSuction",
-			SuctionLevel: "1",
+			SuctionLevel: 1,
 		},
 	},
 	{
 		Name: "MediumSuction",
 		Property: {
 			Type: "MediumSuction",
-			SuctionLevel: "2",
+			SuctionLevel: 2,
 		},
 	},
 	{
 		Name: "HighSuction",
 		Property: {
 			Type: "HighSuction",
-			SuctionLevel: "3",
+			SuctionLevel: 3,
 		},
 	},
 	{
 		Name: "MaximumSuction",
 		Property: {
 			Type: "MaximumSuction",
-			SuctionLevel: "4",
+			SuctionLevel: 4,
 		},
 	},
 ];
@@ -72,7 +72,7 @@ function InventoryItemNipplesLactationPumpClick() {
 function InventoryItemNipplesLactationPumpPublishAction(C, Option, PreviousOption) {
 	var NewIndex = InventoryItemNipplesLactationPumpOptions.indexOf(Option);
 	var PreviousIndex = InventoryItemNipplesLactationPumpOptions.indexOf(PreviousOption);
-	var msg = "LactationPumpPower" + ((NewIndex > PreviousIndex) ? "tightens" : "loosens") + "To" + Option.Property.SuctionLevel;
+	var msg = "LactationPumpPower" + ((NewIndex > PreviousIndex) ? "tightens" : "loosens") + "To" + Option.Property.SuctionLevel.toString();
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
@@ -81,9 +81,9 @@ function InventoryItemNipplesLactationPumpPublishAction(C, Option, PreviousOptio
 }
 
 /**
- * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
- * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
- * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them.
  * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
  * @param {Character} C - The NPC to whom the restraint is applied
  * @param {Option} Option - The chosen option for this extended item

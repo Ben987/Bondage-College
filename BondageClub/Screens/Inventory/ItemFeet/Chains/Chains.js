@@ -18,6 +18,7 @@ var InventoryItemFeetChainsOptions = [
 			Type: "Suspension",
 			Difficulty: 4,
 			SetPose: ["Suspension", "LegsClosed"],
+			AllowActivePose: [],
 		},
 	},
 ];

@@ -1,7 +1,7 @@
 "use strict";
 var ChessBackground = "CollegeClassDark";
-var ChessCharacterLeft = null;
-var ChessCharacterRight = null;
+var ChessCharacterWhite = null;
+var ChessCharacterBlack = null;
 var ChessEndStatus = "";
 var ChessMinorPieceWhite = 8;
 var ChessMajorPieceWhite = 8;
@@ -17,7 +17,7 @@ function ChessLoad() {
 	ChessMajorPieceWhite = 8;
 	ChessMinorPieceBlack = 8;
 	ChessMajorPieceBlack = 8;
-	MiniGameChessStart(MiniGameDifficulty);
+	MiniGameChessStart(MiniGameDifficulty, ChessPlayerColor());
 }
 
 /**
@@ -26,12 +26,9 @@ function ChessLoad() {
  */
 function ChessRun() {
 
-	// Applies restraints or strip if there are special rules
-	CollegeChessGameProgress();
-
 	// Draw the characters
-	DrawCharacter(ChessCharacterLeft, 0, 0, 1);
-	DrawCharacter(ChessCharacterRight, 1500, 0, 1);
+	DrawCharacter(Player, 0, 0, 1);
+	DrawCharacter(CollegeChessOpponent, 1500, 0, 1);
 
 	// The game can end in many ways
 	MiniGameEnded = (MiniGameChessGame.in_checkmate() || MiniGameChessGame.in_stalemate() || MiniGameChessGame.in_threefold_repetition() || MiniGameChessGame.in_draw());
@@ -39,13 +36,13 @@ function ChessRun() {
 	else DrawButton(125, 800, 250, 60, TextGet("Concede"), "White", "", "");
 
 	// Define the text that goes under the player
-	let TextLeft = ChessCharacterLeft.Name;
-	let TextRight = ChessCharacterRight.Name;
-	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "b")) { TextLeft = TextGet("Victory"); TextRight = TextGet("Checkmate"); }
-	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "w")) { TextLeft = TextGet("Checkmate"); TextRight = TextGet("Victory"); }
-	if (MiniGameChessGame.in_stalemate()) { TextLeft = TextGet("Stalemate"); TextRight = TextGet("Stalemate"); }
-	if (MiniGameChessGame.in_threefold_repetition()) { TextLeft = TextGet("ThreefoldRepetition"); TextRight = TextGet("ThreefoldRepetition"); }
-	if (MiniGameChessGame.in_draw()) { TextLeft = TextGet("Draw"); TextRight = TextGet("Draw"); }
+	let TextLeft = Player.Name;
+	let TextRight = CollegeChessOpponent.Name;
+	if (MiniGameChessGame.in_checkmate() && MiniGameChessGame.turn() !== ChessPlayerColor()) { TextLeft = TextGet("Victory"); TextRight = TextGet("Checkmate"); }
+	else if (MiniGameChessGame.in_checkmate() && MiniGameChessGame.turn() === ChessPlayerColor()) { TextLeft = TextGet("Checkmate"); TextRight = TextGet("Victory"); }
+	else if (MiniGameChessGame.in_stalemate()) { TextLeft = TextGet("Stalemate"); TextRight = TextGet("Stalemate"); }
+	else if (MiniGameChessGame.in_threefold_repetition()) { TextLeft = TextGet("ThreefoldRepetition"); TextRight = TextGet("ThreefoldRepetition"); }
+	else if (MiniGameChessGame.in_draw()) { TextLeft = TextGet("Draw"); TextRight = TextGet("Draw"); }
 	DrawText(TextLeft, 250, 970, "white", "silver");
 	DrawText(TextRight, 1750, 970, "white", "silver");
 
@@ -68,10 +65,17 @@ function ChessClick() {
 	// When the game ended, the player can click on herself to go back
 	if (MiniGameEnded && MouseIn(0, 0, 500, 1000)) {
 		ChessEndStatus = "Draw";
-		if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "b")) ChessEndStatus = "Victory";
-		if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "w")) ChessEndStatus = "Defeat";
+		if (MiniGameChessGame.in_checkmate()) ChessEndStatus = MiniGameChessGame.turn() === ChessPlayerColor() ? "Defeat" : "Victory";
 		ElementRemove("DivChessBoard");
 		CommonDynamicFunction(MiniGameReturnFunction + "()");
 	}
 
+}
+
+/** 
+ * Returns a single letter character indicating which color pieces the player is controlling
+ * @returns {"w" | "b"} - "w" for white or "b" for black
+ */
+function ChessPlayerColor() {
+	return ChessCharacterWhite.ID === 0 ? "w" : "b";
 }

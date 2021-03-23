@@ -3,8 +3,11 @@
 var InventoryItemHeadWebBlindfoldOptions = [
 	{
 		Name: "Blindfold",
-		Block: ["ItemNose"],
-		Property: { Type: null, Difficulty: 0 },
+		Property: {
+			Type: null,
+			Difficulty: 0,
+			Block: ["ItemNose"],
+		},
 	},
 	{
 		Name: "Cocoon",

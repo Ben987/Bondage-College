@@ -56,9 +56,11 @@ function CollegeChessGameStart(Difficulty, Bet) {
 	CollegeChessDifficulty = parseInt(Difficulty);
 	CollegeChessBet = Bet;
 	if (Bet == "Money") CharacterChangeMoney(Player, CollegeChessDifficulty * -10);
-	ChessCharacterLeft = Player;
-	ChessCharacterRight = CollegeChessOpponent;
+	const playerStarts = Math.random() < 0.5;
+	ChessCharacterWhite = playerStarts ? Player : CollegeChessOpponent;
+	ChessCharacterBlack = playerStarts ? CollegeChessOpponent : Player;
 	MiniGameStart("Chess", CollegeChessDifficulty, "CollegeChessGameEnd");
+	document.addEventListener("chessOnMove", CollegeChessGameProgress);
 }
 
 /**
@@ -93,11 +95,11 @@ function CollegeChessRestrain(C) {
  */
 function CollegeChessGameProgress() {
 	if ((CollegeChessBet != "Strip") && (CollegeChessBet != "Bondage")) return;
-	if (MiniGameEnded || (MiniGameChessGame.board() == null)) return;
-	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "b") && (CollegeChessBet == "Strip")) return CharacterNaked(ChessCharacterRight);
-	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "w") && (CollegeChessBet == "Strip")) return CharacterNaked(ChessCharacterLeft);
-	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "b") && (CollegeChessBet == "Bondage")) return InventoryWearRandom(ChessCharacterRight, "ItemArms", 5);
-	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "w") && (CollegeChessBet == "Bondage")) return InventoryWearRandom(ChessCharacterLeft, "ItemArms", 5);
+	if (MiniGameChessGame.board() == null) return;
+	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "b") && (CollegeChessBet == "Strip")) return CharacterNaked(ChessCharacterBlack);
+	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "w") && (CollegeChessBet == "Strip")) return CharacterNaked(ChessCharacterWhite);
+	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "b") && (CollegeChessBet == "Bondage")) return InventoryWearRandom(ChessCharacterBlack, "ItemArms", 5);
+	if (MiniGameChessGame.in_checkmate() && (MiniGameChessGame.turn() == "w") && (CollegeChessBet == "Bondage")) return InventoryWearRandom(ChessCharacterWhite, "ItemArms", 5);
 	let MinorWhite = 0;
 	let MajorWhite = 0;
 	let MinorBlack = 0;
@@ -111,12 +113,12 @@ function CollegeChessGameProgress() {
 				if ((Board[X][Y].color == "w") && (Board[X][Y].type == "p")) MinorBlack++;
 				if ((Board[X][Y].color == "w") && (Board[X][Y].type != "p")) MajorBlack++;
 			}
-	if ((ChessMinorPieceWhite > MinorWhite) && (CollegeChessBet == "Bondage")) CollegeChessStrip(ChessCharacterRight);
-	if ((ChessMinorPieceBlack > MinorBlack) && (CollegeChessBet == "Bondage")) CollegeChessStrip(ChessCharacterLeft);
-	if ((ChessMajorPieceWhite > MajorWhite) && (CollegeChessBet == "Strip")) CollegeChessStrip(ChessCharacterRight);
-	if ((ChessMajorPieceBlack > MajorBlack) && (CollegeChessBet == "Strip")) CollegeChessStrip(ChessCharacterLeft);
-	if ((ChessMajorPieceWhite > MajorWhite) && (CollegeChessBet == "Bondage")) CollegeChessRestrain(ChessCharacterRight);
-	if ((ChessMajorPieceBlack > MajorBlack) && (CollegeChessBet == "Bondage")) CollegeChessRestrain(ChessCharacterLeft);
+	if ((ChessMinorPieceWhite > MinorWhite) && (CollegeChessBet == "Bondage")) CollegeChessStrip(ChessCharacterBlack);
+	if ((ChessMinorPieceBlack > MinorBlack) && (CollegeChessBet == "Bondage")) CollegeChessStrip(ChessCharacterWhite);
+	if ((ChessMajorPieceWhite > MajorWhite) && (CollegeChessBet == "Strip")) CollegeChessStrip(ChessCharacterBlack);
+	if ((ChessMajorPieceBlack > MajorBlack) && (CollegeChessBet == "Strip")) CollegeChessStrip(ChessCharacterWhite);
+	if ((ChessMajorPieceWhite > MajorWhite) && (CollegeChessBet == "Bondage")) CollegeChessRestrain(ChessCharacterBlack);
+	if ((ChessMajorPieceBlack > MajorBlack) && (CollegeChessBet == "Bondage")) CollegeChessRestrain(ChessCharacterWhite);
 	ChessMinorPieceWhite = MinorWhite;
 	ChessMajorPieceWhite = MajorWhite;
 	ChessMinorPieceBlack = MinorBlack;
@@ -144,6 +146,7 @@ function CollegeChessGameEnd() {
 	CollegeChessOpponent.Stage = "Result" + ChessEndStatus + CollegeChessBet;
 	CollegeChessOpponent.CurrentDialog = DialogFind(CollegeChessOpponent, "Intro" + ChessEndStatus + CollegeChessBet);
 	CharacterSetCurrent(CollegeChessOpponent);
+	document.removeEventListener("chessOnMove", CollegeChessGameProgress);
 }
 
 /**

@@ -863,6 +863,7 @@ function GamblingCompleteRescue() {
  */
 function GamblingStealDice() {
 	if (Math.random() < 0.25) {
+		LogAdd("Caught", "BadGirl");
 		PrisonMeetPoliceIntro("Gambling");
 	} else {
 		CharacterSetCurrent(Player);

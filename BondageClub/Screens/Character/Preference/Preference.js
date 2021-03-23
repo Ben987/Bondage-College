@@ -629,6 +629,7 @@ function PreferenceSubscreenGeneralRun() {
 	else
 		ColorPickerHide();
 
+	MainCanvas.textAlign = "center";
 }
 
 /**
@@ -700,7 +701,7 @@ function PreferenceSubscreenRestrictionRun() {
 		DrawCheckboxDisabled(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"));
 		DrawCheckboxDisabled(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"));
 	}
-
+	MainCanvas.textAlign = "center";
 }
 
 /**
@@ -956,70 +957,71 @@ function PreferenceSubscreenAudioRun() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenControllerRun() {
-    if (PreferenceCalibrationStage == 0) {
-        DrawCharacter(Player, 50, 50, 0.9);
-        MainCanvas.textAlign = "left";
-        DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
-        DrawText(TextGet("Sensitivity"), 800, 225, "Black", "Gray");
-        DrawText(TextGet("DeadZone"), 800, 625, "Black", "Gray");
-        DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
+	if (PreferenceCalibrationStage == 0) {
+		DrawCharacter(Player, 50, 50, 0.9);
+		MainCanvas.textAlign = "left";
+		DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
+		DrawText(TextGet("Sensitivity"), 800, 225, "Black", "Gray");
+		DrawText(TextGet("DeadZone"), 800, 625, "Black", "Gray");
+		DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
 
-        DrawButton(500, 380, 400, 90, "", "White");
-        DrawTextFit(TextGet("MapButtons"), 590, 425, 310, "Black");
+		DrawButton(500, 380, 400, 90, "", "White");
+		DrawTextFit(TextGet("MapButtons"), 590, 425, 310, "Black");
 
-        DrawButton(500, 480, 400, 90, "", "White");
-        DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
+		DrawButton(500, 480, 400, 90, "", "White");
+		DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
 
-        MainCanvas.textAlign = "center";
-        DrawBackNextButton(500, 193, 250, 64, Player.ControllerSettings.ControllerSensitivity, "White", "",
-            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
-            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length]);
-        MainCanvas.textAlign = "center";
-        DrawBackNextButton(500, 593, 250, 64, Player.ControllerSettings.ControllerDeadZone, "White", "",
-            () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + PreferenceSettingsDeadZoneList.length - 1) % PreferenceSettingsDeadZoneList.length],
-            () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length] );
-    }
-    if (PreferenceCalibrationStage == 101) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("MoveLeftStickUp"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 102) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("MoveLeftStickRight"), 590, 425, 310, "Black");
-    }
-    DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-    if (PreferenceCalibrationStage == 1) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressA"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 2) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressB"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 3) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressX"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 4) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressY"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 5) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressUpOnDpad"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 6) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressDownOnDpad"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 7) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressLeftOnDpad"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 8) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressRightOnDpad"), 590, 425, 310, "Black");
-    }
+		MainCanvas.textAlign = "center";
+		DrawBackNextButton(500, 193, 250, 64, Player.ControllerSettings.ControllerSensitivity, "White", "",
+			() => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
+			() => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length]);
+		MainCanvas.textAlign = "center";
+		DrawBackNextButton(500, 593, 250, 64, Player.ControllerSettings.ControllerDeadZone, "White", "",
+			() => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + PreferenceSettingsDeadZoneList.length - 1) % PreferenceSettingsDeadZoneList.length],
+			() => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length] );
+	}
+	if (PreferenceCalibrationStage == 101) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("MoveLeftStickUp"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 102) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("MoveLeftStickRight"), 590, 425, 310, "Black");
+	}
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	if (PreferenceCalibrationStage == 1) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressA"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 2) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressB"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 3) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressX"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 4) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressY"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 5) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressUpOnDpad"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 6) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressDownOnDpad"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 7) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressLeftOnDpad"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 8) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressRightOnDpad"), 590, 425, 310, "Black");
+	}
+	MainCanvas.textAlign = "center";
 }
 
 /**

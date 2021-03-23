@@ -6,7 +6,7 @@ var InventoryItemHoodInflatedBallHoodOptions = [
 		Property: {
 			Type: null,
 			Difficulty: 0,
-			InflateLevel: "0",
+			InflateLevel: 0,
 			Effect: [],
 		},
 	},
@@ -15,7 +15,7 @@ var InventoryItemHoodInflatedBallHoodOptions = [
 		Property: {
 			Type: "Light",
 			Difficulty: 2,
-			InflateLevel: "1",
+			InflateLevel: 1,
 			Effect: ["GagLight", "BlockMouth"],
 		},
 	},
@@ -24,7 +24,7 @@ var InventoryItemHoodInflatedBallHoodOptions = [
 		Property: {
 			Type: "Inflated",
 			Difficulty: 4,
-			InflateLevel: "2",
+			InflateLevel: 2,
 			Effect: ["GagEasy", "BlockMouth"],
 		},
 	},
@@ -33,7 +33,7 @@ var InventoryItemHoodInflatedBallHoodOptions = [
 		Property: {
 			Type: "Bloated",
 			Difficulty: 6,
-			InflateLevel: "3",
+			InflateLevel: 3,
 			Effect: ["GagMedium", "BlockMouth"],
 		},
 	},
@@ -42,7 +42,7 @@ var InventoryItemHoodInflatedBallHoodOptions = [
 		Property: {
 			Type: "Maximum",
 			Difficulty: 8,
-			InflateLevel: "4",
+			InflateLevel: 4,
 			Effect: ["GagVeryHeavy", "BlockMouth"],
 		},
 	},
@@ -82,7 +82,7 @@ function InventoryItemHoodInflatedBallHoodClick() {
 function InventoryItemHoodInflatedBallHoodPublishAction(C, Option, PreviousOption) {
 	var NewIndex = InventoryItemHoodInflatedBallHoodOptions.indexOf(Option);
 	var PreviousIndex = InventoryItemHoodInflatedBallHoodOptions.indexOf(PreviousOption);
-	var msg = "InflatedHood" + ((NewIndex > PreviousIndex) ? "pumps" : "deflates") + "To" + Option.Property.InflateLevel;
+	var msg = "InflatedHood" + ((NewIndex > PreviousIndex) ? "pumps" : "deflates") + "To" + Option.Property.InflateLevel.toString();
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },

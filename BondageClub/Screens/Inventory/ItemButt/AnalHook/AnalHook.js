@@ -7,7 +7,7 @@ var InventoryItemButtAnalHookOptions = [
 			Type: null,
 			Difficulty: 0,
 			Intensity: 0,
-			Effect: [],
+			Effect: ["IsPlugged"],
 		},
 	},
 	{
@@ -16,7 +16,7 @@ var InventoryItemButtAnalHookOptions = [
 			Type: "Chain",
 			Difficulty: 8,
 			Intensity: 1,
-			Effect: ["Freeze", "Egged"]
+			Effect: ["IsPlugged", "Freeze", "Egged"]
 		}
 	},
 	{
@@ -25,7 +25,7 @@ var InventoryItemButtAnalHookOptions = [
 			Type: "Hair",
 			Difficulty: 4,
 			Intensity: 1,
-			Effect: ["Egged"]
+			Effect: ["IsPlugged", "Egged"]
 		}
 	},
 ];
