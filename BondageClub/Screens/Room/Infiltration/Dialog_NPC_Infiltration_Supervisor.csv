@@ -1,0 +1,32 @@
+PlayerGagged,,,(She frowns at you.)  Go see a maid girl.  I don't have time for this.,,
+0,,,Comrade DialogPlayerName!  (She gives you a military salute.)  The bunker is yours to command.,,"DialogSkillGreater(""Infiltration"", 10)"
+0,,,Comrade DialogPlayerName!  (She gives you a military salute.)  We were waiting for you to review the planning.,,"DialogSkillGreater(""Infiltration"", 8)"
+0,,,Comrade DialogPlayerName!  (She gives you a military salute.)  Are you ready for duty?,,"DialogSkillGreater(""Infiltration"", 6)"
+0,,,It's a pleasure to see you comrade DialogPlayerName.,,"DialogSkillGreater(""Infiltration"", 4)"
+0,,,"Don't waste my time comrade DialogPlayerName, this is serious.",,"DialogSkillGreater(""Infiltration"", 2)"
+0,,,Are you lost?  We do serious business here.,,
+0,,Who are you?,"My name isn't important, I serve the Bondage Club best interests and give infiltration missions.",DialogRemove(),
+0,10,What's going on here?,"You're in the bunker.  This is where we plan missions against Pandora's Box, our rival club.",,
+0,20,Tell me about the missions.,"Make it quick, what would you like to know?",,
+0,30,What are the perks?,"You can train some perks to help you, before going into a mission.  Do you need details?",,
+0,40,I'd like to take a mission.,Great!  What kind of mission are you up to?,,
+0,,I need to go.  (Leave her.),,DialogLeave(),
+10,,Pandora's Box?,"Yes, they opened their BDSM club right next to us a few months ago.  At first it was healthy competition, until they started to play dirty.",,
+10,,They play dirty?,"They sell our slaves, attack our Mistresses, jail our members, hack our computers and steal our money.  Is that dirty enough?",,
+10,,You're at war with that club?,"It's too risky for BDSM clubs to do a public war, we could both get closed.  That's why we created this bunker and do infiltration missions.",,
+10,20,Tell me about the missions.,"Make it quick, what would you like to know?",,
+10,0,That's all I wanted to know.,Fine.  Do you want to take a mission now?,,
+20,,Anyone can take missions?,"If you're never did infiltration before, you will get easy missions.  Once we trust you, you will get more important missions.",,
+20,,What kind of missions can I do?,"You can rescue a kidnapped girl, capture someone for a prisoner exchange, find a stolen item or steal documents from them.",,
+20,,Will I get paid?,"Of course, the higher the danger, the higher you get paid.",,
+20,,What happens if I fail?,"We leave no one behind.  If you get captured, we will bribe them or plan your escape, just be patient.",,
+20,,Can I get some training?,"There's no better training than going to the battlefield.  The more missions you do, the more perks you will be able to train.",,
+20,30,What are the perks?,"You can train some perks to help you, before going into a mission.  Do you need details?",,
+20,0,That's all I wanted to know.,Fine.  Do you want to take a mission now?,,
+30,,TO DO,TO DO,,
+30,,TO DO,TO DO,,
+30,40,I'd like to take a mission.,Great!  What kind of mission are you up to?,,
+30,0,That's all I wanted to know.,Fine.  Do you want to take a mission now?,,
+40,,TO DO,TO DO,,
+40,,TO DO,TO DO,,
+40,0,That's all I wanted to know.,Alright.  Let me know when you're ready.,,

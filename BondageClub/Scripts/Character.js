@@ -275,6 +275,19 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryRemove(C, "Socks");
 	}
 	
+	// Employee archetype
+	if (Archetype == "Employee") {
+		InventoryAdd(C, "VirginKiller1", "Cloth", false);
+		CharacterAppearanceSetItem(C, "Cloth", C.Inventory[C.Inventory.length - 1].Asset);
+		CharacterAppearanceSetColorForGroup(C, "Default", "Cloth");
+		InventoryAdd(C, "Jeans1", "ClothLower", false);
+		CharacterAppearanceSetItem(C, "ClothLower", C.Inventory[C.Inventory.length - 1].Asset);
+		CharacterAppearanceSetColorForGroup(C, "Default", "ClothLower");
+		InventoryAdd(C, "SunGlasses1", "Glasses", false);
+		CharacterAppearanceSetItem(C, "Glasses", C.Inventory[C.Inventory.length - 1].Asset);
+		CharacterAppearanceSetColorForGroup(C, "Default", "Glasses");
+	}
+
 }
 
 /**
@@ -300,6 +313,7 @@ function CharacterLoadNPC(NPCType) {
 
 	// Sets archetype clothes
 	if (NPCType.indexOf("Maid") >= 0) CharacterArchetypeClothes(C, "Maid");
+	if (NPCType.indexOf("Employee") >= 0) CharacterArchetypeClothes(C, "Employee");
 	if (NPCType.indexOf("Mistress") >= 0) CharacterArchetypeClothes(C, "Mistress");
 
 	// Returns the new character

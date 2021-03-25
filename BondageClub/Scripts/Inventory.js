@@ -73,7 +73,8 @@ function InventoryAddMany(C, NewItems, Push) {
  * @param {Character} C - The character to create the item for
  * @param {string} Group - The name of the asset group the item belongs to
  * @param {string} Name - The name of the asset for the item
- * @return {Item} A new item for character using the specified asset name, or null if the specified asset could not be found in the named group
+ * @return {Item} A new item for character using the specified asset name, or null if the specified asset could not be
+ *     found in the named group
  */
 function InventoryItemCreate(C, Group, Name) {
 	var NewItemAsset = AssetGet(C.AssetFamily, Group, Name);
@@ -104,7 +105,8 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 }
 
 /**
-* Loads the current inventory for a character, can be loaded from an object of Name/Group or a compressed array using LZString
+* Loads the current inventory for a character, can be loaded from an object of Name/Group or a compressed array using
+* LZString
 * @param {Character} C - The character on which we should load the inventory
 * @param {Array} Inventory - An array of Name / Group of items to load
 */
@@ -440,10 +442,12 @@ function InventoryWearRandom(C, GroupName, Difficulty, Refresh, MustOwn) {
 }
 
 /**
- * Select a random asset from a group, narrowed to the most preferable available options (i.e unblocked/visible/unlimited) based on their binary "rank"
+ * Select a random asset from a group, narrowed to the most preferable available options (i.e
+ * unblocked/visible/unlimited) based on their binary "rank"
  * @param {Character} C - The character to pick the asset for
  * @param {String} GroupName - The asset group to pick the asset from. Set to an empty string to not filter by group.
- * @param {Array} AllowedAssets - Optional parameter: A list of assets from which one can be selected. If not provided, the full list of all assets is used.
+ * @param {Array} AllowedAssets - Optional parameter: A list of assets from which one can be selected. If not provided,
+ *     the full list of all assets is used.
  * @returns {Asset} - The randomly selected asset
  */
 function InventoryGetRandom(C, GroupName, AllowedAssets) {
@@ -713,7 +717,8 @@ function InventoryCharacterIsWearingLock(C, LockName) {
 }
 
 /**
-* Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the owner padlock
+* Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the
+* owner padlock
 * @param {Character} C - The character to scan
 * @returns {Boolean} - TRUE if one owner only restraint is found
 */
@@ -727,7 +732,8 @@ function InventoryCharacterHasOwnerOnlyRestraint(C) {
 }
 
 /**
-* Returns TRUE if the character is wearing at least one item that's a restraint with a LoverOnly flag, such as the lover padlock
+* Returns TRUE if the character is wearing at least one item that's a restraint with a LoverOnly flag, such as the
+* lover padlock
 * @param {Character} C - The character to scan
 * @returns {Boolean} - TRUE if one lover only restraint is found
 */
@@ -754,13 +760,14 @@ function InventoryHasLockableItems(C) {
 }
 
 /**
-* Applies a lock to an appearance item of a character
-* @param {Character} C - The character on which the lock must be applied
-* @param {AppearanceItem} Item - The item from appearance to lock
-* @param {(Asset|String)} Lock - The asset of the lock or the name of the lock asset
-* @param {Int} MemberNumber - The member number to put on the lock
-*/
-function InventoryLock(C, Item, Lock, MemberNumber) {
+ * Applies a lock to an appearance item of a character
+ * @param {Character} C - The character on which the lock must be applied
+ * @param {AppearanceItem} Item - The item from appearance to lock
+ * @param {(Asset|String)} Lock - The asset of the lock or the name of the lock asset
+ * @param {number} MemberNumber - The member number to put on the lock
+ * @param {boolean} [Update] - Whether or not to update the character
+ */
+function InventoryLock(C, Item, Lock, MemberNumber, Update = true) {
 	if (typeof Item === 'string') Item = InventoryGet(C, Item);
 	if (typeof Lock === 'string') Lock = { Asset: AssetGet(C.AssetFamily, "ItemMisc", Lock) };
 	if (Item && Lock && Lock.Asset.IsLock) {
@@ -773,8 +780,10 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 				if (!Item.Property.MemberNumberListKeys && Lock.Asset.Name == "HighSecurityPadlock") Item.Property.MemberNumberListKeys = "" + MemberNumber
 				Item.Property.LockedBy = Lock.Asset.Name;
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
-				if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
-				CharacterRefresh(C, true);
+				if (Update) {
+					if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
+					CharacterRefresh(C, true);
+				}
 			}
 		}
 	}
@@ -960,7 +969,8 @@ function InventoryIsKey(Item) {
 }
 
 /**
- * Serialises the provided character's inventory into a string for easy comparisons, inventory items are uniquely identified by their name and group
+ * Serialises the provided character's inventory into a string for easy comparisons, inventory items are uniquely
+ * identified by their name and group
  * @param {Character} C - The character whose inventory we should serialise
  * @return {string} - A simple string representation of the character's inventory
  */

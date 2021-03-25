@@ -1,6 +1,6 @@
 "use strict";
 
-const HempRopeLegsOptions = [
+var InventoryItemLegsHempRopeOptions = [
 	{
 		Name: "Basic",
 		Property: { Type: null, SetPose: ["LegsClosed"], Difficulty: 1 }
@@ -29,15 +29,15 @@ const HempRopeLegsOptions = [
 ];
 
 function InventoryItemLegsHempRopeLoad() {
-	ExtendedItemLoad(HempRopeLegsOptions, "SelectRopeBondage");
+	ExtendedItemLoad(InventoryItemLegsHempRopeOptions, "SelectRopeBondage");
 }
 
 function InventoryItemLegsHempRopeDraw() {
-	ExtendedItemDraw(HempRopeLegsOptions, "RopeBondage");
+	ExtendedItemDraw(InventoryItemLegsHempRopeOptions, "RopeBondage");
 }
 
 function InventoryItemLegsHempRopeClick() {
-	ExtendedItemClick(HempRopeLegsOptions);
+	ExtendedItemClick(InventoryItemLegsHempRopeOptions);
 }
 
 function InventoryItemLegsHempRopePublishAction(C, Option) {

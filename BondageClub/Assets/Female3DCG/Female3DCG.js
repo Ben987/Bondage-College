@@ -46,6 +46,7 @@ var AssetFemale3DCG = [
 		Priority: 30,
 		Clothing: true,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "AllFours", "OverTheHead"],
+		PreviewZone: [0, 150, 500, 500],
 		Asset: [
 			{
 				Name: "CollegeOutfit1", Value: -1, DefaultColor: ["Default", "#202020", "Default"], Hide: ["ItemNeck"], HideItem: ["ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerSkirt1", "ClothLowerSkirt2", "ClothLowerSkirt3", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1", "ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing", "ItemDevicesStrapOnSmooth", "ItemDevicesStrapOnStuds", "ItemNipplesLactationPump"], Layer: [
@@ -151,6 +152,7 @@ var AssetFemale3DCG = [
 		Priority: 32,
 		Default: false,
 		Clothing: true,
+		PreviewZone: [0, 200, 500, 500],
 		Asset: [
 			{ Name: "StudentOutfit3Scarf", Priority: 34, Left: 200, Top: 250 },
 			{ Name: "StudentOutfit3Bow1", Priority: 34, Left: 200, Top: 250 },
@@ -164,7 +166,13 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "FrillyApron", Fetish: ["Lingerie"], ParentGroup: "BodyUpper", Value: -1, Left: 135, Top: 179, BuyGroup: "Maid", AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"] },
-			{ Name: "BunnyCollarCuffs", Fetish: ["Pet"], ParentGroup: "BodyUpper", Value: 10, AllowPose: ["AllFours", "TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"] },
+			{ Name: "BunnyCollarCuffs", Fetish: ["Pet"], ParentGroup: "BodyUpper", Value: 10, AllowPose: ["AllFours", "TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"], AllowType: ["Both", "Collar", "Cuffs"], Extended: true,
+				Layer: [
+					{ Name: "Collar"},
+					{ Name: "Bow"},
+					{ Name: "Cuffs"}
+				]
+			},
 			{ Name: "Camera1", Priority: 41, Value: -1, Left: 175, Top: 225, AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "OverTheHead"] },
 			{
 				Name: "Cape", Priority: 41, Value: 40, AllowPose: ["AllFours", "Hogtied", "Kneel"],
@@ -183,6 +191,7 @@ var AssetFemale3DCG = [
 		Priority: 31,
 		Default: false,
 		Clothing: true,
+		PreviewZone: [165, 170, 170, 170],
 		Asset: [
 			{ Name: "Necklace1", Value: 40, Left: 148, Top: 70, ParentGroup: null },
 			{ Name: "Necklace2", Left: 147, Top: 90, ParentGroup: null },
@@ -229,6 +238,7 @@ var AssetFemale3DCG = [
 		Default: false,
 		Clothing: true,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"],
+		PreviewZone: [75, 150, 350, 350],
 		Asset: [
 			{
 				Name: "Catsuit", Fetish: ["Latex"], Value: 100, BuyGroup: "Catsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesChopStickNippleClamps"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"],
@@ -269,6 +279,7 @@ var AssetFemale3DCG = [
 		Left: 105,
 		Top: 380,
 		AllowPose: ["LegsClosed", "Kneel", "Horse", "KneelingSpread", "Spread"],
+		PreviewZone: [0, 380, 500, 500],
 		Asset: [
 			{ Name: "Skirt1", HideItem: ["ItemDevicesStrapOnSmooth", "ItemDevicesStrapOnStuds"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
 			{
@@ -346,6 +357,7 @@ var AssetFemale3DCG = [
 		Left: 95,
 		Top: 380,
 		AllowPose: ["LegsClosed", "Kneel", "Horse", "KneelingSpread", "Spread", "Hogtied"],
+		PreviewZone: [0, 450, 500, 500],
 		Asset: [
 			{
 				Name: "Catsuit", Fetish: ["Latex"], Value: -1, BuyGroup: "Catsuit", Hide: ["ItemVulvaPiercings"], HideItem: ["SocksPantyhose1"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"],
@@ -391,6 +403,7 @@ var AssetFemale3DCG = [
 		Left: 150,
 		Top: 200,
 		AllowPose: ["Yoked", "Hogtied"],
+		PreviewZone: [75, 190, 350, 350],
 		Asset: [
 			{ Name: "Bra1", Hide: ["ItemNipples", "ItemNipplesPiercings"] },
 			{ Name: "Bra2", Hide: ["ItemNipples", "ItemNipplesPiercings"] },
@@ -449,6 +462,7 @@ var AssetFemale3DCG = [
 		Left: 150,
 		Top: 200,
 		AllowPose: ["Hogtied"],
+		PreviewZone: [75, 250, 350, 350],
 		Asset: [
 			{ Name: "Corset1", Fetish: ["Lingerie"], Priority: 22, Value: 35, Hide: ["ItemNipples", "ItemNipplesPiercings"] },
 			{ Name: "Corset2", Fetish: ["Lingerie"], Priority: 22, Value: 30, BuyGroup: "Corset2", Hide: ["ItemNipples", "ItemNipplesPiercings"] },
@@ -483,6 +497,7 @@ var AssetFemale3DCG = [
 		Underwear: true,
 		Left: 150,
 		Top: 395,
+		PreviewZone: [125, 350, 250, 250],
 		Asset: [
 			{ Name: "Panties1", HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing"] },
 			{ Name: "Panties7", HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing"] },
@@ -541,6 +556,7 @@ var AssetFemale3DCG = [
 		Left: 125,
 		Top: 400,
 		AllowPose: ["LegsClosed", "Kneel", "Spread", "Hogtied"],
+		PreviewZone: [0, 450, 500, 500],
 		Asset: [
 			"Socks0", "Socks1", "Socks2", "Socks3", "Socks4", "Socks5",
 			{ Name: "Stockings1", Fetish: ["Nylon"], BuyGroup: "Stockings1"},
@@ -587,6 +603,7 @@ var AssetFemale3DCG = [
 		Left: 115,
 		Top: 500,
 		AllowPose: ["LegsClosed", "Spread"],
+		PreviewZone: [100, 700, 300, 300],
 		Asset: [
 			{ Name: "BandAnklet", BuyGroup: "BandAnklet"}
 		],
@@ -602,6 +619,7 @@ var AssetFemale3DCG = [
 		Left: 115,
 		Top: 500,
 		AllowPose: ["LegsClosed", "Spread"],
+		PreviewZone: [100, 700, 300, 300],
 		Asset: [
 			{ Name: "BandAnklet", BuyGroup: "BandAnklet"}
 		],
@@ -616,6 +634,7 @@ var AssetFemale3DCG = [
 		Left: 115,
 		Top: 500,
 		AllowPose: ["LegsClosed", "Kneel", "Spread", "Hogtied"],
+		PreviewZone: [100, 700, 300, 300],
 		Asset: [
 			{ Name: "Shoes1", Height: 6 },
 			{ Name: "Shoes2", Height: 6 },
@@ -677,6 +696,7 @@ var AssetFemale3DCG = [
 		Left: 125,
 		Top: 0,
 		AllowPose: ["Suspension"],
+		PreviewZone: [140, 0, 220, 220],
 		Asset: [
 			"Band1", "Band2", "Beret1",
 			{ Name: "MaidHairband1", Fetish: ["Lingerie"], Value: -1 },
@@ -757,6 +777,7 @@ var AssetFemale3DCG = [
 		Left: 90,
 		Top: 0,
 		AllowPose: ["Suspension"],
+		PreviewZone: [125, 0, 250, 250],
 		Asset: [
 			{ Name: "Ribbons1", Priority: 4, BuyGroup: "Ribbons1" },
 			{ Name: "Ribbons2", Priority: 4, Value: -1, BuyGroup: "Ribbons2" },
@@ -786,6 +807,7 @@ var AssetFemale3DCG = [
 		Left: 90,
 		Top: 0,
 		AllowPose: ["Suspension"],
+		PreviewZone: [125, 0, 250, 250],
 		Asset: [
 			{ Name: "Ears1", Fetish: ["Pet"], BodyCosplay: true },
 			{ Name: "Ears2", Fetish: ["Pet"], BodyCosplay: true },
@@ -858,6 +880,7 @@ var AssetFemale3DCG = [
 		Left: 90,
 		Top: 0,
 		AllowPose: ["Suspension"],
+		PreviewZone: [125, 0, 250, 250],
 		Asset: [
 			{ Name: "Ears1", Fetish: ["Pet"], BodyCosplay: true },
 			{ Name: "Ears2", Fetish: ["Pet"], BodyCosplay: true },
@@ -914,6 +937,7 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		Underwear: true,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "AllFours", "OverTheHead"],
+		PreviewZone: [125, 265, 250, 250],
 		Asset: [
 			"Gloves1",
 			{ Name: "Gloves2", Alpha: [{ Group: ["BodyUpper"], Pose: ["OverTheHead"],  Masks: [[90, 125, 30, 70], [370, 125, 30, 70]] }] },
@@ -943,6 +967,7 @@ var AssetFemale3DCG = [
 		Underwear: true,
 		Left: 180,
 		Top: 125,
+		PreviewZone: [140, 40, 220, 220],
 		Asset: [
 			"Glasses1", "Glasses2", "Glasses3", "Glasses4", "Glasses5", "Glasses6",
 			{ Name: "SunGlasses1", Value: 15 },
@@ -961,6 +986,7 @@ var AssetFemale3DCG = [
 		Underwear: true,
 		Left: 180,
 		Top: 125,
+		PreviewZone: [140, 25, 220, 220],
 		Asset: [
 			{ Name: "VenetianMask", Priority: 49, Fetish: ["Lingerie"], HideItem: ["ItemNoseNoseRing"] },
 			{ Name: "DominoMask", Priority: 49, Fetish: ["Lingerie"], HideItem: ["ItemNoseNoseRing"] },
@@ -1000,6 +1026,7 @@ var AssetFemale3DCG = [
 		BodyCosplay: true,
 		Left: 0,
 		Top: 150,
+		PreviewZone: [0, 200, 500, 500],
 		Asset: [
 			{ Name: "TailStrap", Fetish: ["Pet"], Value: 30, Top: 180, Layer: [
 				{ Name: "Tail"},
@@ -1050,6 +1077,7 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		Underwear: true,
 		BodyCosplay: true,
+		PreviewZone: [0, 50, 500, 500],
 		Asset: [
 			{ Name: "SuccubusFeather", Value: 35 },
 			{ Name: "SuccubusWings", Value: 35 },
@@ -1149,6 +1177,7 @@ var AssetFemale3DCG = [
 		AllowNone: false,
 		AllowExpression: ["Closed", "Dazed", "Shy", "Sad", "Horny", "Lewd", "VeryLewd", "Heart", "HeartPink", "LewdHeart", "LewdHeartPink", "Dizzy", "Daydream", "Angry", "Surprised", "Scared"],
 		MirrorGroup: "Eyes2",
+		PreviewZone: [190, 100, 120, 120],
 		Asset: ["Eyes1", "Eyes2", "Eyes3", "Eyes4", "Eyes5", "Eyes6", "Eyes7", "Eyes8", "Eyes9", "Eyes10", "Eyes11", "Eyes12", "Eyes13"],
 		Color: ["Default", "#6a3628", "#5e481e", "#666666", "#555588", "#558855", "#885555", "#202020", "#aa3333", "#33aa33", "#3333aa", "#aaaa33", "#33aaaa", "#aa33aa"]
 	},
@@ -1163,6 +1192,7 @@ var AssetFemale3DCG = [
 		AllowNone: false,
 		AllowExpression: ["Closed", "Dazed", "Shy", "Sad", "Horny", "Lewd", "VeryLewd", "Heart", "HeartPink", "LewdHeart", "LewdHeartPink", "Dizzy", "Daydream", "Angry", "Surprised", "Scared"],
 		MirrorGroup: "Eyes",
+		PreviewZone: [190, 100, 120, 120],
 		Asset: [{ Name: "Eyes1", ParentItem: "Eyes1" }, { Name: "Eyes2", ParentItem: "Eyes2" }, { Name: "Eyes3", ParentItem: "Eyes3" }, { Name: "Eyes4", ParentItem: "Eyes4" }, { Name: "Eyes5", ParentItem: "Eyes5" }, { Name: "Eyes6", ParentItem: "Eyes6" }, { Name: "Eyes7", ParentItem: "Eyes7" }, { Name: "Eyes8", ParentItem: "Eyes8" }, { Name: "Eyes9", ParentItem: "Eyes9" }, { Name: "Eyes10", ParentItem: "Eyes10" }, { Name: "Eyes11", ParentItem: "Eyes11" }, { Name: "Eyes12", ParentItem: "Eyes12" }, { Name: "Eyes13", ParentItem: "Eyes13" }],
 		Color: ["Default", "#6a3628", "#5e481e", "#666666", "#555588", "#558855", "#885555", "#202020", "#aa3333", "#33aa33", "#3333aa", "#aaaa33", "#33aaaa", "#aa33aa"]
 	},
@@ -1174,6 +1204,7 @@ var AssetFemale3DCG = [
 		Top: 180,
 		AllowNone: false,
 		AllowExpression: ["Frown", "Sad", "Pained", "Angry", "HalfOpen", "Open", "Ahegao", "Moan", "TonguePinch", "LipBite", "Happy", "Devious", "Laughing", "Grin", "Smirk"],
+		PreviewZone: [190, 100, 120, 120],
 		Asset: [
 			{
 				Name: "Regular",

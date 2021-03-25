@@ -43,6 +43,7 @@
 <script src="Scripts/Audio.js"></script>
 <script src="Scripts/MiniGame.js"></script>
 <script src="Scripts/NPC.js"></script>
+<script src="Scripts/Validation.js"></script>
 <script src="Scripts/Server.js"></script>
 <script src="Scripts/Element.js"></script>
 <script src="Scripts/Translation.js"></script>
@@ -96,6 +97,7 @@
 <script src="Screens/Room/CollegeChess/CollegeChess.js"></script>
 <script src="Screens/Room/LARP/LARP.js"></script>
 <script src="Screens/Room/MovieStudio/MovieStudio.js"></script>
+<script src="Screens/Room/Infiltration/Infiltration.js"></script>
 <script src="Screens/Room/Gambling/Gambling.js"></script>
 <script src="Screens/Room/Prison/Prison.js"></script>
 <script src="Screens/Room/Photographic/Photographic.js"></script>
@@ -103,6 +105,7 @@
 <script src="Screens/Room/Magic/Magic.js"></script>
 <script src="Screens/Room/Nursery/Nursery.js"></script>
 <script src="Screens/Room/Cafe/Cafe.js"></script>
+<script src="Screens/Room/Arcade/Arcade.js"></script>
 <script src="Screens/MiniGame/HorseWalk/HorseWalk.js"></script>
 <script src="Screens/MiniGame/GetUp/GetUp.js"></script>
 <script src="Screens/MiniGame/Kidnap/Kidnap.js"></script>
@@ -327,8 +330,22 @@
 <script src="Screens/Inventory/HairAccessory1/Halo/Halo.js"></script>
 <script src="Screens/Inventory/ItemArms/TransportJacket/TransportJacket.js"></script>
 <script src="Screens/Inventory/ItemDevices/Pole/Pole.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeon.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonGame.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonParams.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonVision.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonLoot.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonStats.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonEnemies.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonRestraints.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonFight.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonDraw.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonMagic.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonItem.js"></script>
+<script src="Screens/MiniGame/KinkyDungeon/KinkyDungeonInventory.js"></script>
 <script src="Screens/Inventory/Glasses/EyePatch1/EyePatch1.js"></script>
 <script src="Screens/Inventory/ItemFeet/SpreaderMetal/SpreaderMetal.js"></script>
+<script src="Screens/Inventory/ClothAccessory/BunnyCollarCuffs/BunnyCollarCuffs.js"></script>
 <script>
 
 /*
@@ -408,7 +425,7 @@
 window.onload = function() {
 //	CheatImport();
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
-	GameVersion = "R66";
+	GameVersion = "R66Alpha";
 	console.log("Version: " + GameVersion + ", Server: " + ServerURL);
 	if (!GameVersionFormat.test(GameVersion)) console.error("GameVersion is not valid!");
 	CommonIsMobile = CommonDetectMobile();

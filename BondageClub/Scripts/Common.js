@@ -16,6 +16,10 @@ var GameVersion = "R0";
 const GameVersionFormat = /^R([0-9]+)(?:(Alpha|Beta)([0-9]+)?)?$/;
 var CommonVersionUpdated = false;
 
+String.prototype.replaceAt=function(index, character) {
+      return this.substr(0, index) + character + this.substr(index+character.length);
+    }
+
 /**
  * A map of keys to common font stack definitions. Each stack definition is a	
  * two-item array whose first item is an ordered list of fonts, and whose	
@@ -657,4 +661,48 @@ function CommonCompareVersion(Current, Other) {
 		}
 	}
 	return 0;
+}
+
+/**
+ * A simple deep equality check function which checks whether two objects are equal. The function traverses recursively
+ * into objects and arrays to check for equality. Primitives and simple types are considered equal as defined by `===`.
+ * @param {*} obj1 - The first object to compare
+ * @param {*} obj2 - The second object to compare
+ * @returns {boolean} - TRUE if both objects are equal, up to arbitrarily deeply nested property values, FALSE
+ * otherwise.
+ */
+function CommonDeepEqual(obj1, obj2) {
+	if (obj1 === obj2) {
+		return true;
+	}
+
+	if (obj1 && obj2 && typeof obj1 === "object" && typeof obj2 === "object") {
+		// If the objects do not share a prototype, they are not equal
+		if (Object.getPrototypeOf(obj1) !== Object.getPrototypeOf(obj2)) {
+			return false;
+		}
+
+		// Get the keys for the objects
+		const keys1 = Object.keys(obj1);
+		const keys2 = Object.keys(obj2);
+
+		// If the objects have different numbers of keys, they are not equal
+		if (keys1.length !== keys2.length) {
+			return false;
+		}
+
+		// Sort the keys
+		keys1.sort();
+		keys2.sort();
+		return keys1.every((key, i) => {
+			// If the keys are different, the objects are not equal
+			if (key !== keys2[i]) {
+				return false;
+			}
+			// Otherwise, compare the values
+			return CommonDeepEqual(obj1[key], obj2[key]);
+		});
+	}
+
+	return false;
 }
