@@ -39,6 +39,13 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomCreateResponse", function (data) { ChatCreateResponse(data); });
 	ServerSocket.on("ChatRoomUpdateResponse", function (data) { ChatAdminResponse(data); });
 	ServerSocket.on("ChatRoomSync", function (data) { ChatRoomSync(data); });
+	ServerSocket.on("ChatRoomSyncCharacter", function (data) { ChatRoomSyncCharacter(data); });
+	ServerSocket.on("ChatRoomSyncMemberJoin", function (data) { ChatRoomSyncMemberJoin(data); });
+	ServerSocket.on("ChatRoomSyncMemberLeave", function (data) { ChatRoomSyncMemberLeave(data); });
+	ServerSocket.on("ChatRoomSyncRoomProperties", function (data) { ChatRoomSyncRoomProperties(data); });
+	ServerSocket.on("ChatRoomSyncSwapPlayers", function (data) { ChatRoomSyncSwapPlayers(data); });
+	ServerSocket.on("ChatRoomSyncMovePlayer", function (data) { ChatRoomSyncMovePlayer(data); });
+	ServerSocket.on("ChatRoomSyncReorderPlayers", function (data) { ChatRoomSyncReorderPlayers(data); });
 	ServerSocket.on("ChatRoomSyncSingle", function (data) { ChatRoomSyncSingle(data); });
 	ServerSocket.on("ChatRoomSyncExpression", function (data) { ChatRoomSyncExpression(data); });
 	ServerSocket.on("ChatRoomSyncPose", function (data) { ChatRoomSyncPose(data); });

@@ -1902,73 +1902,457 @@ function ChatRoomMessage(data) {
 }
 
 /**
- * Handles the reception of the new room data from the server.
+ * Adds a character into the chat room.
+ * @param {object} newCharacter - The new character to be added to the chat room.
+ * @param {object} newRawCharacter - The raw character data of the new character as it was received from the server.
+ * @returns {void} - Nothing
+ */
+ function ChatRoomAddCharacterToChatRoom(newCharacter, newRawCharacter)
+ {
+	 if(newCharacter == null) { return; }
+	 if(newRawCharacter == null) { return; }
+ 
+	 // Update the character
+	 let updated = false
+	 for (let i = 0; i < ChatRoomCharacter.length; i++) //For each character in the room...
+	 {
+		 if(ChatRoomCharacter[i].MemberNumber == newCharacter.MemberNumber) // If the joined player already is in the chat room...
+		 {
+			 // Update the character instead
+			 ChatRoomCharacter[i] = newCharacter
+			 updated = true
+			 break;
+		 }
+	 }
+	 if(updated == false) // If we didn't update existing data...
+	 {
+		 // Push a new entry
+		 ChatRoomCharacter.push(newCharacter)
+	 }
+	 
+	 // Update the chat room data backup
+	 updated = false
+	 for (let i = 0; i < ChatRoomData.Character.length; i++) //For each character in the room...
+	 {
+		 if(ChatRoomData.Character[i].MemberNumber == newRawCharacter.MemberNumber) // If the joined player already is in the chat room...
+		 {
+			 // Update the chat room data instead
+			 ChatRoomData.Character[i] = newRawCharacter
+			 updated = true
+			 break;
+		 }
+	 }
+	 if(updated == false) // If we didn't update existing data...
+	 {
+		 // Push a new entry
+		 ChatRoomData.Character.push(newRawCharacter)
+	 }
+ 
+ }
+
+/**
+ * Handles the reception of the complete room data from the server.
+ * @param {object} data - Room object containing the updated chatroom data.
+ * @returns {bool} - Returns true if the passed properties are valid and false if they're invalid.
+ */
+function ChatRoomValidateProperties(chatRoomProperties)
+{
+	let isValid = true
+
+	isValid &= chatRoomProperties != null && typeof chatRoomProperties === "object"
+	isValid &= chatRoomProperties.Name != null && typeof chatRoomProperties.Name === "string"
+	isValid &= chatRoomProperties.Description != null && typeof chatRoomProperties.Description === "string"
+	isValid &= Array.isArray(chatRoomProperties.Admin)
+	isValid &= Array.isArray(chatRoomProperties.Ban)
+	isValid &= chatRoomProperties.Background != null && typeof chatRoomProperties.Background === "string"
+	isValid &= chatRoomProperties.Limit != null && typeof chatRoomProperties.Limit === "number"
+	isValid &= chatRoomProperties.Locked != null && typeof chatRoomProperties.Locked === "boolean"
+	isValid &= chatRoomProperties.Private != null && typeof chatRoomProperties.Private === "boolean"
+	isValid &= Array.isArray(chatRoomProperties.BlockCategory)
+
+	return isValid;
+}
+
+/**
+ * Handles the reception of the complete room data from the server.
  * @param {object} data - Room object containing the updated chatroom data.
  * @returns {void} - Nothing.
  */
 function ChatRoomSync(data) {
-	if ((data != null) && (typeof data === "object") && (data.Name != null)) {
+	if (data == null || (typeof data !== "object")) {
+		return;
+	}
 
-		// Loads the room
-		var Joining = false;
-		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "ChatAdmin") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) {
-			if (ChatRoomPlayerCanJoin) {
-				Joining = true;
-				ChatRoomPlayerCanJoin = false;
-				CommonSetScreen("Online", "ChatRoom");
-				if (ChatRoomPlayerJoiningAsAdmin) {
-					ChatRoomPlayerJoiningAsAdmin = false;
-					// Check if we should push banned members
-					if (Player.OnlineSettings && data.Character.length == 1) {
-						var BanList = ChatRoomConcatenateBanList(Player.OnlineSettings.AutoBanBlackList, Player.OnlineSettings.AutoBanGhostList);
-						if (BanList.length > 0) {
-							data.Ban = BanList;
-							data.Limit = data.Limit.toString();
-							ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: data, Action: "Update" });
-						}
+	if(ChatRoomValidateProperties(data) == false) // If the room data we received is invalid...
+	{
+		// Instantly leave the chat room again
+		DialogLentLockpicks = false;
+		ChatRoomClearAllElements();
+		ChatRoomSetLastChatRoom("")
+		ServerSend("ChatRoomLeave", "");
+		ChatSearchMessage = "ErrorInvalidRoomProperties"
+		CommonSetScreen("Online", "ChatSearch");
+		return;
+	}
+
+	// Loads the room
+	if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "ChatAdmin") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) {
+		if (ChatRoomPlayerCanJoin) {
+			ChatRoomPlayerCanJoin = false;
+			CommonSetScreen("Online", "ChatRoom");
+			if (ChatRoomPlayerJoiningAsAdmin) {
+				ChatRoomPlayerJoiningAsAdmin = false;
+				// Check if we should push banned members
+				if (Player.OnlineSettings && data.Character.length == 1) {
+					const BanList = ChatRoomConcatenateBanList(Player.OnlineSettings.AutoBanBlackList, Player.OnlineSettings.AutoBanGhostList);
+					if (BanList.length > 0) {
+						data.Ban = BanList;
+						data.Limit = data.Limit.toString();
+						ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: data, Action: "Update" });
 					}
 				}
-			} else return;
+			}
+		} else return;
+	}
+
+	// Treat chatroom updates from ourselves as if the updated characters had sent them
+	const trustedUpdate = data.SourceMemberNumber === Player.MemberNumber;
+
+	// Load the characters
+	ChatRoomCharacter = [];
+	for (let C = 0; C < data.Character.length; C++) {
+		const sourceMemberNumber = trustedUpdate ? data.Character[C].MemberNumber : data.SourceMemberNumber;
+		const Char = CharacterLoadOnline(data.Character[C], sourceMemberNumber);
+		ChatRoomCharacter.push(Char);
+	}
+
+	// Keeps a copy of the previous version
+	ChatRoomData = data;
+	if (ChatRoomData.Game != null) {
+		ChatRoomGame = ChatRoomData.Game;
+	}
+
+	// Recreates the chatroom with the stored chatroom data if necessary
+	ChatRoomRecreate();
+
+	// Check whether the player's last chatroom data needs updating
+	ChatRoomCheckForLastChatRoomUpdates();
+
+	// Reloads the online game statuses if needed
+	OnlineGameLoadStatus();
+
+	// The allowed menu actions may have changed
+	ChatRoomMenuBuild();
+	
+}
+
+/**
+ * Handles the reception of the character data of a single player from the server.
+ * @param {object} data - object containing the character's data.
+ * @returns {void} - Nothing.
+ */
+ function ChatRoomSyncCharacter(data) {
+	if (data == null || (typeof data !== "object")) {
+		return;
+	}
+
+	const newCharacter = CharacterLoadOnline(data.Character, data.SourceMemberNumber)
+	ChatRoomAddCharacterToChatRoom(newCharacter, data.Character)
+		
+}
+
+/**
+ * Handles the reception of the character data of a newly joined player from the server.
+ * @param {object} data - object containing the joined character's data.
+ * @returns {void} - Nothing.
+ */
+ function ChatRoomSyncMemberJoin(data) {
+	if (data == null || (typeof data !== "object")) {
+		return;
+	}
+
+	//Load the character to the chat room
+	const newCharacter = CharacterLoadOnline(data.Character, data.SourceMemberNumber)
+	ChatRoomAddCharacterToChatRoom(newCharacter, data.Character)
+	
+	// After Join Actions
+	if (ChatRoomNotificationRaiseChatJoin(newCharacter)) {
+		NotificationRaise(NotificationEventType.CHATJOIN, { characterName: newCharacter.Name });
+	}
+	if (ChatRoomLeashList.includes(newCharacter.MemberNumber)) {
+		// Ping to make sure they are still leashed
+		ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: newCharacter.MemberNumber });
+	}
+	// Check whether the player's last chatroom data needs updating
+	ChatRoomCheckForLastChatRoomUpdates();
+	// The allowed menu actions may have changed
+	ChatRoomMenuBuild();
+	
+}
+
+/**
+ * Handles the reception of the leave notification of a player from the server.
+ * @param {object} data - Room object containing the leaving character's member number.
+ * @returns {void} - Nothing.
+ */
+ function ChatRoomSyncMemberLeave(data) {
+	if (data == null || (typeof data !== "object")) {
+		return;
+	}
+
+	// Remove the character
+	for (let i = 0; i < ChatRoomCharacter.length; i++) //For each character in the room...
+	{
+		if(ChatRoomCharacter[i].MemberNumber == data.SourceMemberNumber) // If this player is the one who just left...
+		{
+			// Remove the character
+			ChatRoomCharacter.splice(i, 1)
+			break;
 		}
+	}
 
-		// Treat chatroom updates from ourselves as if the updated characters had sent them
-		const trustedUpdate = data.SourceMemberNumber === Player.MemberNumber;
+	// Update the chat room data backup
+	for (let i = 0; i < ChatRoomData.Character.length; i++) //For each character in the room...
+	{
+		if(ChatRoomData.Character[i].MemberNumber == data.SourceMemberNumber) // If the joined player already is in the chat room...
+		{
+			// Remove the entry
+			ChatRoomData.Character.splice(i, 1)
+			break;
+		}
+	}
 
-		// Load the characters
-		const OldChatRoomCharacter = ChatRoomCharacter || [];
-		ChatRoomCharacter = [];
-		for (let C = 0; C < data.Character.length; C++) {
-			const sourceMemberNumber = trustedUpdate ? data.Character[C].MemberNumber : data.SourceMemberNumber;
-			const Char = CharacterLoadOnline(data.Character[C], sourceMemberNumber);
-			ChatRoomCharacter.push(Char);
-			// Special cases when someone joins the room
-			if (!Joining && !OldChatRoomCharacter.includes(Char)) {
-				if (ChatRoomNotificationRaiseChatJoin(Char)) {
-					NotificationRaise(NotificationEventType.CHATJOIN, { characterName: Char.Name });
-				}
-				if (ChatRoomLeashList.includes(Char.MemberNumber)) {
-					// Ping to make sure they are still leashed
-					ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: Char.MemberNumber });
-				}
+	// Check whether the player's last chatroom data needs updating
+	ChatRoomCheckForLastChatRoomUpdates();
+
+	// The allowed menu actions may have changed
+	ChatRoomMenuBuild();
+
+}
+
+/**
+ * Handles the reception of the room properties from the server.
+ * @param {object} data - Room object containing the updated chatroom properties.
+ * @returns {void} - Nothing.
+ */
+ function ChatRoomSyncRoomProperties(data) {
+	if (data == null || (typeof data !== "object")) {
+		return;
+	}
+	
+	if(ChatRoomValidateProperties(data) == false) // If the room data we received is invalid...
+	{
+		// Instantly leave the chat room again
+		DialogLentLockpicks = false;
+		ChatRoomClearAllElements();
+		ChatRoomSetLastChatRoom("")
+		ServerSend("ChatRoomLeave", "");
+		ChatSearchMessage = "ErrorInvalidRoomProperties"
+		CommonSetScreen("Online", "ChatSearch");
+		return;
+	}
+
+	// Copy the received properties to chat room data
+	for (let property in data) {
+		if (data.hasOwnProperty(property)) {
+			ChatRoomData[property] = data[property]
+		}
+	}
+
+	if (ChatRoomData.Game != null) ChatRoomGame = ChatRoomData.Game;
+
+	// Recreates the chatroom with the stored chatroom data if necessary
+	ChatRoomRecreate();
+
+	// Check whether the player's last chatroom data needs updating
+	ChatRoomCheckForLastChatRoomUpdates();
+
+	// Reloads the online game statuses if needed
+	OnlineGameLoadStatus();
+
+	// The allowed menu actions may have changed
+	ChatRoomMenuBuild();
+	
+}
+
+/**
+ * Handles the swapping of two players by a room administrator.
+ * @param {object} data - Object containing the member numbers of the swapped characters.
+ * @returns {void} - Nothing.
+ */
+ function ChatRoomSyncSwapPlayers(data) {
+	if (data == null || (typeof data !== "object")) {
+		return;
+	}
+
+	let index1 = -1
+	let index2 = -1
+
+	for (let i = 0; i < ChatRoomCharacter.length; i++) //For each character in the room...
+	{
+		if(ChatRoomCharacter[i].MemberNumber == data.MemberNumber1) // If this player is the first swapped...
+		{
+			// Remember it
+			index1 = i
+		}
+		if(ChatRoomCharacter[i].MemberNumber == data.MemberNumber2) // If this player is the second swapped...
+		{
+			// Remember it
+			index2 = i
+		}
+	}
+
+	if(index1 >= 0 && index2 >= 0) // If we found both characters to swap...
+	{
+		//Swap them
+		let bufferCharacter = ChatRoomCharacter[index1]
+		ChatRoomCharacter[index1] = ChatRoomCharacter[index2]
+		ChatRoomCharacter[index2] = bufferCharacter
+	}
+
+	// Update the chat room data backup
+	index1 = -1
+	index2 = -1
+	for (let i = 0; i < ChatRoomData.Character.length; i++) //For each character in the room...
+	{
+		if(ChatRoomData.Character[i].MemberNumber == data.MemberNumber1) // If this player is the first swapped...
+		{
+			// Remember it
+			index1 = i
+		}
+		if(ChatRoomData.Character[i].MemberNumber == data.MemberNumber2) // If this player is the second swapped...
+		{
+			// Remember it
+			index2 = i
+		}
+	}
+
+	if(index1 >= 0 && index2 >= 0) // If we found both entries to swap...
+	{
+		//Swap them
+		let bufferCharacter = ChatRoomData.Character[index1]
+		ChatRoomData.Character[index1] = ChatRoomData.Character[index2]
+		ChatRoomData.Character[index2] = bufferCharacter
+	}
+	
+}
+
+/**
+ * Handles the moving of a player by a room administrator.
+ * @param {object} data - Object containing the member numbers of the swapped characters.
+ * @returns {void} - Nothing.
+ */
+ function ChatRoomSyncMovePlayer(data) {
+	if (data == null || (typeof data !== "object")) {
+		return;
+	}
+
+	let index = -1
+
+	for (let i = 0; i < ChatRoomCharacter.length; i++) //For each character in the room...
+	{
+		if(ChatRoomCharacter[i].MemberNumber == data.TargetMemberNumber) // If this player is the moved...
+		{
+			// Remember it
+			index = i
+		}
+	}
+
+	let moveOffset = 0
+	switch(data.Direction)
+	{
+		case "Left": moveOffset = -1; break;
+		case "Right": moveOffset = 1; break;
+		default: moveOffset = 0; break;
+	}
+
+	if(index >= 0 && index < ChatRoomCharacter.length &&
+		index+moveOffset >= 0 && index+moveOffset < ChatRoomCharacter.length) // If we found the character to move and the moving is valid...
+	{
+		//Move it
+		let bufferCharacter = ChatRoomCharacter[index]
+		ChatRoomCharacter[index] = ChatRoomCharacter[index+moveOffset]
+		ChatRoomCharacter[index+moveOffset] = bufferCharacter
+	}
+
+	// Update the chat room data backup
+	index = -1
+	for (let i = 0; i < ChatRoomData.Character.length; i++) //For each character in the room...
+	{
+		if(ChatRoomData.Character[i].MemberNumber == data.TargetMemberNumber) // If this player is the moved...
+		{
+			// Remember it
+			index = i
+		}
+	}
+
+	if(index >= 0 && index < ChatRoomCharacter.length &&
+		index+moveOffset >= 0 && index+moveOffset < ChatRoomCharacter.length) // If we found the entry to move and the moving is valid...
+	{
+		//Move it
+		let bufferCharacter = ChatRoomData.Character[index]
+		ChatRoomData.Character[index] = ChatRoomData.Character[index+moveOffset]
+		ChatRoomData.Character[index+moveOffset] = bufferCharacter
+	}
+
+}
+
+/**
+ * Handles the swapping of two players by a room administrator.
+ * @param {object} data - Object containing the member numbers of the swapped characters.
+ * @returns {void} - Nothing.
+ */
+ function ChatRoomSyncReorderPlayers(data) {
+	if (data == null || (typeof data !== "object")) {
+		return;
+	}
+
+	let newChatRoomCharacter = []
+	let newChatRoomDataCharacter = []
+
+	for(let i=0; i<data.PlayerOrder.length; i++) // For every player to reorder...
+	{
+		for(let j=0; j<ChatRoomCharacter.length; j++) // For every chat room character...
+		{
+			if(ChatRoomCharacter[j].MemberNumber == data.PlayerOrder[i]) // If this player is the first swapped...
+			{
+				// Move to reordered array
+				newChatRoomCharacter.push(ChatRoomCharacter.splice(j,1)[0])
+				break;
+			}
+		}
+		for(let j=0; j<ChatRoomData.Character.length; j++) // For every chat room character...
+		{
+			if(ChatRoomData.Character[j].MemberNumber == data.PlayerOrder[i]) // If this player is the first swapped...
+			{
+				// Move to reordered array
+				newChatRoomDataCharacter.push(ChatRoomData.Character.splice(j,1)[0])
+				break;
 			}
 		}
 
-		// Keeps a copy of the previous version
-		ChatRoomData = data;
-		if (ChatRoomData.Game != null) ChatRoomGame = ChatRoomData.Game;
-
-		// Recreates the chatroom with the stored chatroom data if necessary
-		ChatRoomRecreate();
-
-		// Check whether the player's last chatroom data needs updating
-		ChatRoomCheckForLastChatRoomUpdates();
-
-		// Reloads the online game statuses if needed
-		OnlineGameLoadStatus();
-
-		// The allowed menu actions may have changed
-		ChatRoomMenuBuild();
 	}
+
+	if(ChatRoomCharacter.length > 0) // If we forgot about some characters for some reason...
+	{
+		console.log("Apply1")
+		//Push the missed entries to the end
+		Array.prototype.push.apply(newChatRoomCharacter, ChatRoomCharacter)
+	}
+	if(ChatRoomData.Character.length > 0) // If we forgot about some entries for some reason...
+	{
+		console.log("Apply2")
+		//Push the missed entries to the end
+		Array.prototype.push.apply(newChatRoomDataCharacter, ChatRoomData.Character)
+	}
+
+	//Update the origin arrays
+	ChatRoomCharacter = newChatRoomCharacter
+	ChatRoomData.Character = newChatRoomDataCharacter
+
+	console.log(ChatRoomCharacter)
+	console.log(ChatRoomData.Character)
+	
 }
 
 /**
