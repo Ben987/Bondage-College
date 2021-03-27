@@ -2161,9 +2161,6 @@ function ChatRoomSync(data) {
 
 	if (ChatRoomData.Game != null) ChatRoomGame = ChatRoomData.Game;
 
-	// Recreates the chatroom with the stored chatroom data if necessary
-	ChatRoomRecreate();
-
 	// Check whether the player's last chatroom data needs updating
 	ChatRoomCheckForLastChatRoomUpdates();
 
