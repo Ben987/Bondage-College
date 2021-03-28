@@ -1912,37 +1912,27 @@ function ChatRoomMessage(data) {
 	 if(newCharacter == null) { return; }
 	 if(newRawCharacter == null) { return; }
  
-	 // Update the character
-	 let updated = false
-	 for (let i = 0; i < ChatRoomCharacter.length; i++) //For each character in the room...
+	// Update the chat room characters
+	 let characterIndex = ChatRoomCharacter.findIndex(x => x.MemberNumber == newCharacter.MemberNumber)
+	 if(characterIndex >= 0) // If we found an existing entry...
 	 {
-		 if(ChatRoomCharacter[i].MemberNumber == newCharacter.MemberNumber) // If the joined player already is in the chat room...
-		 {
-			 // Update the character instead
-			 ChatRoomCharacter[i] = newCharacter
-			 updated = true
-			 break;
-		 }
+		// Update it
+		ChatRoomCharacter[characterIndex] = newCharacter
 	 }
-	 if(updated == false) // If we didn't update existing data...
+	 else // If we didn't update existing data...
 	 {
 		 // Push a new entry
 		 ChatRoomCharacter.push(newCharacter)
 	 }
 	 
-	 // Update the chat room data backup
-	 updated = false
-	 for (let i = 0; i < ChatRoomData.Character.length; i++) //For each character in the room...
+	 // Update chat room data backup
+	 characterIndex = ChatRoomData.Character.findIndex(x => x.MemberNumber == newRawCharacter.MemberNumber)
+	 if(characterIndex >= 0) // If we found an existing entry...
 	 {
-		 if(ChatRoomData.Character[i].MemberNumber == newRawCharacter.MemberNumber) // If the joined player already is in the chat room...
-		 {
-			 // Update the chat room data instead
-			 ChatRoomData.Character[i] = newRawCharacter
-			 updated = true
-			 break;
-		 }
+		// Update it
+		ChatRoomData.Character[characterIndex] = newRawCharacter
 	 }
-	 if(updated == false) // If we didn't update existing data...
+	 else // If we didn't update existing data...
 	 {
 		 // Push a new entry
 		 ChatRoomData.Character.push(newRawCharacter)
@@ -1953,7 +1943,7 @@ function ChatRoomMessage(data) {
 /**
  * Handles the reception of the complete room data from the server.
  * @param {object} data - Room object containing the updated chatroom data.
- * @returns {bool} - Returns true if the passed properties are valid and false if they're invalid.
+ * @returns {boolean} - Returns true if the passed properties are valid and false if they're invalid.
  */
 function ChatRoomValidateProperties(chatRoomProperties)
 {
@@ -2101,26 +2091,8 @@ function ChatRoomSync(data) {
 	}
 
 	// Remove the character
-	for (let i = 0; i < ChatRoomCharacter.length; i++) //For each character in the room...
-	{
-		if(ChatRoomCharacter[i].MemberNumber == data.SourceMemberNumber) // If this player is the one who just left...
-		{
-			// Remove the character
-			ChatRoomCharacter.splice(i, 1)
-			break;
-		}
-	}
-
-	// Update the chat room data backup
-	for (let i = 0; i < ChatRoomData.Character.length; i++) //For each character in the room...
-	{
-		if(ChatRoomData.Character[i].MemberNumber == data.SourceMemberNumber) // If the joined player already is in the chat room...
-		{
-			// Remove the entry
-			ChatRoomData.Character.splice(i, 1)
-			break;
-		}
-	}
+	ChatRoomCharacter = ChatRoomCharacter.filter(x => x.MemberNumber != data.SourceMemberNumber)
+	ChatRoomData.Character = ChatRoomData.Character.filter(x => x.MemberNumber != data.SourceMemberNumber)
 
 	// Check whether the player's last chatroom data needs updating
 	ChatRoomCheckForLastChatRoomUpdates();
@@ -2182,22 +2154,9 @@ function ChatRoomSync(data) {
 		return;
 	}
 
-	let index1 = -1
-	let index2 = -1
-
-	for (let i = 0; i < ChatRoomCharacter.length; i++) //For each character in the room...
-	{
-		if(ChatRoomCharacter[i].MemberNumber == data.MemberNumber1) // If this player is the first swapped...
-		{
-			// Remember it
-			index1 = i
-		}
-		if(ChatRoomCharacter[i].MemberNumber == data.MemberNumber2) // If this player is the second swapped...
-		{
-			// Remember it
-			index2 = i
-		}
-	}
+	// Update the chat room characters
+	let index1 = ChatRoomCharacter.findIndex(x => (x.MemberNumber == data.MemberNumber1))
+	let index2 = ChatRoomCharacter.findIndex(x => (x.MemberNumber == data.MemberNumber2))
 
 	if(index1 >= 0 && index2 >= 0) // If we found both characters to swap...
 	{
@@ -2208,21 +2167,8 @@ function ChatRoomSync(data) {
 	}
 
 	// Update the chat room data backup
-	index1 = -1
-	index2 = -1
-	for (let i = 0; i < ChatRoomData.Character.length; i++) //For each character in the room...
-	{
-		if(ChatRoomData.Character[i].MemberNumber == data.MemberNumber1) // If this player is the first swapped...
-		{
-			// Remember it
-			index1 = i
-		}
-		if(ChatRoomData.Character[i].MemberNumber == data.MemberNumber2) // If this player is the second swapped...
-		{
-			// Remember it
-			index2 = i
-		}
-	}
+	index1 = ChatRoomData.Character.findIndex(x => x.MemberNumber == data.MemberNumber1)
+	index2 = ChatRoomData.Character.findIndex(x => x.MemberNumber == data.MemberNumber2)
 
 	if(index1 >= 0 && index2 >= 0) // If we found both entries to swap...
 	{
@@ -2244,17 +2190,6 @@ function ChatRoomSync(data) {
 		return;
 	}
 
-	let index = -1
-
-	for (let i = 0; i < ChatRoomCharacter.length; i++) //For each character in the room...
-	{
-		if(ChatRoomCharacter[i].MemberNumber == data.TargetMemberNumber) // If this player is the moved...
-		{
-			// Remember it
-			index = i
-		}
-	}
-
 	let moveOffset = 0
 	switch(data.Direction)
 	{
@@ -2263,6 +2198,8 @@ function ChatRoomSync(data) {
 		default: moveOffset = 0; break;
 	}
 
+	// Update the chat room characters
+	let index = ChatRoomCharacter.findIndex(x => x.MemberNumber == data.TargetMemberNumber)
 	if(index >= 0 && index < ChatRoomCharacter.length &&
 		index+moveOffset >= 0 && index+moveOffset < ChatRoomCharacter.length) // If we found the character to move and the moving is valid...
 	{
@@ -2273,16 +2210,7 @@ function ChatRoomSync(data) {
 	}
 
 	// Update the chat room data backup
-	index = -1
-	for (let i = 0; i < ChatRoomData.Character.length; i++) //For each character in the room...
-	{
-		if(ChatRoomData.Character[i].MemberNumber == data.TargetMemberNumber) // If this player is the moved...
-		{
-			// Remember it
-			index = i
-		}
-	}
-
+	index = ChatRoomData.Character.findIndex(x => x.MemberNumber == data.TargetMemberNumber)
 	if(index >= 0 && index < ChatRoomCharacter.length &&
 		index+moveOffset >= 0 && index+moveOffset < ChatRoomCharacter.length) // If we found the entry to move and the moving is valid...
 	{
@@ -2306,39 +2234,27 @@ function ChatRoomSync(data) {
 
 	let newChatRoomCharacter = []
 	let newChatRoomDataCharacter = []
+	let index = 0
 
 	for(let i=0; i<data.PlayerOrder.length; i++) // For every player to reorder...
 	{
-		for(let j=0; j<ChatRoomCharacter.length; j++) // For every chat room character...
-		{
-			if(ChatRoomCharacter[j].MemberNumber == data.PlayerOrder[i]) // If this player is the first swapped...
-			{
-				// Move to reordered array
-				newChatRoomCharacter.push(ChatRoomCharacter.splice(j,1)[0])
-				break;
-			}
-		}
-		for(let j=0; j<ChatRoomData.Character.length; j++) // For every chat room character...
-		{
-			if(ChatRoomData.Character[j].MemberNumber == data.PlayerOrder[i]) // If this player is the first swapped...
-			{
-				// Move to reordered array
-				newChatRoomDataCharacter.push(ChatRoomData.Character.splice(j,1)[0])
-				break;
-			}
-		}
+		//Chat Room Characters
+		index = ChatRoomCharacter.findIndex(x => x.MemberNumber == data.PlayerOrder[i])
+		newChatRoomCharacter.push(ChatRoomCharacter.splice(index, 1)[0])
+
+		//Chat Room Data Backup
+		index = ChatRoomData.Character.findIndex(x => x.MemberNumber == data.PlayerOrder[i])
+		newChatRoomDataCharacter.push(ChatRoomData.Character.splice(index, 1)[0])
 
 	}
 
 	if(ChatRoomCharacter.length > 0) // If we forgot about some characters for some reason...
 	{
-		console.log("Apply1")
 		//Push the missed entries to the end
 		Array.prototype.push.apply(newChatRoomCharacter, ChatRoomCharacter)
 	}
 	if(ChatRoomData.Character.length > 0) // If we forgot about some entries for some reason...
 	{
-		console.log("Apply2")
 		//Push the missed entries to the end
 		Array.prototype.push.apply(newChatRoomDataCharacter, ChatRoomData.Character)
 	}
@@ -2346,9 +2262,6 @@ function ChatRoomSync(data) {
 	//Update the origin arrays
 	ChatRoomCharacter = newChatRoomCharacter
 	ChatRoomData.Character = newChatRoomDataCharacter
-
-	console.log(ChatRoomCharacter)
-	console.log(ChatRoomData.Character)
 	
 }
 
