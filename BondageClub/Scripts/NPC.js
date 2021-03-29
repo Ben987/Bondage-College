@@ -135,7 +135,7 @@ function NPCTraitDialog(C) {
 function NPCArousal(C) {
 
 	// Generates new data if there isn't any
-	if (C.ArousalSettings == null) {
+	if (C.ArousalSettings == null || (C.ArousalSettings.Zone && C.ArousalSettings.Zone.length == 0)) {
 
 		// Resets to the default settings in automatic mode
 		PreferenceInit(C);
