@@ -270,7 +270,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 		CharacterCanvas.canvas.height = Canvas.height;
 
 		// If we must dark the Canvas characters
-		if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
+		if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet") && CurrentModule != "MiniGame") {
 			const DarkFactor = Math.min(CharacterGetDarkFactor(Player) * 2, 1);
 			
 			CharacterCanvas.globalCompositeOperation = "copy";
