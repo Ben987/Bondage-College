@@ -33,6 +33,7 @@ function ServerInit() {
 	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data); });
 	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
 	ServerSocket.on("LoginResponse", function (data) { LoginResponse(data); });
+	ServerSocket.on("LoginQueue", function (data) { LoginQueue(data); });
 	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data, true); });
 	ServerSocket.on("ChatRoomSearchResult", function (data) { ChatSearchResultResponse(data); });
 	ServerSocket.on("ChatRoomSearchResponse", function (data) { ChatSearchResponse(data); });

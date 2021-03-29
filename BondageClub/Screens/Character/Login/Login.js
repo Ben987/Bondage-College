@@ -339,6 +339,15 @@ function LoginExtremeItemSettings() {
 	Player.HiddenItems = [];
 }
 
+/**
+ * Handles server response, when login has been queued
+ * @param {number} Pos The position in queue
+ */
+function LoginQueue(Pos) {
+	if (typeof Pos !== "number") return;
+
+	LoginMessage = TextGet("LoginQueueWait").replace("QUEUE_POS", Pos);
+}
 
 /**
  * Handles player login response data
