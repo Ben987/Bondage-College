@@ -222,6 +222,49 @@ function PreferenceInit(C) {
 	if (!Array.isArray(C.ArousalSettings.Activity)) C.ArousalSettings.Activity = [];
 	if (!Array.isArray(C.ArousalSettings.Zone)) C.ArousalSettings.Zone = [];
 	if (!Array.isArray(C.ArousalSettings.Fetish)) C.ArousalSettings.Fetish = [];
+
+	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
+	if (Player.AssetFamily == "Female3DCG") {
+
+		// Validates the activities
+		for (let A = 0; A < ActivityFemale3DCG.length; A++) {
+			let Found = false;
+			for (let P = 0; P < C.ArousalSettings.Activity.length; P++)
+				if ((C.ArousalSettings.Activity[P] != null) && (C.ArousalSettings.Activity[P].Name != null) && (ActivityFemale3DCG[A].Name == C.ArousalSettings.Activity[P].Name)) {
+					Found = true;
+					if ((C.ArousalSettings.Activity[P].Self == null) || (typeof C.ArousalSettings.Activity[P].Self !== "number") || (C.ArousalSettings.Activity[P].Self < 0) || (C.ArousalSettings.Activity[P].Self > 4)) C.ArousalSettings.Activity[P].Self = 2;
+					if ((C.ArousalSettings.Activity[P].Other == null) || (typeof C.ArousalSettings.Activity[P].Other !== "number") || (C.ArousalSettings.Activity[P].Other < 0) || (C.ArousalSettings.Activity[P].Other > 4)) C.ArousalSettings.Activity[P].Other = 2;
+				}
+			if (!Found) C.ArousalSettings.Activity.push({ Name: ActivityFemale3DCG[A].Name, Self: 2, Other: 2 });
+		}
+
+		// Validates the fetishes
+		for (let A = 0; A < FetishFemale3DCG.length; A++) {
+			let Found = false;
+			for (let F = 0; F < C.ArousalSettings.Fetish.length; F++)
+				if ((C.ArousalSettings.Fetish[F] != null) && (C.ArousalSettings.Fetish[F].Name != null) && (FetishFemale3DCG[A].Name == C.ArousalSettings.Fetish[F].Name)) {
+					Found = true;
+					if ((C.ArousalSettings.Fetish[F].Factor == null) || (typeof C.ArousalSettings.Fetish[F].Factor !== "number") || (C.ArousalSettings.Fetish[F].Factor < 0) || (C.ArousalSettings.Fetish[F].Factor > 4)) C.ArousalSettings.Fetish[F].Factor = 2;
+				}
+			if (!Found) C.ArousalSettings.Fetish.push({ Name: FetishFemale3DCG[A].Name, Factor: 2 });
+		}
+
+		// Validates the zones
+		for (let A = 0; A < AssetGroup.length; A++)
+			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null)) {
+				let Found = false;
+				for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
+					if ((C.ArousalSettings.Zone[Z] != null) && (C.ArousalSettings.Zone[Z].Name != null) && (AssetGroup[A].Name == C.ArousalSettings.Zone[Z].Name)) {
+						Found = true;
+						if ((C.ArousalSettings.Zone[Z].Factor == null) || (typeof C.ArousalSettings.Zone[Z].Factor !== "number") || (C.ArousalSettings.Zone[Z].Factor < 0) || (C.ArousalSettings.Zone[Z].Factor > 4)) C.ArousalSettings.Zone[Z].Factor = 2;
+					}
+				if (!Found) {
+					C.ArousalSettings.Zone.push({ Name: AssetGroup[A].Name, Factor: 2 });
+					if (AssetGroup[A].Name == "ItemVulva") PreferenceSetZoneOrgasm(C, "ItemVulva", true);
+				}
+			}
+
+	}
 }
 
 /**
@@ -427,50 +470,7 @@ function PreferenceInitPlayer() {
 		C.ImmersionSettings.SenseDepMessages = true;
 		C.OnlineSharedSettings.AllowPlayerLeashing = true;
 	}
-
-	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
-	if (Player.AssetFamily == "Female3DCG") {
-
-		// Validates the activities
-		for (let A = 0; A < ActivityFemale3DCG.length; A++) {
-			let Found = false;
-			for (let P = 0; P < C.ArousalSettings.Activity.length; P++)
-				if ((C.ArousalSettings.Activity[P] != null) && (C.ArousalSettings.Activity[P].Name != null) && (ActivityFemale3DCG[A].Name == C.ArousalSettings.Activity[P].Name)) {
-					Found = true;
-					if ((C.ArousalSettings.Activity[P].Self == null) || (typeof C.ArousalSettings.Activity[P].Self !== "number") || (C.ArousalSettings.Activity[P].Self < 0) || (C.ArousalSettings.Activity[P].Self > 4)) C.ArousalSettings.Activity[P].Self = 2;
-					if ((C.ArousalSettings.Activity[P].Other == null) || (typeof C.ArousalSettings.Activity[P].Other !== "number") || (C.ArousalSettings.Activity[P].Other < 0) || (C.ArousalSettings.Activity[P].Other > 4)) C.ArousalSettings.Activity[P].Other = 2;
-				}
-			if (!Found) C.ArousalSettings.Activity.push({ Name: ActivityFemale3DCG[A].Name, Self: 2, Other: 2 });
-		}
-
-		// Validates the fetishes
-		for (let A = 0; A < FetishFemale3DCG.length; A++) {
-			let Found = false;
-			for (let F = 0; F < C.ArousalSettings.Fetish.length; F++)
-				if ((C.ArousalSettings.Fetish[F] != null) && (C.ArousalSettings.Fetish[F].Name != null) && (FetishFemale3DCG[A].Name == C.ArousalSettings.Fetish[F].Name)) {
-					Found = true;
-					if ((C.ArousalSettings.Fetish[F].Factor == null) || (typeof C.ArousalSettings.Fetish[F].Factor !== "number") || (C.ArousalSettings.Fetish[F].Factor < 0) || (C.ArousalSettings.Fetish[F].Factor > 4)) C.ArousalSettings.Fetish[F].Factor = 2;
-				}
-			if (!Found) C.ArousalSettings.Fetish.push({ Name: FetishFemale3DCG[A].Name, Factor: 2 });
-		}
-
-		// Validates the zones
-		for (let A = 0; A < AssetGroup.length; A++)
-			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null)) {
-				let Found = false;
-				for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
-					if ((C.ArousalSettings.Zone[Z] != null) && (C.ArousalSettings.Zone[Z].Name != null) && (AssetGroup[A].Name == C.ArousalSettings.Zone[Z].Name)) {
-						Found = true;
-						if ((C.ArousalSettings.Zone[Z].Factor == null) || (typeof C.ArousalSettings.Zone[Z].Factor !== "number") || (C.ArousalSettings.Zone[Z].Factor < 0) || (C.ArousalSettings.Zone[Z].Factor > 4)) C.ArousalSettings.Zone[Z].Factor = 2;
-					}
-				if (!Found) {
-					C.ArousalSettings.Zone.push({ Name: AssetGroup[A].Name, Factor: 2 });
-					if (AssetGroup[A].Name == "ItemVulva") PreferenceSetZoneOrgasm(C, "ItemVulva", true);
-				}
-			}
-
-	}
-
+	
 	// Enables the AFK timer for the current player only
 	AfkTimerSetEnabled(C.OnlineSettings.EnableAfkTimer);
 
