@@ -189,7 +189,7 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 				KinkyDungeonEntities.push({Enemy: Enemy, x:X, y:Y, hp: Enemy.maxhp, movePoints: 0, attackPoints: 0})
 				if (Enemy.tags.includes("minor")) count += 0.2; else count += 1; // Minor enemies count as 1/5th of an enemy
 				if (Enemy.tags.includes("elite")) count += 1 // Elite enemies count as 2 normal enemies
-				console.log("Created a " + Enemy.name)
+				//console.log("Created a " + Enemy.name)
 			}
 		}
 		tries += 1
@@ -233,7 +233,7 @@ function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, wi
 		}
     }
 
-    console.log("Created " + count + " chests")
+    //console.log("Created " + count + " chests")
 }
 
 
