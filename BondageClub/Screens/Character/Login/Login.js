@@ -447,6 +447,17 @@ function LoginResponse(C) {
 			Player.OnlineSharedSettings = C.OnlineSharedSettings;
 			Player.GraphicsSettings = C.GraphicsSettings;
 			Player.NotificationSettings = C.NotificationSettings;
+			Player.SavedExpressions = C.SavedExpressions;
+			if (Player.SavedExpressions === undefined) {
+				Player.SavedExpressions = [];
+			}
+			if (Player.SavedExpressions.length < 5) {
+				var x = Player.SavedExpressions.length;
+				while (x < 5) {
+					Player.SavedExpressions.push(null);
+					x += 1;
+				}
+			}
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;

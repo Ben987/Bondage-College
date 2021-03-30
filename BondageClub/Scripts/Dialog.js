@@ -63,6 +63,12 @@ var DialogSelfMenuOptions = [
 		Click: DialogClickPoseMenu,
 	},
 	{
+		Name: "SavedExpressions",
+		IsAvailable: () => true,
+		Draw: DialogDrawSavedExpressionsMenu,
+		Click: DialogClickSavedExpressionsMenu,
+	},
+	{
 		Name: "OwnerRules",
 		IsAvailable: () => DialogSelfMenuSelected && DialogSelfMenuSelected.Name == "OwnerRules",
 		Draw: DialogDrawOwnerRulesMenu,
@@ -824,6 +830,69 @@ function DialogFacialExpressionsBuild() {
 	DialogFacialExpressions = DialogFacialExpressions.sort(function (a, b) {
 		return a.Appearance.Asset.Group.Name < b.Appearance.Asset.Group.Name ? -1 : a.Appearance.Asset.Group.Name > b.Appearance.Asset.Group.Name ? 1 : 0;
 	});
+}
+
+/**
+ * saves the expressions to a slot
+ * @param {any} Slot slot 0-4
+ */
+function DialogFacialExpressionsSave(Slot) {
+	var x = 0;
+	Player.SavedExpressions[Slot] = [];
+	while (x < DialogFacialExpressions.length) {
+		Player.SavedExpressions[Slot].push({ Group: DialogFacialExpressions[x].Group, CurrentExpression: DialogFacialExpressions[x].CurrentExpression });
+		x += 1;
+	}
+	ServerSend("AccountUpdate", { SavedExpressions: Player.SavedExpressions });
+}
+/**
+ * loads expressions from a slot
+ * @param {any} Slot slot 0-4
+ */
+function DialogFacialExpressionsLoad(Slot) {
+	var x = 0;
+	while (x < Player.SavedExpressions[Slot].length) {
+		CharacterSetFacialExpression(Player, Player.SavedExpressions[Slot][x].Group, Player.SavedExpressions[Slot][x].CurrentExpression);
+		x += 1;
+	}
+	DialogFacialExpressionsBuild();
+}
+/**draws the savedexpressions menu */
+function DialogDrawSavedExpressionsMenu() {
+	DrawText(DialogFindPlayer("SavedExpressions"), 195, 25, "White", "Black");
+	DrawText(DialogFindPlayer("SavedExpressionsSave"), 140, 180, "White", "Black");
+	DrawText(DialogFindPlayer("SavedExpressionsLoad"), 260, 180, "White", "Black");
+	var x = 0;
+	while (x < 5) {
+		DrawButton(100, 200 + (x * 100), 80, 80, x + 1, "White");
+		x += 1;
+	}
+	var x = 0;
+	while (x < 5) {
+		DrawButton(220, 200 + (x * 100), 80, 80, x + 1, "White");
+		x += 1;
+	}
+}
+/**handles clicks in the savedexpressions menu */
+function DialogClickSavedExpressionsMenu() {
+	if (MouseXIn(100, 80)) {
+		var x = 0;
+		while (x < 5) {
+			if (MouseYIn(200 + (x * 100), 80)) {
+				DialogFacialExpressionsSave(x);
+			}
+			x += 1
+		}
+	}
+	if (MouseXIn(220, 80)) {
+		var x = 0;
+		while (x < 5) {
+			if (MouseYIn(200 + (x * 100), 80)) {
+				DialogFacialExpressionsLoad(x);
+			}
+			x += 1
+		}
+	}
 }
 
 /**
