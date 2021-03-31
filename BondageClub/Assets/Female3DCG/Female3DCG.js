@@ -2987,7 +2987,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "LargeDildo", Value: 20, Difficulty: 1, Time: 10, DefaultColor: "#333333", BuyGroup: "LargeDildo", Hide: ["Mouth"], Effect: ["BlockMouth", "GagLight"], ExpressionTrigger: [{ Name: "Raised", Group: "Eyebrows", Timer: 10 }],
+				Name: "LargeDildo", Value: 20, Difficulty: -20, Time: 5, DefaultColor: "#333333", BuyGroup: "PenisDildo", Hide: ["Mouth"], ExpressionTrigger: [{ Name: "Raised", Group: "Eyebrows", Timer: 10 }],
 				Layer: [
 					{ Name: "Dildo", AllowColorize: true },
 					{ Name: "Lips", AllowColorize: false }
