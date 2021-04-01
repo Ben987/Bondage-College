@@ -837,7 +837,6 @@ function DialogFacialExpressionsBuild() {
  * @param {any} Slot slot 0-4
  */
 function DialogFacialExpressionsSave(Slot) {
-	var x = 0;
 	Player.SavedExpressions[Slot] = [];
 	for (let x = 0; x < DialogFacialExpressions.length; x++) {
 		Player.SavedExpressions[Slot].push({ Group: DialogFacialExpressions[x].Group, CurrentExpression: DialogFacialExpressions[x].CurrentExpression });
@@ -849,7 +848,6 @@ function DialogFacialExpressionsSave(Slot) {
  * @param {any} Slot slot 0-4
  */
 function DialogFacialExpressionsLoad(Slot) {
-	var x = 0;
 	for (let x = 0; x < Player.SavedExpressions[Slot].length; x++) {
 		CharacterSetFacialExpression(Player, Player.SavedExpressions[Slot][x].Group, Player.SavedExpressions[Slot][x].CurrentExpression);
 	}
