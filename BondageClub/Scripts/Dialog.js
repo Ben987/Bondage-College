@@ -839,9 +839,8 @@ function DialogFacialExpressionsBuild() {
 function DialogFacialExpressionsSave(Slot) {
 	var x = 0;
 	Player.SavedExpressions[Slot] = [];
-	while (x < DialogFacialExpressions.length) {
+	for (let x = 0; x < DialogFacialExpressions.length; x++) {
 		Player.SavedExpressions[Slot].push({ Group: DialogFacialExpressions[x].Group, CurrentExpression: DialogFacialExpressions[x].CurrentExpression });
-		x += 1;
 	}
 	ServerSend("AccountUpdate", { SavedExpressions: Player.SavedExpressions });
 }
@@ -851,9 +850,8 @@ function DialogFacialExpressionsSave(Slot) {
  */
 function DialogFacialExpressionsLoad(Slot) {
 	var x = 0;
-	while (x < Player.SavedExpressions[Slot].length) {
+	for (let x = 0; x < Player.SavedExpressions[Slot].length; x++) {
 		CharacterSetFacialExpression(Player, Player.SavedExpressions[Slot][x].Group, Player.SavedExpressions[Slot][x].CurrentExpression);
-		x += 1;
 	}
 	DialogFacialExpressionsBuild();
 }
@@ -862,35 +860,27 @@ function DialogDrawSavedExpressionsMenu() {
 	DrawText(DialogFindPlayer("SavedExpressions"), 195, 25, "White", "Black");
 	DrawText(DialogFindPlayer("SavedExpressionsSave"), 140, 180, "White", "Black");
 	DrawText(DialogFindPlayer("SavedExpressionsLoad"), 260, 180, "White", "Black");
-	var x = 0;
-	while (x < 5) {
+	for (let x = 0; x < 5; x++) {
 		DrawButton(100, 200 + (x * 100), 80, 80, x + 1, "White");
-		x += 1;
 	}
-	var x = 0;
-	while (x < 5) {
+	for (let x = 0; x < 5; x++) {
 		DrawButton(220, 200 + (x * 100), 80, 80, x + 1, "White");
-		x += 1;
 	}
 }
 /**handles clicks in the savedexpressions menu */
 function DialogClickSavedExpressionsMenu() {
 	if (MouseXIn(100, 80)) {
-		var x = 0;
-		while (x < 5) {
+		for (let x = 0; x < 5; x++) {
 			if (MouseYIn(200 + (x * 100), 80)) {
 				DialogFacialExpressionsSave(x);
 			}
-			x += 1
 		}
 	}
 	if (MouseXIn(220, 80)) {
-		var x = 0;
-		while (x < 5) {
+		for (let x = 0; x < 5; x++) {
 			if (MouseYIn(200 + (x * 100), 80)) {
 				DialogFacialExpressionsLoad(x);
 			}
-			x += 1
 		}
 	}
 }
