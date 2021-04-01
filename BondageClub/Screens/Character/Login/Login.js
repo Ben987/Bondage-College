@@ -448,7 +448,7 @@ function LoginResponse(C) {
 			Player.GraphicsSettings = C.GraphicsSettings;
 			Player.NotificationSettings = C.NotificationSettings;
 			Player.SavedExpressions = C.SavedExpressions;
-			if (Player.SavedExpressions === undefined || Player.SavedExpressions.isArray == false) {
+			if (!Array.isArray(Player.SavedExpressions)) {
 				Player.SavedExpressions = [];
 			}
 			if (Player.SavedExpressions.length < 5) {

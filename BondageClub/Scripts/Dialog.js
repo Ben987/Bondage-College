@@ -848,10 +848,12 @@ function DialogFacialExpressionsSave(Slot) {
  * @param {any} Slot slot 0-4
  */
 function DialogFacialExpressionsLoad(Slot) {
-	for (let x = 0; x < Player.SavedExpressions[Slot].length; x++) {
-		CharacterSetFacialExpression(Player, Player.SavedExpressions[Slot][x].Group, Player.SavedExpressions[Slot][x].CurrentExpression);
+	if (Player.SavedExpressions[Slot] != null) {
+		for (let x = 0; x < Player.SavedExpressions[Slot].length; x++) {
+			CharacterSetFacialExpression(Player, Player.SavedExpressions[Slot][x].Group, Player.SavedExpressions[Slot][x].CurrentExpression);
+		}
+		DialogFacialExpressionsBuild();
 	}
-	DialogFacialExpressionsBuild();
 }
 /**draws the savedexpressions menu */
 function DialogDrawSavedExpressionsMenu() {
@@ -860,8 +862,6 @@ function DialogDrawSavedExpressionsMenu() {
 	DrawText(DialogFindPlayer("SavedExpressionsLoad"), 260, 180, "White", "Black");
 	for (let x = 0; x < 5; x++) {
 		DrawButton(100, 200 + (x * 100), 80, 80, x + 1, "White");
-	}
-	for (let x = 0; x < 5; x++) {
 		DrawButton(220, 200 + (x * 100), 80, 80, x + 1, "White");
 	}
 }
