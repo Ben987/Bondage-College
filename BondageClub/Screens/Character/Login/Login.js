@@ -448,14 +448,12 @@ function LoginResponse(C) {
 			Player.GraphicsSettings = C.GraphicsSettings;
 			Player.NotificationSettings = C.NotificationSettings;
 			Player.SavedExpressions = C.SavedExpressions;
-			if (Player.SavedExpressions === undefined) {
+			if (Player.SavedExpressions === undefined || Player.SavedExpressions.isArray == false) {
 				Player.SavedExpressions = [];
 			}
 			if (Player.SavedExpressions.length < 5) {
-				var x = Player.SavedExpressions.length;
-				while (x < 5) {
+				for (let x = Player.SavedExpressions.length; x < 5; x++) {
 					Player.SavedExpressions.push(null);
-					x += 1;
 				}
 			}
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
