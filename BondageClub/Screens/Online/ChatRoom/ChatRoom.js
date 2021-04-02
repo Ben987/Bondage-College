@@ -1969,68 +1969,70 @@ function ChatRoomValidateProperties(chatRoomProperties)
  * @returns {void} - Nothing.
  */
 function ChatRoomSync(data) {
-	if ((data != null) && (typeof data === "object") && (data.Name != null)) {
+	if (data == null || (typeof data !== "object")) {
+		return;
+	}
 
-		// Loads the room
-		var Joining = false;
-		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "ChatAdmin") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) {
-			if (ChatRoomPlayerCanJoin) {
-				Joining = true;
-				ChatRoomPlayerCanJoin = false;
-				CommonSetScreen("Online", "ChatRoom");
-				if (ChatRoomPlayerJoiningAsAdmin) {
-					ChatRoomPlayerJoiningAsAdmin = false;
-					// Check if we should push banned members
-					if (Player.OnlineSettings && data.Character.length == 1) {
-						var BanList = ChatRoomConcatenateBanList(Player.OnlineSettings.AutoBanBlackList, Player.OnlineSettings.AutoBanGhostList);
-						if (BanList.length > 0) {
-							data.Ban = BanList;
-							data.Limit = data.Limit.toString();
-							ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: data, Action: "Update" });
-						}
+	if(ChatRoomValidateProperties(data) == false) // If the room data we received is invalid...
+	{
+		// Instantly leave the chat room again
+		DialogLentLockpicks = false;
+		ChatRoomClearAllElements();
+		ChatRoomSetLastChatRoom("")
+		ServerSend("ChatRoomLeave", "");
+		ChatSearchMessage = "ErrorInvalidRoomProperties"
+		CommonSetScreen("Online", "ChatSearch");
+		return;
+	}
+
+	// Loads the room
+	if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "ChatAdmin") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) {
+		if (ChatRoomPlayerCanJoin) {
+			ChatRoomPlayerCanJoin = false;
+			CommonSetScreen("Online", "ChatRoom");
+			if (ChatRoomPlayerJoiningAsAdmin) {
+				ChatRoomPlayerJoiningAsAdmin = false;
+				// Check if we should push banned members
+				if (Player.OnlineSettings && data.Character.length == 1) {
+					const BanList = ChatRoomConcatenateBanList(Player.OnlineSettings.AutoBanBlackList, Player.OnlineSettings.AutoBanGhostList);
+					if (BanList.length > 0) {
+						data.Ban = BanList;
+						data.Limit = data.Limit.toString();
+						ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: data, Action: "Update" });
 					}
 				}
-			} else return;
-		}
-
-		// Treat chatroom updates from ourselves as if the updated characters had sent them
-		const trustedUpdate = data.SourceMemberNumber === Player.MemberNumber;
-
-		// Load the characters
-		const OldChatRoomCharacter = ChatRoomCharacter || [];
-		ChatRoomCharacter = [];
-		for (let C = 0; C < data.Character.length; C++) {
-			const sourceMemberNumber = trustedUpdate ? data.Character[C].MemberNumber : data.SourceMemberNumber;
-			const Char = CharacterLoadOnline(data.Character[C], sourceMemberNumber);
-			ChatRoomCharacter.push(Char);
-			// Special cases when someone joins the room
-			if (!Joining && !OldChatRoomCharacter.includes(Char)) {
-				if (ChatRoomNotificationRaiseChatJoin(Char)) {
-					NotificationRaise(NotificationEventType.CHATJOIN, { characterName: Char.Name });
-				}
-				if (ChatRoomLeashList.includes(Char.MemberNumber)) {
-					// Ping to make sure they are still leashed
-					ServerSend("ChatRoomChat", { Content: "PingHoldLeash", Type: "Hidden", Target: Char.MemberNumber });
-				}
 			}
-		}
-
-		// Keeps a copy of the previous version
-		ChatRoomData = data;
-		if (ChatRoomData.Game != null) ChatRoomGame = ChatRoomData.Game;
-
-		// Recreates the chatroom with the stored chatroom data if necessary
-		ChatRoomRecreate();
-
-		// Check whether the player's last chatroom data needs updating
-		ChatRoomCheckForLastChatRoomUpdates();
-
-		// Reloads the online game statuses if needed
-		OnlineGameLoadStatus();
-
-		// The allowed menu actions may have changed
-		ChatRoomMenuBuild();
+		} else return;
 	}
+
+	// Treat chatroom updates from ourselves as if the updated characters had sent them
+	const trustedUpdate = data.SourceMemberNumber === Player.MemberNumber;
+
+	// Load the characters
+	ChatRoomCharacter = [];
+	for (let C = 0; C < data.Character.length; C++) {
+		const sourceMemberNumber = trustedUpdate ? data.Character[C].MemberNumber : data.SourceMemberNumber;
+		const Char = CharacterLoadOnline(data.Character[C], sourceMemberNumber);
+		ChatRoomCharacter.push(Char);
+	}
+
+	// Keeps a copy of the previous version
+	ChatRoomData = data;
+	if (ChatRoomData.Game != null) {
+		ChatRoomGame = ChatRoomData.Game;
+	}
+
+	// Recreates the chatroom with the stored chatroom data if necessary
+	ChatRoomRecreate();
+
+	// Check whether the player's last chatroom data needs updating
+	ChatRoomCheckForLastChatRoomUpdates();
+
+	// Reloads the online game statuses if needed
+	OnlineGameLoadStatus();
+
+	// The allowed menu actions may have changed
+	ChatRoomMenuBuild();
 }
 
 
