@@ -168,8 +168,6 @@ function ArcadeClick() {
  */
 function ArcadeKinkyDungeonStart(PlayerLevel) {
 	
-	KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
-	
 	MiniGameStart("KinkyDungeon", PlayerLevel, "ArcadeKinkyDungeonEnd");
 }
 

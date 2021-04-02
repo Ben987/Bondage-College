@@ -33,6 +33,7 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 91,0,"(No, don't revert Character.)",(You can use or remove items by selecting specific body regions on yourself.),,
 92,0,"(Yes, I want to be released.)",,DialogChatRoomSafewordRelease(),
 92,0,"(No, don't release me.)",(You can use or remove items by selecting specific body regions on yourself.),,
+0,,(Play Kinky Dungeon),,DialogStartKinkyDungeon(),DialogHasGamingHeadset()
 SavedExpressionsSave,,,Save,,
 SavedExpressionsLoad,,,Load,,
 SavedExpressions,,,Save/Load Expressions,,
@@ -752,7 +753,8 @@ InteractiveVRHeadsetHeadSetVirtual,,,SourceCharacter configures DestinationChara
 InteractiveVRHeadsetHeadSetAR,,,SourceCharacter configures DestinationCharacter headset to display the surroundings through a camera feed.,,
 InteractiveVRHeadsetHeadSetOff,,,SourceCharacter turns off DestinationCharacter headset.,,
 InteractiveVRHeadsetHeadTypeVirtual,,,Virtual World,,
-InteractiveVRHeadsetHeadTypeAR,,,Camera Feed,,
+InteractiveVRHeadsetHeadTypeGaming,,,Kinky Dungeon,,
+InteractiveVRHeadsetHeadTypeAR,,,Passthrough,,
 InteractiveVRHeadsetHeadTypeOff,,,Off,,
 SelectHeadsetType,,,Select the type of image to display,,
 CantChangeWhileLockedFuturistic,,,Access denied.,,

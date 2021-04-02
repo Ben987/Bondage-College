@@ -16,6 +16,13 @@ var InventoryItemHeadInteractiveVRHeadsetOptions = [
 		},
 	},
 	{
+		Name: "Gaming",
+		Property: {
+			Type: "Gaming",
+			Effect: ["BlindHeavy", "Prone"],
+		},
+	},
+	{
 		Name: "Off",
 		Property: {
 			Type: "Off",

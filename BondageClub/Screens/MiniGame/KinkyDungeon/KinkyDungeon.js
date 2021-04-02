@@ -33,6 +33,9 @@ function KinkyDungeonDressPlayer() {
  * @returns {void} - Nothing
  */
 function KinkyDungeonLoad() {
+	if (!KinkyDungeonPlayer)
+		KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
+	
 	//KinkyDungeonCreateMap(MiniGameDifficulty);
 	var appearance = CharacterAppearanceStringify(Player)
 	CharacterAppearanceRestore(KinkyDungeonPlayer, appearance)
