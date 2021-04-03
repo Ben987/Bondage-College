@@ -63,6 +63,14 @@ function KinkyDungeonLoad() {
 }
 
 /**
+ * Restricts Devious Dungeon Challenge to only occur when inside the arcade
+ * @returns {bool} - If the player is in the arcade
+ */
+function KinkyDungeonDeviousDungeonAvailable() {
+	return DialogGamingPreviousRoom == "Arcade" || MiniGameReturnFunction == "ArcadeKinkyDungeonEnd"
+}
+
+/**
  * Runs the kinky dungeon game and draws its components on screen
  * @returns {void} - Nothing
  */
@@ -81,7 +89,7 @@ function KinkyDungeonRun() {
 		DrawText(TextGet("Intro2"), 1250, 500, "white", "silver");
 		DrawText(TextGet("Intro3"), 1250, 600, "white", "silver");
 		
-		if (ArcadeDeviousChallenge) 
+		if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable()) 
 			DrawText(TextGet("DeviousChallenge"), 1250, 925, "white", "silver");
 		
 		DrawButton(875, 750, 350, 64, TextGet("GameStart"), "White", "");
