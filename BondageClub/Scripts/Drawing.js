@@ -228,7 +228,9 @@ function DrawArousalMeter(C, X, Y, Zoom) {
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 	if (!DrawCanvas) DrawCanvas = MainCanvas
 	
-	if ((C != null) && ((C.ID == 0) || (Player.GetBlindLevel() < 3 || CurrentModule == "MiniGame") || (CurrentScreen == "InformationSheet"))) {
+	var OverrideDark = CurrentModule == "MiniGame" || ((Player.Effect.includes("VRAvatars") && C.Effect.includes("VRAvatars"))) || CurrentScreen == "InformationSheet"
+	
+	if ((C != null) && ((C.ID == 0) || (OverrideDark || Player.GetBlindLevel() < 3 ))) {
 
 		if (ControllerActive == true) {
 			setButton(X + 100, Y + 200)
@@ -270,7 +272,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 		CharacterCanvas.canvas.height = Canvas.height;
 
 		// If we must dark the Canvas characters
-		if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet") && CurrentModule != "MiniGame") {
+		if ((C.ID != 0) && Player.IsBlind() && !OverrideDark) {
 			const DarkFactor = Math.min(CharacterGetDarkFactor(Player) * 2, 1);
 			
 			CharacterCanvas.globalCompositeOperation = "copy";

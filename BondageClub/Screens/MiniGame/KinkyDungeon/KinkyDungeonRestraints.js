@@ -139,6 +139,7 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 			if (Pass != "Success") {
 				KinkyDungeonStatWillpower += KinkyDungeonStatWillpowerCostStruggleFail
 				
+				// reduces the tightness of the restraint slightly
 				if (StruggleType == "Struggle") {
 					var tightness_reduction = 1
 					

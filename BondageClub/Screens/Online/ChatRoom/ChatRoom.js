@@ -545,8 +545,19 @@ function ChatRoomDrawCharacter(DoClick) {
 	if (CustomBG) DarkFactor = CharacterGetDarkFactor(Player, true);
 
 	// The number of characters to show in the room
-	const RenderSingle = Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3;
-	const CharacterCount = RenderSingle ? 1 : ChatRoomCharacter.length;
+	const RenderSingle = Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3 && !Player.Effect.includes("VRAvatars");
+	var ChatRoomCharacterTemp = ChatRoomCharacter
+	if (Player.Effect.includes("VRAvatars")) {
+		ChatRoomCharacterTemp = []
+		for (let CC = 0; CC < ChatRoomCharacter.length; CC++) {
+			if (ChatRoomCharacter[CC].Effect.includes("VRAvatars")) {
+				ChatRoomCharacterTemp.push(ChatRoomCharacter[CC])
+			}
+		}
+	}
+	
+	const CharacterCount = RenderSingle ? 1 : ChatRoomCharacterTemp.length;
+	
 
 	// Determine the horizontal & vertical position and zoom levels to fit all characters evenly in the room
 	const Space = CharacterCount >= 2 ? 1000 / Math.min(CharacterCount, 5) : 500;
@@ -561,15 +572,15 @@ function ChatRoomDrawCharacter(DoClick) {
 	}
 
 	// Draw the characters (in click mode, we can open the character menu or start whispering to them)
-	for (let C = 0; C < ChatRoomCharacter.length; C++) {
+	for (let C = 0; C < ChatRoomCharacterTemp.length; C++) {
 		const CharX = RenderSingle ? 0 : X + (C % 5) * Space;
 		const CharY = RenderSingle ? 0 : Y + Math.floor(C / 5) * 500;
-		if (RenderSingle && ChatRoomCharacter[C].ID !== 0) { // Only render the player!
+		if (RenderSingle && ChatRoomCharacterTemp[C].ID !== 0) { // Only render the player!
 			continue;
 		}
 		if (DoClick) {
 			if (MouseIn(CharX, CharY, Space, 1000 * Zoom)) {
-				return ChatRoomClickCharacter(ChatRoomCharacter[C], CharX, CharY, Zoom, (MouseX - CharX) / Zoom, (MouseY - CharY) / Zoom, C);
+				return ChatRoomClickCharacter(ChatRoomCharacterTemp[C], CharX, CharY, Zoom, (MouseX - CharX) / Zoom, (MouseY - CharY) / Zoom, C);
 			}
 		} else {
 			// Draw the background a second time for characters 6 to 10 (we do it here to correct clipping errors from the first part)
@@ -578,11 +589,11 @@ function ChatRoomDrawCharacter(DoClick) {
 			}
 
 			// Draw the character
-			DrawCharacter(ChatRoomCharacter[C], CharX, CharY, Zoom);
+			DrawCharacter(ChatRoomCharacterTemp[C], CharX, CharY, Zoom);
 
 			// Draw the character overlay
-			if (ChatRoomCharacter[C].MemberNumber != null) {
-				ChatRoomDrawCharacterOverlay(ChatRoomCharacter[C], CharX, CharY, Zoom, C);
+			if (ChatRoomCharacterTemp[C].MemberNumber != null) {
+				ChatRoomDrawCharacterOverlay(ChatRoomCharacterTemp[C], CharX, CharY, Zoom, C);
 			}
 		}
 	}
@@ -691,7 +702,7 @@ function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY, Pos) {
 			return;
 		}
 		// Sensory deprivation setting: Total (no whispers)
-		if (Player.GameplaySettings.SensDepChatLog === "SensDepExtreme" && Player.GetBlindLevel() >= 3) {
+		if (Player.GameplaySettings.SensDepChatLog === "SensDepExtreme" && Player.GetBlindLevel() >= 3 && !(Player.Effect.includes("VRAvatars") && C.Effect.includes("VRAvatars"))) {
 			return;
 		}
 		ChatRoomSetTarget(C.MemberNumber);
@@ -1453,36 +1464,40 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
 		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
 		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
-		else if (msg != "" && !((ChatRoomTargetMemberNumber != null || m.indexOf("(") >= 0) && Player.ImmersionSettings && Player.ImmersionSettings.BlockGaggedOOC && !Player.CanTalk())) {
-			if (ChatRoomTargetMemberNumber == null) {
-				// Regular chat
-				ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });
-				ChatRoomStimulationMessage("Gag");
-			} else {
-				// The whispers get sent to the server and shown on the client directly
-				ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Target: ChatRoomTargetMemberNumber });
-				var TargetName = "";
-				for (let C = 0; C < ChatRoomCharacter.length; C++)
-					if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
-						TargetName = ChatRoomCharacter[C].Name;
+		else {
+			var WhisperTarget = null
+			for (let C = 0; C < ChatRoomCharacter.length; C++)
+						if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
+							WhisperTarget = ChatRoomCharacter[C];
+			if (msg != "" && !((ChatRoomTargetMemberNumber != null || m.indexOf("(") >= 0) && Player.ImmersionSettings && (Player.ImmersionSettings.BlockGaggedOOC && (!Player.Effect.includes("VRAvatars") || !WhisperTarget || !WhisperTarget.Effect.includes("VRAvatars"))) && !Player.CanTalk())) {
+				if (ChatRoomTargetMemberNumber == null) {
+					// Regular chat
+					ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });
+					ChatRoomStimulationMessage("Gag");
+				} else {
+					// The whispers get sent to the server and shown on the client directly
+					ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Target: ChatRoomTargetMemberNumber });
+					var TargetName = "";
+					if (WhisperTarget) TargetName = WhisperTarget.Name
 
-				var div = document.createElement("div");
-				div.setAttribute('class', 'ChatMessage ChatMessageWhisper');
-				div.setAttribute('data-time', ChatRoomCurrentTime());
-				div.setAttribute('data-sender', Player.MemberNumber.toString());
-				div.innerHTML = TextGet("WhisperTo") + " " + TargetName + ": " + msg;
+					var div = document.createElement("div");
+					div.setAttribute('class', 'ChatMessage ChatMessageWhisper');
+					div.setAttribute('data-time', ChatRoomCurrentTime());
+					div.setAttribute('data-sender', Player.MemberNumber.toString());
+					div.innerHTML = TextGet("WhisperTo") + " " + TargetName + ": " + msg;
 
-				var Refocus = document.activeElement.id == "InputChat";
-				var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
-				if (document.getElementById("TextAreaChatLog") != null) {
-					document.getElementById("TextAreaChatLog").appendChild(div);
-					if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
-					if (Refocus) ElementFocus("InputChat");
+					var Refocus = document.activeElement.id == "InputChat";
+					var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
+					if (document.getElementById("TextAreaChatLog") != null) {
+						document.getElementById("TextAreaChatLog").appendChild(div);
+						if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
+						if (Refocus) ElementFocus("InputChat");
+					}
 				}
+			}	else {
+					// Throw an error message
+					ChatRoomMessage({ Content: "ChatRoomBlockGaggedOOC", Type: "Action", Sender: Player.MemberNumber });
 			}
-		}	else {
-				// Throw an error message
-				ChatRoomMessage({ Content: "ChatRoomBlockGaggedOOC", Type: "Action", Sender: Player.MemberNumber });
 		}
 		// Clears the chat text message
 		ElementValue("InputChat", "");
