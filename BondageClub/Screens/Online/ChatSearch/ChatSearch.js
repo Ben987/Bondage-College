@@ -16,6 +16,8 @@ var ChatSearchPreviousActivePose = null;
 var ChatSearchIgnoredRooms = [];
 var ChatSearchMode = "";
 var ChatRoomJoinLeash = ""
+var ChatSearchQueryAdd = 0
+var ChatSearchQueryAddTimeout = 5000 // 5000 second timeout
 
 /**
  * Loads the chat search screen properties, creates the inputs and loads up the first 24 rooms.
@@ -357,86 +359,112 @@ function ChatSearchResponse(data) {
  * @returns {void} - Nothing
  */
 function ChatSearchResultResponse(data) { 
-	ChatSearchResult = data;
-	ChatSearchResultOffset = 0;
-	ChatSearchQuerySort();
-	if (ChatRoomJoinLeash != "") {
-		for (let R = 0; R < ChatSearchResult.length; R++)
-			if (ChatSearchResult[R].Name == ChatRoomJoinLeash) {
-				ChatSearchLastQueryJoinTime = CommonTime();
-				ChatSearchLastQueryJoin = ChatSearchResult[R].Name;
-				ChatRoomPlayerCanJoin = true;
-				ServerSend("ChatRoomJoin", { Name: ChatSearchResult[R].Name });
-				break;
-			}
-	} else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
-		var found = false
-		var roomIsFull = false
-		for (let R = 0; R < data.length; R++) {
-			var room = data[R]
-			if (room.Name == Player.LastChatRoom && room.Game == "") {
-				if (room.MemberCount < room.MemberLimit) {
-					var RoomName = room.Name;
-					if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
-						found = true
-						ChatSearchLastQueryJoinTime = CommonTime();
-						ChatSearchLastQueryJoin = RoomName;
-						ChatRoomPlayerCanJoin = true;
-						ServerSend("ChatRoomJoin", { Name: RoomName });
-						break;
-					}
-				} else {
-					roomIsFull = true
+	if (ChatSearchQueryAdd > CommonTime() - ChatSearchQueryAddTimeout) {
+		var terms = ElementValue("InputSearch").toUpperCase().trim().split(" ");
+		for (let DD = 0; DD < data.length; DD++) {
+			if (data[DD].Name && ElementValue("InputSearch").toUpperCase().trim() == data[DD].Name.toUpperCase()) ChatSearchResult.push(data[DD]);
+			else
+			for (let TT = 0; TT < terms.length; TT++) {
+				if ((data[DD].Name && data[DD].Name.toUpperCase().includes(terms)) || (data[DD].Description && data[DD].Description.toUpperCase().includes(terms))) {
+					
+                    // Check to make sure we are not already here
+                    var dupe = false
+                    for (let DDD = 0; DDD < ChatSearchResult.length; DDD++) {
+                    	if (ChatSearchResult[DDD] && ChatSearchResult[DDD].Name && ChatSearchResult[DDD].Name == data[DD].Name) {
+                    		dupe = true;
+                    		break;
+                    	}
+                    }
+                    if (!dupe) ChatSearchResult.push(data[DD]);
 					break;
 				}
+			}
+		}
+		ChatSearchResultOffset = 0;
+		ChatSearchQuerySort();
+	} else {
 
+		ChatSearchResult = data;
+		ChatSearchResultOffset = 0;
+		ChatSearchQuerySort();
+		if (ChatRoomJoinLeash != "") {
+			for (let R = 0; R < ChatSearchResult.length; R++)
+				if (ChatSearchResult[R].Name == ChatRoomJoinLeash) {
+					ChatSearchLastQueryJoinTime = CommonTime();
+					ChatSearchLastQueryJoin = ChatSearchResult[R].Name;
+					ChatRoomPlayerCanJoin = true;
+					ServerSend("ChatRoomJoin", { Name: ChatSearchResult[R].Name });
+					break;
+				}
+		} else if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "" && Player.ImmersionSettings.ReturnToChatRoom) {
+			var found = false
+			var roomIsFull = false
+			for (let R = 0; R < data.length; R++) {
+				var room = data[R]
+				if (room.Name == Player.LastChatRoom && room.Game == "") {
+					if (room.MemberCount < room.MemberLimit) {
+						var RoomName = room.Name;
+						if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
+							found = true
+							ChatSearchLastQueryJoinTime = CommonTime();
+							ChatSearchLastQueryJoin = RoomName;
+							ChatRoomPlayerCanJoin = true;
+							ServerSend("ChatRoomJoin", { Name: RoomName });
+							break;
+						}
+					} else {
+						roomIsFull = true
+						break;
+					}
+
+				}
+			}
+			if (!found) {
+				if (Player.ImmersionSettings.ReturnToChatRoomAdmin
+				&& Player.LastChatRoomAdmin
+				&& Player.LastChatRoomBG
+				&& Player.LastChatRoomPrivate != null
+				&& Player.LastChatRoomSize
+				&& Player.LastChatRoomDesc != null) {
+					ChatRoomPlayerCanJoin = true;
+					ChatRoomPlayerJoiningAsAdmin = true;
+					var block = []
+					var ChatRoomName = Player.LastChatRoom;
+					var ChatRoomDesc = Player.LastChatRoomDesc;
+					/*if (Player.LastChatRoomPrivate) {
+						ChatRoomName = Player.Name + Player.MemberNumber
+						ChatRoomDesc = ""
+					} else*/
+					if (roomIsFull) {
+						ChatRoomName = ChatRoomName.substring(0, Math.min(ChatRoomName.length, 16)) + Math.floor(1+Math.random() * 998); // Added 
+					}
+					if (ChatBlockItemCategory) block = ChatBlockItemCategory
+					var NewRoom = {
+						Name: ChatRoomName.trim(),
+						Description: ChatRoomDesc.trim(),
+						Background: Player.LastChatRoomBG,
+						Private: Player.LastChatRoomPrivate,
+						Space: ChatRoomSpace,
+						Game: "",
+						Admin: [Player.MemberNumber],
+						Limit: ("" + Math.min(Math.max(Player.LastChatRoomSize, 2), 10)).trim(),
+						BlockCategory: block
+					};
+					ServerSend("ChatRoomCreate", NewRoom);
+					ChatCreateMessage = "CreatingRoom";
+					
+					if (Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.LastChatRoomAdmin) {
+						NewRoom.Admin = Player.LastChatRoomAdmin
+						ChatRoomNewRoomToUpdate = NewRoom
+					}
+				} else {
+					ChatSearchMessage = roomIsFull ? "ResponseRoomFull" : "ResponseCannotFindRoom";
+					ChatRoomSetLastChatRoom("")
+				}
 			}
 		}
-		if (!found) {
-			if (Player.ImmersionSettings.ReturnToChatRoomAdmin
-			&& Player.LastChatRoomAdmin
-			&& Player.LastChatRoomBG
-			&& Player.LastChatRoomPrivate != null
-			&& Player.LastChatRoomSize
-			&& Player.LastChatRoomDesc != null) {
-				ChatRoomPlayerCanJoin = true;
-				ChatRoomPlayerJoiningAsAdmin = true;
-				var block = []
-				var ChatRoomName = Player.LastChatRoom;
-				var ChatRoomDesc = Player.LastChatRoomDesc;
-				/*if (Player.LastChatRoomPrivate) {
-					ChatRoomName = Player.Name + Player.MemberNumber
-					ChatRoomDesc = ""
-				} else*/
-				if (roomIsFull) {
-					ChatRoomName = ChatRoomName.substring(0, Math.min(ChatRoomName.length, 16)) + Math.floor(1+Math.random() * 998); // Added 
-				}
-				if (ChatBlockItemCategory) block = ChatBlockItemCategory
-				var NewRoom = {
-					Name: ChatRoomName.trim(),
-					Description: ChatRoomDesc.trim(),
-					Background: Player.LastChatRoomBG,
-					Private: Player.LastChatRoomPrivate,
-					Space: ChatRoomSpace,
-					Game: "",
-					Admin: [Player.MemberNumber],
-					Limit: ("" + Math.min(Math.max(Player.LastChatRoomSize, 2), 10)).trim(),
-					BlockCategory: block
-				};
-				ServerSend("ChatRoomCreate", NewRoom);
-				ChatCreateMessage = "CreatingRoom";
-				
-				if (Player.ImmersionSettings.ReturnToChatRoomAdmin && Player.LastChatRoomAdmin) {
-					NewRoom.Admin = Player.LastChatRoomAdmin
-					ChatRoomNewRoomToUpdate = NewRoom
-				}
-			} else {
-				ChatSearchMessage = roomIsFull ? "ResponseRoomFull" : "ResponseCannotFindRoom";
-				ChatRoomSetLastChatRoom("")
-			}
-		}
+		ChatRoomJoinLeash = ""
 	}
-	ChatRoomJoinLeash = ""
 }
 
 /**
@@ -463,6 +491,8 @@ function ChatSearchQuery() {
 		ChatSearchLastQuerySearchHiddenRooms = ChatSearchIgnoredRooms.length;
 		ChatSearchResult = [];
 		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace, Game: ChatRoomGame, FullRooms: (Player.OnlineSettings && Player.OnlineSettings.SearchShowsFullRooms), Ignore: ChatSearchIgnoredRooms });
+		ChatSearchQueryAdd = CommonTime()
+		ServerSend("ChatRoomSearch", { Query: "", Space: ChatRoomSpace, Game: ChatRoomGame, FullRooms: (Player.OnlineSettings && Player.OnlineSettings.SearchShowsFullRooms), Ignore: ChatSearchIgnoredRooms });
 	}
 
 	ChatSearchMessage = "EnterName";
