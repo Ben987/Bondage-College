@@ -749,7 +749,7 @@ InteractiveVisorHeadSetHeavyTint,,,SourceCharacter configures DestinationCharact
 InteractiveVisorHeadTypeLightTint,,,Light Tint,,
 InteractiveVisorHeadTypeHeavyTint,,,Heavy Tint,,
 SelectVisorType,,,Select the type of visor,,
-InteractiveVRHeadsetHeadSetVirtual,,,SourceCharacter configures DestinationCharacter headset to display a virtual reality.,,
+InteractiveVRHeadsetHeadSetVirtual,,,SourceCharacter logs DestinationCharacter headset into the virtual world.,,
 InteractiveVRHeadsetHeadSetAR,,,SourceCharacter configures DestinationCharacter headset to display the surroundings through a camera feed.,,
 InteractiveVRHeadsetHeadSetOff,,,SourceCharacter turns off DestinationCharacter headset.,,
 InteractiveVRHeadsetHeadTypeVirtual,,,Virtual World,,
