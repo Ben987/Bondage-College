@@ -47,6 +47,7 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomCreateResponse", function (data) { ChatCreateResponse(data); });
 	ServerSocket.on("ChatRoomUpdateResponse", function (data) { ChatAdminResponse(data); });
 	ServerSocket.on("ChatRoomSync", function (data) { ChatRoomSync(data); });
+	ServerSocket.on("ChatRoomSyncMemberJoin", function (data) { ChatRoomSyncMemberJoin(data); });
 	ServerSocket.on("ChatRoomSyncMemberLeave", function (data) { ChatRoomSyncMemberLeave(data); });
 	ServerSocket.on("ChatRoomSyncSingle", function (data) { ChatRoomSyncSingle(data); });
 	ServerSocket.on("ChatRoomSyncExpression", function (data) { ChatRoomSyncExpression(data); });

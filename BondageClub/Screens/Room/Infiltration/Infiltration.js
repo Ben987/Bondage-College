@@ -76,3 +76,13 @@ function InfiltrationPrepareMission() {
 	InfiltrationSupervisor.CurrentDialog = DialogFind(InfiltrationSupervisor, InfiltrationMission + "Intro");
 	InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
 }
+
+/**
+ * Starts the mission and jumps to Pandora's box
+ * @returns {void} - Nothing
+ */
+function InfiltrationStartMission() {
+	DialogLeave();
+	CommonSetScreen("Room", "Pandora");
+	PandoraBuildMainHall();
+}

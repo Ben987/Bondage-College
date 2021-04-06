@@ -50,6 +50,17 @@ var InventoryItemArmsDuctTapeOptions = [
 			Difficulty: 7,
 		}
 	},
+	{
+		Name: "ExposedComplete",
+		SelfBondageLevel: 10,
+		Prerequisite: ["NoOuterClothes"],
+		Property: {
+			Type: "ExposedComplete",
+			SetPose: ["BackElbowTouch"],
+			Block: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemVulvaPiercings", "ItemBreast"],
+			Difficulty: 7,
+		}
+	},
 
 ];
 

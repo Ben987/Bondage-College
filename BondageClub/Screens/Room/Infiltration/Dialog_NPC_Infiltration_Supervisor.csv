@@ -62,4 +62,7 @@ Ready,Start,I'm ready to go!,(She salutes you.)  Make us proud comrade DialogPla
 Ready,Start,I'm the best.  I will be back quick.,That's the spirit comrade!  The Bondage Club is proud of you.,"DialogChangeReputation(""Dominant"", 2)",
 Ready,Start,I hope nothing will go wrong.,Be more confident girl.  Go and make us proud!,"DialogChangeReputation(""Dominant"", -2)",
 Ready,0,I've changed my mind.,I'm sorry to hear that.  Come another time then.,,
-Start,,(Go to Pandora's Box.),TO DO,,
+Start,End,(Go to Pandora's Box.),,StartMission(),
+End,,,Welcome back comrade.  Is your mission complete?,,
+End,0,"Sorry, I've failed.","Don't be ashamed, I'm sure you've tried your best.  We'll send someone else, you can pick another mission if you want.",,
+End,,Give me a minute.  (Leave her.),,DialogLeave(),

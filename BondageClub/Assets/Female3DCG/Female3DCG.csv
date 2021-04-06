@@ -737,6 +737,7 @@ ItemNipples,NippleWeightClamps,Nipple Weight Clamps
 ItemNipples,BellClamps,Nipple Bell Clamps
 ItemNipples,LactationPump,Lactation Pump
 ItemNipples,ShockClamps,Shock Clamps
+ItemNipples,PlateClamps, Plate Clamps
 ItemNipplesPiercings,,Nipples
 ItemNipplesPiercings,StraightPiercing,Straight Piercings
 ItemNipplesPiercings,RoundPiercing,Round Piercings
@@ -1207,6 +1208,7 @@ ItemDevices,TransportWoodenBox,Transport Box
 ItemDevices,VacCube,Vac-Cube
 ItemDevices,PetBowl,Pet Bowl
 ItemDevices,Pole,Pole
+ItemDevices,Cushion,Cushion
 ItemHoodAddon,,Hood
 ItemHoodAddon,OldGasMaskLenses,Blinding Lenses
 ItemHoodAddon,OldGasMaskTube1,Gas Mask Tube

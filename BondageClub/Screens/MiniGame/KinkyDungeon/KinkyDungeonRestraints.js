@@ -139,6 +139,7 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 			if (Pass != "Success") {
 				KinkyDungeonStatWillpower += KinkyDungeonStatWillpowerCostStruggleFail
 				
+				// reduces the tightness of the restraint slightly
 				if (StruggleType == "Struggle") {
 					var tightness_reduction = 1
 					
@@ -224,7 +225,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 		if (!InventoryGroupIsBlocked(KinkyDungeonPlayer, restraint.Group) || Bypass) {
 			KinkyDungeonRemoveRestraint(restraint.Group)
 			InventoryWear(KinkyDungeonPlayer, restraint.Asset, restraint.Group, restraint.power)
-			if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && restraint.Group != "ItemHead" && !InventoryGroupIsBlocked(Player, restraint.Group) && 
+			if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && restraint.Group != "ItemHead" && !InventoryGroupIsBlocked(Player, restraint.Group) && 
 				(!InventoryGetLock(InventoryGet(Player, restraint.Group))
 				|| (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false)))
 					InventoryWear(Player, restraint.Asset, restraint.Group, restraint.power)
@@ -233,7 +234,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 				const options = window["Inventory" + restraint.Group + restraint.Asset + "Options"]
 				const option = options.find(o => o.Name === restraint.Type);
 				ExtendedItemSetType(KinkyDungeonPlayer, options, option);
-				if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) &&
+				if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) &&
 					(!InventoryGetLock(InventoryGet(Player, restraint.Group)) || (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false))
 					&& restraint.Group != "ItemHead") {
 					Player.FocusGroup = AssetGroupGet("Female3DCG", restraint.Group)
@@ -244,7 +245,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 			}
 			if (restraint.Color) {
 				CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, restraint.Color, restraint.Group);
-				if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) &&
+				if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) &&
 					(!InventoryGetLock(InventoryGet(Player, restraint.Group)) || (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false))
 					&& restraint.Group != "ItemHead")
 					CharacterAppearanceSetColorForGroup(Player, restraint.Color, restraint.Group);
@@ -261,7 +262,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 function KinkyDungeonRemoveRestraint(Group) {
 	for (let I = 0; I < KinkyDungeonInventory.length; I++) {
 			var item = KinkyDungeonInventory[I]
-			if (ArcadeDeviousChallenge && !KinkyDungeonRestraintsLocked.includes(Group) && InventoryGet(Player, Group)  && !InventoryGroupIsBlocked(Player, Group) &&
+			if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(Group) && InventoryGet(Player, Group)  && !InventoryGroupIsBlocked(Player, Group) &&
 					(!InventoryGetLock(InventoryGet(Player, Group)) || (InventoryGetLock(InventoryGet(Player, Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, Group)).Asset.LoverOnly == false))
 					&& Group != "ItemHead") {
 				InventoryRemove(Player, Group)

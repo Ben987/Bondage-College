@@ -34,6 +34,8 @@ var DialogSelfMenuSelected = null;
 var DialogLeaveDueToItem = false; // This allows dynamic items to call DialogLeave() without crashing the game
 var DialogLockMenu = false
 var DialogLentLockpicks = false
+var DialogGamingPreviousRoom = ""
+var DialogGamingPreviousModule = ""
 
 /** @type {Map<string, string>} */
 var PlayerDialog = new Map();
@@ -321,6 +323,37 @@ function DialogPrerequisite(D) {
 								return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
 							else
 								return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
+}
+
+
+/**
+ * Checks if the player can play VR games
+ * @returns {boolean} - Whether or not the player is wearing a VR headset with Gaming type
+ */
+function DialogHasGamingHeadset() {
+	var head = InventoryGet(Player, "ItemHead")
+	if (head && head.Property && head.Property.Type == "Gaming") return true;
+	
+	return false
+}
+
+
+/**
+ * Starts the kinky dungeon game
+ * @returns {void}
+ */
+function DialogStartKinkyDungeon() {
+	DialogGamingPreviousRoom = CurrentScreen
+	DialogGamingPreviousModule = CurrentModule
+	MiniGameStart("KinkyDungeon", 0, "DialogEndKinkyDungeon");
+}
+
+/**
+ * Return to previous room
+ * @returns {void}
+ */
+function DialogEndKinkyDungeon() {
+	CommonSetScreen(DialogGamingPreviousModule, DialogGamingPreviousRoom);
 }
 
 /**
