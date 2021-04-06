@@ -158,8 +158,7 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 	const previousProperty = previousItem.Property || {};
 	const newProperty = newItem.Property = newItem.Property || {};
 	const itemBlocked = ValidationIsItemBlockedOrLimited(C, sourceMemberNumber, group.Name, asset.Name) ||
-	                    ValidationIsItemBlockedOrLimited(
-		                    C, sourceMemberNumber, group.Name, asset.Name, newProperty.Type);
+						ValidationIsItemBlockedOrLimited(C, sourceMemberNumber, group.Name, asset.Name, newProperty.Type);
 
 	// If the type has changed and the new type is blocked/limited for the target character, prevent modifications
 	if (newProperty.Type !== previousProperty.Type && itemBlocked) {
@@ -176,12 +175,12 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 	const lockRemoved = lockSwapped || (!newLock && !!previousLock);
 	const lockAdded = lockSwapped || (!!newLock && !previousLock);
 	const newLockBlocked = lockAdded && ValidationIsItemBlockedOrLimited(
-		C, sourceMemberNumber, newLock.Asset.Group.Name, newLock.Asset.Name,
+		C, sourceMemberNumber, newLock.Asset.Group.Name, newLock.Asset.Name
 	);
 
 	const lockChangeInvalid = (lockRemoved && !ValidationIsLockChangePermitted(previousLock, params)) ||
-	                          (lockAdded && !ValidationIsLockChangePermitted(newLock, params)) ||
-	                          (newLockBlocked);
+		(lockAdded && !ValidationIsLockChangePermitted(newLock, params)) ||
+		(newLockBlocked);
 
 	if (lockChangeInvalid) {
 		// If there was a lock previously, reapply the old lock
@@ -604,7 +603,7 @@ function ValidationSanitizeLock(C, item) {
 		if (!ValidationCombinationNumberRegex.test(property.CombinationNumber)) {
 			// If the combination is invalid, reset to 0000
 			console.warn(
-				`Invalid combination number: ${property.CombinationNumber}. Combination will be reset to ${ValidationDefaultCombinationNumber}`,
+				`Invalid combination number: ${property.CombinationNumber}. Combination will be reset to ${ValidationDefaultCombinationNumber}`
 			);
 			property.CombinationNumber = ValidationDefaultCombinationNumber;
 			changed = true;
@@ -642,7 +641,7 @@ function ValidationSanitizeLock(C, item) {
 		if (!ValidationPasswordRegex.test(property.Password)) {
 			// If the password is invalid, reset to "UNLOCK"
 			console.warn(
-				`Invalid password: ${property.Password}. Combination will be reset to ${ValidationDefaultPassword}`,
+				`Invalid password: ${property.Password}. Combination will be reset to ${ValidationDefaultPassword}`
 			);
 			property.Password = ValidationDefaultPassword;
 			changed = true;

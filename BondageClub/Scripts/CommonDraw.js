@@ -291,24 +291,24 @@ function CommonDrawAppearanceBuild(C, {
 					drawImageColorize(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y,
 						Color,
-						AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
+						AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate
 					);
 					drawImageColorizeBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y,
-						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
+						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate
 					);
 				} else {
 					var ColorName = ((Color == null) || (Color == "Default") || (Color == "") || (Color.length == 1) ||
-					                 (Color.indexOf("#") == 0)) ? "" : "_" + Color;
+						(Color.indexOf("#") == 0)) ? "" : "_" + Color;
 					drawImage(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + ColorName + L + ".png",
 						X, Y,
-						AlphaMasks, Opacity, Rotate,
+						AlphaMasks, Opacity, Rotate
 					);
 					drawImageBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + ColorName + L +
 						".png",
-						X, Y, AlphaMasks, Opacity, Rotate,
+						X, Y, AlphaMasks, Opacity, Rotate
 					);
 				}
 			}
@@ -323,7 +323,7 @@ function CommonDrawAppearanceBuild(C, {
 					drawImage(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + (A.HasType ? Type : "") +
 						"_Lock.png",
-						X, Y, AlphaMasks,
+						X, Y, AlphaMasks
 					);
 					drawImageBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + (A.HasType ? Type : "") +

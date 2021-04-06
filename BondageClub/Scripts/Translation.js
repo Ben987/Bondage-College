@@ -195,7 +195,7 @@ var TranslationDictionary = [
 		LanguageName: "Русский",
 		EnglishName: "Russian",
 		Files: [
-		    "Assets/Female3DCG/Female3DCG_RU.txt",
+			"Assets/Female3DCG/Female3DCG_RU.txt",
 			"Screens/Character/Appearance/Text_Appearance_RU.txt",
 			"Screens/Character/Cheat/Text_Cheat_RU.txt",
 			"Screens/Character/Creation/Text_Creation_RU.txt",

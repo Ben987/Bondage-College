@@ -959,16 +959,16 @@ function CharacterReleaseNoLock(C) {
  */
 function CharacterReleaseTotal(C) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--) {
-	    if (C.Appearance[E].Asset.Group.Category != "Appearance") {
-	    	if (C.IsOwned() && C.Appearance[E].Asset.Name == "SlaveCollar") {
-	    		// Reset slave collar to the default model if it has a gameplay effect (such as gagging the player)
-	    		if (C.Appearance[E].Property && C.Appearance[E].Property.Effect && C.Appearance[E].Property.Effect.length > 0)
-	    			delete C.Appearance[E].Property;
-	    	}
-	    	else {
-	    		C.Appearance.splice(E,1);
-	    	}
-	    }
+		if (C.Appearance[E].Asset.Group.Category != "Appearance") {
+			if (C.IsOwned() && C.Appearance[E].Asset.Name == "SlaveCollar") {
+				// Reset slave collar to the default model if it has a gameplay effect (such as gagging the player)
+				if (C.Appearance[E].Property && C.Appearance[E].Property.Effect && C.Appearance[E].Property.Effect.length > 0)
+					delete C.Appearance[E].Property;
+			}
+			else {
+				C.Appearance.splice(E, 1);
+			}
+		}
 	}
 	CharacterRefresh(C);
 }
@@ -1030,7 +1030,7 @@ function CharacterSetActivePose(C, NewPose, ForceChange) {
 		return;
 	}
 	
-	if (typeof C.ActivePose == null) C.ActivePose = [];
+	if (C.ActivePose == null) C.ActivePose = [];
 	if (typeof C.ActivePose == "string") C.ActivePose = [C.ActivePose];
 		
 	const PreviousPoses = C.ActivePose.map(AP => PoseFemale3DCG.find(P => P.Name == AP)).filter(AP => typeof AP == "object");
@@ -1181,11 +1181,11 @@ function CharacterIsEdged(C) {
 	const VibratingItems = C.Appearance
 		.filter(A => OrgasmZones.indexOf(A.Asset.ArousalZone) >= 0)
 		.filter(Item => Item
-		                && Item.Property
-		                && Array.isArray(Item.Property.Effect)
-		                && Item.Property.Effect.includes("Vibrating")
-		                && typeof Item.Property.Intensity === "number"
-		                && Item.Property.Intensity >= 0
+			&& Item.Property
+			&& Array.isArray(Item.Property.Effect)
+			&& Item.Property.Effect.includes("Vibrating")
+			&& typeof Item.Property.Intensity === "number"
+			&& Item.Property.Intensity >= 0
 		);
 
 	// Return true if every vibrating item on an orgasm zone has the "Edged" effect
