@@ -547,7 +547,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	// The number of characters to show in the room
 	const RenderSingle = Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3 && !Player.Effect.includes("VRAvatars");
 	var ChatRoomCharacterTemp = ChatRoomCharacter
-	if (Player.Effect.includes("VRAvatars")) {
+	if (Player.Effect.includes("VRAvatars") && Player.GameplaySettings.SensDepChatLog != "SensDepLight") {
 		ChatRoomCharacterTemp = []
 		for (let CC = 0; CC < ChatRoomCharacter.length; CC++) {
 			if (ChatRoomCharacter[CC].Effect.includes("VRAvatars")) {
