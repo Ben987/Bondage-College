@@ -1,0 +1,26 @@
+{
+	"extends": "eslint:recommended",
+	"env": {
+		"es6": true,
+		"browser": true
+	},
+	"root": true,
+	"ignorePatterns": ["Scripts/socket.io/*", "Scripts/three/*", "Scripts/webgl/**/*", "Scripts/LZString.js"],
+	"rules": {
+		"dot-notation": "error",
+		"no-unused-expressions": "error",
+		"no-caller": "error",
+		"no-eval": "error",
+		"no-new-wrappers": "error",
+		"no-throw-literal": "error",
+		"no-shadow": ["warn", { "hoist": "all" }],
+		"strict": ["error", "global"],
+		"no-unused-vars": ["warn", { "vars": "local", "args": "after-used" }],
+		"no-trailing-spaces": "warn",
+		"semi": "warn",
+		"indent": ["warn", "tab", { "SwitchCase": 1 }],
+		// Until globals are properly documented
+		"no-undef": "off",
+		"no-var": "off"
+	}
+}
