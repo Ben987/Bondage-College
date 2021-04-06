@@ -61,7 +61,7 @@ function GameLARPIsAdmin(C) {
 		return (ChatRoomData.Admin.indexOf(C.MemberNumber) >= 0)
 	else
 		return (GameLARPTurnAdmin == C.MemberNumber);
-};
+}
 
 /**
  * Draws the LARP class/team icon of a character
@@ -533,7 +533,7 @@ function GameLARPBuildOptionAbility(Source, Target, Option, Ability) {
 	if (Source.MemberNumber == Target.MemberNumber) {
 
 		// Abilities that can be used on yourself
-		var Odds = GameLARPGetOdds(Ability, Source, Source);
+		let Odds = GameLARPGetOdds(Ability, Source, Source);
 		if ((Ability == "Charge") && GameLARPCanWalk(Source)) Option.push({ Name: Ability, Odds: Odds });
 		if ((Ability == "Control") && GameLARPCanTalk(Source)) Option.push({ Name: Ability, Odds: Odds });
 		if (Ability == "Hide") Option.push({ Name: Ability, Odds: Odds });
@@ -544,7 +544,7 @@ function GameLARPBuildOptionAbility(Source, Target, Option, Ability) {
 	} else {
 
 		// If the player targets someone from her team
-		var Odds = GameLARPGetOdds(Ability, Source, Target);
+		let Odds = GameLARPGetOdds(Ability, Source, Target);
 		if (Source.Game.LARP.Team == Target.Game.LARP.Team) {
 
 			// Abilities that can be used on someone from your team

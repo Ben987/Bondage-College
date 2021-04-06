@@ -45,7 +45,7 @@ var InventoryItemArmsFuturisticStraitjacketOptions = [
 
 // Loads the item extension properties
 function InventoryItemArmsFuturisticStraitjacketLoad() {
- 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else

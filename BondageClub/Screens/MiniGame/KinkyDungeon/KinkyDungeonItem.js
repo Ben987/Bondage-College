@@ -1,3 +1,4 @@
+"use strict";
 var KinkyDungeonGroundItems = [] // Tracking all items on the ground
 
 function KinkyDungeonItemDrop(x, y, dropTable) {

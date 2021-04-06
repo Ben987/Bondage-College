@@ -110,23 +110,23 @@ function GamblingToothpickCanPickThree() {return GamblingToothpickCount >= 3}
  * Checks, if the player is restrained with a locked item
  * @returns {boolean} - Returns true if a restraint is locked on the player, false otherwise
  */
-function GamblingIsRestrainedWithLock() { return InventoryCharacterHasLockedRestraint(Player) };
+function GamblingIsRestrainedWithLock() { return InventoryCharacterHasLockedRestraint(Player) }
 /**
  * Checks, wether the player is restrained but no lock is used
  * @returns {boolean} - Returns true, if the player is restarined, but no lock was used, false otherwise
  */
-function GamblingIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)) };
+function GamblingIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)) }
 
 /**
  * Checks, if the player owns enough money to pay for her release
  * @returns {boolean} - Returns true, if the player is not restrained with a lock and owns at least $25, false otherwise
  */
-function GamblingCanPayToRelease() { return ((Player.Money >= 25) && !InventoryCharacterHasLockedRestraint(Player)) };
+function GamblingCanPayToRelease() { return ((Player.Money >= 25) && !InventoryCharacterHasLockedRestraint(Player)) }
 /**
  * Checks, if the player is too poor to pay for her release
  * @returns {boolean} - Returns true, if the player is not restrained with a lock and owns less than $25, false otherwise
  */
-function GamblingCannotPayToRelease() { return ((Player.Money < 25) && !InventoryCharacterHasLockedRestraint(Player)) };
+function GamblingCannotPayToRelease() { return ((Player.Money < 25) && !InventoryCharacterHasLockedRestraint(Player)) }
 /**
  * Checks, if the player can steal the dice
  * @returns {boolean} - Returns true, if the player is able to steal the dice, false otherwise

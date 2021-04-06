@@ -258,7 +258,7 @@ function KidnapSelectMove(PlayerMove) {
 
 	// If the move is effective, we lower the willpower and show it as text
 	if (PM >= 1) {
-		var Damage = parseInt(Player.KidnapStat[PlayerMove]);
+		let Damage = parseInt(Player.KidnapStat[PlayerMove]);
 		if (!KidnapMoveEffective(Player, PlayerMove)) Damage = Math.round(Damage / 2);
 		if (PlayerMove == OpponentMove) Damage = Damage - parseInt(KidnapOpponent.KidnapStat[OpponentMove]);
 		if (Damage < 0) Damage = 0;
@@ -266,7 +266,7 @@ function KidnapSelectMove(PlayerMove) {
 		KidnapResultOpponent = KidnapOpponent.Name + " " + TextGet("Lost") + " " + Damage.toString() + " " + TextGet("Willpower");
 	} else KidnapResultOpponent = KidnapOpponent.Name + " " + TextGet("NoLost");
 	if (OM >= 1) {
-		var Damage = parseInt(KidnapOpponent.KidnapStat[OpponentMove]);
+		let Damage = parseInt(KidnapOpponent.KidnapStat[OpponentMove]);
 		if (!KidnapMoveEffective(KidnapOpponent, OpponentMove)) Damage = Math.round(Damage / 2);
 		if (PlayerMove == OpponentMove) Damage = Damage - parseInt(Player.KidnapStat[PlayerMove]);
 		if (Damage < 0) Damage = 0;

@@ -165,7 +165,7 @@ function CafeConsumeSpeciiality() {
 		}
 
 		if (CafeAskedFor == "Cupcake") {
-
+			// No effect
 		}
 	}
 }

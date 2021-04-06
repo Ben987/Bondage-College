@@ -1007,7 +1007,7 @@ function ChatRoomStimulationMessage(Context) {
 					
 					if (trigChance > 0) {
 						arousalAmount += 12
-					    trigMsgTemp = "Gag"
+						trigMsgTemp = "Gag"
 					}
 				}
 					
@@ -1085,8 +1085,8 @@ function ChatRoomRun() {
 	if ((ChatRoomSlowStop == true) && PlayerIsSlow) {
 		DrawButton(1005, 2, 120, 60, "", "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
 		if (CurrentTime > ChatRoomSlowtimer) {
-			 ChatRoomSlowtimer = 0;
-			 ChatRoomSlowStop = false;
+			ChatRoomSlowtimer = 0;
+			ChatRoomSlowStop = false;
 		}
 	}
 
@@ -1202,7 +1202,7 @@ function ChatRoomMenuClick() {
 	for (let B = 0; B < ChatRoomMenuButtons.length; B++) {
 		if (MouseXIn(1005 + Space * B, 120)) {
 			switch (ChatRoomMenuButtons[B]) {
-				case "Exit":
+				case "Exit": {
 					const PlayerIsSlow = Player.IsSlow();
 					// When the user leaves
 					if (ChatRoomCanLeave() && !PlayerIsSlow) {
@@ -1229,6 +1229,7 @@ function ChatRoomMenuClick() {
 						}
 					}
 					break;
+				}
 				case "Cut":
 					// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
 					var L = document.getElementById("TextAreaChatLog");
@@ -1388,20 +1389,21 @@ function ChatRoomSendChat() {
 
 		// Some custom functions like /dice or /coin are implemented for randomness
 		if (m.indexOf("/dice") == 0) {
+			let DiceNumber = 0;
+			let DiceSize = 0;
 
 			// The player can roll X dice of Y faces, using XdY.  If no size is specified, a 6 sided dice is assumed
 			if (/(^\d+)[dD](\d+$)/.test(msg.substring(5, 50).trim())) {
-				var Roll = /(^\d+)[dD](\d+$)/.exec((msg.substring(5, 50).trim()));
-				var DiceNumber = (!Roll) ? 1 : parseInt(Roll[1]);
-				var DiceSize = (!Roll) ? 6 : parseInt(Roll[2]);
+				let Roll = /(^\d+)[dD](\d+$)/.exec((msg.substring(5, 50).trim()));
+				DiceNumber = (!Roll) ? 1 : parseInt(Roll[1]);
+				DiceSize = (!Roll) ? 6 : parseInt(Roll[2]);
 				if ((DiceNumber < 1) || (DiceNumber > 100)) DiceNumber = 1;
 			}
 			else if (/(^\d+$)/.test((msg.substring(5, 50).trim()))) {
-				var Roll = /(^\d+)/.exec((msg.substring(5, 50).trim()));
-				var DiceNumber = 1;
-				var DiceSize = (!Roll) ? 6 : parseInt(Roll[1]);
+				let Roll = /(^\d+)/.exec((msg.substring(5, 50).trim()));
+				DiceNumber = 1;
+				DiceSize = (!Roll) ? 6 : parseInt(Roll[1]);
 			}
-			else DiceNumber = 0;
 
 			// If there's at least one dice to roll
 			if (DiceNumber > 0) {
@@ -1410,13 +1412,13 @@ function ChatRoomSendChat() {
 				var Result = [];
 				var Total = 0;
 				while (CurrentRoll < DiceNumber) {
-					var Roll = Math.floor(Math.random() * DiceSize) + 1
+					let Roll = Math.floor(Math.random() * DiceSize) + 1
 					Result.push(Roll);
 					Total += Roll;
 					CurrentRoll++;
 				}
 				msg = "ActionDice";
-				var Dictionary = [];
+				let Dictionary = [];
 				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name });
 				Dictionary.push({ Tag: "DiceType", Text: DiceNumber.toString() + "D" + DiceSize.toString() });
 				if (DiceNumber > 1) {
@@ -1432,7 +1434,7 @@ function ChatRoomSendChat() {
 			// The player can flip a coin, heads or tails are 50/50
 			msg = "ActionCoin";
 			var Heads = (Math.random() >= 0.5);
-			var Dictionary = [];
+			let Dictionary = [];
 			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name });
 			Dictionary.push({ Tag: "CoinResult", TextToLookUp: Heads ? "Heads" : "Tails" });
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary });
@@ -1651,7 +1653,7 @@ function ChatRoomMessage(data) {
 				if (msg == "RuleInfoGet") ChatRoomGetLoadRules(SenderCharacter);
 				else if (msg == "RuleInfoSet") ChatRoomSetLoadRules(SenderCharacter, data.Dictionary);
 				else if (msg.startsWith("StruggleAssist")) {
-					var A = parseInt( msg.substr("StruggleAssist".length));
+					let A = parseInt( msg.substr("StruggleAssist".length));
 					if ((A >= 1) && (A <= 7)) {
 						ChatRoomStruggleAssistTimer = CurrentTime + 60000;
 						ChatRoomStruggleAssistBonus = A;
@@ -1662,7 +1664,7 @@ function ChatRoomMessage(data) {
 					ChatRoomSlowStop = true;
 				}
 				else if (msg.startsWith("MaidDrinkPick")){
-					var A = parseInt(msg.substr("MaidDrinkPick".length));
+					let A = parseInt(msg.substr("MaidDrinkPick".length));
 					if ((A == 0) || (A == 5) || (A == 10)) MaidQuartersOnlineDrinkPick(data.Sender, A);
 				}
 				else if (msg.startsWith("PayQuest")) ChatRoomPayQuest(data);
@@ -1688,7 +1690,7 @@ function ChatRoomMessage(data) {
 						ServerSend("ChatRoomChat", { Content: "RemoveLeash", Type: "Hidden", Target: SenderCharacter.MemberNumber });
 					}
 				}
- 				else if (msg == "RemoveLeash" || msg == "RemoveLeashNotFriend") {
+				else if (msg == "RemoveLeash" || msg == "RemoveLeashNotFriend") {
 					if (ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber) >= 0) {
 						ChatRoomLeashList.splice(ChatRoomLeashList.indexOf(SenderCharacter.MemberNumber), 1)
 					} 
@@ -1713,10 +1715,10 @@ function ChatRoomMessage(data) {
 					var dictionary = data.Dictionary;
 					var SourceCharacter = null;
 					var IsPlayerInvolved = (SenderCharacter.MemberNumber == Player.MemberNumber);
-					var TargetMemberNumber = null;
-					var ActivityName = null;
+					let TargetMemberNumber = null;
+					let ActivityName = null;
 					var GroupName = null;
-					var ActivityCounter = 1;
+					let ActivityCounter = 1;
 					var Automatic = false;
 					for (let D = 0; D < dictionary.length; D++) {
 
@@ -1862,10 +1864,10 @@ function ChatRoomMessage(data) {
 
 				// Creates the output message using the activity dictionary and tags, keep some values to calculate the activity effects on the player
 				msg = "(" + ActivityDictionaryText(msg) + ")";
-				var TargetMemberNumber = null;
-				var ActivityName = null;
+				let TargetMemberNumber = null;
+				let ActivityName = null;
 				var ActivityGroup = null;
-				var ActivityCounter = 1;
+				let ActivityCounter = 1;
 				if (data.Dictionary != null)
 					for (let D = 0; D < data.Dictionary.length; D++) {
 						if (data.Dictionary[D].MemberNumber != null) msg = msg.replace(data.Dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (data.Dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFindPlayer("Someone") : ChatRoomHTMLEntities(data.Dictionary[D].Text));
@@ -3172,7 +3174,7 @@ function ChatRoomNotificationRaiseChatJoin(C) {
  */
 function ChatRoomRecreate() {
 	if (Player.ImmersionSettings && Player.ImmersionSettings.ReturnToChatRoomAdmin &&
-	    Player.ImmersionSettings.ReturnToChatRoom && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
+		Player.ImmersionSettings.ReturnToChatRoom && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
 		// Add the player if they are not an admin
 		if (!Player.LastChatRoomAdmin.includes(Player.MemberNumber) && Player.LastChatRoomPrivate) {
 			Player.LastChatRoomAdmin.push(Player.MemberNumber);
@@ -3224,9 +3226,9 @@ function ChatRoomCheckForLastChatRoomUpdates() {
  */
 function ChatRoomDataChanged() {
 	return ChatRoomLastName != ChatRoomData.Name ||
-	       ChatRoomLastBG != ChatRoomData.Background ||
-	       ChatRoomLastSize != ChatRoomData.Limit ||
-	       ChatRoomLastPrivate != ChatRoomData.Private ||
-	       ChatRoomLastDesc != ChatRoomData.Description ||
-	       !CommonArraysEqual(ChatRoomLastAdmin, ChatRoomData.Admin);
+		ChatRoomLastBG != ChatRoomData.Background ||
+		ChatRoomLastSize != ChatRoomData.Limit ||
+		ChatRoomLastPrivate != ChatRoomData.Private ||
+		ChatRoomLastDesc != ChatRoomData.Description ||
+		!CommonArraysEqual(ChatRoomLastAdmin, ChatRoomData.Admin);
 }

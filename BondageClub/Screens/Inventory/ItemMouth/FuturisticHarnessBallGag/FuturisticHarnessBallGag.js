@@ -29,7 +29,7 @@ var InventoryItemMouthFuturisticBallGagOptions = [
  * @returns {void} - Nothing
  */
 function InventoryItemMouthFuturisticHarnessBallGagLoad() {
- 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else {
@@ -75,7 +75,7 @@ function InventoryItemMouthFuturisticHarnessBallGagDraw() {
 		MainCanvas.textAlign = "center";
 
 		var autopunish = "Off" 
-		if (DialogFocusItem.Property.AutoPunish == 0) {}
+		if (DialogFocusItem.Property.AutoPunish == 0) {autopunish = "Off"}
 		else if (DialogFocusItem.Property.AutoPunish == 1) {autopunish = "Low"}
 		else if (DialogFocusItem.Property.AutoPunish == 2) {autopunish = "Medium"}
 		else {autopunish = "Maximum"}

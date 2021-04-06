@@ -89,7 +89,7 @@ function RelogSend() {
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-		    LoginSetSubmitted();
+			LoginSetSubmitted();
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
 		} else LoginStatusReset("InvalidNamePassword", true);
 	}
@@ -101,5 +101,6 @@ function RelogSend() {
  * @returns {void} Nothing
  */
 function RelogExit() {
+	// eslint-disable-next-line no-self-assign
 	window.location = window.location;
 }

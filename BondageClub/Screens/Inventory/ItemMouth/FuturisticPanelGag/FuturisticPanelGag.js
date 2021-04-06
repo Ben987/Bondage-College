@@ -90,7 +90,7 @@ var FuturisticAccessDeniedMessage = ""
  * @returns {void} - Nothing
  */
 function InventoryItemMouthFuturisticPanelGagLoad() {
- 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else {
@@ -135,19 +135,19 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 	if (MouseIn(1400, 800, 200, 64)) {
 		var pw = ElementValue("PasswordField").toUpperCase()
 		if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy == "PasswordPadlock" && pw == DialogFocusItem.Property.Password) {
-			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+			let C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 			InventoryItemMiscPasswordPadlockUnlock(C, DialogFocusItem)
 			DialogFocusItem = null
 			Player.FocusGroup = null
 			InventoryItemMouthFuturisticPanelGagExit();
 		} else if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy == "TimerPasswordPadlock" && pw == DialogFocusItem.Property.Password) {
-			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+			let C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 			InventoryItemMiscTimerPasswordPadlockUnlock(C, DialogFocusItem)
 			DialogFocusItem = null
 			Player.FocusGroup = null
 			InventoryItemMouthFuturisticPanelGagExit();
 		} else if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy == "CombinationPadlock" && pw == DialogFocusItem.Property.CombinationNumber) {
-			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+			let C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 			InventoryItemMiscCombinationPadlockUnlock(C, DialogFocusItem)
 			DialogFocusItem = null
 			Player.FocusGroup = null
@@ -196,7 +196,7 @@ function InventoryItemMouthFuturisticPanelGagDraw() {
 		MainCanvas.textAlign = "center";
 
 		var autopunish = "Off" 
-		if (DialogFocusItem.Property.AutoPunish == 0) {}
+		if (DialogFocusItem.Property.AutoPunish == 0) {autopunish = "Off"}
 		else if (DialogFocusItem.Property.AutoPunish == 1) {autopunish = "Low"}
 		else if (DialogFocusItem.Property.AutoPunish == 2) {autopunish = "Medium"}
 		else {autopunish = "Maximum"}
@@ -463,7 +463,7 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data, Options) {
 		
 		if (Item.Property.AutoPunish == 3 && (gagaction || (ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
 			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-zА-Яа-я]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1]
-			 && (!ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
+			&& (!ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
 			|| (keywords && (ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/me") || ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")))))))
 			GagTriggerPunish = true
 		if (Item.Property.AutoPunish == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages

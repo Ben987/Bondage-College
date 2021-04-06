@@ -128,12 +128,12 @@ function HorseWalkLoad() {
 		HorseWalkCollectedCarrots = 0;
 		HorseWalkCollectedCrops = 0;
 	} else if (MiniGameDifficulty == "Hurdle") {
-		var MaxHurdle = 12;
+		let MaxHurdle = 12;
 		HorseWalkGenerateHurdleItems(MaxHurdle);
 		HorseWalkHurdleWin = 0;
 		HorseWalkHurdleFail = 0;
 	} else if (MiniGameDifficulty == "HurdleTraining") {
-		var MaxHurdle = 12;
+		let MaxHurdle = 12;
 		HorseWalkGenerateHurdleTrainingItems(MaxHurdle);
 		HorseWalkHurdleWin = 0;
 		HorseWalkHurdleFail = 0;
@@ -157,7 +157,7 @@ function HorseWalkRun() {
 	if (!MiniGameEnded && (Time >= MiniGameTimer)) {
 		if (MiniGameDifficulty == "Carrot") {
 			if (HorseWalkCollectedCarrots > HorseWalkCollectedCrops) {
-				var HorseWalkSkillProgress = (HorseWalkCollectedCarrots - HorseWalkCollectedCrops) * 5;
+				let HorseWalkSkillProgress = (HorseWalkCollectedCarrots - HorseWalkCollectedCrops) * 5;
 				SkillProgress("Dressage",  HorseWalkSkillProgress);
 				HorseWalkEnd(true);
 			} else {
@@ -165,29 +165,29 @@ function HorseWalkRun() {
 			}
 		} else if (MiniGameDifficulty == "Hurdle" || MiniGameDifficulty == "HurdleTraining") {
 			if (HorseWalkHurdleWin > 0 && HorseWalkHurdleFail < 1) {
-				var HorseWalkSkillProgress = HorseWalkHurdleWin * 6;
+				let HorseWalkSkillProgress = HorseWalkHurdleWin * 6;
 				SkillProgress("Dressage",  HorseWalkSkillProgress);
 				HorseWalkEnd(true);
 			} else if (HorseWalkHurdleWin > HorseWalkHurdleFail) {
-				var HorseWalkSkillProgress = HorseWalkHurdleWin * 4;
+				let HorseWalkSkillProgress = HorseWalkHurdleWin * 4;
 				SkillProgress("Dressage",  HorseWalkSkillProgress);
 				HorseWalkEnd(true);
 			} else {
-				var HorseWalkSkillProgress = HorseWalkHurdleWin * 2;
+				let HorseWalkSkillProgress = HorseWalkHurdleWin * 2;
 				SkillProgress("Dressage",  HorseWalkSkillProgress);
 				HorseWalkEnd(false);
 			}
 		} else if (MiniGameDifficulty == "WhipPony") {
 			if (HorseWalkHitPony > 0 && HorseWalkHitTrainer < 1) {
-				var HorseWalkSkillProgress = HorseWalkHitPony * 4;
+				let HorseWalkSkillProgress = HorseWalkHitPony * 4;
 				SkillProgress("Dressage",  HorseWalkSkillProgress);
 				HorseWalkEnd(true);
 			} else if (HorseWalkHitPony > HorseWalkHitTrainer) {
-				var HorseWalkSkillProgress = HorseWalkHitPony * 3;
+				let HorseWalkSkillProgress = HorseWalkHitPony * 3;
 				SkillProgress("Dressage",  HorseWalkSkillProgress);
 				HorseWalkEnd(true);
 			} else {
-				var HorseWalkSkillProgress = HorseWalkHitPony * 2;
+				let HorseWalkSkillProgress = HorseWalkHitPony * 2;
 				SkillProgress("Dressage",  HorseWalkSkillProgress);
 				HorseWalkEnd(false);
 			}

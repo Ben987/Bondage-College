@@ -1,3 +1,4 @@
+"use strict";
 // Escape chances
 // Struggle : How difficult it is to struggle out of the item. Handcuffs and such can have a nonzero, but low value
 // Cut : How difficult it is to cut with a knife. Metal items should have 0, rope and leather should be low but possible, and stuff like tape should be high

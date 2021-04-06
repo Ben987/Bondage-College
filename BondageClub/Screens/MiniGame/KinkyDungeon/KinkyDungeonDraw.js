@@ -1,3 +1,4 @@
+"use strict";
 var KinkyDungeonStruggleGroups = []
 var KinkyDungeonStruggleGroupsBase = [
 		"ItemHead",
