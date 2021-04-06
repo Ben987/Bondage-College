@@ -702,6 +702,7 @@ DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on TargetChar
 DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on TargetCharacter and traps her arms in it.,,
 DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on TargetCharacter and traps her arms in it.,,
 DuctTapeRestrainComplete,,,SourceCharacter creates a completed duct tape mummy on TargetCharacter and traps her entire upper body in it.,,
+DuctTapeRestrainExposedComplete,,,SourceCharacter creates a completed duct tape mummy on TargetCharacter and cuts a hole so that her breasts are exposed.,,
 WristShacklesPoseInFront,,,In-front of body,,
 WristShacklesPoseBehind,,,Behind back,,
 WristShacklesPoseOverhead,,,Above head,,
