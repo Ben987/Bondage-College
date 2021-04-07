@@ -540,9 +540,9 @@ function ChatRoomDrawCharacter(DoClick) {
 	let DarkFactor = CharacterGetDarkFactor(Player);
 
 	// Check if we should use a custom background
-	const CustomBG = DarkFactor === 0 && !DoClick ? DrawGetCustomBackground() : "";
+	const CustomBG = !DoClick ? DrawGetCustomBackground() : "";
 	const Background = CustomBG || ChatRoomData.Background;
-	if (CustomBG) DarkFactor = CharacterGetDarkFactor(Player, true);
+	if (CustomBG && DarkFactor === 0.0) DarkFactor = CharacterGetDarkFactor(Player, true);
 
 	// The number of characters to show in the room
 	const RenderSingle = Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3 && !Player.Effect.includes("VRAvatars");
