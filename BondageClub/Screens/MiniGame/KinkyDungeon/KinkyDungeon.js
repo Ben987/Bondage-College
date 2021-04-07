@@ -80,8 +80,8 @@ function KinkyDungeonRun() {
 	DrawCharacter(KinkyDungeonPlayer, 0, 0, 1);
 
 
-	
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+	if (KinkyDungeonDrawState == "Game" || KinkyDungeonState != "Game")
+		DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	
 	if (KinkyDungeonState == "Menu") {
 		// Draw temp start screen
@@ -142,7 +142,7 @@ function KinkyDungeonRun() {
  * @returns {void} - Nothing
  */
 function KinkyDungeonClick() {
-	if (MouseIn(1885, 25, 90, 90)) {
+	if (MouseIn(1885, 25, 90, 90) && (KinkyDungeonDrawState == "Game" || KinkyDungeonState != "Game")) {
 		KinkyDungeonExit()
 	}
 	if (KinkyDungeonState == "Menu" || KinkyDungeonState == "Lose") {

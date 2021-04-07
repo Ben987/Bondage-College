@@ -16,11 +16,15 @@ var KinkyDungeonCurrentBook = "Elements"
 var KinkyDungeonCurrentPage = 0
 var KinkyDungeonBooks = ["Elements", "Conjure", "Illusion"]
 
-var KinkyDungeonSpells = [
+
+var KinkyDungeonSpellsStart = [
 	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", power: 3, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
 	{name: "Snare", exhaustion: 1, components: ["Legs"], level:1, type:"inert", projectile:false, onhit:"lingering", lifetime:-1, time: 10, delay: 1, range: 3, damage: "stun", playerEffect: {name: "MagicRope", time: 3}}, // Creates a magic rope trap that creates magic ropes on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
 	{name: "Flash", exhaustion: 3, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"aoe", time: 3, delay: 1, range: 2.5, size: 3, aoe: 1.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 3}}, // Start with flash, an explosion with a 1 turn delay and a 1.5 tile radius. If you are caught in the radius, you also get blinded temporarily!
+	{name: "Slime", exhaustion: 5, components: ["Arms"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 1, range: 4, size: 3, aoe: 2.5, lifetime: 9999, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
 ]
+
+var KinkyDungeonSpells = []
 
 var KinkyDungeonSpellChoices = [0, 1, 2]
 var KinkyDungeonSpellChoiceCount = 3
@@ -31,6 +35,15 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 }
 
 var KinkyDungeonSpellPress = 0
+
+function KinkyDungeonResetMagic() {
+	KinkyDungeonSpellChoices = [0, 1, 2]
+	KinkyDungeonSpellChoiceCount = 3
+	KinkyDungeonSpells = []
+	Object.assign(KinkyDungeonSpells, KinkyDungeonSpellsStart); // Copy the dictionary
+	KinkyDungeonMysticSeals = 1.3
+	KinkyDungeonSpellPress = 0
+}
 
 
 function KinkyDungeonPlayerEffect(playerEffect, spell) {
@@ -51,6 +64,17 @@ function KinkyDungeonPlayerEffect(playerEffect, spell) {
 		if (KinkyDungeonActionMessagePriority <= 5) {
 			KinkyDungeonActionMessageTime = playerEffect.time
 			KinkyDungeonActionMessage = TextGet("KinkyDungeonMagicRopeSelf")
+			KinkyDungeonActionMessageColor = "red"
+			KinkyDungeonActionMessagePriority = 5
+		}
+	} else if (playerEffect.name == "SlimeTrap") {
+		
+		KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("StickySlime"))
+		
+		
+		if (KinkyDungeonActionMessagePriority <= 5) {
+			KinkyDungeonActionMessageTime = playerEffect.time
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonSlime")
 			KinkyDungeonActionMessageColor = "red"
 			KinkyDungeonActionMessagePriority = 5
 		}
@@ -185,6 +209,19 @@ function KinkyDungeonHandleMagic() {
 		KinkyDungeonCurrentPage = Math.floor(Math.random(KinkyDungeonSpells.length))
 		return true;
 	}
+
+	if (KinkyDungeonSpells[KinkyDungeonCurrentPage]) {
+		for (let I = 0; I < KinkyDungeonSpellChoiceCount; I++) {
+			if ( KinkyDungeonSpellChoices[I] != null && KinkyDungeonSpells[KinkyDungeonSpellChoices[I]]) {
+				if (!KinkyDungeonSpellChoices.includes(KinkyDungeonCurrentPage)) {
+					if (MouseIn(canvasOffsetX + 640*KinkyDungeonBookScale + 40, canvasOffsetY + 125 + I*200, 225, 60)) {
+						KinkyDungeonSpellChoices[I] = KinkyDungeonCurrentPage
+						return true;
+					}
+				}
+			}
+		}
+	}
 	return false;
 }
 
@@ -248,7 +285,7 @@ function KinkyDungeonDrawMagic() {
 				DrawText(TextGet("KinkyDungeonSpell" + KinkyDungeonSpells[KinkyDungeonSpellChoices[I]].name), canvasOffsetX + 640*KinkyDungeonBookScale + 150, canvasOffsetY + 95 + I*200, "white", "silver");
 			}
 			if (!KinkyDungeonSpellChoices.includes(KinkyDungeonCurrentPage))
-				DrawButton(canvasOffsetX + 640*KinkyDungeonBookScale + 150, canvasOffsetY + 150 + I*200, 225, 60, TextGet("KinkyDungeonSpell" + I), "White", "", "");
+				DrawButton(canvasOffsetX + 640*KinkyDungeonBookScale + 40, canvasOffsetY + 125 + I*200, 225, 60, TextGet("KinkyDungeonSpell" + I), "White", "", "");
 		}
 		
 	}

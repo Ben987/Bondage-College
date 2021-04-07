@@ -129,6 +129,7 @@ RestraintDuctTapeLegsMummy,Charm Covering
 RestraintStuffing,Mouth Stuffing
 RestraintWeakMagicRopeArms,Weak Magic Rope
 RestraintWeakMagicRopeLegs,Weak Magic Rope
+RestraintStickySlime,Sticky Slime
 
 KinkyDungeonGroupItemHead,Face
 KinkyDungeonGroupItemHood,Head
@@ -188,9 +189,14 @@ KinkyDungeonSpellFlash,Flash
 KinkyDungeonSpellDescriptionFlash,A flash of light which renders anyone caught within blind for Duration turns
 KinkyDungeonSpellCastFlash,You charge up a bright flash!
 KinkyDungeonSpellTargetFlash,Select where to center the flash (SpellArea radius)
+KinkyDungeonSpellSlime,Slime
+KinkyDungeonSpellDescriptionSlime,A slowly growing pool of slime will slow enemies that step inside.
+KinkyDungeonSpellCastSlime,You throw a ball of slime!
+KinkyDungeonSpellTargetSlime,Select where the slime will start (spreads 1/turn)
 
 KinkyDungeonBlindSelf,"You blinded yourself with your own magic!"
 KinkyDungeonMagicRopeSelf,"Your own rope trap springs upon you!"
+KinkyDungeonSlime,"You get caught in sticky slime!"
 
 KinkyDungeonInventory,"Open Inventory"
 KinkyDungeonMagic,"Open Magic"
