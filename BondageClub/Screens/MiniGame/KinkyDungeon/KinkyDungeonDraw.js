@@ -197,19 +197,19 @@ function KinkyDungeonDrawGame() {
 		if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]) {
 			var spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
 			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1275, 835, color, "silver")
-			DrawText("(" + KinkyDungeonGetCost(spell.level) + ")", 1275, 870, color, "silver")
+			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1275, 870, color, "silver")
 			DrawButton(1230, 895, 90, 90, "", "White", "Screens/Minigame/KinkyDungeon/Spell1.png", "");
 		}
 		if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]) {
 			var spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
 			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1525, 835, color, "silver")
-			DrawText("(" + KinkyDungeonGetCost(spell.level) + ")", 1525, 870, color, "silver")
+			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1525, 870, color, "silver")
 			DrawButton(1480, 895, 90, 90, "", "White", "Screens/Minigame/KinkyDungeon/Spell2.png", "");
 		}
 		if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]) {
 			var spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
 			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1775, 835, color, "silver")
-			DrawText("(" + KinkyDungeonGetCost(spell.level) + ")", 1775, 870, color, "silver")
+			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1775, 870, color, "silver")
 			DrawButton(1730, 895, 90, 90, "", "White", "Screens/Minigame/KinkyDungeon/Spell3.png", "");
 		}
 	} else if (KinkyDungeonDrawState == "Magic") {

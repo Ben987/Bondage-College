@@ -65,7 +65,7 @@ LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
 LootRubbleKnife,You find a rusty knife among the rocks
 
 LootChestGold,The chest contains gold! (+XXX gold)
-LootChestSpell,The chest contains a magic scroll. (+SpellLearned)
+LootChestSpell,You find a magic scroll, which you place in your spellbook. (+SpellLearned)
 LootChestTrapMagic,A restraint appears on you with a puff of smoke. (+RestraintType)
 
 NameBlindZombie,Moaning Zombie
