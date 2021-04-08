@@ -42,9 +42,9 @@ function KinkyDungeonLoot(Level, Index, Type) {
 				var minlevel = 0
 				var SpellList = null
 				if (loot.prerequisites.includes("lowlevel")) maxlevel = 7
-				if (loot.prerequisites.includes("UnlearnedElements")) SpellList = KinkyDungeonSpellList["Elements"]
-				if (loot.prerequisites.includes("UnlearnedConjure")) SpellList = KinkyDungeonSpellList["Conjure"]
-				if (loot.prerequisites.includes("UnlearnedIllusion")) SpellList = KinkyDungeonSpellList["Illusion"]
+				if (loot.prerequisites.includes("UnlearnedElements")) SpellList = KinkyDungeonSpellList.Elements
+				if (loot.prerequisites.includes("UnlearnedConjure")) SpellList = KinkyDungeonSpellList.Conjure
+				if (loot.prerequisites.includes("UnlearnedIllusion")) SpellList = KinkyDungeonSpellList.Illusion
 				
 				for (let P = 0; P < loot.prerequisites.length; P++) {
 					if (loot.prerequisites[P].startsWith("Group_")) {
