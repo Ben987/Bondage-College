@@ -65,7 +65,7 @@ LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
 LootRubbleKnife,You find a rusty knife among the rocks
 
 LootChestGold,The chest contains gold! (+XXX gold)
-LootChestSpell,You find a magic scroll, which you place in your spellbook. (+SpellLearned)
+LootChestSpell,"You find a magic scroll, which you place in your spellbook. (+SpellLearned)"
 LootChestTrapMagic,A restraint appears on you with a puff of smoke. (+RestraintType)
 
 NameBlindZombie,Moaning Zombie
@@ -189,7 +189,7 @@ KinkyDungeonSpellDescriptionIcebolt,A quick shard of ice that does DamageDealt d
 KinkyDungeonSpellCastIcebolt,You a hurl a shard of ice!
 KinkyDungeonSpellTargetIcebolt,Choose aim direction
 KinkyDungeonSpellFireball,Fireball
-KinkyDungeonSpellDescriptionFireball,A slow moving ball of flame that explodes and does DamageDealt damage!
+KinkyDungeonSpellDescriptionFireball,A slow moving ball of flame that explodes for DamageDealt damage, double on a direct hit!
 KinkyDungeonSpellCastFireball,You a hurl a fireball!
 KinkyDungeonSpellTargetFireball,Choose aim direction
 KinkyDungeonSpellSnare,Rope Snare
