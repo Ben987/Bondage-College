@@ -3,42 +3,34 @@ const InventoryItemHandsSpankingToysOptions = [
 	{
 		Name: "Crop",
 		Property: { Type: null },
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
 	}, {
 		Name: "Flogger",
 		Property: { Type: "Flogger" },
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
 	}, {
 		Name: "Cane",
 		Property: { Type: "Cane" },
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
 	}, {
 		Name: "HeartCrop",
 		Property: { Type: "HeartCrop" },
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
 	}, {
 		Name: "Paddle",
 		Property: { Type: "Paddle" },
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }]
 	}, {
 		Name: "WhipPaddle",
 		Property: { Type: "WhipPaddle" },
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
 	}, {
 		Name: "Whip",
 		Property: { Type: "Whip" },
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
 	}, {
 		Name: "CattleProd",
 		Property: { Type: "CattleProd" },
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
 	}, {
 		Name: "TennisRacket",

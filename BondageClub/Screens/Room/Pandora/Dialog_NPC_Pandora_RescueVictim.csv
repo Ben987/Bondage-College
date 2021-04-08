@@ -1,0 +1,13 @@
+PlayerGagged,,,(She seems to wonder.)  Why are you gagged miss?,,
+0,,,Miss DialogPlayerName.  It's an honor to be rescued by you.,,"DialogSkillGreater(""Infiltration"", 8)"
+0,,,I've seen you before!  You're DialogPlayerName from the Bondage Club!  Are you here to rescue me?,,"DialogSkillGreater(""Infiltration"", 4)"
+0,,,Who are you?  Are you here to rescue me?,,
+0,,Who are you?,I'm DialogCharacterName from the Bondage Club.  I was kidnapped and put in here.  Are we getting out together?,DialogRemove(),
+0,,I'm here to rescue you.,"(She nods happily.)  Thank you so much Miss, you're the best.",DialogRemove(),
+0,10,(Bring her with you.),(She nods her head and starts to follow you.),CharacterJoin(),CurrentCharacter.CanWalk()
+0,,(Bring her with you.),(She shakes her legs but cannot walk with you.),,!CurrentCharacter.CanWalk()
+0,,I cannot talk now.  (Leave her.),,DialogLeave(),
+10,,,Do you know the way out?,,
+10,,Where is the exit?,"(She shrugs.)  I'm sorry, I don't know.",,
+10,,Let's move. (Walk with her.),,DialogLeave(),CurrentCharacter.CanWalk()
+10,,Let's move. (Walk with her.),(She shakes her legs but cannot walk with you.),,!CurrentCharacter.CanWalk()

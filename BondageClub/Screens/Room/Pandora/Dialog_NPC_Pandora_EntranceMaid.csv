@@ -1,7 +1,7 @@
 PlayerGagged,,,(She checks your gag.)  This gag is a perfect fit Miss.,,
 0,,,"Welcome to Pandora's Box, the best BDSM club in town.  Wait!  You look like someone we are searching for.",,"DialogSkillGreater(""Infiltration"", 9)"
 0,,,"Welcome to Pandora's Box, the best BDSM club in town.  I've seen you before, who are you Miss?",,"DialogSkillGreater(""Infiltration"", 6)"
-0,,,"Welcome to Pandora's Box, the best BDSM club in town.  (She stares at you.)  You've been here before don't you?",,"DialogSkillGreater(""Infiltration"", 3)"
+0,,,"Welcome to Pandora's Box, the best BDSM club in town.  (She stares at you.)  You've been here before haven't you?",,"DialogSkillGreater(""Infiltration"", 3)"
 0,,,"Welcome to Pandora's Box, the best BDSM club in town.  It will be my pleasure to introduce you.",,
-0,,TO DO,TO DO,,
-0,,Leave me alone.  (Leave her.),,RemoveCurrentCharacter(),
+0,,(UNDER CONSTRUCTION.),"This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.",,
+0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),

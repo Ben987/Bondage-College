@@ -273,8 +273,8 @@ function KidnapSelectMove(PlayerMove) {
 	// Builds the "Upperhand" text
 	KidnapResultUpperHand = "";
 	KidnapUpperHandVictim = null;
-	if (PM >= 2) { KidnapUpperHandVictim = KidnapOpponent; KidnapResultUpperHand = Player.Name + " " + TextGet("UpperHand"); }
-	if (OM >= 2) { KidnapUpperHandVictim = Player; KidnapResultUpperHand = KidnapOpponent.Name + " " + TextGet("UpperHand"); }
+	if ((PM >= 2) && (PlayerMove != 3) && (OpponentMove != 3)) { KidnapUpperHandVictim = KidnapOpponent; KidnapResultUpperHand = Player.Name + " " + TextGet("UpperHand"); }
+	if ((OM >= 2) && (PlayerMove != 3) && (OpponentMove != 3)) { KidnapUpperHandVictim = Player; KidnapResultUpperHand = KidnapOpponent.Name + " " + TextGet("UpperHand"); }
 
 	// If both players have 0 willpower, they go back to 1 in a sudden death
 	if (Player.KidnapWillpower < 0) Player.KidnapWillpower = 0;

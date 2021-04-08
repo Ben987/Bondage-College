@@ -64,5 +64,10 @@ Ready,Start,I hope nothing will go wrong.,Be more confident girl.  Go and make u
 Ready,0,I've changed my mind.,I'm sorry to hear that.  Come another time then.,,
 Start,End,(Go to Pandora's Box.),,StartMission(),
 End,,,Welcome back comrade.  Is your mission complete?,,
-End,0,"Sorry, I've failed.","Don't be ashamed, I'm sure you've tried your best.  We'll send someone else, you can pick another mission if you want.",,
+End,Success,I've did it!,Congratulation comrade DialogPlayerName!  (She salutes you.)  The Bondage Club is proud of you.,CompleteMission(),CanSuccess()
+End,,I'm going back right now.,,ReturnMission(),CanGoBack()
+End,0,"Sorry, I've failed.","Don't be ashamed, I'm sure you've tried your best.  We'll send someone else, you can pick another mission if you want.","DialogChangeReputation(""Dominant"", -1)",CanFail()
 End,,Give me a minute.  (Leave her.),,DialogLeave(),
+Success,0,Thank you comrade.,(She nods quickly and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,,
+Success,0,"I was scared, but I did it.",(She cheers you up and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,"DialogChangeReputation(""Dominant"", -2)",
+Success,0,You should know that I never fail.,(She bows her head and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,"DialogChangeReputation(""Dominant"", 3)",

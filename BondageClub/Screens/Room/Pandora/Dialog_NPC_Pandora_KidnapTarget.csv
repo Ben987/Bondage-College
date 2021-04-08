@@ -1,0 +1,27 @@
+PlayerGagged,,,(She looks at you and laughs.)  Cute gag girl.,,
+FightVictory,,,(She seems furious.)  I can't belive you won.  You will not get out of here alive.,,
+FightDefeat,,,(She kicks your butt one last time and laughs.)  Get lost!  You're no match for me.,,
+0,,,Oh fuck!  Help!  DialogPlayerName is here to kidnap me!  Someone help!,,"DialogSkillGreater(""Infiltration"", 10)"
+0,,,I knew the Bondage Club would send someone like you DialogPlayerName.  I won't go down without a fight.,,"DialogSkillGreater(""Infiltration"", 6)"
+0,,,You're not from Pandora's aren't you?  Are you looking for trouble?,,"DialogSkillGreater(""Infiltration"", 2)"
+0,,,Who are you?  I don't have time for newbies.,,
+0,,Who are you?,That's none of your business.,DialogRemove(),
+0,10,Can we talk?,"I'm busy, go away or be ready to fight.",,
+0,10,I'm here to kidnap you.,Oh yeah?  I won't go down without a fight.,,
+0,,(Fight her.),,CharacterFight(),
+0,,I cannot talk now.  (Leave her.),,DialogLeave(),
+10,,,So you want to fight or not?,,
+10,,(Fight her.),,CharacterFight(),
+10,,(Leave her.),,DialogLeave(),
+100,,,"You might have beaten me, but the other girls from Pandora's Box will kick your butt.",,
+100,,You're mine now.,Ah!  You really think you can collar me?,DialogRemove(),
+100,110,(Bring her with you.),Wait!  What are you doing?  Where are we going?,CharacterJoin(),CurrentCharacter.CanWalk()
+100,,(Bring her with you.),(She cannot walk in her restraints.),,!CurrentCharacter.CanWalk()
+100,,(Leave her.),,DialogLeave(),
+110,,,Wait!  Where are we going?,,
+110,,Where is the exit?,Fuck you!  I'm not helping you.,,
+110,,Let's move. (Walk with her.),,DialogLeave(),CurrentCharacter.CanWalk()
+110,,Let's move. (Walk with her.),(She cannot walk in her restraints.),,!CurrentCharacter.CanWalk()
+200,210,Get me out!,"(She laughs at you.)  You want out?  Sure, I will kick you out of Pandora's Box.",,
+200,210,(Beg for mercy.),"(She laughs at you.)  You want out?  Sure, I will kick you out of Pandora's Box.",,
+210,,(Let her escort you out.),,MissionFail(),

@@ -3,9 +3,28 @@ var InfiltrationBackground = "Infiltration";
 var InfiltrationSupervisor = null;
 var InfiltrationDifficulty = 0;
 var InfiltrationMission = "";
-var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "Steal"];
+//var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "Steal"];
+var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve"];
 var InfiltrationObjectType = ["USBKey", "BDSMPainting", "GoldCollar", "GeneralLedger", "SilverVibrator", "DiamondRing", "SignedPhoto"];
 var InfiltrationTarget = {};
+
+/**
+ * Returns TRUE if the mission can complete as a success
+ * @returns {boolean} - TRUE if successful
+ */
+function InfiltrationCanSuccess() { return ((InfiltrationTarget != null) && (InfiltrationTarget.Found != null) && (InfiltrationTarget.Found == true)) }
+
+/**
+ * Returns TRUE if the mission can complete as a failure
+ * @returns {boolean} - TRUE if successful
+ */
+function InfiltrationCanFail() { return ((InfiltrationTarget == null) || (InfiltrationTarget.Found == null) || (InfiltrationTarget.Found == false)) }
+
+/**
+ * Returns TRUE if the player can go back to Pandora's Box to pursue her mission
+ * @returns {boolean} - TRUE if successful
+ */
+function InfiltrationCanGoBack() { return (((InfiltrationTarget == null) || (InfiltrationTarget.Fail == null) || (InfiltrationTarget.Fail == false)) && !InfiltrationCanSuccess()) }
 
 /**
  * Loads the infiltration screen by generating the supervisor.
@@ -72,6 +91,7 @@ function InfiltrationPrepareMission() {
 		InfiltrationTarget.Type = CommonRandomItemFromList(InfiltrationTarget.Type, InfiltrationObjectType);
 		InfiltrationTarget.Name = DialogFind(InfiltrationSupervisor, "Object" + InfiltrationTarget.Type);
 	}
+	InfiltrationTarget.Found = false;
 	InfiltrationSupervisor.Stage = InfiltrationMission;
 	InfiltrationSupervisor.CurrentDialog = DialogFind(InfiltrationSupervisor, InfiltrationMission + "Intro");
 	InfiltrationSupervisor.CurrentDialog = InfiltrationSupervisor.CurrentDialog.replace("TargetName", InfiltrationTarget.Name);
@@ -85,4 +105,22 @@ function InfiltrationStartMission() {
 	DialogLeave();
 	CommonSetScreen("Room", "Pandora");
 	PandoraBuildMainHall();
+}
+
+/**
+ * Returns to Pandora's box with the same stats and room layout
+ * @returns {void} - Nothing
+ */
+function InfiltrationReturnMission() {
+	DialogLeave();
+	CommonSetScreen("Room", "Pandora");
+}
+
+/**
+ * When the player completes the mission, she gains
+ * @returns {void} - Nothing
+ */
+function InfiltrationCompleteMission() {
+	SkillProgress("Infiltration", 60);
+	CharacterChangeMoney(Player, 15);
 }
