@@ -39,6 +39,8 @@ var KinkyDungeonRestraints = [
 	
 	{name: "StickySlime", Asset: "Web", Type: "Tangled", Color: "#ff77ff", Group: "ItemArms", magic: false, power: 0, weight: 1, freeze: true, escapeChance: {"Struggle": 10.0, "Cut": 10.0, "Remove": 10.0}, enemyTags: {"slime":100}, playerTags: {}, minLevel: 0, floors: []},
 	
+	{name: "TrapArmbinder", Asset: "LeatherArmbinder", Type: "Straps", Group: "ItemArms", magic: false, power: 8, weight: 2, freeze: true, escapeChance: {"Struggle": 0.1, "Cut": 0.33, "Remove": 0.2}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: []},
+	
 ]
 
 

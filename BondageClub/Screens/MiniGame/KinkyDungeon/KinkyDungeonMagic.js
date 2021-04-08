@@ -20,18 +20,29 @@ var KinkyDungeonBooks = ["Elements", "Conjure", "Illusion"]
 var KinkyDungeonSpellsStart = [
 	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", power: 3, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
 	{name: "Snare", exhaustion: 1, components: ["Legs"], level:1, type:"inert", projectile:false, onhit:"lingering", lifetime:-1, time: 10, delay: 1, range: 3, damage: "stun", playerEffect: {name: "MagicRope", time: 3}}, // Creates a magic rope trap that creates magic ropes on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
-	{name: "Flash", exhaustion: 3, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"aoe", time: 3, delay: 1, range: 2.5, size: 3, aoe: 1.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 3}}, // Start with flash, an explosion with a 1 turn delay and a 1.5 tile radius. If you are caught in the radius, you also get blinded temporarily!
-	{name: "Slime", exhaustion: 5, components: ["Arms"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 1, range: 4, size: 3, aoe: 2.5, lifetime: 9999, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
+	
 ]
+
 
 var KinkyDungeonSpells = []
 
 var KinkyDungeonSpellChoices = [0, 1, 2]
 var KinkyDungeonSpellChoiceCount = 3
 var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. When you plan to use a mystic seal, you get 3 spells to choose from. 
-	"Elements": [],
-	"Conjure": [],
-	"Illusion": [],
+	"Elements": [
+		{name: "Fireball", exhaustion: 6, components: ["Arms"], level:4, type:"bolt", projectile:true, onhit:"aoe", power: 6, delay: 0, range: 50, aoe: 1.5, size: 3, lifetime:1, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
+		{name: "Icebolt", exhaustion: 4, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2, delay: 0, range: 50, damage: "stun", speed: 2}, // Throws a blast of ice which stuns the target for 2 turns
+	],
+	"Conjure": [
+		{name: "Slime", exhaustion: 5, components: ["Verbal"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 1, range: 4, size: 3, aoe: 2, lifetime: 9999, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
+		//{name: "PinkGas", exhaustion: 4, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 2, range: 4, size: 3, aoe: 2.5, lifetime: 9999, damage: "stun", playerEffect: {name: "PinkGas", time: 3}}, // Dizzying gas, increases arousal
+		
+	],
+	"Illusion": [
+		{name: "Flash", exhaustion: 3, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"aoe", time: 3, delay: 1, range: 2.5, size: 3, aoe: 1.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 3}}, // Start with flash, an explosion with a 1 turn delay and a 1.5 tile radius. If you are caught in the radius, you also get blinded temporarily!
+		{name: "GreaterFlash", exhaustion: 5, components: ["Verbal"], level:3, type:"inert", projectile:false, onhit:"aoe", time: 4, delay: 1, range: 2.5, size: 5, aoe: 2.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 3}}, // Much greater AoE. Careful not to get caught!
+		{name: "FocusedFlash", exhaustion: 6, components: ["Verbal"], level:4, type:"inert", projectile:false, onhit:"aoe", time: 12, delay: 2, range: 2.5, size: 3, aoe: 1.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 12}}, // Longer delay, but the stun lasts much longer.
+	],
 }
 
 var KinkyDungeonSpellPress = 0
@@ -92,7 +103,7 @@ function KinkyDungeoCheckComponents(spell) {
 
 function KinkyDungeonHandleSpell() {
 	var spell = null
-	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]] && (MouseIn(1405, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[0])) {
+	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]] && (MouseIn(1230, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[0])) {
 		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]).length == 0) {
 			if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]].level) <= KinkyDungeonStatStamina)
 				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
@@ -110,7 +121,7 @@ function KinkyDungeonHandleSpell() {
 		}
 		
 	}
-	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]] && (MouseIn(1605, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[1])) {
+	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]] && (MouseIn(1480, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[1])) {
 		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]).length == 0) {
 			if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]].level) <= KinkyDungeonStatStamina)
 				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
@@ -127,7 +138,7 @@ function KinkyDungeonHandleSpell() {
 			KinkyDungeonActionMessagePriority = 4
 		}		
 	}
-	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]] && (MouseIn(1805, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[2])) {
+	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]] && (MouseIn(1730, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[2])) {
 		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]).length == 0) {
 			if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]].level) <= KinkyDungeonStatStamina)
 				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
@@ -150,7 +161,7 @@ function KinkyDungeonHandleSpell() {
 		
 		if (KinkyDungeonActionMessagePriority <= 1) {
 			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellTarget" + spell.name)
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellTarget" + spell.name).replace("SpellArea", Math.floor(spell.aoe))
 			KinkyDungeonActionMessageColor = "white"
 			KinkyDungeonActionMessagePriority = 2
 		}
@@ -170,9 +181,10 @@ function KinkyDungeonGetCost(Level) {
 
 function KinkyDungeonCastSpell(targetX, targetY, spell) {
 	if (spell.type == "bolt") {
+		var size = (spell.size) ? spell.size : 1
 		KinkyDungeonLaunchBullet(KinkyDungeonPlayerEntity.x + KinkyDungeonMoveDirection.x, KinkyDungeonPlayerEntity.y + KinkyDungeonMoveDirection.y,
 			targetX-KinkyDungeonPlayerEntity.x,targetY - KinkyDungeonPlayerEntity.y,
-			spell.speed, {name:spell.name, width:1, height:1, lifetime:-1, passthrough:false, hit:spell.onhit, damage: {damage:spell.power, type:spell.damage, time:spell.time}, spell: spell})
+			spell.speed, {name:spell.name, width:size, height:size, lifetime:-1, passthrough:false, hit:spell.onhit, damage: {damage:spell.power, type:spell.damage, time:spell.time}, spell: spell})
 	} else if (spell.type == "inert") {
 		var sz = spell.size
 		if (!sz) sz = 1
@@ -206,7 +218,10 @@ function KinkyDungeonHandleMagic() {
 			return true;
 		}
 	} else if (MouseIn(canvasOffsetX + 640*KinkyDungeonBookScale/2 - 250, canvasOffsetY + 483*KinkyDungeonBookScale, 500, 60)) {
-		KinkyDungeonCurrentPage = Math.floor(Math.random(KinkyDungeonSpells.length))
+		KinkyDungeonCurrentPage = Math.floor(Math.random()*KinkyDungeonSpells.length)
+        KinkyDungeonAdvanceTime(1)
+        if (KinkyDungeonTextMessageTime > 0)
+            KinkyDungeonDrawState = "Game"
 		return true;
 	}
 

@@ -189,7 +189,7 @@ function KinkyDungeonDrawFight(canvasOffsetX, canvasOffsetY, CamX, CamY) {
 		var spriteContext = spriteCanvas.getContext("2d")
 		var direction = Math.atan2(KinkyDungeonBullets[E].vy, KinkyDungeonBullets[E].vx)
 		
-		// Rotate the canvas
+		// Rotate the canvas m,  
 		spriteContext.translate(spriteCanvas.width/2, spriteCanvas.height/2);
 		spriteContext.rotate(direction);
 		spriteContext.translate(-spriteCanvas.width/2, -spriteCanvas.height/2);
