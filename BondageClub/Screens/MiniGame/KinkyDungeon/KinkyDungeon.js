@@ -229,8 +229,22 @@ function KinkyDungeonClick() {
  * Handles exit during the kinky dungeon game
  * @returns {void} - Nothing
  */
-function KinkyDungeonExit() {
+function KinkyDungeonExit() {	
 	CommonDynamicFunction(MiniGameReturnFunction + "()");
+	
+	if (CurrentScreen == "ChatRoom" && KinkyDungeonState != "Menu" && (MiniGameKinkyDungeonLevel > 1 || KinkyDungeonState == "Lose")) {
+		let Message = "KinkyDungeonExit"
+		
+		if (KinkyDungeonState == "Lose") {
+			Message = "KinkyDungeonLose"
+		}
+		
+		let Dictionary = [
+			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+			{ Tag: "KinkyDungeonLevel", Text: String(MiniGameKinkyDungeonLevel)},
+		];
+		ChatRoomPublishCustomAction(Message, false, Dictionary);
+	}
 }
 
 /**
