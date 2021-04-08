@@ -19,5 +19,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm ci
+    - name: Custom matcher
+      run: echo "##[add-matcher].github/eslint-matcher.json"
     - name: Lint
       run: npm run -s lintscripts
