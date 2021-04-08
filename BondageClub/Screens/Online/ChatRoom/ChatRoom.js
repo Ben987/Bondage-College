@@ -1941,7 +1941,7 @@ function ChatRoomAddCharacterToChatRoom(newCharacter, newRawCharacter)
 		// Push a new entry
 		ChatRoomCharacter.push(newCharacter)
 	}
-	 
+
 	// Update chat room data backup
 	characterIndex = ChatRoomData.Character.findIndex(x => x.MemberNumber == newRawCharacter.MemberNumber)
 	if(characterIndex >= 0) // If we found an existing entry...
@@ -1959,25 +1959,21 @@ function ChatRoomAddCharacterToChatRoom(newCharacter, newRawCharacter)
 
 /**
  * Handles the reception of the complete room data from the server.
- * @param {object} data - Room object containing the updated chatroom data.
+ * @param {object} chatRoomProperties - Room object containing the updated chatroom data.
  * @returns {boolean} - Returns true if the passed properties are valid and false if they're invalid.
  */
 function ChatRoomValidateProperties(chatRoomProperties)
 {
-	let isValid = true
-
-	isValid &= chatRoomProperties != null && typeof chatRoomProperties === "object"
-	isValid &= chatRoomProperties.Name != null && typeof chatRoomProperties.Name === "string"
-	isValid &= chatRoomProperties.Description != null && typeof chatRoomProperties.Description === "string"
-	isValid &= Array.isArray(chatRoomProperties.Admin)
-	isValid &= Array.isArray(chatRoomProperties.Ban)
-	isValid &= chatRoomProperties.Background != null && typeof chatRoomProperties.Background === "string"
-	isValid &= chatRoomProperties.Limit != null && typeof chatRoomProperties.Limit === "number"
-	isValid &= chatRoomProperties.Locked != null && typeof chatRoomProperties.Locked === "boolean"
-	isValid &= chatRoomProperties.Private != null && typeof chatRoomProperties.Private === "boolean"
-	isValid &= Array.isArray(chatRoomProperties.BlockCategory)
-
-	return isValid;
+	return chatRoomProperties != null && typeof chatRoomProperties === "object"
+		&& chatRoomProperties.Name != null && typeof chatRoomProperties.Name === "string"
+		&& chatRoomProperties.Description != null && typeof chatRoomProperties.Description === "string"
+		&& Array.isArray(chatRoomProperties.Admin)
+		&& Array.isArray(chatRoomProperties.Ban)
+		&& chatRoomProperties.Background != null && typeof chatRoomProperties.Background === "string"
+		&& chatRoomProperties.Limit != null && typeof chatRoomProperties.Limit === "number"
+		&& chatRoomProperties.Locked != null && typeof chatRoomProperties.Locked === "boolean"
+		&& chatRoomProperties.Private != null && typeof chatRoomProperties.Private === "boolean"
+		&& Array.isArray(chatRoomProperties.BlockCategory);
 }
 
 /**
@@ -2167,11 +2163,7 @@ function ChatRoomSyncRoomProperties(data) {
 	}
 
 	// Copy the received properties to chat room data
-	for (let property in data) {
-		if (data.hasOwnProperty(property)) {
-			ChatRoomData[property] = data[property]
-		}
-	}
+	Object.assign(ChatRoomData, data);
 
 	if (ChatRoomData.Game != null) ChatRoomGame = ChatRoomData.Game;
 
