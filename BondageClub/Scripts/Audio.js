@@ -92,11 +92,11 @@ var AudioActions = [
 		Sound: "Shocks"
 	},
 	{
-		IsAction: (data) => ["FuturisticChastityBeltSetClosedBack", "FuturisticChastityBeltSetOpenBack", "InventoryItemBreastFuturisticBraSet", "FuturisticHeelsSet", "FuturisticArmbinderSet", "FuturisticCuffsRestrain", "FuturisticLegCuffsRestrain", "FuturisticAnkleCuffsRestrain"].find(A => data.Content.includes(A)),
+		IsAction: (data) => ["FuturisticChastityBeltSetClosedBack", "FuturisticChastityBeltSetOpenBack", "InventoryItemBreastFuturisticBraSet", "FuturisticHeelsSet", "FuturisticArmbinderSet", "FuturisticCuffsRestrain", "FuturisticLegCuffsRestrain", "FuturisticAnkleCuffsRestrain", "SciFiPleasurePantiesAction"].find(A => data.Content.includes(A)),
 		Sound: "SciFiConfigure"
 	},
 	{
-		IsAction: (data) => ["FuturisticChastityBeltSetPunish", "FuturisticPanelGagMouthSetAutoPunish", ].find(A => data.Content.includes(A)),
+		IsAction: (data) => ["FuturisticChastityBeltSetPunish", "FuturisticPanelGagMouthSetAutoPunish", "SciFiPleasurePantiesBeep"].find(A => data.Content.includes(A)),
 		GetAudioInfo: AudioSciFiBeepSounds
 	},	
 	{
@@ -108,7 +108,7 @@ var AudioActions = [
 		Sound: "Deflation"
 	},
 	{
-		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "TriggerShock", "CollarAutoShockUnitTrigger"].find(A => data.Content.includes(A)),
+		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "SciFiPleasurePantiesShockTrigger", "TriggerShock", "CollarAutoShockUnitTrigger"].find(A => data.Content.includes(A)),
 		GetAudioInfo: (data) => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data)
 	},
 	{
@@ -249,6 +249,7 @@ function AudioVibratorSounds(data) {
 		case "ClitStimulator":
 		case "Egg": Sound = "VibrationShort"; break;
 		case "LoveChastityBeltVibe":
+		case "SciFiPleasurePantiesVibe":
 		case "Belt":
 		case "Panties": Sound = "VibrationLong1"; break;
 		case "Buttplug":

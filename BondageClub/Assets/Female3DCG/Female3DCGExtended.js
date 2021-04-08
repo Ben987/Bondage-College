@@ -7,7 +7,7 @@
  * `Female3DCG.js` and which have an extended item definition here will have their load/draw/click functions
  * _automatically_ created when assets are loaded, saving the need for an individual extended item script.
  *
- * Currently, only modular items are supported, but this will expand in the future.
+ * Currently, modular and typed items are supported, and this is likely to expand in the future.
  */
 
 /**
@@ -15,16 +15,18 @@
  * MODULAR - Indicates that this item is modular, with several independently configurable modules
  * @enum {string}
  * @see {@link ModularItemConfig}
+ * @see {@link TypedItemConfig}
  */
 const ExtendedArchetype = {
 	MODULAR: "modular",
+	TYPED: "typed",
 };
 
 /**
  * An object containing all extended item configurations.
  * @const {ExtendedItemConfig}
  */
-const AssetFemale3DCGExtended = {
+var AssetFemale3DCGExtended = {
 	ItemArms: {
 		HighSecurityStraitJacket: {
 			Archetype: ExtendedArchetype.MODULAR,
@@ -78,6 +80,34 @@ const AssetFemale3DCGExtended = {
 				],
 			},
 		}, // HighSecurityStraitJacket
+		LatexButterflyLeotard: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Unpolished",
+						Property: { Type: null },
+					},
+					{
+						Name: "Polished",
+						Property: { Type: "Polished" },
+					},
+				],
+				Dialog: {
+					Load: "ItemArmsLatexLeotardSelect",
+					TypePrefix: "ItemArmsLatexLeotard",
+					ChatPrefix: "ItemArmsLatexLeotardSet",
+				},
+			},
+		}, // LatexButterflyLeotard
+		LatexBoxtieLeotard: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "LatexButterflyLeotard" },
+		},
+		LatexSleevelessLeotard: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "LatexButterflyLeotard" },
+		}
 	}, // ItemArms
 	ItemHood: {
 		KirugumiMask: {
@@ -136,8 +166,10 @@ const AssetFemale3DCGExtended = {
  * @typedef ExtendedItemAssetConfig
  * @type {object}
  * @property {ExtendedArchetype} Archetype - The extended item archetype that this asset uses.
- * @property {ModularItemConfig} Config - The specific configuration for the item (type will vary based on the item's
- * archetype)
+ * @property {ModularItemConfig|TypedItemConfig} Config - The specific configuration for the item (type will vary based
+ * on the item's archetype)
+ * @property {{[GroupName]: string, AssetName: string}} [CopyConfig] - The group name and asset name of a configuration
+ *     to copy - useful if multiple items share the same config
  *
  * An object containing extended item definitions for a group. Maps asset names within the group to their extended item
  * configuration

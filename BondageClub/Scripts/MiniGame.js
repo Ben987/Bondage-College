@@ -11,6 +11,10 @@ var MiniGameTimer = 0;
 var MiniGameEnded = false;
 var MiniGameCheatAvailable = false;
 
+function MiniGameLoad() {
+	if (CurrentScreen == "Kidnap" || CurrentScreen == "HorseWalk") CurrentDarkFactor = 0.5;
+}
+
 /**
  * Starts a given mini game at a set difficulty and keeps
  * @param {string} GameType - Name of the mini-game to launch

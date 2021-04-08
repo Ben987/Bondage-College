@@ -1,5 +1,5 @@
 "use strict";
-var SlaveAuctionBackground = "SlaveMarketDark";
+var SlaveAuctionBackground = "SlaveMarket";
 var SlaveAuctionVendor = null;
 var SlaveAuctionSlave = null;
 var SlaveAuctionCustomerLeft = null;
@@ -28,6 +28,7 @@ function SlaveAuctionSetNextBidTime() {
  * @returns {void} - Nothing
  */
 function SlaveAuctionLoad() {
+	CurrentDarkFactor = 0.5;
 	SlaveAuctionCustomerLeft = CharacterLoadNPC("NPC_Customer_Left");
 	CharacterAppearanceFullRandom(SlaveAuctionCustomerLeft);
 	SlaveAuctionCustomerRight = CharacterLoadNPC("NPC_Customer_Right");

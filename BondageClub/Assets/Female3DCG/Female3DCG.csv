@@ -509,6 +509,9 @@ HairBack,HairBack43,Style 38
 HairBack,HairBack44,Style 39
 HairBack,HairBack45,Style 40
 HairBack,HairBack46,Style 41
+HairBack,HairBack47,Style 42
+HairBack,HairBack48,Style 43
+HairBack,HairBack49,Style 44
 Eyes,,Left eye
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
@@ -685,6 +688,7 @@ ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
 ItemPelvis,FuturisticChastityBelt,Futuristic Chastity Belt
 ItemPelvis,FuturisticChastityBelt2,Futuristic Chastity Panties
+ItemPelvis,SciFiPleasurePanties,Sci-Fi Pleasure Panties
 ItemPelvis,OrnateChastityBelt,Ornate Chastity Belt
 ItemPelvis,SteelChastityPanties,Steel Chastity Panties
 ItemPelvis,HarnessPanties1,Bondage Harness
@@ -733,6 +737,7 @@ ItemNipples,NippleWeightClamps,Nipple Weight Clamps
 ItemNipples,BellClamps,Nipple Bell Clamps
 ItemNipples,LactationPump,Lactation Pump
 ItemNipples,ShockClamps,Shock Clamps
+ItemNipples,PlateClamps, Plate Clamps
 ItemNipplesPiercings,,Nipples
 ItemNipplesPiercings,StraightPiercing,Straight Piercings
 ItemNipplesPiercings,RoundPiercing,Round Piercings
@@ -814,6 +819,7 @@ ItemArms,InflatableStraightLeotard,Inflatable Strait Leotard
 ItemArms,StrictLeatherPetCrawler,Strict Leather Pet Crawler
 ItemArms,MedicalBedRestraints,Medical Bed Restraints
 ItemArms,TransportJacket,Transport Jacket
+ItemArms,WrappedBlanket,Wrapped Blanket
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -989,6 +995,7 @@ ItemMouth,RegressedMilk,Nursery Milk
 ItemMouth,PrisonLockdownGag,Prison Lockdown Gag
 ItemMouth,ShoeGag,Shoe Gag
 ItemMouth,FunnelGag,Funnel Gag
+ItemMouth,LargeDildo,Large Dildo
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -1076,6 +1083,7 @@ ItemMouth3,CageMuzzle,Iron Cage Muzzle
 ItemHead,,Eyes
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
+ItemHead,PaddedBlindfold,Padded Blindfold
 ItemHead,InteractiveVisor,Interactive Visor
 ItemHead,InteractiveVRHeadset,VR Headset
 ItemHead,LeatherSlimMask,Slim Leather Mask
@@ -1102,6 +1110,7 @@ ItemNose,NoseRing,Nose Ring
 ItemNose,DuctTape,Duct Tape
 ItemNose,NosePlugs,Nose Plugs
 ItemNose,BarbelPiercing,Barbel Piercing
+ItemNose,PigNoseHook,Pig Nose Hook
 ItemHood,,Head
 ItemHood,LeatherHoodSealed,Sealed Leather Hood
 ItemHood,PolishedSteelHood,Polished Steel Hood
@@ -1199,6 +1208,7 @@ ItemDevices,TransportWoodenBox,Transport Box
 ItemDevices,VacCube,Vac-Cube
 ItemDevices,PetBowl,Pet Bowl
 ItemDevices,Pole,Pole
+ItemDevices,Cushion,Cushion
 ItemHoodAddon,,Hood
 ItemHoodAddon,OldGasMaskLenses,Blinding Lenses
 ItemHoodAddon,OldGasMaskTube1,Gas Mask Tube

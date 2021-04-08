@@ -1,5 +1,5 @@
 "use strict";
-var TherapyBackground = "AsylumTherapyDark";
+var TherapyBackground = "AsylumTherapy";
 var TherapyCharacterLeft = null;
 var TherapyCharacterRight = null;
 var TherapyMoves = [0, 0, 0, 0, 0, 0];
@@ -11,6 +11,7 @@ var TherapyStress = 0;
  * @returns {void} - Nothing
  */
 function TherapyLoad() {
+	CurrentDarkFactor = 0.5;
 	TherapyMoves = [0, 0, 0, 0, 0, 0];
 	TherapyGenerateMoveTimer = CurrentTime + 5000;
 	TherapyStress = 0;

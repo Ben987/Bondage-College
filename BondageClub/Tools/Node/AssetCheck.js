@@ -7,7 +7,14 @@ const types = require("./AssetCheck_Types");
 
 const BASE_PATH = "../../";
 // Files needed to check the Female3DCG assets
-const neededFiles = ["Scripts/Dialog.js", "Assets/Female3DCG/Female3DCG.js"];
+const neededFiles = [
+	"Scripts/Common.js",
+	"Scripts/Dialog.js",
+	"Scripts/ModularItem.js",
+	"Scripts/TypedItem.js",
+	"Assets/Female3DCG/Female3DCG.js",
+	"Assets/Female3DCG/Female3DCGExtended.js"
+];
 
 let localError = false;
 /**
@@ -102,6 +109,7 @@ function loadCSV(path, expectedWidth) {
 	// We need to strigify and parse the asset array to have correct Array and Object prototypes, because VM uses different ones
 	// This unfortunately results in Functions being lost and replaced with undefined
 	const AssetFemale3DCG = JSON.parse(JSON.stringify(context.AssetFemale3DCG));
+	const AssetFemale3DCGExtended = JSON.parse(JSON.stringify(context.AssetFemale3DCGExtended))
 
 	if (!Array.isArray(AssetFemale3DCG)) {
 		error("AssetFemale3DCG not found");
@@ -113,6 +121,8 @@ function loadCSV(path, expectedWidth) {
 	const GROUP_KEYS = Object.keys(types.AssetGroupType);
 	const ASSET_KEYS = Object.keys(types.AssetType);
 	const LAYER_KEYS = Object.keys(types.AssetLayerType);
+	const EXTENDED_ARCHETYPE_KEYS = Object.keys(types.AssetExtendedArchetypeType);
+	const EXTENDED_CONFIG_KEYS = Object.keys(types.AssetExtendedConfigType);
 
 	// No further checks if initial data load failed
 	if (localError) {
@@ -169,6 +179,45 @@ function loadCSV(path, expectedWidth) {
 				for (const k of Object.keys(Asset)) {
 					if (!ASSET_KEYS.includes(k)) {
 						error(`Asset ${Group.Group}:${Asset.Name}: unexpected key ${k}`);
+					}
+				}
+
+				// Check any extended item config
+				if (Asset.Extended) {
+					const groupConfig = AssetFemale3DCGExtended[Group.Group] || {};
+					const assetConfig = groupConfig[Asset.Name];
+					if (assetConfig) {
+						for (const k of EXTENDED_ARCHETYPE_KEYS) {
+							if (!typeCheck(types.AssetExtendedArchetypeType[k], assetConfig[k])) {
+								error(
+									`Extended asset archetype for ${Group.Group}:${Asset.Name}: expected ${k} ` +
+									`to be "${types.AssetExtendedArchetypeType[k]}" found ${typeof assetConfig[k]}`
+								);
+							}
+						}
+						for (const k of Object.keys(assetConfig)) {
+							if (!EXTENDED_ARCHETYPE_KEYS.includes(k)) {
+								error(
+									`Extended asset archetype ${Group.Group}:${Asset.Name}: unexpected key ${k}`
+								);
+							}
+						}
+						if (assetConfig.Config) {
+							for (const k of EXTENDED_CONFIG_KEYS) {
+								if (!typeCheck(types.AssetExtendedConfigType[k], assetConfig.Config[k])) {
+									error(
+										`Extended asset config for ${Group.Group}:${Asset.Name}: expected ${k} ` +
+										`to be "${types.AssetExtendedConfigType[k]}" found ` +
+										`${typeof assetConfig.Config[k]}`
+									);
+								}
+							}
+							for (const k of Object.keys(assetConfig.Config)) {
+								if (!EXTENDED_CONFIG_KEYS.includes(k)) {
+									error(`Extended asset config for ${Group}:${Asset.Name}: unexpected key ${k}`);
+								}
+							}
+						}
 					}
 				}
 

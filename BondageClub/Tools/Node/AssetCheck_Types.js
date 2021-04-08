@@ -32,7 +32,7 @@ const AssetGroupType = {
 	Blink: "Maybe Boolean",
 	InheritColor: "Maybe String",
 	FreezeActivePose: "Maybe [String]",
-
+	PreviewZone: "Maybe (Number, Number, Number, Number)",
 };
 
 const AssetType = {
@@ -48,7 +48,7 @@ const AssetType = {
 	BuyGroup: "String",
 	PrerequisiteBuyGroups: "[String]",
 	Effect: "[String]",
-	Bonus: "[{ Factor: Number, Type: String }]",
+	Bonus: "String",
 	Block: "[String]",
 	Expose: "[String]",
 	Hide: "[String]",
@@ -158,4 +158,18 @@ const AssetLayerType = {
 	AllowModuleTypes: "[String]",
 };
 
-module.exports = { AssetGroupType, AssetType, AssetLayerType };
+const AssetExtendedArchetypeType = {
+	Archetype: "String",
+	Config: "Maybe Object",
+	CopyConfig: "Maybe {GroupName: Maybe String, AssetName: String}",
+};
+
+const AssetExtendedConfigType = {
+	Modules: "Maybe [{Name: String, Key: String, Options: [Object]}]", // Modular items
+	Options: "Maybe [{Name: String, Property: Object}]", // Typed items
+	ChatSetting: "Maybe String",
+	Dialog: "Maybe Object",
+	ChatTags: "Maybe [String]",
+};
+
+module.exports = { AssetGroupType, AssetType, AssetLayerType, AssetExtendedArchetypeType, AssetExtendedConfigType };

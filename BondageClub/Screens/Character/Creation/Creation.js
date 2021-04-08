@@ -99,9 +99,13 @@ function CreationResponse(data) {
 			Log = [];
 			ImportBondageCollege(Player);
 
-			// Calls the preference init to make sure the preferences are loaded correctly
+			// Load/initialise player settings and global variables
 			PreferenceInitPlayer();
 			ActivitySetArousal(Player, 0);
+			NotificationLoad();
+
+			// New accounts aren't updating from old version
+			CommonVersionUpdated = false;
 
 			// Flush the controls and enters the main hall
 			ServerPlayerAppearanceSync();

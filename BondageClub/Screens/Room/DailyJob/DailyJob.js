@@ -110,7 +110,7 @@ function DailyJobSubSearchIsActive() {
  * @returns {void} - Nothing
  */
 function DailyJobKidnapStart() {
-	KidnapStart(DailyJobOpponent, "MainHallDark", 7, "DailyJobKidnapEnd()");
+	KidnapStart(DailyJobOpponent, "MainHall", 7, "DailyJobKidnapEnd()");
 }
 
 

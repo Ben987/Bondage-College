@@ -1,7 +1,7 @@
 "use strict";
 var InventoryItemArmsDuctTapeMessage = "SelectTapeWrapping";
 
-const InventoryItemArmsDuctTapeOptions = [
+var InventoryItemArmsDuctTapeOptions = [
 	{
 		Name: "Arms",
 		Property: {Type: null, Difficulty: 1},
@@ -47,6 +47,17 @@ const InventoryItemArmsDuctTapeOptions = [
 			Type: "Complete",
 			SetPose: ["BackElbowTouch"],
 			Block: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples", "ItemVulvaPiercings", "ItemNipplesPiercings"],
+			Difficulty: 7,
+		}
+	},
+	{
+		Name: "ExposedComplete",
+		SelfBondageLevel: 10,
+		Prerequisite: ["NoOuterClothes"],
+		Property: {
+			Type: "ExposedComplete",
+			SetPose: ["BackElbowTouch"],
+			Block: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemVulvaPiercings", "ItemBreast"],
 			Difficulty: 7,
 		}
 	},

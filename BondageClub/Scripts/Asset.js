@@ -75,6 +75,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink,
 		InheritColor: NewAsset.InheritColor,
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose : [],
+		PreviewZone: NewAsset.PreviewZone,
 	}
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
@@ -197,17 +198,26 @@ function AssetAdd(NewAsset, ExtendedConfig) {
  * @returns {void} - Nothing
  */
 function AssetBuildExtended(A, ExtendedConfig) {
-	const GroupConfig = ExtendedConfig[AssetCurrentGroup.Name];
-	if (GroupConfig) {
-		const AssetConfig = GroupConfig[A.Name];
-		if (AssetConfig) {
-			switch (AssetConfig.Archetype) {
-				case ExtendedArchetype.MODULAR:
-					ModularItemRegister(A, AssetConfig.Config);
-					break;
-			}
+	let AssetConfig = AssetFindExtendedConfig(ExtendedConfig, AssetCurrentGroup.Name, A.Name);
+	if (AssetConfig && AssetConfig.CopyConfig) {
+		const { GroupName, AssetName } = AssetConfig.CopyConfig;
+		AssetConfig = AssetFindExtendedConfig(ExtendedConfig, GroupName || AssetCurrentGroup.Name, AssetName);
+	}
+	if (AssetConfig) {
+		switch (AssetConfig.Archetype) {
+			case ExtendedArchetype.MODULAR:
+				ModularItemRegister(A, AssetConfig.Config);
+				break;
+			case ExtendedArchetype.TYPED:
+				TypedItemRegister(A, AssetConfig.Config);
+				break;
 		}
 	}
+}
+
+function AssetFindExtendedConfig(ExtendedConfig, GroupName, AssetName) {
+	const GroupConfig = ExtendedConfig[GroupName] || {};
+	return GroupConfig[AssetName];
 }
 
 /**

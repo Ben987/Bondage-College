@@ -1,0 +1,210 @@
+Intro,"You are a wizard descending into an ancient underground city of magic."
+Intro2,"Beneath its depths lies the Mistress' Staff, an artifact of untold power."
+Intro3,"Will you prevail against forces unknown, or succumb to its dark secrets?"
+
+DeviousChallenge,"Devious Dungeon Challenge is enabled."
+
+End,"Today the dungeon claims another helpless girl."
+End2,"Bound and exhausted, you cannot hope to continue."
+End3,"Perhaps you may come to enjoy your new life."
+
+EndWin,"You have reached the end of the playable portion."
+EndWin2,"Come back later for new dungeons!"
+
+StatArousal,"Arousal: "
+StatStamina,"Stamina: "
+StatWillpower,"Willpower: "
+
+Wait,"You pause and regain some breath"
+
+GameStart,Start New Game
+LoadGame,Load From Checkpoint
+GameReturnToMenu,Save Keybindings
+GameConfigKeys,Change Keybindings
+
+KinkyDungeonKeyUp,Up
+KinkyDungeonKeyDown,Down
+KinkyDungeonKeyLeft,Left
+KinkyDungeonKeyRight,Right
+KinkyDungeonKeyUpLeft,Up Left
+KinkyDungeonKeyUpRight,Up Right
+KinkyDungeonKeyDownLeft,Down Left
+KinkyDungeonKeyDownRight,Down Right
+KinkyDungeonKeySpell1,Spell 1
+KinkyDungeonKeySpell2,Spell 2
+KinkyDungeonKeySpell3,Spell 3
+KinkyDungeonKeyWait,Wait
+KinkyDungeonCurrentPress,"Current Key Pressed"
+KinkyDungeonCurrentPressInfo,"Press a key, then press a button to set that key"
+
+CurrentLevel,"Current Level: "
+CurrentGold,"Gold: "
+CurrentLockpicks,"Lockpicks: "
+CurrentKeyRed,"Red Keys: "
+CurrentKeyGreen,"Green Keys: "
+CurrentKeyBlue,"Blue Keys: "
+CurrentKnife,"Knife: "
+CurrentKnifeMagic,"Mag. Knife: "
+
+ClimbDown,"You climb down the stairs to the next level"
+
+DungeonName0,-Graveyard-
+DungeonName1,-Catacombs-
+DungeonName2,-Underground Jungle-
+DungeonName3,-Lost Temple-
+DungeonName4,-Fungal Caverns-
+DungeonName5,-The Bellows-
+DungeonName6,-Underground Desert-
+DungeonName7,-Kingdom of Ice-
+DungeonName8,-Marble Halls-
+DungeonName9,-Ancient Laboratory-
+DungeonName10,-The Starlit Balcony-
+
+LootRubbleFail,You search through the debris but find nothing of note
+LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
+LootRubbleKnife,You find a rusty knife among the rocks
+
+LootChestGold,The chest contains gold! (+XXX gold)
+
+NameBlindZombie,Moaning Zombie
+KillBlindZombie,"The zombie moans and collapses to the ground."
+AttackBlindZombieBind,"The zombie's charms attach to your body (+RestraintAdded)"
+AttackBlindZombie,"The zombie caresses your body! (-DamageTaken WP)"
+
+NameFastZombie,Ravenous Zombie
+KillFastZombie,"The zombie screeches and tumbles to the floor."
+AttackFastZombieBind,"The zombie viciously wraps you in charms (+RestraintAdded)"
+AttackFastZombie,"The zombie gropes your body! (-DamageTaken WP)"
+
+NameRat,Filthy Rat
+KillRat,"The rat skitters back into a hole in the wall."
+AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
+
+KinkyDungeonNoMana,"You do not have enough stamina to cast the spell!"
+PlayerAttack,"You attack the TargetEnemy for DamageDealt damage!"
+PlayerRanged,"Your AttackName hits the TargetEnemy for DamageDealt damage!"
+KinkyDungeonBasicAttack,attack
+PlayerMiss,"You miss the TargetEnemy!"
+KinkyDungeonStruggleStruggleFail,"You tug on the TargetRestraint but fail to make progress."
+KinkyDungeonStrugglePickFail,"You try to unlock the TargetRestraint but can't reach the lock."
+KinkyDungeonStrugglePickBreak,"You try to unlock the TargetRestraint but break your lockpick."
+KinkyDungeonStruggleRemoveFail,"You try to undo the TargetRestraint but can't reach far enough."
+KinkyDungeonStruggleCutFail,"You try to cut the TargetRestraint but can't get through the material."
+KinkyDungeonStruggleCutBreak,"You break your knife trying to cut the TargetRestraint."
+KinkyDungeonStruggleUnlockFail,"You try to unlock the TargetRestraint but you can't reach the lock!"
+
+KinkyDungeonStruggleUnlockNoRedKey,"The red padlock only accepts red keys."
+KinkyDungeonStruggleUnlockNoGreenKey,"The green padlock only accepts green keys."
+KinkyDungeonStruggleUnlockNoYellowKey,"The yellow padlock requires a red and a blue key."
+KinkyDungeonStruggleUnlockNoBlueKey,"The magical lock only accepts blue keys."
+KinkyDungeonStruggleUnlockNoUnknownKey,"You don't have a key for this lock."
+
+KinkyDungeonStruggleUnlockJammed,"The key sticks in the lock and jams!"
+
+KinkyDungeonStruggleUnlockSuccess,"You unlock the TargetRestraint."
+KinkyDungeonStruggleStruggleSuccess,"You manage to squeeze out of the TargetRestraint!"
+KinkyDungeonStrugglePickSuccess,"You pick the lock on the TargetRestraint!"
+KinkyDungeonStruggleRemoveSuccess,"You unfasten the TargetRestraint and get it off your body!"
+KinkyDungeonStruggleCutSuccess,"You cut the TargetRestraint off!"
+
+KinkyRedLock," (Red lock)"
+KinkyGreenLock," (Green lock)"
+KinkyBlueLock," (Blue lock)"
+KinkyYellowLock," (Yellow lock)"
+
+ClimbDown,"You climb down to the next level"
+
+
+RestraintDuctTapeArms,Charms
+RestraintDuctTapeLegs,Charms
+RestraintDuctTapeFeet,Charms
+RestraintDuctTapeHead,Charms
+RestraintDuctTapeMouth,Charms
+RestraintDuctTapeBoots,Charms
+RestraintDuctTapeFeet,Charms
+RestraintDuctTapeHeadMummy,Charm Covering
+RestraintDuctTapeArmsMummy,Charm Covering
+RestraintDuctTapeFeetMummy,Charm Covering
+RestraintDuctTapeLegsMummy,Charm Covering
+RestraintStuffing,Mouth Stuffing
+RestraintWeakMagicRopeArms,Weak Magic Rope
+RestraintWeakMagicRopeLegs,Weak Magic Rope
+
+KinkyDungeonGroupItemHead,Face
+KinkyDungeonGroupItemHood,Head
+KinkyDungeonGroupItemMouth,Mouth
+KinkyDungeonGroupItemMouth2,Mouth
+KinkyDungeonGroupItemMouth3,Mouth
+KinkyDungeonGroupItemEars,Ears
+KinkyDungeonGroupItemNeck,Collar
+KinkyDungeonGroupItemNeckRestraints,Neck
+KinkyDungeonGroupItemArms,Arms
+KinkyDungeonGroupItemHands,Hands
+KinkyDungeonGroupItemTorso,Torso
+KinkyDungeonGroupItemBreast,Bra
+KinkyDungeonGroupItemPelvis,Belt
+KinkyDungeonGroupItemVulva,Vulva
+KinkyDungeonGroupItemVulvaPiercings,Piercings
+KinkyDungeonGroupItemNipplesPiercings,Piercings
+KinkyDungeonGroupItemNipples,Nipples
+KinkyDungeonGroupItemButt,Butt
+KinkyDungeonGroupItemLegs,Legs
+KinkyDungeonGroupItemFeet,Ankles
+KinkyDungeonGroupItemBoots,Feet
+KinkyDungeonGroupItemDevices,Device
+
+ItemPickupGold,"You picked up XXX gold."
+
+
+KinkyDungeonBookElements,Ars Pyrotecnica
+KinkyDungeonBookConjure,Codex Imaginus
+KinkyDungeonBookIllusion,Clavicula Romantica
+KinkyDungeonBookElementsDescription,A book of elemental magic
+KinkyDungeonBookConjureDescription,A book about conjuration
+KinkyDungeonBookIllusionDescription,A book of manipulative spells
+
+
+KinkyDungeonComponents,"Components: "
+KinkyDungeonComponentsVerbal,"Verbal"
+KinkyDungeonComponentsArms,"Arm Movements"
+KinkyDungeonComponentsLegs,"Leg Gestures"
+KinkyDungeonComponentsFailVerbal,"The incantation comes out as a garbled mess!"
+KinkyDungeonComponentsFailArms,"You can't raise your arms to cast the spell!"
+KinkyDungeonComponentsFailLegs,"Your feet are too clumsy to perform the magic gesture!"
+
+KinkyDungeonBookNextPage,Next Page
+KinkyDungeonBookLastPage,Last Page
+KinkyDungeonBookRandomPage,Random Page (your hands are tied)
+
+KinkyDungeonSpellFirebolt,Firebolt
+KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage
+KinkyDungeonSpellCastFirebolt,You a hurl a firebolt!
+KinkyDungeonSpellTargetFirebolt,Choose aim direction
+KinkyDungeonSpellSnare,Snare
+KinkyDungeonSpellDescriptionSnare,An invisible circle on the grounds that binds anyone who walks on it for Duration turns
+KinkyDungeonSpellCastSnare,You set an invisible trap!
+KinkyDungeonSpellTargetSnare,Select where to put the trap (it will be invisible)
+KinkyDungeonSpellFlash,Flash
+KinkyDungeonSpellDescriptionFlash,A flash of light which renders anyone caught within blind for Duration turns
+KinkyDungeonSpellCastFlash,You charge up a bright flash!
+KinkyDungeonSpellTargetFlash,Select where to center the flash (SpellArea radius)
+
+KinkyDungeonBlindSelf,"You blinded yourself with your own magic!"
+KinkyDungeonMagicRopeSelf,"Your own rope trap springs upon you!"
+
+KinkyDungeonInventory,"Open Inventory"
+KinkyDungeonMagic,"Open Magic"
+KinkyDungeonGame,"Return to Game"
+
+
+KinkyDungeonMagicLevel,"Level: "
+KinkyDungeonMagicCost,"Stamina Cost: "
+KinkyDungeonMagicExhaustion, "Blocks regen"
+KinkyDungeonMagicExhaustion2, "for TimeTaken turns"
+
+KinkyDungeonSpell0,"Choose as Spell 1"
+KinkyDungeonSpell1,"Choose as Spell 2"
+KinkyDungeonSpell2,"Choose as Spell 3"
+KinkyDungeonSpellChoice0, "Current Spell 1: "
+KinkyDungeonSpellChoice1, "Current Spell 2: "
+KinkyDungeonSpellChoice2, "Current Spell 3: "

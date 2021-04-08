@@ -312,8 +312,10 @@ ChatSelf-ItemNose-Pet,SourceCharacter boops her nose.
 ChatSelf-ItemNose-Pull,SourceCharacter pulls her nose.
 ChatSelf-ItemNose-Rub,SourceCharacter rubs her nose.
 ChatSelf-ItemNose-Choke,SourceCharacter pinches her nostrils closed.
+ChatSelf-ItemNose-Wiggle,SourceCharacter wiggles her nose.
 ChatSelf-ItemEars-Pinch,SourceCharacter pinches her ear.
 ChatSelf-ItemEars-Caress,SourceCharacter caresses her ear.
+ChatSelf-ItemEars-Wiggle,SourceCharacter wiggles her ears.
 ChatOther-ItemEars-Bite,SourceCharacter bites TargetCharacter's ear.
 ChatOther-ItemEars-Kiss,SourceCharacter kisses TargetCharacter's ear.
 ChatOther-ItemEars-Lick,SourceCharacter licks TargetCharacter's ear.

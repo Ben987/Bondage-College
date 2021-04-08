@@ -149,7 +149,7 @@ function KidnapLeagueBountyStart() {
  * @returns {void} - Nothing
  */
 function KidnapLeagueBountyFightStart() {
-	KidnapStart(KidnapLeagueBounty, KidnapLeagueBountyLocation + "Dark", KidnapLeagueBountyDifficulty, "KidnapLeagueBountyFightEnd()");
+	KidnapStart(KidnapLeagueBounty, KidnapLeagueBountyLocation, KidnapLeagueBountyDifficulty, "KidnapLeagueBountyFightEnd()");
 }
 
 /**
@@ -157,6 +157,7 @@ function KidnapLeagueBountyFightStart() {
  * @returns {void} - Nothing
  */
 function KidnapLeagueBountyFightEnd() {
+	CurrentDarkFactor = 1.0;
 	KidnapLeagueRandomActivityCount = 0;
 	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (KidnapLeagueBounty.KidnapMaxWillpower - KidnapLeagueBounty.KidnapWillpower)) * 2);
 	KidnapLeagueBounty.AllowItem = KidnapVictory;
@@ -198,7 +199,7 @@ function KidnapLeagueBountyReset() {
  */
 function KidnapLeagueStartKidnap(Difficulty) {
 	if (Difficulty < 0) ReputationProgress("Dominant", -2);
-	KidnapStart(KidnapLeagueTrainer, "KidnapLeagueDark", Difficulty, "KidnapLeagueEndKidnap()");
+	KidnapStart(KidnapLeagueTrainer, "KidnapLeague", Difficulty, "KidnapLeagueEndKidnap()");
 }
 
 /**
@@ -299,7 +300,7 @@ function KidnapLeagueRandomOutro(Surrender) {
  * @returns {void} - Nothing
  */
 function KidnapLeagueRandomStart() {
-	KidnapStart(KidnapLeagueRandomKidnapper, "MainHallDark", KidnapLeagueRandomKidnapperDifficulty, "KidnapLeagueRandomOutro()");
+	KidnapStart(KidnapLeagueRandomKidnapper, "MainHall", KidnapLeagueRandomKidnapperDifficulty, "KidnapLeagueRandomOutro()");
 }
 
 /**

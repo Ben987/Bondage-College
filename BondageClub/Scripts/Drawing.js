@@ -225,8 +225,12 @@ function DrawArousalMeter(C, X, Y, Zoom) {
  * @param {boolean} IsHeightResizeAllowed - Whether or not the settings allow for the height modifier to be applied
  * @returns {void} - Nothing
  */
-function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {	
-	if ((C != null) && ((C.ID == 0) || (Player.GetBlindLevel() < 3 || CurrentModule == "MiniGame") || (CurrentScreen == "InformationSheet"))) {
+function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
+	if (!DrawCanvas) DrawCanvas = MainCanvas
+	
+	var OverrideDark = CurrentModule == "MiniGame" || ((Player.Effect.includes("VRAvatars") && C.Effect.includes("VRAvatars"))) || CurrentScreen == "InformationSheet"
+	
+	if ((C != null) && ((C.ID == 0) || (OverrideDark || Player.GetBlindLevel() < 3 ))) {
 
 		if (ControllerActive == true) {
 			setButton(X + 100, Y + 200)
@@ -234,7 +238,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 
 		// If there's a fixed image to draw instead of the character
 		if (C.FixedImage != null) {
-			DrawImageZoomCanvas(C.FixedImage, MainCanvas, 0, 0, 500, 1000, X, Y, 500 * Zoom, 1000 * Zoom);
+			DrawImageZoomCanvas(C.FixedImage, DrawCanvas, 0, 0, 500, 1000, X, Y, 500 * Zoom, 1000 * Zoom);
 			return;
 		}
 
@@ -268,8 +272,8 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		CharacterCanvas.canvas.height = Canvas.height;
 
 		// If we must dark the Canvas characters
-		if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
-			const DarkFactor = ( CurrentScreen == "KinkyDungeon") ? 1.0 : Math.min(CharacterGetDarkFactor(Player) * 2, 1);
+		if ((C.ID != 0) && Player.IsBlind() && !OverrideDark) {
+			const DarkFactor = Math.min(CharacterGetDarkFactor(Player) * 2, 1);
 			
 			CharacterCanvas.globalCompositeOperation = "copy";
 			CharacterCanvas.drawImage(Canvas, 0, 0);
@@ -306,13 +310,13 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		const DestY = (IsInverted || YCutOff) ? 0 : YOffset;
 
 		// Draw the character
-		MainCanvas.drawImage(Canvas, 0, SourceY, Canvas.width, SourceHeight, X + XOffset * Zoom, Y + DestY * Zoom, 500 * HeightRatio * Zoom, (1000 - DestY) * Zoom);
+		DrawCanvas.drawImage(Canvas, 0, SourceY, Canvas.width, SourceHeight, X + XOffset * Zoom, Y + DestY * Zoom, 500 * HeightRatio * Zoom, (1000 - DestY) * Zoom);
 
 		// Draw the arousal meter & game images on certain conditions
 		if (CurrentScreen != "ChatRoom" || ChatRoomHideIconState <= 1) {
 			DrawArousalMeter(C, X, Y, Zoom);
 			OnlineGameDrawCharacter(C, X, Y, Zoom);
-			if (C.HasHiddenItems) DrawImageZoomCanvas("Screens/Character/Player/HiddenItem.png", MainCanvas, 0, 0, 86, 86, X + 54 * Zoom, Y + 880 * Zoom, 70 * Zoom, 70 * Zoom);
+			if (C.HasHiddenItems) DrawImageZoomCanvas("Screens/Character/Player/HiddenItem.png", DrawCanvas, 0, 0, 86, 86, X + 54 * Zoom, Y + 880 * Zoom, 70 * Zoom, 70 * Zoom);
 		}
 		
 		// Draws the character focus zones if we need too
@@ -334,10 +338,10 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		// Draw the character name below herself
 		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online" && !(CurrentScreen == "ChatRoom" && ChatRoomHideIconState >= 3)) || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
 			if (!Player.IsBlind() || (Player.GameplaySettings && Player.GameplaySettings.SensDepChatLog == "SensDepLight")) {
-				MainCanvas.font = CommonGetFont(30);
+				DrawCanvas.font = CommonGetFont(30);
 				const NameOffset = CurrentScreen == "ChatRoom" && (ChatRoomCharacter.length > 5 || (ChatRoomCharacter.length == 5 && CommonPhotoMode)) && CurrentCharacter == null ? -4 : 0;
 				DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom + NameOffset, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
-				MainCanvas.font = CommonGetFont(36);
+				DrawCanvas.font = CommonGetFont(36);
 			}
 
 	}
@@ -775,12 +779,24 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 	if (!Text) return;
 
-	for (let S = 36; S >= 10; S = S - 2) {
+	// If it doesn't fit, test with smaller and smaller fonts until it fits
+	let S;
+	for (S = 36; S >= 10; S = S - 2) {
 		MainCanvas.font = CommonGetFont(S.toString());
 		const metrics = MainCanvas.measureText(Text);
 		if (metrics.width <= Width)
 			break;
 	}
+
+	// Cuts the text if it would go over the box
+    if (S <= 10) {
+        while (Text.length > 0) {
+            Text = Text.substr(1);
+            const metrics = MainCanvas.measureText(Text);
+            if (metrics.width <= Width)
+                break;
+        }
+    }
 
 	// Draw a back color relief text if needed
 	if ((BackColor != null) && (BackColor != "")) {
@@ -788,9 +804,11 @@ function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 		MainCanvas.fillText(Text, X + 1, Y + 1);
 	}
 
+	// Restores the font size
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillText(Text, X, Y);
 	MainCanvas.font = CommonGetFont(36);
+
 }
 
 /**
@@ -1084,29 +1102,46 @@ function DrawProgressBar(X, Y, W, H, Progress) {
 }
 
 /**
+ * Draws a progress bar with color
+ * @param {number} X - Position of the bar on the X axis
+ * @param {number} Y - Position of the bar on the Y axis
+ * @param {number} W - Width of the bar
+ * @param {number} H - Height of the bar
+ * @param {number} Progress - Current progress to display on the bar
+ * @param {string} ColorFG - Color of the first part of the bar
+ * @param {string} ColorFG - Color of the bar background
+ * @returns {void} - Nothing
+ */
+function DrawProgressBarColor(X, Y, W, H, Progress, ColorFG, ColorBG) {
+	DrawRect(X, Y, W, H, "white");
+	DrawRect(X + 2, Y + 2, Math.floor((W - 4) * Progress / 100), H - 4, ColorFG);
+	DrawRect(Math.floor(X + 2 + (W - 4) * Progress / 100), Y + 2, Math.floor((W - 4) * (100 - Progress) / 100), H - 4, ColorBG);
+}
+
+/**
  * Gets the player's custom background based on type
  * @returns {string} - Custom background if applicable, otherwise ""
  */
 function DrawGetCustomBackground() {
-	var blindfold = InventoryGet(Player, "ItemHead")
-	var hood = InventoryGet(Player, "ItemHood")
-	var customBG = ""
-	
+	const blindfold = InventoryGet(Player, "ItemHead");
+	const hood = InventoryGet(Player, "ItemHood");
+	let customBG = "";
+
 	if (blindfold && blindfold.Asset && blindfold.Asset.CustomBlindBackground) {
-		var type = "None"
+		let type = "None";
 		if (blindfold.Property && blindfold.Property.Type && blindfold.Asset.CustomBlindBackground[blindfold.Property.Type] != null)
-			type = blindfold.Property.Type
+			type = blindfold.Property.Type;
 		if (blindfold.Asset.CustomBlindBackground[type])
-			customBG = blindfold.Asset.CustomBlindBackground[type]
+			customBG = blindfold.Asset.CustomBlindBackground[type];
 	} else if (hood && hood.Asset && hood.Asset.CustomBlindBackground) {
-				var type = "None"
+		let type = "None";
 		if (hood.Property && hood.Property.Type && hood.Asset.CustomBlindBackground[hood.Property.Type])
-			type = hood.Property.Type
+			type = hood.Property.Type;
 		if (hood.Asset.CustomBlindBackground[type])
-			customBG = hood.Asset.CustomBlindBackground[type]
+			customBG = hood.Asset.CustomBlindBackground[type];
 	}
-	
-	return customBG
+
+	return customBG;
 }
 
 
@@ -1122,31 +1157,31 @@ function DrawProcess() {
 	}
 
 	// Gets the current screen background and draw it, it becomes darker in dialog mode or if the character is blindfolded
-	var B = window[CurrentScreen + "Background"];
-		
+	let B = window[CurrentScreen + "Background"];
+
 	if ((B != null) && (B != "")) {
-		var customBG = ""
 		let DarkFactor = 1.0;
 		if ((CurrentModule != "Character" && CurrentModule != "MiniGame") && (B != "Sheet")) {
-			DarkFactor = CharacterGetDarkFactor(Player);
+			DarkFactor = CharacterGetDarkFactor(Player) * CurrentDarkFactor;
 			if (DarkFactor == 1 && (CurrentCharacter != null || ShopStarted) && !CommonPhotoMode) DarkFactor = 0.5;
 		}
 		const Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
-		if (DarkFactor == 0.0) {
-			customBG = DrawGetCustomBackground()
-			
-			if (customBG != "") {
-				B = customBG
-			}
-		}
 		
-		if (DarkFactor > 0.0 || customBG != "") {
+		let customBG = DrawGetCustomBackground();
+
+		if (customBG != "" && (CurrentModule != "Character" && CurrentModule != "MiniGame") && (B != "Sheet")) {
+			B = customBG;
+			if (DarkFactor == 0)
+				DarkFactor = CharacterGetDarkFactor(Player, true);
+		}
+
+		if (DarkFactor > 0.0) {
 			if (!DrawImage("Backgrounds/" + B + ".jpg", 0, 0, Invert)) {
 				// Draw empty background to overdraw old content if background image isn't ready
 				DrawRect(0, 0, 2000, 1000, "#000");
 			}
 		}
-		if (DarkFactor < 1.0 && customBG == "") DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
+		if (DarkFactor < 1.0) DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
 	}
 
 	if (RefreshDrawFunction) {
@@ -1173,8 +1208,8 @@ function DrawProcess() {
 	// If needed
 	// Used to support items that remove you from the dialog during the draw phase
 	if (DialogLeaveDueToItem) {
-		DialogLeaveDueToItem = false
-		DialogLeave()
+		DialogLeaveDueToItem = false;
+		DialogLeave();
 	}
 
 }
@@ -1232,24 +1267,50 @@ function DrawPreviewBox(X, Y, Path, Description, Options) {
 	if (Border) DrawEmptyRect(X, Y, 225, Height, Foreground);
 	const ImageX = Vibrating ? X + 1 + Math.floor(Math.random() * 3) : X + 2;
 	const ImageY = Vibrating ? Y + 1 + Math.floor(Math.random() * 3) : Y + 2;
-	DrawImageResize(Path, ImageX, ImageY, 221, 221);
+	if (Path !== "") DrawImageResize(Path, ImageX, ImageY, 221, 221);
 	if (Description) DrawTextFit(Description, X + 110, Y + 250, 221, Foreground);
 }
 
 /**
- * Takes a rectangular subsection of the character's canvas and returns it as a new canvas
- * @param {any} C - The character to draw part of
- * @param {any} Left - The starting X co-ordinate of the section to take in C.Canvas
- * @param {any} Top - The starting Y co-ordinate (offset by CanvasUpperOverflow) of the section to take in C.Canvas
- * @param {any} Width - The width of the section to take
- * @param {any} Height - The height of the section to take
- * @returns {HTMLCanvasElement} - The segment of the character canvas
+ * Draws an item preview box using the provided canvas
+ * @param {number} X - Position of the preview box on the X axis
+ * @param {number} Y - Position of the preview box on the Y axis
+ * @param {HTMLCanvasElement} Canvas - The canvas element containing the image to draw
+ * @param {string} Description - The preview box description
+ * @param {object} Options - Additional optional drawing options
+ * @returns {void} - Nothing
+ */
+function DrawCanvasPreview(X, Y, Canvas, Description, Options) {
+	DrawPreviewBox(X, Y, "", Description, Options);
+	MainCanvas.drawImage(Canvas, X + 2, Y + 2, 221, 221);
+}
+
+/**
+ * Returns a rectangular subsection of a canvas
+ * @param {HTMLCanvasElement} Canvas - The source canvas to take a section of
+ * @param {number} Left - The starting X co-ordinate of the section
+ * @param {number} Top - The starting Y co-ordinate of the section
+ * @param {number} Width - The width of the section to take
+ * @param {number} Height - The height of the section to take
+ * @returns {HTMLCanvasElement} - The new canvas containing the section
+ */
+function DrawCanvasSegment(Canvas, Left, Top, Width, Height) {
+	TempCanvas.canvas.width = Width;
+	TempCanvas.canvas.height = Height;
+	TempCanvas.clearRect(0, 0, Width, Height);
+	TempCanvas.drawImage(Canvas, Left, Top, Width, Height, 0, 0, Width, Height);
+	return TempCanvas.canvas;
+}
+
+/**
+ * Returns a rectangular subsection of the character image
+ * @param {Character} C - The character to copy part of
+ * @param {number} Left - The starting X co-ordinate of the section
+ * @param {number} Top - The starting Y co-ordinate of the section
+ * @param {number} Width - The width of the section to take
+ * @param {number} Height - The height of the section to take
+ * @returns {HTMLCanvasElement} - The new canvas containing the section
  */
 function DrawCharacterSegment(C, Left, Top, Width, Height) {
-	const ImgData = C.Canvas.getContext('2d').getImageData(Left, CanvasUpperOverflow + Top, Width, Height);
-	let ImgCanvas = document.createElement('canvas');
-	ImgCanvas.width = Width;
-	ImgCanvas.height = Height;
-	ImgCanvas.getContext('2d').putImageData(ImgData, 0, 0);
-	return ImgCanvas;
+	return DrawCanvasSegment(C.Canvas, Left, Top + CanvasUpperOverflow, Width, Height);
 }

@@ -85,7 +85,6 @@ function GetUpRun() {
 		MiniGameTimer = Math.min(CommonTime() + 750, MiniGameTimer)
 		MiniGameVictory = false
 	}
-	if (Time >= MiniGameTimer + 750) CommonDynamicFunction(MiniGameReturnFunction + "()"); 
 
 
 	DrawProgressBar(500 - GetUpMaxPosition, 500, 2*GetUpMaxPosition, 50, 50*((GetUpPosition + GetUpMaxPosition)/GetUpMaxPosition));
@@ -103,6 +102,9 @@ function GetUpRun() {
 		}
 	}
 	DrawText(GetUpText, 500, 977, "white", "black");
+	
+	
+	if (Time >= MiniGameTimer + 750) CommonDynamicFunction(MiniGameReturnFunction + "()"); 
 	
 }
 

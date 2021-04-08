@@ -6,6 +6,7 @@ var CurrentModule;
 var CurrentScreen;
 var CurrentCharacter = null;
 var CurrentOnlinePlayers = 0;
+var CurrentDarkFactor = 1.0;
 var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
@@ -14,6 +15,32 @@ var CommonPhotoMode = false;
 var GameVersion = "R0";
 const GameVersionFormat = /^R([0-9]+)(?:(Alpha|Beta)([0-9]+)?)?$/;
 var CommonVersionUpdated = false;
+
+/**
+ * An enum encapsulating possible chatroom message substitution tags. Character name substitution tags are interpreted
+ * in chatrooms as follows (assuming the character name is Ben987):
+ * SOURCE_CHAR: "Ben987"
+ * DEST_CHAR: "Ben987's" (if character is not self), "her" (if character is self)
+ * DEST_CHAR_NAME: "Ben987's"
+ * TARGET_CHAR: "Ben987" (if character is not self), "herself" (if character is self)
+ * TARGET_CHAR_NAME: "Ben987"
+ * Additionally, sending the following tags will ensure that asset names in messages are correctly translated by
+ * recipients:
+ * ASSET_NAME: (substituted with the localized name of the asset, if available)
+ * @enum {string}
+ */
+const CommonChatTags = {
+	SOURCE_CHAR: "SourceCharacter",
+	DEST_CHAR: "DestinationCharacter",
+	DEST_CHAR_NAME: "DestinationCharacterName",
+	TARGET_CHAR: "TargetCharacter",
+	TARGET_CHAR_NAME: "TargetCharacterName",
+	ASSET_NAME: "AssetName",
+}
+
+String.prototype.replaceAt=function(index, character) {
+	return this.substr(0, index) + character + this.substr(index+character.length);
+}
 
 /**
  * A map of keys to common font stack definitions. Each stack definition is a	
@@ -351,6 +378,7 @@ function CommonSetScreen(NewModule, NewScreen) {
 	var prevScreen = CurrentScreen
 	CurrentModule = NewModule;
 	CurrentScreen = NewScreen;
+	CurrentDarkFactor = 1.0;
 	CommonGetFont.clearCache();
 	CommonGetFontName.clearCache();
 	TextLoad();
@@ -655,4 +683,48 @@ function CommonCompareVersion(Current, Other) {
 		}
 	}
 	return 0;
+}
+
+/**
+ * A simple deep equality check function which checks whether two objects are equal. The function traverses recursively
+ * into objects and arrays to check for equality. Primitives and simple types are considered equal as defined by `===`.
+ * @param {*} obj1 - The first object to compare
+ * @param {*} obj2 - The second object to compare
+ * @returns {boolean} - TRUE if both objects are equal, up to arbitrarily deeply nested property values, FALSE
+ * otherwise.
+ */
+function CommonDeepEqual(obj1, obj2) {
+	if (obj1 === obj2) {
+		return true;
+	}
+
+	if (obj1 && obj2 && typeof obj1 === "object" && typeof obj2 === "object") {
+		// If the objects do not share a prototype, they are not equal
+		if (Object.getPrototypeOf(obj1) !== Object.getPrototypeOf(obj2)) {
+			return false;
+		}
+
+		// Get the keys for the objects
+		const keys1 = Object.keys(obj1);
+		const keys2 = Object.keys(obj2);
+
+		// If the objects have different numbers of keys, they are not equal
+		if (keys1.length !== keys2.length) {
+			return false;
+		}
+
+		// Sort the keys
+		keys1.sort();
+		keys2.sort();
+		return keys1.every((key, i) => {
+			// If the keys are different, the objects are not equal
+			if (key !== keys2[i]) {
+				return false;
+			}
+			// Otherwise, compare the values
+			return CommonDeepEqual(obj1[key], obj2[key]);
+		});
+	}
+
+	return false;
 }

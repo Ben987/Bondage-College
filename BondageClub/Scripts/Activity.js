@@ -12,7 +12,9 @@ var ActivityOrgasmResistLabel = "";
  * Checks if the current room allows for activities. (They can only be done in certain rooms)
  * @returns {boolean} - Whether or not activities can be done
  */
-function ActivityAllowed() { return ((CurrentScreen == "ChatRoom") || ((CurrentScreen == "Private") && LogQuery("RentRoom", "PrivateRoom"))) }
+function ActivityAllowed() {
+	return (CurrentScreen == "ChatRoom" && !(ChatRoomData && ChatRoomData.BlockCategory && ChatRoomData.BlockCategory.includes("Arousal")))
+		|| ((CurrentScreen == "Private") && LogQuery("RentRoom", "PrivateRoom")); }
 
 /**
  * Loads the activity dictionary that will be used throughout the game to output messages. Loads from cache first if possible.
@@ -366,6 +368,11 @@ function ActivityOrgasmGameGenerate(Progress) {
  * @returns {void} - Nothing
  */
 function ActivityOrgasmPrepare(C) {
+	if (C.Effect.includes("DenialMode")) {
+		C.ArousalSettings.Progress = 99;
+		return;
+	}
+
 	if (C.IsEdged()) {
 		C.ArousalSettings.Progress = 95;
 		return;

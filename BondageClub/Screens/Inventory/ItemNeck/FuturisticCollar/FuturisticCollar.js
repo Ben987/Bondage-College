@@ -21,7 +21,11 @@ function InventoryItemNeckFuturisticCollarDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
 	} else {
-		DrawAssetPreview(1387, 75, DialogFocusItem.Asset);
+		DrawAssetPreview(1387, 65, DialogFocusItem.Asset);
+		
+		if ((DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem))) {
+			DrawText(DialogFindPlayer("FuturisticCollarOptionsLockout"), 1500, 375, "White", "Gray");
+		}
 
 		DrawButton(1125, 395, 64, 64, "", "White", DialogFocusItem.Property.OpenPermission ? "Icons/Checked.png" : "");
 		DrawText(DialogFindPlayer("FuturisticCollarOpenPermission"), 1550, 425, "White", "Gray");
@@ -82,7 +86,7 @@ function InventoryItemNeckFuturisticCollarClick() {
 		
 		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemNeckFuturisticCollarExit();
 		else if (MouseIn(1125, 395, 64, 64) && !(DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem))) InventoryItemNeckFuturisticCollarTogglePermission(C, DialogFocusItem);
-		else if (MouseIn(1125, 465, 64, 64)) InventoryItemNeckFuturisticCollarToggleRemotes(C, DialogFocusItem);
+		else if (MouseIn(1125, 465, 64, 64) && !(DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem))) InventoryItemNeckFuturisticCollarToggleRemotes(C, DialogFocusItem);
 		else {
 		
 			var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
@@ -186,7 +190,7 @@ function InventoryItemNeckFuturisticCollarValidate(C, Option) {
 
 function InventoryItemNeckFuturisticCollarLockdown(C, LockType) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0 || C.Appearance[E].Asset.Name.indexOf("Electronic") >= 0) &&
 			(C.Appearance[E].Asset.AllowLock && InventoryGetLock(C.Appearance[E]) == null))) {
 				InventoryLock(C, C.Appearance[E], LockType, Player.MemberNumber);
 				var Lock = InventoryGetLock(C.Appearance[E])
@@ -213,7 +217,7 @@ function InventoryItemNeckFuturisticCollarLockdown(C, LockType) {
 
 function InventoryItemNeckFuturisticCollarUnlock(C) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0) && C.Appearance[E].Asset.Group.Name != "ItemNeck") &&
+		if (((C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 || C.Appearance[E].Asset.Name.indexOf("Interactive") >= 0 || C.Appearance[E].Asset.Name.indexOf("Electronic") >= 0) && C.Appearance[E].Asset.Group.Name != "ItemNeck") &&
 			(InventoryGetLock(C.Appearance[E]) != null && InventoryItemHasEffect(C.Appearance[E], "Lock", true) && DialogCanUnlock(C, C.Appearance[E]))) {
 				InventoryUnlock(C, C.Appearance[E])
 		}
@@ -239,25 +243,28 @@ function InventoryItemNeckFuturisticCollarUnlock(C) {
 
 function InventoryItemNeckFuturisticCollarColor(C, Item) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 && C.Appearance[E].Asset.Group.Name != "ItemNeck") {
+		if (C.Appearance[E].Asset.Name.indexOf("Futuristic") >= 0 && C.Appearance[E].Asset.Group.Name != "ItemNeck" || C.Appearance[E].Asset.Name.indexOf("Electronic") >= 0) {
 			
 			for (let L = C.Appearance[E].Asset.Layer.length - 1; L >= 0; L--) {
-				if (C.Appearance[E].Asset.Layer[L].Name == "Lock") {
-					if (Item.Color[3] != "Default")
-						C.Appearance[E].Color[L] = Item.Color[3]
-					//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[2].ColorIndex
-				} else if (C.Appearance[E].Asset.Layer[L].Name == "Display" || C.Appearance[E].Asset.Layer[L].Name == "Screen" || C.Appearance[E].Asset.Layer[L].Name == "Ball") {
-					if (Item.Color[0] != "Default")
-						C.Appearance[E].Color[L] = Item.Color[0]
-					//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[0].ColorIndex
-				} else if (C.Appearance[E].Asset.Layer[L].Name != "Mesh" && C.Appearance[E].Asset.Layer[L].Name != "Text") {
-					if (Item.Color[1] != "Default")
-						C.Appearance[E].Color[L] = Item.Color[1]
-					//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[1].ColorIndex
-				} else if (C.Appearance[E].Asset.Layer[L].Name != "Text") {
-					if (Item.Color[2] != "Default")
-						C.Appearance[E].Color[L] = Item.Color[2]
-					//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[2].ColorIndex
+				
+				if (C.Appearance[E].Asset.Layer[L].Name != "Light") {
+					if (C.Appearance[E].Asset.Layer[L].Name == "Lock") {
+						if (Item.Color[3] != "Default")
+							C.Appearance[E].Color[L] = Item.Color[3]
+						//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[2].ColorIndex
+					} else if (C.Appearance[E].Asset.Layer[L].Name == "Display" || C.Appearance[E].Asset.Layer[L].Name == "Screen" || C.Appearance[E].Asset.Layer[L].Name == "Ball") {
+						if (Item.Color[0] != "Default")
+							C.Appearance[E].Color[L] = Item.Color[0]
+						//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[0].ColorIndex
+					} else if (C.Appearance[E].Asset.Layer[L].Name != "Mesh" && C.Appearance[E].Asset.Layer[L].Name != "Text") {
+						if (Item.Color[1] != "Default")
+							C.Appearance[E].Color[L] = Item.Color[1]
+						//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[1].ColorIndex
+					} else if (C.Appearance[E].Asset.Layer[L].Name != "Text") {
+						if (Item.Color[2] != "Default")
+							C.Appearance[E].Color[L] = Item.Color[2]
+						//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[2].ColorIndex
+					}
 				}
 			}
 		}

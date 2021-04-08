@@ -137,7 +137,8 @@ function GameLARPRunProcess() {
 	if (GameLARPTurnFocusCharacter != null) {
 
 		// Draw the room dark background
-		DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + "Dark.jpg", MainCanvas, 500, 0, 1000, 1000, 0, 0, 1000, 1000);
+		DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ".jpg", MainCanvas, 500, 0, 1000, 1000, 0, 0, 1000, 1000);
+		DrawRect(0, 0, 1000, 1000, "rgba(0,0,0," + 0.5 + ")");
 
 		// In inventory selection mode
 		if (GameLARPTurnFocusGroup != null) {
@@ -183,7 +184,7 @@ function GameLARPRunProcess() {
 	}
 
 	// Reset any notification that may have been raised
-	NotificationReset(NotificationEventType.LARP);
+	if (document.hasFocus()) NotificationReset(NotificationEventType.LARP);
 }
 
 /**

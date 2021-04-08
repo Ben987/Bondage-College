@@ -114,12 +114,16 @@ ItemFeetFloorShacklesCuffs,Cuffs
 ItemFeetFuturisticAnkleCuffsCuffs,Cuffs
 ItemFeetFuturisticAnkleCuffsDisplay,Display
 ItemFeetFuturisticAnkleCuffsLock,Lock
+ItemFeetLeatherAnkleCuffsCuffs,Cuffs
+ItemFeetLeatherAnkleCuffsRings,Rings
 ItemFeetMedicalBedRestraintsBase,Bed Straps
 ItemFeetMedicalBedRestraintsStraps,Cuffs
 ItemLegsFuturisticLegCuffsCuffs,Cuffs
 ItemLegsFuturisticLegCuffsDisplay,Display
 ItemLegsFuturisticLegCuffsLock,Lock
 ItemLegsOrnateLegCuffsGems,Gems
+ItemLegsLeatherLegCuffsCuffs,Cuffs
+ItemLegsLeatherLegCuffsRings,Rings
 ItemLegsLegBinderLatex,Binder
 ItemLegsLegBinderBelts,Belts
 ItemLegsHobbleSkirtLatex,Skirt
@@ -162,6 +166,8 @@ ItemNipplesPiercingsVibeHeartPiercingsHeart,Heart
 ItemNipplesPiercingsVibeHeartPiercingsRing,Ring
 ItemBreastOrnateChastityBraBra,Bra
 ItemBreastOrnateChastityBraGems,Gems
+ItemArmsLeatherCuffsCuffs,Cuffs
+ItemArmsLeatherCuffsRings,Rings
 ItemArmsOrnateCuffsCuffs,Cuffs
 ItemArmsOrnateCuffsGems,Gems
 ItemArmsStraitLeotardLower,Lower Half
@@ -288,6 +294,10 @@ ItemDevicesCribPillowTrim,Pillow Trim
 ItemDevicesCribPlushies,Plushies
 ItemDevicesConcealingCloakFront,Cloak
 ItemDevicesConcealingCloakStrap,Straps
+ItemDevicesPetBedBed,Bed
+ItemDevicesPetBedLining,Bed Lining
+ItemDevicesPetBedBlanket,Blanket
+ItemDevicesPetBedInner,Blanket Lining
 ItemDevicesTransportWoodenBoxBack,Wood
 ItemDevicesTransportWoodenBoxWheelholders,Wheel Holders
 ItemDevicesTransportWoodenBoxWheels,Wheels
@@ -552,6 +562,13 @@ ItemPelvisFuturisticChastityBelt2Belt,Belt
 ItemPelvisFuturisticChastityBelt2Lock,Lock
 ItemPelvisFuturisticChastityBelt2Band,Band
 ItemPelvisFuturisticChastityBelt2Plug,Plug
+ItemPelvisSciFiPleasurePantiesScreen,Interface
+ItemPelvisSciFiPleasurePantiesMesh2,Panty Base
+ItemPelvisSciFiPleasurePantiesMesh1,Wires
+ItemPelvisSciFiPleasurePantiesBand,Metal Band
+ItemPelvisSciFiPleasurePantiesPlug2,Clit Toy
+ItemPelvisSciFiPleasurePantiesPlug1,Pussy Toy
+SciFiPleasurePanties_Lock,Lock Icon
 PantiesPilotPantiesLayer1,Suit
 PantiesPilotPantiesLayer2,Highlights
 PantiesPilotPantiesLayer3,Center
@@ -580,3 +597,8 @@ ItemHeadBlackoutLensesLeft,Left Lens
 ItemHeadBlackoutLensesRight,Right Lens
 ItemHeadInteractiveVRHeadsetDisplay,Display
 ItemHeadInteractiveVRHeadsetBody,Body
+ClothAccessoryBunnyCollarCuffsCuffs,Cuffs
+ClothAccessoryBunnyCollarCuffsCollar,Collar
+ClothAccessoryBunnyCollarCuffsBow,Bow
+ItemHeadPaddedBlindfoldBase,Blindfold
+ItemHeadPaddedBlindfoldTrim,Trim

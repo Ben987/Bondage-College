@@ -222,6 +222,49 @@ function PreferenceInit(C) {
 	if (!Array.isArray(C.ArousalSettings.Activity)) C.ArousalSettings.Activity = [];
 	if (!Array.isArray(C.ArousalSettings.Zone)) C.ArousalSettings.Zone = [];
 	if (!Array.isArray(C.ArousalSettings.Fetish)) C.ArousalSettings.Fetish = [];
+
+	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
+	if (Player.AssetFamily == "Female3DCG") {
+
+		// Validates the activities
+		for (let A = 0; A < ActivityFemale3DCG.length; A++) {
+			let Found = false;
+			for (let P = 0; P < C.ArousalSettings.Activity.length; P++)
+				if ((C.ArousalSettings.Activity[P] != null) && (C.ArousalSettings.Activity[P].Name != null) && (ActivityFemale3DCG[A].Name == C.ArousalSettings.Activity[P].Name)) {
+					Found = true;
+					if ((C.ArousalSettings.Activity[P].Self == null) || (typeof C.ArousalSettings.Activity[P].Self !== "number") || (C.ArousalSettings.Activity[P].Self < 0) || (C.ArousalSettings.Activity[P].Self > 4)) C.ArousalSettings.Activity[P].Self = 2;
+					if ((C.ArousalSettings.Activity[P].Other == null) || (typeof C.ArousalSettings.Activity[P].Other !== "number") || (C.ArousalSettings.Activity[P].Other < 0) || (C.ArousalSettings.Activity[P].Other > 4)) C.ArousalSettings.Activity[P].Other = 2;
+				}
+			if (!Found) C.ArousalSettings.Activity.push({ Name: ActivityFemale3DCG[A].Name, Self: 2, Other: 2 });
+		}
+
+		// Validates the fetishes
+		for (let A = 0; A < FetishFemale3DCG.length; A++) {
+			let Found = false;
+			for (let F = 0; F < C.ArousalSettings.Fetish.length; F++)
+				if ((C.ArousalSettings.Fetish[F] != null) && (C.ArousalSettings.Fetish[F].Name != null) && (FetishFemale3DCG[A].Name == C.ArousalSettings.Fetish[F].Name)) {
+					Found = true;
+					if ((C.ArousalSettings.Fetish[F].Factor == null) || (typeof C.ArousalSettings.Fetish[F].Factor !== "number") || (C.ArousalSettings.Fetish[F].Factor < 0) || (C.ArousalSettings.Fetish[F].Factor > 4)) C.ArousalSettings.Fetish[F].Factor = 2;
+				}
+			if (!Found) C.ArousalSettings.Fetish.push({ Name: FetishFemale3DCG[A].Name, Factor: 2 });
+		}
+
+		// Validates the zones
+		for (let A = 0; A < AssetGroup.length; A++)
+			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null)) {
+				let Found = false;
+				for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
+					if ((C.ArousalSettings.Zone[Z] != null) && (C.ArousalSettings.Zone[Z].Name != null) && (AssetGroup[A].Name == C.ArousalSettings.Zone[Z].Name)) {
+						Found = true;
+						if ((C.ArousalSettings.Zone[Z].Factor == null) || (typeof C.ArousalSettings.Zone[Z].Factor !== "number") || (C.ArousalSettings.Zone[Z].Factor < 0) || (C.ArousalSettings.Zone[Z].Factor > 4)) C.ArousalSettings.Zone[Z].Factor = 2;
+					}
+				if (!Found) {
+					C.ArousalSettings.Zone.push({ Name: AssetGroup[A].Name, Factor: 2 });
+					if (AssetGroup[A].Name == "ItemVulva") PreferenceSetZoneOrgasm(C, "ItemVulva", true);
+				}
+			}
+
+	}
 }
 
 /**
@@ -427,50 +470,7 @@ function PreferenceInitPlayer() {
 		C.ImmersionSettings.SenseDepMessages = true;
 		C.OnlineSharedSettings.AllowPlayerLeashing = true;
 	}
-
-	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
-	if (Player.AssetFamily == "Female3DCG") {
-
-		// Validates the activities
-		for (let A = 0; A < ActivityFemale3DCG.length; A++) {
-			let Found = false;
-			for (let P = 0; P < C.ArousalSettings.Activity.length; P++)
-				if ((C.ArousalSettings.Activity[P] != null) && (C.ArousalSettings.Activity[P].Name != null) && (ActivityFemale3DCG[A].Name == C.ArousalSettings.Activity[P].Name)) {
-					Found = true;
-					if ((C.ArousalSettings.Activity[P].Self == null) || (typeof C.ArousalSettings.Activity[P].Self !== "number") || (C.ArousalSettings.Activity[P].Self < 0) || (C.ArousalSettings.Activity[P].Self > 4)) C.ArousalSettings.Activity[P].Self = 2;
-					if ((C.ArousalSettings.Activity[P].Other == null) || (typeof C.ArousalSettings.Activity[P].Other !== "number") || (C.ArousalSettings.Activity[P].Other < 0) || (C.ArousalSettings.Activity[P].Other > 4)) C.ArousalSettings.Activity[P].Other = 2;
-				}
-			if (!Found) C.ArousalSettings.Activity.push({ Name: ActivityFemale3DCG[A].Name, Self: 2, Other: 2 });
-		}
-
-		// Validates the fetishes
-		for (let A = 0; A < FetishFemale3DCG.length; A++) {
-			let Found = false;
-			for (let F = 0; F < C.ArousalSettings.Fetish.length; F++)
-				if ((C.ArousalSettings.Fetish[F] != null) && (C.ArousalSettings.Fetish[F].Name != null) && (FetishFemale3DCG[A].Name == C.ArousalSettings.Fetish[F].Name)) {
-					Found = true;
-					if ((C.ArousalSettings.Fetish[F].Factor == null) || (typeof C.ArousalSettings.Fetish[F].Factor !== "number") || (C.ArousalSettings.Fetish[F].Factor < 0) || (C.ArousalSettings.Fetish[F].Factor > 4)) C.ArousalSettings.Fetish[F].Factor = 2;
-				}
-			if (!Found) C.ArousalSettings.Fetish.push({ Name: FetishFemale3DCG[A].Name, Factor: 2 });
-		}
-
-		// Validates the zones
-		for (let A = 0; A < AssetGroup.length; A++)
-			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null)) {
-				let Found = false;
-				for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
-					if ((C.ArousalSettings.Zone[Z] != null) && (C.ArousalSettings.Zone[Z].Name != null) && (AssetGroup[A].Name == C.ArousalSettings.Zone[Z].Name)) {
-						Found = true;
-						if ((C.ArousalSettings.Zone[Z].Factor == null) || (typeof C.ArousalSettings.Zone[Z].Factor !== "number") || (C.ArousalSettings.Zone[Z].Factor < 0) || (C.ArousalSettings.Zone[Z].Factor > 4)) C.ArousalSettings.Zone[Z].Factor = 2;
-					}
-				if (!Found) {
-					C.ArousalSettings.Zone.push({ Name: AssetGroup[A].Name, Factor: 2 });
-					if (AssetGroup[A].Name == "ItemVulva") PreferenceSetZoneOrgasm(C, "ItemVulva", true);
-				}
-			}
-
-	}
-
+	
 	// Enables the AFK timer for the current player only
 	AfkTimerSetEnabled(C.OnlineSettings.EnableAfkTimer);
 
@@ -629,6 +629,7 @@ function PreferenceSubscreenGeneralRun() {
 	else
 		ColorPickerHide();
 
+	MainCanvas.textAlign = "center";
 }
 
 /**
@@ -700,7 +701,7 @@ function PreferenceSubscreenRestrictionRun() {
 		DrawCheckboxDisabled(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"));
 		DrawCheckboxDisabled(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"));
 	}
-
+	MainCanvas.textAlign = "center";
 }
 
 /**
@@ -956,70 +957,71 @@ function PreferenceSubscreenAudioRun() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenControllerRun() {
-    if (PreferenceCalibrationStage == 0) {
-        DrawCharacter(Player, 50, 50, 0.9);
-        MainCanvas.textAlign = "left";
-        DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
-        DrawText(TextGet("Sensitivity"), 800, 225, "Black", "Gray");
-        DrawText(TextGet("DeadZone"), 800, 625, "Black", "Gray");
-        DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
+	if (PreferenceCalibrationStage == 0) {
+		DrawCharacter(Player, 50, 50, 0.9);
+		MainCanvas.textAlign = "left";
+		DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
+		DrawText(TextGet("Sensitivity"), 800, 225, "Black", "Gray");
+		DrawText(TextGet("DeadZone"), 800, 625, "Black", "Gray");
+		DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
 
-        DrawButton(500, 380, 400, 90, "", "White");
-        DrawTextFit(TextGet("MapButtons"), 590, 425, 310, "Black");
+		DrawButton(500, 380, 400, 90, "", "White");
+		DrawTextFit(TextGet("MapButtons"), 590, 425, 310, "Black");
 
-        DrawButton(500, 480, 400, 90, "", "White");
-        DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
+		DrawButton(500, 480, 400, 90, "", "White");
+		DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
 
-        MainCanvas.textAlign = "center";
-        DrawBackNextButton(500, 193, 250, 64, Player.ControllerSettings.ControllerSensitivity, "White", "",
-            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
-            () => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length]);
-        MainCanvas.textAlign = "center";
-        DrawBackNextButton(500, 593, 250, 64, Player.ControllerSettings.ControllerDeadZone, "White", "",
-            () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + PreferenceSettingsDeadZoneList.length - 1) % PreferenceSettingsDeadZoneList.length],
-            () => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length] );
-    }
-    if (PreferenceCalibrationStage == 101) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("MoveLeftStickUp"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 102) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("MoveLeftStickRight"), 590, 425, 310, "Black");
-    }
-    DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-    if (PreferenceCalibrationStage == 1) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressA"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 2) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressB"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 3) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressX"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 4) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressY"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 5) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressUpOnDpad"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 6) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressDownOnDpad"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 7) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressLeftOnDpad"), 590, 425, 310, "Black");
-    }
-    if (PreferenceCalibrationStage == 8) {
-        MainCanvas.textAlign = "left";
-        DrawTextFit(TextGet("PressRightOnDpad"), 590, 425, 310, "Black");
-    }
+		MainCanvas.textAlign = "center";
+		DrawBackNextButton(500, 193, 250, 64, Player.ControllerSettings.ControllerSensitivity, "White", "",
+			() => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
+			() => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length]);
+		MainCanvas.textAlign = "center";
+		DrawBackNextButton(500, 593, 250, 64, Player.ControllerSettings.ControllerDeadZone, "White", "",
+			() => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + PreferenceSettingsDeadZoneList.length - 1) % PreferenceSettingsDeadZoneList.length],
+			() => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length] );
+	}
+	if (PreferenceCalibrationStage == 101) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("MoveLeftStickUp"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 102) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("MoveLeftStickRight"), 590, 425, 310, "Black");
+	}
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	if (PreferenceCalibrationStage == 1) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressA"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 2) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressB"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 3) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressX"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 4) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressY"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 5) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressUpOnDpad"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 6) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressDownOnDpad"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 7) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressLeftOnDpad"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 8) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressRightOnDpad"), 590, 425, 310, "Black");
+	}
+	MainCanvas.textAlign = "center";
 }
 
 /**

@@ -445,7 +445,7 @@ function SarahRestrainedBySophie(Phase, DomRep) {
 // When a fight starts between the player and Sophie
 function SarahFightSophie() {
 	Sophie.Name = "Sophie";
-	KidnapStart(Sophie, SarahBackground + "Dark", 10, "SarahFightSophieEnd()");
+	KidnapStart(Sophie, SarahBackground, 10, "SarahFightSophieEnd()");
 }
 
 // When the fight against Sophie ends

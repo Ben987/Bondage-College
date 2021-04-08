@@ -129,7 +129,7 @@ function CollegeCafeteriaSidneyLoveChange(LoveChange, MoneyChange) {
  * @returns {void} - Nothing
  */
 function CollegeCafeteriaFightStart() {
-	KidnapStart(CollegeCafeteriaSidney, "CollegeCafeteriaDark", 7, "CollegeCafeteriaFightEnd()");
+	KidnapStart(CollegeCafeteriaSidney, "CollegeCafeteria", 7, "CollegeCafeteriaFightEnd()");
 }
 
 /**

@@ -1,5 +1,5 @@
 "use strict";
-var ChatCreateBackground = "IntroductionDark";
+var ChatCreateBackground = "Introduction";
 var ChatCreateResult = [];
 var ChatCreateMessage = "";
 var ChatCreatePrivate = null;
@@ -13,6 +13,8 @@ var ChatCreateBackgroundList = null;
  */
 function ChatCreateLoad() {
 
+	CurrentDarkFactor = 0.5;
+
 	// Resets the room game statuses
 	if ((ChatRoomGame == "LARP") && (Player.Game.LARP.Status != "")) {
 		Player.Game.LARP.Status = "";
@@ -25,7 +27,7 @@ function ChatCreateLoad() {
 		ChatCreateBackgroundIndex = 0;
 	}
 	ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
-	ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
+	ChatCreateBackground = ChatCreateBackgroundSelect;
 
 	// Prepares the controls to create a room
 	ElementRemove("InputSearch");
@@ -82,7 +84,7 @@ function ChatCreateClick() {
 		if (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length) ChatCreateBackgroundIndex = 0;
 		if (ChatCreateBackgroundIndex < 0) ChatCreateBackgroundIndex = ChatCreateBackgroundList.length - 1;
 		ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
-		ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
+		ChatCreateBackground = ChatCreateBackgroundSelect;
 	}
 
 	// Show backgrounds in grid

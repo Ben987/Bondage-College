@@ -86,7 +86,7 @@ function AsylumEntranceClick() {
  * @returns {void} - Nothing
  */
 function AsylumEntranceStartChat() {
-	ChatRoomStart("Asylum", "", "AsylumEntrance", "AsylumEntranceDark", [BackgroundsTagAsylum]);
+	ChatRoomStart("Asylum", "", "AsylumEntrance", "AsylumEntrance", [BackgroundsTagAsylum]);
 }
 
 // Wears the nurse clothes on a character (same as nursery)
@@ -184,7 +184,7 @@ function AsylumEntranceStartNurse() {
  * @returns {void} - Nothing
  */
 function AsylumEntranceFightNurse() {
-	KidnapStart(AsylumEntranceNurse, "AsylumEntranceDark", 7, "AsylumEntranceFightNurseEnd()");
+	KidnapStart(AsylumEntranceNurse, "AsylumEntrance", 7, "AsylumEntranceFightNurseEnd()");
 }
 
 // When the fight against the nurse ends
@@ -301,7 +301,7 @@ function AsylumEntranceNurseCatchEscapedPlayer() {
  */
 function AsylumEntranceKidnapNurseFight() {
 	DialogChangeReputation("Dominant", 4);
-	KidnapStart(AsylumEntranceKidnapNurse, "MainHallDark", 7, "AsylumEntranceKidnapNurseFightOutro()");
+	KidnapStart(AsylumEntranceKidnapNurse, "MainHall", 7, "AsylumEntranceKidnapNurseFightOutro()");
 }
 
 /**
@@ -405,7 +405,7 @@ function AsylumEntranceEscapedPatientMeet() {
 function AsylumEntranceEscapedPatientFight() {
 	DialogChangeReputation("Asylum", 2);
 	DialogChangeReputation("Dominant", 2);
-	KidnapStart(AsylumEntranceEscapedPatient, "MainHallDark", 4, "AsylumEntranceEscapedPatientFightOutro()");
+	KidnapStart(AsylumEntranceEscapedPatient, "MainHall", 4, "AsylumEntranceEscapedPatientFightOutro()");
 }
 
 // When the player fight ends against the escaped patient

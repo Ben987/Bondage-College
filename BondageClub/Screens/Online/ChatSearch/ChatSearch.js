@@ -1,5 +1,5 @@
 "use strict";
-var ChatSearchBackground = "IntroductionDark";
+var ChatSearchBackground = "Introduction";
 var ChatSearchResult = [];
 var ChatSearchLastQuerySearch = "";
 var ChatSearchLastQuerySearchTime = 0;
@@ -22,6 +22,7 @@ var ChatRoomJoinLeash = ""
  * @returns {void} - Nothing
  */
 function ChatSearchLoad() {
+	CurrentDarkFactor = 0.5;
 	if (ChatSearchLeaveRoom == "MainHall") ChatRoomGame = "";
 	if (ChatSearchSafewordAppearance == null) {
 		ChatSearchSafewordAppearance = Player.Appearance.slice(0);

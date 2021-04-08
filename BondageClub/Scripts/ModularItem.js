@@ -145,7 +145,7 @@ function ModularItemCreateClickFunction(data) {
 }
 
 /**
- * Generates an asset's extended item click function
+ * Generates an asset's modular item data
  * @param {Asset} asset - The asset to generate modular item data for
  * @param {ModularItemConfig} config - The item's extended item configuration
  * @returns {ModularItemData} - The generated modular item data for the asset
@@ -512,8 +512,8 @@ function ModularItemChatRoomMessage(module, index, { chatSetting, chatMessagePre
 			break;
 	}
 	var dictionary = [
-		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: CommonChatTags.SOURCE_CHAR, Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: CommonChatTags.DEST_CHAR, Text: C.Name, MemberNumber: C.MemberNumber },
 	];
 	ChatRoomPublishCustomAction(msg, false, dictionary);
 }

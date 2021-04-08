@@ -7,6 +7,7 @@ ResetClothes,Reset character
 WearRandom,Randomize clothes
 Random,Randomize character
 Naked,Strip clothes
+Character,Show character in previews
 StripItem,Strip item
 Next,Next
 Prev,Previous

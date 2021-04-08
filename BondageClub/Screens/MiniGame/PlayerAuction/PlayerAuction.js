@@ -1,5 +1,5 @@
 "use strict";
-var PlayerAuctionBackground = "SlaveMarketDark";
+var PlayerAuctionBackground = "SlaveMarket";
 var PlayerAuctionCustomer = null;
 var PlayerAuctionBidCurrent = -1;
 var PlayerAuctionBidTime = 0;
@@ -41,6 +41,7 @@ function PlayerAuctionAddCustomer(Index) {
  * @returns {void} - Nothing
  */
 function PlayerAuctionLoad() {
+	CurrentDarkFactor = 0.5;
 	PlayerAuctionCustomer = [];
 	PlayerAuctionAddCustomer(0);
 	PlayerAuctionAddCustomer(1);

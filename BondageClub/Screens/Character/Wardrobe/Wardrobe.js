@@ -1,5 +1,5 @@
 "use strict";
-var WardrobeBackground = "PrivateDark";
+var WardrobeBackground = "Private";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
 var WardrobeOffset = 0;
@@ -88,6 +88,7 @@ function WardrobeLoadCharacters(Fast) {
  */
 function WardrobeLoad() {
 	WardrobeSelection = -1;
+	CurrentDarkFactor = 0.5;
 	WardrobeLoadCharacters(false);
 }
 
