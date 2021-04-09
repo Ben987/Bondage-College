@@ -33,7 +33,7 @@ function TimerToString(T) {
 
 /**
  * Returns a string of the time remaining on a given timer (Hours and minutes only)
- * @param {number} T - Time to convert to a string in ms 
+ * @param {Date} T - Time to convert to a string in ms 
  * @returns {string} - The time string in the HH:MM format
  */
 function TimerHourToString(T) {

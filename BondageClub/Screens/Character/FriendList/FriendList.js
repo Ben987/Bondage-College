@@ -12,9 +12,10 @@ let FriendListBeepTarget = null;
 
 /**
  * @typedef {Object} FriendListBeepLogMessage
- * @property {number} MemberNumber
+ * @property {number} [MemberNumber]
  * @property {string} MemberName
  * @property {string|null} ChatRoomName
+ * @property {string|null} [ChatRoomSpace]
  * @property {boolean} Sent
  * @property {Date} Time
  * @property {string} [Message]
@@ -117,7 +118,7 @@ function FriendListBeepMenuClose() {
  */
 function FriendListBeepMenuSend() {
 	if (FriendListBeepTarget !== null) {
-		const textarea = document.getElementById("FriendListBeepTextArea");
+		const textarea = /** @type {HTMLTextAreaElement} */ (document.getElementById("FriendListBeepTextArea"));
 		if (textarea) {
 			const msg = textarea.value;
 			if (msg) {
@@ -195,12 +196,23 @@ function FriendListChatSearch(room) {
 
 /**
  * Loads the friend list data into the HTML div element.
- * @param {Array.<*>} data - An array of data, we receive from the server
- * @param {string} data.MemberName - The name of the player
- * @param {number} data.MemberNumber - The ID of the player
- * @param {string} data.ChatRoomName - The name of the ChatRoom
- * @param {string} data.ChatRoomSpace - The space, where this room was created. Currently this can be the Asylum or the LARP arena
- * @param {string} data.Type - The relationship that exists between the player and the friend of the list.
+ * @param {{
+ * MemberName: string;
+ * MemberNumber: number;
+ * ChatRoomName: string | null;
+ * ChatRoomSpace: string | null;
+ * Type: "Submissive" | "Friend";
+ * }[]} data - An array of data, we receive from the server
+ *
+ * `data.MemberName` - The name of the player
+ *
+ * `data.MemberNumber` - The ID of the player
+ *
+ * `data.ChatRoomName` - The name of the ChatRoom
+ *
+ * `data.ChatRoomSpace` - The space, where this room was created. Currently this can be the Asylum or the LARP arena
+ *
+ * `data.Type` - The relationship that exists between the player and the friend of the list.
  * Currently, only "submissive" is supported
  * @returns {void} - Nothing
  */
@@ -244,7 +256,7 @@ function FriendListLoadFriendList(data) {
 
 	if (mode === "Friends") {
 		// In Friend List mode, we show the friend list and allow doing beeps
-		for (const friend of data.sort((a, b) => a.MemberName.localeCompare(b))) {
+		for (const friend of data.sort((a, b) => a.MemberName.localeCompare(b.MemberName))) {
 			FriendListContent += "<div class='FriendListRow'>";
 			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${friend.MemberName} </div>`;
 			FriendListContent += `<div class='FriendListTextColumn'> ${friend.MemberNumber} </div>`;
@@ -270,7 +282,7 @@ function FriendListLoadFriendList(data) {
 			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${B.MemberName}</div>`;
 			FriendListContent += `<div class='FriendListTextColumn'>${B.MemberNumber != null ? B.MemberNumber : "-"}</div>`;
 			const Caption = (B.ChatRoomName == null ? "-" : (B.ChatRoomSpace ? B.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : "") + B.ChatRoomName.replace("-Private-", PrivateRoomCaption));
-			if (FriendListReturn === "ChatSearch" && ChatRoomSpace === (B.ChatRoomSpace || "") && !B.ChatRoomName.startsWith("-")) {
+			if (FriendListReturn === "ChatSearch" && B.ChatRoomSpace !== undefined && ChatRoomSpace === (B.ChatRoomSpace || "") && !B.ChatRoomName.startsWith("-")) {
 				FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListChatSearch("${B.ChatRoomName}")'> ${Caption} </div>`;
 			} else {
 				FriendListContent += `<div class='FriendListTextColumn'> ${Caption} </div>`;
