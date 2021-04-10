@@ -405,7 +405,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 	if (data.LimitedItems && typeof data.LimitedItems === "object" && !Array.isArray(data.LimitedItems)) {
 		data.LimitedItems = CommonUnpackItemArray(data.LimitedItems);
 	}
-	if (Array.isArray(data.BlackList)) {
+	if (Array.isArray(data.WhiteList)) {
 		data.WhiteList.sort((a, b) => a - b);
 	}
 	if (Array.isArray(data.BlackList)) {
