@@ -75,7 +75,7 @@ var KinkyDungeonPlayerTags = []
 
 function KinkyDungeonDefaultStats() {
 	KinkyDungeonGold = 0
-	KinkyDungeonLockpicks = 0
+	KinkyDungeonLockpicks = 1
 	KinkyDungeonRedKeys = 0
 	KinkyDungeonGreenKeys = 0
 	KinkyDungeonBlueKeys = 0
