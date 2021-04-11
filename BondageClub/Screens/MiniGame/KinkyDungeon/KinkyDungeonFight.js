@@ -184,7 +184,7 @@ function KinkyDungeonDrawFight(canvasOffsetX, canvasOffsetY, CamX, CamY) {
 			
 		}
 		
-		var Img = DrawGetImage("Screens/MiniGame/KinkyDungeon/Bullets/" + sprite + ".png", 0, 0)
+		var Img = DrawGetImage(KinkyDungeonRootDirectory + "Bullets/" + sprite + ".png", 0, 0)
 		
 		var spriteContext = spriteCanvas.getContext("2d")
 		var direction = Math.atan2(KinkyDungeonBullets[E].vy, KinkyDungeonBullets[E].vx)

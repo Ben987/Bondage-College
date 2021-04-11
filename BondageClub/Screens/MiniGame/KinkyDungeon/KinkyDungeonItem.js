@@ -56,7 +56,7 @@ function KinkyDungeonDrawItems(canvasOffsetX, canvasOffsetY, CamX, CamY) {
 		var item = KinkyDungeonGroundItems[E]
 		var sprite = item.name
 		if (KinkyDungeonGroundItems[E].x >= CamX && KinkyDungeonGroundItems[E].y >= CamY && KinkyDungeonGroundItems[E].x < CamX + KinkyDungeonGridWidthDisplay && KinkyDungeonGroundItems[E].y < CamY + KinkyDungeonGridHeightDisplay) {
-			DrawImageZoomCanvas("Screens/MiniGame/KinkyDungeon/Items/" + sprite + ".png",
+			DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Items/" + sprite + ".png",
 				KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
 				(KinkyDungeonGroundItems[E].x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonGroundItems[E].y - CamY)*KinkyDungeonGridSizeDisplay,
 				KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)

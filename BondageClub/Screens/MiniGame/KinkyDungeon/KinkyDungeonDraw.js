@@ -70,7 +70,7 @@ function KinkyDungeonDrawGame() {
 						else if (rows[R+CamY][X+CamX] == "S") sprite = "StairsUp"
 						else if (rows[R+CamY][X+CamX] == "s") sprite = "StairsDown"
 							
-						DrawImageZoomCanvas("Screens/MiniGame/KinkyDungeon/Floor" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + "/" + sprite + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSizeDisplay, R*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
+						DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Floor" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + "/" + sprite + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSizeDisplay, R*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
 					}
 				}
 				
@@ -120,12 +120,12 @@ function KinkyDungeonDrawGame() {
 					
 					if (KinkyDungeonSpellValid)
 						if (KinkyDungeonTargetingSpell.projectile)
-							DrawImageZoomCanvas("Screens/MiniGame/KinkyDungeon/Target.png",
+							DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Target.png",
 								KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
 								(KinkyDungeonMoveDirection.x + KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonMoveDirection.y + KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay,
 								KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
 						else
-							DrawImageZoomCanvas("Screens/MiniGame/KinkyDungeon/Target.png",
+							DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Target.png",
 								KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
 								(KinkyDungeonTargetX - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonTargetY - CamY)*KinkyDungeonGridSizeDisplay,
 								KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)	
@@ -177,18 +177,18 @@ function KinkyDungeonDrawGame() {
 				MainCanvas.textAlign = "center";
 				
 				var i = 1
-				DrawButton(x, y, ButtonWidth, ButtonWidth, "", "White", "Screens/MiniGame/KinkyDungeon/Struggle.png", "");
+				DrawButton(x, y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "Struggle.png", "");
 				if (!sg.blocked) {
 					var toolSprite = (sg.lock != "") ? ((sg.lock != "Jammed") ? "Key" : "LockJam") : "Buckle"
-					DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", "Screens/MiniGame/KinkyDungeon/" + toolSprite + ".png", ""); i++;
-					if (KinkyDungeonLockpicks > 0 && sg.lock != "") {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", "Screens/MiniGame/KinkyDungeon/UseTool.png", ""); i++;}
-					if (KinkyDungeonNormalBlades > 0 || KinkyDungeonEnchantedBlades > 0) {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", "Screens/MiniGame/KinkyDungeon/Cut.png", ""); i++;}
+					DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + toolSprite + ".png", ""); i++;
+					if (KinkyDungeonLockpicks > 0 && sg.lock != "") {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "UseTool.png", ""); i++;}
+					if (KinkyDungeonNormalBlades > 0 || KinkyDungeonEnchantedBlades > 0) {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "Cut.png", ""); i++;}
 				}
 			}
 
 		if (KinkyDungeonStruggleGroups.length > 0) {
-			if (KinkyDungeonDrawStruggle) DrawButton(510, 925, 120, 60, "", "White", "Screens/MiniGame/KinkyDungeon/HideTrue.png", "");
-			else DrawButton(510, 925, 120, 60, "", "White", "Screens/MiniGame/KinkyDungeon/HideFalse.png", "");
+			if (KinkyDungeonDrawStruggle) DrawButton(510, 925, 120, 60, "", "White", KinkyDungeonRootDirectory + "HideTrue.png", "");
+			else DrawButton(510, 925, 120, 60, "", "White", KinkyDungeonRootDirectory + "HideFalse.png", "");
 		}
 		
 		//DrawButton(650, 925, 250, 60, TextGet("KinkyDungeonInventory"), "White", "", "");
@@ -198,19 +198,19 @@ function KinkyDungeonDrawGame() {
 			var spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
 			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1275, 835, color, "silver")
 			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1275, 870, color, "silver")
-			DrawButton(1230, 895, 90, 90, "", "White", "Screens/MiniGame/KinkyDungeon/Spell1.png", "");
+			DrawButton(1230, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell1.png", "");
 		}
 		if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]) {
 			var spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
 			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1525, 835, color, "silver")
 			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1525, 870, color, "silver")
-			DrawButton(1480, 895, 90, 90, "", "White", "Screens/MiniGame/KinkyDungeon/Spell2.png", "");
+			DrawButton(1480, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell2.png", "");
 		}
 		if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]) {
 			var spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
 			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1775, 835, color, "silver")
 			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1775, 870, color, "silver")
-			DrawButton(1730, 895, 90, 90, "", "White", "Screens/MiniGame/KinkyDungeon/Spell3.png", "");
+			DrawButton(1730, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell3.png", "");
 		}
 	} else if (KinkyDungeonDrawState == "Magic") {
 		DrawButton(925, 925, 250, 60, TextGet("KinkyDungeonGame"), "White", "", "");
