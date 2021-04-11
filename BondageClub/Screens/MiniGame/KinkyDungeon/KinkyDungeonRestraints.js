@@ -280,6 +280,15 @@ function KinkyDungeonUpdateRestraints(delta) {
 	return playerTags;
 }
 
+
+function KinkyDungeonAddRestraintIfWeaker(restraint, Tightness, Bypass) {
+	let r = KinkyDungeonGetRestraintItem(restraint.Group)
+	if (!r || (r.restraint && r.restraint.power < restraint.power)) {
+		return KinkyDungeonAddRestraint(restraint, Tightness, Bypass)
+	}
+	return 0
+}
+
 function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 	var tight = (Tightness) ? Tightness : 0
 	if (restraint) {

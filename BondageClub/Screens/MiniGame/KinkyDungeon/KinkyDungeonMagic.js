@@ -68,8 +68,9 @@ function KinkyDungeonPlayerEffect(playerEffect, spell) {
 		}
 	} else if (playerEffect.name == "MagicRope") {
 		
-		KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("WeakMagicRopeArms"))
-		KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("WeakMagicRopeLegs"))
+		
+		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeArms"))
+		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeLegs"))
 		
 		
 		if (KinkyDungeonActionMessagePriority <= 5) {
@@ -80,7 +81,7 @@ function KinkyDungeonPlayerEffect(playerEffect, spell) {
 		}
 	} else if (playerEffect.name == "SlimeTrap") {
 		
-		KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("StickySlime"))
+		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("StickySlime"))
 		
 		
 		if (KinkyDungeonActionMessagePriority <= 5) {

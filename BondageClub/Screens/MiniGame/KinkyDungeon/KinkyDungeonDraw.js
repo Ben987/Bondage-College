@@ -173,7 +173,7 @@ function KinkyDungeonDrawGame() {
 				if (sg.lock == "Green") {color = "#88FF88"; locktext = TextGet("KinkyGreenLock");}
 				if (sg.lock == "Blue") {color = "#8888FF"; locktext = TextGet("KinkyBlueLock");}
 				
-				DrawText(TextGet("KinkyDungeonGroup"+ sg.group) + locktext, x + ((!sg.left) ? ButtonWidth : 0), y-24, color, "silver")
+				DrawText(TextGet("KinkyDungeonGroup"+ sg.group) + locktext, x + ((!sg.left) ? ButtonWidth : 0), y-24, color, "black")
 				MainCanvas.textAlign = "center";
 				
 				let i = 1
