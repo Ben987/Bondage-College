@@ -57,6 +57,8 @@ var KinkyDungeonMapParams = [
 		"max_width" : 35,
 		"min_height" : 13,
 		"max_height" : 21,
+		
+		"lockmult" : 1.5,
 	},
 	{
 		"openness" : 4,
@@ -85,6 +87,8 @@ var KinkyDungeonMapParams = [
 		"max_width" : 51,
 		"min_height" : 9,
 		"max_height" : 15,
+		
+		"lockmult" : 2.0,
 	},
 	{
 		"openness" : 4,
@@ -113,6 +117,8 @@ var KinkyDungeonMapParams = [
 		"max_width" : 31,
 		"min_height" : 11,
 		"max_height" : 19,
+		
+		"lockmult" : 2.0,
 	},
 	{
 		"openness" : 4,
@@ -127,6 +133,8 @@ var KinkyDungeonMapParams = [
 		"max_width" : 21,
 		"min_height" : 25,
 		"max_height" : 37,
+		
+		"lockmult" : 1.5,
 	},
 	{
 		"openness" : 2,
@@ -141,6 +149,8 @@ var KinkyDungeonMapParams = [
 		"max_width" : 31,
 		"min_height" : 11,
 		"max_height" : 19,
+		
+		"lockmult" : 4.0,
 	},
 	{
 		"openness" : 10,
@@ -155,6 +165,8 @@ var KinkyDungeonMapParams = [
 		"max_width" : 31,
 		"min_height" : 19,
 		"max_height" : 19,
+		
+		"lockmult" : 0.0,
 	},
 	
 ];

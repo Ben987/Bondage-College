@@ -234,7 +234,7 @@ function KinkyDungeonDrawGame() {
 		if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]) {
 			let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
 			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1775, 835, "white", "silver")
-			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1775, 870, color, "silver")
+			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1775, 870, "white", "silver")
 			DrawButton(1730, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell3.png", "");
 		}
 	} else if (KinkyDungeonDrawState == "Magic") {
@@ -258,12 +258,14 @@ function KinkyDungeonHandleHUD() {
 		
 		if (!KinkyDungeonTargetingSpell) {
 			if (KinkyDungeonHandleSpell()) return true
+			KinkyDungeonSpellPress = 0
 		} else {
 			KinkyDungeonSpellPress = 0
 		}
 		
 		if (KinkyDungeonTargetTile) {
 			if (KinkyDungeonLockpicks > 0 && MouseIn(963, 825, 112, 60)) {
+				KinkyDungeonAdvanceTime(1)
 				if (KinkyDungeonPickAttempt()) {
 					KinkyDungeonTargetTile = ""
 					delete KinkyDungeonLocks[KinkyDungeonTargetTileLocation]
@@ -271,8 +273,9 @@ function KinkyDungeonHandleHUD() {
 				return true
 			}
 			
-			if ((KinkyDungeonTargetTile.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.includes("Yellow") && (KinkyDungeonRedKeys > 0 || KinkyDungeonGreenKeys > 0)
-				|| (KinkyDungeonTargetTile.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.includes("Blue") && KinkyDungeonBlueKeys > 0) ) && MouseIn(825, 825, 112, 60)) {
+			if (((KinkyDungeonTargetTile.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.includes("Yellow") && (KinkyDungeonRedKeys > 0 || KinkyDungeonGreenKeys > 0)
+				|| (KinkyDungeonTargetTile.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.includes("Blue") && KinkyDungeonBlueKeys > 0) )) && MouseIn(825, 825, 112, 60)) {
+				KinkyDungeonAdvanceTime(1)
 				if (KinkyDungeonUnlockAttempt()) {
 					KinkyDungeonTargetTile = ""
 					delete KinkyDungeonLocks[KinkyDungeonTargetTileLocation]

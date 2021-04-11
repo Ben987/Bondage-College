@@ -19,7 +19,7 @@ var KinkyDungeonBooks = ["Elements", "Conjure", "Illusion"]
 
 var KinkyDungeonSpellsStart = [
 	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", power: 3, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
-	{name: "Snare", exhaustion: 1, components: ["Legs"], level:1, type:"inert", projectile:false, onhit:"lingering", lifetime:-1, time: 10, delay: 1, range: 3, damage: "stun", playerEffect: {name: "MagicRope", time: 3}}, // Creates a magic rope trap that creates magic ropes on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
+	{name: "Snare", exhaustion: 1, components: ["Legs"], level:1, type:"inert", projectile:false, onhit:"lingering", lifetime:-1, time: 10, delay: 2, range: 1, damage: "stun", playerEffect: {name: "MagicRope", time: 3}}, // Creates a magic rope trap that creates magic ropes on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
 	
 ]
 
@@ -95,7 +95,7 @@ function KinkyDungeonPlayerEffect(playerEffect, spell) {
 function KinkyDungeoCheckComponents(spell) {
 	var failedcomp = []
 	if (spell.components.includes("Verbal") && !KinkyDungeonPlayer.CanTalk()) failedcomp.push("Verbal")
-	if (spell.components.includes("Arms") && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) failedcomp.push("Arms")
+	if (spell.components.includes("Arms") && (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true) || InventoryGroupIsBlocked(KinkyDungeonPlayer, "ItemArms"))) failedcomp.push("Arms")
 	if (spell.components.includes("Legs") && !KinkyDungeonPlayer.CanWalk()) failedcomp.push("Legs")
 	
 	return failedcomp
@@ -113,13 +113,15 @@ function KinkyDungeonHandleSpell() {
 				KinkyDungeonActionMessageColor = "red"
 				KinkyDungeonActionMessagePriority = 4
 			}
-		} else if (4 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]])[0])
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 4
+		} else {
+			KinkyDungeonTargetingSpell = ""
+			if (4 >= KinkyDungeonActionMessagePriority) {
+				KinkyDungeonActionMessageTime = 1
+				KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]])[0])
+				KinkyDungeonActionMessageColor = "red"
+				KinkyDungeonActionMessagePriority = 4
+			}
 		}
-		
 	}
 	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]] && (MouseIn(1480, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[1])) {
 		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]).length == 0) {
@@ -131,11 +133,14 @@ function KinkyDungeonHandleSpell() {
 				KinkyDungeonActionMessageColor = "red"
 				KinkyDungeonActionMessagePriority = 4
 			}
-		} else if (4 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]])[0])
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 4
+		} else {
+			KinkyDungeonTargetingSpell = ""
+			if (4 >= KinkyDungeonActionMessagePriority) {
+				KinkyDungeonActionMessageTime = 1
+				KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]])[0])
+				KinkyDungeonActionMessageColor = "red"
+				KinkyDungeonActionMessagePriority = 4
+			}
 		}		
 	}
 	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]] && (MouseIn(1730, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[2])) {
@@ -148,11 +153,14 @@ function KinkyDungeonHandleSpell() {
 				KinkyDungeonActionMessageColor = "red"
 				KinkyDungeonActionMessagePriority = 4
 			}
-		} else if (4 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]])[0])
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 4
+		} else {
+			KinkyDungeonTargetingSpell = ""
+			if (4 >= KinkyDungeonActionMessagePriority) {
+				KinkyDungeonActionMessageTime = 1
+				KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]])[0])
+				KinkyDungeonActionMessageColor = "red"
+				KinkyDungeonActionMessagePriority = 4
+			}
 		}
 	}
 	if (spell) {

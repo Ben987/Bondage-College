@@ -51,6 +51,26 @@ var KinkyDungeonLocks = {}
 var KinkyDungeonTargetTile = ""
 var KinkyDungeonTargetTileLocation = ""
 
+var KinkyDungeonBaseLockChance = 0.25
+var KinkyDungeonScalingLockChance = 0.1 // Lock chance per 10 floors. Does not affect the guaranteed locked chest each level
+var KinkyDungeonGreenLockChance = 0.4
+var KinkyDungeonGreenLockChanceScaling = 0.1
+var KinkyDungeonGreenLockChanceScalingMax = 0.8
+var KinkyDungeonYellowLockChance = 0.2
+var KinkyDungeonYellowLockChanceScaling = 0.08
+var KinkyDungeonYellowLockChanceScalingMax = 0.7
+var KinkyDungeonBlueLockChance = -0.05
+var KinkyDungeonBlueLockChanceScaling = 0.05
+var KinkyDungeonBlueLockChanceScalingMax = 0.35
+
+
+var KinkyDungeonEasyLockChance = 0.8
+var KinkyDungeonEasyLockChanceScaling = -0.07
+var KinkyDungeonEasyLockChanceScalingMax = 1.0
+var KinkyDungeonHardLockChance = 0.2
+var KinkyDungeonHardLockChanceScaling = 0.05
+var KinkyDungeonHardLockChanceScalingMax = 0.4
+
 
 
 var KinkyDungeonTargetingSpell = null
@@ -143,7 +163,7 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	var openness = MapParams["openness"]
 	var density = MapParams["density"]
 	var doodadchance = MapParams["doodadchance"]
-	var treasurechance = 0.5 // Chance for an extra chest
+	var treasurechance = 1.0 // Chance for an extra locked chest
 	var treasurecount = MapParams["chestcount"] // Max treasure chest count
 	var rubblechance = MapParams["rubblechance"] // Chance of lootable rubble
 	var doorchance = MapParams["doorchance"] // Max treasure chest count
@@ -154,7 +174,7 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	
 	KinkyDungeonReplaceDoodads(doodadchance, width, height) // Replace random internal walls with doodads
 	KinkyDungeonPlaceStairs(startpos, width, height) // Place the start and end locations
-	KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, width, height) // Place treasure chests inside dead ends
+	KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, Floor, width, height) // Place treasure chests inside dead ends
 	KinkyDungeonPlaceDoors(doorchance, width, height) // Place treasure chests inside dead ends
 	
 	// Place the player!
@@ -200,7 +220,7 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 	}
 }
 
-function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, width, height) {
+function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, Floor, width, height) {
 	var chestlist = []
 	
 
@@ -221,7 +241,8 @@ function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, wi
 	
 	// Truncate down to max chest count in a location-neutral way
     var count = 0;
-	treasurecount += ((Math.random() < treasurechance) ? 1 : 0)
+	let extra = Math.random() < treasurechance
+	treasurecount += (extra ? 1 : 0)
     while (chestlist.length > 0) {
 		if (count < treasurecount) {
 			var N = Math.floor(Math.random()*chestlist.length)
@@ -229,7 +250,9 @@ function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, wi
 			KinkyDungeonMapSet(chest.x, chest.y, 'C')
 			
 			// Add a lock on the chest! For testing purposes ATM
-			KinkyDungeonLocks["" + chest.x + "," +chest.y] = "Red"
+			let lock = KinkyDungeonGenerateLock((extra && count == 0) ? true : false , Floor)
+			if (lock)
+				KinkyDungeonLocks["" + chest.x + "," +chest.y] = lock
 			
 			chestlist.splice(N, 1)
 			count += 1;
@@ -245,6 +268,43 @@ function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, wi
     //console.log("Created " + count + " chests")
 }
 
+
+function KinkyDungeonGenerateLock(Guaranteed, Floor) {
+	let level = (Floor) ? Floor : MiniGameKinkyDungeonLevel
+	let Params = KinkyDungeonMapParams[KinkyDungeonMapIndex[level]]
+	let mult = (Params["lockmult"]) ? Params["lockmult"] : 1.0
+	
+	let chance = (level == 0) ? 0 : KinkyDungeonBaseLockChance
+	chance += KinkyDungeonScalingLockChance * level / 10
+	
+	if (Guaranteed) chance = 1.0
+	
+	if (Math.random() < chance) {
+		// Now we get the amount failed by
+		// Default: red lock
+		let locktype = Math.random()
+		let difficulty = Math.random() // Some are easy, some are unpickable and always break picks
+		
+		let modifiers = ""
+		
+		//let EasyChance =  Math.min(KinkyDungeonEasyLockChance + level * KinkyDungeonEasyLockChanceScaling, KinkyDungeonEasyLockChanceScalingMax)
+		//let HardChance =  Math.min(KinkyDungeonHardLockChance + level * KinkyDungeonHardLockChanceScaling, KinkyDungeonHardLockChanceScalingMax)
+		
+		//if (difficulty < HardChance) modifiers = "Hard"
+		//else if (difficulty < EasyChance) modifiers = "Easy"
+		
+		let GreenChance = Math.min(KinkyDungeonGreenLockChance + level * KinkyDungeonGreenLockChanceScaling, KinkyDungeonGreenLockChanceScalingMax)
+		let YellowChance = Math.min(KinkyDungeonYellowLockChance + level * KinkyDungeonYellowLockChanceScaling, KinkyDungeonYellowLockChanceScalingMax)
+		let BlueChance = Math.min(KinkyDungeonBlueLockChance + level * KinkyDungeonBlueLockChanceScaling, KinkyDungeonBlueLockChanceScalingMax)
+		
+		if (locktype < BlueChance) return "Blue" + modifiers
+		if (locktype < YellowChance) return "Yellow" + modifiers
+		if (locktype < GreenChance) return "Green" + modifiers
+		return "Red" + modifiers
+	}
+	
+	return ""
+}
 
 function KinkyDungeonPlaceDoors(doorchance, width, height) {
 	// Populate the doors
@@ -587,11 +647,11 @@ function KinkyDungeonMove(moveDirection) {
 			if (KinkyDungeonLocks["" + moveX + "," + moveY]) {
 				KinkyDungeonTargetTileLocation = "" + moveX + "," + moveY
 				KinkyDungeonTargetTile = KinkyDungeonLocks[KinkyDungeonTargetTileLocation]
-				if ( 4 > KinkyDungeonTextMessagePriority) {
+				if ( 1 > KinkyDungeonTextMessagePriority) {
 					KinkyDungeonTextMessageTime = 2
 					KinkyDungeonTextMessage = TextGet("KinkyDungeonObjectIsLocked")
 					KinkyDungeonTextMessageColor = "#FF9999"
-					KinkyDungeonTextMessagePriority = 4
+					KinkyDungeonTextMessagePriority = 1
 				}
 			} else {
 				KinkyDungeonTargetTile = ""

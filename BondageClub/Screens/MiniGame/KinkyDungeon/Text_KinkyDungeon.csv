@@ -62,7 +62,11 @@ DungeonName10,-The Starlit Balcony-
 
 LootRubbleFail,You search through the debris but find nothing of note
 LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
+LootRubbleLockpick,You find a lockpick in a crack between the tiles
 LootRubbleKnife,You find a rusty knife among the rocks
+LootRubbleRedKey,"You find a red key, covered in grime"
+LootRubbleGreenKey,"You find a green key with an ornate handle"
+LootRubbleBlue,"You find a blue key, glowing with magic"
 
 LootChestGold,The chest contains gold! (+XXX gold)
 LootChestSpell,"You find a magic scroll, which you place in your spellbook. (+SpellLearned)"
@@ -118,7 +122,7 @@ KinkyYellowLock," (Yellow lock)"
 KinkyDungeonUnlockDoor,"Unlock"
 KinkyDungeonPickDoor,"Pick"
 KinkyDungeonLockedDoor,"(No way to open)"
-
+KinkyDungeonObject,"object"
 
 KinkyDungeonObjectIsLocked,"That object is locked"
 
@@ -141,6 +145,7 @@ RestraintWeakMagicRopeArms,Weak Magic Rope
 RestraintWeakMagicRopeLegs,Weak Magic Rope
 RestraintStickySlime,Sticky Slime
 RestraintTrapArmbinder,Leather Armbinder
+RestraintTrapCuffs,Handcuffs
 
 KinkyDungeonGroupItemHead,Face
 KinkyDungeonGroupItemHood,Head

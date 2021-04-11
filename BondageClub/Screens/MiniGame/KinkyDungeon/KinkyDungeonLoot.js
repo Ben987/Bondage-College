@@ -1,8 +1,12 @@
 var KinkyDungeonLootTable = {
 	"rubble": [
-		{name: "nothing", minLevel: 0, weight:2, message:"LootRubbleFail", messageColor:"#aaaaaa", messageTime: 2, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
-		{name: "smallgold", minLevel: 0, weight:10, message:"LootRubbleSmallGold", messageColor:"yellow", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
-		{name: "knife", minLevel: 0, weight:3, message:"LootRubbleKnife", messageColor:"lightgreen", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "nothing", minLevel: 0, weight:3, message:"LootRubbleFail", messageColor:"#aaaaaa", messageTime: 2, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "smallgold", minLevel: 0, weight:4, message:"LootRubbleSmallGold", messageColor:"yellow", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "knife", minLevel: 0, weight:5, message:"LootRubbleKnife", messageColor:"lightgreen", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "pick", minLevel: 0, weight:10, message:"LootRubbleLockpick", messageColor:"lightgreen", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "redkey", minLevel: 0, weight:3, message:"LootRubbleRedKey", messageColor:"lightgreen", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "greenkey", minLevel: 0, weight:2, message:"LootRubbleGreenKey", messageColor:"lightgreen", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+		{name: "bluekey", minLevel: 0, weight:1, message:"LootRubbleBlueKey", messageColor:"lightgreen", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
 	],
 	"chest": [
 		{name: "gold", minLevel: 0, weight:4, message:"LootChestGold", messageColor:"yellow", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
@@ -10,6 +14,7 @@ var KinkyDungeonLootTable = {
 		{name: "spell_conjuration_low", minLevel: 0, weight:1, message:"LootChestSpell", messageColor:"lightblue", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["UnlearnedConjure", "lowlevel"]}, // lowlevel is spell levels 1-7
 		{name: "spell_elemental_low", minLevel: 0, weight:1, message:"LootChestSpell", messageColor:"lightblue", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["UnlearnedElements", "lowlevel"]}, // lowlevel is spell levels 1-7
 		{name: "trap_armbinder", minLevel: 1, weight:1, message:"LootChestTrapMagic", messageColor:"red", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["Group_ItemArms"], power: 8},
+		{name: "trap_cuffs", minLevel: 1, weight:1, message:"LootChestTrapMagic", messageColor:"red", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["Group_ItemArms"], power: 8},
 	],
 	
 	
@@ -39,7 +44,7 @@ function KinkyDungeonLoot(Level, Index, Type) {
 					if (loot.prerequisites[P].startsWith("Group_")) {
 						var group = loot.prerequisites[P].substring(6)
 						var item = KinkyDungeonGetRestraintItem(group)
-						if (item && item.power > loot.power) {
+						if (item && item.restraint && item.restraint.power <= loot.power) {
 							prereqs = false
 							break;
 						}
@@ -139,10 +144,25 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 		KinkyDungeonAddGold(value)
 	} else if (Loot.name == "knife") {
 		KinkyDungeonNormalBlades += 1
+	} else if (Loot.name == "magicknife") {
+		KinkyDungeonEnchantedBlades += 1
+	}  else if (Loot.name == "pick") {
+		KinkyDungeonLockpicks += 1
+	}  else if (Loot.name == "redkey") {
+		KinkyDungeonRedKeys += 1
+	}  else if (Loot.name == "greenkey") {
+		KinkyDungeonGreenKeys += 1
+	}  else if (Loot.name == "bluekey") {
+		KinkyDungeonBlueKeys += 1
 	} else if (Loot.name == "trap_armbinder") {
 		KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("TrapArmbinder"))
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapArmbinder"))
+	} else if (Loot.name == "trap_cuffs") {
+		if (KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("TrapCuffs"), true) > 0)
+			KinkyDungeonGetRestraintItem("ItemArms").lock = KinkyDungeonGenerateLock(true)
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapCuffs"))
 	}
 }
 

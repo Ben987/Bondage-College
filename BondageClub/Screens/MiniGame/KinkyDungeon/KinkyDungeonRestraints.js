@@ -39,25 +39,50 @@ var KinkyDungeonRestraints = [
 	
 	{name: "StickySlime", Asset: "Web", Type: "Wrapped", Color: "#ff77ff", Group: "ItemArms", magic: false, power: 0, weight: 1, freeze: true, escapeChance: {"Struggle": 10.0, "Cut": 10.0, "Remove": 10.0}, enemyTags: {"slime":100}, playerTags: {}, minLevel: 0, floors: []},
 	
-	{name: "TrapArmbinder", Asset: "LeatherArmbinder", Type: "WrapStrap", Group: "ItemArms", magic: false, power: 8, weight: 2, escapeChance: {"Struggle": 0.1, "Cut": 0.33, "Remove": 0.2}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: []},
+	{name: "TrapArmbinder", Asset: "LeatherArmbinder", Type: "WrapStrap", Group: "ItemArms", magic: false, power: 8, weight: 2, escapeChance: {"Struggle": 0.1, "Cut": 0.33, "Remove": 0.2, "Pick": 0.0}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: []},
+	{name: "TrapCuffs", Asset: "MetalCuffs", Group: "ItemArms", magic: false, power: 8, weight: 2, escapeChance: {"Struggle": 0.05, "Cut": 0.0, "Remove": 100.0, "Pick": 1.7}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: []},
 	
 ]
+
+function KinkyDungeonWaitMessage() {
+	if ( 1 > KinkyDungeonActionMessagePriority) {
+		KinkyDungeonActionMessageTime = 2
+		KinkyDungeonActionMessage = TextGet("Wait")
+		KinkyDungeonActionMessageColor = "#AAAAAA"
+		KinkyDungeonActionMessagePriority = 0
+	}
+}
 
 function KinkyDungeonPickAttempt() {
 	let Pass = "Fail"
 	let escapeChance = 1.0
 	var cost = KinkyDungeonStatStaminaCostTool
 	
+	
 	if (!KinkyDungeonPlayer.CanInteract()) escapeChance /= 2
 	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1, escapeChance - 0.25)
 	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true)) escapeChance = Math.max(0, escapeChance - 0.5)
 	
-	if (Math.random() < escapeChance && KinkyDungeonStatStamina + KinkyDungeonStaminaRate < -cost)	 
+
+	if (KinkyDungeonStatStamina + KinkyDungeonStaminaRate < -cost) {
+		KinkyDungeonWaitMessage()
+	} else if (Math.random() < escapeChance)	 
 	{
+
+		
 		KinkyDungeonStatStamina += cost
-		return true
+		Pass = "Success"
+	} else if (Math.random() < KinkyDungeonKeyPickBreakChance || KinkyDungeonTargetTile.includes("Blue")) { // Blue locks cannot be picked or cut!
+		Pass = "Break"
+		KinkyDungeonLockpicks -= 1
 	}
-	return false
+	if (2 >= KinkyDungeonActionMessagePriority) {
+		KinkyDungeonActionMessageTime = 1
+		KinkyDungeonActionMessage = TextGet("KinkyDungeonStrugglePick" + Pass).replace("TargetRestraint", TextGet("KinkyDungeonObject"))
+		KinkyDungeonActionMessageColor = (Pass == "Success") ? "lightgreen" : "red"
+		KinkyDungeonActionMessagePriority = 1
+	}
+	return Pass == "Success"
 }
 
 function KinkyDungeonUnlockAttempt() {
@@ -68,9 +93,15 @@ function KinkyDungeonUnlockAttempt() {
 	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1, escapeChance - 0.25)
 	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true)) escapeChance = Math.max(0, escapeChance - 0.5)
 	
-	if (Math.random() < escapeChance)	
-		return true
-	return false
+	if (Math.random() < escapeChance)
+		Pass = "Success"
+	if (2 >= KinkyDungeonActionMessagePriority) {
+		KinkyDungeonActionMessageTime = 1
+		KinkyDungeonActionMessage = TextGet("KinkyDungeonStruggleUnlock" + Pass).replace("TargetRestraint", TextGet("KinkyDungeonObject"))
+		KinkyDungeonActionMessageColor = (Pass == "Success") ? "lightgreen" : "red"
+		KinkyDungeonActionMessagePriority = 1
+	}
+	return Pass == "Success"
 }
 
 
@@ -87,7 +118,7 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 	if (!KinkyDungeonPlayer.CanInteract()) escapeChance /= 2
 	if (struggleGroup.group != "ItemArms" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
 	if (struggleGroup.group != "ItemHands" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true))
-		escapeChance =StruggleType == "Pick" ? Math.max(0, escapeChance - 0.5) : Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
+		escapeChance = StruggleType == "Pick" ? Math.max(0, escapeChance - 0.5) : Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
 	
 	if (InventoryGroupIsBlocked(KinkyDungeonPlayer, struggleGroup.group)) escapeChance = 0
 	
@@ -101,19 +132,14 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 		
 		if (10 >= KinkyDungeonActionMessagePriority) {
 			KinkyDungeonActionMessageTime = 2
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonStruggleUnlockNo" + (KinkyDungeonPlayer.IsBlind() > 0) ? "Unknown" : restraint.lock + "Key")
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonStruggleUnlockNo" + ((KinkyDungeonPlayer.IsBlind() > 0) ? "Unknown" : restraint.lock) + "Key")
 			KinkyDungeonActionMessageColor = "orange"
 			KinkyDungeonActionMessagePriority = 10
 		}
 	} else {
 		
 		if (KinkyDungeonStatStamina + KinkyDungeonStaminaRate < -cost) {
-			if ( 1 > KinkyDungeonActionMessagePriority) {
-				KinkyDungeonActionMessageTime = 2
-				KinkyDungeonActionMessage = TextGet("Wait")
-				KinkyDungeonActionMessageColor = "#AAAAAA"
-				KinkyDungeonActionMessagePriority = 0
-			}
+			KinkyDungeonWaitMessage()
 		} else {
 			if (Math.random() < escapeChance && !(restraint.lock == "Blue" && (StruggleType == "Pick"  || StruggleType == "Cut" ))) {
 				Pass = "Success"
