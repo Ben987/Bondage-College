@@ -38,8 +38,8 @@ function KinkyDungeonDrawGame() {
 		KinkyDungeonDrawStats(canvasOffsetX + KinkyDungeonCanvas.width+10, canvasOffsetY, 1975 - (canvasOffsetX + KinkyDungeonCanvas.width+5), 100)
 		
 	if (KinkyDungeonDrawState == "Game") {
-		var CamX = Math.max(0, Math.min(KinkyDungeonGridWidth - KinkyDungeonGridWidthDisplay, KinkyDungeonPlayerEntity.x - Math.floor(KinkyDungeonGridWidthDisplay/2)))
-		var CamY = Math.max(0, Math.min(KinkyDungeonGridHeight - KinkyDungeonGridHeightDisplay, KinkyDungeonPlayerEntity.y - Math.floor(KinkyDungeonGridHeightDisplay/2)))
+		let CamX = Math.max(0, Math.min(KinkyDungeonGridWidth - KinkyDungeonGridWidthDisplay, KinkyDungeonPlayerEntity.x - Math.floor(KinkyDungeonGridWidthDisplay/2)))
+		let CamY = Math.max(0, Math.min(KinkyDungeonGridHeight - KinkyDungeonGridHeightDisplay, KinkyDungeonPlayerEntity.y - Math.floor(KinkyDungeonGridHeightDisplay/2)))
 
 		KinkyDungeonMoveDirection = KinkyDungeonGetDirection(
 			(MouseX - ((KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay + canvasOffsetX + KinkyDungeonGridSizeDisplay / 2))/KinkyDungeonGridSizeDisplay,
@@ -55,10 +55,10 @@ function KinkyDungeonDrawGame() {
 				KinkyDungeonContext.fillRect(0, 0, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height);
 				KinkyDungeonContext.fill()
 				// Draw the grid
-				var rows = KinkyDungeonGrid.split('\n')
+				let rows = KinkyDungeonGrid.split('\n')
 				for (let R = 0; R < KinkyDungeonGridHeightDisplay; R++)  {
 					for (let X = 0; X < KinkyDungeonGridWidthDisplay; X++)  {
-						var sprite = "Floor"
+						let sprite = "Floor"
 						if (rows[R+CamY][X+CamX] == "1") sprite = "Wall"
 						else if (rows[R+CamY][X+CamX] == "X") sprite = "Doodad"
 						else if (rows[R+CamY][X+CamX] == "C") sprite = "Chest"
@@ -90,7 +90,7 @@ function KinkyDungeonDrawGame() {
 			KinkyDungeonDrawFight(canvasOffsetX, canvasOffsetY, CamX, CamY, KinkyDungeonGridSizeDisplay)
 			
 			// Draw fog of war
-			var rows = KinkyDungeonLightGrid.split('\n')
+			let rows = KinkyDungeonLightGrid.split('\n')
 			for (let R = 0; R < KinkyDungeonGridHeightDisplay; R++)  {
 				for (let X = 0; X < KinkyDungeonGridWidthDisplay; X++)  {
 					KinkyDungeonContext.beginPath();
@@ -155,10 +155,10 @@ function KinkyDungeonDrawGame() {
 		// Draw the struggle buttons if applicable
 		if (KinkyDungeonDrawStruggle && KinkyDungeonStruggleGroups)
 			for (let S = 0; S < KinkyDungeonStruggleGroups.length; S++) {
-				var sg = KinkyDungeonStruggleGroups[S]
-				var ButtonWidth = 60
-				var x = 5 + ((!sg.left) ? (490 - ButtonWidth) : 0)
-				var y = 42 + sg.y * (ButtonWidth + 46)
+				let sg = KinkyDungeonStruggleGroups[S]
+				let ButtonWidth = 60
+				let x = 5 + ((!sg.left) ? (490 - ButtonWidth) : 0)
+				let y = 42 + sg.y * (ButtonWidth + 46)
 				
 				if (sg.left) {
 					MainCanvas.textAlign = "left";
@@ -166,8 +166,8 @@ function KinkyDungeonDrawGame() {
 					MainCanvas.textAlign = "right";
 				}
 				
-				var color = "white"
-				var locktext = ""
+				let color = "white"
+				let locktext = ""
 				if (sg.lock == "Red") {color = "#ff8888"; locktext = TextGet("KinkyRedLock");}
 				if (sg.lock == "Yellow") {color = "#ffff88"; locktext = TextGet("KinkyYellowLock");}
 				if (sg.lock == "Green") {color = "#88FF88"; locktext = TextGet("KinkyGreenLock");}
@@ -176,10 +176,10 @@ function KinkyDungeonDrawGame() {
 				DrawText(TextGet("KinkyDungeonGroup"+ sg.group) + locktext, x + ((!sg.left) ? ButtonWidth : 0), y-24, color, "silver")
 				MainCanvas.textAlign = "center";
 				
-				var i = 1
+				let i = 1
 				DrawButton(x, y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "Struggle.png", "");
 				if (!sg.blocked) {
-					var toolSprite = (sg.lock != "") ? ((sg.lock != "Jammed") ? "Key" : "LockJam") : "Buckle"
+					let toolSprite = (sg.lock != "") ? ((sg.lock != "Jammed") ? "Key" : "LockJam") : "Buckle"
 					DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + toolSprite + ".png", ""); i++;
 					if (KinkyDungeonLockpicks > 0 && sg.lock != "") {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "UseTool.png", ""); i++;}
 					if (KinkyDungeonNormalBlades > 0 || KinkyDungeonEnchantedBlades > 0) {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "Cut.png", ""); i++;}
@@ -191,24 +191,49 @@ function KinkyDungeonDrawGame() {
 			else DrawButton(510, 925, 120, 60, "", "White", KinkyDungeonRootDirectory + "HideFalse.png", "");
 		}
 		
+		if (KinkyDungeonTargetTile) {
+			let action = false
+			if (KinkyDungeonLockpicks > 0) {
+				DrawButton(963, 825, 112, 60, TextGet("KinkyDungeonPickDoor"), "White", "", "");
+				action = true;
+			}
+			
+			if ((KinkyDungeonTargetTile.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.includes("Yellow") && (KinkyDungeonRedKeys > 0 || KinkyDungeonGreenKeys > 0)
+				|| (KinkyDungeonTargetTile.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.includes("Blue") && KinkyDungeonBlueKeys > 0) ) ) {
+				DrawButton(825, 825, 112, 60, TextGet("KinkyDungeonUnlockDoor"), "White", "", "");
+				action = true;
+			}
+			
+			if (!action) DrawText(TextGet("KinkyDungeonLockedDoor"), 950, 850, "white", "silver")
+			
+			if (KinkyDungeonTargetTile.includes("Red"))
+				DrawText(TextGet("KinkyRedLock"), 675, 850, "white", "silver")
+			else if (KinkyDungeonTargetTile.includes("Yellow"))
+				DrawText(TextGet("KinkyYellowLock"), 675, 850, "white", "silver")
+			else if (KinkyDungeonTargetTile.includes("Green"))
+				DrawText(TextGet("KinkyGreenLock"), 675, 850, "white", "silver")
+			else if (KinkyDungeonTargetTile.includes("Blue"))
+				DrawText(TextGet("KinkyBlueLock"), 675, 850, "white", "silver")
+		}
+		
 		//DrawButton(650, 925, 250, 60, TextGet("KinkyDungeonInventory"), "White", "", "");
 		DrawButton(925, 925, 250, 60, TextGet("KinkyDungeonMagic"), "White", "", "");
 		
 		if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]) {
-			var spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
-			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1275, 835, color, "silver")
-			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1275, 870, color, "silver")
+			let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
+			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1275, 835, "white", "silver")
+			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1275, 870, "white", "silver")
 			DrawButton(1230, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell1.png", "");
 		}
 		if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]) {
-			var spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
-			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1525, 835, color, "silver")
-			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1525, 870, color, "silver")
+			let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
+			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1525, 835, "white", "silver")
+			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1525, 870, "white", "silver")
 			DrawButton(1480, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell2.png", "");
 		}
 		if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]) {
-			var spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
-			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1775, 835, color, "silver")
+			let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
+			DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1775, 835, "white", "silver")
 			DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1775, 870, color, "silver")
 			DrawButton(1730, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell3.png", "");
 		}
@@ -237,17 +262,36 @@ function KinkyDungeonHandleHUD() {
 			KinkyDungeonSpellPress = 0
 		}
 		
+		if (KinkyDungeonTargetTile) {
+			if (KinkyDungeonLockpicks > 0 && MouseIn(963, 825, 112, 60)) {
+				if (KinkyDungeonPickAttempt()) {
+					KinkyDungeonTargetTile = ""
+					delete KinkyDungeonLocks[KinkyDungeonTargetTileLocation]
+				}
+				return true
+			}
+			
+			if ((KinkyDungeonTargetTile.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.includes("Yellow") && (KinkyDungeonRedKeys > 0 || KinkyDungeonGreenKeys > 0)
+				|| (KinkyDungeonTargetTile.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.includes("Blue") && KinkyDungeonBlueKeys > 0) ) && MouseIn(825, 825, 112, 60)) {
+				if (KinkyDungeonUnlockAttempt()) {
+					KinkyDungeonTargetTile = ""
+					delete KinkyDungeonLocks[KinkyDungeonTargetTileLocation]
+				}
+				return true
+			}
+		}
+		
 		if (KinkyDungeonStruggleGroups)
 			for (let S = 0; S < KinkyDungeonStruggleGroups.length; S++) {
-				var sg = KinkyDungeonStruggleGroups[S]
-				var ButtonWidth = 60
-				var x = 5 + ((!sg.left) ? (490 - ButtonWidth) : 0)
-				var y = 42 + sg.y * (ButtonWidth + 46)
+				let sg = KinkyDungeonStruggleGroups[S]
+				let ButtonWidth = 60
+				let x = 5 + ((!sg.left) ? (490 - ButtonWidth) : 0)
+				let y = 42 + sg.y * (ButtonWidth + 46)
 				
-				var i = 0
+				let i = 0
 				if (MouseIn(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth)) {KinkyDungeonStruggle(sg, "Struggle"); return true;} i++;
 				if (!sg.blocked) {
-					var toolSprite = (sg.lock != "") ? "Key" : "Buckle"
+					let toolSprite = (sg.lock != "") ? "Key" : "Buckle"
 					if (MouseIn(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth) && sg.lock != "Jammed") {KinkyDungeonStruggle(sg, (sg.lock != "") ? "Unlock" : "Remove"); return true;} i++;
 					if (KinkyDungeonLockpicks > 0 && sg.lock != "")
 						{if (MouseIn(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth)) {KinkyDungeonStruggle(sg, "Pick"); return true;} i++;}
@@ -268,19 +312,19 @@ function KinkyDungeonHandleHUD() {
 }
 
 function KinkyDungeonUpdateStruggleGroups() {
-	var struggleGroups = KinkyDungeonStruggleGroupsBase
+	let struggleGroups = KinkyDungeonStruggleGroupsBase
 	KinkyDungeonStruggleGroups = []
 	
 	for (let S = 0; S < struggleGroups.length; S++) {
-		var sg = struggleGroups[S]
-		var Group = sg
+		let sg = struggleGroups[S]
+		let Group = sg
 		if (sg == "ItemM") {
 			if (InventoryGet(KinkyDungeonPlayer, "ItemMouth3")) Group = "ItemMouth3"
 			else if (InventoryGet(KinkyDungeonPlayer, "ItemMouth2")) Group = "ItemMouth2"
 			else Group = "ItemMouth"
 		}
 		
-		var restraint = KinkyDungeonGetRestraintItem(Group)
+		let restraint = KinkyDungeonGetRestraintItem(Group)
 		
 		if (restraint) {
 			KinkyDungeonStruggleGroups.push({group:Group, left: S % 2 == 0, y: Math.floor(S/2), icon:sg, lock:restraint.lock, blocked: InventoryGroupIsBlocked(KinkyDungeonPlayer, Group)})

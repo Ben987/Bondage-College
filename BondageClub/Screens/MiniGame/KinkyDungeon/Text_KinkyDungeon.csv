@@ -114,6 +114,14 @@ KinkyGreenLock," (Green lock)"
 KinkyBlueLock," (Blue lock)"
 KinkyYellowLock," (Yellow lock)"
 
+
+KinkyDungeonUnlockDoor,"Unlock"
+KinkyDungeonPickDoor,"Pick"
+KinkyDungeonLockedDoor,"(No way to open)"
+
+
+KinkyDungeonObjectIsLocked,"That object is locked"
+
 ClimbDown,"You climb down to the next level"
 
 

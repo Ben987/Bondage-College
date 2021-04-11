@@ -43,6 +43,36 @@ var KinkyDungeonRestraints = [
 	
 ]
 
+function KinkyDungeonPickAttempt() {
+	let Pass = "Fail"
+	let escapeChance = 1.0
+	var cost = KinkyDungeonStatStaminaCostTool
+	
+	if (!KinkyDungeonPlayer.CanInteract()) escapeChance /= 2
+	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1, escapeChance - 0.25)
+	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true)) escapeChance = Math.max(0, escapeChance - 0.5)
+	
+	if (Math.random() < escapeChance && KinkyDungeonStatStamina + KinkyDungeonStaminaRate < -cost)	 
+	{
+		KinkyDungeonStatStamina += cost
+		return true
+	}
+	return false
+}
+
+function KinkyDungeonUnlockAttempt() {
+	let Pass = "Fail"
+	let escapeChance = 1.0
+	
+	if (!KinkyDungeonPlayer.CanInteract()) escapeChance /= 2
+	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1, escapeChance - 0.25)
+	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true)) escapeChance = Math.max(0, escapeChance - 0.5)
+	
+	if (Math.random() < escapeChance)	
+		return true
+	return false
+}
+
 
 // Lockpick = use tool or cut
 // Otherwise, just a normal struggle
@@ -50,13 +80,14 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 	var restraint = KinkyDungeonGetRestraintItem(struggleGroup.group)
 	var cost = (StruggleType == "Pick" || StruggleType == "Cut") ? KinkyDungeonStatStaminaCostTool : KinkyDungeonStatStaminaCostStruggle
 	if (StruggleType == "Unlock") cost = 0
-	var Pass = "Fail"
-	var escapeChance = (restraint.restraint.escapeChance[StruggleType]) ? restraint.restraint.escapeChance[StruggleType] : 1.0
+	let Pass = "Fail"
+	let escapeChance = (restraint.restraint.escapeChance[StruggleType]) ? restraint.restraint.escapeChance[StruggleType] : 1.0
 		
 	
 	if (!KinkyDungeonPlayer.CanInteract()) escapeChance /= 2
 	if (struggleGroup.group != "ItemArms" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
-	if (struggleGroup.group != "ItemHands" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
+	if (struggleGroup.group != "ItemHands" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true))
+		escapeChance =StruggleType == "Pick" ? Math.max(0, escapeChance - 0.5) : Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
 	
 	if (InventoryGroupIsBlocked(KinkyDungeonPlayer, struggleGroup.group)) escapeChance = 0
 	
@@ -77,14 +108,14 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 	} else {
 		
 		if (KinkyDungeonStatStamina + KinkyDungeonStaminaRate < -cost) {
-			if ( 1 > KinkyDungeonTextMessagePriority) {
+			if ( 1 > KinkyDungeonActionMessagePriority) {
 				KinkyDungeonActionMessageTime = 2
 				KinkyDungeonActionMessage = TextGet("Wait")
 				KinkyDungeonActionMessageColor = "#AAAAAA"
 				KinkyDungeonActionMessagePriority = 0
 			}
 		} else {
-			if (Math.random() < escapeChance) {
+			if (Math.random() < escapeChance && !(restraint.lock == "Blue" && (StruggleType == "Pick"  || StruggleType == "Cut" ))) {
 				Pass = "Success"
 				if (StruggleType == "Pick" || StruggleType == "Unlock") {
 					if (StruggleType == "Unlock") {
@@ -109,7 +140,7 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 			} else {
 				if (StruggleType == "Cut") {
 					if (restraint.restraint.magic && KinkyDungeonEnchantedBlades == 0) Pass = "Fail"
-					if (Math.random() < KinkyDungeonKnifeBreakChance) {
+					if (Math.random() < KinkyDungeonKnifeBreakChance || restraint.lock == "Blue") { // Blue locks cannot be picked or cut!
 						Pass = "Break"
 						if (restraint.restraint.magic && KinkyDungeonEnchantedBlades > 0) KinkyDungeonEnchantedBlades -= 1
 						else {
@@ -122,7 +153,7 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 					}
 				} else {
 					if (StruggleType == "Pick") {
-						if (Math.random() < KinkyDungeonKeyPickBreakChance) {
+						if (Math.random() < KinkyDungeonKeyPickBreakChance || restraint.lock == "Blue") { // Blue locks cannot be picked or cut!
 							Pass = "Break"
 							KinkyDungeonLockpicks -= 1
 						}

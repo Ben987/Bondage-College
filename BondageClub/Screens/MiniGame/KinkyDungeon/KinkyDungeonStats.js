@@ -50,7 +50,7 @@ var KinkyDungeonLockpicks = 0
 // 3 types of keys, for 4 different types of padlocks. The last type of padlock requires all 3 types of keys to unlock
 // The red keys are one-use only as the lock traps the key
 // The green keys are multi-use, but jam often
-// The blue keys open any type of lock, and become red or green keys on use. However, blue locks cannot be picked or cut.
+// The blue keys cannot be picked or cut.
 // Monsters are not dextrous enough to steal keys from your satchel, although they may spill your satchel on a nearby tile
 var KinkyDungeonRedKeys = 0
 var KinkyDungeonGreenKeys = 0

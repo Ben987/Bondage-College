@@ -47,7 +47,9 @@ var KinkyDungeonMovableTilesEnemy = "0SsRrd" // Objects which can be moved into:
 var KinkyDungeonMovableTilesSmartEnemy = "D" + KinkyDungeonMovableTilesEnemy //Smart enemies can open doors as well
 var KinkyDungeonMovableTiles = "C" + KinkyDungeonMovableTilesSmartEnemy // Player can open chests
 
-
+var KinkyDungeonLocks = {}
+var KinkyDungeonTargetTile = ""
+var KinkyDungeonTargetTileLocation = ""
 
 
 
@@ -104,6 +106,8 @@ function KinkyDungeonInitialize(Level, Random) {
 // Starts the the game at a specified level
 function KinkyDungeonCreateMap(MapParams, Floor) {
 	KinkyDungeonGrid = ""
+	KinkyDungeonLocks = {}
+	KinkyDungeonTargetTile = ""
 	
 	var height = MapParams["min_height"] + 2*Math.floor(0.5*Math.random() * (MapParams["max_height"] - MapParams["min_height"]))
 	var width = MapParams["min_width"] + 2*Math.floor(0.5*Math.random() * (MapParams["max_width"] - MapParams["min_width"]))
@@ -198,6 +202,7 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 
 function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, width, height) {
 	var chestlist = []
+	
 
 	// Populate the chests
 	for (let X = 1; X < width; X += 1)
@@ -222,6 +227,10 @@ function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, wi
 			var N = Math.floor(Math.random()*chestlist.length)
 			var chest = chestlist[N]
 			KinkyDungeonMapSet(chest.x, chest.y, 'C')
+			
+			// Add a lock on the chest! For testing purposes ATM
+			KinkyDungeonLocks["" + chest.x + "," +chest.y] = "Red"
+			
 			chestlist.splice(N, 1)
 			count += 1;
 		} else {
@@ -575,41 +584,54 @@ function KinkyDungeonMove(moveDirection) {
 		var moveObject = KinkyDungeonMapGet(moveX, moveY)
 		if (KinkyDungeonMovableTiles.includes(moveObject) && KinkyDungeonNoEnemy(moveX, moveY)) { // If the player can move to an empy space or a door
 		
-			if (moveObject == 'D') { // Open the door
-				KinkyDungeonMapSet(moveX, moveY, 'd')
-			} else if (moveObject == 'C') { // Open the chest
-				KinkyDungeonLoot(MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint], "chest")
-				KinkyDungeonMapSet(moveX, moveY, 'c')
-			} else {// Move
-				if (KinkyDungeonStatStamina > 0) {
-					KinkyDungeonMovePoints += moveDirection.delta
-					
-					if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel+1) {
-						KinkyDungeonPlayerEntity.x = moveX
-						KinkyDungeonPlayerEntity.y = moveY
-						KinkyDungeonMovePoints = 0
-					}
-					
-					if (KinkyDungeonSlowLevel > 0) {
-						if ((moveDirection.x != 0 || moveDirection.y != 0))
-							KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta
-						else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax && 1 > KinkyDungeonTextMessagePriority) {
-							KinkyDungeonActionMessageTime = 2
+			if (KinkyDungeonLocks["" + moveX + "," + moveY]) {
+				KinkyDungeonTargetTileLocation = "" + moveX + "," + moveY
+				KinkyDungeonTargetTile = KinkyDungeonLocks[KinkyDungeonTargetTileLocation]
+				if ( 4 > KinkyDungeonTextMessagePriority) {
+					KinkyDungeonTextMessageTime = 2
+					KinkyDungeonTextMessage = TextGet("KinkyDungeonObjectIsLocked")
+					KinkyDungeonTextMessageColor = "#FF9999"
+					KinkyDungeonTextMessagePriority = 4
+				}
+			} else {
+				KinkyDungeonTargetTile = ""
+				KinkyDungeonTargetTileLocation = ""
+				if (moveObject == 'D') { // Open the door
+					KinkyDungeonMapSet(moveX, moveY, 'd')
+				} else if (moveObject == 'C') { // Open the chest
+					KinkyDungeonLoot(MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint], "chest")
+					KinkyDungeonMapSet(moveX, moveY, 'c')
+				} else {// Move
+					if (KinkyDungeonStatStamina > 0) {
+						KinkyDungeonMovePoints += moveDirection.delta
+						
+						if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel+1) {
+							KinkyDungeonPlayerEntity.x = moveX
+							KinkyDungeonPlayerEntity.y = moveY
+							KinkyDungeonMovePoints = 0
+						}
+						
+						if (KinkyDungeonSlowLevel > 0) {
+							if ((moveDirection.x != 0 || moveDirection.y != 0))
+								KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta
+							else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax && 1 > KinkyDungeonTextMessagePriority) {
+								KinkyDungeonActionMessageTime = 2
+								
+								KinkyDungeonActionMessage = TextGet("Wait")
+								KinkyDungeonActionMessagePriority = 0
+								KinkyDungeonActionMessageColor = "lightgreen"
+							}
+						}
+						
+						if (moveObject == 'R') {
+							KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble")
 							
-							KinkyDungeonActionMessage = TextGet("Wait")
-							KinkyDungeonActionMessagePriority = 0
-							KinkyDungeonActionMessageColor = "lightgreen"
+							KinkyDungeonMapSet(moveX, moveY, 'r')
 						}
 					}
-					
-					if (moveObject == 'R') {
-						KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble")
-						
-						KinkyDungeonMapSet(moveX, moveY, 'r')
-					}
 				}
+				KinkyDungeonAdvanceTime(moveDirection.delta)
 			}
-			KinkyDungeonAdvanceTime(moveDirection.delta)
 		} else {
 			if (KinkyDungeonGetVisionRadius() <= 1) KinkyDungeonAdvanceTime(1)
 		}
