@@ -14,6 +14,8 @@ var KinkyDungeonKey = [87, 65, 83, 68, 81, 45, 90, 43]; // WASD
 var KinkyDungeonKeySpell = [33, 64, 35]; // ! @ #
 var KinkyDungeonKeyWait = [32]; // Space and 5 (53)
 
+var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/"
+
 function KinkyDungeonDressPlayer() {
 	CharacterNaked(KinkyDungeonPlayer)
 	

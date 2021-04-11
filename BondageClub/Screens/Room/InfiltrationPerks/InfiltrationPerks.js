@@ -66,6 +66,8 @@ function InfiltrationPerksRun() {
 	MainCanvas.textAlign = "center";
 	DrawText(TextGet("Perks") + " " + InfiltrationPerksTaken().toString() + " / " + InfiltrationPerksAvail().toString(), 1430, 845, (InfiltrationPerksAvail() > InfiltrationPerksTaken()) ? "Blue" : "Black", "Gray");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	
+	DrawText("UNDER CONSTRUCTION", 1430, 700, "Red", "Gray");
 
 }
 

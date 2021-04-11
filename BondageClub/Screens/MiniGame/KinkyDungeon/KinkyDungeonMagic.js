@@ -271,7 +271,7 @@ function KinkyDungeonTestWhite(x) {
 };
 
 function KinkyDungeonDrawMagic() {
-	DrawImageZoomCanvas("Screens/Minigame/KinkyDungeon/MagicBook.png", MainCanvas, 0, 0, 640, 483, canvasOffsetX, canvasOffsetY, 640*KinkyDungeonBookScale, 483*KinkyDungeonBookScale, false)
+	DrawImageZoomCanvas(KinkyDungeonRootDirectory + "MagicBook.png", MainCanvas, 0, 0, 640, 483, canvasOffsetX, canvasOffsetY, 640*KinkyDungeonBookScale, 483*KinkyDungeonBookScale, false)
 	
 	if (KinkyDungeonSpells[KinkyDungeonCurrentPage]) {
 		var spell = KinkyDungeonSpells[KinkyDungeonCurrentPage]

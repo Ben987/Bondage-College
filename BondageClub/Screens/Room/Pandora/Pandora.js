@@ -12,14 +12,6 @@ var PandoraParty = [];
 var PandoraFightCharacter = null;
 
 /**
- * Prepares a text popup for Pandora's Box
- * @returns {void} - Nothing
- */
-function PandoraMsgBox(Text) {
-	PandoraMessage = { Timer: CommonTime() + 5000, Text: Text };
-}
-
-/**
  * Loads the Pandora's Box screen
  * @returns {void} - Nothing
  */
@@ -70,7 +62,6 @@ function PandoraRun() {
 		DrawRect(502, 467, 996, 66, "white");
 		DrawTextWrap(PandoraMessage.Text, 500, 465, 1000, 70, "black");
 	}
-		
 
 }
 
@@ -135,14 +126,79 @@ function PandoraClick() {
 
 }
 
+
+/**
+ * Prepares a text popup for Pandora's Box
+ * @returns {void} - Nothing
+ */
+function PandoraMsgBox(Text) {
+	PandoraMessage = { Timer: CommonTime() + 3000, Text: Text };
+}
+
+/**
+ * Dress a character in the Rival Club fashion
+ * @returns {void} - Nothing
+ */
+function PandoraDress(C, Type) {
+	
+	// The maids have a red outfit
+	if (Type == "Maid") {
+		InventoryWear(C, "MaidOutfit" + (Math.floor(Math.random() * 2) + 1).toString(), "Cloth", "#804040");
+		InventoryWear(C, "MaidHairband1", "Hat", "#804040");
+		InventoryGet(C, "Socks").Color = "#804040";
+		InventoryGet(C, "Bra").Color = "#222222";
+		InventoryGet(C, "Panties").Color = "#222222";
+		InventoryGet(C, "Shoes").Color = "#222222";
+	}
+
+	// The guards are wearing a police hat and latex
+	if (Type == "Guard") {
+		InventoryWear(C, "PoliceWomanHat", "Hat", "Default");
+		InventoryWear(C, "CorsetShirt", "Cloth", "Default");
+		InventoryWear(C, "LatexPants1", "ClothLower", "Default");
+		InventoryWear(C, "DeluxeBoots", "Shoes", "#222222");
+		InventoryWear(C, "LatexSocks1", "Shoes", "#222222");
+		InventoryRemove(C, "ClothAccessory");
+	}
+	
+	// Refresh the character
+	CharacterRefresh(C, false);
+	
+}
+
+
 /**
  * When the players enters a new room, we keep the previous room
  * @param {object} Room - The room to step into
  * @returns {void} - Nothing
  */
 function PandoraEnterRoom(Room) {
+	
+	// Sets the new room and keep the previous
 	PandoraPreviousRoom = PandoraCurrentRoom;
 	PandoraCurrentRoom = Room;
+	
+	// 33% odds of removing a previous random NPC
+	if (PandoraCurrentRoom.Character.length == 1)
+		if ((PandoraCurrentRoom.Character[0].AccountName == "NPC_Pandora_RandomMember") && (Math.random() > 0.667)) {
+			let Char = PandoraCurrentRoom.Character[0];
+			PandoraCurrentRoom.Character = [];
+			CharacterDelete(Char);
+			Char = null;
+			return;
+		}	
+	
+	// 3% odds of spawning a new random NPC in the room
+	if ((PandoraCurrentRoom.Background.indexOf("Entrance") < 0) && (PandoraCurrentRoom.Character.length == 0) && (Math.random() > 0.97)) {
+		let Char = CharacterLoadNPC("NPC_Pandora_RandomMember");
+		CharacterRandomName(Char);
+		CharacterAppearanceFullRandom(Char);
+		Char.AllowItem = false;
+		Char.AllowMove = false;
+		Char.Stage = "0";
+		Room.Character.push(Char);
+	}
+	
 }
 
 /**
@@ -261,6 +317,7 @@ function PandoraBuildMainHall() {
 	PandoraRoom = [];
 	let Room = {};
 	let Char = CharacterLoadNPC("NPC_Pandora_EntranceMaid");
+	PandoraDress(Char, "Maid");
 	Char.AllowItem = false;
 	Char.AllowMove = false;
 	Room.Character = [];
@@ -302,7 +359,7 @@ function PandoraBuildMainHall() {
 				Victim.Stage = "0";
 				Room.Character.push(Victim);
 				let Guard = CharacterLoadNPC("NPC_Pandora_RescueGuard");
-				InventoryWear(Guard, "PoliceWomanHat", "Hat", "Default");
+				PandoraDress(Guard, "Guard");
 				Guard.AllowItem = false;
 				Guard.AllowMove = false;
 				Guard.Stage = "0";				
