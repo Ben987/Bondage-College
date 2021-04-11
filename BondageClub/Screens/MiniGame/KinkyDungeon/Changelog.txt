@@ -23,10 +23,17 @@ Future content planned for this release:
 - Ice witches that cast ice spells at you from a distance
 - Latex witches that cast latex spells at you from a distance
 - Chain witches who attack with chains from mid-range
+- Inventory system which lets you view special items and restraints (shows you how hard it is to break free from them... after you've struggled enough)
+- Mana-boosting mittens which increase spell power and decrease mana costs, but make it harder to struggle out of things
+- Enchanted heels which empower your melee attacks
+- Items like swords and wands which improve melee attack damage or willpower
+- More simple restraint traps: mittens, locked blindfolds/gags, leg irons, belts
+- Item shops scattered around the map, allowing you to buy swords and outfits
+- Chastity belt trap that puts a plug in you, increasing your arousal while walking
+- Chastity belt trap that puts a toy in you. Toys are powered by casting magic
 
 Spell Ideas:
 - Clear Jam spell, which clears jammed green locks from either an object or the player, depending on where it is cast
 - Divine Cuffs, a spell which gives you glowing arm and leg cuffs that block low level restraints from being put on you. Lasts 10 turns.
 - Ice Storm, a temporary AoE which has a chance to deal damage and stun creatures inside. Drains player willpower but does not slow or restraint the player.
 - Sleep, puts nearby creatures with low willpower to sleep until they take damage. Works on zombies, and also the player if the player is at low willpower (<30).
-- 
