@@ -1,0 +1,6 @@
+PlayerGagged,,,(She stares at your gag and seems envious.)  I hope I get gagged like that soon.,,
+0,,,"Hello Miss, this slave is here to please you.  Have we met before?  Are you famous around here?",,"DialogSkillGreater(""Infiltration"", 5)"
+0,,,(She nods slowly.)  This slave is here to please you Miss.,,
+0,,Who are you?,"I'm slave DialogCharacterName.  I'm a Pandora's Box slave, made to please our wonderful customers.",,
+0,,(UNDER CONSTRUCTION.),"This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.",,
+0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),

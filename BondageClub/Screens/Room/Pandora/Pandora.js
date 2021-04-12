@@ -10,12 +10,25 @@ var PandoraSeachSquare = null;
 var PandoraMessage = null;
 var PandoraParty = [];
 var PandoraFightCharacter = null;
+var PandoraRandomNPCList = ["Member", "Mistress", "Slave", "Maid"];
+var PandoraMoveDirectionTimer = { Direction: "", Timer: 0 };
 
 /**
  * Loads the Pandora's Box screen
  * @returns {void} - Nothing
  */
 function PandoraLoad() {
+}
+
+/**
+ * Returns the color of the direction buttons, it can change if the direction was recently navigated to
+ * @returns {void} - Nothing
+ */
+function PandoraDirectionButtonColor(Direction) {
+	if ((PandoraMoveDirectionTimer.Timer >= CommonTime()) && (PandoraMoveDirectionTimer.Direction === Direction))
+		return (PandoraCurrentRoom.DirectionMap.indexOf(Direction) >= 0) ? "#80FF80" : "#408040";
+	else
+		return (PandoraCurrentRoom.DirectionMap.indexOf(Direction) >= 0) ? "White" : "Silver";
 }
 
 /**
@@ -50,10 +63,10 @@ function PandoraRun() {
 	if (AllowMove) {
 		for (let P = 0; P < PandoraCurrentRoom.Path.length; P++)
 			DrawButton(1885, 25 + P * 115, 90, 90, "", "White", "Icons/" + PandoraCurrentRoom.Direction[P] + ".png", TextGet("Path" + PandoraCurrentRoom.Direction[P]));
-		DrawButton(1827, 655, 90, 90, "", (PandoraCurrentRoom.DirectionMap.indexOf("North") >= 0) ? "White" : "Silver", "Icons/North.png", TextGet("DirectionNorth"));
-		DrawButton(1770, 770, 90, 90, "", (PandoraCurrentRoom.DirectionMap.indexOf("West") >= 0) ? "White" : "Silver", "Icons/West.png", TextGet("DirectionWest"));
-		DrawButton(1885, 770, 90, 90, "", (PandoraCurrentRoom.DirectionMap.indexOf("East") >= 0) ? "White" : "Silver", "Icons/East.png", TextGet("DirectionEast"));
-		DrawButton(1827, 885, 90, 90, "", (PandoraCurrentRoom.DirectionMap.indexOf("South") >= 0) ? "White" : "Silver", "Icons/South.png", TextGet("DirectionSouth"));
+		DrawButton(1827, 655, 90, 90, "", PandoraDirectionButtonColor("North"), "Icons/North.png", TextGet("DirectionNorth"));
+		DrawButton(1770, 770, 90, 90, "", PandoraDirectionButtonColor("West"), "Icons/West.png", TextGet("DirectionWest"));
+		DrawButton(1827, 885, 90, 90, "", PandoraDirectionButtonColor("South"), "Icons/South.png", TextGet("DirectionSouth"));
+		DrawButton(1885, 770, 90, 90, "", PandoraDirectionButtonColor("East"), "Icons/East.png", TextGet("DirectionEast"));
 	}
 	
 	// If we must draw a message in the middle of the screen
@@ -118,14 +131,30 @@ function PandoraClick() {
 				}
 				return PandoraEnterRoom(PandoraCurrentRoom.Path[P]);
 			}
-		if (MouseIn(1827, 655, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("North") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("North")]);
-		if (MouseIn(1770, 770, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("West") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("West")]);
-		if (MouseIn(1885, 770, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("East") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("East")]);
-		if (MouseIn(1827, 885, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("South") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("South")]);
+		if (MouseIn(1827, 655, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("North") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("North")], "North");
+		if (MouseIn(1770, 770, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("West") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("West")], "West");
+		if (MouseIn(1827, 885, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("South") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("South")], "South");
+		if (MouseIn(1885, 770, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("East") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("East")], "East");
 	}
 
 }
 
+/**
+ * Handles the key pressed in Pandora's Box, allow WASD to move around
+ * @returns {void} - Nothing
+ */
+function PandoraKeyDown() {
+	let AllowMove = true;
+	for (let C = 0; C < PandoraCurrentRoom.Character.length; C++)
+		if ((PandoraCurrentRoom.Character[C].AllowMove != null) && (PandoraCurrentRoom.Character[C].AllowMove == false))
+			AllowMove = false;
+	if (AllowMove) {
+		if (((KeyPress == 87) || (KeyPress == 119)) && (PandoraCurrentRoom.DirectionMap.indexOf("North") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("North")], "North");
+		if (((KeyPress == 65) || (KeyPress == 97)) && (PandoraCurrentRoom.DirectionMap.indexOf("West") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("West")], "West");
+		if (((KeyPress == 83) || (KeyPress == 115)) && (PandoraCurrentRoom.DirectionMap.indexOf("South") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("South")], "South");
+		if (((KeyPress == 68) || (KeyPress == 100)) && (PandoraCurrentRoom.DirectionMap.indexOf("East") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("East")], "East");
+	}
+}
 
 /**
  * Prepares a text popup for Pandora's Box
@@ -140,7 +169,10 @@ function PandoraMsgBox(Text) {
  * @returns {void} - Nothing
  */
 function PandoraDress(C, Type) {
-	
+
+	// Never keeps a cloth accessory
+	InventoryRemove(C, "ClothAccessory");
+
 	// The maids have a red outfit
 	if (Type == "Maid") {
 		InventoryWear(C, "MaidOutfit" + (Math.floor(Math.random() * 2) + 1).toString(), "Cloth", "#804040");
@@ -149,6 +181,7 @@ function PandoraDress(C, Type) {
 		InventoryGet(C, "Bra").Color = "#222222";
 		InventoryGet(C, "Panties").Color = "#222222";
 		InventoryGet(C, "Shoes").Color = "#222222";
+		InventoryWear(C, "MaidCollar", "ItemNeck", "#804040");
 	}
 
 	// The guards are wearing a police hat and latex
@@ -158,47 +191,65 @@ function PandoraDress(C, Type) {
 		InventoryWear(C, "LatexPants1", "ClothLower", "Default");
 		InventoryWear(C, "DeluxeBoots", "Shoes", "#222222");
 		InventoryWear(C, "LatexSocks1", "Shoes", "#222222");
-		InventoryRemove(C, "ClothAccessory");
 	}
-	
+
+	// The guards are wearing a police hat and latex
+	if (Type == "Slave") {
+		CharacterNaked(C);
+		InventoryWear(C, "StrictPostureCollar", "ItemNeck", "#FFD700");
+		InventoryWear(C, "MetalChastityBelt", "ItemPelvis", "#FFD700");
+	}
+
+	// The Mistress wear gold uniforms
+	if (Type == "Mistress") {
+		InventoryWear(C, "MistressGloves", "Gloves", "#FFD700");
+		InventoryWear(C, "MistressBoots", "Shoes", "#FFD700");
+		InventoryWear(C, "MistressTop", "Cloth", "#FFD700");
+		InventoryWear(C, "MistressBottom", "ClothLower", "#FFD700");
+	}
+
 	// Refresh the character
 	CharacterRefresh(C, false);
-	
-}
 
+}
 
 /**
  * When the players enters a new room, we keep the previous room
  * @param {object} Room - The room to step into
  * @returns {void} - Nothing
  */
-function PandoraEnterRoom(Room) {
+function PandoraEnterRoom(Room, Direction) {
 	
+	// Shoes the incoming direction for a little while
+	if ((Direction != null) && (Direction != "")) PandoraMoveDirectionTimer = { Direction: Direction, Timer: CommonTime() + 1500 };
+
 	// Sets the new room and keep the previous
 	PandoraPreviousRoom = PandoraCurrentRoom;
 	PandoraCurrentRoom = Room;
-	
+
 	// 33% odds of removing a previous random NPC
 	if (PandoraCurrentRoom.Character.length == 1)
-		if ((PandoraCurrentRoom.Character[0].AccountName == "NPC_Pandora_RandomMember") && (Math.random() > 0.667)) {
+		if ((PandoraCurrentRoom.Character[0].AccountName.indexOf("NPC_Pandora_Random") == 0) && (Math.random() > 0.667)) {
 			let Char = PandoraCurrentRoom.Character[0];
 			PandoraCurrentRoom.Character = [];
 			CharacterDelete(Char);
 			Char = null;
 			return;
-		}	
-	
+		}
+
 	// 3% odds of spawning a new random NPC in the room
-	if ((PandoraCurrentRoom.Background.indexOf("Entrance") < 0) && (PandoraCurrentRoom.Character.length == 0) && (Math.random() > 0.97)) {
-		let Char = CharacterLoadNPC("NPC_Pandora_RandomMember");
+	if ((PandoraCurrentRoom.Background.indexOf("Entrance") < 0) && (PandoraCurrentRoom.Character.length == 0) && (Math.random() > 0.95)) {
+		let Type = CommonRandomItemFromList("", PandoraRandomNPCList);
+		let Char = CharacterLoadNPC("NPC_Pandora_Random" + Type);
 		CharacterRandomName(Char);
 		CharacterAppearanceFullRandom(Char);
 		Char.AllowItem = false;
 		Char.AllowMove = false;
 		Char.Stage = "0";
+		PandoraDress(Char, Type);
 		Room.Character.push(Char);
 	}
-	
+
 }
 
 /**
@@ -209,17 +260,17 @@ function PandoraEnterRoom(Room) {
  * @returns {void} - Nothing
  */
 function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
-	
+
 	// The higher the room level, the less paths there will be
 	let PathCount = 0;
 	if (EntryRoom.Background.indexOf("Entrance") == 0) PathCount = 2 + Math.floor(Math.random() * 3);
 	if (EntryRoom.Background.indexOf("Tunnel") == 0) PathCount = 1;
 	if (EntryRoom.Background.indexOf("Fork") == 0) PathCount = 1 + Math.floor(Math.random() * 3);
-	
+
 	// Generates all paths
 	let Path = [];
 	for (let P = 0; P < PathCount; P++) {
-		
+
 		// Generates a valid path that's not already used
 		let Continue = false;
 		let PathNum;
@@ -229,7 +280,7 @@ function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
 			Continue = ((PandoraDirectionList.indexOf(DirectionFrom) != PathNum) && (Path.indexOf(PathNum) < 0));
 		}
 		Path.push(PathNum);
-		
+
 		// Generates a background for the room, tries not to repeat it and do not allow the same background as the previous room
 		let RoomBack;
 		Continue = false;
@@ -248,7 +299,7 @@ function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
 						break;
 					}
 		}
-		
+
 		// Creates the room
 		let Room = {};
 		Room.Character = [];
@@ -263,7 +314,7 @@ function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
 		PandoraRoom.push(Room);
 		EntryRoom.PathMap.push(Room);
 		EntryRoom.DirectionMap.push(PandoraDirectionListFrom[PathNum]);
-		
+
 		// Creates sub-rooms if it's not a dead end room
 		if (RoomBack.indexOf("Cell") == 0) {
 			if ((InfiltrationMission == "Retrieve") || (InfiltrationMission == "Steal")) {
@@ -273,7 +324,8 @@ function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
 			}
 		} else PandoraGenerateRoom(Room, PandoraDirectionListFrom[PathNum], RoomLevel + 1);
 
-	}	
+	}
+
 }
 
 /**
