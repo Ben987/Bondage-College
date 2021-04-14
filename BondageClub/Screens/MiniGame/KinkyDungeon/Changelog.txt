@@ -18,6 +18,8 @@ Balance
 
 
 Future content planned for this release:
+- Ability to close nearby doors
+- Item shops scattered around the map, allowing you to buy swords and outfits
 - Magical rope traps which require enchanted knives to cut
 - Enchanted knives, which are found only in chests
 - Ice witches that cast ice spells at you from a distance
@@ -28,7 +30,6 @@ Future content planned for this release:
 - Enchanted heels which empower your melee attacks
 - Items like swords and wands which improve melee attack damage or willpower
 - More simple restraint traps: mittens, locked blindfolds/gags, leg irons, belts
-- Item shops scattered around the map, allowing you to buy swords and outfits
 - Chastity belt trap that puts a plug in you, increasing your arousal while walking
 - Chastity belt trap that puts a toy in you. Toys are powered by casting magic
 
