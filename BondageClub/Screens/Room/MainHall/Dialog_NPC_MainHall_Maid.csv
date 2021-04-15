@@ -157,7 +157,11 @@ ClubUpdated,,,Welcome back! The Club went through some renovation since you last
 1010,,Tell me about the reputation system.,"Your reputations will increase or decrease based on your actions and answers.  It affects your ranking, the activities you can do and how others perceive you.",,
 1010,,I want to learn about skills.,"There are different skills you can learn and get better with time and practice.  The maximum level is 10, the percentage is your current progress toward the next level.",,
 1010,1002,What are the most important rules again?,The first rule is that the club is only for adults.  This place isn't for minors.  Are you an adult in your country?,,
-1010,,(Thank her and leave her.),,DialogLeave(),
+1010,1011,That is all.,One more thing... would you like to set some rules for multiplayer chat rooms?,,
+1011,1012,I do not wish to set any rules.,Fair enough. I hope you enjoy your stay.,,
+1011,1012,"I am fine with being tied up, but not with padlocks",I have updated your blocked items to exclude locks.,BlockAllLocks(),
+1011,1012,I only want to be tied up by trusted players.,I have updated your permissions to whitelisted players only.,SetPermissionsToWhitelist(),
+1012,,(Thank her and leave her.),,DialogLeave(),
 1100,,,"(A pair of maids cut you loose and bring you to the main hall.)  You poor thing...",,Player.IsNaked()
 1100,,,"(A pair of maids cut you loose and drag you to the main hall.)  Oh how the tables have turned, head maid DialogPlayerName...",,IsHeadMaid
 1100,,,"(A pair of maids cut you loose and drag you to the main hall.)  My my, what have we here...",,IsMaid

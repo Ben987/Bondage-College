@@ -19,6 +19,23 @@ var MainHallStrongLocks = [{ Name: "CombinationPadlock", Group: "ItemMisc", Type
 	{ Name: "TimerPasswordPadlock", Group: "ItemMisc", Type: null },
 	{ Name: "HighSecurityPadlock", Group: "ItemMisc", Type: null },
 ];
+var MainHallLocks = [
+	{ Name: "MetalPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "IntricatePadlock", Group: "ItemMisc", Type: null },
+	{ Name: "HighSecurityPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "MistressPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "MistressTimerPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "ExclusivePadlock", Group: "ItemMisc", Type: null },
+	{ Name: "TimerPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "OwnerPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "OwnerTimerPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "LoversPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "LoversTimerPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "CombinationPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "PasswordPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "TimerPasswordPadlock", Group: "ItemMisc", Type: null },
+	{ Name: "HighSecurityPadlock", Group: "ItemMisc", Type: null },
+];
 
 var MainHallPunishmentList = [
 	{ItemMouth:"BallGag", ItemHead: "LeatherBlindfold", ItemHands: "DuctTape"},
@@ -32,6 +49,32 @@ var MainHallPunishmentList = [
 
 var MainHallPunishmentChoice = 0;
 var MainHallRopeColor = "Default";
+
+
+/**
+ * Adds all locks to the item blacklist
+ * @returns {void}
+ */
+function MainHallBlockAllLocks() {
+	for (let L = 0; L < MainHallLocks.length; L++) {
+		let lock = MainHallLocks[L];
+		let blocked = false;
+		for (let B = 0; B < Player.BlockItems.length; B++) {
+			if (Player.BlockItems[B].Name == lock.Name) blocked = true;
+		}
+		if (!blocked) Player.BlockItems.push(lock);
+	}
+
+}
+
+
+/**
+ * Sets permissions to whitelist only
+ * @returns {void}
+ */
+function MainHallSetPermissionsToWhitelist() {
+	Player.ItemPermission = 3;
+}
 
 /**
  * Checks to see if the player needs help in any way
