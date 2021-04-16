@@ -43,7 +43,7 @@ function KinkyDungeonLoad() {
 			KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
 		
 		//KinkyDungeonCreateMap(MiniGameDifficulty);
-		var appearance = CharacterAppearanceStringify(Player)
+		let appearance = CharacterAppearanceStringify(Player);
 		CharacterAppearanceRestore(KinkyDungeonPlayer, appearance)
 		CharacterReleaseTotal(KinkyDungeonPlayer)
 		CharacterNaked(KinkyDungeonPlayer)
