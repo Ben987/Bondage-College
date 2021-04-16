@@ -54,7 +54,7 @@ function KinkyDungeonLoad() {
 		KinkyDungeonState = "Menu"
 		
 		for (let G = 0; G < KinkyDungeonStruggleGroupsBase.length; G++) {
-			var group = KinkyDungeonStruggleGroupsBase[G]
+			let group = KinkyDungeonStruggleGroupsBase[G];
 			if (group == "ItemM") {
 				if (InventoryGet(Player, "ItemMouth"))
 					KinkyDungeonRestraintsLocked.push("ItemMouth")
