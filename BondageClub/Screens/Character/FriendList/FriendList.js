@@ -256,7 +256,7 @@ function FriendListLoadFriendList(data) {
 
 	if (mode === "Friends") {
 		// In Friend List mode, we show the friend list and allow doing beeps
-		for (const friend of data.sort((a, b) => a.MemberName.localeCompare(b.MemberName))) {
+		for (const friend of data) {
 			FriendListContent += "<div class='FriendListRow'>";
 			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${friend.MemberName} </div>`;
 			FriendListContent += `<div class='FriendListTextColumn'> ${friend.MemberNumber} </div>`;
