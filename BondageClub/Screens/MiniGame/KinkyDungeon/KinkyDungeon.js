@@ -36,9 +36,7 @@ function KinkyDungeonDressPlayer() {
  */
 function KinkyDungeonLoad() {
 	
-	if (KinkyDungeonGameRunning) {
-		// We continue
-	} else {
+	if (!KinkyDungeonGameRunning) {
 		if (!KinkyDungeonPlayer)
 			KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
 		
