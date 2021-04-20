@@ -117,35 +117,35 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsInverted: function () { return this.Pose.indexOf("Suspension") >= 0; },
 		CanChangeToPose: function(Pose) { return CharacterCanChangeToPose(this, Pose); },
 		GetClumsiness: function() { return CharacterGetClumsiness(this); },
-		RegisterHook: function(hookName, hookInstance, callback) {
-			if (!this.Hooks) this.Hooks = new Map()
-			if (typeof this.Hooks.get != "function" || typeof this.Hooks.set != "function") return false;
 		
-			if (!this.Hooks.has(hookName)) this.Hooks.set(hookName, new Map());
-			if (typeof this.Hooks.get(hookName).get != "function" || typeof this.Hooks.get(hookName).set != "function") return false;
-			
-			if (!this.Hooks.get(hookName).has(hookInstance)) {
-				this.Hooks.get(hookName).set(hookInstance, callback);
+		RegisterHook: function(hookName, hookInstance, callback) {
+			if (!this.Hooks) this.Hooks = new Map();
+
+			let hooks = this.Hooks.get(hookName);
+			if (!hooks) {
+				hooks = new Map();
+				this.Hooks.set(hookName, hooks);
+			}
+
+			if (!hooks.has(hookInstance)) {
+				hooks.set(hookInstance, callback);
 				return true;
 			}
 			return false;
 		},
 		UnregisterHook: function(hookName, hookInstance) {
 			if (!this.Hooks) return false;
-			if (typeof this.Hooks.get != "function" || typeof this.Hooks.set != "function") return false;
-			
-			if (this.Hooks.get(hookName)) {
-				if (typeof this.Hooks.get(hookName).get != "function" || typeof this.Hooks.get(hookName).set != "function") return false;
-				
-				if (this.Hooks.get(hookName).has(hookInstance)) {
-					this.Hooks.get(hookName).delete(hookInstance);
-					if (this.Hooks.get(hookName).size == 0) this.Hooks.delete(hookName);
-					return true;
+
+			const hooks = this.Hooks.get(hookName);
+			if (hooks && hooks.delete(hookInstance)) {
+				if (hooks.size == 0) {
+					this.Hooks.delete(hookName);
 				}
+				return true;
 			}
-			
+
 			return false;
-		},
+		}
 	};
 
 	// If the character doesn't exist, we create it
@@ -725,7 +725,7 @@ function CharacterLoadCanvas(C) {
 	if (C.Hooks && typeof C.Hooks.get == "function") {
 		let hooks = C.Hooks.get("BeforeSortLayers");
 		if (hooks)
-		    hooks.forEach((hook) => {if (typeof hook === "function") hook(C, TempAppearance);}); // If there's a hook, call it
+		    hooks.forEach((hook) => hook(C, TempAppearance)); // If there's a hook, call it
 	}
 
 	// Generates a layer array from the character's appearance array, sorted by drawing order
@@ -735,7 +735,7 @@ function CharacterLoadCanvas(C) {
 	if (C.Hooks && typeof C.Hooks.get == "function") {
 		let hooks = C.Hooks.get("AfterLoadCanvas");
 		if (hooks)
-		    hooks.forEach((hook) => {if (typeof hook === "function") hook(C);}); // If there's a hook, call it
+		    hooks.forEach((hook) => hook(C)); // If there's a hook, call it
 	}
 	
 	// Sets the total height modifier for that character
@@ -743,9 +743,6 @@ function CharacterLoadCanvas(C) {
 	
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
-	
-
-	
 }
 
 /**
