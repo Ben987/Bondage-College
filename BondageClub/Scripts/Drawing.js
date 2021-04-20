@@ -232,6 +232,8 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 	
 	if ((C != null) && ((C.ID == 0) || (OverrideDark || Player.GetBlindLevel() < 3 ))) {
 
+		CharacterCheckHooks(C, CurrentCharacter != null)
+
 		if (ControllerActive == true) {
 			setButton(X + 100, Y + 200)
 		}

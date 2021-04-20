@@ -13,6 +13,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 	// Prepares the character sheet
 	var NewCharacter = {
 		ID: CharacterID,
+		Hooks: {},
 		Name: "",
 		AssetFamily: CharacterAssetFamily,
 		AccountName: "",
@@ -116,6 +117,26 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsInverted: function () { return this.Pose.indexOf("Suspension") >= 0; },
 		CanChangeToPose: function(Pose) { return CharacterCanChangeToPose(this, Pose); },
 		GetClumsiness: function() { return CharacterGetClumsiness(this); },
+		RegisterHook: function(hookName, hookInstance, callback) {
+			if (!this.Hooks) this.Hooks = {}
+			if (!this.Hooks[hookName]) this.Hooks[hookName] = {};
+			if (typeof this.Hooks[hookName] === "object" && !this.Hooks[hookName][hookInstance]) {
+				this.Hooks[hookName][hookInstance] = (callback);
+				return true;
+			}
+			return false;
+		},
+		UnregisterHook: function(hookName, hookInstance) {
+			if (this.Hooks[hookName]) {
+				if (this.Hooks[hookName][hookInstance]) {
+					delete this.Hooks[hookName][hookInstance];
+					if (this.Hooks[hookName].length == 0) delete this.Hooks[hookName];
+					return true;
+				}
+			}
+			
+			return false;
+		},
 	};
 
 	// If the character doesn't exist, we create it
@@ -689,11 +710,27 @@ function CharacterLoadCanvas(C) {
 	// Reset the property that tracks if wearing a hidden item
 	C.HasHiddenItems = false;
 
-	// Generates a layer array from the character's appearance array, sorted by drawing order
-	C.AppearanceLayers = CharacterAppearanceSortLayers(C);
+	let TempAppearance = {Appearance: C.Appearance}
+	
+	// Run BeforeSortLayers hook
+	let hooks = C.Hooks.BeforeSortLayers;
+	for (var key in hooks) {
+		const hook = hooks[key];
+		if (typeof hook === "function") hook(C, TempAppearance); // If there's a hook, call it
+	}
 
+	// Generates a layer array from the character's appearance array, sorted by drawing order
+	C.AppearanceLayers = CharacterAppearanceSortLayers(C, TempAppearance.Appearance);
+	
+	// Run AfterLoadCanvas hook
+	hooks = C.Hooks.AfterLoadCanvas;
+	for (var key in hooks) {
+		const hook = hooks[key];
+		if (typeof hook === "function") hook(C); // If there's a hook, call it
+	}
+	
 	// Sets the total height modifier for that character
-	CharacterAppearanceSetHeightModifiers(C);
+	CharacterAppearanceSetHeightModifiers(C, TempAppearance.Appearance);
 	
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
@@ -1275,4 +1312,27 @@ function CharacterGetClumsiness(C) {
 	const handItem = InventoryGet(C, "ItemHands");
 	if (handItem && handItem.Asset.IsRestraint && InventoryItemHasEffect(handItem, "Block")) clumsiness += 3;
 	return Math.min(clumsiness, 5);
+}
+
+
+/**
+ * Applies hooks to a character based on conditions
+ * Future hooks go here
+ * @param {Character} C - The character to check
+ * @param {boolean} IgnoreHooks - Whether to remove hooks from the player (such as during character dialog)
+ * @returns {boolean} - If a hook was applied or removed
+ */
+function CharacterCheckHooks(C, IgnoreHooks) {
+	var refresh = false
+	if (C) {
+		if (C.Effect.includes("HideRestraints") && !IgnoreHooks) {
+			// Then when that character enters the virtual world, register a hook to strip out restraint layers (if needed):
+			if (C.RegisterHook("BeforeSortLayers", "HideRestraints", (C, TempAppearance) => {
+				TempAppearance.Appearance = TempAppearance.Appearance.filter((Layer) => !(Layer.Asset && Layer.Asset.IsRestraint));
+			})) refresh = true;
+		} else if (C.UnregisterHook("BeforeSortLayers", "HideRestraints")) refresh = true;
+	}
+
+	if (refresh) CharacterLoadCanvas(C);
+	return refresh;
 }

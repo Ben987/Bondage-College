@@ -16,6 +16,13 @@ var InventoryItemHeadInteractiveVRHeadsetOptions = [
 		},
 	},
 	{
+		Name: "FreeVR",
+		Property: {
+			Type: "FreeVR",
+			Effect: ["BlindHeavy", "VRAvatars", "HideRestraints"],
+		},
+	},
+	{
 		Name: "Gaming",
 		Property: {
 			Type: "Gaming",
