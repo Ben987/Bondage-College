@@ -13,7 +13,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 	// Prepares the character sheet
 	var NewCharacter = {
 		ID: CharacterID,
-		Hooks: {},
+		Hooks: null,
 		Name: "",
 		AssetFamily: CharacterAssetFamily,
 		AccountName: "",
@@ -118,19 +118,28 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		CanChangeToPose: function(Pose) { return CharacterCanChangeToPose(this, Pose); },
 		GetClumsiness: function() { return CharacterGetClumsiness(this); },
 		RegisterHook: function(hookName, hookInstance, callback) {
-			if (!this.Hooks) this.Hooks = {}
-			if (!this.Hooks[hookName]) this.Hooks[hookName] = {};
-			if (typeof this.Hooks[hookName] === "object" && !this.Hooks[hookName][hookInstance]) {
-				this.Hooks[hookName][hookInstance] = (callback);
+			if (!this.Hooks) this.Hooks = new Map()
+			if (typeof this.Hooks.get != "function" || typeof this.Hooks.set != "function") return false;
+		
+			if (!this.Hooks.has(hookName)) this.Hooks.set(hookName, new Map());
+			if (typeof this.Hooks.get(hookName).get != "function" || typeof this.Hooks.get(hookName).set != "function") return false;
+			
+			if (!this.Hooks.get(hookName).has(hookInstance)) {
+				this.Hooks.get(hookName).set(hookInstance, callback);
 				return true;
 			}
 			return false;
 		},
 		UnregisterHook: function(hookName, hookInstance) {
-			if (this.Hooks[hookName]) {
-				if (this.Hooks[hookName][hookInstance]) {
-					delete this.Hooks[hookName][hookInstance];
-					if (this.Hooks[hookName].length == 0) delete this.Hooks[hookName];
+			if (!this.Hooks) return false;
+			if (typeof this.Hooks.get != "function" || typeof this.Hooks.set != "function") return false;
+			
+			if (this.Hooks.get(hookName)) {
+				if (typeof this.Hooks.get(hookName).get != "function" || typeof this.Hooks.get(hookName).set != "function") return false;
+				
+				if (this.Hooks.get(hookName).has(hookInstance)) {
+					this.Hooks.get(hookName).delete(hookInstance);
+					if (this.Hooks.get(hookName).size == 0) this.Hooks.delete(hookName);
 					return true;
 				}
 			}
@@ -713,20 +722,20 @@ function CharacterLoadCanvas(C) {
 	let TempAppearance = {Appearance: C.Appearance}
 	
 	// Run BeforeSortLayers hook
-	let hooks = C.Hooks.BeforeSortLayers;
-	for (var key in hooks) {
-		const hook = hooks[key];
-		if (typeof hook === "function") hook(C, TempAppearance); // If there's a hook, call it
+	if (C.Hooks && typeof C.Hooks.get == "function") {
+		let hooks = C.Hooks.get("BeforeSortLayers");
+		if (hooks)
+		    hooks.forEach((hook) => {if (typeof hook === "function") hook(C, TempAppearance);}); // If there's a hook, call it
 	}
 
 	// Generates a layer array from the character's appearance array, sorted by drawing order
 	C.AppearanceLayers = CharacterAppearanceSortLayers(C, TempAppearance.Appearance);
 	
 	// Run AfterLoadCanvas hook
-	hooks = C.Hooks.AfterLoadCanvas;
-	for (var key in hooks) {
-		const hook = hooks[key];
-		if (typeof hook === "function") hook(C); // If there's a hook, call it
+	if (C.Hooks && typeof C.Hooks.get == "function") {
+		let hooks = C.Hooks.get("AfterLoadCanvas");
+		if (hooks)
+		    hooks.forEach((hook) => {if (typeof hook === "function") hook(C);}); // If there's a hook, call it
 	}
 	
 	// Sets the total height modifier for that character
@@ -734,6 +743,9 @@ function CharacterLoadCanvas(C) {
 	
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
+	
+
+	
 }
 
 /**
@@ -1325,7 +1337,7 @@ function CharacterGetClumsiness(C) {
 function CharacterCheckHooks(C, IgnoreHooks) {
 	var refresh = false
 	if (C) {
-		if (C.Effect.includes("HideRestraints") && !IgnoreHooks) {
+		if (!IgnoreHooks && Player.Effect.includes("VRAvatars") && C.Effect.includes("HideRestraints")) {
 			// Then when that character enters the virtual world, register a hook to strip out restraint layers (if needed):
 			if (C.RegisterHook("BeforeSortLayers", "HideRestraints", (C, TempAppearance) => {
 				TempAppearance.Appearance = TempAppearance.Appearance.filter((Layer) => !(Layer.Asset && Layer.Asset.IsRestraint));

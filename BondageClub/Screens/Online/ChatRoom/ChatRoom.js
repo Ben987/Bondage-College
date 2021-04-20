@@ -542,12 +542,12 @@ function ChatRoomDrawCharacter(DoClick) {
 	// Check if we should use a custom background
 	const CustomBG = !DoClick ? DrawGetCustomBackground() : "";
 	const Background = CustomBG || ChatRoomData.Background;
-	if (CustomBG && DarkFactor === 0.0) DarkFactor = CharacterGetDarkFactor(Player, true);
+	if (CustomBG && (DarkFactor === 0.0 || Player.GameplaySettings.SensDepChatLog == "SensDepLight")) DarkFactor = CharacterGetDarkFactor(Player, true);
 
 	// The number of characters to show in the room
 	const RenderSingle = Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3 && !Player.Effect.includes("VRAvatars");
 	var ChatRoomCharacterTemp = ChatRoomCharacter
-	if (Player.Effect.includes("VRAvatars") && Player.GameplaySettings.SensDepChatLog != "SensDepLight") {
+	if (Player.Effect.includes("VRAvatars")) {
 		ChatRoomCharacterTemp = []
 		for (let CC = 0; CC < ChatRoomCharacter.length; CC++) {
 			if (ChatRoomCharacter[CC].Effect.includes("VRAvatars")) {
@@ -1469,7 +1469,7 @@ function ChatRoomSendChat() {
 			for (let C = 0; C < ChatRoomCharacter.length; C++)
 						if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
 							WhisperTarget = ChatRoomCharacter[C];
-			if (msg != "" && !((ChatRoomTargetMemberNumber != null || m.indexOf("(") >= 0) && Player.ImmersionSettings && (Player.ImmersionSettings.BlockGaggedOOC && (!Player.Effect.includes("VRAvatars") || !WhisperTarget || !WhisperTarget.Effect.includes("VRAvatars"))) && !Player.CanTalk())) {
+			if (msg != "" && !((ChatRoomTargetMemberNumber != null || m.indexOf("(") >= 0) && Player.ImmersionSettings && (Player.ImmersionSettings.BlockGaggedOOC && (!(Player.Effect.includes("HideRestraints") && Player.Effect.includes("VRAvatars")) || !WhisperTarget || !WhisperTarget.Effect.includes("VRAvatars"))) && !Player.CanTalk())) {
 				if (ChatRoomTargetMemberNumber == null) {
 					// Regular chat
 					ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });
