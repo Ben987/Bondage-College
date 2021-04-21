@@ -46,6 +46,7 @@ ActivityNod,Nod
 ActivitySit,Sit
 ActivityStruggleArms,Struggle
 ActivityStruggleLegs,Struggle
+ActivityStep,Step
 Orgasm0,"SourceCharacter trembles and moans loudly, getting a powerful orgasm."
 Orgasm1,"SourceCharacter thrashes and loses all control, getting an intense orgasm."
 Orgasm2,"SourceCharacter screams silently and rocks her hips, getting a wonderful orgasm."
@@ -323,3 +324,5 @@ ChatOther-ItemEars-Nibble,SourceCharacter nibbles TargetCharacter's ear.
 ChatOther-ItemEars-Pinch,SourceCharacter pinches TargetCharacter's ear.
 ChatOther-ItemEars-Caress,SourceCharacter caresses TargetCharacter's ear.
 ChatOther-ItemEars-Whisper,SourceCharacter whispers slowly in TargetCharacter's ear.
+ChatOther-ItemPelvis-Step,SourceCharacter presses her foot into TargetCharacter's chest.
+ChatOther-ItemTorso-Step,SourceCharacter rests her feet on TargetCharacter's back.
