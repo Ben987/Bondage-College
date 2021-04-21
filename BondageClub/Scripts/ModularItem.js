@@ -551,8 +551,7 @@ function ModularItemGenerateLayerAllowTypes(layer, data) {
 			const regex = /([a-zA-Z]+)(\d+)/g;
 			const values = [];
 			let match;
-			// eslint-disable-next-line no-cond-assign
-			while (match = regex.exec(shorthand)) {
+			while ((match = regex.exec(shorthand))) {
 				values.push([match[1], Number.parseInt(match[2])]);
 			}
 			return values;
