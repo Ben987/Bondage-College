@@ -721,6 +721,7 @@ function CharacterLoadCanvas(C) {
 	C.HasHiddenItems = false;
 
 	let TempAppearance = {Appearance: C.Appearance}
+	C.DrawPose = C.Pose
 	
 	// Run BeforeSortLayers hook
 	if (C.Hooks && typeof C.Hooks.get == "function") {
@@ -731,7 +732,6 @@ function CharacterLoadCanvas(C) {
 
 	// Generates a layer array from the character's appearance array, sorted by drawing order
 	C.AppearanceLayers = CharacterAppearanceSortLayers(C, TempAppearance.Appearance);
-	C.DrawPose = C.Pose
 	
 	// Run AfterLoadCanvas hook
 	if (C.Hooks && typeof C.Hooks.get == "function") {
@@ -1340,12 +1340,10 @@ function CharacterCheckHooks(C, IgnoreHooks) {
 			// Then when that character enters the virtual world, register a hook to strip out restraint layers (if needed):
 			if (C.RegisterHook("BeforeSortLayers", "HideRestraints", (C, TempAppearance) => {
 				TempAppearance.Appearance = TempAppearance.Appearance.filter((Layer) => !(Layer.Asset && Layer.Asset.IsRestraint));
-				
-			}) || C.RegisterHook("AfterLoadCanvas", "HideRestraints", (C) => {
 				C.DrawPose = C.DrawPose.filter((Pose) => (Pose != "TapedHands"));
 				
 			})) refresh = true;
-		} else if (C.UnregisterHook("BeforeSortLayers", "HideRestraints") || C.UnregisterHook("AfterLoadCanvas", "HideRestraints")) refresh = true;
+		} else if (C.UnregisterHook("BeforeSortLayers", "HideRestraints")) refresh = true;
 	}
 
 	if (refresh) CharacterLoadCanvas(C);
