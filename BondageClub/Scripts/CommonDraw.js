@@ -105,7 +105,7 @@ function CommonDrawAppearanceBuild(C, {
 
 		// If there's a pose style we must add (items take priority over groups, layers may override completely)
 		var Pose = "";
-		if (C.Pose && C.Pose.length) {
+		if (C.DrawPose && C.DrawPose.length) {
 			if (Layer.OverrideAllowPose) {
 				Pose = CommonDrawFindPose(C, Layer.OverrideAllowPose);
 			} else if (A.OverrideAllowPose) {
@@ -135,8 +135,8 @@ function CommonDrawAppearanceBuild(C, {
 		// Find the X and Y position to draw on
 		var X = Layer.DrawingLeft != null ? Layer.DrawingLeft : (A.DrawingLeft != null ? A.DrawingLeft : AG.DrawingLeft);
 		var Y = Layer.DrawingTop != null ? Layer.DrawingTop : (A.DrawingTop != null ? A.DrawingTop : AG.DrawingTop);
-		if (C.Pose && C.Pose.length) {
-			C.Pose.forEach(CP => {
+		if (C.DrawPose && C.DrawPose.length) {
+			C.DrawPose.forEach(CP => {
 				var PoseDef = PoseFemale3DCG.find(P => P.Name === CP && P.MovePosition);
 				if (PoseDef) {
 					var MovePosition = PoseDef.MovePosition.find(MP => MP.Group === GroupName);
@@ -371,7 +371,7 @@ function CommonDrawFindPose(C, AllowedPoses) {
 	var Pose = "";
 	if (AllowedPoses && AllowedPoses.length) {
 		AllowedPoses.forEach(AllowedPose => {
-			if (C.Pose.includes(AllowedPose)) Pose = AllowedPose + "/";
+			if (C.DrawPose.includes(AllowedPose)) Pose = AllowedPose + "/";
 		});
 	}
 	return Pose;
