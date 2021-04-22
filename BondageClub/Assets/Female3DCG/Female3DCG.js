@@ -1009,8 +1009,8 @@ var AssetFemale3DCG = [
 			},
 			{ 
 				Name: "BunnyMask1", Fetish: ["Pet"], Value: 40, AllowType: ["Earless"], Left: 150, Top: 20, HideItem: ["ItemNoseNoseRing", "HairAccessory1Ears1", "HairAccessory2Ears1", "HairAccessory1PonyEars1", "HairAccessory2PonyEars1", "HairAccessory1FoxEars1", "HairAccessory2FoxEars1", "HairAccessory1FoxEars3", "HairAccessory2FoxEars3", "HairAccessory1RaccoonEars1", "HairAccessory2RaccoonEars1", "HatVeil1", "HatVeil2", "HatCaptainHat1", "HatPoliceWomanHat"], Hide: ["Glasses"], Extended: true, HasType: false, 
-				Layer:[
-			        { Name: "Base", HasType: false },
+				Layer: [
+					{ Name: "Base", HasType: false },
 					{ Name: "Ears", CopyLayerColor: "Base", HasType: false, AllowTypes: [""] }
 				],
 			},

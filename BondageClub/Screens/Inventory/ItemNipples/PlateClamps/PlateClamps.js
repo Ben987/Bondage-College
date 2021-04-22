@@ -28,10 +28,10 @@ var InventoryItemNipplesPlateClampsOptions = [
  * @returns {void} - Nothing
  */
 function InventoryItemNipplesPlateClampsDraw() {
-    ExtendedItemDraw(
-	    InventoryItemNipplesPlateClampsOptions, "ItemNipplesPlateClampsTightnessLevel",
-	    InventoryItemNipplesPlateClampsOptions.length, false,
-    );
+	ExtendedItemDraw(
+		InventoryItemNipplesPlateClampsOptions, "ItemNipplesPlateClampsTightnessLevel",
+		InventoryItemNipplesPlateClampsOptions.length, false,
+	);
 }
 /**
  * Catches the item extension clicks
