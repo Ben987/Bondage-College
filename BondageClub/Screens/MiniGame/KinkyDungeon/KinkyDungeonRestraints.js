@@ -123,7 +123,7 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 	var cost = (StruggleType == "Pick" || StruggleType == "Cut") ? KinkyDungeonStatStaminaCostTool : KinkyDungeonStatStaminaCostStruggle
 	if (StruggleType == "Unlock") cost = 0
 	let Pass = "Fail"
-	let escapeChance = (restraint.restraint.escapeChance[StruggleType]) ? restraint.restraint.escapeChance[StruggleType] : 1.0
+	let escapeChance = (restraint.restraint.escapeChance[StruggleType] != null) ? restraint.restraint.escapeChance[StruggleType] : 1.0
 		
 	
 	if (!KinkyDungeonPlayer.CanInteract()) escapeChance /= 2

@@ -70,7 +70,9 @@ LootRubbleBlueKey,"You find a blue key, glowing with magic"
 
 LootChestGold,The chest contains gold! (+XXX gold)
 LootChestSpell,"You find a magic scroll, which you place in your spellbook. (+SpellLearned)"
-LootChestTrapMagic,You find gold, but a restraint appears on you with a puff of smoke. (+RestraintType) (+XXX gold)
+LootChestTrapMagic,"You find gold, but a restraint appears on you with a puff of smoke. (+RestraintType) (+XXX gold)"
+
+KinkyDungeonTorsoGrab,The EnemyName grabs you by the harness and keeps you in place!
 
 NameBlindZombie,Moaning Zombie
 KillBlindZombie,"The zombie moans and collapses to the ground."
@@ -101,7 +103,7 @@ KinkyDungeonStruggleUnlockFail,"You try to unlock the TargetRestraint but you ca
 
 KinkyDungeonStruggleUnlockNoRedKey,"The red padlock only accepts red keys."
 KinkyDungeonStruggleUnlockNoGreenKey,"The green padlock only accepts green keys."
-KinkyDungeonStruggleUnlockNoYellowKey,"The yellow padlock requires a red and a blue key."
+KinkyDungeonStruggleUnlockNoYellowKey,"The yellow padlock requires a red and a green key."
 KinkyDungeonStruggleUnlockNoBlueKey,"The magical lock only accepts blue keys."
 KinkyDungeonStruggleUnlockNoUnknownKey,"You don't have a key for this lock."
 
