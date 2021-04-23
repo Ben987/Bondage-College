@@ -1,3 +1,4 @@
+"use strict";
 const InventoryHairAccessory1HaloBrightnessInputId = "InventoryHairAccessory1HaloBrightness";
 
 const InventoryHairAccessory1HaloOptions = [
