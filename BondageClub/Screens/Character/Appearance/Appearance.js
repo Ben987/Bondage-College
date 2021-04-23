@@ -301,18 +301,18 @@ function CharacterAppearanceStripLayer(C) {
  * @param {Character} C - The character to build the layers for
  * @return {Layer[]} - A sorted set of layers, sorted by layer drawing priority
  */
-function CharacterAppearanceSortLayers(C, Appearance) {
+function CharacterAppearanceSortLayers(C) {
 	var groupAlphas = {};
-	var layers = Appearance.reduce((layersAcc, item) => {
+	var layers = C.DrawAppearance.reduce((layersAcc, item) => {
 		var asset = item.Asset;
 		// Only include layers for visible assets
-		if (asset.Visible && CharacterAppearanceVisible(C, Appearance, asset.Name, asset.Group.Name) && InventoryChatRoomAllow(asset.Category)) {
+		if (asset.Visible && CharacterAppearanceVisible(C, C.DrawAppearance, asset.Name, asset.Group.Name) && InventoryChatRoomAllow(asset.Category)) {
 			// Check if we need to draw a different variation (from type property)
 			var type = (item.Property && item.Property.Type) || "";
 			// Only include layers that permit the current type (if AllowTypes is not defined, also include the layer)
 			var layersToDraw = asset.Layer
 				.filter(layer => !layer.AllowTypes || layer.AllowTypes.includes(type))
-				.filter(layer => !layer.HideAs || CharacterAppearanceVisible(C, Appearance, layer.HideAs.Asset, layer.HideAs.Group))
+				.filter(layer => !layer.HideAs || CharacterAppearanceVisible(C, C.DrawAppearance, layer.HideAs.Asset, layer.HideAs.Group))
 				.map(layer => {
 					var drawLayer = Object.assign({}, layer);
 					// Store any group-level alpha mask definitions
@@ -361,24 +361,24 @@ function CharacterAppearanceSortLayers(C, Appearance) {
  *     infinite loops.
  * @returns {boolean} - Returns TRUE if we can show the item or the item group
  */
-function CharacterAppearanceVisible(C, Appearance, AssetName, GroupName, Recursive = true) {
+function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 	if (CharacterAppearanceItemIsHidden(AssetName, GroupName)) {
 		C.HasHiddenItems = true;
 		return false;
 	}
 
-	if (!Appearance) Appearance = C.Appearance
+	if (!C.DrawAppearance) C.DrawAppearance = C.Appearance
 
-	for (let A = 0; A < Appearance.length; A++) {
-		if (CharacterAppearanceItemIsHidden(Appearance[A].Asset.Name, Appearance[A].Asset.Group.Name)) continue;
+	for (let A = 0; A < C.DrawAppearance.length; A++) {
+		if (CharacterAppearanceItemIsHidden(C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name)) continue;
 		let HidingItem = false;
-		if ((Appearance[A].Asset.Hide != null) && (Appearance[A].Asset.Hide.indexOf(GroupName) >= 0) && !Appearance[A].Asset.HideItemExclude.includes(GroupName + AssetName)) HidingItem = true;
-		else if ((Appearance[A].Property != null) && (Appearance[A].Property.Hide != null) && (Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
-		else if ((Appearance[A].Asset.HideItem != null) && (Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
-		else if ((Appearance[A].Property != null) && (Appearance[A].Property.HideItem != null) && (Appearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		if ((C.DrawAppearance[A].Asset.Hide != null) && (C.DrawAppearance[A].Asset.Hide.indexOf(GroupName) >= 0) && !C.DrawAppearance[A].Asset.HideItemExclude.includes(GroupName + AssetName)) HidingItem = true;
+		else if ((C.DrawAppearance[A].Property != null) && (C.DrawAppearance[A].Property.Hide != null) && (C.DrawAppearance[A].Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
+		else if ((C.DrawAppearance[A].Asset.HideItem != null) && (C.DrawAppearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		else if ((C.DrawAppearance[A].Property != null) && (C.DrawAppearance[A].Property.HideItem != null) && (C.DrawAppearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
 		if (HidingItem) {
 			if (Recursive) {
-				if (CharacterAppearanceVisible(C, Appearance, Appearance[A].Asset.Name, Appearance[A].Asset.Group.Name, false)) {
+				if (CharacterAppearanceVisible(C, C.DrawAppearance, C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name, false)) {
 					return false;
 				}
 			}
@@ -413,7 +413,7 @@ function CharacterAppearanceItemIsHidden(AssetName, GroupName) {
  * @param {Character} C - The character whose height modifier must be calculated
  * @returns {void} - Nothing
  */
-function CharacterAppearanceSetHeightModifiers(C, Appearance) {
+function CharacterAppearanceSetHeightModifiers(C) {
 	if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
 		// If the "Up" button was clicked, move the character to the top
 		C.HeightModifier = 0;
@@ -425,8 +425,8 @@ function CharacterAppearanceSetHeightModifiers(C, Appearance) {
 		// Check if there is any setting to override the standard asset height modifiers
 		let HeightOverrides = [];
 		let PoseOverrides = Pose.filter(P => C.Pose != null && C.Pose.indexOf(P.Name) >= 0 && P.OverrideHeight != null).map(P => P.OverrideHeight);
-		let AssetOverrides = Appearance.filter(A => A.Asset.OverrideHeight != null).map(A => A.Asset.OverrideHeight);
-		let PropertyOverrides = Appearance.filter(A => A.Property && A.Property.OverrideHeight != null).map(A => A.Property.OverrideHeight);
+		let AssetOverrides = C.DrawAppearance.filter(A => A.Asset.OverrideHeight != null).map(A => A.Asset.OverrideHeight);
+		let PropertyOverrides = C.DrawAppearance.filter(A => A.Property && A.Property.OverrideHeight != null).map(A => A.Property.OverrideHeight);
 		HeightOverrides = HeightOverrides.concat(PoseOverrides, AssetOverrides, PropertyOverrides);
 
 		if (HeightOverrides.length > 0) {
@@ -437,10 +437,10 @@ function CharacterAppearanceSetHeightModifiers(C, Appearance) {
 		}
 		else {
 			// Adjust the height based on modifiers on the assets
-			for (let A = 0; A < Appearance.length; A++)
-				if (CharacterAppearanceVisible(C, Appearance, Appearance[A].Asset.Name, Appearance[A].Asset.Group.Name)) {
-					if (Appearance[A].Property && Appearance[A].Property.HeightModifier != null) Height += Appearance[A].Property.HeightModifier;
-					else Height += Appearance[A].Asset.HeightModifier;
+			for (let A = 0; A < C.DrawAppearance.length; A++)
+				if (CharacterAppearanceVisible(C, C.DrawAppearance, C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name)) {
+					if (C.DrawAppearance[A].Property && C.DrawAppearance[A].Property.HeightModifier != null) Height += C.DrawAppearance[A].Property.HeightModifier;
+					else Height += C.DrawAppearance[A].Asset.HeightModifier;
 				}
 		}
 		

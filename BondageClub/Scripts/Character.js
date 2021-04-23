@@ -29,6 +29,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		Skill: [],
 		Pose: [],
 		DrawPose: [],
+		DrawAppearance: [],
 		AllowedActivePose: [],
 		Effect: [],
 		FocusGroup: null,
@@ -118,7 +119,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsInverted: function () { return this.Pose.indexOf("Suspension") >= 0; },
 		CanChangeToPose: function(Pose) { return CharacterCanChangeToPose(this, Pose); },
 		GetClumsiness: function() { return CharacterGetClumsiness(this); },
-		
+		// Adds a new hook with a Name (determines when the hook will happen, an Instance ID (used to differentiate between different hooks happening at the same time), and a function that is run when the hook is called)
 		RegisterHook: function(hookName, hookInstance, callback) {
 			if (!this.Hooks) this.Hooks = new Map();
 
@@ -134,6 +135,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			}
 			return false;
 		},
+		// Removes a hook based on hookName and hookInstance
 		UnregisterHook: function(hookName, hookInstance) {
 			if (!this.Hooks) return false;
 
@@ -720,20 +722,23 @@ function CharacterLoadCanvas(C) {
 	// Reset the property that tracks if wearing a hidden item
 	C.HasHiddenItems = false;
 
-	let TempAppearance = {Appearance: C.Appearance}
+	// We add a temporary appearance here so that it can be modified by hooks. By default this is just a pointer to the character's appearance to prevent slowdowns
+	// Any hook should avoid using it as a reference, instead using structural code like Appearance.filter(), etc
+	C.DrawAppearance = C.Appearance
+	// Pose to draw the player with. Used to override the pose with a hook if needed
 	C.DrawPose = C.Pose
 	
 	// Run BeforeSortLayers hook
 	if (C.Hooks && typeof C.Hooks.get == "function") {
 		let hooks = C.Hooks.get("BeforeSortLayers");
 		if (hooks)
-		    hooks.forEach((hook) => hook(C, TempAppearance)); // If there's a hook, call it
+		    hooks.forEach((hook) => hook(C)); // If there's a hook, call it
 	}
 
 	// Generates a layer array from the character's appearance array, sorted by drawing order
-	C.AppearanceLayers = CharacterAppearanceSortLayers(C, TempAppearance.Appearance);
+	C.AppearanceLayers = CharacterAppearanceSortLayers(C);
 	
-	// Run AfterLoadCanvas hook
+	// Run AfterLoadCanvas hooks
 	if (C.Hooks && typeof C.Hooks.get == "function") {
 		let hooks = C.Hooks.get("AfterLoadCanvas");
 		if (hooks)
@@ -741,7 +746,7 @@ function CharacterLoadCanvas(C) {
 	}
 	
 	// Sets the total height modifier for that character
-	CharacterAppearanceSetHeightModifiers(C, TempAppearance.Appearance);
+	CharacterAppearanceSetHeightModifiers(C);
 	
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
@@ -1335,11 +1340,11 @@ function CharacterGetClumsiness(C) {
  */
 function CharacterCheckHooks(C, IgnoreHooks) {
 	var refresh = false
-	if (C) {
+	if (C && C.DrawAppearance) {
 		if (!IgnoreHooks && Player.Effect.includes("VRAvatars") && C.Effect.includes("HideRestraints")) {
 			// Then when that character enters the virtual world, register a hook to strip out restraint layers (if needed):
-			if (C.RegisterHook("BeforeSortLayers", "HideRestraints", (C, TempAppearance) => {
-				TempAppearance.Appearance = TempAppearance.Appearance.filter((Layer) => !(Layer.Asset && Layer.Asset.IsRestraint));
+			if (C.RegisterHook("BeforeSortLayers", "HideRestraints", (C) => {
+				C.DrawAppearance = C.DrawAppearance.filter((Layer) => !(Layer.Asset && Layer.Asset.IsRestraint));
 				C.DrawPose = C.DrawPose.filter((Pose) => (Pose != "TapedHands"));
 				
 			})) refresh = true;
