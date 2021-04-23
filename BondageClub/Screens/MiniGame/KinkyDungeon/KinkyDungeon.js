@@ -9,10 +9,10 @@ var KinkyDungeonKeybindingsTemp = null;
 var KinkyDungeonKeybindingCurrentKey = 0;
 
 //var KinkyDungeonKeyLower = [87+32, 65+32, 83+32, 68+32, 81+32, 45+32, 90+32, 43+32]; // WASD
-var KinkyDungeonKey = [87, 65, 83, 68, 81, 45, 90, 43]; // WASD
+var KinkyDungeonKey = [119, 97, 115, 100, 113, 101, 122, 99]; // WASD
 //var KinkyDungeonKeyNumpad = [56, 52, 50, 54, 55, 57, 49, 51]; // Numpad
-var KinkyDungeonKeySpell = [33, 64, 35]; // ! @ #
-var KinkyDungeonKeyWait = [32]; // Space and 5 (53)
+var KinkyDungeonKeySpell = [49, 50, 51]; // 1 2 3
+var KinkyDungeonKeyWait = [120]; // x
 
 var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/"
 
@@ -163,7 +163,7 @@ function KinkyDungeonClick() {
 			KinkyDungeonState = "Keybindings"
 			
 			KinkyDungeonKeybindingsTemp = {
-				Down: 120,
+				Down: 115,
 				DownLeft: 122,
 				DownRight: 99,
 				Left: 97,
@@ -174,7 +174,7 @@ function KinkyDungeonClick() {
 				Up: 119,
 				UpLeft: 113,
 				UpRight: 101,
-				Wait: 115,
+				Wait: 120,
 			}
 		}
 	} else if (KinkyDungeonState == "Game") {
