@@ -69,10 +69,14 @@ var KinkyDungeonKeyPickBreakChance = 0.25
 var KinkyDungeonPlayerDamage = 2
 var KinkyDungeonPlayerDamageMax = 2
 var KinkyDungeonPlayerDamageType = "pain"
+var KinkyDungeonTorsoGrabChance = 0.33
 
 // Your inventory contains items that are on you
 var KinkyDungeonInventory = []
 var KinkyDungeonPlayerTags = []
+
+var KinkyDungeonCurrentDress = "Default"
+var KinkyDungeonUndress = 0 // Level of undressedness
 
 function KinkyDungeonDefaultStats() {
 	KinkyDungeonGold = 0
@@ -182,11 +186,15 @@ function KinkyDungeonUpdateStats(delta) {
 	
 	KinkyDungeonUpdateStruggleGroups()
 	
+	KinkyDungeonDressPlayer()
+	
 	// Cap off the values between 0 and maximum
 	KinkyDungeonStatArousal = Math.max(0, Math.min(KinkyDungeonStatArousal + arousalRate*delta, KinkyDungeonStatArousalMax))
 	KinkyDungeonStatStamina = Math.max(0, Math.min(KinkyDungeonStatStamina + KinkyDungeonStaminaRate*delta, KinkyDungeonStatStaminaMax))
 	KinkyDungeonStatWillpower = Math.max(0, Math.min(KinkyDungeonStatWillpower + willpowerRate*delta, KinkyDungeonStatWillpowerMax))
 	KinkyDungeonStatBlind = Math.max(0, KinkyDungeonStatBlind - delta)
+	
+	
 }
 
 function KinkyDungeonCalculateSlowLevel() {

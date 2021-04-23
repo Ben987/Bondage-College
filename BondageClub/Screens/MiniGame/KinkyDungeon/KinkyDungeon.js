@@ -16,20 +16,6 @@ var KinkyDungeonKeyWait = [120]; // x
 
 var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/"
 
-function KinkyDungeonDressPlayer() {
-	CharacterNaked(KinkyDungeonPlayer)
-	
-	InventoryWear(KinkyDungeonPlayer, "WitchHat1", "Hat")
-	InventoryWear(KinkyDungeonPlayer, "SteampunkCorsetTop1", "Cloth")
-	InventoryWear(KinkyDungeonPlayer, "LatexSkirt1", "ClothLower")
-	InventoryWear(KinkyDungeonPlayer, "Socks4", "Socks")
-	InventoryWear(KinkyDungeonPlayer, "Heels3", "Shoes")
-	
-	
-	CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, "#444444", "Socks");
-	CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, "#222222", "Shoes");
-}
-
 /**
  * Loads the kinky dungeon game
  * @returns {void} - Nothing
@@ -43,6 +29,7 @@ function KinkyDungeonLoad() {
 	CharacterAppearanceRestore(KinkyDungeonPlayer, appearance)
 	CharacterReleaseTotal(KinkyDungeonPlayer)
 	CharacterNaked(KinkyDungeonPlayer)
+	KinkyDungeonInitializeDresses()
 	KinkyDungeonDressPlayer()
 	
 	KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings

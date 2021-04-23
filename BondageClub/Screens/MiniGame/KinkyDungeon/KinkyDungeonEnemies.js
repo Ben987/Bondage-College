@@ -162,30 +162,32 @@ function KinkyDungeonUpdateEnemies(delta) {
 					if (enemy.warningTiles.length == 0)
 						enemy.warningTiles = KinkyDungeonGetWarningTiles(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y, enemy.Enemy.attackRange, enemy.Enemy.attackWidth)
 					
-					let caught = false
-					for (let W = 0; W < enemy.warningTiles.length; W++) {
-						var tile = enemy.warningTiles[W]
-						if (enemy.x + tile.x == KinkyDungeonPlayerEntity.x && enemy.y + tile.y == KinkyDungeonPlayerEntity.y) {
-							caught = true;
-							break;
+					if (enemy.Enemy.attack.includes("Bind")) {
+						let caught = false
+						for (let W = 0; W < enemy.warningTiles.length; W++) {
+							var tile = enemy.warningTiles[W]
+							if (enemy.x + tile.x == KinkyDungeonPlayerEntity.x && enemy.y + tile.y == KinkyDungeonPlayerEntity.y) {
+								caught = true;
+								break;
+							}
 						}
-					}
-					if (caught && KinkyDungeonGetRestraintItem("ItemTorso") && KinkyDungeonGetRestraintItem("ItemTorso").restraint && KinkyDungeonGetRestraintItem("ItemTorso").restraint.harness) {
-						let roll = Math.random()
-						for (let T = 0; T < KinkyDungeonSlowLevel; T++) {
-							roll = Math.max(roll, Math.random())
-						}
-						if (roll > KinkyDungeonTorsoGrabChance) {
-							KinkyDungeonMovePoints = -1
-							
-							if (2 > KinkyDungeonTextMessagePriority) {
-								KinkyDungeonTextMessageTime = 1
+						if (caught && KinkyDungeonGetRestraintItem("ItemTorso") && KinkyDungeonGetRestraintItem("ItemTorso").restraint && KinkyDungeonGetRestraintItem("ItemTorso").restraint.harness) {
+							let roll = Math.random()
+							for (let T = 0; T < KinkyDungeonSlowLevel/2; T++) {
+								roll = Math.max(roll, Math.random())
+							}
+							if (roll > KinkyDungeonTorsoGrabChance) {
+								KinkyDungeonMovePoints = -1
 								
-								KinkyDungeonTextMessage = TextGet("KinkyDungeonTorsoGrab")
-								KinkyDungeonTextMessagePriority = 2
-								
-								KinkyDungeonTextMessage = KinkyDungeonTextMessage.replace("EnemyName", TextGet("Name" + enemy.Enemy.name))
-								KinkyDungeonTextMessageColor = msgColor
+								if (2 > KinkyDungeonTextMessagePriority) {
+									KinkyDungeonTextMessageTime = 1
+									
+									KinkyDungeonTextMessage = TextGet("KinkyDungeonTorsoGrab")
+									KinkyDungeonTextMessagePriority = 2
+									
+									KinkyDungeonTextMessage = KinkyDungeonTextMessage.replace("EnemyName", TextGet("Name" + enemy.Enemy.name))
+									KinkyDungeonTextMessageColor = "yellow"
+								}
 							}
 						}
 					}

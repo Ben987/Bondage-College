@@ -41,6 +41,7 @@ var KinkyDungeonRestraints = [
 	
 	{name: "TrapArmbinder", Asset: "LeatherArmbinder", Type: "WrapStrap", Group: "ItemArms", magic: false, power: 8, weight: 2, escapeChance: {"Struggle": 0.1, "Cut": 0.33, "Remove": 0.2, "Pick": 0.0}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: []},
 	{name: "TrapCuffs", Asset: "MetalCuffs", Group: "ItemArms", magic: false, power: 8, weight: 2, escapeChance: {"Struggle": 0.05, "Cut": 0.0, "Remove": 100.0, "Pick": 1.7}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: []},
+	{name: "TrapHarness", Asset: "LeatherStrapHarness", Color: "#222222", Group: "ItemTorso", magic: false, power: 5, weight: 2, harness: true, escapeChance: {"Struggle": 0.0, "Cut": 0.5, "Remove": 0.8, "Pick": 1.0}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: []},
 	
 ]
 
