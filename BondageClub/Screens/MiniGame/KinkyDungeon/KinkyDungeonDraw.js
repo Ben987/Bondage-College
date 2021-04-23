@@ -22,6 +22,8 @@ var KinkyDungeonStruggleGroupsBase = [
 var KinkyDungeonDrawStruggle = true
 var KinkyDungeonDrawState = "Game"
 var KinkyDungeonSpellValid = false
+var KinkyDungeonCamX = 0
+var KinkyDungeonCamY = 0
 
 // Draw function for the game portion
 function KinkyDungeonDrawGame() {
@@ -40,6 +42,9 @@ function KinkyDungeonDrawGame() {
 	if (KinkyDungeonDrawState == "Game") {
 		let CamX = Math.max(0, Math.min(KinkyDungeonGridWidth - KinkyDungeonGridWidthDisplay, KinkyDungeonPlayerEntity.x - Math.floor(KinkyDungeonGridWidthDisplay/2)))
 		let CamY = Math.max(0, Math.min(KinkyDungeonGridHeight - KinkyDungeonGridHeightDisplay, KinkyDungeonPlayerEntity.y - Math.floor(KinkyDungeonGridHeightDisplay/2)))
+
+		KinkyDungeonCamX = CamX
+		KinkyDungeonCamY = CamY
 
 		KinkyDungeonMoveDirection = KinkyDungeonGetDirection(
 			(MouseX - ((KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay + canvasOffsetX + KinkyDungeonGridSizeDisplay / 2))/KinkyDungeonGridSizeDisplay,
@@ -105,8 +110,7 @@ function KinkyDungeonDrawGame() {
 
 			if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
 				if (KinkyDungeonTargetingSpell) {
-					KinkyDungeonTargetX = Math.round((MouseX - KinkyDungeonGridSizeDisplay/2 - canvasOffsetX)/KinkyDungeonGridSizeDisplay) + CamX
-					KinkyDungeonTargetY = Math.round((MouseY - KinkyDungeonGridSizeDisplay/2 - canvasOffsetY)/KinkyDungeonGridSizeDisplay) + CamY
+					KinkyDungeonSetTargetLocation()
 					
 					KinkyDungeonContext.beginPath();
 					KinkyDungeonContext.rect((KinkyDungeonTargetX - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonTargetY - CamY)*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay);
@@ -249,8 +253,16 @@ function KinkyDungeonDrawGame() {
 }
 
 
+function KinkyDungeonSetTargetLocation() {
+	KinkyDungeonTargetX = Math.round((MouseX - KinkyDungeonGridSizeDisplay/2 - canvasOffsetX)/KinkyDungeonGridSizeDisplay) + KinkyDungeonCamX
+	KinkyDungeonTargetY = Math.round((MouseY - KinkyDungeonGridSizeDisplay/2 - canvasOffsetY)/KinkyDungeonGridSizeDisplay) + KinkyDungeonCamY
+}
+
 function KinkyDungeonHandleHUD() {
 	if (KinkyDungeonDrawState == "Game") {
+		if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height))
+			KinkyDungeonSetTargetLocation()
+		
 		//if (MouseIn(650, 925, 250, 60)) { KinkyDungeonDrawState = "Inventory"}
 		//else 
 		if (MouseIn(925, 925, 250, 60)) { KinkyDungeonDrawState = "Magic"; return true;}

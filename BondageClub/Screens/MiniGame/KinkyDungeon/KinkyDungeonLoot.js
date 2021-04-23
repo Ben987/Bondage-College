@@ -108,6 +108,7 @@ function KinkyDungeonGetUnlearnedSpells(minlevel, maxlevel, SpellList) {
 
 function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 	// 
+	let value = 0
 	if (Loot.name == "spell_illusion_low") {
 		var SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList["Illusion"])
 		var spellIndex = Math.floor(Math.random()*SpellsUnlearned.length)
@@ -133,15 +134,9 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("SpellLearned", TextGet("KinkyDungeonSpell" + spell.name))
 		KinkyDungeonSpells.push(spell)
 	} else if (Loot.name == "gold") {
-		var value = Math.ceil((25 + 25 * Math.random()) * (1 + Index/2))
-		if (Replacemsg)
-			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
-		KinkyDungeonAddGold(value)
+		value = Math.ceil((25 + 25 * Math.random()) * (1 + Index/2))
 	} else if (Loot.name == "smallgold") {
-		var value = Math.ceil((1 + 4 * Math.random()) * (1 + Index))
-		if (Replacemsg)
-			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
-		KinkyDungeonAddGold(value)
+		value = Math.ceil((1 + 4 * Math.random()) * (1 + Index))
 	} else if (Loot.name == "knife") {
 		KinkyDungeonNormalBlades += 1
 	} else if (Loot.name == "magicknife") {
@@ -155,14 +150,22 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 	}  else if (Loot.name == "bluekey") {
 		KinkyDungeonBlueKeys += 1
 	} else if (Loot.name == "trap_armbinder") {
+		value = Math.ceil((40 + 40 * Math.random()) * (1 + Index/2))
 		KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("TrapArmbinder"))
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapArmbinder"))
 	} else if (Loot.name == "trap_cuffs") {
+		value = Math.ceil((40 + 40 * Math.random()) * (1 + Index/2))
 		if (KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("TrapCuffs"), true) > 0)
 			KinkyDungeonGetRestraintItem("ItemArms").lock = KinkyDungeonGenerateLock(true)
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapCuffs"))
+	}
+	
+	if (value > 0) {
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("XXX", value)
+		KinkyDungeonAddGold(value)
 	}
 }
 

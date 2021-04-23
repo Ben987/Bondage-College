@@ -102,77 +102,47 @@ function KinkyDungeoCheckComponents(spell) {
 	return failedcomp
 }
 
+function KinkyDungeonHandleSpellChoice(SpellChoice) {
+	let spell = null
+	if (KinkyDungeoCheckComponents(KinkyDungeonSpells[SpellChoice]).length == 0) {
+		if (KinkyDungeonGetCost(KinkyDungeonSpells[SpellChoice].level) <= KinkyDungeonStatStamina)
+			spell = KinkyDungeonSpells[SpellChoice]
+		else if (3 >= KinkyDungeonActionMessagePriority) {
+			KinkyDungeonActionMessageTime = 1
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
+			KinkyDungeonActionMessageColor = "red"
+			KinkyDungeonActionMessagePriority = 3
+		}
+	} else {
+		KinkyDungeonTargetingSpell = ""
+		if (4 >= KinkyDungeonActionMessagePriority) {
+			KinkyDungeonActionMessageTime = 1
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[SpellChoice])[0])
+			KinkyDungeonActionMessageColor = "red"
+			KinkyDungeonActionMessagePriority = 3
+		}
+	}
+	return spell
+}
+
 function KinkyDungeonHandleSpell() {
-	var spell = null
+	let spell = null
 	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]] && (MouseIn(1230, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[0])) {
-		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]).length == 0) {
-			if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]].level) <= KinkyDungeonStatStamina)
-				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]
-			else if (4 >= KinkyDungeonActionMessagePriority) {
-				KinkyDungeonActionMessageTime = 1
-				KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
-				KinkyDungeonActionMessageColor = "red"
-				KinkyDungeonActionMessagePriority = 4
-			}
-		} else {
-			KinkyDungeonTargetingSpell = ""
-			if (4 >= KinkyDungeonActionMessagePriority) {
-				KinkyDungeonActionMessageTime = 1
-				KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[0]])[0])
-				KinkyDungeonActionMessageColor = "red"
-				KinkyDungeonActionMessagePriority = 4
-			}
-		}
-	}
-	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]] && (MouseIn(1480, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[1])) {
-		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]).length == 0) {
-			if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]].level) <= KinkyDungeonStatStamina)
-				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]
-			else if (4 >= KinkyDungeonActionMessagePriority) {
-				KinkyDungeonActionMessageTime = 1
-				KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
-				KinkyDungeonActionMessageColor = "red"
-				KinkyDungeonActionMessagePriority = 4
-			}
-		} else {
-			KinkyDungeonTargetingSpell = ""
-			if (4 >= KinkyDungeonActionMessagePriority) {
-				KinkyDungeonActionMessageTime = 1
-				KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[1]])[0])
-				KinkyDungeonActionMessageColor = "red"
-				KinkyDungeonActionMessagePriority = 4
-			}
-		}		
-	}
-	if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]] && (MouseIn(1730, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[2])) {
-		if (KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]).length == 0) {
-			if (KinkyDungeonGetCost(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]].level) <= KinkyDungeonStatStamina)
-				spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]
-			else if (4 >= KinkyDungeonActionMessagePriority) {
-				KinkyDungeonActionMessageTime = 1
-				KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
-				KinkyDungeonActionMessageColor = "red"
-				KinkyDungeonActionMessagePriority = 4
-			}
-		} else {
-			KinkyDungeonTargetingSpell = ""
-			if (4 >= KinkyDungeonActionMessagePriority) {
-				KinkyDungeonActionMessageTime = 1
-				KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[KinkyDungeonSpellChoices[2]])[0])
-				KinkyDungeonActionMessageColor = "red"
-				KinkyDungeonActionMessagePriority = 4
-			}
-		}
+		spell = KinkyDungeonHandleSpellChoice(KinkyDungeonSpellChoices[0])
+	} else if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]] && (MouseIn(1480, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[1])) {
+		spell = KinkyDungeonHandleSpellChoice(KinkyDungeonSpellChoices[1])	
+	} else if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]] && (MouseIn(1730, 895, 90, 90) || KinkyDungeonSpellPress == KinkyDungeonKeySpell[2])) {
+		spell = KinkyDungeonHandleSpellChoice(KinkyDungeonSpellChoices[2])
 	}
 	if (spell) {
 		// Handle spell activation
 		KinkyDungeonTargetingSpell = spell
 		
-		if (KinkyDungeonActionMessagePriority <= 1) {
+		if (5 >= KinkyDungeonActionMessagePriority) {
 			KinkyDungeonActionMessageTime = 1
 			KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellTarget" + spell.name).replace("SpellArea", Math.floor(spell.aoe))
 			KinkyDungeonActionMessageColor = "white"
-			KinkyDungeonActionMessagePriority = 2
+			KinkyDungeonActionMessagePriority = 5
 		}
 		return true;
 	}

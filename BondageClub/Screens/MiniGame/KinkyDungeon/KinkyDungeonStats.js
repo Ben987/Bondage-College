@@ -116,15 +116,17 @@ function KinkyDungeonDealDamage(Damage) {
 
 function KinkyDungeonDrawStats(x, y, width, heightPerBar) {
 	// Draw labels
-	DrawText(TextGet("StatArousal"), x+width/2, y + 25, (KinkyDungeonStatArousal < 100) ? "white" : "pink", "silver");
-	DrawText(TextGet("StatStamina"), x+width/2, y + 25 + heightPerBar, (KinkyDungeonStatStamina > KinkyDungeonWillpowerDrainLowStaminaThreshold) ? "white" : "pink", "silver");
-	DrawText(TextGet("StatWillpower"), x+width/2, y + 25 + 2 * heightPerBar, (KinkyDungeonStatWillpower > 10) ? "white" : "pink", "silver");
+	if (KinkyDungeonStatArousal > 0)
+		DrawText(TextGet("StatArousal"), x+width/2, y + 25, (KinkyDungeonStatArousal < 100) ? "white" : "pink", "silver");
+		DrawText(TextGet("StatStamina"), x+width/2, y + 25 + heightPerBar, (KinkyDungeonStatStamina > KinkyDungeonWillpowerDrainLowStaminaThreshold) ? "white" : "pink", "silver");
+		DrawText(TextGet("StatWillpower"), x+width/2, y + 25 + 2 * heightPerBar, (KinkyDungeonStatWillpower > 10) ? "white" : "pink", "silver");
 	
 	// Draw arousal
-	DrawProgressBarColor(x, y + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatArousal/KinkyDungeonStatArousalMax, "pink", "#111111")
-	DrawProgressBarColor(x, y + heightPerBar + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatStamina/KinkyDungeonStatStaminaMax, "#22AA22", "#111111")
-	DrawProgressBarColor(x, y + 2*heightPerBar + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatWillpower/KinkyDungeonStatWillpowerMax, "#DDCCCC", "#881111")
-	
+	if (KinkyDungeonStatArousal > 0)
+		DrawProgressBarColor(x, y + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatArousal/KinkyDungeonStatArousalMax, "pink", "#111111")
+		DrawProgressBarColor(x, y + heightPerBar + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatStamina/KinkyDungeonStatStaminaMax, "#22AA22", "#111111")
+		DrawProgressBarColor(x, y + 2*heightPerBar + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatWillpower/KinkyDungeonStatWillpowerMax, "#DDCCCC", "#881111")
+		
 	var i = 3
 	DrawText(TextGet("CurrentGold") + KinkyDungeonGold, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;
 	DrawText(TextGet("CurrentLockpicks") + KinkyDungeonLockpicks, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;

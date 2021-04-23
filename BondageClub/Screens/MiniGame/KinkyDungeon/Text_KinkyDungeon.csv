@@ -66,11 +66,11 @@ LootRubbleLockpick,You find a lockpick in a crack between the tiles
 LootRubbleKnife,You find a rusty knife among the rocks
 LootRubbleRedKey,"You find a red key, covered in grime"
 LootRubbleGreenKey,"You find a green key with an ornate handle"
-LootRubbleBlue,"You find a blue key, glowing with magic"
+LootRubbleBlueKey,"You find a blue key, glowing with magic"
 
 LootChestGold,The chest contains gold! (+XXX gold)
 LootChestSpell,"You find a magic scroll, which you place in your spellbook. (+SpellLearned)"
-LootChestTrapMagic,A restraint appears on you with a puff of smoke. (+RestraintType)
+LootChestTrapMagic,You find gold, but a restraint appears on you with a puff of smoke. (+RestraintType) (+XXX gold)
 
 NameBlindZombie,Moaning Zombie
 KillBlindZombie,"The zombie moans and collapses to the ground."
