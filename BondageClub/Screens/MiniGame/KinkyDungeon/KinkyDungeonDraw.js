@@ -285,10 +285,10 @@ function KinkyDungeonHandleHUD() {
 				return true
 			}
 			
-			if (((KinkyDungeonTargetTile.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.includes("Yellow") && (KinkyDungeonRedKeys > 0 || KinkyDungeonGreenKeys > 0)
+			if (((KinkyDungeonTargetTile.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.includes("Yellow") && (KinkyDungeonRedKeys > 0 && KinkyDungeonGreenKeys > 0)
 				|| (KinkyDungeonTargetTile.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.includes("Blue") && KinkyDungeonBlueKeys > 0) )) && MouseIn(825, 825, 112, 60)) {
 				KinkyDungeonAdvanceTime(1)
-				if (KinkyDungeonUnlockAttempt()) {
+				if (KinkyDungeonUnlockAttempt(KinkyDungeonTargetTile)) {
 					KinkyDungeonTargetTile = ""
 					delete KinkyDungeonLocks[KinkyDungeonTargetTileLocation]
 				}

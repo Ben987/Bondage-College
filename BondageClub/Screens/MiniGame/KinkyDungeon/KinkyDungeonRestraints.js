@@ -44,6 +44,12 @@ var KinkyDungeonRestraints = [
 	
 ]
 
+function KinkyDungeonRemoveKeys(lock) {
+	if (lock.includes("Red")) KinkyDungeonRedKeys -= 1
+	if (lock.includes("Yellow")) {KinkyDungeonRedKeys -= 1; KinkyDungeonGreenKeys -= 1; }
+	if (lock.includes("Blue")) KinkyDungeonBlueKeys -= 1
+}
+
 function KinkyDungeonWaitMessage() {
 	if ( 1 > KinkyDungeonActionMessagePriority) {
 		KinkyDungeonActionMessageTime = 2
@@ -86,7 +92,7 @@ function KinkyDungeonPickAttempt() {
 	return Pass == "Success"
 }
 
-function KinkyDungeonUnlockAttempt() {
+function KinkyDungeonUnlockAttempt(lock) {
 	let Pass = "Fail"
 	let escapeChance = 1.0
 	
@@ -102,7 +108,11 @@ function KinkyDungeonUnlockAttempt() {
 		KinkyDungeonActionMessageColor = (Pass == "Success") ? "lightgreen" : "red"
 		KinkyDungeonActionMessagePriority = 1
 	}
-	return Pass == "Success"
+	if (Pass == "Success") {
+		KinkyDungeonRemoveKeys(lock)
+		return true
+	}
+	return false
 }
 
 
@@ -151,9 +161,7 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 						if ((restraint.lock == "Red" && KinkyDungeonRedKeys > 0) || (restraint.lock == "Green" && KinkyDungeonGreenKeys > 0) || (restraint.lock == "Yellow" && KinkyDungeonRedKeys > 0 && KinkyDungeonGreenKeys > 0) || (restraint.lock == "Blue" && KinkyDungeonBlueKeys > 0)) {
 							if (restraint.lock != "Green" || (Math.random() < KinkyDungeonKeyJamChance)) {
 								restraint.lock = ""
-								if (restraint.lock == "Red") KinkyDungeonRedKeys -= 1
-								if (restraint.lock == "Yellow") {KinkyDungeonRedKeys -= 1; KinkyDungeonGreenKeys -= 1; }
-								if (restraint.lock == "Blue") KinkyDungeonBlueKeys -= 1
+								KinkyDungeonRemoveKeys(restraint.lock)
 							} else {
 								Pass = "Jammed"
 								restraint.lock = "Jammed"
