@@ -1,5 +1,6 @@
 // Arousal -- It lowers your stamina regen
 var KinkyDungeonStatArousalMax = 100
+var KinkyDungeonArousalUnlockSuccessMod = 0.5 // Determines how much harder it is to insert a key while aroused. 1.0 is half success chance, 2.0 is one-third, etc.
 var KinkyDungeonStatArousal = 0
 var KinkyDungeonStatArousalRegen = -1
 var KinkyDungeonStatArousalRegenStaminaRegenFactor = -0.9 // Stamina drain per time per 100 arousal

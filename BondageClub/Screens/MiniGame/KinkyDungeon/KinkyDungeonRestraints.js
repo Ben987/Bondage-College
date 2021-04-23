@@ -55,7 +55,7 @@ function KinkyDungeonWaitMessage() {
 
 function KinkyDungeonPickAttempt() {
 	let Pass = "Fail"
-	let escapeChance = 1.0
+	let escapeChance = 0.9 / (1.0 + 0.005 * MiniGameKinkyDungeonLevel)
 	var cost = KinkyDungeonStatStaminaCostTool
 	
 	
@@ -63,6 +63,7 @@ function KinkyDungeonPickAttempt() {
 	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1, escapeChance - 0.25)
 	if (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true)) escapeChance = Math.max(0, escapeChance - 0.5)
 	
+	escapeChance /= 1.0 + KinkyDungeonStatArousal/KinkyDungeonStatArousalMax*KinkyDungeonArousalUnlockSuccessMod
 
 	if (KinkyDungeonStatStamina + KinkyDungeonStaminaRate < -cost) {
 		KinkyDungeonWaitMessage()
@@ -119,6 +120,8 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 	if (struggleGroup.group != "ItemArms" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true)) escapeChance = Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
 	if (struggleGroup.group != "ItemHands" && InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemHands"), "Block", true))
 		escapeChance = StruggleType == "Pick" ? Math.max(0, escapeChance - 0.5) : Math.max(0.1 - Math.max(0, 0.01*restraint.restraint.power), escapeChance - 0.25)
+	
+	if (StruggleType == "Pick" || StruggleType == "Unlock") escapeChance /= 1.0 + KinkyDungeonStatArousal/KinkyDungeonStatArousalMax*KinkyDungeonArousalUnlockSuccessMod
 	
 	if (InventoryGroupIsBlocked(KinkyDungeonPlayer, struggleGroup.group)) escapeChance = 0
 	
