@@ -306,13 +306,13 @@ function CharacterAppearanceSortLayers(C) {
 	var layers = C.DrawAppearance.reduce((layersAcc, item) => {
 		var asset = item.Asset;
 		// Only include layers for visible assets
-		if (asset.Visible && CharacterAppearanceVisible(C, C.DrawAppearance, asset.Name, asset.Group.Name) && InventoryChatRoomAllow(asset.Category)) {
+		if (asset.Visible && CharacterAppearanceVisible(C, asset.Name, asset.Group.Name) && InventoryChatRoomAllow(asset.Category)) {
 			// Check if we need to draw a different variation (from type property)
 			var type = (item.Property && item.Property.Type) || "";
 			// Only include layers that permit the current type (if AllowTypes is not defined, also include the layer)
 			var layersToDraw = asset.Layer
 				.filter(layer => !layer.AllowTypes || layer.AllowTypes.includes(type))
-				.filter(layer => !layer.HideAs || CharacterAppearanceVisible(C, C.DrawAppearance, layer.HideAs.Asset, layer.HideAs.Group))
+				.filter(layer => !layer.HideAs || CharacterAppearanceVisible(C, layer.HideAs.Asset, layer.HideAs.Group))
 				.map(layer => {
 					var drawLayer = Object.assign({}, layer);
 					// Store any group-level alpha mask definitions
@@ -378,7 +378,7 @@ function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 		else if ((C.DrawAppearance[A].Property != null) && (C.DrawAppearance[A].Property.HideItem != null) && (C.DrawAppearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
 		if (HidingItem) {
 			if (Recursive) {
-				if (CharacterAppearanceVisible(C, C.DrawAppearance, C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name, false)) {
+				if (CharacterAppearanceVisible(C, C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name, false)) {
 					return false;
 				}
 			}
@@ -438,7 +438,7 @@ function CharacterAppearanceSetHeightModifiers(C) {
 		else {
 			// Adjust the height based on modifiers on the assets
 			for (let A = 0; A < C.DrawAppearance.length; A++)
-				if (CharacterAppearanceVisible(C, C.DrawAppearance, C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name)) {
+				if (CharacterAppearanceVisible(C, C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name)) {
 					if (C.DrawAppearance[A].Property && C.DrawAppearance[A].Property.HeightModifier != null) Height += C.DrawAppearance[A].Property.HeightModifier;
 					else Height += C.DrawAppearance[A].Asset.HeightModifier;
 				}
