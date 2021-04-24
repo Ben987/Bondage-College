@@ -2796,7 +2796,7 @@ var AssetFemale3DCG = [
 		Top: 0,
 		Effect: ["BlockMouth", "GagNormal"],
 		Zone: [[100, 130, 100, 70]],
-		Activity: ["Bite", "Kiss", "FrenchKiss", "PoliteKiss", "Lick", "Nibble", "Caress", "HandGag", "TickleItem", "RubItem", "RollItem", "PenetrateSlow", "PenetrateFast", "MoanGag", "MoanGagTalk", "MoanGagWhimper", "MoanGagGroan", "MoanGagAngry", "GagKiss"],
+		Activity: ["Bite", "Kiss", "FrenchKiss", "PoliteKiss", "Lick", "Nibble", "Caress", "HandGag", "TickleItem", "RubItem", "RollItem", "PenetrateSlow", "PenetrateFast", "MoanGag", "MoanGagTalk", "MoanGagWhimper", "MoanGagGroan", "MoanGagAngry", "MoanGagGiggle", "GagKiss"],
 		Asset: [
 			{ Name: "ClothGag", Value: 15, Difficulty: -4, Time: 10, DefaultColor: "#B0B0B0", BuyGroup: "ClothGag", Prerequisite: "GagFlat", Effect: ["BlockMouth", "GagVeryLight"], AllowEffect: ["BlockMouth", "GagVeryLight", "GagLight", "GagEasy"], AllowType: ["Cleave", "OTM", "OTN"], ExpressionTrigger: [{ Name: "DroolSides", Group: "Fluids", Timer: 30 }], Extended: true },
 			{
@@ -4477,6 +4477,13 @@ var ActivityFemale3DCG = [
 	{
 		Name: "MoanGag",
 		MaxProgress: 60,
+		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
+		TargetSelf: ["ItemMouth"],
+		Prerequisite: ["IsGagged", "SelfOnly"]
+	},
+	{
+		Name: "MoanGagGiggle",
+		MaxProgress: 20,
 		MakeSound: true, // used for setting AutoPunishGagActionFlag to true
 		TargetSelf: ["ItemMouth"],
 		Prerequisite: ["IsGagged", "SelfOnly"]
