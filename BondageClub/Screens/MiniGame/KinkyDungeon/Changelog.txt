@@ -7,12 +7,14 @@ Content
 - Added locked chests which are scattered around the dungeon. Each floor is guaranteed to have at least one. You can either pick them or unlock them
 - Added key drops and lockpick drops around the dungeon. You can find them in debris piles, but not chests.
 - Added handcuffs trap, which places a set of handcuffs on you that has a guaranteed lock on it
+- Added harness trap, which locks you in a harness that makes it easy for enemies to grab onto you
 - Added scaling to the kinds of locks you encounter:
 - New locks:
 	Red locks are the most common in early levels, and can be only opened with red keys.
 	Green locks are less common, and have a chance of jamming, making them impossible to unlock.
 	Yellow locks require both a red and a green key to unlock.
 	Blue locks require blue keys, and can't be picked or cut off. 
+- Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
 Balance
 - Made the rope snare have a 3 turn delay rather than a 1 turn delay, and a range of 1. This limits its in-combat use, while retaining its long duration and level 1 classification
 
