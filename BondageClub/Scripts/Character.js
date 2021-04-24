@@ -722,11 +722,10 @@ function CharacterLoadCanvas(C) {
 	// Reset the property that tracks if wearing a hidden item
 	C.HasHiddenItems = false;
 
-	// We add a temporary appearance here so that it can be modified by hooks. By default this is just a pointer to the character's appearance to prevent slowdowns
-	// Any hook should avoid using it as a reference, instead using structural code like Appearance.filter(), etc
-	C.DrawAppearance = C.Appearance
-	// Pose to draw the player with. Used to override the pose with a hook if needed
-	C.DrawPose = C.Pose
+	// We add a temporary appearance and pose here so that it can be modified by hooks.  We copy the arrays so no hooks can alter the reference accidentally
+	C.DrawAppearance = AppearanceItemParse( CharacterAppearanceStringify(C))
+	C.DrawPose = [...C.Pose] // Deep copy of pose array
+	
 	
 	// Run BeforeSortLayers hook
 	if (C.Hooks && typeof C.Hooks.get == "function") {
