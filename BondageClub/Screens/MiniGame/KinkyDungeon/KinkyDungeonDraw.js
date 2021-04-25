@@ -25,6 +25,23 @@ var KinkyDungeonSpellValid = false
 var KinkyDungeonCamX = 0
 var KinkyDungeonCamY = 0
 
+function KinkyDungeonGetSprite(code) {
+	let sprite = "Floor"
+	if (code == "1") sprite = "Wall"
+	else if (code == "X") sprite = "Doodad"
+	else if (code == "C") sprite = "Chest"
+	else if (code == "c") sprite = "ChestOpen"
+	else if (code == "D") sprite = "Door"
+	else if (code == "d") sprite = "DoorOpen"
+	else if (code == "R") sprite = "Rubble"
+	else if (code == "r") sprite = "RubbleLooted"
+	else if (code == "S") sprite = "StairsUp"
+	else if (code == "s") sprite = "StairsDown"
+	else if (code == "A") sprite = "Shrine"
+	else if (code == "a") sprite = "ShrineBroken"
+	return sprite
+}
+
 // Draw function for the game portion
 function KinkyDungeonDrawGame() {
 		
@@ -63,17 +80,7 @@ function KinkyDungeonDrawGame() {
 				let rows = KinkyDungeonGrid.split('\n')
 				for (let R = 0; R < KinkyDungeonGridHeightDisplay; R++)  {
 					for (let X = 0; X < KinkyDungeonGridWidthDisplay; X++)  {
-						let sprite = "Floor"
-						if (rows[R+CamY][X+CamX] == "1") sprite = "Wall"
-						else if (rows[R+CamY][X+CamX] == "X") sprite = "Doodad"
-						else if (rows[R+CamY][X+CamX] == "C") sprite = "Chest"
-						else if (rows[R+CamY][X+CamX] == "c") sprite = "ChestOpen"
-						else if (rows[R+CamY][X+CamX] == "D") sprite = "Door"
-						else if (rows[R+CamY][X+CamX] == "d") sprite = "DoorOpen"
-						else if (rows[R+CamY][X+CamX] == "R") sprite = "Rubble"
-						else if (rows[R+CamY][X+CamX] == "r") sprite = "RubbleLooted"
-						else if (rows[R+CamY][X+CamX] == "S") sprite = "StairsUp"
-						else if (rows[R+CamY][X+CamX] == "s") sprite = "StairsDown"
+						let sprite = KinkyDungeonGetSprite(rows[R+CamY][X+CamX])
 							
 						DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Floor" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + "/" + sprite + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSizeDisplay, R*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
 					}
@@ -196,30 +203,31 @@ function KinkyDungeonDrawGame() {
 		}
 		
 		if (KinkyDungeonTargetTile) {
-			let action = false
-			if (KinkyDungeonLockpicks > 0) {
-				DrawButton(963, 825, 112, 60, TextGet("KinkyDungeonPickDoor"), "White", "", "");
-				action = true;
+			if (KinkyDungeonTargetTile.Type == "Lock") {
+				let action = false
+				if (KinkyDungeonLockpicks > 0) {
+					DrawButton(963, 825, 112, 60, TextGet("KinkyDungeonPickDoor"), "White", "", "");
+					action = true;
+				}
+				
+				if ((KinkyDungeonTargetTile.Lock.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.Lock.includes("Yellow") && (KinkyDungeonRedKeys > 0 && KinkyDungeonGreenKeys > 0)
+					|| (KinkyDungeonTargetTile.Lock.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.Lock.includes("Blue") && KinkyDungeonBlueKeys > 0) ) ) {
+					DrawButton(825, 825, 112, 60, TextGet("KinkyDungeonUnlockDoor"), "White", "", "");
+					action = true;
+				}
+				
+				if (!action) DrawText(TextGet("KinkyDungeonLockedDoor"), 950, 850, "white", "silver")
+				
+				if (KinkyDungeonTargetTile.Lock.includes("Red"))
+					DrawText(TextGet("KinkyRedLock"), 675, 850, "white", "silver")
+				else if (KinkyDungeonTargetTile.Lock.includes("Yellow"))
+					DrawText(TextGet("KinkyYellowLock"), 675, 850, "white", "silver")
+				else if (KinkyDungeonTargetTile.Lock.includes("Green"))
+					DrawText(TextGet("KinkyGreenLock"), 675, 850, "white", "silver")
+				else if (KinkyDungeonTargetTile.Lock.includes("Blue"))
+					DrawText(TextGet("KinkyBlueLock"), 675, 850, "white", "silver")
 			}
-			
-			if ((KinkyDungeonTargetTile.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.includes("Yellow") && (KinkyDungeonRedKeys > 0 || KinkyDungeonGreenKeys > 0)
-				|| (KinkyDungeonTargetTile.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.includes("Blue") && KinkyDungeonBlueKeys > 0) ) ) {
-				DrawButton(825, 825, 112, 60, TextGet("KinkyDungeonUnlockDoor"), "White", "", "");
-				action = true;
-			}
-			
-			if (!action) DrawText(TextGet("KinkyDungeonLockedDoor"), 950, 850, "white", "silver")
-			
-			if (KinkyDungeonTargetTile.includes("Red"))
-				DrawText(TextGet("KinkyRedLock"), 675, 850, "white", "silver")
-			else if (KinkyDungeonTargetTile.includes("Yellow"))
-				DrawText(TextGet("KinkyYellowLock"), 675, 850, "white", "silver")
-			else if (KinkyDungeonTargetTile.includes("Green"))
-				DrawText(TextGet("KinkyGreenLock"), 675, 850, "white", "silver")
-			else if (KinkyDungeonTargetTile.includes("Blue"))
-				DrawText(TextGet("KinkyBlueLock"), 675, 850, "white", "silver")
 		}
-		
 		//DrawButton(650, 925, 250, 60, TextGet("KinkyDungeonInventory"), "White", "", "");
 		DrawButton(925, 925, 250, 60, TextGet("KinkyDungeonMagic"), "White", "", "");
 		
@@ -276,23 +284,25 @@ function KinkyDungeonHandleHUD() {
 		}
 		
 		if (KinkyDungeonTargetTile) {
-			if (KinkyDungeonLockpicks > 0 && MouseIn(963, 825, 112, 60)) {
-				KinkyDungeonAdvanceTime(1)
-				if (KinkyDungeonPickAttempt()) {
-					KinkyDungeonTargetTile = ""
-					delete KinkyDungeonLocks[KinkyDungeonTargetTileLocation]
+			if (KinkyDungeonTargetTile.Type && KinkyDungeonTargetTile.Type == "Lock") {
+				if (KinkyDungeonLockpicks > 0 && MouseIn(963, 825, 112, 60)) {
+					KinkyDungeonAdvanceTime(1)
+					if (KinkyDungeonPickAttempt()) {
+						KinkyDungeonTargetTile = null
+						delete KinkyDungeonTiles[KinkyDungeonTargetTileLocation]
+					}
+					return true
 				}
-				return true
-			}
-			
-			if (((KinkyDungeonTargetTile.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.includes("Yellow") && (KinkyDungeonRedKeys > 0 && KinkyDungeonGreenKeys > 0)
-				|| (KinkyDungeonTargetTile.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.includes("Blue") && KinkyDungeonBlueKeys > 0) )) && MouseIn(825, 825, 112, 60)) {
-				KinkyDungeonAdvanceTime(1)
-				if (KinkyDungeonUnlockAttempt(KinkyDungeonTargetTile)) {
-					KinkyDungeonTargetTile = ""
-					delete KinkyDungeonLocks[KinkyDungeonTargetTileLocation]
+				
+				if (((KinkyDungeonTargetTile.Lock.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.Lock.includes("Yellow") && (KinkyDungeonRedKeys > 0 && KinkyDungeonGreenKeys > 0)
+					|| (KinkyDungeonTargetTile.Lock.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.Lock.includes("Blue") && KinkyDungeonBlueKeys > 0) )) && MouseIn(825, 825, 112, 60)) {
+					KinkyDungeonAdvanceTime(1)
+					if (KinkyDungeonUnlockAttempt(KinkyDungeonTargetTile.Lock)) {
+						KinkyDungeonTargetTile = null
+						delete KinkyDungeonTiles[KinkyDungeonTargetTileLocation]
+					}
+					return true
 				}
-				return true
 			}
 		}
 		

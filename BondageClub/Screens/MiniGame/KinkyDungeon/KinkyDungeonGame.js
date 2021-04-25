@@ -45,10 +45,10 @@ var KinkyDungeonMapBrightness = 5
 
 var KinkyDungeonMovableTilesEnemy = "0SsRrd" // Objects which can be moved into: floors, debris, open doors, staircases
 var KinkyDungeonMovableTilesSmartEnemy = "D" + KinkyDungeonMovableTilesEnemy //Smart enemies can open doors as well
-var KinkyDungeonMovableTiles = "C" + KinkyDungeonMovableTilesSmartEnemy // Player can open chests
+var KinkyDungeonMovableTiles = "CA" + KinkyDungeonMovableTilesSmartEnemy // Player can open chests
 
-var KinkyDungeonLocks = {}
-var KinkyDungeonTargetTile = ""
+var KinkyDungeonTiles = {}
+var KinkyDungeonTargetTile = null
 var KinkyDungeonTargetTileLocation = ""
 
 var KinkyDungeonBaseLockChance = 0.25
@@ -126,7 +126,7 @@ function KinkyDungeonInitialize(Level, Random) {
 // Starts the the game at a specified level
 function KinkyDungeonCreateMap(MapParams, Floor) {
 	KinkyDungeonGrid = ""
-	KinkyDungeonLocks = {}
+	KinkyDungeonTiles = {}
 	KinkyDungeonTargetTile = ""
 	
 	var height = MapParams["min_height"] + 2*Math.floor(0.5*Math.random() * (MapParams["max_height"] - MapParams["min_height"]))
@@ -165,6 +165,8 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	var doodadchance = MapParams["doodadchance"]
 	var treasurechance = 1.0 // Chance for an extra locked chest
 	var treasurecount = MapParams["chestcount"] // Max treasure chest count
+	var shrinechance = MapParams["shrinechance"] // Chance for an extra shrine
+	var shrinecount = MapParams["shrinecount"] // Max treasure chest count
 	var rubblechance = MapParams["rubblechance"] // Chance of lootable rubble
 	var doorchance = MapParams["doorchance"] // Max treasure chest count
 	KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density)	
@@ -176,6 +178,7 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	KinkyDungeonPlaceStairs(startpos, width, height) // Place the start and end locations
 	KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, Floor, width, height) // Place treasure chests inside dead ends
 	KinkyDungeonPlaceDoors(doorchance, width, height) // Place treasure chests inside dead ends
+	KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, height) // Place treasure chests inside dead ends
 	
 	// Place the player!
 	KinkyDungeonPlayerEntity = {Type:"Player", x: 1, y:startpos}
@@ -221,7 +224,7 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 }
 
 function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, Floor, width, height) {
-	var chestlist = []
+	let chestlist = []
 	
 
 	// Populate the chests
@@ -240,34 +243,89 @@ function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, Fl
 			}
 	
 	// Truncate down to max chest count in a location-neutral way
-    var count = 0;
+    let count = 0;
 	let extra = Math.random() < treasurechance
 	treasurecount += (extra ? 1 : 0)
     while (chestlist.length > 0) {
+    	let N = Math.floor(Math.random()*chestlist.length)
 		if (count < treasurecount) {
-			var N = Math.floor(Math.random()*chestlist.length)
-			var chest = chestlist[N]
+			let chest = chestlist[N]
 			KinkyDungeonMapSet(chest.x, chest.y, 'C')
 			
 			// Add a lock on the chest! For testing purposes ATM
 			let lock = KinkyDungeonGenerateLock((extra && count == 0) ? true : false , Floor)
 			if (lock)
-				KinkyDungeonLocks["" + chest.x + "," +chest.y] = lock
+				KinkyDungeonTiles["" + chest.x + "," +chest.y] = {Type: "Lock", Lock: lock}
 			
-			chestlist.splice(N, 1)
 			count += 1;
 		} else {
-			var N = Math.floor(Math.random()*chestlist.length)
-			var chest = chestlist[N]
+			
+			let chest = chestlist[N]
 			if (Math.random() < rubblechance) KinkyDungeonMapSet(chest.x, chest.y, 'R')
-				else KinkyDungeonMapSet(chest.x, chest.y, 'r')
-			chestlist.splice(N, 1)
+				else KinkyDungeonMapSet(chest.x, chest.y, 'r');
 		}
+		chestlist.splice(N, 1)
     }
 
     //console.log("Created " + count + " chests")
 }
 
+
+function KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, height) {
+	let shrinelist = []
+	
+
+	// Populate the chests
+	for (let X = 1; X < width; X += 1)
+		for (let Y = 1; Y < height; Y += 1)
+			if (KinkyDungeonMapGet(X, Y) == '0' && Math.random()) {
+				// Check the 3x3 area
+				let freecount = 0
+				for (let XX = X-1; XX <= X+1; XX += 1)
+					for (let YY = Y-1; YY <= Y+1; YY += 1)
+						if (!(XX == X && YY == Y) && (XX == X || YY == Y) && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(XX, YY)))
+							freecount += 1
+				
+				if (freecount >= 4)
+					shrinelist.push({x:X, y:Y});
+				
+			}
+	
+	// Truncate down to max chest count in a location-neutral way
+    let count = 0;
+    while (shrinelist.length > 0) {
+		let N = Math.floor(Math.random()*shrinelist.length)
+		if (count < shrinecount) {
+			
+			let shrine = shrinelist[N]
+			if (count == shrinecount && Math.random() < shrinechance)
+				KinkyDungeonMapSet(shrine.x, shrine.y, 'a')
+			else {
+				KinkyDungeonTiles["" + shrine.x + "," +shrine.y] =  {Type: "Shrine", Name: KinkyDungeonGenerateShrine(Floor)}
+				KinkyDungeonMapSet(shrine.x, shrine.y, 'A')
+			}
+					
+				
+			count += 1;
+		}
+		
+		shrinelist.splice(N, 1)
+    }
+
+    //console.log("Created " + count + " shrines")
+}
+
+
+
+function KinkyDungeonGenerateShrine(Floor) {
+	let level = (Floor) ? Floor : MiniGameKinkyDungeonLevel
+	let Params = KinkyDungeonMapParams[KinkyDungeonMapIndex[level]]
+	let mult = (Params["lockmult"]) ? Params["lockmult"] : 1.0
+	
+	
+	
+	return "Charms"
+}
 
 function KinkyDungeonGenerateLock(Guaranteed, Floor) {
 	let level = (Floor) ? Floor : MiniGameKinkyDungeonLevel
@@ -644,17 +702,17 @@ function KinkyDungeonMove(moveDirection) {
 		var moveObject = KinkyDungeonMapGet(moveX, moveY)
 		if (KinkyDungeonMovableTiles.includes(moveObject) && KinkyDungeonNoEnemy(moveX, moveY)) { // If the player can move to an empy space or a door
 		
-			if (KinkyDungeonLocks["" + moveX + "," + moveY]) {
+			if (KinkyDungeonTiles["" + moveX + "," + moveY]) {
 				KinkyDungeonTargetTileLocation = "" + moveX + "," + moveY
-				KinkyDungeonTargetTile = KinkyDungeonLocks[KinkyDungeonTargetTileLocation]
+				KinkyDungeonTargetTile = KinkyDungeonTiles[KinkyDungeonTargetTileLocation]
 				if ( 1 > KinkyDungeonTextMessagePriority) {
 					KinkyDungeonTextMessageTime = 2
-					KinkyDungeonTextMessage = TextGet("KinkyDungeonObjectIsLocked")
+					KinkyDungeonTextMessage = TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name))
 					KinkyDungeonTextMessageColor = "#FF9999"
 					KinkyDungeonTextMessagePriority = 1
 				}
 			} else {
-				KinkyDungeonTargetTile = ""
+				KinkyDungeonTargetTile = null
 				KinkyDungeonTargetTileLocation = ""
 				if (moveObject == 'D') { // Open the door
 					KinkyDungeonMapSet(moveX, moveY, 'd')

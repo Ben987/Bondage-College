@@ -126,7 +126,9 @@ KinkyDungeonPickDoor,"Pick"
 KinkyDungeonLockedDoor,"(No way to open)"
 KinkyDungeonObject,"object"
 
-KinkyDungeonObjectIsLocked,"That object is locked"
+KinkyDungeonObjectLock,"That object is locked"
+KinkyDungeonObjectShrine,"You found a shrine to the goddess of TYPE"
+KinkyDungeonShrineCharms,"mummufication"
 
 ClimbDown,"You climb down to the next level"
 
