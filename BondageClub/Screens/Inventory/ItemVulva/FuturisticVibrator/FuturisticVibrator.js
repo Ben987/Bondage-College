@@ -1,6 +1,6 @@
 "use strict";
 
-var ItemVulvaFuturisticVibratorTriggers = ["Increase", "Decrease", "Disable", "Edge", "Random", "Deny", "Tease"]
+var ItemVulvaFuturisticVibratorTriggers = ["Increase", "Decrease", "Disable", "Edge", "Random", "Deny", "Tease", "Shock"]
 var ItemVulvaFuturisticVibratorTriggerValues = []
 var FuturisticVibratorCheckChatTime = 1000; // Checks chat every 1 sec
 
@@ -128,6 +128,27 @@ function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option) {
     CharacterSetFacialExpression(C, "Blush", "Soft", 5);
 }
 
+// Trigger a shock automatically
+function InventoryItemVulvaFuturisticVibratorTriggerShock(C, Item) { 
+
+	var Dictionary = [];
+	Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
+	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+	Dictionary.push({ Tag: "SourceCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+	Dictionary.push({ Tag: "AssetName", AssetName: Item.Asset.Name});
+	Dictionary.push({ Tag: "ActivityName", Text: "ShockItem" });
+	Dictionary.push({ Tag: "ActivityGroup", Text: Item.Asset.Group.Name });
+	Dictionary.push({ AssetName: Item.Asset.Name });
+	Dictionary.push({ AssetGroupName: Item.Asset.Group.Name });
+	Dictionary.push({ Automatic: true });
+			
+	ServerSend("ChatRoomChat", { Content: "FuturisticVibratorShockTrigger", Type: "Action", Dictionary });
+
+    CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
+    CharacterSetFacialExpression(C, "Blush", "Soft", 15);
+    CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
+}
+
 function InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, LastTime) {
 	if (!Item) return;
 	if (!Item.Property) VibratorModeSetProperty(Item, VibratorModeOptions[VibratorModeSet.STANDARD][0].Property);
@@ -143,6 +164,7 @@ function InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, LastTime) {
 				if (msg == "Tease") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.TEASE))
 				if (msg == "Random") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.RANDOM))
 				if (msg == "Disable") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.OFF))
+				if (msg == "Shock") InventoryItemVulvaFuturisticVibratorTriggerShock(C, Item)
 				if (msg == "Increase") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, true)))
 				if (msg == "Decrease") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, false)))
 			}
