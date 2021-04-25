@@ -131,22 +131,17 @@ function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option) {
 // Trigger a shock automatically
 function InventoryItemVulvaFuturisticVibratorTriggerShock(C, Item) { 
 
-	var Dictionary = [];
-	Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
-	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
-	Dictionary.push({ Tag: "SourceCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
-	Dictionary.push({ Tag: "AssetName", AssetName: Item.Asset.Name});
-	Dictionary.push({ Tag: "ActivityName", Text: "ShockItem" });
-	Dictionary.push({ Tag: "ActivityGroup", Text: Item.Asset.Group.Name });
-	Dictionary.push({ AssetName: Item.Asset.Name });
-	Dictionary.push({ AssetGroupName: Item.Asset.Group.Name });
-	Dictionary.push({ Automatic: true });
-			
-	ServerSend("ChatRoomChat", { Content: "FuturisticVibratorShockTrigger", Type: "Action", Dictionary });
+	if (CurrentScreen == "ChatRoom") {
+		var Dictionary = [];
+		Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
+		Dictionary.push({ Tag: "AssetName", AssetName: Item.Asset.Name});
 
-    CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
-    CharacterSetFacialExpression(C, "Blush", "Soft", 15);
-    CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
+		ServerSend("ChatRoomChat", { Content: "FuturisticVibratorShockTrigger", Type: "Action", Dictionary });
+	}
+
+	CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
+	CharacterSetFacialExpression(C, "Blush", "Soft", 15);
+	CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
 }
 
 function InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, LastTime) {
