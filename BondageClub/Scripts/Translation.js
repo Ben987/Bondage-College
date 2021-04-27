@@ -4,7 +4,7 @@ var TranslationCache = {};
 
 /**
  * Dictionary for all supported languages and their files
- * @constant 
+ * @constant
  */
 var TranslationDictionary = [
 
@@ -365,7 +365,7 @@ function TranslationDialogArray(C, T) {
 
 /**
  * Translates a set of tags. Rerenders the login message when on the login page.
- * @param {Array.<{Tag: string, Value: string}>} S - Array of current tag-value pairs 
+ * @param {Array.<{Tag: string, Value: string}>} S - Array of current tag-value pairs
  * @param {string[]} T - The active translation dictionary
  * @returns {void} - Nothing
  */
@@ -388,7 +388,7 @@ function TranslationDialog(C) {
 		var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 		// Finds the full path of the translation file to use
 		var FullPath = (OnlinePlayer ? "Screens/Online/ChatRoom/Dialog_Online" :  (C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName) + "_" + TranslationLanguage + ".txt";
-			
+
 		// If the translation file is already loaded, we translate from it
 		if (TranslationCache[FullPath]) {
 			TranslationDialogArray(C, TranslationCache[FullPath]);
@@ -403,9 +403,9 @@ function TranslationDialog(C) {
 					TranslationDialogArray(C, TranslationCache[FullPath]);
 				}
 			});
-	
+
 	}
-	
+
 }
 
 /**
@@ -416,7 +416,7 @@ function TranslationDialog(C) {
 function TranslationText(Text) {
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
-		
+
 		// Finds the full path of the translation file to use
 		var FullPath = "Screens/" + CurrentModule + "/" + CurrentScreen + "/Text_" + CurrentScreen + "_" + TranslationLanguage + ".txt";
 
@@ -457,7 +457,7 @@ function TranslationAssetProcess(T) {
  * @returns {void} - Nothing
  */
 function TranslationAsset(Family) {
-	
+
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
 
@@ -478,9 +478,9 @@ function TranslationAsset(Family) {
 					TranslationAssetProcess(TranslationCache[FullPath]);
 				}
 			});
-	
+
 	}
-	
+
 }
 
 /**
@@ -500,7 +500,7 @@ function TranslationNextLanguage() {
 }
 
 /**
- * Loads the previous translation language from local storage if it exists 
+ * Loads the previous translation language from local storage if it exists
  * @returns {void} - Nothing
  */
 function TranslationLoad() {

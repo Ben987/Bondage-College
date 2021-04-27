@@ -102,6 +102,7 @@ SearchFriendsFirst,Order rooms by number of friends
 DisableAnimations,Disable scripted assets on others
 ShowAutomaticMessages,Show all automatic messages
 PreserveWhitespace,Preserve whitespace in messages
+ShowChatRoomHelp,Show help on first enter
 AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms

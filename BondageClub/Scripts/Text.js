@@ -103,6 +103,7 @@ class TextCache {
 	 * @returns {void} - Nothing
 	 */
 	buildCache() {
+		if (!this.path) return;
 		this.fetchCsv()
 			.then((lines) => this.translate(lines))
 			.then((lines) => this.cacheLines(lines));

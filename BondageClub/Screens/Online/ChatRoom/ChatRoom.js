@@ -818,7 +818,8 @@ function ChatRoomCheckRelationships() {
  */
 function ChatRoomFirstTimeHelp() {
 	if (!ChatRoomHelpSeen) {
-		ChatRoomMessage({ Content: "ChatRoomHelp", Type: "Action", Sender: Player.MemberNumber });
+		if (!Player.ChatSettings || Player.ChatSettings.ShowChatHelp)
+			ChatRoomMessage({ Content: "ChatRoomHelp", Type: "Action", Sender: Player.MemberNumber });
 		ChatRoomHelpSeen = true;
 	}
 }
@@ -1343,6 +1344,9 @@ function ChatRoomCanLeave() {
  */
 function ChatRoomKeyDown() {
 
+	// If a beep is active we do not consume the keydown event
+	if (document.getElementById("FriendListBeep")) return;
+
 	// If the input text is not focused and not on mobile, set the focus to it
 	if (document.activeElement.id != "InputChat") ElementFocus("InputChat");
 
@@ -1365,6 +1369,12 @@ function ChatRoomKeyDown() {
 		ElementValue("InputChat", ChatRoomLastMessage[ChatRoomLastMessageIndex]);
 	}
 
+	// Try to autocomplete the command
+	if (KeyPress == 9) {
+		event.preventDefault();
+		CommandAutoComplete(ElementValue("InputChat"));
+	}
+
 	// On escape, scroll to the bottom of the chat
 	if (KeyPress == 27) ElementScrollToEnd("TextAreaChatLog");
 }
@@ -1382,128 +1392,44 @@ function ChatRoomSendChat() {
 		// Keeps the chat log in memory so it can be accessed with pageup/pagedown
 		ChatRoomLastMessage.push(msg);
 		ChatRoomLastMessageIndex = ChatRoomLastMessage.length;
-
-		var m = msg.toLowerCase().trim();
-
-
-		// Some custom functions like /dice or /coin are implemented for randomness
-		if (m.indexOf("/dice") == 0) {
-
-			// The player can roll X dice of Y faces, using XdY.  If no size is specified, a 6 sided dice is assumed
-			if (/(^\d+)[dD](\d+$)/.test(msg.substring(5, 50).trim())) {
-				var Roll = /(^\d+)[dD](\d+$)/.exec((msg.substring(5, 50).trim()));
-				var DiceNumber = (!Roll) ? 1 : parseInt(Roll[1]);
-				var DiceSize = (!Roll) ? 6 : parseInt(Roll[2]);
-				if ((DiceNumber < 1) || (DiceNumber > 100)) DiceNumber = 1;
-			}
-			else if (/(^\d+$)/.test((msg.substring(5, 50).trim()))) {
-				var Roll = /(^\d+)/.exec((msg.substring(5, 50).trim()));
-				var DiceNumber = 1;
-				var DiceSize = (!Roll) ? 6 : parseInt(Roll[1]);
-			}
-			else DiceNumber = 0;
-
-			// If there's at least one dice to roll
-			if (DiceNumber > 0) {
-				if ((DiceSize < 2) || (DiceSize > 100)) DiceSize = 6;
-				var CurrentRoll = 0;
-				var Result = [];
-				var Total = 0;
-				while (CurrentRoll < DiceNumber) {
-					var Roll = Math.floor(Math.random() * DiceSize) + 1
-					Result.push(Roll);
-					Total += Roll;
-					CurrentRoll++;
-				}
-				msg = "ActionDice";
-				var Dictionary = [];
-				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name });
-				Dictionary.push({ Tag: "DiceType", Text: DiceNumber.toString() + "D" + DiceSize.toString() });
-				if (DiceNumber > 1) {
-					Result.sort((a, b) => a - b);
-					Dictionary.push({ Tag: "DiceResult", Text: Result.toString() + " = " + Total.toString() });
-				}
-				else if (DiceNumber == 1) Dictionary.push({ Tag: "DiceResult", Text: Total.toString() });
-				if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary });
-			}
-
-		} else if (m.indexOf("/coin") == 0) {
-
-			// The player can flip a coin, heads or tails are 50/50
-			msg = "ActionCoin";
-			var Heads = (Math.random() >= 0.5);
-			var Dictionary = [];
-			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name });
-			Dictionary.push({ Tag: "CoinResult", TextToLookUp: Heads ? "Heads" : "Tails" });
-			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary });
-
-		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0)) {
-			
-
-			// The player can emote an action using * or /me (for those IRC or Skype users), it doesn't garble
-			// The command /action or ** does not add the player's name to it
-			msg = msg.replace("*", "");
-			msg = msg.replace(/\/me /g, "");
-			msg = msg.replace(/\/action /g, "*");
-			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" });
-
-		}
-		else if (m.indexOf("/help") == 0) ServerSend("ChatRoomChat", { Content: "ChatRoomHelp", Type: "Action", Target: Player.MemberNumber});
-		else if (m.indexOf("/safeword") == 0) ChatRoomSafewordChatCommand();
-		else if (m.indexOf("/friendlistadd ") == 0) ChatRoomListManipulation(Player.FriendList, null, msg);
-		else if (m.indexOf("/friendlistremove ") == 0) ChatRoomListManipulation(null, Player.FriendList, msg);
-		else if (m.indexOf("/ghostadd ") == 0) { ChatRoomListManipulation(Player.GhostList, null, msg); ChatRoomListManipulation(Player.BlackList, Player.WhiteList, msg); }
-		else if (m.indexOf("/ghostremove ") == 0) { ChatRoomListManipulation(null, Player.GhostList, msg); ChatRoomListManipulation(null, Player.BlackList, msg); }
-		else if (m.indexOf("/whitelistadd ") == 0) ChatRoomListManipulation(Player.WhiteList, Player.BlackList, msg);
-		else if (m.indexOf("/whitelistremove ") == 0) ChatRoomListManipulation(null, Player.WhiteList, msg);
-		else if (m.indexOf("/blacklistadd ") == 0) ChatRoomListManipulation(Player.BlackList, Player.WhiteList, msg);
-		else if (m.indexOf("/blacklistremove ") == 0) ChatRoomListManipulation(null, Player.BlackList, msg);
-		else if (m.indexOf("/ban ") == 0) ChatRoomAdminChatAction("Ban", msg);
-		else if (m.indexOf("/unban ") == 0) ChatRoomAdminChatAction("Unban", msg);
-		else if (m.indexOf("/kick ") == 0) ChatRoomAdminChatAction("Kick", msg);
-		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
-		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
-		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
-		else {
-			var WhisperTarget = null
-			for (let C = 0; C < ChatRoomCharacter.length; C++)
-						if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
-							WhisperTarget = ChatRoomCharacter[C];
-			if (msg != "" && !((ChatRoomTargetMemberNumber != null || m.indexOf("(") >= 0) && Player.ImmersionSettings && (Player.ImmersionSettings.BlockGaggedOOC && (!Player.Effect.includes("VRAvatars") || !WhisperTarget || !WhisperTarget.Effect.includes("VRAvatars"))) && !Player.CanTalk())) {
-				if (ChatRoomTargetMemberNumber == null) {
-					// Regular chat
-					ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" });
-					ChatRoomStimulationMessage("Gag");
-				} else {
-					// The whispers get sent to the server and shown on the client directly
-					ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Target: ChatRoomTargetMemberNumber });
-					var TargetName = "";
-					if (WhisperTarget) TargetName = WhisperTarget.Name
-
-					var div = document.createElement("div");
-					div.setAttribute('class', 'ChatMessage ChatMessageWhisper');
-					div.setAttribute('data-time', ChatRoomCurrentTime());
-					div.setAttribute('data-sender', Player.MemberNumber.toString());
-					div.innerHTML = TextGet("WhisperTo") + " " + TargetName + ": " + msg;
-
-					var Refocus = document.activeElement.id == "InputChat";
-					var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
-					if (document.getElementById("TextAreaChatLog") != null) {
-						document.getElementById("TextAreaChatLog").appendChild(div);
-						if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
-						if (Refocus) ElementFocus("InputChat");
-					}
-				}
-			}	else {
-					// Throw an error message
-					ChatRoomMessage({ Content: "ChatRoomBlockGaggedOOC", Type: "Action", Sender: Player.MemberNumber });
-			}
-		}
-		// Clears the chat text message
-		ElementValue("InputChat", "");
+		CommandParse(msg);
 
 	}
+}
 
+/**
+ * Sends message to user with HTML tags
+ * @param {string} Content - InnerHTML for the message
+ * @param {number} [Timeout] - total time to display the message in ms
+ * @returns {void} - Nothing
+ */
+function ChatRoomSendLocal(Content, Timeout) {
+	ChatRoomMessage({
+		Sender: Player.MemberNumber,
+		Type: "LocalMessage",
+		Content, Timeout,
+	});
+}
+
+/**
+ * Removes (*) (/me) (/action) then sends message as emote
+ * @param {string} msg - Emote message
+ * @returns {void} - Nothing
+ */
+function ChatRoomSendEmote(msg) {
+    if (msg.indexOf("**") == 0) {
+        msg = "*" + msg.replace(/\*/g, "");
+    } else {
+        msg = msg.replace(/\*/g, "");
+		msg = msg.replace(CommandsKey + "me", "");
+		if (msg.startsWith(CommandsKey + "action")) {
+			msg = msg.replace(CommandsKey + "action", "").trim();
+			if (msg == "") return;
+			msg = "*" + msg;
+		}
+    }
+    msg = msg.trim();
+    if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" });
 }
 
 /**
@@ -1855,6 +1781,9 @@ function ChatRoomMessage(data) {
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
 				else if (data.Type == "ServerMessage") msg = "<b>" + msg + "</b>";
+
+				// Local messages can have HTML enbeded in them
+				else if (data.Type == "LocalMessage") msg = data.Content;
 			}
 
 			// Outputs the sexual activities text and runs the activity if the player is targeted
@@ -1903,6 +1832,8 @@ function ChatRoomMessage(data) {
 			if (data.Type == "Emote" || data.Type == "Action" || data.Type == "Activity")
 				div.setAttribute('style', 'background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';');
 			div.innerHTML = msg;
+
+			if (typeof data.Timeout === 'number' && data.Timeout > 0) setTimeout(() => div.remove(), data.Timeout);
 
 			// Returns the focus on the chat box
 			var Refocus = document.activeElement.id == "InputChat";
@@ -2628,12 +2559,12 @@ function ChatRoomAdminAction(ActionType, Publish) {
 /**
  * Sends an administrative command to the server from the chat text field.
  * @param {string} ActionType - Type of action performed.
- * @param {string} Message - Target number of the action.
+ * @param {string} Argument - Target number of the action.
  * @returns {void} - Nothing
  */
-function ChatRoomAdminChatAction(ActionType, Message) {
+function ChatRoomAdminChatAction(ActionType, Argument) {
 	if (ChatRoomPlayerIsAdmin()) {
-		var C = parseInt(Message.substring(Message.indexOf(" ") + 1));
+		var C = parseInt(Argument);
 		if (!isNaN(C) && (C > 0) && (C != Player.MemberNumber))
 			ServerSend("ChatRoomAdmin", { MemberNumber: C, Action: ActionType });
 	}
@@ -2682,11 +2613,11 @@ function ChatRoomListManage(Operation, ListType) {
  * Adds or removes an online member to/from a specific list. (From a typed message.)
  * @param {number[]} [Add] - List to add to.
  * @param {number[]} [Remove] - List to remove from.
- * @param {string} Message - Member number to add/remove.
+ * @param {string} Argument - Member number to add/remove.
  * @returns {void} - Nothing
  */
-function ChatRoomListManipulation(Add, Remove, Message) {
-	var C = parseInt(Message.substring(Message.indexOf(" ") + 1));
+function ChatRoomListManipulation(Add, Remove, Argument) {
+	var C = parseInt(Argument);
 	if (!isNaN(C) && (C > 0) && (C != Player.MemberNumber)) {
 		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
 		if ((Remove != null) && (Remove.indexOf(C) >= 0)) Remove.splice(Remove.indexOf(C), 1);

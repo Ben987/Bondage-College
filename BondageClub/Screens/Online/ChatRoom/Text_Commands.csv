@@ -1,0 +1,26 @@
+action,[Message]: Display the message as an action,without including your name. **[Message] does the same
+afk,: Set AFK emote
+ban,[MemberNumber]: Ban the player from the room
+beep,[MemberNumber]: Send a beep to the player
+blacklistadd,[MemberNumber]: Add the player to your blacklist
+blacklistremove,[MemberNumber]: Remove the player from your blacklist
+coin,: Toss a coin
+demote,[MemberNumber]: Demote the player from room administrator
+dice,[Number]: Roll a 6-sided die. Adding “[Number]” after the command for any number between 2 and 100 will roll a die of that many sides instead. Adding “[Number]d[Number]” will roll multiple dice and sum the total.
+friendlistadd,[MemberNumber]: Add the player to your friendlist
+friendlistremove,[MemberNumber]: Remove the player from your friendlist
+ghostadd,[MemberNumber]: Add the player to your ghostlist
+ghostremove,[MemberNumber]: Remove the player from your ghostlist
+help,[Keyword]: Display help for the command with prefix Keyword. Exclude [Keyword] to view all valid commands
+kick,[MemberNumber]: Kick the player out of the room
+me,[Message]: Display “[PlayerName] Message” as an action. *[Message] does the same
+promote,[MemberNumber]: Promote the user to room administrator
+showblacklist,: View your blacklist
+showfriendlist,: View you friendlist
+showghostlist,: View your ghostlist
+showwhitelist,: View your whitelist
+unban,[MemberNumber]: Remove a ban on a player
+whitelistadd,[MemberNumber]: Add a player to your whitelist
+whitelistremove,[MemberNumber]: Remove a player from your whitelist
+/,[Message]: Send message starting with /
+invalid,do nothing
