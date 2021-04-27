@@ -1,3 +1,4 @@
+"use strict";
 var KinkyDungeonShrineBaseCosts = {
 	"Charms": 10,
 	"Leather": 15,

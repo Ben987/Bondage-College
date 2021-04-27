@@ -166,7 +166,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 					if (enemy.Enemy.attack.includes("Bind")) {
 						let caught = false
 						for (let W = 0; W < enemy.warningTiles.length; W++) {
-							var tile = enemy.warningTiles[W]
+							let tile = enemy.warningTiles[W]
 							if (enemy.x + tile.x == KinkyDungeonPlayerEntity.x && enemy.y + tile.y == KinkyDungeonPlayerEntity.y) {
 								caught = true;
 								break;
@@ -195,7 +195,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 				} else { // Attack lands!
 					let hit = false
 					for (let W = 0; W < enemy.warningTiles.length; W++) {
-						var tile = enemy.warningTiles[W]
+						let tile = enemy.warningTiles[W]
 						if (enemy.x + tile.x == KinkyDungeonPlayerEntity.x && enemy.y + tile.y == KinkyDungeonPlayerEntity.y) {
 							hit = true;
 							break;

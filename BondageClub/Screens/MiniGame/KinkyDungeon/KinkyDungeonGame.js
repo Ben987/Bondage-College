@@ -160,15 +160,15 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	
 	// Use primm algorithm with modification to spawn random rooms in the maze
 	
-	var openness = MapParams["openness"]
-	var density = MapParams["density"]
-	var doodadchance = MapParams["doodadchance"]
+	var openness = MapParams.openness
+	var density = MapParams.density
+	var doodadchance = MapParams.doodadchance
 	var treasurechance = 1.0 // Chance for an extra locked chest
-	var treasurecount = MapParams["chestcount"] // Max treasure chest count
-	var shrinechance = MapParams["shrinechance"] // Chance for an extra shrine
-	var shrinecount = MapParams["shrinecount"] // Max treasure chest count
-	var rubblechance = MapParams["rubblechance"] // Chance of lootable rubble
-	var doorchance = MapParams["doorchance"] // Max treasure chest count
+	var treasurecount = MapParams.chestcount // Max treasure chest count
+	var shrinechance = MapParams.shrinechance // Chance for an extra shrine
+	var shrinecount = MapParams.shrinecount // Max treasure chest count
+	var rubblechance = MapParams.rubblechance // Chance of lootable rubble
+	var doorchance = MapParams.doorchance // Max treasure chest count
 	KinkyDungeonCreateMaze(VisitedRooms, width, height, openness, density)	
 	
 	KinkyDungeonGroundItems = [] // Clear items on the ground
@@ -247,7 +247,7 @@ function KinkyDungeonPlaceChests(treasurechance, treasurecount, rubblechance, Fl
 	let extra = Math.random() < treasurechance
 	treasurecount += (extra ? 1 : 0)
     while (chestlist.length > 0) {
-    	let N = Math.floor(Math.random()*chestlist.length)
+		let N = Math.floor(Math.random()*chestlist.length)
 		if (count < treasurecount) {
 			let chest = chestlist[N]
 			KinkyDungeonMapSet(chest.x, chest.y, 'C')
@@ -320,18 +320,18 @@ function KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, heigh
 function KinkyDungeonGenerateShrine(Floor) {
 	let level = (Floor) ? Floor : MiniGameKinkyDungeonLevel
 	let Params = KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]]
-	let mult = (Params["lockmult"]) ? Params["lockmult"] : 1.0
+	let mult = (Params.lockmult) ? Params.lockmult : 1.0
 	
 	
 	
-	if (Params["shrines"]) {
+	if (Params.shrines) {
 		
 	
 		var shrineWeightTotal = 0
 		var shrineWeights = []
 		
-		for (let L = 0; L < Params["shrines"].length; L++) {
-			var shrine = Params["shrines"][L]
+		for (let L = 0; L < Params.shrines.length; L++) {
+			var shrine = Params.shrines[L]
 			shrineWeights.push({shrine: shrine, weight: shrineWeightTotal})
 			shrineWeightTotal += shrine.Weight
 		}
@@ -352,7 +352,7 @@ function KinkyDungeonGenerateShrine(Floor) {
 function KinkyDungeonGenerateLock(Guaranteed, Floor) {
 	let level = (Floor) ? Floor : MiniGameKinkyDungeonLevel
 	let Params = KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]]
-	let mult = (Params["lockmult"]) ? Params["lockmult"] : 1.0
+	let mult = (Params.lockmult) ? Params.lockmult : 1.0
 	
 	let chance = (level == 0) ? 0 : KinkyDungeonBaseLockChance
 	chance += KinkyDungeonScalingLockChance * level / 10
