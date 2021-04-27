@@ -38,6 +38,10 @@ function ChatAdminLoad() {
 	document.getElementById("InputAdminList").setAttribute("maxLength", 250);
 	document.getElementById("InputAdminList").setAttribute("autocomplete", "off");
 	ElementValue("InputAdminList", ChatAdminTemporaryData ? ChatAdminTemporaryData.AdminList : CommonConvertArrayToString(ChatRoomData.Admin));
+	ElementCreateTextArea("InputVipList");
+	document.getElementById("InputVipList").setAttribute("maxLength", 1000);
+	document.getElementById("InputVipList").setAttribute("autocomplete", "off");
+	ElementValue("InputVipList", ChatAdminTemporaryData ? ChatAdminTemporaryData.VipList : CommonConvertArrayToString(ChatRoomData.Vip));
 	ElementCreateTextArea("InputBanList");
 	document.getElementById("InputBanList").setAttribute("maxLength", 1000);
 	document.getElementById("InputBanList").setAttribute("autocomplete", "off");
@@ -50,6 +54,7 @@ function ChatAdminLoad() {
 		document.getElementById("InputName").setAttribute("disabled", "disabled");
 		document.getElementById("InputDescription").setAttribute("disabled", "disabled");
 		document.getElementById("InputAdminList").setAttribute("disabled", "disabled");
+		document.getElementById("InputVipList").setAttribute("disabled", "disabled");
 		document.getElementById("InputBanList").setAttribute("disabled", "disabled");
 		document.getElementById("InputSize").setAttribute("disabled", "disabled");
 		ChatAdminMessage = "AdminOnly";
@@ -71,12 +76,19 @@ function ChatAdminRun() {
 	ElementPosition("InputSize", 1100, 170, 250);
 	DrawText(TextGet("RoomDescription"), 675, 255, "Black", "Gray");
 	ElementPosition("InputDescription", 675, 350, 1100, 140);
-	DrawText(TextGet("RoomAdminList"), 390, 490, "Black", "Gray");
-	ElementPosition("InputAdminList", 390, 685, 530, 300);
-	DrawText(TextGet("RoomBanList"), 960, 490, "Black", "Gray");
-	ElementPosition("InputBanList", 960, 640, 530, 210);
-	DrawButton(695, 770, 250, 65, TextGet("QuickbanBlackList"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
-	DrawButton(975, 770, 250, 65, TextGet("QuickbanGhostList"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
+	
+	DrawText(TextGet("RoomAdminList"), 280, 490, "Black", "Gray");
+	ElementPosition("InputAdminList", 280, 685, 380, 300);
+	DrawText(TextGet("RoomVipList"), 670, 490, "Black", "Gray");
+	ElementPosition("InputVipList", 670, 640, 380, 210);
+	DrawText(TextGet("RoomBanList"), 1060, 490, "Black", "Gray");
+	ElementPosition("InputBanList", 1060, 640, 380, 210);
+	
+	DrawButton(480, 770, 360, 35, TextGet("QuickvipFriendList"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
+	DrawButton(480, 810, 360, 35, TextGet("QuickvipWhiteList"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
+	
+	DrawButton(870, 770, 360, 35, TextGet("QuickbanBlackList"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
+	DrawButton(870, 810, 360, 35, TextGet("QuickbanGhostList"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, null, !ChatRoomPlayerIsAdmin());
 
 	// Background selection, block button and game selection
 	DrawImageResize("Backgrounds/" + ChatAdminBackgroundSelect + ".jpg", 1300, 75, 600, 350);
@@ -105,7 +117,7 @@ function ChatAdminRun() {
 function ChatAdminClick() {
 
 	// When the user cancels/exits
-	if ((MouseX >= 1625) && (MouseX < 1875) && (MouseY >= 840) && (MouseY < 905)) ChatAdminExit();
+	if (MouseIn(1625, 840, 250, 65)) ChatAdminExit();
 
 	// All other controls are for administrators only
 	if (ChatRoomPlayerIsAdmin()) {
@@ -135,6 +147,7 @@ function ChatAdminClick() {
 				Limit: ElementValue("InputSize"),
 				AdminList: ElementValue("InputAdminList"),
 				BanList: ElementValue("InputBanList"),
+				VipList: ElementValue("InputVipList"),
 				Private: ChatAdminPrivate,
 				Locked: ChatAdminLocked,
 			};
@@ -143,6 +156,7 @@ function ChatAdminClick() {
 			ElementRemove("InputSize");
 			ElementRemove("InputAdminList");
 			ElementRemove("InputBanList");
+			ElementRemove("InputVipList");
 			if (MouseIn(1300, 575, 275, 60)) {
 				ChatBlockItemReturnData = { Screen: "ChatAdmin" };
 				ChatBlockItemCategory = ChatAdminBlockCategory;
@@ -151,11 +165,15 @@ function ChatAdminClick() {
 		}
 
 		// Private & Locked check boxes + save button + quickban buttons
-		if ((MouseX >= 1486) && (MouseX <= 1550) && (MouseY >= 708) && (MouseY <= 772)) ChatAdminPrivate = !ChatAdminPrivate;
-		if ((MouseX >= 1786) && (MouseX <= 1850) && (MouseY >= 708) && (MouseY <= 772)) ChatAdminLocked = !ChatAdminLocked;
-		if ((MouseX >= 1325) && (MouseX < 1575) && (MouseY >= 840) && (MouseY < 905) && ChatRoomPlayerIsAdmin()) ChatAdminUpdateRoom();
-		if ((MouseX >= 695) && (MouseX < 945) && (MouseY >= 770) && (MouseY < 835)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(true, false, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
-		if ((MouseX >= 975) && (MouseX < 1225) && (MouseY >= 770) && (MouseY < 835)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(false, true, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
+		if (MouseIn(1486, 708, 64, 64)) ChatAdminPrivate = !ChatAdminPrivate;
+		if (MouseIn(1786, 708, 64, 64)) ChatAdminLocked = !ChatAdminLocked;
+		if (MouseIn(1325, 840, 250, 65) && ChatRoomPlayerIsAdmin()) ChatAdminUpdateRoom();
+
+		if (MouseIn(480, 770, 360, 35)) ElementValue("InputVipList", CommonConvertArrayToString(ChatRoomConcatenateVipList(true, false, CommonConvertStringToArray(ElementValue("InputVipList").trim()))));
+		if (MouseIn(480, 810, 360, 35)) ElementValue("InputVipList", CommonConvertArrayToString(ChatRoomConcatenateVipList(false, true, CommonConvertStringToArray(ElementValue("InputVipList").trim()))));
+		if (MouseIn(870, 770, 360, 35)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(true, false, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
+		if (MouseIn(870, 810, 360, 35)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(false, true, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
+
 
 	}
 }
@@ -172,6 +190,7 @@ function ChatAdminExit() {
 	ElementRemove("InputSize");
 	ElementRemove("InputAdminList");
 	ElementRemove("InputBanList");
+	ElementRemove("InputVipList");
 	CommonSetScreen("Online", "ChatRoom");
 }
 
@@ -198,6 +217,7 @@ function ChatAdminUpdateRoom() {
 		Limit: ElementValue("InputSize").trim(),
 		Admin: CommonConvertStringToArray(ElementValue("InputAdminList").trim()),
 		Ban: CommonConvertStringToArray(ElementValue("InputBanList").trim()),
+		Vip: CommonConvertStringToArray(ElementValue("InputVipList").trim()),
 		BlockCategory: ChatAdminBlockCategory,
 		Game: ChatAdminGame,
 		Private: ChatAdminPrivate,

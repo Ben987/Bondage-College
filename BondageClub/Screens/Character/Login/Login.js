@@ -428,6 +428,8 @@ function LoginResponse(C) {
 			Player.LastChatRoomTimer = C.LastChatRoomTimer;
 			if (typeof C.LastChatRoomAdmin == "string")
 				Player.LastChatRoomAdmin = CommonConvertStringToArray(C.LastChatRoomAdmin);
+			if (typeof C.LastChatRoomVip == "string")
+				Player.LastChatRoomVip = CommonConvertStringToArray(C.LastChatRoomVip);
 
 			// Loads the ownership data
 			Player.Ownership = C.Ownership;

@@ -2,10 +2,13 @@ RoomName,Room Name
 RoomDescription,Description
 RoomBanList,Ban List
 RoomAdminList,Administrator List
+RoomVipList,"VIP List"
 RoomPrivate,Private
 RoomLocked,Locked
 RoomSize,Size (2-10)
 UseMemberNumbers,"Use member numbers, separated by commas (ex: 3571,541,7001)"
+QuickvipFriendList,"VIP friendlist"
+QuickvipWhiteList,"VIP whitelist"
 QuickbanBlackList,Ban blacklist
 QuickbanGhostList,Ban ghostlist
 AdminOnly,Room settings can only be updated by administrators
