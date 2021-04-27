@@ -31,11 +31,11 @@ function KinkyDungeonLoad() {
 	CharacterNaked(KinkyDungeonPlayer)
 	KinkyDungeonInitializeDresses()
 	KinkyDungeonDressPlayer()
+	KinkyDungeonShrineInit()
 	
 	KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings
 	
 	KinkyDungeonState = "Menu"
-	
 	for (let G = 0; G < KinkyDungeonStruggleGroupsBase.length; G++) {
 		var group = KinkyDungeonStruggleGroupsBase[G]
 		if (group == "ItemM") {

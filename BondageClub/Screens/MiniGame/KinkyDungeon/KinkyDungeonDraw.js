@@ -226,6 +226,17 @@ function KinkyDungeonDrawGame() {
 					DrawText(TextGet("KinkyGreenLock"), 675, 850, "white", "silver")
 				else if (KinkyDungeonTargetTile.Lock.includes("Blue"))
 					DrawText(TextGet("KinkyBlueLock"), 675, 850, "white", "silver")
+			} else if (KinkyDungeonTargetTile.Type == "Shrine") {
+				let cost = 0
+				let type = KinkyDungeonTargetTile.Name
+				
+				if (KinkyDungeonShrineAvailable(type)) cost = KinkyDungeonShrineCost(type)
+
+				
+				if (cost == 0) DrawText(TextGet("KinkyDungeonLockedShrine"), 850, 850, "white", "silver")
+				else {
+					DrawButton(675, 825, 350, 60, TextGet("KinkyDungeonPayShrine").replace("XXX", cost), "White", "", "");
+				}
 			}
 		}
 		//DrawButton(650, 925, 250, 60, TextGet("KinkyDungeonInventory"), "White", "", "");
@@ -303,6 +314,33 @@ function KinkyDungeonHandleHUD() {
 					}
 					return true
 				}
+			} else if (KinkyDungeonTargetTile.Type == "Shrine") {
+				let cost = 0
+				let type = KinkyDungeonTargetTile.Name
+				
+				if (KinkyDungeonShrineAvailable(type)) cost = KinkyDungeonShrineCost(type)
+
+				
+				if (cost > 0 && MouseIn(675, 825, 350, 60)) {
+					KinkyDungeonAdvanceTime(1)
+					KinkyDungeonTargetTile = null
+					if (KinkyDungeonGold > cost) {
+						KinkyDungeonPayShrine(type)
+						delete KinkyDungeonTiles[KinkyDungeonTargetTileLocation]
+						let x = KinkyDungeonTargetTileLocation.split(',')[0]
+						let y = KinkyDungeonTargetTileLocation.split(',')[1]
+						KinkyDungeonMapSet(parseInt(x), parseInt(y), "a")
+						KinkyDungeonUpdateStats(0)
+					} else if (1 >= KinkyDungeonActionMessagePriority) {
+						KinkyDungeonActionMessageTime = 1
+								
+						KinkyDungeonActionMessage = TextGet("KinkyDungeonPayShrineFail")
+						KinkyDungeonActionMessagePriority = 1
+						KinkyDungeonActionMessageColor = "red"
+					}
+					
+				}
+				
 			}
 		}
 		

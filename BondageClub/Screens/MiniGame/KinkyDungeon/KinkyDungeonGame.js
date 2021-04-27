@@ -53,22 +53,22 @@ var KinkyDungeonTargetTileLocation = ""
 
 var KinkyDungeonBaseLockChance = 0.25
 var KinkyDungeonScalingLockChance = 0.1 // Lock chance per 10 floors. Does not affect the guaranteed locked chest each level
-var KinkyDungeonGreenLockChance = 0.4
-var KinkyDungeonGreenLockChanceScaling = 0.1
+var KinkyDungeonGreenLockChance = 0.3
+var KinkyDungeonGreenLockChanceScaling = 0.01
 var KinkyDungeonGreenLockChanceScalingMax = 0.8
-var KinkyDungeonYellowLockChance = 0.2
-var KinkyDungeonYellowLockChanceScaling = 0.08
+var KinkyDungeonYellowLockChance = 0.15
+var KinkyDungeonYellowLockChanceScaling = 0.008
 var KinkyDungeonYellowLockChanceScalingMax = 0.7
 var KinkyDungeonBlueLockChance = -0.05
-var KinkyDungeonBlueLockChanceScaling = 0.05
+var KinkyDungeonBlueLockChanceScaling = 0.005
 var KinkyDungeonBlueLockChanceScalingMax = 0.35
 
 
 var KinkyDungeonEasyLockChance = 0.8
-var KinkyDungeonEasyLockChanceScaling = -0.07
+var KinkyDungeonEasyLockChanceScaling = -0.007
 var KinkyDungeonEasyLockChanceScalingMax = 1.0
 var KinkyDungeonHardLockChance = 0.2
-var KinkyDungeonHardLockChanceScaling = 0.05
+var KinkyDungeonHardLockChanceScaling = 0.005
 var KinkyDungeonHardLockChanceScalingMax = 0.4
 
 
@@ -319,17 +319,39 @@ function KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, heigh
 
 function KinkyDungeonGenerateShrine(Floor) {
 	let level = (Floor) ? Floor : MiniGameKinkyDungeonLevel
-	let Params = KinkyDungeonMapParams[KinkyDungeonMapIndex[level]]
+	let Params = KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]]
 	let mult = (Params["lockmult"]) ? Params["lockmult"] : 1.0
 	
 	
 	
-	return "Charms"
+	if (Params["shrines"]) {
+		
+	
+		var shrineWeightTotal = 0
+		var shrineWeights = []
+		
+		for (let L = 0; L < Params["shrines"].length; L++) {
+			var shrine = Params["shrines"][L]
+			shrineWeights.push({shrine: shrine, weight: shrineWeightTotal})
+			shrineWeightTotal += shrine.Weight
+		}
+		
+		var selection = Math.random() * shrineWeightTotal
+		
+		for (let L = shrineWeights.length - 1; L >= 0; L--) {
+			if (selection > shrineWeights[L].weight) {
+				return shrineWeights[L].shrine.Type
+			}
+		}
+	}
+	
+	
+	return ""
 }
 
 function KinkyDungeonGenerateLock(Guaranteed, Floor) {
 	let level = (Floor) ? Floor : MiniGameKinkyDungeonLevel
-	let Params = KinkyDungeonMapParams[KinkyDungeonMapIndex[level]]
+	let Params = KinkyDungeonMapParams[KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]]
 	let mult = (Params["lockmult"]) ? Params["lockmult"] : 1.0
 	
 	let chance = (level == 0) ? 0 : KinkyDungeonBaseLockChance
@@ -708,7 +730,7 @@ function KinkyDungeonMove(moveDirection) {
 				if ( 1 > KinkyDungeonTextMessagePriority) {
 					KinkyDungeonTextMessageTime = 2
 					KinkyDungeonTextMessage = TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name))
-					KinkyDungeonTextMessageColor = "#FF9999"
+					KinkyDungeonTextMessageColor = "#ffffff"
 					KinkyDungeonTextMessagePriority = 1
 				}
 			} else {

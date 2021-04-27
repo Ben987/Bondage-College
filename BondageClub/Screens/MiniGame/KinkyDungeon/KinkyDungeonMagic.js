@@ -115,11 +115,11 @@ function KinkyDungeonHandleSpellChoice(SpellChoice) {
 		}
 	} else {
 		KinkyDungeonTargetingSpell = ""
-		if (4 >= KinkyDungeonActionMessagePriority) {
+		if (7 >= KinkyDungeonActionMessagePriority) {
 			KinkyDungeonActionMessageTime = 1
 			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[SpellChoice])[0])
 			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 3
+			KinkyDungeonActionMessagePriority = 7
 		}
 	}
 	return spell

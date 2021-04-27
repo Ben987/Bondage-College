@@ -42,8 +42,54 @@ var KinkyDungeonRestraints = [
 	{name: "TrapArmbinder", Asset: "LeatherArmbinder", Type: "WrapStrap", Group: "ItemArms", magic: false, power: 8, weight: 2, escapeChance: {"Struggle": 0.1, "Cut": 0.33, "Remove": 0.2, "Pick": 0.0}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: [], shrine: ["Leather", "Armbinders"]},
 	{name: "TrapCuffs", Asset: "MetalCuffs", Group: "ItemArms", magic: false, power: 8, weight: 2, escapeChance: {"Struggle": 0.05, "Cut": 0.0, "Remove": 100.0, "Pick": 1.7}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: [], shrine: ["Metal", "Cuffs"]},
 	{name: "TrapHarness", Asset: "LeatherStrapHarness", Color: "#222222", Group: "ItemTorso", magic: false, power: 5, weight: 2, harness: true, escapeChance: {"Struggle": 0.0, "Cut": 0.5, "Remove": 0.8, "Pick": 1.0}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: [], shrine: ["Leather", "Harnesses"]},
+	{name: "TrapGag", Asset: "BallGag", Type: "Tight", Color: ["Default", "Default"], Group: "ItemMouth2", magic: false, power: 5, weight: 2, escapeChance: {"Struggle": 0.15, "Cut": 0.4, "Remove": 0.65, "Pick": 0.5}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: [], shrine: ["Ballgags"]},
+	{name: "TrapBoots", Asset: "BalletHeels", Color: "Default", Group: "ItemBoots", magic: false, power: 4, weight: 2, escapeChance: {"Struggle": 0.15, "Cut": 0.4, "Remove": 0.4, "Pick": 0.9}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: [], shrine: ["Leather", "Boots"]},
+	{name: "TrapLegirons", Asset: "Irish8Cuffs", Color: "Default", Group: "ItemFeet", magic: false, power: 8, weight: 2, escapeChance: {"Struggle": 0.05, "Cut": 0.0, "Remove": 100.0, "Pick": 1.0}, enemyTags: {"trap":100}, playerTags: {}, minLevel: 0, floors: [], shrine: ["Metal", "Cuffs"]},
 	
 ]
+
+function KinkyDungeonGetRestraintsWithShrine(shrine) {
+	let ret = []
+	
+	for (let I = 0; I < KinkyDungeonInventory.length; I++) {
+		var item = KinkyDungeonInventory[I]
+		if (item.restraint && item.restraint.shrine && item.restraint.shrine.includes(shrine)) {
+			ret.push(item);
+		}
+	}
+	
+	return ret
+}
+
+function KinkyDungeonRemoveRestraintsWithShrine(shrine) {
+	let count = 0;
+	
+	for (let I = 0; I < KinkyDungeonInventory.length; I++) {
+		var item = KinkyDungeonInventory[I]
+		if (item.restraint && item.restraint.shrine && item.restraint.shrine.includes(shrine)) {
+			KinkyDungeonRemoveRestraint(item.restraint.Group);
+			I = 0;
+			count++;
+		}
+	}
+	
+	return count
+}
+
+function KinkyDungeonUnlockRestraintsWithShrine(shrine) {
+	let count = 0;
+	
+	for (let I = 0; I < KinkyDungeonInventory.length; I++) {
+		var item = KinkyDungeonInventory[I]
+		if (item.restraint && item.lock && item.restraint.shrine && item.restraint.shrine.includes(shrine)) {
+			item.lock = "";
+			count++;
+		}
+	}
+	
+	return count;
+}
+
 
 function KinkyDungeonRemoveKeys(lock) {
 	if (lock.includes("Red")) KinkyDungeonRedKeys -= 1
@@ -64,6 +110,7 @@ function KinkyDungeonPickAttempt() {
 	let Pass = "Fail"
 	let escapeChance = 0.2 / (1.0 + 0.005 * MiniGameKinkyDungeonLevel)
 	var cost = KinkyDungeonStatStaminaCostTool
+	let lock = KinkyDungeonTargetTile.Lock
 	
 	
 	if (!KinkyDungeonPlayer.CanInteract()) escapeChance /= 2
@@ -80,13 +127,13 @@ function KinkyDungeonPickAttempt() {
 		
 		KinkyDungeonStatStamina += cost
 		Pass = "Success"
-	} else if (Math.random() < KinkyDungeonKeyPickBreakChance || KinkyDungeonTargetTile.includes("Blue")) { // Blue locks cannot be picked or cut!
+	} else if (Math.random() < KinkyDungeonKeyPickBreakChance || lock.includes("Blue")) { // Blue locks cannot be picked or cut!
 		Pass = "Break"
 		KinkyDungeonLockpicks -= 1
 	}
 	if (2 >= KinkyDungeonActionMessagePriority) {
 		KinkyDungeonActionMessageTime = 1
-		KinkyDungeonActionMessage = TextGet("KinkyDungeonStrugglePick" + Pass).replace("TargetRestraint", TextGet("KinkyDungeonObject"))
+		KinkyDungeonActionMessage = TextGet("KinkyDungeonAttemptPick" + Pass).replace("TargetRestraint", TextGet("KinkyDungeonObject"))
 		KinkyDungeonActionMessageColor = (Pass == "Success") ? "lightgreen" : "red"
 		KinkyDungeonActionMessagePriority = 1
 	}
@@ -313,7 +360,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 					InventoryWear(Player, restraint.Asset, restraint.Group, restraint.power)
 			if (restraint.Type) {
 				KinkyDungeonPlayer.FocusGroup = AssetGroupGet("Female3DCG", restraint.Group)
-				const options = window["Inventory" + restraint.Group + restraint.Asset + "Options"]
+				const options = window["Inventory" + ((restraint.Group.includes("ItemMouth")) ? "ItemMouth" : restraint.Group) + restraint.Asset + "Options"]
 				const option = options.find(o => o.Name === restraint.Type);
 				ExtendedItemSetType(KinkyDungeonPlayer, options, option);
 				if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) &&

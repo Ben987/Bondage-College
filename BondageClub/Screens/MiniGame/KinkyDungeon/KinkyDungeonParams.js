@@ -16,6 +16,11 @@ var KinkyDungeonMapParams = [
 		"max_height" : 19,
 		
 		"enemytags": ["zombie"],
+		"shrines": [
+			{Type: "Charms", Weight: 9},
+			{Type: "Leather", Weight: 6},
+			{Type: "Metal", Weight: 3},
+			{Type: "Will", Weight: 10},]
 		
 	},
 	{

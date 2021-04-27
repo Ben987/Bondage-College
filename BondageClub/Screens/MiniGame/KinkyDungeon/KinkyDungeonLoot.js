@@ -16,6 +16,10 @@ var KinkyDungeonLootTable = {
 		{name: "trap_armbinder", minLevel: 1, weight:1, message:"LootChestTrapMagic", messageColor:"red", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["Group_ItemArms"], power: 8},
 		{name: "trap_cuffs", minLevel: 1, weight:1, message:"LootChestTrapMagic", messageColor:"red", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["Group_ItemArms"], power: 8},
 		{name: "trap_harness", minLevel: 1, weight:1, message:"LootChestTrapMagic", messageColor:"red", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["Group_ItemTorso"], power: 8},
+		{name: "trap_gag", minLevel: 1, weight:1, message:"LootChestTrapMagic", messageColor:"red", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["Group_ItemMouth2"], power: 8},
+		{name: "trap_blindfold", minLevel: 1, weight:1, message:"LootChestTrapMagic", messageColor:"red", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["Group_ItemHead"], power: 8},
+		{name: "trap_boots", minLevel: 1, weight:1, message:"LootChestTrapMagic", messageColor:"red", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["Group_ItemBoots"], power: 8},
+		{name: "trap_legirons", minLevel: 1, weight:1, message:"LootChestTrapMagic", messageColor:"red", messageTime: 3, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], prerequisites: ["Group_ItemFeet"], power: 8},
 	],
 	
 	
@@ -72,7 +76,7 @@ function KinkyDungeonLoot(Level, Index, Type) {
 		if (selection > lootWeights[L].weight) {
 			var replace = false
 			
-			if (6 > KinkyDungeonActionMessagePriority) {
+			if (6 >= KinkyDungeonActionMessagePriority) {
 				KinkyDungeonActionMessageTime = lootWeights[L].loot.messageTime
 				KinkyDungeonActionMessage = TextGet(lootWeights[L].loot.message)
 				KinkyDungeonActionMessageColor = lootWeights[L].loot.messageColor
@@ -167,6 +171,24 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 			KinkyDungeonGetRestraintItem("ItemTorso").lock = KinkyDungeonGenerateLock(true)
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapHarness"))
+	} else if (Loot.name == "trap_gag") {
+		value = Math.ceil((40 + 40 * Math.random()) * (1 + Index/2))
+		if (KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("TrapGag"), true) > 0)
+			KinkyDungeonGetRestraintItem("ItemMouth2").lock = KinkyDungeonGenerateLock(true)
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapGag"))
+	} else if (Loot.name == "trap_boots") {
+		value = Math.ceil((40 + 40 * Math.random()) * (1 + Index/2))
+		if (KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("TrapBoots"), true) > 0)
+			KinkyDungeonGetRestraintItem("ItemBoots").lock = KinkyDungeonGenerateLock(true)
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapBoots"))
+	} else if (Loot.name == "trap_legirons") {
+		value = Math.ceil((40 + 40 * Math.random()) * (1 + Index/2))
+		if (KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("TrapLegirons"), true) > 0)
+			KinkyDungeonGetRestraintItem("ItemFeet").lock = KinkyDungeonGenerateLock(true)
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapLegirons"))
 	}
 	
 	if (value > 0) {
