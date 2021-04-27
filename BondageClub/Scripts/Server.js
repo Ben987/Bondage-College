@@ -177,7 +177,8 @@ function ServerPlayerIsInChatRoom() {
 		|| ((CurrentScreen == "Title") && (InformationSheetPreviousScreen == "ChatRoom"))
 		|| ((CurrentScreen == "OnlineProfile") && (InformationSheetPreviousScreen == "ChatRoom"))
 		|| ((CurrentScreen == "FriendList") && (InformationSheetPreviousScreen == "ChatRoom") && (FriendListReturn == null))
-		|| ((CurrentScreen == "Preference") && (InformationSheetPreviousScreen == "ChatRoom"));
+		|| ((CurrentScreen == "Preference") && (InformationSheetPreviousScreen == "ChatRoom"))
+		|| ((CurrentModule == "MiniGame") && (DialogGamingPreviousRoom == "ChatRoom"));
 }
 
 /** Sends a message with the given data to the server via socket.emit */
@@ -301,9 +302,11 @@ function ServerAppearanceBundle(Appearance) {
  * @param {string} AssetFamily - Family of assets used for the appearance array
  * @param {AppearanceBundle} Bundle - Bundled appearance
  * @param {number} SourceMemberNumber - Member number of the user who triggered the change
- * @returns {void} - Nothing
+ * @param {boolean} AppearanceFull - Whether or not the appearance should be assigned to an NPC's AppearanceFull
+ * property
+ * @returns {boolean} - Whether or not the appearance bundle update contained invalid items
  */
-function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
+function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber, AppearanceFull) {
 	const appearanceDiffs = ServerBuildAppearanceDiff(AssetFamily, C.Appearance, Bundle);
 	ServerAddRequiredAppearance(AssetFamily, appearanceDiffs);
 
@@ -319,12 +322,18 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			return { appearance, updateValid };
 		}, { appearance: [], updateValid: true });
 
+	if (AppearanceFull) {
+		C.AppearanceFull = appearance;
+	} else {
+		C.Appearance = appearance;
+	}
+
 	// If the appearance update was invalid, send another update to correct any issues
 	if (!updateValid && C.ID === 0) {
 		console.warn("Invalid appearance update bundle received. Updating with sanitized appearance.");
 		ChatRoomCharacterUpdate(C);
 	}
-	return { appearance, updateValid };
+	return updateValid;
 }
 
 /**

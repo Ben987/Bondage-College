@@ -33,6 +33,7 @@ const AssetGroupType = {
 	InheritColor: "Maybe String",
 	FreezeActivePose: "Maybe [String]",
 	PreviewZone: "Maybe (Number, Number, Number, Number)",
+	DynamicGroupName: "Maybe String",
 };
 
 const AssetType = {
@@ -170,6 +171,7 @@ const AssetExtendedConfigType = {
 	ChatSetting: "Maybe String",
 	Dialog: "Maybe Object",
 	ChatTags: "Maybe [String]",
+	DrawImages: "Maybe Boolean",
 };
 
 module.exports = { AssetGroupType, AssetType, AssetLayerType, AssetExtendedArchetypeType, AssetExtendedConfigType };

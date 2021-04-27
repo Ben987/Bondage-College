@@ -36,8 +36,12 @@ var KidnapMoveMap = [
  * @returns {void} - Nothing
  */
 function KidnapLoadStats(C, Bonus) {
+	let Pandora = (KidnapReturnFunction.indexOf("Pandora") == 0);
 	if (C.ID == 0)
-		C.KidnapStat = [6 + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[0]), 6 + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[1]), 6 + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[2]), -1];
+		C.KidnapStat = [6 + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[0]) + ((Pandora && InfiltrationPerksActive("Strength")) ? 2 : 0),
+						6 + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[1]) + ((Pandora && InfiltrationPerksActive("Charisma")) ? 2 : 0),
+						6 + CharacterGetBonus(C, "Kidnap" + KidnapMoveType[2]) + ((Pandora && InfiltrationPerksActive("Agility")) ? 2 : 0),
+						-1];
 	else
 		C.KidnapStat = [6 + Bonus, 6 + Bonus, 6 + Bonus, -1];
 }
@@ -141,7 +145,7 @@ function KidnapAIMove() {
 
 /**
  * Validates or checks if a given upper hand move type is available.
- * @param {string} MoveType - The type of move to check for or perform
+ * @param {number} MoveType - The type of move to check for or perform
  * @param {boolean} DoMove - Whether or not the move is being performed
  * @returns {boolean} - Returns TRUE if the upper hand move type is available
  */
@@ -299,17 +303,18 @@ function KidnapSelectMove(PlayerMove) {
  * @returns {void} - Nothing
  */
 function KidnapSelectMoveUpperHand(PlayerMove) {
+	const MoveName = KidnapUpperHandMoveType[PlayerMove];
 
 	// Stripping or undoing something is automatic
-	if ((PlayerMove == 0) || (PlayerMove == 4) || (PlayerMove == 5) || (PlayerMove == 6) || (PlayerMove == 7))
+	if ((MoveName === "Cloth") || (MoveName === "UndoCloth") || (MoveName === "UndoItemFeet") || (MoveName === "UndoItemMouth"))
 		if (KidnapUpperHandMoveAvailable(PlayerMove, true))
 			KidnapSetMode("SelectMove");
 
 	// Apply an item enters another mode with a focused group
-	if ((PlayerMove == 1) || (PlayerMove == 2) || (PlayerMove == 3))
+	if ((MoveName === "ItemFeet") || (MoveName === "ItemMouth"))
 		if (KidnapUpperHandMoveAvailable(PlayerMove, false))
 			for (let A = 0; A < AssetGroup.length; A++)
-				if (AssetGroup[A].Name == KidnapUpperHandMoveType[PlayerMove]) {
+				if (AssetGroup[A].Name === MoveName) {
 					KidnapOpponent.FocusGroup = AssetGroup[A];
 					KidnapInventoryBuild();
 					KidnapSetMode("SelectItem");
@@ -317,7 +322,7 @@ function KidnapSelectMoveUpperHand(PlayerMove) {
 				}
 
 	// Mercy is always available
-	if (PlayerMove == KidnapUpperHandMoveType.indexOf("Mercy")) KidnapSetMode("SelectMove");
+	if (MoveName === "Mercy") KidnapSetMode("SelectMove");
 }
 
 /**
@@ -351,8 +356,13 @@ function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
 	KidnapBackground = Background;
 	MiniGameCheatAvailable = (CheatFactor("MiniGameBonus", 0) == 0);
 	CurrentCharacter = null;
-	Player.KidnapMaxWillpower = 20 + (SkillGetLevel(Player, "Willpower") * 2);
-	Player.KidnapWillpower = Player.KidnapMaxWillpower;
+	if (KidnapReturnFunction.indexOf("Pandora") == 0) {
+		Player.KidnapMaxWillpower = PandoraMaxWillpower;
+		Player.KidnapWillpower = PandoraWillpower;
+	} else {
+		Player.KidnapMaxWillpower = 20 + (SkillGetLevel(Player, "Willpower") * 2);
+		Player.KidnapWillpower = Player.KidnapMaxWillpower;
+	}
 	KidnapOpponent.KidnapMaxWillpower = 20 + (KidnapDifficulty * 2);
 	KidnapOpponent.KidnapWillpower = KidnapOpponent.KidnapMaxWillpower;
 	KidnapLoadStats(Player, 0);

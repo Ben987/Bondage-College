@@ -122,15 +122,15 @@ function InventoryItemMouthFuturisticHarnessBallGagClick() {
 		else if (DialogFocusItem.Property.Type != null && MouseIn(1250, 500, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0;
 			DialogFocusItem.Property.OriginalSetting = "LightBall";
-			ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[0], false)}
+			ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[0])}
 		else if (DialogFocusItem.Property.Type != "Ball" && MouseIn(1100, 570, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0;
 			DialogFocusItem.Property.OriginalSetting = "Ball";
-			ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[1], false)}
+			ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[1])}
 		else if (DialogFocusItem.Property.Type != "Plug" && MouseIn(1400, 570, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0;
 			DialogFocusItem.Property.OriginalSetting = "Plug";
-		ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[2], false)}
+		ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[2])}
 		
 		else if (DialogFocusItem.Property.AutoPunish != 0 && MouseIn(1100, 707, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 0)
 		else if (DialogFocusItem.Property.AutoPunish != 1 && MouseIn(1400, 707, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 1)

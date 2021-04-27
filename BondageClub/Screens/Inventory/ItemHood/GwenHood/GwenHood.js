@@ -40,7 +40,7 @@ function InventoryItemHoodGwenHoodDraw() {
 }
 
 function InventoryItemHoodGwenHoodClick() {
-    ExtendedItemClick(InventoryItemHoodGwenHoodOptions, false, InventoryItemHoodGwenHoodOptions.length, false);
+    ExtendedItemClick(InventoryItemHoodGwenHoodOptions, InventoryItemHoodGwenHoodOptions.length, false);
 }
 
 function InventoryItemHoodGwenHoodPublishAction(C, Option, PreviousOption) {

@@ -93,8 +93,7 @@ function ModularItemRegister(asset, config) {
 	ModularItemCreateLoadFunction(data);
 	ModularItemCreateDrawFunction(data);
 	ModularItemCreateClickFunction(data);
-	asset.AllowType = ModularItemGenerateAllowType(data);
-	asset.Layer.forEach((layer) => ModularItemGenerateLayerAllowTypes(layer, data));
+	ModularItemGenerateValidationProperties(data);
 }
 
 /**
@@ -418,9 +417,9 @@ function ModularItemMergeModuleValues({ asset, modules }, moduleValues) {
 	return options.reduce((mergedProperty, { Property }) => {
 		Property = Property || {};
 		mergedProperty.Difficulty += (Property.Difficulty || 0);
-		if (Property.Block) ModularItemAddToArray(mergedProperty.Block, Property.Block);
-		if (Property.Hide) ModularItemAddToArray(mergedProperty.Hide, Property.Hide);
-		if (Property.HideItem) ModularItemAddToArray(mergedProperty.HideItem, Property.HideItem);
+		if (Property.Block) CommonArrayConcatDedupe(mergedProperty.Block, Property.Block);
+		if (Property.Hide) CommonArrayConcatDedupe(mergedProperty.Hide, Property.Hide);
+		if (Property.HideItem) CommonArrayConcatDedupe(mergedProperty.HideItem, Property.HideItem);
 		return mergedProperty;
 	}, {
 		Type: ModularItemConstructType(modules, moduleValues),
@@ -518,12 +517,6 @@ function ModularItemChatRoomMessage(module, index, { chatSetting, chatMessagePre
 	ChatRoomPublishCustomAction(msg, false, dictionary);
 }
 
-function ModularItemAddToArray(dest, src) {
-	src.forEach(item => {
-		if (!dest.includes(item)) dest.push(item);
-	});
-}
-
 /**
  * Generates an AllowType property for an asset based on its modular item data.
  * @param {ModularItemData} data - The modular item's data
@@ -585,6 +578,26 @@ function ModularItemRequirementMessageCheck(option) {
 	} else {
 		return ExtendedItemRequirementCheckMessage(option, C.ID === 0);
 	}
+}
+
+/**
+ * Generates and assigns a modular asset's AllowType, AllowEffect and AllowBlock properties, along with the AllowTypes
+ * properties on the asset layers based on the values set in its module definitions.
+ * @param {ModularItemData} data - The modular item's data
+ * @returns {void} - Nothing
+ */
+function ModularItemGenerateValidationProperties(data) {
+	const {asset, modules} = data;
+	asset.AllowType = ModularItemGenerateAllowType(data);
+	asset.AllowEffect = Array.isArray(asset.Effect) ? asset.Effect.slice() : [];
+	asset.AllowBlock = Array.isArray(asset.Block) ? asset.Block.slice() : [];
+	modules.forEach((module) => {
+		module.Options.forEach(({Property}) => {
+			if (Property && Property.Effect) CommonArrayConcatDedupe(asset.AllowEffect, Property.Effect);
+			if (Property && Property.Block) CommonArrayConcatDedupe(asset.AllowBlock, Property.Block);
+		});
+	});
+	asset.Layer.forEach((layer) => ModularItemGenerateLayerAllowTypes(layer, data));
 }
 
 /**

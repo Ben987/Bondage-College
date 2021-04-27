@@ -9,5 +9,6 @@ PlayerGagged,,,(She seems to wonder.)  Why are you gagged miss?,,
 0,,I cannot talk now.  (Leave her.),,DialogLeave(),
 10,,,Do you know the way out?,,
 10,,Where is the exit?,"(She shrugs.)  I'm sorry, I don't know.",,
+10,,(Strip her naked.),(You strip her naked as she struggles.)  What kind of rescue mission is that?,CharacterNaked(),!CurrentCharacter.IsNaked()
 10,,Let's move. (Walk with her.),,DialogLeave(),CurrentCharacter.CanWalk()
 10,,Let's move. (Walk with her.),(She shakes her legs but cannot walk with you.),,!CurrentCharacter.CanWalk()

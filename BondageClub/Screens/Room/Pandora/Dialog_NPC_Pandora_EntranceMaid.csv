@@ -1,7 +1,62 @@
 PlayerGagged,,,(She checks your gag.)  This gag is a perfect fit Miss.,,
-0,,,"Welcome to Pandora's Box, the best BDSM club in town.  Wait!  You look like someone we are searching for.",,"DialogSkillGreater(""Infiltration"", 9)"
-0,,,"Welcome to Pandora's Box, the best BDSM club in town.  I've seen you before, who are you Miss?",,"DialogSkillGreater(""Infiltration"", 6)"
-0,,,"Welcome to Pandora's Box, the best BDSM club in town.  (She stares at you.)  You've been here before haven't you?",,"DialogSkillGreater(""Infiltration"", 3)"
+FightVictory,,,(She seems pretty mad.)  What do you think you're doing?   You will get caught right away.,,
+FightDefeat,,,(She seems very happy.)  You're no match for Pandora's staff.  Now it's time to prepare your punishment.,,
+Punishment8,,,"(A Dominatrix takes you away from the maid.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(A Dominatrix takes you away from the maid.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(A Dominatrix takes you away from the maid.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(A Dominatrix takes you away from the maid.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
 0,,,"Welcome to Pandora's Box, the best BDSM club in town.  It will be my pleasure to introduce you.",,
-0,,(UNDER CONSTRUCTION.),"This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.",,
-0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),
+0,95,I'm a member.  (Show your fake ID.),"(She looks at your ID and nods.)  I'm so sorry Miss, please come inside and have fun.",,"HasPerk(""Forgery"")"
+0,80,Thanks.  What goes on around here?,"We are an adult club, aimed at fulfilling your wildest fantasies.  Be careful when you open the box.  (She giggles.)",,
+0,80,You're cute in that costume.,"Thanks Miss, but this is not a costume, it's my work uniform.  I work here as a full-time maid.  (She smiles.)",,
+0,80,"Yes, can you introduce me?","(She nods.)  We are an adult club, aimed at fulfilling your wildest fantasies.  Be careful when you open the box.",,
+0,,(Look around.),,DialogLeave(),
+10,,,"Welcome to Pandora's Box, the best BDSM club in town.  (She stares at you.)  You've been here before haven't you?",,
+10,95,I'm a member.  (Show your fake ID.),"(She looks at your ID and nods.)  I'm so sorry Miss, please come inside and have fun.",,"HasPerk(""Forgery"")"
+10,80,No.  This is my first visit.,Very well Miss.  (She seems a little suspicious.)  Would you like to know about Pandora's Box?,,
+10,80,I've been here a while ago.,That's probably it.  (She seems a little suspicious.)  Would you like to know about Pandora's Box?,,
+10,50,"I'm from the Bondage Club, get lost maid.","(She frowns at you.)  Then you better leave now, you are not welcome here.",,
+10,,(Look around.),,DialogLeave(),
+20,,,"Welcome to Pandora's Box, the best BDSM club in town.  I've seen you before, who are you Miss?",,
+20,95,I'm a member.  (Show your fake ID.),"(She looks at your ID and nods.)  I'm so sorry Miss, please come inside and have fun.",,"HasPerk(""Forgery"")"
+20,50,You might have met my evil twin sister.,(She doesn't seem to believe you.)  Yes!  You're DialogPlayerName from the Bondage Club!  You are not welcome here.,,
+20,80,You're confused little maid.,Maybe you're right Miss.  (She seems suspicious.)  Would you like to know about Pandora's Box?,,
+20,50,"I'm from the Bondage Club, get lost maid.","(She frowns at you.)  Then you better leave now, you are not welcome here.",,
+20,,(Look around.),,DialogLeave(),
+30,,,"Welcome to Pandora's Box, the best BDSM club in town.  Wait!  You look like someone we are searching for.",,
+30,95,I'm a member.  (Show your fake ID.),"(She looks at your ID and nods.)  I'm so sorry Miss, please come inside and have fun.",,"HasPerk(""Forgery"")"
+30,50,You might have met my evil twin sister.,(She doesn't seem to believe you.)  Yes!  You're DialogPlayerName from the Bondage Club!  You are not welcome here.,,
+30,50,You're confused little maid.,(She recognizes you.)  Yes!  You're DialogPlayerName from the Bondage Club!  You are not welcome here.,,
+30,50,"I'm from the Bondage Club, get lost maid.",(She frowns at you.)  I knew it!  You're DialogPlayerName!  You are not welcome here.,,
+30,,(Look around.),,DialogLeave(),
+50,,,You're not welcome here.  You need to go now.,,
+50,,(Fight her.),,CharacterFight(),
+50,,(Leave Pandora's Box.),,MissionFail(),
+50,,(Look around.),,DialogLeave(),
+80,,Tell me about this club.,"Pandora's Box is a young BDSM club, but we are growing quickly.  We have the best Dominatrixes in town.",DialogRemove(),
+80,,Who runs this club?,"The leaders are called the Dominatrixes, they wear golden leather, you cannot miss them.",DialogRemove(),
+80,,Can anyone join?,"Yes, anyone that's open minded can enter.  Don't cause any trouble or you'll get punished.",DialogRemove(),
+80,90,Can I visit?,Absolutely.  Do you need help on how to explore Pandora's Box or you're fine on your own?,,
+90,,,(She does a maid curtsy.)  Is there anything else you'd like to know Miss?,,
+90,,I can go anywhere?,"Yes and no.  If someone is on official duty, she might not let you pass.  Just go back from where you came from.",DialogRemove(),
+90,,There are many levels?,Pandora's Box has three levels.  We are on the ground level.  You can go downstairs for the dungeons or upstairs for the chambers.,DialogRemove(),
+90,,What if I get lost?,Just scream.  (She giggles.)  I know this place might be confusing but keep on walking and you'll find your way back.,DialogRemove(),
+90,,Can you come with me?,"(She shakes her head no.)  I'm sorry Miss, I'm working at the entrance right now.  Maybe you'll find more help inside.",DialogRemove(),
+90,,"I should be fine, thanks.  (Go explore.)",,CharacterAllowMove(),
+95,,,It's always a pleasure to see you Miss.,,
+95,,Take care.  (Go explore.),,CharacterAllowMove(),
+100,,I will do what I want.,(She grumbles.)  The Dominatrixes will hunt you down like a pig.  You're in so much trouble.,DialogRemove(),
+100,,(Strip her naked.),(She seems furious as you strip her naked.),CharacterNaked(),!CurrentCharacter.IsNaked()
+100,105,(Wear her clothes.),(She stares at you as you quickly dress up as her.),"PlayerClothes(""Maid"")",CurrentCharacter.IsNaked()
+100,110,(Lock her up in a broom closet.),(She tries to resist as you lock her up in a broom closet.)  (Your infiltration skill has gone up.),InfiltrationChange(30),
+105,110,(Lock her up in a broom closet.),(She tries to resist as you lock her up in a broom closet.)  (Your infiltration skill has gone up.),InfiltrationChange(30),
+110,,(Leave her.),,RemoveCurrentCharacter(),
+200,210,Punishment?  What do you mean?,"You will understand and remember your lesson.  Don't try anything funny, a Dominatrix will take care of you soon.",,Player.CanTalk()
+200,210,You're not punishing me girl.,"Of course, I won't do it myself, a Dominatrix will take care of you soon.",,Player.CanTalk()
+200,210,I will accept it Miss.,"Very good, you're already learning.  A Dominatrix will take care of you soon.",,Player.CanTalk()
+200,210,(Scream in your gag.),Stop making all that noise.  A Dominatrix will take care of you soon.,,!Player.CanTalk()
+200,210,(Trash in your bondage.),Don't try to do anything funny.  A Dominatrix will take care of you soon.,,!Player.CanTalk()
+200,210,(Bow your head and stay silent.),Good girl.  A Dominatrix will take care of you soon.,,!Player.CanTalk()
+210,,Can we negotiate?,It's too late for that.  Just wait and be quiet.,DialogRemove(),Player.CanTalk()
+210,,I will have my revenge.,You won't.  We will teach you a lesson that you will never forget.,DialogRemove(),Player.CanTalk()
+210,,(Wait for the Dominatrix.),,PunishmentIntro(),

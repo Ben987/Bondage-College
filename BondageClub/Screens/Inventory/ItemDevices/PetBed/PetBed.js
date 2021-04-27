@@ -37,8 +37,8 @@ function InventoryItemDevicesPetBedClick() {
 	ExtendedItemClick(InventoryItemDevicesPetBedOptions);
 }
 
-function InventoryItemDevicesPetBedAction(C, Option) {
-	var msg = "PedBedSet" + Option.Name;
+function InventoryItemDevicesPetBedPublishAction(C, Option) {
+	var msg = "PetBedSet" + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber },

@@ -524,7 +524,7 @@ function ItemColorStateBuild(c, item, x, y, width, height, includeResetButton) {
 				colorIndex: groupMap[key].reduce((min, layer) => Math.min(min, layer.ColorIndex), Infinity),
 			};
 		})
-		.sort((g1, g2) => g1.colorIndex = g2.colorIndex);
+		.sort((g1, g2) => g1.colorIndex > g2.colorIndex);
 
 	if (item.Asset.AllowColorizeAll) {
 		colorGroups.unshift({ name: null, layers: [], colorIndex: -1 });

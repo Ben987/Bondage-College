@@ -692,14 +692,12 @@ function PrivateLoadCharacter(C) {
 		if (PrivateCharacter[C].Title != null) N.Title = PrivateCharacter[C].Title;
 		if (PrivateCharacter[C].AssetFamily != null) N.AssetFamily = PrivateCharacter[C].AssetFamily;
 		if (PrivateCharacter[C].Appearance != null) {
-			const loadedAppearance = ServerAppearanceLoadFromBundle(N, PrivateCharacter[C].AssetFamily, PrivateCharacter[C].Appearance);
-			N.Appearance = loadedAppearance.appearance;
-			updateRequired = updateRequired || !loadedAppearance.updateValid;
+			const updateValid = ServerAppearanceLoadFromBundle(N, PrivateCharacter[C].AssetFamily, PrivateCharacter[C].Appearance)
+			updateRequired = updateRequired || !updateValid;
 		}
 		if (PrivateCharacter[C].AppearanceFull != null) {
-			const loadedAppearance = ServerAppearanceLoadFromBundle(N, PrivateCharacter[C].AssetFamily, PrivateCharacter[C].AppearanceFull);
-			N.AppearanceFull = loadedAppearance.appearance;
-			updateRequired = updateRequired || !loadedAppearance.updateValid;
+			const updateValid = ServerAppearanceLoadFromBundle(N, PrivateCharacter[C].AssetFamily, PrivateCharacter[C].AppearanceFull, null, true)
+			updateRequired = updateRequired || !updateValid;
 		}
 		if (PrivateCharacter[C].Trait != null) N.Trait = PrivateCharacter[C].Trait.slice();
 		if (PrivateCharacter[C].Cage != null) N.Cage = PrivateCharacter[C].Cage;

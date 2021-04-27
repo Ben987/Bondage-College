@@ -1,0 +1,7 @@
+PlayerGagged,,,"(She tries to understand you but fails.)  I'm sorry Miss, it's not easy to understand what you're saying.",,
+0,,,(She ponders.)  Miss?  You know you look a little like the infamous DialogPlayerName?,,"DialogSkillGreater(""Infiltration"", 9)"
+0,,,"(She does a maid curtsy.)  Hello Miss, I think we've met before.  I'm maid DialogCharacterName.",,"DialogSkillGreater(""Infiltration"", 4)"
+0,,,"Hello Miss, it's a pleasure to meet you.",,
+0,,Who are you?,(She does a maid curtsy.)  I'm maid DialogCharacterName.  Do you require my assistance?,,
+0,,(UNDER CONSTRUCTION.),"This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.",,
+0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),

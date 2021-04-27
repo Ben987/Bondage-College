@@ -39,6 +39,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		LimitedItems: [],
 		HiddenItems: [],
 		WhiteList: [],
+		BlackList: [],
 		HeightModifier: 0,
 		HeightRatio: 1,
 		HasHiddenItems: false,
@@ -368,8 +369,9 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.LimitedItems = Array.isArray(data.LimitedItems) ? data.LimitedItems : [];
-	if (Char.ID != 0) Char.WhiteList = data.WhiteList;
-	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber).appearance;
+	if (Char.ID != 0 && Array.isArray(data.WhiteList)) Char.WhiteList = data.WhiteList;
+	if (Char.ID != 0 && Array.isArray(data.BlackList)) Char.BlackList = data.BlackList;
+	ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
 	if (Char.ID == 0) LoginValidCollar();
 	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Inventory == null) || (Char.Inventory.length == 0))) InventoryLoad(Char, data.Inventory);
 	CharacterLoadEffect(Char);
@@ -403,7 +405,12 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 	if (data.LimitedItems && typeof data.LimitedItems === "object" && !Array.isArray(data.LimitedItems)) {
 		data.LimitedItems = CommonUnpackItemArray(data.LimitedItems);
 	}
-	data.WhiteList.sort((a, b) => a - b);
+	if (Array.isArray(data.WhiteList)) {
+		data.WhiteList.sort((a, b) => a - b);
+	}
+	if (Array.isArray(data.BlackList)) {
+		data.BlackList.sort((a, b) => a - b);
+	}
 
 	// If the character isn't found
 	if (Char == null) {
@@ -464,7 +471,8 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		if (!Refresh && (JSON.stringify(Char.ArousalSettings) !== JSON.stringify(data.ArousalSettings))) Refresh = true;
 		if (!Refresh && (JSON.stringify(Char.OnlineSharedSettings) !== JSON.stringify(data.OnlineSharedSettings))) Refresh = true;
 		if (!Refresh && (JSON.stringify(Char.Game) !== JSON.stringify(data.Game))) Refresh = true;
-		if (!Refresh && (JSON.stringify(Char.WhiteList) !== JSON.stringify(data.WhiteList))) Refresh = true;
+		if (!Refresh && Array.isArray(data.WhiteList) && (JSON.stringify(Char.WhiteList) !== JSON.stringify(data.WhiteList))) Refresh = true;
+		if (!Refresh && Array.isArray(data.BlackList) && (JSON.stringify(Char.BlackList) !== JSON.stringify(data.BlackList))) Refresh = true;
 		if (!Refresh && (data.BlockItems != null) && (Char.BlockItems.length != data.BlockItems.length)) Refresh = true;
 		if (!Refresh && (data.LimitedItems != null) && (Char.LimitedItems.length != data.LimitedItems.length)) Refresh = true;
 
@@ -1062,6 +1070,8 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer, Color) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
 				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
+				// Delete any existing removal timer
+				delete C.Appearance[A].Property.RemoveTimer;
 				if (C.Appearance[A].Property.Expression != Expression) {
 					C.Appearance[A].Property.Expression = Expression;
 					if (Color && CommonColorIsValid(Color)) C.Appearance[A].Color = Color;
@@ -1259,8 +1269,10 @@ function CharacterGetDarkFactor(C, eyesOnly = false) {
  */
 function CharacterGetClumsiness(C) {
 	let clumsiness = 0;
-	if (!C.CanInteract()) clumsiness += 2;
+	if (!C.CanInteract()) clumsiness += 1;
+	const armItem = InventoryGet(C, "ItemArms");
+	if (armItem && armItem.Asset.IsRestraint && InventoryItemHasEffect(armItem, "Block")) clumsiness += 2;
 	const handItem = InventoryGet(C, "ItemHands");
-	if (handItem && handItem.Asset.IsRestraint) clumsiness += 3;
+	if (handItem && handItem.Asset.IsRestraint && InventoryItemHasEffect(handItem, "Block")) clumsiness += 3;
 	return Math.min(clumsiness, 5);
 }

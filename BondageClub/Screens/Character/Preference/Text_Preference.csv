@@ -117,8 +117,8 @@ StimulationEvents,Events while plugged or vibed
 SensDepSetting,Sensory deprivation setting
 SensDepLight,Light
 SensDepNames,Hide names
-SensDepTotal,Total
-SensDepExtreme,Total (no whispers)
+SensDepTotal,Heavy
+SensDepExtreme,Total
 AllowPlayerLeashing,"Players can drag you to rooms when leashed"
 DisableAutoMaid,Maids come automatically when restrained
 DisablePickingLocksOnSelf,Locks on you can't be picked

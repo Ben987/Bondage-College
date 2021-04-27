@@ -797,17 +797,7 @@ function InventoryLock(C, Item, Lock, MemberNumber, Update = true) {
 function InventoryUnlock(C, Item) {
 	if (typeof Item === 'string') Item = InventoryGet(C, Item);
 	if (Item && Item.Property && Item.Property.Effect) {
-		Item.Property.Effect.splice(Item.Property.Effect.indexOf("Lock"), 1);
-		delete Item.Property.LockedBy;
-		delete Item.Property.RemoveTimer;
-		delete Item.Property.LockSet;
-		delete Item.Property.Password;
-		delete Item.Property.Hint;
-		delete Item.Property.LockMemberNumber;
-		delete Item.Property.MemberNumberList;
-		delete Item.Property.MemberNumberListKeys;
-		delete Item.Property.CombinationNumber;
-		delete Item.Property.LockPickSeed;
+		ValidationDeleteLock(Item.Property, false);
 		CharacterRefresh(C);
 	}
 }

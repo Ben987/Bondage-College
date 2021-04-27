@@ -8,6 +8,8 @@ var KinkyDungeonKeybindings = null;
 var KinkyDungeonKeybindingsTemp = null;
 var KinkyDungeonKeybindingCurrentKey = 0;
 
+var KinkyDungeonGameRunning = false
+
 //var KinkyDungeonKeyLower = [87+32, 65+32, 83+32, 68+32, 81+32, 45+32, 90+32, 43+32]; // WASD
 var KinkyDungeonKey = [119, 97, 115, 100, 113, 101, 122, 99]; // WASD
 //var KinkyDungeonKeyNumpad = [56, 52, 50, 54, 55, 57, 49, 51]; // Numpad
@@ -21,33 +23,38 @@ var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/"
  * @returns {void} - Nothing
  */
 function KinkyDungeonLoad() {
-	if (!KinkyDungeonPlayer)
-		KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
-	
-	//KinkyDungeonCreateMap(MiniGameDifficulty);
-	var appearance = CharacterAppearanceStringify(Player)
-	CharacterAppearanceRestore(KinkyDungeonPlayer, appearance)
-	CharacterReleaseTotal(KinkyDungeonPlayer)
-	CharacterNaked(KinkyDungeonPlayer)
-	KinkyDungeonInitializeDresses()
-	KinkyDungeonDressPlayer()
-	KinkyDungeonShrineInit()
-	
-	KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings
-	
-	KinkyDungeonState = "Menu"
-	for (let G = 0; G < KinkyDungeonStruggleGroupsBase.length; G++) {
-		var group = KinkyDungeonStruggleGroupsBase[G]
-		if (group == "ItemM") {
-			if (InventoryGet(Player, "ItemMouth"))
-				KinkyDungeonRestraintsLocked.push("ItemMouth")
-			if (InventoryGet(Player, "ItemMouth2"))
-				KinkyDungeonRestraintsLocked.push("ItemMouth2")
-			if (InventoryGet(Player, "ItemMouth3"))
-				KinkyDungeonRestraintsLocked.push("ItemMouth3")
+
+	if (!KinkyDungeonGameRunning) {
+		if (!KinkyDungeonPlayer)
+      KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
+
+    //KinkyDungeonCreateMap(MiniGameDifficulty);
+    var appearance = CharacterAppearanceStringify(Player)
+    CharacterAppearanceRestore(KinkyDungeonPlayer, appearance)
+    CharacterReleaseTotal(KinkyDungeonPlayer)
+    CharacterNaked(KinkyDungeonPlayer)
+    KinkyDungeonInitializeDresses()
+    KinkyDungeonDressPlayer()
+    KinkyDungeonShrineInit()
+
+    KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings
+		
+		KinkyDungeonState = "Menu"
+		
+		for (let G = 0; G < KinkyDungeonStruggleGroupsBase.length; G++) {
+			let group = KinkyDungeonStruggleGroupsBase[G];
+			if (group == "ItemM") {
+				if (InventoryGet(Player, "ItemMouth"))
+					KinkyDungeonRestraintsLocked.push("ItemMouth")
+				if (InventoryGet(Player, "ItemMouth2"))
+					KinkyDungeonRestraintsLocked.push("ItemMouth2")
+				if (InventoryGet(Player, "ItemMouth3"))
+					KinkyDungeonRestraintsLocked.push("ItemMouth3")
+			}
+			if (InventoryGet(Player, group))
+				KinkyDungeonRestraintsLocked.push(group)
+
 		}
-		if (InventoryGet(Player, group))
-			KinkyDungeonRestraintsLocked.push(group)
 	}
 }
 
@@ -91,8 +98,10 @@ function KinkyDungeonRun() {
 		DrawButton(875, 750, 350, 64, TextGet("GameStart"), "White", "");
 		DrawButton(1275, 750, 350, 64, TextGet("GameConfigKeys"), "White", "");
 	} else if (KinkyDungeonState == "Game") {
+		KinkyDungeonGameRunning = true
 		KinkyDungeonDrawGame();
 	} else if (KinkyDungeonState == "End") {
+		KinkyDungeonGameRunning = false
 		// Draw temp start screen
 		DrawText(TextGet("EndWin"), 1250, 400, "white", "silver");
 		DrawText(TextGet("EndWin2"), 1250, 500, "white", "silver");

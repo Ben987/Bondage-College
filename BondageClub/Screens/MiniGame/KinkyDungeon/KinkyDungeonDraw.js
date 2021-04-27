@@ -81,7 +81,7 @@ function KinkyDungeonDrawGame() {
 				for (let R = 0; R < KinkyDungeonGridHeightDisplay; R++)  {
 					for (let X = 0; X < KinkyDungeonGridWidthDisplay; X++)  {
 						let sprite = KinkyDungeonGetSprite(rows[R+CamY][X+CamX])
-							
+
 						DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Floor" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + "/" + sprite + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSizeDisplay, R*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
 					}
 				}

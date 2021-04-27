@@ -1,5 +1,5 @@
 "use strict";
-var InventoryItemNeckAccessoriesCustomCollarTagAllowedChars = /^[a-zA-Z0-9 ~!]*$/gm;
+var InventoryItemNeckAccessoriesCustomCollarTagAllowedChars = /^[a-zA-Z0-9 ~!]*$/;
 // Loads the item extension properties
 function InventoryItemNeckAccessoriesCustomCollarTagLoad() {
     var C = CharacterGetCurrent();

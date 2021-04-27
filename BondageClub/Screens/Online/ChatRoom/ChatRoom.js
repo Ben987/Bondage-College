@@ -1701,7 +1701,7 @@ function ChatRoomMessage(data) {
 
 			// Checks if the message is a notification about the user entering or leaving the room
 			var MsgEnterLeave = "";
-			if ((data.Type == "Action") && (msg.startsWith("ServerEnter")) || (msg.startsWith("ServerLeave")) || (msg.startsWith("ServerDisconnect")) || (msg.startsWith("ServerBan")) || (msg.startsWith("ServerKick")))
+			if ((data.Type == "Action") && (msg.startsWith("ServerEnter") || msg.startsWith("ServerLeave") || msg.startsWith("ServerDisconnect") || msg.startsWith("ServerBan") || msg.startsWith("ServerKick")))
 				MsgEnterLeave = " ChatMessageEnterLeave";
 
 			// Replace actions by the content of the dictionary
@@ -2077,9 +2077,34 @@ function ChatRoomSyncMemberJoin(data) {
 	}
 
 	//Load the character to the chat room
-	const newCharacter = CharacterLoadOnline(data.Character, data.SourceMemberNumber)
-	ChatRoomAddCharacterToChatRoom(newCharacter, data.Character)
-	
+	const newCharacter = CharacterLoadOnline(data.Character, data.SourceMemberNumber);
+	ChatRoomAddCharacterToChatRoom(newCharacter, data.Character);
+
+	if (Array.isArray(data.WhiteListedBy)) {
+		for (const MemberNumber of data.WhiteListedBy) {
+			for (const character of Character) {
+				if (character.MemberNumber === MemberNumber && Array.isArray(character.WhiteList) && character.ID != 0) {
+					if (!character.WhiteList.includes(newCharacter.MemberNumber)) {
+						character.WhiteList.push(newCharacter.MemberNumber);
+						character.WhiteList.sort((a, b) => a - b);
+					}
+				}
+			}
+		}
+	}
+	if (Array.isArray(data.BlackListedBy)) {
+		for (const MemberNumber of data.BlackListedBy) {
+			for (const character of Character) {
+				if (character.MemberNumber === MemberNumber && Array.isArray(character.BlackList) && character.ID != 0) {
+					if (!character.BlackList.includes(newCharacter.MemberNumber)) {
+						character.BlackList.push(newCharacter.MemberNumber);
+						character.BlackList.sort((a, b) => a - b);
+					}
+				}
+			}
+		}
+	}
+
 	// After Join Actions
 	if (ChatRoomNotificationRaiseChatJoin(newCharacter)) {
 		NotificationRaise(NotificationEventType.CHATJOIN, { characterName: newCharacter.Name });
