@@ -1721,6 +1721,10 @@ ChastityOpenBack,,,Open Back,,
 ChastityClosedBack,,,Closed Back,,
 ChastityBeltBackShieldOpenBack,,,SourceCharacter removes the shield from the back of DestinationCharacter belt.,,
 ChastityBeltBackShieldClosedBack,,,SourceCharacter adds the shield to the back of DestinationCharacter belt.,,
+ClitRingPoseBase,,,Nothing
+ClitRingPoseLeash,,,Leash
+ClitRingRestrainBase,,,SourceCharacter removes the attachment from DestinationCharacter clit ring.
+ClitRingRestrainLeash,,,SourceCharacter attaches a leash to DestinationCharacter clit ring.
 WebBondageSelect,,,Select web type,,
 WebBondageTangled,,,Tangled,,
 WebBondageWrapped,,,Wrapped,,
