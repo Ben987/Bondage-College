@@ -716,37 +716,37 @@ function CharacterLoadEffect(C) {
 /**
  * Loads a character's canvas by sorting its appearance and drawing it.
  * @param {Character} C - Character to load the canvas for
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function CharacterLoadCanvas(C) {
 	// Reset the property that tracks if wearing a hidden item
 	C.HasHiddenItems = false;
 
 	// We add a temporary appearance and pose here so that it can be modified by hooks.  We copy the arrays so no hooks can alter the reference accidentally
-	C.DrawAppearance = AppearanceItemParse( CharacterAppearanceStringify(C))
-	C.DrawPose = [...C.Pose] // Deep copy of pose array
-	
-	
+	C.DrawAppearance = AppearanceItemParse( CharacterAppearanceStringify(C));
+	C.DrawPose = [...C.Pose]; // Deep copy of pose array
+
+
 	// Run BeforeSortLayers hook
 	if (C.Hooks && typeof C.Hooks.get == "function") {
 		let hooks = C.Hooks.get("BeforeSortLayers");
 		if (hooks)
-		    hooks.forEach((hook) => hook(C)); // If there's a hook, call it
+			hooks.forEach((hook) => hook(C)); // If there's a hook, call it
 	}
 
 	// Generates a layer array from the character's appearance array, sorted by drawing order
 	C.AppearanceLayers = CharacterAppearanceSortLayers(C);
-	
+
 	// Run AfterLoadCanvas hooks
 	if (C.Hooks && typeof C.Hooks.get == "function") {
 		let hooks = C.Hooks.get("AfterLoadCanvas");
 		if (hooks)
-		    hooks.forEach((hook) => hook(C)); // If there's a hook, call it
+			hooks.forEach((hook) => hook(C)); // If there's a hook, call it
 	}
-	
+
 	// Sets the total height modifier for that character
 	CharacterAppearanceSetHeightModifiers(C);
-	
+
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
 }
