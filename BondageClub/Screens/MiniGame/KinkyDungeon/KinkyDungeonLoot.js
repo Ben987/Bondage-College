@@ -189,6 +189,12 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 			KinkyDungeonGetRestraintItem("ItemFeet").lock = KinkyDungeonGenerateLock(true)
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapLegirons"))
+	} else if (Loot.name == "trap_blindfold") {
+		value = Math.ceil((40 + 40 * Math.random()) * (1 + Index/2))
+		if (KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("TrapBlindfold"), true) > 0)
+			KinkyDungeonGetRestraintItem("ItemHead").lock = KinkyDungeonGenerateLock(true)
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapBlindfold"))
 	}
 	
 	if (value > 0) {

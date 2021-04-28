@@ -2,7 +2,7 @@
 - First Beta Release
 
 
-1.3 (TBD)
+1.3 (Apr 26 2021)
 Content
 - Added locked chests which are scattered around the dungeon. Each floor is guaranteed to have at least one. You can either pick them or unlock them
 - Added key drops and lockpick drops around the dungeon. You can find them in debris piles, but not chests.
@@ -20,6 +20,12 @@ Content
 Balance
 - Made the rope snare have a 3 turn delay rather than a 1 turn delay, and a range of 1. This limits its in-combat use, while retaining its long duration and level 1 classification
 
+1.31 (TBD)
+Content (WIP)
+- Added a new enemy, a rope snake that sacrifices itself to wrap you up!
+- Added a magic rope snake that appears in later levels. This one can't be cut off without an enchanted knife! Enchanted knives have also been added to the loot table.
+- Added a chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
+- New shrine: rope goddess
 
 Future content planned:
 - Ability to close nearby doors
@@ -36,6 +42,7 @@ Future content planned:
 - More simple restraint traps: mittens, locked blindfolds/gags, leg irons, belts
 - Chastity belt trap that puts a plug in you, increasing your arousal while walking
 - Chastity belt trap that puts a toy in you. Toys are powered by casting magic
+- New shrine: chastity goddess. Places you in a set of magic cuffs that prevent you from being restrained. However if your willpower falls below maximum, the cuffs snap together until you get back to full willpower!
 
 Spell Ideas:
 - Clear Jam spell, which clears jammed green locks from either an object or the player, depending on where it is cast
