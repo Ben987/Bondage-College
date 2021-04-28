@@ -731,7 +731,7 @@ function CharacterLoadCanvas(C) {
 	if (C.Hooks && typeof C.Hooks.get == "function") {
 		let hooks = C.Hooks.get("BeforeSortLayers");
 		if (hooks)
-			hooks.forEach((hook) => hook(C)); // If there's a hook, call it
+		    hooks.forEach((hook) => hook(C)); // If there's a hook, call it
 	}
 
 	// Generates a layer array from the character's appearance array, sorted by drawing order
@@ -741,7 +741,7 @@ function CharacterLoadCanvas(C) {
 	if (C.Hooks && typeof C.Hooks.get == "function") {
 		let hooks = C.Hooks.get("AfterLoadCanvas");
 		if (hooks)
-			hooks.forEach((hook) => hook(C)); // If there's a hook, call it
+		    hooks.forEach((hook) => hook(C)); // If there's a hook, call it
 	}
 	
 	// Sets the total height modifier for that character
