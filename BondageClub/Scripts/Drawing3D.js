@@ -120,7 +120,7 @@ function light(){
 //set color
 function color2(hexcolor){
 	let loader = new THREE.TextureLoader();
-	var texturehair = loader.load(`${path3d}HairFront/t005.bmp`)
+	var texturehair = loader.load(`${path3d}HairFront/t005.bmp`);
 	model.traverse( function ( child ) {
 		if ( child.isMesh ) {
 				if (model.group == "HairBack" || model.group == "HairFront"){

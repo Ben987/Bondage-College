@@ -1,7 +1,7 @@
 "use strict";
 var SkillModifier = 0;
 var SkillModifierMax = 5;
-var SkillModifierMin = -10
+var SkillModifierMin = -10;
 var SkillLevelMaximum = 10;
 var SkillLevelMinimum = 0;
 var SkillBondageRatio = 1;
@@ -36,7 +36,7 @@ function SkillChange(SkillType, SkillLevel, SkillProgress, Push) {
 		Type: SkillType,
 		Level: SkillLevel,
 		Progress: SkillProgress
-	}
+	};
 	Player.Skill.push(NewSkill);
 	if ((Push == null) || Push) ServerPlayerSkillSync();
 
@@ -124,7 +124,7 @@ function SkillGetProgress(C, SkillType) {
 }
 
 /**
- * Add progress to a skill, the skill progresses slower for each level, takes into account cheaters version. 
+ * Add progress to a skill, the skill progresses slower for each level, takes into account cheaters version.
  * @param {string} SkillType - Name of the skill to add progress to
  * @param {number} SkillProgress - Progress to be made before the ratios are applied
  * @returns {void} - Nothing

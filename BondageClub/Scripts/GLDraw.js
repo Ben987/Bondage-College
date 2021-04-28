@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 var GLDrawImageCache = new Map();
 
@@ -41,7 +41,7 @@ function GLDrawLoad() {
         GLDrawLoad();
         console.log("WebGL: Context restored.");
     }, false);
-    
+
     //console.log("WebGL Drawing enabled: '" + GLVersion + "'");
 }
 
@@ -324,7 +324,7 @@ function GLDraw2DCanvasBlink(gl, Img, X, Y, alphaMasks) { GLDraw2DCanvas(gl, Img
  * @param {number} Y - Position of the image on the Y axis
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
  */
-function GLDraw2DCanvas(gl, Img, X, Y, alphaMasks) { 
+function GLDraw2DCanvas(gl, Img, X, Y, alphaMasks) {
     var TempCanvasName = Img.getAttribute("name");
     gl.textureCache.delete(TempCanvasName);
     GLDrawImageCache.set(TempCanvasName, Img);
@@ -477,7 +477,7 @@ function GLDrawHexToRGBA(color, alpha = 1) {
 /**
  * Creates the given character canvas with WebGL
  * @param {Character} C - Character to build the canvas for
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function GLDrawAppearanceBuild(C) {
     GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, CanvasDrawHeight);

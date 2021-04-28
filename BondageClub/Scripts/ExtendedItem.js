@@ -64,7 +64,7 @@ const ExtendedXYClothes = [
 	[[1140, 400], [1385, 400], [1630, 400], [1140, 700], [1385, 700], [1630, 700]], //6 options per page
 ];
 
-/** Memoization of the requirements check 
+/** Memoization of the requirements check
  * @type {function}
 */
 const ExtendedItemRequirementCheckMessageMemo = CommonMemoize(ExtendedItemRequirementCheckMessage);
@@ -123,13 +123,13 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 	const XYPositions = !Asset.Group.Clothing ? (ShowImages ? ExtendedXY : ExtendedXYWithoutImages) : ExtendedXYClothes;
 	const ImageHeight = ShowImages ? 220 : 0;
 	OptionsPerPage = OptionsPerPage || Math.min(Options.length, XYPositions.length - 1);
-	
+
 	// If we have to paginate, draw the back/next buttons
 	if (Options.length > OptionsPerPage) {
 		DrawButton(1665, 240, 90, 90, "", "White", "Icons/Prev.png");
 		DrawButton(1775, 240, 90, 90, "", "White", "Icons/Next.png");
 	}
-	
+
 	// Draw the header and item
 	DrawAssetPreview(1387, 55, Asset);
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
@@ -139,7 +139,7 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 		var PageOffset = I - ItemOptionsOffset;
 		var X = XYPositions[OptionsPerPage][PageOffset][0];
 		var Y = XYPositions[OptionsPerPage][PageOffset][1];
-		
+
 		var Option = Options[I];
 		var Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
 		var FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, IsSelfBondage);
@@ -156,7 +156,7 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 			setButton(X + 112, Y + 30 + ImageHeight);
 		}
 	}
-	
+
 	// Permission mode toggle is always available
 	DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFindPlayer(ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 }
@@ -188,11 +188,11 @@ function ExtendedItemClick(Options, OptionsPerPage, ShowImages = true) {
 	}
 
 	// Permission toggle button
-	if (MouseIn(1775, 25, 90, 90)) { 
+	if (MouseIn(1775, 25, 90, 90)) {
 		if (ExtendedItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 		ExtendedItemPermissionMode = !ExtendedItemPermissionMode;
 	}
-	
+
 	// Pagination buttons
 	if (MouseIn(1665, 240, 90, 90) && Options.length > OptionsPerPage) {
 		if (ItemOptionsOffset - OptionsPerPage < 0) ExtendedItemSetOffset(OptionsPerPage * (Math.ceil(Options.length / OptionsPerPage) - 1));
@@ -202,7 +202,7 @@ function ExtendedItemClick(Options, OptionsPerPage, ShowImages = true) {
 		if (ItemOptionsOffset + OptionsPerPage >= Options.length) ExtendedItemSetOffset(0);
 		else ExtendedItemSetOffset(ItemOptionsOffset + OptionsPerPage);
 	}
-	
+
 	// Options
 	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
 		var PageOffset = I - ItemOptionsOffset;
@@ -263,7 +263,7 @@ function ExtendedItemSetType(C, Options, Option) {
 	DialogFocusItem.Property = NewProperty;
 	const IsCloth = DialogFocusItem.Asset.Group.Clothing;
 	CharacterRefresh(C, !IsCloth); // Does not sync appearance while in the wardrobe
-	
+
 	// For a restraint, we might publish an action or change the dialog of a NPC
 	if (!IsCloth) {
 		ChatRoomCharacterUpdate(C);
@@ -301,7 +301,7 @@ function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage) {
 	} else {
 		var BlockedOrLimited = InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type);
 		if (DialogFocusItem.Property.Type === Option.Property.Type || BlockedOrLimited) return;
-		
+
 		// use the unmemoized function to ensure we make a final check to the requirements
 		var RequirementMessage = ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
 		if (RequirementMessage) {

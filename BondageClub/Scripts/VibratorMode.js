@@ -239,22 +239,22 @@ function VibratorModeClick(Options, Y) {
  */
 function VibratorModeGetOption(ModeName) {
 	var result = null;
-	
+
 	[VibratorModeSet.STANDARD, VibratorModeSet.ADVANCED].some((OptionName) => {
 		var OptionGroup = VibratorModeOptions[OptionName];
 		var Handled = OptionGroup.some((Option, I) => {
 			if ((Option.Property != null) && (Option.Property.Mode == ModeName)) {
-				result = Option
-				return true
+				result = Option;
+				return true;
 			}
 			return false;
 		});
 		return Handled;
 	});
-	
-	if (result) return result	
-	return VibratorModeOptions.Standard[0]
-	
+
+	if (result) return result;
+	return VibratorModeOptions.Standard[0];
+
 }
 
 
@@ -300,7 +300,7 @@ function VibratorModeSetDynamicProperties(Property) {
 	const NewProperty = Object.assign({}, Property);
 	if (typeof NewProperty.Intensity === "function") NewProperty.Intensity = NewProperty.Intensity();
 	if (typeof NewProperty.Effect === "function") NewProperty.Effect = NewProperty.Effect(NewProperty.Intensity);
-	else NewProperty.Effect = JSON.parse(JSON.stringify(Property.Effect || []))
+	else NewProperty.Effect = JSON.parse(JSON.stringify(Property.Effect || []));
 	return NewProperty;
 }
 

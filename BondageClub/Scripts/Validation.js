@@ -231,7 +231,7 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 		});
 		newKeys.forEach((key) => {
 			if (!previousKeys.includes(key)) {
-				console.warn(`Invalid modification of property "${key}" for item ${warningSuffix}`)
+				console.warn(`Invalid modification of property "${key}" for item ${warningSuffix}`);
 				valid = false;
 				delete newProperty[key];
 			}

@@ -96,7 +96,7 @@ class NotificationEventHandler {
 		if (data.characterName) titleStart = data.characterName + " - ";
 		else if (C) titleStart = C.Name + " - ";
 		if (data.chatRoomName) titleEnd = DialogFindPlayer("NotificationTitleFromRoom").replace("ChatRoomName", "'" + data.chatRoomName + "'");
-			
+
 		// Define the (supported) options of the popup and create it
 		let title = titleStart + DialogFindPlayer("NotificationTitle" + this.eventType) + titleEnd;
 		let options = {};
@@ -155,7 +155,7 @@ let NotificationEventHandlers;
 var NotificationAlertTypeList = [];
 var NotificationAudioTypeList = [];
 
-/** 
+/**
  * Initialise notification variables on startup
  * @returns {void} - Nothing
  */
@@ -217,7 +217,7 @@ function NotificationResetAll() {
 	NotificationTitleUpdate();
 }
 
-/** 
+/**
  * Returns whether popup notifications are permitted
  * @param {NotificationEventType} eventType - The type of event that occurred
  * @param {object} [data={}] - Data relating to the event that can be passed into a popup

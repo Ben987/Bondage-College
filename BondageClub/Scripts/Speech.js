@@ -74,7 +74,7 @@ function SpeechGetGagLevel(C, AssetGroup) {
  */
 function SpeechGarble(C, CD, NoDeaf) {
 	let GagEffect = 0;
-	let NS = CD
+	let NS = CD;
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth2");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth3");
@@ -83,7 +83,7 @@ function SpeechGarble(C, CD, NoDeaf) {
 	GagEffect += SpeechGetGagLevel(C, "ItemNeck");
 	GagEffect += SpeechGetGagLevel(C, "ItemDevices");
 	GagEffect += SpeechGetGagLevel(C, "ItemHoodAddon");
-	
+
 	if (C.ID != 0 && !NoDeaf) {
 		if (Player.GetDeafLevel() >= 7) GagEffect = Math.max(GagEffect, 20);
 		else if (Player.GetDeafLevel() >= 6) GagEffect = Math.max(GagEffect, 16);
@@ -92,14 +92,14 @@ function SpeechGarble(C, CD, NoDeaf) {
 		else if (Player.GetDeafLevel() >= 3) GagEffect = Math.max(GagEffect, 6);
 		else if (Player.GetDeafLevel() >= 2) GagEffect = Math.max(GagEffect, 4);
 		else if (Player.GetDeafLevel() >= 1) GagEffect = Math.max(GagEffect, 2);
-	}	
-	
+	}
+
 	if (GagEffect > 0) NS = SpeechGarbleByGagLevel(GagEffect, CD);
-	
+
 	// No gag effect, we return the regular text
 	NS = SpeechStutter(C, NS);
 	NS = SpeechBabyTalk(C, NS);
-	
+
 	return NS;
 }
 
@@ -118,7 +118,7 @@ function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
 	// GagTotal4 always returns mmmmm and muffles some frequent letters entirely, 75% least frequent letters
 	if (GagEffect >= 20) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
+			let H = CD.charAt(L).toLowerCase();
 			if (H == "(" && !IgnoreOOC) Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
@@ -164,7 +164,7 @@ function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
 			if (H == ")") Par = false;
 		}
 		return NS;
-	}	
+	}
 
 	// Total gags always returns mmmmm
 	if (GagEffect >= 8) {
@@ -214,7 +214,7 @@ function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
 		}
 		return NS;
 	}
-	
+
 	// Heavy garble - Almost no letter stays the same
 	if (GagEffect >= 6) {
 		for (let L = 0; L < CD.length; L++) {
@@ -284,7 +284,7 @@ function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
 		}
 		return NS;
 	}
-	
+
 	// Normal garble, keep vowels and a few letters the same
 	if (GagEffect >= 4) {
 		for (let L = 0; L < CD.length; L++) {
@@ -366,7 +366,7 @@ function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
 		}
 		return NS;
 	}
-	
+
 	// Light garble, half of the letters stay the same
 	if (GagEffect >= 2) {
 		for (let L = 0; L < CD.length; L++) {
@@ -407,7 +407,7 @@ function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
 		}
 		return NS;
 	}
-	
+
 	// Very Light garble, most of the letters stay the same
 	if (GagEffect >= 1) {
 		for (let L = 0; L < CD.length; L++) {
@@ -446,7 +446,6 @@ function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
 		return NS;
 	}
 
-	
 	return CD;
 
 }

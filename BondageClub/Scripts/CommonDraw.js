@@ -158,7 +158,7 @@ function CommonDrawAppearanceBuild(C, {
 			}
 		}
 		Y += YFixedOffset;
-		
+
 		// If we must apply alpha masks to the current image as it is being drawn
 		Layer.Alpha.forEach(AlphaDef => {
 			// If no groups are defined and the character's pose matches one of the allowed poses (or no poses are defined)
@@ -210,7 +210,7 @@ function CommonDrawAppearanceBuild(C, {
 
 
 		// Before drawing hook, receives all processed data. Any of them can be overriden if returned inside an object.
-		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects. 
+		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects.
 		// Watch out for object references.
 		if (A.DynamicBeforeDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
 			const DrawingData = {
@@ -333,7 +333,7 @@ function CommonDrawAppearanceBuild(C, {
 		}
 
 		// After drawing hook, receives all processed data.
-		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects. 
+		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects.
 		// Watch out for object references.
 		if (A.DynamicAfterDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
 			const DrawingData = {
