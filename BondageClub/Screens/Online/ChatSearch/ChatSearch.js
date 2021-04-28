@@ -195,7 +195,10 @@ function ChatSearchNormalDraw() {
 function ChatSearchMuffle(Text) {
 	let ret = Text;
 	if (Player.ImmersionSettings && Player.ImmersionSettings.ChatRoomMuffle && Player.GetBlindLevel() > 0) {
-		return SpeechGarbleByGagLevel(Player.GetBlindLevel() * Player.GetBlindLevel(), Text, true)
+		ret = SpeechGarbleByGagLevel(Player.GetBlindLevel() * Player.GetBlindLevel(), Text, true)
+		if (ret.length == 0)
+			return "...";
+		return ret;
 	}
 	return ret
 }
