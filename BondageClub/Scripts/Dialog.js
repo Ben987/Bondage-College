@@ -303,26 +303,20 @@ function DialogChatRoomCanTakePhotos() { return CurrentScreen == "ChatRoom" && C
 function DialogPrerequisite(D) {
 	if (CurrentCharacter.Dialog[D].Prerequisite == null)
 		return true;
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("Player.") == 0)
+		return Player[CurrentCharacter.Dialog[D].Prerequisite.substring(7, 250).replace("()", "").trim()]();
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!Player.") == 0)
+		return !Player[CurrentCharacter.Dialog[D].Prerequisite.substring(8, 250).replace("()", "").trim()]();
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("CurrentCharacter.") == 0)
+		return CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(17, 250).replace("()", "").trim()]();
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!CurrentCharacter.") == 0)
+		return !CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(18, 250).replace("()", "").trim()]();
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("(") >= 0)
+		return CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Prerequisite);
+	else if (CurrentCharacter.Dialog[D].Prerequisite.substring(0, 1) != "!")
+		return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
 	else
-		if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("Player.") == 0)
-			return Player[CurrentCharacter.Dialog[D].Prerequisite.substring(7, 250).replace("()", "").trim()]();
-		else
-			if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!Player.") == 0)
-				return !Player[CurrentCharacter.Dialog[D].Prerequisite.substring(8, 250).replace("()", "").trim()]();
-			else
-				if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("CurrentCharacter.") == 0)
-					return CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(17, 250).replace("()", "").trim()]();
-				else
-					if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!CurrentCharacter.") == 0)
-						return !CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(18, 250).replace("()", "").trim()]();
-					else
-						if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("(") >= 0)
-							return CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Prerequisite);
-						else
-							if (CurrentCharacter.Dialog[D].Prerequisite.substring(0, 1) != "!")
-								return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
-							else
-								return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
+		return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
 }
 
 
@@ -369,7 +363,7 @@ function DialogHasKey(C, Item) {
 	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && Item.Property.LockedBy && !Item.Property.LockedBy.startsWith("Owner")) return true;
 	if (lock && lock.Asset.ExclusiveUnlock && ((!Item.Property.MemberNumberListKeys && Item.Property.LockMemberNumber != Player.MemberNumber) || (Item.Property.MemberNumberListKeys && CommonConvertStringToArray("" + Item.Property.MemberNumberListKeys).indexOf(Player.MemberNumber) < 0))) return false;
 
-    if (lock && lock.Asset.ExclusiveUnlock) return true;
+	if (lock && lock.Asset.ExclusiveUnlock) return true;
 
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
@@ -695,33 +689,35 @@ function DialogMenuButtonBuild(C) {
 
 		} else {
 			if ((DialogInventory != null) && (DialogInventory.length > 12) && ((Player.CanInteract() && !IsGroupBlocked) || DialogItemPermissionMode)) DialogMenuButton.push("Next");
-				if (C.FocusGroup.Name == "ItemMouth" || C.FocusGroup.Name == "ItemMouth2" || C.FocusGroup.Name == "ItemMouth3") DialogMenuButton.push("ChangeLayersMouth");
-				if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())) {  DialogMenuButton.push("Remove"); }
-				if (IsItemLocked && ((!Player.IsBlind() || (Item.Property && DialogCanInspectLockWhileBlind(Item.Property.LockedBy))) || (InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item))  && (C.ID == 0 || (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf)))
-					&& (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
-					DialogMenuButton.push("LockMenu");
-				if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (IsItemLocked && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Struggle");
-				if ((Item != null) && !IsItemLocked && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) {
-					if (Item.Asset.AllowLock && (!Item.Property || (Item.Property && Item.Property.AllowLock !== false))) {
-						if (!Item.Asset.AllowLockType || Item.Asset.AllowLockType.includes(Item.Property.Type)) {
-							DialogMenuButton.push("Lock");
-						}
+			if (C.FocusGroup.Name == "ItemMouth" || C.FocusGroup.Name == "ItemMouth2" || C.FocusGroup.Name == "ItemMouth3") DialogMenuButton.push("ChangeLayersMouth");
+			if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())) {  DialogMenuButton.push("Remove"); }
+			if (IsItemLocked && ((!Player.IsBlind() || (Item.Property && DialogCanInspectLockWhileBlind(Item.Property.LockedBy))) || (InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item))  && (C.ID == 0 || (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf)))
+				&& (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")
+			) {
+				DialogMenuButton.push("LockMenu");
+			}
+			if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (IsItemLocked && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Struggle");
+			if ((Item != null) && !IsItemLocked && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) {
+				if (Item.Asset.AllowLock && (!Item.Property || (Item.Property && Item.Property.AllowLock !== false))) {
+					if (!Item.Asset.AllowLockType || Item.Asset.AllowLockType.includes(Item.Property.Type)) {
+						DialogMenuButton.push("Lock");
 					}
 				}
-				if ((Item != null) && !IsItemLocked && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Remove");
-				if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Dismount");
-				if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Escape");
-				if (DialogCanUseRemote(C, Item)) DialogMenuButton.push("Remote");
-				if ((Item != null) && Item.Asset.Extended && ((Player.CanInteract()) || DialogAlwaysAllowRestraint() || Item.Asset.AlwaysInteract) && (!IsGroupBlocked || Item.Asset.AlwaysExtend) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer())) && !InventoryBlockedOrLimited(C, Item)) DialogMenuButton.push("Use");
-				if (DialogCanColor(C, Item)) DialogMenuButton.push("ColorPick");
+			}
+			if ((Item != null) && !IsItemLocked && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Remove");
+			if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Dismount");
+			if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Escape");
+			if (DialogCanUseRemote(C, Item)) DialogMenuButton.push("Remote");
+			if ((Item != null) && Item.Asset.Extended && ((Player.CanInteract()) || DialogAlwaysAllowRestraint() || Item.Asset.AlwaysInteract) && (!IsGroupBlocked || Item.Asset.AlwaysExtend) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer())) && !InventoryBlockedOrLimited(C, Item)) DialogMenuButton.push("Use");
+			if (DialogCanColor(C, Item)) DialogMenuButton.push("ColorPick");
 
-				// Make sure the target player zone is allowed for an activity
-				if ((C.FocusGroup.Activity != null) && ((!C.IsEnclose() && !Player.IsEnclose()) || C.ID == 0) && ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Zone != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive"))
-					for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
-						if ((C.ArousalSettings.Zone[Z].Name == C.FocusGroup.Name) && (C.ArousalSettings.Zone[Z].Factor != null) && (C.ArousalSettings.Zone[Z].Factor > 0)) {
-							ActivityDialogBuild(C);
-							if (DialogActivity.length > 0) DialogMenuButton.push("Activity");
-						}
+			// Make sure the target player zone is allowed for an activity
+			if ((C.FocusGroup.Activity != null) && ((!C.IsEnclose() && !Player.IsEnclose()) || C.ID == 0) && ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Zone != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive"))
+				for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
+					if ((C.ArousalSettings.Zone[Z].Name == C.FocusGroup.Name) && (C.ArousalSettings.Zone[Z].Factor != null) && (C.ArousalSettings.Zone[Z].Factor > 0)) {
+						ActivityDialogBuild(C);
+						if (DialogActivity.length > 0) DialogMenuButton.push("Activity");
+					}
 
 
 			// Item permission enter/exit, cannot be done in Extreme mode
@@ -1224,9 +1220,8 @@ function DialogItemClick(ClickItem) {
 
 					}
 				}
-				else
-					if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
-						DialogExtendItem(CurrentItem);
+				else if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
+					DialogExtendItem(CurrentItem);
 		return;
 	}
 
@@ -1234,12 +1229,10 @@ function DialogItemClick(ClickItem) {
 	if (InventoryAllow(C, ClickItem.Asset.Prerequisite))
 		if (InventoryItemHasEffect(ClickItem, "Unlock-" + CurrentItem.Asset.Name))
 			StruggleProgressStart(C, CurrentItem, null);
-		else
-			if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
-				DialogExtendItem(CurrentItem);
-			else
-				if (!ClickItem.Asset.Wear)
-					DialogPublishAction(C, ClickItem);
+		else if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
+			DialogExtendItem(CurrentItem);
+		else if (!ClickItem.Asset.Wear)
+			DialogPublishAction(C, ClickItem);
 
 }
 
@@ -1380,9 +1373,8 @@ function DialogClick() {
 							CurrentCharacter.CurrentDialog = CurrentCharacter.Dialog[D].Result;
 							if (CurrentCharacter.Dialog[D].NextStage != null) CurrentCharacter.Stage = CurrentCharacter.Dialog[D].NextStage;
 							if (CurrentCharacter.Dialog[D].Function != null) CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Function);
-						} else
-							if ((CurrentCharacter.Dialog[D].Function != null) && (CurrentCharacter.Dialog[D].Function.trim() == "DialogLeave()"))
-								DialogLeave();
+						} else if ((CurrentCharacter.Dialog[D].Function != null) && (CurrentCharacter.Dialog[D].Function.trim() == "DialogLeave()"))
+							DialogLeave();
 						break;
 
 					}

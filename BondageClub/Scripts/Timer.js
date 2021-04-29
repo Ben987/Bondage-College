@@ -73,11 +73,10 @@ function TimerInventoryRemove() {
 						// If we must remove the linked item from the character or the facial expression
 						if ((Character[C].Appearance[A].Property.RemoveItem != null) && Character[C].Appearance[A].Property.RemoveItem && (Character[C].Appearance[A].Asset.Group.Category != null) && (Character[C].Appearance[A].Asset.Group.Category == "Item"))
 							InventoryRemove(Character[C], Character[C].Appearance[A].Asset.Group.Name);
+						else if (Character[C].Appearance[A].Asset.Group.AllowExpression != null)
+							CharacterSetFacialExpression(Character[C], Character[C].Appearance[A].Asset.Group.Name, null);
 						else
-							if (Character[C].Appearance[A].Asset.Group.AllowExpression != null)
-								CharacterSetFacialExpression(Character[C], Character[C].Appearance[A].Asset.Group.Name, null);
-							else
-								CharacterRefresh(Character[C]);
+							CharacterRefresh(Character[C]);
 
 						// Sync with the server and exit
 						if (Character[C].ID == 0) ChatRoomCharacterUpdate(Character[C]);
@@ -242,7 +241,7 @@ function TimerProcess(Timestamp) {
 		DrawRect(MouseX - 5, MouseY - 5, 10, 10, "Cyan");
 	}
 
-    // Launches the main again for the next frame
+	// Launches the main again for the next frame
 	requestAnimationFrame(MainRun);
 
 }

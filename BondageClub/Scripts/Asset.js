@@ -479,7 +479,7 @@ function AssetCleanArray(AssetArray) {
  * @returns {*} - The asset group matching the provided family and group name
  */
 function AssetGroupGet(Family, Group) {
-    return AssetGroup.find(g => g.Family === Family && g.Name === Group);
+	return AssetGroup.find(g => g.Family === Family && g.Name === Group);
 }
 
 /**

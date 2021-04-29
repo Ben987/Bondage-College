@@ -763,12 +763,10 @@ function CharacterItemsHavePoseType(C, Type, OnlyItems) {
 			return true;
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null) && (C.Appearance[A].Property.SetPose.find(P => PossiblePoses.includes(P))))
 			return true;
-		else
-			if (C.Appearance[A].Asset.SetPose != null && (C.Appearance[A].Asset.SetPose.find(P => PossiblePoses.includes(P))))
-				return true;
-			else
-				if (C.Appearance[A].Asset.Group.SetPose != null  && (C.Appearance[A].Asset.Group.SetPose.find(P => PossiblePoses.includes(P))))
-					return true;
+		else if (C.Appearance[A].Asset.SetPose != null && (C.Appearance[A].Asset.SetPose.find(P => PossiblePoses.includes(P))))
+			return true;
+		else if (C.Appearance[A].Asset.Group.SetPose != null  && (C.Appearance[A].Asset.Group.SetPose.find(P => PossiblePoses.includes(P))))
+			return true;
 	}
 	return false;
 }
@@ -834,9 +832,8 @@ function CharacterLoadEffect(C) {
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Effect != null)) CharacterAddEffect(C, C.Appearance[A].Property.Effect);
 		if (C.Appearance[A].Asset.Effect != null)
 			CharacterAddEffect(C, C.Appearance[A].Asset.Effect);
-		else
-			if (C.Appearance[A].Asset.Group.Effect != null)
-				CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
+		else if (C.Appearance[A].Asset.Group.Effect != null)
+			CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
 	}
 }
 

@@ -42,10 +42,10 @@ function DrawHexToRGB(color) {
 		g: parseInt(result[2], 16),
 		b: parseInt(result[3], 16)
 	} : {
-			r: 0,
-			g: 0,
-			b: 0
-		};
+		r: 0,
+		g: 0,
+		b: 0
+	};
 }
 
 /**
@@ -792,14 +792,14 @@ function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 	}
 
 	// Cuts the text if it would go over the box
-    if (S <= 10) {
-        while (Text.length > 0) {
-            Text = Text.substr(1);
-            const metrics = MainCanvas.measureText(Text);
-            if (metrics.width <= Width)
-                break;
-        }
-    }
+	if (S <= 10) {
+		while (Text.length > 0) {
+			Text = Text.substr(1);
+			const metrics = MainCanvas.measureText(Text);
+			if (metrics.width <= Width)
+				break;
+		}
+	}
 
 	// Draw a back color relief text if needed
 	if ((BackColor != null) && (BackColor != "")) {

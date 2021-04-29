@@ -547,7 +547,7 @@ function InventoryGroupIsBlocked(C, GroupName, Activity) {
 	// Default to characters focused group
 	if (GroupName == null) GroupName = C.FocusGroup.Name;
 
-    if (Activity) {
+	if (Activity) {
 		for (let E = 0; E < C.Appearance.length; E++) {
 			if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.AllowActivityOn != null) && (C.Appearance[E].Asset.AllowActivityOn.includes(GroupName))){
 				Activity = true;
@@ -557,7 +557,7 @@ function InventoryGroupIsBlocked(C, GroupName, Activity) {
 				break;
 			} else Activity = false;
 		}
-    }
+	}
 
 	// Items can block each other (hoods blocks gags, belts blocks eggs, etc.)
 	for (let E = 0; E < C.Appearance.length; E++) {
@@ -625,11 +625,11 @@ function InventoryItemIsPickable(Item) {
  * item itself does not exist.
  */
 function InventoryGetItemProperty(Item, PropertyName, CheckGroup) {
-    if (!Item || !PropertyName || !Item.Asset) return;
-    let Property = Item.Property && Item.Property[PropertyName];
-    if (typeof Property === "undefined") Property = Item.Asset[PropertyName];
-    if (typeof Property === "undefined" && CheckGroup) Property = Item.Asset.Group[PropertyName];
-    return Property;
+	if (!Item || !PropertyName || !Item.Asset) return;
+	let Property = Item.Property && Item.Property[PropertyName];
+	if (typeof Property === "undefined") Property = Item.Asset[PropertyName];
+	if (typeof Property === "undefined" && CheckGroup) Property = Item.Asset.Group[PropertyName];
+	return Property;
 }
 
 /**

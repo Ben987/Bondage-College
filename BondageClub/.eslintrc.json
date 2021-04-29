@@ -30,7 +30,7 @@
 		"no-unused-vars": ["warn", { "vars": "local", "args": "after-used" }],
 		"no-trailing-spaces": "warn",
 		"semi": "warn",
-		"indent": ["warn", "tab", { "SwitchCase": 1 }],
+		"indent": ["warn", "tab", { "SwitchCase": 1, "ignoredNodes": ["ConditionalExpression"] }],
 		// Until globals are properly documented
 		"no-undef": "off",
 		"no-var": "off"
