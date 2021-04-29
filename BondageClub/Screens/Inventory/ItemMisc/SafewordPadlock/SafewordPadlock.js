@@ -91,7 +91,7 @@ function InventoryItemMiscSafewordPadlockClick() {
 
 					// Send fail message if online
 					else if (CurrentScreen == "ChatRoom") {
-						var Dictionary = [];
+						let Dictionary = [];
 						Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 						Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 						Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
@@ -121,7 +121,7 @@ function InventoryItemMiscSafewordPadlockClick() {
 								C.Appearance[A] = DialogFocusSourceItem;
 						}
 						if (CurrentScreen == "ChatRoom") {
-							var Dictionary = [];
+							let Dictionary = [];
 							Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 							Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 							Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});

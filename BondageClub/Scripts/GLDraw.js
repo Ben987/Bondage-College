@@ -201,7 +201,7 @@ function GLDrawCreateShader(gl, source, type) {
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        throw 'Could not compile WebGL program. \n\n' + gl.getShaderInfoLog(shader);
+        throw new Error('Could not compile WebGL program. \n\n' + gl.getShaderInfoLog(shader));
     }
     return shader;
 }
@@ -219,7 +219,7 @@ function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        throw 'Could not compile WebGL program. \n\n' + gl.getProgramInfoLog(program);
+        throw new Error('Could not compile WebGL program. \n\n' + gl.getProgramInfoLog(program));
     }
 
     program.a_position = gl.getAttribLocation(program, "a_position");
@@ -384,6 +384,7 @@ function GLDrawLoadImage(gl, url) {
                 if (Img.errorcount == null) Img.errorcount = 0;
                 Img.errorcount += 1;
                 if (Img.errorcount < 3) {
+                    // eslint-disable-next-line no-self-assign
                     Img.src = Img.src;
                 } else {
                     console.log("Error loading image " + Img.src);

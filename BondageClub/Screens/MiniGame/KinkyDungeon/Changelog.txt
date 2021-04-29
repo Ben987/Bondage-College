@@ -1,0 +1,44 @@
+1.2 (Apr 10 2021)
+- First Beta Release
+
+
+1.3 (TBD)
+Content
+- Added locked chests which are scattered around the dungeon. Each floor is guaranteed to have at least one. You can either pick them or unlock them
+- Added key drops and lockpick drops around the dungeon. You can find them in debris piles, but not chests.
+- Added handcuffs trap, which places a set of handcuffs on you that has a guaranteed lock on it
+- Added harness trap, which locks you in a harness that makes it easy for enemies to grab onto you
+- Added various other restraints from chests
+- Added scaling to the kinds of locks you encounter:
+- New locks:
+	Red locks are the most common in early levels, and can be only opened with red keys.
+	Green locks are less common, and have a chance of jamming, making them impossible to unlock.
+	Yellow locks require both a red and a green key to unlock.
+	Blue locks require blue keys, and can't be picked or cut off. 
+- Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
+- Added Shrines! These are a use for gold, and will basically take restraints off in exchange for an exponentially increasing amount of gold. Trapped treasure chests are also much more common now!
+Balance
+- Made the rope snare have a 3 turn delay rather than a 1 turn delay, and a range of 1. This limits its in-combat use, while retaining its long duration and level 1 classification
+
+
+Future content planned for this release:
+- Ability to close nearby doors
+- Item shops scattered around the map, allowing you to buy swords and outfits
+- Magical rope traps which require enchanted knives to cut
+- Enchanted knives, which are found only in chests
+- Ice witches that cast ice spells at you from a distance
+- Latex witches that cast latex spells at you from a distance
+- Chain witches who attack with chains from mid-range
+- Inventory system which lets you view special items and restraints (shows you how hard it is to break free from them... after you've struggled enough)
+- Mana-boosting mittens which increase spell power and decrease mana costs, but make it harder to struggle out of things
+- Enchanted heels which empower your melee attacks
+- Items like swords and wands which improve melee attack damage or willpower
+- More simple restraint traps: mittens, locked blindfolds/gags, leg irons, belts
+- Chastity belt trap that puts a plug in you, increasing your arousal while walking
+- Chastity belt trap that puts a toy in you. Toys are powered by casting magic
+
+Spell Ideas:
+- Clear Jam spell, which clears jammed green locks from either an object or the player, depending on where it is cast
+- Divine Cuffs, a spell which gives you glowing arm and leg cuffs that block low level restraints from being put on you. Lasts 10 turns.
+- Ice Storm, a temporary AoE which has a chance to deal damage and stun creatures inside. Drains player willpower but does not slow or restraint the player.
+- Sleep, puts nearby creatures with low willpower to sleep until they take damage. Works on zombies, and also the player if the player is at low willpower (<30).

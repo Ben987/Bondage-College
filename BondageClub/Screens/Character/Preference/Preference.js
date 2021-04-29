@@ -422,10 +422,21 @@ function PreferenceInitPlayer() {
 	if (typeof NS.Beeps !== "object") NS.Beeps = PreferenceInitNotificationSetting(NS.Beeps, defaultAudio, NotificationAlertType.POPUP);
 	if (typeof NS.Chat !== "undefined") { NS.ChatMessage = NS.Chat; delete NS.Chat; }
 	if (typeof NS.ChatMessage !== "object") NS.ChatMessage = PreferenceInitNotificationSetting(NS.ChatMessage, defaultAudio);
-	if (typeof NS.ChatMessage.IncludeActions !== "boolean") NS.ChatMessage.IncludeActions = false;
-	if (typeof NS.ChatActions !== undefined) delete NS.ChatActions;
+	if (typeof NS.ChatMessage.IncludeActions === "boolean") {
+		// Convert old version of settings
+		const chatMessagesEnabled = NS.ChatMessage.AlertType !== NotificationAudioType.NONE;
+		NS.ChatMessage.Normal = chatMessagesEnabled;
+		NS.ChatMessage.Whisper = chatMessagesEnabled;
+		NS.ChatMessage.Activity = chatMessagesEnabled && NS.ChatMessage.IncludeActions;
+		delete NS.ChatMessage.IncludeActions;
+	}
+	if (typeof NS.ChatMessage.Normal !== "boolean") NS.ChatMessage.Normal = true;
+	if (typeof NS.ChatMessage.Whisper !== "boolean") NS.ChatMessage.Whisper = true;
+	if (typeof NS.ChatMessage.Activity !== "boolean") NS.ChatMessage.Activity = false;
+	if (typeof NS.ChatActions !== "undefined") delete NS.ChatActions;
 	if (typeof NS.ChatJoin !== "object") NS.ChatJoin = PreferenceInitNotificationSetting(NS.ChatJoin, defaultAudio);
-	if (NS.ChatJoin.Enabled !== undefined) {
+	if (typeof NS.ChatJoin.Enabled !== "undefined") {
+		// Convert old version of settings
 		NS.ChatJoin.AlertType = NS.ChatJoin.Enabled ? NotificationAlertType.TITLEPREFIX : NotificationAlertType.NONE;
 		NS.ChatJoin.Audio = NotificationAudioType.NONE;
 		delete NS.ChatJoin.Enabled;
@@ -434,7 +445,7 @@ function PreferenceInitPlayer() {
 	if (typeof NS.ChatJoin.Lovers !== "boolean") NS.ChatJoin.Lovers = false;
 	if (typeof NS.ChatJoin.Friendlist !== "boolean") NS.ChatJoin.Friendlist = false;
 	if (typeof NS.ChatJoin.Subs !== "boolean") NS.ChatJoin.Subs = false;
-	if (typeof NS.Audio !== undefined) delete NS.Audio;
+	if (typeof NS.Audio !== "undefined") delete NS.Audio;
 	if (typeof NS.Disconnect !== "object") NS.Disconnect = PreferenceInitNotificationSetting(NS.Disconnect, defaultAudio);
 	if (typeof NS.Larp !== "object") NS.Larp = PreferenceInitNotificationSetting(NS.Larp, defaultAudio, NotificationEventType.NONE);
 	if (typeof NS.Test !== "object") NS.Test = PreferenceInitNotificationSetting(NS.Test, defaultAudio, NotificationAlertType.TITLEPREFIX);
@@ -1794,6 +1805,7 @@ function PreferenceSubscreenNotificationsRun() {
 	// Left-aligned text controls
 	MainCanvas.textAlign = "left";
 	const NS = Player.NotificationSettings;
+
 	DrawText(TextGet("NotificationsPreferences"), 500, 125, "Black", "Gray");
 	DrawText(TextGet("NotificationsExplanation"), 500, 190, "Black", "Gray");
 	DrawEmptyRect(1190, 92, 510, 125, "Black", 2);
@@ -1801,32 +1813,40 @@ function PreferenceSubscreenNotificationsRun() {
 	DrawText(TextGet("NotificationsAudioExplanation1"), 1275, 125, "Black", "Gray");
 	DrawText(TextGet("NotificationsAudioExplanation2"), 1200, 190, "Black", "Gray");
 	PreferenceNotificationsDrawSetting(500, 235, TextGet("NotificationsBeeps"), NS.Beeps);
+
 	PreferenceNotificationsDrawSetting(500, 315, TextGet("NotificationsChatMessage"), NS.ChatMessage);
+	DrawText(TextGet("NotificationsOnly"), 550, 427, "Black", "Gray");
 	if (NS.ChatMessage.AlertType > 0) {
-		DrawCheckbox(1260, 315, 64, 64, TextGet("NotificationsChatActions"), NS.ChatMessage.IncludeActions);
+		DrawCheckbox(700, 395, 64, 64, TextGet("NotificationsChatMessageNormal"), NS.ChatMessage.Normal);
+		DrawCheckbox(1150, 395, 64, 64, TextGet("NotificationsChatMessageWhisper"), NS.ChatMessage.Whisper);
+		DrawCheckbox(1500, 395, 64, 64, TextGet("NotificationsChatMessageActivity"), NS.ChatMessage.Activity);
 	} else {
-		DrawCheckboxDisabled(1250, 315, 64, 64, TextGet("NotificationsChatActions"));
+		DrawCheckboxDisabled(700, 395, 64, 64, TextGet("NotificationsChatMessageNormal"));
+		DrawCheckboxDisabled(1150, 395, 64, 64, TextGet("NotificationsChatMessageWhisper"));
+		DrawCheckboxDisabled(1500, 395, 64, 64, TextGet("NotificationsChatMessageActivity"));
 	}
-	PreferenceNotificationsDrawSetting(500, 395, TextGet("NotificationsChatJoin"), NS.ChatJoin);
-	DrawText(TextGet("NotificationsChatJoinOnly"), 550, 507, "Black", "Gray");
+
+	PreferenceNotificationsDrawSetting(500, 475, TextGet("NotificationsChatJoin"), NS.ChatJoin);
+	DrawText(TextGet("NotificationsOnly"), 550, 587, "Black", "Gray");
 	if (NS.ChatJoin.AlertType > 0) {
-		DrawCheckbox(700, 475, 64, 64, TextGet("NotificationsChatJoinOwner"), NS.ChatJoin.Owner);
-		DrawCheckbox(980, 475, 64, 64, TextGet("NotificationsChatJoinLovers"), NS.ChatJoin.Lovers);
-		DrawCheckbox(1260, 475, 64, 64, TextGet("NotificationsChatJoinFriendlist"), NS.ChatJoin.Friendlist);
-		DrawCheckbox(1540, 475, 64, 64, TextGet("NotificationsChatJoinSubs"), NS.ChatJoin.Subs);
+		DrawCheckbox(700, 555, 64, 64, TextGet("NotificationsChatJoinOwner"), NS.ChatJoin.Owner);
+		DrawCheckbox(980, 555, 64, 64, TextGet("NotificationsChatJoinLovers"), NS.ChatJoin.Lovers);
+		DrawCheckbox(1260, 555, 64, 64, TextGet("NotificationsChatJoinFriendlist"), NS.ChatJoin.Friendlist);
+		DrawCheckbox(1540, 555, 64, 64, TextGet("NotificationsChatJoinSubs"), NS.ChatJoin.Subs);
 	} else {
-		DrawCheckboxDisabled(700, 475, 64, 64, TextGet("NotificationsChatJoinOwner"));
-		DrawCheckboxDisabled(980, 475, 64, 64, TextGet("NotificationsChatJoinLovers"));
-		DrawCheckboxDisabled(1260, 475, 64, 64, TextGet("NotificationsChatJoinFriendlist"));
-		DrawCheckboxDisabled(1540, 475, 64, 64, TextGet("NotificationsChatJoinSubs"));
+		DrawCheckboxDisabled(700, 555, 64, 64, TextGet("NotificationsChatJoinOwner"));
+		DrawCheckboxDisabled(980, 555, 64, 64, TextGet("NotificationsChatJoinLovers"));
+		DrawCheckboxDisabled(1260, 555, 64, 64, TextGet("NotificationsChatJoinFriendlist"));
+		DrawCheckboxDisabled(1540, 555, 64, 64, TextGet("NotificationsChatJoinSubs"));
 	}
-	PreferenceNotificationsDrawSetting(500, 555, TextGet("NotificationsDisconnect"), NS.Disconnect);
-	PreferenceNotificationsDrawSetting(500, 635, TextGet("NotificationsLarp"), NS.Larp);
+
+	PreferenceNotificationsDrawSetting(500, 635, TextGet("NotificationsDisconnect"), NS.Disconnect);
+	PreferenceNotificationsDrawSetting(500, 715, TextGet("NotificationsLarp"), NS.Larp);
 	PreferenceNotificationsDrawSetting(500, 820, "", NS.Test);
 	MainCanvas.textAlign = "center";
 
 	// Test buttons
-	DrawEmptyRect(500, 795, 1400, 0, "Black", 1);
+	DrawEmptyRect(500, 800, 1400, 0, "Black", 1);
 	DrawButton(800, 820, 450, 64, TextGet("NotificationsTestRaise"), "White");
 	DrawButton(1286, 820, 450, 64, TextGet("NotificationsTestReset"), "White");
 }
@@ -1864,19 +1884,24 @@ function PreferenceSubscreenNotificationsClick() {
 	// Checkboxes
 	const NS = Player.NotificationSettings;
 	PreferenceNotificationsClickSetting(500, 235, NS.Beeps, NotificationEventType.BEEP);
+
 	PreferenceNotificationsClickSetting(500, 315, NS.ChatMessage, NotificationEventType.CHATMESSAGE);
-	if (MouseIn(1260, 315, 64, 64) && NS.ChatMessage.AlertType > 0) {
-		NS.ChatMessage.IncludeActions = !NS.ChatMessage.IncludeActions;
+	if (NS.ChatMessage.AlertType > 0) {
+		if (MouseIn(700, 395, 64, 64)) NS.ChatMessage.Normal = !NS.ChatMessage.Normal;
+		if (MouseIn(1150, 395, 64, 64)) NS.ChatMessage.Whisper = !NS.ChatMessage.Whisper;
+		if (MouseIn(1500, 395, 64, 64)) NS.ChatMessage.Activity = !NS.ChatMessage.Activity;
 	}
-	PreferenceNotificationsClickSetting(500, 395, NS.ChatJoin, NotificationEventType.CHATJOIN);
+
+	PreferenceNotificationsClickSetting(500, 475, NS.ChatJoin, NotificationEventType.CHATJOIN);
 	if (NS.ChatJoin.AlertType > 0) {
-		if (MouseIn(700, 475, 64, 64)) NS.ChatJoin.Owner = !NS.ChatJoin.Owner;
-		if (MouseIn(980, 475, 64, 64)) NS.ChatJoin.Lovers = !NS.ChatJoin.Lovers;
-		if (MouseIn(1260, 475, 64, 64)) NS.ChatJoin.Friendlist = !NS.ChatJoin.Friendlist;
-		if (MouseIn(1540, 475, 64, 64)) NS.ChatJoin.Subs = !NS.ChatJoin.Subs;
+		if (MouseIn(700, 555, 64, 64)) NS.ChatJoin.Owner = !NS.ChatJoin.Owner;
+		if (MouseIn(980, 555, 64, 64)) NS.ChatJoin.Lovers = !NS.ChatJoin.Lovers;
+		if (MouseIn(1260, 555, 64, 64)) NS.ChatJoin.Friendlist = !NS.ChatJoin.Friendlist;
+		if (MouseIn(1540, 555, 64, 64)) NS.ChatJoin.Subs = !NS.ChatJoin.Subs;
 	}
-	PreferenceNotificationsClickSetting(500, 555, NS.Disconnect, NotificationEventType.DISCONNECT);
-	PreferenceNotificationsClickSetting(500, 635, NS.Larp, NotificationEventType.LARP);
+
+	PreferenceNotificationsClickSetting(500, 635, NS.Disconnect, NotificationEventType.DISCONNECT);
+	PreferenceNotificationsClickSetting(500, 715, NS.Larp, NotificationEventType.LARP);
 	PreferenceNotificationsClickSetting(500, 820, NS.Test);
 
 	// Test buttons

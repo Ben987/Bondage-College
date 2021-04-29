@@ -10,7 +10,7 @@
  * All dialogue for typed items should be added to `Dialog_Player.csv`. To implement a typed item, you need the
  * following dialogue entries (these dialogue keys can also be configured through the item's configuration if custom
  * dialogue keys are needed):
- *  * "<GroupName><AssetName>Select" - This is the text that will be displayed at the top of the extended itme screen
+ *  * "<GroupName><AssetName>Select" - This is the text that will be displayed at the top of the extended item screen
  *    (usually a prompt for the player to select a type)
  *  * For each type:
  *    * "<GroupName><AssetName><TypeName>" - This is the display name for the given type
@@ -64,7 +64,7 @@ function TypedItemRegister(asset, config) {
  * @param {TypedItemConfig} config - The item's extended item configuration
  * @returns {TypedItemData} - The generated typed item data for the asset
  */
-function TypedItemCreateTypedItemData(asset, { Options, Dialog, ChatTags, ChatSetting }) {
+function TypedItemCreateTypedItemData(asset, { Options, Dialog, ChatTags, ChatSetting, DrawImages }) {
 	Dialog = Dialog || {};
 	const key = `${asset.Group.Name}${asset.Name}`;
 	return TypedItemDataLookup[key] = {
@@ -83,6 +83,7 @@ function TypedItemCreateTypedItemData(asset, { Options, Dialog, ChatTags, ChatSe
 			CommonChatTags.DEST_CHAR,
 		],
 		chatSetting: ChatSetting || TypedItemChatSetting.TO_ONLY,
+		drawImages: typeof DrawImages === "boolean" ? DrawImages : true,
 	};
 }
 
@@ -103,10 +104,10 @@ function TypedItemCreateLoadFunction({ options, functionPrefix, dialog }) {
  * @param {TypedItemData} data - The typed item data for the asset
  * @returns {void} - Nothing
  */
-function TypedItemCreateDrawFunction({ options, functionPrefix, dialog }) {
+function TypedItemCreateDrawFunction({ options, functionPrefix, dialog, drawImages }) {
 	const drawFunctionName = `${functionPrefix}Draw`;
 	window[drawFunctionName] = function () {
-		ExtendedItemDraw(options, dialog.typePrefix);
+		ExtendedItemDraw(options, dialog.typePrefix, null, drawImages);
 	};
 }
 
@@ -115,10 +116,10 @@ function TypedItemCreateDrawFunction({ options, functionPrefix, dialog }) {
  * @param {TypedItemData} data - The typed item data for the asset
  * @returns {void} - Nothing
  */
-function TypedItemCreateClickFunction({ options, functionPrefix }) {
+function TypedItemCreateClickFunction({ options, functionPrefix, drawImages }) {
 	const clickFunctionName = `${functionPrefix}Click`;
 	window[clickFunctionName] = function () {
-		ExtendedItemClick(options);
+		ExtendedItemClick(options, null, drawImages);
 	};
 }
 
@@ -202,20 +203,53 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * @typedef TypedItemConfig
  * @type {object}
  * @property {ExtendedItemOption[]} Options - The list of extended item options available for the item
+ * @property {TypedItemDialogConfig} [Dialog] - The optional text configuration for the item. Custom text keys can be
+ * configured within this object
+ * @property {CommonChatTags} [ChatTags] - An optional array of chat tags that should be included in the dictionary of
+ * the chatroom message when the item's type is changed. Defaults to {@link CommonChatTags.SOURCE_CHAR} and
+ * {@link CommonChatTags.DEST_CHAR}
+ * @property {TypedItemChatSetting} [ChatSetting] - The chat message setting for the item. This can be provided to allow
+ * finer-grained chatroom message keys for the item. Defaults to {@link TypedItemChatSetting.TO_ONLY}
+ * @property {boolean} [DrawImages] - A boolean indicating whether or not images should be drawn in this item's extended
+ * item menu. Defaults to true
+ */
+
+/**
+ * @typedef TypedItemDialogConfig
+ * @type {object}
+ * @property {string} [Load] - The key for the text that will be displayed at the top of the extended item screen
+ * (usually a prompt for the player to select a type). Defaults to "<groupName><assetName>Select"
+ * @property {string} [TypePrefix] - A prefix for text keys for the display names of the item's individual types. This
+ * will be suffixed with the option name to get the final key (i.e. "<typePrefix><optionName>"). Defaults to
+ * "<groupName><assetName>"
+ * @property {string} [ChatPrefix] - A prefix for text keys for chat messages triggered by the item. Chat message keys
+ * will include the name of the new option, and depending on the chat setting, the name of the previous option:
+ * - For chat setting FROM_TO: <chatPrefix><oldOptionName>To<newOptionName>
+ * - For chat setting TO_ONLY: <chatPrefix><newOptionName>
+ * @property {string} [NpcPrefix] - A prefix for text keys for NPC dialog. This will be suffixed with the option name
+ * to get the final NPC dialogue key (i.e. "<npcPrefix><optionName>". Defaults to "<groupName><assetName>"
+ */
+
+/**
  *
  * An object containing typed item configuration for an asset. Contains all of the necessary information for the item's
  * load, draw & click handlers.
  * @typedef TypedItemData
  * @type {object}
- * @property {ExtendedItemOption[]} Options - The list of extended item options available for the item
- * @property {object.<string, string>} Dialog - A record containing various dialog keys used by the extended item screen
- * @property {string} Dialog.Load - The dialog key for the item's load text (usually a prompt to select the type)
- * @property {string} Dialog.TypePrefix - The prefix used for dialog keys representing the display names of the item's
+ * @property {Asset} asset - The asset reference
+ * @property {ExtendedItemOption[]} options - The list of extended item options available for the item
+ * @property {string} key - A key uniquely identifying the asset
+ * @property {string} functionPrefix - The common prefix used for all extended item functions associated with the asset
+ * @property {object.<string, string>} dialog - A record containing various dialog keys used by the extended item screen
+ * @property {string} dialog.load - The dialog key for the item's load text (usually a prompt to select the type)
+ * @property {string} dialog.typePrefix - The prefix used for dialog keys representing the display names of the item's
  * types
- * @property {string} Dialog.ChatPrefix - The prefix used for dialog keys representing the item's chatroom messages
+ * @property {string} dialog.chatPrefix - The prefix used for dialog keys representing the item's chatroom messages
  * when its type is changed
- * @property {string} Dialog.NpcPrefix - The prefix used for dialog keys representing an NPC's reactions to item type
+ * @property {string} dialog.npcPrefix - The prefix used for dialog keys representing an NPC's reactions to item type
  * changes
  * @property {CommonChatTags[]} chatTags - An array of the chat message tags that should be included in the item's
  * chatroom messages. Defaults to [{@link CommonChatTags.SOURCE_CHAR}, {@link CommonChatTags.DEST_CHAR}]
+ * @property {boolean} [drawImages] - A boolean indicating whether or not images should be drawn in this item's extended
+ * item menu. Defaults to true
  */

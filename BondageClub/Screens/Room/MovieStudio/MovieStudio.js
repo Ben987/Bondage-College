@@ -363,7 +363,7 @@ function MovieStudioDoActivity(Activity) {
 	if (Activity == "DressCatsuit") { CharacterNaked(Player); InventoryWear(Player, "Catsuit", "Suit", "#202020"); InventoryWear(Player, "Catsuit", "SuitLower", "#202020"); InventoryWear(Player, "Glasses1", "Glasses", "#333333"); }
 	if (Activity == "DressLingerie") { CharacterNaked(Player); InventoryWear(Player, "CorsetBikini1", "Bra", "#202020"); InventoryWear(Player, "Stockings1", "Socks"); InventoryWear(Player, "Glasses1", "Glasses", "#333333"); }
 	if (Activity == "DressNaked") { CharacterNaked(Player); InventoryWear(Player, "Glasses1", "Glasses", "#333333"); }
-	if (Activity == "InterviewWearCorset") InventoryWear(Player, "LatexCorset1", "Bra");
+	if (Activity == "InterviewWearCorset") InventoryWear(Player, "LatexCorset1", "Corset");
 	if (Activity == "InterviewWearBoots") InventoryWear(Player, "BalletHeels", "ItemBoots");
 	if (Activity == "InterviewWearCuffs") { InventoryWear(Player, "LeatherCuffs", "ItemArms"); InventoryWear(Player, "LeatherLegCuffs", "ItemLegs"); InventoryWear(Player, "LeatherAnkleCuffs", "ItemFeet"); }
 	if (Activity == "InterviewWearCollar") InventoryWear(Player, "BordelleCollar", "ItemNeck");
@@ -374,7 +374,7 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(Player, "DusterGag", "ItemMouth");
 		InventoryRemove(Player, "ItemFeet");
 		InventoryRemove(Player, "ItemDevices");
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -390,7 +390,7 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(Player, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(Player, "LeatherAnkleCuffs", "ItemFeet");
 		InventoryRemove(Player, "ItemDevices");
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -403,7 +403,7 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(Player, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(Player, "LeatherAnkleCuffs", "ItemFeet");
 		InventoryRemove(Player, "ItemDevices");
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -411,7 +411,7 @@ function MovieStudioDoActivity(Activity) {
 		CharacterRefresh(Player);
 	}
 	if (Activity == "InterviewMaidTighten") {
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property.Type = "Elbow";
 		Cuffs.Property.SetPose = ["BackElbowTouch"];
 		CharacterRefresh(Player);
@@ -432,7 +432,7 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(MovieStudioActor1, "LeatherCuffs", "ItemArms");
 		InventoryWear(MovieStudioActor1, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(MovieStudioActor1, "LeatherAnkleCuffs", "ItemFeet");
-		var Cuffs = InventoryGet(MovieStudioActor1, "ItemArms");
+		let Cuffs = InventoryGet(MovieStudioActor1, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -780,7 +780,7 @@ function MovieStudioCanDoActivity(Activity) {
 	if (Activity == "InterviewTakePicture") return InventoryIsWorn(Player, "Camera1", "ClothAccessory");
 	if (Activity == "InterviewOpenFirstDrawer") return (InventoryGet(Player, "Cloth") != null);
 	if (Activity == "InterviewOpenSecondDrawer") return (InventoryGet(Player, "Cloth") == null);
-	if (Activity == "InterviewWearCorset") return !InventoryIsWorn(Player, "LatexCorset1", "Bra");
+	if (Activity == "InterviewWearCorset") return !InventoryIsWorn(Player, "LatexCorset1", "Corset");
 	if (Activity == "InterviewWearBoots") return !InventoryIsWorn(Player, "BalletHeels", "ItemBoots");
 	if (Activity == "InterviewWearCuffs") return (InventoryGet(Player, "ItemArms") == null);
 	if (Activity == "InterviewWearCollar") return (InventoryGet(Player, "ItemNeck") == null);

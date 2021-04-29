@@ -1,3 +1,4 @@
+"use strict";
 /*
 
 Chess AI by Brandon Yanofsky - https://byanofsky.com/2017/07/06/building-a-simple-chess-ai/

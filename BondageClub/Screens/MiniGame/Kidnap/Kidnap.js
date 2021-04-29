@@ -258,7 +258,7 @@ function KidnapSelectMove(PlayerMove) {
 
 	// If the move is effective, we lower the willpower and show it as text
 	if (PM >= 1) {
-		var Damage = parseInt(Player.KidnapStat[PlayerMove]);
+		let Damage = parseInt(Player.KidnapStat[PlayerMove]);
 		if (!KidnapMoveEffective(Player, PlayerMove)) Damage = Math.round(Damage / 2);
 		if (PlayerMove == OpponentMove) Damage = Damage - parseInt(KidnapOpponent.KidnapStat[OpponentMove]);
 		if (Damage < 0) Damage = 0;
@@ -266,7 +266,7 @@ function KidnapSelectMove(PlayerMove) {
 		KidnapResultOpponent = KidnapOpponent.Name + " " + TextGet("Lost") + " " + Damage.toString() + " " + TextGet("Willpower");
 	} else KidnapResultOpponent = KidnapOpponent.Name + " " + TextGet("NoLost");
 	if (OM >= 1) {
-		var Damage = parseInt(KidnapOpponent.KidnapStat[OpponentMove]);
+		let Damage = parseInt(KidnapOpponent.KidnapStat[OpponentMove]);
 		if (!KidnapMoveEffective(KidnapOpponent, OpponentMove)) Damage = Math.round(Damage / 2);
 		if (PlayerMove == OpponentMove) Damage = Damage - parseInt(Player.KidnapStat[PlayerMove]);
 		if (Damage < 0) Damage = 0;
@@ -356,9 +356,13 @@ function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
 	KidnapBackground = Background;
 	MiniGameCheatAvailable = (CheatFactor("MiniGameBonus", 0) == 0);
 	CurrentCharacter = null;
-	Player.KidnapMaxWillpower = 20 + (SkillGetLevel(Player, "Willpower") * 2);
-	if (KidnapReturnFunction.indexOf("Pandora") == 0) Player.KidnapMaxWillpower = Player.KidnapMaxWillpower + (InfiltrationPerksActive("Resilience") ? 5 : 0) + (InfiltrationPerksActive("Endurance") ? 5 : 0);
-	Player.KidnapWillpower = Player.KidnapMaxWillpower;
+	if (KidnapReturnFunction.indexOf("Pandora") == 0) {
+		Player.KidnapMaxWillpower = PandoraMaxWillpower;
+		Player.KidnapWillpower = PandoraWillpower;
+	} else {
+		Player.KidnapMaxWillpower = 20 + (SkillGetLevel(Player, "Willpower") * 2);
+		Player.KidnapWillpower = Player.KidnapMaxWillpower;
+	}
 	KidnapOpponent.KidnapMaxWillpower = 20 + (KidnapDifficulty * 2);
 	KidnapOpponent.KidnapWillpower = KidnapOpponent.KidnapMaxWillpower;
 	KidnapLoadStats(Player, 0);

@@ -435,7 +435,7 @@ function VibratorModeUpdateStateBased(Item, C, PersistentData, TransitionsFromDe
 		Arousal,
 		TimeSinceLastChange,
 		OldIntensity,
-		TransitionsFromDefault,
+		TransitionsFromDefault
 	);
 	var State = NewStateAndIntensity.State;
 	var Intensity = NewStateAndIntensity.Intensity;

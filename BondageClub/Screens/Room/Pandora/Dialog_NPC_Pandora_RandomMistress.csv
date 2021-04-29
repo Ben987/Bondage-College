@@ -1,8 +1,8 @@
-PlayerGagged,,,(She smirks at you.)  Cute gag subbie girl.,,
+PlayerGagged,,,(She smirks at you.)  Cute gag slave girl.,,
 0,,,DialogPlayerName!  I've been tracking you down for a while.  Your reign of terror is over.,,"DialogSkillGreater(""Infiltration"", 10)"
 0,,,Halt!   Are you DialogPlayerName?  You won't get away this time.,,"DialogSkillGreater(""Infiltration"", 6)"
 0,,,"(She stops you.)  Hello girl, can I see your papers?",,"DialogSkillGreater(""Infiltration"", 2)"
 0,,,"(She stares at you.)  Hey girl, are you lost?",,
-0,,Who are you?,I'm Mistress DialogCharacterName.  I'm one of Pandora's Box administrator.,,
+0,,Who are you?,I'm Dominatrix DialogCharacterName.  I'm one of Pandora's Box administrator.,,
 0,,(UNDER CONSTRUCTION.),"This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.",,
 0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),

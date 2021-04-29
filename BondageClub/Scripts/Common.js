@@ -728,3 +728,15 @@ function CommonDeepEqual(obj1, obj2) {
 
 	return false;
 }
+
+/**
+ * Adds all items from the source array to the destination array if they aren't already included
+ * @param {*[]} dest - The destination array
+ * @param {*[]} src - The source array
+ * @returns {void} - Nothing
+ */
+function CommonArrayConcatDedupe(dest, src) {
+	src.forEach(item => {
+		if (!dest.includes(item)) dest.push(item);
+	});
+}

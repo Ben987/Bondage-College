@@ -1,5 +1,5 @@
 "use strict";
-var Text = null;
+var TextData = null;
 
 /**
  * Finds the text value linked to the tag in the buffer
@@ -7,10 +7,10 @@ var Text = null;
  * @returns {string} - Returns the text associated to the tag, will return a missing tag text if the tag was not found.
  */
 function TextGet(TextTag) {
-	if (Text == null) return "";
-	for (let T = 0; T < Text.length; T++)
-		if (Text[T].Tag == TextTag)
-			return Text[T].Value;
+	if (TextData == null) return "";
+	for (let T = 0; T < TextData.length; T++)
+		if (TextData[T].Tag == TextTag)
+			return TextData[T].Value;
 	return "MISSING VALUE FOR TAG: " + TextTag;
 }
 
@@ -22,7 +22,7 @@ function TextGet(TextTag) {
 function TextBuild(CSV) {
 
 	// For each lines in the file
-	Text = [];
+	TextData = [];
 	for (let L = 0; L < CSV.length; L++)
 		if ((CSV[L][0] != null) && (CSV[L][0] != "")) {
 
@@ -31,12 +31,12 @@ function TextBuild(CSV) {
 			T.Tag = CSV[L][0].trim();
 			if ((CSV[L][1] != null) && (CSV[L][1].trim() != "")) T.Value = CSV[L][1].trim();
 			else T.Value = "";
-			Text.push(T);
+			TextData.push(T);
 
 		}
 
 	// Translate the text
-	TranslationText(Text);
+	TranslationText(TextData);
 
 }
 
@@ -50,7 +50,7 @@ function TextBuild(CSV) {
 function TextLoad(TextGroup) {
 
 	// Finds the full path of the CSV file to use cache
-	Text = null;
+	TextData = null;
 	if ((TextGroup == null) || (TextGroup = "")) TextGroup = CurrentScreen;
 	var FullPath = "Screens/" + CurrentModule + "/" + TextGroup + "/Text_" + TextGroup + ".csv";
 	if (CommonCSVCache[FullPath]) {

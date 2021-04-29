@@ -195,13 +195,13 @@ function CollegeTheaterDressBack() {
 function CollegeTheaterInviteToPrivateRoom(Role) {
 	CollegeTheaterDressBack();
 	if (Role == "Witch") { 
-		var ItemsToEarn = [];
+		let ItemsToEarn = [];
 		ItemsToEarn.push({Name: "WitchHat1", Group: "Hat"});
 		ItemsToEarn.push({Name: "BondageDress2", Group: "Cloth"});
 		InventoryAddMany(Player, ItemsToEarn);
 	}
 	if (Role == "Maiden") { 
-		var ItemsToEarn = [];
+		let ItemsToEarn = [];
 		ItemsToEarn.push({Name: "BatWings", Group: "Wings"});
 		ItemsToEarn.push({Name: "Dress2", Group: "Cloth"});
 		InventoryAddMany(Player, ItemsToEarn);

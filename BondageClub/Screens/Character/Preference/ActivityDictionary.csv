@@ -40,12 +40,14 @@ ActivityMoanGagWhimper,Whimper into Gag
 ActivityMoanGagAngry,Shout into Gag
 ActivityMoanGagGroan,Groan into Gag
 ActivityMoanGagTalk,Talk into Gag
+ActivityMoanGagGiggle,Giggle into gag
 ActivityGagKiss,Kiss on Gag
 ActivityWiggle,Wiggle
 ActivityNod,Nod
 ActivitySit,Sit
 ActivityStruggleArms,Struggle
 ActivityStruggleLegs,Struggle
+ActivityStep,Step
 Orgasm0,"SourceCharacter trembles and moans loudly, getting a powerful orgasm."
 Orgasm1,"SourceCharacter thrashes and loses all control, getting an intense orgasm."
 Orgasm2,"SourceCharacter screams silently and rocks her hips, getting a wonderful orgasm."
@@ -268,6 +270,7 @@ ChatSelf-ItemMouth-MoanGag,SourceCharacter moans into her gag.
 ChatSelf-ItemMouth-MoanGagWhimper,SourceCharacter whimpers pleadingly into her gag.
 ChatSelf-ItemMouth-MoanGagAngry,SourceCharacter screams furiously into her gag.
 ChatSelf-ItemMouth-MoanGagGroan,SourceCharacter groans desperately into her gag.
+ChatSelf-ItemMouth-MoanGagGiggle,SourceCharacter giggles into her gag.
 ChatSelf-ItemMouth-MoanGagTalk,SourceCharacter mumbles incoherently into her gag.
 ChatOther-ItemMouth-GagKiss,SourceCharacter gives TargetCharacter a kiss on her gag.
 ChatOther-ItemMouth-Bite,SourceCharacter bites TargetCharacter's lips.
@@ -323,3 +326,5 @@ ChatOther-ItemEars-Nibble,SourceCharacter nibbles TargetCharacter's ear.
 ChatOther-ItemEars-Pinch,SourceCharacter pinches TargetCharacter's ear.
 ChatOther-ItemEars-Caress,SourceCharacter caresses TargetCharacter's ear.
 ChatOther-ItemEars-Whisper,SourceCharacter whispers slowly in TargetCharacter's ear.
+ChatOther-ItemPelvis-Step,SourceCharacter presses her foot into TargetCharacter's chest.
+ChatOther-ItemTorso-Step,SourceCharacter rests her feet on TargetCharacter's back.

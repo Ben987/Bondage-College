@@ -16,6 +16,13 @@ var InventoryItemHeadInteractiveVRHeadsetOptions = [
 		},
 	},
 	{
+		Name: "FreeVR",
+		Property: {
+			Type: "FreeVR",
+			Effect: ["BlindHeavy", "VRAvatars", "HideRestraints"],
+		},
+	},
+	{
 		Name: "Gaming",
 		Property: {
 			Type: "Gaming",
@@ -32,7 +39,7 @@ var InventoryItemHeadInteractiveVRHeadsetOptions = [
 ];
 
 function InventoryItemHeadInteractiveVRHeadsetLoad() {
-	 var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else

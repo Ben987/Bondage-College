@@ -1,3 +1,4 @@
+"use strict";
 var StruggleLockPickItem = null;
 var StruggleLockPickOrder = null;
 var StruggleLockPickSet = null;
@@ -530,7 +531,7 @@ function StruggleDrawFlexibilityProgress(C) {
 	}
 	
 	for (let RR = 0; RR < StruggleProgressFlexCircles.length; RR++) {
-		var R = StruggleProgressFlexCircles[RR]
+		let R = StruggleProgressFlexCircles[RR]
 		if (R.X && R.Y && R.Size) {
 			DrawImageResize("Icons/Struggle/Rope.png", 1485 + R.X - R.Size, 625+ R.Y - R.Size, R.Size*2, R.Size*2);
 		}
@@ -540,7 +541,7 @@ function StruggleDrawFlexibilityProgress(C) {
 	}
 	
 	for (let RR = 0; RR < StruggleProgressFlexCircles.length; RR++) {
-		var R = StruggleProgressFlexCircles[RR]
+		let R = StruggleProgressFlexCircles[RR]
 		if (R.Y > StruggleProgressFlexMaxY) {
 			if (!((CurrentScreen == "ChatRoom") && ((StruggleProgressChallenge <= 6) || (StruggleProgressAuto >= 0)) && Player.RestrictionSettings.BypassStruggle)) 
 				StruggleFlexibility(true)
@@ -678,7 +679,7 @@ function StruggleDexterityStart(C, PrevItem, NextItem) {
 		if (InventoryItemHasEffect(InventoryGet(C, "ItemHands"), "Block", true) || InventoryGroupIsBlocked(Player, "ItemHands")) blockedAreas += 1;
 		if (!C.CanTalk()) blockedAreas += 1;
 		if (InventoryItemHasEffect(InventoryGet(C, "ItemFeet"), "Block", true) || InventoryGroupIsBlocked(Player, "ItemFeet")) blockedAreas += 1;
- 		if (InventoryItemHasEffect(InventoryGet(C, "ItemBoots"), "Block", true) || InventoryGroupIsBlocked(Player, "ItemBoots")) blockedAreas += 1; 
+		if (InventoryItemHasEffect(InventoryGet(C, "ItemBoots"), "Block", true) || InventoryGroupIsBlocked(Player, "ItemBoots")) blockedAreas += 1; 
 		
 		if (blockedAreas >= 1) S = S - 1; // Little bit harder if only one area is blocked, but you can still manipulate using other parts...
 		if (blockedAreas >= 2) S = S - 2; // But wait, it gets harder...
@@ -1242,7 +1243,7 @@ function StruggleLockPickProgressStart(C, Item) {
 		// At 10 pins we have a base of 40-30 tries, with 55 maximum permutions possible
 		var NumTries = Math.max(Math.floor(NumPins * (1.5 - 0.3*BondageLevel/10)),
 				Math.ceil(NumPins * (3.25 - BondageLevel/10) - Math.max(0, (StruggleLockPickProgressChallenge + BondageLevel/2)*1.5)))
-			    // negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
+				// negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
 				// negative skill of 6 subtracts 12 from all locks
 	
 

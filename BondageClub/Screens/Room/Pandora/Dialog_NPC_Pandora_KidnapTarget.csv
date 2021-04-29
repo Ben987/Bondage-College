@@ -35,6 +35,10 @@ ItemBreast,,,(She holds her breath as you use the item.)  You're pushing your lu
 RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Kidnappers don't make up their mind easily it seems.,,
 ItemNipples,,,(She whimpers as you use the device on her breast.)  The Bondage Club will pay for this.,,
 RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
+Punishment8,,,"(A Dominatrix takes you away.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(A Dominatrix takes you away.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(A Dominatrix takes you away.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(A Dominatrix takes you away.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
 0,,,Oh fuck!  Help!  DialogPlayerName is here to kidnap me!  Someone help!,,"DialogSkillGreater(""Infiltration"", 10)"
 0,,,I knew the Bondage Club would send someone like you DialogPlayerName.  I won't go down without a fight.,,"DialogSkillGreater(""Infiltration"", 6)"
 0,,,You're not from Pandora's aren't you?  Are you looking for trouble?,,"DialogSkillGreater(""Infiltration"", 2)"
@@ -57,6 +61,14 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 110,,(Strip her naked.),(You strip her naked as she struggles.)  That's enough!  I've already surrendered!,CharacterNaked(),!CurrentCharacter.IsNaked()
 110,,Let's move. (Walk with her.),,DialogLeave(),CurrentCharacter.CanWalk()
 110,,Let's move. (Walk with her.),(She cannot walk in her restraints.),,!CurrentCharacter.CanWalk()
-200,210,Get me out!,"(She laughs at you.)  You want out?  Sure, I will kick you out of Pandora's Box.",,
-200,210,(Beg for mercy.),"(She laughs at you.)  You want out?  Sure, I will kick you out of Pandora's Box.",,
-210,,(Let her escort you out.),,MissionFail(),
+200,210,Get me out!,(She laughs at you.)  You want out?  Not until you get properly punished little kidnapper.,,Player.CanTalk()
+200,210,(Beg for mercy.),(She laughs at you.)  You want out?  Not until you get properly punished little kidnapper.,,!Player.CanTalk()
+210,220,Punishment?  What do you mean?,"You've never been punished?  Get ready girl, a Dominatrix will come to get you soon.",,Player.CanTalk()
+210,220,You're not punishing me girl.,I don't do punishments.  A Dominatrix will come to get you soon.,,Player.CanTalk()
+210,220,I will accept it Miss.,You might like this punishment subbie girl.  A Dominatrix will come to get you soon.,,Player.CanTalk()
+210,220,(Scream in your gag.),Scream all you want.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
+210,220,(Trash in your bondage.),You're not getting out.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
+210,220,(Bow your head and stay silent.),You might like this punishment subbie girl.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
+220,,You can't be serious.,"Oh yeah?  Watch me, I'm very serious.  (She waits for a Dominatrix.)",DialogRemove(),Player.CanTalk()
+220,,I will have my revenge.,"We'll see about that, try anything and I will crush you again.",DialogRemove(),Player.CanTalk()
+220,,(Wait for the Dominatrix.),,PunishmentIntro(),

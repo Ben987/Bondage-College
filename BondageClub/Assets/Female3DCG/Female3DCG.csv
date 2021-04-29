@@ -50,6 +50,7 @@ Cloth,CorsetShirt,Corset Shirt
 Cloth,BondageBustier1,Bondage Bustier 1
 Cloth,BondageBustier2,Bondage Bustier 2
 Cloth,LeatherBolero,Leather Bolero
+Cloth,Bodice1,Bodice
 ClothAccessory,,Cloth Accessory
 ClothAccessory,StudentOutfit3Scarf,Student Scarf
 ClothAccessory,StudentOutfit3Bow1,Student Bow 1
@@ -641,6 +642,7 @@ ItemVulvaPiercings,AdornedClitPiercing,Adorned Clit Piercing
 ItemVulvaPiercings,VibeHeartClitPiercing,Vibrating Heart Clit Piercing
 ItemVulvaPiercings,BellClitPiercing,Bell Clit Piercing
 ItemVulvaPiercings,TapedClitEgg,Taped Vibrating Egg
+ItemVulvaPiercings,ClitRing,Clit Ring
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,PenisPlug,Penis Butt Plug
@@ -679,6 +681,7 @@ ItemButt,EggVibePlugXXL,Egg Vibe Plug XXL
 ItemButt,ShockPlug,Shock Plug
 ItemButt,Cowtail,Cow Tail
 ItemButt,HollowButtPlug,Hollow Butt Plug
+ItemButt,LockingVibePlug,Locking Vibrating Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -1112,6 +1115,7 @@ ItemNose,NosePlugs,Nose Plugs
 ItemNose,BarbelPiercing,Barbel Piercing
 ItemNose,PigNoseHook,Pig Nose Hook
 ItemHood,,Head
+ItemHood,BlanketHood,Blanket Hood
 ItemHood,LeatherHoodSealed,Sealed Leather Hood
 ItemHood,PolishedSteelHood,Polished Steel Hood
 ItemHood,InflatedBallHood,Inflatable Hood

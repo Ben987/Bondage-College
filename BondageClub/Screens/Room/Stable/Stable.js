@@ -451,7 +451,7 @@ function StablePlayerTrainingPass(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	if (StablePlayerTrainingBehavior <= 0) {
 		StableCheckEquipment(Player);
- 	} else {
+	} else {
 		var PassSelection = Math.random() * 7;
 		if (PassSelection < 1) {
 			StablePlayerTrainingBehavior -= 2;
@@ -492,7 +492,7 @@ function StablePlayerTrainingFail(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	if (StablePlayerTrainingBehavior >= 0) {
 		StableCheckEquipment(Player);
- 	} else {
+	} else {
 		var FailSelection = Math.random() * 8;
 		if (FailSelection < 1) {
 			StablePlayerTrainingBehavior += 2;
