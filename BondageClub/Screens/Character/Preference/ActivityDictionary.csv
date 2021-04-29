@@ -242,6 +242,7 @@ ChatSelf-ItemHands-Spank,SourceCharacter spanks her first hand with the second o
 ChatSelf-ItemHands-Caress,SourceCharacter rubs her hands together.
 ChatSelf-ItemHands-TakeCare,SourceCharacter cleans and polishes her nails.
 ChatSelf-ItemHands-Bite,SourceCharacter bites her hand.
+ChatSelf-ItemHands-Wiggle,SourceCharacter wiggles her fingers
 ChatOther-ItemHands-Bite,SourceCharacter bites TargetCharacter's hand.
 ChatOther-ItemHands-Kiss,SourceCharacter kisses TargetCharacter's hand.
 ChatOther-ItemHands-PoliteKiss,SourceCharacter politely kisses TargetCharacter's hand.
