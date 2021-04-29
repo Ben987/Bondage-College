@@ -46,13 +46,54 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HeightModifier: 0,
 		HeightRatio: 1,
 		HasHiddenItems: false,
-		CanTalk: function () { return ((this.Effect.indexOf("GagVeryLight") < 0) && (this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagEasy") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagMedium") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagVeryHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0) && (this.Effect.indexOf("GagTotal2") < 0) && (this.Effect.indexOf("GagTotal3") < 0) && (this.Effect.indexOf("GagTotal4") < 0)) },
-		CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
-		CanKneel: function () { return CharacterCanKneel(this); },
-		CanInteract: function () { return (this.Effect.indexOf("Block") < 0) },
-		CanChange: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !ManagementIsClubSlave() && !LogQuery("BlockChange", "Rule") && (!LogQuery("BlockChange", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1))) },
-		IsProne: function () { return (this.Effect.indexOf("Prone") >= 0) },
-		IsRestrained: function () { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
+		CanTalk: function () {
+			return (
+				(this.Effect.indexOf("GagVeryLight") < 0) &&
+				(this.Effect.indexOf("GagLight") < 0) &&
+				(this.Effect.indexOf("GagEasy") < 0) &&
+				(this.Effect.indexOf("GagNormal") < 0) &&
+				(this.Effect.indexOf("GagMedium") < 0) &&
+				(this.Effect.indexOf("GagHeavy") < 0) &&
+				(this.Effect.indexOf("GagVeryHeavy") < 0) &&
+				(this.Effect.indexOf("GagTotal") < 0) &&
+				(this.Effect.indexOf("GagTotal2") < 0) &&
+				(this.Effect.indexOf("GagTotal3") < 0) &&
+				(this.Effect.indexOf("GagTotal4") < 0)
+			);
+		},
+		CanWalk: function () {
+			return (
+				(this.Effect.indexOf("Freeze") < 0) &&
+				(this.Effect.indexOf("Tethered") < 0) &&
+				((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))
+			);
+		},
+		CanKneel: function () {
+			return CharacterCanKneel(this);
+		},
+		CanInteract: function () {
+			return (this.Effect.indexOf("Block") < 0);
+		},
+		CanChange: function () {
+			return (
+				(this.Effect.indexOf("Freeze") < 0) &&
+				(this.Effect.indexOf("Block") < 0) &&
+				(this.Effect.indexOf("Prone") < 0) &&
+				!ManagementIsClubSlave() &&
+				!LogQuery("BlockChange", "Rule") &&
+				(!LogQuery("BlockChange", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1))
+			);
+		},
+		IsProne: function () {
+			return (this.Effect.indexOf("Prone") >= 0);
+		},
+		IsRestrained: function () {
+			return (
+				(this.Effect.indexOf("Freeze") >= 0) ||
+				(this.Effect.indexOf("Block") >= 0) ||
+				(this.Effect.indexOf("Prone") >= 0)
+			);
+		},
 		/** Look for blindness effects and return the worst (limited by settings), Light: 1, Normal: 2, Heavy: 3 */
 		GetBlindLevel: function (eyesOnly = false) {
 			let blindLevel = 0;
@@ -73,28 +114,86 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			if (this.GameplaySettings && this.GameplaySettings.SensDepChatLog == "SensDepLight") blindLevel = Math.min(2, blindLevel);
 			return blindLevel;
 		},
-		IsLocked: function () { return this.Effect.indexOf("Lock") > 0;},
-		IsBlind: function () { return this.GetBlindLevel() > 0 },
-		IsEnclose: function () { return (this.Effect.indexOf("Enclose") >= 0) },
-		IsMounted: function () { return (this.Effect.indexOf("Mounted") >= 0) },
-		IsChaste: function () { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
-		IsVulvaChaste: function () { return (this.Effect.indexOf("Chaste") >= 0) },
-		IsPlugged: function() {return (this.Effect.indexOf("IsPlugged") >= 0) },
-		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
-		IsShackled: function () { return (this.Effect.indexOf("Shackled") >= 0) },
-		IsSlow: function () { return (((this.Effect.indexOf("Slow") >= 0) || (this.Pose.indexOf("Kneel") >= 0)) && ((this.ID != 0) || !this.RestrictionSettings.SlowImmunity)) },
-		IsEgged: function () { return (this.Effect.indexOf("Egged") >= 0) },
-		IsMouthBlocked: function() { return this.Effect.indexOf("BlockMouth") >= 0 },
-		IsMouthOpen: function() { return this.Effect.indexOf("OpenMouth") >= 0 },
-		IsVulvaFull: function() { return this.Effect.indexOf("FillVulva") >= 0 },
-		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
-		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || this.IsOwnedByMemberNumber(Player.MemberNumber)) },
-		IsOwnedByMemberNumber: function (memberNumber) { return (this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == memberNumber) },
-		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
-		IsLoverOfPlayer: function () { return this.IsLover(Player); },
-		IsLover: function (C) { return (this.IsLoverOfMemberNumber(C.MemberNumber) || (((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))); },
-		IsLoverOfMemberNumber: function (memberNumber) { return this.GetLoversNumbers().indexOf(memberNumber) >= 0; },
-		GetLoversNumbers: function (MembersOnly) { return CharacterGetLoversNumbers(this, MembersOnly); },
+		IsLocked: function () {
+			return this.Effect.indexOf("Lock") > 0;
+		},
+		IsBlind: function () {
+			return this.GetBlindLevel() > 0;
+		},
+		IsEnclose: function () {
+			return (this.Effect.indexOf("Enclose") >= 0);
+		},
+		IsMounted: function () {
+			return (this.Effect.indexOf("Mounted") >= 0);
+		},
+		IsChaste: function () {
+			return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0));
+		},
+		IsVulvaChaste: function () {
+			return (this.Effect.indexOf("Chaste") >= 0);
+		},
+		IsPlugged: function() {
+			return (this.Effect.indexOf("IsPlugged") >= 0);
+		},
+		IsBreastChaste: function () {
+			return (this.Effect.indexOf("BreastChaste") >= 0);
+		},
+		IsShackled: function () {
+			return (this.Effect.indexOf("Shackled") >= 0);
+		},
+		IsSlow: function () {
+			return (
+				((this.Effect.indexOf("Slow") >= 0) || (this.Pose.indexOf("Kneel") >= 0)) &&
+				((this.ID != 0) || !this.RestrictionSettings.SlowImmunity)
+			);
+		},
+		IsEgged: function () {
+			return (this.Effect.indexOf("Egged") >= 0);
+		},
+		IsMouthBlocked: function() {
+			return this.Effect.indexOf("BlockMouth") >= 0;
+		},
+		IsMouthOpen: function() {
+			return this.Effect.indexOf("OpenMouth") >= 0;
+		},
+		IsVulvaFull: function() {
+			return this.Effect.indexOf("FillVulva") >= 0;
+		},
+		IsOwned: function () {
+			return ((this.Owner != null) && (this.Owner.trim() != ""));
+		},
+		IsOwnedByPlayer: function () {
+			return (
+				(
+					(((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) &&
+					(this.Ownership == null)
+				) ||
+				this.IsOwnedByMemberNumber(Player.MemberNumber)
+			);
+		},
+		IsOwnedByMemberNumber: function (memberNumber) {
+			return (this.Ownership != null) &&
+				(this.Ownership.MemberNumber != null) &&
+				(this.Ownership.MemberNumber == memberNumber);
+		},
+		IsOwner: function () {
+			return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", "")));
+		},
+		IsLoverOfPlayer: function () {
+			return this.IsLover(Player);
+		},
+		IsLover: function (C) {
+			return (
+				this.IsLoverOfMemberNumber(C.MemberNumber) ||
+				(((this.Lover != null) && (this.Lover.trim() == C.Name)) || (NPCEventGet(this, "Girlfriend") > 0))
+			);
+		},
+		IsLoverOfMemberNumber: function (memberNumber) {
+			return this.GetLoversNumbers().indexOf(memberNumber) >= 0;
+		},
+		GetLoversNumbers: function (MembersOnly) {
+			return CharacterGetLoversNumbers(this, MembersOnly);
+		},
 		GetDeafLevel: function () {
 			var deafLevel = 0;
 			for (let A = 0; A < this.Appearance.length; A++) {
@@ -108,17 +207,45 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			}
 			return deafLevel;
 		},
-		IsLoverPrivate: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (Player.GetLoversNumbers().indexOf("NPC-" + this.Name) >= 0)); },
-		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
-		IsNaked: function () { return CharacterIsNaked(this); },
-		IsDeaf: function () { return this.GetDeafLevel() > 0 },
-		HasNoItem: function () { return CharacterHasNoItem(this); },
-		IsEdged: function () { return CharacterIsEdged(this); },
-		IsNpc: function () { return (this.AccountName.substring(0, 4) === "NPC_" || this.AccountName.substring(0, 4) === "NPC-"); },
-		GetDifficulty: function () { return ((this.Difficulty == null) || (this.Difficulty.Level == null) || (typeof this.Difficulty.Level !== "number") || (this.Difficulty.Level < 0) || (this.Difficulty.Level > 3)) ? 1 : this.Difficulty.Level; },
-		IsInverted: function () { return this.Pose.indexOf("Suspension") >= 0; },
-		CanChangeToPose: function(Pose) { return CharacterCanChangeToPose(this, Pose); },
-		GetClumsiness: function() { return CharacterGetClumsiness(this); },
+		IsLoverPrivate: function () {
+			return ((NPCEventGet(this, "Girlfriend") > 0) || (Player.GetLoversNumbers().indexOf("NPC-" + this.Name) >= 0));
+		},
+		IsKneeling: function () {
+			return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0));
+		},
+		IsNaked: function () {
+			return CharacterIsNaked(this);
+		},
+		IsDeaf: function () {
+			return this.GetDeafLevel() > 0;
+		},
+		HasNoItem: function () {
+			return CharacterHasNoItem(this);
+		},
+		IsEdged: function () {
+			return CharacterIsEdged(this);
+		},
+		IsNpc: function () {
+			return (this.AccountName.substring(0, 4) === "NPC_" || this.AccountName.substring(0, 4) === "NPC-");
+		},
+		GetDifficulty: function () {
+			return (
+				(this.Difficulty == null) ||
+				(this.Difficulty.Level == null) ||
+				(typeof this.Difficulty.Level !== "number") ||
+				(this.Difficulty.Level < 0) ||
+				(this.Difficulty.Level > 3)
+			) ? 1 : this.Difficulty.Level;
+		},
+		IsInverted: function () {
+			return this.Pose.indexOf("Suspension") >= 0;
+		},
+		CanChangeToPose: function(Pose) {
+			return CharacterCanChangeToPose(this, Pose);
+		},
+		GetClumsiness: function() {
+			return CharacterGetClumsiness(this);
+		},
 		// Adds a new hook with a Name (determines when the hook will happen, an Instance ID (used to differentiate between different hooks happening at the same time), and a function that is run when the hook is called)
 		RegisterHook: function(hookName, hookInstance, callback) {
 			if (!this.Hooks) this.Hooks = new Map();
@@ -176,7 +303,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
  */
 function CharacterRandomName(C) {
 
-	// Generates a name from the name bank 
+	// Generates a name from the name bank
 	var NewName = CharacterName[Math.floor(Math.random() * CharacterName.length)];
 	C.Name = NewName;
 
@@ -238,7 +365,7 @@ function CharacterBuildDialog(C, CSV) {
 /**
  * Loads the content of a CSV file to build the character dialog. Can override the current screen.
  * @param {Character} C - Character for which to build the dialog objects
- * @param {string} [Override] - Optional: Path to the specific CSV to build the character dialog with 
+ * @param {string} [Override] - Optional: Path to the specific CSV to build the character dialog with
  * @returns {void} - Nothing
  */
 function CharacterLoadCSVDialog(C, Override) {
@@ -264,7 +391,7 @@ function CharacterLoadCSVDialog(C, Override) {
  * Sets the clothes based on a character archetype
  * @param {Character} C - Character to set the clothes for
  * @param {string} Archetype - Archetype to determine the clothes to put on
- * @param {string} [ForceColor] - Color to use for the added clothes 
+ * @param {string} [ForceColor] - Color to use for the added clothes
  * @returns {void} - Nothing
  */
 function CharacterArchetypeClothes(C, Archetype, ForceColor) {
@@ -309,7 +436,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryRemove(C, "HairAccessory3");
 		InventoryRemove(C, "Socks");
 	}
-	
+
 	// Employee archetype
 	if (Archetype == "Employee") {
 		InventoryAdd(C, "VirginKiller1", "Cloth", false);
@@ -371,7 +498,7 @@ function CharacterLoadSimple(AccName) {
 	CharacterReset(CharacterNextId++, "Female3DCG");
 	let C = Character[Character.length - 1];
 	C.AccountName = AccName;
-	
+
 	// Returns the new character
 	return C;
 }
@@ -449,11 +576,11 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 	if (Char == null) {
 		// We delete the duplicate character if the person relogged.
 		for (var C = 0; C < Character.length; C++)
-			if (Character[C].MemberNumber == data.MemberNumber) { 
+			if (Character[C].MemberNumber == data.MemberNumber) {
 				CharacterDelete(Character[C].AccountName);
 				break;
 			}
-		
+
 		// Creates the new character from the online template
 		CharacterReset(CharacterNextId++, "Female3DCG");
 		Char = Character[Character.length - 1];
@@ -522,7 +649,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 /**
  * Deletes an NPC from the buffer
  * @param {string} NPCType - Account name of the npc to delete
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function CharacterDelete(NPCType) {
 	for (let C = 0; C < Character.length; C++)
@@ -537,17 +664,17 @@ function CharacterDelete(NPCType) {
  * Deletes all online characters from the character array
  * @returns {void} - Nothing
  */
-function CharacterDeleteAllOnline() { 
+function CharacterDeleteAllOnline() {
 	for (let C = Character.length - 1; C >= 0; C--)
 		if (Character[C].AccountName.startsWith("Online-"))
 			CharacterDelete(Character[C].AccountName);
 }
 
-/** 
+/**
  * Adds a pose to a character's pose list, does not add it if it's already there
  * @param {Character} C - Character for which to add a pose to its list
  * @param {string} NewPose - The name of the pose to add
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function CharacterAddPose(C, NewPose) {
 	for (let E = 0; E < NewPose.length; E++)
@@ -597,11 +724,11 @@ function CharacterItemsHavePoseAvailable(C, Type, Pose) {
 
 /**
  * Checks if a character has a pose from items (not active pose unless an item lets it through)
- * @param {Character} C - Character to check for the pose 
+ * @param {Character} C - Character to check for the pose
  * @param {string} Pose - Pose to check for within items
  * @returns {boolean} - TRUE if the character has the pose
  */
-function CharacterItemsHavePose(C, Pose) { 
+function CharacterItemsHavePose(C, Pose) {
 	if (C.ActivePose != null && C.AllowedActivePose.includes(Pose) && (typeof C.ActivePose == "string" && C.ActivePose == Pose || Array.isArray(C.ActivePose) && C.ActivePose.includes(Pose))) return true;
 	return CharacterDoItemsSetPose(C, Pose);
 }
@@ -628,9 +755,9 @@ function CharacterDoItemsSetPose(C, pose) {
  * @param {boolean} OnlyItems - Whether or not allowed activeposes should be ignored.
  * @returns {boolean} - TRUE if the character has the pose type active
  */
-function CharacterItemsHavePoseType(C, Type, OnlyItems) { 
+function CharacterItemsHavePoseType(C, Type, OnlyItems) {
 	var PossiblePoses = PoseFemale3DCG.filter(P => P.Category == Type || P.Category == "BodyFull").map(P => P.Name);
-	
+
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if (!OnlyItems && C.Appearance[A].Asset.AllowActivePose != null && (C.Appearance[A].Asset.AllowActivePose.find(P => PossiblePoses.includes(P) && C.AllowedActivePose.includes(P))))
 			return true;
@@ -649,12 +776,12 @@ function CharacterItemsHavePoseType(C, Type, OnlyItems) {
 /**
  * Refreshes the list of poses for a character. Each pose can only be found once in the pose array
  * @param {Character} C - Character for which to refresh the pose list
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function CharacterLoadPose(C) {
 	C.Pose = [];
 	C.AllowedActivePose = [];
-	
+
 	for (let i = 0, Item = null; i < C.Appearance.length; i++) {
 		Item = C.Appearance[i];
 		const AllowActivePose = InventoryGetItemProperty(Item, "AllowActivePose");
@@ -663,11 +790,11 @@ function CharacterLoadPose(C) {
 		const SetPose = InventoryGetItemProperty(Item, "SetPose", true);
 		if (SetPose != null) CharacterAddPose(C, SetPose);
 	}
-	
+
 	// Add possible active poses (Bodyfull can only be alone, and cannot have two of upperbody or bodylower)
 	var Poses = C.Pose.map(CP => PoseFemale3DCG.find(P => P.Name == CP)).filter(P => P);
 	if (C.ActivePose != null && typeof C.ActivePose == "string") C.ActivePose = [C.ActivePose];
-	
+
 	if (C.ActivePose != null && Array.isArray(C.ActivePose)) {
 		var ActivePoses = C.ActivePose
 			.map(CP => PoseFemale3DCG.find(P => P.Name == CP))
@@ -688,7 +815,7 @@ function CharacterLoadPose(C) {
  * Adds an effect to a character's effect list, does not add it if it's already there
  * @param {Character} C - Character for which to add an effect to its list
  * @param {string} NewEffect - The name of the effect to add
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function CharacterAddEffect(C, NewEffect) {
 	for (let E = 0; E < NewEffect.length; E++)
@@ -699,7 +826,7 @@ function CharacterAddEffect(C, NewEffect) {
 /**
  * Refreshes the list of effects for a character. Each effect can only be found once in the effect array
  * @param {Character} C - Character for which to refresh the effect list
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function CharacterLoadEffect(C) {
 	C.Effect = [];
@@ -777,7 +904,7 @@ function CharacterSetCurrent(C) {
 
 /**
  * Changes the character money and sync with the account server, factors in the cheaters version.
- * @param {Character} C - Character for which we are altering the money amount 
+ * @param {Character} C - Character for which we are altering the money amount
  * @param {number} Value - Money to subtract/add
  * @returns {void} - Nothing
  */
@@ -789,7 +916,7 @@ function CharacterChangeMoney(C, Value) {
 /**
  * Refreshes the character parameters (Effects, poses, canvas, settings, etc.)
  * @param {Character} C - Character to refresh
- * @param {boolean} [Push=true] - Pushes the data to the server if true or null 
+ * @param {boolean} [Push=true] - Pushes the data to the server if true or null
  * @returns {void} - Nothing
  */
 function CharacterRefresh(C, Push) {
@@ -800,7 +927,7 @@ function CharacterRefresh(C, Push) {
 	// Label often looped through checks:
 	C.RunScripts = (!C.AccountName.startsWith('Online-') || !(Player.OnlineSettings && Player.OnlineSettings.DisableAnimations)) && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1);
 	C.HasScriptedAssets = !!C.Appearance.find(CA => CA.Asset.DynamicScriptDraw);
-	
+
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) {
 		ChatRoomRefreshChatSettings();
 		ServerPlayerAppearanceSync();
@@ -1081,24 +1208,24 @@ function CharacterSetActivePose(C, NewPose, ForceChange) {
 		CharacterRefresh(C, false);
 		return;
 	}
-	
+
 	if (C.ActivePose == null) C.ActivePose = [];
 	if (typeof C.ActivePose == "string") C.ActivePose = [C.ActivePose];
-		
+
 	const PreviousPoses = C.ActivePose.map(AP => PoseFemale3DCG.find(P => P.Name == AP)).filter(AP => typeof AP == "object");
 	const Pose = PoseFemale3DCG.find(P => P.Name == NewPose);
-	
+
 	// We only allow poses of different categories to be matched together
-	if (Pose && Pose.Category) { 
+	if (Pose && Pose.Category) {
 		C.ActivePose = PreviousPoses
 			.filter(PP => PP.AllowMenu && Pose.Category !== "BodyFull" && PP.Category !== "BodyFull" && PP.Category !== Pose.Category)
 			.map(AP => AP.Name);
 		C.ActivePose.push(Pose.Name);
 	}
-	
+
 	// If we reset to base, we remove the poses
 	if (C.ActivePose.filter(P => P !== "BaseUpper" && P !== "BaseLower").length == 0) C.ActivePose = null;
-	
+
 	CharacterRefresh(C, false);
 }
 
@@ -1115,7 +1242,7 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer, Color) {
 	// A normal eye expression is triggered for both eyes
 	if (AssetGroup == "Eyes") CharacterSetFacialExpression(C, "Eyes2", Expression, Timer);
 	if (AssetGroup == "Eyes1") AssetGroup = "Eyes";
-		
+
 	var Ex = InventoryGet(C, AssetGroup);
 	if ((Timer != null) && (Ex != null) && (Ex.Property != null) && (Ex.Property.Expression != null) && (Ex.Property.Expression != "")) return;
 	for (let A = 0; A < C.Appearance.length; A++) {
@@ -1338,14 +1465,14 @@ function CharacterGetClumsiness(C) {
  * @returns {boolean} - If a hook was applied or removed
  */
 function CharacterCheckHooks(C, IgnoreHooks) {
-	var refresh = false
+	var refresh = false;
 	if (C && C.DrawAppearance) {
 		if (!IgnoreHooks && Player.Effect.includes("VRAvatars") && C.Effect.includes("HideRestraints")) {
 			// Then when that character enters the virtual world, register a hook to strip out restraint layers (if needed):
 			if (C.RegisterHook("BeforeSortLayers", "HideRestraints", (C) => {
 				C.DrawAppearance = C.DrawAppearance.filter((Layer) => !(Layer.Asset && Layer.Asset.IsRestraint));
 				C.DrawPose = C.DrawPose.filter((Pose) => (Pose != "TapedHands"));
-				
+
 			})) refresh = true;
 		} else if (C.UnregisterHook("BeforeSortLayers", "HideRestraints")) refresh = true;
 	}
