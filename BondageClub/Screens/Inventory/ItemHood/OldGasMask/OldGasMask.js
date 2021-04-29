@@ -36,7 +36,7 @@ function InventoryItemHoodOldGasMaskDraw() {
 	DrawButton(1250, 760, 200, 55, DialogFindPlayer("OldGasMaskLensesRebreather"), itemBlocked || lensesRebreatherIsBlocked ? "#888" : "White");
 
 	// Draw the message if the player is wearing an addon
-	if (tube1IsBlocked || tube2IsBlocked || lensesIsBlocked || rebreatherIsBlocked || lensesTube1IsBlocked || lensesTube2IsBlocked || lensesRebreatherIsBlocked) { 
+	if (tube1IsBlocked || tube2IsBlocked || lensesIsBlocked || rebreatherIsBlocked || lensesTube1IsBlocked || lensesTube2IsBlocked || lensesRebreatherIsBlocked) {
 		DrawTextWrap(DialogFindPlayer("ItemAddonsSomeWrongPermissions"), 1100, 850, 800, 160, "White");
 	}
 }
@@ -45,10 +45,10 @@ function InventoryItemHoodOldGasMaskDraw() {
 function InventoryItemHoodOldGasMaskClick() {
 	var C = CharacterGetCurrent();
 	var itemBlocked = InventoryGet(C, "ItemHoodAddon") != null;
-	
+
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	
+
 	if (MouseIn(1250, 520, 200, 55) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskLenses");
 	if (MouseIn(1550, 520, 200, 55) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskTube1");
 	if (MouseIn(1250, 600, 200, 55) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskRebreather");
@@ -56,7 +56,7 @@ function InventoryItemHoodOldGasMaskClick() {
 	if (MouseIn(1250, 680, 200, 55) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskLensesTube1");
 	if (MouseIn(1550, 680, 200, 55) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskLensesTube2");
 	if (MouseIn(1250, 760, 200, 55) && !itemBlocked) InventoryItemHoodOldGasMaskSetItem("OldGasMaskLensesRebreather");
-	
+
 }
 
 // Sets the lenses
@@ -72,11 +72,11 @@ function InventoryItemHoodOldGasMaskSetItem(itemName) {
 	var item = InventoryItemCreate(C, "ItemHoodAddon", itemName);
 	// Do not continue if the item is blocked by permissions
 	if (InventoryBlockedOrLimited(C, item)) return;
-	
+
 	// Wear the item
 	InventoryWear(C, itemName, "ItemHoodAddon", DialogColorSelect);
 	DialogFocusItem = InventoryGet(C, "ItemHoodAddon");
-	
+
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
 	CharacterLoadEffect(C);
