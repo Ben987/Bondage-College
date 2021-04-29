@@ -35,7 +35,7 @@ var InventoryItemHeadInteractiveVisorOptions = [
 function InventoryItemHeadInteractiveVisorLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else
 		ExtendedItemLoad(InventoryItemHeadInteractiveVisorOptions, "SelectVisorType");
 }
@@ -43,7 +43,7 @@ function InventoryItemHeadInteractiveVisorLoad() {
 function InventoryItemHeadInteractiveVisorDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else
 		ExtendedItemDraw(InventoryItemHeadInteractiveVisorOptions, "InteractiveVisorHeadType");
 }
@@ -51,7 +51,7 @@ function InventoryItemHeadInteractiveVisorDraw() {
 function InventoryItemHeadInteractiveVisorClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
 	} else
 		ExtendedItemClick(InventoryItemHeadInteractiveVisorOptions);
 }
@@ -68,7 +68,7 @@ function InventoryItemHeadInteractiveVisorPublishAction(C, Option) {
 
 
 function InventoryItemHeadInteractiveVisorExit() {
-	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
 function InventoryItemHeadInteractiveVisorValidate(C, Option) {

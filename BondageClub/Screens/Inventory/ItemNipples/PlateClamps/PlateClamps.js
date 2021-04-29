@@ -13,7 +13,7 @@ var InventoryItemNipplesPlateClampsOptions = [
 			Type: "Tight"
 		},
 	}
-]
+];
 
 /**
  * Loads the item extension properties

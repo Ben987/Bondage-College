@@ -12,7 +12,7 @@ var InventoryItemMouthMilkBottleOptions = [
 	{
 		Name: "Chug",
 		Property: { Type: "Chug" },
-	},	
+	},
 ];
 
 // Loads the item extension properties

@@ -15,7 +15,7 @@ var InventoryItemArmsFuturisticArmbinderOptions = [
 function InventoryItemArmsFuturisticArmbinderLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else
 	ExtendedItemLoad(InventoryItemArmsFuturisticArmbinderOptions, "SelectFuturisticArmbinderType");
 }
@@ -24,7 +24,7 @@ function InventoryItemArmsFuturisticArmbinderLoad() {
 function InventoryItemArmsFuturisticArmbinderDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else
 		ExtendedItemDraw(InventoryItemArmsFuturisticArmbinderOptions, "FuturisticArmbinderType");
 }
@@ -33,17 +33,17 @@ function InventoryItemArmsFuturisticArmbinderDraw() {
 function InventoryItemArmsFuturisticArmbinderClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
 	} else
 		ExtendedItemClick(InventoryItemArmsFuturisticArmbinderOptions);
 }
 
 function InventoryItemArmsFuturisticArmbinderExit() {
-	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
-	
+
 function InventoryItemArmsFuturisticArmbinderValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option)
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
 }
 
 function InventoryItemArmsFuturisticArmbinderPublishAction(C, Option) {

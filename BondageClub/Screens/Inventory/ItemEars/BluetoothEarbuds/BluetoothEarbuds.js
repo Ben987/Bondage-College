@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Forwards the call to InventoryItemEarsHeadphoneEarPlugsLoad 
+ * Forwards the call to InventoryItemEarsHeadphoneEarPlugsLoad
  * @returns {void} - Nothing
  */
 function InventoryItemEarsBluetoothEarbudsLoad() {
@@ -9,7 +9,7 @@ function InventoryItemEarsBluetoothEarbudsLoad() {
 }
 
 /**
- * Forwards the call to InventoryItemEarsHeadphoneEarPlugsDraw 
+ * Forwards the call to InventoryItemEarsHeadphoneEarPlugsDraw
  * @returns {void} - Nothing
  */
 function InventoryItemEarsBluetoothEarbudsDraw() {
@@ -17,7 +17,7 @@ function InventoryItemEarsBluetoothEarbudsDraw() {
 }
 
 /**
- * Forwards the call to InventoryItemEarsHeadphoneEarPlugsClick 
+ * Forwards the call to InventoryItemEarsHeadphoneEarPlugsClick
  * @returns {void} - Nothing
  */
 function InventoryItemEarsBluetoothEarbudsClick() {
@@ -25,7 +25,7 @@ function InventoryItemEarsBluetoothEarbudsClick() {
 }
 
 /**
- * Forwards the call to InventoryItemEarsHeadphoneEarPlugsPublishAction 
+ * Forwards the call to InventoryItemEarsHeadphoneEarPlugsPublishAction
  * @param {Character} C - The target character
  * @param {Option} Option - The currently selected Option
  * @param {Option} PreviousOption - The previously selected Option
@@ -36,7 +36,7 @@ function InventoryItemEarsBluetoothEarbudsPublishAction(C, Option, PreviousOptio
 }
 
 /**
- * Forwards the call to 	InventoryItemEarsHeadphoneEarPlugsNpcDialog 
+ * Forwards the call to 	InventoryItemEarsHeadphoneEarPlugsNpcDialog
  * @param {Character} C - The NPC to whom the restraint is applied
  * @param {Option} Option - The chosen option for this extended item
  * @returns {void} - Nothing

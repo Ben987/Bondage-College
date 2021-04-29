@@ -41,7 +41,7 @@ var InventoryItemHeadInteractiveVRHeadsetOptions = [
 function InventoryItemHeadInteractiveVRHeadsetLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else
 		ExtendedItemLoad(InventoryItemHeadInteractiveVRHeadsetOptions, "SelectHeadsetType");
 }
@@ -49,7 +49,7 @@ function InventoryItemHeadInteractiveVRHeadsetLoad() {
 function InventoryItemHeadInteractiveVRHeadsetDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else
 		ExtendedItemDraw(InventoryItemHeadInteractiveVRHeadsetOptions, "InteractiveVRHeadsetHeadType");
 }
@@ -57,7 +57,7 @@ function InventoryItemHeadInteractiveVRHeadsetDraw() {
 function InventoryItemHeadInteractiveVRHeadsetClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
 	} else
 		ExtendedItemClick(InventoryItemHeadInteractiveVRHeadsetOptions);
 }
@@ -74,7 +74,7 @@ function InventoryItemHeadInteractiveVRHeadsetPublishAction(C, Option) {
 
 
 function InventoryItemHeadInteractiveVRHeadsetExit() {
-	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
 function InventoryItemHeadInteractiveVRHeadsetValidate(C, Option) {

@@ -77,7 +77,7 @@ function InventoryItemVulvaClitAndDildoVibratorbeltSetIntensity(Modifier) {
 		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
 		DialogFocusItem.Property.Effect.push("Lock");
 	}
-	
+
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 
