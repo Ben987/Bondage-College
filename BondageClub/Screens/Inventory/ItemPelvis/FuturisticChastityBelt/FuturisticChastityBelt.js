@@ -100,13 +100,13 @@ function InventoryItemPelvisFuturisticChastityBeltClick() {
 			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishOrgasm", DialogFocusItem.Property.PunishOrgasm)
 		} else if (MouseIn(1200, 910, 600, 64)) {
 			if (MouseIn(1225, 910, 150, 64) && DialogFocusItem.Property.Type != null) {
-				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[0], false)
+				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[0]);
 			} 
 			if (MouseIn(1425, 910, 150, 64) && DialogFocusItem.Property.Type != "OpenFront") {
-				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[1], false)
+				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[1]);
 			}
 			if (MouseIn(1625, 910, 150, 64) && DialogFocusItem.Property.Type != "ClosedBack") {
-				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[2], false)
+				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[2]);
 			}
 
 		} 

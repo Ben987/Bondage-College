@@ -74,7 +74,7 @@ function InventoryItemArmsTransportJacketClick() {
 		return ExtendedItemExit();
 	}
 
-	ExtendedItemClick(InventoryItemArmsTransportJacketOptions, false, 3);
+	ExtendedItemClick(InventoryItemArmsTransportJacketOptions, 3);
 }
 
 function InventoryItemArmsTransportJacketPublishAction(C, Option, PreviousOption) {

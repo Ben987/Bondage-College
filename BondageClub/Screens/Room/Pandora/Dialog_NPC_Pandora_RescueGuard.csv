@@ -1,6 +1,10 @@
 PlayerGagged,,,"(She looks at your gag and laughs.)  Get lost slave, I don't have time for you.",,
 FightVictory,,,"(She pouts.)  You're tough!  Alright, go ahead and get her.  I don't care.",,
 FightDefeat,,,(She smiles and laughs.)  You really thought you could beat me?,,
+Punishment8,,,"(A Dominatrix takes you away from the guard.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(A Dominatrix takes you away from the guard.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(A Dominatrix takes you away from the guard.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(A Dominatrix takes you away from the guard.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
 0,,,Damn it!  It's really you DialogPlayerName?  You came to rescue her?,,"DialogSkillGreater(""Infiltration"", 9)"
 0,,,I know who you are DialogPlayerName.  You're not going anywhere.,,"DialogSkillGreater(""Infiltration"", 5)"
 0,,,Have I seen you before?  Don't give me any trouble.,,"DialogSkillGreater(""Infiltration"", 1)"
@@ -21,6 +25,14 @@ FightDefeat,,,(She smiles and laughs.)  You really thought you could beat me?,,
 100,,(Wear her clothes.),(You put on her clothes.)  Wait!  What are you doing?  What are you planning?,"PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
 100,,(Strip her naked.),(You strip her naked as she struggles.)  I'm only a guard here.  Give me a break.,CharacterNaked(),!CurrentCharacter.IsNaked()
 100,,(Leave her.),,DialogLeave(),
-200,210,Get me out!,"(She smirks at you.)  I have a job to do, but I'll call a maid to escort you out.",,
-200,210,(Beg for mercy.),"(She smirks at you.)  I have a job to do, but I'll call a maid to escort you out.",,
-210,,(Let the maid escort you out.),,MissionFail(),
+200,210,Get me out!,"(She smirks at you.)  I have a job to do, but I'll call someone for your punishment.",,Player.CanTalk()
+200,210,(Beg for mercy.),"(She smirks at you.)  I have a job to do, but I'll call someone for your punishment.",,!Player.CanTalk()
+210,220,Punishment?  What do you mean?,You will understand very soon.  A Dominatrix is coming right up.,,Player.CanTalk()
+210,220,You're not punishing me girl.,Someone else will take care of that.  A Dominatrix is coming right up.,,Player.CanTalk()
+210,220,I will accept it Miss.,You're in the right mindset for this.  A Dominatrix is coming right up.,,Player.CanTalk()
+210,220,(Scream in your gag.),"Scream girl, it's amusing.  A Dominatrix is coming right up.",,!Player.CanTalk()
+210,220,(Trash in your bondage.),You're cute when you struggle.  A Dominatrix is coming right up.,,!Player.CanTalk()
+210,220,(Bow your head and stay silent.),You're in the right mindset for this.  A Dominatrix is coming right up.,,!Player.CanTalk()
+220,,How about a bribe?,You can't bribe me!  The Dominatrix is already on her way.,DialogRemove(),Player.CanTalk()
+220,,I'll be back!,"I can do better!  (She makes a robot voice.)  Hasta la vista, baby!",DialogRemove(),Player.CanTalk()
+220,,(Wait for the Dominatrix.),,PunishmentIntro(),

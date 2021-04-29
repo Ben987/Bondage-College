@@ -303,7 +303,7 @@ function CharacterAppearanceStripLayer(C) {
  */
 function CharacterAppearanceSortLayers(C) {
 	var groupAlphas = {};
-	var layers = C.Appearance.reduce((layersAcc, item) => {
+	var layers = C.DrawAppearance.reduce((layersAcc, item) => {
 		var asset = item.Asset;
 		// Only include layers for visible assets
 		if (asset.Visible && CharacterAppearanceVisible(C, asset.Name, asset.Group.Name) && InventoryChatRoomAllow(asset.Category)) {
@@ -367,18 +367,18 @@ function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 		return false;
 	}
 
+	if (!C.DrawAppearance) C.DrawAppearance = C.Appearance
 
-
-	for (let A = 0; A < C.Appearance.length; A++) {
-		if (CharacterAppearanceItemIsHidden(C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) continue;
+	for (let A = 0; A < C.DrawAppearance.length; A++) {
+		if (CharacterAppearanceItemIsHidden(C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name)) continue;
 		let HidingItem = false;
-		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0) && !C.Appearance[A].Asset.HideItemExclude.includes(GroupName + AssetName)) HidingItem = true;
-		else if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
-		else if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
-		else if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.HideItem != null) && (C.Appearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		if ((C.DrawAppearance[A].Asset.Hide != null) && (C.DrawAppearance[A].Asset.Hide.indexOf(GroupName) >= 0) && !C.DrawAppearance[A].Asset.HideItemExclude.includes(GroupName + AssetName)) HidingItem = true;
+		else if ((C.DrawAppearance[A].Property != null) && (C.DrawAppearance[A].Property.Hide != null) && (C.DrawAppearance[A].Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
+		else if ((C.DrawAppearance[A].Asset.HideItem != null) && (C.DrawAppearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		else if ((C.DrawAppearance[A].Property != null) && (C.DrawAppearance[A].Property.HideItem != null) && (C.DrawAppearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
 		if (HidingItem) {
 			if (Recursive) {
-				if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name, false)) {
+				if (CharacterAppearanceVisible(C, C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name, false)) {
 					return false;
 				}
 			}
@@ -425,8 +425,8 @@ function CharacterAppearanceSetHeightModifiers(C) {
 		// Check if there is any setting to override the standard asset height modifiers
 		let HeightOverrides = [];
 		let PoseOverrides = Pose.filter(P => C.Pose != null && C.Pose.indexOf(P.Name) >= 0 && P.OverrideHeight != null).map(P => P.OverrideHeight);
-		let AssetOverrides = C.Appearance.filter(A => A.Asset.OverrideHeight != null).map(A => A.Asset.OverrideHeight);
-		let PropertyOverrides = C.Appearance.filter(A => A.Property && A.Property.OverrideHeight != null).map(A => A.Property.OverrideHeight);
+		let AssetOverrides = C.DrawAppearance.filter(A => A.Asset.OverrideHeight != null).map(A => A.Asset.OverrideHeight);
+		let PropertyOverrides = C.DrawAppearance.filter(A => A.Property && A.Property.OverrideHeight != null).map(A => A.Property.OverrideHeight);
 		HeightOverrides = HeightOverrides.concat(PoseOverrides, AssetOverrides, PropertyOverrides);
 
 		if (HeightOverrides.length > 0) {
@@ -437,10 +437,10 @@ function CharacterAppearanceSetHeightModifiers(C) {
 		}
 		else {
 			// Adjust the height based on modifiers on the assets
-			for (let A = 0; A < C.Appearance.length; A++)
-				if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
-					if (C.Appearance[A].Property && C.Appearance[A].Property.HeightModifier != null) Height += C.Appearance[A].Property.HeightModifier;
-					else Height += C.Appearance[A].Asset.HeightModifier;
+			for (let A = 0; A < C.DrawAppearance.length; A++)
+				if (CharacterAppearanceVisible(C, C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name)) {
+					if (C.DrawAppearance[A].Property && C.DrawAppearance[A].Property.HeightModifier != null) Height += C.DrawAppearance[A].Property.HeightModifier;
+					else Height += C.DrawAppearance[A].Asset.HeightModifier;
 				}
 		}
 		
@@ -664,7 +664,7 @@ function AppearanceRun() {
 		// Leave the color picker if the item is gone.
 		if (!InventoryGet(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName)) ItemColorCancelAndExit();
 		// Draw the color picker
-	    ItemColorDraw(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName, 1200, 25, 775, 950, true);
+		ItemColorDraw(CharacterAppearanceSelection, CharacterAppearanceColorPickerGroupName, 1200, 25, 775, 950, true);
 	}
 
 	// In cloth selection mode
@@ -1000,7 +1000,7 @@ function AppearanceClick() {
 			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++) {
 				const Item = InventoryGet(C, AssetGroup[A].Name);
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") &&
-				    WardrobeGroupAccessible(C, AssetGroup[A]) && Item && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1))
+					WardrobeGroupAccessible(C, AssetGroup[A]) && Item && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
 						CharacterAppearanceNextColor(C, AssetGroup[A].Name);
 			}
@@ -1010,7 +1010,7 @@ function AppearanceClick() {
 			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++) {
 				const Item = InventoryGet(C, AssetGroup[A].Name);
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") &&
-				    WardrobeGroupAccessible(C, AssetGroup[A]) && AssetGroup[A].AllowColorize && Item && Item.Asset.ColorableLayerCount > 0)
+					WardrobeGroupAccessible(C, AssetGroup[A]) && AssetGroup[A].AllowColorize && Item && Item.Asset.ColorableLayerCount > 0)
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95)) {
 						AppearanceItemColor(C, Item, AssetGroup[A].Name, "");
 					}

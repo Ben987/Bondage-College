@@ -48,6 +48,6 @@ function InventoryItemMouthBallGagPublishAction(C, Option) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemMouthBallGagGagNpcDialog(C, Option) {
+function InventoryItemMouthBallGagNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "ItemMouthBallGag" + Option.Name, "ItemMouth");
 }

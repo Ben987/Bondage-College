@@ -216,7 +216,7 @@ function AssetsItemBreastFuturisticBraAfterDraw({
 		const Height = 50;
 		const Width = 55;
 		const TempCanvas = AnimationGenerateTempCanvas(C, A, Width, Height);
-    	
+
 		// We draw the desired info on that canvas
 		let context = TempCanvas.getContext('2d');
 		context.font = "bold 14px sansserif";
@@ -226,7 +226,7 @@ function AssetsItemBreastFuturisticBraAfterDraw({
 		context.fillText((Property && Property.HeartRate) ? Property.HeartRate : "--", Width / 2 - 1, Width / 2 + 1, Width);
 		context.fillText((Property && Property.HeartRate) ? Property.HeartRate : "--", Width / 2 + 1, Width / 2 + 1, Width);
 		context.fillText((Property && Property.HeartRate) ? Property.HeartRate : "--", Width / 2 - 1, Width / 2 - 1, Width);
-    		
+
 		context.font = "bold 14px sansserif";
 		context.fillStyle = Color;
 		context.textAlign = "center";

@@ -267,11 +267,13 @@ NotificationsAlertType2,Popup
 NotificationsExplanation,Raise notifications for missed events:
 NotificationsAudioExplanation1,: Play a sound for only
 NotificationsAudioExplanation2,the first occurrence of an event
+NotificationsOnly,Only:
 NotificationsBeeps,Beeps
 NotificationsChatMessage,Messages in chat rooms
-NotificationsChatActions,Include item/activity messages
+NotificationsChatMessageNormal,Normal Messages
+NotificationsChatMessageWhisper,Whispers
+NotificationsChatMessageActivity,Items/Activities
 NotificationsChatJoin,Players entering chat rooms
-NotificationsChatJoinOnly,Only:
 NotificationsChatJoinOwner,Owner
 NotificationsChatJoinLovers,Lovers
 NotificationsChatJoinFriendlist,Friends

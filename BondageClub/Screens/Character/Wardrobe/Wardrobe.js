@@ -185,7 +185,13 @@ function WardrobeSetCharacterName(W, Name, Push) {
  * @returns {Object} - bundle.Property - The asset property object
  */
 function WardrobeAssetBundle(A) {
-	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color, Property: A.Property };
+	let Property;
+	if (A.Property) {
+		Property = Object.assign({}, A.Property);
+		delete Property.Expression; // Don't add expressions to the wardrobe
+		if (Object.keys(Property).length === 0) Property = undefined; // Don't save empty properties
+	}
+	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color, Property };
 }
 
 /**
@@ -216,7 +222,9 @@ function WardrobeFastLoad(C, W, Update) {
 					if (w.Property && InventoryGet(C, w.Group)) { 
 						var item = InventoryGet(C, w.Group);
 						if (item.Property == null) item.Property = {};
-						for (const key in w.Property) item.Property[key] = w.Property[key];
+						for (const key of Object.keys(w.Property)) {
+							if (key !== "Expression") item.Property[key] = w.Property[key];
+						}
 					}
 				}
 			});

@@ -1,3 +1,5 @@
+"use strict";
+/* eslint-disable */
 var ControllerButtonsX = [];//there probably is a way to use just one list, but i don't want to bother and this works anyway
 var ControllerButtonsY = [];
 var ControllerActive = true;

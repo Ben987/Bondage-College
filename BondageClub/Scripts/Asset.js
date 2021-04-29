@@ -76,6 +76,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		InheritColor: NewAsset.InheritColor,
 		FreezeActivePose: Array.isArray(NewAsset.FreezeActivePose) ? NewAsset.FreezeActivePose : [],
 		PreviewZone: NewAsset.PreviewZone,
+		DynamicGroupName: NewAsset.DynamicGroupName || NewAsset.Group,
 	}
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
@@ -152,7 +153,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		CustomBlindBackground: NewAsset.CustomBlindBackground,
 		ArousalZone: (NewAsset.ArousalZone == null) ? AssetCurrentGroup.Name : NewAsset.ArousalZone,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
-		BodyCosplay: (NewAsset.BodyCosplay == null) ? ((AssetCurrentGroup.BodyCosplay == null) ? false : AssetCurrentGroup.BodyCosplay) : NewAsset.BodyCosplay,
+		BodyCosplay: (NewAsset.BodyCosplay == null) ? AssetCurrentGroup.BodyCosplay : NewAsset.BodyCosplay,
 		OverrideBlinking: (NewAsset.OverrideBlinking == null) ? false : NewAsset.OverrideBlinking,
 		DialogSortOverride: NewAsset.DialogSortOverride,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicDescription : function () { return this.Description },
@@ -160,7 +161,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function') ? NewAsset.DynamicAllowInventoryAdd : function () { return true },
 		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function') ? NewAsset.DynamicExpressionTrigger : function () { return this.ExpressionTrigger },
 		DynamicName: (typeof NewAsset.DynamicName === 'function') ? NewAsset.DynamicName : function () { return this.Name },
-		DynamicGroupName: (NewAsset.DynamicGroupName || AssetCurrentGroup.Name),
+		DynamicGroupName: (NewAsset.DynamicGroupName || AssetCurrentGroup.DynamicGroupName),
 		DynamicActivity: (typeof NewAsset.DynamicActivity === 'function') ? NewAsset.DynamicActivity : function () { return NewAsset.Activity },
 		DynamicAudio: (typeof NewAsset.DynamicAudio === 'function') ? NewAsset.DynamicAudio : null,
 		CharacterRestricted: typeof NewAsset.CharacterRestricted === 'boolean' ? NewAsset.CharacterRestricted : false,
@@ -200,8 +201,13 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 function AssetBuildExtended(A, ExtendedConfig) {
 	let AssetConfig = AssetFindExtendedConfig(ExtendedConfig, AssetCurrentGroup.Name, A.Name);
 	if (AssetConfig && AssetConfig.CopyConfig) {
+		const Overrides = AssetConfig.Config;
 		const { GroupName, AssetName } = AssetConfig.CopyConfig;
 		AssetConfig = AssetFindExtendedConfig(ExtendedConfig, GroupName || AssetCurrentGroup.Name, AssetName);
+		if (AssetConfig && Overrides) {
+			const MergedConfig = Object.assign({}, AssetConfig.Config, Overrides);
+			AssetConfig = Object.assign({}, AssetConfig, {Config: MergedConfig});
+		}
 	}
 	if (AssetConfig) {
 		switch (AssetConfig.Archetype) {

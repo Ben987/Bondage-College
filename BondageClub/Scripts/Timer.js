@@ -58,22 +58,7 @@ function TimerInventoryRemove() {
 						var LockName = Character[C].Appearance[A].Property.LockedBy;
 
 						// Remove any lock or timer
-						delete Character[C].Appearance[A].Property.LockedBy;
-						delete Character[C].Appearance[A].Property.LockMemberNumber;
-						delete Character[C].Appearance[A].Property.RemoveTimer;
-						delete Character[C].Appearance[A].Property.MaxTimer;
-						delete Character[C].Appearance[A].Property.ShowTimer;
-						delete Character[C].Appearance[A].Property.EnableRandomInput;
-						delete Character[C].Appearance[A].Property.MemberNumberList;
-						delete Character[C].Appearance[A].Property.Password;
-						delete Character[C].Appearance[A].Property.CombinationNumber;
-						delete Character[C].Appearance[A].Property.LockSet;
-						delete Character[C].Appearance[A].Property.Hint;
-						
-						if (Character[C].Appearance[A].Property.Effect != null)
-							for (let E = 0; E < Character[C].Appearance[A].Property.Effect.length; E++)
-								if (Character[C].Appearance[A].Property.Effect[E] == "Lock")
-									Character[C].Appearance[A].Property.Effect.splice(E, 1);
+						ValidationDeleteLock(Character[C].Appearance[A].Property, false);
 
 						// If we're removing a lock and we're in a chatroom, send a chatroom message
 						if (LockName && ServerPlayerIsInChatRoom()) {
@@ -191,10 +176,10 @@ function TimerProcess(Timestamp) {
 						} else if (Character[C].IsEgged()) {
 
 							// If the character is egged, we find the highest intensity factor and affect the progress, low and medium vibrations have a cap
-							var Factor = -1;
+							let Factor = -1;
 							for (let A = 0; A < Character[C].Appearance.length; A++) {
-								var Item = Character[C].Appearance[A];
-								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
+								let Item = Character[C].Appearance[A];
+								let ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
 								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor)){
 									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.ArousalZone))
 										Factor = Item.Property.Intensity + ZoneFactor;
@@ -233,10 +218,10 @@ function TimerProcess(Timestamp) {
 						if ((Character[C].ArousalSettings.ProgressTimer == null) || (typeof Character[C].ArousalSettings.ProgressTimer !== "number") || isNaN(Character[C].ArousalSettings.ProgressTimer) || (Character[C].ArousalSettings.ProgressTimer == 0)) {
 
 							// If the character is egged, we find the highest intensity factor
-							var Factor = -1;
+							let Factor = -1;
 							for (let A = 0; A < Character[C].Appearance.length; A++) {
-								var Item = Character[C].Appearance[A];
-								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
+								let Item = Character[C].Appearance[A];
+								let ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
 								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor))
 									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.ArousalZone))
 										Factor = Item.Property.Intensity + ZoneFactor;
@@ -271,10 +256,10 @@ function TimermsToTime(s) {
 
 	// Pad to 2 or 3 digits, default is 2
 	function pad(n, z) {
-	  z = z || 2;
-	  return ('00' + n).slice(-z);
+		z = z || 2;
+		return ('00' + n).slice(-z);
 	}
-  
+
 	// Returns the formatted value
 	var ms = s % 1000;
 	s = (s - ms) / 1000;

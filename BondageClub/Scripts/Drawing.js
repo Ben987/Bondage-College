@@ -56,7 +56,7 @@ function DrawHexToRGB(color) {
 function DrawRGBToHex(color) {
 	const rgb = color[2] | (color[1] << 8) | (color[0] << 16);
 	return '#' + (0x1000000 + rgb).toString(16).slice(1);
-};
+}
 
 /**
  * Loads the canvas to draw on with its style and event listeners.
@@ -131,6 +131,7 @@ function DrawGetImageOnError(Img, IsAsset) {
 	if (Img.errorcount == null) Img.errorcount = 0;
 	Img.errorcount += 1;
 	if (Img.errorcount < 3) {
+		// eslint-disable-next-line no-self-assign
 		Img.src = Img.src;
 	} else {
 		// Load failed. Display the error in the console and mark it as done.
@@ -231,6 +232,8 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 	var OverrideDark = CurrentModule == "MiniGame" || ((Player.Effect.includes("VRAvatars") && C.Effect.includes("VRAvatars"))) || CurrentScreen == "InformationSheet"
 	
 	if ((C != null) && ((C.ID == 0) || (OverrideDark || Player.GetBlindLevel() < 3 ))) {
+
+		CharacterCheckHooks(C, CurrentCharacter != null)
 
 		if (ControllerActive == true) {
 			setButton(X + 100, Y + 200)

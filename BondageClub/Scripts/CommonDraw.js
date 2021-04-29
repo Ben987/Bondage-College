@@ -105,7 +105,7 @@ function CommonDrawAppearanceBuild(C, {
 
 		// If there's a pose style we must add (items take priority over groups, layers may override completely)
 		var Pose = "";
-		if (C.Pose && C.Pose.length) {
+		if (C.DrawPose && C.DrawPose.length) {
 			if (Layer.OverrideAllowPose) {
 				Pose = CommonDrawFindPose(C, Layer.OverrideAllowPose);
 			} else if (A.OverrideAllowPose) {
@@ -135,8 +135,8 @@ function CommonDrawAppearanceBuild(C, {
 		// Find the X and Y position to draw on
 		var X = Layer.DrawingLeft != null ? Layer.DrawingLeft : (A.DrawingLeft != null ? A.DrawingLeft : AG.DrawingLeft);
 		var Y = Layer.DrawingTop != null ? Layer.DrawingTop : (A.DrawingTop != null ? A.DrawingTop : AG.DrawingTop);
-		if (C.Pose && C.Pose.length) {
-			C.Pose.forEach(CP => {
+		if (C.DrawPose && C.DrawPose.length) {
+			C.DrawPose.forEach(CP => {
 				var PoseDef = PoseFemale3DCG.find(P => P.Name === CP && P.MovePosition);
 				if (PoseDef) {
 					var MovePosition = PoseDef.MovePosition.find(MP => MP.Group === GroupName);
@@ -291,24 +291,24 @@ function CommonDrawAppearanceBuild(C, {
 					drawImageColorize(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y,
 						Color,
-						AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
+						AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate
 					);
 					drawImageColorizeBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y,
-						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
+						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate
 					);
 				} else {
 					var ColorName = ((Color == null) || (Color == "Default") || (Color == "") || (Color.length == 1) ||
-					                 (Color.indexOf("#") == 0)) ? "" : "_" + Color;
+						(Color.indexOf("#") == 0)) ? "" : "_" + Color;
 					drawImage(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + ColorName + L + ".png",
 						X, Y,
-						AlphaMasks, Opacity, Rotate,
+						AlphaMasks, Opacity, Rotate
 					);
 					drawImageBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + ColorName + L +
 						".png",
-						X, Y, AlphaMasks, Opacity, Rotate,
+						X, Y, AlphaMasks, Opacity, Rotate
 					);
 				}
 			}
@@ -323,7 +323,7 @@ function CommonDrawAppearanceBuild(C, {
 					drawImage(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + (A.HasType ? Type : "") +
 						"_Lock.png",
-						X, Y, AlphaMasks,
+						X, Y, AlphaMasks
 					);
 					drawImageBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + (A.HasType ? Type : "") +
@@ -371,7 +371,7 @@ function CommonDrawFindPose(C, AllowedPoses) {
 	var Pose = "";
 	if (AllowedPoses && AllowedPoses.length) {
 		AllowedPoses.forEach(AllowedPose => {
-			if (C.Pose.includes(AllowedPose)) Pose = AllowedPose + "/";
+			if (C.DrawPose.includes(AllowedPose)) Pose = AllowedPose + "/";
 		});
 	}
 	return Pose;

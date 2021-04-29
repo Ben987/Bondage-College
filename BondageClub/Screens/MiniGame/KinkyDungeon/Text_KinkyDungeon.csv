@@ -62,11 +62,17 @@ DungeonName10,-The Starlit Balcony-
 
 LootRubbleFail,You search through the debris but find nothing of note
 LootRubbleSmallGold,You find some gold coins in a corner (+XXX gold)
+LootRubbleLockpick,You find a lockpick in a crack between the tiles
 LootRubbleKnife,You find a rusty knife among the rocks
+LootRubbleRedKey,"You find a red key, covered in grime"
+LootRubbleGreenKey,"You find a green key with an ornate handle"
+LootRubbleBlueKey,"You find a blue key, glowing with magic"
 
 LootChestGold,The chest contains gold! (+XXX gold)
 LootChestSpell,"You find a magic scroll, which you place in your spellbook. (+SpellLearned)"
-LootChestTrapMagic,A restraint appears on you with a puff of smoke. (+RestraintType)
+LootChestTrapMagic,"You find gold and a magic trap! (+RestraintType) (+XXX gold)"
+
+KinkyDungeonTorsoGrab,The EnemyName grabs you by the harness and keeps you in place!
 
 NameBlindZombie,Moaning Zombie
 KillBlindZombie,"The zombie moans and collapses to the ground."
@@ -90,6 +96,8 @@ PlayerMiss,"You miss the TargetEnemy!"
 KinkyDungeonStruggleStruggleFail,"You tug on the TargetRestraint but fail to make progress."
 KinkyDungeonStrugglePickFail,"You try to unlock the TargetRestraint but can't reach the lock."
 KinkyDungeonStrugglePickBreak,"You try to unlock the TargetRestraint but break your lockpick."
+KinkyDungeonAttemptPickFail,"You work on picking the TargetRestraint."
+KinkyDungeonAttemptPickBreak,"You break your lockpick trying to open the TargetRestraint."
 KinkyDungeonStruggleRemoveFail,"You try to undo the TargetRestraint but can't reach far enough."
 KinkyDungeonStruggleCutFail,"You try to cut the TargetRestraint but can't get through the material."
 KinkyDungeonStruggleCutBreak,"You break your knife trying to cut the TargetRestraint."
@@ -97,7 +105,7 @@ KinkyDungeonStruggleUnlockFail,"You try to unlock the TargetRestraint but you ca
 
 KinkyDungeonStruggleUnlockNoRedKey,"The red padlock only accepts red keys."
 KinkyDungeonStruggleUnlockNoGreenKey,"The green padlock only accepts green keys."
-KinkyDungeonStruggleUnlockNoYellowKey,"The yellow padlock requires a red and a blue key."
+KinkyDungeonStruggleUnlockNoYellowKey,"The yellow padlock requires a red and a green key."
 KinkyDungeonStruggleUnlockNoBlueKey,"The magical lock only accepts blue keys."
 KinkyDungeonStruggleUnlockNoUnknownKey,"You don't have a key for this lock."
 
@@ -106,13 +114,32 @@ KinkyDungeonStruggleUnlockJammed,"The key sticks in the lock and jams!"
 KinkyDungeonStruggleUnlockSuccess,"You unlock the TargetRestraint."
 KinkyDungeonStruggleStruggleSuccess,"You manage to squeeze out of the TargetRestraint!"
 KinkyDungeonStrugglePickSuccess,"You pick the lock on the TargetRestraint!"
+KinkyDungeonAttemptPickSuccess,"You pick the lock on the TargetRestraint!"
 KinkyDungeonStruggleRemoveSuccess,"You unfasten the TargetRestraint and get it off your body!"
 KinkyDungeonStruggleCutSuccess,"You cut the TargetRestraint off!"
 
-KinkyRedLock," (Red lock)"
-KinkyGreenLock," (Green lock)"
-KinkyBlueLock," (Blue lock)"
-KinkyYellowLock," (Yellow lock)"
+KinkyRedLock," (Red)"
+KinkyGreenLock," (Green)"
+KinkyBlueLock," (Blue)"
+KinkyYellowLock," (Yellow)"
+
+
+KinkyDungeonUnlockDoor,"Unlock"
+KinkyDungeonPickDoor,"Pick"
+KinkyDungeonLockedDoor,"(No way to open)"
+KinkyDungeonLockedShrine,"(She cannot help you)"
+KinkyDungeonPayShrine,"Offer XXXg"
+KinkyDungeonPayShrineFail,"You do not have enough for a proper offering."
+KinkyDungeonPayShrineRemoveRestraints,"The goddess removes some of your restraints!"
+KinkyDungeonPayShrineHeal,"The goddess restores your mental and physical state!"
+KinkyDungeonObject,"object"
+
+KinkyDungeonObjectLock,"That object is locked"
+KinkyDungeonObjectShrine,"You found a shrine to the goddess of TYPE"
+KinkyDungeonShrineCharms,"mummies"
+KinkyDungeonShrineLeather,"leather"
+KinkyDungeonShrineMetal,"metal"
+KinkyDungeonShrineWill,"willpower"
 
 ClimbDown,"You climb down to the next level"
 
@@ -133,6 +160,11 @@ RestraintWeakMagicRopeArms,Weak Magic Rope
 RestraintWeakMagicRopeLegs,Weak Magic Rope
 RestraintStickySlime,Sticky Slime
 RestraintTrapArmbinder,Leather Armbinder
+RestraintTrapCuffs,Handcuffs
+RestraintTrapHarness,Leather Harness
+RestraintTrapGag,Ball Gag
+RestraintTrapBoots,Slave Heels
+RestraintTrapLegirons,Leg Irons
 
 KinkyDungeonGroupItemHead,Face
 KinkyDungeonGroupItemHood,Head

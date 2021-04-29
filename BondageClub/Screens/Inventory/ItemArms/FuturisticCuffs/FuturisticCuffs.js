@@ -48,7 +48,7 @@ var InventoryItemArmsFuturisticCuffsOptions = [
  * @returns {void} - Nothing
  */
 function InventoryItemArmsFuturisticCuffsLoad() {
- 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	} else
@@ -86,7 +86,7 @@ function InventoryItemArmsFuturisticCuffsExit() {
 }
 
 function InventoryItemArmsFuturisticCuffsValidate(C, Option) {
- 	return InventoryItemMouthFuturisticPanelGagValidate(C, Option)
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Option)
 }
 
 
