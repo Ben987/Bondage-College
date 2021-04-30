@@ -209,4 +209,18 @@ function InformationSheetLoadCharacter(C) {
 	InformationSheetPreviousModule = CurrentModule;
 	InformationSheetPreviousScreen = CurrentScreen;
 	CommonSetScreen("Character", "InformationSheet");
+	for (let i = 0; i < Player.Reputation.length; i++) {
+		if (TextGet("Reputation" + Player.Reputation[i].Type + ((Player.Reputation[i].Value > 0) ? "Positive" : "Negative")).includes("MISSING VALUE FOR TAG")) {
+			Player.Reputation.splice(i, 1);
+			i = 0;
+		}
+	}
+	for (let i = 0; i < Player.Skill.length; i++) {
+		if (TextGet("Skill" + Player.Skill[i].Type).includes("MISSING VALUE FOR TAG")) {
+			Player.Skill.splice(i, 1);
+			i = 0;
+		}
+	}
+	ServerPlayerSkillSync();
+	ServerPlayerReputationSync();
 }
