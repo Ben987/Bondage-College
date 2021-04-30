@@ -241,7 +241,13 @@ function TimerProcess(Timestamp) {
 		DrawRect(MouseX - 5, MouseY - 5, 10, 10, "Cyan");
 	}
 
-	// Launches the main again for the next frame
+	if (BlindFlash == true && CurrentTime < DrawingBlindFlashTimer) {
+		if (Player.GetBlindLevel() == 0) {
+			DrawRect(0, 0, 2000, 1000, "rgba(255,255,255," + (1 - lastdarkfactor - 0.1) + ")");
+		}
+	}
+
+    // Launches the main again for the next frame
 	requestAnimationFrame(MainRun);
 
 }
