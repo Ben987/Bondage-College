@@ -1,3 +1,4 @@
+"use strict";
 var KinkyDungeonLootTable = {
 	"rubble": [
 		{name: "nothing", minLevel: 0, weight:5, message:"LootRubbleFail", messageColor:"#aaaaaa", messageTime: 2, floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
@@ -41,9 +42,9 @@ function KinkyDungeonLoot(Level, Index, Type) {
 				var minlevel = 0
 				var SpellList = null
 				if (loot.prerequisites.includes("lowlevel")) maxlevel = 7
-				if (loot.prerequisites.includes("UnlearnedElements")) SpellList = KinkyDungeonSpellList["Elements"]
-				if (loot.prerequisites.includes("UnlearnedConjure")) SpellList = KinkyDungeonSpellList["Conjure"]
-				if (loot.prerequisites.includes("UnlearnedIllusion")) SpellList = KinkyDungeonSpellList["Illusion"]
+				if (loot.prerequisites.includes("UnlearnedElements")) SpellList = KinkyDungeonSpellList.Elements
+				if (loot.prerequisites.includes("UnlearnedConjure")) SpellList = KinkyDungeonSpellList.Conjure
+				if (loot.prerequisites.includes("UnlearnedIllusion")) SpellList = KinkyDungeonSpellList.Illusion
 				
 				for (let P = 0; P < loot.prerequisites.length; P++) {
 					if (loot.prerequisites[P].startsWith("Group_")) {
@@ -115,26 +116,26 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 	// 
 	let value = 0
 	if (Loot.name == "spell_illusion_low") {
-		var SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList["Illusion"])
-		var spellIndex = Math.floor(Math.random()*SpellsUnlearned.length)
+		let SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList.Illusion)
+		let spellIndex = Math.floor(Math.random()*SpellsUnlearned.length)
 		
-		var spell = SpellsUnlearned[spellIndex]		
+		let spell = SpellsUnlearned[spellIndex]		
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("SpellLearned", TextGet("KinkyDungeonSpell" + spell.name))
 		KinkyDungeonSpells.push(spell)
 	} else if (Loot.name == "spell_conjuration_low") {
-		var SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList["Conjure"])
-		var spellIndex = Math.floor(Math.random()*SpellsUnlearned.length)
+		let SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList.Conjure)
+		let spellIndex = Math.floor(Math.random()*SpellsUnlearned.length)
 		
-		var spell = SpellsUnlearned[spellIndex]		
+		let spell = SpellsUnlearned[spellIndex]		
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("SpellLearned", TextGet("KinkyDungeonSpell" + spell.name))
 		KinkyDungeonSpells.push(spell)
 	} else if (Loot.name == "spell_elemental_low") {
-		var SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList["Elements"])
-		var spellIndex = Math.floor(Math.random()*SpellsUnlearned.length)
+		let SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList.Elements)
+		let spellIndex = Math.floor(Math.random()*SpellsUnlearned.length)
 		
-		var spell = SpellsUnlearned[spellIndex]		
+		let spell = SpellsUnlearned[spellIndex]		
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("SpellLearned", TextGet("KinkyDungeonSpell" + spell.name))
 		KinkyDungeonSpells.push(spell)

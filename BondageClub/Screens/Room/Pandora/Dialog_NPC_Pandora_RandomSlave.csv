@@ -35,10 +35,12 @@ ItemNipples,,,(She takes a long breath as you use the device on her breast.)  Th
 RemoveItemNipples,,,"(She whimpers as you remove the device.)  This is so devious, I love it!",,
 0,,,"Hello Miss, this slave is here to please you.  Have we met before?  Are you famous around here?",,"DialogSkillGreater(""Infiltration"", 5)"
 0,,,(She nods slowly.)  This slave is here to please you Miss.,,
-0,,Who are you?,"I'm slave DialogCharacterName.  I'm a Pandora's Box slave, made to please our wonderful customers.",,
-0,,Can I tie you up?,"(She blushes.)  Yes Miss, please enjoy this slave as you desire.",,
-0,100,(Play with her.),(You get closer to play with her.),,
+0,,Who are you?,"I'm slave DialogCharacterName.  I'm a Pandora's Box slave, made to please our wonderful customers.",DialogRemove(),
+0,,Can I tie you up?,"(She blushes.)  Yes Miss, please enjoy this slave as you desire.",DialogRemove(),
 0,10,You agreed to be a slave?,(She bows her head slowly.)  Yes Miss.  I...  I...  I'm a consensual slave.,StartRecruit(),CanStartRecruit()
+0,100,(Play with her.),(You get closer to play with her.),,
+0,,(Bring her with you.),Yes Miss.  Where should we go?  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
+0,,(Leaver her here.),Please let me know if you need anything else.  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
 0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),
 10,20,You're hesitating girl.,Me?  Sorry Miss.  (She seems nervous.)  Maybe we should speak about something else.,,
 10,0,That's very good.,Yes Miss.  (She nods rapidly.)  Can this slave do anything for you?,,

@@ -30,6 +30,16 @@ function InfiltrationCanGoBack() { return (((InfiltrationTarget == null) || (Inf
  * @returns {void} - Nothing
  */
 function InfiltrationLoad() {
+
+	// If there's a party coming with the player, it can complete the mission
+	if ((PandoraParty != null) && (PandoraParty.length > 0)) {
+		for (let P = 0; P < PandoraParty.length; P++)
+			if (PandoraParty[P].Name == InfiltrationTarget.Name)
+				InfiltrationTarget.Found = true;
+		PandoraParty = [];
+	}
+
+	// Creates the supervisor if she doesn't exist
 	if (InfiltrationSupervisor == null) {
 		InfiltrationSupervisor = CharacterLoadNPC("NPC_Infiltration_Supervisor");
 		InfiltrationSupervisor.AllowItem = false;
@@ -40,8 +50,11 @@ function InfiltrationLoad() {
 		InventoryWear(InfiltrationSupervisor, "BondageDress1", "Cloth");
 		InventoryWear(InfiltrationSupervisor, "LatexAnkleShoes", "Shoes", "#222222");
 	}
+
+	// Make sure the infiltration data is setup
 	if (Player.Infiltration == null) Player.Infiltration = {};
 	if (Player.Infiltration.Perks == null) Player.Infiltration.Perks = "";
+
 }
 
 /**

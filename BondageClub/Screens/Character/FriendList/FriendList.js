@@ -192,6 +192,9 @@ function FriendListChatSearch(room) {
 	FriendListExit();
 	ElementValue("InputSearch", room);
 	ChatSearchQuery();
+	// Change the text box so the player still cant read it
+	ElementValue("InputSearch", ChatSearchMuffle(room));
+	
 }
 
 /**
@@ -264,7 +267,7 @@ function FriendListLoadFriendList(data) {
 			if (friend.ChatRoomName.startsWith("-")) {
 				FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomName.replace("-Private-", PrivateRoomCaption)} </div>`;
 			} else {
-				const Caption = `${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${friend.ChatRoomName}`;
+				const Caption = `${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${ChatSearchMuffle(friend.ChatRoomName)}`;
 				if (FriendListReturn === "ChatSearch" && ChatRoomSpace === (friend.ChatRoomSpace || "")) {
 					FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListChatSearch("${friend.ChatRoomName}")'> ${Caption} </div>`;
 				} else {

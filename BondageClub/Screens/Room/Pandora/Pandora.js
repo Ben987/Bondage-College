@@ -18,6 +18,17 @@ var PandoraWillpower = 20;
 var PandoraMaxWillpower = 20;
 
 /**
+ * NPC Dialog functions
+ * @returns {boolean} - TRUE if the dialog option will be available to the player
+ */
+function PandoraCanStartRecruit() { return ((CurrentCharacter.Recruit == null) || (CurrentCharacter.Recruit == 0)) }
+function PandoraCanRecruit() { return (CurrentCharacter.Recruit + (InfiltrationPerksActive("Recruiter") ? 0.25 : 0) >= CurrentCharacter.RecruitOdds) }
+function PandoraCharacterCanJoin() { return ((PandoraParty.length == 0) || (PandoraParty[0].Name != CurrentCharacter.Name)) }
+function PandoraCharacterCanLeave() { return ((PandoraParty.length == 1) && (PandoraParty[0].Name == CurrentCharacter.Name) && ((PandoraCurrentRoom.Character == null) || (PandoraCurrentRoom.Character.length <= 1))) }
+function PandoraOdds50() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.5)) }
+function PandoraCostumeIs(Costume) { return (PandoraClothes == Costume) }
+
+/**
  * Loads the Pandora's Box screen
  * @returns {void} - Nothing
  */
@@ -32,7 +43,7 @@ function PandoraDirectionButtonColor(Direction) {
 	if ((PandoraMoveDirectionTimer.Timer >= CommonTime()) && (PandoraMoveDirectionTimer.Direction === Direction))
 		return (PandoraCurrentRoom.DirectionMap.indexOf(Direction) >= 0) ? "#80FF80" : "#408040";
 	else
-		return (PandoraCurrentRoom.DirectionMap.indexOf(Direction) >= 0) ? "White" : "Silver";
+		return (PandoraCurrentRoom.DirectionMap.indexOf(Direction) >= 0) ? "White" : "#BF8080";
 }
 
 /**
@@ -205,7 +216,7 @@ function PandoraDress(C, Type) {
 	// The maids have a red outfit
 	if (Type == "Maid") {
 		InventoryRemove(C, "ClothAccessory");
-		InventoryWear(C, "MaidOutfit" + (Math.floor(Math.random() * 2) + 1).toString(), "Cloth", "#804040");
+		InventoryWear(C, "MaidOutfit2", "Cloth", "#804040");
 		InventoryWear(C, "MaidHairband1", "Hat", "#804040");
 		if (InventoryGet(C, "Socks") == null) InventoryWear(C, "Socks3", "Socks", "#804040");
 		else InventoryGet(C, "Socks").Color = "#804040";
@@ -272,9 +283,9 @@ function PandoraEnterRoom(Room, Direction) {
 	PandoraPreviousRoom = PandoraCurrentRoom;
 	PandoraCurrentRoom = Room;
 
-	// 33% odds of removing a previous random NPC
-	if (PandoraCurrentRoom.Character.length == 1)
-		if ((PandoraCurrentRoom.Character[0].AccountName.indexOf("NPC_Pandora_Random") == 0) && (Math.random() > 0.667)) {
+	// 33% odds of removing a previous random NPC if she can walk
+	if (PandoraCurrentRoom.Character.length >= 1)
+		if ((PandoraCurrentRoom.Character[0].AccountName.indexOf("NPC_Pandora_Random") == 0) && (Math.random() > 0.667) && PandoraCurrentRoom.Character[0].CanWalk()) {
 			let Char = PandoraCurrentRoom.Character[0];
 			PandoraCurrentRoom.Character = [];
 			CharacterDelete(Char);
@@ -290,6 +301,20 @@ function PandoraEnterRoom(Room, Direction) {
 		Char.Recruit = 0;
 		Char.RecruitOdds = (Type === "Slave") ? 1 : 0.75;
 		Room.Character.push(Char);
+	}
+
+	// If we enter a room with a maid that's not bound, she can intercept the player if the mission is almost completed
+	if ((PandoraCurrentRoom.Character.length == 1) && (PandoraCurrentRoom.Character[0].AccountName.indexOf("Maid") >= 0) && PandoraCurrentRoom.Character[0].CanInteract()) {
+		let StartDialog = "";
+		if ((InfiltrationMission == "Retrieve") && (InfiltrationTarget.Found)) StartDialog = InfiltrationMission + ((PandoraClothes == "Maid") ? "Maid" : "Random") + "0";
+		if ((InfiltrationMission == "Rescue") && (PandoraParty.length == 1) && (PandoraParty[0].Name == InfiltrationTarget.Name)) StartDialog = InfiltrationMission + ((PandoraClothes == "Guard") ? "Guard" : "Random") + "0";
+		if ((InfiltrationMission == "Kidnap") && (PandoraParty.length == 1) && (PandoraParty[0].Name == InfiltrationTarget.Name) && PandoraParty[0].CanTalk()) StartDialog = InfiltrationMission + "Random" + "0";
+		if (StartDialog != "") {
+			CharacterRelease(PandoraCurrentRoom.Character[0]);
+			PandoraCurrentRoom.Character[0].RandomOdds = Math.random() + 0.2 - (InfiltrationDifficulty * 0.1);
+			PandoraCurrentRoom.Character[0].AllowMove = false;
+			PandoraCurrentRoom.Character[0].Stage = StartDialog;
+		}
 	}
 
 }
@@ -463,7 +488,7 @@ function PandoraBuildMainHall() {
 				Room.PathMap[0].Character.push(Guard);
 			}
 			if (InfiltrationMission == "Kidnap") {
-				let Target = PandoraGenerateNPC("Kidnap", "Target", InfiltrationTarget.Name, false);
+				let Target = PandoraGenerateNPC("Kidnap", "Target", InfiltrationTarget.Name, true);
 				Room.Character.push(Target);
 			}
 			PandoraTargetRoom = Room;
@@ -478,7 +503,7 @@ function PandoraBuildMainHall() {
  */
 function PandoraRemoveCurrentCharacter() {
 	for (let C = 0; C < PandoraCurrentRoom.Character.length; C++)
-		if (PandoraCurrentRoom.Character[C].AccountName == CurrentCharacter.AccountName) {
+		if (PandoraCurrentRoom.Character[C].ID == CurrentCharacter.ID) {
 			PandoraCurrentRoom.Character.splice(C, 1);
 			break;
 		}
@@ -499,14 +524,26 @@ function PandoraCharacterAllowMove() {
  * When the current character joins the player's party
  * @returns {void} - Nothing
  */
-function PandoraCharacterJoin() {	
+function PandoraCharacterJoin() {
+	CurrentCharacter.AllowMove = true;
+	if (PandoraParty.length == 1)
+		PandoraCurrentRoom.Character.push(PandoraParty[0]);
+	PandoraParty = [];
 	PandoraParty.push(CurrentCharacter);
-	if (CurrentCharacter.Name == InfiltrationTarget.Name) InfiltrationTarget.Found = true;
 	for (let C = 0; C < PandoraCurrentRoom.Character.length; C++)
-		if (PandoraCurrentRoom.Character[C].AccountName == CurrentCharacter.AccountName) {
+		if (PandoraCurrentRoom.Character[C].ID == CurrentCharacter.ID) {
 			PandoraCurrentRoom.Character.splice(C, 1);
 			break;
 		}
+}
+
+/**
+ * When the current character leaves the player's party
+ * @returns {void} - Nothing
+ */
+function PandoraCharacterLeave() {
+	PandoraCurrentRoom.Character.push(CurrentCharacter);
+	PandoraParty = [];
 }
 
 /**
@@ -586,18 +623,6 @@ function PandoraPlayerClothes(Type) {
 function PandoraStartRecruit() {
 	CurrentCharacter.Recruit = Math.random();
 }
-
-/**
- * The player can only try once to recruit a random NPC
- * @returns {void} - Nothing
- */
-function PandoraCanStartRecruit() { return ((CurrentCharacter.Recruit == null) || (CurrentCharacter.Recruit == 0)) }
-
-/**
- * Returns TRUE if the NPC would be recruited by the player to join the Bondage Club.  The recruiter perks helps by 20%
- * @returns {boolean} - TRUE if the NPC would join
- */
-function PandoraCanRecruit() { return (CurrentCharacter.Recruit + (InfiltrationPerksActive("Recruiter") ? 0.25 : 0) >= CurrentCharacter.RecruitOdds) }
 
 /**
  * Increases the infiltration skill on some events
@@ -686,4 +711,27 @@ function PandoraPunishmentIntro() {
 	let Dominatrix = PandoraGenerateNPC("Punishment", "Mistress", "RANDOM", false);
 	CharacterSetCurrent(Dominatrix);
 	CurrentCharacter.CurrentDialog = IntroText;
+}
+
+/**
+ * Puts the player in lots of random restraints
+ * @returns {void} - Nothing
+ */
+function PandoraRestrainPlayer() {
+	CharacterFullRandomRestrain(Player, "LOT", true);
+}
+
+/**
+ * When the player purchases a drink from the maid, she can heal by the money value
+ * @returns {void} - Nothing
+ */
+function PandoraBuyMaidDrink(Money) {
+	Money = parseInt(Money);
+	CharacterChangeMoney(Player, Money * -1);
+	if (CurrentCharacter.DrinkValue == null) CurrentCharacter.DrinkValue = 0;
+	if (Money > CurrentCharacter.DrinkValue) {
+		PandoraWillpower = PandoraWillpower + Money - CurrentCharacter.DrinkValue;
+		if (PandoraWillpower > PandoraMaxWillpower) PandoraWillpower = PandoraMaxWillpower;
+		CurrentCharacter.DrinkValue = Money;
+	}
 }

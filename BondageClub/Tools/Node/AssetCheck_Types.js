@@ -1,3 +1,4 @@
+"use strict";
 const AssetGroupType = {
 	Asset: "[Object | String]",
 	Group: "String",
@@ -129,8 +130,8 @@ const AssetType = {
 	AllowExpression: "[String]",
 	MirrorExpression: "String",
 	FixedPosition: "Boolean",
-	Layer: "[Object]",
 	CustomBlindBackground: "Object",
+	Layer: "[Object]"
 };
 
 const AssetLayerType = {

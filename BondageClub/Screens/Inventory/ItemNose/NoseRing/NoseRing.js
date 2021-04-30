@@ -31,9 +31,9 @@ var InventoryItemNoseNoseRingOptions = [
 			Type: "Leash",
 			Effect: ["Leash"],
 			SetPose: [],
-		}, 
+		},
 	},
-]
+];
 
 /**
  * Loads the item extension properties

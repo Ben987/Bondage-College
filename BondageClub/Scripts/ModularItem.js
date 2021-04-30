@@ -313,7 +313,7 @@ function ModularItemCreateClickBaseFunction(data) {
 				const module = page[i];
 				if (module) ModularItemModuleTransition(module.Name, data);
 			},
-			(delta) => ModularItemChangePage(ModularItemBase, delta, data),
+			(delta) => ModularItemChangePage(ModularItemBase, delta, data)
 		);
 	};
 }
@@ -336,7 +336,7 @@ function ModularItemClickModule(module, data) {
 			const selected = page[i];
 			if (selected) ModularItemSetType(module, pageStart + i, data);
 		},
-		(delta) => ModularItemChangePage(module.Name, delta, data),
+		(delta) => ModularItemChangePage(module.Name, delta, data)
 	);
 }
 
@@ -551,7 +551,7 @@ function ModularItemGenerateLayerAllowTypes(layer, data) {
 			const regex = /([a-zA-Z]+)(\d+)/g;
 			const values = [];
 			let match;
-			while (match = regex.exec(shorthand)) {
+			while ((match = regex.exec(shorthand))) {
 				values.push([match[1], Number.parseInt(match[2])]);
 			}
 			return values;

@@ -114,6 +114,7 @@ SenseDepMessages,Hide others' messages
 ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
 BlockGaggedOOC,Prevent OOC & whispers while gagged
 StimulationEvents,Events while plugged or vibed
+ChatRoomMuffle,Garble chat room names and descriptions while blind
 SensDepSetting,Sensory deprivation setting
 SensDepLight,Light
 SensDepNames,Hide names
@@ -267,11 +268,13 @@ NotificationsAlertType2,Popup
 NotificationsExplanation,Raise notifications for missed events:
 NotificationsAudioExplanation1,: Play a sound for only
 NotificationsAudioExplanation2,the first occurrence of an event
+NotificationsOnly,Only:
 NotificationsBeeps,Beeps
 NotificationsChatMessage,Messages in chat rooms
-NotificationsChatActions,Include item/activity messages
+NotificationsChatMessageNormal,Normal Messages
+NotificationsChatMessageWhisper,Whispers
+NotificationsChatMessageActivity,Items/Activities
 NotificationsChatJoin,Players entering chat rooms
-NotificationsChatJoinOnly,Only:
 NotificationsChatJoinOwner,Owner
 NotificationsChatJoinLovers,Lovers
 NotificationsChatJoinFriendlist,Friends

@@ -29,9 +29,9 @@ var InventoryItemMouthFuturisticBallGagOptions = [
  * @returns {void} - Nothing
  */
 function InventoryItemMouthFuturisticHarnessBallGagLoad() {
- 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else {
 		ExtendedItemLoad(InventoryItemMouthFuturisticBallGagOptions, "SelectGagType");
 		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Option: InventoryItemMouthFuturisticBallGagOptions[0],
@@ -46,7 +46,7 @@ function InventoryItemMouthFuturisticHarnessBallGagLoad() {
 }
 
 function InventoryItemMouthFuturisticHarnessBallGagExit() {
-	InventoryItemMouthFuturisticPanelGagExit()
+	InventoryItemMouthFuturisticPanelGagExit();
 }
 
 /**
@@ -56,29 +56,29 @@ function InventoryItemMouthFuturisticHarnessBallGagExit() {
 function InventoryItemMouthFuturisticHarnessBallGagDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else {
 		DrawAssetPreview(1387, 75, DialogFocusItem.Asset);
 
 		if (DialogFocusItem.Property.AutoPunishUndoTime - CurrentTime > 0)
-			DrawText(DialogFindPlayer("FuturisticPanelGagMouthDeflationTime") + " " + TimerToString(DialogFocusItem.Property.AutoPunishUndoTime - CurrentTime), 1500, 415, "White", "Gray");		
+			DrawText(DialogFindPlayer("FuturisticPanelGagMouthDeflationTime") + " " + TimerToString(DialogFocusItem.Property.AutoPunishUndoTime - CurrentTime), 1500, 415, "White", "Gray");
 
 		var type = "FuturisticPanelGagMouthType" + ((DialogFocusItem.Property.Type != null) ?
 			((DialogFocusItem.Property.Type != "Ball") ? DialogFocusItem.Property.Type : "BallLarge")
-			: "BallGag")
+			: "BallGag");
 		DrawText(DialogFindPlayer("FuturisticPanelGagMouthTypeDesc") + " " +
-			DialogFindPlayer(type), 1350, 475, "White", "Gray");	
+			DialogFindPlayer(type), 1350, 475, "White", "Gray");
 
 		MainCanvas.textAlign = "left";
 		DrawCheckbox(1100, 890, 64, 64, "", DialogFocusItem.Property.ChatMessage, "White");
-		DrawText(DialogFindPlayer("FuturisticPanelGagMouthButtonChatMessage"), 1200, 923, "White", "Gray");	
+		DrawText(DialogFindPlayer("FuturisticPanelGagMouthButtonChatMessage"), 1200, 923, "White", "Gray");
 		MainCanvas.textAlign = "center";
 
-		var autopunish = "Off" 
-		if (DialogFocusItem.Property.AutoPunish == 0) {}
-		else if (DialogFocusItem.Property.AutoPunish == 1) {autopunish = "Low"}
-		else if (DialogFocusItem.Property.AutoPunish == 2) {autopunish = "Medium"}
-		else {autopunish = "Maximum"}
+		var autopunish = "Off";
+		if (DialogFocusItem.Property.AutoPunish == 0) {autopunish = "Off";}
+		else if (DialogFocusItem.Property.AutoPunish == 1) {autopunish = "Low";}
+		else if (DialogFocusItem.Property.AutoPunish == 2) {autopunish = "Medium";}
+		else {autopunish = "Maximum";}
 
 		DrawText(DialogFindPlayer("FuturisticPanelGagMouthButtonAutoPunish") + " " + autopunish, 1350, 683, "White", "Gray");
 		if (DialogFocusItem) {
@@ -91,7 +91,7 @@ function InventoryItemMouthFuturisticHarnessBallGagDraw() {
 			if (DialogFocusItem.Property.AutoPunish != 2) DrawButton(1100, 777, 200, 64, DialogFindPlayer("Medium"), "White", "");
 			if (DialogFocusItem.Property.AutoPunish != 3) DrawButton(1400, 777, 200, 64, DialogFindPlayer("Maximum"), "White", "");
 
-			DrawText(DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeSetting" + DialogFocusItem.Property.AutoPunishUndoTimeSetting), 1775, 475, "White", "Gray");	
+			DrawText(DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeSetting" + DialogFocusItem.Property.AutoPunishUndoTimeSetting), 1775, 475, "White", "Gray");
 			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 120000) DrawButton(1675, 500, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeButton120000"), "White", "");
 			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 300000) DrawButton(1675, 570, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeButton300000"), "White", "");
 			if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 900000) DrawButton(1675, 640, 200, 64, DialogFindPlayer("FuturisticPanelGagMouthDeflationTimeButton900000"), "White", "");
@@ -112,45 +112,45 @@ function InventoryItemMouthFuturisticHarnessBallGagDraw() {
 function InventoryItemMouthFuturisticHarnessBallGagClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
-	} else {		
-		if (MouseIn(1885, 25, 90, 90)) InventoryItemMouthFuturisticPanelGagExit()
-			
-		else if (MouseIn(1100, 890, 64, 64)) DialogFocusItem.Property.ChatMessage = !DialogFocusItem.Property.ChatMessage
-		
-		
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
+	} else {
+		if (MouseIn(1885, 25, 90, 90)) InventoryItemMouthFuturisticPanelGagExit();
+
+		else if (MouseIn(1100, 890, 64, 64)) DialogFocusItem.Property.ChatMessage = !DialogFocusItem.Property.ChatMessage;
+
+
 		else if (DialogFocusItem.Property.Type != null && MouseIn(1250, 500, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0;
 			DialogFocusItem.Property.OriginalSetting = "LightBall";
-			ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[0])}
+			ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[0]);}
 		else if (DialogFocusItem.Property.Type != "Ball" && MouseIn(1100, 570, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0;
 			DialogFocusItem.Property.OriginalSetting = "Ball";
-			ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[1])}
+			ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[1]);}
 		else if (DialogFocusItem.Property.Type != "Plug" && MouseIn(1400, 570, 200, 64)) {
 			DialogFocusItem.Property.AutoPunishUndoTime = 0;
 			DialogFocusItem.Property.OriginalSetting = "Plug";
-		ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[2])}
-		
-		else if (DialogFocusItem.Property.AutoPunish != 0 && MouseIn(1100, 707, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 0)
-		else if (DialogFocusItem.Property.AutoPunish != 1 && MouseIn(1400, 707, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 1)
-		else if (DialogFocusItem.Property.AutoPunish != 2 && MouseIn(1100, 777, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 2)
-		else if (DialogFocusItem.Property.AutoPunish != 3 && MouseIn(1400, 777, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 3)
-			
-		
-		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 120000 && MouseIn(1675, 500, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 120000)
-		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 300000 && MouseIn(1675, 570, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 300000)
-		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 900000 && MouseIn(1675, 640, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 900000)
-		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 3600000 && MouseIn(1675, 710, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 3600000)
-		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000 && MouseIn(1675, 780, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 72000000)
-			
+		ExtendedItemSetType(C, InventoryItemMouthFuturisticBallGagOptions, InventoryItemMouthFuturisticBallGagOptions[2]);}
+
+		else if (DialogFocusItem.Property.AutoPunish != 0 && MouseIn(1100, 707, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 0);
+		else if (DialogFocusItem.Property.AutoPunish != 1 && MouseIn(1400, 707, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 1);
+		else if (DialogFocusItem.Property.AutoPunish != 2 && MouseIn(1100, 777, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 2);
+		else if (DialogFocusItem.Property.AutoPunish != 3 && MouseIn(1400, 777, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunish(C, DialogFocusItem, 3);
+
+
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 120000 && MouseIn(1675, 500, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 120000);
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 300000 && MouseIn(1675, 570, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 300000);
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 900000 && MouseIn(1675, 640, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 900000);
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 3600000 && MouseIn(1675, 710, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 3600000);
+		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting != 72000000 && MouseIn(1675, 780, 200, 64)) InventoryItemMouthFuturisticPanelGagSetAutoPunishTime(C, DialogFocusItem, 72000000);
+
 		else if (DialogFocusItem.Property.AutoPunishUndoTimeSetting && MouseIn(1675, 880, 200, 64)) {
-			InventoryItemMouthFuturisticPanelGagTrigger(C, DialogFocusItem, false, InventoryItemMouthFuturisticBallGagOptions)
-			DialogFocusItem.Property.AutoPunishUndoTime = CurrentTime + DialogFocusItem.Property.AutoPunishUndoTimeSetting // Reset the deflation time
+			InventoryItemMouthFuturisticPanelGagTrigger(C, DialogFocusItem, false, InventoryItemMouthFuturisticBallGagOptions);
+			DialogFocusItem.Property.AutoPunishUndoTime = CurrentTime + DialogFocusItem.Property.AutoPunishUndoTimeSetting; // Reset the deflation time
 			CharacterRefresh(C, true); // Does not sync appearance while in the wardrobe
 			ChatRoomCharacterUpdate(C);
 		}
-		
+
 	}
 }
 
@@ -165,16 +165,16 @@ function InventoryItemMouthFuturisticHarnessBallGagValidate(C, Option) {
 
 
 /**
- * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
- * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
- * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them.
  * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
  * @param {Character} C - The NPC to whom the restraint is applied
  * @param {Option} Option - The chosen option for this extended item
  * @returns {void} - Nothing
  */
 function InventoryItemMouthFuturisticHarnessBallGagNpcDialog(C, Option) {
-	InventoryItemMouthFuturisticPanelGagNpcDialog(C, Option)
+	InventoryItemMouthFuturisticPanelGagNpcDialog(C, Option);
 }
 
 // Update data
@@ -187,14 +187,14 @@ function AssetsItemMouthFuturisticHarnessBallGagScriptDraw(data) {
 
 	if (persistentData.UpdateTime < CommonTime() && data.C == Player) {
 		if (CurrentScreen == "ChatRoom") {
-		
-			AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data, InventoryItemMouthFuturisticBallGagOptions)
-			
+
+			AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data, InventoryItemMouthFuturisticBallGagOptions);
+
 			persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
 		}
 
-		property.BlinkState = (property.BlinkState + 1) % 2
-		
+		property.BlinkState = (property.BlinkState + 1) % 2;
+
 		var timeToNextRefresh = 3025;
 		persistentData.UpdateTime = CommonTime() + timeToNextRefresh;
 		AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);
@@ -204,6 +204,6 @@ function AssetsItemMouthFuturisticHarnessBallGagScriptDraw(data) {
 
 
 // Drawing function for the blinking light
-function AssetsItemMouthFuturisticHarnessBallGagBeforeDraw(data) { 
-	return AssetsItemMouthFuturisticPanelGagBeforeDraw(data)
+function AssetsItemMouthFuturisticHarnessBallGagBeforeDraw(data) {
+	return AssetsItemMouthFuturisticPanelGagBeforeDraw(data);
 }

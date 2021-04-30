@@ -374,7 +374,7 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(Player, "DusterGag", "ItemMouth");
 		InventoryRemove(Player, "ItemFeet");
 		InventoryRemove(Player, "ItemDevices");
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -390,7 +390,7 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(Player, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(Player, "LeatherAnkleCuffs", "ItemFeet");
 		InventoryRemove(Player, "ItemDevices");
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -403,7 +403,7 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(Player, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(Player, "LeatherAnkleCuffs", "ItemFeet");
 		InventoryRemove(Player, "ItemDevices");
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -411,7 +411,7 @@ function MovieStudioDoActivity(Activity) {
 		CharacterRefresh(Player);
 	}
 	if (Activity == "InterviewMaidTighten") {
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property.Type = "Elbow";
 		Cuffs.Property.SetPose = ["BackElbowTouch"];
 		CharacterRefresh(Player);
@@ -432,7 +432,7 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(MovieStudioActor1, "LeatherCuffs", "ItemArms");
 		InventoryWear(MovieStudioActor1, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(MovieStudioActor1, "LeatherAnkleCuffs", "ItemFeet");
-		var Cuffs = InventoryGet(MovieStudioActor1, "ItemArms");
+		let Cuffs = InventoryGet(MovieStudioActor1, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Loads the extended item's properties
  * @returns {void} - Nothing

@@ -147,6 +147,7 @@
 <script src="Screens/Inventory/ItemNipples/VibeNippleClamp/VibeNippleClamp.js"></script>
 <script src="Screens/Inventory/ItemNipplesPiercings/VibeHeartPiercings/VibeHeartPiercings.js"></script>
 <script src="Screens/Inventory/ItemVulvaPiercings/VibeHeartClitPiercing/VibeHeartClitPiercing.js"></script>
+<script src="Screens/Inventory/ItemVulvaPiercings/ClitRing/ClitRing.js"></script>
 <script src="Screens/Inventory/ItemVulvaPiercings/TapedClitEgg/TapedClitEgg.js"></script>
 <script src="Screens/Inventory/ItemButt/ButtPump/ButtPump.js"></script>
 <script src="Screens/Inventory/ItemNeck/ShockCollar/ShockCollar.js"></script>
@@ -259,6 +260,7 @@
 <script src="Screens/Inventory/ItemButt/AnalBeads2/AnalBeads2.js"></script>
 <script src="Screens/Inventory/ItemButt/ButtPlugLock/ButtPlugLock.js"></script>
 <script src="Screens/Inventory/ItemButt/VibratingDildoPlug/VibratingDildoPlug.js"></script>
+<script src="Screens/Inventory/ItemButt/LockingVibePlug/LockingVibePlug.js"></script>
 <script src="Screens/Inventory/ItemArms/OrnateCuffs/OrnateCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/Zipties/Zipties.js"></script>
 <script src="Screens/Inventory/ItemLegs/OrnateLegCuffs/OrnateLegCuffs.js"></script>
@@ -355,10 +357,6 @@
 
 	NEXT VERSION:
 
-	Infiltration
-	- The clothes (random, maid, guard, Dominatrix) will give different dialog options
-	- Allow moving kidnapped girls from one room to another, and leave them there
-
 	Infiltration - Punishment Dominatrix
 	- The player can beg or bribe to have her sentence reduced
 	- If the player is cocky, she gets a longer sentence
@@ -371,15 +369,9 @@
 	- Will fight the player with a random chances
 	- Higher difficulty means more chances
 	- More chances if the mission is completed
-	- Costume wil lover the chances
+	- Maid or Dominatrix costume will lower the chances
 	- The player can steal her clothes after a victory to gain some NPC immunity
 	- Raises infiltration skill by 60
-
-	Infiltration - Random Guards & Maids
-	- Can be fought to give their clothes and raise infiltration level by 30
-	- Difficulty scale by level
-	- Beaten guards can carry some Pandora's money
-	- Beaten maids can give clues for the quest
 	
 	Infiltration - Second phase ideas
 	- When the player gets jailed, another online player could take the mission to go rescue her. If she succeeds, they both end up in a multiplayer room and can roleplay together.  If she fails, she gets thrown in jail with the other girl, in a multiplayer room with a cell setting, maybe raising the time sentence for both girls.
@@ -395,7 +387,7 @@
 window.onload = function() {
 //	CheatImport();
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
-	GameVersion = "R67";
+	GameVersion = "R68Alpha";
 	console.log("Version: " + GameVersion + ", Server: " + ServerURL);
 	if (!GameVersionFormat.test(GameVersion)) console.error("GameVersion is not valid!");
 	CommonIsMobile = CommonDetectMobile();

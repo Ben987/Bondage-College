@@ -97,7 +97,7 @@ function InventoryItemMiscCombinationPadlockDraw() {
 		"gray",
 	);
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) &&
-	    (DialogFocusSourceItem.Property.LockMemberNumber != null))
+		(DialogFocusSourceItem.Property.LockMemberNumber != null))
 		DrawText(DialogFindPlayer("LockMemberNumber") + " " + LockMemberNumber, 1500, 500, "white", "gray");
 
 	const additionalInfo = [];

@@ -1,3 +1,4 @@
+"use strict";
 var KinkyDungeonKilledEnemy = null
 
 var KinkyDungeonMissChancePerBlind = 0.3 // Max 3
@@ -137,7 +138,7 @@ function KinkyDungeonBulletsCheckCollision(bullet, AoE) {
 				}
 				var nomsg = false
 				for (let L = 0; L < KinkyDungeonEntities.length; L++) {
-					var enemy = KinkyDungeonEntities[L]
+					let enemy = KinkyDungeonEntities[L]
 					if (bullet.bullet.aoe >= Math.sqrt((enemy.x - bullet.x) * (enemy.x - bullet.x) + (enemy.y - bullet.y) * (enemy.y - bullet.y))) {
 						KinkyDungeonDamageEnemy(enemy, bullet.bullet.damage, true, nomsg, bullet.bullet.spell)
 						nomsg = true
@@ -150,7 +151,7 @@ function KinkyDungeonBulletsCheckCollision(bullet, AoE) {
 				return false
 			}
 			for (let L = 0; L < KinkyDungeonEntities.length; L++) {
-				var enemy = KinkyDungeonEntities[L]
+				let enemy = KinkyDungeonEntities[L]
 				if (enemy.x == bullet.x && enemy.y == bullet.y) {
 					KinkyDungeonDamageEnemy(enemy, bullet.bullet.damage, true, bullet.bullet.NoMsg, bullet.bullet.spell)
 					

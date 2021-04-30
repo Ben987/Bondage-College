@@ -29,7 +29,7 @@ function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 			Name: NewLogName,
 			Group: NewLogGroup,
 			Value: NewLogValue
-		}
+		};
 		Log.push(NewLog);
 	}
 

@@ -1,3 +1,4 @@
+"use strict";
 var KinkyDungeonMapParams = [
 	{
 		"openness" : 3, // Openness of rooms

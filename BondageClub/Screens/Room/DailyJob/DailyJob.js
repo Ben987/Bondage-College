@@ -12,7 +12,7 @@ var DailyJobDojoTeacher = null;
  * Triggered when a player is fully restrained from a daily job dialog
  * @returns {void} - Nothing
  */
-function DailyJobPlayerFullRestrain() { CharacterFullRandomRestrain(Player, "ALL") };
+function DailyJobPlayerFullRestrain() { CharacterFullRandomRestrain(Player, "ALL") }
 
 /**
  * Loads a puppy girl and fully restrain her

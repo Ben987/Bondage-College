@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 var GLDrawImageCache = new Map();
 
@@ -41,7 +41,7 @@ function GLDrawLoad() {
         GLDrawLoad();
         console.log("WebGL: Context restored.");
     }, false);
-    
+
     //console.log("WebGL Drawing enabled: '" + GLVersion + "'");
 }
 
@@ -201,7 +201,7 @@ function GLDrawCreateShader(gl, source, type) {
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        throw 'Could not compile WebGL program. \n\n' + gl.getShaderInfoLog(shader);
+        throw new Error('Could not compile WebGL program. \n\n' + gl.getShaderInfoLog(shader));
     }
     return shader;
 }
@@ -219,7 +219,7 @@ function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        throw 'Could not compile WebGL program. \n\n' + gl.getProgramInfoLog(program);
+        throw new Error('Could not compile WebGL program. \n\n' + gl.getProgramInfoLog(program));
     }
 
     program.a_position = gl.getAttribLocation(program, "a_position");
@@ -324,7 +324,7 @@ function GLDraw2DCanvasBlink(gl, Img, X, Y, alphaMasks) { GLDraw2DCanvas(gl, Img
  * @param {number} Y - Position of the image on the Y axis
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
  */
-function GLDraw2DCanvas(gl, Img, X, Y, alphaMasks) { 
+function GLDraw2DCanvas(gl, Img, X, Y, alphaMasks) {
     var TempCanvasName = Img.getAttribute("name");
     gl.textureCache.delete(TempCanvasName);
     GLDrawImageCache.set(TempCanvasName, Img);
@@ -384,6 +384,7 @@ function GLDrawLoadImage(gl, url) {
                 if (Img.errorcount == null) Img.errorcount = 0;
                 Img.errorcount += 1;
                 if (Img.errorcount < 3) {
+                    // eslint-disable-next-line no-self-assign
                     Img.src = Img.src;
                 } else {
                     console.log("Error loading image " + Img.src);
@@ -476,7 +477,7 @@ function GLDrawHexToRGBA(color, alpha = 1) {
 /**
  * Creates the given character canvas with WebGL
  * @param {Character} C - Character to build the canvas for
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function GLDrawAppearanceBuild(C) {
     GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, CanvasDrawHeight);

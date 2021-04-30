@@ -1,3 +1,4 @@
+"use strict";
 /**
  * A hexadecimal color code
  * @typedef {string} HexColor
@@ -51,7 +52,7 @@ function ColorPickerRemoveEventListener() {
 
 /**
  * When the touch/mouse event begins to be registered. On mobile we only fire it once
- * @param {Event} Event - The touch/mouse event 
+ * @param {Event} Event - The touch/mouse event
  * @returns {void} - Nothing
  */
 function ColorPickerStartPick(Event) {
@@ -101,7 +102,7 @@ function ColorPickerEndPick() {
 
 /**
  * Gets the coordinates of the current event on the canvas
- * @param {Event} Event - The touch/mouse event 
+ * @param {Event} Event - The touch/mouse event
  * @returns {{X: number, Y: number}} - Coordinates of the click/touch event on the canvas
  */
 function ColorPickerGetCoordinates(Event) {
@@ -119,7 +120,7 @@ function ColorPickerGetCoordinates(Event) {
 
 /**
  * Sets the picked hue based on the Event coordinates on the canvas
- * @param {Event} Event - The touch/mouse event 
+ * @param {Event} Event - The touch/mouse event
  * @returns {void} - Nothing
  */
 function ColorPickerPickHue(Event) {
@@ -131,7 +132,7 @@ function ColorPickerPickHue(Event) {
 
 /**
  * Sets the picked saturation (SV) based on the Event coordinates on the canvas
- * @param {Event} Event - The touch/mouse event 
+ * @param {Event} Event - The touch/mouse event
  * @returns {void} - Nothing
  */
 function ColorPickerPickSV(Event) {
@@ -149,7 +150,7 @@ function ColorPickerPickSV(Event) {
 
 /**
  * Sets the picked HSV from the color pallet
- * @param {Event} Event - The touch/mouse event 
+ * @param {Event} Event - The touch/mouse event
  * @returns {void} - Nothing
  */
 function ColorPickerSelectFromPallete(Event) {
@@ -214,7 +215,7 @@ function ColorPickerCSSColorEquals(Color1, Color2) {
  * @returns {void} - Nothing
  */
 function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
-    
+
     // Calculate Layout
     ColorPickerLayout.HueBarHeight = ColorPickerHueBarHeight;
     ColorPickerLayout.HueBarOffset = Y;
@@ -254,7 +255,7 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
         if (ColorPickerSourceElement != null) {
             var UserInputColor = ColorPickerSourceElement.value.trim().toUpperCase();
             if (CommonIsColor(UserInputColor)) {
-            	ColorPickerIsDefault = false;
+                ColorPickerIsDefault = false;
                 if (!ColorPickerCSSColorEquals(UserInputColor, ColorPickerCSS)) {
                     if (ColorPickerCallback) {
                         // Fire callback due to source element changed by user interaction
@@ -264,8 +265,8 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
                     ColorPickerHSV = ColorPickerCSSToHSV(UserInputColor, ColorPickerHSV);
                 }
             } else if (UserInputColor === "DEFAULT" && !ColorPickerIsDefault) {
-            	ColorPickerIsDefault = true;
-            	if (ColorPickerCallback) ColorPickerCallback("Default");
+                ColorPickerIsDefault = true;
+                if (ColorPickerCallback) ColorPickerCallback("Default");
             }
         }
         // Use user updated HSV
@@ -287,13 +288,13 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
 
     // Draw S/V Panel
     DrawRect(X, SVPanelOffset, Width, SVPanelHeight, ColorPickerHSVToCSS({ H: HSV.H, S: 1, V: 1 }));
-    
+
     Grad = MainCanvas.createLinearGradient(X, SVPanelOffset, X + Width, SVPanelOffset);
     Grad.addColorStop(0, "rgba(255, 255, 255, 1)");
     Grad.addColorStop(1, "rgba(255, 255, 255, 0)");
     MainCanvas.fillStyle = Grad;
     MainCanvas.fillRect(X, SVPanelOffset, Width, SVPanelHeight);
-    
+
     Grad = MainCanvas.createLinearGradient(X, SVPanelOffset, X, SVPanelOffset + SVPanelHeight);
     Grad.addColorStop(0, "rgba(0, 0, 0, 0)");
     Grad.addColorStop(1, "rgba(0, 0, 0, 1)");
@@ -301,10 +302,9 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     MainCanvas.fillRect(X, SVPanelOffset, Width, SVPanelHeight);
 
     if (!ColorPickerIsDefault) {
-	    var CSS = ColorPickerHSVToCSS(HSV);
-	    DrawCircle(X + HSV.S * Width, SVPanelOffset + (1 - HSV.V) * SVPanelHeight, 8, 16, CSS);
-	    DrawCircle(
-		    X + HSV.S * Width, SVPanelOffset + (1 - HSV.V) * SVPanelHeight, 14, 4, (HSV.V > 0.8 && HSV.S < 0.2) ? "#333333" : "#FFFFFF");
+        var CSS = ColorPickerHSVToCSS(HSV);
+        DrawCircle(X + HSV.S * Width, SVPanelOffset + (1 - HSV.V) * SVPanelHeight, 8, 16, CSS);
+        DrawCircle(X + HSV.S * Width, SVPanelOffset + (1 - HSV.V) * SVPanelHeight, 14, 4, (HSV.V > 0.8 && HSV.S < 0.2) ? "#333333" : "#FFFFFF");
     }
     // Draw Hue Picker
     DrawEmptyRect(X + HSV.H * (Width - 20), Y, 20, ColorPickerHueBarHeight, "#FFFFFF");
@@ -329,7 +329,7 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
  */
 function ColorPickerCSSToHSV(Color, DefaultHSV) {
     Color = Color || "#FFFFFF";
-    var M = Color.match(/^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i)
+    var M = Color.match(/^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i);
     var R, G, B;
     if (M) {
         var GRP = M[1];
@@ -359,8 +359,8 @@ function ColorPickerCSSToHSV(Color, DefaultHSV) {
         H = 0;
     } else {
         if (Max == R) {
-            H = (G - B) / D + (G < B ? 6 : 0); 
-        } else if (Max == G) { 
+            H = (G - B) / D + (G < B ? 6 : 0);
+        } else if (Max == G) {
             H = (B - R) / D + 2;
         } else {
             H = (R - G) / D + 4;
@@ -374,7 +374,7 @@ function ColorPickerCSSToHSV(Color, DefaultHSV) {
 /**
  * Converts a HSV object into a valid hex code to use in the css
  * @param {HSVColor} HSV - HSV value to convert
- * @returns {HexColor} - Hex color code corresponding to the given HSV 
+ * @returns {HexColor} - Hex color code corresponding to the given HSV
  */
 function ColorPickerHSVToCSS(HSV) {
     var R, G, B;
@@ -386,14 +386,14 @@ function ColorPickerHSVToCSS(HSV) {
     var T = V * (1 - (1 - F) * S);
 
     switch (I % 6) {
-        case 0: R = V, G = T, B = P; break;
-        case 1: R = Q, G = V, B = P; break;
-        case 2: R = P, G = V, B = T; break;
-        case 3: R = P, G = Q, B = V; break;
-        case 4: R = T, G = P, B = V; break;
-        case 5: R = V, G = P, B = Q; break;
+        case 0: R = V; G = T; B = P; break;
+        case 1: R = Q; G = V; B = P; break;
+        case 2: R = P; G = V; B = T; break;
+        case 3: R = P; G = Q; B = V; break;
+        case 4: R = T; G = P; B = V; break;
+        case 5: R = V; G = P; B = Q; break;
     }
-  
+
     var RS = Math.floor(R * 255).toString(16).toUpperCase();
     var GS = Math.floor(G * 255).toString(16).toUpperCase();
     var BS = Math.floor(B * 255).toString(16).toUpperCase();

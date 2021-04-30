@@ -38,11 +38,11 @@ function InventoryAddMany(C, NewItems, Push) {
 
 	// Return if data is invalid
 	if (C == null || !Array.isArray(NewItems)) return;
-	
+
 	var ShouldSync = false;
-	
+
 	// Add each items
-	for (let NI = 0; NI < NewItems.length; NI++) { 
+	for (let NI = 0; NI < NewItems.length; NI++) {
 		// First, we check if the item already exists in the inventory, continue if it's the case
 		var ItemExists = false;
 		for (let I = 0; I < C.Inventory.length; I++)
@@ -50,8 +50,8 @@ function InventoryAddMany(C, NewItems, Push) {
 				ItemExists = true;
 				break;
 			}
-		
-		if (!ItemExists) { 
+
+		if (!ItemExists) {
 			// Create the new item for current character's asset family, group name and item name
 			var NewItem = InventoryItemCreate(C, NewItems[NI].Group, NewItems[NI].Name);
 
@@ -63,7 +63,7 @@ function InventoryAddMany(C, NewItems, Push) {
 			}
 		}
 	}
-	
+
 	// Sends the new item(s) to the server if it's for the current player and an item was added
 	if ((C.ID == 0) && ((Push == null) || Push) && ShouldSync) ServerPlayerInventorySync();
 }
@@ -459,7 +459,7 @@ function InventoryGetRandom(C, GroupName, AllowedAssets) {
 	var BlockedRank = Math.pow(2, 2);
 	var HiddenRank = Math.pow(2, 1);
 	var LimitedRank = Math.pow(2, 0);
-		
+
 	for (let A = 0; A < AssetList.length; A++)
 		if (((AssetList[A].Group.Name == GroupName && AssetList[A].Wear) || GroupName == null || GroupName == "") && (RandomOnly == false || AssetList[A].Random) && AssetList[A].Enable && InventoryAllow(C, AssetList[A].Prerequisite, false)) {
 			var CurrRank = 0;
@@ -537,13 +537,13 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 * Returns TRUE if the body area (Asset Group) for a character is blocked and cannot be used
 * @param {Character} C - The character on which we validate the group
 * @param {String} GroupName - The name of the asset group (body area)
-* @param {Boolean} Activity - if TRUE check if activity is allowed on the asset group 
+* @param {Boolean} Activity - if TRUE check if activity is allowed on the asset group
 * @returns {Boolean} - TRUE if the group is blocked
 */
 function InventoryGroupIsBlocked(C, GroupName, Activity) {
 
 	if (Activity == null) Activity = false;
-	
+
 	// Default to characters focused group
 	if (GroupName == null) GroupName = C.FocusGroup.Name;
 
@@ -610,15 +610,14 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties = true) {
 */
 function InventoryItemIsPickable(Item) {
 	if (!Item) return null;
-	var lock = InventoryGetLock(Item)
+	var lock = InventoryGetLock(Item);
 	if (lock && lock.Asset && lock.Asset.PickDifficulty && lock.Asset.PickDifficulty > 0) return true;
 	else return false;
-	
 }
 
 /**
  * Returns the value of a given property of an appearance item, prioritizes the Property object.
- * @param {object} Item - The appearance item to scan 
+ * @param {object} Item - The appearance item to scan
  * @param {string} PropertyName - The property name to get.
  * @param {boolean} CheckGroup - Whether or not to fall back to the item's group if the property is not found on
  * Property or Asset.
@@ -776,8 +775,8 @@ function InventoryLock(C, Item, Lock, MemberNumber, Update = true) {
 				if (Item.Property == null) Item.Property = {};
 				if (Item.Property.Effect == null) Item.Property.Effect = [];
 				if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
-				
-				if (!Item.Property.MemberNumberListKeys && Lock.Asset.Name == "HighSecurityPadlock") Item.Property.MemberNumberListKeys = "" + MemberNumber
+
+				if (!Item.Property.MemberNumberListKeys && Lock.Asset.Name == "HighSecurityPadlock") Item.Property.MemberNumberListKeys = "" + MemberNumber;
 				Item.Property.LockedBy = Lock.Asset.Name;
 				if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 				if (Update) {

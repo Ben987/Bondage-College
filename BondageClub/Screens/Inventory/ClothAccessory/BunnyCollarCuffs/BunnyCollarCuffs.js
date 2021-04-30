@@ -9,13 +9,13 @@ var InventoryClothAccessoryBunnyCollarCuffsOptions = [
 	{
 		Name: "Collar",
 		Property: {
-			Type: "Collar", 
+			Type: "Collar",
 		},
 	},
 	{
 		Name: "Cuffs",
 		Property: {
-			Type: "Cuffs", 
+			Type: "Cuffs",
 		},
 	},
 ];

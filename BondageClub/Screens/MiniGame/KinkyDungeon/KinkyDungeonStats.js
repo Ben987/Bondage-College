@@ -1,3 +1,4 @@
+"use strict";
 // Arousal -- It lowers your stamina regen
 var KinkyDungeonStatArousalMax = 100
 var KinkyDungeonArousalUnlockSuccessMod = 0.5 // Determines how much harder it is to insert a key while aroused. 1.0 is half success chance, 2.0 is one-third, etc.

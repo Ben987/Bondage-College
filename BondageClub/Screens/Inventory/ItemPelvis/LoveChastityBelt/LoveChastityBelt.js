@@ -24,10 +24,8 @@ function InventoryItemPelvisLoveChastityBeltDraw() {
     if ((DialogFocusItem.Property.Type == "Vibe") && (DialogFocusItem.Property.Intensity > -1)) DrawButton(1200, 600, 250, 65, DialogFindPlayer("TurnOff"), "White");
     if (DialogFocusItem.Property.Type == "Shock") {
       DrawButton(1200, 600, 250, 65, DialogFindPlayer("TriggerShock"), "White");
-      if (CurrentScreen == "ChatRoom" || true) {
-        DrawButton(1200, 900, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
-        DrawText(DialogFindPlayer("ShockCollarShowChat"), 1445, 933, "White", "Gray");
-      }
+      DrawButton(1200, 900, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
+      DrawText(DialogFindPlayer("ShockCollarShowChat"), 1445, 933, "White", "Gray");
     }
     if (InventoryItemPelvisLoveChastityBeltIntensityCanDecrease()) DrawButton(1200, 700, 250, 65, DialogFindPlayer("Decrease"), "White");
     if (InventoryItemPelvisLoveChastityBeltIntensityCanIncrease()) DrawButton(1550, 700, 250, 65, DialogFindPlayer("Increase"), "White");

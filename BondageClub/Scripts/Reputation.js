@@ -27,7 +27,7 @@ function ReputationChange(RepType, RepValue, Push) {
 		var NewRep = {
 			Type: RepType,
 			Value: RepValue
-		}
+		};
 		if (NewRep.Value > 100) NewRep.Value = 100;
 		if (NewRep.Value < -100) NewRep.Value = -100;
 		Player.Reputation.push(NewRep);
@@ -84,7 +84,7 @@ function ReputationCharacterGet(C, RepType) {
  * Alter the reputation progress by a factor. The higher the rep, the slower it gets, a reputation is easier to break than to build. Takes the cheater version factor into account.
  * @param {string} RepType - Type/name of the reputation
  * @param {number} Value - Value of the reputation change before the factor is applied
- * @return {void} - Nothing 
+ * @return {void} - Nothing
  */
 function ReputationProgress(RepType, Value) {
 	var V = ReputationGet(RepType);

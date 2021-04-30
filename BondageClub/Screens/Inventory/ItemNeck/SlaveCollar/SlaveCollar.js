@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 var InventoryItemNeckSlaveCollarColorMode = false;
 var InventoryItemNeckSlaveCollarColor = "Default";
 var InventoryItemNeckSlaveCollarOffset = 0;
@@ -114,7 +114,7 @@ function InventoryItemNeckSlaveCollarDraw() {
 
             // In color picking mode, we allow the user to change the collar color
             ElementPosition("InputColor", 1450, 65, 300);
-            ColorPickerDraw(1300, 145, 675, 830, document.getElementById("InputColor"), function (Color) { DialogChangeItemColor(C, Color) });
+            ColorPickerDraw(1300, 145, 675, 830, document.getElementById("InputColor"), function (Color) { DialogChangeItemColor(C, Color); });
             DrawButton(1665, 25, 90, 90, "", "White", "Icons/ColorSelect.png");
             DrawButton(1775, 25, 90, 90, "", "White", "Icons/ColorCancel.png");
 
@@ -155,7 +155,7 @@ function InventoryItemNeckSlaveCollarClick() {
 
 			// In color picking mode, we allow the user to change the collar color
             if ((MouseX >= 1665) && (MouseX <= 1755) && (MouseY >= 25) && (MouseY <= 110)) {
-                var Color = ElementValue("InputColor");
+                let Color = ElementValue("InputColor");
                 if (CommonIsColor(Color)) {
                     CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
                     InventoryItemNeckSlaveCollarColorMode = false;
@@ -173,14 +173,14 @@ function InventoryItemNeckSlaveCollarClick() {
                 CharacterLoadCanvas(C);
             }
             if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975)) {
-                var Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
+                let Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
                 CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
                 CharacterLoadCanvas(C);
                 ElementValue("InputColor", Color);
             }
 
         } else {
-			
+
 			// In regular mode, the owner can select the collar model and change the offset to get the next 8 models
             if ((MouseX >= 1665) && (MouseX <= 1755) && (MouseY >= 25) && (MouseY <= 110)) {
 				InventoryItemNeckSlaveCollarOffset = InventoryItemNeckSlaveCollarOffset + 8;

@@ -49,6 +49,12 @@ function ChatAdminLoad() {
 	if (!ChatRoomPlayerIsAdmin()) {
 		document.getElementById("InputName").setAttribute("disabled", "disabled");
 		document.getElementById("InputDescription").setAttribute("disabled", "disabled");
+		
+		// We also garble them if possible
+		ElementValue("InputName", ChatSearchMuffle(ChatAdminTemporaryData ? ChatAdminTemporaryData.Name : ChatRoomData.Name, true));
+		ElementValue("InputDescription", ChatSearchMuffle(ChatAdminTemporaryData ? ChatAdminTemporaryData.Description : ChatRoomData.Description, true));
+		
+		
 		document.getElementById("InputAdminList").setAttribute("disabled", "disabled");
 		document.getElementById("InputBanList").setAttribute("disabled", "disabled");
 		document.getElementById("InputSize").setAttribute("disabled", "disabled");

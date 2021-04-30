@@ -76,7 +76,7 @@ function init(){
 						console.log(error);
 					}
 			);
-	 }
+		}
 	scene.add(group1);
 
 }
@@ -120,7 +120,7 @@ function light(){
 //set color
 function color2(hexcolor){
 	let loader = new THREE.TextureLoader();
-	var texturehair = loader.load(`${path3d}HairFront/t005.bmp`)
+	var texturehair = loader.load(`${path3d}HairFront/t005.bmp`);
 	model.traverse( function ( child ) {
 		if ( child.isMesh ) {
 				if (model.group == "HairBack" || model.group == "HairFront"){
@@ -129,13 +129,13 @@ function color2(hexcolor){
 					child.material = new THREE.MeshPhongMaterial( {
 						color: hexcolor, // hair color
 						wireframe: false,
-					  map: texturehair,
+						map: texturehair,
 					} );
 				}else {
 					child.castShadow = true;
 					child.receiveShadow = true;
 				}
-		 }
+			}
 	} );
 }
 
@@ -169,25 +169,25 @@ function dress3DModels(group, path3d){
 
 
 			let loader = new THREE.FBXLoader();
-			  loader.load(`${path3d}${grpname}/${itemname}.fbx`,function( object ) {
-				   count += 1;
-				   model = object;
-					 model.name = itemname;
-					 model.group = grpname;
-					 console.log(count);
+			loader.load(`${path3d}${grpname}/${itemname}.fbx`,function( object ) {
+				count += 1;
+				model = object;
+				model.name = itemname;
+				model.group = grpname;
+				console.log(count);
 
-						// model.mixer = new THREE.AnimationMixer(model);
-						// model.mixer.root = model.mixer.getRoot();
+				// model.mixer = new THREE.AnimationMixer(model);
+				// model.mixer.root = model.mixer.getRoot();
 
-				 	color2(itemcolor, i);
-			 		group1.add(model);
-					},
-					undefined,
-					function( error ) {
-				  	console.log(error);
-						}
-				);
-		 }
+				color2(itemcolor, i);
+				group1.add(model);
+			},
+			undefined,
+			function( error ) {
+				console.log(error);
+			}
+			);
+		}
 		scene.add(group1);
 		console.log(count);
 		maid = false;

@@ -182,7 +182,7 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
 			this.nextSibling.classList.toggle("select-hide");
 		});
 		// add an event listener to the <select> tag
-		if (ClickEventListener != null) Select.addEventListener("change", ClickEventListener)
+		if (ClickEventListener != null) Select.addEventListener("change", ClickEventListener);
 		// Add alle the items to the enclosing <di>
 		CustomSelect.appendChild(Select);
 		CustomSelect.appendChild(SelectedItem);
@@ -349,7 +349,7 @@ function ElementScrollToEnd(ID) {
  */
 function ElementIsScrolledToEnd(ID) {
 	var element = document.getElementById(ID);
-	return element != null && element.scrollHeight - element.scrollTop - element.clientHeight < 1
+	return element != null && element.scrollHeight - element.scrollTop - element.clientHeight < 1;
 }
 
 /**

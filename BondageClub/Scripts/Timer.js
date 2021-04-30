@@ -17,7 +17,7 @@ function TimerGetTime() {
 
 /**
  * Returns a string of the time remaining on a given timer
- * @param {number} T - Time to convert to a string in ms 
+ * @param {number} T - Time to convert to a string in ms
  * @returns {string} - The time string in the DD:HH:MM:SS format (Days and hours not displayed if it contains none)
  */
 function TimerToString(T) {
@@ -33,7 +33,7 @@ function TimerToString(T) {
 
 /**
  * Returns a string of the time remaining on a given timer (Hours and minutes only)
- * @param {Date} T - Time to convert to a string in ms 
+ * @param {Date} T - Time to convert to a string in ms
  * @returns {string} - The time string in the HH:MM format
  */
 function TimerHourToString(T) {
@@ -45,7 +45,7 @@ function TimerHourToString(T) {
 
 /**
  * Check if we must remove items from characters. (Expressions, items being removed, locks, etc.)
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function TimerInventoryRemove() {
 
@@ -93,7 +93,7 @@ function TimerInventoryRemove() {
  * @param {Character} C - Character for which we are removing an item
  * @param {string} AssetGroup - Group targeted by the removal
  * @param {number} Timer - Seconds it takes to remove the item
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function TimerInventoryRemoveSet(C, AssetGroup, Timer) {
 	for (let E = 0; E < C.Appearance.length; E++)
@@ -125,7 +125,7 @@ function TimerPrivateOwnerBeep() {
 /**
  * Main timer process
  * @param {number} Timestamp - Time in ms of the time when the function was called
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function TimerProcess(Timestamp) {
 
@@ -166,20 +166,20 @@ function TimerProcess(Timestamp) {
 							if (Character[C].ArousalSettings.ProgressTimer < 0) {
 								Character[C].ArousalSettings.ProgressTimer++;
 								ActivityTimerProgress(Character[C], -1);
-								ActivityVibratorLevel(Character[C], 0)
+								ActivityVibratorLevel(Character[C], 0);
 							}
 							else {
 								Character[C].ArousalSettings.ProgressTimer--;
 								ActivityTimerProgress(Character[C], 1);
-								ActivityVibratorLevel(Character[C], 4); 
+								ActivityVibratorLevel(Character[C], 4);
 							}
 						} else if (Character[C].IsEgged()) {
 
 							// If the character is egged, we find the highest intensity factor and affect the progress, low and medium vibrations have a cap
-							var Factor = -1;
+							let Factor = -1;
 							for (let A = 0; A < Character[C].Appearance.length; A++) {
-								var Item = Character[C].Appearance[A];
-								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
+								let Item = Character[C].Appearance[A];
+								let ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
 								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor)){
 									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.ArousalZone))
 										Factor = Item.Property.Intensity + ZoneFactor;
@@ -214,14 +214,14 @@ function TimerProcess(Timestamp) {
 			TimerLastArousalDecay = CurrentTime;
 			for (let C = 0; C < Character.length; C++)
 				if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.Active != null) && ((Character[C].ArousalSettings.Active == "Automatic") || (Character[C].ArousalSettings.Active == "Hybrid")))
-					if ((Character[C].ArousalSettings.Progress != null) && (typeof Character[C].ArousalSettings.Progress === "number") && !isNaN(Character[C].ArousalSettings.Progress) && (Character[C].ArousalSettings.Progress > 0)) 
+					if ((Character[C].ArousalSettings.Progress != null) && (typeof Character[C].ArousalSettings.Progress === "number") && !isNaN(Character[C].ArousalSettings.Progress) && (Character[C].ArousalSettings.Progress > 0))
 						if ((Character[C].ArousalSettings.ProgressTimer == null) || (typeof Character[C].ArousalSettings.ProgressTimer !== "number") || isNaN(Character[C].ArousalSettings.ProgressTimer) || (Character[C].ArousalSettings.ProgressTimer == 0)) {
 
 							// If the character is egged, we find the highest intensity factor
-							var Factor = -1;
+							let Factor = -1;
 							for (let A = 0; A < Character[C].Appearance.length; A++) {
-								var Item = Character[C].Appearance[A];
-								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
+								let Item = Character[C].Appearance[A];
+								let ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.ArousalZone) - 2;
 								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor))
 									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.ArousalZone))
 										Factor = Item.Property.Intensity + ZoneFactor;
@@ -244,7 +244,7 @@ function TimerProcess(Timestamp) {
 
     // Launches the main again for the next frame
 	requestAnimationFrame(MainRun);
-    
+
 }
 
 /**
@@ -256,10 +256,10 @@ function TimermsToTime(s) {
 
 	// Pad to 2 or 3 digits, default is 2
 	function pad(n, z) {
-	  z = z || 2;
-	  return ('00' + n).slice(-z);
+		z = z || 2;
+		return ('00' + n).slice(-z);
 	}
-  
+
 	// Returns the formatted value
 	var ms = s % 1000;
 	s = (s - ms) / 1000;
@@ -268,5 +268,5 @@ function TimermsToTime(s) {
 	var mins = s % 60;
 	var hrs = (s - mins) / 60;
 	return pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
-	
+
 }

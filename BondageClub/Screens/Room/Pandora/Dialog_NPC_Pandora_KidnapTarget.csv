@@ -53,14 +53,11 @@ Punishment0,,,(A Dominatrix takes you away.)  (She stares at you.)  You've cause
 10,,(Leave her.),,DialogLeave(),
 100,,,"You might have beaten me, but the other girls from Pandora's Box will kick your butt.",,
 100,,You're mine now.,Ah!  You really think you can collar me?,DialogRemove(),
-100,110,(Bring her with you.),Wait!  What are you doing?  Where are we going?,CharacterJoin(),CurrentCharacter.CanWalk()
-100,,(Bring her with you.),(She cannot walk in her restraints.),,!CurrentCharacter.CanWalk()
-100,,(Leave her.),,DialogLeave(),
-110,,,Wait!  Where are we going?,,
-110,,Where is the exit?,Fuck you!  I'm not helping you.,,
-110,,(Strip her naked.),(You strip her naked as she struggles.)  That's enough!  I've already surrendered!,CharacterNaked(),!CurrentCharacter.IsNaked()
-110,,Let's move. (Walk with her.),,DialogLeave(),CurrentCharacter.CanWalk()
-110,,Let's move. (Walk with her.),(She cannot walk in her restraints.),,!CurrentCharacter.CanWalk()
+100,,Where is the exit?,Fuck you!  I'm not helping you.,DialogRemove(),
+100,,(Bring her with you.),Wait!  What are you doing?  Where are we going?  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
+100,,(Leaver her here.),Can you make up your mind?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Strip her naked.),(You strip her naked as she struggles.)  That's enough!  I've already surrendered!,CharacterNaked(),!CurrentCharacter.IsNaked()
+100,,Enough.  (Stop talking with her.),,DialogLeave(),
 200,210,Get me out!,(She laughs at you.)  You want out?  Not until you get properly punished little kidnapper.,,Player.CanTalk()
 200,210,(Beg for mercy.),(She laughs at you.)  You want out?  Not until you get properly punished little kidnapper.,,!Player.CanTalk()
 210,220,Punishment?  What do you mean?,"You've never been punished?  Get ready girl, a Dominatrix will come to get you soon.",,Player.CanTalk()

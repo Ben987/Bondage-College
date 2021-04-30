@@ -1,3 +1,4 @@
+"use strict";
 var KinkyDungeonEnemies = [
 	{name: "BlindZombie", tags: ["zombie", "melee", "ribbonRestraints"], hp: 10, AI: "wander", visionRadius: 1, maxhp: 8, minLevel:0, weight:14, movePoints: 3, attackPoints: 3, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {}, floors:[0], dropTable: [{name: "Gold", amountMin: 20, amountMax: 30, weight: 2}, {name: "Gold", amountMin: 3, amountMax: 9, weight: 5}]},
 	{name: "FastZombie", tags: ["zombie", "melee", "ribbonRestraints"], hp: 10, AI: "guard", visionRadius: 6, maxhp: 10, minLevel:3, weight:6, movePoints: 3, attackPoints: 2, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":10, "lastthird":14}, floors:[0], dropTable: [{name: "Gold", amountMin: 50, amountMax: 80, weight: 2}, {name: "Gold", amountMin: 15, amountMax: 29, weight: 5}]},
@@ -114,7 +115,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 				idle = true
 				if (playerDist > enemy.Enemy.attackRange + 0.5)
 					for (let T = 0; T < 8; T++) { // try 8 times
-						var dir = KinkyDungeonGetDirection(10*(Math.random()-0.5), 10*(Math.random()-0.5))
+						let dir = KinkyDungeonGetDirection(10*(Math.random()-0.5), 10*(Math.random()-0.5))
 						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
 							idle = false
@@ -131,7 +132,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 				// try 8 times to find a moveable time, with some random variance
 				if (playerDist <= enemy.Enemy.visionRadius)
 					for (let T = 0; T < 8; T++) {
-						var dir = KinkyDungeonGetDirectionRandom(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
+						let dir = KinkyDungeonGetDirectionRandom(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
 						if (T > 5) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10)
 						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
@@ -141,7 +142,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 					}
 				else if (Math.abs(enemy.x - enemy.gx) > 0 || Math.abs(enemy.y - enemy.gy) > 0)
 					for (let T = 0; T < 8; T++) {
-						var dir = KinkyDungeonGetDirectionRandom(enemy.gx - enemy.x, enemy.gy - enemy.y)
+						let dir = KinkyDungeonGetDirectionRandom(enemy.gx - enemy.x, enemy.gy - enemy.y)
 						if (T > 5) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10)
 						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
@@ -155,7 +156,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 			if ((!moved || enemy.Enemy.attackWhileMoving) && enemy.Enemy.attack.includes("Melee") && playerDist < enemy.Enemy.attackRange + 0.5) {//Player is adjacent
 				idle = false;
 			
-				var dir = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
+				let dir = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
 				
 				
 				if (!KinkyDungeonEnemyTryAttack(enemy, [dir], delta, enemy.x + dir.x, enemy.y + dir.y)) {
@@ -165,7 +166,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 					if (enemy.Enemy.attack.includes("Bind")) {
 						let caught = false
 						for (let W = 0; W < enemy.warningTiles.length; W++) {
-							var tile = enemy.warningTiles[W]
+							let tile = enemy.warningTiles[W]
 							if (enemy.x + tile.x == KinkyDungeonPlayerEntity.x && enemy.y + tile.y == KinkyDungeonPlayerEntity.y) {
 								caught = true;
 								break;
@@ -194,7 +195,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 				} else { // Attack lands!
 					let hit = false
 					for (let W = 0; W < enemy.warningTiles.length; W++) {
-						var tile = enemy.warningTiles[W]
+						let tile = enemy.warningTiles[W]
 						if (enemy.x + tile.x == KinkyDungeonPlayerEntity.x && enemy.y + tile.y == KinkyDungeonPlayerEntity.y) {
 							hit = true;
 							break;

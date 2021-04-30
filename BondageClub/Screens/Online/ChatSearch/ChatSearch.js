@@ -121,8 +121,8 @@ function ChatSearchNormalDraw() {
 			var IsFull = ChatSearchResult[C].MemberCount >= ChatSearchResult[C].MemberLimit;
 			var HasBlock = CharacterHasBlockedItem(Player, ChatSearchResult[C].BlockCategory);
 			DrawButton(X, Y, 630, 85, "", (HasBlock && IsFull ? "#884444" : HasBlock ? "#FF9999" : HasFriends && IsFull ? "#448855" : HasFriends ? "#CFFFCF" : IsFull ? "#666" : "White"), null, null, IsFull);
-			DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchResult[C].Name + " - " + ChatSearchResult[C].Creator + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 620, "black");
-			DrawTextFit(ChatSearchResult[C].Description, X + 315, Y + 62, 620, "black");
+			DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchMuffle(ChatSearchResult[C].Name) + " - " + ChatSearchMuffle(ChatSearchResult[C].Creator) + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 620, "black");
+			DrawTextFit(ChatSearchMuffle(ChatSearchResult[C].Description), X + 315, Y + 62, 620, "black");
 
 			// Moves the next window position
 			X = X + 660;
@@ -150,10 +150,10 @@ function ChatSearchNormalDraw() {
 
 				// Builds the friend list as hover text
 				if (MouseIn(X, Y, 630, 85) && ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0) {
-					DrawTextWrap(TextGet("FriendsInRoom") + " " + ChatSearchResult[C].Name, (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
+					DrawTextWrap(TextGet("FriendsInRoom") + " " + ChatSearchMuffle(ChatSearchResult[C].Name), (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
 					ListY += Height;
 					for (let F = 0; F < ChatSearchResult[C].Friends.length; F++) {
-						DrawTextWrap(ChatSearchResult[C].Friends[F].MemberName + " (" + ChatSearchResult[C].Friends[F].MemberNumber + ")", (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
+						DrawTextWrap(ChatSearchMuffle(ChatSearchResult[C].Friends[F].MemberName + " (" + ChatSearchResult[C].Friends[F].MemberNumber + ")"), (X > 1000) ? 685 : X + 660, ListY, 630, Height, "black", "#FFFF88", 1);
 						ListY += Height;
 					}
 				}
@@ -187,6 +187,25 @@ function ChatSearchNormalDraw() {
 }
 
 /**
+ * 
+ * Garbles based on immersion settings
+ * @ Text (string) - The text to garble
+ * @returns {void} - Nothing
+ */
+function ChatSearchMuffle(Text) {
+	let ret = Text;
+	if (Player.ImmersionSettings && Player.ImmersionSettings.ChatRoomMuffle && Player.GetBlindLevel() > 0) {
+		ret = SpeechGarbleByGagLevel(Player.GetBlindLevel() * Player.GetBlindLevel(), Text, true)
+		if (ret.length == 0)
+			return "...";
+		return ret;
+	}
+	return ret
+}
+ 
+
+
+/**
  * Draws the list of rooms in permission mode.
  * @returns {void} - Nothing
  */
@@ -199,12 +218,12 @@ function ChatSearchPermissionDraw() {
 		var ShownRooms = 0;
 		
 		for (let C = ChatSearchResultOffset; C < ChatSearchResult.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
-			var isIgnored = ChatSearchIgnoredRooms.includes(ChatSearchResult[C].Name.toUpperCase());
-			var Hover = (MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85) && !CommonIsMobile;
+			let isIgnored = ChatSearchIgnoredRooms.includes(ChatSearchResult[C].Name.toUpperCase());
+			let Hover = (MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85) && !CommonIsMobile;
 			// Draw the room rectangle
 			DrawRect(X, Y, 630, 85, isIgnored ? (Hover ? "red" : "pink") : ( Hover ? "green" : "lime"));
-			DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchResult[C].Name + " - " + ChatSearchResult[C].Creator + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 620, "black");
-			DrawTextFit(ChatSearchResult[C].Description, X + 315, Y + 62, 620, "black");
+			DrawTextFit((ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0 ? "(" + ChatSearchResult[C].Friends.length + ") " : "") + ChatSearchMuffle(ChatSearchResult[C].Name) + " - " + ChatSearchMuffle(ChatSearchResult[C].Creator) + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 620, "black");
+			DrawTextFit(ChatSearchMuffle(ChatSearchResult[C].Description), X + 315, Y + 62, 620, "black");
 
 			// Moves the next window position
 			X = X + 660;
@@ -221,9 +240,9 @@ function ChatSearchPermissionDraw() {
 
 		// Display ignored rooms that are no longer present
 		for (let C = IgnoredRoomsOffset; C < ChatSearchIgnoredRooms.length && ShownRooms < ChatSearchRoomsPerPage; C++) {
-			var isIgnored = !ChatSearchResult.map(Room => Room.Name.toUpperCase()).includes(ChatSearchIgnoredRooms[C]);
+			let isIgnored = !ChatSearchResult.map(Room => Room.Name.toUpperCase()).includes(ChatSearchIgnoredRooms[C]);
 			if (isIgnored) {
-				var Hover = (MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85) && !CommonIsMobile;
+				let Hover = (MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85) && !CommonIsMobile;
 				
 				// Draw the room rectangle
 				DrawRect(X, Y, 630, 85, Hover ? "red" : "pink");
@@ -287,8 +306,8 @@ function ChatSearchClickPermission() {
 
 		// If the player clicked on an existing room
 		if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
-			var RoomName = ChatSearchResult[C].Name.toUpperCase();
-			var Idx = ChatSearchIgnoredRooms.indexOf(RoomName);
+			let RoomName = ChatSearchResult[C].Name.toUpperCase();
+			let Idx = ChatSearchIgnoredRooms.indexOf(RoomName);
 			if (Idx != -1)
 				ChatSearchIgnoredRooms.splice(Idx, 1);
 			else
@@ -314,8 +333,8 @@ function ChatSearchClickPermission() {
 		if (isIgnored) {
 			// If the click is valid
 			if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
-				var RoomName = ChatSearchIgnoredRooms[C];
-				var Idx = ChatSearchIgnoredRooms.indexOf(RoomName);
+				let RoomName = ChatSearchIgnoredRooms[C];
+				let Idx = ChatSearchIgnoredRooms.indexOf(RoomName);
 				if (Idx != -1)
 					ChatSearchIgnoredRooms.splice(Idx, 1);
 				else

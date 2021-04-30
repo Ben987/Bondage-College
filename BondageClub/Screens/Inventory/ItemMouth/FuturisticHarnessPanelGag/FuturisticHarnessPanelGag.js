@@ -34,8 +34,8 @@ function InventoryItemMouthFuturisticHarnessPanelNpcDialog(C, Option) {
 
 
 function AssetsItemMouthFuturisticHarnessPanelGagScriptDraw(data) {
-	AssetsItemMouthFuturisticPanelGagScriptDraw(data)
+	AssetsItemMouthFuturisticPanelGagScriptDraw(data);
 }
 function AssetsItemMouthFuturisticHarnessPanelGagBeforeDraw(data) {
-	return AssetsItemMouthFuturisticPanelGagBeforeDraw(data)
+	return AssetsItemMouthFuturisticPanelGagBeforeDraw(data);
 }
