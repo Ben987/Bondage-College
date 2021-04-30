@@ -1,5 +1,7 @@
 "use strict";
 
+var ReputationValidReputations = ["Dominant", "Kidnap", "ABDL", "Gaming", "Maid", "LARP", "Asylum", "Gambling"];
+
 /**
  * Alters a given reputation value for the player
  * @param {string} RepType - The name/type of the reputation to alter
@@ -9,30 +11,37 @@
  */
 function ReputationChange(RepType, RepValue, Push) {
 
-	// Nothing will be done for a zero change
-	RepValue = parseInt(RepValue) || 0;
-	if (RepValue != 0) {
+	if (ReputationValidReputations.includes(RepType)) {
 
-		// If the reputation already exists, we update and push it
-		for (let R = 0; R < Player.Reputation.length; R++)
-			if (Player.Reputation[R].Type == RepType) {
-				Player.Reputation[R].Value = Player.Reputation[R].Value + RepValue;
-				if (Player.Reputation[R].Value > 100) Player.Reputation[R].Value = 100;
-				if (Player.Reputation[R].Value < -100) Player.Reputation[R].Value = -100;
-				if ((Push == null) || Push) ServerPlayerReputationSync();
-				return;
-			}
+		// Nothing will be done for a zero change
+		RepValue = parseInt(RepValue) || 0;
+		if (RepValue != 0) {
 
-		// Creates the new reputation
-		var NewRep = {
-			Type: RepType,
-			Value: RepValue
-		};
-		if (NewRep.Value > 100) NewRep.Value = 100;
-		if (NewRep.Value < -100) NewRep.Value = -100;
-		Player.Reputation.push(NewRep);
-		if ((Push == null) || Push) ServerPlayerReputationSync();
+			// If the reputation already exists, we update and push it
+			for (let R = 0; R < Player.Reputation.length; R++)
+				if (Player.Reputation[R].Type == RepType) {
+					Player.Reputation[R].Value = Player.Reputation[R].Value + RepValue;
+					if (Player.Reputation[R].Value > 100) Player.Reputation[R].Value = 100;
+					if (Player.Reputation[R].Value < -100) Player.Reputation[R].Value = -100;
+					if ((Push == null) || Push) ServerPlayerReputationSync();
+					return;
+				}
 
+			// Creates the new reputation
+			var NewRep = {
+				Type: RepType,
+				Value: RepValue
+			};
+			if (NewRep.Value > 100) NewRep.Value = 100;
+			if (NewRep.Value < -100) NewRep.Value = -100;
+			Player.Reputation.push(NewRep);
+			if ((Push == null) || Push) ServerPlayerReputationSync();
+
+		}
+	}
+
+	else {
+		throw new Error("trying to change invalid reputation")
 	}
 
 }
