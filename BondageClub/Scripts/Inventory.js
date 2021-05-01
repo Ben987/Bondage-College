@@ -500,7 +500,7 @@ function InventoryGetRandom(C, GroupName, AllowedAssets) {
 */
 function InventoryRemove(C, AssetGroup, Refresh) {
 	try {
-		if (Player.ImmersionSettings.DoBlindFlash) {
+		if (Player.GraphicsSettings.DoBlindFlash) {
 			var lastblindlevel = Player.GetBlindLevel();
 			lastdarkfactor = CharacterGetDarkFactor(Player);
 		}
@@ -544,7 +544,7 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 			C.Appearance.splice(E, 1);
 			if (Refresh || Refresh == null) CharacterRefresh(C);
 			try {
-				if (Player.ImmersionSettings.DoBlindFlash) {
+				if (Player.GraphicsSettings.DoBlindFlash) {
 					if (Player.GetBlindLevel() < lastblindlevel && Player.GetBlindLevel() == 0) {
 						DrawBlindFlash(lastblindlevel);
 					}

@@ -372,7 +372,6 @@ function PreferenceInitPlayer() {
 	if (typeof C.ImmersionSettings.ReturnToChatRoomAdmin !== "boolean") C.ImmersionSettings.ReturnToChatRoomAdmin = false;
 	if (typeof C.ImmersionSettings.SenseDepMessages !== "boolean") C.ImmersionSettings.SenseDepMessages = false;
 	if (typeof C.ImmersionSettings.ChatRoomMuffle !== "boolean") C.ImmersionSettings.ChatRoomMuffle = false;
-	if (typeof C.ImmersionSettings.DoBlindFlash !== "boolean") C.ImmersionSettings.DoBlindFlash = false;
 
 	// Misc
 	if (typeof C.LastChatRoom !== "string") C.LastChatRoom = "";
@@ -416,6 +415,7 @@ function PreferenceInitPlayer() {
 	if (typeof C.GraphicsSettings.Font !== "string") C.GraphicsSettings.Font = "Arial";
 	if (typeof C.GraphicsSettings.InvertRoom !== "boolean") C.GraphicsSettings.InvertRoom = true;
 	if (typeof C.GraphicsSettings.StimulationFlashes !== "boolean") C.GraphicsSettings.StimulationFlashes = true;
+	if (typeof C.GraphicsSettings.DoBlindFlash !== "boolean") C.GraphicsSettings.DoBlindFlash = true;
 
 	// Notification settings
 	let NS = C.NotificationSettings;
@@ -482,7 +482,6 @@ function PreferenceInitPlayer() {
 		C.ImmersionSettings.ReturnToChatRoomAdmin = true;
 		C.ImmersionSettings.SenseDepMessages = true;
 		C.ImmersionSettings.ChatRoomMuffle = true;
-		C.ImmersionSettings.DoBlindFlash = true;
 		C.OnlineSharedSettings.AllowPlayerLeashing = true;
 	}
 
@@ -861,7 +860,6 @@ function PreferenceSubscreenImmersionRun() {
 		DrawCheckbox(500, 752, 64, 64, TextGet("ChatRoomMuffle"), Player.ImmersionSettings.ChatRoomMuffle);
 		DrawCheckbox(500, 832, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
 		DrawCheckbox(1300, 192, 64, 64, TextGet("SenseDepMessages"), Player.ImmersionSettings.SenseDepMessages);
-		DrawCheckbox(1300, 272, 64, 64, TextGet("DoBlindFlash"), Player.ImmersionSettings.DoBlindFlash);
 
 		DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
 		MainCanvas.textAlign = "center";
@@ -912,8 +910,6 @@ function PreferenceSubscreenImmersionClick() {
 			Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
 		if (MouseIn(1300, 192, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.ImmersionSettings.SenseDepMessages = !Player.ImmersionSettings.SenseDepMessages;
-		if (MouseIn(1300, 272, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.ImmersionSettings.DoBlindFlash = !Player.ImmersionSettings.DoBlindFlash;
 		if (MouseIn(500, 672, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.ImmersionSettings.StimulationEvents = !Player.ImmersionSettings.StimulationEvents;
 		if (MouseIn(500, 752, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
@@ -1252,6 +1248,7 @@ function PreferenceSubscreenGraphicsRun() {
 	DrawTextFit(TextGet("GraphicsFontDisclaimer"), 500, 406, 1400, "Black", "Gray");
 	DrawCheckbox(500, 470, 64, 64, TextGet("GraphicsInvertRoom"), Player.GraphicsSettings.InvertRoom);
 	DrawCheckbox(500, 550, 64, 64, TextGet("GraphicsStimulationFlash"), Player.GraphicsSettings.StimulationFlash);
+	DrawCheckbox(500, 630, 64, 64, TextGet("DoBlindFlash"), Player.GraphicsSettings.DoBlindFlash);
 
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 212, 250, 64, TextGet(Player.ArousalSettings.VFX), "White", "",
@@ -1283,6 +1280,7 @@ function PreferenceSubscreenGraphicsClick() {
 	}
 	if (MouseIn(500, 470, 64, 64)) Player.GraphicsSettings.InvertRoom = !Player.GraphicsSettings.InvertRoom;
 	if (MouseIn(500, 550, 64, 64)) Player.GraphicsSettings.StimulationFlash = !Player.GraphicsSettings.StimulationFlash;
+	if (MouseIn(500, 630, 64, 64)) Player.GraphicsSettings.DoBlindFlash = !Player.GraphicsSettings.DoBlindFlash;
 }
 
 /**
