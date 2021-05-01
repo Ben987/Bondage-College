@@ -535,7 +535,7 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 			if (Refresh || Refresh == null) CharacterRefresh(C);
 
 			if (Player.GraphicsSettings && Player.GraphicsSettings.DoBlindFlash) {
-				if (Player.GetBlindLevel() < lastblindlevel && Player.GetBlindLevel() == 0) {
+				if (lastblindlevel > 0 && Player.GetBlindLevel() === 0) {
 					DrawBlindFlash(lastblindlevel);
 				}
 			}
