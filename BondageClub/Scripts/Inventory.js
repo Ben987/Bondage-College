@@ -499,11 +499,18 @@ function InventoryGetRandom(C, GroupName, AllowedAssets) {
 * @param {false} [Refresh] - do not call CharacterRefresh if false
 */
 function InventoryRemove(C, AssetGroup, Refresh) {
-
-	if (Player.ImmersionSettings.DoBlindFlash == true && Player.ImmersionSettings.DoBlindFlash !== undefined) {
-		var lastblindlevel = Player.GetBlindLevel();
-		lastdarkfactor = CharacterGetDarkFactor(Player);
+	try {
+		if (Player.ImmersionSettings.DoBlindFlash) {
+			var lastblindlevel = Player.GetBlindLevel();
+			lastdarkfactor = CharacterGetDarkFactor(Player);
+		}
 	}
+	catch (e) {
+		if (e instanceof TypeError) {
+			
+		}
+	}
+
 
 
 	// First loop to find the item and any sub item to remove with it
@@ -536,11 +543,19 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
 			C.Appearance.splice(E, 1);
 			if (Refresh || Refresh == null) CharacterRefresh(C);
-			if (Player.ImmersionSettings.DoBlindFlash == true && Player.ImmersionSettings.DoBlindFlash!==undefined) {
-				if (Player.GetBlindLevel() < lastblindlevel && Player.GetBlindLevel() == 0) {
-					DrawBlindFlash(lastblindlevel);
+			try {
+				if (Player.ImmersionSettings.DoBlindFlash) {
+					if (Player.GetBlindLevel() < lastblindlevel && Player.GetBlindLevel() == 0) {
+						DrawBlindFlash(lastblindlevel);
+					}
 				}
 			}
+			catch (e) {
+				if (e instanceof TypeError) {
+					return;
+				}
+			}
+			
 			return;
 		}
 

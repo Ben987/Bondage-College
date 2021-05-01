@@ -458,9 +458,6 @@ function LoginResponse(C) {
 			Player.GraphicsSettings = C.GraphicsSettings;
 			Player.NotificationSettings = C.NotificationSettings;
 			Player.SavedExpressions = C.SavedExpressions;
-			if (typeof Player.ImmersionSettings.DoBlindFlash !== "boolean"){
-				Player.ImmersionSettings.DoBlindFlash = false;
-			}
 			if (!Array.isArray(Player.SavedExpressions)) {
 				Player.SavedExpressions = [];
 			}
