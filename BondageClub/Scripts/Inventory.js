@@ -499,16 +499,10 @@ function InventoryGetRandom(C, GroupName, AllowedAssets) {
 * @param {false} [Refresh] - do not call CharacterRefresh if false
 */
 function InventoryRemove(C, AssetGroup, Refresh) {
-	try {
-		if (Player.GraphicsSettings.DoBlindFlash) {
-			var lastblindlevel = Player.GetBlindLevel();
-			lastdarkfactor = CharacterGetDarkFactor(Player);
-		}
-	}
-	catch (e) {
-		if (e instanceof TypeError) {
-			console.log("i have to put something here because of lint");
-		}
+	
+	if (Player.GraphicsSettings && Player.GraphicsSettings.DoBlindFlash) {
+		var lastblindlevel = Player.GetBlindLevel();
+		lastdarkfactor = CharacterGetDarkFactor(Player);
 	}
 
 
@@ -543,16 +537,10 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
 			C.Appearance.splice(E, 1);
 			if (Refresh || Refresh == null) CharacterRefresh(C);
-			try {
-				if (Player.GraphicsSettings.DoBlindFlash) {
-					if (Player.GetBlindLevel() < lastblindlevel && Player.GetBlindLevel() == 0) {
-						DrawBlindFlash(lastblindlevel);
-					}
-				}
-			}
-			catch (e) {
-				if (e instanceof TypeError) {
-					return;
+
+			if (Player.GraphicsSettings && Player.GraphicsSettings.DoBlindFlash) {
+				if (Player.GetBlindLevel() < lastblindlevel && Player.GetBlindLevel() == 0) {
+					DrawBlindFlash(lastblindlevel);
 				}
 			}
 			
