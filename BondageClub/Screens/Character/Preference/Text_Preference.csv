@@ -120,7 +120,7 @@ SensDepLight,Light
 SensDepNames,Hide names
 SensDepTotal,Heavy
 SensDepExtreme,Total
-DoBlindFlash,Do BlindFlash
+DoBlindFlash,Flash after blindness
 AllowPlayerLeashing,"Players can drag you to rooms when leashed"
 DisableAutoMaid,Maids come automatically when restrained
 DisablePickingLocksOnSelf,Locks on you can't be picked
