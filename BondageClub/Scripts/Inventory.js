@@ -499,13 +499,9 @@ function InventoryGetRandom(C, GroupName, AllowedAssets) {
 * @param {false} [Refresh] - do not call CharacterRefresh if false
 */
 function InventoryRemove(C, AssetGroup, Refresh) {
-	
-	if (Player.GraphicsSettings && Player.GraphicsSettings.DoBlindFlash) {
-		var lastblindlevel = Player.GetBlindLevel();
-		lastdarkfactor = CharacterGetDarkFactor(Player);
-	}
 
-
+	const lastblindlevel = Player.GetBlindLevel();
+	lastdarkfactor = CharacterGetDarkFactor(Player);
 
 	// First loop to find the item and any sub item to remove with it
 	for (var E = 0; E < C.Appearance.length; E++)
