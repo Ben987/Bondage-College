@@ -42,7 +42,7 @@ function ReputationChange(RepType, RepValue, Push) {
 
 	else {
 		if (CurrentScreen != "Login") {
-			throw new Error("trying to change invalid reputation")
+			console.warn(`Invalid reputation type "${RepType}"`);
 		}
 	}
 }
