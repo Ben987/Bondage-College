@@ -507,7 +507,7 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 	}
 	catch (e) {
 		if (e instanceof TypeError) {
-			console.log("idk how to do nothing")
+			console.log("i have to put something here because of eslint");
 		}
 	}
 
