@@ -247,7 +247,7 @@ function TimerProcess(Timestamp) {
 		}
 	}
 
-    // Launches the main again for the next frame
+	// Launches the main again for the next frame
 	requestAnimationFrame(MainRun);
 
 }
