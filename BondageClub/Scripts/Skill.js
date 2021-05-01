@@ -45,9 +45,7 @@ function SkillChange(SkillType, SkillLevel, SkillProgress, Push) {
 	}
 
 	else {
-		if (CurrentScreen != "Login") {
-			console.warn(`Invalid skill type "${SkillType}"`);
-		}
+		console.warn(`Invalid skill type "${SkillType}"`);
 	}
 
 }

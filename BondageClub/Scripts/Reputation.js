@@ -41,9 +41,7 @@ function ReputationChange(RepType, RepValue, Push) {
 	}
 
 	else {
-		if (CurrentScreen != "Login") {
-			console.warn(`Invalid reputation type "${RepType}"`);
-		}
+		console.warn(`Invalid reputation type "${RepType}"`);
 	}
 }
 
