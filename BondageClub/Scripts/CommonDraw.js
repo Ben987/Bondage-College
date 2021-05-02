@@ -84,11 +84,11 @@ function CommonDrawAppearanceBuild(C, {
 
 	// Loop through all layers in the character appearance
 	C.AppearanceLayers.forEach((Layer) => {
-		var A = Layer.Asset;
-		var AG = A.Group;
-		var CA = C.Appearance.find(item => item.Asset === A);
-		var Property = CA.Property;
-		var CountKey = AG.Name + "/" + A.Name;
+		const A = Layer.Asset;
+		const AG = A.Group;
+		const CountKey = AG.Name + "/" + A.Name;
+		let CA = C.Appearance.find(item => item.Asset === A);
+		let Property = CA.Property;
 
 		// Count how many layers we've drawn for this asset
 		LayerCounts[CountKey] = (LayerCounts[CountKey] || 0) + 1;
@@ -106,14 +106,10 @@ function CommonDrawAppearanceBuild(C, {
 		// If there's a pose style we must add (items take priority over groups, layers may override completely)
 		var Pose = "";
 		if (C.DrawPose && C.DrawPose.length) {
-			if (Layer.OverrideAllowPose) {
-				Pose = CommonDrawFindPose(C, Layer.OverrideAllowPose);
-			} else if (A.OverrideAllowPose) {
-				Pose = CommonDrawFindPose(C, A.OverrideAllowPose);
-			} else {
-				Pose = CommonDrawFindPose(C, A.AllowPose);
-				if (!Pose) Pose = CommonDrawFindPose(C, AG.AllowPose);
-			}
+			let AllowPose = Layer.AllowPose;
+			if (!Array.isArray(AllowPose)) AllowPose = A.AllowPose;
+			if (!Array.isArray(AllowPose)) AllowPose = AG.AllowPose;
+			Pose = CommonDrawFindPose(C, AllowPose);
 		}
 
 		// Check if we need to draw a different expression (for facial features)

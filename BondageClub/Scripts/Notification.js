@@ -20,6 +20,7 @@ const NotificationEventType = {
 const NotificationAlertType = {
 	NONE: 0,
 	TITLEPREFIX: 1,
+	FAVICON: 3,
 	POPUP: 2,
 };
 
@@ -64,6 +65,7 @@ class NotificationEventHandler {
 	raise(data) {
 		if (this.settings.AlertType !== NotificationAlertType.NONE) {
 			this.raisedCount++;
+
 			if (this.settings.AlertType === NotificationAlertType.POPUP) {
 				if (NotificationPopupsEnabled(this.eventType, data)) {
 					this.raisePopup(data);
@@ -74,6 +76,10 @@ class NotificationEventHandler {
 			else if (this.settings.AlertType === NotificationAlertType.TITLEPREFIX) {
 				NotificationTitleUpdate();
 			}
+			else if (this.settings.AlertType === NotificationAlertType.FAVICON) {
+				NotificationDrawFavicon(false);
+			}
+
 			if (this.playAudio(false)) {
 				AudioPlayInstantSound("Audio/BeepAlarm.mp3");
 			}
@@ -91,7 +97,7 @@ class NotificationEventHandler {
 		let titleStart = "";
 		let titleEnd = "";
 		let C = data.character;
-		if (!C && data.memberNumber) C = Character.find(C => C.MemberNumber === data.memberNumber);
+		if (!C && data.memberNumber) C = Character.find(Char => Char.MemberNumber === data.memberNumber);
 		if (C && 'icon' in Notification.prototype) icon = DrawCharacterSegment(C, 168, 50, 164, 164).toDataURL("image/png");
 		if (data.characterName) titleStart = data.characterName + " - ";
 		else if (C) titleStart = C.Name + " - ";
@@ -138,15 +144,23 @@ class NotificationEventHandler {
 	}
 
 	/**
-	 * Resets all raised notification for this event
-	 * @param {any} updateTitle - If TRUE, the document title should be refreshed to display the new notification count
+	 * Resets all raised notifications for this event
+	 * @param {boolean} resetingAll - Indicates if all notifications are being reset, to avoid unnecessarily repeating steps for each event type
 	 * @returns {void} - Nothing
 	 */
-	reset(updateTitle) {
+	reset(resetingAll) {
 		if (this.raisedCount > 0) {
 			this.raisedCount = 0;
-			if (updateTitle) NotificationTitleUpdate();
-			if (this.popup) this.popup.close();
+
+			if (this.settings.AlertType === NotificationAlertType.POPUP) {
+				this.popup.close();
+			}
+			else if (this.settings.AlertType === NotificationAlertType.TITLEPREFIX) {
+				NotificationTitleUpdate();
+			}
+			else if (this.settings.AlertType === NotificationAlertType.FAVICON) {
+				NotificationDrawFavicon(resetingAll);
+			}
 		}
 	}
 }
@@ -170,10 +184,12 @@ function NotificationLoad() {
 	NotificationEventHandlerSetup(NotificationEventType.LARP, Player.NotificationSettings.Larp);
 
 	// Create the alert and audio type lists for the Preferences screen
-	NotificationAlertTypeList.push(NotificationAlertType.NONE);
-	NotificationAlertTypeList.push(NotificationAlertType.TITLEPREFIX);
-	if ("Notification" in window) NotificationAlertTypeList.push(NotificationAlertType.POPUP);
+	NotificationAlertTypeList = Object.values(NotificationAlertType);
+	if (!("Notification" in window)) NotificationAlertTypeList.splice(NotificationAlertTypeList.indexOf(NotificationAlertType.POPUP));
 	NotificationAudioTypeList = Object.values(NotificationAudioType);
+
+	// Ensure the image is loaded for the first Favicon notification
+	DrawGetImage("Icons/Logo.png");
 }
 
 /**
@@ -204,7 +220,7 @@ function NotificationRaise(eventType, data = {}) {
  */
 function NotificationReset(eventType) {
 	if (NotificationEventHandlers) {
-		NotificationEventHandlers[eventType].reset(true);
+		NotificationEventHandlers[eventType].reset(false);
 	}
 }
 
@@ -213,8 +229,7 @@ function NotificationReset(eventType) {
  * @returns {void} - Nothing
  */
 function NotificationResetAll() {
-	Object.values(NotificationEventHandlers).forEach(N => N.reset(false));
-	NotificationTitleUpdate();
+	Object.values(NotificationEventHandlers).forEach(N => N.reset(true));
 }
 
 /**
@@ -243,11 +258,58 @@ function NotificationPopupsEnabled(eventType, data) {
 }
 
 /**
+ * Returns the total number of notifications raised for a particular alert type
+ * @param {NotificationAlertType} alertType - The type of alert to check
+ * @returns {number} - The total number of notifications
+ */
+function NotificationGetTotalCount(alertType) {
+	const totalRaisedCount = Object.values(NotificationEventHandlers)
+		.filter(n => n.settings.AlertType == alertType)
+		.reduce((a, b) => a + b.raisedCount, 0);
+	return totalRaisedCount;
+}
+
+/**
  * Sets or clears the notification number in the document header
  * @returns {void} - Nothing
  */
 function NotificationTitleUpdate() {
-	const totalRaisedCount = Object.values(NotificationEventHandlers).reduce((a, b) => a + b.raisedCount, 0);
+	const totalRaisedCount = NotificationGetTotalCount(NotificationAlertType.TITLEPREFIX);
 	const titlePrefix = totalRaisedCount === 0 ? "" : "(" + totalRaisedCount.toString() + ") ";
 	document.title = titlePrefix + "Bondage Club";
+}
+
+/**
+ * Redraws the icon in the tab/window header to show a red circle with the notification count
+ * @param {boolean} resetingAll - If resetting all notifications, no need to redraw as the total decreases
+ * @returns {void} - Nothing
+ */
+function NotificationDrawFavicon(resetingAll) {
+	let iconUrl = "Icons/Logo.png";
+	const totalRaisedCount = Math.min(NotificationGetTotalCount(NotificationAlertType.FAVICON), 99);
+	if (totalRaisedCount > 0 && !resetingAll) {
+		// Draw the normal icon first
+		const iconLength = 75;
+		let IconCanvas = document.createElement("canvas").getContext("2d");
+		IconCanvas.canvas.width = iconLength;
+		IconCanvas.canvas.height = iconLength;
+		DrawImageCanvas(iconUrl, IconCanvas, 0, 0);
+
+		// Draw a red circle containing a number
+		const radius = 29;
+		const lineWidth = 2;
+		const circleCentre = iconLength - (radius + lineWidth);
+		DrawCircle(circleCentre, circleCentre, radius, lineWidth, "Black", "Red", IconCanvas);
+		const fontSize = radius * 2 * (totalRaisedCount >= 10 ? 0.88 : 1); // Shrink for double-digits
+		IconCanvas.font = fontSize + "px Comic Sans MS";
+		IconCanvas.textAlign = "center";
+		IconCanvas.textBaseline = "middle";
+		IconCanvas.fillStyle = "White";
+		// y is being offset because it wasn't centring for some reason
+		IconCanvas.fillText(totalRaisedCount.toString(), circleCentre, circleCentre + (radius / 5));
+
+		// Convert the image into a Data URL
+		iconUrl = IconCanvas.canvas.toDataURL("image/x-icon");
+	}
+	document.getElementById('favicon').href = iconUrl;
 }

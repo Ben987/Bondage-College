@@ -299,7 +299,7 @@ function CharacterAppearanceStripLayer(C) {
  * Builds a filtered and sorted set of appearance layers, each representing a drawable layer of a character's current appearance. Layers
  * that will not be drawn (because their asset is not visible or they do not permit the current asset type) are filtered out at this stage.
  * @param {Character} C - The character to build the layers for
- * @return {Layer[]} - A sorted set of layers, sorted by layer drawing priority
+ * @return {AssetLayer[]} - A sorted set of layers, sorted by layer drawing priority
  */
 function CharacterAppearanceSortLayers(C) {
 	var groupAlphas = {};
@@ -566,11 +566,15 @@ function AppearanceMenuBuild(C) {
 		case "Cloth":
 			if (!DialogItemPermissionMode) {
 				let Item = InventoryGet(C, C.FocusGroup.Name);
-				if (Item && Item.Asset.Extended && !InventoryBlockedOrLimited(C, Item)) AppearanceMenu.push("Use");
+				if (Item && Item.Asset.Extended) AppearanceMenu.push(InventoryBlockedOrLimited(C, Item) ? "UseDisabled" : "Use");
 				if (C.ID === 0) AppearanceMenu.push("WearRandom");
 				if (C.ID === 0 && Player.GetDifficulty() < 3) AppearanceMenu.push("DialogPermissionMode");
 				if (C.FocusGroup.AllowNone) AppearanceMenu.push("Naked");
-				if (Item && DialogCanColor(C, Item)) AppearanceMenu.push(ItemColorIsSimple(Item) ? "ColorPick" : "MultiColorPick");
+				if (Item && DialogCanColor(C, Item)) {
+					let ButtonName = ItemColorIsSimple(Item) ? "ColorPick" : "MultiColorPick";
+					if (InventoryBlockedOrLimited(C, Item)) ButtonName += "Disabled";
+					AppearanceMenu.push(ButtonName);
+				}
 			}
 			if (DialogInventory.length > 9) AppearanceMenu.push("Next");
 			break;
@@ -635,9 +639,10 @@ function AppearanceRun() {
 				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
 				const ColorButtonText = ItemColorGetColorButtonText(Color);
 				const ColorButtonColor = ColorButtonText.startsWith("#") ? ColorButtonText : "#fff";
-				const CanCycleColors = !!Item && WardrobeGroupAccessible(C, AssetGroup[A]) && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1);
+				const CanCycleColors = !!Item && WardrobeGroupAccessible(C, AssetGroup[A]) && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1) && !InventoryBlockedOrLimited(C, Item);
 				const CanPickColor = CanCycleColors && AssetGroup[A].AllowColorize;
 				const ColorIsSimple = ItemColorIsSimple(Item);
+
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, ColorButtonText, CanCycleColors ? ColorButtonColor : "#aaa", null, null, !CanCycleColors);
 				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", CanPickColor ? "#fff" : "#aaa", CanPickColor ? ColorIsSimple ? "Icons/Color.png" : "Icons/MultiColor.png" : "Icons/ColorBlocked.png", null, !CanPickColor);
 			}
@@ -728,8 +733,11 @@ function AppearanceGetPreviewImageColor(C, item, hover) {
 function AppearanceMenuDraw() {
 	const X = 2000 - AppearanceMenu.length * 117;
 	for (let B = 0; B < AppearanceMenu.length; B++) {
+		const ButtonName = AppearanceMenu[B].replace(/Disabled$/, "");
 		const ButtonSuffix = AppearanceMenu[B] === "Character" && !AppearanceUseCharacterInPreviews ? "Off" : "";
-		DrawButton(X + 117 * B, 25, 90, 90, "", "White", "Icons/" + AppearanceMenu[B] + ButtonSuffix + ".png", TextGet(AppearanceMenu[B]));
+		const ButtonColor = DialogGetMenuButtonColor(AppearanceMenu[B]);
+		const ButtonDisabled = DialogIsMenuButtonDisabled(AppearanceMenu[B]);
+		DrawButton(X + 117 * B, 25, 90, 90, "", ButtonColor, "Icons/" + ButtonName + ButtonSuffix + ".png", TextGet(AppearanceMenu[B]), ButtonDisabled);
 	}
 }
 
@@ -999,8 +1007,12 @@ function AppearanceClick() {
 		if ((MouseX >= 1725) && (MouseX < 1885) && (MouseY >= 145) && (MouseY < 975))
 			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++) {
 				const Item = InventoryGet(C, AssetGroup[A].Name);
-				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") &&
-					WardrobeGroupAccessible(C, AssetGroup[A]) && Item && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1))
+				if ((AssetGroup[A].Family == C.AssetFamily) &&
+					(AssetGroup[A].Category == "Appearance") &&
+					WardrobeGroupAccessible(C, AssetGroup[A]) &&
+					Item &&
+					(Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1) &&
+					!InventoryBlockedOrLimited(C, Item))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
 						CharacterAppearanceNextColor(C, AssetGroup[A].Name);
 			}
@@ -1009,8 +1021,13 @@ function AppearanceClick() {
 		if (MouseIn(1910, 145, 65, 830))
 			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++) {
 				const Item = InventoryGet(C, AssetGroup[A].Name);
-				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") &&
-					WardrobeGroupAccessible(C, AssetGroup[A]) && AssetGroup[A].AllowColorize && Item && Item.Asset.ColorableLayerCount > 0)
+				if ((AssetGroup[A].Family == C.AssetFamily) &&
+					(AssetGroup[A].Category == "Appearance") &&
+					WardrobeGroupAccessible(C, AssetGroup[A]) &&
+					AssetGroup[A].AllowColorize &&
+					Item &&
+					Item.Asset.ColorableLayerCount > 0 &&
+					!InventoryBlockedOrLimited(C, Item))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95)) {
 						AppearanceItemColor(C, Item, AssetGroup[A].Name, "");
 					}

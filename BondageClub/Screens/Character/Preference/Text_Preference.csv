@@ -120,6 +120,7 @@ SensDepLight,Light
 SensDepNames,Hide names
 SensDepTotal,Heavy
 SensDepExtreme,Total
+DoBlindFlash,Flash after blindness
 AllowPlayerLeashing,"Players can drag you to rooms when leashed"
 DisableAutoMaid,Maids come automatically when restrained
 DisablePickingLocksOnSelf,Locks on you can't be picked
@@ -265,6 +266,7 @@ DeadZone,Dead Zone
 NotificationsAlertType0,Off
 NotificationsAlertType1,(1) in title
 NotificationsAlertType2,Popup
+NotificationsAlertType3,(1) in icon
 NotificationsExplanation,Raise notifications for missed events:
 NotificationsAudioExplanation1,: Play a sound for only
 NotificationsAudioExplanation2,the first occurrence of an event

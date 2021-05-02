@@ -303,26 +303,20 @@ function DialogChatRoomCanTakePhotos() { return CurrentScreen == "ChatRoom" && C
 function DialogPrerequisite(D) {
 	if (CurrentCharacter.Dialog[D].Prerequisite == null)
 		return true;
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("Player.") == 0)
+		return Player[CurrentCharacter.Dialog[D].Prerequisite.substring(7, 250).replace("()", "").trim()]();
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!Player.") == 0)
+		return !Player[CurrentCharacter.Dialog[D].Prerequisite.substring(8, 250).replace("()", "").trim()]();
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("CurrentCharacter.") == 0)
+		return CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(17, 250).replace("()", "").trim()]();
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!CurrentCharacter.") == 0)
+		return !CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(18, 250).replace("()", "").trim()]();
+	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("(") >= 0)
+		return CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Prerequisite);
+	else if (CurrentCharacter.Dialog[D].Prerequisite.substring(0, 1) != "!")
+		return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
 	else
-		if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("Player.") == 0)
-			return Player[CurrentCharacter.Dialog[D].Prerequisite.substring(7, 250).replace("()", "").trim()]();
-		else
-			if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!Player.") == 0)
-				return !Player[CurrentCharacter.Dialog[D].Prerequisite.substring(8, 250).replace("()", "").trim()]();
-			else
-				if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("CurrentCharacter.") == 0)
-					return CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(17, 250).replace("()", "").trim()]();
-				else
-					if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!CurrentCharacter.") == 0)
-						return !CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(18, 250).replace("()", "").trim()]();
-					else
-						if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("(") >= 0)
-							return CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Prerequisite);
-						else
-							if (CurrentCharacter.Dialog[D].Prerequisite.substring(0, 1) != "!")
-								return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
-							else
-								return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
+		return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
 }
 
 
@@ -369,7 +363,7 @@ function DialogHasKey(C, Item) {
 	if (C.IsLoverOfPlayer() && InventoryAvailable(Player, "LoversPadlockKey", "ItemMisc") && Item.Asset.Enable && Item.Property && Item.Property.LockedBy && !Item.Property.LockedBy.startsWith("Owner")) return true;
 	if (lock && lock.Asset.ExclusiveUnlock && ((!Item.Property.MemberNumberListKeys && Item.Property.LockMemberNumber != Player.MemberNumber) || (Item.Property.MemberNumberListKeys && CommonConvertStringToArray("" + Item.Property.MemberNumberListKeys).indexOf(Player.MemberNumber) < 0))) return false;
 
-    if (lock && lock.Asset.ExclusiveUnlock) return true;
+	if (lock && lock.Asset.ExclusiveUnlock) return true;
 
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
@@ -655,7 +649,9 @@ function DialogMenuButtonBuild(C) {
 	// The "Exit" button is always available
 	DialogMenuButton = ["Exit"];
 
-	var Item = InventoryGet(C, C.FocusGroup.Name);
+	const Item = InventoryGet(C, C.FocusGroup.Name);
+	const ItemBlockedOrLimited = !!Item && InventoryBlockedOrLimited(C, Item);
+
 	// In color picker mode
 	if (DialogColor != null && Item == null) {
 		DialogMenuButton.push("ColorCancel");
@@ -673,14 +669,20 @@ function DialogMenuButtonBuild(C) {
 		const IsGroupBlocked = InventoryGroupIsBlocked(C);
 		const CanAccessLockpicks = Player.CanInteract() || Player.CanWalk(); // If the character can access her tools. Maybe in the future you will be able to hide a lockpick in your panties :>
 
-
 		if (DialogLockMenu) {
 			DialogMenuButton.push("LockCancel");
 
-			if (IsItemLocked && !Player.IsBlind() && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())
-				|| ((Item != null) && (C.ID == 0) && !Player.CanInteract() && InventoryItemHasEffect(Item, "Block", true) && IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked))
+			// If the item isn't locked, there are no more buttons to add
+			const Lock = InventoryGetLock(Item);
+			if (!IsItemLocked || !Lock) return;
+
+			const LockBlockedOrLimited = InventoryBlockedOrLimited(C, Lock) || ItemBlockedOrLimited;
+
+			if (!Player.IsBlind() && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())
+				|| ((Item != null) && (C.ID == 0) && !Player.CanInteract() && InventoryItemHasEffect(Item, "Block", true) && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked)) {
 				DialogMenuButton.push("Unlock");
-			if (IsItemLocked && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && (C.ID == 0 || (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf))) {
+			}
+			if (InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item) && (C.ID == 0 || (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf))) {
 				if (DialogLentLockpicks)
 					DialogMenuButton.push("PickLock");
 				else if (CanAccessLockpicks)
@@ -690,38 +692,41 @@ function DialogMenuButtonBuild(C) {
 							break;
 						}
 			}
-			if (IsItemLocked && Item.Property && Item.Property.LockedBy && (!Player.IsBlind() || DialogCanInspectLockWhileBlind(Item.Property.LockedBy)))
-				DialogMenuButton.push("InspectLock");
+			if (Lock && (!Player.IsBlind() || DialogCanInspectLockWhileBlind(Lock.Asset.Name))) {
+				DialogMenuButton.push(LockBlockedOrLimited ? "InspectLockDisabled" : "InspectLock");
+			}
 
 		} else {
 			if ((DialogInventory != null) && (DialogInventory.length > 12) && ((Player.CanInteract() && !IsGroupBlocked) || DialogItemPermissionMode)) DialogMenuButton.push("Next");
-				if (C.FocusGroup.Name == "ItemMouth" || C.FocusGroup.Name == "ItemMouth2" || C.FocusGroup.Name == "ItemMouth3") DialogMenuButton.push("ChangeLayersMouth");
-				if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())) {  DialogMenuButton.push("Remove"); }
-				if (IsItemLocked && ((!Player.IsBlind() || (Item.Property && DialogCanInspectLockWhileBlind(Item.Property.LockedBy))) || (InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item))  && (C.ID == 0 || (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf)))
-					&& (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
-					DialogMenuButton.push("LockMenu");
-				if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (IsItemLocked && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Struggle");
-				if ((Item != null) && !IsItemLocked && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) {
-					if (Item.Asset.AllowLock && (!Item.Property || (Item.Property && Item.Property.AllowLock !== false))) {
-						if (!Item.Asset.AllowLockType || Item.Asset.AllowLockType.includes(Item.Property.Type)) {
-							DialogMenuButton.push("Lock");
-						}
+			if (C.FocusGroup.Name == "ItemMouth" || C.FocusGroup.Name == "ItemMouth2" || C.FocusGroup.Name == "ItemMouth3") DialogMenuButton.push("ChangeLayersMouth");
+			if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())) {  DialogMenuButton.push("Remove"); }
+			if (IsItemLocked && ((!Player.IsBlind() || (Item.Property && DialogCanInspectLockWhileBlind(Item.Property.LockedBy))) || (InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && !InventoryGroupIsBlocked(Player, "ItemHands") && InventoryItemIsPickable(Item))  && (C.ID == 0 || (C.OnlineSharedSettings && !C.OnlineSharedSettings.DisablePickingLocksOnSelf)))
+				&& (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")
+			) {
+				DialogMenuButton.push("LockMenu");
+			}
+			if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (IsItemLocked && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Struggle");
+			if ((Item != null) && !IsItemLocked && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) {
+				if (Item.Asset.AllowLock && (!Item.Property || (Item.Property && Item.Property.AllowLock !== false))) {
+					if (!Item.Asset.AllowLockType || Item.Asset.AllowLockType.includes(Item.Property.Type)) {
+						DialogMenuButton.push(ItemBlockedOrLimited ? "LockDisabled" : "Lock");
 					}
 				}
-				if ((Item != null) && !IsItemLocked && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Remove");
-				if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Dismount");
-				if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Escape");
-				if (DialogCanUseRemote(C, Item)) DialogMenuButton.push("Remote");
-				if ((Item != null) && Item.Asset.Extended && ((Player.CanInteract()) || DialogAlwaysAllowRestraint() || Item.Asset.AlwaysInteract) && (!IsGroupBlocked || Item.Asset.AlwaysExtend) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer())) && !InventoryBlockedOrLimited(C, Item)) DialogMenuButton.push("Use");
-				if (DialogCanColor(C, Item)) DialogMenuButton.push("ColorPick");
+			}
+			if ((Item != null) && !IsItemLocked && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Remove");
+			if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Dismount");
+			if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Escape");
+			if (DialogCanUseRemote(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "RemoteDisabled" : "Remote");
+			if ((Item != null) && Item.Asset.Extended && ((Player.CanInteract()) || DialogAlwaysAllowRestraint() || Item.Asset.AlwaysInteract) && (!IsGroupBlocked || Item.Asset.AlwaysExtend) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer()))) DialogMenuButton.push(ItemBlockedOrLimited ? "UseDisabled" : "Use");
+			if (DialogCanColor(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "ColorPickDisabled" : "ColorPick");
 
-				// Make sure the target player zone is allowed for an activity
-				if ((C.FocusGroup.Activity != null) && ((!C.IsEnclose() && !Player.IsEnclose()) || C.ID == 0) && ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Zone != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive"))
-					for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
-						if ((C.ArousalSettings.Zone[Z].Name == C.FocusGroup.Name) && (C.ArousalSettings.Zone[Z].Factor != null) && (C.ArousalSettings.Zone[Z].Factor > 0)) {
-							ActivityDialogBuild(C);
-							if (DialogActivity.length > 0) DialogMenuButton.push("Activity");
-						}
+			// Make sure the target player zone is allowed for an activity
+			if ((C.FocusGroup.Activity != null) && ((!C.IsEnclose() && !Player.IsEnclose()) || C.ID == 0) && ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Zone != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive"))
+				for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
+					if ((C.ArousalSettings.Zone[Z].Name == C.FocusGroup.Name) && (C.ArousalSettings.Zone[Z].Factor != null) && (C.ArousalSettings.Zone[Z].Factor > 0)) {
+						ActivityDialogBuild(C);
+						if (DialogActivity.length > 0) DialogMenuButton.push("Activity");
+					}
 
 
 			// Item permission enter/exit, cannot be done in Extreme mode
@@ -1224,9 +1229,8 @@ function DialogItemClick(ClickItem) {
 
 					}
 				}
-				else
-					if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
-						DialogExtendItem(CurrentItem);
+				else if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
+					DialogExtendItem(CurrentItem);
 		return;
 	}
 
@@ -1234,12 +1238,10 @@ function DialogItemClick(ClickItem) {
 	if (InventoryAllow(C, ClickItem.Asset.Prerequisite))
 		if (InventoryItemHasEffect(ClickItem, "Unlock-" + CurrentItem.Asset.Name))
 			StruggleProgressStart(C, CurrentItem, null);
-		else
-			if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
-				DialogExtendItem(CurrentItem);
-			else
-				if (!ClickItem.Asset.Wear)
-					DialogPublishAction(C, ClickItem);
+		else if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
+			DialogExtendItem(CurrentItem);
+		else if (!ClickItem.Asset.Wear)
+			DialogPublishAction(C, ClickItem);
 
 }
 
@@ -1380,9 +1382,8 @@ function DialogClick() {
 							CurrentCharacter.CurrentDialog = CurrentCharacter.Dialog[D].Result;
 							if (CurrentCharacter.Dialog[D].NextStage != null) CurrentCharacter.Stage = CurrentCharacter.Dialog[D].NextStage;
 							if (CurrentCharacter.Dialog[D].Function != null) CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Function);
-						} else
-							if ((CurrentCharacter.Dialog[D].Function != null) && (CurrentCharacter.Dialog[D].Function.trim() == "DialogLeave()"))
-								DialogLeave();
+						} else if ((CurrentCharacter.Dialog[D].Function != null) && (CurrentCharacter.Dialog[D].Function.trim() == "DialogLeave()"))
+							DialogLeave();
 						break;
 
 					}
@@ -1551,6 +1552,45 @@ function DialogDrawActivityMenu(C) {
 
 }
 
+/**
+ * Returns the button image name for a dialog menu button based on the button name.
+ * @param {string} ButtonName - The menu button name
+ * @param {Item} FocusItem - The focused item
+ * @returns {string} - The button image name
+ */
+function DialogGetMenuButtonImage(ButtonName, FocusItem) {
+	if (ButtonName === "ColorPick" || ButtonName === "ColorPickDisabled") {
+		return ItemColorIsSimple(FocusItem) ? "ColorPick" : "MultiColorPick";
+	} else if (ButtonName.endsWith("Disabled")) {
+		return ButtonName.replace(/Disabled$/, "");
+	} else {
+		return ButtonName;
+	}
+}
+
+/**
+ * Returns the background color of a dialog menu button based on the button name.
+ * @param {string} ButtonName - The menu button name
+ * @returns {string} - The background color that the menu button should use
+ */
+function DialogGetMenuButtonColor(ButtonName) {
+	if (ButtonName.endsWith("Disabled")) {
+		return "#808080";
+	}	else if (ButtonName === "ColorPick") {
+		return DialogColorSelect || "#fff"
+	} else {
+		return "#fff";
+	}
+}
+
+/**
+ * Determines whether or not a given dialog menu button should be disabled based on the button name.
+ * @param {string} ButtonName - The menu button name
+ * @returns {boolean} - TRUE if the menu button should be disabled, FALSE otherwise
+ */
+function DialogIsMenuButtonDisabled(ButtonName) {
+	return ButtonName.endsWith("Disabled");
+}
 
 /**
  * Draw the item menu dialog
@@ -1573,10 +1613,11 @@ function DialogDrawItemMenu(C) {
 	if (DialogMenuButton == null) DialogMenuButtonBuild(CharacterGetCurrent());
 	if ((DialogColor == null) && Player.CanInteract() && (StruggleProgress < 0 && !StruggleLockPickOrder) && !InventoryGroupIsBlocked(C) && DialogMenuButton.length < 8) DrawTextWrap((!DialogItemPermissionMode) ? DialogText : DialogFind(Player, "DialogPermissionMode"), 1000, 0, 975 - DialogMenuButton.length * 110, 125, "White", null, 3);
 	for (let I = DialogMenuButton.length - 1; I >= 0; I--) {
-		let ButtonColor = (DialogMenuButton[I] == "ColorPick") && (DialogColorSelect != null) ? DialogColorSelect : "White";
-		let ButtonImage = DialogMenuButton[I] == "ColorPick" && !ItemColorIsSimple(FocusItem) ? "MultiColorPick" : DialogMenuButton[I];
-		let ButtonHoverText = (DialogColor == null) ? DialogFindPlayer(DialogMenuButton[I]) : null;
-		DrawButton(1885 - I * 110, 15, 90, 90, "", ButtonColor, "Icons/" + ButtonImage + ".png", ButtonHoverText);
+		const ButtonColor = DialogGetMenuButtonColor(DialogMenuButton[I]);
+		const ButtonImage = DialogGetMenuButtonImage(DialogMenuButton[I], FocusItem);
+		const ButtonHoverText = (DialogColor == null) ? DialogFindPlayer(DialogMenuButton[I]) : null;
+		const ButtonDisabled = DialogIsMenuButtonDisabled(DialogMenuButton[I]);
+		DrawButton(1885 - I * 110, 15, 90, 90, "", ButtonColor, "Icons/" + ButtonImage + ".png", ButtonHoverText, ButtonDisabled);
 	}
 
 	// Draws the color picker

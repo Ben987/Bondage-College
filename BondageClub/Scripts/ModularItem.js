@@ -541,7 +541,7 @@ function ModularItemGenerateAllowType({ modules }, predicate) {
 
 /**
  * Generates and sets the AllowTypes property on an asset layer based on its AllowModuleTypes property.
- * @param {Layer} layer - The layer to generate AllowTypes for
+ * @param {AssetLayer} layer - The layer to generate AllowTypes for
  * @param {ModularItemData} data - The modular item's data
  * @returns {void} - Nothing
  */

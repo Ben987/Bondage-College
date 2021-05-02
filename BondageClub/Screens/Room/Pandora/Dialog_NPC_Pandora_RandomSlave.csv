@@ -33,6 +33,8 @@ ItemBreast,,,(She holds her breath as you use the item.)  Pleasure or pain?  Ple
 RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  You have so many great items Miss.,,
 ItemNipples,,,(She takes a long breath as you use the device on her breast.)  This will leave marks.,,
 RemoveItemNipples,,,"(She whimpers as you remove the device.)  This is so devious, I love it!",,
+0,,,"Hello Miss maid, I hope you're not buried in chores today.",,"CostumeIs(""Maid"")"
+0,,,Greetings Miss guard.  Thanks for keeping this place safe for us slaves.,,"CostumeIs(""Guard"")"
 0,,,"Hello Miss, this slave is here to please you.  Have we met before?  Are you famous around here?",,"DialogSkillGreater(""Infiltration"", 5)"
 0,,,(She nods slowly.)  This slave is here to please you Miss.,,
 0,,Who are you?,"I'm slave DialogCharacterName.  I'm a Pandora's Box slave, made to please our wonderful customers.",DialogRemove(),
@@ -61,10 +63,10 @@ RemoveItemNipples,,,"(She whimpers as you remove the device.)  This is so deviou
 70,,(Let her go to the Bondage Club.),,RemoveCurrentCharacter(),
 70,,(Give her a key to your private room.),,CharacterJoinPrivateRoom(),
 100,,,(You get close to her.)  How can this slave pleasure you?,,
-100,,(Tickle her.),(She laughs and rocks her hips as you tickle her without mercy.),SlaveActivity(),Player.CanInteract()
-100,,(Caress her.),(She moans very silently as you caress her softly.),SlaveActivity(),Player.CanInteract()
-100,,(Grope her.),(She whimpers of joy as you grope her butt and breast.),SlaveActivity(),Player.CanInteract()
-100,,(Kiss her.),(She giggles of pleasure as you kiss her all over her body.),SlaveActivity(),Player.CanTalk()
-100,,(Spank her.),(She jumps from the pain each time you spank her.),SlaveActivity(),Player.CanInteract()
+100,,(Tickle her.),(She laughs and rocks her hips as you tickle her without mercy.),RecruitBoost(),Player.CanInteract()
+100,,(Caress her.),(She moans very silently as you caress her softly.),RecruitBoost(),Player.CanInteract()
+100,,(Grope her.),(She whimpers of joy as you grope her butt and breast.),RecruitBoost(),Player.CanInteract()
+100,,(Kiss her.),(She giggles of pleasure as you kiss her all over her body.),RecruitBoost(),Player.CanTalk()
+100,,(Spank her.),(She jumps from the pain each time you spank her.),RecruitBoost(),Player.CanInteract()
 100,0,(Stop playing.),(You take a step back.)  How can this slave pleasure you?,,
 100,,(Leave her.),,DialogLeave(),

@@ -321,38 +321,38 @@ function PreferenceInitPlayer() {
 	// Controller settings
 	if (!C.ControllerSettings) C.ControllerSettings = {};
 	if (typeof C.ControllerSettings.ControllerSensitivity !== "number") C.ControllerSettings.ControllerSensitivity = 5;
-    if (typeof C.ControllerSettings.ControllerDeadZone !== "number") C.ControllerSettings.ControllerDeadZone = 0.01;
-    if (typeof C.ControllerSettings.ControllerA !== "number") C.ControllerSettings.ControllerA = 1;
-    if (typeof C.ControllerSettings.ControllerB !== "number") C.ControllerSettings.ControllerB = 0;
-    if (typeof C.ControllerSettings.ControllerX !== "number") C.ControllerSettings.ControllerX = 3;
-    if (typeof C.ControllerSettings.ControllerY !== "number") C.ControllerSettings.ControllerY = 2;
-    if (typeof C.ControllerSettings.ControllerStickUpDown !== "number") C.ControllerSettings.ControllerStickUpDown = 1;
-    if (typeof C.ControllerSettings.ControllerStickLeftRight !== "number") C.ControllerSettings.ControllerStickLeftRight = 0;
-    if (typeof C.ControllerSettings.ControllerStickRight !== "number") C.ControllerSettings.ControllerStickRight = 1;
-    if (typeof C.ControllerSettings.ControllerStickDown !== "number") C.ControllerSettings.ControllerStickDown = 1;
-    if (typeof C.ControllerSettings.ControllerDPadUp !== "number") C.ControllerSettings.ControllerDPadUp = 4;
-    if (typeof C.ControllerSettings.ControllerDPadDown !== "number") C.ControllerSettings.ControllerDPadDown = 5;
-    if (typeof C.ControllerSettings.ControllerDPadLeft !== "number") C.ControllerSettings.ControllerDPadLeft = 6;
-    if (typeof C.ControllerSettings.ControllerDPadRight !== "number") C.ControllerSettings.ControllerDPadRight = 7;
-    if (typeof C.ControllerSettings.ControllerActive !== "boolean") C.ControllerSettings.ControllerActive = false;
+	if (typeof C.ControllerSettings.ControllerDeadZone !== "number") C.ControllerSettings.ControllerDeadZone = 0.01;
+	if (typeof C.ControllerSettings.ControllerA !== "number") C.ControllerSettings.ControllerA = 1;
+	if (typeof C.ControllerSettings.ControllerB !== "number") C.ControllerSettings.ControllerB = 0;
+	if (typeof C.ControllerSettings.ControllerX !== "number") C.ControllerSettings.ControllerX = 3;
+	if (typeof C.ControllerSettings.ControllerY !== "number") C.ControllerSettings.ControllerY = 2;
+	if (typeof C.ControllerSettings.ControllerStickUpDown !== "number") C.ControllerSettings.ControllerStickUpDown = 1;
+	if (typeof C.ControllerSettings.ControllerStickLeftRight !== "number") C.ControllerSettings.ControllerStickLeftRight = 0;
+	if (typeof C.ControllerSettings.ControllerStickRight !== "number") C.ControllerSettings.ControllerStickRight = 1;
+	if (typeof C.ControllerSettings.ControllerStickDown !== "number") C.ControllerSettings.ControllerStickDown = 1;
+	if (typeof C.ControllerSettings.ControllerDPadUp !== "number") C.ControllerSettings.ControllerDPadUp = 4;
+	if (typeof C.ControllerSettings.ControllerDPadDown !== "number") C.ControllerSettings.ControllerDPadDown = 5;
+	if (typeof C.ControllerSettings.ControllerDPadLeft !== "number") C.ControllerSettings.ControllerDPadLeft = 6;
+	if (typeof C.ControllerSettings.ControllerDPadRight !== "number") C.ControllerSettings.ControllerDPadRight = 7;
+	if (typeof C.ControllerSettings.ControllerActive !== "boolean") C.ControllerSettings.ControllerActive = false;
 
-    ControllerSensitivity = C.ControllerSettings.ControllerSensitivity;
-    ControllerDeadZone = C.ControllerSettings.ControllerDeadZone;
-    PreferenceSettingsSensitivityIndex = PreferenceSettingsSensitivityList.indexOf(Player.ControllerSettings.ControllerSensitivity);
-    PreferenceSettingsDeadZoneIndex = PreferenceSettingsDeadZoneList.indexOf(Player.ControllerSettings.ControllerDeadZone);
-    ControllerA = C.ControllerSettings.ControllerA;
-    ControllerB = C.ControllerSettings.ControllerB;
-    ControllerX = C.ControllerSettings.ControllerX;
-    ControllerY = C.ControllerSettings.ControllerY;
-    ControllerStickUpDown = C.ControllerSettings.ControllerStickUpDown;
-    ControllerStickLeftRight = C.ControllerSettings.ControllerStickLeftRight;
-    ControllerStickRight = C.ControllerSettings.ControllerStickRight;
-    ControllerStickDown = C.ControllerSettings.ControllerStickDown;
-    ControllerDPadUp = C.ControllerSettings.ControllerDPadUp;
-    ControllerDPadDown = C.ControllerSettings.ControllerDPadDown;
-    ControllerDPadLeft = C.ControllerSettings.ControllerDPadLeft;
-    ControllerDPadRight = C.ControllerSettings.ControllerDPadRight;
-    ControllerActive = C.ControllerSettings.ControllerActive;
+	ControllerSensitivity = C.ControllerSettings.ControllerSensitivity;
+	ControllerDeadZone = C.ControllerSettings.ControllerDeadZone;
+	PreferenceSettingsSensitivityIndex = PreferenceSettingsSensitivityList.indexOf(Player.ControllerSettings.ControllerSensitivity);
+	PreferenceSettingsDeadZoneIndex = PreferenceSettingsDeadZoneList.indexOf(Player.ControllerSettings.ControllerDeadZone);
+	ControllerA = C.ControllerSettings.ControllerA;
+	ControllerB = C.ControllerSettings.ControllerB;
+	ControllerX = C.ControllerSettings.ControllerX;
+	ControllerY = C.ControllerSettings.ControllerY;
+	ControllerStickUpDown = C.ControllerSettings.ControllerStickUpDown;
+	ControllerStickLeftRight = C.ControllerSettings.ControllerStickLeftRight;
+	ControllerStickRight = C.ControllerSettings.ControllerStickRight;
+	ControllerStickDown = C.ControllerSettings.ControllerStickDown;
+	ControllerDPadUp = C.ControllerSettings.ControllerDPadUp;
+	ControllerDPadDown = C.ControllerSettings.ControllerDPadDown;
+	ControllerDPadLeft = C.ControllerSettings.ControllerDPadLeft;
+	ControllerDPadRight = C.ControllerSettings.ControllerDPadRight;
+	ControllerActive = C.ControllerSettings.ControllerActive;
 
 	// Gameplay settings
 	if (!C.GameplaySettings) C.GameplaySettings = {};
@@ -411,10 +411,11 @@ function PreferenceInitPlayer() {
 	}
 
 	// Graphical settings
-	if (!C.GraphicsSettings) C.GraphicsSettings = {}
+	if (!C.GraphicsSettings) C.GraphicsSettings = {};
 	if (typeof C.GraphicsSettings.Font !== "string") C.GraphicsSettings.Font = "Arial";
 	if (typeof C.GraphicsSettings.InvertRoom !== "boolean") C.GraphicsSettings.InvertRoom = true;
 	if (typeof C.GraphicsSettings.StimulationFlashes !== "boolean") C.GraphicsSettings.StimulationFlashes = true;
+	if (typeof C.GraphicsSettings.DoBlindFlash !== "boolean") C.GraphicsSettings.DoBlindFlash = false;
 
 	// Notification settings
 	let NS = C.NotificationSettings;
@@ -483,12 +484,12 @@ function PreferenceInitPlayer() {
 		C.ImmersionSettings.ChatRoomMuffle = true;
 		C.OnlineSharedSettings.AllowPlayerLeashing = true;
 	}
-	
+
 	// Enables the AFK timer for the current player only
 	AfkTimerSetEnabled(C.OnlineSettings.EnableAfkTimer);
 
 	// Sync settings if anything changed
-	const toUpdate = {}
+	const toUpdate = {};
 
 	for (const prop of Object.keys(PrefBefore))
 		if (PrefBefore[prop] !== JSON.stringify(C[prop]))
@@ -546,7 +547,7 @@ function PreferenceLoad() {
 	PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave) < 0) ? 0 : PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave);
 	PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers) < 0) ? 0 : PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers);
 	PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog) < 0) ? 0 : PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog);
-    PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
+	PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
 	PreferenceArousalActiveIndex = (PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active) < 0) ? 0 : PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active);
 	PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX) < 0) ? 0 : PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX);
 	PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible) < 0) ? 0 : PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible);
@@ -571,8 +572,8 @@ function PreferenceLoad() {
 	PreferenceArousalFetishIndex = 0;
 	PreferenceLoadFetishFactor();
 
-   // Sets the Players text font
-   PreferenceGraphicsFontIndex = (PreferenceGraphicsFontList.indexOf(Player.GraphicsSettings.Font) < 0) ? 0 : PreferenceGraphicsFontList.indexOf(Player.GraphicsSettings.Font);
+	// Sets the Players text font
+	PreferenceGraphicsFontIndex = (PreferenceGraphicsFontList.indexOf(Player.GraphicsSettings.Font) < 0) ? 0 : PreferenceGraphicsFontList.indexOf(Player.GraphicsSettings.Font);
 
 }
 
@@ -594,15 +595,15 @@ function PreferenceRun() {
 	MainCanvas.textAlign = "center";
 
 	// Draw all the buttons to access the submenus
-    for (let A = 0; A < PreferenceSubscreenList.length; A++) {
-        ControllerIgnoreButton = true;
-        DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
-        ControllerIgnoreButton = false;
-        DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
-        if (ControllerActive == true) {
-            setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
-        }
-    }
+	for (let A = 0; A < PreferenceSubscreenList.length; A++) {
+		ControllerIgnoreButton = true;
+		DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
+		ControllerIgnoreButton = false;
+		DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
+		if (ControllerActive == true) {
+			setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
+		}
+	}
 
 }
 
@@ -722,10 +723,10 @@ function PreferenceSubscreenRestrictionRun() {
  * @returns {void} - Nothing
  */
 function PreferenceClick() {
-    if (ControllerActive == true) {
-        ClearButtons();
-    }
-    // Pass the click into the opened subscreen
+	if (ControllerActive == true) {
+		ClearButtons();
+	}
+	// Pass the click into the opened subscreen
 	if (PreferenceSubscreen != "") return CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreen + "Click()");
 
 	// Exit button
@@ -749,18 +750,18 @@ function PreferenceClick() {
 function PreferenceSubscreenGeneralClick() {
 
 	// If the user clicks on "Exit"
-	if (MouseIn(1815, 75, 90, 90) && (PreferenceColorPick == "")) PreferenceSubscreenGeneralExit();
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenGeneralExit();
 
 	// If we must change the restrain permission level
-	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
+	if (MouseIn(500, 280, 90, 90)) {
 		Player.ItemPermission++;
 		if (Player.ItemPermission > 5) Player.ItemPermission = 0;
 		if (Player.GetDifficulty() >= 3) LoginExtremeItemSettings();
 	}
 
 	// If we must show/hide/use the color picker
-	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick != "")) PreferenceColorPick = "";
+	if (MouseIn(1140, 187, 65, 65)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
+	if (MouseIn(1815, 75, 90, 90) && (PreferenceColorPick != "")) PreferenceColorPick = "";
 
 	// Preference check boxes
 	if (MouseIn(500, 402, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
@@ -827,7 +828,6 @@ function PreferenceSubscreenRestrictionClick() {
 	if (MouseIn(500, 325, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassStruggle = !Player.RestrictionSettings.BypassStruggle;
 	if (MouseIn(500, 425, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.SlowImmunity = !Player.RestrictionSettings.SlowImmunity;
 	if (MouseIn(500, 525, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassNPCPunishments = !Player.RestrictionSettings.BypassNPCPunishments;
-	
 }
 
 /**
@@ -860,7 +860,7 @@ function PreferenceSubscreenImmersionRun() {
 		DrawCheckbox(500, 752, 64, 64, TextGet("ChatRoomMuffle"), Player.ImmersionSettings.ChatRoomMuffle);
 		DrawCheckbox(500, 832, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
 		DrawCheckbox(1300, 192, 64, 64, TextGet("SenseDepMessages"), Player.ImmersionSettings.SenseDepMessages);
-		
+
 		DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
 		MainCanvas.textAlign = "center";
 		DrawBackNextButton(500, 192, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
@@ -886,7 +886,7 @@ function PreferenceSubscreenImmersionClick() {
 	if (Player.GetDifficulty() <= 2) {
 
 		// If we must change sens dep settings
-		if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 192) && (MouseY < 256) && (!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained()))) {
+		if (MouseIn(500, 192, 250, 64) && (!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained()))) {
 			if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 			else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 			Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
@@ -905,16 +905,16 @@ function PreferenceSubscreenImmersionClick() {
 		if (MouseIn(500, 512, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing;
 		if (MouseIn(500, 592, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-				Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
+			Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
 		if (Player.ImmersionSettings.ReturnToChatRoom && MouseIn(1300, 592, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-				Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
+			Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
 		if (MouseIn(1300, 192, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-				Player.ImmersionSettings.SenseDepMessages = !Player.ImmersionSettings.SenseDepMessages;
+			Player.ImmersionSettings.SenseDepMessages = !Player.ImmersionSettings.SenseDepMessages;
 		if (MouseIn(500, 672, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-				Player.ImmersionSettings.StimulationEvents = !Player.ImmersionSettings.StimulationEvents;
+			Player.ImmersionSettings.StimulationEvents = !Player.ImmersionSettings.StimulationEvents;
 		if (MouseIn(500, 752, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-				Player.ImmersionSettings.ChatRoomMuffle = !Player.ImmersionSettings.ChatRoomMuffle;
-			
+			Player.ImmersionSettings.ChatRoomMuffle = !Player.ImmersionSettings.ChatRoomMuffle;
+
 		if (MouseIn(500, 832, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
 			Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
 
@@ -924,30 +924,42 @@ function PreferenceSubscreenImmersionClick() {
 
 /**
  * Is called when the player exits the preference screen. All settings of the preference screen are sent to the server.
- * If the selected color is invalid, the player cannot leave the screen.
+ * If the player is in a subscreen, they exit to the main preferences menu instead.
  * @returns {void} - Nothing
  */
 function PreferenceExit() {
-	const P = {
-		ArousalSettings: Player.ArousalSettings,
-		ChatSettings: Player.ChatSettings,
-		VisualSettings: Player.VisualSettings,
-		AudioSettings: Player.AudioSettings,
-		ControllerSettings: Player.ControllerSettings,
-		GameplaySettings: Player.GameplaySettings,
-		ImmersionSettings: Player.ImmersionSettings,
-		RestrictionSettings: Player.RestrictionSettings,
-		OnlineSettings: Player.OnlineSettings,
-		OnlineSharedSettings: Player.OnlineSharedSettings,
-		GraphicsSettings: Player.GraphicsSettings,
-		NotificationSettings: Player.NotificationSettings,
-		ItemPermission: Player.ItemPermission,
-		LabelColor: Player.LabelColor,
-		LimitedItems: CommonPackItemArray(Player.LimitedItems),
-	};
-	ServerSend("AccountUpdate", P);
-	PreferenceMessage = "";
-	CommonSetScreen("Character", "InformationSheet");
+	if (PreferenceSubscreen !== "") {
+		// Exit the subscreen to the main preferences menu
+		if (typeof window["PreferenceSubscreen" + PreferenceSubscreen + "Exit"] === "function") {
+			window["PreferenceSubscreen" + PreferenceSubscreen + "Exit"]();
+		}
+		else {
+			PreferenceMessage = "";
+			PreferenceSubscreen = "";
+		}
+	} else {
+		// Exit the preference menus
+		const P = {
+			ArousalSettings: Player.ArousalSettings,
+			ChatSettings: Player.ChatSettings,
+			VisualSettings: Player.VisualSettings,
+			AudioSettings: Player.AudioSettings,
+			ControllerSettings: Player.ControllerSettings,
+			GameplaySettings: Player.GameplaySettings,
+			ImmersionSettings: Player.ImmersionSettings,
+			RestrictionSettings: Player.RestrictionSettings,
+			OnlineSettings: Player.OnlineSettings,
+			OnlineSharedSettings: Player.OnlineSharedSettings,
+			GraphicsSettings: Player.GraphicsSettings,
+			NotificationSettings: Player.NotificationSettings,
+			ItemPermission: Player.ItemPermission,
+			LabelColor: Player.LabelColor,
+			LimitedItems: CommonPackItemArray(Player.LimitedItems),
+		};
+		ServerSend("AccountUpdate", P);
+		PreferenceMessage = "";
+		CommonSetScreen("Character", "InformationSheet");
+	}
 }
 
 /**
@@ -1236,6 +1248,7 @@ function PreferenceSubscreenGraphicsRun() {
 	DrawTextFit(TextGet("GraphicsFontDisclaimer"), 500, 406, 1400, "Black", "Gray");
 	DrawCheckbox(500, 470, 64, 64, TextGet("GraphicsInvertRoom"), Player.GraphicsSettings.InvertRoom);
 	DrawCheckbox(500, 550, 64, 64, TextGet("GraphicsStimulationFlash"), Player.GraphicsSettings.StimulationFlash);
+	DrawCheckbox(500, 630, 64, 64, TextGet("DoBlindFlash"), Player.GraphicsSettings.DoBlindFlash);
 
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 212, 250, 64, TextGet(Player.ArousalSettings.VFX), "White", "",
@@ -1252,7 +1265,7 @@ function PreferenceSubscreenGraphicsRun() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenGraphicsClick() {
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) PreferenceSubscreen = "";
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
 	if (MouseIn(500, 212, 250, 64)) {
 		if (MouseX <= 625) PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.length + PreferenceSettingsVFXIndex - 1) % PreferenceSettingsVFXList.length;
 		else PreferenceSettingsVFXIndex = (PreferenceSettingsVFXIndex + 1) % PreferenceSettingsVFXList.length;
@@ -1267,6 +1280,7 @@ function PreferenceSubscreenGraphicsClick() {
 	}
 	if (MouseIn(500, 470, 64, 64)) Player.GraphicsSettings.InvertRoom = !Player.GraphicsSettings.InvertRoom;
 	if (MouseIn(500, 550, 64, 64)) Player.GraphicsSettings.StimulationFlash = !Player.GraphicsSettings.StimulationFlash;
+	if (MouseIn(500, 630, 64, 64)) Player.GraphicsSettings.DoBlindFlash = !Player.GraphicsSettings.DoBlindFlash;
 }
 
 /**
@@ -1276,21 +1290,21 @@ function PreferenceSubscreenGraphicsClick() {
 function PreferenceSubscreenAudioClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) PreferenceSubscreenAudioExit();
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenAudioExit();
 
 	// Volume increase/decrease control
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
+	if (MouseIn(500, 193, 250, 64)) {
 		if (MouseX <= 625) PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.length + PreferenceSettingsVolumeIndex - 1) % PreferenceSettingsVolumeList.length;
 		else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
 		Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
 	}
 
 	// Individual audio check-boxes
-	if ((MouseX >= 500) && (MouseX < 564)) {
-		if ((MouseY >= 272) && (MouseY < 336)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
-		if ((MouseY >= 352) && (MouseY < 416)) Player.AudioSettings.PlayItem = !Player.AudioSettings.PlayItem;
-		if ((MouseY >= 432) && (MouseY < 496)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
-		if ((MouseY >= 512) && (MouseY < 576)) Player.AudioSettings.Notifications = !Player.AudioSettings.Notifications;
+	if (MouseXIn(500, 64)) {
+		if (MouseYIn(272, 64)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
+		if (MouseYIn(352, 64)) Player.AudioSettings.PlayItem = !Player.AudioSettings.PlayItem;
+		if (MouseYIn(432, 64)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
+		if (MouseYIn(512, 64)) Player.AudioSettings.Notifications = !Player.AudioSettings.Notifications;
 	}
 }
 
@@ -1315,46 +1329,39 @@ function PreferenceSubscreenAudioExit() {
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenControllerClick() {
-    if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
-        PreferenceSubscreen = "";
-        PreferenceCalibrationStage = 0;
-        Calibrating = false;
-    }
-    if (PreferenceCalibrationStage == 0) {
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenControllerExit();
 
+	if (PreferenceCalibrationStage == 0) {
 
-        if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
-            if (MouseX <= 625) PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityList.length + PreferenceSettingsSensitivityIndex - 1) % PreferenceSettingsSensitivityList.length;
-            else PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length;
-            Player.ControllerSettings.ControllerSensitivity = PreferenceSettingsSensitivityList[PreferenceSettingsSensitivityIndex];
-            ControllerSensitivity = Player.ControllerSettings.ControllerSensitivity;
-        }
-        if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 593) && (MouseY < 657)) {
-            if (MouseX <= 625) PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneList.length + PreferenceSettingsDeadZoneIndex - 1) % PreferenceSettingsDeadZoneList.length;
-            else PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length;
-            Player.ControllerSettings.ControllerDeadZone = PreferenceSettingsDeadZoneList[PreferenceSettingsDeadZoneIndex];
-            ControllerDeadZone = Player.ControllerSettings.ControllerDeadZone;
-        }
+		if (MouseIn(500, 193, 250, 64)) {
+			if (MouseX <= 625) PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityList.length + PreferenceSettingsSensitivityIndex - 1) % PreferenceSettingsSensitivityList.length;
+			else PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length;
+			Player.ControllerSettings.ControllerSensitivity = PreferenceSettingsSensitivityList[PreferenceSettingsSensitivityIndex];
+			ControllerSensitivity = Player.ControllerSettings.ControllerSensitivity;
+		}
+		if (MouseIn(500, 593, 250, 64)) {
+			if (MouseX <= 625) PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneList.length + PreferenceSettingsDeadZoneIndex - 1) % PreferenceSettingsDeadZoneList.length;
+			else PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length;
+			Player.ControllerSettings.ControllerDeadZone = PreferenceSettingsDeadZoneList[PreferenceSettingsDeadZoneIndex];
+			ControllerDeadZone = Player.ControllerSettings.ControllerDeadZone;
+		}
 
-        if (MouseIn(590, 400, 310, 90)) {
-            //console.log("CalibrateClick")
-            PreferenceCalibrationStage = 1;
-            Calibrating = true;
-        }
-        if (MouseIn(590, 500, 310, 90)) {
-            //console.log("CalibrateClick")
-            PreferenceCalibrationStage = 101;
-            Calibrating = true;
-        }
+		if (MouseIn(590, 400, 310, 90)) {
+			PreferenceCalibrationStage = 1;
+			Calibrating = true;
+		}
 
-        if ((MouseX >= 500) && (MouseX < 564)) {
-            if ((MouseY >= 272) && (MouseY < 336)) {
-                ControllerActive = !ControllerActive;
-                Player.ControllerSettings.ControllerActive = ControllerActive;
-                ClearButtons();
-            }
-        }
-    }
+		if (MouseIn(590, 500, 310, 90)) {
+			PreferenceCalibrationStage = 101;
+			Calibrating = true;
+		}
+
+		if (MouseIn(500, 272, 64, 64)) {
+			ControllerActive = !ControllerActive;
+			Player.ControllerSettings.ControllerActive = ControllerActive;
+			ClearButtons();
+		}
+	}
 }
 
 /**
@@ -1379,19 +1386,19 @@ function PreferenceSubscreenChatClick() {
 	}
 
 	// If the user used one of the BackNextButtons
-	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 190) && (MouseY < 270)) {
+	if (MouseIn(1000, 190, 350, 80)) {
 		if (MouseX <= 1175) PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex <= 0) ? PreferenceChatColorThemeList.length - 1 : PreferenceChatColorThemeIndex - 1;
 		else PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex >= PreferenceChatColorThemeList.length - 1) ? 0 : PreferenceChatColorThemeIndex + 1;
 		PreferenceChatColorThemeSelected = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
 		Player.ChatSettings.ColorTheme = PreferenceChatColorThemeSelected;
 	}
-	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 290) && (MouseY < 370)) {
+	if (MouseIn(1000, 290, 350, 80)) {
 		if (MouseX <= 1175) PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveIndex <= 0) ? PreferenceChatEnterLeaveList.length - 1 : PreferenceChatEnterLeaveIndex - 1;
 		else PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveIndex >= PreferenceChatEnterLeaveList.length - 1) ? 0 : PreferenceChatEnterLeaveIndex + 1;
 		PreferenceChatEnterLeaveSelected = PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex];
 		Player.ChatSettings.EnterLeave = PreferenceChatEnterLeaveSelected;
 	}
-	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 390) && (MouseY < 470)) {
+	if (MouseIn(1000, 390, 350, 80)) {
 		if (MouseX <= 1175) PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersIndex <= 0) ? PreferenceChatMemberNumbersList.length - 1 : PreferenceChatMemberNumbersIndex - 1;
 		else PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersIndex >= PreferenceChatMemberNumbersList.length - 1) ? 0 : PreferenceChatMemberNumbersIndex + 1;
 		PreferenceChatMemberNumbersSelected = PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex];
@@ -1399,8 +1406,7 @@ function PreferenceSubscreenChatClick() {
 	}
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == ""))
-		PreferenceSubscreen = "";
+	if (MouseIn(1815, 75,90,90)) PreferenceSubscreenChatExit();
 
 }
 
@@ -1433,52 +1439,49 @@ function PreferenceSubscreenOnlineClick() {
 function PreferenceSubscreenArousalClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
-		PreferenceSubscreen = "";
-		Player.FocusGroup = null;
-	}
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenArousalExit();
 
 	// Arousal active control
-	if ((MouseX >= 750) && (MouseX < 1200) && (MouseY >= 193) && (MouseY < 257)) {
+	if (MouseIn(750, 193, 450, 64)) {
 		if (MouseX <= 975) PreferenceArousalActiveIndex = (PreferenceArousalActiveList.length + PreferenceArousalActiveIndex - 1) % PreferenceArousalActiveList.length;
 		else PreferenceArousalActiveIndex = (PreferenceArousalActiveIndex + 1) % PreferenceArousalActiveList.length;
 		Player.ArousalSettings.Active = PreferenceArousalActiveList[PreferenceArousalActiveIndex];
 	}
 
 	// Speech stuttering control
-	if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 378) && (MouseY < 442)) {
+	if (MouseIn(900, 378, 500, 64)) {
 		if (MouseX <= 1150) PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.length + PreferenceArousalAffectStutterIndex - 1) % PreferenceArousalAffectStutterList.length;
 		else PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterIndex + 1) % PreferenceArousalAffectStutterList.length;
 		Player.ArousalSettings.AffectStutter = PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex];
 	}
 
 	// Show other player meter check box
-	if ((MouseX >= 550) && (MouseX < 614) && (MouseY >= 286) && (MouseY < 350))
+	if (MouseIn(550, 286, 64, 350))
 		Player.ArousalSettings.ShowOtherMeter = !Player.ArousalSettings.ShowOtherMeter;
 
 	// If the arousal is active, we allow more controls
 	if (PreferenceArousalIsActive()) {
 
 		// Meter affect your facial expressions check box
-		if ((MouseX >= 1250) && (MouseX < 1314) && (MouseY >= 286) && (MouseY < 350))
+		if (MouseIn(1250, 286, 64, 64))
 			Player.ArousalSettings.AffectExpression = !Player.ArousalSettings.AffectExpression;
 
 		// Arousal visible control
-		if ((MouseX >= 1505) && (MouseX < 1905) && (MouseY >= 193) && (MouseY <= 257)) {
+		if (MouseIn(1505, 193, 400, 64)) {
 			if (MouseX <= 1705) PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.length + PreferenceArousalVisibleIndex - 1) % PreferenceArousalVisibleList.length;
 			else PreferenceArousalVisibleIndex = (PreferenceArousalVisibleIndex + 1) % PreferenceArousalVisibleList.length;
 			Player.ArousalSettings.Visible = PreferenceArousalVisibleList[PreferenceArousalVisibleIndex];
 		}
 
 		// Fetish master control
-		if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 463) && (MouseY <= 527)) {
+		if (MouseIn(900, 463, 500, 64)) {
 			if (MouseX <= 1150) PreferenceArousalFetishIndex = (PreferenceArousalFetishList.length + PreferenceArousalFetishIndex - 1) % PreferenceArousalFetishList.length;
 			else PreferenceArousalFetishIndex = (PreferenceArousalFetishIndex + 1) % PreferenceArousalFetishList.length;
 			PreferenceLoadFetishFactor();
 		}
 
 		// Fetish love control
-		if ((MouseX >= 1455) && (MouseX < 1905) && (MouseY >= 463) && (MouseY <= 527)) {
+		if (MouseIn(1455, 463, 450, 64)) {
 			if (MouseX <= 1680) PreferenceArousalFetishFactor = (5 + PreferenceArousalFetishFactor - 1) % 5;
 			else PreferenceArousalFetishFactor = (PreferenceArousalFetishFactor + 1) % 5;
 			for (let F = 0; F < Player.ArousalSettings.Fetish.length; F++)
@@ -1487,35 +1490,35 @@ function PreferenceSubscreenArousalClick() {
 		}
 
 		// Arousal activity control
-		if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 548) && (MouseY <= 612)) {
+		if (MouseIn(900, 548, 500, 64)) {
 			if (MouseX <= 1150) PreferenceArousalActivityIndex = (PreferenceArousalActivityList.length + PreferenceArousalActivityIndex - 1) % PreferenceArousalActivityList.length;
 			else PreferenceArousalActivityIndex = (PreferenceArousalActivityIndex + 1) % PreferenceArousalActivityList.length;
 			PreferenceLoadActivityFactor();
 		}
 
 		// Arousal activity love on self control
-		if ((MouseX >= 900) && (MouseX < 1200) && (MouseY >= 633) && (MouseY <= 697)) {
+		if (MouseIn(900, 633, 300, 64)) {
 			if (MouseX <= 1050) PreferenceArousalActivityFactorSelf = (5 + PreferenceArousalActivityFactorSelf - 1) % 5;
 			else PreferenceArousalActivityFactorSelf = (PreferenceArousalActivityFactorSelf + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true, PreferenceArousalActivityFactorSelf);
 		}
 
 		// Arousal activity love on other control
-		if ((MouseX >= 1605) && (MouseX < 1905) && (MouseY >= 633) && (MouseY <= 697)) {
+		if (MouseIn(1605, 633, 300, 64)) {
 			if (MouseX <= 1755) PreferenceArousalActivityFactorOther = (5 + PreferenceArousalActivityFactorOther - 1) % 5;
 			else PreferenceArousalActivityFactorOther = (PreferenceArousalActivityFactorOther + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false, PreferenceArousalActivityFactorOther);
 		}
 
 		// Arousal zone love control
-		if ((Player.FocusGroup != null) && (MouseX >= 550) && (MouseX < 1150) && (MouseY >= 813) && (MouseY < 877)) {
+		if ((Player.FocusGroup != null) && MouseIn(550, 813, 600, 64)) {
 			if (MouseX <= 850) PreferenceArousalZoneFactor = (5 + PreferenceArousalZoneFactor - 1) % 5;
 			else PreferenceArousalZoneFactor = (PreferenceArousalZoneFactor + 1) % 5;
 			PreferenceSetZoneFactor(Player, Player.FocusGroup.Name, PreferenceArousalZoneFactor);
 		}
 
 		// Arousal zone orgasm check box
-		if ((Player.FocusGroup != null) && (MouseX >= 1230) && (MouseX < 1294) && (MouseY >= 813) && (MouseY < 877))
+		if ((Player.FocusGroup != null) && MouseIn(1230, 813, 64, 64))
 			PreferenceSetZoneOrgasm(Player, Player.FocusGroup.Name, !PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
 
 		// In arousal mode, the player can click on her zones
@@ -1538,14 +1541,10 @@ function PreferenceSubscreenArousalClick() {
 function PreferenceSubscreenSecurityClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
-		PreferenceSubscreen = "";
-		ElementRemove("InputEmailOld");
-		ElementRemove("InputEmailNew");
-	}
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenSecurityExit();
 
 	// If we must update the email
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 365) && (MouseY < 415)) {
+	if (MouseIn(500, 365, 250, 50)) {
 		var EmailOld = ElementValue("InputEmailOld");
 		var EmailNew = ElementValue("InputEmailNew");
 		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
@@ -1738,15 +1737,18 @@ function PreferenceSubscreenGeneralLoad() {
 
 /**
  * Exists the preference screen. Cleans up elements that are not needed anymore
+ * If the selected color is invalid, the player cannot leave the screen.
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenGeneralExit() {
-	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
-		Player.LabelColor = ElementValue("InputCharacterLabelColor");
-		PreferenceMessage = "";
-		ElementRemove("InputCharacterLabelColor");
-		PreferenceSubscreen = "";
-	} else PreferenceMessage = "ErrorInvalidColor";
+	if (PreferenceColorPick == "") {
+		if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
+			Player.LabelColor = ElementValue("InputCharacterLabelColor");
+			PreferenceMessage = "";
+			ElementRemove("InputCharacterLabelColor");
+			PreferenceSubscreen = "";
+		} else PreferenceMessage = "ErrorInvalidColor";
+	}
 }
 
 /**
@@ -1886,7 +1888,7 @@ function PreferenceNotificationsDrawSetting(Left, Top, Text, Setting) {
 function PreferenceSubscreenNotificationsClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if (MouseIn(1815, 75, 90, 90)) PreferenceNotificationsExit();
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenNotificationsExit();
 
 	// Checkboxes
 	const NS = Player.NotificationSettings;
@@ -1909,7 +1911,7 @@ function PreferenceSubscreenNotificationsClick() {
 
 	PreferenceNotificationsClickSetting(500, 635, NS.Disconnect, NotificationEventType.DISCONNECT);
 	PreferenceNotificationsClickSetting(500, 715, NS.Larp, NotificationEventType.LARP);
-	PreferenceNotificationsClickSetting(500, 820, NS.Test);
+	PreferenceNotificationsClickSetting(500, 820, NS.Test, NotificationEventType.TEST);
 
 	// Test buttons
 	if (MouseIn(800, 820, 450, 64)) {
@@ -1918,7 +1920,8 @@ function PreferenceSubscreenNotificationsClick() {
 	if (MouseIn(1286, 820, 450, 64)) NotificationResetAll();
 }
 
-/** Handles the click events within a multi-checkbox settings row.
+/**
+ * Handles the click events within a multi-checkbox settings row.
  * @param {number} Left - The X co-ordinate the row starts on
  * @param {number} Top - The Y co-ordinate the row starts on
  * @param {NotificationSetting} Setting - The player setting the row corresponds to
@@ -1929,6 +1932,7 @@ function PreferenceNotificationsClickSetting(Left, Top, Setting, EventType) {
 
 	// Toggle the alert type
 	if (MouseIn(Left, Top, 164, 64)) {
+		if (EventType) NotificationReset(EventType);
 		if (MouseXIn(Left, 83)) {
 			let prevType = NotificationAlertTypeList.findIndex(N => N === Setting.AlertType) - 1;
 			if (prevType < 0) prevType = NotificationAlertTypeList.length - 1;
@@ -1939,7 +1943,6 @@ function PreferenceNotificationsClickSetting(Left, Top, Setting, EventType) {
 			if (nextType > NotificationAlertTypeList.length - 1) nextType = 0;
 			Setting.AlertType = NotificationAlertTypeList[nextType];
 		}
-		if (EventType) NotificationReset(EventType);
 	}
 
 	// Toggle the audio type
@@ -1954,9 +1957,9 @@ function PreferenceNotificationsClickSetting(Left, Top, Setting, EventType) {
  * Exits the preference screen. Resets the test notifications.
  * @returns {void} - Nothing
  */
-function PreferenceNotificationsExit() {
+function PreferenceSubscreenNotificationsExit() {
 
-	//If any of the settings now have audio enabled, enable the AudioSettings setting as well
+	// If any of the settings now have audio enabled, enable the AudioSettings setting as well
 	let enableAudio = false;
 	for (const setting in Player.NotificationSettings) {
 		let audio = Player.NotificationSettings[setting].Audio;
@@ -1966,4 +1969,49 @@ function PreferenceNotificationsExit() {
 
 	NotificationReset(NotificationEventType.TEST);
 	PreferenceSubscreen = "";
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenControllerExit() {
+	PreferenceSubscreen = "";
+	PreferenceCalibrationStage = 0;
+	Calibrating = false;
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenChatExit() {
+	if (PreferenceColorPick == "") PreferenceSubscreen = "";
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenArousalExit() {
+	PreferenceSubscreen = "";
+	Player.FocusGroup = null;
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenSecurityExit() {
+	PreferenceSubscreen = "";
+	ElementRemove("InputEmailOld");
+	ElementRemove("InputEmailNew");
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenVisibilityExit() {
+	PreferenceVisibilityExit(false);
 }
