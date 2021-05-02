@@ -21,14 +21,14 @@ var PandoraMaxWillpower = 20;
  * NPC Dialog functions
  * @returns {boolean} - TRUE if the dialog option will be available to the player
  */
-function PandoraCanStartRecruit() { return ((CurrentCharacter.Recruit == null) || (CurrentCharacter.Recruit == 0)) }
-function PandoraCanRecruit() { return (CurrentCharacter.Recruit + (InfiltrationPerksActive("Recruiter") ? 0.25 : 0) >= CurrentCharacter.RecruitOdds) }
-function PandoraCharacterCanJoin() { return ((PandoraParty.length == 0) || (PandoraParty[0].Name != CurrentCharacter.Name)) }
-function PandoraCharacterCanLeave() { return ((PandoraParty.length == 1) && (PandoraParty[0].Name == CurrentCharacter.Name) && ((PandoraCurrentRoom.Character == null) || (PandoraCurrentRoom.Character.length <= 1))) }
-function PandoraOdds75() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.25)) }
-function PandoraOdds50() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.50)) }
-function PandoraOdds25() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.75)) }
-function PandoraCostumeIs(Costume) { return (PandoraClothes == Costume) }
+function PandoraCanStartRecruit() { return ((CurrentCharacter.Recruit == null) || (CurrentCharacter.Recruit == 0)); }
+function PandoraCanRecruit() { return (CurrentCharacter.Recruit + (InfiltrationPerksActive("Recruiter") ? 0.25 : 0) >= CurrentCharacter.RecruitOdds); }
+function PandoraCharacterCanJoin() { return ((PandoraParty.length == 0) || (PandoraParty[0].Name != CurrentCharacter.Name)); }
+function PandoraCharacterCanLeave() { return ((PandoraParty.length == 1) && (PandoraParty[0].Name == CurrentCharacter.Name) && ((PandoraCurrentRoom.Character == null) || (PandoraCurrentRoom.Character.length <= 1))); }
+function PandoraOdds75() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.25)); }
+function PandoraOdds50() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.50)); }
+function PandoraOdds25() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.75)); }
+function PandoraCostumeIs(Costume) { return (PandoraClothes == Costume); }
 
 /**
  * Loads the Pandora's Box screen
@@ -86,7 +86,7 @@ function PandoraRun() {
 		DrawButton(1842, 850, 90, 90, "", PandoraDirectionButtonColor("South"), "Icons/South.png", TextGet("DirectionSouth"));
 		DrawButton(1900, 735, 90, 90, "", PandoraDirectionButtonColor("East"), "Icons/East.png", TextGet("DirectionEast"));
 	}
-	
+
 	// If we must draw a message in the middle of the screen
 	if ((PandoraMessage != null) && (PandoraMessage.Timer != null) && (PandoraMessage.Text != null) && (PandoraMessage.Timer >= CommonTime())) {
 		DrawRect(500, 465, 1000, 70, "black");
@@ -128,7 +128,7 @@ function PandoraClick() {
 		return;
 	}
 
-	// Checks if we clicked on a character	
+	// Checks if we clicked on a character
 	let Pos = 690 - (PandoraCurrentRoom.Character.length + PandoraParty.length) * 230;
 	if (MouseIn(Pos, 0, 500, 1000)) return CharacterSetCurrent(Player);
 	let AllowMove = true;
@@ -189,7 +189,7 @@ function PandoraMsgBox(Text) {
 
 /**
  * Generates a random NPC for Pandora's Box missions, clear the cache if it was generated before
- * @param {string} Group - The main group for that NPC (Random, Entrance, Underground) 
+ * @param {string} Group - The main group for that NPC (Random, Entrance, Underground)
  * @param {string} Type - The NPC function within Pandora's (Guard, Mistress, Slave, Maid, etc.)
  * @param {string} Name - The name to give to that NPC, can be RANDOM for a fully random name
  * @param {boolean} AllowItem - TRUE if we allow using items on her by default
@@ -277,7 +277,7 @@ function PandoraDress(C, Type) {
  * @returns {void} - Nothing
  */
 function PandoraEnterRoom(Room, Direction) {
-	
+
 	// Shoes the incoming direction for a little while
 	if ((Direction != null) && (Direction != "")) PandoraMoveDirectionTimer = { Direction: Direction, Timer: CommonTime() + 1500 };
 
@@ -329,7 +329,7 @@ function PandoraEnterRoom(Room, Direction) {
  * @returns {void} - Nothing
  */
 function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
-	
+
 	// Over 100, the dungeon layout is always invalid
 	if (PandoraRoom.length >= 100) return;
 
@@ -360,7 +360,7 @@ function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
 			RoomBack = "Cell";
 			let DeadEndOdds = (RoomLevel - InfiltrationDifficulty) * 0.2;
 			if (RoomLevel <= 2) DeadEndOdds = 0;
-			let TunnelOdds = 0.25 + (RoomLevel * 0.1);			
+			let TunnelOdds = 0.25 + (RoomLevel * 0.1);
 			if (TunnelOdds > 0.75) TunnelOdds = 0.75;
 			if (Math.random() >= DeadEndOdds) RoomBack = (Math.random() >= TunnelOdds) ? "Fork" : "Tunnel";
 			RoomBack = RoomBack + Math.floor(Math.random() * 6);
@@ -410,7 +410,7 @@ function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
  * @returns {void} - Nothing
  */
 function PandoraGenerateFloor(FloorName, EntryRoom, DirectionFrom, DirectionTo) {
-	
+
 	// Always create the same entrance room
 	let Room = {};
 	Room.Character = [];
@@ -425,7 +425,7 @@ function PandoraGenerateFloor(FloorName, EntryRoom, DirectionFrom, DirectionTo) 
 	PandoraRoom.push(Room);
 	EntryRoom.Path.push(Room);
 	EntryRoom.Direction.push(DirectionTo);
-	
+
 	// Starts the room generation
 	PandoraGenerateRoom(Room, DirectionFrom, 1);
 
@@ -436,7 +436,7 @@ function PandoraGenerateFloor(FloorName, EntryRoom, DirectionFrom, DirectionTo) 
  * @returns {void} - Nothing
  */
 function PandoraBuildMainHall() {
-	
+
 	// Creates the ground entrance room with a maid
 	PandoraParty = [];
 	let Room = {};
@@ -451,7 +451,7 @@ function PandoraBuildMainHall() {
 	Room.PathMap = [];
 	let ExitRoom = { Floor: "Exit" };
 	Room.DirectionMap = [];
-	
+
 	// Generates the floors and sets the starting room, there's a min-max number of rooms based on difficulty
 	let MinRoom = 15;
 	let MaxRoom = 24;
@@ -497,7 +497,7 @@ function PandoraBuildMainHall() {
 			PandoraTargetRoom = Room;
 		}
 	}
-	
+
 }
 
 /**
@@ -645,7 +645,7 @@ function PandoraInfiltrationChange(Progress) {
  * Checks if the player can bring the NPC to her private room
  * @returns {boolean} - Returns true if the player can
  */
-function PandoraCanJoinPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
+function PandoraCanJoinPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")); }
 
 /**
  * When a random NPC joins the player private room, we add that character and exits the dialog
@@ -663,14 +663,14 @@ function PandoraCharacterJoinPrivateRoom() {
  * @param {string} Type - The mission type
  * @returns {boolean} - Returns TRUE if it's the current mission
  */
-function PandoraMissionIs(Type) { return (InfiltrationMission === Type) }
+function PandoraMissionIs(Type) { return (InfiltrationMission === Type); }
 
 /**
  * Checks if the perk specified is currently selected
  * @param {string} Type - The perk type
  * @returns {boolean} - Returns TRUE if it's selected
  */
-function PandoraHasPerk(Type) { return InfiltrationPerksActive(Type) }
+function PandoraHasPerk(Type) { return InfiltrationPerksActive(Type); }
 
 /**
  * Prepares an information text based on the bribe amount provided

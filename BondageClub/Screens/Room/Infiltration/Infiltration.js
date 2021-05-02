@@ -11,19 +11,19 @@ var InfiltrationTarget = {};
  * Returns TRUE if the mission can complete as a success
  * @returns {boolean} - TRUE if successful
  */
-function InfiltrationCanSuccess() { return ((InfiltrationTarget != null) && (InfiltrationTarget.Found != null) && (InfiltrationTarget.Found == true)) }
+function InfiltrationCanSuccess() { return ((InfiltrationTarget != null) && (InfiltrationTarget.Found != null) && (InfiltrationTarget.Found == true)); }
 
 /**
  * Returns TRUE if the mission can complete as a failure
  * @returns {boolean} - TRUE if successful
  */
-function InfiltrationCanFail() { return ((InfiltrationTarget == null) || (InfiltrationTarget.Found == null) || (InfiltrationTarget.Found == false)) }
+function InfiltrationCanFail() { return ((InfiltrationTarget == null) || (InfiltrationTarget.Found == null) || (InfiltrationTarget.Found == false)); }
 
 /**
  * Returns TRUE if the player can go back to Pandora's Box to pursue her mission
  * @returns {boolean} - TRUE if successful
  */
-function InfiltrationCanGoBack() { return (((InfiltrationTarget == null) || (InfiltrationTarget.Fail == null) || (InfiltrationTarget.Fail == false)) && !InfiltrationCanSuccess()) }
+function InfiltrationCanGoBack() { return (((InfiltrationTarget == null) || (InfiltrationTarget.Fail == null) || (InfiltrationTarget.Fail == false)) && !InfiltrationCanSuccess()); }
 
 /**
  * Loads the infiltration screen by generating the supervisor.

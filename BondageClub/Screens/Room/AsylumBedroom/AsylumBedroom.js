@@ -7,11 +7,11 @@ var AsylumBedroomBackground = "AsylumBedroom";
  */
 function AsylumBedroomLoad() {
 	if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "") {
-		// We return to the chat room that the player was last in		
+		// We return to the chat room that the player was last in
 		if (Player.ImmersionSettings.ReturnToChatRoom) {
 			ChatRoomStart("Asylum", "", "AsylumEntrance", "AsylumEntrance", [BackgroundsTagAsylum]);
 		} else {
-			ChatRoomSetLastChatRoom("")
+			ChatRoomSetLastChatRoom("");
 		}
 	}
 }

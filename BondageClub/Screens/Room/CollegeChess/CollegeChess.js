@@ -7,9 +7,9 @@ var CollegeChessPlayerAppearance = null;
 var CollegeChessOpponentAppearance = null;
 
 // Quick functions for player interactions with the chess opponent
-function CollegeChessCanStripPlayer() { return !CharacterIsNaked(Player) }
-function CollegeChessCanStripOpponent() { return !CharacterIsNaked(CollegeChessOpponent) }
-function CollegeChessCanMakeLove() { return (CharacterIsNaked(Player) && CharacterIsNaked(CollegeChessOpponent) && !Player.IsChaste()) }
+function CollegeChessCanStripPlayer() { return !CharacterIsNaked(Player); }
+function CollegeChessCanStripOpponent() { return !CharacterIsNaked(CollegeChessOpponent); }
+function CollegeChessCanMakeLove() { return (CharacterIsNaked(Player) && CharacterIsNaked(CollegeChessOpponent) && !Player.IsChaste()); }
 
 /**
  * Loads the college chest screen by generating the opponent.
