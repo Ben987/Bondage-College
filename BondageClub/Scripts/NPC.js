@@ -76,9 +76,8 @@ function NPCTraitGetOptionValue(Dialog, NPCTrait) {
 			for (let N = 0; N < NPCTrait.length; N++)
 				if (NPCTrait[N].Name.trim() == DialogTrait[T].trim())
 					Value = Value + NPCTrait[N].Value;
-				else
-					if (NPCTrait[N].Name.trim() == NPCTraitReverse(DialogTrait[T].trim()))
-						Value = Value - 10000;
+				else if (NPCTrait[N].Name.trim() == NPCTraitReverse(DialogTrait[T].trim()))
+					Value = Value - 10000;
 		return Value;
 	} else return 0;
 }

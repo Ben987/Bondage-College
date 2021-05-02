@@ -13,7 +13,6 @@ var InventoryItemArmsWebOptions = [
 		Property: {
 			Type: "Wrapped",
 			Difficulty: 2,
-			AllowPose: ["Kneel"],
 			SetPose: ["LegsClosed", "BackElbowTouch"],
 			Effect: ["Block", "Freeze", "Prone"],
 			Block: ["ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"],
@@ -27,7 +26,6 @@ var InventoryItemArmsWebOptions = [
 		Property: {
 			Type: "Cocooned",
 			Difficulty: 4,
-			AllowPose: ["Kneel"],
 			SetPose: ["LegsClosed", "BackElbowTouch"],
 			Effect: ["Block", "Freeze", "Prone"],
 			Block: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNipples", "ItemNipplesPiercings", "ItemBreast"],

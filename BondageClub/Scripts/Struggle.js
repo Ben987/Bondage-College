@@ -455,7 +455,7 @@ function StruggleFlexibilityStart(C, PrevItem, NextItem) {
 		if ((PrevItem.Asset.Group.Name != "ItemHands") && InventoryItemHasEffect(InventoryGet(C, "ItemHands"), "Block", true)) S = S - 1; // Harder If we don't target the hands while hands are restrained
 		if ((PrevItem.Asset.Group.Name != "ItemFeet") && InventoryItemHasEffect(InventoryGet(C, "ItemFeet"), "Block", true)) S = S - 2; // Harder if you can't split your feet apart
 
-	if ((PrevItem.Asset.Group.Name == "ItemMouth") || (PrevItem.Asset.Group.Name == "ItemMouth2") || (PrevItem.Asset.Group.Name == "ItemMouth3") || (PrevItem.Asset.Group.Name == "ItemNeck") || (PrevItem.Asset.Group.Name == "ItemHood")) S = S - 4; // The head is not very flexible
+		if ((PrevItem.Asset.Group.Name == "ItemMouth") || (PrevItem.Asset.Group.Name == "ItemMouth2") || (PrevItem.Asset.Group.Name == "ItemMouth3") || (PrevItem.Asset.Group.Name == "ItemNeck") || (PrevItem.Asset.Group.Name == "ItemHood")) S = S - 4; // The head is not very flexible
 
 
 		if ((ChatRoomStruggleAssistTimer >= CurrentTime) && (ChatRoomStruggleAssistBonus >= 1) && (ChatRoomStruggleAssistBonus <= 6)) S = S + ChatRoomStruggleAssistBonus; // If assisted by another player, the player can get a bonus to struggle out
@@ -1222,12 +1222,12 @@ function StruggleLockPickProgressStart(C, Item) {
 			else {
 				var conv = CommonConvertStringToArray(Item.Property.LockPickSeed);
 				for (let PP = 0; PP < conv.length; PP++) {
-						if (typeof conv[PP] != "number") {
-							Item.Property.LockPickSeed = CommonConvertArrayToString(StruggleLockPickOrder);
-							conv = StruggleLockPickOrder;
-							break;
-						}
+					if (typeof conv[PP] != "number") {
+						Item.Property.LockPickSeed = CommonConvertArrayToString(StruggleLockPickOrder);
+						conv = StruggleLockPickOrder;
+						break;
 					}
+				}
 				StruggleLockPickOrder = conv;
 			}
 
@@ -1242,9 +1242,9 @@ function StruggleLockPickProgressStart(C, Item) {
 		// At 4 pins we have a base of 16 tries, with 10 maximum permutions possible
 		// At 10 pins we have a base of 40-30 tries, with 55 maximum permutions possible
 		var NumTries = Math.max(Math.floor(NumPins * (1.5 - 0.3*BondageLevel/10)),
-				Math.ceil(NumPins * (3.25 - BondageLevel/10) - Math.max(0, (StruggleLockPickProgressChallenge + BondageLevel/2)*1.5)));
-				// negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
-				// negative skill of 6 subtracts 12 from all locks
+			Math.ceil(NumPins * (3.25 - BondageLevel/10) - Math.max(0, (StruggleLockPickProgressChallenge + BondageLevel/2)*1.5)));
+			// negative skill of 1 subtracts 2 from the normal lock and 4 from 10 pin locks,
+			// negative skill of 6 subtracts 12 from all locks
 
 
 		StruggleLockPickProgressMaxTries = Math.max(1, NumTries - NumPins);

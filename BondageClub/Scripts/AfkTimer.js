@@ -14,12 +14,12 @@ var AfkTimerOldEmoticon = null;
  * @returns {void} - Nothing
  */
 function AfkTimerReset() {
-    AfkTimerIdle = 0;
-    if (AfkTimerIsSet) {
-        AfkTimerIsSet = false;
-        CharacterSetFacialExpression(Player, "Emoticon", AfkTimerOldEmoticon);
-        AfkTimerOldEmoticon = null;
-    }
+	AfkTimerIdle = 0;
+	if (AfkTimerIsSet) {
+		AfkTimerIsSet = false;
+		CharacterSetFacialExpression(Player, "Emoticon", AfkTimerOldEmoticon);
+		AfkTimerOldEmoticon = null;
+	}
 }
 
 /**
@@ -28,9 +28,9 @@ function AfkTimerReset() {
  * @returns {void} - Nothing
  */
 function AfkTimerIncrement() {
-    if (++AfkTimerIdle >= AfkTimerTimout) {
-        AfkTimerSetIsAfk();
-    }
+	if (++AfkTimerIdle >= AfkTimerTimout) {
+		AfkTimerSetIsAfk();
+	}
 }
 
 /**
@@ -38,8 +38,8 @@ function AfkTimerIncrement() {
  * @returns {void} - Nothing
  */
 function AfkTimerStart() {
-    AfkTimerEventsList.forEach(e => document.addEventListener(e, AfkTimerReset, true));
-    AfkTimerID = setInterval(AfkTimerIncrement, AfkTimerIncrementMs);
+	AfkTimerEventsList.forEach(e => document.addEventListener(e, AfkTimerReset, true));
+	AfkTimerID = setInterval(AfkTimerIncrement, AfkTimerIncrementMs);
 }
 
 /**
@@ -47,9 +47,9 @@ function AfkTimerStart() {
  * @returns {void} - Nothing
  */
 function AfkTimerStop() {
-    AfkTimerEventsList.forEach(e => document.removeEventListener(e, AfkTimerReset, true));
-    if (AfkTimerID != null) clearInterval(AfkTimerID);
-    AfkTimerID = null;
+	AfkTimerEventsList.forEach(e => document.removeEventListener(e, AfkTimerReset, true));
+	if (AfkTimerID != null) clearInterval(AfkTimerID);
+	AfkTimerID = null;
 }
 
 /**
@@ -58,14 +58,14 @@ function AfkTimerStop() {
  * @returns {void} - Nothing
  */
 function AfkTimerSetEnabled(Enabled) {
-    if (typeof Enabled !== 'boolean') return;
-    if (AfkTimerIsEnabled == Enabled) return;
-    AfkTimerIsEnabled = Enabled;
+	if (typeof Enabled !== 'boolean') return;
+	if (AfkTimerIsEnabled == Enabled) return;
+	AfkTimerIsEnabled = Enabled;
 
-    if (AfkTimerIsEnabled)
-        AfkTimerStart();
-    else
-        AfkTimerStop();
+	if (AfkTimerIsEnabled)
+		AfkTimerStart();
+	else
+		AfkTimerStop();
 }
 
 /**
@@ -73,12 +73,12 @@ function AfkTimerSetEnabled(Enabled) {
  * @returns {void} - Nothing
  */
 function AfkTimerSetIsAfk() {
-    if (CurrentScreen != "ChatRoom") return;
-    if (AfkTimerIsSet) return;
-    // save the current Emoticon, if there is any
-    if (InventoryGet(Player, "Emoticon") && InventoryGet(Player, "Emoticon").Property && AfkTimerOldEmoticon == null) {
-        AfkTimerOldEmoticon = InventoryGet(Player, "Emoticon").Property.Expression;
-    }
-    CharacterSetFacialExpression(Player, "Emoticon", "Afk");
-    AfkTimerIsSet = true;
+	if (CurrentScreen != "ChatRoom") return;
+	if (AfkTimerIsSet) return;
+	// save the current Emoticon, if there is any
+	if (InventoryGet(Player, "Emoticon") && InventoryGet(Player, "Emoticon").Property && AfkTimerOldEmoticon == null) {
+		AfkTimerOldEmoticon = InventoryGet(Player, "Emoticon").Property.Expression;
+	}
+	CharacterSetFacialExpression(Player, "Emoticon", "Afk");
+	AfkTimerIsSet = true;
 }

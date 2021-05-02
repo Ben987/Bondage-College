@@ -1,5 +1,7 @@
 "use strict";
 
+var lastdarkfactor = 0;
+
 /**
 * Add a new item by group & name to character inventory
 * @param {Character} C - The character that gets the new item added to her inventory
@@ -498,6 +500,9 @@ function InventoryGetRandom(C, GroupName, AllowedAssets) {
 */
 function InventoryRemove(C, AssetGroup, Refresh) {
 
+	const lastblindlevel = Player.GetBlindLevel();
+	lastdarkfactor = CharacterGetDarkFactor(Player);
+
 	// First loop to find the item and any sub item to remove with it
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
@@ -528,6 +533,13 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
 			C.Appearance.splice(E, 1);
 			if (Refresh || Refresh == null) CharacterRefresh(C);
+
+			if (Player.GraphicsSettings && Player.GraphicsSettings.DoBlindFlash) {
+				if (lastblindlevel > 0 && Player.GetBlindLevel() === 0) {
+					DrawBlindFlash(lastblindlevel);
+				}
+			}
+			
 			return;
 		}
 
@@ -547,7 +559,7 @@ function InventoryGroupIsBlocked(C, GroupName, Activity) {
 	// Default to characters focused group
 	if (GroupName == null) GroupName = C.FocusGroup.Name;
 
-    if (Activity) {
+	if (Activity) {
 		for (let E = 0; E < C.Appearance.length; E++) {
 			if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.AllowActivityOn != null) && (C.Appearance[E].Asset.AllowActivityOn.includes(GroupName))){
 				Activity = true;
@@ -557,7 +569,7 @@ function InventoryGroupIsBlocked(C, GroupName, Activity) {
 				break;
 			} else Activity = false;
 		}
-    }
+	}
 
 	// Items can block each other (hoods blocks gags, belts blocks eggs, etc.)
 	for (let E = 0; E < C.Appearance.length; E++) {
@@ -625,11 +637,11 @@ function InventoryItemIsPickable(Item) {
  * item itself does not exist.
  */
 function InventoryGetItemProperty(Item, PropertyName, CheckGroup) {
-    if (!Item || !PropertyName || !Item.Asset) return;
-    let Property = Item.Property && Item.Property[PropertyName];
-    if (typeof Property === "undefined") Property = Item.Asset[PropertyName];
-    if (typeof Property === "undefined" && CheckGroup) Property = Item.Asset.Group[PropertyName];
-    return Property;
+	if (!Item || !PropertyName || !Item.Asset) return;
+	let Property = Item.Property && Item.Property[PropertyName];
+	if (typeof Property === "undefined") Property = Item.Asset[PropertyName];
+	if (typeof Property === "undefined" && CheckGroup) Property = Item.Asset.Group[PropertyName];
+	return Property;
 }
 
 /**
@@ -935,7 +947,7 @@ function InventoryCheckLimitedPermission(C, Item, ItemType) {
  * Returns TRUE if a specific item / asset is blocked or limited for the player by the character item permissions
  * @param {Character} C - The character on which we check the permissions
  * @param {Item} Item - The item being interacted with
- * @param {String} ItemType - The asset type to scan
+ * @param {String} [ItemType] - The asset type to scan
  * @returns {Boolean} - Returns TRUE if the item cannot be used
  */
 function InventoryBlockedOrLimited(C, Item, ItemType) {

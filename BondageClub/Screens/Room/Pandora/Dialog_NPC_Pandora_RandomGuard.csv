@@ -1,6 +1,6 @@
-PlayerGagged,,,"(She looks at your gag and laughs.)  Get lost slave, I don't have time for you.",,
-FightVictory,,,"(She pouts.)  You're tough!  Alright, go ahead and get her.  I don't care.",,
-FightDefeat,,,(She smiles and laughs.)  You really thought you could beat me?,,
+PlayerGagged,,,(She checks your gag.)  Prisoners don't need to be understood.,,
+FightVictory,,,"(She pouts.)  You're tough, but I represent the law and you're still under arrest.",,
+FightDefeat,,,(She smiles and laughs.)  You really thought you could defeat the law?,,
 Punishment8,,,"(A Dominatrix takes you away from the guard.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
 Punishment5,,,(A Dominatrix takes you away from the guard.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
 Punishment2,,,"(A Dominatrix takes you away from the guard.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
@@ -39,36 +39,12 @@ ItemBreast,,,(She holds her breath as you use the item.)  Pandora's police won't
 RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Enjoy your freedom while it lasts.,,
 ItemNipples,,,(She whimpers as you use the device on her breast.)  Another violation to add to the list.,,
 RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
-0,,,Damn it!  It's really you DialogPlayerName?  You came to rescue her?,,"DialogSkillGreater(""Infiltration"", 9)"
-0,,,I know who you are DialogPlayerName.  You're not going anywhere.,,"DialogSkillGreater(""Infiltration"", 5)"
-0,,,Have I seen you before?  Don't give me any trouble.,,"DialogSkillGreater(""Infiltration"", 1)"
-0,,,Get lost girl.  I don't have time for you.,,
-0,,Who are you?,"I don't have time to chat, I'm working.",DialogRemove(),
-0,,What are you doing?,"I'm guarding a prisoner, get lost or I'll have to kick your butt.",,
-0,10,Move away or I will fight you.,(She raises her fists.)  You think you're tough?  I will crush you.,,
-0,10,I'm here to rescue the prisoner.,(She raises her fists.)  I cannot allow that!  I will crush you.,,
-0,,(Fight her.),,CharacterFight(),
-0,,I must go.  (Leave her.),,DialogLeave(),
-0,,(Walk back to where you came from.),,WalkBack(),
-10,,,Come and fight me if you dare.  I will crush you!,,
-10,,(Fight her.),,CharacterFight(),
-10,,(Leave her.),,DialogLeave(),
-10,,(Walk back to where you came from.),,WalkBack(),
-100,,,"Do whatever you want, I don't care.  I'm not paid enough to fight someone like you.",,
-100,,You're a horrible guard.,"(She seems angry.)  Laugh all you want, but you will pay for this someday.",DialogRemove(),
-100,,(Bring her with you.),Fine!  I'll follow you until you get caught.  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
-100,,(Leaver her here.),You had your fun?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
-100,,(Strip her naked.),(You strip her naked as she struggles.)  I'm only a guard here.  Give me a break.,CharacterNaked(),!CurrentCharacter.IsNaked()
-100,,(Wear her clothes.),(You put on her clothes.)  Wait!  What are you doing?  What are you planning?,"PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
-100,,(Leave her.),,DialogLeave(),
-200,210,Get me out!,"(She smirks at you.)  I have a job to do, but I'll call someone for your punishment.",,Player.CanTalk()
-200,210,(Beg for mercy.),"(She smirks at you.)  I have a job to do, but I'll call someone for your punishment.",,!Player.CanTalk()
-210,220,Punishment?  What do you mean?,You will understand very soon.  A Dominatrix is coming right up.,,Player.CanTalk()
-210,220,You're not punishing me girl.,Someone else will take care of that.  A Dominatrix is coming right up.,,Player.CanTalk()
-210,220,I will accept it Miss.,You're in the right mindset for this.  A Dominatrix is coming right up.,,Player.CanTalk()
-210,220,(Scream in your gag.),"Scream girl, it's amusing.  A Dominatrix is coming right up.",,!Player.CanTalk()
-210,220,(Trash in your bondage.),You're cute when you struggle.  A Dominatrix is coming right up.,,!Player.CanTalk()
-210,220,(Bow your head and stay silent.),You're in the right mindset for this.  A Dominatrix is coming right up.,,!Player.CanTalk()
-220,,How about a bribe?,You can't bribe me!  The Dominatrix is already on her way.,DialogRemove(),Player.CanTalk()
-220,,I'll be back!,"I can do better!  (She makes a robot voice.)  Hasta la vista, baby!",DialogRemove(),Player.CanTalk()
-220,,(Wait for the Dominatrix.),,PunishmentIntro(),
+0,,,(A guard salutes you.)  Don't get lazy little maid.  The Box isn't going to clean itself.,,"CostumeIs(""Maid"")"
+0,,,(A guard gives you a friendly handshake.)  I hope your patrol is going well.  There's nothing to report on my side.,,"CostumeIs(""Guard"")"
+0,,,"You're DialogPlayerName!  If you think you can cause trouble under my watch, you're mistaken.",,"DialogSkillGreater(""Infiltration"", 9)"
+0,,,"Aren't you that troublemaker?  If you think you can misbehave under my watch, you're mistaken.",,"DialogSkillGreater(""Infiltration"", 6)"
+0,,,"(A guard inspects you curiously.)  Hey there, have I seen you before?  You better not cause any trouble.",,"DialogSkillGreater(""Infiltration"", 3)"
+0,,,"(A guard is staring at you.)  Hey there, I hope you're not causing any trouble.",,
+0,,Who are you?,I'm guard DialogCharacterName.  I serve and protect Pandora's Box.,,
+0,,(UNDER CONSTRUCTION.),"This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.",,
+0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),

@@ -1,6 +1,10 @@
 PlayerGagged,,,(She looks at you and laughs.)  Cute gag girl.,,
 FightVictory,,,(She seems furious.)  I can't believe you won.  You will not get out of here alive.,,
 FightDefeat,,,(She kicks your butt one last time and laughs.)  Get lost!  You're no match for me.,,
+Punishment8,,,"(A Dominatrix takes you away.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(A Dominatrix takes you away.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(A Dominatrix takes you away.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(A Dominatrix takes you away.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
 ItemMouth,,,(She sighs and reluctantly allows you to gag her.),,
 RemoveItemMouth,,,"(You remove her gag and she seems happy.)  You don't need to gag me, I won't scream.",,
 ItemMouth2,,,(She sighs and reluctantly allows you to gag her.),,
@@ -35,10 +39,6 @@ ItemBreast,,,(She holds her breath as you use the item.)  You're pushing your lu
 RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Kidnappers don't make up their mind easily it seems.,,
 ItemNipples,,,(She whimpers as you use the device on her breast.)  The Bondage Club will pay for this.,,
 RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
-Punishment8,,,"(A Dominatrix takes you away.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
-Punishment5,,,(A Dominatrix takes you away.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
-Punishment2,,,"(A Dominatrix takes you away.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
-Punishment0,,,(A Dominatrix takes you away.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
 0,,,Oh fuck!  Help!  DialogPlayerName is here to kidnap me!  Someone help!,,"DialogSkillGreater(""Infiltration"", 10)"
 0,,,I knew the Bondage Club would send someone like you DialogPlayerName.  I won't go down without a fight.,,"DialogSkillGreater(""Infiltration"", 6)"
 0,,,You're not from Pandora's aren't you?  Are you looking for trouble?,,"DialogSkillGreater(""Infiltration"", 2)"

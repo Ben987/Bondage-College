@@ -235,7 +235,7 @@ function ExtendedItemExit() {
  * @returns {void} Nothing
  */
 function ExtendedItemSetType(C, Options, Option) {
-    DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 	var FunctionPrefix = ExtendedItemFunctionPrefix();
 
 	if (CurrentScreen == "ChatRoom") {

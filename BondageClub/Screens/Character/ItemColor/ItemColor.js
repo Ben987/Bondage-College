@@ -4,7 +4,7 @@
  * An object defining a group of layers which can be colored together
  * @typedef {object} ColorGroup
  * @property {string} name - The name of the color group
- * @property {Layer[]} layers - The layers contained within the color group
+ * @property {AssetLayer[]} layers - The layers contained within the color group
  * @property {number} colorIndex - The color index for the color group - this is the lowest color index of any of the layers within the
  * color group
  */
@@ -603,7 +603,7 @@ function ItemColorStateBuild(c, item, x, y, width, height, includeResetButton) {
 /**
  * Returns layers of the asset which can be given distinct colors
  * @param {Item} item - The item to be colored
- * @returns {Layer[]} - The colourable layers
+ * @returns {AssetLayer[]} - The colourable layers
  */
 function ItemColorGetColorableLayers(item) {
 	return item.Asset.Layer.filter(layer => !layer.CopyLayerColor && layer.AllowColorize && !layer.HideColoring);

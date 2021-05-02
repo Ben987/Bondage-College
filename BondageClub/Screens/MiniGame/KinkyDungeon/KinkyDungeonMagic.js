@@ -48,6 +48,23 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 	],
 }
 
+function KinkyDungeonSearchSpell(list, name) {
+	for (let L = 0; L < list.length; L++) {
+		let spell = list[L];
+		if (spell.name == name) return spell;
+	}
+	return null;
+}
+
+function KinkyDungeonFindSpell(name) {
+	for (var key in KinkyDungeonSpellList) {
+		let list = KinkyDungeonSpellList[key];
+		let spell = KinkyDungeonSearchSpell(list, name);
+		if (spell) return spell;
+	}
+	return KinkyDungeonSearchSpell(KinkyDungeonSpells, name);
+}
+
 var KinkyDungeonSpellPress = 0
 
 function KinkyDungeonResetMagic() {
@@ -173,30 +190,39 @@ function KinkyDungeonGetCost(Level) {
 	return cost
 }
 
-function KinkyDungeonCastSpell(targetX, targetY, spell) {
+function KinkyDungeonCastSpell(targetX, targetY, spell, enemy) {
+	let entity = KinkyDungeonPlayerEntity;
+	let moveDirection = KinkyDungeonMoveDirection
+	
+	if (enemy) {
+		entity = enemy;
+		moveDirection = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x, entity.x, KinkyDungeonPlayerEntity.y, entity.y)
+	}
 	if (spell.type == "bolt") {
 		var size = (spell.size) ? spell.size : 1
-		KinkyDungeonLaunchBullet(KinkyDungeonPlayerEntity.x + KinkyDungeonMoveDirection.x, KinkyDungeonPlayerEntity.y + KinkyDungeonMoveDirection.y,
-			targetX-KinkyDungeonPlayerEntity.x,targetY - KinkyDungeonPlayerEntity.y,
+		KinkyDungeonLaunchBullet(entity.x + moveDirection.x, entity.y + moveDirection.y,
+			targetX-entity.x,targetY - entity.y,
 			spell.speed, {name:spell.name, width:size, height:size, lifetime:-1, passthrough:false, hit:spell.onhit, damage: {damage:spell.power, type:spell.damage, time:spell.time}, spell: spell})
 	} else if (spell.type == "inert") {
 		var sz = spell.size
 		if (!sz) sz = 1
 		KinkyDungeonLaunchBullet(targetX, targetY,
-			KinkyDungeonMoveDirection.x,KinkyDungeonMoveDirection.y,
+			moveDirection.x,moveDirection.y,
 			0, {name:spell.name, width:sz, height:sz, lifetime:spell.delay, passthrough:(spell.CastInWalls || spell.WallsOnly), hit:spell.onhit, damage: null, spell: spell})
 	}
 	
-	if (2 >= KinkyDungeonActionMessagePriority) {
-		KinkyDungeonActionMessageTime = 2
-		KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellCast"+spell.name)
-		KinkyDungeonActionMessageColor = "#88AAFF"
-		KinkyDungeonActionMessagePriority = 2
+	if (!enemy) { // Costs for the player
+	
+		if (2 >= KinkyDungeonActionMessagePriority) {
+			KinkyDungeonActionMessageTime = 2
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellCast"+spell.name)
+			KinkyDungeonActionMessageColor = "#88AAFF"
+			KinkyDungeonActionMessagePriority = 2
+		}
+		
+		KinkyDungeonStatWillpowerExhaustion += spell.exhaustion + 1
+		KinkyDungeonStatStamina -= KinkyDungeonGetCost(spell.level)
 	}
-	
-	
-	KinkyDungeonStatWillpowerExhaustion += spell.exhaustion + 1
-	KinkyDungeonStatStamina -= KinkyDungeonGetCost(spell.level)
 }
 
 
