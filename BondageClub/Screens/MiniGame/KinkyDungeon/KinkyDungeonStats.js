@@ -117,6 +117,14 @@ function KinkyDungeonDealDamage(Damage) {
 	var dmg = Damage.damage
 	var type = Damage.type
 	KinkyDungeonStatWillpower -= dmg
+	if (Damage.type == "grope") { // Groping attacks increase arousal
+		KinkyDungeonStatArousal += dmg
+	} else if (Damage.type == "electric") { // Electric attacks are mildly arousing and reduce stamina
+		KinkyDungeonStatArousal += dmg/2
+		KinkyDungeonStatStamina -= dmg/2
+	} else if (Damage.type == "pain") { // Painful attacks decrease arousal
+		KinkyDungeonStatArousal -= dmg/2
+	}
 	return dmg
 }
 

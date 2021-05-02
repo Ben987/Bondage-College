@@ -25,6 +25,8 @@ var KinkyDungeonDrawState = "Game"
 var KinkyDungeonSpellValid = false
 var KinkyDungeonCamX = 0
 var KinkyDungeonCamY = 0
+var KinkyDungeonTargetX = 0
+var KinkyDungeonTargetY = 0
 
 function KinkyDungeonGetSprite(code) {
 	let sprite = "Floor"

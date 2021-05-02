@@ -1,7 +1,8 @@
 "use strict";
 var KinkyDungeonEnemies = [
-	{name: "BlindZombie", tags: ["zombie", "melee", "ribbonRestraints"], hp: 10, AI: "wander", visionRadius: 1, maxhp: 8, minLevel:0, weight:14, movePoints: 3, attackPoints: 3, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {}, floors:[0], dropTable: [{name: "Gold", amountMin: 20, amountMax: 30, weight: 2}, {name: "Gold", amountMin: 3, amountMax: 9, weight: 5}]},
+	{name: "BlindZombie", tags: ["zombie", "melee", "ribbonRestraints"], hp: 8, AI: "wander", visionRadius: 1, maxhp: 8, minLevel:0, weight:14, movePoints: 3, attackPoints: 3, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {}, floors:[0], dropTable: [{name: "Gold", amountMin: 20, amountMax: 40, weight: 2}, {name: "Gold", amountMin: 13, amountMax: 23, weight: 5}]},
 	{name: "FastZombie", tags: ["zombie", "melee", "ribbonRestraints"], hp: 10, AI: "guard", visionRadius: 6, maxhp: 10, minLevel:3, weight:6, movePoints: 3, attackPoints: 2, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":10, "lastthird":14}, floors:[0], dropTable: [{name: "Gold", amountMin: 50, amountMax: 80, weight: 2}, {name: "Gold", amountMin: 15, amountMax: 29, weight: 5}]},
+	{name: "RopeSnake", tags: ["construct", "melee", "ropeRestraints"], hp: 4, AI: "wander", visionRadius: 3, maxhp: 4, minLevel:1, weight:8, movePoints: 1, attackPoints: 2, attack: "MeleeBindSuicide", attackWidth: 3, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":4, "lastthird":2}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8]},
 	{name: "Rat", tags: ["beast", "melee", "minor"], hp: 4, AI: "guard", visionRadius: 4, visionradius: 1, maxhp: 4, minLevel:0, weight:3, movePoints: 1.5, attackPoints: 2, attack: "MeleeWill", attackWidth: 1, attackRange: 1, power: 4, dmgType: "pain", terrainTags: {"rubble":20}, floors:[0, 1, 2, 3]},
 
 ]
@@ -214,6 +215,10 @@ function KinkyDungeonUpdateEnemies(delta) {
 								replace.push({keyword:"RestraintAdded", value: TextGet("Restraint" + restraintAdd.name)})
 							else if (enemy.Enemy.fullBoundBonus)
 								willpowerDamage += enemy.Enemy.fullBoundBonus // Some enemies deal bonus damage if they cannot put a binding on you
+						}
+						
+						if (enemy.Enemy.attack.includes("Suicide")) {
+							enemy.hp = 0
 						}
 						if (enemy.Enemy.attack.includes("Will") || willpowerDamage > 0) {
 							if (willpowerDamage == 0)

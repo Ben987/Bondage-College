@@ -27,7 +27,7 @@ function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg, Spell) {
 	if (Damage) {
 		if (Damage.type != "inert")
 			Enemy.hp -= dmg
-		if (Damage.type == "stun") {
+		if (Damage.type == "stun" || Damage.type == "electric") {
 			effect = true
 			if (!Enemy.stun) Enemy.stun = 0
 			Enemy.stun = Math.max(Enemy.stun, Damage.time)

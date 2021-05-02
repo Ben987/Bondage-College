@@ -23,16 +23,16 @@ Balance
 1.31 (TBD)
 Content (WIP)
 - Added a new enemy, a rope snake that sacrifices itself to wrap you up!
-- Added a chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
+- Added a new spell, Electrify (which will be cast at you by witches in the future)
 
 Future content planned:
 - Ability to close nearby doors
 - Item shops scattered around the map, allowing you to buy swords and outfits
 - Magical rope traps which require enchanted knives to cut
 - Enchanted knives, which are found only in chests
-- Ice witches that cast ice spells at you from a distance
-- Latex witches that cast latex spells at you from a distance
-- Chain witches who attack with chains from mid-range
+- Shock witches that cast electrical AoE at you from a distance
+- Latex witches that cast latex and slime spells at you from a distance
+- Chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
 - Inventory system which lets you view special items and restraints (shows you how hard it is to break free from them... after you've struggled enough)
 - Mana-boosting mittens which increase spell power and decrease mana costs, but make it harder to struggle out of things
 - Enchanted heels which empower your melee attacks

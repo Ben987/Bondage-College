@@ -21,7 +21,7 @@ var KinkyDungeonBooks = ["Elements", "Conjure", "Illusion"]
 var KinkyDungeonSpellsStart = [
 	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", power: 3, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
 	{name: "Snare", exhaustion: 1, components: ["Legs"], level:1, type:"inert", projectile:false, onhit:"lingering", lifetime:-1, time: 10, delay: 3, range: 1, damage: "stun", playerEffect: {name: "MagicRope", time: 3}}, // Creates a magic rope trap that creates magic ropes on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
-	
+
 ]
 
 
@@ -33,7 +33,9 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 	"Elements": [
 		{name: "Fireball", exhaustion: 6, components: ["Arms"], level:4, type:"bolt", projectile:true, onhit:"aoe", power: 4, delay: 0, range: 50, aoe: 1.5, size: 3, lifetime:1, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
 		{name: "Icebolt", exhaustion: 4, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2, delay: 0, range: 50, damage: "stun", speed: 2}, // Throws a blast of ice which stuns the target for 2 turns
-	],
+		{name: "Electrify", exhaustion: 2, components: ["Arms"], level:2, type:"inert", projectile:false, onhit:"aoe", power: 5, time: 1, delay: 1, range: 4, size: 1, aoe: 0.75, lifetime: 1, damage: "electric", playerEffect: {name: "Shock", time: 3}}, // A series of light shocks incapacitate you
+	
+		],
 	"Conjure": [
 		{name: "Slime", exhaustion: 5, components: ["Verbal"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 1, range: 4, size: 3, aoe: 2, lifetime: 9999, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
 		//{name: "PinkGas", exhaustion: 4, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 2, range: 4, size: 3, aoe: 2.5, lifetime: 9999, damage: "stun", playerEffect: {name: "PinkGas", time: 3}}, // Dizzying gas, increases arousal
@@ -88,6 +90,18 @@ function KinkyDungeonPlayerEffect(playerEffect, spell) {
 		if (KinkyDungeonActionMessagePriority <= 5) {
 			KinkyDungeonActionMessageTime = playerEffect.time
 			KinkyDungeonActionMessage = TextGet("KinkyDungeonSlime")
+			KinkyDungeonActionMessageColor = "red"
+			KinkyDungeonActionMessagePriority = 5
+		}
+	} else if (playerEffect.name == "Shock") {
+		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, 1)
+		KinkyDungeonMovePoints = -1
+		KinkyDungeonDealDamage({damage: spell.power, type: spell.damage})
+		
+		
+		if (KinkyDungeonActionMessagePriority <= 5) {
+			KinkyDungeonActionMessageTime = playerEffect.time
+			KinkyDungeonActionMessage = TextGet("KinkyDungeonShock")
 			KinkyDungeonActionMessageColor = "red"
 			KinkyDungeonActionMessagePriority = 5
 		}
@@ -153,7 +167,7 @@ function KinkyDungeonHandleSpell() {
 
 function KinkyDungeonGetCost(Level) {
 	var cost = KinkyDungeonManaCost
-	for (L = 1; L < Level; L++) {
+	for (let L = 1; L < Level; L++) {
 		cost += (100 - cost) * (KinkyDungeonManaCost / 100)
 	}
 	return cost
