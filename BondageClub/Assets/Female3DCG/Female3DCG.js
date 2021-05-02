@@ -2838,6 +2838,14 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
+				Name: "Ball", Fetish: ["Pet"], Value: 5, Difficulty: 1, Time: 5, Prerequisite: "GagUnique", Hide: ["Mouth"], Effect: ["BlockMouth", "GagMedium"], AllowEffect: ["BlockMouth", "GagMedium"], ExpressionTrigger: [{ Name: "DroolSides", Group: "Fluids", Timer: 20 }],
+				DefaultColor: ["#E1D31C", "Default"],
+				Layer: [
+					{ Name: "Base" },
+					{ Name: "Stripes", HasType: false},
+				]
+			},
+			{
 				Name: "HarnessPanelGag", Fetish: ["Leather"], Value: 80, Difficulty: 6, Time: 20, AllowLock: true, DefaultColor: "#404040", BuyGroup: "HarnessPanelGag", Prerequisite: "GagFlat", Hide: ["Mouth"], Effect: ["BlockMouth", "GagEasy"], Layer: [
 					{ Name: "Panel" },
 					{ Name: "Straps" },
