@@ -89,6 +89,9 @@ KillRopeSnake,"The magic rope returns to being a normal rope."
 AttackRopeSnakeBind,"The magic rope wraps itself tightly around your body! (+RestraintAdded)"
 AttackRopeSnake,"The magic rope wriggles into your outfit! (-DamageTaken WP)"
 
+NameWitchShock,Shock Witch
+KillWitchShock,"The shock witch vanishes into a cloud of thunder, leaving behind a keyring."
+
 NameRat,Filthy Rat
 KillRat,"The rat skitters back into a hole in the wall."
 AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
@@ -199,6 +202,9 @@ KinkyDungeonGroupItemBoots,Feet
 KinkyDungeonGroupItemDevices,Device
 
 ItemPickupGold,"You picked up XXX gold."
+ItemPickupRedKey,"You picked up a red key."
+ItemPickupGreenKey,"You picked up a green key."
+ItemPickupBlueKey,"You picked up a blue key."
 
 
 KinkyDungeonBookElements,Ars Pyrotecnica
