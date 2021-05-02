@@ -23,9 +23,7 @@ Balance
 1.31 (TBD)
 Content (WIP)
 - Added a new enemy, a rope snake that sacrifices itself to wrap you up!
-- Added a magic rope snake that appears in later levels. This one can't be cut off without an enchanted knife! Enchanted knives have also been added to the loot table.
 - Added a chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
-- New shrine: rope goddess
 
 Future content planned:
 - Ability to close nearby doors
