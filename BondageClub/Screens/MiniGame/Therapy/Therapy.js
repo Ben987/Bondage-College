@@ -26,7 +26,7 @@ function TherapyLoad() {
  * @returns {void} - Nothing
  */
 function TherapyRun() {
-	
+
 	// Draw the characters
 	DrawCharacter(TherapyCharacterLeft, 0, 0, 1);
 	DrawCharacter(TherapyCharacterRight, 500, 0, 1);

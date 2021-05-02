@@ -63,7 +63,7 @@ function TennisLoad() {
  * @returns {void} - Nothing
  */
 function TennisRun() {
-	
+
 	// Draw the characters
 	DrawCharacter(TennisCharacterLeft, 0, 100, 0.9);
 	DrawText(TennisCharacterLeft.Name, 225, 30, "white");
@@ -91,7 +91,7 @@ function TennisRun() {
 			// Moves the ball
 			TennisBallX += Math.cos(TennisBallAngle) * TennisBallSpeed * FpsAdjustment;
 			TennisBallY -= Math.sin(TennisBallAngle) * TennisBallSpeed * FpsAdjustment;
-			
+
 			// Moves the player and opponent racket, the opponent speeds up with difficulty, tracks the ball in defense, go back toward the middle in offense
 			if ((MouseY >= 0) && (MouseY <= 999)) TennisCharacterLeftRacket = MouseY;
 			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY > TennisCharacterRightRacket + 55)) TennisCharacterRightRacket += RacketAdjustment;
@@ -118,12 +118,12 @@ function TennisRun() {
 				TennisBallAngle = Math.PI + (Math.PI * 0.4 * ((TennisBallY - TennisCharacterRightRacket) / 110));
 				TennisBallSpeed = TennisBallSpeed + 20;
 			}
-			
+
 			// Shows the rackets and ball
 			DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/RacketLeft.png", 500, TennisCharacterLeftRacket - 75);
 			DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/RacketRight.png", 1450, TennisCharacterRightRacket - 75);
 			DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/TennisBall.png", TennisBallX - 20, TennisBallY - 20);
-			
+
 			// If the opponent scores
 			if (TennisBallX < 450) {
 				MiniGameProgress = -1;
@@ -147,11 +147,11 @@ function TennisRun() {
 					MiniGameEnded = true;
 				}
 			}
-			
+
 		}
 
 	} else {
-		
+
 		// Draw the end message
 		if (MiniGameVictory && (TennisCharacterRightPoint == 0)) DrawText(TextGet("Perfect"), 1000, 400, "black");
 		else if (MiniGameVictory) DrawText(TextGet("Victory"), 1000, 400, "black");

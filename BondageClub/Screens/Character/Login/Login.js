@@ -218,7 +218,7 @@ function LoginStableItems() {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
-		InventoryDelete(Player, "PonyHood", "ItemHood", false)
+		InventoryDelete(Player, "PonyHood", "ItemHood", false);
 		InventoryDelete(Player, "HoofMittens", "ItemHands", false);
 	}
 }
@@ -470,14 +470,14 @@ function LoginResponse(C) {
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
 			// Attempt to parse friend names
-			if (typeof C.FriendNames === "string") { 
+			if (typeof C.FriendNames === "string") {
 				try {
 					Player.FriendNames = new Map(JSON.parse(LZString.decompressFromUTF16(C.FriendNames)));
 				} catch(err) {
 					console.warn("An error occured while parsing friendnames, entries have been reset.");
 				}
 			}
-			if (Player.FriendNames == null) { 
+			if (Player.FriendNames == null) {
 				Player.FriendNames = new Map();
 			}
 			Player.SubmissivesList = typeof C.SubmissivesList === "string" ? new Set(JSON.parse(LZString.decompressFromUTF16(C.SubmissivesList))) : new Set();
@@ -486,7 +486,7 @@ function LoginResponse(C) {
 			LoginDifficulty();
 
 			// Loads the player character model and data
-			ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber)
+			ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber);
 			InventoryLoad(Player, C.Inventory);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);
