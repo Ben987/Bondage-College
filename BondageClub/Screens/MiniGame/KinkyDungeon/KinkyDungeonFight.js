@@ -6,6 +6,7 @@ var KinkyDungeonBullets = []; // Bullets on the game board
 var KinkyDungeonBulletsID = {}; // Bullets on the game board
 
 var KinkyDungeonOpenObjects = KinkyDungeonTransparentObjects; // Objects bullets can pass thru
+var KinkyDungeonMeleeDamageTypes = ["crush", "slash", "pierce", "grope", "pain"]
 
 function KinkyDungeonEvasion(Enemy) {
 	var hitChance = 1.0;
@@ -15,6 +16,14 @@ function KinkyDungeonEvasion(Enemy) {
 
 	if (Math.random() < hitChance) return true;
 
+	return false;
+}
+
+function KinkyDungeonGetImmunity(tags, type, resist) {
+	if (tags.includes(type + resist)
+		|| (KinkyDungeonMeleeDamageTypes.includes(type) && tags.includes("melee" + resist))
+		|| (!KinkyDungeonMeleeDamageTypes.includes(type) && tags.includes("magic"+resist)))
+		return true;
 	return false;
 }
 
@@ -29,16 +38,17 @@ function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg, Spell) {
 
 	if (Damage) {
 		if (Enemy.Enemy.tags) {
-			if (Enemy.Enemy.tags.includes(Damage.type + "immune")) resistDamage = 2;
-			else if (Enemy.Enemy.tags.includes(Damage.type + "resist")) resistDamage = 1;
-			else if (Enemy.Enemy.tags.includes(Damage.type + "weakness")) resistDamage = -1;
+			if (KinkyDungeonGetImmunity(Enemy.Enemy.tags, Damage.type, "immune")) resistDamage = 2;
+			else if (KinkyDungeonGetImmunity(Enemy.Enemy.tags, Damage.type, "resist")) resistDamage = 1;
+			else if (KinkyDungeonGetImmunity(Enemy.Enemy.tags, Damage.type, "weakness")) resistDamage = -1;
 			if (Enemy.Enemy.tags.includes("unstoppable")) resistStun = 2;
 			else if (Enemy.Enemy.tags.includes("unflinching")) resistStun = 1;
+			
 		}
 		
 		if (Damage.type != "inert" && resistDamage < 2)
 			if (resistDamage == 1)
-				dmgDealt = Math.max(1, dmg-1); // Enemies that resist the damage type can only take 1 damage, and if they would take damage it deals 0 damage
+				dmgDealt = Math.max(1, dmg-1); // Enemies that resist the damage type can only take 1 damage, and if they would take 1 damage it deals 0 damage instead
 			else if (resistDamage == -1)
 				dmgDealt = Math.max(dmg+1, Math.floor(dmg*1.5)); // Enemies that are vulnerable take either dmg+1 or 1.5x damage, whichever is greater
 			else
