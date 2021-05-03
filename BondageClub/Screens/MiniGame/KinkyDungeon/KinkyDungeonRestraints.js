@@ -362,6 +362,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 		}
 
 		KinkyDungeonUpdateRestraints(0); // We update the restraints but no time drain on batteries, etc
+		KinkyDungeonCheckClothesLoss = true; // We signal it is OK to check whether the player should get undressed due to restraints
 		return Math.max(1, restraint.power);
 	}
 	return 0;

@@ -296,7 +296,7 @@ function KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, heigh
 
 				if (freecount >= 3 && freecount_diag >= 1)
 					shrinelist.push({x:X, y:Y});
-				else if (KinkyDungeonMapGet(X, Y) == "R")
+				else if (KinkyDungeonMapGet(X, Y) == "R" || KinkyDungeonMapGet(X, Y) == "r")
 					shrinelist.push({x:X, y:Y});
 
 			}

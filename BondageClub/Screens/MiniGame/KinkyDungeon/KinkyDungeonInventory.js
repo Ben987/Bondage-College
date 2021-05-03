@@ -3,7 +3,10 @@ var KinkyDungeonDresses = {};
 
 var KinkyDungeonDressesList = {};
 
+var KinkyDungeonCheckClothesLoss = false;
+
 function KinkyDungeonInitializeDresses() {
+	KinkyDungeonCheckClothesLoss = true;
 	KinkyDungeonDresses = {
 		"Default" : [
 		{Item: "WitchHat1", Group: "Hat", Color: "Default", Lost: false},
@@ -22,14 +25,16 @@ function KinkyDungeonInitializeDresses() {
 
 
 function KinkyDungeonDressPlayer() {
-	CharacterNaked(KinkyDungeonPlayer);
-	KinkyDungeonUndress = 0;
+	if (KinkyDungeonCheckClothesLoss) {
+		CharacterNaked(KinkyDungeonPlayer);
+		KinkyDungeonUndress = 0;
+	}
 
 	for (let C = 0; C < KinkyDungeonDresses[KinkyDungeonCurrentDress].length; C++) {
 		let clothes = KinkyDungeonDresses[KinkyDungeonCurrentDress][C];
 		let PreviouslyLost = clothes.Lost;
 
-		if (!clothes.Lost) {
+		if (!clothes.Lost && KinkyDungeonCheckClothesLoss) {
 			if (clothes.Group == "Necklace" || clothes.Group == "Bra") {
 				if (KinkyDungeonGetRestraintItem("ItemTorso") && KinkyDungeonGetRestraintItem("ItemTorso").restraint.harness) clothes.Lost = true;
 				if (KinkyDungeonGetRestraintItem("ItemBreast")) clothes.Lost = true;
@@ -45,10 +50,14 @@ function KinkyDungeonDressPlayer() {
 		if (clothes.Lost != PreviouslyLost) KinkyDungeonStatArousal += 100/KinkyDungeonDresses[KinkyDungeonCurrentDress].length;
 
 		if (!clothes.Lost) {
-			InventoryWear(KinkyDungeonPlayer, clothes.Item, clothes.Group);
-			CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, clothes.Color, clothes.Group);
+			if (KinkyDungeonCheckClothesLoss) {
+				InventoryWear(KinkyDungeonPlayer, clothes.Item, clothes.Group);
+				CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, clothes.Color, clothes.Group);
+			}
 		} else KinkyDungeonUndress += 1/KinkyDungeonDresses[KinkyDungeonCurrentDress].length;
 	}
+
+	KinkyDungeonCheckClothesLoss = false;
 
 	let BlushCounter = 0;
 	let Blush = null;
