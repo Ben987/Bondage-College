@@ -65,7 +65,7 @@ function FriendListRun() {
 /**
  * Creates beep message menu
  * @param {number} MemberNumber Member number of target player
- * @param {FriendListBeepLogMessage} data Beep data of received beep
+ * @param {FriendListBeepLogMessage|null} data Beep data of received beep
  */
 function FriendListBeep(MemberNumber, data = null) {
 	if (FriendListBeepTarget == null) {
@@ -192,6 +192,9 @@ function FriendListChatSearch(room) {
 	FriendListExit();
 	ElementValue("InputSearch", room);
 	ChatSearchQuery();
+	// Change the text box so the player still cant read it
+	ElementValue("InputSearch", ChatSearchMuffle(room));
+
 }
 
 /**
@@ -264,7 +267,7 @@ function FriendListLoadFriendList(data) {
 			if (friend.ChatRoomName.startsWith("-")) {
 				FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomName.replace("-Private-", PrivateRoomCaption)} </div>`;
 			} else {
-				const Caption = `${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${friend.ChatRoomName}`;
+				const Caption = `${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${ChatSearchMuffle(friend.ChatRoomName)}`;
 				if (FriendListReturn === "ChatSearch" && ChatRoomSpace === (friend.ChatRoomSpace || "")) {
 					FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListChatSearch("${friend.ChatRoomName}")'> ${Caption} </div>`;
 				} else {
@@ -282,7 +285,7 @@ function FriendListLoadFriendList(data) {
 			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${B.MemberName}</div>`;
 			FriendListContent += `<div class='FriendListTextColumn'>${B.MemberNumber != null ? B.MemberNumber : "-"}</div>`;
 			const Caption = (B.ChatRoomName == null ? "-" : (B.ChatRoomSpace ? B.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : "") + B.ChatRoomName.replace("-Private-", PrivateRoomCaption));
-			if (FriendListReturn === "ChatSearch" && B.ChatRoomSpace !== undefined && ChatRoomSpace === (B.ChatRoomSpace || "") && !B.ChatRoomName.startsWith("-")) {
+			if (FriendListReturn === "ChatSearch" && B.ChatRoomSpace !== undefined && ChatRoomSpace === (B.ChatRoomSpace || "") && B.ChatRoomName && !B.ChatRoomName.startsWith("-")) {
 				FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListChatSearch("${B.ChatRoomName}")'> ${Caption} </div>`;
 			} else {
 				FriendListContent += `<div class='FriendListTextColumn'> ${Caption} </div>`;

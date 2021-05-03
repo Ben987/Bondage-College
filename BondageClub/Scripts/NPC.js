@@ -1,7 +1,7 @@
 "use strict";
 /**
  * List for all possible pairs of NPC traits. A pair defines opposites.
- * @constant 
+ * @constant
  * @type {string[][]}
  */
 var NPCTrait = [
@@ -11,12 +11,12 @@ var NPCTrait = [
 	["Rude", "Polite"],
 	["Wise", "Dumb"],
 	["Serious", "Playful"],
-]
+];
 
 /**
  * Sets a specific trait for a NPC
  * @param {Character} C - NPC to set the trait for
- * @param {string} TraitName - Name of the trait to set 
+ * @param {string} TraitName - Name of the trait to set
  * @param {number} TraitValue - Value of the trait to set
  * @returns {void} - Nothing
  */
@@ -41,7 +41,7 @@ function NPCTraitGenerate(C) {
 				var NewTrait = {
 					Name: NPCTrait[T][Math.floor(Math.random() * 2)],
 					Value: Math.floor(Math.random() * 100) + 1
-				}
+				};
 				C.Trait.push(NewTrait);
 			}
 	}
@@ -76,9 +76,8 @@ function NPCTraitGetOptionValue(Dialog, NPCTrait) {
 			for (let N = 0; N < NPCTrait.length; N++)
 				if (NPCTrait[N].Name.trim() == DialogTrait[T].trim())
 					Value = Value + NPCTrait[N].Value;
-				else
-					if (NPCTrait[N].Name.trim() == NPCTraitReverse(DialogTrait[T].trim()))
-						Value = Value - 10000;
+				else if (NPCTrait[N].Name.trim() == NPCTraitReverse(DialogTrait[T].trim()))
+					Value = Value - 10000;
 		return Value;
 	} else return 0;
 }
@@ -104,7 +103,7 @@ function NPCTraitKeepBestOption(C, Group) {
 	if (Pos >= 0)
 		for (let D = 0; D < C.Dialog.length; D++)
 			if ((D != Pos) && (C.Dialog[D].Group != null) && (C.Dialog[D].Group == Group)) {
-				C.Dialog.splice(D, 1)
+				C.Dialog.splice(D, 1);
 				Pos--;
 				D--;
 			}
@@ -120,7 +119,7 @@ function NPCTraitDialog(C) {
 
 	// For each dialog option
 	for (let D = 0; D < C.Dialog.length; D++) {
-		if (C.Dialog[D].Group != null) NPCTraitKeepBestOption(C, C.Dialog[D].Group)
+		if (C.Dialog[D].Group != null) NPCTraitKeepBestOption(C, C.Dialog[D].Group);
 		if (C.Dialog[D].Function != null) C.Dialog[D].Function = C.Dialog[D].Function.replace("MainHall", "");
 	}
 
@@ -230,7 +229,7 @@ function NPCEventAdd(C, EventName, EventValue) {
 	var NewEvent = {
 		Name: EventName,
 		Value: EventValue
-	}
+	};
 	C.Event.push(NewEvent);
 }
 

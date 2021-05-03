@@ -1,8 +1,22 @@
+"use strict";
 // Lots of good info here: http://www.adammil.net/blog/v125_Roguelike_Vision_Algorithms.html#permissivecode
 // For this implementation I decided that ray calculations are too much so I just did a terraria style lighting system
 // -Ada
 
-var KinkyDungeonTransparentObjects = KinkyDungeonMovableTiles.replace("D", "") // Light does not pass thru doors
+var KinkyDungeonTransparentObjects = KinkyDungeonMovableTiles.replace("D", "") + "Aa" // Light does not pass thru doors
+
+function KinkyDungeonCheckPath(x1, y1, x2, y2) {
+	let length = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2))
+	
+	for (let F = 0; F <= length; F++) {
+		let xx = x1 + (x2-x1)*F/length
+		let yy = y1 + (y2-y1)*F/length
+		
+		if (!KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(Math.round(xx), Math.round(yy)))) return false;
+	}
+
+	return true;
+}
 
 function KinkyDungeonMakeLightMap(width, height, Lights) {
 	KinkyDungeonLightGrid = ""

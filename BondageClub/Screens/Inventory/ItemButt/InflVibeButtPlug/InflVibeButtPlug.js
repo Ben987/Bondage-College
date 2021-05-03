@@ -29,7 +29,7 @@ function InventoryItemButtInflVibeButtPlugDraw() {
 
 // Catches the item extension clicks
 function InventoryItemButtInflVibeButtPlugClick(actionPrefix) {
-	actionPrefix = actionPrefix || "InflVibeButtPlug"
+	actionPrefix = actionPrefix || "InflVibeButtPlug";
 	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
 	else if (MouseIn(1200, 775, 200, 55) && (DialogFocusItem.Property.InflateLevel !== 0)) InventoryItemButtInflVibeButtPlugInflation(0 - DialogFocusItem.Property.InflateLevel, actionPrefix);
 	else if (MouseIn(1550, 775, 200, 55) && (DialogFocusItem.Property.InflateLevel !== 1)) InventoryItemButtInflVibeButtPlugInflation(1 - DialogFocusItem.Property.InflateLevel, actionPrefix);

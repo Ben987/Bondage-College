@@ -4,11 +4,8 @@ PlayerGagged,,,(She seems to wonder.)  Why are you gagged miss?,,
 0,,,Who are you?  Are you here to rescue me?,,
 0,,Who are you?,I'm DialogCharacterName from the Bondage Club.  I was kidnapped and put in here.  Are we getting out together?,DialogRemove(),
 0,,I'm here to rescue you.,"(She nods happily.)  Thank you so much Miss, you're the best.",DialogRemove(),
-0,10,(Bring her with you.),(She nods her head and starts to follow you.),CharacterJoin(),CurrentCharacter.CanWalk()
-0,,(Bring her with you.),(She shakes her legs but cannot walk with you.),,!CurrentCharacter.CanWalk()
+0,,Where is the exit?,"(She shrugs.)  I'm sorry, I don't know.",DialogRemove(),
+0,,(Bring her with you.),(She nods her head and starts to follow you.)  I can smell freedom!,CharacterJoin(),CharacterCanJoin()
+0,,(Leaver her here.),(She nods and stops moving.)  I hope you have a good plan.,CharacterLeave(),CharacterCanLeave()
+0,,(Strip her naked.),(You strip her naked as she struggles.)  What kind of rescue mission is that?,CharacterNaked(),!CurrentCharacter.IsNaked()
 0,,I cannot talk now.  (Leave her.),,DialogLeave(),
-10,,,Do you know the way out?,,
-10,,Where is the exit?,"(She shrugs.)  I'm sorry, I don't know.",,
-10,,(Strip her naked.),(You strip her naked as she struggles.)  What kind of rescue mission is that?,CharacterNaked(),!CurrentCharacter.IsNaked()
-10,,Let's move. (Walk with her.),,DialogLeave(),CurrentCharacter.CanWalk()
-10,,Let's move. (Walk with her.),(She shakes her legs but cannot walk with you.),,!CurrentCharacter.CanWalk()

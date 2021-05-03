@@ -23,7 +23,6 @@ var InventoryItemArmsInflatableStraightLeotardOptions = [
 			Effect: ["Block", "Prone"],
 			Difficulty: 2,
         },
-        
     },
     {
         Name: "Max",

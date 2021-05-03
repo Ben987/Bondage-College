@@ -17,25 +17,25 @@ var MovieStudioOriginalClothes = null;
  * The player can play in a movie if she doesn't have any locked restraints
  * @returns {boolean} - TRUE if the player can play in a movie
  */
-function MovieStudioCanPlayInMovie() { return !InventoryCharacterHasLockedRestraint(Player) }
+function MovieStudioCanPlayInMovie() { return !InventoryCharacterHasLockedRestraint(Player); }
 
 /**
  * Returns TRUE if the player can receive the camera as a payment
  * @returns {boolean} - TRUE if the player can get the item
  */
-function MovieStudioCanGetCamera() { return (!InventoryAvailable(Player, "Camera1", "ClothAccessory") && (MovieStudioCurrentRole == "Journalist")) }
+function MovieStudioCanGetCamera() { return (!InventoryAvailable(Player, "Camera1", "ClothAccessory") && (MovieStudioCurrentRole == "Journalist")); }
 
 /**
  * Returns TRUE if the player can receive the gavel as a payment
  * @returns {boolean} - TRUE if the player can get the item
  */
-function MovieStudioCanGetGavel() { return (!InventoryAvailable(Player, "SpankingToysGavel", "ItemHands") && (MovieStudioCurrentRole == "Mistress") && (MovieStudioActor1.TrialDone)) }
+function MovieStudioCanGetGavel() { return (!InventoryAvailable(Player, "SpankingToysGavel", "ItemHands") && (MovieStudioCurrentRole == "Mistress") && (MovieStudioActor1.TrialDone)); }
 
 /**
  * Returns TRUE if the player can receive the long duster as a payment
  * @returns {boolean} - TRUE if the player can get the item
  */
-function MovieStudioCanGetLongDuster() { return (!InventoryAvailable(Player, "SpankingToysLongDuster", "ItemHands") && (MovieStudioCurrentRole == "Maid") && (MovieStudioActor1.CanGetLongDuster)) }
+function MovieStudioCanGetLongDuster() { return (!InventoryAvailable(Player, "SpankingToysLongDuster", "ItemHands") && (MovieStudioCurrentRole == "Maid") && (MovieStudioActor1.CanGetLongDuster)); }
 
 /**
  * When the player fails the movie, we jump back to the director
@@ -65,7 +65,7 @@ function MovieStudioChangeMeter(Factor) {
 }
 
 /**
- * Process the movie meter decay over time, 
+ * Process the movie meter decay over time,
  * @returns {void} - Nothing
  */
 function MovieStudioProcessDecay() {
@@ -116,7 +116,7 @@ function MovieStudioProcessDecay() {
 			MovieStudioDirector.CurrentDialog = TextGet("InterviewDirectorSuccess" + Math.floor(Math.random() * 4).toString());
 			MovieStudioCurrentMovie = "";
 			MovieStudioCurrentScene = "";
-			MovieStudioBackground = "MovieStudio"
+			MovieStudioBackground = "MovieStudio";
 			return;
 		}
 	}
@@ -128,7 +128,7 @@ function MovieStudioProcessDecay() {
  */
 function MovieStudioLoad() {
 	if (MovieStudioOriginalClothes == null) MovieStudioOriginalClothes = Player.Appearance.slice(0);
-	if (MovieStudioDirector == null) {		
+	if (MovieStudioDirector == null) {
 		MovieStudioDirector = CharacterLoadNPC("NPC_MovieStudio_Director");
 		InventoryWear(MovieStudioDirector, "Beret1", "Hat");
 		InventoryWear(MovieStudioDirector, "SunGlasses1", "Glasses");
@@ -143,7 +143,7 @@ function MovieStudioLoad() {
  * @returns {void} - Nothing
  */
 function MovieStudioRun() {
-	
+
 	// If there's no movie going on, the player can chat with the director.
 	if (MovieStudioCurrentMovie == "") {
 		DrawCharacter(Player, 500, 0, 1);
@@ -152,13 +152,13 @@ function MovieStudioRun() {
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
 		return;
 	}
-	
+
 	// In the interview first & second scene, the player can check a drawer and a X Cross
 	if ((MovieStudioCurrentMovie == "Interview") && ((MovieStudioCurrentScene == "1") || (MovieStudioCurrentScene == "2"))) {
 		DrawCharacter(MovieStudioActor1, 250, 0, 1);
 		if (InventoryIsWorn(Player, "X-Cross", "ItemDevices")) {
 			DrawCharacter(Player, 1250, 0, 1);
-		} else {			
+		} else {
 			DrawCharacter(Player, 750, 0, 1);
 			DrawCharacter(MovieStudioActor2, 1250, 0, 1);
 		}
@@ -170,7 +170,7 @@ function MovieStudioRun() {
 		DrawCharacter(Player, 750, 0, 1);
 		DrawCharacter(MovieStudioActor2, 1250, 0, 1);
 	}
-	
+
 	// If there's a movie, we draw the progress meter on the right and the wait button
 	if (MovieStudioCurrentMovie != "") {
 		MovieStudioProcessDecay();
@@ -363,18 +363,18 @@ function MovieStudioDoActivity(Activity) {
 	if (Activity == "DressCatsuit") { CharacterNaked(Player); InventoryWear(Player, "Catsuit", "Suit", "#202020"); InventoryWear(Player, "Catsuit", "SuitLower", "#202020"); InventoryWear(Player, "Glasses1", "Glasses", "#333333"); }
 	if (Activity == "DressLingerie") { CharacterNaked(Player); InventoryWear(Player, "CorsetBikini1", "Bra", "#202020"); InventoryWear(Player, "Stockings1", "Socks"); InventoryWear(Player, "Glasses1", "Glasses", "#333333"); }
 	if (Activity == "DressNaked") { CharacterNaked(Player); InventoryWear(Player, "Glasses1", "Glasses", "#333333"); }
-	if (Activity == "InterviewWearCorset") InventoryWear(Player, "LatexCorset1", "Bra");
+	if (Activity == "InterviewWearCorset") InventoryWear(Player, "LatexCorset1", "Corset");
 	if (Activity == "InterviewWearBoots") InventoryWear(Player, "BalletHeels", "ItemBoots");
 	if (Activity == "InterviewWearCuffs") { InventoryWear(Player, "LeatherCuffs", "ItemArms"); InventoryWear(Player, "LeatherLegCuffs", "ItemLegs"); InventoryWear(Player, "LeatherAnkleCuffs", "ItemFeet"); }
 	if (Activity == "InterviewWearCollar") InventoryWear(Player, "BordelleCollar", "ItemNeck");
 	if (Activity == "InterviewCrossRestrain") { InventoryWear(Player, "X-Cross", "ItemDevices"); MovieStudioActor2.FixedImage = "Screens/Room/MovieStudio/Empty.png"; }
-	if (Activity == "InterviewRestrainMaid") { 
-		InventoryWear(Player, "LeatherCuffs", "ItemArms"); 
+	if (Activity == "InterviewRestrainMaid") {
+		InventoryWear(Player, "LeatherCuffs", "ItemArms");
 		InventoryWear(Player, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(Player, "DusterGag", "ItemMouth");
 		InventoryRemove(Player, "ItemFeet");
 		InventoryRemove(Player, "ItemDevices");
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -385,12 +385,12 @@ function MovieStudioDoActivity(Activity) {
 	}
 	if (Activity == "InterviewDustOutfit") { InventoryWear(MovieStudioActor1, "MaidOutfit2", "Cloth"); InventoryRemove(MovieStudioActor1, "Bra"); }
 	if (Activity == "InterviewMaidStrip") { CharacterNaked(MovieStudioActor1); InventoryWear(MovieStudioActor1, "MaidHairband1", "Hat"); }
-	if (Activity == "InterviewRestrainForOral") { 
-		InventoryWear(Player, "LeatherCuffs", "ItemArms"); 
+	if (Activity == "InterviewRestrainForOral") {
+		InventoryWear(Player, "LeatherCuffs", "ItemArms");
 		InventoryWear(Player, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(Player, "LeatherAnkleCuffs", "ItemFeet");
 		InventoryRemove(Player, "ItemDevices");
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -399,11 +399,11 @@ function MovieStudioDoActivity(Activity) {
 		MovieStudioActor2.FixedImage = "Screens/Room/MovieStudio/XCross.png";
 	}
 	if (Activity == "InterviewMaidCuffPlayer") {
-		InventoryWear(Player, "LeatherCuffs", "ItemArms"); 
+		InventoryWear(Player, "LeatherCuffs", "ItemArms");
 		InventoryWear(Player, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(Player, "LeatherAnkleCuffs", "ItemFeet");
 		InventoryRemove(Player, "ItemDevices");
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -411,7 +411,7 @@ function MovieStudioDoActivity(Activity) {
 		CharacterRefresh(Player);
 	}
 	if (Activity == "InterviewMaidTighten") {
-		var Cuffs = InventoryGet(Player, "ItemArms");
+		let Cuffs = InventoryGet(Player, "ItemArms");
 		Cuffs.Property.Type = "Elbow";
 		Cuffs.Property.SetPose = ["BackElbowTouch"];
 		CharacterRefresh(Player);
@@ -432,7 +432,7 @@ function MovieStudioDoActivity(Activity) {
 		InventoryWear(MovieStudioActor1, "LeatherCuffs", "ItemArms");
 		InventoryWear(MovieStudioActor1, "LeatherLegCuffs", "ItemLegs");
 		InventoryWear(MovieStudioActor1, "LeatherAnkleCuffs", "ItemFeet");
-		var Cuffs = InventoryGet(MovieStudioActor1, "ItemArms");
+		let Cuffs = InventoryGet(MovieStudioActor1, "ItemArms");
 		Cuffs.Property = {};
 		Cuffs.Property.Type = "Wrist";
 		Cuffs.Property.SetPose = ["BackBoxTie"];
@@ -691,7 +691,7 @@ function MovieStudioDoActivity(Activity) {
 		CharacterSetFacialExpression(MovieStudioActor2, "Blush", "High", 10);
 		CharacterSetFacialExpression(MovieStudioActor2, "Eyes", "Dazed", 5);
 		CharacterSetFacialExpression(MovieStudioActor2, "Eyes2", "Dazed", 5);
-	}	
+	}
 	if (Activity == "InterviewMaidReleaseJournalist") {
 		CharacterRelease(MovieStudioActor2);
 		CharacterNaked(MovieStudioActor2);
@@ -780,7 +780,7 @@ function MovieStudioCanDoActivity(Activity) {
 	if (Activity == "InterviewTakePicture") return InventoryIsWorn(Player, "Camera1", "ClothAccessory");
 	if (Activity == "InterviewOpenFirstDrawer") return (InventoryGet(Player, "Cloth") != null);
 	if (Activity == "InterviewOpenSecondDrawer") return (InventoryGet(Player, "Cloth") == null);
-	if (Activity == "InterviewWearCorset") return !InventoryIsWorn(Player, "LatexCorset1", "Bra");
+	if (Activity == "InterviewWearCorset") return !InventoryIsWorn(Player, "LatexCorset1", "Corset");
 	if (Activity == "InterviewWearBoots") return !InventoryIsWorn(Player, "BalletHeels", "ItemBoots");
 	if (Activity == "InterviewWearCuffs") return (InventoryGet(Player, "ItemArms") == null);
 	if (Activity == "InterviewWearCollar") return (InventoryGet(Player, "ItemNeck") == null);

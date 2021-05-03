@@ -1,7 +1,10 @@
+"use strict";
 var KinkyDungeonEnemies = [
-	{name: "BlindZombie", tags: ["zombie", "melee", "ribbonRestraints"], hp: 10, AI: "wander", visionRadius: 1, maxhp: 8, minLevel:0, weight:14, movePoints: 3, attackPoints: 3, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {}, floors:[0], dropTable: [{name: "Gold", amountMin: 10, amountMax: 30, weight: 2}, {name: "Gold", amountMin: 3, amountMax: 9, weight: 5}]},
-	{name: "FastZombie", tags: ["zombie", "melee", "ribbonRestraints"], hp: 10, AI: "guard", visionRadius: 6, maxhp: 10, minLevel:3, weight:6, movePoints: 3, attackPoints: 2, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":10, "lastthird":14}, floors:[0], dropTable: [{name: "Gold", amountMin: 30, amountMax: 50, weight: 2}, {name: "Gold", amountMin: 15, amountMax: 29, weight: 5}]},
-	{name: "Rat", tags: ["beast", "melee", "minor"], hp: 4, AI: "guard", visionRadius: 4, visionradius: 1, maxhp: 4, minLevel:0, weight:3, movePoints: 1.5, attackPoints: 2, attack: "MeleeWill", attackWidth: 1, attackRange: 1, power: 4, dmgType: "pain", terrainTags: {"rubble":20}, floors:[0, 1, 2, 3]},
+	{name: "BlindZombie", tags: ["zombie", "melee", "ribbonRestraints"], followRange: 1, AI: "wander", visionRadius: 1, maxhp: 8, minLevel:0, weight:14, movePoints: 3, attackPoints: 3, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {}, floors:[0], dropTable: [{name: "Gold", amountMin: 20, amountMax: 40, weight: 2}, {name: "Gold", amountMin: 13, amountMax: 23, weight: 5}]},
+	{name: "FastZombie", tags: ["zombie", "melee", "ribbonRestraints"], followRange: 1, AI: "guard", visionRadius: 6, maxhp: 10, minLevel:4, weight:6, movePoints: 3, attackPoints: 2, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":10, "lastthird":14}, floors:[0], dropTable: [{name: "Gold", amountMin: 50, amountMax: 80, weight: 2}, {name: "Gold", amountMin: 15, amountMax: 29, weight: 5}]},
+	{name: "RopeSnake", tags: ["construct", "melee", "ropeRestraints", "minor"], followRange: 1, AI: "wander", visionRadius: 3, maxhp: 4, minLevel:1, weight:8, movePoints: 1, attackPoints: 2, attack: "MeleeBindSuicide", attackWidth: 3, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":4, "lastthird":2}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8]},
+	{name: "Rat", tags: ["beast", "melee", "minor"], followRange: 1, AI: "guard", visionRadius: 4, maxhp: 4, minLevel:0, weight:3, movePoints: 1.5, attackPoints: 2, attack: "MeleeWill", attackWidth: 1, attackRange: 1, power: 4, dmgType: "pain", terrainTags: {"rubble":20}, floors:[0, 1, 2, 3]},
+	{name: "WitchShock", tags: ["witch", "ranged", "elite", "miniboss"], followRange: 2, castWhileMoving: true, spells: ["Electrify"], spellCooldownMult: 1, spellCooldownMod: 0, hp: 14, AI: "hunt", visionRadius: 6, maxhp: 14, minLevel:2, weight:10, movePoints: 2, attackPoints: 2, attack: "Spell", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", terrainTags: {"secondhalf":2, "lastthird":1, "miniboss": -5}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropTable: [{name: "RedKey", weight: 3}, {name: "GreenKey", weight: 2}, {name: "BlueKey", weight: 1}]},
 
 ]
 
@@ -36,13 +39,13 @@ function KinkyDungeonDrawEnemies(canvasOffsetX, canvasOffsetY, CamX, CamY) {
 		var enemy = KinkyDungeonEntities[E]
 		var sprite = enemy.Enemy.name
 		if (KinkyDungeonEntities[E].x >= CamX && KinkyDungeonEntities[E].y >= CamY && KinkyDungeonEntities[E].x < CamX + KinkyDungeonGridWidthDisplay && KinkyDungeonEntities[E].y < CamY + KinkyDungeonGridHeightDisplay) {
-			DrawImageZoomCanvas("Screens/MiniGame/KinkyDungeon/Enemies/" + sprite + ".png",
+			DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Enemies/" + sprite + ".png",
 				KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
 				(KinkyDungeonEntities[E].x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonEntities[E].y - CamY)*KinkyDungeonGridSizeDisplay,
 				KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
 				
 			if (enemy.stun > 0) {
-				DrawImageZoomCanvas("Screens/MiniGame/KinkyDungeon/Stun.png",
+				DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Stun.png",
 					KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
 					(KinkyDungeonEntities[E].x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonEntities[E].y - CamY)*KinkyDungeonGridSizeDisplay,
 					KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
@@ -64,7 +67,7 @@ function KinkyDungeonDrawEnemiesWarning(canvasOffsetX, canvasOffsetY, CamX, CamY
 				var tx = enemy.x + enemy.warningTiles[T].x
 				var ty = enemy.y + enemy.warningTiles[T].y
 				if (tx >= CamX && ty >= CamY && tx < CamX + KinkyDungeonGridWidthDisplay && ty < CamY + KinkyDungeonGridHeightDisplay && KinkyDungeonNoEnemy(tx, ty) && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(tx, ty))) {
-					DrawImageZoomCanvas("Screens/MiniGame/KinkyDungeon/Warning.png",
+					DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Warning.png",
 						KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
 						(tx - CamX)*KinkyDungeonGridSizeDisplay, (ty - CamY)*KinkyDungeonGridSizeDisplay,
 						KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)
@@ -76,6 +79,10 @@ function KinkyDungeonDrawEnemiesWarning(canvasOffsetX, canvasOffsetY, CamX, CamY
 	}
 }
 
+
+function KinkyDungeonCheckLOS(enemy, distance, maxdistance) {
+	return distance <= maxdistance+0.1 && KinkyDungeonCheckPath(enemy.x, enemy.y, KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y)
+}
 
 function KinkyDungeonUpdateEnemies(delta) {
 	for (let E = 0; E < KinkyDungeonEntities.length; E++) {
@@ -99,6 +106,9 @@ function KinkyDungeonUpdateEnemies(delta) {
 			continue;
 		}
 		
+		if (!enemy.castCooldown) enemy.castCooldown = 0
+		if (enemy.castCooldown > 0) enemy.castCooldown = Math.max(0, enemy.castCooldown-delta)
+		
 		var idle = true
 		var moved = false
 		
@@ -112,27 +122,28 @@ function KinkyDungeonUpdateEnemies(delta) {
 			
 			if (AI == "wander") {
 				idle = true
-				if (playerDist > enemy.Enemy.attackRange + 0.5)
+				if (!KinkyDungeonCheckLOS(enemy, playerDist, enemy.Enemy.followRange))
 					for (let T = 0; T < 8; T++) { // try 8 times
-						var dir = KinkyDungeonGetDirection(10*(Math.random()-0.5), 10*(Math.random()-0.5))
+						let dir = KinkyDungeonGetDirection(10*(Math.random()-0.5), 10*(Math.random()-0.5))
 						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
 							idle = false
 							break;
 						}
 					}
-			} else if (AI == "guard" && (enemy.Enemy.attackWhileMoving || playerDist > enemy.Enemy.attackRange + 0.5)) {
+			} else if (AI == "guard" && (enemy.Enemy.attackWhileMoving || !KinkyDungeonCheckLOS(enemy, playerDist, enemy.Enemy.followRange))) {
 				if (!enemy.gx) enemy.gx = enemy.x
 				if (!enemy.gy) enemy.gy = enemy.y
 				
 				
 				
 				idle = true
-				// try 8 times to find a moveable time, with some random variance
+				// try 12 times to find a moveable tile, with some random variance
 				if (playerDist <= enemy.Enemy.visionRadius)
-					for (let T = 0; T < 8; T++) {
-						var dir = KinkyDungeonGetDirectionRandom(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
-						if (T > 5) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10)
+					for (let T = 0; T < 12; T++) {
+						let dir = KinkyDungeonGetDirectionRandom(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
+						if (T > 2 && T < 8) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10) // Fan out a bit
+						if (T >= 8) dir = KinkyDungeonGetDirectionRandom(0, 0) // Give up and choose random
 						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
 							idle = false
@@ -141,8 +152,33 @@ function KinkyDungeonUpdateEnemies(delta) {
 					}
 				else if (Math.abs(enemy.x - enemy.gx) > 0 || Math.abs(enemy.y - enemy.gy) > 0)
 					for (let T = 0; T < 8; T++) {
-						var dir = KinkyDungeonGetDirectionRandom(enemy.gx - enemy.x, enemy.gy - enemy.y)
-						if (T > 5) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10)
+						let dir = KinkyDungeonGetDirectionRandom(enemy.gx - enemy.x, enemy.gy - enemy.y)
+						if (T > 2 && T < 8) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10) // Fan out a bit
+						if (T >= 8) dir = KinkyDungeonGetDirectionRandom(0, 0) // Give up and choose random
+						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
+							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
+							idle = false
+							break;
+						}
+					}
+			} else if (AI == "hunt" && (enemy.Enemy.attackWhileMoving || !KinkyDungeonCheckLOS(enemy, playerDist, enemy.Enemy.followRange))) {
+			
+				idle = true
+				// try 12 times to find a moveable tile, with some random variance
+				if (playerDist <= enemy.Enemy.visionRadius)
+					for (let T = 0; T < 12; T++) {
+						let dir = KinkyDungeonGetDirectionRandom(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
+						if (T > 2 && T < 8) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10) // Fan out a bit
+						if (T >= 8) dir = KinkyDungeonGetDirectionRandom(0, 0) // Give up and choose random
+						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
+							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
+							idle = false
+							break;
+						}
+					}
+				else
+					for (let T = 0; T < 8; T++) { // try 8 times
+						let dir = KinkyDungeonGetDirection(10*(Math.random()-0.5), 10*(Math.random()-0.5))
 						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true
 							idle = false
@@ -152,19 +188,42 @@ function KinkyDungeonUpdateEnemies(delta) {
 			}
 			playerDist = Math.sqrt((enemy.x - KinkyDungeonPlayerEntity.x)*(enemy.x - KinkyDungeonPlayerEntity.x) + (enemy.y - KinkyDungeonPlayerEntity.y)*(enemy.y - KinkyDungeonPlayerEntity.y))
 			
-			if ((!moved || enemy.Enemy.attackWhileMoving) && enemy.Enemy.attack.includes("Melee") && playerDist < enemy.Enemy.attackRange + 0.5) {//Player is adjacent
+			if ((!moved || enemy.Enemy.attackWhileMoving) && enemy.Enemy.attack.includes("Melee") && KinkyDungeonCheckLOS(enemy, playerDist, enemy.Enemy.attackRange + 0.5)) {//Player is adjacent
 				idle = false;
 			
-				var dir = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
+				let dir = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y)
 				
 				
 				if (!KinkyDungeonEnemyTryAttack(enemy, [dir], delta, enemy.x + dir.x, enemy.y + dir.y)) {
 					if (enemy.warningTiles.length == 0)
 						enemy.warningTiles = KinkyDungeonGetWarningTiles(KinkyDungeonPlayerEntity.x - enemy.x, KinkyDungeonPlayerEntity.y - enemy.y, enemy.Enemy.attackRange, enemy.Enemy.attackWidth)
+					
+					if (enemy.Enemy.attack.includes("Bind")) {
+						let caught = false
+						for (let W = 0; W < enemy.warningTiles.length; W++) {
+							let tile = enemy.warningTiles[W]
+							if (enemy.x + tile.x == KinkyDungeonPlayerEntity.x && enemy.y + tile.y == KinkyDungeonPlayerEntity.y) {
+								caught = true;
+								break;
+							}
+						}
+						if (caught && KinkyDungeonGetRestraintItem("ItemTorso") && KinkyDungeonGetRestraintItem("ItemTorso").restraint && KinkyDungeonGetRestraintItem("ItemTorso").restraint.harness) {
+							let roll = Math.random()
+							for (let T = 0; T < KinkyDungeonSlowLevel/2; T++) {
+								roll = Math.max(roll, Math.random())
+							}
+							if (roll > KinkyDungeonTorsoGrabChance) {
+								KinkyDungeonMovePoints = -1
+								
+								KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonTorsoGrab").replace("EnemyName", TextGet("Name" + enemy.Enemy.name)), "yellow", 1)
+								
+							}
+						}
+					}
 				} else { // Attack lands!
-					var hit = false
+					let hit = false
 					for (let W = 0; W < enemy.warningTiles.length; W++) {
-						var tile = enemy.warningTiles[W]
+						let tile = enemy.warningTiles[W]
 						if (enemy.x + tile.x == KinkyDungeonPlayerEntity.x && enemy.y + tile.y == KinkyDungeonPlayerEntity.y) {
 							hit = true;
 							break;
@@ -184,6 +243,10 @@ function KinkyDungeonUpdateEnemies(delta) {
 							else if (enemy.Enemy.fullBoundBonus)
 								willpowerDamage += enemy.Enemy.fullBoundBonus // Some enemies deal bonus damage if they cannot put a binding on you
 						}
+						
+						if (enemy.Enemy.attack.includes("Suicide")) {
+							enemy.hp = 0
+						}
 						if (enemy.Enemy.attack.includes("Will") || willpowerDamage > 0) {
 							if (willpowerDamage == 0)
 								willpowerDamage += enemy.Enemy.power
@@ -196,16 +259,11 @@ function KinkyDungeonUpdateEnemies(delta) {
 						bound += KinkyDungeonAddRestraint(restraintAdd, enemy.Enemy.power) * 10
 						happened += bound
 
-						if (happened > 0 && happened > KinkyDungeonTextMessagePriority) {
-							KinkyDungeonTextMessageTime = 1
-							
-							KinkyDungeonTextMessage = TextGet("Attack"+enemy.Enemy.name + ((bound > 0) ? "Bind" : ""))
-							KinkyDungeonTextMessagePriority = happened
-							
+						if (happened > 0) {
+							KinkyDungeonSendTextMessage(happened, TextGet("Attack"+enemy.Enemy.name + ((bound > 0) ? "Bind" : "")), msgColor, 1)
 							if (replace)
 								for (let R = 0; R < replace.length; R++)
-									KinkyDungeonTextMessage = KinkyDungeonTextMessage.replace(replace[R].keyword, replace[R].value)
-							KinkyDungeonTextMessageColor = msgColor
+									KinkyDungeonTextMessage = KinkyDungeonTextMessage.replace(replace[R].keyword, replace[R].value)	
 						}
 					}
 					
@@ -217,11 +275,26 @@ function KinkyDungeonUpdateEnemies(delta) {
 			}
 		}
 		
+		if ((!moved || enemy.Enemy.castWhileMoving) && enemy.Enemy.attack.includes("Spell") && KinkyDungeonCheckLOS(enemy, playerDist, enemy.Enemy.visionRadius) && enemy.castCooldown <= 0) {
+			idle = false;
+			let spellchoice = enemy.Enemy.spells[Math.floor(Math.random()*enemy.Enemy.spells.length)];
+			let spell = KinkyDungeonFindSpell(spellchoice);
+			
+			if (spell) {
+				enemy.castCooldown = spell.level*enemy.Enemy.spellCooldownMult + enemy.Enemy.spellCooldownMod + 1
+				KinkyDungeonCastSpell(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, spell, enemy)
+				
+				console.log("casted "+ spell.name)
+			}			
+		}
+		
 		if (idle) {
 			enemy.movePoints = 0
 			enemy.attackPoints = 0
 			enemy.warningTiles = []
 		}
+		
+		
 		
 	}
 }

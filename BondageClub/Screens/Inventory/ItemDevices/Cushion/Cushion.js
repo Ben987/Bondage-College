@@ -12,7 +12,7 @@ var InventoryItemDevicesCushionOptions = [
 			Type: "Kneel",
 			OverrideHeight: { Height: -200, Priority: 21 },
 			OverridePriority: 1,
-			SetPose: ["Kneel"]		 
+			SetPose: ["Kneel"]
 		},
 	},
 ];

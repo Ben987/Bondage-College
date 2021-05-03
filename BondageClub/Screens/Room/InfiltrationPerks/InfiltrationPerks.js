@@ -1,7 +1,7 @@
 "use strict";
 var InfiltrationPerksBackground = "Sheet";
 //var InfiltrationPerksList = ["Strength", "Charisma", "Agility", "Resilience", "Endurance", "Lockpicking", "Investigation", "Running", "Mapping", "Forgery", "Begging", "Bribery", "Negotiation", "Recruiter"];
-var InfiltrationPerksList = ["Strength", "Charisma", "Agility", "Resilience", "Endurance", "Investigation", "Bribery", "Negotiation", "Recruiter"];
+var InfiltrationPerksList = ["Strength", "Charisma", "Agility", "Resilience", "Endurance", "Investigation", "Bribery", "Negotiation", "Recruiter", "Forgery", "Recovery"];
 
 /**
  * Checks if a named perk is activated or not
@@ -67,7 +67,8 @@ function InfiltrationPerksRun() {
 
 	// Draw the exit button and avail perks
 	MainCanvas.textAlign = "center";
-	DrawText(TextGet("Perks") + " " + InfiltrationPerksTaken().toString() + " / " + InfiltrationPerksAvail().toString(), 1430, 845, (InfiltrationPerksAvail() > InfiltrationPerksTaken()) ? "Blue" : "Black", "Gray");
+	if (InfiltrationSupervisor.Stage === "End") DrawText(TextGet("CannotChange"), 1460, 745, "Red", "Gray");
+	DrawText(TextGet("Perks") + " " + InfiltrationPerksTaken().toString() + " / " + InfiltrationPerksAvail().toString(), 1460, 845, (InfiltrationPerksAvail() > InfiltrationPerksTaken()) ? "Blue" : "Black", "Gray");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
 }
@@ -78,9 +79,10 @@ function InfiltrationPerksRun() {
  */
 function InfiltrationPerksClick() {
 	if (MouseIn(1815, 75, 90, 90)) InfiltrationPerksExit();
-	for (let P = 0; P < InfiltrationPerksList.length; P++)
-		if (MouseIn(150 + Math.floor(P / 8) * 850, 115 + ((P % 8) * 100), 64, 64))
-			InfiltrationPerksActivate(InfiltrationPerksList[P]);
+	if (InfiltrationSupervisor.Stage !== "End")
+		for (let P = 0; P < InfiltrationPerksList.length; P++)
+			if (MouseIn(150 + Math.floor(P / 8) * 850, 115 + ((P % 8) * 100), 64, 64))
+				InfiltrationPerksActivate(InfiltrationPerksList[P]);
 }
 
 /**

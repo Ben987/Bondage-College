@@ -12,7 +12,7 @@ var InventoryItemArmsLeatherArmbinderOptions = [
 	{
 		Name: "WrapStrap",
 		Property: { Type: "WrapStrap", Difficulty: 3 },
-	},	
+	},
 ];
 
 // Loads the item extension properties

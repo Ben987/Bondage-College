@@ -6,15 +6,16 @@ const ValidationPasswordRegex = /^[A-Z]{1,8}$/;
 const ValidationDefaultCombinationNumber = "0000";
 const ValidationDefaultPassword = "UNLOCK";
 const ValidationRemoveTimerToleranceMs = 5000;
-const ValidationLockProperties = [
-	"LockedBy", "LockMemberNumber", "CombinationNumber", "RemoveItem", "ShowTimer",
-	"MemberNumberListKeys", "Password", "Hint", "LockSet", "LockPickSeed",
+const ValidationNonModifiableLockProperties = ["LockedBy", "LockMemberNumber"];
+const ValidationRestrictedLockProperties = [
+	"EnableRandomInput", "RemoveItem", "ShowTimer", "CombinationNumber", "Password", "Hint", "LockSet", "LockPickSeed",
 ];
 const ValidationTimerLockProperties = ["MemberNumberList", "RemoveTimer"];
-const ValidationAllLockProperties = ValidationLockProperties
-	.concat(["EnableRandomInput"])
-	.concat(ValidationTimerLockProperties);
-const ValidationModifiableProperties = ValidationAllLockProperties.concat(["Expression"]);
+const ValidationAllLockProperties = ValidationNonModifiableLockProperties
+	.concat(ValidationRestrictedLockProperties)
+	.concat(ValidationTimerLockProperties)
+	.concat(["MemberNumberListKeys"]);
+const ValidationModifiableProperties = ValidationAllLockProperties.concat(["Effect", "Expression"]);
 
 /**
  * Creates the appearance update parameters used to validate an appearance diff, based on the provided target character
@@ -156,8 +157,7 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 	const previousProperty = previousItem.Property || {};
 	const newProperty = newItem.Property = newItem.Property || {};
 	const itemBlocked = ValidationIsItemBlockedOrLimited(C, sourceMemberNumber, group.Name, asset.Name) ||
-	                    ValidationIsItemBlockedOrLimited(
-		                    C, sourceMemberNumber, group.Name, asset.Name, newProperty.Type);
+						ValidationIsItemBlockedOrLimited(C, sourceMemberNumber, group.Name, asset.Name, newProperty.Type);
 
 	// If the type has changed and the new type is blocked/limited for the target character, prevent modifications
 	if (newProperty.Type !== previousProperty.Type && itemBlocked) {
@@ -173,24 +173,26 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 	const lockModified = !!newLock && !!previousLock && !lockSwapped;
 	const lockRemoved = lockSwapped || (!newLock && !!previousLock);
 	const lockAdded = lockSwapped || (!!newLock && !previousLock);
-	const newLockBlocked = lockAdded && ValidationIsItemBlockedOrLimited(
+	const newLockBlocked = !!newLock && ValidationIsItemBlockedOrLimited(
 		C, sourceMemberNumber, newLock.Asset.Group.Name, newLock.Asset.Name,
 	);
 
 	const lockChangeInvalid = (lockRemoved && !ValidationIsLockChangePermitted(previousLock, params)) ||
-	                          (lockAdded && !ValidationIsLockChangePermitted(newLock, params)) ||
-	                          (newLockBlocked);
+		(lockAdded && !ValidationIsLockChangePermitted(newLock, params)) ||
+		((lockAdded || lockModified || lockSwapped) && (newLockBlocked || itemBlocked));
 
 	if (lockChangeInvalid) {
-		// If there was a lock previously, reapply the old lock
 		if (previousLock) {
-			if (newLockBlocked) {
+			// If there was a lock previously, reapply the old lock
+			if (lockRemoved) {
+				console.warn(`Invalid removal of lock ${ValidationItemWarningMessage(previousLock, params)}`);
+			} else if (lockSwapped) {
 				console.warn(`Invalid addition of lock ${ValidationItemWarningMessage(newLock, params)}`);
 			} else {
-				console.warn(`Invalid removal of lock ${ValidationItemWarningMessage(previousLock, params)}`);
+				console.warn(`Invalid modification of lock ${ValidationItemWarningMessage(newLock, params)}`);
 			}
 			InventoryLock(C, newItem, previousLock, previousProperty.LockMemberNumber, false);
-			ValidationCopyLockProperties(previousProperty, newProperty, true);
+			ValidationCloneLock(previousProperty, newProperty);
 			valid = false;
 		} else {
 			// Otherwise, delete any lock
@@ -200,7 +202,7 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 	} else if (lockModified) {
 		// If the lock has been modified, then ensure lock properties don't change (except where they should be able to)
 		const hasLockPermissions = ValidationIsLockChangePermitted(previousLock, params) && !newLockBlocked;
-		valid = !ValidationCopyLockProperties(previousProperty, newProperty, hasLockPermissions) && valid;
+		valid = !ValidationRollbackInvalidLockProperties(previousProperty, newProperty, hasLockPermissions) && valid;
 	}
 
 	// If the source wouldn't usually be able to add the item, ensure that some properties are not modified
@@ -230,7 +232,7 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 		});
 		newKeys.forEach((key) => {
 			if (!previousKeys.includes(key)) {
-				console.warn(`Invalid modification of property "${key}" for item ${warningSuffix}`)
+				console.warn(`Invalid modification of property "${key}" for item ${warningSuffix}`);
 				valid = false;
 				delete newProperty[key];
 			}
@@ -261,7 +263,7 @@ function ValidationItemWarningMessage(item, { C, sourceMemberNumber }) {
  * @param {boolean} remove - Whether the lock change is a removal
  * @returns {boolean} - TRUE if the lock can be modified, FALSE otherwise
  */
-function ValidationIsLockChangePermitted(lock, { fromOwner, fromLover }, remove) {
+function ValidationIsLockChangePermitted(lock, { C, fromOwner, fromLover }, remove) {
 	if (!lock) return true;
 	if (lock.Asset.OwnerOnly && !fromOwner) return false;
 	if (lock.Asset.LoverOnly) {
@@ -274,7 +276,7 @@ function ValidationIsLockChangePermitted(lock, { fromOwner, fromLover }, remove)
 
 /**
  * Copies an item's lock-related properties from one Property object to another based on whether or not the source
- * character has permissions to modify the lock.
+ * character has permissions to modify the lock. Rolls back any invalid changes to their previous values.
  * @param {object} sourceProperty - The original Property object on the item
  * @param {object} targetProperty - The Property object on the modified item
  * @param {boolean} hasLockPermissions - Whether or not the source character of the appearance change has permission to
@@ -282,20 +284,34 @@ function ValidationIsLockChangePermitted(lock, { fromOwner, fromLover }, remove)
  * @returns {boolean} - TRUE if the target Property object was modified as a result of copying (indicating that there
  * were invalid changes to the lock), FALSE otherwise
  */
-function ValidationCopyLockProperties(sourceProperty, targetProperty, hasLockPermissions) {
+function ValidationRollbackInvalidLockProperties(sourceProperty, targetProperty, hasLockPermissions) {
 	let changed = false;
-	ValidationLockProperties.forEach((key) => {
+	for (const key of ValidationNonModifiableLockProperties) {
 		changed = ValidationCopyProperty(sourceProperty, targetProperty, key) || changed;
-	});
+	}
 	if (!hasLockPermissions) {
-		changed = ValidationCopyProperty(sourceProperty, targetProperty, "EnableRandomInput") || changed;
+		for (const key of ValidationRestrictedLockProperties) {
+			changed = ValidationCopyProperty(sourceProperty, targetProperty, key) || changed;
+		}
 		if (!targetProperty.EnableRandomInput) {
-			ValidationTimerLockProperties.forEach((key) => {
+			for (const key of ValidationTimerLockProperties) {
 				changed = ValidationCopyProperty(sourceProperty, targetProperty, key) || changed;
-			});
+			}
 		}
 	}
 	return changed;
+}
+
+/**
+ * Clones all lock properties from one Property object to another.
+ * @param {object} sourceProperty - The property object to clone properties from
+ * @param {object} targetProperty - The property object to clone properties to
+ * @returns {void} - Nothing
+ */
+function ValidationCloneLock(sourceProperty, targetProperty) {
+	for (const key of ValidationAllLockProperties) {
+		targetProperty[key] = sourceProperty[key];
+	}
 }
 
 /**
@@ -376,8 +392,10 @@ function ValidationCanRemoveItem(previousItem, params, isSwap) {
 	// If we're not swapping, and the asset group can't be empty, always block removal
 	if (!previousItem.Asset.Group.AllowNone && !isSwap) return false;
 
+	const {fromSelf, fromOwner, fromLover} = params;
+
 	// If the update is coming from ourself, it's always permitted
-	if (params.fromSelf) return true;
+	if (fromSelf) return true;
 
 	const lock = InventoryGetLock(previousItem);
 
@@ -388,7 +406,13 @@ function ValidationCanRemoveItem(previousItem, params, isSwap) {
 	}
 
 	// Owners can always remove lover locks, regardless of lover rules
-	if (lock && lock.Asset.LoverOnly && params.fromOwner) return true;
+	if (lock && lock.Asset.LoverOnly && fromOwner) return true;
+
+	// Only owners/lovers can remove lover locks
+	if (lock && lock.Asset.LoverOnly && !fromLover && !fromOwner) return false;
+
+	// Only owners can remove owner locks
+	if (lock && lock.Asset.OwnerOnly && !fromOwner) return false;
 
 	// Fall back to common item add/remove validation
 	return ValidationCanAddOrRemoveItem(previousItem, params);
@@ -592,7 +616,7 @@ function ValidationSanitizeLock(C, item) {
 		if (!ValidationCombinationNumberRegex.test(property.CombinationNumber)) {
 			// If the combination is invalid, reset to 0000
 			console.warn(
-				`Invalid combination number: ${property.CombinationNumber}. Combination will be reset to ${ValidationDefaultCombinationNumber}`,
+				`Invalid combination number: ${property.CombinationNumber}. Combination will be reset to ${ValidationDefaultCombinationNumber}`
 			);
 			property.CombinationNumber = ValidationDefaultCombinationNumber;
 			changed = true;
@@ -630,7 +654,7 @@ function ValidationSanitizeLock(C, item) {
 		if (!ValidationPasswordRegex.test(property.Password)) {
 			// If the password is invalid, reset to "UNLOCK"
 			console.warn(
-				`Invalid password: ${property.Password}. Combination will be reset to ${ValidationDefaultPassword}`,
+				`Invalid password: ${property.Password}. Combination will be reset to ${ValidationDefaultPassword}`
 			);
 			property.Password = ValidationDefaultPassword;
 			changed = true;
@@ -716,27 +740,28 @@ function ValidationSanitizeStringArray(property, key) {
 /**
  * Completely removes a lock from an item's Property object. This removes all lock-related properties, and the "Lock"
  * effect from the property object.
- * @param {object} Property - The Property object to remove the lock from
+ * @param {object} property - The Property object to remove the lock from
+ * @param {boolean} verbose - Whether or not to print console warnings when properties are deleted. Defaults to true.
  * @returns {boolean} - TRUE if the Property object was modified as a result of the lock deletion (indicating that at
  * least one lock-related property was present), FALSE otherwise
  */
-function ValidationDeleteLock(Property) {
+function ValidationDeleteLock(property, verbose = true) {
 	let changed = false;
-	if (Property) {
+	if (property) {
 		ValidationAllLockProperties.forEach(key => {
-			if (Property[key] != null) {
+			if (property[key] != null) {
 				// Special casing for RemoveTimer because it is used for both locks and expressions :(
-				if (key === "RemoveTimer" && Property.Expression != null) return;
+				if (key === "RemoveTimer" && property.Expression != null) return;
 				// Otherwise remove the property
-				console.warn("Removing invalid lock property:", key);
-				delete Property[key];
+				if (verbose) console.warn("Removing invalid lock property:", key);
+				delete property[key];
 				changed = true;
 			}
 		});
-		if (Array.isArray(Property.Effect)) {
-			Property.Effect = Property.Effect.filter(E => {
+		if (Array.isArray(property.Effect)) {
+			property.Effect = property.Effect.filter(E => {
 				if (E === "Lock") {
-					console.warn("Filtering out invalid Lock effect");
+					if (verbose) console.warn("Filtering out invalid Lock effect");
 					changed = true;
 					return false;
 				} else return true;

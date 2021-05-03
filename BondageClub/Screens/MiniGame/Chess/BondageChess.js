@@ -73,7 +73,7 @@ function ChessClick() {
 
 }
 
-/** 
+/**
  * Returns a single letter character indicating which color pieces the player is controlling
  * @returns {"w" | "b"} - "w" for white or "b" for black
  */

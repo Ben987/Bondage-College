@@ -23,7 +23,7 @@ function InformationSheetGetLove(Love) {
 }
 
 /**
- * Main function of the character info screen. It's called continuously, so be careful 
+ * Main function of the character info screen. It's called continuously, so be careful
  * to add time consuming functions or loops here
  * @returns {void} - Nothing
  */
@@ -55,7 +55,7 @@ function InformationSheetRun() {
 		// Shows the difficulty level
 		let Days = Math.floor((CurrentTime - (((C.Difficulty == null) || (C.Difficulty.LastChange == null) || (typeof C.Difficulty.LastChange !== "number")) ? C.Creation : C.Difficulty.LastChange)) / 86400000);
 		DrawTextFit(TextGet("DifficultyLevel" + C.GetDifficulty()) + " " + TextGet("DifficultyTitle").replace("NumberOfDays", Days.toString()), 550, 500, 450, "Black", "Gray");
-	
+
 		// Shows the owner
 		if ((C.Ownership != null) && (C.Ownership.Name != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.Start != null) && (C.Ownership.Stage != null)) {
 			DrawTextFit(TextGet("Owner") + " " + C.Ownership.Name + " (" + C.Ownership.MemberNumber + ")", 550, 575, 450, "Black", "Gray");

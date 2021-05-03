@@ -13,13 +13,13 @@ var InventoryItemTorsoFuturisticHarnessOptions = [
 		Name: "Lower",
 		Property: { Type: "Lower", Difficulty: 0},
 	},
-]
+];
 
 // Loads the item extension properties
 function InventoryItemTorsoFuturisticHarnessLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	}  else
 		ExtendedItemLoad(InventoryItemTorsoFuturisticHarnessOptions, "FuturisticHarnessType");
 }
@@ -28,14 +28,14 @@ function InventoryItemTorsoFuturisticHarnessLoad() {
 function InventoryItemTorsoFuturisticHarnessDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else {
 		ExtendedItemDraw(InventoryItemTorsoFuturisticHarnessOptions, "FuturisticHarnessType");
-		
+
 		DrawAssetPreview(1387, 75, DialogFocusItem.Asset);
-		
-		var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
-		
+
+		var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C);
+
 		if (FuturisticCollarItems.length > 0) {
 			DrawButton(1400, 910, 200, 55, DialogFindPlayer("FuturisticCollarColor"), "White");
 		}
@@ -56,16 +56,16 @@ function InventoryItemTorsoFuturisticHarnessPublishAction(C, Option) {
 function InventoryItemTorsoFuturisticHarnessClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
 	} else {
-		
+
 		ExtendedItemClick(InventoryItemTorsoFuturisticHarnessOptions);
-		
-		var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C)
+
+		var FuturisticCollarItems = InventoryItemNeckFuturisticCollarGetItems(C);
 		if (MouseIn(1400, 910, 200, 55) && FuturisticCollarItems.length > 0 && DialogFocusItem) { InventoryItemNeckFuturisticCollarColor(C, DialogFocusItem); InventoryItemTorsoFuturisticHarnessExit();}
 	}
 }
 
 function InventoryItemTorsoFuturisticHarnessExit() {
-	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }

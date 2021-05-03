@@ -80,7 +80,7 @@ function CheatRun() {
 	MainCanvas.textAlign = "left";
 	for (let C = 0; C < CheatList.length; C++) {
 		DrawButton(150 + Math.floor(C / 8) * 850, 115 + ((C % 8) * 100), 64, 64, "", "White", CheatActive(CheatList[C]) ? "Icons/Checked.png" : "");
-		DrawText(TextGet(CheatList[C]), 250 + Math.floor(C / 8) * 850, 147 + ((C % 8) * 100), "Black", "Gray");		
+		DrawText(TextGet(CheatList[C]), 250 + Math.floor(C / 8) * 850, 147 + ((C % 8) * 100), "Black", "Gray");
 	}
 
 	// Draw the exit button
@@ -94,10 +94,10 @@ function CheatRun() {
  * @returns {void} - Nothing
  */
 function CheatClick() {
-	
+
 	// When the user exits
 	if (MouseIn(1815, 75, 90, 90)) CheatExit();
-	
+
 	// When the user activates an option
 	for (let C = 0; C < CheatList.length; C++)
 		if (MouseIn(150 + Math.floor(C / 8) * 850, 115 + ((C % 8) * 100), 64, 64)) {

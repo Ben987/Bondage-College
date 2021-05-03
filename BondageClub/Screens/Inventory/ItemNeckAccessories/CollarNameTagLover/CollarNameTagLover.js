@@ -19,10 +19,10 @@ function InventoryItemNeckAccessoriesCollarNameTagLoverDraw() {
 		for (let T = 0; T < List.length; T++) {
 			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFindPlayer("CollarNameTagLoverType" + List[T]), "White");
 			X = X + 210;
-			if (T % 5 == 4) { 
-				X = 955; 
+			if (T % 5 == 4) {
+				X = 955;
 				Y = Y + 60;
-			}		
+			}
 		}
 	}
 	else {
@@ -41,10 +41,10 @@ function InventoryItemNeckAccessoriesCollarNameTagLoverClick() {
 			if ((MouseX >= X) && (MouseX <= X + 200) && (MouseY >= Y) && (MouseY <= Y + 55) && (DialogFocusItem.Property.Type != List[T]))
 				InventoryItemNeckAccessoriesCollarNameTagLoverSetType(List[T]);
 			X = X + 210;
-			if (T % 5 == 4) { 
-				X = 955; 
+			if (T % 5 == 4) {
+				X = 955;
 				Y = Y + 60;
-			}		
+			}
 		}
 	}
 }
@@ -59,7 +59,7 @@ function InventoryItemNeckAccessoriesCollarNameTagLoverSetType(NewType) {
 	DialogFocusItem.Property.Type = NewType;
 	DialogFocusItem.Property.Effect = [];
 
-	// Refreshes the character and chatroom	
+	// Refreshes the character and chatroom
 	CharacterRefresh(C);
 	var Dictionary = [];
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
