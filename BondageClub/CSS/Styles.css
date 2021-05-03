@@ -123,6 +123,10 @@ TextArea {
 	font-size: 0.5em;
 	text-align: center;
 }
+#TextAreaChatLog[data-shrinknondialogue=true] .ChatMessageNonDialogue {
+	font-size: 0.5em;
+	text-align: center;
+}
 #TextAreaChatLog[data-enterleave=hidden] .ChatMessageEnterLeave {
 	display: none;
 }

@@ -1703,8 +1703,11 @@ function ChatRoomMessage(data) {
 
 			// Checks if the message is a notification about the user entering or leaving the room
 			var MsgEnterLeave = "";
+			var MsgNonDialogue = "";
 			if ((data.Type == "Action") && (msg.startsWith("ServerEnter") || msg.startsWith("ServerLeave") || msg.startsWith("ServerDisconnect") || msg.startsWith("ServerBan") || msg.startsWith("ServerKick")))
 				MsgEnterLeave = " ChatMessageEnterLeave";
+			if ((data.Type != "Chat" && data.Type != "Emote"))
+				MsgNonDialogue = " ChatMessageNonDialogue";
 
 			// Replace actions by the content of the dictionary
 			if (data.Type && ((data.Type == "Action") || (data.Type == "ServerMessage"))) {
@@ -1902,7 +1905,7 @@ function ChatRoomMessage(data) {
 
 			// Adds the message and scrolls down unless the user has scrolled up
 			var div = document.createElement("div");
-			div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + MsgEnterLeave);
+			div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + MsgEnterLeave + MsgNonDialogue);
 			div.setAttribute('data-time', ChatRoomCurrentTime());
 			div.setAttribute('data-sender', data.Sender);
 			if (data.Type == "Emote" || data.Type == "Action" || data.Type == "Activity")
