@@ -1767,8 +1767,8 @@ var AssetFemale3DCG = [
 			{ Name: "SciFiPleasurePanties", Category: ["SciFi"], Fetish: ["Metal"], Value: -1, Difficulty: 50, Time: 15, RemoveTime: 12, BuyGroup: "FuturisticChastityBelt", Random: false, AllowLock: true, DrawLocks: false, DefaultColor: ["#592599", "#202020", "#592599", "#202020", "#7631cc", "#7631cc"], Audio: "FuturisticApply", Prerequisite: "AccessVulva", HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup", "ItemVulvaInflatableVibeDildo", "ItemVulvaHeavyWeightClamp", "ItemVulvaPenisDildo", "ItemVulvaShockDildo", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"], Effect: ["Chaste", "Egged"], AllowBlock: ["ItemVulvaPiercings", "ItemButt", "ItemVulva"], ArousalZone: "ItemVulva", AllowEffect: ["Egged", "Vibrating", "DenialMode"], Block: [], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }], Extended: true, HasType: false, AlwaysExtend: true,
 				Layer: [
 					{ Name: "Screen", AllowColorize: true, ParentGroup: null},
-					{ Name: "Mesh2", AllowColorize: true, ParentGroup: null},
-					{ Name: "Mesh1", AllowColorize: true, ParentGroup: null},
+					{ Name: "Mesh2", AllowColorize: true},
+					{ Name: "Mesh1", AllowColorize: true},
 					{ Name: "Band", AllowColorize: true, ParentGroup: null},
 					{ Name: "Plug2", AllowColorize: true, ParentGroup: null},
 					{ Name: "Plug1", AllowColorize: true, ParentGroup: null},
