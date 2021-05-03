@@ -10,19 +10,19 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 0.67,
 		"rubblechance" : 0.7,
-		
+
 		"min_width" : 25,
 		"max_width" : 31,
 		"min_height" : 11,
 		"max_height" : 19,
-		
+
 		"enemytags": ["zombie"],
 		"shrines": [
 			{Type: "Charms", Weight: 9},
 			{Type: "Leather", Weight: 6},
 			{Type: "Metal", Weight: 3},
 			{Type: "Will", Weight: 10},]
-		
+
 	},
 	{
 		"openness" : 0,
@@ -34,7 +34,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.6,
 		"doorchance" : 0.9,
 		"rubblechance" : 0.6,
-		
+
 		"min_width" : 21,
 		"max_width" : 27,
 		"min_height" : 11,
@@ -50,7 +50,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.4,
 		"doorchance" : 0.2,
 		"rubblechance" : 0.5,
-		
+
 		"min_width" : 25,
 		"max_width" : 31,
 		"min_height" : 11,
@@ -66,12 +66,12 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.5,
 		"doorchance" : 0.9,
 		"rubblechance" : 0.7,
-		
+
 		"min_width" : 31,
 		"max_width" : 35,
 		"min_height" : 13,
 		"max_height" : 21,
-		
+
 		"lockmult" : 1.5,
 	},
 	{
@@ -84,7 +84,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.8,
 		"doorchance" : 0.05,
 		"rubblechance" : 0.9,
-		
+
 		"min_width" : 15,
 		"max_width" : 25,
 		"min_height" : 15,
@@ -100,12 +100,12 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 0.67,
 		"rubblechance" : 0.7,
-		
+
 		"min_width" : 25,
 		"max_width" : 51,
 		"min_height" : 9,
 		"max_height" : 15,
-		
+
 		"lockmult" : 2.0,
 	},
 	{
@@ -118,7 +118,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.5,
 		"doorchance" : 0.0,
 		"rubblechance" : 0.3,
-		
+
 		"min_width" : 25,
 		"max_width" : 31,
 		"min_height" : 17,
@@ -134,12 +134,12 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.8,
 		"doorchance" : 0.8,
 		"rubblechance" : 0.5,
-		
+
 		"min_width" : 25,
 		"max_width" : 31,
 		"min_height" : 11,
 		"max_height" : 19,
-		
+
 		"lockmult" : 2.0,
 	},
 	{
@@ -152,12 +152,12 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 1.0,
 		"rubblechance" : 0.7,
-		
+
 		"min_width" : 15,
 		"max_width" : 21,
 		"min_height" : 25,
 		"max_height" : 37,
-		
+
 		"lockmult" : 1.5,
 	},
 	{
@@ -170,12 +170,12 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 1.0,
 		"rubblechance" : 0.6,
-		
+
 		"min_width" : 25,
 		"max_width" : 31,
 		"min_height" : 11,
 		"max_height" : 19,
-		
+
 		"lockmult" : 4.0,
 	},
 	{
@@ -188,13 +188,13 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0,
 		"doorchance" : 1.0,
 		"rubblechance" : 1.0,
-		
+
 		"min_width" : 31,
 		"max_width" : 31,
 		"min_height" : 19,
 		"max_height" : 19,
-		
+
 		"lockmult" : 0.0,
 	},
-	
+
 ];
