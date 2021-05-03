@@ -62,6 +62,9 @@ TextArea {
 	font-style: italic;
 	color: silver;
 }
+#TextAreaChatLog[data-shrinknondialogue=true] .ChatMessageEmote {
+	font-size: 0.75em;
+}
 #TextAreaChatLog[data-colortheme=dark], #TextAreaChatLog[data-colortheme="dark2"] {
   background-color: #111;
   color: #eee;

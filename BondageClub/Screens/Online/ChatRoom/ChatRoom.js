@@ -1704,9 +1704,10 @@ function ChatRoomMessage(data) {
 			// Checks if the message is a notification about the user entering or leaving the room
 			var MsgEnterLeave = "";
 			var MsgNonDialogue = "";
+			var MsgEmote = "";
 			if ((data.Type == "Action") && (msg.startsWith("ServerEnter") || msg.startsWith("ServerLeave") || msg.startsWith("ServerDisconnect") || msg.startsWith("ServerBan") || msg.startsWith("ServerKick")))
 				MsgEnterLeave = " ChatMessageEnterLeave";
-			if ((data.Type != "Chat" && data.Type != "Emote"))
+			if ((data.Type != "Chat" && data.Type != "Whisper" && data.Type != "Emote"))
 				MsgNonDialogue = " ChatMessageNonDialogue";
 
 			// Replace actions by the content of the dictionary
