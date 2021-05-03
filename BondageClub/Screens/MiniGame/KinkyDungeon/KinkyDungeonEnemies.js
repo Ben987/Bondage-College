@@ -277,20 +277,22 @@ function KinkyDungeonUpdateEnemies(delta) {
 				enemy.warningTiles = [];
 				enemy.attackPoints = 0;
 			}
-		}
+			
+			
+			if ((!moved || enemy.Enemy.castWhileMoving) && enemy.Enemy.attack.includes("Spell") && KinkyDungeonCheckLOS(enemy, playerDist, enemy.Enemy.visionRadius) && enemy.castCooldown <= 0) {
+				idle = false;
+				let spellchoice = enemy.Enemy.spells[Math.floor(Math.random()*enemy.Enemy.spells.length)];
+				let spell = KinkyDungeonFindSpell(spellchoice);
 
-		if ((!moved || enemy.Enemy.castWhileMoving) && enemy.Enemy.attack.includes("Spell") && KinkyDungeonCheckLOS(enemy, playerDist, enemy.Enemy.visionRadius) && enemy.castCooldown <= 0) {
-			idle = false;
-			let spellchoice = enemy.Enemy.spells[Math.floor(Math.random()*enemy.Enemy.spells.length)];
-			let spell = KinkyDungeonFindSpell(spellchoice);
+				if (spell) {
+					enemy.castCooldown = spell.level*enemy.Enemy.spellCooldownMult + enemy.Enemy.spellCooldownMod + 1;
+					KinkyDungeonCastSpell(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, spell, enemy);
 
-			if (spell) {
-				enemy.castCooldown = spell.level*enemy.Enemy.spellCooldownMult + enemy.Enemy.spellCooldownMod + 1;
-				KinkyDungeonCastSpell(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, spell, enemy);
-
-				console.log("casted "+ spell.name);
+					console.log("casted "+ spell.name);
+				}
 			}
 		}
+
 
 		if (idle) {
 			enemy.movePoints = 0;
