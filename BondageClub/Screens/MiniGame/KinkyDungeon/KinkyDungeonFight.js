@@ -23,14 +23,33 @@ function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg, Spell) {
 	if (!dmg) dmg = 0;
 	var type = (Damage) ? Damage.type : "";
 	var effect = false;
+	var resistStun = 0;
+	let resistDamage = 0;
+	let dmgDealt = 0;
 
 	if (Damage) {
-		if (Damage.type != "inert")
-			Enemy.hp -= dmg;
-		if (Damage.type == "stun" || Damage.type == "electric") {
+		if (Enemy.Enemy.tags) {
+			if (Enemy.Enemy.tags.includes(Damage.type + "immune")) resistDamage = 2;
+			else if (Enemy.Enemy.tags.includes(Damage.type + "resist")) resistDamage = 1;
+			else if (Enemy.Enemy.tags.includes(Damage.type + "weakness")) resistDamage = -1;
+			if (Enemy.Enemy.tags.includes("unstoppable")) resistStun = 2;
+			else if (Enemy.Enemy.tags.includes("unflinching")) resistStun = 1;
+		}
+		
+		if (Damage.type != "inert" && resistDamage < 2)
+			if (resistDamage == 1)
+				dmgDealt = Math.max(1, dmg-1); // Enemies that resist the damage type can only take 1 damage, and if they would take damage it deals 0 damage
+			else if (resistDamage == -1)
+				dmgDealt = Math.max(dmg+1, Math.floor(dmg*1.5)); // Enemies that are vulnerable take either dmg+1 or 1.5x damage, whichever is greater
+			else
+				dmgDealt = dmg
+			Enemy.hp -= dmgDealt;
+		if ((resistStun < 2 && resistDamage < 2) && (Damage.type == "stun" || Damage.type == "electric")) { // Being immune to the damage stops the stun as well
 			effect = true;
 			if (!Enemy.stun) Enemy.stun = 0;
-			Enemy.stun = Math.max(Enemy.stun, Damage.time);
+			else if (resistStun == 1)
+				Enemy.stun = Math.max(Enemy.stun, Math.min(1, Damage.time-1)); // Enemies with stun resistance can't be stunned more than one turn, and anything that stuns them for one turn doesn't affect them
+			else Enemy.stun = Math.max(Enemy.stun, Damage.time);
 		}
 	}
 
@@ -40,7 +59,7 @@ function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg, Spell) {
 		KinkyDungeonKilledEnemy = Enemy;
 	}
 
-	if (!NoMsg) KinkyDungeonSendActionMessage(3, (Damage) ? TextGet((Ranged) ? "PlayerRanged" : "PlayerAttack").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)).replace("AttackName", atkname).replace("DamageDealt", dmg) : TextGet("PlayerMiss").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)),
+	if (!NoMsg) KinkyDungeonSendActionMessage(3, (Damage) ? TextGet((Ranged) ? "PlayerRanged" : "PlayerAttack").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)).replace("AttackName", atkname).replace("DamageDealt", dmgDealt) : TextGet("PlayerMiss").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)),
 			(Damage && (dmg > 0 || effect)) ? "orange" : "red", 2);
 
 	return dmg;
