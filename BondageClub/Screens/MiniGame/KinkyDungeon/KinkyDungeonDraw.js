@@ -334,13 +334,7 @@ function KinkyDungeonHandleHUD() {
 						let y = KinkyDungeonTargetTileLocation.split(',')[1]
 						KinkyDungeonMapSet(parseInt(x), parseInt(y), "a")
 						KinkyDungeonUpdateStats(0)
-					} else if (1 >= KinkyDungeonActionMessagePriority) {
-						KinkyDungeonActionMessageTime = 1
-								
-						KinkyDungeonActionMessage = TextGet("KinkyDungeonPayShrineFail")
-						KinkyDungeonActionMessagePriority = 1
-						KinkyDungeonActionMessageColor = "red"
-					}
+					} else KinkyDungeonSendActionMessage(1, TextGet("KinkyDungeonPayShrineFail"), "red", 1)
 					
 				}
 				
