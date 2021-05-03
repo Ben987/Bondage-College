@@ -2,7 +2,7 @@
 var KinkyDungeonEnemies = [
 	{name: "BlindZombie", tags: ["zombie", "melee", "ribbonRestraints"], followRange: 1, AI: "wander", visionRadius: 1, maxhp: 8, minLevel:0, weight:14, movePoints: 3, attackPoints: 3, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {}, floors:[0], dropTable: [{name: "Gold", amountMin: 20, amountMax: 40, weight: 2}, {name: "Gold", amountMin: 13, amountMax: 23, weight: 5}]},
 	{name: "FastZombie", tags: ["zombie", "melee", "ribbonRestraints"], followRange: 1, AI: "guard", visionRadius: 6, maxhp: 10, minLevel:4, weight:6, movePoints: 3, attackPoints: 2, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":10, "lastthird":14}, floors:[0], dropTable: [{name: "Gold", amountMin: 50, amountMax: 80, weight: 2}, {name: "Gold", amountMin: 15, amountMax: 29, weight: 5}]},
-	{name: "RopeSnake", tags: ["construct", "melee", "ropeRestraints", "minor"], followRange: 1, AI: "wander", visionRadius: 3, maxhp: 4, minLevel:1, weight:8, movePoints: 1, attackPoints: 2, attack: "MeleeBindSuicide", attackWidth: 3, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":4, "lastthird":2}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8]},
+	{name: "RopeSnake", tags: ["construct", "melee", "ropeRestraints", "minor"], followRange: 1, AI: "wander", attackWhileMoving: true, visionRadius: 3, maxhp: 4, minLevel:1, weight:8, movePoints: 1, attackPoints: 2, attack: "MeleeBindSuicide", attackWidth: 3, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":4, "lastthird":2}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8]},
 	{name: "Rat", tags: ["beast", "melee", "minor"], followRange: 1, AI: "guard", visionRadius: 4, maxhp: 4, minLevel:0, weight:3, movePoints: 1.5, attackPoints: 2, attack: "MeleeWill", attackWidth: 1, attackRange: 1, power: 4, dmgType: "pain", terrainTags: {"rubble":20}, floors:[0, 1, 2, 3]},
 	{name: "WitchShock", tags: ["witch", "ranged", "elite", "miniboss"], followRange: 2, castWhileMoving: true, spells: ["Electrify"], spellCooldownMult: 1, spellCooldownMod: 0, hp: 14, AI: "hunt", visionRadius: 6, maxhp: 14, minLevel:2, weight:10, movePoints: 2, attackPoints: 2, attack: "Spell", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", terrainTags: {"secondhalf":2, "lastthird":1, "miniboss": -5}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropTable: [{name: "RedKey", weight: 3}, {name: "GreenKey", weight: 2}, {name: "BlueKey", weight: 1}]},
 
@@ -79,6 +79,24 @@ function KinkyDungeonDrawEnemiesWarning(canvasOffsetX, canvasOffsetY, CamX, CamY
 	}
 }
 
+function KinkyDungeonEnemyCheckHP(enemy, E) {
+	if (enemy.hp <= 0) {
+		KinkyDungeonEntities.splice(E, 1);
+		if (enemy == KinkyDungeonKilledEnemy && enemy.Enemy.maxhp > KinkyDungeonActionMessagePriority-1) {
+
+			KinkyDungeonActionMessageTime = 1;
+			KinkyDungeonActionMessage = TextGet("Kill"+enemy.Enemy.name);
+			KinkyDungeonActionMessageColor = "orange";
+			KinkyDungeonActionMessagePriority = 1;
+
+			KinkyDungeonKilledEnemy = null;
+		}
+
+		KinkyDungeonItemDrop(enemy.x, enemy.y, enemy.Enemy.dropTable);
+		return true;
+	}
+	return false;
+}
 
 function KinkyDungeonCheckLOS(enemy, distance, maxdistance) {
 	return distance <= maxdistance+0.1 && KinkyDungeonCheckPath(enemy.x, enemy.y, KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y);
@@ -89,22 +107,8 @@ function KinkyDungeonUpdateEnemies(delta) {
 		var enemy = KinkyDungeonEntities[E];
 
 		// Delete the enemy
-		if (enemy.hp <= 0) {
-			KinkyDungeonEntities.splice(E, 1);
-			E -= 1;
-			if (enemy == KinkyDungeonKilledEnemy && enemy.Enemy.maxhp > KinkyDungeonActionMessagePriority-1) {
-
-				KinkyDungeonActionMessageTime = 1;
-				KinkyDungeonActionMessage = TextGet("Kill"+enemy.Enemy.name);
-				KinkyDungeonActionMessageColor = "orange";
-				KinkyDungeonActionMessagePriority = 1;
-
-				KinkyDungeonKilledEnemy = null;
-			}
-
-			KinkyDungeonItemDrop(enemy.x, enemy.y, enemy.Enemy.dropTable);
-			continue;
-		}
+		if (KinkyDungeonEnemyCheckHP(enemy, E)) { E -= 1; continue;}
+		
 
 		if (!enemy.castCooldown) enemy.castCooldown = 0;
 		if (enemy.castCooldown > 0) enemy.castCooldown = Math.max(0, enemy.castCooldown-delta);
@@ -293,9 +297,10 @@ function KinkyDungeonUpdateEnemies(delta) {
 			enemy.attackPoints = 0;
 			enemy.warningTiles = [];
 		}
-
-
-
+		
+		
+		// Delete the enemy
+		if (KinkyDungeonEnemyCheckHP(enemy, E)) { E -= 1;}
 	}
 }
 

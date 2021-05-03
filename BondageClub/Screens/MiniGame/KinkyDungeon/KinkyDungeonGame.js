@@ -282,7 +282,7 @@ function KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, heigh
 	// Populate the chests
 	for (let X = 1; X < width; X += 1)
 		for (let Y = 1; Y < height; Y += 1)
-			if (KinkyDungeonMapGet(X, Y) == '0' && Math.random()) {
+			if (KinkyDungeonMapGet(X, Y) == '0') {
 				// Check the 3x3 area
 				let freecount = 0;
 				let freecount_diag = 0;
@@ -296,10 +296,10 @@ function KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, heigh
 
 				if (freecount >= 3 && freecount_diag >= 1)
 					shrinelist.push({x:X, y:Y});
-				else if (KinkyDungeonMapGet(X, Y) == "R" || KinkyDungeonMapGet(X, Y) == "r")
-					shrinelist.push({x:X, y:Y});
+				
 
-			}
+			} else if (KinkyDungeonMapGet(X, Y) == "R" || KinkyDungeonMapGet(X, Y) == "r")
+				shrinelist.push({x:X, y:Y});
 
 	// Truncate down to max chest count in a location-neutral way
     let count = 0;
