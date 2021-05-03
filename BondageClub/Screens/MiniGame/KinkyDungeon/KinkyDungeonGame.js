@@ -714,6 +714,30 @@ function KinkyDungeonGameKeyDown() {
 	
 }
 
+function KinkyDungeonSendTextMessage(priority, text, color, time) {
+	if ( priority >= KinkyDungeonTextMessagePriority) {
+		KinkyDungeonTextMessageTime = time
+		KinkyDungeonTextMessage = text
+		KinkyDungeonTextMessageColor = color
+		KinkyDungeonTextMessagePriority = priority
+		return true;
+	}
+	return false;
+}
+
+
+function KinkyDungeonSendActionMessage(priority, text, color, time) {
+	if ( priority >= KinkyDungeonActionMessagePriority) {
+		KinkyDungeonActionMessageTime = time
+		KinkyDungeonActionMessage = text
+		KinkyDungeonActionMessageColor = color
+		KinkyDungeonActionMessagePriority = priority
+		return true;
+	}
+	return false;
+}
+
+
 function KinkyDungeonMove(moveDirection) {
 	var moveX = moveDirection.x + KinkyDungeonPlayerEntity.x
 	var moveY = moveDirection.y + KinkyDungeonPlayerEntity.y
@@ -731,12 +755,7 @@ function KinkyDungeonMove(moveDirection) {
 			if (KinkyDungeonTiles["" + moveX + "," + moveY]) {
 				KinkyDungeonTargetTileLocation = "" + moveX + "," + moveY
 				KinkyDungeonTargetTile = KinkyDungeonTiles[KinkyDungeonTargetTileLocation]
-				if ( 1 > KinkyDungeonTextMessagePriority) {
-					KinkyDungeonTextMessageTime = 2
-					KinkyDungeonTextMessage = TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name))
-					KinkyDungeonTextMessageColor = "#ffffff"
-					KinkyDungeonTextMessagePriority = 1
-				}
+				KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name)), "white", 1)
 			} else {
 				KinkyDungeonTargetTile = null
 				KinkyDungeonTargetTileLocation = ""
@@ -758,12 +777,8 @@ function KinkyDungeonMove(moveDirection) {
 						if (KinkyDungeonSlowLevel > 0) {
 							if ((moveDirection.x != 0 || moveDirection.y != 0))
 								KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta
-							else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax && 1 > KinkyDungeonTextMessagePriority) {
-								KinkyDungeonActionMessageTime = 2
-								
-								KinkyDungeonActionMessage = TextGet("Wait")
-								KinkyDungeonActionMessagePriority = 0
-								KinkyDungeonActionMessageColor = "lightgreen"
+							else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax) {
+								KinkyDungeonSendActionMessage(1, TextGet("Wait"), "lightgreen", 2)
 							}
 						}
 						
@@ -803,12 +818,8 @@ function KinkyDungeonAdvanceTime(delta) {
 		MiniGameKinkyDungeonLevel += 1
 		KinkyDungeonSetCheckPoint()
 		
-		
-		KinkyDungeonActionMessagePriority = 10
-		KinkyDungeonActionMessageTime = 1
-		KinkyDungeonActionMessage = TextGet("ClimbDown")
-		KinkyDungeonActionMessageColor = "#ffffff"
-		
+		KinkyDungeonSendActionMessage(10, TextGet("ClimbDown"), "#ffffff", 1)
+				
 		if (MiniGameKinkyDungeonCheckpoint >= 1) {
 			KinkyDungeonState = "End"
 			MiniGameVictory = true

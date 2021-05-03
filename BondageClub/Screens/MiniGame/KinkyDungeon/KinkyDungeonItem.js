@@ -45,12 +45,7 @@ function KinkyDungeonItemEvent(Item, Index) {
 		color = "lightgreen"
 		KinkyDungeonBlueKeys += 1
 	}
-	if (priority > KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 2
-			KinkyDungeonActionMessage = TextGet("ItemPickup" + Item.name).replace("XXX", Item.amount)
-			KinkyDungeonActionMessageColor = color
-			KinkyDungeonActionMessagePriority = priority
-		}
+	KinkyDungeonSendActionMessage(priority, TextGet("ItemPickup" + Item.name).replace("XXX", Item.amount), color, 2)
 }
 
 
