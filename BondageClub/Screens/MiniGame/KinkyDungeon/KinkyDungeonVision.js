@@ -19,7 +19,7 @@ function KinkyDungeonCheckPath(x1, y1, x2, y2) {
 }
 
 function KinkyDungeonMakeLightMap(width, height, Lights) {
-	let now = performance.now()
+	//let now = performance.now()
 	KinkyDungeonLightGrid = "";
 	// Generate the grid
 	for (let X = 0; X < KinkyDungeonGridHeight; X++) {
@@ -104,7 +104,7 @@ function KinkyDungeonMakeLightMap(width, height, Lights) {
 				}*/
 
 	}
-	console.log("Vision Check " + (performance.now() - now));
+	//console.log("Vision Check " + (performance.now() - now));
 
 }
 

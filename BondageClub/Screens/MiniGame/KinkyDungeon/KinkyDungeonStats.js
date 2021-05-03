@@ -154,7 +154,7 @@ function KinkyDungeonDrawStats(x, y, width, heightPerBar) {
 
 
 function KinkyDungeonUpdateStats(delta) {
-	let now = performance.now()
+	//let now = performance.now()
 	// Initialize
 	var arousalRate = KinkyDungeonStatArousalRegen;
 	if (KinkyDungeonStatWillpowerExhaustion > 0) {
@@ -169,17 +169,17 @@ function KinkyDungeonUpdateStats(delta) {
 	KinkyDungeonStaminaRate += KinkyDungeonStatArousal / 100 * KinkyDungeonStatArousalRegenStaminaRegenFactor;
 
 	// If below a threshold, willpower starts to drain
-	if (KinkyDungeonStatStamina <= KinkyDungeonWillpowerDrainLowStaminaThreshold) willpowerRate += KinkyDungeonWillpowerDrainLowStamina; console.log("Regen rate Check " + (performance.now() - now));
+	if (KinkyDungeonStatStamina <= KinkyDungeonWillpowerDrainLowStaminaThreshold) willpowerRate += KinkyDungeonWillpowerDrainLowStamina;// console.log("Regen rate Check " + (performance.now() - now));
 
 	// Update the player tags based on the player's groups
-	KinkyDungeonPlayerTags = KinkyDungeonUpdateRestraints(delta); console.log("Restraints Tags Check " + (performance.now() - now));
+	KinkyDungeonPlayerTags = KinkyDungeonUpdateRestraints(delta);// console.log("Restraints Tags Check " + (performance.now() - now));
 
 	KinkyDungeonBlindLevel = Math.max(0, KinkyDungeonPlayer.GetBlindLevel());
 	if (KinkyDungeonStatBlind > 0) KinkyDungeonBlindLevel = 3;
 	KinkyDungeonDeaf = KinkyDungeonPlayer.IsDeaf();
 
 	// Slowness calculation
-	KinkyDungeonCalculateSlowLevel(); console.log("Blind Check " + (performance.now() - now));
+	KinkyDungeonCalculateSlowLevel();// console.log("Blind Check " + (performance.now() - now));
 	
 
 	// Unarmed damage calc
@@ -193,12 +193,12 @@ function KinkyDungeonUpdateStats(delta) {
 	if (KinkyDungeonPlayer.Pose.includes("Hogtied") || KinkyDungeonPlayer.Pose.includes("Kneel")) {
 		KinkyDungeonPlayerDamage /= 2;
 	}
-	 console.log("Unarmed Damage Check " + (performance.now() - now));
+	//console.log("Unarmed Damage Check " + (performance.now() - now));
 
 
-	KinkyDungeonUpdateStruggleGroups(); console.log("Struggle Groups Check " + (performance.now() - now));
+	KinkyDungeonUpdateStruggleGroups();// console.log("Struggle Groups Check " + (performance.now() - now));
 
-	KinkyDungeonDressPlayer();  console.log("Dress Check " + (performance.now() - now));
+	KinkyDungeonDressPlayer();//  console.log("Dress Check " + (performance.now() - now));
 
 	// Cap off the values between 0 and maximum
 	KinkyDungeonStatArousal = Math.max(0, Math.min(KinkyDungeonStatArousal + arousalRate*delta, KinkyDungeonStatArousalMax));

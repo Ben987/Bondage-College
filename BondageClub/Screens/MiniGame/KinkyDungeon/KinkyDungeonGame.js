@@ -294,7 +294,7 @@ function KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, heigh
 							else
 								freecount_diag += 1;
 
-				if (freecount >= 3 && freecount_diag >= 1)
+				if (freecount >= 4 && freecount_diag >= 1)
 					shrinelist.push({x:X, y:Y});
 				
 
@@ -805,7 +805,7 @@ function KinkyDungeonMove(moveDirection) {
 
 
 function KinkyDungeonAdvanceTime(delta) {
-	let now = performance.now()
+	//let now = performance.now()
 	// Here we move enemies and such
 	KinkyDungeonUpdateLightGrid = true;
 	if (KinkyDungeonTextMessageTime > 0) KinkyDungeonTextMessageTime -= 1;
@@ -814,10 +814,10 @@ function KinkyDungeonAdvanceTime(delta) {
 	if (KinkyDungeonActionMessageTime <= 0) KinkyDungeonActionMessagePriority = 0;
 
 	// Updates the character's stats
-	KinkyDungeonItemCheck(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, MiniGameKinkyDungeonLevel); console.log("Item Check " + (performance.now() - now));
-	KinkyDungeonUpdateBullets(delta); console.log("Bullets Check " + (performance.now() - now));
-	KinkyDungeonUpdateEnemies(delta); console.log("Enemy Check " + (performance.now() - now));
-	KinkyDungeonUpdateBulletsCollisions(delta); console.log("Bullet Check " + (performance.now() - now));
+	KinkyDungeonItemCheck(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, MiniGameKinkyDungeonLevel); //console.log("Item Check " + (performance.now() - now));
+	KinkyDungeonUpdateBullets(delta); //console.log("Bullets Check " + (performance.now() - now));
+	KinkyDungeonUpdateEnemies(delta); //console.log("Enemy Check " + (performance.now() - now));
+	KinkyDungeonUpdateBulletsCollisions(delta); //console.log("Bullet Check " + (performance.now() - now));
 	KinkyDungeonUpdateStats(delta);
 
 
