@@ -100,7 +100,7 @@ function KinkyDungeonEnemyCheckHP(enemy, E) {
 	return false;
 }
 
-function KinkyDungeonCheckLOS(enemy, player, player, distance, maxdistance) {
+function KinkyDungeonCheckLOS(enemy, player, distance, maxdistance) {
 	return distance <= maxdistance+0.1 && KinkyDungeonCheckPath(enemy.x, enemy.y, player.x, player.y);
 }
 
@@ -313,7 +313,7 @@ function KinkyDungeonNoEnemy(x, y, Player) {
 
 	if (KinkyDungeonEnemyAt(x, y)) return false;
 	if (Player) 
-		for (let P = 0; P < KinkyDungeonPlayers; P++)
+		for (let P = 0; P < KinkyDungeonPlayers.length; P++)
 			if ((KinkyDungeonPlayers[P].x == x && KinkyDungeonPlayers[P].y == y)) return false;
 	return true;
 }
