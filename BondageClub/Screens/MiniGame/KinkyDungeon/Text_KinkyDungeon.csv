@@ -98,7 +98,7 @@ AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
 
 KinkyDungeonNoMana,"You do not have enough stamina to cast the spell!"
 PlayerAttack,"You attack the TargetEnemy for DamageDealt damage!"
-PlayerRanged,"Your AttackName hits the TargetEnemy for DamageDealt damage!"
+PlayerRanged,"AttackName hits the TargetEnemy for DamageDealt damage!"
 KinkyDungeonBasicAttack,attack
 PlayerMiss,"You miss the TargetEnemy!"
 KinkyDungeonStruggleStruggleFail,"You tug on the TargetRestraint but fail to make progress."

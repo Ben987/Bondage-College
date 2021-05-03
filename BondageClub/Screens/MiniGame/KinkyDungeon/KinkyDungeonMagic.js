@@ -262,11 +262,13 @@ function KinkyDungeonHandleMagic() {
 
 // https://stackoverflow.com/questions/14484787/wrap-text-in-javascript
 function KinkyDungeonWordWrap(str, maxWidth) {
-    var newLineStr = "\n"; done = false; res = '';
+    let newLineStr = "\n";
+    let done = false;
+    let res = '';
     while (str.length > maxWidth) {                 
-        found = false;
+        let found = false;
         // Inserts new line at first whitespace of the line
-        for (i = maxWidth - 1; i >= 0; i--) {
+        for (let i = maxWidth - 1; i >= 0; i--) {
             if (KinkyDungeonTestWhite(str.charAt(i))) {
                 res = res + [str.slice(0, i), newLineStr].join('');
                 str = str.slice(i + 1);
