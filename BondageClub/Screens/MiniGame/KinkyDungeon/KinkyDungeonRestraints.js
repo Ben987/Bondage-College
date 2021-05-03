@@ -105,12 +105,7 @@ function KinkyDungeonRemoveKeys(lock) {
 }
 
 function KinkyDungeonWaitMessage() {
-	if ( 1 > KinkyDungeonActionMessagePriority) {
-		KinkyDungeonActionMessageTime = 2
-		KinkyDungeonActionMessage = TextGet("Wait")
-		KinkyDungeonActionMessageColor = "#AAAAAA"
-		KinkyDungeonActionMessagePriority = 0
-	}
+	KinkyDungeonSendActionMessage(1, TextGet("Wait"), "#AAAAAA", 2)
 }
 
 function KinkyDungeonPickAttempt() {
@@ -138,12 +133,7 @@ function KinkyDungeonPickAttempt() {
 		Pass = "Break"
 		KinkyDungeonLockpicks -= 1
 	}
-	if (2 >= KinkyDungeonActionMessagePriority) {
-		KinkyDungeonActionMessageTime = 1
-		KinkyDungeonActionMessage = TextGet("KinkyDungeonAttemptPick" + Pass).replace("TargetRestraint", TextGet("KinkyDungeonObject"))
-		KinkyDungeonActionMessageColor = (Pass == "Success") ? "lightgreen" : "red"
-		KinkyDungeonActionMessagePriority = 1
-	}
+	KinkyDungeonSendActionMessage(2, TextGet("KinkyDungeonAttemptPick" + Pass).replace("TargetRestraint", TextGet("KinkyDungeonObject")), (Pass == "Success") ? "lightgreen" : "red", 1)
 	return Pass == "Success"
 }
 
@@ -157,12 +147,7 @@ function KinkyDungeonUnlockAttempt(lock) {
 	
 	if (Math.random() < escapeChance)
 		Pass = "Success"
-	if (2 >= KinkyDungeonActionMessagePriority) {
-		KinkyDungeonActionMessageTime = 1
-		KinkyDungeonActionMessage = TextGet("KinkyDungeonStruggleUnlock" + Pass).replace("TargetRestraint", TextGet("KinkyDungeonObject"))
-		KinkyDungeonActionMessageColor = (Pass == "Success") ? "lightgreen" : "red"
-		KinkyDungeonActionMessagePriority = 1
-	}
+	KinkyDungeonSendActionMessage(2, TextGet("KinkyDungeonStruggleUnlock" + Pass).replace("TargetRestraint", TextGet("KinkyDungeonObject")), (Pass == "Success") ? "lightgreen" : "red", 1)
 	if (Pass == "Success") {
 		KinkyDungeonRemoveKeys(lock)
 		return true
@@ -197,13 +182,7 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 	}
 		
 	if (StruggleType == "Unlock" && !((restraint.lock == "Red" && KinkyDungeonRedKeys > 0) || (restraint.lock == "Green" && KinkyDungeonGreenKeys > 0) || (restraint.lock == "Yellow" && KinkyDungeonRedKeys > 0 && KinkyDungeonGreenKeys > 0) || (restraint.lock == "Blue" && KinkyDungeonBlueKeys > 0))) {
-		
-		if (10 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 2
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonStruggleUnlockNo" + ((KinkyDungeonPlayer.IsBlind() > 0) ? "Unknown" : restraint.lock) + "Key")
-			KinkyDungeonActionMessageColor = "orange"
-			KinkyDungeonActionMessagePriority = 10
-		}
+		KinkyDungeonSendActionMessage(10, TextGet("KinkyDungeonStruggleUnlockNo" + ((KinkyDungeonPlayer.IsBlind() > 0) ? "Unknown" : restraint.lock) + "Key"), "orange", 2)
 	} else {
 		
 		if (KinkyDungeonStatStamina + KinkyDungeonStaminaRate < -cost) {
@@ -252,15 +231,8 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 					}
 				}
 			}
-			
-			if (10 >= KinkyDungeonActionMessagePriority) {
-				KinkyDungeonActionMessageTime = 2
-				KinkyDungeonActionMessage = TextGet("KinkyDungeonStruggle" + StruggleType + Pass).replace("TargetRestraint", TextGet("Restraint" + restraint.restraint.name))
-				KinkyDungeonActionMessageColor = (Pass == "Success") ? "lightgreen" : "red"
-				KinkyDungeonActionMessagePriority = 10
-			}
-			
-			
+			KinkyDungeonSendActionMessage(10, TextGet("KinkyDungeonStruggle" + StruggleType + Pass).replace("TargetRestraint", TextGet("Restraint" + restraint.restraint.name)), (Pass == "Success") ? "lightgreen" : "red", 2)
+						
 			KinkyDungeonStatStamina += cost
 			
 			if (Pass != "Success") {

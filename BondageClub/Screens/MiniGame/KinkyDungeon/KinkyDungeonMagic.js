@@ -80,48 +80,19 @@ function KinkyDungeonResetMagic() {
 function KinkyDungeonPlayerEffect(playerEffect, spell) {
 	if (playerEffect.name == "Blind") {
 		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time)
-		if (KinkyDungeonActionMessagePriority <= 5) {
-			KinkyDungeonActionMessageTime = playerEffect.time
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonBlindSelf")
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 5
-		}
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonBlindSelf"), "red", playerEffect.time)
 	} else if (playerEffect.name == "MagicRope") {
-		
-		
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeArms"))
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeLegs"))
-		
-		
-		if (KinkyDungeonActionMessagePriority <= 5) {
-			KinkyDungeonActionMessageTime = playerEffect.time
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonMagicRopeSelf")
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 5
-		}
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonMagicRopeSelf"), "red", playerEffect.time)
 	} else if (playerEffect.name == "SlimeTrap") {
-		
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("StickySlime"))
-		
-		
-		if (KinkyDungeonActionMessagePriority <= 5) {
-			KinkyDungeonActionMessageTime = playerEffect.time
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonSlime")
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 5
-		}
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonSlime"), "red", playerEffect.time)
 	} else if (playerEffect.name == "Shock") {
 		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, 1)
 		KinkyDungeonMovePoints = -1
 		KinkyDungeonDealDamage({damage: spell.power, type: spell.damage})
-		
-		
-		if (KinkyDungeonActionMessagePriority <= 5) {
-			KinkyDungeonActionMessageTime = playerEffect.time
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonShock")
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 5
-		}
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonShock"), "red", playerEffect.time)
 	}
 }
 
@@ -139,20 +110,10 @@ function KinkyDungeonHandleSpellChoice(SpellChoice) {
 	if (KinkyDungeoCheckComponents(KinkyDungeonSpells[SpellChoice]).length == 0) {
 		if (KinkyDungeonGetCost(KinkyDungeonSpells[SpellChoice].level) <= KinkyDungeonStatStamina)
 			spell = KinkyDungeonSpells[SpellChoice]
-		else if (3 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 3
-		}
+		else KinkyDungeonSendActionMessage(3, TextGet("KinkyDungeonNoMana"), "red", 1)
 	} else {
 		KinkyDungeonTargetingSpell = ""
-		if (7 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[SpellChoice])[0])
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 7
-		}
+		KinkyDungeonSendActionMessage(7, TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[SpellChoice])[0]), "red", 1)
 	}
 	return spell
 }
@@ -169,13 +130,7 @@ function KinkyDungeonHandleSpell() {
 	if (spell) {
 		// Handle spell activation
 		KinkyDungeonTargetingSpell = spell
-		
-		if (5 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellTarget" + spell.name).replace("SpellArea", Math.floor(spell.aoe))
-			KinkyDungeonActionMessageColor = "white"
-			KinkyDungeonActionMessagePriority = 5
-		}
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonSpellTarget" + spell.name).replace("SpellArea", Math.floor(spell.aoe)), "white", 1)
 		return true;
 	}
 	return false;
@@ -212,13 +167,7 @@ function KinkyDungeonCastSpell(targetX, targetY, spell, enemy) {
 	}
 	
 	if (!enemy) { // Costs for the player
-	
-		if (2 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 2
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellCast"+spell.name)
-			KinkyDungeonActionMessageColor = "#88AAFF"
-			KinkyDungeonActionMessagePriority = 2
-		}
+		KinkyDungeonSendActionMessage(2, TextGet("KinkyDungeonSpellCast"+spell.name), "#88AAFF", 2)
 		
 		KinkyDungeonStatWillpowerExhaustion += spell.exhaustion + 1
 		KinkyDungeonStatStamina -= KinkyDungeonGetCost(spell.level)

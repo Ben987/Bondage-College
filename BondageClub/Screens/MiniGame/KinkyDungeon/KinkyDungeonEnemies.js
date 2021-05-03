@@ -1,9 +1,9 @@
 "use strict";
 var KinkyDungeonEnemies = [
-	{name: "BlindZombie", tags: ["zombie", "melee", "ribbonRestraints"], followRange: 0.5, AI: "wander", visionRadius: 1, maxhp: 8, minLevel:0, weight:14, movePoints: 3, attackPoints: 3, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {}, floors:[0], dropTable: [{name: "Gold", amountMin: 20, amountMax: 40, weight: 2}, {name: "Gold", amountMin: 13, amountMax: 23, weight: 5}]},
-	{name: "FastZombie", tags: ["zombie", "melee", "ribbonRestraints"], followRange: 0.5, AI: "guard", visionRadius: 6, maxhp: 10, minLevel:4, weight:6, movePoints: 3, attackPoints: 2, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":10, "lastthird":14}, floors:[0], dropTable: [{name: "Gold", amountMin: 50, amountMax: 80, weight: 2}, {name: "Gold", amountMin: 15, amountMax: 29, weight: 5}]},
-	{name: "RopeSnake", tags: ["construct", "melee", "ropeRestraints", "minor"], followRange: 0.5, AI: "wander", visionRadius: 3, maxhp: 4, minLevel:1, weight:8, movePoints: 1, attackPoints: 2, attack: "MeleeBindSuicide", attackWidth: 3, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":4, "lastthird":2}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8]},
-	{name: "Rat", tags: ["beast", "melee", "minor"], followRange: 0.5, AI: "guard", visionRadius: 4, maxhp: 4, minLevel:0, weight:3, movePoints: 1.5, attackPoints: 2, attack: "MeleeWill", attackWidth: 1, attackRange: 1, power: 4, dmgType: "pain", terrainTags: {"rubble":20}, floors:[0, 1, 2, 3]},
+	{name: "BlindZombie", tags: ["zombie", "melee", "ribbonRestraints"], followRange: 1, AI: "wander", visionRadius: 1, maxhp: 8, minLevel:0, weight:14, movePoints: 3, attackPoints: 3, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {}, floors:[0], dropTable: [{name: "Gold", amountMin: 20, amountMax: 40, weight: 2}, {name: "Gold", amountMin: 13, amountMax: 23, weight: 5}]},
+	{name: "FastZombie", tags: ["zombie", "melee", "ribbonRestraints"], followRange: 1, AI: "guard", visionRadius: 6, maxhp: 10, minLevel:4, weight:6, movePoints: 3, attackPoints: 2, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":10, "lastthird":14}, floors:[0], dropTable: [{name: "Gold", amountMin: 50, amountMax: 80, weight: 2}, {name: "Gold", amountMin: 15, amountMax: 29, weight: 5}]},
+	{name: "RopeSnake", tags: ["construct", "melee", "ropeRestraints", "minor"], followRange: 1, AI: "wander", visionRadius: 3, maxhp: 4, minLevel:1, weight:8, movePoints: 1, attackPoints: 2, attack: "MeleeBindSuicide", attackWidth: 3, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":4, "lastthird":2}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8]},
+	{name: "Rat", tags: ["beast", "melee", "minor"], followRange: 1, AI: "guard", visionRadius: 4, maxhp: 4, minLevel:0, weight:3, movePoints: 1.5, attackPoints: 2, attack: "MeleeWill", attackWidth: 1, attackRange: 1, power: 4, dmgType: "pain", terrainTags: {"rubble":20}, floors:[0, 1, 2, 3]},
 	{name: "WitchShock", tags: ["witch", "ranged", "elite", "miniboss"], followRange: 2, castWhileMoving: true, spells: ["Electrify"], spellCooldownMult: 1, spellCooldownMod: 0, hp: 14, AI: "hunt", visionRadius: 6, maxhp: 14, minLevel:2, weight:10, movePoints: 2, attackPoints: 2, attack: "Spell", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", terrainTags: {"secondhalf":2, "lastthird":1, "miniboss": -5}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropTable: [{name: "RedKey", weight: 3}, {name: "GreenKey", weight: 2}, {name: "BlueKey", weight: 1}]},
 
 ]
@@ -81,7 +81,7 @@ function KinkyDungeonDrawEnemiesWarning(canvasOffsetX, canvasOffsetY, CamX, CamY
 
 
 function KinkyDungeonCheckLOS(enemy, distance, maxdistance) {
-	return distance <= maxdistance && KinkyDungeonCheckPath(enemy.x, enemy.y, KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y)
+	return distance <= maxdistance+0.1 && KinkyDungeonCheckPath(enemy.x, enemy.y, KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y)
 }
 
 function KinkyDungeonUpdateEnemies(delta) {
@@ -215,15 +215,8 @@ function KinkyDungeonUpdateEnemies(delta) {
 							if (roll > KinkyDungeonTorsoGrabChance) {
 								KinkyDungeonMovePoints = -1
 								
-								if (2 > KinkyDungeonTextMessagePriority) {
-									KinkyDungeonTextMessageTime = 1
-									
-									KinkyDungeonTextMessage = TextGet("KinkyDungeonTorsoGrab")
-									KinkyDungeonTextMessagePriority = 2
-									
-									KinkyDungeonTextMessage = KinkyDungeonTextMessage.replace("EnemyName", TextGet("Name" + enemy.Enemy.name))
-									KinkyDungeonTextMessageColor = "yellow"
-								}
+								KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonTorsoGrab").replace("EnemyName", TextGet("Name" + enemy.Enemy.name)), "yellow", 1)
+								
 							}
 						}
 					}
@@ -266,16 +259,11 @@ function KinkyDungeonUpdateEnemies(delta) {
 						bound += KinkyDungeonAddRestraint(restraintAdd, enemy.Enemy.power) * 10
 						happened += bound
 
-						if (happened > 0 && happened > KinkyDungeonTextMessagePriority) {
-							KinkyDungeonTextMessageTime = 1
-							
-							KinkyDungeonTextMessage = TextGet("Attack"+enemy.Enemy.name + ((bound > 0) ? "Bind" : ""))
-							KinkyDungeonTextMessagePriority = happened
-							
+						if (happened > 0) {
+							KinkyDungeonSendTextMessage(happened, TextGet("Attack"+enemy.Enemy.name + ((bound > 0) ? "Bind" : "")), msgColor, 1)
 							if (replace)
 								for (let R = 0; R < replace.length; R++)
-									KinkyDungeonTextMessage = KinkyDungeonTextMessage.replace(replace[R].keyword, replace[R].value)
-							KinkyDungeonTextMessageColor = msgColor
+									KinkyDungeonTextMessage = KinkyDungeonTextMessage.replace(replace[R].keyword, replace[R].value)	
 						}
 					}
 					
