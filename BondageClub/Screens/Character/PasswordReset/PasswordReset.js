@@ -83,24 +83,24 @@ function PasswordResetClick() {
 
 	// If we must send the reset number info to the server
 	if ((MouseX >= 675) && (MouseX <= 975) && (MouseY >= 890) && (MouseY <= 950)) {
-		
+
 		// Make sure the passwords match
 		var AccountName = ElementValue("InputAccountName");
 		var ResetNumber = ElementValue("InputResetNumber");
 		var Password1 = ElementValue("InputPassword1");
-		var Password2 = ElementValue("InputPassword2");		
+		var Password2 = ElementValue("InputPassword2");
 		if (Password1 == Password2) {
 
 			// Validates the fields
 			var LN = /^[a-zA-Z0-9 ]+$/;
 			if (AccountName.match(LN) && ResetNumber.match(LN) && Password1.match(LN) && (AccountName.length > 0) && (AccountName.length <= 20) && (ResetNumber.length > 0) && (ResetNumber.length <= 20) && (Password1.length > 0) && (Password1.length <= 20)) {
-				
+
 				// Sends the reset query to the server
 				var data = {
 					AccountName: AccountName,
 					ResetNumber: ResetNumber,
 					NewPassword: Password1
-				}
+				};
 				ServerSend("PasswordResetProcess", data);
 
 			} else PasswordResetMessage = TextGet("InvalidResetInfo");

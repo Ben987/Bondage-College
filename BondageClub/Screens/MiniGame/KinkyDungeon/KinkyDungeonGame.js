@@ -198,6 +198,7 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 	var enemyCount = 4 + Math.floor(Floor/10 + width/20 + height/20)
 	var count = 0
 	var tries = 0
+	var miniboss = false
 	
 	// Create this number of enemies
 	while (count < enemyCount && tries < 1000) {
@@ -210,12 +211,15 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 			if (KinkyDungeonMapGet(X, Y) == 'R' || KinkyDungeonMapGet(X, Y) == 'r') tags.push("rubble")
 			if (Floor % 10 >= 5) tags.push("secondhalf")
 			if (Floor % 10 >= 8) tags.push("lastthird")
+			if (Floor % 10 >= 8) tags.push("lastthird")
+			if (miniboss) tags.push("miniboss")
 			
 			var Enemy = KinkyDungeonGetEnemy(tags, Floor, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint])
 			if (Enemy) {
-				KinkyDungeonEntities.push({Enemy: Enemy, x:X, y:Y, hp: Enemy.maxhp, movePoints: 0, attackPoints: 0})
+				KinkyDungeonEntities.push({Enemy: Enemy, x:X, y:Y, hp: (Enemy.startinghp) ? Enemy.startinghp : Enemy.maxhp, movePoints: 0, attackPoints: 0})
 				if (Enemy.tags.includes("minor")) count += 0.2; else count += 1; // Minor enemies count as 1/5th of an enemy
 				if (Enemy.tags.includes("elite")) count += 1 // Elite enemies count as 2 normal enemies
+				if (Enemy.tags.includes("miniboss")) miniboss = true // Adds miniboss as a tag
 				//console.log("Created a " + Enemy.name)
 			}
 		}
@@ -710,6 +714,30 @@ function KinkyDungeonGameKeyDown() {
 	
 }
 
+function KinkyDungeonSendTextMessage(priority, text, color, time) {
+	if ( priority >= KinkyDungeonTextMessagePriority) {
+		KinkyDungeonTextMessageTime = time
+		KinkyDungeonTextMessage = text
+		KinkyDungeonTextMessageColor = color
+		KinkyDungeonTextMessagePriority = priority
+		return true;
+	}
+	return false;
+}
+
+
+function KinkyDungeonSendActionMessage(priority, text, color, time) {
+	if ( priority >= KinkyDungeonActionMessagePriority) {
+		KinkyDungeonActionMessageTime = time
+		KinkyDungeonActionMessage = text
+		KinkyDungeonActionMessageColor = color
+		KinkyDungeonActionMessagePriority = priority
+		return true;
+	}
+	return false;
+}
+
+
 function KinkyDungeonMove(moveDirection) {
 	var moveX = moveDirection.x + KinkyDungeonPlayerEntity.x
 	var moveY = moveDirection.y + KinkyDungeonPlayerEntity.y
@@ -727,12 +755,7 @@ function KinkyDungeonMove(moveDirection) {
 			if (KinkyDungeonTiles["" + moveX + "," + moveY]) {
 				KinkyDungeonTargetTileLocation = "" + moveX + "," + moveY
 				KinkyDungeonTargetTile = KinkyDungeonTiles[KinkyDungeonTargetTileLocation]
-				if ( 1 > KinkyDungeonTextMessagePriority) {
-					KinkyDungeonTextMessageTime = 2
-					KinkyDungeonTextMessage = TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name))
-					KinkyDungeonTextMessageColor = "#ffffff"
-					KinkyDungeonTextMessagePriority = 1
-				}
+				KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name)), "white", 1)
 			} else {
 				KinkyDungeonTargetTile = null
 				KinkyDungeonTargetTileLocation = ""
@@ -754,12 +777,8 @@ function KinkyDungeonMove(moveDirection) {
 						if (KinkyDungeonSlowLevel > 0) {
 							if ((moveDirection.x != 0 || moveDirection.y != 0))
 								KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta
-							else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax && 1 > KinkyDungeonTextMessagePriority) {
-								KinkyDungeonActionMessageTime = 2
-								
-								KinkyDungeonActionMessage = TextGet("Wait")
-								KinkyDungeonActionMessagePriority = 0
-								KinkyDungeonActionMessageColor = "lightgreen"
+							else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax) {
+								KinkyDungeonSendActionMessage(1, TextGet("Wait"), "lightgreen", 2)
 							}
 						}
 						
@@ -799,12 +818,8 @@ function KinkyDungeonAdvanceTime(delta) {
 		MiniGameKinkyDungeonLevel += 1
 		KinkyDungeonSetCheckPoint()
 		
-		
-		KinkyDungeonActionMessagePriority = 10
-		KinkyDungeonActionMessageTime = 1
-		KinkyDungeonActionMessage = TextGet("ClimbDown")
-		KinkyDungeonActionMessageColor = "#ffffff"
-		
+		KinkyDungeonSendActionMessage(10, TextGet("ClimbDown"), "#ffffff", 1)
+				
 		if (MiniGameKinkyDungeonCheckpoint >= 1) {
 			KinkyDungeonState = "End"
 			MiniGameVictory = true

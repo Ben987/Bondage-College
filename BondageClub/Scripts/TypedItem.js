@@ -129,12 +129,17 @@ function TypedItemCreateClickFunction({ options, functionPrefix, drawImages }) {
  * @returns {void} - Nothing
  */
 function TypedItemCreatePublishFunction(data) {
-	const { functionPrefix, dialog, chatSetting } = data;
+	const { options, functionPrefix, dialog, chatSetting } = data;
 	const publishFunctionName = `${functionPrefix}PublishAction`;
-	window[publishFunctionName] = function (C, option, previousOption) {
+	window[publishFunctionName] = function (C, newOption, previousOption) {
 		let msg = dialog.chatPrefix;
+		if (typeof dialog.chatPrefix === "function") {
+			const previousIndex = options.indexOf(previousOption);
+			const newIndex = options.indexOf(newOption);
+			msg = dialog.chatPrefix({ previousOption, newOption, previousIndex, newIndex });
+		}
 		if (chatSetting === TypedItemChatSetting.FROM_TO) msg += `${previousOption.Name}To`;
-		msg += option.Name;
+		msg += newOption.Name;
 		const dictionary = TypedItemBuildChatMessageDictionary(C, data);
 		ChatRoomPublishCustomAction(msg, true, dictionary);
 	};
@@ -222,7 +227,8 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * @property {string} [TypePrefix] - A prefix for text keys for the display names of the item's individual types. This
  * will be suffixed with the option name to get the final key (i.e. "<typePrefix><optionName>"). Defaults to
  * "<groupName><assetName>"
- * @property {string} [ChatPrefix] - A prefix for text keys for chat messages triggered by the item. Chat message keys
+ * @property {string | TypedItemChatCallback} [ChatPrefix] - A prefix for text keys for chat messages triggered by the
+ * item. Chat message keys
  * will include the name of the new option, and depending on the chat setting, the name of the previous option:
  * - For chat setting FROM_TO: <chatPrefix><oldOptionName>To<newOptionName>
  * - For chat setting TO_ONLY: <chatPrefix><newOptionName>
@@ -252,4 +258,15 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * chatroom messages. Defaults to [{@link CommonChatTags.SOURCE_CHAR}, {@link CommonChatTags.DEST_CHAR}]
  * @property {boolean} [drawImages] - A boolean indicating whether or not images should be drawn in this item's extended
  * item menu. Defaults to true
+ */
+
+/**
+ * @callback TypedItemChatCallback
+ * @param {object} chatData - An object containing data about the type change that triggered the chat message
+ * @param {ExtendedItemOption} chatData.previousOption - The previously selected type option
+ * @param {ExtendedItemOption} chatData.newOption - The newly selected type option
+ * @param {number} chatData.previousIndex - The index of the previously selected type option in the item's options
+ * config
+ * @param {number} chatData.newIndex - The index of the newly selected type option in the item's options config
+ * @returns {string} - The chat prefix that should be used for this type change
  */

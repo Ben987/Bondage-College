@@ -77,14 +77,8 @@ function KinkyDungeonLoot(Level, Index, Type) {
 		if (selection > lootWeights[L].weight) {
 			var replace = false
 			
-			if (6 >= KinkyDungeonActionMessagePriority) {
-				KinkyDungeonActionMessageTime = lootWeights[L].loot.messageTime
-				KinkyDungeonActionMessage = TextGet(lootWeights[L].loot.message)
-				KinkyDungeonActionMessageColor = lootWeights[L].loot.messageColor
-				KinkyDungeonActionMessagePriority = 6
-				replace = true
-			}
-
+			replace = KinkyDungeonSendActionMessage(6, TextGet(lootWeights[L].loot.message), lootWeights[L].loot.messageColor, lootWeights[L].loot.messageTime)
+			
 			KinkyDungeonLootEvent(lootWeights[L].loot, Index, replace)
 			
 			break;
@@ -190,6 +184,12 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 			KinkyDungeonGetRestraintItem("ItemFeet").lock = KinkyDungeonGenerateLock(true)
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapLegirons"))
+	} else if (Loot.name == "trap_blindfold") {
+		value = Math.ceil((40 + 40 * Math.random()) * (1 + Index/2))
+		if (KinkyDungeonAddRestraint(KinkyDungeonGetRestraintByName("TrapBlindfold"), true) > 0)
+			KinkyDungeonGetRestraintItem("ItemHead").lock = KinkyDungeonGenerateLock(true)
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapBlindfold"))
 	}
 	
 	if (value > 0) {

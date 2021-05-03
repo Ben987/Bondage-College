@@ -118,7 +118,7 @@ function CharacterAppearanceSetDefault(C) {
 				var NA = {
 					Asset: CharacterAppearanceAssets[I],
 					Color: CharacterAppearanceAssets[I].Group.ColorSchema[0]
-				}
+				};
 				C.Appearance.push(NA);
 			}
 
@@ -129,7 +129,6 @@ function CharacterAppearanceSetDefault(C) {
 
 }
 
-// 
 /**
  * Checks wether an item group is required for this asset
  * @param {Character} C - The character, whose assets are used for the check
@@ -176,7 +175,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 	// For each item group (non default items only show at a 20% rate, if it can occasionally happen)
 	for (let A = 0; A < AssetGroup.length; A++)
 		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (AssetGroup[A].Random && Math.random() < 0.2) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && (!CharacterAppearanceMustHide(C, AssetGroup[A].Name) || !AssetGroup[A].AllowNone) && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None")) {
-			
+
 			// Get the parent size
 			var ParentSize = "";
 			if (AssetGroup[A].ParentSize != "")
@@ -214,7 +213,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 				var NA = {
 					Asset: SelectedAsset,
 					Color: SelectedColor
-				}
+				};
 				C.Appearance.push(NA);
 			}
 
@@ -225,7 +224,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 }
 
 /**
- * Removes all items that can be removed, making the character naked. Checks for a blocking of CosPlayItem removal. 
+ * Removes all items that can be removed, making the character naked. Checks for a blocking of CosPlayItem removal.
  * @param {Character} C - The character to undress
  * @returns {void} - Nothing
  */
@@ -274,7 +273,7 @@ function CharacterAppearanceStripLayer(C) {
 	var RemoveAsset = false;
 	for (let A = C.Appearance.length - 1; A >= 0; A--) {
 		RemoveAsset = false;
-		
+
 		if (!WardrobeGroupAccessible(C, C.Appearance[A].Asset.Group)) continue;
 		if (C.Appearance[A].Asset.Group.BodyCosplay || C.Appearance[A].Asset.BodyCosplay) {
 			if (HasBodyCosplay) RemoveAsset = true;
@@ -367,7 +366,7 @@ function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 		return false;
 	}
 
-	if (!C.DrawAppearance) C.DrawAppearance = C.Appearance
+	if (!C.DrawAppearance) C.DrawAppearance = C.Appearance;
 
 	for (let A = 0; A < C.DrawAppearance.length; A++) {
 		if (CharacterAppearanceItemIsHidden(C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name)) continue;
@@ -443,7 +442,7 @@ function CharacterAppearanceSetHeightModifiers(C) {
 					else Height += C.DrawAppearance[A].Asset.HeightModifier;
 				}
 		}
-		
+
 		// Limit values affectable by Property settings in case invalid values were set via console
 		if (Height > CanvasLowerOverflow) Height = CanvasLowerOverflow;
 		if (Height < -CanvasUpperOverflow) Height = -CanvasUpperOverflow;
@@ -579,7 +578,7 @@ function AppearanceMenuBuild(C) {
 			if (DialogInventory.length > 9) AppearanceMenu.push("Next");
 			break;
 	}
-	
+
 	// Add the exit buttons
 	if (CharacterAppearanceMode !== "Color") {
 		if (!DialogItemPermissionMode) AppearanceMenu.push("Cancel");
@@ -617,11 +616,11 @@ function AppearanceRun() {
 		CharacterAppearanceMenuMode = CharacterAppearanceMode;
 		AppearanceMenuBuild(C);
 	}
-	
+
 	// Draw the menu buttons at the top
 	AppearanceMenuDraw();
 
-	// In regular dress-up mode 
+	// In regular dress-up mode
 	if (CharacterAppearanceMode == "") {
 
 		// Creates buttons for all groups
@@ -647,7 +646,7 @@ function AppearanceRun() {
 				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", CanPickColor ? "#fff" : "#aaa", CanPickColor ? ColorIsSimple ? "Icons/Color.png" : "Icons/MultiColor.png" : "Icons/ColorBlocked.png", null, !CanPickColor);
 			}
 	}
-	
+
 	// In wardrobe mode
 	if (CharacterAppearanceMode == "Wardrobe") {
 
@@ -830,7 +829,7 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 			Difficulty: parseInt((ItemAsset.Difficulty == null) ? 0 : ItemAsset.Difficulty) + parseInt(DifficultyFactor),
 			Color: ((NewColor == null) ? ItemColor : NewColor),
 			Property: ItemAsset.CharacterRestricted ? {ItemMemberNumber: ItemMemberNumber == null ? -1 : ItemMemberNumber} : undefined
-		}
+		};
 		C.Appearance.push(NA);
 	}
 
@@ -1072,12 +1071,12 @@ function AppearanceClick() {
 				var Item = DialogInventory[I];
 				// In permission mode, we toggle the settings for an item
 				if (DialogItemPermissionMode) {
-					
+
 					var CurrentItem = InventoryGet(C, C.FocusGroup.Name);
-					
+
 					if (CurrentItem && (CurrentItem.Asset.Name == Item.Asset.Name)) return;
 					InventoryTogglePermission(Item, null);
-					
+
 				} else {
 					if (InventoryBlockedOrLimited(C, Item)) return;
 					if (InventoryAllow(C, Item.Asset.Prerequisite)) {
@@ -1213,7 +1212,7 @@ function AppearanceMenuClick(C) {
 function AppearanceExit() {
 	// We quit the extended item menu instead, if applicable.
 	if (CharacterAppearanceMode == "Cloth" && DialogFocusItem) {
-		DialogLeaveFocusItem();		
+		DialogLeaveFocusItem();
 		return;
 	}
 
@@ -1254,7 +1253,7 @@ function CharacterAppearanceExit(C) {
 }
 
 /**
- * Handle the confirmation click in the wardrobe screen. 
+ * Handle the confirmation click in the wardrobe screen.
  * @param {Character} C - The character who has been changed
  * @returns {void} - Nothing
  */

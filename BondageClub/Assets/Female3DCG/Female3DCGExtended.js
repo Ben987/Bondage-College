@@ -134,6 +134,27 @@ var AssetFemale3DCGExtended = {
 				},
 			},
 		}, // CeilingShackles
+		BitchSuit: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Latex",
+						Property: {
+							Type: null,
+							Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"],				
+						},
+					},
+					{
+						Name: "UnZip",
+						Property: {
+							Type: "UnZip",
+							Block: [],
+						},
+					},
+				],
+			},
+		}, // BitchSuit
 	}, // ItemArms
 	ItemHood: {
 		KirugumiMask: {
@@ -237,8 +258,398 @@ var AssetFemale3DCGExtended = {
 		ElfEars: {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "HairAccessory1", AssetName: "ElfEars" },
-		}
-	} // HairAccessory2
+		},
+	}, // HairAccessory2
+	ItemMouth: {
+		ClothGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Small",
+						Property: {
+							Type: null,
+							Effect: ["BlockMouth", "GagVeryLight"],
+						},
+					},
+					{
+						Name: "Cleave",
+						Property: {
+							Type: "Cleave",
+							Effect: ["BlockMouth", "GagLight"],
+						},
+					},
+					{
+						Name: "OTM",
+						Property: {
+							Type: "OTM",
+							Effect: ["BlockMouth", "GagEasy"],
+						},
+					},
+					{
+						Name: "OTN",
+						Property: {
+							Type: "OTN",
+							Effect: ["BlockMouth", "GagEasy"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectGagType",
+					TypePrefix: "ClothGagType",
+					ChatPrefix: "ClothGagSet",
+				},
+			},
+		}, // ClothGag
+		WiffleGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Normal",
+						Property: {
+							Type: null,
+							Effect: ["BlockMouth", "GagNormal"],
+						},
+					},
+					{
+						Name: "Tight",
+						Property: {
+							Type: "Tight",
+							Effect: ["BlockMouth", "GagNormal"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectGagType",
+					TypePrefix: "BallGagMouthType",
+					ChatPrefix: "BallGagMouthSet",
+				},
+			},
+		}, // WiffleGag
+		BallGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Normal",
+						Property: {
+							Type: null,
+							Effect: ["BlockMouth", "GagMedium"],
+						},
+					},
+					{
+						Name: "Shiny",
+						Property: {
+							Type: "Shiny",
+							Effect: ["BlockMouth", "GagMedium"],
+						},
+					},
+					{
+						Name: "Tight",
+						Property: {
+							Type: "Tight",
+							Effect: ["BlockMouth", "GagMedium"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectGagType",
+					TypePrefix: "BallGagMouthType",
+					ChatPrefix: "BallGagMouthSet",
+				},
+			},
+		}, // BallGag
+		HarnessBallGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "BallGag" },
+		},
+		DuctTape: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Small",
+						Property: {
+							Type: null,
+							Effect: ["BlockMouth", "GagVeryLight"],
+						},
+					},
+					{
+						Name: "Crossed",
+						Property: {
+							Type: "Crossed",
+							Effect: ["BlockMouth", "GagLight"],
+						},
+					},
+					{
+						Name: "Full",
+						Property: {
+							Type: "Full",
+							Effect: ["BlockMouth", "GagEasy"],
+						},
+					},
+					{
+						Name: "Double",
+						Property: {
+							Type: "Double",
+							Effect: ["BlockMouth", "GagNormal"],
+						},
+					},
+					{
+						Name: "Cover",
+						Property: {
+							Type: "Cover",
+							Effect: ["BlockMouth", "GagMedium"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectGagType",
+					TypePrefix: "DuctTapeMouthType",
+					ChatPrefix: "DuctTapeMouthSet",
+				},
+			},
+		}, // DuctTape
+		CupholderGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "NoCup",
+						Property: { Type: null },
+					},
+					{
+						Name: "Tip",
+						Property: { Type: null },
+					},
+					{
+						Name: "Cup",
+						Property: { Type: "Cup" },
+					},
+				],
+				Dialog: {
+					Load: "CupholderGagOptions",
+					TypePrefix: "CupholderGagOptions",
+					ChatPrefix: "CupholderGagSet",
+				},
+				DrawImages: false,
+			},
+		}, // CupholderGag
+		PumpGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Empty",
+						Property: {
+							Type: null,
+							InflateLevel: 0,
+							Difficulty: 0,
+							Effect: ["BlockMouth"],
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							InflateLevel: 1,
+							Difficulty: 2,
+							Effect: ["BlockMouth", "GagLight"],
+						},
+					},
+					{
+						Name: "Inflated",
+						Property: {
+							Type: "Inflated",
+							InflateLevel: 2,
+							Difficulty: 4,
+							Effect: ["BlockMouth", "GagEasy"],
+						},
+					},
+					{
+						Name: "Bloated",
+						Property: {
+							Type: "Bloated",
+							InflateLevel: 3,
+							Difficulty: 6,
+							Effect: ["BlockMouth", "GagMedium"],
+						},
+					},
+					{
+						Name: "Maximum",
+						Property: {
+							Type: "Maximum",
+							InflateLevel: 4,
+							Difficulty: 8,
+							Effect: ["BlockMouth", "GagVeryHeavy"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectInflateLevel",
+					TypePrefix: "InflateLevel",
+					ChatPrefix: ({ previousIndex, newIndex }) =>
+						`PumpGag${newIndex > previousIndex ? "pumps" : "deflates"}To`,
+				},
+				DrawImages: false,
+			},
+		}, // PumpGag
+		PlugGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Open",
+						Property: {
+							Type: null,
+							Effect: ["GagMedium", "OpenMouth"],
+						},
+					},
+					{
+						Name: "Plug",
+						Property: {
+							Type: "Plug",
+							Effect: ["BlockMouth", "GagTotal"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectGagType",
+					TypePrefix: "PlugGagMouthType",
+					ChatPrefix: "PlugGagMouthSet",
+				},
+			},
+		}, // PlugGag
+		DildoPlugGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Open",
+						Property: {
+							Type: null,
+							Effect: ["GagEasy", "OpenMouth"],
+						},
+					},
+					{
+						Name: "Plug",
+						Property: {
+							Type: "Plug",
+							Effect: ["BlockMouth", "GagTotal2"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectGagType",
+					TypePrefix: "PlugGagMouthType",
+					ChatPrefix: "DildoPlugGagMouthSet",
+				},
+			},
+		}, // DildoPlugGag
+		MilkBottle: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Rest",
+						Property: { Type: null },
+					},
+					{
+						Name: "Raised",
+						Property: { Type: "Raised" },
+					},
+					{
+						Name: "Chug",
+						Property: { Type: "Chug" },
+					},
+				],
+				Dialog: {
+					Load: "SelectMilkBottleState",
+					TypePrefix: "MilkBottle",
+					ChatPrefix: "MilkBottleSet",
+				},
+			},
+		}, // MilkBottle
+		FunnelGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: {
+							Type: null,
+							Effect: ["GagMedium", "OpenMouth"],
+						},
+					},
+					{
+						Name: "Funnel",
+						Property: {
+							Type: "Funnel",
+							Effect: ["BlockMouth", "GagMedium"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectGagType",
+					TypePrefix: "FunnelGagMouthType",
+					ChatPrefix: "FunnelGagMouthSet",
+				},
+			},
+		}, // FunnelGag
+	}, // ItemMouth
+	ItemMouth2: {
+		ClothGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "ClothGag" },
+		},
+		WiffleGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "WiffleGag" },
+		},
+		BallGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "BallGag" },
+		},
+		HarnessBallGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "BallGag" },
+		},
+		DuctTape: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "DuctTape" },
+		},
+		CupholderGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "CupholderGag" },
+		},
+	}, // ItemMouth2
+	ItemMouth3: {
+		ClothGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "ClothGag" },
+		},
+		WiffleGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "WiffleGag" },
+		},
+		BallGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "BallGag" },
+		},
+		HarnessBallGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "BallGag" },
+		},
+		DuctTape: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "DuctTape" },
+		},
+		CupholderGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemMouth", AssetName: "CupholderGag" },
+		},
+	}, // ItemMouth3
 };
 
 /**
@@ -255,11 +666,11 @@ var AssetFemale3DCGExtended = {
  * An object containing extended item definitions for a group. Maps asset names within the group to their extended item
  * configuration
  * @typedef ExtendedItemGroupConfig
- * @type {object.<string, ExtendedItemAssetConfig>}
+ * @type {Object.<string, ExtendedItemAssetConfig>}
  * @see {@link ExtendedItemAssetConfig}
  *
  * An object containing extended item configurations keyed by group name.
  * @typedef ExtendedItemConfig
- * @type {object.<string, ExtendedItemGroupConfig>}
+ * @type {Object.<string, ExtendedItemGroupConfig>}
  * @see {@link ExtendedItemAssetConfig}
  */

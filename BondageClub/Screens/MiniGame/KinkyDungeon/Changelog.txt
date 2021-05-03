@@ -2,7 +2,7 @@
 - First Beta Release
 
 
-1.3 (TBD)
+1.3 (Apr 26 2021)
 Content
 - Added locked chests which are scattered around the dungeon. Each floor is guaranteed to have at least one. You can either pick them or unlock them
 - Added key drops and lockpick drops around the dungeon. You can find them in debris piles, but not chests.
@@ -20,15 +20,19 @@ Content
 Balance
 - Made the rope snare have a 3 turn delay rather than a 1 turn delay, and a range of 1. This limits its in-combat use, while retaining its long duration and level 1 classification
 
+1.31 (TBD)
+Content (WIP)
+- Added a new enemy, a rope snake that sacrifices itself to wrap you up!
+- Added a new spell, Electrify (which will be cast at you by witches in the future)
 
-Future content planned for this release:
+Future content planned:
 - Ability to close nearby doors
 - Item shops scattered around the map, allowing you to buy swords and outfits
 - Magical rope traps which require enchanted knives to cut
 - Enchanted knives, which are found only in chests
-- Ice witches that cast ice spells at you from a distance
-- Latex witches that cast latex spells at you from a distance
-- Chain witches who attack with chains from mid-range
+- Shock witches that cast electrical AoE at you from a distance
+- Latex witches that cast latex and slime spells at you from a distance
+- Chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
 - Inventory system which lets you view special items and restraints (shows you how hard it is to break free from them... after you've struggled enough)
 - Mana-boosting mittens which increase spell power and decrease mana costs, but make it harder to struggle out of things
 - Enchanted heels which empower your melee attacks
@@ -36,6 +40,7 @@ Future content planned for this release:
 - More simple restraint traps: mittens, locked blindfolds/gags, leg irons, belts
 - Chastity belt trap that puts a plug in you, increasing your arousal while walking
 - Chastity belt trap that puts a toy in you. Toys are powered by casting magic
+- New shrine: chastity goddess. Places you in a set of magic cuffs that prevent you from being restrained. However if your willpower falls below maximum, the cuffs snap together until you get back to full willpower!
 
 Spell Ideas:
 - Clear Jam spell, which clears jammed green locks from either an object or the player, depending on where it is cast

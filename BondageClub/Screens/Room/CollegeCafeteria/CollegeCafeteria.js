@@ -11,13 +11,13 @@ var CollegeCafeteriaStudentFarRight = null;
  * @param {string} QueryStatus - The query to compare
  * @returns {boolean} - Returns true, if the query matches the state of Sidney, false otherwise
  */
-function CollegeCafeteriaSidneyStatusIs(QueryStatus) { return (QueryStatus == CollegeCafeteriaSidneyStatus) }
+function CollegeCafeteriaSidneyStatusIs(QueryStatus) { return (QueryStatus == CollegeCafeteriaSidneyStatus); }
 
 /**
  * CHecks, if Sidney can be invited to the player's room
  * @returns {boolean} - Returns true, if the player can invite Sidney, false otherwise
  */
-function CollegeCafeteriaCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && (CollegeCafeteriaSidneyLove > 10)) }
+function CollegeCafeteriaCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && (CollegeCafeteriaSidneyLove > 10)); }
 
 /**
  * Loads the cafeteria and generates Sidney according to her current state
@@ -39,7 +39,7 @@ function CollegeCafeteriaLoad() {
 
 	// Generates a full Sidney model based on the Bondage College template
 	if (CollegeCafeteriaSidney == null) {
-		
+
 		// If Sidney is away, we generate a random girl
 		CollegeCafeteriaSidney = CharacterLoadNPC("NPC_CollegeCafeteria_Sidney");
 		CollegeCafeteriaSidney.AllowItem = false;
@@ -76,7 +76,7 @@ function CollegeCafeteriaLoad() {
 		CollegeCafeteriaStudentFarRight = CharacterLoadNPC("NPC_CollegeCafeteria_FarRight");
 		CollegeCafeteriaStudentFarRight.AllowItem = false;
 		CollegeEntranceWearStudentClothes(CollegeCafeteriaStudentFarRight);
-		
+
 		// Sets the starting love level
 		if (CollegeCafeteriaSidneyStatus == "Lover") CollegeCafeteriaSidneyLove = 5;
 		if (CollegeCafeteriaSidneyStatus == "ExLover") CollegeCafeteriaSidneyLove = -2;

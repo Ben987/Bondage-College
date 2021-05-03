@@ -61,10 +61,10 @@ function KinkyDungeonDressPlayer() {
 	if (KinkyDungeonUndress > 0.8) BlushCounter += 1
 	
 	if (BlushCounter == 1) Blush = "Low"
-	else if (BlushCounter == 1) Blush = "Medium"
-	else if (BlushCounter == 1) Blush = "High"
-	else if (BlushCounter == 1) Blush = "VeryHigh"
-	else if (BlushCounter == 1) Blush = "Extreme"
+	else if (BlushCounter == 2) Blush = "Medium"
+	else if (BlushCounter == 3) Blush = "High"
+	else if (BlushCounter == 4) Blush = "VeryHigh"
+	else if (BlushCounter == 5) Blush = "Extreme"
 	
 	for (let A = 0; A < KinkyDungeonPlayer.Appearance.length; A++) {
 		if (KinkyDungeonPlayer.Appearance[A].Asset.Group.Name == "Blush") KinkyDungeonPlayer.Appearance[A].Property = { Expression: Blush };

@@ -84,13 +84,21 @@ KillFastZombie,"The zombie screeches and tumbles to the floor."
 AttackFastZombieBind,"The zombie viciously wraps you in charms (+RestraintAdded)"
 AttackFastZombie,"The zombie gropes your body! (-DamageTaken WP)"
 
+NameRopeSnake,Magic Rope
+KillRopeSnake,"The magic rope returns to being a normal rope."
+AttackRopeSnakeBind,"The magic rope wraps itself tightly around your body! (+RestraintAdded)"
+AttackRopeSnake,"The magic rope wriggles into your outfit! (-DamageTaken WP)"
+
+NameWitchShock,Shock Witch
+KillWitchShock,"The shock witch vanishes into a cloud of thunder, leaving behind a keyring."
+
 NameRat,Filthy Rat
 KillRat,"The rat skitters back into a hole in the wall."
 AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
 
 KinkyDungeonNoMana,"You do not have enough stamina to cast the spell!"
 PlayerAttack,"You attack the TargetEnemy for DamageDealt damage!"
-PlayerRanged,"Your AttackName hits the TargetEnemy for DamageDealt damage!"
+PlayerRanged,"AttackName hits the TargetEnemy for DamageDealt damage!"
 KinkyDungeonBasicAttack,attack
 PlayerMiss,"You miss the TargetEnemy!"
 KinkyDungeonStruggleStruggleFail,"You tug on the TargetRestraint but fail to make progress."
@@ -165,6 +173,10 @@ RestraintTrapHarness,Leather Harness
 RestraintTrapGag,Ball Gag
 RestraintTrapBoots,Slave Heels
 RestraintTrapLegirons,Leg Irons
+RestraintTrapBlindfold,Blindfold
+RestraintRopeSnakeArms,Rope Tie
+RestraintRopeSnakeLegs,Rope Tie
+RestraintRopeSnakeFeet,Rope Tie
 
 KinkyDungeonGroupItemHead,Face
 KinkyDungeonGroupItemHood,Head
@@ -190,6 +202,9 @@ KinkyDungeonGroupItemBoots,Feet
 KinkyDungeonGroupItemDevices,Device
 
 ItemPickupGold,"You picked up XXX gold."
+ItemPickupRedKey,"You picked up a red key."
+ItemPickupGreenKey,"You picked up a green key."
+ItemPickupBlueKey,"You picked up a blue key."
 
 
 KinkyDungeonBookElements,Ars Pyrotecnica
@@ -216,30 +231,42 @@ KinkyDungeonSpellFirebolt,Firebolt
 KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage
 KinkyDungeonSpellCastFirebolt,You a hurl a firebolt!
 KinkyDungeonSpellTargetFirebolt,Choose aim direction
+
 KinkyDungeonSpellIcebolt,Ice Shard
 KinkyDungeonSpellDescriptionIcebolt,A quick shard of ice that does DamageDealt damage and stuns for Duration turns.
 KinkyDungeonSpellCastIcebolt,You a hurl a shard of ice!
 KinkyDungeonSpellTargetIcebolt,Choose aim direction
+
+KinkyDungeonSpellElectrify,Electrify
+KinkyDungeonSpellDescriptionElectrify,A delayed shock that deals DamageDealt damage and stuns for Duration turns.
+KinkyDungeonSpellCastElectrify,You charge up a burst of electricty!
+KinkyDungeonSpellTargetElectrify,Choose target location
+
 KinkyDungeonSpellFireball,Fireball
 KinkyDungeonSpellDescriptionFireball,A slow moving ball of flame that explodes for DamageDealt damage, double on a direct hit!
 KinkyDungeonSpellCastFireball,You a hurl a fireball!
 KinkyDungeonSpellTargetFireball,Choose aim direction
+
 KinkyDungeonSpellSnare,Rope Snare
 KinkyDungeonSpellDescriptionSnare,An invisible circle on the grounds that binds anyone who walks on it for Duration turns
 KinkyDungeonSpellCastSnare,You set an invisible trap!
 KinkyDungeonSpellTargetSnare,Select where to put the trap (it will be invisible)
+
 KinkyDungeonSpellFlash,Lesser Flash
 KinkyDungeonSpellDescriptionFlash,A flash of light which renders anyone caught within blind for Duration turns
 KinkyDungeonSpellCastFlash,You charge up a bright flash!
 KinkyDungeonSpellTargetFlash,Select where to center the flash (SpellArea radius)
+
 KinkyDungeonSpellGreaterFlash,Greater Flash
 KinkyDungeonSpellDescriptionGreaterFlash,A massive flash of light which renders anyone caught within blind for Duration turns
 KinkyDungeonSpellCastGreaterFlash,You charge up a bright flash!
 KinkyDungeonSpellTargetGreaterFlash,Select where to center the flash (SpellArea radius)
+
 KinkyDungeonSpellFocusedFlash,Focused Flash
 KinkyDungeonSpellTargetFocusedFlash,Select where to center the flash (SpellArea radius)
 KinkyDungeonSpellDescriptionFocusedFlash,A focused flash of light which renders anyone caught within blind for Duration turns
 KinkyDungeonSpellCastFocusedFlash,You slowly charge up a powerful flash!
+
 KinkyDungeonSpellSlime,Conjure Slime
 KinkyDungeonSpellDescriptionSlime,A huge pool of slime will slow enemies that step inside.
 KinkyDungeonSpellCastSlime,You throw a ball of slime!
@@ -248,6 +275,7 @@ KinkyDungeonSpellTargetSlime,Select where the slime will start (SpellArea radius
 KinkyDungeonBlindSelf,"You blinded yourself with your own magic!"
 KinkyDungeonMagicRopeSelf,"Your own rope trap springs upon you!"
 KinkyDungeonSlime,"You get caught in sticky slime!"
+KinkyDungeonShock,"You feel a powerful sensation run through your body!"
 
 KinkyDungeonInventory,"Open Inventory"
 KinkyDungeonMagic,"Open Magic"

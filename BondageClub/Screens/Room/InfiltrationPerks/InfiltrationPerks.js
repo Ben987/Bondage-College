@@ -79,7 +79,7 @@ function InfiltrationPerksRun() {
  */
 function InfiltrationPerksClick() {
 	if (MouseIn(1815, 75, 90, 90)) InfiltrationPerksExit();
-	if (InfiltrationSupervisor.Stage !== "End") 
+	if (InfiltrationSupervisor.Stage !== "End")
 		for (let P = 0; P < InfiltrationPerksList.length; P++)
 			if (MouseIn(150 + Math.floor(P / 8) * 850, 115 + ((P % 8) * 100), 64, 64))
 				InfiltrationPerksActivate(InfiltrationPerksList[P]);

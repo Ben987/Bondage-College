@@ -38,7 +38,7 @@ var MainHallRopeColor = "Default";
  * @returns {boolean} - True if player has any restraints or locks, False otherwise
  */
 function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
-	var needsHelp = false
+	var needsHelp = false;
 
 	for (let E = Player.Appearance.length - 1; E >= 0; E--) {
 		if (Player.Appearance[E].Asset.IsRestraint) {
@@ -49,7 +49,7 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
 		let LockList = MainHallStrongLocks.map(L => L.Name);
 		for (let L = 0; L < LockList.length; L++) {
 			if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == LockList[L]))) {
-				needsHelp = true
+				needsHelp = true;
 				break;
 			}
 		}
@@ -63,57 +63,57 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
  * Checks if the maid will help the player or not.  Maids are disabled from the quarters or when playing hardcore.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping in the maid quarters
  */
-function MainHallIsMaidsDisabled() { return ((LogValue("MaidsDisabled", "Maid") > CurrentTime) || (Player.GetDifficulty() >= 2)) }
+function MainHallIsMaidsDisabled() { return ((LogValue("MaidsDisabled", "Maid") > CurrentTime) || (Player.GetDifficulty() >= 2)); }
 
 /**
  * Checks if the maid will not help the player because she's playing on hardcore
  * @returns {boolean} - Returns TRUE if the difficulty is hardcore or more
  */
-function MainHallMaidsPlayingHardcore() { return (Player.GetDifficulty() >= 2) }
+function MainHallMaidsPlayingHardcore() { return (Player.GetDifficulty() >= 2); }
 
 /**
  * Checks for the dialog options to help the player know how much time is left before the maids can help them
  * @returns {boolean} - Returns TRUE if the remaining duration fits within the time range
  */
-function MainHallMaidsDisabledMinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire > 0 && expire < 600000 && Player.GetDifficulty() < 2) }
-function MainHallMaidsDisabledHourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 600000 && expire < 3600000 && Player.GetDifficulty() < 2) }
-function MainHallMaidsDisabledDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000 && expire < 86400000 && Player.GetDifficulty() < 2) }
-function MainHallMaidsDisabledDaysLeft2() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 86400000 && expire < 172800000 && Player.GetDifficulty() < 2) }
-function MainHallMaidsDisabledDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 172800000 && expire < 259200000 && Player.GetDifficulty() < 2) }
-function MainHallMaidsDisabledDaysLeft4() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 259200000 && expire < 345600000 && Player.GetDifficulty() < 2) }
-function MainHallMaidsDisabledDaysLeft5() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 345600000 && expire < 432000000 && Player.GetDifficulty() < 2) }
-function MainHallMaidsDisabledDaysLeft6() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 432000000 && expire < 518400000 && Player.GetDifficulty() < 2) }
-function MainHallMaidsDisabledDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 518400000 && expire < 604800000 && Player.GetDifficulty() < 2) }
-function MainHallMaidsDisabledBegForMore() { return ((LogValue("MaidsDisabled", "Maid") > CurrentTime) && (Player.GetDifficulty() < 2)) }
+function MainHallMaidsDisabledMinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire > 0 && expire < 600000 && Player.GetDifficulty() < 2); }
+function MainHallMaidsDisabledHourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 600000 && expire < 3600000 && Player.GetDifficulty() < 2); }
+function MainHallMaidsDisabledDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 3600000 && expire < 86400000 && Player.GetDifficulty() < 2); }
+function MainHallMaidsDisabledDaysLeft2() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 86400000 && expire < 172800000 && Player.GetDifficulty() < 2); }
+function MainHallMaidsDisabledDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 172800000 && expire < 259200000 && Player.GetDifficulty() < 2); }
+function MainHallMaidsDisabledDaysLeft4() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 259200000 && expire < 345600000 && Player.GetDifficulty() < 2); }
+function MainHallMaidsDisabledDaysLeft5() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 345600000 && expire < 432000000 && Player.GetDifficulty() < 2); }
+function MainHallMaidsDisabledDaysLeft6() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 432000000 && expire < 518400000 && Player.GetDifficulty() < 2); }
+function MainHallMaidsDisabledDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire >= 518400000 && expire < 604800000 && Player.GetDifficulty() < 2); }
+function MainHallMaidsDisabledBegForMore() { return ((LogValue("MaidsDisabled", "Maid") > CurrentTime) && (Player.GetDifficulty() < 2)); }
 
 /**
  * Checks for the dialog options to help the maid determine which dialog options she can give the player to extend the duration
  * @returns {boolean} - Returns TRUE if the remaining duration fits within the time range
  */
-function MainHallMaidsDisabledAtLeast30MinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 1800000) }
-function MainHallMaidsDisabledAtLeast1HourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 3600000) }
-function MainHallMaidsDisabledAtLeast12HourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 43200000) }
-function MainHallMaidsDisabledAtLeastDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 86400000) }
-function MainHallMaidsDisabledAtLeastDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 259200000) }
-function MainHallMaidsDisabledAtLeastDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 604800000) }
+function MainHallMaidsDisabledAtLeast30MinutesLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 1800000); }
+function MainHallMaidsDisabledAtLeast1HourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 3600000); }
+function MainHallMaidsDisabledAtLeast12HourLeft() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 43200000); }
+function MainHallMaidsDisabledAtLeastDaysLeft1() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 86400000); }
+function MainHallMaidsDisabledAtLeastDaysLeft3() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 259200000); }
+function MainHallMaidsDisabledAtLeastDaysLeft7() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime; return (expire < 604800000); }
 
 /**
  * Checks if the dialog option to trick the maid is available
  * @returns {boolean} - Returns TRUE if the maid can be tricked
  */
-function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlockQuest) }
+function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlockQuest); }
 
 /**
  * Checks, if the player has an owner or lover lock on her
  * @returns {boolean} - Returns true, if the player has either a lover or owner item on herself, false otherwise
  */
-function MainHallHasOwnerOrLoverItem() { return MainHallHasLoverLock || MainHallHasOwnerLock }
-function MainHallHasOwnerOrLoverItemAndMaidsNotDisabled() { return MainHallHasOwnerOrLoverItem() && !MainHallIsMaidsDisabled() }
-function MainHallHasNoOwnerOrLoverItemAndMaidsNotDisabled() { return !MainHallHasOwnerOrLoverItem() && !MainHallIsMaidsDisabled() }
-function MainHallHasOwnerItemAndMaidsNotDisabled() { return MainHallHasOwnerLock && !MainHallIsMaidsDisabled() }
-function MainHallHasLoverItemAndMaidsNotDisabled() { return MainHallHasLoverLock && !MainHallIsMaidsDisabled() }
-function MainHallHasSlaveCollarAndMaidsNotDisabled() { return MainHallHasSlaveCollar && !MainHallIsMaidsDisabled() }
-function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItemAndMaidsNotDisabled() { return  MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() && !MainHallIsMaidsDisabled() }
+function MainHallHasOwnerOrLoverItem() { return MainHallHasLoverLock || MainHallHasOwnerLock; }
+function MainHallHasOwnerOrLoverItemAndMaidsNotDisabled() { return MainHallHasOwnerOrLoverItem() && !MainHallIsMaidsDisabled(); }
+function MainHallHasNoOwnerOrLoverItemAndMaidsNotDisabled() { return !MainHallHasOwnerOrLoverItem() && !MainHallIsMaidsDisabled(); }
+function MainHallHasOwnerItemAndMaidsNotDisabled() { return MainHallHasOwnerLock && !MainHallIsMaidsDisabled(); }
+function MainHallHasLoverItemAndMaidsNotDisabled() { return MainHallHasLoverLock && !MainHallIsMaidsDisabled(); }
+function MainHallHasSlaveCollarAndMaidsNotDisabled() { return MainHallHasSlaveCollar && !MainHallIsMaidsDisabled(); }
+function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItemAndMaidsNotDisabled() { return  MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() && !MainHallIsMaidsDisabled(); }
 
 /**
  * Loads the main hall by setting up the NPCs, CSVs and global variables required.
@@ -453,7 +453,7 @@ function MainHallMaidReleasePlayer() {
 		// Added to remove maids being disabled
 		if (LogQuery("MaidsDisabled", "Maid")) {
 
-			LogDelete("MaidsDisabled", "Maid")
+			LogDelete("MaidsDisabled", "Maid");
 		}
 		MainHallMaid.Stage = "10";
 	} else MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "CannotRelease");
@@ -499,8 +499,8 @@ function MainHallPunishFromChatroom() {
 	MainHallHasLoverLock = InventoryCharacterHasLoverOnlyRestraint(Player);
 	if (ReputationGet("Dominant") > 10) ReputationProgress("Dominant", -10);
 	if (ReputationGet("Dominant") < -10) ReputationProgress("Dominant", 10);
-	
-	
+
+
 }
 /**
  * Triggered when the maid unlocks the player from a chat room
@@ -509,11 +509,11 @@ function MainHallPunishFromChatroom() {
 function MainHallPunishFromChatroomStartPunishment() {
 	CharacterRelease(Player);
 	CharacterNaked(Player);
-	
+
 	// Apply one of several preset restraints
 	// Also  apply timer locks to everything
-	var I = Math.floor(Math.random() * MainHallPunishmentList.length)
-	MainHallPunishmentChoice = I
+	var I = Math.floor(Math.random() * MainHallPunishmentList.length);
+	MainHallPunishmentChoice = I;
 }
 
 
@@ -522,7 +522,7 @@ function MainHallPunishFromChatroomStartPunishment() {
  * @returns {void} - Nothing
  */
 function MainHallPunishFromListEnd() {
-	ChatRoomSetLastChatRoom("")
+	ChatRoomSetLastChatRoom("");
 }
 
 /**
@@ -530,16 +530,16 @@ function MainHallPunishFromListEnd() {
  * @returns {void} - Nothing
  */
 function MainHallPunishFromChatroomInsertToy() {
-	var I = MainHallPunishmentChoice
+	var I = MainHallPunishmentChoice;
 	// We might lock in a toy under the chastity
 	if (MainHallPunishmentList[I].ItemVulva && InventoryGet(Player, "ItemVulva") == null) {
 		InventoryWear(Player, MainHallPunishmentList[I].ItemVulva, "ItemVulva");
 		InventoryGet(Player, "ItemVulva").Property = { Intensity: 1 };
 	}
-	
+
 	CharacterRefresh(Player);
-	
-	
+
+
 }
 
 /**
@@ -547,14 +547,14 @@ function MainHallPunishFromChatroomInsertToy() {
  * @returns {void} - Nothing
  */
 function MainHallPunishFromChatroomApplyChastity() {
-	var I = MainHallPunishmentChoice
+	var I = MainHallPunishmentChoice;
 	if (MainHallPunishmentList[I].ItemPelvis && InventoryGet(Player, "ItemPelvis") == null) {
 		InventoryWear(Player, MainHallPunishmentList[I].ItemPelvis, "ItemPelvis", "Default", Math.floor(Math.random()*10));
 	}
 	if (MainHallPunishmentList[I].ItemBreast && InventoryGet(Player, "ItemBreast") == null) {
 		InventoryWear(Player, MainHallPunishmentList[I].ItemBreast, "ItemBreast", "Default", Math.floor(Math.random()*10));
 	}
-	
+
 	CharacterRefresh(Player);
 }
 
@@ -564,14 +564,14 @@ function MainHallPunishFromChatroomApplyChastity() {
  * @returns {void} - Nothing
  */
 function MainHallPunishFromChatroomLockChastity() {
-	var I = MainHallPunishmentChoice
+	var I = MainHallPunishmentChoice;
 	if (MainHallPunishmentList[I].ItemPelvis && InventoryGet(Player, "ItemPelvis") == null) {
 		InventoryLock(Player, "ItemPelvis", "TimerPadlock", null);
 	}
 	if (MainHallPunishmentList[I].ItemBreast && InventoryGet(Player, "ItemBreast") == null) {
 		InventoryLock(Player, "ItemBreast", "TimerPadlock", null);
 	}
-	
+
 	CharacterRefresh(Player);
 }
 
@@ -580,8 +580,8 @@ function MainHallPunishFromChatroomLockChastity() {
  * @returns {void} - Nothing
  */
 function MainHallPunishFromChatroomGag() {
-	var I = MainHallPunishmentChoice
-	
+	var I = MainHallPunishmentChoice;
+
 	if (MainHallPunishmentList[I].ItemMouth) {
 		InventoryWear(Player, MainHallPunishmentList[I].ItemMouth, "ItemMouth", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemMouth", "TimerPadlock", null);
 	}
@@ -593,32 +593,32 @@ function MainHallPunishFromChatroomGag() {
  * @returns {void} - Nothing
  */
 function MainHallPunishFromChatroomArms() {
-	var I = MainHallPunishmentChoice
+	var I = MainHallPunishmentChoice;
 	if (I == 0) { // We do rope bondage, excluding the feet, but with a ballgag
 
-		MainHallRopeColor = "#F49EFF"
-		var roperand = Math.random()
+		MainHallRopeColor = "#F49EFF";
+		var roperand = Math.random();
 		if (roperand > 0.33) // Random chance of different color {
-			MainHallRopeColor = "#FF0000"
+			MainHallRopeColor = "#FF0000";
 		else if (roperand > 0.67)
-			MainHallRopeColor = "Default"
-		
-		
+			MainHallRopeColor = "Default";
+
+
 		// Wears more item with higher levels
 		InventoryWear(Player, "HempRope", "ItemArms", MainHallRopeColor, Math.floor(Math.random()*10));
 		if (Math.random() > 0.5) // Random chance of wrist elbow tie instead of boxtie
 			InventoryGet(Player, "ItemArms").Property = { Type: "WristElbowHarnessTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3};
 	} else {
 		if (MainHallPunishmentList[I].ItemArms) {
-			var ArmsColor = "Default"
+			var ArmsColor = "Default";
 			if (MainHallPunishmentList[I].ItemArms == "LatexBoxtieLeotard" || MainHallPunishmentList[I].ItemArms == "SeamlessStraitDress" ) {
-				ArmsColor = "#252525"
+				ArmsColor = "#252525";
 			}
 			InventoryWear(Player, MainHallPunishmentList[I].ItemArms, "ItemArms", ArmsColor, Math.floor(Math.random()*10)); InventoryLock(Player, "ItemArms", "TimerPadlock", null);
 		}
 	}
-	
-	
+
+
 	if (MainHallPunishmentList[I].ItemHands && Math.random() > 0.33) {
 		InventoryWear(Player, MainHallPunishmentList[I].ItemHands, "ItemHands", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemHands", "TimerPadlock", null);
 	}
@@ -630,17 +630,17 @@ function MainHallPunishFromChatroomArms() {
  * @returns {void} - Nothing
  */
 function MainHallPunishFromChatroomRest() {
-	var I = MainHallPunishmentChoice
-	
+	var I = MainHallPunishmentChoice;
+
 	if (I == 0) { // We do rope bondage, excluding the feet, but with a ballgag
-		
+
 
 		InventoryWear(Player, "HempRope", "ItemLegs", MainHallRopeColor, Math.floor(Math.random()*10));
 
-			
+
 
 	} else {
-	
+
 
 
 		if (MainHallPunishmentList[I].ItemLegs) {
@@ -658,11 +658,11 @@ function MainHallPunishFromChatroomRest() {
 			InventoryWear(Player, MainHallPunishmentList[I].ItemBoots, "ItemBoots", "Default", Math.floor(Math.random()*10)); InventoryLock(Player, "ItemBoots", "TimerPadlock", null);
 		}
 	}
-	
+
 	CharacterRefresh(Player);
-	
+
 	MainHallBeingPunished = false;
-	ChatRoomSetLastChatRoom("")
+	ChatRoomSetLastChatRoom("");
 }
 
 
@@ -746,6 +746,6 @@ function MainHallMaidIntroductionDone() {
 }
 
 function MainHallSetMaidsDisabled(minutes) {
-	var millis = minutes * 60000
+	var millis = minutes * 60000;
 	LogAdd("MaidsDisabled", "Maid", CurrentTime + millis);
 }

@@ -9,7 +9,7 @@ var RelogChatLog = null;
  * @returns {void} Nothing
  */
 function RelogLoad() {
-	
+
 	// Hides any HTML DOM element with the tag "HideOnPopup", like text boxes
 	var Elements = document.getElementsByClassName("HideOnPopup");
 	for (let E = 0; E < Elements.length; E++)
@@ -42,11 +42,11 @@ function RelogLoad() {
  * @returns {void} Nothing
  */
 function RelogRun() {
-	
+
 	// The previous darkened background is drawn
 	MainCanvas.drawImage(RelogCanvas, 0, 0);
 	const CanLogin = ServerIsConnected && !LoginSubmitted;
-	
+
 	// Draw the relog controls
 	if (!LoginMessage) LoginUpdateMessage();
 	if (LoginMessage != TextGet("EnterPassword")) DrawText(LoginMessage, 1000, 150, "White", "Black");

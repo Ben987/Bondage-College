@@ -13,9 +13,9 @@ var PhotographicSelectText = "";
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
  */
-function PhotographicIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ) }
+function PhotographicIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ); }
 
-function PhotographicPlayerCanChangeCloth() {return Player.CanChange() && !Player.IsRestrained()}
+function PhotographicPlayerCanChangeCloth() {return Player.CanChange() && !Player.IsRestrained();}
 function PhotographicPlayerHatAvailable() {return PhotographicAppearanceAvailable(Player, "Hat");}
 function PhotographicPlayerGlovesAvailable() {return PhotographicAppearanceAvailable(Player, "Gloves");}
 function PhotographicPlayerClothAvailable() {return PhotographicAppearanceAvailable(Player, "Cloth");}
@@ -25,7 +25,7 @@ function PhotographicPlayerSocksAvailable() {return (PhotographicAppearanceAvail
 function PhotographicPlayerBraAvailable() {return (PhotographicAppearanceAvailable(Player, "Bra")&&!PhotographicAppearanceAvailable(Player, "Cloth"));}
 function PhotographicPlayerPantiesAvailable() {return (PhotographicAppearanceAvailable(Player, "Panties")&&!PhotographicAppearanceAvailable(Player, "Cloth")&&!PhotographicAppearanceAvailable(Player, "ClothLower"));}
 
-function PhotographicSubIsRestrained() {return PhotographicSub.IsRestrained()}
+function PhotographicSubIsRestrained() {return PhotographicSub.IsRestrained();}
 function PhotographicSubHatAvailable() {return PhotographicAppearanceAvailable(PhotographicSub, "Hat");}
 function PhotographicSubGlovesAvailable() {return PhotographicAppearanceAvailable(PhotographicSub, "Gloves");}
 function PhotographicSubClothAvailable() {return PhotographicAppearanceAvailable(PhotographicSub, "Cloth");}
@@ -34,14 +34,14 @@ function PhotographicSubShoesAvailable() {return PhotographicAppearanceAvailable
 function PhotographicSubSocksAvailable() {return (PhotographicAppearanceAvailable(PhotographicSub, "Socks")&&!PhotographicAppearanceAvailable(PhotographicSub, "Shoes"));}
 function PhotographicSubBraAvailable() {return (PhotographicAppearanceAvailable(PhotographicSub, "Bra")&&!PhotographicAppearanceAvailable(PhotographicSub, "Cloth"));}
 function PhotographicSubPantiesAvailable() {return (PhotographicAppearanceAvailable(PhotographicSub, "Panties")&&!PhotographicAppearanceAvailable(PhotographicSub, "Cloth")&&!PhotographicAppearanceAvailable(PhotographicSub, "ClothLower"));}
-function PhotographicSubCanAskForPhoto() {return Player.CanTalk() && !PhotographicSub.IsRestrained()}
-function PhotographicSubCanWinkForPhoto() {return !Player.CanTalk() && !PhotographicSub.IsRestrained()}
+function PhotographicSubCanAskForPhoto() {return Player.CanTalk() && !PhotographicSub.IsRestrained();}
+function PhotographicSubCanWinkForPhoto() {return !Player.CanTalk() && !PhotographicSub.IsRestrained();}
 
-function PhotographicIsRestrainedWithLock() { return (Player.IsRestrained() && (InventoryCharacterHasLockedRestraint(Player))) }
-function PhotographicIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)) }
-function PhotographicIsRestrainedWithLockAndMaidsNotDisabled() { return (Player.IsRestrained() && (InventoryCharacterHasLockedRestraint(Player)) && !PhotographicIsMaidsDisabled()) }
-function PhotographicIsRestrainedWithoutLockAndMaidsNotDisabled() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player) && !PhotographicIsMaidsDisabled()) }
-function PhotographicIsMaidsDisabledAndRestrained() { return (Player.IsRestrained() && PhotographicIsMaidsDisabled() ) }
+function PhotographicIsRestrainedWithLock() { return (Player.IsRestrained() && (InventoryCharacterHasLockedRestraint(Player))); }
+function PhotographicIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)); }
+function PhotographicIsRestrainedWithLockAndMaidsNotDisabled() { return (Player.IsRestrained() && (InventoryCharacterHasLockedRestraint(Player)) && !PhotographicIsMaidsDisabled()); }
+function PhotographicIsRestrainedWithoutLockAndMaidsNotDisabled() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player) && !PhotographicIsMaidsDisabled()); }
+function PhotographicIsMaidsDisabledAndRestrained() { return (Player.IsRestrained() && PhotographicIsMaidsDisabled() ); }
 
 function PhotographicLoad() {
 	if (PhotographicSub == null) {
@@ -79,7 +79,7 @@ function PhotographicShotThePlayerPhoto() {
 }
 
 function PhotographicPlayerClothRemove(Group) {
-	InventoryRemove(Player, Group); 
+	InventoryRemove(Player, Group);
 }
 
 function PhotographicAppearanceAvailable(C, Group) {
@@ -94,7 +94,7 @@ function PhotographicAppearanceAvailable(C, Group) {
 function PhotographicPlayerAssetAvailable(Asset, Group) {
 	for (let I = Player.Inventory.length - 1; I > -1; I--)
 		if ((Player.Inventory[I].Name == Asset) && (Player.Inventory[I].Group == Group)) {return true;}
-	return false;	
+	return false;
 }
 
 function PhotographicPlayerRelease() {
@@ -129,7 +129,7 @@ function PhotographicSubSetPose(PoseName) {
 }
 
 function PhotographicSubClothRemove(Group) {
-	InventoryRemove(PhotographicSub, Group); 
+	InventoryRemove(PhotographicSub, Group);
 }
 
 function PhotographicStartInventoryPlayer(ItemGroup) {

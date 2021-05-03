@@ -14,7 +14,7 @@ var ArcadeCannotDoDeviousChallenge = false;
  */
 function ArcadeCanAskForHeadsetHelpBound() {
 	if (ArcadeCanPlayGames()) return false;
-	return !Player.CanInteract() && DialogInventoryAvailable("InteractiveVRHeadset", "ItemHead")
+	return !Player.CanInteract() && DialogInventoryAvailable("InteractiveVRHeadset", "ItemHead");
 }
 
 /**
@@ -81,11 +81,11 @@ function ArcadeBuyHeadset() {
  * @returns {void} - Nothing
  */
 function ArcadeToggleDeviousChallenge() {
-	ArcadeDeviousChallenge = !ArcadeDeviousChallenge
+	ArcadeDeviousChallenge = !ArcadeDeviousChallenge;
 	if (ArcadeDeviousChallenge)
-		LogAdd("DeviousChallenge", "Arcade", 1, true)
+		LogAdd("DeviousChallenge", "Arcade", 1, true);
 	else
-		LogDelete("DeviousChallenge", "Arcade", true)
+		LogDelete("DeviousChallenge", "Arcade", true);
 }
 
 /**
@@ -93,7 +93,7 @@ function ArcadeToggleDeviousChallenge() {
  * @returns {bool} - ArcadeDeviousChallenge
  */
 function ArcadeDeviousChallengeAllowed() {
-	return !ArcadeDeviousChallenge && !ArcadeCannotDoDeviousChallenge
+	return !ArcadeDeviousChallenge && !ArcadeCannotDoDeviousChallenge;
 }
 
 /**
@@ -101,7 +101,7 @@ function ArcadeDeviousChallengeAllowed() {
  * @returns {bool} - ArcadeDeviousChallenge
  */
 function ArcadeDeviousChallengeEnabled() {
-	return ArcadeDeviousChallenge
+	return ArcadeDeviousChallenge;
 }
 
 
@@ -113,18 +113,18 @@ function ArcadeLoad() {
 	ArcadeEmployee = CharacterLoadNPC("NPC_Arcade_Employee");
 	ArcadePlayer = CharacterLoadNPC("NPC_Arcade_Player");
 	InventoryWear(ArcadePlayer, "InteractiveVRHeadset","ItemHead");
-	
+
 	//if (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player)) {
-		ArcadeDeviousChallenge = LogValue("DeviousChallenge", "Arcade") == 1
+		ArcadeDeviousChallenge = LogValue("DeviousChallenge", "Arcade") == 1;
 	//	ArcadeCannotDoDeviousChallenge = false
 	//}
 	//else
 	//	ArcadeCannotDoDeviousChallenge = true
-	
+
 }
 
 /**
- * Run the Arcade room and draw characters. This function is called dynamically at short intervals. 
+ * Run the Arcade room and draw characters. This function is called dynamically at short intervals.
  * Don't use expensive loops or functions from here
  * @returns {void} - Nothing
  */
@@ -152,11 +152,11 @@ function ArcadeClick() {
 		ArcadePlayer.Stage = "0";
 		CharacterSetCurrent(ArcadePlayer);
 	}
-	
+
 	if (ArcadeCanPlayGames()) {
-		if (MouseIn(1885, 265, 90, 90)) ArcadeKinkyDungeonStart(ReputationGet("Gaming"))
-	} 
-	
+		if (MouseIn(1885, 265, 90, 90)) ArcadeKinkyDungeonStart(ReputationGet("Gaming"));
+	}
+
 	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 }
@@ -167,7 +167,7 @@ function ArcadeClick() {
  * @returns {void} - Nothing
  */
 function ArcadeKinkyDungeonStart(PlayerLevel) {
-	
+
 	MiniGameStart("KinkyDungeon", PlayerLevel, "ArcadeKinkyDungeonEnd");
 }
 
@@ -179,6 +179,6 @@ function ArcadeKinkyDungeonEnd() {
 	CommonSetScreen("Room", "Arcade");
 
 	if (MiniGameVictory) {
-		ReputationChange("Gaming", Math.max(ReputationGet("Gaming"), MiniGameKinkyDungeonCheckpoint))
+		ReputationChange("Gaming", Math.max(ReputationGet("Gaming"), MiniGameKinkyDungeonCheckpoint));
 	}
 }

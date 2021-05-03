@@ -44,12 +44,7 @@ function KinkyDungeonPayShrine(type) {
 		ShrineMsg = TextGet("KinkyDungeonPayShrineHeal")	
 	}
 	
-	if (ShrineMsg && 10 >= KinkyDungeonActionMessagePriority) {
-		KinkyDungeonActionMessageTime = 1
-		KinkyDungeonActionMessage = ShrineMsg
-		KinkyDungeonActionMessagePriority = 10
-		KinkyDungeonActionMessageColor = "lightblue"
-	}
+	if (ShrineMsg) KinkyDungeonSendActionMessage(10, ShrineMsg, "lightblue", 1);
 	
 	if (KinkyDungeonShrineCosts[type] > 0) KinkyDungeonShrineCosts[type] = KinkyDungeonShrineCosts[type] + 1;
 		else KinkyDungeonShrineCosts[type] = 1

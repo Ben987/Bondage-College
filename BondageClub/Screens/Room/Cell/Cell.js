@@ -56,7 +56,7 @@ function CellClick() {
 
 /**
  * Locks the player in the cell for the given amount of time
- * @param {number} LockTime - Number of minutes to be locked for 
+ * @param {number} LockTime - Number of minutes to be locked for
  * @returns {void} - Nothing
  */
 function CellLock(LockTime) {
@@ -66,7 +66,7 @@ function CellLock(LockTime) {
 
 /**
  * Takes away the player's keys for the given amount of time
- * @param {number} DepositTime - Number of hours to lose the keys for 
+ * @param {number} DepositTime - Number of hours to lose the keys for
  * @returns {void} - Nothing
  */
 function CellDepositKeys(DepositTime) {

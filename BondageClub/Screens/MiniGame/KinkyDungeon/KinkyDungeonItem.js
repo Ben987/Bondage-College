@@ -27,15 +27,25 @@ function KinkyDungeonItemDrop(x, y, dropTable) {
 }
 
 function KinkyDungeonItemEvent(Item, Index) {
+	let color = "white"
+	let priority = 1
 	if (Item.name == "Gold") {
-		if (1 > KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 2
-			KinkyDungeonActionMessage = TextGet("ItemPickup" + Item.name).replace("XXX", Item.amount)
-			KinkyDungeonActionMessageColor = "yellow"
-			KinkyDungeonActionMessagePriority = 1
-		}
+		color = "yellow"
 		KinkyDungeonAddGold(Item.amount)
+	} else if (Item.name == "RedKey") {
+		priority = 2
+		color = "lightgreen"
+		KinkyDungeonRedKeys += 1
+	} else if (Item.name == "GreenKey") {
+		priority = 2
+		color = "lightgreen"
+		KinkyDungeonGreenKeys += 1
+	} else if (Item.name == "BlueKey") {
+		priority = 2
+		color = "lightgreen"
+		KinkyDungeonBlueKeys += 1
 	}
+	KinkyDungeonSendActionMessage(priority, TextGet("ItemPickup" + Item.name).replace("XXX", Item.amount), color, 2)
 }
 
 

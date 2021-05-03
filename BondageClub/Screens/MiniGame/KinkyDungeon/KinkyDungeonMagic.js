@@ -21,7 +21,7 @@ var KinkyDungeonBooks = ["Elements", "Conjure", "Illusion"]
 var KinkyDungeonSpellsStart = [
 	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", power: 3, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
 	{name: "Snare", exhaustion: 1, components: ["Legs"], level:1, type:"inert", projectile:false, onhit:"lingering", lifetime:-1, time: 10, delay: 3, range: 1, damage: "stun", playerEffect: {name: "MagicRope", time: 3}}, // Creates a magic rope trap that creates magic ropes on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
-	
+
 ]
 
 
@@ -33,7 +33,9 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 	"Elements": [
 		{name: "Fireball", exhaustion: 6, components: ["Arms"], level:4, type:"bolt", projectile:true, onhit:"aoe", power: 4, delay: 0, range: 50, aoe: 1.5, size: 3, lifetime:1, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
 		{name: "Icebolt", exhaustion: 4, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2, delay: 0, range: 50, damage: "stun", speed: 2}, // Throws a blast of ice which stuns the target for 2 turns
-	],
+		{name: "Electrify", exhaustion: 2, components: ["Arms"], level:2, type:"inert", projectile:false, onhit:"aoe", power: 5, time: 1, delay: 1, range: 4, size: 1, aoe: 0.75, lifetime: 1, damage: "electric", playerEffect: {name: "Shock", time: 3}}, // A series of light shocks incapacitate you
+	
+		],
 	"Conjure": [
 		{name: "Slime", exhaustion: 5, components: ["Verbal"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 1, range: 4, size: 3, aoe: 2, lifetime: 9999, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
 		//{name: "PinkGas", exhaustion: 4, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 2, range: 4, size: 3, aoe: 2.5, lifetime: 9999, damage: "stun", playerEffect: {name: "PinkGas", time: 3}}, // Dizzying gas, increases arousal
@@ -44,6 +46,23 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 		{name: "GreaterFlash", exhaustion: 5, components: ["Verbal"], level:3, type:"inert", projectile:false, onhit:"aoe", time: 4, delay: 1, range: 2.5, size: 5, aoe: 2.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 3}}, // Much greater AoE. Careful not to get caught!
 		{name: "FocusedFlash", exhaustion: 6, components: ["Verbal"], level:4, type:"inert", projectile:false, onhit:"aoe", time: 12, delay: 2, range: 2.5, size: 3, aoe: 1.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 12}}, // Longer delay, but the stun lasts much longer.
 	],
+}
+
+function KinkyDungeonSearchSpell(list, name) {
+	for (let L = 0; L < list.length; L++) {
+		let spell = list[L];
+		if (spell.name == name) return spell;
+	}
+	return null;
+}
+
+function KinkyDungeonFindSpell(name) {
+	for (var key in KinkyDungeonSpellList) {
+		let list = KinkyDungeonSpellList[key];
+		let spell = KinkyDungeonSearchSpell(list, name);
+		if (spell) return spell;
+	}
+	return KinkyDungeonSearchSpell(KinkyDungeonSpells, name);
 }
 
 var KinkyDungeonSpellPress = 0
@@ -61,36 +80,19 @@ function KinkyDungeonResetMagic() {
 function KinkyDungeonPlayerEffect(playerEffect, spell) {
 	if (playerEffect.name == "Blind") {
 		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time)
-		if (KinkyDungeonActionMessagePriority <= 5) {
-			KinkyDungeonActionMessageTime = playerEffect.time
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonBlindSelf")
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 5
-		}
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonBlindSelf"), "red", playerEffect.time)
 	} else if (playerEffect.name == "MagicRope") {
-		
-		
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeArms"))
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeLegs"))
-		
-		
-		if (KinkyDungeonActionMessagePriority <= 5) {
-			KinkyDungeonActionMessageTime = playerEffect.time
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonMagicRopeSelf")
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 5
-		}
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonMagicRopeSelf"), "red", playerEffect.time)
 	} else if (playerEffect.name == "SlimeTrap") {
-		
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("StickySlime"))
-		
-		
-		if (KinkyDungeonActionMessagePriority <= 5) {
-			KinkyDungeonActionMessageTime = playerEffect.time
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonSlime")
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 5
-		}
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonSlime"), "red", playerEffect.time)
+	} else if (playerEffect.name == "Shock") {
+		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, 1)
+		KinkyDungeonMovePoints = -1
+		KinkyDungeonDealDamage({damage: spell.power, type: spell.damage})
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonShock"), "red", playerEffect.time)
 	}
 }
 
@@ -108,20 +110,10 @@ function KinkyDungeonHandleSpellChoice(SpellChoice) {
 	if (KinkyDungeoCheckComponents(KinkyDungeonSpells[SpellChoice]).length == 0) {
 		if (KinkyDungeonGetCost(KinkyDungeonSpells[SpellChoice].level) <= KinkyDungeonStatStamina)
 			spell = KinkyDungeonSpells[SpellChoice]
-		else if (3 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonNoMana")
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 3
-		}
+		else KinkyDungeonSendActionMessage(3, TextGet("KinkyDungeonNoMana"), "red", 1)
 	} else {
 		KinkyDungeonTargetingSpell = ""
-		if (7 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[SpellChoice])[0])
-			KinkyDungeonActionMessageColor = "red"
-			KinkyDungeonActionMessagePriority = 7
-		}
+		KinkyDungeonSendActionMessage(7, TextGet("KinkyDungeonComponentsFail" + KinkyDungeoCheckComponents(KinkyDungeonSpells[SpellChoice])[0]), "red", 1)
 	}
 	return spell
 }
@@ -138,13 +130,7 @@ function KinkyDungeonHandleSpell() {
 	if (spell) {
 		// Handle spell activation
 		KinkyDungeonTargetingSpell = spell
-		
-		if (5 >= KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 1
-			KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellTarget" + spell.name).replace("SpellArea", Math.floor(spell.aoe))
-			KinkyDungeonActionMessageColor = "white"
-			KinkyDungeonActionMessagePriority = 5
-		}
+		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonSpellTarget" + spell.name).replace("SpellArea", Math.floor(spell.aoe)), "white", 1)
 		return true;
 	}
 	return false;
@@ -153,36 +139,39 @@ function KinkyDungeonHandleSpell() {
 
 function KinkyDungeonGetCost(Level) {
 	var cost = KinkyDungeonManaCost
-	for (L = 1; L < Level; L++) {
+	for (let L = 1; L < Level; L++) {
 		cost += (100 - cost) * (KinkyDungeonManaCost / 100)
 	}
 	return cost
 }
 
-function KinkyDungeonCastSpell(targetX, targetY, spell) {
+function KinkyDungeonCastSpell(targetX, targetY, spell, enemy) {
+	let entity = KinkyDungeonPlayerEntity;
+	let moveDirection = KinkyDungeonMoveDirection
+	
+	if (enemy) {
+		entity = enemy;
+		moveDirection = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x, entity.x, KinkyDungeonPlayerEntity.y, entity.y)
+	}
 	if (spell.type == "bolt") {
 		var size = (spell.size) ? spell.size : 1
-		KinkyDungeonLaunchBullet(KinkyDungeonPlayerEntity.x + KinkyDungeonMoveDirection.x, KinkyDungeonPlayerEntity.y + KinkyDungeonMoveDirection.y,
-			targetX-KinkyDungeonPlayerEntity.x,targetY - KinkyDungeonPlayerEntity.y,
+		KinkyDungeonLaunchBullet(entity.x + moveDirection.x, entity.y + moveDirection.y,
+			targetX-entity.x,targetY - entity.y,
 			spell.speed, {name:spell.name, width:size, height:size, lifetime:-1, passthrough:false, hit:spell.onhit, damage: {damage:spell.power, type:spell.damage, time:spell.time}, spell: spell})
 	} else if (spell.type == "inert") {
 		var sz = spell.size
 		if (!sz) sz = 1
 		KinkyDungeonLaunchBullet(targetX, targetY,
-			KinkyDungeonMoveDirection.x,KinkyDungeonMoveDirection.y,
+			moveDirection.x,moveDirection.y,
 			0, {name:spell.name, width:sz, height:sz, lifetime:spell.delay, passthrough:(spell.CastInWalls || spell.WallsOnly), hit:spell.onhit, damage: null, spell: spell})
 	}
 	
-	if (2 >= KinkyDungeonActionMessagePriority) {
-		KinkyDungeonActionMessageTime = 2
-		KinkyDungeonActionMessage = TextGet("KinkyDungeonSpellCast"+spell.name)
-		KinkyDungeonActionMessageColor = "#88AAFF"
-		KinkyDungeonActionMessagePriority = 2
+	if (!enemy) { // Costs for the player
+		KinkyDungeonSendActionMessage(2, TextGet("KinkyDungeonSpellCast"+spell.name), "#88AAFF", 2)
+		
+		KinkyDungeonStatWillpowerExhaustion += spell.exhaustion + 1
+		KinkyDungeonStatStamina -= KinkyDungeonGetCost(spell.level)
 	}
-	
-	
-	KinkyDungeonStatWillpowerExhaustion += spell.exhaustion + 1
-	KinkyDungeonStatStamina -= KinkyDungeonGetCost(spell.level)
 }
 
 
@@ -222,11 +211,13 @@ function KinkyDungeonHandleMagic() {
 
 // https://stackoverflow.com/questions/14484787/wrap-text-in-javascript
 function KinkyDungeonWordWrap(str, maxWidth) {
-    var newLineStr = "\n"; done = false; res = '';
+    let newLineStr = "\n";
+    let done = false;
+    let res = '';
     while (str.length > maxWidth) {                 
-        found = false;
+        let found = false;
         // Inserts new line at first whitespace of the line
-        for (i = maxWidth - 1; i >= 0; i--) {
+        for (let i = maxWidth - 1; i >= 0; i--) {
             if (KinkyDungeonTestWhite(str.charAt(i))) {
                 res = res + [str.slice(0, i), newLineStr].join('');
                 str = str.slice(i + 1);

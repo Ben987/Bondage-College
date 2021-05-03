@@ -373,6 +373,8 @@ ItemMouthHarnessBallGag1Ball,Ball
 ItemMouthHarnessBallGag1Strap,Strap
 ItemMouthBallGagBall,Ball
 ItemMouthBallGagStrap,Strap
+ItemMouthBallBase,Ball
+ItemMouthBallStripes,Stripes
 ItemMouthBallGagMaskStrap,Strap
 ItemMouthBallGagMaskBall,Ball
 ItemMouthMedicalMaskInner,Inner

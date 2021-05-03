@@ -1,6 +1,6 @@
 "use strict";
 
-const InventoryItemArmsHempRopeOptions = [
+var InventoryItemArmsHempRopeOptions = [
 	{
 		Name: "WristTie",
 		BondageLevel: null,

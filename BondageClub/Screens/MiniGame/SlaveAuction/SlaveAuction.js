@@ -4,7 +4,7 @@ var SlaveAuctionVendor = null;
 var SlaveAuctionSlave = null;
 var SlaveAuctionCustomerLeft = null;
 var SlaveAuctionCustomerRight = null;
-var SlaveAuctionBidCurrent = ""; 
+var SlaveAuctionBidCurrent = "";
 var SlaveAuctionBidTime = 0;
 var SlaveAuctionBidNextTime = 0;
 var SlaveAuctionBidAmount = 0;
@@ -52,16 +52,16 @@ function SlaveAuctionRun() {
 	DrawCharacter(SlaveAuctionSlave, 775, 100, 0.9);
 	DrawCharacter(SlaveAuctionVendor, 1175, 100, 0.9);
 	DrawCharacter(SlaveAuctionCustomerRight, 1575, 100, 0.9);
-	
+
 	// Draw the bid info over the slave
 	DrawText(TextGet("CurrentBid") + " " + SlaveAuctionBidAmount.toString() + "$", 1000, 75, "White", "Black");
 	if (SlaveAuctionBidCurrent == "") DrawText(TextGet("HighestBidder") + " " + TextGet("Nobody"), 1000, 125, "White", "Black");
 	else if (SlaveAuctionBidCurrent == "Player") DrawText(TextGet("HighestBidder") + " " + TextGet("You"), 1000, 125, "White", "Black");
 	else DrawText(TextGet("HighestBidder") + " " + TextGet("SomeoneElse"), 1000, 125, "White", "Black");
 	DrawText(TextGet("YourMoney") + " " + Player.Money.toString() + "$", 1000, 175, "White", "Black");
-	
+
 	// If we must draw the "I bid X$" bubble
-	if ((SlaveAuctionBidTime >= CurrentTime - 3000) && (SlaveAuctionBidCurrent != "")) {		
+	if ((SlaveAuctionBidTime >= CurrentTime - 3000) && (SlaveAuctionBidCurrent != "")) {
 		var X = -25;
 		if (SlaveAuctionBidCurrent == "Player") X = 375;
 		if (SlaveAuctionBidCurrent == "Right") X = 1575;
