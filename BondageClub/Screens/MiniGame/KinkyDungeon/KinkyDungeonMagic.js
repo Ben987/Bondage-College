@@ -33,7 +33,7 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 	"Elements": [
 		{name: "Fireball", exhaustion: 6, components: ["Arms"], level:4, type:"bolt", projectile:true, onhit:"aoe", power: 4, delay: 0, range: 50, aoe: 1.5, size: 3, lifetime:1, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
 		{name: "Icebolt", exhaustion: 4, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2, delay: 0, range: 50, damage: "stun", speed: 2}, // Throws a blast of ice which stuns the target for 2 turns
-		{name: "Electrify", exhaustion: 2, components: ["Arms"], level:2, type:"inert", projectile:false, onhit:"aoe", power: 5, time: 1, delay: 1, range: 4, size: 1, aoe: 0.75, lifetime: 1, damage: "electric", playerEffect: {name: "Shock", time: 3}}, // A series of light shocks incapacitate you
+		{name: "Electrify", exhaustion: 2, components: ["Arms"], level:2, type:"inert", projectile:false, onhit:"aoe", power: 5, time: 1, delay: 1, range: 4, size: 1, aoe: 0.75, lifetime: 1, damage: "electric", playerEffect: {name: "Shock", time: 1}}, // A series of light shocks incapacitate you
 
 		],
 	"Conjure": [
@@ -89,9 +89,9 @@ function KinkyDungeonPlayerEffect(playerEffect, spell) {
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("StickySlime"));
 		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonSlime"), "red", playerEffect.time);
 	} else if (playerEffect.name == "Shock") {
-		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, 1);
-		KinkyDungeonMovePoints = -1;
-		KinkyDungeonDealDamage({damage: spell.power, type: spell.damage});
+		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time);
+		KinkyDungeonMovePoints = Math.max(-1, KinkyDungeonMovePoints-1); // This is to prevent stunlock while slowed heavily
+		KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
 		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonShock"), "red", playerEffect.time);
 	}
 }
