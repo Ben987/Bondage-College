@@ -19,10 +19,10 @@ function InventoryItemNeckAccessoriesCollarNameTagOvalDraw() {
 		for (let T = 0; T < List.length; T++) {
 			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFindPlayer("CollarNameTagOvalType" + List[T]), "White");
 			X = X + 210;
-			if (T % 5 == 4) { 
-				X = 955; 
+			if (T % 5 == 4) {
+				X = 955;
 				Y = Y + 60;
-			}		
+			}
 		}
 	}
 	else {
@@ -41,10 +41,10 @@ function InventoryItemNeckAccessoriesCollarNameTagOvalClick() {
 			if ((MouseX >= X) && (MouseX <= X + 200) && (MouseY >= Y) && (MouseY <= Y + 55) && (DialogFocusItem.Property.Type != List[T]))
 				InventoryItemNeckAccessoriesCollarNameTagOvalSetType(List[T]);
 			X = X + 210;
-			if (T % 5 == 4) { 
-				X = 955; 
+			if (T % 5 == 4) {
+				X = 955;
 				Y = Y + 60;
-			}		
+			}
 		}
 	}
 }

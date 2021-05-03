@@ -25,7 +25,7 @@ function ActivityDictionaryLoad() {
 	// Tries to read it from cache first
 	var FullPath = "Screens/Character/Preference/ActivityDictionary.csv";
 	var TranslationPath = FullPath.replace(".csv", "_" + TranslationLanguage + ".txt");
-	
+
 	if (CommonCSVCache[FullPath]) {
 		ActivityDictionary = JSON.parse(JSON.stringify(CommonCSVCache[FullPath]));
 	} else {
@@ -37,27 +37,27 @@ function ActivityDictionaryLoad() {
 			}
 		});
 	}
-	
+
 	// If a translation file is available, we open the txt file and keep it in cache
-	if (TranslationAvailable(TranslationPath)) 
+	if (TranslationAvailable(TranslationPath))
 		CommonGet(TranslationPath, function () {
 			if (this.status == 200) {
 				TranslationCache[TranslationPath] = TranslationParseTXT(this.responseText);
 				ActivityTranslate(TranslationPath);
 			}
 		});
-		
+
 	ActivityTranslate(TranslationPath);
 }
 
 /**
  * Translates the activity dictionary.
- * @param {string} CachePath - Path to the language cache. 
+ * @param {string} CachePath - Path to the language cache.
  */
-function ActivityTranslate(CachePath) { 
+function ActivityTranslate(CachePath) {
 	if (!Array.isArray(TranslationCache[CachePath])) return;
-	
-	for (let T = 0; T < ActivityDictionary.length; T++) { 
+
+	for (let T = 0; T < ActivityDictionary.length; T++) {
 		if (ActivityDictionary[T][1]) {
 			let indexText = TranslationCache[CachePath].indexOf(ActivityDictionary[T][1].trim());
 			if (indexText >= 0) {
@@ -80,7 +80,7 @@ function ActivityDictionaryText(KeyWord) {
 }
 
 /**
- * Builds the possible dialog activity options based on the character settings 
+ * Builds the possible dialog activity options based on the character settings
  * @param {Character} C - The character for which to build the activity dialog options
  * @return {void} - Nothing
  */
@@ -157,7 +157,7 @@ function ActivityDialogBuild(C) {
  * @param {Character} C - The character on which the activity is performed
  * @param {string} A - The activity performed
  * @param {string} Z - The group/zone name where the activity was performed
- * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done. 
+ * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
  * If you don't want an activity to modify arousal, set this parameter to '0'
  * @return {void} - Nothing
  */
@@ -185,7 +185,7 @@ function ActivityEffect(S, C, A, Z, Count) {
  * @param {Character} C - The character on which the activity is performed
  * @param {number} Amount - The base amount of arousal to add
  * @param {string} Z - The group/zone name where the activity was performed
- * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done. 
+ * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
  * If you don't want an activity to modify arousal, set this parameter to '0'
  * @return {void} - Nothing
  */
@@ -457,17 +457,17 @@ function ActivityTimerProgress(C, Progress) {
 	// Decrease the vibratorlevel to 0 if not being aroused, while also updating the change time to reset the vibrator animation
 	if (Progress < 0) {
 		if (C.ArousalSettings.VibratorLevel != 0) {
-			C.ArousalSettings.VibratorLevel = 0
-			C.ArousalSettings.ChangeTime = CommonTime()
+			C.ArousalSettings.VibratorLevel = 0;
+			C.ArousalSettings.ChangeTime = CommonTime();
 		}
 	}
-	
+
 	if (C.ArousalSettings.Progress < 0) C.ArousalSettings.Progress = 0;
 	if (C.ArousalSettings.Progress > 100) C.ArousalSettings.Progress = 100;
-	
+
 	// Update the recent change time, so that on other player's screens the character's arousal meter will vibrate again when vibes start
 	if (C.ArousalSettings.Progress == 0) {
-		C.ArousalSettings.ChangeTime = CommonTime()
+		C.ArousalSettings.ChangeTime = CommonTime();
 	}
 
 	// Out of orgasm mode, it can affect facial expressions at every 10 steps
@@ -481,7 +481,7 @@ function ActivityTimerProgress(C, Progress) {
 }
 
 /**
- * Set the current vibrator level for drawing purposes 
+ * Set the current vibrator level for drawing purposes
  * @param {Character} C - Character for which the timer is progressing
  * @param {number} Level - Level from 0 to 4 (higher = more vibration)
  * @returns {void} - Nothing
@@ -489,8 +489,8 @@ function ActivityTimerProgress(C, Progress) {
 function ActivityVibratorLevel(C, Level) {
 	if (C.ArousalSettings != null) {
 		if (Level != C.ArousalSettings.VibratorLevel) {
-			C.ArousalSettings.VibratorLevel = Level
-			C.ArousalSettings.ChangeTime = CommonTime()
+			C.ArousalSettings.VibratorLevel = Level;
+			C.ArousalSettings.ChangeTime = CommonTime();
 		}
 	}
 }
@@ -527,8 +527,8 @@ function ActivityRun(C, Activity) {
 
 	if (C.ID == 0) {
 		if (Activity.MakeSound) {
-			AutoPunishGagActionFlag = true
-			AutoShockGagActionFlag = true
+			AutoPunishGagActionFlag = true;
+			AutoShockGagActionFlag = true;
 		}
 	}
 
@@ -547,9 +547,9 @@ function ActivityRun(C, Activity) {
 		ServerSend("ChatRoomChat", { Content: ((C.ID == 0) ? "ChatSelf-" : "ChatOther-") + C.FocusGroup.Name + "-" + Activity.Name, Type: "Activity", Dictionary: Dictionary });
 
 		if (C.ID == 0 && Activity.Name.indexOf("Struggle") >= 0 )
-			
-			ChatRoomStimulationMessage("StruggleAction")
-		
+
+			ChatRoomStimulationMessage("StruggleAction");
+
 		// Exits from dialog to see the result
 		DialogLeave();
 

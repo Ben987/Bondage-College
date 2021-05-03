@@ -12,24 +12,24 @@ var AnimationPersistentStorage = {};
  * @enum
  */
 var AnimationDataTypes = {
-    AssetGroup: "AssetGroup",
-    Base: "",
-    Canvas: "DynamicPlayerCanvas",
-    PersistentData: "PersistentData",
-    Rebuild: "Rebuild",
-    RefreshTime: "RefreshTime",
-    RefreshRate: "RefreshRate",
+	AssetGroup: "AssetGroup",
+	Base: "",
+	Canvas: "DynamicPlayerCanvas",
+	PersistentData: "PersistentData",
+	Rebuild: "Rebuild",
+	RefreshTime: "RefreshTime",
+	RefreshRate: "RefreshRate",
 };
 
 /**
- * Gets the dynamic data storage name for a given item on a given character. 
+ * Gets the dynamic data storage name for a given item on a given character.
  * @param {Character} C - Character wearing the animated object
  * @param {AnimationDataTypes} Type - Type of data to query
  * @param {Asset} [Asset] - The animated object
  * @returns {string} - Contains the name of the persistent data key.
  */
-function AnimationGetDynamicDataName(C, Type, Asset) { 
-    return (Type ? Type + "__" : "") + C.AccountName + (Asset ? "__" + Asset.Group.Name + "__" + Asset.Name : "");
+function AnimationGetDynamicDataName(C, Type, Asset) {
+	return (Type ? Type + "__" : "") + C.AccountName + (Asset ? "__" + Asset.Group.Name + "__" + Asset.Name : "");
 }
 
 /**
@@ -38,12 +38,12 @@ function AnimationGetDynamicDataName(C, Type, Asset) {
  * @param {Asset} Asset - The animated object
  * @returns {object} - Contains the persistent data of the animated object, returns a new empty object if it was never initialized previously.
  */
-function AnimationPersistentDataGet(C, Asset) { 
-    const PersistentDataName = AnimationGetDynamicDataName(C, AnimationDataTypes.PersistentData, Asset);
-    if (!AnimationPersistentStorage[PersistentDataName]) { 
-        AnimationPersistentStorage[PersistentDataName] = {}
-    }
-    return AnimationPersistentStorage[PersistentDataName];
+function AnimationPersistentDataGet(C, Asset) {
+	const PersistentDataName = AnimationGetDynamicDataName(C, AnimationDataTypes.PersistentData, Asset);
+	if (!AnimationPersistentStorage[PersistentDataName]) {
+		AnimationPersistentStorage[PersistentDataName] = {};
+	}
+	return AnimationPersistentStorage[PersistentDataName];
 }
 
 /**
@@ -52,12 +52,12 @@ function AnimationPersistentDataGet(C, Asset) {
  * @param {number} RequestedRate - The maximum refresh rate to request in ms
  * @returns {void} - Nothing
  */
-function AnimationRequestRefreshRate(C, RequestedRate) { 
-    const key = AnimationGetDynamicDataName(C, AnimationDataTypes.RefreshRate);
-    let RefreshRate = AnimationPersistentStorage[key] != null ? AnimationPersistentStorage[key] : Infinity;
-    if (RequestedRate < RefreshRate) { 
-        AnimationPersistentStorage[key] = RequestedRate;
-    }
+function AnimationRequestRefreshRate(C, RequestedRate) {
+	const key = AnimationGetDynamicDataName(C, AnimationDataTypes.RefreshRate);
+	let RefreshRate = AnimationPersistentStorage[key] != null ? AnimationPersistentStorage[key] : Infinity;
+	if (RequestedRate < RefreshRate) {
+		AnimationPersistentStorage[key] = RequestedRate;
+	}
 }
 
 /**
@@ -65,8 +65,8 @@ function AnimationRequestRefreshRate(C, RequestedRate) {
  * @param {Character} C - Character wearing the dynamic object
  * @returns {void} - Nothing
  */
-function AnimationRequestDraw(C) { 
-    AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.Rebuild)] = true;
+function AnimationRequestDraw(C) {
+	AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.Rebuild)] = true;
 }
 
 /**
@@ -75,15 +75,15 @@ function AnimationRequestDraw(C) {
  * @param {Asset} Asset - The animated object
  * @returns {object} - Contains the persistent group data, returns a new empty object if it was never initialized previously.
  */
-function AnimationGroupGet(C, Name) { 
-    let GroupKey = AnimationGetDynamicDataName(C, AnimationDataTypes.AssetGroup);
-    if (!AnimationPersistentStorage[GroupKey]) { 
-        AnimationPersistentStorage[GroupKey] = {}
-    }
-    if (!AnimationPersistentStorage[GroupKey][Name]) { 
-        AnimationPersistentStorage[GroupKey][Name] = { Subscriptions: [] }
-    }
-    return AnimationPersistentStorage[GroupKey][Name];
+function AnimationGroupGet(C, Name) {
+	let GroupKey = AnimationGetDynamicDataName(C, AnimationDataTypes.AssetGroup);
+	if (!AnimationPersistentStorage[GroupKey]) {
+		AnimationPersistentStorage[GroupKey] = {};
+	}
+	if (!AnimationPersistentStorage[GroupKey][Name]) {
+		AnimationPersistentStorage[GroupKey][Name] = { Subscriptions: [] };
+	}
+	return AnimationPersistentStorage[GroupKey][Name];
 }
 
 /**
@@ -93,13 +93,13 @@ function AnimationGroupGet(C, Name) {
  * @param {string} Name - Name of the group to subscribe to.
  * @returns {void} - Nothing
  */
-function AnimationGroupSubscribe(C, Asset, Name) { 
-    const DataKey = AnimationGetDynamicDataName(C, AnimationDataTypes.PersistentData, Asset);
-    const Group = AnimationGroupGet(C, Name)
-    AnimationPersistentDataGet(C, Asset)["GroupData" + Name] = Group;
-    if (Array.isArray(Group.Subscriptions) && !Group.Subscriptions.includes(DataKey)) { 
-        Group.Subscriptions.push(DataKey);
-    }
+function AnimationGroupSubscribe(C, Asset, Name) {
+	const DataKey = AnimationGetDynamicDataName(C, AnimationDataTypes.PersistentData, Asset);
+	const Group = AnimationGroupGet(C, Name);
+	AnimationPersistentDataGet(C, Asset)["GroupData" + Name] = Group;
+	if (Array.isArray(Group.Subscriptions) && !Group.Subscriptions.includes(DataKey)) {
+		Group.Subscriptions.push(DataKey);
+	}
 }
 
 /**
@@ -111,12 +111,12 @@ function AnimationGroupSubscribe(C, Asset, Name) {
  * @param {number} H - Height of the canvas (can be changed later)
  * @returns {HTMLCanvasElement} - The temporary canvas to use
  */
-function AnimationGenerateTempCanvas(C, A, W, H) { 
-    let TempCanvas = document.createElement("canvas"); 
-    TempCanvas.setAttribute('name', AnimationGetDynamicDataName(C, AnimationDataTypes.Canvas, A));
-    TempCanvas.width = W ? W : 500;
-    TempCanvas.height = H ? H : 500;
-    return TempCanvas;
+function AnimationGenerateTempCanvas(C, A, W, H) {
+	let TempCanvas = document.createElement("canvas");
+	TempCanvas.setAttribute('name', AnimationGetDynamicDataName(C, AnimationDataTypes.Canvas, A));
+	TempCanvas.width = W ? W : 500;
+	TempCanvas.height = H ? H : 500;
+	return TempCanvas;
 }
 
 /**
@@ -125,54 +125,54 @@ function AnimationGenerateTempCanvas(C, A, W, H) {
  * @param {boolean} IncludeAll - TRUE if we should delete every animation data for the given character.
  * @returns {void} - Nothing
  */
-function AnimationPurge(C, IncludeAll) { 
-    const PossibleData = [];
-    const PossibleCanvas = [];
-    
-    // Highlights the data to keep
-    if (!IncludeAll) {
-        C.Appearance.forEach((CA) => {
-            PossibleData.push(AnimationGetDynamicDataName(C, AnimationDataTypes.PersistentData, CA.Asset));
-            PossibleCanvas.push(AnimationGetDynamicDataName(C, AnimationDataTypes.Canvas, CA.Asset));
-        });
-    }
-    
-    // Checks if any character specific info is worth being kept
-    if (IncludeAll || !C.Appearance.find(CA => CA.Asset.DynamicScriptDraw || CA.Asset.DynamicAfterDraw || CA.Asset.DynamicBeforeDraw)) { 
-        delete AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.RefreshTime)];
-        delete AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.Rebuild)];
-        delete AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.AssetGroup)];
-    }
-    
-    // Always delete the refresh rate for accurate requested rate.
-    delete AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.RefreshRate)];
-    
-    // Clear no longer needed data (Clear the subscription, then clear the asset data)
-    for (const key in AnimationPersistentStorage) { 
-        const isCharDataKey = key.startsWith(AnimationDataTypes.PersistentData + "__" + C.AccountName + "__");
-        if (isCharDataKey && !PossibleData.includes(key)) { 
-            const Group = AnimationPersistentStorage[key].Group;
-            if (Group && Array.isArray(Group.Subscriptions)) { 
-                Group.Subscriptions = Group.Subscriptions.filter(k => k != key);
-            }
-            delete AnimationPersistentStorage[key];
-        }
-    }
-    
-    // Clear no longer needed cached canvases
-    GLDrawImageCache.forEach((img, key) => {
-        if (key.startsWith(AnimationDataTypes.Canvas + "__" + + C.AccountName + "__") && !PossibleCanvas.includes(key)) { 
-            GLDrawImageCache.delete(key);
-        }
-    });
-    
-    // Clear empty groups when all is done
-    const GroupKey = AnimationGetDynamicDataName(C, AnimationDataTypes.AssetGroup);
-    if (AnimationPersistentStorage[GroupKey]) { 
-        for (const key in AnimationPersistentStorage[GroupKey]) {
-            if (!AnimationPersistentStorage[GroupKey][key].Subscriptions || !Array.isArray(AnimationPersistentStorage[GroupKey][key].Subscriptions) || AnimationPersistentStorage[GroupKey][key].Subscriptions.length == 0) { 
-                delete AnimationPersistentStorage[GroupKey][key];
-            }
-        }
-    }
+function AnimationPurge(C, IncludeAll) {
+	const PossibleData = [];
+	const PossibleCanvas = [];
+
+	// Highlights the data to keep
+	if (!IncludeAll) {
+		C.Appearance.forEach((CA) => {
+			PossibleData.push(AnimationGetDynamicDataName(C, AnimationDataTypes.PersistentData, CA.Asset));
+			PossibleCanvas.push(AnimationGetDynamicDataName(C, AnimationDataTypes.Canvas, CA.Asset));
+		});
+	}
+
+	// Checks if any character specific info is worth being kept
+	if (IncludeAll || !C.Appearance.find(CA => CA.Asset.DynamicScriptDraw || CA.Asset.DynamicAfterDraw || CA.Asset.DynamicBeforeDraw)) {
+		delete AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.RefreshTime)];
+		delete AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.Rebuild)];
+		delete AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.AssetGroup)];
+	}
+
+	// Always delete the refresh rate for accurate requested rate.
+	delete AnimationPersistentStorage[AnimationGetDynamicDataName(C, AnimationDataTypes.RefreshRate)];
+
+	// Clear no longer needed data (Clear the subscription, then clear the asset data)
+	for (const key in AnimationPersistentStorage) {
+		const isCharDataKey = key.startsWith(AnimationDataTypes.PersistentData + "__" + C.AccountName + "__");
+		if (isCharDataKey && !PossibleData.includes(key)) {
+			const Group = AnimationPersistentStorage[key].Group;
+			if (Group && Array.isArray(Group.Subscriptions)) {
+				Group.Subscriptions = Group.Subscriptions.filter(k => k != key);
+			}
+			delete AnimationPersistentStorage[key];
+		}
+	}
+
+	// Clear no longer needed cached canvases
+	GLDrawImageCache.forEach((img, key) => {
+		if (key.startsWith(AnimationDataTypes.Canvas + "__" + + C.AccountName + "__") && !PossibleCanvas.includes(key)) {
+			GLDrawImageCache.delete(key);
+		}
+	});
+
+	// Clear empty groups when all is done
+	const GroupKey = AnimationGetDynamicDataName(C, AnimationDataTypes.AssetGroup);
+	if (AnimationPersistentStorage[GroupKey]) {
+		for (const key in AnimationPersistentStorage[GroupKey]) {
+			if (!AnimationPersistentStorage[GroupKey][key].Subscriptions || !Array.isArray(AnimationPersistentStorage[GroupKey][key].Subscriptions) || AnimationPersistentStorage[GroupKey][key].Subscriptions.length == 0) {
+				delete AnimationPersistentStorage[GroupKey][key];
+			}
+		}
+	}
 }

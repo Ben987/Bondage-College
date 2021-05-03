@@ -19,7 +19,7 @@ function PuppyWalkerLoad() {
 }
 
 /**
- * Draws the puppy girl if she hasn't escaped 
+ * Draws the puppy girl if she hasn't escaped
  * @param {Character} Puppy - The puppy character to draw
  * @param {number} X - Position on the X axis
  * @param {number} Fail - Amount of failures for this puppy
@@ -37,7 +37,7 @@ function PuppyWalkerDraw(Puppy, X, Fail) {
  * @returns {void} - Nothing
  */
 function PuppyWalkerRun() {
-	
+
 	// Draw the characters
 	PuppyWalkerDraw(DailyJobPuppy1, -50, PuppyWalkerEscape[0]);
 	PuppyWalkerDraw(DailyJobPuppy2, 350, PuppyWalkerEscape[1]);
@@ -52,13 +52,13 @@ function PuppyWalkerRun() {
 		DrawText(TextGet("Intro").replace("StartTimer", (10 - Math.floor(MiniGameTimer / 1000)).toString()), 1000, 975, "white");
 		return;
 	}
-	
+
 	// If the mini game is running
 	if (!MiniGameEnded) {
 
 		// Draws the progress bar based on the timer
 		var Progress = 100;
-		if (MiniGameTimer > 10000) Progress = (60 - ((MiniGameTimer - 10000) / 1000)) * 100 / 60
+		if (MiniGameTimer > 10000) Progress = (60 - ((MiniGameTimer - 10000) / 1000)) * 100 / 60;
 		DrawProgressBar(0, 950, 2000, 50, Progress);
 
 		// If the mini-game is running

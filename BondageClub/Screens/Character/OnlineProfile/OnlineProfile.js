@@ -33,7 +33,7 @@ function OnlineProfileRun() {
  * Handles clicks in the online profile screen
  * @returns {void} - Nothing
  */
-function OnlineProfileClick() {	
+function OnlineProfileClick() {
     if (MouseIn(1820, 60, 90, 90)) OnlineProfileExit(false);
     if (InformationSheetSelection.ID == 0 && MouseIn(1720, 60, 90, 90)) OnlineProfileExit(true);
 }
@@ -48,7 +48,7 @@ function OnlineProfileExit(Save) {
     if ((InformationSheetSelection.ID == 0) && (InformationSheetSelection.Description != ElementValue("DescriptionInput").trim()) && Save) {
         InformationSheetSelection.Description = ElementValue("DescriptionInput").trim().substr(0, 10000);
         let Description = InformationSheetSelection.Description;
-        const CompressedDescription = "╬" + LZString.compressToUTF16(Description)
+        const CompressedDescription = "╬" + LZString.compressToUTF16(Description);
         if (CompressedDescription.length < Description.length || Description.startsWith("╬")) {
             Description = CompressedDescription;
         }

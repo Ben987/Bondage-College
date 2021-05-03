@@ -70,7 +70,6 @@ var AudioActions = [
 		IsAction: (data) => ["FuturisticPanelGagMouthSetLightBall", "FuturisticPanelGagMouthSetBall", "FuturisticPanelGagMouthSetPadded", "FuturisticPanelGagMouthSetPlug"].find(A => data.Content.includes(A)),
 		Sound: "SciFiPump"
 	},
-	
 	{
 		IsAction: (data) => ["deflates", "Sucloosens"].find(A => data.Content.includes(A)),
 		Sound: "Deflation"
@@ -98,7 +97,7 @@ var AudioActions = [
 	{
 		IsAction: (data) => ["FuturisticChastityBeltSetPunish", "FuturisticPanelGagMouthSetAutoPunish", "SciFiPleasurePantiesBeep"].find(A => data.Content.includes(A)),
 		GetAudioInfo: AudioSciFiBeepSounds
-	},	
+	},
 	{
 		IsAction: (data) => ["FuturisticPanelGagMouthSetAutoInflate"].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
@@ -134,7 +133,7 @@ function AudioPlayInstantSound(src, volume) {
 }
 
 /**
- * Begins to play a sound when applying/removing an item 
+ * Begins to play a sound when applying/removing an item
  * @param {string} SourceFile - Source of the audio file to play
  * @returns {void} - Nothing
  */
@@ -148,7 +147,7 @@ function AudioDialogStart(SourceFile) {
 }
 
 /**
- * Stops playing the sound when done applying/removing an item 
+ * Stops playing the sound when done applying/removing an item
  * @returns {void} - Nothing
  */
 function AudioDialogStop() {
@@ -206,7 +205,7 @@ function AudioGetFileName(sound) {
 /**
  * Processes which sound should be played for items
  * @param {object} data - Data content triggering the potential sound
- * @returns {[string, number]} - he name of the sound to play, followed by the noise modifier 
+ * @returns {[string, number]} - he name of the sound to play, followed by the noise modifier
  */
 function AudioPlayAssetSound(data) {
 	var NextAsset = data.Dictionary.find((el) => el.Tag == "NextAsset");
@@ -216,9 +215,9 @@ function AudioPlayAssetSound(data) {
 	if (!NextAsset || !NextAsset.AssetName || !NextAssetGroup || !NextAssetGroup.AssetGroupName) return [FileName, 0];
 
 	var Asset = AssetGet("Female3DCG", NextAssetGroup.AssetGroupName, NextAsset.AssetName);
-	
+
 	if (!Asset) return [FileName, 0];
-	
+
 	if (Asset.DynamicAudio) {
 		var Char = ChatRoomCharacter.find((C) => C.MemberNumber == data.Sender);
 		FileName = Char ? Asset.DynamicAudio(Char) : "";
@@ -230,7 +229,7 @@ function AudioPlayAssetSound(data) {
 /**
  * Processes the sound for vibrators
  * @param {object} data - Represents the chat message received
- * @returns {[string, number]} - The name of the sound to play, followed by the noise modifier 
+ * @returns {[string, number]} - The name of the sound to play, followed by the noise modifier
  */
 function AudioVibratorSounds(data) {
 	var Sound = "";
@@ -268,11 +267,11 @@ function AudioVibratorSounds(data) {
 
 function AudioSciFiBeepSounds() {
 	var AudioRandomNumber = Math.random();
-	
+
 	if (AudioRandomNumber < 0.33) {
-		return ["SciFiBeeps1", 4]
+		return ["SciFiBeeps1", 4];
 	} else if (AudioRandomNumber > 0.67) {
-		return ["SciFiBeeps2", 4]
+		return ["SciFiBeeps2", 4];
 	}
 	return ["SciFiBeeps3", 4];
 }

@@ -8,7 +8,7 @@ function InventoryItemMiscSafewordPadlockLoad() {
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.Hint == null)) DialogFocusSourceItem.Property.Hint = "Say the magic word...";
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockSet == null)) DialogFocusSourceItem.Property.LockSet = false;
 
-	if (DialogFocusSourceItem.Property && (DialogFocusSourceItem.Property.LockSet || 
+	if (DialogFocusSourceItem.Property && (DialogFocusSourceItem.Property.LockSet ||
 	(DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.LockMemberNumber != Player.MemberNumber))) {
 		// Normal lock interface
 		ElementCreateInput("Password", "text", "", "8");
@@ -24,19 +24,19 @@ function InventoryItemMiscSafewordPadlockLoad() {
 		document.getElementById("SetPassword").placeholder = DialogFocusSourceItem.Property.Password;
 		document.getElementById("SetHint").placeholder = DialogFocusSourceItem.Property.Hint;
 	}
-		
+
 }
 
 // Draw the extension screen
 function InventoryItemMiscSafewordPadlockDraw() {
 	var C = CharacterGetCurrent();
 	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
-	
+
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
 		DrawText(DialogFindPlayer("LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 600, "white", "gray");
 
 
-	if (DialogFocusSourceItem.Property && (DialogFocusSourceItem.Property.LockSet || 
+	if (DialogFocusSourceItem.Property && (DialogFocusSourceItem.Property.LockSet ||
 	(DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.LockMemberNumber != Player.MemberNumber))) {
 		// Normal lock interface
 		if (DialogFocusSourceItem && DialogFocusSourceItem.Property && DialogFocusSourceItem.Property.Hint)
@@ -77,21 +77,21 @@ function InventoryItemMiscSafewordPadlockClick() {
 	var Item = InventoryGet(C, C.FocusGroup.Name);
 
 	if ((MouseX >= 1360) && (MouseX <= 1950)) {
-		
-		
-		if (DialogFocusSourceItem.Property && (DialogFocusSourceItem.Property.LockSet || 
+
+
+		if (DialogFocusSourceItem.Property && (DialogFocusSourceItem.Property.LockSet ||
 		(DialogFocusSourceItem.Property.LockMemberNumber && DialogFocusSourceItem.Property.LockMemberNumber != Player.MemberNumber))) {
-				
+
 				// Opens the padlock
 				if (MouseIn(1360, 871, 250, 64)) {
 					if (ElementValue("Password").toUpperCase() == DialogFocusSourceItem.Property.Password) {
-						InventoryItemMiscSafewordPadlockUnlock(C, DialogFocusSourceItem)
+						InventoryItemMiscSafewordPadlockUnlock(C, DialogFocusSourceItem);
 						InventoryItemMiscSafewordPadlockExit();
 					}
 
 					// Send fail message if online
 					else if (CurrentScreen == "ChatRoom") {
-						var Dictionary = [];
+						let Dictionary = [];
 						Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 						Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 						Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
@@ -101,11 +101,11 @@ function InventoryItemMiscSafewordPadlockClick() {
 					}
 					else { PreferenceMessage = "SafewordPadlockError"; }
 				}
-			
+
 		} else {
 				if (MouseIn(1360, 871, 250, 64)) {
-					var pw = ElementValue("SetPassword").toUpperCase()
-					var hint =  ElementValue("SetHint")
+					var pw = ElementValue("SetPassword").toUpperCase();
+					var hint =  ElementValue("SetHint");
 					var E = /^[A-Z]+$/;
 					// We only accept code made of letters
 					if (pw == "" || pw.match(E)) {
@@ -121,7 +121,7 @@ function InventoryItemMiscSafewordPadlockClick() {
 								C.Appearance[A] = DialogFocusSourceItem;
 						}
 						if (CurrentScreen == "ChatRoom") {
-							var Dictionary = [];
+							let Dictionary = [];
 							Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 							Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 							Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
@@ -134,7 +134,7 @@ function InventoryItemMiscSafewordPadlockClick() {
 						}
 					}
 					else { PreferenceMessage = "SafewordPadlockErrorInput"; }
-					
+
 				}
 		}
 	}

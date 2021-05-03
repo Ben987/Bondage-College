@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "lib": ["es2018", "dom"],
+      "checkJs": true
+    },
+    "include": [
+        "Scripts/**/*",
+        "Screens/**/*",
+        "Assets/**/*"
+    ]
+  }

@@ -7,22 +7,22 @@ var EmptyCharacterOffset = 0;
  * Checks if the player struggled successfully within the allowed time
  * @returns {boolean} - Returns TRUE if the player managed to struggle out in time
  */
-function EmptyStruggleSuccess() { return (!Player.IsRestrained() && Player.CanTalk() && (CurrentTime < ManagementTimer)) }
+function EmptyStruggleSuccess() { return (!Player.IsRestrained() && Player.CanTalk() && (CurrentTime < ManagementTimer)); }
 /**
  * Checks if the player has not managed to struggle out in time
  * @returns {boolean} - Returns TRUE if the player has failed to struggle out.
  */
-function EmptyStruggleFail() { return (CurrentTime >= ManagementTimer) }
+function EmptyStruggleFail() { return (CurrentTime >= ManagementTimer); }
 /**
  * Checks if the player is in struggle mode.
  * @returns {boolean} - Returns TRUE if the player still has time to try to struggle out.
  */
-function EmptyStruggleProgress() { return ((Player.IsRestrained() || !Player.CanTalk()) && (CurrentTime < ManagementTimer)) }
+function EmptyStruggleProgress() { return ((Player.IsRestrained() || !Player.CanTalk()) && (CurrentTime < ManagementTimer)); }
 /**
  * Checks if the player can do a bondage training.
  * @returns {boolean} - Whether the player is ready to do a bondage training or not.
  */
-function EmptySlaveMarketReadyForBondageTraining() { return (Player.CanInteract() && !CurrentCharacter.CanTalk() && CurrentCharacter.IsBlind() && !CurrentCharacter.CanInteract() && !CurrentCharacter.CanWalk()) }
+function EmptySlaveMarketReadyForBondageTraining() { return (Player.CanInteract() && !CurrentCharacter.CanTalk() && CurrentCharacter.IsBlind() && !CurrentCharacter.CanInteract() && !CurrentCharacter.CanWalk()); }
 
 /**
  * Loads the empty room screen. Does nothing, required for future use and because it is called dynamically when loading the screen.
@@ -46,7 +46,7 @@ function EmptyRun() {
  */
 function EmptyClick() {
 	for (let C = 0; C < EmptyCharacter.length; C++)
-		if ((MouseX >= 1000 - EmptyCharacter.length * 250 + C * 500 + EmptyCharacterOffset) && (MouseX < 1500 - EmptyCharacter.length * 250 + C * 500 + EmptyCharacterOffset) && (MouseY >= 0) && (MouseY < 1000)) 
+		if ((MouseX >= 1000 - EmptyCharacter.length * 250 + C * 500 + EmptyCharacterOffset) && (MouseX < 1500 - EmptyCharacter.length * 250 + C * 500 + EmptyCharacterOffset) && (MouseY >= 0) && (MouseY < 1000))
 			CharacterSetCurrent(EmptyCharacter[C]);
 }
 
@@ -92,7 +92,7 @@ function EmptyShopEnd(Sold) {
 	CharacterSetCurrent(ShopVendor);
 	ShopVendor.CurrentDialog = DialogFind(ShopVendor, (Sold) ? "ItemSold" : "ItemNotSold").replace("MoneyAmount", ShopDemoItemPayment.toString());
 	CharacterAppearanceFullRandom(ShopCustomer, false);
-	CharacterRandomName(ShopCustomer)
+	CharacterRandomName(ShopCustomer);
 }
 
 /**
@@ -124,18 +124,18 @@ function EmptySlaveMarketTrainingLevelIs(TestLevel) {
  * @returns {void} - Nothing
  */
 function EmptySlaveMarketTrainingProgress(Intensity) {
-	
+
 	// Intensity of activity gets added minus from 0 to 3 of random decay
 	CurrentCharacter.TrainingIntensity = CurrentCharacter.TrainingIntensity + parseInt(Intensity) - Math.floor(Math.random() * 4);
 	if (CurrentCharacter.TrainingIntensity < 0) CurrentCharacter.TrainingIntensity = 0;
 	if (CurrentCharacter.TrainingIntensity > 10) CurrentCharacter.TrainingIntensity = 10;
 	CurrentCharacter.TrainingCount++;
-	
+
 	// Between 4 and 6 intensity is the sweet spot where training is successful
 	if (CurrentCharacter.TrainingIntensity <= 3) CurrentCharacter.TrainingCountLow++;
 	if ((CurrentCharacter.TrainingIntensity >= 4) && (CurrentCharacter.TrainingIntensity <= 6)) CurrentCharacter.TrainingCountPerfect++;
 	if (CurrentCharacter.TrainingIntensity >= 7) CurrentCharacter.TrainingCountHigh++;
-	
+
 	// When training is over, we take a different path depending if it was too soft, too rough or perfect
 	if (CurrentCharacter.TrainingCount == 10) {
 		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "TrainingEnd");

@@ -1,5 +1,7 @@
+"use strict";
 // Arousal -- It lowers your stamina regen
 var KinkyDungeonStatArousalMax = 100
+var KinkyDungeonArousalUnlockSuccessMod = 0.5 // Determines how much harder it is to insert a key while aroused. 1.0 is half success chance, 2.0 is one-third, etc.
 var KinkyDungeonStatArousal = 0
 var KinkyDungeonStatArousalRegen = -1
 var KinkyDungeonStatArousalRegenStaminaRegenFactor = -0.9 // Stamina drain per time per 100 arousal
@@ -50,7 +52,7 @@ var KinkyDungeonLockpicks = 0
 // 3 types of keys, for 4 different types of padlocks. The last type of padlock requires all 3 types of keys to unlock
 // The red keys are one-use only as the lock traps the key
 // The green keys are multi-use, but jam often
-// The blue keys open any type of lock, and become red or green keys on use. However, blue locks cannot be picked or cut.
+// The blue keys cannot be picked or cut.
 // Monsters are not dextrous enough to steal keys from your satchel, although they may spill your satchel on a nearby tile
 var KinkyDungeonRedKeys = 0
 var KinkyDungeonGreenKeys = 0
@@ -68,14 +70,18 @@ var KinkyDungeonKeyPickBreakChance = 0.25
 var KinkyDungeonPlayerDamage = 2
 var KinkyDungeonPlayerDamageMax = 2
 var KinkyDungeonPlayerDamageType = "pain"
+var KinkyDungeonTorsoGrabChance = 0.33
 
 // Your inventory contains items that are on you
 var KinkyDungeonInventory = []
 var KinkyDungeonPlayerTags = []
 
+var KinkyDungeonCurrentDress = "Default"
+var KinkyDungeonUndress = 0 // Level of undressedness
+
 function KinkyDungeonDefaultStats() {
 	KinkyDungeonGold = 0
-	KinkyDungeonLockpicks = 0
+	KinkyDungeonLockpicks = 1
 	KinkyDungeonRedKeys = 0
 	KinkyDungeonGreenKeys = 0
 	KinkyDungeonBlueKeys = 0
@@ -111,20 +117,30 @@ function KinkyDungeonDealDamage(Damage) {
 	var dmg = Damage.damage
 	var type = Damage.type
 	KinkyDungeonStatWillpower -= dmg
+	if (Damage.type == "grope") { // Groping attacks increase arousal
+		KinkyDungeonStatArousal += dmg
+	} else if (Damage.type == "electric") { // Electric attacks are mildly arousing and reduce stamina
+		KinkyDungeonStatArousal += dmg/2
+		KinkyDungeonStatStamina -= dmg/2
+	} else if (Damage.type == "pain") { // Painful attacks decrease arousal
+		KinkyDungeonStatArousal -= dmg/2
+	}
 	return dmg
 }
 
 function KinkyDungeonDrawStats(x, y, width, heightPerBar) {
 	// Draw labels
-	DrawText(TextGet("StatArousal"), x+width/2, y + 25, (KinkyDungeonStatArousal < 100) ? "white" : "pink", "silver");
-	DrawText(TextGet("StatStamina"), x+width/2, y + 25 + heightPerBar, (KinkyDungeonStatStamina > KinkyDungeonWillpowerDrainLowStaminaThreshold) ? "white" : "pink", "silver");
-	DrawText(TextGet("StatWillpower"), x+width/2, y + 25 + 2 * heightPerBar, (KinkyDungeonStatWillpower > 10) ? "white" : "pink", "silver");
+	if (KinkyDungeonStatArousal > 0)
+		DrawText(TextGet("StatArousal"), x+width/2, y + 25, (KinkyDungeonStatArousal < 100) ? "white" : "pink", "silver");
+		DrawText(TextGet("StatStamina"), x+width/2, y + 25 + heightPerBar, (KinkyDungeonStatStamina > KinkyDungeonWillpowerDrainLowStaminaThreshold) ? "white" : "pink", "silver");
+		DrawText(TextGet("StatWillpower"), x+width/2, y + 25 + 2 * heightPerBar, (KinkyDungeonStatWillpower > 10) ? "white" : "pink", "silver");
 	
 	// Draw arousal
-	DrawProgressBarColor(x, y + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatArousal/KinkyDungeonStatArousalMax, "pink", "#111111")
-	DrawProgressBarColor(x, y + heightPerBar + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatStamina/KinkyDungeonStatStaminaMax, "#22AA22", "#111111")
-	DrawProgressBarColor(x, y + 2*heightPerBar + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatWillpower/KinkyDungeonStatWillpowerMax, "#DDCCCC", "#881111")
-	
+	if (KinkyDungeonStatArousal > 0)
+		DrawProgressBarColor(x, y + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatArousal/KinkyDungeonStatArousalMax, "pink", "#111111")
+		DrawProgressBarColor(x, y + heightPerBar + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatStamina/KinkyDungeonStatStaminaMax, "#22AA22", "#111111")
+		DrawProgressBarColor(x, y + 2*heightPerBar + heightPerBar/2, width, heightPerBar/3, 100*KinkyDungeonStatWillpower/KinkyDungeonStatWillpowerMax, "#DDCCCC", "#881111")
+		
 	var i = 3
 	DrawText(TextGet("CurrentGold") + KinkyDungeonGold, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;
 	DrawText(TextGet("CurrentLockpicks") + KinkyDungeonLockpicks, x+width/2, y + 25 + i * heightPerBar, "white", "silver"); i+= 0.5;
@@ -179,11 +195,15 @@ function KinkyDungeonUpdateStats(delta) {
 	
 	KinkyDungeonUpdateStruggleGroups()
 	
+	KinkyDungeonDressPlayer()
+	
 	// Cap off the values between 0 and maximum
 	KinkyDungeonStatArousal = Math.max(0, Math.min(KinkyDungeonStatArousal + arousalRate*delta, KinkyDungeonStatArousalMax))
 	KinkyDungeonStatStamina = Math.max(0, Math.min(KinkyDungeonStatStamina + KinkyDungeonStaminaRate*delta, KinkyDungeonStatStaminaMax))
 	KinkyDungeonStatWillpower = Math.max(0, Math.min(KinkyDungeonStatWillpower + willpowerRate*delta, KinkyDungeonStatWillpowerMax))
 	KinkyDungeonStatBlind = Math.max(0, KinkyDungeonStatBlind - delta)
+	
+	
 }
 
 function KinkyDungeonCalculateSlowLevel() {

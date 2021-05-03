@@ -5,6 +5,8 @@ BribeInfoRetrieveLittle,,,I think I saw that object before.  Try the LevelName l
 BribeInfoRescueFull,,,I think I saw her with a guard.  Try the LevelName level and go FirstDirection.,,
 BribeInfoKidnapFull,,,I think I saw her roaming.  Try the LevelName level and go FirstDirection.,,
 BribeInfoRetrieveFull,,,I think I saw that object before.  Try the LevelName level and go FirstDirection.,,
+0,,,"Hey there little maid, will you brink me a drink?",,"CostumeIs(""Maid"")"
+0,,,Hi Miss guard.  I hope I'm not in trouble.,,"CostumeIs(""Guard"")"
 0,,,"Hello there, I'm pretty sure we've met before.",,"DialogSkillGreater(""Infiltration"", 7)"
 0,,,"Hello there, have we met before?",,"DialogSkillGreater(""Infiltration"", 3)"
 0,,,"Hello there, I don't think we've met before.",,
@@ -12,6 +14,7 @@ BribeInfoRetrieveFull,,,I think I saw that object before.  Try the LevelName lev
 0,,Can I tie you up?,"I'm not in the mood right now, find a slave for that.",,
 0,100,Can you help me?,(She shakes her hands greedily.)  Maybe I can.  What do you want?,,DialogMoneyGreater(10)
 0,,Can you help me?,Sorry girl.  Find some money first if you need help.,,!DialogMoneyGreater(10)
+0,,I'll go get you a free drink.,(You go get her a free drink and she seems happy about it.)  Thanks!  You're a good maid.,RecruitBoost(),"CostumeIs(""Maid"")"
 0,10,Are you enjoying Pandora's Box?,"It's not a perfect place, but it's fun.  And you?  Do you like the club?",StartRecruit(),CanStartRecruit()
 0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),
 10,0,"Sure, it's a good club.","I agree, there are worse places to spend our free time.",,

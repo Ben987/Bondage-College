@@ -1,4 +1,5 @@
 Perks,Perks allocated:
+CannotChange,You cannot change you perks while in mission
 Strength,Strength: +2 Brute force in Pandora's Box
 Charisma,Charisma: +2 Domination in Pandora's Box
 Agility,Agility: +2 Sneakiness in Pandora's Box
@@ -8,8 +9,9 @@ Lockpicking,Lockpicking: One free lockpicking
 Investigation,Investigation: Easier to find hidden objects
 Running,"Running: Skip one fight freely, lose willpower"
 Mapping,Mapping: 1 less room to complete mission
-Forgery,Forgery: Skip entry maid that checks papers
+Forgery,Forgery: Fake ID for entrance maid
 Begging,Begging: Less prison time if the mission fails
 Bribery,Bribery: Pay less to bribe members or guards
 Negotiation,Negotiation: More money when successful
 Recruiter,Recruiter: Easier to recruit members
+Recovery,Recovery: Recover 10% willpower after fights

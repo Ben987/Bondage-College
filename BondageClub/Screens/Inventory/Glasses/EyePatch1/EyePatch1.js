@@ -20,10 +20,10 @@ function InventoryGlassesEyePatch1Load() {
 
 // Draw the item extension screen
 function InventoryGlassesEyePatch1Draw() {
-	ExtendedItemDraw(InventoryGlassesEyePatch1Options, "EyePatchType", null, true, true);
+	ExtendedItemDraw(InventoryGlassesEyePatch1Options, "EyePatchType", null, true);
 }
 
 // Catches the item extension clicks
 function InventoryGlassesEyePatch1Click() {
-	ExtendedItemClick(InventoryGlassesEyePatch1Options, true);
+	ExtendedItemClick(InventoryGlassesEyePatch1Options);
 }

@@ -9,23 +9,23 @@ var CollegeTheaterRandomColors = ["#AA4444", "#44AA44", "#4444AA", "#AAAA44", "#
  * Checks if the player can invite an extra player to their private room. (Used for Julia.)
  * @returns {boolean} - Returns TRUE if the player has a private room and at least one empty place in it.
  */
-function CollegeTheaterCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
+function CollegeTheaterCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)); }
 /**
  * Checks if Julia's love level is of a given level.
  * @param {number} LoveLevel - The love level threshold to check for.
  * @returns {boolean} - Returns TRUE if the current love level of Julia is at or above the given level
  */
-function CollegeTheaterJuliaLoveIs(LoveLevel) { return (CollegeTheaterJuliaLove >= parseInt(LoveLevel)) }
+function CollegeTheaterJuliaLoveIs(LoveLevel) { return (CollegeTheaterJuliaLove >= parseInt(LoveLevel)); }
 /**
  * Checks if the player can pick their role. The player can pick their role when they are a switch (not too submissive or dominant)
  * @returns {boolean} - Returns TRUE if the player can choose her role.
  */
-function CollegeTheaterCanChooseRole() { return ((ReputationGet("Dominant") > -30) && (ReputationGet("Dominant") < 30)) }
+function CollegeTheaterCanChooseRole() { return ((ReputationGet("Dominant") > -30) && (ReputationGet("Dominant") < 30)); }
 /**
  * Gives the teacher room key to the player.
  * @returns {void} - Nothing
  */
-function CollegeTheaterGetTeacherKey() { LogAdd("TeacherKey", "College") }
+function CollegeTheaterGetTeacherKey() { LogAdd("TeacherKey", "College"); }
 
 /**
  * Dresses Julia in her full theater outfit.
@@ -65,7 +65,7 @@ function CollegeTheaterLoad() {
 			for (let P = 1; P < PrivateCharacter.length; P++)
 				if (PrivateCharacter[P].Name == "Julia")
 					return;
-		
+
 		// Generates the model
 		CollegeTheaterJulia = CharacterLoadNPC("NPC_CollegeTheater_Julia");
 		CollegeTheaterJulia.AllowItem = false;
@@ -73,7 +73,7 @@ function CollegeTheaterLoad() {
 		CollegeTheaterJulia.GoneAway = false;
 		CollegeTheaterJuliaClothes();
 		CharacterRefresh(CollegeTheaterJulia);
-		
+
 	}
 
 }
@@ -138,7 +138,7 @@ function CollegeTheaterRandomBelt(C) {
 
 /**
  * Strips a character to her underwear
- * @param {Character} C - Character to strip 
+ * @param {Character} C - Character to strip
  * @returns {void} - Nothing
  */
 function CollegeTheaterUnderwear(C) {
@@ -150,7 +150,7 @@ function CollegeTheaterUnderwear(C) {
 
 /**
  * Triggered when Julia's love towards the player changes, it can also trigger an event.  When a good or bad move is done, her expression will change quickly.
- * @param {string} LoveChange - Number representing the change in love 
+ * @param {string} LoveChange - Number representing the change in love
  * @param {string} Event - The event that may have occured for the love factor to change.
  * @returns {void} - Nothing
  */
@@ -194,14 +194,14 @@ function CollegeTheaterDressBack() {
  */
 function CollegeTheaterInviteToPrivateRoom(Role) {
 	CollegeTheaterDressBack();
-	if (Role == "Witch") { 
-		var ItemsToEarn = [];
+	if (Role == "Witch") {
+		let ItemsToEarn = [];
 		ItemsToEarn.push({Name: "WitchHat1", Group: "Hat"});
 		ItemsToEarn.push({Name: "BondageDress2", Group: "Cloth"});
 		InventoryAddMany(Player, ItemsToEarn);
 	}
-	if (Role == "Maiden") { 
-		var ItemsToEarn = [];
+	if (Role == "Maiden") {
+		let ItemsToEarn = [];
 		ItemsToEarn.push({Name: "BatWings", Group: "Wings"});
 		ItemsToEarn.push({Name: "Dress2", Group: "Cloth"});
 		InventoryAddMany(Player, ItemsToEarn);

@@ -1,21 +1,4 @@
 /**
- * An item is a pair of asset and its dynamic properties that define a worn asset.
- * @typedef {{Asset: object, Color: string, Difficulty: number, Property: object | undefined}} Item
- */
-
-/**
- * An appearance array is an array of object defining each appearance item of a character in all of its details.
- * @typedef {Array.<Item>} AppearanceArray
- */
-
-/**
- * An appearance bundle is an array of object defining each appearance item of a character. It's a minified version of
- * the normal appearance array
- * @typedef {Array.<{Group: string, Name: string, Difficulty: number | undefined, Color: string | undefined, Property:
- *     object | undefined}>} AppearanceBundle
- */
-
-/**
  * A map containing appearance item diffs, keyed according to the item group. Used to compare and validate before/after
  * for appearance items.
  * @typedef AppearanceDiffMap
@@ -50,6 +33,9 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomSyncMemberJoin", function (data) { ChatRoomSyncMemberJoin(data); });
 	ServerSocket.on("ChatRoomSyncMemberLeave", function (data) { ChatRoomSyncMemberLeave(data); });
 	ServerSocket.on("ChatRoomSyncCharacter", function (data) { ChatRoomSyncCharacter(data); });
+	ServerSocket.on("ChatRoomSyncSwapPlayers", function (data) { ChatRoomSyncSwapPlayers(data); });
+	ServerSocket.on("ChatRoomSyncMovePlayer", function (data) { ChatRoomSyncMovePlayer(data); });
+	ServerSocket.on("ChatRoomSyncReorderPlayers", function (data) { ChatRoomSyncReorderPlayers(data); });
 	ServerSocket.on("ChatRoomSyncSingle", function (data) { ChatRoomSyncSingle(data); });
 	ServerSocket.on("ChatRoomSyncExpression", function (data) { ChatRoomSyncExpression(data); });
 	ServerSocket.on("ChatRoomSyncPose", function (data) { ChatRoomSyncPose(data); });
@@ -167,7 +153,7 @@ function ServerDisconnect(data, close = false) {
 
 /**
  * Returns whether the player is currently in a chatroom or viewing a subscreen while in a chatroom
- * @returns {boolean} - True if in a chatroom 
+ * @returns {boolean} - True if in a chatroom
  */
 function ServerPlayerIsInChatRoom() {
 	return (CurrentScreen == "ChatRoom")
@@ -270,7 +256,7 @@ function ServerPlayerRelationsSync() {
 	Array.from(Player.FriendNames.keys()).forEach(k => {
 		if (!Player.FriendList.includes(k) && !Player.SubmissivesList.has(k))
 			Player.FriendNames.delete(k);
-	})
+	});
 	D.FriendNames = LZString.compressToUTF16(JSON.stringify(Array.from(Player.FriendNames)));
 	D.SubmissivesList = LZString.compressToUTF16(JSON.stringify(Array.from(Player.SubmissivesList)));
 	ServerSend("AccountUpdate", D);
@@ -279,7 +265,7 @@ function ServerPlayerRelationsSync() {
 /**
  * Prepares an appearance bundle so we can push it to the server. It minimizes it by keeping only the necessary
  * information. (Asset name, group name, color, properties and difficulty)
- * @param {AppearanceArray} Appearance - The appearance array to bundle
+ * @param {Item[]} Appearance - The appearance array to bundle
  * @returns {AppearanceBundle} - The appearance bundle created from the given appearance array
  */
 function ServerAppearanceBundle(Appearance) {
@@ -340,7 +326,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 /**
  * Builds a diff map for comparing changes to a character's appearance, keyed by asset group name
  * @param {string} assetFamily - The asset family of the appearance
- * @param {AppearanceItem[]} appearance - The current appearance to compare against
+ * @param {Item[]} appearance - The current appearance to compare against
  * @param {AppearanceBundle} bundle - The new appearance bundle
  * @returns {AppearanceDiffMap} - An appearance diff map representing the changes that have been made to the character's
  * appearance
@@ -364,12 +350,11 @@ function ServerBuildAppearanceDiff(assetFamily, appearance, bundle) {
  * Maps a bundled appearance item, as stored on the server and used for appearance update messages, into a full
  * appearance item, as used by the game client
  * @param {string} assetFamily - The asset family of the appearance item
- * @param {AppearanceBundleItem} item - The bundled appearance item
- * @returns {AppearanceItem} - A full appearance item representation of the provided bundled appearance item
+ * @param {ItemBundle} item - The bundled appearance item
+ * @returns {Item} - A full appearance item representation of the provided bundled appearance item
  */
 function ServerBundledItemToAppearanceItem(assetFamily, item) {
-	if (!item || typeof item !== "object" || typeof item.Name !== "string" || typeof item.Group !==
-	    "string") return null;
+	if (!item || typeof item !== "object" || typeof item.Name !== "string" || typeof item.Group !== "string") return null;
 
 	const asset = AssetGet(assetFamily, item.Group, item.Name);
 	if (!asset) return null;
@@ -532,7 +517,7 @@ function ServerAccountBeep(data) {
 			if (ServerBeep.ChatRoomName != null)
 				ServerBeep.Message = ServerBeep.Message + " " + DialogFindPlayer("InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFindPlayer("InAsylum") : '');
 			if (data.Message) {
-				ServerBeep.Message += `; ${DialogFindPlayer("BeepWithMessage")}`
+				ServerBeep.Message += `; ${DialogFindPlayer("BeepWithMessage")}`;
 			}
 			FriendListBeepLog.push({
 				MemberNumber: data.MemberNumber,
@@ -555,17 +540,17 @@ function ServerAccountBeep(data) {
 		} else if (data.BeepType == "Leash" && ChatRoomLeashPlayer == data.MemberNumber && data.ChatRoomName) {
 			if (Player.OnlineSharedSettings && Player.OnlineSharedSettings.AllowPlayerLeashing != false && ( CurrentScreen != "ChatRoom" || !ChatRoomData || (CurrentScreen == "ChatRoom" && ChatRoomData.Name != data.ChatRoomName))) {
 				if (ChatRoomCanBeLeashedBy(data.MemberNumber, Player)) {
-					ChatRoomJoinLeash = data.ChatRoomName
-					
-					DialogLeave()
+					ChatRoomJoinLeash = data.ChatRoomName;
+
+					DialogLeave();
 					ChatRoomClearAllElements();
 					if (CurrentScreen == "ChatRoom") {
 						ServerSend("ChatRoomLeave", "");
 						CommonSetScreen("Online", "ChatSearch");
 					}
-					else ChatRoomStart("", "", "MainHall", "Introduction", BackgroundsTagList) //CommonSetScreen("Room", "ChatSearch")
+					else ChatRoomStart("", "", "MainHall", "Introduction", BackgroundsTagList); //CommonSetScreen("Room", "ChatSearch")
 				} else {
-					ChatRoomLeashPlayer = null
+					ChatRoomLeashPlayer = null;
 				}
 			}
 		}

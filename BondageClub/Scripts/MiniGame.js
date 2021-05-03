@@ -20,7 +20,7 @@ function MiniGameLoad() {
  * @param {string} GameType - Name of the mini-game to launch
  * @param {number} Difficulty - Difficulty Ration for the mini-game
  * @param {string} ReturnFunction - Callback name to execute once the mini-game is over
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function MiniGameStart(GameType, Difficulty, ReturnFunction) {
 	CurrentCharacter = null;

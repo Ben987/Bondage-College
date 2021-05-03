@@ -9,13 +9,13 @@ var InventoryClothAccessoryBunnyCollarCuffsOptions = [
 	{
 		Name: "Collar",
 		Property: {
-			Type: "Collar", 
+			Type: "Collar",
 		},
 	},
 	{
 		Name: "Cuffs",
 		Property: {
-			Type: "Cuffs", 
+			Type: "Cuffs",
 		},
 	},
 ];
@@ -26,10 +26,10 @@ function InventoryClothAccessoryBunnyCollarCuffsLoad() {
 
 // Draw the item extension screen
 function InventoryClothAccessoryBunnyCollarCuffsDraw() {
-	ExtendedItemDraw(InventoryClothAccessoryBunnyCollarCuffsOptions, "BunnyCuffsType", null, true, true);
+	ExtendedItemDraw(InventoryClothAccessoryBunnyCollarCuffsOptions, "BunnyCuffsType", null, true);
 }
 
 // Catches the item extension clicks
 function InventoryClothAccessoryBunnyCollarCuffsClick() {
-	ExtendedItemClick(InventoryClothAccessoryBunnyCollarCuffsOptions, true);
+	ExtendedItemClick(InventoryClothAccessoryBunnyCollarCuffsOptions);
 }

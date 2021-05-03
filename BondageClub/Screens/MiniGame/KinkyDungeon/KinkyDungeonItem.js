@@ -1,3 +1,4 @@
+"use strict";
 var KinkyDungeonGroundItems = [] // Tracking all items on the ground
 
 function KinkyDungeonItemDrop(x, y, dropTable) {
@@ -26,15 +27,25 @@ function KinkyDungeonItemDrop(x, y, dropTable) {
 }
 
 function KinkyDungeonItemEvent(Item, Index) {
+	let color = "white"
+	let priority = 1
 	if (Item.name == "Gold") {
-		if (1 > KinkyDungeonActionMessagePriority) {
-			KinkyDungeonActionMessageTime = 2
-			KinkyDungeonActionMessage = TextGet("ItemPickup" + Item.name).replace("XXX", Item.amount)
-			KinkyDungeonActionMessageColor = "yellow"
-			KinkyDungeonActionMessagePriority = 1
-		}
+		color = "yellow"
 		KinkyDungeonAddGold(Item.amount)
+	} else if (Item.name == "RedKey") {
+		priority = 2
+		color = "lightgreen"
+		KinkyDungeonRedKeys += 1
+	} else if (Item.name == "GreenKey") {
+		priority = 2
+		color = "lightgreen"
+		KinkyDungeonGreenKeys += 1
+	} else if (Item.name == "BlueKey") {
+		priority = 2
+		color = "lightgreen"
+		KinkyDungeonBlueKeys += 1
 	}
+	KinkyDungeonSendActionMessage(priority, TextGet("ItemPickup" + Item.name).replace("XXX", Item.amount), color, 2)
 }
 
 
@@ -56,7 +67,7 @@ function KinkyDungeonDrawItems(canvasOffsetX, canvasOffsetY, CamX, CamY) {
 		var item = KinkyDungeonGroundItems[E]
 		var sprite = item.name
 		if (KinkyDungeonGroundItems[E].x >= CamX && KinkyDungeonGroundItems[E].y >= CamY && KinkyDungeonGroundItems[E].x < CamX + KinkyDungeonGridWidthDisplay && KinkyDungeonGroundItems[E].y < CamY + KinkyDungeonGridHeightDisplay) {
-			DrawImageZoomCanvas("Screens/MiniGame/KinkyDungeon/Items/" + sprite + ".png",
+			DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Items/" + sprite + ".png",
 				KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize,
 				(KinkyDungeonGroundItems[E].x - CamX)*KinkyDungeonGridSizeDisplay, (KinkyDungeonGroundItems[E].y - CamY)*KinkyDungeonGridSizeDisplay,
 				KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false)

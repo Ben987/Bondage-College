@@ -25,7 +25,7 @@ var GamblingToothpickCount = 0; // available Toothpicks
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping in the maid quarters
  */
-function GamblingIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0)  }
+function GamblingIsMaidsDisabled() {  var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0);  }
 
 
 // Returns TRUE if a dialog is permitted
@@ -58,34 +58,34 @@ function GamblingSecondCanPlay() {return (!Player.IsRestrained() && Player.CanTa
  * Checks, if the simple dice game can be offered
  * @returns {boolean} - Returns true, if the left sub can offer games, false otherwise
  */
-function GamblingCanPlaySimpleDice() {return GamblingFirstCanPlay()}
+function GamblingCanPlaySimpleDice() {return GamblingFirstCanPlay();}
 /**
  * Checks, if the game of 21 can be offered
- * @returns {boolean} - Returns true, if the left sub can offer games 
+ * @returns {boolean} - Returns true, if the left sub can offer games
  * and the player's reputation is higer than 10, false otherwise
  */
 function GamblingCanPlayTwentyOne() {return (GamblingFirstCanPlay() && ReputationGet("Gambling") >= 10);}
 /**
  * Checks, if the toothpick game can be offered
- * @returns {boolean} - Returns true, if the left sub can offer games 
+ * @returns {boolean} - Returns true, if the left sub can offer games
  * and the player's reputation is higer than 20, false otherwise
  */
 function GamblingCanPlayToothpick() {return (GamblingFirstCanPlay() && ReputationGet("Gambling") >= 20);}
 /**
  * Checks, if the game 'Catch the fox' can be offered
- * @returns {boolean} - Returns true, if the right sub can offer games, the player's reputation is higer than 30 
+ * @returns {boolean} - Returns true, if the right sub can offer games, the player's reputation is higer than 30
  * and she has enough money, false otherwise
  */
 function GamblingCanPlayFox() {return (GamblingSecondCanPlay() && (ReputationGet("Gambling") >= 30) && (Player.Money >= 10));}
 /**
  * Checks, if the game 'Street to Roissy' can be offered
- * @returns {boolean} - Returns true, if the right sub can offer games, the player's reputation is higer than 40 
+ * @returns {boolean} - Returns true, if the right sub can offer games, the player's reputation is higer than 40
  * and she has enough money, false otherwise
  */
 function GamblingCanPlayStreetRoissy() {return (GamblingSecondCanPlay() && (ReputationGet("Gambling") >= 40) && (Player.Money >= 30));}
 /**
  * Checks, if the game 'Dare Six' can be offered
- * @returns {boolean} - Returns true, if the right sub can offer games, the player's reputation is higer than 50 
+ * @returns {boolean} - Returns true, if the right sub can offer games, the player's reputation is higer than 50
  * and she has enough money, false otherwise
  */
 function GamblingCanPlayDaredSix() {return (GamblingSecondCanPlay() && (ReputationGet("Gambling") >= 50) && (Player.Money >= 50));}
@@ -94,44 +94,44 @@ function GamblingCanPlayDaredSix() {return (GamblingSecondCanPlay() && (Reputati
  * Checks, if the player can take one toothpick
  * @returns {boolean} - Returns true, if there is more than one pick left, false otherwise
  */
-function GamblingToothpickCanPickOne() {return GamblingToothpickCount >= 1}
+function GamblingToothpickCanPickOne() {return GamblingToothpickCount >= 1;}
 /**
  * Checks, if the player can take two toothpicks
  * @returns {boolean} - Returns true, if there are more than two picks left, false otherwise
  */
-function GamblingToothpickCanPickTwo() {return GamblingToothpickCount >= 2}
+function GamblingToothpickCanPickTwo() {return GamblingToothpickCount >= 2;}
 /**
  * Checks, if the player can take three toothpicks
  * @returns {boolean} - Returns true, if there are more than three picks left, false otherwise
  */
-function GamblingToothpickCanPickThree() {return GamblingToothpickCount >= 3}
+function GamblingToothpickCanPickThree() {return GamblingToothpickCount >= 3;}
 
 /**
  * Checks, if the player is restrained with a locked item
  * @returns {boolean} - Returns true if a restraint is locked on the player, false otherwise
  */
-function GamblingIsRestrainedWithLock() { return InventoryCharacterHasLockedRestraint(Player) };
+function GamblingIsRestrainedWithLock() { return InventoryCharacterHasLockedRestraint(Player); }
 /**
  * Checks, wether the player is restrained but no lock is used
  * @returns {boolean} - Returns true, if the player is restarined, but no lock was used, false otherwise
  */
-function GamblingIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)) };
+function GamblingIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)); }
 
 /**
  * Checks, if the player owns enough money to pay for her release
  * @returns {boolean} - Returns true, if the player is not restrained with a lock and owns at least $25, false otherwise
  */
-function GamblingCanPayToRelease() { return ((Player.Money >= 25) && !InventoryCharacterHasLockedRestraint(Player)) };
+function GamblingCanPayToRelease() { return ((Player.Money >= 25) && !InventoryCharacterHasLockedRestraint(Player)); }
 /**
  * Checks, if the player is too poor to pay for her release
  * @returns {boolean} - Returns true, if the player is not restrained with a lock and owns less than $25, false otherwise
  */
-function GamblingCannotPayToRelease() { return ((Player.Money < 25) && !InventoryCharacterHasLockedRestraint(Player)) };
+function GamblingCannotPayToRelease() { return ((Player.Money < 25) && !InventoryCharacterHasLockedRestraint(Player)); }
 /**
  * Checks, if the player can steal the dice
  * @returns {boolean} - Returns true, if the player is able to steal the dice, false otherwise
  */
-function GamblingCanStealDice() {return (LogQuery("Joined", "BadGirl") && !(LogQuery("Stolen", "BadGirl") || LogQuery("Hide", "BadGirl"))) }
+function GamblingCanStealDice() {return (LogQuery("Joined", "BadGirl") && !(LogQuery("Stolen", "BadGirl") || LogQuery("Hide", "BadGirl"))); }
 
 /**
  * Loads the Gambling Hall and creates the two subs. If the player is on a rescue mission, the restraints are created.
@@ -139,7 +139,7 @@ function GamblingCanStealDice() {return (LogQuery("Joined", "BadGirl") && !(LogQ
  * @returns {void} - Nothing
  */
 function GamblingLoad() {
-	
+
 	// Default load
 	if (GamblingFirstSub == null) {
 		GamblingFirstSub =  CharacterLoadNPC("NPC_Gambling_FirstSub");
@@ -149,26 +149,26 @@ function GamblingLoad() {
 		GamblingAppearanceFirst = GamblingFirstSub.Appearance.slice();
 		GamblingAppearanceSecond = GamblingSecondSub.Appearance.slice();
 	}
-	
+
 	GamblingAppearancePlayer = Player.Appearance.slice();
 	GamblingIllegalChange = false;
-	
+
 	// Rescue mission load
 	if ((MaidQuartersCurrentRescue == "Gambling") && !MaidQuartersCurrentRescueStarted) {
 		MaidQuartersCurrentRescueStarted = true;
 		CharacterNaked(GamblingFirstSub);
-		InventoryWearRandom(GamblingFirstSub, "ItemLegs"); 
-		InventoryWearRandom(GamblingFirstSub, "ItemFeet"); 
-		InventoryWearRandom(GamblingFirstSub, "ItemArms"); 
-		InventoryWearRandom(GamblingFirstSub, "ItemMouth"); 
+		InventoryWearRandom(GamblingFirstSub, "ItemLegs");
+		InventoryWearRandom(GamblingFirstSub, "ItemFeet");
+		InventoryWearRandom(GamblingFirstSub, "ItemArms");
+		InventoryWearRandom(GamblingFirstSub, "ItemMouth");
 		InventoryWear(GamblingFirstSub, "LeatherBlindfold", "ItemHead");
 		GamblingFirstSub.AllowItem = true;
 		GamblingFirstSub.Stage = "MaidRescue";
 		CharacterNaked(GamblingSecondSub);
-		InventoryWearRandom(GamblingSecondSub, "ItemLegs"); 
-		InventoryWearRandom(GamblingSecondSub, "ItemFeet"); 
-		InventoryWearRandom(GamblingSecondSub, "ItemArms"); 
-		InventoryWearRandom(GamblingSecondSub, "ItemMouth"); 
+		InventoryWearRandom(GamblingSecondSub, "ItemLegs");
+		InventoryWearRandom(GamblingSecondSub, "ItemFeet");
+		InventoryWearRandom(GamblingSecondSub, "ItemArms");
+		InventoryWearRandom(GamblingSecondSub, "ItemMouth");
 		InventoryWear(GamblingSecondSub, "LeatherBlindfold", "ItemHead");
 		GamblingSecondSub.AllowItem = true;
 		GamblingSecondSub.Stage = "MaidRescue";
@@ -176,7 +176,7 @@ function GamblingLoad() {
 }
 
 /**
- * Run the Gambling Hall, draw all characters. This function is called dynamically at very short intervals. 
+ * Run the Gambling Hall, draw all characters. This function is called dynamically at very short intervals.
  * Don't use expensive loops or call expensive functions from here
  * @returns {void} - Nothing
  */
@@ -270,7 +270,7 @@ function GamblingSimpleDiceController(SimpleDiceState) {
 			GamblingFirstSub.AllowItem = false;
 			GamblingFirstSub.Stage = 82;
 			}
-		if (GamblingPlayerDice == GamblingNpcDice) { 
+		if (GamblingPlayerDice == GamblingNpcDice) {
 			GamblingFirstSub.AllowItem = false;
 			GamblingFirstSub.Stage = 83;
 			}
@@ -295,7 +295,7 @@ function GamblingShowToothpickStack () {
 	for (let i = 0; i < GamblingToothpickCount; i++) {
 		DrawImageResize("Screens/Room/Gambling/toothpick.png", 410, 45 + 26 * i, 160, 7);
 	}
-	DrawText(GamblingToothpickCount, 490, 25, "white", "black")
+	DrawText(GamblingToothpickCount, 490, 25, "white", "black");
 	return true;
 }
 
@@ -307,28 +307,28 @@ function GamblingShowToothpickStack () {
 function GamblingToothpickController (ToothpickState) {
 	if (ToothpickState == "new") {
 		GamblingToothpickCount = 15;
-		GamblingFirstSub.Stage = 200
+		GamblingFirstSub.Stage = 200;
 	}
 
 	else if (ToothpickState == "give_up") {
 		GamblingFirstSub.Stage = 203;
 	}
-	
+
 	else if (ToothpickState == "win") {
 		ReputationProgress("Gambling", 1);
 		GamblingFirstSub.AllowItem = true;
 	}
-	
+
 	else if (ToothpickState == "lost") {
-		var difficulty = Math.floor(Math.random() * 5) + 2
+		var difficulty = Math.floor(Math.random() * 5) + 2;
 		InventoryWearRandom(Player, "ItemArms", difficulty);
-		InventoryWearRandom(Player, "ItemMouth", difficulty); 
-		InventoryWearRandom(Player, "ItemLegs", difficulty); 
-		InventoryWearRandom(Player, "ItemFeet", difficulty); 
+		InventoryWearRandom(Player, "ItemMouth", difficulty);
+		InventoryWearRandom(Player, "ItemLegs", difficulty);
+		InventoryWearRandom(Player, "ItemFeet", difficulty);
 	}
 
 	else {
-		GamblingToothpickCount -= ToothpickState
+		GamblingToothpickCount -= ToothpickState;
 
 		// has player lost?
 		if (GamblingToothpickCount <= 0) {
@@ -338,12 +338,12 @@ function GamblingToothpickController (ToothpickState) {
 
 		// NPC
 		if (GamblingToothpickCount > 0) {
-			var npc_choice = GamblingToothpickNPCChoice()
-			GamblingFirstSub.Stage = 201
+			var npc_choice = GamblingToothpickNPCChoice();
+			GamblingFirstSub.Stage = 201;
 			GamblingFirstSub.CurrentDialog = DialogFind(GamblingFirstSub, "Toothpick" + npc_choice.toString());
-			GamblingToothpickCount -= npc_choice
-			GamblingFirstSub.Stage = 200
-		
+			GamblingToothpickCount -= npc_choice;
+			GamblingFirstSub.Stage = 200;
+
 			// has NPC lost?
 			if (GamblingToothpickCount <= 0) {
 				GamblingFirstSub.Stage = 201;
@@ -357,13 +357,13 @@ function GamblingToothpickController (ToothpickState) {
  * @returns {number} - The toothpicks the NPC draws
  */
 function GamblingToothpickNPCChoice() {
-	var max_pick = (GamblingToothpickCount >= 3) ? 3 : GamblingToothpickCount
+	var max_pick = (GamblingToothpickCount >= 3) ? 3 : GamblingToothpickCount;
 	var choice = Math.floor(Math.random() * max_pick) + 1;
-	if (GamblingToothpickCount == 6) {choice = 1}
-	else if (GamblingToothpickCount == 4) {choice = 3}
-	else if (GamblingToothpickCount == 3) {choice = 2}
-	else if (GamblingToothpickCount == 2) {choice = 1}
-	return choice
+	if (GamblingToothpickCount == 6) {choice = 1;}
+	else if (GamblingToothpickCount == 4) {choice = 3;}
+	else if (GamblingToothpickCount == 3) {choice = 2;}
+	else if (GamblingToothpickCount == 2) {choice = 1;}
+	return choice;
 }
 
 /**
@@ -372,7 +372,7 @@ function GamblingToothpickNPCChoice() {
  * @returns {void} - Nothing
  */
 function GamblingTwentyOneController(TwentyOneState) {
-	
+
 	if (TwentyOneState == "new") {
 		// Start a New Game
 		Player.Appearance = GamblingAppearancePlayer.slice();
@@ -390,11 +390,11 @@ function GamblingTwentyOneController(TwentyOneState) {
 			GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 		}
 		GamblingFirstSub.Stage = 100 + GamblingDiceStackSum(GamblingPlayerDiceStack);
-	
+
 	} else if (TwentyOneState == "add") {
 		//Get on more Dice
 		GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
-		GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice; 
+		GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 		GamblingFirstSub.Stage = 100 + GamblingDiceStackSum(GamblingPlayerDiceStack);
 		if (GamblingDiceStackSum(GamblingPlayerDiceStack) > 21) {
 			GamblingPlayerSubState = GamblingPlayerSubState +1;
@@ -404,13 +404,13 @@ function GamblingTwentyOneController(TwentyOneState) {
 			GamblingNpcSubState = GamblingNpcSubState +1;
 			GamblingFirstSub.Stage = 160 + GamblingNpcSubState;
 		}
-	
+
 	} else if (TwentyOneState == "fin") {
 		//The Player is fin in this turn
 		//The GamblingFirstSub dices as she win or over 21
 		while (GamblingDiceStackSum(GamblingNpcDiceStack) <= GamblingDiceStackSum(GamblingPlayerDiceStack) && GamblingDiceStackSum(GamblingNpcDiceStack) < 22) {
 			GamblingNpcDice = Math.floor(Math.random() * 6) + 1;
-			GamblingNpcDiceStack[GamblingNpcDiceStack.length] = GamblingNpcDice; 
+			GamblingNpcDiceStack[GamblingNpcDiceStack.length] = GamblingNpcDice;
 		}
 		if (GamblingDiceStackSum(GamblingNpcDiceStack) > GamblingDiceStackSum(GamblingPlayerDiceStack) && GamblingDiceStackSum(GamblingNpcDiceStack) < 22) {
 			GamblingPlayerSubState = GamblingPlayerSubState +1;
@@ -419,7 +419,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 			GamblingNpcSubState = GamblingNpcSubState +1;
 			GamblingFirstSub.Stage = 160 + GamblingNpcSubState;
 		}
-	
+
 	} else if (TwentyOneState == "win_next") {
 		//The winner stiped the loser
 		//the next turn started automaticly
@@ -428,10 +428,10 @@ function GamblingTwentyOneController(TwentyOneState) {
 			Player.Appearance = GamblingAppearancePlayer.slice();
 			CharacterRefresh(Player);
 			GamblingFirstSub.AllowItem = true;
-			GamblingFirstSub.Stage = 0; 
+			GamblingFirstSub.Stage = 0;
 			ReputationProgress("Gambling", 3);
-			}		
-		
+			}
+
 		GamblingPlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
 		for (let i = 1; i <= 3; i++) {
@@ -439,7 +439,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 			GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 		}
 		if (GamblingFirstSub.Stage != 0) {GamblingFirstSub.Stage = 100 + GamblingDiceStackSum(GamblingPlayerDiceStack); }
-	
+
 	} else if (TwentyOneState == "lost_next") {
 		//the loser Player ist stipped by winner
 		//the next turn started automaticly
@@ -447,7 +447,7 @@ function GamblingTwentyOneController(TwentyOneState) {
 			CharacterRelease(GamblingFirstSub);
 			GamblingFirstSub.Appearance = GamblingAppearanceFirst.slice();
 			CharacterRefresh(GamblingFirstSub);
-			GamblingFirstSub.Stage = 0; 
+			GamblingFirstSub.Stage = 0;
 			}
 
 		GamblingPlayerDiceStack = [];
@@ -469,13 +469,13 @@ function GamblingFoxController(FoxState) {
 			GamblingPlayerDiceStack = [];
 			GamblingNpcDiceStack = [];
 			GamblingShowMoney = true;
-		} else if (FoxState == "fox") { 
+		} else if (FoxState == "fox") {
 			GamblingPlayerIsFox = true;
 			GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
 			GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 			GamblingMoneyBet = 5;
 			GamblingSecondSub.Stage = 101;
-		} else if (FoxState == "hunter") { 
+		} else if (FoxState == "hunter") {
 			GamblingPlayerIsFox = false;
 			GamblingMoneyBet = 5;
 			CharacterChangeMoney(Player, GamblingMoneyBet * -1);
@@ -486,7 +486,7 @@ function GamblingFoxController(FoxState) {
 			GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
 			GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
 			GamblingNpcDice = Math.floor(Math.random() * 6) + 1;
-			GamblingNpcDiceStack[GamblingNpcDiceStack.length] = GamblingNpcDice; 
+			GamblingNpcDiceStack[GamblingNpcDiceStack.length] = GamblingNpcDice;
 			if (GamblingPlayerIsFox && GamblingDiceStackSum(GamblingPlayerDiceStack) >= 30) {
 				//player has won
 				GamblingSecondSub.Stage = 102;
@@ -513,14 +513,14 @@ function GamblingFoxController(FoxState) {
 			GamblingShowMoney = false;
 		} else if (FoxState == "player_fox_lost") {
 			GamblingSecondSub.AllowItem = false;
-			InventoryWearRandom(Player, "ItemLegs"); 
-			InventoryWearRandom(Player, "ItemFeet"); 
-			InventoryWearRandom(Player, "ItemArms"); 
+			InventoryWearRandom(Player, "ItemLegs");
+			InventoryWearRandom(Player, "ItemFeet");
+			InventoryWearRandom(Player, "ItemArms");
 			GamblingPlayerDiceStack = [];
 			GamblingNpcDiceStack = [];
 			GamblingShowMoney = false;
 		} else if (FoxState == "player_hunter_win") {
-			InventoryWearRandom(GamblingSecondSub, "ItemArms"); 
+			InventoryWearRandom(GamblingSecondSub, "ItemArms");
 			GamblingSecondSub.AllowItem = true;
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
 			CharacterChangeMoney(Player, GamblingMoneyBet);
@@ -574,7 +574,7 @@ function GamblingStreetRoissyController (StreetRoissyState) {
 				//Player win
 				GamblingSecondSub.Stage = 240 + GamblingPlayerSubState;
 			}
-		} else { 
+		} else {
 			if (GamblingNpcDice == GamblingNpcSubState) {
 				//NPC win turn
 				GamblingSecondSub.Stage = 230 + GamblingNpcSubState;
@@ -596,7 +596,7 @@ function GamblingStreetRoissyController (StreetRoissyState) {
 		GamblingNpcSubState++;
 		GamblingSecondSub.Stage = 200;
 	} else if (StreetRoissyState == "win") {
-		GamblingSecondSub.Stage = 0; 
+		GamblingSecondSub.Stage = 0;
 		if (GamblingStripTied(GamblingSecondSub, GamblingPlayerSubState)) {
 			ReputationProgress("Gambling", 2);
 			CharacterRelease(Player);
@@ -611,7 +611,7 @@ function GamblingStreetRoissyController (StreetRoissyState) {
 			GamblingSecondSub.Stage = 200;
 		}
 	} else if (StreetRoissyState == "lost") {
-		GamblingSecondSub.Stage = 0; 
+		GamblingSecondSub.Stage = 0;
 		if (GamblingStripTied(Player, GamblingNpcSubState)) {
 			CharacterRelease(GamblingSecondSub);
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
@@ -619,19 +619,19 @@ function GamblingStreetRoissyController (StreetRoissyState) {
 			CharacterRefresh(GamblingSecondSub);
 			GamblingSecondSub.AllowItem = false;
 			GamblingStreetRoissyController ("end");
-		} else {	
+		} else {
 			GamblingNpcSubState++;
 			GamblingSecondSub.Stage = 200;
 		}
 	} else if (StreetRoissyState == "end") {
 		GamblingMoneyBet = 0;
 		GamblingPlayerSubState = 1;
-		GamblingNpcSubState = 1; 
+		GamblingNpcSubState = 1;
 		GamblingPlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
 		GamblingShowDiceSum = true;
 		GamblingShowMoney = false;
-	}		
+	}
 }
 
 /**
@@ -646,7 +646,7 @@ function GamblingDaredSixController(DaredSixState) {
 		Player.Appearance = GamblingAppearancePlayer.slice();
 		GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
 		GamblingPlayerSubState = GamblingDressingLevel(Player) + 1;
-		GamblingNpcSubState = 1; 
+		GamblingNpcSubState = 1;
 		GamblingPlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
 		CharacterRefresh(GamblingSecondSub);
@@ -662,13 +662,13 @@ function GamblingDaredSixController(DaredSixState) {
 		{
 			//Player lost automaticly
 			GamblingSecondSub.Stage = 310 + GamblingPlayerSubState;
-		} 
+		}
 	} else if (DaredSixState == "fin") {
 		do {
 		GamblingNpcDice = Math.floor(Math.random() * 6) + 1;
 		GamblingNpcDiceStack[GamblingNpcDiceStack.length] = GamblingNpcDice;
 		GamblingMoneyBet++;
-		} while (GamblingDiceStackSum(GamblingNpcDiceStack) <= GamblingDiceStackSum(GamblingPlayerDiceStack) && GamblingNpcDice != 6 ); 
+		} while (GamblingDiceStackSum(GamblingNpcDiceStack) <= GamblingDiceStackSum(GamblingPlayerDiceStack) && GamblingNpcDice != 6 );
 		if (GamblingNpcDice == 6)
 		{
 			//GamblingNpcDice lost automaticly
@@ -686,12 +686,12 @@ function GamblingDaredSixController(DaredSixState) {
 			Player.Appearance = GamblingAppearancePlayer.slice();
 			CharacterRefresh(Player);
 			GamblingSecondSub.AllowItem = true;
-			GamblingSecondSub.Stage = 330; 
+			GamblingSecondSub.Stage = 330;
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
 			GamblingMoneyBet = 0;
 			ReputationProgress("Gambling", 3);
 			GamblingShowMoney = false;
-		} else {		
+		} else {
 			GamblingNpcSubState++;
 			GamblingDaredSixController("add");
 		}
@@ -703,7 +703,7 @@ function GamblingDaredSixController(DaredSixState) {
 			GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
 			CharacterRefresh(GamblingSecondSub);
 			GamblingSecondSub.AllowItem = false;
-			GamblingSecondSub.Stage = 340; 
+			GamblingSecondSub.Stage = 340;
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
 			GamblingMoneyBet = 0;
 			GamblingShowMoney = false;
@@ -711,8 +711,8 @@ function GamblingDaredSixController(DaredSixState) {
 			GamblingPlayerSubState++;
 			GamblingDaredSixController("add");
 		}
-	}		
-}	
+	}
+}
 
 /**
  * Get the dressinglevel for characters
@@ -737,23 +737,23 @@ function GamblingDressingLevel(C) {
 function GamblingStripTied(gstCarachter, gstLevel) {
 	var r = false;
 	if (gstLevel == 1) {
-		InventoryRemove(gstCarachter, "Hat"); 
-		InventoryRemove(gstCarachter, "Shoes"); 
-		InventoryRemove(gstCarachter, "Gloves"); 
+		InventoryRemove(gstCarachter, "Hat");
+		InventoryRemove(gstCarachter, "Shoes");
+		InventoryRemove(gstCarachter, "Gloves");
 	} else if (gstLevel == 2) {
-		InventoryRemove(gstCarachter, "Cloth"); 
-		InventoryRemove(gstCarachter, "ClothLower"); 
+		InventoryRemove(gstCarachter, "Cloth");
+		InventoryRemove(gstCarachter, "ClothLower");
 	} else if (gstLevel == 3) {
-		InventoryRemove(gstCarachter, "Bra"); 
-		InventoryRemove(gstCarachter, "Panties"); 
-		InventoryRemove(gstCarachter, "Socks"); 
+		InventoryRemove(gstCarachter, "Bra");
+		InventoryRemove(gstCarachter, "Panties");
+		InventoryRemove(gstCarachter, "Socks");
 	} else if (gstLevel == 4) {
-		InventoryWearRandom(gstCarachter, "ItemLegs"); 
-		InventoryWearRandom(gstCarachter, "ItemFeet"); 
+		InventoryWearRandom(gstCarachter, "ItemLegs");
+		InventoryWearRandom(gstCarachter, "ItemFeet");
 	} else if (gstLevel == 5) {
-		InventoryWearRandom(gstCarachter, "ItemArms"); 
+		InventoryWearRandom(gstCarachter, "ItemArms");
 	} else if (gstLevel == 6) {
-		InventoryWearRandom(gstCarachter, "ItemMouth"); 
+		InventoryWearRandom(gstCarachter, "ItemMouth");
 		r = true;
 	}
 	return r;

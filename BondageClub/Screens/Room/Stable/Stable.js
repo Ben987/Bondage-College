@@ -25,8 +25,8 @@ var StableExamPoint = 0;
 //General Room function
 ////////////////////////////////////////////////////////////////////////////////////////////
 // functions for Dialogs
-function StablePlayerIsDressOff() {return StablePlayerDressOff;} 
-function StablePlayerIsCollared() {return StableCharacterAppearanceGroupAvailable(Player, "ItemNeck")}
+function StablePlayerIsDressOff() {return StablePlayerDressOff;}
+function StablePlayerIsCollared() {return StableCharacterAppearanceGroupAvailable(Player, "ItemNeck");}
 function StablePlayerOtherPony()  {return StableTrainer.Stage == "StableTrainingOtherPoniesBack" || StableTrainer.Stage == "StableTrainingEnd";}
 function StablePlayerIsolation()  {return StableTrainer.Stage == "StableTrainingIsolationBack";}
 function StableTrainingExercisesAvailable() {return (StableTrainerTrainingExercises > 0);}
@@ -36,7 +36,7 @@ function StablePlayerAllowedTrainerExamen() {return (!StablePlayerIsExamTrainer 
 function StablePlayerDisallowedTrainerExamen() {return (!StablePlayerIsExamTrainer && StablePlayerIsTrainer && (SkillGetLevel(Player, "Dressage") < 6));}
 
 //BadGirlClub
-function StableCanHideDice() {return (LogQuery("Joined", "BadGirl") && LogQuery("Stolen", "BadGirl") && !LogQuery("Hide", "BadGirl"))}
+function StableCanHideDice() {return (LogQuery("Joined", "BadGirl") && LogQuery("Stolen", "BadGirl") && !LogQuery("Hide", "BadGirl"));}
 
 
 // Loads the stable characters with many restrains
@@ -54,7 +54,7 @@ function StableLoad() {
 		ItemsToEarn.push({Name: "HarnessPonyBits", Group: "ItemMouth"});
 		InventoryAddMany(Player, ItemsToEarn);
 	}
-	
+
 	// Default load
 	if (StableTrainer == null) {
 		StableTrainer = CharacterLoadNPC("NPC_Stable_Trainer");
@@ -328,7 +328,7 @@ function StablePlayerTrainingHurdles(Behavior) {
 	StablePlayerTrainingLessons += 2;
 }
 
-function StablePlayerTrainingHurdlesEnd() {	
+function StablePlayerTrainingHurdlesEnd() {
 	CommonSetScreen("Room", "Stable");
 	CharacterSetCurrent(StableTrainer);
 	if (MiniGameVictory) {
@@ -451,7 +451,7 @@ function StablePlayerTrainingPass(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	if (StablePlayerTrainingBehavior <= 0) {
 		StableCheckEquipment(Player);
- 	} else {
+	} else {
 		var PassSelection = Math.random() * 7;
 		if (PassSelection < 1) {
 			StablePlayerTrainingBehavior -= 2;
@@ -492,7 +492,7 @@ function StablePlayerTrainingFail(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	if (StablePlayerTrainingBehavior >= 0) {
 		StableCheckEquipment(Player);
- 	} else {
+	} else {
 		var FailSelection = Math.random() * 8;
 		if (FailSelection < 1) {
 			StablePlayerTrainingBehavior += 2;
@@ -636,11 +636,11 @@ function StablePlayerExamHurdles() {
 	MiniGameStart("HorseWalk", "Hurdle", "StablePlayerExamHurdlesEnd");
 }
 
-function StablePlayerExamHurdlesEnd() {	
+function StablePlayerExamHurdlesEnd() {
 	CommonSetScreen("Room", "Stable");
 	CharacterSetCurrent(StableTrainer);
 	if (MiniGameVictory) {
-		StableExamPoint++
+		StableExamPoint++;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableExamRaceIntro");
 		StableTrainer.Stage = "StableExamRace";
 	} else {
@@ -777,7 +777,7 @@ function StablePonyTrainingHurdles() {
 	StableTrainerTrainingExercises -= 2;
 }
 
-function StablePonyTrainingHurdlesEnd() {	
+function StablePonyTrainingHurdlesEnd() {
 	CommonSetScreen("Room", "Stable");
 	CharacterSetCurrent(StablePony);
 	if (MiniGameVictory) {
@@ -870,7 +870,7 @@ function StablePlayerTExamHurdles() {
 	MiniGameStart("HorseWalk", "HurdleTraining", "StablePlayerTExamHurdlesEnd");
 }
 
-function StablePlayerTExamHurdlesEnd() {	
+function StablePlayerTExamHurdlesEnd() {
 	CommonSetScreen("Room", "Stable");
 	CharacterSetCurrent(StableTrainer);
 	if (MiniGameVictory) {
@@ -908,7 +908,7 @@ var StableSecondProgressAuto = 0;
 var StableProgressClick = 0;
 var StableProgressLastKeyPress = 0;
 var StableProgressItem = '';
-var StableProgressFinished = false; 
+var StableProgressFinished = false;
 var StableProgressCharacter = null;
 var StableProgressSecondCharacter = null;
 var StableProgressEndStage = 0;
@@ -920,7 +920,7 @@ var StableProgressOperation = null;
 var StableProgressStruggleCount = null;
 
 function StableGenericProgressStart(Timer, S, S2, Item, Background, Character, SecondCharacter, Stage, CurrentDialog, CancelStage, CancelCurrentDialog, Behavior, ProgressOperation) {
-	DialogLeave()
+	DialogLeave();
 	if (Timer < 1) Timer = 1;
 	//Charakter
 	StableProgressAuto = TimerRunInterval * (0.1333 + (S * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
@@ -931,7 +931,7 @@ function StableGenericProgressStart(Timer, S, S2, Item, Background, Character, S
 	StableSecondProgressAuto = TimerRunInterval * (0.1333 + (S2 * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
 	if (S2 < 0) { StableSecondProgressAuto = StableSecondProgressAuto / 2; }
 	StableSecondProgress = 0;
-	
+
 	StableBackground = Background;
 	StableProgressItem = Item;
 	StableProgress = 0;
@@ -994,24 +994,24 @@ function StableGenericDrawProgress() {
 		if (StableProgress >= 100) {
 			StableGenericFinished();
 		} else if (StableSecondProgress >= 100) {
-			StableGenericCancel(); 
+			StableGenericCancel();
 		}
 	}
 }
 
 function StableGenericFinished() {
 	StableProgressFinished = true;
-	StableGenericProgressEnd()
+	StableGenericProgressEnd();
 }
 
 function StableGenericCancel() {
 	StableProgressFinished = false;
-	StableGenericProgressEnd()
+	StableGenericProgressEnd();
 }
 
 function StableGenericProgressEnd() {
 	StableProgress = -1;
-	StableBackground = "HorseStable"
+	StableBackground = "HorseStable";
 	CharacterSetCurrent(StableProgressCharacter);
 	if (StableProgressFinished) {
 		StableProgressCharacter.Stage = StableProgressEndStage;

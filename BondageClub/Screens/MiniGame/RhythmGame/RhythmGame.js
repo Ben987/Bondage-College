@@ -10,7 +10,7 @@ let RhythmGamePreloadCompleted = false;
 /**
  * Rhythm game initialization object: Handles pre and post loading, invokes initialization of other objects.
  * @constant
- * @type {object} - The game initialization object. Contains the functions required to load the game. 
+ * @type {object} - The game initialization object. Contains the functions required to load the game.
  */
 let RhythmGameInit = {
     RhythmGamePreload : function(){
@@ -87,7 +87,7 @@ let RhythmGameInit = {
 /**
  * Rhythm game image object: Loads and caches the image resources.
  * @constant
- * @type {object} - The game image object. Contains the functions required to load the images. 
+ * @type {object} - The game image object. Contains the functions required to load the images.
  */
 let RhythmGameImage = {
     preload : function () {
@@ -115,7 +115,7 @@ let RhythmGameImage = {
 /**
  * Rhythm game audio object: Handles loading audio and starting the music
  * @constant
- * @type {object} - The game audio object. Contains the functions required to load, start and stop the audio files. 
+ * @type {object} - The game audio object. Contains the functions required to load, start and stop the audio files.
  */
 let RhythmGameAudio =  {
     preload : function () {
@@ -790,13 +790,13 @@ let RhythmGameRender = {
             RhythmGameRender.cache_judge.startFrame = RhythmGameKernel.frame;
         }
         RhythmGameRender.judgeRender(RhythmGameRender.cache_judge);
-    
+
     },
     judgeRender : function(obj){
         let maxFrame = 15;
         obj.frame = RhythmGameKernel.frame - obj.startFrame;
         if(obj.frame > maxFrame) return;
-    
+
         let text, font, fill, opacity, x, y;
         let frame = maxFrame - obj.frame;
         let step = 10 * frame / maxFrame;
@@ -848,14 +848,14 @@ let RhythmGameRender = {
             RhythmGameScript.combo.startFrame = RhythmGameKernel.frame;
             RhythmGameScript.combo.rendered = true;
         }
-    
+
         let maxFrame = 15;
         RhythmGameScript.combo.frame = RhythmGameKernel.frame - RhythmGameScript.combo.startFrame;
         let frame = maxFrame - RhythmGameScript.combo.frame >= 0 ? maxFrame - RhythmGameScript.combo.frame : 0;
         let step = 10 * frame / maxFrame;
-    
+
         let text = RhythmGameScript.combo.value;
-    
+
         MainCanvas.font = '80px Courier';
         MainCanvas.fillStyle = '#9F9F9F';
         MainCanvas.globalAlpha = 1 - 0.09 * step;

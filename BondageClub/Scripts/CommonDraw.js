@@ -84,11 +84,11 @@ function CommonDrawAppearanceBuild(C, {
 
 	// Loop through all layers in the character appearance
 	C.AppearanceLayers.forEach((Layer) => {
-		var A = Layer.Asset;
-		var AG = A.Group;
-		var CA = C.Appearance.find(item => item.Asset === A);
-		var Property = CA.Property;
-		var CountKey = AG.Name + "/" + A.Name;
+		const A = Layer.Asset;
+		const AG = A.Group;
+		const CountKey = AG.Name + "/" + A.Name;
+		let CA = C.Appearance.find(item => item.Asset === A);
+		let Property = CA.Property;
 
 		// Count how many layers we've drawn for this asset
 		LayerCounts[CountKey] = (LayerCounts[CountKey] || 0) + 1;
@@ -105,15 +105,11 @@ function CommonDrawAppearanceBuild(C, {
 
 		// If there's a pose style we must add (items take priority over groups, layers may override completely)
 		var Pose = "";
-		if (C.Pose && C.Pose.length) {
-			if (Layer.OverrideAllowPose) {
-				Pose = CommonDrawFindPose(C, Layer.OverrideAllowPose);
-			} else if (A.OverrideAllowPose) {
-				Pose = CommonDrawFindPose(C, A.OverrideAllowPose);
-			} else {
-				Pose = CommonDrawFindPose(C, A.AllowPose);
-				if (!Pose) Pose = CommonDrawFindPose(C, AG.AllowPose);
-			}
+		if (C.DrawPose && C.DrawPose.length) {
+			let AllowPose = Layer.AllowPose;
+			if (!Array.isArray(AllowPose)) AllowPose = A.AllowPose;
+			if (!Array.isArray(AllowPose)) AllowPose = AG.AllowPose;
+			Pose = CommonDrawFindPose(C, AllowPose);
 		}
 
 		// Check if we need to draw a different expression (for facial features)
@@ -135,8 +131,8 @@ function CommonDrawAppearanceBuild(C, {
 		// Find the X and Y position to draw on
 		var X = Layer.DrawingLeft != null ? Layer.DrawingLeft : (A.DrawingLeft != null ? A.DrawingLeft : AG.DrawingLeft);
 		var Y = Layer.DrawingTop != null ? Layer.DrawingTop : (A.DrawingTop != null ? A.DrawingTop : AG.DrawingTop);
-		if (C.Pose && C.Pose.length) {
-			C.Pose.forEach(CP => {
+		if (C.DrawPose && C.DrawPose.length) {
+			C.DrawPose.forEach(CP => {
 				var PoseDef = PoseFemale3DCG.find(P => P.Name === CP && P.MovePosition);
 				if (PoseDef) {
 					var MovePosition = PoseDef.MovePosition.find(MP => MP.Group === GroupName);
@@ -158,7 +154,7 @@ function CommonDrawAppearanceBuild(C, {
 			}
 		}
 		Y += YFixedOffset;
-		
+
 		// If we must apply alpha masks to the current image as it is being drawn
 		Layer.Alpha.forEach(AlphaDef => {
 			// If no groups are defined and the character's pose matches one of the allowed poses (or no poses are defined)
@@ -210,7 +206,7 @@ function CommonDrawAppearanceBuild(C, {
 
 
 		// Before drawing hook, receives all processed data. Any of them can be overriden if returned inside an object.
-		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects. 
+		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects.
 		// Watch out for object references.
 		if (A.DynamicBeforeDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
 			const DrawingData = {
@@ -291,24 +287,24 @@ function CommonDrawAppearanceBuild(C, {
 					drawImageColorize(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y,
 						Color,
-						AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
+						AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate
 					);
 					drawImageColorizeBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y,
-						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate,
+						Color, AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate
 					);
 				} else {
 					var ColorName = ((Color == null) || (Color == "Default") || (Color == "") || (Color.length == 1) ||
-					                 (Color.indexOf("#") == 0)) ? "" : "_" + Color;
+						(Color.indexOf("#") == 0)) ? "" : "_" + Color;
 					drawImage(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + ColorName + L + ".png",
 						X, Y,
-						AlphaMasks, Opacity, Rotate,
+						AlphaMasks, Opacity, Rotate
 					);
 					drawImageBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + ColorName + L +
 						".png",
-						X, Y, AlphaMasks, Opacity, Rotate,
+						X, Y, AlphaMasks, Opacity, Rotate
 					);
 				}
 			}
@@ -323,7 +319,7 @@ function CommonDrawAppearanceBuild(C, {
 					drawImage(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + (A.HasType ? Type : "") +
 						"_Lock.png",
-						X, Y, AlphaMasks,
+						X, Y, AlphaMasks
 					);
 					drawImageBlink(
 						"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + (A.HasType ? Type : "") +
@@ -333,7 +329,7 @@ function CommonDrawAppearanceBuild(C, {
 		}
 
 		// After drawing hook, receives all processed data.
-		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects. 
+		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects.
 		// Watch out for object references.
 		if (A.DynamicAfterDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
 			const DrawingData = {
@@ -371,7 +367,7 @@ function CommonDrawFindPose(C, AllowedPoses) {
 	var Pose = "";
 	if (AllowedPoses && AllowedPoses.length) {
 		AllowedPoses.forEach(AllowedPose => {
-			if (C.Pose.includes(AllowedPose)) Pose = AllowedPose + "/";
+			if (C.DrawPose.includes(AllowedPose)) Pose = AllowedPose + "/";
 		});
 	}
 	return Pose;

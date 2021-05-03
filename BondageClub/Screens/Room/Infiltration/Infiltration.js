@@ -3,7 +3,6 @@ var InfiltrationBackground = "Infiltration";
 var InfiltrationSupervisor = null;
 var InfiltrationDifficulty = 0;
 var InfiltrationMission = "";
-//var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve", "Steal"];
 var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve"];
 var InfiltrationObjectType = ["USBKey", "BDSMPainting", "GoldCollar", "GeneralLedger", "SilverVibrator", "DiamondRing", "SignedPhoto"];
 var InfiltrationTarget = {};
@@ -12,25 +11,35 @@ var InfiltrationTarget = {};
  * Returns TRUE if the mission can complete as a success
  * @returns {boolean} - TRUE if successful
  */
-function InfiltrationCanSuccess() { return ((InfiltrationTarget != null) && (InfiltrationTarget.Found != null) && (InfiltrationTarget.Found == true)) }
+function InfiltrationCanSuccess() { return ((InfiltrationTarget != null) && (InfiltrationTarget.Found != null) && (InfiltrationTarget.Found == true)); }
 
 /**
  * Returns TRUE if the mission can complete as a failure
  * @returns {boolean} - TRUE if successful
  */
-function InfiltrationCanFail() { return ((InfiltrationTarget == null) || (InfiltrationTarget.Found == null) || (InfiltrationTarget.Found == false)) }
+function InfiltrationCanFail() { return ((InfiltrationTarget == null) || (InfiltrationTarget.Found == null) || (InfiltrationTarget.Found == false)); }
 
 /**
  * Returns TRUE if the player can go back to Pandora's Box to pursue her mission
  * @returns {boolean} - TRUE if successful
  */
-function InfiltrationCanGoBack() { return (((InfiltrationTarget == null) || (InfiltrationTarget.Fail == null) || (InfiltrationTarget.Fail == false)) && !InfiltrationCanSuccess()) }
+function InfiltrationCanGoBack() { return (((InfiltrationTarget == null) || (InfiltrationTarget.Fail == null) || (InfiltrationTarget.Fail == false)) && !InfiltrationCanSuccess()); }
 
 /**
  * Loads the infiltration screen by generating the supervisor.
  * @returns {void} - Nothing
  */
 function InfiltrationLoad() {
+
+	// If there's a party coming with the player, it can complete the mission
+	if ((PandoraParty != null) && (PandoraParty.length > 0)) {
+		for (let P = 0; P < PandoraParty.length; P++)
+			if (PandoraParty[P].Name == InfiltrationTarget.Name)
+				InfiltrationTarget.Found = true;
+		PandoraParty = [];
+	}
+
+	// Creates the supervisor if she doesn't exist
 	if (InfiltrationSupervisor == null) {
 		InfiltrationSupervisor = CharacterLoadNPC("NPC_Infiltration_Supervisor");
 		InfiltrationSupervisor.AllowItem = false;
@@ -41,8 +50,11 @@ function InfiltrationLoad() {
 		InventoryWear(InfiltrationSupervisor, "BondageDress1", "Cloth");
 		InventoryWear(InfiltrationSupervisor, "LatexAnkleShoes", "Shoes", "#222222");
 	}
+
+	// Make sure the infiltration data is setup
 	if (Player.Infiltration == null) Player.Infiltration = {};
 	if (Player.Infiltration.Perks == null) Player.Infiltration.Perks = "";
+
 }
 
 /**
@@ -52,7 +64,7 @@ function InfiltrationLoad() {
 function InfiltrationRun() {
 	DrawCharacter(Player, 500, 0, 1);
 	DrawCharacter(InfiltrationSupervisor, 1000, 0, 1);
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png", TextGet("Exit"));
+	if ((InfiltrationSupervisor.Stage !== "End") && Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png", TextGet("Exit"));
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
 	DrawButton(1885, 265, 90, 90, "", "White", "Icons/Infiltration.png", TextGet("Perks"));
 }
@@ -63,7 +75,7 @@ function InfiltrationRun() {
  */
 function InfiltrationClick() {
 	if (MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(InfiltrationSupervisor);
-	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if ((InfiltrationSupervisor.Stage !== "End") && MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 	if (MouseIn(1885, 265, 90, 90)) CommonSetScreen("Room", "InfiltrationPerks");
 }
@@ -102,6 +114,8 @@ function InfiltrationPrepareMission() {
  * @returns {void} - Nothing
  */
 function InfiltrationStartMission() {
+	PandoraWillpower = 20 + (SkillGetLevel(Player, "Willpower") * 2) + (InfiltrationPerksActive("Resilience") ? 5 : 0) + (InfiltrationPerksActive("Endurance") ? 5 : 0);
+	PandoraMaxWillpower = PandoraWillpower;
 	DialogLeave();
 	CommonSetScreen("Room", "Pandora");
 	PandoraBuildMainHall();
@@ -121,8 +135,24 @@ function InfiltrationReturnMission() {
  * @returns {void} - Nothing
  */
 function InfiltrationCompleteMission() {
-	SkillProgress("Infiltration", 60);
-	let Money = 15;
+	if (InfiltrationDifficulty == 0) SkillProgress("Infiltration", 100);
+	if (InfiltrationDifficulty == 1) SkillProgress("Infiltration", 200);
+	if (InfiltrationDifficulty == 2) SkillProgress("Infiltration", 350);
+	if (InfiltrationDifficulty == 3) SkillProgress("Infiltration", 600);
+	if (InfiltrationDifficulty == 4) SkillProgress("Infiltration", 1000);
+	let Money = 12 + (InfiltrationDifficulty * 6);
 	if (InfiltrationPerksActive("Negotiation")) Money = Math.round(Money * 1.2);
 	CharacterChangeMoney(Player, Money);
+}
+
+/**
+ * Before all missions, the player can wear random clothes
+ * @returns {void} - Nothing
+ */
+function InfiltrationRandomClothes() {
+	CharacterNaked(Player);
+	CharacterAppearanceFullRandom(Player, true);
+	CharacterRelease(Player);
+	InventoryRemove(Player, "ItemHands");
+	PandoraClothes = "Random";
 }

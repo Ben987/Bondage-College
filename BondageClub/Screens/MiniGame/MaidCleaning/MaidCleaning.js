@@ -21,7 +21,7 @@ function MaidCleaningGenerateSpots(MaxSpot) {
 			X : Math.floor(Math.random() * 1980) + 10,
 			Y : Math.floor(Math.random() * 940) + 10,
 			T : Math.floor(Math.random() * 4) + 1
-		}
+		};
 		MaidCleaningSpots.push(NewSpot);
 
 	}
@@ -106,8 +106,8 @@ function MaidCleaningDoMove() {
 
 	// If the position changed
 	if (((MaidCleaningPlayerX != MouseX - 500) || (MaidCleaningPlayerY != MouseY - 500)) && (MouseX >= 0) && (MouseY >= 0)) {
-		
-		// Sets the player position		
+
+		// Sets the player position
 		MaidCleaningPlayerX = MouseX - 500;
 		MaidCleaningPlayerY = MouseY - 500;
 		var Range = ((CommonIsMobile) ? (MaidCleaningSpotSize / 1.5) : (MaidCleaningSpotSize / 2));
@@ -120,7 +120,7 @@ function MaidCleaningDoMove() {
 					else MaidCleaningSpots[S].T--;
 					return;
 				}
-		
+
 	}
 
 }

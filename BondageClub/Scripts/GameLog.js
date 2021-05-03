@@ -29,7 +29,7 @@ function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 			Name: NewLogName,
 			Group: NewLogGroup,
 			Value: NewLogValue
-		}
+		};
 		Log.push(NewLog);
 	}
 
@@ -131,7 +131,7 @@ function LogQueryRemote(C, QueryLogName, QueryLogGroup) {
  * @returns {Rule[]} - A list of rules that the player's owner is permitted to see
  */
 function LogGetOwnerReadableRules(OwnerIsLover) {
-    return Log.filter(L => L.Group == "OwnerRule" || (L.Group == "LoverRule" && (OwnerIsLover || L.Name.includes("Owner"))));
+	return Log.filter(L => L.Group == "OwnerRule" || (L.Group == "LoverRule" && (OwnerIsLover || L.Name.includes("Owner"))));
 }
 
 /**
@@ -139,5 +139,5 @@ function LogGetOwnerReadableRules(OwnerIsLover) {
  * @returns {Rule[]} - A list of rules that the player's lover is permitted to see
  */
 function LogGetLoverReadableRules() {
-    return Log.filter(L => L.Group == "LoverRule");
+	return Log.filter(L => L.Group == "LoverRule");
 }
