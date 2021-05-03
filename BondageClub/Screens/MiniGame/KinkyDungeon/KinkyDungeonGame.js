@@ -39,7 +39,6 @@ var KinkyDungeonContextPlayer = null;
 
 var KinkyDungeonEntities = [];
 var KinkyDungeonTerrain = [];
-var KinkyDungeonPlayerEntity = null;
 
 var KinkyDungeonMapBrightness = 5;
 
@@ -86,7 +85,6 @@ function KinkyDungeonInitialize(Level, Random) {
 
 	KinkyDungeonTextMessage = "";
 	KinkyDungeonActionMessage = "";
-	KinkyDungeonDefaultStats();
 	MiniGameKinkyDungeonLevel = Level;
 	KinkyDungeonSetCheckPoint();
 
@@ -181,7 +179,8 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 	KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, height); // Place treasure chests inside dead ends
 
 	// Place the player!
-	KinkyDungeonPlayerEntity = {Type:"Player", x: 1, y:startpos};
+	KinkyDungeonPlayerEntity = {MemberNumber:Player.MemberNumber, x: 1, y:startpos};
+	KinkyDungeonDefaultStats();
 	KinkyDungeonUpdateStats(0);
 
 	// Place enemies after player
@@ -205,8 +204,9 @@ function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 		var X = 1 + Math.floor(Math.random()*(width - 1));
 		var Y = 1 + Math.floor(Math.random()*(height - 1));
 		var playerDist = 4;
+		let PlayerEntity = KinkyDungeonNearestPlayer({x:X, y:Y})
 
-		if (Math.sqrt((X - KinkyDungeonPlayerEntity.x) * (X - KinkyDungeonPlayerEntity.x) + (Y - KinkyDungeonPlayerEntity.y) * (Y - KinkyDungeonPlayerEntity.y)) > playerDist && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(X, Y))) {
+		if (Math.sqrt((X - PlayerEntity.x) * (X - PlayerEntity.x) + (Y - PlayerEntity.y) * (Y - PlayerEntity.y)) > playerDist && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(X, Y))) {
 			var tags = [];
 			if (KinkyDungeonMapGet(X, Y) == 'R' || KinkyDungeonMapGet(X, Y) == 'r') tags.push("rubble");
 			if (Floor % 10 >= 5) tags.push("secondhalf");

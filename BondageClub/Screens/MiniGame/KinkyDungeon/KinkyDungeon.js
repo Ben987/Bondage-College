@@ -35,7 +35,6 @@ function KinkyDungeonLoad() {
     CharacterNaked(KinkyDungeonPlayer);
     KinkyDungeonInitializeDresses();
     KinkyDungeonDressPlayer();
-    KinkyDungeonShrineInit();
 
     KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings;
 

@@ -25,8 +25,6 @@ var KinkyDungeonSpellsStart = [
 ];
 
 
-var KinkyDungeonSpells = [];
-
 var KinkyDungeonSpellChoices = [0, 1, 2];
 var KinkyDungeonSpellChoiceCount = 3;
 var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. When you plan to use a mystic seal, you get 3 spells to choose from.

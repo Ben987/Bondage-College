@@ -1,4 +1,7 @@
 "use strict";
+// Player entity
+var KinkyDungeonPlayerEntity = null; // The current player entity
+
 // Arousal -- It lowers your stamina regen
 var KinkyDungeonStatArousalMax = 100;
 var KinkyDungeonArousalUnlockSuccessMod = 0.5; // Determines how much harder it is to insert a key while aroused. 1.0 is half success chance, 2.0 is one-third, etc.
@@ -79,6 +82,15 @@ var KinkyDungeonPlayerTags = [];
 var KinkyDungeonCurrentDress = "Default";
 var KinkyDungeonUndress = 0; // Level of undressedness
 
+// Current list of spells
+var KinkyDungeonSpells = [];
+
+// Current list of dresses
+var KinkyDungeonDresses = {};
+
+// Temp - for multiplayer in future
+var KinkyDungeonPlayers = []
+
 function KinkyDungeonDefaultStats() {
 	KinkyDungeonGold = 0;
 	KinkyDungeonLockpicks = 1;
@@ -105,7 +117,18 @@ function KinkyDungeonDefaultStats() {
 	KinkyDungeonPlayerDamage = KinkyDungeonPlayerDamageMax;
 	KinkyDungeonPlayerDamageType = "pain";
 
+	// Initialize all the other systems
 	KinkyDungeonResetMagic();
+    KinkyDungeonInitializeDresses();
+    KinkyDungeonDressPlayer();
+    KinkyDungeonShrineInit();
+	
+	KinkyDungeonPlayers = [KinkyDungeonPlayerEntity]
+	for (let C = 0; C < ChatRoomCharacter.length; C++) {
+		if (ChatRoomCharacter[C].Effect.includes("KinkyDungeonParty") && ChatRoomCharacter[C].ID != 0) {
+			KinkyDungeonPlayers.push({MemberNumber: ChatRoomCharacter[C].MemberNumber, x:KinkyDungeonPlayerEntity.x, y: KinkyDungeonPlayerEntity.y})
+		}
+	}
 
 }
 
@@ -117,12 +140,12 @@ function KinkyDungeonDealDamage(Damage) {
 	var dmg = Damage.damage;
 	var type = Damage.type;
 	KinkyDungeonStatWillpower -= dmg;
-	if (Damage.type == "grope") { // Groping attacks increase arousal
+	if (type == "grope") { // Groping attacks increase arousal
 		KinkyDungeonStatArousal += dmg;
-	} else if (Damage.type == "electric") { // Electric attacks are mildly arousing and reduce stamina
+	} else if (type == "electric") { // Electric attacks are mildly arousing and reduce stamina
 		KinkyDungeonStatArousal += dmg/2;
 		KinkyDungeonStatStamina -= dmg/2;
-	} else if (Damage.type == "pain") { // Painful attacks decrease arousal
+	} else if (type == "pain") { // Painful attacks decrease arousal
 		KinkyDungeonStatArousal -= dmg/2;
 	}
 	return dmg;
