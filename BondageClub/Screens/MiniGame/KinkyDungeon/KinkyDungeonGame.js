@@ -285,12 +285,18 @@ function KinkyDungeonPlaceShrines(shrinechance, shrinecount, Floor, width, heigh
 			if (KinkyDungeonMapGet(X, Y) == '0' && Math.random()) {
 				// Check the 3x3 area
 				let freecount = 0;
+				let freecount_diag = 0;
 				for (let XX = X-1; XX <= X+1; XX += 1)
 					for (let YY = Y-1; YY <= Y+1; YY += 1)
-						if (!(XX == X && YY == Y) && (XX == X || YY == Y) && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(XX, YY)))
-							freecount += 1;
+						if (!(XX == X && YY == Y) && KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(XX, YY)))
+							if (XX == X || YY == Y)
+								freecount += 1;
+							else
+								freecount_diag += 1;
 
-				if (freecount >= 4)
+				if (freecount >= 3 && freecount_diag >= 1)
+					shrinelist.push({x:X, y:Y});
+				else if (KinkyDungeonMapGet(X, Y) == "R")
 					shrinelist.push({x:X, y:Y});
 
 			}
@@ -799,6 +805,7 @@ function KinkyDungeonMove(moveDirection) {
 
 
 function KinkyDungeonAdvanceTime(delta) {
+	let now = performance.now()
 	// Here we move enemies and such
 	KinkyDungeonUpdateLightGrid = true;
 	if (KinkyDungeonTextMessageTime > 0) KinkyDungeonTextMessageTime -= 1;
@@ -807,10 +814,10 @@ function KinkyDungeonAdvanceTime(delta) {
 	if (KinkyDungeonActionMessageTime <= 0) KinkyDungeonActionMessagePriority = 0;
 
 	// Updates the character's stats
-	KinkyDungeonItemCheck(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, MiniGameKinkyDungeonLevel);
-	KinkyDungeonUpdateBullets(delta);
-	KinkyDungeonUpdateEnemies(delta);
-	KinkyDungeonUpdateBulletsCollisions(delta);
+	KinkyDungeonItemCheck(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, MiniGameKinkyDungeonLevel); console.log("Item Check " + (performance.now() - now));
+	KinkyDungeonUpdateBullets(delta); console.log("Bullets Check " + (performance.now() - now));
+	KinkyDungeonUpdateEnemies(delta); console.log("Enemy Check " + (performance.now() - now));
+	KinkyDungeonUpdateBulletsCollisions(delta); console.log("Bullet Check " + (performance.now() - now));
 	KinkyDungeonUpdateStats(delta);
 
 
