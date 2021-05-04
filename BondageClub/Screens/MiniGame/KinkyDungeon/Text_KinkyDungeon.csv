@@ -92,6 +92,11 @@ AttackRopeSnake,"The magic rope wriggles into your outfit! (-DamageTaken WP)"
 NameWitchShock,Shock Witch
 KillWitchShock,"The shock witch vanishes into a cloud of thunder, leaving behind a keyring."
 
+NameWitchChain,Chain Witch
+KillWitchChain,"The chain witch vanishes into a pile of metal dust, leaving behind a keyring."
+AttackWitchChainLock,"The chain witch locks all of your restraints!"
+AttackWitchChain,"The chain witch tugs sensually at your restraints!"
+
 NameRat,Filthy Rat
 KillRat,"The rat skitters back into a hole in the wall."
 AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
@@ -175,9 +180,14 @@ RestraintTrapBoots,Slave Heels
 RestraintTrapLegirons,Leg Irons
 RestraintTrapBlindfold,Blindfold
 RestraintRopeSnakeArms,Rope Tie
-RopeSnakeArmsWrist,Rope Tie
+RestraintRopeSnakeArmsWrist,Rope Tie
 RestraintRopeSnakeLegs,Rope Tie
 RestraintRopeSnakeFeet,Rope Tie
+RestraintRopeSnakeLegs,Rope Tie
+RestraintRopeSnakeFeet,Rope Tie
+RestraintChainArms,Chains
+RestraintChainLegs,Chains
+RestraintChainFeet,Chains
 
 KinkyDungeonGroupItemHead,Face
 KinkyDungeonGroupItemHood,Head
@@ -238,6 +248,11 @@ KinkyDungeonSpellDescriptionIcebolt,A quick shard of ice that does DamageDealt d
 KinkyDungeonSpellCastIcebolt,You a hurl a shard of ice!
 KinkyDungeonSpellTargetIcebolt,Choose aim direction
 
+KinkyDungeonSpellChainbolt,Chainbolt
+KinkyDungeonSpellDescriptionChainbolt,Throws a chain that stuns enemies for a turn.
+KinkyDungeonSpellCastChainbolt,You a hurl a strand of chain!
+KinkyDungeonSpellTargetChainbolt,Choose aim direction
+
 KinkyDungeonSpellElectrify,Electrify
 KinkyDungeonSpellDescriptionElectrify,A delayed shock that deals DamageDealt damage and stuns for Duration turns.
 KinkyDungeonSpellCastElectrify,You charge up a burst of electricty!
@@ -277,6 +292,9 @@ KinkyDungeonBlindSelf,"You blinded yourself with your own magic!"
 KinkyDungeonMagicRopeSelf,"Your own rope trap springs upon you!"
 KinkyDungeonSlime,"You get caught in sticky slime!"
 KinkyDungeonShock,"You feel a powerful sensation run through your body!"
+KinkyDungeonSingleChain,"A magic chain secures itself around your body!"
+KinkyDungeonSingleRope,"A magic rope wraps itself around your body!"
+KinkyDungeonSlowedBySpell,"The spell hits you and slows you down!"
 
 KinkyDungeonInventory,"Open Inventory"
 KinkyDungeonMagic,"Open Magic"

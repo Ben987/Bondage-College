@@ -1,6 +1,6 @@
 "use strict";
 
-const InventoryItemArmsChainsOptions = [
+var InventoryItemArmsChainsOptions = [
 	{
 		Name: "WristTie",
 		BondageLevel: null,

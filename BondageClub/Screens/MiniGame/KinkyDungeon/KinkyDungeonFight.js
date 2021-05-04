@@ -46,7 +46,7 @@ function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg, Spell) {
 			
 		}
 		
-		if (Damage.type != "inert" && resistDamage < 2)
+		if (Damage.type != "inert" && Damage.type != "stun" && resistDamage < 2) {
 			if (resistDamage == 1)
 				dmgDealt = Math.max(1, dmg-1); // Enemies that resist the damage type can only take 1 damage, and if they would take 1 damage it deals 0 damage instead
 			else if (resistDamage == -1)
@@ -54,7 +54,8 @@ function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg, Spell) {
 			else
 				dmgDealt = dmg
 			Enemy.hp -= dmgDealt;
-		if ((resistStun < 2 && resistDamage < 2) && (Damage.type == "stun" || Damage.type == "electric")) { // Being immune to the damage stops the stun as well
+		}
+		if ((resistStun < 2 && resistDamage < 2) && (Damage.type == "stun" || Damage.type == "electric" || Damage.type == "ice")) { // Being immune to the damage stops the stun as well
 			effect = true;
 			if (!Enemy.stun) Enemy.stun = 0;
 			else if (resistStun == 1)
@@ -69,7 +70,7 @@ function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg, Spell) {
 		KinkyDungeonKilledEnemy = Enemy;
 	}
 
-	if (!NoMsg) KinkyDungeonSendActionMessage(3, (Damage) ? TextGet((Ranged) ? "PlayerRanged" : "PlayerAttack").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)).replace("AttackName", atkname).replace("DamageDealt", dmgDealt) : TextGet("PlayerMiss").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)),
+	if (!NoMsg && (dmgDealt > 0 || !Spell || effect)) KinkyDungeonSendActionMessage(3, (Damage) ? TextGet((Ranged) ? "PlayerRanged" : "PlayerAttack").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)).replace("AttackName", atkname).replace("DamageDealt", dmgDealt) : TextGet("PlayerMiss").replace("TargetEnemy", TextGet("Name" + Enemy.Enemy.name)),
 			(Damage && (dmg > 0 || effect)) ? "orange" : "red", 2);
 
 	return dmg;
@@ -92,10 +93,11 @@ function KinkyDungeonUpdateBullets(delta) {
 	for (let E = 0; E < KinkyDungeonBullets.length; E++) {
 		var b = KinkyDungeonBullets[E];
 		var d = delta;
-		if (b.born >= 0) b.born -= 1;
 
-		while (d > 0) {
-			var dt = d - Math.max(0, d - 1);
+		while (d > 0.1) {
+			var dt = (d - Math.max(0, d - 1))/Math.sqrt(b.vx*b.vx+b.vy*b.vy);
+			if (b.born >= 0) b.born -= 1;
+
 			if (b.born < 0) {
 				b.xx += b.vx * dt;
 				b.yy += b.vy * dt;
@@ -105,7 +107,7 @@ function KinkyDungeonUpdateBullets(delta) {
 			b.x = Math.round(b.xx);
 			b.y = Math.round(b.yy);
 
-			d -= 1;
+			d -= dt;
 
 
 			if (!KinkyDungeonBulletsCheckCollision(b) || (b.bullet.lifetime > 0 && b.time <= 0)) {

@@ -30,14 +30,15 @@ var KinkyDungeonSpellChoiceCount = 3;
 var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. When you plan to use a mystic seal, you get 3 spells to choose from.
 	"Elements": [
 		{name: "Fireball", exhaustion: 6, components: ["Arms"], level:4, type:"bolt", projectile:true, onhit:"aoe", power: 4, delay: 0, range: 50, aoe: 1.5, size: 3, lifetime:1, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
-		{name: "Icebolt", exhaustion: 4, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2, delay: 0, range: 50, damage: "stun", speed: 2}, // Throws a blast of ice which stuns the target for 2 turns
+		{name: "Icebolt", exhaustion: 4, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2, delay: 0, range: 50, damage: "ice", speed: 2}, // Throws a blast of ice which stuns the target for 2 turns
 		{name: "Electrify", exhaustion: 2, components: ["Arms"], level:2, type:"inert", projectile:false, onhit:"aoe", power: 5, time: 1, delay: 1, range: 4, size: 1, aoe: 0.75, lifetime: 1, damage: "electric", playerEffect: {name: "Shock", time: 1}}, // A series of light shocks incapacitate you
 
 		],
 	"Conjure": [
-		{name: "Slime", exhaustion: 5, components: ["Verbal"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 1, range: 4, size: 3, aoe: 2, lifetime: 9999, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
+		{name: "Slime", exhaustion: 5, components: ["Legs"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 1, range: 4, size: 3, aoe: 2, lifetime: 9999, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
 		//{name: "PinkGas", exhaustion: 4, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 2, range: 4, size: 3, aoe: 2.5, lifetime: 9999, damage: "stun", playerEffect: {name: "PinkGas", time: 3}}, // Dizzying gas, increases arousal
-
+		{name: "ChainBolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", time: 1,  power: 2, delay: 0, range: 50, damage: "stun", speed: 2, playerEffect: {name: "SingleChain", time: 1}}, // Throws a blast of ice which stuns the target for 2 turns
+		
 	],
 	"Illusion": [
 		{name: "Flash", exhaustion: 3, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"aoe", time: 3, delay: 1, range: 2.5, size: 3, aoe: 1.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 3}}, // Start with flash, an explosion with a 1 turn delay and a 1.5 tile radius. If you are caught in the radius, you also get blinded temporarily!
@@ -78,19 +79,41 @@ function KinkyDungeonResetMagic() {
 function KinkyDungeonPlayerEffect(playerEffect, spell) {
 	if (playerEffect.name == "Blind") {
 		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time);
-		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonBlindSelf"), "red", playerEffect.time);
+		KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonBlindSelf"), "red", playerEffect.time);
 	} else if (playerEffect.name == "MagicRope") {
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeArms"));
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeLegs"));
-		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonMagicRopeSelf"), "red", playerEffect.time);
+		KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonMagicRopeSelf"), "red", playerEffect.time);
 	} else if (playerEffect.name == "SlimeTrap") {
 		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("StickySlime"));
-		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonSlime"), "red", playerEffect.time);
+		KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSlime"), "red", playerEffect.time);
 	} else if (playerEffect.name == "Shock") {
 		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time);
 		KinkyDungeonMovePoints = Math.max(-1, KinkyDungeonMovePoints-1); // This is to prevent stunlock while slowed heavily
 		KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
-		KinkyDungeonSendActionMessage(5, TextGet("KinkyDungeonShock"), "red", playerEffect.time);
+		KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonShock"), "red", playerEffect.time);
+	} else if (playerEffect.name == "SingleChain") {
+		let restraintAdd = KinkyDungeonGetRestraint({tags: ["chainRestraints"]}, MiniGameKinkyDungeonCheckpoint + spell.power, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]);
+		if (restraintAdd) {
+			KinkyDungeonAddRestraintIfWeaker(restraintAdd, spell.power);
+			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSingleChain"), "red", playerEffect.time);
+		} else {
+			KinkyDungeonMovePoints = Math.max(-1, KinkyDungeonMovePoints-1); // This is to prevent stunlock while slowed heavily
+			KinkyDungeonSendTextMessage(3, TextGet("KinkyDungeonSlowedBySpell"), "yellow", playerEffect.time);
+			KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
+		}
+		
+	} else if (playerEffect.name == "SingleRope") {
+		let restraintAdd = KinkyDungeonGetRestraint({tags: "ropeRestraints"}, MiniGameKinkyDungeonCheckpoint + spell.power, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]);
+		if (restraintAdd) {
+			KinkyDungeonAddRestraintIfWeaker(restraintAdd, spell.power);
+			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSingleRRope"), "red", playerEffect.time);
+		} else {
+			KinkyDungeonMovePoints = Math.max(-1, KinkyDungeonMovePoints-1); // This is to prevent stunlock while slowed heavily
+			KinkyDungeonSendTextMessage(3, TextGet("KinkyDungeonSlowedBySpell"), "yellow", playerEffect.time);
+			KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
+		}
+		
 	}
 }
 
@@ -143,13 +166,14 @@ function KinkyDungeonGetCost(Level) {
 	return cost;
 }
 
-function KinkyDungeonCastSpell(targetX, targetY, spell, enemy) {
+function KinkyDungeonCastSpell(targetX, targetY, spell, enemy, player) {
 	let entity = KinkyDungeonPlayerEntity;
 	let moveDirection = KinkyDungeonMoveDirection;
+	
 
 	if (enemy) {
 		entity = enemy;
-		moveDirection = KinkyDungeonGetDirection(KinkyDungeonPlayerEntity.x, entity.x, KinkyDungeonPlayerEntity.y, entity.y);
+		moveDirection = KinkyDungeonGetDirection(player.x - entity.x, player.y - entity.y);
 	}
 	if (spell.type == "bolt") {
 		var size = (spell.size) ? spell.size : 1;

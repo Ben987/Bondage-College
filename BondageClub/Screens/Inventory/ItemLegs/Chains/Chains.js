@@ -1,6 +1,6 @@
 "use strict";
 
-const InventoryItemLegsChainsOptions = [
+var InventoryItemLegsChainsOptions = [
 	{
 		Name: "Basic",
 		BondageLevel: 0,

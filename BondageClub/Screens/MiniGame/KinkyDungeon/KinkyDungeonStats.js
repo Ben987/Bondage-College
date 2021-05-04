@@ -145,6 +145,9 @@ function KinkyDungeonDealDamage(Damage) {
 	} else if (type == "electric") { // Electric attacks are mildly arousing and reduce stamina
 		KinkyDungeonStatArousal += dmg/2;
 		KinkyDungeonStatStamina -= dmg/2;
+	} else if (type == "ice") { // Ice attacks are mildly painful and reduce stamina
+		KinkyDungeonStatArousal -= dmg/2;
+		KinkyDungeonStatStamina -= dmg/2;
 	} else if (type == "pain") { // Painful attacks decrease arousal
 		KinkyDungeonStatArousal -= dmg/2;
 	}
