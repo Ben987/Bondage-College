@@ -24,6 +24,7 @@ var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/";
  */
 function KinkyDungeonLoad() {
 
+	CurrentDarkFactor = 0;
 	if (!KinkyDungeonGameRunning) {
 		if (!KinkyDungeonPlayer)
       KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
@@ -70,6 +71,7 @@ function KinkyDungeonDeviousDungeonAvailable() {
  * @returns {void} - Nothing
  */
 function KinkyDungeonRun() {
+	DrawImage("Backgrounds/BrickWall.jpg", 0, 0);
 
 	// Draw the characters
 	DrawCharacter(KinkyDungeonPlayer, 0, 0, 1);

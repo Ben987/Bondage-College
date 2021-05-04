@@ -1175,7 +1175,7 @@ function DrawProcess() {
 
 	if ((B != null) && (B != "")) {
 		let DarkFactor = 1.0;
-		if ((CurrentModule != "Character" && CurrentModule != "MiniGame") && (B != "Sheet")) {
+		if ((CurrentModule != "Character") && (B != "Sheet")) {
 			DarkFactor = CharacterGetDarkFactor(Player) * CurrentDarkFactor;
 			if (DarkFactor == 1 && (CurrentCharacter != null || ShopStarted) && !CommonPhotoMode) DarkFactor = 0.5;
 		}
@@ -1183,7 +1183,7 @@ function DrawProcess() {
 
 		let customBG = DrawGetCustomBackground();
 
-		if (customBG != "" && (CurrentModule != "Character" && CurrentModule != "MiniGame") && (B != "Sheet")) {
+		if (customBG != "" && (CurrentModule != "Character") && (B != "Sheet")) {
 			B = customBG;
 			if (DarkFactor == 0)
 				DarkFactor = CharacterGetDarkFactor(Player, true);
