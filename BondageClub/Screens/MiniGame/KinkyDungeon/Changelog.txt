@@ -33,6 +33,10 @@ Content
 - Goddesses of the elements, conjuration, and illusion who grant spells at a high cost
 - Enemies now have resistances and weaknesses. Discover them the hard way!
 
+1.33
+- Slime ball spell which conjures a ball of slime that leaves a sticky trail. Use with caution!
+- Slime witch that hurls slime balls and conjures pools of slime at you! She is a formidable opponent, be careful not to get trapped against her as she can create tremendous amounts of slime!
+
 Future content planned:
 - Ability to close nearby doors
 - Item shops scattered around the map, allowing you to buy swords and outfits
