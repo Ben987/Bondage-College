@@ -736,7 +736,9 @@ function CommonDeepEqual(obj1, obj2) {
  * @returns {void} - Nothing
  */
 function CommonArrayConcatDedupe(dest, src) {
-	src.forEach(item => {
-		if (!dest.includes(item)) dest.push(item);
-	});
+	if (Array.isArray(src) && Array.isArray(dest)) {
+		for (const item of src) {
+			if (!dest.includes(item)) dest.push(item);
+		}
+	}
 }

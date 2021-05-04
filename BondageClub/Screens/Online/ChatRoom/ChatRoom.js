@@ -1805,7 +1805,6 @@ function ChatRoomMessage(data) {
 			// Prepares the HTML tags
 			if (data.Type != null) {
 				const HideOthersMessages = Player.ImmersionSettings.SenseDepMessages
-					&& (Player.GameplaySettings.SensDepChatLog === "SensDepExtreme" || Player.GameplaySettings.SensDepChatLog === "SensDepTotal")
 					&& PreferenceIsPlayerInSensDep()
 					&& SenderCharacter.ID !== 0
 					&& Player.GetDeafLevel() >= 4;

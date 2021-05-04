@@ -193,9 +193,18 @@ function AssetBuildExtended(A, ExtendedConfig) {
 				TypedItemRegister(A, AssetConfig.Config);
 				break;
 		}
+		A.Archetype = AssetConfig.Archetype;
 	}
 }
 
+/**
+ * Finds the extended item configuration for the provided group and asset name, if any exists
+ * @param {ExtendedItemConfig} ExtendedConfig - The full extended item configuration object
+ * @param {string} GroupName - The name of the asset group to find extended configuration for
+ * @param {string} AssetName - The name of the asset to find extended configuration fo
+ * @returns {ExtendedItemAssetConfig | undefined} - The extended asset configuration object for the specified asset, if
+ * any exists, or undefined otherwise
+ */
 function AssetFindExtendedConfig(ExtendedConfig, GroupName, AssetName) {
 	const GroupConfig = ExtendedConfig[GroupName] || {};
 	return GroupConfig[AssetName];

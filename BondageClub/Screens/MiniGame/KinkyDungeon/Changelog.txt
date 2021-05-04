@@ -20,19 +20,25 @@ Content
 Balance
 - Made the rope snare have a 3 turn delay rather than a 1 turn delay, and a range of 1. This limits its in-combat use, while retaining its long duration and level 1 classification
 
-1.31 (TBD)
-Content (WIP)
+1.31
+Content 
 - Added a new enemy, a rope snake that sacrifices itself to wrap you up!
 - Added a new spell, Electrify (which will be cast at you by witches in the future)
+- Shock witches that cast electrical spells at you from a distance
+
+1.32
+Content 
+- Chain bolt spell which stuns enemies
+- Chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
+- Goddesses of the elements, conjuration, and illusion who grant spells at a high cost
+- Enemies now have resistances and weaknesses. Discover them the hard way!
 
 Future content planned:
 - Ability to close nearby doors
 - Item shops scattered around the map, allowing you to buy swords and outfits
 - Magical rope traps which require enchanted knives to cut
 - Enchanted knives, which are found only in chests
-- Shock witches that cast electrical AoE at you from a distance
 - Latex witches that cast latex and slime spells at you from a distance
-- Chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
 - Inventory system which lets you view special items and restraints (shows you how hard it is to break free from them... after you've struggled enough)
 - Mana-boosting mittens which increase spell power and decrease mana costs, but make it harder to struggle out of things
 - Enchanted heels which empower your melee attacks

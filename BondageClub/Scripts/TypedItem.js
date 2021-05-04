@@ -56,6 +56,8 @@ function TypedItemRegister(asset, config) {
 	TypedItemCreatePublishFunction(data);
 	TypedItemCreateNpcDialogFunction(data);
 	TypedItemGenerateAllowType(data);
+	TypedItemGenerateAllowEffect(data);
+	TypedItemGenerateAllowBlock(data);
 }
 
 /**
@@ -136,7 +138,7 @@ function TypedItemCreatePublishFunction(data) {
 		if (typeof dialog.chatPrefix === "function") {
 			const previousIndex = options.indexOf(previousOption);
 			const newIndex = options.indexOf(newOption);
-			msg = dialog.chatPrefix({ previousOption, newOption, previousIndex, newIndex });
+			msg = dialog.chatPrefix({ C, previousOption, newOption, previousIndex, newIndex });
 		}
 		if (chatSetting === TypedItemChatSetting.FROM_TO) msg += `${previousOption.Name}To`;
 		msg += newOption.Name;
@@ -166,6 +168,30 @@ function TypedItemGenerateAllowType({ asset, options }) {
 	asset.AllowType = options
 		.map((option) => option.Property.Type)
 		.filter(Boolean);
+}
+
+/**
+ * Generates an asset's AllowEffect property based on its typed item data.
+ * @param {TypedItemData} data - The typed item's data
+ * @returns {void} - Nothing
+ */
+function TypedItemGenerateAllowEffect({asset, options}) {
+	asset.AllowEffect = Array.isArray(asset.Effect) ? asset.Effect.slice() : [];
+	for (const option of options) {
+		CommonArrayConcatDedupe(asset.AllowEffect, option.Property.Effect);
+	}
+}
+
+/**
+ * Generates an asset's AllowBlock property based on its typed item data.
+ * @param {TypedItemData} data - The typed item's data
+ * @returns {void} - Nothing
+ */
+function TypedItemGenerateAllowBlock({asset, options}) {
+	asset.AllowBlock = Array.isArray(asset.Block) ? asset.Block.slice() : [];
+	for (const option of options) {
+		CommonArrayConcatDedupe(asset.AllowBlock, option.Property.Block);
+	}
 }
 
 /**
@@ -263,6 +289,7 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
 /**
  * @callback TypedItemChatCallback
  * @param {object} chatData - An object containing data about the type change that triggered the chat message
+ * @param {Character} chatData.C - A reference to the character wearing the item
  * @param {ExtendedItemOption} chatData.previousOption - The previously selected type option
  * @param {ExtendedItemOption} chatData.newOption - The newly selected type option
  * @param {number} chatData.previousIndex - The index of the previously selected type option in the item's options

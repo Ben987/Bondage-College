@@ -29,6 +29,7 @@ function PandoraOdds75() { return ((CurrentCharacter.RandomOdds == null) || (Cur
 function PandoraOdds50() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.50)); }
 function PandoraOdds25() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.75)); }
 function PandoraCostumeIs(Costume) { return (PandoraClothes == Costume); }
+function PandoraQuizIs(Number) { return ((CurrentCharacter.QuizLog != null) && (CurrentCharacter.QuizLog[CurrentCharacter.QuizLog.length - 1].toString() == Number.toString())) };
 
 /**
  * Loads the Pandora's Box screen
@@ -319,6 +320,19 @@ function PandoraEnterRoom(Room, Direction) {
 		}
 	}
 
+	// If we enter a room with a guard that's not bound, she can intercept the player
+	if ((PandoraCurrentRoom.Character.length == 1) && (PandoraCurrentRoom.Character[0].AccountName.indexOf("RandomGuard") >= 0) && PandoraCurrentRoom.Character[0].CanInteract()) {
+		let ArrestDialog = "";
+		if (!PandoraCurrentRoom.Character[0].AllowMove && (SkillGetLevel(Player, "Infiltration") >= Math.floor(Math.random() * 10))) ArrestDialog = "InfiltrationArrest";
+		if ((InfiltrationMission == "Kidnap") && (PandoraParty.length == 1) && (PandoraParty[0].Name == InfiltrationTarget.Name) && PandoraParty[0].CanTalk()) ArrestDialog = "KidnapArrest";
+		if ((PandoraParty.length == 1) && (PandoraParty[0].AccountName.indexOf("RandomGuard") >= 0)) ArrestDialog = "GuardArrest";
+		if (ArrestDialog != "") {
+			CharacterRelease(PandoraCurrentRoom.Character[0]);
+			PandoraCurrentRoom.Character[0].AllowMove = false;
+			PandoraCurrentRoom.Character[0].Stage = ArrestDialog;
+		}
+	}
+	
 }
 
 /**
@@ -363,7 +377,7 @@ function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
 			let TunnelOdds = 0.25 + (RoomLevel * 0.1);
 			if (TunnelOdds > 0.75) TunnelOdds = 0.75;
 			if (Math.random() >= DeadEndOdds) RoomBack = (Math.random() >= TunnelOdds) ? "Fork" : "Tunnel";
-			RoomBack = RoomBack + Math.floor(Math.random() * 6);
+			RoomBack = RoomBack + Math.floor(Math.random() * 7);
 			Continue = (RoomBack !== EntryRoom.Background);
 			if (Continue)
 				for (let R = 0; R < PandoraRoom.length; R++)
@@ -710,7 +724,7 @@ function PandoraPunishmentIntro() {
 	else if (SkillGetLevel(Player, "Infiltration") >= 5) IntroText = DialogFind(CurrentCharacter, "Punishment5");
 	else if (SkillGetLevel(Player, "Infiltration") >= 2) IntroText = DialogFind(CurrentCharacter, "Punishment2");
 	else IntroText = DialogFind(CurrentCharacter, "Punishment0");
-	PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 6).toString();
+	PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 7).toString();
 	let Dominatrix = PandoraGenerateNPC("Punishment", "Mistress", "RANDOM", false);
 	CharacterSetCurrent(Dominatrix);
 	CurrentCharacter.CurrentDialog = IntroText;
@@ -745,4 +759,43 @@ function PandoraBuyMaidDrink(Money) {
  */
 function PandoraCharacterGenerateRandomOdds() {
 	CurrentCharacter.RandomOdds = Math.random() + 0.2 - (InfiltrationDifficulty * 0.1);
+}
+
+/**
+ * Starts the guard quiz, the player needs 5 good answers to be let go
+ * @returns {void} - Nothing
+ */
+function PandoraQuizStart() {
+	CurrentCharacter.QuizLog = [];
+	CurrentCharacter.QuizFail = 0;
+	PandoraQuizNext();
+}
+
+/**
+ * Generates questions that guards will challenge the player with
+ * @returns {void} - Nothing
+ */
+function PandoraQuizNext() {
+	let Question = Math.floor(Math.random() * 11); 
+	while (CurrentCharacter.QuizLog.indexOf(Question) >= 0)
+		Question = Math.floor(Math.random() * 11); 
+	CurrentCharacter.QuizLog.push(Question);
+	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "QuizQuestion" + Question.toString());
+}
+
+/**
+ * When the player gives an answer to the guard quiz, the guard will give a visual hint if the answer is incorrect
+ * @returns {void} - Nothing
+ */
+function PandoraQuizAnswer(Answer) {
+	if (Answer != "1") {
+		CurrentCharacter.QuizFail++;
+		CharacterSetFacialExpression(CurrentCharacter, "Blush", "Low", 3);
+		CharacterSetFacialExpression(CurrentCharacter, "Eyes", "Angry", 3);
+		CharacterSetFacialExpression(CurrentCharacter, "Eyes2", "Angry", 3);
+	}
+	if (CurrentCharacter.QuizLog.length >= 5) {
+		CurrentCharacter.Stage = (CurrentCharacter.QuizFail >= 2) ? "Arrest" : "30";
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, (CurrentCharacter.QuizFail >= 2) ? "QuizFail" : "QuizSuccess");
+	} else PandoraQuizNext();
 }

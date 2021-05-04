@@ -108,6 +108,32 @@ var AssetFemale3DCGExtended = {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { AssetName: "LatexButterflyLeotard" },
 		},
+		CeilingShackles: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatSetting: TypedItemChatSetting.FROM_TO,
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "HeadLevel",
+						Property: {
+							Type: null,
+							SetPose: ["Yoked"]
+						},
+					},
+					{
+						Name: "Overhead",
+						Property: {
+							Type: "Overhead",
+							SetPose: ["OverTheHead"]
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectBondagePosition",
+				},
+			},
+		}, // CeilingShackles
 		BitchSuit: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -297,17 +323,11 @@ var AssetFemale3DCGExtended = {
 				Options: [
 					{
 						Name: "Normal",
-						Property: {
-							Type: null,
-							Effect: ["BlockMouth", "GagNormal"],
-						},
+						Property: { Type: null },
 					},
 					{
 						Name: "Tight",
-						Property: {
-							Type: "Tight",
-							Effect: ["BlockMouth", "GagNormal"],
-						},
+						Property: { Type: "Tight" },
 					},
 				],
 				Dialog: {
@@ -323,24 +343,15 @@ var AssetFemale3DCGExtended = {
 				Options: [
 					{
 						Name: "Normal",
-						Property: {
-							Type: null,
-							Effect: ["BlockMouth", "GagMedium"],
-						},
+						Property: { Type: null },
 					},
 					{
 						Name: "Shiny",
-						Property: {
-							Type: "Shiny",
-							Effect: ["BlockMouth", "GagMedium"],
-						},
+						Property: { Type: "Shiny" },
 					},
 					{
 						Name: "Tight",
-						Property: {
-							Type: "Tight",
-							Effect: ["BlockMouth", "GagMedium"],
-						},
+						Property: { Type: "Tight" },
 					},
 				],
 				Dialog: {
