@@ -194,7 +194,7 @@ function FriendListChatSearch(room) {
 	ChatSearchQuery();
 	// Change the text box so the player still cant read it
 	ElementValue("InputSearch", ChatSearchMuffle(room));
-	
+
 }
 
 /**

@@ -19,7 +19,7 @@ var HorseWalkDrawYPosition = 0;
 var HorseWalkDrawYHeigh = 0;
 var HorseWalkDrawCaracter = 0;
 var HorseWalkSpeed = 1;
-var HorseWalkText =""
+var HorseWalkText ="";
 var HorseWalkEventTimer = 0;
 
 /**
@@ -36,7 +36,7 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 		var NewCarrot = {
 			X : Math.floor(Math.random() * 1980) + 10,
 			Y : Math.floor(Math.random() * 940) + 10,
-		}
+		};
 		HorseWalkCarrots.push(NewCarrot);
 	}
 	// Fill the Crops sequence
@@ -46,7 +46,7 @@ function HorseWalkGenerateCarrotItems(MaxCarrot, MaxCrop) {
 		var NewCrop = {
 			X : Math.floor(Math.random() * 1980) + 10,
 			Y : Math.floor(Math.random() * 940) + 10,
-		}
+		};
 		HorseWalkCrops.push(NewCrop);
 	}
 
@@ -64,8 +64,8 @@ function HorseWalkGenerateHurdleItems(MaxHurdle) {
 		var NewHurdle = {
 			X : 1000 + 800*Math.cos((Math.PI*2)/MaxHurdle*S),
 			Y : 550 + 350*Math.sin((Math.PI*2)/MaxHurdle*S),
-			Stat : 0 
-		}
+			Stat : 0
+		};
 		HorseWalkHurdle.push(NewHurdle);
 	}
 }
@@ -82,8 +82,8 @@ function HorseWalkGenerateHurdleTrainingItems(MaxHurdle) {
 		var NewHurdle = {
 			X : 1150 + 700*Math.cos((Math.PI*2)/MaxHurdle*S),
 			Y : 550 + 350*Math.sin((Math.PI*2)/MaxHurdle*S),
-			Stat : 0 
-		}
+			Stat : 0
+		};
 		HorseWalkHurdle.push(NewHurdle);
 	}
 }
@@ -100,11 +100,11 @@ function HorseWalkDrawItem() {
 			DrawImage("Screens/MiniGame/HorseWalk/LeatherCrop.png", HorseWalkCrops[S].X - (HorseWalkItemSize / 2), HorseWalkCrops[S].Y - (HorseWalkItemSize / 2));
 	} else if (MiniGameDifficulty == "Hurdle" || MiniGameDifficulty == "HurdleTraining") {
 		for (let S = 0; S < HorseWalkHurdle.length; S++) {
-			if (HorseWalkHurdle[S].Stat == 0) {	
+			if (HorseWalkHurdle[S].Stat == 0) {
 				DrawImage("Screens/MiniGame/HorseWalk/hurdle_90.png", HorseWalkHurdle[S].X - (HorseWalkItemSize / 2), HorseWalkHurdle[S].Y - (HorseWalkItemSize / 2));
-			} else if (HorseWalkHurdle[S].Stat == 1) {	
+			} else if (HorseWalkHurdle[S].Stat == 1) {
 				DrawImage("Screens/MiniGame/HorseWalk/hurdle_90_win.png", HorseWalkHurdle[S].X - (HorseWalkItemSize / 2), HorseWalkHurdle[S].Y - (HorseWalkItemSize / 2));
-			} else if (HorseWalkHurdle[S].Stat == -1) {	
+			} else if (HorseWalkHurdle[S].Stat == -1) {
 				DrawImage("Screens/MiniGame/HorseWalk/hurdle_90_fail.png", HorseWalkHurdle[S].X - (HorseWalkItemSize / 2), HorseWalkHurdle[S].Y - (HorseWalkItemSize / 2));
 			}
 		}
@@ -210,13 +210,13 @@ function HorseWalkRun() {
 			HorseWalkDrawCaracter = Math.floor(Math.random() * 5);
 			if (HorseWalkDrawCaracter == 0) {
 				HorseWalkDrawPony = false;
-				HorseWalkDrawTrainer = true; 
+				HorseWalkDrawTrainer = true;
 			} else if (HorseWalkDrawCaracter == 1) {
 				HorseWalkDrawPony = true;
-				HorseWalkDrawTrainer = false; 
+				HorseWalkDrawTrainer = false;
 			} else if (HorseWalkDrawCaracter > 1) {
 				HorseWalkDrawPony = false;
-				HorseWalkDrawTrainer = false; 
+				HorseWalkDrawTrainer = false;
 			}
 		}
 		if (HorseWalkDrawPony) DrawCharacter(StablePony, HorseWalkDrawXPosition, HorseWalkDrawYPosition, HorseWalkDrawYHeigh/1000);
@@ -274,7 +274,7 @@ function HorseWalkDoMove() {
 
 	// If the position changed
 	if (((HorseWalkPlayerX != MouseX - 100) || (HorseWalkPlayerY != MouseY - 100)) && (MouseX >= 0) && (MouseY >= 0)) {
-		
+
 		if (HorseWalkPlayerX > (MouseX - 100 + HorseWalkSpeed) ) {
 			HorseWalkPlayerX -= HorseWalkSpeed;
 		} else if (HorseWalkPlayerX < (MouseX - 100 - HorseWalkSpeed)) {
@@ -323,7 +323,7 @@ function HorseWalkDoMove() {
 						return;
 					}
 				}
-			}			
+			}
 		}
 	}
 

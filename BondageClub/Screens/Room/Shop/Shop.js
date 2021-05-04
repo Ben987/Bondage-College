@@ -35,25 +35,25 @@ var ShopSellExceptions = [
 	{ Name: "LeatherCuffs", Group: "ItemArms" },
 ];
 
-/** 
+/**
  * Checks if the vendor is restrained
  * @returns {boolean} - Returns TRUE if the vendor is restrained or gagged
  */
-function ShopIsVendorRestrained() { return (ShopVendor.IsRestrained() || !ShopVendor.CanTalk()) }
-/** 
+function ShopIsVendorRestrained() { return (ShopVendor.IsRestrained() || !ShopVendor.CanTalk()); }
+/**
  * Checks if the current rescue scenario corresponds to the given one
  * @param {string} ScenarioName - Name of the rescue scenario to check for
  * @returns {boolean} - Returns TRUE if the current rescue scenario is the given one
  */
-function ShopIsRescueScenario(ScenarioName) { return (ShopRescueScenario == ScenarioName) }
-/** 
+function ShopIsRescueScenario(ScenarioName) { return (ShopRescueScenario == ScenarioName); }
+/**
  * Activates the mode which allows the player to buy the items that appear in the inventory screen
  * @returns {void} - Nothing
  */
 function ShopSetBuyMode() {
 	ShopBuyMode = true;
 }
-/** 
+/**
  * Activates the mode which allows the player to sell the items that appear in the inventory screen
  * @returns {void} - Nothing
  */
@@ -95,7 +95,7 @@ function ShopLoad() {
  * @returns {void} - Nothing
  */
 function ShopRun() {
-	
+
 	// Draw both characters
 	DrawCharacter(Player, 0, 0, 1);
 	DrawCharacter(ShopVendor, 500, 0, 1);
@@ -132,7 +132,7 @@ function ShopRun() {
 }
 
 /**
- * Checks if an asset is from the focus group and if it can be bought/sold. An asset can be bought/sold if it has a value greater than 
+ * Checks if an asset is from the focus group and if it can be bought/sold. An asset can be bought/sold if it has a value greater than
  * 0. (0 is a default item, -1 is a non-purchasable item)
  * @param {Asset} Asset - The asset to check for availability
  * @returns {boolean} - Returns TRUE if the item is purchasable and part of the focus group.
@@ -172,7 +172,7 @@ function ShopSelectAssetMissing() {
  * @returns {void} - Nothing
  */
 function ShopClick() {
-	
+
 	// Out of shopping mode, the player can click on herself, the vendor or exit
 	if (!ShopStarted) {
 		if ((MouseX >= 0) && (MouseX < 500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
@@ -221,7 +221,7 @@ function ShopClick() {
 			CharacterSetCurrent(ShopVendor);
 			ShopVendor.CurrentDialog = TextGet("MoreShopping");
 		}
-		
+
 		// If the user wants to get the next 12 items
 		if ((MouseX >= 1770) && (MouseX <= 1860) && (MouseY >= 25) && (MouseY < 115)) {
 			ShopItemOffset = ShopItemOffset + 12;
@@ -302,7 +302,7 @@ function ShopSellItem(asset) {
  * Builds the array of items the player can buy in the current category.
  * @returns {void} - Nothing
  */
-function ShopCartBuild() { 
+function ShopCartBuild() {
 	ShopCart = [];
 	for (let A = 0; A < Asset.length; A++)
 		if (ShopSelectAsset(Asset[A]))
@@ -311,7 +311,7 @@ function ShopCartBuild() {
 
 /**
  * If selling items, checks whether the player owns any items in the specified groups that can be sold
- * @param {string} groupList - The list of groups to check, with separator "|" 
+ * @param {string} groupList - The list of groups to check, with separator "|"
  * @returns {boolean} - If TRUE the player is either buying items or owns at least one item in one of the groups
  */
 function ShopCanShow(groupList) {
@@ -416,8 +416,8 @@ function ShopJobRestrain() {
 	ShopCustomer = CharacterLoadNPC("NPC_Shop_Customer");
 	ShopCustomer.AllowItem = false;
 	ShopCustomer.Stage = ShopDemoItemGroup + "0";
-	if (Math.random() >= 0.5) ShopCustomer.WillRelease = function () { return true };
-	else ShopCustomer.WillRelease = function () { return false };
+	if (Math.random() >= 0.5) ShopCustomer.WillRelease = function () { return true; };
+	else ShopCustomer.WillRelease = function () { return false; };
 
 }
 

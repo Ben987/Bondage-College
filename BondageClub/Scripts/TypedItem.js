@@ -56,6 +56,8 @@ function TypedItemRegister(asset, config) {
 	TypedItemCreatePublishFunction(data);
 	TypedItemCreateNpcDialogFunction(data);
 	TypedItemGenerateAllowType(data);
+	TypedItemGenerateAllowEffect(data);
+	TypedItemGenerateAllowBlock(data);
 }
 
 /**
@@ -129,12 +131,17 @@ function TypedItemCreateClickFunction({ options, functionPrefix, drawImages }) {
  * @returns {void} - Nothing
  */
 function TypedItemCreatePublishFunction(data) {
-	const { functionPrefix, dialog, chatSetting } = data;
+	const { options, functionPrefix, dialog, chatSetting } = data;
 	const publishFunctionName = `${functionPrefix}PublishAction`;
-	window[publishFunctionName] = function (C, option, previousOption) {
+	window[publishFunctionName] = function (C, newOption, previousOption) {
 		let msg = dialog.chatPrefix;
+		if (typeof dialog.chatPrefix === "function") {
+			const previousIndex = options.indexOf(previousOption);
+			const newIndex = options.indexOf(newOption);
+			msg = dialog.chatPrefix({ C, previousOption, newOption, previousIndex, newIndex });
+		}
 		if (chatSetting === TypedItemChatSetting.FROM_TO) msg += `${previousOption.Name}To`;
-		msg += option.Name;
+		msg += newOption.Name;
 		const dictionary = TypedItemBuildChatMessageDictionary(C, data);
 		ChatRoomPublishCustomAction(msg, true, dictionary);
 	};
@@ -161,6 +168,30 @@ function TypedItemGenerateAllowType({ asset, options }) {
 	asset.AllowType = options
 		.map((option) => option.Property.Type)
 		.filter(Boolean);
+}
+
+/**
+ * Generates an asset's AllowEffect property based on its typed item data.
+ * @param {TypedItemData} data - The typed item's data
+ * @returns {void} - Nothing
+ */
+function TypedItemGenerateAllowEffect({asset, options}) {
+	asset.AllowEffect = Array.isArray(asset.Effect) ? asset.Effect.slice() : [];
+	for (const option of options) {
+		CommonArrayConcatDedupe(asset.AllowEffect, option.Property.Effect);
+	}
+}
+
+/**
+ * Generates an asset's AllowBlock property based on its typed item data.
+ * @param {TypedItemData} data - The typed item's data
+ * @returns {void} - Nothing
+ */
+function TypedItemGenerateAllowBlock({asset, options}) {
+	asset.AllowBlock = Array.isArray(asset.Block) ? asset.Block.slice() : [];
+	for (const option of options) {
+		CommonArrayConcatDedupe(asset.AllowBlock, option.Property.Block);
+	}
 }
 
 /**
@@ -222,7 +253,8 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * @property {string} [TypePrefix] - A prefix for text keys for the display names of the item's individual types. This
  * will be suffixed with the option name to get the final key (i.e. "<typePrefix><optionName>"). Defaults to
  * "<groupName><assetName>"
- * @property {string} [ChatPrefix] - A prefix for text keys for chat messages triggered by the item. Chat message keys
+ * @property {string | TypedItemChatCallback} [ChatPrefix] - A prefix for text keys for chat messages triggered by the
+ * item. Chat message keys
  * will include the name of the new option, and depending on the chat setting, the name of the previous option:
  * - For chat setting FROM_TO: <chatPrefix><oldOptionName>To<newOptionName>
  * - For chat setting TO_ONLY: <chatPrefix><newOptionName>
@@ -252,4 +284,16 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * chatroom messages. Defaults to [{@link CommonChatTags.SOURCE_CHAR}, {@link CommonChatTags.DEST_CHAR}]
  * @property {boolean} [drawImages] - A boolean indicating whether or not images should be drawn in this item's extended
  * item menu. Defaults to true
+ */
+
+/**
+ * @callback TypedItemChatCallback
+ * @param {object} chatData - An object containing data about the type change that triggered the chat message
+ * @param {Character} chatData.C - A reference to the character wearing the item
+ * @param {ExtendedItemOption} chatData.previousOption - The previously selected type option
+ * @param {ExtendedItemOption} chatData.newOption - The newly selected type option
+ * @param {number} chatData.previousIndex - The index of the previously selected type option in the item's options
+ * config
+ * @param {number} chatData.newIndex - The index of the newly selected type option in the item's options config
+ * @returns {string} - The chat prefix that should be used for this type change
  */

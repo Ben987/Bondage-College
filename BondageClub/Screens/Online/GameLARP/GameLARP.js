@@ -58,7 +58,7 @@ var GameLARPTurnFocusGroup = null;
  */
 function GameLARPIsAdmin(C) {
 	if (GameLARPStatus == "")
-		return (ChatRoomData.Admin.indexOf(C.MemberNumber) >= 0)
+		return (ChatRoomData.Admin.indexOf(C.MemberNumber) >= 0);
 	else
 		return (GameLARPTurnAdmin == C.MemberNumber);
 }
@@ -469,25 +469,25 @@ function GameLARPGetOdds(Action, Source, Target) {
  * @param {Character} C - Character to check.
  * @returns {boolean} - Whether the character can talk or not
  */
-function GameLARPCanTalk(C) { return (InventoryGet(C, "ItemMouth") == null) }
+function GameLARPCanTalk(C) { return (InventoryGet(C, "ItemMouth") == null); }
 /**
  * In LARP, check if the given character can walk.
  * @param {Character} C - Character to check.
  * @returns {boolean} - Whether the character can walk or not
  */
-function GameLARPCanWalk(C) { return (InventoryGet(C, "ItemFeet") == null) }
+function GameLARPCanWalk(C) { return (InventoryGet(C, "ItemFeet") == null); }
 /**
  * In LARP, check if the given character can act.
  * @param {Character} C - Character to check.
  * @returns {boolean} - Whether the character can act or not
  */
-function GameLARPCanAct(C) { return (InventoryGet(C, "ItemArms") == null) }
+function GameLARPCanAct(C) { return (InventoryGet(C, "ItemArms") == null); }
 /**
  * In LARP, check if the given character is wearing clothes.
  * @param {Character} C - Character to check.
  * @returns {boolean} - Whether the character is wearing clothes or not
  */
-function GameLARPClothed(C) { return (InventoryGet(C, "Cloth") != null) }
+function GameLARPClothed(C) { return (InventoryGet(C, "Cloth") != null); }
 
 /**
  * Checks if an item can be removed in LARP.

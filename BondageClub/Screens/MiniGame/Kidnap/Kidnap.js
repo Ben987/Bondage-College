@@ -476,7 +476,7 @@ function KidnapRun() {
 	// If the time is over, we go to the next step
 	if (CommonTime() >= KidnapTimer) {
 		if (KidnapMode == "SelectMove") { KidnapSelectMove(3); return; }
-		if (KidnapMode == "End") { CommonDynamicFunction(KidnapReturnFunction); return }
+		if (KidnapMode == "End") { CommonDynamicFunction(KidnapReturnFunction); return; }
 		if ((KidnapMode == "Intro") || (KidnapMode == "SuddenDeath") || (KidnapMode == "ShowMove") || (KidnapMode == "UpperHand") || (KidnapMode == "SelectItem")) KidnapSetMode("SelectMove");
 	} else KidnapShowTimer();
 

@@ -127,7 +127,7 @@ function CreationResponse(data) {
 }
 
 /**
- * Handles click events in the creation dialog. 
+ * Handles click events in the creation dialog.
  * Imports data from Bondage College and creates a character.
  * @returns {void} - Nothing
  */

@@ -12,7 +12,7 @@ var DailyJobDojoTeacher = null;
  * Triggered when a player is fully restrained from a daily job dialog
  * @returns {void} - Nothing
  */
-function DailyJobPlayerFullRestrain() { CharacterFullRandomRestrain(Player, "ALL") }
+function DailyJobPlayerFullRestrain() { CharacterFullRandomRestrain(Player, "ALL"); }
 
 /**
  * Loads a puppy girl and fully restrain her
@@ -211,7 +211,7 @@ function DailyJobDojoGameStart() {
 }
 
 /**
- * Triggered at the end of the dojo struggle job minigame 
+ * Triggered at the end of the dojo struggle job minigame
  * @returns {void} - Nothing
  */
 function DailyJobDojoGameEnd() {

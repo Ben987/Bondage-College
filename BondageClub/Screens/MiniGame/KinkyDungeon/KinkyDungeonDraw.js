@@ -328,14 +328,20 @@ function KinkyDungeonHandleHUD() {
 					KinkyDungeonAdvanceTime(1);
 					KinkyDungeonTargetTile = null;
 					if (KinkyDungeonGold > cost) {
-						KinkyDungeonPayShrine(type);
-						delete KinkyDungeonTiles[KinkyDungeonTargetTileLocation];
-						let x = KinkyDungeonTargetTileLocation.split(',')[0];
-						let y = KinkyDungeonTargetTileLocation.split(',')[1];
-						KinkyDungeonMapSet(parseInt(x), parseInt(y), "a");
-						KinkyDungeonUpdateStats(0);
-					} else KinkyDungeonSendActionMessage(1, TextGet("KinkyDungeonPayShrineFail"), "red", 1);
-
+						KinkyDungeonPayShrine(type)
+						delete KinkyDungeonTiles[KinkyDungeonTargetTileLocation]
+						let x = KinkyDungeonTargetTileLocation.split(',')[0]
+						let y = KinkyDungeonTargetTileLocation.split(',')[1]
+						KinkyDungeonMapSet(parseInt(x), parseInt(y), "a")
+						KinkyDungeonUpdateStats(0)
+					} else if (1 >= KinkyDungeonActionMessagePriority) {
+						KinkyDungeonActionMessageTime = 1
+								
+						KinkyDungeonActionMessage = TextGet("KinkyDungeonPayShrineFail")
+						KinkyDungeonActionMessagePriority = 1
+						KinkyDungeonActionMessageColor = "red"
+					}
+					
 				}
 
 			}

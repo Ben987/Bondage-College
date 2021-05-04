@@ -7,7 +7,7 @@ var AsylumTherapyPatient = null;
  * Checks if the therapy for the player can start
  * @returns {boolean} - Returns true, if the player is ready for therapy, false otherwise
  */
-function AsylumTherapyPatientReadyForTherapy() { return (!Player.IsRestrained() && Player.IsNaked()) }
+function AsylumTherapyPatientReadyForTherapy() { return (!Player.IsRestrained() && Player.IsNaked()); }
 
 /**
  * Loads the room and initializes the nurse and the patient
@@ -122,7 +122,7 @@ function AsylumTherapyTherapySuccess() {
 }
 
 /**
- * Apply restraints on the player for pain therapy. 
+ * Apply restraints on the player for pain therapy.
  * Depending on the patient's reputation, the pain therapy gets a tougher weapon
  * @returns {void} - Nothing
  */
