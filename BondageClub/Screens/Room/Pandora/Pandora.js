@@ -377,7 +377,7 @@ function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
 			let TunnelOdds = 0.25 + (RoomLevel * 0.1);
 			if (TunnelOdds > 0.75) TunnelOdds = 0.75;
 			if (Math.random() >= DeadEndOdds) RoomBack = (Math.random() >= TunnelOdds) ? "Fork" : "Tunnel";
-			RoomBack = RoomBack + Math.floor(Math.random() * 6);
+			RoomBack = RoomBack + Math.floor(Math.random() * 7);
 			Continue = (RoomBack !== EntryRoom.Background);
 			if (Continue)
 				for (let R = 0; R < PandoraRoom.length; R++)
@@ -724,7 +724,7 @@ function PandoraPunishmentIntro() {
 	else if (SkillGetLevel(Player, "Infiltration") >= 5) IntroText = DialogFind(CurrentCharacter, "Punishment5");
 	else if (SkillGetLevel(Player, "Infiltration") >= 2) IntroText = DialogFind(CurrentCharacter, "Punishment2");
 	else IntroText = DialogFind(CurrentCharacter, "Punishment0");
-	PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 6).toString();
+	PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 7).toString();
 	let Dominatrix = PandoraGenerateNPC("Punishment", "Mistress", "RANDOM", false);
 	CharacterSetCurrent(Dominatrix);
 	CurrentCharacter.CurrentDialog = IntroText;
