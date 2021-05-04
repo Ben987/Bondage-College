@@ -145,6 +145,7 @@ KinkyDungeonPayShrine,"Offer XXXg"
 KinkyDungeonPayShrineFail,"You do not have enough for a proper offering."
 KinkyDungeonPayShrineRemoveRestraints,"The goddess removes some of your restraints!"
 KinkyDungeonPayShrineHeal,"The goddess restores your mental and physical state!"
+KinkyDungeonPayShrineSpell,"Glowing runes on the altar teach you how to cast SpellLearned."
 KinkyDungeonObject,"object"
 
 KinkyDungeonObjectLock,"That object is locked"
@@ -153,6 +154,9 @@ KinkyDungeonShrineCharms,"mummies"
 KinkyDungeonShrineLeather,"leather"
 KinkyDungeonShrineMetal,"metal"
 KinkyDungeonShrineWill,"willpower"
+KinkyDungeonShrineElements,"the elements"
+KinkyDungeonShrineConjure,"conjuration"
+KinkyDungeonShrineIllusion,"illusions"
 
 ClimbDown,"You climb down to the next level"
 
@@ -248,10 +252,10 @@ KinkyDungeonSpellDescriptionIcebolt,A quick shard of ice that does DamageDealt d
 KinkyDungeonSpellCastIcebolt,You a hurl a shard of ice!
 KinkyDungeonSpellTargetIcebolt,Choose aim direction
 
-KinkyDungeonSpellChainbolt,Chainbolt
-KinkyDungeonSpellDescriptionChainbolt,Throws a chain that stuns enemies for a turn.
-KinkyDungeonSpellCastChainbolt,You a hurl a strand of chain!
-KinkyDungeonSpellTargetChainbolt,Choose aim direction
+KinkyDungeonSpellChainBolt,Chainbolt
+KinkyDungeonSpellDescriptionChainBolt,Throws a chain that stuns enemies for a turn.
+KinkyDungeonSpellCastChainBolt,You a hurl a strand of chain!
+KinkyDungeonSpellTargetChainBolt,Choose aim direction
 
 KinkyDungeonSpellElectrify,Electrify
 KinkyDungeonSpellDescriptionElectrify,A delayed shock that deals DamageDealt damage and stuns for Duration turns.

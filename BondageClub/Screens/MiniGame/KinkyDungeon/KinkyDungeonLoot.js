@@ -41,7 +41,7 @@ function KinkyDungeonLoot(Level, Index, Type) {
 				var maxlevel = 999;
 				var minlevel = 0;
 				var SpellList = null;
-				if (loot.prerequisites.includes("lowlevel")) maxlevel = 7;
+				if (loot.prerequisites.includes("lowlevel")) maxlevel = 5;
 				if (loot.prerequisites.includes("UnlearnedElements")) SpellList = KinkyDungeonSpellList.Elements;
 				if (loot.prerequisites.includes("UnlearnedConjure")) SpellList = KinkyDungeonSpellList.Conjure;
 				if (loot.prerequisites.includes("UnlearnedIllusion")) SpellList = KinkyDungeonSpellList.Illusion;
@@ -110,7 +110,7 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 	//
 	let value = 0;
 	if (Loot.name == "spell_illusion_low") {
-		let SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList.Illusion);
+		let SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 5, KinkyDungeonSpellList.Illusion);
 		let spellIndex = Math.floor(Math.random()*SpellsUnlearned.length);
 
 		let spell = SpellsUnlearned[spellIndex];
@@ -118,7 +118,7 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("SpellLearned", TextGet("KinkyDungeonSpell" + spell.name));
 		KinkyDungeonSpells.push(spell);
 	} else if (Loot.name == "spell_conjuration_low") {
-		let SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList.Conjure);
+		let SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 5, KinkyDungeonSpellList.Conjure);
 		let spellIndex = Math.floor(Math.random()*SpellsUnlearned.length);
 
 		let spell = SpellsUnlearned[spellIndex];
@@ -126,7 +126,7 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("SpellLearned", TextGet("KinkyDungeonSpell" + spell.name));
 		KinkyDungeonSpells.push(spell);
 	} else if (Loot.name == "spell_elemental_low") {
-		let SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 7, KinkyDungeonSpellList.Elements);
+		let SpellsUnlearned = KinkyDungeonGetUnlearnedSpells(0, 5, KinkyDungeonSpellList.Elements);
 		let spellIndex = Math.floor(Math.random()*SpellsUnlearned.length);
 
 		let spell = SpellsUnlearned[spellIndex];

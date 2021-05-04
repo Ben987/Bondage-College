@@ -18,6 +18,9 @@ var KinkyDungeonMapParams = [
 
 		"enemytags": ["zombie"],
 		"shrines": [
+			{Type: "Elements", Weight: 5},
+			{Type: "Conjure", Weight: 5},
+			{Type: "Illusion", Weight: 5},
 			{Type: "Charms", Weight: 9},
 			{Type: "Leather", Weight: 6},
 			{Type: "Metal", Weight: 3},

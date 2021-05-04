@@ -28,7 +28,9 @@ Content
 
 1.32
 Content 
+- Chain bolt spell which stuns enemies
 - Chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
+- Goddesses of the elements, conjuration, and illusion who grant spells at a high cost
 
 Future content planned:
 - Ability to close nearby doors

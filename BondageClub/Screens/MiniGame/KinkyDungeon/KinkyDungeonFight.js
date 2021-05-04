@@ -58,7 +58,7 @@ function KinkyDungeonDamageEnemy(Enemy, Damage, Ranged, NoMsg, Spell) {
 		if ((resistStun < 2 && resistDamage < 2) && (Damage.type == "stun" || Damage.type == "electric" || Damage.type == "ice")) { // Being immune to the damage stops the stun as well
 			effect = true;
 			if (!Enemy.stun) Enemy.stun = 0;
-			else if (resistStun == 1)
+			if (resistStun == 1)
 				Enemy.stun = Math.max(Enemy.stun, Math.min(1, Damage.time-1)); // Enemies with stun resistance can't be stunned more than one turn, and anything that stuns them for one turn doesn't affect them
 			else Enemy.stun = Math.max(Enemy.stun, Damage.time);
 		}

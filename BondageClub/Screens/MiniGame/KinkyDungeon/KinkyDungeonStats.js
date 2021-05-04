@@ -123,12 +123,12 @@ function KinkyDungeonDefaultStats() {
     KinkyDungeonDressPlayer();
     KinkyDungeonShrineInit();
 	
-	KinkyDungeonPlayers = [KinkyDungeonPlayerEntity]
+	/*KinkyDungeonPlayers = [KinkyDungeonPlayerEntity]
 	for (let C = 0; C < ChatRoomCharacter.length; C++) {
 		if (ChatRoomCharacter[C].Effect.includes("KinkyDungeonParty") && ChatRoomCharacter[C].ID != 0) {
 			KinkyDungeonPlayers.push({MemberNumber: ChatRoomCharacter[C].MemberNumber, x:KinkyDungeonPlayerEntity.x, y: KinkyDungeonPlayerEntity.y})
 		}
-	}
+	}*/
 
 }
 

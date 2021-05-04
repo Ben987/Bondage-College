@@ -117,6 +117,7 @@ function KinkyDungeonInitialize(Level, Random) {
 	KinkyDungeonCanvasFow.width = KinkyDungeonCanvas.width;
 	KinkyDungeonCanvasFow.height = KinkyDungeonCanvas.height;
 
+	KinkyDungeonDefaultStats();
 
 	// Set up the first level
 	KinkyDungeonCreateMap(KinkyDungeonMapParams[KinkyDungeonMapIndex[0]], 0);
@@ -180,7 +181,6 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 
 	// Place the player!
 	KinkyDungeonPlayerEntity = {MemberNumber:Player.MemberNumber, x: 1, y:startpos};
-	KinkyDungeonDefaultStats();
 	KinkyDungeonUpdateStats(0);
 
 	// Place enemies after player
