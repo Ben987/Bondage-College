@@ -47,7 +47,7 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 0,10,Can we talk?,"I'm busy, go away or be ready to fight.",,
 0,10,I'm here to kidnap you.,Oh yeah?  I won't go down without a fight.,,
 0,,(Fight her.),,CharacterFight(),
-0,,I cannot talk now.  (Leave her.),,DialogLeave(),
+0,,I cannot talk now.  (Leave her.),,CharacterAllowMove(),
 10,,,"So, you want to fight or not?",,
 10,,(Fight her.),,CharacterFight(),
 10,,(Leave her.),,DialogLeave(),
