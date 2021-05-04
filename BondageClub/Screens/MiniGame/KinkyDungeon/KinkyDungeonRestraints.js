@@ -114,7 +114,7 @@ function KinkyDungeonPlayerGetLockableRestraints() {
 
 	for (let I = 0; I < KinkyDungeonInventory.length; I++) {
 		var item = KinkyDungeonInventory[I];
-		if (!item.lock && item.restraint && item.restraint.escapeChance && item.restraint.escapeChance["Pick"] != null) {
+		if (!item.lock && item.restraint && item.restraint.escapeChance && item.restraint.escapeChance.Pick != null) {
 			ret.push(item);
 		}
 	}
