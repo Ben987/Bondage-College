@@ -97,6 +97,9 @@ KillWitchChain,"The chain witch vanishes into a pile of metal dust, leaving behi
 AttackWitchChainLock,"The chain witch locks all of your restraints!"
 AttackWitchChain,"The chain witch tugs sensually at your restraints!"
 
+NameWitchSlime,Slime Witch
+KillWitchSlime,"The slime witch vanishes into a pool of pink slime, leaving behind a keyring."
+
 NameRat,Filthy Rat
 KillRat,"The rat skitters back into a hole in the wall."
 AttackRat,"The filthy rat nibbles at you! (-DamageTaken WP)"
@@ -289,8 +292,13 @@ KinkyDungeonSpellCastFocusedFlash,You slowly charge up a powerful flash!
 
 KinkyDungeonSpellSlime,Conjure Slime
 KinkyDungeonSpellDescriptionSlime,A huge pool of slime will greatly slow enemies that step inside.
-KinkyDungeonSpellCastSlime,You throw a ball of slime!
+KinkyDungeonSpellCastSlime,You conjure a pool of slime!
 KinkyDungeonSpellTargetSlime,Select where the slime will start (SpellArea radius)
+
+KinkyDungeonSpellSlimeBall,Slime Ball
+KinkyDungeonSpellDescriptionSlimeBall,A ball of slime leaves a trail of sticky slime. It deals DamageDealt damage on a hit.
+KinkyDungeonSpellCastSlimeBall,You hurl a ball of slime!
+KinkyDungeonSpellTargetSlimeBall,Choose aim direction
 
 KinkyDungeonBlindSelf,"You blinded yourself with your own magic!"
 KinkyDungeonMagicRopeSelf,"Your own rope trap springs upon you!"

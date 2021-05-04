@@ -35,9 +35,10 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 
 		],
 	"Conjure": [
-		{name: "Slime", exhaustion: 5, components: ["Legs"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 2, delay: 1, range: 4, size: 3, aoe: 2, lifetime: 9999, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
+		{name: "Slime", exhaustion: 5, components: ["Legs"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 2, delay: 1, range: 4, size: 3, aoe: 2, lifetime: 3, lifetimeHitBonus: 12, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
 		//{name: "PinkGas", exhaustion: 4, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 2, range: 4, size: 3, aoe: 2.5, lifetime: 9999, damage: "stun", playerEffect: {name: "PinkGas", time: 3}}, // Dizzying gas, increases arousal
-		{name: "ChainBolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", time: 1,  power: 2, delay: 0, range: 50, damage: "stun", speed: 2, playerEffect: {name: "SingleChain", time: 1}}, // Throws a blast of ice which stuns the target for 2 turns
+		{name: "ChainBolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", time: 1,  power: 2, delay: 0, range: 50, damage: "stun", speed: 2, playerEffect: {name: "SingleChain", time: 1}}, // Throws a chain which stuns the target for 1 turn
+		{name: "SlimeBall", exhaustion: 5, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2.5, delay: 0, range: 50, damage: "glue", speed: 1, trailLifetime: 10, trailDamage:"stun", trail:"lingering", trailChance: 1.0, playerEffect: {name: "SlimeTrap", time: 3}}, // Throws a ball of slime which oozes more slime
 		
 	],
 	"Illusion": [
@@ -46,6 +47,11 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 		{name: "FocusedFlash", exhaustion: 6, components: ["Verbal"], level:4, type:"inert", projectile:false, onhit:"aoe", time: 12, delay: 2, range: 2.5, size: 3, aoe: 1.5, lifetime: 1, damage: "stun", playerEffect: {name: "Blind", time: 12}}, // Longer delay, but the stun lasts much longer.
 	],
 };
+var KinkyDungeonSpellListEnemies = [
+{name: "WitchSlime", exhaustion: 5, components: ["Legs"], level:2, type:"inert", projectile:false, onhit:"lingering", time: 2, delay: 1, range: 4, size: 3, aoe: 1, lifetime: 1, lifetimeHitBonus: 9, damage: "glue", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
+{name: "WitchSlimeBall", exhaustion: 5, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2, delay: 0, range: 50, damage: "glue", speed: 1, trailLifetime: 10, trailDamage:"glue", trail:"lingering", trailChance: 1.0, playerEffect: {name: "SlimeTrap", time: 3}}, // Throws a ball of slime which oozes more slime
+			
+]
 
 function KinkyDungeonSearchSpell(list, name) {
 	for (let L = 0; L < list.length; L++) {
@@ -55,7 +61,11 @@ function KinkyDungeonSearchSpell(list, name) {
 	return null;
 }
 
-function KinkyDungeonFindSpell(name) {
+function KinkyDungeonFindSpell(name, SearchEnemies) {
+	if (SearchEnemies) {
+		let spell = KinkyDungeonSearchSpell(KinkyDungeonSpellListEnemies, name);
+		if (spell) return spell;
+	}
 	for (var key in KinkyDungeonSpellList) {
 		let list = KinkyDungeonSpellList[key];
 		let spell = KinkyDungeonSearchSpell(list, name);
@@ -77,43 +87,49 @@ function KinkyDungeonResetMagic() {
 
 
 function KinkyDungeonPlayerEffect(playerEffect, spell) {
-	if (playerEffect.name == "Blind") {
-		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time);
-		KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonBlindSelf"), "red", playerEffect.time);
-	} else if (playerEffect.name == "MagicRope") {
-		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeArms"));
-		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeLegs"));
-		KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonMagicRopeSelf"), "red", playerEffect.time);
-	} else if (playerEffect.name == "SlimeTrap") {
-		KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("StickySlime"));
-		KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSlime"), "red", playerEffect.time);
-	} else if (playerEffect.name == "Shock") {
-		KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time);
-		KinkyDungeonMovePoints = Math.max(-1, KinkyDungeonMovePoints-1); // This is to prevent stunlock while slowed heavily
-		KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
-		KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonShock"), "red", playerEffect.time);
-	} else if (playerEffect.name == "SingleChain") {
-		let restraintAdd = KinkyDungeonGetRestraint({tags: ["chainRestraints"]}, MiniGameKinkyDungeonCheckpoint + spell.power, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]);
-		if (restraintAdd) {
-			KinkyDungeonAddRestraintIfWeaker(restraintAdd, spell.power);
-			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSingleChain"), "red", playerEffect.time);
-		} else {
+	if (!playerEffect.chance || Math.random() < playerEffect.chance) {
+		if (playerEffect.name == "Blind") {
+			KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time);
+			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonBlindSelf"), "red", playerEffect.time);
+		} else if (playerEffect.name == "MagicRope") {
+			KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeArms"));
+			KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("WeakMagicRopeLegs"));
+			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonMagicRopeSelf"), "red", playerEffect.time);
+		} else if (playerEffect.name == "SlimeTrap") {
+			KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("StickySlime"));
+			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSlime"), "red", playerEffect.time);
+			
+			if (spell.power > 0) {
+				KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
+			}
+		} else if (playerEffect.name == "Shock") {
+			KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time);
 			KinkyDungeonMovePoints = Math.max(-1, KinkyDungeonMovePoints-1); // This is to prevent stunlock while slowed heavily
-			KinkyDungeonSendTextMessage(3, TextGet("KinkyDungeonSlowedBySpell"), "yellow", playerEffect.time);
 			KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
+			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonShock"), "red", playerEffect.time);
+		} else if (playerEffect.name == "SingleChain") {
+			let restraintAdd = KinkyDungeonGetRestraint({tags: ["chainRestraints"]}, MiniGameKinkyDungeonCheckpoint + spell.power, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]);
+			if (restraintAdd) {
+				KinkyDungeonAddRestraintIfWeaker(restraintAdd, spell.power);
+				KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSingleChain"), "red", playerEffect.time);
+			} else {
+				KinkyDungeonMovePoints = Math.max(-1, KinkyDungeonMovePoints-1); // This is to prevent stunlock while slowed heavily
+				KinkyDungeonSendTextMessage(3, TextGet("KinkyDungeonSlowedBySpell"), "yellow", playerEffect.time);
+				KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
+			}
+			
+		} else if (playerEffect.name == "SingleRope") {
+			let restraintAdd = KinkyDungeonGetRestraint({tags: "ropeRestraints"}, MiniGameKinkyDungeonCheckpoint + spell.power, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]);
+			if (restraintAdd) {
+				KinkyDungeonAddRestraintIfWeaker(restraintAdd, spell.power);
+				KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSingleRRope"), "red", playerEffect.time);
+			} else {
+				KinkyDungeonMovePoints = Math.max(-1, KinkyDungeonMovePoints-1); // This is to prevent stunlock while slowed heavily
+				KinkyDungeonSendTextMessage(3, TextGet("KinkyDungeonSlowedBySpell"), "yellow", playerEffect.time);
+				KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
+			}
+			
 		}
-		
-	} else if (playerEffect.name == "SingleRope") {
-		let restraintAdd = KinkyDungeonGetRestraint({tags: "ropeRestraints"}, MiniGameKinkyDungeonCheckpoint + spell.power, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]);
-		if (restraintAdd) {
-			KinkyDungeonAddRestraintIfWeaker(restraintAdd, spell.power);
-			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSingleRRope"), "red", playerEffect.time);
-		} else {
-			KinkyDungeonMovePoints = Math.max(-1, KinkyDungeonMovePoints-1); // This is to prevent stunlock while slowed heavily
-			KinkyDungeonSendTextMessage(3, TextGet("KinkyDungeonSlowedBySpell"), "yellow", playerEffect.time);
-			KinkyDungeonDealDamage({damage: spell.power*2, type: spell.damage});
-		}
-		
 	}
 }
 

@@ -150,6 +150,8 @@ function KinkyDungeonDealDamage(Damage) {
 		KinkyDungeonStatStamina -= dmg/2;
 	} else if (type == "pain") { // Painful attacks decrease arousal
 		KinkyDungeonStatArousal -= dmg/2;
+	} else if (type == "glue") { // Glue slows the player
+		KinkyDungeonStatStamina -= dmg/2;
 	}
 	return dmg;
 }
