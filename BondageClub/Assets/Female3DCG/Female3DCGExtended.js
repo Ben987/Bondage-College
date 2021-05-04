@@ -111,7 +111,6 @@ var AssetFemale3DCGExtended = {
 		CeilingShackles: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
-				ChatSetting: TypedItemChatSetting.FROM_TO,
 				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
 				Options: [
 					{
@@ -131,6 +130,7 @@ var AssetFemale3DCGExtended = {
 				],
 				Dialog: {
 					Load: "SelectBondagePosition",
+					ChatPrefix: ({ C }) => `ItemArmsCeilingShacklesSet${C.Pose.includes("Suspension") ? "Suspension" : ""}`
 				},
 			},
 		}, // CeilingShackles
