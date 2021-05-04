@@ -17,6 +17,19 @@ var KinkyDungeonCurrentBook = "Elements";
 var KinkyDungeonCurrentPage = 0;
 var KinkyDungeonBooks = ["Elements", "Conjure", "Illusion"];
 
+// Glossary of spell effects
+// exhaustion: Number of turns of no stamina regen after casting the spell. Stacks
+// Components: Components required to cast the spell. All of them need to be met
+// Level: Determines mana cost and availability. On enemies, increases cooldown
+// Power: Determines damage
+// Type: "bolt" is a projectile. "inert" is a static delayed blast. "self" is a spell that casts on the player.
+// Delay: If the spell's type is "inert", this determines how long before it explodes
+// Range: Max targeting range
+// damage: damage TYPE. Various damage types have different effects, see KinkyDungeonDealDamage
+// speed: speed of a "bolt" projectile
+// playerEffect: What happens when the effect hits a player
+// trail, trailchance, traildamage, traillifetime: for lingering projectiles left behind the projectile
+// onhit: What happens on AoE. Deals aoepower damage, or just power otherwise 
 
 var KinkyDungeonSpellsStart = [
 	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", power: 3, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
@@ -37,7 +50,7 @@ var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. W
 	"Conjure": [
 		{name: "Slime", exhaustion: 5, components: ["Legs"], level:3, type:"inert", projectile:false, onhit:"lingering", time: 2, delay: 1, range: 4, size: 3, aoe: 2, lifetime: 3, lifetimeHitBonus: 12, damage: "stun", playerEffect: {name: "SlimeTrap", time: 3}}, // Creates a huge pool of slime, slowing enemies that try to enter. If you step in it, you have a chance of getting trapped!
 		//{name: "PinkGas", exhaustion: 4, components: ["Verbal"], level:2, type:"inert", projectile:false, onhit:"lingering", time: 1, delay: 2, range: 4, size: 3, aoe: 2.5, lifetime: 9999, damage: "stun", playerEffect: {name: "PinkGas", time: 3}}, // Dizzying gas, increases arousal
-		{name: "ChainBolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", time: 1,  power: 2, delay: 0, range: 50, damage: "stun", speed: 2, playerEffect: {name: "SingleChain", time: 1}}, // Throws a chain which stuns the target for 1 turn
+		{name: "ChainBolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", time: 1,  power: 2, delay: 0, range: 50, damage: "chain", speed: 2, playerEffect: {name: "SingleChain", time: 1}}, // Throws a chain which stuns the target for 1 turn
 		{name: "SlimeBall", exhaustion: 5, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2.5, delay: 0, range: 50, damage: "glue", speed: 1, trailLifetime: 10, trailDamage:"stun", trail:"lingering", trailChance: 1.0, playerEffect: {name: "SlimeTrap", time: 3}}, // Throws a ball of slime which oozes more slime
 		
 	],
@@ -83,6 +96,7 @@ function KinkyDungeonResetMagic() {
 	Object.assign(KinkyDungeonSpells, KinkyDungeonSpellsStart); // Copy the dictionary
 	KinkyDungeonMysticSeals = 1.3;
 	KinkyDungeonSpellPress = 0;
+	KinkyDungeonCurrentPage = 0;
 }
 
 

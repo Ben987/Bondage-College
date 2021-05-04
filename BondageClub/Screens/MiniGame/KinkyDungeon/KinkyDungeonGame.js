@@ -795,7 +795,7 @@ function KinkyDungeonMove(moveDirection) {
 						}
 					}
 				}
-				KinkyDungeonAdvanceTime(moveDirection.delta);
+				KinkyDungeonAdvanceTime(1); // was moveDirection.delta, but became too confusing
 			}
 		} else {
 			if (KinkyDungeonGetVisionRadius() <= 1) KinkyDungeonAdvanceTime(1);
