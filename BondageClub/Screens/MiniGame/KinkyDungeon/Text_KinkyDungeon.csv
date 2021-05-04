@@ -291,11 +291,13 @@ KinkyDungeonSpellDescriptionFocusedFlash,A focused flash of light which renders 
 KinkyDungeonSpellCastFocusedFlash,You slowly charge up a powerful flash!
 
 KinkyDungeonSpellSlime,Conjure Slime
+KinkyDungeonSpellWitchSlime,Witch's Slime
 KinkyDungeonSpellDescriptionSlime,A huge pool of slime will greatly slow enemies that step inside.
 KinkyDungeonSpellCastSlime,You conjure a pool of slime!
 KinkyDungeonSpellTargetSlime,Select where the slime will start (SpellArea radius)
 
 KinkyDungeonSpellSlimeBall,Slime Ball
+KinkyDungeonSpellWitchSlimeBall,Witch's Slime Ball
 KinkyDungeonSpellDescriptionSlimeBall,A ball of slime leaves a trail of sticky slime. It deals DamageDealt damage on a hit.
 KinkyDungeonSpellCastSlimeBall,You hurl a ball of slime!
 KinkyDungeonSpellTargetSlimeBall,Choose aim direction

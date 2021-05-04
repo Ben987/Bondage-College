@@ -182,6 +182,7 @@ function KinkyDungeonDrawStats(x, y, width, heightPerBar) {
 
 
 function KinkyDungeonUpdateStats(delta) {
+	KinkyDungeonPlayers = [KinkyDungeonPlayerEntity]
 	//let now = performance.now()
 	// Initialize
 	var arousalRate = KinkyDungeonStatArousalRegen;
