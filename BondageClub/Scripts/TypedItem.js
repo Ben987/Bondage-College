@@ -140,6 +140,7 @@ function TypedItemCreatePublishFunction(data) {
 			const newIndex = options.indexOf(newOption);
 			msg = dialog.chatPrefix({ C, previousOption, newOption, previousIndex, newIndex });
 		}
+		if (C.Pose.includes("Suspension")) msg += "Suspension";
 		if (chatSetting === TypedItemChatSetting.FROM_TO) msg += `${previousOption.Name}To`;
 		msg += newOption.Name;
 		const dictionary = TypedItemBuildChatMessageDictionary(C, data);
