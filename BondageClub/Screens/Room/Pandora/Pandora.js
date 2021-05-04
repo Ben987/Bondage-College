@@ -29,7 +29,7 @@ function PandoraOdds75() { return ((CurrentCharacter.RandomOdds == null) || (Cur
 function PandoraOdds50() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.50)); }
 function PandoraOdds25() { return ((CurrentCharacter.RandomOdds == null) || (CurrentCharacter.RandomOdds > 0.75)); }
 function PandoraCostumeIs(Costume) { return (PandoraClothes == Costume); }
-function PandoraQuizIs(Number) { return ((CurrentCharacter.QuizLog != null) && (CurrentCharacter.QuizLog[CurrentCharacter.QuizLog.length - 1].toString() == Number.toString())) };
+function PandoraQuizIs(Number) { return ((CurrentCharacter.QuizLog != null) && (CurrentCharacter.QuizLog[CurrentCharacter.QuizLog.length - 1].toString() == Number.toString())) }
 
 /**
  * Loads the Pandora's Box screen
