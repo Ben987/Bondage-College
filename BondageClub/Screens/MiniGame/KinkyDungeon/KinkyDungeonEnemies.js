@@ -310,7 +310,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 					enemy.castCooldown = spell.level*enemy.Enemy.spellCooldownMult + enemy.Enemy.spellCooldownMod + 1;
 					KinkyDungeonCastSpell(player.x, player.y, spell, enemy, player);
 
-					console.log("casted "+ spell.name);
+					//console.log("casted "+ spell.name);
 				}
 			}
 		}
