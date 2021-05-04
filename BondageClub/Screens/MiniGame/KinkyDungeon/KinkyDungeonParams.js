@@ -10,6 +10,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 0.67,
 		"rubblechance" : 0.7,
+		"brickchance" : 0.1,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -37,6 +38,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.6,
 		"doorchance" : 0.9,
 		"rubblechance" : 0.6,
+		"brickchance" : 0.4,
 
 		"min_width" : 21,
 		"max_width" : 27,
@@ -53,6 +55,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.4,
 		"doorchance" : 0.2,
 		"rubblechance" : 0.5,
+		"brickchance" : 0.1,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -69,6 +72,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.5,
 		"doorchance" : 0.9,
 		"rubblechance" : 0.7,
+		"brickchance" : 0.1,
 
 		"min_width" : 31,
 		"max_width" : 35,
@@ -87,6 +91,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.8,
 		"doorchance" : 0.05,
 		"rubblechance" : 0.9,
+		"brickchance" : 0.2,
 
 		"min_width" : 15,
 		"max_width" : 25,
@@ -103,6 +108,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 0.67,
 		"rubblechance" : 0.7,
+		"brickchance" : 0.3,
 
 		"min_width" : 25,
 		"max_width" : 51,
@@ -121,6 +127,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.5,
 		"doorchance" : 0.0,
 		"rubblechance" : 0.3,
+		"brickchance" : 0.3,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -137,6 +144,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.8,
 		"doorchance" : 0.8,
 		"rubblechance" : 0.5,
+		"brickchance" : 0.7,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -155,6 +163,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 1.0,
 		"rubblechance" : 0.7,
+		"brickchance" : 0.5,
 
 		"min_width" : 15,
 		"max_width" : 21,
@@ -173,6 +182,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 1.0,
 		"rubblechance" : 0.6,
+		"brickchance" : 0.9,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -191,6 +201,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0,
 		"doorchance" : 1.0,
 		"rubblechance" : 1.0,
+		"brickchance" : 0.7,
 
 		"min_width" : 31,
 		"max_width" : 31,

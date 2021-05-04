@@ -65,7 +65,7 @@ var KinkyDungeonBlueKeys = 0;
 var KinkyDungeonNormalBlades = 1;
 var KinkyDungeonEnchantedBlades = 0;
 
-var KinkyDungeonKnifeBreakChance = 0.1;
+var KinkyDungeonKnifeBreakChance = 0.2;
 var KinkyDungeonKeyJamChance = 0.33;
 var KinkyDungeonKeyPickBreakChance = 0.25;
 
