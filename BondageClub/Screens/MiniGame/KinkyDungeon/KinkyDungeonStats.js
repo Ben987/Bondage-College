@@ -23,7 +23,7 @@ var KinkyDungeonStaminaRate = KinkyDungeonStatStaminaRegen;
 // Willpower -- your HP. When it falls to 0, your character gives up and accepts her fate
 var KinkyDungeonStatWillpowerMax = 100;
 var KinkyDungeonStatWillpower = KinkyDungeonStatWillpowerMax;
-var KinkyDungeonStatWillpowerRegen = 0.1;
+var KinkyDungeonStatWillpowerRegen = 0.0; // Willpower does not regenerate! You have to visit a shrine, with an exponentially increasing price tag
 var KinkyDungeonStatWillpowerExhaustion = 0; // When casting spells, your willpower regen is stopped for this many turns
 
 // Willpower loss
