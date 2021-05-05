@@ -111,6 +111,7 @@ function KinkyDungeonPlayerEffect(playerEffect, spell) {
 			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonMagicRopeSelf"), "red", playerEffect.time);
 		} else if (playerEffect.name == "SlimeTrap") {
 			KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("StickySlime"));
+			KinkyDungeonMovePoints = -1
 			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSlime"), "red", playerEffect.time);
 			
 			if (spell.power > 0) {

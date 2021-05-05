@@ -197,7 +197,7 @@ function KinkyDungeonCreateMap(MapParams, Floor) {
 function KinkyDungeonPlaceEnemies(Tags, Floor, width, height) {
 	KinkyDungeonEntities = [];
 
-	var enemyCount = 4 + Math.floor(Floor/10 + width/20 + height/20);
+	var enemyCount = 4 + Math.floor(Math.sqrt(Floor) + width/20 + height/20);
 	var count = 0;
 	var tries = 0;
 	var miniboss = false;
