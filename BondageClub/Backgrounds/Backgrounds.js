@@ -11,7 +11,7 @@ var BackgroundsTagOutdoor = "Outdoor";
 var BackgroundsTagAquatic = "Aquatic";
 var BackgroundsTagSpecial = "Special Events";
 var BackgroundsTagSciFiFantasy = "SciFi & Fantasy";
-var BackgroundsTagClub = "Club rooms";
+var BackgroundsTagClub = "Club & College";
 var BackgroundsTagHouse = "Regular house";
 var BackgroundsTagDungeon = "Dungeon";
 var BackgroundsTagAsylum = "Asylum";
@@ -179,12 +179,18 @@ var BackgroundsList = [
     { Name: "PoolBottom", Tag: [BackgroundsTagAquatic] },
     { Name: "LatexRoom", Tag: [BackgroundsTagIndoor, BackgroundsTagDungeon, BackgroundsTagAsylum] },
     { Name: "OutsideCells", Tag: [BackgroundsTagAsylum] },
-	{ Name: "WesternStreet", Tag: [BackgroundsTagOutdoor] },
-	{ Name: "Desert", Tag: [BackgroundsTagOutdoor] },
-	{ Name: "Ranch", Tag: [BackgroundsTagOutdoor] },
-	{ Name: "Wagons", Tag: [BackgroundsTagOutdoor] },
-	{ Name: "OutdoorPool2", Tag: [BackgroundsTagOutdoor, BackgroundsTagAquatic] },
+    { Name: "WesternStreet", Tag: [BackgroundsTagOutdoor] },
+    { Name: "Desert", Tag: [BackgroundsTagOutdoor] },
+    { Name: "Ranch", Tag: [BackgroundsTagOutdoor] },
+    { Name: "Wagons", Tag: [BackgroundsTagOutdoor] },
+    { Name: "OutdoorPool2", Tag: [BackgroundsTagOutdoor, BackgroundsTagAquatic] },
     { Name: "SynthWave", Tag: [BackgroundsTagOutdoor, BackgroundsTagSciFiFantasy] },
+    { Name: "Infiltration", Tag: [BackgroundsTagClub, BackgroundsTagIndoor, BackgroundsTagSciFiFantasy] },
+    { Name: "MovieStudio", Tag: [BackgroundsTagClub, BackgroundsTagIndoor] },
+    { Name: "CollegeTennis", Tag: [BackgroundsTagClub, BackgroundsTagOutdoor] },
+    { Name: "CollegeTheater", Tag: [BackgroundsTagClub, BackgroundsTagIndoor] },
+    { Name: "CollegeClass", Tag: [BackgroundsTagClub, BackgroundsTagIndoor] },
+    { Name: "SchoolHallway", Tag: [BackgroundsTagIndoor] },
     { Name: "HotelBedroom", Tag: [BackgroundsTagIndoor] }
 ];
 

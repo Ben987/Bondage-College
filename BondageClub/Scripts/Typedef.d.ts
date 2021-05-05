@@ -202,6 +202,7 @@ interface Asset {
 	FixedPosition: boolean;
 	Layer: AssetLayer[];
 	ColorableLayerCount: number;
+	Archetype?: string;
 }
 
 /** An ItemBundle is a minified version of the normal Item */

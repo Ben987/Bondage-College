@@ -418,15 +418,17 @@ function ModularItemMergeModuleValues({ asset, modules }, moduleValues) {
 		Property = Property || {};
 		mergedProperty.Difficulty += (Property.Difficulty || 0);
 		if (Property.Block) CommonArrayConcatDedupe(mergedProperty.Block, Property.Block);
+		if (Property.Effect) CommonArrayConcatDedupe(mergedProperty.Effect, Property.Effect);
 		if (Property.Hide) CommonArrayConcatDedupe(mergedProperty.Hide, Property.Hide);
 		if (Property.HideItem) CommonArrayConcatDedupe(mergedProperty.HideItem, Property.HideItem);
 		return mergedProperty;
 	}, {
 		Type: ModularItemConstructType(modules, moduleValues),
 		Difficulty: asset.Difficulty,
-		Block: asset.Block || [],
-		Hide: asset.Hide || [],
-		HideItem: asset.HideItem || [],
+		Block: Array.isArray(asset.Block) ? asset.Block.slice() : [],
+		Effect: Array.isArray(asset.Effect) ? asset.Effect.slice() : [],
+		Hide: Array.isArray(asset.Hide) ? asset.Hide.slice() : [],
+		HideItem: Array.isArray(asset.HideItem) ? asset.HideItem.slice() : [],
 	});
 }
 
@@ -457,6 +459,8 @@ function ModularItemSetType(module, index, data) {
 	const C = CharacterGetCurrent();
 	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 	const option = module.Options[index];
+
+	// Make a final requirement check before actually modifying the item
 	const requirementMessage = ModularItemRequirementMessageCheck(option);
 	if (requirementMessage) {
 		DialogExtendedMessage = requirementMessage;
@@ -464,6 +468,7 @@ function ModularItemSetType(module, index, data) {
 	}
 
 	const currentModuleValues = ModularItemParseCurrent(data);
+
 	const moduleIndex = data.modules.indexOf(module);
 	let changed = false;
 	const newModuleValues = currentModuleValues.map((value, i) => {
@@ -475,8 +480,26 @@ function ModularItemSetType(module, index, data) {
 	});
 
 	if (changed) {
+		// Take a snapshot of the property values that are applied by the current type
+		const currentProperty = ModularItemMergeModuleValues(data, currentModuleValues);
+
+		// Create a shallow copy of the old property, and remove any module-defined keys from it (should only leave any
+		// lock-related keys behind)
+		const newProperty = Object.assign({}, DialogFocusItem.Property);
+		for (const key of Object.keys(currentProperty)) {
+			delete newProperty[key];
+		}
+
+		// Assign the new property data
+		DialogFocusItem.Property = Object.assign(newProperty, ModularItemMergeModuleValues(data, newModuleValues));
+
+		// Reinstate the Lock effect if there's a lock
+		if (newProperty.LockedBy && !(newProperty.Effect || []).includes("Lock")) {
+			newProperty.Effect = (newProperty.Effect || []);
+			newProperty.Effect.push("Lock");
+		}
+
 		const groupName = data.asset.Group.Name;
-		Object.assign(DialogFocusItem.Property, ModularItemMergeModuleValues(data, newModuleValues));
 		CharacterRefresh(C);
 		ChatRoomCharacterItemUpdate(C, groupName);
 
