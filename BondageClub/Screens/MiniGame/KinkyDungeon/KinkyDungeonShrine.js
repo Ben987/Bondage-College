@@ -1,8 +1,13 @@
 "use strict";
 var KinkyDungeonShrineBaseCosts = {
 	"Charms": 10,
-	"Leather": 15,
-	"Metal": 20,
+	"Leather": 25,
+	"Metal": 30,
+	"Gags": 30,
+	"Blindfolds": 30,
+	"Boots": 30,
+	"Rope": 15,
+	"Locks": 25,
 	"Will": 10,
 	"Elements": 50,
 	"Conjure": 50,
@@ -16,7 +21,7 @@ var KinkyDungeonShrineBaseCostGrowth = {
 };
 
 var KinkyDungeonShrineCosts = {};
-var KinkyDungeonShrineTypeRemove = ["Charms", "Leather", "Metal"]; // These shrines will always remove restraints associated with their shrine
+var KinkyDungeonShrineTypeRemove = ["Charms", "Leather", "Metal", "Rope", "Gags", "Blindfolds", "Boots"]; // These shrines will always remove restraints associated with their shrine
 
 function KinkyDungeonShrineInit() {
 	KinkyDungeonShrineCosts = {};
