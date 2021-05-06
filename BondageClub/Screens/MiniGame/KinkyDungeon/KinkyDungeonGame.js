@@ -427,7 +427,7 @@ function KinkyDungeonPlaceDoors(doorchance, width, height) {
 	// Populate the doors
 	for (let X = 1; X < width; X += 1)
 		for (let Y = 1; Y < height; Y += 1)
-			if (KinkyDungeonGroundTiles.includes(KinkyDungeonMapGet(X, Y)) && Math.random() < doorchance) {
+			if (KinkyDungeonGroundTiles.includes(KinkyDungeonMapGet(X, Y))) {
 				// Check the 3x3 area
 				var wallcount = 0;
 				var up = false;
@@ -447,7 +447,10 @@ function KinkyDungeonPlaceDoors(doorchance, width, height) {
 							wallcount = 100;
 					}
 				if (wallcount < 5 && ((up && down) != (left && right))) { // Requirements: 4 doors and either a set in up/down or left/right but not both
-					KinkyDungeonMapSet(X, Y, 'D');
+					if (Math.random() < doorchance)
+						KinkyDungeonMapSet(X, Y, 'D');
+					else
+						KinkyDungeonMapSet(X, Y, 'd');
 					
 					KinkyDungeonTiles["" + X + "," + Y] = {Type: "Door"};
 				}
