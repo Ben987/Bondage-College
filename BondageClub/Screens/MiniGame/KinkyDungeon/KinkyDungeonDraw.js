@@ -354,6 +354,7 @@ function KinkyDungeonHandleHUD() {
 					let x = KinkyDungeonTargetTileLocation.split(',')[0]
 					let y = KinkyDungeonTargetTileLocation.split(',')[1]
 					KinkyDungeonMapSet(parseInt(x), parseInt(y), "D")
+					KinkyDungeonSendActionMessage(3, TextGet("KinkyDungeonCloseDoorDone"), "white", 1);
 				}
 			}
 		}
