@@ -72,7 +72,7 @@ var KinkyDungeonHardLockChanceScaling = 0.005;
 var KinkyDungeonHardLockChanceScalingMax = 0.4;
 
 
-
+var KinkyDungeonDoorCloseTimer = 0;
 var KinkyDungeonTargetingSpell = null;
 
 function KinkyDungeonSetCheckPoint() {
@@ -787,15 +787,18 @@ function KinkyDungeonMove(moveDirection) {
 		var moveObject = KinkyDungeonMapGet(moveX, moveY);
 		if (KinkyDungeonMovableTiles.includes(moveObject) && KinkyDungeonNoEnemy(moveX, moveY)) { // If the player can move to an empy space or a door
 
-			if (KinkyDungeonTiles["" + moveX + "," + moveY] && ((moveObject == 'd' && KinkyDungeonTargetTile == null) || KinkyDungeonTiles["" + moveX + "," + moveY].Type != "Door") ) {
+			if (KinkyDungeonTiles["" + moveX + "," + moveY] && ((moveObject == 'd' && KinkyDungeonTargetTile == null && KinkyDungeonNoEnemy(moveX, moveY, true) && KinkyDungeonDoorCloseTimer <= 0) || KinkyDungeonTiles["" + moveX + "," + moveY].Type != "Door") ) {
 				KinkyDungeonTargetTileLocation = "" + moveX + "," + moveY;
 				KinkyDungeonTargetTile = KinkyDungeonTiles[KinkyDungeonTargetTileLocation];
 				KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name)), "white", 1);
+				KinkyDungeonDoorCloseTimer = 2;
 			} else {
+				if (KinkyDungeonDoorCloseTimer > 0) KinkyDungeonDoorCloseTimer -= 1;
 				KinkyDungeonTargetTile = null;
 				KinkyDungeonTargetTileLocation = "";
 				if (moveObject == 'D') { // Open the door
 					KinkyDungeonMapSet(moveX, moveY, 'd');
+					KinkyDungeonDoorCloseTimer = 1;
 				} else if (moveObject == 'C') { // Open the chest
 					KinkyDungeonLoot(MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint], "chest");
 					KinkyDungeonMapSet(moveX, moveY, 'c');

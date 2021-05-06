@@ -4,9 +4,9 @@ var KinkyDungeonEnemies = [
 	{name: "FastZombie", tags: ["zombie", "melee", "ribbonRestraints"], followRange: 1, AI: "guard", visionRadius: 6, maxhp: 10, minLevel:4, weight:6, movePoints: 3, attackPoints: 2, attack: "MeleeBind", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":10, "lastthird":14}, floors:[0], dropTable: [{name: "Gold", amountMin: 50, amountMax: 80, weight: 2}, {name: "Gold", amountMin: 15, amountMax: 29, weight: 5}]},
 	{name: "RopeSnake", tags: ["construct", "melee", "ropeRestraints", "minor", "fireweakness", "slashweakness"], followRange: 1, AI: "wander", attackWhileMoving: true, visionRadius: 3, maxhp: 4, minLevel: 1, weight:8, movePoints: 1, attackPoints: 2, attack: "MeleeBindSuicide", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", fullBoundBonus: 10, terrainTags: {"secondhalf":4, "lastthird":2}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8]},
 	{name: "Rat", tags: ["beast", "melee", "minor"], followRange: 1, AI: "guard", visionRadius: 4, maxhp: 4, minLevel:0, weight:3, movePoints: 1.5, attackPoints: 2, attack: "MeleeWill", attackWidth: 1, attackRange: 1, power: 4, dmgType: "pain", terrainTags: {"rubble":20}, floors:[0, 1, 2, 3]},
-	{name: "WitchShock", tags: ["witch", "ranged", "elite", "miniboss", "unflinching", "electricimmune", "glueweakness"], followRange: 2, castWhileMoving: true, spells: ["Electrify"], spellCooldownMult: 1, spellCooldownMod: 0, hp: 14, AI: "hunt", visionRadius: 6, maxhp: 14, minLevel:3, weight:10, movePoints: 2, attackPoints: 2, attack: "Spell", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", terrainTags: {"secondhalf":2, "lastthird":1, "miniboss": -10}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropTable: [{name: "RedKey", weight: 3}, {name: "GreenKey", weight: 3}, {name: "BlueKey", weight: 2}]},
-	{name: "WitchChain", tags: ["witch", "ranged", "elite", "miniboss", "unflinching", "electricweakness", "meleeresist", "fireresist"], followRange: 1, spells: ["ChainBolt"], spellCooldownMult: 2, spellCooldownMod: 2, hp: 14, AI: "hunt", visionRadius: 6, maxhp: 14, minLevel:5, weight:6, movePoints: 3, attackPoints: 4, attack: "MeleeLockAllWillSpell", attackWidth: 1, attackRange: 1, power: 5, dmgType: "grope", terrainTags: {"secondhalf":3, "lastthird":3, "miniboss": -10}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropTable: [{name: "RedKey", weight: 3}, {name: "GreenKey", weight: 4}, {name: "BlueKey", weight: 1}]},
-	{name: "WitchSlime", tags: ["witch", "ranged", "elite", "miniboss", "unflinching", "glueimmune", "fireresist", "meleeweakness"], followRange: 5, castWhileMoving: true, spells: ["WitchSlimeBall", "WitchSlimeBall", "WitchSlime"], spellCooldownMult: 2, spellCooldownMod: 1, hp: 12, AI: "wander", visionRadius: 8, maxhp: 14, minLevel:4, weight:8, movePoints: 3, attackPoints: 2, attack: "Spell", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", terrainTags: {"secondhalf":2, "lastthird":1, "miniboss": -8}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropTable: [{name: "RedKey", weight: 4}, {name: "GreenKey", weight: 3}, {name: "BlueKey", weight: 1}]},
+	{name: "WitchShock", tags: ["opendoors", "witch", "ranged", "elite", "miniboss", "unflinching", "electricimmune", "glueweakness"], followRange: 2, castWhileMoving: true, spells: ["Electrify"], spellCooldownMult: 1, spellCooldownMod: 0, hp: 14, AI: "hunt", visionRadius: 6, maxhp: 14, minLevel:3, weight:10, movePoints: 2, attackPoints: 2, attack: "Spell", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", terrainTags: {"secondhalf":2, "lastthird":1, "miniboss": -10}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropTable: [{name: "RedKey", weight: 3}, {name: "GreenKey", weight: 3}, {name: "BlueKey", weight: 2}]},
+	{name: "WitchChain", tags: ["opendoors", "witch", "ranged", "elite", "miniboss", "unflinching", "electricweakness", "meleeresist", "fireresist"], followRange: 1, spells: ["ChainBolt"], spellCooldownMult: 2, spellCooldownMod: 2, hp: 14, AI: "hunt", visionRadius: 6, maxhp: 14, minLevel:5, weight:6, movePoints: 3, attackPoints: 4, attack: "MeleeLockAllWillSpell", attackWidth: 1, attackRange: 1, power: 5, dmgType: "grope", terrainTags: {"secondhalf":3, "lastthird":3, "miniboss": -10}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropTable: [{name: "RedKey", weight: 3}, {name: "GreenKey", weight: 4}, {name: "BlueKey", weight: 1}]},
+	{name: "WitchSlime", tags: ["opendoors", "witch", "ranged", "elite", "miniboss", "unflinching", "glueimmune", "fireresist", "meleeweakness"], followRange: 5, castWhileMoving: true, spells: ["WitchSlimeBall", "WitchSlimeBall", "WitchSlime"], spellCooldownMult: 2, spellCooldownMod: 1, hp: 12, AI: "wander", visionRadius: 8, maxhp: 14, minLevel:4, weight:8, movePoints: 3, attackPoints: 2, attack: "Spell", attackWidth: 1, attackRange: 1, power: 1, dmgType: "grope", terrainTags: {"secondhalf":2, "lastthird":1, "miniboss": -8}, floors:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dropTable: [{name: "RedKey", weight: 4}, {name: "GreenKey", weight: 3}, {name: "BlueKey", weight: 1}]},
 	
 ];
 
@@ -120,6 +120,9 @@ function KinkyDungeonUpdateEnemies(delta) {
 
 		var idle = true;
 		var moved = false;
+		
+		var MovableTiles = KinkyDungeonMovableTilesEnemy;
+		if (enemy.Enemy.tags.includes("opendoors")) MovableTiles = KinkyDungeonMovableTilesSmartEnemy;
 
 		if (enemy.stun > 0) {
 			enemy.stun -= delta;
@@ -134,7 +137,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 				if (!KinkyDungeonCheckLOS(enemy, player, playerDist, enemy.Enemy.followRange))
 					for (let T = 0; T < 8; T++) { // try 8 times
 						let dir = KinkyDungeonGetDirection(10*(Math.random()-0.5), 10*(Math.random()-0.5));
-						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
+						if (MovableTiles.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true;
 							idle = false;
 							break;
@@ -153,7 +156,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 						let dir = KinkyDungeonGetDirectionRandom(player.x - enemy.x, player.y - enemy.y);
 						if (T > 2 && T < 8) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10); // Fan out a bit
 						if (T >= 8) dir = KinkyDungeonGetDirectionRandom(0, 0); // Give up and choose random
-						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
+						if (MovableTiles.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true;
 							idle = false;
 							break;
@@ -164,7 +167,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 						let dir = KinkyDungeonGetDirectionRandom(enemy.gx - enemy.x, enemy.gy - enemy.y);
 						if (T > 2 && T < 8) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10); // Fan out a bit
 						if (T >= 8) dir = KinkyDungeonGetDirectionRandom(0, 0); // Give up and choose random
-						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
+						if (MovableTiles.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true;
 							idle = false;
 							break;
@@ -179,7 +182,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 						let dir = KinkyDungeonGetDirectionRandom(player.x - enemy.x, player.y - enemy.y);
 						if (T > 2 && T < 8) dir = KinkyDungeonGetDirectionRandom(dir.x * 10, dir.y * 10); // Fan out a bit
 						if (T >= 8) dir = KinkyDungeonGetDirectionRandom(0, 0); // Give up and choose random
-						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
+						if (MovableTiles.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true;
 							idle = false;
 							break;
@@ -188,7 +191,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 				else
 					for (let T = 0; T < 8; T++) { // try 8 times
 						let dir = KinkyDungeonGetDirection(10*(Math.random()-0.5), 10*(Math.random()-0.5));
-						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
+						if (MovableTiles.includes(KinkyDungeonMapGet(enemy.x + dir.x, enemy.y + dir.y)) && KinkyDungeonNoEnemy(enemy.x + dir.x, enemy.y + dir.y, true)) {
 							if (KinkyDungeonEnemyTryMove(enemy, dir, delta, enemy.x + dir.x, enemy.y + dir.y)) moved = true;
 							idle = false;
 							break;

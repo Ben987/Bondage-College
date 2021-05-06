@@ -28,6 +28,7 @@ Mechanics
 - Enemies now have resistances and weaknesses. Discover them the hard way!
 - Miscast chance: While aroused, you have a chance of spells being either cast on your position or blowing up in your face and hitting you!
 - When you click on an open door, you have an option to close it
+- Some enemies (like the new witches) can open doors! Beware!
 New Enemies:
 - Added a new enemy, a rope snake that sacrifices itself to wrap you up!
 - Shock witches that cast electrical spells at you from a distance
