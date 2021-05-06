@@ -57,6 +57,9 @@ function KinkyDungeonDressPlayer() {
 				CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, clothes.Color, clothes.Group);
 			}
 		} else KinkyDungeonUndress += 1/KinkyDungeonDresses[KinkyDungeonCurrentDress].length;
+		
+		if (clothes.Group == "Panties" && !KinkyDungeonGetRestraintItem("ItemPelvis")) clothes.Lost = false; // A girl's best friend never leaves her
+		}
 	}
 
 	KinkyDungeonCheckClothesLoss = false;

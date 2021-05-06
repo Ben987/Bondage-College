@@ -40,22 +40,25 @@ Spells
 - Slime ball spell which conjures a ball of slime that leaves a sticky trail. Use with caution!
 Other
 - New brickwork visuals
+- The map has more doors, but some of them will be open at the start of the game. You can close them to prevent zombies from chasing you.
 - Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
 
 Future content planned:
-- Ability to close nearby doors
 - Item shops scattered around the map, allowing you to buy swords and outfits
 - Magical rope traps which require enchanted knives to cut
 - Enchanted knives, which are found only in chests
-- Latex witches that cast latex and slime spells at you from a distance
+- Latex witches that cast latex imprisonment spells at you from a distance
 - Inventory system which lets you view special items and restraints (shows you how hard it is to break free from them... after you've struggled enough)
 - Mana-boosting mittens which increase spell power and decrease mana costs, but make it harder to struggle out of things
-- Enchanted heels which empower your melee attacks
-- Items like swords and wands which improve melee attack damage or willpower
-- More simple restraint traps: mittens, locked blindfolds/gags, leg irons, belts
+- Enchanted heels of various sorts (immunity to slow, immunity to slime, bonus to kick attacks, etc)
+- Items like swords and wands which improve melee attack damage or stamina cost
 - Chastity belt trap that puts a plug in you, increasing your arousal while walking
-- Chastity belt trap that puts a toy in you. Toys are powered by casting magic
+- Chastity belt trap that puts a magic toy in you. Toys are powered by casting magic
 - New shrine: chastity goddess. Places you in a set of magic cuffs that prevent you from being restrained. However if your willpower falls below maximum, the cuffs snap together until you get back to full willpower!
+- Traps that look slightly different. Usually found on brickwork, so if you avoid brickwork you can avoid them.
+- Witches should drop their respective spells sometimes if you don't already have them
+- Locked doors; need to find a way to prevent the player from being trapped
+- Bombs
 
 Spell Ideas:
 - Clear Jam spell, which clears jammed green locks from either an object or the player, depending on where it is cast
