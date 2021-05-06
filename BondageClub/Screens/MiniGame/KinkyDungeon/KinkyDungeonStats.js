@@ -76,7 +76,7 @@ var KinkyDungeonKeyPickBreakChance = 0.25;
 var KinkyDungeonPlayerDamage = 2;
 var KinkyDungeonPlayerDamageMax = 2;
 var KinkyDungeonPlayerDamageType = "crush";
-var KinkyDungeonTorsoGrabChance = 0.33;
+var KinkyDungeonTorsoGrabChance = 0.25;
 
 // Your inventory contains items that are on you
 var KinkyDungeonInventory = [];
