@@ -241,6 +241,8 @@ function KinkyDungeonDrawGame() {
 				else {
 					DrawButton(675, 825, 350, 60, TextGet("KinkyDungeonPayShrine").replace("XXX", cost), "White", "", "");
 				}
+			} else if (KinkyDungeonTargetTile.Type == "Door") {
+				DrawButton(675, 825, 350, 60, TextGet("KinkyDungeonCloseDoor"));
 			}
 		}
 		//DrawButton(650, 925, 250, 60, TextGet("KinkyDungeonInventory"), "White", "", "");
@@ -345,6 +347,14 @@ function KinkyDungeonHandleHUD() {
 					
 				}
 
+			} else if (KinkyDungeonTargetTile.Type == "Door") {
+				if (MouseIn(675, 825, 350, 60)) {
+					KinkyDungeonAdvanceTime(1);
+					KinkyDungeonTargetTile = null;
+					let x = KinkyDungeonTargetTileLocation.split(',')[0]
+					let y = KinkyDungeonTargetTileLocation.split(',')[1]
+					KinkyDungeonMapSet(parseInt(x), parseInt(y), "D")
+				}
 			}
 		}
 

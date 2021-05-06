@@ -448,6 +448,8 @@ function KinkyDungeonPlaceDoors(doorchance, width, height) {
 					}
 				if (wallcount < 5 && ((up && down) != (left && right))) { // Requirements: 4 doors and either a set in up/down or left/right but not both
 					KinkyDungeonMapSet(X, Y, 'D');
+					
+					KinkyDungeonTiles["" + X + "," + Y] = {Type: "Door"};
 				}
 			}
 }
@@ -785,7 +787,7 @@ function KinkyDungeonMove(moveDirection) {
 		var moveObject = KinkyDungeonMapGet(moveX, moveY);
 		if (KinkyDungeonMovableTiles.includes(moveObject) && KinkyDungeonNoEnemy(moveX, moveY)) { // If the player can move to an empy space or a door
 
-			if (KinkyDungeonTiles["" + moveX + "," + moveY]) {
+			if (KinkyDungeonTiles["" + moveX + "," + moveY] && ((moveObject == 'd' && KinkyDungeonTargetTile == null) || KinkyDungeonTiles["" + moveX + "," + moveY].Type != "Door") ) {
 				KinkyDungeonTargetTileLocation = "" + moveX + "," + moveY;
 				KinkyDungeonTargetTile = KinkyDungeonTiles[KinkyDungeonTargetTileLocation];
 				KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name)), "white", 1);

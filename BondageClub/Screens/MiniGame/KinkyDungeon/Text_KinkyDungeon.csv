@@ -140,7 +140,7 @@ KinkyGreenLock," (Green)"
 KinkyBlueLock," (Blue)"
 KinkyYellowLock," (Yellow)"
 
-
+KinkyDungeonCloseDoor,"Close Door"
 KinkyDungeonUnlockDoor,"Unlock"
 KinkyDungeonPickDoor,"Pick"
 KinkyDungeonLockedDoor,"(No way to open)"
@@ -154,6 +154,7 @@ KinkyDungeonObject,"object"
 
 KinkyDungeonObjectLock,"That object is locked"
 KinkyDungeonObjectShrine,"You found a shrine to the goddess of TYPE"
+KinkyDungeonObjectDoor,"That door is open. Do you want to close it?"
 KinkyDungeonShrineCharms,"mummies"
 KinkyDungeonShrineLeather,"leather"
 KinkyDungeonShrineMetal,"metal"
