@@ -173,6 +173,12 @@ function KinkyDungeonLootEvent(Loot, Index, Replacemsg) {
 			KinkyDungeonLock(KinkyDungeonGetRestraintItem("ItemMouth2"), KinkyDungeonGenerateLock(true));
 		if (Replacemsg)
 			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapGag"));
+	} else if (Loot.name == "trap_blindfold") {
+		value = Math.ceil((40 + 40 * Math.random()) * (1 + Index/2));
+		if (KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("TrapBlindfold"), MiniGameKinkyDungeonCheckpoint, true, true) > 0)
+			KinkyDungeonLock(KinkyDungeonGetRestraintItem("ItemHead"), KinkyDungeonGenerateLock(true));
+		if (Replacemsg)
+			KinkyDungeonActionMessage = KinkyDungeonActionMessage.replace("RestraintType", TextGet("RestraintTrapBoots"));
 	} else if (Loot.name == "trap_boots") {
 		value = Math.ceil((40 + 40 * Math.random()) * (1 + Index/2));
 		if (KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName("TrapBoots"), MiniGameKinkyDungeonCheckpoint, true, true) > 0)
