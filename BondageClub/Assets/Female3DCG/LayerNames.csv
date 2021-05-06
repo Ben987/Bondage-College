@@ -429,6 +429,8 @@ ItemMouthFuturisticHarnessBallGagLock,Lock
 ItemMouthGasMaskGagMask,Mask
 ItemMouthGasMaskGagSides,Sides
 ItemMouthGasMaskGagHighlights,Highlights
+ItemMouthCageMuzzleStrap,Straps
+ItemMouthCageMuzzleMuzzle,Cage
 ItemMouth2WiffleGagStrap,Strap
 ItemMouth2WiffleGagBall,Ball
 ItemMouth2HarnessBallGagBall,Ball
@@ -483,6 +485,8 @@ ItemMouth2MuzzleGagStraps,Straps
 ItemMouth2GasMaskGagMask,Mask
 ItemMouth2GasMaskGagSides,Sides
 ItemMouth2GasMaskGagHighlights,Highlights
+ItemMouth2CageMuzzleStrap,Straps
+ItemMouth2CageMuzzleMuzzle,Cage
 ItemMouth3WiffleGagStrap,Strap
 ItemMouth3WiffleGagBall,Ball
 ItemMouth3HarnessBallGagBall,Ball

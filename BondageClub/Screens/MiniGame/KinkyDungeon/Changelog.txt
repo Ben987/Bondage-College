@@ -45,6 +45,7 @@ Content
 - Miscast chance: While aroused, you have a chance of spells being either cast on your position or blowing up in your face and hitting you!
 - Added a kinky belt trap to keep you aroused
 
+
 Future content planned:
 - Ability to close nearby doors
 - Item shops scattered around the map, allowing you to buy swords and outfits

@@ -726,8 +726,12 @@ function PandoraPunishmentIntro() {
 	else IntroText = DialogFind(CurrentCharacter, "Punishment0");
 	PandoraBackground = "Pandora/Underground/Cell" + Math.floor(Math.random() * 7).toString();
 	let Dominatrix = PandoraGenerateNPC("Punishment", "Mistress", "RANDOM", false);
+	if (SkillGetLevel(Player, "Infiltration") >= 2) Dominatrix.Stage = "20";
+	if (SkillGetLevel(Player, "Infiltration") >= 5) Dominatrix.Stage = "50";
+	if (SkillGetLevel(Player, "Infiltration") >= 8) Dominatrix.Stage = "80";
 	CharacterSetCurrent(Dominatrix);
 	CurrentCharacter.CurrentDialog = IntroText;
+	InfiltrationTarget.Fail = true;
 }
 
 /**
@@ -798,4 +802,39 @@ function PandoraQuizAnswer(Answer) {
 		CurrentCharacter.Stage = (CurrentCharacter.QuizFail >= 2) ? "Arrest" : "30";
 		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, (CurrentCharacter.QuizFail >= 2) ? "QuizFail" : "QuizSuccess");
 	} else PandoraQuizNext();
+}
+
+/**
+ * When the player gets ungagged by an NPC, we remove everything on the head
+ * @returns {void} - Nothing
+ */
+function PandoraPlayerUngag() { 
+	InventoryRemove(Player, "ItemHead");
+	InventoryRemove(Player, "ItemHood");
+	InventoryRemove(Player, "ItemNose");
+	InventoryRemove(Player, "ItemMouth");
+	InventoryRemove(Player, "ItemMouth2");
+	InventoryRemove(Player, "ItemMouth3");	
+}
+
+/**
+ * Sets the punishment sentence in minutes
+ * @returns {void} - Nothing
+ */
+function PandoraPunishmentSentence(Minutes) {
+	Player.Infiltration.Punishment = {};
+	Player.Infiltration.Punishment.Minutes = parseInt(Minutes);
+	Player.Infiltration.Punishment.Background = PandoraBackground;
+}
+
+/**
+ * Starts the punishment
+ * @returns {void} - Nothing
+ */
+function PandoraPunishmentStart() {
+	PandoraWillpower = 0;
+	Player.Infiltration.Punishment.Timer = CurrentTime + (Player.Infiltration.Punishment.Minutes * 60000);
+	ServerSend("AccountUpdate", { Infiltration: Player.Infiltration });
+	DialogLeave();
+	CommonSetScreen("Room", "PandoraPrison");
 }
