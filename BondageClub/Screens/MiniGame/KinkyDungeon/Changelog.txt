@@ -59,6 +59,11 @@ Future content planned:
 - Witches should drop their respective spells sometimes if you don't already have them
 - Locked doors; need to find a way to prevent the player from being trapped
 - Bombs
+- Slimes which clean up items, dissolve doors, and potentially corrupt traps and such
+- SLimes that catch your sword and trap it
+- Enemies that grab your melee weapon and disarm you
+- Inventory management system T_T
+- Vines in the undergrorund jungle (when it gets implemented)
 
 Spell Ideas:
 - Clear Jam spell, which clears jammed green locks from either an object or the player, depending on where it is cast
