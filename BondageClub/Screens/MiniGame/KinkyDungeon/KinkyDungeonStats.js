@@ -8,6 +8,7 @@ var KinkyDungeonArousalUnlockSuccessMod = 0.5; // Determines how much harder it 
 var KinkyDungeonStatArousal = 0;
 var KinkyDungeonStatArousalRegen = -1;
 var KinkyDungeonStatArousalRegenStaminaRegenFactor = -0.9; // Stamina drain per time per 100 arousal
+var KinkyDungeonStatArousalMiscastChance = 0.8; // Miscast chance at max arousal
 // Note that things which increase max arousal (aphrodiasic) also increase the max stamina drain. This can end up being very dangerous as being edged at extremely high arousal will drain all your energy completely, forcing you to wait until the torment is over or the drugs wear off
 
 // Stamina -- your MP. Used to cast spells and also struggle

@@ -32,7 +32,7 @@ var KinkyDungeonBooks = ["Elements", "Conjure", "Illusion"];
 // onhit: What happens on AoE. Deals aoepower damage, or just power otherwise 
 
 var KinkyDungeonSpellsStart = [
-	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", power: 3, delay: 0, range: 50, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
+	{name: "Firebolt", exhaustion: 1, components: ["Arms"], level:1, type:"bolt", projectile:true, onhit:"", power: 3, delay: 0, range: 50, damage: "fire", speed: 1, playerEffect: {name: "Damage"}}, // Throws a fireball in a direction that moves 1 square each turn
 	{name: "Snare", exhaustion: 1, components: ["Legs"], level:1, type:"inert", projectile:false, onhit:"lingering", lifetime:-1, time: 10, delay: 3, range: 1, damage: "stun", playerEffect: {name: "MagicRope", time: 3}}, // Creates a magic rope trap that creates magic ropes on anything that steps on it. They are invisible once placed. Enemies get rooted, players get fully tied!
 
 ];
@@ -42,8 +42,8 @@ var KinkyDungeonSpellChoices = [0, 1, 2];
 var KinkyDungeonSpellChoiceCount = 3;
 var KinkyDungeonSpellList = { // List of spells you can unlock in the 3 books. When you plan to use a mystic seal, you get 3 spells to choose from.
 	"Elements": [
-		{name: "Fireball", exhaustion: 6, components: ["Arms"], level:4, type:"bolt", projectile:true, onhit:"aoe", power: 4, delay: 0, range: 50, aoe: 1.5, size: 3, lifetime:1, damage: "fire", speed: 1}, // Throws a fireball in a direction that moves 1 square each turn
-		{name: "Icebolt", exhaustion: 4, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2, delay: 0, range: 50, damage: "ice", speed: 2}, // Throws a blast of ice which stuns the target for 2 turns
+		{name: "Fireball", exhaustion: 6, components: ["Arms"], level:4, type:"bolt", projectile:true, onhit:"aoe", power: 4, delay: 0, range: 50, aoe: 1.5, size: 3, lifetime:1, damage: "fire", speed: 1, playerEffect: {name: "Damage"}}, // Throws a fireball in a direction that moves 1 square each turn
+		{name: "Icebolt", exhaustion: 4, components: ["Arms"], level:2, type:"bolt", projectile:true, onhit:"", time: 2,  power: 2, delay: 0, range: 50, damage: "ice", speed: 2, playerEffect: {name: "Damage"}}, // Throws a blast of ice which stuns the target for 2 turns
 		{name: "Electrify", exhaustion: 2, components: ["Arms"], level:2, type:"inert", projectile:false, onhit:"aoe", power: 5, time: 1, delay: 1, range: 4, size: 1, aoe: 0.75, lifetime: 1, damage: "electric", playerEffect: {name: "Shock", time: 1}}, // A series of light shocks incapacitate you
 
 		],
@@ -102,7 +102,10 @@ function KinkyDungeonResetMagic() {
 
 function KinkyDungeonPlayerEffect(playerEffect, spell) {
 	if (!playerEffect.chance || Math.random() < playerEffect.chance) {
-		if (playerEffect.name == "Blind") {
+		if (playerEffect.name == "Damage") {
+			let dmg = KinkyDungeonDealDamage({damage: Math.max((spell.aoepower) ? spell.aoepower : 0, spell.power)*2, type: spell.damage});
+			KinkyDungeonSendTextMessage(Math.min(spell.power, 5), TextGet("KinkyDungeonDamageSelf").replace("DamageDealt", dmg), "red", 1);
+		} else if (playerEffect.name == "Blind") {
 			KinkyDungeonStatBlind = Math.max(KinkyDungeonStatBlind, playerEffect.time);
 			KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonBlindSelf"), "red", playerEffect.time);
 		} else if (playerEffect.name == "MagicRope") {
@@ -200,23 +203,38 @@ function KinkyDungeonGetCost(Level) {
 function KinkyDungeonCastSpell(targetX, targetY, spell, enemy, player) {
 	let entity = KinkyDungeonPlayerEntity;
 	let moveDirection = KinkyDungeonMoveDirection;
-	
+	let miscastChance = KinkyDungeonStatArousalMiscastChance * KinkyDungeonStatArousal / KinkyDungeonStatArousalMax;
+	let tX = targetX;
+	let tY = targetY;
+	let miscast = false;
 
 	if (enemy) {
 		entity = enemy;
 		moveDirection = KinkyDungeonGetDirection(player.x - entity.x, player.y - entity.y);
+		miscastChance = 0
 	}
+	
+	if (Math.random() < miscastChance) {
+		
+		KinkyDungeonSendActionMessage(10, TextGet("KinkyDungeonSpellMiscast"), "#FF8800", 2);
+		
+		moveDirection = {x:0, y:0, delta:1}
+		tX = entity.x;
+		tY = entity.y;
+		miscast = true;
+	}
+		
 	if (spell.type == "bolt") {
 		var size = (spell.size) ? spell.size : 1;
 		KinkyDungeonLaunchBullet(entity.x + moveDirection.x, entity.y + moveDirection.y,
-			targetX-entity.x,targetY - entity.y,
-			spell.speed, {name:spell.name, width:size, height:size, lifetime:-1, passthrough:false, hit:spell.onhit, damage: {damage:spell.power, type:spell.damage, time:spell.time}, spell: spell});
+			tX-entity.x,tY - entity.y,
+			spell.speed, {name:spell.name, width:size, height:size, lifetime:-1, passthrough:false, hit:spell.onhit, damage: {damage:spell.power, type:spell.damage, time:spell.time}, spell: spell}, miscast);
 	} else if (spell.type == "inert") {
 		var sz = spell.size;
 		if (!sz) sz = 1;
-		KinkyDungeonLaunchBullet(targetX, targetY,
+		KinkyDungeonLaunchBullet(tX, tY,
 			moveDirection.x,moveDirection.y,
-			0, {name:spell.name, width:sz, height:sz, lifetime:spell.delay, passthrough:(spell.CastInWalls || spell.WallsOnly), hit:spell.onhit, damage: null, spell: spell});
+			0, {name:spell.name, width:sz, height:sz, lifetime:spell.delay, passthrough:(spell.CastInWalls || spell.WallsOnly), hit:spell.onhit, damage: null, spell: spell}, miscast);
 	}
 
 	if (!enemy) { // Costs for the player
@@ -225,6 +243,7 @@ function KinkyDungeonCastSpell(targetX, targetY, spell, enemy, player) {
 		KinkyDungeonStatWillpowerExhaustion += spell.exhaustion + 1;
 		KinkyDungeonStatStamina -= KinkyDungeonGetCost(spell.level);
 	}
+	
 }
 
 

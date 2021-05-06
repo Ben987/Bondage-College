@@ -205,11 +205,17 @@ function KinkyDungeonBulletsCheckCollision(bullet, AoE) {
 }
 
 
-function KinkyDungeonLaunchBullet(x, y, targetx, targety, speed, bullet) {
+function KinkyDungeonLaunchBullet(x, y, targetx, targety, speed, bullet, miscast) {
 	var direction = Math.atan2(targety, targetx);
 	var vx = Math.cos(direction) * speed;
 	var vy = Math.sin(direction) * speed;
-	KinkyDungeonBullets.push({born: 1, time:bullet.lifetime, x:x, y:y, vx:vx, vy:vy, xx:x, yy:y, spriteID:bullet.name + CommonTime(), bullet:bullet, trail:bullet.spell.trail});
+	var lifetime = bullet.lifetime;
+	if (miscast) {
+		vx = 0;
+		vy = 0;
+		lifetime = 1;
+	}
+	KinkyDungeonBullets.push({born: 1, time:lifetime, x:x, y:y, vx:vx, vy:vy, xx:x, yy:y, spriteID:bullet.name + CommonTime(), bullet:bullet, trail:bullet.spell.trail});
 }
 
 function KinkyDungeonDrawFight(canvasOffsetX, canvasOffsetY, CamX, CamY) {

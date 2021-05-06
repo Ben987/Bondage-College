@@ -245,6 +245,8 @@ KinkyDungeonBookNextPage,Next Page
 KinkyDungeonBookLastPage,Last Page
 KinkyDungeonBookRandomPage,Random Page (your hands are tied)
 
+KinkyDungeonSpellMiscast,You fail to concentrate on the spell and it explodes in your face!
+
 KinkyDungeonSpellFirebolt,Firebolt
 KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage
 KinkyDungeonSpellCastFirebolt,You a hurl a firebolt!
@@ -302,7 +304,8 @@ KinkyDungeonSpellDescriptionSlimeBall,A ball of slime leaves a trail of sticky s
 KinkyDungeonSpellCastSlimeBall,You hurl a ball of slime!
 KinkyDungeonSpellTargetSlimeBall,Choose aim direction
 
-KinkyDungeonBlindSelf,"You blinded yourself with your own magic!"
+KinkyDungeonBlindSelf,"You are blinded!"
+KinkyDungeonDamageSelf,"You took DamageDealt damage!"
 KinkyDungeonMagicRopeSelf,"Your own rope trap springs upon you!"
 KinkyDungeonSlime,"You get caught in sticky slime!"
 KinkyDungeonShock,"You feel a powerful sensation run through your body!"
