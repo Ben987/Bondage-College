@@ -1996,11 +1996,12 @@ var AssetFemale3DCG = [
 					{ Name: "Lock", LockLayer: true,AllowColorize: true, HasType: false, ParentGroup: null},
 				]
 			},
-			{ Name: "FuturisticBra2", Category: ["SciFi"], Fetish: ["Metal"], Value: -1, BuyGroup: "FuturisticBra", Difficulty: 50, Time: 10, Random: false, AllowLock: true, DrawLocks: false, DefaultColor: ["#50913C", "Default", "#889FA7", "#404040"], AllowType: ["NoDisplay"], Audio: "FuturisticApply", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }], Extended: true, AlwaysExtend: true,
+			{ Name: "FuturisticBra2", Category: ["SciFi"], Fetish: ["Metal"], Value: -1, BuyGroup: "FuturisticBra", Difficulty: 50, Time: 10, Random: false, AllowLock: true, DrawLocks: false, DefaultColor: ["#50913C", "Default", "#889FA7","Default",  "#404040"], AllowType: ["NoDisplay", "Matte", "NoDisplayMatte"], Audio: "FuturisticApply", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }], Extended: true, AlwaysExtend: true,
 				Layer: [
-					{ Name: "Display", AllowColorize: true , HasType: false, AllowTypes: [""], ParentGroup: null},
+					{ Name: "Display", AllowColorize: true , HasType: false, AllowTypes: ["", "Matte"], ParentGroup: null},
 					{ Name: "Bra" , AllowColorize: true, HasType: false},
 					{ Name: "Mesh" , AllowColorize: true , HasType: false},
+					{ Name: "Shine" , AllowColorize: true, HasType: false, AllowTypes: ["", "NoDisplay"]},
 					{ Name: "Straps" , AllowColorize: true , HasType: false},
 					{ Name: "Lock", LockLayer: true,AllowColorize: true, HasType: true, ParentGroup: null},
 				]
@@ -4233,12 +4234,26 @@ var AssetFemale3DCG = [
 			{ Name: "LockingHeels2", Value: 25, Difficulty: 7, Time: 10, RemoveTime: 15, AllowLock: true, Height: 15 },
 			{ Name: "LockingShoes1", Value: 15, Difficulty: 3, Time: 5, RemoveTime: 8, AllowLock: true, Height: 6 },
 			{ Name: "LockingShoes2", Value: 20, Difficulty: 4, Time: 5, RemoveTime: 8, AllowLock: true, Height: 6 },
-			{ Name: "FuturisticHeels", Category: ["SciFi"], Value: 50, Difficulty: 7, Time: 10, RemoveTime: 20, DefaultColor: ["#50913C", "Default"], Random: false, AllowLock: true, DrawLocks: false, Height: 6, AllowType: ["Heel"], Extended: true, AlwaysExtend: true, Audio: "FuturisticApply",
+			{ Name: "FuturisticHeels", Category: ["SciFi"], Value: 50, Difficulty: 7, Time: 10, RemoveTime: 20, DefaultColor: ["#50913C", "Default"], Random: false, AllowLock: true, DrawLocks: false, Height: 6, AllowType: ["Heel"], Extended: true, AlwaysExtend: true, Audio: "FuturisticApply", BuyGroup: "FuturisticHeels",
 				Layer: [
 					{ Name: "Display", HasType: false },
 					{ Name: "Shoes", AllowTypes:["", "Heel"] },
 					{ Name: "Lock", LockLayer: true,AllowColorize: true, HasType: false, ParentGroup: null},
 				]
+			},
+			{ Name: "FuturisticHeels2", Value: 50, Difficulty: 7, Time: 10, RemoveTime: 20, DefaultColor: ["#50913C", "Default"], Random: false, AllowLock: true, DrawLocks: false, Audio: "FuturisticApply", BuyGroup: "FuturisticHeels", Extended: true, AllowType:["Matte"],
+				Layer: [
+					{ Name: "Mesh", ParentGroup: null, HasType: false },
+					{ Name: "Display", ParentGroup: null, HasType: false },
+					{ Name: "Shine", ParentGroup: null, HasType: false, AllowTypes:[""]},
+					{ Name: "Cuffs", ParentGroup: null, HasType: false },
+					{ Name: "Trim", ParentGroup: null, HasType: false },
+					{ Name: "Soles", ParentGroup: null, HasType: false },
+					{ Name: "Lock", LockLayer: true, HasType: false ,AllowColorize: true, ParentGroup: null},
+				],Alpha: [
+					{ Group: ["BodyLower", "Socks", "SuitLower"], Masks: [[75, 860, 350, 120]] },
+					{ Group: ["BodyLower", "Socks", "SuitLower"], Pose: ["LegsClosed"], Masks: [[75, 850, 350, 150]] },
+				], Height: 30
 			},
 			{
 				Name: "LockingBoots1", Value: 30, Difficulty: 6, Time: 7, RemoveTime: 14, AllowLock: true, Height: 9,
