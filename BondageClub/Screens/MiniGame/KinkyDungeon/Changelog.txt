@@ -44,6 +44,14 @@ Other
 - Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
 
 Future content planned:
+- Exit stair puzzles (like for example a button or special key somewhere in the level, maybe with a high likelihood of traps)
+- Inescapable yoke that needs keys, but the trap also summons rats that steal the keys and run away
+- Trapdoor that drops you into the above bonus level, with no enemies other than the rats. You wake up feeling stiff, and a yoke is on your arms...
+- Rats should have a kleptomaniac AI that steals items and holds them, drops them on death, and runs away from the player when confronted
+- Battery life system for plugs
+- jail bars that block movement but not vision and spells
+- Tranquilizer/stamina drain
+- Boss rooms/shop rooms
 - Item shops scattered around the map, allowing you to buy swords and outfits
 - Magical rope traps which require enchanted knives to cut
 - Enchanted knives, which are found only in chests
