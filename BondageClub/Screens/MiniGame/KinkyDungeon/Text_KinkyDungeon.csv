@@ -71,6 +71,7 @@ LootRubbleBlueKey,"You find a blue key, glowing with magic"
 LootChestGold,The chest contains gold! (+XXX gold)
 LootChestSpell,"You find a magic scroll, which you place in your spellbook. (+SpellLearned)"
 LootChestTrapMagic,"You find gold and a magic trap! (+RestraintType) (+XXX gold)"
+LootChestTrapMagicVibe,"You find gold and a tormenting magical trap! (+RestraintType) (+XXX gold)"
 
 KinkyDungeonTorsoGrab,The EnemyName grabs you by the harness and keeps you in place!
 
@@ -186,6 +187,8 @@ RestraintTrapGag,Ball Gag
 RestraintTrapBoots,Slave Heels
 RestraintTrapLegirons,Leg Irons
 RestraintTrapBlindfold,Blindfold
+RestraintTrapBelt,Steel Belt
+RestraintTrapVibe,Vibrator
 RestraintRopeSnakeArms,Rope Tie
 RestraintRopeSnakeArmsWrist,Rope Tie
 RestraintRopeSnakeLegs,Rope Tie
@@ -209,11 +212,11 @@ KinkyDungeonGroupItemHands,Hands
 KinkyDungeonGroupItemTorso,Torso
 KinkyDungeonGroupItemBreast,Bra
 KinkyDungeonGroupItemPelvis,Belt
-KinkyDungeonGroupItemVulva,Vulva
-KinkyDungeonGroupItemVulvaPiercings,Piercings
+KinkyDungeonGroupItemVulva,Plug
+KinkyDungeonGroupItemVulvaPiercings,Vibe
 KinkyDungeonGroupItemNipplesPiercings,Piercings
 KinkyDungeonGroupItemNipples,Nipples
-KinkyDungeonGroupItemButt,Butt
+KinkyDungeonGroupItemButt,Butt Plug
 KinkyDungeonGroupItemLegs,Legs
 KinkyDungeonGroupItemFeet,Ankles
 KinkyDungeonGroupItemBoots,Feet

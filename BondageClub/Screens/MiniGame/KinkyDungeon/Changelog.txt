@@ -38,7 +38,11 @@ Content
 - Slime witch that hurls slime balls and conjures pools of slime at you! She is a formidable opponent, be careful not to get trapped against her as she can create tremendous amounts of slime!
 
 1.34
+- Some balance and fixes
+- New brickwork visuals
 
+1.35
+- Miscast chance: While aroused, you have a chance of spells being either cast on your position or blowing up in your face and hitting you!
 
 Future content planned:
 - Ability to close nearby doors
