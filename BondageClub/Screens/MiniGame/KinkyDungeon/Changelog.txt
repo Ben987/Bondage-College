@@ -43,6 +43,14 @@ Other
 - The map has more doors, but some of them will be open at the start of the game. You can close them to prevent zombies from chasing you.
 - Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
 
+1.34
+- Some balance and fixes
+- New brickwork visuals
+
+1.35
+- Miscast chance: While aroused, you have a chance of spells being either cast on your position or blowing up in your face and hitting you!
+- Added a kinky belt trap to keep you aroused
+
 Future content planned:
 - Exit stair puzzles (like for example a button or special key somewhere in the level, maybe with a high likelihood of traps)
 - Inescapable yoke that needs keys, but the trap also summons rats that steal the keys and run away
