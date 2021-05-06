@@ -1,0 +1,6 @@
+PlayerGagged,,,"(She laughs at you.)  Scream all you want, nobody is coming to help you.",,
+Intro0,,,(A guard steps inside and looks at you.)  Prisoner DialogPlayerName.  I will take care of you today.,,
+0,,Who are you?,I'm guard DialogCharacterName.  I keep the Box safe and our prisoners secure.,DialogRemove(),Player.CanTalk()
+0,,(Mumble in your gag.),Here you go.  (She removes your gag.)  Don't piss me off or that gag is coming back.,PlayerUngag(),!Player.CanTalk()
+0,,(UNDER CONSTRUCTION.),"(This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.)",,
+0,,(Leave her.),,DialogLeave(),

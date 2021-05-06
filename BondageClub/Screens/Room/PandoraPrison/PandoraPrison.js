@@ -2,21 +2,32 @@
 var PandoraPrisonBackground = "Cell";
 var PandoraWillpowerTimer = 0;
 var PandoraPrisonMaid = null;
+var PandoraPrisonGuard = null;
 var PandoraPrisonCharacter = null;
+var PandoraPrisonCharacterTimer = 0;
 
 /**
  * Loads the Pandora's Box prison screen
  * @returns {void} - Nothing
  */
 function PandoraPrisonLoad() {
+	PandoraPrisonCharacter = null;
 	if (PandoraPrisonMaid == null) {
 		PandoraPrisonMaid = CharacterLoadNPC("NPC_PandoraPrison_Maid");
 		PandoraPrisonMaid.AllowItem = false;
+		PandoraPrisonMaid.TriggerIntro = false;
 		PandoraDress(PandoraPrisonMaid, "Maid");
 	}
-	if (PandoraWillpowerTimer == 0) PandoraWillpowerTimer = CurrentTime + ((InfiltrationPerksActive("Recovery")) ? 20000 : 30000);
+	if (PandoraPrisonGuard == null) {
+		PandoraPrisonGuard = CharacterLoadNPC("NPC_PandoraPrison_Guard");
+		PandoraPrisonGuard.AllowItem = false;
+		PandoraPrisonGuard.TriggerIntro = true;
+		PandoraDress(PandoraPrisonGuard, "Guard");
+	}
+	if (PandoraWillpowerTimer == 0) PandoraWillpowerTimer = CommonTime() + ((InfiltrationPerksActive("Recovery")) ? 20000 : 30000);
 	PandoraMaxWillpower = 20 + (SkillGetLevel(Player, "Willpower") * 2) + (InfiltrationPerksActive("Resilience") ? 5 : 0) + (InfiltrationPerksActive("Endurance") ? 5 : 0);
 	PandoraPrisonBackground = Player.Infiltration.Punishment.Background;
+	PandoraPrisonCharacterTimer = CommonTime() + 30000 + Math.floor(Math.random() * 30000);
 	CharacterSetActivePose(Player, null);
 }
 
@@ -27,13 +38,19 @@ function PandoraPrisonLoad() {
 function PandoraPrisonRun() {
 
 	// When time is up, a maid comes to escort the player out
-	if (Player.Infiltration.Punishment.Timer < CurrentTime)
+	if ((Player.Infiltration.Punishment.Timer < CurrentTime) && (CurrentCharacter == null))
 		PandoraPrisonCharacter = PandoraPrisonMaid;
 
-	// When the timer ticks, we raise willpower by 1
-	if (PandoraWillpowerTimer < CurrentTime) {
+	// When the willpower timer ticks, we raise willpower by 1
+	if (PandoraWillpowerTimer < CommonTime()) {
 		if (PandoraWillpower < PandoraMaxWillpower) PandoraWillpower++;
 		PandoraWillpowerTimer = PandoraWillpowerTimer + ((InfiltrationPerksActive("Recovery")) ? 20000 : 30000);
+	}
+	
+	// When the character timer ticks, the guard can come in or leave
+	if ((Player.Infiltration.Punishment.Timer >= CurrentTime) && (PandoraPrisonCharacterTimer < CommonTime()) && (CurrentCharacter == null)) {
+		PandoraPrisonCharacter = (PandoraPrisonCharacter == null) ? PandoraPrisonGuard : null;
+		PandoraPrisonCharacterTimer = CommonTime() + 30000 + Math.floor(Math.random() * 30000);
 	}
 
 	// Draws the character and it's sentence
@@ -62,7 +79,10 @@ function PandoraPrisonClick() {
 	if (MouseIn(1885, 25, 90, 90) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 	if ((PandoraPrisonCharacter == null) && MouseIn(750, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if ((PandoraPrisonCharacter != null) && MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
-	if ((PandoraPrisonCharacter != null) && MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(PandoraPrisonCharacter);
+	if ((PandoraPrisonCharacter != null) && MouseIn(1000, 0, 500, 1000)) {
+		if (PandoraPrisonCharacter.TriggerIntro) PandoraPrisonCharacter.CurrentDialog = DialogFind(PandoraPrisonCharacter, "Intro" + PandoraPrisonCharacter.Stage);
+		CharacterSetCurrent(PandoraPrisonCharacter);
+	}
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 }
 
@@ -86,4 +106,17 @@ function PandoraPrisonExitPrison() {
 	DialogLeave();
 	if (InfiltrationSupervisor == null) CommonSetScreen("Room", "MainHall");
 	else CommonSetScreen("Room", "Infiltration");
+}
+
+/**
+ * When the player gets ungagged by an NPC, we remove everything on the head
+ * @returns {void} - Nothing
+ */
+function PandoraPrisonPlayerUngag() { 
+	InventoryRemove(Player, "ItemHead");
+	InventoryRemove(Player, "ItemHood");
+	InventoryRemove(Player, "ItemNose");
+	InventoryRemove(Player, "ItemMouth");
+	InventoryRemove(Player, "ItemMouth2");
+	InventoryRemove(Player, "ItemMouth3");	
 }
