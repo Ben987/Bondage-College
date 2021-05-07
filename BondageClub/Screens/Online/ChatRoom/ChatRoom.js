@@ -1330,6 +1330,11 @@ function ChatRoomAttemptStandMinigameEnd() {
  * @returns {boolean} - Returns TRUE if the player can leave the current chat room.
  */
 function ChatRoomCanLeave() {
+	if (ChatRoomLeashPlayer != null) {
+		if (ChatRoomCanBeLeashed(Player)) {
+			return false;
+		} else ChatRoomLeashPlayer = null;		
+	}
 	if (!Player.CanWalk()) return false; // Cannot leave if cannot walk
 	if (!ChatRoomData.Locked || ChatRoomPlayerIsAdmin()) return true; // Can leave if the room isn't locked or is an administrator
 	for (let C = 0; C < ChatRoomCharacter.length; C++)
