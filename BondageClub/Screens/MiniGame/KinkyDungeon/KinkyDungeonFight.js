@@ -141,13 +141,13 @@ function KinkyDungeonUpdateBuffs() {
 				let buff = b.bullet.spell.buffs[B];
 				
 				if (buff.player && buff.range >= Math.sqrt((KinkyDungeonPlayerEntity.x - b.x) * (KinkyDungeonPlayerEntity.x - b.x) + (KinkyDungeonPlayerEntity.y - b.y) * (KinkyDungeonPlayerEntity.y - b.y))) {
-					KinkyDungeonApplyBuff(KinkyDungeonPlayerBuffs, buff);
+					KinkyDungeonApplyBuff(KinkyDungeonPlayerBuffs, buff, true);
 				}
 				if (buff.enemies) {
 					for (let EE = 0; EE < KinkyDungeonEntities.length; EE++) {
 						let enemy = KinkyDungeonEntities[EE];
 						if (buff.range >= Math.sqrt((enemy.x - b.x) * (enemy.x - b.x) + (enemy.y - b.y) * (enemy.y - b.y))) {
-							KinkyDungeonApplyBuff(enemy.buffs, buff);
+							KinkyDungeonApplyBuff(enemy.buffs, buff, false);
 						}
 					}
 					
@@ -159,13 +159,13 @@ function KinkyDungeonUpdateBuffs() {
 	}
 }
 
-function KinkyDungeonApplyBuff(list, buff) {
+function KinkyDungeonApplyBuff(list, buff, player) {
 	if (!list[buff.type] || (list[buff.type].power && buff.power > list[buff.type].power)) list[buff.type] = buff;
 	
 	if (buff.tags)
 		for (let T = 0; T < buff.tags.length; T++) {
 			let tag = buff.tags[T]
-			if (tag == "darkness") {
+			if (tag == "darkness" && player) {
 				KinkyDungeonBlindLevelBase = Math.max(KinkyDungeonBlindLevelBase, Math.floor(buff.power/0.5))
 			}
 		}
