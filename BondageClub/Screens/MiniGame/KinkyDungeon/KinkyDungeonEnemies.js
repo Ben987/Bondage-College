@@ -210,7 +210,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 					if (enemy.warningTiles.length == 0)
 						enemy.warningTiles = KinkyDungeonGetWarningTiles(player.x - enemy.x, player.y - enemy.y, enemy.Enemy.attackRange, enemy.Enemy.attackWidth);
 
-					if (enemy.Enemy.attack.includes("Bind")) {
+					if (enemy.Enemy.attack.includes("Bind") && KinkyDungeonPlayerBuffs.Evasion && Math.random() >= KinkyDungeonPlayerBuffs.Evasion.power) {
 						let caught = false;
 						for (let W = 0; W < enemy.warningTiles.length; W++) {
 							let tile = enemy.warningTiles[W];
@@ -240,6 +240,11 @@ function KinkyDungeonUpdateEnemies(delta) {
 							hit = true;
 							break;
 						}
+					}
+					
+					if (hit && KinkyDungeonPlayerBuffs.Evasion && Math.random() < KinkyDungeonPlayerBuffs.Evasion.power) {
+						KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonAttackMiss").replace("EnemyName", TextGet("Name" + enemy.Enemy.name)), "lightgreen", 1);
+						hit = false;
 					}
 					if (hit) {
 						var replace = [];

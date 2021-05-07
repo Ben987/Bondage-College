@@ -9,7 +9,7 @@ var KinkyDungeonOpenObjects = KinkyDungeonTransparentObjects; // Objects bullets
 var KinkyDungeonMeleeDamageTypes = ["crush", "slash", "pierce", "grope", "pain", "chain"]
 
 function KinkyDungeonEvasion(Enemy) {
-	var hitChance = 1.0;
+	var hitChance = Enemy.buffs.Evasion ? Enemy.buffs.Evasion.power : 1.0;
 
 	hitChance -= Math.min(3, KinkyDungeonPlayer.GetBlindLevel()) * KinkyDungeonMissChancePerBlind;
 	if (KinkyDungeonPlayer.IsDeaf()) hitChance *= 0.67;
@@ -124,6 +124,55 @@ function KinkyDungeonUpdateBullets(delta) {
 	}
 }
 
+
+function KinkyDungeonUpdateBuffs() {
+	// Reset the buffs
+	KinkyDungeonPlayerBuffs = {};
+	for (let EE = 0; EE < KinkyDungeonEntities.length; EE++) {
+		let enemy = KinkyDungeonEntities[EE];
+		enemy.buffs = {};
+	}
+	
+	// Apply the buffs
+	for (let E = 0; E < KinkyDungeonBullets.length; E++) {
+		let b = KinkyDungeonBullets[E];
+		if (b.bullet.spell && b.bullet.spell.buffs) { // Apply the buff
+			for (let B = 0; B < b.bullet.spell.buffs.length; B++) {
+				let buff = b.bullet.spell.buffs[B];
+				
+				if (buff.player && buff.range >= Math.sqrt((KinkyDungeonPlayerEntity.x - b.x) * (KinkyDungeonPlayerEntity.x - b.x) + (KinkyDungeonPlayerEntity.y - b.y) * (KinkyDungeonPlayerEntity.y - b.y))) {
+					KinkyDungeonApplyBuff(KinkyDungeonPlayerBuffs, buff);
+				}
+				if (buff.enemies) {
+					for (let EE = 0; EE < KinkyDungeonEntities.length; EE++) {
+						let enemy = KinkyDungeonEntities[EE];
+						if (buff.range >= Math.sqrt((enemy.x - b.x) * (enemy.x - b.x) + (enemy.y - b.y) * (enemy.y - b.y))) {
+							KinkyDungeonApplyBuff(enemy.buffs, buff);
+						}
+					}
+					
+				}
+			}
+			
+			
+		}
+	}
+}
+
+function KinkyDungeonApplyBuff(list, buff) {
+	if (!list[buff.type] || (list[buff.type].power && buff.power > list[buff.type].power)) list[buff.type] = buff;
+	
+	if (buff.tags)
+		for (let T = 0; T < buff.tags.length; T++) {
+			let tag = buff.tags[T]
+			if (tag == "darkness") {
+				KinkyDungeonBlindLevelBase = Math.max(KinkyDungeonBlindLevelBase, Math.floor(buff.power/0.5))
+			}
+		}
+}
+
+
+
 function KinkyDungeonUpdateBulletsCollisions(delta) {
 	for (let E = 0; E < KinkyDungeonBullets.length; E++) {
 		var b = KinkyDungeonBullets[E];
@@ -150,7 +199,7 @@ function KinkyDungeonBulletHit(b, born) {
 				if (Math.sqrt(X*X+Y*Y) <= rad) {
 					let LifetimeBonus = (b.bullet.spell.lifetimeHitBonus) ? Math.floor(Math.random() * b.bullet.spell.lifetimeHitBonus) : 0
 					KinkyDungeonBullets.push({born: born, time:b.bullet.spell.lifetime + LifetimeBonus, x:b.x+X, y:b.y+Y, vx:0, vy:0, xx:b.x+X, yy:b.y+Y, spriteID:b.bullet.name+"Hit" + CommonTime(),
-						bullet:{spell:b.bullet.spell, damage: {damage:b.bullet.spell.power, type:b.bullet.spell.damage, time:b.bullet.spell.time}, lifetime: b.bullet.spell.lifetime + LifetimeBonus, name:b.bullet.name+"Hit", width:1, height:1}});
+						bullet:{spell:b.bullet.spell, block: (b.bullet.blockhit ? b.bullet.blockhit : 0), damage: {damage:b.bullet.spell.power, type:b.bullet.spell.damage, time:b.bullet.spell.time}, lifetime: b.bullet.spell.lifetime + LifetimeBonus, name:b.bullet.name+"Hit", width:1, height:1}});
 				}
 			}
 
@@ -200,6 +249,18 @@ function KinkyDungeonBulletsCheckCollision(bullet, AoE) {
 			}
 		}
 	}
+	if (!bullet.bullet.block > 0 && bullet.vx != 0 || bullet.vy != 0) {
+		
+		for (let E = 0; E < KinkyDungeonBullets.length; E++) {
+			let b2 = KinkyDungeonBullets[E];
+			if (b2 != bullet && b2.bullet.block > 0 && b2.x == bullet.x && b2.y == bullet.y) {
+				b2.bullet.block -= bullet.bullet.damage.damage;
+				if (b2.bullet.block <= 0) b2.bullet.block = -1;
+				
+				return false;
+			}
+		}
+	} else if (bullet.bullet.block == -1) return false; // Shields expire
 
 	return true;
 }

@@ -74,6 +74,8 @@ LootChestTrapMagic,"You find gold and a magic trap! (+RestraintType) (+XXX gold)
 LootChestTrapMagicVibe,"You find gold and a tormenting magical trap! (+RestraintType) (+XXX gold)"
 
 KinkyDungeonTorsoGrab,The EnemyName grabs you by the harness and keeps you in place!
+KinkyDungeonAttackMiss,The EnemyName misses you!
+
 
 NameBlindZombie,Moaning Zombie
 KillBlindZombie,"The zombie moans and collapses to the ground."
@@ -250,7 +252,7 @@ KinkyDungeonBookNextPage,Next Page
 KinkyDungeonBookLastPage,Last Page
 KinkyDungeonBookRandomPage,Random Page (your hands are tied)
 
-KinkyDungeonSpellMiscast,You fail to concentrate on the spell and it explodes in your face!
+KinkyDungeonSpellMiscast,You fail to concentrate on the spell and it erupts in your face!
 
 KinkyDungeonSpellFirebolt,Firebolt
 KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage
@@ -266,6 +268,16 @@ KinkyDungeonSpellChainBolt,Chainbolt
 KinkyDungeonSpellDescriptionChainBolt,Throws a chain that does DamageDealt damage and stuns enemies for a turn.
 KinkyDungeonSpellCastChainBolt,You a hurl a strand of chain!
 KinkyDungeonSpellTargetChainBolt,Choose aim direction
+
+KinkyDungeonSpellShield,Shield
+KinkyDungeonSpellDescriptionShield,Creates a shield that blocks BlockAmount damage from projectiles for DelayTime turns.
+KinkyDungeonSpellCastShield,You create a temporary shield!
+KinkyDungeonSpellTargetShield,Choose shield location
+
+KinkyDungeonSpellGreaterShield,Barrier
+KinkyDungeonSpellDescriptionGreaterShield,Creates a shield that blocks BlockAmount damage from projectiles for DelayTime turns.
+KinkyDungeonSpellCastGreaterShield,You create a temporary shield!
+KinkyDungeonSpellTargetGreaterShield,Choose shield location
 
 KinkyDungeonSpellElectrify,Electrify
 KinkyDungeonSpellDescriptionElectrify,A delayed shock that deals DamageDealt damage and stuns for Duration turns.
@@ -297,6 +309,11 @@ KinkyDungeonSpellTargetFocusedFlash,Select where to center the flash (SpellArea 
 KinkyDungeonSpellDescriptionFocusedFlash,A focused flash of light which renders anyone caught within blind for Duration turns
 KinkyDungeonSpellCastFocusedFlash,You slowly charge up a powerful flash!
 
+KinkyDungeonSpellShroud,Shroud
+KinkyDungeonSpellTargetShroud,Select where to center the shroud (SpellArea radius)
+KinkyDungeonSpellDescriptionShroud,A shroud of darkness in which melee is difficult for Duration turns
+KinkyDungeonSpellCastShroud,You exhale a misty shroud
+
 KinkyDungeonSpellSlime,Conjure Slime
 KinkyDungeonSpellWitchSlime,Witch's Slime
 KinkyDungeonSpellDescriptionSlime,A huge pool of slime will greatly slow enemies that step inside.
@@ -308,6 +325,9 @@ KinkyDungeonSpellWitchSlimeBall,Witch's Slime Ball
 KinkyDungeonSpellDescriptionSlimeBall,A ball of slime leaves a trail of sticky slime. It deals DamageDealt damage on a hit.
 KinkyDungeonSpellCastSlimeBall,You hurl a ball of slime!
 KinkyDungeonSpellTargetSlimeBall,Choose aim direction
+
+KinkyDungeonStartVibe,You feel your toys start to to buzz...
+KinkyDungeonEndVibe,Your toys stop vibrating.
 
 KinkyDungeonBlindSelf,"You are blinded!"
 KinkyDungeonDamageSelf,"You took DamageDealt damage!"

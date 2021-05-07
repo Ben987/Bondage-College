@@ -29,6 +29,7 @@ Mechanics
 - Miscast chance: While aroused, you have a chance of spells being either cast on your position or blowing up in your face and hitting you!
 - When you click on an open door, you have an option to close it
 - Some enemies (like the new witches) can open doors! Beware!
+- Vibrators have a charge which is increased by casting spells.
 New Enemies:
 - Added a new enemy, a rope snake that sacrifices itself to wrap you up!
 - Shock witches that cast electrical spells at you from a distance
@@ -38,18 +39,12 @@ Spells
 - Electrify spell which is a delayed blast that also briefly stuns 
 - Chain bolt spell which stuns enemies
 - Slime ball spell which conjures a ball of slime that leaves a sticky trail. Use with caution!
+- Shield and Barrier, two Conjuration spells for blocking projectiles
+- Shroud, a defensive spell which makes melee more difficult inside an area
 Other
 - New brickwork visuals
 - The map has more doors, but some of them will be open at the start of the game. You can close them to prevent zombies from chasing you.
 - Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
-
-1.34
-- Some balance and fixes
-- New brickwork visuals
-
-1.35
-- Miscast chance: While aroused, you have a chance of spells being either cast on your position or blowing up in your face and hitting you!
-- Added a kinky belt trap to keep you aroused
 
 Future content planned:
 - Exit stair puzzles (like for example a button or special key somewhere in the level, maybe with a high likelihood of traps)

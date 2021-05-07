@@ -10,7 +10,7 @@ var KinkyDungeonStatArousalRegen = -1;
 var KinkyDungeonStatArousalRegenStaminaRegenFactor = -0.9; // Stamina drain per time per 100 arousal
 var KinkyDungeonStatArousalMiscastChance = 0.8; // Miscast chance at max arousal
 var KinkyDungeonVibeLevel = 0;
-var KinkyDungeonArousalPerVibe = 0.1; // How much arousal per turn per vibe level
+var KinkyDungeonArousalPerVibe = 1.0; // How much arousal per turn per vibe level
 // Note that things which increase max arousal (aphrodiasic) also increase the max stamina drain. This can end up being very dangerous as being edged at extremely high arousal will drain all your energy completely, forcing you to wait until the torment is over or the drugs wear off
 
 // Stamina -- your MP. Used to cast spells and also struggle
@@ -48,6 +48,7 @@ var KinkyDungeonStatArousalGainChaste = -0.25; // Cumulative w/ groin and bra
 var KinkyDungeonSlowLevel = 0; // Adds to the number of move points you need before you move
 var KinkyDungeonMovePoints = 0;
 
+var KinkyDungeonBlindLevelBase = 0; // Base, increased by buffs and such, set to 0 after consumed in UpdateStats
 var KinkyDungeonBlindLevel = 0; // Blind level 1: -33% vision, blind level 2: -67% vision, Blind level 3: Vision radius = 1
 var KinkyDungeonStatBlind = 0; // Used for temporary blindness
 var KinkyDungeonDeaf = false; // Deafness reduces your vision radius to 0 if you are fully blind (blind level 3)
@@ -87,6 +88,7 @@ var KinkyDungeonUndress = 0; // Level of undressedness
 
 // Current list of spells
 var KinkyDungeonSpells = [];
+var KinkyDungeonPlayerBuffs = {};
 
 // Current list of dresses
 var KinkyDungeonDresses = {};
@@ -208,7 +210,7 @@ function KinkyDungeonUpdateStats(delta) {
 	// Update the player tags based on the player's groups
 	KinkyDungeonPlayerTags = KinkyDungeonUpdateRestraints(delta);// console.log("Restraints Tags Check " + (performance.now() - now));
 
-	KinkyDungeonBlindLevel = Math.max(0, KinkyDungeonPlayer.GetBlindLevel());
+	KinkyDungeonBlindLevel = Math.max(KinkyDungeonBlindLevelBase, KinkyDungeonPlayer.GetBlindLevel());
 	if (KinkyDungeonStatBlind > 0) KinkyDungeonBlindLevel = 3;
 	KinkyDungeonDeaf = KinkyDungeonPlayer.IsDeaf();
 
@@ -244,11 +246,21 @@ function KinkyDungeonUpdateStats(delta) {
 }
 
 function KinkyDungeonCalculateVibeLevel() {
+	let oldVibe = KinkyDungeonVibeLevel;
 	KinkyDungeonVibeLevel = 0;
 	for (let I = 0; I < KinkyDungeonInventory.length; I++) {
 		if (KinkyDungeonInventory[I] && KinkyDungeonInventory[I].restraint && KinkyDungeonInventory[I].restraint.intensity) {
-			KinkyDungeonVibeLevel = Math.max(KinkyDungeonVibeLevel + KinkyDungeonInventory[I].restraint.intensity/4, KinkyDungeonInventory[I].restraint.intensity);
+			let vibe = KinkyDungeonInventory[I].restraint;
+			let drain = vibe.battery - Math.max(0, vibe.battery - vibe.intensity);
+			if (drain > 0)
+				KinkyDungeonVibeLevel = Math.max(KinkyDungeonVibeLevel + drain/4, drain);
+			
+			vibe.battery = Math.max(0, vibe.battery - drain);
+			
 		}
+	}
+	if (oldVibe > 0 && KinkyDungeonVibeLevel == 0) {
+		if (!KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonEndVibe"), "#FFaaaa", 2)) KinkyDungeonSendActionMessage(2, TextGet("KinkyDungeonEndVibe"), "#FFaaaa", 2);
 	}
 }
 

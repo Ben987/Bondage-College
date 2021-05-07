@@ -19,6 +19,7 @@ function KinkyDungeonCheckPath(x1, y1, x2, y2) {
 }
 
 function KinkyDungeonMakeLightMap(width, height, Lights) {
+	KinkyDungeonBlindLevelBase = 0; // Set to 0 when consumed. We only redraw lightmap once so this is safe.
 	//let now = performance.now()
 	KinkyDungeonLightGrid = "";
 	// Generate the grid
