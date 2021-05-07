@@ -841,6 +841,7 @@ function KinkyDungeonMoveTo(moveX, moveY) {
 	if (KinkyDungeonNoEnemy(moveX, moveY, true)) {
 		KinkyDungeonPlayerEntity.x = moveX;
 		KinkyDungeonPlayerEntity.y = moveY;
+		
 		KinkyDungeonMovePoints = 0;
 	}
 }
