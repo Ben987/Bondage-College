@@ -255,9 +255,19 @@ KinkyDungeonBookRandomPage,Random Page (your hands are tied)
 KinkyDungeonSpellMiscast,You fail to concentrate on the spell and it erupts in your face!
 
 KinkyDungeonSpellFirebolt,Firebolt
-KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage
+KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage.
 KinkyDungeonSpellCastFirebolt,You a hurl a firebolt!
 KinkyDungeonSpellTargetFirebolt,Choose aim direction
+
+KinkyDungeonSpellBlink,Mistcall
+KinkyDungeonSpellDescriptionBlink,Teleport to a nearby location after DelayTime turns.
+KinkyDungeonSpellCastBlink,You call upon the mists to transport you!
+KinkyDungeonSpellTargetBlink,Choose target location
+
+KinkyDungeonSpellLeap,Leap
+KinkyDungeonSpellDescriptionLeap,Teleport to a location next turn.
+KinkyDungeonSpellCastLeap,You jump through a mystic portal!
+KinkyDungeonSpellTargetLeap,Choose target location
 
 KinkyDungeonSpellIcebolt,Ice Shard
 KinkyDungeonSpellDescriptionIcebolt,A quick shard of ice that does DamageDealt damage and stuns for Duration turns.

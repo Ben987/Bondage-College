@@ -810,9 +810,7 @@ function KinkyDungeonMove(moveDirection) {
 						KinkyDungeonMovePoints += moveDirection.delta;
 
 						if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel+1) {
-							KinkyDungeonPlayerEntity.x = moveX;
-							KinkyDungeonPlayerEntity.y = moveY;
-							KinkyDungeonMovePoints = 0;
+							KinkyDungeonMoveTo(moveX, moveY);
 						}
 
 						if (KinkyDungeonSlowLevel > 0) {
@@ -838,6 +836,14 @@ function KinkyDungeonMove(moveDirection) {
 	}
 }
 
+function KinkyDungeonMoveTo(moveX, moveY) {
+	
+	if (KinkyDungeonNoEnemy(moveX, moveY, true)) {
+		KinkyDungeonPlayerEntity.x = moveX;
+		KinkyDungeonPlayerEntity.y = moveY;
+		KinkyDungeonMovePoints = 0;
+	}
+}
 
 function KinkyDungeonAdvanceTime(delta) {
 	//let now = performance.now()
