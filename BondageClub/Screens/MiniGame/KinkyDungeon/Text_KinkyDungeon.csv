@@ -16,6 +16,7 @@ StatStamina,"Stamina: "
 StatWillpower,"Willpower: "
 
 Wait,"You pause and regain some breath"
+WaitSpellExhaustion,"You are exhausted from spellcasting and need to wait."
 
 GameStart,Start New Game
 LoadGame,Load From Checkpoint
@@ -137,10 +138,14 @@ KinkyDungeonAttemptPickSuccess,"You pick the lock on the TargetRestraint!"
 KinkyDungeonStruggleRemoveSuccess,"You unfasten the TargetRestraint and get it off your body!"
 KinkyDungeonStruggleCutSuccess,"You cut the TargetRestraint off!"
 
-KinkyRedLock," (Red)"
-KinkyGreenLock," (Green)"
-KinkyBlueLock," (Blue)"
-KinkyYellowLock," (Yellow)"
+KinkyRedLock,"Red Lock"
+KinkyGreenLock,"Green Lock"
+KinkyBlueLock,"Blue Lock"
+KinkyYellowLock,"Yellow Lock"
+KinkyRedLockAbr,"-R"
+KinkyGreenLockAbr,"-G"
+KinkyBlueLockAbr,"-B"
+KinkyYellowLockAbr,"-Y"
 
 KinkyDungeonCloseDoor,"Close Door"
 KinkyDungeonUnlockDoor,"Unlock"
@@ -176,23 +181,23 @@ RestraintDuctTapeHead,Charms
 RestraintDuctTapeMouth,Charms
 RestraintDuctTapeBoots,Charms
 RestraintDuctTapeFeet,Charms
-RestraintDuctTapeHeadMummy,Charm Covering
-RestraintDuctTapeArmsMummy,Charm Covering
-RestraintDuctTapeFeetMummy,Charm Covering
-RestraintDuctTapeLegsMummy,Charm Covering
-RestraintStuffing,Mouth Stuffing
-RestraintWeakMagicRopeArms,Weak Magic Rope
-RestraintWeakMagicRopeLegs,Weak Magic Rope
+RestraintDuctTapeHeadMummy,Charms
+RestraintDuctTapeArmsMummy,Charms
+RestraintDuctTapeFeetMummy,Charms
+RestraintDuctTapeLegsMummy,Charms
+RestraintStuffing,Stuffing
+RestraintWeakMagicRopeArms,Magic Rope
+RestraintWeakMagicRopeLegs,Magic Rope
 RestraintStickySlime,Sticky Slime
-RestraintTrapArmbinder,Leather Armbinder
+RestraintTrapArmbinder,Armbinder
 RestraintTrapCuffs,Handcuffs
-RestraintTrapHarness,Leather Harness
+RestraintTrapHarness,Harness
 RestraintTrapGag,Ball Gag
 RestraintTrapBoots,Slave Heels
 RestraintTrapLegirons,Leg Irons
 RestraintTrapBlindfold,Blindfold
 RestraintTrapBelt,Steel Belt
-RestraintTrapVibe,Vibrator
+RestraintTrapVibe,Egg Vibe
 RestraintRopeSnakeArms,Rope Tie
 RestraintRopeSnakeArmsWrist,Rope Tie
 RestraintRopeSnakeLegs,Rope Tie
@@ -337,7 +342,13 @@ KinkyDungeonSpellCastSlimeBall,You hurl a ball of slime!
 KinkyDungeonSpellTargetSlimeBall,Choose aim direction
 
 KinkyDungeonStartVibe,You feel your toys start to to buzz...
+KinkyDungeonVibing,Your toys are vibrating.
 KinkyDungeonEndVibe,Your toys stop vibrating.
+KinkyDungeonSlowed,Your movements are hobbled.
+KinkyDungeonHopping,You are forced to hop.
+KinkyDungeonInching,You inch forward slowly.
+KinkyDungeonCrawling,You crawl helplessly.
+KinkyDungeonCantMove,You are unable to move!
 
 KinkyDungeonBlindSelf,"You are blinded!"
 KinkyDungeonDamageSelf,"You took DamageDealt damage!"

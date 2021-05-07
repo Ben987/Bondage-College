@@ -708,7 +708,7 @@ function KinkyDungeonClickGame(Level) {
 			}
 		} else KinkyDungeonTargetingSpell = null;
 	} else if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
-		KinkyDungeonMove(KinkyDungeonMoveDirection);
+		KinkyDungeonMove(KinkyDungeonMoveDirection, 1);
 	}
 }
 
@@ -741,7 +741,7 @@ function KinkyDungeonGameKeyDown() {
 	else if (KinkyDungeonKeyWait.includes(KeyPress)) moveDirection = KinkyDungeonGetDirection(0, 0);
 
 	if (moveDirection) {
-		KinkyDungeonMove(moveDirection);
+		KinkyDungeonMove(moveDirection, 1);
 	} else if (KinkyDungeonKeySpell.includes(KeyPress)) {
 		KinkyDungeonSpellPress = KeyPress;
 		KinkyDungeonHandleSpell();
@@ -776,7 +776,7 @@ function KinkyDungeonSendActionMessage(priority, text, color, time) {
 }
 
 
-function KinkyDungeonMove(moveDirection) {
+function KinkyDungeonMove(moveDirection, delta) {
 	var moveX = moveDirection.x + KinkyDungeonPlayerEntity.x;
 	var moveY = moveDirection.y + KinkyDungeonPlayerEntity.y;
 	var Enemy = KinkyDungeonEnemyAt(moveX, moveY);
@@ -794,7 +794,7 @@ function KinkyDungeonMove(moveDirection) {
 				KinkyDungeonTargetTileLocation = "" + moveX + "," + moveY;
 				KinkyDungeonTargetTile = KinkyDungeonTiles[KinkyDungeonTargetTileLocation];
 				KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name)), "white", 1);
-				KinkyDungeonDoorCloseTimer = 2;
+				KinkyDungeonDoorCloseTimer = 4; // To avoid cases with severe annoyance while walking through halls with lots of doors
 			} else {
 				if (KinkyDungeonDoorCloseTimer > 0) KinkyDungeonDoorCloseTimer -= 1;
 				KinkyDungeonTargetTile = null;
@@ -806,20 +806,33 @@ function KinkyDungeonMove(moveDirection) {
 					KinkyDungeonLoot(MiniGameKinkyDungeonLevel, KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint], "chest");
 					KinkyDungeonMapSet(moveX, moveY, 'c');
 				} else {// Move
-					if (KinkyDungeonStatStamina > 0) {
-						KinkyDungeonMovePoints += moveDirection.delta;
+					if (KinkyDungeonStatStamina > 0) { // You can only move if your stamina is > 0
+						KinkyDungeonMovePoints = Math.min(Math.ceil(KinkyDungeonSlowLevel + 1), KinkyDungeonMovePoints + delta); // Can't store extra move points
 
-						if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel+1) {
+						if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel) { // You need more move points than your slow level, unless your slow level is 1 
 							KinkyDungeonMoveTo(moveX, moveY);
 						}
+						
+						// Messages to inform player they are slowed
+						if (KinkyDungeonSlowLevel > 0)
+							if (KinkyDungeonSlowLevel == 1) KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonSlowed"), "yellow", 2);
+							else if (KinkyDungeonSlowLevel == 2) KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonHopping"), "orange", 2);
+							else if (KinkyDungeonSlowLevel == 3) KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonInching"), "red", 2);
+							else if (KinkyDungeonSlowLevel < 10) KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonCrawling"), "red", 2);
+							else KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonCantMove"), "red", 2);
 
 						if (KinkyDungeonSlowLevel > 0) {
-							if ((moveDirection.x != 0 || moveDirection.y != 0))
-								KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel - KinkyDungeonStatStaminaRegen) * moveDirection.delta;
-							else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax) {
-								KinkyDungeonSendActionMessage(1, TextGet("Wait"), "lightgreen", 2);
+							if ((moveDirection.x != 0 || moveDirection.y != 0)) {
+								KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel) * delta;
+								KinkyDungeonStatWillpowerExhaustion = Math.max(1, KinkyDungeonStatWillpowerExhaustion);
+							} else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax) {
+								KinkyDungeonMovePoints = 0;
+								if (KinkyDungeonStatWillpowerExhaustion > 1) KinkyDungeonSendActionMessage(3, TextGet("WaitSpellExhaustion"), "yellow", 2);
+								else KinkyDungeonSendActionMessage(1, TextGet("Wait"), "lightgreen", 2);
 							}
 						}
+						
+						if (moveDirection.x == 0 && moveDirection.y == 0) KinkyDungeonDoorCloseTimer = 0; // Allow manually waiting to turn around and be able to slam a door
 
 						if (moveObject == 'R') {
 							KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble");
@@ -837,7 +850,6 @@ function KinkyDungeonMove(moveDirection) {
 }
 
 function KinkyDungeonMoveTo(moveX, moveY) {
-	
 	if (KinkyDungeonNoEnemy(moveX, moveY, true)) {
 		KinkyDungeonPlayerEntity.x = moveX;
 		KinkyDungeonPlayerEntity.y = moveY;
