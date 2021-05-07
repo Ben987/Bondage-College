@@ -17,6 +17,8 @@ var KinkyDungeonKeySpell = [49, 50, 51]; // 1 2 3
 var KinkyDungeonKeyWait = [120]; // x
 
 var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/";
+var KinkyDungeonPlayerCharacter = null;
+
 
 /**
  * Loads the kinky dungeon game
@@ -28,9 +30,10 @@ function KinkyDungeonLoad() {
 	if (!KinkyDungeonGameRunning) {
 		if (!KinkyDungeonPlayer)
       KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
+	
 
     //KinkyDungeonCreateMap(MiniGameDifficulty);
-    var appearance = CharacterAppearanceStringify(Player);
+    var appearance = CharacterAppearanceStringify(KinkyDungeonPlayerCharacter ? KinkyDungeonPlayerCharacter : Player);
     CharacterAppearanceRestore(KinkyDungeonPlayer, appearance);
     CharacterReleaseTotal(KinkyDungeonPlayer);
     CharacterNaked(KinkyDungeonPlayer);
@@ -63,7 +66,15 @@ function KinkyDungeonLoad() {
  * @returns {bool} - If the player is in the arcade
  */
 function KinkyDungeonDeviousDungeonAvailable() {
-	return DialogGamingPreviousRoom == "Arcade" || MiniGameReturnFunction == "ArcadeKinkyDungeonEnd";
+	return KinkyDungeonIsPlayer() && (DialogGamingPreviousRoom == "Arcade" || MiniGameReturnFunction == "ArcadeKinkyDungeonEnd");
+}
+
+/**
+ * Returns whether or not the player is the one playing, which determines whether or not to draw the UI and struggle groups
+ * @returns {bool} - If the player is the game player
+ */
+function KinkyDungeonIsPlayer() {
+	return (!KinkyDungeonPlayerCharacter || KinkyDungeonPlayerCharacter == Player) ;
 }
 
 /**

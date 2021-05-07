@@ -330,6 +330,18 @@ function DialogHasGamingHeadset() {
 
 	return false;
 }
+/**
+ * Checks if the player can watch VR games
+ * @returns {boolean} - Whether or not the player is wearing a VR headset with Gaming type
+ */
+function DialogPlayerAndTargetHasGamingHeadset() {
+	if (CurrentCharacter) {
+		var head = InventoryGet(CurrentCharacter, "ItemHead");
+		if (head && head.Property && head.Property.Type == "Gaming") return true;
+
+		return DialogHasGamingHeadset();
+	} else return false;
+}
 
 
 /**
@@ -337,10 +349,13 @@ function DialogHasGamingHeadset() {
  * @returns {void}
  */
 function DialogStartKinkyDungeon() {
+	if (CurrentCharacter)
+		KinkyDungeonPlayerCharacter = CurrentCharacter;
 	DialogGamingPreviousRoom = CurrentScreen;
 	DialogGamingPreviousModule = CurrentModule;
 	MiniGameStart("KinkyDungeon", 0, "DialogEndKinkyDungeon");
 }
+
 
 /**
  * Return to previous room
