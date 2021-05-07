@@ -15,8 +15,8 @@ StatArousal,"Arousal: "
 StatStamina,"Stamina: "
 StatWillpower,"Willpower: "
 
-Wait,"You pause and regain some breath"
-WaitSpellExhaustion,"You are exhausted from spellcasting and need to wait."
+Wait,"You are exhausted."
+WaitSpellExhaustion,"You are exhausted from spellcasting."
 
 GameStart,Start New Game
 LoadGame,Load From Checkpoint
