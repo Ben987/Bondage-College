@@ -17,7 +17,8 @@ var KinkyDungeonKeySpell = [49, 50, 51]; // 1 2 3
 var KinkyDungeonKeyWait = [120]; // x
 
 var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/";
-var KinkyDungeonPlayerCharacter = null;
+var KinkyDungeonPlayerCharacter = null; // Other player object
+var KinkyDungeonGameData = null; // Data sent by other player
 
 
 /**
@@ -27,22 +28,30 @@ var KinkyDungeonPlayerCharacter = null;
 function KinkyDungeonLoad() {
 
 	CurrentDarkFactor = 0;
+	
+	if (!KinkyDungeonIsPlayer()) KinkyDungeonGameRunning = false;
+	
 	if (!KinkyDungeonGameRunning) {
 		if (!KinkyDungeonPlayer)
-      KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
+			KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
 	
 
-    //KinkyDungeonCreateMap(MiniGameDifficulty);
-    var appearance = CharacterAppearanceStringify(KinkyDungeonPlayerCharacter ? KinkyDungeonPlayerCharacter : Player);
-    CharacterAppearanceRestore(KinkyDungeonPlayer, appearance);
-    CharacterReleaseTotal(KinkyDungeonPlayer);
-    CharacterNaked(KinkyDungeonPlayer);
-    KinkyDungeonInitializeDresses();
-    KinkyDungeonDressPlayer();
+		//KinkyDungeonCreateMap(MiniGameDifficulty);
+		var appearance = CharacterAppearanceStringify(KinkyDungeonPlayerCharacter ? KinkyDungeonPlayerCharacter : Player);
+		CharacterAppearanceRestore(KinkyDungeonPlayer, appearance);
+		CharacterReleaseTotal(KinkyDungeonPlayer);
+		CharacterNaked(KinkyDungeonPlayer);
+		KinkyDungeonInitializeDresses();
+		KinkyDungeonDressPlayer();
 
-    KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings;
+		KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings;
 
-		KinkyDungeonState = "Menu";
+		if (KinkyDungeonIsPlayer())
+			KinkyDungeonState = "Menu";
+		else {
+			KinkyDungeonState = "Game";
+			if (!KinkyDungeonGameData) KinkyDungeonInitialize(1);
+		}
 
 		for (let G = 0; G < KinkyDungeonStruggleGroupsBase.length; G++) {
 			let group = KinkyDungeonStruggleGroupsBase[G];
@@ -186,7 +195,7 @@ function KinkyDungeonClick() {
 			};
 		}
 	} else if (KinkyDungeonState == "Game") {
-		KinkyDungeonClickGame();
+		if (KinkyDungeonIsPlayer()) KinkyDungeonClickGame();
 	} else if (KinkyDungeonState == "Keybindings") {
 		if (MouseIn(1075, 750, 350, 64)) {
 			KinkyDungeonState = "Menu";
@@ -264,10 +273,25 @@ function KinkyDungeonExit() {
 function KinkyDungeonKeyDown() {
 
 	if (KinkyDungeonState == "Game")
-		KinkyDungeonGameKeyDown();
+		if (KinkyDungeonIsPlayer()) KinkyDungeonGameKeyDown();
 	else if (KinkyDungeonState == "Keybindings") {
 		KinkyDungeonKeybindingCurrentKey = KeyPress;
 	}
 
 
+}
+
+/**
+ * Turns the game state into a string that can be sent over
+ * @returns {string} - String containing game data
+ */
+function KinkyDungeonPackData(IncludeMap) {
+	JSON.stringify(KinkyDungeonEntities, (key, value) => {
+        if (CommonIsNumeric(key) && typeof value === "object") {
+				if (value.Enemy) {
+					return "E/" + value.Enemy.name + "/" + value.stun + "/"+value.x+"/"+value.y;
+				}
+		}
+        return value;
+    });
 }

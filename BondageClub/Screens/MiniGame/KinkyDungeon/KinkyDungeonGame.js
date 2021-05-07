@@ -71,6 +71,10 @@ var KinkyDungeonHardLockChance = 0.2;
 var KinkyDungeonHardLockChanceScaling = 0.005;
 var KinkyDungeonHardLockChanceScalingMax = 0.4;
 
+var KinkyDungeonNextDataSendTime = 0;
+var KinkyDungeonNextDataSendTimeDelay = 5000; // Send on moves every 5 seconds
+var KinkyDungeonNextDataSendTimeDelayMove = 1000; // Send character location on moves every 1 seconds
+
 
 var KinkyDungeonDoorCloseTimer = 0;
 var KinkyDungeonTargetingSpell = null;
@@ -844,6 +848,10 @@ function KinkyDungeonMove(moveDirection, delta) {
 		} else {
 			if (KinkyDungeonGetVisionRadius() <= 1) KinkyDungeonAdvanceTime(1);
 		}
+	}
+	if (ChatRoomCharacter && ChatRoomCharacter.length > 1 && DialogGamingPreviousRoom == "ChatRoom" && KinkyDungeonNextDataSendTime > CommonTime()) {
+		
+		KinkyDungeonNextDataSendTime = CommonTime() + KinkyDungeonNextDataSendTimeDelay;
 	}
 }
 
