@@ -1,6 +1,27 @@
 PlayerGagged,,,"(She laughs at you.)  Scream all you want, nobody is coming to help you.",,
-Intro0,,,(A guard steps inside and looks at you.)  Prisoner DialogPlayerName.  I will take care of you today.,,
+Intro0,,,"(A guard steps inside and looks at you.)  Prisoner DialogPlayerName.  How come you're not restrained?  Anyway, I will take care of you today.",,
+IntroRestrained0,,,(A guard steps inside and looks at your bondage.)  Prisoner DialogPlayerName.  I see you are already bound.  I will take care of you today.,,
 0,,Who are you?,I'm guard DialogCharacterName.  I keep the Box safe and our prisoners secure.,DialogRemove(),Player.CanTalk()
+0,,Can you release me?,"Don't be silly, you have to do your time like everyone else.",DialogRemove(),Player.CanTalk()
+0,,Can I have something to eat?,Do I look like a maid?  I'm not here to cook for you.,DialogRemove(),Player.CanTalk()
+0,10,How will you take care of me?,I will come to check on you from time to time.  To make sure you're safely bound and you're not trying to escape.,,Player.CanTalk()
+0,10,"So, what's up?",I will come to check on you from time to time.  To make sure you're safely bound and you're not trying to escape.,,Player.CanTalk()
 0,,(Mumble in your gag.),Here you go.  (She removes your gag.)  Don't piss me off or that gag is coming back.,PlayerUngag(),!Player.CanTalk()
-0,,(UNDER CONSTRUCTION.),"(This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.)",,
 0,,(Leave her.),,DialogLeave(),
+10,20,I'm not trying to escape.,"I won't give you any chance to escape.  First thing first, I need to secure your restraints.  Don't give me a hard time.",,
+10,20,Safely bound?,"You heard me right.  First thing first, I need to secure your restraints.  Don't give me a hard time.",,
+10,20,I will easily escape.,"Trust me, you won't.  First thing first, I need to secure your restraints.  Don't give me a hard time.",,
+10,20,(Listen to her.),"First thing first, I need to secure your restraints.  Don't give me a hard time.",,
+20,30,Can we negotiate?,No we cannot.  (She uses many restraints on you and smiles.)  Are you comfy prisoner?,"PlayerRestrain(""LOT"")",
+20,30,Don't even try!  (Give her a hard time.),"(She grumbles, works hard, and uses all her restraints on you.)  There!  Are you comfy prisoner?","PlayerRestrain(""ALL"")",
+20,30,Very well Miss.  (Make it easy for her.),Good girl.  (She smiles and uses a few restraints on you.)  Are you comfy prisoner?,"PlayerRestrain("""")",
+30,40,(Stay silent.),"Very well.  I need to go, enjoy your struggling, I'll be back later.",,
+30,40,(Nod yes.),"Excellent.  I need to go, enjoy your struggling, I'll be back later.",,
+30,40,(Shake your head no.),"Too bad.  I need to go, enjoy your struggling, I'll be back later.",,
+40,,Wait!  You can't leave me here.,I sure can.  (She starts to walk away.),DialogRemove(),Player.CanTalk()
+40,,(Struggle in your bondage.),You're so cute when you struggle.  (She starts to walk away.),DialogRemove(),!Player.CanTalk()
+40,,(Leave her.),,CharacterRemove(),
+IntroChangeBondage,,,"(Guard DialogCharacterName steps inside and looks at you.)  Prisoner DialogPlayerName, it's time to get you restrained again.",,
+IntroRestrainedChangeBondage,,,"(Guard DialogCharacterName steps inside and looks at your bondage.)  Prisoner DialogPlayerName, it's time to change your bondage.",,
+ChangeBondage,,(UNDER CONSTRUCTION.),"(This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.)",,
+ChangeBondage,,(Leave her.),,DialogLeave(),

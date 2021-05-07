@@ -79,9 +79,9 @@ function PandoraPrisonRun() {
 function PandoraPrisonClick() {
 	if (MouseIn(1885, 25, 90, 90) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 	if ((PandoraPrisonCharacter == null) && MouseIn(750, 0, 500, 1000)) CharacterSetCurrent(Player);
-	if ((PandoraPrisonCharacter != null) && MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if ((PandoraPrisonCharacter != null) && MouseIn(1000, 0, 500, 1000)) {
-		if (PandoraPrisonCharacter.TriggerIntro) PandoraPrisonCharacter.CurrentDialog = DialogFind(PandoraPrisonCharacter, "Intro" + PandoraPrisonCharacter.Stage);
+		if (PandoraPrisonGuard.Stage == "RANDOM") PandoraPrisonGuard.Stage = "ChangeBondage";  // TO-DO: must pick a random activity
+		if (PandoraPrisonCharacter.TriggerIntro) PandoraPrisonCharacter.CurrentDialog = DialogFind(PandoraPrisonCharacter, "Intro" + (Player.CanInteract() ? "" : "Restrained") + PandoraPrisonCharacter.Stage);
 		CharacterSetCurrent(PandoraPrisonCharacter);
 	}
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
@@ -120,4 +120,24 @@ function PandoraPrisonPlayerUngag() {
 	InventoryRemove(Player, "ItemMouth");
 	InventoryRemove(Player, "ItemMouth2");
 	InventoryRemove(Player, "ItemMouth3");	
+}
+
+/**
+ * When the player gets restrained by an NPC
+ * @returns {void} - Nothing
+ */
+function PandoraPrisonPlayerRestrain(Level) {
+	CharacterRelease(Player);
+	CharacterFullRandomRestrain(Player, Level);
+}
+
+/**
+ * When the NPC leaves the prison
+ * @returns {void} - Nothing
+ */
+function PandoraPrisonCharacterRemove() {
+	PandoraPrisonCharacter = null;
+	PandoraPrisonCharacterTimer = CommonTime() + 30000 + Math.floor(Math.random() * 30000);
+	PandoraPrisonGuard.Stage = "RANDOM";
+	DialogLeave();
 }
