@@ -264,7 +264,7 @@ KinkyDungeonSpellDescriptionBlink,Teleport to a nearby location after DelayTime 
 KinkyDungeonSpellCastBlink,You call upon the mists to transport you!
 KinkyDungeonSpellTargetBlink,Choose target location
 
-KinkyDungeonSpellLeap,Leap
+KinkyDungeonSpellLeap,Rift Leap
 KinkyDungeonSpellDescriptionLeap,Teleport to a location next turn.
 KinkyDungeonSpellCastLeap,You jump through a mystic portal!
 KinkyDungeonSpellTargetLeap,Choose target location
