@@ -41,6 +41,7 @@ Spells
 - Slime ball spell which conjures a ball of slime that leaves a sticky trail. Use with caution!
 - Shield and Barrier, two Conjuration spells for blocking projectiles
 - Shroud, a defensive spell which makes melee more difficult inside an area
+- Mistcall and Leap, teleportation spells with different strengths and weaknesses. Mistcall uses verrbal components so it can be used to escape from a sticky situation.
 Other
 - New brickwork visuals
 - The map has more doors, but some of them will be open at the start of the game. You can close them to prevent zombies from chasing you.
