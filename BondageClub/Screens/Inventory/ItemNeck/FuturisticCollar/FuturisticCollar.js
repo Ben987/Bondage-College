@@ -247,7 +247,7 @@ function InventoryItemNeckFuturisticCollarColor(C, Item) {
 
 			for (let L = C.Appearance[E].Asset.Layer.length - 1; L >= 0; L--) {
 
-				if (C.Appearance[E].Asset.Layer[L].Name != "Light") {
+				if (C.Appearance[E].Asset.Layer[L].Name != "Light" && C.Appearance[E].Asset.Layer[L].Name != "Shine") {
 					if (C.Appearance[E].Asset.Layer[L].Name == "Lock") {
 						if (Item.Color[3] != "Default")
 							C.Appearance[E].Color[L] = Item.Color[3];

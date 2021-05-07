@@ -6,6 +6,7 @@ var PreferenceMaidsButton = true;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
 var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics", "Controller", "Notifications"];
+var PreferencePageCurrent = 1;
 var PreferenceChatColorThemeSelected = "";
 var PreferenceChatColorThemeList = ["Light", "Dark", "Light2", "Dark2"];
 var PreferenceChatColorThemeIndex = 0;
@@ -504,10 +505,10 @@ function PreferenceInitPlayer() {
 
 /**
  * Initialise the Notifications settings, converting the old boolean types to objects
- * @param {NotificationSetting} setting - The individual setting
+ * @param {object} setting - The old version of the setting
  * @param {NotificationAudioType} audio - The audio setting
  * @param {NotificationAlertType} defaultAlertType - The default AlertType to use
- * @returns {void} - Nothing
+ * @returns {NotificationSetting} - The setting to use
  */
 function PreferenceInitNotificationSetting(setting, audio, defaultAlertType) {
 	const alertType = typeof setting === "boolean" && setting === true ? NotificationAlertType.TITLEPREFIX : defaultAlertType || NotificationAlertType.NONE;
@@ -707,16 +708,11 @@ function PreferenceSubscreenRestrictionRun() {
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawText(TextGet("RestrictionPreferences"), 500, 125, "Black", "Gray");
-	if (Player.GetDifficulty() == 0) {
-		DrawText(TextGet("RestrictionAccess"), 500, 225, "Black", "Gray");
-		DrawCheckbox(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"), Player.RestrictionSettings.BypassStruggle);
-		DrawCheckbox(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"), Player.RestrictionSettings.SlowImmunity);
-		DrawCheckbox(500, 525, 64, 64, TextGet("RestrictionBypassNPCPunishments"), Player.RestrictionSettings.BypassNPCPunishments);
-	} else {
-		DrawText(TextGet("RestrictionNoAccess"), 500, 225, "Black", "Gray");
-		DrawCheckboxDisabled(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"));
-		DrawCheckboxDisabled(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"));
-	}
+	const disableButtons = Player.GetDifficulty() > 0;
+	DrawText(TextGet(disableButtons ? "RestrictionNoAccess" : "RestrictionAccess"), 500, 225, "Black", "Gray");
+	DrawCheckbox(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"), Player.RestrictionSettings.BypassStruggle && !disableButtons, disableButtons);
+	DrawCheckbox(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"), Player.RestrictionSettings.SlowImmunity && !disableButtons, disableButtons);
+	DrawCheckbox(500, 525, 64, 64, TextGet("RestrictionBypassNPCPunishments"), Player.RestrictionSettings.BypassNPCPunishments && !disableButtons, disableButtons);
 	MainCanvas.textAlign = "center";
 }
 
@@ -740,6 +736,7 @@ function PreferenceClick() {
 			if (typeof window["PreferenceSubscreen" + PreferenceSubscreenList[A] + "Load"] === "function")
 				CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreenList[A] + "Load()");
 			PreferenceSubscreen = PreferenceSubscreenList[A];
+			PreferencePageCurrent = 1;
 			break;
 		}
 
@@ -838,41 +835,47 @@ function PreferenceSubscreenRestrictionClick() {
  */
 function PreferenceSubscreenImmersionRun() {
 
-	// Draw the online preferences
-	MainCanvas.textAlign = "left";
-	DrawText(TextGet("ImmersionPreferences"), 500, 125, "Black", "Gray");
-	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
-
 	// Draw the player & base controls
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
+	//PreferencePageChangeDraw(1595, 75, 2); // Uncomment when adding a 2nd page
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("ImmersionPreferences"), 500, 125, "Black", "Gray");
-	// Cannot change any value under the Extreme difficulty mode
-	if (Player.GetDifficulty() <= 2) {
-		if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
-		DrawCheckbox(500, 272, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
-		DrawCheckbox(500, 352, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
-		DrawCheckbox(500, 432, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC);
-		DrawCheckbox(500, 512, 64, 64, TextGet("AllowPlayerLeashing"), Player.OnlineSharedSettings.AllowPlayerLeashing);
-		DrawCheckbox(500, 592, 64, 64, TextGet("ReturnToChatRoom"), Player.ImmersionSettings.ReturnToChatRoom);
-		if (Player.ImmersionSettings.ReturnToChatRoom)
-			DrawCheckbox(1300, 592, 64, 64, TextGet("ReturnToChatRoomAdmin"), Player.ImmersionSettings.ReturnToChatRoomAdmin);
-		DrawCheckbox(500, 672, 64, 64, TextGet("StimulationEvents"), Player.ImmersionSettings.StimulationEvents);
-		DrawCheckbox(500, 752, 64, 64, TextGet("ChatRoomMuffle"), Player.ImmersionSettings.ChatRoomMuffle);
-		DrawCheckbox(500, 832, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting);
-		DrawCheckbox(1300, 192, 64, 64, TextGet("SenseDepMessages"), Player.ImmersionSettings.SenseDepMessages);
 
-		DrawText(TextGet("SensDepSetting"), 800, 228, "Black", "Gray");
-		MainCanvas.textAlign = "center";
-		DrawBackNextButton(500, 192, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
-			() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
-			() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
+	const disableButtons = Player.GetDifficulty() > 2 || (Player.GameplaySettings.ImmersionLockSetting && Player.IsRestrained());
+	if (Player.GetDifficulty() <= 2) {
+		DrawCheckbox(500, 172, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting, disableButtons);
 	} else {
+		// Cannot change any value under the Extreme difficulty mode
+		DrawText(TextGet("ImmersionLocked"), 500, 205, "Red", "Gray");
+	}
+	DrawEmptyRect(500, 255, 1400, 0, "Black", 1);
+
+	if (PreferencePageCurrent === 1) {
+		DrawText(TextGet("SensDepSetting"), 800, 308, "Black", "Gray");
+		DrawCheckbox(500, 352, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine, disableButtons);
+		DrawCheckbox(500, 432, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin, disableButtons);
+		DrawCheckbox(500, 512, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC, disableButtons);
+		DrawCheckbox(500, 592, 64, 64, TextGet("AllowPlayerLeashing"), Player.OnlineSharedSettings.AllowPlayerLeashing, disableButtons);
+		DrawCheckbox(500, 672, 64, 64, TextGet("ReturnToChatRoom"), Player.ImmersionSettings.ReturnToChatRoom, disableButtons);
+		const returnToRoomEnabled = Player.ImmersionSettings.ReturnToChatRoom;
+		DrawCheckbox(1300, 672, 64, 64, TextGet("ReturnToChatRoomAdmin"), returnToRoomEnabled && Player.ImmersionSettings.ReturnToChatRoomAdmin, !returnToRoomEnabled || disableButtons);
+		DrawCheckbox(500, 752, 64, 64, TextGet("StimulationEvents"), Player.ImmersionSettings.StimulationEvents, disableButtons);
+		DrawCheckbox(500, 832, 64, 64, TextGet("ChatRoomMuffle"), Player.ImmersionSettings.ChatRoomMuffle, disableButtons);
+		const canHideMessages = Player.GameplaySettings.SensDepChatLog !== "SensDepLight";
+		DrawCheckbox(1300, 272, 64, 64, TextGet("SenseDepMessages"), canHideMessages && Player.ImmersionSettings.SenseDepMessages, !canHideMessages || disableButtons);
 		MainCanvas.textAlign = "center";
-		DrawText(TextGet("ImmersionLocked"), 1200, 500, "Red", "Gray");
+
+		DrawBackNextButton(500, 272, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
+			() => disableButtons ? "" : TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
+			() => disableButtons ? "" : TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
+	}
+	else if (PreferencePageCurrent === 2) {
+		// New settings here
 	}
 
+	MainCanvas.textAlign = "center";
 }
 
 /**
@@ -883,43 +886,40 @@ function PreferenceSubscreenImmersionClick() {
 
 	// If the user clicks on "Exit"
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
+	// Change page
+	//PreferencePageChangeClick(1595, 75, 2); // Uncomment when adding a 2nd page
 
 	// Cannot change any value under the Extreme difficulty mode
-	if (Player.GetDifficulty() <= 2) {
+	if (Player.GetDifficulty() <= 2 && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained()))) {
+		if (PreferencePageCurrent === 1) {
+			// If we must change sens dep settings
+			if (MouseIn(500, 272, 250, 64)) {
+				if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
+				else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
+				Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
+				if (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") ChatRoomSetTarget(null);
+			}
 
-		// If we must change sens dep settings
-		if (MouseIn(500, 192, 250, 64) && (!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained()))) {
-			if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
-			else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
-			Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
-			if (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") ChatRoomSetTarget(null);
+			// Preference check boxes
+			if (MouseIn(500, 172, 64, 64)) Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
+			if (MouseIn(500, 352, 64, 64)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
+			if (MouseIn(500, 432, 64, 64)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
+			if (MouseIn(500, 512, 64, 64)) {
+				Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
+				if (Player.ImmersionSettings.BlockGaggedOOC) ChatRoomSetTarget(null);
+			}
+			if (MouseIn(500, 592, 64, 64)) Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing;
+			if (MouseIn(500, 672, 64, 64)) Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
+			if (MouseIn(1300, 672, 64, 64) && Player.ImmersionSettings.ReturnToChatRoom)
+				Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
+			if (MouseIn(500, 752, 64, 64)) Player.ImmersionSettings.StimulationEvents = !Player.ImmersionSettings.StimulationEvents;
+			if (MouseIn(500, 832, 64, 64)) Player.ImmersionSettings.ChatRoomMuffle = !Player.ImmersionSettings.ChatRoomMuffle;
+			if (MouseIn(1300, 272, 64, 64) && Player.GameplaySettings.SensDepChatLog !== "SensDepLight")
+				Player.ImmersionSettings.SenseDepMessages = !Player.ImmersionSettings.SenseDepMessages;
 		}
-
-		// Preference check boxes
-		if (MouseIn(500, 272, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting  || (!Player.IsRestrained())))
-			Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
-		if (MouseIn(500, 352, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
-		if (MouseIn(500, 432, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained()))) {
-			Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
-			if (Player.ImmersionSettings.BlockGaggedOOC) ChatRoomSetTarget(null);
+		else if (PreferencePageCurrent === 2) {
+			// New settings here
 		}
-		if (MouseIn(500, 512, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing;
-		if (MouseIn(500, 592, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
-		if (Player.ImmersionSettings.ReturnToChatRoom && MouseIn(1300, 592, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
-		if (MouseIn(1300, 192, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.ImmersionSettings.SenseDepMessages = !Player.ImmersionSettings.SenseDepMessages;
-		if (MouseIn(500, 672, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.ImmersionSettings.StimulationEvents = !Player.ImmersionSettings.StimulationEvents;
-		if (MouseIn(500, 752, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.ImmersionSettings.ChatRoomMuffle = !Player.ImmersionSettings.ChatRoomMuffle;
-
-		if (MouseIn(500, 832, 64, 64) && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained())))
-			Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
-
 	}
 
 }
@@ -1097,15 +1097,15 @@ function PreferenceSubscreenChatRun() {
 function PreferenceSubscreenOnlineRun() {
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("OnlinePreferences"), 500, 125, "Black", "Gray");
-	DrawCheckbox(500, 225, 64, 64, TextGet("AutoBanBlackList"), Player.OnlineSettings.AutoBanBlackList);
-	DrawCheckbox(500, 305, 64, 64, TextGet("AutoBanGhostList"), Player.OnlineSettings.AutoBanGhostList);
-	DrawCheckbox(500, 385, 64, 64, TextGet("SearchShowsFullRooms"), Player.OnlineSettings.SearchShowsFullRooms);
-	DrawCheckbox(500, 465, 64, 64, TextGet("SearchFriendsFirst"), Player.OnlineSettings.SearchFriendsFirst);
-	DrawCheckbox(500, 545, 64, 64, TextGet("DisableAnimations"), Player.OnlineSettings.DisableAnimations);
-	DrawCheckbox(500, 625, 64, 64, TextGet("EnableAfkTimer"), Player.OnlineSettings.EnableAfkTimer);
-	DrawCheckbox(500, 705, 64, 64, TextGet("EnableWardrobeIcon"), Player.OnlineSettings.EnableWardrobeIcon);
-	DrawCheckbox(500, 785, 64, 64, TextGet("AllowFullWardrobeAccess"), Player.OnlineSharedSettings.AllowFullWardrobeAccess);
-	DrawCheckbox(500, 865, 64, 64, TextGet("BlockBodyCosplay"), Player.OnlineSharedSettings.BlockBodyCosplay);
+	DrawCheckbox(500, 172, 64, 64, TextGet("AutoBanBlackList"), Player.OnlineSettings.AutoBanBlackList);
+	DrawCheckbox(500, 255, 64, 64, TextGet("AutoBanGhostList"), Player.OnlineSettings.AutoBanGhostList);
+	DrawCheckbox(500, 335, 64, 64, TextGet("SearchShowsFullRooms"), Player.OnlineSettings.SearchShowsFullRooms);
+	DrawCheckbox(500, 415, 64, 64, TextGet("SearchFriendsFirst"), Player.OnlineSettings.SearchFriendsFirst);
+	DrawCheckbox(500, 495, 64, 64, TextGet("DisableAnimations"), Player.OnlineSettings.DisableAnimations);
+	DrawCheckbox(500, 575, 64, 64, TextGet("EnableAfkTimer"), Player.OnlineSettings.EnableAfkTimer);
+	DrawCheckbox(500, 655, 64, 64, TextGet("EnableWardrobeIcon"), Player.OnlineSettings.EnableWardrobeIcon);
+	DrawCheckbox(500, 735, 64, 64, TextGet("AllowFullWardrobeAccess"), Player.OnlineSharedSettings.AllowFullWardrobeAccess);
+	DrawCheckbox(500, 815, 64, 64, TextGet("BlockBodyCosplay"), Player.OnlineSharedSettings.BlockBodyCosplay);
 
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawCharacter(Player, 50, 50, 0.9);
@@ -1210,7 +1210,7 @@ function PreferenceSubscreenVisibilityRun() {
 		DrawText(TextGet("VisibilityGroup"), 500, 225, "Black", "Gray");
 		DrawText(TextGet("VisibilityAsset"), 500, 304, "Black", "Gray");
 		DrawCheckbox(500, 352, 64, 64, TextGet("VisibilityCheckboxHide"), PreferenceVisibilityHideChecked);
-		if (PreferenceVisibilityCanBlock) DrawCheckbox(500, 432, 64, 64, TextGet("VisibilityCheckboxBlock"), PreferenceVisibilityBlockChecked);
+		DrawCheckbox(500, 432, 64, 64, TextGet("VisibilityCheckboxBlock"), PreferenceVisibilityBlockChecked, !PreferenceVisibilityCanBlock);
 		if (PreferenceVisibilityHideChecked) {
 			DrawImageResize("Screens/Character/Player/HiddenItem.png", 500, 516, 86, 86);
 			DrawText(TextGet("VisibilityWarning"), 600, 548, "Black", "Gray");
@@ -1424,18 +1424,18 @@ function PreferenceSubscreenOnlineClick() {
 	const OnlineSettings = Player.OnlineSettings;
 	const OnlineSharedSettings = Player.OnlineSharedSettings;
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
-	else if (MouseIn(500, 225, 64, 64)) OnlineSettings.AutoBanBlackList = !OnlineSettings.AutoBanBlackList;
-	else if (MouseIn(500, 305, 64, 64)) OnlineSettings.AutoBanGhostList = !OnlineSettings.AutoBanGhostList;
-	else if (MouseIn(500, 385, 64, 64)) OnlineSettings.SearchShowsFullRooms = !OnlineSettings.SearchShowsFullRooms;
-	else if (MouseIn(500, 465, 64, 64)) OnlineSettings.SearchFriendsFirst = !OnlineSettings.SearchFriendsFirst;
-	else if (MouseIn(500, 545, 64, 64)) OnlineSettings.DisableAnimations = !OnlineSettings.DisableAnimations;
-	else if (MouseIn(500, 625, 64, 64)) {
+	else if (MouseIn(500, 175, 64, 64)) OnlineSettings.AutoBanBlackList = !OnlineSettings.AutoBanBlackList;
+	else if (MouseIn(500, 255, 64, 64)) OnlineSettings.AutoBanGhostList = !OnlineSettings.AutoBanGhostList;
+	else if (MouseIn(500, 335, 64, 64)) OnlineSettings.SearchShowsFullRooms = !OnlineSettings.SearchShowsFullRooms;
+	else if (MouseIn(500, 415, 64, 64)) OnlineSettings.SearchFriendsFirst = !OnlineSettings.SearchFriendsFirst;
+	else if (MouseIn(500, 495, 64, 64)) OnlineSettings.DisableAnimations = !OnlineSettings.DisableAnimations;
+	else if (MouseIn(500, 575, 64, 64)) {
 		OnlineSettings.EnableAfkTimer = !OnlineSettings.EnableAfkTimer;
 		AfkTimerSetEnabled(OnlineSettings.EnableAfkTimer);
 	}
-	else if (MouseIn(500, 705, 64, 64)) OnlineSettings.EnableWardrobeIcon = !OnlineSettings.EnableWardrobeIcon;
-	else if (MouseIn(500, 785, 64, 64)) OnlineSharedSettings.AllowFullWardrobeAccess = !OnlineSharedSettings.AllowFullWardrobeAccess;
-	else if (MouseIn(500, 865, 64, 64)) OnlineSharedSettings.BlockBodyCosplay = !OnlineSharedSettings.BlockBodyCosplay;
+	else if (MouseIn(500, 655, 64, 64)) OnlineSettings.EnableWardrobeIcon = !OnlineSettings.EnableWardrobeIcon;
+	else if (MouseIn(500, 735, 64, 64)) OnlineSharedSettings.AllowFullWardrobeAccess = !OnlineSharedSettings.AllowFullWardrobeAccess;
+	else if (MouseIn(500, 815, 64, 64)) OnlineSharedSettings.BlockBodyCosplay = !OnlineSharedSettings.BlockBodyCosplay;
 }
 
 /**
@@ -1816,6 +1816,7 @@ function PreferenceSubscreenNotificationsRun() {
 	// Character and exit button
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	//PreferencePageChangeDraw(1705, 185, 2); // Uncomment when adding a 2nd page
 
 	// Left-aligned text controls
 	MainCanvas.textAlign = "left";
@@ -1823,44 +1824,40 @@ function PreferenceSubscreenNotificationsRun() {
 
 	DrawText(TextGet("NotificationsPreferences"), 500, 125, "Black", "Gray");
 	DrawText(TextGet("NotificationsExplanation"), 500, 190, "Black", "Gray");
-	DrawEmptyRect(1190, 92, 510, 125, "Black", 2);
-	DrawImage("Icons/Audio1.png", 1202, 97);
-	DrawText(TextGet("NotificationsAudioExplanation1"), 1275, 125, "Black", "Gray");
-	DrawText(TextGet("NotificationsAudioExplanation2"), 1200, 190, "Black", "Gray");
-	PreferenceNotificationsDrawSetting(500, 235, TextGet("NotificationsBeeps"), NS.Beeps);
+	DrawEmptyRect(1140, 92, 510, 125, "Black", 2);
+	DrawImage("Icons/Audio1.png", 1152, 97);
+	DrawText(TextGet("NotificationsAudioExplanation1"), 1205, 125, "Black", "Gray");
+	DrawText(TextGet("NotificationsAudioExplanation2"), 1150, 190, "Black", "Gray");
 
-	PreferenceNotificationsDrawSetting(500, 315, TextGet("NotificationsChatMessage"), NS.ChatMessage);
-	DrawText(TextGet("NotificationsOnly"), 550, 427, "Black", "Gray");
-	if (NS.ChatMessage.AlertType > 0) {
-		DrawCheckbox(700, 395, 64, 64, TextGet("NotificationsChatMessageNormal"), NS.ChatMessage.Normal);
-		DrawCheckbox(1150, 395, 64, 64, TextGet("NotificationsChatMessageWhisper"), NS.ChatMessage.Whisper);
-		DrawCheckbox(1500, 395, 64, 64, TextGet("NotificationsChatMessageActivity"), NS.ChatMessage.Activity);
-	} else {
-		DrawCheckboxDisabled(700, 395, 64, 64, TextGet("NotificationsChatMessageNormal"));
-		DrawCheckboxDisabled(1150, 395, 64, 64, TextGet("NotificationsChatMessageWhisper"));
-		DrawCheckboxDisabled(1500, 395, 64, 64, TextGet("NotificationsChatMessageActivity"));
+
+	if (PreferencePageCurrent === 1) {
+		PreferenceNotificationsDrawSetting(500, 235, TextGet("NotificationsBeeps"), NS.Beeps);
+
+		PreferenceNotificationsDrawSetting(500, 315, TextGet("NotificationsChatMessage"), NS.ChatMessage);
+		DrawText(TextGet("NotificationsOnly"), 550, 427, "Black", "Gray");
+		const chatMessageDisabled = NS.ChatMessage.AlertType === NotificationAlertType.NONE;
+		DrawCheckbox(700, 395, 64, 64, TextGet("NotificationsChatMessageNormal"), NS.ChatMessage.Normal && !chatMessageDisabled, chatMessageDisabled);
+		DrawCheckbox(1150, 395, 64, 64, TextGet("NotificationsChatMessageWhisper"), NS.ChatMessage.Whisper && !chatMessageDisabled, chatMessageDisabled);
+		DrawCheckbox(1500, 395, 64, 64, TextGet("NotificationsChatMessageActivity"), NS.ChatMessage.Activity && !chatMessageDisabled, chatMessageDisabled);
+
+		PreferenceNotificationsDrawSetting(500, 475, TextGet("NotificationsChatJoin"), NS.ChatJoin);
+		DrawText(TextGet("NotificationsOnly"), 550, 587, "Black", "Gray");
+		const chatJoinDisabled = NS.ChatJoin.AlertType === NotificationAlertType.NONE;
+		DrawCheckbox(700, 555, 64, 64, TextGet("NotificationsChatJoinOwner"), NS.ChatJoin.Owner && !chatJoinDisabled, chatJoinDisabled);
+		DrawCheckbox(980, 555, 64, 64, TextGet("NotificationsChatJoinLovers"), NS.ChatJoin.Lovers && !chatJoinDisabled, chatJoinDisabled);
+		DrawCheckbox(1260, 555, 64, 64, TextGet("NotificationsChatJoinFriendlist"), NS.ChatJoin.Friendlist && !chatJoinDisabled, chatJoinDisabled);
+		DrawCheckbox(1540, 555, 64, 64, TextGet("NotificationsChatJoinSubs"), NS.ChatJoin.Subs && !chatJoinDisabled, chatJoinDisabled);
+
+		PreferenceNotificationsDrawSetting(500, 635, TextGet("NotificationsDisconnect"), NS.Disconnect);
+		PreferenceNotificationsDrawSetting(500, 715, TextGet("NotificationsLarp"), NS.Larp);
 	}
-
-	PreferenceNotificationsDrawSetting(500, 475, TextGet("NotificationsChatJoin"), NS.ChatJoin);
-	DrawText(TextGet("NotificationsOnly"), 550, 587, "Black", "Gray");
-	if (NS.ChatJoin.AlertType > 0) {
-		DrawCheckbox(700, 555, 64, 64, TextGet("NotificationsChatJoinOwner"), NS.ChatJoin.Owner);
-		DrawCheckbox(980, 555, 64, 64, TextGet("NotificationsChatJoinLovers"), NS.ChatJoin.Lovers);
-		DrawCheckbox(1260, 555, 64, 64, TextGet("NotificationsChatJoinFriendlist"), NS.ChatJoin.Friendlist);
-		DrawCheckbox(1540, 555, 64, 64, TextGet("NotificationsChatJoinSubs"), NS.ChatJoin.Subs);
-	} else {
-		DrawCheckboxDisabled(700, 555, 64, 64, TextGet("NotificationsChatJoinOwner"));
-		DrawCheckboxDisabled(980, 555, 64, 64, TextGet("NotificationsChatJoinLovers"));
-		DrawCheckboxDisabled(1260, 555, 64, 64, TextGet("NotificationsChatJoinFriendlist"));
-		DrawCheckboxDisabled(1540, 555, 64, 64, TextGet("NotificationsChatJoinSubs"));
+	else if (PreferencePageCurrent === 2) {
+		// New settings here
 	}
-
-	PreferenceNotificationsDrawSetting(500, 635, TextGet("NotificationsDisconnect"), NS.Disconnect);
-	PreferenceNotificationsDrawSetting(500, 715, TextGet("NotificationsLarp"), NS.Larp);
-	PreferenceNotificationsDrawSetting(500, 820, "", NS.Test);
-	MainCanvas.textAlign = "center";
 
 	// Test buttons
+	PreferenceNotificationsDrawSetting(500, 820, "", NS.Test);
+	MainCanvas.textAlign = "center";
 	DrawEmptyRect(500, 800, 1400, 0, "Black", 1);
 	DrawButton(800, 820, 450, 64, TextGet("NotificationsTestRaise"), "White");
 	DrawButton(1286, 820, 450, 64, TextGet("NotificationsTestReset"), "White");
@@ -1882,7 +1879,7 @@ function PreferenceNotificationsDrawSetting(Left, Top, Text, Setting) {
 	if (Enabled) {
 		DrawButton(Left + 200, Top, 64, 64, "", "White", "Icons/Audio" + Setting.Audio.toString() + ".png");
 	} else {
-		DrawCheckboxDisabled(Left + 200, Top, 64, 64, "");
+		DrawCheckbox(Left + 200, Top, 64, 64, "", false, true);
 	}
 	DrawText(Text, Left + 300, Top + 33, "Black", "Gray");
 }
@@ -1895,31 +1892,38 @@ function PreferenceSubscreenNotificationsClick() {
 
 	// If the user clicked the exit icon to return to the main screen
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenNotificationsExit();
+	// Change pages
+	//PreferencePageChangeClick(1705, 185, 2); // Uncomment when adding a 2nd page
 
 	// Checkboxes
 	const NS = Player.NotificationSettings;
-	PreferenceNotificationsClickSetting(500, 235, NS.Beeps, NotificationEventType.BEEP);
+	if (PreferencePageCurrent === 1) {
+		PreferenceNotificationsClickSetting(500, 235, NS.Beeps, NotificationEventType.BEEP);
 
-	PreferenceNotificationsClickSetting(500, 315, NS.ChatMessage, NotificationEventType.CHATMESSAGE);
-	if (NS.ChatMessage.AlertType > 0) {
-		if (MouseIn(700, 395, 64, 64)) NS.ChatMessage.Normal = !NS.ChatMessage.Normal;
-		if (MouseIn(1150, 395, 64, 64)) NS.ChatMessage.Whisper = !NS.ChatMessage.Whisper;
-		if (MouseIn(1500, 395, 64, 64)) NS.ChatMessage.Activity = !NS.ChatMessage.Activity;
+		PreferenceNotificationsClickSetting(500, 315, NS.ChatMessage, NotificationEventType.CHATMESSAGE);
+		if (NS.ChatMessage.AlertType > 0) {
+			if (MouseIn(700, 395, 64, 64)) NS.ChatMessage.Normal = !NS.ChatMessage.Normal;
+			if (MouseIn(1150, 395, 64, 64)) NS.ChatMessage.Whisper = !NS.ChatMessage.Whisper;
+			if (MouseIn(1500, 395, 64, 64)) NS.ChatMessage.Activity = !NS.ChatMessage.Activity;
+		}
+
+		PreferenceNotificationsClickSetting(500, 475, NS.ChatJoin, NotificationEventType.CHATJOIN);
+		if (NS.ChatJoin.AlertType > 0) {
+			if (MouseIn(700, 555, 64, 64)) NS.ChatJoin.Owner = !NS.ChatJoin.Owner;
+			if (MouseIn(980, 555, 64, 64)) NS.ChatJoin.Lovers = !NS.ChatJoin.Lovers;
+			if (MouseIn(1260, 555, 64, 64)) NS.ChatJoin.Friendlist = !NS.ChatJoin.Friendlist;
+			if (MouseIn(1540, 555, 64, 64)) NS.ChatJoin.Subs = !NS.ChatJoin.Subs;
+		}
+
+		PreferenceNotificationsClickSetting(500, 635, NS.Disconnect, NotificationEventType.DISCONNECT);
+		PreferenceNotificationsClickSetting(500, 715, NS.Larp, NotificationEventType.LARP);
 	}
-
-	PreferenceNotificationsClickSetting(500, 475, NS.ChatJoin, NotificationEventType.CHATJOIN);
-	if (NS.ChatJoin.AlertType > 0) {
-		if (MouseIn(700, 555, 64, 64)) NS.ChatJoin.Owner = !NS.ChatJoin.Owner;
-		if (MouseIn(980, 555, 64, 64)) NS.ChatJoin.Lovers = !NS.ChatJoin.Lovers;
-		if (MouseIn(1260, 555, 64, 64)) NS.ChatJoin.Friendlist = !NS.ChatJoin.Friendlist;
-		if (MouseIn(1540, 555, 64, 64)) NS.ChatJoin.Subs = !NS.ChatJoin.Subs;
+	else if (PreferencePageCurrent === 2) {
+		// New settings here
 	}
-
-	PreferenceNotificationsClickSetting(500, 635, NS.Disconnect, NotificationEventType.DISCONNECT);
-	PreferenceNotificationsClickSetting(500, 715, NS.Larp, NotificationEventType.LARP);
-	PreferenceNotificationsClickSetting(500, 820, NS.Test, NotificationEventType.TEST);
 
 	// Test buttons
+	PreferenceNotificationsClickSetting(500, 820, NS.Test, NotificationEventType.TEST);
 	if (MouseIn(800, 820, 450, 64)) {
 		NotificationRaise(NotificationEventType.TEST, { body: TextGet("NotificationsTestMessage"), character: Player, useCharAsIcon: true });
 	}
@@ -2020,4 +2024,33 @@ function PreferenceSubscreenSecurityExit() {
  */
 function PreferenceSubscreenVisibilityExit() {
 	PreferenceVisibilityExit(false);
+}
+
+/**
+ * Draw a button to navigate multiple pages in a preference subscreen
+ * @param {number} Left - The X co-ordinate of the button
+ * @param {number} Top - The Y co-ordinate of the button
+ * @param {number} TotalPages - The total number of pages on the subscreen
+ * @returns {void} - Nothing
+ */
+function PreferencePageChangeDraw(Left, Top, TotalPages) {
+	DrawBackNextButton(Left, Top, 200, 90, TextGet("Page") + " " + PreferencePageCurrent.toString() + "/" + TotalPages.toString(), "White", "", () => "", () => "");
+}
+
+/**
+ * Handles clicks of the button to navigate multiple pages in a preference subscreen
+ * @param {number} Left - The X co-ordinate of the button
+ * @param {number} Top - The Y co-ordinate of the button
+ * @param {number} TotalPages - The total number of pages on the subscreen
+ * @returns {void} - Nothing
+ */
+function PreferencePageChangeClick(Left, Top, TotalPages) {
+	if (MouseIn(Left, Top, 100, 90)) {
+		PreferencePageCurrent--;
+		if (PreferencePageCurrent < 1) PreferencePageCurrent = TotalPages;
+	}
+	else if (MouseIn(Left + 100, Top, 100, 90)) {
+		PreferencePageCurrent++;
+		if (PreferencePageCurrent > TotalPages) PreferencePageCurrent = 1;
+	}
 }

@@ -37,7 +37,8 @@ function PandoraPrisonLoad() {
  */
 function PandoraPrisonRun() {
 
-	// When time is up, a maid comes to escort the player out
+	// When time is up, a maid comes to escort the player out, validates that prison time cannot go over 1 hour
+	if (Player.Infiltration.Punishment.Timer > CurrentTime + 3600000) Player.Infiltration.Punishment.Timer = CurrentTime + 3600000;
 	if ((Player.Infiltration.Punishment.Timer < CurrentTime) && (CurrentCharacter == null))
 		PandoraPrisonCharacter = PandoraPrisonMaid;
 

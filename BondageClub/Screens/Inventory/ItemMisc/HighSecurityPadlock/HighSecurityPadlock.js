@@ -61,9 +61,9 @@ function InventoryItemMiscHighSecurityPadlockDraw() {
 		DrawButton(1135, 920, 230, 64, DialogFindPlayer("HighSecuritySave"), "White", "");
 
 		MainCanvas.textAlign = "left";
-		DrawCheckboxColor(1450, 700, 64, 64, DialogFindPlayer("HighSecurityAppendOwner"), HighSecurityPadlockConfigOwner, "White");
-		DrawCheckboxColor(1450, 780, 64, 64, DialogFindPlayer("HighSecurityAppendLover"), HighSecurityPadlockConfigLover, "White");
-		DrawCheckboxColor(1450, 860, 64, 64, DialogFindPlayer("HighSecurityAppendWhitelist"), HighSecurityPadlockConfigWhitelist, "White");
+		DrawCheckbox(1450, 700, 64, 64, DialogFindPlayer("HighSecurityAppendOwner"), HighSecurityPadlockConfigOwner, false, "White");
+		DrawCheckbox(1450, 780, 64, 64, DialogFindPlayer("HighSecurityAppendLover"), HighSecurityPadlockConfigLover, false, "White");
+		DrawCheckbox(1450, 860, 64, 64, DialogFindPlayer("HighSecurityAppendWhitelist"), HighSecurityPadlockConfigWhitelist, false, "White");
 		MainCanvas.textAlign = "center";
 
 

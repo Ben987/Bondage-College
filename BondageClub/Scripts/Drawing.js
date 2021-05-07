@@ -885,42 +885,13 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText,
  * @param {number} Height - Height of the component
  * @param {string} Text - Label associated with the checkbox
  * @param {boolean} IsChecked - Whether or not the checkbox is checked
+ * @param {boolean} [Disabled] - Disables the hovering options if set to true
+ * @param {string} [TextColor] - Color of the text
  * @returns {void} - Nothing
  */
-function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked) {
-	DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
-	DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
-}
-
-/**
- * Draws a checkbox component
- * @param {number} Left - Position of the component from the left of the canvas
- * @param {number} Top - Position of the component from the top of the canvas
- * @param {number} Width - Width of the component
- * @param {number} Height - Height of the component
- * @param {string} Text - Label associated with the checkbox
- * @param {boolean} IsChecked - Whether or not the checkbox is checked
- * @param {string} Color - Color of the text
- * @returns {void} - Nothing
- */
-function DrawCheckboxColor(Left, Top, Width, Height, Text, IsChecked, Color) {
-	DrawText(Text, Left + 100, Top + 33, Color, "Gray");
-	DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
-}
-
-/**
- * Draw a grey-filled rectangle to represent a disabled checkbox
- * @param {number} Left - Position of the component from the left of the canvas
- * @param {number} Top - Position of the component from the top of the canvas
- * @param {number} Width - Width of the component
- * @param {number} Height - Height of the component
- * @param {string} Text - The text to follow the checkbox
- * @returns {void} - Nothing
- */
-function DrawCheckboxDisabled(Left, Top, Width, Height, Text) {
-	DrawRect(Left, Top, Width, Height, "#ebebe4");
-	DrawEmptyRect(Left, Top, Width, Height, "Black", 2);
-	DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
+function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked, Disabled = false, TextColor = "Black") {
+	DrawText(Text, Left + 100, Top + 33, TextColor, "Gray");
+	DrawButton(Left, Top, Width, Height, "", Disabled ? "#ebebe4" : "White", IsChecked ? "Icons/Checked.png" : "", null, Disabled);
 }
 
 /**

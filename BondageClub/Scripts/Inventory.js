@@ -351,7 +351,7 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 * Gets the current item / cloth worn a specific area (AssetGroup)
 * @param {Character} C - The character on which we must check the appearance
 * @param {String} AssetGroup - The name of the asset group to scan
-* @returns {AppearanceItem} - Returns the appearance which is the item / cloth asset, color and properties
+* @returns {Item} - Returns the appearance which is the item / cloth asset, color and properties
 */
 function InventoryGet(C, AssetGroup) {
 	for (let A = 0; A < C.Appearance.length; A++)
@@ -382,7 +382,7 @@ function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty, MemberNu
 * Sets the difficulty to remove an item for a body area
 * @param {Character} C - The character that is wearing the item
 * @param {String} AssetGroup - The name of the asset group
-* @param {Int} Difficulty - The new difficulty level to escape from the item
+* @param {number} Difficulty - The new difficulty level to escape from the item
 */
 function InventorySetDifficulty(C, AssetGroup, Difficulty) {
 	if ((Difficulty >= 0) && (Difficulty <= 100))
@@ -408,7 +408,7 @@ function InventoryLocked(C, AssetGroup, CheckProperties) {
 * Makes the character wear a random item from a body area
 * @param {Character} C - The character that must wear the item
 * @param {String} GroupName - The name of the asset group (body area)
-* @param {Int} Difficulty - The difficulty level to escape from the item
+* @param {number} Difficulty - The difficulty level to escape from the item
 * @param {Boolean} Refresh - Do not call CharacterRefresh if false
 * @param {Boolean} MustOwn - If TRUE, only assets that the character owns can be worn. Otherwise any asset can be used
 * @returns {void} - Nothing
@@ -488,15 +488,14 @@ function InventoryGetRandom(C, GroupName, AllowedAssets) {
 	var PreferredList = List.filter(L => L.Rank == MinRank);
 	if (PreferredList.length == 0) return null;
 
-	var RandomAsset = PreferredList[Math.floor(Math.random() * PreferredList.length)].Asset;
-	return RandomAsset;
+	return PreferredList[Math.floor(Math.random() * PreferredList.length)].Asset;
 }
 
 /**
 * Removes a specific item from a character body area
 * @param {Character} C - The character on which we must remove the item
 * @param {String} AssetGroup - The name of the asset group (body area)
-* @param {false} [Refresh] - do not call CharacterRefresh if false
+* @param {boolean} [Refresh] - Whether or not to trigger a character refresh. Defaults to false
 */
 function InventoryRemove(C, AssetGroup, Refresh) {
 
@@ -595,7 +594,7 @@ function InventoryGroupIsBlocked(C, GroupName, Activity) {
 
 /**
 * Returns TRUE if an item has a specific effect
-* @param {AppearanceItem} Item - The item from appearance that must be validated
+* @param {Item} Item - The item from appearance that must be validated
 * @param {string} [Effect] - The name of the effect to validate, can be undefined to check for any effect
 * @param {boolean} [CheckProperties=true] - If properties should be checked (defaults to `true`)
 * @returns {boolean} `true` if the effect is on the item
@@ -617,12 +616,12 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties = true) {
 
 /**
 * Returns TRUE if an item lock is pickable
-* @param {AppearanceItem} Item - The item from appearance that must be validated
+* @param {Item} Item - The item from appearance that must be validated
 * @returns {Boolean} - TRUE if PickDifficulty is on the item
 */
 function InventoryItemIsPickable(Item) {
 	if (!Item) return null;
-	var lock = InventoryGetLock(Item);
+	const lock = InventoryGetLock(Item);
 	if (lock && lock.Asset && lock.Asset.PickDifficulty && lock.Asset.PickDifficulty > 0) return true;
 	else return false;
 }
@@ -647,7 +646,7 @@ function InventoryGetItemProperty(Item, PropertyName, CheckGroup) {
 /**
 * Check if we must trigger an expression for the character after an item is used/applied
 * @param {Character} C - The character that we must validate
-* @param {AppearanceItem} Item - The item from appearance that we must validate
+* @param {Item} Item - The item from appearance that we must validate
 */
 function InventoryExpressionTrigger(C, Item) {
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger(C) != null))
@@ -660,8 +659,8 @@ function InventoryExpressionTrigger(C, Item) {
 
 /**
 * Returns the padlock item that locks another item
-* @param {AppearanceItem} Item - The item from appearance that must be scanned
-* @returns {Asset} - The asset of the padlock item or NULL if none
+* @param {Item} Item - The item from appearance that must be scanned
+* @returns {Item} - A padlock item or NULL if none
 */
 function InventoryGetLock(Item) {
 	if ((Item == null) || (Item.Property == null) || (Item.Property.LockedBy == null)) return null;
@@ -673,7 +672,7 @@ function InventoryGetLock(Item) {
 
 /**
 * Returns TRUE if the item has an OwnerOnly flag, such as the owner padlock
-* @param {AppearanceItem} Item - The item from appearance that must be scanned
+* @param {Item} Item - The item from appearance that must be scanned
 * @returns {Boolean} - TRUE if owner only
 */
 function InventoryOwnerOnlyItem(Item) {
@@ -688,7 +687,7 @@ function InventoryOwnerOnlyItem(Item) {
 
 /**
 * Returns TRUE if the item has a LoverOnly flag, such as the lover padlock
-* @param {AppearanceItem} Item - The item from appearance that must be scanned
+* @param {Item} Item - The item from appearance that must be scanned
 * @returns {Boolean} - TRUE if lover only
 */
 function InventoryLoverOnlyItem(Item) {
@@ -773,7 +772,7 @@ function InventoryHasLockableItems(C) {
 /**
  * Applies a lock to an appearance item of a character
  * @param {Character} C - The character on which the lock must be applied
- * @param {AppearanceItem} Item - The item from appearance to lock
+ * @param {Item} Item - The item from appearance to lock
  * @param {(Asset|String)} Lock - The asset of the lock or the name of the lock asset
  * @param {number} MemberNumber - The member number to put on the lock
  * @param {boolean} [Update] - Whether or not to update the character
@@ -803,7 +802,7 @@ function InventoryLock(C, Item, Lock, MemberNumber, Update = true) {
 /**
 * Unlocks an item and removes all related properties
 * @param {Character} C - The character on which the item must be unlocked
-* @param {AppearanceItem} Item - The item from appearance to unlock
+* @param {Item} Item - The item from appearance to unlock
 */
 function InventoryUnlock(C, Item) {
 	if (typeof Item === 'string') Item = InventoryGet(C, Item);
@@ -816,7 +815,7 @@ function InventoryUnlock(C, Item) {
 /**
 * Applies a random lock on an item
 * @param {Character} C - The character on which the item must be locked
-* @param {AppearanceItem} Item - The item from appearance to lock
+* @param {Item} Item - The item from appearance to lock
 * @param {Boolean} FromOwner - Set to TRUE if the source is the owner, to apply owner locks
 */
 function InventoryLockRandom(C, Item, FromOwner) {
