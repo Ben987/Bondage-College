@@ -814,21 +814,19 @@ function KinkyDungeonMove(moveDirection, delta) {
 						}
 						
 						// Messages to inform player they are slowed
-						if (KinkyDungeonSlowLevel > 0)
+						if (KinkyDungeonSlowLevel > 0) {
 							if (KinkyDungeonSlowLevel == 1) KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonSlowed"), "yellow", 2);
 							else if (KinkyDungeonSlowLevel == 2) KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonHopping"), "orange", 2);
 							else if (KinkyDungeonSlowLevel == 3) KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonInching"), "red", 2);
 							else if (KinkyDungeonSlowLevel < 10) KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonCrawling"), "red", 2);
 							else KinkyDungeonSendTextMessage(0, TextGet("KinkyDungeonCantMove"), "red", 2);
 
-						if (KinkyDungeonSlowLevel > 0) {
 							if ((moveDirection.x != 0 || moveDirection.y != 0)) {
 								KinkyDungeonStatStamina += (KinkyDungeonStatStaminaRegenPerSlowLevel * KinkyDungeonSlowLevel) * delta;
 								KinkyDungeonStatWillpowerExhaustion = Math.max(1, KinkyDungeonStatWillpowerExhaustion);
 							} else if (KinkyDungeonStatStamina < KinkyDungeonStatStaminaMax) {
 								KinkyDungeonMovePoints = 0;
-								if (KinkyDungeonStatWillpowerExhaustion > 1) KinkyDungeonSendActionMessage(3, TextGet("WaitSpellExhaustion"), "yellow", 2);
-								else KinkyDungeonSendActionMessage(1, TextGet("Wait"), "lightgreen", 2);
+								KinkyDungeonWaitMessage();
 							}
 						}
 						
@@ -847,6 +845,11 @@ function KinkyDungeonMove(moveDirection, delta) {
 			if (KinkyDungeonGetVisionRadius() <= 1) KinkyDungeonAdvanceTime(1);
 		}
 	}
+}
+
+function KinkyDungeonWaitMessage() {
+	if (KinkyDungeonStatWillpowerExhaustion > 1) KinkyDungeonSendActionMessage(3, TextGet("WaitSpellExhaustion"), "orange", 2);
+	else KinkyDungeonSendActionMessage(1, TextGet("Wait"), "yellow", 2);
 }
 
 function KinkyDungeonMoveTo(moveX, moveY) {

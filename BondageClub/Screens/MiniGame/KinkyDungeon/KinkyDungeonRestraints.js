@@ -130,9 +130,6 @@ function KinkyDungeonRemoveKeys(lock) {
 	if (lock.includes("Blue")) KinkyDungeonBlueKeys -= 1;
 }
 
-function KinkyDungeonWaitMessage() {
-	KinkyDungeonSendActionMessage(1, TextGet("Wait"), "#AAAAAA", 2);
-}
 
 function KinkyDungeonGetPickBaseChance() {
 	return 0.2 / (1.0 + 0.005 * MiniGameKinkyDungeonLevel);
