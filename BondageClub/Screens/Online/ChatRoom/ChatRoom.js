@@ -1815,19 +1815,21 @@ function ChatRoomMessage(data) {
 					msg += ';">';
 
 					// Garble names
+					let senderName = "";
 					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber && data.Type != "Whisper") {
 						if ((Player.GetDeafLevel() >= 4))
-							msg += DialogFindPlayer("Someone");
+							senderName = DialogFindPlayer("Someone");
 						else
-							msg += SpeechGarble(SenderCharacter, SenderCharacter.Name, true);
+							senderName = SpeechGarble(SenderCharacter, SenderCharacter.Name, true);
 					} else {
-						msg += SenderCharacter.Name;
+						senderName = SenderCharacter.Name;
 					}
+					msg += senderName;
 					msg += ':</span> ';
 
 					const chatMsg = ChatRoomHTMLEntities(data.Type === "Whisper" ? data.Content : SpeechGarble(SenderCharacter, data.Content));
 					msg += chatMsg;
-					ChatRoomChatLog.push({ Chat: chatMsg, Time: CommonTime() });
+					ChatRoomChatLog.push({ Chat: data.Content, Garbled: chatMsg, SenderName: senderName, Time: CommonTime() });
 
 					if (ChatRoomChatLog.length > 6) { // Keep it short
 						ChatRoomChatLog.splice(0, 1);

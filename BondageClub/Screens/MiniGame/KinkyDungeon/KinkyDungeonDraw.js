@@ -46,8 +46,32 @@ function KinkyDungeonGetSprite(code) {
 	return sprite;
 }
 
+const KinkyDungeonLastChatTimeout = 10000;
+
 // Draw function for the game portion
 function KinkyDungeonDrawGame() {
+	
+	if (ChatRoomChatLog.length > 0) {
+		let LastChatObject = ChatRoomChatLog[ChatRoomChatLog.length - 1];
+		let LastChat = LastChatObject.Garbled;
+		let LastChatTime = LastChatObject.Time;
+		let LastChatSender = (LastChatObject.SenderName) ? LastChatObject.SenderName + ": " : ">";
+		let LastChatMaxLength = 60;
+		
+		if (LastChat)  {
+			LastChat = (LastChatSender + LastChat).substr(0, LastChatMaxLength);
+			if (LastChat.length == LastChatMaxLength) LastChat = LastChat + "...";
+			if (LastChatTime && CommonTime() < LastChatTime + KinkyDungeonLastChatTimeout) 
+				if (!KinkyDungeonSendTextMessage(0, LastChat, "white", 1) && LastChat != KinkyDungeonActionMessage) 
+					if (!KinkyDungeonSendActionMessage(0, LastChat, "white", 1) && LastChat != KinkyDungeonTextMessage)
+						KinkyDungeonSendTextMessage(1, LastChat, "white", 1)
+		}
+		
+		
+	}
+	
+	
+	
 
 	DrawText(TextGet("CurrentLevel") + MiniGameKinkyDungeonLevel, 750, 42, "white", "silver");
 	DrawText(TextGet("DungeonName" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]), 1500, 42, "white", "silver");

@@ -46,6 +46,8 @@ Other
 - New brickwork visuals
 - The map has more doors, but some of them will be open at the start of the game. You can close them to prevent zombies from chasing you.
 - Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
+- You can now hear the last chat message while ingame!
+- The game is persistent so if you hear chat you can exit out and communicate
 
 Future content planned:
 - Exit stair puzzles (like for example a button or special key somewhere in the level, maybe with a high likelihood of traps)
