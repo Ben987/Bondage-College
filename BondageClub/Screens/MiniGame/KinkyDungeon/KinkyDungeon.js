@@ -329,7 +329,7 @@ function KinkyDungeonUnpackData(KinkyData) {
 function KinkyDungeonUpdateFromData() {
 	if (!KinkyDungeonGameData.map || !KinkyDungeonGameData.inventory ||  !KinkyDungeonGameData.bullets ||  !KinkyDungeonGameData.items ||  !KinkyDungeonGameData.enemies) {
 		KinkyDungeonGameData = null; // We need the full data before rendering anything!
-	    return false;
+		return false;
 	}
 	if (KinkyDungeonGameData.enemies) {
 		KinkyDungeonEntities = [];
