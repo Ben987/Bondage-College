@@ -1704,9 +1704,7 @@ function ChatRoomMessage(data) {
 				else if (msg == "RequestFullKinkyDungeonData") {
 					KinkyDungeonStreamingPlayers.push(SenderCharacter.MemberNumber);
 					if (CurrentScreen == "KinkyDungeon")
-						ServerSend("ChatRoomChat", { Content: "KDdata" + KinkyDungeonPackData(true, true, true, true), Type: "Hidden", Target: SenderCharacter.MemberNumber });
-				} if (msg.startsWith("KDdata")) {
-					KinkyDungeonUnpackData(msg.substring(6)) // Unpack the rest of the data
+						KinkyDungeonSendData(KinkyDungeonPackData(true, true, true, true), SenderCharacter.MemberNumber)
 				}
 
 				// If the message is still hidden after any modifications, stop processing
@@ -2954,6 +2952,7 @@ function ChatRoomPayQuest(data) {
  */
 function ChatRoomGameResponse(data) {
 	if (ChatRoomGame == "LARP") GameLARPProcess(data);
+	if (CurrentScreen == "KinkyDungeon") KinkyDungeonHandleData(data);
 }
 
 /**

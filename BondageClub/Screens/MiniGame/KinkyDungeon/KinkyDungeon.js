@@ -485,3 +485,12 @@ function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory, Includ
 	//console.log(stringToSend);
 	return stringToSend;
 }
+
+function KinkyDungeonSendData(data, MemberNumber) {
+	ServerSend("ChatRoomGame", { data: data, Target: MemberNumber });
+}
+
+function KinkyDungeonHandleData(data) {
+	if (data.Data && data.Data.data)
+	    KinkyDungeonUnpackData(data.Data.data); // Unpack the rest of the data
+}

@@ -867,13 +867,14 @@ function KinkyDungeonMultiplayerUpdate(Delay) {
 		}
 		
 		if (MN.length > 0) {
-			let data = "KDdata" + KinkyDungeonPackData(KinkyDungeonGrid_Last != KinkyDungeonGrid, true, KinkyDungeonMultiplayerInventoryFlag, CommonTime() > KinkyDungeonNextDataSendStatsTime + KinkyDungeonNextDataSendStatsTimeDelay);
+			let data = KinkyDungeonPackData(KinkyDungeonGrid_Last != KinkyDungeonGrid, true, KinkyDungeonMultiplayerInventoryFlag, CommonTime() > KinkyDungeonNextDataSendStatsTime + KinkyDungeonNextDataSendStatsTimeDelay);
 			
 			//KinkyDungeonStreamingPlayers = [];
 			
 			for (let C = 0; C < MN.length; C++) {
 				//KinkyDungeonStreamingPlayers.push(MN[C].MemberNumber); // Clean out the KinkyDungeonStreamingPlayers array
-				ServerSend("ChatRoomChat", { Content: data, Type: "Hidden", Target: MN[C].MemberNumber });
+				//ServerSend("ChatRoomChat", { Content: data, Type: "Hidden", Target: MN[C].MemberNumber });
+				KinkyDungeonSendData(data, MN[C].MemberNumber);
 			}
 		}
 		
