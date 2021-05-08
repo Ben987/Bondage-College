@@ -341,6 +341,8 @@ function KinkyDungeonUpdateFromData() {
 		KinkyDungeonInventory = [];
 		let inventory = JSON.parse(KinkyDungeonGameData.inventory);
 		
+		CharacterReleaseTotal(KinkyDungeonPlayer);
+		
 		for (let N = 0; N < inventory.length; N++) {
 			let item = inventory[N].split('/');
 			let i = 1;
