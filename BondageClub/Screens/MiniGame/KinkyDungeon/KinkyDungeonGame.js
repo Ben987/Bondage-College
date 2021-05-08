@@ -74,7 +74,7 @@ var KinkyDungeonHardLockChanceScalingMax = 0.4;
 var KinkyDungeonNextDataSendTime = 0;
 var KinkyDungeonNextDataSendTimeDelay = 500; // Send on moves every 0.5 second
 var KinkyDungeonNextDataSendTimeDelayPing = 5000; // temporary ping
-var KinkyDungeonNextDataSendStatsTimeDelay = 5000; // Send stats every 5s to save bandwidth
+var KinkyDungeonNextDataSendStatsTimeDelay = 3000; // Send stats every 3s to save bandwidth
 var KinkyDungeonNextDataSendStatsTime = 0;
 
 var KinkyDungeonNextDataLastTimeReceived = 0;

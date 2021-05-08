@@ -297,6 +297,10 @@ function KinkyDungeonDrawGame() {
 			}
 		} else {
 			DrawText(TextGet("KinkyDungeonLoading"), 1100, 500, "white", "silver");
+			if (CommonTime() > KinkyDungeonGameDataNullTimerTime + KinkyDungeonGameDataNullTimer) {
+				ServerSend("ChatRoomChat", { Content: "RequestFullKinkyDungeonData", Type: "Hidden", Target: KinkyDungeonPlayerCharacter.MemberNumber });
+				KinkyDungeonGameDataNullTimerTime = CommonTime();
+			}
 		}
 	} else if (KinkyDungeonDrawState == "Magic") {
 		DrawButton(925, 925, 250, 60, TextGet("KinkyDungeonGame"), "White", "", "");

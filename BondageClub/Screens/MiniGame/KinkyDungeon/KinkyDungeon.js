@@ -19,6 +19,8 @@ var KinkyDungeonKeyWait = [120]; // x
 var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/";
 var KinkyDungeonPlayerCharacter = null; // Other player object
 var KinkyDungeonGameData = null; // Data sent by other player
+var KinkyDungeonGameDataNullTimer = 4000; // If data is null, we query this often
+var KinkyDungeonGameDataNullTimerTime = 0;
 var KinkyDungeonStreamingPlayers = []; // List of players to stream to
 
 
@@ -296,28 +298,28 @@ function KinkyDungeonKeyDown() {
 function KinkyDungeonUnpackData(KinkyData) {
 	if (CurrentScreen != "KinkyDungeon" || KinkyDungeonState != "Game" || !KinkyDungeonPlayerCharacter) return false;
 	if (KinkyDungeonIsPlayer()) return false; // Prevent griefing
-	let data = JSON.parse(KinkyData.replace(/\*/g, "\""));
+	let data = JSON.parse(atob(KinkyData))//);
 	
 	if (!KinkyDungeonGameData) KinkyDungeonGameData = {};
 
 	if (!data) return false;
 	
-	if (data.enemies) {
+	if (data.enemies != null) {
 		KinkyDungeonGameData.enemies = data.enemies;
 	}
-	if (data.items) {
+	if (data.items != null) {
 		KinkyDungeonGameData.items = data.items;
 	}
-	if (data.bullets) {
+	if (data.bullets != null) {
 		KinkyDungeonGameData.bullets = data.bullets;
 	}
-	if (data.map) {
+	if (data.map != null) {
 		KinkyDungeonGameData.map = data.map;
 	}
-	if (data.inventory) {
+	if (data.inventory != null) {
 		KinkyDungeonGameData.inventory = data.inventory;
 	}
-	if (data.meta) {
+	if (data.meta != null) {
 		KinkyDungeonGameData.meta = data.meta;
 	}
 	
@@ -327,7 +329,11 @@ function KinkyDungeonUnpackData(KinkyData) {
 }
 
 function KinkyDungeonUpdateFromData() {
-	if (!KinkyDungeonGameData.map || !KinkyDungeonGameData.inventory ||  !KinkyDungeonGameData.bullets ||  !KinkyDungeonGameData.items ||  !KinkyDungeonGameData.enemies) {
+	if (KinkyDungeonGameData.map == null || 
+		KinkyDungeonGameData.inventory == null || 
+		KinkyDungeonGameData.bullets == null || 
+		KinkyDungeonGameData.items == null || 
+		KinkyDungeonGameData.enemies == null) {
 		KinkyDungeonGameData = null; // We need the full data before rendering anything!
 		return false;
 	}
@@ -475,7 +481,7 @@ function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory, Includ
 		inventory: inventory,
 		meta: meta,
 	};
-	let stringToSend = JSON.stringify(result).replace(/"/g, '*');
+	let stringToSend = btoa(JSON.stringify(result))// The replace is needed to avoid artifacts during decompression
 	//console.log(stringToSend);
 	return stringToSend;
 }
