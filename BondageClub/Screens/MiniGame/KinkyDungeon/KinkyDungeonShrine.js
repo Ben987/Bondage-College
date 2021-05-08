@@ -67,6 +67,7 @@ function KinkyDungeonPayShrine(type) {
 	} else if (type == "Will") {
 		KinkyDungeonStatWillpower = KinkyDungeonStatWillpowerMax;
 		KinkyDungeonStatStamina = KinkyDungeonStatStaminaMax;
+		KinkyDungeonNextDataSendStatsTime = 0;
 
 		ShrineMsg = TextGet("KinkyDungeonPayShrineHeal");
 	}
