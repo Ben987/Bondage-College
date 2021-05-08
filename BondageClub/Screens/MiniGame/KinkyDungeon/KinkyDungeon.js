@@ -296,7 +296,7 @@ function KinkyDungeonKeyDown() {
 function KinkyDungeonUnpackData(KinkyData) {
 	if (CurrentScreen != "KinkyDungeon" || KinkyDungeonState != "Game" || !KinkyDungeonPlayerCharacter) return false;
 	if (KinkyDungeonIsPlayer()) return false; // Prevent griefing
-	let data = JSON.parse(KinkyData.replace(/\./g, "\""));
+	let data = JSON.parse(KinkyData.replace(/\*/g, "\""));
 	
 	if (!KinkyDungeonGameData) KinkyDungeonGameData = {};
 
@@ -475,7 +475,7 @@ function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory, Includ
 		inventory: inventory,
 		meta: meta,
 	};
-	let stringToSend = JSON.stringify(result).replace(/"/g, '.');
+	let stringToSend = JSON.stringify(result).replace(/"/g, '*');
 	//console.log(stringToSend);
 	return stringToSend;
 }
