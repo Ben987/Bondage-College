@@ -899,7 +899,7 @@ function KinkyDungeonMoveTo(moveX, moveY) {
 	}
 }
 
-function KinkyDungeonAdvanceTime(delta) {
+function KinkyDungeonAdvanceTime(delta, NoUpdate) {
 	//let now = performance.now()
 	// Here we move enemies and such
 	KinkyDungeonUpdateLightGrid = true;
@@ -932,6 +932,7 @@ function KinkyDungeonAdvanceTime(delta) {
 		KinkyDungeonState = "Lose";
 	}
 
-	KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
+    if (!NoUpdate)
+	    KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
 }
 
