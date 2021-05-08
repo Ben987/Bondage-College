@@ -1702,7 +1702,9 @@ function ChatRoomMessage(data) {
 				}
 				else if (msg == "GiveLockpicks") DialogLentLockpicks = true;
 				else if (msg == "RequestFullKinkyDungeonData") {
-					ServerSend("ChatRoomChat", { Content: "KDdata" + KinkyDungeonPackData(true, true, true), Type: "Hidden", Target: SenderCharacter.MemberNumber });
+					KinkyDungeonStreamingPlayers.push(SenderCharacter.MemberNumber);
+					if (CurrentScreen == "KinkyDungeon")
+						ServerSend("ChatRoomChat", { Content: "KDdata" + KinkyDungeonPackData(true, true, true), Type: "Hidden", Target: SenderCharacter.MemberNumber });
 				} if (msg.startsWith("KDdata")) {
 					KinkyDungeonUnpackData(msg.substring(6)) // Unpack the rest of the data
 				}

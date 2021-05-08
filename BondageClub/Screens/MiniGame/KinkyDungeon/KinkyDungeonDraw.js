@@ -85,7 +85,7 @@ function KinkyDungeonDrawGame() {
 		KinkyDungeonDrawStats(canvasOffsetX + KinkyDungeonCanvas.width+10, canvasOffsetY, 1975 - (canvasOffsetX + KinkyDungeonCanvas.width+5), 100);
 
 	if (KinkyDungeonDrawState == "Game") {
-		if ((KinkyDungeonIsPlayer() || KinkyDungeonGameData)) {
+		if ((KinkyDungeonIsPlayer() || (KinkyDungeonGameData && CommonTime() < KinkyDungeonNextDataLastTimeReceived + KinkyDungeonNextDataLastTimeReceivedTimeout))) {
 			
 			let CamX = Math.max(0, Math.min(KinkyDungeonGridWidth - KinkyDungeonGridWidthDisplay, KinkyDungeonPlayerEntity.x - Math.floor(KinkyDungeonGridWidthDisplay/2)));
 			let CamY = Math.max(0, Math.min(KinkyDungeonGridHeight - KinkyDungeonGridHeightDisplay, KinkyDungeonPlayerEntity.y - Math.floor(KinkyDungeonGridHeightDisplay/2)));
@@ -299,6 +299,8 @@ function KinkyDungeonDrawGame() {
 					DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1775, 870, "white", "silver");
 					DrawButton(1730, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell3.png", "");
 				}
+				
+				KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelayPing);
 			}
 		} else {
 			DrawText(TextGet("KinkyDungeonLoading"), 1100, 500, "white", "silver");

@@ -73,6 +73,11 @@ var KinkyDungeonHardLockChanceScalingMax = 0.4;
 
 var KinkyDungeonNextDataSendTime = 0;
 var KinkyDungeonNextDataSendTimeDelay = 500; // Send on moves every 0.5 second
+var KinkyDungeonNextDataSendTimeDelayPing = 5000; // temporary ping
+
+
+var KinkyDungeonNextDataLastTimeReceived = 0;
+var KinkyDungeonNextDataLastTimeReceivedTimeout = 15000; // Clear data if more than 15 seconds of no data received
 
 
 var KinkyDungeonDoorCloseTimer = 0;
@@ -848,19 +853,25 @@ function KinkyDungeonMove(moveDirection, delta) {
 			if (KinkyDungeonGetVisionRadius() <= 1) KinkyDungeonAdvanceTime(1);
 		}
 	}
-	if (ChatRoomCharacter && ChatRoomCharacter.length > 1 && DialogGamingPreviousRoom == "ChatRoom" && KinkyDungeonNextDataSendTime + KinkyDungeonNextDataSendTimeDelay < CommonTime()) {
+}
+
+function KinkyDungeonMultiplayerUpdate(Delay) {
+	if (KinkyDungeonIsPlayer() && ChatRoomCharacter && ChatRoomCharacter.length > 1 && DialogGamingPreviousRoom == "ChatRoom" && KinkyDungeonNextDataSendTime + Delay < CommonTime()) {
 		let MN = [];
 		
 		for (let C = 0; C < ChatRoomCharacter.length; C++) {
 			let Char = ChatRoomCharacter[C];
 			
-			if (Char.ID != 0 && Char.Effect.includes("VR")) MN.push(Char.MemberNumber);
+			if (KinkyDungeonStreamingPlayers.includes(Char.MemberNumber) && Char.ID != 0 && Char.Effect.includes("VR")) MN.push(Char.MemberNumber);
 		}
 		
 		if (MN.length > 0) {
 			let data = "KDdata" + KinkyDungeonPackData(true, true, true);
 			
+			//KinkyDungeonStreamingPlayers = [];
+			
 			for (let C = 0; C < MN.length; C++) {
+				//KinkyDungeonStreamingPlayers.push(MN[C].MemberNumber); // Clean out the KinkyDungeonStreamingPlayers array
 				ServerSend("ChatRoomChat", { Content: data, Type: "Hidden", Target: MN[C].MemberNumber });
 			}
 		}
@@ -918,6 +929,7 @@ function KinkyDungeonAdvanceTime(delta) {
 		KinkyDungeonState = "Lose";
 	}
 
+	KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
 
 }
 

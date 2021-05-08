@@ -19,6 +19,7 @@ var KinkyDungeonKeyWait = [120]; // x
 var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/";
 var KinkyDungeonPlayerCharacter = null; // Other player object
 var KinkyDungeonGameData = null; // Data sent by other player
+var KinkyDungeonStreamingPlayers = []; // List of players to stream to
 
 
 /**
@@ -255,15 +256,16 @@ function KinkyDungeonExit() {
 	if (CurrentScreen == "ChatRoom" && KinkyDungeonState != "Menu" && (MiniGameKinkyDungeonLevel > 1 || KinkyDungeonState == "Lose")) {
 		let Message = "KinkyDungeonExit";
 
-		if (KinkyDungeonState == "Lose") {
-			Message = "KinkyDungeonLose";
-		}
+			if (KinkyDungeonState == "Lose") {
+				Message = "KinkyDungeonLose";
 
-		let Dictionary = [
-			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-			{ Tag: "KinkyDungeonLevel", Text: String(MiniGameKinkyDungeonLevel)},
-		];
-		ChatRoomPublishCustomAction(Message, false, Dictionary);
+			let Dictionary = [
+				{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+				{ Tag: "KinkyDungeonLevel", Text: String(MiniGameKinkyDungeonLevel)},
+			];
+			ChatRoomPublishCustomAction(Message, false, Dictionary);
+			
+		}
 	}
 }
 
@@ -293,6 +295,7 @@ function KinkyDungeonKeyDown() {
  
 function KinkyDungeonUnpackData(KinkyData) {
 	if (CurrentScreen != "KinkyDungeon" || KinkyDungeonState != "Game" || !KinkyDungeonPlayerCharacter) return false;
+	if (KinkyDungeonIsPlayer()) return false; // Prevent griefing
 	let data = JSON.parse(KinkyData.replace(/\./g, "\""));
 	
 	if (!KinkyDungeonGameData) KinkyDungeonGameData = {};
@@ -319,6 +322,7 @@ function KinkyDungeonUnpackData(KinkyData) {
 	}
 	
 	KinkyDungeonUpdateFromData();
+	KinkyDungeonNextDataLastTimeReceived = CommonTime();
 	
 }
 
