@@ -99,24 +99,17 @@ function KinkyDungeonDrawGame() {
 
 
 			if (KinkyDungeonCanvas) {
+				KinkyDungeonContext.fillStyle = "rgba(20,20,20.0,1.0)";
+				KinkyDungeonContext.fillRect(0, 0, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height);
+				KinkyDungeonContext.fill();
+				// Draw the grid
+				let rows = KinkyDungeonGrid.split('\n');
+				for (let R = 0; R < KinkyDungeonGridHeightDisplay; R++)  {
+					for (let X = 0; X < KinkyDungeonGridWidthDisplay; X++)  {
+						let sprite = KinkyDungeonGetSprite(rows[R+CamY][X+CamX]);
 
-				if (KinkyDungeonGrid_Last != KinkyDungeonGrid) {
-
-
-					KinkyDungeonContext.fillStyle = "rgba(20,20,20.0,1.0)";
-					KinkyDungeonContext.fillRect(0, 0, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height);
-					KinkyDungeonContext.fill();
-					// Draw the grid
-					let rows = KinkyDungeonGrid.split('\n');
-					for (let R = 0; R < KinkyDungeonGridHeightDisplay; R++)  {
-						for (let X = 0; X < KinkyDungeonGridWidthDisplay; X++)  {
-							let sprite = KinkyDungeonGetSprite(rows[R+CamY][X+CamX]);
-
-							DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Floor" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + "/" + sprite + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSizeDisplay, R*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false);
-						}
+						DrawImageZoomCanvas(KinkyDungeonRootDirectory + "Floor" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] + "/" + sprite + ".png", KinkyDungeonContext, 0, 0, KinkyDungeonSpriteSize, KinkyDungeonSpriteSize, X*KinkyDungeonGridSizeDisplay, R*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, false);
 					}
-
-					//KinkyDungeonGrid_Last = KinkyDungeonGrid
 				}
 
 				// Get lighting grid
@@ -132,7 +125,7 @@ function KinkyDungeonDrawGame() {
 				KinkyDungeonDrawFight(canvasOffsetX, canvasOffsetY, CamX, CamY, KinkyDungeonGridSizeDisplay);
 
 				// Draw fog of war
-				let rows = KinkyDungeonLightGrid.split('\n');
+				rows = KinkyDungeonLightGrid.split('\n');
 				for (let R = 0; R < KinkyDungeonGridHeightDisplay; R++)  {
 					for (let X = 0; X < KinkyDungeonGridWidthDisplay; X++)  {
 						KinkyDungeonContext.beginPath();

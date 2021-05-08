@@ -13,6 +13,8 @@
 // These are groups that the game is not allowed to remove because they were tied at the beginning
 var KinkyDungeonRestraintsLocked = [];
 
+var KinkyDungeonMultiplayerInventoryFlag = false;
+
 var KinkyDungeonRestraints = [
 	{name: "DuctTapeArms", Asset: "DuctTape", Color: "#AA2222", Group: "ItemArms", magic: false, power: -2, weight: 0, escapeChance: {"Struggle": 0.3, "Cut": 0.9, "Remove": 0.5}, enemyTags: {"ribbonRestraints":5}, playerTags: {"ItemArmsFull":8}, minLevel: 0, floors: [0, 1, 2, 3], shrine: ["Charms"]},
 	{name: "DuctTapeFeet", Asset: "DuctTape", Color: "#AA2222", Group: "ItemFeet", magic: false, power: -2, weight: 0, escapeChance: {"Struggle": 0.3, "Cut": 0.9, "Remove": 0.5}, enemyTags: {"ribbonRestraints":5}, playerTags: {"ItemLegsFull":8}, minLevel: 0, floors: [0, 1, 2, 3], shrine: ["Charms"]},
@@ -408,6 +410,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 
 		KinkyDungeonUpdateRestraints(0); // We update the restraints but no time drain on batteries, etc
 		KinkyDungeonCheckClothesLoss = true; // We signal it is OK to check whether the player should get undressed due to restraints
+		KinkyDungeonMultiplayerInventoryFlag = true; // Signal that we can send the inventory now
 		return Math.max(1, restraint.power);
 	}
 	return 0;
@@ -431,6 +434,7 @@ function KinkyDungeonRemoveRestraint(Group) {
 
 				KinkyDungeonCalculateSlowLevel();
 
+				KinkyDungeonMultiplayerInventoryFlag = true;
 				return true;
 			}
 		}

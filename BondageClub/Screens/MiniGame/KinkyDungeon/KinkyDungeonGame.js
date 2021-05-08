@@ -866,7 +866,7 @@ function KinkyDungeonMultiplayerUpdate(Delay) {
 		}
 		
 		if (MN.length > 0) {
-			let data = "KDdata" + KinkyDungeonPackData(true, true, true);
+			let data = "KDdata" + KinkyDungeonPackData(KinkyDungeonGrid_Last != KinkyDungeonGrid, true, KinkyDungeonMultiplayerInventoryFlag);
 			
 			//KinkyDungeonStreamingPlayers = [];
 			
@@ -876,9 +876,10 @@ function KinkyDungeonMultiplayerUpdate(Delay) {
 			}
 		}
 		
-		
-		
 		KinkyDungeonNextDataSendTime = CommonTime();
+		
+		KinkyDungeonGrid_Last = KinkyDungeonGrid;
+		KinkyDungeonMultiplayerInventoryFlag = false;
 	}
 }
 
@@ -930,6 +931,5 @@ function KinkyDungeonAdvanceTime(delta) {
 	}
 
 	KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
-
 }
 

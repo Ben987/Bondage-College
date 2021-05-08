@@ -328,8 +328,8 @@ function KinkyDungeonUnpackData(KinkyData) {
 
 function KinkyDungeonUpdateFromData() {
 	if (!KinkyDungeonGameData.map || !KinkyDungeonGameData.inventory ||  !KinkyDungeonGameData.bullets ||  !KinkyDungeonGameData.items ||  !KinkyDungeonGameData.enemies) {
-		//KinkyDungeonGameData = null; // We need the full data before rendering anything!
-	    //return false;
+		KinkyDungeonGameData = null; // We need the full data before rendering anything!
+	    return false;
 	}
 	if (KinkyDungeonGameData.enemies) {
 		KinkyDungeonEntities = [];
@@ -465,6 +465,7 @@ function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory) {
 			gp: KinkyDungeonGold,
 			lv: MiniGameKinkyDungeonLevel}
 	};
-	
-	return JSON.stringify(result).replace(/"/g, '.');
+	let stringToSend = JSON.stringify(result).replace(/"/g, '.');
+	//console.log(stringToSend);
+	return stringToSend;
 }
