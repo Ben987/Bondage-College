@@ -285,13 +285,52 @@ function KinkyDungeonKeyDown() {
  * Turns the game state into a string that can be sent over
  * @returns {string} - String containing game data
  */
-function KinkyDungeonPackData(IncludeMap) {
-	JSON.stringify(KinkyDungeonEntities, (key, value) => {
+function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory) {
+	let enemies = JSON.stringify(KinkyDungeonEntities, (key, value) => {
         if (CommonIsNumeric(key) && typeof value === "object") {
 				if (value.Enemy) {
-					return "E/" + value.Enemy.name + "/" + value.stun + "/"+value.x+"/"+value.y;
+					return "E/" + value.Enemy.name + "/" + (value.stun ? value.stun : 0) + "/"+value.x+"/"+value.y;
 				}
 		}
         return value;
     });
+	
+	let items = IncludeItems ? JSON.stringify(KinkyDungeonGroundItems, (key, value) => {
+        if (CommonIsNumeric(key) && typeof value === "object") {
+				if (value.name) {
+					return "G/" + value.name + "/"+value.x+"/"+value.y;
+				}
+		}
+        return value;
+    }) : "";
+	
+	let bullets = JSON.stringify(KinkyDungeonBullets, (key, value) => {
+        if (CommonIsNumeric(key) && typeof value === "object") {
+				if (value.bullet) {
+					return "B/" + value.bullet.name + "/"+value.x+"/"+value.y + "/"+(Math.round(value.vx*10)/10)+"/"+(Math.round(value.vy*10)/10);
+				}
+		}
+        return value;
+    });
+	
+	let map = IncludeMap ? KinkyDungeonGrid : "";
+	
+	let inventory = IncludeInventory ? JSON.stringify(KinkyDungeonInventory, (key, value) => {
+        if (CommonIsNumeric(key) && typeof value === "object") {
+				if (value.restraint) {
+					return "I/" + value.restraint.name + "/l" + value.lock;
+				}
+		}
+        return value;
+    }) : "";
+	
+	let result = {
+		enemies: enemies,
+		items: items,
+		bullets: bullets,
+		map: map,
+		inventory: inventory
+	};
+	
+	return JSON.stringify(result);
 }
