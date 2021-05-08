@@ -393,17 +393,17 @@ function KinkyDungeonUpdateFromData() {
 		KinkyDungeonPlayerEntity.x = Math.round(KinkyDungeonGameData.meta.x);
 		KinkyDungeonPlayerEntity.y = Math.round(KinkyDungeonGameData.meta.y);
 		
-		KinkyDungeonStatWillpower = Math.round(KinkyDungeonGameData.meta.wp);
-		KinkyDungeonStatStamina = Math.round(KinkyDungeonGameData.meta.sp);
-		KinkyDungeonStatArousal = Math.round(KinkyDungeonGameData.meta.ap);
-		KinkyDungeonRedKeys = Math.round(KinkyDungeonGameData.meta.rk);
-		KinkyDungeonGreenKeys = Math.round(KinkyDungeonGameData.meta.gk);
-		KinkyDungeonBlueKeys = Math.round(KinkyDungeonGameData.meta.bk);
-		KinkyDungeonNormalBlades = Math.round(KinkyDungeonGameData.meta.bl);
-		KinkyDungeonEnchantedBlades = Math.round(KinkyDungeonGameData.meta.eb);
-		KinkyDungeonLockpicks = Math.round(KinkyDungeonGameData.meta.lp);
-		KinkyDungeonGold = Math.round(KinkyDungeonGameData.meta.gp);
-		MiniGameKinkyDungeonLevel = Math.round(KinkyDungeonGameData.meta.lv);
+		if (KinkyDungeonGameData.meta.wp) KinkyDungeonStatWillpower = Math.round(KinkyDungeonGameData.meta.wp);
+		if (KinkyDungeonGameData.meta.sp) KinkyDungeonStatStamina = Math.round(KinkyDungeonGameData.meta.sp);
+		if (KinkyDungeonGameData.meta.ap) KinkyDungeonStatArousal = Math.round(KinkyDungeonGameData.meta.ap);
+		if (KinkyDungeonGameData.meta.rk) KinkyDungeonRedKeys = Math.round(KinkyDungeonGameData.meta.rk);
+		if (KinkyDungeonGameData.meta.gk) KinkyDungeonGreenKeys = Math.round(KinkyDungeonGameData.meta.gk);
+		if (KinkyDungeonGameData.meta.bk) KinkyDungeonBlueKeys = Math.round(KinkyDungeonGameData.meta.bk);
+		if (KinkyDungeonGameData.meta.bl) KinkyDungeonNormalBlades = Math.round(KinkyDungeonGameData.meta.bl);
+		if (KinkyDungeonGameData.meta.eb) KinkyDungeonEnchantedBlades = Math.round(KinkyDungeonGameData.meta.eb);
+		if (KinkyDungeonGameData.meta.lp) KinkyDungeonLockpicks = Math.round(KinkyDungeonGameData.meta.lp);
+		if (KinkyDungeonGameData.meta.gp) KinkyDungeonGold = Math.round(KinkyDungeonGameData.meta.gp);
+		if (KinkyDungeonGameData.meta.lv) MiniGameKinkyDungeonLevel = Math.round(KinkyDungeonGameData.meta.lv);
 	}
 }
  
@@ -412,7 +412,7 @@ function KinkyDungeonUpdateFromData() {
  * Turns the game state into a string that can be sent over
  * @returns {string} - String containing game data
  */
-function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory) {
+function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory, IncludeStats) {
 	let enemies = JSON.stringify(KinkyDungeonEntities, (key, value) => {
         if (CommonIsNumeric(key) && typeof value === "object") {
 				if (value.Enemy) {
@@ -451,19 +451,29 @@ function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory) {
         return value;
     }) : "";
 	
+	let meta = {w: KinkyDungeonGridWidth, h: KinkyDungeonGridHeight, x:KinkyDungeonPlayerEntity.x, y:KinkyDungeonPlayerEntity.y,}
+	
+	if (IncludeStats) {
+		meta.wp = Math.round(KinkyDungeonStatWillpower);
+		meta.sp = Math.round(KinkyDungeonStatStamina);
+		meta.ap = Math.round(KinkyDungeonStatArousal);
+		meta.rk = KinkyDungeonRedKeys;
+		meta.gk = KinkyDungeonGreenKeys;
+		meta.bk = KinkyDungeonBlueKeys;
+		meta.bl = KinkyDungeonNormalBlades;
+		meta.eb = KinkyDungeonEnchantedBlades;
+		meta.lp = KinkyDungeonLockpicks;
+		meta.gp = KinkyDungeonGold;
+		meta.lv = MiniGameKinkyDungeonLevel;
+	}
+	
 	let result = {
 		enemies: enemies,
 		items: items,
 		bullets: bullets,
 		map: map,
 		inventory: inventory,
-		meta: {w: KinkyDungeonGridWidth, h: KinkyDungeonGridHeight, x:KinkyDungeonPlayerEntity.x, y:KinkyDungeonPlayerEntity.y,
-			wp:Math.round(KinkyDungeonStatWillpower), sp:Math.round(KinkyDungeonStatStamina), ap:Math.round(KinkyDungeonStatArousal),
-			rk: KinkyDungeonRedKeys, gk: KinkyDungeonGreenKeys, bk: KinkyDungeonBlueKeys,
-			bl: KinkyDungeonNormalBlades, eb: KinkyDungeonEnchantedBlades,
-			lp: KinkyDungeonLockpicks,
-			gp: KinkyDungeonGold,
-			lv: MiniGameKinkyDungeonLevel}
+		meta: meta,
 	};
 	let stringToSend = JSON.stringify(result).replace(/"/g, '.');
 	//console.log(stringToSend);

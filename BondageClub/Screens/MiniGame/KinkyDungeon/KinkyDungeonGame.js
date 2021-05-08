@@ -74,7 +74,8 @@ var KinkyDungeonHardLockChanceScalingMax = 0.4;
 var KinkyDungeonNextDataSendTime = 0;
 var KinkyDungeonNextDataSendTimeDelay = 500; // Send on moves every 0.5 second
 var KinkyDungeonNextDataSendTimeDelayPing = 5000; // temporary ping
-
+var KinkyDungeonNextDataSendStatsTimeDelay = 5000; // Send stats every 5s to save bandwidth
+var KinkyDungeonNextDataSendStatsTime = 0;
 
 var KinkyDungeonNextDataLastTimeReceived = 0;
 var KinkyDungeonNextDataLastTimeReceivedTimeout = 15000; // Clear data if more than 15 seconds of no data received
@@ -866,7 +867,7 @@ function KinkyDungeonMultiplayerUpdate(Delay) {
 		}
 		
 		if (MN.length > 0) {
-			let data = "KDdata" + KinkyDungeonPackData(KinkyDungeonGrid_Last != KinkyDungeonGrid, true, KinkyDungeonMultiplayerInventoryFlag);
+			let data = "KDdata" + KinkyDungeonPackData(KinkyDungeonGrid_Last != KinkyDungeonGrid, true, KinkyDungeonMultiplayerInventoryFlag, CommonTime() > KinkyDungeonNextDataSendStatsTime + KinkyDungeonNextDataSendStatsTimeDelay);
 			
 			//KinkyDungeonStreamingPlayers = [];
 			
@@ -878,6 +879,7 @@ function KinkyDungeonMultiplayerUpdate(Delay) {
 		
 		KinkyDungeonNextDataSendTime = CommonTime();
 		
+		if (CommonTime() > KinkyDungeonNextDataSendStatsTime + KinkyDungeonNextDataSendStatsTimeDelay) KinkyDungeonNextDataSendStatsTime = CommonTime();
 		KinkyDungeonGrid_Last = KinkyDungeonGrid;
 		KinkyDungeonMultiplayerInventoryFlag = false;
 	}
