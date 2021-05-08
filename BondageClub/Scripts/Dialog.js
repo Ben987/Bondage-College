@@ -350,8 +350,13 @@ function DialogCanWatchKinkyDungeon() {
  * @returns {void}
  */
 function DialogStartKinkyDungeon() {
-	if (CurrentCharacter)
+	if (CurrentCharacter) {
 		KinkyDungeonPlayerCharacter = CurrentCharacter;
+		if (KinkyDungeonPlayerCharacter != Player && CurrentCharacter.MemberNumber) {
+			KinkyDungeonGameData = null;
+			ServerSend("ChatRoomChat", { Content: "RequestFullKinkyDungeonData", Type: "Hidden", Target: CurrentCharacter.MemberNumber });
+		}
+	}
 	DialogGamingPreviousRoom = CurrentScreen;
 	DialogGamingPreviousModule = CurrentModule;
 	MiniGameStart("KinkyDungeon", 0, "DialogEndKinkyDungeon");

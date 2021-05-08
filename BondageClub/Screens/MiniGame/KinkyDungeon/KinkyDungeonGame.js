@@ -72,8 +72,7 @@ var KinkyDungeonHardLockChanceScaling = 0.005;
 var KinkyDungeonHardLockChanceScalingMax = 0.4;
 
 var KinkyDungeonNextDataSendTime = 0;
-var KinkyDungeonNextDataSendTimeDelay = 5000; // Send on moves every 5 seconds
-var KinkyDungeonNextDataSendTimeDelayMove = 1000; // Send character location on moves every 1 seconds
+var KinkyDungeonNextDataSendTimeDelay = 500; // Send on moves every 0.5 second
 
 
 var KinkyDungeonDoorCloseTimer = 0;
@@ -849,9 +848,26 @@ function KinkyDungeonMove(moveDirection, delta) {
 			if (KinkyDungeonGetVisionRadius() <= 1) KinkyDungeonAdvanceTime(1);
 		}
 	}
-	if (ChatRoomCharacter && ChatRoomCharacter.length > 1 && DialogGamingPreviousRoom == "ChatRoom" && KinkyDungeonNextDataSendTime > CommonTime()) {
+	if (ChatRoomCharacter && ChatRoomCharacter.length > 1 && DialogGamingPreviousRoom == "ChatRoom" && KinkyDungeonNextDataSendTime + KinkyDungeonNextDataSendTimeDelay < CommonTime()) {
+		let MN = [];
 		
-		KinkyDungeonNextDataSendTime = CommonTime() + KinkyDungeonNextDataSendTimeDelay;
+		for (let C = 0; C < ChatRoomCharacter.length; C++) {
+			let Char = ChatRoomCharacter[C];
+			
+			if (Char.ID != 0 && Char.Effect.includes("VR")) MN.push(Char.MemberNumber);
+		}
+		
+		if (MN.length > 0) {
+			let data = "KDdata" + KinkyDungeonPackData(true, true, true);
+			
+			for (let C = 0; C < MN.length; C++) {
+				ServerSend("ChatRoomChat", { Content: data, Type: "Hidden", Target: MN[C].MemberNumber });
+			}
+		}
+		
+		
+		
+		KinkyDungeonNextDataSendTime = CommonTime();
 	}
 }
 

@@ -122,7 +122,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 		var moved = false;
 		
 		var MovableTiles = KinkyDungeonMovableTilesEnemy;
-		if (enemy.Enemy.tags.includes("opendoors")) MovableTiles = KinkyDungeonMovableTilesSmartEnemy;
+		if (enemy.Enemy.tags && enemy.Enemy.tags.includes("opendoors")) MovableTiles = KinkyDungeonMovableTilesSmartEnemy;
 
 		if (enemy.stun > 0) {
 			enemy.stun -= delta;

@@ -145,7 +145,7 @@ function KinkyDungeonDrawGame() {
 
 				// Draw targeting reticule
 
-				if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
+				if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height) && KinkyDungeonIsPlayer()) {
 					if (KinkyDungeonTargetingSpell) {
 						KinkyDungeonSetTargetLocation();
 
@@ -193,107 +193,112 @@ function KinkyDungeonDrawGame() {
 			KinkyDungeonContextPlayer.clearRect(0, 0, KinkyDungeonCanvasPlayer.width, KinkyDungeonCanvasPlayer.height);
 			DrawCharacter(KinkyDungeonPlayer, -KinkyDungeonGridSizeDisplay/2, 0, KinkyDungeonGridSizeDisplay/250, false, KinkyDungeonContextPlayer);
 
-			// Draw the struggle buttons if applicable
-			if (KinkyDungeonDrawStruggle && KinkyDungeonStruggleGroups)
-				for (let S = 0; S < KinkyDungeonStruggleGroups.length; S++) {
-					let sg = KinkyDungeonStruggleGroups[S];
-					let ButtonWidth = 60;
-					let x = 5 + ((!sg.left) ? (490 - ButtonWidth) : 0);
-					let y = 42 + sg.y * (ButtonWidth + 46);
 
-					if (sg.left) {
-						MainCanvas.textAlign = "left";
-					} else {
-						MainCanvas.textAlign = "right";
+			if (KinkyDungeonIsPlayer()) {
+
+				// Draw the struggle buttons if applicable
+				if (KinkyDungeonDrawStruggle && KinkyDungeonStruggleGroups)
+					for (let S = 0; S < KinkyDungeonStruggleGroups.length; S++) {
+						let sg = KinkyDungeonStruggleGroups[S];
+						let ButtonWidth = 60;
+						let x = 5 + ((!sg.left) ? (490 - ButtonWidth) : 0);
+						let y = 42 + sg.y * (ButtonWidth + 46);
+
+						if (sg.left) {
+							MainCanvas.textAlign = "left";
+						} else {
+							MainCanvas.textAlign = "right";
+						}
+
+						let color = "white";
+						let locktext = "";
+						if (sg.lock == "Red") {color = "#ff8888"; locktext = TextGet("KinkyRedLockAbr");}
+						if (sg.lock == "Yellow") {color = "#ffff88"; locktext = TextGet("KinkyYellowLockAbr");}
+						if (sg.lock == "Green") {color = "#88FF88"; locktext = TextGet("KinkyGreenLockAbr");}
+						if (sg.lock == "Blue") {color = "#8888FF"; locktext = TextGet("KinkyBlueLockAbr");}
+
+						let GroupText = sg.name ? ("Restraint" + sg.name) : ("KinkyDungeonGroup"+ sg.group); // The name of the group to draw.
+						
+
+						DrawText(TextGet(GroupText) + locktext, x + ((!sg.left) ? ButtonWidth : 0), y-24, color, "black");
+						MainCanvas.textAlign = "center";
+
+						let i = 1;
+						DrawButton(x, y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "Struggle.png", "");
+						if (!sg.blocked) {
+							let toolSprite = (sg.lock != "") ? ((sg.lock != "Jammed") ? "Key" : "LockJam") : "Buckle";
+							DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + toolSprite + ".png", ""); i++;
+							if (KinkyDungeonLockpicks > 0 && sg.lock != "") {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "UseTool.png", ""); i++;}
+							if (KinkyDungeonNormalBlades > 0 || KinkyDungeonEnchantedBlades > 0) {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "Cut.png", ""); i++;}
+						}
 					}
 
-					let color = "white";
-					let locktext = "";
-					if (sg.lock == "Red") {color = "#ff8888"; locktext = TextGet("KinkyRedLockAbr");}
-					if (sg.lock == "Yellow") {color = "#ffff88"; locktext = TextGet("KinkyYellowLockAbr");}
-					if (sg.lock == "Green") {color = "#88FF88"; locktext = TextGet("KinkyGreenLockAbr");}
-					if (sg.lock == "Blue") {color = "#8888FF"; locktext = TextGet("KinkyBlueLockAbr");}
-
-					let GroupText = sg.name ? ("Restraint" + sg.name) : ("KinkyDungeonGroup"+ sg.group); // The name of the group to draw.
-					
-
-					DrawText(TextGet(GroupText) + locktext, x + ((!sg.left) ? ButtonWidth : 0), y-24, color, "black");
-					MainCanvas.textAlign = "center";
-
-					let i = 1;
-					DrawButton(x, y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "Struggle.png", "");
-					if (!sg.blocked) {
-						let toolSprite = (sg.lock != "") ? ((sg.lock != "Jammed") ? "Key" : "LockJam") : "Buckle";
-						DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + toolSprite + ".png", ""); i++;
-						if (KinkyDungeonLockpicks > 0 && sg.lock != "") {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "UseTool.png", ""); i++;}
-						if (KinkyDungeonNormalBlades > 0 || KinkyDungeonEnchantedBlades > 0) {DrawButton(x + ((!sg.left) ? -(ButtonWidth)*i : (ButtonWidth)*i), y, ButtonWidth, ButtonWidth, "", "White", KinkyDungeonRootDirectory + "Cut.png", ""); i++;}
-					}
+				if (KinkyDungeonStruggleGroups.length > 0) {
+					if (KinkyDungeonDrawStruggle) DrawButton(510, 925, 120, 60, "", "White", KinkyDungeonRootDirectory + "HideTrue.png", "");
+					else DrawButton(510, 925, 120, 60, "", "White", KinkyDungeonRootDirectory + "HideFalse.png", "");
 				}
 
-			if (KinkyDungeonStruggleGroups.length > 0) {
-				if (KinkyDungeonDrawStruggle) DrawButton(510, 925, 120, 60, "", "White", KinkyDungeonRootDirectory + "HideTrue.png", "");
-				else DrawButton(510, 925, 120, 60, "", "White", KinkyDungeonRootDirectory + "HideFalse.png", "");
-			}
+				if (KinkyDungeonTargetTile) {
+					if (KinkyDungeonTargetTile.Type == "Lock") {
+						let action = false;
+						if (KinkyDungeonLockpicks > 0) {
+							DrawButton(963, 825, 112, 60, TextGet("KinkyDungeonPickDoor"), "White", "", "");
+							action = true;
+						}
 
-			if (KinkyDungeonTargetTile) {
-				if (KinkyDungeonTargetTile.Type == "Lock") {
-					let action = false;
-					if (KinkyDungeonLockpicks > 0) {
-						DrawButton(963, 825, 112, 60, TextGet("KinkyDungeonPickDoor"), "White", "", "");
-						action = true;
+						if ((KinkyDungeonTargetTile.Lock.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.Lock.includes("Yellow") && (KinkyDungeonRedKeys > 0 && KinkyDungeonGreenKeys > 0)
+							|| (KinkyDungeonTargetTile.Lock.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.Lock.includes("Blue") && KinkyDungeonBlueKeys > 0) ) ) {
+							DrawButton(825, 825, 112, 60, TextGet("KinkyDungeonUnlockDoor"), "White", "", "");
+							action = true;
+						}
+
+						if (!action) DrawText(TextGet("KinkyDungeonLockedDoor"), 950, 850, "white", "silver");
+
+						if (KinkyDungeonTargetTile.Lock.includes("Red"))
+							DrawText(TextGet("KinkyRedLock"), 675, 850, "white", "silver");
+						else if (KinkyDungeonTargetTile.Lock.includes("Yellow"))
+							DrawText(TextGet("KinkyYellowLock"), 675, 850, "white", "silver");
+						else if (KinkyDungeonTargetTile.Lock.includes("Green"))
+							DrawText(TextGet("KinkyGreenLock"), 675, 850, "white", "silver");
+						else if (KinkyDungeonTargetTile.Lock.includes("Blue"))
+							DrawText(TextGet("KinkyBlueLock"), 675, 850, "white", "silver");
+					} else if (KinkyDungeonTargetTile.Type == "Shrine") {
+						let cost = 0;
+						let type = KinkyDungeonTargetTile.Name;
+
+						if (KinkyDungeonShrineAvailable(type)) cost = KinkyDungeonShrineCost(type);
+
+
+						if (cost == 0) DrawText(TextGet("KinkyDungeonLockedShrine"), 850, 850, "white", "silver");
+						else {
+							DrawButton(675, 825, 350, 60, TextGet("KinkyDungeonPayShrine").replace("XXX", cost), "White", "", "");
+						}
+					} else if (KinkyDungeonTargetTile.Type == "Door") {
+						DrawButton(675, 825, 350, 60, TextGet("KinkyDungeonCloseDoor"));
 					}
-
-					if ((KinkyDungeonTargetTile.Lock.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.Lock.includes("Yellow") && (KinkyDungeonRedKeys > 0 && KinkyDungeonGreenKeys > 0)
-						|| (KinkyDungeonTargetTile.Lock.includes("Green") && KinkyDungeonGreenKeys > 0) || (KinkyDungeonTargetTile.Lock.includes("Blue") && KinkyDungeonBlueKeys > 0) ) ) {
-						DrawButton(825, 825, 112, 60, TextGet("KinkyDungeonUnlockDoor"), "White", "", "");
-						action = true;
-					}
-
-					if (!action) DrawText(TextGet("KinkyDungeonLockedDoor"), 950, 850, "white", "silver");
-
-					if (KinkyDungeonTargetTile.Lock.includes("Red"))
-						DrawText(TextGet("KinkyRedLock"), 675, 850, "white", "silver");
-					else if (KinkyDungeonTargetTile.Lock.includes("Yellow"))
-						DrawText(TextGet("KinkyYellowLock"), 675, 850, "white", "silver");
-					else if (KinkyDungeonTargetTile.Lock.includes("Green"))
-						DrawText(TextGet("KinkyGreenLock"), 675, 850, "white", "silver");
-					else if (KinkyDungeonTargetTile.Lock.includes("Blue"))
-						DrawText(TextGet("KinkyBlueLock"), 675, 850, "white", "silver");
-				} else if (KinkyDungeonTargetTile.Type == "Shrine") {
-					let cost = 0;
-					let type = KinkyDungeonTargetTile.Name;
-
-					if (KinkyDungeonShrineAvailable(type)) cost = KinkyDungeonShrineCost(type);
-
-
-					if (cost == 0) DrawText(TextGet("KinkyDungeonLockedShrine"), 850, 850, "white", "silver");
-					else {
-						DrawButton(675, 825, 350, 60, TextGet("KinkyDungeonPayShrine").replace("XXX", cost), "White", "", "");
-					}
-				} else if (KinkyDungeonTargetTile.Type == "Door") {
-					DrawButton(675, 825, 350, 60, TextGet("KinkyDungeonCloseDoor"));
 				}
-			}
-			//DrawButton(650, 925, 250, 60, TextGet("KinkyDungeonInventory"), "White", "", "");
-			DrawButton(925, 925, 250, 60, TextGet("KinkyDungeonMagic"), "White", "", "");
+				
+				//DrawButton(650, 925, 250, 60, TextGet("KinkyDungeonInventory"), "White", "", "");
+				DrawButton(925, 925, 250, 60, TextGet("KinkyDungeonMagic"), "White", "", "");
 
-			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]) {
-				let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]];
-				DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1275, 835, "white", "silver");
-				DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1275, 870, "white", "silver");
-				DrawButton(1230, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell1.png", "");
-			}
-			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]) {
-				let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]];
-				DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1525, 835, "white", "silver");
-				DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1525, 870, "white", "silver");
-				DrawButton(1480, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell2.png", "");
-			}
-			if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]) {
-				let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]];
-				DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1775, 835, "white", "silver");
-				DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1775, 870, "white", "silver");
-				DrawButton(1730, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell3.png", "");
+				if (KinkyDungeonSpells[KinkyDungeonSpellChoices[0]]) {
+					let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[0]];
+					DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1275, 835, "white", "silver");
+					DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1275, 870, "white", "silver");
+					DrawButton(1230, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell1.png", "");
+				}
+				if (KinkyDungeonSpells[KinkyDungeonSpellChoices[1]]) {
+					let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[1]];
+					DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1525, 835, "white", "silver");
+					DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1525, 870, "white", "silver");
+					DrawButton(1480, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell2.png", "");
+				}
+				if (KinkyDungeonSpells[KinkyDungeonSpellChoices[2]]) {
+					let spell = KinkyDungeonSpells[KinkyDungeonSpellChoices[2]];
+					DrawText(TextGet("KinkyDungeonSpell"+ spell.name), 1775, 835, "white", "silver");
+					DrawText("(" + Math.ceil(KinkyDungeonGetCost(spell.level)) + ")", 1775, 870, "white", "silver");
+					DrawButton(1730, 895, 90, 90, "", "White", KinkyDungeonRootDirectory + "Spell3.png", "");
+				}
 			}
 		} else {
 			DrawText(TextGet("KinkyDungeonLoading"), 1100, 500, "white", "silver");

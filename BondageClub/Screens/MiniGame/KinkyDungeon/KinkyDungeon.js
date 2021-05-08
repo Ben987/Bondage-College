@@ -46,9 +46,10 @@ function KinkyDungeonLoad() {
 
 		KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings;
 
-		if (KinkyDungeonIsPlayer())
+		if (KinkyDungeonIsPlayer()) {
 			KinkyDungeonState = "Menu";
-		else {
+			KinkyDungeonGameData = null;
+		} else {
 			KinkyDungeonState = "Game";
 			if (!KinkyDungeonGameData) KinkyDungeonInitialize(1);
 		}
@@ -266,6 +267,9 @@ function KinkyDungeonExit() {
 	}
 }
 
+
+ 
+
 /**
  * Handles key presses during the mini game. (Both keyboard and mobile)
  * @returns {void} - Nothing
@@ -280,6 +284,123 @@ function KinkyDungeonKeyDown() {
 
 
 }
+
+
+/**
+ * Converts a string into Kinky Game Data
+ * @returns {void}
+ */
+ 
+function KinkyDungeonUnpackData(KinkyData) {
+	if (CurrentScreen != "KinkyDungeon" || KinkyDungeonState != "Game" || !KinkyDungeonPlayerCharacter) return false;
+	let data = JSON.parse(KinkyData.replace(/\./g, "\""));
+	
+	if (!KinkyDungeonGameData) KinkyDungeonGameData = {};
+
+	if (!data) return false;
+	
+	if (data.enemies) {
+		KinkyDungeonGameData.enemies = data.enemies;
+	}
+	if (data.items) {
+		KinkyDungeonGameData.items = data.items;
+	}
+	if (data.bullets) {
+		KinkyDungeonGameData.bullets = data.bullets;
+	}
+	if (data.map) {
+		KinkyDungeonGameData.map = data.map;
+	}
+	if (data.inventory) {
+		KinkyDungeonGameData.inventory = data.inventory;
+	}
+	if (data.meta) {
+		KinkyDungeonGameData.meta = data.meta;
+	}
+	
+	KinkyDungeonUpdateFromData();
+	
+}
+
+function KinkyDungeonUpdateFromData() {
+	if (!KinkyDungeonGameData.map || !KinkyDungeonGameData.inventory ||  !KinkyDungeonGameData.bullets ||  !KinkyDungeonGameData.items ||  !KinkyDungeonGameData.enemies) {
+		//KinkyDungeonGameData = null; // We need the full data before rendering anything!
+	    //return false;
+	}
+	if (KinkyDungeonGameData.enemies) {
+		KinkyDungeonEntities = [];
+		let enemies = JSON.parse(KinkyDungeonGameData.enemies);
+		
+		for (let N = 0; N < enemies.length; N++) {
+			let enemy = enemies[N].split('/');
+			let i = 1;
+			KinkyDungeonEntities.push({Enemy: {name: enemy[i++]}, stun: enemy[i++], x:enemy[i++], y:enemy[i++]}); // Push the enemy
+		}
+	}
+	if (KinkyDungeonGameData.inventory) {
+		KinkyDungeonInventory = [];
+		let inventory = JSON.parse(KinkyDungeonGameData.inventory);
+		
+		for (let N = 0; N < inventory.length; N++) {
+			let item = inventory[N].split('/');
+			let i = 1;
+			let restraint = KinkyDungeonGetRestraintByName(item[i++]);
+			KinkyDungeonAddRestraint(restraint, 0, true); // Add the item
+			let createdrestraint = KinkyDungeonGetRestraintItem(restraint.Group);
+			if (createdrestraint)
+				createdrestraint.lock = ""; // Lock if applicable
+		}
+		KinkyDungeonUpdateStats(0);
+		KinkyDungeonDressPlayer();
+	}
+	
+	if (KinkyDungeonGameData.bullets) {
+		KinkyDungeonBullets = [];
+		let bullets = JSON.parse(KinkyDungeonGameData.bullets);
+		
+		for (let N = 0; N < bullets.length; N++) {
+			let bullet = bullets[N].split('/');
+			let i = 1;
+			let name = bullet[i++];
+			KinkyDungeonBullets.push({spriteID:name + CommonTime(), x:bullet[i], xx:bullet[i++], y:bullet[i], yy:bullet[i++], vx:bullet[i++], vy:bullet[i++],
+				bullet:{name: name, width:bullet[i++], height:bullet[i++]}});
+		}
+	}
+	if (KinkyDungeonGameData.items) {
+		KinkyDungeonGroundItems = [];
+		let items = JSON.parse(KinkyDungeonGameData.items);
+		
+		for (let N = 0; N < items.length; N++) {
+			let item = items[N].split('/');
+			let i = 1;
+			KinkyDungeonGroundItems.push({name:item[i++], x:item[i++], y:item[i++]});
+		}
+	}
+	
+	if (KinkyDungeonGameData.map)
+		KinkyDungeonGrid = KinkyDungeonGameData.map;
+	if (KinkyDungeonGameData.meta) {
+		KinkyDungeonUpdateLightGrid = true;
+	
+		KinkyDungeonGridWidth = Math.round(KinkyDungeonGameData.meta.w);
+		KinkyDungeonGridHeight = Math.round(KinkyDungeonGameData.meta.h);
+		KinkyDungeonPlayerEntity.x = Math.round(KinkyDungeonGameData.meta.x);
+		KinkyDungeonPlayerEntity.y = Math.round(KinkyDungeonGameData.meta.y);
+		
+		KinkyDungeonStatWillpower = Math.round(KinkyDungeonGameData.meta.wp);
+		KinkyDungeonStatStamina = Math.round(KinkyDungeonGameData.meta.sp);
+		KinkyDungeonStatArousal = Math.round(KinkyDungeonGameData.meta.ap);
+		KinkyDungeonRedKeys = Math.round(KinkyDungeonGameData.meta.rk);
+		KinkyDungeonGreenKeys = Math.round(KinkyDungeonGameData.meta.gk);
+		KinkyDungeonBlueKeys = Math.round(KinkyDungeonGameData.meta.bk);
+		KinkyDungeonNormalBlades = Math.round(KinkyDungeonGameData.meta.bl);
+		KinkyDungeonEnchantedBlades = Math.round(KinkyDungeonGameData.meta.eb);
+		KinkyDungeonLockpicks = Math.round(KinkyDungeonGameData.meta.lp);
+		KinkyDungeonGold = Math.round(KinkyDungeonGameData.meta.gp);
+		MiniGameKinkyDungeonLevel = Math.round(KinkyDungeonGameData.meta.lv);
+	}
+}
+ 
 
 /**
  * Turns the game state into a string that can be sent over
@@ -307,7 +428,7 @@ function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory) {
 	let bullets = JSON.stringify(KinkyDungeonBullets, (key, value) => {
         if (CommonIsNumeric(key) && typeof value === "object") {
 				if (value.bullet) {
-					return "B/" + value.bullet.name + "/"+value.x+"/"+value.y + "/"+(Math.round(value.vx*10)/10)+"/"+(Math.round(value.vy*10)/10);
+					return "B/" + value.bullet.name + "/"+value.x+"/"+value.y + "/"+(Math.round(value.vx*10)/10)+"/"+(Math.round(value.vy*10)/10 + "/"+value.bullet.width + "/"+value.bullet.height);
 				}
 		}
         return value;
@@ -329,8 +450,15 @@ function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory) {
 		items: items,
 		bullets: bullets,
 		map: map,
-		inventory: inventory
+		inventory: inventory,
+		meta: {w: KinkyDungeonGridWidth, h: KinkyDungeonGridHeight, x:KinkyDungeonPlayerEntity.x, y:KinkyDungeonPlayerEntity.y,
+			wp:Math.round(KinkyDungeonStatWillpower), sp:Math.round(KinkyDungeonStatStamina), ap:Math.round(KinkyDungeonStatArousal),
+			rk: KinkyDungeonRedKeys, gk: KinkyDungeonGreenKeys, bk: KinkyDungeonBlueKeys,
+			bl: KinkyDungeonNormalBlades, eb: KinkyDungeonEnchantedBlades,
+			lp: KinkyDungeonLockpicks,
+			gp: KinkyDungeonGold,
+			lv: MiniGameKinkyDungeonLevel}
 	};
 	
-	return JSON.stringify(result);
+	return JSON.stringify(result).replace(/"/g, '.');
 }
