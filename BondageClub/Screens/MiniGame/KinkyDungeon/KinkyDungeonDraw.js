@@ -344,8 +344,8 @@ function KinkyDungeonHandleHUD() {
 						KinkyDungeonTargetTile = null;
 						delete KinkyDungeonTiles[KinkyDungeonTargetTileLocation];
 					}
-					return true;
 					KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
+					return true;
 				}
 
 				if (((KinkyDungeonTargetTile.Lock.includes("Red") && KinkyDungeonRedKeys > 0) || (KinkyDungeonTargetTile.Lock.includes("Yellow") && (KinkyDungeonRedKeys > 0 && KinkyDungeonGreenKeys > 0)
@@ -355,8 +355,8 @@ function KinkyDungeonHandleHUD() {
 						KinkyDungeonTargetTile = null;
 						delete KinkyDungeonTiles[KinkyDungeonTargetTileLocation];
 					}
-					return true;
 					KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
+					return true;
 				}
 			} else if (KinkyDungeonTargetTile.Type == "Shrine") {
 				let cost = 0;
@@ -383,6 +383,7 @@ function KinkyDungeonHandleHUD() {
 						KinkyDungeonActionMessageColor = "red"
 					}
 					KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
+					return true;
 				}
 
 			} else if (KinkyDungeonTargetTile.Type == "Door") {
@@ -394,6 +395,7 @@ function KinkyDungeonHandleHUD() {
 					KinkyDungeonMapSet(parseInt(x), parseInt(y), "D")
 					KinkyDungeonSendActionMessage(3, TextGet("KinkyDungeonCloseDoorDone"), "white", 1);
 					KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
+					return true;
 				}
 			}
 		}

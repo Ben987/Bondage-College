@@ -2,7 +2,7 @@
 - First Beta Release
 
 
-1.3 (Apr 26 2021)
+1.3 (May 2021)
 Loot and Rewards
 - Added locked chests which are scattered around the dungeon. Each floor is guaranteed to have at least one locked chest but is likely to have more be locked. You can either pick them or unlock them
 - Added key drops and lockpick drops around the dungeon. You can find them in debris piles, but not chests.
@@ -48,6 +48,10 @@ Other
 - Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
 - You can now hear the last chat message while ingame!
 - The game is persistent so if you hear chat you can exit out and communicate
+
+1.4 (June 2021)
+Features
+- Streaming mode to watch your friends play!
 
 Future content planned:
 - Exit stair puzzles (like for example a button or special key somewhere in the level, maybe with a high likelihood of traps)

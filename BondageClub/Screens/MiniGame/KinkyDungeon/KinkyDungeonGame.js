@@ -856,36 +856,6 @@ function KinkyDungeonMove(moveDirection, delta) {
 	}
 }
 
-function KinkyDungeonMultiplayerUpdate(Delay) {
-	if (KinkyDungeonIsPlayer() && ChatRoomCharacter && ChatRoomCharacter.length > 1 && DialogGamingPreviousRoom == "ChatRoom" && KinkyDungeonNextDataSendTime + Delay < CommonTime()) {
-		let MN = [];
-		
-		for (let C = 0; C < ChatRoomCharacter.length; C++) {
-			let Char = ChatRoomCharacter[C];
-			
-			if (KinkyDungeonStreamingPlayers.includes(Char.MemberNumber) && Char.ID != 0 && Char.Effect.includes("VR")) MN.push(Char.MemberNumber);
-		}
-		
-		if (MN.length > 0) {
-			let data = KinkyDungeonPackData(KinkyDungeonGrid_Last != KinkyDungeonGrid, true, KinkyDungeonMultiplayerInventoryFlag, CommonTime() > KinkyDungeonNextDataSendStatsTime + KinkyDungeonNextDataSendStatsTimeDelay);
-			
-			//KinkyDungeonStreamingPlayers = [];
-			
-			for (let C = 0; C < MN.length; C++) {
-				//KinkyDungeonStreamingPlayers.push(MN[C].MemberNumber); // Clean out the KinkyDungeonStreamingPlayers array
-				//ServerSend("ChatRoomChat", { Content: data, Type: "Hidden", Target: MN[C].MemberNumber });
-				KinkyDungeonSendData(data, MN[C].MemberNumber);
-			}
-		}
-		
-		KinkyDungeonNextDataSendTime = CommonTime();
-		
-		if (CommonTime() > KinkyDungeonNextDataSendStatsTime + KinkyDungeonNextDataSendStatsTimeDelay) KinkyDungeonNextDataSendStatsTime = CommonTime();
-		KinkyDungeonGrid_Last = KinkyDungeonGrid;
-		KinkyDungeonMultiplayerInventoryFlag = false;
-	}
-}
-
 function KinkyDungeonWaitMessage() {
 	if (KinkyDungeonStatWillpowerExhaustion > 1) KinkyDungeonSendActionMessage(3, TextGet("WaitSpellExhaustion"), "orange", 2);
 	else KinkyDungeonSendActionMessage(1, TextGet("Wait"), "yellow", 2);
@@ -934,6 +904,6 @@ function KinkyDungeonAdvanceTime(delta, NoUpdate) {
 	}
 
     if (!NoUpdate)
-	    KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
+		KinkyDungeonMultiplayerUpdate(KinkyDungeonNextDataSendTimeDelay);
 }
 

@@ -2952,7 +2952,7 @@ function ChatRoomPayQuest(data) {
  */
 function ChatRoomGameResponse(data) {
 	if (ChatRoomGame == "LARP") GameLARPProcess(data);
-	if (CurrentScreen == "KinkyDungeon") KinkyDungeonHandleData(data);
+	else if (CurrentScreen == "KinkyDungeon" && data.Data.data.KinkyDungeon) KinkyDungeonHandleData(data);
 }
 
 /**
