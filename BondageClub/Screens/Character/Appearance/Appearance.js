@@ -372,8 +372,10 @@ function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 	if (!C.DrawAppearance) C.DrawAppearance = C.Appearance;
 
 	const assetToCheck = AssetGet(C.AssetFamily, GroupName, AssetName);
-	const Pose = CommonDrawResolveAssetPose(C, assetToCheck);
-	if (Pose && assetToCheck.HideForPose.includes(Pose)) return false;
+	if (assetToCheck) {
+		const Pose = CommonDrawResolveAssetPose(C, assetToCheck);
+		if (Pose && assetToCheck.HideForPose.includes(Pose)) return false;
+	}
 
 	for (const item of C.DrawAppearance) {
 		if (CharacterAppearanceItemIsHidden(item.Asset.Name, item.Asset.Group.Name)) continue;

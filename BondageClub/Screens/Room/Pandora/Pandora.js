@@ -825,6 +825,7 @@ function PandoraPunishmentSentence(Minutes) {
 	Player.Infiltration.Punishment = {};
 	Player.Infiltration.Punishment.Minutes = parseInt(Minutes);
 	Player.Infiltration.Punishment.Background = PandoraBackground;
+	Player.Infiltration.Punishment.Difficulty = InfiltrationDifficulty;
 }
 
 /**

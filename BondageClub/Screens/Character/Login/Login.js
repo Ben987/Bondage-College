@@ -543,6 +543,7 @@ function LoginResponse(C) {
 				// If the player must log back in Pandora's Box prison
 				if ((Player.Infiltration != null) && (Player.Infiltration.Punishment != null) && (Player.Infiltration.Punishment.Timer != null) && (Player.Infiltration.Punishment.Timer > CurrentTime)) {
 					PandoraWillpower = 0;
+					InfiltrationDifficulty = Player.Infiltration.Punishment.Difficulty;
 					CommonSetScreen("Room", "PandoraPrison");
 				} else {
 
