@@ -16,14 +16,14 @@ function KinkyDungeonMultiplayerUpdate(Delay) {
 		
 		if (MN.length > 0) {
 			let data = KinkyDungeonPackData(KinkyDungeonGrid_Last != KinkyDungeonGrid, true, KinkyDungeonMultiplayerInventoryFlag, CommonTime() > KinkyDungeonNextDataSendStatsTime + KinkyDungeonNextDataSendStatsTimeDelay);
-			
+			KinkyDungeonSendData(data);
 			//KinkyDungeonStreamingPlayers = [];
 			
-			for (let C = 0; C < MN.length; C++) {
+			//for (let C = 0; C < MN.length; C++) {
 				//KinkyDungeonStreamingPlayers.push(MN[C].MemberNumber); // Clean out the KinkyDungeonStreamingPlayers array
 				//ServerSend("ChatRoomChat", { Content: data, Type: "Hidden", Target: MN[C].MemberNumber });
-				KinkyDungeonSendData(data, MN[C].MemberNumber);
-			}
+				
+			//}
 		}
 		
 		KinkyDungeonNextDataSendTime = CommonTime();
@@ -237,9 +237,9 @@ function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory, Includ
  * Sends kinky dungeon data to the target member
  * @returns {void}
  */
-function KinkyDungeonSendData(data, MemberNumber) {
+function KinkyDungeonSendData(data) {
 	if (ChatRoomGame == "LARP") return;
-	ServerSend("ChatRoomGame", { data: {KinkyDungeon: data}, Target: MemberNumber });
+	ServerSend("ChatRoomGame", { data: {KinkyDungeon: data} });
 }
 
 /**
