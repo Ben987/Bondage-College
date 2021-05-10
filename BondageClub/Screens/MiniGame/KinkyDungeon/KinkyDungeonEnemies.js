@@ -210,7 +210,7 @@ function KinkyDungeonUpdateEnemies(delta) {
 					if (enemy.warningTiles.length == 0)
 						enemy.warningTiles = KinkyDungeonGetWarningTiles(player.x - enemy.x, player.y - enemy.y, enemy.Enemy.attackRange, enemy.Enemy.attackWidth);
 
-					if (enemy.Enemy.attack.includes("Bind") && KinkyDungeonPlayerBuffs.Evasion && Math.random() >= KinkyDungeonPlayerBuffs.Evasion.power) {
+					if (enemy.Enemy.attack.includes("Bind") && (!KinkyDungeonPlayerBuffs.Evasion || (KinkyDungeonPlayerBuffs.Evasion && Math.random() >= KinkyDungeonPlayerBuffs.Evasion.power))) {
 						let caught = false;
 						for (let W = 0; W < enemy.warningTiles.length; W++) {
 							let tile = enemy.warningTiles[W];
