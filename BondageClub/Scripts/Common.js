@@ -524,6 +524,39 @@ function CommonDebounce(func, wait) {
 		return result;
 	};
 }
+
+/**
+ * Creates a throttling wrapper for the provided function with the provided wait time. If the wrapped function has been successfully called
+ * within the wait time, further call attempts will be delayed until the wait time has passed.
+ * @param {function} func - The function to throttle
+ * @param {number} wait - The wait time in milliseconds that needs to pass until the throttled function will be invoked again
+ * @returns {function} - A throttled version of the provided function
+ */
+function CommonThrottle(func, wait) {
+	let timeout, args, context, timestamp = 0, result;
+	wait = typeof wait === "number" ? wait : 100;
+
+	function run() {
+		timeout = null;
+		result = func.apply(context, args);
+		timestamp = CommonTime();
+	}
+
+	return function () {
+		context = this;
+		args = arguments;
+		const last = CommonTime() - timestamp;
+		if (!timeout) {
+			if (last >= 0 && last < wait) {
+				timeout = setTimeout(run, wait - last);
+			} else {
+				run();
+			}
+		}
+		return result;
+	};
+}
+
 /**
  * Creates a simple memoizer.
  * The memoized function does calculate its result exactly once and from that point on, uses

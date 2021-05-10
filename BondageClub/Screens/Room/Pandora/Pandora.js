@@ -40,13 +40,23 @@ function PandoraLoad() {
 
 /**
  * Returns the color of the direction buttons, it can change if the direction was recently navigated to
- * @returns {void} - Nothing
+ * @param {"North" | "South" | "East" | "West"} Direction - The cardinal direction
+ * @returns {string} - The color to use
  */
 function PandoraDirectionButtonColor(Direction) {
 	if ((PandoraMoveDirectionTimer.Timer >= CommonTime()) && (PandoraMoveDirectionTimer.Direction === Direction))
-		return (PandoraCurrentRoom.DirectionMap.indexOf(Direction) >= 0) ? "#80FF80" : "#408040";
+		return PandoraDirectionAvailable(Direction) ? "#80FF80" : "#408040";
 	else
-		return (PandoraCurrentRoom.DirectionMap.indexOf(Direction) >= 0) ? "White" : "#BF8080";
+		return PandoraDirectionAvailable(Direction) ? "White" : "#BF8080";
+}
+
+/**
+ * Returns whether the player can move in the specified direction
+ * @param {"North" | "South" | "East" | "West"} Direction - The cardinal direction to check
+ * @returns {boolean} - Whether the direction can be accessed
+ */
+function PandoraDirectionAvailable(Direction) {
+	return (PandoraCurrentRoom.DirectionMap.indexOf(Direction) >= 0);
 }
 
 /**
@@ -82,10 +92,10 @@ function PandoraRun() {
 	if (AllowMove) {
 		for (let P = 0; P < PandoraCurrentRoom.Path.length; P++)
 			DrawButton(1885, 25 + P * 115, 90, 90, "", "White", "Icons/" + PandoraCurrentRoom.Direction[P] + ".png", TextGet("Path" + PandoraCurrentRoom.Direction[P]));
-		DrawButton(1842, 620, 90, 90, "", PandoraDirectionButtonColor("North"), "Icons/North.png", TextGet("DirectionNorth"));
-		DrawButton(1785, 735, 90, 90, "", PandoraDirectionButtonColor("West"), "Icons/West.png", TextGet("DirectionWest"));
-		DrawButton(1842, 850, 90, 90, "", PandoraDirectionButtonColor("South"), "Icons/South.png", TextGet("DirectionSouth"));
-		DrawButton(1900, 735, 90, 90, "", PandoraDirectionButtonColor("East"), "Icons/East.png", TextGet("DirectionEast"));
+		DrawButton(1842, 620, 90, 90, "", PandoraDirectionButtonColor("North"), "Icons/North.png", TextGet("DirectionNorth"), !PandoraDirectionAvailable("North"));
+		DrawButton(1785, 735, 90, 90, "", PandoraDirectionButtonColor("West"), "Icons/West.png", TextGet("DirectionWest"), !PandoraDirectionAvailable("West"));
+		DrawButton(1842, 850, 90, 90, "", PandoraDirectionButtonColor("South"), "Icons/South.png", TextGet("DirectionSouth"), !PandoraDirectionAvailable("South"));
+		DrawButton(1900, 735, 90, 90, "", PandoraDirectionButtonColor("East"), "Icons/East.png", TextGet("DirectionEast"), !PandoraDirectionAvailable("East"));
 	}
 
 	// If we must draw a message in the middle of the screen
@@ -155,10 +165,10 @@ function PandoraClick() {
 				}
 				return PandoraEnterRoom(PandoraCurrentRoom.Path[P]);
 			}
-		if (MouseIn(1842, 620, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("North") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("North")], "North");
-		if (MouseIn(1785, 735, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("West") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("West")], "West");
-		if (MouseIn(1842, 850, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("South") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("South")], "South");
-		if (MouseIn(1900, 735, 90, 90) && (PandoraCurrentRoom.DirectionMap.indexOf("East") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("East")], "East");
+		if (MouseIn(1842, 620, 90, 90) && (PandoraDirectionAvailable("North"))) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("North")], "North");
+		if (MouseIn(1785, 735, 90, 90) && (PandoraDirectionAvailable("West"))) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("West")], "West");
+		if (MouseIn(1842, 850, 90, 90) && (PandoraDirectionAvailable("South"))) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("South")], "South");
+		if (MouseIn(1900, 735, 90, 90) && (PandoraDirectionAvailable("East"))) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("East")], "East");
 	}
 
 }
@@ -173,10 +183,10 @@ function PandoraKeyDown() {
 		if ((PandoraCurrentRoom.Character[C].AllowMove != null) && (PandoraCurrentRoom.Character[C].AllowMove == false))
 			AllowMove = false;
 	if (AllowMove) {
-		if (((KeyPress == 87) || (KeyPress == 119)) && (PandoraCurrentRoom.DirectionMap.indexOf("North") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("North")], "North");
-		if (((KeyPress == 65) || (KeyPress == 97)) && (PandoraCurrentRoom.DirectionMap.indexOf("West") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("West")], "West");
-		if (((KeyPress == 83) || (KeyPress == 115)) && (PandoraCurrentRoom.DirectionMap.indexOf("South") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("South")], "South");
-		if (((KeyPress == 68) || (KeyPress == 100)) && (PandoraCurrentRoom.DirectionMap.indexOf("East") >= 0)) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("East")], "East");
+		if (((KeyPress == 87) || (KeyPress == 119)) && (PandoraDirectionAvailable("North"))) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("North")], "North");
+		if (((KeyPress == 65) || (KeyPress == 97)) && (PandoraDirectionAvailable("West"))) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("West")], "West");
+		if (((KeyPress == 83) || (KeyPress == 115)) && (PandoraDirectionAvailable("South"))) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("South")], "South");
+		if (((KeyPress == 68) || (KeyPress == 100)) && (PandoraDirectionAvailable("East"))) return PandoraEnterRoom(PandoraCurrentRoom.PathMap[PandoraCurrentRoom.DirectionMap.indexOf("East")], "East");
 	}
 }
 

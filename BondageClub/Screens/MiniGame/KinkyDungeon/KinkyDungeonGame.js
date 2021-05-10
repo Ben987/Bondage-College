@@ -824,7 +824,7 @@ function KinkyDungeonMove(moveDirection, delta) {
 					if (KinkyDungeonStatStamina > 0) { // You can only move if your stamina is > 0
 						KinkyDungeonMovePoints = Math.min(Math.ceil(KinkyDungeonSlowLevel + 1), KinkyDungeonMovePoints + delta); // Can't store extra move points
 
-						if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel) { // You need more move points than your slow level, unless your slow level is 1 
+						if (KinkyDungeonMovePoints >= Math.max(1, KinkyDungeonSlowLevel)) { // You need more move points than your slow level, unless your slow level is 1 
 							KinkyDungeonMoveTo(moveX, moveY);
 							
 						}

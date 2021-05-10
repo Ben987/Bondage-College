@@ -66,7 +66,13 @@ function KinkyDungeonLock(item, lock) {
 	item.lock = lock;
 	if (item.restraint && InventoryGet(KinkyDungeonPlayer, item.restraint.Group) && lock != "") {
 		InventoryLock(KinkyDungeonPlayer, InventoryGet(KinkyDungeonPlayer, item.restraint.Group), "IntricatePadlock", Player.MemberNumber, true)
-	} else InventoryUnlock(KinkyDungeonPlayer, item.restraint.Group);
+		InventoryLock(Player, InventoryGet(Player, item.restraint.Group), "IntricatePadlock", Player.MemberNumber, true)
+	} else {
+		InventoryUnlock(KinkyDungeonPlayer, item.restraint.Group);
+		if (!KinkyDungeonRestraintsLocked.includes(Group))
+			InventoryUnlock(Player, item.restraint.Group);
+	}
+		
 }
 
 function KinkyDungeonGetRestraintsWithShrine(shrine) {
@@ -376,7 +382,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 		if (!InventoryGroupIsBlocked(KinkyDungeonPlayer, restraint.Group) || Bypass) {
 			KinkyDungeonRemoveRestraint(restraint.Group);
 			InventoryWear(KinkyDungeonPlayer, restraint.Asset, restraint.Group, restraint.power);
-			if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && restraint.Group != "ItemHead" && !InventoryGroupIsBlocked(Player, restraint.Group) &&
+			if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && restraint.Group != "ItemHead" &&
 				(!InventoryGetLock(InventoryGet(Player, restraint.Group))
 				|| (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false)))
 					InventoryWear(Player, restraint.Asset, restraint.Group, restraint.power);
@@ -386,7 +392,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 				if (!options) options = TypedItemDataLookup[`${restraint.Group}${restraint.Asset}`].options; // Try again
 				const option = options.find(o => o.Name === restraint.Type);
 				ExtendedItemSetType(KinkyDungeonPlayer, options, option);
-				if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) &&
+				if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) &&
 					(!InventoryGetLock(InventoryGet(Player, restraint.Group)) || (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false))
 					&& restraint.Group != "ItemHead") {
 					Player.FocusGroup = AssetGroupGet("Female3DCG", restraint.Group);
@@ -400,7 +406,7 @@ function KinkyDungeonAddRestraint(restraint, Tightness, Bypass) {
 			}
 			if (restraint.Color) {
 				CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, restraint.Color, restraint.Group);
-				if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) && !InventoryGroupIsBlocked(Player, restraint.Group) &&
+				if (ArcadeDeviousChallenge && KinkyDungeonDeviousDungeonAvailable() && !KinkyDungeonRestraintsLocked.includes(restraint.Group) &&
 					(!InventoryGetLock(InventoryGet(Player, restraint.Group)) || (InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.OwnerOnly == false && InventoryGetLock(InventoryGet(Player, restraint.Group)).Asset.LoverOnly == false))
 					&& restraint.Group != "ItemHead")
 					CharacterAppearanceSetColorForGroup(Player, restraint.Color, restraint.Group);

@@ -949,13 +949,11 @@ DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for TargetCha
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter face.,,
 DuctTapeHeadTypeMummy,,,Mummy,,
 DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter head in tape with multiple layers. ,,
-SelectLockerState,,,Select Locker state,,
-LockerStateSeethrough,,,See-through,,
-LockerStateOpaque,,,Opaque,,
-DevicesLockerSetSeethrough,,,SourceCharacter has everyone focus on the vents in DestinationCharacter locker.,,
-DevicesLockerSetOpaque,,,SourceCharacter has everyone unfocus on the vents in DestinationCharacter locker.,,
-DevicesLockerVentlessSetSeethrough,,,SourceCharacter has everyone focus on DestinationCharacter locker.,,
-DevicesLockerVentlessSetOpaque,,,SourceCharacter has everyone unfocus on DestinationCharacter locker.,,
+InventoryItemDevicesLockerOpacity,,,Change Opacity,,
+InventoryItemDevicesLockerType,,,Select Locker type,,
+InventoryItemDevicesLockerTypeVents,,,Vents,,
+InventoryItemDevicesLockerTypeVentless,,,Ventless,,
+InventoryItemDevicesLockerChange,,,SourceCharacter changes the vents on DestinationCharacter locker.,,
 SelectVacbedState,,,Select vacbed type.,,
 VacbedStateNormal,,,Hair
 VacbedStateNohair,,,No Hair
