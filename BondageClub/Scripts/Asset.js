@@ -153,6 +153,8 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		FixedPosition: typeof NewAsset.FixedPosition === "boolean" ? NewAsset.FixedPosition : false,
 		Layer: [],
 		ColorableLayerCount: 0,
+		FuturisticRecolor: typeof NewAsset.FuturisticRecolor === 'boolean' ? NewAsset.FuturisticRecolor : false,
+		FuturisticRecolorDisplay: typeof NewAsset.FuturisticRecolorDisplay === 'boolean' ? NewAsset.FuturisticRecolorDisplay : false,
 	}, AssetParsePoseProperties(NewAsset, [...AssetCurrentGroup.AllowPose]));
 
 	// Ensure opacity value is valid

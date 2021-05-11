@@ -243,14 +243,14 @@ function InventoryItemNeckFuturisticCollarUnlock(C) {
 
 function InventoryItemNeckFuturisticCollarColor(C, Item) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
-		if (C.Appearance[E].Asset.Effect && C.Appearance[E].Asset.Effect.includes("FuturisticRecolor") && C.Appearance[E].Asset.Group.Name != "ItemNeck") {
+		if (C.Appearance[E].Asset && C.Appearance[E].Asset.FuturisticRecolor && C.Appearance[E].Asset.Group.Name != "ItemNeck") {
 
 			for (let L = C.Appearance[E].Asset.Layer.length - 1; L >= 0; L--) {
 
 				if (C.Appearance[E].Asset.Layer[L].Name != "Light" && C.Appearance[E].Asset.Layer[L].Name != "Shine") {
 					if (!C.Appearance[E].Asset.Layer[L].Name) {
 						if (Item.Color[3] != "Default")
-							C.Appearance[E].Color = (C.Appearance[E].Asset.Effect.includes("FuturisticRecolorDisplay")) ? Item.Color[0] : Item.Color[3];
+							C.Appearance[E].Color = (C.Appearance[E].Asset.FuturisticRecolorDisplay) ? Item.Color[0] : Item.Color[3];
 						//C.Appearance[E].Asset.Layer[L].ColorIndex = Item.Asset.Layer[2].ColorIndex
 					} else if (C.Appearance[E].Asset.Layer[L].Name == "Lock") {
 						if (Item.Color[3] != "Default")
