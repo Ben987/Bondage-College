@@ -551,8 +551,7 @@ function InventoryRemove(C, AssetGroup, Refresh) {
 * @param {Boolean} Activity - if TRUE check if activity is allowed on the asset group
 * @returns {Boolean} - TRUE if the group is blocked
 */
-function InventoryGroupIsBlocked(C, GroupName, Activity) {
-
+function InventoryGroupIsBlockedForCharacter(C, GroupName, Activity) {
 	if (Activity == null) Activity = false;
 
 	// Default to characters focused group
@@ -583,7 +582,20 @@ function InventoryGroupIsBlocked(C, GroupName, Activity) {
 				return false;
 		return true;
 	}
+	// Nothing is preventing the group from being used
+	return false;
+}
 
+/**
+* Returns TRUE if the body area (Asset Group) for a character is blocked and cannot be used
+* Similar to InventoryGroupIsBlockedForCharacter but also blocks groups on all characters if the player is enclosed.
+* @param {Character} C - The character on which we validate the group
+* @param {String} GroupName - The name of the asset group (body area)
+* @param {Boolean} Activity - if TRUE check if activity is allowed on the asset group
+* @returns {Boolean} - TRUE if the group is blocked
+*/
+function InventoryGroupIsBlocked(C, GroupName, Activity) {
+	if (InventoryGroupIsBlockedForCharacter(C, GroupName, Activity)) return true;
 	// If the player is enclosed, all groups for another character are blocked
 	if ((C.ID != 0) && Player.IsEnclose()) return true;
 
