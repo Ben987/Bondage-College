@@ -1714,6 +1714,8 @@ function ChatRoomMessage(data) {
 				MsgEnterLeave = " ChatMessageEnterLeave";
 			if ((data.Type != "Chat" && data.Type != "Whisper" && data.Type != "Emote"))
 				MsgNonDialogue = " ChatMessageNonDialogue";
+			
+			if (msg.startsWith("ServerDisconnect") && SenderCharacter.MemberNumber == ChatRoomLeashPlayer) ChatRoomLeashPlayer = null;
 
 			// Replace actions by the content of the dictionary
 			if (data.Type && ((data.Type == "Action") || (data.Type == "ServerMessage"))) {
