@@ -1644,7 +1644,7 @@ var AssetFemale3DCG = [
 					{ Name: "Ring" }
 				]
 			},
-			{ Name: "ClitRing", Fetish: ["Metal"], Value: 20, Difficulty: 10, Time: 15, Random: false, AllowLock: true, Left: 50, AllowEffect: ["Leash"], AllowType: ["Leash"], Extended: true },
+			{ Name: "ClitRing", Fetish: ["Metal"], Value: 20, Difficulty: 10, Time: 15, Random: false, AllowLock: true, Left: 50, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], AllowEffect: ["Leash"], AllowType: ["Leash"], Extended: true },
 			{ Name: "BellClitPiercing", Fetish: ["Metal"], Value: 30, Difficulty: 10, Time: 5, AllowLock: true, Audio: "BellSmall", Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], ExpressionTrigger: [{ Name: "Closed", Group: "Eyes", Timer: 5 }, { Name: "Soft", Group: "Eyebrows", Timer: 5 }] },
 			{ Name: "TapedClitEgg", Fetish: ["Tape"], Value: 25, Time: 5, Prerequisite: ["AccessVulva", "AccessVulvaSuitZip"], Effect: ["Egged"], AllowEffect: ["Egged", "Vibrating", "Edged"], ArousalZone: "ItemVulva", ExpressionTrigger: [{ Name: "Low", Group: "Blush", Timer: 10 }], DynamicScriptDraw: true }
 		],
@@ -4277,7 +4277,7 @@ var AssetFemale3DCG = [
 				], HideForPose: ["Spread"]
 			},
 			{ Name: "FuturisticHeels2", Value: 50, Difficulty: 7, Time: 10, RemoveTime: 20,
-			Left: 75, DefaultColor: ["#50913C", "Default"], Random: false, AllowLock: true, DrawLocks: false, Audio: "FuturisticApply", BuyGroup: "FuturisticHeels", Extended: true, AllowType:["Matte"],
+			Left: 75, DefaultColor: ["Default", "#50913C", "Default", "Default", "Default", "#aaaaaa", "Default"], Random: false, AllowLock: true, DrawLocks: false, Audio: "FuturisticApply", BuyGroup: "FuturisticHeels", Extended: true, AllowType:["Matte"],
 			AllowPose: ["LegsClosed", "Kneel", "Hogtied", "Spread"],
 				Layer: [
 					{ Name: "Mesh", ParentGroup: null, HasType: false },
@@ -4289,7 +4289,7 @@ var AssetFemale3DCG = [
 					{ Name: "Lock", LockLayer: true, HasType: false ,AllowColorize: true, ParentGroup: null},
 				],Alpha: [
 					{ Group: ["BodyLower", "Socks", "SuitLower"], Masks: [[75, 860, 350, 120]] },
-					{ Group: ["BodyLower", "Socks", "SuitLower"], Pose: ["LegsClosed"], Masks: [[75, 850, 350, 150]] },
+					{ Group: ["BodyLower", "Socks", "SuitLower"], Pose: ["LegsClosed"], Masks: [[75, 870, 350, 150]] },
 				], Height: 30
 			},
 			{
@@ -4310,7 +4310,7 @@ var AssetFemale3DCG = [
 			{ Name: "Zipties", Value: 20, Difficulty: 6, Time: 5, RemoveTime: 6, BuyGroup: "Zipties", Audio: "ZipTie", Prerequisite: "ToeTied", SetPose: ["LegsClosed"], Effect: ["Freeze", "Prone"], AllowActivePose: ["Kneel"], HideForPose: ["Spread"] },
 			AssetSpankingToys
 		],
-		Color: ["Default"]
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
 
 ];

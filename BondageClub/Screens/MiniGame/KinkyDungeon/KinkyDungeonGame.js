@@ -73,6 +73,7 @@ var KinkyDungeonHardLockChanceScalingMax = 0.4;
 
 
 var KinkyDungeonDoorCloseTimer = 0;
+var KinkyDungeonLastMoveDirection = null;
 var KinkyDungeonTargetingSpell = null;
 
 function KinkyDungeonSetCheckPoint() {
@@ -787,6 +788,11 @@ function KinkyDungeonMove(moveDirection, delta) {
 
 		KinkyDungeonAdvanceTime(1);
 	} else {
+		if (moveDirection.x == 0 && moveDirection.y == 0) KinkyDungeonDoorCloseTimer = 0; // Allow manually waiting to turn around and be able to slam a door
+		else if (KinkyDungeonLastMoveDirection && !(KinkyDungeonLastMoveDirection.x == 0 && KinkyDungeonLastMoveDirection.y == 0) && (Math.abs(KinkyDungeonLastMoveDirection.x - moveDirection.x) + Math.abs(KinkyDungeonLastMoveDirection.y - moveDirection.y)) <= 1) {
+			KinkyDungeonDoorCloseTimer = Math.max(KinkyDungeonDoorCloseTimer, 1); // if you are running in the same direction you cant close the door without turning around. this also helps speed up the game
+		}
+		
 		var moveObject = KinkyDungeonMapGet(moveX, moveY);
 		if (KinkyDungeonMovableTiles.includes(moveObject) && KinkyDungeonNoEnemy(moveX, moveY)) { // If the player can move to an empy space or a door
 
@@ -794,7 +800,7 @@ function KinkyDungeonMove(moveDirection, delta) {
 				KinkyDungeonTargetTileLocation = "" + moveX + "," + moveY;
 				KinkyDungeonTargetTile = KinkyDungeonTiles[KinkyDungeonTargetTileLocation];
 				KinkyDungeonSendTextMessage(2, TextGet("KinkyDungeonObject" + KinkyDungeonTargetTile.Type).replace("TYPE", TextGet("KinkyDungeonShrine" + KinkyDungeonTargetTile.Name)), "white", 1);
-				KinkyDungeonDoorCloseTimer = 4; // To avoid cases with severe annoyance while walking through halls with lots of doors
+				KinkyDungeonDoorCloseTimer = 2; // To avoid cases with severe annoyance while walking through halls with lots of doors
 			} else {
 				if (KinkyDungeonDoorCloseTimer > 0) KinkyDungeonDoorCloseTimer -= 1;
 				KinkyDungeonTargetTile = null;
@@ -809,8 +815,9 @@ function KinkyDungeonMove(moveDirection, delta) {
 					if (KinkyDungeonStatStamina > 0) { // You can only move if your stamina is > 0
 						KinkyDungeonMovePoints = Math.min(Math.ceil(KinkyDungeonSlowLevel + 1), KinkyDungeonMovePoints + delta); // Can't store extra move points
 
-						if (KinkyDungeonMovePoints >= KinkyDungeonSlowLevel) { // You need more move points than your slow level, unless your slow level is 1 
+						if (KinkyDungeonMovePoints >= Math.max(1, KinkyDungeonSlowLevel)) { // You need more move points than your slow level, unless your slow level is 1 
 							KinkyDungeonMoveTo(moveX, moveY);
+							
 						}
 						
 						// Messages to inform player they are slowed
@@ -829,9 +836,7 @@ function KinkyDungeonMove(moveDirection, delta) {
 								KinkyDungeonWaitMessage();
 							}
 						}
-						
-						if (moveDirection.x == 0 && moveDirection.y == 0) KinkyDungeonDoorCloseTimer = 0; // Allow manually waiting to turn around and be able to slam a door
-
+													
 						if (moveObject == 'R') {
 							KinkyDungeonLoot(MiniGameKinkyDungeonLevel, MiniGameKinkyDungeonCheckpoint, "rubble");
 
@@ -845,6 +850,8 @@ function KinkyDungeonMove(moveDirection, delta) {
 			if (KinkyDungeonGetVisionRadius() <= 1) KinkyDungeonAdvanceTime(1);
 		}
 	}
+	
+	KinkyDungeonLastMoveDirection = moveDirection;
 }
 
 function KinkyDungeonWaitMessage() {

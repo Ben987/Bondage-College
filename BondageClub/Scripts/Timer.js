@@ -243,7 +243,8 @@ function TimerProcess(Timestamp) {
 
 	if (BlindFlash == true && CurrentTime < DrawingBlindFlashTimer) {
 		if (Player.GetBlindLevel() == 0) {
-			DrawRect(0, 0, 2000, 1000, "rgba(255,255,255," + (1 - lastdarkfactor - 0.1) + ")");
+			let FlashTime = DrawingBlindFlashTimer - CurrentTime;
+			DrawRect(0, 0, 2000, 1000, "#ffffff" + DrawGetScreenFlash(FlashTime/Math.max(1, 4 - DrawLastDarkFactor)));
 		}
 	}
 

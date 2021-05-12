@@ -153,7 +153,7 @@ class NotificationEventHandler {
 			this.raisedCount = 0;
 
 			if (this.settings.AlertType === NotificationAlertType.POPUP) {
-				this.popup.close();
+				if (this.popup) this.popup.close();
 			}
 			else if (this.settings.AlertType === NotificationAlertType.TITLEPREFIX) {
 				NotificationTitleUpdate();
