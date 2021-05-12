@@ -67,7 +67,7 @@ function KinkyDungeonLock(item, lock) {
 		InventoryLock(Player, InventoryGet(Player, item.restraint.Group), "IntricatePadlock", Player.MemberNumber, true)
 	} else {
 		InventoryUnlock(KinkyDungeonPlayer, item.restraint.Group);
-		if (!KinkyDungeonRestraintsLocked.includes(Group))
+		if (!KinkyDungeonRestraintsLocked.includes(item.restraint.Group))
 			InventoryUnlock(Player, item.restraint.Group);
 	}
 		
