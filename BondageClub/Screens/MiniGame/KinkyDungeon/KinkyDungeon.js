@@ -230,6 +230,9 @@ function KinkyDungeonClick() {
  */
 function KinkyDungeonExit() {
 	CommonDynamicFunction(MiniGameReturnFunction + "()");
+	
+	if (MiniGameKinkyDungeonLevel > ReputationGet("Gaming"))
+		DialogSetReputation("Gaming", MiniGameKinkyDungeonLevel);
 
 	if (CurrentScreen == "ChatRoom" && KinkyDungeonState != "Menu" && (MiniGameKinkyDungeonLevel > 1 || KinkyDungeonState == "Lose")) {
 		let Message = "KinkyDungeonExit";
