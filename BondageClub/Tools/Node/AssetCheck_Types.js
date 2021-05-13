@@ -130,7 +130,10 @@ const AssetType = {
 	MirrorExpression: "String",
 	FixedPosition: "Boolean",
 	CustomBlindBackground: "Object",
-	Layer: "[Object]"
+	Layer: "[Object]",
+	Archetype: "String",
+	FuturisticRecolor: "Boolean",
+	FuturisticRecolorDisplay: "Boolean",
 };
 
 const AssetLayerType = {

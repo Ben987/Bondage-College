@@ -104,13 +104,8 @@ function CommonDrawAppearanceBuild(C, {
 		}
 
 		// If there's a pose style we must add (items take priority over groups, layers may override completely)
-		var Pose = "";
-		if (C.DrawPose && C.DrawPose.length) {
-			let AllowPose = Layer.AllowPose;
-			if (!Array.isArray(AllowPose)) AllowPose = A.AllowPose;
-			if (!Array.isArray(AllowPose)) AllowPose = AG.AllowPose;
-			Pose = CommonDrawFindPose(C, AllowPose);
-		}
+		let Pose = CommonDrawResolveAssetPose(C, A, Layer);
+		if (Pose) Pose += "/";
 
 		// Check if we need to draw a different expression (for facial features)
 		let Expression = "";
@@ -276,10 +271,10 @@ function CommonDrawAppearanceBuild(C, {
 
 		const Rotate = A.FixedPosition && C.IsInverted();
 
-		const HideForPose = !!Pose && (A.HideForPose.find(P => Pose === P + "/") || Layer.HideForPose.find(P => Pose === P + "/"));
+		// const HideForPose = !!Pose && (A.HideForPose.find(P => Pose === P + "/") || Layer.HideForPose.find(P => Pose === P + "/"));
 		const ItemLocked = !!(Property && Property.LockedBy);
 
-		if (!HideForPose) {
+		// if (!HideForPose) {
 			if (Layer.HasImage && (!Layer.LockLayer || ItemLocked)) {
 				// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply
 				// that text)
@@ -326,7 +321,7 @@ function CommonDrawAppearanceBuild(C, {
 						"_Lock.png", X, Y, AlphaMasks);
 				}
 			}
-		}
+		// }
 
 		// After drawing hook, receives all processed data.
 		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects.
@@ -344,7 +339,7 @@ function CommonDrawAppearanceBuild(C, {
 /**
  * Determines whether the provided color is valid
  * @param {any} Color - The color
- * @param {any} AssetGroup - The asset group the color is being used fo
+ * @param {AssetGroup} AssetGroup - The asset group the color is being used fo
  * @returns {boolean} - Whether the color is valid
  */
 function CommonDrawColorValid(Color, AssetGroup) {
@@ -367,8 +362,26 @@ function CommonDrawFindPose(C, AllowedPoses) {
 	var Pose = "";
 	if (AllowedPoses && AllowedPoses.length) {
 		AllowedPoses.forEach(AllowedPose => {
-			if (C.DrawPose.includes(AllowedPose)) Pose = AllowedPose + "/";
+			if (C.DrawPose.includes(AllowedPose)) Pose = AllowedPose;
 		});
+	}
+	return Pose;
+}
+
+/**
+ * Finds the pose that should be used when a given asset (and optionally layer) is drawn.
+ * @param {Character} C - The character whose poses to check
+ * @param {Asset} A - The asset to check
+ * @param {AssetLayer} [Layer] - The layer to check (optional)
+ * @returns {string} - The pose to use when drawing the given asset (or layer)
+ */
+function CommonDrawResolveAssetPose(C, A, Layer) {
+	let Pose = "";
+	if (C.DrawPose && C.DrawPose.length) {
+		let AllowPose = Layer && Layer.AllowPose;
+		if (!Array.isArray(AllowPose)) AllowPose = A.AllowPose;
+		if (!Array.isArray(AllowPose)) AllowPose = A.Group.AllowPose;
+		Pose = CommonDrawFindPose(C, AllowPose);
 	}
 	return Pose;
 }

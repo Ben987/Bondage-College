@@ -9,6 +9,14 @@ var InventoryItemBreastFuturisticBra2Options = [
 		Name: "NoDisplay",
 		Property: { Type: "NoDisplay" },
 	},
+	{
+		Name: "DisplayMatte",
+		Property: { Type: "Matte" },
+	},
+	{
+		Name: "NoDisplayMatte",
+		Property: { Type: "NoDisplayMatte" },
+	},
 ];
 
 function InventoryItemBreastFuturisticBra2Load() {

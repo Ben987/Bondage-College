@@ -1,0 +1,18 @@
+PlayerGagged,,,(She checks your gag.)  Gags are such a perfect fit for prisoners.,,
+0,,,"(A maid steps in carefully, escorted by guards.)  I've heard you're dangerous Miss DialogPlayerName.  Don't hurt me, I'm here to release you.",,"DialogSkillGreater(""Infiltration"", 9)"
+0,,,"(A maid steps in slowly, escorted by guards.)  You're Miss DialogPlayerName from the Bondage Club?  I'm here to release you.",,"DialogSkillGreater(""Infiltration"", 6)"
+0,,,"(A maid steps in, escorted by a guard.)  You're the prisoner from the Bondage Club?  I'm here to release you.",,"DialogSkillGreater(""Infiltration"", 3)"
+0,,,"(A maid steps in carelessly, escorted by a guard.)  Hello there, I'm here to release you.",,
+0,,My time is done?,(She nods.)  Yes Miss.  I will escort you out of the buidling when you're ready.,DialogRemove(),Player.CanTalk()
+0,,I was having fun.,"(She giggles.)  Well you can stay for a few more minutes, there's no hurry.",DialogRemove(),Player.CanTalk()
+0,10,Thanks Maid.,"(She nods, helps you out and escorts you out of Pandora's Box.)  I trust you've learned your lesson.",ReleasePlayer(),Player.CanTalk()
+0,10,Finally!  You took your time.,"(She sighs, helps you out and escorts you out of Pandora's Box.)  I trust you've learned your lesson.",ReleasePlayer(),Player.CanTalk()
+0,10,(Mumble in your gag.),(She helps you out and escorts you out of the building.)  I trust you've learned your lesson.,ReleasePlayer(),!Player.CanTalk()
+0,10,(Struggle in your restraints.),(She helps you out and escorts you out of the building.)  I trust you've learned your lesson.,ReleasePlayer(),Player.IsRestrained()
+0,10,(Stay silent.),(She helps you out and escorts you out of the building.)  I trust you've learned your lesson.,ReleasePlayer(),
+0,,(Look around.),,DialogLeave(),
+10,,Wait!  What about my clothes?,We will mail them to you.  Some fresh air will be an extra lesson.  You better run.  (She giggles.),DialogRemove(),Player.IsNaked()
+10,,"Lesson learned, I won't get caught again.",,ExitPrison(),
+10,,You will understand the next lesson.,,ExitPrison(),
+10,,"Yes Miss, I understand.",,ExitPrison(),
+10,,(Go back to the club.),,ExitPrison(),

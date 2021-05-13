@@ -24,6 +24,9 @@ const DrawCacheImage = new Map;
 let DrawCacheLoadedImages = 0;
 let DrawCacheTotalImages = 0;
 
+// Last dark factor for blindflash
+var DrawLastDarkFactor = 0;
+
 /**
  * Converts a hex color string to a RGB color
  * @param {string} color - Hex color to conver
@@ -137,6 +140,18 @@ function DrawGetImageOnError(Img, IsAsset) {
 		console.log("Error loading image " + Img.src);
 		if (IsAsset) DrawGetImageOnLoad();
 	}
+}
+
+
+/**
+ * Gets the alpha of a screen flash. append to a color like "#111111" + DrawGetScreenFlash(FlashTime)
+ * @param {number} FlashTime - Time remaining as part of the screen flash
+ * @returns {string} - alpha of screen flash
+ */
+function DrawGetScreenFlash(FlashTime) {
+	let alpha = Math.max(0, Math.min(255, Math.floor(140 * (1 - Math.exp(-FlashTime/2500))))).toString(16);
+	if (alpha.length < 2) alpha = "0" + alpha;
+	return alpha;
 }
 
 /**
@@ -885,42 +900,13 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText,
  * @param {number} Height - Height of the component
  * @param {string} Text - Label associated with the checkbox
  * @param {boolean} IsChecked - Whether or not the checkbox is checked
+ * @param {boolean} [Disabled] - Disables the hovering options if set to true
+ * @param {string} [TextColor] - Color of the text
  * @returns {void} - Nothing
  */
-function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked) {
-	DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
-	DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
-}
-
-/**
- * Draws a checkbox component
- * @param {number} Left - Position of the component from the left of the canvas
- * @param {number} Top - Position of the component from the top of the canvas
- * @param {number} Width - Width of the component
- * @param {number} Height - Height of the component
- * @param {string} Text - Label associated with the checkbox
- * @param {boolean} IsChecked - Whether or not the checkbox is checked
- * @param {string} Color - Color of the text
- * @returns {void} - Nothing
- */
-function DrawCheckboxColor(Left, Top, Width, Height, Text, IsChecked, Color) {
-	DrawText(Text, Left + 100, Top + 33, Color, "Gray");
-	DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
-}
-
-/**
- * Draw a grey-filled rectangle to represent a disabled checkbox
- * @param {number} Left - Position of the component from the left of the canvas
- * @param {number} Top - Position of the component from the top of the canvas
- * @param {number} Width - Width of the component
- * @param {number} Height - Height of the component
- * @param {string} Text - The text to follow the checkbox
- * @returns {void} - Nothing
- */
-function DrawCheckboxDisabled(Left, Top, Width, Height, Text) {
-	DrawRect(Left, Top, Width, Height, "#ebebe4");
-	DrawEmptyRect(Left, Top, Width, Height, "Black", 2);
-	DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
+function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked, Disabled = false, TextColor = "Black") {
+	DrawText(Text, Left + 100, Top + 33, TextColor, "Gray");
+	DrawButton(Left, Top, Width, Height, "", Disabled ? "#ebebe4" : "White", IsChecked ? "Icons/Checked.png" : "", null, Disabled);
 }
 
 /**
@@ -1175,7 +1161,7 @@ function DrawProcess() {
 
 	if ((B != null) && (B != "")) {
 		let DarkFactor = 1.0;
-		if ((CurrentModule != "Character" && CurrentModule != "MiniGame") && (B != "Sheet")) {
+		if ((CurrentModule != "Character") && (B != "Sheet")) {
 			DarkFactor = CharacterGetDarkFactor(Player) * CurrentDarkFactor;
 			if (DarkFactor == 1 && (CurrentCharacter != null || ShopStarted) && !CommonPhotoMode) DarkFactor = 0.5;
 		}
@@ -1183,7 +1169,7 @@ function DrawProcess() {
 
 		let customBG = DrawGetCustomBackground();
 
-		if (customBG != "" && (CurrentModule != "Character" && CurrentModule != "MiniGame") && (B != "Sheet")) {
+		if (customBG != "" && (CurrentModule != "Character") && (B != "Sheet")) {
 			B = customBG;
 			if (DarkFactor == 0)
 				DarkFactor = CharacterGetDarkFactor(Player, true);

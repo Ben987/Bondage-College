@@ -5,11 +5,12 @@ var KinkyDungeonMapParams = [
 		"density" : 3, // Density of tunnels (inverse of room spawn chance)
 		"doodadchance" : 0.16,
 		"brightness" : 8,
-		"chestcount" : 2,
+		"chestcount" : 3,
 		"shrinecount" : 4,
 		"shrinechance" : 0.75,
 		"doorchance" : 0.67,
 		"rubblechance" : 0.7,
+		"brickchance" : 0.1,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -32,11 +33,12 @@ var KinkyDungeonMapParams = [
 		"density" : 2,
 		"doodadchance" : 0.11,
 		"brightness" : 6,
-		"chestcount" : 3,
+		"chestcount" : 4,
 		"shrinecount" : 5,
 		"shrinechance" : 0.6,
 		"doorchance" : 0.9,
 		"rubblechance" : 0.6,
+		"brickchance" : 0.4,
 
 		"min_width" : 21,
 		"max_width" : 27,
@@ -48,11 +50,12 @@ var KinkyDungeonMapParams = [
 		"density" : 5,
 		"doodadchance" : 0.15,
 		"brightness" : 7,
-		"chestcount" : 4,
+		"chestcount" : 5,
 		"shrinecount" : 5,
 		"shrinechance" : 0.4,
 		"doorchance" : 0.2,
 		"rubblechance" : 0.5,
+		"brickchance" : 0.1,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -64,11 +67,12 @@ var KinkyDungeonMapParams = [
 		"density" : 0,
 		"doodadchance" : 0.13,
 		"brightness" : 8,
-		"chestcount" : 4,
+		"chestcount" : 5,
 		"shrinecount" : 4,
 		"shrinechance" : 0.5,
 		"doorchance" : 0.9,
 		"rubblechance" : 0.7,
+		"brickchance" : 0.1,
 
 		"min_width" : 31,
 		"max_width" : 35,
@@ -87,6 +91,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.8,
 		"doorchance" : 0.05,
 		"rubblechance" : 0.9,
+		"brickchance" : 0.2,
 
 		"min_width" : 15,
 		"max_width" : 25,
@@ -103,6 +108,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 0.67,
 		"rubblechance" : 0.7,
+		"brickchance" : 0.3,
 
 		"min_width" : 25,
 		"max_width" : 51,
@@ -121,6 +127,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.5,
 		"doorchance" : 0.0,
 		"rubblechance" : 0.3,
+		"brickchance" : 0.3,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -137,6 +144,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.8,
 		"doorchance" : 0.8,
 		"rubblechance" : 0.5,
+		"brickchance" : 0.7,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -155,6 +163,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0.75,
 		"doorchance" : 1.0,
 		"rubblechance" : 0.7,
+		"brickchance" : 0.5,
 
 		"min_width" : 15,
 		"max_width" : 21,
@@ -168,11 +177,12 @@ var KinkyDungeonMapParams = [
 		"density" : 1,
 		"doodadchance" : 0.08,
 		"brightness" : 4,
-		"chestcount" : 6,
+		"chestcount" : 7,
 		"shrinecount" : 3,
 		"shrinechance" : 0.75,
 		"doorchance" : 1.0,
 		"rubblechance" : 0.6,
+		"brickchance" : 0.9,
 
 		"min_width" : 25,
 		"max_width" : 31,
@@ -191,6 +201,7 @@ var KinkyDungeonMapParams = [
 		"shrinechance" : 0,
 		"doorchance" : 1.0,
 		"rubblechance" : 1.0,
+		"brickchance" : 0.7,
 
 		"min_width" : 31,
 		"max_width" : 31,

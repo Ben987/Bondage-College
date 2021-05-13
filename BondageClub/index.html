@@ -101,6 +101,7 @@
 <script src="Screens/Room/Infiltration/Infiltration.js"></script>
 <script src="Screens/Room/InfiltrationPerks/InfiltrationPerks.js"></script>
 <script src="Screens/Room/Pandora/Pandora.js"></script>
+<script src="Screens/Room/PandoraPrison/PandoraPrison.js"></script>
 <script src="Screens/Room/Gambling/Gambling.js"></script>
 <script src="Screens/Room/Prison/Prison.js"></script>
 <script src="Screens/Room/Photographic/Photographic.js"></script>
@@ -264,8 +265,6 @@
 <script src="Screens/Inventory/ItemDevices/Locker/Locker.js"></script>
 <script src="Screens/Inventory/ItemDevices/PetBowl/PetBowl.js"></script>
 <script src="Screens/Inventory/ItemDevices/SmallLocker/SmallLocker.js"></script>
-<script src="Screens/Inventory/ItemDevices/VentlessLocker/VentlessLocker.js"></script>
-<script src="Screens/Inventory/ItemDevices/SmallVentlessLocker/SmallVentlessLocker.js"></script>
 <script src="Screens/Inventory/ItemVulva/ClitAndDildoVibratorbelt/ClitAndDildoVibratorbelt.js"></script>
 <script src="Screens/Inventory/ItemFeet/SpreaderVibratingDildoBar/SpreaderVibratingDildoBar.js"></script>
 <script src="Screens/Inventory/ItemPelvis/MetalChastityBelt/MetalChastityBelt.js"></script>
@@ -279,6 +278,7 @@
 <script src="Screens/Inventory/ItemPelvis/StuddedChastityBelt/StuddedChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemPelvis/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemBoots/FuturisticHeels/FuturisticHeels.js"></script>
+<script src="Screens/Inventory/ItemBoots/FuturisticHeels2/FuturisticHeels2.js"></script>
 <script src="Screens/Inventory/ItemNose/NoseRing/NoseRing.js"></script>
 <script src="Screens/Inventory/ItemButt/ShockPlug/ShockPlug.js"></script>
 <script src="Screens/Inventory/ItemVulva/ShockDildo/ShockDildo.js"></script>
@@ -325,7 +325,12 @@
 <script src="Screens/Inventory/ItemNipples/PlateClamps/PlateClamps.js"></script>
 <script src="Screens/Inventory/ClothAccessory/BunnyCollarCuffs/BunnyCollarCuffs.js"></script>
 <script src="Screens/Inventory/ItemDevices/Cushion/Cushion.js"></script>
-<script src="Screens/Inventory/Mask/BunnyMask1/BunnyMask1.js"></script>
+<script src="Screens/Inventory/ItemBreast/Ribbons/Ribbons.js"></script>
+<script src="Screens/Inventory/ItemPelvis/Ribbons/Ribbons.js"></script>
+<script src="Screens/Inventory/ItemLegs/Ribbons/Ribbons.js"></script>
+<script src="Screens/Inventory/ItemHead/Ribbons/Ribbons.js"></script>
+<script src="Screens/Inventory/ItemArms/Ribbons/Ribbons.js"></script>
+<script src="Screens/Inventory/Bra/Ribbons/Ribbons.js"></script>
 <script>
 
 /*
@@ -362,7 +367,7 @@
 window.onload = function() {
 //	CheatImport();
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
-	GameVersion = "R68Alpha";
+	GameVersion = "R68Beta2";
 	console.log("Version: " + GameVersion + ", Server: " + ServerURL);
 	if (!GameVersionFormat.test(GameVersion)) console.error("GameVersion is not valid!");
 	CommonIsMobile = CommonDetectMobile();

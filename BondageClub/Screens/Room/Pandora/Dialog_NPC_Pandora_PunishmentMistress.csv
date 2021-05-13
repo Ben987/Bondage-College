@@ -1,2 +1,66 @@
-PlayerGagged,,,"(She smirks at you.)  Mumble or scream all you want, nobody cares."
-0,,(UNDER CONSTRUCTION.),"This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience."
+PlayerGagged,,,"(She smirks at you.)  Mumble or scream all you want, nobody cares.",,
+0,10,I'm innocent!,"I've heard that one before.  (She searches in your stuff.)  So, you're a Bondage Club member?  They sent you to cause trouble?",,Player.CanTalk()
+0,10,This is bullshit.,"You got yourself in that shit.  (She searches in your stuff.)  So, you're a Bondage Club member?  They sent you to cause trouble?",,Player.CanTalk()
+0,10,What lesson?,"You will understand soon.  (She searches in your stuff.)  So, you're a Bondage Club member?  They sent you to cause trouble?",,Player.CanTalk()
+0,10,(Stay silent.),"(She searches in your stuff.)  So, you're a Bondage Club member?  They sent you to cause trouble?",,Player.CanTalk()
+0,10,(Try to defy her.),"(She searches in your stuff and removes your gag.)  So, you're a Bondage Club member?  They sent you to cause trouble?",PlayerUngag(),!Player.CanTalk()
+0,10,(Grumble in your gag.),"(She searches in your stuff and removes your gag.)  So, you're a Bondage Club member?  They sent you to cause trouble?",PlayerUngag(),!Player.CanTalk()
+0,10,(Stay silent.),"(She searches in your stuff and removes your gag.)  So, you're a Bondage Club member?  They sent you to cause trouble?",PlayerUngag(),!Player.CanTalk()
+10,15,This is a huge mistake.,There's no mistake girl.  Why did the Bondage Club send you?   Confess or feel my wrath.,,
+10,15,What is the Bondage Club?,Don't try to deny it girl.  Why did they send you?   Confess or feel my wrath.,,
+10,100,Fuck you!  I'll never tell you.,(She seems angry.)  You little shit!  Some hard time in our prison will teach you a lesson.,PunishmentSentence(15),
+10,100,(Confess your mission.),"(She notes everything and smiles.)  Good girl, we won't keep you for too long in our prison.",PunishmentSentence(5),
+15,100,Get lost!  I'll never confess.,(She seems angry.)  You little shit!  Some hard time in our prison will teach you a lesson.,PunishmentSentence(15),
+15,100,(Stay silent.),(She waits and sighs.)  You don't want to talk?  Some time in our prison will open your mouth.,PunishmentSentence(10),
+15,100,(Confess your mission.),"(She notes everything and smiles.)  Good girl, we won't keep you for too long in our prison.",PunishmentSentence(5),
+20,30,I'm not a troublemaker.,"(She checks her notes.)  From what I can see, the Bondage Club sent you here a few times.  What is your current mission?",,Player.CanTalk()
+20,30,You won't teach me anything.,"You will cry and beg very soon.  From our files, the Bondage Club sent you here a few times.  What is your current mission?",,Player.CanTalk()
+20,30,(Stay silent.),"Keep your voice, you will talk soon.  From our files, the Bondage Club sent you here a few times.  What is your current mission?",,Player.CanTalk()
+20,30,(Try to defy her.),"(She checks her notes and removes your gag.)  So, the Bondage Club sent you here a few times.  What is your current mission?",PlayerUngag(),!Player.CanTalk()
+20,30,(Grumble in your gag.),"(She checks her notes and removes your gag.)  So, the Bondage Club sent you here a few times.  What is your current mission?",PlayerUngag(),!Player.CanTalk()
+20,30,(Stay silent.),"(She checks her notes and removes your gag.)  So, the Bondage Club sent you here a few times.  What is your current mission?",PlayerUngag(),!Player.CanTalk()
+30,40,I'm not telling you anything.,"Really?  This is your last chance.  I will count to five.  At five, you get locked up.  One, two…",,
+30,40,My mission is to piss you off.,"You're doing it.  This is your last chance.  I will count to five.  At five, you get locked up.  One, two…",,
+30,40,(Stay silent.),"This is your last chance.  I will count to five.  At five, you get locked up.  One, two…",,
+30,100,Go to hell.  I will never talk.,(She seems furious.)  You little cunt!  Some hard time in our prison will teach you some manners.,PunishmentSentence(25),
+30,100,(Tell her about your mission.),(She takes notes and smirks.)  Very good.  I'll make sure you won't spend too much time in prison.,PunishmentSentence(10),
+40,100,What's your problem bitch?,(She seems furious.)  You little cunt!  Some hard time in our prison will teach you some manners.,PunishmentSentence(25),
+40,100,Five!,(She seems annoyed by your answer.)  Very well!  Time in our prison will teach you some manners.,PunishmentSentence(20),
+40,100,(Stay silent.),Five!  It seems that time in our prison will teach you some manners.,PunishmentSentence(15),
+40,100,(Tell her about your mission.),(She takes notes and smirks.)  Very good.  I'll make sure you won't spend too much time in prison.,PunishmentSentence(10),
+50,60,You've heard of me?,I certainly did DialogPlayerName.  How can you work for the filthy Bondage Club?  What's your mission here?,,Player.CanTalk()
+50,60,You have the wrong person.,(She checks your stuff.)  DialogPlayerName from the filthy Bondage Club.  Don't try to fool me.  What's your mission here?,,Player.CanTalk()
+50,60,You will never break me.,(She smirks.)  I will break you away from that filthy Bondage Club.  What's your mission here?,,Player.CanTalk()
+50,60,(Stay silent.),You will talk DialogPlayerName.  How can you work that filthy Bondage Club?  What's your mission here?,,Player.CanTalk()
+50,60,(Try to defy her.),(She stares at you and removes your gag.)  How can you work that filthy Bondage Club?  What's your mission here?,PlayerUngag(),!Player.CanTalk()
+50,60,(Grumble in your gag.),(She laughs and removes your gag.)  How can you work that filthy Bondage Club?  What's your mission here?,PlayerUngag(),!Player.CanTalk()
+50,60,(Stay silent.),(She removes your gag.)  How can you work that filthy Bondage Club?  What's your mission here?,PlayerUngag(),!Player.CanTalk()
+60,70,The Bondage Club is the best.,(She stares at you.)  Do you ever want to get out?  Now is your time to talk.,,
+60,70,This place is way filthier.,(She takes a deep breath.)  Do you ever want to get out?  Now is your time to talk.,,
+60,70,(Stay silent.),Do you ever want to get out?  Now is your time to talk.,,
+60,100,You asshole!  I will never talk.,(She goes mad.)  You little slut!  Some hard time in our prison will punish you well.,PunishmentSentence(45),
+60,100,(Tell her about your mission.),(She takes notes and smirks.)  Very good.  I'll shorten your prison sentence.,PunishmentSentence(15),
+70,100,You think you can scare me?,(She goes mad.)  You little slut!  Some hard time in our prison will punish you well.,PunishmentSentence(45),
+70,100,(Stay silent.),Very well.  Some long time in our prison will serve you well.,PunishmentSentence(30),
+70,100,(Tell her about your mission.),(She takes notes and smirks.)  Very good.  I'll shorten your prison sentence.,PunishmentSentence(15),
+80,90,"So, we meet again, DialogCharacterName.",You've been here so often that we sound like an old couple.  What are you doing in the Box today?,,Player.CanTalk()
+80,90,You should know that I have an iron will.,"I know you're tough, but someday we will break you DialogPlayerName.  What are you doing in the Box today?",,Player.CanTalk()
+80,90,DialogCharacterName!  You got me this time.,I've captured you so often that we sound like an old couple.  What are you doing in the Box today?,,Player.CanTalk()
+80,90,(Stay silent.),(She sighs.)  I've seen you so often that I know you better than my slaves.  What are you doing in the Box today?,,Player.CanTalk()
+80,90,(Try to defy her.),(She sighs and removes your gag.)  I've seen you so often DialogPlayerName.  What are you doing in the Box today?,PlayerUngag(),!Player.CanTalk()
+80,90,(Grumble in your gag.),(She sighs and removes your gag.)  I've seen you so often DialogPlayerName.  What are you doing in the Box today?,PlayerUngag(),!Player.CanTalk()
+80,90,(Stay silent.),(She sighs and removes your gag.)  I've seen you so often DialogPlayerName.  What are you doing in the Box today?,PlayerUngag(),!Player.CanTalk()
+90,95,You really think I will squeal?,"I don't expect you to squeal.  But you know the drill, it's your last chance to talk.",,
+90,95,You're not getting younger DialogCharacterName.,"So are you DialogPlayerName, we've been fighting for a while.  You know the drill, it's your last chance to talk.",,
+90,95,(Stay silent.),You know the drill DialogPlayerName.  It's your last chance to talk before jail.,,
+90,100,You're so pathetic.,(She goes berserk.)  You little whore!  Some hard time in our prison will be perfect for you.,PunishmentSentence(60),
+90,100,(Tell her about your mission.),"(She takes notes and smirks.)  I'm surprised you squealed.  Very well, you'll get a shorter sentence.",PunishmentSentence(20),
+95,100,Forget it.  You suck.,(She goes berserk.)  You little whore!  Some hard time in our prison will be perfect for you.,PunishmentSentence(60),
+95,100,(Stay silent.),This silence doesn't surprise me.  It seems that some long prison time will serve you well.,PunishmentSentence(40),
+95,100,(Tell her about your mission.),"(She takes notes and smirks.)  I'm surprised you squealed.  Very well, you'll get a shorter sentence.",PunishmentSentence(20),
+100,,This prison?,"Yes, Pandora's Box has very secure cells to keep you locked up.  Trust me, you won't escape.",,
+100,,This is inhumane.,"You came for trouble, you found it.  Don't try to make me cry, there's no safeword down here.",,
+100,,How long will you keep me?,Until your ransom is paid or until the clock runs out.  The clock will be in your cell.  Known troublemakers get more time.,,
+100,,Can I pay the ransom myself?,"Talk with the staff when you get locked up, maybe they can arrange something.",,
+100,,Will you bring me water and food?,"Yes, guards will come from time to time to check on you.  Don't try anything funny.",,
+100,,"Fine, I'm ready.  (Start your sentence.)",,PunishmentStart(),

@@ -6,6 +6,7 @@ var KinkyDungeonCheckClothesLoss = false;
 
 function KinkyDungeonInitializeDresses() {
 	KinkyDungeonCheckClothesLoss = true;
+	KinkyDungeonUndress = 0;
 	KinkyDungeonDresses = {
 		"Default" : [
 		{Item: "WitchHat1", Group: "Hat", Color: "Default", Lost: false},
@@ -47,6 +48,8 @@ function KinkyDungeonDressPlayer() {
 			if (clothes.Group == "Shoes") {
 				if (KinkyDungeonGetRestraintItem("ItemBoots")) clothes.Lost = true;
 			}
+
+			if (clothes.Lost) KinkyDungeonUndress += 1/KinkyDungeonDresses[KinkyDungeonCurrentDress].length;
 		}
 
 		if (clothes.Lost != PreviouslyLost) KinkyDungeonStatArousal += 100/KinkyDungeonDresses[KinkyDungeonCurrentDress].length;
@@ -56,13 +59,15 @@ function KinkyDungeonDressPlayer() {
 				InventoryWear(KinkyDungeonPlayer, clothes.Item, clothes.Group);
 				CharacterAppearanceSetColorForGroup(KinkyDungeonPlayer, clothes.Color, clothes.Group);
 			}
-		} else KinkyDungeonUndress += 1/KinkyDungeonDresses[KinkyDungeonCurrentDress].length;
+		}
+		
+		if (clothes.Group == "Panties" && !KinkyDungeonGetRestraintItem("ItemPelvis")) clothes.Lost = false; // A girl's best friend never leaves her
 	}
 
 	KinkyDungeonCheckClothesLoss = false;
 
 	let BlushCounter = 0;
-	let Blush = null;
+	let Blush = "";
 
 	if (KinkyDungeonStatArousal > 0) BlushCounter += 1;
 	if (KinkyDungeonStatArousal > 33) BlushCounter += 1;
@@ -78,7 +83,14 @@ function KinkyDungeonDressPlayer() {
 	else if (BlushCounter == 5) Blush = "Extreme";
 
 	for (let A = 0; A < KinkyDungeonPlayer.Appearance.length; A++) {
-		if (KinkyDungeonPlayer.Appearance[A].Asset.Group.Name == "Blush") KinkyDungeonPlayer.Appearance[A].Property = { Expression: Blush };
+		if (KinkyDungeonPlayer.Appearance[A].Asset.Group.Name == "Blush") {
+			let property = KinkyDungeonPlayer.Appearance[A].Property;
+			if (!property || property.Expression != Blush) {
+				KinkyDungeonPlayer.Appearance[A].Property = { Expression: Blush };
+				CharacterRefresh(KinkyDungeonPlayer);
+			}
+		}
+			
 	}
 
 }

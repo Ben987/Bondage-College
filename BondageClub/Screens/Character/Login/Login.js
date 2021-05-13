@@ -539,25 +539,34 @@ function LoginResponse(C) {
 			if (LogQuery("Locked", "Cell")) {
 				CommonSetScreen("Room", "Cell");
 			} else {
-
-				// If the player must log back in the asylum
-				if (LogQuery("Committed", "Asylum")) {
-					CharacterRelease(Player);
-					AsylumEntranceWearPatientClothes(Player);
-					if (ReputationGet("Asylum") <= -50) AsylumEntrancePlayerJacket("Normal");
-					CommonSetScreen("Room", "AsylumBedroom");
+				
+				// If the player must log back in Pandora's Box prison
+				if ((Player.Infiltration != null) && (Player.Infiltration.Punishment != null) && (Player.Infiltration.Punishment.Timer != null) && (Player.Infiltration.Punishment.Timer > CurrentTime)) {
+					PandoraWillpower = 0;
+					InfiltrationDifficulty = Player.Infiltration.Punishment.Difficulty;
+					CommonSetScreen("Room", "PandoraPrison");
 				} else {
 
-					// If the player must start in her room, in her cage
-					if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
-						InventoryRemove(Player, "ItemFeet");
-						InventoryRemove(Player, "ItemLegs");
-						Player.Cage = true;
-						CharacterSetActivePose(Player, "Kneel", true);
-						CommonSetScreen("Room", "Private");
+					// If the player must log back in the asylum
+					if (LogQuery("Committed", "Asylum")) {
+						CharacterRelease(Player);
+						AsylumEntranceWearPatientClothes(Player);
+						if (ReputationGet("Asylum") <= -50) AsylumEntrancePlayerJacket("Normal");
+						CommonSetScreen("Room", "AsylumBedroom");
 					} else {
-						CommonSetScreen("Room", "MainHall");
-						MainHallMaidIntroduction();
+
+						// If the player must start in her room, in her cage
+						if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
+							InventoryRemove(Player, "ItemFeet");
+							InventoryRemove(Player, "ItemLegs");
+							Player.Cage = true;
+							CharacterSetActivePose(Player, "Kneel", true);
+							CommonSetScreen("Room", "Private");
+						} else {
+							CommonSetScreen("Room", "MainHall");
+							MainHallMaidIntroduction();
+						}
+
 					}
 
 				}

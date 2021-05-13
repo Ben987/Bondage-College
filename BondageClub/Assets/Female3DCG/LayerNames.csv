@@ -341,6 +341,13 @@ ItemBootsLockingBoots1Straps,Straps
 ItemBootsFuturisticHeelsShoes,Body
 ItemBootsFuturisticHeelsDisplay,Display
 ItemBootsFuturisticHeelsLock,Lock
+ItemBootsFuturisticHeels2Mesh,Body
+ItemBootsFuturisticHeels2Shine,Shine
+ItemBootsFuturisticHeels2Cuffs,Cuffs
+ItemBootsFuturisticHeels2Trim,Trim
+ItemBootsFuturisticHeels2Soles,Heels
+ItemBootsFuturisticHeels2Display,Display
+ItemBootsFuturisticHeels2Lock,Lock
 ItemBootsLeatherFootMitts1Mitts,Mittens
 ItemBootsLeatherFootMitts1Straps,Straps
 ShoesBoots1Shoes,Inner
@@ -429,6 +436,8 @@ ItemMouthFuturisticHarnessBallGagLock,Lock
 ItemMouthGasMaskGagMask,Mask
 ItemMouthGasMaskGagSides,Sides
 ItemMouthGasMaskGagHighlights,Highlights
+ItemMouthCageMuzzleStrap,Straps
+ItemMouthCageMuzzleMuzzle,Cage
 ItemMouth2WiffleGagStrap,Strap
 ItemMouth2WiffleGagBall,Ball
 ItemMouth2HarnessBallGagBall,Ball
@@ -483,6 +492,8 @@ ItemMouth2MuzzleGagStraps,Straps
 ItemMouth2GasMaskGagMask,Mask
 ItemMouth2GasMaskGagSides,Sides
 ItemMouth2GasMaskGagHighlights,Highlights
+ItemMouth2CageMuzzleStrap,Straps
+ItemMouth2CageMuzzleMuzzle,Cage
 ItemMouth3WiffleGagStrap,Strap
 ItemMouth3WiffleGagBall,Ball
 ItemMouth3HarnessBallGagBall,Ball
@@ -555,6 +566,7 @@ ItemBreastFuturisticBraText,Text
 ItemBreastFuturisticBra2Bra,Body
 ItemBreastFuturisticBra2Display,Display
 ItemBreastFuturisticBra2Mesh,Mesh
+ItemBreastFuturisticBra2Shine,Shine
 ItemBreastFuturisticBra2Lock,Lock
 ItemBreastFuturisticBra2Straps,Straps
 ItemPelvisFuturisticChastityBeltScreen,Screen

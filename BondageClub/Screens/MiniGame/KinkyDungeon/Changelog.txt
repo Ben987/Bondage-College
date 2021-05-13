@@ -3,11 +3,12 @@
 
 
 1.3 (Apr 26 2021)
-Content
-- Added locked chests which are scattered around the dungeon. Each floor is guaranteed to have at least one. You can either pick them or unlock them
+Loot and Rewards
+- Added locked chests which are scattered around the dungeon. Each floor is guaranteed to have at least one locked chest but is likely to have more be locked. You can either pick them or unlock them
 - Added key drops and lockpick drops around the dungeon. You can find them in debris piles, but not chests.
 - Added handcuffs trap, which places a set of handcuffs on you that has a guaranteed lock on it
 - Added harness trap, which locks you in a harness that makes it easy for enemies to grab onto you
+- Added a kinky belt trap to keep you aroused
 - Added various other restraints from chests
 - Added scaling to the kinds of locks you encounter:
 - New locks:
@@ -15,38 +16,68 @@ Content
 	Green locks are less common, and have a chance of jamming, making them impossible to unlock.
 	Yellow locks require both a red and a green key to unlock.
 	Blue locks require blue keys, and can't be picked or cut off. 
-- Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
-- Added Shrines! These are a use for gold, and will basically take restraints off in exchange for an exponentially increasing amount of gold. Trapped treasure chests are also much more common now!
+Shrines
+- Added Shrines! These allow you to offer gold and will basically take restraints off in exchange.
+- Shrines for the goddesses of the elements, conjuration, and illusion who grant spells
 Balance
 - Made the rope snare have a 3 turn delay rather than a 1 turn delay, and a range of 1. This limits its in-combat use, while retaining its long duration and level 1 classification
-
-1.31
-Content 
-- Added a new enemy, a rope snake that sacrifices itself to wrap you up!
-- Added a new spell, Electrify (which will be cast at you by witches in the future)
-- Shock witches that cast electrical spells at you from a distance
-
-1.32
-Content 
-- Chain bolt spell which stuns enemies
-- Chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
-- Goddesses of the elements, conjuration, and illusion who grant spells at a high cost
+- Willpower no longer regenerates, instead you must find a willpower shrine to regenerate your willpower. The cost increases exponentially.
+- Conjure Slime now doesn't last forever, but stuns enemies for longer
+- Various other tweaks and fixes
+Mechanics
 - Enemies now have resistances and weaknesses. Discover them the hard way!
+- Miscast chance: While aroused, you have a chance of spells being either cast on your position or blowing up in your face and hitting you!
+- When you click on an open door, you have an option to close it
+- Some enemies (like the new witches) can open doors! Beware!
+- Vibrators have a charge which is increased by casting spells.
+New Enemies:
+- Added a new enemy, a rope snake that sacrifices itself to wrap you up!
+- Shock witches that cast electrical spells at you from a distance
+- Chain witch who fights by throwing chains at you. She will attempt to close the gap, and will lock the chains in place if she gets near!
+- Slime witch that hurls slime balls and conjures pools of slime at you! She is a formidable opponent, be careful not to get trapped against her as she can create tremendous amounts of slime!
+Spells
+- Electrify spell which is a delayed blast that also briefly stuns 
+- Chain bolt spell which stuns enemies
+- Slime ball spell which conjures a ball of slime that leaves a sticky trail. Use with caution!
+- Shield and Barrier, two Conjuration spells for blocking projectiles
+- Shroud, a defensive spell which makes melee more difficult inside an area
+- Mistcall and Leap, teleportation spells with different strengths and weaknesses. Mistcall uses verrbal components so it can be used to escape from a sticky situation.
+Other
+- New brickwork visuals
+- The map has more doors, but some of them will be open at the start of the game. You can close them to prevent zombies from chasing you.
+- Added Undressing System. Certain things will pull clothes off, you gain arousal when this happens and visually will blush when extremely naked and aroused.
+- You can now hear the last chat message while ingame!
+- The game is persistent so if you hear chat you can exit out and communicate
 
 Future content planned:
-- Ability to close nearby doors
+- Exit stair puzzles (like for example a button or special key somewhere in the level, maybe with a high likelihood of traps)
+- Inescapable yoke that needs keys, but the trap also summons rats that steal the keys and run away
+- Trapdoor that drops you into the above bonus level, with no enemies other than the rats. You wake up feeling stiff, and a yoke is on your arms...
+- Rats should have a kleptomaniac AI that steals items and holds them, drops them on death, and runs away from the player when confronted
+- Battery life system for plugs
+- jail bars that block movement but not vision and spells
+- Tranquilizer/stamina drain
+- Boss rooms/shop rooms
 - Item shops scattered around the map, allowing you to buy swords and outfits
 - Magical rope traps which require enchanted knives to cut
 - Enchanted knives, which are found only in chests
-- Latex witches that cast latex and slime spells at you from a distance
+- Latex witches that cast latex imprisonment spells at you from a distance
 - Inventory system which lets you view special items and restraints (shows you how hard it is to break free from them... after you've struggled enough)
 - Mana-boosting mittens which increase spell power and decrease mana costs, but make it harder to struggle out of things
-- Enchanted heels which empower your melee attacks
-- Items like swords and wands which improve melee attack damage or willpower
-- More simple restraint traps: mittens, locked blindfolds/gags, leg irons, belts
+- Enchanted heels of various sorts (immunity to slow, immunity to slime, bonus to kick attacks, etc)
+- Items like swords and wands which improve melee attack damage or stamina cost
 - Chastity belt trap that puts a plug in you, increasing your arousal while walking
-- Chastity belt trap that puts a toy in you. Toys are powered by casting magic
+- Chastity belt trap that puts a magic toy in you. Toys are powered by casting magic
 - New shrine: chastity goddess. Places you in a set of magic cuffs that prevent you from being restrained. However if your willpower falls below maximum, the cuffs snap together until you get back to full willpower!
+- Traps that look slightly different. Usually found on brickwork, so if you avoid brickwork you can avoid them.
+- Witches should drop their respective spells sometimes if you don't already have them
+- Locked doors; need to find a way to prevent the player from being trapped
+- Bombs
+- Slimes which clean up items, dissolve doors, and potentially corrupt traps and such
+- SLimes that catch your sword and trap it
+- Enemies that grab your melee weapon and disarm you
+- Inventory management system T_T
+- Vines in the undergrorund jungle (when it gets implemented)
 
 Spell Ideas:
 - Clear Jam spell, which clears jammed green locks from either an object or the player, depending on where it is cast

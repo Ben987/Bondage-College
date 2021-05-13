@@ -308,10 +308,13 @@ function CharacterAppearanceSortLayers(C) {
 		if (asset.Visible && CharacterAppearanceVisible(C, asset.Name, asset.Group.Name) && InventoryChatRoomAllow(asset.Category)) {
 			// Check if we need to draw a different variation (from type property)
 			var type = (item.Property && item.Property.Type) || "";
-			// Only include layers that permit the current type (if AllowTypes is not defined, also include the layer)
 			var layersToDraw = asset.Layer
+				// Only include layers that permit the current type (if AllowTypes is not defined, also include the layer)
 				.filter(layer => !layer.AllowTypes || layer.AllowTypes.includes(type))
+				// Hide the layer if its HideAs proxy asset should be hidden
 				.filter(layer => !layer.HideAs || CharacterAppearanceVisible(C, layer.HideAs.Asset, layer.HideAs.Group))
+				// Hide the layer if it should be hidden for the current pose
+				.filter(layer => !layer.HideForPose || !layer.HideForPose.includes(CommonDrawResolveAssetPose(C, asset, layer)))
 				.map(layer => {
 					var drawLayer = Object.assign({}, layer);
 					// Store any group-level alpha mask definitions
@@ -368,16 +371,22 @@ function CharacterAppearanceVisible(C, AssetName, GroupName, Recursive = true) {
 
 	if (!C.DrawAppearance) C.DrawAppearance = C.Appearance;
 
-	for (let A = 0; A < C.DrawAppearance.length; A++) {
-		if (CharacterAppearanceItemIsHidden(C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name)) continue;
+	const assetToCheck = AssetGet(C.AssetFamily, GroupName, AssetName);
+	if (assetToCheck) {
+		const Pose = CommonDrawResolveAssetPose(C, assetToCheck);
+		if (Pose && assetToCheck.HideForPose.includes(Pose)) return false;
+	}
+
+	for (const item of C.DrawAppearance) {
+		if (CharacterAppearanceItemIsHidden(item.Asset.Name, item.Asset.Group.Name)) continue;
 		let HidingItem = false;
-		if ((C.DrawAppearance[A].Asset.Hide != null) && (C.DrawAppearance[A].Asset.Hide.indexOf(GroupName) >= 0) && !C.DrawAppearance[A].Asset.HideItemExclude.includes(GroupName + AssetName)) HidingItem = true;
-		else if ((C.DrawAppearance[A].Property != null) && (C.DrawAppearance[A].Property.Hide != null) && (C.DrawAppearance[A].Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
-		else if ((C.DrawAppearance[A].Asset.HideItem != null) && (C.DrawAppearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
-		else if ((C.DrawAppearance[A].Property != null) && (C.DrawAppearance[A].Property.HideItem != null) && (C.DrawAppearance[A].Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		if ((item.Asset.Hide != null) && (item.Asset.Hide.indexOf(GroupName) >= 0) && !item.Asset.HideItemExclude.includes(GroupName + AssetName)) HidingItem = true;
+		else if ((item.Property != null) && (item.Property.Hide != null) && (item.Property.Hide.indexOf(GroupName) >= 0)) HidingItem = true;
+		else if ((item.Asset.HideItem != null) && (item.Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
+		else if ((item.Property != null) && (item.Property.HideItem != null) && (item.Property.HideItem.indexOf(GroupName + AssetName) >= 0)) HidingItem = true;
 		if (HidingItem) {
 			if (Recursive) {
-				if (CharacterAppearanceVisible(C, C.DrawAppearance[A].Asset.Name, C.DrawAppearance[A].Asset.Group.Name, false)) {
+				if (CharacterAppearanceVisible(C, item.Asset.Name, item.Asset.Group.Name, false)) {
 					return false;
 				}
 			}

@@ -31,6 +31,7 @@ var KinkyDungeonTargetY = 0;
 function KinkyDungeonGetSprite(code) {
 	let sprite = "Floor";
 	if (code == "1") sprite = "Wall";
+	if (code == "2") sprite = "Brickwork";
 	else if (code == "X") sprite = "Doodad";
 	else if (code == "C") sprite = "Chest";
 	else if (code == "c") sprite = "ChestOpen";
@@ -45,8 +46,32 @@ function KinkyDungeonGetSprite(code) {
 	return sprite;
 }
 
+const KinkyDungeonLastChatTimeout = 10000;
+
 // Draw function for the game portion
 function KinkyDungeonDrawGame() {
+	
+	if (ChatRoomChatLog.length > 0) {
+		let LastChatObject = ChatRoomChatLog[ChatRoomChatLog.length - 1];
+		let LastChat = LastChatObject.Garbled;
+		let LastChatTime = LastChatObject.Time;
+		let LastChatSender = (LastChatObject.SenderName) ? LastChatObject.SenderName + ": " : ">";
+		let LastChatMaxLength = 60;
+		
+		if (LastChat)  {
+			LastChat = (LastChatSender + LastChat).substr(0, LastChatMaxLength);
+			if (LastChat.length == LastChatMaxLength) LastChat = LastChat + "...";
+			if (LastChatTime && CommonTime() < LastChatTime + KinkyDungeonLastChatTimeout) 
+				if (!KinkyDungeonSendTextMessage(0, LastChat, "white", 1) && LastChat != KinkyDungeonActionMessage) 
+					if (!KinkyDungeonSendActionMessage(0, LastChat, "white", 1) && LastChat != KinkyDungeonTextMessage)
+						KinkyDungeonSendTextMessage(1, LastChat, "white", 1)
+		}
+		
+		
+	}
+	
+	
+	
 
 	DrawText(TextGet("CurrentLevel") + MiniGameKinkyDungeonLevel, 750, 42, "white", "silver");
 	DrawText(TextGet("DungeonName" + KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint]), 1500, 42, "white", "silver");
@@ -182,12 +207,15 @@ function KinkyDungeonDrawGame() {
 
 				let color = "white";
 				let locktext = "";
-				if (sg.lock == "Red") {color = "#ff8888"; locktext = TextGet("KinkyRedLock");}
-				if (sg.lock == "Yellow") {color = "#ffff88"; locktext = TextGet("KinkyYellowLock");}
-				if (sg.lock == "Green") {color = "#88FF88"; locktext = TextGet("KinkyGreenLock");}
-				if (sg.lock == "Blue") {color = "#8888FF"; locktext = TextGet("KinkyBlueLock");}
+				if (sg.lock == "Red") {color = "#ff8888"; locktext = TextGet("KinkyRedLockAbr");}
+				if (sg.lock == "Yellow") {color = "#ffff88"; locktext = TextGet("KinkyYellowLockAbr");}
+				if (sg.lock == "Green") {color = "#88FF88"; locktext = TextGet("KinkyGreenLockAbr");}
+				if (sg.lock == "Blue") {color = "#8888FF"; locktext = TextGet("KinkyBlueLockAbr");}
 
-				DrawText(TextGet("KinkyDungeonGroup"+ sg.group) + locktext, x + ((!sg.left) ? ButtonWidth : 0), y-24, color, "black");
+				let GroupText = sg.name ? ("Restraint" + sg.name) : ("KinkyDungeonGroup"+ sg.group); // The name of the group to draw.
+				
+
+				DrawText(TextGet(GroupText) + locktext, x + ((!sg.left) ? ButtonWidth : 0), y-24, color, "black");
 				MainCanvas.textAlign = "center";
 
 				let i = 1;
@@ -240,6 +268,8 @@ function KinkyDungeonDrawGame() {
 				else {
 					DrawButton(675, 825, 350, 60, TextGet("KinkyDungeonPayShrine").replace("XXX", cost), "White", "", "");
 				}
+			} else if (KinkyDungeonTargetTile.Type == "Door") {
+				DrawButton(675, 825, 350, 60, TextGet("KinkyDungeonCloseDoor"));
 			}
 		}
 		//DrawButton(650, 925, 250, 60, TextGet("KinkyDungeonInventory"), "White", "", "");
@@ -344,6 +374,15 @@ function KinkyDungeonHandleHUD() {
 					
 				}
 
+			} else if (KinkyDungeonTargetTile.Type == "Door") {
+				if (MouseIn(675, 825, 350, 60)) {
+					KinkyDungeonAdvanceTime(1);
+					KinkyDungeonTargetTile = null;
+					let x = KinkyDungeonTargetTileLocation.split(',')[0]
+					let y = KinkyDungeonTargetTileLocation.split(',')[1]
+					KinkyDungeonMapSet(parseInt(x), parseInt(y), "D")
+					KinkyDungeonSendActionMessage(3, TextGet("KinkyDungeonCloseDoorDone"), "white", 1);
+				}
 			}
 		}
 
@@ -393,7 +432,7 @@ function KinkyDungeonUpdateStruggleGroups() {
 		let restraint = KinkyDungeonGetRestraintItem(Group);
 
 		if (restraint) {
-			KinkyDungeonStruggleGroups.push({group:Group, left: S % 2 == 0, y: Math.floor(S/2), icon:sg, lock:restraint.lock, blocked: InventoryGroupIsBlocked(KinkyDungeonPlayer, Group)});
+			KinkyDungeonStruggleGroups.push({group:Group, left: S % 2 == 0, y: Math.floor(S/2), icon:sg, name:(restraint.restraint) ? restraint.restraint.name : "", lock:restraint.lock, blocked: InventoryGroupIsBlockedForCharacter(KinkyDungeonPlayer, Group)});
 		}
 	}
 }

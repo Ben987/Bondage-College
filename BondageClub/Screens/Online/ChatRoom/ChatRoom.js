@@ -1123,15 +1123,14 @@ function ChatRoomRun() {
 	}
 
 	if ((Player.ImmersionSettings != null && Player.GraphicsSettings != null) && (Player.ImmersionSettings.StimulationEvents && Player.GraphicsSettings.StimulationFlash) && ChatRoomPinkFlashTime > CommonTime()) {
-		var FlashTime = ChatRoomPinkFlashTime - CommonTime(); // ChatRoomPinkFlashTime is the end of the flash. The flash is brighter based on the distance to the end.
-		var PinkFlashAlpha = Math.max(0, Math.min(255, Math.floor(140 * (1 - Math.exp(-FlashTime/2500))))).toString(16);
-		if (PinkFlashAlpha.length < 2) PinkFlashAlpha = "0" + PinkFlashAlpha;
-			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6) ||
-				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3)))
-													DrawRect(0, 0, 1003, 1000, "#FFB0B0" + PinkFlashAlpha);
-			else if (ChatRoomCharacter.length == 3) DrawRect(0, 50, 1003, 900, "#FFB0B0" + PinkFlashAlpha);
-			else if (ChatRoomCharacter.length == 4) DrawRect(0, 150, 1003, 700, "#FFB0B0" + PinkFlashAlpha);
-			else if (ChatRoomCharacter.length == 5) DrawRect(0, 250, 1003, 500, "#FFB0B0" + PinkFlashAlpha);
+		let FlashTime = ChatRoomPinkFlashTime - CommonTime(); // ChatRoomPinkFlashTime is the end of the flash. The flash is brighter based on the distance to the end.
+		let PinkFlashAlpha = DrawGetScreenFlash(FlashTime);
+		if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6) ||
+			(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3)))
+												DrawRect(0, 0, 1003, 1000, "#FFB0B0" + PinkFlashAlpha);
+		else if (ChatRoomCharacter.length == 3) DrawRect(0, 50, 1003, 900, "#FFB0B0" + PinkFlashAlpha);
+		else if (ChatRoomCharacter.length == 4) DrawRect(0, 150, 1003, 700, "#FFB0B0" + PinkFlashAlpha);
+		else if (ChatRoomCharacter.length == 5) DrawRect(0, 250, 1003, 500, "#FFB0B0" + PinkFlashAlpha);
 	}
 
 
@@ -1330,6 +1329,11 @@ function ChatRoomAttemptStandMinigameEnd() {
  * @returns {boolean} - Returns TRUE if the player can leave the current chat room.
  */
 function ChatRoomCanLeave() {
+	if (ChatRoomLeashPlayer != null) {
+		if (ChatRoomCanBeLeashed(Player)) {
+			return false;
+		} else ChatRoomLeashPlayer = null;		
+	}
 	if (!Player.CanWalk()) return false; // Cannot leave if cannot walk
 	if (!ChatRoomData.Locked || ChatRoomPlayerIsAdmin()) return true; // Can leave if the room isn't locked or is an administrator
 	for (let C = 0; C < ChatRoomCharacter.length; C++)
@@ -1709,6 +1713,8 @@ function ChatRoomMessage(data) {
 				MsgEnterLeave = " ChatMessageEnterLeave";
 			if ((data.Type != "Chat" && data.Type != "Whisper" && data.Type != "Emote"))
 				MsgNonDialogue = " ChatMessageNonDialogue";
+			
+			if (msg.startsWith("ServerDisconnect") && SenderCharacter.MemberNumber == ChatRoomLeashPlayer) ChatRoomLeashPlayer = null;
 
 			// Replace actions by the content of the dictionary
 			if (data.Type && ((data.Type == "Action") || (data.Type == "ServerMessage"))) {
@@ -1815,19 +1821,21 @@ function ChatRoomMessage(data) {
 					msg += ';">';
 
 					// Garble names
+					let senderName = "";
 					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber && data.Type != "Whisper") {
 						if ((Player.GetDeafLevel() >= 4))
-							msg += DialogFindPlayer("Someone");
+							senderName = DialogFindPlayer("Someone");
 						else
-							msg += SpeechGarble(SenderCharacter, SenderCharacter.Name, true);
+							senderName = SpeechGarble(SenderCharacter, SenderCharacter.Name, true);
 					} else {
-						msg += SenderCharacter.Name;
+						senderName = SenderCharacter.Name;
 					}
+					msg += senderName;
 					msg += ':</span> ';
 
 					const chatMsg = ChatRoomHTMLEntities(data.Type === "Whisper" ? data.Content : SpeechGarble(SenderCharacter, data.Content));
 					msg += chatMsg;
-					ChatRoomChatLog.push({ Chat: chatMsg, Time: CommonTime() });
+					ChatRoomChatLog.push({ Chat: data.Content, Garbled: chatMsg, SenderName: senderName, Time: CommonTime() });
 
 					if (ChatRoomChatLog.length > 6) { // Keep it short
 						ChatRoomChatLog.splice(0, 1);

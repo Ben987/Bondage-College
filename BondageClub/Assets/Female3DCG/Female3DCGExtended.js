@@ -111,7 +111,6 @@ var AssetFemale3DCGExtended = {
 		CeilingShackles: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
-				ChatSetting: TypedItemChatSetting.FROM_TO,
 				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
 				Options: [
 					{
@@ -131,6 +130,7 @@ var AssetFemale3DCGExtended = {
 				],
 				Dialog: {
 					Load: "SelectBondagePosition",
+					ChatPrefix: ({ C }) => `ItemArmsCeilingShacklesSet${C.Pose.includes("Suspension") ? "Suspension" : ""}`
 				},
 			},
 		}, // CeilingShackles
@@ -177,6 +177,22 @@ var AssetFemale3DCGExtended = {
 					{
 						Name: "Brows", Key: "br",
 						Options: [{}, {}, {}, {}], // All options are merely cosmetic,
+					},
+					{
+						Name: "Opacity", Key: "op",
+						Options: [
+							{},
+							{
+								Property: {
+									Effect: ["BlindLight"],
+								},
+							},
+							{
+								Property: {
+									Effect: ["BlindHeavy", "Prone"],
+								},
+							}
+						], // Opacity
 					},
 				],
 			},
@@ -635,6 +651,27 @@ var AssetFemale3DCGExtended = {
 			CopyConfig: { GroupName: "ItemMouth", AssetName: "CupholderGag" },
 		},
 	}, // ItemMouth3
+	Mask: {
+		BunnyMask1: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Ears",
+						Property: { Type: null },
+					},
+					{
+						Name: "Earless",
+						Property: { Type: "Earless", OverridePriority: 51 },
+					},
+				],
+				Dialog: {
+					Load: "SelectBunnyMaskStyle",
+					TypePrefix: "BunnyMaskType",
+				},
+			}
+		} // BunnyMask1
+	}, // Mask
 };
 
 /**

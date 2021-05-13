@@ -15,7 +15,8 @@ StatArousal,"Arousal: "
 StatStamina,"Stamina: "
 StatWillpower,"Willpower: "
 
-Wait,"You pause and regain some breath"
+Wait,"You are exhausted."
+WaitSpellExhaustion,"You are exhausted from spellcasting."
 
 GameStart,Start New Game
 LoadGame,Load From Checkpoint
@@ -71,8 +72,11 @@ LootRubbleBlueKey,"You find a blue key, glowing with magic"
 LootChestGold,The chest contains gold! (+XXX gold)
 LootChestSpell,"You find a magic scroll, which you place in your spellbook. (+SpellLearned)"
 LootChestTrapMagic,"You find gold and a magic trap! (+RestraintType) (+XXX gold)"
+LootChestTrapMagicVibe,"You find gold and a tormenting magical trap! (+RestraintType) (+XXX gold)"
 
 KinkyDungeonTorsoGrab,The EnemyName grabs you by the harness and keeps you in place!
+KinkyDungeonAttackMiss,The EnemyName misses you!
+
 
 NameBlindZombie,Moaning Zombie
 KillBlindZombie,"The zombie moans and collapses to the ground."
@@ -96,6 +100,9 @@ NameWitchChain,Chain Witch
 KillWitchChain,"The chain witch vanishes into a pile of metal dust, leaving behind a keyring."
 AttackWitchChainLock,"The chain witch locks all of your restraints!"
 AttackWitchChain,"The chain witch tugs sensually at your restraints!"
+
+NameWitchSlime,Slime Witch
+KillWitchSlime,"The slime witch vanishes into a pool of pink slime, leaving behind a keyring."
 
 NameRat,Filthy Rat
 KillRat,"The rat skitters back into a hole in the wall."
@@ -131,12 +138,16 @@ KinkyDungeonAttemptPickSuccess,"You pick the lock on the TargetRestraint!"
 KinkyDungeonStruggleRemoveSuccess,"You unfasten the TargetRestraint and get it off your body!"
 KinkyDungeonStruggleCutSuccess,"You cut the TargetRestraint off!"
 
-KinkyRedLock," (Red)"
-KinkyGreenLock," (Green)"
-KinkyBlueLock," (Blue)"
-KinkyYellowLock," (Yellow)"
+KinkyRedLock,"Red Lock"
+KinkyGreenLock,"Green Lock"
+KinkyBlueLock,"Blue Lock"
+KinkyYellowLock,"Yellow Lock"
+KinkyRedLockAbr,"-R"
+KinkyGreenLockAbr,"-G"
+KinkyBlueLockAbr,"-B"
+KinkyYellowLockAbr,"-Y"
 
-
+KinkyDungeonCloseDoor,"Close Door"
 KinkyDungeonUnlockDoor,"Unlock"
 KinkyDungeonPickDoor,"Pick"
 KinkyDungeonLockedDoor,"(No way to open)"
@@ -150,6 +161,8 @@ KinkyDungeonObject,"object"
 
 KinkyDungeonObjectLock,"That object is locked"
 KinkyDungeonObjectShrine,"You found a shrine to the goddess of TYPE"
+KinkyDungeonObjectDoor,"That door is open. Do you want to close it?"
+KinkyDungeonCloseDoorDone,"You slam the door and jam it shut!"
 KinkyDungeonShrineCharms,"mummies"
 KinkyDungeonShrineLeather,"leather"
 KinkyDungeonShrineMetal,"metal"
@@ -168,21 +181,23 @@ RestraintDuctTapeHead,Charms
 RestraintDuctTapeMouth,Charms
 RestraintDuctTapeBoots,Charms
 RestraintDuctTapeFeet,Charms
-RestraintDuctTapeHeadMummy,Charm Covering
-RestraintDuctTapeArmsMummy,Charm Covering
-RestraintDuctTapeFeetMummy,Charm Covering
-RestraintDuctTapeLegsMummy,Charm Covering
-RestraintStuffing,Mouth Stuffing
-RestraintWeakMagicRopeArms,Weak Magic Rope
-RestraintWeakMagicRopeLegs,Weak Magic Rope
+RestraintDuctTapeHeadMummy,Charms
+RestraintDuctTapeArmsMummy,Charms
+RestraintDuctTapeFeetMummy,Charms
+RestraintDuctTapeLegsMummy,Charms
+RestraintStuffing,Stuffing
+RestraintWeakMagicRopeArms,Magic Rope
+RestraintWeakMagicRopeLegs,Magic Rope
 RestraintStickySlime,Sticky Slime
-RestraintTrapArmbinder,Leather Armbinder
+RestraintTrapArmbinder,Armbinder
 RestraintTrapCuffs,Handcuffs
-RestraintTrapHarness,Leather Harness
+RestraintTrapHarness,Harness
 RestraintTrapGag,Ball Gag
 RestraintTrapBoots,Slave Heels
 RestraintTrapLegirons,Leg Irons
 RestraintTrapBlindfold,Blindfold
+RestraintTrapBelt,Steel Belt
+RestraintTrapVibe,Egg Vibe
 RestraintRopeSnakeArms,Rope Tie
 RestraintRopeSnakeArmsWrist,Rope Tie
 RestraintRopeSnakeLegs,Rope Tie
@@ -192,6 +207,7 @@ RestraintRopeSnakeFeet,Rope Tie
 RestraintChainArms,Chains
 RestraintChainLegs,Chains
 RestraintChainFeet,Chains
+RestraintChainCrotch,Chains
 
 KinkyDungeonGroupItemHead,Face
 KinkyDungeonGroupItemHood,Head
@@ -206,11 +222,11 @@ KinkyDungeonGroupItemHands,Hands
 KinkyDungeonGroupItemTorso,Torso
 KinkyDungeonGroupItemBreast,Bra
 KinkyDungeonGroupItemPelvis,Belt
-KinkyDungeonGroupItemVulva,Vulva
-KinkyDungeonGroupItemVulvaPiercings,Piercings
+KinkyDungeonGroupItemVulva,Plug
+KinkyDungeonGroupItemVulvaPiercings,Vibe
 KinkyDungeonGroupItemNipplesPiercings,Piercings
 KinkyDungeonGroupItemNipples,Nipples
-KinkyDungeonGroupItemButt,Butt
+KinkyDungeonGroupItemButt,Butt Plug
 KinkyDungeonGroupItemLegs,Legs
 KinkyDungeonGroupItemFeet,Ankles
 KinkyDungeonGroupItemBoots,Feet
@@ -242,10 +258,22 @@ KinkyDungeonBookNextPage,Next Page
 KinkyDungeonBookLastPage,Last Page
 KinkyDungeonBookRandomPage,Random Page (your hands are tied)
 
+KinkyDungeonSpellMiscast,You fail to concentrate on the spell and it erupts in your face!
+
 KinkyDungeonSpellFirebolt,Firebolt
-KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage
+KinkyDungeonSpellDescriptionFirebolt,A slow moving ball of flame that does DamageDealt damage.
 KinkyDungeonSpellCastFirebolt,You a hurl a firebolt!
 KinkyDungeonSpellTargetFirebolt,Choose aim direction
+
+KinkyDungeonSpellBlink,Mistcall
+KinkyDungeonSpellDescriptionBlink,Teleport to a nearby location after DelayTime turns.
+KinkyDungeonSpellCastBlink,You call upon the mists to transport you!
+KinkyDungeonSpellTargetBlink,Choose target location
+
+KinkyDungeonSpellLeap,Rift Leap
+KinkyDungeonSpellDescriptionLeap,Teleport to a location next turn.
+KinkyDungeonSpellCastLeap,You jump through a mystic portal!
+KinkyDungeonSpellTargetLeap,Choose target location
 
 KinkyDungeonSpellIcebolt,Ice Shard
 KinkyDungeonSpellDescriptionIcebolt,A quick shard of ice that does DamageDealt damage and stuns for Duration turns.
@@ -253,9 +281,19 @@ KinkyDungeonSpellCastIcebolt,You a hurl a shard of ice!
 KinkyDungeonSpellTargetIcebolt,Choose aim direction
 
 KinkyDungeonSpellChainBolt,Chainbolt
-KinkyDungeonSpellDescriptionChainBolt,Throws a chain that stuns enemies for a turn.
+KinkyDungeonSpellDescriptionChainBolt,Throws a chain that does DamageDealt damage and stuns enemies for a turn.
 KinkyDungeonSpellCastChainBolt,You a hurl a strand of chain!
 KinkyDungeonSpellTargetChainBolt,Choose aim direction
+
+KinkyDungeonSpellShield,Shield
+KinkyDungeonSpellDescriptionShield,Creates a shield that blocks BlockAmount damage from projectiles for DelayTime turns.
+KinkyDungeonSpellCastShield,You create a temporary shield!
+KinkyDungeonSpellTargetShield,Choose shield location
+
+KinkyDungeonSpellGreaterShield,Barrier
+KinkyDungeonSpellDescriptionGreaterShield,Creates a shield that blocks BlockAmount damage from projectiles for DelayTime turns.
+KinkyDungeonSpellCastGreaterShield,You create a temporary shield!
+KinkyDungeonSpellTargetGreaterShield,Choose shield location
 
 KinkyDungeonSpellElectrify,Electrify
 KinkyDungeonSpellDescriptionElectrify,A delayed shock that deals DamageDealt damage and stuns for Duration turns.
@@ -287,12 +325,34 @@ KinkyDungeonSpellTargetFocusedFlash,Select where to center the flash (SpellArea 
 KinkyDungeonSpellDescriptionFocusedFlash,A focused flash of light which renders anyone caught within blind for Duration turns
 KinkyDungeonSpellCastFocusedFlash,You slowly charge up a powerful flash!
 
+KinkyDungeonSpellShroud,Shroud
+KinkyDungeonSpellTargetShroud,Select where to center the shroud (SpellArea radius)
+KinkyDungeonSpellDescriptionShroud,A shroud of darkness in which melee is difficult for Duration turns
+KinkyDungeonSpellCastShroud,You exhale a misty shroud
+
 KinkyDungeonSpellSlime,Conjure Slime
-KinkyDungeonSpellDescriptionSlime,A huge pool of slime will slow enemies that step inside.
-KinkyDungeonSpellCastSlime,You throw a ball of slime!
+KinkyDungeonSpellWitchSlime,Witch's Slime
+KinkyDungeonSpellDescriptionSlime,A huge pool of slime will greatly slow enemies that step inside.
+KinkyDungeonSpellCastSlime,You conjure a pool of slime!
 KinkyDungeonSpellTargetSlime,Select where the slime will start (SpellArea radius)
 
-KinkyDungeonBlindSelf,"You blinded yourself with your own magic!"
+KinkyDungeonSpellSlimeBall,Slime Ball
+KinkyDungeonSpellWitchSlimeBall,Witch's Slime Ball
+KinkyDungeonSpellDescriptionSlimeBall,A ball of slime leaves a trail of sticky slime. It deals DamageDealt damage on a hit.
+KinkyDungeonSpellCastSlimeBall,You hurl a ball of slime!
+KinkyDungeonSpellTargetSlimeBall,Choose aim direction
+
+KinkyDungeonStartVibe,You feel your toys start to to buzz...
+KinkyDungeonVibing,Your toys are vibrating.
+KinkyDungeonEndVibe,Your toys stop vibrating.
+KinkyDungeonSlowed,Your movements are hobbled.
+KinkyDungeonHopping,You are forced to hop.
+KinkyDungeonInching,You inch forward slowly.
+KinkyDungeonCrawling,You crawl helplessly.
+KinkyDungeonCantMove,You are unable to move!
+
+KinkyDungeonBlindSelf,"You are blinded!"
+KinkyDungeonDamageSelf,"You took DamageDealt damage!"
 KinkyDungeonMagicRopeSelf,"Your own rope trap springs upon you!"
 KinkyDungeonSlime,"You get caught in sticky slime!"
 KinkyDungeonShock,"You feel a powerful sensation run through your body!"
