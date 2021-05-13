@@ -446,7 +446,7 @@ function KinkyDungeonUpdateStruggleGroups() {
 		let restraint = KinkyDungeonGetRestraintItem(Group);
 
 		if (restraint) {
-			KinkyDungeonStruggleGroups.push({group:Group, left: S % 2 == 0, y: Math.floor(S/2), icon:sg, name:(restraint.restraint) ? restraint.restraint.name : "", lock:restraint.lock, blocked: InventoryGroupIsBlocked(KinkyDungeonPlayer, Group)});
+			KinkyDungeonStruggleGroups.push({group:Group, left: S % 2 == 0, y: Math.floor(S/2), icon:sg, name:(restraint.restraint) ? restraint.restraint.name : "", lock:restraint.lock, blocked: InventoryGroupIsBlockedForCharacter(KinkyDungeonPlayer, Group)});
 		}
 	}
 }

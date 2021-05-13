@@ -24,6 +24,9 @@ const DrawCacheImage = new Map;
 let DrawCacheLoadedImages = 0;
 let DrawCacheTotalImages = 0;
 
+// Last dark factor for blindflash
+var DrawLastDarkFactor = 0;
+
 /**
  * Converts a hex color string to a RGB color
  * @param {string} color - Hex color to conver
@@ -137,6 +140,18 @@ function DrawGetImageOnError(Img, IsAsset) {
 		console.log("Error loading image " + Img.src);
 		if (IsAsset) DrawGetImageOnLoad();
 	}
+}
+
+
+/**
+ * Gets the alpha of a screen flash. append to a color like "#111111" + DrawGetScreenFlash(FlashTime)
+ * @param {number} FlashTime - Time remaining as part of the screen flash
+ * @returns {string} - alpha of screen flash
+ */
+function DrawGetScreenFlash(FlashTime) {
+	let alpha = Math.max(0, Math.min(255, Math.floor(140 * (1 - Math.exp(-FlashTime/2500))))).toString(16);
+	if (alpha.length < 2) alpha = "0" + alpha;
+	return alpha;
 }
 
 /**

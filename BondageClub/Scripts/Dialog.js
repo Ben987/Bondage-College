@@ -1273,7 +1273,7 @@ function DialogItemClick(ClickItem) {
 function DialogClick() {
 
 	// If the user clicked the Up button, move the character up to the top of the screen
-	if ((CurrentCharacter.HeightModifier < -90) && (CurrentCharacter.FocusGroup != null) && MouseIn (510,50,90,90)) {
+	if ((CurrentCharacter.HeightModifier < -90 || CurrentCharacter.HeightModifier > 30) && (CurrentCharacter.FocusGroup != null) && MouseIn (510,50,90,90)) {
 		CharacterAppearanceForceUpCharacter = CurrentCharacter.MemberNumber;
 		CurrentCharacter.HeightModifier = 0;
 		return;
@@ -1805,9 +1805,16 @@ function DialogDraw() {
 			else DialogDrawItemMenu(C);
 		}
 
-		// Draw the 'Up' reposition button if some zones are offscreen
-		if (CurrentCharacter != null && CurrentCharacter.HeightModifier != null && CurrentCharacter.HeightModifier < -90 && CurrentCharacter.FocusGroup != null)
-			DrawButton(510, 50, 90, 90, "", "White", "Icons/Up.png", DialogFindPlayer("UpPosition"));
+		// Draw a repositioning button if some zones are offscreen
+		if (CurrentCharacter != null && CurrentCharacter.HeightModifier != null && CurrentCharacter.FocusGroup != null) {
+			let drawButton = "";
+			if (CurrentCharacter.HeightModifier < -90) {
+				drawButton = "Icons/Up.png";
+			} else if (CurrentCharacter.HeightModifier > 30) {
+				drawButton = "Icons/Down.png";
+			}
+			if (drawButton) DrawButton(510, 50, 90, 90, "", "White", drawButton, DialogFindPlayer("ShowAllZones"));
+		}
 
 	} else {
 

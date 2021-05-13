@@ -11,9 +11,9 @@ This changelog follows the format outlined in [keepachangelog.com](https://keepa
 
 **Note to contributors:** To avoid merge conflicts, please don't update this file yourself in your PRs - one of the developers will update the changelog with your change before your PR is merged.
 
-Changelog last updated: 2021-05-09
+Changelog last updated: 2021-05-12
 
-Last recorded PR: [#2429](https://github.com/Ben987/Bondage-College/pull/2429)
+Last recorded PR: [#2450](https://github.com/Ben987/Bondage-College/pull/2450)
 
 ## [R68]
 
@@ -47,6 +47,8 @@ Last recorded PR: [#2429](https://github.com/Ben987/Bondage-College/pull/2429)
 * Ellie - Made the Futuristic Muzzle and Cage Muzzle available in all mouth slots ([#2416](https://github.com/Ben987/Bondage-College/pull/2416))
 * Ada - Added a new Futuristic Heels item ([#2421](https://github.com/Ben987/Bondage-College/pull/2421))
 * Ada - Added shiny options to the Futuristic Bra ([#2421](https://github.com/Ben987/Bondage-College/pull/2421))
+* Nina - Added a "Show all zones" button for when the player is displayed too high to have access to all body zones ([#2442](https://github.com/Ben987/Bondage-College/pull/2442))
+* gatetrek - Added a new set of ribbon-themed bondage & clothing items ([#2444](https://github.com/Ben987/Bondage-College/pull/2444))
 
 ### [Removed]
 
@@ -72,6 +74,8 @@ Last recorded PR: [#2429](https://github.com/Ben987/Bondage-College/pull/2429)
 * fleisch11 - Cleaned up the taped hands body asset ([#2399](https://github.com/Ben987/Bondage-College/pull/2399))
 * Ellie - Fixed an issue with text contrast against the background in some minigames ([#2408](https://github.com/Ben987/Bondage-College/pull/2408))
 * Ada - Fixed an issue where players could get stuck on the chat search screen after attempting to rejoin a full chatroom ([#2427](https://github.com/Ben987/Bondage-College/pull/2427))
+* Aeren - Cleaned up some visual artifacts in the style 1 & 2 swimsuits ([#2443](https://github.com/Ben987/Bondage-College/pull/2443))
+* Ellie - Fixed an issue where semi-transparent items (notably the Fairy Wings & Halo) would cause graphical glitches for some users ([#2450](https://github.com/Ben987/Bondage-College/pull/2450))
 
 ### [Technical]
 
@@ -79,8 +83,8 @@ Last recorded PR: [#2429](https://github.com/Ben987/Bondage-College/pull/2429)
 * fleisch11 - Added a check to prevent players from accidentally adding invalid skills/reputations via the console ([#2382](https://github.com/Ben987/Bondage-College/pull/2382), [#2386](https://github.com/Ben987/Bondage-College/pull/2386))
 * Technical changes, fixes and improvements:
     * Ellie - [#2337](https://github.com/Ben987/Bondage-College/pull/2337), [#2333](https://github.com/Ben987/Bondage-College/pull/2333), [#2323](https://github.com/Ben987/Bondage-College/pull/2323), [#2383](https://github.com/Ben987/Bondage-College/pull/2383), [#2351](https://github.com/Ben987/Bondage-College/pull/2351), [#2388](https://github.com/Ben987/Bondage-College/pull/2388), [#2402](https://github.com/Ben987/Bondage-College/pull/2402), [#2407](https://github.com/Ben987/Bondage-College/pull/2407), [#2413](https://github.com/Ben987/Bondage-College/pull/2413), [#2415](https://github.com/Ben987/Bondage-College/pull/2415), [#2422](https://github.com/Ben987/Bondage-College/pull/2422), [#2423](https://github.com/Ben987/Bondage-College/pull/2423), [#2424](https://github.com/Ben987/Bondage-College/pull/2424), [#2429](https://github.com/Ben987/Bondage-College/pull/2429)
-    * Nina - [#2308](https://github.com/Ben987/Bondage-College/pull/2308)
-    * Ada - [#2365](https://github.com/Ben987/Bondage-College/pull/2365)
+    * Nina - [#2308](https://github.com/Ben987/Bondage-College/pull/2308), [#2438](https://github.com/Ben987/Bondage-College/pull/2438)
+    * Ada - [#2365](https://github.com/Ben987/Bondage-College/pull/2365), [#2447](https://github.com/Ben987/Bondage-College/pull/2447)
     * Jomshir - [#2361](https://github.com/Ben987/Bondage-College/pull/2361), [Server #88](https://github.com/Ben987/Bondage-Club-Server/pull/88), [#2374](https://github.com/Ben987/Bondage-College/pull/2374), [#2373](https://github.com/Ben987/Bondage-College/pull/2373), [#2372](https://github.com/Ben987/Bondage-College/pull/2372), [#2371](https://github.com/Ben987/Bondage-College/pull/2371), [#2370](https://github.com/Ben987/Bondage-College/pull/2370), [#2369](https://github.com/Ben987/Bondage-College/pull/2369), [#2368](https://github.com/Ben987/Bondage-College/pull/2368), [#2367](https://github.com/Ben987/Bondage-College/pull/2367), [#2366](https://github.com/Ben987/Bondage-College/pull/2366), [#2378](https://github.com/Ben987/Bondage-College/pull/2378), [#2392](https://github.com/Ben987/Bondage-College/pull/2392), [#2393](https://github.com/Ben987/Bondage-College/pull/2393), [#2410](https://github.com/Ben987/Bondage-College/pull/2410)
     * TessaTech - [Server #89](https://github.com/Ben987/Bondage-Club-Server/pull/89), [Server #86](https://github.com/Ben987/Bondage-Club-Server/pull/86), [Server #85](https://github.com/Ben987/Bondage-Club-Server/pull/85), [Server #84](https://github.com/Ben987/Bondage-Club-Server/pull/84), [#2279](https://github.com/Ben987/Bondage-College/pull/2279), [#2278](https://github.com/Ben987/Bondage-College/pull/2278), [#2277](https://github.com/Ben987/Bondage-College/pull/2277), [#2273](https://github.com/Ben987/Bondage-College/pull/2273), [#2276](https://github.com/Ben987/Bondage-College/pull/2276), [Server #80](https://github.com/Ben987/Bondage-Club-Server/pull/80), [Server #83](https://github.com/Ben987/Bondage-Club-Server/pull/83)
     * Sekkmer/Jomshir - [#1476](https://github.com/Ben987/Bondage-College/pull/1476)
@@ -89,7 +93,15 @@ Last recorded PR: [#2429](https://github.com/Ben987/Bondage-College/pull/2429)
 
 ### [Beta Fixes]
 
-* Nothing... yet
+* Ada - Modified the post-blindness flash to gradually fade out ([#2433](https://github.com/Ben987/Bondage-College/pull/2433))
+* Ada - Fixed some graphical issues with the Futuristic Heels ([#2434](https://github.com/Ben987/Bondage-College/pull/2434))
+* Nina - Fixed an issue with popup notifications that would cause crashes ([#2436](https://github.com/Ben987/Bondage-College/pull/2436))
+* Ada - Several Kinky Dungeon fixes ([#2437](https://github.com/Ben987/Bondage-College/pull/2437), [#2448](https://github.com/Ben987/Bondage-College/pull/2448))
+* Leila - Added missing audio to the Futuristic Vibrator shock functionality  ([#2439](https://github.com/Ben987/Bondage-College/pull/2439))
+* Manilla - Fixed an issue where players could equip/remove the clit ring through clothes ([#2440](https://github.com/Ben987/Bondage-College/pull/2440))
+* Nina - Fixed an issue where the extended menu for the Bunny Mask Filigrane would cause crashes ([#2441](https://github.com/Ben987/Bondage-College/pull/2441))
+* Ada - Fixed an issue with the item coloring functionality of the Futuristic Collar, and allowed it to color the Sci-Fi Pleasure Panties ([#2445](https://github.com/Ben987/Bondage-College/pull/2445))
+* Ada - Modified the leashing system to break a player's leash when the leash holder disconnects ([#2449](https://github.com/Ben987/Bondage-College/pull/2449))
 
 ## [R67]
 

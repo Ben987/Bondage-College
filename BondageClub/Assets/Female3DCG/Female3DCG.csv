@@ -158,6 +158,7 @@ Bra,ClamShell,Clamshell Bra
 Bra,CowPrintedBra,Cow Printed Bra
 Bra,StuddedHarness,Studded Harness
 Bra,Camisole,Camisole
+Bra,Ribbons,Ribbons
 Corset,,Corset
 Corset,Corset1,Corset + Garters
 Corset,Corset2,Corset
@@ -222,8 +223,12 @@ Socks,Pantyhose2,Crotchless Pantyhose
 Socks,CowPrintedSocks,Cow Printed Socks
 RightAnklet,,Anklet (Right)
 RightAnklet,BandAnklet,Band Anklet
+RightAnklet,Ribbon,Ribbon
+RightAnklet,Ribbon1,Ribbon Bow
 LeftAnklet,,Anklet (Left)
 LeftAnklet,BandAnklet,Band Anklet
+LeftAnklet,Ribbon,Ribbon
+LeftAnklet,Ribbon1,Ribbon Bow
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -514,6 +519,7 @@ HairBack,HairBack46,Style 41
 HairBack,HairBack47,Style 42
 HairBack,HairBack48,Style 43
 HairBack,HairBack49,Style 44
+HairBack,HairBack50,Style 45
 Eyes,,Left eye
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
@@ -609,6 +615,7 @@ ItemLegs,PlasticWrap,Plastic Wrap
 ItemLegs,FrogtieStraps,Frog-tie Straps
 ItemLegs,MermaidTail, Mermaid Tail
 ItemLegs,MedicalBedRestraints,Medical Bed Restraints
+ItemLegs,Ribbons,Ribbons
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
@@ -706,6 +713,7 @@ ItemPelvis,LeatherWhip,Leather Whip
 ItemPelvis,HempRope,Rope Harness
 ItemPelvis,DiaperHarness,Diaper Harness
 ItemPelvis,PelvisChainLeash,Pelvis Chain Leash
+ItemPelvis,Ribbons,Ribbons
 ItemTorso,,Torso
 ItemTorso,NylonRopeHarness,Nylon Rope
 ItemTorso,HempRopeHarness,Hemp Rope
@@ -725,6 +733,7 @@ ItemTorso,LeatherStrapBra1,Leather Strap Bra
 ItemTorso,CrotchChain, Crotch Chain
 ItemTorso,StuddedHarness,Studded Harness
 ItemTorso,HeavyLatexCorset,Heavy Latex Corset
+ItemTorso,Ribbon,Ribbons
 ItemNipples,,Nipples
 ItemNipples,NippleClamp,Nipple Clamps
 ItemNipples,VibeNippleClamp,Vibrating Nipple Clamps
@@ -764,6 +773,7 @@ ItemBreast,FuturisticBra2,Futuristic Bra
 ItemBreast,OrnateChastityBra,Ornate Chastity Bra
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip
+ItemBreast,Ribbons,Ribbons
 ItemArms,,Arms
 ItemArms,NylonRope,Nylon Rope
 ItemArms,HempRope,Hemp Rope
@@ -827,6 +837,7 @@ ItemArms,PlasticWrap,Plastic Wrap
 ItemArms,MedicalBedRestraints,Medical Bed Restraints
 ItemArms,TransportJacket,Transport Jacket
 ItemArms,WrappedBlanket,Wrapped Blanket
+ItemArms,Ribbons,Ribbons
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -1119,6 +1130,7 @@ ItemHead,SleepMask,Smooth Sleep Mask
 ItemHead,PrisonLockdownBlindfold,Prison Lockdown Blindfold
 ItemHead,Pantyhose,Pantyhose
 ItemHead,Snorkel,Snorkel
+ItemHead,Ribbons,Ribbon Blindfold
 ItemNose,,Nose
 ItemNose,NoseHook,Nose Hook
 ItemNose,NoseRing,Nose Ring

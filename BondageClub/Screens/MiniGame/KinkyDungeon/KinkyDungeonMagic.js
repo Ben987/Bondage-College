@@ -158,7 +158,7 @@ function KinkyDungeonPlayerEffect(playerEffect, spell) {
 function KinkyDungeoCheckComponents(spell) {
 	var failedcomp = [];
 	if (spell.components.includes("Verbal") && !KinkyDungeonPlayer.CanTalk()) failedcomp.push("Verbal");
-	if (spell.components.includes("Arms") && (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true) || InventoryGroupIsBlocked(KinkyDungeonPlayer, "ItemArms"))) failedcomp.push("Arms");
+	if (spell.components.includes("Arms") && (InventoryItemHasEffect(InventoryGet(KinkyDungeonPlayer, "ItemArms"), "Block", true) || InventoryGroupIsBlockedForCharacter(KinkyDungeonPlayer, "ItemArms"))) failedcomp.push("Arms");
 	if (spell.components.includes("Legs") && !KinkyDungeonPlayer.CanWalk()) failedcomp.push("Legs");
 
 	return failedcomp;
