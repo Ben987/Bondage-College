@@ -3,6 +3,7 @@ var KinkyDungeonBackground = "BrickWall";
 var KinkyDungeonPlayer = null;
 var KinkyDungeonState = "Menu";
 
+var KinkyDungeonRep = 0; // Variable to store max level to avoid losing it if the server doesnt take the rep update
 
 var KinkyDungeonKeybindings = null;
 var KinkyDungeonKeybindingsTemp = null;
@@ -231,8 +232,10 @@ function KinkyDungeonClick() {
 function KinkyDungeonExit() {
 	CommonDynamicFunction(MiniGameReturnFunction + "()");
 	
-	if (MiniGameKinkyDungeonLevel > ReputationGet("Gaming"))
-		DialogSetReputation("Gaming", MiniGameKinkyDungeonLevel);
+	if (MiniGameKinkyDungeonLevel > Math.max(KinkyDungeonRep, ReputationGet("Gaming")) || Math.max(KinkyDungeonRep, ReputationGet("Gaming")) > KinkyDungeonMaxLevel) {
+		KinkyDungeonRep = Math.max(KinkyDungeonRep, MiniGameKinkyDungeonLevel);
+		DialogSetReputation("Gaming", KinkyDungeonRep);
+	}
 
 	if (CurrentScreen == "ChatRoom" && KinkyDungeonState != "Menu" && (MiniGameKinkyDungeonLevel > 1 || KinkyDungeonState == "Lose")) {
 		let Message = "KinkyDungeonExit";

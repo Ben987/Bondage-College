@@ -76,6 +76,8 @@ var KinkyDungeonDoorCloseTimer = 0;
 var KinkyDungeonLastMoveDirection = null;
 var KinkyDungeonTargetingSpell = null;
 
+var KinkyDungeonMaxLevel = 10; // Game stops when you reach this level
+
 function KinkyDungeonSetCheckPoint() {
 	MiniGameKinkyDungeonCheckpoint = Math.floor(MiniGameKinkyDungeonLevel / 10);
 }
@@ -892,7 +894,7 @@ function KinkyDungeonAdvanceTime(delta) {
 
 		KinkyDungeonSendActionMessage(10, TextGet("ClimbDown"), "#ffffff", 1);
 
-		if (MiniGameKinkyDungeonCheckpoint >= 1) {
+		if (MiniGameKinkyDungeonLevel >= KinkyDungeonMaxLevel) {
 			KinkyDungeonState = "End";
 			MiniGameVictory = true;
 		} else
