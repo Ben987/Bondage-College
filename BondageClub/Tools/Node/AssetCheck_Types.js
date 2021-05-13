@@ -132,6 +132,8 @@ const AssetType = {
 	CustomBlindBackground: "Object",
 	Layer: "[Object]",
 	Archetype: "String",
+	FuturisticRecolor: "Boolean",
+	FuturisticRecolorDisplay: "Boolean",
 };
 
 const AssetLayerType = {
