@@ -244,6 +244,14 @@ function InventoryItemNeckFuturisticCollarUnlock(C) {
 function InventoryItemNeckFuturisticCollarColor(C, Item) {
 	for (let E = C.Appearance.length - 1; E >= 0; E--)
 		if (C.Appearance[E].Asset && C.Appearance[E].Asset.FuturisticRecolor && C.Appearance[E].Asset.Group.Name != "ItemNeck") {
+			
+			if (C.Appearance[E].Asset.Layer.length > 1 && typeof C.Appearance[E].Color === "string") {
+				let color = C.Appearance[E].Color;
+				C.Appearance[E].Color = [];
+				for (let L = C.Appearance[E].Asset.Layer.length - 1; L >= 0; L--) {
+					C.Appearance[E].Color.push(color);
+				}
+			}
 			for (let L = C.Appearance[E].Asset.Layer.length - 1; L >= 0; L--) {
 
 				if (C.Appearance[E].Asset.Layer[L].Name != "Light" && C.Appearance[E].Asset.Layer[L].Name != "Shine") {
