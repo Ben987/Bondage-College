@@ -1835,7 +1835,7 @@ function ChatRoomMessage(data) {
 
 					const chatMsg = ChatRoomHTMLEntities(data.Type === "Whisper" ? data.Content : SpeechGarble(SenderCharacter, data.Content));
 					msg += chatMsg;
-					ChatRoomChatLog.push({ Chat: data.Content, Garbled: chatMsg, SenderName: senderName, Time: CommonTime() });
+					ChatRoomChatLog.push({ Chat: SpeechGarble(SenderCharacter, data.Content, true), Garbled: chatMsg, SenderName: senderName, Time: CommonTime() });
 
 					if (ChatRoomChatLog.length > 6) { // Keep it short
 						ChatRoomChatLog.splice(0, 1);
