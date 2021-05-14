@@ -86,10 +86,11 @@ function InventoryItemVulvaFuturisticVibratorExit() {
 }
 
 function InventoryItemVulvaFuturisticVibratorDetectMsg(msg, TriggerValues) {
+	var commandsReceived = [];
 	for (let I = 0; I < TriggerValues.length; I++) {
-		if (msg.indexOf('(') != 0 && msg.includes(TriggerValues[I].toUpperCase())) return ItemVulvaFuturisticVibratorTriggers[I];
+		if (msg.indexOf('(') != 0 && msg.includes(TriggerValues[I].toUpperCase())) commandsReceived.push(ItemVulvaFuturisticVibratorTriggers[I]);
 	}
-	return "";
+	return commandsReceived;
 }
 
 function InventoryItemVulvaFuturisticVibratorGetMode(Item, Increase) {
@@ -154,15 +155,18 @@ function InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, LastTime) {
 		if (ChatRoomChatLog[CH].Time > LastTime) {
 			var msg = InventoryItemVulvaFuturisticVibratorDetectMsg(ChatRoomChatLog[CH].Chat.toUpperCase(), TriggerValues);
 
-			if (msg != "") {
-				if (msg == "Edge") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.EDGE));
-				if (msg == "Deny") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.DENY));
-				if (msg == "Tease") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.TEASE));
-				if (msg == "Random") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.RANDOM));
-				if (msg == "Disable") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.OFF));
-				if (msg == "Shock") InventoryItemVulvaFuturisticVibratorTriggerShock(C, Item);
-				if (msg == "Increase") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, true)));
-				if (msg == "Decrease") InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, false)));
+			if (msg.length > 0) {
+				//vibrator modes, can only pick one
+				if (msg.includes("Edge")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.EDGE));
+				else if (msg.includes("Deny")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.DENY));
+				else if (msg.includes("Tease")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.TEASE));
+				else if (msg.includes("Random")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.RANDOM));
+				else if (msg.includes("Disable")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.OFF));
+				else if (msg.includes("Increase")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, true)));
+				else if (msg.includes("Decrease")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, false)));
+				
+				//triggered actions
+				if (msg.includes("Shock")) InventoryItemVulvaFuturisticVibratorTriggerShock(C, Item);
 			}
 
 		}
