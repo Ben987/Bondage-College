@@ -78,6 +78,7 @@ Last recorded PR: [#2463](https://github.com/Ben987/Bondage-College/pull/2463)
 * Ada - Fixed an issue where players could get stuck on the chat search screen after attempting to rejoin a full chatroom ([#2427](https://github.com/Ben987/Bondage-College/pull/2427))
 * Aeren - Cleaned up some visual artifacts in the style 1 & 2 swimsuits ([#2443](https://github.com/Ben987/Bondage-College/pull/2443))
 * Ellie - Fixed an issue where semi-transparent items (notably the Fairy Wings & Halo) would cause graphical glitches for some users ([#2450](https://github.com/Ben987/Bondage-College/pull/2450))
+* gatetrek - Fixed a bug with the Metal Leg Spreader which allowed it to be applied with items that forced the player's legs closed ([#2467](https://github.com/Ben987/Bondage-College/pull/2467))
 
 ### [Technical]
 
@@ -108,6 +109,7 @@ Last recorded PR: [#2463](https://github.com/Ben987/Bondage-College/pull/2463)
 * Natsuki - Modified the Plastic Wrap assets to be more form-fitting ([#2459](https://github.com/Ben987/Bondage-College/pull/2459))
 * Ada - Fixed an issue with the Futuristic Vibrator not respecting players' gags ([#2462](https://github.com/Ben987/Bondage-College/pull/2462))
 * Ada - Fixed a source of crashes in the Futuristic Collar ([#2463](https://github.com/Ben987/Bondage-College/pull/2463))
+* Manilla - Fixed a bug where the breast & pelvis ribbons could be applied through clothes ([#2465](https://github.com/Ben987/Bondage-College/pull/2465))
 
 ## [R67]
 

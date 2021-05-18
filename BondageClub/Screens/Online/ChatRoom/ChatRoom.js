@@ -2438,7 +2438,7 @@ function ChatRoomSyncItem(data) {
 			ChatRoomAllowCharacterUpdate = false;
 			if (item) {
 				CharacterAppearanceSetItem(
-					ChatRoomCharacter[C], data.Item.Group, item.Asset, item.Color, item.Difficulty);
+					ChatRoomCharacter[C], data.Item.Group, item.Asset, item.Color, item.Difficulty, null, false);
 				InventoryGet(ChatRoomCharacter[C], data.Item.Group).Property = item.Property;
 			} else {
 				InventoryRemove(ChatRoomCharacter[C], data.Item.Group);
