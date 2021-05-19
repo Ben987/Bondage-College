@@ -940,7 +940,7 @@ function ChatRoomStimulationMessage(Context) {
 			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily)) {
 				var trigChance = 0;
 				var trigMsgTemp = "";
-				var Intensity = InventoryGetItemProperty(C.Appearance[A], "Intensity", true);
+				var Intensity = InventoryItemHasEffect(C.Appearance[A], "Vibrating", true) ? InventoryGetItemProperty(C.Appearance[A], "Intensity", true) : 0;
 				if (InventoryItemHasEffect(C.Appearance[A], "CrotchRope", true)) {
 					if (trigChance == 0) trigChance = modBase;
 					trigMsgTemp = "CrotchRope";
