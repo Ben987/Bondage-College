@@ -91,9 +91,7 @@ function KinkyDungeonDrawGame() {
 		KinkyDungeonCamX = CamX;
 		KinkyDungeonCamY = CamY;
 
-		KinkyDungeonMoveDirection = KinkyDungeonGetDirection(
-			(MouseX - ((KinkyDungeonPlayerEntity.x - CamX)*KinkyDungeonGridSizeDisplay + canvasOffsetX + KinkyDungeonGridSizeDisplay / 2))/KinkyDungeonGridSizeDisplay,
-			(MouseY - ((KinkyDungeonPlayerEntity.y - CamY)*KinkyDungeonGridSizeDisplay + canvasOffsetY + KinkyDungeonGridSizeDisplay / 2))/KinkyDungeonGridSizeDisplay);
+		KinkyDungeonSetMoveDirection();
 
 
 		if (KinkyDungeonCanvas) {
@@ -308,6 +306,12 @@ function KinkyDungeonDrawGame() {
 function KinkyDungeonSetTargetLocation() {
 	KinkyDungeonTargetX = Math.round((MouseX - KinkyDungeonGridSizeDisplay/2 - canvasOffsetX)/KinkyDungeonGridSizeDisplay) + KinkyDungeonCamX;
 	KinkyDungeonTargetY = Math.round((MouseY - KinkyDungeonGridSizeDisplay/2 - canvasOffsetY)/KinkyDungeonGridSizeDisplay) + KinkyDungeonCamY;
+}
+
+function KinkyDungeonSetMoveDirection() {
+	KinkyDungeonMoveDirection = KinkyDungeonGetDirection(
+			(MouseX - ((KinkyDungeonPlayerEntity.x - KinkyDungeonCamX)*KinkyDungeonGridSizeDisplay + canvasOffsetX + KinkyDungeonGridSizeDisplay / 2))/KinkyDungeonGridSizeDisplay,
+			(MouseY - ((KinkyDungeonPlayerEntity.y - KinkyDungeonCamY)*KinkyDungeonGridSizeDisplay + canvasOffsetY + KinkyDungeonGridSizeDisplay / 2))/KinkyDungeonGridSizeDisplay);
 }
 
 function KinkyDungeonHandleHUD() {
