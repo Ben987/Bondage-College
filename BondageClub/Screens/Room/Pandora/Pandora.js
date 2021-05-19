@@ -609,6 +609,7 @@ function PandoraCharacterFightEnd() {
  */
 function PandoraMissionFail() {
 	InfiltrationTarget.Fail = true;
+	InfiltrationTarget.Found = false;
 	CharacterRelease(Player);
 	CommonSetScreen("Room", "Infiltration");
 	DialogLeave();
@@ -742,6 +743,7 @@ function PandoraPunishmentIntro() {
 	CharacterSetCurrent(Dominatrix);
 	CurrentCharacter.CurrentDialog = IntroText;
 	InfiltrationTarget.Fail = true;
+	InfiltrationTarget.Found = false;
 }
 
 /**

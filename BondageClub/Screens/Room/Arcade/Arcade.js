@@ -178,7 +178,7 @@ function ArcadeKinkyDungeonStart(PlayerLevel) {
 function ArcadeKinkyDungeonEnd() {
 	CommonSetScreen("Room", "Arcade");
 
-	if (MiniGameVictory) {
-		ReputationChange("Gaming", Math.max(ReputationGet("Gaming"), MiniGameKinkyDungeonCheckpoint));
-	}
+	//if (MiniGameVictory) {
+	
+	//}
 }

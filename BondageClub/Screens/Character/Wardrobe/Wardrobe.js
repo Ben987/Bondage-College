@@ -251,6 +251,7 @@ function WardrobeFastLoad(C, W, Update) {
 				}
 			});
 		}
+		CharacterLoadPose(C);
 		CharacterLoadCanvas(C);
 		if (Update == null || Update) {
 			if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();

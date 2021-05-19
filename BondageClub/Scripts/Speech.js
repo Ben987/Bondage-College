@@ -70,6 +70,7 @@ function SpeechGetGagLevel(C, AssetGroup) {
  * Processes the character's speech, anything between parentheses isn't touched. Effects alter the speech differently according to a character's language. Effects that can be applied are the following: gag talk, baby talk and stuttering.
  * @param {Character} C - The character, whose dialog might need to be altered
  * @param {string} CD - The character's dialog to alter
+ * @param {boolean} NoDeaf - Whether or not deafness affects the dialogue
  * @returns {string} - Returns the dialog after speech effects were processed (Garbling, Stuttering, Baby talk)
  */
 function SpeechGarble(C, CD, NoDeaf) {
