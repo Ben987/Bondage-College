@@ -147,7 +147,7 @@ WaitDominatrix,,(Wait for the Dominatrix.),,PunishmentIntro(),
 100,,,You're still under arrest you know?  Surrender to the law and we'll have mercy for you.,,
 100,,I'm the law now.,(She grumbles.)  Don't make me laugh.  Pandora's law will crush you like an ant.,DialogRemove(),
 100,,(Bring her with you.),Freeze!  You're not allowed to do that!  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
-100,,(Leaver her here.),Let me go and I'll shorten your sentence.  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Leave her here.),Let me go and I'll shorten your sentence.  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
 100,,(Strip her naked.),(She seems really angry as you strip her naked.)  This uniform is sacred!,CharacterNaked(),!CurrentCharacter.IsNaked()
 100,,(Wear her clothes.),(She shakes her head no as you dress up as a guard.)  Nobody will fall for that.,"PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
 100,,(Leave her.),,DialogLeave(),
