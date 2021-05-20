@@ -1,0 +1,174 @@
+PlayerGagged,,,(She checks your gag.)  Prisoners don't need to be understood.,,
+FightVictory,,,"(She pouts.)  You're tough, but I represent the law and you're still under arrest.",,
+FightDefeat,,,(She smiles and laughs.)  You really thought you could defeat the law?  You are under arrest.,,
+Punishment8,,,"(A Dominatrix takes you away from the guard.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(A Dominatrix takes you away from the guard.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(A Dominatrix takes you away from the guard.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(A Dominatrix takes you away from the guard.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
+ItemMouth,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth,,,(You remove her gag and she grumbles.)  Are you finally coming back to your senses?,,
+ItemMouth2,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth2,,,(You remove her gag and she grumbles.)  Are you finally coming back to your senses?,,
+ItemMouth3,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth3,,,(You remove her gag and she grumbles.)  Are you finally coming back to your senses?,,
+ItemEars,,,(She seems angry as you push earplugs inside.)  How can I follow your orders now?,,
+RemoveItemEars,,,(You pull the earplugs out.)  You're only adding more time to your sentence.,,
+ItemArms,,,(She struggles as you restrain her arms securely.)  You're breaking the law again.,,
+RemoveItemArms,,,(You free her arms and she stretches.)  You're still under arrest.,,
+ItemLegs,,,(She trashes as you restrain her legs.)  You better carry me then!,,
+RemoveItemLegs,,,(You release her legs.)  Justice will strike you down like a hammer.,,
+ItemFeet,,,(She grumbles as you restrain her feet.)  This will be reported in your trial.,,
+RemoveItemFeet,,,(You release her feet.)  Let's walk until you get caught.,,
+ItemBoots,,,(She grumbles as you restrain her feet.)  How can I follow you now?,,
+RemoveItemBoots,,,(You release her feet.)  Let's walk until you get caught.,,
+ItemNeck,,,(She adjusts her neck to the new collar.)  Soon you will wear the Box collar.,,
+RemoveItemNeck,,,"(You remove the collar from her neck.)  Too late, the crime has been done.",,
+ItemPelvis,,,(She struggles to avoid the belt but you're able to strap it on her.)  Are you serious?,,
+RemoveItemPelvis,,,(She sighs as you unlock the belt.)  Can you make up your mind?,,
+ItemHead,,,(She stays silent as you strap the device on her head.),,
+RemoveItemHead,,,"(You release her head as she nods rapidly.)  That's better, but you're still in trouble.",,
+ItemHood,,,(You put the hood on her head as she goes silent.),,
+RemoveItemHood,,,(She grins as you remove the hood from her head.)  I will never get out of here.,,
+ItemNose,,,(You strap the item on her nose as she sighs.)  Is that a joke to you?,,
+RemoveItemNose,,,(She nods as you remove the device.)  Someday Pandora's Box will make you pay.,,
+ItemTorso,,,(You strap the harness on her torso.)  Causing more trouble will only extend your jail time.,,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  You're only toying with me?,,
+ItemButt,,,(She jumps as you slide the device inside.)  How dare you?  You're under arrest!,,
+RemoveItemButt,,,(She sighs as you remove the plug.)  Your butt will rot in jail.,,
+ItemBreast,,,(She holds her breath as you use the item.)  Pandora's police won't be kind with you.,,
+RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Enjoy your freedom while it lasts.,,
+ItemNipples,,,(She whimpers as you use the device on her breast.)  Another violation to add to the list.,,
+RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
+0,,,(A guard salutes you.)  The Box isn't going to clean itself little maid.  Do you have anything to report?,,"CostumeIs(""Maid"")"
+0,,,(A guard gives you a friendly handshake.)  I hope your patrol is going well.  Do you have anything to report?,,"CostumeIs(""Guard"")"
+0,,,"(A guard is staring at you.)  Hey there, you're a good girl?  I hope you're not causing any trouble.",,
+0,,Who are you?,I'm guard DialogCharacterName.  I serve and protect Pandora's Box.,DialogRemove(),"CostumeIs(""Random"")"
+0,,Am I under arrest?,Not yet.  Is there any reason I should arrest you?,DialogRemove(),"CostumeIs(""Random"")"
+0,10,I'm a good girl.,Let's do a quick quiz then.  We'll see if you're a good girl or not.,,"CostumeIs(""Random"")"
+0,10,I don't cause trouble.,"Let's do a quick quiz, we'll see if you're a troublemaker or not.",,"CostumeIs(""Random"")"
+0,Arrest,I'm bad to the bone.,Is that so?  Then you're under arrest!  Surrender right now.,,"CostumeIs(""Random"")"
+0,,(Look around.),,DialogLeave(),"CostumeIs(""Random"")"
+0,Guard0,There's nothing to report.,That's perfect.  (She starts to inspect you.)  How come I've never seen you before?  Are you new?,CharacterGenerateRandomOdds(),"CostumeIs(""Guard"")"
+0,Guard0,Everything is under control.,Control is the name of the game.  (She looks at you.)  Did you miss the morning meeting?  Or are you new?,CharacterGenerateRandomOdds(),"CostumeIs(""Guard"")"
+0,Guard10,A spy is among us.,A spy!   (She gets nervous.)  Who is she?  Do you have a description?,CharacterGenerateRandomOdds(),"CostumeIs(""Guard"")"
+0,,(Look around.),,DialogLeave(),"CostumeIs(""Guard"")"
+0,Maid0,There's nothing to report.,That's perfect.  (She starts to inspect you.)  Are you a new maid?  I've never seen you before.,CharacterGenerateRandomOdds(),"CostumeIs(""Maid"")"
+0,Maid0,There's a water leak to clean.,I don't care about that.  (She starts to inspect you.)  Are you a new maid?  I've never seen you before.,CharacterGenerateRandomOdds(),"CostumeIs(""Maid"")"
+0,Maid10,A spy is among us.,A spy!   (She gets nervous.)  Who is she?  Do you have a description?,CharacterGenerateRandomOdds(),"CostumeIs(""Maid"")"
+0,,(Look around.),,DialogLeave(),"CostumeIs(""Maid"")"
+10,,A quiz?,Absolutely.  We'll see if you know Pandora's Box and if you're a good member.,DialogRemove(),
+10,,I don't have time for a quiz.,"I don't care.  You'll do the quiz, or I'll throw your ass in jail.",DialogRemove(),
+10,,How does it work?,"I will ask you five questions.  If you fail two of them, you're in trouble.",,
+10,,What happens if I win or lose?,"If you succeed, you can carry on with your day.  If you fail, I will arrest you.",,
+10,20,"Fine, let's do the quiz.",,QuizStart(),
+10,,(Fight her.),,CharacterFight(),
+QuizQuestion0,,,What is the best BDSM club in town?,,
+20,,I don't know.,,QuizAnswer(0),QuizIs(0)
+20,,Pandora's Box.,,QuizAnswer(1),QuizIs(0)
+20,,The Bondage Club.,,QuizAnswer(0),QuizIs(0)
+20,,The Boudoir.,,QuizAnswer(0),QuizIs(0)
+QuizQuestion1,,,Who rules Pandora's Box?,,
+20,,The Mistresses.,,QuizAnswer(0),QuizIs(1)
+20,,The Bosses.,,QuizAnswer(0),QuizIs(1)
+20,,The Dominatrixes.,,QuizAnswer(1),QuizIs(1)
+QuizQuestion2,,,"If you see someone that causes trouble, who will you seek?",,
+20,,A guard.,,QuizAnswer(1),QuizIs(2)
+20,,A maid.,,QuizAnswer(0),QuizIs(2)
+20,,A dominatrix.,,QuizAnswer(0),QuizIs(2)
+QuizQuestion3,,,"If you need help with restraints, who will you seek?",,
+20,,A guard.,,QuizAnswer(0),QuizIs(3)
+20,,A maid.,,QuizAnswer(1),QuizIs(3)
+20,,A dominatrix.,,QuizAnswer(0),QuizIs(3)
+QuizQuestion4,,,"In BDSM, what does SSC stands for?",,
+20,,Secondary School Certificate,,QuizAnswer(0),QuizIs(4)
+20,,Silly Stupid Cunt.,,QuizAnswer(0),QuizIs(4)
+20,,Shibari Suspension Ceiling,,QuizAnswer(0),QuizIs(4)
+20,,Safe Sane Consensual.,,QuizAnswer(1),QuizIs(4)
+QuizQuestion5,,,How would you label someone that gets pleasure from being in pain?,,
+20,,A masochist.,,QuizAnswer(1),QuizIs(5)
+20,,A slut.,,QuizAnswer(0),QuizIs(5)
+20,,A sadist.,,QuizAnswer(0),QuizIs(5)
+20,,An idiot.,,QuizAnswer(0),QuizIs(5)
+QuizQuestion6,,,How would you label someone that gets pleasure from inflicting pain?,,
+20,,A masochist.,,QuizAnswer(0),QuizIs(6)
+20,,A slut.,,QuizAnswer(0),QuizIs(6)
+20,,A sadist.,,QuizAnswer(1),QuizIs(6)
+20,,An idiot.,,QuizAnswer(0),QuizIs(6)
+QuizQuestion7,,,What will you use if you want to stop a scene immediately?,,
+20,,Curse words.,,QuizAnswer(0),QuizIs(7)
+20,,Safe words.,,QuizAnswer(1),QuizIs(7)
+20,,Bad words.,,QuizAnswer(0),QuizIs(7)
+QuizQuestion8,,,What kind of limit should never be broken?,,
+20,,A hard limit.,,QuizAnswer(1),QuizIs(8)
+20,,A soft limit.,,QuizAnswer(0),QuizIs(8)
+20,,Speed limits.,,QuizAnswer(0),QuizIs(8)
+QuizQuestion9,,,When is it allowed to bring minors to the Box?,,
+20,,Always.,,QuizAnswer(0),QuizIs(9)
+20,,Only on daytime.,,QuizAnswer(0),QuizIs(9)
+20,,Never.,,QuizAnswer(1),QuizIs(9)
+20,,Only if she's mature.,,QuizAnswer(0),QuizIs(9)
+QuizQuestion10,,,What item do most submissive wear to show that they are owned?,,
+20,,Restraints.,,QuizAnswer(0),QuizIs(10)
+20,,A gag.,,QuizAnswer(0),QuizIs(10)
+20,,A chastity belt.,,QuizAnswer(0),QuizIs(10)
+20,,A collar.,,QuizAnswer(1),QuizIs(10)
+QuizSuccess,,,"That's enough, you did fine at the quiz.  You're free to go.",,
+QuizFail,,,You failed the quiz girl.  It's time to educate and punish you.  You are under arrest.,,
+30,,That wasn't too bad.,"Of course, we're not here to trick you but to protect you.  Carry on girl.",DialogRemove(),
+30,,Thanks.  (Go explore.),,CharacterAllowMove(),
+Guard0,GuardEnd,I've been a guard for a while.,(She seems a little suspicious.)  My memory must be failing then.  Carry on fellow guard.,,Odds25()
+Guard0,Arrest,I've been a guard for a while.,(She seems very suspicious.)  That's impossible!  I know all the old guards.  I will put you under arrest right now.,,!Odds25()
+Guard0,GuardEnd,"Yes, I'm a new guard.","Very well, let me know if you need help with your job.  We support each other in the force.",,Odds50()
+Guard0,Arrest,"Yes, I'm a new guard.","(She inspects you some more.)  This is strange, I've already met the new guards.  I will put you under arrest for safety.",,!Odds50()
+Guard0,Arrest,"You got me, I'm actually a spy.",A spy!   Surrender right now!  You are under arrest.,,
+Guard10,GuardEnd,(Give a false description.),"(She takes notes.)  Thanks a lot, I will keep my eyes open for her.",,Odds50()
+Guard10,Arrest,(Give a false description.),(She looks at you.)  You know what?  I've never seen you in the force.  I think you're the spy!  I will arrest you for safety.,,!Odds50()
+Guard10,GuardEnd,(Describe yourself cleverly.),"(She takes notes.)  Thanks a lot, I will keep my eyes open.  She will never fool me.",,Odds25()
+Guard10,Arrest,(Describe yourself cleverly.),(She seems really angry.)  You think you're funny?  You're under arrest!,,!Odds25()
+Guard10,Arrest,I'm the spy!,Surrender right now!  You are under arrest.,,
+GuardEnd,,,Have a pleasant day fellow guard.  Let me know if you need backup.,,
+GuardEnd,,Take care.  (Go explore.),,CharacterAllowMove(),
+Maid0,MaidEnd,I've been a maid for a while.,(She ponders.)  I guess I've missed a few meetings.  Carry on little maid.,,Odds50()
+Maid0,Arrest,I've been a maid for a while.,(She seems very suspicious.)  That's impossible!  I know all the old maids.  I will put you under arrest right now.,,!Odds50()
+Maid0,MaidEnd,"Yes, I'm a new maid.","It makes sense.  As a new maid, please report anything suspicious to me.  You can carry on.",,Odds75()
+Maid0,Arrest,"Yes, I'm a new maid.","(She inspects you some more.)  This is strange, I've already met the new maids.  I will put you under arrest for safety.",,!Odds75()
+Maid0,Arrest,"You got me, I'm actually a spy.",A spy!   Surrender right now!  You are under arrest.,,
+Maid10,MaidEnd,(Give a false description.),"(She takes notes.)  Thanks a lot, I will keep my eyes open for her.",,Odds75()
+Maid10,Arrest,(Give a false description.),(She looks at you.)  You know what?  I've never seen you before.  I think you're the spy!  I will arrest you for safety.,,!Odds75()
+Maid10,MaidEnd,(Describe yourself cleverly.),"(She takes notes.)  Thanks a lot, I will keep my eyes open.  She will never fool me.",,Odds25()
+Maid10,Arrest,(Describe yourself cleverly.),(She seems really angry.)  You think you're funny?  You're under arrest!,,!Odds25()
+Maid10,Arrest,I'm the spy!,Surrender right now!  You are under arrest.,,
+MaidEnd,,,Keep the Box clean little maid.  Let me know if you see anything suspicious.,,
+MaidEnd,,Thanks.  (Go explore.),,CharacterAllowMove(),
+Arrest,,(Fight her.),,CharacterFight(),
+Arrest,WaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to interrogate you.,RestrainPlayer(),
+WaitDominatrix,,How about a bribe?,Trying to bribe an officer?   That's more prison time for you.  (She takes notes.),DialogRemove(),Player.CanTalk()
+WaitDominatrix,,(Wait for the Dominatrix.),,PunishmentIntro(),
+100,,,You're still under arrest you know?  Surrender to the law and we'll have mercy for you.,,
+100,,I'm the law now.,(She grumbles.)  Don't make me laugh.  Pandora's law will crush you like an ant.,DialogRemove(),
+100,,(Bring her with you.),Freeze!  You're not allowed to do that!  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
+100,,(Leaver her here.),Let me go and I'll shorten your sentence.  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Strip her naked.),(She seems really angry as you strip her naked.)  This uniform is sacred!,CharacterNaked(),!CurrentCharacter.IsNaked()
+100,,(Wear her clothes.),(She shakes her head no as you dress up as a guard.)  Nobody will fall for that.,"PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
+100,,(Leave her.),,DialogLeave(),
+200,210,Under arrest?  What do you mean?,You will understand very soon.  A Dominatrix will come to pick you in a few minutes.,,Player.CanTalk()
+200,210,You're not arresting me girl.,You're already arrested.  A Dominatrix will come to pick you in a few minutes.,,Player.CanTalk()
+200,210,I will accept it Miss.,Perfect.  A Dominatrix will come to pick you in a few minutes.,,Player.CanTalk()
+200,210,(Scream in your gag.),Scream all you want.  A Dominatrix will come to pick you in a few minutes.,,!Player.CanTalk()
+200,210,(Trash in your bondage.),This is pointless.  A Dominatrix will come to pick you in a few minutes.,,!Player.CanTalk()
+200,210,(Bow your head and stay silent.),Perfect.  A Dominatrix will come to pick you in a few minutes.,,!Player.CanTalk()
+210,,How about a bribe?,Trying to bribe an officer?   That's more prison time for you.  (She takes notes.),DialogRemove(),Player.CanTalk()
+210,,I will have my revenge.,"(She smirks.)  Aren't you cute?  Stop that nonsense, the Dominatrix is coming.",DialogRemove(),Player.CanTalk()
+210,,(Wait for the Dominatrix.),,PunishmentIntro(),
+InfiltrationArrest,,,Freeze!  (A guard stops you.)  You are DialogPlayerName from the Bondage Club.  You are under arrest!,,
+InfiltrationArrest,,You're mistaken.,I know who you are.  Surrender or I will crush you.,DialogRemove(),
+InfiltrationArrest,,(Fight her.),,CharacterFight(),
+InfiltrationArrest,WaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to interrogate you.,RestrainPlayer(),
+KidnapArrest,,,(Your victim screams for help to the guard.)  Stop your kidnapping!  You are under arrest!,,
+KidnapArrest,,She's roleplaying.,(Your victim tells the truth to the guard.)  This is not funny.  Surrender right now!,DialogRemove(),
+KidnapArrest,,(Fight her.),,CharacterFight(),
+KidnapArrest,WaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to interrogate you.,RestrainPlayer(),
+GuardArrest,,,(The guard seems to recognize the other guard you're carrying.)  You cannot kidnap a guard!  You are under arrest!,,
+GuardArrest,,She lost a bet against me.,(Your victim shakes her head no and whimpers for help.)  This is against the law.  Surrender right now!,DialogRemove(),
+GuardArrest,,(Fight her.),,CharacterFight(),
+GuardArrest,WaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to interrogate you.,RestrainPlayer(),

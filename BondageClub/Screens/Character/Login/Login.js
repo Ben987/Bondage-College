@@ -4,11 +4,11 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Abby", "Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "EliseBlackthorn",
-						 "Epona", "Escurse", "FanRunner", "Fotari", "Greendragon", "KamiKaze", "KBgamer", "Kimuriel", "Longwave", "Michal", 
-						 "Michel", "Mike", "Mindtie", "Misa", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", 
-						 "Rika", "Robin", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "Somononon", "Stephanie", "Tam", 
-						 "TopHat", "Trent", "Troubadix", "William", "Xepherio", "Yurei", "Znarf"];
+var LoginThankYouList = ["Anna", "Aylea", "Bendy", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "Epona", 
+						"Escurse", "FanRunner", "Flux", "Greendragon", "KamiKaze", "Kimuriel", "Michal", "Michel", "Mike", "Mindtie", 
+						"Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", "Remydy", "Rika", 
+						"Robin", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "Stephanie", "Tam", "TopHat", "Trent", 
+						"Troubadix", "William", "Xepherio", "Yurei", "Znarf"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -148,8 +148,8 @@ function LoginRun() {
  * @returns {void} Nothing
  */
 function LoginValidCollar() {
- 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "" || LogQuery("ReleasedCollar", "OwnerRule"))) {
- 		InventoryRemove(Player, "ItemNeck");
+	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "" || LogQuery("ReleasedCollar", "OwnerRule"))) {
+		InventoryRemove(Player, "ItemNeck");
 		if (CurrentScreen == "ChatRoom") {
 			ChatRoomCharacterItemUpdate(Player, "ItemNeck");
 			ChatRoomCharacterItemUpdate(Player, "ItemNeckAccessories");
@@ -217,7 +217,7 @@ function LoginStableItems() {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
-		InventoryDelete(Player, "PonyHood", "ItemHood", false)
+		InventoryDelete(Player, "PonyHood", "ItemHood", false);
 		InventoryDelete(Player, "HoofMittens", "ItemHands", false);
 	}
 }
@@ -469,14 +469,14 @@ function LoginResponse(C) {
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
 			// Attempt to parse friend names
-			if (typeof C.FriendNames === "string") { 
+			if (typeof C.FriendNames === "string") {
 				try {
 					Player.FriendNames = new Map(JSON.parse(LZString.decompressFromUTF16(C.FriendNames)));
 				} catch(err) {
 					console.warn("An error occured while parsing friendnames, entries have been reset.");
 				}
 			}
-			if (Player.FriendNames == null) { 
+			if (Player.FriendNames == null) {
 				Player.FriendNames = new Map();
 			}
 			Player.SubmissivesList = typeof C.SubmissivesList === "string" ? new Set(JSON.parse(LZString.decompressFromUTF16(C.SubmissivesList))) : new Set();
@@ -485,7 +485,7 @@ function LoginResponse(C) {
 			LoginDifficulty();
 
 			// Loads the player character model and data
-			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber).appearance;
+			ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber);
 			InventoryLoad(Player, C.Inventory);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);
@@ -538,25 +538,34 @@ function LoginResponse(C) {
 			if (LogQuery("Locked", "Cell")) {
 				CommonSetScreen("Room", "Cell");
 			} else {
-
-				// If the player must log back in the asylum
-				if (LogQuery("Committed", "Asylum")) {
-					CharacterRelease(Player);
-					AsylumEntranceWearPatientClothes(Player);
-					if (ReputationGet("Asylum") <= -50) AsylumEntrancePlayerJacket("Normal");
-					CommonSetScreen("Room", "AsylumBedroom");
+				
+				// If the player must log back in Pandora's Box prison
+				if ((Player.Infiltration != null) && (Player.Infiltration.Punishment != null) && (Player.Infiltration.Punishment.Timer != null) && (Player.Infiltration.Punishment.Timer > CurrentTime)) {
+					PandoraWillpower = 0;
+					InfiltrationDifficulty = Player.Infiltration.Punishment.Difficulty;
+					CommonSetScreen("Room", "PandoraPrison");
 				} else {
 
-					// If the player must start in her room, in her cage
-					if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
-						InventoryRemove(Player, "ItemFeet");
-						InventoryRemove(Player, "ItemLegs");
-						Player.Cage = true;
-						CharacterSetActivePose(Player, "Kneel", true);
-						CommonSetScreen("Room", "Private");
+					// If the player must log back in the asylum
+					if (LogQuery("Committed", "Asylum")) {
+						CharacterRelease(Player);
+						AsylumEntranceWearPatientClothes(Player);
+						if (ReputationGet("Asylum") <= -50) AsylumEntrancePlayerJacket("Normal");
+						CommonSetScreen("Room", "AsylumBedroom");
 					} else {
-						CommonSetScreen("Room", "MainHall");
-						MainHallMaidIntroduction();
+
+						// If the player must start in her room, in her cage
+						if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
+							InventoryRemove(Player, "ItemFeet");
+							InventoryRemove(Player, "ItemLegs");
+							Player.Cage = true;
+							CharacterSetActivePose(Player, "Kneel", true);
+							CommonSetScreen("Room", "Private");
+						} else {
+							CommonSetScreen("Room", "MainHall");
+							MainHallMaidIntroduction();
+						}
+
 					}
 
 				}
@@ -635,7 +644,7 @@ function LoginDoLogin() {
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-		    LoginSetSubmitted();
+			LoginSetSubmitted();
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
 		} else LoginStatusReset("InvalidNamePassword");
 	}

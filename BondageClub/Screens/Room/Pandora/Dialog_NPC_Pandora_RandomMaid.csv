@@ -1,0 +1,140 @@
+PlayerGagged,,,"(She tries to understand you but fails.)  I'm sorry Miss, it's not easy to understand what you're saying.",,
+FightVictory,,,(She seems pretty mad.)  What do you think you're doing?   You will get caught right away.,,
+FightDefeat,,,(She seems very happy.)  You're no match for Pandora's staff.  Now it's time to prepare your punishment.,,
+Punishment8,,,"(A Dominatrix takes you away from the maid.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(A Dominatrix takes you away from the maid.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(A Dominatrix takes you away from the maid.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(A Dominatrix takes you away from the maid.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
+ItemMouth,,,"(She shakes her head no, as you gag her.)",,
+RemoveItemMouth,,,"(You remove her gag and she nods.)  Thanks Miss, I promise I won't scream.",,
+ItemMouth2,,,"(She shakes her head no, as you gag her.)",,
+RemoveItemMouth2,,,"(You remove her gag and she nods.)  Thanks Miss, I promise I won't scream.",,
+ItemMouth3,,,"(She shakes her head no, as you gag her.)",,
+RemoveItemMouth3,,,"(You remove her gag and she nods.)  Thanks Miss, I promise I won't scream.",,
+ItemEars,,,(She seems surprised as you push earplugs inside.)  I hope you won't keep me deaf for too long.,,
+RemoveItemEars,,,(You pull the earplugs out.)  It will be easier to communicate.,,
+ItemArms,,,(She barely struggles as you restrain her arms securely.)  I'm no match for you.,,
+RemoveItemArms,,,(You free her arms and she stretches.)  The Dominatrixes will get you.,,
+ItemLegs,,,(She grumbles as you restrain her legs.)  You know that I have a job to do?,,
+RemoveItemLegs,,,(You release her legs as she nods.)  Can I go now?,,
+ItemFeet,,,(She sighs as you restrain her feet.)  My chores will pill up.,,
+RemoveItemFeet,,,(You release her feet as she dances happily.)  I'm getting free?,,
+ItemBoots,,,(She sighs as you restrain her feet.)  My chores will pill up.,,
+RemoveItemBoots,,,(You release her feet as she dances happily.)  I'm getting free?,,
+ItemNeck,,,(She adjusts her neck to the new collar.)  I'm not supposed to wear foreign collars.,,
+RemoveItemNeck,,,(You remove the collar from her neck.)  You will get punished for days.,,
+ItemPelvis,,,(She struggles to avoid the belt but you're able to strap it on her.)  Is that really necessary?,,
+RemoveItemPelvis,,,(She giggles as you unlock the belt.)  You got my scarred with that belt.,,
+ItemHead,,,(She stays silent as you strap the device on her head.),,
+RemoveItemHead,,,(You release her head as she nods rapidly.)  You better run while you can.,,
+ItemHood,,,(You put the hood on her head as she goes silent.),,
+RemoveItemHood,,,(She smiles as you remove the hood from her head.)  Why are you still here?,,
+ItemNose,,,(You strap the item on her nose as she grumbles.)  I'm a maid!  Not a slave.,,
+RemoveItemNose,,,(She nods as you remove the device.)  Maybe they will force you to do my chores.,,
+ItemTorso,,,(You strap the harness on her torso as she moans.)  Oh!  Why is that turning me on?,,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  You're so much trouble.,,
+ItemButt,,,(She jumps as you slide the device inside.)  Woah!  Miss!,,
+RemoveItemButt,,,(She seems to appreciate as you remove the plug.)  Another crazy day at Pandora's Box I guess.,,
+ItemBreast,,,(She holds her breath as you use the item.)  I'm not getting paid enough.,,
+RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Thanks Miss.,,
+ItemNipples,,,(She whimpers as you use the device on her breast.)  Ow!  Was this in my maid contract?,,
+RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
+0,,,"Hi sister, I hope you're doing well.",,"CostumeIs(""Maid"")"
+0,,,Hello Miss guard.  (She does a maid curtsy.)  Do you need a refreshing drink for your hard work?,,"CostumeIs(""Guard"")"
+0,,,(She ponders.)  Miss?  You know you look a little like the infamous DialogPlayerName?,,"DialogSkillGreater(""Infiltration"", 9)"
+0,,,"(She does a maid curtsy.)  Hello Miss, I think we've met before.  I'm maid DialogCharacterName.",,"DialogSkillGreater(""Infiltration"", 4)"
+0,,,"Hello Miss, it's a pleasure to meet you.",,
+0,,Who are you?,(She does a maid curtsy.)  I'm maid DialogCharacterName.  Do you require my assistance?,DialogRemove(),
+0,10,I'll have something to drink.,Of course!  Let me get the menu.  (She shows you the drink menu.),,"!CostumeIs(""Maid"")"
+0,,I'll have something to drink.,(She giggles.)  Then go get it yourself sister.,DialogRemove(),"CostumeIs(""Maid"")"
+0,20,I need your clothes.,(She takes a step back and looks suspicious.)  My clothes?  Why is that?,,"!CostumeIs(""Maid"")"
+0,,(Give her a sisterly hug.),(She hugs you back.)  Thanks!  Sister hugs are the best.,RecruitBoost(),"CostumeIs(""Maid"")"
+0,50,Are you getting paid enough for your work?,"(She ponders.)  The salary isn't great, but it's a fun job.",StartRecruit(),CanStartRecruit()
+0,,I don't need anything.  (Go explore.),,CharacterAllowMove(),
+10,0,A glass of water. (0$),(She comes back with a glass of water for you to enjoy.)  Anything else?,BuyMaidDrink(0),
+10,0,A cup of coffee. (0$),(She comes back with a cup of coffee for you to enjoy.)  Anything else?,BuyMaidDrink(0),
+10,0,A beer please. (5$),(She comes back with a beer for you to enjoy.  You give her 5$.)  Anything else?,BuyMaidDrink(5),DialogMoneyGreater(5)
+10,0,A glass of wine. (5$),(She comes back with a glass of wine for you to enjoy.  You give her 5$.)  Anything else?,BuyMaidDrink(5),DialogMoneyGreater(5)
+10,0,A martini. (10$),(She comes back with a martini for you to enjoy.  You give her 10$.)  Anything else?,BuyMaidDrink(10),DialogMoneyGreater(10)
+10,0,A margarita. (10$),(She comes back with a margarita for you to enjoy.  You give her 10$.)  Anything else?,BuyMaidDrink(10),DialogMoneyGreater(10)
+10,0,"Nothing, I'm good.","Very well, is there anything else I can do for you?",,
+20,30,"I'm a spy, I need a costume.",A spy?  I will never help you!  Surrender right now!,,
+20,30,Stop talking and strip girl.,No!  Are you a thief?  Surrender right now!,,
+20,0,I'd love to become a maid.,"Then join the sisterhood, I can't give you my clothes.",,
+20,,(Fight her.),,CharacterFight(),
+30,,(Fight her.),,CharacterFight(),
+30,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+50,0,You should start a union.,(She laughs.)  Don't be ridiculous!  A maid union?  We would get punished for years.,,
+50,0,Having fun is enough I guess.,"(She nods.)  Yes, absolutely.  Having fun while working is enough for me.",,
+50,60,You deserve a better salary.,You think so?  Is there a place that would pay more for the same job?,,
+50,60,I found a great maid sorority.,Now I'm curious sister.   Where did you found that?,,"CostumeIs(""Maid"")"
+60,70,Have you heard of the Bondage Club?,I've heard good things about it.  Do you think they would hire a maid like me?,,CanRecruit()
+60,0,Have you heard of the Bondage Club?,"I've worked there before, but I prefer Pandora's Box.  Sorry.",,!CanRecruit()
+60,0,At my house.,(She raises her eyes.)  You're not funny.  Let's talk about something else then.,,
+60,0,(Shrugs.)  I don't now.,"(She sighs.)  Too bad, let's talk about something else then.",,
+70,80,Yes!  You could get a job right now.,"This is wonderful!  Thanks a lot, I will go there and join as a maid.  (Your infiltration skill has increased.)",InfiltrationChange(20),
+70,90,Yes!  And I have a room that we could share.,This is wonderful!  I will meet you there in your room.  (Your infiltration skill has increased.),InfiltrationChange(15),CanJoinPrivateRoom()
+70,0,I don't know.,"I can't risk losing my job here, I need the money.  Let's talk about something else.",,
+70,0,Not right now.,"I can't risk losing my job here, I need the money.  Let's talk about something else.",,
+80,,(Let her go to the Bondage Club.),,RemoveCurrentCharacter(),
+90,,(Let her go to your private room.),,CharacterJoinPrivateRoom(),
+100,,,You think you're smart?  You will never get away.,,
+100,,"Maid, go get me a drink.",(She grumbles.)  You think you're funny?  You won't have much to drink when you rot in a cell.,DialogRemove(),
+100,,(Bring her with you.),Hey!  I have a job to do!  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
+100,,(Leaver her here.),Can I go back to work now?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Strip her naked.),(She seems furious as you strip her naked.)  You will pay for that.,CharacterNaked(),!CurrentCharacter.IsNaked()
+100,,(Wear her clothes.),(She stares at you as you quickly dress up as her.)  You won't fool anyone.,"PlayerClothes(""Maid"")",CurrentCharacter.IsNaked()
+100,,(Leave her.),,DialogLeave(),
+200,210,Punishment?  What do you mean?,"You will understand and remember your lesson.  Don't try anything funny, a Dominatrix will take care of you soon.",,Player.CanTalk()
+200,210,You're not punishing me girl.,"Of course, I won't do it myself, a Dominatrix will take care of you soon.",,Player.CanTalk()
+200,210,I will accept it Miss.,"Very good, you're already learning.  A Dominatrix will take care of you soon.",,Player.CanTalk()
+200,210,(Scream in your gag.),Stop making all that noise.  A Dominatrix will take care of you soon.,,!Player.CanTalk()
+200,210,(Trash in your bondage.),Don't try to do anything funny.  A Dominatrix will take care of you soon.,,!Player.CanTalk()
+200,210,(Bow your head and stay silent.),Good girl.  A Dominatrix will take care of you soon.,,!Player.CanTalk()
+210,,Can we negotiate?,It's too late for that.  Just wait and be quiet.,DialogRemove(),Player.CanTalk()
+210,,I will have my revenge.,You won't.  We will teach you a lesson that you will never forget.,DialogRemove(),Player.CanTalk()
+210,,(Wait for the Dominatrix.),,PunishmentIntro(),
+CommonLeave,,,Sorry for the trouble Miss.  Please have a good day.,,
+CommonLeave,,Take care.  (Go explore.),,CharacterAllowMove(),
+CommonWaitDominatrix,,(Wait for the Dominatrix.),,PunishmentIntro(),
+RetrieveRandom0,,,(A maid jumps in front of you and blocks your path.)  Can I speak with you Miss?,,
+RetrieveRandom0,RetrieveRandom10,Of course.,Very good.  An object has been stolen and I'm mandated to search everyone.  Can I please search on you?,,
+RetrieveRandom0,RetrieveRandom10,Make it quick.,I will.  An object has been stolen and I'm mandated to search everyone.  Can I please search on you?,,
+RetrieveRandom0,RetrieveRandom10,I don't have time.,"I'm sorry, but an object has been stolen and I'm mandated to search everyone.  Can I please search on you?",,
+RetrieveRandom0,RetrieveRandom10,(Nod.),Very good.  An object has been stolen and I'm mandated to search everyone.  Can I please search on you?,,
+RetrieveRandom0,,(Look around.),,DialogLeave(),
+RetrieveRandom10,RetrieveRandom20,Don't touch me!,(She jumps and looks angry.)  Are you the thief?  Surrender right now!,,
+RetrieveRandom10,CommonLeave,Go ahead.,"(She starts to search but doesn't find the object.)  Sorry for the trouble Miss, you're good to go.",,PandoraOdds50()
+RetrieveRandom10,RetrieveRandom20,Go ahead.,(She starts to search and quickly finds the object.)  You're the thief!  Surrender right now!,,!PandoraOdds50()
+RetrieveRandom10,,(Fight her.),,CharacterFight(),
+RetrieveRandom20,,(Fight her.),,CharacterFight(),
+RetrieveRandom20,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+RetrieveMaid0,,,"(A maid jumps in front of you and blocks your path.)  Sister, can I speak with you?",,
+RetrieveMaid0,RetrieveMaid10,"Of course, sister.","An object has been stolen, can you stop your duty and bring a Dominatrix here?",,
+RetrieveMaid0,RetrieveMaid10,What's going on?,"An object has been stolen, can you stop your duty and bring a Dominatrix here?",,
+RetrieveMaid0,RetrieveMaid10,I don't have time.,"I'm sorry, but an object has been stolen, can you stop your duty and bring a Dominatrix here?",,
+RetrieveMaid0,RetrieveMaid10,(Nod.),"An object has been stolen, can you stop your duty and bring a Dominatrix here?",,
+RetrieveMaid0,,(Look around.),,DialogLeave(),
+RetrieveMaid10,CommonLeave,I will do it.,"Thank you so much.  You're good to go, please hurry.",,
+RetrieveMaid10,CommonLeave,No problem sis.,"Thank you so much.  You're good to go, please hurry.",,
+RetrieveMaid10,CommonLeave,I'm too busy.,I'm sorry.  You're good to go then.  See you later.,,
+RescueRandom0,,,(A maid jumps in front of you and blocks your path.)  What are you doing with this prisoner?,,
+RescueRandom0,RescueRandom10,That's none of your business.,You're trying to rescue her?  Surrender right now!,,
+RescueRandom0,RescueRandom10,I'm rescuing her.,Not while I'm on duty!  Surrender right now!,,
+RescueRandom0,CommonLeave,Her ransom was paid.,"(She nods.)  Very good, please take her away then.  You're good to go.",,PandoraOdds50()
+RescueRandom0,RescueRandom10,Her ransom was paid.,(She shakes her head no.)  I know you're lying!  Surrender right now!,,!PandoraOdds50()
+RescueRandom0,,(Look around.),,DialogLeave(),
+RescueRandom10,,(Fight her.),,CharacterFight(),
+RescueRandom10,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+RescueGuard0,,,"(A maid jumps in front of you and blocks your path.)  Miss guard, what is going on with this prisoner?",,
+RescueGuard0,CommonLeave,She's getting transferred.,"(She nods.)  Of course, please be careful she doesn't escape.  You're good to go.",,
+RescueGuard0,CommonLeave,That's none of your business.,"(She sighs.)  I know I'm too curious, sorry.  You're good to go.",,
+RescueGuard0,CommonLeave,Her ransom was paid.,"(She nods.)  Very good, please take her away then.  You're good to go.",,
+RescueGuard0,,(Look around.),,DialogLeave(),
+KidnapRandom0,,,(Your prisoner screams for help and the maid jumps in.)  Stop!  Are you kidnapping her?,,
+KidnapRandom0,KidnapRandom10,I would never do that.,"You're lying, she just said so.  Surrender right now!",,
+KidnapRandom0,KidnapRandom10,What if I am?,Then you're in trouble.  Surrender right now!,,
+KidnapRandom0,KidnapRandom10,Get out of my way.,I'm not moving.  Surrender right now!,,
+KidnapRandom0,,(Look around.),,DialogLeave(),
+KidnapRandom10,,(Fight her.),,CharacterFight(),
+KidnapRandom10,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),

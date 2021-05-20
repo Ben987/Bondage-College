@@ -9,12 +9,20 @@ var InventoryItemBreastFuturisticBra2Options = [
 		Name: "NoDisplay",
 		Property: { Type: "NoDisplay" },
 	},
-]
+	{
+		Name: "DisplayMatte",
+		Property: { Type: "Matte" },
+	},
+	{
+		Name: "NoDisplayMatte",
+		Property: { Type: "NoDisplayMatte" },
+	},
+];
 
 function InventoryItemBreastFuturisticBra2Load() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else
 		ExtendedItemLoad(InventoryItemBreastFuturisticBra2Options, "FuturisticBra2Type");
 }
@@ -22,23 +30,23 @@ function InventoryItemBreastFuturisticBra2Load() {
 function InventoryItemBreastFuturisticBra2Draw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else
 		ExtendedItemDraw(InventoryItemBreastFuturisticBra2Options, "FuturisticBra2Type");
-	
+
 }
 
 function InventoryItemBreastFuturisticBra2Click() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
 	} else {
 		ExtendedItemClick(InventoryItemBreastFuturisticBra2Options);
 	}
 }
 
 function InventoryItemBreastFuturisticBra2Exit() {
-	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
 function InventoryItemBreastFuturisticBra2PublishAction(C, Option) {

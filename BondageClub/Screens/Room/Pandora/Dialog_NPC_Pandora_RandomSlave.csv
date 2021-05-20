@@ -1,0 +1,72 @@
+PlayerGagged,,,(She stares at your gag and seems envious.)  I hope I get gagged like that soon.,,
+ItemMouth,,,(She giggles and allows you to gag her easily.),,
+RemoveItemMouth,,,(She hums a happy song as you remove her gag.)  I have wonderful gags Miss.,,
+ItemMouth2,,,(She giggles and allows you to gag her easily.),,
+RemoveItemMouth2,,,(She hums a happy song as you remove her gag.)  I have wonderful gags Miss.,,
+ItemMouth3,,,(She giggles and allows you to gag her easily.),,
+RemoveItemMouth3,,,(She hums a happy song as you remove her gag.)  I have wonderful gags Miss.,,
+ItemEars,,,(She gives you a curious look as you push earplugs inside.)  The sound of silence!,,
+RemoveItemEars,,,(You pull the earplugs out.)  Being deaf creates quite an immersion.,,
+ItemArms,,,(She struggles for fun as you restrain her arms.)  Bondage is so much fun.,,
+RemoveItemArms,,,(You free her arms and she stretches.)  I hope you have more fun items in your bag.,,
+ItemLegs,,,(She submits to you and stays silent while you restrain her legs.),,
+RemoveItemLegs,,,(You release her legs as she shakes her butt.)  Are we going anywhere?,,
+ItemFeet,,,(She laughs and tests your feet restraints.)  You sure know your bondage Miss.,,
+RemoveItemFeet,,,(You release her feet and she wiggles them.)  Pandora's Box needs more Dominants like you.,,
+ItemBoots,,,(She laughs and tests your feet restraints.)  You sure know your bondage Miss.,,
+RemoveItemBoots,,,(You release her feet and she wiggles them.)  Pandora's Box needs more Dominants like you.,,
+ItemNeck,,,(She adjusts her neck to the new collar.)  I hope we won't get in trouble.,,
+RemoveItemNeck,,,(You remove the collar from her neck.)  I'm not sure you're supposed to remove it Miss.,,
+ItemPelvis,,,(She sighs as you lock the belt on her.)  I guess a good slave is a chaste slave.,,
+RemoveItemPelvis,,,(She seems happy as you unlock the belt from her waist.)  Wow!  Thank you so much.,,
+ItemHead,,,(You strap the device on her head as she shakes from left to right.)  This is intense!,,
+RemoveItemHead,,,(You release her head as she nods rapidly.)  I'd love to meet an owner like you Miss.,,
+ItemHood,,,(You put the hood on her head as she goes silent.),,
+RemoveItemHood,,,(She nods happily as you remove the hood from her head.)  That was kind of scary.,,
+ItemNose,,,(You strap the item on her nose as she giggles.)  This is very unusual.,,
+RemoveItemNose,,,(She nods as you remove the device.)  Pandora's Box is certainly full of surprises.,,
+ItemTorso,,,"(You strap the harness on her torso as she blushes.)  Mmmmh, this is very kinky.",,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  I'm curious to see what you will use next.,,
+ItemButt,,,(She jumps a little as you slide the device inside her butt.)  Woah!  That was unexpected.,,
+RemoveItemButt,,,(She wiggles her butt as you remove the plug.)  This slave butt is yours to enjoy Miss.,,
+ItemBreast,,,(She holds her breath as you use the item.)  Pleasure or pain?  Pleasure and pain!,,
+RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  You have so many great items Miss.,,
+ItemNipples,,,(She takes a long breath as you use the device on her breast.)  This will leave marks.,,
+RemoveItemNipples,,,"(She whimpers as you remove the device.)  This is so devious, I love it!",,
+0,,,"Hello Miss maid, I hope you're not buried in chores today.",,"CostumeIs(""Maid"")"
+0,,,Greetings Miss guard.  Thanks for keeping this place safe for us slaves.,,"CostumeIs(""Guard"")"
+0,,,"Hello Miss, this slave is here to please you.  Have we met before?  Are you famous around here?",,"DialogSkillGreater(""Infiltration"", 5)"
+0,,,(She nods slowly.)  This slave is here to please you Miss.,,
+0,,Who are you?,"I'm slave DialogCharacterName.  I'm a Pandora's Box slave, made to please our wonderful customers.",DialogRemove(),
+0,,Can I tie you up?,"(She blushes.)  Yes Miss, please enjoy this slave as you desire.",DialogRemove(),
+0,10,You agreed to be a slave?,(She bows her head slowly.)  Yes Miss.  I...  I...  I'm a consensual slave.,StartRecruit(),CanStartRecruit()
+0,100,(Play with her.),(You get closer to play with her.),,
+0,,(Bring her with you.),Yes Miss.  Where should we go?  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
+0,,(Leaver her here.),Please let me know if you need anything else.  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),
+10,20,You're hesitating girl.,Me?  Sorry Miss.  (She seems nervous.)  Maybe we should speak about something else.,,
+10,0,That's very good.,Yes Miss.  (She nods rapidly.)  Can this slave do anything for you?,,
+10,20,Are you sure?,"Yes Miss, sorry Miss.  (She seems nervous.)  Maybe we should speak about something else.",,
+20,0,Let's drop this then.,Thank you Miss.  How can this slave help you?,,
+20,30,Wait.  Do you need any help?,Help?  I'm confused now.  What are you talking about?,,
+30,0,I can help you get the best orgasm ever.,(She giggles.)  I'm curious to see that Miss.,,
+30,0,I can give you some money.,(She shakes her head no.)  I'm fine Miss.  This slave doesn't need any money.,,
+30,40,"If you're mistreated, I could help you out.","(She takes a deep breath.)  One Mistress is very mean with me, she doesn't respect my limits.",,CanRecruit()
+30,0,"If you're mistreated, I could help you out.","(She shakes her head no.)  I'm not mistreated Miss, the staff at Pandora's Box is very good for this slave.",,!CanRecruit()
+40,50,You don't have to endure this.,"But I really enjoy BDSM, I don't want to quit.",,
+40,0,Mistresses work hard you know.,I know.  This slave is spoiled and should respect the Mistress.  Thanks for reminding me.,,
+50,0,Tough luck then.,(She nods very slowly.)  Is there something else that this slave can do?,,
+50,60,The Bondage Club will respect your limits.,That sounds very good.  Do you think they would want to hire this slave?,,
+50,0,(Sigh and stay silent.),"(She also sighs and stays silent, resulting in an awkward pause in the conversation.)",,
+60,70,Absolutely.,(She jumps of joy.)  This is great!  I will go there right now.  Thank you so much.  (Your infiltration skill has increased.),InfiltrationChange(25),
+60,0,Maybe not.,(She seems sad.)  Very well.  Is there something else that this slave can do for you?,,
+70,,(Let her go to the Bondage Club.),,RemoveCurrentCharacter(),
+70,,(Give her a key to your private room.),,CharacterJoinPrivateRoom(),
+100,,,(You get close to her.)  How can this slave pleasure you?,,
+100,,(Tickle her.),(She laughs and rocks her hips as you tickle her without mercy.),RecruitBoost(),Player.CanInteract()
+100,,(Caress her.),(She moans very silently as you caress her softly.),RecruitBoost(),Player.CanInteract()
+100,,(Grope her.),(She whimpers of joy as you grope her butt and breast.),RecruitBoost(),Player.CanInteract()
+100,,(Kiss her.),(She giggles of pleasure as you kiss her all over her body.),RecruitBoost(),Player.CanTalk()
+100,,(Spank her.),(She jumps from the pain each time you spank her.),RecruitBoost(),Player.CanInteract()
+100,0,(Stop playing.),(You take a step back.)  How can this slave pleasure you?,,
+100,,(Leave her.),,DialogLeave(),

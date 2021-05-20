@@ -1,12 +1,12 @@
 "use strict";
-var FuturisticChastityBeltShockCooldownOrgasm = 15000 // 15 sec
+var FuturisticChastityBeltShockCooldownOrgasm = 15000; // 15 sec
 
 var InventoryItemPelvisFuturisticChastityBeltTamperZones = [
 	"ItemPelvis",
 	"ItemButt",
 	"ItemVulva",
-]
-var InventoryItemPelvisFuturisticChastityBeltOptions = [	
+];
+var InventoryItemPelvisFuturisticChastityBeltOptions = [
 	{
 		Name: "OpenBack",
 		Property: {
@@ -34,7 +34,7 @@ var InventoryItemPelvisFuturisticChastityBeltOptions = [
 function InventoryItemPelvisFuturisticChastityBeltLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else{
 		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { NextShockTime: 0, PunishStruggle: false , PunishStruggleOther: false , PunishOrgasm: false, ChatMessage: false,  CloseBack: false, };
 		if (DialogFocusItem.Property.NextShockTime == null) DialogFocusItem.Property.NextShockTime = 0;
@@ -48,7 +48,7 @@ function InventoryItemPelvisFuturisticChastityBeltLoad() {
 function InventoryItemPelvisFuturisticChastityBeltDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else if (DialogFocusItem && DialogFocusItem.Property) {
 		DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
@@ -59,15 +59,15 @@ function InventoryItemPelvisFuturisticChastityBeltDraw() {
 
 
 		MainCanvas.textAlign = "left";
-		DrawCheckboxColor(1100, 550, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishChatMessage"), DialogFocusItem.Property.ChatMessage, "White");
-		DrawCheckboxColor(1100, 620, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishStruggle"), DialogFocusItem.Property.PunishStruggle, "White");
-		DrawCheckboxColor(1100, 690, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishStruggleOther"), DialogFocusItem.Property.PunishStruggleOther, "White");
-		DrawCheckboxColor(1100, 760, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishOrgasm"), DialogFocusItem.Property.PunishOrgasm, "White");
+		DrawCheckbox(1100, 550, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishChatMessage"), DialogFocusItem.Property.ChatMessage, false, "White");
+		DrawCheckbox(1100, 620, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishStruggle"), DialogFocusItem.Property.PunishStruggle, false, "White");
+		DrawCheckbox(1100, 690, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishStruggleOther"), DialogFocusItem.Property.PunishStruggleOther, false, "White");
+		DrawCheckbox(1100, 760, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishOrgasm"), DialogFocusItem.Property.PunishOrgasm, false, "White");
 		MainCanvas.textAlign = "center";
 
 		if (DialogFocusItem.Property.Type != null) {
 			DrawButton(1225, 910, 150, 64, DialogFindPlayer("FuturisticChastityBeltOpenBack"), "White", "");
-		} 
+		}
 		if (DialogFocusItem.Property.Type != "OpenFront") {
 			DrawButton(1425, 910, 150, 64, DialogFindPlayer("FuturisticChastityBeltOpenFront"), "White", "");
 		}
@@ -75,49 +75,49 @@ function InventoryItemPelvisFuturisticChastityBeltDraw() {
 			DrawButton(1625, 910, 150, 64, DialogFindPlayer("FuturisticChastityBeltClosedBack"), "White", "");
 		}
 
-		
+
 	}
-	
+
 }
 
 function InventoryItemPelvisFuturisticChastityBeltClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
 	} else {
-		if (MouseIn(1885, 25, 90, 90)) InventoryItemPelvisFuturisticChastityBeltExit()
-		
+		if (MouseIn(1885, 25, 90, 90)) InventoryItemPelvisFuturisticChastityBeltExit();
+
 		if (MouseIn(1100, 550, 64, 64)) {
-			DialogFocusItem.Property.ChatMessage = !DialogFocusItem.Property.ChatMessage
+			DialogFocusItem.Property.ChatMessage = !DialogFocusItem.Property.ChatMessage;
 		} else if (MouseIn(1100, 620, 64, 64)) {
-			DialogFocusItem.Property.PunishStruggle = !DialogFocusItem.Property.PunishStruggle
-			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishStruggle", DialogFocusItem.Property.PunishStruggle)
+			DialogFocusItem.Property.PunishStruggle = !DialogFocusItem.Property.PunishStruggle;
+			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishStruggle", DialogFocusItem.Property.PunishStruggle);
 		} else if (MouseIn(1100, 690, 64, 64)) {
-			DialogFocusItem.Property.PunishStruggleOther = !DialogFocusItem.Property.PunishStruggleOther
-			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishStruggleOther", DialogFocusItem.Property.PunishStruggleOther)
+			DialogFocusItem.Property.PunishStruggleOther = !DialogFocusItem.Property.PunishStruggleOther;
+			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishStruggleOther", DialogFocusItem.Property.PunishStruggleOther);
 		} else if (MouseIn(1100, 760, 64, 64)) {
-			DialogFocusItem.Property.PunishOrgasm = !DialogFocusItem.Property.PunishOrgasm
-			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishOrgasm", DialogFocusItem.Property.PunishOrgasm)
+			DialogFocusItem.Property.PunishOrgasm = !DialogFocusItem.Property.PunishOrgasm;
+			InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishOrgasm", DialogFocusItem.Property.PunishOrgasm);
 		} else if (MouseIn(1200, 910, 600, 64)) {
 			if (MouseIn(1225, 910, 150, 64) && DialogFocusItem.Property.Type != null) {
-				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[0], false)
-			} 
+				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[0]);
+			}
 			if (MouseIn(1425, 910, 150, 64) && DialogFocusItem.Property.Type != "OpenFront") {
-				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[1], false)
+				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[1]);
 			}
 			if (MouseIn(1625, 910, 150, 64) && DialogFocusItem.Property.Type != "ClosedBack") {
-				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[2], false)
+				ExtendedItemSetType(C, InventoryItemPelvisFuturisticChastityBeltOptions, InventoryItemPelvisFuturisticChastityBeltOptions[2]);
 			}
 
-		} 
-		
-		
-		
+		}
+
+
+
 	}
 }
 
 function InventoryItemPelvisFuturisticChastityBeltExit() {
-	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
 function InventoryItemPelvisFuturisticChastityBeltPublishAction(C, Option) {
@@ -128,9 +128,9 @@ function InventoryItemPelvisFuturisticChastityBeltPublishAction(C, Option) {
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
 	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
-} 
+}
 
-function InventoryItemPelvisFuturisticChastityBeltPublishMode(C, Setting, Active) { 
+function InventoryItemPelvisFuturisticChastityBeltPublishMode(C, Setting, Active) {
 	var msg = "FuturisticChastityBeltSet" + Setting + ((Active) ? "On" : "Off");
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
@@ -139,7 +139,7 @@ function InventoryItemPelvisFuturisticChastityBeltPublishMode(C, Setting, Active
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemPelvisFuturisticChastityBeltValidate(C) { 
+function InventoryItemPelvisFuturisticChastityBeltValidate(C) {
 	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
 }
 
@@ -150,18 +150,18 @@ function InventoryItemPelvisFuturisticChastityBeltNpcDialog(C, Option) { Invento
 
 
 function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
-	var Item = data.Item
+	var Item = data.Item;
 	// Punish the player if they try to mess with the groin area
 	if (Item.Property.PunishStruggle && Player.FocusGroup && (StruggleProgress >= 0 || StruggleLockPickProgressCurrentTries > 0) && StruggleProgressPrevItem != null && StruggleProgressStruggleCount > 0) {
-		var inFocus = false
+		var inFocus = false;
 		for (var Z = 0; Z < InventoryItemPelvisFuturisticChastityBeltTamperZones.length; Z++)
 			if (Player.FocusGroup.Name == InventoryItemPelvisFuturisticChastityBeltTamperZones[Z])
-				inFocus = true
-		
+				inFocus = true;
+
 		if (inFocus) {
-			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Struggle")
-			StruggleProgressStruggleCount = 0
-			DialogLeaveDueToItem = true
+			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Struggle");
+			StruggleProgressStruggleCount = 0;
+			DialogLeaveDueToItem = true;
 			/*var vol = 1
 			if (Player.AudioSettings && Player.AudioSettings.Volume) {
 				vol = Player.AudioSettings.Volume
@@ -171,18 +171,18 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 	}
 	// Punish the player if they struggle anywhere
 	if (Item.Property.PunishStruggleOther && Player.FocusGroup && StruggleProgressPrevItem != null && StruggleProgressStruggleCount > 0 && (StruggleProgress > 50 || StruggleLockPickProgressCurrentTries > 2)) {
-		AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther")
-		StruggleProgressStruggleCount = 0
-		StruggleProgress = 0
-		DialogLeaveDueToItem = true
+		AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther");
+		StruggleProgressStruggleCount = 0;
+		StruggleProgress = 0;
+		DialogLeaveDueToItem = true;
 
 	}
-		
+
 	if (Item.Property.NextShockTime - CurrentTime <= 0) {
 		// Punish the player if they orgasm
 		if (Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
-			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Orgasm")
-			Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownOrgasm // Difficult to have two orgasms in 10 seconds
+			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Orgasm");
+			Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownOrgasm; // Difficult to have two orgasms in 10 seconds
 			/*var vol = 1
 			if (Player.AudioSettings && Player.AudioSettings.Volume) {
 				vol = Player.AudioSettings.Volume
@@ -191,9 +191,9 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 		}
 	}
 }
-		
+
 // Trigger a shock automatically
-function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType) { 
+function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType) {
 
 	if (!(CurrentScreen == "ChatRoom")) {
 		AudioPlayInstantSound("Audio/Shocks.mp3");
@@ -209,7 +209,7 @@ function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType)
 			Dictionary.push({ AssetName: Item.Asset.Name });
 			Dictionary.push({ AssetGroupName: Item.Asset.Group.Name });
 			Dictionary.push({ Automatic: true });
-				
+
 			ServerSend("ChatRoomChat", { Content: "FuturisticChastityBeltShock" + ShockType, Type: "Action", Dictionary });
 		}
 	}
@@ -227,12 +227,12 @@ function AssetsItemPelvisFuturisticChastityBeltScriptDraw(data) {
 	if (typeof persistentData.LastMessageLen !== "number") persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
 
 	if (persistentData.UpdateTime < CommonTime() && data.C == Player) {
-		
+
 		if (CommonTime() > property.NextShockTime) {
-			AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data)
+			AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data);
 			persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
 		}
-		
+
 		var timeToNextRefresh = 950;
 		persistentData.UpdateTime = CommonTime() + timeToNextRefresh;
 		AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);

@@ -1,3 +1,4 @@
+"use strict";
 const vm = require("vm");
 const fs = require("fs");
 const typeCheck = require("type-check").typeCheck;
@@ -109,7 +110,7 @@ function loadCSV(path, expectedWidth) {
 	// We need to strigify and parse the asset array to have correct Array and Object prototypes, because VM uses different ones
 	// This unfortunately results in Functions being lost and replaced with undefined
 	const AssetFemale3DCG = JSON.parse(JSON.stringify(context.AssetFemale3DCG));
-	const AssetFemale3DCGExtended = JSON.parse(JSON.stringify(context.AssetFemale3DCGExtended))
+	const AssetFemale3DCGExtended = JSON.parse(JSON.stringify(context.AssetFemale3DCGExtended));
 
 	if (!Array.isArray(AssetFemale3DCG)) {
 		error("AssetFemale3DCG not found");
@@ -291,6 +292,6 @@ function loadCSV(path, expectedWidth) {
 
 	// Check for extra descriptions
 	for (const desc of assetDescriptions) {
-		error(`Unused Asset/Group description: ${desc.join(",")}`)
+		error(`Unused Asset/Group description: ${desc.join(",")}`);
 	}
 })();

@@ -3,19 +3,19 @@
 var InventoryItemDevicesPetBedOptions = [
 	{
 		Name: "NoBlanket",
-		Property: { 
-			Type: null 
+		Property: {
+			Type: null
 		},
 	},
 	{
 		Name: "Blanket",
-		Property: { 
-			Type: "Blanket", 
+		Property: {
+			Type: "Blanket",
 			SetPose: ["AllFours"],
 			Hide: ["ItemArms", "ItemButt", "TailStraps", "Wings"],
 			Block: [
 				"ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemBoots",
-				"ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", 
+				"ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings",
 				"ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings"
 			]
 		},
@@ -37,8 +37,8 @@ function InventoryItemDevicesPetBedClick() {
 	ExtendedItemClick(InventoryItemDevicesPetBedOptions);
 }
 
-function InventoryItemDevicesPetBedAction(C, Option) {
-	var msg = "PedBedSet" + Option.Name;
+function InventoryItemDevicesPetBedPublishAction(C, Option) {
+	var msg = "PetBedSet" + Option.Name;
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber },

@@ -1,0 +1,44 @@
+PlayerGagged,,,(She looks at your gag and laughs.),,
+BribeInfoRescueLittle,,,I think I saw her with a guard.  Try the LevelName level.,,
+BribeInfoKidnapLittle,,,I think I saw her roaming.  Try the LevelName level.,,
+BribeInfoRetrieveLittle,,,I think I saw that object before.  Try the LevelName level.,,
+BribeInfoRescueFull,,,I think I saw her with a guard.  Try the LevelName level and go FirstDirection.,,
+BribeInfoKidnapFull,,,I think I saw her roaming.  Try the LevelName level and go FirstDirection.,,
+BribeInfoRetrieveFull,,,I think I saw that object before.  Try the LevelName level and go FirstDirection.,,
+0,,,"Hey there little maid, will you brink me a drink?",,"CostumeIs(""Maid"")"
+0,,,Hi Miss guard.  I hope I'm not in trouble.,,"CostumeIs(""Guard"")"
+0,,,"Hello there, I'm pretty sure we've met before.",,"DialogSkillGreater(""Infiltration"", 7)"
+0,,,"Hello there, have we met before?",,"DialogSkillGreater(""Infiltration"", 3)"
+0,,,"Hello there, I don't think we've met before.",,
+0,,Who are you?,I'm DialogCharacterName.  I've been a member of Pandora's Box for a little while now.  I know my way around.,,
+0,,Can I tie you up?,"I'm not in the mood right now, find a slave for that.",,
+0,100,Can you help me?,(She shakes her hands greedily.)  Maybe I can.  What do you want?,,DialogMoneyGreater(10)
+0,,Can you help me?,Sorry girl.  Find some money first if you need help.,,!DialogMoneyGreater(10)
+0,,I'll go get you a free drink.,(You go get her a free drink and she seems happy about it.)  Thanks!  You're a good maid.,RecruitBoost(),"CostumeIs(""Maid"")"
+0,10,Are you enjoying Pandora's Box?,"It's not a perfect place, but it's fun.  And you?  Do you like the club?",StartRecruit(),CanStartRecruit()
+0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),
+10,0,"Sure, it's a good club.","I agree, there are worse places to spend our free time.",,
+10,20,This place isn't great.,"It's improving, I'm sure it will get better with time.",,
+10,20,This club sucks.,"Don't be too harsh.  The place is improving, I'm sure it will get better with time.",,
+20,30,Have you heard of the Bondage Club?,"I've heard about it, but never went.  They have good BDSM events?",,
+20,0,Maybe you're right.,"Yep, there are worse places to spend our free time.",,
+30,0,It depends on the day.,"Just like here, I guess.  There are worse places to spend our free time.",,
+30,40,It's the kinkiest place in town.,Now that's interesting!  Are they recruiting new members?,,CanRecruit()
+30,0,It's the kinkiest place in town.,"That's very interesting!  Sadly, I don't have enough time for a second BDSM club.  But maybe I'll visit someday.",,!CanRecruit()
+30,0,Pandora's Box is better.,"I agree, there are worse places to spend our free time.",,
+40,50,Yes!  You could go right now.,"Great idea!  Thanks for the tip, I will go see the Bondage Club right now.  (Your infiltration skill has increased.)",InfiltrationChange(15),
+40,60,Yes!  I have a room there that we could share.,"Perfect!  I will meet you in your room, see you later.  (Your infiltration skill has increased.)",InfiltrationChange(15),CanJoinPrivateRoom()
+40,0,I don't know.,I don't want to waste my time.  I'll try to apply another day.,,
+40,0,Not right now.,"Too bad, maybe I'll try to apply another day.",,
+50,,(Let her go to the Bondage Club.),,RemoveCurrentCharacter(),
+60,,(Let her go to your private room.),,CharacterJoinPrivateRoom(),
+100,110,I'm looking for a girl.,"(You give some details on the girl you need to rescue.)  I think I could help, but information isn't free.",,"MissionIs(""Rescue"")"
+100,110,I'm looking for a girl.,"(You give some details on the girl you need to kidnap.)  I think I could help, but information isn't free.",,"MissionIs(""Kidnap"")"
+100,110,I'm looking for an object.,"(You give some details on the object you need to retrieve.)  I think I could help, but information isn't free.",,"MissionIs(""Retrieve"")"
+100,0,Forget it.,Alright then.  Anything else?,,
+110,120,Take this.  (Give her 5$),,"BribeInfo(5, ""Little"")","!HasPerk(""Bribery"")"
+110,120,Take this.  (Give her 3$),,"BribeInfo(3, ""Little"")","HasPerk(""Bribery"")"
+110,120,Tell me everything.  (Give her 10$),,"BribeInfo(10, ""Full"")","!HasPerk(""Bribery"")"
+110,120,Tell me everything.  (Give her 6$),,"BribeInfo(6, ""Full"")","HasPerk(""Bribery"")"
+110,0,Forget it.,Alright then.  Anything else?,,
+120,0,Thanks!,My pleasure.  (She counts the money and smiles.)  Anything else?,,

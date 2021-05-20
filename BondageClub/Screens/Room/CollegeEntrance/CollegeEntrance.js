@@ -6,22 +6,22 @@ var CollegeEntranceStudent = null;
  * Checks if the player can go to the tennis court
  * @returns {boolean} - Returns true if the player can go to the tennis court
  */
-function CollegeEntranceCanGoTennis() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingTennisClothes()) }
+function CollegeEntranceCanGoTennis() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingTennisClothes()); }
 /**
  * Checks if the player can go inside the college
  * @returns {boolean} - Returns true if the player can go inside the college
  */
-function CollegeEntranceCanGoInside() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingCollegeClothes()) }
+function CollegeEntranceCanGoInside() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingCollegeClothes()); }
 /**
  * Checks if the player can go to the detention room
  * @returns {boolean} - Returns true if the player can go to the detention room
  */
-function CollegeEntranceCanGoDetention() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingCollegeClothes()) }
+function CollegeEntranceCanGoDetention() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingCollegeClothes()); }
 /**
  * Checks if the player can go to the teacher room
  * @returns {boolean} - Returns true if the player can go to the teacher room
  */
-function CollegeEntranceCanGoTeacher() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingCollegeClothes() && LogQuery("TeacherKey", "College")) }
+function CollegeEntranceCanGoTeacher() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingCollegeClothes() && LogQuery("TeacherKey", "College")); }
 
 /**
  * Loads the college entrance room and its student NPC
@@ -66,7 +66,7 @@ function CollegeEntranceClick() {
 	if (MouseIn(1885, 343, 90, 90) && CollegeEntranceCanGoTennis()) CommonSetScreen("Room", "CollegeTennis");
 	if (MouseIn(1885, 449, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeCafeteria");
 	if (MouseIn(1885, 555, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeTheater");
-	if (MouseIn(1885, 661, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeChess");	
+	if (MouseIn(1885, 661, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeChess");
 	if (MouseIn(1885, 767, 90, 90) && CollegeEntranceCanGoDetention()) CommonSetScreen("Room", "CollegeDetention");
 	if (MouseIn(1885, 873, 90, 90) && CollegeEntranceCanGoTeacher()) CommonSetScreen("Room", "CollegeTeacher");
 }

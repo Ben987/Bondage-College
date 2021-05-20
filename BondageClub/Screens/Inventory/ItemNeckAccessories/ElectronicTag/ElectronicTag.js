@@ -3,7 +3,7 @@
 function InventoryItemNeckAccessoriesElectronicTagLoad() {
     var C = CharacterGetCurrent();
 	var MustRefresh = false;
-	
+
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
 	if (DialogFocusItem.Property.Text == null) {
 		DialogFocusItem.Property.Text = "Tag";
@@ -13,7 +13,7 @@ function InventoryItemNeckAccessoriesElectronicTagLoad() {
 		CharacterRefresh(C);
 		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 	}
-	
+
 	// Only create the inputs if the item isn't locked
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		ElementCreateInput("TagText", "text", DialogFocusItem.Property.Text, "9");
@@ -37,7 +37,7 @@ function InventoryItemNeckAccessoriesElectronicTagDraw() {
 
 // Catches the item extension clicks
 function InventoryItemNeckAccessoriesElectronicTagClick() {
-	
+
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		// Change values if they are different and the tag is not locked
 		if ((MouseX >= 1500) && (MouseX <= 1850)) {
@@ -63,7 +63,7 @@ function InventoryItemNeckAccessoriesElectronicTagExit() {
 }
 
 // When the tag is changed
-function InventoryItemNeckAccessoriesElectronicTagChange() { 
+function InventoryItemNeckAccessoriesElectronicTagChange() {
     var C = CharacterGetCurrent();
     CharacterRefresh(C);
     if (CurrentScreen == "ChatRoom") {

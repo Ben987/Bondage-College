@@ -7,11 +7,11 @@ var AsylumBedroomBackground = "AsylumBedroom";
  */
 function AsylumBedroomLoad() {
 	if (Player.ImmersionSettings && Player.LastChatRoom && Player.LastChatRoom != "") {
-		// We return to the chat room that the player was last in		
+		// We return to the chat room that the player was last in
 		if (Player.ImmersionSettings.ReturnToChatRoom) {
 			ChatRoomStart("Asylum", "", "AsylumEntrance", "AsylumEntrance", [BackgroundsTagAsylum]);
 		} else {
-			ChatRoomSetLastChatRoom("")
+			ChatRoomSetLastChatRoom("");
 		}
 	}
 }
@@ -40,5 +40,6 @@ function AsylumBedroomClick() {
 	if (MouseIn(750, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "AsylumEntrance");
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+	// eslint-disable-next-line no-self-assign
 	if (MouseIn(1885, 265, 90, 90) && LogValue("Committed", "Asylum") >= CurrentTime) window.location = window.location;
 }

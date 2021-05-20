@@ -1,6 +1,6 @@
 "use strict";
 
-var BackgroundSelectionBackground = "Introduction"
+var BackgroundSelectionBackground = "Introduction";
 var BackgroundSelectionList = [];
 var BackgroundSelectionTagList = [];
 var BackgroundSelectionIndex = 0;
@@ -40,11 +40,11 @@ function BackgroundSelectionMake(List, Idx, Callback, HideDropDown) {
  * @returns {number} - Returns -1 if the description of object a is less then that of b, 1 otherwise
  */
 function BackGroundSelectionSort(a, b) {
-	return (a.Description <= b.Description) ? -1: 1;	
+	return (a.Description <= b.Description) ? -1: 1;
 }
 
 /**
- * Initializes the Background selection screen. 
+ * Initializes the Background selection screen.
  * Function coiuld be called dynamically, so the body has to be there, even if it does nothing.
  * @returns {void} - Nothing
  */
@@ -56,11 +56,11 @@ function BackgroundSelectionLoad() {
 	BackgroundSelectionView = BackgroundSelectionAll.slice(0).sort(BackGroundSelectionSort);
 	ElementCreateInput("InputBackground", "text", "", "30");
 	document.getElementById("InputBackground").oninput = BackgroundSelectionInputChanged;
-	if (BackgroundSelectionTagList.length >= 2) ElementCreateDropdown("TagDropDown", BackgroundsTagList, function() { BackgroundSelectionTagChanged() });
+	if (BackgroundSelectionTagList.length >= 2) ElementCreateDropdown("TagDropDown", BackgroundsTagList, function() { BackgroundSelectionTagChanged(); });
 }
 
 /**
- * Handles input in the text box in the topmost row of the selection screen 
+ * Handles input in the text box in the topmost row of the selection screen
  * and changes the offset of the background selection appropriately
  * @returns {void} - Nothing
  */
@@ -82,7 +82,7 @@ function BackgroundSelectionInputChanged() {
  * @returns {void} - Nothing
  */
 function BackgroundSelectionTagChanged() {
-	var DD = document.getElementById("TagDropDown-select");			
+	var DD = document.getElementById("TagDropDown-select");
 	if (DD == null) return;
 	BackgroundSelectionList = BackgroundsGenerateList((DD.selectedIndex == 0) ? BackgroundSelectionTagList : [DD.options[DD.selectedIndex].text]);
 	BackgroundSelectionView = BackgroundSelectionAll.slice().sort(BackGroundSelectionSort);
@@ -138,7 +138,7 @@ function BackgroundSelectionRun() {
  * - Next: Paints the nextt 12 backgrounds
  * - Click on any background: Sets this background for selection
  * This function is called dynamically
- * 
+ *
  * @returns {void} - Nothing
  */
 function BackgroundSelectionClick() {
@@ -190,7 +190,7 @@ function BackgroundSelectionKeyDown() {
 }
 
 /**
- * Handles the exit of the selection screen. Sets the new background, if necessary, and 
+ * Handles the exit of the selection screen. Sets the new background, if necessary, and
  * calls the previously defined callback function. Then exits the screen to the screen, the player was before
  * @param {boolean} SetBackground - Defines, wether the background must be changed (true) or not (false)
  * @returns {void} - Nothing

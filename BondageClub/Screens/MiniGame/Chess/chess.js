@@ -1,3 +1,4 @@
+"use strict";
 /*
 
 Chess AI by Brandon Yanofsky - https://byanofsky.com/2017/07/06/building-a-simple-chess-ai/
@@ -69,6 +70,8 @@ function MiniGameChessStart(Depth, PlayerColor) {
 		beta = Number.POSITIVE_INFINITY,
 		isMaximizingPlayer = true
 	) {
+		let value = 0;
+
 		// Base case: evaluate board
 		if (depth === 0) {
 			value = evaluateBoard(game.board(), playerColor);

@@ -1,0 +1,74 @@
+PlayerGagged,,,"(She looks at your gag and laughs.)  Get lost slave, I don't have time for you.",,
+FightVictory,,,"(She pouts.)  You're tough!  Alright, go ahead and get her.  I don't care.",,
+FightDefeat,,,(She smiles and laughs.)  You really thought you could beat me?,,
+Punishment8,,,"(A Dominatrix takes you away from the guard.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(A Dominatrix takes you away from the guard.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(A Dominatrix takes you away from the guard.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(A Dominatrix takes you away from the guard.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
+ItemMouth,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth,,,(You remove her gag and she grumbles.)  Are you finally coming back to your senses?,,
+ItemMouth2,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth2,,,(You remove her gag and she grumbles.)  Are you finally coming back to your senses?,,
+ItemMouth3,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth3,,,(You remove her gag and she grumbles.)  Are you finally coming back to your senses?,,
+ItemEars,,,(She seems angry as you push earplugs inside.)  How can I follow your orders now?,,
+RemoveItemEars,,,(You pull the earplugs out.)  You're only adding more time to your sentence.,,
+ItemArms,,,(She struggles as you restrain her arms securely.)  You're breaking the law again.,,
+RemoveItemArms,,,(You free her arms and she stretches.)  You're still under arrest.,,
+ItemLegs,,,(She trashes as you restrain her legs.)  You better carry me then!,,
+RemoveItemLegs,,,(You release her legs.)  Justice will strike you down like a hammer.,,
+ItemFeet,,,(She grumbles as you restrain her feet.)  This will be reported in your trial.,,
+RemoveItemFeet,,,(You release her feet.)  Let's walk until you get caught.,,
+ItemBoots,,,(She grumbles as you restrain her feet.)  How can I follow you now?,,
+RemoveItemBoots,,,(You release her feet.)  Let's walk until you get caught.,,
+ItemNeck,,,(She adjusts her neck to the new collar.)  Soon you will wear the Box collar.,,
+RemoveItemNeck,,,"(You remove the collar from her neck.)  Too late, the crime has been done.",,
+ItemPelvis,,,(She struggles to avoid the belt but you're able to strap it on her.)  Are you serious?,,
+RemoveItemPelvis,,,(She sighs as you unlock the belt.)  Can you make up your mind?,,
+ItemHead,,,(She stays silent as you strap the device on her head.),,
+RemoveItemHead,,,"(You release her head as she nods rapidly.)  That's better, but you're still in trouble.",,
+ItemHood,,,(You put the hood on her head as she goes silent.),,
+RemoveItemHood,,,(She grins as you remove the hood from her head.)  I will never get out of here.,,
+ItemNose,,,(You strap the item on her nose as she sighs.)  Is that a joke to you?,,
+RemoveItemNose,,,(She nods as you remove the device.)  Someday Pandora's Box will make you pay.,,
+ItemTorso,,,(You strap the harness on her torso.)  Causing more trouble will only extend your jail time.,,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  You're only toying with me?,,
+ItemButt,,,(She jumps as you slide the device inside.)  How dare you?  You're under arrest!,,
+RemoveItemButt,,,(She sighs as you remove the plug.)  Your butt will rot in jail.,,
+ItemBreast,,,(She holds her breath as you use the item.)  Pandora's police won't be kind with you.,,
+RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Enjoy your freedom while it lasts.,,
+ItemNipples,,,(She whimpers as you use the device on her breast.)  Another violation to add to the list.,,
+RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
+0,,,Damn it!  It's really you DialogPlayerName?  You came to rescue her?,,"DialogSkillGreater(""Infiltration"", 9)"
+0,,,I know who you are DialogPlayerName.  You're not going anywhere.,,"DialogSkillGreater(""Infiltration"", 5)"
+0,,,Have I seen you before?  Don't give me any trouble.,,"DialogSkillGreater(""Infiltration"", 1)"
+0,,,Get lost girl.  I don't have time for you.,,
+0,,Who are you?,"I don't have time to chat, I'm working.",DialogRemove(),
+0,,What are you doing?,"I'm guarding a prisoner, get lost or I'll have to kick your butt.",,
+0,10,Move away or I will fight you.,(She raises her fists.)  You think you're tough?  I will crush you.,,
+0,10,I'm here to rescue the prisoner.,(She raises her fists.)  I cannot allow that!  I will crush you.,,
+0,,(Fight her.),,CharacterFight(),
+0,,I must go.  (Leave her.),,DialogLeave(),
+0,,(Walk back to where you came from.),,WalkBack(),
+10,,,Come and fight me if you dare.  I will crush you!,,
+10,,(Fight her.),,CharacterFight(),
+10,,(Leave her.),,DialogLeave(),
+10,,(Walk back to where you came from.),,WalkBack(),
+100,,,"Do whatever you want, I don't care.  I'm not paid enough to fight someone like you.",,
+100,,You're a horrible guard.,"(She seems angry.)  Laugh all you want, but you will pay for this someday.",DialogRemove(),
+100,,(Bring her with you.),Fine!  I'll follow you until you get caught.  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
+100,,(Leaver her here.),You had your fun?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Strip her naked.),(You strip her naked as she struggles.)  I'm only a guard here.  Give me a break.,CharacterNaked(),!CurrentCharacter.IsNaked()
+100,,(Wear her clothes.),(You put on her clothes.)  Wait!  What are you doing?  What are you planning?,"PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
+100,,(Leave her.),,DialogLeave(),
+200,210,Get me out!,"(She smirks at you.)  I have a job to do, but I'll call someone for your punishment.",,Player.CanTalk()
+200,210,(Beg for mercy.),"(She smirks at you.)  I have a job to do, but I'll call someone for your punishment.",,!Player.CanTalk()
+210,220,Punishment?  What do you mean?,You will understand very soon.  A Dominatrix is coming right up.,,Player.CanTalk()
+210,220,You're not punishing me girl.,Someone else will take care of that.  A Dominatrix is coming right up.,,Player.CanTalk()
+210,220,I will accept it Miss.,You're in the right mindset for this.  A Dominatrix is coming right up.,,Player.CanTalk()
+210,220,(Scream in your gag.),"Scream girl, it's amusing.  A Dominatrix is coming right up.",,!Player.CanTalk()
+210,220,(Trash in your bondage.),You're cute when you struggle.  A Dominatrix is coming right up.,,!Player.CanTalk()
+210,220,(Bow your head and stay silent.),You're in the right mindset for this.  A Dominatrix is coming right up.,,!Player.CanTalk()
+220,,How about a bribe?,You can't bribe me!  The Dominatrix is already on her way.,DialogRemove(),Player.CanTalk()
+220,,I'll be back!,"I can do better!  (She makes a robot voice.)  Hasta la vista, baby!",DialogRemove(),Player.CanTalk()
+220,,(Wait for the Dominatrix.),,PunishmentIntro(),
