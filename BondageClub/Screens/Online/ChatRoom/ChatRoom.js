@@ -358,7 +358,7 @@ function ChatRoomCanBeLeashedBy(sourceMemberNumber, C) {
 			}
 
 		if (canLeash && !isTrapped) {
-			if (!neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
+			if (sourceMemberNumber == 0 || !neckLock || (!neckLock.Asset.OwnerOnly && !neckLock.Asset.LoverOnly) ||
 				(neckLock.Asset.OwnerOnly && C.IsOwnedByMemberNumber(sourceMemberNumber)) ||
 				(neckLock.Asset.LoverOnly && C.IsLoverOfMemberNumber(sourceMemberNumber))) {
 				return true;
@@ -940,7 +940,7 @@ function ChatRoomStimulationMessage(Context) {
 			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily)) {
 				var trigChance = 0;
 				var trigMsgTemp = "";
-				var Intensity = InventoryGetItemProperty(C.Appearance[A], "Intensity", true);
+				var Intensity = InventoryItemHasEffect(C.Appearance[A], "Vibrating", true) ? InventoryGetItemProperty(C.Appearance[A], "Intensity", true) : 0;
 				if (InventoryItemHasEffect(C.Appearance[A], "CrotchRope", true)) {
 					if (trigChance == 0) trigChance = modBase;
 					trigMsgTemp = "CrotchRope";
@@ -1330,7 +1330,7 @@ function ChatRoomAttemptStandMinigameEnd() {
  */
 function ChatRoomCanLeave() {
 	if (ChatRoomLeashPlayer != null) {
-		if (ChatRoomCanBeLeashed(Player)) {
+		if (ChatRoomCanBeLeashedBy(0, Player)) {
 			return false;
 		} else ChatRoomLeashPlayer = null;		
 	}
