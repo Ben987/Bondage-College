@@ -2952,8 +2952,9 @@ function ChatRoomPayQuest(data) {
  * @returns {void} - Nothing
  */
 function ChatRoomGameResponse(data) {
-	if (ChatRoomGame == "LARP") GameLARPProcess(data);
-	else if (CurrentScreen == "KinkyDungeon" && data.Data.data.KinkyDungeon) KinkyDungeonHandleData(data);
+	if (data.Data.KinkyDungeon) 
+        KinkyDungeonHandleData(data.Data.KinkyDungeon, data.Sender);
+    else if (ChatRoomGame == "LARP") GameLARPProcess(data);
 }
 
 /**

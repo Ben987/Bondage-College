@@ -238,8 +238,7 @@ function KinkyDungeonPackData(IncludeMap, IncludeItems, IncludeInventory, Includ
  * @returns {void}
  */
 function KinkyDungeonSendData(data) {
-	if (ChatRoomGame == "LARP") return;
-	ServerSend("ChatRoomGame", { data: {KinkyDungeon: data} });
+    ServerSend("ChatRoomGame", { KinkyDungeon: data });
 }
 
 /**
@@ -247,7 +246,7 @@ function KinkyDungeonSendData(data) {
  * @returns {void}
  */
 function KinkyDungeonHandleData(data) {
-	if (data.Data && data.Data.data && data.Data.data.KinkyDungeon)
+	if (CurrentScreen == "KinkyDungeon")
 		KinkyDungeonUnpackData(data.Data.data.KinkyDungeon); // Unpack the rest of the data
 }
 
