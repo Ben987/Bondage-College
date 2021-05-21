@@ -28,7 +28,7 @@ RemoveItemPelvis,,,(She sighs as you unlock the belt.)  Can you make up your min
 ItemHead,,,(She stays silent as you strap the device on her head.),,
 RemoveItemHead,,,"(You release her head as she nods rapidly.)  That's better, but you're still in trouble.",,
 ItemHood,,,(You put the hood on her head as she goes silent.),,
-RemoveItemHood,,,(She grins as you remove the hood from her head.)  I will never get out of here.,,
+RemoveItemHood,,,(She grins as you remove the hood from her head.)  You will never get out of here.,,
 ItemNose,,,(You strap the item on her nose as she sighs.)  Is that a joke to you?,,
 RemoveItemNose,,,(She nods as you remove the device.)  Someday Pandora's Box will make you pay.,,
 ItemTorso,,,(You strap the harness on her torso.)  Causing more trouble will only extend your jail time.,,
@@ -147,7 +147,7 @@ WaitDominatrix,,(Wait for the Dominatrix.),,PunishmentIntro(),
 100,,,You're still under arrest you know?  Surrender to the law and we'll have mercy for you.,,
 100,,I'm the law now.,(She grumbles.)  Don't make me laugh.  Pandora's law will crush you like an ant.,DialogRemove(),
 100,,(Bring her with you.),Freeze!  You're not allowed to do that!  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
-100,,(Leaver her here.),Let me go and I'll shorten your sentence.  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Leave her here.),Let me go and I'll shorten your sentence.  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
 100,,(Strip her naked.),(She seems really angry as you strip her naked.)  This uniform is sacred!,CharacterNaked(),!CurrentCharacter.IsNaked()
 100,,(Wear her clothes.),(She shakes her head no as you dress up as a guard.)  Nobody will fall for that.,"PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
 100,,(Leave her.),,DialogLeave(),

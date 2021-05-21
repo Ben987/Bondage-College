@@ -1,8 +1,86 @@
 PlayerGagged,,,(She smirks at you.)  Cute gag slave girl.,,
-0,,,DialogPlayerName!  I've been tracking you down for a while.  Your reign of terror is over.,,"DialogSkillGreater(""Infiltration"", 10)"
-0,,,Halt!   Are you DialogPlayerName?  You won't get away this time.,,"DialogSkillGreater(""Infiltration"", 6)"
-0,,,"(She stops you.)  Hello girl, can I see your papers?",,"DialogSkillGreater(""Infiltration"", 2)"
-0,,,"(She stares at you.)  Hey girl, are you lost?",,
-0,,Who are you?,I'm Dominatrix DialogCharacterName.  I'm one of Pandora's Box administrator.,,
-0,,(UNDER CONSTRUCTION.),"This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.",,
-0,,Leave me alone.  (Leave her.),,CharacterAllowMove(),
+FightVictory,,,(She seems very angry.)  This is such a disgrace.  One day I'll make you bite the dust.,,
+FightDefeat,,,(She looks at you and smirks.)  Some jail time will teach you to never mess with a Dominatrix.,,
+Punishment8,,,"(She transfers you to another Dominatrix.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(She transfers you to another Dominatrix.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(She transfers you to another Dominatrix.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(She transfers you to another Dominatrix.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
+ItemMouth,,,(She tries to avoid the gag but you're able to use it on her.),,
+RemoveItemMouth,,,(You remove her gag and she sighs.)  Enjoy your victory and your freedom while you can.,,
+ItemMouth2,,,(She tries to avoid the gag but you're able to use it on her.),,
+RemoveItemMouth2,,,(You remove her gag and she sighs.)  Enjoy your victory and your freedom while you can.,,
+ItemMouth3,,,(She tries to avoid the gag but you're able to use it on her.),,
+RemoveItemMouth3,,,(You remove her gag and she sighs.)  Enjoy your victory and your freedom while you can.,,
+ItemEars,,,(She seems angry as you push earplugs inside.)  Haven't you had enough?,,
+RemoveItemEars,,,(You pull the earplugs out.)  Pandora's wrath will hit you like a ton of bricks.,,
+ItemArms,,,(She struggles madly as you restrain her arms.)  You will regret coming here.,,
+RemoveItemArms,,,(You free her arms as she remains silent.),,
+ItemLegs,,,(She grumbles as you restrain her legs.)  What are you doing?  Run while you can.,,
+RemoveItemLegs,,,(You release her legs slowly.)  Will you make up your mind already?,,
+ItemFeet,,,(She tries to kick you as you restrain her feet.)  You will rot in jail for a long time.,,
+RemoveItemFeet,,,(She wiggles her feet as you release them.)  Soon you will lick my boots.,,
+ItemBoots,,,(She tries to kick you as you restrain her feet.)  You will rot in jail for a long time.,,
+RemoveItemBoots,,,(She wiggles her feet as you release them.)  Soon you will lick my boots.,,
+ItemNeck,,,(She seems furious as you strap a collar on her.)  This is really offensive you know?,,
+RemoveItemNeck,,,(You remove the collar from her neck.)  I will never forget this.,,
+ItemPelvis,,,(She trashes to avoid the belt as you strap it on her.)  Chastity?  Really?  Are you serious?,,
+RemoveItemPelvis,,,(She nods as you unlock the belt.)  You cannot keep me chaste anyway.,,
+ItemHead,,,(She becomes silent as you strap the device on her head.),,
+RemoveItemHead,,,(She takes a deep breath as you release her head.)  I will enjoy torturing you.,,
+ItemHood,,,(She becomes silent as you strap the hood on her head.),,
+RemoveItemHood,,,(She takes a deep breath as you release her head.)  You will stay in the dark much longer.,,
+ItemNose,,,(She shakes her head as you put the item on her nose.)  Soon you will know the meaning of pain.,,
+RemoveItemNose,,,(She nods as you remove the item.)  Pandora's will never forget this humiliation.,,
+ItemTorso,,,(You prepare a harness on her torso.)  Do I look like a doll to you?,,
+RemoveItemTorso,,,(She shakes her body as you release the harness.)  Let me go right now.,,
+ItemButt,,,(She tries to shut her butt as you slide the device inside.)  My vengeance will be long and painful.,,
+RemoveItemButt,,,(She stays silent as you remove the plug.),,
+ItemBreast,,,(She holds her breath as you use the item.)  Is that the best you can do?,,
+RemoveItemBreast,,,(She shakes her breast as you remove the device.)  You're not worthy of being my slave.,,
+ItemNipples,,,(She takes a deep breath as you use the device.)  Torture all you want.  I will never talk.,,
+RemoveItemNipples,,,(She stays silent as you remove the device.),,
+0,,,"DialogPlayerName!  You've been on my list for a while, but I don't have time to deal with you now.  Consider yourself lucky.",,"DialogSkillGreater(""Infiltration"", 8)"
+0,,,"Halt!   Are you DialogPlayerName?  Whoever you are, I don't have time to deal with you.  Consider yourself lucky.",,"DialogSkillGreater(""Infiltration"", 5)"
+0,,,"(She crosses your path and stares at you.)  Hey girl, have I seen you before?",,"DialogSkillGreater(""Infiltration"", 2)"
+0,,,"(She crosses your path.)  Hey girl, are you lost?",,
+0,,Who are you?,I'm Dominatrix DialogCharacterName.  I'm one of Pandora's Box administrator.,DialogRemove(),
+0,,You're one of the bosses?,"Damn right, you better not get on my nerves or you will get on your knees.",DialogRemove(),
+0,10,Can I help you with something Miss?,"You're a good girl, aren't you?  Can you deliver this document to the Dominatrix headquarters?",,PandoraOdds50()
+0,,Can I help you with something Miss?,"No, why would I need help from you?",DialogRemove(),!PandoraOdds50()
+0,30,You think you can scare me?,"(She cracks her knuckles.)  You think you're tough, aren't you?  Fine!  I challenge you to a duel.",,
+0,,Have a good day.  (Leave her.),,CharacterAllowMove(),
+10,20,"Yes, I will deliver it.","Good girl!  Take this, I need to run.  (She gives you a private Pandora's Box document and leaves.  Your infiltration skill has increased.)",InfiltrationChange(10),
+10,20,"No, I cannot do that.","Fine, get lost then.  I will do it myself.  (She walks away.)",,
+20,,(Go back to Pandora's Box.),,RemoveCurrentCharacter(),
+30,,I accept!  (Fight her.),,CharacterFight(),
+30,40,I don't have time for that.,Then I don't have time to chat.  Get out of my way.  (She walks away.),,
+30,40,"I'm sorry, can you forgive me?",You're pathetic.  Get out of my way.  (She walks away.),,
+40,,(Go back to Pandora's Box.),,RemoveCurrentCharacter(),
+50,,,DialogPlayerName!  I've been tracking you down for a while.  Your reign of terror is over.,,"DialogSkillGreater(""Infiltration"", 10)"
+50,,,Halt!   You're DialogPlayerName!  You won't get away this time.  Get on your knees!,,"DialogSkillGreater(""Infiltration"", 7)"
+50,,,(She stops you.)  Aren't you that spy from the Bondage Club?  Get on your knees!,,"DialogSkillGreater(""Infiltration"", 4)"
+50,,,(She stops you.)  Have I seen you before?  You're from the Bondage Club!,,
+50,,You're mistaken.,You cannot fool me girl.  Get on your knees right now or you will suffer.,DialogRemove(),
+50,,I won't go down.  (Fight her.),,CharacterFight(),
+50,WaitDominatrix,(Surrender.),(She jumps on you and restrains you as soon as you surrender.)  A Dominatrix friend of mine will take care of you.,RestrainPlayer(),
+60,,,(She looks at your victim and blocks your path.)  Hold on!  What are you doing with my associate?  Get on your knees!,,
+60,,It's only for fun.,(Your victim shakes her head no.)  I've heard enough.  Get on your knees right now or you will suffer.,DialogRemove(),
+60,,You will kneel for me.  (Fight her.),,CharacterFight(),
+60,WaitDominatrix,"Alright, you win.  (Surrender.)",(She jumps on you and restrains you as soon as you surrender.)  A Dominatrix friend of mine will take care of you.,RestrainPlayer(),
+100,,,"You got lucky in that last fight, but soon you will lick my boots.",,
+100,,Don't you feel any shame?,(She shakes her head no.)  You don't know what shame is.  Cross my path again and you will understand.,DialogRemove(),
+100,,Pandora will pay a nice ransom for you.,(She seems furious.)  Fuck you DialogPlayerName!  Do not kidnap me!,DialogRemove(),
+100,,(Bring her with you.),"What the hell?  I'm not a dog, you can't carry me around.  (She will follow you from room to room.)",CharacterJoin(),CharacterCanJoin()
+100,,(Leave her here.),"Whatever you do, wherever you go, I will find you.  (She will no longer follow you.)",CharacterLeave(),CharacterCanLeave()
+100,,(Strip her naked.),(She resists hard as you strip her naked.)  I won't forget this!  Who do you think you are?,CharacterNaked(),!CurrentCharacter.IsNaked()
+100,,(Wear her clothes.),(She seems furious as you put on her Dominatrix outfit.)  Don't you dare!  Your plan will never work.,"PlayerClothes(""Mistress"")",CurrentCharacter.IsNaked()
+100,,(Leave her.),,DialogLeave(),
+200,WaitDominatrix,Jail time?  What do you mean?,"Be patient, you will understand soon.  A Dominatrix friend of mine will take care of you.",,Player.CanTalk()
+200,WaitDominatrix,I'm not going to any jail.,Your fate is already sealed girl.  A Dominatrix friend of mine will escort you there.,,Player.CanTalk()
+200,WaitDominatrix,I will accept it Miss.,Good girl.  A Dominatrix friend of mine will escort you to your new home.,,Player.CanTalk()
+200,WaitDominatrix,(Scream in your gag.),Scream all you want.  A Dominatrix friend of mine will escort you to your new home.,,!Player.CanTalk()
+200,WaitDominatrix,(Trash in your bondage.),"Struggle or curse, it won't change anything.  A Dominatrix friend of mine will escort you to your new home.",,!Player.CanTalk()
+200,WaitDominatrix,(Bow your head and stay silent.),Good girl.  A Dominatrix friend of mine will escort you to your new home.,,
+WaitDominatrix,,I promise I will be good.,Of course.  Everyone turns good after a long stay in our prison.  (She grins.),DialogRemove(),Player.CanTalk()
+WaitDominatrix,,Another Dominatrix?,She's coming up very soon.  She will take extra good care of you.  (She laughs out loud.),DialogRemove(),Player.CanTalk()
+WaitDominatrix,,(Wait for the Dominatrix.),,PunishmentIntro(),

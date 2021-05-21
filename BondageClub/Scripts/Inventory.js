@@ -197,7 +197,6 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 			|| !InventoryDoesItemExposeGroup(C, "Panties", "ItemVulva")
 			|| InventoryDoesItemBlockGroup(C, "Socks", "ItemVulva")
 			? "RemoveClothesForItem" : "";
-		case "AccessVulvaSuitZip": return !InventoryDoesItemExposeGroup(C, "SuitLower", "ItemVulvaPiercings") ? "UnZipSuitForItem" : "";
 
 		// For body parts that must be naked
 		case "NakedFeet": return InventoryHasItemInAnyGroup(C, ["ItemBoots", "Socks", "Shoes"]) ? "RemoveClothesForItem" : "";

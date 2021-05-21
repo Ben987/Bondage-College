@@ -19,9 +19,9 @@ PlayerGagged,,,"(She smirks at you.)  Mumble or scream all you want, nobody care
 20,30,(Try to defy her.),"(She checks her notes and removes your gag.)  So, the Bondage Club sent you here a few times.  What is your current mission?",PlayerUngag(),!Player.CanTalk()
 20,30,(Grumble in your gag.),"(She checks her notes and removes your gag.)  So, the Bondage Club sent you here a few times.  What is your current mission?",PlayerUngag(),!Player.CanTalk()
 20,30,(Stay silent.),"(She checks her notes and removes your gag.)  So, the Bondage Club sent you here a few times.  What is your current mission?",PlayerUngag(),!Player.CanTalk()
-30,40,I'm not telling you anything.,"Really?  This is your last chance.  I will count to five.  At five, you get locked up.  One, two…",,
-30,40,My mission is to piss you off.,"You're doing it.  This is your last chance.  I will count to five.  At five, you get locked up.  One, two…",,
-30,40,(Stay silent.),"This is your last chance.  I will count to five.  At five, you get locked up.  One, two…",,
+30,40,I'm not telling you anything.,"Really?  This is your last chance.  I will count to five.  At five, you get locked up.  One, two...",,
+30,40,My mission is to piss you off.,"You're doing it.  This is your last chance.  I will count to five.  At five, you get locked up.  One, two...",,
+30,40,(Stay silent.),"This is your last chance.  I will count to five.  At five, you get locked up.  One, two...",,
 30,100,Go to hell.  I will never talk.,(She seems furious.)  You little cunt!  Some hard time in our prison will teach you some manners.,PunishmentSentence(25),
 30,100,(Tell her about your mission.),(She takes notes and smirks.)  Very good.  I'll make sure you won't spend too much time in prison.,PunishmentSentence(10),
 40,100,What's your problem bitch?,(She seems furious.)  You little cunt!  Some hard time in our prison will teach you some manners.,PunishmentSentence(25),

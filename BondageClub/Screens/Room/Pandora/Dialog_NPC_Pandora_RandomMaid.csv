@@ -81,7 +81,7 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 100,,,You think you're smart?  You will never get away.,,
 100,,"Maid, go get me a drink.",(She grumbles.)  You think you're funny?  You won't have much to drink when you rot in a cell.,DialogRemove(),
 100,,(Bring her with you.),Hey!  I have a job to do!  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
-100,,(Leaver her here.),Can I go back to work now?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Leave her here.),Can I go back to work now?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
 100,,(Strip her naked.),(She seems furious as you strip her naked.)  You will pay for that.,CharacterNaked(),!CurrentCharacter.IsNaked()
 100,,(Wear her clothes.),(She stares at you as you quickly dress up as her.)  You won't fool anyone.,"PlayerClothes(""Maid"")",CurrentCharacter.IsNaked()
 100,,(Leave her.),,DialogLeave(),

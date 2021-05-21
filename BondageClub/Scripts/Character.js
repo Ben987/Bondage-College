@@ -914,9 +914,10 @@ function CharacterChangeMoney(C, Value) {
  * Refreshes the character parameters (Effects, poses, canvas, settings, etc.)
  * @param {Character} C - Character to refresh
  * @param {boolean} [Push=true] - Pushes the data to the server if true or null
+ * @param {boolean} [RefreshDialog=true] - Refreshes the character dialog
  * @returns {void} - Nothing
  */
-function CharacterRefresh(C, Push) {
+function CharacterRefresh(C, Push, RefreshDialog = true) {
 	AnimationPurge(C, false);
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);
@@ -931,48 +932,56 @@ function CharacterRefresh(C, Push) {
 	}
 	// Also refresh the current dialog menu if the refreshed character is the current character.
 	var Current = CharacterGetCurrent();
-	if (Current && C.ID == Current.ID) {
-		if (DialogFocusItem && DialogFocusItem.Asset) {
-			if (!DialogFocusItem.Asset.IsLock) {
-				let DFI = C.Appearance.find(Item =>
-					Item.Asset.Name == DialogFocusItem.Asset.Name && Item.Asset.Group.Name == DialogFocusItem.Asset.Group.Name
-				);
-				if (!DFI) DialogLeaveFocusItem();
-				else {
-					DialogFocusItem = DFI;
-					if (DialogFocusItem && DialogFocusItem.Asset.Extended && typeof window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"] === "function") window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"]();
-				}
-			} else {
-				var DFSI = DialogFocusSourceItem && DialogFocusSourceItem.Asset && C.Appearance.find(Item =>
-					Item.Asset.Name == DialogFocusSourceItem.Asset.Name && Item.Asset.Group.Name == DialogFocusSourceItem.Asset.Group.Name
-				);
-				var Lock = DFSI && InventoryGetLock(DFSI);
-				if (!DFSI || !Lock) DialogLeaveFocusItem();
-				else DialogExtendItem(Lock, DFSI);
+	if (Current && C.ID == Current.ID && RefreshDialog) {
+		CharacterRefreshDialog(C);
+	}
+}
+
+/**
+ * @param {Character} C - Character to refresh
+ * @returns {void} - Nothing
+ */
+function CharacterRefreshDialog(C) {
+	if (DialogFocusItem && DialogFocusItem.Asset) {
+		if (!DialogFocusItem.Asset.IsLock) {
+			let DFI = C.Appearance.find(Item =>
+				Item.Asset.Name == DialogFocusItem.Asset.Name && Item.Asset.Group.Name == DialogFocusItem.Asset.Group.Name
+			);
+			if (!DFI) DialogLeaveFocusItem();
+			else {
+				DialogFocusItem = DFI;
+				if (DialogFocusItem && DialogFocusItem.Asset.Extended && typeof window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"] === "function") window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"]();
 			}
-		} else if (DialogFocusItem) DialogLeaveFocusItem();
-		if (!DialogFocusItem) {
-			var IsLockMode = DialogItemToLock && C.Appearance.find(Item => Item.Asset.Name == DialogItemToLock.Asset.Name && DialogItemToLock.Asset.Group.Name == Item.Asset.Group.Name );
-			if (IsLockMode) {
-				DialogInventory = [];
-				for (let A = 0; A < Player.Inventory.length; A++)
-					if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
-						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
-				DialogInventorySort();
-				DialogMenuButtonBuild(C);
-			} else {
-				DialogInventoryBuild(C, DialogInventoryOffset);
-			}
-			ActivityDialogBuild(C);
+		} else {
+			var DFSI = DialogFocusSourceItem && DialogFocusSourceItem.Asset && C.Appearance.find(Item =>
+				Item.Asset.Name == DialogFocusSourceItem.Asset.Name && Item.Asset.Group.Name == DialogFocusSourceItem.Asset.Group.Name
+			);
+			var Lock = DFSI && InventoryGetLock(DFSI);
+			if (!DFSI || !Lock) DialogLeaveFocusItem();
+			else DialogExtendItem(Lock, DFSI);
 		}
-		if (DialogColor != null) {
-			const FocusItem = C && C.FocusGroup ? InventoryGet(C, C.FocusGroup.Name) : null;
-			if ((ItemColorItem && !FocusItem) || (!ItemColorItem && FocusItem) || InventoryGetItemProperty(ItemColorItem, "Name") !== InventoryGetItemProperty(FocusItem, "Name")) {
-				ItemColorCancelAndExit();
-				DialogColor = null;
-				DialogColorSelect = null;
-				DialogMenuButtonBuild(C);
-			}
+	} else if (DialogFocusItem) DialogLeaveFocusItem();
+	if (!DialogFocusItem) {
+		var IsLockMode = DialogItemToLock && C.Appearance.find(Item => Item.Asset.Name == DialogItemToLock.Asset.Name && DialogItemToLock.Asset.Group.Name == Item.Asset.Group.Name);
+		if (IsLockMode) {
+			DialogInventory = [];
+			for (let A = 0; A < Player.Inventory.length; A++)
+				if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
+					DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
+			DialogInventorySort();
+			DialogMenuButtonBuild(C);
+		} else {
+			DialogInventoryBuild(C, DialogInventoryOffset);
+		}
+		ActivityDialogBuild(C);
+	}
+	if (DialogColor != null) {
+		const FocusItem = C && C.FocusGroup ? InventoryGet(C, C.FocusGroup.Name) : null;
+		if ((ItemColorItem && !FocusItem) || (!ItemColorItem && FocusItem) || InventoryGetItemProperty(ItemColorItem, "Name") !== InventoryGetItemProperty(FocusItem, "Name")) {
+			ItemColorCancelAndExit();
+			DialogColor = null;
+			DialogColorSelect = null;
+			DialogMenuButtonBuild(C);
 		}
 	}
 }

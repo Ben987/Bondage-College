@@ -55,7 +55,8 @@ function TimerInventoryRemove() {
 			for (let A = 0; A < Character[C].Appearance.length; A++)
 				if ((Character[C].Appearance[A].Property != null) && (Character[C].Appearance[A].Property.RemoveTimer != null))
 					if ((typeof Character[C].Appearance[A].Property.RemoveTimer == "number") && (Character[C].Appearance[A].Property.RemoveTimer <= CurrentTime)) {
-						var LockName = Character[C].Appearance[A].Property.LockedBy;
+						const LockName = Character[C].Appearance[A].Property.LockedBy;
+						const ShouldRemoveItem = Character[C].Appearance[A].Property.RemoveItem;
 
 						// Remove any lock or timer
 						ValidationDeleteLock(Character[C].Appearance[A].Property, false);
@@ -71,7 +72,7 @@ function TimerInventoryRemove() {
 						}
 
 						// If we must remove the linked item from the character or the facial expression
-						if ((Character[C].Appearance[A].Property.RemoveItem != null) && Character[C].Appearance[A].Property.RemoveItem && (Character[C].Appearance[A].Asset.Group.Category != null) && (Character[C].Appearance[A].Asset.Group.Category == "Item"))
+						if (ShouldRemoveItem && Character[C].Appearance[A].Asset.Group.Category === "Item")
 							InventoryRemove(Character[C], Character[C].Appearance[A].Asset.Group.Name);
 						else if (Character[C].Appearance[A].Asset.Group.AllowExpression != null)
 							CharacterSetFacialExpression(Character[C], Character[C].Appearance[A].Asset.Group.Name, null);

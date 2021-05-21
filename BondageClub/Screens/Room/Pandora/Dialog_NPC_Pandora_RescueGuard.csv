@@ -57,7 +57,7 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 100,,,"Do whatever you want, I don't care.  I'm not paid enough to fight someone like you.",,
 100,,You're a horrible guard.,"(She seems angry.)  Laugh all you want, but you will pay for this someday.",DialogRemove(),
 100,,(Bring her with you.),Fine!  I'll follow you until you get caught.  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
-100,,(Leaver her here.),You had your fun?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Leave her here.),You had your fun?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
 100,,(Strip her naked.),(You strip her naked as she struggles.)  I'm only a guard here.  Give me a break.,CharacterNaked(),!CurrentCharacter.IsNaked()
 100,,(Wear her clothes.),(You put on her clothes.)  Wait!  What are you doing?  What are you planning?,"PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
 100,,(Leave her.),,DialogLeave(),

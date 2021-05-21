@@ -701,17 +701,22 @@ function KinkyDungeonClickGame(Level) {
 	}
 	// beep
 
+
 	// If no buttons are clicked then we handle move
-	else if (KinkyDungeonTargetingSpell) {
-		if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
-			if (KinkyDungeonSpellValid) {
-				KinkyDungeonCastSpell(KinkyDungeonTargetX, KinkyDungeonTargetY, KinkyDungeonTargetingSpell);
-				KinkyDungeonAdvanceTime(1);
-				KinkyDungeonTargetingSpell = null;
-			}
-		} else KinkyDungeonTargetingSpell = null;
-	} else if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
-		KinkyDungeonMove(KinkyDungeonMoveDirection, 1);
+	else {
+		KinkyDungeonSetMoveDirection();
+		
+		if (KinkyDungeonTargetingSpell) {
+			if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
+				if (KinkyDungeonSpellValid) {
+					KinkyDungeonCastSpell(KinkyDungeonTargetX, KinkyDungeonTargetY, KinkyDungeonTargetingSpell);
+					KinkyDungeonAdvanceTime(1);
+					KinkyDungeonTargetingSpell = null;
+				}
+			} else KinkyDungeonTargetingSpell = null;
+		} else if (MouseIn(canvasOffsetX, canvasOffsetY, KinkyDungeonCanvas.width, KinkyDungeonCanvas.height)) {
+			KinkyDungeonMove(KinkyDungeonMoveDirection, 1);
+		}
 	}
 }
 

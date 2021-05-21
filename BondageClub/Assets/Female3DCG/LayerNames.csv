@@ -43,6 +43,10 @@ ClothLowerLeggings2Cloth,Cloth
 ClothLowerLeggings2Stripe,Stripe
 ClothLowerTennisSkirt1Stripe,Trim
 ClothLowerTennisSkirt1Color,Cloth
+ClothLowerPajama1Cloth, Pants
+ClothLowerPajama1Stripe, Trim
+ClothLowerAdmiralSkirtCloth,Skirt
+ClothLowerAdmiralSkirtStripe,Trim
 SuitLowerCatsuitBase,Suit
 SuitLowerCatsuitZip,Zip
 SuitLowerSeethroughSuitZipBase,Suit
