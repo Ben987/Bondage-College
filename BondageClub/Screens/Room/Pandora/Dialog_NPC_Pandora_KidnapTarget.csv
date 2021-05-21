@@ -55,7 +55,7 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 100,,You're mine now.,Ah!  You really think you can collar me?,DialogRemove(),
 100,,Where is the exit?,Fuck you!  I'm not helping you.,DialogRemove(),
 100,,(Bring her with you.),Wait!  What are you doing?  Where are we going?  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
-100,,(Leaver her here.),Can you make up your mind?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Leave her here.),Can you make up your mind?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
 100,,(Strip her naked.),(You strip her naked as she struggles.)  That's enough!  I've already surrendered!,CharacterNaked(),!CurrentCharacter.IsNaked()
 100,,Enough.  (Stop talking with her.),,DialogLeave(),
 200,210,Get me out!,(She laughs at you.)  You want out?  Not until you get properly punished little kidnapper.,,Player.CanTalk()

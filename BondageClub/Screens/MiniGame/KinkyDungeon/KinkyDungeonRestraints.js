@@ -248,7 +248,6 @@ function KinkyDungeonStruggle(struggleGroup, StruggleType) {
 							}
 						}
 					} else {
-						KinkyDungeonRemoveKeys(restraint.lock);
 						KinkyDungeonLock(restraint, "");
 					}
 				} else {

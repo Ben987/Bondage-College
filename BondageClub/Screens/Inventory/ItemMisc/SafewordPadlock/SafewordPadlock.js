@@ -43,13 +43,13 @@ function InventoryItemMiscSafewordPadlockDraw() {
 			DrawTextWrap("\"" + DialogFocusSourceItem.Property.Hint + "\"", 1000, 640, 1000, 120, null, null, 2);
 		MainCanvas.textAlign = "right";
 		DrawText(DialogFindPlayer("PasswordPadlockOld"), 1490, 805, "white", "gray");
-		ElementPosition("Password", 1640, 805, 250);
+		ElementPosition("Password", 1640, 805, 350);
 		MainCanvas.textAlign = "center";
 		DrawButton(1370, 871, 250, 64, DialogFindPlayer("PasswordPadlockEnter"), "White", "");
 		if (PreferenceMessage != "") DrawText(DialogFindPlayer(PreferenceMessage), 1500, 963, "Red", "Black");
 	} else {
 		ElementPosition("SetHint", 1643, 700, 550);
-		ElementPosition("SetPassword", 1491, 770, 250);
+		ElementPosition("SetPassword", 1491, 770, 350);
 		MainCanvas.textAlign = "left";
 		DrawText(DialogFindPlayer("PasswordPadlockSetHint"), 1100, 703, "white", "gray");
 		DrawText(DialogFindPlayer("PasswordPadlockSetPassword"), 1100, 773, "white", "gray");

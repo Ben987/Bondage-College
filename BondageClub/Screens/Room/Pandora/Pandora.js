@@ -342,7 +342,20 @@ function PandoraEnterRoom(Room, Direction) {
 			PandoraCurrentRoom.Character[0].Stage = ArrestDialog;
 		}
 	}
-	
+
+	// If we enter a room with a Dominatrix that's not bound, she can intercept and challenge the player
+	if ((PandoraCurrentRoom.Character.length == 1) && (PandoraCurrentRoom.Character[0].AccountName.indexOf("RandomMistress") >= 0) && PandoraCurrentRoom.Character[0].CanInteract()) {
+		let MistressDialog = "";
+		if (!PandoraCurrentRoom.Character[0].AllowMove && (SkillGetLevel(Player, "Infiltration") >= Math.floor(Math.random() * 10))) MistressDialog = "50";
+		if ((PandoraParty.length == 1) && (PandoraParty[0].AccountName.indexOf("RandomMistress") >= 0)) ArrestDialog = "60";
+		if (MistressDialog != "") {
+			CharacterRelease(PandoraCurrentRoom.Character[0]);
+			PandoraCurrentRoom.Character[0].RandomOdds = Math.random() - (SkillGetLevel(Player, "Infiltration") / 10);
+			PandoraCurrentRoom.Character[0].AllowMove = false;
+			PandoraCurrentRoom.Character[0].Stage = MistressDialog;
+		}
+	}
+
 }
 
 /**
@@ -580,6 +593,7 @@ function PandoraCharacterLeave() {
 function PandoraCharacterFight() {
 	PandoraFightCharacter = CurrentCharacter;
 	let Difficulty = (InfiltrationDifficulty * 2) + Math.floor(Math.random() * 3);
+	if (CurrentCharacter.AccountName.indexOf("RandomMistress") >= 0) Difficulty = InfiltrationDifficulty + 6;
 	KidnapStart(CurrentCharacter, PandoraBackground, Difficulty, "PandoraCharacterFightEnd()");
 }
 

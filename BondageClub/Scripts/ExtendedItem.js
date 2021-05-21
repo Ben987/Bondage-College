@@ -124,10 +124,11 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 	const ImageHeight = ShowImages ? 220 : 0;
 	OptionsPerPage = OptionsPerPage || Math.min(Options.length, XYPositions.length - 1);
 
-	// If we have to paginate, draw the back/next buttons
+	// If we have to paginate, draw the back/next button
 	if (Options.length > OptionsPerPage) {
-		DrawButton(1665, 240, 90, 90, "", "White", "Icons/Prev.png");
-		DrawButton(1775, 240, 90, 90, "", "White", "Icons/Next.png");
+		const currPage = Math.ceil(ExtendedItemGetOffset() / OptionsPerPage) + 1;
+		const totalPages = Math.ceil(Options.length / OptionsPerPage);
+		DrawBackNextButton(1675, 240, 300, 90, DialogFindPlayer("Page") + " " + currPage.toString() + " / " + totalPages.toString(), "White", "", () => "", () => "");
 	}
 
 	// Draw the header and item
@@ -194,11 +195,11 @@ function ExtendedItemClick(Options, OptionsPerPage, ShowImages = true) {
 	}
 
 	// Pagination buttons
-	if (MouseIn(1665, 240, 90, 90) && Options.length > OptionsPerPage) {
+	if (MouseIn(1675, 240, 150, 90) && Options.length > OptionsPerPage) {
 		if (ItemOptionsOffset - OptionsPerPage < 0) ExtendedItemSetOffset(OptionsPerPage * (Math.ceil(Options.length / OptionsPerPage) - 1));
 		else ExtendedItemSetOffset(ItemOptionsOffset - OptionsPerPage);
 	}
-	if (MouseIn(1775, 240, 90, 90) && Options.length > OptionsPerPage) {
+	else if (MouseIn(1825, 240, 150, 90) && Options.length > OptionsPerPage) {
 		if (ItemOptionsOffset + OptionsPerPage >= Options.length) ExtendedItemSetOffset(0);
 		else ExtendedItemSetOffset(ItemOptionsOffset + OptionsPerPage);
 	}
