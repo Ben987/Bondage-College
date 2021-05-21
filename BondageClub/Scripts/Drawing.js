@@ -305,7 +305,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 		}
 
 		// If we must flip the canvas vertically
-		const IsInverted = CharacterAppearsInverted(C);
+		const IsInverted = (CurrentScreen != "KinkyDungeon") ? CharacterAppearsInverted(C) : false;
 		if (IsInverted) {
 			CharacterCanvas.rotate(Math.PI);
 			CharacterCanvas.translate(-Canvas.width, -Canvas.height);
