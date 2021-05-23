@@ -245,8 +245,8 @@ function KinkyDungeonSendData(data) {
  * Handles kinky dungeon data after receiving it from another player
  * @returns {void}
  */
-function KinkyDungeonHandleData(data) {
-	if (CurrentScreen == "KinkyDungeon")
-		KinkyDungeonUnpackData(data.Data.data.KinkyDungeon); // Unpack the rest of the data
+function KinkyDungeonHandleData(data, SourceMemberNumber) {
+    if (CurrentScreen == "KinkyDungeon")
+        KinkyDungeonUnpackData(data); // Unpack the rest of the data
 }
 
