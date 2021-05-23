@@ -696,6 +696,31 @@ var AssetFemale3DCGExtended = {
 			}
 		} // BunnyMask1
 	}, // Mask
+	ItemFeet: {
+		SteelAnkleCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: {	Type: null }
+					},
+					{
+						Name: "Closed",
+						Property: {
+							Type: "Closed",
+							Effect: ["Prone", "Freeze"],
+							SetPose: ["LegsClosed"],
+							FreezeActivePose: ["BodyLower"]
+						}
+					}
+				],
+				Dialog: {
+					Load: "SelectBondagePosition"
+				}
+			}
+		} // SteelAnkleCuffs
+	}, // ItemFeet
 	ItemMisc: {
 		ServingTray: {
 			Archetype: ExtendedArchetype.TYPED,
