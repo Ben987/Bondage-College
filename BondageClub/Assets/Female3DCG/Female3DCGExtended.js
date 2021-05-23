@@ -156,6 +156,18 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // BitchSuit
 	}, // ItemArms
+	ItemNeck: {
+		ShinySteelCollar: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{ Name: "NoRing", Property: { Type: null } },
+					{ Name: "Ring", Property: { Type: "Ring" } }
+				],
+				DrawImages: false
+			}
+		} // ShinySteelCollar
+	}, // ItemNeck
 	ItemHood: {
 		KirugumiMask: {
 			Archetype: ExtendedArchetype.MODULAR,
