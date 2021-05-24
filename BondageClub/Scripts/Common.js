@@ -545,8 +545,8 @@ function CommonThrottle(func, wait) {
 	return function () {
 		context = this;
 		args = arguments;
-		const last = CommonTime() - timestamp;
 		if (!timeout) {
+			const last = CommonTime() - timestamp;
 			if (last >= 0 && last < wait) {
 				timeout = setTimeout(run, wait - last);
 			} else {
@@ -774,4 +774,22 @@ function CommonArrayConcatDedupe(dest, src) {
 			if (!dest.includes(item)) dest.push(item);
 		}
 	}
+}
+
+/**
+ * Common function for removing a padlock from an item and publishing a corresponding chat message (must be called with
+ * the item's group focused)
+ * @param {Character} C - The character on whom the item is equipped
+ * @param {Item} Item - The item to unlock
+ * @returns {void} - Nothing
+ */
+function CommonPadlockUnlock(C, Item) {
+	for (let A = 0; A < C.Appearance.length; A++) {
+		if (C.Appearance[A].Asset.Group.Name === C.FocusGroup.Name) {
+			C.Appearance[A] = Item;
+			break;
+		}
+	}
+	InventoryUnlock(C, C.FocusGroup.Name);
+	ChatRoomPublishAction(C, Item, null, true, "ActionUnlock");
 }

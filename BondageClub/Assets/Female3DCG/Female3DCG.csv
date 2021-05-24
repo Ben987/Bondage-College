@@ -61,6 +61,7 @@ ClothAccessory,FrillyApron,Frilly Apron
 ClothAccessory,BunnyCollarCuffs,Bunny Girl Accessories
 ClothAccessory,Camera1,Camera
 ClothAccessory,Cape,Cape
+ClothAccessory,LeatherStraps,Leather Straps
 Necklace,,Necklace
 Necklace,Necklace1,Fancy Necklace
 Necklace,Necklace2,Beaded Necklace
@@ -159,6 +160,7 @@ Bra,CowPrintedBra,Cow Printed Bra
 Bra,StuddedHarness,Studded Harness
 Bra,Camisole,Camisole
 Bra,Ribbons,Ribbons
+Bra,LeatherBreastBinder,Leather Breast Binder
 Corset,,Corset
 Corset,Corset1,Corset + Garters
 Corset,Corset2,Corset
@@ -250,6 +252,8 @@ Shoes,BarefootSandals1,Barefoot Sandals
 Shoes,LatexAnkleShoes, Latex Ankle Shoes
 Shoes,Flippers,Flippers
 Shoes,DeluxeBoots,Deluxe Mistress Boots
+Shoes,AnkleStrapShoes,Ankle Strap Shoes
+Shoes,Shoes5,Style 4
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Band2,Jeweled Band
@@ -583,6 +587,7 @@ ItemFeet,Irish8Cuffs,Irish 8 Feet Cuffs
 ItemFeet,DuctTape,Duct Tape
 ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
 ItemFeet,FloorShackles,Floor Shackles
+ItemFeet,SteelAnkleCuffs,Steel Ankle Cuffs
 ItemFeet,FuturisticAnkleCuffs,Futuristic Ankle Cuffs
 ItemFeet,OrnateAnkleCuffs,Ornate Ankle Cuffs
 ItemFeet,SpreaderMetal, Metal Leg Spreader
@@ -774,6 +779,7 @@ ItemBreast,OrnateChastityBra,Ornate Chastity Bra
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip
 ItemBreast,Ribbons,Ribbons
+ItemBreast,LeatherBreastBinder,Leather Breast Binder
 ItemArms,,Arms
 ItemArms,NylonRope,Nylon Rope
 ItemArms,HempRope,Hemp Rope
@@ -783,6 +789,7 @@ ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,ArmbinderJacket,Armbinder Jacket
 ItemArms,LeatherCuffs,Leather Cuffs
 ItemArms,CeilingShackles,Ceiling Shackles
+ItemArms,SteelCuffs,Steel Cuffs
 ItemArms,FuturisticCuffs,Futuristic Cuffs
 ItemArms,OrnateCuffs,Ornate Cuffs
 ItemArms,MittenChain1,Mittens Chain
@@ -918,6 +925,7 @@ ItemNeck,LatexPostureCollar,Latex Posture Collar Gag
 ItemNeck,HighSecurityCollar,High Security Collar
 ItemNeck,OrnateCollar,Ornate Collar
 ItemNeck,SlenderSteelCollar,Slender Steel Collar
+ItemNeck,ShinySteelCollar,Shiny Steel Collar
 ItemNeck,HeartLinkChoker, Heart-Link Choker
 ItemNeck,NeckRope,Neck Rope
 ItemNeckAccessories,,Collar

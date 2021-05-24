@@ -66,10 +66,11 @@ var InventoryItemArmsHempRopeOptions = [
 	}, {
 		Name: "SuspensionHogtied",
 		BondageLevel: 8,
-		Prerequisite: ["NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
+		Prerequisite: ["NotMounted", "NotChained", "NotReverseSuspended", "CannotBeHogtiedWithAlphaHood"],
 		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6,
-			OverrideHeight: { Height: 0, Priority: 51, HeightRatioProportion: 0 } },
+			OverrideHeight: { Height: -575, Priority: 51, HeightRatioProportion: 1 } },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		HasSubscreen: true,
 	}, {
 		Name: "BedSpreadEagle",
 		BondageLevel: 1,
@@ -80,13 +81,13 @@ var InventoryItemArmsHempRopeOptions = [
 ];
 
 function AssetsItemArmsHempRopeBeforeDraw(data) {
-    if (data.LayerType === "BedSpreadEagle") {
-        return {
-            X: data.X -50,
-            Y: data.Y -150,
-        };
-    }
-    return null;
+	if (data.LayerType === "BedSpreadEagle") {
+		return {
+			X: data.X - 50,
+			Y: data.Y - 150,
+		};
+	}
+	return null;
 }
 
 function InventoryItemArmsHempRopeLoad() {

@@ -17,6 +17,9 @@ ClothCollegeOutfit1Skirt,Skirt
 ClothBodice1Base,Main
 ClothBodice1Trim,Trim
 ClothBodice1Pattern,Pattern
+ClothAdmiralTopJacket,Jacket
+ClothAdmiralTopTrim,Trim
+ClothAdmiralTopShirt,Shirt
 ClothAccessoryBouquetBase,Holder
 ClothAccessoryBouquetFlowers,Flowers
 ClothAccessoryCapeFront,Front
@@ -265,6 +268,8 @@ ItemNeckFuturisticCollarDisplay,Display
 ItemNeckFuturisticCollarLock,Lock
 ItemNeckOrnateCollarCollar,Collar
 ItemNeckOrnateCollarGem,Gems
+ItemNeckShinySteelCollarCollar,Collar
+ItemNeckShinySteelCollarRing,Ring
 ItemNeckAccessoriesCustomCollarTagTag,Tag
 ItemNeckAccessoriesCustomCollarTagText,Text
 ItemNeckAccessoriesElectronicTagTag,Tag

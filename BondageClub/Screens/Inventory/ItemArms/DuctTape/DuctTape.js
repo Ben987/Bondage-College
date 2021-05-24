@@ -61,7 +61,16 @@ var InventoryItemArmsDuctTapeOptions = [
 			Difficulty: 7,
 		}
 	},
-
+	{
+		Name: "PetTape",
+		SelfBondageLevel: 10,
+		Prerequisite: ["NoOuterClothes"],
+		Property: {
+			Type: "PetTape",
+			SetPose: ["BackElbowTouch", "Kneel"],
+			Difficulty: 7,
+		}
+	},
 ];
 
 /**

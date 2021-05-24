@@ -136,13 +136,13 @@ function InventoryItemMouthFuturisticPanelGagClickAccessDenied() {
 		var pw = ElementValue("PasswordField").toUpperCase();
 		if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy == "PasswordPadlock" && pw == DialogFocusItem.Property.Password) {
 			let C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-			InventoryItemMiscPasswordPadlockUnlock(C, DialogFocusItem);
+			CommonPadlockUnlock(C, DialogFocusItem);
 			DialogFocusItem = null;
 			Player.FocusGroup = null;
 			InventoryItemMouthFuturisticPanelGagExit();
 		} else if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy == "TimerPasswordPadlock" && pw == DialogFocusItem.Property.Password) {
 			let C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-			InventoryItemMiscTimerPasswordPadlockUnlock(C, DialogFocusItem);
+			CommonPadlockUnlock(C, DialogFocusItem);
 			DialogFocusItem = null;
 			Player.FocusGroup = null;
 			InventoryItemMouthFuturisticPanelGagExit();

@@ -1285,7 +1285,7 @@ function DialogClick() {
 	// If the user clicked anywhere outside the current character item zones, ensure the position is corrected
 	if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber && ((MouseX < 500) || (MouseX > 1000) || (CurrentCharacter.FocusGroup == null))) {
 		CharacterAppearanceForceUpCharacter = -1;
-		CharacterRefresh(CurrentCharacter, false);
+		CharacterRefresh(CurrentCharacter, false, false);
 	}
 
 	// In activity mode, we check if the user clicked on an activity box
