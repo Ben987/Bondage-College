@@ -37,7 +37,7 @@ function InfiltrationPerksTaken() {
 
 /**
  * Returns the number of perks available for the player
- * @returns {void} - Nothing
+ * @returns {number} - Nothing
  */
 function InfiltrationPerksAvail() {
 	return SkillGetLevel(Player, "Infiltration") + 1;

@@ -43,7 +43,6 @@ function InventoryItemLegsSturdyLeatherBeltsClick() {
 /**
  * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
  * @param {Character} C - The character to check the option for
- * @param {Option} Option - The next option to use on the character
  * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
 function InventoryItemLegsSturdyLeatherBeltsValidate(C) {
@@ -62,7 +61,6 @@ function InventoryItemLegsSturdyLeatherBeltsValidate(C) {
  * Publishes the message to the chat
  * @param {Character} C - The target character
  * @param {Option} Option - The currently selected Option
- * @param {Option} PreviousOption - The previously selected Option
  * @returns {void} - Nothing
  */
 function InventoryItemLegsSturdyLeatherBeltsPublishAction(C, Option) {

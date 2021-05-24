@@ -179,7 +179,7 @@ function PreferenceGetFactorColor(Factor) {
 
 /**
  * Checks, if the arousal activity controls must be activated
- * @returns {void} - Returns true if we must activate the preference controls, false otherwise
+ * @returns {boolean} - Returns true if we must activate the preference controls, false otherwise
  */
 function PreferenceArousalIsActive() {
 	return (PreferenceArousalActiveList[PreferenceArousalActiveIndex] != "Inactive");

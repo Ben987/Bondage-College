@@ -364,8 +364,8 @@ function PandoraEnterRoom(Room, Direction) {
 /**
  * Generates random rooms linked on the entry room
  * @param {object} EntryRoom - The room object that's leading to that floor
- * @param {string} The entry direction
- * @param {number} The room level, the higher it goes, the higher the chances it will be a dead-end
+ * @param {string} DirectionFrom - The entry direction
+ * @param {number} RoomLevel - The room level, the higher it goes, the higher the chances it will be a dead-end
  * @returns {void} - Nothing
  */
 function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
@@ -445,8 +445,8 @@ function PandoraGenerateRoom(EntryRoom, DirectionFrom, RoomLevel) {
  * Loads the Pandora's Box screen
  * @param {string} FloorName - The name of the floor in which we must generate rooms
  * @param {object} EntryRoom - The room object that's leading to that floor
- * @param {string} The entry direction
- * @param {string} The opposite direction
+ * @param {string} DirectionFrom - The entry direction
+ * @param {string} DirectionTo - The opposite direction
  * @returns {void} - Nothing
  */
 function PandoraGenerateFloor(FloorName, EntryRoom, DirectionFrom, DirectionTo) {

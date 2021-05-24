@@ -189,8 +189,8 @@ function ChatSearchNormalDraw() {
 /**
  *
  * Garbles based on immersion settings
- * @ Text (string) - The text to garble
- * @returns {void} - Nothing
+ * @param {string} Text - The text to garble
+ * @returns {string} - Garbled text
  */
 function ChatSearchMuffle(Text) {
 	let ret = Text;
