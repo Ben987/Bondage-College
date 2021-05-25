@@ -3218,7 +3218,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ 
-				Name: "DentalGag", Fetish: ["Metal"], Value: 50, Diffiulty: 5, Time: 30, Random: false, AllowLock: true, Block: ["ItemMouth2", "ItemMouth3"], Effect: [], Extended: true, 
+				Name: "DentalGag", Fetish: ["Metal"], Value: 50, Difficulty: 5, Time: 30, Random: false, AllowLock: true, Block: ["ItemMouth2", "ItemMouth3"], Effect: [], Extended: true, 
 				Layer: [
 					{ Name: "Mouth", AllowColorize: false, },
 					{ Name: "Gag", AllowColorize: false, },
