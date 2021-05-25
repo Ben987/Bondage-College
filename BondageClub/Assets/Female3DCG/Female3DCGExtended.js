@@ -677,6 +677,28 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // PonyBit
+		DentalGag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Open",
+						Property: {
+							Type: null,
+							Effect: ["OpenMouth", "GagLight"],
+						},
+					},
+					{
+						Name: "Closed",
+						Property: {
+							Type: "Closed",
+							Effect: ["BlockMouth", "GagMedium"],
+						},
+					},
+				]
+			},
+		}, // DentalGag
 	}, // ItemMouth
 	ItemMouth2: {
 		ClothGag: {

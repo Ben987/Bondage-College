@@ -2058,6 +2058,11 @@ ItemMouthHarnessPonyBitsDetached,,,Detached,,
 ItemMouthHarnessPonyBitsAttached,,,Attached,,
 ItemMouthHarnessPonyBitsSetDetached,,,SourceCharacter unclips the bit from DestinationCharacter harness.,,
 ItemMouthHarnessPonyBitsSetAttached,,,SourceCharacter clips the bit onto DestinationCharacter harness.,,
+ItemMouthDentalGagSelect,,,Open or close the gag,,
+ItemMouthDentalGagOpen,,,Opened,,
+ItemMouthDentalGagClosed,,,Closed,,
+ItemMouthDentalGagSetClosed,,,SourceCharacter closes the mouth of TargetCharacter.,,
+ItemMouthDentalGagSetOpen,,,SourceCharacter forces the mouth of TargetCharacter open.,,
 ItemMiscServingTraySelect,,,Add or remove drinks from the tray,,
 ItemMiscServingTrayEmpty,,,Empty
 ItemMiscServingTrayFull,,,Full

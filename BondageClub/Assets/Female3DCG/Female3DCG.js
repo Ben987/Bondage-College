@@ -3217,6 +3217,13 @@ var AssetFemale3DCG = [
 					{ Name: "Muzzle" },
 				]
 			},
+			{ 
+				Name: "DentalGag", Fetish: ["Metal"], Value: 50, Diffiulty: 5, Time: 30, Random: false, AllowLock: true, Block: ["ItemMouth2", "ItemMouth3"], Extended: true, 
+				Layer: [
+					{ Name: "Mouth", AllowColorize: false, },
+					{ Name: "Gag", AllowColorize: false, },
+				],
+			},
 			AssetSpankingToys
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
