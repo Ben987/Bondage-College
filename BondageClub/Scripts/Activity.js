@@ -157,7 +157,7 @@ function ActivityDialogBuild(C) {
  * @param {Character} C - The character on which the activity is performed
  * @param {string} A - The activity performed
  * @param {string} Z - The group/zone name where the activity was performed
- * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
+ * @param {number} [Count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
  * If you don't want an activity to modify arousal, set this parameter to '0'
  * @return {void} - Nothing
  */
@@ -185,7 +185,7 @@ function ActivityEffect(S, C, A, Z, Count) {
  * @param {Character} C - The character on which the activity is performed
  * @param {number} Amount - The base amount of arousal to add
  * @param {string} Z - The group/zone name where the activity was performed
- * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
+ * @param {number} [Count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
  * If you don't want an activity to modify arousal, set this parameter to '0'
  * @return {void} - Nothing
  */
@@ -498,7 +498,7 @@ function ActivityVibratorLevel(C, Level) {
 
 /**
  * Calculates the progress one character does on another right away
- * @param {Character} Source- The character who performed the activity
+ * @param {Character} Source - The character who performed the activity
  * @param {Character} Target - The character on which the activity was performed
  * @param {object} Activity - The activity performed
  * @returns {void} - Nothing

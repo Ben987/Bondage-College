@@ -41,8 +41,8 @@ function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 
 /**
  * Deletes a log entry.
- * @param {string} NewLogName - The name of the log
- * @param {string} NewLogGroup - The name of the log's group
+ * @param {string} DelLogName - The name of the log
+ * @param {string} DelLogGroup - The name of the log's group
  * @param {boolean} [Push] - TRUE if we must push the log to the server
  * @returns {void} - Nothing
  */
@@ -65,8 +65,8 @@ function LogDelete(DelLogName, DelLogGroup, Push) {
 
 /**
  * Searches for an existing log entry.
- * @param {string} NewLogName - The name of the log to search for
- * @param {string} NewLogGroup - The name of the log's group
+ * @param {string} QueryLogName - The name of the log to search for
+ * @param {string} QueryLogGroup - The name of the log's group
  * @returns {boolean} - Returns TRUE if there is an existing log matching the Name/Group with no value or a value above the current time in ms.
  */
 function LogQuery(QueryLogName, QueryLogGroup) {
@@ -80,8 +80,8 @@ function LogQuery(QueryLogName, QueryLogGroup) {
 
 /**
  * Returns the value associated to a log.
- * @param {string} NewLogName - The name of the log to query the value
- * @param {string} NewLogGroup - The name of the log's group
+ * @param {string} QueryLogName - The name of the log to query the value
+ * @param {string} QueryLogGroup - The name of the log's group
  * @returns {number | undefined} - Returns the value of the log which is a date represented in ms or undefined. Returns null if no matching log is found.
  */
 function LogValue(QueryLogName, QueryLogGroup) {

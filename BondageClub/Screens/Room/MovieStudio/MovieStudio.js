@@ -39,7 +39,6 @@ function MovieStudioCanGetLongDuster() { return (!InventoryAvailable(Player, "Sp
 
 /**
  * When the player fails the movie, we jump back to the director
- * @param {number} Factor - The number to add or substract from the meter
  * @returns {void} - Nothing
  */
 function MovieStudioFail() {

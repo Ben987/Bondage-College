@@ -39,7 +39,7 @@ function MiniGameStart(GameType, Difficulty, ReturnFunction) {
 
 /**
  * Checks if the C key is being pressed and if cheats are available
- * @returns {void} - TRUE if C and cheats are allowed
+ * @returns {boolean} - TRUE if C and cheats are allowed
  */
 function MiniGameCheatKeyDown() {
 	if (MiniGameCheatAvailable && ((KeyPress == 67) || (KeyPress == 99))) {

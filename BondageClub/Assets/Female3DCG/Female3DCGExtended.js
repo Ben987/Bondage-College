@@ -699,6 +699,32 @@ var AssetFemale3DCGExtended = {
 				]
 			},
 		}, // DentalGag
+    Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Basic",
+						Property: {
+							Type: null,
+							Effect: ["BlockMouth", "GagVeryLight"],
+						},
+					},
+					{
+						Name: "Bow",
+						Property: {
+							Type: "Bow",
+							Effect: ["BlockMouth", "GagLight"],
+						},
+					},
+                ],
+				Dialog: {
+					Load: "SelectRibbonType",
+					TypePrefix: "RibbonType",
+					ChatPrefix: "RibbonsGagSet",
+				},
+			},
+		}, // Ribbons
 	}, // ItemMouth
 	ItemMouth2: {
 		ClothGag: {
@@ -725,6 +751,10 @@ var AssetFemale3DCGExtended = {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "ItemMouth", AssetName: "CupholderGag" },
 		},
+		Ribbons: {
+            Archetype: ExtendedArchetype.TYPED,
+            CopyConfig: { GroupName: "ItemMouth", AssetName: "Ribbons" },
+		},
 	}, // ItemMouth2
 	ItemMouth3: {
 		ClothGag: {
@@ -750,6 +780,10 @@ var AssetFemale3DCGExtended = {
 		CupholderGag: {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "ItemMouth", AssetName: "CupholderGag" },
+		},
+		Ribbons: {
+            Archetype: ExtendedArchetype.TYPED,
+            CopyConfig: { GroupName: "ItemMouth", AssetName: "Ribbons" },
 		},
 	}, // ItemMouth3
 	Mask: {

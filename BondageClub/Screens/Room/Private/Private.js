@@ -678,7 +678,7 @@ function PrivateGetSecondExpansion() {
 /**
  * Loads a given private room character.
  * @param {number} C - Index of the private character to load.
- * @returns {void} - Nothing.
+ * @returns {boolean} - Update required.
  */
 function PrivateLoadCharacter(C) {
 	let updateRequired = false;

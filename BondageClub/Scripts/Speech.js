@@ -106,8 +106,9 @@ function SpeechGarble(C, CD, NoDeaf) {
 
 /**
  * The core of the speech garble function, usable without being tied to a specific character
- * @param {Int} GagEffect - The gag level of the speech
+ * @param {number} GagEffect - The gag level of the speech
  * @param {string} CD - The character's dialog to alter
+ * @return {string} - Garbled text
  */
 function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
 

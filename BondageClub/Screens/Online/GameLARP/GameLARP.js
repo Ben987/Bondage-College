@@ -506,7 +506,7 @@ function GameLARPCanRemoveItem(C, Zone) {
  * Adds all available class abilities to the built basic options
  * @param {Character} Source - Character about to do an action.
  * @param {Character} Target - The character on which an action is about to be done.
- * @param {Array.<{ Name: string, Odds: number}>} - List of the basic options the source character can perform
+ * @param {Array.<{ Name: string, Odds: number}>} Option - List of the basic options the source character can perform
  * @param {string} Ability - Character's ability.
  * @returns {void} - Nothing
  */
@@ -833,7 +833,7 @@ function GameLARPBuildPlayerList() {
 
 /**
  * Each time a game is over, in victory or defeat, the player progresses toward the next class level
- * @param {number} Progress - The progress factor to apply
+ * @param {number} NewProgress - The progress factor to apply
  * @returns {void} - Nothing
  */
 function GameLARPLevelProgress(NewProgress) {

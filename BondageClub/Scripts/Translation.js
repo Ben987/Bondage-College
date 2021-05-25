@@ -453,7 +453,7 @@ function TranslationAssetProcess(T) {
 
 /**
  * Translates the description of the assets and groups of an asset family
- * @param {string} - Name of the asset family to translate
+ * @param {string} Family - Name of the asset family to translate
  * @returns {void} - Nothing
  */
 function TranslationAsset(Family) {

@@ -568,8 +568,7 @@ function StruggleDrawFlexibilityProgress(C) {
 
 /**
  * Checks for collision with the mouse
- * @param {boolean} Reverse - If set to true, the progress is decreased
- * @returns {boolean} - Nothing
+ * @returns {boolean} - Result of check
  */
 function StruggleFlexibilityCheck() {
 
@@ -1079,8 +1078,7 @@ function StruggleDrawLockpickProgress(C) {
 /**
  * Gets the correct label for the current operation (struggling, removing, swaping, adding, etc.)
  * @param {Character} C - The character who acts
- * @param {Item} PrevItem - The first item that's part of the action
- * @param {Item} NextItem - The second item that's part of the action
+ * @param {Item} Item - The item that's part of the action
  * @returns {string} - The appropriate dialog option
  */
 function StruggleLockPickProgressGetOperation(C, Item) {
@@ -1097,7 +1095,7 @@ function StruggleLockPickProgressGetOperation(C, Item) {
  * Starts the dialog progress bar for picking a lock
  * First the challenge level is calculated based on the base lock difficulty, the skill of the rigger and the escapee
  * @param {Character} C - The character who tries to struggle
- * @param {Item} PrevItem - The item, the character wants to unlock
+ * @param {Item} Item - The item, the character wants to unlock
  * @returns {void} - Nothing
  */
 function StruggleLockPickProgressStart(C, Item) {

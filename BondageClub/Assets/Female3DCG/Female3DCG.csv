@@ -738,7 +738,7 @@ ItemTorso,LeatherStrapBra1,Leather Strap Bra
 ItemTorso,CrotchChain, Crotch Chain
 ItemTorso,StuddedHarness,Studded Harness
 ItemTorso,HeavyLatexCorset,Heavy Latex Corset
-ItemTorso,Ribbon,Ribbons
+ItemTorso,Ribbons,Ribbons
 ItemNipples,,Nipples
 ItemNipples,NippleClamp,Nipple Clamps
 ItemNipples,VibeNippleClamp,Vibrating Nipple Clamps
@@ -1027,6 +1027,7 @@ ItemMouth,Ball,Tennis Ball
 ItemMouth,FuturisticMuzzle,Futuristic Muzzle
 ItemMouth,CageMuzzle,Iron Cage Muzzle
 ItemMouth,DentalGag,Dental Gag
+ItemMouth,Ribbons,Ribbons
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -1071,6 +1072,7 @@ ItemMouth2,ShoeGag,Shoe Gag
 ItemMouth2,PlasticWrap, Plastic Wrap
 ItemMouth2,FuturisticMuzzle,Futuristic Muzzle
 ItemMouth2,CageMuzzle,Iron Cage Muzzle
+ItemMouth2,Ribbons,Ribbons
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -1115,6 +1117,7 @@ ItemMouth3,ShoeGag,Shoe Gag
 ItemMouth3,FuturisticMuzzle,Futuristic Muzzle
 ItemMouth3,CageMuzzle,Iron Cage Muzzle
 ItemMouth3,PlasticWrap, Plastic Wrap
+ItemMouth3,Ribbons,Ribbons
 ItemHead,,Eyes
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
