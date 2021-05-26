@@ -44,7 +44,7 @@ function TextBuild(CSV) {
 /**
  * Loads the CSV text file of the current screen into the buffer. It will get the CSV from the cache if the file was already fetched from
  * the server
- * @param {string} TextGroup - Screen for which to load the CSV of
+ * @param {string} [TextGroup] - Screen for which to load the CSV of
  * @returns {void} - Nothing
  */
 function TextLoad(TextGroup) {

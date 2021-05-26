@@ -373,7 +373,7 @@ function LoginQueue(Pos) {
 
 /**
  * Handles player login response data
- * @param {Character | string} C - The Login response data - this will either be the player's character data if the
+ * @param {object | string} C - The Login response data - this will either be the player's character data if the
  * login was successful, or a string error message if the login failed.
  * @returns {void} Nothing
  */

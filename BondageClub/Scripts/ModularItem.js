@@ -667,10 +667,10 @@ function ModularItemGenerateValidationProperties(data) {
  * @property {string} chatMessagePrefix - The dialogue prefix that will be used for each of the item's chatroom
  * messages
  * @property {ModularItemModule[]} modules - The module definitions for the modular item
- * @property {object.<string, number>} pages - A lookup for the current page in the extended item menu for each of the
+ * @property {Record.<string, number>} pages - A lookup for the current page in the extended item menu for each of the
  * item's modules
- * @property {object.<string, function>} drawFunctions - A lookup for the draw functions for each of the item's modules
- * @property {object.<string, function>} clickFunctions - A lookup for the click functions for each of the item's
+ * @property {Record.<string, function>} drawFunctions - A lookup for the draw functions for each of the item's modules
+ * @property {Record.<string, function>} clickFunctions - A lookup for the click functions for each of the item's
  * modules
  *
  * A 3-tuple (or 2-tuple) containing data for drawing a button in a modular item screen. A button definition takes the

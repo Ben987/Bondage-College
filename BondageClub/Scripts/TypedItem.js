@@ -272,7 +272,7 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * @property {ExtendedItemOption[]} options - The list of extended item options available for the item
  * @property {string} key - A key uniquely identifying the asset
  * @property {string} functionPrefix - The common prefix used for all extended item functions associated with the asset
- * @property {object.<string, string>} dialog - A record containing various dialog keys used by the extended item screen
+ * @property {Record.<string, string>} dialog - A record containing various dialog keys used by the extended item screen
  * @property {string} dialog.load - The dialog key for the item's load text (usually a prompt to select the type)
  * @property {string} dialog.typePrefix - The prefix used for dialog keys representing the display names of the item's
  * types

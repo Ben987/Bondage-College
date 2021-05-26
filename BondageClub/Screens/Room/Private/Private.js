@@ -1,6 +1,7 @@
 "use strict";
 var PrivateBackground = "Private";
 var PrivateVendor = null;
+/** @type {Character[]} */
 var PrivateCharacter = [];
 var PrivateCharacterOffset = 0;
 var PrivateCharacterTypeList = ["NPC_Private_VisitorShy", "NPC_Private_VisitorHorny", "NPC_Private_VisitorTough"];

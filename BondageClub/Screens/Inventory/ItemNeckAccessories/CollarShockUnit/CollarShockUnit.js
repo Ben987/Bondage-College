@@ -105,6 +105,9 @@ function AssetsItemNeckAccessoriesCollarShockUnitScriptDraw(data) {
 	}
 }
 
+/**
+ * @returns {[string, number]}
+ */
 function InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data) {
 	var Modifier = parseInt(data.Content.substr(data.Content.length - 1));
 	if (isNaN(Modifier)) Modifier = 0;

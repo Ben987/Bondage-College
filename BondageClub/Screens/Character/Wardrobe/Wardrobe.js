@@ -177,12 +177,8 @@ function WardrobeSetCharacterName(W, Name, Push) {
 
 /**
  * Reduces a given asset to the attributes needed for the wardrobe
- * @param {Asset} A - The asset that should be reduced
- * @returns {Object} - bundle. The bundled asset
- * @returns {string} - bundle.Name - The name of the asset in the bundle
- * @returns {string} - bundle.Group - The name of the asste group, the bundled asset belongs to
- * @returns {string} - bundle.Color - The string representation of the color in the format "#rrggbb"
- * @returns {Object} - bundle.Property - The asset property object
+ * @param {Item} A - The asset that should be reduced
+ * @returns {ItemBundle} - The bundled asset
  */
 function WardrobeAssetBundle(A) {
 	let Property;

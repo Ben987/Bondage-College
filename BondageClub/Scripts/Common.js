@@ -1,6 +1,8 @@
 // Main variables
 "use strict";
+/** @type {PlayerCharacter} */
 var Player;
+/** @type {number|string} */
 var KeyPress = "";
 var CurrentModule;
 var CurrentScreen;
@@ -85,7 +87,7 @@ function CommonGetFormatDate() {
 	var hh = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
 	var min = d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
 	var ss = d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds();
-	return "".concat(yyyy).concat("-").concat(mm).concat("-").concat(dd).concat(" ").concat(hh).concat(":").concat(min).concat(":").concat(ss);
+	return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
 }
 
 /**
@@ -341,7 +343,7 @@ function CommonDynamicFunctionParams(FunctionName) {
  *  passed directly into the function call, allowing for more complex JS objects to be passed in. This
  *  function will not log to console if the provided function name does not exist as a global function.
  * @param {string} FunctionName - The name of the global function to call
- * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @param {any[]} [args] - zero or more arguments to be passed to the function (optional)
  * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
  */
 function CommonCallFunctionByName(FunctionName/*, ...args */) {
@@ -355,7 +357,7 @@ function CommonCallFunctionByName(FunctionName/*, ...args */) {
 /**
  * Behaves exactly like CommonCallFunctionByName, but logs a warning if the function name is invalid.
  * @param {string} FunctionName - The name of the global function to call
- * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @param {any[]} [args] - zero or more arguments to be passed to the function (optional)
  * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
  */
 function CommonCallFunctionByNameWarn(FunctionName/*, ...args */) {
@@ -635,7 +637,7 @@ function CommonTakePhoto(Left, Top, Width, Height) {
 	DrawProcess();
 
 	// Capture screen as image URL
-	const ImgData = document.getElementById("MainCanvas").getContext('2d').getImageData(Left, Top, Width, Height);
+	const ImgData = /** @type {HTMLCanvasElement} */ (document.getElementById("MainCanvas")).getContext('2d').getImageData(Left, Top, Width, Height);
 	let PhotoCanvas = document.createElement('canvas');
 	PhotoCanvas.width = Width;
 	PhotoCanvas.height = Height;
@@ -655,6 +657,7 @@ function CommonTakePhoto(Left, Top, Width, Height) {
  * @returns { { [group: string]: { [name: string]: string[] } } } Output in object foramat
  */
 function CommonPackItemArray(arr) {
+	/** @type { Record<string, Record<string, string[]>> } */
 	const res = {};
 	for (const I of arr) {
 		let G = res[I.Group];

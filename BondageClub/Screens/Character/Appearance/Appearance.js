@@ -160,10 +160,10 @@ function CharacterAppearanceMustHide(C, GroupName) {
 /**
  * Sets a full random set of items for a character. Only items that do not have the "Random" property set to false will be used.
  * @param {Character} C - The character to dress
- * @param {boolean} ClothOnly - Defines, if only clothes should be used
+ * @param {boolean} [ClothOnly=false] - Defines, if only clothes should be used
  * @returns {void} - Nothing
  */
-function CharacterAppearanceFullRandom(C, ClothOnly) {
+function CharacterAppearanceFullRandom(C, ClothOnly=false) {
 
 	// Clear the current appearance
 	for (let A = C.Appearance.length - 1; A >= 0; A--)
@@ -198,6 +198,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 			// Picks a random item and color and add it
 			if (R.length > 0) {
 				var SelectedAsset = InventoryGetRandom(C, AssetGroup[A].Name, R);
+				/** @type {string|string[]} */
 				var SelectedColor = SelectedAsset.Group.ColorSchema[Math.floor(Math.random() * SelectedAsset.Group.ColorSchema.length)];
 				if ((SelectedAsset.Group.ColorSchema[0] == "Default") && (Math.random() < 0.5)) SelectedColor = "Default";
 				if (SelectedAsset.Group.InheritColor != null) SelectedColor = "Default";
@@ -210,6 +211,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 						if (C.Appearance[A].Asset.Group.Name == "Eyes")
 							SelectedColor = C.Appearance[A].Color;
 				if (SelectedColor == "Default" && SelectedAsset.DefaultColor != null) SelectedColor = SelectedAsset.DefaultColor;
+				/** @type {Item} */
 				var NA = {
 					Asset: SelectedAsset,
 					Color: SelectedColor
@@ -644,7 +646,7 @@ function AppearanceRun() {
 					() => WardrobeGroupAccessible(C, AssetGroup[A]) ? CharacterAppearanceNextItem(C, AssetGroup[A].Name, true, true) : "",
 					!WardrobeGroupAccessible(C, AssetGroup[A]),
 					AssetGroup[A].AllowNone || AppearancePreviewUseCharacter(AssetGroup[A]) ? 65 : null);
-				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
+				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color");
 				const ColorButtonText = ItemColorGetColorButtonText(Color);
 				const ColorButtonColor = ColorButtonText.startsWith("#") ? ColorButtonText : "#fff";
 				const CanCycleColors = !!Item && WardrobeGroupAccessible(C, AssetGroup[A]) && (Item.Asset.ColorableLayerCount > 0 || Item.Asset.Group.ColorSchema.length > 1) && !InventoryBlockedOrLimited(C, Item);
@@ -808,11 +810,11 @@ function AppearancePreviewUseCharacter(assetGroup) {
  * Sets an item in the character appearance
  * @param {Character} C - The character whose appearance should be changed
  * @param {string} Group - The name of the corresponding groupr for the item
- * @param {Asset} ItemAsset - The asset collection of the item to be changed
- * @param {string} NewColor - The new color (as "#xxyyzz" hex value) for that item
- * @param {number} DifficultyFactor - The difficulty factor of the ne item
- * @param {number} ItemMemberNumber - The member number of the player adding the item - defaults to -1
- * @param {boolean} Refresh - Determines, wether the character should be redrawn after the item change
+ * @param {Asset|null} ItemAsset - The asset collection of the item to be changed
+ * @param {string|string[]} [NewColor] - The new color (as "#xxyyzz" hex value) for that item
+ * @param {number} [DifficultyFactor=0] - The difficulty factor of the ne item
+ * @param {number} [ItemMemberNumber=-1] - The member number of the player adding the item - defaults to -1
+ * @param {boolean} [Refresh=true] - Determines, wether the character should be redrawn after the item change
  * @returns {void} - Nothing
  */
 function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor, ItemMemberNumber, Refresh) {
@@ -833,6 +835,7 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 
 	// Add the new item to the character appearance
 	if (ItemAsset != null) {
+		/** @type {Item} */
 		var NA = {
 			Asset: ItemAsset,
 			Difficulty: parseInt((ItemAsset.Difficulty == null) ? 0 : ItemAsset.Difficulty) + parseInt(DifficultyFactor),

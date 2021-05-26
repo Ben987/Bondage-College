@@ -189,10 +189,10 @@ function AssetBuildExtended(A, ExtendedConfig) {
 	if (AssetConfig) {
 		switch (AssetConfig.Archetype) {
 			case ExtendedArchetype.MODULAR:
-				ModularItemRegister(A, AssetConfig.Config);
+				ModularItemRegister(A, /** @type {ModularItemConfig} */ (AssetConfig.Config));
 				break;
 			case ExtendedArchetype.TYPED:
-				TypedItemRegister(A, AssetConfig.Config);
+				TypedItemRegister(A, /** @type {TypedItemConfig} */ (AssetConfig.Config));
 				break;
 		}
 		A.Archetype = AssetConfig.Archetype;
@@ -447,7 +447,13 @@ function AssetLoadAll() {
 	Pose = PoseFemale3DCG;
 }
 
-// Gets a specific asset by family/group/name
+/**
+ * Gets a specific asset by family/group/name
+ * @param {string} Family - The family to search in
+ * @param {string} Group - Name of the group of the searched asset
+ * @param {string} Name - Name of the searched asset
+ * @returns {Asset|null}
+ */
 function AssetGet(Family, Group, Name) {
 	for (let A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == Name) && (Asset[A].Group.Name == Group) && (Asset[A].Group.Family == Family))
@@ -455,7 +461,12 @@ function AssetGet(Family, Group, Name) {
 	return null;
 }
 
-// Gets an activity asset by family and name
+/**
+ * Gets an activity asset by family and name
+ * @param {string} Family - The family to search in
+ * @param {string} Name - Name of activity to search for
+ * @returns {Activity|null}
+ */
 function AssetGetActivity(Family, Name) {
 	if (Family == "Female3DCG")
 		for (let A = 0; A < ActivityFemale3DCG.length; A++)

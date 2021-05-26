@@ -182,7 +182,7 @@ function VibratorModeDrawHeader() {
 /**
  * Common draw function for drawing the control sets of the extended item menu screen for a vibrator
  * @param {VibratorModeSet[]} Options - The vibrator mode sets to draw for the item
- * @param {number} Y - The y-coordinate at which to start drawing the controls
+ * @param {number} [Y] - The y-coordinate at which to start drawing the controls
  * @returns {void} - Nothing
  */
 function VibratorModeDrawControls(Options, Y) {
@@ -552,7 +552,7 @@ function VibratorModeStateUpdateRest(C, Arousal, TimeSinceLastChange, OldIntensi
 /**
  * Correctly sets the Property on a vibrator according to the new property. This function preserves persistent effects on the item like lock
  * effects.
- * @param {Item[]} Item - The item on which to set the new properties
+ * @param {Item} Item - The item on which to set the new properties
  * @param {object} Property - The new properties to set. The Property object may include dynamic setter functions
  * @returns {void} - Nothing
  */

@@ -8,7 +8,7 @@ let TempCanvas;
 let ColorCanvas;
 /** @type {CanvasRenderingContext2D} */
 let CharacterCanvas;
-/** @type {Map<string, () => {}>} */
+/** @type {Map<string, () => void>} */
 const DrawRunMap = new Map();
 let DrawRun = () => { };
 /** @type {string} */
@@ -67,7 +67,7 @@ function DrawRGBToHex(color) {
 function DrawLoad() {
 
 	// Creates the objects used in the game
-	MainCanvas = document.getElementById("MainCanvas").getContext("2d");
+	MainCanvas = /** @type {HTMLCanvasElement} */ (document.getElementById("MainCanvas")).getContext("2d");
 	TempCanvas = document.createElement("canvas").getContext("2d");
 	ColorCanvas = document.createElement("canvas").getContext("2d");
 	CharacterCanvas = document.createElement("canvas").getContext("2d");
@@ -237,7 +237,8 @@ function DrawArousalMeter(C, X, Y, Zoom) {
  * @param {number} X - Position of the character on the X axis
  * @param {number} Y - Position of the character on the Y axis
  * @param {number} Zoom - Zoom factor
- * @param {boolean} IsHeightResizeAllowed - Whether or not the settings allow for the height modifier to be applied
+ * @param {boolean} [IsHeightResizeAllowed=true] - Whether or not the settings allow for the height modifier to be applied
+ * @param {CanvasRenderingContext2D} [DrawCanvas] - The canvas to draw to; If undefined `MainCanvas` is used
  * @returns {void} - Nothing
  */
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
@@ -427,6 +428,7 @@ function DrawAlpha(Canvas, Alpha) {
  * @returns {boolean} - whether the image was complete or not
  */
 function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height, Invert) {
+	/** @type {CanvasImageSource} */
 	let Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
@@ -458,14 +460,16 @@ function DrawImageResize(Source, X, Y, Width, Height) {
  * @param {CanvasRenderingContext2D} Canvas - Canvas on which to draw the image
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
- * @param {number[][]} AlphaMasks - A list of alpha masks to apply to the asset
- * @param {number} Opacity - The opacity at which to draw the image
+ * @param {number[][]} [AlphaMasks] - A list of alpha masks to apply to the asset
+ * @param {number} [Opacity=1] - The opacity at which to draw the image
+ * @param {boolean} [Rotate=false] - If the image should be rotated by 180 degress
  * @returns {boolean} - whether the image was complete or not
  */
 function DrawImageCanvas(Source, Canvas, X, Y, AlphaMasks, Opacity, Rotate) {
 	const Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
+	/** @type {CanvasImageSource} */
 	let SourceImage = Img;
 	if ((AlphaMasks && AlphaMasks.length) || Rotate) {
 		TempCanvas.canvas.width = Img.width;
@@ -554,6 +558,7 @@ function DrawImageZoomMirror(Source, X, Y, Width, Height) {
  * @returns {boolean} - whether the image was complete or not
  */
 function DrawImage(Source, X, Y, Invert) {
+	/** @type {CanvasImageSource} */
 	let Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
@@ -572,7 +577,8 @@ function DrawImage(Source, X, Y, Invert) {
  * @param {string} HexColor - Color of the image to draw
  * @param {boolean} FullAlpha - Whether or not it is drawn in full alpha mode
  * @param {number[][]} AlphaMasks - A list of alpha masks to apply to the asset
- * @param {number} Opacity - The opacity at which to draw the image
+ * @param {number} [Opacity=1] - The opacity at which to draw the image
+ * @param {boolean} [Rotate=false] - If the image should be rotated by 180 degress
  * @returns {boolean} - whether the image was complete or not
  */
 function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha, AlphaMasks, Opacity, Rotate) {
@@ -714,8 +720,8 @@ function GetWrapTextSize(Text, Width, MaxLine) {
  * @param {number} Width - Width of the rectangle
  * @param {number} Height - Height of the rectangle
  * @param {string} ForeColor - Foreground color
- * @param {string} BackColor - Background color
- * @param {number} MaxLine - Maximum of lines the word can wrap for
+ * @param {string} [BackColor] - Background color
+ * @param {number} [MaxLine] - Maximum of lines the word can wrap for
  * @returns {void} - Nothing
  */
 function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) {
@@ -834,7 +840,7 @@ function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
  * @param {number} X - Position of the text on the X axis
  * @param {number} Y - Position of the text on the Y axis
  * @param {string} Color - Color of the text
- * @param {string} BackColor - Color of the background
+ * @param {string} [BackColor] - Color of the background
  * @returns {void} - Nothing
  */
 function DrawText(Text, X, Y, Color, BackColor) {
@@ -921,7 +927,7 @@ function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked, Disabled = fals
  * @param {() => string} [BackText] - Text for the back button tooltip
  * @param {() => string} [NextText] - Text for the next button tooltip
  * @param {boolean} [Disabled] - Disables the hovering options if set to true
- * @param {number} ArrowWidth - How much of the button the previous/next sections cover. By default, half each.
+ * @param {number} [ArrowWidth] - How much of the button the previous/next sections cover. By default, half each.
  * @returns {void} - Nothing
  */
 function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText, Disabled, ArrowWidth) {
@@ -1064,8 +1070,8 @@ function DrawRect(Left, Top, Width, Height, Color) {
  * @param {number} Radius - Radius of the circle to draw
  * @param {number} LineWidth - Width of the line
  * @param {string} LineColor - Color of the circle's line
- * @param {string} FillColor - Color of the space inside the circle
- * @param {HTMLCanvasElement} Canvas - The canvas element to draw onto, defaults to MainCanvas
+ * @param {string} [FillColor] - Color of the space inside the circle
+ * @param {CanvasRenderingContext2D} [Canvas] - The canvas element to draw onto, defaults to MainCanvas
  * @returns {void} - Nothing
  */
 function DrawCircle(CenterX, CenterY, Radius, LineWidth, LineColor, FillColor, Canvas) {

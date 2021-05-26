@@ -307,7 +307,7 @@ function PreferenceInitPlayer() {
 	if (typeof C.ChatSettings.WhiteSpace !== "string") C.ChatSettings.WhiteSpace = "Preserve";
 	if (typeof C.ChatSettings.ColorActivities !== "boolean") C.ChatSettings.ColorActivities = true;
 	if (typeof C.ChatSettings.ShrinkNonDialogue !== "boolean") C.ChatSettings.ShrinkNonDialogue = false;
-	
+
 
 	// Visual settings
 	if (!C.VisualSettings) C.VisualSettings = {};
@@ -507,7 +507,7 @@ function PreferenceInitPlayer() {
  * Initialise the Notifications settings, converting the old boolean types to objects
  * @param {object} setting - The old version of the setting
  * @param {NotificationAudioType} audio - The audio setting
- * @param {NotificationAlertType} defaultAlertType - The default AlertType to use
+ * @param {NotificationAlertType} [defaultAlertType] - The default AlertType to use
  * @returns {NotificationSetting} - The setting to use
  */
 function PreferenceInitNotificationSetting(setting, audio, defaultAlertType) {
