@@ -2085,3 +2085,16 @@ ItemArmsSuspensionHempRopeConfirm,,,Confirm,,
 ItemArmsSuspensionHempRopeChange,,,SourceCharacter puts TargetCharacter in a suspended hogtie.,,
 ItemArmsSuspensionHempRopeChangeRaise,,,SourceCharacter raises DestinationCharacter suspended hogtie.,,
 ItemArmsSuspensionHempRopeChangeLower,,,SourceCharacter lowers DestinationCharacter suspended hogtie.,,
+ItemPelvisSilkStrapsSelect,,,Select silk bondage.,,
+ItemPelvisSilkStrapsCrotch,,,Crotch Strap,,
+ItemPelvisSilkStrapsOverPanties,,,Crotch Strap (Over Panties),,
+ItemPelvisSilkStrapsSwissSeat,,,Swiss Seat,,
+ItemPelvisSilkStrapsKikkouHip,,,Kikkou Hip,,
+ItemPelvisSilkStrapsSetCrotch,,,SourceCharacter uses the silk on DestinationCharacter to create a crotch strap.,,
+ItemPelvisSilkStrapsSetOverPanties,,,SourceCharacter uses the silk on DestinationCharacter to create a crotch strap over her panties.,,
+ItemPelvisSilkStrapsSetSwissSeat,,,SourceCharacter uses the silk on DestinationCharacter to create a swiss seat pattern.
+ItemPelvisSilkStrapsSetKikkouHip,,,SourceCharacter uses the silk on DestinationCharacter to create a kikkou hip pattern.
+
+
+
+

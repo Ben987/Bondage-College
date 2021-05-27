@@ -843,6 +843,30 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // WoodenMaidTray
 	}, // ItemMisc
+	ItemPelvis: {
+		SilkStraps: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{ Name: "Crotch",
+				Property: { Type: null }
+					},
+
+					{ Name: "OverPanties",
+				Property: { Type: "OverPanties", OverridePriority: 21 }
+			},
+			{ Name: "SwissSeat",
+			Property: { Type: "SwissSeat" }
+				},
+
+				{ Name: "KikkouHip",
+			Property: { Type: "KikkouHip" }
+				},
+
+				]				
+			},
+		}, // SilkStraps
+	}, // ItemPelvis
 };
 
 /**
