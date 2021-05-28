@@ -2092,8 +2092,16 @@ ItemPelvisSilkStrapsSwissSeat,,,Swiss Seat,,
 ItemPelvisSilkStrapsKikkouHip,,,Kikkou Hip,,
 ItemPelvisSilkStrapsSetCrotch,,,SourceCharacter uses the silk on DestinationCharacter to create a crotch strap.,,
 ItemPelvisSilkStrapsSetOverPanties,,,SourceCharacter uses the silk on DestinationCharacter to create a crotch strap over her panties.,,
-ItemPelvisSilkStrapsSetSwissSeat,,,SourceCharacter uses the silk on DestinationCharacter to create a swiss seat pattern.
-ItemPelvisSilkStrapsSetKikkouHip,,,SourceCharacter uses the silk on DestinationCharacter to create a kikkou hip pattern.
+ItemPelvisSilkStrapsSetSwissSeat,,,SourceCharacter uses the silk on DestinationCharacter to create a swiss seat pattern.,,
+ItemPelvisSilkStrapsSetKikkouHip,,,SourceCharacter uses the silk on DestinationCharacter to create a kikkou hip pattern.,,
+BraSilkStrapsSelect,,,Select silk clothing.,,
+BraSilkStrapsStrip,,,Single Strip,,
+BraSilkStrapsWrap,,,Wrap,,
+BraSilkStrapsBra1,,,Bra,,
+BraSilkStrapsBra2,,,Strapless Bra,,
+BraSilkStrapsSwimsuit,,,Skimpy Swimsuit,,
+
+
 
 
 
