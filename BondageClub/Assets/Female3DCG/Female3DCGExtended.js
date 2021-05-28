@@ -881,7 +881,21 @@ var AssetFemale3DCGExtended = {
 			}
 		}, // SilkStraps
 	}, // Bra
+	Panties: {
+		SilkStraps: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{ Name: "Strips", Property: { Type: null } },
+					{ Name: "Wrap", Property: { Type: "Wrap" } },
+					{ Name: "Thong", Property: { Type: "Thong" } },
+					{ Name: "Panties1", Property: { Type: "Panties1" } },
+				]				
+			},
+		}, // SilkStraps
+	}, // Panties
 };
+
 
 /**
  *
