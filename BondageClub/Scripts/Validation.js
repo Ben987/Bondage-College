@@ -260,7 +260,7 @@ function ValidationItemWarningMessage(item, { C, sourceMemberNumber }) {
  * parameters.
  * @param {Item} lock - The lock object that is being checked, as returned by {@link InventoryGetLock}
  * @param {AppearanceUpdateParameters} params - The appearance update parameters that apply to the diff
- * @param {boolean} remove - Whether the lock change is a removal
+ * @param {boolean} [remove] - Whether the lock change is a removal
  * @returns {boolean} - TRUE if the lock can be modified, FALSE otherwise
  */
 function ValidationIsLockChangePermitted(lock, { C, fromOwner, fromLover }, remove) {
@@ -364,7 +364,7 @@ function ValidationCanAddItem(newItem, params) {
  * @param sourceMemberNumber - The member number of the source character
  * @param {string} groupName - The name of the asset group for the intended item
  * @param {string} assetName - The asset name of the intended item
- * @param {string|null} type - The type of the intended item
+ * @param {string|null} [type] - The type of the intended item
  * @returns {boolean} - TRUE if the character with the provided source member number is _not_ allowed to equip the
  * described asset on the target character, FALSE otherwise.
  */

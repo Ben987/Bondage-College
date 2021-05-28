@@ -2,7 +2,7 @@
  * A map containing appearance item diffs, keyed according to the item group. Used to compare and validate before/after
  * for appearance items.
  * @typedef AppearanceDiffMap
- * @type {object.<string, Item[]>}
+ * @type {Record.<string, Item[]>}
  */
 
 "use strict";
@@ -55,7 +55,7 @@ function ServerInit() {
 /**
  * Sets the connection status of the server and updates the login page message
  * @param {boolean} connected - whether or not the websocket connection to the server has been established successfully
- * @param {string} errorMessage - the error message to display if not connected
+ * @param {string} [errorMessage] - the error message to display if not connected
  */
 function ServerSetConnected(connected, errorMessage) {
 	ServerIsConnected = connected;
@@ -289,12 +289,12 @@ function ServerAppearanceBundle(Appearance) {
  * @param {Character} C - Character for which to load the appearance
  * @param {string} AssetFamily - Family of assets used for the appearance array
  * @param {AppearanceBundle} Bundle - Bundled appearance
- * @param {number} SourceMemberNumber - Member number of the user who triggered the change
- * @param {boolean} AppearanceFull - Whether or not the appearance should be assigned to an NPC's AppearanceFull
+ * @param {number} [SourceMemberNumber] - Member number of the user who triggered the change
+ * @param {boolean} [AppearanceFull=false] - Whether or not the appearance should be assigned to an NPC's AppearanceFull
  * property
  * @returns {boolean} - Whether or not the appearance bundle update contained invalid items
  */
-function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber, AppearanceFull) {
+function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber, AppearanceFull=false) {
 	const appearanceDiffs = ServerBuildAppearanceDiff(AssetFamily, C.Appearance, Bundle);
 	ServerAddRequiredAppearance(AssetFamily, appearanceDiffs);
 
@@ -333,6 +333,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
  * appearance
  */
 function ServerBuildAppearanceDiff(assetFamily, appearance, bundle) {
+	/** @type {AppearanceDiffMap} */
 	const diffMap = {};
 	appearance.forEach((item) => {
 		diffMap[item.Asset.Group.Name] = [item, null];

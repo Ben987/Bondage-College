@@ -1,3 +1,10 @@
+// polyfill
+interface String {
+	replaceAt(index: number, character: string): string;
+}
+
+declare function parseInt(s: string|number, radix?: number): number;
+
 type IAssetFamily = "Female3DCG";
 
 interface AssetGroup {
@@ -85,7 +92,7 @@ interface AssetLayer {
 	/** The coloring index for this layer */
 	ColorIndex: number;
 	/** Any group-specific alpha masks that should be applied when drawing the layer. Only available on layers that have
-    been created prior to drawing */
+	been created prior to drawing */
 	GroupAlpha?: AlphaDefinition[];
 }
 
@@ -179,14 +186,14 @@ interface Asset {
 	BodyCosplay: boolean;
 	OverrideBlinking: boolean;
 	DialogSortOverride?: number;
-	DynamicDescription: () => string;
-	DynamicPreviewIcon: () => string;
-	DynamicAllowInventoryAdd: () => boolean;
-	DynamicExpressionTrigger: () => ExpressionTrigger;
+	DynamicDescription: (C: Character) => string;
+	DynamicPreviewIcon: (C: Character) => string;
+	DynamicAllowInventoryAdd: (C: Character) => boolean;
+	DynamicExpressionTrigger: (C: Character) => ExpressionTrigger;
 	DynamicName: (C?: Character) => string;
 	DynamicGroupName: string;
 	DynamicActivity: () => string[] | string | undefined;
-	DynamicAudio: (() => string) | null;
+	DynamicAudio: ((C: Character) => string) | null;
 	CharacterRestricted: boolean;
 	AllowRemoveExclusive: boolean;
 	InheritColor?: string;
@@ -229,6 +236,14 @@ interface Pose {
 	MovePosition?: { Group: string; X: number; Y: number; }[];
 }
 
+interface Activity {
+	Name: string;
+	MaxProgress: number;
+	Prerequisite: string[];
+	TargetSelf?: string[];
+	MakeSound?: boolean;
+}
+
 /** An item is a pair of asset and its dynamic properties that define a worn asset. */
 interface Item {
 	Asset: Asset;
@@ -264,8 +279,10 @@ interface Lovership {
 
 interface Character {
 	ID: number;
+	/** Only on `Player` */
+	OnlineID?: string;
 	Name: string;
-	AssetFamily: IAssetFamily;
+	AssetFamily: IAssetFamily | string;
 	AccountName: string;
 	Owner: string;
 	Lover: string;
@@ -339,7 +356,176 @@ interface Character {
 	IsInverted: () => boolean;
 	CanChangeToPose: (Pose: string) => boolean;
 	GetClumsiness: () => number;
-    DrawPose?: string[];
-    DrawAppearance?: Item[];
-    AppearanceLayers?: AssetLayer[];
+	DrawPose?: string[];
+	DrawAppearance?: Item[];
+	AppearanceLayers?: AssetLayer[];
+	Hooks: Map<string, Map<string, any>>|null;
+	RegisterHook: (hookName: string, hookInstance: string, callback: any) => boolean|any;
+	UnregisterHook: (hookName: string, hookInstance: string) => boolean;
+	HeightRatioProportion?: number;
+	// Properties created in other places
+	ArousalSettings?: {
+		Active: string;
+		Visible: string;
+		ShowOtherMeter: boolean;
+		AffectExpression: boolean;
+		AffectStutter: string;
+		VFX: string;
+		Progress: number;
+		ProgressTimer: number;
+		VibratorLevel: number;
+		ChangeTime: number;
+		Activity: any[];
+		Zone: any[];
+		Fetish: any[];
+		OrgasmTimer?: number;
+		OrgasmStage?: number;
+		OrgasmCount?: number;
+	};
+	AppearanceFull?: Item[];
+	Trait?: any[];
+	Event?: any[];
+	// Online character properties
+	Title?: string;
+	ActivePose?: any;
+	LabelColor?: any;
+	Creation?: any;
+	Description?: any;
+	OnlineSharedSettings?: {
+		AllowFullWardrobeAccess: boolean;
+		BlockBodyCosplay: boolean;
+		AllowPlayerLeashing: boolean;
+		DisablePickingLocksOnSelf: boolean;
+		GameVersion: string;
+	};
+	Game?: any;
+	BlackList?: number[];
+	RunScripts?: boolean;
+	HasScriptedAssets?: boolean;
+	Cage?: true | null;
+	Love?: number;
+	Difficulty?: {
+		Level: number;
+	};
+	ArousalZoom?: boolean;
+	FixedImage?: string;
+}
+
+interface PlayerCharacter extends Character {
+	ChatSettings?: {
+		DisplayTimestamps: boolean;
+		ColorNames: boolean;
+		ColorActions: boolean;
+		ColorEmotes: boolean;
+		ShowActivities: boolean;
+		ShowAutomaticMessages: boolean;
+		WhiteSpace: string;
+		ColorActivities: boolean;
+		ShrinkNonDialogue: boolean;
+	};
+	VisualSettings?: {
+		ForceFullHeight: boolean;
+	};
+	AudioSettings?: {
+		Volume: number;
+		PlayBeeps: boolean;
+		PlayItem: boolean;
+		PlayItemPlayerOnly: boolean;
+		Notifications: boolean;
+	};
+	ControllerSettings?: {
+		ControllerSensitivity: number;
+		ControllerDeadZone: number;
+		ControllerA: number;
+		ControllerB: number;
+		ControllerX: number;
+		ControllerY: number;
+		ControllerStickUpDown: number;
+		ControllerStickLeftRight: number;
+		ControllerStickRight: number;
+		ControllerStickDown: number;
+		ControllerDPadUp: number;
+		ControllerDPadDown: number;
+		ControllerDPadLeft: number;
+		ControllerDPadRight: number;
+		ControllerActive: boolean;
+	};
+	GameplaySettings?: {
+		SensDepChatLog: string;
+		BlindDisableExamine: boolean;
+		DisableAutoRemoveLogin: boolean;
+		ImmersionLockSetting: boolean;
+		EnableSafeword: boolean;
+		DisableAutoMaid: boolean;
+		OfflineLockedRestrained: boolean;
+	};
+	ImmersionSettings?: {
+		BlockGaggedOOC: boolean;
+		StimulationEvents: boolean;
+		ReturnToChatRoom: boolean;
+		ReturnToChatRoomAdmin: boolean;
+		SenseDepMessages: boolean;
+		ChatRoomMuffle: boolean;
+	};
+	LastChatRoom?: string;
+	LastChatRoomBG?: string;
+	LastChatRoomPrivate?: boolean;
+	LastChatRoomSize?: number;
+	LastChatRoomDesc?: string;
+	LastChatRoomAdmin?: any[];
+	LastChatRoomTimer?: any;
+	RestrictionSettings?: {
+		BypassStruggle: boolean;
+		SlowImmunity: boolean;
+		BypassNPCPunishments: boolean;
+	};
+	OnlineSettings?: {
+		AutoBanBlackList: boolean;
+		AutoBanGhostList: boolean;
+		DisableAnimations: boolean;
+		SearchShowsFullRooms: boolean;
+		SearchFriendsFirst: boolean;
+		EnableAfkTimer: boolean;
+		EnableWardrobeIcon: boolean;
+	};
+	GraphicsSettings?: {
+		Font: string;
+		InvertRoom: boolean;
+		StimulationFlashes: boolean;
+		DoBlindFlash: boolean;
+	}
+	NotificationSettings?: {
+		/** @deprecated */
+		Audio?: boolean;
+		Beeps: NotificationSetting;
+		/** @deprecated */
+		Chat?: any;
+		ChatMessage: NotificationSetting & {
+			/** @deprecated */
+			IncludeActions?: any;
+			Normal?: boolean;
+			Whisper?: boolean;
+			Activity?: boolean;
+		};
+		/** @deprecated */
+		ChatActions?: any;
+		ChatJoin: NotificationSetting & {
+			/** @deprecated */
+			Enabled?: any;
+			Owner?: boolean;
+			Lovers?: boolean;
+			Friendlist?: boolean;
+			Subs?: boolean;
+		};
+		Disconnect: NotificationSetting;
+		Larp: NotificationSetting;
+		Test: NotificationSetting;
+	};
+	GhostList?: number[];
+	Wardrobe?: any[][];
+	WardrobeCharacterNames?: string[];
+	SavedExpressions?: any[];
+	FriendList?: number[];
+	FriendNames?: Map<number, string>;
+	SubmissivesList?: Set<number>
 }

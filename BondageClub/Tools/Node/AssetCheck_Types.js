@@ -175,6 +175,8 @@ const AssetExtendedConfigType = {
 	Dialog: "Maybe Object",
 	ChatTags: "Maybe [String]",
 	DrawImages: "Maybe Boolean",
+	ChangeWhenLocked: "Maybe Boolean",
+	// Validate: "Maybe Function",
 };
 
 module.exports = { AssetGroupType, AssetType, AssetLayerType, AssetExtendedArchetypeType, AssetExtendedConfigType };

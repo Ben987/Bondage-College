@@ -10,6 +10,14 @@
  * @property {number} [BondageLevel] - The required bondage skill level for this type (optional)
  * @property {number} [SelfBondageLevel] - The required self-bondage skill level for this type when using it on
  * yourself (optional)
+ * @property {string[]} [Prerequisite] - The required prerequisites that must be met before this option can be selected
+ * @property {boolean} [SelfBlockCheck] - Whether or not prerequisites should be considered on the character's
+ * appearance without the item equipped. Should be set to true if the item itself might interfere with prerequisites on
+ * some of its options
+ * @property {boolean} [ChangeWhenLocked] - Whether or not it should be possible to change from this option to another
+ * option while the item is locked (if set to false, the player must be able to unlock the item to change its type) -
+ * defaults to true
+ * @property {boolean} [HasSubscreen] - Whether or not the option should open a subscreen in the extended item menu
  * @property {Property} Property - The Property object to be applied when this option is used
  */
 
@@ -76,8 +84,9 @@ const ExtendedItemRequirementCheckMessageMemo = CommonMemoize(ExtendedItemRequir
 var ExtendedItemPermissionMode = false;
 
 /**
- * Tracks whether a selected option's subscreen is active
- * @type {boolean}
+ * Tracks whether a selected option's subscreen is active - if active, the value is the name of the current subscreen's
+ * corresponding option
+ * @type {string}
  */
 var ExtendedItemSubscreen = null;
 
@@ -146,6 +155,8 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 	DrawAssetPreview(1387, 55, Asset);
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 
+	const CurrentOption = Options.find(O => O.Property.Type === DialogFocusItem.Property.Type);
+
 	// Draw the possible variants and their requirements, arranged based on the number per page
 	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
 		const PageOffset = I - ItemOptionsOffset;
@@ -155,7 +166,7 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 		const Option = Options[I];
 		const Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
 		const IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
-		const ButtonColor = ExtendedItemGetButtonColor(C, Option, Hover, IsSelected);
+		const ButtonColor = ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected);
 
 		DrawButton(X, Y, 225, 55 + ImageHeight, "", ButtonColor, null, null, IsSelected);
 		if (ShowImages) DrawImage(`${AssetGetInventoryPath(Asset)}/${Option.Name}.png`, X + 2, Y);
@@ -173,16 +184,21 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
  * Determine the background color for the item option's button
  * @param {Character} C - The character wearing the item
  * @param {ExtendedItemOption} Option - A type for the extended item
+ * @param {ExtendedItemOption} CurrentOption - The currently selected option for the item
  * @param {boolean} Hover - TRUE if the mouse cursor is on the button
  * @param {boolean} IsSelected - TRUE if the item's current type matches Option
  * @returns {string} The name or hex code of the color
  */
-function ExtendedItemGetButtonColor(C, Option, Hover, IsSelected) {
+function ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected) {
 	const IsSelfBondage = C.ID === 0;
-	const FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, IsSelfBondage);
+	const FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, CurrentOption, IsSelfBondage);
 	const BlockedOrLimited = InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type);
-	const PlayerBlocked = InventoryIsPermissionBlocked(Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
-	const PlayerLimited = InventoryIsPermissionLimited(Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
+	const PlayerBlocked = InventoryIsPermissionBlocked(
+		Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName,
+		Option.Property.Type,
+	);
+	const PlayerLimited = InventoryIsPermissionLimited(
+		Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
 	let ButtonColor;
 	if (ExtendedItemPermissionMode) {
 		if ((IsSelfBondage && IsSelected) || Option.Property.Type == null) {
@@ -367,8 +383,10 @@ function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage) {
 			return;
 		}
 
+		const CurrentType = DialogFocusItem.Property.Type || null;
+		const CurrentOption = Options.find(O => O.Property.Type === CurrentType);
 		// use the unmemoized function to ensure we make a final check to the requirements
-		var RequirementMessage = ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
+		const RequirementMessage = ExtendedItemRequirementCheckMessage(Option, CurrentOption, IsSelfBondage);
 		if (RequirementMessage) {
 			DialogExtendedMessage = RequirementMessage;
 		} else if (Option.HasSubscreen) {
@@ -385,13 +403,13 @@ function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage) {
  * Checks whether the player meets the requirements for an extended type option. This will check against their Bondage
  * skill if applying the item to another character, or their Self Bondage skill if applying the item to themselves.
  * @param {ExtendedItemOption} Option - The selected type definition
+ * @param {ExtendedItemOption} CurrentOption - The current type definition
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
  * @returns {string|null} null if the player meets the option requirements. Otherwise a string message informing them
  * of the requirements they do not meet
  */
-function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
-	var C = CharacterGetCurrent() || CharacterAppearanceSelection;
-	var FunctionPrefix = ExtendedItemFunctionPrefix();
+function ExtendedItemRequirementCheckMessage(Option, CurrentOption, IsSelfBondage) {
+	const C = CharacterGetCurrent() || CharacterAppearanceSelection;
 
 	if (IsSelfBondage) {
 		let RequiredLevel = Option.SelfBondageLevel || Math.max(DialogFocusItem.Asset.SelfBondage, Option.BondageLevel);
@@ -405,21 +423,38 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 		}
 	}
 
-	// An extendable item may provide a validation function. Returning a non-empty string from the validation function will
-	// drop out of this function, and the new type will not be applied.
-	if (typeof window[FunctionPrefix + "Validate"] === "function") {
-		let ValidateResult = CommonCallFunctionByName(FunctionPrefix + "Validate", C, Option);
-		if (ValidateResult != "") {
-			return ValidateResult;
-		}
-	} else if (Option.Prerequisite != null && Option.SelfBlockCheck && !ExtendedItemSelfProofRequirementCheck(C, Option.Prerequisite)) {
+	// An extendable item may provide a validation function. Returning a non-empty string from the validation function
+	// will drop out of this function, and the new type will not be applied.
+	let ValidationMessage = CommonCallFunctionByName(`${ExtendedItemFunctionPrefix()}Validate`, C, Option);
+	if (!ValidationMessage || typeof ValidationMessage !== "string") {
+		ValidationMessage = ExtendedItemValidate(C, Option, CurrentOption);
+	}
+	return ValidationMessage;
+}
+
+/**
+ * Checks whether a change from the given current option to the newly selected option is valid.
+ * @param {Character} C - The character wearing the item
+ * @param {ExtendedItemOption} Option - The selected option
+ * @param {ExtendedItemOption} CurrentOption - The currently applied option on the item
+ * @returns {string} - Returns a non-empty message string if the item failed validation, or an empty string otherwise
+ */
+function ExtendedItemValidate(C, { Prerequisite, SelfBlockCheck, Property }, CurrentOption) {
+	const CurrentProperty = DialogFocusItem && DialogFocusItem.Property;
+	const CurrentLockedBy = CurrentProperty && CurrentProperty.LockedBy;
+
+	if (CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+		// If the option can't be changed when locked, ensure that the player can unlock the item (if it's locked)
+		return DialogFindPlayer("CantChangeWhileLocked");
+	} else if (Prerequisite && SelfBlockCheck && !ExtendedItemSelfProofRequirementCheck(C, Prerequisite)) {
+		// If SelfBlockCheck is required, do a self-proof prerequisite check
 		return DialogText;
-	} else if (Option.Prerequisite != null && !Option.SelfBlockCheck && !InventoryAllow(C, Option.Prerequisite, true)) {
+	} else if (Prerequisite && !SelfBlockCheck && !InventoryAllow(C, Prerequisite, true)) {
 		// Otherwise use the standard prerequisite check
 		return DialogText;
 	} else {
-		const OldEffect= DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Effect;
-		if (OldEffect && OldEffect.includes("Lock") && Option.Property && Option.Property.AllowLock === false) {
+		const OldEffect = CurrentProperty && CurrentProperty.Effect;
+		if (OldEffect && OldEffect.includes("Lock") && Property && Property.AllowLock === false) {
 			DialogExtendedMessage = DialogFindPlayer("ExtendedItemUnlockBeforeChange");
 			return DialogExtendedMessage;
 		}

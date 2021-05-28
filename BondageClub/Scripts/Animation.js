@@ -9,7 +9,7 @@ var AnimationPersistentStorage = {};
 /**
  * Types of dynamic data that can be stored.
  * @constant
- * @enum
+ * @enum {string}
  */
 var AnimationDataTypes = {
 	AssetGroup: "AssetGroup",

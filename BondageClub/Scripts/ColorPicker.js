@@ -52,7 +52,7 @@ function ColorPickerRemoveEventListener() {
 
 /**
  * When the touch/mouse event begins to be registered. On mobile we only fire it once
- * @param {Event} Event - The touch/mouse event
+ * @param {MouseEvent|TouchEvent} Event - The touch/mouse event
  * @returns {void} - Nothing
  */
 function ColorPickerStartPick(Event) {
@@ -102,7 +102,7 @@ function ColorPickerEndPick() {
 
 /**
  * Gets the coordinates of the current event on the canvas
- * @param {Event} Event - The touch/mouse event
+ * @param {MouseEvent|TouchEvent} Event - The touch/mouse event
  * @returns {{X: number, Y: number}} - Coordinates of the click/touch event on the canvas
  */
 function ColorPickerGetCoordinates(Event) {
@@ -120,7 +120,7 @@ function ColorPickerGetCoordinates(Event) {
 
 /**
  * Sets the picked hue based on the Event coordinates on the canvas
- * @param {Event} Event - The touch/mouse event
+ * @param {MouseEvent|TouchEvent} Event - The touch/mouse event
  * @returns {void} - Nothing
  */
 function ColorPickerPickHue(Event) {
@@ -132,7 +132,7 @@ function ColorPickerPickHue(Event) {
 
 /**
  * Sets the picked saturation (SV) based on the Event coordinates on the canvas
- * @param {Event} Event - The touch/mouse event
+ * @param {MouseEvent|TouchEvent} Event - The touch/mouse event
  * @returns {void} - Nothing
  */
 function ColorPickerPickSV(Event) {
@@ -150,7 +150,7 @@ function ColorPickerPickSV(Event) {
 
 /**
  * Sets the picked HSV from the color pallet
- * @param {Event} Event - The touch/mouse event
+ * @param {MouseEvent|TouchEvent} Event - The touch/mouse event
  * @returns {void} - Nothing
  */
 function ColorPickerSelectFromPallete(Event) {

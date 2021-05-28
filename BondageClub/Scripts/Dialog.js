@@ -314,7 +314,7 @@ function DialogPrerequisite(D) {
 	else if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("(") >= 0)
 		return CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Prerequisite);
 	else if (CurrentCharacter.Dialog[D].Prerequisite.substring(0, 1) != "!")
-		return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
+		return !!window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
 	else
 		return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
 }
@@ -1239,7 +1239,6 @@ function DialogItemClick(ClickItem) {
 					} else {
 
 						// The vibrating egg remote can open the vibrating egg's extended dialog
-						var Item = InventoryGet(C, C.FocusGroup.Name);
 						if ((ClickItem.Asset.Name === "VibratorRemote" || ClickItem.Asset.Name === "LoversVibratorRemote") && DialogCanUseRemote(C, CurrentItem)) {
 							DialogExtendItem(InventoryGet(C, C.FocusGroup.Name));
 						}
@@ -1495,7 +1494,7 @@ function DialogSetText(NewText) {
  * Shows the extended item menue for a given item, if possible.
  * Therefore a dynamic function name is created and then called.
  * @param {Item} Item - The item the extended menu should be shown for
- * @param {Item} SourceItem - The source of the extended menu
+ * @param {Item} [SourceItem] - The source of the extended menu
  * @returns {void} - Nothing
  */
 function DialogExtendItem(Item, SourceItem) {
@@ -1598,7 +1597,7 @@ function DialogGetMenuButtonColor(ButtonName) {
 	if (ButtonName.endsWith("Disabled")) {
 		return "#808080";
 	}	else if (ButtonName === "ColorPick") {
-		return DialogColorSelect || "#fff"
+		return DialogColorSelect || "#fff";
 	} else {
 		return "#fff";
 	}
@@ -2045,7 +2044,7 @@ function DialogDrawOwnerRulesMenu() {
  * Sets the skill ratio for the player, will be a % of effectiveness applied to the skill when using it.
  * This way a player can use only a part of her bondage or evasion skill.
  * @param {string} SkillType - The name of the skill to influence
- * @param {strign} NewRatio - The ration of this skill that should be used
+ * @param {string} NewRatio - The ration of this skill that should be used
  * @returns {void} - Nothing
  */
 function DialogSetSkillRatio(SkillType, NewRatio) {

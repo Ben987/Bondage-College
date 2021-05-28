@@ -75,7 +75,7 @@ const ModularItemsPerPage = 8;
 
 /**
  * Memoized requirements check function
- * @type {function(Character, ExtendedItemOption): string}
+ * @type {function(ExtendedItemOption[], ExtendedItemOption, boolean): string}
  */
 const ModularItemRequirementCheckMessageMemo = CommonMemoize(ModularItemRequirementMessageCheck);
 
@@ -149,7 +149,7 @@ function ModularItemCreateClickFunction(data) {
  * @param {ModularItemConfig} config - The item's extended item configuration
  * @returns {ModularItemData} - The generated modular item data for the asset
  */
-function ModularItemCreateModularData(asset, { Modules, ChatSetting }) {
+function ModularItemCreateModularData(asset, { Modules, ChatSetting, ChangeWhenLocked }) {
 	const key = `${asset.Group.Name}${asset.Name}`;
 	const data = ModularItemDataLookup[key] = {
 		asset,
@@ -164,6 +164,7 @@ function ModularItemCreateModularData(asset, { Modules, ChatSetting }) {
 		currentModule: ModularItemBase,
 		pages: { [ModularItemBase]: 0 },
 		drawData: { [ModularItemBase]: ModularItemCreateDrawData(Modules.length) },
+		changeWhenLocked: typeof ChangeWhenLocked === "boolean" ? ChangeWhenLocked : true,
 	};
 	data.drawFunctions = { [ModularItemBase]: ModularItemCreateDrawBaseFunction(data) };
 	data.clickFunctions = { [ModularItemBase]: ModularItemCreateClickBaseFunction(data) };
@@ -213,7 +214,7 @@ function ModularItemCreateDrawData(itemCount) {
 /**
  * Creates a modular item's base draw function (for the module selection screen)
  * @param {ModularItemData} data - The modular item data for the asset
- * @returns {void} - Nothing
+ * @returns {function} - The modular item's base draw function
  */
 function ModularItemCreateDrawBaseFunction(data) {
 	return () => {
@@ -235,13 +236,14 @@ function ModularItemCreateDrawBaseFunction(data) {
  * @param {number} currentOptionIndex - The currently selected option index for the module
  * @returns {ModularItemButtonDefinition} - A button definition array representing the provided option
  */
-function ModularItemMapOptionToButtonDefinition(option, optionIndex, module, { asset, dialogOptionPrefix }, currentOptionIndex) {
+function ModularItemMapOptionToButtonDefinition(option, optionIndex, module,
+	{ asset, dialogOptionPrefix, changeWhenLocked }, currentOptionIndex) {
 	const C = CharacterGetCurrent();
 	const optionName = `${module.Key}${optionIndex}`;
 	let color = "#fff";
+	const currentOption = module.Options[currentOptionIndex];
 	if (currentOptionIndex === optionIndex) color = "#888";
-	// else if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) color = "pink";
-	else if (ModularItemRequirementCheckMessageMemo(option)) color = "pink";
+	else if (ModularItemRequirementCheckMessageMemo(option, currentOption, changeWhenLocked)) color = "pink";
 	return [
 		`${AssetGetInventoryPath(asset)}/${optionName}.png`,
 		`${dialogOptionPrefix}${optionName}`,
@@ -391,6 +393,11 @@ function ModularItemModuleTransition(newModule, data) {
 	DialogExtendedMessage = DialogFindPlayer(data.dialogSelectPrefix + newModule);
 }
 
+/**
+ * Parses the focus item's current type into an array representing the currently selected module options
+ * @param {ModularItemData} data - The modular item's data
+ * @returns {number[]} - An array of numbers representing the currently selected options for each of the item's modules
+ */
 function ModularItemParseCurrent({ asset, modules }) {
 	const type = (DialogFocusItem.Property && DialogFocusItem.Property.Type) || ModularItemConstructType(modules);
 	return modules.map(module => {
@@ -459,17 +466,17 @@ function ModularItemSetType(module, index, data) {
 	const C = CharacterGetCurrent();
 	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 	const option = module.Options[index];
+	const currentModuleValues = ModularItemParseCurrent(data);
+	const moduleIndex = data.modules.indexOf(module);
+	const currentOption = module.Options[currentModuleValues[moduleIndex]];
 
 	// Make a final requirement check before actually modifying the item
-	const requirementMessage = ModularItemRequirementMessageCheck(option);
+	const requirementMessage = ModularItemRequirementMessageCheck(option, currentOption, data.changeWhenLocked);
 	if (requirementMessage) {
 		DialogExtendedMessage = requirementMessage;
 		return;
 	}
 
-	const currentModuleValues = ModularItemParseCurrent(data);
-
-	const moduleIndex = data.modules.indexOf(module);
 	let changed = false;
 	const newModuleValues = currentModuleValues.map((value, i) => {
 		if (i === moduleIndex && index !== value) {
@@ -590,16 +597,19 @@ function ModularItemGenerateLayerAllowTypes(layer, data) {
 /**
  * Checks whether the given option can be selected on the currently selected modular item
  * @param {ExtendedItemOption} option - The selected option
+ * @param {ExtendedItemOption} currentOption - The currently active option
+ * @param {boolean} changeWhenLocked - Whether or not the item can be changed when locked
  * @returns {string|null} - Returns a string user message if the option's requirements have not been met, otherwise
  * returns nothing
  */
-function ModularItemRequirementMessageCheck(option) {
+function ModularItemRequirementMessageCheck(option, currentOption, changeWhenLocked) {
 	const C = CharacterGetCurrent();
 	// Lock check - cannot change type if you can't unlock the item
-	if (DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+	const itemLocked = DialogFocusItem.Property && DialogFocusItem.Property.LockedBy;
+	if (!changeWhenLocked && itemLocked && !DialogCanUnlock(C, DialogFocusItem)) {
 		return DialogFindPlayer("CantChangeWhileLocked");
 	} else {
-		return ExtendedItemRequirementCheckMessage(option, C.ID === 0);
+		return ExtendedItemRequirementCheckMessage(option, currentOption, C.ID === 0);
 	}
 }
 
@@ -630,7 +640,11 @@ function ModularItemGenerateValidationProperties(data) {
  * @property {ModularItemModule[]} Modules - The module definitions for the item
  * @property {ModularItemChatSetting} ChatSetting - The item's chatroom message setting. Determines the level of
  * granularity for chatroom messages when the item's module values change.
- *
+ * @property {boolean} [ChangeWhenLocked] - A boolean indicating whether or not the item's type can be changed while the
+ * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to true
+ */
+
+/**
  * An object describing a single module for a modular item.
  * @typedef ModularItemModule
  * @type {object}
@@ -641,7 +655,9 @@ function ModularItemGenerateValidationProperties(data) {
  * options in the module will be named with the module's key, followed by the index of the option within the module's
  * Options array. Keys should be alphabetical only (a-z, A-Z)
  * @property {ModularItemOption[]} Options - The list of option definitions that can be chosen within this module.
- *
+ */
+
+/**
  * An object describing a single option within a module for a modular item.
  * @typedef ModularItemOption
  * @type {object}
@@ -651,7 +667,12 @@ function ModularItemGenerateValidationProperties(data) {
  * @property {string[]} [Block] - A list of groups that this option blocks - defaults to []
  * @property {string[]} [Hide] - A list of groups that this option hides - defaults to []
  * @property {string[]} [HideItem] - A list of items that this option hides
- *
+ * @property {boolean} [ChangeWhenLocked] - Whether or not it should be possible to change from this option to another
+ * option while the item is locked (if set to false, the player must be able to unlock the item to change its type) -
+ * defaults to true
+ */
+
+/**
  * An object containing modular item configuration for an asset. Contains all of the necessary information for the
  * item's load, draw & click handlers.
  * @typedef ModularItemData
@@ -667,12 +688,16 @@ function ModularItemGenerateValidationProperties(data) {
  * @property {string} chatMessagePrefix - The dialogue prefix that will be used for each of the item's chatroom
  * messages
  * @property {ModularItemModule[]} modules - The module definitions for the modular item
- * @property {object.<string, number>} pages - A lookup for the current page in the extended item menu for each of the
+ * @property {Record.<string, number>} pages - A lookup for the current page in the extended item menu for each of the
  * item's modules
- * @property {object.<string, function>} drawFunctions - A lookup for the draw functions for each of the item's modules
- * @property {object.<string, function>} clickFunctions - A lookup for the click functions for each of the item's
+ * @property {Record.<string, function>} drawFunctions - A lookup for the draw functions for each of the item's modules
+ * @property {Record.<string, function>} clickFunctions - A lookup for the click functions for each of the item's
  * modules
- *
+ * @property {boolean} [changeWhenLocked] - A boolean indicating whether or not the item's type can be changed while the
+ * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to true
+ */
+
+/**
  * A 3-tuple (or 2-tuple) containing data for drawing a button in a modular item screen. A button definition takes the
  * format:
  * ```

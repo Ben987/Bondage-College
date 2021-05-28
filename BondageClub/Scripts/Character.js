@@ -4,13 +4,14 @@ var CharacterNextId = 1;
 
 /**
  * Loads a character into the buffer, creates it if it does not exist
- * @param {number|string} CharacterID - ID of the character
+ * @param {number} CharacterID - ID of the character
  * @param {string} CharacterAssetFamily - Name of the asset family of the character
  * @returns {void} - Nothing
  */
 function CharacterReset(CharacterID, CharacterAssetFamily) {
 
 	// Prepares the character sheet
+	/** @type {Character} */
 	var NewCharacter = {
 		ID: CharacterID,
 		Hooks: null,
@@ -693,7 +694,7 @@ function CharacterCanChangeToPose(C, poseName) {
 	const pose = PoseFemale3DCG.find(P => P.Name === poseName);
 	if (!pose) return false;
 	const poseCategory = pose.Category;
-	if (!CharacterItemsHavePoseAvailable(C, poseCategory, pose)) return false;
+	if (!CharacterItemsHavePoseAvailable(C, poseCategory, pose.Name)) return false;
 	return !C.Appearance.some(item => InventoryGetItemProperty(item, "FreezeActivePose").includes(poseCategory));
 }
 
@@ -812,7 +813,7 @@ function CharacterLoadPose(C) {
 /**
  * Adds an effect to a character's effect list, does not add it if it's already there
  * @param {Character} C - Character for which to add an effect to its list
- * @param {string} NewEffect - The name of the effect to add
+ * @param {string[]} NewEffect - The name of the effect to add
  * @returns {void} - Nothing
  */
 function CharacterAddEffect(C, NewEffect) {
@@ -1205,10 +1206,10 @@ function CharacterFullRandomRestrain(C, Ratio, Refresh) {
  * Sets a new pose for the character
  * @param {Character} C - Character for which to set the pose
  * @param {string} NewPose - Name of the pose to set as active
- * @param {boolean} ForceChange - TRUE if the set pose(s) should overwrite current active pose(s)
+ * @param {boolean} [ForceChange=false] - TRUE if the set pose(s) should overwrite current active pose(s)
  * @returns {void} - Nothing
  */
-function CharacterSetActivePose(C, NewPose, ForceChange) {
+function CharacterSetActivePose(C, NewPose, ForceChange=false) {
 	if (NewPose == null || ForceChange || C.ActivePose == null) {
 		C.ActivePose = NewPose;
 		CharacterRefresh(C, false);
@@ -1239,9 +1240,10 @@ function CharacterSetActivePose(C, NewPose, ForceChange) {
  * Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a
  * timed expression cannot override another one.
  * @param {Character} C - Character for which to set the expression of
- * @param {group} AssetGroup - Asset group for the expression
+ * @param {string} AssetGroup - Asset group for the expression
  * @param {string} Expression - Name of the expression to use
  * @param {number} [Timer] - Optional: time the expression will last
+ * @param {string|string[]} [Color] - Optional: color of the expression to set
  * @returns {void} - Nothing
  */
 function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer, Color) {

@@ -313,7 +313,7 @@ function StruggleStrength(Reverse) {
  * @param {Character} C - The character who tries to struggle
  * @param {Item} PrevItem - The item, the character wants to struggle out of
  * @param {Item} [NextItem] - The item that should substitute the first one
- * @returns {void} - Nothing
+ * @returns {{difficulty: number; auto: number; timer: number; }} - Nothing
  */
 function StruggleStrengthGetDifficulty(C, PrevItem, NextItem) {
 	var S = 0;

@@ -240,7 +240,7 @@ function PandoraDress(C, Type) {
 		else InventoryGet(C, "Panties").Color = "#222222";
 		if (InventoryGet(C, "Shoes") == null) InventoryWear(C, "Shoes1", "Shoes", "#222222");
 		else InventoryGet(C, "Shoes").Color = "#222222";
-		InventoryWear(C, "MaidCollar", "ItemNeck", "#804040");
+		if (C.ID != 0) InventoryWear(C, "MaidCollar", "ItemNeck", "#804040");
 		CharacterRefresh(C, false);
 		return;
 	}

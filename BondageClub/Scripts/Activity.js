@@ -155,7 +155,7 @@ function ActivityDialogBuild(C) {
  * Calculates the effect of an activity performed on a zone
  * @param {Character} S - The character performing the activity
  * @param {Character} C - The character on which the activity is performed
- * @param {string} A - The activity performed
+ * @param {string|Activity} A - The activity performed
  * @param {string} Z - The group/zone name where the activity was performed
  * @param {number} [Count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
  * If you don't want an activity to modify arousal, set this parameter to '0'

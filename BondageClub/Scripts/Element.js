@@ -124,7 +124,7 @@ function ElementCreateRangeInput(id, value, min, max, step, thumbIcon, vertical)
  * - Multiple selects are impossible
  * @param {string} ID - The name of the select item. The outer div will get this name, for positioning. The select
  * tag will get the name ID+"-select"
- * @param {atring[]} Options - The list of options for the current select statement
+ * @param {string[]} Options - The list of options for the current select statement
  * @param {function} [ClickEventListener=null] - An event listener to be called, when the value of the drop down box changes
  * @returns {void} - Nothing
  */
@@ -149,7 +149,7 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
 			Option.setAttribute("value", Options[i]);
 			Option.innerHTML = Options[i];
 			InnerDiv.innerHTML = Options[i];
-			InnerDiv.addEventListener("click", function (e) {
+			InnerDiv.addEventListener("click", function () {
 				// when an item is clicked, update the original select box, and the selected item:
 				var s = this.parentNode.parentNode.getElementsByTagName("select")[0]; // Representation of the select tag
 				var h = this.parentNode.previousSibling; // Representation of the dropdown box
@@ -243,7 +243,7 @@ function ElementRemove(ID) {
  * @param {number} X - Center point of the element on the X axis.
  * @param {number} Y - Center point of the element on the Y axis.
  * @param {number} W - Width of the element.
- * @param {number} H - Height of the element.
+ * @param {number} [H] - Height of the element.
  * @returns {void} - Nothing
  */
 function ElementPosition(ElementID, X, Y, W, H) {

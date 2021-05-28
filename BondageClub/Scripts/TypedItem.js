@@ -53,6 +53,7 @@ function TypedItemRegister(asset, config) {
 	TypedItemCreateLoadFunction(data);
 	TypedItemCreateDrawFunction(data);
 	TypedItemCreateClickFunction(data);
+	TypedItemCreateValidateFunction(data);
 	TypedItemCreatePublishFunction(data);
 	TypedItemCreateNpcDialogFunction(data);
 	TypedItemGenerateAllowType(data);
@@ -66,7 +67,8 @@ function TypedItemRegister(asset, config) {
  * @param {TypedItemConfig} config - The item's extended item configuration
  * @returns {TypedItemData} - The generated typed item data for the asset
  */
-function TypedItemCreateTypedItemData(asset, { Options, Dialog, ChatTags, ChatSetting, DrawImages }) {
+function TypedItemCreateTypedItemData(asset,
+                                      { Options, Dialog, ChatTags, ChatSetting, DrawImages, ChangeWhenLocked, Validate }) {
 	Dialog = Dialog || {};
 	const key = `${asset.Group.Name}${asset.Name}`;
 	return TypedItemDataLookup[key] = {
@@ -86,6 +88,8 @@ function TypedItemCreateTypedItemData(asset, { Options, Dialog, ChatTags, ChatSe
 		],
 		chatSetting: ChatSetting || TypedItemChatSetting.TO_ONLY,
 		drawImages: typeof DrawImages === "boolean" ? DrawImages : true,
+		changeWhenLocked: typeof ChangeWhenLocked === "boolean" ? ChangeWhenLocked : true,
+		validate: Validate,
 	};
 }
 
@@ -122,6 +126,28 @@ function TypedItemCreateClickFunction({ options, functionPrefix, drawImages }) {
 	const clickFunctionName = `${functionPrefix}Click`;
 	window[clickFunctionName] = function () {
 		ExtendedItemClick(options, null, drawImages);
+	};
+}
+
+/**
+ *
+ * @param {TypedItemData} data - The typed item data for the asset
+ */
+function TypedItemCreateValidateFunction({ changeWhenLocked, options, functionPrefix, validate }) {
+	const validateFunctionName = `${functionPrefix}Validate`;
+	window[validateFunctionName] = function (C, option) {
+		let message = "";
+
+		if (typeof validate === "function") {
+			message = validate(C, option);
+		}
+
+		const itemLocked = DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy;
+		if (!message && !changeWhenLocked && itemLocked && !DialogCanUnlock(C, DialogFocusItem)) {
+			message = DialogFindPlayer("CantChangeWhileLocked");
+		}
+
+		return message;
 	};
 }
 
@@ -243,6 +269,10 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * finer-grained chatroom message keys for the item. Defaults to {@link TypedItemChatSetting.TO_ONLY}
  * @property {boolean} [DrawImages] - A boolean indicating whether or not images should be drawn in this item's extended
  * item menu. Defaults to true
+ * @property {boolean} [ChangeWhenLocked] - A boolean indicating whether or not the item's type can be changed while the
+ * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to true
+ * @property {TypedItemValidateCallback} [Validate] - An optional validation callback function which can be used by
+ * items to run additional validation for cases that aren't covered by configuration
  */
 
 /**
@@ -272,7 +302,7 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * @property {ExtendedItemOption[]} options - The list of extended item options available for the item
  * @property {string} key - A key uniquely identifying the asset
  * @property {string} functionPrefix - The common prefix used for all extended item functions associated with the asset
- * @property {object.<string, string>} dialog - A record containing various dialog keys used by the extended item screen
+ * @property {Record.<string, string>} dialog - A record containing various dialog keys used by the extended item screen
  * @property {string} dialog.load - The dialog key for the item's load text (usually a prompt to select the type)
  * @property {string} dialog.typePrefix - The prefix used for dialog keys representing the display names of the item's
  * types
@@ -284,6 +314,10 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * chatroom messages. Defaults to [{@link CommonChatTags.SOURCE_CHAR}, {@link CommonChatTags.DEST_CHAR}]
  * @property {boolean} [drawImages] - A boolean indicating whether or not images should be drawn in this item's extended
  * item menu. Defaults to true
+ * @property {boolean} [changeWhenLocked] - A boolean indicating whether or not the item's type can be changed while the
+ * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to true
+ * @property {TypedItemValidateCallback} [validate] - An optional validation callback function which can be used by
+ * items to run additional validation for cases that aren't covered by configuration
  */
 
 /**
@@ -296,4 +330,11 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
  * config
  * @param {number} chatData.newIndex - The index of the newly selected type option in the item's options config
  * @returns {string} - The chat prefix that should be used for this type change
+ */
+
+/**
+ * @callback TypedItemValidateCallback
+ * @param {Character} C - A reference to the character wearing the item
+ * @param {ExtendedItemOption} Option - The newly selected type option
+ * @returns {string} - Returns a non-empty message string if the item failed validation, or an empty string otherwise
  */
