@@ -872,27 +872,13 @@ var AssetFemale3DCGExtended = {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
 				Options: [
-					{ Name: "Strip",
-				Property: { Type: null }
-					},
-
-					{ Name: "Wrap",
-				Property: { Type: "Wrap" }
-			},
-			{ Name: "Bra1",
-			Property: { Type: "Bra1" }
-				},
-
-				{ Name: "Bra2",
-			Property: { Type: "Bra2" }
-				},
-
-				{ Name: "Swimsuit",
-				Property: { Type: "Swimsuit" }
-					},
-
-				]				
-			},
+					{ Name: "Strip", Property: { Type: null } },
+					{ Name: "Wrap", Property: { Type: "Wrap" } },
+					{ Name: "Bra1", Property: { Type: "Bra1" } },
+					{ Name: "Bra2", Property: { Type: "Bra2" } },
+					{ Name: "Swimsuit", Property: { Type: "Swimsuit" } },
+				]
+			}
 		}, // SilkStraps
 	}, // Bra
 };
