@@ -178,6 +178,86 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // BitchSuit
+		DuctTape: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Arms",
+						Property: { Type: null, Difficulty: 1 },
+					},
+					{
+						Name: "Bottom",
+						SelfBondageLevel: 4,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Bottom",
+							SetPose: ["BackElbowTouch"],
+							Block: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemVulvaPiercings"],
+							Difficulty: 2,
+						},
+					},
+					{
+						Name: "Top",
+						SelfBondageLevel: 6,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Top",
+							SetPose: ["BackElbowTouch"],
+							Block: ["ItemTorso", "ItemBreast", "ItemNipples", "ItemNipplesPiercings"],
+							Difficulty: 4,
+						},
+					},
+					{
+						Name: "Full",
+						SelfBondageLevel: 8,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Full",
+							SetPose: ["BackElbowTouch"],
+							Block: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples", "ItemVulvaPiercings", "ItemNipplesPiercings"],
+							Difficulty: 6,
+						}
+					},
+					{
+						Name: "Complete",
+						SelfBondageLevel: 10,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Complete",
+							SetPose: ["BackElbowTouch"],
+							Block: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples", "ItemVulvaPiercings", "ItemNipplesPiercings"],
+							Difficulty: 7,
+						}
+					},
+					{
+						Name: "ExposedComplete",
+						SelfBondageLevel: 10,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "ExposedComplete",
+							SetPose: ["BackElbowTouch"],
+							Block: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemVulvaPiercings", "ItemBreast"],
+							Difficulty: 7,
+						}
+					},
+					{
+						Name: "PetTape",
+						SelfBondageLevel: 10,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "PetTape",
+							SetPose: ["BackElbowTouch", "Kneel"],
+							Difficulty: 7,
+						}
+					},
+				],
+				Dialog: {
+					Load: "SelectTapeWrapping",
+				},
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR, CommonChatTags.DEST_CHAR ],
+			}
+		}, // DuctTape
 	}, // ItemArms
 	ItemNeck: {
 		ShinySteelCollar: {
