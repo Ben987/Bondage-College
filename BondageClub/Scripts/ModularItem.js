@@ -49,7 +49,8 @@ const ModularItemBase = "Base";
 
 /**
  * A lookup for the modular item configurations for each registered modular item
- * @const {object.<string, ModularItemData>>}
+ * @const
+ * @type {Record<string, ModularItemData>}
  * @see {@link ModularItemData}
  */
 const ModularItemDataLookup = {};
@@ -73,10 +74,7 @@ const ModularItemChatSetting = {
  */
 const ModularItemsPerPage = 8;
 
-/**
- * Memoized requirements check function
- * @type {function(ExtendedItemOption[], ExtendedItemOption, boolean): string}
- */
+/** Memoized requirements check function */
 const ModularItemRequirementCheckMessageMemo = CommonMemoize(ModularItemRequirementMessageCheck);
 
 /**
@@ -151,6 +149,7 @@ function ModularItemCreateClickFunction(data) {
  */
 function ModularItemCreateModularData(asset, { Modules, ChatSetting, ChangeWhenLocked }) {
 	const key = `${asset.Group.Name}${asset.Name}`;
+	/** @type {ModularItemData} */
 	const data = ModularItemDataLookup[key] = {
 		asset,
 		chatSetting: ChatSetting || ModularItemChatSetting.PER_OPTION,
@@ -165,9 +164,11 @@ function ModularItemCreateModularData(asset, { Modules, ChatSetting, ChangeWhenL
 		pages: { [ModularItemBase]: 0 },
 		drawData: { [ModularItemBase]: ModularItemCreateDrawData(Modules.length) },
 		changeWhenLocked: typeof ChangeWhenLocked === "boolean" ? ChangeWhenLocked : true,
+		drawFunctions: {},
+		clickFunctions: {},
 	};
-	data.drawFunctions = { [ModularItemBase]: ModularItemCreateDrawBaseFunction(data) };
-	data.clickFunctions = { [ModularItemBase]: ModularItemCreateClickBaseFunction(data) };
+	data.drawFunctions[ModularItemBase] = ModularItemCreateDrawBaseFunction(data);
+	data.clickFunctions[ModularItemBase] = ModularItemCreateClickBaseFunction(data);
 	Modules.forEach(module => {
 		data.pages[module.Name] = 0;
 		data.drawData[module.Name] = ModularItemCreateDrawData(module.Options.length);
@@ -214,7 +215,7 @@ function ModularItemCreateDrawData(itemCount) {
 /**
  * Creates a modular item's base draw function (for the module selection screen)
  * @param {ModularItemData} data - The modular item data for the asset
- * @returns {function} - The modular item's base draw function
+ * @returns {() => void} - The modular item's base draw function
  */
 function ModularItemCreateDrawBaseFunction(data) {
 	return () => {
@@ -238,7 +239,6 @@ function ModularItemCreateDrawBaseFunction(data) {
  */
 function ModularItemMapOptionToButtonDefinition(option, optionIndex, module,
 	{ asset, dialogOptionPrefix, changeWhenLocked }, currentOptionIndex) {
-	const C = CharacterGetCurrent();
 	const optionName = `${module.Key}${optionIndex}`;
 	let color = "#fff";
 	const currentOption = module.Options[currentOptionIndex];
@@ -345,8 +345,9 @@ function ModularItemClickModule(module, data) {
 /**
  * A common click handler for modular item screens. Note that pagination is not currently handled, but will be added
  * in the future.
- * @param {boolean} paginate - Whether or not the current screen needs pagination handling
- * @param {number[][]} positions - The button positions to handle clicks for
+ * @param {object} drawData
+ * @param {boolean} drawData.paginate - Whether or not the current screen needs pagination handling
+ * @param {number[][]} drawData.positions - The button positions to handle clicks for
  * @param {function(): void} exitCallback - A callback to be called when the exit button has been clicked
  * @param {function(number): void} itemCallback - A callback to be called when an item has been clicked
  * @param {function(number): void} paginateCallback - A callback to be called when a pagination button has been clicked
@@ -417,7 +418,7 @@ function ModularItemParseCurrent({ asset, modules }) {
  * Merges all of the selected module options for a modular item into a single Property object to set on the item
  * @param {ModularItemData} data - The modular item's data
  * @param {number[]} moduleValues - The numeric values representing the current options for each module
- * @returns {object} - A property object created from combining each module of the modular item
+ * @returns {ItemProperties} - A property object created from combining each module of the modular item
  */
 function ModularItemMergeModuleValues({ asset, modules }, moduleValues) {
 	const options = modules.map((module, i) => module.Options[moduleValues[i] || 0]);
@@ -442,7 +443,7 @@ function ModularItemMergeModuleValues({ asset, modules }, moduleValues) {
 /**
  * Generates the type string for a modular item from its modules and their current values.
  * @param {ModularItemModule[]} modules - The modules array for the modular item
- * @param {number[]} values - The numeric values representing the current options for each module
+ * @param {number[]} [values] - The numeric values representing the current options for each module
  * @returns {string} - A string type generated from the selected option values for each module
  */
 function ModularItemConstructType(modules, values) {
@@ -596,8 +597,8 @@ function ModularItemGenerateLayerAllowTypes(layer, data) {
 
 /**
  * Checks whether the given option can be selected on the currently selected modular item
- * @param {ExtendedItemOption} option - The selected option
- * @param {ExtendedItemOption} currentOption - The currently active option
+ * @param {ModularItemOption} option - The selected option
+ * @param {ModularItemOption} currentOption - The currently active option
  * @param {boolean} changeWhenLocked - Whether or not the item can be changed when locked
  * @returns {string|null} - Returns a string user message if the option's requirements have not been met, otherwise
  * returns nothing
@@ -632,80 +633,3 @@ function ModularItemGenerateValidationProperties(data) {
 	});
 	asset.Layer.forEach((layer) => ModularItemGenerateLayerAllowTypes(layer, data));
 }
-
-/**
- * An object defining all of the required configuration for registering a modular item
- * @typedef ModularItemConfig
- * @type {object}
- * @property {ModularItemModule[]} Modules - The module definitions for the item
- * @property {ModularItemChatSetting} ChatSetting - The item's chatroom message setting. Determines the level of
- * granularity for chatroom messages when the item's module values change.
- * @property {boolean} [ChangeWhenLocked] - A boolean indicating whether or not the item's type can be changed while the
- * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to true
- */
-
-/**
- * An object describing a single module for a modular item.
- * @typedef ModularItemModule
- * @type {object}
- * @property {string} Name - The name of this module - this is usually a human-readable string describing what the
- * module represents (e.g. Straps). It is used for display text keys, and should be unique across all of the modules
- * for the item.
- * @property {string} Key - The unique key for this module - this is used as a prefix to designate option names. Each
- * options in the module will be named with the module's key, followed by the index of the option within the module's
- * Options array. Keys should be alphabetical only (a-z, A-Z)
- * @property {ModularItemOption[]} Options - The list of option definitions that can be chosen within this module.
- */
-
-/**
- * An object describing a single option within a module for a modular item.
- * @typedef ModularItemOption
- * @type {object}
- * @property {number} [Difficulty] - The additional difficulty associated with this option - defaults to 0
- * @property {number} [SelfBondage] - The self bondage level required to select this option if using it on oneself -
- * defaults to 0
- * @property {string[]} [Block] - A list of groups that this option blocks - defaults to []
- * @property {string[]} [Hide] - A list of groups that this option hides - defaults to []
- * @property {string[]} [HideItem] - A list of items that this option hides
- * @property {boolean} [ChangeWhenLocked] - Whether or not it should be possible to change from this option to another
- * option while the item is locked (if set to false, the player must be able to unlock the item to change its type) -
- * defaults to true
- */
-
-/**
- * An object containing modular item configuration for an asset. Contains all of the necessary information for the
- * item's load, draw & click handlers.
- * @typedef ModularItemData
- * @type {object}
- * @property {Asset} asset - A reference to the asset that this configuration is tied to
- * @property {ModularItemChatSetting} chatSetting - The item's chatroom message setting. Determines the level of
- * granularity for chatroom messages when the item's module values change.
- * @property {string} key - The identifying key for the asset, in the format "<GroupName><AssetName>"
- * @property {string} dialogSelectPrefix - The dialogue prefix for the player prompt that is displayed on each module's
- * menu screen
- * @property {string} dialogModulePrefix - The dialogue prefix for the name of each module
- * @property {string} dialogOptionPrefix - The dialogue prefix for the name of each option
- * @property {string} chatMessagePrefix - The dialogue prefix that will be used for each of the item's chatroom
- * messages
- * @property {ModularItemModule[]} modules - The module definitions for the modular item
- * @property {Record.<string, number>} pages - A lookup for the current page in the extended item menu for each of the
- * item's modules
- * @property {Record.<string, function>} drawFunctions - A lookup for the draw functions for each of the item's modules
- * @property {Record.<string, function>} clickFunctions - A lookup for the click functions for each of the item's
- * modules
- * @property {boolean} [changeWhenLocked] - A boolean indicating whether or not the item's type can be changed while the
- * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to true
- */
-
-/**
- * A 3-tuple (or 2-tuple) containing data for drawing a button in a modular item screen. A button definition takes the
- * format:
- * ```
- * [imageUrl, textKey, background]
- * ```
- * The imageUrl is the URL for the image that should be drawn in the button.
- * The textKey is the CSV key for the text that should be displayed in the button.
- * The background is an optional CSS color string defining the background color for the button.
- * @typedef ModularItemButtonDefinition
- * @type {string[]}
- */

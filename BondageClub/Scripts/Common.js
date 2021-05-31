@@ -563,12 +563,15 @@ function CommonThrottle(func, wait) {
  * Creates a simple memoizer.
  * The memoized function does calculate its result exactly once and from that point on, uses
  * the result stored in a local cache to speed up things.
- * @param {function} func - The function to memoize
- * @returns {any} - The result of the memoized function
+ * @template {Function} T
+ * @param {T} func - The function to memoize
+ * @returns {MemoizedFunction<T>} - The result of the memoized function
  */
 function CommonMemoize(func) {
 	var memo = {};
 
+	/** @type {MemoizedFunction<T>} */
+	// @ts-ignore
 	var memoized = function () {
 		var index = [];
 		for (var i = 0; i < arguments.length; i++) {
@@ -595,10 +598,9 @@ function CommonMemoize(func) {
  * Memoized getter function. Returns a font string specifying the player's
  * preferred font and the provided size. This is memoized as it is called on
  * every frame in many cases.
- * @function
- * @param {Number} size - The font size that should be specified in the
+ * @param {number} size - The font size that should be specified in the
  * returned font string
- * @returns {String} - A font string specifying the requested font size and
+ * @returns {string} - A font string specifying the requested font size and
  * the player's preferred font stack. For example:
  * 12px "Courier New", "Courier", monospace
  */
@@ -610,8 +612,7 @@ const CommonGetFont = CommonMemoize((size) => {
  * Memoized getter function. Returns a font string specifying the player's
  * preferred font stack. This is memoized as it is called on every frame in
  * many cases.
- * @function
- * @returns {String} - A font string specifying the player's preferred font
+ * @returns {string} - A font string specifying the player's preferred font
  * stack. For example:
  * "Courier New", "Courier", monospace
  */

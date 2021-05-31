@@ -24,7 +24,8 @@ const ExtendedArchetype = {
 
 /**
  * An object containing all extended item configurations.
- * @const {ExtendedItemConfig}
+ * @type {ExtendedItemConfig}
+ * @const
  */
 var AssetFemale3DCGExtended = {
 	ItemArms: {
@@ -850,22 +851,11 @@ var AssetFemale3DCGExtended = {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
 				Options: [
-					{ Name: "Crotch",
-				Property: { Type: null }
-					},
-
-					{ Name: "OverPanties",
-				Property: { Type: "OverPanties", OverridePriority: 21 }
-			},
-			{ Name: "SwissSeat",
-			Property: { Type: "SwissSeat" }
-				},
-
-				{ Name: "KikkouHip",
-			Property: { Type: "KikkouHip" }
-				},
-
-				]				
+					{ Name: "Crotch", Property: { Type: null } },
+					{ Name: "OverPanties", Property: { Type: "OverPanties", OverridePriority: 21 } },
+					{ Name: "SwissSeat", Property: { Type: "SwissSeat" } },
+					{ Name: "KikkouHip", Property: { Type: "KikkouHip" } },
+				]
 			},
 		}, // SilkStraps
 	}, // ItemPelvis
@@ -892,32 +882,8 @@ var AssetFemale3DCGExtended = {
 					{ Name: "Wrap", Property: { Type: "Wrap" } },
 					{ Name: "Thong", Property: { Type: "Thong" } },
 					{ Name: "Panties1", Property: { Type: "Panties1" } },
-				]				
+				]
 			},
 		}, // SilkStraps
 	}, // Panties
 };
-
-
-/**
- *
- * An object containing the extended item definition for an asset.
- * @typedef ExtendedItemAssetConfig
- * @type {object}
- * @property {ExtendedArchetype} Archetype - The extended item archetype that this asset uses.
- * @property {ModularItemConfig|TypedItemConfig} Config - The specific configuration for the item (type will vary based
- * on the item's archetype)
- * @property {{GroupName?: string, AssetName: string}} [CopyConfig] - The group name and asset name of a configuration
- *     to copy - useful if multiple items share the same config
- *
- * An object containing extended item definitions for a group. Maps asset names within the group to their extended item
- * configuration
- * @typedef ExtendedItemGroupConfig
- * @type {Object.<string, ExtendedItemAssetConfig>}
- * @see {@link ExtendedItemAssetConfig}
- *
- * An object containing extended item configurations keyed by group name.
- * @typedef ExtendedItemConfig
- * @type {Object.<string, ExtendedItemGroupConfig>}
- * @see {@link ExtendedItemAssetConfig}
- */

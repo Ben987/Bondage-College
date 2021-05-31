@@ -208,7 +208,7 @@ function VibratorModeDrawControls(Options, Y) {
 /**
  * Common click function for vibrators
  * @param {VibratorModeSet[]} Options - The vibrator mode sets for the item
- * @param {number} Y - The y-coordinate at which the extended item controls were drawn
+ * @param {number} [Y] - The y-coordinate at which the extended item controls were drawn
  * @returns {void} - Nothing
  */
 function VibratorModeClick(Options, Y) {

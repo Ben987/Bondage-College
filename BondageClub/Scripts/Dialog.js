@@ -9,6 +9,7 @@ var DialogColorSelect = null;
 var DialogPreviousCharacterData = {};
 var DialogInventory = [];
 var DialogInventoryOffset = 0;
+/** @type {Item|null} */
 var DialogFocusItem = null;
 var DialogFocusSourceItem = null;
 var DialogFocusItemColorizationRedrawTimer = null;

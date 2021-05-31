@@ -25,7 +25,8 @@
 
 /**
  * A lookup for the typed item configurations for each registered typed item
- * @const {object.<string, TypedItemData>}
+ * @const
+ * @type {Record<string, TypedItemData>}
  * @see {@link TypedItemData}
  */
 const TypedItemDataLookup = {};
@@ -35,6 +36,7 @@ const TypedItemDataLookup = {};
  * - TO_ONLY - The item has one chatroom message per type (indicating that the type has been selected)
  * - FROM_TO - The item has a chatroom message for from/to type pairing
  * @type {{TO_ONLY: string, FROM_TO: string}}
+ * @enum {string}
  */
 const TypedItemChatSetting = {
 	TO_ONLY: "toOnly",
@@ -68,7 +70,8 @@ function TypedItemRegister(asset, config) {
  * @returns {TypedItemData} - The generated typed item data for the asset
  */
 function TypedItemCreateTypedItemData(asset,
-                                      { Options, Dialog, ChatTags, ChatSetting, DrawImages, ChangeWhenLocked, Validate }) {
+	{ Options, Dialog, ChatTags, ChatSetting, DrawImages, ChangeWhenLocked, Validate }
+) {
 	Dialog = Dialog || {};
 	const key = `${asset.Group.Name}${asset.Name}`;
 	return TypedItemDataLookup[key] = {
@@ -161,10 +164,10 @@ function TypedItemCreatePublishFunction(data) {
 	const publishFunctionName = `${functionPrefix}PublishAction`;
 	window[publishFunctionName] = function (C, newOption, previousOption) {
 		let msg = dialog.chatPrefix;
-		if (typeof dialog.chatPrefix === "function") {
+		if (typeof msg === "function") {
 			const previousIndex = options.indexOf(previousOption);
 			const newIndex = options.indexOf(newOption);
-			msg = dialog.chatPrefix({ C, previousOption, newOption, previousIndex, newIndex });
+			msg = msg({ C, previousOption, newOption, previousIndex, newIndex });
 		}
 		if (chatSetting === TypedItemChatSetting.FROM_TO) msg += `${previousOption.Name}To`;
 		msg += newOption.Name;
@@ -254,87 +257,3 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
 			return null;
 	}
 }
-
-/**
- * An object defining all of the required configuration for registering a typed item
- * @typedef TypedItemConfig
- * @type {object}
- * @property {ExtendedItemOption[]} Options - The list of extended item options available for the item
- * @property {TypedItemDialogConfig} [Dialog] - The optional text configuration for the item. Custom text keys can be
- * configured within this object
- * @property {CommonChatTags} [ChatTags] - An optional array of chat tags that should be included in the dictionary of
- * the chatroom message when the item's type is changed. Defaults to {@link CommonChatTags.SOURCE_CHAR} and
- * {@link CommonChatTags.DEST_CHAR}
- * @property {TypedItemChatSetting} [ChatSetting] - The chat message setting for the item. This can be provided to allow
- * finer-grained chatroom message keys for the item. Defaults to {@link TypedItemChatSetting.TO_ONLY}
- * @property {boolean} [DrawImages] - A boolean indicating whether or not images should be drawn in this item's extended
- * item menu. Defaults to true
- * @property {boolean} [ChangeWhenLocked] - A boolean indicating whether or not the item's type can be changed while the
- * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to true
- * @property {TypedItemValidateCallback} [Validate] - An optional validation callback function which can be used by
- * items to run additional validation for cases that aren't covered by configuration
- */
-
-/**
- * @typedef TypedItemDialogConfig
- * @type {object}
- * @property {string} [Load] - The key for the text that will be displayed at the top of the extended item screen
- * (usually a prompt for the player to select a type). Defaults to "<groupName><assetName>Select"
- * @property {string} [TypePrefix] - A prefix for text keys for the display names of the item's individual types. This
- * will be suffixed with the option name to get the final key (i.e. "<typePrefix><optionName>"). Defaults to
- * "<groupName><assetName>"
- * @property {string | TypedItemChatCallback} [ChatPrefix] - A prefix for text keys for chat messages triggered by the
- * item. Chat message keys
- * will include the name of the new option, and depending on the chat setting, the name of the previous option:
- * - For chat setting FROM_TO: <chatPrefix><oldOptionName>To<newOptionName>
- * - For chat setting TO_ONLY: <chatPrefix><newOptionName>
- * @property {string} [NpcPrefix] - A prefix for text keys for NPC dialog. This will be suffixed with the option name
- * to get the final NPC dialogue key (i.e. "<npcPrefix><optionName>". Defaults to "<groupName><assetName>"
- */
-
-/**
- *
- * An object containing typed item configuration for an asset. Contains all of the necessary information for the item's
- * load, draw & click handlers.
- * @typedef TypedItemData
- * @type {object}
- * @property {Asset} asset - The asset reference
- * @property {ExtendedItemOption[]} options - The list of extended item options available for the item
- * @property {string} key - A key uniquely identifying the asset
- * @property {string} functionPrefix - The common prefix used for all extended item functions associated with the asset
- * @property {Record.<string, string>} dialog - A record containing various dialog keys used by the extended item screen
- * @property {string} dialog.load - The dialog key for the item's load text (usually a prompt to select the type)
- * @property {string} dialog.typePrefix - The prefix used for dialog keys representing the display names of the item's
- * types
- * @property {string} dialog.chatPrefix - The prefix used for dialog keys representing the item's chatroom messages
- * when its type is changed
- * @property {string} dialog.npcPrefix - The prefix used for dialog keys representing an NPC's reactions to item type
- * changes
- * @property {CommonChatTags[]} chatTags - An array of the chat message tags that should be included in the item's
- * chatroom messages. Defaults to [{@link CommonChatTags.SOURCE_CHAR}, {@link CommonChatTags.DEST_CHAR}]
- * @property {boolean} [drawImages] - A boolean indicating whether or not images should be drawn in this item's extended
- * item menu. Defaults to true
- * @property {boolean} [changeWhenLocked] - A boolean indicating whether or not the item's type can be changed while the
- * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to true
- * @property {TypedItemValidateCallback} [validate] - An optional validation callback function which can be used by
- * items to run additional validation for cases that aren't covered by configuration
- */
-
-/**
- * @callback TypedItemChatCallback
- * @param {object} chatData - An object containing data about the type change that triggered the chat message
- * @param {Character} chatData.C - A reference to the character wearing the item
- * @param {ExtendedItemOption} chatData.previousOption - The previously selected type option
- * @param {ExtendedItemOption} chatData.newOption - The newly selected type option
- * @param {number} chatData.previousIndex - The index of the previously selected type option in the item's options
- * config
- * @param {number} chatData.newIndex - The index of the newly selected type option in the item's options config
- * @returns {string} - The chat prefix that should be used for this type change
- */
-
-/**
- * @callback TypedItemValidateCallback
- * @param {Character} C - A reference to the character wearing the item
- * @param {ExtendedItemOption} Option - The newly selected type option
- * @returns {string} - Returns a non-empty message string if the item failed validation, or an empty string otherwise
- */
