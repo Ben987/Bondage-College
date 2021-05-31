@@ -178,6 +178,61 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // BitchSuit
+		LeatherCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Effect: [],
+							SetPose: null,
+							SelfUnlock: true,
+						},
+					},
+					{
+						Name: "Wrist",
+						Property: {
+							Type: "Wrist",
+							Difficulty: 2,
+							Effect: ["Block", "Prone"],
+							SetPose: ["BackBoxTie"],
+							SelfUnlock: true,
+						},
+					},
+					{
+						Name: "Elbow",
+						Property: {
+							Type: "Elbow",
+							Difficulty: 4,
+							Effect: ["Block", "Prone", "NotSelfPickable"],
+							SetPose: ["BackElbowTouch"],
+							SelfUnlock: false,
+						},
+					},
+					{
+						Name: "Both",
+						Property: {
+							Type: "Both",
+							Difficulty: 6,
+							Effect: ["Block", "Prone", "NotSelfPickable"],
+							SetPose: ["BackElbowTouch"],
+							SelfUnlock: false,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectBondagePosition",
+					TypePrefix: "ItemArmsCuffs",
+				},
+			},
+		}, // LeatherCuffs
+		OrnateCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "LeatherCuffs" },
+		}
 	}, // ItemArms
 	ItemNeck: {
 		ShinySteelCollar: {
