@@ -576,8 +576,6 @@ interface ExtendedItemOption {
 	BondageLevel?: number;
 	/** The required self-bondage skill level for this option when using it on oneself */
 	SelfBondageLevel?: number;
-	/** If this option is a subscreen */
-	HasSubscreen?: boolean;
 	/** The required prerequisites that must be met before this option can be selected */
 	Prerequisite?: string|string[];
 	/**
