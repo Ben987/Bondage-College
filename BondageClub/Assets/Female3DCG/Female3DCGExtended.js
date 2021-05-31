@@ -27,6 +27,24 @@ const ExtendedArchetype = {
  * @const {ExtendedItemConfig}
  */
 var AssetFemale3DCGExtended = {
+	ClothAccessory: {
+		LeatherStraps: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemArms", AssetName: "LeatherArmbinder" },
+			Config: {
+				Options: [
+					{
+						Name: "WrapStrap",
+						Property: { Type: null, },
+					},
+					{
+						Name: "Strap",
+						Property: { Type: "Strap", },
+					},
+				],		
+			},
+		}, // LeatherStraps
+	}, // ClothAccessory
 	ItemArms: {
 		HighSecurityStraitJacket: {
 			Archetype: ExtendedArchetype.MODULAR,
@@ -178,6 +196,30 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // BitchSuit
+		LeatherArmbinder: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: { Type: null, Difficulty: 0 },
+					},
+					{
+						Name: "Strap",
+						Property: { Type: "Strap", Difficulty: 3 },
+					},
+					{
+						Name: "WrapStrap",
+						Property: { Type: "WrapStrap", Difficulty: 3 },
+					},
+				],
+				Dialog: {
+					Load: "ItemArmsLeatherArmbinderSelect",
+					TypePrefix: "ItemArmsLeatherArmbinder",
+					ChatPrefix: "ItemArmsLeatherArmbinderSet",
+				},
+			},
+		}, // LeatherArmbinder
 	}, // ItemArms
 	ItemNeck: {
 		ShinySteelCollar: {
