@@ -178,6 +178,49 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // BitchSuit
+		StraitJacket: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Loose",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+						},
+					},
+					{
+						Name: "Normal",
+						Property: {
+							Type: "Normal",
+							Difficulty: 3,
+						},
+					},
+					{
+						Name: "Snug",
+						Property: {
+							Type: "Snug",
+							Difficulty: 6,
+						},
+					},
+					{
+						Name: "Tight",
+						Property: {
+							Type: "Tight",
+							Difficulty: 9,
+						},
+					},
+				],
+				Dialog: {
+					Load: "ItemArmsStraitJacketSelect",
+					TypePrefix: "ItemArmsStraitJacket",
+				},
+			},
+		}, // StraitJacket
+		LeatherStraitJacket: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "StraitJacket" },
+		}, // LeatherStraitJacket
 	}, // ItemArms
 	ItemNeck: {
 		ShinySteelCollar: {
