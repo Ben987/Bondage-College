@@ -135,28 +135,6 @@ var AssetFemale3DCGExtended = {
 				},
 			},
 		}, // CeilingShackles
-		SteelCuffs: {
-			Archetype: ExtendedArchetype.TYPED,
-			Config: {
-				Options: [
-					{
-						Name: "None",
-						Property: { Type: null }
-					},
-					{
-						Name: "Wrist",
-						Property: {
-							Type: "Wrist",
-							Effect: ["Block", "Prone"],
-							SetPose: ["BackBoxTie"]
-						}
-					}
-				],
-				Dialog: {
-					Load: "SelectBondagePosition"
-				}
-			}
-		}, // SteelCuffs
 		BitchSuit: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -232,7 +210,27 @@ var AssetFemale3DCGExtended = {
 		OrnateCuffs: {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { AssetName: "LeatherCuffs" },
-		}
+		}, // OrnateCuffs
+		SteelCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "LeatherCuffs" },
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: { Type: null }
+					},
+					{
+						Name: "Wrist",
+						Property: {
+							Type: "Wrist",
+							Effect: ["Block", "Prone"],
+							SetPose: ["BackBoxTie"]
+						}
+					}
+				],
+			}
+		}, // SteelCuffs
 	}, // ItemArms
 	ItemNeck: {
 		ShinySteelCollar: {
