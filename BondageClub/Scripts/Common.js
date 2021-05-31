@@ -137,7 +137,7 @@ function CommonGetBrowser() {
  * @returns {string[][]} Array representing each line of the parsed content, each line itself is split by commands and stored within an array.
  */
 function CommonParseCSV(str) {
-
+	/** @type {string[][]} */
 	var arr = [];
 	var quote = false;  // true means we're inside a quoted field
 	var c;
