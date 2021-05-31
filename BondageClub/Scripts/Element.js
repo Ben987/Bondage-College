@@ -343,6 +343,18 @@ function ElementScrollToEnd(ID) {
 }
 
 /**
+ * Returns the given element's scroll position as a percentage, with the top of the element being 0, and the bottom being close to 1.
+ * @param {string} ID - The id of the element to find the scroll percentage of.
+ * @returns {(number|null)} - A float representing the scroll percentage.
+ */
+ function ElementGetScrollPercentage(ID) {
+	var element = document.getElementById(ID);
+	if (element != null) return element.scrollTop / element.scrollHeight;
+
+	return null;
+}
+
+/**
  * Checks if a given HTML element is scrolled to the very bottom.
  * @param {string} ID - The id of the element to check for scroll height.
  * @returns {boolean} - Returns TRUE if the specified element is scrolled to the very bottom

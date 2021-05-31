@@ -74,6 +74,41 @@ var ChatRoomHideIconState = 0;
 var ChatRoomMenuButtons = [];
 
 /**
+ * Chat room resize manager object: Handles resize events for the chat log.
+ * @constant
+ * @type {object} - The chat room resize manager object. Contains the functions and properties required to handle resize events.
+ */
+ let ChatRoomResizeManager = {
+	atStart : true, // Is this the first event in a chain of resize events?
+	timer : null, // Timer that triggers the end function after no resize events have been received recently.
+	ChatRoomScrollPercentage : 0, // Height of the chat log scroll bar before the first resize event occurs, as a percentage.
+
+	// Triggered by resize event
+	ChatRoomResizeEvent : function() {
+		if(ChatRoomResizeManager.atStart) { // Run code for the first resize event in a chain of resize events.
+			ChatRoomResizeManager.ChatRoomScrollPercentage = ElementGetScrollPercentage("TextAreaChatLog");
+			ChatRoomResizeManager.atStart = false;
+		}
+
+		// Reset timer if an event was received recently.
+		if (ChatRoomResizeManager.timer) clearTimeout(ChatRoomResizeManager.timer);
+		ChatRoomResizeManager.timer = setTimeout(ChatRoomResizeManager.ChatRoomResizeEventsEnd, 200);
+	},
+
+	// Triggered by ChatRoomResizeManager.timer
+	ChatRoomResizeEventsEnd : function(){
+		var TextAreaChatLog = document.getElementById("TextAreaChatLog");
+
+		if (TextAreaChatLog != null) {
+			// Scrolls to the position held before the resize events.
+			TextAreaChatLog.scrollTo(0, ChatRoomResizeManager.ChatRoomScrollPercentage * TextAreaChatLog.scrollHeight);
+		}
+		ChatRoomResizeManager.atStart = true;
+	},
+};
+
+
+/**
  * Checks if the player can add the current character to her whitelist.
  * @returns {boolean} - TRUE if the current character is not in the player's whitelist nor blacklist.
  */
@@ -419,6 +454,9 @@ function ChatRoomCreateElement() {
 			RelogChatLog = null;
 		} else ElementContent("TextAreaChatLog", "");
 
+		// Creates listener for resize events.
+		window.addEventListener("resize", ChatRoomResizeManager.ChatRoomResizeEvent);
+
 	} else if (document.getElementById("TextAreaChatLog").style.display == "none") {
 		setTimeout(() => ElementScrollToEnd("TextAreaChatLog"), 100);
 		ChatRoomRefreshChatSettings();
@@ -479,6 +517,9 @@ function ChatRoomClearAllElements() {
 	// Wardrobe
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceMode = "";
+
+	// Listeners
+	window.removeEventListener("resize", ChatRoomResizeManager.ChatRoomResizeEvent);
 }
 
 /**
