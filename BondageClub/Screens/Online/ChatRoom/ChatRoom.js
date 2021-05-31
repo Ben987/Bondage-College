@@ -81,27 +81,31 @@ var ChatRoomMenuButtons = [];
  let ChatRoomResizeManager = {
 	atStart : true, // Is this the first event in a chain of resize events?
 	timer : null, // Timer that triggers the end function after no resize events have been received recently.
+	timeOut : 200, // The amount of milliseconds that has to pass before the chain of resize events is considered over and the timer is called.
 	ChatRoomScrollPercentage : 0, // Height of the chat log scroll bar before the first resize event occurs, as a percentage.
+	ChatLogScrolledToEnd : false, // Is the chat log scrolled all the way to the end before the first resize event occurs?
 
 	// Triggered by resize event
 	ChatRoomResizeEvent : function() {
 		if(ChatRoomResizeManager.atStart) { // Run code for the first resize event in a chain of resize events.
 			ChatRoomResizeManager.ChatRoomScrollPercentage = ElementGetScrollPercentage("TextAreaChatLog");
+			ChatRoomResizeManager.ChatLogScrolledToEnd = ElementIsScrolledToEnd("TextAreaChatLog");
 			ChatRoomResizeManager.atStart = false;
 		}
 
 		// Reset timer if an event was received recently.
 		if (ChatRoomResizeManager.timer) clearTimeout(ChatRoomResizeManager.timer);
-		ChatRoomResizeManager.timer = setTimeout(ChatRoomResizeManager.ChatRoomResizeEventsEnd, 200);
+		ChatRoomResizeManager.timer = setTimeout(ChatRoomResizeManager.ChatRoomResizeEventsEnd, ChatRoomResizeManager.timeOut);
 	},
 
-	// Triggered by ChatRoomResizeManager.timer
+	// Triggered by ChatRoomResizeManager.timer at the end of a chain of resize events
 	ChatRoomResizeEventsEnd : function(){
 		var TextAreaChatLog = document.getElementById("TextAreaChatLog");
 
 		if (TextAreaChatLog != null) {
 			// Scrolls to the position held before the resize events.
-			TextAreaChatLog.scrollTo(0, ChatRoomResizeManager.ChatRoomScrollPercentage * TextAreaChatLog.scrollHeight);
+			if (ChatRoomResizeManager.ChatLogScrolledToEnd) ElementScrollToEnd("TextAreaChatLog"); // Prevents drift away from the end of the chat log.
+			else TextAreaChatLog.scrollTop = (ChatRoomResizeManager.ChatRoomScrollPercentage * TextAreaChatLog.scrollHeight) - TextAreaChatLog.clientHeight;
 		}
 		ChatRoomResizeManager.atStart = true;
 	},
