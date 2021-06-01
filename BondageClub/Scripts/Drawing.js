@@ -718,7 +718,7 @@ function DrawImageEx(
 	}
 
 	if (SourcePos) {
-		Canvas.drawImage(Source, ...SourcePos, 0, 0, Width, Height);
+		Canvas.drawImage(Source, SourcePos[0], SourcePos[1], SourcePos[2], SourcePos[3], 0, 0, Width, Height);
 	} else if (sizeChanged) {
 		Canvas.drawImage(Source, 0, 0, Width, Height);
 	} else {

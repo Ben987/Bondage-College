@@ -155,7 +155,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		ColorableLayerCount: 0,
 		FuturisticRecolor: typeof NewAsset.FuturisticRecolor === 'boolean' ? NewAsset.FuturisticRecolor : false,
 		FuturisticRecolorDisplay: typeof NewAsset.FuturisticRecolorDisplay === 'boolean' ? NewAsset.FuturisticRecolorDisplay : false,
-	}, AssetParsePoseProperties(NewAsset, [...AssetCurrentGroup.AllowPose]));
+	}, AssetParsePoseProperties(NewAsset, AssetCurrentGroup.AllowPose.slice()));
 
 	// Ensure opacity value is valid
 	if (A.MinOpacity > A.Opacity) A.MinOpacity = A.Opacity;
@@ -261,7 +261,7 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		ColorIndex: 0
 	}, AssetParsePoseProperties(
 		Layer,
-		Array.isArray(AssetDefinition.AllowPose) ? [...AssetDefinition.AllowPose] : null)
+		Array.isArray(AssetDefinition.AllowPose) ? AssetDefinition.AllowPose.slice() : null)
 	);
 	if (L.MinOpacity > L.Opacity) L.MinOpacity = L.Opacity;
 	if (L.MaxOpacity < L.Opacity) L.MaxOpacity = L.Opacity;

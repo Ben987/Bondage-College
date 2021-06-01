@@ -849,7 +849,7 @@ function CharacterLoadCanvas(C) {
 
 	// We add a temporary appearance and pose here so that it can be modified by hooks.  We copy the arrays so no hooks can alter the reference accidentally
 	C.DrawAppearance = AppearanceItemParse( CharacterAppearanceStringify(C));
-	C.DrawPose = [...C.Pose]; // Deep copy of pose array
+	C.DrawPose = C.Pose.slice(); // Deep copy of pose array
 
 
 	// Run BeforeSortLayers hook
