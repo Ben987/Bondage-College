@@ -618,3 +618,41 @@ function ServerAccountLovership(data) {
 		LoginLoversItems();
 	}
 }
+
+/**
+ * Compares the source account and target account to check if we allow using an item
+ *
+ * **This function MUST match server's identical function!**
+ * @param {Character} Source
+ * @param {Character} Target
+ * @returns {boolean}
+ */
+function ServerChatRoomGetAllowItem(Source, Target) {
+
+	// Make sure we have the required data
+	if ((Source == null) || (Target == null)) return false;
+
+	// NPC
+	if (typeof Target.MemberNumber !== "number") return true;
+
+	// At zero permission level or if target is source or if owner, we allow it
+	if ((Target.ItemPermission <= 0) || (Source.MemberNumber == Target.MemberNumber) || ((Target.Ownership != null) && (Target.Ownership.MemberNumber != null) && (Target.Ownership.MemberNumber == Source.MemberNumber))) return true;
+
+	// At one, we allow if the source isn't on the blacklist
+	if ((Target.ItemPermission == 1) && (Target.BlackList.indexOf(Source.MemberNumber) < 0)) return true;
+
+	var LoversNumbers = CharacterGetLoversNumbers(Target, true);
+
+	// At two, we allow if the source is Dominant compared to the Target (25 points allowed) or on whitelist or a lover
+	if ((Target.ItemPermission == 2) && (Target.BlackList.indexOf(Source.MemberNumber) < 0) && ((ReputationCharacterGet(Source, "Dominant") + 25 >= ReputationCharacterGet(Target, "Dominant")) || (Target.WhiteList.indexOf(Source.MemberNumber) >= 0) || (LoversNumbers.indexOf(Source.MemberNumber) >= 0))) return true;
+
+	// At three, we allow if the source is on the whitelist of the Target or a lover
+	if ((Target.ItemPermission == 3) && ((Target.WhiteList.indexOf(Source.MemberNumber) >= 0) || (LoversNumbers.indexOf(Source.MemberNumber) >= 0))) return true;
+
+	// At four, we allow if the source is a lover
+	if ((Target.ItemPermission == 4) && (LoversNumbers.indexOf(Source.MemberNumber) >= 0)) return true;
+
+	// No valid combo, we don't allow the item
+	return false;
+
+}

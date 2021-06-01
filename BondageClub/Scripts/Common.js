@@ -6,6 +6,7 @@ var Player;
 var KeyPress = "";
 var CurrentModule;
 var CurrentScreen;
+/** @type {Character|null} */
 var CurrentCharacter = null;
 var CurrentOnlinePlayers = 0;
 var CurrentDarkFactor = 1.0;
