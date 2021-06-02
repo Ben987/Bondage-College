@@ -4,24 +4,6 @@
  */
 
 /**
- * @typedef {Object} ExtendedItemOption
- * @description Defines a single extended item option
- * @property {string} Name - The name of the type - used for the preview icon and the translation key in the CSV
- * @property {number} [BondageLevel] - The required bondage skill level for this type (optional)
- * @property {number} [SelfBondageLevel] - The required self-bondage skill level for this type when using it on
- * yourself (optional)
- * @property {string[]} [Prerequisite] - The required prerequisites that must be met before this option can be selected
- * @property {boolean} [SelfBlockCheck] - Whether or not prerequisites should be considered on the character's
- * appearance without the item equipped. Should be set to true if the item itself might interfere with prerequisites on
- * some of its options
- * @property {boolean} [ChangeWhenLocked] - Whether or not it should be possible to change from this option to another
- * option while the item is locked (if set to false, the player must be able to unlock the item to change its type) -
- * defaults to true
- * @property {boolean} [HasSubscreen] - Whether or not the option should open a subscreen in the extended item menu
- * @property {Property} Property - The Property object to be applied when this option is used
- */
-
-/**
  * A lookup for the current pagination offset for all extended item options. Offsets are only recorded if the extended
  * item requires pagination. Example format:
  * ```json
@@ -30,7 +12,7 @@
  *     "ItemArms/Web": 0
  * }
  * ```
- * @type {Object.<string, number>}
+ * @type {Record<string, number>}
  * @constant
  */
 var ExtendedItemOffsets = {};
@@ -72,9 +54,7 @@ const ExtendedXYClothes = [
 	[[1140, 400], [1385, 400], [1630, 400], [1140, 700], [1385, 700], [1630, 700]], //6 options per page
 ];
 
-/** Memoization of the requirements check
- * @type {function}
-*/
+/** Memoization of the requirements check */
 const ExtendedItemRequirementCheckMessageMemo = CommonMemoize(ExtendedItemRequirementCheckMessage);
 
 /**
@@ -86,7 +66,7 @@ var ExtendedItemPermissionMode = false;
 /**
  * Tracks whether a selected option's subscreen is active - if active, the value is the name of the current subscreen's
  * corresponding option
- * @type {string}
+ * @type {string|null}
  */
 var ExtendedItemSubscreen = null;
 
@@ -402,8 +382,8 @@ function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage) {
 /**
  * Checks whether the player meets the requirements for an extended type option. This will check against their Bondage
  * skill if applying the item to another character, or their Self Bondage skill if applying the item to themselves.
- * @param {ExtendedItemOption} Option - The selected type definition
- * @param {ExtendedItemOption} CurrentOption - The current type definition
+ * @param {ExtendedItemOption|ModularItemOption} Option - The selected type definition
+ * @param {ExtendedItemOption|ModularItemOption} CurrentOption - The current type definition
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
  * @returns {string|null} null if the player meets the option requirements. Otherwise a string message informing them
  * of the requirements they do not meet
@@ -419,7 +399,7 @@ function ExtendedItemRequirementCheckMessage(Option, CurrentOption, IsSelfBondag
 	} else {
 		let RequiredLevel = Option.BondageLevel;
 		if (SkillGetLevelReal(Player, "Bondage") < RequiredLevel) {
-			return DialogFindPlayer("RequireBondageLevel").replace("ReqLevel", RequiredLevel);
+			return DialogFindPlayer("RequireBondageLevel").replace("ReqLevel", `${RequiredLevel}`);
 		}
 	}
 
@@ -435,8 +415,8 @@ function ExtendedItemRequirementCheckMessage(Option, CurrentOption, IsSelfBondag
 /**
  * Checks whether a change from the given current option to the newly selected option is valid.
  * @param {Character} C - The character wearing the item
- * @param {ExtendedItemOption} Option - The selected option
- * @param {ExtendedItemOption} CurrentOption - The currently applied option on the item
+ * @param {Pick<ExtendedItemOption, "Prerequisite" | "SelfBlockCheck" | "Property">} Option - The selected option
+ * @param {Pick<ExtendedItemOption, "ChangeWhenLocked">} CurrentOption - The currently applied option on the item
  * @returns {string} - Returns a non-empty message string if the item failed validation, or an empty string otherwise
  */
 function ExtendedItemValidate(C, { Prerequisite, SelfBlockCheck, Property }, CurrentOption) {

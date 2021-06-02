@@ -71,6 +71,8 @@ function DrawLoad() {
 	TempCanvas = document.createElement("canvas").getContext("2d");
 	ColorCanvas = document.createElement("canvas").getContext("2d");
 	CharacterCanvas = document.createElement("canvas").getContext("2d");
+	CharacterCanvas.canvas.width = 500;
+	CharacterCanvas.canvas.height = CanvasDrawHeight;
 	document.getElementById("MainCanvas").addEventListener("keypress", KeyDown);
 	document.getElementById("MainCanvas").tabIndex = 1000;
 	document.addEventListener("keydown", DocumentKeyDown);
@@ -285,10 +287,6 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 		// There's 2 different canvas, one blinking and one that doesn't
 		let Canvas = (Math.round(CurrentTime / 400) % C.BlinkFactor == 0 && !CommonPhotoMode) ? C.CanvasBlink : C.Canvas;
 
-		// Initialize the working canvas
-		CharacterCanvas.canvas.width = Canvas.width;
-		CharacterCanvas.canvas.height = Canvas.height;
-
 		// If we must dark the Canvas characters
 		if ((C.ID != 0) && Player.IsBlind() && !OverrideDark) {
 			const DarkFactor = Math.min(CharacterGetDarkFactor(Player) * 2, 1);
@@ -296,24 +294,15 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 			CharacterCanvas.globalCompositeOperation = "copy";
 			CharacterCanvas.drawImage(Canvas, 0, 0);
 			// Overlay black rectangle.
-			CharacterCanvas.globalCompositeOperation = "source-over";
-			CharacterCanvas.fillStyle = "rgba(0,0,0," + (1.0 - DarkFactor) + ")";
+			CharacterCanvas.globalCompositeOperation = "source-atop";
+			CharacterCanvas.fillStyle = `rgba(0,0,0,${1.0 - DarkFactor})`;
 			CharacterCanvas.fillRect(0, 0, Canvas.width, Canvas.height);
-			// Re-apply character alpha channel
-			CharacterCanvas.globalCompositeOperation = 'destination-in';
-			CharacterCanvas.drawImage(Canvas, 0, 0);
+
 			Canvas = CharacterCanvas.canvas;
 		}
 
 		// If we must flip the canvas vertically
 		const IsInverted = (CurrentScreen != "KinkyDungeon") ? CharacterAppearsInverted(C) : false;
-		if (IsInverted) {
-			CharacterCanvas.rotate(Math.PI);
-			CharacterCanvas.translate(-Canvas.width, -Canvas.height);
-			CharacterCanvas.globalCompositeOperation = "copy";
-			CharacterCanvas.drawImage(Canvas, 0, 0);
-			Canvas = CharacterCanvas.canvas;
-		}
 
 		// Get the height ratio and X & Y offsets based on it
 		const HeightRatio = (IsHeightResizeAllowed == null || IsHeightResizeAllowed == true) ? C.HeightRatio : 1;
@@ -324,11 +313,17 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
 		const YCutOff = YOffset >= 0 || CurrentScreen == "ChatRoom";
 		const YStart = CanvasUpperOverflow + (YCutOff ? -YOffset / HeightRatio : 0);
 		const SourceHeight = 1000 / HeightRatio + (YCutOff ? 0 : -YOffset / HeightRatio);
-		const SourceY = IsInverted ? Canvas.height - (YStart + SourceHeight) : YStart;
 		const DestY = (IsInverted || YCutOff) ? 0 : YOffset;
 
 		// Draw the character
-		DrawCanvas.drawImage(Canvas, 0, SourceY, Canvas.width, SourceHeight, X + XOffset * Zoom, Y + DestY * Zoom, 500 * HeightRatio * Zoom, (1000 - DestY) * Zoom);
+		DrawImageEx(Canvas, X + XOffset * Zoom, Y + DestY * Zoom, {
+			Canvas: DrawCanvas,
+			SourcePos: [0, YStart, Canvas.width, SourceHeight],
+			Width: 500 * HeightRatio * Zoom,
+			Height: (1000 - DestY) * Zoom,
+			Invert: IsInverted,
+			Mirror: IsInverted
+		});
 
 		// Draw the arousal meter & game images on certain conditions
 		if (CurrentScreen != "ChatRoom" || ChatRoomHideIconState <= 1) {
@@ -428,13 +423,13 @@ function DrawAlpha(Canvas, Alpha) {
  * @returns {boolean} - whether the image was complete or not
  */
 function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height, Invert) {
-	/** @type {CanvasImageSource} */
-	let Img = DrawGetImage(Source);
-	if (!Img.complete) return false;
-	if (!Img.naturalWidth) return true;
-	if (Invert) Img = DrawImageInvert(Img);
-	Canvas.drawImage(Img, SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
-	return true;
+	return DrawImageEx(Source, X, Y, {
+		Canvas,
+		SourcePos: [SX, SY, SWidth, SHeight],
+		Width,
+		Height,
+		Invert
+	});
 }
 
 /**
@@ -447,11 +442,7 @@ function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Widt
  * @returns {boolean} - whether the image was complete or not
  */
 function DrawImageResize(Source, X, Y, Width, Height) {
-	const Img = DrawGetImage(Source);
-	if (!Img.complete) return false;
-	if (!Img.naturalWidth) return true;
-	MainCanvas.drawImage(Img, 0, 0, Img.width, Img.height, X, Y, Width, Height);
-	return true;
+	return DrawImageEx(Source, X, Y, { Width, Height });
 }
 
 /**
@@ -497,7 +488,7 @@ function DrawImageCanvas(Source, Canvas, X, Y, AlphaMasks, Opacity, Rotate) {
 
 /**
  * Draws a canvas to a specific canvas
- * @param {CanvasImageSource} Img - Canvas to draw
+ * @param {HTMLImageElement | HTMLCanvasElement} Img - Canvas to draw
  * @param {CanvasRenderingContext2D} Canvas - Canvas on which to draw the image
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
@@ -519,14 +510,14 @@ function DrawCanvas(Img, Canvas, X, Y, AlphaMasks) {
 
 /**
  * Draws a specific canvas with a zoom on the main canvas
- * @param {CanvasImageSource} Canvas - Canvas to draw on the main canvas
+ * @param {HTMLImageElement | HTMLCanvasElement} Canvas - Canvas to draw on the main canvas
  * @param {number} X - Position of the canvas on the X axis
  * @param {number} Y - Position of the canvas on the Y axis
  * @param {number} Zoom - Zoom factor
- * @returns {void} - Nothing
+ * @returns {boolean} - whether the image was complete or not
  */
 function DrawCanvasZoom(Canvas, X, Y, Zoom) {
-	MainCanvas.drawImage(Canvas, 0, 0, Canvas.width, Canvas.height, X, Y, Canvas.width * Zoom, Canvas.height * Zoom);
+	return DrawImageEx(Canvas, X, Y, { Zoom });
 }
 
 /**
@@ -539,14 +530,10 @@ function DrawCanvasZoom(Canvas, X, Y, Zoom) {
  * @returns {boolean} - whether the image was complete or not
  */
 function DrawImageZoomMirror(Source, X, Y, Width, Height) {
-	const Img = DrawGetImage(Source);
-	if (!Img.complete) return false;
-	if (!Img.naturalWidth) return true;
-	MainCanvas.save();
-	MainCanvas.scale(-1, 1);
-	MainCanvas.drawImage(Img, X * -1, Y, Width * -1, Height);
-	MainCanvas.restore();
-	return true;
+	return DrawImageEx(Source, X, Y, {
+		Width, Height,
+		Mirror: true
+	});
 }
 
 /**
@@ -558,13 +545,7 @@ function DrawImageZoomMirror(Source, X, Y, Width, Height) {
  * @returns {boolean} - whether the image was complete or not
  */
 function DrawImage(Source, X, Y, Invert) {
-	/** @type {CanvasImageSource} */
-	let Img = DrawGetImage(Source);
-	if (!Img.complete) return false;
-	if (!Img.naturalWidth) return true;
-	if (Invert) Img = DrawImageInvert(Img);
-	MainCanvas.drawImage(Img, X, Y);
-	return true;
+	return DrawImageEx(Source, X, Y, { Invert });
 }
 
 /**
@@ -656,14 +637,7 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
  * @returns {boolean} - whether the image was complete or not
  */
 function DrawImageMirror(Source, X, Y) {
-	const Img = DrawGetImage(Source);
-	if (!Img.complete) return false;
-	if (!Img.naturalWidth) return true;
-	MainCanvas.save();
-	MainCanvas.scale(-1, 1);
-	MainCanvas.drawImage(Img, X * -1, Y);
-	MainCanvas.restore();
-	return true;
+	return DrawImageEx(Source, X, Y, { Mirror: true });
 }
 
 /**
@@ -678,6 +652,81 @@ function DrawImageInvert(Img) {
 	TempCanvas.translate(0, -Img.height);
 	TempCanvas.drawImage(Img, 0, 0);
 	return TempCanvas.canvas;
+}
+
+/**
+ * Draws an image on canvas, applying all options
+ * @param {string | HTMLImageElement | HTMLCanvasElement} Source - URL of image or image itself
+ * @param {number} X - Position of the image on the X axis
+ * @param {number} Y - Position of the image on the Y axis
+ * @param {object} [options] - any extra options, optional
+ * @param {CanvasRenderingContext2D} [options.Canvas] - Canvas on which to draw the image, defaults to `MainCanvas`
+ * @param {number} [options.Alpha] - transparency between 0-1
+ * @param {[number, number, number, number]} [options.SourcePos] - Area in original image to draw in format `[left, top, width, height]`
+ * @param {number} [options.Width] - Width of the drawn image, defaults to width of original image
+ * @param {number} [options.Height] - Height of the drawn image, defaults to height of original image
+ * @param {boolean} [options.Invert=false] - If image should be flipped vertically
+ * @param {boolean} [options.Mirror=false] - If image should be flipped horizontally
+ * @param {number} [options.Zoom=1] - Zoom factor
+ * @returns {boolean} - whether the image was complete or not
+ */
+function DrawImageEx(
+	Source,
+	X,
+	Y,
+	{
+		Canvas = MainCanvas,
+		Alpha = 1,
+		SourcePos,
+		Width,
+		Height,
+		Invert = false,
+		Mirror = false,
+		Zoom = 1
+	}
+) {
+	if (typeof Source === "string") {
+		Source = DrawGetImage(Source);
+		if (!Source.complete) return false;
+		if (!Source.naturalWidth) return true;
+	}
+
+	const sizeChanged = Width != null || Height != null;
+	if (Width == null) {
+		Width = SourcePos ? SourcePos[2] : Source.width;
+	}
+	if (Height == null) {
+		Height = SourcePos ? SourcePos[3] : Source.height;
+	}
+
+	Canvas.save();
+
+	Canvas.globalCompositeOperation = "source-over";
+	Canvas.globalAlpha = Alpha;
+	Canvas.translate(X, Y);
+
+	if (Zoom != 1) {
+		Canvas.scale(Zoom, Zoom);
+	}
+
+	if (Invert) {
+		Canvas.transform(1, 0, 0, -1, 0, Height);
+	}
+
+	if (Mirror) {
+		Canvas.transform(-1, 0, 0, 1, Width, 0);
+	}
+
+	if (SourcePos) {
+		Canvas.drawImage(Source, SourcePos[0], SourcePos[1], SourcePos[2], SourcePos[3], 0, 0, Width, Height);
+	} else if (sizeChanged) {
+		Canvas.drawImage(Source, 0, 0, Width, Height);
+	} else {
+		Canvas.drawImage(Source, 0, 0);
+	}
+
+	Canvas.restore();
+	return true;
 }
 
 /**

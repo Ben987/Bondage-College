@@ -1,9 +1,18 @@
-// polyfill
+//#region Common
+
 interface String {
 	replaceAt(index: number, character: string): string;
 }
 
-declare function parseInt(s: string|number, radix?: number): number;
+declare function parseInt(s: string | number, radix?: number): number;
+
+type MemoizedFunction<T extends Function> = T & {
+	/** Clears the cache of the memoized function */
+	clearCache(): void;
+};
+
+//#endregion
+
 
 type IAssetFamily = "Female3DCG";
 
@@ -144,7 +153,7 @@ interface Asset {
 	WhitelistActivePose?: string[];
 	Value: number;
 	Difficulty: number;
-	SelfBondage: boolean;
+	SelfBondage: number;
 	SelfUnlock: boolean;
 	ExclusiveUnlock: boolean;
 	Random: boolean;
@@ -221,7 +230,7 @@ interface ItemBundle {
 	Name: string;
 	Difficulty?: number;
 	Color?: string | string[];
-	Property?: Record<string, any>;
+	Property?: ItemProperties;
 }
 
 /** An AppearanceBundle is whole minified appearance of a character */
@@ -249,7 +258,7 @@ interface Item {
 	Asset: Asset;
 	Color?: string | string[];
 	Difficulty?: number;
-	Property?: Record<string, any>;
+	Property?: ItemProperties;
 }
 
 interface Skill {
@@ -359,8 +368,8 @@ interface Character {
 	DrawPose?: string[];
 	DrawAppearance?: Item[];
 	AppearanceLayers?: AssetLayer[];
-	Hooks: Map<string, Map<string, any>>|null;
-	RegisterHook: (hookName: string, hookInstance: string, callback: any) => boolean|any;
+	Hooks: Map<string, Map<string, any>> | null;
+	RegisterHook: (hookName: string, hookInstance: string, callback: any) => boolean | any;
 	UnregisterHook: (hookName: string, hookInstance: string) => boolean;
 	HeightRatioProportion?: number;
 	// Properties created in other places
@@ -399,7 +408,7 @@ interface Character {
 		GameVersion: string;
 	};
 	Game?: any;
-	BlackList?: number[];
+	BlackList: number[];
 	RunScripts?: boolean;
 	HasScriptedAssets?: boolean;
 	Cage?: true | null;
@@ -529,3 +538,311 @@ interface PlayerCharacter extends Character {
 	FriendNames?: Map<number, string>;
 	SubmissivesList?: Set<number>
 }
+
+//#region Extended items
+
+interface ItemProperties {
+	[key: string]: any;
+}
+
+/** An object containing the extended item definition for an asset. */
+interface ExtendedItemAssetConfig {
+	/** The extended item archetype that this asset uses. */
+	Archetype: ExtendedArchetype;
+	/** The specific configuration for the item (type will vary based on the item's archetype) */
+	Config?: ModularItemConfig | TypedItemConfig;
+	/** The group name and asset name of a configuration to copy - useful if multiple items share the same config */
+	CopyConfig?: { GroupName?: string, AssetName: string };
+}
+
+/**
+ * An object containing extended item definitions for a group.
+ * Maps asset names within the group to their extended item configuration
+ * @see {@link ExtendedItemAssetConfig}
+ */
+type ExtendedItemGroupConfig = Record<string, ExtendedItemAssetConfig>;
+
+/**
+ * An object containing extended item configurations keyed by group name.
+ * @see {@link ExtendedItemAssetConfig}
+ */
+type ExtendedItemConfig = Record<string, ExtendedItemGroupConfig>;
+
+/** Defines a single extended item option */
+interface ExtendedItemOption {
+	/** The name of the type - used for the preview icon and the translation key in the CSV */
+	Name: string;
+	/** The required bondage skill level for this option */
+	BondageLevel?: number;
+	/** The required self-bondage skill level for this option when using it on oneself */
+	SelfBondageLevel?: number;
+	/** The required prerequisites that must be met before this option can be selected */
+	Prerequisite?: string|string[];
+	/**
+	 * Whether or not prerequisites should be considered on the character's
+	 * appearance without the item equipped. Should be set to `true` if the item itself might interfere with prerequisites on
+	 * some of its options
+	 */
+	SelfBlockCheck?: boolean;
+	/**
+	 * Whether or not it should be possible to change from this option to another
+	 * option while the item is locked (if set to `false`, the player must be able to unlock the item to change its type) -
+	 * defaults to `true`
+	 */
+	ChangeWhenLocked?: boolean;
+	/** The Property object to be applied when this option is used */
+	Property?: ItemProperties;
+	/**
+	 * Trigger this expression when changing to this option
+	 *
+	 * **Curretnly broken!**
+	 */
+	Expression?: ExpressionTrigger[];
+	/** Whether or not the option should open a subscreen in the extended item menu */
+	HasSubscreen?: boolean;
+}
+
+//#endregion
+
+//#region Modular items
+
+/** An object defining all of the required configuration for registering a modular item */
+interface ModularItemConfig {
+	/** The module definitions for the item */
+	Modules: ModularItemModule[];
+	/**
+	 * The item's chatroom message setting. Determines the level of
+	 * granularity for chatroom messages when the item's module values change.
+	 */
+	ChatSetting?: ModularItemChatSetting;
+	/**
+	 * A boolean indicating whether or not the item's type can be changed while the
+	 * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to `true`
+	 */
+	ChangeWhenLocked?: boolean;
+}
+
+/** An object describing a single module for a modular item. */
+interface ModularItemModule {
+	/** The name of this module - this is usually a human-readable string describing what the
+	 * module represents (e.g. Straps). It is used for display text keys, and should be unique across all of the modules
+	 * for the item.
+	 */
+	Name: string;
+	/** The unique key for this module - this is used as a prefix to designate option names. Each
+	 * options in the module will be named with the module's key, followed by the index of the option within the module's
+	 * Options array. Keys should be alphabetical only (a-z, A-Z)
+	 */
+	Key: string;
+	/** The list of option definitions that can be chosen within this module. */
+	Options: ModularItemOption[];
+}
+
+/** An object describing a single option within a module for a modular item. */
+interface ModularItemOption {
+	/** The additional difficulty associated with this option - defaults to 0 */
+	Difficulty?: number;
+	/** The required bondage skill level for this option */
+	BondageLevel?: number;
+	/** The required self-bondage skill level for this option when using it on oneself */
+	SelfBondageLevel?: number;
+	/** A list of groups that this option blocks - defaults to [] */
+	Block?: string[];
+	/** A list of groups that this option hides - defaults to [] */
+	Hide?: string[];
+	/** A list of items that this option hides */
+	HideItem?: string[];
+	/** The Property object to be applied when this option is used */
+	Property?: ItemProperties;
+	/**
+	 * Whether or not it should be possible to change from this option to another
+	 * option while the item is locked (if set to `false`, the player must be able to unlock the item to change its type) -
+	 * defaults to `true`
+	 */
+	ChangeWhenLocked?: boolean;
+}
+
+/** An object containing modular item configuration for an asset. Contains all of the necessary information for the
+ * item's load, draw & click handlers.
+ */
+interface ModularItemData {
+	/** A reference to the asset that this configuration is tied to */
+	asset: Asset;
+	/** The item's chatroom message setting. Determines the level of
+	 * granularity for chatroom messages when the item's module values change.
+	 */
+	chatSetting: ModularItemChatSetting;
+	/** The identifying key for the asset, in the format "<GroupName><AssetName>" */
+	key: string;
+	/** The prefix for generated functions */
+	functionPrefix: string;
+	/** The dialogue prefix for the player prompt that is displayed on each module's menu screen */
+	dialogSelectPrefix: string;
+	/** The dialogue prefix for the name of each module */
+	dialogModulePrefix: string;
+	/** The dialogue prefix for the name of each option */
+	dialogOptionPrefix: string;
+	/** The dialogue prefix that will be used for each of the item's chatroom messages */
+	chatMessagePrefix: string;
+	/** The module definitions for the modular item */
+	modules: ModularItemModule[];
+	/** Name of currently active module */
+	currentModule: string;
+	/** A lookup for the current page in the extended item menu for each of the item's modules */
+	pages: Record<string, number>;
+	/** A lookup for the draw data for each of the item's modules */
+	drawData: Record<string, { pageCount: number, paginate: boolean, positions: number[][] }>;
+	/** A lookup for the draw functions for each of the item's modules */
+	drawFunctions: Record<string, () => void>;
+	/** A lookup for the click functions for each of the item's modules */
+	clickFunctions: Record<string, () => void>;
+	/**
+	 * A boolean indicating whether or not the item's type can be changed while the
+	 * item is locked (if set to `false`, the player must be able to unlock the item to change its type). Defaults to `true`
+	 */
+	changeWhenLocked: boolean;
+}
+
+/** A 3-tuple (or 2-tuple) containing data for drawing a button in a modular item screen. A button definition takes the
+ * format:
+ * ```
+ * [imageUrl, textKey, background]
+ * ```
+ * The imageUrl is the URL for the image that should be drawn in the button.
+ * The textKey is the CSV key for the text that should be displayed in the button.
+ * The background is an optional CSS color string defining the background color for the button.
+ */
+type ModularItemButtonDefinition = string[];
+
+//#endregion
+
+//#region Typed items
+
+/** An object defining all of the required configuration for registering a typed item */
+interface TypedItemConfig {
+	/** The list of extended item options available for the item */
+	Options: ExtendedItemOption[];
+	/** The optional text configuration for the item. Custom text keys can be configured within this object */
+	Dialog?: TypedItemDialogConfig;
+	/**
+	 * An optional array of chat tags that should be included in the dictionary of
+	 * the chatroom message when the item's type is changed.
+	 * Defaults to {@link CommonChatTags.SOURCE_CHAR} and {@link CommonChatTags.DEST_CHAR}
+	 */
+	ChatTags?: CommonChatTags[];
+	/**
+	 * The chat message setting for the item. This can be provided to allow
+	 * finer-grained chatroom message keys for the item. Defaults to {@link TypedItemChatSetting.TO_ONLY}
+	 */
+	ChatSetting?: TypedItemChatSetting;
+	/** A boolean indicating whether or not images should be drawn in this item's extended item menu. Defaults to `true` */
+	DrawImages?: boolean;
+	/**
+	 * A boolean indicating whether or not the item's type can be changed while the
+	 * item is locked (if set to `false`, the player must be able to unlock the item to change its type). Defaults to `true`
+	 */
+	ChangeWhenLocked?: boolean;
+	/**
+	 * An optional validation callback function which can be used by
+	 * items to run additional validation for cases that aren't covered by configuration
+	 */
+	Validate?: TypedItemValidateCallback;
+}
+
+interface TypedItemDialogConfig {
+	/**
+	 * The key for the text that will be displayed at the top of the extended item screen
+	 * (usually a prompt for the player to select a type). Defaults to `"<groupName><assetName>Select"`
+	 */
+	Load?: string;
+	/**
+	 * A prefix for text keys for the display names of the item's individual types. This
+	 * will be suffixed with the option name to get the final key (i.e. `"<typePrefix><optionName>"`). Defaults to
+	 * `"<groupName><assetName>"`
+	 */
+	TypePrefix?: string;
+	/**
+	 * A prefix for text keys for chat messages triggered by the item. Chat message keys
+	 * will include the name of the new option, and depending on the chat setting, the name of the previous option:
+	 * - For chat setting `FROM_TO`: `<chatPrefix><oldOptionName>To<newOptionName>`
+	 * - For chat setting `TO_ONLY`: `<chatPrefix><newOptionName>`
+	 */
+	ChatPrefix?: string | TypedItemChatCallback;
+	/**
+	 * A prefix for text keys for NPC dialog. This will be suffixed with the option name
+	 * to get the final NPC dialogue key (i.e. `"<npcPrefix><optionName>"`. Defaults to `"<groupName><assetName>"`
+	 */
+	NpcPrefix?: string;
+}
+
+/**
+ * An object containing typed item configuration for an asset. Contains all of the necessary information for the item's
+ * load, draw & click handlers.
+ */
+interface TypedItemData {
+	/** The asset reference */
+	asset: Asset;
+	/** The list of extended item options available for the item */
+	options: ExtendedItemOption[];
+	/** A key uniquely identifying the asset */
+	key: string;
+	/** The common prefix used for all extended item functions associated with the asset */
+	functionPrefix: string;
+	/** A record containing various dialog keys used by the extended item screen */
+	dialog: {
+		/** The dialog key for the item's load text (usually a prompt to select the type) */
+		load: string;
+		/** The prefix used for dialog keys representing the display names of the item's types */
+		typePrefix: string;
+		/** The prefix used for dialog keys representing the item's chatroom messages when its type is changed */
+		chatPrefix: string | TypedItemChatCallback;
+		/** The prefix used for dialog keys representing an NPC's reactions to item type changes */
+		npcPrefix: string;
+	};
+	/**
+	 * An array of the chat message tags that should be included in the item's
+	 * chatroom messages. Defaults to [{@link CommonChatTags.SOURCE_CHAR}, {@link CommonChatTags.DEST_CHAR}]
+	 */
+	chatTags: CommonChatTags[];
+	/**
+	 * The chat message setting for the item. This can be provided to allow
+	 * finer-grained chatroom message keys for the item. Defaults to {@link TypedItemChatSetting.TO_ONLY}
+	 */
+	chatSetting?: TypedItemChatSetting;
+	/** A boolean indicating whether or not images should be drawn in this item's extended item menu. Defaults to `true` */
+	drawImages?: boolean;
+	/**
+	 * A boolean indicating whether or not the item's type can be changed while the
+	 * item is locked (if set to false, the player must be able to unlock the item to change its type). Defaults to `true`
+	 */
+	changeWhenLocked?: boolean;
+	/**
+	 * An optional validation callback function which can be used by
+	 * items to run additional validation for cases that aren't covered by configuration
+	 */
+	validate?: TypedItemValidateCallback;
+}
+
+/**
+ * @param {object} chatData - An object containing data about the type change that triggered the chat message
+ * @param {Character} chatData.C - A reference to the character wearing the item
+ * @param {ExtendedItemOption} chatData.previousOption - The previously selected type option
+ * @param {ExtendedItemOption} chatData.newOption - The newly selected type option
+ * @param {number} chatData.previousIndex - The index of the previously selected type option in the item's options
+ * config
+ * @param {number} chatData.newIndex - The index of the newly selected type option in the item's options config
+ * @returns {string} - The chat prefix that should be used for this type change
+ */
+type TypedItemChatCallback = (
+	chatData: { C: Character; previousOption: ExtendedItemOption; newOption: ExtendedItemOption; previousIndex: number; newIndex: number; }
+) => string;
+
+/**
+ * @param {Character} C - A reference to the character wearing the item
+ * @param {ExtendedItemOption} Option - The newly selected type option
+ * @returns {string} - Returns a non-empty message string if the item failed validation, or an empty string otherwise
+ */
+type TypedItemValidateCallback = (C: Character, Option: ExtendedItemOption) => string;
+
+
+//#endregion

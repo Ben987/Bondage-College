@@ -77,16 +77,21 @@ function PandoraPrisonRun() {
 }
 
 /**
- * Handles clicks in the prison screen
+ * Handles clicks in the prison screen, the guard will pick a random activity to do on the player
  * @returns {void} - Nothing
  */
 function PandoraPrisonClick() {
 	if (MouseIn(1885, 25, 90, 90) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 	if ((PandoraPrisonCharacter == null) && MouseIn(750, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if ((PandoraPrisonCharacter != null) && MouseIn(1000, 0, 500, 1000)) {
-		if (PandoraPrisonGuard.Stage == "RANDOM") PandoraPrisonGuard.Stage = "ChangeBondage";  // TO-DO: must pick a random activity
-		if (PandoraPrisonCharacter.TriggerIntro) PandoraPrisonCharacter.CurrentDialog = DialogFind(PandoraPrisonCharacter, "Intro" + (Player.CanInteract() ? "" : "Restrained") + PandoraPrisonCharacter.Stage);
+		if (PandoraPrisonGuard.Stage == "RANDOM") {
+			if ((Math.random() > 0.5) && (PandoraWillpower * 2 >= PandoraMaxWillpower)) PandoraPrisonGuard.Stage = "Beat";
+			else if ((Math.random() > 0.5) && !CharacterIsNaked(Player)) PandoraPrisonGuard.Stage = "Strip";
+			else if ((Math.random() > 0.5) && CharacterIsNaked(Player) && !Player.IsChaste()) PandoraPrisonGuard.Stage = "Chastity";
+			else PandoraPrisonGuard.Stage = "ChangeBondage";
+		}
 		CharacterSetCurrent(PandoraPrisonCharacter);
+		if (PandoraPrisonCharacter.TriggerIntro) PandoraPrisonCharacter.CurrentDialog = DialogFind(PandoraPrisonCharacter, "Intro" + (Player.CanInteract() ? "" : "Restrained") + PandoraPrisonCharacter.Stage);
 	}
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 }
@@ -149,6 +154,15 @@ function PandoraPrisonPlayerRestrain(Level) {
 }
 
 /**
+ * When the player gets stripped and restrained by an NPC, call the regular restrain function
+ * @returns {void} - Nothing
+ */
+function PandoraPrisonPlayerStrip(Level) {
+	CharacterNaked(Player);
+	PandoraPrisonPlayerRestrain(Level);
+}
+
+/**
  * When the NPC leaves the prison
  * @returns {void} - Nothing
  */
@@ -164,7 +178,7 @@ function PandoraPrisonCharacterRemove() {
  * @returns {boolean} - TRUE if the player can start a fight
  */
 function PandoraPrisonCanStartFight() {
-	return (!Player.IsRestrained() && (PandoraWillpower >= 1));
+	return (!Player.IsRestrained() && (PandoraWillpower >= 1) && Player.CanTalk());
 }
 
 /**
@@ -238,7 +252,7 @@ function PandoraPrisonBribeStart() {
  * @returns {boolean} - TRUE if bribing the guard is allowed
  */
 function PandoraPrisonBribeAllowed() {
-	return (PandoraPrisonBribeEnabled && (Player.Infiltration.Punishment.Timer > CurrentTime + 60000) && (Player.Money >= 10));
+	return (PandoraPrisonBribeEnabled && (Player.Infiltration.Punishment.Timer > CurrentTime + 60000) && (Player.Money >= 10) && Player.CanTalk());
 }
 
 /**

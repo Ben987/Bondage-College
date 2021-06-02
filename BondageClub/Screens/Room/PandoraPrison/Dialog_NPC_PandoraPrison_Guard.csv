@@ -107,8 +107,20 @@ ChangeBondageBribe,ChangeBondage,Here you go.  (Give her 6$.),"(She smiles and t
 ChangeBondageBribe,ChangeBondage,Forget it.,(She sighs.)  It's time to get some fresh restraints on you then.,"BribeProcess(0, 0)",
 IntroStrip,,,"(Guard DialogCharacterName steps inside and looks at you.)  Prisoner DialogPlayerName, since you're not restrained, let's get you naked.",,
 IntroRestrainedStrip,,,"(Guard DialogCharacterName steps inside and looks at your bondage.)  Prisoner DialogPlayerName, It's time to strip you naked.",,
-Strip,,(UNDER CONSTRUCTION.),"(This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.)",,
-Strip,,(Leave her.),,DialogLeave(),
+Strip,StripStart,No way!  It's cold in here.,"Don't complain prisoner, you're not in a position to negotiate.  I'll get you naked and bound.",,Player.CanTalk()
+Strip,StripStart,Alright.  Strip me and get out.,(She smirks.)  Be good and I'll get you naked and bound quickly.,,Player.CanTalk()
+Strip,StripStart,This is inhumane!,You should have thought of that before you came here.  I'll get you naked and bound.,,Player.CanTalk()
+Strip,,(Mumble some words.),Let me help you.  (She removes your gag and shakes her hands.)  Time to see some flesh!,PlayerUngag(),!Player.CanTalk()
+Strip,,(Try to shake your gag off.),Let me help you.  (She removes your gag and shakes her hands.)  Time to see some flesh!,PlayerUngag(),!Player.CanTalk()
+Strip,StripFight,Try to strip me and I'll crush you!,(She raises her fists.)  Girl!  Either you strip willingly or get beat up.  I'm fine with both.,,CanStartFight()
+StripFight,,(Fight her.),,StartFight(),
+StripFight,StripLeave,(Let her strip you.),(She strips you down and restrains you extra tight.)  Aren't you pretty?  You can thank me later.,"PlayerStrip(""ALL"")",
+StripStart,StripLeave,(Let her strip you.),(She strips you down and restrains you with many items.)  Aren't you pretty?  You can thank me later.,"PlayerStrip(""LOT"")",
+StripStart,StripLeave,(Help her to strip you.),(You strip down as she restrains you with some items.)  Aren't you pretty?  You can thank me later.,"PlayerStrip("""")",
+StripStart,StripLeave,(Give her a hard time.),(She struggles to strip and restrain you firmly with lots of items.)  Aren't you pretty?  You can thank me later.,"PlayerStrip(""ALL"")",
+StripLeave,,You cannot leave me like that.,"I can and I will.  Enjoy the cold air, I'll be back later.  (She starts to walk away.)",DialogRemove(),Player.CanTalk()
+StripLeave,,(Struggle in your bondage.),"Enjoy the cold air, I'll be back later.  (She starts to walk away.)",DialogRemove(),!Player.CanTalk()
+StripLeave,,(Leave her.),,CharacterRemove(),
 IntroChastity,,,"(Guard DialogCharacterName steps inside with chastity devices.)  Prisoner DialogPlayerName, Pandora's Box has decided that you're going to be chaste.",,
 IntroRestrainedChastity,,,"(Guard DialogCharacterName steps inside with chastity devices.)  Prisoner DialogPlayerName, Pandora's Box has decided that you're going to be chaste.",,
 Chastity,,(UNDER CONSTRUCTION.),"(This area of the club is under construction.  Lots of features still need to be coded, please wait for the next version for a more complete experience.)",,

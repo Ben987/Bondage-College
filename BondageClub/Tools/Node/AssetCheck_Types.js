@@ -162,21 +162,65 @@ const AssetLayerType = {
 	AllowModuleTypes: "[String]",
 };
 
-const AssetExtendedArchetypeType = {
+const ExtendedItemAssetConfig = {
 	Archetype: "String",
-	Config: "Maybe Object",
+	Config: "Maybe Object", // ModularItemConfig | TypedItemConfig
 	CopyConfig: "Maybe {GroupName: Maybe String, AssetName: String}",
 };
 
-const AssetExtendedConfigType = {
-	Modules: "Maybe [{Name: String, Key: String, Options: [Object]}]", // Modular items
-	Options: "Maybe [{Name: String, Property: Object}]", // Typed items
+const ModularItemConfig = {
+	Modules: "[Object]", // ModularItemModule[]
 	ChatSetting: "Maybe String",
-	Dialog: "Maybe Object",
+	ChangeWhenLocked: "Maybe Boolean",
+}
+
+const ModularItemModule = {
+	Name: "String",
+	Key: "String",
+	Options: "[Object]", // ModularItemOption[]
+}
+
+const ModularItemOption = {
+		Difficulty: "Maybe Number",
+		BondageLevel: "Maybe Number",
+		SelfBondageLevel: "Maybe Number",
+		Block: "Maybe [String]",
+		Hide: "Maybe [String]",
+		HideItem: "Maybe [String]",
+		Property: "Maybe Object",
+		ChangeWhenLocked: "Maybe Boolean",
+}
+
+const TypedItemConfig = {
+	Options: "[Object]", // ExtendedItemOption
+	Dialog: "Maybe { Load: Maybe String, TypePrefix: Maybe String, ChatPrefix: Maybe String, NpcPrefix: Maybe String }",
 	ChatTags: "Maybe [String]",
+	ChatSetting: "Maybe String",
 	DrawImages: "Maybe Boolean",
 	ChangeWhenLocked: "Maybe Boolean",
 	// Validate: "Maybe Function",
-};
+}
 
-module.exports = { AssetGroupType, AssetType, AssetLayerType, AssetExtendedArchetypeType, AssetExtendedConfigType };
+const ExtendedItemOption = {
+	Name: "String",
+	BondageLevel: "Maybe Number",
+	SelfBondageLevel: "Maybe Number",
+	Prerequisite: "Undefined | String | [String]",
+	SelfBlockCheck: "Maybe Boolean",
+	ChangeWhenLocked: "Maybe Boolean",
+	Property: "Maybe Object",
+	Expression: "Maybe [{ Name: String, Group: String, Timer: Number }]",
+	HasSubscreen: "Maybe Boolean",
+}
+
+module.exports = {
+	AssetGroupType,
+	AssetType,
+	AssetLayerType,
+	ExtendedItemAssetConfig,
+	ModularItemConfig,
+	ModularItemModule,
+	ModularItemOption,
+	TypedItemConfig,
+	ExtendedItemOption
+};

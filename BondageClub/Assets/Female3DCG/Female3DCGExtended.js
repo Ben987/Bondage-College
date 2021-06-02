@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Female3DCGExtended.js
+ * Female3	CGExtended.js
  * ---------------------
  * This file contains definitions and configuration for extended items. Items which are marked as Extended in
  * `Female3DCG.js` and which have an extended item definition here will have their load/draw/click functions
@@ -24,9 +24,28 @@ const ExtendedArchetype = {
 
 /**
  * An object containing all extended item configurations.
- * @const {ExtendedItemConfig}
+ * @type {ExtendedItemConfig}
+ * @const
  */
 var AssetFemale3DCGExtended = {
+	ClothAccessory: {
+		LeatherStraps: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemArms", AssetName: "LeatherArmbinder" },
+			Config: {
+				Options: [
+					{
+						Name: "WrapStrap",
+						Property: { Type: null, },
+					},
+					{
+						Name: "Strap",
+						Property: { Type: "Strap", },
+					},
+				],		
+			},
+		}, // LeatherStraps
+	}, // ClothAccessory
 	ItemArms: {
 		HighSecurityStraitJacket: {
 			Archetype: ExtendedArchetype.MODULAR,
@@ -135,28 +154,6 @@ var AssetFemale3DCGExtended = {
 				},
 			},
 		}, // CeilingShackles
-		SteelCuffs: {
-			Archetype: ExtendedArchetype.TYPED,
-			Config: {
-				Options: [
-					{
-						Name: "None",
-						Property: { Type: null }
-					},
-					{
-						Name: "Wrist",
-						Property: {
-							Type: "Wrist",
-							Effect: ["Block", "Prone"],
-							SetPose: ["BackBoxTie"]
-						}
-					}
-				],
-				Dialog: {
-					Load: "SelectBondagePosition"
-				}
-			}
-		}, // SteelCuffs
 		BitchSuit: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -178,6 +175,218 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // BitchSuit
+		LeatherArmbinder: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: { Type: null, Difficulty: 0 },
+					},
+					{
+						Name: "Strap",
+						Property: { Type: "Strap", Difficulty: 3 },
+					},
+					{
+						Name: "WrapStrap",
+						Property: { Type: "WrapStrap", Difficulty: 3 },
+					},
+				],
+				Dialog: {
+					Load: "ItemArmsLeatherArmbinderSelect",
+					TypePrefix: "ItemArmsLeatherArmbinder",
+					ChatPrefix: "ItemArmsLeatherArmbinderSet",
+				},
+			},
+		}, // LeatherArmbinder
+		WristShackles: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "InFront",
+						Property: {
+							Type: null
+						},
+					},
+					{
+						Name: "Behind",
+						Property: {
+							Type: "Behind",
+							SetPose: ["BackCuffs"],
+							Effect: ["Block", "Prone"],
+							Difficulty: 3
+						},
+					},
+					{
+						Name: "Overhead",
+						Property: {
+							Type: "Overhead",
+							SetPose: ["OverTheHead"],
+							Effect: ["Block", "Prone"],
+							Difficulty: 3
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectBondagePosition",
+				}
+			},
+		}, // WristShackles
+		LeatherCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Effect: [],
+							SetPose: null,
+							SelfUnlock: true,
+						},
+					},
+					{
+						Name: "Wrist",
+						Property: {
+							Type: "Wrist",
+							Difficulty: 2,
+							Effect: ["Block", "Prone"],
+							SetPose: ["BackBoxTie"],
+							SelfUnlock: true,
+						},
+					},
+					{
+						Name: "Elbow",
+						Property: {
+							Type: "Elbow",
+							Difficulty: 4,
+							Effect: ["Block", "Prone", "NotSelfPickable"],
+							SetPose: ["BackElbowTouch"],
+							SelfUnlock: false,
+						},
+					},
+					{
+						Name: "Both",
+						Property: {
+							Type: "Both",
+							Difficulty: 6,
+							Effect: ["Block", "Prone", "NotSelfPickable"],
+							SetPose: ["BackElbowTouch"],
+							SelfUnlock: false,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectBondagePosition",
+					TypePrefix: "ItemArmsCuffs",
+				},
+			},
+		}, // LeatherCuffs
+		OrnateCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "LeatherCuffs" },
+		}, // OrnateCuffs
+		SteelCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "LeatherCuffs" },
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: { Type: null }
+					},
+					{
+						Name: "Wrist",
+						Property: {
+							Type: "Wrist",
+							Effect: ["Block", "Prone"],
+							SetPose: ["BackBoxTie"]
+						}
+					}
+				],
+			},
+		}, // SteelCuffs	
+		StraitJacket: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Loose",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+						},
+					},
+					{
+						Name: "Normal",
+						Property: {
+							Type: "Normal",
+							Difficulty: 3,
+						},
+					},
+					{
+						Name: "Snug",
+						Property: {
+							Type: "Snug",
+							Difficulty: 6,
+						},
+					},
+					{
+						Name: "Tight",
+						Property: {
+							Type: "Tight",
+							Difficulty: 9,
+						},
+					},
+				],
+				Dialog: {
+					Load: "ItemArmsStraitJacketSelect",
+					TypePrefix: "ItemArmsStraitJacket",
+				},
+			},
+		}, // StraitJacket
+		LeatherStraitJacket: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "StraitJacket" },
+		}, // LeatherStraitJacket
+		CollarCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Loose",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+						},
+					},
+					{
+						Name: "Normal",
+						Property: {
+							Type: "Normal",
+							Difficulty: 3,
+						},
+					},
+					{
+						Name: "Snug",
+						Property: {
+							Type: "Snug",
+							Difficulty: 6,
+						},
+					},
+					{
+						Name: "Tight",
+						Property: {
+							Type: "Tight",
+							Difficulty: 9,
+						},
+					},
+				],
+				DrawImages: false,
+			},
+		}, // CollarCuffs
 		DuctTape: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -363,7 +572,19 @@ var AssetFemale3DCGExtended = {
 		LatexCorset1: {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "Corset", AssetName: "LatexCorset1" },
-		},
+		}, //LatexCorset1
+		SilkStraps: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{ Name: "Crotch", Property: { Type: null } },
+					{ Name: "Waist", Property: { Type: "Waist" } },
+					{ Name: "Harness", Property: { Type: "Harness" } },
+					{ Name: "Star", Property: { Type: "Star" } },
+					{ Name: "Diamond", Property: { Type: "Diamond" } },
+				]				
+			},
+		}, // SilkStraps
 	}, // ItemTorso
 	HairAccessory1: {
 		ElfEars: {
@@ -889,6 +1110,24 @@ var AssetFemale3DCGExtended = {
 			}
 		} // BunnyMask1
 	}, // Mask
+	ItemLegs: {
+		SturdyLeatherBelts: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemArms", AssetName: "SturdyLeatherBelts" },
+			Config: {
+				Options: [
+					{
+						Name: "One",
+						Property: { Type: null, },
+					},
+					{
+						Name: "Two",
+						Property: { Type: "Two", Difficulty: 2, },
+					},
+				],
+			}
+		}, // SturdyLeatherBelts
+	}, // ItemLegs
 	ItemFeet: {
 		SteelAnkleCuffs: {
 			Archetype: ExtendedArchetype.TYPED,
@@ -912,7 +1151,11 @@ var AssetFemale3DCGExtended = {
 					Load: "SelectBondagePosition"
 				}
 			}
-		} // SteelAnkleCuffs
+		}, // SteelAnkleCuffs
+		SturdyLeatherBelts: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { GroupName: "ItemArms", AssetName: "SturdyLeatherBelts" },
+		}, // SturdyLeatherBelts 
 	}, // ItemFeet
 	ItemMisc: {
 		ServingTray: {
@@ -930,22 +1173,11 @@ var AssetFemale3DCGExtended = {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
 				Options: [
-					{ Name: "Crotch",
-				Property: { Type: null }
-					},
-
-					{ Name: "OverPanties",
-				Property: { Type: "OverPanties", OverridePriority: 21 }
-			},
-			{ Name: "SwissSeat",
-			Property: { Type: "SwissSeat" }
-				},
-
-				{ Name: "KikkouHip",
-			Property: { Type: "KikkouHip" }
-				},
-
-				]				
+					{ Name: "Crotch", Property: { Type: null } },
+					{ Name: "OverPanties", Property: { Type: "OverPanties", OverridePriority: 21 } },
+					{ Name: "SwissSeat", Property: { Type: "SwissSeat" } },
+					{ Name: "KikkouHip", Property: { Type: "KikkouHip" } },
+				]
 			},
 		}, // SilkStraps
 	}, // ItemPelvis
@@ -972,32 +1204,8 @@ var AssetFemale3DCGExtended = {
 					{ Name: "Wrap", Property: { Type: "Wrap" } },
 					{ Name: "Thong", Property: { Type: "Thong" } },
 					{ Name: "Panties1", Property: { Type: "Panties1" } },
-				]				
+				]
 			},
 		}, // SilkStraps
 	}, // Panties
 };
-
-
-/**
- *
- * An object containing the extended item definition for an asset.
- * @typedef ExtendedItemAssetConfig
- * @type {object}
- * @property {ExtendedArchetype} Archetype - The extended item archetype that this asset uses.
- * @property {ModularItemConfig|TypedItemConfig} Config - The specific configuration for the item (type will vary based
- * on the item's archetype)
- * @property {{GroupName?: string, AssetName: string}} [CopyConfig] - The group name and asset name of a configuration
- *     to copy - useful if multiple items share the same config
- *
- * An object containing extended item definitions for a group. Maps asset names within the group to their extended item
- * configuration
- * @typedef ExtendedItemGroupConfig
- * @type {Object.<string, ExtendedItemAssetConfig>}
- * @see {@link ExtendedItemAssetConfig}
- *
- * An object containing extended item configurations keyed by group name.
- * @typedef ExtendedItemConfig
- * @type {Object.<string, ExtendedItemGroupConfig>}
- * @see {@link ExtendedItemAssetConfig}
- */

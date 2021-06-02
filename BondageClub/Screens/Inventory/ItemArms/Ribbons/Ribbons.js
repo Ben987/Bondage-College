@@ -3,11 +3,11 @@
 var InventoryItemArmsRibbonsOptions = [
 	{
 		Name: "Cross",
-		Property: { Type: null, Difficulty: 5 },
+		Property: { Type: null, Difficulty: 1 },
 	}, {
 		Name: "Heavy",
 		SelfBondageLevel: 4,
-		Property: { Type: "Heavy", Difficulty: 6 }
+		Property: { Type: "Heavy", Difficulty: 2 }
 	},
 ];
 
