@@ -478,7 +478,6 @@ var AssetFemale3DCGExtended = {
 					{ Name: "Hogtie", Property: { Type: "Hogtie", SetPose: ["Hogtied"], Effect: ["Block", "Freeze", "Prone"] } }
 				]
 			}
-
 		}, //ThinLeatherStraps
 	}, // ItemArms
 	ItemNeck: {
