@@ -476,10 +476,6 @@ var AssetFemale3DCGExtended = {
 					{ Name: "WristElbow", Property: { Type: "WristElbow", SetPose: ["BackElbowTouch"] } },
 					{ Name: "WristElbowHarness", Property: { Type: "WristElbowHarness", SetPose: ["BackElbowTouch"] } },
 					{ Name: "Hogtie", Property: { Type: "Hogtie", SetPose: ["Hogtied"], Effect: ["Block", "Freeze", "Prone"] } }
-
-
-
-
 				]
 			}
 
