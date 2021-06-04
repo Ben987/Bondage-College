@@ -498,13 +498,10 @@ function CommonArraysEqual(a1, a2) {
  * the debounced function continues to be called. If the debounced function is called, and then not called again within the wait time, the
  * wrapped function will be called.
  * @param {function} func - The function to debounce
- * @param {number} wait - The wait time in milliseconds that needs to pass after calling the debounced function before the wrapped function
- * is invoked
  * @returns {function} - A debounced version of the provided function
  */
-function CommonDebounce(func, wait) {
-	let timeout, args, context, timestamp, result;
-	wait = typeof wait === "number" ? wait : 100;
+function CommonDebounce(func) {
+	let timeout, args, context, timestamp, result, wait;
 
 	function later() {
 		const last = CommonTime() - timestamp;
@@ -517,9 +514,10 @@ function CommonDebounce(func, wait) {
 		}
 	}
 
-	return function () {
+	return function (waitInterval/*, ...args */) {
 		context = this;
-		args = arguments;
+		wait = waitInterval;
+		args = Array.prototype.slice.call(arguments, 1);
 		timestamp = CommonTime();
 		if (!timeout) {
 			timeout = setTimeout(later, wait);
@@ -532,12 +530,10 @@ function CommonDebounce(func, wait) {
  * Creates a throttling wrapper for the provided function with the provided wait time. If the wrapped function has been successfully called
  * within the wait time, further call attempts will be delayed until the wait time has passed.
  * @param {function} func - The function to throttle
- * @param {number} wait - The wait time in milliseconds that needs to pass until the throttled function will be invoked again
  * @returns {function} - A throttled version of the provided function
  */
-function CommonThrottle(func, wait) {
+function CommonThrottle(func) {
 	let timeout, args, context, timestamp = 0, result;
-	wait = typeof wait === "number" ? wait : 100;
 
 	function run() {
 		timeout = null;
@@ -545,9 +541,9 @@ function CommonThrottle(func, wait) {
 		timestamp = CommonTime();
 	}
 
-	return function () {
+	return function (wait/*, ...args */) {
 		context = this;
-		args = arguments;
+		args = Array.prototype.slice.call(arguments, 1);
 		if (!timeout) {
 			const last = CommonTime() - timestamp;
 			if (last >= 0 && last < wait) {
@@ -557,6 +553,24 @@ function CommonThrottle(func, wait) {
 			}
 		}
 		return result;
+	};
+}
+
+/**
+ * Creates a wrapper for a function to limit how often it can be called. The player-defined wait interval setting determines the
+ * allowed frequency. Below 100 ms the function will be throttled and above will be debounced.
+ * @param {function} func - The function to limit calls of
+ * @param {number} [minWait=0] - A lower bound for how long the wait interval can be, 0 by default
+ * @returns {function} - A debounced or throttled version of the function
+ */
+function CommonLimitFunction(func, minWait = 0) {
+	const funcDebounced = CommonDebounce(func);
+	const funcThrottled = CommonThrottle(func);
+
+	return function () {
+		const wait = Math.max(Player.GraphicsSettings.AnimationQuality, minWait);
+		const args = [wait].concat(Array.from(arguments));
+		return wait < 100 ? funcThrottled.apply(this, args) : funcDebounced.apply(this, args);
 	};
 }
 

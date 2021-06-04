@@ -34,7 +34,6 @@ function InventoryItemDevicesLockerLoad() {
 	}
 }
 
-
 function InventoryItemDevicesLockerDraw() {
 	const asset = DialogFocusItem.Asset;
 	const property = DialogFocusItem.Property;
@@ -87,10 +86,10 @@ function InventoryItemDevicesLockerClick() {
  * @param {number} brightness - The new brightness to set on the item
  * @returns {void} - Nothing
  */
-const InventoryItemDevicesLockerOpacityChange = CommonThrottle((C, item, brightness) => {
+const InventoryItemDevicesLockerOpacityChange = CommonLimitFunction((C, item, brightness) => {
 	item.Property.Opacity = brightness;
-	CharacterRefresh(C, false);
-}, 100);
+	CharacterLoadCanvas(C);
+});
 
 /**
  * Exit handler for the item's extended item screen. Updates the character and removes UI components.

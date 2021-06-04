@@ -502,6 +502,7 @@ interface PlayerCharacter extends Character {
 		InvertRoom: boolean;
 		StimulationFlashes: boolean;
 		DoBlindFlash: boolean;
+		AnimationQuality: number;
 	}
 	NotificationSettings?: {
 		/** @deprecated */

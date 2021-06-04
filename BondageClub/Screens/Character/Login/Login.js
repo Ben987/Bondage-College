@@ -52,6 +52,7 @@ function LoginDrawCredits() {
 
 	// For each credits in the list
 	LoginCreditsPosition += (TimerRunInterval * 60) / 1000;
+	if (LoginCreditsPosition * 2 + LoginCredits.length * 50 > 1000 || LoginCreditsPosition < 0) LoginCreditsPosition = 0;
 	MainCanvas.font = "30px Arial";
 	for (let C = 0; C < LoginCredits.length; C++) {
 

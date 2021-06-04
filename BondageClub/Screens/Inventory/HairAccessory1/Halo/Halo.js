@@ -103,10 +103,10 @@ function InventoryHairAccessory1HaloClick() {
  * @param {number} brightness - The new brightness to set on the halo
  * @returns {void} - Nothing
  */
-const InventoryHairAccessory1HaloBrightnessChange = CommonDebounce((C, item, brightness) => {
+const InventoryHairAccessory1HaloBrightnessChange = CommonLimitFunction((C, item, brightness) => {
 	item.Property.Opacity = brightness;
-	CharacterRefresh(C, false);
-}, 100);
+	CharacterLoadCanvas(C);
+});
 
 /**
  * Exit handler for the Halo's extended item screen. Updates the character and removes UI components.

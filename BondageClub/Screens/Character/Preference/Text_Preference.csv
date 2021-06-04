@@ -129,6 +129,11 @@ BlindDisableExamine,Disable examining when blind
 DisableAutoRemoveLogin,Keep all restraints when relogging
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
 GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
+GeneralAnimationQuality0,Max
+GeneralAnimationQuality50,High
+GeneralAnimationQuality100,Medium
+GeneralAnimationQuality200,Low
+GeneralAnimationQualityText,Animation quality (reduce if inputs such as sliders are slow to respond)
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
 EnableSafeword,Allow Safeword use (Cannot enable while bound)
