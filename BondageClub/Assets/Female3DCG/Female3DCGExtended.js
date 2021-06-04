@@ -585,6 +585,16 @@ var AssetFemale3DCGExtended = {
 				]				
 			},
 		}, // SilkStraps
+		ThinLeatherStraps: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{ Name: "Crotch", Property: { Type: null } },
+					{ Name: "Waist", Property: { Type: "Waist" } },
+					{ Name: "Harness", Property: { Type: "Harness" } },
+				]				
+			},
+		}, // ThinLeatherStraps
 	}, // ItemTorso
 	HairAccessory1: {
 		ElfEars: {
