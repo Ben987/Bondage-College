@@ -961,6 +961,9 @@ VacbedStateNormal,,,Hair
 VacbedStateNohair,,,No Hair
 DevicesVacbedSetNormal,,,SourceCharacter reveals DestinationCharacter hair from the vacbed.,,
 DevicesVacbedSetNohair,,,SourceCharacter tucks DestinationCharacter hair into the vacbed.,,
+VacBedDeluxeTypeLabel,,,Pose,,
+VacBedDeluxeOpacityLabel,,,Opacity,,
+VacBedDeluxeChangeType,,,SourceCharacter changes DestinationCharacter pose in her Vacuum Bed Deluxe.,,
 SelectRopeBondage,,,Select the rope bondage,,
 RopeBondageBasic,,,Basic Tie,,
 RopeBondageMermaid,,,Mermaid Tie,,

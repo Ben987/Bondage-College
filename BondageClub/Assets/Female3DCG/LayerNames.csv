@@ -333,6 +333,13 @@ ItemDevicesWoodenBoxBack,Wood
 ItemDevicesWoodenBoxText,Text
 ItemDevicesPetBowlBowl,Bowl
 ItemDevicesPetBowlText,Text
+ItemDevicesVacBedDeluxeSheetBack,Sheet Back
+ItemDevicesVacBedDeluxeSheetFront,Sheet Front
+ItemDevicesVacBedDeluxeSheet,Sheet
+ItemDevicesVacBedDeluxeUpper,Upper
+ItemDevicesVacBedDeluxeLower,Lower
+ItemDevicesVacBedDeluxeBody,Body
+ItemDevicesVacBedDeluxeFrame,Frame
 ItemAddonCoversOuter,Outer
 ItemAddonCoversInner,Inner
 ItemNoseNoseHookBand,Strap
