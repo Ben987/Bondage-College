@@ -749,6 +749,22 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "AnkleStrapShoes", Value: 30, Alpha: [{ Group: ["Socks"], Masks: [[130, 925, 270, 130]] }], Height: 4 },
 			{ Name: "Shoes5", Value: 30, Alpha: [{ Group: ["Socks"], Masks: [[130, 925, 270, 130]] }], Height: 4 },
+			
+			{ Name: "FuturisticHeels2", Value: 50, Difficulty: 7, Time: 10, RemoveTime: 20,
+				Left: 75, DefaultColor: ["Default", "#50913C", "Default", "Default", "Default", "#aaaaaa", "Default"], Random: false, AllowLock: true, DrawLocks: false, Audio: "FuturisticApply", BuyGroup: "FuturisticHeels", DynamicGroupName: "ItemBoots", Extended: true, AllowType:["Matte"], FuturisticRecolor: true, Effect: [],
+				AllowPose: ["LegsClosed", "Kneel", "Hogtied", "Spread"],
+				Layer: [
+					{ Name: "Mesh", ParentGroup: null, HasType: false },
+					{ Name: "Shine", ParentGroup: null, HasType: false, AllowTypes:[""]},
+					{ Name: "Cuffs", ParentGroup: null, HasType: false },
+					{ Name: "Trim", ParentGroup: null, HasType: false },
+					{ Name: "Soles", ParentGroup: null, HasType: false },
+					{ Name: "Lock", LockLayer: true, HasType: false ,AllowColorize: true, ParentGroup: null},
+				],Alpha: [
+					{ Group: ["BodyLower", "Socks", "SuitLower"], Masks: [[75, 860, 350, 120]] },
+					{ Group: ["BodyLower", "Socks", "SuitLower"], Pose: ["LegsClosed"], Masks: [[75, 870, 350, 150]] },
+				], Height: 30
+			},
 		],
 		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
