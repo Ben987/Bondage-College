@@ -246,7 +246,7 @@ function KinkyDungeonSendData(data) {
  * @returns {void}
  */
 function KinkyDungeonHandleData(data, SourceMemberNumber) {
-    if (CurrentScreen == "KinkyDungeon")
+    if (CurrentScreen == "KinkyDungeon" && SourceMemberNumber == KinkyDungeonPlayerCharacter.MemberNumber)
         KinkyDungeonUnpackData(data); // Unpack the rest of the data
 }
 
