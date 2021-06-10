@@ -4238,8 +4238,7 @@ var AssetFemale3DCG = [
 					{ Name: "Upper", ColorGroup:"Body", ParentGroup: "BodyUpper" },
 					{ Name: "Lower", ColorGroup:"Body", ParentGroup: "BodyLower" },
 					{ Name: "Frame", MinOpacity: 1, Priority: 3 }
-				],
-				RemoveAtLogin: true 
+				]
 			},
 			{ 
 				Name: "VacbedClear", Fetish: ["Latex"], ParentGroup: "BodyUpper", Value: -1, Difficulty: 50, BuyGroup: "Vac", Priority: 36, SelfBondage: 3, Time: 10, 
