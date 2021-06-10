@@ -258,6 +258,7 @@ Shoes,Flippers,Flippers
 Shoes,DeluxeBoots,Deluxe Mistress Boots
 Shoes,AnkleStrapShoes,Ankle Strap Shoes
 Shoes,Shoes5,Style 4
+Shoes,FuturisticHeels2,Futuristic Heels
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Band2,Jeweled Band
@@ -1243,6 +1244,7 @@ ItemDevices,WoodenBoxOpenHead,Exposed Head Wooden Box
 ItemDevices,SmallWoodenBoxOpenHead,Exposed Head Small Wooden Box
 ItemDevices,WoodenStocks,Wooden Stocks
 ItemDevices,Vacbed,Vacbed
+ItemDevices,VacbedClear,Clear Vacbed
 ItemDevices,Crib,Crib
 ItemDevices,Bed,Bed
 ItemDevices,X-Cross,St. Andrews Cross

@@ -1515,7 +1515,11 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
 		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
 		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
-		else {
+		else if (m.indexOf("/bot") == 0) {
+			for (let CC = 0; CC < ChatRoomCharacter.length; CC++)
+				if (ChatRoomCharacter[CC].MemberNumber && ChatRoomCharacter[CC].ID != 0)
+					ServerSend("ChatRoomChat", { Content: "ChatRoomBot " + msg.substring(4), Type: "Hidden", Target: ChatRoomCharacter[CC].MemberNumber});
+		} else {
 			var WhisperTarget = null;
 			for (let C = 0; C < ChatRoomCharacter.length; C++)
 						if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
@@ -2560,9 +2564,10 @@ function DialogCallMaids() {
 	ChatRoomClearAllElements();
 	ChatRoomSetLastChatRoom("");
 	ServerSend("ChatRoomLeave", "");
-	if (!Player.RestrictionSettings || !Player.RestrictionSettings.BypassNPCPunishments)
-		MainHallPunishFromChatroom();
 	CommonSetScreen("Room", "MainHall");
+	if (!Player.RestrictionSettings || !Player.RestrictionSettings.BypassNPCPunishments) {
+		MainHallPunishFromChatroom();
+	}
 }
 
 

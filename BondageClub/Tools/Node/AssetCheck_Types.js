@@ -134,6 +134,8 @@ const AssetType = {
 	Archetype: "String",
 	FuturisticRecolor: "Boolean",
 	FuturisticRecolorDisplay: "Boolean",
+	Attribute: "[String]",
+	HideItemAttribute: "[String]",
 };
 
 const AssetLayerType = {

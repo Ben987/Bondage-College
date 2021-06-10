@@ -78,6 +78,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		Hide: (NewAsset.Hide == null) ? AssetCurrentGroup.Hide : NewAsset.Hide,
 		HideItem: NewAsset.HideItem,
 		HideItemExclude: NewAsset.HideItemExclude || [],
+		HideItemAttribute: NewAsset.HideItemAttribute || [],
 		Require: NewAsset.Require,
 		SetPose: (NewAsset.SetPose == null) ? AssetCurrentGroup.SetPose : NewAsset.SetPose,
 		AllowActivePose: (NewAsset.AllowActivePose == null) ? AssetCurrentGroup.AllowActivePose : NewAsset.AllowActivePose,
@@ -155,6 +156,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		ColorableLayerCount: 0,
 		FuturisticRecolor: typeof NewAsset.FuturisticRecolor === 'boolean' ? NewAsset.FuturisticRecolor : false,
 		FuturisticRecolorDisplay: typeof NewAsset.FuturisticRecolorDisplay === 'boolean' ? NewAsset.FuturisticRecolorDisplay : false,
+		Attribute: NewAsset.Attribute || [],
 	}, AssetParsePoseProperties(NewAsset, AssetCurrentGroup.AllowPose.slice()));
 
 	// Ensure opacity value is valid

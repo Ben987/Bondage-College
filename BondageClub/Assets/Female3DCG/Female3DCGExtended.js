@@ -860,6 +860,17 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // ThinLeatherStraps
 	}, // ItemTorso
+	Shoes: {
+		FuturisticHeels2: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{ Name: "Shiny", Property: { Type: null } },
+					{ Name: "Matte", Property: { Type: "Matte" } },
+				]				
+			},
+		}, // Shoes
+	}, // ItemTorso
 	HairAccessory1: {
 		ElfEars: {
 			Archetype: ExtendedArchetype.TYPED,

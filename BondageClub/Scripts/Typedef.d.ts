@@ -145,6 +145,7 @@ interface Asset {
 	Hide?: string[];
 	HideItem?: string[];
 	HideItemExclude: string[];
+	HideItemAttribute: string[];
 	Require?: string[];
 	SetPose?: string[];
 	AllowPose: string[];
@@ -222,6 +223,7 @@ interface Asset {
 	Layer: AssetLayer[];
 	ColorableLayerCount: number;
 	Archetype?: string;
+	Attribute: string[];
 }
 
 /** An ItemBundle is a minified version of the normal Item */

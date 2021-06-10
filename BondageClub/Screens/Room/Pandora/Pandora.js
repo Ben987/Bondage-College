@@ -750,7 +750,7 @@ function PandoraRecruitBoost() {
  * Starts the player punishment process and jumps to the punishment Dominatrix
  * @returns {void} - Nothing
  */
-function PandoraPunishmentIntro() {
+function PandoraPunishmentIntro(FromKidnapper) {
 	let IntroText;
 	if (SkillGetLevel(Player, "Infiltration") >= 8) IntroText = DialogFind(CurrentCharacter, "Punishment8");
 	else if (SkillGetLevel(Player, "Infiltration") >= 5) IntroText = DialogFind(CurrentCharacter, "Punishment5");
@@ -761,6 +761,7 @@ function PandoraPunishmentIntro() {
 	if (SkillGetLevel(Player, "Infiltration") >= 2) Dominatrix.Stage = "20";
 	if (SkillGetLevel(Player, "Infiltration") >= 5) Dominatrix.Stage = "50";
 	if (SkillGetLevel(Player, "Infiltration") >= 8) Dominatrix.Stage = "80";
+	if ((FromKidnapper != null) && FromKidnapper) Dominatrix.Stage = "200";
 	CharacterSetCurrent(Dominatrix);
 	CurrentCharacter.CurrentDialog = IntroText;
 	InfiltrationTarget.Fail = true;
