@@ -351,7 +351,12 @@ function DialogCanWatchKinkyDungeon() {
  * @returns {void}
  */
 function DialogStartKinkyDungeon() {
-	if (CurrentCharacter) {
+	if (CurrentScreen == "Arcade") {
+		if (KinkyDungeonPlayerCharacter != Player) {
+			KinkyDungeonGameRunning = false; // Reset the game to prevent carrying over spectator data
+		}
+	}
+	else if (CurrentCharacter) {
 		if (KinkyDungeonPlayerCharacter != CurrentCharacter) {
 			KinkyDungeonGameRunning = false; // Reset the game to prevent carrying over spectator data
 		}
