@@ -169,6 +169,7 @@ function ArcadeClick() {
 function ArcadeKinkyDungeonStart(PlayerLevel) {
 	if (KinkyDungeonPlayerCharacter != Player) {
 		KinkyDungeonGameRunning = false; // Reset the game to prevent carrying over spectator data
+		KinkyDungeonPlayerCharacter = null;
 	}
 	MiniGameStart("KinkyDungeon", PlayerLevel, "ArcadeKinkyDungeonEnd");
 }
