@@ -40,6 +40,14 @@ var AutoPunishKeywords = [
 "growl",
 "laugh",
 "giggle",
+"mutter",
+"stutter",
+"stammer",
+"grunt",
+"hiss",
+"screech",
+"bark",
+"mumble",
 ];
 
 var AutoPunishGagActionFlag = false;
