@@ -12,7 +12,7 @@ let InventoryItemDevicesVacBedDeluxeOptions = [
 		Name: "ArmsDownLegsSpread",
 		Property: {
 			Type: null,
-			SetPose: ["LegsOpen"],
+			SetPose: ["BaseLower"],
 			Prequisite: ["LegsOpen"]
 		}
 	},
@@ -27,7 +27,7 @@ let InventoryItemDevicesVacBedDeluxeOptions = [
 		Name: "ArmsUpLegsSpread",
 		Property: {
 			Type: "ArmsUpLegsSpread",
-			SetPose: ["Yoked", "LegsOpen"]
+			SetPose: ["Yoked", "BaseLower"]
 		}
 	},
 	{
