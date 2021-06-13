@@ -582,7 +582,7 @@ function ChatRoomOwnerInside() {
  
 function ChatRoomUpdateDisplay() {
 	// The number of characters to show in the room
-	const RenderSingle = Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3 && !Player.Effect.includes("VRAvatars");
+	const RenderSingle = Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GetBlindLevel() >= 3 && !Player.Effect.includes("VRAvatars");
 	ChatRoomCharacterDrawlist = ChatRoomCharacter;
 	if (Player.Effect.includes("VRAvatars")) {
 		ChatRoomCharacterDrawlist = [];
@@ -755,7 +755,7 @@ function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY, Pos) {
 		if (LogQuery("BlockWhisper", "OwnerRule") && Player.Ownership && Player.Ownership.Stage === 1 && Player.Ownership.MemberNumber !== C.MemberNumber && ChatRoomOwnerInside()) {
 			return;
 		}
-		// Sensory deprivation setting: Total (no whispers)
+		// Sensory deprivation setting: Total (no whispers) blocks whispers while blind unless both players are in the virtual realm. Then they can text each other.
 		if (Player.GameplaySettings.SensDepChatLog === "SensDepExtreme" && Player.GetBlindLevel() >= 3 && !(Player.Effect.includes("VRAvatars") && C.Effect.includes("VRAvatars"))) {
 			return;
 		}
@@ -805,8 +805,8 @@ function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY, Pos) {
 		}
 	}
 
-	// Disable examining when blind setting
-	if (Player.GameplaySettings.BlindDisableExamine && C.ID !== 0 && Player.GetBlindLevel() >= 3) {
+	// Disable examining when blind setting. If both players are in the virtual realm, then they can examine each other.
+	if (Player.GameplaySettings.BlindDisableExamine && !(Player.Effect.includes("VRAvatars") && C.Effect.includes("VRAvatars")) && C.ID !== 0 && Player.GetBlindLevel() >= 3) {
 		return;
 	}
 
@@ -1170,7 +1170,7 @@ function ChatRoomRun() {
 			ActivityOrgasmProgressBar(50, 970);
 		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99) && !CommonPhotoMode) {
 			if ((ChatRoomCharacterCount <= 2) || (ChatRoomCharacterCount >= 6) ||
-				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3))) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
+				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (Player.GetBlindLevel() >= 3))) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
 			else if (ChatRoomCharacterCount == 3) DrawRect(0, 50, 1003, 900, "#FFB0B040");
 			else if (ChatRoomCharacterCount == 4) DrawRect(0, 150, 1003, 700, "#FFB0B040");
 			else if (ChatRoomCharacterCount == 5) DrawRect(0, 250, 1003, 500, "#FFB0B040");
@@ -1181,7 +1181,7 @@ function ChatRoomRun() {
 		let FlashTime = ChatRoomPinkFlashTime - CommonTime(); // ChatRoomPinkFlashTime is the end of the flash. The flash is brighter based on the distance to the end.
 		let PinkFlashAlpha = DrawGetScreenFlash(FlashTime);
 		if ((ChatRoomCharacterCount <= 2) || (ChatRoomCharacterCount >= 6) ||
-			(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3)))
+			(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (Player.GetBlindLevel() >= 3)))
 												DrawRect(0, 0, 1003, 1000, "#FFB0B0" + PinkFlashAlpha);
 		else if (ChatRoomCharacterCount == 3) DrawRect(0, 50, 1003, 900, "#FFB0B0" + PinkFlashAlpha);
 		else if (ChatRoomCharacterCount == 4) DrawRect(0, 150, 1003, 700, "#FFB0B0" + PinkFlashAlpha);
@@ -3127,12 +3127,10 @@ function ChatRoomSetLoadRules(C, Rule) {
  */
 function ChatRoomPhotoFullRoom() {
 	// Get the room dimensions
-	let RenderSingle = Player.GameplaySettings && Player.GameplaySettings.SensDepChatLog === "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3;
-	let CharacterCount = RenderSingle ? 1 : ChatRoomCharacter.length;
-	let Space = CharacterCount >= 2 ? 1000 / Math.min(CharacterCount, 5) : 500;
-	let Zoom = CharacterCount >= 3 && CharacterCount < 6 ? Space / 400 : 1;
-	let Y = CharacterCount <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
-	let Width = CharacterCount === 1 ? 500 : 1000;
+	let Space = ChatRoomCharacterCount >= 2 ? 1000 / Math.min(ChatRoomCharacterCount, 5) : 500;
+	let Zoom = ChatRoomCharacterCount >= 3 && ChatRoomCharacterCount < 6 ? Space / 400 : 1;
+	let Y = ChatRoomCharacterCount <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
+	let Width = ChatRoomCharacterCount === 1 ? 500 : 1000;
 
 	// Take the photo
 	ChatRoomPhoto(0, Y, Width, 1000 * Zoom, ChatRoomCharacter);
