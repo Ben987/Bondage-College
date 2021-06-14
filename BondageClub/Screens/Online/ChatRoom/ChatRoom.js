@@ -3074,6 +3074,20 @@ function ChatRoomConcatenateBanList(IncludesBlackList, IncludesGhostList, Existi
 }
 
 /**
+ * Concatenates the list of users for Admin list.
+ * @param {boolean} IncludesOwner - Adds the owner to the admin list
+ * @param {boolean} IncludesLovers - Adds lovers to the admin list
+ * @param {number[]} [ExistingList] - The existing Admin list, if applicable
+ * @returns {number[]} Complete array of admin members
+ */
+function ChatRoomConcatenateAdminList(IncludesOwner, IncludesLovers, ExistingList) {
+	var AdminList = Array.isArray(ExistingList) ? ExistingList : [];
+	if (IncludesOwner) AdminList = AdminList.concat(Player.Ownership.MemberNumber);
+	if (IncludesLovers) CommonArrayConcatDedupe(AdminList, Player.GetLoversNumbers(true));
+	return AdminList.filter((MemberNumber, Idx, Arr) => Arr.indexOf(MemberNumber) == Idx);
+}
+
+/**
  * Handles a request from another player to read the player's log entries that they are permitted to read. Lovers and
  * owners can read certain entries from the player's log.
  * @param {Character|number} C - A character object representing the requester, or the account number of the requester.
