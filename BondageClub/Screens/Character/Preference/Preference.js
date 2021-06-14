@@ -866,6 +866,8 @@ function PreferenceSubscreenImmersionRun() {
 	if (PreferencePageCurrent === 1) {
 		DrawText(TextGet("SensDepSetting"), 800, 308, "Black", "Gray"); CheckHeight += CheckSpacing;
 		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine, disableButtons); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("BlindAdjacent"), Player.ImmersionSettings.BlindAdjacent, disableButtons); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("ChatRoomMuffle"), Player.ImmersionSettings.ChatRoomMuffle, disableButtons);	CheckHeight += CheckSpacing;
 		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin, disableButtons); CheckHeight += CheckSpacing;
 		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC, disableButtons); CheckHeight += CheckSpacing;
 		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("AllowPlayerLeashing"), Player.OnlineSharedSettings.AllowPlayerLeashing, disableButtons); CheckHeight += CheckSpacing;
@@ -873,8 +875,6 @@ function PreferenceSubscreenImmersionRun() {
 		const returnToRoomEnabled = Player.ImmersionSettings.ReturnToChatRoom;
 		DrawCheckbox(1300, CheckHeight, 64, 64, TextGet("ReturnToChatRoomAdmin"), returnToRoomEnabled && Player.ImmersionSettings.ReturnToChatRoomAdmin, !returnToRoomEnabled || disableButtons);
 		CheckHeight += CheckSpacing;
-		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("StimulationEvents"), Player.ImmersionSettings.StimulationEvents, disableButtons); CheckHeight += CheckSpacing;
-		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("ChatRoomMuffle"), Player.ImmersionSettings.ChatRoomMuffle, disableButtons);
 		const canHideMessages = Player.GameplaySettings.SensDepChatLog !== "SensDepLight";
 		DrawCheckbox(1300, 272, 64, 64, TextGet("SenseDepMessages"), canHideMessages && Player.ImmersionSettings.SenseDepMessages, !canHideMessages || disableButtons);
 				
@@ -885,7 +885,7 @@ function PreferenceSubscreenImmersionRun() {
 			() => disableButtons ? "" : TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
 	}
 	else if (PreferencePageCurrent === 2) {
-		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("BlindAdjacent"), Player.ImmersionSettings.BlindAdjacent, disableButtons); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("StimulationEvents"), Player.ImmersionSettings.StimulationEvents, disableButtons); CheckHeight += CheckSpacing;
 	}
 
 	MainCanvas.textAlign = "center";
@@ -917,26 +917,38 @@ function PreferenceSubscreenImmersionClick() {
 				else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 				Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
 				if (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") ChatRoomSetTarget(null);
-			} else CheckHeight += CheckSpacing;
-
-			if (MouseIn(500, CheckHeight, 64, 64)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine; else CheckHeight += CheckSpacing;
-			if (MouseIn(500, CheckHeight, 64, 64)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin; else CheckHeight += CheckSpacing;
+			}
+			CheckHeight += CheckSpacing;
+			// Sensory Deprivation
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
+			CheckHeight += CheckSpacing;
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.BlindAdjacent = !Player.ImmersionSettings.BlindAdjacent; 
+			CheckHeight += CheckSpacing;
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.ChatRoomMuffle = !Player.ImmersionSettings.ChatRoomMuffle; 
+			CheckHeight += CheckSpacing;
+			
+			// Room control
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin; 
+			CheckHeight += CheckSpacing;
 			if (MouseIn(500, CheckHeight, 64, 64)) {
 				Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
 				if (Player.ImmersionSettings.BlockGaggedOOC) ChatRoomSetTarget(null);
-			} else CheckHeight += CheckSpacing;
-			if (MouseIn(500, CheckHeight, 64, 64)) Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing; else CheckHeight += CheckSpacing;
+			}
+			CheckHeight += CheckSpacing;
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing; 
+			CheckHeight += CheckSpacing;
 			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
 			if (MouseIn(1300, CheckHeight, 64, 64) && Player.ImmersionSettings.ReturnToChatRoom)
 				Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
-			else CheckHeight += CheckSpacing;
-			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.StimulationEvents = !Player.ImmersionSettings.StimulationEvents; else CheckHeight += CheckSpacing;
-			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.ChatRoomMuffle = !Player.ImmersionSettings.ChatRoomMuffle; else CheckHeight += CheckSpacing;
+			CheckHeight += CheckSpacing;
+			
 			if (MouseIn(1300, 272, 64, 64) && Player.GameplaySettings.SensDepChatLog !== "SensDepLight")
 				Player.ImmersionSettings.SenseDepMessages = !Player.ImmersionSettings.SenseDepMessages;
 		}
 		else if (PreferencePageCurrent === 2) {
-			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.BlindAdjacent = !Player.ImmersionSettings.BlindAdjacent; else CheckHeight += CheckSpacing;
+			// Stimulation
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.StimulationEvents = !Player.ImmersionSettings.StimulationEvents;
+			CheckHeight += CheckSpacing;
 		}
 	}
 
