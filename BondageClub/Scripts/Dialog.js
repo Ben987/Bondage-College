@@ -350,10 +350,12 @@ function DialogCanWatchKinkyDungeon() {
  * Starts the kinky dungeon game
  * @returns {void}
  */
-function DialogStartKinkyDungeon() {
+function DialogStartKinkyDungeon(Arcade) {
 	if (CurrentCharacter) {
+		if (KinkyDungeonPlayerCharacter != CurrentCharacter) {
+			KinkyDungeonGameRunning = false; // Reset the game to prevent carrying over spectator data
+		}
 		KinkyDungeonPlayerCharacter = CurrentCharacter;
-		KinkyDungeonGameRunning = false; // Reset the game to prevent carrying over spectator data
 		if (KinkyDungeonPlayerCharacter != Player && CurrentCharacter.MemberNumber) {
 			KinkyDungeonGameData = null;
 			ServerSend("ChatRoomChat", { Content: "RequestFullKinkyDungeonData", Type: "Hidden", Target: CurrentCharacter.MemberNumber });

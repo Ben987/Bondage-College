@@ -364,7 +364,7 @@ function InventoryGet(C, AssetGroup) {
 * @param {string} AssetName - The name of the asset to wear
 * @param {string} AssetGroup - The name of the asset group to wear
 * @param {string} [ItemColor] - The hex color of the item, can be undefined or "Default"
-* @param {number} [Difficulty] - The difficulty level to escape from the item
+* @param {number} [Difficulty] - The difficulty, on top of the base asset difficulty, to assign to the item
 * @param {number} [MemberNumber] - The member number of the character putting the item on - defaults to -1
 */
 function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty, MemberNumber) {
@@ -406,7 +406,7 @@ function InventoryLocked(C, AssetGroup, CheckProperties) {
 * Makes the character wear a random item from a body area
 * @param {Character} C - The character that must wear the item
 * @param {string} GroupName - The name of the asset group (body area)
-* @param {number} [Difficulty] - The difficulty level to escape from the item
+* @param {number} [Difficulty] - The difficulty, on top of the base asset difficulty, to assign to the item
 * @param {boolean} [Refresh] - Do not call CharacterRefresh if false
 * @param {boolean} [MustOwn=false] - If TRUE, only assets that the character owns can be worn. Otherwise any asset can be used
 * @returns {void} - Nothing
