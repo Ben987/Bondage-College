@@ -377,6 +377,7 @@ function PreferenceInitPlayer() {
 	if (typeof C.ImmersionSettings.ReturnToChatRoomAdmin !== "boolean") C.ImmersionSettings.ReturnToChatRoomAdmin = false;
 	if (typeof C.ImmersionSettings.SenseDepMessages !== "boolean") C.ImmersionSettings.SenseDepMessages = false;
 	if (typeof C.ImmersionSettings.ChatRoomMuffle !== "boolean") C.ImmersionSettings.ChatRoomMuffle = false;
+	if (typeof C.ImmersionSettings.BlindAdjacent !== "boolean") C.ImmersionSettings.BlindAdjacent = false;
 
 	// Misc
 	if (typeof C.LastChatRoom !== "string") C.LastChatRoom = "";
@@ -488,6 +489,7 @@ function PreferenceInitPlayer() {
 		C.ImmersionSettings.ReturnToChatRoomAdmin = true;
 		C.ImmersionSettings.SenseDepMessages = true;
 		C.ImmersionSettings.ChatRoomMuffle = true;
+		C.ImmersionSettings.BlindAdjacent = true;
 		C.OnlineSharedSettings.AllowPlayerLeashing = true;
 	}
 
@@ -883,7 +885,7 @@ function PreferenceSubscreenImmersionRun() {
 			() => disableButtons ? "" : TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
 	}
 	else if (PreferencePageCurrent === 2) {
-		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("BlindAdjacent"), Player.GameplaySettings.BlindAdjacent, disableButtons); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("BlindAdjacent"), Player.ImmersionSettings.BlindAdjacent, disableButtons); CheckHeight += CheckSpacing;
 	}
 
 	MainCanvas.textAlign = "center";
@@ -898,7 +900,7 @@ function PreferenceSubscreenImmersionClick() {
 	// If the user clicks on "Exit"
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
 	// Change page
-	//PreferencePageChangeClick(1595, 75, 2); // Uncomment when adding a 2nd page
+	PreferencePageChangeClick(1595, 75, 2); // Uncomment when adding a 2nd page
 
 	// Cannot change any value under the Extreme difficulty mode
 	if (Player.GetDifficulty() <= 2 && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained()))) {

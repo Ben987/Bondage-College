@@ -114,6 +114,7 @@ ReturnToChatRoomAdmin,Auto-remake rooms
 SenseDepMessages,Hide others' messages
 ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
 BlockGaggedOOC,Prevent OOC & whispers while gagged
+BlindAdjacent,Hide non-adjacent players while partially blind
 StimulationEvents,Events while plugged or vibed
 ChatRoomMuffle,Garble chat room names and descriptions while blind
 SensDepSetting,Sensory deprivation setting
