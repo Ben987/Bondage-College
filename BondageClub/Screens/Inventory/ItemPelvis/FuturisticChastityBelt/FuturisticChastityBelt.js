@@ -239,8 +239,8 @@ function InventoryItemPelvisFuturisticChastityBeltValidate(C) {
 function InventoryItemPelvisFuturisticChastityBeltNpcDialog(C, Option) { InventoryItemPelvisMetalChastityBeltNpcDialog(C, Option); }
 
 
-function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
-	var Item = data.Item;
+
+function InventoryFuturisticChastityBeltCheckPunish(Item) {
 	// Punish the player if they try to mess with the groin area
 	if (Item.Property.PunishStruggle && Player.FocusGroup && (StruggleProgress >= 0 || StruggleLockPickProgressCurrentTries > 0) && StruggleProgressPrevItem != null && StruggleProgressStruggleCount > 0) {
 		var inFocus = false;
@@ -249,36 +249,43 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 				inFocus = true;
 
 		if (inFocus) {
+			return "Struggle";
+		}
+	}
+	
+	// Punish the player if they struggle anywhere
+	if (Item.Property.PunishStruggleOther && Player.FocusGroup && StruggleProgressPrevItem != null && StruggleProgressStruggleCount > 0 && (StruggleProgress > 50 || StruggleLockPickProgressCurrentTries > 2)) {
+		return "StruggleOther";
+	}
+	
+	// Punish the player if they orgasm
+	if (Item.Property.NextShockTime - CurrentTime <= 0) {
+		// Punish the player if they orgasm
+		return "Orgasm";
+	}
+	return "";
+}
+
+function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
+	var Item = data.Item;
+	
+	const punishment = InventoryFuturisticChastityBeltCheckPunish(Item);
+	if (punishment) {
+		if (punishment == "Orgasm") {
+			if (Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
+				AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Orgasm");
+				Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownOrgasm; // Difficult to have two orgasms in 10 seconds
+			}
+		} else if (punishment == "StruggleOther") {
+			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther");
+			StruggleProgressStruggleCount = 0;
+			StruggleProgress = 0;
+			DialogLeaveDueToItem = true;
+		} else if (punishment == "Struggle") {
 			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Struggle");
 			StruggleProgressStruggleCount = 0;
 			DialogLeaveDueToItem = true;
-			/*var vol = 1
-			if (Player.AudioSettings && Player.AudioSettings.Volume) {
-				vol = Player.AudioSettings.Volume
-			}
-			AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
-		}
-	}
-	// Punish the player if they struggle anywhere
-	if (Item.Property.PunishStruggleOther && Player.FocusGroup && StruggleProgressPrevItem != null && StruggleProgressStruggleCount > 0 && (StruggleProgress > 50 || StruggleLockPickProgressCurrentTries > 2)) {
-		AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther");
-		StruggleProgressStruggleCount = 0;
-		StruggleProgress = 0;
-		DialogLeaveDueToItem = true;
-
-	}
-
-	if (Item.Property.NextShockTime - CurrentTime <= 0) {
-		// Punish the player if they orgasm
-		if (Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
-			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Orgasm");
-			Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownOrgasm; // Difficult to have two orgasms in 10 seconds
-			/*var vol = 1
-			if (Player.AudioSettings && Player.AudioSettings.Volume) {
-				vol = Player.AudioSettings.Volume
-			}
-			AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
-		}
+		} 
 	}
 }
 

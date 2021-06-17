@@ -1,28 +1,46 @@
 "use strict";
-var FuturisticChastityBeltShockCooldownOrgasm = 15000; // 15 sec
-var FuturisticChastityBeltConfigure = false;
 
-var InventoryItemPelvisFuturisticTrainingBeltTamperZones = [
-	"ItemPelvis",
-	"ItemButt",
-	"ItemVulva",
-];
+var FuturisticTrainingBeltPermissions = ["Public", "Mistresses", "Locked"];
+var FuturisticTrainingBeltModes = ["None", "EdgeAndDeny", "RandomTeasing", "RandomOrgasm", "FullPower"];
 
 function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else{
-		if (DialogFocusItem.Property == null) DialogFocusItem.Property = { NextShockTime: 0, PunishStruggle: false , PunishStruggleOther: false , PunishOrgasm: false, ChatMessage: false,  CloseBack: false, };
+		if (DialogFocusItem.Property == null) DialogFocusItem.Property = {
+			Intensity: 0,
+			// Security
+			ChatMessage: false,
+			NextShockTime: 0,
+			PunishStruggle: false,
+			PunishStruggleOther: false,
+			PunishOrgasm: false,
+			// Public Modes
+			PublicModeCurrent: "None",
+			PublicModePermission: "Public",
+			};
+		// Security
 		if (DialogFocusItem.Property.NextShockTime == null) DialogFocusItem.Property.NextShockTime = 0;
 		if (DialogFocusItem.Property.PunishStruggle == null) DialogFocusItem.Property.PunishStruggle = false;
 		if (DialogFocusItem.Property.PunishStruggleOther == null) DialogFocusItem.Property.PunishStruggleOther = false;
 		if (DialogFocusItem.Property.PunishOrgasm == null) DialogFocusItem.Property.PunishOrgasm = false;
 		if (DialogFocusItem.Property.ChatMessage == null) DialogFocusItem.Property.ChatMessage = false;
+		if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = 0;
+		if (DialogFocusItem.Property.PublicModeCurrent == null) DialogFocusItem.Property.PublicModeCurrent = 0;
+		if (DialogFocusItem.Property.PublicModePermission == null) DialogFocusItem.Property.PublicModePermission = 0;
+		
+		// Validation
+		if (DialogFocusItem.Property.PublicModePermission >= FuturisticTrainingBeltPermissions.length || DialogFocusItem.Property.PublicModePermission < 0) DialogFocusItem.Property.PublicModePermission = 2;
+		// Validation
+		if (DialogFocusItem.Property.PublicModeCurrent >= FuturisticTrainingBeltModes.length || DialogFocusItem.Property.PublicModeCurrent < 0) DialogFocusItem.Property.PublicModeCurrent = 2;
+		
 	}
 }
 
 function InventoryItemPelvisFuturisticTrainingBeltDraw() {
+	const Item = DialogFocusItem;
+	var canViewMode = false;
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
@@ -34,12 +52,36 @@ function InventoryItemPelvisFuturisticTrainingBeltDraw() {
 		DrawCheckbox(1100, 620, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishStruggle"), DialogFocusItem.Property.PunishStruggle, false, "White");
 		DrawCheckbox(1100, 690, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishStruggleOther"), DialogFocusItem.Property.PunishStruggleOther, false, "White");
 		DrawCheckbox(1100, 760, 64, 64, DialogFindPlayer("FuturisticChastityBeltPunishOrgasm"), DialogFocusItem.Property.PunishOrgasm, false, "White");
+		
+		
+		DrawText(DialogFindPlayer("FuturisticTrainingBeltPermissions"), 1100, 875, "white", "gray");
+		
 		MainCanvas.textAlign = "center";
+		
+		DrawBackNextButton(1550, 840, 350, 64, DialogFindPlayer("FuturisticTrainingBeltPermissions" + Item.Property.PublicModePermission), "White", "",
+			() => DialogFindPlayer("FuturisticTrainingBeltPermissions" + ((Item.Property.PublicModePermission + FuturisticTrainingBeltPermissions.length - 1) % FuturisticTrainingBeltPermissions.length)),
+			() => DialogFindPlayer("FuturisticTrainingBeltPermissions" + ((Item.Property.PublicModePermission + 1) % FuturisticTrainingBeltPermissions.length)));
+		
+		canViewMode = true;
 	}
+	
+	
+	MainCanvas.textAlign = "left";
+	DrawText(DialogFindPlayer("FuturisticTrainingBeltMode"), 1100, 945, "white", "gray");
+	
+	MainCanvas.textAlign = "center";
+	if (Item.Property.PublicModePermission == 0 || (Item.Property.PublicModePermission == 1 && LogQuery("ClubMistress", "Management"))) canViewMode = true;
+	DrawBackNextButton(1550, 910, 350, 64, DialogFindPlayer("FuturisticTrainingBeltMode" + Item.Property.PublicModeCurrent), !canViewMode ? "Gray" : "White", "",
+		() => !canViewMode ? "" : DialogFindPlayer("FuturisticTrainingBeltMode" + ((Item.Property.PublicModeCurrent + FuturisticTrainingBeltModes.length - 1) % FuturisticTrainingBeltModes.length)),
+		() => !canViewMode ? "" : DialogFindPlayer("FuturisticTrainingBeltMode" + ((Item.Property.PublicModeCurrent + 1) % FuturisticTrainingBeltModes.length)));
+
+	
 
 }
 
 function InventoryItemPelvisFuturisticTrainingBeltClick() {
+	const Item = DialogFocusItem;
+	var canViewMode = false;
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
@@ -60,7 +102,22 @@ function InventoryItemPelvisFuturisticTrainingBeltClick() {
 		} else if (MouseIn(1100, 760, 64, 64)) {
 			DialogFocusItem.Property.PunishOrgasm = !DialogFocusItem.Property.PunishOrgasm;
 			FuturisticChastityBeltConfigure = true;
-			//InventoryItemPelvisFuturisticTrainingBeltPublishMode(C, "PunishOrgasm", DialogFocusItem.Property.PunishOrgasm);
+			//InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishOrgasm", DialogFocusItem.Property.PunishOrgasm);
+		} else if (MouseIn(1550, 840, 250, 64)) {
+			if (MouseX <= 1725) Item.Property.PublicModePermission = (FuturisticTrainingBeltPermissions.length + Item.Property.PublicModePermission - 1) % FuturisticTrainingBeltPermissions.length;
+				else Item.Property.PublicModePermission = (Item.Property.PublicModePermission + 1) % FuturisticTrainingBeltPermissions.length;
+			FuturisticChastityBeltConfigure = true;
+		} 
+		
+		canViewMode = true;
+	}
+	
+	
+	if (canViewMode || Item.Property.PublicModePermission == 0 || (Item.Property.PublicModePermission == 1 && LogQuery("ClubMistress", "Management"))) {
+		if (MouseIn(1550, 910, 250, 64)) {
+			if (MouseX <= 1725) Item.Property.PublicModeCurrent = (FuturisticTrainingBeltModes.length + Item.Property.PublicModeCurrent - 1) % FuturisticTrainingBeltModes.length;
+				else Item.Property.PublicModeCurrent = (Item.Property.PublicModeCurrent + 1) % FuturisticTrainingBeltModes.length;
+			FuturisticChastityBeltConfigure = true;
 		}
 	}
 }
@@ -106,43 +163,23 @@ function InventoryItemPelvisFuturisticTrainingBeltNpcDialog(C, Option) { Invento
 
 function AssetsItemPelvisFuturisticTrainingBeltScriptUpdatePlayer(data) {
 	var Item = data.Item;
-	// Punish the player if they try to mess with the groin area
-	if (Item.Property.PunishStruggle && Player.FocusGroup && (StruggleProgress >= 0 || StruggleLockPickProgressCurrentTries > 0) && StruggleProgressPrevItem != null && StruggleProgressStruggleCount > 0) {
-		var inFocus = false;
-		for (var Z = 0; Z < InventoryItemPelvisFuturisticTrainingBeltTamperZones.length; Z++)
-			if (Player.FocusGroup.Name == InventoryItemPelvisFuturisticTrainingBeltTamperZones[Z])
-				inFocus = true;
-
-		if (inFocus) {
-			AssetsItemPelvisFuturisticTrainingBeltScriptTrigger(Player, Item, "Struggle");
+	
+	const punishment = InventoryFuturisticChastityBeltCheckPunish(Item);
+	if (punishment) {
+		if (punishment == "Orgasm") {
+			if (Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
+				AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Orgasm");
+				Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownOrgasm; // Difficult to have two orgasms in 10 seconds
+			}
+		} else if (punishment == "StruggleOther") {
+			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther");
+			StruggleProgressStruggleCount = 0;
+			StruggleProgress = 0;
+			DialogLeaveDueToItem = true;
+		} else if (punishment == "Struggle") {
+			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Struggle");
 			StruggleProgressStruggleCount = 0;
 			DialogLeaveDueToItem = true;
-			/*var vol = 1
-			if (Player.AudioSettings && Player.AudioSettings.Volume) {
-				vol = Player.AudioSettings.Volume
-			}
-			AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
-		}
-	}
-	// Punish the player if they struggle anywhere
-	if (Item.Property.PunishStruggleOther && Player.FocusGroup && StruggleProgressPrevItem != null && StruggleProgressStruggleCount > 0 && (StruggleProgress > 50 || StruggleLockPickProgressCurrentTries > 2)) {
-		AssetsItemPelvisFuturisticTrainingBeltScriptTrigger(Player, Item, "StruggleOther");
-		StruggleProgressStruggleCount = 0;
-		StruggleProgress = 0;
-		DialogLeaveDueToItem = true;
-
-	}
-
-	if (Item.Property.NextShockTime - CurrentTime <= 0) {
-		// Punish the player if they orgasm
-		if (Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
-			AssetsItemPelvisFuturisticTrainingBeltScriptTrigger(Player, Item, "Orgasm");
-			Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownOrgasm; // Difficult to have two orgasms in 10 seconds
-			/*var vol = 1
-			if (Player.AudioSettings && Player.AudioSettings.Volume) {
-				vol = Player.AudioSettings.Volume
-			}
-			AudioPlayInstantSound("Audio/Shocks.mp3", vol)*/
 		}
 	}
 }
