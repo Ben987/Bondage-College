@@ -2165,7 +2165,7 @@ var AssetFemale3DCG = [
 					{ Name: "Rings" }
 				]
 			},
-			{ Name: "CeilingShackles", Fetish: ["Metal"], Value: 100, Left: 0, Top: 0, Difficulty: 6, Time: 20, Random: false, AllowLock: true, AllowPose: ["OverTheHead", "Yoked", "Suspension"], Effect: ["Block", "Prone", "Freeze", "NotSelfPickable"], SetPose: ["Yoked"], AllowType: ["Overhead"], HasType: false, Extended: true,
+			{ Name: "CeilingShackles", Fetish: ["Metal"], Value: 100, Left: 0, Top: 0, Difficulty: 6, Time: 20, Random: false, AllowLock: true, AllowPose: ["Suspension"], Effect: ["Block", "Prone", "Freeze", "NotSelfPickable"], SetPose: ["Yoked"], AllowType: ["Overhead"], Extended: true,
 				Layer: [
 					{ Name: "Chain", Top: -388, Priority: 6 },
 					{ Name: "Cuffs" }
