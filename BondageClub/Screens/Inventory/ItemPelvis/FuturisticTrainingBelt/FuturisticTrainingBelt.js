@@ -2,6 +2,24 @@
 
 var FuturisticTrainingBeltPermissions = ["Public", "Mistresses", "Locked"];
 var FuturisticTrainingBeltModes = ["None", "EdgeAndDeny", "RandomTeasing", "RandomOrgasm", "FullPower"];
+var FuturisticTrainingBeltStates = ["None", "LowPriorityEdge", "LowPriorityTease", "LowPriorityMax", "HighPriorityEdge", "HighPriorityMax", "Cooldown"];
+
+var FuturisticTrainingBeltRandomEdgeCycle = 150000; // 150s = 20% downtime at low intensity, so 30 of low and 120s of high
+
+var FuturisticTrainingBeltRandomTeaseDurationMin = 3000; // 30 seconds
+var FuturisticTrainingBeltRandomTeaseDurationMax = 6000; // 5 minutes
+var FuturisticTrainingBeltRandomTeaseDurationCooldown = 2000; // 30 seconds
+var FuturisticTrainingBeltRandomTeaseChance = 0.03; // Chance per second that this happens
+var FuturisticTrainingBeltRandomDenyChance = 0.1; // Chance per second we will deny the player
+var FuturisticTrainingBeltRandomDenyDuration = 30000;
+
+var FuturisticTrainingBeltRandomOrgasmDurationMin = 60000; // 1 minute
+var FuturisticTrainingBeltRandomOrgasmDurationMax = 3*60000; // 3 minutes
+var FuturisticTrainingBeltRandomOrgasmDurationCooldown = 60000; // 1 minute
+var FuturisticTrainingBeltRandomOrgasmChance = 0.02; // Chance per second that this happens
+
+var FuturisticTrainingBeltPunishmentEdgeDuration = 30*60000; // 30 minutes edge
+var FuturisticTrainingBeltPunishmentOrgasmDuration = 10*60000; // 10 minutes constant orgasms
 
 function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -17,8 +35,12 @@ function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 			PunishStruggleOther: false,
 			PunishOrgasm: false,
 			// Public Modes
-			PublicModeCurrent: "None",
-			PublicModePermission: "Public",
+			PublicModeCurrent: 0,
+			PublicModePermission: 0,
+			// State machine
+			DeviceState: 0,
+			DeviceStateTimer: 0, // Timer for the end of the current state
+			DeviceVibeMode: VibratorMode.OFF, // Timer for the end of the current state
 			};
 		// Security
 		if (DialogFocusItem.Property.NextShockTime == null) DialogFocusItem.Property.NextShockTime = 0;
@@ -29,12 +51,15 @@ function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 		if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = 0;
 		if (DialogFocusItem.Property.PublicModeCurrent == null) DialogFocusItem.Property.PublicModeCurrent = 0;
 		if (DialogFocusItem.Property.PublicModePermission == null) DialogFocusItem.Property.PublicModePermission = 0;
+		if (DialogFocusItem.Property.DeviceState == null) DialogFocusItem.Property.DeviceState = 0;
+		if (DialogFocusItem.Property.DeviceStateTimer == null) DialogFocusItem.Property.DeviceStateTimer = 0;
+		if (DialogFocusItem.Property.DeviceVibeMode == null) DialogFocusItem.Property.DeviceVibeMode = VibratorMode.OFF;
 		
 		// Validation
 		if (DialogFocusItem.Property.PublicModePermission >= FuturisticTrainingBeltPermissions.length || DialogFocusItem.Property.PublicModePermission < 0) DialogFocusItem.Property.PublicModePermission = 2;
-		// Validation
 		if (DialogFocusItem.Property.PublicModeCurrent >= FuturisticTrainingBeltModes.length || DialogFocusItem.Property.PublicModeCurrent < 0) DialogFocusItem.Property.PublicModeCurrent = 2;
-		
+		if (DialogFocusItem.Property.DeviceState >= FuturisticTrainingBeltStates.length || DialogFocusItem.Property.DeviceState < 0) DialogFocusItem.Property.DeviceState = 0;
+		if (DialogFocusItem.Property.DeviceStateTimer >= CommonTime + 3600000) DialogFocusItem.Property.DeviceStateTimer = 0; // Prevents people from hacking in ultra-long state timers
 	}
 }
 
@@ -103,7 +128,7 @@ function InventoryItemPelvisFuturisticTrainingBeltClick() {
 			DialogFocusItem.Property.PunishOrgasm = !DialogFocusItem.Property.PunishOrgasm;
 			FuturisticChastityBeltConfigure = true;
 			//InventoryItemPelvisFuturisticChastityBeltPublishMode(C, "PunishOrgasm", DialogFocusItem.Property.PunishOrgasm);
-		} else if (MouseIn(1550, 840, 250, 64)) {
+		} else if (MouseIn(1550, 840, 350, 64)) {
 			if (MouseX <= 1725) Item.Property.PublicModePermission = (FuturisticTrainingBeltPermissions.length + Item.Property.PublicModePermission - 1) % FuturisticTrainingBeltPermissions.length;
 				else Item.Property.PublicModePermission = (Item.Property.PublicModePermission + 1) % FuturisticTrainingBeltPermissions.length;
 			FuturisticChastityBeltConfigure = true;
@@ -114,7 +139,7 @@ function InventoryItemPelvisFuturisticTrainingBeltClick() {
 	
 	
 	if (canViewMode || Item.Property.PublicModePermission == 0 || (Item.Property.PublicModePermission == 1 && LogQuery("ClubMistress", "Management"))) {
-		if (MouseIn(1550, 910, 250, 64)) {
+		if (MouseIn(1550, 910, 350, 64)) {
 			if (MouseX <= 1725) Item.Property.PublicModeCurrent = (FuturisticTrainingBeltModes.length + Item.Property.PublicModeCurrent - 1) % FuturisticTrainingBeltModes.length;
 				else Item.Property.PublicModeCurrent = (Item.Property.PublicModeCurrent + 1) % FuturisticTrainingBeltModes.length;
 			FuturisticChastityBeltConfigure = true;
@@ -156,9 +181,87 @@ function InventoryItemPelvisFuturisticTrainingBeltValidate(C) {
 }
 
 
-
+function InventoryItemPelvisFuturisticTrainingBeltRunOrgasmControl(C) {
+	if (CurrentScreen == "ChatRoom" || CurrentScreen == "Private" && (Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {
+		if ((Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
+			if (Player.ArousalSettings.OrgasmStage == 0) {
+				ActivityOrgasmGameGenerate(0); // We generate the orgasm stage to deny the player the opportunity to surrender
+			}
+		}
+	}
+	if ((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < Player.ArousalSettings.OrgasmTimer)) {
+		// Ruin the orgasm
+		if (ActivityOrgasmGameProgress >= ActivityOrgasmGameDifficulty - 2 || CurrentTime > Player.ArousalSettings.OrgasmTimer - 3200) {
+			if (CurrentScreen == "ChatRoom") {
+				ChatRoomMessage({ Content: "FuturisticTrainingBeltOrgasmEdged", Type: "Action", Sender: Player.MemberNumber });
+			}
+			ActivityOrgasmGameResistCount++;
+			ActivityOrgasmStop(Player, 70 + Math.ceil(Math.random()*20));
+		}
+	}
+	
+}
 
 function InventoryItemPelvisFuturisticTrainingBeltNpcDialog(C, Option) { InventoryItemPelvisMetalChastityBeltNpcDialog(C, Option); }
+
+function InventoryItemPelvisFuturisticTrainingBeltGetVibeMode(State, First) {
+	if (State.includes("Edge")) {
+		if (First || (Player.ArousalSettings && Player.ArousalSettings.Progress && Player.ArousalSettings.Progress < 60) || (CommonTime() % FuturisticTrainingBeltRandomEdgeCycle > FuturisticTrainingBeltRandomEdgeCycle / 5)) {
+			return VibratorMode.HIGH;
+		} else
+			return VibratorMode.LOW;
+	}
+	if (State.includes("Tease")) {
+		if (Player.ArousalSettings && Player.ArousalSettings.Progress) {
+			if (Player.ArousalSettings.Progress < 35) return VibratorMode.HIGH;
+			if (Player.ArousalSettings.Progress < 70) return VibratorMode.MEDIUM;
+		} 
+		return VibratorMode.LOW;
+	}
+	if (State.includes("Max")) return VibratorMode.MAXIMUM;
+	return VibratorMode.OFF;
+}
+
+// This function sets the vibration mode, similar to the extended vibrators
+function InventoryItemPelvisFuturisticTrainingBeltUpdateVibeMode(C, Item, Force) {
+	var OldIntensity = Item.Property.Intensity;
+	var State = (Item.Property && Item.Property.DeviceState) ? FuturisticTrainingBeltStates[Item.Property.DeviceState] : "None";
+	var VibeMode = InventoryItemPelvisFuturisticTrainingBeltGetVibeMode(State, OldIntensity < 0);
+	
+	if (Force || Item.Property.DeviceVibeMode != VibeMode) {
+		Item.Property.DeviceVibeMode = VibeMode;
+		
+		var Option = VibratorModeGetOption(VibeMode);
+		VibratorModeSetProperty(Item, Option.Property);
+		CharacterRefresh(C);
+		ChatRoomCharacterItemUpdate(C, Item.Asset.Group.Name);
+
+		if (CurrentScreen == "ChatRoom") {
+			var Message;
+			var Dictionary = [
+				{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
+				{ Tag: "AssetName", AssetName: Item.Asset.Name },
+			];
+
+			Message = "FuturisticTrainingBeltSetState" + Item.Property.DeviceState + VibeMode;
+			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+			
+			Dictionary.push({ Automatic: true });
+			// This is meant to cut down on spam for other players
+			if (FuturisticTrainingBeltStates[Item.Property.DeviceState].includes("Edge") && (OldIntensity >= 0 && OldIntensity < 3))
+				ChatRoomMessage({ Content: Message+"Self", Type: "Action", Sender: Player.MemberNumber });
+			else 
+				ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
+		}
+		if (Item.Property.Intensity > OldIntensity) {
+			if (Item.Property.Intensity >= 3)
+				CharacterSetFacialExpression(C, "Blush", "Extreme", 5);
+			else if (Item.Property.Intensity > 1)
+				CharacterSetFacialExpression(C, "Blush", "VeryHigh", 5);
+			else CharacterSetFacialExpression(C, "Blush", "Medium", 5);
+		}
+	}
+}
 
 
 function AssetsItemPelvisFuturisticTrainingBeltScriptUpdatePlayer(data) {
@@ -211,6 +314,123 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptTrigger(C, Item, ShockType)
 }
 
 
+function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
+	var update = false;
+	
+	// We have a state machine
+	var Item = data.Item;
+	var C = data.C;
+	var Property = Item ? Item.Property : null;
+	if (!Property) return;
+	
+	// Get the state
+	var State = FuturisticTrainingBeltStates[Property.DeviceState ? Property.DeviceState : 0];
+	var Mode = FuturisticTrainingBeltModes[Property.PublicModeCurrent ? Property.PublicModeCurrent : 0];
+	var StateTimerReady = !(Property.DeviceStateTimer > 0); // Are we ready to start a new event? 
+	var StateTimerOver = CommonTime() > Property.DeviceStateTimer; // End the current event
+	
+	
+	
+	// Basics of the state machine
+	// In high priority, the state must time out before anything special happens. 
+	
+	if (State.includes("HighPriority")) {// High priority timer
+		if (StateTimerOver) {
+			Property.DeviceState = 0;
+			update = true;
+		}
+	} else if (State.includes("LowPriority") || State == "None") {// Check low priority states
+		var DeviceSetToState = -1;
+		var DeviceTimer = 0;
+		if (State != "None" && Mode == "None") { // If the mode is None then we turn off if we are LowPriority regardless of what
+			Property.DeviceState = 0; // None
+			update = true;
+		} else if (Mode == "EdgeAndDeny") {
+			DeviceSetToState = 1;
+			if (Player.ArousalSettings && Player.ArousalSettings.Progress && Player.ArousalSettings.Progress > 90) {
+				if (Math.random() < FuturisticTrainingBeltRandomDenyChance) {
+					DeviceSetToState = 6;
+					Property.DeviceStateTimer = CommonTime();
+					update = true;
+				}
+			}
+			
+		} else if (Mode == "RandomTeasing") {
+			DeviceSetToState = 2;
+			if (State == "None") {
+				if (Math.random() < FuturisticTrainingBeltRandomTeaseChance) {
+					const r = Math.random();
+					DeviceTimer = FuturisticTrainingBeltRandomTeaseDurationMin + (FuturisticTrainingBeltRandomTeaseDurationMax - FuturisticTrainingBeltRandomTeaseDurationMin) * r * r * r;
+				} else DeviceSetToState = -1;
+			} else DeviceTimer = 1;
+		} else if (Mode == "RandomOrgasm") {
+			DeviceSetToState = 3;
+			if (State == "None") {
+				if (Math.random() < FuturisticTrainingBeltRandomOrgasmChance) {
+					const r = Math.random();
+					DeviceTimer = FuturisticTrainingBeltRandomOrgasmDurationMin + (FuturisticTrainingBeltRandomOrgasmDurationMax - FuturisticTrainingBeltRandomOrgasmDurationMin) * r * r * r;
+				} else DeviceSetToState = -1;
+			} else DeviceTimer = 1;
+		} else if (Mode == "FullPower") {
+			DeviceSetToState = 3;
+		}
+		if (DeviceSetToState > -1) {
+			if (DeviceSetToState != Property.DeviceState) {
+				Property.DeviceState = DeviceSetToState; // Low priority edge
+				Property.DeviceStateTimer = CommonTime() + DeviceTimer;
+				update = true;
+			} else if (StateTimerOver && DeviceTimer != 0) {
+				Property.DeviceState = 6;
+				Property.DeviceStateTimer = CommonTime();
+				update = true;
+			}
+			
+			StateTimerReady = false;
+		}
+	} else if (State == "Cooldown" && StateTimerReady) Property.DeviceState = 0; // Return to None state
+	
+	// In the cooldown state we decide when to get ready for another round of good vibrations
+	if (State == "Cooldown") {
+		var Cooldown = 0;
+		if (!State.includes("HighPriority")) {
+			if (Mode == "RandomTeasing") {
+				Cooldown = FuturisticTrainingBeltRandomTeaseDurationCooldown;
+			} else if (Mode == "RandomOrgasm") {
+				Cooldown = FuturisticTrainingBeltRandomOrgasmDurationCooldown;
+			} else if (Mode == "EdgeAndDeny") {
+				Cooldown = FuturisticTrainingBeltRandomDenyDuration;
+			}
+		}
+		if (CommonTime() > Property.DeviceStateTimer + Cooldown) {
+			StateTimerReady = true;
+		} else StateTimerReady = false;
+	}
+	
+	// Reset state timers
+	if (Mode == "None") {
+		StateTimerOver = true;
+		StateTimerReady = true;
+	}
+	if (StateTimerReady) Property.DeviceStateTimer = 0;
+	
+	if (update || State.includes("Edge")) InventoryItemPelvisFuturisticTrainingBeltUpdateVibeMode(C, Item);
+	
+	// Edge modes prevent orgasm; tease will ruin orgasms constantly
+	if (State.includes("Tease")) InventoryItemPelvisFuturisticTrainingBeltRunOrgasmControl(C);
+	else if (State.includes("Edge") && !Item.Property.Effect.includes("DenialMode")) {
+		Item.Property.Effect.push("DenialMode");
+	}
+	else if (!State.includes("Edge") && Item.Property.Effect.includes("DenialMode")) {
+		for (let E = 0; E < Item.Property.Effect.length; E++) {
+			var Effect = Item.Property.Effect[E];
+			if (Effect == "DenialMode") {
+				Item.Property.Effect.splice(E, 1);
+				E--;
+			}
+		}
+	}
+}
+
 // Update data
 function AssetsItemPelvisFuturisticTrainingBeltScriptDraw(data) {
 	var persistentData = data.PersistentData();
@@ -222,6 +442,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptDraw(data) {
 
 		if (CommonTime() > property.NextShockTime) {
 			AssetsItemPelvisFuturisticTrainingBeltScriptUpdatePlayer(data);
+			AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data);
 			persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
 		}
 
