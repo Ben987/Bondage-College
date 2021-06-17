@@ -85,10 +85,15 @@ function InventoryItemVulvaFuturisticVibratorExit() {
 		ElementRemove("FuturisticVibe" + ItemVulvaFuturisticVibratorTriggers[I]);
 }
 
+
+
 function InventoryItemVulvaFuturisticVibratorDetectMsg(msg, TriggerValues) {
 	var commandsReceived = [];
 	for (let I = 0; I < TriggerValues.length; I++) {
-		if (msg.indexOf('(') != 0 && msg.includes(TriggerValues[I].toUpperCase())) commandsReceived.push(ItemVulvaFuturisticVibratorTriggers[I]);
+		const triggerRegex = new RegExp(`\\b${TriggerValues[I].toUpperCase()}\\b`);
+		const success = triggerRegex.test(msg.replace(/[^a-z0-9]/gmi, " ").replace(/\s+/g, " "));
+		
+		if (success && msg.indexOf('(') != 0 && msg.includes(TriggerValues[I].toUpperCase())) commandsReceived.push(ItemVulvaFuturisticVibratorTriggers[I]);
 	}
 	return commandsReceived;
 }
