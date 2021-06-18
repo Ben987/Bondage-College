@@ -287,7 +287,7 @@ function ActivityOrgasmProgressBar(X, Y) {
 function ActivityOrgasmControl() {
 	if ((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < Player.ArousalSettings.OrgasmTimer)) {
 		// Ruin the orgasm
-		if (ActivityOrgasmGameProgress >= ActivityOrgasmGameDifficulty - 1 || CurrentTime > Player.ArousalSettings.OrgasmTimer - 3200) {
+		if (ActivityOrgasmGameProgress >= ActivityOrgasmGameDifficulty - 1 || CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
 			if (CurrentScreen == "ChatRoom") {
 				if (CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
 					ChatRoomMessage({ Content: "OrgasmFailTimeout", Type: "Action", Sender: Player.MemberNumber });
