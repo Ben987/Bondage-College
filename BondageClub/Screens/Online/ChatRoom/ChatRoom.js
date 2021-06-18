@@ -72,25 +72,6 @@ const ChatRoomArousalMsg_ChanceGagMod = {
 var ChatRoomPinkFlashTime = 0;
 var ChatRoomHideIconState = 0;
 var ChatRoomMenuButtons = [];
-const ChatMuPoseIgnoreCharacters = [
-	'(',
-	')',
-	'/',
-	'\\',
-	'p',
-	'd',
-	'^',
-	'-',
-	'\'',
-	'[',
-	']',
-	'{',
-	'}',
-	'l',
-	'@',
-	'|',
-	's'
-];
 
 /**
  * Chat room resize manager object: Handles resize events for the chat log.
@@ -1507,7 +1488,7 @@ function ChatRoomSendChat() {
 			Dictionary.push({ Tag: "CoinResult", TextToLookUp: Heads ? "Heads" : "Tails" });
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary });
 
-		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0) || (Player.ChatSettings.MuStylePoses && m.indexOf(":") == 0 && (m.indexOf("'s") == 1 || !ChatMuPoseIgnoreCharacters.includes(m[1].toLowerCase())))) {
+		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0) || (Player.ChatSettings.MuStylePoses && m.indexOf(":") == 0 && m.length > 3)) {
 
 			// The player can emote an action using :, * or /me (for those IRC, MU* or Skype users), it doesn't garble
 			// The command /action or ** does not add the player's name to it
