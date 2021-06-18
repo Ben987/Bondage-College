@@ -451,11 +451,11 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 	}
 	
 	if (EdgeMode) {
-		if (!Item.Property.Effect.includes("DenialMode")) {
+		if (!Item.Property.Effect && Item.Property.Effect.includes("DenialMode")) {
 			Item.Property.Effect.push("DenialMode");
 		}
 	} else {
-		if (Item.Property.Effect.includes("DenialMode")) {
+		if (Item.Property.Effect && Item.Property.Effect.includes("DenialMode")) {
 			for (let E = 0; E < Item.Property.Effect.length; E++) {
 				var Effect = Item.Property.Effect[E];
 				if (Effect == "DenialMode") {
