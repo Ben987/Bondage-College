@@ -181,7 +181,7 @@ function InventoryItemPelvisFuturisticTrainingBeltValidate(C) {
 	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
 }
 
-
+/*
 function InventoryItemPelvisFuturisticTrainingBeltRunOrgasmControl(C) {
 	if (CurrentScreen == "ChatRoom" || CurrentScreen == "Private" && (C.ArousalSettings != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive") && (C.ArousalSettings.Active != "NoMeter")) {
 		if ((C.ArousalSettings.OrgasmTimer != null) && (typeof C.ArousalSettings.OrgasmTimer === "number") && !isNaN(C.ArousalSettings.OrgasmTimer) && (C.ArousalSettings.OrgasmTimer > 0)) {
@@ -205,7 +205,7 @@ function InventoryItemPelvisFuturisticTrainingBeltRunOrgasmControl(C) {
 		}
 	}
 	
-}
+}*/
 
 function InventoryItemPelvisFuturisticTrainingBeltNpcDialog(C, Option) { InventoryItemPelvisMetalChastityBeltNpcDialog(C, Option); }
 
@@ -429,27 +429,27 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 	
 	
 	if (ArousalActive) {
-		if (C.ArousalSettings.Progress > 96 && !((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < C.ArousalSettings.OrgasmTimer))) { // Manually trigger orgasm at this stage 
-			C.ArousalSettings.Progress = 100;
-			ActivityOrgasmPrepare(C);
+		if (C.ArousalSettings.Progress > 99 && !((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < C.ArousalSettings.OrgasmTimer))) { // Manually trigger orgasm at this stage 
+			ActivityOrgasmPrepare(C, true);
 		}
-			
-		// The edge punishment prevents orgasms completely; teasing and "edge and deny" mode do not, but it will ruin the orgasm after triggering it above
-		if (Mode == "EdgeAndDeny" || Mode == "RandomTeasing" || State.includes("Tease") || State.includes("Edge")) InventoryItemPelvisFuturisticTrainingBeltRunOrgasmControl(C);
 	}
 	
-	/*else if (State.includes("HighPriorityEdge") && !Item.Property.Effect.includes("DenialMode")) {
-		Item.Property.Effect.push("DenialMode");
+	else if (State.includes("HighPriorityEdge")) {
+		if (!Item.Property.Effect.includes("DenialMode")) {
+			Item.Property.Effect.push("DenialMode");
+		}
 	}
-	else if (!State.includes("HighPriorityEdge") && Item.Property.Effect.includes("DenialMode")) {
-		for (let E = 0; E < Item.Property.Effect.length; E++) {
-			var Effect = Item.Property.Effect[E];
-			if (Effect == "DenialMode") {
-				Item.Property.Effect.splice(E, 1);
-				E--;
+	else if (!State.includes("HighPriorityEdge")) {
+		if (Item.Property.Effect.includes("DenialMode")) {
+			for (let E = 0; E < Item.Property.Effect.length; E++) {
+				var Effect = Item.Property.Effect[E];
+				if (Effect == "DenialMode") {
+					Item.Property.Effect.splice(E, 1);
+					E--;
+				}
 			}
 		}
-	}*/
+	}
 }
 
 // Update data
