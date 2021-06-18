@@ -491,10 +491,12 @@ function VibratorModeStateUpdateDeny(C, Arousal, TimeSinceLastChange, OldIntensi
 	var State = VibratorModeState.DENY;
 	var Intensity = OldIntensity;
 	if (Arousal >= 95 && TimeSinceLastChange > OneMinute && Math.random() < 0.2) {
-		// In deny mode, there's a small chance to change to give a fake orgasm and then go to rest mode after a minute
-		// Here we give the fake orgasm, passing a special parameter that indicates we bypass the usual restriction on Edge
-		ActivityOrgasmGameGenerate(0); // We generate the orgasm stage to deny the player the opportunity to surrender
-		ActivityOrgasmPrepare(C, true);
+		if (Player.IsEdged()) {
+			// In deny mode, there's a small chance to change to give a fake orgasm and then go to rest mode after a minute
+			// Here we give the fake orgasm, passing a special parameter that indicates we bypass the usual restriction on Edge
+			ActivityOrgasmGameGenerate(0); // We generate the orgasm stage to deny the player the opportunity to surrender
+			ActivityOrgasmPrepare(C, true);
+		}
 		
 		// Set the vibrator to rest
 		State = VibratorModeState.REST;
