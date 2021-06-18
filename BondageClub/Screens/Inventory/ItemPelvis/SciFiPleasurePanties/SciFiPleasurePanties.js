@@ -102,7 +102,7 @@ function InventoryItemPelvisSciFiPleasurePantiesClick() {
 }
 
 function InventoryItemPelvisSciFiPleasurePantiesLockOrgasm(OrgasmLock, DenyMode) {
-	var C = CharacterGetCurrent() || CharacterAppearanceSelection;
+	let C = CharacterGetCurrent() || CharacterAppearanceSelection;
 
     if (OrgasmLock == true && !DialogFocusItem.Property.Effect.includes("DenialMode")) {
 		DialogFocusItem.Property.Effect.push("DenialMode");
@@ -111,7 +111,7 @@ function InventoryItemPelvisSciFiPleasurePantiesLockOrgasm(OrgasmLock, DenyMode)
     else if (OrgasmLock == false && DialogFocusItem.Property.Effect.includes("DenialMode")) {
 		DialogFocusItem.Property.OrgasmLock = 0;
         for (let E = 0; E < DialogFocusItem.Property.Effect.length; E++) {
-            var Effect = DialogFocusItem.Property.Effect[E];
+            let Effect = DialogFocusItem.Property.Effect[E];
             if (Effect == "DenialMode") {
                 DialogFocusItem.Property.Effect.splice(E, 1);
                 E--;
@@ -125,7 +125,7 @@ function InventoryItemPelvisSciFiPleasurePantiesLockOrgasm(OrgasmLock, DenyMode)
     else if (DenyMode == false && DialogFocusItem.Property.Effect.includes("RuinOrgasms")) {
 		DialogFocusItem.Property.OrgasmLock = OrgasmLock ? 1 : 0;
         for (let E = 0; E < DialogFocusItem.Property.Effect.length; E++) {
-            var Effect = DialogFocusItem.Property.Effect[E];
+            let Effect = DialogFocusItem.Property.Effect[E];
             if (Effect == "RuinOrgasms") {
                 DialogFocusItem.Property.Effect.splice(E, 1);
                 E--;
