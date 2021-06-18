@@ -1511,8 +1511,8 @@ function ChatRoomSendChat() {
 
 			// The player can emote an action using :, * or /me (for those IRC, MU* or Skype users), it doesn't garble
 			// The command /action or ** does not add the player's name to it
+			if (Player.ChatSettings.MuStylePoses) msg = msg.replace(":", "");
 			msg = msg.replace("*", "");
-			msg = msg.replace(":", "");
 			msg = msg.replace(/\/me /g, "");
 			msg = msg.replace(/\/action /g, "*");
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" });
