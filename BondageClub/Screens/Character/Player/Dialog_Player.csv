@@ -501,7 +501,7 @@ MaidDrinkPickBeerPitcher,,,"SourceCharacter buys a beer pitcher for everyone, fr
 MaidDrinkPickFreeTea,,,SourceCharacter picks a tea from DestinationCharacter tray.,,
 MaidDrinkPickFreeCoffee,,,SourceCharacter picks a coffee from DestinationCharacter tray.,,
 MaidDrinkPickHotChocolate,,,SourceCharacter buys a hot chocolate from DestinationCharacter tray.,,
-MaidDrinkPickExpresso,,,SourceCharacter buys an espresso from DestinationCharacter tray.,,
+MaidDrinkPickEspresso,,,SourceCharacter buys an espresso from DestinationCharacter tray.,,
 MaidDrinkPickCappuccino,,,SourceCharacter buys a cappuccino from DestinationCharacter tray.,,
 LockMemberNumber,,,Member number on lock:,,
 ItemMemberNumber,,,Item member number:,,

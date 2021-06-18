@@ -1310,7 +1310,8 @@ var AssetFemale3DCGExtended = {
 							Effect: ["BlockMouth", "GagMedium"],
 						},
 					},
-				]
+				],
+				ChangeWhenLocked: false,
 			},
 		}, // DentalGag
 		Ribbons: {

@@ -4,11 +4,11 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Anna", "Aylea", "Bendy", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "Epona", 
-						"Escurse", "FanRunner", "Flux", "Greendragon", "KamiKaze", "Kimuriel", "Michal", "Michel", "Mike", "Mindtie", 
-						"Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", "Remydy", "Rika", 
-						"Robin", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "Stephanie", "Tam", "TopHat", "Trent", 
-						"Troubadix", "William", "Xepherio", "Yurei", "Znarf"];
+var LoginThankYouList = ["Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "DarkStar", "Dini", "ElCriminal", 
+						"Epona", "Escurse", "FanRunner", "Greendragon", "KamiKaze", "Kimuriel", "Longwave", "Michal", "Michel", "Mike", 
+						"Mindtie", "Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", "Remydy", 
+						"Rika", "RobinHood", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "SkyLord", "Stephanie", "Tam", 
+						"TopHat", "Trent", "Troubadix", "William", "Xepherio", "Yuna", "Yurei", "Znarf"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
