@@ -8,6 +8,8 @@ var ActivityOrgasmGameResistCount = 0;
 var ActivityOrgasmGameTimer = 0;
 var ActivityOrgasmResistLabel = "";
 
+var ActivityOrgasmRuined = false; // If set to true, the orgasm will be ruined right before it happens
+
 /**
  * Checks if the current room allows for activities. (They can only be done in certain rooms)
  * @returns {boolean} - Whether or not activities can be done
@@ -279,6 +281,28 @@ function ActivityOrgasmProgressBar(X, Y) {
 }
 
 /**
+ * Ends the orgasm early if progress is close or progress is sufficient
+ * @return {void} - Nothing
+ */
+function ActivityOrgasmControl() {
+	if ((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < Player.ArousalSettings.OrgasmTimer)) {
+		// Ruin the orgasm
+		if (ActivityOrgasmGameProgress >= ActivityOrgasmGameDifficulty - 1 || CurrentTime > Player.ArousalSettings.OrgasmTimer - 3200) {
+			if (CurrentScreen == "ChatRoom") {
+				if (CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
+					ChatRoomMessage({ Content: "OrgasmFailTimeout", Type: "Action", Sender: Player.MemberNumber });
+				} else {
+					ChatRoomMessage({ Content: "OrgasmFailResist", Type: "Action", Sender: Player.MemberNumber });
+				}
+			}
+			ActivityOrgasmGameResistCount++;
+			ActivityOrgasmStop(Player, 65 + Math.ceil(Math.random()*20));
+		}
+	}
+}
+
+
+/**
  * Increases the player's willpower when resisting an orgasm.
  * @param {Character} C - The character currently resisting
  * @return {void} - Nothing
@@ -365,17 +389,22 @@ function ActivityOrgasmGameGenerate(Progress) {
 /**
  * Triggers an orgasm for the player or an NPC which lasts from 5 to 15 seconds
  * @param {Character} C - Character for which an orgasm was triggered
+ * @param {bool} Bypass - If true, this will do a ruined orgasm rather than a real one
  * @returns {void} - Nothing
  */
-function ActivityOrgasmPrepare(C) {
+function ActivityOrgasmPrepare(C, Bypass) {
+	ActivityOrgasmRuined = false;
+	
 	if (C.Effect.includes("DenialMode")) {
 		C.ArousalSettings.Progress = 99;
-		return;
+		if (Bypass) ActivityOrgasmRuined = true;
+		else return;
 	}
 
 	if (C.IsEdged()) {
 		C.ArousalSettings.Progress = 95;
-		return;
+		if (Bypass) ActivityOrgasmRuined = true;
+		else return;
 	}
 
 	if ((C.ID == 0) || C.IsNpc()) {

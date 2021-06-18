@@ -1153,9 +1153,11 @@ function ChatRoomRun() {
 			if (Player.ArousalSettings.OrgasmStage == 0) {
 				DrawText(TextGet("OrgasmComing"), 500, 410, "White", "Black");
 				DrawButton(200, 532, 250, 64, TextGet("OrgasmTryResist"), "White");
-				DrawButton(550, 532, 250, 64, TextGet("OrgasmSurrender"), "White");
+				if (!ActivityOrgasmRuined)
+					DrawButton(550, 532, 250, 64, TextGet("OrgasmSurrender"), "White");
 			}
 			if (Player.ArousalSettings.OrgasmStage == 1) DrawButton(ActivityOrgasmGameButtonX, ActivityOrgasmGameButtonY, 250, 64, ActivityOrgasmResistLabel, "White");
+			if (ActivityOrgasmRuined) ActivityOrgasmControl();
 			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
 			ActivityOrgasmProgressBar(50, 970);
 		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99) && !CommonPhotoMode) {
@@ -1224,7 +1226,7 @@ function ChatRoomClick() {
 
 		// On stage 0, the player can choose to resist the orgasm or not.  At 1, the player plays a mini-game to fight her orgasm
 		if (MouseIn(200, 532, 250, 68) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmGameGenerate(0);
-		if (MouseIn(550, 532, 250, 68) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmStart(Player);
+		if (!ActivityOrgasmRuined && MouseIn(550, 532, 250, 68) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmStart(Player);
 		if ((MouseX >= ActivityOrgasmGameButtonX) && (MouseX <= ActivityOrgasmGameButtonX + 250) && (MouseY >= ActivityOrgasmGameButtonY) && (MouseY <= ActivityOrgasmGameButtonY + 64) && (Player.ArousalSettings.OrgasmStage == 1)) ActivityOrgasmGameGenerate(ActivityOrgasmGameProgress + 1);
 		return;
 
