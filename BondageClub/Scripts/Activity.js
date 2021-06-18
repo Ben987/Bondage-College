@@ -397,7 +397,7 @@ function ActivityOrgasmPrepare(C, Bypass) {
 	
 	if (C.Effect.includes("DenialMode")) {
 		C.ArousalSettings.Progress = 99;
-		if (Bypass) ActivityOrgasmRuined = true;
+		if (Bypass || (C.ID == 0 && C.Effect.includes("RuinOrgasms"))) ActivityOrgasmRuined = true;
 		else return;
 	}
 
@@ -405,6 +405,10 @@ function ActivityOrgasmPrepare(C, Bypass) {
 		C.ArousalSettings.Progress = 95;
 		if (Bypass) ActivityOrgasmRuined = true;
 		else return;
+	}
+	
+	if (C.ID == 0 && ActivityOrgasmRuined) {
+		ActivityOrgasmGameGenerate(0); // Resets the game
 	}
 
 	if ((C.ID == 0) || C.IsNpc()) {
