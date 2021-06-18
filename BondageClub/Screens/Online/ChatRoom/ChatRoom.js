@@ -1507,7 +1507,7 @@ function ChatRoomSendChat() {
 			Dictionary.push({ Tag: "CoinResult", TextToLookUp: Heads ? "Heads" : "Tails" });
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary });
 
-		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0) || (m.indexOf(":") == 0 && (m.indexOf("'s") == 1 || !ChatMuPoseIgnoreCharacters.includes(m[1].toUpperCase())))) {
+		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0) || (m.indexOf(":") == 0 && (m.indexOf("'s") == 1 || !ChatMuPoseIgnoreCharacters.includes(m[1].toLowerCase())))) {
 
 			// The player can emote an action using :, * or /me (for those IRC, MU* or Skype users), it doesn't garble
 			// The command /action or ** does not add the player's name to it
