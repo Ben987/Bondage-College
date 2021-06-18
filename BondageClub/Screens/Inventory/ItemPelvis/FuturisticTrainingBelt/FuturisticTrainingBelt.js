@@ -1,14 +1,17 @@
 "use strict";
 
 var FuturisticTrainingBeltPermissions = ["Public", "Mistresses", "Locked"];
-var FuturisticTrainingBeltModes = ["None", "EdgeAndDeny", "RandomTeasing", "RandomOrgasm", "FullPower"];
-var FuturisticTrainingBeltStates = ["None", "LowPriorityEdge", "LowPriorityTease", "LowPriorityMax", "HighPriorityEdge", "HighPriorityMax", "Cooldown"];
+var FuturisticTrainingBeltModes = ["None", "Tease", "Excite", "FullPower", "EdgeAndDeny", "RandomTeasing", "RandomOrgasm"];
+var FuturisticTrainingBeltStates = ["None", "LowPriorityEdge", "LowPriorityTease", "LowPriorityLow", "LowPriorityMedium", "LowPriorityMax", "HighPriorityEdge", "HighPriorityMax", "Cooldown"];
+
+var FuturisticTrainingBeltResetCooldown = false;
+var FuturisticTrainingBeltSetMode = 0;
 
 var FuturisticTrainingBeltRandomEdgeCycle = 150000; // 150s = 20% downtime at low intensity, so 30 of low and 120s of high
 
-var FuturisticTrainingBeltRandomTeaseDurationMin = 3000; // 30 seconds
-var FuturisticTrainingBeltRandomTeaseDurationMax = 6000; // 5 minutes
-var FuturisticTrainingBeltRandomTeaseDurationCooldown = 2000; // 30 seconds
+var FuturisticTrainingBeltRandomTeaseDurationMin = 30000; // 30 seconds
+var FuturisticTrainingBeltRandomTeaseDurationMax = 300000; // 5 minutes
+var FuturisticTrainingBeltRandomTeaseDurationCooldown = 30000; // 30 seconds
 var FuturisticTrainingBeltRandomTeaseChance = 0.03; // Chance per second that this happens
 var FuturisticTrainingBeltRandomTeaseMaxChance = 0.1; // Chance that teasing will be maximum
 var FuturisticTrainingBeltRandomDenyChance = 0.01; // Chance per second we will deny the player
@@ -58,9 +61,11 @@ function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 		
 		// Validation
 		if (DialogFocusItem.Property.PublicModePermission >= FuturisticTrainingBeltPermissions.length || DialogFocusItem.Property.PublicModePermission < 0) DialogFocusItem.Property.PublicModePermission = 2;
-		if (DialogFocusItem.Property.PublicModeCurrent >= FuturisticTrainingBeltModes.length || DialogFocusItem.Property.PublicModeCurrent < 0) DialogFocusItem.Property.PublicModeCurrent = 2;
+		if (DialogFocusItem.Property.PublicModeCurrent >= FuturisticTrainingBeltModes.length || DialogFocusItem.Property.PublicModeCurrent < 0) DialogFocusItem.Property.PublicModeCurrent = 0;
 		if (DialogFocusItem.Property.DeviceState >= FuturisticTrainingBeltStates.length || DialogFocusItem.Property.DeviceState < 0) DialogFocusItem.Property.DeviceState = 0;
 		if (DialogFocusItem.Property.DeviceStateTimer >= CommonTime + 3600000) DialogFocusItem.Property.DeviceStateTimer = 0; // Prevents people from hacking in ultra-long state timers
+		
+		FuturisticTrainingBeltSetMode = DialogFocusItem.Property.PublicModeCurrent;
 	}
 }
 
@@ -97,9 +102,9 @@ function InventoryItemPelvisFuturisticTrainingBeltDraw() {
 	
 	MainCanvas.textAlign = "center";
 	if (Item.Property.PublicModePermission == 0 || (Item.Property.PublicModePermission == 1 && LogQuery("ClubMistress", "Management"))) canViewMode = true;
-	DrawBackNextButton(1550, 910, 350, 64, DialogFindPlayer("FuturisticTrainingBeltMode" + Item.Property.PublicModeCurrent), !canViewMode ? "Gray" : "White", "",
-		() => !canViewMode ? "" : DialogFindPlayer("FuturisticTrainingBeltMode" + ((Item.Property.PublicModeCurrent + FuturisticTrainingBeltModes.length - 1) % FuturisticTrainingBeltModes.length)),
-		() => !canViewMode ? "" : DialogFindPlayer("FuturisticTrainingBeltMode" + ((Item.Property.PublicModeCurrent + 1) % FuturisticTrainingBeltModes.length)));
+	DrawBackNextButton(1550, 910, 350, 64, DialogFindPlayer("FuturisticTrainingBeltMode" + FuturisticTrainingBeltSetMode), !canViewMode ? "Gray" : "White", "",
+		() => !canViewMode ? "" : DialogFindPlayer("FuturisticTrainingBeltMode" + ((FuturisticTrainingBeltSetMode + FuturisticTrainingBeltModes.length - 1) % FuturisticTrainingBeltModes.length)),
+		() => !canViewMode ? "" : DialogFindPlayer("FuturisticTrainingBeltMode" + ((FuturisticTrainingBeltSetMode + 1) % FuturisticTrainingBeltModes.length)));
 
 	
 
@@ -141,16 +146,20 @@ function InventoryItemPelvisFuturisticTrainingBeltClick() {
 	
 	if (canViewMode || Item.Property.PublicModePermission == 0 || (Item.Property.PublicModePermission == 1 && LogQuery("ClubMistress", "Management"))) {
 		if (MouseIn(1550, 910, 350, 64)) {
-			if (MouseX <= 1725) Item.Property.PublicModeCurrent = (FuturisticTrainingBeltModes.length + Item.Property.PublicModeCurrent - 1) % FuturisticTrainingBeltModes.length;
-				else Item.Property.PublicModeCurrent = (Item.Property.PublicModeCurrent + 1) % FuturisticTrainingBeltModes.length;
+			if (MouseX <= 1725) FuturisticTrainingBeltSetMode = (FuturisticTrainingBeltModes.length + FuturisticTrainingBeltSetMode - 1) % FuturisticTrainingBeltModes.length;
+			else FuturisticTrainingBeltSetMode = (FuturisticTrainingBeltSetMode + 1) % FuturisticTrainingBeltModes.length;
+			FuturisticTrainingBeltResetCooldown = true;
 			FuturisticChastityBeltConfigure = true;
 		}
 	}
 }
 
 function InventoryItemPelvisFuturisticTrainingBeltExit() {
+	if (FuturisticTrainingBeltResetCooldown && DialogFocusItem.Property && DialogFocusItem.Property.DeviceState == FuturisticTrainingBeltStates.indexOf("Cooldown")) DialogFocusItem.Property.DeviceState = FuturisticTrainingBeltStates.indexOf("None");
+	FuturisticTrainingBeltResetCooldown = false;
 	if (FuturisticChastityBeltConfigure) {
 		FuturisticChastityBeltConfigure = false;
+		DialogFocusItem.Property.PublicModeCurrent = FuturisticTrainingBeltSetMode;
 		InventoryItemPelvisFuturisticTrainingBeltPublishGeneric(CurrentCharacter, "FuturisticChastityBeltSetGeneric");
 	} else InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
@@ -228,6 +237,8 @@ function InventoryItemPelvisFuturisticTrainingBeltGetVibeMode(C, State, First) {
 		return VibratorMode.LOW;
 	}
 	if (State.includes("Max")) return VibratorMode.MAXIMUM;
+	if (State.includes("Medium")) return VibratorMode.MEDIUM;
+	if (State.includes("Low")) return VibratorMode.LOW;
 	return VibratorMode.OFF;
 }
 
@@ -252,7 +263,7 @@ function InventoryItemPelvisFuturisticTrainingBeltUpdateVibeMode(C, Item, Force)
 				{ Tag: "AssetName", AssetName: Item.Asset.Name },
 			];
 
-			Message = "FuturisticTrainingBeltSetState" + Item.Property.DeviceState + VibeMode;
+			Message = "FuturisticTrainingBeltSetState" + FuturisticTrainingBeltStates[Item.Property.DeviceState] + VibeMode;
 			Dictionary.push({ Tag: "SourceCharacter", Text: C.Name, MemberNumber: Player.MemberNumber });
 			
 			Dictionary.push({ Automatic: true });
@@ -336,7 +347,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 	if (!Property) return;
 	
 	// Get the state
-	var State = FuturisticTrainingBeltStates[Property.DeviceState ? Property.DeviceState : 0];
+	var State = FuturisticTrainingBeltStates[Property.DeviceState ? Property.DeviceState : FuturisticTrainingBeltStates.indexOf("None")];
 	var Mode = FuturisticTrainingBeltModes[Property.PublicModeCurrent ? Property.PublicModeCurrent : 0];
 	var StateTimerReady = !(Property.DeviceStateTimer > 0); // Are we ready to start a new event? 
 	var StateTimerOver = CommonTime() > Property.DeviceStateTimer; // End the current event
@@ -348,27 +359,27 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 	
 	if (State.includes("HighPriority")) {// High priority timer
 		if (StateTimerOver) {
-			Property.DeviceState = 0;
+			Property.DeviceState = FuturisticTrainingBeltStates.indexOf("None");
 			update = true;
 		}
 	} else if (State.includes("LowPriority") || State == "None") {// Check low priority states
 		var DeviceSetToState = -1;
 		var DeviceTimer = 0;
 		if (State != "None" && Mode == "None") { // If the mode is None then we turn off if we are LowPriority regardless of what
-			Property.DeviceState = 0; // None
+			Property.DeviceState = FuturisticTrainingBeltStates.indexOf("None"); // None
 			update = true;
 		} else if (Mode == "EdgeAndDeny") {
-			DeviceSetToState = 1;
+			DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityEdge");
 			if (ArousalActive && C.ArousalSettings.Progress > 90) {
 				if (Math.random() < FuturisticTrainingBeltRandomDenyChance) {
-					DeviceSetToState = 6;
+					DeviceSetToState = FuturisticTrainingBeltStates.indexOf("Cooldown");
 					Property.DeviceStateTimer = CommonTime();
 					update = true;
 				}
 			}
 			
 		} else if (Mode == "RandomTeasing") {
-			DeviceSetToState = 2;
+			DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityTease");
 			if (State == "None") {
 				if (Math.random() < FuturisticTrainingBeltRandomTeaseChance) {
 					const r = Math.random();
@@ -376,7 +387,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 				} else DeviceSetToState = -1;
 			} else DeviceTimer = 1;
 		} else if (Mode == "RandomOrgasm") {
-			DeviceSetToState = 3;
+			DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityMax");
 			if (State == "None") {
 				if (Math.random() < FuturisticTrainingBeltRandomOrgasmChance) {
 					const r = Math.random();
@@ -384,7 +395,11 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 				} else DeviceSetToState = -1;
 			} else DeviceTimer = 1;
 		} else if (Mode == "FullPower") {
-			DeviceSetToState = 3;
+			DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityMax");
+		} else if (Mode == "Tease") {
+			DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityLow");
+		} else if (Mode == "Excite") {
+			DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityMedium");
 		}
 		if (DeviceSetToState > -1) {
 			if (DeviceSetToState != Property.DeviceState) {
@@ -392,14 +407,14 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 				Property.DeviceStateTimer = CommonTime() + DeviceTimer;
 				update = true;
 			} else if (StateTimerOver && DeviceTimer != 0) {
-				Property.DeviceState = 6;
+				Property.DeviceState = FuturisticTrainingBeltStates.indexOf("Cooldown");
 				Property.DeviceStateTimer = CommonTime();
 				update = true;
 			}
 			
 			StateTimerReady = false;
 		}
-	} else if (State == "Cooldown" && StateTimerReady) Property.DeviceState = 0; // Return to None state
+	} else if (State == "Cooldown" && StateTimerReady) Property.DeviceState = FuturisticTrainingBeltStates.indexOf("None"); // Return to None state
 	
 	// In the cooldown state we decide when to get ready for another round of good vibrations
 	if (State == "Cooldown") {
@@ -427,19 +442,19 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 	
 	if (update || State.includes("Edge")) InventoryItemPelvisFuturisticTrainingBeltUpdateVibeMode(C, Item);
 	
+	var EdgeMode = State.includes("Edge") || Mode == "EdgeAndDeny" || Mode == "RandomTeasing";
 	
 	if (ArousalActive) {
-		if (C.ArousalSettings.Progress > 99 && !((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < C.ArousalSettings.OrgasmTimer))) { // Manually trigger orgasm at this stage 
+		if (EdgeMode && C.ArousalSettings.Progress > 96 && !((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < C.ArousalSettings.OrgasmTimer))) { // Manually trigger orgasm at this stage 
 			ActivityOrgasmPrepare(C, true);
 		}
 	}
 	
-	else if (State.includes("HighPriorityEdge")) {
+	if (EdgeMode) {
 		if (!Item.Property.Effect.includes("DenialMode")) {
 			Item.Property.Effect.push("DenialMode");
 		}
-	}
-	else if (!State.includes("HighPriorityEdge")) {
+	} else {
 		if (Item.Property.Effect.includes("DenialMode")) {
 			for (let E = 0; E < Item.Property.Effect.length; E++) {
 				var Effect = Item.Property.Effect[E];
