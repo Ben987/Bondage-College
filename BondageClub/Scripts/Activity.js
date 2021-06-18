@@ -292,10 +292,10 @@ function ActivityOrgasmControl() {
 				if (CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
 					if (Player.ArousalSettings.OrgasmStage == 0) {
 						if ((CurrentScreen == "ChatRoom"))
-						    ChatRoomMessage({ Content: "OrgasmFailPassive" + (Math.floor(Math.random() * 3)).toString(), Type: "Action", Sender: Player.MemberNumber });
+							ChatRoomMessage({ Content: "OrgasmFailPassive" + (Math.floor(Math.random() * 3)).toString(), Type: "Action", Sender: Player.MemberNumber });
 					} else {
 						if ((CurrentScreen == "ChatRoom")) {
-							var Dictionary = [];
+							let Dictionary = [];
 							Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
 							ServerSend("ChatRoomChat", { Content: "OrgasmFailTimeout" + (Math.floor(Math.random() * 3)).toString(), Type: "Activity", Dictionary: Dictionary });
 							ActivityChatRoomArousalSync(Player);
@@ -303,7 +303,7 @@ function ActivityOrgasmControl() {
 					}
 				} else {
 					if ((CurrentScreen == "ChatRoom")) {
-						var Dictionary = [];
+						let Dictionary = [];
 						Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
 						ServerSend("ChatRoomChat", { Content: ("OrgasmFailResist" + (Math.floor(Math.random() * 3))).toString(), Type: "Activity", Dictionary: Dictionary });
 						ActivityChatRoomArousalSync(Player);
@@ -347,7 +347,7 @@ function ActivityOrgasmStart(C) {
 			ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
 			
 			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
-				var Dictionary = [];
+				let Dictionary = [];
 				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
 				ServerSend("ChatRoomChat", { Content: "Orgasm" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary });
 				ActivityChatRoomArousalSync(C);
@@ -356,7 +356,7 @@ function ActivityOrgasmStart(C) {
 			ActivityOrgasmStop(Player, 65 + Math.ceil(Math.random()*20));
 			
 			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
-				var Dictionary = [];
+				let Dictionary = [];
 				let ChatModifier = C.ArousalSettings.OrgasmStage == 1 ? "Timeout" : "Surrender";
 				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
 				ServerSend("ChatRoomChat", { Content: ("OrgasmFail" + ChatModifier + (Math.floor(Math.random() * 3))).toString(), Type: "Activity", Dictionary: Dictionary });
