@@ -96,6 +96,7 @@ ColorEmotes,Color emotes
 ColorActivities,Color Activities
 ShrinkNonDialogue,Shrink all messages except dialogue
 ShowActivities,Show sexual activities & orgasms
+MuStylePoses,Mu* Style Poses (: as alias for /me)
 AutoBanBlackList,Ban blacklist when creating a room
 AutoBanGhostList,Ban ghostlist when creating a room
 SearchShowsFullRooms,Display full chatrooms

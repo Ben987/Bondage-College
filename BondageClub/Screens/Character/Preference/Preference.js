@@ -309,6 +309,7 @@ function PreferenceInitPlayer() {
 	if (typeof C.ChatSettings.WhiteSpace !== "string") C.ChatSettings.WhiteSpace = "Preserve";
 	if (typeof C.ChatSettings.ColorActivities !== "boolean") C.ChatSettings.ColorActivities = true;
 	if (typeof C.ChatSettings.ShrinkNonDialogue !== "boolean") C.ChatSettings.ShrinkNonDialogue = false;
+	if (typeof C.ChatSettings.MuStylePoses !== "boolean") C.ChatSettings.MuStylePoses = false;
 
 
 	// Visual settings
@@ -1078,7 +1079,8 @@ function PreferenceSubscreenChatRun() {
 	DrawCheckbox(1200, 572, 64, 64, TextGet("PreserveWhitespace"), Player.ChatSettings.WhiteSpace == "Preserve");
 	DrawCheckbox(1200, 652, 64, 64, TextGet("ColorActivities"), Player.ChatSettings.ColorActivities);
 	DrawCheckbox(1200, 732, 64, 64, TextGet("ShrinkNonDialogue"), Player.ChatSettings.ShrinkNonDialogue);
-	
+	DrawCheckbox(1200, 812, 64, 64, TextGet("MuStylePoses"), Player.ChatSettings.MuStylePoses);
+
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
 		() => TextGet((PreferenceChatColorThemeIndex == 0) ? PreferenceChatColorThemeList[PreferenceChatColorThemeList.length - 1] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex - 1]),
@@ -1404,6 +1406,7 @@ function PreferenceSubscreenChatClick() {
 		if (MouseYIn(572, 64)) Player.ChatSettings.WhiteSpace = Player.ChatSettings.WhiteSpace == "Preserve" ? "" : "Preserve";
 		if (MouseYIn(652, 64)) Player.ChatSettings.ColorActivities = !Player.ChatSettings.ColorActivities;
 		if (MouseYIn(732, 64)) Player.ChatSettings.ShrinkNonDialogue = !Player.ChatSettings.ShrinkNonDialogue;
+		if (MouseYIn(812, 64)) Player.ChatSettings.MuStylePoses = !Player.ChatSettings.MuStylePoses;
 		
 	}
 
