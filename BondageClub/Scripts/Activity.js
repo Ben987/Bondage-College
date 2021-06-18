@@ -290,9 +290,24 @@ function ActivityOrgasmControl() {
 		if (ActivityOrgasmGameProgress >= ActivityOrgasmGameDifficulty - 1 || CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
 			if (CurrentScreen == "ChatRoom") {
 				if (CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
-					ChatRoomMessage({ Content: "OrgasmFailTimeout", Type: "Action", Sender: Player.MemberNumber });
+					if (Player.ArousalSettings.OrgasmStage == 0) {
+						if ((CurrentScreen == "ChatRoom"))
+						    ChatRoomMessage({ Content: "OrgasmFailPassive" + (Math.floor(Math.random() * 3)).toString(), Type: "Action", Sender: Player.MemberNumber });
+					} else {
+						if ((CurrentScreen == "ChatRoom")) {
+							var Dictionary = [];
+							Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+							ServerSend("ChatRoomChat", { Content: "OrgasmFailTimeout" + (Math.floor(Math.random() * 3)).toString(), Type: "Activity", Dictionary: Dictionary });
+							ActivityChatRoomArousalSync(Player);
+						}
+					}
 				} else {
-					ChatRoomMessage({ Content: "OrgasmFailResist", Type: "Action", Sender: Player.MemberNumber });
+					if ((CurrentScreen == "ChatRoom")) {
+						var Dictionary = [];
+						Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+						ServerSend("ChatRoomChat", { Content: ("OrgasmFailResist" + (Math.floor(Math.random() * 3))).toString(), Type: "Activity", Dictionary: Dictionary });
+						ActivityChatRoomArousalSync(Player);
+					}
 				}
 			}
 			ActivityOrgasmGameResistCount++;
@@ -321,18 +336,35 @@ function ActivityOrgasmWillpowerProgress(C) {
  */
 function ActivityOrgasmStart(C) {
 	if ((C.ID == 0) || C.IsNpc()) {
-		if (C.ID == 0) ActivityOrgasmGameResistCount = 0;
+		if (C.ID == 0 && !ActivityOrgasmRuined) ActivityOrgasmGameResistCount = 0;
 		ActivityOrgasmWillpowerProgress(C);
-		C.ArousalSettings.OrgasmTimer = CurrentTime + (Math.random() * 10000) + 5000;
-		C.ArousalSettings.OrgasmStage = 2;
-		C.ArousalSettings.OrgasmCount = (C.ArousalSettings.OrgasmCount == null) ? 1 : C.ArousalSettings.OrgasmCount + 1;
-		ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
-		if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
-			var Dictionary = [];
-			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-			ServerSend("ChatRoomChat", { Content: "Orgasm" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary });
-			ActivityChatRoomArousalSync(C);
+		
+		if (!ActivityOrgasmRuined) {
+		
+			C.ArousalSettings.OrgasmTimer = CurrentTime + (Math.random() * 10000) + 5000;
+			C.ArousalSettings.OrgasmStage = 2;
+			C.ArousalSettings.OrgasmCount = (C.ArousalSettings.OrgasmCount == null) ? 1 : C.ArousalSettings.OrgasmCount + 1;
+			ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
+			
+			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
+				var Dictionary = [];
+				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+				ServerSend("ChatRoomChat", { Content: "Orgasm" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary });
+				ActivityChatRoomArousalSync(C);
+			}
+		} else {
+			ActivityOrgasmStop(Player, 65 + Math.ceil(Math.random()*20));
+			
+			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
+				var Dictionary = [];
+				let ChatModifier = C.ArousalSettings.OrgasmStage == 1 ? "Timeout" : "Surrender";
+				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+				ServerSend("ChatRoomChat", { Content: ("OrgasmFail" + ChatModifier + (Math.floor(Math.random() * 3))).toString(), Type: "Activity", Dictionary: Dictionary });
+				ActivityChatRoomArousalSync(C);
+			}
 		}
+		
+		
 	}
 }
 
@@ -397,13 +429,13 @@ function ActivityOrgasmPrepare(C, Bypass) {
 	
 	if (C.Effect.includes("DenialMode")) {
 		C.ArousalSettings.Progress = 99;
-		if (Bypass || (C.ID == 0 && C.Effect.includes("RuinOrgasms"))) ActivityOrgasmRuined = true;
+		if (C.ID == 0 && (Bypass || C.Effect.includes("RuinOrgasms"))) ActivityOrgasmRuined = true;
 		else return;
 	}
 
 	if (C.IsEdged()) {
 		C.ArousalSettings.Progress = 95;
-		if (Bypass) ActivityOrgasmRuined = true;
+		if (C.ID == 0 && Bypass) ActivityOrgasmRuined = true;
 		else return;
 	}
 	

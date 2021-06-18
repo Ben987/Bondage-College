@@ -153,7 +153,7 @@ function TimerProcess(Timestamp) {
 				// If the character is having an orgasm and the timer ran out, we move to the next orgasm stage
 				if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.OrgasmTimer != null) && (Character[C].ArousalSettings.OrgasmTimer > 0)) {
 					if (Character[C].ArousalSettings.OrgasmTimer < CurrentTime) {
-						if (!ActivityOrgasmRuined && ((Character[C].ArousalSettings.OrgasmStage == null) || (Character[C].ArousalSettings.OrgasmStage <= 1))) ActivityOrgasmStart(Character[C]);
+						if ((Character[C].ArousalSettings.OrgasmStage == null) || (Character[C].ArousalSettings.OrgasmStage <= 1)) ActivityOrgasmStart(Character[C]);
 						else ActivityOrgasmStop(Character[C], 20);
 					}
 				} else {

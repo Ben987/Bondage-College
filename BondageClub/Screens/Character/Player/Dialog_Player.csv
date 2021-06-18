@@ -34,8 +34,9 @@ PlayerGagged,,,(You can use or remove items by selecting specific body regions o
 92,0,"(Yes, I want to be released.)",,DialogChatRoomSafewordRelease(),
 92,0,"(No, don't release me.)",(You can use or remove items by selecting specific body regions on yourself.),,
 0,,(Play Kinky Dungeon),,DialogStartKinkyDungeon(),DialogHasGamingHeadset()
-OrgasmFailResist,,,"Your vibrators stop abruptly, leaving you just as aroused."
-OrgasmFailTimeout,,,"The stimulation ends just before you go over the edge."
+OrgasmFailPassive0,,,"The stimulation ends just before you go over the edge."
+OrgasmFailPassive1,,,"The vibrators cut off right before you reach climax."
+OrgasmFailPassive2,,,"The vibrators deny you a chance to finish, stopping abruptly."
 KinkyDungeonExit,,,"SourceCharacter quit a game of Kinky Dungeon at level KinkyDungeonLevel",,
 KinkyDungeonLose,,,"SourceCharacter met her defeat in Kinky Dungeon! She made it to level KinkyDungeonLevel before succumbing.",,
 SavedExpressionsSave,,,Save,,
