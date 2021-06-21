@@ -1,0 +1,19 @@
+PlayerGagged,,,(There's a huge X shaped cross.),,
+0,,,(There's a huge X shaped cross.),,
+0,,(Take some pictures.),(The camera follows you as you take pictures of the cross and many bondage devices in the room.),"DoActivity(""InterviewTakePicture"")","CanDoActivity(""InterviewTakePicture"")"
+0,10,(Restrain yourself on the X cross.),"(Starting with the legs and finishing with the hands, you slowly restrain yourself on the huge X cross.)","DoActivity(""InterviewCrossRestrain"")","CanDoActivity(""InterviewCrossRestrain"")"
+0,,(Restrain yourself on the X cross.),"(You try to restrain yourself on the cross, but you'll need some cuffs on your wrists and ankles first.)",,"!CanDoActivity(""InterviewCrossRestrain"")"
+0,,(Pretend to be restrained on it.),"(You stretch your arms and legs to fit the shape of the cross, without being really restrained.)","DoActivity(""CrossPretend"")",
+0,,(Rub yourself against it.),(You rub your body sensually against the big X cross.),"DoActivity(""CrossRub"")",
+0,,(Masturbate slowly.),(You lean against the item and masturbate yourself for the camera.),"DoActivity(""CrossMasturbate"")",
+0,,(Leave it.),,DialogLeave(),
+10,,,"(You are still stuck on the cross, there's little hope to get out by yourself.)",,
+10,,(Struggle to get out.),"(You tug and pull on the device and your cuffs, trying to get free in vain.)","DoActivity(""CrossStruggle"")",
+10,,(Scream for help.),"(You look around and scream for help, nobody comes to help you.)","DoActivity(""CrossScream"")",
+10,,(Moan of pleasure.),"(You moan sensually on the cross, trying to please the camera and the director.)","DoActivity(""CrossMoan"")",
+10,,(Look around.),,DialogLeave(),
+20,,,(The X cross could use some cleaning.),,
+20,,(Dust the cross.),(You clumsily clean the cross in your restraints as the camera zooms on you.),"DoActivity(""InterviewCrossClean"")",
+20,,(Struggle for the camera.),(You struggle sensually and show your restraints.),"DoActivity(""InterviewCrossStruggle"")",
+20,,(Moan in your gag.),(You moan softly and try to shake your gag off without success.),"DoActivity(""InterviewCrossMoan"")",
+20,,(Leave it.),,DialogLeave(),

@@ -10,7 +10,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 120,0,0,,,MildredCrop.jpg
 130,0,0,,,MildredCrop.jpg
 200,0,0,Common_PlayerNotRestrained,(Miss Mildred is teaching derivatives until 9:00.|She seems to control the class with a firm grip.),MildredTeach.jpg
-200,0,0,Common_PlayerRestrained,(Miss Mildred class continues while you trash in your|cuffs and drool.  You might have to wait until 9:00.),MildredTeach.jpg
+200,0,0,Common_PlayerRestrained,(Miss Mildred class continues while you thrash in your|cuffs and drool.  You might have to wait until 9:00.),MildredTeach.jpg
 210,0,0,,(Miss Mildred is in full control of her class.|Do you really want to try to subdue her?),MildredTeach.jpg
 220,0,0,,,MildredCrop.jpg
 300,0,0,,Young lady!  You will unlock these cuffs right now.,Mildred_Cuffs.jpg

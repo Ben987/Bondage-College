@@ -95,7 +95,7 @@ Wenn ich dich gehen lasse, musst du mich vergessen.
 (Tickle her.)
 (Sie kitzeln.)
 ###_NPC
-(You tickle her on the ribs and tummy.  She trashes in her bondage, failing to escape.)
+(You tickle her on the ribs and tummy.  She thrashes in her bondage, failing to escape.)
 (Du kitzelst ihre Rippen und ihren Bauch. Sie windet sich in ihren Fesseln, kommt aber nicht davon.)
 ###_PLAYER
 (Kiss her.)

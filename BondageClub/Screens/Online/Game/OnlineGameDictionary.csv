@@ -11,7 +11,7 @@ LARPTeamOrange,Orange
 LARPTeamWhite,White
 LARPTeamGray,Gray
 LARPTeamBlack,Black
-LARPTimerNA,NA
+LARPTimerNA,0
 LARPEndGame,The game is over!  TeamName team wins.  Enjoy your spoils of war.
 LARPTurnStart,TargetName (TargetNumber) plays first and starts the game.
 LARPTurnSkip,The turn is skipped.  TargetName (TargetNumber) plays.
@@ -41,7 +41,7 @@ LARPOptionChargeSuccess,"SourceName (SourceNumber) charges with her team, giving
 LARPOptionControl,Control (OptionOdds %)
 LARPOptionControlSuccess,"SourceName (SourceNumber) controls the room, preventing everyone from using special abilities for a full cycle."
 LARPOptionDetain,Detain (OptionOdds %)
-LARPOptionDetainSuccess,SourceName (SourceNumber) detrains TargetName (TargetNumber) and restrains her arms using: ItemDesc.
+LARPOptionDetainSuccess,SourceName (SourceNumber) detains TargetName (TargetNumber) and restrains her arms using: ItemDesc.
 LARPOptionExpose,Expose (OptionOdds %)
 LARPOptionExposeSuccess,SourceName (SourceNumber) exposes TargetName (TargetNumber) and removes her clothes.
 LARPOptionInspire,Inspire (OptionOdds %)

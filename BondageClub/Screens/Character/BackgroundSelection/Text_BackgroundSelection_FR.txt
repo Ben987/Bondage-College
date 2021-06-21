@@ -1,0 +1,12 @@
+Accept
+Accepter
+Previous
+Précédent
+Next
+Suivant
+Cancel
+Cancel
+Selection: SelectedBackground
+Sélection: SelectedBackground
+Filter: Filtered / Total
+Filtre: Filtered / Total

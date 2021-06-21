@@ -29,7 +29,7 @@ BribeFailure,,,(She refuses the money.)  You cannot bribe me!  You're going back
 100,110,(Play with her.),(You get closer to play with her.),,
 100,,(Bring her to your room.),,KidnapNurseTransferToRoom(),CanTransferToRoom()
 100,,(Let her go.),,KidnapNurseExit(),
-110,,(Tickle her.),"(You tickle her on the ribs and tummy.  She trashes in her bondage, failing to escape.)",,Player.CanInteract()
+110,,(Tickle her.),"(You tickle her on the ribs and tummy.  She thrashes in her bondage, failing to escape.)",,Player.CanInteract()
 110,,(Kiss her.),(She stares at you as you put your hands behind her head and pull her to your lips for a long French kiss.),,CanKiss()
 110,,(Fondle her.),(You playfully fondle her breasts and butt as she grumbles and blushes lightly.),,Player.CanInteract()
 110,,(Slap her.),(She tries to avoid you as you slap her face swiftly.  She tries to stay strong but whimper a little.),,Player.CanInteract()

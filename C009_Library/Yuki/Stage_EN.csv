@@ -87,7 +87,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 92,0,0,,"Yes, that was stupid.|I won't do it again.","Very true young lady.  (You walk to her desk.)|So tell me, are you searching for a specific book?",100,1,0,
 100,0,0,BookAlreadyFound,I've already|found my book.,Very well.  You may find a|place to read in silence.,200,0,0,AllowLeave()
 100,0,0,,The Count of|Monte Cristo.,"Try the literature section.  From the|main aisle, second shelve to your left.",120,0,0,AllowLeave()
-100,0,0,,Fifty Shades of Grey.,"Young lady, you will not find|such trash in our fine establishment.",110,-1,0,
+100,0,0,,Fifty Shades of Grey.,"Young lady, you will not find|such thrash in our fine establishment.",110,-1,0,
 100,0,0,,Justine from the|Marquis de Sade.,You're not mature enough for this kind of literature.|This book isn't allowed for first year students.,110,1,1,
 110,0,0,,"Actually, I need ""The|Count of Monte Cristo.""","Try the literature section.  From the|main aisle, second shelve to your left.",120,0,0,AllowLeave()
 120,0,0,,Thank you Miss.|(Walk away.),,200,0,1,PlayerLeaveForBook()

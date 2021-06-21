@@ -1,0 +1,158 @@
+###_NPC
+Keep that gag on and someday you'll be enslaved as a puppy girl.
+Garde ce bâillon et un jour tu seras asservie en tant que chienne.
+(The Mistress greets you back with a smile.)  Thanks for taking good care of my pets.
+(La maîtresse vous salue avec un sourire.) Merci d'avoir bien pris soin de mes animaux de compagnie.
+(The Mistress gives you a furious look.)  My poor pet girl!  You should be ashamed of yourself.
+(La maîtresse vous lance un regard furieux.) Ma pauvre petite! Vous devriez avoir honte de vous.
+###_PLAYER
+That should be easy.
+Ça devrait être facile.
+###_NPC
+(She nods.)  Yes, it will.  Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.
+(Elle hoche la tête.) Oui, ce sera le cas. Emmenez mes quatre chiennes au parc, faites-les courrir, jouez avec elles pendant un moment et ramenez-les ici.
+###_PLAYER
+What do I need to do?
+Qu'est-ce que je dois faire?
+###_NPC
+Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.
+Emmenez mes chiennes au parc, faites-les courrir, jouez avec elles pendant un moment et ramenez-les ici.
+###_PLAYER
+That sounds complicated.
+Ça semble compliqué.
+###_NPC
+(She frowns.)  It's not.  Take my four puppy girls to the park, make them walk, play with them for a while and get them back here.
+(Elle fronce les sourcils.) Ce n'est pas le cas. Emmenez mes chiennes au parc, faites-les courrir, jouez avec elles pendant un moment et ramenez-les ici.
+###_PLAYER
+How many puppies do you have?
+Combien de chiennes avez-vous?
+###_NPC
+I have four puppy girls, take them to the park, make them walk, play with them for a while and get them back here.
+J'ai quatre chiennes, je les emmène au parc, je les fais courrir, je joue avec elles pendant un moment et je les ramène ici.
+###_PLAYER
+What's the catch?
+Quel est le piège?
+###_NPC
+There's no catch, just take them outside and make sure they don't run away.  If you lose one of them, there will be trouble.
+Il n'y a pas de piège, emmenez-les dehors et assurez-vous qu'elles ne s'enfuient pas. Si vous en perdez une, vous aurez des problèmes.
+###_PLAYER
+Anything I should know?
+Est-ce que je devrais savoir quelque chose?
+###_NPC
+Just take them outside and make sure they don't run away.  If you lose one of them, there will be trouble.
+Emmenez-les dehors et assurez-vous qu'elles ne s'enfuient pas. Si vous en perdez une, vous aurez des problèmes.
+###_PLAYER
+You'll pay me after?
+Tu me paieras après?
+###_NPC
+Yes, after the job is done.  Just take them outside and make sure they don't run away.  If you lose one of them, there will be trouble.
+Oui, une fois le travail terminé. Emmenez-les dehors et assurez-vous qu'elles ne s'enfuient pas. Si vous en perdez une, vous aurez des problèmes.
+###_PLAYER
+What trouble?
+Quels problèmes?
+###_NPC
+Lose one of them and you'll see.  (She smirks.)
+Perdez-en une et vous verrez. (Elle sourit.)
+###_PLAYER
+I'll do it!  (Go walk the puppies.)
+Je vais le faire! (Aller promener les chiennes.)
+I know I can do it!  (Go walk the puppies.)
+Je sais que je peux le faire! (Aller promener les chiennes.)
+That was scary, I almost lost them.
+C'était effrayant, je les ai presque perdues.
+###_NPC
+(She frowns.)  Well you didn't, here's your money.  (She gives you 100$.)
+(Elle fronce les sourcils.) Eh bien, vous ne l'avez pas fait, voici votre argent. (Elle vous donne 100 $.)
+###_PLAYER
+The pleasure was mine.
+Tout le plaisir était pour moi.
+###_NPC
+(She smiles.)  I'll call you again, here's your money.  (She gives you 100$.)
+(Elle sourit.) Je vous rappellerai, voici votre argent. (Elle vous donne 100$.)
+###_PLAYER
+It was funny to take them for a walk.
+C'était amusant de les emmener faire une promenade.
+###_NPC
+(She nods.)  Very good, here's your money.  (She gives you 100$.)
+(Elle hoche la tête.) Très bien, voici votre argent. (Elle vous donne 100$.)
+###_PLAYER
+Pets are safe under my control.
+Les animaux sont en sécurité sous mon contrôle.
+###_NPC
+(She gives you a thumbs up.)  I'll remember you, here's your money.  (She gives you 100$.)
+(Elle vous lève le pouce.) Je me souviendrai de vous, voici votre argent. (Elle vous donne 100$.)
+###_PLAYER
+Thank you!  (Leave her.)
+Je vous remercie! (La quitter.)
+(Take the money and leave her.)
+(Prendre l'argent et la quitter.)
+I'm so sorry Miss.
+Je suis vraiment désolé Miss.
+###_NPC
+I'll give you a good reason to be sorry, get naked girl!
+Je vais te donner une bonne raison d'être désolée, déshabille-toi!
+###_PLAYER
+I'll do better next time.
+Je ferai mieux la prochaine fois.
+###_NPC
+I'll make sure you will, get naked girl!
+Je vais m'assurer que tu le feras, déshabille-toi!
+###_PLAYER
+Next time I'll bring my whip.
+La prochaine fois, j'apporterai mon fouet.
+They were too feisty.
+Elles étaient trop fougueuses.
+###_NPC
+You need a lesson, get naked girl!
+Vous avez besoin d'une leçon, déshabille-toi!
+###_PLAYER
+Don't you dare touching a Mistress!
+N'ose pas toucher une maîtresse!
+###_NPC
+(She gulps.)  Fine Mistress DialogPlayerName, let's speak later then.
+(Elle ravale ses mots.) D'accord maîtresse DialogPlayerName, parlons plus tard.
+###_PLAYER
+Strip here?
+Me déshabiller ici?
+###_NPC
+Don't force me to repeat, get naked girl.
+Ne me force pas à répéter, déshabille-toi.
+###_PLAYER
+Fine!  (Strip for her.)
+Bien! (Se déshabiller pour elle.)
+###_NPC
+(You strip for her as she smirks.)  Since you cannot take care of puppies, you will become one.
+(Vous vous déshabillez pour elle alors qu'elle sourit.) Puisque tu ne sais pas comment t'occuper des chiennes, tu en deviendras une.
+###_PLAYER
+Yes Mistress.  (Strip for her.)
+Oui Maîtresse. (Se déshabiller pour elle.)
+Are you serious?
+Es-tu sérieuse?
+###_NPC
+Very serious.  (She straps you down and dress you as a pet.)  You will learn from that experience.
+Très sérieuse. (Elle vous attache et vous habille comme une chienne.) Tu apprendras de cette expérience.
+###_PLAYER
+No way!
+En aucune cas!
+###_NPC
+Watch me!  (She straps you down and dress you as a pet.)  You will learn from that experience.
+Regarde moi! (Elle vous attache et vous habille comme une chienne.) Tu apprendras de cette expérience.
+###_PLAYER
+(Nod and stay silent.)
+(Hocher la tête et restez silencieuse.)
+###_NPC
+Good girl.  (She straps you down and dress you as a pet.)  You will learn from that experience.
+Bonne fille. (Elle vous attache et vous habille comme une chienne.) Tu apprendras de cette expérience.
+###_PLAYER
+(Whimper and look down.)
+(Gémir et regarder tout bas.)
+###_NPC
+As punishment, you will experience what happened to my poor pet and wander the club restrained.  Now go!
+En guise de punition, tu feras l'expérience de ce qui est arrivé à ma pauvre et erreras dans le club retenue. Vas-y!
+###_PLAYER
+(Try to struggle out.)
+(Tenter de s'échapper.)
+(Stare at her and grumble.)
+(La regarder et grogner.)
+(Leave her.)
+(La quitter.)

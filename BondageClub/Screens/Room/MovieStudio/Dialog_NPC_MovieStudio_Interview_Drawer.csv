@@ -1,0 +1,38 @@
+PlayerGagged,,,(There's a small wooden drawer.),,
+0,,,(There's a small wooden drawer.),,
+0,,(Open the first one.),"(You pull hard on the top drawer, but it doesn't open.  It seems to be stuck.)",,"!CanDoActivity(""InterviewOpenFirstDrawer"")"
+0,10,(Open the first one.),(You pull hard on the top drawer and it slowly opens.  You find a catsuit and some lingerie.  There's enough room to put more clothes inside.),,"CanDoActivity(""InterviewOpenFirstDrawer"")"
+0,,(Open the second one.),"(You pull hard on the second drawer, but it doesn't open.  It seems to be stuck.)",,"!CanDoActivity(""InterviewOpenSecondDrawer"")"
+0,20,(Open the second one.),(You open the second drawer.  It contains a few latex clothes.),,"CanDoActivity(""InterviewOpenSecondDrawer"")"
+0,,(Open the third one.),"(You pull hard on the third drawer, but it doesn't open.  It seems to be stuck.)",,"!CanDoActivity(""InterviewOpenSecondDrawer"")"
+0,30,(Open the third one.),(You open the third drawer.  It contains a few leather cuffs and collars.),,"CanDoActivity(""InterviewOpenSecondDrawer"")"
+0,,(Leave it.),,DialogLeave(),
+10,0,(Wear the black catsuit.),(You swap your clothes for a black catsuit and shows it to the camera.  You then push hard on the top drawer to close it.),"DoActivity(""DressCatsuit"")",
+10,0,(Wear the lingerie.),(You swap your clothes for the lingerie and shows it to the camera.  You then push hard on the top drawer to close it.),"DoActivity(""DressLingerie"")",
+10,0,(Strip naked.),(You slowly strip naked for the camera and leave your clothes inside.  You then push hard on the top drawer to close it.),"DoActivity(""DressNaked"")",
+10,0,(Close it.),(You push hard on the top drawer to close it.),,
+20,,(Inspect the latex clothes.),(The latex clothes are very shiny and smell new.  They seem to have a strange locking mechanism.),,
+20,,(Wear the latex corset.),(You put on the latex corset and it seems to lock on you when you attach it.),"DoActivity(""InterviewWearCorset"")","CanDoActivity(""InterviewWearCorset"")"
+20,,(Wear the latex ballet heels.),(You put on the latex ballet heels and it seems to lock on you when you attach it.),"DoActivity(""InterviewWearBoots"")","CanDoActivity(""InterviewWearBoots"")"
+20,0,(Close it.),(You close the second drawer.),,
+30,,(Inspect the restraints.),(The restraints seem pretty strong and smell new.  They seem to have a strange locking mechanism.),,
+30,,(Wear the cuffs.),"(You put on the leather cuffs one by one, hearing a small locking click each time you attach one.)","DoActivity(""InterviewWearCuffs"")","CanDoActivity(""InterviewWearCuffs"")"
+30,,(Wear the collar.),"(You put on the leather collar, hearing a small locking click when you attach it.)","DoActivity(""InterviewWearCollar"")","CanDoActivity(""InterviewWearCollar"")"
+30,0,(Close it.),(You close the third drawer.),,
+1000,,,(There's a small wooden drawer.),,
+1000,1010,(Open the first one.),(There are a few duster gags in the first drawer.),,Player.CanInteract()
+1000,1020,(Open the second one.),(There are many dusters in the second drawer.),,Player.CanInteract()
+1000,1030,(Open the third one.),(There are a few electric items in the third drawer.),,Player.CanInteract()
+1000,,(Dust the drawer.),(You dust the drawer as the camera zooms on your gag.),,!Player.CanTalk()
+1000,,(Leave it.),,DialogLeave(),
+1010,1000,(Wear the duster gag.),(You strap the duster gag around your head as the camera zooms on you.),"DoActivity(""InterviewWearDusterGag"")","CanDoActivity(""InterviewWearDusterGag"")"
+1010,1000,(Leave the duster gag inside.),(You slowly remove the duster gag and try not to drool on your outfit.),"DoActivity(""InterviewRemoveGag"")","!CanDoActivity(""InterviewWearDusterGag"")"
+1010,1000,(Close it.),(You close the drawer.),,
+1020,1000,(Take a feather duster.),(You take a feather duster and caress it in front of the camera.),"DoActivity(""InterviewTakeFeatherDuster"")",
+1020,1000,(Take a long duster.),(You take a long duster and caress it in front of the camera.),"DoActivity(""InterviewTakeLongDuster"")",
+1020,1000,(Leave your item.),"(You stare at your item one more time, sigh and slowly put it away.)","DoActivity(""InterviewLeaveHandItem"")","CanDoActivity(""InterviewLeaveHandItem"")"
+1020,1000,(Close it.),(You close the drawer.),,
+1030,1000,(Take an electric toothbrush.),(You take an electric toothbrush and turn it on and off for the viewers.),"DoActivity(""InterviewTakeElectricToothbrush"")",
+1030,1000,(Take a vibrating wand.),(You take a vibrating wand and turn it on and off for the viewers.),"DoActivity(""InterviewTakeVibratingWand"")",
+1030,1000,(Leave your item.),"(You stare at your item one more time, sigh and slowly put it away.)","DoActivity(""InterviewLeaveHandItem"")","CanDoActivity(""InterviewLeaveHandItem"")"
+1030,1000,(Close it.),(You close the drawer.),,

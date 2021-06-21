@@ -11,3 +11,16 @@ ResponseCannotFindRoom,Room doesn't exist anymore
 ResponseAccountError,Account Error
 ResponseInvalidRoomData,Invalid Room Data
 ResponseJoinedRoom,Entering the room...
+FilterMode,Filter Rooms
+NormalMode,Return to room view
+Exit,Leave room search
+FriendList,Friends
+Next,Next page
+Block,Block:
+ABDL,ABDL
+Leashing,Player Leashing
+SciFi,Sci-Fi
+Photos,Photographs
+Arousal,Arousal Activities
+GameLabel,Game:
+GameLARP,LARP

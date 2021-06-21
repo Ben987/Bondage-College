@@ -1,0 +1,18 @@
+PathExit,Leave Pandora's Box
+PathStairsUp,Go upstairs
+PathStairsDown,Go downstairs
+PathSearch,Search the room
+SearchStop,Stop searching
+AlreadyFound,You already found the TargetName.  Get out now.
+FoundItem,You found the TargetName.  Get out while you can.
+DirectionNorth,Go north (W)
+DirectionSouth,Go south (S)
+DirectionEast,Go east (D)
+DirectionWest,Go west (A)
+LevelNameUnderground,underground
+LevelNameGround,ground
+LevelNameSecond,second
+FirstDirectionNorth,north
+FirstDirectionSouth,south
+FirstDirectionWest,west
+FirstDirectionEast,east

@@ -10,10 +10,12 @@ Head Maid
 Hausdame
 Maid
 Hausmädchen
+Bondage Maid
+Bondage-Hausmädchen
 Master Kidnapper
-Kidnapper-Meisterin
+Meister Entführerin
 Kidnapper
-Kidnapperin
+Entführerin
 Patient
 Patientin
 Permanent Patient
@@ -21,11 +23,11 @@ Dauerhafte Patientin
 Escaped Patient
 Entlaufene Patientin
 Nurse
-Schwester
+Krankenschwester
 Doctor
 Doktor
 College Student
-College-Schülerin
+College-Studentin
 Foal
 Fohlen
 Farm Horse
@@ -42,3 +44,25 @@ Shining Unicorn
 Glänzendes Einhorn
 Flying Pegasus
 Fliegender Pegasus
+Majestic Alicorn
+Majestätischer Alicorn
+Little One
+Kleine
+Diaper Lover
+Windel Liebhaber
+Duchess
+Herzogin
+Kitten
+Kätzchen
+Puppy
+Welpe
+Foxy
+Fuchs
+Bunny
+Häschen
+Doll
+Puppe
+Demon
+dämonin
+Angel
+Engel

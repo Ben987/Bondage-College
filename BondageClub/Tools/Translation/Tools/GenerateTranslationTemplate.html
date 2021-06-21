@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Bondage Club Translation Template Generator</title>
-<link rel="icon" type="image/png" href="../../Icons/Logo.png">
+<link rel="icon" type="image/png" href="../../../Icons/Logo.png">
 <style>
     textarea {
         display: block;
@@ -18,8 +18,8 @@
         height: 720px;
     }
 </style>
-<script src="../../Scripts/Common.js"></script>
-<script src="../../Scripts/Translation.js"></script>
+<script src="../../../Scripts/Common.js"></script>
+<script src="../../../Scripts/Translation.js"></script>
 <script>
 'use strict';
 
@@ -140,9 +140,9 @@ function update(fileName) {
     };
     var callback1 = function() {
         newTemplateText = csvToTranslation(parseCsv(this.responseText), comments, mode);
-        CommonGet("../../" + fileName, callback2);
+        CommonGet("../../../" + fileName, callback2);
     };
-    CommonGet("../../" + englishFileName, callback1);
+    CommonGet("../../../" + englishFileName, callback1);
 }
 
 function getParameter(name) {

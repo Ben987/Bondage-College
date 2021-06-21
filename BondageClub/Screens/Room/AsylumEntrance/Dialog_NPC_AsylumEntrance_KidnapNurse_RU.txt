@@ -95,7 +95,7 @@ If I let you go, you need to forget about me.
 (Tickle her.)
 (Щекотать ее.)
 ###_NPC
-(You tickle her on the ribs and tummy.  She trashes in her bondage, failing to escape.)
+(You tickle her on the ribs and tummy.  She thrashes in her bondage, failing to escape.)
 (Ты щекочешь ее по ребрам и животу.  Она мечется в своем бондаже, не в силах вырваться.)
 ###_PLAYER
 (Kiss her.)

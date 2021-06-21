@@ -25,7 +25,7 @@ Hello assistant DialogPlayerName.  It's time to get to work for the asylum!
 Здравствуйте ассистентка DialogPlayerName.  Пора приниматься за работу в психлечебнице!
 It's always a pleasure to take you in patient DialogPlayerName.  Are you checking in again today?
 Всегда приятно принять тебя в качестве пациента DialogPlayerName.  Ты сегодня снова проверяешься?
-Welcome to the asylum patient DialogPlayerName.  Do you still our help?
+Welcome to the asylum patient DialogPlayerName.  Do you still need our help?
 Добро пожаловать в лечебницу пациент DialogPlayerName.  Тебе все еще нужна наша помощь?
 Hello again DialogPlayerName.  Are you here to check in?
 Еще раз здравствуйте DialogPlayerName.  Ты здесь, чтобы провериться?

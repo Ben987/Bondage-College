@@ -1,7 +1,11 @@
 "use strict";
 var ImportBondageCollegeData = false;
 
-// Import the inventory from the Bondage College
+/**
+ * Import the inventory from the Bondage College. Items to import were saved in localstorage previously.
+ * @param {Character} C - Character for which to import items to
+ * @returns - Nothing
+ */
 function ImportBondageCollege(C) {
 
 	// If the user specified that he wanted to import

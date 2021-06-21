@@ -1,0 +1,22 @@
+You've disconnected from the server.
+Vous êtes déconnecté du serveur.
+Enter your password to log back in.
+Entrez votre mot de passe pour vous reconnecter.
+Account name:
+Nom de compte:
+Password:
+Mot de passe:
+Log back
+Reconnecter
+Give up
+Abandonner
+Validating name and password...
+Validation du nom et du mot de passe...
+Invalid name or password
+Nom ou mot de passe invalide
+Disconnected from server. Retrying...
+Déconnecté du serveur. Nouvelle tentative...
+Unable to connect to server. Retrying...
+Incapable de se connecter au serveur. Nouvelle tentative...
+Enter your name and password
+Entrez votre nom et votre mot de passe

@@ -1,0 +1,173 @@
+PlayerGagged,,,(She laughs at you.)  Scream all you want.  Nobody is coming to help you.,,
+FightVictory,,,"(She sighs and surrender to you.)  Beaten by a prisoner, this is unbelievable.  What will you do now?",,
+FightDefeat,,,"(She smirks.)  You thought you could defeat me?  No more breaks for you, and your bondage will be extra tight.",,
+ItemMouth,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth,,,(She grumbles as you remove her gag.)  Are you finally coming back to your senses?,,
+ItemMouth2,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth2,,,(She grumbles as you remove her gag.)  Are you finally coming back to your senses?,,
+ItemMouth3,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth3,,,(She grumbles as you remove her gag.)  Are you finally coming back to your senses?,,
+ItemEars,,,(She seems angry as you push earplugs inside.)  How can I follow your orders now?,,
+RemoveItemEars,,,(You pull the earplugs out.)  You're only adding more time to your sentence.,,
+ItemArms,,,(She struggles as you restrain her arms securely.)  You're breaking the law again.,,
+RemoveItemArms,,,(You free her arms and she stretches.)  You're still under arrest.,,
+ItemLegs,,,(She trashes as you restrain her legs.)  You better carry me then!,,
+RemoveItemLegs,,,(You release her legs.)  Justice will strike you down like a hammer.,,
+ItemFeet,,,(She grumbles as you restrain her feet.)  This will be reported in your trial.,,
+RemoveItemFeet,,,(You release her feet.)  Let's walk until you get caught.,,
+ItemBoots,,,(She grumbles as you restrain her feet.)  How can I follow you now?,,
+RemoveItemBoots,,,(You release her feet.)  Let's walk until you get caught.,,
+ItemNeck,,,(She adjusts her neck to the new collar.)  Soon you will wear the Box collar.,,
+RemoveItemNeck,,,"(You remove the collar from her neck.)  Too late, the crime has been done.",,
+ItemPelvis,,,(She struggles to avoid the belt but you're able to strap it on her.)  Are you serious?,,
+RemoveItemPelvis,,,(She sighs as you unlock the belt.)  Can you make up your mind?,,
+ItemHead,,,(She stays silent as you strap the device on her head.),,
+RemoveItemHead,,,"(You release her head as she nods rapidly.)  That's better, but you're still in trouble.",,
+ItemHood,,,(You put the hood on her head as she goes silent.),,
+RemoveItemHood,,,(She grins as you remove the hood from her head.)  I will never get out of here.,,
+ItemNose,,,(You strap the item on her nose as she sighs.)  Is that a joke to you?,,
+RemoveItemNose,,,(She nods as you remove the device.)  Someday Pandora's Box will make you pay.,,
+ItemTorso,,,(You strap the harness on her torso.)  Causing more trouble will only extend your jail time.,,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  You're only toying with me?,,
+ItemButt,,,(She jumps as you slide the device inside.)  How dare you?  You're under arrest!,,
+RemoveItemButt,,,(She sighs as you remove the plug.)  Your butt will rot in jail.,,
+ItemBreast,,,(She holds her breath as you use the item.)  Pandora's police won't be kind with you.,,
+RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Enjoy your freedom while it lasts.,,
+ItemNipples,,,(She whimpers as you use the device on her breast.)  Another violation to add to the list.,,
+RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
+Intro0,,,"(A guard steps inside and looks at you.)  Prisoner DialogPlayerName.  How come you're not restrained?  Anyway, I will take care of you today.",,
+IntroRestrained0,,,(A guard steps inside and looks at your bondage.)  Prisoner DialogPlayerName.  I see you are already bound.  I will take care of you today.,,
+0,,Who are you?,I'm guard DialogCharacterName.  I keep the Box safe and our prisoners secure.,DialogRemove(),Player.CanTalk()
+0,,Can you release me?,"Don't be silly, you must do your time like everyone else.",DialogRemove(),Player.CanTalk()
+0,,Can I have something to eat?,Do I look like a maid?  I'm not here to cook for you.,DialogRemove(),Player.CanTalk()
+0,10,How will you take care of me?,I will come to check on you from time to time.  To make sure you're safely bound and you're not trying to escape.,,Player.CanTalk()
+0,10,"So, what's up?",I will come to check on you from time to time.  To make sure you're safely bound and you're not trying to escape.,,Player.CanTalk()
+0,,(Mumble in your gag.),Here you go.  (She removes your gag.)  Don't piss me off or that gag is coming back.,PlayerUngag(),!Player.CanTalk()
+0,,(Leave her.),,DialogLeave(),
+10,20,I'm not trying to escape.,"I won't give you any chance to escape.  First thing first, I need to secure your restraints.  Don't give me a hard time.",,
+10,20,Safely bound?,"You heard me right.  First thing first, I need to secure your restraints.  Don't give me a hard time.",,
+10,20,I will easily escape.,"Trust me, you won't.  First thing first, I need to secure your restraints.  Don't give me a hard time.",,
+10,20,(Listen to her.),"First thing first, I need to secure your restraints.  Don't give me a hard time.",,
+20,30,Can we negotiate?,"No, we cannot.  (She uses many restraints on you and smiles.)  Are you comfy, prisoner?","PlayerRestrain(""LOT"")",
+20,30,Don't even try!  (Give her a hard time.),"(She grumbles, works hard, and uses all her restraints on you.)  There!  Are you comfy, prisoner?","PlayerRestrain(""ALL"")",
+20,30,Very well Miss.  (Make it easy for her.),"Good girl.  (She smiles and uses a few restraints on you.)  Are you comfy, prisoner?","PlayerRestrain("""")",
+30,40,(Stay silent.),"Very well.  I need to go.  Enjoy your struggling, I'll be back later.",,
+30,40,(Nod yes.),"Excellent.  I need to go.  Enjoy your struggling, I'll be back later.",,
+30,40,(Shake your head no.),"Too bad.  I need to go.  Enjoy your struggling, I'll be back later.",,
+40,,Wait!  You can't leave me here.,I sure can.  (She starts to walk away.),DialogRemove(),Player.CanTalk()
+40,,(Struggle in your bondage.),You're so cute when you struggle.  (She starts to walk away.),DialogRemove(),!Player.CanTalk()
+40,,(Leave her.),,CharacterRemove(),
+100,,,"You might have beaten me, but you're still a prisoner.",,
+100,,Who's the boss now?,(She grumbles and bows her head to you.),DialogRemove(),
+100,,(Strip her naked.),(She seems furious as you strip her naked.)  One day you will pay for this.,CharacterNaked(),!CurrentCharacter.IsNaked()
+100,110,(Wear her clothes.),"(She shakes her head no, as you dress up as a guard.)  This town isn't big enough for you to hide from us.","PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
+100,,(Leave her.),,DialogLeave(),
+110,,,What's your plan wise girl?,,
+110,,You will take my place as prisoner.,(She goes mad.)  No!  I'm a guard here!  Not a low life prisoner like you.,DialogRemove(),
+110,,I'm getting out.,"(She shakes her head no.)  You can try, but you'll never make it.",DialogRemove(),
+110,120,(Escape from Pandora's Box.),"(Disguised as a guard, you quickly escape from Pandora's Box before they uncover your plot.  Your infiltration skill has increased.)",,
+110,,(Leave her.),,DialogLeave(),
+120,0,(Go back to the Bondage Club.),,Escape(),
+200,210,"Fine, I surrender.",I'll make sure you stay in that state.  (She restrains you really tight.)  Now will you be a good prisoner?,"PlayerRestrain(""ALL"")",Player.CanTalk()
+200,210,There's no need to go crazy.,You're the crazy one that started this fight.  (She restrains you really tight.)  Now will you be a good prisoner?,"PlayerRestrain(""ALL"")",Player.CanTalk()
+200,210,You can't blame me for trying.,I'll make sure you'll never try that again.  (She restrains you really tight.)  Now will you be a good prisoner?,"PlayerRestrain(""ALL"")",Player.CanTalk()
+200,210,(Grumble in your gag.),(She uses lots of new restraints on you.  Making your bondage really tight.)  Now will you be a good prisoner?,"PlayerRestrain(""ALL"")",!Player.CanTalk()
+200,210,(Struggle in your bondage.),(She uses lots of new restraints on you.  Making your bondage really tight.)  Now will you be a good prisoner?,"PlayerRestrain(""ALL"")",!Player.CanTalk()
+200,210,(Stay silent.),(She uses lots of new restraints on you.  Making your bondage really tight.)  Now will you be a good prisoner?,"PlayerRestrain(""ALL"")",
+210,220,(Nod yes.),"Fine, we'll see about that.  I need to go.  I'll be back later to check on you.",,
+210,220,(Shake your head no.),(She sighs.)  Whatever!  I need to go.  I'll be back later to check on you.,,
+210,220,(Stay silent.),I'll take that as a yes.  I need to go.  I'll be back later to check on you.,,
+220,,Can we talk some more?,Shut up.  I'm going now.  (She starts to walk away.),DialogRemove(),Player.CanTalk()
+220,,(Struggle in your bondage.),(She smirks and starts to walk away.),DialogRemove(),!Player.CanTalk()
+220,,(Leave her.),,CharacterRemove(),
+IntroChangeBondage,,,"(Guard DialogCharacterName steps inside and looks at you.)  Prisoner DialogPlayerName, it's time to get you restrained again.",,
+IntroRestrainedChangeBondage,,,"(Guard DialogCharacterName steps inside and looks at your bondage.)  Prisoner DialogPlayerName, it's time to change your bondage.",,
+ChangeBondage,ChangeBondageStart,Why restrain me again?,"Don't argue prisoner, and don't give me any trouble while I restrain you.",,Player.CanTalk()
+ChangeBondage,ChangeBondageStart,"Fine, you can strap me up.",(She nods.)  Don't give me any trouble while I restrain you.,,Player.CanTalk()
+ChangeBondage,ChangeBondageBribe,Wait!  Are you interested in money?,(She ponders.)  I might.  Are you offering me a bribe to get a shorter sentence?,BribeStart(),BribeAllowed()
+ChangeBondage,,(Mumble some words.),"Fine, let me help you.  (She removes your gag.)  Don't worry, I have other gags for you.  It's time for new restraints.",PlayerUngag(),!Player.CanTalk()
+ChangeBondage,,(Try to shake your gag off.),Calm down.  (She removes your gag.)  Try to scream and that gag will pop right back.  It's time for new restraints.,PlayerUngag(),!Player.CanTalk()
+ChangeBondage,ChangeBondageFight,No!  You won't restrain me again.,(She raises her fists.)  Girl!  Either you comply or get crushed.  Pick your poison.,,CanStartFight()
+ChangeBondageFight,,(Fight her.),,StartFight(),
+ChangeBondageFight,ChangeBondageRestrain,(Let her restrain you.),"(She grabs you and uses all her items on you.  Restraining you tight.)  So, who's the boss around here?","PlayerRestrain(""ALL"")",
+ChangeBondageStart,ChangeBondageRestrain,(Thrash and give her a hard time.),"(She struggles to restrain you but finally uses all her items on you.)  So, who's the boss around here?","PlayerRestrain(""ALL"")",
+ChangeBondageStart,ChangeBondageRestrain,(Make it a little harder to restrain you.),"(She grumbles and restrains you with many of her items.)  So, who's the boss around here?","PlayerRestrain(""LOT"")",
+ChangeBondageStart,ChangeBondageRestrain,(Let her restrain you.),"(She smirks and restrains you with some of her items.)  So, who's the boss around here?","PlayerRestrain("""")",
+ChangeBondageRestrain,ChangeBondageLeave,You're the boss.,"Damn right!  I'm leaving, prisoner DialogPlayerName.  I'll be back to check on you later.",,Player.CanTalk()
+ChangeBondageRestrain,ChangeBondageLeave,You'll never be my boss.,"I'm already your boss.  I'm leaving, prisoner DialogPlayerName.  Enjoy your bondage.",,Player.CanTalk()
+ChangeBondageRestrain,ChangeBondageLeave,(Grumble in your gag.),"I'm leaving, prisoner DialogPlayerName.  Enjoy your bondage.",,!Player.CanTalk()
+ChangeBondageRestrain,ChangeBondageLeave,(Stay silent.),"I'm leaving, prisoner DialogPlayerName.  I'll be back to check on you later.",,
+ChangeBondageLeave,,Hold on.  Can we talk some more?,Not now.  I'll be back later.  (She starts to walk away.),DialogRemove(),Player.CanTalk()
+ChangeBondageLeave,,(Struggle in your bondage.),Have fun struggling.  (She starts to walk away.),DialogRemove(),!Player.CanTalk()
+ChangeBondageLeave,,(Leave her.),,CharacterRemove(),
+ChangeBondageBribe,ChangeBondage,Here you go.  (Give her 5$.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(5, 3)","!HasPerk(""Bribery"")"
+ChangeBondageBribe,ChangeBondage,Here you go.  (Give her 3$.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(3, 3)","HasPerk(""Bribery"")"
+ChangeBondageBribe,ChangeBondage,Here you go.  (Give her 10$.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(10, 5)","!HasPerk(""Bribery"")"
+ChangeBondageBribe,ChangeBondage,Here you go.  (Give her 6$.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(6, 5)","HasPerk(""Bribery"")"
+ChangeBondageBribe,ChangeBondage,Forget it.,(She sighs.)  It's time to get some fresh restraints on you then.,"BribeProcess(0, 0)",
+IntroStrip,,,"(Guard DialogCharacterName steps inside and looks at you.)  Prisoner DialogPlayerName, since you're not restrained, let's get you naked.",,
+IntroRestrainedStrip,,,"(Guard DialogCharacterName steps inside and looks at your bondage.)  Prisoner DialogPlayerName, it's time to strip you naked.",,
+Strip,StripStart,No way!  It's cold in here.,"Don't complain prisoner, you're not in a position to negotiate.  I'll get you naked and bound.",,Player.CanTalk()
+Strip,StripStart,Alright.  Strip me and get out.,(She smirks.)  Be good and I'll get you naked and bound quickly.,,Player.CanTalk()
+Strip,StripStart,This is inhumane!,You should have thought of that before you came here.  I'll get you naked and bound.,,Player.CanTalk()
+Strip,,(Mumble some words.),Let me help you.  (She removes your gag and shakes her hands.)  Time to see some flesh!,PlayerUngag(),!Player.CanTalk()
+Strip,,(Try to shake your gag off.),Let me help you.  (She removes your gag and shakes her hands.)  Time to see some flesh!,PlayerUngag(),!Player.CanTalk()
+Strip,StripFight,Try to strip me and I'll crush you!,(She raises her fists.)  Girl!  Either you strip willingly or get beat up.  I'm fine with both.,,CanStartFight()
+StripFight,,(Fight her.),,StartFight(),
+StripFight,StripLeave,(Let her strip you.),(She strips you down and restrains you extra tight.)  Aren't you pretty?  You can thank me later.,"PlayerStrip(""ALL"")",
+StripStart,StripLeave,(Let her strip you.),(She strips you down and restrains you with many items.)  Aren't you pretty?  You can thank me later.,"PlayerStrip(""LOT"")",
+StripStart,StripLeave,(Help her to strip you.),(You strip down as she restrains you with some items.)  Aren't you pretty?  You can thank me later.,"PlayerStrip("""")",
+StripStart,StripLeave,(Give her a hard time.),(She struggles to strip and restrain you firmly with lots of items.)  Aren't you pretty?  You can thank me later.,"PlayerStrip(""ALL"")",
+StripLeave,,You cannot leave me like that.,"I can and I will.  Enjoy the cold air, I'll be back later.  (She starts to walk away.)",DialogRemove(),Player.CanTalk()
+StripLeave,,(Struggle in your bondage.),"Enjoy the cold air, I'll be back later.  (She starts to walk away.)",DialogRemove(),!Player.CanTalk()
+StripLeave,,(Leave her.),,CharacterRemove(),
+IntroChastity,,,"(Guard DialogCharacterName steps inside with chastity devices.)  Prisoner DialogPlayerName, you're going to be chaste.",,
+IntroRestrainedChastity,,,"(Guard DialogCharacterName steps inside with chastity devices.)  Prisoner DialogPlayerName, you're going to be chaste.",,
+Chastity,ChastityStart,Chaste?  Please!  This is too much.,You deserve it little spy.  (She picks the devices.)  Now don't move while I lock you up.,,Player.CanTalk()
+Chastity,ChastityStart,"Do what you want, I'll never talk.","You'll talk someday, I'm patient.  (She picks the devices.)  Now don't move while I lock you up.",,Player.CanTalk()
+Chastity,ChastityStart,I'll have my revenge someday.,Don't make me laugh.  (She picks the devices.)  Now don't move while I lock you up.,,Player.CanTalk()
+Chastity,ChastityStart,(Mumble some words.),That gag is perfect for you.  (She picks the devices.)  Now don't move while I lock you up.,,!Player.CanTalk()
+Chastity,ChastityStart,(Try to shake your gag off.),You're not getting out.  (She picks the devices.)  Now don't move while I lock you up.,,!Player.CanTalk()
+Chastity,ChastityStart,(Nod slowly.),That's a good girl.  (She picks the devices.)  Now don't move while I lock you up.,,
+Chastity,ChastityFight,Try to touch me and I'll beat you up.,"(She raises her fists.)  This device is going on you girl, don't get me mad.",,CanStartFight()
+ChastityFight,,(Fight her.),,StartFight(),
+ChastityFight,ChastityLeave,(Let her lock you up.),"(She locks you up in chastity devices, using exclusive locks.)  All sealed up!  Your orgasms are mine now.","PlayerChastity(""ExclusivePadlock"")",
+ChastityStart,ChastityLeave,(Help her to lock you.),"(She locks you up in chastity devices, using metal locks.)  All sealed up!  Your orgasms are mine now.","PlayerChastity(""MetalPadlock"")",
+ChastityStart,ChastityLeave,(Let her lock you up.),"(She locks you up in chastity devices, using intricate locks.)  All sealed up!  Your orgasms are mine now.","PlayerChastity(""IntricatePadlock"")",
+ChastityStart,ChastityLeave,(Give her a hard time.),"(She locks you up in chastity devices, using exclusive locks.)  All sealed up!  Your orgasms are mine now.","PlayerChastity(""ExclusivePadlock"")",
+ChastityLeave,,What would you know about orgasms?,Aren't you smug?  I will enjoy seeing you beg for one on your knees.,DialogRemove(),Player.CanTalk()
+ChastityLeave,,Are you happy now?,"Not yet, I'll be happy when you beg me for freedom later.  (She starts to walk away.)",DialogRemove(),Player.CanTalk()
+ChastityLeave,,(Struggle in the devices.),You'll beg me for freedom later.  (She starts to walk away.),DialogRemove(),!Player.CanTalk()
+ChastityLeave,,(Leave her.),,CharacterRemove(),
+IntroBeat,,,"(Guard DialogCharacterName steps inside with whips and paddles.)  Prisoner DialogPlayerName, your corporal punishment will begin.",,
+IntroRestrainedBeat,,,"(Guard DialogCharacterName steps inside with whips and paddles.)  Prisoner DialogPlayerName, your corporal punishment will begin.",,
+Beat,BeatStart,There's no need to go physical.,"(She picks a weapon and grins.)  There's no need, but it will be fun.  Well, maybe not for you.  Get ready!",PickWeapon(),Player.CanTalk()
+Beat,BeatStart,Wait!  What are you talking about?,"(She picks a weapon and grins.)  You're clueless, aren't you?  You will get beat up.  Get ready!",PickWeapon(),Player.CanTalk()
+Beat,BeatStart,This must be against the law.,(She picks a weapon and grins.)  I'm the law around here.  Your sentence is pain.  Get ready!,PickWeapon(),Player.CanTalk()
+Beat,BeatStart,(Mumble some words.),"(She picks a weapon and grins.)  Scream if you can, it will be funnier for me.  Get ready!",PickWeapon(),!Player.CanTalk()
+Beat,BeatStart,(Try to shake your gag off.),"(She picks a weapon and grins.)  Chew on that gag, it's going to hurt.  Get ready!",PickWeapon(),!Player.CanTalk()
+Beat,BeatStart,(Nod slowly.),(She picks a weapon and grins.)  You're enjoying this aren't you?  So am I.  Get ready!,PickWeapon(),
+Beat,BeatFight,I won't get beat up that easily.,"(She raises her fists.)  Oh yeah?  You better surrender right now, or it will leave scars.",,CanStartFight()
+BeatFight,,(Fight her.),,StartFight(),
+BeatFight,BeatStart,(Surrender.),"(She picks a weapon and grins.)  You talk tough, but let's see how you handle pain.  Get ready!",PickWeapon(),
+BeatStart,BeatSecond,No!  Please!  I'll be good!,(She hits you swiftly a few times and smiles.)  I'm not done yet.  Will you handle the pain?,"PlayerBeat(15, ""Medium"")",Player.CanTalk()
+BeatStart,BeatSecond,You think you can scare me?,(She hits you painfully many times and smirks.)  It's far from over.  Will you handle the pain?,"PlayerBeat(20, ""High"")",Player.CanTalk()
+BeatStart,BeatSecond,I'm ready Miss.,(She hits you pretty good a few times and giggles.)  This is fun.  Will you handle the pain?,"PlayerBeat(10, ""Low"")",Player.CanTalk()
+BeatStart,BeatSecond,(Whimper and beg.),(She hits you pretty good a few times and giggles.)  This is fun.  Will you handle the pain?,"PlayerBeat(10, ""Low"")",!Player.CanTalk()
+BeatStart,BeatSecond,(Struggle madly.),(She hits you painfully many times and smirks.)  It's far from over.  Will you handle the pain?,"PlayerBeat(20, ""High"")",!Player.CanTalk()
+BeatStart,BeatSecond,(Brace for impact.),(She hits you swiftly a few times and smiles.)  I'm not done yet.  Will you handle the pain?,"PlayerBeat(15, ""Medium"")",
+BeatSecond,BeatThird,"Girl, give me pain.",(She hits you painfully many times and smirks.)  You're still standing?  Time for one last round then.,"PlayerBeat(20, ""High"")",Player.CanTalk()
+BeatSecond,BeatThird,I will endure Miss.,(She hits you pretty good a few times and giggles.)  I'm sure you can take one last round.,"PlayerBeat(10, ""Low"")",Player.CanTalk()
+BeatSecond,BeatThird,(Close your eyes.),(She hits you swiftly a few times and smiles.)  Too bad I can't beat you all day.  One last round!,"PlayerBeat(15, ""Medium"")",
+BeatSecond,BeatThird,(Try to avoid her.),(She hits you swiftly a few times and smiles.)  Too bad I can't beat you all day.  One last round!,"PlayerBeat(15, ""Medium"")",!Player.CanTalk()
+BeatSecond,BeatThird,(Cry from the pain.),(She hits you pretty good a few times and giggles.)  I'm sure you can take one last round.,"PlayerBeat(10, ""Low"")",!Player.CanTalk()
+BeatSecond,BeatThird,(Stand strong.),(She hits you painfully many times and smirks.)  You're still standing?  Time for one last round then.,"PlayerBeat(20, ""High"")",
+BeatThird,BeatLeave,Ok.  One last round.,(She hits you swiftly a few times and smiles.)  All good things must end.  I hope you had as much fun as I did.  I need to go.,"PlayerBeat(15, ""Medium"")",Player.CanTalk()
+BeatThird,BeatLeave,Already?  That was boring.,(She hits you painfully many times and smirks.)  Don't pretend you're tough.  I hope you had as much fun as I did.  I need to go.,"PlayerBeat(20, ""High"")",Player.CanTalk()
+BeatThird,BeatLeave,I'll try to endure it.,(She hits you pretty good a few times and giggles.)  Was it that bad?  I hope you had as much fun as I did.  I need to go.,"PlayerBeat(10, ""Low"")",Player.CanTalk()
+BeatThird,BeatLeave,(Pretend to faint.),(She hits you pretty good a few times and giggles.)  Was it that bad?  I hope you had as much fun as I did.  I need to go.,"PlayerBeat(10, ""Low"")",!Player.CanTalk()
+BeatThird,BeatLeave,(Scream in your gag.),(She hits you painfully many times and smirks.)  Don't pretend you're tough.  I hope you had as much fun as I did.  I need to go.,"PlayerBeat(20, ""High"")",!Player.CanTalk()
+BeatThird,BeatLeave,(Take long deep breaths.),(She hits you swiftly a few times and smiles.)  All good things must end.  I hope you had as much fun as I did.  I need to go.,"PlayerBeat(15, ""Medium"")",
+BeatLeave,,You're a sadist!,Thanks!  It's one of my many qualities.  I'll see you later.  (She starts to walk away.),DialogRemove(),Player.CanTalk()
+BeatLeave,,(Grumble in your gag.),"That gag fits you so well, you can keep it.  See you later.  (She starts to walk away.)",DialogRemove(),!Player.CanTalk()
+BeatLeave,,(Leave her.),,CharacterRemove(),

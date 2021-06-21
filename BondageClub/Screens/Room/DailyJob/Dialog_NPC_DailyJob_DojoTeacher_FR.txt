@@ -1,0 +1,172 @@
+###_NPC
+Being quiet is a good quality for students.
+Être silencieuse est une bonne qualité pour les étudiantes.
+Domo arigato!  That was a great evasion demonstration.  I'm sure our students learned a lot from your techniques.
+Domo arigato! C'était une superbe démonstration d'évasion. Je suis sûr que nos étudiantes ont beaucoup appris de vos techniques.
+I'm sorry you could not make it, please practice your evasion techniques and come back when you're ready.
+Je suis désolée que vous n'ayez pas pu y arriver, veuillez pratiquer vos techniques d'évasion et revenez lorsque vous êtes prête.
+###_PLAYER
+I'm here for the money.
+Je suis ici pour l'argent.
+###_NPC
+I guess it will do.  Our group today wish to learn the fine art of evasion.  Come here girls!  (Many students come in.)
+Je suppose que ça ira. Notre groupe souhaite aujourd'hui apprendre les beaux-arts de l'évasion. Venez ici les filles! (De nombreuses étudiantes entrent.)
+###_PLAYER
+I'm ready for anything!
+Je suis prête à tout!
+###_NPC
+Great spirit!  Our group today wish to learn the fine art of evasion.  Come here girls!  (Many students come in.)
+Super! Notre groupe souhaite aujourd'hui apprendre les beaux-arts de l'évasion. Venez ici les filles! (De nombreuses étudiantes entrent.)
+###_PLAYER
+What's the event?
+Quel est l'événement?
+###_NPC
+This is perfect.  Our group today wish to learn the fine art of evasion.  Come here girls!  (Many students come in.)
+C'est parfait. Notre groupe souhaite aujourd'hui apprendre les beaux-arts de l'évasion. Venez ici les filles! (De nombreuses étudiantes entrent.)
+###_PLAYER
+Should I be scared?
+Devrais-je avoir peur?
+###_NPC
+Don't worry girl.  Our group today wish to learn the fine art of evasion.  Come here girls!  (Many students come in.)
+Ne t'inquiète pas fille. Notre groupe souhaite aujourd'hui apprendre les beaux-arts de l'évasion. Venez ici les filles! (De nombreuses étudiantes entrent.)
+###_PLAYER
+It's a public event?
+C'est un événement public?
+###_NPC
+Yes, I hope you're not prude.  You will be naked and restrained in front of our students.  Onegaishimasu strip.
+Oui, j'espère que vous n'êtes pas prude. Vous serez nue et retenue devant nos élèves. Déshabille-toi Onegaishimasu.
+###_PLAYER
+What should I do?
+Que devrais-je faire?
+###_NPC
+It's really easy, you will be naked and restrained in front of our students.  Onegaishimasu strip.
+C'est vraiment facile, vous serez nue et retenue devant nos élèves. Déshabille-toi Onegaishimasu.
+###_PLAYER
+How can I help?
+Comment puis-je aider?
+###_NPC
+I'll explain everything, you will be naked and restrained in front of our students.  Onegaishimasu strip.
+Je vais tout expliquer, vous serez nue et retenue devant nos élèves. Déshabille-toi Onegaishimasu.
+###_PLAYER
+Are you serious?
+Es-tu sérieuse?
+###_NPC
+Absolutely.  Onegaishimasu, strip for our class.
+Absolument. Onegaishimasu, déshabille-toi pour notre classe.
+###_PLAYER
+This is not cool.  (Strip reluctantly.)
+Ce n'est pas cool. (Se déshabiller à contrecœur.)
+###_NPC
+(You strip as she nods politely.)  Arigato.  Now turn around and give me your hands.
+(Vous vous déshabillez alors qu'elle hoche la tête poliment.) Arigato. Maintenant, retourne-toi et donne-moi tes mains.
+###_PLAYER
+(Stay silent and strip.)
+(Rester silencieuse et se déshabiller.)
+It's really necessary?
+C'est vraiment nécessaire?
+###_NPC
+(She nods and stays silent, showing your anatomy to her students.)
+(Elle hoche la tête et reste silencieuse, montrant votre anatomie à ses élèves.)
+###_PLAYER
+Make it tight!
+Faites-le serré!
+###_NPC
+(She ties you up very slowly in a strange fashion, showing every knot she does to her students.)
+(Elle vous attache très lentement d'une manière étrange, montrant chaque nœud qu'elle fait à ses élèves.)
+###_PLAYER
+Don't go crazy.
+Ne deviens pas folle.
+(Stay silent.)
+(Rester silencieuse.)
+Miss!  This is very tight.
+Mademoiselle! C'est très serré.
+###_NPC
+It's an intriguing Shibari isn't it?  You'll have three chances to escape from it.  Please show every movements to our class.
+C'est un Shibari intrigant, n'est-ce pas? Vous aurez trois chances d'y échapper. Veuillez montrer tous les mouvements à notre classe.
+###_PLAYER
+I can escape from any rope.
+Je peux m'échapper de n'importe quelle corde.
+###_NPC
+This will be your evasion challenge!  You'll have three tries.  Please show every movements to our class.
+Ce sera votre défi d'évasion! Vous aurez trois essais. Veuillez montrer tous les mouvements à notre classe.
+###_PLAYER
+(Struggle a little.)
+(Lutter un peu.)
+###_NPC
+You'll have three chances to escape from this Shibari.  Please show every movements to our class.
+Vous aurez trois chances de vous échapper de ce Shibari. Veuillez montrer tous les mouvements à notre classe.
+###_PLAYER
+(Start to struggle.)
+(Commencer à lutter.)
+It's been my pleasure to struggle.
+J'ai eu le plaisir de lutter.
+###_NPC
+(She gives you 100$ for your efforts.)  I will certainly contact you again when the next class is ready.
+(Elle vous donne 100 $ pour vos efforts.) Je vous recontacterai certainement lorsque le prochain cours sera prêt.
+###_PLAYER
+You can restrain me anytime Miss.
+Vous pouvez me retenir à tout moment Mademoiselle.
+Next time I could restrain you.
+La prochaine fois, je pourrais te retenir.
+###_NPC
+(She smirks and gives you 100$ for your efforts.)  Check with the maids to know when the next class is ready.
+(Elle sourit et vous donne 100$ pour vos efforts.) Vérifiez auprès des femmes de chambre pour savoir quand le prochain cours est prêt.
+###_PLAYER
+(Stay silent and nod.)
+(Rester silencieuse et acquiescer.)
+###_NPC
+(She gives you 100$ for your efforts.)  I might need you again for another class in the future.
+(Elle vous donne 100$ pour vos efforts.) Je pourrais avoir encore besoin de vous pour un autre cours à l'avenir.
+###_PLAYER
+Thank you!  (Leave her.)
+Je vous remercie! (La quitter.)
+(Take the money and leave her.)
+(Prendre l'argent et la laisser.)
+I feel so ashamed.
+J'ai tellement honte.
+###_NPC
+You should only be ashamed if you stopped trying.    Practice your evasion techniques and come back.
+Vous ne devriez avoir honte que si vous arrêtez d'essayer. Pratiquez vos techniques d'évasion et revenez.
+###_PLAYER
+I guess I need to practice.
+Je suppose que j'ai besoin de pratiquer.
+###_NPC
+Yes, that's why I will leave you like that, so you can practice your evasion techniques.
+Oui, c'est pourquoi je vais vous laisser comme ça, pour que vous puissiez pratiquer vos techniques d'évasion.
+###_PLAYER
+You will leave me like that?
+Tu vas me laisser comme ça?
+###_NPC
+Absolutely.  Onegaishimasu practice your evasion techniques and come back.
+Absolument. Onegaishimasu pratiquez vos techniques d'évasion et reviennez.
+###_PLAYER
+I'll get better in no time.
+Je vais aller mieux en peu de temps.
+###_NPC
+A great attitude will help you to learn faster.  Practice your evasion techniques and come back when you're ready.
+Une bonne attitude vous aidera à apprendre plus rapidement. Pratiquez vos techniques d'évasion et revenez lorsque vous êtes prête.
+###_PLAYER
+(Leave her.)
+(La quitter.)
+Can I try again?
+Puis-je réessayer?
+###_NPC
+(She nods and makes sure you're naked.)  Yes, you can, turn around and give me your hands again.
+(Elle hoche la tête et s'assure que vous êtes nue.) Oui, vous pouvez, retournez-vous et redonnez-moi vos mains.
+###_PLAYER
+I'll do better this time!
+Je ferai mieux cette fois!
+###_NPC
+(She nods and makes sure you're naked.)  I like your attitude, turn around and give me your hands.
+(Elle hoche la tête et s'assure que vous êtes nue.) J'aime votre attitude, tournez-vous et donnez-moi vos mains.
+###_PLAYER
+Don't make it too tight.
+Ne le faites pas trop serré.
+###_NPC
+(She restrains you skillfully.)  Please show every evasion movements you will do for our class.
+(Elle vous attache habilement.) Veuillez montrer tous les mouvements d'évasion que vous ferez pour notre classe.
+###_PLAYER
+Do you worst girl.
+Faites de votre pire, fille.
+(Stay silent and give your hands.)
+(Rester silencieuse et lui donner les mains.)

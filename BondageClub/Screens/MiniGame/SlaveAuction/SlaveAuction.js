@@ -1,16 +1,19 @@
 "use strict";
-var SlaveAuctionBackground = "SlaveMarketDark";
+var SlaveAuctionBackground = "SlaveMarket";
 var SlaveAuctionVendor = null;
 var SlaveAuctionSlave = null;
 var SlaveAuctionCustomerLeft = null;
 var SlaveAuctionCustomerRight = null;
-var SlaveAuctionBidCurrent = ""; 
+var SlaveAuctionBidCurrent = "";
 var SlaveAuctionBidTime = 0;
 var SlaveAuctionBidNextTime = 0;
 var SlaveAuctionBidAmount = 0;
 var SlaveAuctionEnd = false;
 
-// The next bid will occur between 5 and 15 seconds, the auction gets slower and there's less biddings when the price is high
+/**
+ * Sets when the next bid will occur. It varies from 5 to 15 seconds, the auction gets slower and there are less bids the higher the price is.
+ * @returns {void} - Nothing
+ */
 function SlaveAuctionSetNextBidTime() {
 	if (SlaveAuctionBidAmount == 0) SlaveAuctionBidNextTime = CurrentTime + 3000 + (Math.random() * 3000);
 	if ((SlaveAuctionBidAmount > 0) && (SlaveAuctionBidAmount < 50)) SlaveAuctionBidNextTime = (Math.random() >= 0.05) ? CurrentTime + 3000 + (Math.random() * 5000) : -1;
@@ -20,8 +23,12 @@ function SlaveAuctionSetNextBidTime() {
 	if (SlaveAuctionBidAmount >= 300) SlaveAuctionBidNextTime = (Math.random() >= 0.25) ? CurrentTime + 8000 + (Math.random() * 7000) : -1;
 }
 
-// Loads the slave auction mini game
+/**
+ * Loads the slave auction mini game by setting the global variables and loading the NPCs required
+ * @returns {void} - Nothing
+ */
 function SlaveAuctionLoad() {
+	CurrentDarkFactor = 0.5;
 	SlaveAuctionCustomerLeft = CharacterLoadNPC("NPC_Customer_Left");
 	CharacterAppearanceFullRandom(SlaveAuctionCustomerLeft);
 	SlaveAuctionCustomerRight = CharacterLoadNPC("NPC_Customer_Right");
@@ -33,7 +40,10 @@ function SlaveAuctionLoad() {
 	SlaveAuctionEnd = false;
 }
 
-// Run the slave auction mini game
+/**
+ * Runs the slave auction mini game by drawing the characters and related text on screen.
+ * @returns {void} - Nothing
+ */
 function SlaveAuctionRun() {
 
 	// Draw the characters
@@ -42,16 +52,16 @@ function SlaveAuctionRun() {
 	DrawCharacter(SlaveAuctionSlave, 775, 100, 0.9);
 	DrawCharacter(SlaveAuctionVendor, 1175, 100, 0.9);
 	DrawCharacter(SlaveAuctionCustomerRight, 1575, 100, 0.9);
-	
+
 	// Draw the bid info over the slave
 	DrawText(TextGet("CurrentBid") + " " + SlaveAuctionBidAmount.toString() + "$", 1000, 75, "White", "Black");
 	if (SlaveAuctionBidCurrent == "") DrawText(TextGet("HighestBidder") + " " + TextGet("Nobody"), 1000, 125, "White", "Black");
 	else if (SlaveAuctionBidCurrent == "Player") DrawText(TextGet("HighestBidder") + " " + TextGet("You"), 1000, 125, "White", "Black");
 	else DrawText(TextGet("HighestBidder") + " " + TextGet("SomeoneElse"), 1000, 125, "White", "Black");
 	DrawText(TextGet("YourMoney") + " " + Player.Money.toString() + "$", 1000, 175, "White", "Black");
-	
+
 	// If we must draw the "I bid X$" bubble
-	if ((SlaveAuctionBidTime >= CurrentTime - 3000) && (SlaveAuctionBidCurrent != "")) {		
+	if ((SlaveAuctionBidTime >= CurrentTime - 3000) && (SlaveAuctionBidCurrent != "")) {
 		var X = -25;
 		if (SlaveAuctionBidCurrent == "Player") X = 375;
 		if (SlaveAuctionBidCurrent == "Right") X = 1575;
@@ -99,7 +109,10 @@ function SlaveAuctionRun() {
 
 }
 
-// When the player clicks on the slave auction screen, she can bid or end the auction
+/**
+ * Handles click events during the slave auction minigame. The player can bid or end the auction.
+ * @returns {void} - Nothing
+ */
 function SlaveAuctionClick() {
 	if (!SlaveAuctionEnd && (SlaveAuctionBidCurrent != "Player") && (Player.Money >= SlaveAuctionBidAmount + 10) && (MouseX >= 800) && (MouseX < 975) && (MouseY >= 235) && (MouseY < 300)) {
 		SlaveAuctionSetNextBidTime();

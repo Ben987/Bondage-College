@@ -1,0 +1,4 @@
+Intro,Tap to navigate the rope between the other ropes.  Starts in StartTimer seconds.
+Perfect,Perfect!  You've escaped on the first try.  Click on yourself to continue.
+Victory,Congrats!  You were able to escape.  Click on yourself to continue.
+Defeat,"Sorry, you've failed to escape.  Click on yourself to continue."

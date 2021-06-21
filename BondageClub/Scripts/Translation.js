@@ -2,7 +2,10 @@
 var TranslationLanguage = "EN";
 var TranslationCache = {};
 
-// Dictionary for all supported languages and their files
+/**
+ * Dictionary for all supported languages and their files
+ * @constant
+ */
 var TranslationDictionary = [
 
 	{
@@ -112,16 +115,22 @@ var TranslationDictionary = [
 		EnglishName: "French",
 		Files: [
 			"Assets/Female3DCG/Female3DCG_FR.txt",
+			"Assets/Female3DCG/ColorGroups_FR.txt",
+			"Assets/Female3DCG/LayerNames_FR.txt",
 			"Screens/Character/Appearance/Text_Appearance_FR.txt",
+			"Screens/Character/BackgroundSelection/Text_BackgroundSelection_FR.txt",
 			"Screens/Character/Cheat/Text_Cheat_FR.txt",
+			"Screens/Character/Relog/Text_Relog_FR.txt",
 			"Screens/Character/Creation/Text_Creation_FR.txt",
 			"Screens/Character/FriendList/Text_FriendList_FR.txt",
 			"Screens/Character/InformationSheet/Text_InformationSheet_FR.txt",
 			"Screens/Character/Login/Text_Login_FR.txt",
 			"Screens/Character/OnlineProfile/Text_OnlineProfile_FR.txt",
+			"Screens/Character/ItemColor/ItemColor_FR.txt",
 			"Screens/Character/PasswordReset/Text_PasswordReset_FR.txt",
 			"Screens/Character/Player/Dialog_Player_FR.txt",
 			"Screens/Character/Preference/Text_Preference_FR.txt",
+			"Screens/Character/Preference/ActivityDictionary_FR.txt",
 			"Screens/Character/Title/Text_Title_FR.txt",
 			"Screens/Character/Wardrobe/Text_Wardrobe_FR.txt",
 			"Screens/Cutscene/NPCCollaring/Text_NPCCollaring_FR.txt",
@@ -137,6 +146,8 @@ var TranslationDictionary = [
 			"Screens/MiniGame/SlaveAuction/Text_SlaveAuction_FR.txt",
 			"Screens/MiniGame/Tennis/Text_Tennis_FR.txt",
 			"Screens/MiniGame/Therapy/Text_Therapy_FR.txt",
+			"Screens/MiniGame/DojoStruggle/Text_DojoStruggle_FR.txt",
+			"Screens/MiniGame/PuppyWalker/Text_PuppyWalker_FR.txt",
 			"Screens/Online/ChatCreate/Text_ChatCreate_FR.txt",
 			"Screens/Online/ChatAdmin/Text_ChatAdmin_FR.txt",
 			"Screens/Online/ChatRoom/Dialog_Online_FR.txt",
@@ -160,6 +171,9 @@ var TranslationDictionary = [
 			"Screens/Room/CollegeTennis/Text_CollegeTennis_FR.txt",
 			"Screens/Room/CollegeTheater/Text_CollegeTheater_FR.txt",
 			"Screens/Room/Introduction/Dialog_NPC_Introduction_Sub_FR.txt",
+			"Screens/Room/LARP/Text_LARP_FR.txt",
+			"Screens/Room/DailyJob/Dialog_NPC_DailyJob_DojoTeacher_FR.txt",
+			"Screens/Room/DailyJob/Dialog_NPC_DailyJob_PuppyMistress_FR.txt",
 			"Screens/Room/MaidQuarters/Dialog_NPC_MaidQuarters_InitiationMaids_FR.txt",
 			"Screens/Room/MainHall/Dialog_NPC_MainHall_Maid_FR.txt",
 			"Screens/Room/MainHall/Text_MainHall_FR.txt",
@@ -181,7 +195,7 @@ var TranslationDictionary = [
 		LanguageName: "Русский",
 		EnglishName: "Russian",
 		Files: [
-		    "Assets/Female3DCG/Female3DCG_RU.txt",
+			"Assets/Female3DCG/Female3DCG_RU.txt",
 			"Screens/Character/Appearance/Text_Appearance_RU.txt",
 			"Screens/Character/Cheat/Text_Cheat_RU.txt",
 			"Screens/Character/Creation/Text_Creation_RU.txt",
@@ -273,79 +287,107 @@ var TranslationDictionary = [
 
 ];
 
-// Returns TRUE if a translation is available for the current file
+/**
+ * Checks if a file can be translated in the selected language
+ * @param {string} FullPath - Full path of the file to check for a corresponding translation file
+ * @returns {boolean} - Returns TRUE if a translation is available for the given file
+ */
 function TranslationAvailable(FullPath) {
 	var FileName = FullPath.trim().toUpperCase();
-	for (var L = 0; L < TranslationDictionary.length; L++)
+	for (let L = 0; L < TranslationDictionary.length; L++)
 		if (TranslationDictionary[L].LanguageCode == TranslationLanguage)
-			for (var F = 0; F < TranslationDictionary[L].Files.length; F++)
+			for (let F = 0; F < TranslationDictionary[L].Files.length; F++)
 				if (TranslationDictionary[L].Files[F].trim().toUpperCase() == FileName)
 					return true;
 	return false;
 }
 
-// Parse a TXT translation file and returns it as JSON array
+/**
+ * Parse a TXT translation file and returns it as an array
+ * @param {string} str - Content of the translation text file
+ * @returns {string[]} - Array of strings with each line divided. For each translated line, the english string precedes the translated one in the array.
+ */
 function TranslationParseTXT(str) {
-		
-    var arr = [];
-	var c;
 
-    // iterate over each character, keep track of current row (of the returned array)
-    for (var row = c = 0; c < str.length; c++) {
-        var cc = str[c], nc = str[c+1];        // current character, next character
-        arr[row] = arr[row] || [];             // create a new row if necessary        
-        if (cc == '\n') { ++row; continue; }   // If it's a newline, move on to the next row
-        arr[row] += cc;                        // Otherwise, append the current character to the row
-    }
+	const arr = [];
+	let c;
+	str = str.replace(/\r\n/g, '\n').trim();
+
+	// iterate over each character, keep track of current row (of the returned array)
+	for (let row = c = 0; c < str.length; c++) {
+		let cc = str[c];        // current character, next character
+		arr[row] = arr[row] || "";             // create a new row if necessary
+		if (cc == '\n') { ++row; continue; }   // If it's a newline, move on to the next row
+		arr[row] += cc;                        // Otherwise, append the current character to the row
+	}
 
 	// Removes any comment rows (starts with ###)
-    for (var row = 0; row < arr.length; row++)
+	for (let row = arr.length - 1; row >= 0; row--)
 		if (arr[row].indexOf("###") == 0) {
 			arr.splice(row, 1);
-			row = row - 1;
 		}
 
 	// Trims the full translated array
-    for (var row = 0; row < arr.length; row++)
+	for (let row = 0; row < arr.length; row++)
 		arr[row] = arr[row].trim();
-		
-    return arr;
+	return arr;
 }
 
-// Translates a string (S) to another language from the array (T), the translation is the line right after
+/**
+ * Translates a string to another language from the array, the translation is always the one right after the english line
+ * @param {string} S - The original english string to translate
+ * @param {string[]} T - The active translation dictionary
+ * @param {string} CharacterName - Name of the character if it is required to replace it within the string.
+ * @returns {string} - The translated string
+ */
 function TranslationString(S, T, CharacterName) {
 	if ((S != null) && (S.trim() != "")) {
 		S = S.trim();
-		for (var P = 0; P < T.length; P++)
+		for (let P = 0; P < T.length; P++)
 			if (S == T[P].replace("DialogCharacterName", CharacterName).replace("DialogPlayerName", Player.Name))
 				return T[P + 1].replace("DialogCharacterName", CharacterName).replace("DialogPlayerName", Player.Name);
 	}
 	return S;
 }
 
-// Translates a character dialog from the specified array
+/**
+ * Translates a character dialog from the specified array
+ * @param {Character} C - The character for which we need to translate the dialog array.
+ * @param {string[]} T - The active translation dictionary
+ * @returns {void} - Nothing
+ */
 function TranslationDialogArray(C, T) {
-	for (var D = 0; D < C.Dialog.length; D++) {
+	for (let D = 0; D < C.Dialog.length; D++) {
 		C.Dialog[D].Option = TranslationString(C.Dialog[D].Option, T, C.Name);
 		C.Dialog[D].Result = TranslationString(C.Dialog[D].Result, T, C.Name);
 	}
 }
 
-// Translates a character dialog from the specified array
+/**
+ * Translates a set of tags. Rerenders the login message when on the login page.
+ * @param {Array.<{Tag: string, Value: string}>} S - Array of current tag-value pairs
+ * @param {string[]} T - The active translation dictionary
+ * @returns {void} - Nothing
+ */
 function TranslationTextArray(S, T) {
-	for (var P = 0; P < S.length; P++)
+	for (let P = 0; P < S.length; P++)
 		S[P].Value = TranslationString(S[P].Value, T, "");
-	if (CurrentScreen == "Login") LoginMessage = "";
+	if (CurrentScreen == "Login") LoginUpdateMessage();
 }
 
-// Translate a character dialog if the file is in the dictionary
+/**
+ * Translate a character dialog if the file is in the dictionary
+ * @param {Character} C - The character for which we want to translate the dialog
+ * @returns {void} - Nothing
+ */
 function TranslationDialog(C) {
 
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
 
+		var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 		// Finds the full path of the translation file to use
-		var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName) + "_" + TranslationLanguage + ".txt";
+		var FullPath = (OnlinePlayer ? "Screens/Online/ChatRoom/Dialog_Online" :  (C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName) + "_" + TranslationLanguage + ".txt";
 
 		// If the translation file is already loaded, we translate from it
 		if (TranslationCache[FullPath]) {
@@ -361,17 +403,20 @@ function TranslationDialog(C) {
 					TranslationDialogArray(C, TranslationCache[FullPath]);
 				}
 			});
-	
+
 	}
-	
+
 }
 
-// Translate a character dialog if the file is in the dictionary
+/**
+ * Translate an array of tags in the current selected language
+ * @param {Array.<{Tag: string, Value: string}>} Text - Array of current tag-value pairs
+ * @returns {void} - Nothing
+ */
 function TranslationText(Text) {
-	
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
-		
+
 		// Finds the full path of the translation file to use
 		var FullPath = "Screens/" + CurrentModule + "/" + CurrentScreen + "/Text_" + CurrentScreen + "_" + TranslationLanguage + ".txt";
 
@@ -394,17 +439,25 @@ function TranslationText(Text) {
 
 }
 
-// Translates the asset group and asset description
+/**
+ * Translates the asset group and asset descriptions based on the given dictionary
+ * @param {string[]} T - The active translation dictionary
+ * @returns {void} - Nothing
+ */
 function TranslationAssetProcess(T) {
-	for (var A = 0; A < AssetGroup.length; A++)
+	for (let A = 0; A < AssetGroup.length; A++)
 		AssetGroup[A].Description = TranslationString(AssetGroup[A].Description, T, "");
-	for (var A = 0; A < Asset.length; A++)
+	for (let A = 0; A < Asset.length; A++)
 		Asset[A].Description = TranslationString(Asset[A].Description, T, "");
 }
 
-// Translates the description of the assets and groups
+/**
+ * Translates the description of the assets and groups of an asset family
+ * @param {string} Family - Name of the asset family to translate
+ * @returns {void} - Nothing
+ */
 function TranslationAsset(Family) {
-	
+
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
 
@@ -425,14 +478,17 @@ function TranslationAsset(Family) {
 					TranslationAssetProcess(TranslationCache[FullPath]);
 				}
 			});
-	
+
 	}
-	
+
 }
 
-// Changes the current language
+/**
+ * Changes the current language and save the new selected language to local storage
+ * @returns {void} - Nothing
+ */
 function TranslationNextLanguage() {
-	for (var L = 0; L < TranslationDictionary.length; L++)
+	for (let L = 0; L < TranslationDictionary.length; L++)
 		if (TranslationDictionary[L].LanguageCode == TranslationLanguage) {
 			if (L != TranslationDictionary.length - 1)
 				TranslationLanguage = TranslationDictionary[L + 1].LanguageCode;
@@ -443,7 +499,10 @@ function TranslationNextLanguage() {
 		}
 }
 
-// Loads the translations
+/**
+ * Loads the previous translation language from local storage if it exists
+ * @returns {void} - Nothing
+ */
 function TranslationLoad() {
 	var L = localStorage.getItem("BondageClubLanguage");
 	if (L != null) TranslationLanguage = L;

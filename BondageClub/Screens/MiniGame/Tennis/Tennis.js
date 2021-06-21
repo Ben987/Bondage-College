@@ -9,9 +9,14 @@ var TennisCharacterRightRacket = 500;
 var TennisBallX = 1000;
 var TennisBallY = 500;
 var TennisBallSpeed = 100;
-var TennisBallAngle = 0;  // Angle is in radians (0 is right, PI / 2 is up, PI is left, 3 PI / 2 is down)
+/** Angle of the ball.  Angle is in radians (0 is right, PI / 2 is up, PI is left, 3 PI / 2 is down)*/
+var TennisBallAngle = 0;
 
-// When a player serves, the angle can go 45 degrees both up or down
+/**
+ * Called when a player servers, the angle can vary by 45 degrees up or down
+ * @param {number} CharacterLeftServe - Ball angle given for the serve
+ * @returns {void} - Nothing
+ */
 function TennisServe(CharacterLeftServe) {
 	TennisBallSpeed = 120;
 	if (MiniGameDifficulty == "Normal") TennisBallSpeed = 180;
@@ -21,7 +26,12 @@ function TennisServe(CharacterLeftServe) {
 	TennisBallY = 500;
 }
 
-// Returns the score for a player
+/**
+ * Gets the current score/status of the game
+ * @param {number} PointFor - Point of the player
+ * @param {number} PointAgainst - Point of the NPC
+ * @returns {string} - Score in text, or current status (Win, loss, advantage)
+ */
 function TennisGetScore(PointFor, PointAgainst) {
 	if (PointFor + PointAgainst >= 6) {
 		if (PointFor >= PointAgainst + 2) return TextGet("Winner");
@@ -33,7 +43,10 @@ function TennisGetScore(PointFor, PointAgainst) {
 	else return TextGet("Point" + PointFor.toString());
 }
 
-// Loads the tennis mini game and sets the difficulty
+/**
+ * Loads the tennis mini game and sets the difficulty ratio before serving the first ball
+ * @returns {void} - Nothing
+ */
 function TennisLoad() {
 	TennisCharacterLeftPoint = 0;
 	TennisCharacterRightPoint = 0;
@@ -45,9 +58,12 @@ function TennisLoad() {
 	TennisServe(Math.random() > 0.5);
 }
 
-// Runs the tennis mini game
+/**
+ * Runs the tennis mini game and draws its components on screen
+ * @returns {void} - Nothing
+ */
 function TennisRun() {
-	
+
 	// Draw the characters
 	DrawCharacter(TennisCharacterLeft, 0, 100, 0.9);
 	DrawText(TennisCharacterLeft.Name, 225, 30, "white");
@@ -69,17 +85,19 @@ function TennisRun() {
 			DrawText(TextGet("Intro2"), 1000, 500, "black");
 			DrawText(TextGet("StartsIn") + " " + (5 - Math.floor(MiniGameTimer / 1000)).toString(), 1000, 600, "black");
 		} else {
-						
+			var FpsAdjustment = 0.05 * 0.06 * TimerRunInterval;
+			var RacketAdjustment = MiniGameDifficultyRatio * FpsAdjustment;
+
 			// Moves the ball
-			TennisBallX = TennisBallX + Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
-			TennisBallY = TennisBallY - Math.sin(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
+			TennisBallX += Math.cos(TennisBallAngle) * TennisBallSpeed * FpsAdjustment;
+			TennisBallY -= Math.sin(TennisBallAngle) * TennisBallSpeed * FpsAdjustment;
 
 			// Moves the player and opponent racket, the opponent speeds up with difficulty, tracks the ball in defense, go back toward the middle in offense
 			if ((MouseY >= 0) && (MouseY <= 999)) TennisCharacterLeftRacket = MouseY;
-			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY > TennisCharacterRightRacket + 55)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
-			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY < TennisCharacterRightRacket - 55)) TennisCharacterRightRacket = TennisCharacterRightRacket - (MiniGameDifficultyRatio / TimerRunInterval);
-			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket < 450)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
-			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket > 550)) TennisCharacterRightRacket = TennisCharacterRightRacket - (MiniGameDifficultyRatio / TimerRunInterval);
+			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY > TennisCharacterRightRacket + 55)) TennisCharacterRightRacket += RacketAdjustment;
+			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY < TennisCharacterRightRacket - 55)) TennisCharacterRightRacket -= RacketAdjustment;
+			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket < 450)) TennisCharacterRightRacket += RacketAdjustment;
+			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket > 550)) TennisCharacterRightRacket -= RacketAdjustment;
 
 			// Bounces on the upper and lower side
 			if (TennisBallY < 20) {
@@ -100,12 +118,12 @@ function TennisRun() {
 				TennisBallAngle = Math.PI + (Math.PI * 0.4 * ((TennisBallY - TennisCharacterRightRacket) / 110));
 				TennisBallSpeed = TennisBallSpeed + 20;
 			}
-			
+
 			// Shows the rackets and ball
 			DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/RacketLeft.png", 500, TennisCharacterLeftRacket - 75);
 			DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/RacketRight.png", 1450, TennisCharacterRightRacket - 75);
 			DrawImage("Screens/" + CurrentModule + "/" + CurrentScreen + "/TennisBall.png", TennisBallX - 20, TennisBallY - 20);
-			
+
 			// If the opponent scores
 			if (TennisBallX < 450) {
 				MiniGameProgress = -1;
@@ -129,7 +147,7 @@ function TennisRun() {
 					MiniGameEnded = true;
 				}
 			}
-			
+
 		}
 
 	} else {
@@ -144,7 +162,10 @@ function TennisRun() {
 
 }
 
-// The game ends if a player has 4 or more points and is leading by at least 2 points
+/**
+ * Checks if the tennis game should end. The tennis game ends when a player has 4 or more points, and is leading by at least 2 points
+ * @returns {void} - Nothing
+ */
 function TennisVerifyEnd() {
 	if ((TennisCharacterLeftPoint >= 4) && (TennisCharacterLeftPoint >= TennisCharacterRightPoint + 2)) {
 		MiniGameVictory = true;
@@ -152,11 +173,22 @@ function TennisVerifyEnd() {
 	}
 }
 
-// When the user clicks in the tennis mini game
+/**
+ * Handles clicks during the tennis mini game
+ * @returns {void} - Nothing
+ */
 function TennisClick() {
 
 	// If the game is over, clicking on the player image will end it
 	if (MiniGameEnded && (MouseX >= 0) && (MouseX <= 450) && (MouseY >= 100) && (MouseY <= 999))
 		CommonDynamicFunction(MiniGameReturnFunction + "()");
 
+}
+
+/**
+ * Handles the key press in the tennis mini game, the C cheat key gives you one point toward winning
+ * @returns {void} - Nothing
+ */
+function TennisKeyDown() {
+	if (MiniGameCheatKeyDown()) TennisCharacterLeftPoint++;
 }

@@ -5,6 +5,7 @@ TitleMistress,Mistress
 TitleClubSlave,Club Slave
 TitleHeadMaid,Head Maid
 TitleMaid,Maid
+TitleBondageMaid,Bondage Maid
 TitleMasterKidnapper,Master Kidnapper
 TitleKidnapper,Kidnapper
 TitlePatient,Patient
@@ -13,6 +14,7 @@ TitleEscapedPatient,Escaped Patient
 TitleNurse,Nurse
 TitleDoctor,Doctor
 TitleLadyLuck,Lady Luck
+TitlePatron,Patron
 TitleCollegeStudent,College Student
 TitleNawashi,Nawashi
 TitleHoudini,Houdini
@@ -24,8 +26,29 @@ TitlePonyHot,Hot Blood Horse
 TitlePonyWild,Wild Mustang
 TitlePonyUnicorn,Shining Unicorn
 TitlePonyPegasus,Flying Pegasus
+TitlePonyAlicorn,Majestic Alicorn
+TitleInfilrationMole,Mole
+TitleInfilrationInfiltrator,Infiltrator
+TitleInfilrationAgent,Agent
+TitleInfilrationOperative,Operative
+TitleInfilrationSuperspy,Superspy
+TitleLittleOne,Little One
+TitleBaby,Baby
+TitleDL,Diaper Lover
+TitleBondageBaby,Bondage Baby
+TitleDuchess,Duchess
+TitleSwitch,Switch
+TitleKitten,Kitten
+TitlePuppy,Puppy
+TitleFoxy,Foxy
+TitleBunny,Bunny
+TitleDoll,Doll
+TitleDemon,Demon
+TitleAngel,Angel
+TitleSuccubus,Succubus
 MemberNumber,Member Number:
 NoMemberNumber,-
+Relationships,- Relationships -
 Lover,Lover:
 Owner,Owner:
 LoverNone,None
@@ -43,6 +66,7 @@ Days,day(s)
 Unknown,Unknown
 Reputation,- Reputation -
 ReputationNone,None
+ReputationGamingPositive,Dungeoneer:
 ReputationDominantPositive,Dominant:
 ReputationDominantNegative,Submissive:
 ReputationMaidPositive,Maid Sorority:
@@ -52,19 +76,19 @@ ReputationAsylumNegative,Asylum Patient:
 ReputationLARPPositive,LARP Battles:
 ReputationGamblingPositive,Gambling Hall:
 ReputationABDLPositive,ABDL:
-LARPClass,LARP Class:
-LARPClassMatron,Matron
-LARPClassSeducer,Seducer
-LARPClassTrickster,Trickster
-LARPClassServant,Servant
-LARPClassArtist,Artist
-LARPClassProtector,Protector
+DifficultyTitle,difficulty for NumberOfDays day(s)
+DifficultyLevel0,Roleplay
+DifficultyLevel1,Regular
+DifficultyLevel2,Hardcore
+DifficultyLevel3,Extreme
 Skill,- Skills -
 SkillNone,None
 SkillBondage,Bondage:
 SkillSelfBondage,Self-bondage:
+SkillLockPicking,Lock-Picking:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
+SkillInfiltration,Infiltration:
 SkillDressage,Dressage:
 SkillModifier,Skills modifier:
 SkillModifierDuration, Time left:
@@ -92,10 +116,10 @@ RelationshipPoor,(Poor)
 RelationshipBad,(Bad)
 RelationshipHorrible,(Horrible)
 RelationshipAtrocious,(Atrocious)
-ItemPermission,Item permission:
+ItemPermission,Permission:
 PermissionLevel0,"Everyone, no exceptions"
 PermissionLevel1,"Everyone, except blacklist"
-PermissionLevel2,"Owner, Lover, whitelist & Dominants"
-PermissionLevel3,"Owner, Lover and whitelist only"
-PermissionLevel4,Owner and Lover only
+PermissionLevel2,"Owner, Lovers, whitelist & Dominants"
+PermissionLevel3,"Owner, Lovers and whitelist only"
+PermissionLevel4,Owner and Lovers only
 PermissionLevel5,Owner only

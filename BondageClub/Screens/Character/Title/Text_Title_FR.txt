@@ -10,6 +10,8 @@ Head Maid
 Maîtresse Servante
 Maid
 Servante
+Bondage Maid
+Servante de Bondage
 Master Kidnapper
 Ace du Kidnapping
 Kidnapper
@@ -42,3 +44,35 @@ Shining Unicorn
 Licorne Scintillante
 Flying Pegasus
 Pégase Volant
+Lady Luck
+Dame Chance
+Patron
+Patronne
+Majestic Alicorn
+Alicorne Majestieuse
+Little One
+Petiotte
+Baby
+Bébé
+Diaper Lover
+Porteur de Couche
+Bondage Baby
+Bébé attaché
+Duchess
+Duchesse
+Kitten
+Chaton
+Puppy
+Chiot
+Foxy
+Renarde
+Bunny
+Lapine
+Doll
+Poupée
+Demon
+Démon
+Angel
+Ange
+Succubus
+Succube

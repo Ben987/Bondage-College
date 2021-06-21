@@ -4,47 +4,83 @@ var SlaveMarketMistress = null;
 var SlaveMarketSlave = null;
 var SlaveMarketSlaveToTrain = null;
 var SlaveMarketTrainingBackgroundList = ["BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed"];
+var SlaveMarketBuyer = null;
 
-function SlaveMarketCanStartAuction() { return ((ReputationGet("Dominant") >= -50) && ManagementCanTransferToRoom()) }
-function SlaveMarketCannotStartAuctionSubmissive() { return (ReputationGet("Dominant") < -50) }
-function SlaveMarketCannotStartAuctionRoom() { return ((ReputationGet("Dominant") >= -50) && !ManagementCanTransferToRoom()) }
+/**
+ * Checks if an auction can be started.
+ * @returns {boolean} - Returns TRUE if the player has room in her private room and is dominant enough to participate in an auction
+ */
+function SlaveMarketCanStartAuction() { return ((ReputationGet("Dominant") >= -50) && ManagementCanTransferToRoom()); }
+/**
+ * Checks if an auction cannot be started due to being too submissive.
+ * @returns {boolean} - Returns TRUE if the player is not dominant enough to participate in an auction
+ */
+function SlaveMarketCannotStartAuctionSubmissive() { return (ReputationGet("Dominant") < -50); }
+/**
+ * Checks if an auction cannot be started due to lack of space in the player's private room
+ * @returns {boolean} - Returns TRUE if the player is dominant enough to participate in an auction, but does not have space in her private room
+ */
+function SlaveMarketCannotStartAuctionRoom() { return ((ReputationGet("Dominant") >= -50) && !ManagementCanTransferToRoom()); }
+/**
+ * Checks if the player can be auctioned.  Must not be owned, must be submissive, must not be restrained, must have space in room and must not have been auctioned in the last seven days
+ * @returns {boolean} - Returns TRUE if the player can be auctioned
+ */
+function SlaveMarketCanBeAuctioned() { return (!Player.IsOwned() && !PrivateOwnerInRoom() && !Player.IsRestrained() && !Player.IsChaste() && (ReputationGet("Dominant") < 0) && !LogQuery("Auctioned", "SlaveMarket") && ManagementCanTransferToRoom()); }
 
-// Loads the Slave Market room, generates the Mistress and slave
+/**
+ * Loads the Slave Market room, generates the Mistress and slave
+ * @returns {void} - Nothing
+ */
 function SlaveMarketLoad() {
 	if (SlaveMarketMistress == null) {
 		SlaveMarketMistress = CharacterLoadNPC("NPC_SlaveMarket_Mistress");
 		SlaveMarketMistress.AllowItem = false;
+		SlaveMarketBuyer = CharacterLoadNPC("NPC_SlaveMarket_Buyer");
 	}
 	if (SlaveMarketSlave == null) SlaveMarketNewSlave();
 }
 
-// Run the Slave Market
+/**
+ * Runs and draws the slave market, the screen can be used to search for a daily job.
+ * @returns {void} - Nothing
+ */
 function SlaveMarketRun() {
-	DrawCharacter(Player, 250, 0, 1);
-	DrawCharacter(SlaveMarketMistress, 750, 0, 1);
-	DrawCharacter(SlaveMarketSlave, 1250, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(Player, 250, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(SlaveMarketMistress, 750, 0, 1);
+	if (!DailyJobSubSearchIsActive()) DrawCharacter(SlaveMarketSlave, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
+	DailyJobSubSearchRun();
 }
 
-// When the user clicks in the Slave Market
+/**
+ * Handles clicks in the slave market.
+ * @returns {void} - Nothing
+ */
 function SlaveMarketClick() {
-	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(SlaveMarketMistress);
-	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(SlaveMarketSlave);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	if (!DailyJobSubSearchIsActive() && MouseIn(250, 0, 500, 1000)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && MouseIn(750, 0, 500, 1000)) CharacterSetCurrent(SlaveMarketMistress);
+	if (!DailyJobSubSearchIsActive() && MouseIn(1250, 0, 500, 1000)) CharacterSetCurrent(SlaveMarketSlave);
+	if (MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+	DailyJobSubSearchClick();
 }
 
-// When the auction starts, launch the mini-game
+/**
+ * Triggered when the auction starts, the mini game is launched
+ * @returns {void} - Nothing
+ */
 function SlaveMarketAuctionStart() {
-	InventoryWear(SlaveMarketSlave, "CollarChainShort", "ItemNeckAccessories");
+	InventoryWear(SlaveMarketSlave, "CollarChainShort", "ItemNeckRestraints");
 	SlaveAuctionVendor = SlaveMarketMistress;
 	SlaveAuctionSlave = SlaveMarketSlave;
 	MiniGameStart("SlaveAuction", "", "SlaveMarketAuctionEnd");
 }
 
-// When the auction ends, if the player was the last bidder, she buys the slave and talks with her.  If not, she goes back to the Mistress.
+/**
+ * Triggered when the auction ends. If the player was the last bidder, she buys the slave and gets in a dialog with her, otherwise she returns to the main area of the slave market
+ * @returns {void} - Nothing
+ */
 function SlaveMarketAuctionEnd() {
 	if (SlaveAuctionBidCurrent == "Player") {
 		CharacterChangeMoney(Player, SlaveAuctionBidAmount * -1);
@@ -63,7 +99,10 @@ function SlaveMarketAuctionEnd() {
 	}
 }
 
-// When a new slave is generated
+/**
+ * Generates a new slave for the slave market
+ * @returns {void} - Nothing
+ */
 function SlaveMarketNewSlave() {
 	SlaveMarketSlave = CharacterLoadNPC("NPC_SlaveMarket_Slave");
 	SlaveMarketSlave.AllowItem = false;
@@ -71,18 +110,24 @@ function SlaveMarketNewSlave() {
 	CharacterNaked(SlaveMarketSlave);
 	CharacterRandomName(SlaveMarketSlave);
 	InventoryWear(SlaveMarketSlave, "LeatherCollar", "ItemNeck");
-	InventoryWear(SlaveMarketSlave, "CollarChainLong", "ItemNeckAccessories");
+	InventoryWear(SlaveMarketSlave, "CollarChainLong", "ItemNeckRestraints");
 	if (CurrentCharacter != null) DialogLeave();
 }
 
-// When the player brings the slave to her room
+/**
+ * Triggered when the player brings the slave to her room, the player is sent to her private room with the NPC.
+ * @returns {void} - Nothing
+ */
 function SlaveMarketVisitRoom() {
 	DialogLeave();
 	SlaveMarketNewSlave();
 	CommonSetScreen("Room", "Private");
 }
 
-// When the training starts, launch the custom dialog
+/**
+ * Triggered when the slave training start. Sets the NPC and dialog before sending the player to an empty room with the trainee.
+ * @returns {void} - Nothing
+ */
 function SlaveMarketTrainingStart() {
 	var Intro = Math.floor(Math.random() * 6);
 	SlaveMarketSlaveToTrain = CharacterLoadNPC("NPC_SlaveMarket_SlaveToTrain");
@@ -103,4 +148,58 @@ function SlaveMarketTrainingStart() {
 	EmptyCharacter.push(Player);
 	EmptyCharacter.push(SlaveMarketSlaveToTrain);
 	CommonSetScreen("Room", "Empty");
+}
+
+/**
+ * Triggered when the auctioned player gets stripped and chained
+ * @returns {void} - Nothing
+ */
+function SlaveMarketAuctionPlayerStrip() {
+	CharacterRelease(Player);
+	CharacterNaked(Player);
+	InventoryRemove(Player, "ItemNeck", false);
+	InventoryWear(Player, "LeatherCollar", "ItemNeck", "Default", 10, false);
+	InventoryWear(Player, "CollarChainLong", "ItemNeckRestraints", "Default", 10, false);
+	CharacterRefresh(Player);
+}
+
+/**
+ * Triggered when the player auction starts
+ * @returns {void} - Nothing
+ */
+function SlaveMarketAuctionPlayerStart() {
+	DialogLeave();
+	MiniGameStart("PlayerAuction", "", "SlaveMarketPlayerAuctionEnd");
+}
+
+/**
+ * Triggered when the player auction ends, we create the buyer and activate her
+ * @returns {void} - Nothing
+ */
+function SlaveMarketPlayerAuctionEnd() {
+	CharacterRelease(Player);
+	LogAdd("Auctioned", "SlaveMarket", CurrentTime + 604800000);
+	CharacterChangeMoney(Player, PlayerAuctionBidAmount / 2);
+	CommonSetScreen("Room", "SlaveMarket");
+	SlaveMarketBuyer.AllowItem = false;
+	SlaveMarketBuyer.Appearance = PlayerAuctionCustomer[PlayerAuctionBidCurrent].Appearance.slice(0);
+	SlaveMarketBuyer.Archetype = PlayerAuctionCustomer[PlayerAuctionBidCurrent].Archetype;
+	CharacterRefresh(SlaveMarketBuyer);
+	SlaveMarketBuyer.CurrentDialog = DialogFind(SlaveMarketBuyer, "Intro" + Math.floor(Math.random() * 3).toString());
+	CharacterSetCurrent(SlaveMarketBuyer);
+}
+
+/**
+ * Triggered when the player auction has ended and both characters are transferred to the player room
+ * @returns {void} - Nothing
+ */
+function SlaveMarketPlayerAuctionTransfer() {
+	DialogLeave();
+	CommonSetScreen("Room", "Private");
+	PrivateAddCharacter(SlaveMarketBuyer, SlaveMarketBuyer.Archetype);
+	var C = PrivateCharacter[PrivateCharacter.length - 1];
+	NPCTraitSet(C, "Dominant", 50 + Math.floor(Math.random() * 51));
+	C.Love = 30;
+	NPCEventAdd(C, "EndSubTrial", CurrentTime + NPCLongEventDelay(C));
+	ServerPrivateCharacterSync();
 }

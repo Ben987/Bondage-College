@@ -1,13 +1,18 @@
 "use strict";
-var TherapyBackground = "AsylumTherapyDark";
+var TherapyBackground = "AsylumTherapy";
 var TherapyCharacterLeft = null;
 var TherapyCharacterRight = null;
 var TherapyMoves = [0, 0, 0, 0, 0, 0];
 var TherapyGenerateMoveTimer = 0;
 var TherapyStress = 0;
 
-// Loads the therapy mini game and sets the difficulty (a little faster on mobile)
+/**
+ * Loads the therapy mini game and sets the difficulty. The game is a little faster on mobile since its easier.
+ * @returns {void} - Nothing
+ */
 function TherapyLoad() {
+	CurrentDarkFactor = 0.5;
+	TherapyMoves = [0, 0, 0, 0, 0, 0];
 	TherapyGenerateMoveTimer = CurrentTime + 5000;
 	TherapyStress = 0;
 	MiniGameDifficultyRatio = 2000;
@@ -16,9 +21,12 @@ function TherapyLoad() {
 	if (CommonIsMobile) MiniGameDifficultyRatio = Math.round(MiniGameDifficultyRatio * 0.75);
 }
 
-// Runs the therapy mini game
+/**
+ * Runs the therapy mini game.
+ * @returns {void} - Nothing
+ */
 function TherapyRun() {
-	
+
 	// Draw the characters
 	DrawCharacter(TherapyCharacterLeft, 0, 0, 1);
 	DrawCharacter(TherapyCharacterRight, 500, 0, 1);
@@ -46,7 +54,7 @@ function TherapyRun() {
 		if (TherapyGenerateMoveTimer < CurrentTime) {
 			if (MiniGameProgress < 0) MiniGameProgress = 0;
 			TherapyGenerateMoveTimer = TherapyGenerateMoveTimer + 100;
-			for (var M = 0; M < TherapyMoves.length; M++) {
+			for (let M = 0; M < TherapyMoves.length; M++) {
 				if ((TherapyMoves[M] > 0) && (TherapyMoves[M] <= CurrentTime)) {
 					TherapyStress++;
 					TherapyMoves[M] = 0;
@@ -58,7 +66,7 @@ function TherapyRun() {
 		}
 
 		// Draws the move
-		for (var M = 0; M < TherapyMoves.length; M++)
+		for (let M = 0; M < TherapyMoves.length; M++)
 			if (TherapyMoves[M] >= CurrentTime)
 				DrawCircle(1250 + ((M % 3) * 250), 200 + Math.floor(M / 3) * 300, 100, 25, "cyan");
 
@@ -74,7 +82,10 @@ function TherapyRun() {
 
 }
 
-// Validates if the therapy must end
+/**
+ * Checks if the therapy minigame should end. It ends when the therapy is completed, or when the patient is too stressed out.
+ * @returns {void} - Nothing
+ */
 function TherapyVerifyEnd() {
 	if (MiniGameProgress >= 100) {
 		MiniGameVictory = true;
@@ -88,7 +99,11 @@ function TherapyVerifyEnd() {
 	}
 }
 
-// When a move is done, we validate it
+/**
+ * Handles a given move type and validates it
+ * @param {number} MoveType - Move type (Index of the TherapyMoves array)
+ * @returns {void} - Nothing
+ */
 function TherapyDoMove(MoveType) {
 
 	// Checks if the move is valid
@@ -100,7 +115,10 @@ function TherapyDoMove(MoveType) {
 
 }
 
-// When the user clicks in the therapy mini game
+/**
+ * Handles clicks in the therapy mini game
+ * @returns {void} - Nothing
+ */
 function TherapyClick() {
 
 	// If the game is over, clicking on the image will end it
@@ -112,11 +130,22 @@ function TherapyClick() {
 
 		// Gets the move type and sends it
 		var MoveType = -1;
-		for (var M = 0; M < TherapyMoves.length; M++)
+		for (let M = 0; M < TherapyMoves.length; M++)
 			if ((MouseX >= 1125 + ((M % 3) * 250)) && (MouseX <= 1375 + ((M % 3) * 250)) && (MouseY >= 75 + Math.floor(M / 3) * 300) && (MouseY <= 325 + Math.floor(M / 3) * 300))
 				MoveType = M;
 		TherapyDoMove(MoveType);
 
 	}
 
+}
+
+/**
+ * Handles the key press in the therapy mini game, the C cheat key reduces the patient stress
+ * @returns {void} - Nothing
+ */
+function TherapyKeyDown() {
+	if (MiniGameCheatKeyDown()) {
+		TherapyStress = TherapyStress - 4;
+		if (TherapyStress < 0) TherapyStress = 0;
+	}
 }

@@ -107,7 +107,7 @@ Hallo, Madam, möchten Sie mich anfassen?
 (Tickle her.)
 (Sie kitzeln.)
 ###_NPC
-(She trashes around and laughs from your skillful tickling hands.)
+(She thrashes around and laughs from your skillful tickling hands.)
 (Sie windet sich umher und lacht, als deine Hände sie gekonnt kitzeln.)
 ###_PLAYER
 (Kiss her.)

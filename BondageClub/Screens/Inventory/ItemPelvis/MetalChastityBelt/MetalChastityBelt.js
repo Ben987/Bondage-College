@@ -1,68 +1,85 @@
 "use strict";
 
-// Loads the item extension properties
+var InventoryItemPelvisMetalChastityBeltOptions = [
+	{
+		Name: "OpenBack",
+		Property: {
+			Type: null,
+			Block: null,
+		},
+	},
+	{
+		Name: "ClosedBack",
+		Property: {
+			Type: "ClosedBack",
+			Block: ["ItemButt"],
+		},
+	},
+];
+
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemPelvisMetalChastityBeltLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Restrain: null };
+	ExtendedItemLoad(InventoryItemPelvisMetalChastityBeltOptions, "SelectBackShield");
 }
 
-// Draw the item extension screen
+/**
+* Draw the item extension screen
+* @returns {void} - Nothing
+*/
 function InventoryItemPelvisMetalChastityBeltDraw() {
-
-	// Draw the header and item
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
-	// Draw the possible poses
-	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		DrawText(DialogFind(Player, "SelectBackShield"), 1500, 550, "white", "gray");
-		DrawButton(1200, 675, 250, 65, DialogFind(Player, "ChastityOpenBack"), (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
-		DrawButton(1550, 675, 250, 65, DialogFind(Player, "ChastityClosedBack"), ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "ClosedBack")) ? "#888888" : "White");
-	} 
-	else DrawText(DialogFind(Player, "CantChangeWhileLocked"), 1500, 550, "white", "gray");
+	ExtendedItemDraw(InventoryItemPelvisMetalChastityBeltOptions, "Chastity");
 }
 
-// Catches the item extension clicks
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemPelvisMetalChastityBeltClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 675) && (MouseY <= 740) && !InventoryItemHasEffect(DialogFocusItem, "Lock", true) && (DialogFocusItem.Property.Restrain != null)) InventoryItemPelvisMetalChastityBeltSetPose(null);
-	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 675) && (MouseY <= 740) && !InventoryItemHasEffect(DialogFocusItem, "Lock", true) && (DialogFocusItem.Property.Restrain == null)) InventoryItemPelvisMetalChastityBeltSetPose("ClosedBack");
+	ExtendedItemClick(InventoryItemPelvisMetalChastityBeltOptions);
 }
 
-// Sets the Shield position (OpenBack, ClosedBack)
-function InventoryItemPelvisMetalChastityBeltSetPose(NewPose) {
-
-	// Gets the current item and character
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemPelvisMetalChastityBeltLoad();
-	}
-
-	// Sets the restrain with it's effects
-	DialogFocusItem.Property.Restrain = NewPose;
-	if (NewPose == null) delete DialogFocusItem.Property.Block;
-	else if (NewPose == "ClosedBack") DialogFocusItem.Property.Block = ["ItemButt"];
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
-
-	// Refreshes the character and chatroom
-	CharacterRefresh(C);
-	var msg = "ChastityBeltBackShield" + ((NewPose == null) ? "OpenBack" : NewPose);
-	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemPelvisMetalChastityBeltPublishAction(C, Option) {
+	var msg = "ChastityBeltBackShield" + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
 
-	// Rebuilds the inventory menu
-	if (DialogInventory != null) {
-		DialogFocusItem = null;
-		DialogMenuButtonBuild(C);
+/**
+ * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
+ * @param {Character} C - The character to validate the option for
+ * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
+ */
+function InventoryItemPelvisMetalChastityBeltValidate(C) {
+	var Allowed = "";
+
+	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	}
 
+	return Allowed;
+}
+
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them.
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemPelvisMetalChastityBeltNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "Chastity" + Option.Name, "ItemPelvis");
 }

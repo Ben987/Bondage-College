@@ -97,6 +97,8 @@ You cannot unlock yourself
 Вы не можете отпереть себя
 This zone is out of reach from another item
 Эта зона находится вне досягаемости из-за другого предмета
+Another item is blocking access to this lock
+Another item is blocking access to this lock
 You cannot access your items
 Вы не можете получить доступ к своим предметам
 Click here to speed up the progress
@@ -261,7 +263,7 @@ SourceCharacter picks a coffee from DestinationCharacter tray.
 SourceCharacter берет кофе у DestinationCharacter.
 SourceCharacter buys a hot chocolate from DestinationCharacter tray.
 SourceCharacter покупает горячий шоколад у DestinationCharacter.
-SourceCharacter buys a expresso from DestinationCharacter tray.
+SourceCharacter buys an espresso from DestinationCharacter tray.
 SourceCharacter покупает эспрессо у DestinationCharacter.
 SourceCharacter buys a cappuccino from DestinationCharacter tray.
 SourceCharacter покупает капучино у DestinationCharacter.
@@ -503,18 +505,18 @@ Decrease
 Decrease
 Show chat message
 Show chat message
-SourceCharacter sets DestinationCharacter's shock collar to low intensity.
-SourceCharacter sets DestinationCharacter's shock collar to low intensity.
-SourceCharacter sets DestinationCharacter's shock collar to moderate intensity.
-SourceCharacter sets DestinationCharacter's shock collar to moderate intensity.
-SourceCharacter sets DestinationCharacter's shock collar to high intensity.
-SourceCharacter sets DestinationCharacter's shock collar to high intensity.
-DestinationCharacter's collar gives her a light shock.
-DestinationCharacter's collar gives her a light shock.
-DestinationCharacter's collar lets out a sharp jolt!
-DestinationCharacter's collar lets out a sharp jolt!
-DestinationCharacter's collar delivers an intense shock!
-DestinationCharacter's collar delivers an intense shock!
+SourceCharacter sets DestinationCharacter AssetName to low intensity.
+SourceCharacter sets DestinationCharacter AssetName to low intensity.
+SourceCharacter sets DestinationCharacter AssetName to moderate intensity.
+SourceCharacter sets DestinationCharacter AssetName to moderate intensity.
+SourceCharacter sets DestinationCharacter AssetName to high intensity.
+SourceCharacter sets DestinationCharacter AssetName to high intensity.
+DestinationCharacter AssetName gives her a light shock.
+DestinationCharacter AssetName gives her a light shock.
+DestinationCharacter AssetName lets out a sharp jolt!
+DestinationCharacter AssetName lets out a sharp jolt!
+DestinationCharacter AssetName delivers an intense shock!
+DestinationCharacter AssetName delivers an intense shock!
 DestinationCharacter's vibrating egg stops vibrating.
 DestinationCharacter's vibrating egg stops vibrating.
 DestinationCharacter's vibrating egg slows down into a light tease.

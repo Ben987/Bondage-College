@@ -22,20 +22,22 @@ var NurseryLeaveMsg = null;								// message about ease of opening nursery gate
 var NurseryEscapeAttempts = null;
 var NursuryEscapeFailMsg = null;
 var NurseryRepeatOffender = null;
-var NurseryRegressedTalk = null;
 
 
-				
+
 
 // Returns TRUE if
-function NurseryPlayerIsPacified() { return (CharacterAppearanceGetCurrentValue(Player, "ItemMouth", "Name") == "PacifierGag") }
-function NurseryPlayerIsHarnessPacified() { return (CharacterAppearanceGetCurrentValue(Player, "ItemMouth", "Name") == "HarnessPacifierGag") }
-function NurseryPlayerLostBinky() { return Player.CanTalk() && !NurseryPlayerKeepsLoosingBinky }
-function NurseryPlayerLostBinkyAgain() { return Player.CanTalk() && NurseryPlayerKeepsLoosingBinky }
-function NurseryPlayerWearingBabyDress() { return (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress1" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress2" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress3") }
-function NurseryPlayerReadyToAppologise() { return (NurseryPlayerBadBabyStatus <= 1) }
-function NurseryPlayerDiapered() { return (CharacterAppearanceGetCurrentValue(Player, "Panties", "Name") == "Diapers1") }
-function NurseryPlayerReadyDiapered() { return (NurseryPlayerDiapered() && !NurseryPlayerInappropriateCloth) }
+function NurseryPlayerIsPacified() { return (CharacterAppearanceGetCurrentValue(Player, "ItemMouth", "Name") == "PacifierGag"); }
+function NurseryPlayerIsHarnessPacified() { return (CharacterAppearanceGetCurrentValue(Player, "ItemMouth", "Name") == "HarnessPacifierGag"); }
+function NurseryPlayerLostBinky() { return Player.CanTalk() && !NurseryPlayerKeepsLoosingBinky; }
+function NurseryPlayerLostBinkyAgain() { return Player.CanTalk() && NurseryPlayerKeepsLoosingBinky; }
+function NurseryPlayerWearingBabyDress() { return (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress1" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress2" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress3"); }
+function NurseryPlayerReadyToAppologise() { return (NurseryPlayerBadBabyStatus <= 1); }
+function NurseryPlayerDiapered() {
+	return (CharacterAppearanceGetCurrentValue(Player, "Panties", "Name").toUpperCase().indexOf("DIAPER", 0) >= 0);
+}
+function NurseryPlayerReadyDiapered() { return (NurseryPlayerDiapered() && !NurseryPlayerInappropriateCloth); }
+function NurseryPlayerCanRegress() { return !InventoryGet(Player, "ItemMouth3") && !InventoryGroupIsBlocked(Player, "ItemMouth3"); }
 
 
 // Loads the nursery room
@@ -96,7 +98,7 @@ function NurseryRun() {
 function NurseryClick() {
 	if (NurserySituation == null) {
 		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) NurseryLoadNurse(); 
+		if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) NurseryLoadNurse();
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
 			NurseryPlayerAppearance = null;
 			CommonSetScreen("Room", "MainHall");
@@ -112,7 +114,7 @@ function NurseryClick() {
 			NurseryGateMsg = true;
 			NurseryJustClicked = true;
 		}
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 	}
 	if (NurserySituation == "AtGate") {
 		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
@@ -235,7 +237,7 @@ function NurseryNPCResrained(CurrentNPC, RestraintSet) {
 
 // Random dress selection
 function NurseryRandomDressSelection() {
-	PreviousDress = RandomResultB
+	PreviousDress = RandomResultB;
 	RandomNumber = Math.floor(Math.random() * 3);
 	if (RandomNumber == 0) RandomResultB = "AdultBabyDress1";
 	if (RandomNumber == 1) RandomResultB = "AdultBabyDress2";
@@ -245,7 +247,7 @@ function NurseryRandomDressSelection() {
 
 // Random selection for dress colors
 function NurseryRandomColorSelection() {
-	PreviousDressColor = RandomResult
+	PreviousDressColor = RandomResult;
 	RandomNumber = Math.floor(Math.random() * 12);
 	if (RandomNumber == 0) RandomResult = "Default";
 	if (RandomNumber == 1) RandomResult = "#808080";
@@ -280,8 +282,8 @@ function NurseryPlayerUndress(Cost) {
 
 // When the player puts on diapers or has them put on
 function NurseryPlayerGetsDiapered(DomChange) {
-	ReputationProgress("Dominant", DomChange)
-	ReputationProgress("ABDL", 1)
+	ReputationProgress("Dominant", DomChange);
+	ReputationProgress("ABDL", 1);
 	InventoryWear(Player, "Diapers1", "Panties", "Default");
 	NurseryPlayerAdmitted();
 }
@@ -321,7 +323,7 @@ function NurseryPlayerRestrained(RestraintSet) {
 		NurseryPlayerNeedsPunishing(2);
 	}
 	if (RestraintSet == 4) {
-		if (!Player.IsRestrained()) {	
+		if (!Player.IsRestrained()) {
 			InventoryWear(Player, "AdultBabyHarness", "ItemTorso", "Default");
 			InventoryWear(Player, "MittenChain1", "ItemArms", "Default");
 			InventoryWear(Player, "PaddedMittens", "ItemHands", "Default");
@@ -331,12 +333,12 @@ function NurseryPlayerRestrained(RestraintSet) {
 		}
 	}
 	if (RestraintSet == 5) {
-		NurseryPlayerRestrained(3)
+		NurseryPlayerRestrained(3);
 		InventoryWear(Player, "LeatherBlindfold", "ItemHead", "#cccccc");
 	}
 	if (RestraintSet == 6) {
-		NurseryPlayerRestrained(3)
-		CharacterSetActivePose(Player, "Kneel");
+		NurseryPlayerRestrained(3);
+		CharacterSetActivePose(Player, "Kneel", true);
 		InventoryWear(Player, "LeatherBelt", "ItemLegs", "#cccccc");
 		NurseryPlayerNeedsPunishing(2);
 	}
@@ -382,7 +384,12 @@ function NurseryBadBabies() {
 // Player will loose skill progress or level from drinking special milk
 function NurseryPlayerSkillsAmnesia() {
 	SkillModifierChange(-1);
-	NurseryRegressedTalk = true;
+	var ItemsToEarn = [];
+	ItemsToEarn.push({Name: "RegressedMilk", Group: "ItemMouth"});
+	ItemsToEarn.push({Name: "RegressedMilk", Group: "ItemMouth2"});
+	ItemsToEarn.push({Name: "RegressedMilk", Group: "ItemMouth3"});
+	InventoryAddMany(Player, ItemsToEarn);
+	InventoryWear(Player, "RegressedMilk", "ItemMouth3");
 }
 
 // Repair Lost skills
@@ -408,7 +415,7 @@ function NurseryPlayerChangeDressColor() {
 
 // Player changes dress
 function NurseryPlayerRemoveDress() {
-	InventoryRemove(Player, "Cloth")
+	InventoryRemove(Player, "Cloth");
 }
 
 // Player gives an adorable ABDL reply
@@ -417,10 +424,10 @@ function NurseryPlayerCuteRelpy() {
 	DialogRemove();
 }
 
-// Player can try to escape the nursery as an ABDL 
+// Player can try to escape the nursery as an ABDL
 function NurseryEscapeGate() {
 	if (NurseryLeaveMsg == 1 || NurseryLeaveMsg == 3) {
-		NurserySituation = "Admitted"
+		NurserySituation = "Admitted";
 		CommonSetScreen("Room", "MainHall");
 	} else {
 		// Calculate Escape score
@@ -428,10 +435,10 @@ function NurseryEscapeGate() {
 		RandomNumber = Math.floor(Math.random() * 10);
 
 		// Escape attempts effect
-		RandomNumber = RandomNumber + NurseryEscapeAttempts
+		RandomNumber = RandomNumber + NurseryEscapeAttempts;
 
 		// Evasion skill effect
-		RandomNumber = RandomNumber - SkillGetLevel(Player, "Evasion")
+		RandomNumber = RandomNumber - SkillGetLevel(Player, "Evasion");
 
 		// level of bondage effects
 		if (InventoryGet(Player, "ItemHead") != null) RandomNumber = RandomNumber + 6;
@@ -452,7 +459,7 @@ function NurseryEscapeGate() {
 		if (InventoryGet(Player, "ItemArms") == "PaddedMittensHarness") RandomNumber = RandomNumber + 2;
 		if (InventoryGet(Player, "ItemArms") == "PaddedMittensHarnessLocked") RandomNumber = RandomNumber + 2;
 		if (InventoryGet(Player, "ItemArms") == "LeatherArmbinder") RandomNumber = RandomNumber + 6;
-		
+
 		// Work out escape result
 		if (RandomNumber <= 2) {										// Player manages to open gate
 			NurseryLeaveMsg = 3;

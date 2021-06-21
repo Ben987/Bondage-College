@@ -1,102 +1,92 @@
 "use strict";
+var InventoryItemFeetChainsOptions = [
+	{
+		Name: "Basic",
+		BondageLevel: 0,
+		Property: { Type: null, Difficulty: 0, SetPose: ["LegsClosed"] },
+	},
+	{
+		Name: "Strict",
+		BondageLevel: 2,
+		Property: { Type: "Strict", Difficulty: 2, SetPose: ["LegsClosed"] },
+	},
+	{
+		Name: "Suspension",
+		BondageLevel: 6,
+		Prerequisite: ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"],
+		Property: {
+			Type: "Suspension",
+			Difficulty: 4,
+			SetPose: ["Suspension", "LegsClosed"],
+			AllowActivePose: [],
+		},
+	},
+];
 
-// Loads the item extension properties
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemFeetChainsLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Effect: [] };
-	DialogExtendedMessage = DialogFind(Player, "SelectChainBondage");
+	ExtendedItemLoad(InventoryItemFeetChainsOptions, "SelectChainBondage");
 }
 
-// Draw the item extension screen
+/**
+* Draw the item extension screen
+* @returns {void} - Nothing
+*/
 function InventoryItemFeetChainsDraw() {
-
-	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
-	// Draw the possible positions and their requirements
-	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		DrawText(DialogExtendedMessage, 1500, 475, "white", "gray");
-		DrawButton(1050, 550, 225, 225, "", (DialogFocusItem.Property.Type == null || DialogFocusItem.Property.Type == "Basic") ? "#888888" : "White");
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Basic.png", 1050, 551);
-		DrawText(DialogFind(Player, "ChainBondageBasic"), 1163, 800, "white", "gray");
-		DrawText(DialogFind(Player, "NoRequirement").replace("ReqLevel", "2"), 1163, 850, "white", "gray");
-		DrawButton(1387, 550, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Strict")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 2) ? "Pink" : "White");
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Strict.png", 1387, 551);
-		DrawText(DialogFind(Player, "ChainBondageStrict"), 1500, 800, "white", "gray");
-		DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "2"), 1500, 850, "white", "gray");
-		DrawButton(1725, 550, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Suspension")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 6) ? "Pink" : "White");
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Suspension.png", 1725, 551);
-		DrawText(DialogFind(Player, "ChainBondageSuspension"), 1838, 800, "white", "gray");
-		DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "6"), 1838, 850, "white", "gray");
-	}
-	else DrawText(DialogFind(Player, "CantChangeWhileLocked"), 1500, 500, "white", "gray");
-
+	ExtendedItemDraw(InventoryItemFeetChainsOptions, "ChainBondage");
 }
 
-// Catches the item extension clicks
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemFeetChainsClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1050) && (MouseX <= 1275) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != null)) InventoryItemFeetChainsSetType(null);
-	if ((MouseX >= 1387) && (MouseX <= 1612) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Strict")) && (SkillGetLevelReal(Player, "Bondage") >= 2)) InventoryItemFeetChainsSetType("Strict");
-	if ((MouseX >= 1725) && (MouseX <= 1950) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Suspension")) && (SkillGetLevelReal(Player, "Bondage") >= 6)) InventoryItemFeetChainsSetType("Suspension");
+	ExtendedItemClick(InventoryItemFeetChainsOptions);
 }
 
-// Sets the feet bondage position (Basic, Strict, Suspension)
-function InventoryItemFeetChainsSetType(NewType) {
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemFeetChainsPublishAction(C, Option) {
+	var msg = "LegChainSet" + Option.Name;
+	var Dictionary = [];
+	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+	Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
 
-	// Loads the character and item
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemFeetChainsLoad();
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them.
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemFeetChainsNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "ChainBondage" + Option.Name, "ItemFeet");
+}
+
+/**
+ * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
+ * @param {Character} C - The character to validate the option for
+ * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
+ */
+function InventoryItemFeetChainsValidate(C, Option) {
+	var Allowed = "";
+
+	if (Option.Prerequisite != null && !InventoryAllow(C, Option.Prerequisite, true)) {
+		Allowed = DialogText;
+	} else if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
+		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	}
 
-	// Validates a few parameters before suspending
-	if ((NewType == "Suspension") && !InventoryAllow(C, ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"], true)) { DialogExtendedMessage = DialogText; return; }
-	if ((NewType == "Suspension") && (C.ID == 0)) { DialogExtendedMessage = DialogFind(Player, "CannotUseOnSelf"); return; }
-
-	// Sets the position, difficulty and blush effect
-	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		DialogFocusItem.Property.Type = NewType;
-		DialogFocusItem.Property.Effect = [];
-		if (NewType == null) {
-			DialogFocusItem.Property.SetPose = null;
-			DialogFocusItem.Property.Difficulty = 0;
-		}
-		if (NewType == "Strict") {
-			DialogFocusItem.Property.SetPose = null;
-			DialogFocusItem.Property.Difficulty = 2;
-		}
-		if (NewType == "Suspension") {
-			DialogFocusItem.Property.SetPose = ["Suspension", "LegsClosed"];
-			DialogFocusItem.Property.Difficulty = 4;
-			CharacterSetFacialExpression(C, "Blush", "High", 30);
-		}
-	}
-	else return;
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
-	CharacterRefresh(C);
-
-	// Sets the chatroom or NPC message
-	if (CurrentScreen == "ChatRoom") {
-		var msg = "LegChainSet" + ((NewType) ? NewType : "Basic");
-		var Dictionary = [];
-		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-		ChatRoomPublishCustomAction(msg, true, Dictionary);
-	} else {
-		DialogFocusItem = null;
-		if (C.ID == 0) DialogMenuButtonBuild(C);
-		else {
-			C.CurrentDialog = DialogFind(C, "ChainBondage" + ((NewType) ? NewType : "Basic"), "ItemFeet");
-			C.FocusGroup = null;
-		}
-	}
-
+	return Allowed;
 }

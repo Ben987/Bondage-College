@@ -43,7 +43,7 @@ function PrisonPlayerIsFeetTied()   {return PrisonCharacterAppearanceAvailable(P
 function PrisonPlayerIsOTMGag()     {return PrisonCharacterAppearanceAvailable(Player, "ClothGag", "ItemMouth");}
 function PrisonPlayerIsStriped()    {return !(PrisonCharacterAppearanceGroupAvailable(Player, "Cloth"));}
 function PrisonPlayerIsBadGirl()    {return LogQuery("Joined", "BadGirl");}
-function PrisonPlayerIsBadGirlThief()	{return (LogQuery("Joined", "BadGirl") && (LogQuery("Stolen", "BadGirl") || LogQuery("Hide", "BadGirl")));}
+function PrisonPlayerIsBadGirlThief()	{return (LogQuery("Joined", "BadGirl") && (LogQuery("Stolen", "BadGirl") || LogQuery("Hide", "BadGirl") || LogQuery("Caught", "BadGirl")));}
 function PrisonPlayerHasSleepingPills()	{return (InventoryAvailable(Player, "RegularSleepingPill", "ItemMouth"));}
 function PrisonPlayerHasSpankingToys() {return (InventoryAvailable(Player, "SpankingToys", "ItemHands"));}
 function PrisonPlayerHasKeys() {return (InventoryAvailable(Player, "MetalPadlockKey", "ItemMisc") || InventoryAvailable(Player, "IntricatePadlockKey", "ItemMisc") ||  InventoryAvailable(Player, "MetalCuffsKey", "ItemMisc"));}
@@ -51,8 +51,8 @@ function PrisonSubIsHandcuffedOut() {return (PrisonSubSelfCuffed && !PrisonSubBe
 function PrisonSubIsBehindBars()    {return PrisonSubBehindBars;}
 function PrisonSubIsFree()          {return (!PrisonSubBehindBars && !PrisonSubSelfCuffed);}
 function PrisonSubAskForCuff()      {return (!PrisonSubAskedCuff);}
-function PrisonSubCanStripSearch()  {return  (!PrisonSubIsStripSearch && PrisonSubBehindBars)}
-function PrisonSubCanClothBack()    {return  (PrisonSubIsStripSearch && PrisonSubBehindBars)}
+function PrisonSubCanStripSearch()  {return  (!PrisonSubIsStripSearch && PrisonSubBehindBars);}
+function PrisonSubCanClothBack()    {return  (PrisonSubIsStripSearch && PrisonSubBehindBars);}
 
 /*      Room     */
 // Loads the Prison
@@ -74,7 +74,7 @@ function PrisonLoad() {
 	}
 	PrisonPlayerAppearance = Player.Appearance.slice();
 	PrisonNextEventTimer = new Date().getTime() + (20000 * Math.random()) + (10000);
-	
+
 	if ((MaidQuartersCurrentRescue == "Prison") && !MaidQuartersCurrentRescueStarted && !PrisonSubBehindBars && MaidQuartersCurrentRescueCompleted == false) {
 		PrisonSub = CharacterLoadNPC("NPC_Prison_Sub");
 	}
@@ -90,10 +90,10 @@ function PrisonLoad() {
 function PrisonRun() {
 	if (PrisonNextEventTimer == null) PrisonNextEventTimer = new Date().getTime() + (20000 * Math.random()) + (10000);
 	if (new Date().getTime() > PrisonNextEventTimer) {
-		PrisonNextEventTimer = new Date().getTime() + (20000 * Math.random()) + (10000)
+		PrisonNextEventTimer = new Date().getTime() + (20000 * Math.random()) + (10000);
 		PrisonNextEvent = true;
 	}
-	
+
 	if ((MaidQuartersCurrentRescue == "Prison") && MaidQuartersCurrentRescueCompleted == false) {
 		//Player is Maid and NPC is Visitor
 		if (!PrisonSubBehindBars) {
@@ -120,7 +120,7 @@ function PrisonRun() {
 			PrisonSubIsPresent = true;
 			PrisonSubIsLeaveOut = false;
 			PrisonNextEvent = false;
-		} else if (PrisonNextEvent == true){
+		} else if (PrisonNextEvent == true) {
 			PrisonNextEvent = false;
 		}
 	} else if (PrisonPlayerCatchedBadGirl == true) {
@@ -143,12 +143,12 @@ function PrisonRun() {
 			PrisonWearPoliceEquipment(PrisonPolice);
 			PrisonNextEvent = false;
 			PrisonPoliceIsPresent = true;
-		} else if (PrisonNextEvent == true){
+		} else if (PrisonNextEvent == true) {
 			PrisonNextEvent = false;
 		}
-		
+
 	} else {
-		//Player is Vistor an Maid is NPC 
+		//Player is Vistor an Maid is NPC
 		if (PrisonPlayerBehindBars) {
 			DrawCharacter(Player, 500, 50, 0.95);
 			DrawImage("Screens/Room/Prison/Cage_close.png", 0, 0);
@@ -170,7 +170,7 @@ function PrisonRun() {
 			PrisonMaidIsPresent = true;
 			PrisonMaidIsAngry = false;
 			PrisonMaid.Stage = "20";
-		} else if (PrisonNextEvent == true){
+		} else if (PrisonNextEvent == true) {
 			PrisonNextEvent = false;
 		}
 	}
@@ -197,14 +197,14 @@ function PrisonClick() {
 		} else if (PrisonPlayerBehindBars) {
 			CharacterSetCurrent(Player);
 			Player.CurrentDialog = TextGet("LockKey");
-		} 
+		}
 	}
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 }
 
 // Returns true if Appearance for Character available
 function PrisonCharacterAppearanceAvailable (C, AppearanceName, AppearanceGroup) {
-	for (var I = 0; I < C.Appearance.length; I++)
+	for (let I = 0; I < C.Appearance.length; I++)
 		if ((C.Appearance[I].Asset.Name == AppearanceName) && (C.Appearance[I].Asset.Group.Name == AppearanceGroup))
 			return true;
 	return false;
@@ -212,7 +212,7 @@ function PrisonCharacterAppearanceAvailable (C, AppearanceName, AppearanceGroup)
 
 // Returns true if Appearance-Group for Character available
 function PrisonCharacterAppearanceGroupAvailable (C, AppearanceGroup) {
-	for (var I = 0; I < C.Appearance.length; I++)
+	for (let I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.Group.Name == AppearanceGroup)
 			return true;
 	return false;
@@ -220,43 +220,43 @@ function PrisonCharacterAppearanceGroupAvailable (C, AppearanceGroup) {
 
 /*      Player     */
 //Player going in cell
-function PrisonCellPlayerIn(){
+function PrisonCellPlayerIn() {
 	PrisonMaidIsAngry = true;
 	PrisonPlayerBehindBars = true;
 }
 
 //Player leave in cell
-function PrisonCellPlayerOut(){
+function PrisonCellPlayerOut() {
 	PrisonPlayerBehindBars = false;
-	if (PrisonerMetalCuffsKey != null){
+	if (PrisonerMetalCuffsKey != null) {
 		InventoryAdd(Player, "MetalCuffsKey", "ItemMisc");
 		PrisonerMetalCuffsKey = null;
 	}
-	if (PrisonerMetalPadlockKey != null){
+	if (PrisonerMetalPadlockKey != null) {
 		InventoryAdd(Player, "MetalPadlockKey", "ItemMisc");
 		PrisonerMetalPadlockKey = null;
 	}
-	if (PrisonerIntricatePadlockKey != null){
+	if (PrisonerIntricatePadlockKey != null) {
 		InventoryAdd(Player, "IntricatePadlockKey", "ItemMisc");
 		PrisonerIntricatePadlockKey = null;
 	}
-	if (PrisonerSleepingPills != null){
+	if (PrisonerSleepingPills != null) {
 		InventoryAdd(Player, "RegularSleepingPill", "ItemMouth");
 		PrisonerSleepingPills = null;
 	}
-	if (PrisonerSpankingToys != null){
+	if (PrisonerSpankingToys != null) {
 		InventoryAdd(Player, "SpankingToys", "ItemHands");
 		PrisonerSpankingToys = null;
 	}
 }
 
 //Maid leave the Prison for 5-15 second
-function PrisonMaidLeave(){
+function PrisonMaidLeave() {
 	PrisonMaidIsPresent = false;
 }
 
 //Player releases and get back his Cloth, only if the Maid is not angry
-function PrisonCellRelease(C){
+function PrisonCellRelease(C) {
 	if (PrisonMaidIsAngry) {
 		PrisonMaid.Stage = "20";
 		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidReleaseIsAngry");
@@ -271,14 +271,14 @@ function PrisonCellRelease(C){
 }
 
 // The Strip Search Prozess for the Player
-function PrisonHavySearch(C){
-	if (!PrisonPlayerIsStriped()){
+function PrisonHavySearch(C) {
+	if (!PrisonPlayerIsStriped()) {
 		PrisonMaidIsAngry = true;
-		InventoryRemove(C, "Hat"); 
-		InventoryRemove(C, "Shoes"); 
-		InventoryRemove(C, "Gloves"); 
-		InventoryRemove(C, "Cloth"); 
-		InventoryRemove(C, "ClothLower"); 
+		InventoryRemove(C, "Hat");
+		InventoryRemove(C, "Shoes");
+		InventoryRemove(C, "Gloves");
+		InventoryRemove(C, "Cloth");
+		InventoryRemove(C, "ClothLower");
 		InventoryWear(C, "MetalCuffs", "ItemArms");
 		InventoryWear(C, "LeatherBelt", "ItemLegs");
 		InventoryWear(C, "LeatherBelt", "ItemFeet");
@@ -295,7 +295,7 @@ function PrisonHavySearch(C){
 }
 
 // The Light Search Prozess for the Player
-function PrisonLightSearch(C){
+function PrisonLightSearch(C) {
 	if (PrisonerMetalCuffsKey == null) {
 		PrisonMaidIsAngry = true;
 		InventoryWear(C, "MetalCuffs", "ItemArms");
@@ -312,10 +312,10 @@ function PrisonLightSearch(C){
 }
 
 // The Cloth Back Prozess for Prisoner
-function PrisonerClothBack(C){
+function PrisonerClothBack(C) {
 	PrisonMaidIsAngry = true;
 	if (PrisonPlayerIsStriped()) {
-		for (var A = 0; A < PrisonPlayerAppearance.length; A++) {
+		for (let A = 0; A < PrisonPlayerAppearance.length; A++) {
 			if (PrisonPlayerAppearance[A].Asset.Group.Name == "Hat") {
 				InventoryWear(C, PrisonPlayerAppearance[A].Asset.Name, "Hat", PrisonPlayerAppearance[A].Color );
 			}
@@ -339,8 +339,8 @@ function PrisonerClothBack(C){
 	}
 }
 
-// Remove the Letherbelts from the Prisoner 
-function PrisonCuffsRelief(){
+// Remove the Letherbelts from the Prisoner
+function PrisonCuffsRelief() {
 	PrisonMaidIsAngry = true;
 	if (PrisonPlayerIsPanelGag() || PrisonPlayerIsLegTied() || PrisonPlayerIsFeetTied()) {
 		PrisonMaidIsAngry = true;
@@ -356,7 +356,7 @@ function PrisonCuffsRelief(){
 }
 
 // Light Torture for the Prison Player
-function PrisonMaidLightTorture(){
+function PrisonMaidLightTorture() {
 	PrisonMaidIsAngry = true;
 	PrisonMaid.Stage = "PrisonerTortured";
 	var torture = Math.random() * 4;
@@ -372,10 +372,10 @@ function PrisonMaidLightTorture(){
 }
 
 // Hevy Torture for the Prison Player
-function PrisonMaidHevyTorture(){
+function PrisonMaidHevyTorture() {
 	PrisonMaidIsAngry = true;
 	PrisonMaid.Stage = "PrisonerTortured";
-	var torture = Math.random() * 5
+	var torture = Math.random() * 5;
 	if (torture < 1) {
 		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidTortureWhipping");
 	} else if (torture < 2) {
@@ -407,12 +407,12 @@ function PrisonDisableKey(C) {
 
 /*      Player Dialog     */
 //Player Ask in Dialog
-function PrisonCellPlayerAsk(){
+function PrisonCellPlayerAsk() {
 	if (PrisonMaidCharacter == "Chaotic") PrisonMaidChaotic = Math.random();
-	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33) ){
+	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33)) {
 		InventoryWear(Player, "ClothGag", "ItemMouth");
 		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidLightGag");
-	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66) ){
+	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66)) {
 		InventoryWear(Player, "HarnessBallGag", "ItemMouth");
 		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidNeutralGag");
 	} else {
@@ -424,11 +424,11 @@ function PrisonCellPlayerAsk(){
 }
 
 //Player Shake the Cellbars
-function PrisonCellPlayerShake(){
+function PrisonCellPlayerShake() {
 	if (PrisonMaidCharacter == "Chaotic") PrisonMaidChaotic = Math.random();
-	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33) ){
+	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33)) {
 		PrisonLightSearch(Player);
-	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66) ){
+	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66)) {
 		PrisonMaidLightTorture();
 	} else {
 		PrisonHavySearch(Player);
@@ -437,11 +437,11 @@ function PrisonCellPlayerShake(){
 }
 
 //Player try to escape
-function PrisonCellPlayerTry(){
+function PrisonCellPlayerTry() {
 	if (PrisonMaidCharacter == "Chaotic") PrisonMaidChaotic = Math.random();
-	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33) ){
+	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33)) {
 		PrisonCellRelease(Player);
-	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66) ){
+	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66)) {
 		//ToDo Dialog
 		PrisonMaidLightTorture();
 	} else {
@@ -450,23 +450,23 @@ function PrisonCellPlayerTry(){
 }
 
 //Player Wimper to Maid
-function PrisonCellPlayerWimper(){
+function PrisonCellPlayerWimper() {
 	if (PrisonMaidCharacter == "Chaotic") PrisonMaidChaotic = Math.random();
-	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33) ){
+	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33)) {
 		PrisonerClothBack(Player);
-	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66) ){
+	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66)) {
 		PrisonCellRelease(Player);
 	} else {
-		PrisonMaidHevyTorture();	
+		PrisonMaidHevyTorture();
 	}
 }
 
 //Player wait for Maids-Action
-function PrisonCellPlayerWait(){
+function PrisonCellPlayerWait() {
 	if (PrisonMaidCharacter == "Chaotic") PrisonMaidChaotic = Math.random();
-	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33) ){
+	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33)) {
 		PrisonCuffsRelief();
-	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66) ){
+	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66)) {
 		PrisonLightSearch(Player);
 	} else {
 		PrisonMaidHevyTorture();
@@ -475,13 +475,13 @@ function PrisonCellPlayerWait(){
 
 /*      NPC     */
 // PrisonSub leave the Room
-function PrisonSubSendAway(){
+function PrisonSubSendAway() {
 	PrisonSubIsPresent = false;
 	DialogLeave();
 }
 
 //Check if Prison NPC Wear Handcuffes
-function PrisonSubHandcuffing(){
+function PrisonSubHandcuffing() {
 	if (Math.random() > 0.5) {
 		InventoryWear(PrisonSub, "MetalCuffs", "ItemArms");
 		PrisonSubSelfCuffed = true;
@@ -493,18 +493,18 @@ function PrisonSubHandcuffing(){
 }
 
 // Shoves NPC in Cell
-function PrisonCellSubIn(){
+function PrisonCellSubIn() {
 	PrisonSubBehindBars = true;
 	PrisonSub.AllowItem = true;
 }
 
 //Strip Search the NPC
-function PrisonSubHavySearch(){
-	InventoryRemove(PrisonSub, "Hat"); 
-	InventoryRemove(PrisonSub, "Shoes"); 
-	InventoryRemove(PrisonSub, "Gloves"); 
-	InventoryRemove(PrisonSub, "Cloth"); 
-	InventoryRemove(PrisonSub, "ClothLower"); 
+function PrisonSubHavySearch() {
+	InventoryRemove(PrisonSub, "Hat");
+	InventoryRemove(PrisonSub, "Shoes");
+	InventoryRemove(PrisonSub, "Gloves");
+	InventoryRemove(PrisonSub, "Cloth");
+	InventoryRemove(PrisonSub, "ClothLower");
 	InventoryWear(PrisonSub, "MetalCuffs", "ItemArms");
 	InventoryWear(PrisonSub, "LeatherBelt", "ItemLegs");
 	InventoryWear(PrisonSub, "LeatherBelt", "ItemFeet");
@@ -513,7 +513,7 @@ function PrisonSubHavySearch(){
 }
 
 //Let NPC out of Cell
-function PrisonCellSubOut(){
+function PrisonCellSubOut() {
 	PrisonSubBehindBars = false;
 	PrisonSubIsLeaveOut = true;
 	CharacterRelease(PrisonSub);
@@ -524,7 +524,7 @@ function PrisonCellSubOut(){
 }
 
 //The Prison NPC Leave the Cell
-function PrisonLeaveCell(){
+function PrisonLeaveCell() {
 	if (!PrisonSubBehindBars) {
 		PrisonSubIsPresent = false;
 		PrisonSubSelfCuffed = false;
@@ -535,7 +535,7 @@ function PrisonLeaveCell(){
 
 //Give Cloth back to Sub
 function PrisonSubClothBack() {
-	for (var A = 0; A < PrisonSubAppearance.length; A++) {
+	for (let A = 0; A < PrisonSubAppearance.length; A++) {
 		if (PrisonSubAppearance[A].Asset.Group.Name == "Hat") {
 			InventoryWear(PrisonSub, PrisonSubAppearance[A].Asset.Name, "Hat", PrisonSubAppearance[A].Color );
 		}
@@ -590,13 +590,16 @@ release/entlassung
 //Determine how strongly the player is wanted for MainHall
 function PrisonWantedPlayer() {
 	var i;
-	if (LogQuery("Hide", "BadGirl")) return 7;
+	if (LogQuery("Caught", "BadGirl")) return 9;
+	else if (LogQuery("Hide", "BadGirl")) return 7;
 	else if (LogQuery("Stolen", "BadGirl")) return 4;
 	else if (LogQuery("Joined", "BadGirl")) return 1;
 }
 
 //Catch by Police in MainHall
 function PrisonMeetPoliceIntro(RoomBackground) {
+	var aggressive = PrisonWantedPlayer() >= 4;
+
 	CommonSetScreen("Room", "Prison");
 	PrisonBackground = RoomBackground; //"MainHall","Gambling","HorseStable"
 	PrisonPolice = null;
@@ -605,13 +608,65 @@ function PrisonMeetPoliceIntro(RoomBackground) {
 	PrisonPolice.AllowItem = false;
 	PrisonWearPoliceEquipment(PrisonPolice);
 	CharacterSetCurrent(PrisonPolice);
-	PrisonPolice.Stage = "Catch";
-	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchIntro");
+	PrisonPolice.Stage = aggressive ? "CatchAggressive" : "Catch";
+	PrisonPolice.CurrentDialog = aggressive ? DialogFind(PrisonPolice, "CatchIntroAggressive") : DialogFind(PrisonPolice, "CatchIntro");
+}
+
+function PrisonPutHandsInTheAir() {
+	CharacterSetActivePose(Player, "Yoked", true);
+	if (Math.floor(PrisonWantedPlayer() * Math.random()) >= 3) {
+		// cop yells at player to raise her hands higher
+		PrisonPolice.Stage = "CatchAggressiveHigher";
+		PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveHandsHigher");
+	} else {
+		PrisonPolice.Stage = "CatchAggressive2";
+		PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveHandsInAir");
+	}
+}
+
+function PrisonRaiseHandsHigher() {
+	CharacterSetActivePose(Player, "OverTheHead", true);
+	PrisonPolice.Stage = "CatchAggressive2";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveHandsInAir");
+}
+
+function PrisonCatchKneel() {
+	CharacterSetActivePose(Player, "Kneel", false);
+	PrisonPolice.Stage = "CatchAggressive3";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveKneeling");
+}
+
+function PrisonCatchHandcuffed() {
+	InventoryWear(Player, "MetalCuffs", "ItemArms");
+	PrisonPolice.Stage = "CatchAggressive4";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveHandcuffed");
+}
+
+// player fails to escape if they try after kneeling, Police puts them in hogtie as punishment
+function PrisonCatchKneelingEscape() {
+	CharacterSetActivePose(Player, null, true);
+	InventoryWear(Player, "Chains", "ItemArms", "Default", 3);
+	InventoryGet(Player, "ItemArms").Property = { Type: "Hogtied", SetPose: ["Hogtied"], Difficulty: 0, Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], Effect: ["Block", "Freeze", "Prone"] };
+	CharacterRefresh(Player);
+	PrisonPolice.Stage = "CatchAggressive5";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveFailedEscape");
+}
+
+function PrisonCatchComplain() {
+	InventoryWear(Player, "BallGag", "ItemMouth");
+	PrisonPolice.Stage = "CatchAggressive6";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveComplained");
+}
+
+function PrisonCatchAdmitDefeat() {
+	PrisonPolice.Stage = "CatchAggressive6";
+	PrisonPolice.CurrentDialog = DialogFind(PrisonPolice, "CatchAggressiveAdmittedDefeat");
 }
 
 //When a fight starts between the player and the Police
 function PrisonFightPolice() {
-	KidnapStart(PrisonPolice, PrisonBackground+"Dark", 5 + Math.floor(Math.random() * 5), "PrisonFightPoliceEnd()");
+	CharacterSetActivePose(Player, null, true);
+	KidnapStart(PrisonPolice, PrisonBackground, 5 + Math.floor(Math.random() * 5), "PrisonFightPoliceEnd()");
 }
 
 // When the fight against Police ends
@@ -658,7 +713,7 @@ function PrisonSetBehavior(Behavior) {
 }
 
 function PrisonArrestHandoverDices() {
-	LogDelete("Stolen", "BadGirl");
+	PrisonDiceBack();
 	PrisonSetBehavior(2);
 }
 
@@ -680,7 +735,7 @@ function PrisonArrestHandoverSpankingToys() {
 }
 
 function PrisonArrestStripOuterCloth() {
-	CharacterUnderwear(Player, Player.Appearance);
+	CharacterAppearanceStripLayer(Player);
 	PrisonSetBehavior(-1);
 }
 
@@ -694,6 +749,8 @@ function PrisonArrestStripUnderware() {
 }
 
 function PrisonArrestSuit() {
+	// reset character pose
+	CharacterSetActivePose(Player, null, true);
 	InventoryWear(Player, "TShirt1", "Cloth", "#644000");
 	InventoryWear(Player, "Pajama1", "ClothLower", "#ffa500");
 	InventoryWear(Player, "Socks2", "Socks", "#CCCCCC");
@@ -728,7 +785,7 @@ function PrisonArrestEquipmentSearch() {
 }
 
 function PrisonArrestConfiscatDices() {
-	LogDelete("Stolen", "BadGirl");
+	PrisonDiceBack();
 	PrisonSetBehavior(-2);
 	PrisonArrestEquipmentSearch();
 }
@@ -752,9 +809,9 @@ function PrisonArrestConfiscatSpankingToys() {
 	PrisonSetBehavior(-1);
 	PrisonArrestEquipmentSearch();
 }
-	
+
 function PrisonArrestLeave() {
-	DialogLeave()
+	DialogLeave();
 	PrisonPlayerCatchedBadGirl = false;
 	PrisonPoliceIsPresent = false;
 	PrisonMaid.Stage = "20";
@@ -766,6 +823,7 @@ function PrisonArrestLeave() {
 function PrisonDiceBack() {
 	LogDelete("Stolen", "BadGirl");
 	LogDelete("Hide", "BadGirl");
+	LogDelete("Caught", "BadGirl");
 }
 
 

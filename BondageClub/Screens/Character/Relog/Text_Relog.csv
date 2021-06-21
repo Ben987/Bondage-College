@@ -5,4 +5,10 @@ Password,Password:
 LogBack,Log back
 GiveUp,Give up
 ValidatingNamePassword,Validating name and password...
+LoginQueueWait,Waiting in queue on position: QUEUE_POS
 InvalidNamePassword,Invalid name or password
+ErrorDisconnectedFromServer,Disconnected from server. Retrying...
+ErrorDuplicatedLogin,Disconnected for duplicated login
+ErrorUnableToConnect,Unable to connect to server. Retrying...
+ErrorRateLimited,Connection rejected: Too many connections from your address
+EnterNamePassword,Enter your name and password

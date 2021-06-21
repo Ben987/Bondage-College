@@ -1,8 +1,72 @@
 Preferences,- Preferences -
+GeneralPreferences,- General Preferences -
+DifficultyPreferences,- Multi Player Difficulty Preferences -
+RestrictionPreferences,- Restriction Preferences -
 ChatPreferences,- Chat Preferences -
 AudioPreferences,- Audio Preferences -
 ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
 SecurityPreferences,- Security Preferences -
+VisibilityPreferences,- Item Preferences -
+VFXPreferences,- Graphical Preferences -
+OnlinePreferences,- Online Preferences -
+ImmersionPreferences,- Immersion Preferences -
+ControllerPreferences,- Controller Preferences -
+NotificationsPreferences,- Notification Preferences -
+HomepageGeneral,General
+HomepageDifficulty,Difficulty
+HomepageRestriction,Restriction
+HomepageChat,Chat
+HomepageAudio,Audio
+HomepageArousal,Arousal
+HomepageSecurity,Security
+HomepageVisibility,Item Visibility
+HomepageOnline,Online
+HomepageImmersion,Immersion
+HomepageGraphics,Graphics
+HomepageController,Controller
+HomepageNotifications,Notifications
+DifficultyTitle,The difficulty mode enforces BDSM restrictions in multi-player only.  Click for details.
+DifficultyLevel0,Roleplay
+Difficulty0Text0,Roleplay - This mode is fully open to customise your experience.
+Difficulty0Text1,It allows you to choose which restrictions or mechanisms to ignore.
+Difficulty0Text2,"You can select this mode any time, but you won't be able"
+Difficulty0Text3,to select the Hardcore or Extreme mode for seven days.
+Difficulty0Text4,
+DifficultyLevel1,Regular
+Difficulty1Text0,Regular - This default mode enforces the basic rules and restrictions.
+Difficulty1Text1,It's made to restrict you and keep you safe at the same time.
+Difficulty1Text2,Lots of options can be configured under this mode.
+Difficulty1Text3,"You can select this mode any time, but you won't be able"
+Difficulty1Text4,to select the Hardcore or Extreme mode for seven days.
+DifficultyLevel2,Hardcore
+Difficulty2Text0,Hardcore - This mode is geared for players wanting to be helpless.
+Difficulty2Text1,"No rescue maid will come, and no NPC will help you out."
+Difficulty2Text2,"No safeword can be used, you must find help from players."
+Difficulty2Text3,You must be a member for at least seven days to select this mode.
+Difficulty2Text4,You cannot select this if you've changed mode in the last seven days.
+DifficultyLevel3,Extreme
+Difficulty3Text0,Extreme - This mode is built for players wanting to be full slaves.
+Difficulty3Text1,"No rescue maid will come, and no NPC will help you out."
+Difficulty3Text2,No safeword can be used and you cannot leave your owner.
+Difficulty3Text3,"All immersion settings are maxed, and you cannot block any item."
+Difficulty3Text4,You cannot select this if you've changed mode in the last seven days.
+DifficultySummary0A,Easy mode - Restrictions and game mechanisms
+DifficultySummary0B,can be ignored with toggles.  For pure roleplayers.
+DifficultySummary1A,"Normal mode - Basic restrictions are enforced, "
+DifficultySummary1B,many options to protect you.  For most players.
+DifficultySummary2A,"Hard mode - No rescue maids, no safeword and no "
+DifficultySummary2B,help from any NPC.  For players that want trouble.
+DifficultySummary3A,"Slavery mode - No maids, no safeword, no NPC help, "
+DifficultySummary3B,"no blocked items, cannot leave owner.  Fully helpless."
+DifficultyAlreadyPlayingOn,You're already playing on that difficulty mode.
+DifficultyWaitSevenDays,You need to wait NumberOfHours hours before you can activate this mode.
+DifficultyIAccept,I accept the consequences and want to use this mode.
+DifficultyChangeMode,Go
+RestrictionAccess,You can configure game restrictions to bypass in the multi-player environment.
+RestrictionNoAccess,Players using the Roleplay difficulty can configure multi-player restrictions to bypass.
+RestrictionBypassStruggle,Bypass the struggling mini-game.
+RestrictionSlowImmunity,Cannot be slowed down from leaving a room.
+RestrictionBypassNPCPunishments,Skip punishment when calling maids from chat room
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -15,6 +79,8 @@ ErrorInvalidColor,Put a valid hex #red-green-blue color
 ColorTheme,Color theme:
 Light,Light
 Dark,Dark
+Light2, Light 2,
+Dark2,Dark 2,
 EnterLeaveStyle,Enter/Leave message style:
 Normal,Normal
 Smaller,Smaller
@@ -27,25 +93,61 @@ DisplayTimestamps,Display timestamps
 ColorNames,Color names
 ColorActions,Color actions
 ColorEmotes,Color emotes
+ColorActivities,Color Activities
+ShrinkNonDialogue,Shrink all messages except dialogue
 ShowActivities,Show sexual activities & orgasms
+AutoBanBlackList,Ban blacklist when creating a room
+AutoBanGhostList,Ban ghostlist when creating a room
+SearchShowsFullRooms,Display full chatrooms
+SearchFriendsFirst,Order rooms by number of friends
+DisableAnimations,Disable scripted assets on others
+ShowAutomaticMessages,Show all automatic messages
+PreserveWhitespace,Preserve whitespace in messages
 AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
+AudioNotifications,Allow audio alerts for notifications
+ImmersionLockSetting,Lock this menu while bound
+ReturnToChatRoom,Return to chatrooms on relog
+ReturnToChatRoomAdmin,Auto-remake rooms
+SenseDepMessages,Hide others' messages
+ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
+BlockGaggedOOC,Prevent OOC & whispers while gagged
+StimulationEvents,Events while plugged or vibed
+ChatRoomMuffle,Garble chat room names and descriptions while blind
 SensDepSetting,Sensory deprivation setting
+SensDepLight,Light
 SensDepNames,Hide names
-SensDepTotal,Total
-BlindDisableExamine,Disable examining people when blind
-DisableAutoRemoveLogin,Keep all of your restraints when relogging
+SensDepTotal,Heavy
+SensDepExtreme,Total
+DoBlindFlash,Flash after blindness
+AllowPlayerLeashing,"Players can drag you to rooms when leashed"
+DisableAutoMaid,Maids come automatically when restrained
+DisablePickingLocksOnSelf,Locks on you can't be picked
+BlindDisableExamine,Disable examining when blind
+DisableAutoRemoveLogin,Keep all restraints when relogging
+OfflineLockedRestrained,Cannot enter single-player rooms when restrained
+GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
+GeneralAnimationQuality0,Max
+GeneralAnimationQuality50,High
+GeneralAnimationQuality100,Medium
+GeneralAnimationQuality200,Low
+GeneralAnimationQualityText,Animation quality (reduce if inputs such as sliders are slow to respond)
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
+EnableSafeword,Allow Safeword use (Cannot enable while bound)
+ConfirmSafeword,(Click to confirm) Allow Safeword use (Cannot enable while bound)
+EnableWardrobeIcon,Show Wardrobe icon to others while in the appearance menu
+AllowFullWardrobeAccess,Allow others to alter your whole appearance
+BlockBodyCosplay,Prevent others from changing cosplay items
 UpdateEmailDescription,Linking an email will allow password recovery
 UpdateEmail,Update Email
 UpdateEmailOld,Current email:
 UpdateEmailNew,New email:
 UpdateEmailEmpty,"No email saved, write here to add one"
 UpdateEmailLinked,"An email is linked, write it here to update it"
-UpdateEmailSuccess,Your email has been updated !
+UpdateEmailSuccess,Your email has been updated.
 UpdateEmailFailure,Current email does not match
 UpdateEmailInvalid,Invalid characters
 ArousalShowOtherMeter,Show other characters meter
@@ -56,10 +158,39 @@ ArousalActiveNoMeter,Allow without a meter
 ArousalActiveManual,Allow with a manual meter
 ArousalActiveHybrid,Allow with a hybrid meter
 ArousalActiveAutomatic,Allow with a locked meter
+VFX,Arousal meter visuals
+VFXInactive,Bare Meter
+VFXSolid,Solid Glow
+VFXAnimatedTemp,Temporary Animation
+VFXAnimated,Constant Animation
 ArousalVisible,Meter visibility:
 ArousalVisibleAll,Show arousal to everyone
 ArousalVisibleAccess,Show if they have access
 ArousalVisibleSelf,Show to yourself only
+ArousalFetish,Fetish preferences:
+ArousalFetishBondage,Being restrained
+ArousalFetishGagged,Being gagged
+ArousalFetishBlindness,Being blind
+ArousalFetishDeafness,Being deaf
+ArousalFetishChastity,Being chaste
+ArousalFetishExhibitionist,Being naked
+ArousalFetishMasochism,Masochism
+ArousalFetishSadism,Sadism
+ArousalFetishRope,Rope
+ArousalFetishLatex,Latex
+ArousalFetishLeather,Leather
+ArousalFetishMetal,Metal
+ArousalFetishTape,Tape
+ArousalFetishNylon,Nylon
+ArousalFetishLingerie,Lingerie
+ArousalFetishPony,Pony
+ArousalFetishABDL,ABDL
+ArousalFetishPet,Pet play
+ArousalFetishLove0,Hate it
+ArousalFetishLove1,Doesn't like it
+ArousalFetishLove2,Neutral on it
+ArousalFetishLove3,Like it
+ArousalFetishLove4,Adore it
 ArousalActivity,Activity preferences:
 ArousalActivityLoveSelf,Done on yourself:
 ArousalActivityLoveOther,Doing it to others:
@@ -90,9 +221,75 @@ ArousalZoneItemHands,Hands
 ArousalZoneItemNeck,Neck
 ArousalZoneItemMouth,Mouth & Lips
 ArousalZoneItemHead,Head & Hair
+ArousalZoneItemNose,Nose
 ArousalZoneItemEars,Ears
+ArousalZoneItemHood,Head
 ArousalStutter,Speech stuttering:
 ArousalStutterNone,Never stutter
 ArousalStutterArousal,When you're aroused
 ArousalStutterVibration,When you're vibrated
 ArousalStutterAll,Aroused & vibrated
+VisibilityGroup,Group:
+VisibilityAsset,Asset:
+VisibilityCheckboxHide,Hide
+VisibilityCheckboxBlock,Block
+VisibilityWarning,This icon will appear beside a character that's wearing a hidden item
+VisibilityReset,Reset All
+VisibilityResetDescription,This will reset all items to be visible. Click again to confirm and exit.
+VisibilityLocked,All items are forced visible under the Extreme difficulty mode
+LeaveSave,Accept changes
+LeaveNoSave,Cancel changes
+GraphicsFont,Game Font
+GraphicsFontDisclaimer,Fallback fonts will be used if your chosen font is unsupported on your device.
+Arial,Arial
+TimesNewRoman,Times New Roman
+Papyrus,Papyrus
+ComicSans,Comic Sans
+Impact,Impact
+Verdana,Verdana
+HelveticaNeue,Helvetica Neue
+CenturyGothic,Century Gothic
+Georgia,Georgia
+CourierNew,Courier New
+Copperplate,Copperplate
+GraphicsInvertRoom,Flip the room vertically when upside-down
+GraphicsStimulationFlash,Screen filters when stimulated by events
+Sensitivity,Sensitivity
+ControllerActive,Controller Active
+MapButtons,Map Buttons
+MapSticks,Map Sticks
+MoveLeftStickUp,move left stick up
+MoveLeftStickRight,move left stick right
+PressA,Press A
+PressB,Press B
+PressX,Press X
+PressY,Press Y
+PressUpOnDpad,Press Up on Dpad
+PressDownOnDpad,Press Down on Dpad
+PressLeftOnDpad,Press Left on Dpad
+PressRightOnDpad,Press Right on Dpad
+DeadZone,Dead Zone
+NotificationsAlertType0,Off
+NotificationsAlertType1,(1) in title
+NotificationsAlertType2,Popup
+NotificationsAlertType3,(1) in icon
+NotificationsExplanation,Raise notifications for missed events:
+NotificationsAudioExplanation1,: Play a sound for only
+NotificationsAudioExplanation2,the first occurrence of an event
+NotificationsOnly,Only:
+NotificationsBeeps,Beeps
+NotificationsChatMessage,Messages in chat rooms
+NotificationsChatMessageNormal,Normal Messages
+NotificationsChatMessageWhisper,Whispers
+NotificationsChatMessageActivity,Items/Activities
+NotificationsChatJoin,Players entering chat rooms
+NotificationsChatJoinOwner,Owner
+NotificationsChatJoinLovers,Lovers
+NotificationsChatJoinFriendlist,Friends
+NotificationsChatJoinSubs,Owned Subs
+NotificationsDisconnect,Disconnect from the game
+NotificationsLarp,Your turn in a LARP game
+NotificationsTestRaise,Raise a test notification
+NotificationsTestReset,Clear raised notifications
+NotificationsTestMessage,Hello there!
+Page,Page

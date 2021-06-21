@@ -1,0 +1,204 @@
+PlayerGagged,,,"Girl, I'm not going to try to translate your mumbles.",,
+0,,,(She inspects your restraints and looks at you from head to toes.)  What happened here?,,Player.IsRestrained()
+0,,,(She looks at the maid and turns to you.)  What happened here?,,!Player.IsRestrained()
+0,,Who are you?,I'm Mistress DialogCharacterName.  I've reserved this room.  You should not be here.  What's going on?,DialogRemove(),
+0,,(Whimper in your gag.),(She stares at your gag and smirks.)  Let's remove that for now.  (She unstraps your gag and confiscates it.),"DoActivity(""InterviewMistressUngagPlayer"")",!Player.CanTalk()
+0,10,Your maid is really kinky.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,Player.IsRestrained()
+0,10,I started on my own and she continued.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,Player.IsRestrained()
+0,10,I fell into her trap.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,Player.IsRestrained()
+0,10,I had some fun with the maid.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,!Player.IsRestrained()
+0,10,The maid needed some discipline.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,!Player.IsRestrained()
+0,10,She wanted to get in trouble.,She should be done cleaning and you should not be here.  I've reserved this room for an interview with a journalist.,,!Player.IsRestrained()
+0,,(Leave her.),,DialogLeave(),
+10,20,I'm the journalist.,Oh really?  And for which company are you working for?,,
+10,20,I will be doing that interview.,Oh really?  And for which company are you working for?,,
+10,30,I guess I should go then.,Not so fast young lady.  You and the maid must be punished first.,,
+10,30,I'm sorry Miss.,"Sorry or not, you and the maid are getting punished.",,
+20,30,The Daily Planet.,Very funny young lady.  You and the maid will be punished for that.,,
+20,1000,City News.,"Very good, sorry about that, lets get you back in your clothes.",,!Player.IsRestrained()
+20,1000,City News.,"Very good, sorry about that, lets get you back in your clothes.  (She releases you from your restraints.)","DoActivity(""InterviewMistressReleasePlayer"")",Player.IsRestrained()
+20,30,The Daily Bugle.,Very funny young lady.  You and the maid will be punished for that.,,
+20,30,I forgot the name.,You're a horrible liar young lady.  You and the maid will be punished for that.,,
+30,40,You can't punish us!,I can and I will.  You two need to learn about strict discipline.,"DialogChangeReputation(""Dominant"", 2)",
+30,40,This isn't fair.,I make the rules here.  You two need to learn about strict discipline.,,
+30,40,(Sigh and bow your head.),Good girl.  You two need to learn about strict discipline.,"DialogChangeReputation(""Dominant"", -2)",
+40,50,Please don't be too strict.,Begging won't help you girl.  I want you both naked.,,
+40,50,What do you want from us?,"First thing first, I want you both naked.",,
+50,60,Yes Mistress.,(She smiles and stares at you.)  Maybe you will enjoy this.  (She strips you both naked.),"DoActivity(""InterviewMistressStripBoth"")",
+50,60,Is that necessary?,(She grins and nods.)  I judge what's necessary.  (She strips you both naked.),"DoActivity(""InterviewMistressStripBoth"")",
+50,60,Do not touch me!,(She grabs your face to shut you up.)  I will enjoy this.  (She strips you both naked.),"DoActivity(""InterviewMistressStripBoth"")",
+60,70,This is so humiliating.,"It's only beginning.  (She sits on the drawer, grab the maid, put her over her knees and spank her hard.)  Now it's your turn.","DoActivity(""InterviewMistressSpankMaid"")",
+60,70,Are you happy now?,"Not yet.  (She sits on the drawer, grab the maid, put her over her knees and spank her hard.)  Now it's your turn.","DoActivity(""InterviewMistressSpankMaid"")",
+70,,,It's your turn to be spanked.  Come here.,,
+70,,Poor girl.  (Check on the maid.),,DialogLeave(),
+70,80,(Present your butt.),"(She grabs you by the hair, put you on her knees and spanks you with vigor.)","DoActivity(""InterviewMistressSpankPlayer"")",
+70,80,This is going too far.,"(She grabs you by the hair, put you on her knees and spanks you with vigor.)","DoActivity(""InterviewMistressSpankPlayer"")",
+80,90,Please Miss!  It hurts so much.,"So, you like pleasure more than pain little one?  (She starts to caress your leg.)","DialogChangeReputation(""Dominant"", -2)",
+80,90,That's the best you can do?,"You're a tough girl, aren't you?  You don't feel anything?  (She starts to caress your leg.)","DialogChangeReputation(""Dominant"", 2)",
+80,90,(Whimper silently from the pain.),"I like whimpers, but there's one sound I love best.  (She starts to caress your leg.)",,
+90,100,That feels good.,"Forget it slave, you're not getting any fun with that device on.  (She laughs.)  Time for your punishment!",,Player.IsVulvaChaste()
+90,100,"Oh yes, fuck me.","Forget it slave, you're not getting any fun with that device on.  (She laughs.)  Time for your punishment!",,Player.IsVulvaChaste()
+90,100,What are you doing?,"It doesn't matter, you're not getting any fun with that device on.  (She laughs.)  Time for your punishment!",,Player.IsVulvaChaste()
+90,100,(Moan silently.),"Forget it slave, you're not getting any fun with that device on.  (She laughs.)  Time for your punishment!",,Player.IsVulvaChaste()
+90,100,That feels good.,"(She masturbates you skillfully, giving you an orgasm in front of the camera.)  Enough!  Time for your punishment.","DoActivity(""InterviewMistressMasturbatePlayer"")",!Player.IsVulvaChaste()
+90,100,"Oh yes, fuck me.","(She masturbates you skillfully, giving you an orgasm in front of the camera.)  Enough!  Time for your punishment.","DoActivity(""InterviewMistressMasturbatePlayer"")",!Player.IsVulvaChaste()
+90,100,What are you doing?,"(She masturbates you skillfully, giving you an orgasm in front of the camera.)  Enough!  Time for your punishment.","DoActivity(""InterviewMistressMasturbatePlayer"")",!Player.IsVulvaChaste()
+90,100,(Moan silently.),"(She masturbates you skillfully, giving you an orgasm in front of the camera.)  Enough!  Time for your punishment.","DoActivity(""InterviewMistressMasturbatePlayer"")",!Player.IsVulvaChaste()
+100,,Isn't it enough already?,,"DoActivity(""InterviewMistressPunishPlayer"")",
+100,,This is a huge mistake.,,"DoActivity(""InterviewMistressPunishPlayer"")",
+100,,Yes Mistress.,,"DoActivity(""InterviewMistressPunishPlayer"")",
+PunishmentIntroClubSlave,,,"For the next hour, you two will pay back your bad deeds by working as club slaves.",,
+PunishmentClubSlave,200,A club slave Miss?,"You know the drill, you will wander naked in the club, serving our naughty customers.",,
+PunishmentClubSlave,200,What is that?,"Don't pretend you don't know, you will wander naked in the club, serving our naughty customers.",,
+PunishmentClubSlave,200,You can't do that!,"Oh yes, I can.  You will wander naked in the club, serving our naughty customers.",,
+200,210,This is inhumane!,I've heard enough from you.  (She uses a gag on you.),"DoActivity(""InterviewMistressGagBoth"")",
+200,210,Very well.,"Good girl, but now I've heard enough from you.  (She uses a gag on you.)","DoActivity(""InterviewMistressGagBoth"")",
+210,,What the hell?,,,
+210,220,(Try to scream.),(She laughs at your screams.)  Isn't the sound of silence wonderful?  (She picks your camera.)  Is that yours?,"DoActivity(""InterviewMistressGetCamera"")",
+210,220,(Adjust to the gag.),(She smirks.)  Isn't the sound of silence wonderful?  (She picks your camera.)  Is that yours?,"DoActivity(""InterviewMistressGetCamera"")",
+210,220,(Stay silent.),(She smiles.)  Isn't the sound of silence wonderful?  (She picks your camera.)  Is that yours?,"DoActivity(""InterviewMistressGetCamera"")",
+220,230,(Nod yes.),Great!  You don't mind if I take a few pictures then?  (She snaps a few nude pictures of you and the maid.),"DoActivity(""InterviewMistressUseCamera"")",
+220,230,(Shake your head no.),No?  I'll take a few pictures then.  (She snaps a few nude pictures of you and the maid.),"DoActivity(""InterviewMistressUseCamera"")",
+230,240,(Protest in your gag.),These are great pictures.  I'll send them to the City News team.  I'm doing the interview with them once I'm done with you two.,"DoActivity(""InterviewMistressSendPictures"")",
+230,240,(Stay silent.),These are great pictures.  I'll send them to the City News team.  I'm doing the interview with them once I'm done with you two.,"DoActivity(""InterviewMistressSendPictures"")",
+240,250,(Blush and stay silent.),"(She sends the pictures as you stay silent.)  Alright, let's get you two ready to serve.  (She looks in a leather bag.)","DialogChangeReputation(""Dominant"", -2)",
+240,250,(Grumble loudly.),"(She sends the pictures as you grumble loudly in the gag.)  Alright, let's get you two ready to serve.  (She looks in a leather bag.)","DialogChangeReputation(""Dominant"", 2)",
+240,250,(Shake your head no.),"(She sends the pictures as you seem to disagree.)  Alright, let's get you two ready to serve.  (She looks in a leather bag.)",,
+250,,,You're almost ready to serve our customers.  (She searches in a leather bag.),,
+250,260,(Check in her bag.),(There are lots of restraints and gags in the bag.  The camera zooms on them.)  I found something for you two!,"DoActivity(""InterviewMistressCheckBag"")",
+250,260,(Remove your gag.),"(She quickly pounces on you, slaps your face and prevents you from removing the gag.)  I found something for you two!","DoActivity(""InterviewMistressTryRemoveGag"")",
+250,,(Check at the maid.),,DialogLeave(),
+260,270,(Give her a curious look.),(She gets two green slave collars and two thick leather hoods.)  You will be mute and blind for your trip.,,
+260,270,(Look away.),(She gets two green slave collars and two thick leather hoods.)  You will be mute and blind for your trip.,,
+270,280,(Beg with your eyes.),"(She locks the hoods and collars on you and the maid, leaving you blind.) Time to go!  (She leaves the camera on you.)","DoActivity(""InterviewMistressHood"")",
+270,280,(Shake your head no.),"(She locks the hoods and collars on you and the maid, leaving you blind.) Time to go!  (She leaves the camera on you.)","DoActivity(""InterviewMistressHood"")",
+270,280,(Nod slowly.),"(She locks the hoods and collars on you and the maid, leaving you blind.) Time to go!  (She leaves the camera on you.)","DoActivity(""InterviewMistressHood"")",
+280,290,(Give her the middle finger.),"(She gets really angry and pushes you out of the dungeon.  You hear people laughing, you're probably in the main hall.)","DialogChangeReputation(""Dominant"", 3)",
+280,290,(Try to keep your balance.),"(She leads you out of the dungeon.  You hear people laughing, you're probably in the main hall.)",,
+280,290,(Falls on your knees and cry.),"(She picks you up and leads you out of the dungeon.  You hear people laughing, you're probably in the main hall.)","DialogChangeReputation(""Dominant"", -3)",
+290,,(Beg for help.),"(As you beg for help, a little group surrounds you to take pictures with your camera and their phones.)","DoActivity(""InterviewMistressPunishment1"")",
+290,,(Try to remove the hood.),(You struggle to remove the hood in vain.  You feel like someone is messing with it to make it harder.),"DoActivity(""InterviewMistressPunishment2"")",
+290,,(Walk around.),(You bump into walls and laughing girls.  They fondle and spank you as you walk by.),"DoActivity(""InterviewMistressPunishment3"")",
+290,,(Wait patiently.),"(You try to wait but girls come to see you, they take selfies with you using your own camera.)","DoActivity(""InterviewMistressPunishment4"")",
+PunishmentIntroBondage,,,"You two need to learn about discipline, and some strict, very strict bondage will help.",,
+PunishmentBondage,300,Strict bondage?,No!  Very strict bondage.  Give me your hands girl.,,
+PunishmentBondage,300,I doubt it will help.,I'll be the judge on that.  Give me your hands girl.,,
+PunishmentBondage,300,If you think so.,Absolutely.  Give me your hands girl.,,
+300,,(TO DO),(TO DO),,
+PunishmentIntroChastity,,,You two will wear some special undies for a while.  Steel undies.,,
+PunishmentChastity,400,Steel undies?,You know what I'm talking about.  You will both be locked into chastity belts.,,
+PunishmentChastity,400,What are you talking about?,You know what I'm talking about.  You will both be locked into chastity belts.,,
+PunishmentChastity,400,Not a chastity belt!,Damn right.  You will both be locked into chastity belts.,,
+400,,(TO DO),(TO DO),,
+500,,,(She seems furious at you two.)  How dare you?  Release me now or you'll be in trouble for years!,,
+500,501,Calm down girl.  I'm in charge now.,(She struggles but fails to get free.)  I'm not calming down.  You two will be punished severely.,"DialogChangeReputation(""Dominant"", 4)",
+500,501,Are you comfy on that cross?,(She struggles but fails to get out.)  Do I look comfy?  You two will be punished severely.,,
+500,501,You're the one in trouble.,(She struggles but fails to get out.)  Wait until I get out.  You two will be punished severely.,"DialogChangeReputation(""Dominant"", 2)",
+500,,(Leave her.),,DialogLeave(),
+501,,,(She struggles in vain.)  You two will be punished for years.,,
+501,,(Gag her.),(The maid cheers and gives you a gag to use on her.),"DoActivity(""InterviewMistressGag"")","CanDoActivity(""InterviewMistressGag"")"
+501,,(Ungag her.),"(You remove her gag but she's still furious.)  Cherish your freedom girls, it will end very soon.","DoActivity(""InterviewMistressUngag"")","!CanDoActivity(""InterviewMistressGag"")"
+501,,(Tease her.),"(You rub yourself against her, caress her and kiss her slowly.  She bites her lips not to moan.)","DoActivity(""InterviewMistressTease"")",
+501,,(Spank her.),(You both take turns to spank her butt as she struggles madly.)  You two are getting deeper in trouble.,"DoActivity(""InterviewMistressSpank"")",
+501,,(Use the crop on her.),(You both hit her pretty hard using your crops.)  Ow!  Stop it!,"DoActivity(""InterviewMistressCrop"")","CanDoActivity(""InterviewMistressCrop"")"
+501,,(Use the whip on her.),(You take turns to whip her as she screams with each lash.)  Aaargh!  Get me out and I'll show you how to use a whip.,"DoActivity(""InterviewMistressWhip"")","CanDoActivity(""InterviewMistressWhip"")"
+501,,(Use the cattle prod on her.),(You and the maid zap her with the cattle prod as the camera zooms in.)  Careful with these!,"DoActivity(""InterviewMistressProd"")","CanDoActivity(""InterviewMistressProd"")"
+501,,(Masturbate in front of her.),(You masturbate and moan in front of her as she gets angrier.)  Get me out now!,"DoActivity(""InterviewMistressMasturbate"")",
+501,,(Make out with the maid.),(You and the maid start to make out in front of her as she trashes in her bondage.),"DoActivity(""InterviewMistressMakeOut"")",
+501,,(Leave her.),,DialogLeave(),
+1000,1010,"It's fine, I can do the interview like that.",Well aren't you a kinky journalist?  (She spanks your butt.)  Let's do that interview.,"DoActivity(""InterviewMistressSpankPlayer"")",
+1000,1010,"Yes, I should dress back up.",(You dress back up slowly as the camera follows your moves.)  Let's do that interview.,"DoActivity(""InterviewMistressChangePlayerBack"")",
+1010,1020,What about the maid?,She will get punished after the interview.  (She ponders.)  Unless you want to witness her punishment while we talk.,,
+1010,1020,Is the maid staying for the interview?,"She's not leaving, she will get punished after the interview.  (She ponders.)  Unless you want to witness her punishment while we talk.",,
+1010,1020,(Look at the maid.),"Don't worry about her, she will get punished after the interview.  (She ponders.)  Unless you want to witness her punishment while we talk.",,
+1020,1030,That's an interesting idea.,Grab your camera!  It will be a spicy interview.,,
+1020,1030,Punishment Miss?  Isn't it cruel?,Nonsense.  Grab your camera girl!  It will be a spicy interview.,"DialogChangeReputation(""Dominant"", -2)",
+1020,1030,Great idea!  Can I punish her also?,You can participate.  Grab your camera!  It will be a spicy interview.,"DialogChangeReputation(""Dominant"", 2)",
+1030,1040,(Get your camera to snap pictures.),(The Mistress grabs the maid and puts her into heavy bondage so you can take pictures.),"DoActivity(""InterviewMistressTakePicture"")","!CanDoActivity(""InterviewTakePicture"")"
+1030,1040,(Hold your camera to snap pictures.),(The Mistress grabs the maid and puts her into heavy bondage so you can take pictures.),"DoActivity(""InterviewMistressTakePicture"")","CanDoActivity(""InterviewTakePicture"")"
+1040,,,Do you have enough pictures?,,
+1040,,(Look at the maid.),,DialogLeave(),
+1040,1050,I have all the pictures I need.,"Very good, now let's talk about the Bondage Club while our victim is struggling.",,
+1050,,,Let's continue this interview.,,
+1050,,Tell me about the club.,We are an adult only club who shares a passion on BDSM.  Our members are open minded and support each other.,,
+1050,,What is the main club activity?,"Bondage is our speciality, couldn't you tell?  (She checks on the maid and tightens her restraints.)","DoActivity(""InterviewMistressTightenMaid"")",
+1050,,Can strangers come anytime?,"Strangers are always welcome, they will be greeted by our wonderful maid staff, when they don't get in trouble.",,
+1050,,What's the price to become a member?,"Becoming a member is free, but we have a store and many activities to make profits.",,
+1050,,Is the club violent?,"We do use force to punish, but within the victim limits.  (She grabs the maid and spanks her a few times for the camera.)","DoActivity(""InterviewMistressSpankMaid"")",
+1050,,Who owns the club?,The Mistresses own the club.  Members can become Mistresses with time and work with us to improve it.,,
+1050,1060,That's all the questions I had.,"Very well, would you like to experience the dungeon then?  (She gets a few more restraints and shows them.)","DoActivity(""InterviewMistressPrepareDungeon"")",
+1050,,(Look at the maid.),,DialogLeave(),
+1060,1070,What do you mean?,There's no better way to learn about the club than to restrain someone or get restrained yourself.,,
+1060,1070,I'd love to punish your maid.,"Excellent, there's no better way to learn about the club than to restrain someone or get restrained yourself.","DialogChangeReputation(""Dominant"", 2)",
+1060,1070,This is scary.,"Nonsense, there's no better way to learn about the club than to restrain someone or get restrained yourself.","DialogChangeReputation(""Dominant"", -2)",
+1070,,,Would you like to experience the strictness of the club?  You can also play with the maid.  (She winks at you.),,
+1070,1080,Maybe you could restrain me.,"Absolutely!  (She gets many restraints and use them on you.  She then grabs your camera.)  Say ""cheese"".","DoActivity(""InterviewMistressFinalRestrainPlayer"")",
+1070,,I'll check your maid.  (Leave her.),,DialogLeave(),
+1080,,,(She looks at you and smirks.),,
+1080,,(Do a sexy pose.),Your company will enjoy these pictures.  (She takes your own camera and snaps some pictures.),"DoActivity(""InterviewMistressFinalPlayerPicture"")",
+1080,,(Whimper and struggle.),It's not tight enough?  Let me find something else for you.  (She changes your restraints and smiles.),"DoActivity(""InterviewMistressFinalPlayerNew"")",
+1080,,(Offer your butt.),(She grabs you and spanks your butt really hard as the camera zooms in.)  It was too tempting.,"DoActivity(""InterviewMistressFinalPlayerSpank"")",
+1080,,(Check on the maid.),,DialogLeave(),
+2000,2010,I found a girl strapped up.,"This is none of your business, you're supposed to clean the room.  Is the room ready?  I will inspect it.",,
+2000,2010,I'm here to clean the room.,"Good girl, is the room ready?  I will inspect it.",,
+2000,2010,(Stay silent.),(She looks around.)  Is the room ready?  I will inspect it.,,
+2000,2010,(Struggle in your cuffs.),(She struggles for the camera.)  Stop struggling and start cleaning.  Is the room ready?  I will inspect it.,"DoActivity(""InterviewMistressPlayerStruggle"")",!Player.CanInteract()
+2010,,,"(She stares at you.)  Alright little maid, is the room clean and ready?  I will inspect it.",,
+2010,2200,The place is ready to inspect Mistress.,"(She walks around the room to inspect it and smiles.)  Well done little maid, the sorority can be proud.",,"CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,2200,(Do a maid curtsy.),"(She walks around the room to inspect it and smiles.)  Well done little maid, the sorority can be proud.",,"CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,2020,The place is ready to inspect Mistress.,(She gets angry and stares at a throne.)  Does this throne look clean?  Is it suitable for me to sit on it?,,"!CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,2020,(Do a maid curtsy.),(She gets angry and stares at a throne.)  Does this throne look clean?  Is it suitable for me to sit on it?,,"!CanDoActivity(""InterviewMaidCleanForMistressPerfect"")"
+2010,,(Clean the room for her.),(She follows you as you clean the room sexily.  She snaps her finger each time you miss a spot.),"DoActivity(""InterviewMaidCleanForMistress"")","CanDoActivity(""InterviewMaidCleanForMistress"")"
+2010,,I don't have any cleaning tools.,(She grumbles and quickly straps a duster gag around your head.)  Get to work!,"DoActivity(""InterviewMaidGagFromMistress"")","!CanDoActivity(""InterviewMaidCleanForMistress"")"
+2010,,(Check the room.),,DialogLeave(),
+2020,2030,I can clean it some more.,"Too late girl, since there's nowhere to sit, I'll make a proper seat.",,Player.CanTalk()
+2020,2030,It looks clean to me.,"Well you're wrong, and since there's nowhere to sit, I'll make a proper seat.",,Player.CanTalk()
+2020,2030,I guess it could be better.,"You're right, and since there's nowhere to sit, I'll make a proper seat.",,Player.CanTalk()
+2020,2030,(Nod your head.),"Well you're wrong, and since there's nowhere to sit, I'll make a proper seat.",,!Player.CanTalk()
+2020,2030,(Shake your head no.),"You're right, and since there's nowhere to sit, I'll make a proper seat.",,!Player.CanTalk()
+2030,2040,What do you mean?,You will understand very soon.  (She strips you naked as the camera focus on you.),"DoActivity(""InterviewMaidStripByMistress"")",Player.CanTalk()
+2030,2040,I don't like it.,It doesn't matter.  (She strips you naked as the camera focus on you.),"DoActivity(""InterviewMaidStripByMistress"")",Player.CanTalk()
+2030,2040,(Stare at her curisouly.),You will understand very soon.  (She strips you naked as the camera focus on you.),"DoActivity(""InterviewMaidStripByMistress"")",!Player.CanTalk()
+2030,2040,(Stay silent.),(She strips you naked as the camera focus on you.),"DoActivity(""InterviewMaidStripByMistress"")",!Player.CanTalk()
+2040,2050,You're so kinky.  (Wink at her.),"You're having fun, aren't you?  (She takes a chain and wrap it around your feet.)","DoActivity(""InterviewMaidChainByMistress1"")",
+2040,2050,I cannot clean without my uniform.,You won't be cleaning anymore.  (She takes a chain and wrap it around your feet.),"DoActivity(""InterviewMaidChainByMistress1"")",
+2040,2050,Should I go Miss?,You're not going anywhere.  (She takes a chain and wrap it around your feet.),"DoActivity(""InterviewMaidChainByMistress1"")",
+2050,2060,What's going on?,Aren't you curious?  (She uses a second chain and lock it around your legs.),"DoActivity(""InterviewMaidChainByMistress2"")",
+2050,2060,(Tug on the chain.),You're not getting out girl.  (She uses a second chain and lock it around your legs.),"DoActivity(""InterviewMaidChainByMistress2"")",
+2060,2070,Can't you use ropes instead?,"Stop complaining maid, I'm not done with you.  (She links more chains around your arms.)","DoActivity(""InterviewMaidChainByMistress3"")",
+2060,2070,This is really heavy.,It will not get lighter.  I'm not done with you.  (She links more chains around your arms.),"DoActivity(""InterviewMaidChainByMistress3"")",
+2060,2070,(Bow your head and stay silent.),Good girl!  I'm not done with you yet.  (She links more chains around your arms.),"DoActivity(""InterviewMaidChainByMistress3"")",
+2070,2080,This is excessive Miss.,"Oh really?  (She pushes you down and links the chains, forcing you on all fours.)  And now?","DoActivity(""InterviewMaidChainByMistress4"")",
+2070,2080,(Wiggle your body to make chain sounds.),"Wait!  (She pushes you down and links the chains, forcing you on all fours.)  You can make some noise now.","DoActivity(""InterviewMaidChainByMistress4"")",
+2080,2100,You want me to crawl?,No.  You stay still while I set the interview.  (She prepares the room and releases the journalist.),"DoActivity(""InterviewMaidMistressPrepareRoom"")","CanDoActivity(""InterviewMaidReleaseJournalist"")"
+2080,2100,This isn't comfy.,It's not supposed to be.  You stay still while I set the interview.  (She prepares the room and releases the journalist.),"DoActivity(""InterviewMaidMistressPrepareRoom"")","CanDoActivity(""InterviewMaidReleaseJournalist"")"
+2080,2100,(Grumble quietly.),You stay still while I set the interview.  (She prepares the room and releases the journalist.),"DoActivity(""InterviewMaidMistressPrepareRoom"")","CanDoActivity(""InterviewMaidReleaseJournalist"")"
+2080,2100,You want me to crawl?,No.  You stay still while I set the interview.  (She prepares the room for the interview.),"DoActivity(""InterviewMaidMistressPrepareRoom"")","!CanDoActivity(""InterviewMaidReleaseJournalist"")"
+2080,2100,This isn't comfy.,It's not supposed to be.  You stay still while I set the interview.  (She prepares the room for the interview.),"DoActivity(""InterviewMaidMistressPrepareRoom"")","!CanDoActivity(""InterviewMaidReleaseJournalist"")"
+2080,2100,(Grumble quietly.),You stay still while I set the interview.  (She prepares the room for the interview.),"DoActivity(""InterviewMaidMistressPrepareRoom"")","!CanDoActivity(""InterviewMaidReleaseJournalist"")"
+2100,,,How is my little chained maid doing?  Ready for the interview.,,
+2100,2110,(Watch the interview.),"(She sits on you and grabs your hair.)   Girl, you're the only chair that isn't dirty around here.",,
+2100,,(Check the room.),,DialogLeave(),
+2110,2120,Hey!  It hurts!,You're a chair.  Talk again and I will gag you.,,
+2110,2120,I hope I'm comfy Miss.,You're comfy but you're too loud.  Talk again and I will gag you.,,
+2110,2120,You could sit elsewhere.,"You can't clean, you're my seat.  Talk again and I will gag you.",,
+2110,2120,(Try to stay strong.),"Stay quiet little chair.  If you talk, I will gag you.",,
+2120,,Please Mistress!  It hurts.,That's enough!  (She takes a gag and silences you.)  Let's continue that interview.,"DoActivity(""InterviewMaidGaggedByMistress"")",Player.CanTalk()
+2120,,Give me a break.,That's enough!  (She takes a gag and silences you.)  Let's continue that interview.,"DoActivity(""InterviewMaidGaggedByMistress"")",Player.CanTalk()
+2120,,(Whimper slowly.),(You slowly whimper as the camera zooms on your pain and the interview continues.),"DoActivity(""InterviewMaidWhimper"")",!Player.CanTalk()
+2120,,(Grumble in your gag.),"(You grumble loudly in your gag, but the ignore you and the interview goes on.)","DoActivity(""InterviewMaidGrumble"")",!Player.CanTalk()
+2120,,(Tries to make her fall.),"(You try to shake her off and make her fall, but she avoids it and treats you like a weak rodeo bull.)","DoActivity(""InterviewMaidTryFall"")",
+2120,,(Stand strong.),"(You stand strong and pretend it doesn't hurt, as the Mistress plants her nails in your skin while talking.)","DoActivity(""InterviewMaidStandStrong"")",
+2120,,(Listen to the interview.),(The Mistress stays on you and talks about the Bondage Club with the journalist.),"DoActivity(""InterviewMaidListenInterview"")",
+2120,,(Check the room.),"(You try to check the room, but the Mistress grabs your hair and prevents you.)","DoActivity(""InterviewMaidFailCheck"")",
+2200,2210,My pleasure Miss.,"Good girl, now stay quiet and go fetch some drinks for me and my guess.",,Player.CanTalk()
+2200,2210,Don't mention it.,Now stay quiet and go fetch some drinks for me and my guess.,,Player.CanTalk()
+2200,2210,Should I leave?,No!  You stay quiet and go fetch some drinks for me and my guess.,,Player.CanTalk()
+2200,2210,(Nod happily.),Good girl.  Go fetch some drinks for me and my guess.,,
+2200,2210,(Stay silent.),Good girl.  Go fetch some drinks for me and my guess.,,
+2210,,I don't know how to make drinks.,(She snaps her fingers.)  Girl!  Don't make me angry!,DialogRemove(),Player.CanTalk()
+2210,2220,Very well Miss.  (Go prepare drinks.),"(You exit the scene and the movie crew cleans you up, giving you some drinks.  When you come back, you find the journalist naked and fully restrained.)","DoActivity(""InterviewMaidPrepareDrinks"")",Player.CanTalk()
+2210,2220,(Nod and go prepare drinks.),"(You exit the scene and the movie crew cleans you up, giving you some drinks.  When you come back, you find the journalist naked and fully restrained.)","DoActivity(""InterviewMaidPrepareDrinks"")",
+2220,,,(She plays with the journalist and tease her as she answers questions.),,
+2220,,Do you need anything else Miss?,"I'm good, but make sure our guest feels right at home.  (She winks at you.)",,
+2220,,(Check the room.),,DialogLeave(),

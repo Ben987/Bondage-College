@@ -107,7 +107,7 @@ Hello Madam, would you like to touch me?
 (Tickle her.)
 (Щекоти ее.)
 ###_NPC
-(She trashes around and laughs from your skillful tickling hands.)
+(She thrashes around and laughs from your skillful tickling hands.)
 (Она мечется и смеется от твоих умелых щекочущих рук.)
 ###_PLAYER
 (Kiss her.)

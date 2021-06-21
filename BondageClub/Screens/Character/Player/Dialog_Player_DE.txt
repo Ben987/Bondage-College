@@ -95,6 +95,8 @@ You cannot unlock yourself
 Du kannst dich nicht befreien
 This zone is out of reach from another item
 Diese Zone wird von einem anderen Objekt versperrt
+Another item is blocking access to this lock
+Ein anderes Item blockiert den Zugriff auf dieses Schloss
 You cannot access your items
 Du kommst nicht an deine Items
 Click here to speed up the progress
@@ -259,7 +261,7 @@ SourceCharacter picks a coffee from DestinationCharacter tray.
 SourceCharacter nimmt sich einen Kaffee von DestinationCharacter Servierplatte.
 SourceCharacter buys a hot chocolate from DestinationCharacter tray.
 SourceCharacter kauft eine heiße Schokolade von DestinationCharacter Servierplatte.
-SourceCharacter buys a expresso from DestinationCharacter tray.
+SourceCharacter buys an espresso from DestinationCharacter tray.
 SourceCharacter kauft einen Espresso von DestinationCharacter Servierplatte.
 SourceCharacter buys a cappuccino from DestinationCharacter tray.
 SourceCharacter kauft einen Cappuccino von DestinationCharacter Servierplatte.
@@ -501,18 +503,18 @@ Decrease
 Verringern
 Show chat message
 Chat-Nachricht senden
-SourceCharacter sets DestinationCharacter shock collar to low intensity.
-SourceCharacter stellt DestinationCharacters Elektrohalsband auf "niedrig".
-SourceCharacter sets DestinationCharacter shock collar to moderate intensity.
-SourceCharacter stellt DestinationCharacters Elektrohalsband auf "mittel".
-SourceCharacter sets DestinationCharacter shock collar to high intensity.
+SourceCharacter sets DestinationCharacter AssetName to low intensity.
+SourceCharacter stellt DestinationCharacters AssetName auf "niedrig".
+SourceCharacter sets DestinationCharacter AssetName to moderate intensity.
+SourceCharacter stellt DestinationCharacters AssetName auf "mittel".
+SourceCharacter sets DestinationCharacter AssetName to high intensity.
 SourceCharacter stellt DestinationCharacters Elektrohalsband auf "hoch".
-DestinationCharacterName collar gives her a light shock.
-Ihr Halsband gibt DestinationCharacterName einen leichten Schock.
-DestinationCharacterName collar lets out a sharp jolt!
-Ihr Halsband versetzt DestinationCharacterName einen scharfen Ruck!
-DestinationCharacterName collar delivers an intense shock!
-Ihr Halsband verabreicht DestinationCharacterName einen heftigen Schock!
+DestinationCharacter AssetName gives her a light shock.
+Ihr AssetName gibt DestinationCharacter einen leichten Schock.
+DestinationCharacter AssetName lets out a sharp jolt!
+Ihr AssetName versetzt DestinationCharacter einen scharfen Ruck!
+DestinationCharacter AssetName delivers an intense shock!
+Ihr AssetName verabreicht DestinationCharacter einen heftigen Schock!
 DestinationCharacterName vibrating egg stops vibrating.
 DestinationCharacterNames Vibrator-Ei hört auf zu vibrieren.
 DestinationCharacterName vibrating egg slows down into a light tease.

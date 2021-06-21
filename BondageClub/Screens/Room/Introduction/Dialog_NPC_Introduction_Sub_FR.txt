@@ -4,10 +4,6 @@ Il semble que vous ayez été méchante. Au fait, c'est un beau bâillon que vou
 (Elle lèche ses lèvres en voyant le bâillon et vous permet de la faire taire sans se débattre.)
 (You remove her gag and she smiles at you.)  You're quite fun Miss.  Let me know if you want me to try another gag.
 (Vous enlevez son bâillon et elle vous sourit.) Vous êtes plutôt amusante Miss. Faites-moi savoir si vous voulez que j'essaye un autre bâillon.
-(She watches while you push some earplugs in.) I wont be able to hear you properly now Miss.
-(Elle regarde pendant que vous enfoncez des bouchons dans ses oreilles.) Je ne pourrai plus vous entendre correctement maintenant.
-(You pull the earplugs out.) That's better I can hear you clearly now.
-(Vous retirez les bouchons d'oreille.) C'est mieux, je vous entend clairement maintenant.
 (She turns around submissively while you restrain her arms.)  You have lots of potential in the club Miss.
 (Elle se retourne docilement pendant que vous retenez ses bras.) Vous avez beaucoup de potentiel dans le club Miss.
 (You free her arms and she stretches a little.)  That was nice Miss.
@@ -140,3 +136,49 @@ A sales woman came to sell us armbinders and some belts.  As you can see, she wa
 Une vendeuse est venue nous vendre des monogants et des ceintures. Comme vous pouvez le voir, elle a été très convaincante. (Elle glousse.)
 I'll go get help.  (Leave her.)
 Je vais chercher de l'aide. (La quitter.)
+(She nods as you push some earplugs in.)  I wont be able to hear your orders Miss.
+(Elle hoche la tête lorsque vous lui mettez des bouchons dans les oreilles.) Je ne pourrai pas entendre vos ordres, Miss.
+(You pull the earplugs out.)  I can hear you clearly now.
+(Vous retirez les bouchons de ses oreilles.) Je peux vous entendre clairement maintenant.
+(You use the item on her torso.)  You can use anything you want on me.
+(Vous préparez un objet sur son torse alors qu'elle rougit.) Vous pouvez utiliser ce que vous voulez sur moi.
+(You remove the item from her torso.)  I'm curious to see what you will try next.
+(Vous retirez l'objet de son torse.) Je suis curieuse de voir ce que tu vas utiliser maintenant.
+(You wrap the rope around her legs, tying them together.)  Basic and secure.  I love it Miss.
+(Vous enroulez la corde autour de ses jambes, les attachant ensemble.) Simple et sécure. J'adore ça, Miss.
+(You wrap the rope around her legs, tying them in a mermaid pattern.)  All we need is a mermaid tail now.  (She giggles.)
+(Vous enroulez la corde autour de ses jambes, en les attachant dans un motif de sirène.) Ne manque plus que la queue de sirène! (Elle rigole.)
+(You slowly restrain her arms in a box tie pattern.)  Bondage is so exciting.
+(Vous retenez lentement ses bras dans un motif de cravate.) Le bondage est si excitant!
+(You use the ropes to restrain her in a tight hogtie.)  You've been to the Dojo haven't you?
+(Vous utilisez les cordes pour la retenir dans un hogtie serré.) Vous avez été dans le Dojo, n'est-ce pas?
+(You slowly restrain her wrists behind her back.) And so it begins!
+(Vous attachez lentement ses poignets derrière son dos.) et ça commence!
+(You restain her wrists and elbows behind her back.) I love my elbows being tied miss.
+(Vous attachez ses poignets et ses coudes derrière son dos.) J'adore avoir les épaules attachées Miss.
+(You restrain her wrists and elbows behind her back. And tie a harness around her.) Very nice Miss!
+(Vous attachez ses poignets et ses coudes derrière son dos. Et attachez un harnais autour d'elle.) Très bien Miss!
+(You restain her with ropes so she's on all fours.) I hope nobody rides me like a horse!
+(Vous la retenez avec des cordes pour qu'elle soit à quatre pattes.) J'espère que personne ne m'utilisera comme un cheval!
+(You restrain her wrists behind her back in a handcuff like tie.) This tie is nice. But I wish it was more restrictive.
+(Vous attachez ses poignets derrière son dos comme avec des menottes.) Ce style est bien, mais j'aimerais mieux si ce serait plus restrictif.
+(You use the rope and create a star harness around her body) I really like the look of this harness.
+(Vous utilisez la corde et créez un harnais en étoile autour de son corps) J'aime le look de ce harnais.
+(You use the ropes and create a waist rope around her body.) I'm sorry. But this sorta confuses me. How is this helpful?
+(Vous utilisez les cordes et l'attachez autour de sa taille.) Je suis désolé Miss. Je suis un peu confuse, en quoi est-ce utile?
+(You restrain her legs with ropes and suspend her by the feet from the ceiling.)  Weeeeeeeee!
+(Vous attachez ses jambes avec des cordes et vous la suspendez par les pieds au plafond.) Weeeeeeeee!
+(You carefully hogtie her and suspend her from the ceiling.)  You're a rope master Miss DialogPlayerName.
+(Vous l'attachez soigneusement et vous la suspendez au plafond.) Vous êtes une vrai pro de la corde, Miss DialogPlayerName.
+(You use a rope and restrain it on her crotch.)  I love crotch ropes, they are very intrusive.
+(Vous utilisez une corde et la retenez sur son entrejambe.) J'adore ce style, c'est très intrusif.
+(You use the ropes and create a harness around her body.)  I hope you will link it to something else.
+(Vous utilisez les cordes et créez un harnais autour de son corps.) J'espère que vous l'attacherez à autre chose.
+(You use the ropes and create a diamond harness around her body.)  It's both naughty and stylish.
+(Vous utilisez les cordes et créez un harnais en diamant autour de son corps.) Ça a du style et c'est coquin.
+(You strap the device over her eyes as she tries to look around.)  You know, this will heighten my other senses. Including touch...
+(Vous attachez l'appareil sur ses yeux alors qu'elle essaie de regarder autour de vous.) Vous savez, cela augmentera mes autres sens. Y compris le toucher ...
+(You attach the device to her nose.)  You know, this makes me look silly.
+(Vous attachez l'appareil à son nez.) Vous savez, cela me donne un air d'idiote.
+(You remove the device and she looks at you.) That was something...  What else can we try?
+(Vous enlevez l'appareil et elle vous regarde.) C'était quelque chose ... Que pouvons-nous essayer d'autre?

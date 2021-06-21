@@ -5,32 +5,42 @@ var MaidCleaningPlayerX = 0;
 var MaidCleaningPlayerY = 0;
 var MaidCleaningSpotSize = 100;
 
-// Generates all the spots to clean
+/**
+ * Generates all the spots to clean for the main cleaning minigame
+ * @param {number} MaxSpot - Maximum amount of spots to generate
+ * @returns {void} - Nothing
+ */
 function MaidCleaningGenerateSpots(MaxSpot) {
 
 	// Full the spots sequence
 	MaidCleaningSpots = [];
-	for(var S = 0; S < MaxSpot; S++) {
+	for (let S = 0; S < MaxSpot; S++) {
 
 		// Generates each spot 1 by 1
 		var NewSpot = {
 			X : Math.floor(Math.random() * 1980) + 10,
 			Y : Math.floor(Math.random() * 940) + 10,
 			T : Math.floor(Math.random() * 4) + 1
-		}
+		};
 		MaidCleaningSpots.push(NewSpot);
 
 	}
 
 }
 
-// Draw the cleaning spots
+/**
+ * Draw the cleaning spots for the maid cleaning mini game
+ * @returns {void} - Nothing
+ */
 function MaidCleaningDrawSpots() {
-	for(var S = 0; S < MaidCleaningSpots.length; S++)
+	for (let S = 0; S < MaidCleaningSpots.length; S++)
 		DrawImage("Screens/MiniGame/MaidCleaning/Spot" + MaidCleaningSpots[S].T + ".png", MaidCleaningSpots[S].X - (MaidCleaningSpotSize / 2), MaidCleaningSpots[S].Y - (MaidCleaningSpotSize / 2));
 }
 
-// Loads the maid cleaning mini game
+/**
+ * Loads the maid cleaning mini game. It will select a random background and generate spots based on the difficulty
+ * @returns {void} - Nothing
+ */
 function MaidCleaningLoad() {
 
 	// Picks a random place to clean
@@ -54,7 +64,10 @@ function MaidCleaningLoad() {
 
 }
 
-// Run the maid cleaning mini game
+/**
+ * Runs the maid cleaning mini game
+ * @returns {void} - Nothing
+ */
 function MaidCleaningRun() {
 
 	// The game ends in victory if everything is clean or in defeat if the time runs out
@@ -74,38 +87,59 @@ function MaidCleaningRun() {
 
 }
 
-// Ends the game and sends the result back to the screen
+/**
+ * Ends the game and sends the result back to the screen
+ * @param {boolean} Victory - Whether or not the game was won
+ * @returns {void} - Nothing
+ */
 function MaidCleaningEnd(Victory) {
 	MiniGameVictory = Victory;
 	MiniGameEnded = true;
 	MiniGameTimer = CommonTime();
 }
 
-// When the user clicks in the maid cleaning mini game
+/**
+ * Handles moving the player on the screen with a click, used for mobile users
+ * @returns {void} - Nothing
+ */
 function MaidCleaningDoMove() {
 
 	// If the position changed
 	if (((MaidCleaningPlayerX != MouseX - 500) || (MaidCleaningPlayerY != MouseY - 500)) && (MouseX >= 0) && (MouseY >= 0)) {
-		
-		// Sets the player position		
+
+		// Sets the player position
 		MaidCleaningPlayerX = MouseX - 500;
 		MaidCleaningPlayerY = MouseY - 500;
 		var Range = ((CommonIsMobile) ? (MaidCleaningSpotSize / 1.5) : (MaidCleaningSpotSize / 2));
 
 		// If the game has started, we check the click position and remove a spot at that position
 		if (!MiniGameEnded)
-			for(var S = 0; S < MaidCleaningSpots.length; S++)
+			for (let S = 0; S < MaidCleaningSpots.length; S++)
 				if ((MouseX >= MaidCleaningSpots[S].X - Range) && (MouseX <= MaidCleaningSpots[S].X + Range) && (MouseY >= MaidCleaningSpots[S].Y - Range) && (MouseY <= MaidCleaningSpots[S].Y + Range)) {
 					if (MaidCleaningSpots[S].T == 1) MaidCleaningSpots.splice(S, 1);
 					else MaidCleaningSpots[S].T--;
 					return;
 				}
-		
+
 	}
 
 }
 
-// On mobile, we need to move the player on click
+/**
+ * The player can use the C key to cheat and add 10 extra seconds to win the game
+ * @returns {void} - Nothing
+ */
+function MaidCleaningKeyDown() {
+	if (MiniGameCheatKeyDown()) {
+		MiniGameTimer = MiniGameTimer + 10000;
+		if (MiniGameTimer > CommonTime() + 60000)
+			MiniGameTimer = CommonTime() + 60000;
+	}
+}
+
+/**
+ * Handles clicks during the maid cleaning minigame. On mobile, we need to move the player on a click.
+ */
 function MaidCleaningClick() {
 	if (CommonIsMobile) MaidCleaningDoMove();
 }

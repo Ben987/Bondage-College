@@ -33,7 +33,7 @@ ItemPelvisLeatherCrop,,,(She tries to avoid the crop as you swing it on her butt
 10,,,"Hello nurse DialogPlayerName, would you like to touch me?",,"DialogReputationGreater(""Asylum"", 1)"
 10,,,"Hello Madam, would you like to touch me?",,
 10,,(Pet her.),(She purrs a little as you pet her head gently.),"Blush(""Low"")",
-10,,(Tickle her.),(She trashes around and laughs from your skillful tickling hands.),"Blush(""Low"")",
+10,,(Tickle her.),(She thrashes around and laughs from your skillful tickling hands.),"Blush(""Low"")",
 10,,(Kiss her.),(You exchange a sweet and loving kiss.),"Blush(""Medium"")",CanKiss()
 10,,(Fondle her.),(She closes her eyes and seems to enjoy your touch as you fondle her breast and butt through her clothes.),"Blush(""Medium"")",
 10,,(Masturbate her.),(You slide a hand in her pants and masturbate her slowly as she moans from the pleasure.),"Blush(""High"")",

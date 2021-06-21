@@ -1,0 +1,12 @@
+PlayerGagged,,,(She thinks your gagged mumbling is part of the game),,
+0,,,(She is has a headset on and is busy playing.),,
+0,10,HEY!!!,(She peeks out from under her headset.) What's up?,,
+10,0,Do you need some help getting to a higher level?,"Nah, not right now. (She goes back to her game)",,
+10,11,Do you know what there is to do around here?,"(She smirks) Are you looking for some fun? Have you heard of the Devious Dungeon Challenge?",,DeviousChallengeAllowed()
+10,0,Nothing.,"Don't bother me, then. (She goes back to her game)",,
+11,12,"Yes, tell me more!","It's a bet where you make ad revenue from streaming your game, but getting bound ingame means getting bound in real life as well!",,
+11,0,I don't like the look on your face.,"Hehe. Suit yourself.",,
+12,0,Let's do it!,Righto! I'll get the recording equipment set up!,ToggleDeviousChallenge(),
+12,0,Not right now.,(She goes back to playing her game),,
+0,0,I'd like to stop participating in the Devious Dungeon Challenge.,Fair enough.,ToggleDeviousChallenge(),DeviousChallengeEnabled()
+0,0,(Leave her.),,DialogLeave(),

@@ -1,161 +1,129 @@
 "use strict";
 
-const ChainsArmsOptions = [
+var InventoryItemArmsChainsOptions = [
 	{
-		Name: "BoxTie",
-		RequiredBondageLevel: null,
-		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
-		ArmsOnly: true
-	}, {
 		Name: "WristTie",
-		RequiredBondageLevel: null,
+		BondageLevel: null,
 		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
-		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
-		ArmsOnly: true
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
+	}, {
+		Name: "BoxTie",
+		BondageLevel: null,
+		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 }
 	}, {
 		Name: "ChainCuffs",
-		RequiredBondageLevel: null,
-		Property: { Type: "ChainCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 30 },
-		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
-		ArmsOnly: true
+		BondageLevel: null,
+		Property: { Type: "ChainCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 29 },
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
 	}, {
 		Name: "WristElbowTie",
-		RequiredBondageLevel: 2,
-		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-		ArmsOnly: true
+		BondageLevel: 2,
+		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone", "NotSelfPickable"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
 	}, {
 		Name: "WristElbowHarnessTie",
-		RequiredBondageLevel: 3,
-		Property: { Type: "WristElbowHarnessTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-		ArmsOnly: true
+		BondageLevel: 3,
+		Property: { Type: "WristElbowHarnessTie", Effect: ["Block", "Prone", "NotSelfPickable"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
+	}, {
+		Name: "KneelingHogtie",
+		BondageLevel: 4,
+		Prerequisite: ["NotMounted", "NotSuspended"],
+		Property: { Type: "KneelingHogtie", Effect: ["Block", "Freeze", "Prone", "NotSelfPickable"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Kneel", "BackElbowTouch"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		SelfBlockCheck: true,
 	}, {
 		Name: "Hogtied",
-		RequiredBondageLevel: 4,
-		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], SetPose: ["Hogtied"], Difficulty: 3 },
+		BondageLevel: 4,
+		Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
+		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone", "NotSelfPickable"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
-		ArmsOnly: false
+		SelfBlockCheck: true,
 	}, {
 		Name: "AllFours",
-		RequiredBondageLevel: 6,
-		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], SetPose: ["AllFours"], Difficulty: 3 },
+		BondageLevel: 6,
+		Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
+		Property: { Type: "AllFours", Effect: ["ForceKneel", "NotSelfPickable"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"],  AllowActivityOn: ["ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["AllFours"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
-		ArmsOnly: false
+		SelfBlockCheck: true,
 	}, {
 		Name: "SuspensionHogtied",
-		RequiredBondageLevel: 8,
-		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6 },
+		BondageLevel: 8,
+		Prerequisite: ["NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
+		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone", "NotSelfPickable"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6,
+			OverrideHeight: { Height: 0, Priority: 51, HeightRatioProportion: 0 } },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
-		ArmsOnly: false,
-		HiddenItem: "SuspensionChains"
 	}
 ];
 
-var ChainsArmsOptionOffset = 0;
-
-// Loads the item extension properties
+/**
+ * Loads the item extension properties
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsChainsLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = ChainsArmsOptions[0].Property;
-	DialogExtendedMessage = DialogFind(Player, "SelectChainBondage");
-	ChainsArmsOptionOffset = 0;
+	ExtendedItemLoad(InventoryItemArmsChainsOptions, "SelectChainBondage");
 }
 
-// Draw the item extension screen
+/**
+* Draw the item extension screen
+* @returns {void} - Nothing
+*/
 function InventoryItemArmsChainsDraw() {
-
-	// Draw the header and item
-	DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
-	DrawRect(1387, 55, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 57, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 310, 221, "black");
-	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
-
-	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
-	for (var I = ChainsArmsOptionOffset; (I < ChainsArmsOptions.length) && (I < ChainsArmsOptionOffset + 4); I++) {
-		var offset = I - ChainsArmsOptionOffset;
-		var X = 1200 + (offset % 2 * 387);
-		var Y = 450 + (Math.floor(offset / 2) * 300);
-		var FailSkillCheck = (ChainsArmsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ChainsArmsOptions[I].RequiredBondageLevel);
-
-		DrawText(DialogFind(Player, "ChainBondage" + ChainsArmsOptions[I].Name), X + 113, Y - 20, "white", "gray");
-		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == ChainsArmsOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + ChainsArmsOptions[I].Name + ".png", X, Y + 1);
-	}
+	ExtendedItemDraw(InventoryItemArmsChainsOptions, "ChainBondage");
 }
 
-// Catches the item extension clicks
+/**
+ * Catches the item extension clicks
+ * @returns {void} - Nothing
+ */
 function InventoryItemArmsChainsClick() {
-
-	// Menu buttons
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) ChainsArmsOptionOffset += 4;
-	if (ChainsArmsOptionOffset >= ChainsArmsOptions.length) ChainsArmsOptionOffset = 0;
-
-	// Item buttons
-	for (var I = ChainsArmsOptionOffset; (I < ChainsArmsOptions.length) && (I < ChainsArmsOptionOffset + 4); I++) {
-		var offset = I - ChainsArmsOptionOffset;
-		var X = 1200 + (offset % 2 * 387);
-		var Y = 450 + (Math.floor(offset / 2) * 300);
-
-		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != ChainsArmsOptions[I].Property.Type))
-			if (ChainsArmsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ChainsArmsOptions[I].RequiredBondageLevel) {
-				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", ChainsArmsOptions[I].RequiredBondageLevel);
-			}
-			else InventoryItemArmsChainsSetPose(ChainsArmsOptions[I]);
-	}
+	ExtendedItemClick(InventoryItemArmsChainsOptions);
 }
 
-// Sets the chain pose (hogtied, suspension, etc.)
-function InventoryItemArmsChainsSetPose(NewType) {
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {Option} Option - The currently selected Option
+ * @returns {void} - Nothing
+ */
+function InventoryItemArmsChainsPublishAction(C, Option) {
+	var msg = "ArmsChainSet" + Option.Name;
+	var Dictionary = [
+		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+		{ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+	];
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
+}
 
-	// Gets the current item and character
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemArmsChainsLoad();
-	}
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them.
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {Option} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
+function InventoryItemArmsChainsNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "ChainBondage" + Option.Name, "ItemArms");
+}
 
-	// Validates a few parameters before hogtied
-	if ((NewType.ArmsOnly == false) && !InventoryAllow(C, ["NotKneeling", "NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
+/**
+ * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
+ * @param {Character} C - The character to validate the option for
+ * @param {ExtendedItemOption} Option - The selected option
+ * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
+ */
+function InventoryItemArmsChainsValidate(C, Option) {
+	var Allowed = "";
 
-	// Sets the new pose with its effects only if the chains are not locked
-	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		DialogFocusItem.Property = NewType.Property;
-		if (NewType.Expression != null)
-			for (var E = 0; E < NewType.Expression.length; E++)
-				CharacterSetFacialExpression(C, NewType.Expression[E].Group, NewType.Expression[E].Name, NewType.Expression[E].Timer);
-		if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
-		else InventoryRemove(C, "ItemHidden");
-	} else {
-		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked"); 
-		return;
-	}
-
-	// Adds the lock effect back if it was padlocked
-	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-		DialogFocusItem.Property.Effect.push("Lock");
-	}
-
-	// Refresh the character
-	ChatRoomCharacterUpdate(C);
-	CharacterRefresh(C);
-
-	// Sets the chatroom or NPC message
-	if (CurrentScreen == "ChatRoom") {
-		var msg = "ArmsChainSet" + NewType.Name;
-		var Dictionary = [];
-		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-		ChatRoomPublishCustomAction(msg, true, Dictionary);
-	} else {
-		DialogFocusItem = null;
-		if (C.ID == 0) DialogMenuButtonBuild(C);
-		else {
-			C.CurrentDialog = DialogFind(C, "ChainBondage" + NewType.Name, "ItemArms");
-			C.FocusGroup = null;
+	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
+		Allowed = DialogFindPlayer("CantChangeWhileLocked");
+	} else if (Option.Prerequisite) {
+		if (!ExtendedItemSelfProofRequirementCheck(C, Option.Prerequisite)) {
+			Allowed = DialogText;
 		}
 	}
 
+	return Allowed;
 }
