@@ -259,7 +259,7 @@ function InventoryFuturisticChastityBeltCheckPunish(Item) {
 	}
 	
 	// Punish the player if they orgasm
-	if (Item.Property.NextShockTime - CurrentTime <= 0) {
+	if (Item.Property.NextShockTime - CurrentTime <= 0 && Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
 		// Punish the player if they orgasm
 		return "Orgasm";
 	}
@@ -272,10 +272,8 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 	const punishment = InventoryFuturisticChastityBeltCheckPunish(Item);
 	if (punishment) {
 		if (punishment == "Orgasm") {
-			if (Item.Property.PunishOrgasm && Player.ArousalSettings && Player.ArousalSettings.OrgasmStage > 1) {
-				AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Orgasm");
-				Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownOrgasm; // Difficult to have two orgasms in 10 seconds
-			}
+			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "Orgasm");
+			Item.Property.NextShockTime = CurrentTime + FuturisticChastityBeltShockCooldownOrgasm; // Difficult to have two orgasms in 10 seconds
 		} else if (punishment == "StruggleOther") {
 			AssetsItemPelvisFuturisticChastityBeltScriptTrigger(Player, Item, "StruggleOther");
 			StruggleProgressStruggleCount = 0;
@@ -290,24 +288,28 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 }
 
 // Trigger a shock automatically
-function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType) {
+function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType, ReplacementWord) {
 
 	if (!(CurrentScreen == "ChatRoom")) {
 		AudioPlayInstantSound("Audio/Shocks.mp3");
 	} else {
+		
+		var Dictionary = [];
+		Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
+		Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+		Dictionary.push({ Tag: "SourceCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+		if (ReplacementWord)
+			Dictionary.push({ Tag: "ReplacementWord", Text: ReplacementWord });
+		Dictionary.push({Tag: "AssetName", AssetName: Item.Asset.Name});
+		Dictionary.push({ Tag: "ActivityName", Text: "ShockItem" });
+		Dictionary.push({ Tag: "ActivityGroup", Text: Item.Asset.Group.Name });
+		Dictionary.push({ AssetName: Item.Asset.Name });
+		Dictionary.push({ AssetGroupName: Item.Asset.Group.Name });
 		if (Item.Property && Item.Property.ChatMessage) {
-			var Dictionary = [];
-			Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
-			Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
-			Dictionary.push({ Tag: "SourceCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
-			Dictionary.push({Tag: "AssetName", AssetName: Item.Asset.Name});
-			Dictionary.push({ Tag: "ActivityName", Text: "ShockItem" });
-			Dictionary.push({ Tag: "ActivityGroup", Text: Item.Asset.Group.Name });
-			Dictionary.push({ AssetName: Item.Asset.Name });
-			Dictionary.push({ AssetGroupName: Item.Asset.Group.Name });
 			Dictionary.push({ Automatic: true });
-
 			ServerSend("ChatRoomChat", { Content: "FuturisticChastityBeltShock" + ShockType, Type: "Action", Dictionary });
+		} else {
+			ChatRoomMessage({ Content: "FuturisticChastityBeltShock" + ShockType, Type: "Action", Sender: Player.MemberNumber, Dictionary: Dictionary  });
 		}
 	}
     CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
