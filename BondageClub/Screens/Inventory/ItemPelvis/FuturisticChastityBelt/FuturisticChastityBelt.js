@@ -288,10 +288,11 @@ function AssetsItemPelvisFuturisticChastityBeltScriptUpdatePlayer(data) {
 }
 
 // Trigger a shock automatically
-function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType, ReplacementWord) {
+function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType, ReplacementWord, NoShock) {
 
 	if (!(CurrentScreen == "ChatRoom")) {
-		AudioPlayInstantSound("Audio/Shocks.mp3");
+		if (!NoShock)
+			AudioPlayInstantSound("Audio/Shocks.mp3");
 	} else {
 		
 		var Dictionary = [];
@@ -305,11 +306,12 @@ function AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, ShockType,
 		Dictionary.push({ Tag: "ActivityGroup", Text: Item.Asset.Group.Name });
 		Dictionary.push({ AssetName: Item.Asset.Name });
 		Dictionary.push({ AssetGroupName: Item.Asset.Group.Name });
+		let ShockPhrase = !NoShock ? "Shock" : "Punish"
 		if (Item.Property && Item.Property.ChatMessage) {
 			Dictionary.push({ Automatic: true });
-			ServerSend("ChatRoomChat", { Content: "FuturisticChastityBeltShock" + ShockType, Type: "Action", Dictionary });
+			ServerSend("ChatRoomChat", { Content: "FuturisticChastityBelt" + ShockPhrase + ShockType, Type: "Action", Dictionary });
 		} else {
-			ChatRoomMessage({ Content: "FuturisticChastityBeltShock" + ShockType, Type: "Action", Sender: Player.MemberNumber, Dictionary: Dictionary  });
+			ChatRoomMessage({ Content: "FuturisticChastityBelt" + ShockPhrase + ShockType, Type: "Action", Sender: Player.MemberNumber, Dictionary: Dictionary  });
 		}
 	}
     CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
