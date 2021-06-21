@@ -193,12 +193,16 @@ function ServerDisconnect(data, close = false) {
 				RelogChatLog = document.getElementById("TextAreaChatLog").cloneNode(true);
 				RelogChatLog.id = "RelogChatLog";
 				RelogChatLog.name = "RelogChatLog";
+				RelogInputText = ElementValue("InputChat").trim();
 				ElementRemove("InputChat");
 				ElementRemove("TextAreaChatLog");
 				CurrentScreen = "ChatSearch";
 				CurrentModule = "Online";
 				CurrentCharacter = null;
-			} else RelogChatLog = null;
+			} else {
+				RelogChatLog = null;
+				RelogInputText = "";
+			}
 
 			// Keeps the relog data
 			RelogData = { Screen: CurrentScreen, Module: CurrentModule, Character: CurrentCharacter };
