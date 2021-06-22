@@ -3,6 +3,7 @@ var RelogBackground = "";
 var RelogCanvas = document.createElement("canvas");
 var RelogData = null;
 var RelogChatLog = null;
+var RelogInputText = "";
 
 /**
  * Loads the relog screen

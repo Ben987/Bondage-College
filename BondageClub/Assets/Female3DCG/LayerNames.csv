@@ -356,7 +356,7 @@ ItemHoodAddonOldGasMaskLensesTube1Tube1,Tube
 ItemHoodAddonOldGasMaskLensesTube2Lenses,Lenses
 ItemHoodAddonOldGasMaskLensesTube2Tube2,Tube
 ItemHoodAddonOldGasMaskLensesRebreatherLenses,Lenses
-ItemHoodAddonOldGasMaskLensesRebreatherRebreather,Lenses
+ItemHoodAddonOldGasMaskLensesRebreatherRebreather,Rebreather
 ItemHoodKirugumiMaskMask,Face
 ItemHoodKirugumiMaskEyes1,Eyes
 ItemHoodKirugumiMaskMouth1,Mouth
@@ -425,6 +425,7 @@ ItemMouthMedicalMaskInner,Inner
 ItemMouthMedicalMaskOuter,Outer
 ItemMouthPrisonLockdownGagMask,Mask
 ItemMouthPrisonLockdownGagStraps,Straps
+ItemMouthPrisonLockdownGagBelts,Belts
 ItemMouthCarrotGagCarrot,Carrot
 ItemMouthCarrotGagStraps,Straps
 ItemMouthPumpkinGagPumpkin,Pumpkin
@@ -497,6 +498,7 @@ ItemMouth2MedicalMaskInner,Inner
 ItemMouth2MedicalMaskOuter,Outer
 ItemMouth2PrisonLockdownGagMask,Mask
 ItemMouth2PrisonLockdownGagStraps,Straps
+ItemMouth2PrisonLockdownGagBelts,Belts
 ItemMouth2CarrotGagCarrot,Carrot
 ItemMouth2CarrotGagStraps,Straps
 ItemMouth2PumpkinGagPumpkin,Pumpkin
@@ -553,6 +555,7 @@ ItemMouth3MedicalMaskInner,Inner
 ItemMouth3MedicalMaskOuter,Outer
 ItemMouth3PrisonLockdownGagMask,Mask
 ItemMouth3PrisonLockdownGagStraps,Straps
+ItemMouth3PrisonLockdownGagBelts,Belts
 ItemMouth3CarrotGagCarrot,Carrot
 ItemMouth3CarrotGagStraps,Straps
 ItemMouth3PumpkinGagPumpkin,Pumpkin
@@ -661,3 +664,7 @@ ItemHeadPaddedBlindfoldBase,Blindfold
 ItemHeadPaddedBlindfoldTrim,Trim
 ItemDevicesWetFloorSign,Sign
 ItemDevicesWetFloorText,Text
+BraCuteBikini1Main,Main
+BraCuteBikini1Sides,Sides
+BraSexyBikini1Main,Main
+BraSexyBikini1Sides,Sides

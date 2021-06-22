@@ -164,46 +164,7 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 		return { item: previousItem, valid: false };
 	}
 
-	let valid = true;
-
-	const previousLock = InventoryGetLock(previousItem);
-	const newLock = InventoryGetLock(newItem);
-
-	const lockSwapped = !!newLock && !!previousLock && newLock.Asset.Name !== previousLock.Asset.Name;
-	const lockModified = !!newLock && !!previousLock && !lockSwapped;
-	const lockRemoved = lockSwapped || (!newLock && !!previousLock);
-	const lockAdded = lockSwapped || (!!newLock && !previousLock);
-	const newLockBlocked = !!newLock && ValidationIsItemBlockedOrLimited(
-		C, sourceMemberNumber, newLock.Asset.Group.Name, newLock.Asset.Name,
-	);
-
-	const lockChangeInvalid = (lockRemoved && !ValidationIsLockChangePermitted(previousLock, params)) ||
-		(lockAdded && !ValidationIsLockChangePermitted(newLock, params)) ||
-		((lockAdded || lockModified || lockSwapped) && (newLockBlocked || itemBlocked));
-
-	if (lockChangeInvalid) {
-		if (previousLock) {
-			// If there was a lock previously, reapply the old lock
-			if (lockRemoved) {
-				console.warn(`Invalid removal of lock ${ValidationItemWarningMessage(previousLock, params)}`);
-			} else if (lockSwapped) {
-				console.warn(`Invalid addition of lock ${ValidationItemWarningMessage(newLock, params)}`);
-			} else {
-				console.warn(`Invalid modification of lock ${ValidationItemWarningMessage(newLock, params)}`);
-			}
-			InventoryLock(C, newItem, previousLock, previousProperty.LockMemberNumber, false);
-			ValidationCloneLock(previousProperty, newProperty);
-			valid = false;
-		} else {
-			// Otherwise, delete any lock
-			console.warn(`Invalid addition of lock ${ValidationItemWarningMessage(newLock, params)}`);
-			valid = !ValidationDeleteLock(newItem.Property) && valid;
-		}
-	} else if (lockModified) {
-		// If the lock has been modified, then ensure lock properties don't change (except where they should be able to)
-		const hasLockPermissions = ValidationIsLockChangePermitted(previousLock, params) && !newLockBlocked;
-		valid = !ValidationRollbackInvalidLockProperties(previousProperty, newProperty, hasLockPermissions) && valid;
-	}
+	let valid = ValidationResolveLockModification(previousItem, newItem, params, itemBlocked);
 
 	// If the source wouldn't usually be able to add the item, ensure that some properties are not modified
 	if (!ValidationCanAddItem(newItem, params)) {
@@ -242,6 +203,76 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 	if (!Object.keys(newProperty).length) delete newItem.Property;
 
 	return { item: newItem, valid };
+}
+
+/**
+ * Resolves modifications to an item's lock properties and returns a boolean to indicate whether or not the
+ * modifications were valid.
+ * @param {Item} previousItem - The previous item to remove
+ * @param {Item} newItem - The new item to add
+ * @param {AppearanceUpdateParameters} params - The appearance update parameters that apply to the diff
+ * @param {boolean} itemBlocked - Whether or not the item is blocked or limited for the source player
+ * @returns {boolean} - true if the lock modifications (if any) were valid, false otherwise
+ */
+function ValidationResolveLockModification(previousItem, newItem, params, itemBlocked) {
+	const { C, sourceMemberNumber } = params;
+
+	const previousProperty = previousItem.Property || {};
+	const newProperty = newItem.Property = newItem.Property || {};
+
+	if (!ValidationLockWasModified(previousProperty, newProperty)) {
+		return true;
+	}
+
+	const previousLock = InventoryGetLock(previousItem);
+	const newLock = InventoryGetLock(newItem);
+
+	const lockSwapped = !!newLock && !!previousLock && newLock.Asset.Name !== previousLock.Asset.Name;
+	const lockModified = !!newLock && !!previousLock && !lockSwapped;
+	const lockRemoved = lockSwapped || (!newLock && !!previousLock);
+	const lockAdded = lockSwapped || (!!newLock && !previousLock);
+	const newLockBlocked = !!newLock && ValidationIsItemBlockedOrLimited(
+		C, sourceMemberNumber, newLock.Asset.Group.Name, newLock.Asset.Name,
+	);
+
+	const lockChangeInvalid = (lockRemoved && !ValidationIsLockChangePermitted(previousLock, params)) ||
+		(lockAdded && !ValidationIsLockChangePermitted(newLock, params)) ||
+		((lockAdded || lockModified || lockSwapped) && (newLockBlocked || itemBlocked));
+
+	if (lockChangeInvalid) {
+		if (previousLock) {
+			// If there was a lock previously, reapply the old lock
+			if (lockRemoved) {
+				console.warn(`Invalid removal of lock ${ValidationItemWarningMessage(previousLock, params)}`);
+			} else if (lockSwapped) {
+				console.warn(`Invalid addition of lock ${ValidationItemWarningMessage(newLock, params)}`);
+			} else {
+				console.warn(`Invalid modification of lock ${ValidationItemWarningMessage(newLock, params)}`);
+			}
+			InventoryLock(C, newItem, previousLock, previousProperty.LockMemberNumber, false);
+			ValidationCloneLock(previousProperty, newProperty);
+			return false;
+		} else {
+			// Otherwise, delete any lock
+			console.warn(`Invalid addition of lock ${ValidationItemWarningMessage(newLock, params)}`);
+			return !ValidationDeleteLock(newItem.Property);
+		}
+	} else if (lockModified) {
+		// If the lock has been modified, then ensure lock properties don't change (except where they should be able to)
+		const hasLockPermissions = ValidationIsLockChangePermitted(previousLock, params) && !newLockBlocked;
+		return !ValidationRollbackInvalidLockProperties(previousProperty, newProperty, hasLockPermissions);
+	}
+}
+
+/**
+ * Determines whether or not a lock was modified on an item from its previous and new property values
+ * @param previousProperty - The previous item property
+ * @param newProperty - The new item property
+ * @returns {boolean} - true if the item's lock was modified (added/removed/swapped/modified), false otherwise
+ */
+function ValidationLockWasModified(previousProperty, newProperty) {
+	return previousProperty.LockedBy !== newProperty.LockedBy ||
+		ValidationAllLockProperties.some((key) => !CommonDeepEqual(previousProperty[key], newProperty[key]));
 }
 
 /**

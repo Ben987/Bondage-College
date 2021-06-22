@@ -430,7 +430,7 @@ function ExtendedItemValidate(C, { Prerequisite, SelfBlockCheck, Property }, Cur
 	const CurrentProperty = DialogFocusItem && DialogFocusItem.Property;
 	const CurrentLockedBy = CurrentProperty && CurrentProperty.LockedBy;
 
-	if (CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+	if (CurrentOption && CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
 		// If the option can't be changed when locked, ensure that the player can unlock the item (if it's locked)
 		return DialogFindPlayer("CantChangeWhileLocked");
 	} else if (Prerequisite && SelfBlockCheck && !ExtendedItemSelfProofRequirementCheck(C, Prerequisite)) {
