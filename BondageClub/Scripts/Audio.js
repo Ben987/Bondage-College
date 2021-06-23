@@ -63,6 +63,50 @@ var AudioActions = [
 		Sound: "Inflation"
 	},
 	{
+		IsAction: (data) => ["FuturisticTrainingBeltSetStateNoneOff"].find(A => data.Content.includes(A)),
+		Sound: "FuturisticApply"
+	},
+	{
+		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeLow",
+								"FuturisticTrainingBeltSetStateLowPriorityEdgeLowSelf",
+								"FuturisticTrainingBeltSetStateLowPriorityTeaseLow",
+								"FuturisticTrainingBeltSetStateLowPriorityLowLow",
+								"FuturisticTrainingBeltSetStateHighPriorityEdgeLow",
+								"FuturisticTrainingBeltSetStateHighPriorityEdgeLowSelf"].find(A => data.Content.includes(A)),
+		Sound: "VibrationShort"
+	},
+	{
+		IsAction: (data) => [	"FuturisticTrainingBeltSetStateCooldownOff"].find(A => data.Content.includes(A)),
+		Sound: "Deflation"
+	},
+	{
+		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeMedium",
+								"FuturisticTrainingBeltSetStateLowPriorityEdgeMediumSelf",
+								"FuturisticTrainingBeltSetStateLowPriorityTeaseMedium",
+								"FuturisticTrainingBeltSetStateLowPriorityMedium",
+								"FuturisticTrainingBeltSetStateHighPriorityEdgeMedium",
+								"FuturisticTrainingBeltSetStateHighPriorityEdgeMediumSelf"].find(A => data.Content.includes(A)),
+		Sound: "VibrationLong1"
+	},
+	{
+		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeHigh",
+								"FuturisticTrainingBeltSetStateLowPriorityEdgeHighSelf",
+								"FuturisticTrainingBeltSetStateLowPriorityTeaseHigh",
+								"FuturisticTrainingBeltSetStateHighPriorityEdgeHigh",
+								"FuturisticTrainingBeltSetStateHighPriorityEdgeHighSelf"].find(A => data.Content.includes(A)),
+		Sound: "VibrationLong2"
+	},
+	{
+		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximum",
+								"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximumSelf",
+								"FuturisticTrainingBeltSetStateLowPriorityTeaseMaximum",
+								"FuturisticTrainingBeltSetStateHighPriorityMax",
+								"FuturisticTrainingBeltSetStateLowPriorityMax",
+								"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximum",
+								"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximumSelf"].find(A => data.Content.includes(A)),
+		Sound: "VibrationLong2"
+	},
+	{
 		IsAction: (data) => ["InteractiveVisorHeadSet"].find(A => data.Content.includes(A)),
 		Sound: "SciFiEffect"
 	},
@@ -95,7 +139,7 @@ var AudioActions = [
 		Sound: "SciFiConfigure"
 	},
 	{
-		IsAction: (data) => ["FuturisticChastityBeltSetPunish", "FuturisticChastityBeltSetGeneric", "FuturisticPanelGagMouthSetAutoPunish", "SciFiPleasurePantiesBeep"].find(A => data.Content.includes(A)),
+		IsAction: (data) => ["FuturisticChastityBeltSetGeneric", "FuturisticChastityBeltSetPunish", "FuturisticChastityBeltSetGeneric", "FuturisticPanelGagMouthSetAutoPunish", "SciFiPleasurePantiesBeep"].find(A => data.Content.includes(A)),
 		GetAudioInfo: AudioSciFiBeepSounds
 	},
 	{
