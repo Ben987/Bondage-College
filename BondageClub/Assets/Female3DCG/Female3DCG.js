@@ -3908,7 +3908,7 @@ var AssetFemale3DCG = [
 			{ Name: "NosePlugs", Value: 20, Difficulty: 3, Time: 5, RemoveTime: 5},
 			{ Name: "BarbelPiercing", Left: 124, Top: 50, Value: 20, Difficulty: 3, Time: 5, RemoveTime: 5},
 			{
-				Name: "PigNoseHook", Fetish: ["Metal"], Priority: 26, Value: -1, Difficulty: 30, Time: 15, Random: false, AllowLock: true, BuyGroup: "Nosehook", Layer: [
+				Name: "PigNoseHook", Fetish: ["Metal"], Priority: 26, Value: -1, Difficulty: 30, Time: 15, Random: false, AllowLock: true, DrawLocks: false, BuyGroup: "Nosehook", Layer: [
 					{ Name: "Band" },
 					{ Name: "Hook" },
 				]
