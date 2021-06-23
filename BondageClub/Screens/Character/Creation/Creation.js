@@ -99,9 +99,13 @@ function CreationResponse(data) {
 			Log = [];
 			ImportBondageCollege(Player);
 
-			// Calls the preference init to make sure the preferences are loaded correctly
+			// Load/initialise player settings and global variables
 			PreferenceInitPlayer();
 			ActivitySetArousal(Player, 0);
+			NotificationLoad();
+
+			// New accounts aren't updating from old version
+			CommonVersionUpdated = false;
 
 			// Flush the controls and enters the main hall
 			ServerPlayerAppearanceSync();
@@ -123,7 +127,7 @@ function CreationResponse(data) {
 }
 
 /**
- * Handles click events in the creation dialog. 
+ * Handles click events in the creation dialog.
  * Imports data from Bondage College and creates a character.
  * @returns {void} - Nothing
  */

@@ -23,163 +23,163 @@ var ManagementTimer = 0;
  * Checks if the player is helpless (maids disabled) or not.
  * @returns {boolean} - Returns true if the player still has time remaining after asking the maids to stop helping
  */
-function ManagementIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ) }
+function ManagementIsMaidsDisabled() { var expire = LogValue("MaidsDisabled", "Maid") - CurrentTime ; return (expire > 0 ); }
 /**
  * Checks if the player has a special title such as maid, mistress, kidnapper, etc.
  * @returns {boolean} - TRUE if the player has a special title.
  */
-function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management") && (ReputationGet("Kidnap") < 50) && !SarahUnlockQuest) }
+function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management") && (ReputationGet("Kidnap") < 50) && !SarahUnlockQuest); }
 /**
  * Checks if the player has unlocked sarah's quest.
  * @returns {boolean} - TRUE if the player has unlocked sarah's quest.
  */
-function ManagementSarahUnlockQuest() { return (SarahUnlockQuest) }
+function ManagementSarahUnlockQuest() { return (SarahUnlockQuest); }
 /**
  * Checks if the player is Sarah's owner.
  * @returns {boolean} - TRUE if the player is Sarah's owner.
  */
-function ManagementIsSarahOwner() { return (SarahUnlockQuest && (Sarah.Owner == Player.Name)) }
+function ManagementIsSarahOwner() { return (SarahUnlockQuest && (Sarah.Owner == Player.Name)); }
 /**
  * Checks if the mistress has been angered for a given amount of times.
  * @param {number} InCount - Number of times the mistress has to have been angered.
  * @returns {boolean} - TRUE if the mistress has been angered the specified amount.
  */
-function ManagementGetMistressAngryCount(InCount) { return (InCount == ManagementMistressAngryCount) }
+function ManagementGetMistressAngryCount(InCount) { return (InCount == ManagementMistressAngryCount); }
 /**
  * Increments the amount of times the mistress has been angered.
  * @returns {void} - Nothing
  */
-function ManagementMistressAngryAdd() { ManagementMistressAngryCount++ }
+function ManagementMistressAngryAdd() { ManagementMistressAngryCount++; }
 /**
  * Checks if the mistress is willing to release the player. (Based on the release timer)
  * @returns {boolean} - TRUE if the mistress will release the player
  */
-function ManagementMistressWillRelease() { return (CommonTime() >= ManagementMistressReleaseTimer) }
+function ManagementMistressWillRelease() { return (CommonTime() >= ManagementMistressReleaseTimer); }
 /**
  * Checks if the player is about to play with the submissive, albeit without the consent of the mistress.
  * @returns {boolean} - TRUE if the dialog option is available.
  */
-function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllowPlay && Player.CanInteract() && (ManagementMistressReleaseTimer == 0) && !ManagementIsClubSlave()) } 
+function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllowPlay && Player.CanInteract() && (ManagementMistressReleaseTimer == 0) && !ManagementIsClubSlave()); }
 /**
  * Checks if the player is owned by one of the bondage college NPCs.
  * @returns {boolean} - TRUE if the player is owned by a bondage college NPC
  */
-function ManagementOwnerFromBondageCollege() { return ((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
+function ManagementOwnerFromBondageCollege() { return ((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")); }
 /**
  * Checks if the player's owner is a NPC in her private room.
  * @returns {boolean} - TRUE if the player's owner is in the player's private room.
  */
-function ManagementOwnerInPrivateRoom() { return PrivateOwnerInRoom() }
+function ManagementOwnerInPrivateRoom() { return PrivateOwnerInRoom(); }
 /**
  * Checks if the player's owner is not one of the bondage college NPC.
  * @returns {boolean} - TRUE if the player is NOT owned by a bondage college NPC
  */
-function ManagementOwnerAway() { return !((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
+function ManagementOwnerAway() { return !((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")); }
 /**
  * Checks if the player is wearing any chastity item that can currently be removed by the mistress.
  * @returns {boolean} - TRUE if there is at least one chastity item that can be removed.
  */
-function ManagementAllowReleaseChastity() { return (Player.IsChaste() && !ManagementIsMaidsDisabled() && ManagementCanReleaseChastity && (ManagementCanUnlockBra() || ManagementCanUnlockBelt() || ManagementCanUnlockButt() || ManagementCanUnlockVulva() || ManagementCanUnlockNipples()) )}
+function ManagementAllowReleaseChastity() { return (Player.IsChaste() && !ManagementIsMaidsDisabled() && ManagementCanReleaseChastity && (ManagementCanUnlockBra() || ManagementCanUnlockBelt() || ManagementCanUnlockButt() || ManagementCanUnlockVulva() || ManagementCanUnlockNipples()) );}
 /**
  * Checks if the player is chaste, but cannot be released.
  * @returns {boolean} - TRUE if the player is chaste and cannot be released.
  */
-function ManagementRefuseReleaseChastity() { return (Player.IsChaste() && (!ManagementCanReleaseChastity || ManagementIsMaidsDisabled())) }
+function ManagementRefuseReleaseChastity() { return (Player.IsChaste() && (!ManagementCanReleaseChastity || ManagementIsMaidsDisabled())); }
 /**
  * Checks if the player cannot be released by the mistress.
  * @returns {boolean} - TRUE if the player cannot be released.
  */
-function ManagementOwnerPending() { return (CommonTime() < ManagementMistressReleaseTimer) }
+function ManagementOwnerPending() { return (CommonTime() < ManagementMistressReleaseTimer); }
 /**
  * Checks if the player can be released from her chastity items by the mistress
  * @returns {boolean} - TRUE if the release timer has expired and the mistress can release the player from chastity.
  */
-function ManagementOwnerAccepted() { return ((CommonTime() >= ManagementMistressReleaseTimer) && ManagementCanReleaseChastity) }
+function ManagementOwnerAccepted() { return ((CommonTime() >= ManagementMistressReleaseTimer) && ManagementCanReleaseChastity); }
 /**
  * Checks if the player can be released by the mistress (timer), but cannot be released from chastity due to her owner.
  * @returns {boolean} - TRUE if the player can be released, but cannot be released from chastity.
  */
-function ManagementOwnerRefused() { return ((CommonTime() >= ManagementMistressReleaseTimer) && !ManagementCanReleaseChastity) }
+function ManagementOwnerRefused() { return ((CommonTime() >= ManagementMistressReleaseTimer) && !ManagementCanReleaseChastity); }
 /**
  * Checks if the mistress can remove the player's chastity bra
  * @returns {boolean} - TRUE if the mistress can remove the item. (Not owner locked while owned and has at least 25$.)
  */
-function ManagementCanUnlockBra() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemBreast"), "BreastChaste") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast")) || !Player.IsOwned() )) }
+function ManagementCanUnlockBra() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemBreast"), "BreastChaste") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast")) || !Player.IsOwned() )); }
 /**
  * Checks if the mistress can remove the player's butt item with a chaste effect
  * @returns {boolean} - TRUE if the mistress can remove the item. (Not owner locked while owned and has at least 25$.)
  */
-function ManagementCanUnlockButt() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemButt"), "Chaste") && !InventoryGroupIsBlocked(Player, "ItemButt") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemButt")) || !Player.IsOwned())) }
+function ManagementCanUnlockButt() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemButt"), "Chaste") && !InventoryGroupIsBlocked(Player, "ItemButt") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemButt")) || !Player.IsOwned())); }
 /**
  * Checks if the mistress can remove the player's vulva item with a chaste effect
  * @returns {boolean} - TRUE if the mistress can remove the item. (Not owner locked while owned and has at least 25$.)
  */
-function ManagementCanUnlockVulva() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemVulvaPiercings"), "Chaste") && !InventoryGroupIsBlocked(Player, "ItemVulvaPiercings") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemVulvaPiercings")) || !Player.IsOwned())) }
+function ManagementCanUnlockVulva() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemVulvaPiercings"), "Chaste") && !InventoryGroupIsBlocked(Player, "ItemVulvaPiercings") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemVulvaPiercings")) || !Player.IsOwned())); }
 /**
  * Checks if the mistress can remove the player's nipple item with a chaste effect
  * @returns {boolean} - TRUE if the mistress can remove the item. (Not owner locked while owned and has at least 25$.)
  */
-function ManagementCanUnlockNipples() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemNipplesPiercings"), "BreastChaste") && !InventoryGroupIsBlocked(Player, "ItemNipplesPiercings") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemNipplesPiercings")) ||!Player.IsOwned())) }
+function ManagementCanUnlockNipples() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemNipplesPiercings"), "BreastChaste") && !InventoryGroupIsBlocked(Player, "ItemNipplesPiercings") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemNipplesPiercings")) ||!Player.IsOwned())); }
 /**
  * Checks if the mistress can remove the player's pelvis item with a chaste effect
  * @returns {boolean} - TRUE if the mistress can remove the item. (Not owner locked while owned and has at least 25$.)
  */
-function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemPelvis"), "Chaste") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis")) || !Player.IsOwned())) }
+function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemPelvis"), "Chaste") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis")) || !Player.IsOwned())); }
 /**
  * Sets the player's chastity release timer to 0.
  * @returns {void} - Nothing.
  */
-function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0 }
+function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0; }
 /**
  * Checks if the player can be released from her owner, but for the first time ever.
  * @returns {boolean} - TRUE if the player has at least 60$ and has never been released from an owner before.
  */
-function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && !LogQuery("ReleasedFromOwner", "Management")) }
+function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && !LogQuery("ReleasedFromOwner", "Management")); }
 /**
  * Checks if the player can be released from her owner, but has been released before.
  * @returns {boolean} - TRUE if the player has at least 200$ and has been released from an owner before.
  */
-function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")) }
+function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")); }
 /**
  * Checks if the player can break an online ownership trial.
  * @returns {boolean} - TRUE if the player can break her trial.
  */
-function ManagementCanBreakTrialOnline() { return ((Player.Owner == "") && (Player.Ownership != null) && (Player.Ownership.Stage != null) && (Player.Ownership.Stage == 0)) }
+function ManagementCanBreakTrialOnline() { return ((Player.Owner == "") && (Player.Ownership != null) && (Player.Ownership.Stage != null) && (Player.Ownership.Stage == 0)); }
 /**
  * Checks if the player can part ways from their online owner. (7 days wait time over)
  * @returns {boolean} - TRUE if the player can break her full collar.
  */
-function ManagementCanBeReleasedOnline() { return ((Player.Owner != "") && (Player.Ownership != null) && (Player.Ownership.Start != null) && (Player.Ownership.Start + 604800000 <= CurrentTime) && (Player.GetDifficulty() <= 2)) }
+function ManagementCanBeReleasedOnline() { return ((Player.Owner != "") && (Player.Ownership != null) && (Player.Ownership.Start != null) && (Player.Ownership.Start + 604800000 <= CurrentTime) && (Player.GetDifficulty() <= 2)); }
 /**
  * Checks if the player cannot part ways from their online owner. (7 days wait time not over)
  * @returns {boolean} - TRUE if the player cannot break her full collar.
  */
-function ManagementCannotBeReleasedOnline() { return ((Player.Owner != "") && (Player.Ownership != null) && (Player.Ownership.Start != null) && (Player.Ownership.Start + 604800000 > CurrentTime) && (Player.GetDifficulty() <= 2)) }
+function ManagementCannotBeReleasedOnline() { return ((Player.Owner != "") && (Player.Ownership != null) && (Player.Ownership.Start != null) && (Player.Ownership.Start + 604800000 > CurrentTime) && (Player.GetDifficulty() <= 2)); }
 /**
  * Checks if the player can part ways from her owner. (The NPC left the private room.)
  * @returns {boolean} - TRUE if the player can part ways with her current NPC owner.
  */
-function ManagementCanBeReleased() { return ((Player.Owner != "") && (Player.Ownership == null) && !PrivateOwnerInRoom() && (Player.GetDifficulty() <= 2)) }
+function ManagementCanBeReleased() { return ((Player.Owner != "") && (Player.Ownership == null) && !PrivateOwnerInRoom() && (Player.GetDifficulty() <= 2)); }
 /**
  * Checks if the player cannot part ways from her owner. (The NPC is still in the private room.)
  * @returns {boolean} - TRUE if the player cannot part ways with her current NPC owner.
  */
-function ManagementCannotBeReleased() { return ((Player.Owner != "") && (Player.Ownership == null) && PrivateOwnerInRoom() && (Player.GetDifficulty() <= 2)) }
+function ManagementCannotBeReleased() { return ((Player.Owner != "") && (Player.Ownership == null) && PrivateOwnerInRoom() && (Player.GetDifficulty() <= 2)); }
 /**
  * Checks if the player cannot part ways from her owner because she's on the Extreme difficulty.
  * @returns {boolean} - TRUE if the player cannot part ways with her current owner.
  */
-function ManagementCannotBeReleasedExtreme() { return ((Player.Owner != "") && (Player.GetDifficulty() >= 3)) }
+function ManagementCannotBeReleasedExtreme() { return ((Player.Owner != "") && (Player.GetDifficulty() >= 3)); }
 /**
  * Checks if the player can be owned by the mistress.
  * @returns {boolean} - TRUE if the player is fully submissive, the player is not owned, the mistress has not been angered and the mistress can enter the private room.
  */
-function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
+function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()); }
 /**
  * Checks if the mistress is not willing to own the player.
  * @returns {boolean} - TRUE if the player can be owned, but is not submissive enough.
  */
-function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
+function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()); }
 /**
  * Checks if the player has at least one lover who is a NPC from bondage college.
  * @returns {boolean} - TRUE if the player has at least one lover who is a NPC from bondage college.
@@ -202,109 +202,109 @@ function ManagementCanBreakUpLoverOnline(L) { return ((Player.Lovership.length >
  * @param {number} L - Index of the potential lover
  * @returns {boolean} - TRUE if the they cannot get divorced
  */
-function ManagementCannotBreakUpLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage == 2) && (Player.Lovership[L].Start != null) && (Player.Lovership[L].Start + 604800000 >= CurrentTime)) }
+function ManagementCannotBreakUpLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage == 2) && (Player.Lovership[L].Start != null) && (Player.Lovership[L].Start + 604800000 >= CurrentTime)); }
 /**
  * Checks if the player can stop dating the given NPC lover (1 to 5)
  * @param {number} L - Index of the potential lover
  * @returns {boolean} - TRUE if the player can stop dating the specified lover. (The NPC is gone from the room.)
  */
-function ManagementCanBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && !PrivateLoverInRoom(L)) }
+function ManagementCanBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && !PrivateLoverInRoom(L)); }
 /**
  * Checks if the player cannot stop dating the given NPC lover (1 to 5)
  * @param {number} L - Index of the potential lover
  * @returns {boolean} - TRUE if the player cannot stop dating the specified lover (The lover is still in the player's private room.)
  */
-function ManagementCannotBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && PrivateLoverInRoom(L)) }
+function ManagementCannotBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && PrivateLoverInRoom(L)); }
 /**
  * Checks if the player is currently a club slave.
  * @returns {boolean} - TRUE if the player is a club slave.
  */
-function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
+function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")); }
 /**
  * Checks if the player is wearing a slave collar.
  * @returns {boolean} - TRUE if the player is wearing a slave collar.
  */
-function ManagementWearingSlaveCollar() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar")) }
+function ManagementWearingSlaveCollar() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar")); }
 /**
  * Checks if a NPC can be transfered to the player's private room.
  * @returns {boolean} - TRUE if the player owns a private room, has space for an extra NPC and is not locked out of her room.
  */
-function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
+function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")); }
 /**
  * Checks if the mistress is not willing to visit the player's room.
  * @returns {boolean} - TRUE if the mistress could transfer to the player's room, but is not willing to.
  */
-function ManagementWontVisitRoom() { return (!ManagementVisitRoom && ManagementCanTransferToRoom()) }
+function ManagementWontVisitRoom() { return (!ManagementVisitRoom && ManagementCanTransferToRoom()); }
 /**
  * Checks if the player can become a club mistress.
  * @returns {boolean} - TRUE if the player is fully dominant, has been in the club for more than a month, is currently not restrained, is not kneeling, can currently change and is currently not a club mistress.
  */
-function ManagementCanBeClubMistress() { return ((ReputationGet("Dominant") >= 100) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()) }
+function ManagementCanBeClubMistress() { return ((ReputationGet("Dominant") >= 100) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()); }
 /**
  * Checks if the player is not able to become a club mistress due to her reputation.
  * @returns {boolean} - TRUE if the player could be a club mistress, but has a dominant reputation between 50 and 99.
  */
-function ManagementCannotBeClubMistress() { return ((ReputationGet("Dominant") < 100) && (ReputationGet("Dominant") >= 50) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()) }
+function ManagementCannotBeClubMistress() { return ((ReputationGet("Dominant") < 100) && (ReputationGet("Dominant") >= 50) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()); }
 /**
  * Checks if the player is not able to become a club mistress due to her reputation (by a large amount, which makes the mistress laugh.)
  * @returns {boolean} - TRUE if the player could be a club mistress, but has a dominant reputation below 50.
  */
-function ManagementCannotBeClubMistressLaugh() { return ((ReputationGet("Dominant") < 50) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()) }
+function ManagementCannotBeClubMistressLaugh() { return ((ReputationGet("Dominant") < 50) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()); }
 /**
  * Checks if the player is not able to become a club mistress due to her short time in the club.
  * @returns {boolean} - TRUE if the player has been in the club for less than a month.
  */
-function ManagementCannotBeClubMistressTime() { return (((Math.floor((CurrentTime - Player.Creation) / 86400000)) < 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()) }
+function ManagementCannotBeClubMistressTime() { return (((Math.floor((CurrentTime - Player.Creation) / 86400000)) < 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()); }
 /**
  * Checks if the player can receive her club mistress pay check.
  * @returns {boolean} - TRUE if the player is a club mistress and has not been paid this week.
  */
-function ManagementMistressCanBePaid() { return (LogQuery("ClubMistress", "Management") && !LogQuery("MistressWasPaid", "Management")) }
+function ManagementMistressCanBePaid() { return (LogQuery("ClubMistress", "Management") && !LogQuery("MistressWasPaid", "Management")); }
 /**
  * Checks if the player cannot receive her club mistress pay check.
  * @returns {boolean} - TRUE if the player is a club mistress, but has already been paid this week.
  */
-function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Management") && LogQuery("MistressWasPaid", "Management")) }
+function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Management") && LogQuery("MistressWasPaid", "Management")); }
 /**
  * Checks if the player can be a club slave.
  * @returns {boolean} - TRUE if the player is not wearing an owner/lover only restraint and is not too dominant.
  */
-function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)) }
+function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)); }
 /**
  * Checks if the player cannot be a club slave due to her dominant reputation.
  * @returns {boolean} - TRUE if the player is not wearing an owner/lover only restraint, but is too dominant.
  */
-function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)) }
+function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && !InventoryCharacterHasLoverOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)); }
 /**
  * Checks if the player cannot be a club slave due to her currently worn owner-only restraint(s).
  * @returns {boolean} - TRUE if the player is wearing an owner-only restraint.
  */
-function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyRestraint(Player) }
+function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyRestraint(Player); }
 /**
  * Checks if the player cannot be a club slave due to her currently worn lover-only restraint(s).
  * @returns {boolean} - TRUE if the player is wearing a lover-only restraint.
  */
-function ManagementCannotBeClubSlaveLoverLock() { return InventoryCharacterHasLoverOnlyRestraint(Player) }
+function ManagementCannotBeClubSlaveLoverLock() { return InventoryCharacterHasLoverOnlyRestraint(Player); }
 /**
  * Checks if the player can kiss the current NPC.
- * @returns {boolean} - TRUE if both the NPC and the player can talk. 
+ * @returns {boolean} - TRUE if both the NPC and the player can talk.
  */
-function ManagementCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
+function ManagementCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()); }
 /**
  * Checks if the player can masturbate the current NPC.
  * @returns {boolean} - TRUE if the NPC is not chaste and the player can interact.
  */
-function ManagementCanMasturbate() { return (Player.CanInteract() && !CurrentCharacter.IsVulvaChaste()) }
+function ManagementCanMasturbate() { return (Player.CanInteract() && !CurrentCharacter.IsVulvaChaste()); }
 /**
  * Checks if the player can play with the management submissive NPC.
  * @returns {boolean} - TRUE if the player's dominant reputation is below 23 and the player is not wearing a locked restraint.
  */
-function ManagementCanPlayWithSub() { return (DialogReputationLess("Dominant", 24) && !InventoryCharacterHasLockedRestraint(Player)) }
+function ManagementCanPlayWithSub() { return (DialogReputationLess("Dominant", 24) && !InventoryCharacterHasLockedRestraint(Player)); }
 /**
  * Checks if the player cannot play with the management submissive NPC due to a locked restraint.
  * @returns {boolean} - TRUE if the player's dominant reputation is below 23, but the player is wearing a locked restraint.
  */
-function ManagementCannotPlayWithSubLock() { return (DialogReputationLess("Dominant", 24) && InventoryCharacterHasLockedRestraint(Player)) }
+function ManagementCannotPlayWithSubLock() { return (DialogReputationLess("Dominant", 24) && InventoryCharacterHasLockedRestraint(Player)); }
 
 /**
  * Checks if there is no mistress in the player's private room.
@@ -373,7 +373,7 @@ function ManagementRun() {
  */
 function ManagementClick() {
 	if (MouseIn(250, 0, 500, 1000)) CharacterSetCurrent(Player);
-	if (MouseIn(750, 0, 500, 1000) && !ManagementEmpty) {		
+	if (MouseIn(750, 0, 500, 1000) && !ManagementEmpty) {
 		if ((ManagementMistress.Stage == "0") && ManagementIsClubSlave()) ManagementMistress.Stage = "350";
 		if ((ManagementMistress.Stage == "0") && (ReputationGet("Dominant") < 50) && (CheatFactor("CantLoseMistress", 0) == 1) && LogQuery("ClubMistress", "Management")) {
 			ManagementMistress.Stage = "500";
@@ -528,13 +528,13 @@ function ManagementBreakTrialOnline() {
 		ServerSend("AccountOwnership", { MemberNumber: Player.Ownership.MemberNumber, Action: "Break" });
 		Player.Ownership = null;
 		for (let A = 0; A < Player.Appearance.length; A++)
-			ServerValidateProperties(Player, Player.Appearance[A]);
+			ValidationSanitizeProperties(Player, Player.Appearance[A]);
 	}
 }
 
 /**
  * Triggered when the Mistress breaks the bond between lovers.
- * @param {number} L - Index of the lover to remove. 
+ * @param {number} L - Index of the lover to remove.
  * @returns {void} - Nothing.
  */
 function ManagementBreakLover(L) {
@@ -579,7 +579,7 @@ function ManagementClubSlaveCollar(RepChange) {
  */
 function ManagementFinishClubSlave(RepChange) {
 	ReputationProgress("Dominant", RepChange);
-	CharacterChangeMoney(Player, 80);
+	CharacterChangeMoney(Player, 50);
 	if (Player.IsOwned() && !LogQuery("ReleasedCollar", "OwnerRule")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
 	else {
 		InventoryRemove(Player, "ItemNeck");
@@ -592,13 +592,13 @@ function ManagementFinishClubSlave(RepChange) {
  * @returns {void} - Nothing.
  */
 function ManagementClubSlaveRandomIntro() {
-	
+
 	// Sets the girl that greets the club slave player
 	CommonSetScreen("Room", "Management");
 	ManagementBackground = "MainHall";
 	ManagementRandomGirl = null;
-	CharacterDelete("NPC_Management_RandomGirl");	
-	ManagementRandomGirl = CharacterLoadNPC("NPC_Management_RandomGirl");	
+	CharacterDelete("NPC_Management_RandomGirl");
+	ManagementRandomGirl = CharacterLoadNPC("NPC_Management_RandomGirl");
 	CharacterSetCurrent(ManagementRandomGirl);
 	ManagementRandomGirl.AllowItem = false;
 	ManagementRandomActivityCount = 0;
@@ -673,7 +673,7 @@ function ManagementRandomActivityStart(A) {
  * @returns {void} - Nothing.
  */
 function ManagementClubSlaveRandomActivityLaunch() {
-	
+
 	// After 4 activities, there's more and more chances that it will stop
 	ManagementRandomActivityCount++;
 	if (Math.random() * ManagementRandomActivityCount >= 4) {
@@ -709,7 +709,7 @@ function ManagementClubSlaveRandomActivityLaunch() {
 		if ((A == "Spank") || (A == "Tickle")) { ManagementRandomActivityStart(A); return; }
 		if ((A == "Fondle") && !Player.IsBreastChaste()) { ManagementRandomActivityStart(A); return; }
 		if ((A == "Masturbate") && !Player.IsVulvaChaste()) { ManagementRandomActivityStart(A); return; }
-		
+
 	}
 }
 
@@ -764,7 +764,7 @@ function ManagementPlayerMistressCutscene() {
  */
 function ManagementMistressPay() {
 	LogAdd("MistressWasPaid", "Management", CurrentTime + 604800000);
-	CharacterChangeMoney(Player, 100);
+	CharacterChangeMoney(Player, 150);
 }
 
 /**
@@ -871,7 +871,7 @@ function ManagementClubSlaveActiviy(ActivityType, RepChange) {
 
 /**
  * Triggered after player with a club slave. There's a 50% chance the club slave will go to the player's private room.
- * @returns {void} - Nothing. 
+ * @returns {void} - Nothing.
  */
 function ManagementClubSlaveVisitRoom() {
 	if ((ManagementRandomTalkCount >= 2) && (ManagementRandomActivityCount >= 2) && ManagementVisitRoom && ManagementRandomGirl.CanTalk()) {
@@ -886,8 +886,8 @@ function ManagementClubSlaveVisitRoom() {
 
 /**
  * Triggered when the player asks to have her slave collar model changed
- * @param {string} NewType - The new slave collar type to change to. 
- * @returns {void} - Nothing. 
+ * @param {string} NewType - The new slave collar type to change to.
+ * @returns {void} - Nothing.
  */
 function ManagementChangeSlaveCollarType(NewType) {
 	var Collar = InventoryGet(Player, "ItemNeck");
@@ -901,7 +901,7 @@ function ManagementChangeSlaveCollarType(NewType) {
 /**
  * Sets the given NPC's dialog based on if the player is a club slave or not. Some NPC are not available or have special dialog for club slaves.
  * @param {Character} C - Current NPC.
- * @returns {void} - Nothing. 
+ * @returns {void} - Nothing.
  */
 function ManagementClubSlaveDialog(C) {
 	if ((C != null) && (C.Stage == "0") && ManagementIsClubSlave()) C.Stage = "ClubSlave";

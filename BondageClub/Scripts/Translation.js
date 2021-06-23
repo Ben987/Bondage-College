@@ -4,7 +4,7 @@ var TranslationCache = {};
 
 /**
  * Dictionary for all supported languages and their files
- * @constant 
+ * @constant
  */
 var TranslationDictionary = [
 
@@ -195,7 +195,7 @@ var TranslationDictionary = [
 		LanguageName: "Русский",
 		EnglishName: "Russian",
 		Files: [
-		    "Assets/Female3DCG/Female3DCG_RU.txt",
+			"Assets/Female3DCG/Female3DCG_RU.txt",
 			"Screens/Character/Appearance/Text_Appearance_RU.txt",
 			"Screens/Character/Cheat/Text_Cheat_RU.txt",
 			"Screens/Character/Creation/Text_Creation_RU.txt",
@@ -308,17 +308,18 @@ function TranslationAvailable(FullPath) {
  * @returns {string[]} - Array of strings with each line divided. For each translated line, the english string precedes the translated one in the array.
  */
 function TranslationParseTXT(str) {
-		
-    var arr = [];
-	var c;
 
-    // iterate over each character, keep track of current row (of the returned array)
-    for (let row = c = 0; c < str.length; c++) {
-        var cc = str[c], nc = str[c+1];        // current character, next character
-        arr[row] = arr[row] || [];             // create a new row if necessary        
-        if (cc == '\n') { ++row; continue; }   // If it's a newline, move on to the next row
-        arr[row] += cc;                        // Otherwise, append the current character to the row
-    }
+	const arr = [];
+	let c;
+	str = str.replace(/\r\n/g, '\n').trim();
+
+	// iterate over each character, keep track of current row (of the returned array)
+	for (let row = c = 0; c < str.length; c++) {
+		let cc = str[c];        // current character, next character
+		arr[row] = arr[row] || "";             // create a new row if necessary
+		if (cc == '\n') { ++row; continue; }   // If it's a newline, move on to the next row
+		arr[row] += cc;                        // Otherwise, append the current character to the row
+	}
 
 	// Removes any comment rows (starts with ###)
 	for (let row = arr.length - 1; row >= 0; row--)
@@ -327,9 +328,9 @@ function TranslationParseTXT(str) {
 		}
 
 	// Trims the full translated array
-    for (let row = 0; row < arr.length; row++)
+	for (let row = 0; row < arr.length; row++)
 		arr[row] = arr[row].trim();
-    return arr;
+	return arr;
 }
 
 /**
@@ -364,7 +365,7 @@ function TranslationDialogArray(C, T) {
 
 /**
  * Translates a set of tags. Rerenders the login message when on the login page.
- * @param {Array.<{Tag: string, Value: string}>} S - Array of current tag-value pairs 
+ * @param {Array.<{Tag: string, Value: string}>} S - Array of current tag-value pairs
  * @param {string[]} T - The active translation dictionary
  * @returns {void} - Nothing
  */
@@ -387,7 +388,7 @@ function TranslationDialog(C) {
 		var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 		// Finds the full path of the translation file to use
 		var FullPath = (OnlinePlayer ? "Screens/Online/ChatRoom/Dialog_Online" :  (C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName) + "_" + TranslationLanguage + ".txt";
-			
+
 		// If the translation file is already loaded, we translate from it
 		if (TranslationCache[FullPath]) {
 			TranslationDialogArray(C, TranslationCache[FullPath]);
@@ -402,9 +403,9 @@ function TranslationDialog(C) {
 					TranslationDialogArray(C, TranslationCache[FullPath]);
 				}
 			});
-	
+
 	}
-	
+
 }
 
 /**
@@ -415,7 +416,7 @@ function TranslationDialog(C) {
 function TranslationText(Text) {
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
-		
+
 		// Finds the full path of the translation file to use
 		var FullPath = "Screens/" + CurrentModule + "/" + CurrentScreen + "/Text_" + CurrentScreen + "_" + TranslationLanguage + ".txt";
 
@@ -452,11 +453,11 @@ function TranslationAssetProcess(T) {
 
 /**
  * Translates the description of the assets and groups of an asset family
- * @param {string} - Name of the asset family to translate
+ * @param {string} Family - Name of the asset family to translate
  * @returns {void} - Nothing
  */
 function TranslationAsset(Family) {
-	
+
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
 
@@ -477,9 +478,9 @@ function TranslationAsset(Family) {
 					TranslationAssetProcess(TranslationCache[FullPath]);
 				}
 			});
-	
+
 	}
-	
+
 }
 
 /**
@@ -499,7 +500,7 @@ function TranslationNextLanguage() {
 }
 
 /**
- * Loads the previous translation language from local storage if it exists 
+ * Loads the previous translation language from local storage if it exists
  * @returns {void} - Nothing
  */
 function TranslationLoad() {

@@ -7,6 +7,7 @@ Language,Language
 CreateNewCharacter,Or create a new character
 NewCharacter,New Character
 ConnectingToServer,Connecting to server...
+LoginQueueWait,Waiting in queue on position: QUEUE_POS
 ErrorLoadingCharacterData,Error loading character data
 ErrorDisconnectedFromServer,Disconnected from server. Retrying...
 ErrorDuplicatedLogin,Disconnected for duplicated login

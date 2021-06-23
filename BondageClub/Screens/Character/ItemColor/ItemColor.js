@@ -4,7 +4,7 @@
  * An object defining a group of layers which can be colored together
  * @typedef {object} ColorGroup
  * @property {string} name - The name of the color group
- * @property {Layer[]} layers - The layers contained within the color group
+ * @property {AssetLayer[]} layers - The layers contained within the color group
  * @property {number} colorIndex - The color index for the color group - this is the lowest color index of any of the layers within the
  * color group
  */
@@ -70,7 +70,7 @@ let ItemColorGroupNames;
  * @param {number} y - The y-coordinate at which to draw the UI
  * @param {number} width - The width the UI should be drawn at
  * @param {number} height - The height the UI should be drawn at
- * @param {boolean} includeResetButton - Whether or not to include the "Reset to default" button
+ * @param {boolean} [includeResetButton] - Whether or not to include the "Reset to default" button
  * @returns {void} - Nothing
  */
 function ItemColorLoad(c, item, x, y, width, height, includeResetButton) {
@@ -211,7 +211,7 @@ function ItemColorDrawDefault(x, y) {
  * indices
  * @const {function(): void}
  */
-const ItemColorOnPickerChange = CommonDebounce((color) => {
+const ItemColorOnPickerChange = CommonLimitFunction((color) => {
 	const newColors = ItemColorState.colors.slice();
 	ItemColorPickerIndices.forEach(i => newColors[i] = color);
 	ItemColorItem.Color = newColors;
@@ -496,10 +496,10 @@ function ItemColorPreviousLayer(colorGroup) {
  * @param {number} y - The y-coordinate at which to draw the UI
  * @param {number} width - The width the UI should be drawn at
  * @param {number} height - The height the UI should be drawn at
- * @param {boolean} includeResetButton - Whether or not to include the "Reset to default" button
+ * @param {boolean} [includeResetButton=false] - Whether or not to include the "Reset to default" button
  * @returns {void} - Nothing
  */
-function ItemColorStateBuild(c, item, x, y, width, height, includeResetButton) {
+function ItemColorStateBuild(c, item, x, y, width, height, includeResetButton=false) {
 	ItemColorCharacter = c;
 	ItemColorItem = item;
 	const itemKey = AppearanceItemStringify({ item, x, y, width, height });
@@ -524,7 +524,7 @@ function ItemColorStateBuild(c, item, x, y, width, height, includeResetButton) {
 				colorIndex: groupMap[key].reduce((min, layer) => Math.min(min, layer.ColorIndex), Infinity),
 			};
 		})
-		.sort((g1, g2) => g1.colorIndex = g2.colorIndex);
+		.sort((g1, g2) => g1.colorIndex > g2.colorIndex);
 
 	if (item.Asset.AllowColorizeAll) {
 		colorGroups.unshift({ name: null, layers: [], colorIndex: -1 });
@@ -603,7 +603,7 @@ function ItemColorStateBuild(c, item, x, y, width, height, includeResetButton) {
 /**
  * Returns layers of the asset which can be given distinct colors
  * @param {Item} item - The item to be colored
- * @returns {Layer[]} - The colourable layers
+ * @returns {AssetLayer[]} - The colourable layers
  */
 function ItemColorGetColorableLayers(item) {
 	return item.Asset.Layer.filter(layer => !layer.CopyLayerColor && layer.AllowColorize && !layer.HideColoring);

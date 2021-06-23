@@ -33,39 +33,39 @@ var MagicShowState = 1;
  * @param {number} QState - The state that is queried
  * @returns {boolean} - Returns true, if the queried state matches with the current state of the magic show, flase otherwise
  */
-function MagicShowIsState(QState) { return ((QState == MagicShowState) ? true : false) }
+function MagicShowIsState(QState) { return ((QState == MagicShowState) ? true : false); }
 
 /**
  * Checks, if the magician's assistant has been released
  * @returns {boolean} - Returns true, if the assistant has been released, false otherwise
  */
-function MagicAssistantIsReleased() { return (MagicShowIsState(4) && !MagicAssistant.IsRestrained()) }
+function MagicAssistantIsReleased() { return (MagicShowIsState(4) && !MagicAssistant.IsRestrained()); }
 
 /**
  * Checks, if the magician is bound by the minal required number of items (gag, arms, feet, legs, head)
  * @param {number} MinItem - The minimal number of items that must be used on the magician
  * @returns {boolean} - Returns true, if the required number of items is reached or exceeded, false otherwise
  */
-function MagicRestrainPerformerMinItem(MinItem) { return MagicRestrainMinItem(MagicPerformer, MinItem) }
+function MagicRestrainPerformerMinItem(MinItem) { return MagicRestrainMinItem(MagicPerformer, MinItem); }
 
 /**
  * Checks, if the magician's assistant is bound by the minal required number of items (gag, arms, feet, legs, head)
  * @param {number} MinItem - The minimal number of items that must be used on the magician's assistant
  * @returns {boolean} - Returns true, if the required number of items is reached or exceeded, false otherwise
  */
-function MagicRestrainAssistantMinItem(MinItem) { return MagicRestrainMinItem(MagicAssistant, MinItem) }
+function MagicRestrainAssistantMinItem(MinItem) { return MagicRestrainMinItem(MagicAssistant, MinItem); }
 
 /**
  * Checks wether the assistant is restrained and should redress
  * @returns {boolean} - Returns true, if the assistant should redress and is currently restrained
  */
-function MagicAssistantIsDressRestrain() { return (MagicShowIsState(8) && MagicAssistant.IsRestrained()) }
+function MagicAssistantIsDressRestrain() { return (MagicShowIsState(8) && MagicAssistant.IsRestrained()); }
 
 /**
  * Checks wether the assistant is free and should redress
  * @returns {boolean} - Returns true, if the assistant should redress and is currently free
  */
-function MagicAssistantIsntDressRestrain() { return (MagicShowIsState(8) && !MagicAssistant.IsRestrained()) }
+function MagicAssistantIsntDressRestrain() { return (MagicShowIsState(8) && !MagicAssistant.IsRestrained()); }
 
 /**
  * Checks, wether a given character is bound by the minal required number of items (gag, arms, feet, legs, head)
@@ -81,7 +81,7 @@ function MagicRestrainMinItem(C, MinItem) {
 			GagApplied = true;
 		}
 		else if ((C.Appearance[E].Asset.Group.Name == "ItemArms") || (C.Appearance[E].Asset.Group.Name == "ItemFeet") || (C.Appearance[E].Asset.Group.Name == "ItemLegs") || (C.Appearance[E].Asset.Group.Name == "ItemHead") || (C.Appearance[E].Asset.Group.Name == "ItemMisc")|| (C.Appearance[E].Asset.Group.Name == "ItemHood")) {
-			CurItem++
+			CurItem++;
 		}
 	}
 	return (CurItem + (GagApplied ? 1 : 0)) >= MinItem;
@@ -264,7 +264,7 @@ function MagicSelectTrick() {
 }
 
 /**
- * Copies the restraints currently on the magician randomly 
+ * Copies the restraints currently on the magician randomly
  * either to the player or the assistant and gets the appropriate dialog option
  * @returns {void} - Nothing
  */
@@ -343,7 +343,7 @@ function MagicTrickBoxMilkCan() {
  * @returns {void} - Nothing
  */
 function MagicTrickBoxWaterCell() {
-	InventoryWear(Player, "HempRope", "ItemFeet"); 
+	InventoryWear(Player, "HempRope", "ItemFeet");
 	InventoryGet(Player, "ItemFeet").Property = { Type: "Suspension", SetPose: ["LegsClosed", "Suspension"], Difficulty: 6, OverrideHeight: { Height: -150, Priority: 41, HeightRatioProportion: 0 }, };
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "HempRope", "ItemArms");
@@ -368,7 +368,7 @@ function MagicTrickGetCoin() {
  */
 function MagicSongLeavePerformer() {
 	MagicShowState = 6;
-	DialogLeave()
+	DialogLeave();
 }
 
 /**
@@ -419,7 +419,7 @@ function MagicTrickAsstantChange() {
 }
 
 /**
- * Ends the show. Release everybody, dress everybody back to their clothes 
+ * Ends the show. Release everybody, dress everybody back to their clothes
  * from the start and bring the player back to the mein hall
  * @returns {void} - Nothing
  */

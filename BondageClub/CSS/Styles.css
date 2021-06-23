@@ -7,7 +7,14 @@ canvas {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	position: absolute;
+  position: absolute;
+  width: 100%;
+}
+@media (min-aspect-ratio: 2/1) {
+  canvas {
+    width: unset;
+    height: 100%;
+  }
 }
 TextArea {
 	resize: none;
@@ -54,6 +61,9 @@ TextArea {
 .ChatMessageWhisper {
 	font-style: italic;
 	color: silver;
+}
+#TextAreaChatLog[data-shrinknondialogue=true] .ChatMessageEmote {
+	font-size: 0.75em;
 }
 #TextAreaChatLog[data-colortheme=dark], #TextAreaChatLog[data-colortheme="dark2"] {
   background-color: #111;
@@ -113,6 +123,10 @@ TextArea {
   top: 1.6em;
 }
 #TextAreaChatLog[data-enterleave=smaller] .ChatMessageEnterLeave {
+	font-size: 0.5em;
+	text-align: center;
+}
+#TextAreaChatLog[data-shrinknondialogue=true] .ChatMessageNonDialogue {
 	font-size: 0.5em;
 	text-align: center;
 }
@@ -177,6 +191,50 @@ TextArea {
 	cursor: pointer;
 }
 .FriendListLinkColumn:Hover{
+	color: cyan !important;
+}
+
+#FriendListBeep {
+	background: #000000AA;
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid white;
+	padding: 0 !important;
+	padding-bottom: 1% !important;
+}
+#FriendListBeep > div {
+	background: #999;
+	border: white solid 2px;
+	padding: .5em;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	height: 80%;
+	align-items: center;
+}
+#FriendListBeep > div > * {
+	margin-top: .5em;
+}
+#FriendListBeep > div > div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+#FriendListBeep textarea {
+	width: 30em;
+	height: 100%;
+	font: inherit;
+}
+#FriendListBeep a {
+	width: 50%;
+	margin: auto;
+	text-align: center;
+	text-decoration: underline;
+	user-select: none;
+	cursor: pointer;
+}
+#FriendListBeep a:hover {
 	color: cyan !important;
 }
 
@@ -271,9 +329,7 @@ input[type=range]::-webkit-slider-thumb {
   background-color: #ccc;
 }
 
-input[type=range][data-thumb=lock]::-webkit-slider-thumb,
-input[type=range][data-thumb=blindfold]::-webkit-slider-thumb,
-input[type=range][data-thumb=lightbulb]::-webkit-slider-thumb {
+input[type=range][data-thumb]::-webkit-slider-thumb {
   background-color: transparent;
   box-shadow: none;
   background-position: center;
@@ -282,9 +338,8 @@ input[type=range][data-thumb=lightbulb]::-webkit-slider-thumb {
   font-size: 1.5em;
   border-radius: 0;
 }
-input[type=range][data-thumb=lock].Vertical::-webkit-slider-thumb,
-input[type=range][data-thumb=blindfold].Vertical::-webkit-slider-thumb,
-input[type=range][data-thumb=lightbulb].Vertical::-webkit-slider-thumb {
+
+input[type=range][data-thumb].Vertical::-webkit-slider-thumb {
   transform: rotate(90deg);
 }
 
@@ -300,6 +355,11 @@ input[type=range][data-thumb=blindfold]::-webkit-slider-thumb {
 input[type=range][data-thumb=lightbulb]::-webkit-slider-thumb {
   background-image: url("../Icons/Lightbulb.png");
   width: 0.6em;
+}
+
+input[type=range][data-thumb=player]::-webkit-slider-thumb {
+  background-image: url("../Icons/Player.png");
+  width: 0.8em;
 }
 
 /* Range Inputs - Firefox */
@@ -323,9 +383,7 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
 }
 
-input[type=range][data-thumb=lock]::-moz-range-thumb,
-input[type=range][data-thumb=blindfold]::-moz-range-thumb,
-input[type=range][data-thumb=lightbulb]::-moz-range-thumb {
+input[type=range][data-thumb]::-moz-range-thumb {
   background-color: transparent;
   box-shadow: none;
   background-position: center;
@@ -335,9 +393,7 @@ input[type=range][data-thumb=lightbulb]::-moz-range-thumb {
   border-radius: 0;
 }
 
-input[type=range][data-thumb=lock].Vertical::-moz-range-thumb,
-input[type=range][data-thumb=blindfold].Vertical::-moz-range-thumb,
-input[type=range][data-thumb=lightbulb].Vertical::-moz-range-thumb {
+input[type=range][data-thumb].Vertical::-moz-range-thumb {
   transform: rotate(90deg);
 }
 
@@ -353,6 +409,11 @@ input[type=range][data-thumb=blindfold]::-moz-range-thumb {
 input[type=range][data-thumb=lightbulb]::-moz-range-thumb {
   background-image: url("../Icons/Lightbulb.png");
   width: 0.6em;
+}
+	
+input[type=range][data-thumb=player]::-moz-range-thumb {
+  background-image: url("../Icons/Player.png");
+  width: 0.8em;
 }
 
 /* Custom fonts */

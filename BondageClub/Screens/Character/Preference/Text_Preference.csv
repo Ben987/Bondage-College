@@ -66,6 +66,7 @@ RestrictionAccess,You can configure game restrictions to bypass in the multi-pla
 RestrictionNoAccess,Players using the Roleplay difficulty can configure multi-player restrictions to bypass.
 RestrictionBypassStruggle,Bypass the struggling mini-game.
 RestrictionSlowImmunity,Cannot be slowed down from leaving a room.
+RestrictionBypassNPCPunishments,Skip punishment when calling maids from chat room
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -93,6 +94,7 @@ ColorNames,Color names
 ColorActions,Color actions
 ColorEmotes,Color emotes
 ColorActivities,Color Activities
+ShrinkNonDialogue,Shrink all messages except dialogue
 ShowActivities,Show sexual activities & orgasms
 AutoBanBlackList,Ban blacklist when creating a room
 AutoBanGhostList,Ban ghostlist when creating a room
@@ -105,17 +107,21 @@ AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
 AudioPlayItemPlayerOnly,Only play item sounds if you're involved
+AudioNotifications,Allow audio alerts for notifications
 ImmersionLockSetting,Lock this menu while bound
 ReturnToChatRoom,Return to chatrooms on relog
 ReturnToChatRoomAdmin,Auto-remake rooms
+SenseDepMessages,Hide others' messages
 ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
 BlockGaggedOOC,Prevent OOC & whispers while gagged
 StimulationEvents,Events while plugged or vibed
+ChatRoomMuffle,Garble chat room names and descriptions while blind
 SensDepSetting,Sensory deprivation setting
 SensDepLight,Light
 SensDepNames,Hide names
-SensDepTotal,Total
-SensDepExtreme,Total (no whispers)
+SensDepTotal,Heavy
+SensDepExtreme,Total
+DoBlindFlash,Flash after blindness
 AllowPlayerLeashing,"Players can drag you to rooms when leashed"
 DisableAutoMaid,Maids come automatically when restrained
 DisablePickingLocksOnSelf,Locks on you can't be picked
@@ -123,6 +129,12 @@ BlindDisableExamine,Disable examining when blind
 DisableAutoRemoveLogin,Keep all restraints when relogging
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
 GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
+ItemsAffectExpressions,Items can affect your facial expression
+GeneralAnimationQuality0,Max
+GeneralAnimationQuality50,High
+GeneralAnimationQuality100,Medium
+GeneralAnimationQuality200,Low
+GeneralAnimationQualityText,Animation quality (reduce if inputs such as sliders are slow to respond)
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
 EnableSafeword,Allow Safeword use (Cannot enable while bound)
@@ -258,8 +270,27 @@ PressDownOnDpad,Press Down on Dpad
 PressLeftOnDpad,Press Left on Dpad
 PressRightOnDpad,Press Right on Dpad
 DeadZone,Dead Zone
-NotificationsChatRooms,Raise notifications for:
-NotificationsBeeps,Missed beeps
-NotificationsChat,Unread messages in chat rooms
-NotificationsChatActions,Include item and arousal activity messages
-NotificationsReset,Reset Notifications
+NotificationsAlertType0,Off
+NotificationsAlertType1,(1) in title
+NotificationsAlertType2,Popup
+NotificationsAlertType3,(1) in icon
+NotificationsExplanation,Raise notifications for missed events:
+NotificationsAudioExplanation1,: Play a sound for only
+NotificationsAudioExplanation2,the first occurrence of an event
+NotificationsOnly,Only:
+NotificationsBeeps,Beeps
+NotificationsChatMessage,Messages in chat rooms
+NotificationsChatMessageNormal,Normal Messages
+NotificationsChatMessageWhisper,Whispers
+NotificationsChatMessageActivity,Items/Activities
+NotificationsChatJoin,Players entering chat rooms
+NotificationsChatJoinOwner,Owner
+NotificationsChatJoinLovers,Lovers
+NotificationsChatJoinFriendlist,Friends
+NotificationsChatJoinSubs,Owned Subs
+NotificationsDisconnect,Disconnect from the game
+NotificationsLarp,Your turn in a LARP game
+NotificationsTestRaise,Raise a test notification
+NotificationsTestReset,Clear raised notifications
+NotificationsTestMessage,Hello there!
+Page,Page

@@ -5,9 +5,21 @@ var FriendListConfirmDelete = [];
 var FriendListReturn = null;
 var FriendListMode = ["Friends", "Beeps", "Delete"];
 var FriendListModeIndex = 0;
-var FriendListShowBeep = -1;
+/** @type {FriendListBeepLogMessage[]} */
 var FriendListBeepLog = [];
-let FriendListNextCheck = null;
+/** @type {number|null} MemberNumber of the player to send beep to */
+let FriendListBeepTarget = null;
+
+/**
+ * @typedef {Object} FriendListBeepLogMessage
+ * @property {number} [MemberNumber]
+ * @property {string} MemberName
+ * @property {string|null} ChatRoomName
+ * @property {string|null} [ChatRoomSpace]
+ * @property {boolean} Sent
+ * @property {Date} Time
+ * @property {string} [Message]
+ */
 
 /**
  * Loads the online friend list from the server. This function is called dynamically, when the player invokes the friendlist dialog.
@@ -17,13 +29,12 @@ function FriendListLoad() {
 	FriendListConfirmDelete = [];
 	ElementCreateDiv("FriendList");
 	ElementPositionFix("FriendList", 36, 0, 70, 2000, 930);
-	ElementContent("FriendList", FriendListContent);
+	ElementContent("FriendList", "");
 	ServerSend("AccountQuery", { Query: "OnlineFriends" });
 }
 
-// 
 /**
- * Run the friend list screen - Draw the controls and print the result of the server query to the screen. 
+ * Run the friend list screen - Draw the controls and print the result of the server query to the screen.
  * This function is called dynamically on a regular basis. So don't do complex loops within
  * @returns {void} - Nothing
  */
@@ -43,10 +54,100 @@ function FriendListRun() {
 		DrawText(TextGet("ActionDelete"), 1535, 35, "White", "Gray");
 	}
 	ElementPositionFix("FriendList", 36, 5, 75, 1985, 890);
+	if (FriendListBeepTarget !== null) {
+		ElementPositionFix("FriendListBeep", 36, 5, 75, 1985, 890);
+	}
+	DrawButton(1795, 5, 60, 60, "", "White", "Icons/Small/Reset.png", TextGet("Refresh"));
 	DrawButton(1865, 5, 60, 60, "", "White", "Icons/Small/Next.png");
 	DrawButton(1935, 5, 60, 60, "", "White", "Icons/Small/Exit.png");
-	if ((FriendListNextCheck !== null) && (CurrentTime >= FriendListNextCheck))
-		ServerSend("AccountQuery", { Query: "OnlineFriends" });
+}
+
+/**
+ * Creates beep message menu
+ * @param {number} MemberNumber Member number of target player
+ * @param {FriendListBeepLogMessage|null} data Beep data of received beep
+ */
+function FriendListBeep(MemberNumber, data = null) {
+	if (FriendListBeepTarget == null) {
+		ElementCreateDiv("FriendListBeep");
+		ElementPositionFix("FriendListBeep", 36, 5, 75, 1985, 890);
+	}
+	const FriendListBeepElement = document.getElementById("FriendListBeep");
+	FriendListBeepTarget = MemberNumber;
+	FriendListBeepElement.innerHTML = "";
+	const dialog = document.createElement("div");
+	const user = document.createElement("div");
+	user.innerText = `${Player.FriendNames.get(MemberNumber)} [${MemberNumber}]`;
+	const messageArea = document.createElement("textarea");
+	messageArea.id = "FriendListBeepTextArea";
+	messageArea.maxLength = 1000;
+	if (data) {
+		messageArea.readOnly = true;
+		messageArea.value = data.Message || "";
+	}
+	const footer = document.createElement("div");
+	const closeBtn = document.createElement("a");
+	closeBtn.innerText = "Close";
+	closeBtn.onclick = FriendListBeepMenuClose;
+	footer.append(closeBtn);
+	if (data === null) {
+		const sendBtn = document.createElement("a");
+		sendBtn.innerText = "Send";
+		sendBtn.onclick = FriendListBeepMenuSend;
+		footer.append(sendBtn);
+	} else {
+		const replyBtn = document.createElement("a");
+		replyBtn.innerText = "Reply";
+		replyBtn.onclick = () => FriendListBeep(data.MemberNumber);
+		footer.append(replyBtn);
+	}
+	dialog.append(data === null ? "Send Beep" : data.Sent ? "Sent Beep" : "Received Beep", user, messageArea, footer);
+	FriendListBeepElement.append(dialog);
+}
+
+/**
+ * Closes the beep menu
+ */
+function FriendListBeepMenuClose() {
+	ElementRemove("FriendListBeep");
+	FriendListBeepTarget = null;
+}
+
+/**
+ * Sends the beep and message on send click
+ */
+function FriendListBeepMenuSend() {
+	if (FriendListBeepTarget !== null) {
+		const textarea = /** @type {HTMLTextAreaElement} */ (document.getElementById("FriendListBeepTextArea"));
+		if (textarea) {
+			const msg = textarea.value;
+			if (msg) {
+				ServerSend("AccountBeep", { MemberNumber: FriendListBeepTarget, BeepType: "", Message: msg });
+			} else {
+				ServerSend("AccountBeep", { MemberNumber: FriendListBeepTarget, BeepType: "" });
+			}
+			FriendListBeepLog.push({
+				MemberNumber: FriendListBeepTarget,
+				MemberName: Player.FriendNames.get(FriendListBeepTarget),
+				ChatRoomName: Player.LastChatRoom || null,
+				Sent: true,
+				Time: new Date(),
+				Message: msg || undefined
+			});
+		}
+		FriendListBeepMenuClose();
+	}
+}
+
+/**
+ * Shows the wanted beep on click from beep list
+ * @param {number} i index of the beep
+ */
+function FriendListShowBeep(i) {
+	const beep = FriendListBeepLog[i];
+	if (beep) {
+		FriendListBeep(beep.MemberNumber, beep);
+	}
 }
 
 /**
@@ -54,43 +155,71 @@ function FriendListRun() {
  * @returns {void} - Nothing
  */
 function FriendListClick() {
-	if ((MouseX >= 1865) && (MouseX < 1925) && (MouseY >= 5) && (MouseY < 65)) {
+	if (MouseIn(1795, 5, 60, 60)) {
+		ElementContent("FriendList", "");
+		ServerSend("AccountQuery", { Query: "OnlineFriends" });
+	}
+	if (MouseIn(1865, 5, 60, 60)) {
+		ElementContent("FriendList", "");
 		FriendListModeIndex++;
 		if (FriendListModeIndex >= FriendListMode.length) FriendListModeIndex = 0;
 		ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
-	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 5) && (MouseY < 65)) FriendListExit();
+	if (MouseIn(1935, 5, 60, 60)) FriendListExit();
 }
 
 /**
- * This function is called, when the user exists the friend list. From here we either get back to the InformationSheet 
+ * This function is called, when the user exists the friend list. From here we either get back to the InformationSheet
  * or the ChatRoom serach, depending on the value of the global variable 'FriendListReturn'
  * @returns {void} - Nothing
  */
 function FriendListExit() {
+	FriendListBeepMenuClose();
 	ElementRemove("FriendList");
 	if (FriendListReturn != null) {
 		if (FriendListReturn == "ChatSearch") CommonSetScreen("Online", "ChatSearch");
 		FriendListReturn = null;
 	} else CommonSetScreen("Character", "InformationSheet");
+	FriendListModeIndex = 0;
 }
 
-// 
+/**
+ * Exits the friendlist into `ChatSearch` screen, filling in the requested room name
+ * @param {string} room The room to search for
+ */
+function FriendListChatSearch(room) {
+	if (FriendListReturn !== "ChatSearch") return;
+	FriendListExit();
+	ElementValue("InputSearch", room);
+	ChatSearchQuery();
+	// Change the text box so the player still cant read it
+	ElementValue("InputSearch", ChatSearchMuffle(room));
+
+}
+
 /**
  * Loads the friend list data into the HTML div element.
- * @param {Array.<*>} data - An array of data, we receive from the server
- * @param {string} data.MemberName - The name of the player
- * @param {number} data.MemberNumber - The ID of the player
- * @param {string} data.ChatRoomName - The name of the ChatRoom
- * @param {string} data.ChatRoomSpace - The space, where this room was created. Currently this can be the Asylum or the LARP arena
- * @param {string} data.Type - The relationship that exists between the player and the friend of the list. 
+ * @param {{
+ * MemberName: string;
+ * MemberNumber: number;
+ * ChatRoomName: string | null;
+ * ChatRoomSpace: string | null;
+ * Type: "Submissive" | "Friend";
+ * }[]} data - An array of data, we receive from the server
+ *
+ * `data.MemberName` - The name of the player
+ *
+ * `data.MemberNumber` - The ID of the player
+ *
+ * `data.ChatRoomName` - The name of the ChatRoom
+ *
+ * `data.ChatRoomSpace` - The space, where this room was created. Currently this can be the Asylum or the LARP arena
+ *
+ * `data.Type` - The relationship that exists between the player and the friend of the list.
  * Currently, only "submissive" is supported
  * @returns {void} - Nothing
  */
 function FriendListLoadFriendList(data) {
-
-	// Refresh the friend list automatically again in 30 seconds
-	FriendListNextCheck = CurrentTime + 30000;
 
 	// Loads the header caption
 	const BeepCaption = DialogFindPlayer("Beep");
@@ -99,6 +228,7 @@ function FriendListLoadFriendList(data) {
 	const PrivateRoomCaption = DialogFindPlayer("PrivateRoom");
 	const SentCaption = DialogFindPlayer("SentBeep");
 	const ReceivedCaption = DialogFindPlayer("ReceivedBeep");
+	const MailCaption = DialogFindPlayer("BeepWithMail");
 	const SpaceAsylumCaption = DialogFindPlayer("ChatRoomSpaceAsylum");
 	const FriendTypeCaption = {
 		Owner: TextGet("TypeOwner"),
@@ -118,9 +248,9 @@ function FriendListLoadFriendList(data) {
 		}
 		if (Player.SubmissivesList.has(friend.MemberNumber) != (friend.Type == "Submissive")) {
 			if (friend.Type == "Submissive") {
-				Player.SubmissivesList.add(friend.MemberNumber)
+				Player.SubmissivesList.add(friend.MemberNumber);
 			} else {
-				Player.SubmissivesList.delete(friend.MemberNumber)
+				Player.SubmissivesList.delete(friend.MemberNumber);
 			}
 			infoChanged = true;
 		}
@@ -129,7 +259,7 @@ function FriendListLoadFriendList(data) {
 
 	if (mode === "Friends") {
 		// In Friend List mode, we show the friend list and allow doing beeps
-		for (const friend of data.sort((a, b) => a.MemberName.localeCompare(b))) {
+		for (const friend of data) {
 			FriendListContent += "<div class='FriendListRow'>";
 			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${friend.MemberName} </div>`;
 			FriendListContent += `<div class='FriendListTextColumn'> ${friend.MemberNumber} </div>`;
@@ -137,22 +267,37 @@ function FriendListLoadFriendList(data) {
 			if (friend.ChatRoomName.startsWith("-")) {
 				FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomName.replace("-Private-", PrivateRoomCaption)} </div>`;
 			} else {
-				FriendListContent += `<div class='FriendListTextColumn'> ${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${friend.ChatRoomName} </div>`;
+				const Caption = `${friend.ChatRoomSpace ? friend.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : ''} ${ChatSearchMuffle(friend.ChatRoomName)}`;
+				if (FriendListReturn === "ChatSearch" && ChatRoomSpace === (friend.ChatRoomSpace || "")) {
+					FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListChatSearch("${friend.ChatRoomName}")'> ${Caption} </div>`;
+				} else {
+					FriendListContent += `<div class='FriendListTextColumn'> ${Caption} </div>`;
+				}
 			}
-			FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListBeep(${friend.MemberNumber}, "${friend.MemberName}")'> ${BeepCaption} </div>`;
+			FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListBeep(${friend.MemberNumber})'> ${BeepCaption} </div>`;
 			FriendListContent += "</div>";
 		}
 	} else if (mode === "Beeps") {
 		// In Beeps mode, we show all the beeps sent and received
-		for (let B = FriendListBeepLog.length - 1; B >= 0; B--) {
-			FriendListContent += "<div class='FriendListRow'>";
-			FriendListContent += "<div class='FriendListTextColumn FriendListFirstColumn'>" + FriendListBeepLog[B].MemberName + "</div>";
-			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].MemberNumber != null) ? FriendListBeepLog[B].MemberNumber.toString() : "-") + "</div>";
-			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].ChatRoomName == null) ? "-" : (FriendListBeepLog[B].ChatRoomSpace ? FriendListBeepLog[B].ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : '') + FriendListBeepLog[B].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
-			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].Sent) ? SentCaption : ReceivedCaption) + " " + TimerHourToString(FriendListBeepLog[B].Time) + "</div>";
+		for (let i = FriendListBeepLog.length - 1; i >= 0; i--) {
+			const B = FriendListBeepLog[i];
+			FriendListContent += `<div class='FriendListRow'>`;
+			FriendListContent += `<div class='FriendListTextColumn FriendListFirstColumn'> ${B.MemberName}</div>`;
+			FriendListContent += `<div class='FriendListTextColumn'>${B.MemberNumber != null ? B.MemberNumber : "-"}</div>`;
+			const Caption = (B.ChatRoomName == null ? "-" : (B.ChatRoomSpace ? B.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : "") + B.ChatRoomName.replace("-Private-", PrivateRoomCaption));
+			if (FriendListReturn === "ChatSearch" && B.ChatRoomSpace !== undefined && ChatRoomSpace === (B.ChatRoomSpace || "") && B.ChatRoomName && !B.ChatRoomName.startsWith("-")) {
+				FriendListContent += `<div class='FriendListLinkColumn' onClick='FriendListChatSearch("${B.ChatRoomName}")'> ${Caption} </div>`;
+			} else {
+				FriendListContent += `<div class='FriendListTextColumn'> ${Caption} </div>`;
+			}
+			if (B.Message) {
+				FriendListContent += `<div class='FriendListLinkColumn' onclick="FriendListShowBeep(${i})">${B.Sent ? SentCaption : ReceivedCaption} ${TimerHourToString(B.Time)} ${MailCaption}</div>`;
+			} else {
+				FriendListContent += `<div class='FriendListTextColumn'>${B.Sent ? SentCaption : ReceivedCaption} ${TimerHourToString(B.Time)}</div>`;
+			}
 			FriendListContent += "</div>";
 		}
-		CommonNotificationReset("Beep");
+		if (document.hasFocus()) NotificationReset(NotificationEventType.BEEP);
 	} else if (mode === "Delete") {
 		// In Delete mode, we show the friend list and allow the user to remove them
 		for (const [k, v] of Array.from(Player.FriendNames).sort((a, b) => a[1].localeCompare(b[1]))) {
@@ -181,7 +326,7 @@ function FriendListLoadFriendList(data) {
 }
 
 /**
- * When the user wants to delete someone from her friend list this must be confirmed. 
+ * When the user wants to delete someone from her friend list this must be confirmed.
  * This function either displays the confirm message or deletes the friend from the player's friendlist
  * @param {number} MemberNumber - The member to delete from the friendlist
  * @returns {void} - Nothing
@@ -196,14 +341,4 @@ function FriendListDelete(MemberNumber) {
 		ServerPlayerRelationsSync();
 	} else FriendListConfirmDelete.push(MemberNumber);
 	ServerSend("AccountQuery", { Query: "OnlineFriends" });
-}
-
-/**
- * Beeps a given member by sending the name and the current room of the beepee. Also adds an entry to the beep log of the player
- * @param {number} MemberNumber - The ID of the player to beep
- * @param {string} MemberName - The name of the player to beep
- */
-function FriendListBeep(MemberNumber, MemberName) {
-	ServerSend("AccountBeep", { MemberNumber: MemberNumber, BeepType:""});
-	FriendListBeepLog.push({ MemberNumber: MemberNumber, MemberName: MemberName, ChatRoomName: ((ChatRoomData == null) ? null : ChatRoomData.Name), Sent: true, Time: new Date() });
 }

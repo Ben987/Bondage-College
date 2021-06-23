@@ -182,7 +182,7 @@ function VibratorModeDrawHeader() {
 /**
  * Common draw function for drawing the control sets of the extended item menu screen for a vibrator
  * @param {VibratorModeSet[]} Options - The vibrator mode sets to draw for the item
- * @param {number} Y - The y-coordinate at which to start drawing the controls
+ * @param {number} [Y] - The y-coordinate at which to start drawing the controls
  * @returns {void} - Nothing
  */
 function VibratorModeDrawControls(Options, Y) {
@@ -208,7 +208,7 @@ function VibratorModeDrawControls(Options, Y) {
 /**
  * Common click function for vibrators
  * @param {VibratorModeSet[]} Options - The vibrator mode sets for the item
- * @param {number} Y - The y-coordinate at which the extended item controls were drawn
+ * @param {number} [Y] - The y-coordinate at which the extended item controls were drawn
  * @returns {void} - Nothing
  */
 function VibratorModeClick(Options, Y) {
@@ -231,6 +231,33 @@ function VibratorModeClick(Options, Y) {
 		return Handled;
 	});
 }
+
+/**
+ * Gets a vibrator mode from VibratorModeOptions
+ * @param {VibratorMode} ModeName - The name of the mode from VibratorMode, e.g. VibratorMode.OFF
+ * @returns {ExtendedItemOption} - The option gotten
+ */
+function VibratorModeGetOption(ModeName) {
+	var result = null;
+
+	[VibratorModeSet.STANDARD, VibratorModeSet.ADVANCED].some((OptionName) => {
+		var OptionGroup = VibratorModeOptions[OptionName];
+		var Handled = OptionGroup.some((Option, I) => {
+			if ((Option.Property != null) && (Option.Property.Mode == ModeName)) {
+				result = Option;
+				return true;
+			}
+			return false;
+		});
+		return Handled;
+	});
+
+	if (result) return result;
+	return VibratorModeOptions.Standard[0];
+
+}
+
+
 
 /**
  * Sets a new mode for a vibrating item and publishes a corresponding chatroom message
@@ -262,6 +289,8 @@ function VibratorModeSetMode(Option) {
 	ChatRoomPublishCustomAction(Message, false, Dictionary);
 }
 
+
+
 /**
  * Helper function to set dynamic properties on an item
  * @param {object} Property - The Property object to initialise
@@ -271,7 +300,7 @@ function VibratorModeSetDynamicProperties(Property) {
 	const NewProperty = Object.assign({}, Property);
 	if (typeof NewProperty.Intensity === "function") NewProperty.Intensity = NewProperty.Intensity();
 	if (typeof NewProperty.Effect === "function") NewProperty.Effect = NewProperty.Effect(NewProperty.Intensity);
-	else NewProperty.Effect = JSON.parse(JSON.stringify(Property.Effect || []))
+	else NewProperty.Effect = JSON.parse(JSON.stringify(Property.Effect || []));
 	return NewProperty;
 }
 
@@ -406,7 +435,7 @@ function VibratorModeUpdateStateBased(Item, C, PersistentData, TransitionsFromDe
 		Arousal,
 		TimeSinceLastChange,
 		OldIntensity,
-		TransitionsFromDefault,
+		TransitionsFromDefault
 	);
 	var State = NewStateAndIntensity.State;
 	var Intensity = NewStateAndIntensity.Intensity;
@@ -462,7 +491,13 @@ function VibratorModeStateUpdateDeny(C, Arousal, TimeSinceLastChange, OldIntensi
 	var State = VibratorModeState.DENY;
 	var Intensity = OldIntensity;
 	if (Arousal >= 95 && TimeSinceLastChange > OneMinute && Math.random() < 0.2) {
-		// In deny mode, there's a small chance to change to rest mode after a minute
+		if (Player.IsEdged()) {
+			// In deny mode, there's a small chance to change to give a fake orgasm and then go to rest mode after a minute
+			// Here we give the fake orgasm, passing a special parameter that indicates we bypass the usual restriction on Edge
+			ActivityOrgasmPrepare(C, true);
+		}
+		
+		// Set the vibrator to rest
 		State = VibratorModeState.REST;
 		Intensity = -1;
 	} else if (Arousal >= 95) {
@@ -523,7 +558,7 @@ function VibratorModeStateUpdateRest(C, Arousal, TimeSinceLastChange, OldIntensi
 /**
  * Correctly sets the Property on a vibrator according to the new property. This function preserves persistent effects on the item like lock
  * effects.
- * @param {Item[]} Item - The item on which to set the new properties
+ * @param {Item} Item - The item on which to set the new properties
  * @param {object} Property - The new properties to set. The Property object may include dynamic setter functions
  * @returns {void} - Nothing
  */

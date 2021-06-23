@@ -13,9 +13,9 @@ var InventoryItemHandsFuturisticMittensOptions = [
 
 // Loads the item extension properties
 function InventoryItemHandsFuturisticMittensLoad() {
- 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
+		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else
 	ExtendedItemLoad(InventoryItemHandsFuturisticMittensOptions, "SelectFuturisticMittensType");
 }
@@ -24,7 +24,7 @@ function InventoryItemHandsFuturisticMittensLoad() {
 function InventoryItemHandsFuturisticMittensDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagDrawAccessDenied()
+		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else
 		ExtendedItemDraw(InventoryItemHandsFuturisticMittensOptions, "FuturisticMittensType");
 }
@@ -33,17 +33,17 @@ function InventoryItemHandsFuturisticMittensDraw() {
 function InventoryItemHandsFuturisticMittensClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagClickAccessDenied()
+		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
 	} else
 		ExtendedItemClick(InventoryItemHandsFuturisticMittensOptions);
 }
 
 function InventoryItemHandsFuturisticMittensExit() {
-	InventoryItemMouthFuturisticPanelGagExitAccessDenied()
+	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
-	
+
 function InventoryItemHandsFuturisticMittensValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option)
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
 }
 
 function InventoryItemHandsFuturisticMittensPublishAction(C, Option) {

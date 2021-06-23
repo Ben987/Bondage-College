@@ -124,7 +124,7 @@ function ElementCreateRangeInput(id, value, min, max, step, thumbIcon, vertical)
  * - Multiple selects are impossible
  * @param {string} ID - The name of the select item. The outer div will get this name, for positioning. The select
  * tag will get the name ID+"-select"
- * @param {atring[]} Options - The list of options for the current select statement
+ * @param {string[]} Options - The list of options for the current select statement
  * @param {function} [ClickEventListener=null] - An event listener to be called, when the value of the drop down box changes
  * @returns {void} - Nothing
  */
@@ -149,7 +149,7 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
 			Option.setAttribute("value", Options[i]);
 			Option.innerHTML = Options[i];
 			InnerDiv.innerHTML = Options[i];
-			InnerDiv.addEventListener("click", function (e) {
+			InnerDiv.addEventListener("click", function () {
 				// when an item is clicked, update the original select box, and the selected item:
 				var s = this.parentNode.parentNode.getElementsByTagName("select")[0]; // Representation of the select tag
 				var h = this.parentNode.previousSibling; // Representation of the dropdown box
@@ -182,7 +182,7 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
 			this.nextSibling.classList.toggle("select-hide");
 		});
 		// add an event listener to the <select> tag
-		if (ClickEventListener != null) Select.addEventListener("change", ClickEventListener)
+		if (ClickEventListener != null) Select.addEventListener("change", ClickEventListener);
 		// Add alle the items to the enclosing <di>
 		CustomSelect.appendChild(Select);
 		CustomSelect.appendChild(SelectedItem);
@@ -198,8 +198,8 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
  * @returns {void} - Nothing
  */
 function ElementCloseAllSelect(elmnt) {
-    /*a function that will close all select boxes in the document,
-    except the current select box:*/
+	/*a function that will close all select boxes in the document,
+	except the current select box:*/
 	var arrNo = [];
 	var y = document.getElementsByClassName("select-selected");
 	for (let i = 0; i < y.length; i++) {
@@ -243,12 +243,16 @@ function ElementRemove(ID) {
  * @param {number} X - Center point of the element on the X axis.
  * @param {number} Y - Center point of the element on the Y axis.
  * @param {number} W - Width of the element.
- * @param {number} H - Height of the element.
+ * @param {number} [H] - Height of the element.
  * @returns {void} - Nothing
  */
 function ElementPosition(ElementID, X, Y, W, H) {
-
 	var E = document.getElementById(ElementID);
+
+	if (!E) {
+		console.warn("A call to ElementPosition was made on non-existent element with ID '" + ElementID + "'");
+		return;
+	}
 
 	// For a vertical slider, swap the width and the height (the transformation is handled by CSS)
 	if (E.tagName.toLowerCase() === "input" && E.getAttribute("type") === "range" && E.classList.contains("Vertical")) {
@@ -258,40 +262,25 @@ function ElementPosition(ElementID, X, Y, W, H) {
 	}
 
 	// Different positions based on the width/height ratio
-	var Font;
-	var Height;
-	var Left;
-	var Width;
-	var Top;
-	if (DrawScreenWidth <= DrawScreenHeight * 2) {
-		Font = (DrawScreenWidth / 50);
-		Height = H ? (H * DrawScreenWidth / 2000) : (Font * 1.15);
-		Left = ((X - (W / 2)) * DrawScreenWidth / 2000);
-		Width = (W * DrawScreenWidth / 2000) - 18;
-		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4) - (Height / 2);
-	} else {
-		Font = (DrawScreenHeight / 25);
-		Height = H ? (H * DrawScreenHeight / 1000) : (Font * 1.15);
-		Left = ((X - (W / 2)) * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
-		Width = (W * DrawScreenHeight / 1000) - 18;
-		Top = (Y * DrawScreenHeight / 1000) - (Height / 2);
-	}
+	const HRatio = MainCanvas.canvas.clientHeight / 1000;
+	const WRatio = MainCanvas.canvas.clientWidth / 2000;
+	const Font = MainCanvas.canvas.clientWidth <= MainCanvas.canvas.clientHeight * 2 ? MainCanvas.canvas.clientWidth / 50 : MainCanvas.canvas.clientHeight / 25;
+	const Height = H ? H * HRatio : Font * 1.15;
+	const Width = W * WRatio - 18;
+	const Top = MainCanvas.canvas.offsetTop + Y * HRatio - Height / 2;
+	const Left = MainCanvas.canvas.offsetLeft + (X - W / 2) * WRatio;
 
 	// Sets the element style
-	if (E) {
-		Object.assign(E.style, {
-			fontSize: Font + "px",
-			fontFamily: CommonGetFontName(),
-			position: "absolute",
-			left: Left + "px",
-			top: Top + "px",
-			width: Width + "px",
-			height: Height + "px",
-			display: "inline"
-		});
-	} else {
-		console.warn("A call to ElementPosition was made on non-existent element with ID '" + ElementID + "'");
-	}
+	Object.assign(E.style, {
+		fontSize: Font + "px",
+		fontFamily: CommonGetFontName(),
+		position: "fixed",
+		left: Left + "px",
+		top: Top + "px",
+		width: Width + "px",
+		height: Height + "px",
+		display: "inline"
+	});
 }
 
 /**
@@ -306,30 +295,20 @@ function ElementPosition(ElementID, X, Y, W, H) {
 function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 	// Different positions based on the width/height ratio
-	var Left;
-	var Width;
-	var Top;
-	var Height;
-	if (DrawScreenWidth <= DrawScreenHeight * 2) {
-		Font = Font * DrawScreenWidth / 2000;
-		Left = X * DrawScreenWidth / 2000;
-		Width = W * DrawScreenWidth / 2000;
-		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4);
-		Height = H * DrawScreenWidth / 2000;
-	} else {
-		Font = Font * DrawScreenHeight / 1000;
-		Left = (X * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
-		Width = W * DrawScreenHeight / 1000;
-		Top = Y * DrawScreenHeight / 1000;
-		Height = H * DrawScreenHeight / 1000;
-	}
+	const HRatio = MainCanvas.canvas.clientHeight / 1000;
+	const WRatio = MainCanvas.canvas.clientWidth / 2000;
+	Font *= Math.max(HRatio, WRatio);
+	const Top = MainCanvas.canvas.offsetTop + Y * HRatio;
+	const Height = H * HRatio;
+	const Left = MainCanvas.canvas.offsetLeft + X * WRatio;
+	const Width = W * WRatio;
 
 	// Sets the element style
 	var E = document.getElementById(ElementID);
 	Object.assign(E.style, {
 		fontSize: Font + "px",
 		fontFamily: CommonGetFontName(),
-		position: "absolute",
+		position: "fixed",
 		left: Left + "px",
 		top: Top + "px",
 		width: Width + "px",
@@ -364,13 +343,26 @@ function ElementScrollToEnd(ID) {
 }
 
 /**
+ * Returns the given element's scroll position as a percentage, with the top of the element being close to 0 depending on scroll bar size, and the bottom being around 1.
+ * To clarify, this is the position of the bottom edge of the scroll bar.
+ * @param {string} ID - The id of the element to find the scroll percentage of.
+ * @returns {(number|null)} - A float representing the scroll percentage.
+ */
+ function ElementGetScrollPercentage(ID) {
+	var element = document.getElementById(ID);
+	if (element != null) return (element.scrollTop + element.clientHeight) / element.scrollHeight;
+
+	return null;
+}
+
+/**
  * Checks if a given HTML element is scrolled to the very bottom.
  * @param {string} ID - The id of the element to check for scroll height.
  * @returns {boolean} - Returns TRUE if the specified element is scrolled to the very bottom
  */
 function ElementIsScrolledToEnd(ID) {
 	var element = document.getElementById(ID);
-	return element != null && element.scrollHeight - element.scrollTop - element.clientHeight < 1
+	return element != null && element.scrollHeight - element.scrollTop - element.clientHeight < 1;
 }
 
 /**

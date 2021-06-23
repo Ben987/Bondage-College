@@ -5,38 +5,38 @@ var InventoryItemNipplesNippleSuctionCupsOptions = [
 		Name: "Loose",
 		Property: {
 			Type: null,
-			SuctionLevel: "0",
+			SuctionLevel: 0,
 		},
 	},
 	{
 		Name: "Light",
 		Property: {
 			Type: "Light",
-			SuctionLevel: "1",
+			SuctionLevel: 1,
 		},
 	},
 	{
 		Name: "Medium",
 		Property: {
 			Type: "Medium",
-			SuctionLevel: "2",
+			SuctionLevel: 2,
 		},
 	},
 	{
 		Name: "Heavy",
 		Property: {
 			Type: "Heavy",
-			SuctionLevel: "3",
+			SuctionLevel: 3,
 		},
 	},
 	{
 		Name: "Maximum",
 		Property: {
 			Type: "Maximum",
-			SuctionLevel: "4",
+			SuctionLevel: 4,
 		},
 	},
-]
+];
 
 /**
  * Loads the item extension properties
@@ -51,7 +51,10 @@ function InventoryItemNipplesNippleSuctionCupsLoad() {
  * @returns {void} - Nothing
  */
 function InventoryItemNipplesNippleSuctionCupsDraw() {
-	ExtendedItemDraw(InventoryItemNipplesNippleSuctionCupsOptions, "SuctionLevel", InventoryItemNipplesNippleSuctionCupsOptions.length, false);
+	ExtendedItemDraw(
+		InventoryItemNipplesNippleSuctionCupsOptions, "SuctionLevel",
+		InventoryItemNipplesNippleSuctionCupsOptions.length, false,
+	);
 }
 
 /**
@@ -59,7 +62,8 @@ function InventoryItemNipplesNippleSuctionCupsDraw() {
  * @returns {void} - Nothing
  */
 function InventoryItemNipplesNippleSuctionCupsClick() {
-	ExtendedItemClick(InventoryItemNipplesNippleSuctionCupsOptions, false, InventoryItemNipplesNippleSuctionCupsOptions.length, false);
+	ExtendedItemClick(
+		InventoryItemNipplesNippleSuctionCupsOptions, InventoryItemNipplesNippleSuctionCupsOptions.length, false);
 }
 
 /**
@@ -72,7 +76,7 @@ function InventoryItemNipplesNippleSuctionCupsClick() {
 function InventoryItemNipplesNippleSuctionCupsPublishAction(C, Option, PreviousOption) {
 	var NewIndex = InventoryItemNipplesNippleSuctionCupsOptions.indexOf(Option);
 	var PreviousIndex = InventoryItemNipplesNippleSuctionCupsOptions.indexOf(PreviousOption);
-	var msg = "NipSuc" + ((NewIndex > PreviousIndex) ? "tightens" : "loosens") + "To" + Option.Property.SuctionLevel;
+	var msg = "NipSuc" + ((NewIndex > PreviousIndex) ? "tightens" : "loosens") + "To" + Option.Property.SuctionLevel.toString();
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
@@ -81,10 +85,10 @@ function InventoryItemNipplesNippleSuctionCupsPublishAction(C, Option, PreviousO
 }
 
 /**
- * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
- * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
- * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
- * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on
+ * a per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their
+ * default "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on
+ * them. That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
  * @param {Character} C - The NPC to whom the restraint is applied
  * @param {Option} Option - The chosen option for this extended item
  * @returns {void} - Nothing

@@ -30,7 +30,7 @@ function SpeechFullEmote(D) {
 
 /**
  * Returns the gag level corresponding to the given effect array, or 0 if the effect array contains no gag effects
- * @param {string} Effect - The effect to lookup the gag level for
+ * @param {string[]} Effect - The effect to lookup the gag level for
  * @return {number} - The gag level corresponding to the given effects
  */
 function SpeechGetEffectGagLevel(Effect) {
@@ -67,18 +67,14 @@ function SpeechGetGagLevel(C, AssetGroup) {
 }
 
 /**
- * Processes the character's speech, anything between parentheses isn't touched. Effects alter the speech differently according to a character's language. Effects that can be applied are the following: gag talk, baby talk and stuttering.
- * @param {Character} C - The character, whose dialog might need to be altered
- * @param {string} CD - The character's dialog to alter
- * @returns {string} - Returns the dialog after speech effects were processed (Garbling, Stuttering, Baby talk)
+ * Gets the cumulative gag level of a character
+ * @param {Character} C - The character, whose assets are used for the check
+ * @param {boolean} NoDeaf - Whether or not deafness affects the dialogue
+ * @returns {number} - Returns the total gag effect of the character's assets
  */
-function SpeechGarble(C, CD) {
-
-	// Variables to build the new string and check if we are in a parentheses
-	var NS = "";
-	var Par = false;
-	if (CD == null) CD = "";
-	var GagEffect = 0;
+function SpeechGetTotalGagLevel(C, NoDeaf=false) {
+	let GagEffect = 0;
+	
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth2");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth3");
@@ -88,11 +84,60 @@ function SpeechGarble(C, CD) {
 	GagEffect += SpeechGetGagLevel(C, "ItemDevices");
 	GagEffect += SpeechGetGagLevel(C, "ItemHoodAddon");
 
+	if (C.ID != 0 && !NoDeaf) {
+		if (Player.GetDeafLevel() >= 7) GagEffect = Math.max(GagEffect, 20);
+		else if (Player.GetDeafLevel() >= 6) GagEffect = Math.max(GagEffect, 16);
+		else if (Player.GetDeafLevel() >= 5) GagEffect = Math.max(GagEffect, 12);
+		else if (Player.GetDeafLevel() >= 4) GagEffect = Math.max(GagEffect, 8);
+		else if (Player.GetDeafLevel() >= 3) GagEffect = Math.max(GagEffect, 6);
+		else if (Player.GetDeafLevel() >= 2) GagEffect = Math.max(GagEffect, 4);
+		else if (Player.GetDeafLevel() >= 1) GagEffect = Math.max(GagEffect, 2);
+	}
+	return GagEffect;
+}
+
+/**
+ * Processes the character's speech, anything between parentheses isn't touched. Effects alter the speech differently according to a character's language. Effects that can be applied are the following: gag talk, baby talk and stuttering.
+ * @param {Character} C - The character, whose dialog might need to be altered
+ * @param {string} CD - The character's dialog to alter
+ * @param {boolean} [NoDeaf=false] - Whether or not deafness affects the dialogue
+ * @returns {string} - Returns the dialog after speech effects were processed (Garbling, Stuttering, Baby talk)
+ */
+function SpeechGarble(C, CD, NoDeaf=false) {
+	let NS = CD;
+	
+	let GagEffect = SpeechGetTotalGagLevel(C, NoDeaf);
+	
+	
+	if (GagEffect > 0) NS = SpeechGarbleByGagLevel(GagEffect, CD);
+
+	// No gag effect, we return the regular text
+	NS = SpeechStutter(C, NS);
+	NS = SpeechBabyTalk(C, NS);
+
+	return NS;
+}
+
+
+
+/**
+ * The core of the speech garble function, usable without being tied to a specific character
+ * @param {number} GagEffect - The gag level of the speech
+ * @param {string} CD - The character's dialog to alter
+ * @return {string} - Garbled text
+ */
+function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
+
+	// Variables to build the new string and check if we are in a parentheses
+	var NS = "";
+	var Par = false;
+	if (CD == null) CD = "";
+
 	// GagTotal4 always returns mmmmm and muffles some frequent letters entirely, 75% least frequent letters
-	if (GagEffect >= 20  || ((C.ID != 0) && (Player.GetDeafLevel() >= 7))) {
+	if (GagEffect >= 20) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
 				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-") NS = NS + H;
@@ -102,16 +147,14 @@ function SpeechGarble(C, CD) {
 
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
 
 	// GagTotal3 always returns mmmmm and muffles some relatively frequent letters entirely, 50% least frequent letters
-	if (GagEffect >= 16  || ((C.ID != 0) && (Player.GetDeafLevel() >= 6))) {
+	if (GagEffect >= 16) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
 				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-") NS = NS + H;
@@ -121,16 +164,14 @@ function SpeechGarble(C, CD) {
 
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
 
 	// GagTotal2 always returns mmmmm and muffles some less frequent letters entirely; 25% least frequent letters
-	if (GagEffect >= 12  || ((C.ID != 0) && (Player.GetDeafLevel() >= 5))) {
+	if (GagEffect >= 12) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
 				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-") NS = NS + H;
@@ -140,16 +181,14 @@ function SpeechGarble(C, CD) {
 
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
-	}	
+	}
 
 	// Total gags always returns mmmmm
-	if ((GagEffect >= 8) || ((C.ID != 0) && (Player.GetDeafLevel() >= 4))) {
+	if (GagEffect >= 8) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
 				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-") NS = NS + H;
@@ -158,16 +197,14 @@ function SpeechGarble(C, CD) {
 
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
 
 	// VeryHeavy garble - Close to no letter stays the same
 	if (GagEffect >= 7) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (!Par) {
 
 				// Regular characters
@@ -193,16 +230,14 @@ function SpeechGarble(C, CD) {
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
-	
+
 	// Heavy garble - Almost no letter stays the same
-	if ((GagEffect >= 6) || ((C.ID != 0) && (Player.GetDeafLevel() >= 3))) {
+	if (GagEffect >= 6) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (!Par) {
 
 				// Regular characters
@@ -230,16 +265,14 @@ function SpeechGarble(C, CD) {
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
 
 	// Medium garble - Some letters stays the same
 	if (GagEffect >= 5) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (!Par) {
 
 				// Regular characters
@@ -267,16 +300,14 @@ function SpeechGarble(C, CD) {
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
-	
+
 	// Normal garble, keep vowels and a few letters the same
-	if ((GagEffect >= 4) || ((C.ID != 0) && (Player.GetDeafLevel() >= 2))) {
+	if (GagEffect >= 4) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (!Par) {
 
 				// Regular characters
@@ -310,16 +341,14 @@ function SpeechGarble(C, CD) {
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
 
 	// Easy garble, keep vowels and a some letters the same
 	if (GagEffect >= 3) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (!Par) {
 
 				// Regular characters
@@ -353,16 +382,14 @@ function SpeechGarble(C, CD) {
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
-	
+
 	// Light garble, half of the letters stay the same
-	if ((GagEffect >= 2) || ((C.ID != 0) && (Player.GetDeafLevel() >= 1))) {
+	if (GagEffect >= 2) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (!Par) {
 
 				// Regular characters
@@ -396,16 +423,14 @@ function SpeechGarble(C, CD) {
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
-	
+
 	// Very Light garble, most of the letters stay the same
 	if (GagEffect >= 1) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
+			let H = CD.charAt(L).toLowerCase();
+			if (H == "(" && !IgnoreOOC) Par = true;
 			if (!Par) {
 
 				// Regular characters
@@ -436,14 +461,9 @@ function SpeechGarble(C, CD) {
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
-		NS = SpeechStutter(C, NS);
-		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
 
-	// No gag effect, we return the regular text
-	CD = SpeechStutter(C, CD);
-	CD = SpeechBabyTalk(C, CD);
 	return CD;
 
 }

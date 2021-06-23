@@ -1,15 +1,15 @@
 "use strict";
 
-var InventoryItemMiscHighSecurityPadlockPlayerCanUnlock = true
-var HighSecurityPadlockConfigOwner = true
-var HighSecurityPadlockConfigLover = true
-var HighSecurityPadlockConfigWhitelist = false
+var InventoryItemMiscHighSecurityPadlockPlayerCanUnlock = true;
+var HighSecurityPadlockConfigOwner = true;
+var HighSecurityPadlockConfigLover = true;
+var HighSecurityPadlockConfigWhitelist = false;
 
 
 // Loads the item extension properties
 function InventoryItemMiscHighSecurityPadlockLoad() {
 	var C = CharacterGetCurrent();
-	InventoryItemMiscHighSecurityPadlockPlayerCanUnlock = true
+	InventoryItemMiscHighSecurityPadlockPlayerCanUnlock = true;
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property == null)) DialogFocusSourceItem.Property = {};
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.MemberNumberListKeys == null))
 		DialogFocusSourceItem.Property.MemberNumberListKeys = "" + (DialogFocusSourceItem.Property.LockMemberNumber) ? DialogFocusSourceItem.Property.LockMemberNumber : "";
@@ -23,9 +23,9 @@ function InventoryItemMiscHighSecurityPadlockLoad() {
 				document.getElementById("MemberNumberList").setAttribute("autocomplete", "off");
 				ElementValue("MemberNumberList", DialogFocusSourceItem.Property.MemberNumberListKeys);
 			}
-			
+
 			if (!InventoryItemMiscHighSecurityPadlockPlayerHasKeys(C, DialogFocusItem)) {
-				InventoryItemMiscHighSecurityPadlockPlayerCanUnlock = false
+				InventoryItemMiscHighSecurityPadlockPlayerCanUnlock = false;
 			}
 		}
 	}
@@ -44,7 +44,7 @@ function InventoryItemMiscHighSecurityPadlockPlayerHasKeys(C, Item) {
 				return true;
 			} else return true;
 		}
-	return true
+	return true;
 }
 
 // Draw the extension screen
@@ -54,19 +54,19 @@ function InventoryItemMiscHighSecurityPadlockDraw() {
 	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
 		DrawText(DialogFindPlayer("LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 650, "white", "gray");
-	
+
 	if (!InventoryGroupIsBlocked(C, C.FocusGroup.Name)&& (DialogFocusSourceItem != null && ((DialogFocusSourceItem.Property.MemberNumberListKeys && CommonConvertStringToArray("" + DialogFocusSourceItem.Property.MemberNumberListKeys).indexOf(Player.MemberNumber) >= 0)))) {
 		DrawText(DialogFindPlayer("HighSecuritySaveIntro"), 1500, 600, "white", "gray");
 		ElementPosition("MemberNumberList", 1260, 780, 300, 170);
 		DrawButton(1135, 920, 230, 64, DialogFindPlayer("HighSecuritySave"), "White", "");
-		
+
 		MainCanvas.textAlign = "left";
-		DrawCheckboxColor(1450, 700, 64, 64, DialogFindPlayer("HighSecurityAppendOwner"), HighSecurityPadlockConfigOwner, "White");
-		DrawCheckboxColor(1450, 780, 64, 64, DialogFindPlayer("HighSecurityAppendLover"), HighSecurityPadlockConfigLover, "White");
-		DrawCheckboxColor(1450, 860, 64, 64, DialogFindPlayer("HighSecurityAppendWhitelist"), HighSecurityPadlockConfigWhitelist, "White");
+		DrawCheckbox(1450, 700, 64, 64, DialogFindPlayer("HighSecurityAppendOwner"), HighSecurityPadlockConfigOwner, false, "White");
+		DrawCheckbox(1450, 780, 64, 64, DialogFindPlayer("HighSecurityAppendLover"), HighSecurityPadlockConfigLover, false, "White");
+		DrawCheckbox(1450, 860, 64, 64, DialogFindPlayer("HighSecurityAppendWhitelist"), HighSecurityPadlockConfigWhitelist, false, "White");
 		MainCanvas.textAlign = "center";
 
-		
+
 		if (!InventoryItemMiscHighSecurityPadlockPlayerCanUnlock) {
 			DrawText(DialogFindPlayer("HighSecurityWarning"), 1500, 550, "red", "gray");
 		}
@@ -81,36 +81,37 @@ function InventoryItemMiscHighSecurityPadlockClick() {
 	if (!InventoryGroupIsBlocked(C, C.FocusGroup.Name)&& (DialogFocusSourceItem != null && ((DialogFocusSourceItem.Property.MemberNumberListKeys && CommonConvertStringToArray("" + DialogFocusSourceItem.Property.MemberNumberListKeys).indexOf(Player.MemberNumber) >= 0)))) {
 		if (MouseIn(1135, 920, 230, 64)) {
 			if (DialogFocusSourceItem != null && DialogFocusSourceItem.Property != null) {
-				var list = CommonConvertStringToArray("" + ElementValue("MemberNumberList").trim())
+				var list = CommonConvertStringToArray("" + ElementValue("MemberNumberList").trim());
 				if (!InventoryItemMiscHighSecurityPadlockPlayerCanUnlock && list.length > 1 && list.indexOf(Player.MemberNumber) >= 0 ) {
 					list = list.filter(x => x !== Player.MemberNumber);
 				}
-				
+
 				for (let A = 0; A < C.Appearance.length; A++) {
 					if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
 						C.Appearance[A] = DialogFocusSourceItem;
 				}
-				
-				if (HighSecurityPadlockConfigOwner && Player.Owner && list.indexOf(Player.Owner) < 0) {
-					list.push(Player.Owner)
+
+				if (HighSecurityPadlockConfigOwner && Player.Ownership && Player.Ownership.MemberNumber != null && list.indexOf(Player.Ownership.MemberNumber) < 0) {
+					list.push(Player.Ownership.MemberNumber);
 				}
 				if (HighSecurityPadlockConfigLover && Player.Lovership) {
 					for (let L = 0; L < Player.Lovership.length; L++) {
-						if (list.indexOf(Player.Lovership[L]) < 0)
-							list.push(Player.Lovership[L].MemberNumber)
+						const lover = Player.Lovership[L];
+						if (lover.MemberNumber != null && list.indexOf(lover.MemberNumber) < 0)
+							list.push(Player.Lovership[L].MemberNumber);
 					}
 				}
 				if (HighSecurityPadlockConfigWhitelist && Player.WhiteList) {
 					for (let L = 0; L < Player.WhiteList.length; L++) {
 						if (list.indexOf(Player.WhiteList[L]) < 0)
-							list.push(Player.WhiteList[L])
+							list.push(Player.WhiteList[L]);
 					}
 				}
-				
-				DialogFocusSourceItem.Property.MemberNumberListKeys = "" + 
-					CommonConvertArrayToString(list) // Convert to array and back; can only save strings on server
+
+				DialogFocusSourceItem.Property.MemberNumberListKeys = "" +
+					CommonConvertArrayToString(list); // Convert to array and back; can only save strings on server
 				ElementValue("MemberNumberList", DialogFocusSourceItem.Property.MemberNumberListKeys);
-				
+
 				if (CurrentScreen == "ChatRoom") {
 					var Dictionary = [];
 					Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
@@ -124,19 +125,19 @@ function InventoryItemMiscHighSecurityPadlockClick() {
 					InventoryItemMiscHighSecurityPadlockExit();
 				}
 			}
-			
-			
+
+
 			return;
 		}
 		if (MouseIn(1450, 700, 64, 64)) {HighSecurityPadlockConfigOwner = !HighSecurityPadlockConfigOwner; return;}
 		if (MouseIn(1450, 780, 64, 64)) {HighSecurityPadlockConfigLover = !HighSecurityPadlockConfigLover; return;}
 		if (MouseIn(1450, 860, 64, 64)) {HighSecurityPadlockConfigWhitelist = !HighSecurityPadlockConfigWhitelist; return;}
 	}
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemMiscHighSecurityPadlockExit()
-	
+	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemMiscHighSecurityPadlockExit();
 
-	
-	
+
+
+
 }
 
 

@@ -1,6 +1,8 @@
 "use strict";
 
 
+var AutoShockGagActionFlag = false;
+
 // Loads the item extension properties
 function InventoryItemNeckAccessoriesCollarAutoShockUnitLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Intensity: 0, Sensitivity: 0, ShowText: true };
@@ -38,19 +40,19 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitClick() {
 	if ((MouseX >= 1100) && (MouseX <= 1300) && (MouseY >= 550) && (MouseY <= 605) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckAccessoriesCollarAutoShockUnitSetIntensity(0 - DialogFocusItem.Property.Intensity);
 	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 550) && (MouseY <= 605) && (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1)) InventoryItemNeckAccessoriesCollarAutoShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if ((MouseX >= 1650) && (MouseX <= 1850) && (MouseY >= 550) && (MouseY <= 605) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckAccessoriesCollarAutoShockUnitSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	
-	
+
+
 	if ((MouseIn(1100, 700, 150, 55)) && (DialogFocusItem.Property.Sensitivity != 0)) InventoryItemNeckAccessoriesCollarAutoShockUnitSetSensitivity(0 - DialogFocusItem.Property.Sensitivity);
 	if ((MouseIn(1300, 700, 150, 55)) && (DialogFocusItem.Property.Sensitivity != 1)) InventoryItemNeckAccessoriesCollarAutoShockUnitSetSensitivity(1 - DialogFocusItem.Property.Sensitivity);
 	if ((MouseIn(1500, 700, 150, 55)) && (DialogFocusItem.Property.Sensitivity != 2)) InventoryItemNeckAccessoriesCollarAutoShockUnitSetSensitivity(2 - DialogFocusItem.Property.Sensitivity);
 	if ((MouseIn(1700, 700, 150, 55)) && (DialogFocusItem.Property.Sensitivity != 3)) InventoryItemNeckAccessoriesCollarAutoShockUnitSetSensitivity(3 - DialogFocusItem.Property.Sensitivity);
-	
+
 	if (Player.CanInteract() && (MouseX >= 1600) && (MouseX <= 1800) && (MouseY >= 790) && (MouseY <= 845)) InventoryItemNeckAccessoriesCollarAutoShockUnitTrigger();
 }
 
 // Sets the shock collar intensity
 function InventoryItemNeckAccessoriesCollarAutoShockUnitSetIntensity(Modifier) {
-	
+
 	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
@@ -68,12 +70,12 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitSetIntensity(Modifier) {
 	}
 	else
 		DialogLeave();
-		
+
 }
 
 // Sets the shock collar sensitivity
 function InventoryItemNeckAccessoriesCollarAutoShockUnitSetSensitivity(Modifier) {
-	
+
 	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
@@ -91,54 +93,76 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitSetSensitivity(Modifier)
 	}
 	else
 		DialogLeave();
-		
+
 }
 
-
-function InventoryItemNeckAccessoriesCollarAutoShockUnitUpdate(data) {
-	var Item = data.Item
-	// Punish the player if they speak
-	if (Item.Property.Sensitivity && Item.Property.Sensitivity > 0) {
-		
-		var LastMessages = data.PersistentData().LastMessageLen
-		var ShockTriggerPunish = false
-		
-		if (Item.Property.Sensitivity == 3 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
-			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
-				&& ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1])
-			ShockTriggerPunish = true
-		if (Item.Property.Sensitivity == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+function InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Sensitivity, Emote, Keywords) {
+	if (Sensitivity == 3 && (Emote || (ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1]
+			&& (!ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
+			|| (keywords && (ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/me") || ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")))))))
+			return true;
+		if (Sensitivity == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
 			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
 			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].length > 25
 				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && (ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()
 				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!'))))))
-			ShockTriggerPunish = true
-		if (Item.Property.Sensitivity == 1 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			return true;
+		if (Sensitivity == 1 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
 			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
 			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && (ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()
 				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!')))))
-			ShockTriggerPunish = true
-		
-		
-		if (ChatRoomTargetMemberNumber != null) {
-			ShockTriggerPunish = false // No trigger on whispers
+			return true;
+	return false;
+}
+
+
+function InventoryItemNeckAccessoriesCollarAutoShockUnitUpdate(data) {
+	var Item = data.Item;
+	if (Item.Property.Sensitivity < 3)
+		AutoShockGagActionFlag = false;
+
+	// Punish the player if they speak
+	if (Item.Property.Sensitivity && Item.Property.Sensitivity > 0) {
+
+		var LastMessages = data.PersistentData().LastMessageLen;
+		var ShockTriggerPunish = false;
+		var keywords = false;
+		var gagaction = false;
+
+		if (Item.Property.Sensitivity == 3) {
+			if (AutoShockGagActionFlag == true) {
+				gagaction = true;
+				AutoShockGagActionFlag = false;
+			} else for (let K = 0; K < AutoPunishKeywords.length; K++) {
+				if (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes(AutoPunishKeywords[K])) {
+					keywords = true;
+					break;
+				}
+			}
 		}
-		
+
+		ShockTriggerPunish = InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Item.Property.Sensitivity, gagaction, keywords);
+
+		if (ChatRoomTargetMemberNumber != null) {
+			ShockTriggerPunish = false; // No trigger on whispers
+		}
+
 		if (ShockTriggerPunish) {
-			InventoryItemNeckAccessoriesCollarAutoShockUnitTriggerAutomatic(data)
+			InventoryItemNeckAccessoriesCollarAutoShockUnitTriggerAutomatic(data);
 			ChatRoomCharacterUpdate(Player);
-		} 
+		}
 	}
-	
-	
+
+
 }
 
 // Trigger a shock outside of the dialog menu
-function InventoryItemNeckAccessoriesCollarAutoShockUnitTriggerAutomatic(data) { 
+function InventoryItemNeckAccessoriesCollarAutoShockUnitTriggerAutomatic(data) {
 	var msg = "TriggerShock" + data.Item.Property.Intensity;
-	var C = data.C
-	
-	
+	var C = data.C;
+
+
 	if (CurrentScreen == "ChatRoom" && data.Item.Property.ShowText) {
 		var Dictionary = [
 			{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber },
@@ -147,14 +171,12 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitTriggerAutomatic(data) {
 		ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary });
 		ChatRoomCharacterItemUpdate(C, data.Item.Asset.Group.Name);
 	}
-		
-    CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
-    CharacterSetFacialExpression(C, "Blush", "Soft", 15);
-    CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
+
+	InventoryShockExpression(C);
 }
 
 // Trigger a shock from the dialog menu
-function InventoryItemNeckAccessoriesCollarAutoShockUnitTrigger(data) { 
+function InventoryItemNeckAccessoriesCollarAutoShockUnitTrigger(data) {
 	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
@@ -171,17 +193,15 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitTrigger(data) {
 	Dictionary.push({ Tag: "ActivityGroup", Text: DialogFocusItem.Asset.Group.Name });
 	Dictionary.push({ AssetName: DialogFocusItem.Asset.Name });
 	Dictionary.push({ AssetGroupName: DialogFocusItem.Asset.Group.Name });
-	
+
 	if (C.ID == Player.ID) {
 		// The Player shocks herself
 		ActivityArousalItem(C, C, DialogFocusItem.Asset);
 	}
-		
+
 	ChatRoomPublishCustomAction("TriggerShock" + DialogFocusItem.Property.Intensity, true, Dictionary);
-			
-    CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
-    CharacterSetFacialExpression(C, "Blush", "Soft", 15);
-    CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
+
+	InventoryShockExpression(C);
 }
 
 function AssetsItemNeckAccessoriesCollarAutoShockUnitBeforeDraw(data) {
@@ -198,23 +218,23 @@ function AssetsItemNeckAccessoriesCollarAutoShockUnitScriptDraw(data) {
 		var wasBlinking = property.Type === "Blink";
 		property.Type = wasBlinking ? null : "Blink";
 		var timeToNextRefresh = wasBlinking ? 4000 : 1000;
-		
+
 		if (CurrentScreen == "ChatRoom" && data.C == Player) {
-		
-			InventoryItemNeckAccessoriesCollarAutoShockUnitUpdate(data)
-			
+
+			InventoryItemNeckAccessoriesCollarAutoShockUnitUpdate(data);
+
 			persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
 		}
 
-		
-		
+
+
 		persistentData.ChangeTime = CommonTime() + timeToNextRefresh;
 		AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);
 		AnimationRequestDraw(data.C);
 	}
 }
 
-function InventoryItemNeckAccessoriesCollarAutoShockUnitDynamicAudio(data) { 
+function InventoryItemNeckAccessoriesCollarAutoShockUnitDynamicAudio(data) {
 	var Modifier = parseInt(data.Content.substr(data.Content.length - 1));
 	if (isNaN(Modifier)) Modifier = 0;
 	return ["Shocks", Modifier * 3];

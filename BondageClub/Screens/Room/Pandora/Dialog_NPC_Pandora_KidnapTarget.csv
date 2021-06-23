@@ -1,0 +1,71 @@
+PlayerGagged,,,(She looks at you and laughs.)  Cute gag girl.,,
+FightVictory,,,(She seems furious.)  I can't believe you won.  You will not get out of here alive.,,
+FightDefeat,,,(She kicks your butt one last time and laughs.)  Get lost!  You're no match for me.,,
+Punishment8,,,"(A Dominatrix takes you away.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(A Dominatrix takes you away.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(A Dominatrix takes you away.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(A Dominatrix takes you away.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
+ItemMouth,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth,,,"(You remove her gag and she seems happy.)  You don't need to gag me, I won't scream.",,
+ItemMouth2,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth2,,,"(You remove her gag and she seems happy.)  You don't need to gag me, I won't scream.",,
+ItemMouth3,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth3,,,"(You remove her gag and she seems happy.)  You don't need to gag me, I won't scream.",,
+ItemEars,,,(She seems angry as you push earplugs inside.)  This is not needed!,,
+RemoveItemEars,,,(You pull the earplugs out.)  Does it matter if I hear or not?,,
+ItemArms,,,(She struggles as you restrain her arms securely.)  I already surrendered you know.,,
+RemoveItemArms,,,"(You free her arms and she stretches.)  Thanks, I guess.  Just lead the way.",,
+ItemLegs,,,(She submits to you while you restrain her legs.)  You want me to come with you or not?,,
+RemoveItemLegs,,,(You release her legs as she shakes her butt.)  Fine.  Just tell me where to go.,,
+ItemFeet,,,(She tests your feet restraints by jumping on her toes.)  I guess we are not going anywhere.,,
+RemoveItemFeet,,,"(You release her feet and she wiggles them.)  Ok girl, where are we going?",,
+ItemBoots,,,(She wiggles her feet as you restrain them.)  You're not make your escape any easier.,,
+RemoveItemBoots,,,(She stands on her toes as you release her feet.)  Just make up your mind.,,
+ItemNeck,,,(She adjusts her neck to the new collar.)  That Bondage Club collar means nothing to me.,,
+RemoveItemNeck,,,(You remove the collar from her neck.)  Next time I will collar you.,,
+ItemPelvis,,,(She struggles to avoid the belt but you're able to strap it on her.)  Fuck this!,,
+RemoveItemPelvis,,,(She seems happy as you unlock the belt from her waist.)  I guess I can thank you.,,
+ItemHead,,,(You strap the device on her head as she sighs.)  Enjoy it while it lasts.,,
+RemoveItemHead,,,(You release her head as she nods rapidly.)  Don't think you're out of trouble.,,
+ItemHood,,,(You put the hood on her head as she goes silent.),,
+RemoveItemHood,,,(She nods happily as you remove the hood from her head.)  Try not to freak me out.,,
+ItemNose,,,(You strap the item on her nose as she sighs.)  Do I look like a Guinea pig to you?,,
+RemoveItemNose,,,(She nods as you remove the device.)  Someday Pandora's Box will make you pay.,,
+ItemTorso,,,(You strap the harness on her torso as she blushes.)  What are you doing here?,,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  A break is nice.,,
+ItemButt,,,(She moans softly as you slide the device inside.)  Gosh!  What kind of kidnapping is that?,,
+RemoveItemButt,,,(She wiggles her butt as you remove the plug.)  Next time your butt is mine.,,
+ItemBreast,,,(She holds her breath as you use the item.)  You're pushing your luck there.,,
+RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Kidnappers don't make up their mind easily it seems.,,
+ItemNipples,,,(She whimpers as you use the device on her breast.)  The Bondage Club will pay for this.,,
+RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
+0,,,Oh fuck!  Help!  DialogPlayerName is here to kidnap me!  Someone help!,,"DialogSkillGreater(""Infiltration"", 10)"
+0,,,I knew the Bondage Club would send someone like you DialogPlayerName.  I won't go down without a fight.,,"DialogSkillGreater(""Infiltration"", 6)"
+0,,,You're not from Pandora's aren't you?  Are you looking for trouble?,,"DialogSkillGreater(""Infiltration"", 2)"
+0,,,Who are you?  I don't have time for newbies.,,
+0,,Who are you?,That's none of your business.,DialogRemove(),
+0,10,Can we talk?,"I'm busy, go away or be ready to fight.",,
+0,10,I'm here to kidnap you.,Oh yeah?  I won't go down without a fight.,,
+0,,(Fight her.),,CharacterFight(),
+0,,I cannot talk now.  (Leave her.),,CharacterAllowMove(),
+10,,,"So, you want to fight or not?",,
+10,,(Fight her.),,CharacterFight(),
+10,,(Leave her.),,DialogLeave(),
+100,,,"You might have beaten me, but the other girls from Pandora's Box will kick your butt.",,
+100,,You're mine now.,Ah!  You really think you can collar me?,DialogRemove(),
+100,,Where is the exit?,Fuck you!  I'm not helping you.,DialogRemove(),
+100,,(Bring her with you.),Wait!  What are you doing?  Where are we going?  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
+100,,(Leave her here.),Can you make up your mind?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Strip her naked.),(You strip her naked as she struggles.)  That's enough!  I've already surrendered!,CharacterNaked(),!CurrentCharacter.IsNaked()
+100,,Enough.  (Stop talking with her.),,DialogLeave(),
+200,210,Get me out!,(She laughs at you.)  You want out?  Not until you get properly punished little kidnapper.,,Player.CanTalk()
+200,210,(Beg for mercy.),(She laughs at you.)  You want out?  Not until you get properly punished little kidnapper.,,!Player.CanTalk()
+210,220,Punishment?  What do you mean?,"You've never been punished?  Get ready girl, a Dominatrix will come to get you soon.",,Player.CanTalk()
+210,220,You're not punishing me girl.,I don't do punishments.  A Dominatrix will come to get you soon.,,Player.CanTalk()
+210,220,I will accept it Miss.,You might like this punishment subbie girl.  A Dominatrix will come to get you soon.,,Player.CanTalk()
+210,220,(Scream in your gag.),Scream all you want.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
+210,220,(Trash in your bondage.),You're not getting out.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
+210,220,(Bow your head and stay silent.),You might like this punishment subbie girl.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
+220,,You can't be serious.,"Oh yeah?  Watch me, I'm very serious.  (She waits for a Dominatrix.)",DialogRemove(),Player.CanTalk()
+220,,I will have my revenge.,"We'll see about that, try anything and I will crush you again.",DialogRemove(),Player.CanTalk()
+220,,(Wait for the Dominatrix.),,PunishmentIntro(),

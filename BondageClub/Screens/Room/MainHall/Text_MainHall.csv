@@ -20,7 +20,9 @@ Asylum,Asylum
 College,Visit the College
 LARPBattle,LARP Battles
 MovieStudio,Movie Studio
+Infiltration,Infiltration
 Exit,Leave the Club
+ExitConfirm,Do you want to leave the club?
 SarahBedroom,Sarah's Bedroom
 Gambling,Gambling by git4nick
 Prison,Prison by git4nick
@@ -29,6 +31,7 @@ Stable,Stable by git4nick
 Nursery,The Nursery by wildsj
 Magic,Houdini's Theater by git4nick
 Cafe,Cafe by wildsj
+Arcade,Arcade by Ada18980
 RequestMaid,Request maid service
 Tip0,This game is for adults only.  Minors must leave immediately.
 Tip1,"All game characters are considered adults, no exceptions."
@@ -50,3 +53,8 @@ Tip16,Beta items will be lost if you go back to the regular version.
 Tip17,You can protect yourself by blocking items and blacklisting players.
 Tip18,"Reach us on Discord, DeviantArt or Patreon if you need help."
 Tip19,Type /help in a chatroom to know the available chat commands.
+PandoraKidnapperIntro0,(A woman blocks your path.)  DialogPlayerName!  You've been a nuisance for Pandora's Box for far too long.  Surrender now or you will get hurt.
+PandoraKidnapperIntro1,(A girl taps on your shoulder.)  Here you are!  Pandora's Box sent me to get you.  Get on your knees right now or there will be trouble.
+PandoraKidnapperIntro2,"(Someone springs from behind you.)  No offense DialogPlayerName, but Pandora's Box as put a bounty on you.  Come with me quietly."
+PandoraKidnapperIntro3,(A girl jumps in front of you.)  Your days of causing trouble are over DialogPlayerName.  I'm bringing you bound and gagged to Pandora's Box.
+PandoraKidnapperIntro4,(A woman chases you down.)  You won't be running away this time girl.  Pandora's Box has a special cell ready for your ass.

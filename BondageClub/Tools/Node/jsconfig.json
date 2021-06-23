@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"lib": ["es2018"],
+		"checkJs": true,
+		"strict": true,
+		"noImplicitAny": false
+	},
+	"include": ["AssetCheck.js"]
+}

@@ -8,18 +8,18 @@ var AsylumMeetingPatientRight = null;
  * Checks if the player can be released
  * @returns {boolean} - Returns true, if the player can be released, false otherwise
  */
-function AsylumMeetingCanReleasePlayer() { return (Player.IsRestrained() && !AsylumMeetingPatientLeft.IsRestrained() && (LogValue("Committed", "Asylum") >= CurrentTime)) }
+function AsylumMeetingCanReleasePlayer() { return (Player.IsRestrained() && !AsylumMeetingPatientLeft.IsRestrained() && (LogValue("Committed", "Asylum") >= CurrentTime)); }
 /**
  * Checks if the player cannot be released
  * @returns {boolean} - Returns true, if the player cannot be released, false otherwise
  */
-function AsylumMeetingCannotReleasePlayer() { return (Player.IsRestrained() && (AsylumMeetingPatientLeft.IsRestrained() || (LogValue("Committed", "Asylum") < CurrentTime))) }
+function AsylumMeetingCannotReleasePlayer() { return (Player.IsRestrained() && (AsylumMeetingPatientLeft.IsRestrained() || (LogValue("Committed", "Asylum") < CurrentTime))); }
 /**
  * Checks wether the player can be restrained or not
  * @returns {boolean} - Returns true, if the player can be restrained, flase otherwise
  */
-function AsylumMeetingCanRestrainPlayer() { return (!Player.IsRestrained() && !AsylumMeetingPatientLeft.IsRestrained() && (LogValue("Committed", "Asylum") >= CurrentTime)) }
-function AsylumMeetingCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
+function AsylumMeetingCanRestrainPlayer() { return (!Player.IsRestrained() && !AsylumMeetingPatientLeft.IsRestrained() && (LogValue("Committed", "Asylum") >= CurrentTime)); }
+function AsylumMeetingCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()); }
 
 /**
  * Loads the room and it's patients
@@ -90,6 +90,15 @@ function AsylumMeetingBuyVibratingWand() {
 	InventoryAdd(Player, "VibratingWand", "ItemVulva");
 	CharacterChangeMoney(Player, -80);
 	DialogChangeReputation("Asylum", -5);
+}
+
+/**
+ * The player buys lockpicks from the left hand patient
+ * @returns {void} - Nothing
+ */
+function AsylumMeetingBuyLockPicks() {
+	InventoryAdd(Player, "Lockpicks", "ItemMisc");
+	CharacterChangeMoney(Player, -40);
 }
 
 /**

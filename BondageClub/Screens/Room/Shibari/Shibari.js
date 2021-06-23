@@ -29,7 +29,7 @@ function ShibariAllowTeacherStrip() { return (ShibariAllowTeacherItem && !Shibar
  * Checks if the player can be restrained by the Shibari dojo teacher.
  * @returns {boolean} - Returns TRUE if the player can be restrained by the teacher.
  */
-function ShibariAllowPlayerBondage() { return !Player.IsRestrained() && !ShibariTeacher.IsRestrained() }
+function ShibariAllowPlayerBondage() { return !Player.IsRestrained() && !ShibariTeacher.IsRestrained(); }
 /**
  * Checks if the player can spank the Shibari dojo teacher.
  * @returns {boolean} - Returns TRUE if the player can spank the teacher.
@@ -40,23 +40,23 @@ function ShibariAllowSpank() { return (((CurrentCharacter.ID == ShibariTeacher.I
  * @param {string} ScenarioName - Name of the scenario to check for.
  * @returns {boolean} - Returns TRUE if the given scenario is active.
  */
-function ShibariIsRescueScenario(ScenarioName) { return (ShibariRescueScenario == ScenarioName) }
+function ShibariIsRescueScenario(ScenarioName) { return (ShibariRescueScenario == ScenarioName); }
 /**
  * Checks if the Shibari dojo teacher is restrained.
  * @returns {boolean} - Returns TRUE if the teacher is restrained.
  */
-function ShibariIsTeacherRestrained() { return (ShibariTeacher.IsRestrained() || !ShibariTeacher.CanTalk()) }
+function ShibariIsTeacherRestrained() { return (ShibariTeacher.IsRestrained() || !ShibariTeacher.CanTalk()); }
 /**
  * Checks if the player can be trained in a given skill type.
  * @param {string} SkillType - Name of the skill to check for.
  * @returns {boolean} - Returns TRUE if the player can receive a training.
  */
-function ShibariCanTrainSkill(SkillType) { return (SkillGetLevelReal(Player, SkillType) < 10) }
+function ShibariCanTrainSkill(SkillType) { return (SkillGetLevelReal(Player, SkillType) < 10); }
 /**
  * Checks if the player can pay for a training.
  * @returns {boolean} - Returns TRUE if the player can pay for the requested training.
  */
-function ShibariCanPayForTraining() { return (Player.Money >= ShibariTrainingPrice) }
+function ShibariCanPayForTraining() { return (Player.Money >= ShibariTrainingPrice); }
 
 /**
  * Puts a character in a random bondage position.
@@ -65,7 +65,7 @@ function ShibariCanPayForTraining() { return (Player.Money >= ShibariTrainingPri
  * @returns {void} - Nothing
  */
 function ShibariRandomBondage(C, Level) {
-	
+
 	// For NPCs, we give the items
 	if (C.ID != 0) {
 		InventoryAdd(C, "HempRope", "ItemArms");
@@ -74,10 +74,10 @@ function ShibariRandomBondage(C, Level) {
 		InventoryAdd(C, "HempRopeHarness", "ItemTorso");
 		InventoryAdd(C, "BambooGag", "ItemMouth");
 	}
-	
+
 	// At a level of 0, we pick a random level, over zero, we apply restrains
 	if (Level >= 0) {
-		
+
 		// Wears more item with higher levels
 		if (Level >= 1) InventoryWear(C, "HempRope", "ItemArms", "Default", (Level - 1) * 3);
 		if (Level >= 2) InventoryWear(C, "HempRope", "ItemLegs", "Default", (Level - 1) * 3);
@@ -88,7 +88,7 @@ function ShibariRandomBondage(C, Level) {
 			else if (Math.random() > 0.5) InventoryGet(C, "ItemTorso").Property = { Type: "Harness", Difficulty: 0, Effect: [] };
 		}
 		if (Level >= 4) InventoryWear(C, "BambooGag", "ItemMouth");
-		
+
 		// At 3 or more, there's a random chance of a more complicated bondage
 		if (Level >= 3) {
 			Level = Math.floor(Math.random() * 4);
@@ -97,8 +97,11 @@ function ShibariRandomBondage(C, Level) {
 			if (Level == 1) InventoryGet(C, "ItemFeet").Property = { Type: "Suspension", SetPose: ["Suspension", "LegsClosed"], Difficulty: 0, Effect: [] };
 			if (Level == 2) InventoryGet(C, "ItemArms").Property = { Type: "Hogtied", SetPose: ["Hogtied"], Difficulty: 0, Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], Effect: ["Block", "Freeze", "Prone"] };
 			if (Level == 3) {
-				let SuspensionHogtiedProperty = InventoryItemArmsHempRopeOptions.find(O => O.Name == "SuspensionHogtied").Property;
+				let SuspensionHogtiedProperty = Object.assign({}, InventoryItemArmsHempRopeOptions.find(O => O.Name === "SuspensionHogtied").Property);
+				const height = 0.67 * Math.random();
 				SuspensionHogtiedProperty.Difficulty = 0;
+				SuspensionHogtiedProperty.OverrideHeight.Height = height * Pose.find(p => p.Name == "Hogtied").OverrideHeight.Height;
+				SuspensionHogtiedProperty.OverrideHeight.HeightRatioProportion = height;
 				InventoryGet(C, "ItemArms").Property = SuspensionHogtiedProperty;
 			}
 		}
@@ -111,7 +114,7 @@ function ShibariRandomBondage(C, Level) {
  * @returns {void} - Nothing
  */
 function ShibariLoad() {
-	
+
 	// Default load
 	if (ShibariPlayerAppearance == null) ShibariPlayerAppearance = Player.Appearance.slice();
 	if (ShibariTeacher == null) {
@@ -124,7 +127,7 @@ function ShibariLoad() {
 		CharacterNaked(ShibariStudent);
 		ShibariRandomBondage(ShibariStudent, 4);
 	}
-	
+
 	// Rescue mission load
 	if ((MaidQuartersCurrentRescue == "ShibariDojo") && !MaidQuartersCurrentRescueStarted) {
 		MaidQuartersCurrentRescueStarted = true;

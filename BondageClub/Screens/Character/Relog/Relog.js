@@ -3,13 +3,14 @@ var RelogBackground = "";
 var RelogCanvas = document.createElement("canvas");
 var RelogData = null;
 var RelogChatLog = null;
+var RelogInputText = "";
 
 /**
  * Loads the relog screen
  * @returns {void} Nothing
  */
 function RelogLoad() {
-	
+
 	// Hides any HTML DOM element with the tag "HideOnPopup", like text boxes
 	var Elements = document.getElementsByClassName("HideOnPopup");
 	for (let E = 0; E < Elements.length; E++)
@@ -42,11 +43,11 @@ function RelogLoad() {
  * @returns {void} Nothing
  */
 function RelogRun() {
-	
+
 	// The previous darkened background is drawn
 	MainCanvas.drawImage(RelogCanvas, 0, 0);
 	const CanLogin = ServerIsConnected && !LoginSubmitted;
-	
+
 	// Draw the relog controls
 	if (!LoginMessage) LoginUpdateMessage();
 	if (LoginMessage != TextGet("EnterPassword")) DrawText(LoginMessage, 1000, 150, "White", "Black");
@@ -57,6 +58,8 @@ function RelogRun() {
 	DrawButton(675, 750, 300, 60, TextGet("LogBack"), CanLogin ? "White" : "Grey", "");
 	DrawButton(1025, 750, 300, 60, TextGet("GiveUp"), "White", "");
 
+	// Reset any disconnect notifications
+	if (document.hasFocus()) NotificationReset(NotificationEventType.DISCONNECT);
 }
 
 /**
@@ -87,7 +90,7 @@ function RelogSend() {
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-		    LoginSetSubmitted();
+			LoginSetSubmitted();
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
 		} else LoginStatusReset("InvalidNamePassword", true);
 	}
@@ -99,5 +102,6 @@ function RelogSend() {
  * @returns {void} Nothing
  */
 function RelogExit() {
+	// eslint-disable-next-line no-self-assign
 	window.location = window.location;
 }

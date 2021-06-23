@@ -4,26 +4,15 @@
  */
 
 /**
- * @typedef {Object} ExtendedItemOption
- * @description Defines a single extended item option
- * @property {string} Name - The name of the type - used for the preview icon and the translation key in the CSV
- * @property {number} [BondageLevel] - The required bondage skill level for this type (optional)
- * @property {number} [SelfBondageLevel] - The required self-bondage skill level for this type when using it on
- * yourself (optional)
- * @property {Property} Property - The Property object to be applied when this option is used
- */
-
-/**
- * A lookup for the current pagination offset for all extended item options. Offsets are only recorded if the extended item requires
- * pagination.
- * Example format:
+ * A lookup for the current pagination offset for all extended item options. Offsets are only recorded if the extended
+ * item requires pagination. Example format:
  * ```json
  * {
  *     "ItemArms/HempRope": 4,
  *     "ItemArms/Web": 0
  * }
  * ```
- * @type {Object.<string, number>}
+ * @type {Record<string, number>}
  * @constant
  */
 var ExtendedItemOffsets = {};
@@ -65,9 +54,7 @@ const ExtendedXYClothes = [
 	[[1140, 400], [1385, 400], [1630, 400], [1140, 700], [1385, 700], [1630, 700]], //6 options per page
 ];
 
-/** Memoization of the requirements check 
- * @type {function}
-*/
+/** Memoization of the requirements check */
 const ExtendedItemRequirementCheckMessageMemo = CommonMemoize(ExtendedItemRequirementCheckMessage);
 
 /**
@@ -77,10 +64,18 @@ const ExtendedItemRequirementCheckMessageMemo = CommonMemoize(ExtendedItemRequir
 var ExtendedItemPermissionMode = false;
 
 /**
+ * Tracks whether a selected option's subscreen is active - if active, the value is the name of the current subscreen's
+ * corresponding option
+ * @type {string|null}
+ */
+var ExtendedItemSubscreen = null;
+
+/**
  * Loads the item extension properties
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
- * @param {string} DialogKey - The dialog key for the message to display prompting the player to select an extended type
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item
+ *     in the array should be the default option.
+ * @param {string} DialogKey - The dialog key for the message to display prompting the player to select an extended
+ *     type
  * @returns {void} Nothing
  */
 function ExtendedItemLoad(Options, DialogKey) {
@@ -89,10 +84,10 @@ function ExtendedItemLoad(Options, DialogKey) {
 		DialogFocusItem.Property = JSON.parse(JSON.stringify(Options[0].Property));
 		// If the default type is not the null type, update the item to use this type
 		if (Options[0].Property.Type != null) {
-			var C = CharacterGetCurrent() || CharacterAppearanceSelection;
+			const C = CharacterGetCurrent() || CharacterAppearanceSelection;
 			// If the first option is blocked by the character, switch to the null type option
 			if (InventoryBlockedOrLimited(C, DialogFocusItem, Options[0].Property.Type)) {
-				let BaseOption = Options.find(O => O.Property.Type == null);
+				const BaseOption = Options.find(O => O.Property.Type == null);
 				if (BaseOption != null) DialogFocusItem.Property = JSON.parse(JSON.stringify(BaseOption));
 			}
 			CharacterRefresh(C);
@@ -107,76 +102,134 @@ function ExtendedItemLoad(Options, DialogKey) {
 
 /**
  * Draws the extended item type selection screen
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item
+ *     in the array should be the default option.
  * @param {string} DialogPrefix - The prefix to the dialog keys for the display strings describing each extended type.
  *     The full dialog key will be <Prefix><Option.Name>
- * @param {number} OptionsPerPage - The number of options displayed on each page
+ * @param {number} [OptionsPerPage] - The number of options displayed on each page
  * @param {boolean} [ShowImages=true] - Denotes wether images should be shown for the specific item
- * @param {boolean} IsCloth - Whether or not the click is performed on a clothing item.
  * @returns {void} Nothing
  */
-function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = true, IsCloth) {
-	var C = CharacterGetCurrent() || CharacterAppearanceSelection;
-	var IsSelfBondage = C.ID === 0;
-	var Asset = DialogFocusItem.Asset;
-	var ItemOptionsOffset = ExtendedItemGetOffset();
-	var XYPositions = !IsCloth ? (ShowImages ? ExtendedXY : ExtendedXYWithoutImages) : ExtendedXYClothes;
-	var ImageHeight = ShowImages ? 220 : 0;
-	OptionsPerPage = OptionsPerPage || Math.min(Options.length, XYPositions.length - 1);
-	
-	// If we have to paginate, draw the back/next buttons
-	if (Options.length > OptionsPerPage) {
-		DrawButton(1665, 240, 90, 90, "", "White", "Icons/Prev.png");
-		DrawButton(1775, 240, 90, 90, "", "White", "Icons/Next.png");
+function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = true) {
+	// If an option's subscreen is open, it overrides the standard screen
+	if (ExtendedItemSubscreen) {
+		CommonCallFunctionByNameWarn(ExtendedItemFunctionPrefix() + ExtendedItemSubscreen + "Draw");
+		return;
 	}
-	
+
+	const C = CharacterGetCurrent() || CharacterAppearanceSelection;
+	const Asset = DialogFocusItem.Asset;
+	const ItemOptionsOffset = ExtendedItemGetOffset();
+	const XYPositions = !Asset.Group.Clothing ? (ShowImages ? ExtendedXY : ExtendedXYWithoutImages) : ExtendedXYClothes;
+	const ImageHeight = ShowImages ? 220 : 0;
+	OptionsPerPage = OptionsPerPage || Math.min(Options.length, XYPositions.length - 1);
+
+	// If we have to paginate, draw the back/next button
+	if (Options.length > OptionsPerPage) {
+		const currPage = Math.ceil(ExtendedItemGetOffset() / OptionsPerPage) + 1;
+		const totalPages = Math.ceil(Options.length / OptionsPerPage);
+		DrawBackNextButton(1675, 240, 300, 90, DialogFindPlayer("Page") + " " + currPage.toString() + " / " + totalPages.toString(), "White", "", () => "", () => "");
+	}
+
 	// Draw the header and item
 	DrawAssetPreview(1387, 55, Asset);
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 
+	const CurrentOption = Options.find(O => O.Property.Type === DialogFocusItem.Property.Type);
+
 	// Draw the possible variants and their requirements, arranged based on the number per page
 	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
-		var PageOffset = I - ItemOptionsOffset;
-		var X = XYPositions[OptionsPerPage][PageOffset][0];
-		var Y = XYPositions[OptionsPerPage][PageOffset][1];
-		
-		var Option = Options[I];
-		var Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
-		var FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, IsSelfBondage);
-		var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
-		var BlockedOrLimited = InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type);
-		var PlayerBlocked = InventoryIsPermissionBlocked(Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
-		var PlayerLimited = InventoryIsPermissionLimited(Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
-		var Color = ExtendedItemPermissionMode ? ((C.ID == 0 && IsSelected) || Option.Property.Type == null ? "#888888" : PlayerBlocked ? Hover ? "red" : "pink" : PlayerLimited ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") : (IsSelected ? "#888888" : BlockedOrLimited ? "Red" : FailSkillCheck ? "Pink" : Hover ? "Cyan" : "White");
+		const PageOffset = I - ItemOptionsOffset;
+		const X = XYPositions[OptionsPerPage][PageOffset][0];
+		const Y = XYPositions[OptionsPerPage][PageOffset][1];
 
-		DrawButton(X, Y, 225, 55 + ImageHeight, "", Color, null, null, IsSelected);
-		if (ShowImages) DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X + 2, Y);
+		const Option = Options[I];
+		const Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
+		const IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
+		const ButtonColor = ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected);
+
+		DrawButton(X, Y, 225, 55 + ImageHeight, "", ButtonColor, null, null, IsSelected);
+		if (ShowImages) DrawImage(`${AssetGetInventoryPath(Asset)}/${Option.Name}.png`, X + 2, Y);
 		DrawTextFit(DialogFindPlayer(DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
 		if (ControllerActive == true) {
 			setButton(X + 112, Y + 30 + ImageHeight);
 		}
 	}
-	
-	// Permission mode toggle is always available
-	DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFindPlayer(ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
+
+	// Permission mode toggle
+	if (Player.GetDifficulty() < 3) {
+		DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFindPlayer(ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
+	}
+}
+
+/**
+ * Determine the background color for the item option's button
+ * @param {Character} C - The character wearing the item
+ * @param {ExtendedItemOption} Option - A type for the extended item
+ * @param {ExtendedItemOption} CurrentOption - The currently selected option for the item
+ * @param {boolean} Hover - TRUE if the mouse cursor is on the button
+ * @param {boolean} IsSelected - TRUE if the item's current type matches Option
+ * @returns {string} The name or hex code of the color
+ */
+function ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected) {
+	const IsSelfBondage = C.ID === 0;
+	const FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, CurrentOption, IsSelfBondage);
+	const BlockedOrLimited = InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type);
+	const PlayerBlocked = InventoryIsPermissionBlocked(
+		Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName,
+		Option.Property.Type,
+	);
+	const PlayerLimited = InventoryIsPermissionLimited(
+		Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
+	let ButtonColor;
+	if (ExtendedItemPermissionMode) {
+		if ((IsSelfBondage && IsSelected) || Option.Property.Type == null) {
+			ButtonColor = "#888888";
+		} else if (PlayerBlocked) {
+			ButtonColor = Hover ? "red" : "pink";
+		} else if (PlayerLimited) {
+			ButtonColor = Hover ? "orange" : "#fed8b1";
+		} else {
+			ButtonColor = Hover ? "green" : "lime";
+		}
+	} else {
+		if (IsSelected && !Option.HasSubscreen) {
+			ButtonColor = "#888888";
+		} else if (BlockedOrLimited) {
+			ButtonColor = "Red";
+		} else if (FailSkillCheck) {
+			ButtonColor = "Pink";
+		} else if (IsSelected && Option.HasSubscreen) {
+			ButtonColor = Hover ? "Cyan" : "LightGreen";
+		} else {
+			ButtonColor = Hover ? "Cyan" : "White";
+		}
+	}
+	return ButtonColor;
 }
 
 /**
  * Handles clicks on the extended item type selection screen
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
- * @param {boolean} IsCloth - Whether or not the click is performed on a clothing item.
- * @param {number} OptionsPerPage - The number of options displayed on each page
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item
+ *     in the array should be the default option.
+ * @param {number} [OptionsPerPage] - The number of options displayed on each page
  * @param {boolean} [ShowImages=true] - Denotes wether images are shown for the specific item
  * @returns {void} Nothing
  */
-function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) {
-	var C = CharacterGetCurrent() || CharacterAppearanceSelection;
-	var IsSelfBondage = C.ID === 0;
-	var ItemOptionsOffset = ExtendedItemGetOffset();
-	var XYPositions = !IsCloth ? ShowImages ? ExtendedXY : ExtendedXYWithoutImages : ExtendedXYClothes;
-	var ImageHeight = ShowImages ? 220 : 0;
+function ExtendedItemClick(Options, OptionsPerPage, ShowImages = true) {
+	const C = CharacterGetCurrent() || CharacterAppearanceSelection;
+
+	// If an option's subscreen is open, pass the click into it
+	if (ExtendedItemSubscreen) {
+		CommonCallFunctionByNameWarn(ExtendedItemFunctionPrefix() + ExtendedItemSubscreen + "Click", C, Options);
+		return;
+	}
+
+	const IsSelfBondage = C.ID === 0;
+	const ItemOptionsOffset = ExtendedItemGetOffset();
+	const IsCloth = DialogFocusItem.Asset.Group.Clothing;
+	const XYPositions = !IsCloth ? ShowImages ? ExtendedXY : ExtendedXYWithoutImages : ExtendedXYClothes;
+	const ImageHeight = ShowImages ? 220 : 0;
 	OptionsPerPage = OptionsPerPage || Math.min(Options.length, XYPositions.length - 1);
 
 	// Exit button
@@ -189,29 +242,29 @@ function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) 
 	}
 
 	// Permission toggle button
-	if (MouseIn(1775, 25, 90, 90)) { 
+	if (MouseIn(1775, 25, 90, 90) && Player.GetDifficulty() < 3) {
 		if (ExtendedItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 		ExtendedItemPermissionMode = !ExtendedItemPermissionMode;
 	}
-	
+
 	// Pagination buttons
-	if (MouseIn(1665, 240, 90, 90) && Options.length > OptionsPerPage) {
+	if (MouseIn(1675, 240, 150, 90) && Options.length > OptionsPerPage) {
 		if (ItemOptionsOffset - OptionsPerPage < 0) ExtendedItemSetOffset(OptionsPerPage * (Math.ceil(Options.length / OptionsPerPage) - 1));
 		else ExtendedItemSetOffset(ItemOptionsOffset - OptionsPerPage);
 	}
-	if (MouseIn(1775, 240, 90, 90) && Options.length > OptionsPerPage) {
+	else if (MouseIn(1825, 240, 150, 90) && Options.length > OptionsPerPage) {
 		if (ItemOptionsOffset + OptionsPerPage >= Options.length) ExtendedItemSetOffset(0);
 		else ExtendedItemSetOffset(ItemOptionsOffset + OptionsPerPage);
 	}
-	
+
 	// Options
 	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
-		var PageOffset = I - ItemOptionsOffset;
-		var X = XYPositions[OptionsPerPage][PageOffset][0];
-		var Y = XYPositions[OptionsPerPage][PageOffset][1];
-		var Option = Options[I];
+		const PageOffset = I - ItemOptionsOffset;
+		const X = XYPositions[OptionsPerPage][PageOffset][0];
+		const Y = XYPositions[OptionsPerPage][PageOffset][1];
+		const Option = Options[I];
 		if (MouseIn(X, Y, 225, 55 + ImageHeight)) {
-			ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage, IsCloth);
+			ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage);
 		}
 	}
 }
@@ -224,23 +277,26 @@ function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) 
 function ExtendedItemExit() {
 	// invalidate the cache
 	ExtendedItemRequirementCheckMessageMemo.clearCache();
+
+	// Run the subscreen's Exit function if any
+	if (ExtendedItemSubscreen) {
+		CommonCallFunctionByName(ExtendedItemFunctionPrefix() + ExtendedItemSubscreen + "Exit");
+	}
 }
 
 
 /**
  * Handler function for setting the type of an extended item
  * @param {Character} C - The character wearing the item
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item
+ *     in the array should be the default option.
  * @param {ExtendedItemOption} Option - The selected type definition
- * @param {boolean} IsCloth - Whether or not the click is performed on a clothing item.
  * @returns {void} Nothing
  */
-function ExtendedItemSetType(C, Options, Option, IsCloth) {
-    DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-	var FunctionPrefix = ExtendedItemFunctionPrefix();
-
+function ExtendedItemSetType(C, Options, Option) {
 	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+	var FunctionPrefix = ExtendedItemFunctionPrefix() + (ExtendedItemSubscreen || "");
+
 	if (CurrentScreen == "ChatRoom") {
 		// Call the item's load function
 		CommonCallFunctionByName(FunctionPrefix + "Load");
@@ -264,15 +320,21 @@ function ExtendedItemSetType(C, Options, Option, IsCloth) {
 	}
 
 	DialogFocusItem.Property = NewProperty;
+	const IsCloth = DialogFocusItem.Asset.Group.Clothing;
 	CharacterRefresh(C, !IsCloth); // Does not sync appearance while in the wardrobe
-	
-	// For a restraint, we might publish an action or change the dialog of a NPC
+
+	// For a restraint, we might publish an action, change the expression or change the dialog of a NPC
 	if (!IsCloth) {
+		// If the item triggers an expression, start the expression change
+		if (Option.Expression) {
+			InventoryExpressionTriggerApply(C, Option.Expression);
+		}
 		ChatRoomCharacterUpdate(C);
 		if (CurrentScreen === "ChatRoom") {
 			// If we're in a chatroom, call the item's publish function to publish a message to the chatroom
 			CommonCallFunctionByName(FunctionPrefix + "PublishAction", C, Option, PreviousOption);
 		} else {
+			CommonCallFunctionByName(FunctionPrefix + "Exit");
 			DialogFocusItem = null;
 			if (C.ID === 0) {
 				// Player is using the item on herself
@@ -289,27 +351,35 @@ function ExtendedItemSetType(C, Options, Option, IsCloth) {
 /**
  * Handler function called when an option on the type selection screen is clicked
  * @param {Character} C - The character wearing the item
- * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
- *     be the default option.
+ * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item
+ *     in the array should be the default option.
  * @param {ExtendedItemOption} Option - The selected type definition
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
- * @param {boolean} IsCloth - Whether or not the click is performed on a clothing item.
  * @returns {void} Nothing
  */
-function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage, IsCloth) {
+function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage) {
 	if (ExtendedItemPermissionMode) {
 		if (Option.Property.Type == null || (C.ID == 0 && DialogFocusItem.Property.Type == Option.Property.Type)) return;
 		InventoryTogglePermission(DialogFocusItem, Option.Property.Type);
 	} else {
-		var BlockedOrLimited = InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type);
-		if (DialogFocusItem.Property.Type === Option.Property.Type || BlockedOrLimited) return;
-		
+		if (InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type)) {
+			return;
+		}
+		if (DialogFocusItem.Property.Type === Option.Property.Type && !Option.HasSubscreen) {
+			return;
+		}
+
+		const CurrentType = DialogFocusItem.Property.Type || null;
+		const CurrentOption = Options.find(O => O.Property.Type === CurrentType);
 		// use the unmemoized function to ensure we make a final check to the requirements
-		var RequirementMessage = ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
+		const RequirementMessage = ExtendedItemRequirementCheckMessage(Option, CurrentOption, IsSelfBondage);
 		if (RequirementMessage) {
 			DialogExtendedMessage = RequirementMessage;
+		} else if (Option.HasSubscreen) {
+			ExtendedItemSubscreen = Option.Name;
+			CommonCallFunctionByNameWarn(ExtendedItemFunctionPrefix() + ExtendedItemSubscreen + "Load", C, Option);
 		} else {
-			ExtendedItemSetType(C, Options, Option, IsCloth);
+			ExtendedItemSetType(C, Options, Option);
 			ExtendedItemExit();
 		}
 	}
@@ -318,14 +388,14 @@ function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage, IsClot
 /**
  * Checks whether the player meets the requirements for an extended type option. This will check against their Bondage
  * skill if applying the item to another character, or their Self Bondage skill if applying the item to themselves.
- * @param {ExtendedItemOption} Option - The selected type definition
+ * @param {ExtendedItemOption|ModularItemOption} Option - The selected type definition
+ * @param {ExtendedItemOption|ModularItemOption} CurrentOption - The current type definition
  * @param {boolean} IsSelfBondage - Whether or not the player is applying the item to themselves
  * @returns {string|null} null if the player meets the option requirements. Otherwise a string message informing them
  * of the requirements they do not meet
  */
-function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
-	var C = CharacterGetCurrent() || CharacterAppearanceSelection;
-	var FunctionPrefix = ExtendedItemFunctionPrefix();
+function ExtendedItemRequirementCheckMessage(Option, CurrentOption, IsSelfBondage) {
+	const C = CharacterGetCurrent() || CharacterAppearanceSelection;
 
 	if (IsSelfBondage) {
 		let RequiredLevel = Option.SelfBondageLevel || Math.max(DialogFocusItem.Asset.SelfBondage, Option.BondageLevel);
@@ -335,25 +405,42 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 	} else {
 		let RequiredLevel = Option.BondageLevel;
 		if (SkillGetLevelReal(Player, "Bondage") < RequiredLevel) {
-			return DialogFindPlayer("RequireBondageLevel").replace("ReqLevel", RequiredLevel);
+			return DialogFindPlayer("RequireBondageLevel").replace("ReqLevel", `${RequiredLevel}`);
 		}
 	}
 
-	// An extendable item may provide a validation function. Returning a non-empty string from the validation function will
-	// drop out of this function, and the new type will not be applied.
-	if (typeof window[FunctionPrefix + "Validate"] === "function") {
-		let ValidateResult = CommonCallFunctionByName(FunctionPrefix + "Validate", C, Option);
-		if (ValidateResult != "") {
-			return ValidateResult;
-		}
-	} else if (Option.Prerequisite != null && Option.SelfBlockCheck && !ExtendedItemSelfProofRequirementCheck(C, Option.Prerequisite)) {
+	// An extendable item may provide a validation function. Returning a non-empty string from the validation function
+	// will drop out of this function, and the new type will not be applied.
+	let ValidationMessage = CommonCallFunctionByName(`${ExtendedItemFunctionPrefix()}Validate`, C, Option);
+	if (!ValidationMessage || typeof ValidationMessage !== "string") {
+		ValidationMessage = ExtendedItemValidate(C, Option, CurrentOption);
+	}
+	return ValidationMessage;
+}
+
+/**
+ * Checks whether a change from the given current option to the newly selected option is valid.
+ * @param {Character} C - The character wearing the item
+ * @param {Pick<ExtendedItemOption, "Prerequisite" | "SelfBlockCheck" | "Property">} Option - The selected option
+ * @param {Pick<ExtendedItemOption, "ChangeWhenLocked">} CurrentOption - The currently applied option on the item
+ * @returns {string} - Returns a non-empty message string if the item failed validation, or an empty string otherwise
+ */
+function ExtendedItemValidate(C, { Prerequisite, SelfBlockCheck, Property }, CurrentOption) {
+	const CurrentProperty = DialogFocusItem && DialogFocusItem.Property;
+	const CurrentLockedBy = CurrentProperty && CurrentProperty.LockedBy;
+
+	if (CurrentOption && CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+		// If the option can't be changed when locked, ensure that the player can unlock the item (if it's locked)
+		return DialogFindPlayer("CantChangeWhileLocked");
+	} else if (Prerequisite && SelfBlockCheck && !ExtendedItemSelfProofRequirementCheck(C, Prerequisite)) {
+		// If SelfBlockCheck is required, do a self-proof prerequisite check
 		return DialogText;
-	} else if (Option.Prerequisite != null && !Option.SelfBlockCheck && !InventoryAllow(C, Option.Prerequisite, true)) {
+	} else if (Prerequisite && !SelfBlockCheck && !InventoryAllow(C, Prerequisite, true)) {
 		// Otherwise use the standard prerequisite check
 		return DialogText;
 	} else {
-		const OldEffect= DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Effect;
-		if (OldEffect && OldEffect.includes("Lock") && Option.Property.AllowLock === false) {
+		const OldEffect = CurrentProperty && CurrentProperty.Effect;
+		if (OldEffect && OldEffect.includes("Lock") && Property && Property.AllowLock === false) {
 			DialogExtendedMessage = DialogFindPlayer("ExtendedItemUnlockBeforeChange");
 			return DialogExtendedMessage;
 		}
@@ -363,7 +450,8 @@ function ExtendedItemRequirementCheckMessage(Option, IsSelfBondage) {
 }
 
 /**
- * Removes the item temporarily before validation in case the current type fails the prerequisite check, since it will be replaced
+ * Removes the item temporarily before validation in case the current type fails the prerequisite check, since it will
+ * be replaced
  * @param {Character} C - The character wearing the item
  * @param {(Array|String)} Prerequisite - An array of prerequisites or a string for a single prerequisite
  * @returns {boolean} - Whether the new option passes validation
@@ -373,7 +461,8 @@ function ExtendedItemSelfProofRequirementCheck(C, Prerequisite) {
 
 	// Remove the item temporarily for prerequisite-checking
 	let CurrentItem = InventoryGet(C, C.FocusGroup.Name);
-	InventoryRemove(C, C.FocusGroup.Name);
+	InventoryRemove(C, C.FocusGroup.Name, false);
+	CharacterRefresh(C, false, false);
 
 	if (!InventoryAllow(C, Prerequisite, true)) {
 		Allowed = false;
@@ -383,7 +472,7 @@ function ExtendedItemSelfProofRequirementCheck(C, Prerequisite) {
 	let DifficultyFactor = CurrentItem.Difficulty - CurrentItem.Asset.Difficulty;
 	CharacterAppearanceSetItem(C, C.FocusGroup.Name, CurrentItem.Asset, CurrentItem.Color, DifficultyFactor, null, false);
 	InventoryGet(C, C.FocusGroup.Name).Property = CurrentItem.Property;
-	CharacterRefresh(C);
+	CharacterRefresh(C, false, false);
 	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 
 	return Allowed;

@@ -261,7 +261,7 @@ SourceCharacter picks a coffee from DestinationCharacter tray.
 SourceCharacter nimmt sich einen Kaffee von DestinationCharacter Servierplatte.
 SourceCharacter buys a hot chocolate from DestinationCharacter tray.
 SourceCharacter kauft eine heiße Schokolade von DestinationCharacter Servierplatte.
-SourceCharacter buys a expresso from DestinationCharacter tray.
+SourceCharacter buys an espresso from DestinationCharacter tray.
 SourceCharacter kauft einen Espresso von DestinationCharacter Servierplatte.
 SourceCharacter buys a cappuccino from DestinationCharacter tray.
 SourceCharacter kauft einen Cappuccino von DestinationCharacter Servierplatte.

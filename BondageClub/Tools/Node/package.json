@@ -6,6 +6,7 @@
     "changelog": "node GenerateChangelog",
     "lint": "eslint --config ./.eslintrc.js ../../Assets/Female3DCG/Female3DCG.js",
     "lint:fix": "eslint --fix --config ./.eslintrc.js ../../Assets/Female3DCG/Female3DCG.js",
+    "lintscripts": "eslint --quiet \"../../Scripts/**/*.js\" \"../../Screens/**/*.js\" \"../../Assets/**/*.js\" \"../../Tools/**/*.js\" \"../../Backgrounds/Backgrounds.js\"",
     "assetcheck": "node AssetCheck",
     "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
@@ -23,7 +24,7 @@
     "cheerio": "^1.0.0-rc.3",
     "eslint": "^6.8.0",
     "eslint-plugin-sort-keys-custom": "^2.0.0",
-    "marked": "^1.2.3"
+    "marked": "^2.0.0"
   },
   "dependencies": {
     "type-check": "^0.4.0"

@@ -51,11 +51,11 @@ function InventoryItemButtAnalBeads2SetBeads(Modifier) {
 
 	var beadsNum = DialogFocusItem.Property.InsertedBeads;
 
-	// Loads the correct type/asset	
+	// Loads the correct type/asset
 	DialogFocusItem.Property.Type = beadsNum > 1 ? "_" + beadsNum + "in" : ["Base"];
 	CharacterRefresh(C);
 
-	// Push Chatroom Event	
+	// Push Chatroom Event
 	var Dictionary = [];
 	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
 	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });

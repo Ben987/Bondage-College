@@ -23,7 +23,7 @@ function InformationSheetGetLove(Love) {
 }
 
 /**
- * Main function of the character info screen. It's called continuously, so be careful 
+ * Main function of the character info screen. It's called continuously, so be careful
  * to add time consuming functions or loops here
  * @returns {void} - Nothing
  */
@@ -44,7 +44,7 @@ function InformationSheetRun() {
 		if (C.ID == 0) DrawTextFit(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, 450, "Black", "Gray");
 		else DrawTextFit(TextGet("FriendsFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "PrivateRoomEntry")) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, 450, "Black", "Gray");
 		if (C.ID == 0) DrawTextFit(TextGet("Money") + " " + C.Money.toString() + " $", 550, 425, 450, "Black", "Gray");
-		else if (C.Love != null) DrawText(InformationSheetGetLove(C.Love), 550, 425, 450, "Black", "Gray");
+		else if (C.Love != null) DrawTextFit(InformationSheetGetLove(C.Love), 550, 425, 450, "Black", "Gray");
 	} else {
 		if (C.Creation != null) DrawTextFit(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, 450, "Black", "Gray");
 	}
@@ -55,7 +55,7 @@ function InformationSheetRun() {
 		// Shows the difficulty level
 		let Days = Math.floor((CurrentTime - (((C.Difficulty == null) || (C.Difficulty.LastChange == null) || (typeof C.Difficulty.LastChange !== "number")) ? C.Creation : C.Difficulty.LastChange)) / 86400000);
 		DrawTextFit(TextGet("DifficultyLevel" + C.GetDifficulty()) + " " + TextGet("DifficultyTitle").replace("NumberOfDays", Days.toString()), 550, 500, 450, "Black", "Gray");
-	
+
 		// Shows the owner
 		if ((C.Ownership != null) && (C.Ownership.Name != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.Start != null) && (C.Ownership.Stage != null)) {
 			DrawTextFit(TextGet("Owner") + " " + C.Ownership.Name + " (" + C.Ownership.MemberNumber + ")", 550, 575, 450, "Black", "Gray");
@@ -160,10 +160,10 @@ function InformationSheetSecondScreenRun() {
 		SkillGetLevel(C, "Evasion");
 		if ((C.ID == 0) && (SkillModifier != 0)) {
 			var PlusSign = (SkillModifier > 0) ? "+" : "";
-			DrawText(TextGet("SkillModifier"), 1425, 575, "Black", "Gray");
-			DrawText(TextGet("SkillBondage") + " " + PlusSign + SkillModifier, 1425, 650, "Black", "Gray");
-			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1425, 725, "Black", "Gray");
-			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1425, 800, "Black", "Gray");
+			DrawText(TextGet("SkillModifier"), 1425, 650, "Black", "Gray");
+			DrawText(TextGet("SkillBondage") + " " + PlusSign + SkillModifier, 1425, 725, "Black", "Gray");
+			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1425, 800, "Black", "Gray");
+			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1425, 875, "Black", "Gray");
 		}
 
 	}

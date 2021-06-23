@@ -7,7 +7,7 @@ var LARPOrganiser = null;
  * @returns {void} - Nothing
  */
 function LARPLoad() {
-	if (LARPOrganiser == null) {		
+	if (LARPOrganiser == null) {
 		LARPOrganiser = CharacterLoadNPC("NPC_LARP_Organiser");
 		CharacterNaked(LARPOrganiser);
 		InventoryWear(LARPOrganiser, "SteampunkCorsetTop1", "Cloth", "Default");
@@ -26,7 +26,7 @@ function LARPRun() {
 	if (!DailyJobSubSearchIsActive()) DrawCharacter(LARPOrganiser, 1000, 0, 1);
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png", TextGet("Leave"));
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
-	if ((ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null)) 
+	if ((ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null))
 		DrawButton(1885, 265, 90, 90, "", Player.CanChange() ? "White" : "Pink", "Icons/Battle.png", TextGet("Battle"));
 	DailyJobSubSearchRun();
 }
@@ -37,10 +37,10 @@ function LARPRun() {
  */
 function LARPClick() {
 	if (!DailyJobSubSearchIsActive() && MouseIn(500, 0, 500, 1000)) CharacterSetCurrent(Player);
-	if (!DailyJobSubSearchIsActive() && MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(LARPOrganiser);	
+	if (!DailyJobSubSearchIsActive() && MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(LARPOrganiser);
 	if (MouseIn(1885, 25, 90, 90)) CommonSetScreen("Room", "MainHall");
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
-	if (MouseIn(1885, 265, 90, 90) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) ChatRoomStart("", "LARP", "LARP", "WrestlingRingDark", BackgroundsTagList);
+	if (MouseIn(1885, 265, 90, 90) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) ChatRoomStart("", "LARP", "LARP", "WrestlingRing", BackgroundsTagList);
 	DailyJobSubSearchClick();
 }
 
@@ -54,5 +54,5 @@ function LARPSelectClass(NewClass) {
 	if (Player.Game == null) Player.Game = {};
 	if (Player.Game.LARP == null) Player.Game.LARP = {};
 	Player.Game.LARP.Class = NewClass;
-	ServerSend("AccountUpdate", { Game: Player.Game });
+	ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
 }

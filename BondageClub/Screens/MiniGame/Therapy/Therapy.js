@@ -1,5 +1,5 @@
 "use strict";
-var TherapyBackground = "AsylumTherapyDark";
+var TherapyBackground = "AsylumTherapy";
 var TherapyCharacterLeft = null;
 var TherapyCharacterRight = null;
 var TherapyMoves = [0, 0, 0, 0, 0, 0];
@@ -11,6 +11,7 @@ var TherapyStress = 0;
  * @returns {void} - Nothing
  */
 function TherapyLoad() {
+	CurrentDarkFactor = 0.5;
 	TherapyMoves = [0, 0, 0, 0, 0, 0];
 	TherapyGenerateMoveTimer = CurrentTime + 5000;
 	TherapyStress = 0;
@@ -25,7 +26,7 @@ function TherapyLoad() {
  * @returns {void} - Nothing
  */
 function TherapyRun() {
-	
+
 	// Draw the characters
 	DrawCharacter(TherapyCharacterLeft, 0, 0, 1);
 	DrawCharacter(TherapyCharacterRight, 500, 0, 1);

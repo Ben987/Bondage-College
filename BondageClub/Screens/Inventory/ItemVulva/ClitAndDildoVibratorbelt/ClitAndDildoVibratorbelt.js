@@ -28,7 +28,7 @@ function InventoryItemVulvaClitAndDildoVibratorbeltDraw() {
 
 // Catches the item extension clicks
 function InventoryItemVulvaClitAndDildoVibratorbeltClick() {
-	if (MouseIn(1885, 225, 90, 90)) DialogFocusItem = null;
+	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
 	else if (MouseIn(1200, 775, 200, 55) && (DialogFocusItem.Property.Intensity !== -1)) InventoryItemVulvaClitAndDildoVibratorbeltIntensity(-1 - DialogFocusItem.Property.Intensity);
 	else if (MouseIn(1550, 775, 200, 55) && (DialogFocusItem.Property.Intensity !== 0)) InventoryItemVulvaClitAndDildoVibratorbeltIntensity(0 - DialogFocusItem.Property.Intensity);
 	else if (MouseIn(1200, 835, 200, 55) && (DialogFocusItem.Property.Intensity !== 1)) InventoryItemVulvaClitAndDildoVibratorbeltIntensity(1 - DialogFocusItem.Property.Intensity);
@@ -77,7 +77,7 @@ function InventoryItemVulvaClitAndDildoVibratorbeltSetIntensity(Modifier) {
 		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
 		DialogFocusItem.Property.Effect.push("Lock");
 	}
-	
+
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 

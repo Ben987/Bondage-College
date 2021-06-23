@@ -1,19 +1,53 @@
 // Main variables
 "use strict";
+/** @type {PlayerCharacter} */
 var Player;
+/** @type {number|string} */
 var KeyPress = "";
 var CurrentModule;
 var CurrentScreen;
+/** @type {Character|null} */
 var CurrentCharacter = null;
 var CurrentOnlinePlayers = 0;
+var CurrentDarkFactor = 1.0;
 var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
-var Notifications = {};
+
+var CommonPhotoMode = false;
+var GameVersion = "R0";
+const GameVersionFormat = /^R([0-9]+)(?:(Alpha|Beta)([0-9]+)?)?$/;
+var CommonVersionUpdated = false;
 
 /**
- * A map of keys to common font stack definitions. Each stack definition is a	
- * two-item array whose first item is an ordered list of fonts, and whose	
+ * An enum encapsulating possible chatroom message substitution tags. Character name substitution tags are interpreted
+ * in chatrooms as follows (assuming the character name is Ben987):
+ * SOURCE_CHAR: "Ben987"
+ * DEST_CHAR: "Ben987's" (if character is not self), "her" (if character is self)
+ * DEST_CHAR_NAME: "Ben987's"
+ * TARGET_CHAR: "Ben987" (if character is not self), "herself" (if character is self)
+ * TARGET_CHAR_NAME: "Ben987"
+ * Additionally, sending the following tags will ensure that asset names in messages are correctly translated by
+ * recipients:
+ * ASSET_NAME: (substituted with the localized name of the asset, if available)
+ * @enum {string}
+ */
+const CommonChatTags = {
+	SOURCE_CHAR: "SourceCharacter",
+	DEST_CHAR: "DestinationCharacter",
+	DEST_CHAR_NAME: "DestinationCharacterName",
+	TARGET_CHAR: "TargetCharacter",
+	TARGET_CHAR_NAME: "TargetCharacterName",
+	ASSET_NAME: "AssetName",
+};
+
+String.prototype.replaceAt=function(index, character) {
+	return this.substr(0, index) + character + this.substr(index+character.length);
+};
+
+/**
+ * A map of keys to common font stack definitions. Each stack definition is a
+ * two-item array whose first item is an ordered list of fonts, and whose
  * second item is the generic fallback font family (e.g. sans-serif, serif,
  * etc.)
  * @constant
@@ -54,7 +88,7 @@ function CommonGetFormatDate() {
 	var hh = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
 	var min = d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
 	var ss = d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds();
-	return "".concat(yyyy).concat("-").concat(mm).concat("-").concat(dd).concat(" ").concat(hh).concat(":").concat(min).concat(":").concat(ss);
+	return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
 }
 
 /**
@@ -104,11 +138,13 @@ function CommonGetBrowser() {
  * @returns {string[][]} Array representing each line of the parsed content, each line itself is split by commands and stored within an array.
  */
 function CommonParseCSV(str) {
-
+	/** @type {string[][]} */
 	var arr = [];
 	var quote = false;  // true means we're inside a quoted field
 	var c;
 	var col;
+	// We remove whitespace on start and end
+	str = str.replace(/\r\n/g, '\n').trim();
 
 	// iterate over each character, keep track of current row and column (of the returned array)
 	for (let row = col = c = 0; c < str.length; c++) {
@@ -235,7 +271,7 @@ function CommonKeyDown() {
 		}
 	}
 	else {
-		DialogKeyDown();
+		StruggleKeyDown();
 		if (ControllerActive == true) {
 			ControllerSupportKeyDown();
 		}
@@ -275,7 +311,7 @@ function CommonDynamicFunctionParams(FunctionName) {
 	var closedParenthesisIndex = FunctionName.indexOf(")", openParenthesisIndex);
 	var Params = FunctionName.substring(openParenthesisIndex + 1, closedParenthesisIndex).split(",");
 	for (let P = 0; P < Params.length; P++)
-		Params[P] = Params[P].trim().replace('"', '').replace('"', '')
+		Params[P] = Params[P].trim().replace('"', '').replace('"', '');
 	FunctionName = FunctionName.substring(0, openParenthesisIndex);
 	if ((FunctionName.indexOf("Dialog") != 0) && (FunctionName.indexOf("Inventory") != 0) && (FunctionName.indexOf(CurrentScreen) != 0)) FunctionName = CurrentScreen + FunctionName;
 
@@ -308,7 +344,7 @@ function CommonDynamicFunctionParams(FunctionName) {
  *  passed directly into the function call, allowing for more complex JS objects to be passed in. This
  *  function will not log to console if the provided function name does not exist as a global function.
  * @param {string} FunctionName - The name of the global function to call
- * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @param {any[]} [args] - zero or more arguments to be passed to the function (optional)
  * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
  */
 function CommonCallFunctionByName(FunctionName/*, ...args */) {
@@ -322,7 +358,7 @@ function CommonCallFunctionByName(FunctionName/*, ...args */) {
 /**
  * Behaves exactly like CommonCallFunctionByName, but logs a warning if the function name is invalid.
  * @param {string} FunctionName - The name of the global function to call
- * @param {...*} [args] - zero or more arguments to be passed to the function (optional)
+ * @param {any[]} [args] - zero or more arguments to be passed to the function (optional)
  * @returns {any} - returns the result of the function call, or undefined if the function name isn't valid
  */
 function CommonCallFunctionByNameWarn(FunctionName/*, ...args */) {
@@ -342,16 +378,17 @@ function CommonCallFunctionByNameWarn(FunctionName/*, ...args */) {
  * @returns {void} - Nothing
  */
 function CommonSetScreen(NewModule, NewScreen) {
-	var prevScreen = CurrentScreen
+	var prevScreen = CurrentScreen;
 	CurrentModule = NewModule;
 	CurrentScreen = NewScreen;
+	CurrentDarkFactor = 1.0;
 	CommonGetFont.clearCache();
 	CommonGetFontName.clearCache();
 	TextLoad();
 	if (typeof window[CurrentScreen + "Load"] === "function")
 		CommonDynamicFunction(CurrentScreen + "Load()");
 	if (prevScreen == "ChatSearch" || prevScreen == "ChatCreate")
-		ChatRoomStimulationMessage("Walk")
+		ChatRoomStimulationMessage("Walk");
 	if (ControllerActive == true) {
 		ClearButtons();
 	}
@@ -461,13 +498,10 @@ function CommonArraysEqual(a1, a2) {
  * the debounced function continues to be called. If the debounced function is called, and then not called again within the wait time, the
  * wrapped function will be called.
  * @param {function} func - The function to debounce
- * @param {number} wait - The wait time in milliseconds that needs to pass after calling the debounced function before the wrapped function
- * is invoked
  * @returns {function} - A debounced version of the provided function
  */
-function CommonDebounce(func, wait) {
-	let timeout, args, context, timestamp, result;
-	wait = typeof wait === "number" ? wait : 100;
+function CommonDebounce(func) {
+	let timeout, args, context, timestamp, result, wait;
 
 	function later() {
 		const last = CommonTime() - timestamp;
@@ -480,9 +514,10 @@ function CommonDebounce(func, wait) {
 		}
 	}
 
-	return function () {
+	return function (waitInterval/*, ...args */) {
 		context = this;
-		args = arguments;
+		wait = waitInterval;
+		args = Array.prototype.slice.call(arguments, 1);
 		timestamp = CommonTime();
 		if (!timeout) {
 			timeout = setTimeout(later, wait);
@@ -490,16 +525,68 @@ function CommonDebounce(func, wait) {
 		return result;
 	};
 }
+
 /**
- * Creates a simple memoizer. 
+ * Creates a throttling wrapper for the provided function with the provided wait time. If the wrapped function has been successfully called
+ * within the wait time, further call attempts will be delayed until the wait time has passed.
+ * @param {function} func - The function to throttle
+ * @returns {function} - A throttled version of the provided function
+ */
+function CommonThrottle(func) {
+	let timeout, args, context, timestamp = 0, result;
+
+	function run() {
+		timeout = null;
+		result = func.apply(context, args);
+		timestamp = CommonTime();
+	}
+
+	return function (wait/*, ...args */) {
+		context = this;
+		args = Array.prototype.slice.call(arguments, 1);
+		if (!timeout) {
+			const last = CommonTime() - timestamp;
+			if (last >= 0 && last < wait) {
+				timeout = setTimeout(run, wait - last);
+			} else {
+				run();
+			}
+		}
+		return result;
+	};
+}
+
+/**
+ * Creates a wrapper for a function to limit how often it can be called. The player-defined wait interval setting determines the
+ * allowed frequency. Below 100 ms the function will be throttled and above will be debounced.
+ * @param {function} func - The function to limit calls of
+ * @param {number} [minWait=0] - A lower bound for how long the wait interval can be, 0 by default
+ * @returns {function} - A debounced or throttled version of the function
+ */
+function CommonLimitFunction(func, minWait = 0) {
+	const funcDebounced = CommonDebounce(func);
+	const funcThrottled = CommonThrottle(func);
+
+	return function () {
+		const wait = Math.max(Player.GraphicsSettings.AnimationQuality, minWait);
+		const args = [wait].concat(Array.from(arguments));
+		return wait < 100 ? funcThrottled.apply(this, args) : funcDebounced.apply(this, args);
+	};
+}
+
+/**
+ * Creates a simple memoizer.
  * The memoized function does calculate its result exactly once and from that point on, uses
  * the result stored in a local cache to speed up things.
- * @param {function} func - The function to memoize
- * @returns {any} - The result of the memoized function
+ * @template {Function} T
+ * @param {T} func - The function to memoize
+ * @returns {MemoizedFunction<T>} - The result of the memoized function
  */
 function CommonMemoize(func) {
 	var memo = {};
 
+	/** @type {MemoizedFunction<T>} */
+	// @ts-ignore
 	var memoized = function () {
 		var index = [];
 		for (var i = 0; i < arguments.length; i++) {
@@ -518,7 +605,7 @@ function CommonMemoize(func) {
 	// add a clear cache method
 	memoized.clearCache = function () {
 		memo = {};
-	}
+	};
 	return memoized;
 } // CommonMemoize
 
@@ -526,10 +613,9 @@ function CommonMemoize(func) {
  * Memoized getter function. Returns a font string specifying the player's
  * preferred font and the provided size. This is memoized as it is called on
  * every frame in many cases.
- * @function
- * @param {Number} size - The font size that should be specified in the
+ * @param {number} size - The font size that should be specified in the
  * returned font string
- * @returns {String} - A font string specifying the requested font size and
+ * @returns {string} - A font string specifying the requested font size and
  * the player's preferred font stack. For example:
  * 12px "Courier New", "Courier", monospace
  */
@@ -541,8 +627,7 @@ const CommonGetFont = CommonMemoize((size) => {
  * Memoized getter function. Returns a font string specifying the player's
  * preferred font stack. This is memoized as it is called on every frame in
  * many cases.
- * @function
- * @returns {String} - A font string specifying the player's preferred font
+ * @returns {string} - A font string specifying the player's preferred font
  * stack. For example:
  * "Courier New", "Courier", monospace
  */
@@ -554,43 +639,177 @@ const CommonGetFontName = CommonMemoize(() => {
 });
 
 /**
- * Increase the reported number of a notifications by one and updates the header
- * @param {string} Type - The type of notification
- * @returns {void}
- */
-function CommonNotificationIncrement(Type) {
-	Notifications[Type] = (Notifications[Type] || 0) + 1;
-	CommonNotificationUpdate();
-}
-
-/**
- * Sets the number of notifications for a type back to zero and updates the header
- * @param {any} Type - The type of notification
- * @returns {void}
- */
-function CommonNotificationReset(Type) {
-	if (Notifications[Type] != null && Notifications[Type] != 0) {
-		Notifications[Type] = 0;
-		CommonNotificationUpdate();
-	}
-}
-
-/**
- * Sets the number of notifications to zero
- * @returns {void}
- */
-function CommonNotificationResetAll() {
-	Notifications = {};
-	CommonNotificationUpdate();
-}
-
-/**
- * Sets or clears notifications in the tab header
+ * Take a screenshot of specified area in "photo mode" and open the image in a new tab
+ * @param {number} Left - Position of the area to capture from the left of the canvas
+ * @param {number} Top - Position of the area to capture from the top of the canvas
+ * @param {number} Width - Width of the area to capture
+ * @param {number} Height - Height of the area to capture
  * @returns {void} - Nothing
  */
-function CommonNotificationUpdate() {
-	let total = 0;
-	for (let key in Notifications) total += Notifications[key];
-	let prefix = total == 0 ? "" : "(" + total.toString() + ") ";
-	document.title = prefix + "Bondage Club";
+function CommonTakePhoto(Left, Top, Width, Height) {
+	CommonPhotoMode = true;
+
+	// Ensure everything is redrawn once in photo-mode
+	DrawProcess();
+
+	// Capture screen as image URL
+	const ImgData = /** @type {HTMLCanvasElement} */ (document.getElementById("MainCanvas")).getContext('2d').getImageData(Left, Top, Width, Height);
+	let PhotoCanvas = document.createElement('canvas');
+	PhotoCanvas.width = Width;
+	PhotoCanvas.height = Height;
+	PhotoCanvas.getContext('2d').putImageData(ImgData, 0, 0);
+	const PhotoImg = PhotoCanvas.toDataURL("image/png");
+
+	// Open the image in a new window
+	let newWindow = window.open('about:blank', '_blank');
+	newWindow.document.write("<img src='" + PhotoImg + "' alt='from canvas'/>");
+
+	CommonPhotoMode = false;
+}
+
+/**
+ * Takes an array of items and converts it to record format
+ * @param { { Group: string; Name: string; Type?: string|null }[] } arr The array of items
+ * @returns { { [group: string]: { [name: string]: string[] } } } Output in object foramat
+ */
+function CommonPackItemArray(arr) {
+	/** @type { Record<string, Record<string, string[]>> } */
+	const res = {};
+	for (const I of arr) {
+		let G = res[I.Group];
+		if (G === undefined) {
+			G = res[I.Group] = {};
+		}
+		let A = G[I.Name];
+		if (A === undefined) {
+			A = G[I.Name] = [];
+		}
+		const T = I.Type || "";
+		if (!A.includes(T)) {
+			A.push(T);
+		}
+	}
+	return res;
+}
+
+/**
+ * Takes an record format of items and converts it to array
+ * @param { { [group: string]: { [name: string]: string[] } } } arr Object defining items
+ * @return { { Group: string; Name: string; Type?: string }[] } The array of items
+ */
+function CommonUnpackItemArray(arr) {
+	const res = [];
+	for (const G of Object.keys(arr)) {
+		for (const A of Object.keys(arr[G])) {
+			for (const T of arr[G][A]) {
+				res.push({ Group: G, Name: A, Type: T ? T : undefined });
+			}
+		}
+	}
+	return res;
+}
+
+/**
+ * Compares two version numbers and returns -1/0/1 if Other number is smaller/same/larger than Current one
+ * @param {string} Current Current version number
+ * @param {string} Other Other version number
+ * @returns {-1|0|1} Comparsion result
+ */
+function CommonCompareVersion(Current, Other) {
+	const CurrentMatch = GameVersionFormat.exec(Current);
+	const OtherMatch = GameVersionFormat.exec(Other);
+	if (CurrentMatch == null || OtherMatch == null || isNaN(CurrentMatch[1]) || isNaN(OtherMatch[1])) return -1;
+	const CurrentVer = [
+		Number.parseInt(CurrentMatch[1]),
+		CurrentMatch[2] === "Alpha" ? 1 : CurrentMatch[2] === "Beta" ? 2 : 3,
+		Number.parseInt(CurrentMatch[3]) || 0
+	];
+	const OtherVer = [
+		Number.parseInt(OtherMatch[1]),
+		OtherMatch[2] === "Alpha" ? 1 : OtherMatch[2] === "Beta" ? 2 : 3,
+		Number.parseInt(OtherMatch[3]) || 0
+	];
+	for (let i = 0; i < 3; i++) {
+		if (CurrentVer[i] !== OtherVer[i]) {
+			return Math.sign(OtherVer[i] - CurrentVer[i]);
+		}
+	}
+	return 0;
+}
+
+/**
+ * A simple deep equality check function which checks whether two objects are equal. The function traverses recursively
+ * into objects and arrays to check for equality. Primitives and simple types are considered equal as defined by `===`.
+ * @param {*} obj1 - The first object to compare
+ * @param {*} obj2 - The second object to compare
+ * @returns {boolean} - TRUE if both objects are equal, up to arbitrarily deeply nested property values, FALSE
+ * otherwise.
+ */
+function CommonDeepEqual(obj1, obj2) {
+	if (obj1 === obj2) {
+		return true;
+	}
+
+	if (obj1 && obj2 && typeof obj1 === "object" && typeof obj2 === "object") {
+		// If the objects do not share a prototype, they are not equal
+		if (Object.getPrototypeOf(obj1) !== Object.getPrototypeOf(obj2)) {
+			return false;
+		}
+
+		// Get the keys for the objects
+		const keys1 = Object.keys(obj1);
+		const keys2 = Object.keys(obj2);
+
+		// If the objects have different numbers of keys, they are not equal
+		if (keys1.length !== keys2.length) {
+			return false;
+		}
+
+		// Sort the keys
+		keys1.sort();
+		keys2.sort();
+		return keys1.every((key, i) => {
+			// If the keys are different, the objects are not equal
+			if (key !== keys2[i]) {
+				return false;
+			}
+			// Otherwise, compare the values
+			return CommonDeepEqual(obj1[key], obj2[key]);
+		});
+	}
+
+	return false;
+}
+
+/**
+ * Adds all items from the source array to the destination array if they aren't already included
+ * @param {*[]} dest - The destination array
+ * @param {*[]} src - The source array
+ * @returns {*[]} - The destination array
+ */
+function CommonArrayConcatDedupe(dest, src) {
+	if (Array.isArray(src) && Array.isArray(dest)) {
+		for (const item of src) {
+			if (!dest.includes(item)) dest.push(item);
+		}
+	}
+	return dest;
+}
+
+/**
+ * Common function for removing a padlock from an item and publishing a corresponding chat message (must be called with
+ * the item's group focused)
+ * @param {Character} C - The character on whom the item is equipped
+ * @param {Item} Item - The item to unlock
+ * @returns {void} - Nothing
+ */
+function CommonPadlockUnlock(C, Item) {
+	for (let A = 0; A < C.Appearance.length; A++) {
+		if (C.Appearance[A].Asset.Group.Name === C.FocusGroup.Name) {
+			C.Appearance[A] = Item;
+			break;
+		}
+	}
+	InventoryUnlock(C, C.FocusGroup.Name);
+	ChatRoomPublishAction(C, Item, null, true, "ActionUnlock");
 }

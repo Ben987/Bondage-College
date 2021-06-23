@@ -8,11 +8,15 @@ var ActivityOrgasmGameResistCount = 0;
 var ActivityOrgasmGameTimer = 0;
 var ActivityOrgasmResistLabel = "";
 
+var ActivityOrgasmRuined = false; // If set to true, the orgasm will be ruined right before it happens
+
 /**
  * Checks if the current room allows for activities. (They can only be done in certain rooms)
  * @returns {boolean} - Whether or not activities can be done
  */
-function ActivityAllowed() { return ((CurrentScreen == "ChatRoom") || ((CurrentScreen == "Private") && LogQuery("RentRoom", "PrivateRoom"))) }
+function ActivityAllowed() {
+	return (CurrentScreen == "ChatRoom" && !(ChatRoomData && ChatRoomData.BlockCategory && ChatRoomData.BlockCategory.includes("Arousal")))
+		|| ((CurrentScreen == "Private") && LogQuery("RentRoom", "PrivateRoom")); }
 
 /**
  * Loads the activity dictionary that will be used throughout the game to output messages. Loads from cache first if possible.
@@ -23,7 +27,7 @@ function ActivityDictionaryLoad() {
 	// Tries to read it from cache first
 	var FullPath = "Screens/Character/Preference/ActivityDictionary.csv";
 	var TranslationPath = FullPath.replace(".csv", "_" + TranslationLanguage + ".txt");
-	
+
 	if (CommonCSVCache[FullPath]) {
 		ActivityDictionary = JSON.parse(JSON.stringify(CommonCSVCache[FullPath]));
 	} else {
@@ -35,27 +39,27 @@ function ActivityDictionaryLoad() {
 			}
 		});
 	}
-	
+
 	// If a translation file is available, we open the txt file and keep it in cache
-	if (TranslationAvailable(TranslationPath)) 
+	if (TranslationAvailable(TranslationPath))
 		CommonGet(TranslationPath, function () {
 			if (this.status == 200) {
 				TranslationCache[TranslationPath] = TranslationParseTXT(this.responseText);
 				ActivityTranslate(TranslationPath);
 			}
 		});
-		
+
 	ActivityTranslate(TranslationPath);
 }
 
 /**
  * Translates the activity dictionary.
- * @param {string} CachePath - Path to the language cache. 
+ * @param {string} CachePath - Path to the language cache.
  */
-function ActivityTranslate(CachePath) { 
+function ActivityTranslate(CachePath) {
 	if (!Array.isArray(TranslationCache[CachePath])) return;
-	
-	for (let T = 0; T < ActivityDictionary.length; T++) { 
+
+	for (let T = 0; T < ActivityDictionary.length; T++) {
 		if (ActivityDictionary[T][1]) {
 			let indexText = TranslationCache[CachePath].indexOf(ActivityDictionary[T][1].trim());
 			if (indexText >= 0) {
@@ -78,7 +82,7 @@ function ActivityDictionaryText(KeyWord) {
 }
 
 /**
- * Builds the possible dialog activity options based on the character settings 
+ * Builds the possible dialog activity options based on the character settings
  * @param {Character} C - The character for which to build the activity dialog options
  * @return {void} - Nothing
  */
@@ -153,9 +157,9 @@ function ActivityDialogBuild(C) {
  * Calculates the effect of an activity performed on a zone
  * @param {Character} S - The character performing the activity
  * @param {Character} C - The character on which the activity is performed
- * @param {string} A - The activity performed
+ * @param {string|Activity} A - The activity performed
  * @param {string} Z - The group/zone name where the activity was performed
- * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done. 
+ * @param {number} [Count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
  * If you don't want an activity to modify arousal, set this parameter to '0'
  * @return {void} - Nothing
  */
@@ -183,7 +187,7 @@ function ActivityEffect(S, C, A, Z, Count) {
  * @param {Character} C - The character on which the activity is performed
  * @param {number} Amount - The base amount of arousal to add
  * @param {string} Z - The group/zone name where the activity was performed
- * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done. 
+ * @param {number} [Count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
  * If you don't want an activity to modify arousal, set this parameter to '0'
  * @return {void} - Nothing
  */
@@ -277,6 +281,43 @@ function ActivityOrgasmProgressBar(X, Y) {
 }
 
 /**
+ * Ends the orgasm early if progress is close or progress is sufficient
+ * @return {void} - Nothing
+ */
+function ActivityOrgasmControl() {
+	if ((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < Player.ArousalSettings.OrgasmTimer)) {
+		// Ruin the orgasm
+		if (ActivityOrgasmGameProgress >= ActivityOrgasmGameDifficulty - 1 || CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
+			if (CurrentScreen == "ChatRoom") {
+				if (CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
+					if (Player.ArousalSettings.OrgasmStage == 0) {
+						if ((CurrentScreen == "ChatRoom"))
+							ChatRoomMessage({ Content: "OrgasmFailPassive" + (Math.floor(Math.random() * 3)).toString(), Type: "Action", Sender: Player.MemberNumber });
+					} else {
+						if ((CurrentScreen == "ChatRoom")) {
+							let Dictionary = [];
+							Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+							ServerSend("ChatRoomChat", { Content: "OrgasmFailTimeout" + (Math.floor(Math.random() * 3)).toString(), Type: "Activity", Dictionary: Dictionary });
+							ActivityChatRoomArousalSync(Player);
+						}
+					}
+				} else {
+					if ((CurrentScreen == "ChatRoom")) {
+						let Dictionary = [];
+						Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+						ServerSend("ChatRoomChat", { Content: ("OrgasmFailResist" + (Math.floor(Math.random() * 3))).toString(), Type: "Activity", Dictionary: Dictionary });
+						ActivityChatRoomArousalSync(Player);
+					}
+				}
+			}
+			ActivityOrgasmGameResistCount++;
+			ActivityOrgasmStop(Player, 65 + Math.ceil(Math.random()*20));
+		}
+	}
+}
+
+
+/**
  * Increases the player's willpower when resisting an orgasm.
  * @param {Character} C - The character currently resisting
  * @return {void} - Nothing
@@ -295,18 +336,35 @@ function ActivityOrgasmWillpowerProgress(C) {
  */
 function ActivityOrgasmStart(C) {
 	if ((C.ID == 0) || C.IsNpc()) {
-		if (C.ID == 0) ActivityOrgasmGameResistCount = 0;
+		if (C.ID == 0 && !ActivityOrgasmRuined) ActivityOrgasmGameResistCount = 0;
 		ActivityOrgasmWillpowerProgress(C);
-		C.ArousalSettings.OrgasmTimer = CurrentTime + (Math.random() * 10000) + 5000;
-		C.ArousalSettings.OrgasmStage = 2;
-		C.ArousalSettings.OrgasmCount = (C.ArousalSettings.OrgasmCount == null) ? 1 : C.ArousalSettings.OrgasmCount + 1;
-		ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
-		if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
-			var Dictionary = [];
-			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-			ServerSend("ChatRoomChat", { Content: "Orgasm" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary });
-			ActivityChatRoomArousalSync(C);
+		
+		if (!ActivityOrgasmRuined) {
+		
+			C.ArousalSettings.OrgasmTimer = CurrentTime + (Math.random() * 10000) + 5000;
+			C.ArousalSettings.OrgasmStage = 2;
+			C.ArousalSettings.OrgasmCount = (C.ArousalSettings.OrgasmCount == null) ? 1 : C.ArousalSettings.OrgasmCount + 1;
+			ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
+			
+			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
+				let Dictionary = [];
+				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+				ServerSend("ChatRoomChat", { Content: "Orgasm" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary });
+				ActivityChatRoomArousalSync(C);
+			}
+		} else {
+			ActivityOrgasmStop(Player, 65 + Math.ceil(Math.random()*20));
+			
+			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
+				let Dictionary = [];
+				let ChatModifier = C.ArousalSettings.OrgasmStage == 1 ? "Timeout" : "Surrender";
+				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+				ServerSend("ChatRoomChat", { Content: ("OrgasmFail" + ChatModifier + (Math.floor(Math.random() * 3))).toString(), Type: "Activity", Dictionary: Dictionary });
+				ActivityChatRoomArousalSync(C);
+			}
 		}
+		
+		
 	}
 }
 
@@ -363,12 +421,26 @@ function ActivityOrgasmGameGenerate(Progress) {
 /**
  * Triggers an orgasm for the player or an NPC which lasts from 5 to 15 seconds
  * @param {Character} C - Character for which an orgasm was triggered
+ * @param {bool} Bypass - If true, this will do a ruined orgasm rather than a real one
  * @returns {void} - Nothing
  */
-function ActivityOrgasmPrepare(C) {
+function ActivityOrgasmPrepare(C, Bypass) {
+	ActivityOrgasmRuined = false;
+	
+	if (C.Effect.includes("DenialMode")) {
+		C.ArousalSettings.Progress = 99;
+		if (C.ID == 0 && (Bypass || C.Effect.includes("RuinOrgasms"))) ActivityOrgasmRuined = true;
+		else return;
+	}
+
 	if (C.IsEdged()) {
 		C.ArousalSettings.Progress = 95;
-		return;
+		if (C.ID == 0 && Bypass) ActivityOrgasmRuined = true;
+		else return;
+	}
+	
+	if (C.ID == 0 && ActivityOrgasmRuined) {
+		ActivityOrgasmGameGenerate(0); // Resets the game
 	}
 
 	if ((C.ID == 0) || C.IsNpc()) {
@@ -450,17 +522,17 @@ function ActivityTimerProgress(C, Progress) {
 	// Decrease the vibratorlevel to 0 if not being aroused, while also updating the change time to reset the vibrator animation
 	if (Progress < 0) {
 		if (C.ArousalSettings.VibratorLevel != 0) {
-			C.ArousalSettings.VibratorLevel = 0
-			C.ArousalSettings.ChangeTime = CommonTime()
+			C.ArousalSettings.VibratorLevel = 0;
+			C.ArousalSettings.ChangeTime = CommonTime();
 		}
 	}
-	
+
 	if (C.ArousalSettings.Progress < 0) C.ArousalSettings.Progress = 0;
 	if (C.ArousalSettings.Progress > 100) C.ArousalSettings.Progress = 100;
-	
+
 	// Update the recent change time, so that on other player's screens the character's arousal meter will vibrate again when vibes start
 	if (C.ArousalSettings.Progress == 0) {
-		C.ArousalSettings.ChangeTime = CommonTime()
+		C.ArousalSettings.ChangeTime = CommonTime();
 	}
 
 	// Out of orgasm mode, it can affect facial expressions at every 10 steps
@@ -474,7 +546,7 @@ function ActivityTimerProgress(C, Progress) {
 }
 
 /**
- * Set the current vibrator level for drawing purposes 
+ * Set the current vibrator level for drawing purposes
  * @param {Character} C - Character for which the timer is progressing
  * @param {number} Level - Level from 0 to 4 (higher = more vibration)
  * @returns {void} - Nothing
@@ -482,8 +554,8 @@ function ActivityTimerProgress(C, Progress) {
 function ActivityVibratorLevel(C, Level) {
 	if (C.ArousalSettings != null) {
 		if (Level != C.ArousalSettings.VibratorLevel) {
-			C.ArousalSettings.VibratorLevel = Level
-			C.ArousalSettings.ChangeTime = CommonTime()
+			C.ArousalSettings.VibratorLevel = Level;
+			C.ArousalSettings.ChangeTime = CommonTime();
 		}
 	}
 }
@@ -491,7 +563,7 @@ function ActivityVibratorLevel(C, Level) {
 
 /**
  * Calculates the progress one character does on another right away
- * @param {Character} Source- The character who performed the activity
+ * @param {Character} Source - The character who performed the activity
  * @param {Character} Target - The character on which the activity was performed
  * @param {object} Activity - The activity performed
  * @returns {void} - Nothing
@@ -518,6 +590,13 @@ function ActivityRun(C, Activity) {
 		if ((C.ID == 0) || C.IsNpc())
 			ActivityEffect(Player, C, Activity, C.FocusGroup.Name);
 
+	if (C.ID == 0) {
+		if (Activity.MakeSound) {
+			AutoPunishGagActionFlag = true;
+			AutoShockGagActionFlag = true;
+		}
+	}
+
 	// If the player does the activity on someone else, we calculate the progress for the player right away
 	ActivityRunSelf(Player, C, Activity);
 
@@ -533,9 +612,9 @@ function ActivityRun(C, Activity) {
 		ServerSend("ChatRoomChat", { Content: ((C.ID == 0) ? "ChatSelf-" : "ChatOther-") + C.FocusGroup.Name + "-" + Activity.Name, Type: "Activity", Dictionary: Dictionary });
 
 		if (C.ID == 0 && Activity.Name.indexOf("Struggle") >= 0 )
-			
-			ChatRoomStimulationMessage("StruggleAction")
-		
+
+			ChatRoomStimulationMessage("StruggleAction");
+
 		// Exits from dialog to see the result
 		DialogLeave();
 

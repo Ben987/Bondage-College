@@ -58,10 +58,10 @@ var GameLARPTurnFocusGroup = null;
  */
 function GameLARPIsAdmin(C) {
 	if (GameLARPStatus == "")
-		return (ChatRoomData.Admin.indexOf(C.MemberNumber) >= 0)
+		return (ChatRoomData.Admin.indexOf(C.MemberNumber) >= 0);
 	else
 		return (GameLARPTurnAdmin == C.MemberNumber);
-};
+}
 
 /**
  * Draws the LARP class/team icon of a character
@@ -137,7 +137,8 @@ function GameLARPRunProcess() {
 	if (GameLARPTurnFocusCharacter != null) {
 
 		// Draw the room dark background
-		DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + "Dark.jpg", MainCanvas, 500, 0, 1000, 1000, 0, 0, 1000, 1000);
+		DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ".jpg", MainCanvas, 500, 0, 1000, 1000, 0, 0, 1000, 1000);
+		DrawRect(0, 0, 1000, 1000, "rgba(0,0,0," + 0.5 + ")");
 
 		// In inventory selection mode
 		if (GameLARPTurnFocusGroup != null) {
@@ -151,10 +152,11 @@ function GameLARPRunProcess() {
 			var X = 15;
 			var Y = 110;
 			for (let A = GameLARPInventoryOffset; (A < GameLARPInventory.length) && (A < GameLARPInventoryOffset + 12); A++) {
-				const Item = GameLARPInventory[A];
+				const asset = GameLARPInventory[A];
 				const Hover = MouseIn(X, Y, 225, 275) && !CommonIsMobile;
-				const Hidden = CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name);
-				if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.Description, { Background: Hover ? "cyan" : "#fff" });
+				const Hidden = CharacterAppearanceItemIsHidden(asset.Name, asset.Group.Name);
+				if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", asset.Description, { Background: Hover ? "cyan" : "#fff" });
+				else DrawAssetPreview(X, Y, asset, {Hover: true});
 
 				X = X + 250;
 				if (X > 800) {
@@ -181,6 +183,8 @@ function GameLARPRunProcess() {
 
 	}
 
+	// Reset any notification that may have been raised
+	if (document.hasFocus()) NotificationReset(NotificationEventType.LARP);
 }
 
 /**
@@ -278,7 +282,7 @@ function GameLARPStartProcess() {
 	// Changes the game status and exits
 	ServerSend("ChatRoomGame", { GameProgress: "Start" });
 	Player.Game.LARP.Status = "Running";
-	ServerSend("AccountUpdate", { Game: Player.Game });
+	ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
 	ChatRoomCharacterUpdate(Player);
 }
 
@@ -318,7 +322,7 @@ function GameLARPClick() {
 	if (MouseIn(1050, 600, 400, 65) && GameLARPCanLaunchGame()) {
 
 		// Updates the player data
-		ServerSend("AccountUpdate", { Game: Player.Game });
+		ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
 		ChatRoomCharacterUpdate(Player);
 
 		// Shuffles all players in the chat room
@@ -354,7 +358,7 @@ function GameLARPExit() {
 		}
 
 		// Updates the player and go back to the chat room
-		ServerSend("AccountUpdate", { Game: Player.Game });
+		ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
 		ChatRoomCharacterUpdate(Player);
 		CommonSetScreen("Online", "ChatRoom");
 
@@ -465,25 +469,25 @@ function GameLARPGetOdds(Action, Source, Target) {
  * @param {Character} C - Character to check.
  * @returns {boolean} - Whether the character can talk or not
  */
-function GameLARPCanTalk(C) { return (InventoryGet(C, "ItemMouth") == null) }
+function GameLARPCanTalk(C) { return (InventoryGet(C, "ItemMouth") == null); }
 /**
  * In LARP, check if the given character can walk.
  * @param {Character} C - Character to check.
  * @returns {boolean} - Whether the character can walk or not
  */
-function GameLARPCanWalk(C) { return (InventoryGet(C, "ItemFeet") == null) }
+function GameLARPCanWalk(C) { return (InventoryGet(C, "ItemFeet") == null); }
 /**
  * In LARP, check if the given character can act.
  * @param {Character} C - Character to check.
  * @returns {boolean} - Whether the character can act or not
  */
-function GameLARPCanAct(C) { return (InventoryGet(C, "ItemArms") == null) }
+function GameLARPCanAct(C) { return (InventoryGet(C, "ItemArms") == null); }
 /**
  * In LARP, check if the given character is wearing clothes.
  * @param {Character} C - Character to check.
  * @returns {boolean} - Whether the character is wearing clothes or not
  */
-function GameLARPClothed(C) { return (InventoryGet(C, "Cloth") != null) }
+function GameLARPClothed(C) { return (InventoryGet(C, "Cloth") != null); }
 
 /**
  * Checks if an item can be removed in LARP.
@@ -502,7 +506,7 @@ function GameLARPCanRemoveItem(C, Zone) {
  * Adds all available class abilities to the built basic options
  * @param {Character} Source - Character about to do an action.
  * @param {Character} Target - The character on which an action is about to be done.
- * @param {Array.<{ Name: string, Odds: number}>} - List of the basic options the source character can perform
+ * @param {Array.<{ Name: string, Odds: number}>} Option - List of the basic options the source character can perform
  * @param {string} Ability - Character's ability.
  * @returns {void} - Nothing
  */
@@ -529,7 +533,7 @@ function GameLARPBuildOptionAbility(Source, Target, Option, Ability) {
 	if (Source.MemberNumber == Target.MemberNumber) {
 
 		// Abilities that can be used on yourself
-		var Odds = GameLARPGetOdds(Ability, Source, Source);
+		let Odds = GameLARPGetOdds(Ability, Source, Source);
 		if ((Ability == "Charge") && GameLARPCanWalk(Source)) Option.push({ Name: Ability, Odds: Odds });
 		if ((Ability == "Control") && GameLARPCanTalk(Source)) Option.push({ Name: Ability, Odds: Odds });
 		if (Ability == "Hide") Option.push({ Name: Ability, Odds: Odds });
@@ -540,7 +544,7 @@ function GameLARPBuildOptionAbility(Source, Target, Option, Ability) {
 	} else {
 
 		// If the player targets someone from her team
-		var Odds = GameLARPGetOdds(Ability, Source, Target);
+		let Odds = GameLARPGetOdds(Ability, Source, Target);
 		if (Source.Game.LARP.Team == Target.Game.LARP.Team) {
 
 			// Abilities that can be used on someone from your team
@@ -805,11 +809,15 @@ function GameLARPNewTurn(Msg) {
 	GameLARPTurnFocusGroup = null;
 
 	// Cycles in the game player array ascending or descending and shifts the position
-	if ((GameLARPTurnAscending) && (GameLARPTurnPosition < GameLARPPlayer.length - 1)) return GameLARPNewTurnPublish(GameLARPTurnPosition + 1, true, Msg);
-	if ((GameLARPTurnAscending) && (GameLARPTurnPosition == GameLARPPlayer.length - 1)) return GameLARPNewTurnPublish(GameLARPTurnPosition, false, Msg);
-	if ((!GameLARPTurnAscending) && (GameLARPTurnPosition > 0)) return GameLARPNewTurnPublish(GameLARPTurnPosition - 1, false, Msg);
-	if ((!GameLARPTurnAscending) && (GameLARPTurnPosition == 0)) return GameLARPNewTurnPublish(GameLARPTurnPosition, true, Msg);
+	if ((GameLARPTurnAscending) && (GameLARPTurnPosition < GameLARPPlayer.length - 1)) GameLARPNewTurnPublish(GameLARPTurnPosition + 1, true, Msg);
+	else if ((GameLARPTurnAscending) && (GameLARPTurnPosition == GameLARPPlayer.length - 1)) GameLARPNewTurnPublish(GameLARPTurnPosition, false, Msg);
+	else if ((!GameLARPTurnAscending) && (GameLARPTurnPosition > 0)) GameLARPNewTurnPublish(GameLARPTurnPosition - 1, false, Msg);
+	else if ((!GameLARPTurnAscending) && (GameLARPTurnPosition == 0)) GameLARPNewTurnPublish(GameLARPTurnPosition, true, Msg);
 
+	// Raise a notification if it's the player's turn and they're away
+	if (!document.hasFocus() && GameLARPPlayer[GameLARPTurnPosition].ID === 0) {
+		NotificationRaise(NotificationEventType.LARP);
+	}
 }
 
 /**
@@ -825,7 +833,7 @@ function GameLARPBuildPlayerList() {
 
 /**
  * Each time a game is over, in victory or defeat, the player progresses toward the next class level
- * @param {number} Progress - The progress factor to apply
+ * @param {number} NewProgress - The progress factor to apply
  * @returns {void} - Nothing
  */
 function GameLARPLevelProgress(NewProgress) {
@@ -908,7 +916,7 @@ function GameLARPContinue() {
 		// Shows the winning team and updates the player status
 		GameLARPAddChatLog("EndGame", Player, Player, OnlineGameDictionaryText("Team" + Team), 0, 0, "#0000B0");
 		GameLARPReset();
-		ServerSend("AccountUpdate", { Game: Player.Game });
+		ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
 
 		// Calculate the reputation gained, the longer the game took, the higher it will rise the rep, times 2 if the player team won
 		var RepGain = Math.round(GameLARPProgress.length / GameLARPPlayer.length * ((Player.Game.LARP.Team == Team) ? 0.5 : 0.25));
