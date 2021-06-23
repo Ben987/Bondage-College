@@ -128,6 +128,7 @@ DisablePickingLocksOnSelf,Locks on you can't be picked
 BlindDisableExamine,Disable examining when blind
 DisableAutoRemoveLogin,Keep all restraints when relogging
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
+ArousalDisableAdvancedVibes,"Block advanced vibrator modes (edge, random, etc)"
 GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
 ItemsAffectExpressions,Items can affect your facial expression
 GeneralAnimationQuality0,Max

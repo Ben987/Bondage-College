@@ -198,7 +198,7 @@ function VibratorModeDrawControls(Options, Y) {
 		OptionGroup.forEach((Option, I) => {
 			var X = 1175 + (I % 3) * 225;
 			if (I % 3 === 0) Y += 75;
-			var Color = Property.Mode === Option.Property.Mode ? "#888" : "White";
+			var Color = Property.Mode === Option.Property.Mode ? "#888" : (!(OptionName == VibratorModeSet.ADVANCED && CurrentCharacter.ArousalSettings && CurrentCharacter.ArousalSettings.DisableAdvancedVibes) ? "White" : "Pink");
 			DrawButton(X, Y, 200, 55, DialogFindPlayer(Option.Name), Color);
 		});
 		Y += 40;
@@ -222,7 +222,7 @@ function VibratorModeClick(Options, Y) {
 			var X = 1175 + (I % 3) * 225;
 			if (I % 3 === 0) Y += 75;
 			if (MouseIn(X, Y, 200, 55)) {
-				if ((Option.Property != null) && (DialogFocusItem.Property != null) && (Option.Property.Mode !== DialogFocusItem.Property.Mode))
+				if ((Option.Property != null) && (DialogFocusItem.Property != null) && (Option.Property.Mode !== DialogFocusItem.Property.Mode) && !(OptionName == VibratorModeSet.ADVANCED && CurrentCharacter.ArousalSettings && CurrentCharacter.ArousalSettings.DisableAdvancedVibes))
 					VibratorModeSetMode(Option);
 				return true;
 			}

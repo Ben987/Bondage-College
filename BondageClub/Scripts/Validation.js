@@ -551,6 +551,13 @@ function ValidationSanitizeProperties(C, item) {
 			}
 		});
 	}
+	
+	// Block advanced vibrator modes if disabled
+	if (property && typeof property.Mode === "string" && Player.ArousalSettings && Player.ArousalSettings.DisableAdvancedVibes) {
+		console.warn(`Removing invalid mode "${property.Mode}" from ${asset.Name}`);
+		property.Mode = VibratorModeOptions[VibratorModeSet.STANDARD][0];
+		changed = true;
+	}
 
 	return changed;
 }
