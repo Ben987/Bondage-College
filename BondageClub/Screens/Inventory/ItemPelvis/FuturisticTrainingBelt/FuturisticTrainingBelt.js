@@ -528,7 +528,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 			if (State == "None") {
 				if (Math.random() < FuturisticTrainingBeltRandomTeaseChance) {
 					const r = Math.random();
-			        DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityTease");
+					DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityTease");
 					DeviceTimer = FuturisticTrainingBeltRandomTeaseDurationMin + (FuturisticTrainingBeltRandomTeaseDurationMax - FuturisticTrainingBeltRandomTeaseDurationMin) * r * r * r;
 				}
 			} else DeviceTimer = 1;
