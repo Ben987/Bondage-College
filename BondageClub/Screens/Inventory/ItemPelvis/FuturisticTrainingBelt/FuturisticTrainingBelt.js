@@ -524,7 +524,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 			
 		} else if (Mode == "RandomTeasing") {
 			if (State != "LowPriorityTease")
-			    DeviceSetToState = 0;
+				DeviceSetToState = 0;
 			if (State == "None") {
 				if (Math.random() < FuturisticTrainingBeltRandomTeaseChance) {
 					const r = Math.random();
@@ -534,7 +534,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 			} else DeviceTimer = 1;
 		} else if (Mode == "RandomOrgasm") {
 			if (State != "LowPriorityMax")
-			    DeviceSetToState = 0;
+				DeviceSetToState = 0;
 			
 			if (State == "None") {
 				if (Math.random() < FuturisticTrainingBeltRandomOrgasmChance) {
@@ -592,7 +592,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 	
 	if (update || State.includes("Edge")) InventoryItemPelvisFuturisticTrainingBeltUpdateVibeMode(C, Item);
 	
-	var EdgeMode = State.includes("Edge") || Mode == "EdgeAndDeny" || Mode == "RandomTeasing";
+	let EdgeMode = State.includes("Edge") || Mode == "EdgeAndDeny" || Mode == "RandomTeasing";
 	
 	
 	if (EdgeMode) {
@@ -605,7 +605,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 	} else {
 		if (Item.Property.Effect && Item.Property.Effect.includes("DenialMode")) {
 			for (let E = 0; E < Item.Property.Effect.length; E++) {
-				var Effect = Item.Property.Effect[E];
+				let Effect = Item.Property.Effect[E];
 				if (Effect == "DenialMode") {
 					Item.Property.Effect.splice(E, 1);
 					E--;
@@ -614,7 +614,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 		}
 		if (Item.Property.Effect && Item.Property.Effect.includes("RuinOrgasms")) {
 			for (let E = 0; E < Item.Property.Effect.length; E++) {
-				var Effect = Item.Property.Effect[E];
+				let Effect = Item.Property.Effect[E];
 				if (Effect == "RuinOrgasms") {
 					Item.Property.Effect.splice(E, 1);
 					E--;
