@@ -36,6 +36,13 @@ var AudioList = [
 	{ Name: "VibrationLong1", File: "VibrationTone4Long3" },
 	{ Name: "VibrationLong2", File: "VibrationTone4Long6" },
 	{ Name: "VibrationShort", File: "VibrationTone4ShortLoop" },
+	{ Name: "VibrationEdgeLow", File: "Vibrator_Advanced_LowEdge" },
+	{ Name: "VibrationEdgeMedium", File: "Vibrator_Advanced_MediumEdge" },
+	{ Name: "VibrationEdgeHigh", File: "Vibrator_Advanced_HighEdge" },
+	{ Name: "VibrationTeaseLow", File: "Vibrator_Advanced_LowTease" },
+	{ Name: "VibrationTeaseMedium", File: "Vibrator_Advanced_MediumTease" },
+	{ Name: "VibrationMaximum", File: "Vibrator_Advanced_Strong" },
+	{ Name: "VibrationCooldown", File: "Vibrator_Advanced_End" },
 	{ Name: "Wand", File: "Wand" },
 	{ Name: "WoodenCuffs", File: "WoodenCuffs" },
 	{ Name: "ZipTie", File: "ZipTie" },
@@ -69,42 +76,48 @@ var AudioActions = [
 	{
 		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeLow",
 								"FuturisticTrainingBeltSetStateLowPriorityEdgeLowSelf",
-								"FuturisticTrainingBeltSetStateLowPriorityTeaseLow",
-								"FuturisticTrainingBeltSetStateLowPriorityLowLow",
 								"FuturisticTrainingBeltSetStateHighPriorityEdgeLow",
 								"FuturisticTrainingBeltSetStateHighPriorityEdgeLowSelf"].find(A => data.Content.includes(A)),
-		Sound: "VibrationShort"
+		Sound: "VibrationEdgeLow"
+	},
+	{
+		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityTeaseLow",
+								"FuturisticTrainingBeltSetStateLowPriorityLowLow",].find(A => data.Content.includes(A)),
+		Sound: "VibrationTeaseLow"
 	},
 	{
 		IsAction: (data) => [	"FuturisticTrainingBeltSetStateCooldownOff"].find(A => data.Content.includes(A)),
-		Sound: "Deflation"
+		Sound: "VibrationCooldown"
 	},
 	{
 		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeMedium",
 								"FuturisticTrainingBeltSetStateLowPriorityEdgeMediumSelf",
-								"FuturisticTrainingBeltSetStateLowPriorityTeaseMedium",
-								"FuturisticTrainingBeltSetStateLowPriorityMedium",
 								"FuturisticTrainingBeltSetStateHighPriorityEdgeMedium",
 								"FuturisticTrainingBeltSetStateHighPriorityEdgeMediumSelf"].find(A => data.Content.includes(A)),
-		Sound: "VibrationLong1"
+		Sound: "VibrationEdgeMedium"
+	},
+	{
+		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityTeaseMedium",
+								"FuturisticTrainingBeltSetStateLowPriorityMedium"].find(A => data.Content.includes(A)),
+		Sound: "VibrationTeaseMedium"
 	},
 	{
 		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeHigh",
 								"FuturisticTrainingBeltSetStateLowPriorityEdgeHighSelf",
-								"FuturisticTrainingBeltSetStateLowPriorityTeaseHigh",
 								"FuturisticTrainingBeltSetStateHighPriorityEdgeHigh",
 								"FuturisticTrainingBeltSetStateHighPriorityEdgeHighSelf"].find(A => data.Content.includes(A)),
-		Sound: "VibrationLong2"
+		Sound: "VibrationEdgeHigh"
 	},
 	{
 		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximum",
 								"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximumSelf",
 								"FuturisticTrainingBeltSetStateLowPriorityTeaseMaximum",
+								"FuturisticTrainingBeltSetStateLowPriorityTeaseHigh",
 								"FuturisticTrainingBeltSetStateHighPriorityMax",
 								"FuturisticTrainingBeltSetStateLowPriorityMax",
 								"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximum",
 								"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximumSelf"].find(A => data.Content.includes(A)),
-		Sound: "VibrationLong2"
+		Sound: "VibrationMaximum"
 	},
 	{
 		IsAction: (data) => ["InteractiveVisorHeadSet"].find(A => data.Content.includes(A)),
