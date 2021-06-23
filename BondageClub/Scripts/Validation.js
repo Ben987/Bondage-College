@@ -553,7 +553,7 @@ function ValidationSanitizeProperties(C, item) {
 	}
 	
 	// Block advanced vibrator modes if disabled
-	if (property && typeof property.Mode === "string" && Player.ArousalSettings && Player.ArousalSettings.DisableAdvancedVibes) {
+	if (typeof property.Mode === "string"&& Player.ArousalSettings && Player.ArousalSettings.DisableAdvancedVibes && !VibratorModeOptions[VibratorModeSet.STANDARD].includes(VibratorModeGetOption(property.Mode)) ) {
 		console.warn(`Removing invalid mode "${property.Mode}" from ${asset.Name}`);
 		property.Mode = VibratorModeOptions[VibratorModeSet.STANDARD][0];
 		changed = true;
