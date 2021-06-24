@@ -1284,14 +1284,17 @@ function DrawProcess() {
  * @param {boolean} [Options.Hover] - Whether or not the button should enable hover behaviour (background color change)
  * @param {string} [Options.HoverBackground] - The background color that should be used on mouse hover, if any
  * @param {boolean} [Options.Disabled] - Whether or not the element is disabled (prevents hover functionality)
+ * @param {boolean} [Options.IsFavorite] - Whether or not the element is a favorite. (Adds visual distinction)
  * @returns {void} - Nothing
  */
 function DrawAssetPreview(X, Y, A, Options) {
-	let {C, Description, Background, Foreground, Vibrating, Border, Hover, HoverBackground, Disabled} = (Options || {});
+	let { C, Description, Background, Foreground, Vibrating, Border, Hover, HoverBackground, Disabled, IsFavorite} = (Options || {});
 	const DynamicPreviewIcon = C ? A.DynamicPreviewIcon(C) : "";
 	const Path = `${AssetGetPreviewPath(A)}/${A.Name}${DynamicPreviewIcon}.png`;
 	if (Description == null) Description = C ? A.DynamicDescription(C) : A.Description;
-	DrawPreviewBox(X, Y, Path, Description, { Background, Foreground, Vibrating, Border, Hover, HoverBackground, Disabled });
+	if (IsFavorite) Description = "★ " + Description;
+	DrawPreviewBox(X, Y, Path, Description, { Background, Foreground, Vibrating, Border, Hover, 
+		HoverBackground, Disabled });
 }
 
 /**

@@ -334,6 +334,14 @@ function LoginValidateArrays() {
 		Player.HiddenItems = CleanHiddenItems;
 		update = true;
 	}
+	
+
+	var CleanFavoriteItems = AssetCleanArray(Player.FavoriteItems);
+	if (CleanFavoriteItems.length != Player.FavoriteItems.length) {
+		Player.FavoriteItems = CleanFavoriteItems;
+		update = true;
+	}
+	
 	if (update)
 		ServerPlayerBlockItemsSync();
 }
@@ -431,6 +439,8 @@ function LoginResponse(C) {
 				typeof C.BlockItems === "object" && C.BlockItems ? CommonUnpackItemArray(C.BlockItems) : [];
 			Player.LimitedItems = Array.isArray(C.LimitedItems) ? C.LimitedItems :
 				typeof C.LimitedItems === "object" && C.LimitedItems ? CommonUnpackItemArray(C.LimitedItems) : [];
+			Player.FavoriteItems = Array.isArray(C.FavoriteItems) ? C.FavoriteItems :
+				typeof C.FavoriteItems === "object" && C.FavoriteItems ? CommonUnpackItemArray(C.FavoriteItems) : [];
 			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
 			// TODO: Migration code; remove after few versions (added R66)
 			if (Array.isArray(C.BlockItems) || Array.isArray(C.LimitedItems)) {

@@ -28,9 +28,11 @@ var DialogActivityMode = false;
 var DialogActivity = [];
 var DialogSortOrderEnabled = 1;
 var DialogSortOrderEquipped = 2;
-var DialogSortOrderUsable = 3;
-var DialogSortOrderUnusable = 4;
-var DialogSortOrderBlocked = 5;
+var DialogSortOrderFavoriteUsable = 3;
+var DialogSortOrderUsable = 4;
+var DialogSortOrderFavoriteUnusable = 5;
+var DialogSortOrderUnusable = 6;
+var DialogSortOrderBlocked = 7;
 var DialogSelfMenuSelected = null;
 var DialogLeaveDueToItem = false; // This allows dynamic items to call DialogLeave() without crashing the game
 var DialogLockMenu = false;
@@ -821,7 +823,8 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 			// Second, we add everything from the victim inventory
 			for (let A = 0; A < C.Inventory.length; A++)
 				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
-					let DialogSortOrder = C.Inventory[A].Asset.DialogSortOverride != null ? C.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(C.Inventory[A].Asset.Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+					let isFavorite = InventoryIsFavorite(C, C.Inventory[A].Asset.Name, C.Inventory[A].Asset.Group.Name, null);
+					let DialogSortOrder = C.Inventory[A].Asset.DialogSortOverride != null ? C.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(C.Inventory[A].Asset.Category)) ? (isFavorite ? DialogSortOrderFavoriteUsable : DialogSortOrderUsable) : (isFavorite ? DialogSortOrderFavoriteUnusable : DialogSortOrderUnusable);
 					DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrder);
 				}
 
@@ -829,7 +832,8 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 			if (C.ID != 0)
 				for (let A = 0; A < Player.Inventory.length; A++)
 					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
-						let DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(Player.Inventory[A].Asset.Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
+						let isFavorite = InventoryIsFavorite(C, Player.Inventory[A].Asset.Name, C.FocusGroup.Name, null);
+						let DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(Player.Inventory[A].Asset.Category)) ? (isFavorite ? DialogSortOrderFavoriteUsable : DialogSortOrderUsable) : (isFavorite ? DialogSortOrderFavoriteUnusable : DialogSortOrderUnusable);
 						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrder);
 					}
 
@@ -837,9 +841,10 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 			for (let A = 0; A < Asset.length; A++) {
 				if (Asset[A].Group.Name === C.FocusGroup.Name && Asset[A].DynamicAllowInventoryAdd(C)) {
 					if (Asset[A].Value === 0 || (Asset[A].AvailableLocations.includes("Asylum") && (CurrentScreen.startsWith("Asylum") || ChatRoomSpace === "Asylum"))) {
+						let isFavorite = InventoryIsFavorite(C, Asset[A].Name, Asset[A].Group.Name, null);
 						let DialogSortOrder = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride :
 							(InventoryAllow(C, Asset[A].Prerequisite, false) && InventoryChatRoomAllow(Asset[A].Category)) ?
-								DialogSortOrderUsable : DialogSortOrderUnusable;
+								(isFavorite ? DialogSortOrderFavoriteUsable : DialogSortOrderUsable) : (isFavorite ? DialogSortOrderFavoriteUnusable : DialogSortOrderUnusable);
 						DialogInventoryAdd(C, { Asset: Asset[A] }, false, DialogSortOrder);
 					}
 				}
@@ -1023,8 +1028,10 @@ function DialogMenuButtonClick() {
 						DialogInventory = [];
 						DialogItemToLock = Item;
 						for (let A = 0; A < Player.Inventory.length; A++)
-							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
-								DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
+							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock) {
+								let isFavorite = InventoryIsFavorite(C, Player.Inventory[A].Name, Player.Inventory[A].Group.Name, null);
+								DialogInventoryAdd(C, Player.Inventory[A], false, isFavorite ? DialogSortOrderFavoriteUsable: DialogSortOrderUsable);
+							}
 						DialogInventorySort();
 						DialogMenuButtonBuild(C);
 					}
@@ -1684,7 +1691,9 @@ function DialogDrawItemMenu(C) {
 			const Hidden = CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name);
 
 			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.DynamicDescription(Player), { Background });
-			else DrawAssetPreview(X, Y, Item.Asset, { C: Player, Background, Vibrating });
+			else {
+				DrawAssetPreview(X, Y, Item.Asset, { C: Player, Background, Vibrating, IsFavorite: InventoryIsFavorite(C, Item.Asset.Name, Item.Asset.Group.Name, null) });
+			};
 
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;

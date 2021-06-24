@@ -703,7 +703,9 @@ function AppearanceRun() {
 				const PreviewCanvas = DrawCharacterSegment(AppearancePreviews[I], Z[0], Z[1], Z[2], Z[3]);
 				DrawCanvasPreview(X, Y, PreviewCanvas, Item.Asset.Description, { Background });
 			}
-			else DrawAssetPreview(X, Y, Item.Asset, {Background, Vibrating});
+			else {
+				DrawAssetPreview(X, Y, Item.Asset, { Background, Vibrating, IsFavorite: InventoryIsFavorite(C, Item.Asset.Name, Item.Asset.Group.Name, null)});
+			}
 			setButton(X, Y);
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;

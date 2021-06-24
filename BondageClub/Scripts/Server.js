@@ -268,13 +268,14 @@ function ServerPlayerInventorySync() {
 }
 
 /**
- * Syncs player's blocked, limited and hidden items to the server
+ * Syncs player's favorite, blocked, limited and hidden items to the server
  * @returns {void} - Nothing
  */
 function ServerPlayerBlockItemsSync() {
 	ServerAccountUpdate.QueueData({
 		BlockItems: CommonPackItemArray(Player.BlockItems),
 		LimitedItems: CommonPackItemArray(Player.LimitedItems),
+		FavoriteItems: CommonPackItemArray(Player.FavoriteItems),
 		HiddenItems: Player.HiddenItems
 	}, true);
 }

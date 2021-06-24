@@ -146,11 +146,12 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 		const Option = Options[I];
 		const Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
 		const IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
+		const IsFavorite = InventoryIsFavorite(C, Asset.Name, Asset.Group.Name, Option.Property && Option.Property.Type ? Option.Property.Type : null);
 		const ButtonColor = ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected);
 
 		DrawButton(X, Y, 225, 55 + ImageHeight, "", ButtonColor, null, null, IsSelected);
 		if (ShowImages) DrawImage(`${AssetGetInventoryPath(Asset)}/${Option.Name}.png`, X + 2, Y);
-		DrawTextFit(DialogFindPlayer(DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
+		DrawTextFit((IsFavorite ? "★ " : "") + DialogFindPlayer(DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
 		if (ControllerActive == true) {
 			setButton(X + 112, Y + 30 + ImageHeight);
 		}

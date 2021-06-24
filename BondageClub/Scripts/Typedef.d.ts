@@ -314,6 +314,7 @@ interface Character {
 	BlinkFactor: number;
 	AllowItem: boolean;
 	BlockItems: any[];
+	FavoriteItems: any[];
 	LimitedItems: any[];
 	WhiteList: number[];
 	HeightModifier: number;

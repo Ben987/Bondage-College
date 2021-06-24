@@ -915,14 +915,19 @@ function InventoryIsWorn(C, AssetName, AssetGroup) {
  * @returns {void} - Nothing
  */
 function InventoryTogglePermission(Item, Type) {
-	if (InventoryIsPermissionBlocked(Player, Item.Asset.Name, Item.Asset.Group.Name, Type)) {
-		Player.BlockItems = Player.BlockItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name || B.Type != Type);
-		Player.LimitedItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name, Type: Type });
+	const removeFromPermissions = (B) => B.Name != Item.Asset.Name || B.Group != Item.Asset.DynamicGroupName || B.Type != Type;
+	const permissionItem = { Name: Item.Asset.Name, Group: Item.Asset.DynamicGroupName, Type: Type };
+	if (InventoryIsPermissionBlocked(Player, Item.Asset.Name, Item.Asset.DynamicGroupName, Type)) {
+		Player.BlockItems = Player.BlockItems.filter(removeFromPermissions);
+		Player.LimitedItems.push(permissionItem);
+	} else if (InventoryIsPermissionLimited(Player, Item.Asset.Name, Item.Asset.DynamicGroupNamee, Type)) {
+		Player.LimitedItems = Player.LimitedItems.filter(removeFromPermissions);
+	} else if (InventoryIsFavorite(Player, Item.Asset.Name, Item.Asset.DynamicGroupName, Type)) {
+		Player.BlockItems.push(permissionItem);
+		Player.FavoriteItems = Player.FavoriteItems.filter(removeFromPermissions);
+	} else {
+		Player.FavoriteItems.push(permissionItem);
 	}
-	else if (InventoryIsPermissionLimited(Player, Item.Asset.Name, Item.Asset.Group.Name, Type))
-		Player.LimitedItems = Player.LimitedItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name || B.Type != Type);
-	else
-		Player.BlockItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name, Type: Type });
 	ServerPlayerBlockItemsSync();
 }
 
@@ -938,6 +943,23 @@ function InventoryIsPermissionBlocked(C, AssetName, AssetGroup, AssetType) {
 	if ((C != null) && (C.BlockItems != null) && Array.isArray(C.BlockItems))
 		for (let B = 0; B < C.BlockItems.length; B++)
 			if ((C.BlockItems[B].Name == AssetName) && (C.BlockItems[B].Group == AssetGroup) && (C.BlockItems[B].Type == AssetType))
+				return true;
+	return false;
+}
+
+
+/**
+* Returns TRUE if a specific item / asset is favorited by the character item permissions
+* @param {Character} C - The character on which we check the permissions
+* @param {string} AssetName - The asset / item name to scan
+* @param {string} AssetGroup - The asset group name to scan
+* @param {string} [AssetType] - The asset type to scan
+* @returns {boolean} - TRUE if asset / item is a favorite
+*/
+function InventoryIsFavorite(C, AssetName, AssetGroup, AssetType) {
+	if ((C != null) && (C.FavoriteItems != null) && Array.isArray(C.FavoriteItems))
+		for (let B = 0; B < C.FavoriteItems.length; B++)
+			if ((C.FavoriteItems[B].Name == AssetName) && (C.FavoriteItems[B].Group == AssetGroup) && (C.FavoriteItems[B].Type == AssetType))
 				return true;
 	return false;
 }
