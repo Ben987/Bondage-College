@@ -731,8 +731,8 @@ function AppearanceGetPreviewImageColor(C, item, hover) {
 		else if (InventoryIsPermissionLimited(C, item.Asset.Name, item.Asset.Group.Name)) permission = "amber";
 		return item.Worn ? "gray" : AppearancePermissionColors[permission][hover ? 1 : 0];
 	} else {
-		const Unusable = item.SortOrder.startsWith(DialogSortOrderUnusable.toString());
-		const Blocked = item.SortOrder.startsWith(DialogSortOrderBlocked.toString());
+		const Unusable = item.SortOrder.startsWith(DialogSortOrder.Unusable.toString());
+		const Blocked = item.SortOrder.startsWith(DialogSortOrder.Blocked.toString());
 		if (hover && !Blocked) return "cyan";
 		else if (item.Worn) return "pink";
 		else if (Blocked) return "red";

@@ -33,7 +33,7 @@ var AssetSpankingToys = {
 	DynamicAudio: C => InventorySpankingToysGetAudio(C),
 	ParentGroup: null,
 	Effect: [],
-	DialogSortOverride: DialogSortOrderEquipped
+	DialogSortOverride: DialogSortOrder.Equipped
 };
 
 // Alpha mask regions based on Appearance.js CanvasUpperOverflow and CanvasLowerOverflow values

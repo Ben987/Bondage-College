@@ -974,7 +974,7 @@ function CharacterRefreshDialog(C) {
 			DialogInventory = [];
 			for (let A = 0; A < Player.Inventory.length; A++)
 				if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
-					DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
+					DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrder.Usable);
 			DialogInventorySort();
 			DialogMenuButtonBuild(C);
 		} else {
