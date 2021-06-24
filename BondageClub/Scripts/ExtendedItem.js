@@ -177,7 +177,7 @@ function ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected)
 	const FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, CurrentOption, IsSelfBondage);
 	const BlockedOrLimited = InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type);
 	const PlayerBlocked = InventoryIsPermissionBlocked(
-		Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName,
+		Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.Group.Name,
 		Option.Property.Type,
 	);
 	const PlayerLimited = InventoryIsPermissionLimited(
