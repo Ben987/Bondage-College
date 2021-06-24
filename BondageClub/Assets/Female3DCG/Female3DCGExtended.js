@@ -878,6 +878,29 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // Crib
+		FuturisticCrate: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Open",
+						Property: { Type: null },
+					},
+					{
+						Name: "SmallWindow",
+						Property: { Type: "SmallWindow" },
+					},
+					{
+						Name: "Window",
+						Property: { Type: "Window" },
+					},
+					{
+						Name: "Closed",
+						Property: { Type: "Closed" },
+					},
+				],
+			},
+		}, // FuturisticCrate
 	}, // ItemDevices
 	Corset: {
 		LatexCorset1: {
