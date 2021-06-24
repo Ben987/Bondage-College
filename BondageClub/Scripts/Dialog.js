@@ -1690,7 +1690,7 @@ function DialogDrawItemMenu(C) {
 			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.DynamicDescription(Player), { Background });
 			else {
 				DrawAssetPreview(X, Y, Item.Asset, { C: Player, Background, Vibrating, IsFavorite: InventoryIsFavorite(C, Item.Asset.Name, Item.Asset.Group.Name, null) });
-			};
+			}
 
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;
