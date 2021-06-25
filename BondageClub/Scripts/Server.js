@@ -360,7 +360,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	if (SourceMemberNumber == null) SourceMemberNumber = C.MemberNumber;
 	const updateParams = ValidationCreateDiffParams(C, SourceMemberNumber);
 
-	const { appearance, updateValid } = Object.keys(appearanceDiffs)
+	let { appearance, updateValid } = Object.keys(appearanceDiffs)
 		.reduce(({ appearance, updateValid }, key) => {
 			const diff = appearanceDiffs[key];
 			const { item, valid } = ValidationResolveAppearanceDiff(diff[0], diff[1], updateParams);
@@ -368,6 +368,10 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			updateValid = updateValid && valid;
 			return { appearance, updateValid };
 		}, { appearance: [], updateValid: true });
+
+	const cyclicBlockSanitizationResult = ValidationResolveCyclicBlocks(appearance, appearanceDiffs);
+	appearance = cyclicBlockSanitizationResult.appearance;
+	updateValid = updateValid && cyclicBlockSanitizationResult.valid;
 
 	if (AppearanceFull) {
 		C.AppearanceFull = appearance;

@@ -163,6 +163,7 @@ Bra,Camisole,Camisole
 Bra,Ribbons,Ribbons
 Bra,LeatherBreastBinder,Leather Breast Binder
 Bra,SilkStraps,Silk Straps
+Bra,FullLatexBra,Full Latex Bra
 Corset,,Corset
 Corset,Corset1,Corset + Garters
 Corset,Corset2,Corset
@@ -606,6 +607,7 @@ ItemFeet,SpreaderVibratingDildoBar,Vibrating Spreader Dildo Bar
 ItemFeet,PlasticWrap,Plastic Wrap
 ItemFeet,WoodenCuffs,Wooden Cuffs
 ItemFeet,MedicalBedRestraints,Medical Bed Restraints
+ItemFeet,SuspensionCuffs,Suspension Cuffs
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -938,6 +940,7 @@ ItemNeck,SlenderSteelCollar,Slender Steel Collar
 ItemNeck,ShinySteelCollar,Shiny Steel Collar
 ItemNeck,HeartLinkChoker, Heart-Link Choker
 ItemNeck,NeckRope,Neck Rope
+ItemNeck,NylonCollar,Nylon Collar
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CustomCollarTag,Custom Tag
 ItemNeckAccessories,ElectronicTag,Electronic Tag

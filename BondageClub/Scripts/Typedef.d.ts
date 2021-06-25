@@ -838,7 +838,7 @@ interface TypedItemData {
  * @returns {string} - The chat prefix that should be used for this type change
  */
 type TypedItemChatCallback = (
-	chatData: { C: Character; previousOption: ExtendedItemOption; newOption: ExtendedItemOption; previousIndex: number; newIndex: number; }
+    chatData: {C: Character; previousOption: ExtendedItemOption; newOption: ExtendedItemOption; previousIndex: number; newIndex: number;},
 ) => string;
 
 /**
@@ -848,5 +848,65 @@ type TypedItemChatCallback = (
  */
 type TypedItemValidateCallback = (C: Character, Option: ExtendedItemOption) => string;
 
+/**
+ * A parameter object containing information used to validate and sanitize character appearance update diffs. An
+ * appearance update has a source character (the player that sent the update) and a target character (the character
+ * being updated). What is allowed in an update varies depending on the status of the target character in relation to
+ * the source character (i.e. whether they are the target's lover/owner, or the target themselves, and also whether or
+ * not they have been whitelisted by the target).
+ */
+interface AppearanceUpdateParameters {
+    /** The character whose appearance is being updated */
+    C: Character;
+    /** Whether or not the source player is the same as the target player */
+    fromSelf: boolean;
+    /**
+     * Whether or not the source player has permissions to use owner-only items (i.e. they are either the target
+     * themselves, or the target's owner)
+     */
+    fromOwner: boolean;
+    /**
+     * Whether or not the source player has permissions to use lover-only items (i.e. they are the target themselves,
+     * one of the target's lovers, or the target's owner, provided the target's lover rules permit their owner using
+     * lover-only items)
+     */
+    fromLover: boolean;
+    /** The member number of the source player */
+    sourceMemberNumber: number;
+}
+
+/**
+ * A wrapper object containing the results of a diff resolution. This includes the final item that the diff resolved to
+ * (or null if the diff resulted in no item, for example in the case of item removal), along with a valid flag which
+ * indicates whether or not the diff was fully valid or not.
+ */
+interface ItemDiffResolution {
+    /**
+     * The resulting item after resolution of the item diff, or null if the diff resulted in no item being equipped in
+     * the given group
+     */
+    item: Item | null;
+    /**
+     * Whether or not the diff was fully valid. In most cases, an invalid diff will result in the whole appearance
+     * update being rolled back, but in some cases the change will be accepted, but some properties may be modified to
+     * keep the resulting item valid - in both situations, the valid flag will be returned as false, indicating that a
+     * remedial appearance update should be made by the target player.
+     */
+    valid: boolean;
+}
+
+/**
+ * A wrapper object containing the results of an appearance validation. Contains a sanitized appearance array and a
+ * valid flag which indicates whether or not the appearance was fully valid or not.
+ */
+interface AppearanceValidationWrapper {
+    /** The resulting appearance after validation */
+    appearance: Item[];
+    /**
+     * Whether or not the appearance was valid. A value of false indicates that the appearance has been modified, and a
+     * remedial appearance update should be made by the target player.
+     */
+    valid: boolean;
+}
 
 //#endregion

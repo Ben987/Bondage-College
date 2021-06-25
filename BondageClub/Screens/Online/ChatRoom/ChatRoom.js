@@ -1623,8 +1623,14 @@ function ChatRoomPublishAction(C, StruggleProgressPrevItem, StruggleProgressNext
 function ChatRoomCharacterItemUpdate(C, Group) {
 	if ((Group == null) && (C.FocusGroup != null)) Group = C.FocusGroup.Name;
 	if ((CurrentScreen == "ChatRoom") && (Group != null)) {
-		var Item = InventoryGet(C, Group);
-		var P = {};
+		// Single item updates aren't sent back to the source member, so update the ChatRoomData accordingly
+		const characterIndex = ChatRoomData.Character.findIndex((char) => char.MemberNumber === C.MemberNumber);
+		if (characterIndex !== -1) {
+			ChatRoomData.Character[characterIndex] = C;
+		}
+
+		const Item = InventoryGet(C, Group);
+		const P = {};
 		P.Target = C.MemberNumber;
 		P.Group = Group;
 		P.Name = (Item != null) ? Item.Asset.Name : undefined;
@@ -2492,16 +2498,33 @@ function ChatRoomSyncItem(data) {
 			const previousItem = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
 			const newItem = ServerBundledItemToAppearanceItem(ChatRoomCharacter[C].AssetFamily, data.Item);
 
-			const { item, valid } = ValidationResolveAppearanceDiff(previousItem, newItem, updateParams);
+			let { item, valid } = ValidationResolveAppearanceDiff(previousItem, newItem, updateParams);
 
 			ChatRoomAllowCharacterUpdate = false;
 			if (item) {
 				CharacterAppearanceSetItem(
 					ChatRoomCharacter[C], data.Item.Group, item.Asset, item.Color, item.Difficulty, null, false);
+
 				InventoryGet(ChatRoomCharacter[C], data.Item.Group).Property = item.Property;
+
+				const diffMap = {};
+				for (const appearanceItem of ChatRoomCharacter[C].Appearance) {
+					const groupName = appearanceItem.Asset.Group.Name
+					if (groupName === data.Item.Group) {
+						diffMap[groupName] = [previousItem, appearanceItem];
+					} else {
+						diffMap[groupName] = [appearanceItem, appearanceItem];
+					}
+				}
+
+				const cyclicBlockSanitizationResult = ValidationResolveCyclicBlocks(ChatRoomCharacter[C].Appearance, diffMap);
+				ChatRoomCharacter[C].Appearance = cyclicBlockSanitizationResult.appearance;
+				valid = valid && cyclicBlockSanitizationResult.valid;
 			} else {
 				InventoryRemove(ChatRoomCharacter[C], data.Item.Group);
 			}
+
+			ChatRoomAllowCharacterUpdate = true;
 
 			// If the update was invalid, send a correction update
 			if (ChatRoomCharacter[C].ID === 0 && !valid) {
@@ -2516,7 +2539,6 @@ function ChatRoomSyncItem(data) {
 				if (ChatRoomData.Character[R].MemberNumber == data.Item.Target)
 					ChatRoomData.Character[R].Appearance = ChatRoomCharacter[C].Appearance;
 			}
-			ChatRoomAllowCharacterUpdate = true;
 
 			return;
 		}
@@ -3240,10 +3262,10 @@ function ChatRoomNotificationRaiseChatJoin(C) {
 	if (!document.hasFocus()) {
 		const settings = Player.NotificationSettings.ChatJoin;
 		if (settings.AlertType === NotificationAlertType.NONE) raise = false;
-		else if (!settings.Owner && !settings.Lovers && !settings.FriendList && !settings.Subs) raise = true;
+		else if (!settings.Owner && !settings.Lovers && !settings.Friendlist && !settings.Subs) raise = true;
 		else if (settings.Owner && C.IsOwner()) raise = true;
 		else if (settings.Lovers && C.IsLoverOfPlayer()) raise = true;
-		else if (settings.FriendList && Player.FriendList.contains(C.MemberNumber)) raise = true;
+		else if (settings.Friendlist && Player.FriendList.includes(C.MemberNumber)) raise = true;
 		else if (settings.Subs && C.IsOwnedByPlayer()) raise = true;
 	}
 	return raise;
