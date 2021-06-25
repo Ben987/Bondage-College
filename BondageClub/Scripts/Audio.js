@@ -108,7 +108,7 @@ var AudioActions = [
 	},
 	{
 		IsAction: (data) => ["FuturisticCrateSet"].find(A => data.Content.includes(A)),
-		Sound: "FuturisticApply"
+		Sound: "SciFiConfigure"
 	},
 	{
 		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "SciFiPleasurePantiesShockTrigger", "TriggerShock", "CollarAutoShockUnitTrigger", "FuturisticVibratorShockTrigger"].find(A => data.Content.includes(A)),
