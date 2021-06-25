@@ -242,6 +242,10 @@ function InventorySpankingToysGetActivity(C) {
 
 // Determine whether an item activity is allowed on the selected region
 function InventorySpankingToysActivityAllowed(C) {
+	var Type = InventorySpankingToysGetType(Player);
+	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
+	if (InventoryBlockedOrLimited(C, { Asset: A }))
+		return false;
 	if (C.FocusGroup != null) {
 		var Activity = InventorySpankingToysGetActivity(Player);
 		if (Activity == null) return true;
