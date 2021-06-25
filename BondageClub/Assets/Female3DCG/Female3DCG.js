@@ -2152,7 +2152,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "MetalCuffs", Fetish: ["Metal"], Priority: 29, Value: 40, Difficulty: 5, Time: 5, Audio: "LockSmall", Extended: true,
+				Name: "MetalCuffs", Fetish: ["Metal"], Priority: 29, Value: 40, Difficulty: 5, Time: 5, Audio: "LockSmall", Extended: true, HasType: false,
 				SetPose: ["BackCuffs"],
 				Effect: ["Lock", "Block", "Prone"],
 				AllowPose: ["BackCuffs"],
