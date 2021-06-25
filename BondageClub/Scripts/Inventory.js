@@ -198,6 +198,11 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 			|| !InventoryDoesItemExposeGroup(C, "Panties", "ItemVulva")
 			|| InventoryDoesItemBlockGroup(C, "Socks", "ItemVulva")
 			? "RemoveClothesForItem" : "";
+			
+		// Ensure crotch is empty
+		case "VulvaEmpty": return ((InventoryGet(C, "ItemVulva") != null)) ? "MustFreeVulvaFirst" : "";
+		case "ClitEmpty": return ((InventoryGet(C, "ItemVulvaPiercings") != null)) ? "MustFreeClitFirst" : "";
+		case "ButtEmpty": return ((InventoryGet(C, "ItemButt") != null)) ? "MustFreeButtFirst" : "";
 
 		// For body parts that must be naked
 		case "NakedFeet": return InventoryHasItemInAnyGroup(C, ["ItemBoots", "Socks", "Shoes"]) ? "RemoveClothesForItem" : "";
@@ -656,15 +661,30 @@ function InventoryGetItemProperty(Item, PropertyName, CheckGroup=false) {
 /**
 * Check if we must trigger an expression for the character after an item is used/applied
 * @param {Character} C - The character that we must validate
-* @param {Item} Item - The item from appearance that we must validate
+* @param {Item} item - The item from appearance that we must validate
 */
-function InventoryExpressionTrigger(C, Item) {
-	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger(C) != null))
-		for (let E = 0; E < Item.Asset.DynamicExpressionTrigger(C).length; E++) {
-			var Ex = InventoryGet(C, Item.Asset.DynamicExpressionTrigger(C)[E].Group);
-			if ((Ex == null) || (Ex.Property == null) || (Ex.Property.Expression == null) || (Ex.Property.Expression == ""))
-				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger(C)[E].Group, Item.Asset.DynamicExpressionTrigger(C)[E].Name, Item.Asset.DynamicExpressionTrigger(C)[E].Timer);
-		}
+function InventoryExpressionTrigger(C, item) {
+	if (item && item.Asset) {
+		const expressions = item.Asset.DynamicExpressionTrigger(C);
+		if (expressions) InventoryExpressionTriggerApply(C, expressions);
+	}
+}
+
+/**
+ * Apply an item's expression trigger to a character if able
+ * @param {Character} C - The character to update
+ * @param {ExpressionTrigger[]} expressions - The expression change to apply to each group
+ */
+function InventoryExpressionTriggerApply(C, expressions) {
+	const expressionsAllowed = C.ID === 0 || C.AccountName.startsWith("Online-") ? C.OnlineSharedSettings.ItemsAffectExpressions : true;
+	if (expressionsAllowed) {
+		expressions.forEach(expression => {
+			const targetGroupItem = InventoryGet(C, expression.Group);
+			if (!targetGroupItem || !targetGroupItem.Property || !targetGroupItem.Property.Expression) {
+				CharacterSetFacialExpression(C, expression.Group, expression.Name, expression.Timer);
+			}
+		});
+	}
 }
 
 /**
@@ -901,6 +921,8 @@ function InventoryTogglePermission(Item, Type) {
 	}
 	else if (InventoryIsPermissionLimited(Player, Item.Asset.Name, Item.Asset.Group.Name, Type))
 		Player.LimitedItems = Player.LimitedItems.filter(B => B.Name != Item.Asset.Name || B.Group != Item.Asset.Group.Name || B.Type != Type);
+	else if (Player.GetDifficulty() >= 3)
+		Player.LimitedItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name, Type: Type });
 	else
 		Player.BlockItems.push({ Name: Item.Asset.Name, Group: Item.Asset.Group.Name, Type: Type });
 	ServerPlayerBlockItemsSync();
@@ -1000,4 +1022,18 @@ function InventoryChatRoomAllow(Category) {
 			if (ChatRoomData.BlockCategory.indexOf(Category[C]) >= 0)
 				return false;
 	return true;
+}
+
+/**
+ * Applies a preset expression from being shocked to the character if able
+ * @param {Character} C - The character to update
+ * @returns {void} - Nothing
+ */
+function InventoryShockExpression(C) {
+	const expressions = [
+		{ Group: "Eyebrows", Name: "Soft", Timer: 10 },
+		{ Group: "Blush", Name: "Medium", Timer: 15 },
+		{ Group: "Eyes", Name: "Closed", Timer: 5 },
+	];
+	InventoryExpressionTriggerApply(C, expressions);
 }

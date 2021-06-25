@@ -8,7 +8,7 @@ ClubSlave,,(Leave her.),,DialogLeave(),
 0,,,Welcome to the asylum nurse DialogPlayerName.  Our patients are expecting you.  Are you here to work?,,"DialogReputationGreater(""Asylum"", 50)"
 0,,,Hello assistant DialogPlayerName.  It's time to get to work for the asylum!,,"DialogReputationGreater(""Asylum"", 1)"
 0,,,It's always a pleasure to take you in patient DialogPlayerName.  Are you checking in again today?,,"DialogReputationLess(""Asylum"", -100)"
-0,,,Welcome to the asylum patient DialogPlayerName.  Do you still our help?,,"DialogReputationLess(""Asylum"", -50)"
+0,,,Welcome to the asylum patient DialogPlayerName.  Do you still need our help?,,"DialogReputationLess(""Asylum"", -50)"
 0,,,Hello again DialogPlayerName.  Are you here to check in?,,"DialogReputationLess(""Asylum"", -1)"
 0,,,Welcome to the asylum.  Do you need information?,,
 0,10,I want to learn about the asylum.,"In the asylum, you can work as a nurse or commit yourself as a patient.  What would you like to know?",,

@@ -23,7 +23,7 @@ var CharacterAppearanceMenuMode = "";
 var CharacterAppearanceCloth = null;
 var AppearanceMenu = [];
 var AppearancePreviews = [];
-var AppearanceUseCharacterInPreviews = false;
+var AppearanceUseCharacterInPreviewsSetting = false;
 
 const CanvasUpperOverflow = 700;
 const CanvasLowerOverflow = 150;
@@ -554,6 +554,7 @@ function AppearanceLoad() {
 		ServerSend("ChatRoomCharacterExpressionUpdate", { Name: "Wardrobe", Group: "Emoticon", Appearance: ServerAppearanceBundle(Player.Appearance) });
 	}
 	AppearanceMenuBuild(C);
+	AppearanceUseCharacterInPreviewsSetting = Player.VisualSettings.UseCharacterInPreviews;
 }
 
 /**
@@ -747,7 +748,7 @@ function AppearanceMenuDraw() {
 	const X = 2000 - AppearanceMenu.length * 117;
 	for (let B = 0; B < AppearanceMenu.length; B++) {
 		const ButtonName = AppearanceMenu[B].replace(/Disabled$/, "");
-		const ButtonSuffix = AppearanceMenu[B] === "Character" && !AppearanceUseCharacterInPreviews ? "Off" : "";
+		const ButtonSuffix = AppearanceMenu[B] === "Character" && !Player.VisualSettings.UseCharacterInPreviews ? "Off" : "";
 		const ButtonColor = DialogGetMenuButtonColor(AppearanceMenu[B]);
 		const ButtonDisabled = DialogIsMenuButtonDisabled(AppearanceMenu[B]);
 		DrawButton(X + 117 * B, 25, 90, 90, "", ButtonColor, "Icons/" + ButtonName + ButtonSuffix + ".png", TextGet(AppearanceMenu[B]), ButtonDisabled);
@@ -806,7 +807,7 @@ function AppearancePreviewCleanup() {
  * @returns {boolean} - If TRUE the previews will be drawn with the character
  */
 function AppearancePreviewUseCharacter(assetGroup) {
-	return AppearanceUseCharacterInPreviews && assetGroup && assetGroup.PreviewZone;
+	return Player.VisualSettings.UseCharacterInPreviews && assetGroup && typeof assetGroup.PreviewZone !== "undefined";
 }
 
 /**
@@ -1133,7 +1134,7 @@ function AppearanceMenuClick(C) {
 					if (Button === "WearRandom") CharacterAppearanceFullRandom(C, true);
 					if (Button === "Random") CharacterAppearanceFullRandom(C);
 					if (Button === "Naked") CharacterAppearanceStripLayer(C);
-					if (Button === "Character") AppearanceUseCharacterInPreviews = !AppearanceUseCharacterInPreviews;
+					if (Button === "Character") Player.VisualSettings.UseCharacterInPreviews = !Player.VisualSettings.UseCharacterInPreviews;
 					if (Button === "Next") CharacterAppearanceMoveOffset(C, CharacterAppearanceNumPerPage);
 					if (Button === "Cancel") CharacterAppearanceExit(C);
 					if (Button === "Accept") CharacterAppearanceReady(C);
@@ -1266,6 +1267,9 @@ function CharacterAppearanceExit(C) {
 	CharacterAppearanceHeaderText = "";
 	AppearancePreviewCleanup();
 	CharacterAppearanceWardrobeName = "";
+	if (AppearanceUseCharacterInPreviewsSetting !== Player.VisualSettings.UseCharacterInPreviews) {
+		ServerAccountUpdate.QueueData({ VisualSettings: Player.VisualSettings });
+	}
 }
 
 /**
@@ -1292,6 +1296,9 @@ function CharacterAppearanceReady(C) {
 		CommonSetScreen(CharacterAppearanceReturnModule, CharacterAppearanceReturnRoom);
 		CharacterAppearanceReturnRoom = "MainHall";
 		CharacterAppearanceReturnModule = "Room";
+		if (AppearanceUseCharacterInPreviewsSetting !== Player.VisualSettings.UseCharacterInPreviews) {
+			ServerAccountUpdate.QueueData({ VisualSettings: Player.VisualSettings });
+		}
 	} else CommonSetScreen("Character", "Creation");
 
 }

@@ -14,11 +14,7 @@ var MainHallMaidWasCalledManually = false;
 
 var MainHallBeingPunished = false;
 var MainHallFirstFrame = false;
-var MainHallStrongLocks = [{ Name: "CombinationPadlock", Group: "ItemMisc", Type: null },
-	{ Name: "PasswordPadlock", Group: "ItemMisc", Type: null },
-	{ Name: "TimerPasswordPadlock", Group: "ItemMisc", Type: null },
-	{ Name: "HighSecurityPadlock", Group: "ItemMisc", Type: null },
-];
+var MainHallStrongLocks = ["CombinationPadlock", "PasswordPadlock", "TimerPasswordPadlock", "HighSecurityPadlock"];
 
 var MainHallPunishmentList = [
 	{ItemMouth:"BallGag", ItemHead: "LeatherBlindfold", ItemHands: "DuctTape"},
@@ -46,9 +42,8 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
 			break;
 		}
 
-		let LockList = MainHallStrongLocks.map(L => L.Name);
-		for (let L = 0; L < LockList.length; L++) {
-			if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == LockList[L]))) {
+		for (let L = 0; L < MainHallStrongLocks.length; L++) {
+			if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == MainHallStrongLocks[L]))) {
 				needsHelp = true;
 				break;
 			}
@@ -449,9 +444,8 @@ function MainHallMaidReleasePlayer() {
 			if ((MainHallMaid.Dialog[D].Stage == "0") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "AlreadyReleased");
 		CharacterRelease(Player);
-		let LockList = MainHallStrongLocks.map(L => L.Name);
-		for (let L = 0; L < LockList.length; L++) {
-			CharacterReleaseFromLock(Player, LockList[L]);
+		for (let L = 0; L < MainHallStrongLocks.length; L++) {
+			CharacterReleaseFromLock(Player, MainHallStrongLocks[L]);
 		}
 		// Added to remove maids being disabled
 		if (LogQuery("MaidsDisabled", "Maid")) {

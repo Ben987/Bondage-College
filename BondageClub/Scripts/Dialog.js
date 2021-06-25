@@ -634,7 +634,7 @@ function DialogAlwaysAllowRestraint() {
 function DialogCanUseRemote(C, Item) {
 	// Can't use remotes if there is no item, the item doesn't have the "Egged" effect, or the player cannot interact
 	// with remotes in the first place
-	if (!Item || !InventoryItemHasEffect(Item, "Egged") || !Player.CanInteract()) return false;
+	if (!Item || (!InventoryItemHasEffect(Item, "Egged") && !InventoryItemHasEffect(Item, "UseRemote")) || !Player.CanInteract()) return false;
 	// Can't use remotes on self if the player is owned and their remotes have been blocked by an owner rule
 	if (C.ID === 0 && Player.Ownership && Player.Ownership.Stage === 1 && LogQuery("BlockRemoteSelf", "OwnerRule")) return false;
 	if (Item.Asset.LoverOnly) {
@@ -741,8 +741,10 @@ function DialogMenuButtonBuild(C) {
 			if ((Item != null) && !IsItemLocked && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Remove");
 			if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Dismount");
 			if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Escape");
-			if (DialogCanUseRemote(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "RemoteDisabled" : "Remote");
 			if ((Item != null) && Item.Asset.Extended && ((Player.CanInteract()) || DialogAlwaysAllowRestraint() || Item.Asset.AlwaysInteract) && (!IsGroupBlocked || Item.Asset.AlwaysExtend) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer()))) DialogMenuButton.push(ItemBlockedOrLimited ? "UseDisabled" : "Use");
+			// Extended icon doesnt show up if remote works
+			if (!DialogMenuButton.includes("Use") && DialogCanUseRemote(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "RemoteDisabled" : "Remote");
+			
 			if (DialogCanColor(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "ColorPickDisabled" : "ColorPick");
 
 			// Make sure the target player zone is allowed for an activity
@@ -753,11 +755,10 @@ function DialogMenuButtonBuild(C) {
 						if (DialogActivity.length > 0) DialogMenuButton.push("Activity");
 					}
 
-
-			// Item permission enter/exit, cannot be done in Extreme mode
+			// Item permission enter/exit
 			if (C.ID == 0) {
 				if (DialogItemPermissionMode) DialogMenuButton.push("DialogNormalMode");
-				else if (Player.GetDifficulty() <= 2) DialogMenuButton.push("DialogPermissionMode");
+				else DialogMenuButton.push("DialogPermissionMode");
 			}
 		}
 	}
@@ -800,20 +801,20 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 				break;
 			}
 
-		// In item permission mode, we add all the enable items, except the ones already on
+		// In item permission mode we add all the enable items except the ones already on, unless on Extreme difficulty
 		if (DialogItemPermissionMode) {
+			const onExtreme = Player.GetDifficulty() >= 3;
 			for (let A = 0; A < Asset.length; A++)
 				if (Asset[A].Enable && Asset[A].Group.Name == C.FocusGroup.Name) {
-					if (Asset[A].Wear) {
+					if (Asset[A].Wear && !onExtreme) {
 						if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
 							DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: DialogSortOrderEnabled.toString() + Asset[A].Description });
 					}
-					else if (Asset[A].IsLock) {
-						var LockIsWorn = InventoryCharacterIsWearingLock(C, Asset[A].Name);
+					else if (Asset[A].IsLock && (!onExtreme || MainHallStrongLocks.includes(Asset[A].Name))) {
+						const LockIsWorn = InventoryCharacterIsWearingLock(C, Asset[A].Name);
 						DialogInventory.push({ Asset: Asset[A], Worn: LockIsWorn, Icon: "", SortOrder: DialogSortOrderEnabled.toString() + Asset[A].Description });
 					}
 				}
-
 		} else {
 
 			// Second, we add everything from the victim inventory
@@ -1716,7 +1717,9 @@ function DialogDrawItemMenu(C) {
 	}
 
 	// Show the no access text
-	if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
+	if (C.ID == 0 && DialogItemPermissionMode && Player.GetDifficulty() >= 3)
+		DrawTextWrap(DialogFindPlayer("ExtremePermissionMode"), 1000, 550, 1000, 250, "White");
+	else if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
 	else if (DialogInventory.length > 0) DrawText(DialogFindPlayer("AccessBlocked"), 1500, 700, "White", "Black");
 	else DrawText(DialogFindPlayer("NoItems"), 1500, 700, "White", "Black");
 

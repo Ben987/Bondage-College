@@ -65,7 +65,7 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 24,0,(Get a free tea.),,"DrinkPick(""FreeTea"", 0)",
 24,0,(Get a free coffee.),,"DrinkPick(""FreeCoffee"", 0)",
 24,0,(Get a 5$ hot chocolate.),,"DrinkPick(""HotChocolate"", 5)",DialogMoneyGreater(5)
-24,0,(Get a 5$ expresso.),,"DrinkPick(""Expresso"", 5)",DialogMoneyGreater(5)
+24,0,(Get a 5$ espresso.),,"DrinkPick(""Espresso"", 5)",DialogMoneyGreater(5)
 24,0,(Get a 5$ cappuccino.),,"DrinkPick(""Cappuccino"", 5)",DialogMoneyGreater(5)
 24,20,(Back to drink options.),(Drink options.),,
 24,0,(Back to main menu.),(Main menu.),,

@@ -458,7 +458,9 @@ function ChatRoomCreateElement() {
 		if (RelogChatLog != null) {
 			while (RelogChatLog.children.length > 0)
 				document.getElementById("TextAreaChatLog").appendChild(RelogChatLog.children[0]);
+			ElementValue("InputChat", RelogInputText);
 			RelogChatLog = null;
+			RelogInputText = "";
 		} else ElementContent("TextAreaChatLog", "");
 
 		// Creates listener for resize events.
@@ -1166,6 +1168,7 @@ function ChatRoomRun() {
 				DrawButton(550, 532, 250, 64, TextGet("OrgasmSurrender"), "White");
 			}
 			if (Player.ArousalSettings.OrgasmStage == 1) DrawButton(ActivityOrgasmGameButtonX, ActivityOrgasmGameButtonY, 250, 64, ActivityOrgasmResistLabel, "White");
+			if (ActivityOrgasmRuined) ActivityOrgasmControl();
 			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
 			ActivityOrgasmProgressBar(50, 970);
 		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99) && !CommonPhotoMode) {
@@ -1302,6 +1305,7 @@ function ChatRoomMenuClick() {
            if (Player.CanKneel()) {
 						const PlayerIsKneeling = Player.ActivePose && Player.ActivePose.includes("Kneel");
 						ServerSend("ChatRoomChat", { Content: PlayerIsKneeling ? "StandUp" : "KneelDown", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
+						FuturisticTrainingBeltStandUpFlag = Player.IsKneeling();
 						CharacterSetActivePose(Player, PlayerIsKneeling ? "BaseLower" : "Kneel");
 						ChatRoomStimulationMessage("Kneel");
 						ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
@@ -1361,6 +1365,7 @@ function ChatRoomAttemptStandMinigameEnd() {
 	if (MiniGameVictory)  {
 		if (MiniGameType == "GetUp"){
 			ServerSend("ChatRoomChat", { Content: (!Player.IsKneeling()) ? "KneelDownPass" : "StandUpPass", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
+			FuturisticTrainingBeltStandUpFlag = Player.IsKneeling();
 			CharacterSetActivePose(Player, (!Player.IsKneeling()) ? "Kneel" : null, true);
 			ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 		}
@@ -1370,7 +1375,7 @@ function ChatRoomAttemptStandMinigameEnd() {
 			ServerSend("ChatRoomChat", { Content: (!Player.IsKneeling()) ? "KneelDownFail" : "StandUpFail", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
 			if (!Player.IsKneeling()) {
 				CharacterSetFacialExpression(Player, "Eyebrows", "Soft", 15);
-				CharacterSetFacialExpression(Player, "Blush", "Soft", 15);
+				CharacterSetFacialExpression(Player, "Blush", "Medium", 15);
 				CharacterSetFacialExpression(Player, "Eyes", "Dizzy", 15);
 			}
 		}
@@ -1498,11 +1503,11 @@ function ChatRoomSendChat() {
 			Dictionary.push({ Tag: "CoinResult", TextToLookUp: Heads ? "Heads" : "Tails" });
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary });
 
-		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0)) {
+		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0) || (Player.ChatSettings.MuStylePoses && m.indexOf(":") == 0 && m.length > 3)) {
 
-
-			// The player can emote an action using * or /me (for those IRC or Skype users), it doesn't garble
+			// The player can emote an action using :, * or /me (for those IRC, MU* or Skype users), it doesn't garble
 			// The command /action or ** does not add the player's name to it
+			if (Player.ChatSettings.MuStylePoses) msg = msg.replace(":", "");
 			msg = msg.replace("*", "");
 			msg = msg.replace(/\/me /g, "");
 			msg = msg.replace(/\/action /g, "*");
@@ -1628,8 +1633,14 @@ function ChatRoomPublishAction(C, StruggleProgressPrevItem, StruggleProgressNext
 function ChatRoomCharacterItemUpdate(C, Group) {
 	if ((Group == null) && (C.FocusGroup != null)) Group = C.FocusGroup.Name;
 	if ((CurrentScreen == "ChatRoom") && (Group != null)) {
-		var Item = InventoryGet(C, Group);
-		var P = {};
+		// Single item updates aren't sent back to the source member, so update the ChatRoomData accordingly
+		const characterIndex = ChatRoomData.Character.findIndex((char) => char.MemberNumber === C.MemberNumber);
+		if (characterIndex !== -1) {
+			ChatRoomData.Character[characterIndex] = C;
+		}
+
+		const Item = InventoryGet(C, Group);
+		const P = {};
 		P.Target = C.MemberNumber;
 		P.Group = Group;
 		P.Name = (Item != null) ? Item.Asset.Name : undefined;
@@ -1899,7 +1910,7 @@ function ChatRoomMessage(data) {
 
 					const chatMsg = ChatRoomHTMLEntities(data.Type === "Whisper" ? data.Content : SpeechGarble(SenderCharacter, data.Content));
 					msg += chatMsg;
-					ChatRoomChatLog.push({ Chat: SpeechGarble(SenderCharacter, data.Content, true), Garbled: chatMsg, SenderName: senderName, Time: CommonTime() });
+					ChatRoomChatLog.push({ Chat: SpeechGarble(SenderCharacter, data.Content, true), Garbled: chatMsg, SenderName: senderName, SenderMemberNumber: SenderCharacter.MemberNumber, Time: CommonTime() });
 
 					if (ChatRoomChatLog.length > 6) { // Keep it short
 						ChatRoomChatLog.splice(0, 1);
@@ -2497,16 +2508,33 @@ function ChatRoomSyncItem(data) {
 			const previousItem = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
 			const newItem = ServerBundledItemToAppearanceItem(ChatRoomCharacter[C].AssetFamily, data.Item);
 
-			const { item, valid } = ValidationResolveAppearanceDiff(previousItem, newItem, updateParams);
+			let { item, valid } = ValidationResolveAppearanceDiff(previousItem, newItem, updateParams);
 
 			ChatRoomAllowCharacterUpdate = false;
 			if (item) {
 				CharacterAppearanceSetItem(
 					ChatRoomCharacter[C], data.Item.Group, item.Asset, item.Color, item.Difficulty, null, false);
+
 				InventoryGet(ChatRoomCharacter[C], data.Item.Group).Property = item.Property;
+
+				const diffMap = {};
+				for (const appearanceItem of ChatRoomCharacter[C].Appearance) {
+					const groupName = appearanceItem.Asset.Group.Name
+					if (groupName === data.Item.Group) {
+						diffMap[groupName] = [previousItem, appearanceItem];
+					} else {
+						diffMap[groupName] = [appearanceItem, appearanceItem];
+					}
+				}
+
+				const cyclicBlockSanitizationResult = ValidationResolveCyclicBlocks(ChatRoomCharacter[C].Appearance, diffMap);
+				ChatRoomCharacter[C].Appearance = cyclicBlockSanitizationResult.appearance;
+				valid = valid && cyclicBlockSanitizationResult.valid;
 			} else {
 				InventoryRemove(ChatRoomCharacter[C], data.Item.Group);
 			}
+
+			ChatRoomAllowCharacterUpdate = true;
 
 			// If the update was invalid, send a correction update
 			if (ChatRoomCharacter[C].ID === 0 && !valid) {
@@ -2521,7 +2549,6 @@ function ChatRoomSyncItem(data) {
 				if (ChatRoomData.Character[R].MemberNumber == data.Item.Target)
 					ChatRoomData.Character[R].Appearance = ChatRoomCharacter[C].Appearance;
 			}
-			ChatRoomAllowCharacterUpdate = true;
 
 			return;
 		}
@@ -3084,6 +3111,20 @@ function ChatRoomConcatenateBanList(IncludesBlackList, IncludesGhostList, Existi
 }
 
 /**
+ * Concatenates the list of users for Admin list.
+ * @param {boolean} IncludesOwner - Adds the owner to the admin list
+ * @param {boolean} IncludesLovers - Adds lovers to the admin list
+ * @param {number[]} [ExistingList] - The existing Admin list, if applicable
+ * @returns {number[]} Complete array of admin members
+ */
+function ChatRoomConcatenateAdminList(IncludesOwner, IncludesLovers, ExistingList) {
+	var AdminList = Array.isArray(ExistingList) ? ExistingList : [];
+	if (IncludesOwner) AdminList = AdminList.concat(Player.Ownership.MemberNumber);
+	if (IncludesLovers) CommonArrayConcatDedupe(AdminList, Player.GetLoversNumbers(true));
+	return AdminList.filter((MemberNumber, Idx, Arr) => Arr.indexOf(MemberNumber) == Idx);
+}
+
+/**
  * Handles a request from another player to read the player's log entries that they are permitted to read. Lovers and
  * owners can read certain entries from the player's log.
  * @param {Character|number} C - A character object representing the requester, or the account number of the requester.
@@ -3229,10 +3270,10 @@ function ChatRoomNotificationRaiseChatJoin(C) {
 	if (!document.hasFocus()) {
 		const settings = Player.NotificationSettings.ChatJoin;
 		if (settings.AlertType === NotificationAlertType.NONE) raise = false;
-		else if (!settings.Owner && !settings.Lovers && !settings.FriendList && !settings.Subs) raise = true;
+		else if (!settings.Owner && !settings.Lovers && !settings.Friendlist && !settings.Subs) raise = true;
 		else if (settings.Owner && C.IsOwner()) raise = true;
 		else if (settings.Lovers && C.IsLoverOfPlayer()) raise = true;
-		else if (settings.FriendList && Player.FriendList.contains(C.MemberNumber)) raise = true;
+		else if (settings.Friendlist && Player.FriendList.includes(C.MemberNumber)) raise = true;
 		else if (settings.Subs && C.IsOwnedByPlayer()) raise = true;
 	}
 	return raise;

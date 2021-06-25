@@ -96,6 +96,7 @@ ColorEmotes,Color emotes
 ColorActivities,Color Activities
 ShrinkNonDialogue,Shrink all messages except dialogue
 ShowActivities,Show sexual activities & orgasms
+MuStylePoses,Use : as alias for /me and *
 AutoBanBlackList,Ban blacklist when creating a room
 AutoBanGhostList,Ban ghostlist when creating a room
 SearchShowsFullRooms,Display full chatrooms
@@ -128,7 +129,9 @@ DisablePickingLocksOnSelf,Locks on you can't be picked
 BlindDisableExamine,Disable examining when blind
 DisableAutoRemoveLogin,Keep all restraints when relogging
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
+ArousalDisableAdvancedVibes,"Block advanced vibrator modes (edge, random, etc)"
 GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
+ItemsAffectExpressions,Items can affect your facial expression
 GeneralAnimationQuality0,Max
 GeneralAnimationQuality50,High
 GeneralAnimationQuality100,Medium
