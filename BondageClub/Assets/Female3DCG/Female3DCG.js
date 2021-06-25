@@ -817,7 +817,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "PoliceWomanHat", Value: 40, Layer: [
+				Name: "PoliceWomanHat", Value: 40, AllowPose: [], Layer: [
 					{ Name: "Badge" },
 					{ Name: "Hat" }
 				]
@@ -1581,7 +1581,7 @@ var AssetFemale3DCG = [
 				Block: ["ItemFeet", "ItemBoots", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt"],
 			},
 			{
-				Name: "MedicalBedRestraints", Value: -1, Difficulty: 5, Time: 5, RemoveTime: 5, Random: false, DefaultColor: "#ccc", AllowLock: true, BuyGroup: "MedicalBedRestraints", Left: 0, Top: 0,
+				Name: "MedicalBedRestraints", Value: -1, Difficulty: 5, Time: 5, RemoveTime: 5, Random: false, DefaultColor: "#ccc", AllowLock: true, BuyGroup: "MedicalBedRestraints", Left: 0, Top: 0, AllowPose: [],
 				Prerequisite: ["OnBed", "LegsOpen"], SetPose: ["LegsOpen"], Effect: ["Prone", "BlockKneel"], Block: ["ItemDevices"], AvailableLocations: ["Asylum"],
 				HideItem: ["ClothBondageDress1", "ClothBondageDress2", "ClothBridesmaidDress1", "ClothDress3", "ClothGown3", "ClothWeddingDress1", "ClothWeddingDress2", "ClothLowerWaspie1", "ClothLowerGown2Skirt", "ClothLowerPajama1", "ClothLowerClothSkirt1", "ClothLowerPencilSkirt", "ClothLowerWaspie2", "ClothLowerWaspie3"],
 				Layer: [
@@ -4193,7 +4193,7 @@ var AssetFemale3DCG = [
 						[345, 700, 5, 300],
 						[340, 800, 5, 200]
 					]}]},
-					{Name:"Open", Priority:58, ColorGroup:"Main", AllowTypes:["", "Open"]},
+					{Name:"Open", Priority:58, ColorGroup:"Main", AllowTypes:[""]},
 					{Name:"Closed", Priority:59, ColorGroup:"Main", AllowTypes:["Closed"]}
 				],
 				Extended:true, RemoveAtLogin: true, AllowType:["Closed"]
@@ -4212,7 +4212,7 @@ var AssetFemale3DCG = [
 						[355, 700, 5, 300],
 						[350, 800, 5, 200]
 					]}]},
-					{Name:"Open", Priority:58, ColorGroup:"Main", AllowTypes:["", "Open"]},
+					{Name:"Open", Priority:58, ColorGroup:"Main", AllowTypes:[""]},
 					{Name:"Closed", Priority:59, ColorGroup:"Main", AllowTypes:["Closed"]}
 				],
 				Extended:true, RemoveAtLogin: true, AllowType: ["Closed"]
@@ -4269,7 +4269,6 @@ var AssetFemale3DCG = [
 			{ 
 				Name: "VacbedClear", Fetish: ["Latex"], ParentGroup: "BodyUpper", Value: -1, Difficulty: 50, BuyGroup: "Vac", Priority: 36, SelfBondage: 3, Time: 10, 
 				Prerequisite: ["NotKneeling", "AllFours", "NotSuspended", "NotHogtied", "NotKneelingSpread", "NoItemArms", "LegsOpen", "NoItemHands", "NoItemLegs", "NoHorse", "NoItemFeet"], 
-				AllowType: ["Nohair"], 
 				Hide: ["ItemNeckAccessories", "ItemNeckRestraints", "ClothAccessory", "Shoes"], 
 				SetPose: ["Yoked", "BaseLower"], 
 				Effect: ["Prone", "Freeze", "Block", "Mounted", "IsPlugged"], 
