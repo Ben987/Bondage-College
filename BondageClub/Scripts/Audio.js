@@ -107,6 +107,10 @@ var AudioActions = [
 		Sound: "Deflation"
 	},
 	{
+		IsAction: (data) => ["FuturisticCrateSet"].find(A => data.Content.includes(A)),
+		Sound: "FuturisticApply"
+	},
+	{
 		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "SciFiPleasurePantiesShockTrigger", "TriggerShock", "CollarAutoShockUnitTrigger", "FuturisticVibratorShockTrigger"].find(A => data.Content.includes(A)),
 		GetAudioInfo: (data) => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data)
 	},
