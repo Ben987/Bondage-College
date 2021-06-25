@@ -568,10 +568,11 @@ function AppearanceMenuBuild(C) {
 	switch (CharacterAppearanceMode) {
 		case "":
 			if (C.ID === 0) {
-				AppearanceMenu.push((LogQuery("Wardrobe", "PrivateRoom")) ? "Wardrobe" : "Reset");
+				AppearanceMenu.push(LogQuery("Wardrobe", "PrivateRoom") ? "Wardrobe" : "WardrobeDisabled");
+				if (!LogQuery("Wardrobe", "PrivateRoom")) AppearanceMenu.push("Reset");
 				if (!DialogItemPermissionMode) AppearanceMenu.push("WearRandom");
 				AppearanceMenu.push("Random");
-			} else if (LogQuery("Wardrobe", "PrivateRoom")) AppearanceMenu.push("Wardrobe");
+			} else AppearanceMenu.push(LogQuery("Wardrobe", "PrivateRoom") ? "Wardrobe" : "WardrobeDisabled");
 			AppearanceMenu.push("Naked", "Character", "Next");
 			break;
 		case "Wardrobe":
@@ -1138,6 +1139,7 @@ function AppearanceMenuClick(C) {
 					if (Button === "Next") CharacterAppearanceMoveOffset(C, CharacterAppearanceNumPerPage);
 					if (Button === "Cancel") CharacterAppearanceExit(C);
 					if (Button === "Accept") CharacterAppearanceReady(C);
+					if (Button === "WardrobeDisabled") CharacterAppearanceHeaderText = TextGet("WardrobeDisabled");
 					break;
 				case "Wardrobe":
 					if (Button === "Next") {
