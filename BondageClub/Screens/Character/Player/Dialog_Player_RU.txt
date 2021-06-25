@@ -263,7 +263,7 @@ SourceCharacter picks a coffee from DestinationCharacter tray.
 SourceCharacter берет кофе у DestinationCharacter.
 SourceCharacter buys a hot chocolate from DestinationCharacter tray.
 SourceCharacter покупает горячий шоколад у DestinationCharacter.
-SourceCharacter buys a expresso from DestinationCharacter tray.
+SourceCharacter buys an espresso from DestinationCharacter tray.
 SourceCharacter покупает эспрессо у DestinationCharacter.
 SourceCharacter buys a cappuccino from DestinationCharacter tray.
 SourceCharacter покупает капучино у DestinationCharacter.

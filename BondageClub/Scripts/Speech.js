@@ -67,15 +67,14 @@ function SpeechGetGagLevel(C, AssetGroup) {
 }
 
 /**
- * Processes the character's speech, anything between parentheses isn't touched. Effects alter the speech differently according to a character's language. Effects that can be applied are the following: gag talk, baby talk and stuttering.
- * @param {Character} C - The character, whose dialog might need to be altered
- * @param {string} CD - The character's dialog to alter
- * @param {boolean} [NoDeaf=false] - Whether or not deafness affects the dialogue
- * @returns {string} - Returns the dialog after speech effects were processed (Garbling, Stuttering, Baby talk)
+ * Gets the cumulative gag level of a character
+ * @param {Character} C - The character, whose assets are used for the check
+ * @param {boolean} NoDeaf - Whether or not deafness affects the dialogue
+ * @returns {number} - Returns the total gag effect of the character's assets
  */
-function SpeechGarble(C, CD, NoDeaf=false) {
+function SpeechGetTotalGagLevel(C, NoDeaf=false) {
 	let GagEffect = 0;
-	let NS = CD;
+	
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth2");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth3");
@@ -94,7 +93,22 @@ function SpeechGarble(C, CD, NoDeaf=false) {
 		else if (Player.GetDeafLevel() >= 2) GagEffect = Math.max(GagEffect, 4);
 		else if (Player.GetDeafLevel() >= 1) GagEffect = Math.max(GagEffect, 2);
 	}
+	return GagEffect;
+}
 
+/**
+ * Processes the character's speech, anything between parentheses isn't touched. Effects alter the speech differently according to a character's language. Effects that can be applied are the following: gag talk, baby talk and stuttering.
+ * @param {Character} C - The character, whose dialog might need to be altered
+ * @param {string} CD - The character's dialog to alter
+ * @param {boolean} [NoDeaf=false] - Whether or not deafness affects the dialogue
+ * @returns {string} - Returns the dialog after speech effects were processed (Garbling, Stuttering, Baby talk)
+ */
+function SpeechGarble(C, CD, NoDeaf=false) {
+	let NS = CD;
+	
+	let GagEffect = SpeechGetTotalGagLevel(C, NoDeaf);
+	
+	
 	if (GagEffect > 0) NS = SpeechGarbleByGagLevel(GagEffect, CD);
 
 	// No gag effect, we return the regular text
@@ -103,6 +117,8 @@ function SpeechGarble(C, CD, NoDeaf=false) {
 
 	return NS;
 }
+
+
 
 /**
  * The core of the speech garble function, usable without being tied to a specific character

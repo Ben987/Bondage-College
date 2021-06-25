@@ -289,21 +289,22 @@ function StruggleStrength(Reverse) {
 	if (!Reverse) StruggleProgressStruggleCount++;
 	if ((StruggleProgressStruggleCount >= 50) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgressOperation = DialogFindPlayer("Impossible");
 
-	// At 15 hit: low blush, 50: Medium and 125: High
-	if (DialogAllowBlush && !Reverse) {
-		if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
-		if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
-		if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+	if (!Reverse && Player.OnlineSharedSettings.ItemsAffectExpressions) {
+		// At 15 hit: low blush, 50: Medium and 125: High
+		if (DialogAllowBlush) {
+			if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
+			if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
+			if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+		}
+
+		// At 15 hit: Start drooling
+		if (DialogAllowFluids) {
+			if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Fluids", "DroolMessy");
+		}
+
+		// Over 50 progress, the character frowns
+		if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
 	}
-
-	// At 15 hit: Start drooling
-	if (DialogAllowFluids && !Reverse) {
-		if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Fluids", "DroolMessy");
-	}
-
-	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
-
 
 }
 /**
@@ -611,21 +612,22 @@ function StruggleFlexibility(Reverse, Hover) {
 	if (!Reverse) StruggleProgressStruggleCount += 3;
 	if ((StruggleProgressStruggleCount >= 50) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgressOperation = DialogFindPlayer("Impossible");
 
-	// At 15 hit: low blush, 50: Medium and 125: High
-	if (DialogAllowBlush && !Reverse) {
-		if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
-		if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
-		if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+	if (!Reverse && Player.OnlineSharedSettings.ItemsAffectExpressions) {
+		// At 15 hit: low blush, 50: Medium and 125: High
+		if (DialogAllowBlush) {
+			if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
+			if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
+			if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+		}
+
+		// At 25 hit: Start one eye closed
+		if (DialogAllowFluids) {
+			if (StruggleProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes2", "Closed");
+		}
+
+		// Over 50 progress, the character frowns
+		if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
 	}
-
-	// At 25 hit: Start one eye closed
-	if (DialogAllowFluids && !Reverse) {
-		if (StruggleProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes2", "Closed");
-	}
-
-	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
-
 
 }
 
@@ -807,21 +809,22 @@ function StruggleDexterity(Reverse) {
 	StruggleProgressStruggleCount += Math.max(1, 3*(distMult + 0.5));
 	if ((StruggleProgressStruggleCount >= 50) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgressOperation = DialogFindPlayer("Impossible");
 
-	// At 15 hit: low blush, 50: Medium and 125: High
-	if (DialogAllowBlush) {
-		if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
-		if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
-		if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+	if (Player.OnlineSharedSettings.ItemsAffectExpressions) {
+		// At 15 hit: low blush, 50: Medium and 125: High
+		if (DialogAllowBlush) {
+			if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
+			if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
+			if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+		}
+
+		// At 25 hit: Eyes look glazed
+		if (DialogAllowFluids) {
+			if (StruggleProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes", "Dazed");
+		}
+
+		// Over 50 progress, the character frowns
+		if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
 	}
-
-	// At 25 hit: Eyes look glazed
-	if (DialogAllowFluids) {
-		if (StruggleProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes", "Dazed");
-	}
-
-	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
-
 
 }
 

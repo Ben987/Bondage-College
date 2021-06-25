@@ -25,7 +25,7 @@ Hello assistant DialogPlayerName.  It's time to get to work for the asylum!
 Hallo, Assistentin DialogPlayerName. Es ist Zeit, für die Anstalt zu arbeiten!
 It's always a pleasure to take you in patient DialogPlayerName.  Are you checking in again today?
 Es ist immer wieder eine Freude, dich in unsere Obhut zu nehmen, Patientin DialogPlayerName. Lässt du dich wieder einweisen?
-Welcome to the asylum patient DialogPlayerName.  Do you still our help?
+Welcome to the asylum patient DialogPlayerName.  Do you still need our help?
 Willkommen in der Anstalt, Patientin DialogPlayerName. Brauchst du noch immer unsere Hilfe?
 Hello again DialogPlayerName.  Are you here to check in?
 Hallo mal wieder, DialogPlayerName. Möchtest du dich einweisen lassen?

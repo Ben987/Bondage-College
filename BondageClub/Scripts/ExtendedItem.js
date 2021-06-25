@@ -327,8 +327,7 @@ function ExtendedItemSetType(C, Options, Option) {
 	if (!IsCloth) {
 		// If the item triggers an expression, start the expression change
 		if (Option.Expression) {
-			const E = Option.Expression[0];
-			CharacterSetFacialExpression(C, E.Group, E.Name, E.Timer);
+			InventoryExpressionTriggerApply(C, Option.Expression);
 		}
 		ChatRoomCharacterUpdate(C);
 		if (CurrentScreen === "ChatRoom") {
@@ -430,7 +429,7 @@ function ExtendedItemValidate(C, { Prerequisite, SelfBlockCheck, Property }, Cur
 	const CurrentProperty = DialogFocusItem && DialogFocusItem.Property;
 	const CurrentLockedBy = CurrentProperty && CurrentProperty.LockedBy;
 
-	if (CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+	if (CurrentOption && CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
 		// If the option can't be changed when locked, ensure that the player can unlock the item (if it's locked)
 		return DialogFindPlayer("CantChangeWhileLocked");
 	} else if (Prerequisite && SelfBlockCheck && !ExtendedItemSelfProofRequirementCheck(C, Prerequisite)) {

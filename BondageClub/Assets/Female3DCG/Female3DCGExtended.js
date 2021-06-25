@@ -757,6 +757,30 @@ var AssetFemale3DCGExtended = {
 				],
 			}
 		}, // SturdyLeatherBelts
+		StraitLeotard: {
+			Archetype: ExtendedArchetype.MODULAR,
+			Config: {
+				Modules: [
+					{
+						Name: "Cloth", Key: "cl",
+						Options: [{Property: { Hide: ["Cloth"] }}, {}],
+					},
+					{
+						Name: "Corset", Key: "co",
+						Options: [{Property: { Hide: ["Corset"] }}, {}],
+					},
+					{
+						Name: "NipplesPiercings", Key: "np",
+						Options: [{Property: { Hide: ["ItemNipplesPiercings"] }}, {}],
+					},
+					{
+						Name: "VulvaPiercings", Key: "vp",
+						Options: [{Property: { Hide: ["ItemVulvaPiercings"] }}, {}],
+					},
+				],
+				ChangeWhenLocked: false,
+			},
+		}, // StraitLeotard
 	}, // ItemArms
 	ItemNeck: {
 		ShinySteelCollar: {
@@ -807,6 +831,25 @@ var AssetFemale3DCGExtended = {
 								},
 							}
 						], // Opacity
+					},
+					{
+						Name: "MaskStyle", Key: "ms",
+						Options: [
+							{
+								Property: { 
+									Effect: ["BlockMouth"],
+									Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Mask"],
+									HideItem: ["ItemHeadSnorkel"],
+									Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemHead", "ItemNose", "ItemEars"]
+								}
+							},
+							{
+								Property: { 
+									OverridePriority: 35,
+									Hide: ["Head"],
+								}
+							},
+						],
 					},
 				],
 				ChangeWhenLocked: false,
@@ -1310,7 +1353,8 @@ var AssetFemale3DCGExtended = {
 							Effect: ["BlockMouth", "GagMedium"],
 						},
 					},
-				]
+				],
+				ChangeWhenLocked: false,
 			},
 		}, // DentalGag
 		Ribbons: {

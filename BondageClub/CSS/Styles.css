@@ -75,11 +75,8 @@ TextArea {
 #TextAreaChatLog[data-colortheme=dark] .ChatMessageWhisper, #TextAreaChatLog[data-colortheme="dark2"] .ChatMessageWhisper {
   color: #555;
 }
-#TextAreaChatLog[data-colortheme="dark2"], #TextAreaChatLog[data-colortheme="light2"] {
-  font-size: 1.6rem !important;
-}
+
 #TextAreaChatLog[data-colortheme="dark2"] .ChatMessage, #TextAreaChatLog[data-colortheme="light2"] .ChatMessage {
-  font-size: 1.4rem;
   line-height: 1.4em;
   padding: 0.1em;
   padding-right: 2em;

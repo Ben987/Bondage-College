@@ -4,11 +4,11 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Anna", "Aylea", "Bendy", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "Dini", "Epona", 
-						"Escurse", "FanRunner", "Flux", "Greendragon", "KamiKaze", "Kimuriel", "Michal", "Michel", "Mike", "Mindtie", 
-						"Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", "Remydy", "Rika", 
-						"Robin", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "Stephanie", "Tam", "TopHat", "Trent", 
-						"Troubadix", "William", "Xepherio", "Yurei", "Znarf"];
+var LoginThankYouList = ["Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "DarkStar", "Dini", "ElCriminal", 
+						"Epona", "Escurse", "FanRunner", "Greendragon", "KamiKaze", "Kimuriel", "Longwave", "Michal", "Michel", "Mike", 
+						"Mindtie", "Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", "Remydy", 
+						"Rika", "RobinHood", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "SkyLord", "Stephanie", "Tam", 
+						"TopHat", "Trent", "Troubadix", "William", "Xepherio", "Yuna", "Yurei", "Znarf"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
@@ -340,25 +340,32 @@ function LoginValidateArrays() {
 
 /**
  * Makes sure the difficulty restrictions are applied to the player
+ * @param {boolean} applyDefaults - If changing to the difficulty, set this to True to set LimitedItems to the default settings
  * @returns {void} Nothing
  */
-function LoginDifficulty() {
+function LoginDifficulty(applyDefaults) {
 
 	// If Extreme mode, the player cannot control her blocked items
 	if (Player.GetDifficulty() >= 3) {
-		LoginExtremeItemSettings();
+		LoginExtremeItemSettings(applyDefaults);
 		ServerPlayerBlockItemsSync();
 	}
 }
 
 /**
  * Set the item permissions for the Extreme difficulty
+ * @param {boolean} applyDefaults - When initially changing to extreme/whitelist, TRUE sets strong locks to limited permissions. When enforcing
+ * settings, FALSE allows them to remain as they are since the player could have changed them to fully open.
  * @returns {void} Nothing
  */
-function LoginExtremeItemSettings() {
+function LoginExtremeItemSettings(applyDefaults) {
 	Player.BlockItems = [];
-	// If the permissions are "Owner/Lover/Whitelist" don't limit the locks so that whitelist can use them
-	Player.LimitedItems = (Player.ItemPermission == 3) ? [] : MainHallStrongLocks;
+	if (applyDefaults) {
+		// If the item permissions are 3 = "Owner/Lover/Whitelist" don't limit the locks, since that just blocks whitelisted players
+		Player.LimitedItems = Player.ItemPermission == 3 ? [] : MainHallStrongLocks.map(L => { return { Name: L, Group: "ItemMisc", Type: null }; });
+	} else {
+		Player.LimitedItems = Player.LimitedItems.filter(item => MainHallStrongLocks.includes(item.Name));
+	}
 	Player.HiddenItems = [];
 }
 
@@ -505,7 +512,7 @@ function LoginResponse(C) {
 			Player.SubmissivesList = typeof C.SubmissivesList === "string" ? new Set(JSON.parse(LZString.decompressFromUTF16(C.SubmissivesList))) : new Set();
 			Player.GhostList = ((C.GhostList == null) || !Array.isArray(C.GhostList)) ? [] : C.GhostList;
 			Player.Infiltration = C.Infiltration;
-			LoginDifficulty();
+			LoginDifficulty(false);
 
 			// Loads the player character model and data
 			ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber);

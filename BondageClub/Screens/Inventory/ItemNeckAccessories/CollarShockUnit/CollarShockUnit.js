@@ -81,9 +81,7 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
 	}
 	if (CurrentScreen == "ChatRoom") DialogLeave();
 
-    CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
-    CharacterSetFacialExpression(C, "Blush", "Soft", 15);
-    CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
+	InventoryShockExpression(C);
 }
 
 function AssetsItemNeckAccessoriesCollarShockUnitBeforeDraw(data) {

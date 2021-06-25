@@ -29,7 +29,7 @@ picks a coffee from DialogCharacterName tray.
 nimmt sich einen Kaffee von DialogCharacterName Servierplatte.
 buys a hot chocolate from DialogCharacterName tray.
 kauft eine heiße Schokolade von DialogCharacterName Servierplatte.
-buys a expresso from DialogCharacterName tray.
+buys an espresso from DialogCharacterName tray.
 kauft einen Espresso von DialogCharacterName Servierplatte.
 buys a cappuccino from DialogCharacterName tray.
 kauft einen Cappuccino von DialogCharacterName Servierplatte.
@@ -196,7 +196,7 @@ kauft einen Cappuccino von DialogCharacterName Servierplatte.
 (Einen kostenlosen Kaffee nehmen.)
 (Get a 5$ hot chocolate.)
 (Eine heiße Schokolade für 5$ kaufen.)
-(Get a 5$ expresso.)
+(Get a 5$ espresso.)
 (Einen Espresso für 5$ kaufen.)
 (Get a 5$ cappuccino.)
 (Einen Cappuccino für 5$ kaufen.)
