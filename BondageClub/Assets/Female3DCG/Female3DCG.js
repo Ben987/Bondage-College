@@ -706,7 +706,7 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		Default: false,
 		Top: 462,
-		AllowPose: ["LegsClosed", "Spread", "Horse", "KneelingSpread"],
+		AllowPose: ["LegsClosed", "Spread", "Horse", "Kneel", "KneelingSpread"],
 		PreviewZone: [100, 450, 300, 300],
 		Asset: [
 			{ Name: "GarterBelt", Value: 10 },
