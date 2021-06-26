@@ -1529,7 +1529,10 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/kick ") == 0) ChatRoomAdminChatAction("Kick", msg);
 		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
 		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
-		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
+		else if (m.indexOf("/afk") == 0) { 
+			const expression = WardrobeGetExpression(Player).Emoticon != "Afk" ? "Afk" : null;
+			CharacterSetFacialExpression(Player, "Emoticon", expression);
+		}
 		else if (m.indexOf("/bot") == 0) {
 			for (let CC = 0; CC < ChatRoomCharacter.length; CC++)
 				if (ChatRoomCharacter[CC].MemberNumber && ChatRoomCharacter[CC].ID != 0)
