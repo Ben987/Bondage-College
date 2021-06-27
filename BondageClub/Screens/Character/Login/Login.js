@@ -488,6 +488,19 @@ function LoginResponse(C) {
 					Player.SavedExpressions.push(null);
 				}
 			}
+
+			// Load Favorited Colors
+			Player.SavedColors = C.SavedColors;
+			if (!Array.isArray(Player.SavedColors)) {
+				Player.SavedColors = [];
+			}
+			for (let i = 0; i < ColorPickerNumSaved; i++) {
+				if (isNaN(Player.SavedColors[i].H) || isNaN(Player.SavedColors[i].S) || isNaN(Player.SavedColors[i].V)) {
+					Player.SavedColors[i] = {H: 0, S: 0, V: 1}; // Default to white if entry is invalid
+				}
+			}
+			Player.SavedColors.length = ColorPickerNumSaved;
+
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;

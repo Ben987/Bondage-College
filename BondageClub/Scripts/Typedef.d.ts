@@ -538,6 +538,7 @@ interface PlayerCharacter extends Character {
 	Wardrobe?: any[][];
 	WardrobeCharacterNames?: string[];
 	SavedExpressions?: any[];
+	SavedColors?: HSVColor[];
 	FriendList?: number[];
 	FriendNames?: Map<number, string>;
 	SubmissivesList?: Set<number>
