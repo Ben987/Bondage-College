@@ -923,7 +923,7 @@ function InventoryTogglePermission(Item, Type) {
 	} else if (InventoryIsPermissionLimited(Player, Item.Asset.Name, Item.Asset.Group.Name, Type)) {
 		Player.LimitedItems = Player.LimitedItems.filter(removeFromPermissions);
 	} else if (InventoryIsFavorite(Player, Item.Asset.Name, Item.Asset.Group.Name, Type)) {
-		Player.BlockItems.push(permissionItem);
+		Player.GetDifficulty() >= 3 ? Player.LimitedItems.push(permissionItem) : Player.BlockItems.push(permissionItem);
 		Player.FavoriteItems = Player.FavoriteItems.filter(removeFromPermissions);
 	} else {
 		Player.FavoriteItems.push(permissionItem);

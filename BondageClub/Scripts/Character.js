@@ -1475,7 +1475,7 @@ function CharacterGetClumsiness(C) {
  * Applies hooks to a character based on conditions
  * Future hooks go here
  * @param {Character} C - The character to check
- * @param {boolean} IgnoreHooks - Whether to remove hooks from the player (such as during character dialog)
+ * @param {boolean} IgnoreHooks - Whether to remove some hooks from the player (such as during character dialog).
  * @returns {boolean} - If a hook was applied or removed
  */
 function CharacterCheckHooks(C, IgnoreHooks) {
@@ -1489,6 +1489,46 @@ function CharacterCheckHooks(C, IgnoreHooks) {
 
 			})) refresh = true;
 		} else if (C.UnregisterHook("BeforeSortLayers", "HideRestraints")) refresh = true;
+		
+		// Hook for layer visibility
+		// Visibility is a string individual layers have. If an item has any layers with visibility, it should have the LayerVisibility: true property
+		// We basically check the player's items and see if any are visible that have the LayerVisibility property.
+		let LayerVisibility = false;
+		for (let A = 0; A < C.DrawAppearance.length; A++) {
+			if (C.DrawAppearance[A].Asset && C.DrawAppearance[A].Asset.LayerVisibility) {
+				LayerVisibility = true;
+				break;
+			}
+		}
+		if (LayerVisibility) {
+			// Fancy logic is to use a different hook for when the character is focused
+			if (IgnoreHooks && (C.UnregisterHook("AfterLoadCanvas", "LayerVisibility") || C.RegisterHook("AfterLoadCanvas", "LayerVisibilityDialog", (C) => {
+				C.AppearanceLayers = C.AppearanceLayers.filter((Layer) => (
+					!Layer.Visibility ||
+					(Layer.Visibility == "Player" && C == Player) ||
+					(Layer.Visibility == "AllExceptPlayerDialog" && C != Player) ||
+					(Layer.Visibility == "Others" && C != Player) ||
+					(Layer.Visibility == "OthersExceptDialog") ||
+					(Layer.Visibility == "Owner" && C.IsOwnedByPlayer()) ||
+					(Layer.Visibility == "Lovers" && C.IsLoverOfPlayer()) ||
+					(Layer.Visibility == "Mistresses" && LogQuery("ClubMistress", "Management"))
+					));
+			}))) refresh = true;
+			// Use the regular hook when the character is not
+			else if (!IgnoreHooks && (C.UnregisterHook("AfterLoadCanvas", "LayerVisibilityDialog") || C.RegisterHook("AfterLoadCanvas", "LayerVisibility", (C) => {
+				C.AppearanceLayers = C.AppearanceLayers.filter((Layer) => (
+					!Layer.Visibility ||
+					(Layer.Visibility == "Player" && C == Player) ||
+					(Layer.Visibility == "AllExceptPlayerDialog") ||
+					(Layer.Visibility == "Others" && C != Player) ||
+					(Layer.Visibility == "OthersExceptDialog" && C != Player) ||
+					(Layer.Visibility == "Owner" && C.IsOwnedByPlayer()) ||
+					(Layer.Visibility == "Lovers" && C.IsLoverOfPlayer()) ||
+					(Layer.Visibility == "Mistresses" && LogQuery("ClubMistress", "Management"))
+					));
+			}))) refresh = true;
+			
+		} else if (C.UnregisterHook("AfterLoadCanvas", "LayerVisibility")) refresh = true;
 	}
 
 	if (refresh) CharacterLoadCanvas(C);

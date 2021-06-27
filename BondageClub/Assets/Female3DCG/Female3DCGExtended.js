@@ -1518,7 +1518,10 @@ var AssetFemale3DCGExtended = {
 			Config: {
 				Options: [
 					{ Name: "Empty", Property: { Type: null } },
-					{ Name: "Full", Property: { Type: "Full" } },
+					{ Name: "Drinks", Property: { Type: "Drinks" } },
+					{ Name: "Cake", Property: { Type: "Cake" } },
+					{ Name: "Cookies", Property: { Type: "Cookies" } },
+					{ Name: "Toys", Property: { Type: "Toys" } },
 				],
 			},
 		}, // WoodenMaidTray
