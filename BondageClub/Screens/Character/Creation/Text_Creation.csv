@@ -13,3 +13,4 @@ InvalidData,"Invalid character, account name, password or email"
 BothPasswordDoNotMatch,Both passwords do not match
 ImportBondageCollege,Import Bondage College data
 InvalidServerAnswer,"Invalid server answer, it could be outdated."
+InfoTooLong,Your character name, account name and password cannot be more than 20 characters long.

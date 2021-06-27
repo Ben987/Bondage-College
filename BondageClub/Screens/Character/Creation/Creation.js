@@ -152,21 +152,24 @@ function CreationClick() {
 		var Password2 = ElementValue("InputPassword2");
 		var Email = ElementValue("InputEmail");
 
-		// If both password matches
-		if (Password1 == Password2) {
+		// If info is not too long
+		if (CharacterName.length <= 20 && Name.length <= 20 && Password1.length <= 20) {
+			// If both password matches
+			if (Password1 == Password2) {
 
-			// Makes sure the data is valid
-			var LN = /^[a-zA-Z0-9]+$/;
-			var LS = /^[a-zA-Z ]+$/;
-			var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
-			if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100)) {
-				CreationMessage = TextGet("CreatingCharacter");
-				ServerSend("AccountCreate", { Name: CharacterName, AccountName: Name, Password: Password1, Email: Email });
-			}
-			else
-				CreationMessage = TextGet("InvalidData");
+				// Makes sure the data is valid
+				var LN = /^[a-zA-Z0-9]+$/;
+				var LS = /^[a-zA-Z ]+$/;
+				var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
+				if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100)) {
+					CreationMessage = TextGet("CreatingCharacter");
+					ServerSend("AccountCreate", { Name: CharacterName, AccountName: Name, Password: Password1, Email: Email });
+				}
+				else
+					CreationMessage = TextGet("InvalidData");
 
-		} else CreationMessage = TextGet("BothPasswordDoNotMatch");
+			} else CreationMessage = TextGet("BothPasswordDoNotMatch");
+		} else CreationMessage = TextGet("PasswordTooLong");
 	}
 
 }
