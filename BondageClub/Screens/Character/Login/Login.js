@@ -495,7 +495,7 @@ function LoginResponse(C) {
 				Player.SavedColors = [];
 			}
 			for (let i = 0; i < ColorPickerNumSaved; i++) {
-				if (isNaN(Player.SavedColors[i].H) || isNaN(Player.SavedColors[i].S) || isNaN(Player.SavedColors[i].V)) {
+				if (typeof Player.SavedColors[i] != "object" || isNaN(Player.SavedColors[i].H) || isNaN(Player.SavedColors[i].S) || isNaN(Player.SavedColors[i].V)) {
 					Player.SavedColors[i] = {H: 0, S: 0, V: 1}; // Default to white if entry is invalid
 				}
 			}
