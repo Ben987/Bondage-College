@@ -334,31 +334,46 @@ function LoginValidateArrays() {
 		Player.HiddenItems = CleanHiddenItems;
 		update = true;
 	}
+	
+
+	var CleanFavoriteItems = AssetCleanArray(Player.FavoriteItems);
+	if (CleanFavoriteItems.length != Player.FavoriteItems.length) {
+		Player.FavoriteItems = CleanFavoriteItems;
+		update = true;
+	}
+	
 	if (update)
 		ServerPlayerBlockItemsSync();
 }
 
 /**
  * Makes sure the difficulty restrictions are applied to the player
+ * @param {boolean} applyDefaults - If changing to the difficulty, set this to True to set LimitedItems to the default settings
  * @returns {void} Nothing
  */
-function LoginDifficulty() {
+function LoginDifficulty(applyDefaults) {
 
 	// If Extreme mode, the player cannot control her blocked items
 	if (Player.GetDifficulty() >= 3) {
-		LoginExtremeItemSettings();
+		LoginExtremeItemSettings(applyDefaults);
 		ServerPlayerBlockItemsSync();
 	}
 }
 
 /**
  * Set the item permissions for the Extreme difficulty
+ * @param {boolean} applyDefaults - When initially changing to extreme/whitelist, TRUE sets strong locks to limited permissions. When enforcing
+ * settings, FALSE allows them to remain as they are since the player could have changed them to fully open.
  * @returns {void} Nothing
  */
-function LoginExtremeItemSettings() {
+function LoginExtremeItemSettings(applyDefaults) {
 	Player.BlockItems = [];
-	// If the permissions are "Owner/Lover/Whitelist" don't limit the locks so that whitelist can use them
-	Player.LimitedItems = (Player.ItemPermission == 3) ? [] : MainHallStrongLocks;
+	if (applyDefaults) {
+		// If the item permissions are 3 = "Owner/Lover/Whitelist" don't limit the locks, since that just blocks whitelisted players
+		Player.LimitedItems = Player.ItemPermission == 3 ? [] : MainHallStrongLocks.map(L => { return { Name: L, Group: "ItemMisc", Type: null }; });
+	} else {
+		Player.LimitedItems = Player.LimitedItems.filter(item => MainHallStrongLocks.includes(item.Name));
+	}
 	Player.HiddenItems = [];
 }
 
@@ -431,6 +446,8 @@ function LoginResponse(C) {
 				typeof C.BlockItems === "object" && C.BlockItems ? CommonUnpackItemArray(C.BlockItems) : [];
 			Player.LimitedItems = Array.isArray(C.LimitedItems) ? C.LimitedItems :
 				typeof C.LimitedItems === "object" && C.LimitedItems ? CommonUnpackItemArray(C.LimitedItems) : [];
+			Player.FavoriteItems = Array.isArray(C.FavoriteItems) ? C.FavoriteItems :
+				typeof C.FavoriteItems === "object" && C.FavoriteItems ? CommonUnpackItemArray(C.FavoriteItems) : [];
 			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
 			// TODO: Migration code; remove after few versions (added R66)
 			if (Array.isArray(C.BlockItems) || Array.isArray(C.LimitedItems)) {
@@ -488,6 +505,19 @@ function LoginResponse(C) {
 					Player.SavedExpressions.push(null);
 				}
 			}
+
+			// Load Favorited Colors
+			Player.SavedColors = C.SavedColors;
+			if (!Array.isArray(Player.SavedColors)) {
+				Player.SavedColors = [];
+			}
+			for (let i = 0; i < ColorPickerNumSaved; i++) {
+				if (typeof Player.SavedColors[i] != "object" || isNaN(Player.SavedColors[i].H) || isNaN(Player.SavedColors[i].S) || isNaN(Player.SavedColors[i].V)) {
+					Player.SavedColors[i] = GetDefaultSavedColors()[i];
+				}
+			}
+			Player.SavedColors.length = ColorPickerNumSaved;
+
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
@@ -505,7 +535,7 @@ function LoginResponse(C) {
 			Player.SubmissivesList = typeof C.SubmissivesList === "string" ? new Set(JSON.parse(LZString.decompressFromUTF16(C.SubmissivesList))) : new Set();
 			Player.GhostList = ((C.GhostList == null) || !Array.isArray(C.GhostList)) ? [] : C.GhostList;
 			Player.Infiltration = C.Infiltration;
-			LoginDifficulty();
+			LoginDifficulty(false);
 
 			// Loads the player character model and data
 			ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber);

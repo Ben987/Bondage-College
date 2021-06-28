@@ -1023,3 +1023,9 @@ SourceCharacter gives TargetCharacter a cute Bunny teddy.
 SourceCharacter gibt TargetCharacter einen süßen Stoffhasen.
 SourceCharacter gives TargetCharacter a cute Pony teddy.
 SourceCharacter gibt TargetCharacter ein süßes Plüschpony.
+View next page
+Nächste Seite
+View previous page
+Vorherige Seite
+Save color to currently selected slot
+Farbe im ausgewählten Platz speichern

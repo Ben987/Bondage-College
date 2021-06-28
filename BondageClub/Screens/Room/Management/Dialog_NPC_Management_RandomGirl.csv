@@ -346,7 +346,7 @@ ClubSlaveIntro5,ClubSlave,Hello there.,(She bows her head politely.)  Hello Miss
 ClubSlaveIntro5,ClubSlave,Cute restraints.,(She struggles a little for your amusement.)  Do you require my services Miss?,,Player.CanTalk()
 ClubSlaveIntro5,ClubSlave,You seem well trained slave.,(She nods slowly and bows politely.)  Thank you very much.  Do you require my services Miss?,"DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
 ClubSlaveIntro5,ClubSlave,(Mumble in your gag.),(She giggles hearing your mumbles and nods politely.)  Do you require my services Miss?,"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
-ClubSlaveIntro5,,I don't have time for you.  (Leave her.),,DialogLeave(),Player.CanTalk()
+ClubSlaveIntro5,,I don't have time for you.  (Leave her.),,MainHall(),Player.CanTalk()
 ClubSlaveIntro5,,(Ignore her.),,MainHall(),
 ClubSlaveIntroText6,,,"(As you walk in the halls, you notice a fully restrained club slave begging for help.)  Can anyone help me?",,
 ClubSlaveIntro6,ClubSlave,(Try to get her attention.),(She struggles in vain and turns around slowly.),"DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()

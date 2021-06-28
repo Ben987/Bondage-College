@@ -57,7 +57,7 @@ function DrawHexToRGB(color) {
  */
 function DrawRGBToHex(color) {
 	const rgb = color[2] | (color[1] << 8) | (color[0] << 16);
-	return '#' + (0x1000000 + rgb).toString(16).slice(1);
+	return '#' + (0x1000000 + rgb).toString(16).slice(1).toUpperCase();
 }
 
 /**
@@ -851,25 +851,11 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 	if (!Text) return;
 
-	// If it doesn't fit, test with smaller and smaller fonts until it fits
-	let S;
-	for (S = 36; S >= 10; S = S - 2) {
-		MainCanvas.font = CommonGetFont(S.toString());
-		const metrics = MainCanvas.measureText(Text);
-		if (metrics.width <= Width)
-			break;
-	}
-
-	// Cuts the text if it would go over the box
-	if (S <= 10) {
-		while (Text.length > 0) {
-			Text = Text.substr(1);
-			const metrics = MainCanvas.measureText(Text);
-			if (metrics.width <= Width)
-				break;
-		}
-	}
-
+	// Get text properties
+	let Result = DrawingGetTextSize(Text, Width);
+	Text = Result[0];
+	MainCanvas.font = CommonGetFont(Result[1].toString());
+	
 	// Draw a back color relief text if needed
 	if ((BackColor != null) && (BackColor != "")) {
 		MainCanvas.fillStyle = BackColor;
@@ -880,8 +866,33 @@ function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillText(Text, X, Y);
 	MainCanvas.font = CommonGetFont(36);
-
 }
+
+/**
+ * Gets the text size needed to fit inside a given width according to the current font.
+ * This function is memoized because <code>MainCanvas.measureText(Text)</code> is a major resource hog. 
+ * @param {string} Text - Text to draw
+ * @param {number} Width - Width in which the text has to fit
+ * @returns {[string, number]} - Text to draw and its font size
+ */
+const DrawingGetTextSize = CommonMemoize((Text, Width) => {
+	// If it doesn't fit, test with smaller and smaller fonts until it fits
+	let S;
+	for (S = 36; S >= 10; S = S - 2) {
+		MainCanvas.font = CommonGetFont(S.toString());
+		const metrics = MainCanvas.measureText(Text);
+		if (metrics.width <= Width)
+			return [Text, S];
+	}
+	
+	// Cuts the text if it would go over the box
+	while (Text.length > 0) {
+		Text = Text.substr(1);
+		const metrics = MainCanvas.measureText(Text);
+		if (metrics.width <= Width)
+			return [Text, S];
+	}
+});
 
 /**
  * Draws a text element on the canvas
@@ -959,9 +970,9 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText,
  * @param {string} [TextColor] - Color of the text
  * @returns {void} - Nothing
  */
-function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked, Disabled = false, TextColor = "Black") {
+function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked, Disabled = false, TextColor = "Black", CheckImage = "Icons/Checked.png") {
 	DrawText(Text, Left + 100, Top + 33, TextColor, "Gray");
-	DrawButton(Left, Top, Width, Height, "", Disabled ? "#ebebe4" : "White", IsChecked ? "Icons/Checked.png" : "", null, Disabled);
+	DrawButton(Left, Top, Width, Height, "", Disabled ? "#ebebe4" : "White", IsChecked ? CheckImage : "", null, Disabled);
 }
 
 /**
@@ -1284,14 +1295,17 @@ function DrawProcess() {
  * @param {boolean} [Options.Hover] - Whether or not the button should enable hover behaviour (background color change)
  * @param {string} [Options.HoverBackground] - The background color that should be used on mouse hover, if any
  * @param {boolean} [Options.Disabled] - Whether or not the element is disabled (prevents hover functionality)
+ * @param {boolean} [Options.IsFavorite] - Whether or not the element is a favorite. (Adds visual distinction)
  * @returns {void} - Nothing
  */
 function DrawAssetPreview(X, Y, A, Options) {
-	let {C, Description, Background, Foreground, Vibrating, Border, Hover, HoverBackground, Disabled} = (Options || {});
+	let { C, Description, Background, Foreground, Vibrating, Border, Hover, HoverBackground, Disabled, IsFavorite} = (Options || {});
 	const DynamicPreviewIcon = C ? A.DynamicPreviewIcon(C) : "";
 	const Path = `${AssetGetPreviewPath(A)}/${A.Name}${DynamicPreviewIcon}.png`;
 	if (Description == null) Description = C ? A.DynamicDescription(C) : A.Description;
-	DrawPreviewBox(X, Y, Path, Description, { Background, Foreground, Vibrating, Border, Hover, HoverBackground, Disabled });
+	if (IsFavorite) Description = "★ " + Description;
+	DrawPreviewBox(X, Y, Path, Description, { Background, Foreground, Vibrating, Border, Hover, 
+		HoverBackground, Disabled });
 }
 
 /**

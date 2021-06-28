@@ -146,11 +146,12 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 		const Option = Options[I];
 		const Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
 		const IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
+		const IsFavorite = InventoryIsFavorite(C, Asset.Name, Asset.Group.Name, Option.Property && Option.Property.Type ? Option.Property.Type : null);
 		const ButtonColor = ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected);
 
 		DrawButton(X, Y, 225, 55 + ImageHeight, "", ButtonColor, null, null, IsSelected);
 		if (ShowImages) DrawImage(`${AssetGetInventoryPath(Asset)}/${Option.Name}.png`, X + 2, Y);
-		DrawTextFit(DialogFindPlayer(DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
+		DrawTextFit((IsFavorite ? "★ " : "") + DialogFindPlayer(DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
 		if (ControllerActive == true) {
 			setButton(X + 112, Y + 30 + ImageHeight);
 		}
@@ -176,7 +177,7 @@ function ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected)
 	const FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, CurrentOption, IsSelfBondage);
 	const BlockedOrLimited = InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type);
 	const PlayerBlocked = InventoryIsPermissionBlocked(
-		Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName,
+		Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.Group.Name,
 		Option.Property.Type,
 	);
 	const PlayerLimited = InventoryIsPermissionLimited(
@@ -327,8 +328,7 @@ function ExtendedItemSetType(C, Options, Option) {
 	if (!IsCloth) {
 		// If the item triggers an expression, start the expression change
 		if (Option.Expression) {
-			const E = Option.Expression[0];
-			CharacterSetFacialExpression(C, E.Group, E.Name, E.Timer);
+			InventoryExpressionTriggerApply(C, Option.Expression);
 		}
 		ChatRoomCharacterUpdate(C);
 		if (CurrentScreen === "ChatRoom") {
@@ -430,7 +430,7 @@ function ExtendedItemValidate(C, { Prerequisite, SelfBlockCheck, Property }, Cur
 	const CurrentProperty = DialogFocusItem && DialogFocusItem.Property;
 	const CurrentLockedBy = CurrentProperty && CurrentProperty.LockedBy;
 
-	if (CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+	if (CurrentOption && CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
 		// If the option can't be changed when locked, ensure that the player can unlock the item (if it's locked)
 		return DialogFindPlayer("CantChangeWhileLocked");
 	} else if (Prerequisite && SelfBlockCheck && !ExtendedItemSelfProofRequirementCheck(C, Prerequisite)) {

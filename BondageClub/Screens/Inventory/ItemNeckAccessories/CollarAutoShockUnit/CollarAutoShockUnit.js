@@ -96,6 +96,26 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitSetSensitivity(Modifier)
 
 }
 
+function InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Sensitivity, Emote, Keywords) {
+	if (Sensitivity == 3 && (Emote || (ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1]
+			&& (!ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
+			|| (keywords && (ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/me") || ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")))))))
+			return true;
+		if (Sensitivity == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
+			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].length > 25
+				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && (ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()
+				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!'))))))
+			return true;
+		if (Sensitivity == 1 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
+			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
+			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && (ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()
+				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!')))))
+			return true;
+	return false;
+}
+
 
 function InventoryItemNeckAccessoriesCollarAutoShockUnitUpdate(data) {
 	var Item = data.Item;
@@ -122,23 +142,7 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitUpdate(data) {
 			}
 		}
 
-		if (Item.Property.Sensitivity == 3 && (gagaction || (ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
-			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1]
-			&& (!ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
-			|| (keywords && (ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/me") || ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")))))))
-			ShockTriggerPunish = true;
-		if (Item.Property.Sensitivity == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
-			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
-			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].length > 25
-				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && (ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()
-				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!'))))))
-			ShockTriggerPunish = true;
-		if (Item.Property.Sensitivity == 1 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
-			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
-			&& (ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1] && (ChatRoomLastMessage[ChatRoomLastMessage.length-1] == ChatRoomLastMessage[ChatRoomLastMessage.length-1].toUpperCase()
-				|| (ChatRoomLastMessage[ChatRoomLastMessage.length-1].includes('!')))))
-			ShockTriggerPunish = true;
-
+		ShockTriggerPunish = InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Item.Property.Sensitivity, gagaction, keywords);
 
 		if (ChatRoomTargetMemberNumber != null) {
 			ShockTriggerPunish = false; // No trigger on whispers
@@ -168,9 +172,7 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitTriggerAutomatic(data) {
 		ChatRoomCharacterItemUpdate(C, data.Item.Asset.Group.Name);
 	}
 
-    CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
-    CharacterSetFacialExpression(C, "Blush", "Soft", 15);
-    CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
+	InventoryShockExpression(C);
 }
 
 // Trigger a shock from the dialog menu
@@ -199,9 +201,7 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitTrigger(data) {
 
 	ChatRoomPublishCustomAction("TriggerShock" + DialogFocusItem.Property.Intensity, true, Dictionary);
 
-    CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
-    CharacterSetFacialExpression(C, "Blush", "Soft", 15);
-    CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
+	InventoryShockExpression(C);
 }
 
 function AssetsItemNeckAccessoriesCollarAutoShockUnitBeforeDraw(data) {

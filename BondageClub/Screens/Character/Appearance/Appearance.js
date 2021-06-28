@@ -23,7 +23,7 @@ var CharacterAppearanceMenuMode = "";
 var CharacterAppearanceCloth = null;
 var AppearanceMenu = [];
 var AppearancePreviews = [];
-var AppearanceUseCharacterInPreviews = false;
+var AppearanceUseCharacterInPreviewsSetting = false;
 
 const CanvasUpperOverflow = 700;
 const CanvasLowerOverflow = 150;
@@ -554,6 +554,7 @@ function AppearanceLoad() {
 		ServerSend("ChatRoomCharacterExpressionUpdate", { Name: "Wardrobe", Group: "Emoticon", Appearance: ServerAppearanceBundle(Player.Appearance) });
 	}
 	AppearanceMenuBuild(C);
+	AppearanceUseCharacterInPreviewsSetting = Player.VisualSettings ? Player.VisualSettings.UseCharacterInPreviews : AppearanceUseCharacterInPreviewsSetting;
 }
 
 /**
@@ -567,10 +568,11 @@ function AppearanceMenuBuild(C) {
 	switch (CharacterAppearanceMode) {
 		case "":
 			if (C.ID === 0) {
-				AppearanceMenu.push((LogQuery("Wardrobe", "PrivateRoom")) ? "Wardrobe" : "Reset");
+				AppearanceMenu.push(LogQuery("Wardrobe", "PrivateRoom") ? "Wardrobe" : "WardrobeDisabled");
+				if (!LogQuery("Wardrobe", "PrivateRoom")) AppearanceMenu.push("Reset");
 				if (!DialogItemPermissionMode) AppearanceMenu.push("WearRandom");
 				AppearanceMenu.push("Random");
-			} else if (LogQuery("Wardrobe", "PrivateRoom")) AppearanceMenu.push("Wardrobe");
+			} else AppearanceMenu.push(LogQuery("Wardrobe", "PrivateRoom") ? "Wardrobe" : "WardrobeDisabled");
 			AppearanceMenu.push("Naked", "Character", "Next");
 			break;
 		case "Wardrobe":
@@ -703,7 +705,9 @@ function AppearanceRun() {
 				const PreviewCanvas = DrawCharacterSegment(AppearancePreviews[I], Z[0], Z[1], Z[2], Z[3]);
 				DrawCanvasPreview(X, Y, PreviewCanvas, Item.Asset.Description, { Background });
 			}
-			else DrawAssetPreview(X, Y, Item.Asset, {Background, Vibrating});
+			else {
+				DrawAssetPreview(X, Y, Item.Asset, { Background, Vibrating, IsFavorite: InventoryIsFavorite(C, Item.Asset.Name, Item.Asset.Group.Name, null)});
+			}
 			setButton(X, Y);
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;
@@ -729,8 +733,8 @@ function AppearanceGetPreviewImageColor(C, item, hover) {
 		else if (InventoryIsPermissionLimited(C, item.Asset.Name, item.Asset.Group.Name)) permission = "amber";
 		return item.Worn ? "gray" : AppearancePermissionColors[permission][hover ? 1 : 0];
 	} else {
-		const Unusable = item.SortOrder.startsWith(DialogSortOrderUnusable.toString());
-		const Blocked = item.SortOrder.startsWith(DialogSortOrderBlocked.toString());
+		const Unusable = item.SortOrder.startsWith(DialogSortOrder.Unusable.toString());
+		const Blocked = item.SortOrder.startsWith(DialogSortOrder.Blocked.toString());
 		if (hover && !Blocked) return "cyan";
 		else if (item.Worn) return "pink";
 		else if (Blocked) return "red";
@@ -747,7 +751,7 @@ function AppearanceMenuDraw() {
 	const X = 2000 - AppearanceMenu.length * 117;
 	for (let B = 0; B < AppearanceMenu.length; B++) {
 		const ButtonName = AppearanceMenu[B].replace(/Disabled$/, "");
-		const ButtonSuffix = AppearanceMenu[B] === "Character" && !AppearanceUseCharacterInPreviews ? "Off" : "";
+		const ButtonSuffix = AppearanceMenu[B] === "Character" && !AppearanceUseCharacterInPreviewsSetting ? "Off" : "";
 		const ButtonColor = DialogGetMenuButtonColor(AppearanceMenu[B]);
 		const ButtonDisabled = DialogIsMenuButtonDisabled(AppearanceMenu[B]);
 		DrawButton(X + 117 * B, 25, 90, 90, "", ButtonColor, "Icons/" + ButtonName + ButtonSuffix + ".png", TextGet(AppearanceMenu[B]), ButtonDisabled);
@@ -806,7 +810,7 @@ function AppearancePreviewCleanup() {
  * @returns {boolean} - If TRUE the previews will be drawn with the character
  */
 function AppearancePreviewUseCharacter(assetGroup) {
-	return AppearanceUseCharacterInPreviews && assetGroup && assetGroup.PreviewZone;
+	return AppearanceUseCharacterInPreviewsSetting && assetGroup && typeof assetGroup.PreviewZone !== "undefined";
 }
 
 /**
@@ -1133,10 +1137,11 @@ function AppearanceMenuClick(C) {
 					if (Button === "WearRandom") CharacterAppearanceFullRandom(C, true);
 					if (Button === "Random") CharacterAppearanceFullRandom(C);
 					if (Button === "Naked") CharacterAppearanceStripLayer(C);
-					if (Button === "Character") AppearanceUseCharacterInPreviews = !AppearanceUseCharacterInPreviews;
+					if (Button === "Character")  AppearanceUseCharacterInPreviewsSetting = !AppearanceUseCharacterInPreviewsSetting;
 					if (Button === "Next") CharacterAppearanceMoveOffset(C, CharacterAppearanceNumPerPage);
 					if (Button === "Cancel") CharacterAppearanceExit(C);
 					if (Button === "Accept") CharacterAppearanceReady(C);
+					if (Button === "WardrobeDisabled") CharacterAppearanceHeaderText = TextGet("WardrobeDisabled");
 					break;
 				case "Wardrobe":
 					if (Button === "Next") {
@@ -1266,6 +1271,10 @@ function CharacterAppearanceExit(C) {
 	CharacterAppearanceHeaderText = "";
 	AppearancePreviewCleanup();
 	CharacterAppearanceWardrobeName = "";
+	if (Player.VisualSettings && AppearanceUseCharacterInPreviewsSetting !== Player.VisualSettings.UseCharacterInPreviews) {
+		Player.VisualSettings.UseCharacterInPreviews = AppearanceUseCharacterInPreviewsSetting;
+		ServerAccountUpdate.QueueData({ VisualSettings: Player.VisualSettings });
+	}
 }
 
 /**
@@ -1292,6 +1301,10 @@ function CharacterAppearanceReady(C) {
 		CommonSetScreen(CharacterAppearanceReturnModule, CharacterAppearanceReturnRoom);
 		CharacterAppearanceReturnRoom = "MainHall";
 		CharacterAppearanceReturnModule = "Room";
+		if (Player.VisualSettings && AppearanceUseCharacterInPreviewsSetting !== Player.VisualSettings.UseCharacterInPreviews) {
+			Player.VisualSettings.UseCharacterInPreviews = AppearanceUseCharacterInPreviewsSetting;
+			ServerAccountUpdate.QueueData({ VisualSettings: Player.VisualSettings });
+		}
 	} else CommonSetScreen("Character", "Creation");
 
 }

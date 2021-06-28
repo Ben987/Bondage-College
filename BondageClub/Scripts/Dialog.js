@@ -26,11 +26,10 @@ var DialogItemPermissionMode = false;
 var DialogExtendedMessage = "";
 var DialogActivityMode = false;
 var DialogActivity = [];
-var DialogSortOrderEnabled = 1;
-var DialogSortOrderEquipped = 2;
-var DialogSortOrderUsable = 3;
-var DialogSortOrderUnusable = 4;
-var DialogSortOrderBlocked = 5;
+var DialogSortOrder = {
+	Enabled: 1, Equipped: 2, FavoriteUsable: 3,
+	Usable: 4, FavoriteUnusable: 5, Unusable: 6, Blocked: 7
+};
 var DialogSelfMenuSelected = null;
 var DialogLeaveDueToItem = false; // This allows dynamic items to call DialogLeave() without crashing the game
 var DialogLockMenu = false;
@@ -600,7 +599,7 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 
 	// If the item is blocked, we show it at the end of the list
 	if (InventoryBlockedOrLimited(C, NewInv))
-		SortOrder = DialogSortOrderBlocked;
+		SortOrder = DialogSortOrder.Blocked;
 
 	// Creates a new dialog inventory item
 	var DI = {
@@ -634,7 +633,7 @@ function DialogAlwaysAllowRestraint() {
 function DialogCanUseRemote(C, Item) {
 	// Can't use remotes if there is no item, the item doesn't have the "Egged" effect, or the player cannot interact
 	// with remotes in the first place
-	if (!Item || !InventoryItemHasEffect(Item, "Egged") || !Player.CanInteract()) return false;
+	if (!Item || (!InventoryItemHasEffect(Item, "Egged") && !InventoryItemHasEffect(Item, "UseRemote")) || !Player.CanInteract()) return false;
 	// Can't use remotes on self if the player is owned and their remotes have been blocked by an owner rule
 	if (C.ID === 0 && Player.Ownership && Player.Ownership.Stage === 1 && LogQuery("BlockRemoteSelf", "OwnerRule")) return false;
 	if (Item.Asset.LoverOnly) {
@@ -741,8 +740,10 @@ function DialogMenuButtonBuild(C) {
 			if ((Item != null) && !IsItemLocked && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Remove");
 			if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Dismount");
 			if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Escape");
-			if (DialogCanUseRemote(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "RemoteDisabled" : "Remote");
 			if ((Item != null) && Item.Asset.Extended && ((Player.CanInteract()) || DialogAlwaysAllowRestraint() || Item.Asset.AlwaysInteract) && (!IsGroupBlocked || Item.Asset.AlwaysExtend) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer()))) DialogMenuButton.push(ItemBlockedOrLimited ? "UseDisabled" : "Use");
+			// Extended icon doesnt show up if remote works
+			if (!DialogMenuButton.includes("Use") && DialogCanUseRemote(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "RemoteDisabled" : "Remote");
+			
 			if (DialogCanColor(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "ColorPickDisabled" : "ColorPick");
 
 			// Make sure the target player zone is allowed for an activity
@@ -753,11 +754,10 @@ function DialogMenuButtonBuild(C) {
 						if (DialogActivity.length > 0) DialogMenuButton.push("Activity");
 					}
 
-
-			// Item permission enter/exit, cannot be done in Extreme mode
+			// Item permission enter/exit
 			if (C.ID == 0) {
 				if (DialogItemPermissionMode) DialogMenuButton.push("DialogNormalMode");
-				else if (Player.GetDifficulty() <= 2) DialogMenuButton.push("DialogPermissionMode");
+				else DialogMenuButton.push("DialogPermissionMode");
 			}
 		}
 	}
@@ -795,50 +795,53 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 		var CurItem = null;
 		for (let A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && C.Appearance[A].Asset.DynamicAllowInventoryAdd(C)) {
-				DialogInventoryAdd(C, C.Appearance[A], true, DialogSortOrderEnabled);
+				DialogInventoryAdd(C, C.Appearance[A], true, DialogSortOrder.Enabled);
 				CurItem = C.Appearance[A];
 				break;
 			}
 
-		// In item permission mode, we add all the enable items, except the ones already on
+		// In item permission mode we add all the enable items except the ones already on, unless on Extreme difficulty
 		if (DialogItemPermissionMode) {
+			const onExtreme = Player.GetDifficulty() >= 3;
 			for (let A = 0; A < Asset.length; A++)
 				if (Asset[A].Enable && Asset[A].Group.Name == C.FocusGroup.Name) {
-					if (Asset[A].Wear) {
+					if (Asset[A].Wear && !onExtreme) {
 						if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
-							DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: DialogSortOrderEnabled.toString() + Asset[A].Description });
+							DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: DialogSortOrder.Enabled.toString() + Asset[A].Description });
 					}
-					else if (Asset[A].IsLock) {
+					else if (Asset[A].IsLock && (!onExtreme || MainHallStrongLocks.includes(Asset[A].Name))) {
 						var LockIsWorn = InventoryCharacterIsWearingLock(C, Asset[A].Name);
-						DialogInventory.push({ Asset: Asset[A], Worn: LockIsWorn, Icon: "", SortOrder: DialogSortOrderEnabled.toString() + Asset[A].Description });
+						DialogInventory.push({ Asset: Asset[A], Worn: LockIsWorn, Icon: "", SortOrder: DialogSortOrder.Enabled.toString() + Asset[A].Description });
 					}
 				}
-
 		} else {
 
 			// Second, we add everything from the victim inventory
 			for (let A = 0; A < C.Inventory.length; A++)
 				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
-					let DialogSortOrder = C.Inventory[A].Asset.DialogSortOverride != null ? C.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(C.Inventory[A].Asset.Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
-					DialogInventoryAdd(C, C.Inventory[A], false, DialogSortOrder);
+					let isFavorite = InventoryIsFavorite(C, C.Inventory[A].Asset.Name, C.Inventory[A].Asset.Group.Name, null);
+					let Order = C.Inventory[A].Asset.DialogSortOverride != null ? C.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, C.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(C.Inventory[A].Asset.Category)) ? (isFavorite ? DialogSortOrder.FavoriteUsable : DialogSortOrder.Usable) : (isFavorite ? DialogSortOrder.FavoriteUnusable : DialogSortOrder.Unusable);
+					DialogInventoryAdd(C, C.Inventory[A], false, Order);
 				}
 
 			// Third, we add everything from the player inventory if the player isn't the victim
 			if (C.ID != 0)
 				for (let A = 0; A < Player.Inventory.length; A++)
 					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C)) {
-						let DialogSortOrder = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(Player.Inventory[A].Asset.Category)) ? DialogSortOrderUsable : DialogSortOrderUnusable;
-						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrder);
+						let isFavorite = InventoryIsFavorite(C, Player.Inventory[A].Asset.Name, C.FocusGroup.Name, null);
+						let Order = Player.Inventory[A].Asset.DialogSortOverride != null ? Player.Inventory[A].Asset.DialogSortOverride : (InventoryAllow(C, Player.Inventory[A].Asset.Prerequisite, false) && InventoryChatRoomAllow(Player.Inventory[A].Asset.Category)) ? (isFavorite ? DialogSortOrder.FavoriteUsable : DialogSortOrder.Usable) : (isFavorite ? DialogSortOrder.FavoriteUnusable : DialogSortOrder.Unusable);
+						DialogInventoryAdd(C, Player.Inventory[A], false, Order);
 					}
 
 			// Fourth, we add all free items (especially useful for clothes), or location-specific always available items
 			for (let A = 0; A < Asset.length; A++) {
 				if (Asset[A].Group.Name === C.FocusGroup.Name && Asset[A].DynamicAllowInventoryAdd(C)) {
 					if (Asset[A].Value === 0 || (Asset[A].AvailableLocations.includes("Asylum") && (CurrentScreen.startsWith("Asylum") || ChatRoomSpace === "Asylum"))) {
-						let DialogSortOrder = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride :
+						let isFavorite = InventoryIsFavorite(C, Asset[A].Name, Asset[A].Group.Name, null);
+						let Order = Asset[A].DialogSortOverride != null ? Asset[A].DialogSortOverride :
 							(InventoryAllow(C, Asset[A].Prerequisite, false) && InventoryChatRoomAllow(Asset[A].Category)) ?
-								DialogSortOrderUsable : DialogSortOrderUnusable;
-						DialogInventoryAdd(C, { Asset: Asset[A] }, false, DialogSortOrder);
+								(isFavorite ? DialogSortOrder.FavoriteUsable : DialogSortOrder.Usable) : (isFavorite ? DialogSortOrder.FavoriteUnusable : DialogSortOrder.Unusable);
+						DialogInventoryAdd(C, { Asset: Asset[A] }, false, Order);
 					}
 				}
 			}
@@ -1021,8 +1024,10 @@ function DialogMenuButtonClick() {
 						DialogInventory = [];
 						DialogItemToLock = Item;
 						for (let A = 0; A < Player.Inventory.length; A++)
-							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
-								DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
+							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock) {
+								let isFavorite = InventoryIsFavorite(C, Player.Inventory[A].Name, Player.Inventory[A].Group.Name, null);
+								DialogInventoryAdd(C, Player.Inventory[A], false, isFavorite ? DialogSortOrder.FavoriteUsable: DialogSortOrder.Usable);
+							}
 						DialogInventorySort();
 						DialogMenuButtonBuild(C);
 					}
@@ -1682,7 +1687,9 @@ function DialogDrawItemMenu(C) {
 			const Hidden = CharacterAppearanceItemIsHidden(Item.Asset.Name, Item.Asset.Group.Name);
 
 			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Item.Asset.DynamicDescription(Player), { Background });
-			else DrawAssetPreview(X, Y, Item.Asset, { C: Player, Background, Vibrating });
+			else {
+				DrawAssetPreview(X, Y, Item.Asset, { C: Player, Background, Vibrating, IsFavorite: InventoryIsFavorite(C, Item.Asset.Name, Item.Asset.Group.Name, null) });
+			}
 
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;
@@ -1716,7 +1723,9 @@ function DialogDrawItemMenu(C) {
 	}
 
 	// Show the no access text
-	if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
+	if (C.ID == 0 && DialogItemPermissionMode && Player.GetDifficulty() >= 3)
+		DrawTextWrap(DialogFindPlayer("ExtremePermissionMode"), 1000, 550, 1000, 250, "White");
+	else if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
 	else if (DialogInventory.length > 0) DrawText(DialogFindPlayer("AccessBlocked"), 1500, 700, "White", "Black");
 	else DrawText(DialogFindPlayer("NoItems"), 1500, 700, "White", "Black");
 

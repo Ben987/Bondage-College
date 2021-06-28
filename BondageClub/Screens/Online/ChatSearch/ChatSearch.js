@@ -100,6 +100,7 @@ function ChatSearchExit() {
 	ChatSearchPreviousActivePose = Player.ActivePose;
 	ElementRemove("InputSearch");
 	CommonSetScreen("Room", ChatSearchLeaveRoom);
+	DrawingGetTextSize.clearCache();
 }
 
 /**

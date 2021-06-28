@@ -257,3 +257,26 @@ function TypedItemMapChatTagToDictionaryEntry(C, asset, tag) {
 			return null;
 	}
 }
+
+/**
+ * Returns the options configuration array for a typed item
+ * @param {string} groupName - The name of the asset group
+ * @param {string} assetName - The name of the asset
+ * @returns {ExtendedItemOption[]|null} - The options array for the item, or null if no typed item data was found
+ */
+function TypedItemGetOptions(groupName, assetName) {
+	const data = TypedItemDataLookup[`${groupName}${assetName}`];
+	return data ? data.options : null;
+}
+
+/**
+ * Returns the named option configuration object for a typed item
+ * @param {string} groupName - The name of the asset group
+ * @param {string} assetName - The name of the asset
+ * @param {string} optionName - The name of the option
+ * @returns {ExtendedItemOption|null} - The named option configuration object, or null if none was found
+ */
+function TypedItemGetOption(groupName, assetName, optionName) {
+	const options = TypedItemGetOptions(groupName, assetName);
+	return options ? options.find(option => option.Name === optionName) : null;
+}

@@ -429,6 +429,9 @@ function ModularItemMergeModuleValues({ asset, modules }, moduleValues) {
 		if (Property.Effect) CommonArrayConcatDedupe(mergedProperty.Effect, Property.Effect);
 		if (Property.Hide) CommonArrayConcatDedupe(mergedProperty.Hide, Property.Hide);
 		if (Property.HideItem) CommonArrayConcatDedupe(mergedProperty.HideItem, Property.HideItem);
+		if (Property.SetPose) mergedProperty.SetPose = CommonArrayConcatDedupe(mergedProperty.SetPose || [], Property.SetPose);
+		if (typeof Property.OverridePriority === "number") mergedProperty.OverridePriority = Property.OverridePriority;
+		if (typeof Property.HeightModifier === "number") mergedProperty.HeightModifier = (mergedProperty.HeightModifier || 0) + Property.HeightModifier;
 		return mergedProperty;
 	}, {
 		Type: ModularItemConstructType(modules, moduleValues),

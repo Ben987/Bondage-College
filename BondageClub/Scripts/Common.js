@@ -568,7 +568,7 @@ function CommonLimitFunction(func, minWait = 0) {
 	const funcThrottled = CommonThrottle(func);
 
 	return function () {
-		const wait = Math.max(Player.GraphicsSettings.AnimationQuality, minWait);
+		const wait = Math.max(Player.GraphicsSettings ? Player.GraphicsSettings.AnimationQuality : 100 , minWait);
 		const args = [wait].concat(Array.from(arguments));
 		return wait < 100 ? funcThrottled.apply(this, args) : funcDebounced.apply(this, args);
 	};
@@ -785,7 +785,7 @@ function CommonDeepEqual(obj1, obj2) {
  * Adds all items from the source array to the destination array if they aren't already included
  * @param {*[]} dest - The destination array
  * @param {*[]} src - The source array
- * @returns {void} - Nothing
+ * @returns {*[]} - The destination array
  */
 function CommonArrayConcatDedupe(dest, src) {
 	if (Array.isArray(src) && Array.isArray(dest)) {
@@ -793,6 +793,7 @@ function CommonArrayConcatDedupe(dest, src) {
 			if (!dest.includes(item)) dest.push(item);
 		}
 	}
+	return dest;
 }
 
 /**
