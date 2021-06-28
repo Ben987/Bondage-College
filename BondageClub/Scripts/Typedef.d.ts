@@ -347,6 +347,7 @@ interface Character {
 	HiddenItems: any[];
 	HeightRatio: number;
 	HasHiddenItems: boolean;
+	SavedColors: HSVColor[];
 	GetBlindLevel: (eyesOnly?: boolean) => number;
 	IsLocked: () => boolean;
 	IsMounted: () => boolean;

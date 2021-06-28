@@ -568,7 +568,7 @@ function CommonLimitFunction(func, minWait = 0) {
 	const funcThrottled = CommonThrottle(func);
 
 	return function () {
-		const wait = Math.max(Player.GraphicsSettings.AnimationQuality, minWait);
+		const wait = Math.max(Player.GraphicsSettings ? Player.GraphicsSettings.AnimationQuality : 100 , minWait);
 		const args = [wait].concat(Array.from(arguments));
 		return wait < 100 ? funcThrottled.apply(this, args) : funcDebounced.apply(this, args);
 	};

@@ -15,6 +15,7 @@ var ColorPickerCSS;
 var ColorPickerIsDefault;
 var ColorPickerSelectedFavoriteIndex = null; //A number 0-5
 var ColorPickerFavoritesPage = 0; //current page of favorite colors displayed.
+var DefaultSavedColors = [];
 
 var ColorPickerHueBarHeight = 40;
 var ColorPickerSVPanelGap = 20;
@@ -531,4 +532,45 @@ function ColorPickerHSVToCSS(HSV) {
 	if (BS.length == 1) BS = "0" + BS;
 
 	return "#" + RS + GS + BS;
+}
+
+/**
+ * Returns the array of default colors for the list of favorite colors.
+ * @returns {HSVColor[]} - Array of default colors
+ */
+function GetDefaultSavedColors() {
+
+	if (DefaultSavedColors.length == 0) { //sets custom default values if not set yet
+		DefaultSavedColors[0] = {H: 0, S: 0, V: 0.12549019607843137};
+		DefaultSavedColors[1] = {H: 0, S: 0, V: 0.5019607843137255};
+		DefaultSavedColors[2] = {H: 0, S: 0, V: 0.7333333333333333};
+		DefaultSavedColors[3] = {H: 0, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[4] = {H: 0.3333333333333333, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[5] = {H: 0.6666666666666666, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[6] = {H: 0.16666666666666666, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[7] = {H: 0.5, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[8] = {H: 0.8333333333333334, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[9] = {H: 0, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[10] = {H: 0.3333333333333333, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[11] = {H: 0.6666666666666666, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[12] = {H: 0.16666666666666666, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[13] = {H: 0.5, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[14] = {H: 0.8333333333333334, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[15] = {H: 0, S: 0, V: 0.12549019607843137};
+		DefaultSavedColors[16] = {H: 0, S: 0, V: 0.5019607843137255};
+		DefaultSavedColors[17] = {H: 0, S: 0, V: 0.7333333333333333};
+		DefaultSavedColors[18] = {H: 0, S: 0.24705882352941172, V: 0.6666666666666666};
+
+		for (let i = 0; i < ColorPickerNumSaved; i++) { //fill rest of slots with white
+			if (typeof DefaultSavedColors[i] != "object") {
+				DefaultSavedColors[i] = {H: 0, S: 0, V: 1};
+			}
+		}
+	}
+
+	var SavedColors = [];
+	for (let i = 0; i < ColorPickerNumSaved; i++) {
+		SavedColors[i] = Object.assign({}, DefaultSavedColors[i]);
+	}
+	return SavedColors;
 }

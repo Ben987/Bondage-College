@@ -47,6 +47,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HeightModifier: 0,
 		HeightRatio: 1,
 		HasHiddenItems: false,
+		SavedColors: GetDefaultSavedColors(),
 		CanTalk: function () {
 			return (
 				(this.Effect.indexOf("GagVeryLight") < 0) &&
