@@ -306,6 +306,11 @@ KinkyDungeonSpellDescriptionFireball,A slow moving ball of flame that explodes f
 KinkyDungeonSpellCastFireball,You a hurl a fireball!
 KinkyDungeonSpellTargetFireball,Choose aim direction
 
+KinkyDungeonSpellClairvoyance,Clairvoyance
+KinkyDungeonSpellDescriptionClairvoyance,Allows you to see everything on screen
+KinkyDungeonSpellCastClairvoyance,You can see everything!
+KinkyDungeonSpellTargetClairvoyance,Choose target location
+
 KinkyDungeonSpellSnare,Rope Snare
 KinkyDungeonSpellDescriptionSnare,An invisible circle on the grounds that binds anyone who walks on it for Duration turns
 KinkyDungeonSpellCastSnare,You set an invisible trap!

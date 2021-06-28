@@ -895,6 +895,10 @@ function KinkyDungeonAdvanceTime(delta, NoUpdate) {
 	if (KinkyDungeonActionMessageTime > 0) KinkyDungeonActionMessageTime -= 1;
 	if (KinkyDungeonActionMessageTime <= 0) KinkyDungeonActionMessagePriority = 0;
 
+	if (KinkyDungeonAllSee > 0) {
+		KinkyDungeonAllSee -= 1;
+	}
+
 	// Updates the character's stats
 	KinkyDungeonItemCheck(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, MiniGameKinkyDungeonLevel); //console.log("Item Check " + (performance.now() - now));
 	KinkyDungeonUpdateBuffs();

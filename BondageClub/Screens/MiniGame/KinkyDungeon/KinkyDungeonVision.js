@@ -4,6 +4,7 @@
 // -Ada
 
 var KinkyDungeonTransparentObjects = KinkyDungeonMovableTiles.replace("D", "") + "AaCc"; // Light does not pass thru doors
+var KinkyDungeonAllSee = 0;
 
 function KinkyDungeonCheckPath(x1, y1, x2, y2) {
 	let length = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
@@ -24,8 +25,14 @@ function KinkyDungeonMakeLightMap(width, height, Lights) {
 	KinkyDungeonLightGrid = "";
 	// Generate the grid
 	for (let X = 0; X < KinkyDungeonGridHeight; X++) {
-		for (let Y = 0; Y < KinkyDungeonGridWidth; Y++)
-			KinkyDungeonLightGrid = KinkyDungeonLightGrid + '0'; // 0 = pitch dark
+		for (let Y = 0; Y < KinkyDungeonGridWidth; Y++) {
+			if (KinkyDungeonAllSee==0) {
+				KinkyDungeonLightGrid = KinkyDungeonLightGrid + '0';// 0 = pitch dark
+			}
+			else {
+				KinkyDungeonLightGrid = KinkyDungeonLightGrid + '3';
+			}
+		}
 		KinkyDungeonLightGrid = KinkyDungeonLightGrid + '\n';
 	}
 
@@ -51,9 +58,9 @@ function KinkyDungeonMakeLightMap(width, height, Lights) {
 							for (let YY = Y-1; YY <= Y+1; YY++)
 								if (!KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(XX, YY))) nearbywalls += 1;
 
-						if (nearbywalls > 3 && brightness <= 3 && X != KinkyDungeonPlayerEntity.x && Y != KinkyDungeonPlayerEntity.y) brightness -= 1;
+						if (nearbywalls > 3 && brightness <= 3 && X != KinkyDungeonPlayerEntity.x && Y != KinkyDungeonPlayerEntity.y && KinkyDungeonAllSee == 0) brightness -= 1;
 
-						if (brightness > 0) {
+						if (brightness > 0 && KinkyDungeonAllSee == 0) {
 							if (Number(KinkyDungeonLightGet(X-1, Y)) < brightness) KinkyDungeonLightSet(X-1, Y, "" + (brightness - 1));
 							if (Number(KinkyDungeonLightGet(X+1, Y)) < brightness) KinkyDungeonLightSet(X+1, Y, "" + (brightness - 1));
 							if (Number(KinkyDungeonLightGet(X, Y-1)) < brightness) KinkyDungeonLightSet(X, Y-1, "" + (brightness - 1));

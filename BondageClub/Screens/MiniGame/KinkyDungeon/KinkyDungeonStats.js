@@ -55,6 +55,7 @@ var KinkyDungeonDeaf = false; // Deafness reduces your vision radius to 0 if you
 
 // Other stats
 var KinkyDungeonGold = 0;
+var KinkyDungeonAllSee = 0;
 var KinkyDungeonLockpicks = 0;
 // 3 types of keys, for 4 different types of padlocks. The last type of padlock requires all 3 types of keys to unlock
 // The red keys are one-use only as the lock traps the key
