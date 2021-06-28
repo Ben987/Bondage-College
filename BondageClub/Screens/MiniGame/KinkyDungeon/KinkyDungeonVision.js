@@ -4,7 +4,6 @@
 // -Ada
 
 var KinkyDungeonTransparentObjects = KinkyDungeonMovableTiles.replace("D", "") + "AaCc"; // Light does not pass thru doors
-var KinkyDungeonAllSee = 0;
 
 function KinkyDungeonCheckPath(x1, y1, x2, y2) {
 	let length = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
