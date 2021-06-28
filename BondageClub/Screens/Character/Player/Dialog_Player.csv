@@ -2127,3 +2127,13 @@ ItemTorsoThinLeatherStrapsHarness,,,Harness,,
 ItemTorsoThinLeatherStrapsSetCrotch,,,SourceCharacter uses the straps on DestinationCharacter to create a crotch strap.,,
 ItemTorsoThinLeatherStrapsSetWaist,,,SourceCharacter uses the straps on DestinationCharacter to create a waist strap.,,
 ItemTorsoThinLeatherStrapsSetHarness,,,SourceCharacter uses the straps on DestinationCharacter to create a harness.,,
+ClothTShirt2Select,,,Select your design
+ClothTShirt2Plain,,,Plain
+ClothTShirt2BCLogo,,,Club Logo
+ClothTShirt2BDSM,,,BD-SM
+ClothTShirt2Gag,,,The Moaning Groans
+ClothTShirt2Knot,,,Rope Knot
+ClothTShirt2Nazuko,,,Nazuko
+ClothTShirt2Rock,,,Rock
+ClothTShirt2Smile,,,Smiley
+ClothTShirt2Tick,,,Check

@@ -28,6 +28,75 @@ const ExtendedArchetype = {
  * @const
  */
 var AssetFemale3DCGExtended = {
+	Cloth: {
+		TShirt2: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Plain",
+						Property: { Type: null, },
+					},
+					{
+						Name: "BCLogo",
+						Property: { 
+							Type: "BCLogo", 
+							DefaultColor: "#FFF0CC", 
+						},
+					},
+					{
+						Name: "BDSM",
+						Property: { 
+							Type: "BDSM", 
+							DefaultColor: "Default", 
+						},
+					},
+					{
+						Name: "Gag",
+						Property: { 
+							Type: "Gag", 
+							DefaultColor: "Default", 
+						},
+					},
+					{
+						Name: "Knot",
+						Property: { 
+							Type: "Knot", 
+							DefaultColor: "#CCC088", 
+						},
+					},
+					{
+						Name: "Nazuko",
+						Property: { 
+							Type: "Nazuko", 
+							DefaultColor: "#440088", 
+						},
+					},
+					{
+						Name: "Rock",
+						Property: { 
+							Type: "Rock", 
+							DefaultColor: "#B03030", 
+						},
+					},
+					{
+						Name: "Smile",
+						Property: { 
+							Type: "Smile", 
+							DefaultColor: "#BB9911", 
+						},
+					},
+					{
+						Name: "Tick",
+						Property: { 
+							Type: "Tick", 
+							DefaultColor: "#119977", 
+						},
+					},
+				],		
+			},
+		}, // TShirt2
+	}, // Cloth
 	ClothAccessory: {
 		LeatherStraps: {
 			Archetype: ExtendedArchetype.TYPED,
