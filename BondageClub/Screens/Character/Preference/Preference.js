@@ -1328,6 +1328,7 @@ function PreferenceSubscreenGraphicsClick() {
 		Player.GraphicsSettings.Font = PreferenceGraphicsFontList[PreferenceGraphicsFontIndex];
 		CommonGetFont.clearCache();
 		CommonGetFontName.clearCache();
+		DrawingGetTextSize.clearCache();
 	}
 	if (MouseIn(500, 470, 64, 64)) Player.GraphicsSettings.InvertRoom = !Player.GraphicsSettings.InvertRoom;
 	if (MouseIn(500, 550, 64, 64)) Player.GraphicsSettings.StimulationFlash = !Player.GraphicsSettings.StimulationFlash;
