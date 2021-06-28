@@ -630,9 +630,18 @@ function PreferenceSubscreenGeneralRun() {
 	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
 	DrawText(TextGet("CharacterLabelColor"), 500, 225, "Black", "Gray");
 	ElementPosition("InputCharacterLabelColor", 990, 212, 250);
-	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) document.getElementById("InputCharacterLabelColor").style.color = ElementValue("InputCharacterLabelColor");
-	else document.getElementById("InputCharacterLabelColor").style.color = Player.LabelColor;
-	document.getElementById("InputCharacterLabelColor").style.backgroundColor = "#000000";
+
+	let TextColorCSS = "";
+	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) TextColorCSS = ElementValue("InputCharacterLabelColor");
+	else TextColorCSS = Player.LabelColor;
+	document.getElementById("InputCharacterLabelColor").style.color = TextColorCSS;
+	let TextColorHSV = ColorPickerCSSToHSV(TextColorCSS);
+	if (TextColorHSV.V > 0.4) {
+		document.getElementById("InputCharacterLabelColor").style.backgroundColor = "#111111";
+	} else{
+		document.getElementById("InputCharacterLabelColor").style.backgroundColor = "#FFFFFF";
+	}
+
 	DrawButton(1140, 187, 65, 65, "", "White", "Icons/Color.png");
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
@@ -651,7 +660,7 @@ function PreferenceSubscreenGeneralRun() {
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	if (PreferenceColorPick != "")
-		ColorPickerDraw(1250, 185, 675, 830, document.getElementById(PreferenceColorPick));
+		ColorPickerDraw(1250, 185, 675, 800, document.getElementById(PreferenceColorPick));
 	else
 		ColorPickerHide();
 

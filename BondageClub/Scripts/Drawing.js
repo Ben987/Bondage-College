@@ -57,7 +57,7 @@ function DrawHexToRGB(color) {
  */
 function DrawRGBToHex(color) {
 	const rgb = color[2] | (color[1] << 8) | (color[0] << 16);
-	return '#' + (0x1000000 + rgb).toString(16).slice(1);
+	return '#' + (0x1000000 + rgb).toString(16).slice(1).toUpperCase();
 }
 
 /**

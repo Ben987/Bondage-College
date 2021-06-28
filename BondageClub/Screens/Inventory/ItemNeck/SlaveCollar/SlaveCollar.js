@@ -177,7 +177,7 @@ function InventoryItemNeckSlaveCollarClick() {
 				CharacterLoadCanvas(C);
 			}
 			if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975)) {
-				let Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
+				let Color = ElementValue("InputColor");
 				CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
 				CharacterLoadCanvas(C);
 				ElementValue("InputColor", Color);
