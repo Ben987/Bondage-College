@@ -755,11 +755,10 @@ function DialogMenuButtonBuild(C) {
 						if (DialogActivity.length > 0) DialogMenuButton.push("Activity");
 					}
 
-
-			// Item permission enter/exit, cannot be done in Extreme mode
+			// Item permission enter/exit
 			if (C.ID == 0) {
 				if (DialogItemPermissionMode) DialogMenuButton.push("DialogNormalMode");
-				else if (Player.GetDifficulty() <= 2) DialogMenuButton.push("DialogPermissionMode");
+				else DialogMenuButton.push("DialogPermissionMode");
 			}
 		}
 	}
@@ -802,20 +801,20 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 				break;
 			}
 
-		// In item permission mode, we add all the enable items, except the ones already on
+		// In item permission mode we add all the enable items except the ones already on, unless on Extreme difficulty
 		if (DialogItemPermissionMode) {
+			const onExtreme = Player.GetDifficulty() >= 3;
 			for (let A = 0; A < Asset.length; A++)
 				if (Asset[A].Enable && Asset[A].Group.Name == C.FocusGroup.Name) {
-					if (Asset[A].Wear) {
+					if (Asset[A].Wear && !onExtreme) {
 						if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
 							DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: DialogSortOrderEnabled.toString() + Asset[A].Description });
 					}
-					else if (Asset[A].IsLock) {
-						var LockIsWorn = InventoryCharacterIsWearingLock(C, Asset[A].Name);
+					else if (Asset[A].IsLock && (!onExtreme || MainHallStrongLocks.includes(Asset[A].Name))) {
+						const LockIsWorn = InventoryCharacterIsWearingLock(C, Asset[A].Name);
 						DialogInventory.push({ Asset: Asset[A], Worn: LockIsWorn, Icon: "", SortOrder: DialogSortOrderEnabled.toString() + Asset[A].Description });
 					}
 				}
-
 		} else {
 
 			// Second, we add everything from the victim inventory
@@ -1718,7 +1717,9 @@ function DialogDrawItemMenu(C) {
 	}
 
 	// Show the no access text
-	if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
+	if (C.ID == 0 && DialogItemPermissionMode && Player.GetDifficulty() >= 3)
+		DrawTextWrap(DialogFindPlayer("ExtremePermissionMode"), 1000, 550, 1000, 250, "White");
+	else if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
 	else if (DialogInventory.length > 0) DrawText(DialogFindPlayer("AccessBlocked"), 1500, 700, "White", "Black");
 	else DrawText(DialogFindPlayer("NoItems"), 1500, 700, "White", "Black");
 

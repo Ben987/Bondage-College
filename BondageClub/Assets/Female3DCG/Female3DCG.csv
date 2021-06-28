@@ -163,6 +163,7 @@ Bra,Camisole,Camisole
 Bra,Ribbons,Ribbons
 Bra,LeatherBreastBinder,Leather Breast Binder
 Bra,SilkStraps,Silk Straps
+Bra,FullLatexBra,Full Latex Bra
 Corset,,Corset
 Corset,Corset1,Corset + Garters
 Corset,Corset2,Corset
@@ -235,6 +236,9 @@ LeftAnklet,,Anklet (Left)
 LeftAnklet,BandAnklet,Band Anklet
 LeftAnklet,Ribbon,Ribbon
 LeftAnklet,Ribbon1,Ribbon Bow
+Garters,,Garters
+Garters,GarterBelt,Leather Garter Belts
+Garters,GarterBelt2,Leather Garter Belt
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -606,6 +610,7 @@ ItemFeet,SpreaderVibratingDildoBar,Vibrating Spreader Dildo Bar
 ItemFeet,PlasticWrap,Plastic Wrap
 ItemFeet,WoodenCuffs,Wooden Cuffs
 ItemFeet,MedicalBedRestraints,Medical Bed Restraints
+ItemFeet,SuspensionCuffs,Suspension Cuffs
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -905,6 +910,7 @@ ItemHands,SpankingToysBaguette,Baguette
 ItemHands,SpankingToysPanties,Panties
 ItemHands,SpankingToysTapeRoll,Duct Tape Roll
 ItemHands,SpankingToysSpatula,Spatula
+ItemHands,SpankingToysBroom,Broom
 ItemHands,HoofMittens, Hoof Mittens
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
@@ -938,6 +944,7 @@ ItemNeck,SlenderSteelCollar,Slender Steel Collar
 ItemNeck,ShinySteelCollar,Shiny Steel Collar
 ItemNeck,HeartLinkChoker, Heart-Link Choker
 ItemNeck,NeckRope,Neck Rope
+ItemNeck,NylonCollar,Nylon Collar
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CustomCollarTag,Custom Tag
 ItemNeckAccessories,ElectronicTag,Electronic Tag
@@ -1038,6 +1045,8 @@ ItemMouth,FuturisticMuzzle,Futuristic Muzzle
 ItemMouth,CageMuzzle,Iron Cage Muzzle
 ItemMouth,DentalGag,Dental Gag
 ItemMouth,Ribbons,Ribbons
+ItemMouth,CropGag,Crop
+ItemMouth,CaneGag,Cane
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -1241,6 +1250,7 @@ ItemDevices,StrapOnSmooth,Smooth Strap On
 ItemDevices,StrapOnStuds,Studded Strap On
 ItemDevices,DisplayCase,Display Case
 ItemDevices,SmallDisplayCase,Small Display Case 
+ItemDevices,FuturisticCrate,Futuristic Crate
 ItemDevices,WoodenBoxOpenHead,Exposed Head Wooden Box
 ItemDevices,SmallWoodenBoxOpenHead,Exposed Head Small Wooden Box
 ItemDevices,WoodenStocks,Wooden Stocks

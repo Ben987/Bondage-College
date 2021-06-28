@@ -83,7 +83,7 @@ function CommonDrawAppearanceBuild(C, {
 	drawImageColorize,
 	drawImageColorizeBlink,
 }) {
-	var LayerCounts = {};
+	const LayerCounts = {};
 
 	// Loop through all layers in the character appearance
 	C.AppearanceLayers.forEach((Layer) => {
@@ -97,12 +97,12 @@ function CommonDrawAppearanceBuild(C, {
 		LayerCounts[CountKey] = (LayerCounts[CountKey] || 0) + 1;
 
 		// If there's a parent group (parent group of the layer overrides that of the asset, which overrides that of the group)
-		var ParentGroupName = Layer.ParentGroupName;
+		let ParentGroupName = Layer.ParentGroupName;
 		if (typeof ParentGroupName === "undefined") ParentGroupName = A.ParentGroupName;
 		if (typeof ParentGroupName === "undefined") ParentGroupName = AG.ParentGroupName;
-		var G = "";
+		let G = "";
 		if (ParentGroupName) {
-			var ParentItem = C.Appearance.find(Item => Item.Asset.Group.Name === ParentGroupName);
+			const ParentItem = C.Appearance.find(Item => Item.Asset.Group.Name === ParentGroupName);
 			if (ParentItem) G = "_" + ParentItem.Asset.Name;
 		}
 
@@ -127,8 +127,8 @@ function CommonDrawAppearanceBuild(C, {
 		let GroupName = A.DynamicGroupName;
 
 		// Find the X and Y position to draw on
-		var X = Layer.DrawingLeft != null ? Layer.DrawingLeft : (A.DrawingLeft != null ? A.DrawingLeft : AG.DrawingLeft);
-		var Y = Layer.DrawingTop != null ? Layer.DrawingTop : (A.DrawingTop != null ? A.DrawingTop : AG.DrawingTop);
+		let X = Layer.DrawingLeft != null ? Layer.DrawingLeft : (A.DrawingLeft != null ? A.DrawingLeft : AG.DrawingLeft);
+		let Y = Layer.DrawingTop != null ? Layer.DrawingTop : (A.DrawingTop != null ? A.DrawingTop : AG.DrawingTop);
 		if (C.DrawPose && C.DrawPose.length) {
 			C.DrawPose.forEach(CP => {
 				var PoseDef = PoseFemale3DCG.find(P => P.Name === CP && P.MovePosition);
@@ -166,23 +166,23 @@ function CommonDrawAppearanceBuild(C, {
 		});
 
 		// Check if we need to draw a different variation (from type property)
-		var Type = (Property && Property.Type) || "";
+		const Type = (Property && Property.Type) || "";
 
-		var L = "";
-		var LayerType = Type;
+		let L = "";
+		let LayerType = Type;
 		if (Layer.Name) L = "_" + Layer.Name;
 		if (!Layer.HasType) LayerType = "";
-		var Opacity = (Property && typeof Property.Opacity === "number") ? Property.Opacity : Layer.Opacity;
+		let Opacity = (Property && typeof Property.Opacity === "number") ? Property.Opacity : Layer.Opacity;
 		Opacity = Math.min(Layer.MaxOpacity, Math.max(Layer.MinOpacity, Opacity));
-		var BlinkExpression = (A.OverrideBlinking ? !AG.DrawingBlink : AG.DrawingBlink) ? "Closed/" : Expression;
-		var AlphaMasks = Layer.GroupAlpha
+		const BlinkExpression = (A.OverrideBlinking ? !AG.DrawingBlink : AG.DrawingBlink) ? "Closed/" : Expression;
+		let AlphaMasks = Layer.GroupAlpha
 			.filter(({ Pose }) => !Pose || !Array.isArray(Pose) || !!CommonDrawFindPose(C, Pose))
 			.reduce((Acc, { Masks }) => {
 				Array.prototype.push.apply(Acc, Masks);
 				return Acc;
 			}, []);
 
-		var Color = CA.Color;
+		let Color = CA.Color;
 		if (Array.isArray(Color)) {
 			Color = Color[Layer.ColorIndex] || AG.ColorSchema[0];
 		}
@@ -190,13 +190,22 @@ function CommonDrawAppearanceBuild(C, {
 		// Fix to legacy appearance data when Hands could be different to BodyUpper
 		if (GroupName === "Hands") Color = "Default";
 
+		// If custom default colors are defined and the layer is using
+		if (Color === "Default" && Property) {
+			if (Array.isArray(Property.DefaultColor)) {
+				Color = Property.DefaultColor[Layer.ColorIndex] || "Default";
+			} else if (typeof Property.DefaultColor === "string") {
+				Color = Property.DefaultColor;
+			}
+		}
+
 		// Check if we need to copy the color of another asset
-		let InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
+		const InheritColor = (Color == "Default" ? (Layer.InheritColor || A.InheritColor || AG.InheritColor) : null);
 		let ColorInherited = false;
 		if (InheritColor != null) {
-			var ParentAsset = InventoryGet(C, InheritColor);
+			const ParentAsset = InventoryGet(C, InheritColor);
 			if (ParentAsset != null) {
-				let ParentColor = Array.isArray(ParentAsset.Color) ? ParentAsset.Color[0] : ParentAsset.Color;
+				const ParentColor = Array.isArray(ParentAsset.Color) ? ParentAsset.Color[0] : ParentAsset.Color;
 				Color = CommonDrawColorValid(ParentColor, ParentAsset.Asset.Group) ? ParentColor : "Default";
 				ColorInherited = true;
 			}
@@ -362,7 +371,7 @@ function CommonDrawColorValid(Color, AssetGroup) {
  * @return {string} - The name of the pose to draw for the layer, or an empty string if no pose should be drawn
  */
 function CommonDrawFindPose(C, AllowedPoses) {
-	var Pose = "";
+	let Pose = "";
 	if (AllowedPoses && AllowedPoses.length) {
 		AllowedPoses.forEach(AllowedPose => {
 			if (C.DrawPose.includes(AllowedPose)) Pose = AllowedPose;

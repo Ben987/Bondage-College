@@ -629,6 +629,12 @@ ItemPelvisSciFiPleasurePantiesBand,Metal Band
 ItemPelvisSciFiPleasurePantiesPlug2,Pussy Toy
 ItemPelvisSciFiPleasurePantiesPlug1,Clit Toy
 ItemPelvisSciFiPleasurePantiesLock,Lock Icon
+ItemDevicesFuturisticCrateDisplay,Screen
+ItemDevicesFuturisticCrateLock,Lock
+ItemDevicesFuturisticCrateFrame,Frame
+ItemDevicesFuturisticCrateLid_Closed,Lid
+ItemDevicesFuturisticCrateBody,Padding
+ItemDevicesFuturisticCrateGlass,Window
 PantiesPilotPantiesLayer1,Suit
 PantiesPilotPantiesLayer2,Highlights
 PantiesPilotPantiesLayer3,Center
@@ -668,3 +674,6 @@ BraCuteBikini1Main,Main
 BraCuteBikini1Sides,Sides
 BraSexyBikini1Main,Main
 BraSexyBikini1Sides,Sides
+ItemMiscServingTrayTray,Tray
+ItemMiscServingTrayObjects,Refreshments
+ItemMiscServingTrayDetails,Details

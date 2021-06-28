@@ -8,6 +8,7 @@ var InventoryItemDevicesCushionOptions = [
 	},
 	{
 		Name: "Kneel",
+		Prerequisite: ["NotSuspended", "CanKneel"],
 		Property: {
 			Type: "Kneel",
 			OverrideHeight: { Height: -200, Priority: 21 },

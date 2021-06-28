@@ -959,9 +959,9 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText,
  * @param {string} [TextColor] - Color of the text
  * @returns {void} - Nothing
  */
-function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked, Disabled = false, TextColor = "Black") {
+function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked, Disabled = false, TextColor = "Black", CheckImage = "Icons/Checked.png") {
 	DrawText(Text, Left + 100, Top + 33, TextColor, "Gray");
-	DrawButton(Left, Top, Width, Height, "", Disabled ? "#ebebe4" : "White", IsChecked ? "Icons/Checked.png" : "", null, Disabled);
+	DrawButton(Left, Top, Width, Height, "", Disabled ? "#ebebe4" : "White", IsChecked ? CheckImage : "", null, Disabled);
 }
 
 /**
