@@ -384,7 +384,7 @@ function LoginExtremeItemSettings(applyDefaults) {
 function LoginQueue(Pos) {
 	if (typeof Pos !== "number") return;
 
-	LoginMessage = TextGet("LoginQueueWait").replace("QUEUE_POS", Pos);
+	LoginMessage = TextGet("LoginQueueWait").replace("QUEUE_POS", `${Pos}`);
 }
 
 /**
