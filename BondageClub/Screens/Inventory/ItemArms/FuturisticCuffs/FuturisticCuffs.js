@@ -64,7 +64,7 @@ function InventoryItemArmsFuturisticCuffsDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else
-		ExtendedItemDraw(InventoryItemArmsFuturisticCuffsOptions, "LeatherCuffsPose");
+		ExtendedItemDraw(InventoryItemArmsFuturisticCuffsOptions, "ItemArmsCuffs");
 }
 
 /**
