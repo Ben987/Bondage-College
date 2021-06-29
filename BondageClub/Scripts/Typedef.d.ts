@@ -11,6 +11,31 @@ type MemoizedFunction<T extends Function> = T & {
 	clearCache(): void;
 };
 
+// GL shim
+interface WebGL2RenderingContext {
+	program?: WebGLProgram;
+	programFull?: WebGLProgram;
+	programHalf?: WebGLProgram;
+	textureCache?: Map<string, any>;
+	maskCache?: Map<string, any>;
+}
+
+interface WebGLProgram {
+	u_alpha?: WebGLUniformLocation;
+	u_color?: WebGLUniformLocation;
+	a_position?: number;
+	a_texcoord?: number;
+	u_matrix?: WebGLUniformLocation;
+	u_texture?: WebGLUniformLocation;
+	u_alpha_texture?: WebGLUniformLocation;
+	position_buffer?: WebGLBuffer;
+	texcoord_buffer?: WebGLBuffer;
+}
+
+interface HTMLCanvasElement {
+	GL?: WebGL2RenderingContext;
+}
+
 //#endregion
 
 //#region index.html

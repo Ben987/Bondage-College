@@ -6,6 +6,7 @@ var GLDrawImageCache = new Map();
 var GLDrawCacheLoadedImages = 0;
 var GLDrawCacheTotalImages = 0;
 
+/** @type {"webgl2"|"webgl"|"No WebGL"} */
 var GLVersion;
 
 var GLDrawCanvas;
@@ -244,7 +245,7 @@ function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
 /**
  * Draws an image from a given url to a WebGLRenderingContext, used when the character is blinking
  * @param {string} url - URL of the image to render
- * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {WebGL2RenderingContext} gl - WebGL context
  * @param {number} dstX - Position of the image on the X axis
  * @param {number} dstY - Position of the image on the Y axis
  * @param {string} color - Color of the image to draw
@@ -257,7 +258,7 @@ function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks, opa
 /**
  * Draws an image from a given url to a WebGLRenderingContext
  * @param {string} url - URL of the image to render
- * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {WebGL2RenderingContext} gl - WebGL context
  * @param {number} dstX - Position of the image on the X axis
  * @param {number} dstY - Position of the image on the Y axis
  * @param {number} offsetX - Additional offset to add to the X axis (for blinking)
@@ -311,8 +312,8 @@ function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks,
 
 /**
  * Draws a canvas on the WebGL canvas for the blinking effect
- * @param {WebGLRenderingContext} gl - WebGL context
- * @param {ImageData} Img - Canvas to get the data of
+ * @param {WebGL2RenderingContext} gl - WebGL context
+ * @param {HTMLImageElement | HTMLCanvasElement} Img - Canvas to get the data of
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
@@ -320,8 +321,8 @@ function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks,
 function GLDraw2DCanvasBlink(gl, Img, X, Y, alphaMasks) { GLDraw2DCanvas(gl, Img, X + 500, Y, 500,  alphaMasks); }
 /**
  * Draws a canvas on the WebGL canvas
- * @param {WebGLRenderingContext} gl - WebGL context
- * @param {ImageData} Img - Canvas to get the data of
+ * @param {WebGL2RenderingContext} gl - WebGL context
+ * @param {HTMLImageElement | HTMLCanvasElement} Img - Canvas to get the data of
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
@@ -349,7 +350,7 @@ function GLDrawBingImageToTextureInfo(gl, Img, textureInfo) {
 
 /**
  * Loads image texture data
- * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {WebGL2RenderingContext} gl - WebGL context
  * @param {string} url - URL of the image
  * @returns {{ width: number; height: number; texture: WebGLTexture; }} - The texture info of a given image
  */
@@ -403,7 +404,7 @@ function GLDrawLoadImage(gl, url) {
 
 /**
  * Loads alpha mask data
- * @param {WebGLRenderingContext} gl - The WebGL context
+ * @param {WebGL2RenderingContext} gl - The WebGL context
  * @param {number} texWidth - The width of the texture to mask
  * @param {number} texHeight - The height of the texture to mask
  * @param {number} offsetX - The X offset at which the texture is to be drawn on the target canvas
