@@ -10,6 +10,8 @@ DirectionSouth,Go south (S)
 DirectionEast,Go east (D)
 DirectionWest,Go west (A)
 LevelNameUnderground,underground
+LevelNameGround,ground
+LevelNameSecond,second
 FirstDirectionNorth,north
 FirstDirectionSouth,south
 FirstDirectionWest,west

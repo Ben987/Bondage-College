@@ -52,7 +52,7 @@ function OnlineProfileExit(Save) {
         if (CompressedDescription.length < Description.length || Description.startsWith("╬")) {
             Description = CompressedDescription;
         }
-        ServerSend("AccountUpdate", { Description });
+        ServerAccountUpdate.QueueData({ Description });
         ChatRoomCharacterUpdate(InformationSheetSelection);
     }
     ElementRemove("DescriptionInput");

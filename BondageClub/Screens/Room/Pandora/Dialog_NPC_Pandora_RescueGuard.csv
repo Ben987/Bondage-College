@@ -39,12 +39,23 @@ ItemBreast,,,(She holds her breath as you use the item.)  Pandora's police won't
 RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Enjoy your freedom while it lasts.,,
 ItemNipples,,,(She whimpers as you use the device on her breast.)  Another violation to add to the list.,,
 RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
+0,,,"Get lost maid.  I'm on duty, I don't need anything.",,"CostumeIs(""Maid"")"
+0,,,Hello there fellow guard.  I hope the Box is safe today.,,"CostumeIs(""Guard"")"
+0,,,Greetings Miss Dominatrix.  I hope you're doing well.,,"CostumeIs(""Mistress"")"
 0,,,Damn it!  It's really you DialogPlayerName?  You came to rescue her?,,"DialogSkillGreater(""Infiltration"", 9)"
 0,,,I know who you are DialogPlayerName.  You're not going anywhere.,,"DialogSkillGreater(""Infiltration"", 5)"
 0,,,Have I seen you before?  Don't give me any trouble.,,"DialogSkillGreater(""Infiltration"", 1)"
 0,,,Get lost girl.  I don't have time for you.,,
-0,,Who are you?,"I don't have time to chat, I'm working.",DialogRemove(),
-0,,What are you doing?,"I'm guarding a prisoner, get lost or I'll have to kick your butt.",,
+0,,Who are you?,"Look maid, I don't have time to chit-chat.  Shouldn't you be working?",,"CostumeIs(""Maid"")"
+0,,Who are you?,"I'm guard DialogCharacterName.  I don't think I've seen you at the guard meetings, but I do skip some of them.  (She winks at you.)",,"CostumeIs(""Guard"")"
+0,,Who are you?,I'm guard DialogCharacterName.  It's an honor to protect a Dominatrix like you.,,"CostumeIs(""Mistress"")"
+0,,Who are you?,"I don't have time to chat, I'm working.",DialogRemove(),"CostumeIs(""Random"")"
+0,,What are you doing?,"I'm guarding a prisoner, so you're not cleaning around here little maid.",,"CostumeIs(""Maid"")"
+0,,What are you doing?,"I'm guarding a prisoner.  That shift is taking forever, I need a break.",,"CostumeIs(""Guard"")"
+0,,What are you doing?,"I'm guarding a prisoner Miss.  Trust me, she won't escape.",,"CostumeIs(""Mistress"")"
+0,,What are you doing?,"I'm guarding a prisoner, get lost or I'll have to kick your butt.",,"CostumeIs(""Random"")"
+0,20,Your shift is done.  I'm taking over.,(She seems confused.)  You're way too early for the next shift.,CharacterGenerateRandomOdds(),"CostumeIs(""Guard"")"
+0,30,The prisoner is getting released.,(She seems surprised.)  Already Miss?  I thought we were keeping her for much longer.,CharacterGenerateRandomOdds(),"CostumeIs(""Mistress"")"
 0,10,Move away or I will fight you.,(She raises her fists.)  You think you're tough?  I will crush you.,,
 0,10,I'm here to rescue the prisoner.,(She raises her fists.)  I cannot allow that!  I will crush you.,,
 0,,(Fight her.),,CharacterFight(),
@@ -54,10 +65,26 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 10,,(Fight her.),,CharacterFight(),
 10,,(Leave her.),,DialogLeave(),
 10,,(Walk back to where you came from.),,WalkBack(),
+20,50,Time went faster than you thought.,I guess you're right.  Well have fun on your shift fellow guard.  (She starts to walk away.  Your infiltration skill has increased.),InfiltrationChange(20),Odds50()
+20,60,Time went faster than you thought.,(She checks the time.)  You're wrong girl.  Get lost or I'll have to crush you.,,!Odds50()
+20,50,"I came in early today, you're lucky.",(She smiles and nods.)  It's my lucky day I guess.  Have fun on your shift fellow guard.  (She starts to walk away.  Your infiltration skill has increased.),InfiltrationChange(20),Odds25()
+20,60,"I came in early today, you're lucky.",(She seems suspicious.)  I don't believe you.  Get lost or I'll have to crush you.,,!Odds25()
+20,50,"Enough chit-chat, I'm taking over.",(She gets more submissive and bows her head.)  Very well Miss.  Have a great shift.  (She starts to walk away.  Your infiltration skill has increased.),InfiltrationChange(20),Odds75()
+20,60,"Enough chit-chat, I'm taking over.",(She gets angry.)  Are you bullying me?  Get lost or I'll have to crush you.,,!Odds75()
+30,50,Time went faster than you thought.,You're certainly right Miss Dominatrix.  Good luck with her.  (She starts to walk away.  Your infiltration skill has increased.),InfiltrationChange(20),Odds50()
+30,60,Time went faster than you thought.,"(She checks the time.)  You're wrong you know?  This is fishy.  Get lost, I cannot allow you to pass.",,!Odds50()
+30,50,The reason for her release doesn't concern you.,"(She takes a step back.)  Oh!  Of course, Miss Dominatrix.  I'm sorry, good luck with her.  (She starts to walk away.  Your infiltration skill has increased.)",InfiltrationChange(20),Odds25()
+30,60,The reason for her release doesn't concern you.,"(She gets suspicious.)  This is kind of fishy you know?  Get lost, I cannot allow you to pass.",,!Odds25()
+30,50,"Yes, her ransom was paid.",(She smiles.)  More money for the Box!  Maybe I'll get a raise.  Good luck with her Miss.  (She starts to walk away.  Your infiltration skill has increased.),InfiltrationChange(20),
+50,,(Let her go.),,RemoveCurrentCharacter(),
+60,,,(She's mad at you.)  I'm not speaking with you anymore.  Get lost or bite the dust.,,
+60,,(Fight her.),,CharacterFight(),
+60,,(Leave her.),,DialogLeave(),
+60,,(Walk back to where you came from.),,WalkBack(),
 100,,,"Do whatever you want, I don't care.  I'm not paid enough to fight someone like you.",,
 100,,You're a horrible guard.,"(She seems angry.)  Laugh all you want, but you will pay for this someday.",DialogRemove(),
 100,,(Bring her with you.),Fine!  I'll follow you until you get caught.  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
-100,,(Leaver her here.),You had your fun?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Leave her here.),You had your fun?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
 100,,(Strip her naked.),(You strip her naked as she struggles.)  I'm only a guard here.  Give me a break.,CharacterNaked(),!CurrentCharacter.IsNaked()
 100,,(Wear her clothes.),(You put on her clothes.)  Wait!  What are you doing?  What are you planning?,"PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
 100,,(Leave her.),,DialogLeave(),

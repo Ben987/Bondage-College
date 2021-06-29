@@ -7,11 +7,15 @@ BribeInfoKidnapFull,,,I think I saw her roaming.  Try the LevelName level and go
 BribeInfoRetrieveFull,,,I think I saw that object before.  Try the LevelName level and go FirstDirection.,,
 0,,,"Hey there little maid, will you brink me a drink?",,"CostumeIs(""Maid"")"
 0,,,Hi Miss guard.  I hope I'm not in trouble.,,"CostumeIs(""Guard"")"
+0,,,(She seems impressed by you.)  Wow!  You're a real Dominatrix?  It's a pleasure to meet you.,,"CostumeIs(""Mistress"")"
 0,,,"Hello there, I'm pretty sure we've met before.",,"DialogSkillGreater(""Infiltration"", 7)"
 0,,,"Hello there, have we met before?",,"DialogSkillGreater(""Infiltration"", 3)"
 0,,,"Hello there, I don't think we've met before.",,
 0,,Who are you?,I'm DialogCharacterName.  I've been a member of Pandora's Box for a little while now.  I know my way around.,,
-0,,Can I tie you up?,"I'm not in the mood right now, find a slave for that.",,
+0,,Can I tie you up?,"It would be an honor to be tied by a Dominatrix like you.  But sadly, I need to go back home soon.",,"CostumeIs(""Mistress"")"
+0,,Can I tie you up?,I'm sorry Miss Guard.  I need to go back home soon.  Please don't arrest me.,,"CostumeIs(""Guard"")"
+0,,Can I tie you up?,"(She laughs at you.)  Forget it, I'm not getting tied up by a maid.",,"CostumeIs(""Maid"")"
+0,,Can I tie you up?,"I'm not in the mood right now, find a slave for that.",,"CostumeIs(""Random"")"
 0,100,Can you help me?,(She shakes her hands greedily.)  Maybe I can.  What do you want?,,DialogMoneyGreater(10)
 0,,Can you help me?,Sorry girl.  Find some money first if you need help.,,!DialogMoneyGreater(10)
 0,,I'll go get you a free drink.,(You go get her a free drink and she seems happy about it.)  Thanks!  You're a good maid.,RecruitBoost(),"CostumeIs(""Maid"")"
@@ -40,5 +44,7 @@ BribeInfoRetrieveFull,,,I think I saw that object before.  Try the LevelName lev
 110,120,Take this.  (Give her 3$),,"BribeInfo(3, ""Little"")","HasPerk(""Bribery"")"
 110,120,Tell me everything.  (Give her 10$),,"BribeInfo(10, ""Full"")","!HasPerk(""Bribery"")"
 110,120,Tell me everything.  (Give her 6$),,"BribeInfo(6, ""Full"")","HasPerk(""Bribery"")"
+110,120,You really think a guard will pay you?,,"BribeInfo(0, ""Little"")","CostumeIs(""Guard"")"
+110,120,You really think a Dominatrix will pay you?,,"BribeInfo(0, ""Full"")","CostumeIs(""Mistress"")"
 110,0,Forget it.,Alright then.  Anything else?,,
 120,0,Thanks!,My pleasure.  (She counts the money and smiles.)  Anything else?,,

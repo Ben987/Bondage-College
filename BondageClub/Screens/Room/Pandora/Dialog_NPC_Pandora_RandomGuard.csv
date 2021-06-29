@@ -28,7 +28,7 @@ RemoveItemPelvis,,,(She sighs as you unlock the belt.)  Can you make up your min
 ItemHead,,,(She stays silent as you strap the device on her head.),,
 RemoveItemHead,,,"(You release her head as she nods rapidly.)  That's better, but you're still in trouble.",,
 ItemHood,,,(You put the hood on her head as she goes silent.),,
-RemoveItemHood,,,(She grins as you remove the hood from her head.)  I will never get out of here.,,
+RemoveItemHood,,,(She grins as you remove the hood from her head.)  You will never get out of here.,,
 ItemNose,,,(You strap the item on her nose as she sighs.)  Is that a joke to you?,,
 RemoveItemNose,,,(She nods as you remove the device.)  Someday Pandora's Box will make you pay.,,
 ItemTorso,,,(You strap the harness on her torso.)  Causing more trouble will only extend your jail time.,,
@@ -39,6 +39,7 @@ ItemBreast,,,(She holds her breath as you use the item.)  Pandora's police won't
 RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Enjoy your freedom while it lasts.,,
 ItemNipples,,,(She whimpers as you use the device on her breast.)  Another violation to add to the list.,,
 RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
+0,,,(A guard bows her head to you.)  It's an honor to protect and serve you Miss.,,"CostumeIs(""Mistress"")"
 0,,,(A guard salutes you.)  The Box isn't going to clean itself little maid.  Do you have anything to report?,,"CostumeIs(""Maid"")"
 0,,,(A guard gives you a friendly handshake.)  I hope your patrol is going well.  Do you have anything to report?,,"CostumeIs(""Guard"")"
 0,,,"(A guard is staring at you.)  Hey there, you're a good girl?  I hope you're not causing any trouble.",,
@@ -56,6 +57,9 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 0,Maid0,There's a water leak to clean.,I don't care about that.  (She starts to inspect you.)  Are you a new maid?  I've never seen you before.,CharacterGenerateRandomOdds(),"CostumeIs(""Maid"")"
 0,Maid10,A spy is among us.,A spy!   (She gets nervous.)  Who is she?  Do you have a description?,CharacterGenerateRandomOdds(),"CostumeIs(""Maid"")"
 0,,(Look around.),,DialogLeave(),"CostumeIs(""Maid"")"
+0,,Everything is under control?,"(She nods.)  We've had rumors of spies from other BDSM clubs, but they won't fool me.",DialogRemove(),"CostumeIs(""Mistress"")"
+0,Mistress0,Give me your outfit.,"(She takes a step back.)  What?  Miss, I cannot give you my guard outfit.",,"CostumeIs(""Mistress"")"
+0,,I need to go.  (Go explore.),,CharacterAllowMove(),"CostumeIs(""Mistress"")"
 10,,A quiz?,Absolutely.  We'll see if you know Pandora's Box and if you're a good member.,DialogRemove(),
 10,,I don't have time for a quiz.,"I don't care.  You'll do the quiz, or I'll throw your ass in jail.",DialogRemove(),
 10,,How does it work?,"I will ask you five questions.  If you fail two of them, you're in trouble.",,
@@ -140,6 +144,9 @@ Maid10,Arrest,(Describe yourself cleverly.),(She seems really angry.)  You think
 Maid10,Arrest,I'm the spy!,Surrender right now!  You are under arrest.,,
 MaidEnd,,,Keep the Box clean little maid.  Let me know if you see anything suspicious.,,
 MaidEnd,,Thanks.  (Go explore.),,CharacterAllowMove(),
+Mistress0,,,I'm sorry Miss Dominatrix.  I cannot give you my outfit.,,
+Mistress0,,I'll take it by force.  (Fight her.),,CharacterFight(),
+Mistress0,,"Fine, get lost.  (Go explore.)",,CharacterAllowMove(),
 Arrest,,(Fight her.),,CharacterFight(),
 Arrest,WaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to interrogate you.,RestrainPlayer(),
 WaitDominatrix,,How about a bribe?,Trying to bribe an officer?   That's more prison time for you.  (She takes notes.),DialogRemove(),Player.CanTalk()
@@ -147,7 +154,7 @@ WaitDominatrix,,(Wait for the Dominatrix.),,PunishmentIntro(),
 100,,,You're still under arrest you know?  Surrender to the law and we'll have mercy for you.,,
 100,,I'm the law now.,(She grumbles.)  Don't make me laugh.  Pandora's law will crush you like an ant.,DialogRemove(),
 100,,(Bring her with you.),Freeze!  You're not allowed to do that!  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
-100,,(Leaver her here.),Let me go and I'll shorten your sentence.  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Leave her here.),Let me go and I'll shorten your sentence.  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
 100,,(Strip her naked.),(She seems really angry as you strip her naked.)  This uniform is sacred!,CharacterNaked(),!CurrentCharacter.IsNaked()
 100,,(Wear her clothes.),(She shakes her head no as you dress up as a guard.)  Nobody will fall for that.,"PlayerClothes(""Guard"")",CurrentCharacter.IsNaked()
 100,,(Leave her.),,DialogLeave(),
@@ -172,3 +179,17 @@ GuardArrest,,,(The guard seems to recognize the other guard you're carrying.)  Y
 GuardArrest,,She lost a bet against me.,(Your victim shakes her head no and whimpers for help.)  This is against the law.  Surrender right now!,DialogRemove(),
 GuardArrest,,(Fight her.),,CharacterFight(),
 GuardArrest,WaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to interrogate you.,RestrainPlayer(),
+MistressArrest,,,"(As soon as you cross the guard, the Dominatrix explains who she is and her current kidnapping.)  Stop!  What's going on?",,
+MistressArrest,MistressArrest10,I'm in charge.  I will explain everything.,(The Dominatrix starts to argue and the guard stops you both.)  You!  (She points at you.)  What's going on?,CharacterGenerateRandomOdds(),"CostumeIs(""Mistress"")"
+MistressArrest,,She's lying.,(The Dominatrix repeats her name and how she's getting kidnapped.)  Enough!  You're under arrest!,DialogRemove(),
+MistressArrest,,(Fight her.),,CharacterFight(),
+MistressArrest,WaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  Unbelievable!  A Dominatrix will come to interrogate you.,RestrainPlayer(),
+MistressArrest10,MistressArrest30,This girl is a spy from the Bondage Club.,(She takes a step back.)  Oh my!  Please take her to our prison Miss Dominatrix.  You could gag her to prevent this misunderstanding.,,Odds25()
+MistressArrest10,MistressArrest20,This girl is a spy from the Bondage Club.,(She seems alerted.)  This is serious!  You're under arrest for now.  A Dominatrix will come to sort this situation.,,!Odds25()
+MistressArrest10,MistressArrest30,This brat is simply trying to get punished.,"(She starts to laugh.)  Of course!   I should have guessed it.  Please carry on Miss Dominatrix, sorry for the trouble.",,Odds50()
+MistressArrest10,MistressArrest20,This brat is simply trying to get punished.,"(She doesn't seem to believe you.)  This is fishy, you're under arrest for now.  A Dominatrix will come to sort this situation.",,!Odds50()
+MistressArrest10,MistressArrest20,I can't tell you or I'll have to kill you.,Very funny.  (She doesn't seem amused.)  You're under arrest!  A Dominatrix will come to sort this situation.,,
+MistressArrest20,,(Fight her.),,CharacterFight(),
+MistressArrest20,WaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  Unbelievable!  A Dominatrix will come to interrogate you.,RestrainPlayer(),
+MistressArrest30,,,Have a wonderful day Miss Dominatrix.  I will keep this place safe.,,
+MistressArrest30,,Take care.  (Go explore.),,CharacterAllowMove(),

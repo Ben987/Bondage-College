@@ -57,7 +57,7 @@ var TitleList = [
 function TitleSet(NewTitle) {
 	if (NewTitle != Player.Title) {
 		Player.Title = NewTitle;
-		ServerSend("AccountUpdate", { Title: NewTitle });
+		ServerAccountUpdate.QueueData({ Title: NewTitle });
 	}
 	return NewTitle;
 }
@@ -93,7 +93,7 @@ function TitleGet(C) {
 /**
  * Checks, if the given title is forced a forced title like 'Club Slave' or 'Escaped Patient'
  * @param {string} Title - The title to check
- * @returns {void} - Nothing
+ * @returns {boolean} - Result of the check
  */
 function TitleIsForced(Title) {
 	if ((Title == null) || (Title == "") || (Title == "None")) return false;
@@ -106,7 +106,7 @@ function TitleIsForced(Title) {
 /**
  * Checks, if the given title is earned a earned title is any title that doesn't always return true such as 'Switch', 'Doll' & 'Angel'
  * @param {string} Title - The title to check
- * @returns {void} - Nothing
+ * @returns {boolean} - Result of the check
  */
 function TitleIsEarned(Title) {
 	if ((Title == null) || (Title == "") || (Title == "None")) return false;

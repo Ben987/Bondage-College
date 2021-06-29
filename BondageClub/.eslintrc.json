@@ -27,7 +27,7 @@
 		"no-shadow": ["warn", { "hoist": "all" }],
 		"strict": ["error", "global"],
 		"no-constant-condition": ["error", { "checkLoops": false }],
-		"no-unused-vars": ["warn", { "vars": "local", "args": "after-used" }],
+		"no-unused-vars": ["warn", { "vars": "local", "args": "none" }],
 		"no-trailing-spaces": "warn",
 		"semi": "warn",
 		"indent": ["warn", "tab", { "SwitchCase": 1, "ignoredNodes": ["ConditionalExpression"] }],

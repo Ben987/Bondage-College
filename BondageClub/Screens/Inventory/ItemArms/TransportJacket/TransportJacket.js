@@ -87,13 +87,13 @@ function InventoryItemArmsTransportJacketPublishAction(C, Option, PreviousOption
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-const InventoryItemArmsTransportJacketTextChange = CommonDebounce((C, item, text) => {
+const InventoryItemArmsTransportJacketTextChange = CommonLimitFunction((C, item, text) => {
 	item = DialogFocusItem || item;
 	if (DynamicDrawTextRegex.test(text)) {
 		item.Property.Text = text.substring(0, InventoryItemDevicesWoodenBoxMaxLength);
-		CharacterRefresh(C, false);
+		CharacterLoadCanvas(C);
 	}
-}, 200);
+});
 
 function InventoryItemArmsTransportJacketExit() {
 	const C = CharacterGetCurrent();

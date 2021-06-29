@@ -18,7 +18,7 @@ function ChatCreateLoad() {
 	// Resets the room game statuses
 	if ((ChatRoomGame == "LARP") && (Player.Game.LARP.Status != "")) {
 		Player.Game.LARP.Status = "";
-		ServerSend("AccountUpdate", { Game: Player.Game });
+		ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
 	}
 
 	// If the current background isn't valid, we pick the first one

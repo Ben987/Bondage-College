@@ -182,11 +182,12 @@ function VibratorModeDrawHeader() {
 /**
  * Common draw function for drawing the control sets of the extended item menu screen for a vibrator
  * @param {VibratorModeSet[]} Options - The vibrator mode sets to draw for the item
- * @param {number} Y - The y-coordinate at which to start drawing the controls
+ * @param {number} [Y] - The y-coordinate at which to start drawing the controls
  * @returns {void} - Nothing
  */
 function VibratorModeDrawControls(Options, Y) {
 	Y = typeof Y === "number" ? Y : 450;
+	let C = CharacterGetCurrent();
 	Options = Options || [VibratorModeSet.STANDARD];
 	var Property = DialogFocusItem.Property;
 	if (Property == null) return;
@@ -198,7 +199,7 @@ function VibratorModeDrawControls(Options, Y) {
 		OptionGroup.forEach((Option, I) => {
 			var X = 1175 + (I % 3) * 225;
 			if (I % 3 === 0) Y += 75;
-			var Color = Property.Mode === Option.Property.Mode ? "#888" : "White";
+			var Color = Property.Mode === Option.Property.Mode ? "#888" : (!(OptionName == VibratorModeSet.ADVANCED && C.ArousalSettings && C.ArousalSettings.DisableAdvancedVibes) ? "White" : "Pink");
 			DrawButton(X, Y, 200, 55, DialogFindPlayer(Option.Name), Color);
 		});
 		Y += 40;
@@ -208,11 +209,12 @@ function VibratorModeDrawControls(Options, Y) {
 /**
  * Common click function for vibrators
  * @param {VibratorModeSet[]} Options - The vibrator mode sets for the item
- * @param {number} Y - The y-coordinate at which the extended item controls were drawn
+ * @param {number} [Y] - The y-coordinate at which the extended item controls were drawn
  * @returns {void} - Nothing
  */
 function VibratorModeClick(Options, Y) {
 	Y = typeof Y === "number" ? Y : 450;
+	let C = CharacterGetCurrent();
 	// Exit Button
 	if (MouseIn(1885, 25, 90, 85)) DialogFocusItem = null;
 
@@ -222,7 +224,7 @@ function VibratorModeClick(Options, Y) {
 			var X = 1175 + (I % 3) * 225;
 			if (I % 3 === 0) Y += 75;
 			if (MouseIn(X, Y, 200, 55)) {
-				if ((Option.Property != null) && (DialogFocusItem.Property != null) && (Option.Property.Mode !== DialogFocusItem.Property.Mode))
+				if ((Option.Property != null) && (DialogFocusItem.Property != null) && (Option.Property.Mode !== DialogFocusItem.Property.Mode) && !(OptionName == VibratorModeSet.ADVANCED && C.ArousalSettings && C.ArousalSettings.DisableAdvancedVibes))
 					VibratorModeSetMode(Option);
 				return true;
 			}
@@ -491,7 +493,13 @@ function VibratorModeStateUpdateDeny(C, Arousal, TimeSinceLastChange, OldIntensi
 	var State = VibratorModeState.DENY;
 	var Intensity = OldIntensity;
 	if (Arousal >= 95 && TimeSinceLastChange > OneMinute && Math.random() < 0.2) {
-		// In deny mode, there's a small chance to change to rest mode after a minute
+		if (Player.IsEdged()) {
+			// In deny mode, there's a small chance to change to give a fake orgasm and then go to rest mode after a minute
+			// Here we give the fake orgasm, passing a special parameter that indicates we bypass the usual restriction on Edge
+			ActivityOrgasmPrepare(C, true);
+		}
+		
+		// Set the vibrator to rest
 		State = VibratorModeState.REST;
 		Intensity = -1;
 	} else if (Arousal >= 95) {
@@ -552,7 +560,7 @@ function VibratorModeStateUpdateRest(C, Arousal, TimeSinceLastChange, OldIntensi
 /**
  * Correctly sets the Property on a vibrator according to the new property. This function preserves persistent effects on the item like lock
  * effects.
- * @param {Item[]} Item - The item on which to set the new properties
+ * @param {Item} Item - The item on which to set the new properties
  * @param {object} Property - The new properties to set. The Property object may include dynamic setter functions
  * @returns {void} - Nothing
  */

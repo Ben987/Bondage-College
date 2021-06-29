@@ -18,7 +18,7 @@ PlayerGagged,,,(She frowns at you.)  Go see a maid girl.  I don't have time for 
 10,,You're at war with that club?,"It's too risky for BDSM clubs to do a public war, we could both get closed.  That's why we created this bunker and do infiltration missions.",,
 10,20,Tell me about the missions.,"Make it quick, what would you like to know?",,
 10,0,That's all I wanted to know.,Fine.  Do you want to take a mission now?,,
-20,,Anyone can take missions?,"If you're never did infiltration before, you will get easy missions.  Once we trust you, you will get more important missions.",,
+20,,Anyone can take missions?,"If you've never done an infiltration before, you will get easy missions.  Once we trust you, you will get more important missions.",,
 20,,What kind of missions can I do?,"You can rescue a kidnapped girl, capture someone for a prisoner exchange, find a stolen item or steal documents from them.",,
 20,,Do I need a disguise?,"Yes, we will disguise you before all missions.  Having different clothes will help you to blend into Pandora's Box.",,
 20,,Will I get paid?,"Of course, the higher the danger, the higher you get paid.",,
@@ -30,7 +30,7 @@ PlayerGagged,,,(She frowns at you.)  Go see a maid girl.  I don't have time for 
 30,,Tell me about battle perks.,Training these perks will only change your battles in Pandora's Box.  It will give you passive bonuses to hit harder or stand your ground against your opponents.,,
 30,,Do I recover after a battle?,"You will not recover your willpower after a battle, so fight wisely.  Your willpower will also go down when you fail in your infiltration tasks like lockpicking.",,
 30,,Tell me about the infiltration perks.,The infiltration perks will help you navigate Pandora's Box faster.  It can be used to lockpick easier or bribe a rival girl to get out of trouble.,,
-30,,How many perks can I allocate?,Ther number of perks you can allocate is your infiltration skill level plus one.,,
+30,,How many perks can I allocate?,The number of perks you can allocate is your infiltration skill level plus one.,,
 30,40,I'd like to take a mission.,Great!  What kind of challenge are you up to?,,
 30,0,That's all I wanted to know.,Fine.  Do you want to take a mission now?,,
 40,50,An easy challenge please.,"Alright.  Let me fetch an easy mission for you, give me a minute.",SelectChallenge(0),
@@ -72,8 +72,16 @@ End,,,Welcome back comrade.  Is your mission complete?,,
 End,Success,The mission was a success.,Congratulation comrade DialogPlayerName!  (She salutes you.)  The Bondage Club is proud of you.,CompleteMission(),CanSuccess()
 End,,I'm going back right now.,,ReturnMission(),CanGoBack()
 End,,I'd like another disguise.,(You pick new random clothes to blend better into Pandora's Box.)  A true chameleon!,RandomClothes(),CanGoBack()
-End,0,"Sorry, I've failed.","Don't be ashamed, I'm sure you've tried your best.  We'll send someone else, you can pick another mission if you want.","DialogChangeReputation(""Dominant"", -1)",CanFail()
+End,0,"Sorry, I've failed.","Don't be ashamed, I'm sure you've tried your best.  We'll send someone else.  You can pick another mission if you want.","DialogChangeReputation(""Dominant"", -1)",CanFail()
 End,,Give me a minute.  (Leave her.),,DialogLeave(),
-Success,0,Thank you comrade.,(She nods quickly and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,,
+Success,0,"Thank you, comrade.",(She nods quickly and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,,
 Success,0,"I was scared, but I did it.",(She cheers you up and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,"DialogChangeReputation(""Dominant"", -2)",
 Success,0,You should know that I never fail.,(She bows her head and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,"DialogChangeReputation(""Dominant"", 3)",
+Ransom0,,,(She looks at the Dominatrix that came with you and grins.)  Comrade!  Who did you bring with you?,,
+Ransom0,Ransom10,You think we can get a ransom for her?,Absolutely.  We can keep her for ransom until they pay.  Would you like to get your cut?,,
+Ransom0,Ransom10,This Pandora's bitch will make me rich and famous.,(She nods slowly.)  We can keep her for ransom until they pay.  Would you like to get your cut?,"DialogChangeReputation(""Dominant"", 4)",
+Ransom0,Ransom10,I kidnapped one of their administrators.,This is impressive.  We can keep her for ransom until they pay.  Would you like to get your cut?,"DialogChangeReputation(""Dominant"", 2)",
+Ransom0,,Give me a minute.  (Leave her.),,DialogLeave(),
+Ransom10,End,"Yes, I'll take the money.",Here you go comrade.  (She gives you a money envelope.)  Are you ready to go back?,"PayRansom(""Money"")",
+Ransom10,End,"No, but I want some infiltration training.","Of course, comrade.  (She gives you great infiltration tricks.)  Are you ready to go back?","PayRansom(""Skill"")",
+Ransom10,End,I don't want anything.,You make us proud comrade.  (She salutes you.)  Are you ready to go back?,"PayRansom(""None"")",

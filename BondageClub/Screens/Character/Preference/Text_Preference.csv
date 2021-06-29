@@ -89,6 +89,10 @@ DisplayMemberNumbers,Display member numbers:
 Always,Always
 Never,Never
 OnMouseover,On Mouseover
+FontSize,Font size
+Small,Small
+Medium,Medium
+Large,Large
 DisplayTimestamps,Display timestamps
 ColorNames,Color names
 ColorActions,Color actions
@@ -96,6 +100,7 @@ ColorEmotes,Color emotes
 ColorActivities,Color Activities
 ShrinkNonDialogue,Shrink all messages except dialogue
 ShowActivities,Show sexual activities & orgasms
+MuStylePoses,Use : as alias for /me and *
 AutoBanBlackList,Ban blacklist when creating a room
 AutoBanGhostList,Ban ghostlist when creating a room
 SearchShowsFullRooms,Display full chatrooms
@@ -114,6 +119,7 @@ ReturnToChatRoomAdmin,Auto-remake rooms
 SenseDepMessages,Hide others' messages
 ImmersionLocked,All immersion settings are maxed out under the Extreme difficulty mode
 BlockGaggedOOC,Prevent OOC & whispers while gagged
+BlindAdjacent,Hide non-adjacent players while partially blind
 StimulationEvents,Events while plugged or vibed
 ChatRoomMuffle,Garble chat room names and descriptions while blind
 SensDepSetting,Sensory deprivation setting
@@ -128,7 +134,14 @@ DisablePickingLocksOnSelf,Locks on you can't be picked
 BlindDisableExamine,Disable examining when blind
 DisableAutoRemoveLogin,Keep all restraints when relogging
 OfflineLockedRestrained,Cannot enter single-player rooms when restrained
+ArousalDisableAdvancedVibes,"Block advanced vibrator modes (edge, random, etc)"
 GeneralHardcoreWarning,Safewords and help from NPCs are disabled on Hardcore or Extreme
+ItemsAffectExpressions,Items can affect your facial expression
+GeneralAnimationQuality0,Max
+GeneralAnimationQuality50,High
+GeneralAnimationQuality100,Medium
+GeneralAnimationQuality200,Low
+GeneralAnimationQualityText,Animation quality (reduce if inputs such as sliders are slow to respond)
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
 EnableSafeword,Allow Safeword use (Cannot enable while bound)
@@ -287,3 +300,4 @@ NotificationsLarp,Your turn in a LARP game
 NotificationsTestRaise,Raise a test notification
 NotificationsTestReset,Clear raised notifications
 NotificationsTestMessage,Hello there!
+Page,Page

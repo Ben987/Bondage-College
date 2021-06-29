@@ -6,6 +6,8 @@ var InfiltrationMission = "";
 var InfiltrationMissionType = ["Rescue", "Kidnap", "Retrieve"];
 var InfiltrationObjectType = ["USBKey", "BDSMPainting", "GoldCollar", "GeneralLedger", "SilverVibrator", "DiamondRing", "SignedPhoto"];
 var InfiltrationTarget = {};
+var InfiltrationCollectRansom = false;
+var InfiltrationKidnapper = null;
 
 /**
  * Returns TRUE if the mission can complete as a success
@@ -31,11 +33,14 @@ function InfiltrationCanGoBack() { return (((InfiltrationTarget == null) || (Inf
  */
 function InfiltrationLoad() {
 
-	// If there's a party coming with the player, it can complete the mission
+	// If there's a party coming with the player, it can complete the mission or trigger a ransom
+	InfiltrationBackground = "Infiltration";
+	InfiltrationCollectRansom = false;
 	if ((PandoraParty != null) && (PandoraParty.length > 0)) {
-		for (let P = 0; P < PandoraParty.length; P++)
-			if (PandoraParty[P].Name == InfiltrationTarget.Name)
-				InfiltrationTarget.Found = true;
+		for (let P = 0; P < PandoraParty.length; P++) {
+			if (PandoraParty[P].Name == InfiltrationTarget.Name) InfiltrationTarget.Found = true;
+			if (PandoraParty[P].AccountName.indexOf("RandomMistress") >= 0) InfiltrationCollectRansom = true;
+		}
 		PandoraParty = [];
 	}
 
@@ -74,7 +79,10 @@ function InfiltrationRun() {
  * @returns {void} - Nothing
  */
 function InfiltrationClick() {
-	if (MouseIn(1000, 0, 500, 1000)) CharacterSetCurrent(InfiltrationSupervisor);
+	if (MouseIn(1000, 0, 500, 1000)) {
+		if (InfiltrationCollectRansom) InfiltrationSupervisor.Stage = "Ransom0";
+		CharacterSetCurrent(InfiltrationSupervisor);
+	}
 	if ((InfiltrationSupervisor.Stage !== "End") && MouseIn(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if (MouseIn(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 	if (MouseIn(1885, 265, 90, 90)) CommonSetScreen("Room", "InfiltrationPerks");
@@ -85,7 +93,7 @@ function InfiltrationClick() {
  * @returns {void} - Nothing
  */
 function InfiltrationSelectChallenge(Difficulty) {
-	InfiltrationDifficulty = Difficulty;
+	InfiltrationDifficulty = parseInt(Difficulty);
 }
 
 /**
@@ -155,4 +163,129 @@ function InfiltrationRandomClothes() {
 	CharacterRelease(Player);
 	InventoryRemove(Player, "ItemHands");
 	PandoraClothes = "Random";
+}
+
+/**
+ * When the infiltration supervisor pays the player for ransoming a Dominatrix
+ * @param {string} Type - The ransom type to be paid (Money, Skill or None)
+ * @returns {void} - Nothing
+ */
+function InfiltrationPayRansom(Type) {
+	InfiltrationCollectRansom = false;
+	if (Type == "Money") {
+		let Money = 10 + (InfiltrationDifficulty * 4);
+		if (InfiltrationPerksActive("Negotiation")) Money = Math.round(Money * 1.2);
+		CharacterChangeMoney(Player, Money);
+	}
+	if (Type == "Skill") {
+		if (InfiltrationDifficulty == 0) SkillProgress("Infiltration", 100);
+		if (InfiltrationDifficulty == 1) SkillProgress("Infiltration", 150);
+		if (InfiltrationDifficulty == 2) SkillProgress("Infiltration", 225);
+		if (InfiltrationDifficulty == 3) SkillProgress("Infiltration", 300);
+		if (InfiltrationDifficulty == 4) SkillProgress("Infiltration", 400);
+	}
+}
+
+/**
+ * The revenge kidnapping can happen when infiltration level is at 4 or more, in that case, a Pandora girl can try to kidnap the player from the club and bring her to a Pandora's Box prison
+ * @returns {void} - Nothing
+ */
+function InfiltrationStartKidnapping() {
+	let IntroText = TextGet("PandoraKidnapperIntro" + Math.floor(Math.random() * 5));
+	IntroText = IntroText.replace("DialogPlayerName", Player.Name);
+	CommonSetScreen("Room", "Infiltration");
+	InfiltrationBackground = MainHallBackground;
+	CharacterDelete("NPC_Infiltration_Kidnapper");
+	delete CommonCSVCache["Screens/Room/Infiltration/NPC_Infiltration_Kidnapper.csv"];
+	InfiltrationKidnapper = CharacterLoadNPC("NPC_Infiltration_Kidnapper");
+	CharacterRandomName(InfiltrationKidnapper);
+	CharacterRelease(InfiltrationKidnapper);
+	InfiltrationKidnapper.Stage = "0";
+	CharacterAppearanceFullRandom(InfiltrationKidnapper);
+	CharacterRefresh(InfiltrationKidnapper, false);
+	CharacterSetCurrent(InfiltrationKidnapper);
+	InfiltrationKidnapper.CurrentDialog = IntroText;
+}
+
+/**
+ * Ends the revenge kidnapping scenario and goes back to the main hall
+ * @returns {void} - Nothing
+ */
+function InfiltrationEndKidnapping(Reward) {
+	if ((Reward != null) && (Reward == "Money")) CharacterChangeMoney(Player, 18);
+	if ((Reward != null) && (Reward == "Skill")) SkillProgress("Infiltration", 400);
+	if ((Reward != null) && (Reward == "Private")) {
+		CurrentScreen = "Private";
+		PrivateAddCharacter(CurrentCharacter);
+		CommonSetScreen("Room", "Private");
+		PrivateCharacter[PrivateCharacter.length - 1].Love = -80;
+		DialogLeave();
+		return;
+	}
+	CommonSetScreen("Room", "MainHall");
+	DialogLeave();
+}
+
+/**
+ * When the player surrenders to her kidnapper
+ * @returns {void} - Nothing
+ */
+function InfiltrationKidnapperSurrender() {
+	CharacterFullRandomRestrain(Player, "ALL", true);
+}
+
+/**
+ * Starts the fight with the NPC kidnapper
+ * @returns {void} - Nothing
+ */
+function InfiltrationKidnapperStartFight() {
+	let Difficulty = SkillGetLevel(Player, "Infiltration") - 3 + Math.floor(Math.random() * 7);
+	if (Difficulty < 0) Difficulty = 0;
+	if (Difficulty > 10) Difficulty = 10;
+	KidnapStart(CurrentCharacter, InfiltrationBackground, Difficulty, "InfiltrationKidnapperEndFight()");
+}
+
+/**
+ * Ends the fight with the NPC kidnapper
+ * @returns {void} - Nothing
+ */
+function InfiltrationKidnapperEndFight() {
+	CharacterSetCurrent(InfiltrationKidnapper);
+	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (CurrentCharacter.KidnapMaxWillpower - CurrentCharacter.KidnapWillpower)));
+	CurrentCharacter.Stage = (KidnapVictory) ? "100" : "200";
+	CharacterRelease(KidnapVictory ? Player : CurrentCharacter);
+	CurrentCharacter.AllowItem = KidnapVictory;
+	CommonSetScreen("Room", "Infiltration");
+	InfiltrationBackground = MainHallBackground;
+	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, (KidnapVictory) ? "FightVictory" : "FightDefeat");
+}
+
+/**
+ * Enter Pandora's Box as the kidnapper victim
+ * @returns {void} - Nothing
+ */
+function InfiltrationKidnapperEnterPandora() {
+	CommonSetScreen("Room", "Pandora");
+	PandoraPunishmentIntro(true);
+}
+
+/**
+ * Removes the gag from the kidnapper
+ * @returns {void} - Nothing
+ */
+function InfiltrationKidnapperUngag() {
+	InventoryRemove(CurrentCharacter, "ItemHead");
+	InventoryRemove(CurrentCharacter, "ItemHood");
+	InventoryRemove(CurrentCharacter, "ItemNose");
+	InventoryRemove(CurrentCharacter, "ItemMouth");
+	InventoryRemove(CurrentCharacter, "ItemMouth2");
+	InventoryRemove(CurrentCharacter, "ItemMouth3");
+}
+
+/**
+ * Returns TRUE if the player can bring the current NPC to her room
+ * @returns {boolean} - TRUE if it's possible
+ */
+function InfiltrationCanBringToRoom() {
+	return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax));
 }

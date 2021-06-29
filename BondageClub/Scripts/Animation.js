@@ -9,7 +9,7 @@ var AnimationPersistentStorage = {};
 /**
  * Types of dynamic data that can be stored.
  * @constant
- * @enum
+ * @enum {string}
  */
 var AnimationDataTypes = {
 	AssetGroup: "AssetGroup",
@@ -72,7 +72,7 @@ function AnimationRequestDraw(C) {
 /**
  * Gets the group object for a given character. This method should not be called explicitly, use the Data builder passed to the dynamic drawing functions.
  * @param {Character} C - Character wearing the animated object
- * @param {Asset} Asset - The animated object
+ * @param {string} Name - Name of the animated object
  * @returns {object} - Contains the persistent group data, returns a new empty object if it was never initialized previously.
  */
 function AnimationGroupGet(C, Name) {

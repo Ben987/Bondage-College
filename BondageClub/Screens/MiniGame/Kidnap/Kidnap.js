@@ -7,9 +7,9 @@ var KidnapOpponent = null;
 var KidnapPlayerCloth = null;
 var KidnapPlayerClothAccessory = null;
 var KidnapPlayerClothLower = null;
-var	KidnapOpponentCloth = null;
-var	KidnapOpponentClothAccessory = null;
-var	KidnapOpponentClothLower = null;
+var KidnapOpponentCloth = null;
+var KidnapOpponentClothAccessory = null;
+var KidnapOpponentClothLower = null;
 var KidnapTimer = 0;
 var KidnapMode = "";
 var KidnapDialog = "";
@@ -57,7 +57,7 @@ function KidnapInventoryBuild() {
 	if (KidnapOpponent.FocusGroup != null)
 		for (let A = 0; A < Player.Inventory.length; A++)
 			if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == KidnapOpponent.FocusGroup.Name) && Player.Inventory[A].Asset.Enable && Player.Inventory[A].Asset.Wear && Player.Inventory[A].Asset.Random)
-				DialogInventoryAdd(KidnapOpponent, Player.Inventory[A], false, DialogSortOrderEnabled);
+				DialogInventoryAdd(KidnapOpponent, Player.Inventory[A], false, DialogSortOrder.Enabled);
 	DialogInventorySort();
 
 }
@@ -383,6 +383,15 @@ function KidnapDrawMove(C, Header, X) {
 	for (let M = 0; M < 4; M++)
 		DrawButton(X - 200, (M * 100) + 100, 400, 70, TextGet(KidnapMoveType[M]) + ((C.KidnapStat[M] > 0) ? " ( " + C.KidnapStat[M].toString() + ((KidnapMoveEffective(C, M)) ? "" : " / 2") + " )" : ""), (C.ID == 0) ? (KidnapMoveEffective(C, M) ? "White" : "Silver") : "Pink");
 	DrawButton(X - 200, 900, 400, 70, TextGet("Surrender"), (C.ID == 0) ? "White" : "Pink");
+	if (Header == "SelectMove") {
+		DrawImage("Screens/MiniGame/Kidnap/LeftRock.png", 460, 91);
+		DrawImage("Screens/MiniGame/Kidnap/LeftScissors.png", 460, 191);
+		DrawImage("Screens/MiniGame/Kidnap/LeftPaper.png", 460, 291);
+	} else {
+		DrawImage("Screens/MiniGame/Kidnap/RightRock.png", 1435, 91);
+		DrawImage("Screens/MiniGame/Kidnap/RightScissors.png", 1435, 191);
+		DrawImage("Screens/MiniGame/Kidnap/RightPaper.png", 1435, 291);
+	}
 }
 
 /**

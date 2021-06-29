@@ -10,7 +10,7 @@ var AsylumEntranceEscapedPatientWillJoin = false;
  * Checks, if the player is able to leave the Asylum
  * @returns {boolean} - Returns true, if the player is able to leave, false otherwise
  */
-function AsylumEntranceCanWander() { return (Player.CanWalk() && ((LogValue("Committed", "Asylum") >= CurrentTime) || ((ReputationGet("Asylum") >= 1) && AsylumEntranceIsWearingNurseClothes(Player)))); }
+function AsylumEntranceCanWander() { return (Player.CanWalk() && ((LogValue("Committed", "Asylum") >= CurrentTime) || ((ReputationGet("Asylum") >= 1) && AsylumEntranceIsWearingNurseClothes()))); }
 /**
  * Checks, if the player can bring the nurse to her private room
  * @returns {boolean} - Returns true, if the player can drag the nurse to her private roo, false otherwise
@@ -106,7 +106,7 @@ function AsylumEntranceWearNurseClothes(C) {
 // Wears the patient clothes on a character
 /**
  * Dresses a given character as a patient. Removes all clothes and respects cosplay rules
- * @param {string | Character} C - The character to dress
+ * @param {"Player" | Character} C - The character to dress
  * @returns {void} - Nothing
  */
 function AsylumEntranceWearPatientClothes(C) {
@@ -223,9 +223,12 @@ function AsylumEntranceFightNurseEnd() {
  */
 function AsylumEntrancePlayerJacket(Pose) {
 	InventoryWear(Player, "StraitJacket", "ItemArms", "Default", 3);
-    Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemArms");
-    const Option = InventoryItemArmsStraitJacketOptions.find(o => o.Name === Pose);
-    ExtendedItemSetType(Player, InventoryItemArmsStraitJacketOptions, Option);
+	Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemArms");
+	const Options = TypedItemDataLookup.ItemArmsStraitJacket.options;
+	const Option = Options.find(o => o.Name === Pose);
+	if (Option) {
+		ExtendedItemSetType(Player, Options, Option);
+	}
 	Player.FocusGroup = null;
 }
 

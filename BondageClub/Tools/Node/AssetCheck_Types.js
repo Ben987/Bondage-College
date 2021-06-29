@@ -70,6 +70,7 @@ const AssetType = {
 	Random: "Boolean",
 	RemoveAtLogin: "Boolean",
 	Time: "Number",
+	LayerVisibility: "Boolean",
 	RemoveTime: "Number",
 	RemoveTimer: "Number",
 	MaxTimer: "Number",
@@ -132,6 +133,10 @@ const AssetType = {
 	CustomBlindBackground: "Object",
 	Layer: "[Object]",
 	Archetype: "String",
+	FuturisticRecolor: "Boolean",
+	FuturisticRecolorDisplay: "Boolean",
+	Attribute: "[String]",
+	HideItemAttribute: "[String]",
 };
 
 const AssetLayerType = {
@@ -142,6 +147,7 @@ const AssetLayerType = {
 	HideColoring: "Boolean",
 	AllowTypes: "[String]",
 	HasType: "Boolean",
+	Visibility: "String",
 	ParentGroup: "Maybe String",
 	AllowPose: "[String]",
 	Priority: "Number",
@@ -160,19 +166,65 @@ const AssetLayerType = {
 	AllowModuleTypes: "[String]",
 };
 
-const AssetExtendedArchetypeType = {
+const ExtendedItemAssetConfig = {
 	Archetype: "String",
-	Config: "Maybe Object",
+	Config: "Maybe Object", // ModularItemConfig | TypedItemConfig
 	CopyConfig: "Maybe {GroupName: Maybe String, AssetName: String}",
 };
 
-const AssetExtendedConfigType = {
-	Modules: "Maybe [{Name: String, Key: String, Options: [Object]}]", // Modular items
-	Options: "Maybe [{Name: String, Property: Object}]", // Typed items
+const ModularItemConfig = {
+	Modules: "[Object]", // ModularItemModule[]
 	ChatSetting: "Maybe String",
-	Dialog: "Maybe Object",
-	ChatTags: "Maybe [String]",
-	DrawImages: "Maybe Boolean",
-};
+	ChangeWhenLocked: "Maybe Boolean",
+}
 
-module.exports = { AssetGroupType, AssetType, AssetLayerType, AssetExtendedArchetypeType, AssetExtendedConfigType };
+const ModularItemModule = {
+	Name: "String",
+	Key: "String",
+	Options: "[Object]", // ModularItemOption[]
+}
+
+const ModularItemOption = {
+		Difficulty: "Maybe Number",
+		BondageLevel: "Maybe Number",
+		SelfBondageLevel: "Maybe Number",
+		Block: "Maybe [String]",
+		Hide: "Maybe [String]",
+		HideItem: "Maybe [String]",
+		Property: "Maybe Object",
+		ChangeWhenLocked: "Maybe Boolean",
+}
+
+const TypedItemConfig = {
+	Options: "[Object]", // ExtendedItemOption
+	Dialog: "Maybe { Load: Maybe String, TypePrefix: Maybe String, ChatPrefix: Maybe String, NpcPrefix: Maybe String }",
+	ChatTags: "Maybe [String]",
+	ChatSetting: "Maybe String",
+	DrawImages: "Maybe Boolean",
+	ChangeWhenLocked: "Maybe Boolean",
+	// Validate: "Maybe Function",
+}
+
+const ExtendedItemOption = {
+	Name: "String",
+	BondageLevel: "Maybe Number",
+	SelfBondageLevel: "Maybe Number",
+	Prerequisite: "Undefined | String | [String]",
+	SelfBlockCheck: "Maybe Boolean",
+	ChangeWhenLocked: "Maybe Boolean",
+	Property: "Maybe Object",
+	Expression: "Maybe [{ Name: String, Group: String, Timer: Number }]",
+	HasSubscreen: "Maybe Boolean",
+}
+
+module.exports = {
+	AssetGroupType,
+	AssetType,
+	AssetLayerType,
+	ExtendedItemAssetConfig,
+	ModularItemConfig,
+	ModularItemModule,
+	ModularItemOption,
+	TypedItemConfig,
+	ExtendedItemOption
+};

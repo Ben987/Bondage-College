@@ -6,7 +6,7 @@
     "changelog": "node GenerateChangelog",
     "lint": "eslint --config ./.eslintrc.js ../../Assets/Female3DCG/Female3DCG.js",
     "lint:fix": "eslint --fix --config ./.eslintrc.js ../../Assets/Female3DCG/Female3DCG.js",
-    "lintscripts": "eslint --quiet \"../../Scripts/**/*.js\" \"../../Screens/**/*.js\" \"../../Assets/**/*.js\" \"../../Tools/**/*.js\"",
+    "lintscripts": "eslint --quiet \"../../Scripts/**/*.js\" \"../../Screens/**/*.js\" \"../../Assets/**/*.js\" \"../../Tools/**/*.js\" \"../../Backgrounds/Backgrounds.js\"",
     "assetcheck": "node AssetCheck",
     "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },

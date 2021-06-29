@@ -344,17 +344,12 @@ function MaidQuartersChangeInitiationMaid() {
  * @returns {void} - Nothing
  */
 function MaidQuartersBecomMaid() {
-	var ItemsToEarn = [];
-	ItemsToEarn.push({Name: "MaidOutfit1", Group: "Cloth"});
-	ItemsToEarn.push({Name: "MaidOutfit2", Group: "Cloth"});
-	ItemsToEarn.push({Name: "MaidHairband1", Group: "Cloth"});
-	ItemsToEarn.push({Name: "MaidApron1", Group: "Cloth"});
-	ItemsToEarn.push({Name: "MaidHairband1", Group: "Hat"});
-	InventoryAddMany(Player, ItemsToEarn);
+	LogAdd("JoinedSorority", "Maid");
+	LoginMaidItems();
+	ServerPlayerInventorySync();
 
 	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
 	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
-	LogAdd("JoinedSorority", "Maid");
 	ReputationProgress("Dominant", MaidQuartersDominantRep);
 	MaidQuartersCanBecomeMaid = false;
 	MaidQuartersIsMaid = true;

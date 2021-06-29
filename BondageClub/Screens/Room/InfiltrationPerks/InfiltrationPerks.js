@@ -37,7 +37,7 @@ function InfiltrationPerksTaken() {
 
 /**
  * Returns the number of perks available for the player
- * @returns {void} - Nothing
+ * @returns {number} - Nothing
  */
 function InfiltrationPerksAvail() {
 	return SkillGetLevel(Player, "Infiltration") + 1;
@@ -90,6 +90,6 @@ function InfiltrationPerksClick() {
  * @returns {void} - Nothing
  */
 function InfiltrationPerksExit() {
-	ServerSend("AccountUpdate", { Infiltration: Player.Infiltration });
+	ServerAccountUpdate.QueueData({ Infiltration: Player.Infiltration });
 	CommonSetScreen("Room", "Infiltration");
 }

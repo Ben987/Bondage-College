@@ -439,3 +439,9 @@ You must free her arms before attaching mitten chains.
 Vous devez libérer ses bras avant d'attacher les mitaines.
 Facial expression
 Expression faciale
+View next page
+Voir la prochaine page
+View previous page
+Voir la page précédente
+Save color to currently selected slot
+Sauvegarde la couleur sur le slot sélectionné

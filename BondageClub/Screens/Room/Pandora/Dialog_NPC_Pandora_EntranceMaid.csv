@@ -39,6 +39,7 @@ Punishment0,,,(A Dominatrix takes you away from the maid.)  (She stares at you.)
 80,90,Can I visit?,Absolutely.  Do you need help on how to explore Pandora's Box or you're fine on your own?,,
 90,,,Hi sister!  How can I help you?,,"CostumeIs(""Maid"")"
 90,,,Hello Miss Guard.  (She does a maid curtsy.)  Is there anything I can do for you?,,"CostumeIs(""Guard"")"
+90,,,It's an honor to speak with you Miss Dominatrix.  (She does a maid curtsy.)  How can I serve you?,,"CostumeIs(""Mistress"")"
 90,,,(She does a maid curtsy.)  Is there anything else you'd like to know Miss?,,"CostumeIs(""Random"")"
 90,,I can go anywhere?,"Yes and no.  If someone is on official duty, she might not let you pass.  Just go back from where you came from.",DialogRemove(),"CostumeIs(""Random"")"
 90,,There are many levels?,Pandora's Box has three levels.  We are on the ground level.  You can go downstairs for the dungeons or upstairs for the chambers.,DialogRemove(),"CostumeIs(""Random"")"
@@ -110,3 +111,12 @@ KidnapRandom0,KidnapRandom10,Get out of my way.,I'm not moving.  Surrender right
 KidnapRandom0,,(Look around.),,DialogLeave(),
 KidnapRandom10,,(Fight her.),,CharacterFight(),
 KidnapRandom10,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+MistressArrest0,,,(The maid at the entrance stops you.)  Wait!  What are you doing with one of Pandora's Box Dominatrix?,,
+MistressArrest0,MistressArrest20,(Show her a forged document.),"(She scans the forged document as the Dominatrix grumbles.)  I'm sorry Miss.  Everything looks fine, you can go.",,"HasPerk(""Forgery"")"
+MistressArrest0,MistressArrest10,She's not a Dominatrix.,"I know the administrators around here, that's why I'm in charge of the entrance.  Surrender right now!",,
+MistressArrest0,MistressArrest10,Get out of my way.,(She stands her ground.)  Never!  You'll know why I'm in charge of the entrance.  Surrender right now!,,
+MistressArrest0,,(Look around.),,DialogLeave(),
+MistressArrest10,,(Fight her.),,CharacterFight(),
+MistressArrest10,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+MistressArrest20,,,Please have a good day Miss.  Sorry for interrupting your important work.,,
+MistressArrest20,,(Explore Pandora's Box.),,CharacterAllowMove(),

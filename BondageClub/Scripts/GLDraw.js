@@ -1,5 +1,6 @@
 "use strict";
 
+/** @type {Map<string, HTMLImageElement>} */
 var GLDrawImageCache = new Map();
 
 var GLDrawCacheLoadedImages = 0;
@@ -193,7 +194,7 @@ var GLDrawFragmentShaderSourceHalfAlpha = `
  * Creates a shader for the current WebGL context from a given source
  * @param {WebGL2RenderingContext} gl - WebGL context
  * @param {string} source - Source of the shader to create
- * @param {WebGLShader} type - The type of the shader to create
+ * @param {GLenum} type - The type of the shader to create
  * @returns {WebGLShader} - The created WebGL shader
  */
 function GLDrawCreateShader(gl, source, type) {
@@ -263,7 +264,8 @@ function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks, opa
  * @param {string} color - Color of the image to draw
  * @param {boolean} fullAlpha - Whether or not the full alpha should be rendered
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
- * @param {number} opacity - The opacity at which to draw the image
+ * @param {number} [opacity=1] - The opacity at which to draw the image
+ * @param {boolean} [rotate=false] - If the image should be rotated by 180 degress
  * @returns {void} - Nothing
  */
 function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks, opacity, rotate = false) {
@@ -279,7 +281,7 @@ function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks,
 	gl.useProgram(program);
 
 	gl.enable(gl.BLEND);
-	gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.SRC_ALPHA, gl.DST_ALPHA);
+	gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
 	gl.bindBuffer(gl.ARRAY_BUFFER, program.position_buffer);
 	gl.enableVertexAttribArray(program.a_position);
@@ -334,8 +336,8 @@ function GLDraw2DCanvas(gl, Img, X, Y, alphaMasks) {
 /**
  * Sets texture info from image data
  * @param {WebGLRenderingContext} gl - WebGL context
- * @param {ImageData} Img - Image to get the data of
- * @param {WebGLTexture} textureInfo - Texture information
+ * @param {HTMLImageElement} Img - Image to get the data of
+ * @param {{ width: number; height: number; texture: WebGLTexture; }} textureInfo - Texture information
  * @returns {void} - Nothing
  */
 function GLDrawBingImageToTextureInfo(gl, Img, textureInfo) {
@@ -349,7 +351,7 @@ function GLDrawBingImageToTextureInfo(gl, Img, textureInfo) {
  * Loads image texture data
  * @param {WebGLRenderingContext} gl - WebGL context
  * @param {string} url - URL of the image
- * @returns {WebGLTexture} - The texture info of a given image
+ * @returns {{ width: number; height: number; texture: WebGLTexture; }} - The texture info of a given image
  */
 function GLDrawLoadImage(gl, url) {
 
@@ -359,6 +361,7 @@ function GLDrawLoadImage(gl, url) {
 		var tex = gl.createTexture();
 
 		gl.bindTexture(gl.TEXTURE_2D, tex);
+		/** @type { { width: number; height: number; texture: WebGLTexture; } } */
 		textureInfo = { width: 1, height: 1, texture: tex, };
 		gl.textureCache.set(url, textureInfo);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -465,7 +468,7 @@ function GLDrawClearRect(gl, x, y, width, height) {
  * Converts a hex color to a RGBA color
  * @param {string} color - Hex color code to convert to RGBA
  * @param {number} alpha - The alpha value to use for the resulting RGBA
- * @return {string} - Converted color code
+ * @return {number[]} - Converted color code
  */
 function GLDrawHexToRGBA(color, alpha = 1) {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;

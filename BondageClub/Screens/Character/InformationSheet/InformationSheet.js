@@ -44,7 +44,7 @@ function InformationSheetRun() {
 		if (C.ID == 0) DrawTextFit(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, 450, "Black", "Gray");
 		else DrawTextFit(TextGet("FriendsFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "PrivateRoomEntry")) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, 450, "Black", "Gray");
 		if (C.ID == 0) DrawTextFit(TextGet("Money") + " " + C.Money.toString() + " $", 550, 425, 450, "Black", "Gray");
-		else if (C.Love != null) DrawText(InformationSheetGetLove(C.Love), 550, 425, 450, "Black", "Gray");
+		else if (C.Love != null) DrawTextFit(InformationSheetGetLove(C.Love), 550, 425, 450, "Black", "Gray");
 	} else {
 		if (C.Creation != null) DrawTextFit(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, 450, "Black", "Gray");
 	}

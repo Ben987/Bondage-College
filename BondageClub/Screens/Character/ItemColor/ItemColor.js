@@ -70,7 +70,7 @@ let ItemColorGroupNames;
  * @param {number} y - The y-coordinate at which to draw the UI
  * @param {number} width - The width the UI should be drawn at
  * @param {number} height - The height the UI should be drawn at
- * @param {boolean} includeResetButton - Whether or not to include the "Reset to default" button
+ * @param {boolean} [includeResetButton] - Whether or not to include the "Reset to default" button
  * @returns {void} - Nothing
  */
 function ItemColorLoad(c, item, x, y, width, height, includeResetButton) {
@@ -211,7 +211,7 @@ function ItemColorDrawDefault(x, y) {
  * indices
  * @const {function(): void}
  */
-const ItemColorOnPickerChange = CommonDebounce((color) => {
+const ItemColorOnPickerChange = CommonLimitFunction((color) => {
 	const newColors = ItemColorState.colors.slice();
 	ItemColorPickerIndices.forEach(i => newColors[i] = color);
 	ItemColorItem.Color = newColors;
@@ -496,10 +496,10 @@ function ItemColorPreviousLayer(colorGroup) {
  * @param {number} y - The y-coordinate at which to draw the UI
  * @param {number} width - The width the UI should be drawn at
  * @param {number} height - The height the UI should be drawn at
- * @param {boolean} includeResetButton - Whether or not to include the "Reset to default" button
+ * @param {boolean} [includeResetButton=false] - Whether or not to include the "Reset to default" button
  * @returns {void} - Nothing
  */
-function ItemColorStateBuild(c, item, x, y, width, height, includeResetButton) {
+function ItemColorStateBuild(c, item, x, y, width, height, includeResetButton=false) {
 	ItemColorCharacter = c;
 	ItemColorItem = item;
 	const itemKey = AppearanceItemStringify({ item, x, y, width, height });

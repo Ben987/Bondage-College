@@ -53,3 +53,8 @@ Tip16,Beta items will be lost if you go back to the regular version.
 Tip17,You can protect yourself by blocking items and blacklisting players.
 Tip18,"Reach us on Discord, DeviantArt or Patreon if you need help."
 Tip19,Type /help in a chatroom to know the available chat commands.
+PandoraKidnapperIntro0,(A woman blocks your path.)  DialogPlayerName!  You've been a nuisance for Pandora's Box for far too long.  Surrender now or you will get hurt.
+PandoraKidnapperIntro1,(A girl taps on your shoulder.)  Here you are!  Pandora's Box sent me to get you.  Get on your knees right now or there will be trouble.
+PandoraKidnapperIntro2,"(Someone springs from behind you.)  No offense DialogPlayerName, but Pandora's Box as put a bounty on you.  Come with me quietly."
+PandoraKidnapperIntro3,(A girl jumps in front of you.)  Your days of causing trouble are over DialogPlayerName.  I'm bringing you bound and gagged to Pandora's Box.
+PandoraKidnapperIntro4,(A woman chases you down.)  You won't be running away this time girl.  Pandora's Box has a special cell ready for your ass.

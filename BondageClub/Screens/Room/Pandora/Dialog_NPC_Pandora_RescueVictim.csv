@@ -6,6 +6,6 @@ PlayerGagged,,,(She seems to wonder.)  Why are you gagged miss?,,
 0,,I'm here to rescue you.,"(She nods happily.)  Thank you so much Miss, you're the best.",DialogRemove(),
 0,,Where is the exit?,"(She shrugs.)  I'm sorry, I don't know.",DialogRemove(),
 0,,(Bring her with you.),(She nods her head and starts to follow you.)  I can smell freedom!,CharacterJoin(),CharacterCanJoin()
-0,,(Leaver her here.),(She nods and stops moving.)  I hope you have a good plan.,CharacterLeave(),CharacterCanLeave()
+0,,(Leave her here.),(She nods and stops moving.)  I hope you have a good plan.,CharacterLeave(),CharacterCanLeave()
 0,,(Strip her naked.),(You strip her naked as she struggles.)  What kind of rescue mission is that?,CharacterNaked(),!CurrentCharacter.IsNaked()
 0,,I cannot talk now.  (Leave her.),,DialogLeave(),

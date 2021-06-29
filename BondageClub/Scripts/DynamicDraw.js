@@ -13,10 +13,10 @@
  * automatically to fit. Defaults to 30px.
  * @property {string} [fontFamily] - The desired font family to draw text in. This can be a single font name, or a full CSS font stack
  * (e.g. "'Helvetica', 'Arial', sans-serif"). Defaults to the player's chosen global font.
- * @property {string} [textAlign] - The text alignment to use. Can be any valid
+ * @property {CanvasTextAlign} [textAlign] - The text alignment to use. Can be any valid
  * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/text-align text alignment}. Not applicable to the {@link DynamicDrawTextArc}
  * function. Defaults to "center".
- * @property {string} [textBaseline] - The text baseline to use. Can be any valid
+ * @property {CanvasTextBaseline} [textBaseline] - The text baseline to use. Can be any valid
  * {@link https://developer.mozilla.org/en-us/docs/Web/CSS/vertical-align vertical alignment}. Defaults to "middle".
  * @property {string} [color] - The color that the text should be drawn in. Can be any valid CSS color string. Defaults to "#000".
  * @property {DynamicDrawTextEffect} [effect] - A dynamic text effect to apply. No effects are applied by default.
@@ -86,9 +86,9 @@ const DynamicDrawTextArcPaddingRatio = 1.15;
 /**
  * Cache for font measurements. These are used to make text which is drawn in an arc look more natural by respecting the widths of
  * characters in various fonts.
- * @type {object.<string, {
+ * @type {Record.<string, {
  *     width: number,
- *     weights: object.<string, number>
+ *     weights: Record.<string, number>
  * }>}
  */
 const DynamicDrawFontMeasurements = {};
@@ -142,7 +142,7 @@ const DynamicDrawTextDefaultOptions = {
 
 /**
  * Dynamic text effect definitions. The definitions define the drawing effects that can be applied to dynamically drawn text.
- * @type {object.<DynamicDrawTextEffect, DynamicDrawTextEffectDefinition>}
+ * @type {Record.<DynamicDrawTextEffect, DynamicDrawTextEffectDefinition>}
  */
 const DynamicDrawTextEffects = {
 	[DynamicDrawTextEffect.BURN]: {

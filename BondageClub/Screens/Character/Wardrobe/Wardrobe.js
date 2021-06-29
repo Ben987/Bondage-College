@@ -16,7 +16,7 @@ function WardrobeLoadCharacterNames() {
 		Player.WardrobeCharacterNames.push(Player.Name);
 		Push = true;
 	}
-	if (Push) ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
+	if (Push) ServerAccountUpdate.QueueData({ WardrobeCharacterNames: Player.WardrobeCharacterNames });
 }
 
 /**
@@ -76,7 +76,7 @@ function WardrobeLoadCharacters(Fast) {
 	if (W != null) {
 		WardrobeFixLength();
 		if (Fast) WardrobeFastLoad(WardrobeCharacter[W], W);
-		ServerSend("AccountUpdate", { Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
+		ServerAccountUpdate.QueueData({ Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
 	}
 }
 
@@ -171,18 +171,14 @@ function WardrobeSetCharacterName(W, Name, Push) {
 		WardrobeCharacter[W].Name = Name;
 	}
 	if (Push == null || Push != false) {
-		ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
+		ServerAccountUpdate.QueueData({ WardrobeCharacterNames: Player.WardrobeCharacterNames });
 	}
 }
 
 /**
  * Reduces a given asset to the attributes needed for the wardrobe
- * @param {Asset} A - The asset that should be reduced
- * @returns {Object} - bundle. The bundled asset
- * @returns {string} - bundle.Name - The name of the asset in the bundle
- * @returns {string} - bundle.Group - The name of the asste group, the bundled asset belongs to
- * @returns {string} - bundle.Color - The string representation of the color in the format "#rrggbb"
- * @returns {Object} - bundle.Property - The asset property object
+ * @param {Item} A - The asset that should be reduced
+ * @returns {ItemBundle} - The bundled asset
  */
 function WardrobeAssetBundle(A) {
 	let Property;
@@ -251,6 +247,7 @@ function WardrobeFastLoad(C, W, Update) {
 				}
 			});
 		}
+		CharacterLoadPose(C);
 		CharacterLoadCanvas(C);
 		if (Update == null || Update) {
 			if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
@@ -282,7 +279,7 @@ function WardrobeFastSave(C, W, Push) {
 		}
 		WardrobeFixLength();
 		if (WardrobeCharacter != null && WardrobeCharacter[W] != null && C.AccountName != WardrobeCharacter[W].AccountName) WardrobeFastLoad(WardrobeCharacter[W], W);
-		if ((Push == null) || Push) ServerSend("AccountUpdate", { Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
+		if ((Push == null) || Push) ServerAccountUpdate.QueueData({ Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
 	}
 }
 

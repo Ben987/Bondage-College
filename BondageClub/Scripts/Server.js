@@ -2,7 +2,7 @@
  * A map containing appearance item diffs, keyed according to the item group. Used to compare and validate before/after
  * for appearance items.
  * @typedef AppearanceDiffMap
- * @type {object.<string, Item[]>}
+ * @type {Record.<string, Item[]>}
  */
 
 "use strict";
@@ -52,10 +52,72 @@ function ServerInit() {
 	ServerSocket.on("AccountLovership", function (data) { ServerAccountLovership(data); });
 }
 
+/** @readonly */
+var ServerAccountUpdate = new class AccountUpdater {
+
+	constructor() {
+		/**
+		 * @private
+		 * @type {Map<string, object>}
+		 */
+		this.Queue = new Map;
+		/**
+		 * @private
+		 * @type {null | number}
+		 */
+		this.Timeout = null;
+		/**
+		 * @private
+		 * @type {number}
+		 */
+		this.Start = 0;
+	}
+
+	/** Clears queue and sync with server  */
+	SyncToServer() {
+		if (this.Timeout) clearTimeout(this.Timeout);
+		this.Timeout = null;
+
+		if (this.Queue.size == 0) return;
+
+		const Queue = this.Queue;
+		this.Queue = new Map;
+		const Data = {};
+		Queue.forEach((value, key) => Data[key] = value);
+
+		ServerSocket.emit('AccountUpdate', Data);
+	}
+
+	/**
+	 * Queues a data to be synced at a later time
+	 * @param {object} Data
+	 * @param {true} [Force] - force immediate sync to server
+	 */
+	QueueData(Data, Force) {
+		for (const [key, value] of Object.entries(Data)) {
+			this.Queue.set(key, value);
+		}
+
+		if (Force) {
+			this.SyncToServer();
+			return;
+		}
+
+		if (this.Timeout) {
+			if (Date.now() - this.Start <= 8000) {
+				clearTimeout(this.Timeout);
+				this.Timeout = null;
+			}
+		} else this.Start = Date.now();
+
+		if (!this.Timeout) this.Timeout = setTimeout(this.SyncToServer.bind(this), 2000);
+	}
+};
+
 /**
  * Sets the connection status of the server and updates the login page message
  * @param {boolean} connected - whether or not the websocket connection to the server has been established successfully
- * @param {string} errorMessage - the error message to display if not connected
+ * @param {string} [errorMessage] - the error message to display if not connected
  */
 function ServerSetConnected(connected, errorMessage) {
 	ServerIsConnected = connected;
@@ -131,12 +193,16 @@ function ServerDisconnect(data, close = false) {
 				RelogChatLog = document.getElementById("TextAreaChatLog").cloneNode(true);
 				RelogChatLog.id = "RelogChatLog";
 				RelogChatLog.name = "RelogChatLog";
+				RelogInputText = ElementValue("InputChat").trim();
 				ElementRemove("InputChat");
 				ElementRemove("TextAreaChatLog");
 				CurrentScreen = "ChatSearch";
 				CurrentModule = "Online";
 				CurrentCharacter = null;
-			} else RelogChatLog = null;
+			} else {
+				RelogChatLog = null;
+				RelogInputText = "";
+			}
 
 			// Keeps the relog data
 			RelogData = { Screen: CurrentScreen, Module: CurrentModule, Character: CurrentCharacter };
@@ -179,8 +245,7 @@ function ServerSend(Message, Data) {
  * @returns {void} - Nothing
  */
 function ServerPlayerSync() {
-	var D = { Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover };
-	ServerSend("AccountUpdate", D);
+	ServerAccountUpdate.QueueData({ Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover });
 	delete Player.Lover;
 }
 
@@ -199,19 +264,20 @@ function ServerPlayerInventorySync() {
 			G.push(Player.Inventory[I].Asset.Name);
 		}
 	}
-	ServerSend("AccountUpdate", { Inventory: Inv });
+	ServerAccountUpdate.QueueData({ Inventory: Inv });
 }
 
 /**
- * Syncs player's blocked, limited and hidden items to the server
+ * Syncs player's favorite, blocked, limited and hidden items to the server
  * @returns {void} - Nothing
  */
 function ServerPlayerBlockItemsSync() {
-	ServerSend("AccountUpdate", {
+	ServerAccountUpdate.QueueData({
 		BlockItems: CommonPackItemArray(Player.BlockItems),
 		LimitedItems: CommonPackItemArray(Player.LimitedItems),
+		FavoriteItems: CommonPackItemArray(Player.FavoriteItems),
 		HiddenItems: Player.HiddenItems
-	});
+	}, true);
 }
 
 /**
@@ -219,9 +285,7 @@ function ServerPlayerBlockItemsSync() {
  * @returns {void} - Nothing
  */
 function ServerPlayerLogSync() {
-	var D = {};
-	D.Log = Log;
-	ServerSend("AccountUpdate", D);
+	ServerAccountUpdate.QueueData({ Log });
 }
 
 /**
@@ -229,9 +293,7 @@ function ServerPlayerLogSync() {
  * @returns {void} - Nothing
  */
 function ServerPlayerReputationSync() {
-	var D = {};
-	D.Reputation = Player.Reputation;
-	ServerSend("AccountUpdate", D);
+	ServerAccountUpdate.QueueData({ Reputation: Player.Reputation });
 }
 
 /**
@@ -239,9 +301,7 @@ function ServerPlayerReputationSync() {
  * @returns {void} - Nothing
  */
 function ServerPlayerSkillSync() {
-	var D = {};
-	D.Skill = Player.Skill;
-	ServerSend("AccountUpdate", D);
+	ServerAccountUpdate.QueueData({ Skill: Player.Skill });
 }
 
 /**
@@ -260,7 +320,7 @@ function ServerPlayerRelationsSync() {
 	});
 	D.FriendNames = LZString.compressToUTF16(JSON.stringify(Array.from(Player.FriendNames)));
 	D.SubmissivesList = LZString.compressToUTF16(JSON.stringify(Array.from(Player.SubmissivesList)));
-	ServerSend("AccountUpdate", D);
+	ServerAccountUpdate.QueueData(D, true);
 }
 
 /**
@@ -289,19 +349,19 @@ function ServerAppearanceBundle(Appearance) {
  * @param {Character} C - Character for which to load the appearance
  * @param {string} AssetFamily - Family of assets used for the appearance array
  * @param {AppearanceBundle} Bundle - Bundled appearance
- * @param {number} SourceMemberNumber - Member number of the user who triggered the change
- * @param {boolean} AppearanceFull - Whether or not the appearance should be assigned to an NPC's AppearanceFull
+ * @param {number} [SourceMemberNumber] - Member number of the user who triggered the change
+ * @param {boolean} [AppearanceFull=false] - Whether or not the appearance should be assigned to an NPC's AppearanceFull
  * property
  * @returns {boolean} - Whether or not the appearance bundle update contained invalid items
  */
-function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber, AppearanceFull) {
+function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber, AppearanceFull=false) {
 	const appearanceDiffs = ServerBuildAppearanceDiff(AssetFamily, C.Appearance, Bundle);
 	ServerAddRequiredAppearance(AssetFamily, appearanceDiffs);
 
 	if (SourceMemberNumber == null) SourceMemberNumber = C.MemberNumber;
 	const updateParams = ValidationCreateDiffParams(C, SourceMemberNumber);
 
-	const { appearance, updateValid } = Object.keys(appearanceDiffs)
+	let { appearance, updateValid } = Object.keys(appearanceDiffs)
 		.reduce(({ appearance, updateValid }, key) => {
 			const diff = appearanceDiffs[key];
 			const { item, valid } = ValidationResolveAppearanceDiff(diff[0], diff[1], updateParams);
@@ -309,6 +369,10 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			updateValid = updateValid && valid;
 			return { appearance, updateValid };
 		}, { appearance: [], updateValid: true });
+
+	const cyclicBlockSanitizationResult = ValidationResolveCyclicBlocks(appearance, appearanceDiffs);
+	appearance = cyclicBlockSanitizationResult.appearance;
+	updateValid = updateValid && cyclicBlockSanitizationResult.valid;
 
 	if (AppearanceFull) {
 		C.AppearanceFull = appearance;
@@ -333,6 +397,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
  * appearance
  */
 function ServerBuildAppearanceDiff(assetFamily, appearance, bundle) {
+	/** @type {AppearanceDiffMap} */
 	const diffMap = {};
 	appearance.forEach((item) => {
 		diffMap[item.Asset.Group.Name] = [item, null];
@@ -442,7 +507,7 @@ function ServerPlayerAppearanceSync() {
 		var D = {};
 		D.AssetFamily = Player.AssetFamily;
 		D.Appearance = ServerAppearanceBundle(Player.Appearance);
-		ServerSend("AccountUpdate", D);
+		ServerAccountUpdate.QueueData(D, true);
 	}
 
 }
@@ -472,7 +537,7 @@ function ServerPrivateCharacterSync() {
 			};
 			D.PrivateCharacter.push(C);
 		}
-		ServerSend("AccountUpdate", D);
+		ServerAccountUpdate.QueueData(D);
 	}
 }
 
@@ -616,4 +681,42 @@ function ServerAccountLovership(data) {
 		Player.Lovership = data.Lovership;
 		LoginLoversItems();
 	}
+}
+
+/**
+ * Compares the source account and target account to check if we allow using an item
+ *
+ * **This function MUST match server's identical function!**
+ * @param {Character} Source
+ * @param {Character} Target
+ * @returns {boolean}
+ */
+function ServerChatRoomGetAllowItem(Source, Target) {
+
+	// Make sure we have the required data
+	if ((Source == null) || (Target == null)) return false;
+
+	// NPC
+	if (typeof Target.MemberNumber !== "number") return true;
+
+	// At zero permission level or if target is source or if owner, we allow it
+	if ((Target.ItemPermission <= 0) || (Source.MemberNumber == Target.MemberNumber) || ((Target.Ownership != null) && (Target.Ownership.MemberNumber != null) && (Target.Ownership.MemberNumber == Source.MemberNumber))) return true;
+
+	// At one, we allow if the source isn't on the blacklist
+	if ((Target.ItemPermission == 1) && (Target.BlackList.indexOf(Source.MemberNumber) < 0)) return true;
+
+	var LoversNumbers = CharacterGetLoversNumbers(Target, true);
+
+	// At two, we allow if the source is Dominant compared to the Target (25 points allowed) or on whitelist or a lover
+	if ((Target.ItemPermission == 2) && (Target.BlackList.indexOf(Source.MemberNumber) < 0) && ((ReputationCharacterGet(Source, "Dominant") + 25 >= ReputationCharacterGet(Target, "Dominant")) || (Target.WhiteList.indexOf(Source.MemberNumber) >= 0) || (LoversNumbers.indexOf(Source.MemberNumber) >= 0))) return true;
+
+	// At three, we allow if the source is on the whitelist of the Target or a lover
+	if ((Target.ItemPermission == 3) && ((Target.WhiteList.indexOf(Source.MemberNumber) >= 0) || (LoversNumbers.indexOf(Source.MemberNumber) >= 0))) return true;
+
+	// At four, we allow if the source is a lover
+	if ((Target.ItemPermission == 4) && (LoversNumbers.indexOf(Source.MemberNumber) >= 0)) return true;
+
+	// No valid combo, we don't allow the item
+	return false;
+
 }

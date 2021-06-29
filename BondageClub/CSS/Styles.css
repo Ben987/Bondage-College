@@ -75,11 +75,8 @@ TextArea {
 #TextAreaChatLog[data-colortheme=dark] .ChatMessageWhisper, #TextAreaChatLog[data-colortheme="dark2"] .ChatMessageWhisper {
   color: #555;
 }
-#TextAreaChatLog[data-colortheme="dark2"], #TextAreaChatLog[data-colortheme="light2"] {
-  font-size: 1.6rem !important;
-}
+
 #TextAreaChatLog[data-colortheme="dark2"] .ChatMessage, #TextAreaChatLog[data-colortheme="light2"] .ChatMessage {
-  font-size: 1.4rem;
   line-height: 1.4em;
   padding: 0.1em;
   padding-right: 2em;
@@ -329,9 +326,7 @@ input[type=range]::-webkit-slider-thumb {
   background-color: #ccc;
 }
 
-input[type=range][data-thumb=lock]::-webkit-slider-thumb,
-input[type=range][data-thumb=blindfold]::-webkit-slider-thumb,
-input[type=range][data-thumb=lightbulb]::-webkit-slider-thumb {
+input[type=range][data-thumb]::-webkit-slider-thumb {
   background-color: transparent;
   box-shadow: none;
   background-position: center;
@@ -340,9 +335,8 @@ input[type=range][data-thumb=lightbulb]::-webkit-slider-thumb {
   font-size: 1.5em;
   border-radius: 0;
 }
-input[type=range][data-thumb=lock].Vertical::-webkit-slider-thumb,
-input[type=range][data-thumb=blindfold].Vertical::-webkit-slider-thumb,
-input[type=range][data-thumb=lightbulb].Vertical::-webkit-slider-thumb {
+
+input[type=range][data-thumb].Vertical::-webkit-slider-thumb {
   transform: rotate(90deg);
 }
 
@@ -358,6 +352,11 @@ input[type=range][data-thumb=blindfold]::-webkit-slider-thumb {
 input[type=range][data-thumb=lightbulb]::-webkit-slider-thumb {
   background-image: url("../Icons/Lightbulb.png");
   width: 0.6em;
+}
+
+input[type=range][data-thumb=player]::-webkit-slider-thumb {
+  background-image: url("../Icons/Player.png");
+  width: 0.8em;
 }
 
 /* Range Inputs - Firefox */
@@ -381,9 +380,7 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
 }
 
-input[type=range][data-thumb=lock]::-moz-range-thumb,
-input[type=range][data-thumb=blindfold]::-moz-range-thumb,
-input[type=range][data-thumb=lightbulb]::-moz-range-thumb {
+input[type=range][data-thumb]::-moz-range-thumb {
   background-color: transparent;
   box-shadow: none;
   background-position: center;
@@ -393,9 +390,7 @@ input[type=range][data-thumb=lightbulb]::-moz-range-thumb {
   border-radius: 0;
 }
 
-input[type=range][data-thumb=lock].Vertical::-moz-range-thumb,
-input[type=range][data-thumb=blindfold].Vertical::-moz-range-thumb,
-input[type=range][data-thumb=lightbulb].Vertical::-moz-range-thumb {
+input[type=range][data-thumb].Vertical::-moz-range-thumb {
   transform: rotate(90deg);
 }
 
@@ -411,6 +406,11 @@ input[type=range][data-thumb=blindfold]::-moz-range-thumb {
 input[type=range][data-thumb=lightbulb]::-moz-range-thumb {
   background-image: url("../Icons/Lightbulb.png");
   width: 0.6em;
+}
+	
+input[type=range][data-thumb=player]::-moz-range-thumb {
+  background-image: url("../Icons/Player.png");
+  width: 0.8em;
 }
 
 /* Custom fonts */

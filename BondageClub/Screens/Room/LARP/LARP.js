@@ -54,5 +54,5 @@ function LARPSelectClass(NewClass) {
 	if (Player.Game == null) Player.Game = {};
 	if (Player.Game.LARP == null) Player.Game.LARP = {};
 	Player.Game.LARP.Class = NewClass;
-	ServerSend("AccountUpdate", { Game: Player.Game });
+	ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
 }

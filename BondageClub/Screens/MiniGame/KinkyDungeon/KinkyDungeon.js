@@ -3,6 +3,7 @@ var KinkyDungeonBackground = "BrickWall";
 var KinkyDungeonPlayer = null;
 var KinkyDungeonState = "Menu";
 
+var KinkyDungeonRep = 0; // Variable to store max level to avoid losing it if the server doesnt take the rep update
 
 var KinkyDungeonKeybindings = null;
 var KinkyDungeonKeybindingsTemp = null;
@@ -17,6 +18,12 @@ var KinkyDungeonKeySpell = [49, 50, 51]; // 1 2 3
 var KinkyDungeonKeyWait = [120]; // x
 
 var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/";
+var KinkyDungeonPlayerCharacter = null; // Other player object
+var KinkyDungeonGameData = null; // Data sent by other player
+var KinkyDungeonGameDataNullTimer = 4000; // If data is null, we query this often
+var KinkyDungeonGameDataNullTimerTime = 0;
+var KinkyDungeonStreamingPlayers = []; // List of players to stream to
+
 
 /**
  * Loads the kinky dungeon game
@@ -25,21 +32,31 @@ var KinkyDungeonRootDirectory = "Screens/MiniGame/KinkyDungeon/";
 function KinkyDungeonLoad() {
 
 	CurrentDarkFactor = 0;
+	
+	if (!KinkyDungeonIsPlayer()) KinkyDungeonGameRunning = false;
+	
 	if (!KinkyDungeonGameRunning) {
 		if (!KinkyDungeonPlayer)
-      KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
+			KinkyDungeonPlayer = CharacterLoadNPC("NPC_Avatar");
+	
 
-    //KinkyDungeonCreateMap(MiniGameDifficulty);
-    var appearance = CharacterAppearanceStringify(Player);
-    CharacterAppearanceRestore(KinkyDungeonPlayer, appearance);
-    CharacterReleaseTotal(KinkyDungeonPlayer);
-    CharacterNaked(KinkyDungeonPlayer);
-    KinkyDungeonInitializeDresses();
-    KinkyDungeonDressPlayer();
+		//KinkyDungeonCreateMap(MiniGameDifficulty);
+		var appearance = CharacterAppearanceStringify(KinkyDungeonPlayerCharacter ? KinkyDungeonPlayerCharacter : Player);
+		CharacterAppearanceRestore(KinkyDungeonPlayer, appearance);
+		CharacterReleaseTotal(KinkyDungeonPlayer);
+		CharacterNaked(KinkyDungeonPlayer);
+		KinkyDungeonInitializeDresses();
+		KinkyDungeonDressPlayer();
 
-    KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings;
+		KinkyDungeonKeybindings = Player.KinkyDungeonKeybindings;
 
-		KinkyDungeonState = "Menu";
+		if (KinkyDungeonIsPlayer()) {
+			KinkyDungeonState = "Menu";
+			KinkyDungeonGameData = null;
+		} else {
+			KinkyDungeonState = "Game";
+			if (!KinkyDungeonGameData) KinkyDungeonInitialize(1);
+		}
 
 		for (let G = 0; G < KinkyDungeonStruggleGroupsBase.length; G++) {
 			let group = KinkyDungeonStruggleGroupsBase[G];
@@ -63,7 +80,15 @@ function KinkyDungeonLoad() {
  * @returns {bool} - If the player is in the arcade
  */
 function KinkyDungeonDeviousDungeonAvailable() {
-	return DialogGamingPreviousRoom == "Arcade" || MiniGameReturnFunction == "ArcadeKinkyDungeonEnd";
+	return KinkyDungeonIsPlayer() && (DialogGamingPreviousRoom == "Arcade" || MiniGameReturnFunction == "ArcadeKinkyDungeonEnd");
+}
+
+/**
+ * Returns whether or not the player is the one playing, which determines whether or not to draw the UI and struggle groups
+ * @returns {bool} - If the player is the game player
+ */
+function KinkyDungeonIsPlayer() {
+	return (!KinkyDungeonPlayerCharacter || KinkyDungeonPlayerCharacter == Player) ;
 }
 
 /**
@@ -175,14 +200,14 @@ function KinkyDungeonClick() {
 			};
 		}
 	} else if (KinkyDungeonState == "Game") {
-		KinkyDungeonClickGame();
+		if (KinkyDungeonIsPlayer()) KinkyDungeonClickGame();
 	} else if (KinkyDungeonState == "Keybindings") {
 		if (MouseIn(1075, 750, 350, 64)) {
 			KinkyDungeonState = "Menu";
 
 			KinkyDungeonKeybindings = KinkyDungeonKeybindingsTemp;
 
-			ServerSend("AccountUpdate", { KinkyDungeonKeybindings: KinkyDungeonKeybindings });
+			ServerAccountUpdate.QueueData({ KinkyDungeonKeybindings: KinkyDungeonKeybindings });
 		}
 
 		if (KinkyDungeonKeybindingCurrentKey > 0) {
@@ -230,21 +255,30 @@ function KinkyDungeonClick() {
  */
 function KinkyDungeonExit() {
 	CommonDynamicFunction(MiniGameReturnFunction + "()");
+	
+	if (MiniGameKinkyDungeonLevel > Math.max(KinkyDungeonRep, ReputationGet("Gaming")) || Math.max(KinkyDungeonRep, ReputationGet("Gaming")) > KinkyDungeonMaxLevel) {
+		KinkyDungeonRep = Math.max(KinkyDungeonRep, MiniGameKinkyDungeonLevel);
+		DialogSetReputation("Gaming", KinkyDungeonRep);
+	}
 
 	if (CurrentScreen == "ChatRoom" && KinkyDungeonState != "Menu" && (MiniGameKinkyDungeonLevel > 1 || KinkyDungeonState == "Lose")) {
 		let Message = "KinkyDungeonExit";
 
-		if (KinkyDungeonState == "Lose") {
-			Message = "KinkyDungeonLose";
-		}
+			if (KinkyDungeonState == "Lose") {
+				Message = "KinkyDungeonLose";
 
-		let Dictionary = [
-			{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-			{ Tag: "KinkyDungeonLevel", Text: String(MiniGameKinkyDungeonLevel)},
-		];
-		ChatRoomPublishCustomAction(Message, false, Dictionary);
+			let Dictionary = [
+				{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+				{ Tag: "KinkyDungeonLevel", Text: String(MiniGameKinkyDungeonLevel)},
+			];
+			ChatRoomPublishCustomAction(Message, false, Dictionary);
+			
+		}
 	}
 }
+
+
+ 
 
 /**
  * Handles key presses during the mini game. (Both keyboard and mobile)
@@ -253,7 +287,7 @@ function KinkyDungeonExit() {
 function KinkyDungeonKeyDown() {
 
 	if (KinkyDungeonState == "Game")
-		KinkyDungeonGameKeyDown();
+		if (KinkyDungeonIsPlayer()) KinkyDungeonGameKeyDown();
 	else if (KinkyDungeonState == "Keybindings") {
 		KinkyDungeonKeybindingCurrentKey = KeyPress;
 	}

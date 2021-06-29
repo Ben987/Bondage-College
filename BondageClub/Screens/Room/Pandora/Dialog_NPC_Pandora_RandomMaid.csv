@@ -41,6 +41,7 @@ ItemNipples,,,(She whimpers as you use the device on her breast.)  Ow!  Was this
 RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
 0,,,"Hi sister, I hope you're doing well.",,"CostumeIs(""Maid"")"
 0,,,Hello Miss guard.  (She does a maid curtsy.)  Do you need a refreshing drink for your hard work?,,"CostumeIs(""Guard"")"
+0,,,It's a pleasure to see you Dominatrix.  (She does a maid curtsy.)  Would you like a refreshing drink?,,"CostumeIs(""Mistress"")"
 0,,,(She ponders.)  Miss?  You know you look a little like the infamous DialogPlayerName?,,"DialogSkillGreater(""Infiltration"", 9)"
 0,,,"(She does a maid curtsy.)  Hello Miss, I think we've met before.  I'm maid DialogCharacterName.",,"DialogSkillGreater(""Infiltration"", 4)"
 0,,,"Hello Miss, it's a pleasure to meet you.",,
@@ -81,7 +82,7 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 100,,,You think you're smart?  You will never get away.,,
 100,,"Maid, go get me a drink.",(She grumbles.)  You think you're funny?  You won't have much to drink when you rot in a cell.,DialogRemove(),
 100,,(Bring her with you.),Hey!  I have a job to do!  (She will follow you from room to room.),CharacterJoin(),CharacterCanJoin()
-100,,(Leaver her here.),Can I go back to work now?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
+100,,(Leave her here.),Can I go back to work now?  (She will no longer follow you.),CharacterLeave(),CharacterCanLeave()
 100,,(Strip her naked.),(She seems furious as you strip her naked.)  You will pay for that.,CharacterNaked(),!CurrentCharacter.IsNaked()
 100,,(Wear her clothes.),(She stares at you as you quickly dress up as her.)  You won't fool anyone.,"PlayerClothes(""Maid"")",CurrentCharacter.IsNaked()
 100,,(Leave her.),,DialogLeave(),

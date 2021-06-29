@@ -14,11 +14,7 @@ var MainHallMaidWasCalledManually = false;
 
 var MainHallBeingPunished = false;
 var MainHallFirstFrame = false;
-var MainHallStrongLocks = [{ Name: "CombinationPadlock", Group: "ItemMisc", Type: null },
-	{ Name: "PasswordPadlock", Group: "ItemMisc", Type: null },
-	{ Name: "TimerPasswordPadlock", Group: "ItemMisc", Type: null },
-	{ Name: "HighSecurityPadlock", Group: "ItemMisc", Type: null },
-];
+var MainHallStrongLocks = ["CombinationPadlock", "PasswordPadlock", "TimerPasswordPadlock", "HighSecurityPadlock"];
 
 var MainHallPunishmentList = [
 	{ItemMouth:"BallGag", ItemHead: "LeatherBlindfold", ItemHands: "DuctTape"},
@@ -46,9 +42,8 @@ function MainHallPlayerNeedsHelpAndHasNoOwnerOrLoverItem() {
 			break;
 		}
 
-		let LockList = MainHallStrongLocks.map(L => L.Name);
-		for (let L = 0; L < LockList.length; L++) {
-			if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == LockList[L]))) {
+		for (let L = 0; L < MainHallStrongLocks.length; L++) {
+			if (((Player.Appearance[E].Property != null) && (Player.Appearance[E].Property.LockedBy == MainHallStrongLocks[L]))) {
 				needsHelp = true;
 				break;
 			}
@@ -321,9 +316,11 @@ function MainHallWalk(RoomName) {
 		var MeetKidnapper = ((ReputationGet("Kidnap") > 0) && (CheatFactor("BlockRandomKidnap", 0) == 1)) ? Math.random() : 0;
 		var MeetClubSlave = Math.random();
 		var MeetPolice = (LogQuery("Joined", "BadGirl")) ? (Math.random() * PrisonWantedPlayer()) : 0;
+		var PandoraRevenge = (SkillGetLevel(Player, "Infiltration") >= 4) ? Math.random() * (SkillGetLevel(Player, "Infiltration") / 7) : 0;
 
 		// Starts the event with the highest value (picked at random)
-		if ((MeetPolice > PlayerClubSlave) && (MeetPolice > PlayerEscapedAsylum) && (MeetPolice > MeetEscapedPatient) && (MeetPolice > MeetKidnapper) && (MeetPolice > MeetClubSlave)) PrisonMeetPoliceIntro("MainHall");
+		if ((PandoraRevenge > MeetPolice) && (PandoraRevenge > PlayerClubSlave) && (PandoraRevenge > PlayerEscapedAsylum) && (PandoraRevenge > MeetEscapedPatient) && (PandoraRevenge > MeetKidnapper) && (PandoraRevenge > MeetClubSlave)) InfiltrationStartKidnapping();
+		else if ((MeetPolice > PlayerClubSlave) && (MeetPolice > PlayerEscapedAsylum) && (MeetPolice > MeetEscapedPatient) && (MeetPolice > MeetKidnapper) && (MeetPolice > MeetClubSlave)) PrisonMeetPoliceIntro("MainHall");
 		else if ((PlayerClubSlave > PlayerEscapedAsylum) && (PlayerClubSlave > MeetEscapedPatient) && (PlayerClubSlave > MeetKidnapper) && (PlayerClubSlave > MeetClubSlave)) ManagementClubSlaveRandomIntro();
 		else if ((PlayerEscapedAsylum > MeetEscapedPatient) && (PlayerEscapedAsylum > MeetKidnapper) && (PlayerEscapedAsylum > MeetClubSlave)) AsylumEntranceNurseCatchEscapedPlayer();
 		else if ((MeetEscapedPatient > MeetKidnapper) && (MeetEscapedPatient > MeetClubSlave)) AsylumEntranceEscapedPatientMeet();
@@ -354,6 +351,7 @@ function MainHallClick() {
 	if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 25) && (MouseY < 115) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
 		if (window.confirm(TextGet("ExitConfirm"))) {
+			ServerAccountUpdate.SyncToServer();
 			// eslint-disable-next-line no-self-assign
 			window.location = window.location;
 		}
@@ -446,9 +444,8 @@ function MainHallMaidReleasePlayer() {
 			if ((MainHallMaid.Dialog[D].Stage == "0") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "AlreadyReleased");
 		CharacterRelease(Player);
-		let LockList = MainHallStrongLocks.map(L => L.Name);
-		for (let L = 0; L < LockList.length; L++) {
-			CharacterReleaseFromLock(Player, LockList[L]);
+		for (let L = 0; L < MainHallStrongLocks.length; L++) {
+			CharacterReleaseFromLock(Player, MainHallStrongLocks[L]);
 		}
 		// Added to remove maids being disabled
 		if (LogQuery("MaidsDisabled", "Maid")) {

@@ -8,6 +8,8 @@ var ActivityOrgasmGameResistCount = 0;
 var ActivityOrgasmGameTimer = 0;
 var ActivityOrgasmResistLabel = "";
 
+var ActivityOrgasmRuined = false; // If set to true, the orgasm will be ruined right before it happens
+
 /**
  * Checks if the current room allows for activities. (They can only be done in certain rooms)
  * @returns {boolean} - Whether or not activities can be done
@@ -155,9 +157,9 @@ function ActivityDialogBuild(C) {
  * Calculates the effect of an activity performed on a zone
  * @param {Character} S - The character performing the activity
  * @param {Character} C - The character on which the activity is performed
- * @param {string} A - The activity performed
+ * @param {string|Activity} A - The activity performed
  * @param {string} Z - The group/zone name where the activity was performed
- * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
+ * @param {number} [Count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
  * If you don't want an activity to modify arousal, set this parameter to '0'
  * @return {void} - Nothing
  */
@@ -185,7 +187,7 @@ function ActivityEffect(S, C, A, Z, Count) {
  * @param {Character} C - The character on which the activity is performed
  * @param {number} Amount - The base amount of arousal to add
  * @param {string} Z - The group/zone name where the activity was performed
- * @param {number} [count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
+ * @param {number} [Count=1] - If the activity is done repeatedly, this defines the number of times, the activity is done.
  * If you don't want an activity to modify arousal, set this parameter to '0'
  * @return {void} - Nothing
  */
@@ -279,6 +281,43 @@ function ActivityOrgasmProgressBar(X, Y) {
 }
 
 /**
+ * Ends the orgasm early if progress is close or progress is sufficient
+ * @return {void} - Nothing
+ */
+function ActivityOrgasmControl() {
+	if ((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < Player.ArousalSettings.OrgasmTimer)) {
+		// Ruin the orgasm
+		if (ActivityOrgasmGameProgress >= ActivityOrgasmGameDifficulty - 1 || CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
+			if (CurrentScreen == "ChatRoom") {
+				if (CurrentTime > Player.ArousalSettings.OrgasmTimer - 500) {
+					if (Player.ArousalSettings.OrgasmStage == 0) {
+						if ((CurrentScreen == "ChatRoom"))
+							ChatRoomMessage({ Content: "OrgasmFailPassive" + (Math.floor(Math.random() * 3)).toString(), Type: "Action", Sender: Player.MemberNumber });
+					} else {
+						if ((CurrentScreen == "ChatRoom")) {
+							let Dictionary = [];
+							Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+							ServerSend("ChatRoomChat", { Content: "OrgasmFailTimeout" + (Math.floor(Math.random() * 3)).toString(), Type: "Activity", Dictionary: Dictionary });
+							ActivityChatRoomArousalSync(Player);
+						}
+					}
+				} else {
+					if ((CurrentScreen == "ChatRoom")) {
+						let Dictionary = [];
+						Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+						ServerSend("ChatRoomChat", { Content: ("OrgasmFailResist" + (Math.floor(Math.random() * 3))).toString(), Type: "Activity", Dictionary: Dictionary });
+						ActivityChatRoomArousalSync(Player);
+					}
+				}
+			}
+			ActivityOrgasmGameResistCount++;
+			ActivityOrgasmStop(Player, 65 + Math.ceil(Math.random()*20));
+		}
+	}
+}
+
+
+/**
  * Increases the player's willpower when resisting an orgasm.
  * @param {Character} C - The character currently resisting
  * @return {void} - Nothing
@@ -297,18 +336,35 @@ function ActivityOrgasmWillpowerProgress(C) {
  */
 function ActivityOrgasmStart(C) {
 	if ((C.ID == 0) || C.IsNpc()) {
-		if (C.ID == 0) ActivityOrgasmGameResistCount = 0;
+		if (C.ID == 0 && !ActivityOrgasmRuined) ActivityOrgasmGameResistCount = 0;
 		ActivityOrgasmWillpowerProgress(C);
-		C.ArousalSettings.OrgasmTimer = CurrentTime + (Math.random() * 10000) + 5000;
-		C.ArousalSettings.OrgasmStage = 2;
-		C.ArousalSettings.OrgasmCount = (C.ArousalSettings.OrgasmCount == null) ? 1 : C.ArousalSettings.OrgasmCount + 1;
-		ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
-		if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
-			var Dictionary = [];
-			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-			ServerSend("ChatRoomChat", { Content: "Orgasm" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary });
-			ActivityChatRoomArousalSync(C);
+		
+		if (!ActivityOrgasmRuined) {
+		
+			C.ArousalSettings.OrgasmTimer = CurrentTime + (Math.random() * 10000) + 5000;
+			C.ArousalSettings.OrgasmStage = 2;
+			C.ArousalSettings.OrgasmCount = (C.ArousalSettings.OrgasmCount == null) ? 1 : C.ArousalSettings.OrgasmCount + 1;
+			ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
+			
+			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
+				let Dictionary = [];
+				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+				ServerSend("ChatRoomChat", { Content: "Orgasm" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary });
+				ActivityChatRoomArousalSync(C);
+			}
+		} else {
+			ActivityOrgasmStop(Player, 65 + Math.ceil(Math.random()*20));
+			
+			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
+				let Dictionary = [];
+				let ChatModifier = C.ArousalSettings.OrgasmStage == 1 ? "Timeout" : "Surrender";
+				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+				ServerSend("ChatRoomChat", { Content: ("OrgasmFail" + ChatModifier + (Math.floor(Math.random() * 3))).toString(), Type: "Activity", Dictionary: Dictionary });
+				ActivityChatRoomArousalSync(C);
+			}
 		}
+		
+		
 	}
 }
 
@@ -365,17 +421,26 @@ function ActivityOrgasmGameGenerate(Progress) {
 /**
  * Triggers an orgasm for the player or an NPC which lasts from 5 to 15 seconds
  * @param {Character} C - Character for which an orgasm was triggered
+ * @param {bool} Bypass - If true, this will do a ruined orgasm rather than a real one
  * @returns {void} - Nothing
  */
-function ActivityOrgasmPrepare(C) {
+function ActivityOrgasmPrepare(C, Bypass) {
+	ActivityOrgasmRuined = false;
+	
 	if (C.Effect.includes("DenialMode")) {
 		C.ArousalSettings.Progress = 99;
-		return;
+		if (C.ID == 0 && (Bypass || C.Effect.includes("RuinOrgasms"))) ActivityOrgasmRuined = true;
+		else return;
 	}
 
 	if (C.IsEdged()) {
 		C.ArousalSettings.Progress = 95;
-		return;
+		if (C.ID == 0 && Bypass) ActivityOrgasmRuined = true;
+		else return;
+	}
+	
+	if (C.ID == 0 && ActivityOrgasmRuined) {
+		ActivityOrgasmGameGenerate(0); // Resets the game
 	}
 
 	if ((C.ID == 0) || C.IsNpc()) {
@@ -498,7 +563,7 @@ function ActivityVibratorLevel(C, Level) {
 
 /**
  * Calculates the progress one character does on another right away
- * @param {Character} Source- The character who performed the activity
+ * @param {Character} Source - The character who performed the activity
  * @param {Character} Target - The character on which the activity was performed
  * @param {object} Activity - The activity performed
  * @returns {void} - Nothing

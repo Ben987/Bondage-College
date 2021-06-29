@@ -91,14 +91,17 @@ function InventoryItemMiscCombinationPadlockDraw() {
 		document.getElementById("NewCombinationNumber").type = playerBlind ? "password" : "text";
 	}
 
-	const LockMemberNumber = playerBlind ? "?" : DialogFocusSourceItem.Property.LockMemberNumber.toString();
 	DrawText(
 		DialogFindPlayer(DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 400, "white",
 		"gray",
 	);
-	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) &&
-		(DialogFocusSourceItem.Property.LockMemberNumber != null))
+	const Property = DialogFocusSourceItem && DialogFocusSourceItem.Property;
+	let LockMemberNumber;
+	if (playerBlind) LockMemberNumber = "?";
+	else LockMemberNumber = Property && Property.LockMemberNumber && Property.LockMemberNumber.toString();
+	if (LockMemberNumber != null) {
 		DrawText(DialogFindPlayer("LockMemberNumber") + " " + LockMemberNumber, 1500, 500, "white", "gray");
+	}
 
 	const additionalInfo = [];
 	if (playerBlind) additionalInfo.push("ControlsBlind");

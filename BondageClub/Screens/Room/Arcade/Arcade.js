@@ -167,7 +167,10 @@ function ArcadeClick() {
  * @returns {void} - Nothing
  */
 function ArcadeKinkyDungeonStart(PlayerLevel) {
-
+	if (KinkyDungeonPlayerCharacter != Player) {
+		KinkyDungeonGameRunning = false; // Reset the game to prevent carrying over spectator data
+		KinkyDungeonPlayerCharacter = null;
+	}
 	MiniGameStart("KinkyDungeon", PlayerLevel, "ArcadeKinkyDungeonEnd");
 }
 
@@ -178,7 +181,7 @@ function ArcadeKinkyDungeonStart(PlayerLevel) {
 function ArcadeKinkyDungeonEnd() {
 	CommonSetScreen("Room", "Arcade");
 
-	if (MiniGameVictory) {
-		ReputationChange("Gaming", Math.max(ReputationGet("Gaming"), MiniGameKinkyDungeonCheckpoint));
-	}
+	//if (MiniGameVictory) {
+	
+	//}
 }

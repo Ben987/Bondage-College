@@ -1,35 +1,25 @@
 "use strict";
 
-const SmallLockerDevicesOptions = [
-	{
-		Name: "Seethrough",
-		Property: { Type: null}
-	}, {
-		Name: "Opaque",
-		Property: { Type: "Opaque"}
-    }
-];
-
 function InventoryItemDevicesSmallLockerLoad() {
-	ExtendedItemLoad(SmallLockerDevicesOptions, "SelectLockerState");
+	InventoryItemDevicesLockerLoad();
 }
 
 function InventoryItemDevicesSmallLockerDraw() {
-	ExtendedItemDraw(SmallLockerDevicesOptions, "LockerState");
+	InventoryItemDevicesLockerDraw();
 }
 
 function InventoryItemDevicesSmallLockerClick() {
-	ExtendedItemClick(SmallLockerDevicesOptions);
+	InventoryItemDevicesLockerClick();
+}
+
+function InventoryItemDevicesSmallLockerExit() {
+	InventoryItemDevicesLockerExit();
 }
 
 function InventoryItemDevicesSmallLockerPublishAction(C, Option) {
-	var msg = "DevicesLockerSet" + Option.Name;
-	var Dictionary = [];
-	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
-	ChatRoomPublishCustomAction(msg, true, Dictionary);
+	InventoryItemDevicesLockerPublishAction(C, Option);
 }
 
 function InventoryItemDevicesSmallLockerNpcDialog(C, Option) {
-	C.CurrentDialog = DialogFind(C, "LockerState" + Option.Name, "ItemDevices");
+	InventoryItemDevicesLockerNpcDialog(C, Option);
 }

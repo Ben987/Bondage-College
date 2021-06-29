@@ -40,7 +40,6 @@ function InventoryItemLegsChainsClick() {
  * Publishes the message to the chat
  * @param {Character} C - The target character
  * @param {Option} Option - The currently selected Option
- * @param {Option} PreviousOption - The previously selected Option
  * @returns {void} - Nothing
  */
 function InventoryItemLegsChainsPublishAction(C, Option) {

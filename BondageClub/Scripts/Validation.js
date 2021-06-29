@@ -43,12 +43,12 @@ function ValidationCreateDiffParams(C, sourceMemberNumber) {
 
 /**
  * Resolves an appearance diff based on the previous item, new item, and the appearance update parameters provided.
- * Returns an {@link AppearanceDiffResolution} object containing the final appearance item and a valid flag indicating
+ * Returns an {@link ItemDiffResolution} object containing the final appearance item and a valid flag indicating
  * whether or not the new item had to be modified/rolled back.
  * @param {Item|null} previousItem - The previous item that the target character had equipped (or null if none)
  * @param {Item|null} newItem - The new item to equip (may be identical to the previous item, or null if removing)
  * @param {AppearanceUpdateParameters} params - The appearance update parameters that apply to the diff
- * @returns {AppearanceDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
+ * @returns {ItemDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
  * indicating whether or not the change was valid.
  */
 function ValidationResolveAppearanceDiff(previousItem, newItem, params) {
@@ -76,7 +76,7 @@ function ValidationResolveAppearanceDiff(previousItem, newItem, params) {
  * check whether the base item can be added, and then we check that any added properties are permitted.
  * @param {Item} newItem - The new item to equip
  * @param {AppearanceUpdateParameters} params - The appearance update parameters that apply to the diff
- * @returns {AppearanceDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
+ * @returns {ItemDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
  * indicating whether or not the change was valid.
  */
 function ValidationResolveAddDiff(newItem, params) {
@@ -100,7 +100,7 @@ function ValidationResolveAddDiff(newItem, params) {
  * @param {AppearanceUpdateParameters} params - The appearance update parameters that apply to the diff
  * @param {boolean} [isSwap] - Whether or not the removal is part of an item swap operation. This will allow certain
  * items which cannot normally be removed (e.g. items with `AllowNone: false`) to be removed
- * @returns {AppearanceDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
+ * @returns {ItemDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
  * indicating whether or not the change was valid.
  */
 function ValidationResolveRemoveDiff(previousItem, params, isSwap) {
@@ -122,7 +122,7 @@ function ValidationResolveRemoveDiff(previousItem, params, isSwap) {
  * @param {Item} previousItem - The previous item to remove
  * @param {Item} newItem - The new item to add
  * @param {AppearanceUpdateParameters} params - The appearance update parameters that apply to the diff
- * @returns {AppearanceDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
+ * @returns {ItemDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
  * indicating whether or not the change was valid.
  */
 function ValidationResolveSwapDiff(previousItem, newItem, params) {
@@ -143,7 +143,7 @@ function ValidationResolveSwapDiff(previousItem, newItem, params) {
  * @param {Item} previousItem - The previous item to remove
  * @param {Item} newItem - The new item to add
  * @param {AppearanceUpdateParameters} params - The appearance update parameters that apply to the diff
- * @returns {AppearanceDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
+ * @returns {ItemDiffResolution} - The diff resolution - a wrapper object containing the final item and a flag
  * indicating whether or not the change was valid.
  */
 function ValidationResolveModifyDiff(previousItem, newItem, params) {
@@ -164,46 +164,7 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 		return { item: previousItem, valid: false };
 	}
 
-	let valid = true;
-
-	const previousLock = InventoryGetLock(previousItem);
-	const newLock = InventoryGetLock(newItem);
-
-	const lockSwapped = !!newLock && !!previousLock && newLock.Asset.Name !== previousLock.Asset.Name;
-	const lockModified = !!newLock && !!previousLock && !lockSwapped;
-	const lockRemoved = lockSwapped || (!newLock && !!previousLock);
-	const lockAdded = lockSwapped || (!!newLock && !previousLock);
-	const newLockBlocked = !!newLock && ValidationIsItemBlockedOrLimited(
-		C, sourceMemberNumber, newLock.Asset.Group.Name, newLock.Asset.Name,
-	);
-
-	const lockChangeInvalid = (lockRemoved && !ValidationIsLockChangePermitted(previousLock, params)) ||
-		(lockAdded && !ValidationIsLockChangePermitted(newLock, params)) ||
-		((lockAdded || lockModified || lockSwapped) && (newLockBlocked || itemBlocked));
-
-	if (lockChangeInvalid) {
-		if (previousLock) {
-			// If there was a lock previously, reapply the old lock
-			if (lockRemoved) {
-				console.warn(`Invalid removal of lock ${ValidationItemWarningMessage(previousLock, params)}`);
-			} else if (lockSwapped) {
-				console.warn(`Invalid addition of lock ${ValidationItemWarningMessage(newLock, params)}`);
-			} else {
-				console.warn(`Invalid modification of lock ${ValidationItemWarningMessage(newLock, params)}`);
-			}
-			InventoryLock(C, newItem, previousLock, previousProperty.LockMemberNumber, false);
-			ValidationCloneLock(previousProperty, newProperty);
-			valid = false;
-		} else {
-			// Otherwise, delete any lock
-			console.warn(`Invalid addition of lock ${ValidationItemWarningMessage(newLock, params)}`);
-			valid = !ValidationDeleteLock(newItem.Property) && valid;
-		}
-	} else if (lockModified) {
-		// If the lock has been modified, then ensure lock properties don't change (except where they should be able to)
-		const hasLockPermissions = ValidationIsLockChangePermitted(previousLock, params) && !newLockBlocked;
-		valid = !ValidationRollbackInvalidLockProperties(previousProperty, newProperty, hasLockPermissions) && valid;
-	}
+	let valid = ValidationResolveLockModification(previousItem, newItem, params, itemBlocked);
 
 	// If the source wouldn't usually be able to add the item, ensure that some properties are not modified
 	if (!ValidationCanAddItem(newItem, params)) {
@@ -245,6 +206,76 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 }
 
 /**
+ * Resolves modifications to an item's lock properties and returns a boolean to indicate whether or not the
+ * modifications were valid.
+ * @param {Item} previousItem - The previous item to remove
+ * @param {Item} newItem - The new item to add
+ * @param {AppearanceUpdateParameters} params - The appearance update parameters that apply to the diff
+ * @param {boolean} itemBlocked - Whether or not the item is blocked or limited for the source player
+ * @returns {boolean} - true if the lock modifications (if any) were valid, false otherwise
+ */
+function ValidationResolveLockModification(previousItem, newItem, params, itemBlocked) {
+	const { C, sourceMemberNumber } = params;
+
+	const previousProperty = previousItem.Property || {};
+	const newProperty = newItem.Property = newItem.Property || {};
+
+	if (!ValidationLockWasModified(previousProperty, newProperty)) {
+		return true;
+	}
+
+	const previousLock = InventoryGetLock(previousItem);
+	const newLock = InventoryGetLock(newItem);
+
+	const lockSwapped = !!newLock && !!previousLock && newLock.Asset.Name !== previousLock.Asset.Name;
+	const lockModified = !!newLock && !!previousLock && !lockSwapped;
+	const lockRemoved = lockSwapped || (!newLock && !!previousLock);
+	const lockAdded = lockSwapped || (!!newLock && !previousLock);
+	const newLockBlocked = !!newLock && ValidationIsItemBlockedOrLimited(
+		C, sourceMemberNumber, newLock.Asset.Group.Name, newLock.Asset.Name,
+	);
+
+	const lockChangeInvalid = (lockRemoved && !ValidationIsLockChangePermitted(previousLock, params)) ||
+		(lockAdded && !ValidationIsLockChangePermitted(newLock, params)) ||
+		((lockAdded || lockModified || lockSwapped) && (newLockBlocked || itemBlocked));
+
+	if (lockChangeInvalid) {
+		if (previousLock) {
+			// If there was a lock previously, reapply the old lock
+			if (lockRemoved) {
+				console.warn(`Invalid removal of lock ${ValidationItemWarningMessage(previousLock, params)}`);
+			} else if (lockSwapped) {
+				console.warn(`Invalid addition of lock ${ValidationItemWarningMessage(newLock, params)}`);
+			} else {
+				console.warn(`Invalid modification of lock ${ValidationItemWarningMessage(newLock, params)}`);
+			}
+			InventoryLock(C, newItem, previousLock, previousProperty.LockMemberNumber, false);
+			ValidationCloneLock(previousProperty, newProperty);
+			return false;
+		} else {
+			// Otherwise, delete any lock
+			console.warn(`Invalid addition of lock ${ValidationItemWarningMessage(newLock, params)}`);
+			return !ValidationDeleteLock(newItem.Property);
+		}
+	} else if (lockModified) {
+		// If the lock has been modified, then ensure lock properties don't change (except where they should be able to)
+		const hasLockPermissions = ValidationIsLockChangePermitted(previousLock, params) && !newLockBlocked;
+		return !ValidationRollbackInvalidLockProperties(previousProperty, newProperty, hasLockPermissions);
+	}
+}
+
+/**
+ * Determines whether or not a lock was modified on an item from its previous and new property values
+ * @param previousProperty - The previous item property
+ * @param newProperty - The new item property
+ * @returns {boolean} - true if the item's lock was modified (added/removed/swapped/modified), false otherwise
+ */
+function ValidationLockWasModified(previousProperty, newProperty) {
+	return previousProperty.LockedBy !== newProperty.LockedBy ||
+		ValidationAllLockProperties.some((key) => !CommonDeepEqual(previousProperty[key], newProperty[key]));
+}
+
+/**
  * Returns a commonly used warning message indicating that an invalid change to an item was made, along with the target
  * and source characters' member numbers.
  * @param {Item} item - The item being modified
@@ -260,7 +291,7 @@ function ValidationItemWarningMessage(item, { C, sourceMemberNumber }) {
  * parameters.
  * @param {Item} lock - The lock object that is being checked, as returned by {@link InventoryGetLock}
  * @param {AppearanceUpdateParameters} params - The appearance update parameters that apply to the diff
- * @param {boolean} remove - Whether the lock change is a removal
+ * @param {boolean} [remove] - Whether the lock change is a removal
  * @returns {boolean} - TRUE if the lock can be modified, FALSE otherwise
  */
 function ValidationIsLockChangePermitted(lock, { C, fromOwner, fromLover }, remove) {
@@ -364,7 +395,7 @@ function ValidationCanAddItem(newItem, params) {
  * @param sourceMemberNumber - The member number of the source character
  * @param {string} groupName - The name of the asset group for the intended item
  * @param {string} assetName - The asset name of the intended item
- * @param {string|null} type - The type of the intended item
+ * @param {string|null} [type] - The type of the intended item
  * @returns {boolean} - TRUE if the character with the provided source member number is _not_ allowed to equip the
  * described asset on the target character, FALSE otherwise.
  */
@@ -477,6 +508,7 @@ function ValidationSanitizeProperties(C, item) {
 	// Sanitize various properties
 	let changed = ValidationSanitizeEffects(C, item);
 	changed = ValidationSanitizeBlocks(C, item) || changed;
+	changed = ValidationSanitizeSetPose(C, item) || changed;
 	changed = ValidationSanitizeStringArray(property, "Hide") || changed;
 
 	const asset = item.Asset;
@@ -518,6 +550,13 @@ function ValidationSanitizeProperties(C, item) {
 				changed = true;
 			}
 		});
+	}
+	
+	// Block advanced vibrator modes if disabled
+	if (typeof property.Mode === "string" && C.ArousalSettings && C.ArousalSettings.DisableAdvancedVibes && !VibratorModeOptions[VibratorModeSet.STANDARD].includes(VibratorModeGetOption(property.Mode))) {
+		console.warn(`Removing invalid mode "${property.Mode}" from ${asset.Name}`);
+		property.Mode = VibratorModeOptions[VibratorModeSet.STANDARD][0];
+		changed = true;
 	}
 
 	return changed;
@@ -708,6 +747,32 @@ function ValidationSanitizeBlocks(C, item) {
 }
 
 /**
+ * Sanitizes the `SetPose` array on an item's Property object, if present. This ensures that it is a valid array of
+ * strings, and that each item in the array is present in the list of poses available in the game.
+ * @param {Character} C - The character on whom the item is equipped
+ * @param {Item} item - The item whose `SetPose` property should be sanitized
+ * @returns {boolean} - TRUE if the item's `SetPose` property was modified as part of the sanitization process
+ * (indicating it was not a valid string array, or that invalid entries were present), FALSE otherwise
+ */
+function ValidationSanitizeSetPose(C, item) {
+	const property = item.Property;
+	let changed = ValidationSanitizeStringArray(property, "SetPose");
+
+	// If there is no SetPose array, no further sanitization is needed
+	if (!Array.isArray(property.SetPose)) return changed;
+
+	// The SetPose array must contain a list of valid pose names
+	property.SetPose = property.SetPose.filter((pose) => {
+		if (!PoseFemale3DCGNames.includes(pose)) {
+			console.warn(`Filtering out invalid SetPose entry on ${item.Asset.Name}:`, pose);
+			changed = true;
+			return false;
+		} else return true;
+	});
+	return changed;
+}
+
+/**
  * Sanitizes a property on an object to ensure that it is a valid string array or null/undefined. If the property is not
  * a valid array and is not null, it will be deleted from the object. If it is a valid array, any non-string entries
  * will be removed.
@@ -772,33 +837,139 @@ function ValidationDeleteLock(property, verbose = true) {
 }
 
 /**
- * A parameter object containing information used to validate and sanitize character appearance update diffs. An
- * appearance update has a source character (the player that sent the update) and a target character (the character
- * being updated). What is allowed in an update varies depending on the status of the target character in relation to
- * the source character (i.e. whether they are the target's lover/owner, or the target themselves, and also whether or
- * not they have been whitelisted by the target).
- * @typedef AppearanceUpdateParameters
- * @type {object}
- * @property {Character} C - The character whose appearance is being updated
- * @property {boolean} fromSelf - Whether or not the source player is the same as the target player
- * @property {boolean} fromOwner - Whether or not the source player has permissions to use owner-only items (i.e. they
- * are either the target themselves, or the target's owner)
- * @property {boolean} fromLover - Whether or not the source player has permissions to use lover-only items (i.e. they
- * are the target themselves, one of the target's lovers, or the target's owner, provided the target's lover rules
- * permit their owner using lover-only items)
- * @property {number} sourceMemberNumber - The member number of the source player
+ * Fixes any cyclic blocks in the provided appearance array. The given diff map is used to determine the order in which
+ * items should be rolled back or removed if block cycles are found (a block cycle being a series of items that block
+ * each other in a cyclic fashion).
+ * @param {Item[]} appearance - The appearance to sanitize
+ * @param {AppearanceDiffMap} diffMap - The appearance diff map which indicates the items that were changed as part of
+ * the appearance update that triggered this validation
+ * @returns {AppearanceValidationWrapper} - A wrapper containing the final appearance, with any block cycles removed,
+ * plus a valid flag indicating whether or not the appearance had to be modified.
  */
+function ValidationResolveCyclicBlocks(appearance, diffMap) {
+	let cycles = ValidationFindBlockCycles(appearance);
+	let valid = true;
+
+	// Keep rolling items back until there are no block cycles left
+	while (cycles.length > 0) {
+		const groups = appearance.map((item) => item.Asset.Group.Name);
+
+		/* @type Map<string, number> */
+		const groupCounts = new Map();
+		// Count how many cycles each group appears in
+		for (const group of groups) {
+			for (const cycle of cycles) {
+				if (cycle.includes(group)) {
+					groupCounts.set(group, (groupCounts.get(group) || 0) + 1);
+				}
+			}
+		}
+
+		// Sort the groups - groups that appear in more cycles should be removed first
+		const groupsByFrequency = Array.from(groupCounts.entries())
+			.sort(([, c1], [, c2]) => c2 - c1)
+			.map(entry => entry[0]);
+
+		const nonModifiedGroups = [];
+		/*
+		 * Find the groups that were modified in the provided diff map with changes that may impact blocking. These
+		 * groups are the highest priorities for rollback/removal
+		 */
+		const modifiedGroups = groupsByFrequency.filter((group) => {
+			if (diffMap[group]) {
+				const [prev, next] = diffMap[group];
+				if (!!prev !== !!next) return true;
+				if (!CommonDeepEqual(prev.Asset.Block, next.Asset.Block)) return true;
+				const prevPropBlock = prev.Property && prev.Property.Block;
+				const nextPropBlock = next.Property && next.Property.Block;
+				if (!CommonDeepEqual(prevPropBlock, nextPropBlock)) return true;
+				const prevEnclose = InventoryItemHasEffect(prev, "Enclose");
+				const nextEnclose = InventoryItemHasEffect(next, "Enclose");
+				if (prevEnclose !== nextEnclose) return true;
+			}
+			nonModifiedGroups.push(group);
+			return false;
+		});
+		const groupsByPriority = modifiedGroups.concat(nonModifiedGroups);
+
+		let i = 0;
+		// Remove groups in priority order until there are no cycles left
+		while (cycles.length > 0 && i < groupsByPriority.length) {
+			const groupToRollback = groupsByPriority[i];
+			console.warn(`Rolling back group ${groupToRollback} due to block cycles`);
+			valid = false;
+			// Modify the appearance by rolling back or removing the item in the current group
+			appearance = appearance
+				.map((item) => {
+					const groupName = item.Asset.Group.Name;
+					if (groupName === groupToRollback) {
+						if (modifiedGroups.includes(groupName) && item !== diffMap[groupName][0]) {
+							/*
+							 * If the group was modified as part of the diff map, and we're not already looking at the
+							 * rolled back item, roll back
+							 */
+							return diffMap[groupName][0];
+						} else {
+							// Otherwise remove
+							return null;
+						}
+					}
+					// If it's not the group we care about, don't modify
+					return item;
+				})
+				.filter(Boolean);
+
+			// Remove any cycles that contain the group we just removed/rolled back
+			cycles = cycles.filter(cycle => !cycle.includes(groupToRollback));
+			i++;
+		}
+
+		// Finally, do one more cycle check to verify that the rollbacks didn't reveal more cycles
+		cycles = ValidationFindBlockCycles(appearance);
+	}
+	return { appearance, valid };
+}
 
 /**
- * A wrapper object containing the results of a diff resolution. This includes the final item that the diff resolved to
- * (or null if the diff resulted in no item, for example in the case of item removal), along with a valid flag which
- * indicates whether or not the diff was fully valid or not.
- * @typedef AppearanceDiffResolution
- * @type {object}
- * @property {Item|null} item - The resulting item after resolution of the item diff, or null if the diff resulted in
- * no item being equipped in the given group
- * @property {boolean} valid - Whether or not the diff was fully valid. In most cases, an invalid diff will result in
- * the whole appearance update being rolled back, but in some cases the change will be accepted, but some properties may
- * be modified to keep the resulting item valid - in both situations, the valid flag will be returned as false,
- * indicating that a remedial appearance update should be made by the target player.
+ * Finds any block cycles in the given appearance array. Block cycles are groups of items that block each other in a
+ * cyclic fashion. Block cycles are represented as an array of group names that comprise the cycle. For example:
+ * ["ItemArms", "ItemDevices", "ItemArms"]
+ * This indicates that the item in the ItemArms group blocks the item in the ItemDevices group, and vice versa. This
+ * function returns an array of such block cycles, or an empty array if none were found.
+ * @param {Item[]} appearance - The appearance array to check
+ * @returns {string[][]} - A list of block cycles, each cycle being represented as an array of group names.
  */
+function ValidationFindBlockCycles(appearance) {
+	const groups = appearance.map((item) => item.Asset.Group.Name);
+	const edges = [];
+	for (const item of appearance) {
+		const blockedGroups = ValidationGetBlockedGroups(item, groups);
+		for (const group of blockedGroups) {
+			edges.push([item.Asset.Group.Name, group]);
+		}
+	}
+	const graph = new DirectedGraph(groups, edges);
+	return graph.findCycles();
+}
+
+/**
+ * Finds the groups, from a provided list of groups, that are blocked by a given item.
+ * @param {Item} item - The item to check
+ * @param {string[]} groupNames - A list of group names that should be used to filter the final block list
+ * @returns {string[]} - A subset of the provided group names representing the groups that are blocked by the given
+ * item.
+ */
+function ValidationGetBlockedGroups(item, groupNames) {
+	if (InventoryItemHasEffect(item, "Enclose", true)) {
+		return groupNames.filter(groupName => groupName !== item.Asset.Group.Name);
+	}
+
+	let blockedGroups = [];
+	if (Array.isArray(item.Asset.Block)) {
+		blockedGroups = blockedGroups.concat(item.Asset.Block);
+	}
+	if (item.Property && Array.isArray(item.Property.Block)) {
+		blockedGroups = blockedGroups.concat(item.Property.Block);
+	}
+	return blockedGroups.filter(groupName => groupNames.includes(groupName));
+}

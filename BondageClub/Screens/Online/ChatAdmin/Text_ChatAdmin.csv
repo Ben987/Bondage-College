@@ -8,6 +8,8 @@ RoomSize,Size (2-10)
 UseMemberNumbers,"Use member numbers, separated by commas (ex: 3571,541,7001)"
 QuickbanBlackList,Ban blacklist
 QuickbanGhostList,Ban ghostlist
+AddOwnerAdminList,Add Owner
+AddLoverAdminList,Add Lovers
 AdminOnly,Room settings can only be updated by administrators
 Background,Background
 Save,Save
