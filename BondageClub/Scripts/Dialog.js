@@ -743,7 +743,7 @@ function DialogMenuButtonBuild(C) {
 			if ((Item != null) && Item.Asset.Extended && ((Player.CanInteract()) || DialogAlwaysAllowRestraint() || Item.Asset.AlwaysInteract) && (!IsGroupBlocked || Item.Asset.AlwaysExtend) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer()))) DialogMenuButton.push(ItemBlockedOrLimited ? "UseDisabled" : "Use");
 			// Extended icon doesnt show up if remote works
 			if (!DialogMenuButton.includes("Use") && DialogCanUseRemote(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "RemoteDisabled" : "Remote");
-			
+
 			if (DialogCanColor(C, Item)) DialogMenuButton.push(ItemBlockedOrLimited ? "ColorPickDisabled" : "ColorPick");
 
 			// Make sure the target player zone is allowed for an activity

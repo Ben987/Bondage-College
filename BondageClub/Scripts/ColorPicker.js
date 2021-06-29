@@ -319,7 +319,7 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
 	ColorPickerLayout.SaveButtonX = X + (((ColorPickerWidth / 6) - 90) / 2);
 	ColorPickerLayout.PrevButtonX = X + (ColorPickerWidth / 6) + (((ColorPickerWidth / 6) - 90) / 2);
 	ColorPickerLayout.NextButtonX = X + (ColorPickerWidth / 3) + (((ColorPickerWidth / 6) - 90) / 2);
-	
+
 	var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
 	var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
 	var PaletteOffset = ColorPickerLayout.PaletteOffset;
@@ -327,9 +327,9 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
 	var FavoritesPaletteOffset = ColorPickerLayout.FavoritesPaletteOffset;
 	var FavoritesPaletteHeight = ColorPickerLayout.FavoritesPaletteHeight;
 	var ButtonOffset = ColorPickerLayout.ButtonOffset;
-	var NextButtonX = ColorPickerLayout.NextButtonX
-	var SaveButtonX = ColorPickerLayout.SaveButtonX
-	var PrevButtonX = ColorPickerLayout.PrevButtonX
+	var NextButtonX = ColorPickerLayout.NextButtonX;
+	var SaveButtonX = ColorPickerLayout.SaveButtonX;
+	var PrevButtonX = ColorPickerLayout.PrevButtonX;
 
 	var HSV;
 	if (ColorPickerInitialHSV == null) {

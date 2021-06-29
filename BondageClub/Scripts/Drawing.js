@@ -855,7 +855,7 @@ function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 	let Result = DrawingGetTextSize(Text, Width);
 	Text = Result[0];
 	MainCanvas.font = CommonGetFont(Result[1].toString());
-	
+
 	// Draw a back color relief text if needed
 	if ((BackColor != null) && (BackColor != "")) {
 		MainCanvas.fillStyle = BackColor;
@@ -870,7 +870,7 @@ function DrawTextFit(Text, X, Y, Width, Color, BackColor) {
 
 /**
  * Gets the text size needed to fit inside a given width according to the current font.
- * This function is memoized because <code>MainCanvas.measureText(Text)</code> is a major resource hog. 
+ * This function is memoized because <code>MainCanvas.measureText(Text)</code> is a major resource hog.
  * @param {string} Text - Text to draw
  * @param {number} Width - Width in which the text has to fit
  * @returns {[string, number]} - Text to draw and its font size
@@ -884,7 +884,7 @@ const DrawingGetTextSize = CommonMemoize((Text, Width) => {
 		if (metrics.width <= Width)
 			return [Text, S];
 	}
-	
+
 	// Cuts the text if it would go over the box
 	while (Text.length > 0) {
 		Text = Text.substr(1);
@@ -1304,7 +1304,7 @@ function DrawAssetPreview(X, Y, A, Options) {
 	const Path = `${AssetGetPreviewPath(A)}/${A.Name}${DynamicPreviewIcon}.png`;
 	if (Description == null) Description = C ? A.DynamicDescription(C) : A.Description;
 	if (IsFavorite) Description = "★ " + Description;
-	DrawPreviewBox(X, Y, Path, Description, { Background, Foreground, Vibrating, Border, Hover, 
+	DrawPreviewBox(X, Y, Path, Description, { Background, Foreground, Vibrating, Border, Hover,
 		HoverBackground, Disabled });
 }
 

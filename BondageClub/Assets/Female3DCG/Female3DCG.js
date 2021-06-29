@@ -84,7 +84,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "TShirt1", HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing", "ItemNipplesLactationPump", "BraRibbons", "ItemBreastRibbons"], Require: ["ClothLower"] },
-			{ 
+			{
 				Name: "TShirt2", Value: 25, DefaultColor: ["#333", "Default"], Hide: ["Bra"], HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing", "ItemNipplesLactationPump", "ItemBreastRibbons"], Require: ["ClothLower"], Extended: true,
 				Layer: [
 					{ Name: "Shirt", AllowColorize: true, HasType: false },
@@ -4165,7 +4165,8 @@ var AssetFemale3DCG = [
 					{ Name: "Text" },
 				]
 			},
-			{ Name: "ServingTray", Value: -1, Time: 5, Extended: true, Layer: [
+			{ Name: "ServingTray", Value: -1, Time: 5, Extended: true,
+				Layer: [
 					{ Name: "Tray", AllowColorize: false },
 					{ Name: "Objects", AllowTypes: ["Drinks", "Cake", "Cookies", "Toys"] },
 					{ Name: "Details", AllowTypes: ["Drinks", "Cake", "Toys"] },
@@ -4302,7 +4303,7 @@ var AssetFemale3DCG = [
 			{ Name: "SmallDisplayCase", Priority: 58, Fetish: ["Metal"], Value: 40, Difficulty: -2, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "DeafLight", "GagLight", "Freeze"], HideItem: ["ShoesFlippers"],  Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999]] }], RemoveAtLogin: true },
 			{ Name: "FuturisticCrate", Priority: 58, Category: ["SciFi"], Fetish: ["Metal"], Value: 70, Difficulty: -2, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, DrawLocks: false, Audio: "LockLarge", Prerequisite: ["NotSuspended"], LayerVisibility: true, Effect: [], AllowEffect: ["GagLight", "Freeze", "Prone", "BlindLight", "Enclose", "BlindNormal","BlindHeavy", "GagHeavy", "Freeze"],  HideItem: ["ShoesFlippers"],
 				Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999]] }], RemoveAtLogin: true, SetPose: ["BaseLower"], Extended: true, AllowType: ["Window", "SmallWindow", "Closed"],
-				DefaultColor: ["#93C48C", "#3B7F2C","Default", "Default", "#BBBBFF", "Default", ], 
+				DefaultColor: ["#93C48C", "#3B7F2C","Default", "Default", "#BBBBFF", "Default", ],
 				Layer: [
 					{Name:"Body", Priority:1, HasType: false},
 					{Name:"Display", Priority:58, HasType: false},

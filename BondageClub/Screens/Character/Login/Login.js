@@ -4,10 +4,10 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "DarkStar", "Dini", "ElCriminal", 
-						"Epona", "Escurse", "FanRunner", "Greendragon", "KamiKaze", "Kimuriel", "Longwave", "Michal", "Michel", "Mike", 
-						"Mindtie", "Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", "Remydy", 
-						"Rika", "RobinHood", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "SkyLord", "Stephanie", "Tam", 
+var LoginThankYouList = ["Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "DarkStar", "Dini", "ElCriminal",
+						"Epona", "Escurse", "FanRunner", "Greendragon", "KamiKaze", "Kimuriel", "Longwave", "Michal", "Michel", "Mike",
+						"Mindtie", "Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", "Remydy",
+						"Rika", "RobinHood", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "SkyLord", "Stephanie", "Tam",
 						"TopHat", "Trent", "Troubadix", "William", "Xepherio", "Yuna", "Yurei", "Znarf"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
@@ -334,14 +334,14 @@ function LoginValidateArrays() {
 		Player.HiddenItems = CleanHiddenItems;
 		update = true;
 	}
-	
+
 
 	var CleanFavoriteItems = AssetCleanArray(Player.FavoriteItems);
 	if (CleanFavoriteItems.length != Player.FavoriteItems.length) {
 		Player.FavoriteItems = CleanFavoriteItems;
 		update = true;
 	}
-	
+
 	if (update)
 		ServerPlayerBlockItemsSync();
 }
@@ -592,7 +592,7 @@ function LoginResponse(C) {
 			if (LogQuery("Locked", "Cell")) {
 				CommonSetScreen("Room", "Cell");
 			} else {
-				
+
 				// If the player must log back in Pandora's Box prison
 				if ((Player.Infiltration != null) && (Player.Infiltration.Punishment != null) && (Player.Infiltration.Punishment.Timer != null) && (Player.Infiltration.Punishment.Timer > CurrentTime)) {
 					PandoraWillpower = 0;
@@ -627,10 +627,10 @@ function LoginResponse(C) {
 			}
 
 		} else {
-            LoginStatusReset("ErrorLoadingCharacterData");
-        }
+			LoginStatusReset("ErrorLoadingCharacterData");
+		}
 	} else LoginStatusReset(C);
-    LoginUpdateMessage();
+	LoginUpdateMessage();
 }
 
 /**
@@ -692,7 +692,7 @@ function LoginKeyDown() {
  */
 function LoginDoLogin() {
 
-    // Ensure the login request is not sent twice
+	// Ensure the login request is not sent twice
 	if (!LoginSubmitted && ServerIsConnected) {
 		var Name = ElementValue("InputName");
 		var Password = ElementValue("InputPassword");
@@ -702,7 +702,7 @@ function LoginDoLogin() {
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
 		} else LoginStatusReset("InvalidNamePassword");
 	}
-    LoginUpdateMessage();
+	LoginUpdateMessage();
 
 }
 
@@ -711,8 +711,8 @@ function LoginDoLogin() {
  * @returns {void} Nothing
  */
 function LoginSetSubmitted() {
-    LoginSubmitted = true;
-    if (ServerIsConnected) LoginErrorMessage = "";
+	LoginSubmitted = true;
+	if (ServerIsConnected) LoginErrorMessage = "";
 }
 
 /**
@@ -722,9 +722,9 @@ function LoginSetSubmitted() {
  * @returns {void} Nothing
  */
 function LoginStatusReset(ErrorMessage, IsRelog) {
-    LoginSubmitted = false;
-    LoginIsRelog = !!IsRelog;
-    if (ErrorMessage) LoginErrorMessage = ErrorMessage;
+	LoginSubmitted = false;
+	LoginIsRelog = !!IsRelog;
+	if (ErrorMessage) LoginErrorMessage = ErrorMessage;
 }
 
 /**
@@ -740,8 +740,8 @@ function LoginUpdateMessage() {
  * @returns {string} The key of the message to display
  */
 function LoginGetMessageKey() {
-    if (LoginErrorMessage) return LoginErrorMessage;
-    else if (!ServerIsConnected) return "ConnectingToServer";
-    else if (LoginSubmitted) return "ValidatingNamePassword";
-    else return LoginIsRelog ? "EnterPassword" : "EnterNamePassword";
+	if (LoginErrorMessage) return LoginErrorMessage;
+	else if (!ServerIsConnected) return "ConnectingToServer";
+	else if (LoginSubmitted) return "ValidatingNamePassword";
+	else return LoginIsRelog ? "EnterPassword" : "EnterNamePassword";
 }

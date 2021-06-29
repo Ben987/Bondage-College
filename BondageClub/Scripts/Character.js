@@ -1490,7 +1490,7 @@ function CharacterCheckHooks(C, IgnoreHooks) {
 
 			})) refresh = true;
 		} else if (C.UnregisterHook("BeforeSortLayers", "HideRestraints")) refresh = true;
-		
+
 		// Hook for layer visibility
 		// Visibility is a string individual layers have. If an item has any layers with visibility, it should have the LayerVisibility: true property
 		// We basically check the player's items and see if any are visible that have the LayerVisibility property.
@@ -1513,7 +1513,7 @@ function CharacterCheckHooks(C, IgnoreHooks) {
 					(Layer.Visibility == "Owner" && C.IsOwnedByPlayer()) ||
 					(Layer.Visibility == "Lovers" && C.IsLoverOfPlayer()) ||
 					(Layer.Visibility == "Mistresses" && LogQuery("ClubMistress", "Management"))
-					));
+				));
 			}))) refresh = true;
 			// Use the regular hook when the character is not
 			else if (!IgnoreHooks && (C.UnregisterHook("AfterLoadCanvas", "LayerVisibilityDialog") || C.RegisterHook("AfterLoadCanvas", "LayerVisibility", (C) => {
@@ -1526,9 +1526,9 @@ function CharacterCheckHooks(C, IgnoreHooks) {
 					(Layer.Visibility == "Owner" && C.IsOwnedByPlayer()) ||
 					(Layer.Visibility == "Lovers" && C.IsLoverOfPlayer()) ||
 					(Layer.Visibility == "Mistresses" && LogQuery("ClubMistress", "Management"))
-					));
+				));
 			}))) refresh = true;
-			
+
 		} else if (C.UnregisterHook("AfterLoadCanvas", "LayerVisibility")) refresh = true;
 	}
 

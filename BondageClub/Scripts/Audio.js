@@ -66,113 +66,185 @@ var AudioActions = [
 		GetAudioInfo: AudioPlayAssetSound
 	},
 	{
-		IsAction: (data) => ["pumps", "Suctightens", "InflatableBodyBagRestrain"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"pumps",
+			"Suctightens",
+			"InflatableBodyBagRestrain"
+		].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
 	},
 	{
-		IsAction: (data) => ["FuturisticTrainingBeltSetStateNoneOff"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateNoneOff"
+		].find(A => data.Content.includes(A)),
 		Sound: "FuturisticApply"
 	},
 	{
-		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeLow",
-								"FuturisticTrainingBeltSetStateLowPriorityEdgeLowSelf",
-								"FuturisticTrainingBeltSetStateHighPriorityEdgeLow",
-								"FuturisticTrainingBeltSetStateHighPriorityEdgeLowSelf"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeLow",
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeLowSelf",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeLow",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeLowSelf"
+		].find(A => data.Content.includes(A)),
 		Sound: "VibrationEdgeLow"
 	},
 	{
-		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityTeaseLow",
-								"FuturisticTrainingBeltSetStateLowPriorityLowLow",].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityTeaseLow",
+			"FuturisticTrainingBeltSetStateLowPriorityLowLow"
+		].find(A => data.Content.includes(A)),
 		Sound: "VibrationTeaseLow"
 	},
 	{
-		IsAction: (data) => [	"FuturisticTrainingBeltSetStateCooldownOff"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateCooldownOff"
+		].find(A => data.Content.includes(A)),
 		Sound: "VibrationCooldown"
 	},
 	{
-		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeMedium",
-								"FuturisticTrainingBeltSetStateLowPriorityEdgeMediumSelf",
-								"FuturisticTrainingBeltSetStateHighPriorityEdgeMedium",
-								"FuturisticTrainingBeltSetStateHighPriorityEdgeMediumSelf"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeMedium",
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeMediumSelf",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeMedium",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeMediumSelf"
+		].find(A => data.Content.includes(A)),
 		Sound: "VibrationEdgeMedium"
 	},
 	{
-		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityTeaseMedium",
-								"FuturisticTrainingBeltSetStateLowPriorityMedium"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityTeaseMedium",
+			"FuturisticTrainingBeltSetStateLowPriorityMedium"
+		].find(A => data.Content.includes(A)),
 		Sound: "VibrationTeaseMedium"
 	},
 	{
-		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeHigh",
-								"FuturisticTrainingBeltSetStateLowPriorityEdgeHighSelf",
-								"FuturisticTrainingBeltSetStateHighPriorityEdgeHigh",
-								"FuturisticTrainingBeltSetStateHighPriorityEdgeHighSelf"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeHigh",
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeHighSelf",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeHigh",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeHighSelf"
+		].find(A => data.Content.includes(A)),
 		Sound: "VibrationEdgeHigh"
 	},
 	{
-		IsAction: (data) => [	"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximum",
-								"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximumSelf",
-								"FuturisticTrainingBeltSetStateLowPriorityTeaseMaximum",
-								"FuturisticTrainingBeltSetStateLowPriorityTeaseHigh",
-								"FuturisticTrainingBeltSetStateHighPriorityMax",
-								"FuturisticTrainingBeltSetStateLowPriorityMax",
-								"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximum",
-								"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximumSelf"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximum",
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximumSelf",
+			"FuturisticTrainingBeltSetStateLowPriorityTeaseMaximum",
+			"FuturisticTrainingBeltSetStateLowPriorityTeaseHigh",
+			"FuturisticTrainingBeltSetStateHighPriorityMax",
+			"FuturisticTrainingBeltSetStateLowPriorityMax",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximum",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximumSelf"
+		].find(A => data.Content.includes(A)),
 		Sound: "VibrationMaximum"
 	},
 	{
-		IsAction: (data) => ["InteractiveVisorHeadSet"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"InteractiveVisorHeadSet"
+		].find(A => data.Content.includes(A)),
 		Sound: "SciFiEffect"
 	},
 	{
-		IsAction: (data) => ["FuturisticPanelGagMouthSetLightBall", "FuturisticPanelGagMouthSetBall", "FuturisticPanelGagMouthSetPadded", "FuturisticPanelGagMouthSetPlug"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticPanelGagMouthSetLightBall",
+			"FuturisticPanelGagMouthSetBall",
+			"FuturisticPanelGagMouthSetPadded",
+			"FuturisticPanelGagMouthSetPlug"
+		].find(A => data.Content.includes(A)),
 		Sound: "SciFiPump"
 	},
 	{
-		IsAction: (data) => ["deflates", "Sucloosens"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"deflates",
+			"Sucloosens"
+		].find(A => data.Content.includes(A)),
 		Sound: "Deflation"
 	},
 	{
-		IsAction: (data) => ["ChainSet"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"ChainSet"
+		].find(A => data.Content.includes(A)),
 		Sound: "ChainLong"
 	},
 	{
-		IsAction: (data) => ["RopeSet"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"RopeSet"
+		].find(A => data.Content.includes(A)),
 		Sound: "RopeShort"
 	},
 	{
-		IsAction: (data) => ["ShacklesRestrain", "Ornate"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"ShacklesRestrain",
+			"Ornate"
+		].find(A => data.Content.includes(A)),
 		Sound: "CuffsMetal"
 	},
 	{
-		IsAction: (data) => ["FuturisticChastityBeltShock"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticChastityBeltShock"
+		].find(A => data.Content.includes(A)),
 		Sound: "Shocks"
 	},
 	{
-		IsAction: (data) => ["FuturisticChastityBeltSetClosed", "FuturisticChastityBeltSetOpen", "InventoryItemBreastFuturisticBraSet", "FuturisticHeelsSet", "FuturisticArmbinderSet", "FuturisticCuffsRestrain", "FuturisticLegCuffsRestrain", "FuturisticAnkleCuffsRestrain", "SciFiPleasurePantiesAction"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticChastityBeltSetClosed",
+			"FuturisticChastityBeltSetOpen",
+			"InventoryItemBreastFuturisticBraSet",
+			"FuturisticHeelsSet",
+			"FuturisticArmbinderSet",
+			"FuturisticCuffsRestrain",
+			"FuturisticLegCuffsRestrain",
+			"FuturisticAnkleCuffsRestrain",
+			"SciFiPleasurePantiesAction"
+		].find(A => data.Content.includes(A)),
 		Sound: "SciFiConfigure"
 	},
 	{
-		IsAction: (data) => ["FuturisticChastityBeltSetGeneric", "FuturisticChastityBeltSetPunish", "FuturisticChastityBeltSetGeneric", "FuturisticPanelGagMouthSetAutoPunish", "SciFiPleasurePantiesBeep"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticChastityBeltSetGeneric",
+			"FuturisticChastityBeltSetPunish",
+			"FuturisticChastityBeltSetGeneric",
+			"FuturisticPanelGagMouthSetAutoPunish",
+			"SciFiPleasurePantiesBeep"
+		].find(A => data.Content.includes(A)),
 		GetAudioInfo: AudioSciFiBeepSounds
 	},
 	{
-		IsAction: (data) => ["FuturisticPanelGagMouthSetAutoInflate"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticPanelGagMouthSetAutoInflate"
+		].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
 	},
 	{
-		IsAction: (data) => ["FuturisticPanelGagMouthSetAutoDeflate"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticPanelGagMouthSetAutoDeflate"
+		].find(A => data.Content.includes(A)),
 		Sound: "Deflation"
 	},
 	{
-		IsAction: (data) => ["FuturisticCrateSet"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticCrateSet"
+		].find(A => data.Content.includes(A)),
 		Sound: "SciFiConfigure"
 	},
 	{
-		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "SciFiPleasurePantiesShockTrigger", "TriggerShock", "CollarAutoShockUnitTrigger", "FuturisticVibratorShockTrigger"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"CollarShockUnitTrigger",
+			"ShockCollarTrigger",
+			"LoveChastityBeltShockTrigger",
+			"SciFiPleasurePantiesShockTrigger",
+			"TriggerShock",
+			"CollarAutoShockUnitTrigger",
+			"FuturisticVibratorShockTrigger"
+		].find(A => data.Content.includes(A)),
 		GetAudioInfo: (data) => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data)
 	},
 	{
-		IsAction: (data) => ["Decrease", "Increase"].find(A => data.Content.includes(A)) && !data.Content.endsWith("-1"),
+		IsAction: (data) => [
+			"Decrease",
+			"Increase"
+		].find(A => data.Content.includes(A)) && !data.Content.endsWith("-1"),
 		GetAudioInfo: AudioVibratorSounds
 	},
 ];

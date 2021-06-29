@@ -498,7 +498,7 @@ function VibratorModeStateUpdateDeny(C, Arousal, TimeSinceLastChange, OldIntensi
 			// Here we give the fake orgasm, passing a special parameter that indicates we bypass the usual restriction on Edge
 			ActivityOrgasmPrepare(C, true);
 		}
-		
+
 		// Set the vibrator to rest
 		State = VibratorModeState.REST;
 		Intensity = -1;

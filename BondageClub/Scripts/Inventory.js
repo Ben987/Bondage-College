@@ -198,7 +198,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 			|| !InventoryDoesItemExposeGroup(C, "Panties", "ItemVulva")
 			|| InventoryDoesItemBlockGroup(C, "Socks", "ItemVulva")
 			? "RemoveClothesForItem" : "";
-			
+
 		// Ensure crotch is empty
 		case "VulvaEmpty": return ((InventoryGet(C, "ItemVulva") != null)) ? "MustFreeVulvaFirst" : "";
 		case "ClitEmpty": return ((InventoryGet(C, "ItemVulvaPiercings") != null)) ? "MustFreeClitFirst" : "";
@@ -924,8 +924,8 @@ function InventoryTogglePermission(Item, Type) {
 		Player.LimitedItems = Player.LimitedItems.filter(removeFromPermissions);
 	} else if (InventoryIsFavorite(Player, Item.Asset.Name, Item.Asset.Group.Name, Type)) {
 		if (Player.GetDifficulty() >= 3)
-			Player.LimitedItems.push(permissionItem) 
-		else 
+			Player.LimitedItems.push(permissionItem);
+		else
 			Player.BlockItems.push(permissionItem);
 		Player.FavoriteItems = Player.FavoriteItems.filter(removeFromPermissions);
 	} else {
