@@ -182,10 +182,7 @@ function CommonDrawAppearanceBuild(C, {
 				return Acc;
 			}, []);
 
-		let Color = CA.Color;
-		if (Array.isArray(Color)) {
-			Color = Color[Layer.ColorIndex] || AG.ColorSchema[0];
-		}
+		let Color = Array.isArray(CA.Color) ? (CA.Color[Layer.ColorIndex] || AG.ColorSchema[0]) : CA.Color;
 
 		// Fix to legacy appearance data when Hands could be different to BodyUpper
 		if (GroupName === "Hands") Color = "Default";
