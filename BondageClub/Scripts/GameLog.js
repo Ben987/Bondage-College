@@ -1,4 +1,5 @@
 "use strict";
+/** @type {LogRecord[]} */
 var Log = [];
 
 /**
@@ -6,7 +7,7 @@ var Log = [];
  * @param {string} NewLogName - The name of the log
  * @param {string} NewLogGroup - The name of the log's group
  * @param {number} [NewLogValue] - Value for the log as the time in ms. Is undefined if the value is permanent
- * @param {boolean} [Push] - TRUE if we must push the log to the server
+ * @param {boolean} [Push=true] - TRUE if we must push the log to the server
  * @returns {void} - Nothing
  */
 function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
@@ -43,7 +44,7 @@ function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
  * Deletes a log entry.
  * @param {string} DelLogName - The name of the log
  * @param {string} DelLogGroup - The name of the log's group
- * @param {boolean} [Push] - TRUE if we must push the log to the server
+ * @param {boolean} [Push=true] - TRUE if we must push the log to the server
  * @returns {void} - Nothing
  */
 function LogDelete(DelLogName, DelLogGroup, Push) {
@@ -82,7 +83,7 @@ function LogQuery(QueryLogName, QueryLogGroup) {
  * Returns the value associated to a log.
  * @param {string} QueryLogName - The name of the log to query the value
  * @param {string} QueryLogGroup - The name of the log's group
- * @returns {number | undefined} - Returns the value of the log which is a date represented in ms or undefined. Returns null if no matching log is found.
+ * @returns {number | null} - Returns the value of the log which is a date represented in ms or undefined. Returns null if no matching log is found.
  */
 function LogValue(QueryLogName, QueryLogGroup) {
 	for (let L = 0; L < Log.length; L++)
@@ -93,7 +94,7 @@ function LogValue(QueryLogName, QueryLogGroup) {
 
 /**
  * Loads the account log.
- * @param {Array.<{Name: string, Group: string, Value: number}>} NewLog - Existing logs received by the server
+ * @param {LogRecord[]} NewLog - Existing logs received by the server
  * @returns {void} - Nothing
  */
 function LogLoad(NewLog) {
@@ -128,7 +129,7 @@ function LogQueryRemote(C, QueryLogName, QueryLogGroup) {
 /**
  * Filters the Player's log and returns the rule entries that the player's owner is allowed to see.
  * @param {boolean} OwnerIsLover - Indicates that the requester is also the player's lover.
- * @returns {Rule[]} - A list of rules that the player's owner is permitted to see
+ * @returns {LogRecord[]} - A list of rules that the player's owner is permitted to see
  */
 function LogGetOwnerReadableRules(OwnerIsLover) {
 	return Log.filter(L => L.Group == "OwnerRule" || (L.Group == "LoverRule" && (OwnerIsLover || L.Name.includes("Owner"))));
@@ -136,7 +137,7 @@ function LogGetOwnerReadableRules(OwnerIsLover) {
 
 /**
  * Filters the Player's log and returns the rule entries that the player's lover is allowed to see.
- * @returns {Rule[]} - A list of rules that the player's lover is permitted to see
+ * @returns {LogRecord[]} - A list of rules that the player's lover is permitted to see
  */
 function LogGetLoverReadableRules() {
 	return Log.filter(L => L.Group == "LoverRule");

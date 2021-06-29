@@ -22,7 +22,7 @@
 /**
  * A callback function used to draw a canvas on a canvas
  * @callback drawCanvas
- * @param {string} Img - The canvas to draw
+ * @param {HTMLImageElement | HTMLCanvasElement} Img - The canvas to draw
  * @param {number} x - The x coordinate to draw the canvas at
  * @param {number} y - The y coordinate to draw the canvas at
  */

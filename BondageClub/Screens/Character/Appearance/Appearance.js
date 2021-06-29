@@ -10,6 +10,7 @@ var CharacterAppearanceAssets = [];
 var CharacterAppearanceColorPickerGroupName = "";
 var CharacterAppearanceColorPickerBackup = "";
 var CharacterAppearanceColorPickerRefreshTimer = null;
+/** @type {Character | null} */
 var CharacterAppearanceSelection = null;
 var CharacterAppearanceReturnRoom = "MainHall";
 var CharacterAppearanceReturnModule = "Room";

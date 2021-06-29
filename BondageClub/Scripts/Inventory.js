@@ -32,7 +32,7 @@ function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 * Adds multiple new items by group & name to the character inventory
 * @param {Character} C - The character that gets the new items added to her inventory
 * @param {Array.<{ Name: string, Group: string }>} NewItems - The new items to add
-* @param {Boolean} Push - Set to TRUE to push to the server, pushed by default
+* @param {Boolean} [Push=true] - Set to TRUE to push to the server, pushed by default
 */
 function InventoryAddMany(C, NewItems, Push) {
 

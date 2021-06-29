@@ -113,7 +113,7 @@ function DialogSetReputation(RepType, Value) { ReputationChange(RepType, (parseI
 /**
  * Change the player's reputation progressively through dialog options (a reputation is easier to break than to build)
  * @param {string} RepType - The name of the reputation to change
- * @param {string} Value - The value, the player's reputation should be altered by
+ * @param {number|string} Value - The value, the player's reputation should be altered by
  * @returns {void} - Nothing
  */
 function DialogChangeReputation(RepType, Value) { ReputationProgress(RepType, Value); }

@@ -307,6 +307,12 @@ interface Activity {
 	MakeSound?: boolean;
 }
 
+interface LogRecord {
+	Name: string;
+	Group: string;
+	Value: number;
+}
+
 /** An item is a pair of asset and its dynamic properties that define a worn asset. */
 interface Item {
 	Asset: Asset;
@@ -319,6 +325,7 @@ interface Skill {
 	Type: string;
 	Level: number;
 	Progress: number;
+	Ratio?: number;
 }
 
 interface Reputation {
@@ -359,9 +366,9 @@ interface Character {
 	Skill: Skill[];
 	Pose: string[];
 	Effect: string[];
-	FocusGroup: AssetGroup;
-	Canvas: HTMLCanvasElement;
-	CanvasBlink: HTMLCanvasElement;
+	FocusGroup: AssetGroup | null;
+	Canvas: HTMLCanvasElement | null;
+	CanvasBlink: HTMLCanvasElement | null;
 	MustDraw: boolean;
 	BlinkFactor: number;
 	AllowItem: boolean;
@@ -477,6 +484,7 @@ interface Character {
 	};
 	ArousalZoom?: boolean;
 	FixedImage?: string;
+	Rule?: LogRecord[];
 }
 
 interface PlayerCharacter extends Character {
@@ -601,10 +609,12 @@ interface PlayerCharacter extends Character {
 	Wardrobe?: any[][];
 	WardrobeCharacterNames?: string[];
 	SavedExpressions?: any[];
-	SavedColors?: HSVColor[];
+	SavedColors: HSVColor[];
 	FriendList?: number[];
 	FriendNames?: Map<number, string>;
-	SubmissivesList?: Set<number>
+	SubmissivesList?: Set<number>;
+	KinkyDungeonKeybindings?: any;
+	Infiltration?: any;
 }
 
 //#region Extended items
@@ -714,6 +724,14 @@ interface ModularItemOption {
 	BondageLevel?: number;
 	/** The required self-bondage skill level for this option when using it on oneself */
 	SelfBondageLevel?: number;
+	/** The required prerequisites that must be met before this option can be selected */
+	Prerequisite?: string|string[];
+	/**
+	 * Whether or not prerequisites should be considered on the character's
+	 * appearance without the item equipped. Should be set to `true` if the item itself might interfere with prerequisites on
+	 * some of its options
+	 */
+	SelfBlockCheck?: boolean;
 	/** A list of groups that this option blocks - defaults to [] */
 	Block?: string[];
 	/** A list of groups that this option hides - defaults to [] */

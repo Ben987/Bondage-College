@@ -155,6 +155,7 @@ function ValidationResolveModifyDiff(previousItem, newItem, params) {
 	const asset = previousItem.Asset;
 	const group = asset.Group;
 	const previousProperty = previousItem.Property || {};
+	/** @type {ItemProperties} */
 	const newProperty = newItem.Property = newItem.Property || {};
 	const itemBlocked = ValidationIsItemBlockedOrLimited(C, sourceMemberNumber, group.Name, asset.Name) ||
 						ValidationIsItemBlockedOrLimited(C, sourceMemberNumber, group.Name, asset.Name, newProperty.Type);
@@ -941,6 +942,7 @@ function ValidationResolveCyclicBlocks(appearance, diffMap) {
  */
 function ValidationFindBlockCycles(appearance) {
 	const groups = appearance.map((item) => item.Asset.Group.Name);
+	/** @type {[string, string][]} */
 	const edges = [];
 	for (const item of appearance) {
 		const blockedGroups = ValidationGetBlockedGroups(item, groups);

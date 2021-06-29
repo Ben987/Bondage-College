@@ -717,8 +717,8 @@ function LoginSetSubmitted() {
 
 /**
  * Resets the login submission state
- * @param {boolean} IsRelog - whether or not we're on the relog screen
- * @param {string} ErrorMessage - the login error message to set if the login is invalid - if not specified, will clear the login error message
+ * @param {string} [ErrorMessage] - the login error message to set if the login is invalid - if not specified, will clear the login error message
+ * @param {boolean} [IsRelog=false] - whether or not we're on the relog screen
  * @returns {void} Nothing
  */
 function LoginStatusReset(ErrorMessage, IsRelog) {

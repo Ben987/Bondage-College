@@ -708,7 +708,7 @@ function CharacterCanChangeToPose(C, poseName) {
 /**
  * Checks if a certain pose is whitelisted and available for the pose menu
  * @param {Character} C - Character to check for the pose
- * @param {string} Type - Pose type to check for within items
+ * @param {string|undefined} Type - Pose type to check for within items
  * @param {string} Pose - Pose to check for whitelist
  * @returns {boolean} - TRUE if the character has the pose available
  */
@@ -1295,7 +1295,7 @@ function CharacterResetFacialExpression(C) {
 
 /**
  * Gets the currently selected character
- * @returns {Character} - Currently selected character
+ * @returns {Character|null} - Currently selected character
  */
 function CharacterGetCurrent() {
 	return (Player.FocusGroup != null) ? Player : CurrentCharacter;

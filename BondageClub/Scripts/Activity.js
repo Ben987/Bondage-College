@@ -421,7 +421,7 @@ function ActivityOrgasmGameGenerate(Progress) {
 /**
  * Triggers an orgasm for the player or an NPC which lasts from 5 to 15 seconds
  * @param {Character} C - Character for which an orgasm was triggered
- * @param {bool} Bypass - If true, this will do a ruined orgasm rather than a real one
+ * @param {boolean} [Bypass=false] - If true, this will do a ruined orgasm rather than a real one
  * @returns {void} - Nothing
  */
 function ActivityOrgasmPrepare(C, Bypass) {

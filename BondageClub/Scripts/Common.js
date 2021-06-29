@@ -211,7 +211,7 @@ function CommonReadCSV(Array, Path, Screen, File) {
 /**
  * AJAX utility to get a file and return its content. By default will retry requests 10 times
  * @param {string} Path - Path of the resource to request
- * @param {function} Callback - Callback to execute once the resource is received
+ * @param {(this: XMLHttpRequest, xhr: XMLHttpRequest) => void} Callback - Callback to execute once the resource is received
  * @param {number} [RetriesLeft] - How many more times to retry if the request fails - after this hits zero, an error will be logged
  * @returns {void} - Nothing
  */
@@ -232,7 +232,7 @@ function CommonGet(Path, Callback, RetriesLeft) {
  * Retry handler for CommonGet requests. Exponentially backs off retry attempts up to a limit of 1 minute. By default,
  * retries up to a maximum of 10 times.
  * @param {string} Path - The path of the resource to request
- * @param {function} Callback - Callback to execute once the resource is received
+ * @param {(this: XMLHttpRequest, xhr: XMLHttpRequest) => void} Callback - Callback to execute once the resource is received
  * @param {number} [RetriesLeft] - How many more times to retry - after this hits zero, an error will be logged
  * @returns {void} - Nothing
  */
@@ -731,7 +731,7 @@ function CommonCompareVersion(Current, Other) {
 	];
 	for (let i = 0; i < 3; i++) {
 		if (CurrentVer[i] !== OtherVer[i]) {
-			return Math.sign(OtherVer[i] - CurrentVer[i]);
+			return /** @type {-1|0|1} */ (Math.sign(OtherVer[i] - CurrentVer[i]));
 		}
 	}
 	return 0;

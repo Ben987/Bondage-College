@@ -2927,7 +2927,7 @@ function ChatRoomGetOwnerRule(RuleType) { return ChatRoomGetRule(RuleType, "Owne
  * Gets a rule from the current character
  * @param {string} RuleType - The name of the rule to retrieve.
  * @param {"Owner" | "Lover"} Sender - Type of the sender
- * @returns {Rule} - The owner or lover rule corresponding to the requested rule name
+ * @returns {boolean} - The owner or lover rule corresponding to the requested rule name
  */
 function ChatRoomGetRule(RuleType, Sender) {
 	return LogQueryRemote(CurrentCharacter, RuleType, Sender + "Rule");
@@ -3190,7 +3190,7 @@ function ChatRoomGetLoadRules(C) {
 /**
  * Handles a response from another player containing the rules that the current player is allowed to read.
  * @param {Character} C - Character to set the rules on
- * @param {Rule[]} Rule - An array of rules that the current player can read.
+ * @param {LogRecord[]} Rule - An array of rules that the current player can read.
  * @returns {void} - Nothing
  */
 function ChatRoomSetLoadRules(C, Rule) {

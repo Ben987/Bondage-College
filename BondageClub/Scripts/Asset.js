@@ -397,7 +397,10 @@ function AssetBuildDescription(Family, CSV) {
 
 }
 
-// Loads the description of the assets in a specific language
+/**
+ * Loads the description of the assets in a specific language
+ * @param {string} Family The asset family to load the description for
+ */
 function AssetLoadDescription(Family) {
 
 	// Finds the full path of the CSV file to use cache

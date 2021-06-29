@@ -7,7 +7,7 @@
 class DirectedGraph {
 	/**
 	 * @param {string[]} vertices
-	 * @param {[[string, string]]} edges
+	 * @param {[string, string][]} edges
 	 */
 	constructor(vertices, edges) {
 		this.vertices = vertices;
@@ -21,6 +21,7 @@ class DirectedGraph {
 	 * @returns {Record<string, string[]>} - The adjacency list for the graph
 	 */
 	buildAdjacencyList() {
+		/** @type {Record<string, string[]>} */
 		const adjacencyList = {};
 		for (const v of this.vertices) {
 			adjacencyList[v] = [];
@@ -125,6 +126,7 @@ class DirectedGraph {
 		const blocked = [];
 		const blockMap = [];
 		const cycles = [];
+		/** @type {DirectedGraph} */
 		let subgraph = this;
 		let startVertex;
 		let currentComponent;

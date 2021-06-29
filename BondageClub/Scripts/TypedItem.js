@@ -299,8 +299,8 @@ function TypedItemGetOption(groupName, assetName, optionName) {
  * due to prerequisites or other requirements).
  * @param {Character} C - The character on whom the item is equipped
  * @param {Item} item - The item whose options are being validated
- * @param {ExtendedItemOption} option - The new option
- * @param {ExtendedItemOption} previousOption - The previously applied option
+ * @param {ExtendedItemOption|ModularItemOption} option - The new option
+ * @param {ExtendedItemOption|ModularItemOption} previousOption - The previously applied option
  * @returns {string|undefined} - undefined or an empty string if the validation passes. Otherwise, returns a string
  * message informing the player of the requirements that are not met.
  */
