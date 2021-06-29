@@ -211,7 +211,7 @@ function KinkyDungeonUpdateStats(delta) {
 	// Update the player tags based on the player's groups
 	KinkyDungeonPlayerTags = KinkyDungeonUpdateRestraints(delta);// console.log("Restraints Tags Check " + (performance.now() - now));
 
-	KinkyDungeonBlindLevel = Math.max(KinkyDungeonBlindLevelBase, KinkyDungeonPlayer.GetBlindLevel());
+	KinkyDungeonBlindLevel = KinkyDungeonAllSee == 0 ? Math.max(KinkyDungeonBlindLevelBase, KinkyDungeonPlayer.GetBlindLevel()) : 0;
 	if (KinkyDungeonStatBlind > 0) KinkyDungeonBlindLevel = 3;
 	KinkyDungeonDeaf = KinkyDungeonPlayer.IsDeaf();
 
