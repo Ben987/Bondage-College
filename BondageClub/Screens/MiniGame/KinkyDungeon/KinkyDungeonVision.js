@@ -25,12 +25,7 @@ function KinkyDungeonMakeLightMap(width, height, Lights) {
 	// Generate the grid
 	for (let X = 0; X < KinkyDungeonGridHeight; X++) {
 		for (let Y = 0; Y < KinkyDungeonGridWidth; Y++) {
-			if (KinkyDungeonAllSee==0) {
 				KinkyDungeonLightGrid = KinkyDungeonLightGrid + '0';// 0 = pitch dark
-			}
-			else {
-				KinkyDungeonLightGrid = KinkyDungeonLightGrid + '3';
-			}
 		}
 		KinkyDungeonLightGrid = KinkyDungeonLightGrid + '\n';
 	}
@@ -49,7 +44,7 @@ function KinkyDungeonMakeLightMap(width, height, Lights) {
 		for (let X = 0; X < KinkyDungeonGridWidth; X++) {
 			for (let Y = 0; Y < KinkyDungeonGridHeight; Y++) {
 				var tile = KinkyDungeonMapGet(X, Y);
-				if (KinkyDungeonTransparentObjects.includes(tile)) {
+				if (KinkyDungeonTransparentObjects.includes(tile) || KinkyDungeonAllSee != 0) {
 					var brightness = KinkyDungeonLightGet(X, Y);
 					if (brightness > 0) {
 						var nearbywalls = 0;
@@ -57,9 +52,9 @@ function KinkyDungeonMakeLightMap(width, height, Lights) {
 							for (let YY = Y-1; YY <= Y+1; YY++)
 								if (!KinkyDungeonTransparentObjects.includes(KinkyDungeonMapGet(XX, YY))) nearbywalls += 1;
 
-						if (nearbywalls > 3 && brightness <= 3 && X != KinkyDungeonPlayerEntity.x && Y != KinkyDungeonPlayerEntity.y && KinkyDungeonAllSee == 0) brightness -= 1;
+						if (nearbywalls > 3 && brightness <= 3 && X != KinkyDungeonPlayerEntity.x && Y != KinkyDungeonPlayerEntity.y) brightness -= 1;
 
-						if (brightness > 0 && KinkyDungeonAllSee == 0) {
+						if (brightness > 0) {
 							if (Number(KinkyDungeonLightGet(X-1, Y)) < brightness) KinkyDungeonLightSet(X-1, Y, "" + (brightness - 1));
 							if (Number(KinkyDungeonLightGet(X+1, Y)) < brightness) KinkyDungeonLightSet(X+1, Y, "" + (brightness - 1));
 							if (Number(KinkyDungeonLightGet(X, Y-1)) < brightness) KinkyDungeonLightSet(X, Y-1, "" + (brightness - 1));

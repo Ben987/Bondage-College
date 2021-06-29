@@ -208,7 +208,7 @@ function KinkyDungeonBulletHit(b, born) {
 			bullet:{spell:b.bullet.spell, damage: {damage:(b.bullet.spell.aoedamage) ? b.bullet.spell.aoedamage : b.bullet.spell.power, type:b.bullet.spell.damage, time:b.bullet.spell.time}, aoe: b.bullet.spell.aoe, lifetime: b.bullet.spell.lifetime, passthrough:true, name:b.bullet.name+"Hit", width:b.bullet.width, height:b.bullet.height}});
 		KinkyDungeonMoveTo(b.x, b.y);
 	} else if (b.bullet.hit == "allsee") {
-		KinkyDungeonAllSee = 5;
+		KinkyDungeonAllSee = 3;
 	}
 }
 

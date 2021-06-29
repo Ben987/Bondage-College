@@ -307,8 +307,8 @@ KinkyDungeonSpellCastFireball,You a hurl a fireball!
 KinkyDungeonSpellTargetFireball,Choose aim direction
 
 KinkyDungeonSpellClairvoyance,Clairvoyance
-KinkyDungeonSpellDescriptionClairvoyance,Allows you to see everything on screen
-KinkyDungeonSpellCastClairvoyance,You can see everything!
+KinkyDungeonSpellDescriptionClairvoyance,Allows you to see through walls
+KinkyDungeonSpellCastClairvoyance,You can see through walls!
 KinkyDungeonSpellTargetClairvoyance,Choose target location
 
 KinkyDungeonSpellSnare,Rope Snare
