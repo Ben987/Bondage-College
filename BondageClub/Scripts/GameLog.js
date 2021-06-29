@@ -122,8 +122,8 @@ function LogLoad(NewLog) {
 function LogQueryRemote(C, QueryLogName, QueryLogGroup) {
 	if (C.ID == 0) return LogQuery(QueryLogName, QueryLogGroup);
 	if (!C.Rule || !Array.isArray(C.Rule)) return false;
-	var R = C.Rule.find(R => R.Name == QueryLogName && R.Group == QueryLogGroup);
-	return (R != null) && ((R.Value == null) || (R.Value >= CurrenTime));
+	var R = C.Rule.find(r => r.Name == QueryLogName && r.Group == QueryLogGroup);
+	return (R != null) && ((R.Value == null) || (R.Value >= CurrentTime));
 }
 
 /**
