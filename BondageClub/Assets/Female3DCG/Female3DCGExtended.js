@@ -1018,6 +1018,54 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // Vacbed
+		Familiar: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Bat",
+						Property: { Type: null },
+					},
+					{
+						Name: "Cat",
+						Property: { Type: "Cat" },
+					},
+					{
+						Name: "Skeleton",
+						Property: { Type: "Skeleton" },
+					},
+					{
+						Name: "Parrot",
+						Property: { Type: "Parrot" },
+					},
+				],
+			},
+		}, // Familiar
+		LittleMonster: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Black",
+						Property: { Type: null },
+					},
+					{
+						Name: "Red",
+						Property: { Type: "Red" },
+					},
+					{
+						Name: "Green",
+						Property: { Type: "Green" },
+					},
+					{
+						Name: "Blue",
+						Property: { Type: "Blue" },
+					},
+				],
+			},
+		}, //LitteMonster
 		InflatableBodyBag: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
