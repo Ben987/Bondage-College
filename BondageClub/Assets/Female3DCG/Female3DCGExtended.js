@@ -1102,6 +1102,30 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, //InflatableBodyBag
+		Pole: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Untied",
+						Property: {
+							Type: null,
+						}
+					},
+					{
+						Name: "Tied",
+						SelfBondageLevel: 2,
+						Property: {
+							Type: "Tied",
+							Difficulty: 8,
+							SetPose: ["BackBoxTie"],
+							Effect: ["Block", "Freeze", "Prone"],
+						}
+					},
+				],
+			},
+		}, //Pole
 	}, // ItemDevices
 	Corset: {
 		LatexCorset1: {
