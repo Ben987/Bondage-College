@@ -43,8 +43,8 @@ function GLDrawLoad() {
 	GLDrawCanvas.width = 1000;
 	GLDrawCanvas.height = CanvasDrawHeight;
 	GLVersion = "webgl2";
-	var gl = GLDrawCanvas.getContext(GLVersion);
-	if (!gl) { GLVersion = "webgl"; gl = GLDrawCanvas.getContext(GLVersion); }
+	var gl = GLDrawCanvas.getContext(GLVersion, GLDrawGetOptions());
+	if (!gl) { GLVersion = "webgl"; gl = GLDrawCanvas.getContext(GLVersion, GLDrawGetOptions()); }
 	if (!gl) { GLVersion = "No WebGL"; GLDrawCanvas.remove(); GLDrawCanvas = null; return; }
 
 	GLDrawCanvas = GLDrawInitCharacterCanvas(GLDrawCanvas);
@@ -58,6 +58,23 @@ function GLDrawLoad() {
 	// Attach context listeners
 	GLDrawCanvas.addEventListener("webglcontextlost", GLDrawOnContextLost, false);
 	GLDrawCanvas.addEventListener("webglcontextrestored", GLDrawOnContextRestored, false);
+}
+
+/**
+ * Gets the graphical options saved in the player's local storage.
+ * @returns {WebGLContextAttributes} - WebG context attributes based on saved settings
+ */
+function GLDrawGetOptions() {
+	let antialias = true;
+	let powerPreference = "default";
+	
+	if (localStorage.getItem("GLDraw-antialiasOff")) antialias = false;
+	let savedPowerMode = localStorage.getItem("GLDraw-powerPreference");
+	if (savedPowerMode && (savedPowerMode == "high-performance" || savedPowerMode == "low-power")) {
+		powerPreference = savedPowerMode;
+	}
+	
+	return { antialias, powerPreference};
 }
 
 /**
