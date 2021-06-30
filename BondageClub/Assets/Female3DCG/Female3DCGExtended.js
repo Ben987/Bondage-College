@@ -1017,7 +1017,43 @@ var AssetFemale3DCGExtended = {
 					},
 				],
 			},
-		} // Vacbed
+		}, // Vacbed
+		InflatableBodyBag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Light",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+						},
+					},
+					{
+						Name: "Inflated",
+						Property: {
+							Type: "Inflated",
+							Difficulty: 3,
+						},
+					},
+					{
+						Name: "Bloated",
+						Property: {
+							Type: "Bloated",
+							Difficulty: 6,
+						},
+					},
+					{
+						Name: "Max",
+						Property: {
+							Type: "Max",
+							Difficulty: 9,
+						},
+					},
+				],
+			},
+		}, //InflatableBodyBag
 	}, // ItemDevices
 	Corset: {
 		LatexCorset1: {

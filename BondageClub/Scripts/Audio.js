@@ -69,7 +69,7 @@ var AudioActions = [
 		IsAction: (data) => [
 			"pumps",
 			"Suctightens",
-			"InflatableBodyBagRestrain"
+			"InflatableBodyBagSet"
 		].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
 	},
