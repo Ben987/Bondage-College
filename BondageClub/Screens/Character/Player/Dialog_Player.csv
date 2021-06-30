@@ -1043,11 +1043,11 @@ InventoryItemDevicesLockerType,,,Select Locker type,,
 InventoryItemDevicesLockerTypeVents,,,Vents,,
 InventoryItemDevicesLockerTypeVentless,,,Ventless,,
 InventoryItemDevicesLockerChange,,,SourceCharacter changes the vents on DestinationCharacter locker.,,
-SelectVacbedState,,,Select vacbed type.,,
-VacbedStateNormal,,,Hair
-VacbedStateNohair,,,No Hair
-DevicesVacbedSetNormal,,,SourceCharacter reveals DestinationCharacter hair from the vacbed.,,
-DevicesVacbedSetNohair,,,SourceCharacter tucks DestinationCharacter hair into the vacbed.,,
+ItemDevicesVacbedSelect,,,Select vacbed type.,,
+ItemDevicesVacbedNormal,,,Hair
+ItemDevicesVacbedNohair,,,No Hair
+ItemDevicesVacbedSetNormal,,,SourceCharacter reveals DestinationCharacter hair from the vacbed.,,
+ItemDevicesVacbedSetNohair,,,SourceCharacter tucks DestinationCharacter hair into the vacbed.,,
 VacBedDeluxeTypeLabel,,,Pose,,
 VacBedDeluxeOpacityLabel,,,Opacity,,
 VacBedDeluxeChangeType,,,SourceCharacter changes DestinationCharacter pose in her Vacuum Bed Deluxe.,,

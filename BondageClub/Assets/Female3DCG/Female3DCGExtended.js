@@ -998,7 +998,26 @@ var AssetFemale3DCGExtended = {
 					},
 				],
 			},
-		} // PetBed
+		}, // PetBed
+		Vacbed: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Normal",
+						Property: { Type: null }
+					},
+					{
+						Name: "Nohair",
+						Property: {
+							Type: "Nohair",
+							Hide: ["HairFront", "HairAccessory1", "HairAccessory2", "HairAccessory3", "Hat"],
+						},
+					},
+				],
+			},
+		} // Vacbed
 	}, // ItemDevices
 	Corset: {
 		LatexCorset1: {
