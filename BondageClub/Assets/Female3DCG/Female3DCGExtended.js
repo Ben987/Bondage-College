@@ -971,7 +971,34 @@ var AssetFemale3DCGExtended = {
 					},
 				],
 			},
-		} // TeddyBear
+		}, // TeddyBear
+		PetBed: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "NoBlanket",
+						Property: {
+							Type: null
+						},
+					},
+					{
+						Name: "Blanket",
+						Property: {
+							Type: "Blanket",
+							SetPose: ["AllFours"],
+							Hide: ["ItemArms", "ItemButt", "TailStraps", "Wings"],
+							Block: [
+								"ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemBoots",
+								"ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings",
+								"ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings"
+							]
+						},
+					},
+				],
+			},
+		} // PetBed
 	}, // ItemDevices
 	Corset: {
 		LatexCorset1: {

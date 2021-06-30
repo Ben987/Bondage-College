@@ -4460,8 +4460,6 @@ var AssetFemale3DCG = [
 			},
 			{
 				Name: "PetBed", Fetish: ["Pet"], Value: 50, Difficulty: -25, SelfBondage: 0, Time: 5, RemoveTime: 5, Effect: ["Tethered"], RemoveAtLogin: true, SetPose: ["Kneel"], FixedPosition: true, Extended: true, HasType: false,
-				AllowType: ["Blanket"],
-				AllowBlock: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemBoots", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings"],
 				Layer: [
 					{ Name: "Lining", Priority: 1, AllowColorize: false},
 					{ Name: "Bed", AllowColorize: true, Alpha: [{ Masks: [[0, 800, 500, 900]] }] },

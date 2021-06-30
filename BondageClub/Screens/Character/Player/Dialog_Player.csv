@@ -2097,11 +2097,11 @@ EyePatchTypeRight,,,Right,,
 SelectSpreaderType,,,Select leg spreader width.,,
 SpreaderMetalPoseNarrow,,,Narrow,,
 SpreaderMetalPoseWide,,,Wide,,
-SelectPetBedType,,,Change blanket,,
-PetBedTypeBlanket,,,Add blanket
-PetBedTypeNoBlanket,,,Remove blanket
-PetBedSetBlanket,,,SourceCharacter gives TargetCharacter a blanket.,,
-PetBedSetNoBlanket,,,SourceCharacter removes the blanket from TargetCharacter.,,
+ItemDevicesPetBedSelect,,,Change blanket,,
+ItemDevicesPetBedBlanket,,,Add blanket
+ItemDevicesPetBedNoBlanket,,,Remove blanket
+ItemDevicesPetBedSetBlanket,,,SourceCharacter gives TargetCharacter a blanket.,,
+ItemDevicesPetBedSetNoBlanket,,,SourceCharacter removes the blanket from TargetCharacter.,,
 NotificationTitleChatMessage,,,Chat Message,,
 NotificationTitleChatJoin,,,Joined Room,,
 NotificationTitleBeep,,,Beep,,
