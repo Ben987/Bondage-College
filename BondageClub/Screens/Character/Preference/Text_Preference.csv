@@ -264,7 +264,7 @@ GraphicsInvertRoom,Flip the room vertically when upside-down
 GraphicsStimulationFlash,Screen filters when stimulated by events
 GraphicsAntialiasing,Enable antialiasing (For this device)
 GraphicsNoWebGL,"Not running on WebGL, cannot edit rendering configurations."
-GraphicsPowerMode,Power consumption mode (For this device)
+GraphicsPowerMode,Preferred power consumption mode (For this device)
 PowerModelow-power,"Low consumption, slower rendering"
 PowerModedefault,Default
 PowerModehigh-performance,"High consumption, faster rendering"
