@@ -262,9 +262,9 @@ CourierNew,Courier New
 Copperplate,Copperplate
 GraphicsInvertRoom,Flip the room vertically when upside-down
 GraphicsStimulationFlash,Screen filters when stimulated by events
-GraphicsAntialiasing,Enable antialiasing (For this device)
+GraphicsAntialiasing,"Enable antialiasing (For this device, if supported)"
 GraphicsNoWebGL,"Not running on WebGL, cannot edit rendering configurations."
-GraphicsPowerMode,Preferred power consumption mode (For this device)
+GraphicsPowerMode,"Preferred power consumption mode (For this device, if supported)"
 PowerModelow-power,"Low consumption, slower rendering"
 PowerModedefault,Default
 PowerModehigh-performance,"High consumption, faster rendering"
