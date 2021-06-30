@@ -1311,7 +1311,7 @@ function PreferenceSubscreenGraphicsRun() {
 	DrawText(TextGet("GeneralAnimationQualityText"), 750, 712, "Black", "Gray");
 	if (GLVersion !== "No WebGL") {
 		DrawCheckbox(500, 765, 64, 64, TextGet("GraphicsAntialiasing"), !localStorage.getItem("GLDraw-antialiasOff"));
-		DrawText(TextGet("GraphicsPowerMode"), 900, 880, "Black", "Gray");
+		DrawText(TextGet("GraphicsPowerMode"), 880, 885, "Black", "Gray");
 	} else {
 		DrawText(TextGet("GraphicsNoWebGL"), 700, 810, "Red", "Gray");
 	}
