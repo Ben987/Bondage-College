@@ -145,7 +145,7 @@ function NPCArousal(C) {
 		for (let P = 0; P < C.ArousalSettings.Activity.length; P++) {
 
 			// Picks a random love factor for the activity (highest values have less chances)
-			var LoveSelf = Math.round((Math.random() * 4) + 0.5, 0);
+			var LoveSelf = Math.round((Math.random() * 4) + 0.5);
 
 			// Horny NPC have higher love for sexual activities
 			if (Horny + 125 > Math.random() * 250) LoveSelf = LoveSelf + 1;
@@ -180,7 +180,7 @@ function NPCArousal(C) {
 				C.ArousalSettings.Zone[Z].Factor = 4;
 				C.ArousalSettings.Zone[Z].Orgasm = true;
 			} else {
-				C.ArousalSettings.Zone[Z].Factor = Math.round((Math.random() * 4) + 0.5, 0);
+				C.ArousalSettings.Zone[Z].Factor = Math.round((Math.random() * 4) + 0.5);
 				if ((OrgasmZones.indexOf(C.ArousalSettings.Zone[Z].Name) >= 0) && (Math.random() > 0.5)) C.ArousalSettings.Zone[Z].Orgasm = true;
 			}
 		}
