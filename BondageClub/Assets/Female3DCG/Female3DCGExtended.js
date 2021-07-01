@@ -1566,6 +1566,29 @@ var AssetFemale3DCGExtended = {
 				],
 			}
 		}, // LeatherLegCuffs
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Messystyle",
+						Property: { Type: null, Difficulty: 3 },
+					},
+					{
+						Name: "MessyWrap",
+						Property: { Type: "MessyWrap", Difficulty: 4 },
+					},
+					{
+						Name: "Cross",
+						Property: { Type: "Cross", Difficulty: 5 },
+					},
+				],
+				Dialog: {
+					Load: "SelectRibbonType",
+				}
+			}
+		}, // Ribbons
 	}, // ItemLegs
 	ItemFeet: {
 		SteelAnkleCuffs: {
