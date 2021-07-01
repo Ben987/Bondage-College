@@ -39,54 +39,54 @@ var AssetFemale3DCGExtended = {
 					},
 					{
 						Name: "BCLogo",
-						Property: { 
-							Type: "BCLogo", 
-							DefaultColor: "#FFF0CC", 
+						Property: {
+							Type: "BCLogo",
+							DefaultColor: "#FFF0CC",
 						},
 					},
 					{
 						Name: "BDSM",
-						Property: { 
-							Type: "BDSM", 
-							DefaultColor: "Default", 
+						Property: {
+							Type: "BDSM",
+							DefaultColor: "Default",
 						},
 					},
 					{
 						Name: "Gag",
-						Property: { 
-							Type: "Gag", 
-							DefaultColor: "Default", 
+						Property: {
+							Type: "Gag",
+							DefaultColor: "Default",
 						},
 					},
 					{
 						Name: "Knot",
-						Property: { 
-							Type: "Knot", 
-							DefaultColor: "#CCC088", 
+						Property: {
+							Type: "Knot",
+							DefaultColor: "#CCC088",
 						},
 					},
 					{
 						Name: "Rock",
-						Property: { 
-							Type: "Rock", 
-							DefaultColor: "#B03030", 
+						Property: {
+							Type: "Rock",
+							DefaultColor: "#B03030",
 						},
 					},
 					{
 						Name: "Smile",
-						Property: { 
-							Type: "Smile", 
-							DefaultColor: "#BB9911", 
+						Property: {
+							Type: "Smile",
+							DefaultColor: "#BB9911",
 						},
 					},
 					{
 						Name: "Tick",
-						Property: { 
-							Type: "Tick", 
-							DefaultColor: "#119977", 
+						Property: {
+							Type: "Tick",
+							DefaultColor: "#119977",
 						},
 					},
-				],		
+				],
 			},
 		}, // TShirt2
 	}, // Cloth
@@ -104,7 +104,7 @@ var AssetFemale3DCGExtended = {
 						Name: "Strap",
 						Property: { Type: "Strap", },
 					},
-				],		
+				],
 			},
 		}, // LeatherStraps
 	}, // ClothAccessory
@@ -526,13 +526,13 @@ var AssetFemale3DCGExtended = {
 				Dialog: {
 					Load: "SelectTapeWrapping",
 				},
-				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR, CommonChatTags.DEST_CHAR ],
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR, CommonChatTags.DEST_CHAR],
 			}
 		}, // DuctTape
 		Zipties: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
-				Options:[
+				Options: [
 					{
 						Name: "ZipLight",
 						Property: {
@@ -825,19 +825,19 @@ var AssetFemale3DCGExtended = {
 				Modules: [
 					{
 						Name: "Cloth", Key: "cl",
-						Options: [{Property: { Hide: ["Cloth"] }}, {}],
+						Options: [{ Property: { Hide: ["Cloth"] } }, {}],
 					},
 					{
 						Name: "Corset", Key: "co",
-						Options: [{Property: { Hide: ["Corset"] }}, {}],
+						Options: [{ Property: { Hide: ["Corset"] } }, {}],
 					},
 					{
 						Name: "NipplesPiercings", Key: "np",
-						Options: [{Property: { Hide: ["ItemNipplesPiercings"] }}, {}],
+						Options: [{ Property: { Hide: ["ItemNipplesPiercings"] } }, {}],
 					},
 					{
 						Name: "VulvaPiercings", Key: "vp",
-						Options: [{Property: { Hide: ["ItemVulvaPiercings"] }}, {}],
+						Options: [{ Property: { Hide: ["ItemVulvaPiercings"] } }, {}],
 					},
 				],
 				ChangeWhenLocked: false,
@@ -898,7 +898,7 @@ var AssetFemale3DCGExtended = {
 						Name: "MaskStyle", Key: "ms",
 						Options: [
 							{
-								Property: { 
+								Property: {
 									Effect: ["BlockMouth"],
 									Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Mask"],
 									HideItem: ["ItemHeadSnorkel"],
@@ -906,7 +906,7 @@ var AssetFemale3DCGExtended = {
 								}
 							},
 							{
-								Property: { 
+								Property: {
 									OverridePriority: 35,
 									Hide: ["Head"],
 								}
@@ -977,7 +977,7 @@ var AssetFemale3DCGExtended = {
 					{ Name: "Harness", Property: { Type: "Harness" } },
 					{ Name: "Star", Property: { Type: "Star" } },
 					{ Name: "Diamond", Property: { Type: "Diamond" } },
-				]				
+				]
 			},
 		}, // SilkStraps
 		ThinLeatherStraps: {
@@ -987,7 +987,7 @@ var AssetFemale3DCGExtended = {
 					{ Name: "Crotch", Property: { Type: null } },
 					{ Name: "Waist", Property: { Type: "Waist" } },
 					{ Name: "Harness", Property: { Type: "Harness" } },
-				]				
+				]
 			},
 		}, // ThinLeatherStraps
 	}, // ItemTorso
@@ -998,7 +998,7 @@ var AssetFemale3DCGExtended = {
 				Options: [
 					{ Name: "Shiny", Property: { Type: null } },
 					{ Name: "Matte", Property: { Type: "Matte" } },
-				]				
+				]
 			},
 		}, // Shoes
 	}, // ItemTorso
@@ -1552,7 +1552,7 @@ var AssetFemale3DCGExtended = {
 				Options: [
 					{
 						Name: "None",
-						Property: {	Type: null }
+						Property: { Type: null }
 					},
 					{
 						Name: "Closed",
@@ -1601,6 +1601,58 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // SilkStraps
 	}, // ItemPelvis
+	ItemEars: {
+		HeadphoneEarPlugs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR, CommonChatTags.ASSET_NAME],
+				Options: [
+					{
+						Name: "Off",
+						Property: {
+							Type: null,
+							Effect: [],
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							Effect: ["DeafLight"],
+						},
+					},
+					{
+						Name: "Heavy",
+						Property: {
+							Type: "Heavy",
+							Effect: ["DeafHeavy"],
+						},
+					},
+					{
+						Name: "NoiseCancelling",
+						Property: {
+							Type: "NoiseCancelling",
+							Effect: ["DeafTotal"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "HeadphoneEarPlugsSelectLoudness",
+					TypePrefix: "HeadphoneEarPlugsPose",
+					ChatPrefix: "HeadphoneEarPlugsRestrain",
+					NpcPrefix: "ItemEarsHeadphonePlugs",
+				}
+			},
+		}, // HeadphoneEarPlugs
+		Headphones: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "HeadphoneEarPlugs" },
+		}, // Headphones
+		BluetoothEarbuds: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "HeadphoneEarPlugs" },
+		}, // BluetoothEarbuds
+	}, // ItemEars
 	Bra: {
 		SilkStraps: {
 			Archetype: ExtendedArchetype.TYPED,
