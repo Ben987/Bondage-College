@@ -228,6 +228,9 @@ function validateArray(definition, obj, description, allowMissing=false) {
 								validateArray(types.ExtendedItemOption, assetConfig.Config.Options, `Extended asset config for ${Group.Group}:${Asset.Name} Options`);
 							}
 						}
+						if (assetConfig.Archetype === "typed" && Asset.AllowType !== undefined) {
+							error(`Asset ${Group.Group}:${Asset.Name}: Assets using "typed" archetype should NOT set AllowType`);
+						}
 						if (!["modular", "typed"].includes(assetConfig.Archetype)) {
 							error(`Extended asset archetype for ${Group.Group}:${Asset.Name}: Unknown Archetype ${assetConfig.Archetype}`);
 						}
