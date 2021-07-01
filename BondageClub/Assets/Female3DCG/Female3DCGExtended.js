@@ -1589,6 +1589,33 @@ var AssetFemale3DCGExtended = {
 				}
 			}
 		}, // Ribbons
+		Zipties: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "ZipLegLight",
+						Property: { Type: null, SetPose: ["LegsClosed"], Difficulty: 1 }
+					}, {
+						Name: "ZipLegMedium",
+						Property: { Type: "ZipLegMedium", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}, {
+						Name: "ZipLegFull",
+						Property: { Type: "ZipLegFull", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}, {
+						Name: "ZipFrogtie",
+						Property: { Type: "ZipFrogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Effect: ["ForceKneel"], Difficulty: 3 },
+						Prerequisite: ["NotSuspended", "CanKneel"]
+					}
+				],
+				Dialog: {
+					Load: "SelectZipTie",
+					TypePrefix: "ZipBondage",
+					NpcPrefix: "Zip",
+				}
+			}
+		}, // Zipties
 	}, // ItemLegs
 	ItemFeet: {
 		SteelAnkleCuffs: {
