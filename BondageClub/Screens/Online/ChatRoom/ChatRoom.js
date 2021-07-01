@@ -2747,7 +2747,7 @@ function ChatRoomStopLeave(){
 /**
  * Sends an administrative command to the server for the chat room from the character dialog.
  * @param {string} ActionType - Type of action performed.
- * @param {boolean | string} [Publish] - Whether or not the action should be published.
+ * @param {boolean | string} [Publish=true] - Whether or not the action should be published.
  * @returns {void} - Nothing
  */
 function ChatRoomAdminAction(ActionType, Publish) {
