@@ -1549,23 +1549,25 @@ var AssetFemale3DCGExtended = {
 		SteelAnkleCuffs: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR, CommonChatTags.ASSET_NAME],
 				Options: [
 					{
 						Name: "None",
-						Property: {	Type: null }
+						Property: {
+							Type: null, SetPose: null, Difficulty: null, Effect: null, FreezeActivePose: [],
+						}
 					},
 					{
 						Name: "Closed",
 						Property: {
-							Type: "Closed",
-							Effect: ["Prone", "Freeze"],
-							SetPose: ["LegsClosed"],
-							FreezeActivePose: ["BodyLower"]
+							Type: "Closed", Effect: ["Prone", "Freeze"], SetPose: ["LegsClosed"], Difficulty: 6, FreezeActivePose: ["BodyLower"],
 						}
 					}
 				],
 				Dialog: {
-					Load: "SelectBondagePosition"
+					Load: "SelectBondagePosition",
+					TypePrefix: "ItemFeetSteelAnkleCuffs",
+					ChatPrefix: "ItemFeetSteelAnkleCuffsSet",
 				}
 			}
 		}, // SteelAnkleCuffs
@@ -1573,6 +1575,86 @@ var AssetFemale3DCGExtended = {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "ItemArms", AssetName: "SturdyLeatherBelts" },
 		}, // SturdyLeatherBelts 
+		LeatherAnkleCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "SteelAnkleCuffs" },
+		}, // LeatherAnkleCuffs
+		OrnateAnkleCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "SteelAnkleCuffs" },
+		}, // OrnateAnkleCuffs
+		DuctTape: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Feet",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Hide: null,
+							SetPose: ["LegsClosed"],
+						},
+					},
+					{
+						Name: "HalfFeet",
+						Property: {
+							Type: "HalfFeet",
+							Difficulty: 2,
+							Hide: ["ClothLower", "Shoes"],
+							SetPose: ["LegsClosed"],
+						},
+					},
+					{
+						Name: "MostFeet",
+						Property: {
+							Type: "MostFeet",
+							Difficulty: 4,
+							Hide: ["ClothLower", "Shoes"],
+							SetPose: ["LegsClosed"],
+						},
+					},
+					{
+						Name: "CompleteFeet",
+						Property: {
+							Type: "CompleteFeet",
+							Difficulty: 6,
+							Hide: ["ClothLower", "Shoes"],
+							SetPose: ["LegsClosed"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectTapeWrapping",
+					ChatPrefix: "DuctTapeRestrain",
+					NpcPrefix: "DuctTapeRestrain",
+					TypePrefix: "DuctTapePose",
+				}
+			},
+		}, // DuctTape
+		Zipties: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "ZipFeetLight",
+						Property: { Type: null, SetPose: ["LegsClosed"], Difficulty: 1 },
+					}, {
+						Name: "ZipFeetMedium",
+						Property: { Type: "ZipFeetMedium", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}, {
+						Name: "ZipFeetFull",
+						Property: { Type: "ZipFeetFull", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}
+				],
+				Dialog: {
+					Load: "SelectZipTie",
+					ChatPrefix: "ZipFeetSet",
+					NpcPrefix: "ZipFeetSet",
+					TypePrefix: "ZipBondage",
+				}
+			},
+		}, // Zipties
 	}, // ItemFeet
 	ItemMisc: {
 		ServingTray: {
