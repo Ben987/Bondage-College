@@ -62,14 +62,13 @@ function CreationRun() {
 
 }
 
-// When the server response returns, we analyze it's data
 /**
  * Handles the server response to a creation request. Creates the character, if possible,
  * initializes the basic data and sends the newborn to the maid in the main hall.
- * @param {*} data - The set of data, received from the server
+ * @param {object} data - The set of data, received from the server
  * @param {string} data.ServerAnswer - The outcome of the creation request: should always be "AccountCreated"
  * @param {string} data.OnlineID - The ID of the newly created account
- * @param {string} data.MemberNumber - The member number of the newly created account
+ * @param {number} data.MemberNumber - The member number of the newly created account
  * @returns {void} - Nothing
  */
 function CreationResponse(data) {
