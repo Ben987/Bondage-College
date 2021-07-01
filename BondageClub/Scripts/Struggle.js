@@ -1164,7 +1164,7 @@ function StruggleLockPickProgressStart(C, Item) {
 				if (InventoryItemHasEffect(InventoryGet(Player, "ItemFeet"), "Block", true)) S = S - 1; // A little harder while legs bound, but it wont make it impossible
 				if (InventoryGroupIsBlocked(Player, "ItemFeet")) S = S - 1; // A little harder while wearing something like a legbinder as well
 				if (Player.IsBlind()) S = S - 1; // harder while blind
-				if (Player.GetDeafLevel() > 0) S = S - Math.ceiling(Player.GetDeafLevel()/2); // harder while deaf
+				if (Player.GetDeafLevel() > 0) S = S - Math.ceil(Player.GetDeafLevel()/2); // harder while deaf
 
 				// No bonus from struggle assist. Lockpicking is a solo activity!
 			}
