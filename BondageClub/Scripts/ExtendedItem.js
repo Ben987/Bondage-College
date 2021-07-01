@@ -347,9 +347,6 @@ function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage) {
 		if (Option.Property.Type == null || (C.ID == 0 && DialogFocusItem.Property.Type == Option.Property.Type)) return;
 		InventoryTogglePermission(DialogFocusItem, Option.Property.Type);
 	} else {
-		if (InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type)) {
-			return;
-		}
 		if (DialogFocusItem.Property.Type === Option.Property.Type && !Option.HasSubscreen) {
 			return;
 		}
@@ -381,9 +378,9 @@ function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage) {
  */
 function ExtendedItemRequirementCheckMessage(Option, CurrentOption, IsSelfBondage) {
 	const C = CharacterGetCurrent() || CharacterAppearanceSelection;
-	let ValidationMessage = ExtendedItemCheckSkillRequirements(C, DialogFocusItem, Option);
+	let ValidationMessage = TypedItemValidateOption(C, DialogFocusItem, Option, CurrentOption);
 	if (!ValidationMessage) {
-		ValidationMessage = TypedItemValidateOption(C, DialogFocusItem, Option, CurrentOption);
+		ExtendedItemCheckSkillRequirements(C, DialogFocusItem, Option);
 	}
 	return ValidationMessage;
 }

@@ -1082,6 +1082,7 @@ ItemMouth2,LeatherCorsetCollar,Leather Corset Collar Gag
 ItemMouth2,LatexPostureCollar,Latex Posture Collar Gag
 ItemMouth2,BitGag,Silicon Bit Gag
 ItemMouth2,XLBoneGag,XL Bone Gag
+ItemMouth2,FoxyHarnessPanelGag,Foxy Harness Gag
 ItemMouth2,BallGag,Ball Gag
 ItemMouth2,BallGagMask,Ball Gag Mask
 ItemMouth2,SteelMuzzleGag,Steel Muzzle Gag
@@ -1127,6 +1128,7 @@ ItemMouth3,LeatherCorsetCollar,Leather Corset Collar Gag
 ItemMouth3,LatexPostureCollar,Latex Posture Collar Gag
 ItemMouth3,BitGag,Silicon Bit Gag
 ItemMouth3,XLBoneGag,XL Bone Gag
+ItemMouth3,FoxyHarnessPanelGag,Foxy Harness Gag
 ItemMouth3,BallGag,Ball Gag
 ItemMouth3,BallGagMask,Ball Gag Mask
 ItemMouth3,SteelMuzzleGag,Steel Muzzle Gag
