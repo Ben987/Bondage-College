@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html style="width:100%; height:100%; padding:0px; margin:0px;">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -339,7 +339,7 @@ window.onload = function() {
  * @param {number} Timestamp
  */
 function MainRun(Timestamp) {
-	DrawProcess();
+	DrawProcess(Timestamp);
 	TimerProcess(Timestamp);
 }
 
@@ -350,7 +350,7 @@ function MainRun(Timestamp) {
 function KeyDown(event) {
 	if (event.repeat) return;
 	KeyPress = event.keyCode || event.which;
-	CommonKeyDown();
+	CommonKeyDown(event);
 }
 
 /**
@@ -360,8 +360,8 @@ function KeyDown(event) {
 function DocumentKeyDown(event) {
 	if (event.repeat) return;
 	if (event.key == "Escape") {
-		if (typeof window[CurrentScreen + "Exit"] === "function") {
-			window[CurrentScreen + "Exit"]();
+		if (CurrentScreenFunctions.Exit) {
+			CurrentScreenFunctions.Exit();
 		} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
 			if (!DialogLeaveFocusItem())
 				DialogLeaveItemMenu();
@@ -380,7 +380,7 @@ function DocumentKeyDown(event) {
 function Click(event) {
 	if (!CommonIsMobile) {
 		MouseMove(event);
-		CommonClick();
+		CommonClick(event);
 	}
 }
 
@@ -391,7 +391,7 @@ function Click(event) {
 function TouchStart(event) {
 	if (CommonIsMobile && MainCanvas) {
 		TouchMove(event.touches[0]);
-		CommonClick();
+		CommonClick(event);
 	}
 }
 

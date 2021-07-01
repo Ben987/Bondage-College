@@ -372,6 +372,38 @@ interface Lovership {
 	Start?: number;
 }
 
+interface ScreenFunctions {
+	// Required
+	/**
+	 * Called each frame
+	 * @param {number} time - The current time for frame
+	 */
+	Run(time: number): void;
+	/**
+	 * Called when user clicks on the canvas
+	 * @param {MouseEvent | TouchEvent} event - The event that triggered this
+	 */
+	Click(event: MouseEvent | TouchEvent): void;
+
+	// Optional
+	/** Called when screen is loaded using `CommonSetScreen` */
+	Load?(): void;
+	/** Called when this screen is being replaced */
+	Unload?(): void;
+	/**
+	 * Called when screen size or position changes or after screen load
+	 * @param {boolean} load - If the reason for call was load (`true`) or window resize (`false`)
+	 */
+	Resize?(load: boolean): void;
+	/**
+	 * Called when user presses any key
+	 * @param {KeyboardEvent} event - The event that triggered this
+	 */
+	KeyDown?(event: KeyboardEvent): void;
+	/** Called when user presses Esc */
+	Exit?(): void;
+}
+
 interface Character {
 	ID: number;
 	/** Only on `Player` */

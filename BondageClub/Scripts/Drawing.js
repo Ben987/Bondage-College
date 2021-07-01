@@ -8,11 +8,6 @@ let TempCanvas;
 let ColorCanvas;
 /** @type {CanvasRenderingContext2D} */
 let CharacterCanvas;
-/** @type {Map<string, () => void>} */
-const DrawRunMap = new Map();
-let DrawRun = () => { };
-/** @type {string} */
-let DrawScreen;
 var DialogLeaveDueToItem = false;
 
 var BlindFlash = false;
@@ -32,6 +27,11 @@ var DrawLastDarkFactor = 0;
  * @type {Character[]}
  */
 var DrawLastCharacters = [];
+
+/**
+ * The last canvas position in format `[left, top, width, height]`
+ */
+var DrawCanvasPosition = [0, 0, 0, 0];
 
 /**
  * Converts a hex color string to a RGB color
@@ -1222,17 +1222,12 @@ function DrawBlindFlash(intensity) {
 
 /**
  * Constantly looping draw process. Draws beeps, handles the screen size, handles the current blindfold state and draws the current screen.
+ * @param {number} time - The current time for frame
  * @returns {void} - Nothing
  */
-function DrawProcess() {
+function DrawProcess(time) {
 	// Clear the list of characters that were drawn last frame
 	DrawLastCharacters = [];
-
-	let RefreshDrawFunction = false;
-	if (DrawScreen != CurrentScreen) {
-		DrawScreen = CurrentScreen;
-		RefreshDrawFunction = true;
-	}
 
 	// Gets the current screen background and draw it, it becomes darker in dialog mode or if the character is blindfolded
 	let B = window[CurrentScreen + "Background"];
@@ -1262,25 +1257,21 @@ function DrawProcess() {
 		if (DarkFactor < 1.0) DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
 	}
 
-	if (RefreshDrawFunction) {
-		DrawRun = DrawRunMap.get(CurrentScreen);
-		if (DrawRun == null) {
-			if (typeof window[CurrentScreen + "Run"] === 'function') {
-				DrawRun = window[CurrentScreen + "Run"];
-				DrawRunMap.set(CurrentScreen, DrawRun);
-			} else {
-				console.log("Trying to launch invalid function: " + CurrentScreen + "Run()");
-				DrawRun = () => { };
-			}
-		}
-	}
-
 	// Draws the dialog screen or current screen if there's no loaded character
 	if (CurrentCharacter != null) DialogDraw();
-	else DrawRun();
+	else CurrentScreenFunctions.Run(time);
 
 	// Draws beep from online player sent by the server
 	ServerDrawBeep();
+
+	// Checks for screen resize/position change and calls appropriate function
+	const newCanvasPosition = [MainCanvas.canvas.offsetLeft, MainCanvas.canvas.offsetTop, MainCanvas.canvas.clientWidth, MainCanvas.canvas.clientHeight];
+	if (!CommonArraysEqual(newCanvasPosition, DrawCanvasPosition)) {
+		DrawCanvasPosition = newCanvasPosition;
+		if (CurrentScreenFunctions.Resize) {
+			CurrentScreenFunctions.Resize(false);
+		}
+	}
 
 	// Leave dialogs AFTER drawing everything
 	// If needed
