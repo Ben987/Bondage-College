@@ -406,6 +406,12 @@ function PreferenceInitPlayer() {
 	if (typeof C.OnlineSettings.SearchFriendsFirst !== "boolean") C.OnlineSettings.SearchFriendsFirst = false;
 	if (typeof C.OnlineSettings.EnableAfkTimer !== "boolean") C.OnlineSettings.EnableAfkTimer = true;
 	if (typeof C.OnlineSettings.EnableWardrobeIcon !== "boolean") C.OnlineSettings.EnableWardrobeIcon = false;
+	// Delete old improper settings.
+	delete C.ChatSettings.AutoBanBlackList;
+	delete C.ChatSettings.AutoBanGhostList;
+	delete C.ChatSettings.SearchFriendsFirst;
+	delete C.ChatSettings.DisableAnimations;
+	delete C.ChatSettings.SearchShowsFullRooms;
 
 	// Onilne shared settings
 	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
