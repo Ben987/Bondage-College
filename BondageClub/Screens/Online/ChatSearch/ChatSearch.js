@@ -188,7 +188,6 @@ function ChatSearchNormalDraw() {
 }
 
 /**
- *
  * Garbles based on immersion settings
  * @param {string} Text - The text to garble
  * @returns {string} - Garbled text
