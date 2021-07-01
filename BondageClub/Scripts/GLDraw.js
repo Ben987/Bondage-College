@@ -11,6 +11,23 @@ var GLVersion;
 
 var GLDrawCanvas;
 
+/**
+ * How many seconds to wait before forcefully resetting the canvas after a
+ * context loss
+ */
+const GLDrawContextResetSeconds = 10;
+/**
+ * The cooldown in seconds after resetting the canvas. If another context loss
+ * happens in this cooldown, we'll revert to canvas2d rendering
+ */
+const GLDrawRevertToDraw2DSeconds = 50;
+
+let GLDrawContextLostTimeout;
+let GLDrawRecoveryMode = false;
+let GLDrawCrashTimeout;
+
+let GLDrawBuildCanvasBackup;
+
 var GLDrawAlphaThreshold = 0.01;
 var GLDrawHalfAlphaLow = 0.8 / 256.0;
 var GLDrawHalfAlphaHigh = 1.2 / 256.0;
@@ -32,19 +49,86 @@ function GLDrawLoad() {
 
 	GLDrawCanvas = GLDrawInitCharacterCanvas(GLDrawCanvas);
 
+	if (!GLDrawBuildCanvasBackup) {
+		// Keep a backup of the original CharacterAppearanceBuildCanvas function in case we need to revert
+		GLDrawBuildCanvasBackup = CharacterAppearanceBuildCanvas;
+	}
 	CharacterAppearanceBuildCanvas = GLDrawAppearanceBuild;
 
 	// Attach context listeners
-	GLDrawCanvas.addEventListener("webglcontextlost", function (event) {
-		event.preventDefault();
-		console.log("WebGL Drawing disabled: Context Lost. If the context does not restore itself, refresh your page.");
-	}, false);
-	GLDrawCanvas.addEventListener("webglcontextrestored", function () {
-		GLDrawLoad();
-		console.log("WebGL: Context restored.");
-	}, false);
+	GLDrawCanvas.addEventListener("webglcontextlost", GLDrawOnContextLost, false);
+	GLDrawCanvas.addEventListener("webglcontextrestored", GLDrawOnContextRestored, false);
+}
 
-	//console.log("WebGL Drawing enabled: '" + GLVersion + "'");
+/**
+ * Handler for WebGL context lost events
+ * @param {WebGLContextEvent} event
+ * @returns {void} - Nothing
+ */
+function GLDrawOnContextLost(event) {
+	event.preventDefault();
+	console.log("WebGL Drawing disabled: Context Lost. If the context does not restore itself, refresh your page.");
+
+	if (GLDrawRecoveryMode) {
+		// If the context has been lost again whilst in crash cooldown, revert to canvas2d drawing
+		return GLDrawRevertToCanvas2D();
+	}
+
+	GLDrawContextLostTimeout = setTimeout(() => {
+		// If the context has not been automatically restored after
+		console.log(`Context not restored after ${GLDrawContextResetSeconds} seconds... resetting canvas.`);
+		GLDrawResetCanvas();
+
+		// After forcefully resetting the canvas, we're in crash cooldown mode
+		GLDrawRecoveryMode = true;
+		GLDrawCrashTimeout = setTimeout(() => GLDrawRecoveryMode = false, GLDrawRevertToDraw2DSeconds * 1000);
+	}, GLDrawContextResetSeconds * 1000);
+}
+
+/**
+ * Restores the original CharacterAppearanceBuildCanvas function, and cleans up any GLDraw resources.
+ * @returns {void} - Nothing
+ */
+function GLDrawRevertToCanvas2D() {
+	const seconds = GLDrawContextResetSeconds + GLDrawRevertToDraw2DSeconds;
+	console.log(`WebGL context lost twice within ${seconds} seconds - reverting to canvas2D rendering`);
+	clearTimeout(GLDrawCrashTimeout);
+	GLDrawCanvas.remove();
+	GLDrawImageCache.clear();
+	CharacterAppearanceBuildCanvas = GLDrawBuildCanvasBackup;
+	GLDrawRebuildCharacters();
+}
+
+/**
+ * Handler for WebGL context restored events
+ * @returns {void} - Nothing
+ */
+function GLDrawOnContextRestored() {
+	console.log("WebGL: Context restored.");
+	clearTimeout(GLDrawContextLostTimeout);
+	GLDrawLoad();
+	GLDrawRebuildCharacters();
+}
+
+/**
+ * Removes the current GLDraw canvas, clears the image cache, and reloads a fresh canvas.
+ * @returns {void} - Nothing
+ */
+function GLDrawResetCanvas() {
+	GLDrawCanvas.remove();
+	GLDrawImageCache.clear();
+	GLDrawLoad();
+	GLDrawRebuildCharacters();
+}
+
+/**
+ * Rebuilds the canvas for any characters that are currently on screen.
+ * @returns {void} - Nothing
+ */
+function GLDrawRebuildCharacters() {
+	for (const C of DrawLastCharacters) {
+		CharacterAppearanceBuildCanvas(C);
+	}
 }
 
 /**

@@ -698,11 +698,13 @@ interface ExtendedItemOption {
 	/**
 	 * Trigger this expression when changing to this option
 	 *
-	 * **Curretnly broken!**
+	 * FIXME: **Currently broken!**
 	 */
 	Expression?: ExpressionTrigger[];
 	/** Whether or not the option should open a subscreen in the extended item menu */
 	HasSubscreen?: boolean;
+	/** Whether or not this option can be selected randomly */
+	Random?: boolean;
 }
 
 //#endregion
@@ -877,6 +879,7 @@ interface TypedItemDialogConfig {
 	 * will include the name of the new option, and depending on the chat setting, the name of the previous option:
 	 * - For chat setting `FROM_TO`: `<chatPrefix><oldOptionName>To<newOptionName>`
 	 * - For chat setting `TO_ONLY`: `<chatPrefix><newOptionName>`
+     * Defaults to `"<GroupName><AssetName>Set"`
 	 */
 	ChatPrefix?: string | TypedItemChatCallback;
 	/**
