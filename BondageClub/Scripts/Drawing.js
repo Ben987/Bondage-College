@@ -28,6 +28,12 @@ let DrawCacheTotalImages = 0;
 var DrawLastDarkFactor = 0;
 
 /**
+ * A list of the characters that are drawn every frame
+ * @type {Character[]}
+ */
+var DrawLastCharacters = [];
+
+/**
  * Converts a hex color string to a RGB color
  * @param {string} color - Hex color to conver
  * @returns {{ r: number, g: number, b: number }} - RGB color
@@ -244,6 +250,9 @@ function DrawArousalMeter(C, X, Y, Zoom) {
  * @returns {void} - Nothing
  */
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed, DrawCanvas) {
+	// Record that the character was drawn this frame
+	DrawLastCharacters.push(C);
+
 	if (!DrawCanvas) DrawCanvas = MainCanvas;
 
 	var OverrideDark = CurrentModule == "MiniGame" || ((Player.Effect.includes("VRAvatars") && C.Effect.includes("VRAvatars"))) || CurrentScreen == "InformationSheet";
@@ -1216,6 +1225,9 @@ function DrawBlindFlash(intensity) {
  * @returns {void} - Nothing
  */
 function DrawProcess() {
+	// Clear the list of characters that were drawn last frame
+	DrawLastCharacters = [];
+
 	let RefreshDrawFunction = false;
 	if (DrawScreen != CurrentScreen) {
 		DrawScreen = CurrentScreen;
