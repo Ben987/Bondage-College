@@ -373,7 +373,7 @@ function ChatSearchResponse(data) {
 
 /**
  * Handles the reception of the server data when it responds to the search query
- * @param {string} data - Response from the server, contains the room list matching the query
+ * @param {any[]} data - Response from the server, contains the room list matching the query
  * @returns {void} - Nothing
  */
 function ChatSearchResultResponse(data) {
