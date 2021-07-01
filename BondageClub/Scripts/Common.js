@@ -447,8 +447,8 @@ function CommonRandomItemFromList(ItemPrevious, ItemList) {
 function CommonConvertStringToArray(s) {
 	var arr = [];
 	if (s != "") {
-		arr = s.split(',').map(Number).reduce((list, curr) => {
-			if (!((curr === false) || Number.isNaN(curr))) list.push(curr);
+		arr = s.split(',').reduce((list, curr) => {
+			if (!(!curr || Number.isNaN(Number(curr)))) list.push(Number(curr));
 			return list;
 		}, []);
 	}
