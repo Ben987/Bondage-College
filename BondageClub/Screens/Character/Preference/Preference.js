@@ -696,8 +696,8 @@ function PreferenceSubscreenDifficultyRun() {
 		// Draw the difficulty levels
 		DrawText(TextGet("DifficultyTitle"), 500, 225, "Black", "Gray");
 		for (let D = 0; D <= 3; D++) {
-			DrawText(TextGet("DifficultySummary" + D.toString() + "A"), 850, 325 + 150 * D, 1050, 120, "Black", "White");
-			DrawText(TextGet("DifficultySummary" + D.toString() + "B"), 850, 375 + 150 * D, 1050, 120, "Black", "White");
+			DrawText(TextGet("DifficultySummary" + D.toString() + "A"), 850, 325 + 150 * D, "Black", "White");
+			DrawText(TextGet("DifficultySummary" + D.toString() + "B"), 850, 375 + 150 * D, "Black", "White");
 		}
 
 		// Draw the difficulty buttons
