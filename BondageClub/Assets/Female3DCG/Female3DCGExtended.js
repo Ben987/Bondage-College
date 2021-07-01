@@ -1837,13 +1837,9 @@ var AssetFemale3DCGExtended = {
 				Options: [
 					{
 						Name: "None",
-<<<<<<< HEAD
 						Property: {
 							Type: null, SetPose: null, Difficulty: null, Effect: null, FreezeActivePose: [],
 						}
-=======
-						Property: { Type: null }
->>>>>>> master
 					},
 					{
 						Name: "Closed",
