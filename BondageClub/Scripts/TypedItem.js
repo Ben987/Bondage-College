@@ -305,6 +305,9 @@ function TypedItemGetOption(groupName, assetName, optionName) {
  * message informing the player of the requirements that are not met.
  */
 function TypedItemValidateOption(C, item, option, previousOption) {
+	if (InventoryBlockedOrLimited(C, item, option.Property.Type)) {
+		return DialogFindPlayer("ExtendedItemNoItemPermission");
+	}
 	const validationFunctionName = `Inventory${item.Asset.Group.Name}${item.Asset.Name}Validate`;
 	let validationMessage = CommonCallFunctionByName(validationFunctionName, C, item, option, previousOption);
 	if (!validationMessage || typeof validationMessage !== "string") {
@@ -421,7 +424,20 @@ function TypedItemSetRandomOption(C, itemOrGroupName, push = false) {
 		return;
 	}
 
-	const options = TypedItemGetOptions(item.Asset.Group.Name, item.Asset.Name);
-	const option = CommonRandomItemFromList(null, options);
-	return TypedItemSetOption(C, item, options, option, push);
+	/** @type {ExtendedItemOption[]} */
+	const allOptions = TypedItemGetOptions(item.Asset.Group.Name, item.Asset.Name);
+	// Avoid blocked & non-random options
+	const availableOptions = allOptions
+		.filter(option => option.Random !== false)
+		.filter(option => !InventoryBlockedOrLimited(C, item, option.Property.Type));
+
+	/** @type {ExtendedItemOption} */
+	let option;
+	if (availableOptions.length === 0) {
+		// If no options are available, use the null type
+		option = allOptions.find(O => O.Property.Type == null);
+	} else {
+		option = CommonRandomItemFromList(null, availableOptions);
+	}
+	return TypedItemSetOption(C, item, availableOptions, option, push);
 }
