@@ -532,6 +532,8 @@ interface PlayerCharacter extends Character {
 	VisualSettings?: {
 		ForceFullHeight: boolean;
 		UseCharacterInPreviews: boolean;
+		MainHallBackground?: string;
+		PrivateRoomBackground?: string;
 	};
 	AudioSettings?: {
 		Volume: number;
