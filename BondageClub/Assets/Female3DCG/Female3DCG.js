@@ -4474,7 +4474,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "Kennel", Fetish: ["Metal", "Pet"], Left: -550, Value: 150, Difficulty: 6, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "CageEquip", DefaultColor: ["#2E2E29", "#780E0E", "#2E2E29"], Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], AllowType: ["OpenPadding", "Closed", "ClosedPadding"], Effect: ["ForceKneel", "Prone", "Enclose", "Freeze"], Alpha: [{ Masks: [[1, 80, 75, 900], [400, 80, 100, 900]] }], RemoveAtLogin: true, Extended: true, DynamicBeforeDraw: true, DynamicScriptDraw: true, Layer: [
+				Name: "Kennel", Fetish: ["Metal", "Pet"], Left: -550, Value: 150, Difficulty: 6, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "CageEquip", DefaultColor: ["#2E2E29", "#780E0E", "#2E2E29"], Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], AllowType: ["OpenPadding", "Closed", "ClosedPadding"], Effect: ["ForceKneel", "Prone", "Enclose", "Freeze"], RemoveAtLogin: true, Extended: true, Layer: [
 					{ Name: "Kennel", Priority: 1, HasType: false },
 					{ Name: "Padding", Priority: 1, AllowTypes: ["OpenPadding", "ClosedPadding"], HasType: false },
 					{ Name: "Door" },
