@@ -1,0 +1,122 @@
+PlayerGagged,,,(She checks your gag.)  This gag is a perfect fit Miss.,,
+FightVictory,,,(She seems pretty mad.)  What do you think you're doing?   You will get caught right away.,,
+FightDefeat,,,(She seems very happy.)  You're no match for Pandora's staff.  Now it's time to prepare your punishment.,,
+Punishment8,,,"(A Dominatrix takes you away from the maid.)  So, we've caught the infamous DialogPlayerName.  You'll never forget this lesson.",,
+Punishment5,,,(A Dominatrix takes you away from the maid.)  You've been on list for a while DialogPlayerName.  I'll teach you a lesson.,,
+Punishment2,,,"(A Dominatrix takes you away from the maid.)  (She cracks her knuckles.)  So, you're a troublemaker?  I'll teach you a lesson.",,
+Punishment0,,,(A Dominatrix takes you away from the maid.)  (She stares at you.)  You've caused some trouble?  Then it's time for your lesson.,,
+0,,,"Welcome to Pandora's Box, the best BDSM club in town.  It will be my pleasure to introduce you.",,
+0,95,I'm a member.  (Show your fake ID.),"(She looks at your ID and nods.)  I'm so sorry Miss, please come inside and have fun.",,"HasPerk(""Forgery"")"
+0,80,Thanks.  What goes on around here?,"We are an adult club, aimed at fulfilling your wildest fantasies.  Be careful when you open the box.  (She giggles.)",,
+0,80,You're cute in that costume.,"Thanks Miss, but this is not a costume, it's my work uniform.  I work here as a full-time maid.  (She smiles.)",,
+0,80,"Yes, can you introduce me?","(She nods.)  We are an adult club, aimed at fulfilling your wildest fantasies.  Be careful when you open the box.",,
+0,,(Look around.),,DialogLeave(),
+10,,,"Welcome to Pandora's Box, the best BDSM club in town.  (She stares at you.)  You've been here before haven't you?",,
+10,95,I'm a member.  (Show your fake ID.),"(She looks at your ID and nods.)  I'm so sorry Miss, please come inside and have fun.",,"HasPerk(""Forgery"")"
+10,80,No.  This is my first visit.,Very well Miss.  (She seems a little suspicious.)  Would you like to know about Pandora's Box?,,
+10,80,I've been here a while ago.,That's probably it.  (She seems a little suspicious.)  Would you like to know about Pandora's Box?,,
+10,50,"I'm from the Bondage Club, get lost maid.","(She frowns at you.)  Then you better leave now, you are not welcome here.",,
+10,,(Look around.),,DialogLeave(),
+20,,,"Welcome to Pandora's Box, the best BDSM club in town.  I've seen you before, who are you Miss?",,
+20,95,I'm a member.  (Show your fake ID.),"(She looks at your ID and nods.)  I'm so sorry Miss, please come inside and have fun.",,"HasPerk(""Forgery"")"
+20,50,You might have met my evil twin sister.,(She doesn't seem to believe you.)  Yes!  You're DialogPlayerName from the Bondage Club!  You are not welcome here.,,
+20,80,You're confused little maid.,Maybe you're right Miss.  (She seems suspicious.)  Would you like to know about Pandora's Box?,,
+20,50,"I'm from the Bondage Club, get lost maid.","(She frowns at you.)  Then you better leave now, you are not welcome here.",,
+20,,(Look around.),,DialogLeave(),
+30,,,"Welcome to Pandora's Box, the best BDSM club in town.  Wait!  You look like someone we are searching for.",,
+30,95,I'm a member.  (Show your fake ID.),"(She looks at your ID and nods.)  I'm so sorry Miss, please come inside and have fun.",,"HasPerk(""Forgery"")"
+30,50,You might have met my evil twin sister.,(She doesn't seem to believe you.)  Yes!  You're DialogPlayerName from the Bondage Club!  You are not welcome here.,,
+30,50,You're confused little maid.,(She recognizes you.)  Yes!  You're DialogPlayerName from the Bondage Club!  You are not welcome here.,,
+30,50,"I'm from the Bondage Club, get lost maid.",(She frowns at you.)  I knew it!  You're DialogPlayerName!  You are not welcome here.,,
+30,,(Look around.),,DialogLeave(),
+50,,,You're not welcome here.  You need to go now.,,
+50,,(Fight her.),,CharacterFight(),
+50,,(Leave Pandora's Box.),,MissionFail(),
+50,,(Look around.),,DialogLeave(),
+80,,Tell me about this club.,"Pandora's Box is a young BDSM club, but we are growing quickly.  We have the best Dominatrixes in town.",DialogRemove(),
+80,,Who runs this club?,"The leaders are called the Dominatrixes, they wear golden leather, you cannot miss them.",DialogRemove(),
+80,,Can anyone join?,"Yes, anyone that's open minded can enter.  Don't cause any trouble or you'll get punished.",DialogRemove(),
+80,90,Can I visit?,Absolutely.  Do you need help on how to explore Pandora's Box or you're fine on your own?,,
+90,,,Hi sister!  How can I help you?,,"CostumeIs(""Maid"")"
+90,,,Hello Miss Guard.  (She does a maid curtsy.)  Is there anything I can do for you?,,"CostumeIs(""Guard"")"
+90,,,It's an honor to speak with you Miss Dominatrix.  (She does a maid curtsy.)  How can I serve you?,,"CostumeIs(""Mistress"")"
+90,,,(She does a maid curtsy.)  Is there anything else you'd like to know Miss?,,"CostumeIs(""Random"")"
+90,,I can go anywhere?,"Yes and no.  If someone is on official duty, she might not let you pass.  Just go back from where you came from.",DialogRemove(),"CostumeIs(""Random"")"
+90,,There are many levels?,Pandora's Box has three levels.  We are on the ground level.  You can go downstairs for the dungeons or upstairs for the chambers.,DialogRemove(),"CostumeIs(""Random"")"
+90,,What if I get lost?,Just scream.  (She giggles.)  I know this place might be confusing but keep on walking and you'll find your way back.,DialogRemove(),"CostumeIs(""Random"")"
+90,,Can you come with me?,"(She shakes her head no.)  I'm sorry Miss, I'm working at the entrance right now.  Maybe you'll find more help inside.",DialogRemove(),"CostumeIs(""Random"")"
+90,,"I should be fine, thanks.  (Go explore.)",,CharacterAllowMove(),
+95,,,It's always a pleasure to see you Miss.,,
+95,,Take care.  (Go explore.),,CharacterAllowMove(),
+100,,I will do what I want.,(She grumbles.)  The Dominatrixes will hunt you down like a pig.  You're in so much trouble.,DialogRemove(),
+100,,(Strip her naked.),(She seems furious as you strip her naked.),CharacterNaked(),!CurrentCharacter.IsNaked()
+100,105,(Wear her clothes.),(She stares at you as you quickly dress up as her.),"PlayerClothes(""Maid"")",CurrentCharacter.IsNaked()
+100,110,(Lock her up in a broom closet.),(She tries to resist as you lock her up in a broom closet.)  (Your infiltration skill has gone up.),InfiltrationChange(30),
+105,110,(Lock her up in a broom closet.),(She tries to resist as you lock her up in a broom closet.)  (Your infiltration skill has gone up.),InfiltrationChange(30),
+110,,(Leave her.),,RemoveCurrentCharacter(),
+200,210,Punishment?  What do you mean?,"You will understand and remember your lesson.  Don't try anything funny, a Dominatrix will take care of you soon.",,Player.CanTalk()
+200,210,You're not punishing me girl.,"Of course, I won't do it myself, a Dominatrix will take care of you soon.",,Player.CanTalk()
+200,210,I will accept it Miss.,"Very good, you're already learning.  A Dominatrix will take care of you soon.",,Player.CanTalk()
+200,210,(Scream in your gag.),Stop making all that noise.  A Dominatrix will take care of you soon.,,!Player.CanTalk()
+200,210,(Trash in your bondage.),Don't try to do anything funny.  A Dominatrix will take care of you soon.,,!Player.CanTalk()
+200,210,(Bow your head and stay silent.),Good girl.  A Dominatrix will take care of you soon.,,!Player.CanTalk()
+210,,Can we negotiate?,It's too late for that.  Just wait and be quiet.,DialogRemove(),Player.CanTalk()
+210,,I will have my revenge.,You won't.  We will teach you a lesson that you will never forget.,DialogRemove(),Player.CanTalk()
+210,,(Wait for the Dominatrix.),,PunishmentIntro(),
+CommonLeave,,,Sorry for the trouble Miss.  Please have a good day.,,
+CommonLeave,,Take care.  (Go explore.),,CharacterAllowMove(),
+CommonWaitDominatrix,,(Wait for the Dominatrix.),,PunishmentIntro(),
+RetrieveRandom0,,,(A maid jumps in front of you and blocks your path.)  Can I speak with you Miss?,,
+RetrieveRandom0,RetrieveRandom10,Of course.,Very good.  An object has been stolen and I'm mandated to search everyone.  Can I please search on you?,,
+RetrieveRandom0,RetrieveRandom10,Make it quick.,I will.  An object has been stolen and I'm mandated to search everyone.  Can I please search on you?,,
+RetrieveRandom0,RetrieveRandom10,I don't have time.,"I'm sorry, but an object has been stolen and I'm mandated to search everyone.  Can I please search on you?",,
+RetrieveRandom0,RetrieveRandom10,(Nod.),Very good.  An object has been stolen and I'm mandated to search everyone.  Can I please search on you?,,
+RetrieveRandom0,,(Look around.),,DialogLeave(),
+RetrieveRandom10,RetrieveRandom20,Don't touch me!,(She jumps and looks angry.)  Are you the thief?  Surrender right now!,,
+RetrieveRandom10,CommonLeave,Go ahead.,"(She starts to search but doesn't find the object.)  Sorry for the trouble Miss, you're good to go.",,PandoraOdds50()
+RetrieveRandom10,RetrieveRandom20,Go ahead.,(She starts to search and quickly finds the object.)  You're the thief!  Surrender right now!,,!PandoraOdds50()
+RetrieveRandom10,,(Fight her.),,CharacterFight(),
+RetrieveRandom20,,(Fight her.),,CharacterFight(),
+RetrieveRandom20,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+RetrieveMaid0,,,"(A maid jumps in front of you and blocks your path.)  Sister, can I speak with you?",,
+RetrieveMaid0,RetrieveMaid10,"Of course, sister.","An object has been stolen, can you stop your duty and bring a Dominatrix here?",,
+RetrieveMaid0,RetrieveMaid10,What's going on?,"An object has been stolen, can you stop your duty and bring a Dominatrix here?",,
+RetrieveMaid0,RetrieveMaid10,I don't have time.,"I'm sorry, but an object has been stolen, can you stop your duty and bring a Dominatrix here?",,
+RetrieveMaid0,RetrieveMaid10,(Nod.),"An object has been stolen, can you stop your duty and bring a Dominatrix here?",,
+RetrieveMaid0,,(Look around.),,DialogLeave(),
+RetrieveMaid10,CommonLeave,I will do it.,"Thank you so much.  You're good to go, please hurry.",,
+RetrieveMaid10,CommonLeave,No problem sis.,"Thank you so much.  You're good to go, please hurry.",,
+RetrieveMaid10,CommonLeave,I'm too busy.,I'm sorry.  You're good to go then.  See you later.,,
+RescueRandom0,,,(A maid jumps in front of you and blocks your path.)  What are you doing with this prisoner?,,
+RescueRandom0,RescueRandom10,That's none of your business.,You're trying to rescue her?  Surrender right now!,,
+RescueRandom0,RescueRandom10,I'm rescuing her.,Not while I'm on duty!  Surrender right now!,,
+RescueRandom0,CommonLeave,Her ransom was paid.,"(She nods.)  Very good, please take her away then.  You're good to go.",,PandoraOdds50()
+RescueRandom0,RescueRandom10,Her ransom was paid.,(She shakes her head no.)  I know you're lying!  Surrender right now!,,!PandoraOdds50()
+RescueRandom0,,(Look around.),,DialogLeave(),
+RescueRandom10,,(Fight her.),,CharacterFight(),
+RescueRandom10,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+RescueGuard0,,,"(A maid jumps in front of you and blocks your path.)  Miss guard, what is going on with this prisoner?",,
+RescueGuard0,CommonLeave,That's none of your business.,"(She sighs.)  I know I'm too curious, sorry.  You're good to go.",,PandoraOdds75()
+RescueGuard0,RescueGuard10,That's none of your business.,"I'm watching the door.  This is my business!  (She inspects you.)  You're not a real guard, surrender right now!",,!PandoraOdds75()
+RescueGuard0,CommonLeave,She's getting transferred.,"(She nods.)  Of course, please be careful she doesn't escape.  You're good to go.",,
+RescueGuard0,CommonLeave,Her ransom was paid.,"(She nods.)  Very good, please take her away then.  You're good to go.",,
+RescueGuard0,,(Look around.),,DialogLeave(),
+RescueGuard10,,Do I need to put you in jail?,You're going to jail!  You're not fooling me with that disguise.  Surrender right now!,DialogRemove(),
+RescueGuard10,,(Fight her.),,CharacterFight(),
+RescueGuard10,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+KidnapRandom0,,,(Your prisoner screams for help and the maid jumps in.)  Stop!  Are you kidnapping her?,,
+KidnapRandom0,KidnapRandom10,I would never do that.,"You're lying, she just said so.  Surrender right now!",,
+KidnapRandom0,KidnapRandom10,What if I am?,Then you're in trouble.  Surrender right now!,,
+KidnapRandom0,KidnapRandom10,Get out of my way.,I'm not moving.  Surrender right now!,,
+KidnapRandom0,,(Look around.),,DialogLeave(),
+KidnapRandom10,,(Fight her.),,CharacterFight(),
+KidnapRandom10,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+MistressArrest0,,,(The maid at the entrance stops you.)  Wait!  What are you doing with one of Pandora's Box Dominatrix?,,
+MistressArrest0,MistressArrest20,(Show her a forged document.),"(She scans the forged document as the Dominatrix grumbles.)  I'm sorry Miss.  Everything looks fine, you can go.",,"HasPerk(""Forgery"")"
+MistressArrest0,MistressArrest10,She's not a Dominatrix.,"I know the administrators around here, that's why I'm in charge of the entrance.  Surrender right now!",,
+MistressArrest0,MistressArrest10,Get out of my way.,(She stands her ground.)  Never!  You'll know why I'm in charge of the entrance.  Surrender right now!,,
+MistressArrest0,,(Look around.),,DialogLeave(),
+MistressArrest10,,(Fight her.),,CharacterFight(),
+MistressArrest10,CommonWaitDominatrix,(Surrender.),(You surrender as she quickly restrains you.)  A Dominatrix will come to take you away.,RestrainPlayer(),
+MistressArrest20,,,Please have a good day Miss.  Sorry for interrupting your important work.,,
+MistressArrest20,,(Explore Pandora's Box.),,CharacterAllowMove(),

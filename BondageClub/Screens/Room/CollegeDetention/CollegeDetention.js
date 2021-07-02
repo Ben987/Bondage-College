@@ -9,32 +9,32 @@ var CollegeDetentionYukiWillReleaseAt = 0;
  * Checks, if Yuki can be invited to the private room
  * @returns {boolean} - Returns true, if Yuki can be invited, false otherwise
  */
-function CollegeDetentionCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
+function CollegeDetentionCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)); }
 
 /**
  * Checks Yuki's current love level
  * @param {string} LoveLevel - The love level that should be checked
  * @returns {boolean} - Returns true, if Yuki's love is greater or equal the given level, false otherwise
  */
-function CollegeDetentionYukiLoveIs(LoveLevel) { return (CollegeDetentionYukiLove >= parseInt(LoveLevel)) }
+function CollegeDetentionYukiLoveIs(LoveLevel) { return (CollegeDetentionYukiLove >= parseInt(LoveLevel)); }
 
 /**
  * Adds the sleeping pill to the player's invertory
  * @returns {void} - Nothing
  */
-function CollegeDetentionGetSleepingPills() { InventoryAdd(Player, "RegularSleepingPill", "ItemMouth") }
+function CollegeDetentionGetSleepingPills() { InventoryAdd(Player, "RegularSleepingPill", "ItemMouth"); }
 
 /**
  * Adds the teacher key to the players 'inventory'
  * @returns {void} - Nothing
  */
-function CollegeDetentionGetTeacherKey() { LogAdd("TeacherKey", "College") }
+function CollegeDetentionGetTeacherKey() { LogAdd("TeacherKey", "College"); }
 
 /**
  * Checks, if Yuki will release the player
  * @returns {boolean} - Returns true if the detention time is over, flase otherwise
  */
-function CollegeDetentionYukiWillRelease() { return (CollegeDetentionYukiWillReleaseAt < CurrentTime) }
+function CollegeDetentionYukiWillRelease() { return (CollegeDetentionYukiWillReleaseAt < CurrentTime); }
 
 /**
  * Creates a fully dressed Yuki
@@ -51,8 +51,8 @@ function CollegeDetentionYukiClothes() {
 	InventoryWear(CollegeDetentionYuki, "H0920", "Height", "Default");
 	InventoryWear(CollegeDetentionYuki, "Small", "BodyUpper", "Asian");
 	InventoryWear(CollegeDetentionYuki, "Small", "BodyLower", "Asian");
-	InventoryWear(CollegeDetentionYuki, "Default", "Hands", "Asian");
-	InventoryWear(CollegeDetentionYuki, "Default", "Head", "Asian");
+	InventoryWear(CollegeDetentionYuki, "Default", "Hands", "Default");
+	InventoryWear(CollegeDetentionYuki, "Default", "Head", "Default");
 	InventoryWear(CollegeDetentionYuki, "HairBack6", "HairBack", "#603022");
 	InventoryWear(CollegeDetentionYuki, "HairFront4", "HairFront", "#603022");
 	InventoryWear(CollegeDetentionYuki, "Ribbons2", "HairAccessory1", "#111111");
@@ -76,7 +76,7 @@ function CollegeDetentionLoad() {
 			for (let P = 1; P < PrivateCharacter.length; P++)
 				if (PrivateCharacter[P].Name == "Yuki")
 					return;
-		
+
 		// Generates the model
 		CollegeDetentionYuki = CharacterLoadNPC("NPC_CollegeDetention_Yuki");
 		CollegeDetentionYuki.AllowItem = false;
@@ -194,13 +194,13 @@ function CollegeDetentionRestrainPlayer(Type) {
  */
 function CollegeDetentionInviteToPrivateRoom() {
 	CollegeDetentionDressBack();
-	
+
 	var ItemsToEarn = [];
 	ItemsToEarn.push({Name: "Ribbons2", Group: "HairAccessory1"});
 	ItemsToEarn.push({Name: "Ribbons2", Group: "HairAccessory3"});
 	ItemsToEarn.push({Name: "RegularSleepingPill", Group: "ItemMouth"});
 	InventoryAddMany(Player, ItemsToEarn);
-	
+
 	CommonSetScreen("Room", "Private");
 	PrivateAddCharacter(CollegeDetentionYuki, null, true);
 	var C = PrivateCharacter[PrivateCharacter.length - 1];

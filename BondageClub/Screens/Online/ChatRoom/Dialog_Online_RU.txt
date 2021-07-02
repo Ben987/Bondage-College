@@ -29,7 +29,7 @@ picks a coffee from DialogCharacterName tray.
 берет кофе у DialogCharacterName.
 buys a hot chocolate from DialogCharacterName tray.
 покупает горячий шоколад у DialogCharacterName.
-buys a expresso from DialogCharacterName tray.
+buys an espresso from DialogCharacterName tray.
 покупает эспрессо у DialogCharacterName.
 buys a cappuccino from DialogCharacterName tray.
 покупает капучино у DialogCharacterName.
@@ -196,7 +196,7 @@ buys a cappuccino from DialogCharacterName tray.
 (Возьми бесплатный кофе.)
 (Get a 5$ hot chocolate.)
 (Купи горячий шоколад за 5 долларов.)
-(Get a 5$ expresso.)
+(Get a 5$ espresso.)
 (Купи эспрессо за 5 долларов.)
 (Get a 5$ cappuccino.)
 (Купи капучино за 5 долларов.)

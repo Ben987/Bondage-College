@@ -5,29 +5,31 @@ var InventoryItemArmsInflatableStraightLeotardOptions = [
 		Name: "Light",
 		Property: {
 			Type: null,
-			Effect: null,
+			Effect: ["Block", "Prone"],
 		},
 	},
 	{
 		Name: "Inflated",
 		Property: {
 			Type: "Inflated",
-			Effect: null,
+			Effect: ["Block", "Prone"],
+			Difficulty: 1,
 		},
     },
     {
 		Name: "Bloated",
 		Property: {
 			Type: "Bloated",
-			Effect: null,
+			Effect: ["Block", "Prone"],
+			Difficulty: 2,
         },
-        
     },
     {
         Name: "Max",
         Property: {
             Type: "Max",
-            Effect: null,
+			Effect: ["Block", "Prone", "Freeze"],
+			Difficulty: 3,
         },
     },
 ];

@@ -1,5 +1,4 @@
 "use strict";
-var OnlineGameName = "";
 var OnlineGameDictionary = null;
 
 /**
@@ -37,11 +36,11 @@ function OnlneGameDictionaryLoad() {
 /**
  * Searches in the dictionary for a specific keyword and returns the message linked to it
  * @param {string} KeyWord - Keyword of the text to look for
- * @returns {string} The text attached to the keyword, will return a missing text if it was not found 
+ * @returns {string} The text attached to the keyword, will return a missing text if it was not found
  */
 function OnlineGameDictionaryText(KeyWord) {
 	for (let D = 0; D < OnlineGameDictionary.length; D++)
-		if (OnlineGameDictionary[D][0] == OnlineGameName + KeyWord)
+		if (OnlineGameDictionary[D][0] == ChatRoomGame + KeyWord)
 			return OnlineGameDictionary[D][1].trim();
 	return "MISSING ONLINE GAME DESCRIPTION FOR KEYWORD " + KeyWord;
 }
@@ -52,7 +51,7 @@ function OnlineGameDictionaryText(KeyWord) {
  * @return {*} Returns the return content of click function of the currently selected game, or false if there is no corresponding game
  */
 function OnlineGameClickCharacter(C) {
-	if ((ChatRoomSpace == "LARP") && (GameLARPStatus != "")) return GameLARPCharacterClick(C);
+	if ((ChatRoomGame == "LARP") && (GameLARPStatus != "")) return GameLARPCharacterClick(C);
 	return false;
 }
 
@@ -61,7 +60,7 @@ function OnlineGameClickCharacter(C) {
  * @return {*} Returns the return content of click function of the currently selected game, or false if there is no corresponding game
  */
 function OnlineGameClick() {
-	if ((ChatRoomSpace == "LARP") && (GameLARPStatus != "")) return GameLARPClickProcess();
+	if ((ChatRoomGame == "LARP") && (GameLARPStatus != "")) return GameLARPClickProcess();
 	return false;
 }
 
@@ -72,7 +71,7 @@ function OnlineGameClick() {
 function OnlineGameRun() {
 
 	// In LARP, the player turn can be skipped by an administrator after 20 seconds
-	if (OnlineGameName == "LARP") GameLARPRunProcess();
+	if (ChatRoomGame == "LARP") GameLARPRunProcess();
 
 }
 
@@ -81,7 +80,7 @@ function OnlineGameRun() {
  * @returns {boolean} - Returns TRUE if there's no online game that currently blocks changing
  */
 function OnlineGameAllowChange() {
-	if ((OnlineGameName == "LARP") && (GameLARPStatus != "")) return false;
+	if ((ChatRoomGame == "LARP") && (GameLARPStatus != "")) return false;
 	return true;
 }
 
@@ -90,7 +89,7 @@ function OnlineGameAllowChange() {
  * @returns {boolean} - Returns TRUE if the online game allows you to block items
  */
 function OnlineGameAllowBlockItems() {
-	if ((OnlineGameName == "LARP") && (GameLARPStatus != "")) return false;
+	if ((ChatRoomGame == "LARP") && (GameLARPStatus != "")) return false;
 	return true;
 }
 
@@ -99,14 +98,34 @@ function OnlineGameAllowBlockItems() {
  * @returns {void} - Nothing
  */
 function OnlineGameLoadStatus() {
-	if (OnlineGameName == "LARP") {
+	if (ChatRoomGame == "LARP") {
 		for (let C = 0; C < ChatRoomCharacter.length; C++)
 			if ((ChatRoomData.Admin.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) && (ChatRoomCharacter[C].Game.LARP.Status != "")) {
 				GameLARPStatus = ChatRoomCharacter[C].Game.LARP.Status;
 				return;
 			}
-		GameLARPStatus = "";
+		GameLARPReset();
 	}
+}
+
+/**
+ * Resets the game status if needed when the chat room data is updated
+ * @returns {void} - Nothing
+ */
+function OnlineGameReset() {
+	if (ChatRoomGame != "LARP") GameLARPReset();
+}
+
+/**
+ * Returns TRUE if the MemberPlayer supplied is still in the current chat room
+ * @param {number} MemberNumber - The number to validate
+ * @returns {boolean} - Returns TRUE if that number is still in the room
+ */
+function OnlineGameCharacterInChatRoom(MemberNumber) {
+	for (let C = 0; C < ChatRoomCharacter.length; C++)
+		if (ChatRoomCharacter[C].MemberNumber == MemberNumber)
+			return true;
+	return false;
 }
 
 /**
@@ -115,16 +134,16 @@ function OnlineGameLoadStatus() {
  * @param {number} X - Position of the character the X axis
  * @param {number} Y - Position of the character the Y axis
  * @param {number} Zoom - Amount of zoom the character has (Height)
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function OnlineGameDrawCharacter(C, X, Y, Zoom) {
-	if ((CurrentModule == "Online") && (CurrentScreen == "ChatRoom") && (OnlineGameName == "LARP")) {
+	if ((CurrentModule == "Online") && (CurrentScreen == "ChatRoom") && (ChatRoomGame == "LARP")) {
 		GameLARPDrawIcon(C, X + 70 * Zoom, Y + 800 * Zoom, 0.6 * Zoom);
 		if ((GameLARPPlayer.length > 0) && (C.MemberNumber == GameLARPPlayer[GameLARPTurnPosition].MemberNumber) && (GameLARPStatus == "Running") && (GameLARPTurnFocusCharacter == null)) {
-			MainCanvas.font = "72px Arial";
-			var Time = Math.ceil((GameLARPTurnTimer - CurrentTime) / 1000);
-			DrawText(((Time < 0) || (Time > 20)) ? OnlineGameDictionaryText("TimerNA") : Time.toString(), X + 250 * Zoom, Y + 830 * Zoom, "Red", "Black");
-			MainCanvas.font = "36px Arial";
+			MainCanvas.font = CommonGetFont(72);
+			var Time = Math.ceil((GameLARPTurnTimer - TimerGetTime()) / 1000);
+			DrawText(((Time < 0) || (Time > GameLARPTimerDelay[GameLARPTimerDelay.length - 1])) ? OnlineGameDictionaryText("TimerNA") : Time.toString(), X + 250 * Zoom, Y + 830 * Zoom, "Red", "Black");
+			MainCanvas.font = CommonGetFont(36);
 		}
 	}
 }

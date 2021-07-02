@@ -1,10 +1,11 @@
 "use strict";
 var SkillModifier = 0;
 var SkillModifierMax = 5;
-var SkillModifierMin = -10
+var SkillModifierMin = -10;
 var SkillLevelMaximum = 10;
 var SkillLevelMinimum = 0;
 var SkillBondageRatio = 1;
+var SkillValidSkills = ["Bondage", "SelfBondage", "LockPicking", "Evasion", "Willpower", "Infiltration", "Dressage"];
 
 /**
  * When the player progresses in a skill. Also validates the values to make sure they are within the proper ranges once changed. (level 0-10, progress 0-100)
@@ -16,35 +17,42 @@ var SkillBondageRatio = 1;
  */
 function SkillChange(SkillType, SkillLevel, SkillProgress, Push) {
 
-	// Make sure the progress and level are valid
-	SkillProgress = parseInt(SkillProgress) || 0;
-	SkillLevel = parseInt(SkillLevel) || 0;
-	if ((SkillProgress < 0) || (SkillProgress >= 1000)) SkillProgress = 0;
-	if ((SkillLevel < 0) || (SkillLevel > 10)) SkillLevel = 0;
+	if (SkillValidSkills.includes(SkillType)) {
 
-	// If the skill already exists, we updated it
-	for (let S = 0; S < Player.Skill.length; S++)
-		if (Player.Skill[S].Type == SkillType) {
-			Player.Skill[S].Level = SkillLevel;
-			Player.Skill[S].Progress = SkillProgress;
-			if ((Push == null) || Push) ServerPlayerSkillSync();
-			return;
-		}
+		// Make sure the progress and level are valid
+		SkillProgress = parseInt(SkillProgress) || 0;
+		SkillLevel = parseInt(SkillLevel) || 0;
+		if ((SkillProgress < 0) || (SkillProgress >= 1000)) SkillProgress = 0;
+		if ((SkillLevel < 0) || (SkillLevel > 10)) SkillLevel = 0;
 
-	// Creates a new skill
-	var NewSkill = {
-		Type: SkillType,
-		Level: SkillLevel,
-		Progress: SkillProgress
+		// If the skill already exists, we updated it
+		for (let S = 0; S < Player.Skill.length; S++)
+			if (Player.Skill[S].Type == SkillType) {
+				Player.Skill[S].Level = SkillLevel;
+				Player.Skill[S].Progress = SkillProgress;
+				if ((Push == null) || Push) ServerPlayerSkillSync();
+				return;
+			}
+
+		// Creates a new skill
+		var NewSkill = {
+			Type: SkillType,
+			Level: SkillLevel,
+			Progress: SkillProgress
+		};
+		Player.Skill.push(NewSkill);
+		if ((Push == null) || Push) ServerPlayerSkillSync();
 	}
-	Player.Skill.push(NewSkill);
-	if ((Push == null) || Push) ServerPlayerSkillSync();
+
+	else {
+		console.warn(`Invalid skill type "${SkillType}"`);
+	}
 
 }
 
 /**
  * Loads the skill data from the server on login
- * @param {Array.<{Type: string, Level: number, Progress: number}>} NewSkill - The player skills array sent by the server
+ * @param {Skill[]} NewSkill - The player skills array sent by the server
  * @returns {void} - Nothing
  */
 function SkillLoad(NewSkill) {
@@ -124,7 +132,7 @@ function SkillGetProgress(C, SkillType) {
 }
 
 /**
- * Add progress to a skill, the skill progresses slower for each level, takes into account cheaters version. 
+ * Add progress to a skill, the skill progresses slower for each level, takes into account cheaters version.
  * @param {string} SkillType - Name of the skill to add progress to
  * @param {number} SkillProgress - Progress to be made before the ratios are applied
  * @returns {void} - Nothing

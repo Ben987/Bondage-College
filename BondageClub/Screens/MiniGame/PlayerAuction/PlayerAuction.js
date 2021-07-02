@@ -1,5 +1,5 @@
 "use strict";
-var PlayerAuctionBackground = "SlaveMarketDark";
+var PlayerAuctionBackground = "SlaveMarket";
 var PlayerAuctionCustomer = null;
 var PlayerAuctionBidCurrent = -1;
 var PlayerAuctionBidTime = 0;
@@ -41,6 +41,7 @@ function PlayerAuctionAddCustomer(Index) {
  * @returns {void} - Nothing
  */
 function PlayerAuctionLoad() {
+	CurrentDarkFactor = 0.5;
 	PlayerAuctionCustomer = [];
 	PlayerAuctionAddCustomer(0);
 	PlayerAuctionAddCustomer(1);
@@ -66,7 +67,7 @@ function PlayerAuctionRun() {
 	DrawCharacter(PlayerAuctionCustomer[0], 775, 100, 0.9);
 	DrawCharacter(PlayerAuctionCustomer[1], 1175, 100, 0.9);
 	DrawCharacter(PlayerAuctionCustomer[2], 1575, 100, 0.9);
-	
+
 	// Draw the bid info
 	DrawText(TextGet("CurrentBid") + " " + PlayerAuctionBidAmount.toString() + "$", 600, 75, "White", "Black");
 	if (PlayerAuctionBidCurrent == -1) DrawText(TextGet("HighestBidder") + " " + TextGet("Nobody"), 600, 125, "White", "Black");

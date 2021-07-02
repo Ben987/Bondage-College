@@ -11,8 +11,17 @@ var AudioList = [
 	{ Name: "CageOpen", File: "CageOpen" },
 	{ Name: "CageStruggle", File: "CageStruggle" },
 	{ Name: "ChainLong", File: "ChainLong" },
+	{ Name: "SciFiEffect", File: "SciFiEffect" },
+	{ Name: "SciFiPump", File: "SciFiPump" },
+	{ Name: "SciFiConfigure", File: "SciFiConfigure" },
+	{ Name: "SciFiBeeps1", File: "SciFiBeeps1" },
+	{ Name: "SciFiBeeps2", File: "SciFiBeeps2" },
+	{ Name: "SciFiBeeps3", File: "SciFiBeeps3" },
 	{ Name: "ChainShort", File: "ChainShort" },
 	{ Name: "CuffsMetal", File: "CuffsMetal" },
+	{ Name: "FuturisticApply", File: "FuturisticApply" },
+	{ Name: "HydraulicLock", File: "HydraulicLock" },
+	{ Name: "HydraulicUnlock", File: "HydraulicUnlock" },
 	{ Name: "Deflation", File: "Deflation" },
 	{ Name: "DuctTape", File: "DuctTape18" },
 	{ Name: "Inflation", File: "Inflation" },
@@ -31,6 +40,13 @@ var AudioList = [
 	{ Name: "VibrationLong1", File: "VibrationTone4Long3" },
 	{ Name: "VibrationLong2", File: "VibrationTone4Long6" },
 	{ Name: "VibrationShort", File: "VibrationTone4ShortLoop" },
+	{ Name: "VibrationEdgeLow", File: "Vibrator_Advanced_LowEdge" },
+	{ Name: "VibrationEdgeMedium", File: "Vibrator_Advanced_MediumEdge" },
+	{ Name: "VibrationEdgeHigh", File: "Vibrator_Advanced_HighEdge" },
+	{ Name: "VibrationTeaseLow", File: "Vibrator_Advanced_LowTease" },
+	{ Name: "VibrationTeaseMedium", File: "Vibrator_Advanced_MediumTease" },
+	{ Name: "VibrationMaximum", File: "Vibrator_Advanced_Strong" },
+	{ Name: "VibrationCooldown", File: "Vibrator_Advanced_End" },
 	{ Name: "Wand", File: "Wand" },
 	{ Name: "WoodenCuffs", File: "WoodenCuffs" },
 	{ Name: "ZipTie", File: "ZipTie" },
@@ -40,10 +56,15 @@ var AudioActions = [
 	{ Action: "ActionAddLock", Sound: "LockSmall" },
 	{ Action: "TimerRelease", Sound: "Unlock" },
 	{ Action: "ActionUnlock", Sound: "Unlock" },
+	{ Action: "ActionPick", Sound: "Unlock" },
 	{ Action: "ActionUnlockAndRemove", Sound: "Unlock" },
+	{ Action: "FuturisticCollarTriggerLockdown", Sound: "HydraulicLock" },
+	{ Action: "FuturisticCollarTriggerUnlock", Sound: "HydraulicUnlock" },
 	{ Action: "ActionLock", GetAudioInfo: AudioPlayAssetSound },
-	{ Action: "ActionUse", GetAudioInfo: AudioPlayAssetSound },
-	{ Action: "ActionSwap", GetAudioInfo: AudioPlayAssetSound },
+	{
+		IsAction: (data) => ["ActionUse", "ActionSwap"].includes(data.Content) && data.Sender !== Player.MemberNumber,
+		GetAudioInfo: AudioPlayAssetSound,
+	},
 	{
 		IsAction: (data) => data.Content.indexOf("ActionActivity") == 0,
 		GetAudioInfo: AudioPlayAssetSound
@@ -57,31 +78,185 @@ var AudioActions = [
 		Sound: "CageOpen"
 	},
 	{
-		IsAction: (data) => ["pumps", "Suctightens", "InflatableBodyBagRestrain"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"pumps",
+			"Suctightens",
+			"InflatableBodyBagSet"
+		].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
 	},
 	{
-		IsAction: (data) => ["deflates", "Sucloosens"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateNoneOff"
+		].find(A => data.Content.includes(A)),
+		Sound: "FuturisticApply"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeLow",
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeLowSelf",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeLow",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeLowSelf"
+		].find(A => data.Content.includes(A)),
+		Sound: "VibrationEdgeLow"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityTeaseLow",
+			"FuturisticTrainingBeltSetStateLowPriorityLowLow"
+		].find(A => data.Content.includes(A)),
+		Sound: "VibrationTeaseLow"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateCooldownOff"
+		].find(A => data.Content.includes(A)),
+		Sound: "VibrationCooldown"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeMedium",
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeMediumSelf",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeMedium",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeMediumSelf"
+		].find(A => data.Content.includes(A)),
+		Sound: "VibrationEdgeMedium"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityTeaseMedium",
+			"FuturisticTrainingBeltSetStateLowPriorityMedium"
+		].find(A => data.Content.includes(A)),
+		Sound: "VibrationTeaseMedium"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeHigh",
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeHighSelf",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeHigh",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeHighSelf"
+		].find(A => data.Content.includes(A)),
+		Sound: "VibrationEdgeHigh"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximum",
+			"FuturisticTrainingBeltSetStateLowPriorityEdgeMaximumSelf",
+			"FuturisticTrainingBeltSetStateLowPriorityTeaseMaximum",
+			"FuturisticTrainingBeltSetStateLowPriorityTeaseHigh",
+			"FuturisticTrainingBeltSetStateHighPriorityMax",
+			"FuturisticTrainingBeltSetStateLowPriorityMax",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximum",
+			"FuturisticTrainingBeltSetStateHighPriorityEdgeMaximumSelf"
+		].find(A => data.Content.includes(A)),
+		Sound: "VibrationMaximum"
+	},
+	{
+		IsAction: (data) => [
+			"InteractiveVisorHeadSet"
+		].find(A => data.Content.includes(A)),
+		Sound: "SciFiEffect"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticPanelGagMouthSetLightBall",
+			"FuturisticPanelGagMouthSetBall",
+			"FuturisticPanelGagMouthSetPadded",
+			"FuturisticPanelGagMouthSetPlug"
+		].find(A => data.Content.includes(A)),
+		Sound: "SciFiPump"
+	},
+	{
+		IsAction: (data) => [
+			"deflates",
+			"Sucloosens"
+		].find(A => data.Content.includes(A)),
 		Sound: "Deflation"
 	},
 	{
-		IsAction: (data) => ["ChainSet"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"ChainSet"
+		].find(A => data.Content.includes(A)),
 		Sound: "ChainLong"
 	},
 	{
-		IsAction: (data) => ["RopeSet"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"RopeSet"
+		].find(A => data.Content.includes(A)),
 		Sound: "RopeShort"
 	},
 	{
-		IsAction: (data) => ["ShacklesRestrain", "Ornate"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"ShacklesRestrain",
+			"Ornate"
+		].find(A => data.Content.includes(A)),
 		Sound: "CuffsMetal"
 	},
 	{
-		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "TriggerShock"].find(A => data.Content.includes(A)),
+		IsAction: (data) => [
+			"FuturisticChastityBeltShock"
+		].find(A => data.Content.includes(A)),
+		Sound: "Shocks"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticChastityBeltSetClosed",
+			"FuturisticChastityBeltSetOpen",
+			"InventoryItemBreastFuturisticBraSet",
+			"FuturisticHeelsSet",
+			"FuturisticArmbinderSet",
+			"FuturisticCuffsRestrain",
+			"FuturisticLegCuffsRestrain",
+			"FuturisticAnkleCuffsRestrain",
+			"SciFiPleasurePantiesAction"
+		].find(A => data.Content.includes(A)),
+		Sound: "SciFiConfigure"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticChastityBeltSetGeneric",
+			"FuturisticChastityBeltSetPunish",
+			"FuturisticChastityBeltSetGeneric",
+			"FuturisticPanelGagMouthSetAutoPunish",
+			"SciFiPleasurePantiesBeep"
+		].find(A => data.Content.includes(A)),
+		GetAudioInfo: AudioSciFiBeepSounds
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticPanelGagMouthSetAutoInflate"
+		].find(A => data.Content.includes(A)),
+		Sound: "Inflation"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticPanelGagMouthSetAutoDeflate"
+		].find(A => data.Content.includes(A)),
+		Sound: "Deflation"
+	},
+	{
+		IsAction: (data) => [
+			"FuturisticCrateSet"
+		].find(A => data.Content.includes(A)),
+		Sound: "SciFiConfigure"
+	},
+	{
+		IsAction: (data) => [
+			"CollarShockUnitTrigger",
+			"ShockCollarTrigger",
+			"LoveChastityBeltShockTrigger",
+			"SciFiPleasurePantiesShockTrigger",
+			"TriggerShock",
+			"CollarAutoShockUnitTrigger",
+			"FuturisticVibratorShockTrigger"
+		].find(A => data.Content.includes(A)),
 		GetAudioInfo: (data) => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data)
 	},
 	{
-		IsAction: (data) => ["Decrease", "Increase"].find(A => data.Content.includes(A)) && !data.Content.endsWith("-1"),
+		IsAction: (data) => [
+			"Decrease",
+			"Increase"
+		].find(A => data.Content.includes(A)) && !data.Content.endsWith("-1"),
 		GetAudioInfo: AudioVibratorSounds
 	},
 ];
@@ -89,18 +264,21 @@ var AudioActions = [
 /**
  * Plays a sound at a given volume
  * @param {string} src - Source of the audio file to play
- * @param {number} volume - Volume of the audio in percentage (ranges from 0 to 1)
+ * @param {number} [volume] - Volume of the audio in percentage (ranges from 0 to 1)
  * @returns {void} - Nothing
  */
 function AudioPlayInstantSound(src, volume) {
-	var audio = new Audio();
-	audio.src = src;
-	audio.volume = Math.max(0, Math.min(volume, 1));
-	audio.play();
+	const vol = volume != null ? volume : Player.AudioSettings.Volume;
+	if (vol > 0) {
+		var audio = new Audio();
+		audio.src = src;
+		audio.volume = Math.min(vol, 1);
+		audio.play();
+	}
 }
 
 /**
- * Begins to play a sound when applying/removing an item 
+ * Begins to play a sound when applying/removing an item
  * @param {string} SourceFile - Source of the audio file to play
  * @returns {void} - Nothing
  */
@@ -114,7 +292,7 @@ function AudioDialogStart(SourceFile) {
 }
 
 /**
- * Stops playing the sound when done applying/removing an item 
+ * Stops playing the sound when done applying/removing an item
  * @returns {void} - Nothing
  */
 function AudioDialogStop() {
@@ -153,9 +331,10 @@ function AudioPlayContent(data) {
 	if (Target.MemberNumber == Player.MemberNumber) NoiseModifier += 3;
 	else if (data.Sender != Player.MemberNumber) NoiseModifier -= 3;
 
-	if (Player.Effect.indexOf("BlindHeavy") >= 0) NoiseModifier += 4;
-	else if (Player.Effect.indexOf("BlindNormal") >= 0) NoiseModifier += 2;
-	else if (Player.Effect.indexOf("BlindLight") >= 0) NoiseModifier += 1;
+	const blindLevel = Player.GetBlindLevel();
+	if (blindLevel >= 3) NoiseModifier += 4;
+	else if (blindLevel == 2) NoiseModifier += 2;
+	else if (blindLevel == 1) NoiseModifier += 1;
 
 	NoiseModifier -= (3 * Player.GetDeafLevel());
 
@@ -171,7 +350,7 @@ function AudioGetFileName(sound) {
 /**
  * Processes which sound should be played for items
  * @param {object} data - Data content triggering the potential sound
- * @returns {[string, number]} - he name of the sound to play, followed by the noise modifier 
+ * @returns {[string, number]} - he name of the sound to play, followed by the noise modifier
  */
 function AudioPlayAssetSound(data) {
 	var NextAsset = data.Dictionary.find((el) => el.Tag == "NextAsset");
@@ -181,9 +360,9 @@ function AudioPlayAssetSound(data) {
 	if (!NextAsset || !NextAsset.AssetName || !NextAssetGroup || !NextAssetGroup.AssetGroupName) return [FileName, 0];
 
 	var Asset = AssetGet("Female3DCG", NextAssetGroup.AssetGroupName, NextAsset.AssetName);
-	
+
 	if (!Asset) return [FileName, 0];
-	
+
 	if (Asset.DynamicAudio) {
 		var Char = ChatRoomCharacter.find((C) => C.MemberNumber == data.Sender);
 		FileName = Char ? Asset.DynamicAudio(Char) : "";
@@ -195,7 +374,7 @@ function AudioPlayAssetSound(data) {
 /**
  * Processes the sound for vibrators
  * @param {object} data - Represents the chat message received
- * @returns {[string, number]} - The name of the sound to play, followed by the noise modifier 
+ * @returns {[string, number]} - The name of the sound to play, followed by the noise modifier
  */
 function AudioVibratorSounds(data) {
 	var Sound = "";
@@ -214,6 +393,7 @@ function AudioVibratorSounds(data) {
 		case "ClitStimulator":
 		case "Egg": Sound = "VibrationShort"; break;
 		case "LoveChastityBeltVibe":
+		case "SciFiPleasurePantiesVibe":
 		case "Belt":
 		case "Panties": Sound = "VibrationLong1"; break;
 		case "Buttplug":
@@ -228,4 +408,18 @@ function AudioVibratorSounds(data) {
 	}
 
 	return [Sound, Level * 3];
+}
+
+/**
+ * @returns {[string, number]}
+ */
+function AudioSciFiBeepSounds() {
+	var AudioRandomNumber = Math.random();
+
+	if (AudioRandomNumber < 0.33) {
+		return ["SciFiBeeps1", 4];
+	} else if (AudioRandomNumber > 0.67) {
+		return ["SciFiBeeps2", 4];
+	}
+	return ["SciFiBeeps3", 4];
 }

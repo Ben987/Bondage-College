@@ -7,7 +7,7 @@ var AsylumTherapyPatient = null;
  * Checks if the therapy for the player can start
  * @returns {boolean} - Returns true, if the player is ready for therapy, false otherwise
  */
-function AsylumTherapyPatientReadyForTherapy() { return (!Player.IsRestrained() && Player.IsNaked()) }
+function AsylumTherapyPatientReadyForTherapy() { return (!Player.IsRestrained() && Player.IsNaked()); }
 
 /**
  * Loads the room and initializes the nurse and the patient
@@ -36,7 +36,7 @@ function AsylumTherapyRun() {
 	if (ReputationGet("Asylum") <= -1) DrawCharacter(AsylumTherapyNurse, 1000, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-	if (Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png");
+	if (Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) DrawButton(1885, 265, 90, 90, "", "White", "Icons/DressReset.png");
 	if (Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Naked.png");
 }
 
@@ -122,7 +122,7 @@ function AsylumTherapyTherapySuccess() {
 }
 
 /**
- * Apply restraints on the player for pain therapy. 
+ * Apply restraints on the player for pain therapy.
  * Depending on the patient's reputation, the pain therapy gets a tougher weapon
  * @returns {void} - Nothing
  */

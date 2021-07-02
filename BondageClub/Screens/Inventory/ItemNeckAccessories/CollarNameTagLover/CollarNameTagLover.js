@@ -7,29 +7,26 @@ function InventoryItemNeckAccessoriesCollarNameTagLoverLoad() {
 
 // Draw the item extension screen
 function InventoryItemNeckAccessoriesCollarNameTagLoverDraw() {
-	
 	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	DrawAssetPreview(1387, 125, DialogFocusItem.Asset);
 
 	// Draw the possible tags
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		DrawText(DialogFind(Player, "SelectCollarNameTagLoverType"), 1500, 500, "white", "gray");
+		DrawText(DialogFindPlayer("SelectCollarNameTagLoverType"), 1500, 500, "white", "gray");
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;
 		var Y = 530;
 		for (let T = 0; T < List.length; T++) {
-			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFind(Player, "CollarNameTagLoverType" + List[T]), "White");
+			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFindPlayer("CollarNameTagLoverType" + List[T]), "White");
 			X = X + 210;
-			if (T % 5 == 4) { 
-				X = 955; 
+			if (T % 5 == 4) {
+				X = 955;
 				Y = Y + 60;
-			}		
+			}
 		}
 	}
 	else {
-		DrawText(DialogFind(Player, "SelectCollarNameTagLoverTypeLocked"), 1500, 500, "white", "gray");
+		DrawText(DialogFindPlayer("SelectCollarNameTagLoverTypeLocked"), 1500, 500, "white", "gray");
 	}
 }
 
@@ -44,10 +41,10 @@ function InventoryItemNeckAccessoriesCollarNameTagLoverClick() {
 			if ((MouseX >= X) && (MouseX <= X + 200) && (MouseY >= Y) && (MouseY <= Y + 55) && (DialogFocusItem.Property.Type != List[T]))
 				InventoryItemNeckAccessoriesCollarNameTagLoverSetType(List[T]);
 			X = X + 210;
-			if (T % 5 == 4) { 
-				X = 955; 
+			if (T % 5 == 4) {
+				X = 955;
 				Y = Y + 60;
-			}		
+			}
 		}
 	}
 }
@@ -62,7 +59,7 @@ function InventoryItemNeckAccessoriesCollarNameTagLoverSetType(NewType) {
 	DialogFocusItem.Property.Type = NewType;
 	DialogFocusItem.Property.Effect = [];
 
-	// Refreshes the character and chatroom	
+	// Refreshes the character and chatroom
 	CharacterRefresh(C);
 	var Dictionary = [];
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});

@@ -1,5 +1,7 @@
 "use strict";
 
+var ReputationValidReputations = ["Dominant", "Kidnap", "ABDL", "Gaming", "Maid", "LARP", "Asylum", "Gambling"];
+
 /**
  * Alters a given reputation value for the player
  * @param {string} RepType - The name/type of the reputation to alter
@@ -9,32 +11,38 @@
  */
 function ReputationChange(RepType, RepValue, Push) {
 
-	// Nothing will be done for a zero change
-	RepValue = parseInt(RepValue) || 0;
-	if (RepValue != 0) {
+	if (ReputationValidReputations.includes(RepType)) {
 
-		// If the reputation already exists, we update and push it
-		for (let R = 0; R < Player.Reputation.length; R++)
-			if (Player.Reputation[R].Type == RepType) {
-				Player.Reputation[R].Value = Player.Reputation[R].Value + RepValue;
-				if (Player.Reputation[R].Value > 100) Player.Reputation[R].Value = 100;
-				if (Player.Reputation[R].Value < -100) Player.Reputation[R].Value = -100;
-				if ((Push == null) || Push) ServerPlayerReputationSync();
-				return;
-			}
+		// Nothing will be done for a zero change
+		RepValue = parseInt(RepValue) || 0;
+		if (RepValue != 0) {
 
-		// Creates the new reputation
-		var NewRep = {
-			Type: RepType,
-			Value: RepValue
+			// If the reputation already exists, we update and push it
+			for (let R = 0; R < Player.Reputation.length; R++)
+				if (Player.Reputation[R].Type == RepType) {
+					Player.Reputation[R].Value = Player.Reputation[R].Value + RepValue;
+					if (Player.Reputation[R].Value > 100) Player.Reputation[R].Value = 100;
+					if (Player.Reputation[R].Value < -100) Player.Reputation[R].Value = -100;
+					if ((Push == null) || Push) ServerPlayerReputationSync();
+					return;
+				}
+
+			// Creates the new reputation
+			var NewRep = {
+				Type: RepType,
+				Value: RepValue
+			};
+			if (NewRep.Value > 100) NewRep.Value = 100;
+			if (NewRep.Value < -100) NewRep.Value = -100;
+			Player.Reputation.push(NewRep);
+			if ((Push == null) || Push) ServerPlayerReputationSync();
+
 		}
-		if (NewRep.Value > 100) NewRep.Value = 100;
-		if (NewRep.Value < -100) NewRep.Value = -100;
-		Player.Reputation.push(NewRep);
-		if ((Push == null) || Push) ServerPlayerReputationSync();
-
 	}
 
+	else {
+		console.warn(`Invalid reputation type "${RepType}"`);
+	}
 }
 
 /**
@@ -83,8 +91,8 @@ function ReputationCharacterGet(C, RepType) {
 /**
  * Alter the reputation progress by a factor. The higher the rep, the slower it gets, a reputation is easier to break than to build. Takes the cheater version factor into account.
  * @param {string} RepType - Type/name of the reputation
- * @param {number} Value - Value of the reputation change before the factor is applied
- * @return {void} - Nothing 
+ * @param {number|string} Value - Value of the reputation change before the factor is applied
+ * @return {void} - Nothing
  */
 function ReputationProgress(RepType, Value) {
 	var V = ReputationGet(RepType);
@@ -96,8 +104,8 @@ function ReputationProgress(RepType, Value) {
 		if ((V > -70) && (V <= -30)) ReputationChange(RepType, Value * 2);
 		if ((V >= -100) && (V <= -70)) ReputationChange(RepType, Value * 4);
 	} else {
-		if ((V >= -100) && (V <= -70)) ReputationChange(RepType, Math.floor(Value / 3));
-		if ((V > -70) && (V <= -30)) ReputationChange(RepType, Math.floor(Value / 2));
+		if ((V >= -100) && (V <= -70)) ReputationChange(RepType, Math.floor(Value * -1 / 3) * -1);
+		if ((V > -70) && (V <= -30)) ReputationChange(RepType, Math.floor(Value * -1 / 2) * -1);
 		if ((V > -30) && (V < 30)) ReputationChange(RepType, Value);
 		if ((V >= 30) && (V < 70)) ReputationChange(RepType, Value * 2);
 		if ((V >= 70) && (V <= 100)) ReputationChange(RepType, Value * 4);

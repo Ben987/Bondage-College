@@ -1,180 +1,222 @@
 "use strict";
-const SpankingInventory = [
+const InventoryItemHandsSpankingToysOptions = [
 	{
 		Name: "Crop",
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
+		Property: { Type: null },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
 	}, {
 		Name: "Flogger",
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
+		Property: { Type: "Flogger" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
 	}, {
 		Name: "Cane",
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
+		Property: { Type: "Cane" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
 	}, {
 		Name: "HeartCrop",
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
+		Property: { Type: "HeartCrop" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
 	}, {
 		Name: "Paddle",
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
+		Property: { Type: "Paddle" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }]
 	}, {
 		Name: "WhipPaddle",
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
+		Property: { Type: "WhipPaddle" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
 	}, {
 		Name: "Whip",
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
+		Property: { Type: "Whip" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
 	}, {
 		Name: "CattleProd",
-		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
+		Property: { Type: "CattleProd" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
 	}, {
 		Name: "TennisRacket",
+		Property: { Type: "TennisRacket" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
 	}, {
+		Name: "Gavel",
+		Property: { Type: "Gavel" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }]
+	}, {
 		Name: "Feather",
+		Property: { Type: "Feather" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, {Group: "Eyes", Name: "Closed", Timer: 10}, { Group: "Mouth", Name: "Grin", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	}, {
 		Name: "FeatherDuster",
+		Property: { Type: "FeatherDuster" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 10}, { Group: "Mouth", Name: "Laughing", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	}, {
+		Name: "LongDuster",
+		Property: { Type: "LongDuster" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 10}, { Group: "Mouth", Name: "Laughing", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
+	}, {
 		Name: "IceCube",
+		Property: { Type: "IceCube" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10}, { Group: "Mouth", Name: "Angry", Timer: 10}, { Group: "Eyes", Name: "Daydream", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	}, {
 		Name: "WartenbergWheel",
+		Property: { Type: "WartenbergWheel" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}, { Group: "Eyes", Name: "Daydream", Timer: 10}]
 	}, {
 		Name: "VibratingWand",
+		Property: { Type: "VibratingWand" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyes", Name: "VeryLewd", Timer: 5 }, { Group: "Eyebrows", Name: "Soft", Timer: 10}, { Group: "Mouth", Name: "Open", Timer: 10}]
 	}, {
 		Name: "SmallVibratingWand",
+		Property: { Type: "SmallVibratingWand" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyes", Name: "Dazed", Timer: 5 }, { Group: "Eyebrows", Name: "Soft", Timer: 10}, { Group: "Mouth", Name: "HalfOpen", Timer: 10}]
 	}, {
 		Name: "CandleWax",
+		Property: { Type: "CandleWax" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Surprised", Timer: 10}, { Group: "Mouth", Name: "Frown", Timer: 10}]
 	}, {
 		Name: "LargeDildo",
+		Property: { Type: "LargeDildo" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "HalfOpen", Timer: 10}, { Group: "Eyes", Name: "Lewd", Timer: 10}]
 	}, {
 		Name: "PetToy",
+		Property: { Type: "PetToy" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyes", Name: "WinkL", Timer: 10 }, { Group: "Mouth", Name: "Smirk", Timer: 10 }]
 	},{
 		Name: "Vibrator",
+		Property: { Type: "Vibrator" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyes", Name: "VeryLewd", Timer: 10 }, { Group: "Mouth", Name: "Open", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	},{
 		Name: "Belt",
+		Property: { Type: "Belt" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}]
 	}, {
 		Name: "Hairbrush",
+		Property: { Type: "Hairbrush" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}]
 	}, {
 		Name: "SmallDildo",
+		Property: { Type: "SmallDildo" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}, { Group: "Eyes", Name: "Lewd", Timer: 5 }, ]
 	}, {
 		Name: "ElectricToothbrush",
+		Property: { Type: "ElectricToothbrush" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, {Group: "Eyes", Name: "Closed", Timer: 10}, { Group: "Mouth", Name: "Grin", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	}, {
 		Name: "Toothbrush",
+		Property: { Type: "Toothbrush" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, {Group: "Eyes", Name: "Closed", Timer: 10}, { Group: "Mouth", Name: "Grin", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	}, {
 		Name: "ShockWand",
+		Property: { Type: "ShockWand" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
+	}, {
+		Name: "Lotion",
+		Property: { Type: "Lotion" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	}, {
+		Name: "Ruler",
+		Property: { Type: "Ruler" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }]
+	}, {
+		Name: "Sword",
+		Property: { Type: "Sword" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
+	}, {
+		Name: "VibeRemote",
+		Property: { Type: "VibeRemote" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	}, {
+		Name: "ShockRemote",
+		Property: { Type: "ShockRemote" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
 	},{
-	  Name: "Lotion",
-	  ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}]
+		Name: "Towel",
+		Property: { Type: "Towel" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "RopeCoilLong",
+		Property: { Type: "RopeCoilLong" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "RopeCoilShort",
+		Property: { Type: "RopeCoilShort" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Ballgag",
+		Property: { Type: "Ballgag" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "LongSock",
+		Property: { Type: "LongSock" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Baguette",
+		Property: { Type: "Baguette" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "Panties",
+		Property: { Type: "Panties" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	},{
+		Name: "TapeRoll",
+		Property: { Type: "TapeRoll" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
+	}, {
+		Name: "Spatula",
+		Property: { Type: "Spatula" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
+	}, {
+		Name: "Broom",
+		Property: { Type: "Broom" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
 	},
-	
 ];
-
-var SpankingInventoryOffset = 0;
-var SpankingNextButton = false;
-var SpankingPlayerInventory;
 
 // Loads the item extension properties
 function InventoryItemHandsSpankingToysLoad() {
-	SpankingPlayerInventory = SpankingInventory.filter(x => Player.Inventory.map(i => i.Name).includes("SpankingToys" + x.Name));
-	if (DialogFocusItem.Property == null) {
-		DialogFocusItem.Property = { Type: "Crop" };
-		CharacterRefresh(CharacterGetCurrent(), false);
-	}
-	if (SpankingPlayerInventory.length > 6) SpankingNextButton = true;
+	ExtendedItemLoad(InventorySpankingToysAvailableToys(CharacterGetCurrent()), "SelectSpankingToysType");
 }
 
-// Item groups that called the function (just forwarding it to SpankingToysDraw()) *brute force, might be a better way to do this
+// Draw the item extension screen
 function InventoryItemHandsSpankingToysDraw() {
-
-	// Draw the header and item
-	if (SpankingNextButton) DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
-	DrawRect(1387, 55, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 57, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 310, 221, "black");
-	DrawText(DialogFind(Player, "SelectSpankingToysType"), 1500, 375, "white", "gray");
-
-	// Draw the buttons 6 at a time, in a 2x3 grid
-	for (let I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset + 6); I++) {
-		var offset = I - SpankingInventoryOffset;
-		var X = 1080 + (offset % 3 * 305);
-		var Y = 430 + (Math.floor(offset / 3) * 300);
-
-		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == SpankingPlayerInventory[I].Name) ? "#888888" : "White"));
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + SpankingPlayerInventory[I].Name + ".png", X, Y);
-		DrawText(DialogFind(Player, "SpankingToysType" + SpankingPlayerInventory[I].Name), X + 115, Y + 250, "white", "gray");
-	};
+	ExtendedItemDraw(InventorySpankingToysAvailableToys(CharacterGetCurrent()), "SpankingToysType");
 }
 
 // Catches the item extension clicks
 function InventoryItemHandsSpankingToysClick() {
-
-	// Menu buttons
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110) && (SpankingNextButton)) SpankingInventoryOffset += 6;
-	if (SpankingInventoryOffset >= SpankingPlayerInventory.length) SpankingInventoryOffset = 0;
-
-	// Item buttons
-	for (let I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset + 6); I++) {
-		var nextItem = SpankingPlayerInventory[I].Name;
-		var offset = I - SpankingInventoryOffset;
-		var X = 1080 + (offset % 3 * 305);
-		var Y = 430 + (Math.floor(offset / 3) * 300);
-
-		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != nextItem))
-			InventorySpankingToySetType(nextItem);
-	}
+	ExtendedItemClick(InventorySpankingToysAvailableToys(CharacterGetCurrent()));
 }
 
-// Uses spanking toy type (cane, crop, flogger, etc.)
-function InventorySpankingToySetType(NewType) {
-
-	// Sets the type
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemHandsSpankingToysLoad();
-	}
-	DialogFocusItem.Property.Type = NewType;
-	CharacterRefresh(C);
-
-	// Prepares the chat message to be published
+function InventoryItemHandsSpankingToysPublishAction(C, Option) {
 	var msg = C.ID == 0 ? "SpankingToysSetPlayer" : "SpankingToysSetOthers";
 	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-	Dictionary.push({Tag: "ItemUsed", AssetName : "SpankingToys" + ((NewType) ? NewType : "Crop")});
+	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+	Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+	Dictionary.push({ Tag: "ItemUsed", AssetName: "SpankingToys" + Option.Name });
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
-
-	// Exit from item when done
-	if (DialogInventory != null) {
-		DialogFocusItem = null;
-		DialogMenuButtonBuild(C);
-	}
-
 }
 
-// Get the type of spanking toy that the character is holding
+function InventoryItemHandsSpankingToysNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "SpankingToys" + Option.Name, "ItemHands");
+}
+
+/**
+ * Returns a list of the spanking toys that can be equipped to the character
+ * @param {Character} C - The character the toy will be given to
+ * @returns {ExtendedItemOption[]} The subset of SpankingToys options the player can select from
+ */
+function InventorySpankingToysAvailableToys(C) {
+	// Toys the player or target character owns
+	let PlayerToys = Player.Inventory.map(i => i.Name).filter(x => x.match(/SpankingToys\w/));
+	let TargetToys = C.Inventory.map(i => i.Name).filter(x => x.match(/SpankingToys\w/));
+	let AvailableToys = PlayerToys.concat(TargetToys.filter(T => !PlayerToys.includes(T)));
+	return InventoryItemHandsSpankingToysOptions.filter(x => AvailableToys.includes("SpankingToys" + x.Name));
+}
+
+/**
+ * Get the type of spanking toy that the character is holding
+ * @param {Character} C
+ * @returns {string}
+ */
 function InventorySpankingToysGetType(C) {
 	var Toy = InventoryGet(C, "ItemHands");
 	if (Toy && Toy.Property && Toy.Property.Type) return Toy.Property.Type;
@@ -204,6 +246,10 @@ function InventorySpankingToysGetActivity(C) {
 
 // Determine whether an item activity is allowed on the selected region
 function InventorySpankingToysActivityAllowed(C) {
+	var Type = InventorySpankingToysGetType(Player);
+	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
+	if (InventoryBlockedOrLimited(C, { Asset: A }))
+		return false;
 	if (C.FocusGroup != null) {
 		var Activity = InventorySpankingToysGetActivity(Player);
 		if (Activity == null) return true;
@@ -212,7 +258,11 @@ function InventorySpankingToysActivityAllowed(C) {
 	return false;
 }
 
-// Returns the audio sound to be played
+/**
+ * Returns the audio sound to be played
+ * @param {Character} C
+ * @returns {string}
+ */
 function InventorySpankingToysGetAudio(C) {
 	switch (InventorySpankingToysGetType(C)) {
 		case "Crop":

@@ -3,15 +3,19 @@ var RelogBackground = "";
 var RelogCanvas = document.createElement("canvas");
 var RelogData = null;
 var RelogChatLog = null;
+var RelogInputText = "";
 
 /**
  * Loads the relog screen
  * @returns {void} Nothing
  */
 function RelogLoad() {
-	
+
 	// Hides any HTML DOM element with the tag "HideOnPopup", like text boxes
 	var Elements = document.getElementsByClassName("HideOnPopup");
+	for (let E = 0; E < Elements.length; E++)
+		Elements[E].style.display = "none";
+	Elements = document.getElementsByClassName("HideOnDisconnect");
 	for (let E = 0; E < Elements.length; E++)
 		Elements[E].style.display = "none";
 
@@ -39,10 +43,11 @@ function RelogLoad() {
  * @returns {void} Nothing
  */
 function RelogRun() {
-	
+
 	// The previous darkened background is drawn
 	MainCanvas.drawImage(RelogCanvas, 0, 0);
-	
+	const CanLogin = ServerIsConnected && !LoginSubmitted;
+
 	// Draw the relog controls
 	if (!LoginMessage) LoginUpdateMessage();
 	if (LoginMessage != TextGet("EnterPassword")) DrawText(LoginMessage, 1000, 150, "White", "Black");
@@ -50,9 +55,11 @@ function RelogRun() {
 	DrawText(TextGet("Account") + "  " + Player.AccountName, 1000, 400, "White", "Black");
 	DrawText(TextGet("Password"), 1000, 500, "White", "Black");
 	ElementPosition("InputPassword", 1000, 550, 500);
-	DrawButton(675, 750, 300, 60, TextGet("LogBack"), "White", "");
+	DrawButton(675, 750, 300, 60, TextGet("LogBack"), CanLogin ? "White" : "Grey", "");
 	DrawButton(1025, 750, 300, 60, TextGet("GiveUp"), "White", "");
 
+	// Reset any disconnect notifications
+	if (document.hasFocus()) NotificationReset(NotificationEventType.DISCONNECT);
 }
 
 /**
@@ -78,12 +85,12 @@ function RelogKeyDown() {
  */
 function RelogSend() {
     // Ensure the login request is not sent twice
-	if (!LoginSubmitted) {
+	if (!LoginSubmitted && ServerIsConnected) {
 		var Name = Player.AccountName;
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-		    LoginSetSubmitted();
+			LoginSetSubmitted();
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
 		} else LoginStatusReset("InvalidNamePassword", true);
 	}
@@ -95,5 +102,6 @@ function RelogSend() {
  * @returns {void} Nothing
  */
 function RelogExit() {
+	// eslint-disable-next-line no-self-assign
 	window.location = window.location;
 }

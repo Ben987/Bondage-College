@@ -9,12 +9,12 @@ var CollegeTennisJenniferWillJoinRoom = false;
  * @param {string} QueryStatus - Status to query
  * @returns {boolean} - Returns TRUE if Jennifer is currently in that status
  */
-function CollegeTennisJenniferStatusIs(QueryStatus) { return (QueryStatus == CollegeTennisJenniferStatus) }
+function CollegeTennisJenniferStatusIs(QueryStatus) { return (QueryStatus == CollegeTennisJenniferStatus); }
 /**
  * Checks if the player can invite a new character to a private room. (Used for Jennifer.)
  * @returns {boolean} - Returns TRUE if the player has a private room and an empty spot in it.
  */
-function CollegeTennisCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
+function CollegeTennisCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)); }
 
 /**
  * Loads the tennis screen by generating Jennifer. The player's relationship with her from the bondage college is taken into consideration.
@@ -36,11 +36,11 @@ function CollegeTennisLoad() {
 
 	// Generates a full Jennifer model based on the Bondage College template
 	if (CollegeTennisJennifer == null) {
-		
+
 		// If Jennifer is away, we generate a random girl
 		CollegeTennisJennifer = CharacterLoadNPC("NPC_CollegeTennis_Jennifer");
 		CollegeTennisJennifer.AllowItem = false;
-		CharacterNaked(CollegeTennisJennifer);			
+		CharacterNaked(CollegeTennisJennifer);
 		if (CollegeTennisJenniferStatus != "Away") {
 			CollegeTennisJennifer.Name = "Jennifer";
 			InventoryWear(CollegeTennisJennifer, "PussyLight1", "Pussy", "#edd6b0");
@@ -50,8 +50,8 @@ function CollegeTennisLoad() {
 			InventoryWear(CollegeTennisJennifer, "H0980", "Height", "Default");
 			InventoryWear(CollegeTennisJennifer, "Small", "BodyUpper", "White");
 			InventoryWear(CollegeTennisJennifer, "Small", "BodyLower", "White");
-			InventoryWear(CollegeTennisJennifer, "Default", "Hands", "White");
-			InventoryWear(CollegeTennisJennifer, "Default", "Head", "White");
+			InventoryWear(CollegeTennisJennifer, "Default", "Hands", "Default");
+			InventoryWear(CollegeTennisJennifer, "Default", "Head", "Default");
 			InventoryWear(CollegeTennisJennifer, "HairBack6", "HairBack", "#8dccce");
 			InventoryWear(CollegeTennisJennifer, "HairFront5", "HairFront", "#8dccce");
 			InventoryWear(CollegeTennisJennifer, "Bra1", "Bra", "#CCCCCC");

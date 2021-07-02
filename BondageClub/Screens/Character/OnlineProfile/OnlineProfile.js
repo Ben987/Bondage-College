@@ -9,7 +9,7 @@ function OnlineProfileLoad() {
     ElementRemove("DescriptionInput");
     ElementCreateTextArea("DescriptionInput");
     var DescriptionInput = document.getElementById("DescriptionInput");
-    DescriptionInput.setAttribute("maxlength", 1000);
+    DescriptionInput.setAttribute("maxlength", 10000);
     DescriptionInput.value = (InformationSheetSelection.Description != null) ? InformationSheetSelection.Description : "";
     if (InformationSheetSelection.ID != 0) DescriptionInput.setAttribute("readonly", "readonly");
 }
@@ -33,7 +33,7 @@ function OnlineProfileRun() {
  * Handles clicks in the online profile screen
  * @returns {void} - Nothing
  */
-function OnlineProfileClick() {	
+function OnlineProfileClick() {
     if (MouseIn(1820, 60, 90, 90)) OnlineProfileExit(false);
     if (InformationSheetSelection.ID == 0 && MouseIn(1720, 60, 90, 90)) OnlineProfileExit(true);
 }
@@ -46,8 +46,13 @@ function OnlineProfileClick() {
 function OnlineProfileExit(Save) {
     // If the current character is the player, we update the description
     if ((InformationSheetSelection.ID == 0) && (InformationSheetSelection.Description != ElementValue("DescriptionInput").trim()) && Save) {
-        InformationSheetSelection.Description = ElementValue("DescriptionInput").trim();
-        ServerSend("AccountUpdate", { Description: InformationSheetSelection.Description });
+        InformationSheetSelection.Description = ElementValue("DescriptionInput").trim().substr(0, 10000);
+        let Description = InformationSheetSelection.Description;
+        const CompressedDescription = "╬" + LZString.compressToUTF16(Description);
+        if (CompressedDescription.length < Description.length || Description.startsWith("╬")) {
+            Description = CompressedDescription;
+        }
+        ServerAccountUpdate.QueueData({ Description });
         ChatRoomCharacterUpdate(InformationSheetSelection);
     }
     ElementRemove("DescriptionInput");

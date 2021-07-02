@@ -7,10 +7,19 @@ ResetClothes,Reset character
 WearRandom,Randomize clothes
 Random,Randomize character
 Naked,Strip clothes
+Character,Show character in previews
 StripItem,Strip item
 Next,Next
 Prev,Previous
 Cancel,Cancel changes
 Accept,Accept changes
 Wardrobe,Wardrobe
-DressManually,Dress manually
+WardrobeDisabled,Wardrobe can be bought in your private room.
+DialogPermissionMode,Edit item permissions
+Use,Use this item
+UseDisabled,Unable to use due to player permissions
+Reset,Reset character
+ColorPick,Select a colour
+MultiColorPick,Select colours
+ColorPickDisabled,Unable to change color due to player permissions,,
+MultiColorPickDisabled,Unable to change color due to player permissions,,

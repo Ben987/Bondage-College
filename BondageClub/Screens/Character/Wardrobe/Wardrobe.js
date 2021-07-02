@@ -1,5 +1,5 @@
 "use strict";
-var WardrobeBackground = "PrivateDark";
+var WardrobeBackground = "Private";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
 var WardrobeOffset = 0;
@@ -16,7 +16,7 @@ function WardrobeLoadCharacterNames() {
 		Player.WardrobeCharacterNames.push(Player.Name);
 		Push = true;
 	}
-	if (Push) ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
+	if (Push) ServerAccountUpdate.QueueData({ WardrobeCharacterNames: Player.WardrobeCharacterNames });
 }
 
 /**
@@ -46,7 +46,7 @@ function WardrobeLoadCharacters(Fast) {
 		if (WardrobeCharacter.length <= P && ((W == null) || !Fast)) {
 
 			// Creates a character
-			CharacterReset(Character.length, "Female3DCG");
+			CharacterReset(CharacterNextId++, "Female3DCG");
 			var C = Character[Character.length - 1];
 			C.AccountName = "Wardrobe-" + P.toString();
 			C.Name = Player.WardrobeCharacterNames[P];
@@ -76,7 +76,7 @@ function WardrobeLoadCharacters(Fast) {
 	if (W != null) {
 		WardrobeFixLength();
 		if (Fast) WardrobeFastLoad(WardrobeCharacter[W], W);
-		ServerSend("AccountUpdate", { Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
+		ServerAccountUpdate.QueueData({ Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
 	}
 }
 
@@ -88,6 +88,7 @@ function WardrobeLoadCharacters(Fast) {
  */
 function WardrobeLoad() {
 	WardrobeSelection = -1;
+	CurrentDarkFactor = 0.5;
 	WardrobeLoadCharacters(false);
 }
 
@@ -170,21 +171,23 @@ function WardrobeSetCharacterName(W, Name, Push) {
 		WardrobeCharacter[W].Name = Name;
 	}
 	if (Push == null || Push != false) {
-		ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
+		ServerAccountUpdate.QueueData({ WardrobeCharacterNames: Player.WardrobeCharacterNames });
 	}
 }
 
 /**
  * Reduces a given asset to the attributes needed for the wardrobe
- * @param {Asset} A - The asset that should be reduced
- * @returns {Object} - bundle. The bundled asset
- * @returns {string} - bundle.Name - The name of the asset in the bundle
- * @returns {string} - bundle.Group - The name of the asste group, the bundled asset belongs to
- * @returns {string} - bundle.Color - The string representation of the color in the format "#rrggbb"
- * @returns {Object} - bundle.Property - The asset property object
+ * @param {Item} A - The asset that should be reduced
+ * @returns {ItemBundle} - The bundled asset
  */
 function WardrobeAssetBundle(A) {
-	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color, Property: A.Property };
+	let Property;
+	if (A.Property) {
+		Property = Object.assign({}, A.Property);
+		delete Property.Expression; // Don't add expressions to the wardrobe
+		if (Object.keys(Property).length === 0) Property = undefined; // Don't save empty properties
+	}
+	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color, Property };
 }
 
 /**
@@ -199,7 +202,7 @@ function WardrobeFastLoad(C, W, Update) {
 	if (C == Player) savedExpression = WardrobeGetExpression(Player);
 	if ((Player.Wardrobe != null) && (Player.Wardrobe[W] != null) && (Player.Wardrobe[W].length > 0)) {
 		C.Appearance = C.Appearance
-			.filter(a => a.Asset.Group.Category != "Appearance" || !WardrobeGroupAccessible(C, a.Asset.Group, { ExcludeNonCloth: true }))
+			.filter(a => a.Asset.Group.Category != "Appearance" || !WardrobeGroupAccessible(C, a.Asset.Group, { ExcludeNonCloth: true }));
 		Player.Wardrobe[W]
 			.filter(w => w.Name != null && w.Group != null)
 			.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
@@ -212,10 +215,12 @@ function WardrobeFastLoad(C, W, Update) {
 					&& (a.Value == 0 || InventoryAvailable(Player, a.Name, a.Group.Name)));
 				if (A != null) {
 					CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, null, false);
-					if (w.Property && InventoryGet(C, w.Group)) { 
+					if (w.Property && InventoryGet(C, w.Group)) {
 						var item = InventoryGet(C, w.Group);
 						if (item.Property == null) item.Property = {};
-						for (const key in w.Property) item.Property[key] = w.Property[key];
+						for (const key of Object.keys(w.Property)) {
+							if (key !== "Expression") item.Property[key] = w.Property[key];
+						}
 					}
 				}
 			});
@@ -242,6 +247,7 @@ function WardrobeFastLoad(C, W, Update) {
 				}
 			});
 		}
+		CharacterLoadPose(C);
 		CharacterLoadCanvas(C);
 		if (Update == null || Update) {
 			if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
@@ -273,7 +279,7 @@ function WardrobeFastSave(C, W, Push) {
 		}
 		WardrobeFixLength();
 		if (WardrobeCharacter != null && WardrobeCharacter[W] != null && C.AccountName != WardrobeCharacter[W].AccountName) WardrobeFastLoad(WardrobeCharacter[W], W);
-		if ((Push == null) || Push) ServerSend("AccountUpdate", { Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
+		if ((Push == null) || Push) ServerAccountUpdate.QueueData({ Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
 	}
 }
 
@@ -283,7 +289,7 @@ function WardrobeFastSave(C, W, Push) {
  * @returns {Object} Expression - The expresssion of a character
  */
 function WardrobeGetExpression(C) {
-	var characterExpression = {}
+	var characterExpression = {};
 	ServerAppearanceBundle(C.Appearance).filter(item => item.Property != null && item.Property.Expression != null).forEach(item => characterExpression[item.Group] = item.Property.Expression);
 	return characterExpression;
 }
@@ -291,25 +297,25 @@ function WardrobeGetExpression(C) {
 /**
  * Checks if a given group of a character can be accessed.
  * @param {Character} C - The character in the wardrobe
- * @param {object} Group - The group to check for accessibility 
+ * @param {object} Group - The group to check for accessibility
  * @returns {boolean} - Whether the zone can be altered or not.
  */
-function WardrobeGroupAccessible(C, Group, Options) { 
-	
+function WardrobeGroupAccessible(C, Group, Options) {
+
 	// You can always edit yourself.
 	if (C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0) return true;
-	
+
 	// You cannot always change body cosplay
 	if (Group.BodyCosplay && C.OnlineSharedSettings && C.OnlineSharedSettings.BlockBodyCosplay) return false;
-	
+
 	// Clothes can always be edited
 	if (Group.Clothing) return true;
-		
+
 	// You can filter out non-clothing options
-	if (!Options || !Options.ExcludeNonCloth) { 
+	if (!Options || !Options.ExcludeNonCloth) {
 		// If the player allows all
 		if (C.OnlineSharedSettings && C.OnlineSharedSettings.AllowFullWardrobeAccess) return true;
 	}
-	
+
 	return false;
 }

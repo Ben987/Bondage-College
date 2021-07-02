@@ -1,0 +1,11 @@
+PlayerGagged,,,"(She giggles) You can play games while bound, but don't expect me to understand you.",,
+PlayerBlind,,,"Having fun in there?",,
+0,,,Hello and welcome to the arcade. Put on your VR headset and you can play our games for free!,,
+0,10,I don't have a VR headset.,You can rent one of ours for 10$.,,NeedToRent()
+0,0,Can you take my headset off?,"Nonsense, the fun never ends!",,CanPlayGames()
+0,0,(Plead with her),"Lots of fun, isn't it?",,CanPlayGamesAndGagged()
+10,0,Yes please!,Here you go!,BuyHeadset(),"DialogMoneyGreater(10)"
+10,0,No thanks.,No problem. "It's better to buy your own, that way you can play kinky games by yourself.",,
+0,0,Can you put mine on for me?,Sure thing! Enjoy the games!,PutOnHeadset(),CanAskForHeadsetHelpBound()
+0,0,(Look at her and plead loudly),"I see what you're trying to say. Enjoy the games!",PutOnHeadset(),CanAskForHeadsetHelpGagged()
+0,0,(Leave her.),,DialogLeave(),

@@ -1,5 +1,5 @@
 "use strict";
-var ChatCreateBackground = "IntroductionDark";
+var ChatCreateBackground = "Introduction";
 var ChatCreateResult = [];
 var ChatCreateMessage = "";
 var ChatCreatePrivate = null;
@@ -13,10 +13,12 @@ var ChatCreateBackgroundList = null;
  */
 function ChatCreateLoad() {
 
+	CurrentDarkFactor = 0.5;
+
 	// Resets the room game statuses
-	if ((ChatRoomSpace == "LARP") && (Player.Game.LARP.Status != "")) {
+	if ((ChatRoomGame == "LARP") && (Player.Game.LARP.Status != "")) {
 		Player.Game.LARP.Status = "";
-		ServerSend("AccountUpdate", { Game: Player.Game });
+		ServerAccountUpdate.QueueData({ Game: Player.Game }, true);
 	}
 
 	// If the current background isn't valid, we pick the first one
@@ -25,7 +27,7 @@ function ChatCreateLoad() {
 		ChatCreateBackgroundIndex = 0;
 	}
 	ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
-	ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
+	ChatCreateBackground = ChatCreateBackgroundSelect;
 
 	// Prepares the controls to create a room
 	ElementRemove("InputSearch");
@@ -58,11 +60,13 @@ function ChatCreateRun() {
 	ElementPosition("InputSize", 1400, 560, 150);
 	DrawText(TextGet("RoomBackground"), 650, 672, "White", "Gray");
 	DrawButton(1300, 640, 300, 65, TextGet("ShowAll"), "White");
-	DrawBackNextButton(900, 640, 350, 65, DialogFind(Player, ChatCreateBackgroundSelect), "White", null,
-		() => DialogFind(Player, (ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
-		() => DialogFind(Player, (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
-	DrawButton(600, 800, 300, 65, TextGet("Create"), "White");
-	DrawButton(1100, 800, 300, 65, TextGet("Cancel"), "White");
+	DrawBackNextButton(900, 640, 350, 65, DialogFindPlayer(ChatCreateBackgroundSelect), "White", null,
+		() => DialogFindPlayer((ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
+		() => DialogFindPlayer((ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
+	DrawButton(850, 775, 300, 65, TextGet("BlockItems"), "White");
+	DrawButton(600, 900, 300, 65, TextGet("Create"), "White");
+	DrawButton(1100, 900, 300, 65, TextGet("Cancel"), "White");
+
 }
 
 /**
@@ -80,7 +84,7 @@ function ChatCreateClick() {
 		if (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length) ChatCreateBackgroundIndex = 0;
 		if (ChatCreateBackgroundIndex < 0) ChatCreateBackgroundIndex = ChatCreateBackgroundList.length - 1;
 		ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
-		ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
+		ChatCreateBackground = ChatCreateBackgroundSelect;
 	}
 
 	// Show backgrounds in grid
@@ -91,15 +95,11 @@ function ChatCreateClick() {
 		document.getElementById("InputSize").style.display = "none";
 	}
 
-	// If the user wants to create a room
-	if ((MouseX >= 600) && (MouseX < 900) && (MouseY >= 800) && (MouseY < 865)) {
-		ChatCreateRoom();
-	}
+	// When the bottom buttons are used
+	if (MouseIn(850, 775, 300, 65)) ChatCreateBlockItems();
+	if (MouseIn(600, 900, 300, 65)) ChatCreateRoom();
+	if (MouseIn(1100, 900, 300, 65)) ChatCreateExit();
 
-	// When the user cancels
-	if ((MouseX >= 1100) && (MouseX < 1400) && (MouseY >= 800) && (MouseY < 865)) {
-		ChatCreateExit();
-	}
 }
 
 /**
@@ -139,15 +139,30 @@ function ChatCreateResponse(data) {
 function ChatCreateRoom() {
 	ChatRoomPlayerCanJoin = true;
 	ChatRoomPlayerJoiningAsAdmin = true;
-	// Push the new room
 	var NewRoom = {
 		Name: ElementValue("InputName").trim(),
 		Description: ElementValue("InputDescription").trim(),
 		Background: ChatCreateBackgroundSelect,
 		Private: ChatCreatePrivate,
 		Space: ChatRoomSpace,
-		Limit: ElementValue("InputSize").trim()
+		Game: ChatRoomGame,
+		Limit: ElementValue("InputSize").trim(),
+		BlockCategory: ChatBlockItemCategory
 	};
 	ServerSend("ChatRoomCreate", NewRoom);
 	ChatCreateMessage = "CreatingRoom";
+
+	ChatRoomPingLeashedPlayers();
+}
+
+/**
+ * When we need to enter the item blocking screen
+ * @returns {void} - Nothing
+ */
+function ChatCreateBlockItems() {
+	ChatBlockItemReturnData = { Screen: "ChatCreate", Name: ElementValue("InputName"), Description: ElementValue("InputDescription"), Limit: ElementValue("InputSize") };
+	ElementRemove("InputName");
+	ElementRemove("InputDescription");
+	ElementRemove("InputSize");
+	CommonSetScreen("Online", "ChatBlockItem");
 }

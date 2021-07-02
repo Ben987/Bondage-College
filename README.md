@@ -1,5 +1,8 @@
 # Bondage College
 
+[![Asset Check](https://github.com/Ben987/Bondage-College/actions/workflows/assetCheck.yml/badge.svg)](https://github.com/Ben987/Bondage-College/actions/workflows/assetCheck.yml)
+[![Lint](https://github.com/Ben987/Bondage-College/actions/workflows/lint.yml/badge.svg)](https://github.com/Ben987/Bondage-College/actions/workflows/lint.yml)
+
 Welcome to the Bondage College! 
 
 This project is a Javascript/HTML5 game that contains adult themes such as BDSM.

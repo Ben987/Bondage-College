@@ -1,22 +1,29 @@
 "use strict";
 var PreferenceBackground = "Sheet";
 var PreferenceMessage = "";
+var PreferenceSafewordConfirm = false;
 var PreferenceColorPick = "";
 var PreferenceSubscreen = "";
-var PreferenceChatColorThemeSelected = "";
-var PreferenceChatColorThemeList = ["Light", "Dark"];
+var PreferenceSubscreenList = ["General", "Difficulty", "Restriction", "Chat", "Audio", "Arousal", "Security", "Online", "Visibility", "Immersion", "Graphics", "Controller", "Notifications"];
+var PreferencePageCurrent = 1;
+var PreferenceChatColorThemeList = ["Light", "Dark", "Light2", "Dark2"];
 var PreferenceChatColorThemeIndex = 0;
-var PreferenceChatEnterLeaveSelected = "";
 var PreferenceChatEnterLeaveList = ["Normal", "Smaller", "Hidden"];
 var PreferenceChatEnterLeaveIndex = 0;
-var PreferenceChatMemberNumbersSelected = "";
 var PreferenceChatMemberNumbersList = ["Always", "Never", "OnMouseover"];
 var PreferenceChatMemberNumbersIndex = 0;
-var PreferenceSettingsSensDepList = ["Normal", "SensDepNames", "SensDepTotal"];
+var PreferenceChatFontSizeList = ["Small", "Medium", "Large"];
+var PreferenceChatFontSizeIndex = 1;
+var PreferenceSettingsSensDepList = ["SensDepLight", "Normal", "SensDepNames", "SensDepTotal", "SensDepExtreme"];
 var PreferenceSettingsSensDepIndex = 0;
+var PreferenceSettingsVFXList = ["VFXInactive", "VFXSolid", "VFXAnimatedTemp", "VFXAnimated"];
+var PreferenceSettingsVFXIndex = 0;
 var PreferenceSettingsVolumeList = [1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+var PreferenceSettingsSensitivityList = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var PreferenceSettingsDeadZoneList = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 var PreferenceSettingsVolumeIndex = 0;
-var PreferenceEmailStatusReceived = false;
+var PreferenceSettingsSensitivityIndex = 13;
+var PreferenceSettingsDeadZoneIndex = 1;
 var PreferenceArousalActiveList = ["Inactive", "NoMeter", "Manual", "Hybrid", "Automatic"];
 var PreferenceArousalActiveIndex = 0;
 var PreferenceArousalVisibleList = ["All", "Access", "Self"];
@@ -37,17 +44,28 @@ var PreferenceVisibilityAssetIndex = 0;
 var PreferenceVisibilityHideChecked = false;
 var PreferenceVisibilityBlockChecked = false;
 var PreferenceVisibilityCanBlock = true;
-var PreferenceVisibilityPreviewImg = null;
+var PreferenceVisibilityPreviewAsset = null;
 var PreferenceVisibilityHiddenList = [];
 var PreferenceVisibilityBlockList = [];
 var PreferenceVisibilityResetClicked = false;
+var PreferenceDifficultyLevel = null;
+var PreferenceDifficultyAccept = false;
+var PreferenceGraphicsFontList = ["Arial", "TimesNewRoman", "Papyrus", "ComicSans", "Impact", "HelveticaNeue", "Verdana", "CenturyGothic", "Georgia", "CourierNew", "Copperplate"];
+var PreferenceGraphicsPowerModes = ["low-power", "default", "high-performance"];
+var PreferenceGraphicsFontIndex = 0;
+var PreferenceGraphicsAnimationQualityIndex = null;
+var PreferenceGraphicsPowerModeIndex = null;
+var PreferenceGraphicsWebGLOptions = null;
+var PreferenceGraphicsAnimationQualityList = [200, 100, 50, 0];
+var PreferenceCalibrationStage = 0;
 
 /**
  * Gets the effect of a sexual activity on the player
  * @param {Character} C - The player who performs the sexual activity
  * @param {string} Type - The type of the activity that is performed
  * @param {boolean} Self - Determines, if the current player is giving (false) or receiving (true)
- * @returns {number} - Returns the love factor of the activity for the character (0 is horrible, 2 is normal, 4 is great)
+ * @returns {number} - Returns the love factor of the activity for the character (0 is horrible, 2 is normal, 4 is
+ *     great)
  */
 function PreferenceGetActivityFactor(C, Type, Self) {
 	var Factor = 2;
@@ -76,7 +94,7 @@ function PreferenceGetFetishFactor(C, Type) {
 }
 
 /**
- * Sets the love factor of a sexual activity for the character 
+ * Sets the love factor of a sexual activity for the character
  * @param {Character} C - The character for whom the activity factor should be set
  * @param {string} Type - The type of the activity that is performed
  * @param {boolean} Self - Determines, if the current player is giving (false) or receiving (true)
@@ -107,7 +125,7 @@ function PreferenceGetZoneFactor(C, Zone) {
 }
 
 /**
- * Sets the love factor for a specific body zone on the player 
+ * Sets the love factor for a specific body zone on the player
  * @param {Character} C - The character, for whom the love factor of a particular zone should be set
  * @param {string} Zone - The name of the zone, the factor should be set for
  * @param {number} Factor - The factor of the zone (0 is horrible, 2 is normal, 4 is great)
@@ -139,6 +157,7 @@ function PreferenceGetZoneOrgasm(C, Zone) {
  * @param {Character} C - The characterfor whom we set the ability to órgasm from a given zone
  * @param {string} Zone - The name of the zone to set the ability to orgasm for
  * @param {boolean} CanOrgasm - Sets, if the character can cum from the given zone (true) or not (false)
+ * @returns {void} - Nothing
  */
 function PreferenceSetZoneOrgasm(C, Zone, CanOrgasm) {
 	if ((C.ArousalSettings != null) && (C.ArousalSettings.Zone != null))
@@ -163,7 +182,7 @@ function PreferenceGetFactorColor(Factor) {
 
 /**
  * Checks, if the arousal activity controls must be activated
- * @returns {void} - Returns true if we must activate the preference controls, false otherwise
+ * @returns {boolean} - Returns true if we must activate the preference controls, false otherwise
  */
 function PreferenceArousalIsActive() {
 	return (PreferenceArousalActiveList[PreferenceArousalActiveIndex] != "Inactive");
@@ -192,65 +211,29 @@ function PreferenceLoadFetishFactor() {
  * @returns {void} - Nothing
  */
 function PreferenceInit(C) {
-
-	// If the settings aren't set before, construct them to replicate the default behavior
-	if (!C.ChatSettings) C.ChatSettings = { DisplayTimestamps: true, ColorNames: true, ColorActions: true, ColorEmotes: true, ShowActivities: true, AutoBanGhostList: true, AutoBanBlackList: false, SearchShowsFullRooms: true, SearchFriendsFirst: false, ShowAutomaticMessages: false };
-	if (C.ChatSettings.DisplayTimestamps == null) C.ChatSettings.DisplayTimestamps = true;
-	if (C.ChatSettings.ColorNames == null) C.ChatSettings.ColorNames = true;
-	if (C.ChatSettings.ColorActions == null) C.ChatSettings.ColorActions = true;
-	if (C.ChatSettings.ColorEmotes == null) C.ChatSettings.ColorEmotes = true;
-	if (C.ChatSettings.ShowActivities == null) C.ChatSettings.ShowActivities = true;
-	if (C.ChatSettings.ShowAutomaticMessages == null) C.ChatSettings.ShowAutomaticMessages = false;
-	if (C.ChatSettings.WhiteSpace == null) C.ChatSettings.WhiteSpace = "Preserve";
-	if (C.ChatSettings.ColorActivities == null) C.ChatSettings.ColorActivities = true;
-	if (!C.VisualSettings) C.VisualSettings = { ForceFullHeight: false };
-
-	// Sets the default audio settings
-	if (!C.AudioSettings) C.AudioSettings = { Volume: 1, PlayBeeps: false, PlayItem: false, PlayItemPlayerOnly: false };
-	if (typeof C.AudioSettings.Volume !== "number") C.AudioSettings.Volume = 1;
-	if (typeof C.AudioSettings.PlayBeeps !== "boolean") C.AudioSettings.PlayBeeps = false;
-	if (typeof C.AudioSettings.PlayItem !== "boolean") C.AudioSettings.PlayItem = false;
-	if (typeof C.AudioSettings.PlayItemPlayerOnly !== "boolean") C.AudioSettings.PlayItemPlayerOnly = false;
-
-	// Sets the default arousal settings
-	if (!C.ArousalSettings) C.ArousalSettings = { Active: "Hybrid", Visible: "Access", ShowOtherMeter: true, AffectExpression: true, AffectStutter: "All", Progress: 0, ProgressTimer: 0, Activity: [], Zone: [] };
+	// Arousal settings
+	if (!C.ArousalSettings) C.ArousalSettings = {};
 	if (typeof C.ArousalSettings.Active !== "string") C.ArousalSettings.Active = "Hybrid";
 	if (typeof C.ArousalSettings.Visible !== "string") C.ArousalSettings.Visible = "Access";
 	if (typeof C.ArousalSettings.ShowOtherMeter !== "boolean") C.ArousalSettings.ShowOtherMeter = true;
+	if (typeof C.ArousalSettings.DisableAdvancedVibes !== "boolean") C.ArousalSettings.DisableAdvancedVibes = false;
 	if (typeof C.ArousalSettings.AffectExpression !== "boolean") C.ArousalSettings.AffectExpression = true;
 	if (typeof C.ArousalSettings.AffectStutter !== "string") C.ArousalSettings.AffectStutter = "All";
-	if ((typeof C.ArousalSettings.Progress !== "number") || isNaN(C.ArousalSettings.Progress)) C.ArousalSettings.Progress = 0;
-	if ((typeof C.ArousalSettings.ProgressTimer !== "number") || isNaN(C.ArousalSettings.ProgressTimer)) C.ArousalSettings.ProgressTimer = 0;
-	if ((C.ArousalSettings.Activity == null) || !Array.isArray(C.ArousalSettings.Activity)) C.ArousalSettings.Activity = [];
-	if ((C.ArousalSettings.Zone == null) || !Array.isArray(C.ArousalSettings.Zone)) C.ArousalSettings.Zone = [];
-	if ((C.ArousalSettings.Fetish == null) || !Array.isArray(C.ArousalSettings.Fetish)) C.ArousalSettings.Fetish = [];
+	if (typeof C.ArousalSettings.VFX !== "string") C.ArousalSettings.VFX = "VFXAnimatedTemp";
+	if (typeof C.ArousalSettings.Progress !== "number" || isNaN(C.ArousalSettings.Progress)) C.ArousalSettings.Progress = 0;
+	if (typeof C.ArousalSettings.ProgressTimer !== "number" || isNaN(C.ArousalSettings.ProgressTimer)) C.ArousalSettings.ProgressTimer = 0;
+	if (typeof C.ArousalSettings.VibratorLevel !== "number" || isNaN(C.ArousalSettings.VibratorLevel)) C.ArousalSettings.VibratorLevel = 0;
+	if (typeof C.ArousalSettings.ChangeTime !== "number" || isNaN(C.ArousalSettings.ChangeTime)) C.ArousalSettings.ChangeTime = CommonTime();
+	if (!Array.isArray(C.ArousalSettings.Activity)) C.ArousalSettings.Activity = [];
+	if (!Array.isArray(C.ArousalSettings.Zone)) C.ArousalSettings.Zone = [];
+	if (!Array.isArray(C.ArousalSettings.Fetish)) C.ArousalSettings.Fetish = [];
 
-	// Sets the default game settings
-	if (!C.GameplaySettings) C.GameplaySettings = {};
-	if (typeof C.GameplaySettings.SensDepChatLog !== "string") C.GameplaySettings.SensDepChatLog = "Normal";
-	if (typeof C.GameplaySettings.BlindDisableExamine !== "boolean") C.GameplaySettings.BlindDisableExamine = false;
-	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
-	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
-
-	if (!C.OnlineSettings) C.OnlineSettings = {};
-	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
-	if (C.OnlineSharedSettings.AllowFullWardrobeAccess == null) C.OnlineSharedSettings.AllowFullWardrobeAccess = false;
-	if (C.OnlineSharedSettings.BlockBodyCosplay == null) C.OnlineSharedSettings.BlockBodyCosplay = false;
-	// TODO: The following preferences were migrated September 2020 in for R61 - replace with standard preference code after a few months
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanBlackList", false);
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "AutoBanGhostList", true);
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "DisableAnimations", false);
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "SearchShowsFullRooms", true);
-	PreferenceMigrate(C.ChatSettings, C.OnlineSettings, "SearchFriendsFirst", false);
-	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableAfkTimer", true);
-	PreferenceMigrate(C.GameplaySettings, C.OnlineSettings, "EnableWardrobeIcon", false);
-	
 	// Validates the player preference, they must match with the assets activities & zones, default factor is 2 (normal love)
 	if (Player.AssetFamily == "Female3DCG") {
 
 		// Validates the activities
 		for (let A = 0; A < ActivityFemale3DCG.length; A++) {
-			var Found = false;
+			let Found = false;
 			for (let P = 0; P < C.ArousalSettings.Activity.length; P++)
 				if ((C.ArousalSettings.Activity[P] != null) && (C.ArousalSettings.Activity[P].Name != null) && (ActivityFemale3DCG[A].Name == C.ArousalSettings.Activity[P].Name)) {
 					Found = true;
@@ -262,7 +245,7 @@ function PreferenceInit(C) {
 
 		// Validates the fetishes
 		for (let A = 0; A < FetishFemale3DCG.length; A++) {
-			var Found = false;
+			let Found = false;
 			for (let F = 0; F < C.ArousalSettings.Fetish.length; F++)
 				if ((C.ArousalSettings.Fetish[F] != null) && (C.ArousalSettings.Fetish[F].Name != null) && (FetishFemale3DCG[A].Name == C.ArousalSettings.Fetish[F].Name)) {
 					Found = true;
@@ -274,7 +257,7 @@ function PreferenceInit(C) {
 		// Validates the zones
 		for (let A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null)) {
-				var Found = false;
+				let Found = false;
 				for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
 					if ((C.ArousalSettings.Zone[Z] != null) && (C.ArousalSettings.Zone[Z].Name != null) && (AssetGroup[A].Name == C.ArousalSettings.Zone[Z].Name)) {
 						Found = true;
@@ -287,10 +270,269 @@ function PreferenceInit(C) {
 			}
 
 	}
+}
+
+/**
+ * Initialize and validates Player settings
+ * @returns {void} - Nothing
+ */
+function PreferenceInitPlayer() {
+	const C = Player;
+
+	// Save settings for comparison
+	const PrefBefore = {
+		ArousalSettings: JSON.stringify(C.ArousalSettings) || "",
+		ChatSettings: JSON.stringify(C.ChatSettings) || "",
+		VisualSettings: JSON.stringify(C.VisualSettings) || "",
+		AudioSettings: JSON.stringify(C.AudioSettings) || "",
+		ControllerSettings: JSON.stringify(C.ControllerSettings) || "",
+		GameplaySettings: JSON.stringify(C.GameplaySettings) || "",
+		ImmersionSettings: JSON.stringify(C.ImmersionSettings) || "",
+		RestrictionSettings: JSON.stringify(C.RestrictionSettings) || "",
+		OnlineSettings: JSON.stringify(C.OnlineSettings) || "",
+		OnlineSharedSettings: JSON.stringify(C.OnlineSharedSettings) || "",
+		GraphicsSettings: JSON.stringify(C.GraphicsSettings) || "",
+		NotificationSettings: JSON.stringify(C.NotificationSettings) || "",
+	};
+
+	// Non-player specific settings
+	PreferenceInit(C);
+
+	// If the settings aren't set before, construct them to replicate the default behavior
+
+	// Chat settings
+	if (!C.ChatSettings) C.ChatSettings = {};
+	if (typeof C.ChatSettings.FontSize !== "string") C.ChatSettings.FontSize = "Medium";
+	if (typeof C.ChatSettings.DisplayTimestamps !== "boolean") C.ChatSettings.DisplayTimestamps = true;
+	if (typeof C.ChatSettings.ColorNames !== "boolean") C.ChatSettings.ColorNames = true;
+	if (typeof C.ChatSettings.ColorActions !== "boolean") C.ChatSettings.ColorActions = true;
+	if (typeof C.ChatSettings.ColorEmotes !== "boolean") C.ChatSettings.ColorEmotes = true;
+	if (typeof C.ChatSettings.ShowActivities !== "boolean") C.ChatSettings.ShowActivities = true;
+	if (typeof C.ChatSettings.ShowAutomaticMessages !== "boolean") C.ChatSettings.ShowAutomaticMessages = false;
+	if (typeof C.ChatSettings.WhiteSpace !== "string") C.ChatSettings.WhiteSpace = "Preserve";
+	if (typeof C.ChatSettings.ColorActivities !== "boolean") C.ChatSettings.ColorActivities = true;
+	if (typeof C.ChatSettings.ShrinkNonDialogue !== "boolean") C.ChatSettings.ShrinkNonDialogue = false;
+	if (typeof C.ChatSettings.MuStylePoses !== "boolean") C.ChatSettings.MuStylePoses = false;
+
+	// Visual settings
+	if (!C.VisualSettings) C.VisualSettings = {};
+	if (typeof C.VisualSettings.ForceFullHeight !== "boolean") C.VisualSettings.ForceFullHeight = false;
+	if (typeof C.VisualSettings.UseCharacterInPreviews !== "boolean") C.VisualSettings.UseCharacterInPreviews = false;
+
+	// Audio settings
+	if (!C.AudioSettings) C.AudioSettings = {};
+	if (typeof C.AudioSettings.Volume !== "number") C.AudioSettings.Volume = 1;
+	if (typeof C.AudioSettings.PlayBeeps !== "boolean") C.AudioSettings.PlayBeeps = false;
+	if (typeof C.AudioSettings.PlayItem !== "boolean") C.AudioSettings.PlayItem = false;
+	if (typeof C.AudioSettings.PlayItemPlayerOnly !== "boolean") C.AudioSettings.PlayItemPlayerOnly = false;
+	if (typeof C.AudioSettings.Notifications !== "boolean") C.AudioSettings.Notifications = false;
+
+	// Controller settings
+	if (!C.ControllerSettings) C.ControllerSettings = {};
+	if (typeof C.ControllerSettings.ControllerSensitivity !== "number") C.ControllerSettings.ControllerSensitivity = 5;
+	if (typeof C.ControllerSettings.ControllerDeadZone !== "number") C.ControllerSettings.ControllerDeadZone = 0.01;
+	if (typeof C.ControllerSettings.ControllerA !== "number") C.ControllerSettings.ControllerA = 1;
+	if (typeof C.ControllerSettings.ControllerB !== "number") C.ControllerSettings.ControllerB = 0;
+	if (typeof C.ControllerSettings.ControllerX !== "number") C.ControllerSettings.ControllerX = 3;
+	if (typeof C.ControllerSettings.ControllerY !== "number") C.ControllerSettings.ControllerY = 2;
+	if (typeof C.ControllerSettings.ControllerStickUpDown !== "number") C.ControllerSettings.ControllerStickUpDown = 1;
+	if (typeof C.ControllerSettings.ControllerStickLeftRight !== "number") C.ControllerSettings.ControllerStickLeftRight = 0;
+	if (typeof C.ControllerSettings.ControllerStickRight !== "number") C.ControllerSettings.ControllerStickRight = 1;
+	if (typeof C.ControllerSettings.ControllerStickDown !== "number") C.ControllerSettings.ControllerStickDown = 1;
+	if (typeof C.ControllerSettings.ControllerDPadUp !== "number") C.ControllerSettings.ControllerDPadUp = 4;
+	if (typeof C.ControllerSettings.ControllerDPadDown !== "number") C.ControllerSettings.ControllerDPadDown = 5;
+	if (typeof C.ControllerSettings.ControllerDPadLeft !== "number") C.ControllerSettings.ControllerDPadLeft = 6;
+	if (typeof C.ControllerSettings.ControllerDPadRight !== "number") C.ControllerSettings.ControllerDPadRight = 7;
+	if (typeof C.ControllerSettings.ControllerActive !== "boolean") C.ControllerSettings.ControllerActive = false;
+
+	ControllerSensitivity = C.ControllerSettings.ControllerSensitivity;
+	ControllerDeadZone = C.ControllerSettings.ControllerDeadZone;
+	PreferenceSettingsSensitivityIndex = PreferenceSettingsSensitivityList.indexOf(Player.ControllerSettings.ControllerSensitivity);
+	PreferenceSettingsDeadZoneIndex = PreferenceSettingsDeadZoneList.indexOf(Player.ControllerSettings.ControllerDeadZone);
+	ControllerA = C.ControllerSettings.ControllerA;
+	ControllerB = C.ControllerSettings.ControllerB;
+	ControllerX = C.ControllerSettings.ControllerX;
+	ControllerY = C.ControllerSettings.ControllerY;
+	ControllerStickUpDown = C.ControllerSettings.ControllerStickUpDown;
+	ControllerStickLeftRight = C.ControllerSettings.ControllerStickLeftRight;
+	ControllerStickRight = C.ControllerSettings.ControllerStickRight;
+	ControllerStickDown = C.ControllerSettings.ControllerStickDown;
+	ControllerDPadUp = C.ControllerSettings.ControllerDPadUp;
+	ControllerDPadDown = C.ControllerSettings.ControllerDPadDown;
+	ControllerDPadLeft = C.ControllerSettings.ControllerDPadLeft;
+	ControllerDPadRight = C.ControllerSettings.ControllerDPadRight;
+	ControllerActive = C.ControllerSettings.ControllerActive;
+
+	// Gameplay settings
+	if (!C.GameplaySettings) C.GameplaySettings = {};
+	if (typeof C.GameplaySettings.SensDepChatLog !== "string") C.GameplaySettings.SensDepChatLog = "Normal";
+	if (typeof C.GameplaySettings.BlindDisableExamine !== "boolean") C.GameplaySettings.BlindDisableExamine = false;
+	if (typeof C.GameplaySettings.DisableAutoRemoveLogin !== "boolean") C.GameplaySettings.DisableAutoRemoveLogin = false;
+	if (typeof C.GameplaySettings.ImmersionLockSetting !== "boolean") C.GameplaySettings.ImmersionLockSetting = false;
+	if (typeof C.GameplaySettings.EnableSafeword !== "boolean") C.GameplaySettings.EnableSafeword = true;
+	if (typeof C.GameplaySettings.DisableAutoMaid !== "boolean") C.GameplaySettings.DisableAutoMaid = false;
+	if (typeof C.GameplaySettings.OfflineLockedRestrained !== "boolean") C.GameplaySettings.OfflineLockedRestrained = false;
+
+	// Immersion settings
+	if (!C.ImmersionSettings) C.ImmersionSettings = {};
+	if (typeof C.ImmersionSettings.BlockGaggedOOC !== "boolean") C.ImmersionSettings.BlockGaggedOOC = false;
+	if (typeof C.ImmersionSettings.StimulationEvents !== "boolean") C.ImmersionSettings.StimulationEvents = true;
+	if (typeof C.ImmersionSettings.ReturnToChatRoom !== "boolean") C.ImmersionSettings.ReturnToChatRoom = false;
+	if (typeof C.ImmersionSettings.ReturnToChatRoomAdmin !== "boolean") C.ImmersionSettings.ReturnToChatRoomAdmin = false;
+	if (typeof C.ImmersionSettings.SenseDepMessages !== "boolean") C.ImmersionSettings.SenseDepMessages = false;
+	if (typeof C.ImmersionSettings.ChatRoomMuffle !== "boolean") C.ImmersionSettings.ChatRoomMuffle = false;
+	if (typeof C.ImmersionSettings.BlindAdjacent !== "boolean") C.ImmersionSettings.BlindAdjacent = false;
+
+	// Misc
+	if (typeof C.LastChatRoom !== "string") C.LastChatRoom = "";
+	if (typeof C.LastChatRoomBG !== "string") C.LastChatRoomBG = "";
+	if (typeof C.LastChatRoomPrivate !== "boolean") C.LastChatRoomPrivate = false;
+	if (typeof C.LastChatRoomSize !== "number") C.LastChatRoomSize = 10;
+	if (typeof C.LastChatRoomDesc !== "string") C.LastChatRoomDesc = "";
+	if (!C.LastChatRoomAdmin) C.LastChatRoomAdmin = [];
+
+	// Restriction settings
+	if (!C.RestrictionSettings) C.RestrictionSettings = {};
+	if (typeof C.RestrictionSettings.BypassStruggle !== "boolean") C.RestrictionSettings.BypassStruggle = false;
+	if (typeof C.RestrictionSettings.SlowImmunity !== "boolean") C.RestrictionSettings.SlowImmunity = false;
+	if (typeof C.RestrictionSettings.BypassNPCPunishments !== "boolean") C.RestrictionSettings.BypassNPCPunishments = false;
+
+	// Online settings
+	if (!C.OnlineSettings) C.OnlineSettings = {};
+	if (typeof C.OnlineSettings.AutoBanBlackList !== "boolean") C.OnlineSettings.AutoBanBlackList = false;
+	if (typeof C.OnlineSettings.AutoBanGhostList !== "boolean") C.OnlineSettings.AutoBanGhostList = true;
+	if (typeof C.OnlineSettings.DisableAnimations !== "boolean") C.OnlineSettings.DisableAnimations = false;
+	if (typeof C.OnlineSettings.SearchShowsFullRooms !== "boolean") C.OnlineSettings.SearchShowsFullRooms = true;
+	if (typeof C.OnlineSettings.SearchFriendsFirst !== "boolean") C.OnlineSettings.SearchFriendsFirst = false;
+	if (typeof C.OnlineSettings.EnableAfkTimer !== "boolean") C.OnlineSettings.EnableAfkTimer = true;
+	if (typeof C.OnlineSettings.EnableWardrobeIcon !== "boolean") C.OnlineSettings.EnableWardrobeIcon = false;
+	// Delete old improper settings.
+	delete C.ChatSettings.AutoBanBlackList;
+	delete C.ChatSettings.AutoBanGhostList;
+	delete C.ChatSettings.SearchFriendsFirst;
+	delete C.ChatSettings.DisableAnimations;
+	delete C.ChatSettings.SearchShowsFullRooms;
+
+	// Onilne shared settings
+	if (!C.OnlineSharedSettings) C.OnlineSharedSettings = {};
+	if (typeof C.OnlineSharedSettings.AllowFullWardrobeAccess !== "boolean") C.OnlineSharedSettings.AllowFullWardrobeAccess = false;
+	if (typeof C.OnlineSharedSettings.BlockBodyCosplay !== "boolean") C.OnlineSharedSettings.BlockBodyCosplay = false;
+	if (typeof C.OnlineSharedSettings.AllowPlayerLeashing !== "boolean") C.OnlineSharedSettings.AllowPlayerLeashing = true;
+	if (typeof C.OnlineSharedSettings.DisablePickingLocksOnSelf !== "boolean") C.OnlineSharedSettings.DisablePickingLocksOnSelf = false;
+	if (C.OnlineSharedSettings.GameVersion !== GameVersion) {
+		if (CommonCompareVersion(GameVersion, C.OnlineSharedSettings.GameVersion) < 0) {
+			CommonVersionUpdated = true;
+		}
+		C.OnlineSharedSettings.GameVersion = GameVersion;
+	}
+	if (typeof C.OnlineSharedSettings.ItemsAffectExpressions !== "boolean") C.OnlineSharedSettings.ItemsAffectExpressions = true;
+
+	// Graphical settings
+	if (!C.GraphicsSettings) C.GraphicsSettings = {};
+	if (typeof C.GraphicsSettings.Font !== "string") C.GraphicsSettings.Font = "Arial";
+	if (typeof C.GraphicsSettings.InvertRoom !== "boolean") C.GraphicsSettings.InvertRoom = true;
+	if (typeof C.GraphicsSettings.StimulationFlashes !== "boolean") C.GraphicsSettings.StimulationFlashes = true;
+	if (typeof C.GraphicsSettings.DoBlindFlash !== "boolean") C.GraphicsSettings.DoBlindFlash = false;
+	if (typeof C.GraphicsSettings.AnimationQuality !== "number") C.GraphicsSettings.AnimationQuality = 100;
+
+	// Notification settings
+	let NS = C.NotificationSettings;
+	if (!NS) NS = {};
+	const defaultAudio = typeof NS.Audio === "boolean" && NS.Audio ? NotificationAudioType.FIRST : NotificationAudioType.NONE;
+	if (typeof NS.Beeps !== "object") NS.Beeps = PreferenceInitNotificationSetting(NS.Beeps, defaultAudio, NotificationAlertType.POPUP);
+	if (typeof NS.Chat !== "undefined") { NS.ChatMessage = NS.Chat; delete NS.Chat; }
+	if (typeof NS.ChatMessage !== "object") NS.ChatMessage = PreferenceInitNotificationSetting(NS.ChatMessage, defaultAudio);
+	if (typeof NS.ChatMessage.IncludeActions === "boolean") {
+		// Convert old version of settings
+		const chatMessagesEnabled = NS.ChatMessage.AlertType !== NotificationAudioType.NONE;
+		NS.ChatMessage.Normal = chatMessagesEnabled;
+		NS.ChatMessage.Whisper = chatMessagesEnabled;
+		NS.ChatMessage.Activity = chatMessagesEnabled && NS.ChatMessage.IncludeActions;
+		delete NS.ChatMessage.IncludeActions;
+	}
+	if (typeof NS.ChatMessage.Normal !== "boolean") NS.ChatMessage.Normal = true;
+	if (typeof NS.ChatMessage.Whisper !== "boolean") NS.ChatMessage.Whisper = true;
+	if (typeof NS.ChatMessage.Activity !== "boolean") NS.ChatMessage.Activity = false;
+	if (typeof NS.ChatActions !== "undefined") delete NS.ChatActions;
+	if (typeof NS.ChatJoin !== "object") NS.ChatJoin = PreferenceInitNotificationSetting(NS.ChatJoin, defaultAudio);
+	if (typeof NS.ChatJoin.Enabled !== "undefined") {
+		// Convert old version of settings
+		NS.ChatJoin.AlertType = NS.ChatJoin.Enabled ? NotificationAlertType.TITLEPREFIX : NotificationAlertType.NONE;
+		NS.ChatJoin.Audio = NotificationAudioType.NONE;
+		delete NS.ChatJoin.Enabled;
+	}
+	if (typeof NS.ChatJoin.Owner !== "boolean") NS.ChatJoin.Owner = false;
+	if (typeof NS.ChatJoin.Lovers !== "boolean") NS.ChatJoin.Lovers = false;
+	if (typeof NS.ChatJoin.Friendlist !== "boolean") NS.ChatJoin.Friendlist = false;
+	if (typeof NS.ChatJoin.Subs !== "boolean") NS.ChatJoin.Subs = false;
+	if (typeof NS.Audio !== "undefined") delete NS.Audio;
+	if (typeof NS.Disconnect !== "object") NS.Disconnect = PreferenceInitNotificationSetting(NS.Disconnect, defaultAudio);
+	if (typeof NS.Larp !== "object") NS.Larp = PreferenceInitNotificationSetting(NS.Larp, defaultAudio, NotificationEventType.NONE);
+	if (typeof NS.Test !== "object") NS.Test = PreferenceInitNotificationSetting(NS.Test, defaultAudio, NotificationAlertType.TITLEPREFIX);
+	C.NotificationSettings = NS;
+
+	// Forces some preferences depending on difficulty
+
+	// Difficulty: non-Roleplay settings
+	if (C.GetDifficulty() >= 1) {
+		C.RestrictionSettings.BypassStruggle = false;
+		C.RestrictionSettings.SlowImmunity = false;
+		C.RestrictionSettings.BypassNPCPunishments = false;
+	}
+
+	// Difficulty: Hardcore settings
+	if (C.GetDifficulty() >= 2) {
+		C.GameplaySettings.EnableSafeword = false;
+		C.GameplaySettings.DisableAutoMaid = true;
+		C.GameplaySettings.OfflineLockedRestrained = true;
+	}
+
+	// Difficulty: Extreme settings
+	if (C.GetDifficulty() >= 3) {
+		PreferenceSettingsSensDepIndex = PreferenceSettingsSensDepList.length - 1;
+		C.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
+		C.GameplaySettings.BlindDisableExamine = true;
+		C.GameplaySettings.DisableAutoRemoveLogin = true;
+		C.ArousalSettings.DisableAdvancedVibes = false;
+		C.GameplaySettings.ImmersionLockSetting = true;
+		C.ImmersionSettings.BlockGaggedOOC = true;
+		C.ImmersionSettings.StimulationEvents = true;
+		C.ImmersionSettings.ReturnToChatRoom = true;
+		C.ImmersionSettings.ReturnToChatRoomAdmin = true;
+		C.ImmersionSettings.SenseDepMessages = true;
+		C.ImmersionSettings.ChatRoomMuffle = true;
+		C.ImmersionSettings.BlindAdjacent = true;
+		C.OnlineSharedSettings.AllowPlayerLeashing = true;
+	}
 
 	// Enables the AFK timer for the current player only
-	AfkTimerSetEnabled((C.ID == 0) && C.OnlineSettings && (C.OnlineSettings.EnableAfkTimer != false));
+	AfkTimerSetEnabled(C.OnlineSettings.EnableAfkTimer);
 
+	// Sync settings if anything changed
+	const toUpdate = {};
+
+	for (const prop of Object.keys(PrefBefore))
+		if (PrefBefore[prop] !== JSON.stringify(C[prop]))
+			toUpdate[prop] = C[prop];
+
+	if (Object.keys(toUpdate).length > 0) {
+		ServerAccountUpdate.QueueData(toUpdate);
+	}
+}
+
+/**
+ * Initialise the Notifications settings, converting the old boolean types to objects
+ * @param {object} setting - The old version of the setting
+ * @param {NotificationAudioType} audio - The audio setting
+ * @param {NotificationAlertType} [defaultAlertType] - The default AlertType to use
+ * @returns {NotificationSetting} - The setting to use
+ */
+function PreferenceInitNotificationSetting(setting, audio, defaultAlertType) {
+	const alertType = typeof setting === "boolean" && setting === true ? NotificationAlertType.TITLEPREFIX : defaultAlertType || NotificationAlertType.NONE;
+	setting = {};
+	setting.AlertType = alertType;
+	setting.Audio = audio;
+	return setting;
 }
 
 /**
@@ -310,28 +552,29 @@ function PreferenceMigrate(from, to, prefName, defaultValue) {
 }
 
 /**
- * Loads the preference screen. This function is called dynamically, when the character enters the preference screen for the first time
+ * Loads the preference screen. This function is called dynamically, when the character enters the preference screen
+ * for the first time
  * @returns {void} - Nothing
  */
 function PreferenceLoad() {
 
 	// Sets up the player label color
+	PreferenceDifficultyLevel = null;
 	if (!CommonIsColor(Player.LabelColor)) Player.LabelColor = "#ffffff";
-	PreferenceMainScreenLoad();
-	PreferenceInit(Player);
+	PreferenceInitPlayer();
 
 	// Sets the chat themes
 	PreferenceChatColorThemeIndex = (PreferenceChatColorThemeList.indexOf(Player.ChatSettings.ColorTheme) < 0) ? 0 : PreferenceChatColorThemeList.indexOf(Player.ChatSettings.ColorTheme);
 	PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave) < 0) ? 0 : PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave);
 	PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers) < 0) ? 0 : PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers);
+	PreferenceChatFontSizeIndex = (PreferenceChatFontSizeList.indexOf(Player.ChatSettings.FontSize)) < 0 ? 1 : PreferenceChatFontSizeList.indexOf(Player.ChatSettings.FontSize);
 	PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog) < 0) ? 0 : PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog);
 	PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
 	PreferenceArousalActiveIndex = (PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active) < 0) ? 0 : PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active);
+	PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX) < 0) ? 0 : PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX);
 	PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible) < 0) ? 0 : PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible);
 	PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.indexOf(Player.ArousalSettings.AffectStutter) < 0) ? 0 : PreferenceArousalAffectStutterList.indexOf(Player.ArousalSettings.AffectStutter);
-	PreferenceChatColorThemeSelected = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
-	PreferenceChatEnterLeaveSelected = PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex];
-	PreferenceChatMemberNumbersSelected = PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex];
+	ChatRoomRefreshFontSize();
 
 	// Prepares the activity list
 	PreferenceArousalActivityList = [];
@@ -349,6 +592,11 @@ function PreferenceLoad() {
 	PreferenceArousalFetishIndex = 0;
 	PreferenceLoadFetishFactor();
 
+	// Prepares the graphics settings
+	PreferenceGraphicsFontIndex = (PreferenceGraphicsFontList.indexOf(Player.GraphicsSettings.Font) < 0) ? 0 : PreferenceGraphicsFontList.indexOf(Player.GraphicsSettings.Font);
+	PreferenceGraphicsAnimationQualityIndex = (PreferenceGraphicsAnimationQualityList.indexOf(Player.GraphicsSettings.AnimationQuality) < 0) ? 0 : PreferenceGraphicsAnimationQualityList.indexOf(Player.GraphicsSettings.AnimationQuality);
+	PreferenceGraphicsWebGLOptions = GLDrawGetOptions();
+	PreferenceGraphicsPowerModeIndex = (PreferenceGraphicsPowerModes.indexOf(PreferenceGraphicsWebGLOptions.powerPreference) < 0) ? 0 : PreferenceGraphicsPowerModes.indexOf(PreferenceGraphicsWebGLOptions.powerPreference);
 }
 
 /**
@@ -359,52 +607,142 @@ function PreferenceLoad() {
 function PreferenceRun() {
 
 	// If a subscreen is active, draw that instead
-	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatRun();
-	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioRun();
-	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalRun();
-	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityRun();
-	if (PreferenceSubscreen == "Visibility") return PreferenceSubscreenVisibilityRun();
-	if (PreferenceSubscreen == "Online") return PreferenceSubscreenOnlineRun();
-
-	// Draw the online preferences
-	MainCanvas.textAlign = "left";
-	DrawText(TextGet("Preferences"), 500, 125, "Black", "Gray");
-	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
-	DrawText(TextGet("CharacterLabelColor"), 500, 225, "Black", "Gray");
-	ElementPosition("InputCharacterLabelColor", 990, 212, 250);
-	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) document.getElementById("InputCharacterLabelColor").style.color = ElementValue("InputCharacterLabelColor");
-	else document.getElementById("InputCharacterLabelColor").style.color = Player.LabelColor;
-	document.getElementById("InputCharacterLabelColor").style.backgroundColor = "#000000";
-	DrawButton(1140, 187, 65, 65, "", "White", "Icons/Color.png");
-	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
-	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
-	DrawText(TextGet("SensDepSetting"), 800, 428, "Black", "Gray");
-
-	// Checkboxes
-	DrawCheckbox(500, 472, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
-	DrawCheckbox(500, 552, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
-	DrawCheckbox(500, 632, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
-	DrawCheckbox(500, 712, 64, 64, TextGet("EnableSafeword"), Player.GameplaySettings.EnableSafeword);
-
-	MainCanvas.textAlign = "center";
-	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
-		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
-		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
+	if (PreferenceSubscreen != "") return CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreen + "Run()");
 
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-	if (PreferenceColorPick != "") {
-		ColorPickerDraw(1250, 185, 675, 830, document.getElementById(PreferenceColorPick));
-	} else {
-		ColorPickerHide();
-		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");
-		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Audio.png");
-		DrawButton(1815, 420, 90, 90, "", "White", "Icons/Activity.png");
-		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Lock.png");
-		DrawButton(1815, 650, 90, 90, "", "White", "Icons/Private.png");
-		DrawButton(1815, 765, 90, 90, "", "White", "Icons/Online.png");
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("Preferences"), 500, 125, "Black", "Gray");
+	MainCanvas.textAlign = "center";
+
+	// Draw all the buttons to access the submenus
+	for (let A = 0; A < PreferenceSubscreenList.length; A++) {
+		ControllerIgnoreButton = true;
+		DrawButton(500 + 420 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90, "", "White", "Icons/" + PreferenceSubscreenList[A] + ".png");
+		ControllerIgnoreButton = false;
+		DrawTextFit(TextGet("Homepage" + PreferenceSubscreenList[A]), 745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7), 310, "Black");
+		if (ControllerActive == true) {
+			setButton(745 + 420 * Math.floor(A / 7), 205 + 110 * (A % 7));
+		}
 	}
+
+}
+
+/**
+ * Handles click events in the preference screen that are propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenGeneralRun() {
+
+	// Draw the online preferences
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("GeneralPreferences"), 500, 125, "Black", "Gray");
+	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
+	DrawText(TextGet("CharacterLabelColor"), 500, 225, "Black", "Gray");
+	ElementPosition("InputCharacterLabelColor", 990, 212, 250);
+
+	let TextColorCSS = "";
+	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) TextColorCSS = ElementValue("InputCharacterLabelColor");
+	else TextColorCSS = Player.LabelColor;
+	document.getElementById("InputCharacterLabelColor").style.color = TextColorCSS;
+	let TextColorHSV = ColorPickerCSSToHSV(TextColorCSS);
+	if (TextColorHSV.V > 0.4) {
+		document.getElementById("InputCharacterLabelColor").style.backgroundColor = "#111111";
+	} else{
+		document.getElementById("InputCharacterLabelColor").style.backgroundColor = "#FFFFFF";
+	}
+
+	DrawButton(1140, 187, 65, 65, "", "White", "Icons/Color.png");
+	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
+	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
+
+	// Checkboxes (Some are not available when playing on Hardcore or Extreme)
+	DrawCheckbox(500, 402, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
+	DrawCheckbox(500, 482, 64, 64, TextGet("DisablePickingLocksOnSelf"), Player.OnlineSharedSettings.DisablePickingLocksOnSelf);
+	const onHighDifficulty = Player.GetDifficulty() >= 2;
+	DrawCheckbox(500, 722, 64, 64, TextGet(PreferenceSafewordConfirm ? "ConfirmSafeword" : "EnableSafeword"), Player.GameplaySettings.EnableSafeword, onHighDifficulty);
+	DrawCheckbox(500, 562, 64, 64, TextGet("DisableAutoMaid"), !Player.GameplaySettings.DisableAutoMaid, onHighDifficulty);
+	DrawCheckbox(500, 642, 64, 64, TextGet("OfflineLockedRestrained"), Player.GameplaySettings.OfflineLockedRestrained, onHighDifficulty);
+	if (onHighDifficulty) DrawTextWrap(TextGet("GeneralHardcoreWarning"), 1225, 622, 450, 100, "Red");
+	DrawCheckbox(500, 802, 64, 64, TextGet("ItemsAffectExpressions"), Player.OnlineSharedSettings.ItemsAffectExpressions);
+
+	// Draw the player & controls
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	if (PreferenceColorPick != "")
+		ColorPickerDraw(1250, 185, 675, 800, document.getElementById(PreferenceColorPick));
+	else
+		ColorPickerHide();
+
+	MainCanvas.textAlign = "center";
+}
+
+/**
+ * Runs and draw the preference screen, difficulty subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenDifficultyRun() {
+
+	// Draw the character and the controls
+	MainCanvas.textAlign = "left";
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	DrawText(TextGet("DifficultyPreferences"), 500, 125, "Black", "Gray");
+
+	// When no level is selected, we allow to select one
+	if (PreferenceDifficultyLevel == null) {
+
+		// Draw the difficulty levels
+		DrawText(TextGet("DifficultyTitle"), 500, 225, "Black", "Gray");
+		for (let D = 0; D <= 3; D++) {
+			DrawText(TextGet("DifficultySummary" + D.toString() + "A"), 850, 325 + 150 * D, "Black", "White");
+			DrawText(TextGet("DifficultySummary" + D.toString() + "B"), 850, 375 + 150 * D, "Black", "White");
+		}
+
+		// Draw the difficulty buttons
+		MainCanvas.textAlign = "center";
+		for (let D = 0; D <= 3; D++)
+			DrawButton(500, 320 + 150 * D, 300, 64, TextGet("DifficultyLevel" + D.toString()), (D == Player.GetDifficulty()) ? "#DDFFDD" : "White", "");
+
+	} else {
+
+		// Draw the detailed texts
+		for (let T = 0; T <= 4; T++)
+			DrawText(TextGet("Difficulty" + PreferenceDifficultyLevel.toString() + "Text" + T.toString()), 500, 225 + 100 * T, 1050, 120, "Black", "White");
+
+		// Can only set to 2 or 3 if no change was done for 1 week
+		if (PreferenceDifficultyLevel != Player.GetDifficulty()) {
+			var LastChange = ((Player.Difficulty == null) || (Player.Difficulty.LastChange == null) || (typeof Player.Difficulty.LastChange !== "number")) ? Player.Creation : Player.Difficulty.LastChange;
+			if ((PreferenceDifficultyLevel <= 1) || (LastChange + 604800000 < CurrentTime)) {
+				DrawCheckbox(500, 700, 64, 64, TextGet("DifficultyIAccept"), PreferenceDifficultyAccept);
+				MainCanvas.textAlign = "center";
+				DrawButton(500, 825, 300, 64, TextGet("DifficultyChangeMode") + " " + TextGet("DifficultyLevel" + PreferenceDifficultyLevel.toString()), PreferenceDifficultyAccept ? "White" : "#ebebe4", "");
+			} else DrawText(TextGet("DifficultyWaitSevenDays").replace("NumberOfHours", Math.ceil((LastChange + 604800000 - CurrentTime) / 3600000).toString()), 500, 825, 1050, 120, "Black", "White");
+		} else DrawText(TextGet("DifficultyAlreadyPlayingOn"), 500, 825, 1050, 120, "Black", "White");
+		MainCanvas.textAlign = "center";
+
+	}
+
+}
+
+/**
+ * Runs and draw the preference screen, restriction subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenRestrictionRun() {
+
+	// Draw the character and the controls
+	MainCanvas.textAlign = "left";
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	DrawText(TextGet("RestrictionPreferences"), 500, 125, "Black", "Gray");
+	const disableButtons = Player.GetDifficulty() > 0;
+	DrawText(TextGet(disableButtons ? "RestrictionNoAccess" : "RestrictionAccess"), 500, 225, "Black", "Gray");
+	DrawCheckbox(500, 325, 64, 64, TextGet("RestrictionBypassStruggle"), Player.RestrictionSettings.BypassStruggle && !disableButtons, disableButtons);
+	DrawCheckbox(500, 425, 64, 64, TextGet("RestrictionSlowImmunity"), Player.RestrictionSettings.SlowImmunity && !disableButtons, disableButtons);
+	DrawCheckbox(500, 525, 64, 64, TextGet("RestrictionBypassNPCPunishments"), Player.RestrictionSettings.BypassNPCPunishments && !disableButtons, disableButtons);
+	MainCanvas.textAlign = "center";
 }
 
 /**
@@ -412,112 +750,278 @@ function PreferenceRun() {
  * @returns {void} - Nothing
  */
 function PreferenceClick() {
+	if (ControllerActive == true) {
+		ClearButtons();
+	}
+	// Pass the click into the opened subscreen
+	if (PreferenceSubscreen != "") return CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreen + "Click()");
 
-	// If a subscreen is active, process that instead
-	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatClick();
-	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioClick();
-	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalClick();
-	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityClick();
-	if (PreferenceSubscreen == "Visibility") return PreferenceSubscreenVisibilityClick();
-	if (PreferenceSubscreen == "Online") return PreferenceSubscreenOnlineClick();
+	// Exit button
+	if (MouseIn(1815, 75, 90, 90)) PreferenceExit();
+
+	// Open the selected subscreen
+	for (let A = 0; A < PreferenceSubscreenList.length; A++)
+		if (MouseIn(500 + 500 * Math.floor(A / 7), 160 + 110 * (A % 7), 400, 90)) {
+			if (typeof window["PreferenceSubscreen" + PreferenceSubscreenList[A] + "Load"] === "function")
+				CommonDynamicFunction("PreferenceSubscreen" + PreferenceSubscreenList[A] + "Load()");
+			PreferenceSubscreen = PreferenceSubscreenList[A];
+			PreferencePageCurrent = 1;
+			break;
+		}
+
+}
+
+/**
+ * Handles the click events in the preference screen, general sub-screen, propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenGeneralClick() {
 
 	// If the user clicks on "Exit"
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
-
-	// If the user clicks on the chat settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Chat";
-	}
-
-	// If the user clicks on the audio settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Audio";
-	}
-
-	// If the user clicks on the arousal settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 420) && (MouseY < 510) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Arousal";
-	}
-
-	// If the user clicks on the security settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 535) && (MouseY < 625) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		ElementCreateInput("InputEmailOld", "text", "", "100");
-		ElementCreateInput("InputEmailNew", "text", "", "100");
-		ServerSend("AccountQuery", { Query: "EmailStatus" });
-		PreferenceSubscreen = "Security";
-	}
-
-	// If the user clicks on the visibility settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 650) && (MouseY < 740) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Visibility";
-	}
-
-	// If the user clicks on the online settings button
-	if (MouseIn(1815, 765, 90, 90) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit();
-		PreferenceSubscreen = "Online";
-	}
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenGeneralExit();
 
 	// If we must change the restrain permission level
-	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
+	if (MouseIn(500, 280, 90, 90)) {
 		Player.ItemPermission++;
 		if (Player.ItemPermission > 5) Player.ItemPermission = 0;
+		if (Player.GetDifficulty() >= 3) LoginExtremeItemSettings(Player.ItemPermission == 0);
 	}
 
 	// If we must show/hide/use the color picker
-	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick != "")) PreferenceColorPick = "";
-
-	// If we must change audio gameplay or visual settings
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 392) && (MouseY < 456)) {
-		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
-		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
-		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
-	}
+	if (MouseIn(1140, 187, 65, 65)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
+	if (MouseIn(1815, 75, 90, 90) && (PreferenceColorPick != "")) PreferenceColorPick = "";
 
 	// Preference check boxes
-	if (MouseIn(500, 472, 64, 64)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
-	if (MouseIn(500, 552, 64, 64)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
-	if (MouseIn(500, 632, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
-	if (MouseIn(500, 712, 64, 64)) {
-		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) Player.GameplaySettings.EnableSafeword = true;
-		else if (Player.GameplaySettings.EnableSafeword) Player.GameplaySettings.EnableSafeword = false;
+	if (MouseIn(500, 402, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
+	if (MouseIn(500, 482, 64, 64) ) Player.OnlineSharedSettings.DisablePickingLocksOnSelf = !Player.OnlineSharedSettings.DisablePickingLocksOnSelf;
+	if (MouseIn(500, 722, 64, 64) && (Player.GetDifficulty() < 2)) {
+		if (!Player.GameplaySettings.EnableSafeword && !Player.IsRestrained() && !Player.IsChaste()) {
+			if (PreferenceSafewordConfirm) {
+				Player.GameplaySettings.EnableSafeword = true;
+				PreferenceSafewordConfirm = false;
+			} else PreferenceSafewordConfirm = true;
+		} else if (Player.GameplaySettings.EnableSafeword) {
+			if (PreferenceSafewordConfirm) {
+				Player.GameplaySettings.EnableSafeword = false;
+				PreferenceSafewordConfirm = false;
+			} else PreferenceSafewordConfirm = true;
+		}
+	} else PreferenceSafewordConfirm = false;
+	if (MouseIn(500, 562, 64, 64) && (Player.GetDifficulty() < 2)) Player.GameplaySettings.DisableAutoMaid = !Player.GameplaySettings.DisableAutoMaid;
+	if (MouseIn(500, 642, 64, 64) && (Player.GetDifficulty() < 2)) Player.GameplaySettings.OfflineLockedRestrained = !Player.GameplaySettings.OfflineLockedRestrained;
+	if (MouseIn(500, 802, 64, 64)) Player.OnlineSharedSettings.ItemsAffectExpressions = !Player.OnlineSharedSettings.ItemsAffectExpressions;
+}
+
+/**
+ * Handles the click events in the preference screen, difficulty sub-screen, propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenDifficultyClick() {
+
+	// When no level is selected, the user can pick one to go into details
+	if (PreferenceDifficultyLevel == null) {
+		PreferenceDifficultyAccept = false;
+		if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenDifficultyExit();
+		for (let D = 0; D <= 3; D++)
+			if (MouseIn(500, 320 + 150 * D, 300, 64))
+				PreferenceDifficultyLevel = D;
+	} else {
+
+		// If a level is selected, the user must check to confirm
+		if (MouseIn(1815, 75, 90, 90)) PreferenceDifficultyLevel = null;
+		if (PreferenceDifficultyLevel != Player.GetDifficulty()) {
+			var LastChange = ((Player.Difficulty == null) || (Player.Difficulty.LastChange == null) || (typeof Player.Difficulty.LastChange !== "number")) ? Player.Creation : Player.Difficulty.LastChange;
+			if ((PreferenceDifficultyLevel <= 1) || (LastChange + 604800000 < CurrentTime)) {
+				if (MouseIn(500, 700, 64, 64)) PreferenceDifficultyAccept = !PreferenceDifficultyAccept;
+				if (MouseIn(500, 825, 300, 64) && PreferenceDifficultyAccept) {
+					Player.Difficulty = { LastChange: CurrentTime, Level: PreferenceDifficultyLevel };
+					ServerSend("AccountDifficulty", PreferenceDifficultyLevel);
+					PreferenceInitPlayer();
+					LoginDifficulty(true);
+					PreferenceDifficultyLevel = null;
+					PreferenceSubscreenDifficultyExit();
+				}
+			}
+		}
+
 	}
+
+}
+
+/**
+ * Handles the click events in the preference screen, restriction sub-screen, propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenRestrictionClick() {
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenDifficultyExit();
+	if (MouseIn(500, 325, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassStruggle = !Player.RestrictionSettings.BypassStruggle;
+	if (MouseIn(500, 425, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.SlowImmunity = !Player.RestrictionSettings.SlowImmunity;
+	if (MouseIn(500, 525, 64, 64) && (Player.GetDifficulty() == 0)) Player.RestrictionSettings.BypassNPCPunishments = !Player.RestrictionSettings.BypassNPCPunishments;
+}
+
+/**
+ * Runs and draws the preference screen, immersion sub-screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenImmersionRun() {
+
+	// Draw the player & base controls
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
+	PreferencePageChangeDraw(1595, 75, 2); // Uncomment when adding a 2nd page
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("ImmersionPreferences"), 500, 125, "Black", "Gray");
+
+	const disableButtons = Player.GetDifficulty() > 2 || (Player.GameplaySettings.ImmersionLockSetting && Player.IsRestrained());
+	if (Player.GetDifficulty() <= 2) {
+		let CheckImage = disableButtons ? "Icons/CheckLocked.png" : "Icons/CheckUnlocked.png";
+		DrawCheckbox(500, 172, 64, 64, TextGet("ImmersionLockSetting"), Player.GameplaySettings.ImmersionLockSetting, disableButtons, "Black", CheckImage);
+	} else {
+		// Cannot change any value under the Extreme difficulty mode
+		DrawText(TextGet("ImmersionLocked"), 500, 205, "Red", "Gray");
+	}
+	
+	
+	DrawEmptyRect(500, 255, 1400, 0, "Black", 1);
+	
+	let CheckHeight = 272;
+	let CheckSpacing = 80;
+
+	if (PreferencePageCurrent === 1) {
+		DrawText(TextGet("SensDepSetting"), 800, 308, "Black", "Gray"); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine, disableButtons); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("BlindAdjacent"), Player.ImmersionSettings.BlindAdjacent, disableButtons); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("ChatRoomMuffle"), Player.ImmersionSettings.ChatRoomMuffle, disableButtons);	CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin, disableButtons); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("BlockGaggedOOC"), Player.ImmersionSettings.BlockGaggedOOC, disableButtons); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("AllowPlayerLeashing"), Player.OnlineSharedSettings.AllowPlayerLeashing, disableButtons); CheckHeight += CheckSpacing;
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("ReturnToChatRoom"), Player.ImmersionSettings.ReturnToChatRoom, disableButtons);
+		const returnToRoomEnabled = Player.ImmersionSettings.ReturnToChatRoom;
+		DrawCheckbox(1300, CheckHeight, 64, 64, TextGet("ReturnToChatRoomAdmin"), returnToRoomEnabled && Player.ImmersionSettings.ReturnToChatRoomAdmin, !returnToRoomEnabled || disableButtons);
+		CheckHeight += CheckSpacing;
+		const canHideMessages = Player.GameplaySettings.SensDepChatLog !== "SensDepLight";
+		DrawCheckbox(1300, 272, 64, 64, TextGet("SenseDepMessages"), canHideMessages && Player.ImmersionSettings.SenseDepMessages, !canHideMessages || disableButtons);
+				
+		MainCanvas.textAlign = "center";
+
+		DrawBackNextButton(500, 272, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
+			() => disableButtons ? "" : TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
+			() => disableButtons ? "" : TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
+	}
+	else if (PreferencePageCurrent === 2) {
+		DrawCheckbox(500, CheckHeight, 64, 64, TextGet("StimulationEvents"), Player.ImmersionSettings.StimulationEvents, disableButtons); CheckHeight += CheckSpacing;
+	}
+
+	MainCanvas.textAlign = "center";
+}
+
+/**
+ * Handles the click events in the preference screen, immersion sub-screen, propagated from CommonClick()
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenImmersionClick() {
+
+	// If the user clicks on "Exit"
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
+	// Change page
+	PreferencePageChangeClick(1595, 75, 2); // Uncomment when adding a 2nd page
+
+	// Cannot change any value under the Extreme difficulty mode
+	if (Player.GetDifficulty() <= 2 && (!Player.GameplaySettings.ImmersionLockSetting || (!Player.IsRestrained()))) {
+		let CheckHeight = 272;
+		let CheckSpacing = 80;
+		
+		// Preference check boxes
+		if (MouseIn(500, 172, 64, 64)) Player.GameplaySettings.ImmersionLockSetting = !Player.GameplaySettings.ImmersionLockSetting;
+		
+		if (PreferencePageCurrent === 1) {
+			// If we must change sens dep settings
+			if (MouseIn(500, CheckHeight, 250, 64)) {
+				if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
+				else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
+				Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
+				if (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") ChatRoomSetTarget(null);
+			}
+			CheckHeight += CheckSpacing;
+			// Sensory Deprivation
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
+			CheckHeight += CheckSpacing;
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.BlindAdjacent = !Player.ImmersionSettings.BlindAdjacent; 
+			CheckHeight += CheckSpacing;
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.ChatRoomMuffle = !Player.ImmersionSettings.ChatRoomMuffle; 
+			CheckHeight += CheckSpacing;
+			
+			// Room control
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin; 
+			CheckHeight += CheckSpacing;
+			if (MouseIn(500, CheckHeight, 64, 64)) {
+				Player.ImmersionSettings.BlockGaggedOOC = !Player.ImmersionSettings.BlockGaggedOOC;
+				if (Player.ImmersionSettings.BlockGaggedOOC) ChatRoomSetTarget(null);
+			}
+			CheckHeight += CheckSpacing;
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.OnlineSharedSettings.AllowPlayerLeashing = !Player.OnlineSharedSettings.AllowPlayerLeashing; 
+			CheckHeight += CheckSpacing;
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.ReturnToChatRoom = !Player.ImmersionSettings.ReturnToChatRoom;
+			if (MouseIn(1300, CheckHeight, 64, 64) && Player.ImmersionSettings.ReturnToChatRoom)
+				Player.ImmersionSettings.ReturnToChatRoomAdmin = !Player.ImmersionSettings.ReturnToChatRoomAdmin;
+			CheckHeight += CheckSpacing;
+			
+			if (MouseIn(1300, 272, 64, 64) && Player.GameplaySettings.SensDepChatLog !== "SensDepLight")
+				Player.ImmersionSettings.SenseDepMessages = !Player.ImmersionSettings.SenseDepMessages;
+		}
+		else if (PreferencePageCurrent === 2) {
+			// Stimulation
+			if (MouseIn(500, CheckHeight, 64, 64)) Player.ImmersionSettings.StimulationEvents = !Player.ImmersionSettings.StimulationEvents;
+			CheckHeight += CheckSpacing;
+		}
+	}
+
 }
 
 /**
  * Is called when the player exits the preference screen. All settings of the preference screen are sent to the server.
- * If the selected color is invalid, the player cannot leave the screen.
+ * If the player is in a subscreen, they exit to the main preferences menu instead.
  * @returns {void} - Nothing
  */
 function PreferenceExit() {
-	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
-		Player.LabelColor = ElementValue("InputCharacterLabelColor");
-		var P = {
-			ItemPermission: Player.ItemPermission,
-			LabelColor: Player.LabelColor,
+	if (PreferenceSubscreen !== "") {
+		// Exit the subscreen to the main preferences menu
+		if (typeof window["PreferenceSubscreen" + PreferenceSubscreen + "Exit"] === "function") {
+			window["PreferenceSubscreen" + PreferenceSubscreen + "Exit"]();
+		}
+		else {
+			PreferenceMessage = "";
+			PreferenceSubscreen = "";
+		}
+	} else {
+		// Exit the preference menus
+		const P = {
+			ArousalSettings: Player.ArousalSettings,
 			ChatSettings: Player.ChatSettings,
 			VisualSettings: Player.VisualSettings,
 			AudioSettings: Player.AudioSettings,
+			ControllerSettings: Player.ControllerSettings,
 			GameplaySettings: Player.GameplaySettings,
-			ArousalSettings: Player.ArousalSettings,
+			ImmersionSettings: Player.ImmersionSettings,
+			RestrictionSettings: Player.RestrictionSettings,
 			OnlineSettings: Player.OnlineSettings,
-			OnlineSharedSettings: Player.OnlineSharedSettings
+			OnlineSharedSettings: Player.OnlineSharedSettings,
+			GraphicsSettings: Player.GraphicsSettings,
+			NotificationSettings: Player.NotificationSettings,
+			ItemPermission: Player.ItemPermission,
+			LabelColor: Player.LabelColor,
+			LimitedItems: CommonPackItemArray(Player.LimitedItems),
 		};
-		ServerSend("AccountUpdate", P);
+		ServerAccountUpdate.QueueData(P);
 		PreferenceMessage = "";
-		PreferenceMainScreenExit();
 		CommonSetScreen("Character", "InformationSheet");
-	} else PreferenceMessage = "ErrorInvalidColor";
+	}
 }
 
 /**
- * Sets the audio preferences for the player. Redirected to from the main Run function if the player is in the audio settings subscreen
+ * Sets the audio preferences for the player. Redirected to from the main Run function if the player is in the audio
+ * settings subscreen
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenAudioRun() {
@@ -528,6 +1032,7 @@ function PreferenceSubscreenAudioRun() {
 	DrawCheckbox(500, 272, 64, 64, TextGet("AudioPlayBeeps"), Player.AudioSettings.PlayBeeps);
 	DrawCheckbox(500, 352, 64, 64, TextGet("AudioPlayItem"), Player.AudioSettings.PlayItem);
 	DrawCheckbox(500, 432, 64, 64, TextGet("AudioPlayItemPlayerOnly"), Player.AudioSettings.PlayItemPlayerOnly);
+	DrawCheckbox(500, 512, 64, 64, TextGet("AudioNotifications"), Player.AudioSettings.Notifications);
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 193, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
@@ -536,15 +1041,90 @@ function PreferenceSubscreenAudioRun() {
 }
 
 /**
- * Sets the chat preferences for the player. Redirected to from the main Run function if the player is in the chat settings subscreen.
+ * Sets the audio preferences for the player. Redirected to from the main Run function if the player is in the audio
+ * settings subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenControllerRun() {
+	if (PreferenceCalibrationStage == 0) {
+		DrawCharacter(Player, 50, 50, 0.9);
+		MainCanvas.textAlign = "left";
+		DrawText(TextGet("ControllerPreferences"), 500, 125, "Black", "Gray");
+		DrawText(TextGet("Sensitivity"), 800, 225, "Black", "Gray");
+		DrawText(TextGet("DeadZone"), 800, 625, "Black", "Gray");
+		DrawCheckbox(500, 272, 64, 64, TextGet("ControllerActive"), ControllerActive);
+
+		DrawButton(500, 380, 400, 90, "", "White");
+		DrawTextFit(TextGet("MapButtons"), 590, 425, 310, "Black");
+
+		DrawButton(500, 480, 400, 90, "", "White");
+		DrawTextFit(TextGet("MapSticks"), 590, 525, 310, "Black");
+
+		MainCanvas.textAlign = "center";
+		DrawBackNextButton(500, 193, 250, 64, Player.ControllerSettings.ControllerSensitivity, "White", "",
+			() => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + PreferenceSettingsSensitivityList.length - 1) % PreferenceSettingsSensitivityList.length],
+			() => PreferenceSettingsSensitivityList[(PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length]);
+		MainCanvas.textAlign = "center";
+		DrawBackNextButton(500, 593, 250, 64, Player.ControllerSettings.ControllerDeadZone, "White", "",
+			() => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + PreferenceSettingsDeadZoneList.length - 1) % PreferenceSettingsDeadZoneList.length],
+			() => PreferenceSettingsDeadZoneList[(PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length] );
+	}
+	if (PreferenceCalibrationStage == 101) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("MoveLeftStickUp"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 102) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("MoveLeftStickRight"), 590, 425, 310, "Black");
+	}
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	if (PreferenceCalibrationStage == 1) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressA"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 2) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressB"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 3) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressX"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 4) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressY"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 5) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressUpOnDpad"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 6) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressDownOnDpad"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 7) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressLeftOnDpad"), 590, 425, 310, "Black");
+	}
+	if (PreferenceCalibrationStage == 8) {
+		MainCanvas.textAlign = "left";
+		DrawTextFit(TextGet("PressRightOnDpad"), 590, 425, 310, "Black");
+	}
+	MainCanvas.textAlign = "center";
+}
+
+/**
+ * Sets the chat preferences for the player. Redirected to from the main Run function if the player is in the chat
+ * settings subscreen.
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenChatRun() {
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("ChatPreferences"), 500, 125, "Black", "Gray");
-	DrawText(TextGet("ColorTheme"), 500, 225, "Black", "Gray");
-	DrawText(TextGet("EnterLeaveStyle"), 500, 325, "Black", "Gray");
-	DrawText(TextGet("DisplayMemberNumbers"), 500, 425, "Black", "Gray");
+	DrawText(TextGet("ColorTheme"), 500, 200, "Black", "Gray");
+	DrawText(TextGet("EnterLeaveStyle"), 500, 280, "Black", "Gray");
+	DrawText(TextGet("DisplayMemberNumbers"), 500, 360, "Black", "Gray");
+	DrawText(TextGet("FontSize"), 500, 440, "Black", "Gray");
 	DrawCheckbox(500, 492, 64, 64, TextGet("DisplayTimestamps"), Player.ChatSettings.DisplayTimestamps);
 	DrawCheckbox(500, 572, 64, 64, TextGet("ColorNames"), Player.ChatSettings.ColorNames);
 	DrawCheckbox(500, 652, 64, 64, TextGet("ColorActions"), Player.ChatSettings.ColorActions);
@@ -553,39 +1133,44 @@ function PreferenceSubscreenChatRun() {
 	DrawCheckbox(1200, 492, 64, 64, TextGet("ShowAutomaticMessages"), Player.ChatSettings.ShowAutomaticMessages);
 	DrawCheckbox(1200, 572, 64, 64, TextGet("PreserveWhitespace"), Player.ChatSettings.WhiteSpace == "Preserve");
 	DrawCheckbox(1200, 652, 64, 64, TextGet("ColorActivities"), Player.ChatSettings.ColorActivities);
+	DrawCheckbox(1200, 732, 64, 64, TextGet("ShrinkNonDialogue"), Player.ChatSettings.ShrinkNonDialogue);
+	DrawCheckbox(1200, 812, 64, 64, TextGet("MuStylePoses"), Player.ChatSettings.MuStylePoses);
+
 	MainCanvas.textAlign = "center";
-	DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
-		() => TextGet((PreferenceChatColorThemeIndex == 0) ? PreferenceChatColorThemeList[PreferenceChatColorThemeList.length - 1] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex - 1]),
-		() => TextGet((PreferenceChatColorThemeIndex >= PreferenceChatColorThemeList.length - 1) ? PreferenceChatColorThemeList[0] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex + 1]));
-	DrawBackNextButton(1000, 290, 350, 70, TextGet(PreferenceChatEnterLeaveSelected), "White", "",
-		() => TextGet((PreferenceChatEnterLeaveIndex == 0) ? PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveList.length - 1] : PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex - 1]),
-		() => TextGet((PreferenceChatEnterLeaveIndex >= PreferenceChatEnterLeaveList.length - 1) ? PreferenceChatEnterLeaveList[0] : PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex + 1]));
-	DrawBackNextButton(1000, 390, 350, 70, TextGet(PreferenceChatMemberNumbersSelected), "White", "",
-		() => TextGet((PreferenceChatMemberNumbersIndex == 0) ? PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersList.length - 1] : PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex - 1]),
-		() => TextGet((PreferenceChatMemberNumbersIndex >= PreferenceChatMemberNumbersList.length - 1) ? PreferenceChatMemberNumbersList[0] : PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex + 1]));
+	PreferenceDrawBackNextButton(1000, 170, 350, 60, PreferenceChatColorThemeList, PreferenceChatColorThemeIndex);
+	PreferenceDrawBackNextButton(1000, 250, 350, 60, PreferenceChatEnterLeaveList, PreferenceChatEnterLeaveIndex);
+	PreferenceDrawBackNextButton(1000, 330, 350, 60, PreferenceChatMemberNumbersList, PreferenceChatMemberNumbersIndex);
+	PreferenceDrawBackNextButton(1000, 410, 350, 60, PreferenceChatFontSizeList, PreferenceChatFontSizeIndex);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawCharacter(Player, 50, 50, 0.9);
 }
 
+/**
+ * Sets the online preferences for the player. Redirected to from the main Run function if the player is in the online
+ * settings subscreen.
+ * @returns {void} - Nothing
+ */
 function PreferenceSubscreenOnlineRun() {
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("OnlinePreferences"), 500, 125, "Black", "Gray");
-	DrawCheckbox(500, 225, 64, 64, TextGet("AutoBanBlackList"), Player.OnlineSettings.AutoBanBlackList);
-	DrawCheckbox(500, 305, 64, 64, TextGet("AutoBanGhostList"), Player.OnlineSettings.AutoBanGhostList);
-	DrawCheckbox(500, 385, 64, 64, TextGet("SearchShowsFullRooms"), Player.OnlineSettings.SearchShowsFullRooms);
-	DrawCheckbox(500, 465, 64, 64, TextGet("SearchFriendsFirst"), Player.OnlineSettings.SearchFriendsFirst);
-	DrawCheckbox(500, 545, 64, 64, TextGet("DisableAnimations"), Player.OnlineSettings.DisableAnimations);
-	DrawCheckbox(500, 625, 64, 64, TextGet("EnableAfkTimer"), Player.OnlineSettings.EnableAfkTimer);
-	DrawCheckbox(500, 705, 64, 64, TextGet("EnableWardrobeIcon"), Player.OnlineSettings.EnableWardrobeIcon);
-	DrawCheckbox(500, 785, 64, 64, TextGet("AllowFullWardrobeAccess"), Player.OnlineSharedSettings.AllowFullWardrobeAccess);
-	DrawCheckbox(500, 865, 64, 64, TextGet("BlockBodyCosplay"), Player.OnlineSharedSettings.BlockBodyCosplay);
+	DrawCheckbox(500, 172, 64, 64, TextGet("AutoBanBlackList"), Player.OnlineSettings.AutoBanBlackList);
+	DrawCheckbox(500, 255, 64, 64, TextGet("AutoBanGhostList"), Player.OnlineSettings.AutoBanGhostList);
+	DrawCheckbox(500, 335, 64, 64, TextGet("SearchShowsFullRooms"), Player.OnlineSettings.SearchShowsFullRooms);
+	DrawCheckbox(500, 415, 64, 64, TextGet("SearchFriendsFirst"), Player.OnlineSettings.SearchFriendsFirst);
+	DrawCheckbox(500, 495, 64, 64, TextGet("DisableAnimations"), Player.OnlineSettings.DisableAnimations);
+	DrawCheckbox(500, 575, 64, 64, TextGet("EnableAfkTimer"), Player.OnlineSettings.EnableAfkTimer);
+	DrawCheckbox(500, 655, 64, 64, TextGet("EnableWardrobeIcon"), Player.OnlineSettings.EnableWardrobeIcon);
+	DrawCheckbox(500, 735, 64, 64, TextGet("AllowFullWardrobeAccess"), Player.OnlineSharedSettings.AllowFullWardrobeAccess);
+	DrawCheckbox(500, 815, 64, 64, TextGet("BlockBodyCosplay"), Player.OnlineSharedSettings.BlockBodyCosplay);
+
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawCharacter(Player, 50, 50, 0.9);
 	MainCanvas.textAlign = "center";
 }
 
 /**
- * Sets the arousal preferences for a player. Redirected to from the main Run function if the player is in the arousal settings subscreen
+ * Sets the arousal preferences for a player. Redirected to from the main Run function if the player is in the arousal
+ * settings subscreen
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenArousalRun() {
@@ -595,59 +1180,60 @@ function PreferenceSubscreenArousalRun() {
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("ArousalPreferences"), 550, 125, "Black", "Gray");
 	DrawText(TextGet("ArousalActive"), 550, 225, "Black", "Gray");
-	DrawText(TextGet("ArousalStutter"), 550, 410, "Black", "Gray");
-	DrawCheckbox(550, 286, 64, 64, TextGet("ArousalShowOtherMeter"), Player.ArousalSettings.ShowOtherMeter);
+	DrawText(TextGet("ArousalStutter"), 550, 460, "Black", "Gray");
+	DrawCheckbox(550, 276, 64, 64, TextGet("ArousalShowOtherMeter"), Player.ArousalSettings.ShowOtherMeter);
+	DrawCheckbox(550, 356, 64, 64, TextGet("ArousalDisableAdvancedVibes"), Player.ArousalSettings.DisableAdvancedVibes, Player.GetDifficulty() >= 3);
+	
 
 	// The other controls are only drawn if the arousal is active
 	if (PreferenceArousalIsActive()) {
 
 		// Draws the labels and check boxes
-		DrawCheckbox(1250, 286, 64, 64, TextGet("ArousalAffectExpression"), Player.ArousalSettings.AffectExpression);
+		DrawCheckbox(1250, 276, 64, 64, TextGet("ArousalAffectExpression"), Player.ArousalSettings.AffectExpression);
 		DrawText(TextGet("ArousalVisible"), 1240, 225, "Black", "Gray");
-		DrawText(TextGet("ArousalFetish"), 550, 495, "Black", "Gray");
-		DrawText(TextGet("ArousalActivity"), 550, 580, "Black", "Gray");
-		DrawText(TextGet("ArousalActivityLoveSelf"), 550, 665, "Black", "Gray");
-		DrawText(TextGet("ArousalActivityLoveOther"), 1255, 665, "Black", "Gray");
+		DrawText(TextGet("ArousalFetish"), 550, 555, "Black", "Gray");
+		DrawText(TextGet("ArousalActivity"), 550, 640, "Black", "Gray");
+		DrawText(TextGet("ArousalActivityLoveSelf"), 550, 725, "Black", "Gray");
+		DrawText(TextGet("ArousalActivityLoveOther"), 1255, 725, "Black", "Gray");
 
 		// Draws all the available character zones
 		for (let A = 0; A < AssetGroup.length; A++)
-			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null)) {
-				DrawAssetGroupZoneBackground(Player, AssetGroup[A].Zone, 0.9, 50, 50, PreferenceGetFactorColor(PreferenceGetZoneFactor(Player, AssetGroup[A].Name)));
-				DrawAssetGroupZone(Player, AssetGroup[A].Zone, 0.9, 50, 50, "#808080FF", 3);
-			}
+			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null))
+				DrawAssetGroupZone(Player, AssetGroup[A].Zone, 0.9, 50, 50, 1, "#808080FF", 3, PreferenceGetFactorColor(PreferenceGetZoneFactor(Player, AssetGroup[A].Name)));
 
 		// The zones can be selected and drawn on the character
 		if (Player.FocusGroup != null) {
-			DrawCheckbox(1230, 813, 64, 64, TextGet("ArousalAllowOrgasm"), PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
-			DrawText(TextGet("ArousalZone" + Player.FocusGroup.Name) + " - " + TextGet("ArousalConfigureErogenousZones"), 550, 745, "Black", "Gray");
-			DrawAssetGroupZone(Player, Player.FocusGroup.Zone, 0.9, 50, 50, "cyan");
+			DrawCheckbox(1230, 853, 64, 64, TextGet("ArousalAllowOrgasm"), PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
+			DrawText(TextGet("ArousalZone" + Player.FocusGroup.Name) + " - " + TextGet("ArousalConfigureErogenousZones"), 550, 795, "Black", "Gray");
+			DrawAssetGroupZone(Player, Player.FocusGroup.Zone, 0.9, 50, 50, 1, "cyan");
 			MainCanvas.textAlign = "center";
-			DrawBackNextButton(550, 813, 600, 64, TextGet("ArousalZoneLove" + PreferenceArousalZoneFactor), PreferenceGetFactorColor(PreferenceGetZoneFactor(Player, Player.FocusGroup.Name)), "", () => "", () => "");
-			Player.FocusGroup
+			DrawBackNextButton(550, 853, 600, 64, TextGet("ArousalZoneLove" + PreferenceArousalZoneFactor), PreferenceGetFactorColor(PreferenceGetZoneFactor(Player, Player.FocusGroup.Name)), "", () => "", () => "");
 		}
-		else DrawText(TextGet("ArousalSelectErogenousZones"), 550, 745, "Black", "Gray");
+		else DrawText(TextGet("ArousalSelectErogenousZones"), 550, 795, "Black", "Gray");
 
 		// Draws the sub-selection controls
 		MainCanvas.textAlign = "center";
 		DrawBackNextButton(1505, 193, 400, 64, TextGet("ArousalVisible" + PreferenceArousalVisibleList[PreferenceArousalVisibleIndex]), "White", "", () => "", () => "");
-		DrawBackNextButton(900, 548, 500, 64, ActivityDictionaryText("Activity" + PreferenceArousalActivityList[PreferenceArousalActivityIndex]), "White", "", () => "", () => "");
-		DrawBackNextButton(900, 633, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorSelf), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true)), "", () => "", () => "");
-		DrawBackNextButton(1605, 633, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorOther), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false)), "", () => "", () => "");
+		DrawBackNextButton(900, 598, 500, 64, ActivityDictionaryText("Activity" + PreferenceArousalActivityList[PreferenceArousalActivityIndex]), "White", "", () => "", () => "");
+		DrawBackNextButton(900, 683, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorSelf), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true)), "", () => "", () => "");
+		DrawBackNextButton(1605, 683, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorOther), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false)), "", () => "", () => "");
 
+		// Fetish elements
+		DrawBackNextButton(900, 513, 500, 64, TextGet("ArousalFetish" + PreferenceArousalFetishList[PreferenceArousalFetishIndex]), "White", "", () => "", () => "");
+		DrawBackNextButton(1455, 513, 450, 64, TextGet("ArousalFetishLove" + PreferenceArousalFetishFactor), PreferenceGetFactorColor(PreferenceGetFetishFactor(Player, PreferenceArousalFetishList[PreferenceArousalFetishIndex])), "", () => "", () => "");
 	}
 
 	// We always draw the active & stutter control
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(750, 193, 450, 64, TextGet("ArousalActive" + PreferenceArousalActiveList[PreferenceArousalActiveIndex]), "White", "", () => "", () => "");
-	DrawBackNextButton(900, 378, 500, 64, TextGet("ArousalStutter" + PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex]), "White", "", () => "", () => "");
-	DrawBackNextButton(900, 463, 500, 64, TextGet("ArousalFetish" + PreferenceArousalFetishList[PreferenceArousalFetishIndex]), "White", "", () => "", () => "");
-	DrawBackNextButton(1455, 463, 450, 64, TextGet("ArousalFetishLove" + PreferenceArousalFetishFactor), PreferenceGetFactorColor(PreferenceGetFetishFactor(Player, PreferenceArousalFetishList[PreferenceArousalFetishIndex], false)), "", () => "", () => "");
+	DrawBackNextButton(900, 428, 500, 64, TextGet("ArousalStutter" + PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex]), "White", "", () => "", () => "");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
 }
 
 /**
- * Sets the security preferences for a player. Redirected to from the main Run function if the player is in the security settings subscreen
+ * Sets the security preferences for a player. Redirected to from the main Run function if the player is in the
+ * security settings subscreen
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenSecurityRun() {
@@ -665,76 +1251,241 @@ function PreferenceSubscreenSecurityRun() {
 }
 
 /**
- * Sets the item visibility preferences for a player. Redirected to from the main Run function if the player is in the visibility settings subscreen
+ * Sets the item visibility preferences for a player. Redirected to from the main Run function if the player is in the
+ * visibility settings subscreen
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenVisibilityRun() {
-	// Load the full asset list on the first call
-	if (PreferenceVisibilityGroupList.length == 0) PreferenceVisibilityLoad();
 
+	// Character and exit buttons
 	DrawCharacter(Player, 50, 50, 0.9);
-
-	// Exit buttons
 	DrawButton(1720, 60, 90, 90, "", "White", "Icons/Accept.png", TextGet("LeaveSave"));
 	DrawButton(1820, 60, 90, 90, "", "White", "Icons/Cancel.png", TextGet("LeaveNoSave"));
-
-	// Left-aligned text controls
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("VisibilityPreferences"), 500, 125, "Black", "Gray");
-	DrawText(TextGet("VisibilityGroup"), 500, 225, "Black", "Gray");
-	DrawText(TextGet("VisibilityAsset"), 500, 304, "Black", "Gray");
-	DrawCheckbox(500, 352, 64, 64, TextGet("VisibilityCheckboxHide"), PreferenceVisibilityHideChecked);
-	if (PreferenceVisibilityCanBlock) DrawCheckbox(500, 432, 64, 64, TextGet("VisibilityCheckboxBlock"), PreferenceVisibilityBlockChecked);
-	if (PreferenceVisibilityHideChecked) {
-		DrawImageResize("Screens/Character/Player/HiddenItem.png", 500, 516, 86, 86);
-		DrawText(TextGet("VisibilityWarning"), 600, 548, "Black", "Gray");
-	}
-	if (PreferenceVisibilityResetClicked) DrawText(TextGet("VisibilityResetDescription"), 500, 732, "Black", "Gray");
-	MainCanvas.textAlign = "center";
 
-	// Buttons
-	DrawBackNextButton(650, 193, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Description, "White", "", () => "", () => "");
-	DrawBackNextButton(650, 272, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Description, "White", "", () => "", () => "");
-	DrawButton(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64, TextGet("VisibilityReset"), "White", "");
-	
-	// Preview icon
-	DrawEmptyRect(1200, 193, 225, 225, "Black");
-	if (PreferenceVisibilityPreviewImg == null) DrawRect(1203, 196, 219, 219, "LightGray");
-	else DrawImageResize(PreferenceVisibilityPreviewImg, 1202, 195, 221, 221);
+	// Not available in Extreme mode
+	if (Player.GetDifficulty() <= 2) {
+
+		// Left-aligned text controls
+		DrawText(TextGet("VisibilityGroup"), 500, 225, "Black", "Gray");
+		DrawText(TextGet("VisibilityAsset"), 500, 304, "Black", "Gray");
+		DrawCheckbox(500, 352, 64, 64, TextGet("VisibilityCheckboxHide"), PreferenceVisibilityHideChecked);
+		DrawCheckbox(500, 432, 64, 64, TextGet("VisibilityCheckboxBlock"), PreferenceVisibilityBlockChecked, !PreferenceVisibilityCanBlock);
+		if (PreferenceVisibilityHideChecked) {
+			DrawImageResize("Screens/Character/Player/HiddenItem.png", 500, 516, 86, 86);
+			DrawText(TextGet("VisibilityWarning"), 600, 548, "Black", "Gray");
+		}
+		if (PreferenceVisibilityResetClicked) DrawText(TextGet("VisibilityResetDescription"), 500, 732, "Black", "Gray");
+		MainCanvas.textAlign = "center";
+
+		// Buttons
+		DrawBackNextButton(650, 193, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Group.Description, "White", "", () => "", () => "");
+		DrawBackNextButton(650, 272, 500, 64, PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex].Asset.Description, "White", "", () => "", () => "");
+		DrawButton(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64, TextGet("VisibilityReset"), "White", "");
+
+		// Preview icon
+		if (PreferenceVisibilityHideChecked) DrawPreviewBox(1200, 193, "Icons/HiddenItem.png", "", { Border: true });
+
+		else DrawAssetPreview(1200, 193, PreferenceVisibilityPreviewAsset, {Description: "", Border: true});
+	} else {
+		MainCanvas.textAlign = "center";
+		DrawText(TextGet("VisibilityLocked"), 1200, 500, "Red", "Gray");
+	}
+
 }
 
 /**
- * Handles click events for the audio preference settings. 
- * Redirected to from the main Click function if the player is in the audio settings subscreen
+ * Sets the graphical preferences for a player. Redirected to from the main Run function if the player is in the
+ * visibility settings subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenGraphicsRun() {
+
+	// Character and exit button
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("VFXPreferences"), 500, 125, "Black", "Gray");
+	DrawText(TextGet("VFX"), 800, 216, "Black", "Gray");
+	DrawText(TextGet("GraphicsFont"), 800, 306, "Black", "Gray");
+	DrawTextFit(TextGet("GraphicsFontDisclaimer"), 500, 376, 1400, "Black", "Gray");
+	DrawCheckbox(500, 430, 64, 64, TextGet("GraphicsInvertRoom"), Player.GraphicsSettings.InvertRoom);
+	DrawCheckbox(500, 510, 64, 64, TextGet("GraphicsStimulationFlash"), Player.GraphicsSettings.StimulationFlash);
+	DrawCheckbox(500, 590, 64, 64, TextGet("DoBlindFlash"), Player.GraphicsSettings.DoBlindFlash);
+	DrawText(TextGet("GeneralAnimationQualityText"), 750, 712, "Black", "Gray");
+	if (GLVersion !== "No WebGL") {
+		DrawCheckbox(500, 765, 64, 64, TextGet("GraphicsAntialiasing"), !localStorage.getItem("GLDraw-antialiasOff"));
+		DrawText(TextGet("GraphicsPowerMode"), 880, 885, "Black", "Gray");
+	} else {
+		DrawText(TextGet("GraphicsNoWebGL"), 700, 810, "Red", "Gray");
+	}
+	
+	MainCanvas.textAlign = "center";
+	DrawBackNextButton(500, 182, 250, 64, TextGet(Player.ArousalSettings.VFX), "White", "",
+		() => TextGet(PreferenceSettingsVFXList[(PreferenceSettingsVFXIndex + PreferenceSettingsVFXList.length - 1) % PreferenceSettingsVFXList.length]),
+		() => TextGet(PreferenceSettingsVFXList[(PreferenceSettingsVFXIndex + 1) % PreferenceSettingsVFXList.length]));
+
+	DrawBackNextButton(500, 270, 250, 64, TextGet(Player.GraphicsSettings.Font), "White", "",
+		() => TextGet(PreferenceGraphicsFontList[(PreferenceGraphicsFontIndex + PreferenceGraphicsFontList.length - 1) % PreferenceGraphicsFontList.length]),
+		() => TextGet(PreferenceGraphicsFontList[(PreferenceGraphicsFontIndex + 1) % PreferenceGraphicsFontList.length]));
+
+	DrawBackNextButton(500, 680, 200, 64, TextGet("GeneralAnimationQuality" + Player.GraphicsSettings.AnimationQuality), "White", "",
+		() => PreferenceGraphicsAnimationQualityIndex == 0 ? "" : TextGet("GeneralAnimationQuality" + PreferenceGraphicsAnimationQualityList[PreferenceGraphicsAnimationQualityIndex - 1].toString()),
+		() => PreferenceGraphicsAnimationQualityIndex == PreferenceGraphicsAnimationQualityList.length - 1 ? "" : TextGet("GeneralAnimationQuality" + PreferenceGraphicsAnimationQualityList[PreferenceGraphicsAnimationQualityIndex + 1].toString()));
+	if (GLVersion !== "No WebGL") {
+		DrawBackNextButton(500, 850, 360, 64, TextGet("PowerMode" + PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex]), "White", "",
+			() => PreferenceGraphicsPowerModeIndex == 0 ? "" : TextGet("PowerMode" + PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex - 1].toString()),
+			() => PreferenceGraphicsPowerModeIndex == PreferenceGraphicsPowerModes.length - 1 ? "" : TextGet("PowerMode" + PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex + 1].toString()));
+	}
+}
+
+/**
+ * Handles click events for the audio preference settings.  Redirected from the main Click function.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenGraphicsClick() {
+	// If the user clicked the exit icon to return to the main screen
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenGraphicsExit();
+	
+	if (MouseIn(500, 182, 250, 64)) {
+		if (MouseX <= 625) PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.length + PreferenceSettingsVFXIndex - 1) % PreferenceSettingsVFXList.length;
+		else PreferenceSettingsVFXIndex = (PreferenceSettingsVFXIndex + 1) % PreferenceSettingsVFXList.length;
+		Player.ArousalSettings.VFX = PreferenceSettingsVFXList[PreferenceSettingsVFXIndex];
+	}
+	if (MouseIn(500, 270, 250, 64)) {
+		if (MouseX <= 625) PreferenceGraphicsFontIndex = (PreferenceGraphicsFontList.length + PreferenceGraphicsFontIndex - 1) % PreferenceGraphicsFontList.length;
+		else PreferenceGraphicsFontIndex = (PreferenceGraphicsFontIndex + 1) % PreferenceGraphicsFontList.length;
+		Player.GraphicsSettings.Font = PreferenceGraphicsFontList[PreferenceGraphicsFontIndex];
+		CommonGetFont.clearCache();
+		CommonGetFontName.clearCache();
+		DrawingGetTextSize.clearCache();
+	}
+	if (MouseIn(500, 430, 64, 64)) Player.GraphicsSettings.InvertRoom = !Player.GraphicsSettings.InvertRoom;
+	if (MouseIn(500, 510, 64, 64)) Player.GraphicsSettings.StimulationFlash = !Player.GraphicsSettings.StimulationFlash;
+	if (MouseIn(500, 590, 64, 64)) Player.GraphicsSettings.DoBlindFlash = !Player.GraphicsSettings.DoBlindFlash;
+	if (MouseIn(500, 680, 200, 64)) {
+		if (MouseX <= 600) {
+			if (PreferenceGraphicsAnimationQualityIndex > 0) PreferenceGraphicsAnimationQualityIndex--;
+		} else {
+			if (PreferenceGraphicsAnimationQualityIndex < PreferenceGraphicsAnimationQualityList.length - 1) PreferenceGraphicsAnimationQualityIndex++;
+		}
+		Player.GraphicsSettings.AnimationQuality = PreferenceGraphicsAnimationQualityList[PreferenceGraphicsAnimationQualityIndex];
+	}
+	if (GLVersion !== "No WebGL" && MouseIn(500, 850, 360, 64)) {
+		if (MouseX <= 600) {
+			if (PreferenceGraphicsPowerModeIndex > 0) PreferenceGraphicsPowerModeIndex--;
+		} else {
+			if (PreferenceGraphicsPowerModeIndex < PreferenceGraphicsPowerModes.length - 1) PreferenceGraphicsPowerModeIndex++;
+		}
+		localStorage.setItem("GLDraw-powerPreference", PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex]);
+	}
+	if (GLVersion !== "No WebGL" && MouseIn(500, 765, 64, 64)) {
+		if (localStorage.getItem("GLDraw-antialiasOff"))
+			localStorage.removeItem("GLDraw-antialiasOff");
+		else
+			localStorage.setItem("GLDraw-antialiasOff", "true");
+		PreferenceGraphicsWebGLOptions.powerPreference = !PreferenceGraphicsWebGLOptions.powerPreference;
+	}
+}
+
+function PreferenceSubscreenGraphicsExit() {
+	// Reload WebGL if graphic settings have changed.
+	const currentOptions = GLDrawGetOptions();
+	if (
+		GLVersion !== "No WebGL" &&
+		(currentOptions.powerPreference != PreferenceGraphicsWebGLOptions.powerPreference ||
+			currentOptions.antialias != PreferenceGraphicsWebGLOptions.antialias)
+	)
+		GLDrawLoad();
+	PreferenceSubscreen = "";
+}
+
+/**
+ * Handles click events for the audio preference settings.  Redirected from the main Click function.
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenAudioClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
-		PreferenceSubscreen = "";
-		PreferenceMainScreenLoad();
-	}
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenAudioExit();
 
 	// Volume increase/decrease control
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
+	if (MouseIn(500, 193, 250, 64)) {
 		if (MouseX <= 625) PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.length + PreferenceSettingsVolumeIndex - 1) % PreferenceSettingsVolumeList.length;
 		else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
 		Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
 	}
 
 	// Individual audio check-boxes
-	if ((MouseX >= 500) && (MouseX < 564)) {
-		if ((MouseY >= 272) && (MouseY < 336)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
-		if ((MouseY >= 352) && (MouseY < 416)) Player.AudioSettings.PlayItem = !Player.AudioSettings.PlayItem;
-		if ((MouseY >= 432) && (MouseY < 496)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
+	if (MouseXIn(500, 64)) {
+		if (MouseYIn(272, 64)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
+		if (MouseYIn(352, 64)) Player.AudioSettings.PlayItem = !Player.AudioSettings.PlayItem;
+		if (MouseYIn(432, 64)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
+		if (MouseYIn(512, 64)) Player.AudioSettings.Notifications = !Player.AudioSettings.Notifications;
 	}
-
 }
 
 /**
- * Handles the click events for the chat settings of a player
- * Redirected to from the main Click function if the player is in the chat settings subscreen
+ * Exists the preference screen.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenAudioExit() {
+	// If audio has been disabled for notifications, disable each individual notification audio setting
+	if (!Player.AudioSettings.Notifications) {
+		for (const setting in Player.NotificationSettings) {
+			let audio = Player.NotificationSettings[setting].Audio;
+			if (typeof audio === 'number' && audio > 0) Player.NotificationSettings[setting].Audio = NotificationAudioType.NONE;
+		}
+	}
+
+	PreferenceSubscreen = "";
+}
+
+/**
+ * Handles click events for the audio preference settings.  Redirected from the main Click function.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenControllerClick() {
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenControllerExit();
+
+	if (PreferenceCalibrationStage == 0) {
+
+		if (MouseIn(500, 193, 250, 64)) {
+			if (MouseX <= 625) PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityList.length + PreferenceSettingsSensitivityIndex - 1) % PreferenceSettingsSensitivityList.length;
+			else PreferenceSettingsSensitivityIndex = (PreferenceSettingsSensitivityIndex + 1) % PreferenceSettingsSensitivityList.length;
+			Player.ControllerSettings.ControllerSensitivity = PreferenceSettingsSensitivityList[PreferenceSettingsSensitivityIndex];
+			ControllerSensitivity = Player.ControllerSettings.ControllerSensitivity;
+		}
+		if (MouseIn(500, 593, 250, 64)) {
+			if (MouseX <= 625) PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneList.length + PreferenceSettingsDeadZoneIndex - 1) % PreferenceSettingsDeadZoneList.length;
+			else PreferenceSettingsDeadZoneIndex = (PreferenceSettingsDeadZoneIndex + 1) % PreferenceSettingsDeadZoneList.length;
+			Player.ControllerSettings.ControllerDeadZone = PreferenceSettingsDeadZoneList[PreferenceSettingsDeadZoneIndex];
+			ControllerDeadZone = Player.ControllerSettings.ControllerDeadZone;
+		}
+
+		if (MouseIn(590, 400, 310, 90)) {
+			PreferenceCalibrationStage = 1;
+			Calibrating = true;
+		}
+
+		if (MouseIn(590, 500, 310, 90)) {
+			PreferenceCalibrationStage = 101;
+			Calibrating = true;
+		}
+
+		if (MouseIn(500, 272, 64, 64)) {
+			ControllerActive = !ControllerActive;
+			Player.ControllerSettings.ControllerActive = ControllerActive;
+			ClearButtons();
+		}
+	}
+}
+
+/**
+ * Handles the click events for the chat settings of a player.  Redirected from the main Click function.
+ * @returns {void} - Nothing
  */
 function PreferenceSubscreenChatClick() {
 
@@ -747,114 +1498,120 @@ function PreferenceSubscreenChatClick() {
 		if (MouseYIn(812, 64)) Player.ChatSettings.ShowActivities = !Player.ChatSettings.ShowActivities;
 	}
 
-	if (MouseIn(1200, 492, 64, 64)) Player.ChatSettings.ShowAutomaticMessages = !Player.ChatSettings.ShowAutomaticMessages;
-	if (MouseIn(1200, 572, 64, 64)) Player.ChatSettings.WhiteSpace = Player.ChatSettings.WhiteSpace == "Preserve" ? "" : "Preserve";
-	if (MouseIn(1200, 652, 64, 64)) Player.ChatSettings.ColorActivities = !Player.ChatSettings.ColorActivities;
+	if (MouseXIn(1200, 64)) {
+		if (MouseYIn(492, 64)) Player.ChatSettings.ShowAutomaticMessages = !Player.ChatSettings.ShowAutomaticMessages;
+		if (MouseYIn(572, 64)) Player.ChatSettings.WhiteSpace = Player.ChatSettings.WhiteSpace == "Preserve" ? "" : "Preserve";
+		if (MouseYIn(652, 64)) Player.ChatSettings.ColorActivities = !Player.ChatSettings.ColorActivities;
+		if (MouseYIn(732, 64)) Player.ChatSettings.ShrinkNonDialogue = !Player.ChatSettings.ShrinkNonDialogue;
+		if (MouseYIn(812, 64)) Player.ChatSettings.MuStylePoses = !Player.ChatSettings.MuStylePoses;
+		
+	}
 
 	// If the user used one of the BackNextButtons
-	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 190) && (MouseY < 270)) {
-		if (MouseX <= 1175) PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex <= 0) ? PreferenceChatColorThemeList.length - 1 : PreferenceChatColorThemeIndex - 1;
-		else PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex >= PreferenceChatColorThemeList.length - 1) ? 0 : PreferenceChatColorThemeIndex + 1;
-		PreferenceChatColorThemeSelected = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
-		Player.ChatSettings.ColorTheme = PreferenceChatColorThemeSelected;
+	if (MouseIn(1000, 170, 350, 60)) {
+		if (MouseX <= 1175) PreferenceChatColorThemeIndex = PreferenceGetPreviousIndex(PreferenceChatColorThemeList, PreferenceChatColorThemeIndex);
+		else PreferenceChatColorThemeIndex = PreferenceGetNextIndex(PreferenceChatColorThemeList, PreferenceChatColorThemeIndex);
+		Player.ChatSettings.ColorTheme = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
 	}
-	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 290) && (MouseY < 370)) {
-		if (MouseX <= 1175) PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveIndex <= 0) ? PreferenceChatEnterLeaveList.length - 1 : PreferenceChatEnterLeaveIndex - 1;
-		else PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveIndex >= PreferenceChatEnterLeaveList.length - 1) ? 0 : PreferenceChatEnterLeaveIndex + 1;
-		PreferenceChatEnterLeaveSelected = PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex];
-		Player.ChatSettings.EnterLeave = PreferenceChatEnterLeaveSelected;
+	if (MouseIn(1000, 250, 350, 60)) {
+		if (MouseX <= 1175) PreferenceChatEnterLeaveIndex = PreferenceGetPreviousIndex(PreferenceChatEnterLeaveList, PreferenceChatEnterLeaveIndex);
+		else PreferenceChatEnterLeaveIndex = PreferenceGetNextIndex(PreferenceChatEnterLeaveList, PreferenceChatEnterLeaveIndex);
+		Player.ChatSettings.EnterLeave = PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex];
 	}
-	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 390) && (MouseY < 470)) {
-		if (MouseX <= 1175) PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersIndex <= 0) ? PreferenceChatMemberNumbersList.length - 1 : PreferenceChatMemberNumbersIndex - 1;
-		else PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersIndex >= PreferenceChatMemberNumbersList.length - 1) ? 0 : PreferenceChatMemberNumbersIndex + 1;
-		PreferenceChatMemberNumbersSelected = PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex];
-		Player.ChatSettings.MemberNumbers = PreferenceChatMemberNumbersSelected;
+	if (MouseIn(1000, 330, 350, 60)) {
+		if (MouseX <= 1175) PreferenceChatMemberNumbersIndex = PreferenceGetPreviousIndex(PreferenceChatMemberNumbersList, PreferenceChatMemberNumbersIndex);
+		else PreferenceChatMemberNumbersIndex = PreferenceGetNextIndex(PreferenceChatMemberNumbersList, PreferenceChatMemberNumbersIndex);
+		Player.ChatSettings.MemberNumbers = PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex];
+	}
+
+	if (MouseIn(1000, 410, 350, 60)) {
+		if (MouseX <= 1175) PreferenceChatFontSizeIndex = PreferenceGetPreviousIndex(PreferenceChatFontSizeList, PreferenceChatFontSizeIndex);
+		else PreferenceChatFontSizeIndex = PreferenceGetNextIndex(PreferenceChatFontSizeList, PreferenceChatFontSizeIndex);
+		Player.ChatSettings.FontSize = PreferenceChatFontSizeList[PreferenceChatFontSizeIndex];
+		ChatRoomRefreshFontSize();
 	}
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
-		PreferenceSubscreen = "";
-		PreferenceMainScreenLoad();
-	}
+	if (MouseIn(1815, 75,90,90)) PreferenceSubscreenChatExit();
 
-}
-
-function PreferenceSubscreenOnlineClick() {
-	const OnlineSettings = Player.OnlineSettings;
-	const OnlineSharedSettings = Player.OnlineSharedSettings;
-	if (MouseIn(1815, 75, 90, 90) && PreferenceColorPick == "") {
-		PreferenceSubscreen = "";
-		PreferenceMainScreenLoad();
-	}
-	else if (MouseIn(500, 225, 64, 64)) OnlineSettings.AutoBanBlackList = !OnlineSettings.AutoBanBlackList;
-	else if (MouseIn(500, 305, 64, 64)) OnlineSettings.AutoBanGhostList = !OnlineSettings.AutoBanGhostList;
-	else if (MouseIn(500, 385, 64, 64)) OnlineSettings.SearchShowsFullRooms = !OnlineSettings.SearchShowsFullRooms;
-	else if (MouseIn(500, 465, 64, 64)) OnlineSettings.SearchFriendsFirst = !OnlineSettings.SearchFriendsFirst;
-	else if (MouseIn(500, 545, 64, 64)) OnlineSettings.DisableAnimations = !OnlineSettings.DisableAnimations;
-	else if (MouseIn(500, 625, 64, 64)) {
-		OnlineSettings.EnableAfkTimer = !OnlineSettings.EnableAfkTimer;
-		AfkTimerSetEnabled(OnlineSettings.EnableAfkTimer);
-	}
-	else if (MouseIn(500, 705, 64, 64)) OnlineSettings.EnableWardrobeIcon = !OnlineSettings.EnableWardrobeIcon;
-	else if (MouseIn(500, 785, 64, 64)) OnlineSharedSettings.AllowFullWardrobeAccess = !OnlineSharedSettings.AllowFullWardrobeAccess;
-	else if (MouseIn(500, 865, 64, 64)) OnlineSharedSettings.BlockBodyCosplay = !OnlineSharedSettings.BlockBodyCosplay;
 }
 
 /**
- * Handles the click events for the arousal settings
- * Redirected to from the main Click function if the player is in the arousal settings subscreen
+ * Handles the click events for the online settings.  Redirected from the main Click function.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenOnlineClick() {
+	const OnlineSettings = Player.OnlineSettings;
+	const OnlineSharedSettings = Player.OnlineSharedSettings;
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreen = "";
+	else if (MouseIn(500, 175, 64, 64)) OnlineSettings.AutoBanBlackList = !OnlineSettings.AutoBanBlackList;
+	else if (MouseIn(500, 255, 64, 64)) OnlineSettings.AutoBanGhostList = !OnlineSettings.AutoBanGhostList;
+	else if (MouseIn(500, 335, 64, 64)) OnlineSettings.SearchShowsFullRooms = !OnlineSettings.SearchShowsFullRooms;
+	else if (MouseIn(500, 415, 64, 64)) OnlineSettings.SearchFriendsFirst = !OnlineSettings.SearchFriendsFirst;
+	else if (MouseIn(500, 495, 64, 64)) OnlineSettings.DisableAnimations = !OnlineSettings.DisableAnimations;
+	else if (MouseIn(500, 575, 64, 64)) {
+		OnlineSettings.EnableAfkTimer = !OnlineSettings.EnableAfkTimer;
+		AfkTimerSetEnabled(OnlineSettings.EnableAfkTimer);
+	}
+	else if (MouseIn(500, 655, 64, 64)) OnlineSettings.EnableWardrobeIcon = !OnlineSettings.EnableWardrobeIcon;
+	else if (MouseIn(500, 735, 64, 64)) OnlineSharedSettings.AllowFullWardrobeAccess = !OnlineSharedSettings.AllowFullWardrobeAccess;
+	else if (MouseIn(500, 815, 64, 64)) OnlineSharedSettings.BlockBodyCosplay = !OnlineSharedSettings.BlockBodyCosplay;
+}
+
+/**
+ * Handles the click events for the arousal settings.  Redirected from the main Click function.
  * @returns {void} - Nothing
  */
 function PreferenceSubscreenArousalClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
-		PreferenceSubscreen = "";
-		Player.FocusGroup = null;
-		PreferenceMainScreenLoad();
-	}
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenArousalExit();
 
 	// Arousal active control
-	if ((MouseX >= 750) && (MouseX < 1200) && (MouseY >= 193) && (MouseY < 257)) {
+	if (MouseIn(750, 193, 450, 64)) {
 		if (MouseX <= 975) PreferenceArousalActiveIndex = (PreferenceArousalActiveList.length + PreferenceArousalActiveIndex - 1) % PreferenceArousalActiveList.length;
 		else PreferenceArousalActiveIndex = (PreferenceArousalActiveIndex + 1) % PreferenceArousalActiveList.length;
 		Player.ArousalSettings.Active = PreferenceArousalActiveList[PreferenceArousalActiveIndex];
 	}
 
 	// Speech stuttering control
-	if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 378) && (MouseY < 442)) {
+	if (MouseIn(900, 428, 500, 64)) {
 		if (MouseX <= 1150) PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.length + PreferenceArousalAffectStutterIndex - 1) % PreferenceArousalAffectStutterList.length;
 		else PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterIndex + 1) % PreferenceArousalAffectStutterList.length;
 		Player.ArousalSettings.AffectStutter = PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex];
 	}
 
 	// Show other player meter check box
-	if ((MouseX >= 550) && (MouseX < 614) && (MouseY >= 286) && (MouseY < 350))
+	if (MouseIn(550, 276, 64, 64))
 		Player.ArousalSettings.ShowOtherMeter = !Player.ArousalSettings.ShowOtherMeter;
+	
+	// Block advanced modes check box
+	if (MouseIn(550, 356, 64, 64) && Player.GetDifficulty() < 3)
+		Player.ArousalSettings.DisableAdvancedVibes = !Player.ArousalSettings.DisableAdvancedVibes;
 
 	// If the arousal is active, we allow more controls
 	if (PreferenceArousalIsActive()) {
 
 		// Meter affect your facial expressions check box
-		if ((MouseX >= 1250) && (MouseX < 1314) && (MouseY >= 286) && (MouseY < 350))
+		if (MouseIn(1250, 276, 64, 64))
 			Player.ArousalSettings.AffectExpression = !Player.ArousalSettings.AffectExpression;
 
 		// Arousal visible control
-		if ((MouseX >= 1505) && (MouseX < 1905) && (MouseY >= 193) && (MouseY <= 257)) {
+		if (MouseIn(1505, 193, 400, 64)) {
 			if (MouseX <= 1705) PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.length + PreferenceArousalVisibleIndex - 1) % PreferenceArousalVisibleList.length;
 			else PreferenceArousalVisibleIndex = (PreferenceArousalVisibleIndex + 1) % PreferenceArousalVisibleList.length;
 			Player.ArousalSettings.Visible = PreferenceArousalVisibleList[PreferenceArousalVisibleIndex];
 		}
 
 		// Fetish master control
-		if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 463) && (MouseY <= 527)) {
+		if (MouseIn(900, 513, 500, 64)) {
 			if (MouseX <= 1150) PreferenceArousalFetishIndex = (PreferenceArousalFetishList.length + PreferenceArousalFetishIndex - 1) % PreferenceArousalFetishList.length;
 			else PreferenceArousalFetishIndex = (PreferenceArousalFetishIndex + 1) % PreferenceArousalFetishList.length;
 			PreferenceLoadFetishFactor();
 		}
 
 		// Fetish love control
-		if ((MouseX >= 1455) && (MouseX < 1905) && (MouseY >= 463) && (MouseY <= 527)) {
+		if (MouseIn(1455, 513, 450, 64)) {
 			if (MouseX <= 1680) PreferenceArousalFetishFactor = (5 + PreferenceArousalFetishFactor - 1) % 5;
 			else PreferenceArousalFetishFactor = (PreferenceArousalFetishFactor + 1) % 5;
 			for (let F = 0; F < Player.ArousalSettings.Fetish.length; F++)
@@ -863,43 +1620,42 @@ function PreferenceSubscreenArousalClick() {
 		}
 
 		// Arousal activity control
-		if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 548) && (MouseY <= 612)) {
+		if (MouseIn(900, 598, 500, 64)) {
 			if (MouseX <= 1150) PreferenceArousalActivityIndex = (PreferenceArousalActivityList.length + PreferenceArousalActivityIndex - 1) % PreferenceArousalActivityList.length;
 			else PreferenceArousalActivityIndex = (PreferenceArousalActivityIndex + 1) % PreferenceArousalActivityList.length;
 			PreferenceLoadActivityFactor();
 		}
-		
+
 		// Arousal activity love on self control
-		if ((MouseX >= 900) && (MouseX < 1200) && (MouseY >= 633) && (MouseY <= 697)) {
+		if (MouseIn(900, 683, 300, 64)) {
 			if (MouseX <= 1050) PreferenceArousalActivityFactorSelf = (5 + PreferenceArousalActivityFactorSelf - 1) % 5;
 			else PreferenceArousalActivityFactorSelf = (PreferenceArousalActivityFactorSelf + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true, PreferenceArousalActivityFactorSelf);
 		}
 
 		// Arousal activity love on other control
-		if ((MouseX >= 1605) && (MouseX < 1905) && (MouseY >= 633) && (MouseY <= 697)) {
+		if (MouseIn(1605, 683, 300, 64)) {
 			if (MouseX <= 1755) PreferenceArousalActivityFactorOther = (5 + PreferenceArousalActivityFactorOther - 1) % 5;
 			else PreferenceArousalActivityFactorOther = (PreferenceArousalActivityFactorOther + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false, PreferenceArousalActivityFactorOther);
 		}
 
 		// Arousal zone love control
-		if ((Player.FocusGroup != null) && (MouseX >= 550) && (MouseX < 1150) && (MouseY >= 813) && (MouseY < 877)) {
+		if ((Player.FocusGroup != null) && MouseIn(550, 853, 600, 64)) {
 			if (MouseX <= 850) PreferenceArousalZoneFactor = (5 + PreferenceArousalZoneFactor - 1) % 5;
 			else PreferenceArousalZoneFactor = (PreferenceArousalZoneFactor + 1) % 5;
 			PreferenceSetZoneFactor(Player, Player.FocusGroup.Name, PreferenceArousalZoneFactor);
 		}
 
 		// Arousal zone orgasm check box
-		if ((Player.FocusGroup != null) && (MouseX >= 1230) && (MouseX < 1294) && (MouseY >= 813) && (MouseY < 877))
+		if ((Player.FocusGroup != null) && MouseIn(1230, 853, 64, 64))
 			PreferenceSetZoneOrgasm(Player, Player.FocusGroup.Name, !PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
 
 		// In arousal mode, the player can click on her zones
 		for (let A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Zone != null) && (AssetGroup[A].Activity != null))
 				for (let Z = 0; Z < AssetGroup[A].Zone.length; Z++)
-					if (((Player.Pose.indexOf("Suspension") < 0) && (MouseX >= ((AssetGroup[A].Zone[Z][0] * 0.9) + 50)) && (MouseY >= (((AssetGroup[A].Zone[Z][1] - Player.HeightModifier) * 0.9) + 50)) && (MouseX <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * 0.9) + 50)) && (MouseY <= (((AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - Player.HeightModifier) * 0.9) + 50)))
-						|| ((Player.Pose.indexOf("Suspension") >= 0) && (MouseX >= ((AssetGroup[A].Zone[Z][0] * 0.9) + 50)) && (MouseY >= 0.9 * ((1000 - (AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3])) - Player.HeightModifier)) && (MouseX <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * 0.9) + 50)) && (MouseY <= 0.9 * (1000 - ((AssetGroup[A].Zone[Z][1])) - Player.HeightModifier)))) {
+					if (DialogClickedInZone(Player, AssetGroup[A].Zone[Z], 0.9, 50, 50, 1)) {
 						Player.FocusGroup = AssetGroup[A];
 						PreferenceArousalZoneFactor = PreferenceGetZoneFactor(Player, AssetGroup[A].Name);
 					}
@@ -909,21 +1665,16 @@ function PreferenceSubscreenArousalClick() {
 }
 
 /**
- * Handles the click events in the security settings dialog for a player.
- * Redirected to from the main Click function if the player is in the security settings subscreen
+ * Handles the click events in the security settings dialog for a player.  Redirected from the main Click function.
+ * @returns {void} - Nothing
  */
 function PreferenceSubscreenSecurityClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
-		PreferenceSubscreen = "";
-		ElementRemove("InputEmailOld");
-		ElementRemove("InputEmailNew");
-		PreferenceMainScreenLoad();
-	}
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenSecurityExit();
 
 	// If we must update the email
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 365) && (MouseY < 415)) {
+	if (MouseIn(500, 365, 250, 50)) {
 		var EmailOld = ElementValue("InputEmailOld");
 		var EmailNew = ElementValue("InputEmailNew");
 		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
@@ -936,56 +1687,59 @@ function PreferenceSubscreenSecurityClick() {
 }
 
 /**
- * Handles the click events for the visibility settings of a player
- * Redirected to from the main Click function if the player is in the visibility settings subscreen
+ * Handles the click events for the visibility settings of a player.  Redirected from the main Click function.
+ * @returns {void} - Nothing
  */
 function PreferenceSubscreenVisibilityClick() {
 
-	// Group button
-	if (MouseIn(650, 193, 500, 64)) {
-		if (MouseX >= 900) {
-			PreferenceVisibilityGroupIndex++;
-			if (PreferenceVisibilityGroupIndex >= PreferenceVisibilityGroupList.length) PreferenceVisibilityGroupIndex = 0;
-		}
-		else {
-			PreferenceVisibilityGroupIndex--;
-			if (PreferenceVisibilityGroupIndex < 0) PreferenceVisibilityGroupIndex = PreferenceVisibilityGroupList.length - 1;
-		}
-		PreferenceVisibilityAssetIndex = 0;
-		PreferenceVisibilityAssetChanged(true);
-	}
+	// Most controls are not available in Extreme mode
+	if (Player.GetDifficulty() <= 2) {
 
-	// Asset button
-	if (MouseIn(650, 272, 500, 64)) {
-		if (MouseX >= 900) {
-			PreferenceVisibilityAssetIndex++;
-			if (PreferenceVisibilityAssetIndex >= PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length) PreferenceVisibilityAssetIndex = 0;
+		// Group button
+		if (MouseIn(650, 193, 500, 64)) {
+			if (MouseX >= 900) {
+				PreferenceVisibilityGroupIndex++;
+				if (PreferenceVisibilityGroupIndex >= PreferenceVisibilityGroupList.length) PreferenceVisibilityGroupIndex = 0;
+			}
+			else {
+				PreferenceVisibilityGroupIndex--;
+				if (PreferenceVisibilityGroupIndex < 0) PreferenceVisibilityGroupIndex = PreferenceVisibilityGroupList.length - 1;
+			}
+			PreferenceVisibilityAssetIndex = 0;
+			PreferenceVisibilityAssetChanged(true);
 		}
-		else {
-			PreferenceVisibilityAssetIndex--;
-			if (PreferenceVisibilityAssetIndex < 0) PreferenceVisibilityAssetIndex = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length - 1;
+
+		// Asset button
+		if (MouseIn(650, 272, 500, 64)) {
+			if (MouseX >= 900) {
+				PreferenceVisibilityAssetIndex++;
+				if (PreferenceVisibilityAssetIndex >= PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length) PreferenceVisibilityAssetIndex = 0;
+			}
+			else {
+				PreferenceVisibilityAssetIndex--;
+				if (PreferenceVisibilityAssetIndex < 0) PreferenceVisibilityAssetIndex = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets.length - 1;
+			}
+			PreferenceVisibilityAssetChanged(true);
 		}
-		PreferenceVisibilityAssetChanged(true);
-	}
 
-	// Hide checkbox
-	if (MouseIn(500, 352, 64, 64)) {
-		PreferenceVisibilityHideChange();
-		if (PreferenceVisibilityHideChecked != PreferenceVisibilityBlockChecked && PreferenceVisibilityCanBlock) PreferenceVisibilityBlockChange();
-	}
-
-	// Block checkbox
-	if (MouseIn(500, 432, 64, 64) && PreferenceVisibilityCanBlock) {
-		PreferenceVisibilityBlockChange();
-	}
-
-	// Reset button
-	if (MouseIn(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64)) {
-		if (PreferenceVisibilityResetClicked) {
-			Player.HiddenItems = [];
-			PreferenceVisibilityExit(true);
+		// Hide checkbox
+		if (MouseIn(500, 352, 64, 64)) {
+			PreferenceVisibilityHideChange();
+			if (PreferenceVisibilityHideChecked != PreferenceVisibilityBlockChecked && PreferenceVisibilityCanBlock) PreferenceVisibilityBlockChange();
 		}
-		else PreferenceVisibilityResetClicked = true;
+
+		// Block checkbox
+		if (MouseIn(500, 432, 64, 64) && PreferenceVisibilityCanBlock) PreferenceVisibilityBlockChange();
+
+		// Reset button
+		if (MouseIn(500, PreferenceVisibilityResetClicked ? 780 : 700, 300, 64)) {
+			if (PreferenceVisibilityResetClicked) {
+				Player.HiddenItems = [];
+				PreferenceVisibilityExit(true);
+			}
+			else PreferenceVisibilityResetClicked = true;
+		}
+
 	}
 
 	// Confirm button
@@ -996,16 +1750,17 @@ function PreferenceSubscreenVisibilityClick() {
 	}
 
 	// Cancel button
-	if (MouseIn(1820, 60, 90, 90)) {
-		PreferenceVisibilityExit(false);
-	}
+	if (MouseIn(1820, 60, 90, 90)) PreferenceVisibilityExit(false);
+
 }
 
-/** Load the full list of items and clothes along with the player settings for them */
-function PreferenceVisibilityLoad() {
+/**
+ * Handles the loading of the visibility settings of a player
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenVisibilityLoad() {
 	PreferenceVisibilityHiddenList = Player.HiddenItems.slice();
 	PreferenceVisibilityBlockList = Player.BlockItems.slice();
-
 	for (let G = 0; G < AssetGroup.length; G++)
 		if (AssetGroup[G].Clothing || AssetGroup[G].Category != "Appearance") {
 			var AssetList = [];
@@ -1024,7 +1779,9 @@ function PreferenceVisibilityLoad() {
 
 /**
  * Update the checkbox settings and asset preview image based on the new asset selection
- * @param {boolean} RefreshCheckboxes - If TRUE, load the new asset settings. If FALSE, a checkbox was just manually changed so don't refresh them
+ * @param {boolean} RefreshCheckboxes - If TRUE, load the new asset settings. If FALSE, a checkbox was just manually
+ *     changed so don't refresh them
+ * @returns {void} - Nothing
  */
 function PreferenceVisibilityAssetChanged(RefreshCheckboxes) {
 	var CurrAsset = PreferenceVisibilityGroupList[PreferenceVisibilityGroupIndex].Assets[PreferenceVisibilityAssetIndex];
@@ -1040,14 +1797,14 @@ function PreferenceVisibilityAssetChanged(RefreshCheckboxes) {
 	PreferenceVisibilityCanBlock = (WornItem == null || WornItem.Asset.Name != CurrAsset.Asset.Name) && !CurrAsset.Limited;
 
 	// Get the preview image path
-	if (PreferenceVisibilityHideChecked) PreferenceVisibilityPreviewImg = "Icons/HiddenItem.png";
-	else PreferenceVisibilityPreviewImg = "Assets/" + CurrAsset.Asset.Group.Family + "/" + CurrAsset.Asset.Group.Name + "/Preview/" + CurrAsset.Asset.Name + ".png";
+	PreferenceVisibilityPreviewAsset = CurrAsset.Asset;
 
 	PreferenceVisibilityResetClicked = false;
 }
 
 /**
  * Toggles the Hide checkbox
+ * @returns {void} - Nothing
  */
 function PreferenceVisibilityHideChange() {
 	PreferenceVisibilityHideChecked = !PreferenceVisibilityHideChecked;
@@ -1058,6 +1815,7 @@ function PreferenceVisibilityHideChange() {
 
 /**
  * Toggles the Block checkbox
+ * @returns {void} - Nothing
  */
 function PreferenceVisibilityBlockChange() {
 	PreferenceVisibilityBlockChecked = !PreferenceVisibilityBlockChecked;
@@ -1092,29 +1850,55 @@ function PreferenceVisibilityCheckboxChanged(List, CheckSetting) {
  * @returns {void} - Nothing
  */
 function PreferenceVisibilityExit(SaveChanges) {
-	if (SaveChanges) ServerSend("AccountUpdate", { HiddenItems: Player.HiddenItems, BlockItems: Player.BlockItems });
+	if (SaveChanges) ServerPlayerBlockItemsSync();
 
 	PreferenceVisibilityGroupList = [];
 	PreferenceVisibilityHiddenList = [];
 	PreferenceVisibilityBlockList = [];
 	PreferenceSubscreen = "";
-	PreferenceMainScreenLoad();
 }
 
 /**
- * Loads the Preferences screen. Is called dynamically, when the player enters the preferences dialog for the first time
+ * Loads the Preferences screen.
  * @returns {void} - Nothing
  */
-function PreferenceMainScreenLoad() {
+function PreferenceSubscreenGeneralLoad() {
 	ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
 }
 
 /**
  * Exists the preference screen. Cleans up elements that are not needed anymore
+ * If the selected color is invalid, the player cannot leave the screen.
  * @returns {void} - Nothing
  */
-function PreferenceMainScreenExit() {
-	ElementRemove("InputCharacterLabelColor");
+function PreferenceSubscreenGeneralExit() {
+	if (PreferenceColorPick == "") {
+		if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
+			Player.LabelColor = ElementValue("InputCharacterLabelColor");
+			PreferenceMessage = "";
+			ElementRemove("InputCharacterLabelColor");
+			PreferenceSubscreen = "";
+		} else PreferenceMessage = "ErrorInvalidColor";
+	}
+}
+
+/**
+ * Exists the difficulty screen. Cleans up elements that are not needed anymore
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenDifficultyExit() {
+	PreferenceMessage = "";
+	PreferenceSubscreen = "";
+}
+
+/**
+ * Loads the Preferences screen.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenSecurityLoad() {
+	ElementCreateInput("InputEmailOld", "text", "", "100");
+	ElementCreateInput("InputEmailNew", "text", "", "100");
+	ServerSend("AccountQuery", { Query: "EmailStatus" });
 }
 
 /**
@@ -1122,5 +1906,315 @@ function PreferenceMainScreenExit() {
  * @returns {boolean} - Return true if sensory deprivation is active, false otherwise
  */
 function PreferenceIsPlayerInSensDep() {
-	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal")) && (Player.GetDeafLevel() >= 3) && (Player.Effect.indexOf("BlindHeavy") >= 0));
+	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal") || (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme")) && (Player.GetDeafLevel() >= 3) && (Player.GetBlindLevel() >= 3));
+}
+
+/**
+ * Loads the preference screen. This function is called dynamically, when the character enters the preference screen
+ * for the first time
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenNotificationsLoad() {
+	const NS = Player.NotificationSettings;
+	PreferenceNotificationsCheckSetting(NS.Beeps);
+	PreferenceNotificationsCheckSetting(NS.ChatMessage);
+	PreferenceNotificationsCheckSetting(NS.ChatJoin);
+	PreferenceNotificationsCheckSetting(NS.Disconnect);
+	PreferenceNotificationsCheckSetting(NS.Test);
+}
+
+/**
+ * If the setting's alert type is not allowed for this session, e.g. from using a new device/browser, reset it to 'None'
+ * @param {NotificationSetting} setting - The notifications setting to check
+ * @returns {void} - Nothing
+ */
+function PreferenceNotificationsCheckSetting(setting) {
+	const type = NotificationAlertTypeList.find(N => N === setting.AlertType);
+	if (type == null) setting.AlertType = NotificationAlertTypeList[0];
+}
+
+/**
+ * Sets the notifications preferences for a player. Redirected to from the main Run function if the player is in the
+ * notifications settings subscreen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenNotificationsRun() {
+
+	// Character and exit button
+	DrawCharacter(Player, 50, 50, 0.9);
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	//PreferencePageChangeDraw(1705, 185, 2); // Uncomment when adding a 2nd page
+
+	// Left-aligned text controls
+	MainCanvas.textAlign = "left";
+	const NS = Player.NotificationSettings;
+
+	DrawText(TextGet("NotificationsPreferences"), 500, 125, "Black", "Gray");
+	DrawText(TextGet("NotificationsExplanation"), 500, 190, "Black", "Gray");
+	DrawEmptyRect(1140, 92, 510, 125, "Black", 2);
+	DrawImage("Icons/Audio1.png", 1152, 97);
+	DrawText(TextGet("NotificationsAudioExplanation1"), 1205, 125, "Black", "Gray");
+	DrawText(TextGet("NotificationsAudioExplanation2"), 1150, 190, "Black", "Gray");
+
+
+	if (PreferencePageCurrent === 1) {
+		PreferenceNotificationsDrawSetting(500, 235, TextGet("NotificationsBeeps"), NS.Beeps);
+
+		PreferenceNotificationsDrawSetting(500, 315, TextGet("NotificationsChatMessage"), NS.ChatMessage);
+		DrawText(TextGet("NotificationsOnly"), 550, 427, "Black", "Gray");
+		const chatMessageDisabled = NS.ChatMessage.AlertType === NotificationAlertType.NONE;
+		DrawCheckbox(700, 395, 64, 64, TextGet("NotificationsChatMessageNormal"), NS.ChatMessage.Normal && !chatMessageDisabled, chatMessageDisabled);
+		DrawCheckbox(1150, 395, 64, 64, TextGet("NotificationsChatMessageWhisper"), NS.ChatMessage.Whisper && !chatMessageDisabled, chatMessageDisabled);
+		DrawCheckbox(1500, 395, 64, 64, TextGet("NotificationsChatMessageActivity"), NS.ChatMessage.Activity && !chatMessageDisabled, chatMessageDisabled);
+
+		PreferenceNotificationsDrawSetting(500, 475, TextGet("NotificationsChatJoin"), NS.ChatJoin);
+		DrawText(TextGet("NotificationsOnly"), 550, 587, "Black", "Gray");
+		const chatJoinDisabled = NS.ChatJoin.AlertType === NotificationAlertType.NONE;
+		DrawCheckbox(700, 555, 64, 64, TextGet("NotificationsChatJoinOwner"), NS.ChatJoin.Owner && !chatJoinDisabled, chatJoinDisabled);
+		DrawCheckbox(980, 555, 64, 64, TextGet("NotificationsChatJoinLovers"), NS.ChatJoin.Lovers && !chatJoinDisabled, chatJoinDisabled);
+		DrawCheckbox(1260, 555, 64, 64, TextGet("NotificationsChatJoinFriendlist"), NS.ChatJoin.Friendlist && !chatJoinDisabled, chatJoinDisabled);
+		DrawCheckbox(1540, 555, 64, 64, TextGet("NotificationsChatJoinSubs"), NS.ChatJoin.Subs && !chatJoinDisabled, chatJoinDisabled);
+
+		PreferenceNotificationsDrawSetting(500, 635, TextGet("NotificationsDisconnect"), NS.Disconnect);
+		PreferenceNotificationsDrawSetting(500, 715, TextGet("NotificationsLarp"), NS.Larp);
+	}
+	else if (PreferencePageCurrent === 2) {
+		// New settings here
+	}
+
+	// Test buttons
+	PreferenceNotificationsDrawSetting(500, 820, "", NS.Test);
+	MainCanvas.textAlign = "center";
+	DrawEmptyRect(500, 800, 1400, 0, "Black", 1);
+	DrawButton(800, 820, 450, 64, TextGet("NotificationsTestRaise"), "White");
+	DrawButton(1286, 820, 450, 64, TextGet("NotificationsTestReset"), "White");
+}
+
+/**
+ * Draws the two checkbox row for a notifications setting
+ * @param {number} Left - The X co-ordinate the row starts on
+ * @param {number} Top - The Y co-ordinate the row starts on
+ * @param {string} Text - The text for the setting's description
+ * @param {NotificationSetting} Setting - The player setting the row corresponds to
+ * @returns {void} - Nothing
+ */
+function PreferenceNotificationsDrawSetting(Left, Top, Text, Setting) {
+	MainCanvas.textAlign = "center";
+	DrawBackNextButton(Left, Top, 164, 64, TextGet("NotificationsAlertType" + Setting.AlertType.toString()), "White", null, () => "", () => "");
+	MainCanvas.textAlign = "left";
+	const Enabled = Setting.AlertType > 0;
+	if (Enabled) {
+		DrawButton(Left + 200, Top, 64, 64, "", "White", "Icons/Audio" + Setting.Audio.toString() + ".png");
+	} else {
+		DrawCheckbox(Left + 200, Top, 64, 64, "", false, true);
+	}
+	DrawText(Text, Left + 300, Top + 33, "Black", "Gray");
+}
+
+/**
+ * Handles the click events for the notifications settings of a player.  Redirected from the main Click function.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenNotificationsClick() {
+
+	// If the user clicked the exit icon to return to the main screen
+	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenNotificationsExit();
+	// Change pages
+	//PreferencePageChangeClick(1705, 185, 2); // Uncomment when adding a 2nd page
+
+	// Checkboxes
+	const NS = Player.NotificationSettings;
+	if (PreferencePageCurrent === 1) {
+		PreferenceNotificationsClickSetting(500, 235, NS.Beeps, NotificationEventType.BEEP);
+
+		PreferenceNotificationsClickSetting(500, 315, NS.ChatMessage, NotificationEventType.CHATMESSAGE);
+		if (NS.ChatMessage.AlertType > 0) {
+			if (MouseIn(700, 395, 64, 64)) NS.ChatMessage.Normal = !NS.ChatMessage.Normal;
+			if (MouseIn(1150, 395, 64, 64)) NS.ChatMessage.Whisper = !NS.ChatMessage.Whisper;
+			if (MouseIn(1500, 395, 64, 64)) NS.ChatMessage.Activity = !NS.ChatMessage.Activity;
+		}
+
+		PreferenceNotificationsClickSetting(500, 475, NS.ChatJoin, NotificationEventType.CHATJOIN);
+		if (NS.ChatJoin.AlertType > 0) {
+			if (MouseIn(700, 555, 64, 64)) NS.ChatJoin.Owner = !NS.ChatJoin.Owner;
+			if (MouseIn(980, 555, 64, 64)) NS.ChatJoin.Lovers = !NS.ChatJoin.Lovers;
+			if (MouseIn(1260, 555, 64, 64)) NS.ChatJoin.Friendlist = !NS.ChatJoin.Friendlist;
+			if (MouseIn(1540, 555, 64, 64)) NS.ChatJoin.Subs = !NS.ChatJoin.Subs;
+		}
+
+		PreferenceNotificationsClickSetting(500, 635, NS.Disconnect, NotificationEventType.DISCONNECT);
+		PreferenceNotificationsClickSetting(500, 715, NS.Larp, NotificationEventType.LARP);
+	}
+	else if (PreferencePageCurrent === 2) {
+		// New settings here
+	}
+
+	// Test buttons
+	PreferenceNotificationsClickSetting(500, 820, NS.Test, NotificationEventType.TEST);
+	if (MouseIn(800, 820, 450, 64)) {
+		NotificationRaise(NotificationEventType.TEST, { body: TextGet("NotificationsTestMessage"), character: Player, useCharAsIcon: true });
+	}
+	if (MouseIn(1286, 820, 450, 64)) NotificationResetAll();
+}
+
+/**
+ * Handles the click events within a multi-checkbox settings row.
+ * @param {number} Left - The X co-ordinate the row starts on
+ * @param {number} Top - The Y co-ordinate the row starts on
+ * @param {NotificationSetting} Setting - The player setting the row corresponds to
+ * @param {NotificationEventType} EventType - The event type the setting corresponds to
+ * @returns {void} - Nothing
+ */
+function PreferenceNotificationsClickSetting(Left, Top, Setting, EventType) {
+
+	// Toggle the alert type
+	if (MouseIn(Left, Top, 164, 64)) {
+		if (EventType) NotificationReset(EventType);
+		if (MouseXIn(Left, 83)) {
+			let prevType = NotificationAlertTypeList.findIndex(N => N === Setting.AlertType) - 1;
+			if (prevType < 0) prevType = NotificationAlertTypeList.length - 1;
+			Setting.AlertType = NotificationAlertTypeList[prevType];
+		}
+		else if (MouseXIn(Left + 83, 83)) {
+			let nextType = NotificationAlertTypeList.findIndex(N => N === Setting.AlertType) + 1;
+			if (nextType > NotificationAlertTypeList.length - 1) nextType = 0;
+			Setting.AlertType = NotificationAlertTypeList[nextType];
+		}
+	}
+
+	// Toggle the audio type
+	if (MouseIn(Left + 200, Top, 64, 64) && Setting.AlertType > 0) {
+		let nextType = NotificationAudioTypeList.findIndex(N => N === Setting.Audio) + 1;
+		if (nextType > NotificationAudioTypeList.length - 1) nextType = 0;
+		Setting.Audio = NotificationAudioTypeList[nextType];
+	}
+}
+
+/**
+ * Exits the preference screen. Resets the test notifications.
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenNotificationsExit() {
+
+	// If any of the settings now have audio enabled, enable the AudioSettings setting as well
+	let enableAudio = false;
+	for (const setting in Player.NotificationSettings) {
+		let audio = Player.NotificationSettings[setting].Audio;
+		if (typeof audio === 'number' && audio > 0) enableAudio = true;
+	}
+	if (enableAudio) Player.AudioSettings.Notifications = true;
+
+	NotificationReset(NotificationEventType.TEST);
+	PreferenceSubscreen = "";
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenControllerExit() {
+	PreferenceSubscreen = "";
+	PreferenceCalibrationStage = 0;
+	Calibrating = false;
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenChatExit() {
+	if (PreferenceColorPick == "") PreferenceSubscreen = "";
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenArousalExit() {
+	PreferenceSubscreen = "";
+	Player.FocusGroup = null;
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenSecurityExit() {
+	PreferenceSubscreen = "";
+	ElementRemove("InputEmailOld");
+	ElementRemove("InputEmailNew");
+}
+
+/**
+ * Exits the preference screen
+ * @returns {void} - Nothing
+ */
+function PreferenceSubscreenVisibilityExit() {
+	PreferenceVisibilityExit(false);
+}
+
+/**
+ * Draw a button to navigate multiple pages in a preference subscreen
+ * @param {number} Left - The X co-ordinate of the button
+ * @param {number} Top - The Y co-ordinate of the button
+ * @param {number} TotalPages - The total number of pages on the subscreen
+ * @returns {void} - Nothing
+ */
+function PreferencePageChangeDraw(Left, Top, TotalPages) {
+	DrawBackNextButton(Left, Top, 200, 90, TextGet("Page") + " " + PreferencePageCurrent.toString() + "/" + TotalPages.toString(), "White", "", () => "", () => "");
+}
+
+/**
+ * Handles clicks of the button to navigate multiple pages in a preference subscreen
+ * @param {number} Left - The X co-ordinate of the button
+ * @param {number} Top - The Y co-ordinate of the button
+ * @param {number} TotalPages - The total number of pages on the subscreen
+ * @returns {void} - Nothing
+ */
+function PreferencePageChangeClick(Left, Top, TotalPages) {
+	if (MouseIn(Left, Top, 100, 90)) {
+		PreferencePageCurrent--;
+		if (PreferencePageCurrent < 1) PreferencePageCurrent = TotalPages;
+	}
+	else if (MouseIn(Left + 100, Top, 100, 90)) {
+		PreferencePageCurrent++;
+		if (PreferencePageCurrent > TotalPages) PreferencePageCurrent = 1;
+	}
+}
+
+/**
+ * Draws a back/next button for use on preference pages
+ * @param {number} Left - The left offset of the button
+ * @param {number} Top - The top offset of the button
+ * @param {number} Width - The width of the button
+ * @param {number} Height - The height of the button
+ * @param {any[]} List - The preference list that the button should be associated with
+ * @param {number} Index - The current preference index for the given preference list
+ * @returns {void} - Nothing
+ */
+function PreferenceDrawBackNextButton(Left, Top, Width, Height, List, Index) {
+	DrawBackNextButton(Left, Top, Width, Height, TextGet(List[Index]), "White", "",
+		() => TextGet(List[PreferenceGetPreviousIndex(List, Index)]),
+		() => TextGet(List[PreferenceGetNextIndex(List, Index)]),
+	);
+}
+
+/**
+ * Returns the index of the previous preference list item (and wraps back to the end of the list if currently at 0)
+ * @param {any[]} List - The preference list
+ * @param {number} Index - The current preference index for the given list
+ * @returns {number} - The index of the previous item in the array, or the last item in the array if currently at 0
+ */
+function PreferenceGetPreviousIndex(List, Index) {
+	return (List.length + Index - 1) % List.length;
+}
+
+/**
+ * Returns the index of the next preference list item (and wraps back to the start of the list if currently at the end)
+ * @param {any[]} List - The preference list
+ * @param {number} Index - The current preference index for the given list
+ * @returns {number} - The index of the next item in the array, or 0 if the array is currently at the last item
+ */
+function PreferenceGetNextIndex(List, Index) {
+	return (Index + 1) % List.length;
 }

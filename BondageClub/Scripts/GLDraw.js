@@ -1,13 +1,32 @@
-"use strict"
+"use strict";
 
+/** @type {Map<string, HTMLImageElement>} */
 var GLDrawImageCache = new Map();
 
 var GLDrawCacheLoadedImages = 0;
 var GLDrawCacheTotalImages = 0;
 
+/** @type {"webgl2"|"webgl"|"No WebGL"} */
 var GLVersion;
 
 var GLDrawCanvas;
+
+/**
+ * How many seconds to wait before forcefully resetting the canvas after a
+ * context loss
+ */
+const GLDrawContextResetSeconds = 10;
+/**
+ * The cooldown in seconds after resetting the canvas. If another context loss
+ * happens in this cooldown, we'll revert to canvas2d rendering
+ */
+const GLDrawRevertToDraw2DSeconds = 50;
+
+let GLDrawContextLostTimeout;
+let GLDrawRecoveryMode = false;
+let GLDrawCrashTimeout;
+
+let GLDrawBuildCanvasBackup;
 
 var GLDrawAlphaThreshold = 0.01;
 var GLDrawHalfAlphaLow = 0.8 / 256.0;
@@ -20,29 +39,113 @@ window.addEventListener('load', GLDrawLoad);
  * @returns {void} - Nothing
  */
 function GLDrawLoad() {
-    GLDrawCanvas = document.createElement("canvas");
-    GLDrawCanvas.width = 1000;
-    GLDrawCanvas.height = 1000;
-    GLVersion = "webgl2";
-    var gl = GLDrawCanvas.getContext(GLVersion);
-    if (!gl) { GLVersion = "webgl"; gl = GLDrawCanvas.getContext(GLVersion); }
-    if (!gl) { GLVersion = "No WebGL"; GLDrawCanvas.remove(); GLDrawCanvas = null; return; }
+	GLDrawCanvas = document.createElement("canvas");
+	GLDrawCanvas.width = 1000;
+	GLDrawCanvas.height = CanvasDrawHeight;
+	GLVersion = "webgl2";
+	var gl = GLDrawCanvas.getContext(GLVersion, GLDrawGetOptions());
+	if (!gl) { GLVersion = "webgl"; gl = GLDrawCanvas.getContext(GLVersion, GLDrawGetOptions()); }
+	if (!gl) { GLVersion = "No WebGL"; GLDrawCanvas.remove(); GLDrawCanvas = null; return; }
 
-    GLDrawCanvas = GLDrawInitCharacterCanvas(GLDrawCanvas);
+	GLDrawCanvas = GLDrawInitCharacterCanvas(GLDrawCanvas);
 
-    CharacterAppearanceBuildCanvas = GLDrawAppearanceBuild;
+	if (!GLDrawBuildCanvasBackup) {
+		// Keep a backup of the original CharacterAppearanceBuildCanvas function in case we need to revert
+		GLDrawBuildCanvasBackup = CharacterAppearanceBuildCanvas;
+	}
+	CharacterAppearanceBuildCanvas = GLDrawAppearanceBuild;
 
-    // Attach context listeners
-    GLDrawCanvas.addEventListener("webglcontextlost", function (event) {
-        event.preventDefault();
-        console.log("WebGL Drawing disabled: Context Lost. If the context does not restore itself, refresh your page.");
-    }, false);
-    GLDrawCanvas.addEventListener("webglcontextrestored", function () {
-        GLDrawLoad();
-        console.log("WebGL: Context restored.");
-    }, false);
-    
-    console.log("WebGL Drawing enabled: '" + GLVersion + "'");
+	// Attach context listeners
+	GLDrawCanvas.addEventListener("webglcontextlost", GLDrawOnContextLost, false);
+	GLDrawCanvas.addEventListener("webglcontextrestored", GLDrawOnContextRestored, false);
+}
+
+/**
+ * Gets the graphical options saved in the player's local storage.
+ * @returns {WebGLContextAttributes} - WebG context attributes based on saved settings
+ */
+function GLDrawGetOptions() {
+	let antialias = true;
+	let powerPreference = "default";
+	
+	if (localStorage.getItem("GLDraw-antialiasOff")) antialias = false;
+	let savedPowerMode = localStorage.getItem("GLDraw-powerPreference");
+	if (savedPowerMode && (savedPowerMode == "high-performance" || savedPowerMode == "low-power")) {
+		powerPreference = savedPowerMode;
+	}
+	
+	return { antialias, powerPreference};
+}
+
+/**
+ * Handler for WebGL context lost events
+ * @param {WebGLContextEvent} event
+ * @returns {void} - Nothing
+ */
+function GLDrawOnContextLost(event) {
+	event.preventDefault();
+	console.log("WebGL Drawing disabled: Context Lost. If the context does not restore itself, refresh your page.");
+
+	if (GLDrawRecoveryMode) {
+		// If the context has been lost again whilst in crash cooldown, revert to canvas2d drawing
+		return GLDrawRevertToCanvas2D();
+	}
+
+	GLDrawContextLostTimeout = setTimeout(() => {
+		// If the context has not been automatically restored after
+		console.log(`Context not restored after ${GLDrawContextResetSeconds} seconds... resetting canvas.`);
+		GLDrawResetCanvas();
+
+		// After forcefully resetting the canvas, we're in crash cooldown mode
+		GLDrawRecoveryMode = true;
+		GLDrawCrashTimeout = setTimeout(() => GLDrawRecoveryMode = false, GLDrawRevertToDraw2DSeconds * 1000);
+	}, GLDrawContextResetSeconds * 1000);
+}
+
+/**
+ * Restores the original CharacterAppearanceBuildCanvas function, and cleans up any GLDraw resources.
+ * @returns {void} - Nothing
+ */
+function GLDrawRevertToCanvas2D() {
+	const seconds = GLDrawContextResetSeconds + GLDrawRevertToDraw2DSeconds;
+	console.log(`WebGL context lost twice within ${seconds} seconds - reverting to canvas2D rendering`);
+	clearTimeout(GLDrawCrashTimeout);
+	GLDrawCanvas.remove();
+	GLDrawImageCache.clear();
+	CharacterAppearanceBuildCanvas = GLDrawBuildCanvasBackup;
+	GLDrawRebuildCharacters();
+}
+
+/**
+ * Handler for WebGL context restored events
+ * @returns {void} - Nothing
+ */
+function GLDrawOnContextRestored() {
+	console.log("WebGL: Context restored.");
+	clearTimeout(GLDrawContextLostTimeout);
+	GLDrawLoad();
+	GLDrawRebuildCharacters();
+}
+
+/**
+ * Removes the current GLDraw canvas, clears the image cache, and reloads a fresh canvas.
+ * @returns {void} - Nothing
+ */
+function GLDrawResetCanvas() {
+	GLDrawCanvas.remove();
+	GLDrawImageCache.clear();
+	GLDrawLoad();
+	GLDrawRebuildCharacters();
+}
+
+/**
+ * Rebuilds the canvas for any characters that are currently on screen.
+ * @returns {void} - Nothing
+ */
+function GLDrawRebuildCharacters() {
+	for (const C of DrawLastCharacters) {
+		CharacterAppearanceBuildCanvas(C);
+	}
 }
 
 /**
@@ -51,20 +154,21 @@ function GLDrawLoad() {
  * @returns {void} - Nothing
  */
 function GLDrawMakeGLProgam(gl) {
-    var vertexShader = GLDrawCreateShader(gl, GLDrawVertexShaderSource, gl.VERTEX_SHADER);
-    var fragmentShader = GLDrawCreateShader(gl, GLDrawFragmentShaderSource, gl.FRAGMENT_SHADER);
-    var fragmentShaderFullAlpha = GLDrawCreateShader(gl, GLDrawFragmentShaderSourceFullAlpha, gl.FRAGMENT_SHADER);
-    var fragmentShaderHalfAlpha = GLDrawCreateShader(gl, GLDrawFragmentShaderSourceHalfAlpha, gl.FRAGMENT_SHADER);
+	var vertexShader = GLDrawCreateShader(gl, GLDrawVertexShaderSource, gl.VERTEX_SHADER);
+	var fragmentShader = GLDrawCreateShader(gl, GLDrawFragmentShaderSource, gl.FRAGMENT_SHADER);
+	var fragmentShaderFullAlpha = GLDrawCreateShader(gl, GLDrawFragmentShaderSourceFullAlpha, gl.FRAGMENT_SHADER);
+	var fragmentShaderHalfAlpha = GLDrawCreateShader(gl, GLDrawFragmentShaderSourceHalfAlpha, gl.FRAGMENT_SHADER);
 
-    gl.program = GLDrawCreateProgram(gl, vertexShader, fragmentShader);
-    gl.programFull = GLDrawCreateProgram(gl, vertexShader, fragmentShaderFullAlpha);
-    gl.programHalf = GLDrawCreateProgram(gl, vertexShader, fragmentShaderHalfAlpha);
+	gl.program = GLDrawCreateProgram(gl, vertexShader, fragmentShader);
+	gl.programFull = GLDrawCreateProgram(gl, vertexShader, fragmentShaderFullAlpha);
+	gl.programHalf = GLDrawCreateProgram(gl, vertexShader, fragmentShaderHalfAlpha);
 
-    gl.programFull.u_color = gl.getUniformLocation(gl.programFull, "u_color");
-    gl.programHalf.u_color = gl.getUniformLocation(gl.programHalf, "u_color");
+	gl.program.u_alpha = gl.getUniformLocation(gl.program, "u_alpha");
+	gl.programFull.u_color = gl.getUniformLocation(gl.programFull, "u_color");
+	gl.programHalf.u_color = gl.getUniformLocation(gl.programHalf, "u_color");
 
-    gl.textureCache = new Map();
-    gl.maskCache = new Map();
+	gl.textureCache = new Map();
+	gl.maskCache = new Map();
 }
 
 /**
@@ -73,24 +177,24 @@ function GLDrawMakeGLProgam(gl) {
  * @returns {HTMLCanvasElement} - The prepared canvas
  */
 function GLDrawInitCharacterCanvas(canvas) {
-    if (canvas == null) {
-        canvas = document.createElement("canvas");
-        canvas.width = 1000;
-        canvas.height = 1000;
-    }
-    if (canvas.GL == null) {
-        canvas.GL = canvas.getContext(GLVersion);
-        if (canvas.GL == null) {
-            canvas.remove();
-            return GLDrawInitCharacterCanvas(null);
-        }
-    } else {
-        GLDrawClearRect(canvas.GL, 0, 0, 1000, 1000);
-    }
-    if (canvas.GL.program == null) {
-        GLDrawMakeGLProgam(canvas.GL);
-    }
-    return canvas;
+	if (canvas == null) {
+		canvas = document.createElement("canvas");
+		canvas.width = 1000;
+		canvas.height = CanvasDrawHeight;
+	}
+	if (canvas.GL == null) {
+		canvas.GL = canvas.getContext(GLVersion);
+		if (canvas.GL == null) {
+			canvas.remove();
+			return GLDrawInitCharacterCanvas(null);
+		}
+	} else {
+		GLDrawClearRect(canvas.GL, 0, 0, 1000, CanvasDrawHeight);
+	}
+	if (canvas.GL.program == null) {
+		GLDrawMakeGLProgam(canvas.GL);
+	}
+	return canvas;
 }
 
 /**
@@ -124,6 +228,7 @@ var GLDrawFragmentShaderSource = `
 
   uniform sampler2D u_texture;
   uniform sampler2D u_alpha_texture;
+  uniform float u_alpha;
 
   void main() {
     vec4 texColor = texture2D(u_texture, v_texcoord);
@@ -131,6 +236,7 @@ var GLDrawFragmentShaderSource = `
     if (texColor.w < ` + GLDrawAlphaThreshold + `) discard;
     if (alphaColor.w < ` + GLDrawAlphaThreshold + `) discard;
     gl_FragColor = texColor;
+    gl_FragColor.a *= u_alpha;
   }
 `;
 
@@ -190,17 +296,17 @@ var GLDrawFragmentShaderSourceHalfAlpha = `
  * Creates a shader for the current WebGL context from a given source
  * @param {WebGL2RenderingContext} gl - WebGL context
  * @param {string} source - Source of the shader to create
- * @param {WebGLShader} type - The type of the shader to create
+ * @param {GLenum} type - The type of the shader to create
  * @returns {WebGLShader} - The created WebGL shader
  */
 function GLDrawCreateShader(gl, source, type) {
-    var shader = gl.createShader(type);
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        throw 'Could not compile WebGL program. \n\n' + gl.getShaderInfoLog(shader);
-    }
-    return shader;
+	var shader = gl.createShader(type);
+	gl.shaderSource(shader, source);
+	gl.compileShader(shader);
+	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+		throw new Error('Could not compile WebGL program. \n\n' + gl.getShaderInfoLog(shader));
+	}
+	return shader;
 }
 
 /**
@@ -211,185 +317,195 @@ function GLDrawCreateShader(gl, source, type) {
  * @returns {WebGLProgram} - The created WebGL program
  */
 function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
-    var program = gl.createProgram();
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragmentShader);
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        throw 'Could not compile WebGL program. \n\n' + gl.getProgramInfoLog(program);
-    }
+	var program = gl.createProgram();
+	gl.attachShader(program, vertexShader);
+	gl.attachShader(program, fragmentShader);
+	gl.linkProgram(program);
+	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+		throw new Error('Could not compile WebGL program. \n\n' + gl.getProgramInfoLog(program));
+	}
 
-    program.a_position = gl.getAttribLocation(program, "a_position");
-    program.a_texcoord = gl.getAttribLocation(program, "a_texcoord");
+	program.a_position = gl.getAttribLocation(program, "a_position");
+	program.a_texcoord = gl.getAttribLocation(program, "a_texcoord");
 
-    program.u_matrix = gl.getUniformLocation(program, "u_matrix");
-    program.u_texture = gl.getUniformLocation(program, "u_texture");
-    program.u_alpha_texture = gl.getUniformLocation(program, "u_alpha_texture");
+	program.u_matrix = gl.getUniformLocation(program, "u_matrix");
+	program.u_texture = gl.getUniformLocation(program, "u_texture");
+	program.u_alpha_texture = gl.getUniformLocation(program, "u_alpha_texture");
 
-    program.position_buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, program.position_buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1,]), gl.STATIC_DRAW);
+	program.position_buffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, program.position_buffer);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1,]), gl.STATIC_DRAW);
 
-    program.texcoord_buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, program.texcoord_buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1,]), gl.STATIC_DRAW);
+	program.texcoord_buffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, program.texcoord_buffer);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1,]), gl.STATIC_DRAW);
 
-    return program;
+	return program;
 }
 
 /**
  * Draws an image from a given url to a WebGLRenderingContext, used when the character is blinking
  * @param {string} url - URL of the image to render
- * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {WebGL2RenderingContext} gl - WebGL context
  * @param {number} dstX - Position of the image on the X axis
  * @param {number} dstY - Position of the image on the Y axis
  * @param {string} color - Color of the image to draw
  * @param {boolean} fullAlpha - Whether or not the full alpha should be rendered
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
+ * @param {number} opacity - The opacity at which to draw the image
  * @returns {void} - Nothing
  */
-function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks) { GLDrawImage(url, gl, dstX, dstY, 500, color, fullAlpha, alphaMasks); }
+function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks, opacity, rotate) { GLDrawImage(url, gl, dstX, dstY, 500, color, fullAlpha, alphaMasks, opacity, rotate); }
 /**
  * Draws an image from a given url to a WebGLRenderingContext
  * @param {string} url - URL of the image to render
- * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {WebGL2RenderingContext} gl - WebGL context
  * @param {number} dstX - Position of the image on the X axis
  * @param {number} dstY - Position of the image on the Y axis
  * @param {number} offsetX - Additional offset to add to the X axis (for blinking)
  * @param {string} color - Color of the image to draw
  * @param {boolean} fullAlpha - Whether or not the full alpha should be rendered
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
+ * @param {number} [opacity=1] - The opacity at which to draw the image
+ * @param {boolean} [rotate=false] - If the image should be rotated by 180 degress
  * @returns {void} - Nothing
  */
-function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks) {
-    offsetX = offsetX || 0;
-    var tex = GLDrawLoadImage(gl, url);
-    var mask = GLDrawLoadMask(gl, tex.width, tex.height, dstX, dstY, alphaMasks);
+function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks, opacity, rotate = false) {
+	offsetX = offsetX || 0;
+	opacity = typeof opacity === "number" ? opacity : 1;
+	var tex = GLDrawLoadImage(gl, url);
+	var mask = GLDrawLoadMask(gl, tex.width, tex.height, dstX, dstY, alphaMasks);
+	if (rotate) dstX = 500 - dstX;
+	const sign = rotate ? -1 : 1;
 
-    var program = (color == null) ? gl.program : (fullAlpha ? gl.programFull : gl.programHalf);
+	var program = (color == null) ? gl.program : (fullAlpha ? gl.programFull : gl.programHalf);
 
-    gl.useProgram(program);
+	gl.useProgram(program);
 
-    gl.enable(gl.BLEND);
-    gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.SRC_ALPHA, gl.DST_ALPHA);
+	gl.enable(gl.BLEND);
+	gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, program.position_buffer);
-    gl.enableVertexAttribArray(program.a_position);
-    gl.vertexAttribPointer(program.a_position, 2, gl.FLOAT, false, 0, 0);
-    gl.bindBuffer(gl.ARRAY_BUFFER, program.texcoord_buffer);
-    gl.enableVertexAttribArray(program.a_texcoord);
-    gl.vertexAttribPointer(program.a_texcoord, 2, gl.FLOAT, false, 0, 0);
+	gl.bindBuffer(gl.ARRAY_BUFFER, program.position_buffer);
+	gl.enableVertexAttribArray(program.a_position);
+	gl.vertexAttribPointer(program.a_position, 2, gl.FLOAT, false, 0, 0);
+	gl.bindBuffer(gl.ARRAY_BUFFER, program.texcoord_buffer);
+	gl.enableVertexAttribArray(program.a_texcoord);
+	gl.vertexAttribPointer(program.a_texcoord, 2, gl.FLOAT, false, 0, 0);
 
-    var matrix = m4.orthographic(0, gl.canvas.width, gl.canvas.height, 0, -1, 1);
-    matrix = m4.translate(matrix, dstX + offsetX, dstY, 0);
-    matrix = m4.scale(matrix, tex.width, tex.height, 1);
+	var matrix = m4.orthographic(0, gl.canvas.width, gl.canvas.height, 0, -1, 1);
+	matrix = m4.translate(matrix, dstX + offsetX, dstY, 0);
+	matrix = m4.scale(matrix, sign * tex.width, sign * tex.height, 1);
 
-    gl.uniformMatrix4fv(program.u_matrix, false, matrix);
-    gl.uniform1i(program.u_texture, 0);
-    gl.uniform1i(program.u_alpha_texture, 1);
+	gl.uniformMatrix4fv(program.u_matrix, false, matrix);
+	gl.uniform1i(program.u_texture, 0);
+	gl.uniform1i(program.u_alpha_texture, 1);
+	if (program.u_alpha != null) gl.uniform1f(program.u_alpha, opacity);
 
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, tex.texture);
-    gl.activeTexture(gl.TEXTURE1);
-    gl.bindTexture(gl.TEXTURE_2D, mask);
+	gl.activeTexture(gl.TEXTURE0);
+	gl.bindTexture(gl.TEXTURE_2D, tex.texture);
+	gl.activeTexture(gl.TEXTURE1);
+	gl.bindTexture(gl.TEXTURE_2D, mask);
 
-    if (program.u_color != null) gl.uniform4fv(program.u_color, GLDrawHexToRGBA(color));
+	if (program.u_color != null) gl.uniform4fv(program.u_color, GLDrawHexToRGBA(color, opacity));
 
-    gl.drawArrays(gl.TRIANGLES, 0, 6);
+	gl.drawArrays(gl.TRIANGLES, 0, 6);
 }
 
 /**
  * Draws a canvas on the WebGL canvas for the blinking effect
- * @param {WebGLRenderingContext} gl - WebGL context
- * @param {ImageData} Img - Canvas to get the data of
+ * @param {WebGL2RenderingContext} gl - WebGL context
+ * @param {HTMLImageElement | HTMLCanvasElement} Img - Canvas to get the data of
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
  */
-function GLDraw2DCanvasBlink(gl, Img, X, Y, alphaMasks) { GLDraw2DCanvas(gl, Img, X + 500, Y, 500,  alphaMasks); }
+function GLDraw2DCanvasBlink(gl, Img, X, Y, alphaMasks) { GLDraw2DCanvas(gl, Img, X + 500, Y, alphaMasks); }
 /**
  * Draws a canvas on the WebGL canvas
- * @param {WebGLRenderingContext} gl - WebGL context
- * @param {ImageData} Img - Canvas to get the data of
+ * @param {WebGL2RenderingContext} gl - WebGL context
+ * @param {HTMLImageElement | HTMLCanvasElement} Img - Canvas to get the data of
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
  */
-function GLDraw2DCanvas(gl, Img, X, Y, alphaMasks) { 
-    var TempCanvasName = Img.getAttribute("name");
-    gl.textureCache.delete(TempCanvasName);
-    GLDrawImageCache.set(TempCanvasName, Img);
-    GLDrawImage(TempCanvasName, gl, X, Y, 0, null, null, alphaMasks);
+function GLDraw2DCanvas(gl, Img, X, Y, alphaMasks) {
+	var TempCanvasName = Img.getAttribute("name");
+	gl.textureCache.delete(TempCanvasName);
+	GLDrawImageCache.set(TempCanvasName, Img);
+	GLDrawImage(TempCanvasName, gl, X, Y, 0, null, null, alphaMasks);
 }
 
 /**
  * Sets texture info from image data
  * @param {WebGLRenderingContext} gl - WebGL context
- * @param {ImageData} Img - Image to get the data of
- * @param {WebGLTexture} textureInfo - Texture information
+ * @param {HTMLImageElement} Img - Image to get the data of
+ * @param {{ width: number; height: number; texture: WebGLTexture; }} textureInfo - Texture information
  * @returns {void} - Nothing
  */
 function GLDrawBingImageToTextureInfo(gl, Img, textureInfo) {
-    textureInfo.width = Img.width;
-    textureInfo.height = Img.height;
-    gl.bindTexture(gl.TEXTURE_2D, textureInfo.texture);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, Img);
+	textureInfo.width = Img.width;
+	textureInfo.height = Img.height;
+	gl.bindTexture(gl.TEXTURE_2D, textureInfo.texture);
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, Img);
 }
 
 /**
  * Loads image texture data
- * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {WebGL2RenderingContext} gl - WebGL context
  * @param {string} url - URL of the image
- * @returns {WebGLTexture} - The texture info of a given image
+ * @returns {{ width: number; height: number; texture: WebGLTexture; }} - The texture info of a given image
  */
 function GLDrawLoadImage(gl, url) {
 
-    var textureInfo = gl.textureCache.get(url);
+	var textureInfo = gl.textureCache.get(url);
 
-    if (!textureInfo) {
-        var tex = gl.createTexture();
+	if (!textureInfo) {
+		var tex = gl.createTexture();
 
-        gl.bindTexture(gl.TEXTURE_2D, tex);
-        textureInfo = { width: 1, height: 1, texture: tex, };
-        gl.textureCache.set(url, textureInfo);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+		gl.bindTexture(gl.TEXTURE_2D, tex);
+		/** @type { { width: number; height: number; texture: WebGLTexture; } } */
+		textureInfo = { width: 1, height: 1, texture: tex, };
+		gl.textureCache.set(url, textureInfo);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
 
-        var Img = GLDrawImageCache.get(url);
+		var Img = GLDrawImageCache.get(url);
 
-        if (Img) {
-            GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
-        } else {
-            Img = new Image();
-            GLDrawImageCache.set(url, Img);
+		if (Img) {
+			GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
+		} else {
+			gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 0, 0]));
+			Img = new Image();
+			GLDrawImageCache.set(url, Img);
 
-            ++GLDrawCacheTotalImages;
-            Img.addEventListener('load', function () {
-                GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
-                ++GLDrawCacheLoadedImages;
-                if (GLDrawCacheLoadedImages == GLDrawCacheTotalImages) { Player.MustDraw = true; CharacterLoadCanvasAll(); }
-            });
-            Img.addEventListener('error', function () {
-                if (Img.errorcount == null) Img.errorcount = 0;
-                Img.errorcount += 1;
-                if (Img.errorcount < 3) {
-                    Img.src = Img.src;
-                } else {
-                    console.log("Error loading image " + Img.src);
-                    ++GLDrawCacheLoadedImages;
-                    if (GLDrawCacheLoadedImages == GLDrawCacheTotalImages) CharacterLoadCanvasAll();
-                }
-            });
-            Img.src = url;
-        }
-    }
-    return textureInfo;
+			++GLDrawCacheTotalImages;
+			Img.addEventListener('load', function () {
+				GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
+				++GLDrawCacheLoadedImages;
+				if (GLDrawCacheLoadedImages == GLDrawCacheTotalImages) { Player.MustDraw = true; CharacterLoadCanvasAll(); }
+			});
+			Img.addEventListener('error', function () {
+				if (Img.errorcount == null) Img.errorcount = 0;
+				Img.errorcount += 1;
+				if (Img.errorcount < 3) {
+					// eslint-disable-next-line no-self-assign
+					Img.src = Img.src;
+				} else {
+					console.log("Error loading image " + Img.src);
+					++GLDrawCacheLoadedImages;
+					if (GLDrawCacheLoadedImages == GLDrawCacheTotalImages) CharacterLoadCanvasAll();
+				}
+			});
+			Img.src = url;
+		}
+	}
+	return textureInfo;
 }
 
 /**
  * Loads alpha mask data
- * @param {WebGLRenderingContext} gl - The WebGL context
+ * @param {WebGL2RenderingContext} gl - The WebGL context
  * @param {number} texWidth - The width of the texture to mask
  * @param {number} texHeight - The height of the texture to mask
  * @param {number} offsetX - The X offset at which the texture is to be drawn on the target canvas
@@ -443,43 +559,44 @@ function GLDrawClearRectBlink(gl, x, y, width, height) { GLDrawClearRect(gl, x +
  * @returns {void} - Nothing
  */
 function GLDrawClearRect(gl, x, y, width, height) {
-    gl.enable(gl.SCISSOR_TEST);
-    gl.scissor(x, y, width, height);
-    gl.clearColor(0, 0, 0, 0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.disable(gl.SCISSOR_TEST);
+	gl.enable(gl.SCISSOR_TEST);
+	gl.scissor(x, y, width, height);
+	gl.clearColor(0, 0, 0, 0);
+	gl.clear(gl.COLOR_BUFFER_BIT);
+	gl.disable(gl.SCISSOR_TEST);
 }
 
 /**
  * Converts a hex color to a RGBA color
  * @param {string} color - Hex color code to convert to RGBA
- * @return {string} - Converted color code
+ * @param {number} alpha - The alpha value to use for the resulting RGBA
+ * @return {number[]} - Converted color code
  */
-function GLDrawHexToRGBA(color) {
-    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    color = color.replace(shorthandRegex, function (m, r, g, b) { return r + r + g + g + b + b; });
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16), 1] : [0, 0, 0, 1];
+function GLDrawHexToRGBA(color, alpha = 1) {
+	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	color = color.replace(shorthandRegex, function (m, r, g, b) { return r + r + g + g + b + b; });
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+	return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16), alpha] : [0, 0, 0, alpha];
 }
 
 /**
  * Creates the given character canvas with WebGL
  * @param {Character} C - Character to build the canvas for
- * @returns {void} - Nothing 
+ * @returns {void} - Nothing
  */
 function GLDrawAppearanceBuild(C) {
-    GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, 1000);
-    CommonDrawCanvasPrepare(C);
-    CommonDrawAppearanceBuild(C, {
-		clearRect: (x, y, w, h) => GLDrawClearRect(GLDrawCanvas.GL, x, 1000 - y - h, w, h),
-		clearRectBlink: (x, y, w, h) => GLDrawClearRectBlink(GLDrawCanvas.GL, x, 1000 - y - h, w, h),
-		drawImage: (src, x, y, alphaMasks) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, null, null, alphaMasks),
-		drawImageBlink: (src, x, y, alphaMasks) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, null, null, alphaMasks),
-		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, color, fullAlpha, alphaMasks),
-		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, color, fullAlpha, alphaMasks),
+	GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, CanvasDrawHeight);
+	CommonDrawCanvasPrepare(C);
+	CommonDrawAppearanceBuild(C, {
+		clearRect: (x, y, w, h) => GLDrawClearRect(GLDrawCanvas.GL, x, CanvasDrawHeight - y - h, w, h),
+		clearRectBlink: (x, y, w, h) => GLDrawClearRectBlink(GLDrawCanvas.GL, x, CanvasDrawHeight - y - h, w, h),
+		drawImage: (src, x, y, alphaMasks, opacity, rotate) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, null, null, alphaMasks, opacity, rotate),
+		drawImageBlink: (src, x, y, alphaMasks, opacity, rotate) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, null, null, alphaMasks, opacity, rotate),
+		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, color, fullAlpha, alphaMasks, opacity, rotate),
+		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, color, fullAlpha, alphaMasks, opacity, rotate),
 		drawCanvas: (Img, x, y, alphaMasks) => GLDraw2DCanvas(GLDrawCanvas.GL, Img, x, y, alphaMasks),
 		drawCanvasBlink: (Img, x, y, alphaMasks) => GLDraw2DCanvasBlink(GLDrawCanvas.GL, Img, x, y, alphaMasks),
 	});
-    C.Canvas.getContext("2d").drawImage(GLDrawCanvas, 0, 0);
-    C.CanvasBlink.getContext("2d").drawImage(GLDrawCanvas, -500, 0);
+	C.Canvas.getContext("2d").drawImage(GLDrawCanvas, 0, 0);
+	C.CanvasBlink.getContext("2d").drawImage(GLDrawCanvas, -500, 0);
 }

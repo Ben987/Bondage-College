@@ -29,11 +29,11 @@ var InventoryItemNoseNoseRingOptions = [
 		Name: "Leash",
 		Property: {
 			Type: "Leash",
-			Effect: [],
+			Effect: ["Leash"],
 			SetPose: [],
-		}, 
+		},
 	},
-]
+];
 
 /**
  * Loads the item extension properties
@@ -48,7 +48,7 @@ function InventoryItemNoseNoseRingLoad() {
  * @returns {void} - Nothing
  */
 function InventoryItemNoseNoseRingDraw() {
-	ExtendedItemDraw(InventoryItemNoseNoseRingOptions,"NoseRingPose");
+	ExtendedItemDraw(InventoryItemNoseNoseRingOptions, "NoseRingPose");
 }
 
 /**
@@ -76,10 +76,10 @@ function InventoryItemNoseNoseRingPublishAction(C, Option, PreviousOption) {
 }
 
 /**
- * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a 
- * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default 
- * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them. 
- * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on
+ * a  per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their
+ * default "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on
+ * them. That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
  * @param {Character} C - The NPC to whom the restraint is applied
  * @param {Option} Option - The chosen option for this extended item
  * @returns {void} - Nothing
@@ -90,27 +90,27 @@ function InventoryItemNoseNoseRingNpcDialog(C, Option) {
 
 
 /**
- * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
+ * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate
+ * error message, if not.
  * @param {Character} C - The character wearing the item
- * @param {Option} Option - The next option to use on the character
- * @returns {boolean} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
+ * @param {Item} Item - The equipped item
+ * @param {ExtendedItemOption} Option - The next option to use on the character
+ * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
-function InventoryItemNoseNoseRingValidate(C, Option) {
-	var ChainShortPrerequisites = true;
+function InventoryItemNoseNoseRingValidate(C, Item, Option) {
+	var ChainShortPrerequisites = "";
 	switch (Option.Name) {
 		case "Base":
 			break;
 		case "ChainShort":
 			if (!InventoryAllow(C, ["NotSuspended", "CanKneel", "NotMounted"], true)){
-				DialogExtendedMessage = DialogText;
-				ChainShortPrerequisites = false;
+				ChainShortPrerequisites = DialogText;
 			} // if
 			break;
 		case "ChainLong":
 		case "Leash":
 			if (C.Pose.indexOf("Suspension") >= 0) {
-				DialogExtendedMessage = DialogFind(Player, "RemoveSuspensionForItem");
-				ChainShortPrerequisites = false;
+				ChainShortPrerequisites = DialogFindPlayer("RemoveSuspensionForItem");
 			} // if
 			break;
 	} // switch

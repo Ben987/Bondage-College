@@ -8,14 +8,14 @@ var CollegeTeacherMildredLove = 0;
  * Checks, if the teacher can be invited to the player's room
  * @returns {boolean} - Returns true, if the player can invite the teacher to her room, false otherwise
  */
-function CollegeTeacherCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
+function CollegeTeacherCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)); }
 
 /**
  * Checks, if Mildred's love level is higher than a given value
  * @param {string} LoveLevel - The level of love to check against
  * @returns {boolean} - Returns true, if Mildred's love is equal or higher than the given level, false otherwise
  */
-function CollegeTeacherMildredLoveIs(LoveLevel) { return (CollegeTeacherMildredLove >= parseInt(LoveLevel)) }
+function CollegeTeacherMildredLoveIs(LoveLevel) { return (CollegeTeacherMildredLove >= parseInt(LoveLevel)); }
 
 /**
  * Fully dress-up Mildred
@@ -32,8 +32,8 @@ function CollegeTeacherMildredClothes() {
 	InventoryWear(CollegeTeacherMildred, "H0940", "Height", "Default");
 	InventoryWear(CollegeTeacherMildred, "Normal", "BodyUpper", "White");
 	InventoryWear(CollegeTeacherMildred, "Normal", "BodyLower", "White");
-	InventoryWear(CollegeTeacherMildred, "Default", "Hands", "White");
-	InventoryWear(CollegeTeacherMildred, "Default", "Head", "White");
+	InventoryWear(CollegeTeacherMildred, "Default", "Hands", "Default");
+	InventoryWear(CollegeTeacherMildred, "Default", "Head", "Default");
 	InventoryWear(CollegeTeacherMildred, "HairBack21", "HairBack", "#626060");
 	InventoryWear(CollegeTeacherMildred, "HairFront3", "HairFront", "#626060");
 	InventoryWear(CollegeTeacherMildred, "Bra1", "Bra", "#2222AA");
@@ -57,7 +57,7 @@ function CollegeTeacherLoad() {
 			for (let P = 1; P < PrivateCharacter.length; P++)
 				if (PrivateCharacter[P].Name == "Mildred")
 					return;
-		
+
 		// Generates the model
 		CollegeTeacherMildred = CharacterLoadNPC("NPC_CollegeTeacher_Mildred");
 		CollegeTeacherMildred.AllowItem = false;
@@ -92,7 +92,7 @@ function CollegeTeacherClick() {
 }
 
 /**
- * When Mildred love towards the player changes, it can also trigger an event.  
+ * When Mildred love towards the player changes, it can also trigger an event.
  * When a good or bad move is done, her expression will change quickly.
  * @param {string} LoveChange - The amount, the teacher's love changes
  * @param {string} Event - The event to trigger
@@ -111,7 +111,7 @@ function CollegeTeacherMildredLoveChange(LoveChange, Event) {
 	if (Event == "Hit") {
 		CharacterSetFacialExpression(Player, "Eyes", "Closed", 3);
 		CharacterSetFacialExpression(Player, "Blush", "Medium", 3);
-	}		
+	}
 	if (Event == "Gag") InventoryWear(Player, "DogMuzzleExposed", "ItemMouth");
 }
 

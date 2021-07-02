@@ -1,6 +1,6 @@
 "use strict";
 
-/** 
+/**
  * Handles the value of a HTML element. It sets the value of the element when the Value parameter is provided or it returns the value when the parameter is omitted
  * @param {string} ID - The id of the element for which we want to get/set the value.
  * @param {string} [Value] - The value to give to the element (if applicable)
@@ -16,7 +16,7 @@ function ElementValue(ID, Value) {
 
 // Returns the current HTML content of an element
 
-/** 
+/**
  * Handles the content of a HTML element. It sets the content of the element when the Content parameter is provided or it returns the value when the parameter is omitted
  * @param {string} ID - The id of the element for which we want to get/set the value.
  * @param {string} [Content] - The content/inner HTML to give to the element (if applicable)
@@ -46,13 +46,13 @@ function ElementCreateTextArea(ID) {
 	}
 }
 
-/** 
+/**
  * Creates a new text input element in the main document.Does not create a new element if there is already an existing one with the same ID
  * @param {string} ID - The id of the input tag to create.
  * @param {string} Type - Type of the input tag to create.
  * @param {string} Value - Value of the input tag to create.
  * @param {string} MaxLength - Maximum input tag of the input to create.
- * @returns {void} - Nothing
+ * @returns {HTMLInputElement} - The created HTML input element
  */
 function ElementCreateInput(ID, Type, Value, MaxLength) {
 	if (document.getElementById(ID) == null) {
@@ -66,6 +66,41 @@ function ElementCreateInput(ID, Type, Value, MaxLength) {
 		Input.addEventListener("keydown", KeyDown);
 		Input.className = "HideOnPopup";
 		document.body.appendChild(Input);
+		return Input;
+	}
+}
+
+/**
+ * Creates a new range input element in the main document. Does not create a new element if there is already an
+ * existing one with the same id
+ * @param {string} id - The id of the input tag to create
+ * @param {number} value - The initial value of the input
+ * @param {number} min - The minimum value of the input
+ * @param {number} max - The maximum value of the input
+ * @param {number} step - The increment size of the input
+ * @param {string} [thumbIcon] - The icon to use for the range input's "thumb" (handle). Can currently be set to "lock"
+ * or "blindfold". If not set, the slider will have a default appearance with no custom thumb.
+ * @param {boolean} [vertical] - Whether this range input is a vertical slider (defaults to false)
+ * @returns {HTMLInputElement} - The created HTML input element
+ */
+function ElementCreateRangeInput(id, value, min, max, step, thumbIcon, vertical) {
+	if (document.getElementById(id) == null) {
+		const input = document.createElement("input");
+		input.setAttribute("id", id);
+		input.setAttribute("name", id);
+		input.setAttribute("type", "range");
+		input.removeAttribute("readonly");
+		input.setAttribute("min", min);
+		input.setAttribute("max", max);
+		input.setAttribute("step", step);
+		input.value = value;
+		if (thumbIcon) input.setAttribute("data-thumb", thumbIcon);
+		input.setAttribute("onfocus", "this.removeAttribute('readonly');");
+		input.addEventListener("keydown", KeyDown);
+		input.classList.add("HideOnPopup");
+		if (vertical) input.classList.add("Vertical");
+		document.body.appendChild(input);
+		return input;
 	}
 }
 
@@ -82,14 +117,14 @@ function ElementCreateInput(ID, Type, Value, MaxLength) {
  *        <div>Option n</div>
  *     </div>
  * </div>
- * This construct is built automatically and ignores the original select statement. All the logic is handled by 
+ * This construct is built automatically and ignores the original select statement. All the logic is handled by
  * event handlers that are connected to the various divs. See comments in the code.
  * What this function cannot handle at the moment:
  * - The size is always set to 1
  * - Multiple selects are impossible
  * @param {string} ID - The name of the select item. The outer div will get this name, for positioning. The select
- * tag will get the name ID+"-select" 
- * @param {atring[]} Options - The list of options for the current select statement
+ * tag will get the name ID+"-select"
+ * @param {string[]} Options - The list of options for the current select statement
  * @param {function} [ClickEventListener=null] - An event listener to be called, when the value of the drop down box changes
  * @returns {void} - Nothing
  */
@@ -114,7 +149,7 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
 			Option.setAttribute("value", Options[i]);
 			Option.innerHTML = Options[i];
 			InnerDiv.innerHTML = Options[i];
-			InnerDiv.addEventListener("click", function (e) {
+			InnerDiv.addEventListener("click", function () {
 				// when an item is clicked, update the original select box, and the selected item:
 				var s = this.parentNode.parentNode.getElementsByTagName("select")[0]; // Representation of the select tag
 				var h = this.parentNode.previousSibling; // Representation of the dropdown box
@@ -147,7 +182,7 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
 			this.nextSibling.classList.toggle("select-hide");
 		});
 		// add an event listener to the <select> tag
-		if (ClickEventListener != null) Select.addEventListener("change", ClickEventListener)
+		if (ClickEventListener != null) Select.addEventListener("change", ClickEventListener);
 		// Add alle the items to the enclosing <di>
 		CustomSelect.appendChild(Select);
 		CustomSelect.appendChild(SelectedItem);
@@ -163,8 +198,8 @@ function ElementCreateDropdown(ID, Options, ClickEventListener) {
  * @returns {void} - Nothing
  */
 function ElementCloseAllSelect(elmnt) {
-    /*a function that will close all select boxes in the document,
-    except the current select box:*/
+	/*a function that will close all select boxes in the document,
+	except the current select box:*/
 	var arrNo = [];
 	var y = document.getElementsByClassName("select-selected");
 	for (let i = 0; i < y.length; i++) {
@@ -176,7 +211,7 @@ function ElementCloseAllSelect(elmnt) {
 	}
 }
 
-/** 
+/**
  * Creates a new div element in the main document. Does not create a new element if there is already an existing one with the same ID
  * @param {string} ID - The id of the div tag to create.
  * @returns {void} - Nothing
@@ -202,54 +237,54 @@ function ElementRemove(ID) {
 		document.getElementById(ID).parentNode.removeChild(document.getElementById(ID));
 }
 
-/** 
- * Draws an existing HTML element at a specific position within the document. The element is "centered" on the given coordinates by dividing its height and width by two. 
+/**
+ * Draws an existing HTML element at a specific position within the document. The element is "centered" on the given coordinates by dividing its height and width by two.
  * @param {string} ElementID - The id of the input tag to (re-)position.
  * @param {number} X - Center point of the element on the X axis.
  * @param {number} Y - Center point of the element on the Y axis.
  * @param {number} W - Width of the element.
- * @param {number} H - Height of the element.
+ * @param {number} [H] - Height of the element.
  * @returns {void} - Nothing
  */
 function ElementPosition(ElementID, X, Y, W, H) {
+	var E = document.getElementById(ElementID);
 
-	// Different positions based on the width/height ratio
-	var Font;
-	var Height;
-	var Left;
-	var Width;
-	var Top;
-	if (DrawScreenWidth <= DrawScreenHeight * 2) {
-		Font = (DrawScreenWidth / 50);
-		Height = H ? (H * DrawScreenWidth / 2000) : (Font * 1.15);
-		Left = ((X - (W / 2)) * DrawScreenWidth / 2000);
-		Width = (W * DrawScreenWidth / 2000) - 18;
-		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4) - (Height / 2);
-	} else {
-		Font = (DrawScreenHeight / 25);
-		Height = H ? (H * DrawScreenHeight / 1000) : (Font * 1.15);
-		Left = ((X - (W / 2)) * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
-		Width = (W * DrawScreenHeight / 1000) - 18;
-		Top = (Y * DrawScreenHeight / 1000) - (Height / 2);
+	if (!E) {
+		console.warn("A call to ElementPosition was made on non-existent element with ID '" + ElementID + "'");
+		return;
 	}
 
+	// For a vertical slider, swap the width and the height (the transformation is handled by CSS)
+	if (E.tagName.toLowerCase() === "input" && E.getAttribute("type") === "range" && E.classList.contains("Vertical")) {
+		var tmp = W;
+		W = H;
+		H = tmp;
+	}
+
+	// Different positions based on the width/height ratio
+	const HRatio = MainCanvas.canvas.clientHeight / 1000;
+	const WRatio = MainCanvas.canvas.clientWidth / 2000;
+	const Font = MainCanvas.canvas.clientWidth <= MainCanvas.canvas.clientHeight * 2 ? MainCanvas.canvas.clientWidth / 50 : MainCanvas.canvas.clientHeight / 25;
+	const Height = H ? H * HRatio : Font * 1.15;
+	const Width = W * WRatio - 18;
+	const Top = MainCanvas.canvas.offsetTop + Y * HRatio - Height / 2;
+	const Left = MainCanvas.canvas.offsetLeft + (X - W / 2) * WRatio;
+
 	// Sets the element style
-	var E = document.getElementById(ElementID);
 	Object.assign(E.style, {
 		fontSize: Font + "px",
-		fontFamily: "Arial",
-		position: "absolute",
+		fontFamily: CommonGetFontName(),
+		position: "fixed",
 		left: Left + "px",
 		top: Top + "px",
 		width: Width + "px",
 		height: Height + "px",
 		display: "inline"
 	});
-
 }
 
-/** 
- * Draws an existing HTML element at a specific position within the document. The element will not be centered on its given coordinates unlike the ElementPosition function. 
+/**
+ * Draws an existing HTML element at a specific position within the document. The element will not be centered on its given coordinates unlike the ElementPosition function.
  * @param {string} ElementID - The id of the input tag to (re-)position.
  * @param {number} X - Starting point of the element on the X axis.
  * @param {number} Y - Starting point of the element on the Y axis.
@@ -260,30 +295,20 @@ function ElementPosition(ElementID, X, Y, W, H) {
 function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 	// Different positions based on the width/height ratio
-	var Left;
-	var Width;
-	var Top;
-	var Height;
-	if (DrawScreenWidth <= DrawScreenHeight * 2) {
-		Font = Font * DrawScreenWidth / 2000;
-		Left = X * DrawScreenWidth / 2000;
-		Width = W * DrawScreenWidth / 2000;
-		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4);
-		Height = H * DrawScreenWidth / 2000;
-	} else {
-		Font = Font * DrawScreenHeight / 1000;
-		Left = (X * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
-		Width = W * DrawScreenHeight / 1000;
-		Top = Y * DrawScreenHeight / 1000;
-		Height = H * DrawScreenHeight / 1000;
-	}
+	const HRatio = MainCanvas.canvas.clientHeight / 1000;
+	const WRatio = MainCanvas.canvas.clientWidth / 2000;
+	Font *= Math.max(HRatio, WRatio);
+	const Top = MainCanvas.canvas.offsetTop + Y * HRatio;
+	const Height = H * HRatio;
+	const Left = MainCanvas.canvas.offsetLeft + X * WRatio;
+	const Width = W * WRatio;
 
 	// Sets the element style
 	var E = document.getElementById(ElementID);
 	Object.assign(E.style, {
 		fontSize: Font + "px",
-		fontFamily: "Arial",
-		position: "absolute",
+		fontFamily: CommonGetFontName(),
+		position: "fixed",
 		left: Left + "px",
 		top: Top + "px",
 		width: Width + "px",
@@ -293,7 +318,7 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 }
 
-/** 
+/**
  * Sets a custom data-attribute to a specified value on a specified element
  * @param {string} ID - The id of the element to create/set the data attribute of.
  * @param {string} Name - Name of the data attribute. ("data-" will be automatically appended to it.)
@@ -318,17 +343,30 @@ function ElementScrollToEnd(ID) {
 }
 
 /**
- * Checks if a given HTML element is scrolled to the very bottom. 
+ * Returns the given element's scroll position as a percentage, with the top of the element being close to 0 depending on scroll bar size, and the bottom being around 1.
+ * To clarify, this is the position of the bottom edge of the scroll bar.
+ * @param {string} ID - The id of the element to find the scroll percentage of.
+ * @returns {(number|null)} - A float representing the scroll percentage.
+ */
+function ElementGetScrollPercentage(ID) {
+	var element = document.getElementById(ID);
+	if (element != null) return (element.scrollTop + element.clientHeight) / element.scrollHeight;
+
+	return null;
+}
+
+/**
+ * Checks if a given HTML element is scrolled to the very bottom.
  * @param {string} ID - The id of the element to check for scroll height.
  * @returns {boolean} - Returns TRUE if the specified element is scrolled to the very bottom
  */
 function ElementIsScrolledToEnd(ID) {
 	var element = document.getElementById(ID);
-	return element != null && element.scrollHeight - element.scrollTop - element.clientHeight < 1
+	return element != null && element.scrollHeight - element.scrollTop - element.clientHeight < 1;
 }
 
 /**
- * Gives focus to a specified existing element for non-mobile users. 
+ * Gives focus to a specified existing element for non-mobile users.
  * @param {string} ID - The id of the element to give focus to.
  * @returns {void} - Nothing
  */

@@ -62,14 +62,13 @@ function CreationRun() {
 
 }
 
-// When the server response returns, we analyze it's data
 /**
  * Handles the server response to a creation request. Creates the character, if possible,
  * initializes the basic data and sends the newborn to the maid in the main hall.
- * @param {*} data - The set of data, received from the server
+ * @param {object} data - The set of data, received from the server
  * @param {string} data.ServerAnswer - The outcome of the creation request: should always be "AccountCreated"
  * @param {string} data.OnlineID - The ID of the newly created account
- * @param {string} data.MemberNumber - The member number of the newly created account
+ * @param {number} data.MemberNumber - The member number of the newly created account
  * @returns {void} - Nothing
  */
 function CreationResponse(data) {
@@ -89,6 +88,8 @@ function CreationResponse(data) {
 			Player.FriendList = [];
 			Player.GhostList = [];
 			Player.Lovership = [];
+			Player.FriendNames = new Map();
+			Player.SubmissivesList = new Set();
 
 			// Imports logs, inventory and Sarah status from the Bondage College
 			CreationMessage = "";
@@ -97,9 +98,13 @@ function CreationResponse(data) {
 			Log = [];
 			ImportBondageCollege(Player);
 
-			// Calls the preference init to make sure the preferences are loaded correctly
-			PreferenceInit(Player);
+			// Load/initialise player settings and global variables
+			PreferenceInitPlayer();
 			ActivitySetArousal(Player, 0);
+			NotificationLoad();
+
+			// New accounts aren't updating from old version
+			CommonVersionUpdated = false;
 
 			// Flush the controls and enters the main hall
 			ServerPlayerAppearanceSync();
@@ -121,7 +126,7 @@ function CreationResponse(data) {
 }
 
 /**
- * Handles click events in the creation dialog. 
+ * Handles click events in the creation dialog.
  * Imports data from Bondage College and creates a character.
  * @returns {void} - Nothing
  */
@@ -146,21 +151,24 @@ function CreationClick() {
 		var Password2 = ElementValue("InputPassword2");
 		var Email = ElementValue("InputEmail");
 
-		// If both password matches
-		if (Password1 == Password2) {
+		// If info is not too long
+		if (CharacterName.length <= 20 && Name.length <= 20 && Password1.length <= 20) {
+			// If both password matches
+			if (Password1 == Password2) {
 
-			// Makes sure the data is valid
-			var LN = /^[a-zA-Z0-9]+$/;
-			var LS = /^[a-zA-Z ]+$/;
-			var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
-			if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100)) {
-				CreationMessage = TextGet("CreatingCharacter");
-				ServerSend("AccountCreate", { Name: CharacterName, AccountName: Name, Password: Password1, Email: Email });
-			}
-			else
-				CreationMessage = TextGet("InvalidData");
+				// Makes sure the data is valid
+				var LN = /^[a-zA-Z0-9]+$/;
+				var LS = /^[a-zA-Z ]+$/;
+				var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
+				if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100)) {
+					CreationMessage = TextGet("CreatingCharacter");
+					ServerSend("AccountCreate", { Name: CharacterName, AccountName: Name, Password: Password1, Email: Email });
+				}
+				else
+					CreationMessage = TextGet("InvalidData");
 
-		} else CreationMessage = TextGet("BothPasswordDoNotMatch");
+			} else CreationMessage = TextGet("BothPasswordDoNotMatch");
+		} else CreationMessage = TextGet("PasswordTooLong");
 	}
 
 }

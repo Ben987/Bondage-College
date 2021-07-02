@@ -70,7 +70,7 @@
 <script src="../../../Scripts/Translation.js"></script>
 <script>
 
-/*	
+/*
     TO DO
     Check for...
     * Duplicate strings in translation
@@ -82,7 +82,7 @@ var TestCanvas;
 
 window.onload = function() {
     TestCanvas = document.createElement("canvas").getContext("2d");
-    TestCanvas.font = "36px Arial";
+    TestCanvas.font = CommonGetFont(36);
 
 	for (var L = 0; L < TranslationDictionary.length; L++) {
         var Language = TranslationDictionary[L];

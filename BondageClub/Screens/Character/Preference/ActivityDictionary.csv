@@ -1,6 +1,7 @@
 ActivityKiss,Kiss
 ActivityFrenchKiss,French Kiss
 ActivityPoliteKiss,Polite Kiss
+ActivityGaggedKiss,Gagged Kiss
 ActivityLick,Lick
 ActivitySuck,Suck
 ActivityNibble,Nibble
@@ -29,12 +30,35 @@ ActivityMasturbateItem,Item Masturbation
 ActivityPenetrateSlow,Slow Penetration
 ActivityPenetrateFast,Fast Penetration
 ActivityHandGag,Hand Gag
+ActivityRestHead,Rest Head
 ActivitySpankItem,Item Spank
 ActivityTickleItem,Item Tickle
 ActivityRubItem,Item Rub
 ActivityRollItem,Item Roll
 ActivityPourItem,Item Pour
 ActivityShockItem,Item Shock
+ActivityMoanGag,Moan into Gag
+ActivityMoanGagWhimper,Whimper into Gag
+ActivityMoanGagAngry,Shout into Gag
+ActivityMoanGagGroan,Groan into Gag
+ActivityMoanGagTalk,Talk into Gag
+ActivityMoanGagGiggle,Giggle into gag
+ActivityGagKiss,Kiss on Gag
+ActivityWiggle,Wiggle
+ActivityNod,Nod
+ActivitySit,Sit
+ActivityStruggleArms,Struggle
+ActivityStruggleLegs,Struggle
+ActivityStep,Step
+OrgasmFailResist0,"SourceCharacter is tormented by the vibrations, struggling to keep her cool."
+OrgasmFailResist1,"SourceCharacter struggles against the intense vibrations, hardly able to control herself."
+OrgasmFailResist2,"SourceCharacter resists the stimulation until it finally cuts off abruptly."
+OrgasmFailTimeout0,"SourceCharacter vibrators stop abruptly, leaving her trembling yet still just as aroused as before."
+OrgasmFailTimeout1,"SourceCharacter moans and trembles, holding back only because the vibrators abruptly stopped."
+OrgasmFailTimeout2,"SourceCharacter twists and turns trying to hold back, vindicated by an abrupt end to her torment."
+OrgasmFailSurrender0,"SourceCharacter closes her eyes and tries to let herself go, clinging to the edge until it abruptly stops and leaves her feeling empty."
+OrgasmFailSurrender1,"SourceCharacter moans and silently screams as the vibrators almost bring her to the edge before stopping."
+OrgasmFailSurrender2,"SourceCharacter trembles with pleasure until the teasing comes to an abrupt end, feeling just as aroused as before."
 Orgasm0,"SourceCharacter trembles and moans loudly, getting a powerful orgasm."
 Orgasm1,"SourceCharacter thrashes and loses all control, getting an intense orgasm."
 Orgasm2,"SourceCharacter screams silently and rocks her hips, getting a wonderful orgasm."
@@ -64,9 +88,11 @@ ChatSelf-ItemBoots-Tickle,SourceCharacter tickles her own feet.
 ChatSelf-ItemBoots-MassageHands,SourceCharacter massages her feet.
 ChatSelf-ItemBoots-TakeCare,SourceCharacter cleans and polishes her toenails.
 ChatSelf-ItemBoots-Bite,SourceCharacter bites her foot.
+ChatSelf-ItemBoots-Wiggle,SourceCharacter wiggles her feet.
 ChatOther-ItemBoots-Bite,SourceCharacter bites TargetCharacter's foot.
 ChatOther-ItemBoots-Kiss,SourceCharacter kisses TargetCharacter's foot.
 ChatOther-ItemBoots-PoliteKiss,SourceCharacter gives a small and polite kiss on TargetCharacter's foot.
+ChatOther-ItemBoots-GaggedKiss,SourceCharacter touches TargetCharacter's feet with her gag.
 ChatOther-ItemBoots-Lick,SourceCharacter licks TargetCharacter's foot.
 ChatOther-ItemBoots-Suck,SourceCharacter sucks on TargetCharacter's big toe.
 ChatOther-ItemBoots-Nibble,SourceCharacter nibbles TargetCharacter's foot.
@@ -80,8 +106,10 @@ ChatSelf-ItemFeet-Spank,SourceCharacter spanks her own leg.
 ChatSelf-ItemFeet-Caress,SourceCharacter caresses her legs.
 ChatSelf-ItemFeet-MassageHands,SourceCharacter massages her legs.
 ChatSelf-ItemFeet-Bite,SourceCharacter bites her leg.
+ChatSelf-ItemFeet-Wiggle,SourceCharacter wiggles her legs.
 ChatOther-ItemFeet-Bite,SourceCharacter bites TargetCharacter's leg.
 ChatOther-ItemFeet-Kiss,SourceCharacter kisses TargetCharacter's leg.
+ChatOther-ItemFeet-GaggedKiss,SourceCharacter touches her gag to TargetCharacter's leg.
 ChatOther-ItemFeet-Lick,SourceCharacter licks TargetCharacter's leg.
 ChatOther-ItemFeet-Nibble,SourceCharacter nibbles TargetCharacter's leg.
 ChatOther-ItemFeet-Tickle,SourceCharacter tickles TargetCharacter's leg.
@@ -94,8 +122,11 @@ ChatSelf-ItemLegs-Spank,SourceCharacter spanks her own thigh.
 ChatSelf-ItemLegs-Caress,SourceCharacter caresses her thighs.
 ChatSelf-ItemLegs-MassageHands,SourceCharacter massages her thighs.
 ChatSelf-ItemLegs-Bite,SourceCharacter bites her thigh.
+ChatSelf-ItemLegs-Wiggle,SourceCharacter rubs her thighs together.
+ChatSelf-ItemLegs-StruggleLegs,SourceCharacter thrashes around in her bindings.
 ChatOther-ItemLegs-Bite,SourceCharacter bites TargetCharacter's thigh.
 ChatOther-ItemLegs-Kiss,SourceCharacter kisses TargetCharacter's thigh.
+ChatOther-ItemLegs-GaggedKiss,SourceCharacter rubs her gag on TargetCharacter's thigh.
 ChatOther-ItemLegs-Lick,SourceCharacter licks TargetCharacter's thigh.
 ChatOther-ItemLegs-Nibble,SourceCharacter nibbles TargetCharacter's thigh.
 ChatOther-ItemLegs-Tickle,SourceCharacter tickles TargetCharacter's thigh.
@@ -103,6 +134,8 @@ ChatOther-ItemLegs-Spank,SourceCharacter spanks TargetCharacter's thigh.
 ChatOther-ItemLegs-Caress,SourceCharacter caresses TargetCharacter's thigh.
 ChatOther-ItemLegs-MassageHands,SourceCharacter massages TargetCharacter's thigh.
 ChatOther-ItemLegs-Grope,SourceCharacter gropes TargetCharacter's thigh.
+ChatOther-ItemLegs-Sit,SourceCharacter sits in TargetCharacter's lap.
+ChatOther-ItemLegs-RestHead,SourceCharacter rests her head in TargetCharacter's lap.
 ChatSelf-ItemVulva-MasturbateHand,SourceCharacter masturbates her pussy.
 ChatSelf-ItemVulva-Caress,SourceCharacter caresses her pussy.
 ChatOther-ItemVulva-MasturbateHand,SourceCharacter masturbates TargetCharacter's pussy with her fingers.
@@ -112,6 +145,7 @@ ChatOther-ItemVulva-MasturbateTongue,SourceCharacter masturbates TargetCharacter
 ChatOther-ItemVulva-Caress,SourceCharacter caresses TargetCharacter's pussy with her fingers.
 ChatOther-ItemVulva-Slap,SourceCharacter slaps TargetCharacter's pussy lips.
 ChatOther-ItemVulva-Kiss,SourceCharacter kisses TargetCharacter's pussy lips.
+ChatOther-ItemVulva-GaggedKiss,SourceCharacter pushes her gag into TargetCharacter's vagina.
 ChatOther-ItemVulva-Lick,SourceCharacter licks TargetCharacter's pussy lips.
 ChatOther-ItemVulva-Nibble,SourceCharacter nibbles TargetCharacter's pussy lips.
 ChatOther-ItemVulva-MasturbateItem,She uses the device to masturbate the clitoris.
@@ -121,8 +155,10 @@ ChatSelf-ItemButt-MasturbateHand,SourceCharacter fingers and masturbates her ass
 ChatSelf-ItemButt-Spank,SourceCharacter spanks herself on the butt.
 ChatSelf-ItemButt-Caress,SourceCharacter caresses her butt.
 ChatSelf-ItemButt-Grope,SourceCharacter gropes her butt.
+ChatSelf-ItemButt-Wiggle,SourceCharacter wiggles her butt.
 ChatOther-ItemButt-Bite,SourceCharacter bites TargetCharacter's butt.
 ChatOther-ItemButt-Kiss,SourceCharacter kisses TargetCharacter's butt.
+ChatOther-ItemButt-GaggedKiss,SourceCharacter rubs her gag on TargetCharacter's butt.
 ChatOther-ItemButt-MasturbateHand,SourceCharacter uses her fingers to masturbate TargetCharacter's ass.
 ChatOther-ItemButt-MasturbateFist,SourceCharacter uses her fist to masturbate TargetCharacter's ass.
 ChatOther-ItemButt-MasturbateTongue,SourceCharacter uses her tongue to masturbate TargetCharacter's ass.
@@ -131,12 +167,15 @@ ChatOther-ItemButt-Caress,SourceCharacter caresses TargetCharacter's butt.
 ChatOther-ItemButt-Grope,SourceCharacter gropes TargetCharacter's butt.
 ChatOther-ItemButt-PenetrateSlow,SourceCharacter penetrates TargetCharacter's butt at a slow pace.
 ChatOther-ItemButt-PenetrateFast,SourceCharacter penetrates TargetCharacter's butt at a fast pace.
+ChatOther-ItemButt-Step,SourceCharacter presses her foot into TargetCharacter's ass.
 ChatSelf-ItemPelvis-Tickle,SourceCharacter tickles her own tummy.
 ChatSelf-ItemPelvis-Spank,SourceCharacter spanks her own tummy.
 ChatSelf-ItemPelvis-Caress,SourceCharacter caresses her tummy.
 ChatSelf-ItemPelvis-Pinch,SourceCharacter pinches her own tummy.
 ChatSelf-ItemPelvis-MassageHands,SourceCharacter massages her tummy.
+ChatSelf-ItemPelvis-Wiggle,SourceCharacter wiggles her hips.
 ChatOther-ItemPelvis-Kiss,SourceCharacter kisses TargetCharacter's tummy.
+ChatOther-ItemPelvis-GaggedKiss,SourceCharacter gives a gagged kiss on TargetCharacter's tummy.
 ChatOther-ItemPelvis-Lick,SourceCharacter licks TargetCharacter's tummy.
 ChatOther-ItemPelvis-Nibble,SourceCharacter nibbles TargetCharacter's tummy.
 ChatOther-ItemPelvis-Tickle,SourceCharacter tickles TargetCharacter's tummy.
@@ -149,8 +188,10 @@ ChatSelf-ItemTorso-Tickle,SourceCharacter tickles her own ribs.
 ChatSelf-ItemTorso-Spank,SourceCharacter spanks her own ribs.
 ChatSelf-ItemTorso-Caress,SourceCharacter caresses her ribs.
 ChatSelf-ItemTorso-MassageHands,SourceCharacter massages her back.
+ChatSelf-ItemTorso-Wiggle,SourceCharacter wiggles her body.
 ChatOther-ItemTorso-Bite,SourceCharacter bites TargetCharacter's back.
 ChatOther-ItemTorso-Kiss,SourceCharacter kisses TargetCharacter's back.
+ChatOther-ItemTorso-GaggedKiss,SourceCharacter gives a gagged kiss on TargetCharacter's back.
 ChatOther-ItemTorso-Lick,SourceCharacter licks TargetCharacter's back.
 ChatOther-ItemTorso-Nibble,SourceCharacter nibbles TargetCharacter's ribs.
 ChatOther-ItemTorso-Tickle,SourceCharacter tickles TargetCharacter's ribs.
@@ -169,6 +210,7 @@ ChatSelf-ItemNipples-Pull,SourceCharacter pulls her nipples.
 ChatOther-ItemNipples-Bite,SourceCharacter bites TargetCharacter's nipple.
 ChatOther-ItemNipples-Pull,SourceCharacter pulls TargetCharacter's nipples.
 ChatOther-ItemNipples-Kiss,SourceCharacter kisses TargetCharacter's nipple.
+ChatOther-ItemNipples-GaggedKiss,SourceCharacter presses her gag to TargetCharacter's nipple.
 ChatOther-ItemNipples-Lick,SourceCharacter licks TargetCharacter's nipple.
 ChatOther-ItemNipples-Suck,SourceCharacter sucks on TargetCharacter's nipple.
 ChatOther-ItemNipples-Nibble,SourceCharacter nibbles on TargetCharacter's nipple.
@@ -181,14 +223,17 @@ ChatSelf-ItemBreast-Slap,SourceCharacter slaps her own breast.
 ChatSelf-ItemBreast-Caress,SourceCharacter caresses her own breast.
 ChatSelf-ItemBreast-MasturbateHand,SourceCharacter masturbates her own breast.
 ChatSelf-ItemBreast-Grope,SourceCharacter gropes her own breast.
+ChatSelf-ItemBreast-Wiggle,SourceCharacter shakes her breasts around.
 ChatOther-ItemBreast-Bite,SourceCharacter bites TargetCharacter's breast.
 ChatOther-ItemBreast-Kiss,SourceCharacter kisses TargetCharacter's breast.
+ChatOther-ItemBreast-GaggedKiss,SourceCharacter presses her gag to TargetCharacter's breast.
 ChatOther-ItemBreast-Lick,SourceCharacter licks TargetCharacter's breast.
 ChatOther-ItemBreast-Tickle,SourceCharacter tickles TargetCharacter's breast.
 ChatOther-ItemBreast-Slap,SourceCharacter slaps TargetCharacter's breast.
 ChatOther-ItemBreast-Caress,SourceCharacter caresses TargetCharacter's breast.
 ChatOther-ItemBreast-MasturbateHand,SourceCharacter masturbates TargetCharacter's breast.
 ChatOther-ItemBreast-Grope,SourceCharacter gropes TargetCharacter's breast.
+ChatOther-ItemBreast-Step,SourceCharacter steps on TargetCharacter's breast.
 ChatSelf-ItemArms-Kiss,SourceCharacter kisses her own arm.
 ChatSelf-ItemArms-Lick,SourceCharacter licks her own arm.
 ChatSelf-ItemArms-Nibble,SourceCharacter nibbles her own arm.
@@ -198,8 +243,11 @@ ChatSelf-ItemArms-Pinch,SourceCharacter pinches her upper arm.
 ChatSelf-ItemArms-Caress,SourceCharacter caresses her arms.
 ChatSelf-ItemArms-MassageHands,SourceCharacter massages her arms.
 ChatSelf-ItemArms-Bite,SourceCharacter bites her arm.
+ChatSelf-ItemArms-Wiggle,SourceCharacter wiggles her shoulders.
+ChatSelf-ItemArms-StruggleArms,SourceCharacter struggles against her bindings.
 ChatOther-ItemArms-Bite,SourceCharacter bites TargetCharacter's arm.
 ChatOther-ItemArms-Kiss,SourceCharacter kisses TargetCharacter's arm.
+ChatOther-ItemArms-GaggedKiss,SourceCharacter rubs her gag on TargetCharacter's arm.
 ChatOther-ItemArms-Lick,SourceCharacter licks TargetCharacter's arm.
 ChatOther-ItemArms-Nibble,SourceCharacter nibbles TargetCharacter's arm.
 ChatOther-ItemArms-Tickle,SourceCharacter tickles TargetCharacter's arms.
@@ -218,8 +266,10 @@ ChatSelf-ItemHands-Spank,SourceCharacter spanks her first hand with the second o
 ChatSelf-ItemHands-Caress,SourceCharacter rubs her hands together.
 ChatSelf-ItemHands-TakeCare,SourceCharacter cleans and polishes her nails.
 ChatSelf-ItemHands-Bite,SourceCharacter bites her hand.
+ChatSelf-ItemHands-Wiggle,SourceCharacter wiggles her fingers
 ChatOther-ItemHands-Bite,SourceCharacter bites TargetCharacter's hand.
 ChatOther-ItemHands-Kiss,SourceCharacter kisses TargetCharacter's hand.
+ChatOther-ItemHands-GaggedKiss,SourceCharacter touches her gag to TargetCharacter's hand.
 ChatOther-ItemHands-PoliteKiss,SourceCharacter politely kisses TargetCharacter's hand.
 ChatOther-ItemHands-Lick,SourceCharacter licks TargetCharacter's hand.
 ChatOther-ItemHands-Suck,SourceCharacter sucks on TargetCharacter's fingers.
@@ -232,20 +282,30 @@ ChatSelf-ItemNeck-MassageHands,SourceCharacter massages her neck.
 ChatSelf-ItemNeck-Choke,SourceCharacter chokes herself.
 ChatOther-ItemNeck-Bite,SourceCharacter bites TargetCharacter's neck.
 ChatOther-ItemNeck-Kiss,SourceCharacter kisses TargetCharacter's neck.
+ChatOther-ItemNeck-GaggedKiss,SourceCharacter touches her gag to TargetCharacter's neck.
 ChatOther-ItemNeck-Lick,SourceCharacter licks TargetCharacter's neck.
 ChatOther-ItemNeck-Nibble,SourceCharacter nibbles TargetCharacter's neck.
 ChatOther-ItemNeck-Caress,SourceCharacter caresses TargetCharacter's neck.
 ChatOther-ItemNeck-MassageHands,SourceCharacter massages TargetCharacter's neck.
 ChatOther-ItemNeck-Choke,SourceCharacter chokes TargetCharacter's neck.
+ChatOther-ItemNeck-Step,SourceCharacter gently places her foot over TargetCharacter's neck.
 ChatSelf-ItemMouth-Lick,SourceCharacter licks her lips.
 ChatSelf-ItemMouth-Nibble,SourceCharacter nibbles her lips.
 ChatSelf-ItemMouth-Caress,SourceCharacter caresses and wipes her mouth clean.
 ChatSelf-ItemMouth-Bite,SourceCharacter bites her lips.
 ChatSelf-ItemMouth-HandGag,SourceCharacter clamps her hand over her mouth.
+ChatSelf-ItemMouth-MoanGag,SourceCharacter moans into her gag.
+ChatSelf-ItemMouth-MoanGagWhimper,SourceCharacter whimpers pleadingly into her gag.
+ChatSelf-ItemMouth-MoanGagAngry,SourceCharacter screams furiously into her gag.
+ChatSelf-ItemMouth-MoanGagGroan,SourceCharacter groans desperately into her gag.
+ChatSelf-ItemMouth-MoanGagGiggle,SourceCharacter giggles into her gag.
+ChatSelf-ItemMouth-MoanGagTalk,SourceCharacter mumbles incoherently into her gag.
+ChatOther-ItemMouth-GagKiss,SourceCharacter gives TargetCharacter a kiss on her gag.
 ChatOther-ItemMouth-Bite,SourceCharacter bites TargetCharacter's lips.
 ChatOther-ItemMouth-Kiss,SourceCharacter kisses TargetCharacter's lips.
 ChatOther-ItemMouth-FrenchKiss,SourceCharacter shares a long French kiss with TargetCharacter.
 ChatOther-ItemMouth-PoliteKiss,SourceCharacter gives a friendly kiss on TargetCharacter's cheek.
+ChatOther-ItemMouth-GaggedKiss,SourceCharacter gives a gagged kiss on TargetCharacter's cheek.
 ChatOther-ItemMouth-Lick,SourceCharacter licks TargetCharacter's lips.
 ChatOther-ItemMouth-Nibble,SourceCharacter nibbles TargetCharacter's lips.
 ChatOther-ItemMouth-Caress,SourceCharacter caresses and cleans TargetCharacter's mouth.
@@ -257,7 +317,10 @@ ChatSelf-ItemHead-Caress,SourceCharacter caresses her face.
 ChatSelf-ItemHead-TakeCare,SourceCharacter brushes her hair.
 ChatSelf-ItemHead-Pull,SourceCharacter pulls on her own hair.
 ChatSelf-ItemHead-Pet,SourceCharacter pets herself on the head.
+ChatSelf-ItemHead-Wiggle,SourceCharacter shakes her head.
+ChatSelf-ItemHead-Nod,SourceCharacter nods.
 ChatOther-ItemHead-Kiss,SourceCharacter kisses TargetCharacter on the forehead.
+ChatOther-ItemHead-GaggedKiss,SourceCharacter gives a gagged kiss on TargetCharacter's forehead.
 ChatOther-ItemHead-Slap,SourceCharacter slaps TargetCharacter's face.
 ChatOther-ItemHead-Caress,SourceCharacter caresses TargetCharacter's face.
 ChatOther-ItemHead-TakeCare,SourceCharacter brushes TargetCharacter's hair.
@@ -265,31 +328,37 @@ ChatOther-ItemHead-Pull,SourceCharacter pulls on TargetCharacter's hair.
 ChatOther-ItemHead-Pet,SourceCharacter gently pets TargetCharacter's head.
 ChatOther-ItemHead-Rub,SourceCharacter rubs her breast against TargetCharacter's face.
 ChatOther-ItemHead-Bite,SourceCharacter bites TargetCharacter's hair.
+ChatOther-ItemHead-Step,SourceCharacter rubs her foot on TargetCharacter's face.
 ChatOther-ItemNose-Cuddle,SourceCharacter nose-nuzzles with TargetCharacter.
 ChatOther-ItemNose-Pet,SourceCharacter boops TargetCharacter's nose.
 ChatOther-ItemNose-Kiss,SourceCharacter kisses TargetCharacter's nose.
+ChatOther-ItemNose-GaggedKiss,SourceCharacter bumps her gag on TargetCharacter's nose.
 ChatOther-ItemNose-Pinch,SourceCharacter pinches TargetCharacter's nose.
 ChatOther-ItemNose-Caress,SourceCharacter caresses TargetCharacter's nose.
 ChatOther-ItemNose-Pull,SourceCharacter pulls TargetCharacter's nose.
 ChatOther-ItemNose-Rub,SourceCharacter rubs TargetCharacter's nose.
 ChatOther-ItemNose-Nibble,SourceCharacter nibbles TargetCharacter's nose.
+ChatOther-ItemNose-Choke,SourceCharacter pinches TargetCharacter's nostrils closed.
+ChatOther-ItemNose-Lick,SourceCharacter licks TargetCharacter's nose.
 ChatOther-ItemNose-Bite,SourceCharacter bites TargetCharacter's nose.
-ChatOther-ItemNose-Choke,SourceCharacter pinches  TargetCharacter's nostrils closed.
-ChatOther-ItemNose-Lick,SourceCharacter licks  TargetCharacter's nose.
-ChatOther-ItemNose-Bite,SourceCharacter bites TargetCharacter's nose.
+ChatOther-ItemNose-Step,SourceCharacter makes TargetCharacter smell her feet.
 ChatSelf-ItemNose-Pinch,SourceCharacter pinches her nose.
 ChatSelf-ItemNose-Caress,SourceCharacter caresses her nose.
 ChatSelf-ItemNose-Pet,SourceCharacter boops her nose.
 ChatSelf-ItemNose-Pull,SourceCharacter pulls her nose.
 ChatSelf-ItemNose-Rub,SourceCharacter rubs her nose.
-ChatSelf-ItemNose-Choke,SourceCharacter pinches  her nostrils closed.
+ChatSelf-ItemNose-Choke,SourceCharacter pinches her nostrils closed.
+ChatSelf-ItemNose-Wiggle,SourceCharacter wiggles her nose.
 ChatSelf-ItemEars-Pinch,SourceCharacter pinches her ear.
 ChatSelf-ItemEars-Caress,SourceCharacter caresses her ear.
+ChatSelf-ItemEars-Wiggle,SourceCharacter wiggles her ears.
 ChatOther-ItemEars-Bite,SourceCharacter bites TargetCharacter's ear.
 ChatOther-ItemEars-Kiss,SourceCharacter kisses TargetCharacter's ear.
+ChatOther-ItemEars-GaggedKiss,SourceCharacter gives a gagged kiss on TargetCharacter's ear.
 ChatOther-ItemEars-Lick,SourceCharacter licks TargetCharacter's ear.
 ChatOther-ItemEars-Nibble,SourceCharacter nibbles TargetCharacter's ear.
 ChatOther-ItemEars-Pinch,SourceCharacter pinches TargetCharacter's ear.
 ChatOther-ItemEars-Caress,SourceCharacter caresses TargetCharacter's ear.
 ChatOther-ItemEars-Whisper,SourceCharacter whispers slowly in TargetCharacter's ear.
-
+ChatOther-ItemPelvis-Step,SourceCharacter presses her foot into TargetCharacter's chest.
+ChatOther-ItemTorso-Step,SourceCharacter rests her feet on TargetCharacter's back.

@@ -10,22 +10,22 @@ var SlaveMarketBuyer = null;
  * Checks if an auction can be started.
  * @returns {boolean} - Returns TRUE if the player has room in her private room and is dominant enough to participate in an auction
  */
-function SlaveMarketCanStartAuction() { return ((ReputationGet("Dominant") >= -50) && ManagementCanTransferToRoom()) }
+function SlaveMarketCanStartAuction() { return ((ReputationGet("Dominant") >= -50) && ManagementCanTransferToRoom()); }
 /**
  * Checks if an auction cannot be started due to being too submissive.
  * @returns {boolean} - Returns TRUE if the player is not dominant enough to participate in an auction
  */
-function SlaveMarketCannotStartAuctionSubmissive() { return (ReputationGet("Dominant") < -50) }
+function SlaveMarketCannotStartAuctionSubmissive() { return (ReputationGet("Dominant") < -50); }
 /**
  * Checks if an auction cannot be started due to lack of space in the player's private room
  * @returns {boolean} - Returns TRUE if the player is dominant enough to participate in an auction, but does not have space in her private room
  */
-function SlaveMarketCannotStartAuctionRoom() { return ((ReputationGet("Dominant") >= -50) && !ManagementCanTransferToRoom()) }
+function SlaveMarketCannotStartAuctionRoom() { return ((ReputationGet("Dominant") >= -50) && !ManagementCanTransferToRoom()); }
 /**
  * Checks if the player can be auctioned.  Must not be owned, must be submissive, must not be restrained, must have space in room and must not have been auctioned in the last seven days
  * @returns {boolean} - Returns TRUE if the player can be auctioned
  */
-function SlaveMarketCanBeAuctioned() { return (!Player.IsOwned() && !PrivateOwnerInRoom() && !Player.IsRestrained() && !Player.IsChaste() && (ReputationGet("Dominant") < 0) && !LogQuery("Auctioned", "SlaveMarket") && ManagementCanTransferToRoom()) }
+function SlaveMarketCanBeAuctioned() { return (!Player.IsOwned() && !PrivateOwnerInRoom() && !Player.IsRestrained() && !Player.IsChaste() && (ReputationGet("Dominant") < 0) && !LogQuery("Auctioned", "SlaveMarket") && ManagementCanTransferToRoom()); }
 
 /**
  * Loads the Slave Market room, generates the Mistress and slave
@@ -181,7 +181,7 @@ function SlaveMarketPlayerAuctionEnd() {
 	LogAdd("Auctioned", "SlaveMarket", CurrentTime + 604800000);
 	CharacterChangeMoney(Player, PlayerAuctionBidAmount / 2);
 	CommonSetScreen("Room", "SlaveMarket");
-	SlaveMarketBuyer.AllowItem = false;	
+	SlaveMarketBuyer.AllowItem = false;
 	SlaveMarketBuyer.Appearance = PlayerAuctionCustomer[PlayerAuctionBidCurrent].Appearance.slice(0);
 	SlaveMarketBuyer.Archetype = PlayerAuctionCustomer[PlayerAuctionBidCurrent].Archetype;
 	CharacterRefresh(SlaveMarketBuyer);
@@ -200,7 +200,6 @@ function SlaveMarketPlayerAuctionTransfer() {
 	var C = PrivateCharacter[PrivateCharacter.length - 1];
 	NPCTraitSet(C, "Dominant", 50 + Math.floor(Math.random() * 51));
 	C.Love = 30;
-	Player.Owner = "NPC-" + C.Name;
 	NPCEventAdd(C, "EndSubTrial", CurrentTime + NPCLongEventDelay(C));
 	ServerPrivateCharacterSync();
 }

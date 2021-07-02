@@ -23,42 +23,42 @@ var IntroductionJobMember = [];
  * @param {string} ScenarioName - Name of the rescue scenario to check for.
  * @returns {boolean} - Returns TRUE if the given scenario is the current active one.
  */
-function IntroductionIsRescueScenario(ScenarioName) { return (IntroductionRescueScenario == ScenarioName) }
+function IntroductionIsRescueScenario(ScenarioName) { return (IntroductionRescueScenario == ScenarioName); }
 /**
  * Checks if the two NPCs in the introduction room are free.
  * @returns {boolean} - Returns TRUE if both the maid and the sub is free.
  */
-function IntroductionIsBothFree() { return (!IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !IntroductionSub.IsRestrained() && IntroductionMaid.CanTalk()) }
+function IntroductionIsBothFree() { return (!IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !IntroductionSub.IsRestrained() && IntroductionMaid.CanTalk()); }
 /**
  * Checks if the introduction maid is restrained.
  * @returns {boolean} - Returns TRUE if the introduction maid is restrained
  */
-function IntroductionIsMaidRestrained() { return (IntroductionMaid.IsRestrained() || !IntroductionMaid.CanTalk()) }
+function IntroductionIsMaidRestrained() { return (IntroductionMaid.IsRestrained() || !IntroductionMaid.CanTalk()); }
 /**
  * Checks if the player has no title
  * @returns {boolean} - Returns TRUE if the player is not a maid or a mistress.
  */
-function IntroductionNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management")) }
+function IntroductionNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management")); }
 /**
  * Checks if the introduction job is completed
  * @returns {boolean} - Returns TRUE if the introduction job was done.
  */
-function IntroductionJobIsComplete() { return (IntroductionJobCount <= 0) }
+function IntroductionJobIsComplete() { return (IntroductionJobCount <= 0); }
 /**
  * Checks if the player can take a job.
  * @returns {boolean} - Returns TRUE if a job is available and the player is able to take one.
  */
-function IntroductionCanTakeJob() { return (IntroductionJobAnyAvailable() && !Player.IsRestrained() && Player.CanTalk() && !IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !ManagementIsClubSlave()) }
+function IntroductionCanTakeJob() { return (IntroductionJobAnyAvailable() && !Player.IsRestrained() && Player.CanTalk() && !IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !ManagementIsClubSlave()); }
 /**
  * Checks if the player is able to take a job, but none are available.
  * @returns {boolean} - Returns TRUE if there is no job available while the player is able to take one.
  */
-function IntroductionCannotTakeJobDone() { return (!IntroductionJobAnyAvailable() && !Player.IsRestrained() && Player.CanTalk() && !IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !ManagementIsClubSlave()) }
+function IntroductionCannotTakeJobDone() { return (!IntroductionJobAnyAvailable() && !Player.IsRestrained() && Player.CanTalk() && !IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !ManagementIsClubSlave()); }
 /**
  * Checks if the player has jobs available, but is restrained
  * @returns {boolean} - Returns TRUE if the players is restrained while a job is available.
  */
-function IntroductionCannotTakeJobRestrained() { return (IntroductionJobAnyAvailable() && (Player.IsRestrained() || !Player.CanTalk() || IntroductionMaid.IsRestrained() || !IntroductionMaid.CanTalk()) && !ManagementIsClubSlave()) }
+function IntroductionCannotTakeJobRestrained() { return (IntroductionJobAnyAvailable() && (Player.IsRestrained() || !Player.CanTalk() || IntroductionMaid.IsRestrained() || !IntroductionMaid.CanTalk()) && !ManagementIsClubSlave()); }
 
 /**
  * Loads the introduction room and its 2 NPCS
@@ -70,7 +70,7 @@ function IntroductionLoad() {
 	IntroductionHasBasicItems = (InventoryAvailable(Player, "NylonRope", "ItemFeet") && InventoryAvailable(Player, "NylonRope", "ItemLegs") && InventoryAvailable(Player, "NylonRope", "ItemArms") && InventoryAvailable(Player, "ClothGag", "ItemMouth"));
 	IntroductionIsMaid = LogQuery("JoinedSorority", "Maid");
 	IntroductionIsHeadMaid = LogQuery("LeadSorority", "Maid");
-	
+
 	// Creates two characters to begin with
 	IntroductionMaid = CharacterLoadNPC("NPC_Introduction_Maid");
 	IntroductionSub = CharacterLoadNPC("NPC_Introduction_Sub");
