@@ -505,6 +505,9 @@ function ChatRoomLoad() {
  * Removes all elements that can be open in the chat room
 */
 function ChatRoomClearAllElements() {
+	// Dialog
+	DialogLeave();
+	
 	// Friendlist
 	ElementRemove("FriendList");
 	FriendListBeepMenuClose();
@@ -522,9 +525,6 @@ function ChatRoomClearAllElements() {
 	// Chatroom
 	ElementRemove("InputChat");
 	ElementRemove("TextAreaChatLog");
-
-	// Dialog
-	DialogLeave();
 
 	// Preferences
 	ElementRemove("InputEmailOld");
