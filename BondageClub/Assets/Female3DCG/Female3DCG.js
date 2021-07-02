@@ -4477,7 +4477,7 @@ var AssetFemale3DCG = [
 				Name: "Kennel", Fetish: ["Metal", "Pet"], Value: 150, Difficulty: 6, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "CageEquip", DefaultColor: ["#2E2E29", "#780E0E", "#2E2E29", "#2E2E29"], Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], AllowType: ["OpenPadding", "Closed", "ClosedPadding"], Effect: ["ForceKneel", "Prone", "Freeze"], RemoveAtLogin: true, Extended: true, Layer: [
 					{ Name: "Kennel", Priority: 1, HasType: false },
 					{ Name: "Padding", Priority: 1, AllowTypes: ["OpenPadding", "ClosedPadding"], HasType: false },
-					{ Name: "Frame", HasType: false },
+					{ Name: "Frame", HasType: false, Alpha: [{ Masks: [[0, 0, 500, 20], [0, 750, 500, 250]] }] },
 					{ Name: "Door" },
 				]
 			},
@@ -4725,7 +4725,7 @@ var PoseFemale3DCG = [
 		Category: "BodyFull",
 		OverrideHeight: { Height: -575, Priority: 50 },
 		Hide: ["BodyLower", "Head", "Hands", "ClothLower", "Wings", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemFeet", "LeftAnklet", "RightAnklet"],
-		MovePosition: [{ Group: "Socks", X: 0, Y: -400 }, { Group: "Shoes", X: 0, Y: -500 }, { Group: "ItemBoots", X: 0, Y: -500 }, { Group: "SuitLower", X: 0, Y: -380 }, { Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }]
+		MovePosition: [{ Group: "Socks", X: 0, Y: -400 }, { Group: "Shoes", X: 0, Y: -500 }, { Group: "ItemBoots", X: 0, Y: -500 }, { Group: "SuitLower", X: 0, Y: -380 }, { Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }, { Group: "ItemDevices", Asset: "Kennel", X: 0, Y: -300 }]
 	},
 	{
 		Name: "Suspension",
@@ -4743,7 +4743,7 @@ var PoseFemale3DCG = [
 		Category: "BodyFull",
 		OverrideHeight: { Height: -560, Priority: 50 },
 		Hide: ["ItemFeet", "ClothLower", "SuitLower", "Nipples", "Pussy", "BodyLower", "Head", "Wings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemBoots", "Suit", "Panties", "Bra", "Socks", "Shoes", "LeftAnklet", "RightAnklet", "Corset"],
-		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }]
+		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }, { Group: "ItemDevices", Asset: "Kennel", X: 0, Y: -300 }]
 	},
 	{
 		Name: "BackBoxTie",
