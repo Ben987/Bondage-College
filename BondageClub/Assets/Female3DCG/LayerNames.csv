@@ -298,6 +298,10 @@ ItemNeckRestraintsCollarRopeMediumRope,Rope
 ItemNeckRestraintsCollarRopeMediumPlate,Plate
 ItemNeckRestraintsCollarRopeLongRope,Rope
 ItemNeckRestraintsCollarRopeLongPlate,Plate
+ItemNeckRestraintsPostChain,Chain
+ItemNeckRestraintsPostHead,Top
+ItemNeckRestraintsPostPost,Post
+ItemNeckRestraintsPostBase,Base
 ItemMiscWoodenSignSign,Sign
 ItemMiscWoodenSignRope,Rope
 ItemMiscWoodenSignText,Text
