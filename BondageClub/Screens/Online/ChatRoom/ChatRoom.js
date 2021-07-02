@@ -22,6 +22,7 @@ var ChatRoomStruggleAssistBonus = 0;
 var ChatRoomStruggleAssistTimer = 0;
 var ChatRoomSlowtimer = 0;
 var ChatRoomSlowStop = false;
+var ChatRoomChatHidden = false;
 
 var ChatRoomCharacterCount = 0;
 var ChatRoomCharacterDrawlist = [];
@@ -879,6 +880,7 @@ function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY, Pos) {
 	// Gives focus to the character
 	document.getElementById("InputChat").style.display = "none";
 	document.getElementById("TextAreaChatLog").style.display = "none";
+	ChatRoomChatHidden = true;
 	ChatRoomBackground = ChatRoomData.Background;
 	C.AllowItem = C.ID === 0 || ServerChatRoomGetAllowItem(Player, C);
 	ChatRoomOwnershipOption = "";
@@ -1152,6 +1154,10 @@ function ChatRoomRun() {
 	ChatRoomBackground = "";
 	DrawRect(0, 0, 2000, 1000, "Black");
 	ChatRoomDrawCharacter(false);
+	if (ChatRoomChatHidden) {
+		ChatRoomChatHidden = false;
+		ChatRoomResize(false);
+	}
 	DrawButton(1905, 908, 90, 90, "", "White", "Icons/Chat.png");
 	if (!ChatRoomCanLeave() && ChatRoomSlowtimer != 0){//Player got interrupted while trying to leave. (Via a bind)
 		ServerSend("ChatRoomChat", { Content: "SlowLeaveInterrupt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
