@@ -1128,7 +1128,12 @@ function ChatRoomStimulationMessage(Context) {
  * @param {boolean} load - If the reason for call was load (`true`) or window resize (`false`)
  */
 function ChatRoomResize(load) {
-	if (CharacterGetCurrent() == null) {
+	if (
+		CharacterGetCurrent() == null
+		&& CurrentScreen == "ChatRoom"
+		&& document.getElementById("InputChat")
+		&& document.getElementById("TextAreaChatLog")
+	) {
 		ElementPositionFix("TextAreaChatLog", ChatRoomFontSize, 1005, 66, 988, 835);
 		ElementPosition("InputChat", 1456, 950, 900, 82);
 	}
