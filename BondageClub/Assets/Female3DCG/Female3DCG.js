@@ -4725,7 +4725,7 @@ var PoseFemale3DCG = [
 		Category: "BodyFull",
 		OverrideHeight: { Height: -575, Priority: 50 },
 		Hide: ["BodyLower", "Head", "Hands", "ClothLower", "Wings", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemFeet", "LeftAnklet", "RightAnklet"],
-		MovePosition: [{ Group: "Socks", X: 0, Y: -400 }, { Group: "Shoes", X: 0, Y: -500 }, { Group: "ItemBoots", X: 0, Y: -500 }, { Group: "SuitLower", X: 0, Y: -380 }, { Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }, { Group: "ItemDevices", Asset: "Kennel", X: 0, Y: -300 }]
+		MovePosition: [{ Group: "Socks", X: 0, Y: -400 }, { Group: "Shoes", X: 0, Y: -500 }, { Group: "ItemBoots", X: 0, Y: -500 }, { Group: "SuitLower", X: 0, Y: -380 }, { Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }, { Group: "ItemDevices", Asset: "Kennel", X: 0, Y: -290 }]
 	},
 	{
 		Name: "Suspension",
@@ -4743,7 +4743,7 @@ var PoseFemale3DCG = [
 		Category: "BodyFull",
 		OverrideHeight: { Height: -560, Priority: 50 },
 		Hide: ["ItemFeet", "ClothLower", "SuitLower", "Nipples", "Pussy", "BodyLower", "Head", "Wings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemBoots", "Suit", "Panties", "Bra", "Socks", "Shoes", "LeftAnklet", "RightAnklet", "Corset"],
-		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }, { Group: "ItemDevices", Asset: "Kennel", X: 0, Y: -300 }]
+		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }, { Group: "ItemDevices", Asset: "Kennel", X: 0, Y: -270 }]
 	},
 	{
 		Name: "BackBoxTie",
