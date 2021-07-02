@@ -976,6 +976,7 @@ ItemNeckAccessories,CollarPupBone,Pup Bone
 ItemNeckRestraints,,Collar
 ItemNeckRestraints,CollarChainLong,Long Chain
 ItemNeckRestraints,CollarChainShort,Short Chain
+ItemNeckRestraints,Post,Post
 ItemNeckRestraints,CollarLeash,Leash
 ItemNeckRestraints,CollarLeashTaken,Pulled Leash
 ItemNeckRestraints,ChainLeash,Chain Leash
