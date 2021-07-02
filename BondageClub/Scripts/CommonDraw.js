@@ -134,6 +134,7 @@ function CommonDrawAppearanceBuild(C, {
 				var PoseDef = PoseFemale3DCG.find(P => P.Name === CP && P.MovePosition);
 				if (PoseDef) {
 					var MovePosition = PoseDef.MovePosition.find(MP => MP.Group === GroupName);
+					MovePosition = MovePosition ? (PoseDef.MovePosition.find(MP => MP.Asset === A.Name && MP.Group === GroupName) || MovePosition) : null;
 					if (MovePosition) {
 						X += MovePosition.X;
 						Y += MovePosition.Y;

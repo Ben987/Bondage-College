@@ -321,7 +321,7 @@ interface Pose {
 	AllowMenu?: true;
 	OverrideHeight?: { Height: number; Priority: number; };
 	Hide?: string[];
-	MovePosition?: { Group: string; X: number; Y: number; }[];
+	MovePosition?: { Group: string; Asset?: string; X: number; Y: number; })[];
 }
 
 interface Activity {
