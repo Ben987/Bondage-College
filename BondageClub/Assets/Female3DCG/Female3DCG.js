@@ -4474,13 +4474,26 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "Kennel", Fetish: ["Metal", "Pet"], Value: 150, Difficulty: 6, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "CageEquip", DefaultColor: ["#2E2E29", "#780E0E", "#2E2E29", "#2E2E29"], Prerequisite: ["NotSuspended", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], AllowType: ["OpenPadding", "Closed", "ClosedPadding"], AllowEffect: ["OneWayEnclose"], Effect: ["ForceKneel", "Prone", "Freeze"], RemoveAtLogin: true, Extended: true, Layer: [
-					{ Name: "Kennel", Priority: 1, HasType: false },
-					{ Name: "Padding", Priority: 1, AllowTypes: ["OpenPadding", "ClosedPadding"], HasType: false },
-					{ Name: "Frame", HasType: false, Alpha: [{ Group: ["Cloth", "ClothAccessory", "Suit", "ClothLower", "SuitLower", "Socks", "Shoes", "Hat", "HairAccessory3", "HairAccessory1", "HairAccessory2", "Gloves", "Mask", "Wings", "BodyUpper", "BodyLower", "HairFront", "HairBack", "Hands", "Head", "ItemFeet", "ItemLegs", "ItemArms", "ItemHands", "ItemNeckRestraints", "ItemHead", "ItemHood", "ItemAddon", "ItemBoots"], Masks: [[0, 0, 500, 20], [0, 750, 500, 250], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }] },
-					{ Name: "Door" },
-				]
-			},
+                Name: "Kennel", Fetish: ["Metal", "Pet"], Top: 0, Value: 150, Difficulty: 6, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "CageEquip", RemoveAtLogin: true, Extended: true, FixedPosition: true,
+                DefaultColor: ["#2E2E29", "#780E0E", "#2E2E29", "#2E2E29"],
+                Prerequisite: ["NotLifted", "NotSuspended", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"],
+                SetPose: ["Kneel"],
+				Block: ["ItemAddon"],
+                AllowType: ["OpenPadding", "Closed", "ClosedPadding"],
+                AllowEffect: ["OneWayEnclose"],
+                Effect: ["ForceKneel", "Prone", "Freeze"],
+                Layer: [
+                    { Name: "Kennel", Priority: 1, HasType: false },
+                    { Name: "Padding", Priority: 1, AllowTypes: ["OpenPadding", "ClosedPadding"], HasType: false },
+                    {
+                        Name: "Frame", HasType: false,
+                        Alpha: [{
+                            Masks: [[0, 0, 500, 270], [0, 1000, 500, 250], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha]
+                        }]
+                    },
+                    { Name: "Door" },
+                ]
+            },
 			{
 				Name: "PetBed", Fetish: ["Pet"], Value: 50, Difficulty: -25, SelfBondage: 0, Time: 5, RemoveTime: 5, Effect: ["Tethered"], RemoveAtLogin: true, SetPose: ["Kneel"], FixedPosition: true, Extended: true, HasType: false,
 				Layer: [
@@ -4591,8 +4604,8 @@ var AssetFemale3DCG = [
 			{ Name: "BedStraps",Fetish: ["Leather"], Value: -1, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Prerequisite: "OnBed", BuyGroup: "Bed" },
 			{ Name: "BedTape", Fetish: ["Tape"], Value: -1, Difficulty: 6, SelfBondage: 2, Block: ["ItemDevices"], Hide: ["TailStraps"], Prerequisite: "OnBed", BuyGroup: "Bed" },
 			{ Name: "BedChains", Fetish: ["Metal"], Value: -1, Difficulty: 6, SelfBondage: 4, Block: ["ItemDevices"], Hide: ["TailStraps"], AllowLock: true, Audio: "ChainLong", Prerequisite: "OnBed", BuyGroup: "Bed" },
-			{ Name: "CeilingRope", Top: -700, Random: false, Priority: 1, Fetish: ["Rope"], Value: 60, Prerequisite: ["CanBeCeilingTethered"], BuyGroup: "HempRope", Difficulty: 6, SelfBondage: 0, Extended: true, HasType: false, AllowType: ["Suspended"], DefaultColor: "#956B1C", Effect: ["Freeze"], SetPose: ["BaseLower"], WhitelistActivePose: ["BaseLower", "LegsClosed"], AllowActivePose: ["LegsClosed"], },
-			{ Name: "CeilingChain", Top: -700, Random: false, Priority: 1, Fetish: ["Metal"], Prerequisite: ["CanBeCeilingTethered"], Value: 90, BuyGroup: "Chains", Difficulty: 6, SelfBondage: 0, AllowLock: true, DrawLocks: false, Extended: true, HasType: false, AllowType: ["Suspended"], Effect: ["Freeze"], SetPose: ["BaseLower"], WhitelistActivePose: ["BaseLower", "LegsClosed"], AllowActivePose: ["LegsClosed"] }
+			{ Name: "CeilingRope", Top: -700, Random: false, Priority: 1, Fetish: ["Rope"], Value: 60, Prerequisite: ["CanBeCeilingTethered"], BuyGroup: "HempRope", Difficulty: 6, SelfBondage: 0, Extended: true, HasType: false, AllowType: ["Suspended"], DefaultColor: "#956B1C", Effect: ["Freeze"], AllowEffect: ["Lifted"], SetPose: ["BaseLower"], WhitelistActivePose: ["BaseLower", "LegsClosed"], AllowActivePose: ["LegsClosed"], },
+			{ Name: "CeilingChain", Top: -700, Random: false, Priority: 1, Fetish: ["Metal"], Prerequisite: ["CanBeCeilingTethered"], Value: 90, BuyGroup: "Chains", Difficulty: 6, SelfBondage: 0, AllowLock: true, DrawLocks: false, Extended: true, HasType: false, AllowType: ["Suspended"], Effect: ["Freeze"], AllowEffect: ["Lifted"], SetPose: ["BaseLower"], WhitelistActivePose: ["BaseLower", "LegsClosed"], AllowActivePose: ["LegsClosed"] }
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
@@ -4725,7 +4738,7 @@ var PoseFemale3DCG = [
 		Category: "BodyFull",
 		OverrideHeight: { Height: -575, Priority: 50 },
 		Hide: ["BodyLower", "Head", "Hands", "ClothLower", "Wings", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemFeet", "LeftAnklet", "RightAnklet"],
-		MovePosition: [{ Group: "Socks", X: 0, Y: -400 }, { Group: "Shoes", X: 0, Y: -500 }, { Group: "ItemBoots", X: 0, Y: -500 }, { Group: "SuitLower", X: 0, Y: -380 }, { Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }, { Group: "ItemDevices", Asset: "Kennel", X: 0, Y: -290 }]
+		MovePosition: [{ Group: "Socks", X: 0, Y: -400 }, { Group: "Shoes", X: 0, Y: -500 }, { Group: "ItemBoots", X: 0, Y: -500 }, { Group: "SuitLower", X: 0, Y: -380 }, { Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }]
 	},
 	{
 		Name: "Suspension",
@@ -4743,7 +4756,7 @@ var PoseFemale3DCG = [
 		Category: "BodyFull",
 		OverrideHeight: { Height: -560, Priority: 50 },
 		Hide: ["ItemFeet", "ClothLower", "SuitLower", "Nipples", "Pussy", "BodyLower", "Head", "Wings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemBoots", "Suit", "Panties", "Bra", "Socks", "Shoes", "LeftAnklet", "RightAnklet", "Corset"],
-		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }, { Group: "ItemDevices", Asset: "Kennel", X: 0, Y: -270 }]
+		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }]
 	},
 	{
 		Name: "BackBoxTie",
