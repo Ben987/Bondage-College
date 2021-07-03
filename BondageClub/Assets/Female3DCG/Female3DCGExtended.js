@@ -2032,6 +2032,62 @@ var AssetFemale3DCGExtended = {
 				]
 			}
 		}, // SilkStraps
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Basic",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Bow",
+						Property: {
+							Type: "Bow",
+						},
+					},
+					{
+						Name: "Wrap",
+						Property: {
+							Type: "Wrap",
+						},
+					},
+				],
+				Dialog: {
+					TypePrefix: "RibbonBraType",
+					Load: "SelectRibbonStyle",
+				}
+			}
+		}, // Ribbons
+		SexyBikini1: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Open",
+						Property: {
+							Type: null, 
+						},
+					},
+					{
+						Name: "Closed",
+						Property: {
+							Type: "Closed"
+						},
+					},
+				],
+				Dialog: {
+					TypePrefix: "BikiniType",
+					Load: "SelectBikiniType",
+				}
+			}
+		}, // SexyBikini1
+		CuteBikini1: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "SexyBikini1" },
+		}, // CuteBikini1
 	}, // Bra
 	Panties: {
 		SilkStraps: {
