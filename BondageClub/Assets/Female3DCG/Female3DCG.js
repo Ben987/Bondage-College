@@ -204,7 +204,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "FrillyApron", Fetish: ["Lingerie"], ParentGroup: "BodyUpper", Value: -1, Left: 135, Top: 179, BuyGroup: "Maid", AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"] },
-			{ Name: "BunnyCollarCuffs", Fetish: ["Pet"], ParentGroup: "BodyUpper", Value: 10, AllowPose: ["AllFours", "TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"], AllowType: ["Collar", "Cuffs"], Extended: true,
+			{ Name: "BunnyCollarCuffs", Fetish: ["Pet"], ParentGroup: "BodyUpper", Value: 10, AllowPose: ["AllFours", "TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"], Extended: true,
 				Layer: [
 					{ Name: "Collar"},
 					{ Name: "Bow"},
@@ -237,14 +237,14 @@ var AssetFemale3DCG = [
 			{ Name: "Necklace3", Left: 147, Top: 110, ParentGroup: null },
 			{ Name: "Necklace4", Value: 30, Left: 147, Top: 110, ParentGroup: null },
 			{
-				Name: "NecklaceLock", Fetish: ["Metal"], Value: 40, Left: 155, Top: 152, ParentGroup: null, AllowType: ["Tucked"], Extended: true,
+				Name: "NecklaceLock", Fetish: ["Metal"], Value: 40, Left: 155, Top: 152, ParentGroup: null, Extended: true,
 				Layer: [
 					{ Name: "Chain", HasType: false },
 					{ Name: "Lock", HasType: false },
 				]
 			},
 			{
-				Name: "NecklaceKey", Fetish: ["Metal"], Value: 40, Left: 153, Top: 152, ParentGroup: null, AllowType: ["Tucked"], Extended: true,
+				Name: "NecklaceKey", Fetish: ["Metal"], Value: 40, Left: 153, Top: 152, ParentGroup: null, Extended: true,
 				Layer: [
 					{ Name: "Chain", HasType: false },
 					{ Name: "Key", HasType: false },
@@ -1107,7 +1107,7 @@ var AssetFemale3DCG = [
 			{ Name: "SunGlasses1", Value: 15 },
 			{ Name: "SunGlasses2", Value: 15 },
 			{ Name: "SunGlassesClear", Value: 15 },
-			{ Name: "EyePatch1", Value: 10, Priority: 29, AllowType: ["Right"], Extended: true },
+			{ Name: "EyePatch1", Value: 10, Priority: 29, Extended: true },
 		],
 		Color: ["#303030", "#808080", "#e0e0e0", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 	},

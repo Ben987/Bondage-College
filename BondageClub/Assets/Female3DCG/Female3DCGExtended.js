@@ -126,6 +126,31 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // LeatherStraps
+		BunnyCollarCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Both",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Collar",
+						Property: {
+							Type: "Collar",
+						},
+					},
+					{
+						Name: "Cuffs",
+						Property: {
+							Type: "Cuffs",
+						},
+					},
+				],
+			},
+		}, // BunnyCollarCuffs
 	}, // ClothAccessory
 	ItemArms: {
 		HighSecurityStraitJacket: {
@@ -2046,6 +2071,62 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // SilkStraps
 	}, // Panties
+	Glasses: {
+		EyePatch1: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Left",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Right",
+						Property: {
+							Type: "Right",
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectEyePatchType",
+					TypePrefix: "EyePatchType",
+				}
+			},
+		}, // EyePatch1
+	}, // Glasses
+	Necklace: {
+		NecklaceKey: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Normal",
+						Property: {
+							Type: null,
+							OverridePriority: 31
+						},
+					},
+					{
+						Name: "Tucked",
+						Property: {
+							Type: "Tucked",
+							OverridePriority: 29
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectPriorityType",
+					TypePrefix: "ClothPriorityType",
+				}
+			},
+		}, // NecklaceKey
+		NecklaceLock: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "NecklaceKey" },
+		}, // NecklaceLock
+	}, // Necklace
 	ItemHead: {
 		DuctTape: {
 			Archetype: ExtendedArchetype.TYPED,
