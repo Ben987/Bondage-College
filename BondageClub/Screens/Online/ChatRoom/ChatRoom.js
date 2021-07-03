@@ -403,7 +403,7 @@ function ChatRoomCanBeLeashedBy(sourceMemberNumber, C) {
 					canLeash = true;
 					if (C.Appearance[A].Asset.Group.Name == "ItemNeckRestraints")
 						neckLock = InventoryGetLock(C.Appearance[A]);
-				} else if (InventoryItemHasEffect(C.Appearance[A], "Tethered", true) || InventoryItemHasEffect(C.Appearance[A], "Mounted", true) || InventoryItemHasEffect(C.Appearance[A], "Enclose", true)){
+				} else if (InventoryItemHasEffect(C.Appearance[A], "Tethered", true) || InventoryItemHasEffect(C.Appearance[A], "Mounted", true) || InventoryItemHasEffect(C.Appearance[A], "Enclose", true) || InventoryItemHasEffect(C.Appearance[A], "OneWayEnclose", true)){
 					isTrapped = true;
 				}
 			}

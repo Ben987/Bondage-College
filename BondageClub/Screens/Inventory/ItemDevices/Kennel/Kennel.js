@@ -12,11 +12,17 @@ const InventoryItemDevicesKennelOptions = [
     }, {
 		Name: "ClosedNoPadding",
         ItemValue: { Door: true, Padding: false},
-		Property: { Type: "Closed" }
+		Property: { 
+			Type: "Closed",
+			Effect: ["OneWayEnclose"],
+		}
     }, {
 		Name: "ClosedPadding",
         ItemValue: { Door: true, Padding: true},
-		Property: { Type: "ClosedPadding" }
+		Property: { 
+			Type: "ClosedPadding",
+			Effect: ["OneWayEnclose"],
+		}
     }
 ];
 

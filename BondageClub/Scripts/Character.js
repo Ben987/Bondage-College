@@ -124,7 +124,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			return this.GetBlindLevel() > 0;
 		},
 		IsEnclose: function () {
-			return (this.Effect.indexOf("Enclose") >= 0);
+			return (this.Effect.indexOf("Enclose") >= 0 || (this.Effect.indexOf("OneWayEnclose") >= 0 && this.ID == 0));
 		},
 		IsMounted: function () {
 			return (this.Effect.indexOf("Mounted") >= 0);
