@@ -4477,7 +4477,7 @@ var AssetFemale3DCG = [
 				Name: "Kennel", Fetish: ["Metal", "Pet"], Value: 150, Difficulty: 6, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "CageEquip", DefaultColor: ["#2E2E29", "#780E0E", "#2E2E29", "#2E2E29"], Prerequisite: ["NotSuspended", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], AllowType: ["OpenPadding", "Closed", "ClosedPadding"], AllowEffect: ["OneWayEnclose"], Effect: ["ForceKneel", "Prone", "Freeze"], RemoveAtLogin: true, Extended: true, Layer: [
 					{ Name: "Kennel", Priority: 1, HasType: false },
 					{ Name: "Padding", Priority: 1, AllowTypes: ["OpenPadding", "ClosedPadding"], HasType: false },
-					{ Name: "Frame", HasType: false, Alpha: [{ Masks: [[0, 0, 500, 20], [0, 750, 500, 250], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }] },
+					{ Name: "Frame", HasType: false, Alpha: [{ Group: ["Cloth", "ClothAccessory", "Suit", "ClothLower", "SuitLower", "Socks", "Shoes", "Hat", "HairAccessory3", "HairAccessory1", "HairAccessory2", "Gloves", "Mask", "Wings", "BodyUpper", "BodyLower", "HairFront", "HairBack", "Hands", "Head", "ItemFeet", "ItemLegs", "ItemArms", "ItemHands", "ItemNeckRestraints", "ItemHead", "ItemHood", "ItemAddon", "ItemBoots"], Masks: [[0, 0, 500, 20], [0, 750, 500, 250], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }] },
 					{ Name: "Door" },
 				]
 			},
