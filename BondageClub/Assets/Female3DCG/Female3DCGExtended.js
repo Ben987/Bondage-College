@@ -2045,6 +2045,33 @@ var AssetFemale3DCGExtended = {
 				]
 			},
 		}, // SilkStraps
+		Diapers4: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: { Type: null, },
+					},
+					{
+						Name: "StrawBerry",
+						Property: { Type: "StrawBerry", },
+					},
+					{
+						Name: "Flower",
+						Property: { Type: "Flower", },
+					},
+					{
+						Name: "Butterflies",
+						Property: { Type: "Butterfly", },
+					},
+					{
+						Name: "Spots",
+						Property: { Type: "Spots", },
+					},
+				],
+			},
+		}, // Diapers4
 	}, // Panties
 	ItemHead: {
 		DuctTape: {
