@@ -70,10 +70,11 @@ function InventoryItemLegsDuctTapeNpcDialog(C, Option) {
 /**
  * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
  * @param {Character} C - The character to check the option for
- * @param {Option} Option - The next option to use on the character
+ * @param {Item} Item - The equipped item
+ * @param {ExtendedItemOption} Option - The next option to use on the character
  * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
-function InventoryItemLegsDuctTapeValidate(C, Option) {
+function InventoryItemLegsDuctTapeValidate(C, Item, Option) {
 	var Allowed = "";
 
 	if (Option.Property.Type != null && InventoryGet(C, "ClothLower")) {

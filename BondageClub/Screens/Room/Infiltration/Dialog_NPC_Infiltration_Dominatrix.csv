@@ -1,0 +1,64 @@
+PlayerGagged,,,(She laughs at your mumbles.)  Mumble all you want.  I'm taking back what you've stolen.,,
+FightVictory,,,"(She grumbles.)  Unbelievable!  Fine, keep your stolen loot for now, but we will recover it soon.",,
+FightDefeat,,,(She smirks.)  Justice has been served.  Someone like you has no right to carry our locks and keys.,,
+ItemMouth,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth,,,(You remove her gag and she grumbles.)  Are you releasing me now?  It's been long enough.,,
+ItemMouth2,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth2,,,(You remove her gag and she grumbles.)  Are you releasing me now?  It's been long enough.,,
+ItemMouth3,,,(She sighs and reluctantly allows you to gag her.),,
+RemoveItemMouth3,,,(You remove her gag and she grumbles.)  Are you releasing me now?  It's been long enough.,,
+ItemEars,,,(She seems angry as you push earplugs inside.)  I know I failed my mission!  There's no need to humiliate me.,,
+RemoveItemEars,,,(You pull the earplugs out.)  Another Dominatrix will track you down.,,
+ItemArms,,,"(She struggles as you restrain her arms securely.)  Do what you want, I will not cooperate.",,
+RemoveItemArms,,,(You free her arms and she stretches.)  Can I leave now?  This place is a dump.,,
+ItemLegs,,,(She trashes as you restrain her legs.)  I've already surrendered you know.,,
+RemoveItemLegs,,,(You release her legs.)  Let me go and I'll lower the bounty on your head.,,
+ItemFeet,,,(She grumbles as you restrain her feet.)  I will have my revenge someday.,,
+RemoveItemFeet,,,(You release her feet.)  You had your fun?   Can you let me go?,,
+ItemBoots,,,(She grumbles as you restrain her feet.)  You really think you can keep me?,,
+RemoveItemBoots,,,(She stays silent as you release her feet.),,
+ItemNeck,,,(She adjusts her neck to the new collar.)  Don't make me laugh.  Nobody can own me.,,
+RemoveItemNeck,,,(You remove the collar from her neck.)  We have better collars for you at the Box.,,
+ItemPelvis,,,(She struggles to avoid the belt but you're able to strap it on her.)  This is really annoying.,,
+RemoveItemPelvis,,,(She sighs as you unlock the belt.)  The keys and locks will be back at the box sooner or later.,,
+ItemHead,,,(She sighs as you strap the device on her head.)  Get lost girl!,,
+RemoveItemHead,,,"(You release her head as she nods.)  Fine, can I go now?",,
+ItemHood,,,(You put the hood on her head as she goes silent.),,
+RemoveItemHood,,,(She grins as you remove the hood from her head.)  I have many tools for you at home.,,
+ItemNose,,,(You strap the item on her nose as she sighs.)  Are you having fun?  I'm not!,,
+RemoveItemNose,,,(She nods as you remove the device.)  Revenge will be sweet.,,
+ItemTorso,,,(You strap the harness on her torso.)  You're an artist or you're simply stupid?,,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  Keep that harness girl.,,
+ItemButt,,,(She jumps as you slide the device inside.)  Ten extra whip lashes for you!,,
+RemoveItemButt,,,(She sighs as you remove the plug.)  I will enjoy seeing you in our prison.,,
+ItemBreast,,,(She holds her breath as you use the item.)  You will never break me.,,
+RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Don't think you will keep our technology for long.,,
+ItemNipples,,,(She whimpers as you use the device on her breast.)  Torture all you want.  I won't talk.,,
+RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the device.),,
+0,,What do you want?,I want what you've stolen: Pandora's locks and keys.  Give me the items and I'll leave you alone.,DialogRemove(),
+0,,How about a bribe?,(She laughs out loud.)  No!  This technology is priceless.,DialogRemove(),
+0,,(Fight her.),,KidnapperStartFight(),Player.CanInteract()
+0,50,(Give her Pandora's locks and keys.),(She smiles as you give her the items.)  Mission done!  Get out of my face DialogPlayerName.  I'm sure we'll meet again.,,
+50,,We will meet again.,I'm sure we will.  (She starts to walk away.),DialogRemove(),Player.CanTalk()
+50,0,(Let her go.),,StealItems(),
+100,110,You fought well.,You're a great opponent.  What will you do with me?,,CurrentCharacter.CanTalk()
+100,110,You failed miserably.,Fuck you DialogPlayerName!  What will you do with me?,,CurrentCharacter.CanTalk()
+100,110,I got lucky.,Luck can turn quickly.  What will you do with me?,,CurrentCharacter.CanTalk()
+100,110,(Remove her gag.),(She catches her breath.)  What will you do with me?,KidnapperUngag(),!CurrentCharacter.CanTalk()
+100,,(Let her go.),,EndKidnapping(),
+110,120,You will fetch me a good ransom.,"All you want is petty cash?  Fine, get your money and we'll duel another time.",,
+110,130,I'll take the fame from your capture.,"So, I'm a trophy for you?  Very well, get your fame and we'll duel another time.",,
+110,140,I'll bring you to my private room.,Ah!  You think you can keep me in your room?  I'll disappear as soon as your back is turned.,,CanBringToRoom()
+110,150,You can go.  I don't care about you.,"Fine, but we'll duel another time.  I want my revenge.",,
+120,,(Sell her for ransom money.),,"EndKidnapping(""Money"")",
+130,,(Get fame for her capture.),,"EndKidnapping(""Skill"")",
+140,,(Bring her to your room.),,"EndKidnapping(""Private"")",
+140,,"Fine, get lost.  (Let her go.)",,EndKidnapping(),
+150,,You don't scare me.  (Let her go.),,EndKidnapping(),
+150,,I'll be cautious.  (Let her go.),,EndKidnapping(),
+200,50,"Congrats, you're strong.","You're a fair loser but this is mine.  (She takes your Pandora's locks and keys.)  I'd love to chat, but I have a mission to complete.",,Player.CanTalk()
+200,50,I will have my revenge.,"Talk all you want, I'll take this.  (She takes your Pandora's locks and keys.)  Take care loser, I'm going now.",,Player.CanTalk()
+200,50,Help!  Anybody!  Help me!,(She slaps your face and takes your Pandora's locks and keys.)  Scream all you want.  I'll be long gone.,,Player.CanTalk()
+200,50,(Grumble and struggle.),"(She smirks and takes your Pandora's locks and keys.)  Enjoy your struggling, I'll be going now.",,!Player.CanTalk()
+200,50,(Whimper in your gag.),"You're so pathetic.  (She takes your Pandora's locks and keys.)  Find some help, I'm leaving.",,!Player.CanTalk()
+200,50,(Stay silent.),"Good girl.  (She takes your Pandora's locks and keys.)  Struggle or beg for freedom, I'm going right now.",,

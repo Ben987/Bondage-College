@@ -44,7 +44,6 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 0,,Will you leave if I pay you?,(She laughs at you.)  You really think I took all these risks to leave with a silly bribe?,DialogRemove(),
 0,,(Fight her.),,KidnapperStartFight(),Player.CanInteract()
 0,50,(Surrender.),(She seems surprised and quickly jumps on the opportunity to restrain you.)  Wow!  That was easy!,KidnapperSurrender(),
-0,,(Leave her.),,EndKidnapping(),
 50,60,(Grumble and struggle.),"It's too late for that, you should have fought while you could.  Come with me, you have a date with a Dominatrix from Pandora's Box.",,
 50,60,(Bow your head.),"(She smirks.)  I did not expect you to be that submissive.  Come with me, you have a date with a Dominatrix from Pandora's Box.",,
 50,60,(Stay silent.),"(She also stays silent and starts to drag you in the halls.)  Come with me, you have a date with a Dominatrix from Pandora's Box.",,

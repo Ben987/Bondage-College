@@ -348,7 +348,7 @@ function ElementScrollToEnd(ID) {
  * @param {string} ID - The id of the element to find the scroll percentage of.
  * @returns {(number|null)} - A float representing the scroll percentage.
  */
- function ElementGetScrollPercentage(ID) {
+function ElementGetScrollPercentage(ID) {
 	var element = document.getElementById(ID);
 	if (element != null) return (element.scrollTop + element.clientHeight) / element.scrollHeight;
 

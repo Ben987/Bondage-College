@@ -52,7 +52,7 @@ function SkillChange(SkillType, SkillLevel, SkillProgress, Push) {
 
 /**
  * Loads the skill data from the server on login
- * @param {Array.<{Type: string, Level: number, Progress: number}>} NewSkill - The player skills array sent by the server
+ * @param {Skill[]} NewSkill - The player skills array sent by the server
  * @returns {void} - Nothing
  */
 function SkillLoad(NewSkill) {

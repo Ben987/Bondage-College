@@ -226,7 +226,19 @@ function validateArray(definition, obj, description, allowMissing=false) {
 							} else if (assetConfig.Archetype === "typed") {
 								validateObject(types.TypedItemConfig, assetConfig.Config, `Extended asset config for ${Group.Group}:${Asset.Name}`);
 								validateArray(types.ExtendedItemOption, assetConfig.Config.Options, `Extended asset config for ${Group.Group}:${Asset.Name} Options`);
+								const HasSubscreen = !localError && assetConfig.Config.Options.some(option => !!option.HasSubscreen);
+								if (!HasSubscreen) {
+									if (Asset.AllowEffect !== undefined) {
+										error(`Asset ${Group.Group}:${Asset.Name}: Assets using "typed" archetype should NOT set AllowEffect (unless they use subscreens)`);
+									}
+									if (Asset.AllowBlock !== undefined) {
+										error(`Asset ${Group.Group}:${Asset.Name}: Assets using "typed" archetype should NOT set AllowBlock (unless they use subscreens)`);
+									}
+								}
 							}
+						}
+						if (assetConfig.Archetype === "typed" && Asset.AllowType !== undefined) {
+							error(`Asset ${Group.Group}:${Asset.Name}: Assets using "typed" archetype should NOT set AllowType`);
 						}
 						if (!["modular", "typed"].includes(assetConfig.Archetype)) {
 							error(`Extended asset archetype for ${Group.Group}:${Asset.Name}: Unknown Archetype ${assetConfig.Archetype}`);

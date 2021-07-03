@@ -96,11 +96,11 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitSetSensitivity(Modifier)
 
 }
 
-function InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Sensitivity, Emote, Keywords) {
+function InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Sensitivity, Emote, Keywords, LastMessages) {
 	if (Sensitivity == 3 && (Emote || (ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
 			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && ChatRoomLastMessage[ChatRoomLastMessage.length-1].replace(/[A-Za-z]+/g, '') != ChatRoomLastMessage[ChatRoomLastMessage.length-1]
 			&& (!ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
-			|| (keywords && (ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/me") || ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")))))))
+		|| (Keywords && (ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/me") || ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*")))))))
 			return true;
 		if (Sensitivity == 2 && ChatRoomLastMessage && ChatRoomLastMessage.length != LastMessages
 			&& !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("(") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("*") && !ChatRoomLastMessage[ChatRoomLastMessage.length-1].startsWith("/")
@@ -142,7 +142,7 @@ function InventoryItemNeckAccessoriesCollarAutoShockUnitUpdate(data) {
 			}
 		}
 
-		ShockTriggerPunish = InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Item.Property.Sensitivity, gagaction, keywords);
+		ShockTriggerPunish = InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Item.Property.Sensitivity, gagaction, keywords, LastMessages);
 
 		if (ChatRoomTargetMemberNumber != null) {
 			ShockTriggerPunish = false; // No trigger on whispers

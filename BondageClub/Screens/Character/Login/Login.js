@@ -4,10 +4,10 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "DarkStar", "Dini", "ElCriminal", 
-						"Epona", "Escurse", "FanRunner", "Greendragon", "KamiKaze", "Kimuriel", "Longwave", "Michal", "Michel", "Mike", 
-						"Mindtie", "Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", "Remydy", 
-						"Rika", "RobinHood", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "SkyLord", "Stephanie", "Tam", 
+var LoginThankYouList = ["Anna", "Aylea", "BlueEyedCat", "BlueWinter", "Brian", "Bryce", "Christian", "DarkStar", "Dini", "ElCriminal",
+						"Epona", "Escurse", "FanRunner", "Greendragon", "KamiKaze", "Kimuriel", "Longwave", "Michal", "Michel", "Mike",
+						"Mindtie", "Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Overlord", "Rashiash", "Ray", "Remydy",
+						"Rika", "RobinHood", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "SkyLord", "Stephanie", "Tam",
 						"TopHat", "Trent", "Troubadix", "William", "Xepherio", "Yuna", "Yurei", "Znarf"];
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
@@ -334,31 +334,46 @@ function LoginValidateArrays() {
 		Player.HiddenItems = CleanHiddenItems;
 		update = true;
 	}
+
+
+	var CleanFavoriteItems = AssetCleanArray(Player.FavoriteItems);
+	if (CleanFavoriteItems.length != Player.FavoriteItems.length) {
+		Player.FavoriteItems = CleanFavoriteItems;
+		update = true;
+	}
+
 	if (update)
 		ServerPlayerBlockItemsSync();
 }
 
 /**
  * Makes sure the difficulty restrictions are applied to the player
+ * @param {boolean} applyDefaults - If changing to the difficulty, set this to True to set LimitedItems to the default settings
  * @returns {void} Nothing
  */
-function LoginDifficulty() {
+function LoginDifficulty(applyDefaults) {
 
 	// If Extreme mode, the player cannot control her blocked items
 	if (Player.GetDifficulty() >= 3) {
-		LoginExtremeItemSettings();
+		LoginExtremeItemSettings(applyDefaults);
 		ServerPlayerBlockItemsSync();
 	}
 }
 
 /**
  * Set the item permissions for the Extreme difficulty
+ * @param {boolean} applyDefaults - When initially changing to extreme/whitelist, TRUE sets strong locks to limited permissions. When enforcing
+ * settings, FALSE allows them to remain as they are since the player could have changed them to fully open.
  * @returns {void} Nothing
  */
-function LoginExtremeItemSettings() {
+function LoginExtremeItemSettings(applyDefaults) {
 	Player.BlockItems = [];
-	// If the permissions are "Owner/Lover/Whitelist" don't limit the locks so that whitelist can use them
-	Player.LimitedItems = (Player.ItemPermission == 3) ? [] : MainHallStrongLocks;
+	if (applyDefaults) {
+		// If the item permissions are 3 = "Owner/Lover/Whitelist" don't limit the locks, since that just blocks whitelisted players
+		Player.LimitedItems = Player.ItemPermission == 3 ? [] : MainHallStrongLocks.map(L => { return { Name: L, Group: "ItemMisc", Type: null }; });
+	} else {
+		Player.LimitedItems = Player.LimitedItems.filter(item => MainHallStrongLocks.includes(item.Name));
+	}
 	Player.HiddenItems = [];
 }
 
@@ -369,7 +384,7 @@ function LoginExtremeItemSettings() {
 function LoginQueue(Pos) {
 	if (typeof Pos !== "number") return;
 
-	LoginMessage = TextGet("LoginQueueWait").replace("QUEUE_POS", Pos);
+	LoginMessage = TextGet("LoginQueueWait").replace("QUEUE_POS", `${Pos}`);
 }
 
 /**
@@ -431,6 +446,8 @@ function LoginResponse(C) {
 				typeof C.BlockItems === "object" && C.BlockItems ? CommonUnpackItemArray(C.BlockItems) : [];
 			Player.LimitedItems = Array.isArray(C.LimitedItems) ? C.LimitedItems :
 				typeof C.LimitedItems === "object" && C.LimitedItems ? CommonUnpackItemArray(C.LimitedItems) : [];
+			Player.FavoriteItems = Array.isArray(C.FavoriteItems) ? C.FavoriteItems :
+				typeof C.FavoriteItems === "object" && C.FavoriteItems ? CommonUnpackItemArray(C.FavoriteItems) : [];
 			Player.HiddenItems = ((C.HiddenItems == null) || !Array.isArray(C.HiddenItems)) ? [] : C.HiddenItems;
 			// TODO: Migration code; remove after few versions (added R66)
 			if (Array.isArray(C.BlockItems) || Array.isArray(C.LimitedItems)) {
@@ -488,6 +505,19 @@ function LoginResponse(C) {
 					Player.SavedExpressions.push(null);
 				}
 			}
+
+			// Load Favorited Colors
+			Player.SavedColors = C.SavedColors;
+			if (!Array.isArray(Player.SavedColors)) {
+				Player.SavedColors = [];
+			}
+			for (let i = 0; i < ColorPickerNumSaved; i++) {
+				if (typeof Player.SavedColors[i] != "object" || isNaN(Player.SavedColors[i].H) || isNaN(Player.SavedColors[i].S) || isNaN(Player.SavedColors[i].V)) {
+					Player.SavedColors[i] = GetDefaultSavedColors()[i];
+				}
+			}
+			Player.SavedColors.length = ColorPickerNumSaved;
+
 			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
 			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
 			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
@@ -505,7 +535,7 @@ function LoginResponse(C) {
 			Player.SubmissivesList = typeof C.SubmissivesList === "string" ? new Set(JSON.parse(LZString.decompressFromUTF16(C.SubmissivesList))) : new Set();
 			Player.GhostList = ((C.GhostList == null) || !Array.isArray(C.GhostList)) ? [] : C.GhostList;
 			Player.Infiltration = C.Infiltration;
-			LoginDifficulty();
+			LoginDifficulty(false);
 
 			// Loads the player character model and data
 			ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance, C.MemberNumber);
@@ -562,7 +592,7 @@ function LoginResponse(C) {
 			if (LogQuery("Locked", "Cell")) {
 				CommonSetScreen("Room", "Cell");
 			} else {
-				
+
 				// If the player must log back in Pandora's Box prison
 				if ((Player.Infiltration != null) && (Player.Infiltration.Punishment != null) && (Player.Infiltration.Punishment.Timer != null) && (Player.Infiltration.Punishment.Timer > CurrentTime)) {
 					PandoraWillpower = 0;
@@ -597,10 +627,10 @@ function LoginResponse(C) {
 			}
 
 		} else {
-            LoginStatusReset("ErrorLoadingCharacterData");
-        }
+			LoginStatusReset("ErrorLoadingCharacterData");
+		}
 	} else LoginStatusReset(C);
-    LoginUpdateMessage();
+	LoginUpdateMessage();
 }
 
 /**
@@ -662,7 +692,7 @@ function LoginKeyDown() {
  */
 function LoginDoLogin() {
 
-    // Ensure the login request is not sent twice
+	// Ensure the login request is not sent twice
 	if (!LoginSubmitted && ServerIsConnected) {
 		var Name = ElementValue("InputName");
 		var Password = ElementValue("InputPassword");
@@ -672,7 +702,7 @@ function LoginDoLogin() {
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
 		} else LoginStatusReset("InvalidNamePassword");
 	}
-    LoginUpdateMessage();
+	LoginUpdateMessage();
 
 }
 
@@ -681,20 +711,20 @@ function LoginDoLogin() {
  * @returns {void} Nothing
  */
 function LoginSetSubmitted() {
-    LoginSubmitted = true;
-    if (ServerIsConnected) LoginErrorMessage = "";
+	LoginSubmitted = true;
+	if (ServerIsConnected) LoginErrorMessage = "";
 }
 
 /**
  * Resets the login submission state
- * @param {boolean} IsRelog - whether or not we're on the relog screen
- * @param {string} ErrorMessage - the login error message to set if the login is invalid - if not specified, will clear the login error message
+ * @param {string} [ErrorMessage] - the login error message to set if the login is invalid - if not specified, will clear the login error message
+ * @param {boolean} [IsRelog=false] - whether or not we're on the relog screen
  * @returns {void} Nothing
  */
 function LoginStatusReset(ErrorMessage, IsRelog) {
-    LoginSubmitted = false;
-    LoginIsRelog = !!IsRelog;
-    if (ErrorMessage) LoginErrorMessage = ErrorMessage;
+	LoginSubmitted = false;
+	LoginIsRelog = !!IsRelog;
+	if (ErrorMessage) LoginErrorMessage = ErrorMessage;
 }
 
 /**
@@ -710,8 +740,8 @@ function LoginUpdateMessage() {
  * @returns {string} The key of the message to display
  */
 function LoginGetMessageKey() {
-    if (LoginErrorMessage) return LoginErrorMessage;
-    else if (!ServerIsConnected) return "ConnectingToServer";
-    else if (LoginSubmitted) return "ValidatingNamePassword";
-    else return LoginIsRelog ? "EnterPassword" : "EnterNamePassword";
+	if (LoginErrorMessage) return LoginErrorMessage;
+	else if (!ServerIsConnected) return "ConnectingToServer";
+	else if (LoginSubmitted) return "ValidatingNamePassword";
+	else return LoginIsRelog ? "EnterPassword" : "EnterNamePassword";
 }

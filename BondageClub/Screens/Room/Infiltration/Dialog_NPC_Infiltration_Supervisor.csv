@@ -38,8 +38,14 @@ PlayerGagged,,,(She frowns at you.)  Go see a maid girl.  I don't have time for 
 40,50,Give me something serious.,"My pleasure, comrade DialogPlayerName.  Let me fetch a hard mission for you, give me a minute.",SelectChallenge(2),"DialogSkillGreater(""Infiltration"", 2)"
 40,50,I can take on anything.,"(She gives you a military salute.)  Let me fetch a harder mission for you, give me a minute.",SelectChallenge(3),"DialogSkillGreater(""Infiltration"", 5)"
 40,50,Send me to hell comrade.,"You will be remembered for years to come.  Let me fetch an extreme mission for you, give me a minute.",SelectChallenge(4),"DialogSkillGreater(""Infiltration"", 8)"
+40,60,Have you heard about Pandora's locks?,(She nods and starts to whisper.)  A few spies told me about them.  Pandora seems to be developping a new kind of padlock.,,CanGetPandoraLock()
 40,0,I don't think I'm ready.,Alright.  Let me know when you're ready.,,
 50,,(Wait for her.),,PrepareMission(),
+60,,Why are you whispering?,(She continues to whisper.)  Shhhh.  They've put lots of effort to hide and protect this technology.  We could get in trouble.,DialogRemove(),
+60,70,(Whisper.)  I could steal that technology.,Are you sure?  You might have to search for weeks before you find it.  Pandora's Box is huge.,,
+60,0,It sounds too dangerous for me.,(She nods and stops whispering.)  Let's change subject.  Isn't the weather nice lately?,,
+70,Ready,I'll do it comrade.,(She salutes and picks a disguise for you.)  I knew we could count on you.  Will you go now?,StartPandoraLock(),
+70,0,I need to prepare first.,(She nods and stops whispering.)  Let's change subject.  Isn't the weather nice lately?,,
 ObjectUSBKey,,,USB key,,
 ObjectBDSMPainting,,,BDSM painting,,
 ObjectGoldCollar,,,gold plated collar,,
@@ -47,6 +53,7 @@ ObjectGeneralLedger,,,general ledger,,
 ObjectSilverVibrator,,,silver vibrator,,
 ObjectDiamondRing,,,diamond ring,,
 ObjectSignedPhoto,,,porn star signed photo,,
+ObjectPandoraPadlockKeys,,,Pandora's locks & keys,,
 RescueIntro,,,Poor TargetName has been kidnapped by Pandora's Box.  We need someone like you to go there and rescue her.,,
 Rescue,Disguise,Give me her profile.,(She gives you some information so you can rescue her.)  She really needs you.  It's time for your disguise comrade.,,
 Rescue,Disguise,How will I recognize her?,(She gives you some information so you can rescue her.)  She really needs you.  It's time for your disguise comrade.,,
@@ -74,6 +81,7 @@ End,,I'm going back right now.,,ReturnMission(),CanGoBack()
 End,,I'd like another disguise.,(You pick new random clothes to blend better into Pandora's Box.)  A true chameleon!,RandomClothes(),CanGoBack()
 End,0,"Sorry, I've failed.","Don't be ashamed, I'm sure you've tried your best.  We'll send someone else.  You can pick another mission if you want.","DialogChangeReputation(""Dominant"", -1)",CanFail()
 End,,Give me a minute.  (Leave her.),,DialogLeave(),
+Success,0,Can I keep the locks and keys?,"(She ponders.)  This is highly unusual, but you're such a great spy, you deserve it.  Keep them and serve the Bondage Club comrade.",GetPandoraLock(),CanAskForPandoraLock()
 Success,0,"Thank you, comrade.",(She nods quickly and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,,
 Success,0,"I was scared, but I did it.",(She cheers you up and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,"DialogChangeReputation(""Dominant"", -2)",
 Success,0,You should know that I never fail.,(She bows her head and gives you a sealed envelope with your salary.)  Come back anytime for more assignments.,"DialogChangeReputation(""Dominant"", 3)",

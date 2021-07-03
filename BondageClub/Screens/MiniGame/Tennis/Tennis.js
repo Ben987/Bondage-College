@@ -14,7 +14,7 @@ var TennisBallAngle = 0;
 
 /**
  * Called when a player servers, the angle can vary by 45 degrees up or down
- * @param {number} CharacterLeftServe - Ball angle given for the serve
+ * @param {boolean} CharacterLeftServe - TRUE if the character serving the ball is the left one.
  * @returns {void} - Nothing
  */
 function TennisServe(CharacterLeftServe) {

@@ -1,6 +1,7 @@
 "use strict";
 var ChatRoomBackground = "";
 var ChatRoomData = {};
+/** @type {Character[]} */
 var ChatRoomCharacter = [];
 var ChatRoomChatLog = [];
 var ChatRoomLastMessage = [""];
@@ -22,6 +23,9 @@ var ChatRoomStruggleAssistTimer = 0;
 var ChatRoomSlowtimer = 0;
 var ChatRoomSlowStop = false;
 
+var ChatRoomCharacterCount = 0;
+var ChatRoomCharacterDrawlist = [];
+
 var ChatRoomGetUpTimer = 0;
 var ChatRoomLastName = "";
 var ChatRoomLastBG = "";
@@ -40,45 +44,52 @@ const ChatRoomArousalMsg_Chance = {
 	"StruggleFail" : 0.4,
 	"StruggleAction" : 0.05,
 	"Gag" : 0,
-	};
+};
 const ChatRoomArousalMsg_ChanceScaling = {
 	"Kneel" : 0.8,
 	"Walk" : 0.67,
 	"StruggleFail" : 0.4,
 	"StruggleAction" : 0.2,
 	"Gag" : 0,
-	};
+};
 const ChatRoomArousalMsg_ChanceVibeMod = {
 	"Kneel" : 0.0,
 	"Walk" : 0.8,
 	"StruggleFail" : 0.6,
 	"StruggleAction" : 0.3,
 	"Gag" : 0,
-	};
+};
 const ChatRoomArousalMsg_ChanceInflationMod = {
 	"Kneel" : 0.1,
 	"Walk" : 0.5,
 	"StruggleFail" : 0.4,
 	"StruggleAction" : 0.2,
 	"Gag" : 0,
-	};
+};
 const ChatRoomArousalMsg_ChanceGagMod = {
 	"Kneel" : 0,
 	"Walk" : 0,
 	"StruggleFail" : 0,
 	"StruggleAction" : 0,
 	"Gag" : 0.3,
-	};
+};
 var ChatRoomPinkFlashTime = 0;
 var ChatRoomHideIconState = 0;
 var ChatRoomMenuButtons = [];
+let ChatRoomFontSize = 30;
+const ChatRoomFontSizes = {
+	Small: 24,
+	Medium: 30,
+	Large: 36,
+};
 
 /**
  * Chat room resize manager object: Handles resize events for the chat log.
  * @constant
- * @type {object} - The chat room resize manager object. Contains the functions and properties required to handle resize events.
+ * @type {object} - The chat room resize manager object. Contains the functions and properties required to handle
+ *     resize events.
  */
- let ChatRoomResizeManager = {
+let ChatRoomResizeManager = {
 	atStart : true, // Is this the first event in a chain of resize events?
 	timer : null, // Timer that triggers the end function after no resize events have been received recently.
 	timeOut : 200, // The amount of milliseconds that has to pass before the chain of resize events is considered over and the timer is called.
@@ -356,7 +367,8 @@ function ChatRoomCanHoldLeash() { return CurrentCharacter.AllowItem && Player.Ca
  * Checks if the player can let go of the targeted player's leash
  * @returns {boolean} - TRUE if the player can interact and is allowed to interact with the current character.
  */
-function ChatRoomCanStopHoldLeash() { if (CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing != false && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) >= 0) {
+function ChatRoomCanStopHoldLeash() {
+	if (CurrentCharacter.AllowItem && Player.CanInteract() && CurrentCharacter.OnlineSharedSettings && CurrentCharacter.OnlineSharedSettings.AllowPlayerLeashing != false && ChatRoomLeashList.indexOf(CurrentCharacter.MemberNumber) >= 0) {
 		if (ChatRoomCanBeLeashed(CurrentCharacter)) {
 			return true;
 		} else {
@@ -447,7 +459,7 @@ function ChatRoomCreateElement() {
 
 		// Sets the size and position
 		ElementCreateDiv("TextAreaChatLog");
-		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 859);
+		ElementPositionFix("TextAreaChatLog", ChatRoomFontSize, 1005, 5, 988, 859);
 		ElementScrollToEnd("TextAreaChatLog");
 		ChatRoomRefreshChatSettings();
 
@@ -479,10 +491,13 @@ function ChatRoomLoad() {
 	ElementRemove("InputName");
 	ElementRemove("InputDescription");
 	ElementRemove("InputSize");
+	ChatRoomRefreshFontSize();
 	ChatRoomCreateElement();
 	ChatRoomCharacterUpdate(Player);
 	ActivityChatRoomArousalSync(Player);
-	ChatRoomHideIconState = 0;
+	if (!ChatRoomData || ChatRoomData.Name !== Player.LastChatRoom) {
+		ChatRoomHideIconState = 0;
+	}
 	ChatRoomMenuBuild();
 }
 
@@ -518,7 +533,7 @@ function ChatRoomClearAllElements() {
 	PreferenceSubscreen = "";
 
 	// Profile
-    ElementRemove("DescriptionInput");
+	ElementRemove("DescriptionInput");
 
 	// Wardrobe
 	ElementRemove("InputWardrobeName");
@@ -575,6 +590,45 @@ function ChatRoomOwnerInside() {
 
 
 /**
+ * Updates the temporary drawing arrays for characters, to handle things that are dependent on the drawn chat room
+ * characters rather than the ones actually present
+ * @returns {void} - Nothing
+ */
+
+function ChatRoomUpdateDisplay() {
+	// The number of characters to show in the room
+	const RenderSingle = Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GetBlindLevel() >= 3 && !Player.Effect.includes("VRAvatars");
+	ChatRoomCharacterDrawlist = ChatRoomCharacter;
+	if (Player.Effect.includes("VRAvatars")) {
+		ChatRoomCharacterDrawlist = [];
+		for (let CC = 0; CC < ChatRoomCharacter.length; CC++) {
+			if (ChatRoomCharacter[CC].Effect.includes("VRAvatars")) {
+				ChatRoomCharacterDrawlist.push(ChatRoomCharacter[CC]);
+			}
+		}
+	} else if (Player.GetBlindLevel() > 0 && Player.GetBlindLevel() < 3 && Player.ImmersionSettings.BlindAdjacent) {
+		// We hide all players except those who are adjacent
+		ChatRoomCharacterDrawlist = [];
+		let PlayerIndex = -1;
+		// First find the player index
+		for (let CC = 0; CC < ChatRoomCharacter.length; CC++) {
+			if (ChatRoomCharacter[CC].ID == 0) {
+				PlayerIndex = CC;
+				break;
+			}
+		}
+		// Then filter the characters
+		for (let CC = 0; CC < ChatRoomCharacter.length; CC++) {
+			if (Math.abs(CC - PlayerIndex) <= 1) {
+				ChatRoomCharacterDrawlist.push(ChatRoomCharacter[CC]);
+			}
+		}
+	}
+
+	ChatRoomCharacterCount = RenderSingle ? 1 : ChatRoomCharacterDrawlist.length;
+}
+
+/**
  * Draws the chatroom characters.
  * @param {boolean} DoClick - Whether or not a click was registered.
  * @returns {void} - Nothing.
@@ -591,26 +645,11 @@ function ChatRoomDrawCharacter(DoClick) {
 	const Background = CustomBG || ChatRoomData.Background;
 	if (CustomBG && (DarkFactor === 0.0 || Player.GameplaySettings.SensDepChatLog == "SensDepLight")) DarkFactor = CharacterGetDarkFactor(Player, true);
 
-	// The number of characters to show in the room
-	const RenderSingle = Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3 && !Player.Effect.includes("VRAvatars");
-	var ChatRoomCharacterTemp = ChatRoomCharacter;
-	if (Player.Effect.includes("VRAvatars")) {
-		ChatRoomCharacterTemp = [];
-		for (let CC = 0; CC < ChatRoomCharacter.length; CC++) {
-			if (ChatRoomCharacter[CC].Effect.includes("VRAvatars")) {
-				ChatRoomCharacterTemp.push(ChatRoomCharacter[CC]);
-			}
-		}
-	}
-
-	const CharacterCount = RenderSingle ? 1 : ChatRoomCharacterTemp.length;
-
-
 	// Determine the horizontal & vertical position and zoom levels to fit all characters evenly in the room
-	const Space = CharacterCount >= 2 ? 1000 / Math.min(CharacterCount, 5) : 500;
-	const Zoom = CharacterCount >= 3 ? Space / 400 : 1;
-	const X = CharacterCount >= 3 ? (Space - 500 * Zoom) / 2 : 0;
-	const Y = CharacterCount <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
+	const Space = ChatRoomCharacterCount >= 2 ? 1000 / Math.min(ChatRoomCharacterCount, 5) : 500;
+	const Zoom = ChatRoomCharacterCount >= 3 ? Space / 400 : 1;
+	const X = ChatRoomCharacterCount >= 3 ? (Space - 500 * Zoom) / 2 : 0;
+	const Y = ChatRoomCharacterCount <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
 	const InvertRoom = Player.GraphicsSettings.InvertRoom && Player.IsInverted();
 
 	// Draw the background
@@ -619,15 +658,15 @@ function ChatRoomDrawCharacter(DoClick) {
 	}
 
 	// Draw the characters (in click mode, we can open the character menu or start whispering to them)
-	for (let C = 0; C < ChatRoomCharacterTemp.length; C++) {
-		const CharX = RenderSingle ? 0 : X + (C % 5) * Space;
-		const CharY = RenderSingle ? 0 : Y + Math.floor(C / 5) * 500;
-		if (RenderSingle && ChatRoomCharacterTemp[C].ID !== 0) { // Only render the player!
+	for (let C = 0; C < ChatRoomCharacterDrawlist.length; C++) {
+		const CharX = ChatRoomCharacterCount == 1 ? 0 : X + (C % 5) * Space;
+		const CharY = ChatRoomCharacterCount == 1 ? 0 : Y + Math.floor(C / 5) * 500;
+		if (ChatRoomCharacterCount == 1 && ChatRoomCharacterDrawlist[C].ID !== 0) { // Only render the player!
 			continue;
 		}
 		if (DoClick) {
 			if (MouseIn(CharX, CharY, Space, 1000 * Zoom)) {
-				return ChatRoomClickCharacter(ChatRoomCharacterTemp[C], CharX, CharY, Zoom, (MouseX - CharX) / Zoom, (MouseY - CharY) / Zoom, C);
+				return ChatRoomClickCharacter(ChatRoomCharacterDrawlist[C], CharX, CharY, Zoom, (MouseX - CharX) / Zoom, (MouseY - CharY) / Zoom, C);
 			}
 		} else {
 			// Draw the background a second time for characters 6 to 10 (we do it here to correct clipping errors from the first part)
@@ -636,11 +675,11 @@ function ChatRoomDrawCharacter(DoClick) {
 			}
 
 			// Draw the character
-			DrawCharacter(ChatRoomCharacterTemp[C], CharX, CharY, Zoom);
+			DrawCharacter(ChatRoomCharacterDrawlist[C], CharX, CharY, Zoom);
 
 			// Draw the character overlay
-			if (ChatRoomCharacterTemp[C].MemberNumber != null) {
-				ChatRoomDrawCharacterOverlay(ChatRoomCharacterTemp[C], CharX, CharY, Zoom, C);
+			if (ChatRoomCharacterDrawlist[C].MemberNumber != null) {
+				ChatRoomDrawCharacterOverlay(ChatRoomCharacterDrawlist[C], CharX, CharY, Zoom, C);
 			}
 		}
 	}
@@ -748,7 +787,7 @@ function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY, Pos) {
 		if (LogQuery("BlockWhisper", "OwnerRule") && Player.Ownership && Player.Ownership.Stage === 1 && Player.Ownership.MemberNumber !== C.MemberNumber && ChatRoomOwnerInside()) {
 			return;
 		}
-		// Sensory deprivation setting: Total (no whispers)
+		// Sensory deprivation setting: Total (no whispers) blocks whispers while blind unless both players are in the virtual realm. Then they can text each other.
 		if (Player.GameplaySettings.SensDepChatLog === "SensDepExtreme" && Player.GetBlindLevel() >= 3 && !(Player.Effect.includes("VRAvatars") && C.Effect.includes("VRAvatars"))) {
 			return;
 		}
@@ -798,8 +837,8 @@ function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY, Pos) {
 		}
 	}
 
-	// Disable examining when blind setting
-	if (Player.GameplaySettings.BlindDisableExamine && C.ID !== 0 && Player.GetBlindLevel() >= 3) {
+	// Disable examining when blind setting. If both players are in the virtual realm, then they can examine each other.
+	if (Player.GameplaySettings.BlindDisableExamine && !(Player.Effect.includes("VRAvatars") && C.Effect.includes("VRAvatars")) && C.ID !== 0 && Player.GetBlindLevel() >= 3) {
 		return;
 	}
 
@@ -821,7 +860,7 @@ function ChatRoomClickCharacter(C, CharX, CharY, Zoom, ClickX, ClickY, Pos) {
 			// If the player can manually control her arousal, we set the progress manual and change the facial expression, it can trigger an orgasm at 100%
 			if (C.ID === 0 && MouseIn(CharX + 50 * Zoom, CharY + 200 * Zoom, 100 * Zoom, 500 * Zoom) && C.ArousalZoom) {
 				if (Player.ArousalSettings.Active === "Manual" || Player.ArousalSettings.Active === "Hybrid") {
-					var Arousal = Math.round((CharY + 625 * Zoom - MouseY) / (4 * Zoom), 0);
+					var Arousal = Math.round((CharY + 625 * Zoom - MouseY) / (4 * Zoom));
 					ActivitySetArousal(Player, Arousal);
 					if (Player.ArousalSettings.AffectExpression) ActivityExpression(Player, Player.ArousalSettings.Progress);
 					if (Player.ArousalSettings.Progress == 100) ActivityOrgasmPrepare(Player);
@@ -1084,6 +1123,14 @@ function ChatRoomStimulationMessage(Context) {
 	}
 }
 
+/**
+ * Called when screen size or position changes or after screen load
+ * @param {boolean} load - If the reason for call was load (`true`) or window resize (`false`)
+ */
+function ChatRoomResize(load) {
+	ElementPositionFix("TextAreaChatLog", ChatRoomFontSize, 1005, 66, 988, 835);
+	ElementPosition("InputChat", 1456, 950, 900, 82);
+}
 
 /**
  * Runs the chatroom screen.
@@ -1091,14 +1138,13 @@ function ChatRoomStimulationMessage(Context) {
  */
 function ChatRoomRun() {
 	// Draws the chat room controls
+	ChatRoomUpdateDisplay();
 	ChatRoomCreateElement();
 	ChatRoomFirstTimeHelp();
 	ChatRoomTarget();
 	ChatRoomBackground = "";
 	DrawRect(0, 0, 2000, 1000, "Black");
 	ChatRoomDrawCharacter(false);
-	ElementPositionFix("TextAreaChatLog", 36, 1005, 66, 988, 835);
-	ElementPosition("InputChat", 1456, 950, 900, 82);
 	DrawButton(1905, 908, 90, 90, "", "White", "Icons/Chat.png");
 	if (!ChatRoomCanLeave() && ChatRoomSlowtimer != 0){//Player got interrupted while trying to leave. (Via a bind)
 		ServerSend("ChatRoomChat", { Content: "SlowLeaveInterrupt", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]});
@@ -1162,23 +1208,25 @@ function ChatRoomRun() {
 			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
 			ActivityOrgasmProgressBar(50, 970);
 		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99) && !CommonPhotoMode) {
-			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6) ||
-				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3))) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
-			else if (ChatRoomCharacter.length == 3) DrawRect(0, 50, 1003, 900, "#FFB0B040");
-			else if (ChatRoomCharacter.length == 4) DrawRect(0, 150, 1003, 700, "#FFB0B040");
-			else if (ChatRoomCharacter.length == 5) DrawRect(0, 250, 1003, 500, "#FFB0B040");
+			if ((ChatRoomCharacterCount <= 2) || (ChatRoomCharacterCount >= 6) ||
+				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (Player.GetBlindLevel() >= 3))) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
+			else if (ChatRoomCharacterCount == 3) DrawRect(0, 50, 1003, 900, "#FFB0B040");
+			else if (ChatRoomCharacterCount == 4) DrawRect(0, 150, 1003, 700, "#FFB0B040");
+			else if (ChatRoomCharacterCount == 5) DrawRect(0, 250, 1003, 500, "#FFB0B040");
 		}
 	}
 
 	if ((Player.ImmersionSettings != null && Player.GraphicsSettings != null) && (Player.ImmersionSettings.StimulationEvents && Player.GraphicsSettings.StimulationFlash) && ChatRoomPinkFlashTime > CommonTime()) {
 		let FlashTime = ChatRoomPinkFlashTime - CommonTime(); // ChatRoomPinkFlashTime is the end of the flash. The flash is brighter based on the distance to the end.
 		let PinkFlashAlpha = DrawGetScreenFlash(FlashTime);
-		if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6) ||
-			(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine) && (Player.GetBlindLevel() >= 3)))
-												DrawRect(0, 0, 1003, 1000, "#FFB0B0" + PinkFlashAlpha);
-		else if (ChatRoomCharacter.length == 3) DrawRect(0, 50, 1003, 900, "#FFB0B0" + PinkFlashAlpha);
-		else if (ChatRoomCharacter.length == 4) DrawRect(0, 150, 1003, 700, "#FFB0B0" + PinkFlashAlpha);
-		else if (ChatRoomCharacter.length == 5) DrawRect(0, 250, 1003, 500, "#FFB0B0" + PinkFlashAlpha);
+		if (
+			(ChatRoomCharacterCount <= 2) || (ChatRoomCharacterCount >= 6) ||
+			(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (Player.GetBlindLevel() >= 3))
+		)
+			DrawRect(0, 0, 1003, 1000, "#FFB0B0" + PinkFlashAlpha);
+		else if (ChatRoomCharacterCount == 3) DrawRect(0, 50, 1003, 900, "#FFB0B0" + PinkFlashAlpha);
+		else if (ChatRoomCharacterCount == 4) DrawRect(0, 150, 1003, 700, "#FFB0B0" + PinkFlashAlpha);
+		else if (ChatRoomCharacterCount == 5) DrawRect(0, 250, 1003, 500, "#FFB0B0" + PinkFlashAlpha);
 	}
 
 
@@ -1292,27 +1340,27 @@ function ChatRoomMenuClick() {
 					break;
 				case "Kneel":
 					// When the user character kneels
-           if (Player.CanKneel()) {
+					if (Player.CanKneel()) {
 						const PlayerIsKneeling = Player.ActivePose && Player.ActivePose.includes("Kneel");
 						ServerSend("ChatRoomChat", { Content: PlayerIsKneeling ? "StandUp" : "KneelDown", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
 						FuturisticTrainingBeltStandUpFlag = Player.IsKneeling();
 						CharacterSetActivePose(Player, PlayerIsKneeling ? "BaseLower" : "Kneel");
 						ChatRoomStimulationMessage("Kneel");
 						ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
-          } else if (ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())) { // If the player can theoretically get up, we start a minigame!
-            var diff = 0;
-            if (Player.IsBlind()) diff += 1;
-            if (Player.IsKneeling()) diff += 2;
-            if (Player.IsDeaf()) diff += 1;
-            if (InventoryGet(Player, "ItemTorso") || InventoryGroupIsBlocked(Player, "ItemTorso")) diff += 1;
-            if (InventoryGroupIsBlocked(Player, "ItemHands")) diff += 1;
-            if (InventoryGet(Player, "ItemArms")) diff += 1;
-            if (InventoryGet(Player, "ItemLegs") || InventoryGroupIsBlocked(Player, "ItemLegs")) diff += 1;
-            if (InventoryGet(Player, "ItemFeet") || InventoryGroupIsBlocked(Player, "ItemFeet")) diff += 1;
-            if (InventoryGet(Player, "ItemBoots")) diff += 2;
+					} else if (ChatRoomGetUpTimer == 0 && (ChatRoomCanAttemptStand() || ChatRoomCanAttemptKneel())) { // If the player can theoretically get up, we start a minigame!
+						var diff = 0;
+						if (Player.IsBlind()) diff += 1;
+						if (Player.IsKneeling()) diff += 2;
+						if (Player.IsDeaf()) diff += 1;
+						if (InventoryGet(Player, "ItemTorso") || InventoryGroupIsBlocked(Player, "ItemTorso")) diff += 1;
+						if (InventoryGroupIsBlocked(Player, "ItemHands")) diff += 1;
+						if (InventoryGet(Player, "ItemArms")) diff += 1;
+						if (InventoryGet(Player, "ItemLegs") || InventoryGroupIsBlocked(Player, "ItemLegs")) diff += 1;
+						if (InventoryGet(Player, "ItemFeet") || InventoryGroupIsBlocked(Player, "ItemFeet")) diff += 1;
+						if (InventoryGet(Player, "ItemBoots")) diff += 2;
 
-            MiniGameStart("GetUp", diff, "ChatRoomAttemptStandMinigameEnd");
-          }
+						MiniGameStart("GetUp", diff, "ChatRoomAttemptStandMinigameEnd");
+					}
 					break;
 				case "Icons":
 					// When the user toggles icon visibility
@@ -1382,7 +1430,7 @@ function ChatRoomCanLeave() {
 	if (ChatRoomLeashPlayer != null) {
 		if (ChatRoomCanBeLeashedBy(0, Player)) {
 			return false;
-		} else ChatRoomLeashPlayer = null;		
+		} else ChatRoomLeashPlayer = null;
 	}
 	if (!Player.CanWalk()) return false; // Cannot leave if cannot walk
 	if (!ChatRoomData.Locked || ChatRoomPlayerIsAdmin()) return true; // Can leave if the room isn't locked or is an administrator
@@ -1394,9 +1442,10 @@ function ChatRoomCanLeave() {
 
 /**
  * Handles keyboard shortcuts in the chatroom screen.
+ * @param {KeyboardEvent} event - The event that triggered this
  * @returns {void} - Nothing.
  */
-function ChatRoomKeyDown() {
+function ChatRoomKeyDown(event) {
 
 	// If the input text is not focused and not on mobile, set the focus to it
 	if (document.activeElement.id != "InputChat") ElementFocus("InputChat");
@@ -1493,11 +1542,11 @@ function ChatRoomSendChat() {
 			Dictionary.push({ Tag: "CoinResult", TextToLookUp: Heads ? "Heads" : "Tails" });
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary });
 
-		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0)) {
+		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0) || (Player.ChatSettings.MuStylePoses && m.indexOf(":") == 0 && m.length > 3)) {
 
-
-			// The player can emote an action using * or /me (for those IRC or Skype users), it doesn't garble
+			// The player can emote an action using :, * or /me (for those IRC, MU* or Skype users), it doesn't garble
 			// The command /action or ** does not add the player's name to it
+			if (Player.ChatSettings.MuStylePoses) msg = msg.replace(":", "");
 			msg = msg.replace("*", "");
 			msg = msg.replace(/\/me /g, "");
 			msg = msg.replace(/\/action /g, "*");
@@ -1519,7 +1568,10 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/kick ") == 0) ChatRoomAdminChatAction("Kick", msg);
 		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
 		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
-		else if (m.indexOf("/afk") == 0) CharacterSetFacialExpression(Player, "Emoticon", "Afk");
+		else if (m.indexOf("/afk") == 0) {
+			const expression = WardrobeGetExpression(Player).Emoticon != "Afk" ? "Afk" : null;
+			CharacterSetFacialExpression(Player, "Emoticon", expression);
+		}
 		else if (m.indexOf("/bot") == 0) {
 			for (let CC = 0; CC < ChatRoomCharacter.length; CC++)
 				if (ChatRoomCharacter[CC].MemberNumber && ChatRoomCharacter[CC].ID != 0)
@@ -1527,8 +1579,8 @@ function ChatRoomSendChat() {
 		} else {
 			var WhisperTarget = null;
 			for (let C = 0; C < ChatRoomCharacter.length; C++)
-						if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
-							WhisperTarget = ChatRoomCharacter[C];
+				if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
+					WhisperTarget = ChatRoomCharacter[C];
 			if (msg != "" && !((ChatRoomTargetMemberNumber != null || m.indexOf("(") >= 0) && Player.ImmersionSettings && (Player.ImmersionSettings.BlockGaggedOOC && (!(Player.Effect.includes("HideRestraints") && Player.Effect.includes("VRAvatars")) || !WhisperTarget || !WhisperTarget.Effect.includes("VRAvatars"))) && !Player.CanTalk())) {
 				if (ChatRoomTargetMemberNumber == null) {
 					// Regular chat
@@ -1554,9 +1606,9 @@ function ChatRoomSendChat() {
 						if (Refocus) ElementFocus("InputChat");
 					}
 				}
-			}	else {
-					// Throw an error message
-					ChatRoomMessage({ Content: "ChatRoomBlockGaggedOOC", Type: "Action", Sender: Player.MemberNumber });
+			} else {
+				// Throw an error message
+				ChatRoomMessage({ Content: "ChatRoomBlockGaggedOOC", Type: "Action", Sender: Player.MemberNumber });
 			}
 		}
 		// Clears the chat text message
@@ -1623,8 +1675,18 @@ function ChatRoomPublishAction(C, StruggleProgressPrevItem, StruggleProgressNext
 function ChatRoomCharacterItemUpdate(C, Group) {
 	if ((Group == null) && (C.FocusGroup != null)) Group = C.FocusGroup.Name;
 	if ((CurrentScreen == "ChatRoom") && (Group != null)) {
-		var Item = InventoryGet(C, Group);
-		var P = {};
+		if (ChatRoomData && ChatRoomData.Character) {
+			// Single item updates aren't sent back to the source member, so update the ChatRoomData accordingly
+			if (ChatRoomData && ChatRoomData.Character) {
+				const characterIndex = ChatRoomData.Character.findIndex((char) => char.MemberNumber === C.MemberNumber);
+				if (characterIndex !== -1) {
+					ChatRoomData.Character[characterIndex] = C;
+				}
+			}
+		}
+
+		const Item = InventoryGet(C, Group);
+		const P = {};
 		P.Target = C.MemberNumber;
 		P.Group = Group;
 		P.Name = (Item != null) ? Item.Asset.Name : undefined;
@@ -1757,7 +1819,7 @@ function ChatRoomMessage(data) {
 				else if (msg == "RequestFullKinkyDungeonData") {
 					KinkyDungeonStreamingPlayers.push(SenderCharacter.MemberNumber);
 					if (CurrentScreen == "KinkyDungeon")
-						KinkyDungeonSendData(KinkyDungeonPackData(true, true, true, true), SenderCharacter.MemberNumber)
+						KinkyDungeonSendData(KinkyDungeonPackData(true, true, true, true), SenderCharacter.MemberNumber);
 				}
 
 				// If the message is still hidden after any modifications, stop processing
@@ -1767,12 +1829,11 @@ function ChatRoomMessage(data) {
 			// Checks if the message is a notification about the user entering or leaving the room
 			var MsgEnterLeave = "";
 			var MsgNonDialogue = "";
-			var MsgEmote = "";
 			if ((data.Type == "Action") && (msg.startsWith("ServerEnter") || msg.startsWith("ServerLeave") || msg.startsWith("ServerDisconnect") || msg.startsWith("ServerBan") || msg.startsWith("ServerKick")))
 				MsgEnterLeave = " ChatMessageEnterLeave";
 			if ((data.Type != "Chat" && data.Type != "Whisper" && data.Type != "Emote"))
 				MsgNonDialogue = " ChatMessageNonDialogue";
-			
+
 			if (msg.startsWith("ServerDisconnect") && SenderCharacter.MemberNumber == ChatRoomLeashPlayer) ChatRoomLeashPlayer = null;
 
 			// Replace actions by the content of the dictionary
@@ -1993,7 +2054,7 @@ function ChatRoomMessage(data) {
 
 /**
  * Adds a character into the chat room.
- * @param {object} newCharacter - The new character to be added to the chat room.
+ * @param {Character} newCharacter - The new character to be added to the chat room.
  * @param {object} newRawCharacter - The raw character data of the new character as it was received from the server.
  * @returns {void} - Nothing
  */
@@ -2492,16 +2553,34 @@ function ChatRoomSyncItem(data) {
 			const previousItem = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
 			const newItem = ServerBundledItemToAppearanceItem(ChatRoomCharacter[C].AssetFamily, data.Item);
 
-			const { item, valid } = ValidationResolveAppearanceDiff(previousItem, newItem, updateParams);
+			let { item, valid } = ValidationResolveAppearanceDiff(previousItem, newItem, updateParams);
 
 			ChatRoomAllowCharacterUpdate = false;
 			if (item) {
 				CharacterAppearanceSetItem(
 					ChatRoomCharacter[C], data.Item.Group, item.Asset, item.Color, item.Difficulty, null, false);
+
 				InventoryGet(ChatRoomCharacter[C], data.Item.Group).Property = item.Property;
+
+				/** @type {AppearanceDiffMap} */
+				const diffMap = {};
+				for (const appearanceItem of ChatRoomCharacter[C].Appearance) {
+					const groupName = appearanceItem.Asset.Group.Name;
+					if (groupName === data.Item.Group) {
+						diffMap[groupName] = [previousItem, appearanceItem];
+					} else {
+						diffMap[groupName] = [appearanceItem, appearanceItem];
+					}
+				}
+
+				const cyclicBlockSanitizationResult = ValidationResolveCyclicBlocks(ChatRoomCharacter[C].Appearance, diffMap);
+				ChatRoomCharacter[C].Appearance = cyclicBlockSanitizationResult.appearance;
+				valid = valid && cyclicBlockSanitizationResult.valid;
 			} else {
 				InventoryRemove(ChatRoomCharacter[C], data.Item.Group);
 			}
+
+			ChatRoomAllowCharacterUpdate = true;
 
 			// If the update was invalid, send a correction update
 			if (ChatRoomCharacter[C].ID === 0 && !valid) {
@@ -2516,7 +2595,6 @@ function ChatRoomSyncItem(data) {
 				if (ChatRoomData.Character[R].MemberNumber == data.Item.Target)
 					ChatRoomData.Character[R].Appearance = ChatRoomCharacter[C].Appearance;
 			}
-			ChatRoomAllowCharacterUpdate = true;
 
 			return;
 		}
@@ -2680,7 +2758,7 @@ function ChatRoomStopLeave(){
 /**
  * Sends an administrative command to the server for the chat room from the character dialog.
  * @param {string} ActionType - Type of action performed.
- * @param {boolean} [Publish] - Whether or not the action should be published.
+ * @param {boolean | string} [Publish=true] - Whether or not the action should be published.
  * @returns {void} - Nothing
  */
 function ChatRoomAdminAction(ActionType, Publish) {
@@ -2688,7 +2766,7 @@ function ChatRoomAdminAction(ActionType, Publish) {
 		if (ActionType == "Move") {
 			ChatRoomMoveTarget = CurrentCharacter.MemberNumber;
 		} else {
-			ServerSend("ChatRoomAdmin", { MemberNumber: CurrentCharacter.MemberNumber, Action: ActionType, Publish: ((Publish == null) || (Publish != "false")) });
+			ServerSend("ChatRoomAdmin", { MemberNumber: CurrentCharacter.MemberNumber, Action: ActionType, Publish: ((Publish == null) || (Publish != false && Publish != "false")) });
 		}
 		DialogLeave();
 	}
@@ -2749,8 +2827,8 @@ function ChatRoomListManage(Operation, ListType) {
 
 /**
  * Adds or removes an online member to/from a specific list. (From a typed message.)
- * @param {number[]} [Add] - List to add to.
- * @param {number[]} [Remove] - List to remove from.
+ * @param {number[]|null} Add - List to add to.
+ * @param {number[]|null} Remove - List to remove from.
  * @param {string} Message - Member number to add/remove.
  * @returns {void} - Nothing
  */
@@ -2860,7 +2938,7 @@ function ChatRoomGetOwnerRule(RuleType) { return ChatRoomGetRule(RuleType, "Owne
  * Gets a rule from the current character
  * @param {string} RuleType - The name of the rule to retrieve.
  * @param {"Owner" | "Lover"} Sender - Type of the sender
- * @returns {Rule} - The owner or lover rule corresponding to the requested rule name
+ * @returns {boolean} - The owner or lover rule corresponding to the requested rule name
  */
 function ChatRoomGetRule(RuleType, Sender) {
 	return LogQueryRemote(CurrentCharacter, RuleType, Sender + "Rule");
@@ -3009,9 +3087,9 @@ function ChatRoomPayQuest(data) {
  * @returns {void} - Nothing
  */
 function ChatRoomGameResponse(data) {
-	if (data.Data.KinkyDungeon) 
-        KinkyDungeonHandleData(data.Data.KinkyDungeon, data.Sender);
-    else if (ChatRoomGame == "LARP") GameLARPProcess(data);
+	if (data.Data.KinkyDungeon)
+		KinkyDungeonHandleData(data.Data.KinkyDungeon, data.Sender);
+	else if (ChatRoomGame == "LARP") GameLARPProcess(data);
 }
 
 /**
@@ -3123,7 +3201,7 @@ function ChatRoomGetLoadRules(C) {
 /**
  * Handles a response from another player containing the rules that the current player is allowed to read.
  * @param {Character} C - Character to set the rules on
- * @param {Rule[]} Rule - An array of rules that the current player can read.
+ * @param {LogRecord[]} Rule - An array of rules that the current player can read.
  * @returns {void} - Nothing
  */
 function ChatRoomSetLoadRules(C, Rule) {
@@ -3136,12 +3214,10 @@ function ChatRoomSetLoadRules(C, Rule) {
  */
 function ChatRoomPhotoFullRoom() {
 	// Get the room dimensions
-	let RenderSingle = Player.GameplaySettings && Player.GameplaySettings.SensDepChatLog === "SensDepExtreme" && Player.GameplaySettings.BlindDisableExamine && Player.GetBlindLevel() >= 3;
-	let CharacterCount = RenderSingle ? 1 : ChatRoomCharacter.length;
-	let Space = CharacterCount >= 2 ? 1000 / Math.min(CharacterCount, 5) : 500;
-	let Zoom = CharacterCount >= 3 && CharacterCount < 6 ? Space / 400 : 1;
-	let Y = CharacterCount <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
-	let Width = CharacterCount === 1 ? 500 : 1000;
+	let Space = ChatRoomCharacterCount >= 2 ? 1000 / Math.min(ChatRoomCharacterCount, 5) : 500;
+	let Zoom = ChatRoomCharacterCount >= 3 && ChatRoomCharacterCount < 6 ? Space / 400 : 1;
+	let Y = ChatRoomCharacterCount <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
+	let Width = ChatRoomCharacterCount === 1 ? 500 : 1000;
 
 	// Take the photo
 	ChatRoomPhoto(0, Y, Width, 1000 * Zoom, ChatRoomCharacter);
@@ -3240,10 +3316,10 @@ function ChatRoomNotificationRaiseChatJoin(C) {
 	if (!document.hasFocus()) {
 		const settings = Player.NotificationSettings.ChatJoin;
 		if (settings.AlertType === NotificationAlertType.NONE) raise = false;
-		else if (!settings.Owner && !settings.Lovers && !settings.FriendList && !settings.Subs) raise = true;
+		else if (!settings.Owner && !settings.Lovers && !settings.Friendlist && !settings.Subs) raise = true;
 		else if (settings.Owner && C.IsOwner()) raise = true;
 		else if (settings.Lovers && C.IsLoverOfPlayer()) raise = true;
-		else if (settings.FriendList && Player.FriendList.contains(C.MemberNumber)) raise = true;
+		else if (settings.Friendlist && Player.FriendList.includes(C.MemberNumber)) raise = true;
 		else if (settings.Subs && C.IsOwnedByPlayer()) raise = true;
 	}
 	return raise;
@@ -3313,4 +3389,8 @@ function ChatRoomDataChanged() {
 		ChatRoomLastPrivate != ChatRoomData.Private ||
 		ChatRoomLastDesc != ChatRoomData.Description ||
 		!CommonArraysEqual(ChatRoomLastAdmin, ChatRoomData.Admin);
+}
+
+function ChatRoomRefreshFontSize() {
+	ChatRoomFontSize = ChatRoomFontSizes[Player.ChatSettings.FontSize || "Medium"];
 }

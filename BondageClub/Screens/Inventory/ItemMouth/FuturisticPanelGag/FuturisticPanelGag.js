@@ -86,7 +86,7 @@ var AutoPunishGagActionFlag = false;
 
 // In the validate function, add:
 /*
- 	return InventoryItemMouthFuturisticPanelGagValidate(C, Option)
+ 	return InventoryItemMouthFuturisticPanelGagValidate(C, Item)
 */
 
 
@@ -290,13 +290,14 @@ function InventoryItemMouthFuturisticPanelGagClick() {
 
 /**
  * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
- * @param {Character} C - The character to validate the option for
+ * @param {Character} C - The character to validate the option
+ * @param {Item} Item - The equipped item
  * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
-function InventoryItemMouthFuturisticPanelGagValidate(C, Option) {
+function InventoryItemMouthFuturisticPanelGagValidate(C, Item = DialogFocusItem) {
 	var Allowed = "";
 
-	if (DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+	if (Item && Item.Property && Item.Property.LockedBy && !DialogCanUnlock(C, Item)) {
 		var collar = InventoryGet(C, "ItemNeck");
 		if (!collar || (!collar.Property || collar.Property.OpenPermission != true)) {
 			Allowed = DialogExtendedMessage = DialogFindPlayer("CantChangeWhileLockedFuturistic");
@@ -472,7 +473,7 @@ function AssetsItemMouthFuturisticPanelGagScriptUpdatePlayer(data, Options) {
 			}
 		}
 
-		GagTriggerPunish = InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Item.Property.AutoPunish, gagaction, keywords);
+		GagTriggerPunish = InventoryItemNeckAccessoriesCollarAutoShockUnitDetectSpeech(Item.Property.AutoPunish, gagaction, keywords, LastMessages);
 
 		if (ChatRoomTargetMemberNumber != null) {
 			GagTriggerPunish = false; // No trigger on whispers

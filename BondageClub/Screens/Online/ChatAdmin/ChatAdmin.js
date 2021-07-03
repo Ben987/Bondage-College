@@ -51,8 +51,8 @@ function ChatAdminLoad() {
 		document.getElementById("InputDescription").setAttribute("disabled", "disabled");
 
 		// We also garble them if possible
-		ElementValue("InputName", ChatSearchMuffle(ChatAdminTemporaryData ? ChatAdminTemporaryData.Name : ChatRoomData.Name, true));
-		ElementValue("InputDescription", ChatSearchMuffle(ChatAdminTemporaryData ? ChatAdminTemporaryData.Description : ChatRoomData.Description, true));
+		ElementValue("InputName", ChatSearchMuffle(ChatAdminTemporaryData ? ChatAdminTemporaryData.Name : ChatRoomData.Name));
+		ElementValue("InputDescription", ChatSearchMuffle(ChatAdminTemporaryData ? ChatAdminTemporaryData.Description : ChatRoomData.Description));
 
 
 		document.getElementById("InputAdminList").setAttribute("disabled", "disabled");

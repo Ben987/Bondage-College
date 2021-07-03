@@ -58,7 +58,7 @@ function InventoryItemBreastFuturisticBra2PublishAction(C, Option) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemBreastFuturisticBra2Validate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
+function InventoryItemBreastFuturisticBra2Validate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item); // All futuristic items refer to the gag
 }
 

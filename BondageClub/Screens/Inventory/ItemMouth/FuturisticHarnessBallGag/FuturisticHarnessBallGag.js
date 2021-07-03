@@ -157,10 +157,11 @@ function InventoryItemMouthFuturisticHarnessBallGagClick() {
 /**
  * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
  * @param {Character} C - The character to validate the option for
+ * @param {Item} Item - The equipped item
  * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
-function InventoryItemMouthFuturisticHarnessBallGagValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option) ;
+function InventoryItemMouthFuturisticHarnessBallGagValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item) ;
 }
 
 

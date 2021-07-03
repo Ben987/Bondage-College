@@ -25,6 +25,8 @@ ClothSummerDressLayer2,Buttons
 ClothSummerDressLayer3,Arm Puffs
 ClothSummerDressLayer4,Trim
 ClothSummerDressBase,Dress
+ClothTShirt2Shirt,Shirt
+ClothTShirt2Print,Print
 ClothAccessoryBouquetBase,Holder
 ClothAccessoryBouquetFlowers,Flowers
 ClothAccessoryCapeFront,Front
@@ -41,6 +43,9 @@ SuitCatsuitBase,Suit
 SuitCatsuitZip,Zip
 SuitSeethroughSuitZipBase,Suit
 SuitSeethroughSuitZipZip,Zip
+BraHaremBraFabric,Fabric
+BraHaremBraStraps,Straps
+BraHaremBraJewel,Jewel
 ClothLowerSkirt2Color,Skirt
 ClothLowerSkirt2Stripe,Trim
 ClothLowerSkirt3Color,Skirt
@@ -55,6 +60,9 @@ ClothLowerPajama1Cloth, Pants
 ClothLowerPajama1Stripe, Trim
 ClothLowerAdmiralSkirtCloth,Skirt
 ClothLowerAdmiralSkirtStripe,Trim
+ClothLowerHaremPantsPanty,Panty
+ClothLowerHaremPantsVeil,Veil
+ClothLowerHaremPantsPantyLine,Panty Line
 SuitLowerCatsuitBase,Suit
 SuitLowerCatsuitZip,Zip
 SuitLowerSeethroughSuitZipBase,Suit
@@ -114,6 +122,8 @@ HairAccessory3HaloBase,Body
 HairAccessory3HaloCore,Core
 GlovesGlovesFurFabric,Glove
 GlovesGlovesFurFur,Fur
+MaskFaceVeilFabric,Fabric
+MaskFaceVeilString,String
 TailStrapsTailStrapTail,Tail
 TailStrapsTailStrapRibbon,Ribbon
 TailStrapsTailStrapBell,Bell
@@ -504,6 +514,8 @@ ItemMouth2CarrotGagStraps,Straps
 ItemMouth2PumpkinGagPumpkin,Pumpkin
 ItemMouth2PumpkinGagStraps,Straps
 ItemMouth2PumpkinGagRings,Rings
+ItemMouth2FoxyHarnessPanelGagPanel,Panel
+ItemMouth2FoxyHarnessPanelGagStraps,Straps
 ItemMouth2BitGagBit,Bit
 ItemMouth2BitGagStraps,Straps
 ItemMouth2BoneGagBone,Bone
@@ -561,6 +573,8 @@ ItemMouth3CarrotGagStraps,Straps
 ItemMouth3PumpkinGagPumpkin,Pumpkin
 ItemMouth3PumpkinGagStraps,Straps
 ItemMouth3PumpkinGagRings,Rings
+ItemMouth3FoxyHarnessPanelGagPanel,Panel
+ItemMouth3FoxyHarnessPanelGagStraps,Straps
 ItemMouth3BitGagBit,Bit
 ItemMouth3BitGagStraps,Straps
 ItemMouth3BoneGagBone,Bone
@@ -629,6 +643,12 @@ ItemPelvisSciFiPleasurePantiesBand,Metal Band
 ItemPelvisSciFiPleasurePantiesPlug2,Pussy Toy
 ItemPelvisSciFiPleasurePantiesPlug1,Clit Toy
 ItemPelvisSciFiPleasurePantiesLock,Lock Icon
+ItemDevicesFuturisticCrateDisplay,Screen
+ItemDevicesFuturisticCrateLock,Lock
+ItemDevicesFuturisticCrateFrame,Frame
+ItemDevicesFuturisticCrateLid_Closed,Lid
+ItemDevicesFuturisticCrateBody,Padding
+ItemDevicesFuturisticCrateGlass,Window
 PantiesPilotPantiesLayer1,Suit
 PantiesPilotPantiesLayer2,Highlights
 PantiesPilotPantiesLayer3,Center
@@ -668,3 +688,6 @@ BraCuteBikini1Main,Main
 BraCuteBikini1Sides,Sides
 BraSexyBikini1Main,Main
 BraSexyBikini1Sides,Sides
+ItemMiscServingTrayTray,Tray
+ItemMiscServingTrayObjects,Refreshments
+ItemMiscServingTrayDetails,Details

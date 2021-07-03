@@ -42,8 +42,8 @@ function InventoryItemHandsFuturisticMittensExit() {
 	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
-function InventoryItemHandsFuturisticMittensValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
+function InventoryItemHandsFuturisticMittensValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item);
 }
 
 function InventoryItemHandsFuturisticMittensPublishAction(C, Option) {

@@ -50,10 +50,10 @@ function InventoryItemDevicesCryoCapsuleClick() {
  * @param {Character} C - The character to validate the option for
  * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
-function InventoryItemDevicesCryoCapsuleValidate(C) {
+function InventoryItemDevicesCryoCapsuleValidate(C, Item) {
 	var Allowed = "";
 
-	if (DialogFocusItem.Property.LockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+	if (Item.Property.LockedBy && !DialogCanUnlock(C, Item)) {
 		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	}
 

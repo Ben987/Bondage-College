@@ -2,7 +2,9 @@ PathExit,Leave Pandora's Box
 PathStairsUp,Go upstairs
 PathStairsDown,Go downstairs
 PathSearch,Search the room
+PathRest,Rest to recover with time
 SearchStop,Stop searching
+RestStop,Stop resting
 AlreadyFound,You already found the TargetName.  Get out now.
 FoundItem,You found the TargetName.  Get out while you can.
 DirectionNorth,Go north (W)

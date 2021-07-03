@@ -284,8 +284,8 @@ function InventoryItemPelvisFuturisticTrainingBeltPublishGeneric(C, msg) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemPelvisFuturisticTrainingBeltValidate(C) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
+function InventoryItemPelvisFuturisticTrainingBeltValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item); // All futuristic items refer to the gag
 }
 
 /*
@@ -365,7 +365,7 @@ function InventoryItemPelvisFuturisticTrainingBeltUpdateVibeMode(C, Item, Force)
 			Dictionary.push({ Tag: "SourceCharacter", Text: C.Name, MemberNumber: Player.MemberNumber });
 			// This is meant to cut down on spam for other players
 			if (FuturisticTrainingBeltStates[Item.Property.DeviceState].includes("Edge") && (OldIntensity >= 0 && OldIntensity < 3))
-				ChatRoomMessage({ Content: Message+"Self", Type: "Action", Sender: Player.MemberNumber });
+				ChatRoomMessage({ Content: Message+"Self", Type: "Action", Sender: Player.MemberNumber, Dictionary: Dictionary  });
 			else {
 				if (Item.Property && Item.Property.ChatMessage) {
 					Dictionary.push({ Automatic: true });
@@ -512,28 +512,34 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 			Property.DeviceState = FuturisticTrainingBeltStates.indexOf("None"); // None
 			update = true;
 		} else if (Mode == "EdgeAndDeny") {
-			DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityEdge");
+			if (State != "Cooldown")
+				DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityEdge");
 			if (ArousalActive && C.ArousalSettings.Progress > 90) {
 				if (Math.random() < FuturisticTrainingBeltRandomDenyChance) {
 					DeviceSetToState = FuturisticTrainingBeltStates.indexOf("Cooldown");
-					Property.DeviceStateTimer = CommonTime();
+					Property.DeviceStateTimer = CommonTime() + FuturisticTrainingBeltRandomDenyDuration;
 					update = true;
 				}
 			}
 			
 		} else if (Mode == "RandomTeasing") {
-			DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityTease");
+			if (State != "LowPriorityTease")
+				DeviceSetToState = 0;
 			if (State == "None") {
 				if (Math.random() < FuturisticTrainingBeltRandomTeaseChance) {
 					const r = Math.random();
+					DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityTease");
 					DeviceTimer = FuturisticTrainingBeltRandomTeaseDurationMin + (FuturisticTrainingBeltRandomTeaseDurationMax - FuturisticTrainingBeltRandomTeaseDurationMin) * r * r * r;
-				} else DeviceSetToState = -1;
+				}
 			} else DeviceTimer = 1;
 		} else if (Mode == "RandomOrgasm") {
-			DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityMax");
+			if (State != "LowPriorityMax")
+				DeviceSetToState = 0;
+			
 			if (State == "None") {
 				if (Math.random() < FuturisticTrainingBeltRandomOrgasmChance) {
 					const r = Math.random();
+					DeviceSetToState = FuturisticTrainingBeltStates.indexOf("LowPriorityMax");
 					DeviceTimer = FuturisticTrainingBeltRandomOrgasmDurationMin + (FuturisticTrainingBeltRandomOrgasmDurationMax - FuturisticTrainingBeltRandomOrgasmDurationMin) * r * r * r;
 				} else DeviceSetToState = -1;
 			} else DeviceTimer = 1;
@@ -586,27 +592,45 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 	
 	if (update || State.includes("Edge")) InventoryItemPelvisFuturisticTrainingBeltUpdateVibeMode(C, Item);
 	
-	var EdgeMode = State.includes("Edge") || Mode == "EdgeAndDeny" || Mode == "RandomTeasing";
+	let EdgeMode = State.includes("Edge") || Mode == "EdgeAndDeny" || Mode == "RandomTeasing";
 	
-	if (ArousalActive) {
-		if (EdgeMode && C.ArousalSettings.Progress > 96 && !((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < C.ArousalSettings.OrgasmTimer))) { // Manually trigger orgasm at this stage 
-			ActivityOrgasmPrepare(C, true);
-		}
-	}
 	
 	if (EdgeMode) {
-		if (!Item.Property.Effect && Item.Property.Effect.includes("DenialMode")) {
+		if (Item.Property.Effect && !Item.Property.Effect.includes("DenialMode")) {
 			Item.Property.Effect.push("DenialMode");
+		}
+		if (Item.Property.Effect && !Item.Property.Effect.includes("RuinOrgasms")) {
+			Item.Property.Effect.push("RuinOrgasms");
 		}
 	} else {
 		if (Item.Property.Effect && Item.Property.Effect.includes("DenialMode")) {
 			for (let E = 0; E < Item.Property.Effect.length; E++) {
-				var Effect = Item.Property.Effect[E];
+				let Effect = Item.Property.Effect[E];
 				if (Effect == "DenialMode") {
 					Item.Property.Effect.splice(E, 1);
 					E--;
 				}
 			}
+		}
+		if (Item.Property.Effect && Item.Property.Effect.includes("RuinOrgasms")) {
+			for (let E = 0; E < Item.Property.Effect.length; E++) {
+				let Effect = Item.Property.Effect[E];
+				if (Effect == "RuinOrgasms") {
+					Item.Property.Effect.splice(E, 1);
+					E--;
+				}
+			}
+		}
+	}
+	
+	
+	
+	if (ArousalActive) {
+		if (EdgeMode && C.ArousalSettings.Progress > 96 && !((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < C.ArousalSettings.OrgasmTimer))) { // Manually trigger orgasm at this stage 
+			ActivityOrgasmPrepare(C, true);
+			// Continuous edging~
+			if (Mode == "EdgeAndDeny")
+				C.ArousalSettings.Progress = 80;
 		}
 	}
 }

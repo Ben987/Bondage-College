@@ -3,5 +3,5 @@ function InventoryItemPelvisPolishedChastityBeltLoad() { InventoryItemPelvisMeta
 function InventoryItemPelvisPolishedChastityBeltDraw() { InventoryItemPelvisMetalChastityBeltDraw(); }
 function InventoryItemPelvisPolishedChastityBeltClick() { InventoryItemPelvisMetalChastityBeltClick(); }
 function InventoryItemPelvisPolishedChastityBeltPublishAction(C, Option) { InventoryItemPelvisMetalChastityBeltPublishAction(C, Option); }
-function InventoryItemPelvisPolishedChastityBeltValidate(C) {  return InventoryItemPelvisMetalChastityBeltValidate(C); }
+function InventoryItemPelvisPolishedChastityBeltValidate(C, Item) {  return InventoryItemPelvisMetalChastityBeltValidate(C, Item); }
 function InventoryItemPelvisPolishedChastityBeltNpcDialog(C, Option) { InventoryItemPelvisMetalChastityBeltNpcDialog(C, Option); }

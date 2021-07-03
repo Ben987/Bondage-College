@@ -1,7 +1,6 @@
 "use strict";
 var InfiltrationPerksBackground = "Sheet";
-//var InfiltrationPerksList = ["Strength", "Charisma", "Agility", "Resilience", "Endurance", "Lockpicking", "Investigation", "Running", "Mapping", "Forgery", "Begging", "Bribery", "Negotiation", "Recruiter"];
-var InfiltrationPerksList = ["Strength", "Charisma", "Agility", "Resilience", "Endurance", "Investigation", "Bribery", "Negotiation", "Recruiter", "Forgery", "Recovery"];
+var InfiltrationPerksList = ["Strength", "Charisma", "Agility", "Resilience", "Endurance", "Investigation", "Bribery", "Negotiation", "Recruiter", "Forgery", "Recovery", "Cartographer"];
 
 /**
  * Checks if a named perk is activated or not

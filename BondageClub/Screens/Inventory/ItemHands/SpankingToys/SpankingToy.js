@@ -160,9 +160,13 @@ const InventoryItemHandsSpankingToysOptions = [
 		Name: "TapeRoll",
 		Property: { Type: "TapeRoll" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10 }]
-	},{
+	}, {
 		Name: "Spatula",
 		Property: { Type: "Spatula" },
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
+	}, {
+		Name: "Broom",
+		Property: { Type: "Broom" },
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 5 }, { Group: "Eyebrows", Name: "Harsh", Timer: 5 }]
 	},
 ];
@@ -242,6 +246,10 @@ function InventorySpankingToysGetActivity(C) {
 
 // Determine whether an item activity is allowed on the selected region
 function InventorySpankingToysActivityAllowed(C) {
+	var Type = InventorySpankingToysGetType(Player);
+	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
+	if (InventoryBlockedOrLimited(C, { Asset: A }))
+		return false;
 	if (C.FocusGroup != null) {
 		var Activity = InventorySpankingToysGetActivity(Player);
 		if (Activity == null) return true;

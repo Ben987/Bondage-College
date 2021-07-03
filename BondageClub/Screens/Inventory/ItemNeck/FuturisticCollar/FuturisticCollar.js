@@ -183,8 +183,8 @@ function InventoryItemNeckFuturisticCollarGetItems(C, OnlyUnlockable) {
 	return ItemList;
 }
 
-function InventoryItemNeckFuturisticCollarValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
+function InventoryItemNeckFuturisticCollarValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item);
 }
 
 

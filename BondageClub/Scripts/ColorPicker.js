@@ -13,20 +13,33 @@ var ColorPickerX, ColorPickerY, ColorPickerWidth, ColorPickerHeight;
 var ColorPickerInitialHSV, ColorPickerLastHSV, ColorPickerHSV, ColorPickerCallback, ColorPickerSourceElement;
 var ColorPickerCSS;
 var ColorPickerIsDefault;
+var ColorPickerSelectedFavoriteIndex = null; //A number 0-5
+var ColorPickerFavoritesPage = 0; //current page of favorite colors displayed.
+var DefaultSavedColors = [];
 
 var ColorPickerHueBarHeight = 40;
 var ColorPickerSVPanelGap = 20;
-var ColorPickerPalleteHeight = 100;
-var ColorPickerPalleteGap = 20;
+var ColorPickerPaletteHeight = 100;
+var ColorPickerPaletteGap = 20;
+var ColorPickerFavoritesPaletteHeight = 100;
+var ColorPickerFavoritesPaletteGap = 20;
 
 var ColorPickerLayout = {
 	HueBarOffset: NaN,
 	HueBarHeight: NaN,
 	SVPanelOffset: NaN,
 	SVPanelHeight: NaN,
-	PalleteOffset: NaN,
-	PalleteHeight: NaN
+	PaletteOffset: NaN,
+	PaletteHeight: NaN,
+	FavoritesPaletteOffset: NaN,
+	FavoritesPaletteHeight: NaN,
+	ButtonOffset: NaN,
+	NextButtonX: NaN,
+	SaveButtonX: NaN,
+	PrevButtonX: NaN
 };
+
+const ColorPickerNumSaved = 18; //number of colors a player is allowed to save, should be multiple of 6
 
 /**
  * Attaches event listeners required for the color picker to the canvas
@@ -63,8 +76,10 @@ function ColorPickerStartPick(Event) {
 
 	var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
 	var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
-	var PalleteOffset = ColorPickerLayout.PalleteOffset;
-	var PalleteHeight = ColorPickerLayout.PalleteHeight;
+	var PaletteOffset = ColorPickerLayout.PaletteOffset;
+	var PaletteHeight = ColorPickerLayout.PaletteHeight;
+	var FavoritesPaletteOffset = ColorPickerLayout.FavoritesPaletteOffset;
+	var FavoritesPaletteHeight = ColorPickerLayout.FavoritesPaletteHeight;
 
 	var C = ColorPickerGetCoordinates(Event);
 	var X = C.X;
@@ -78,11 +93,21 @@ function ColorPickerStartPick(Event) {
 			document.addEventListener("mousemove", ColorPickerPickSV);
 			document.addEventListener("touchmove", ColorPickerPickSV);
 			ColorPickerPickSV(Event);
-		} else if (Y >= PalleteOffset && Y < PalleteOffset + PalleteHeight) {
-			ColorPickerSelectFromPallete(Event);
+		} else if (Y >= PaletteOffset && Y < PaletteOffset + PaletteHeight) {
+			if (X > ColorPickerX + (ColorPickerWidth / 2)){
+				ColorPickerSelectFromPalette(Event);
+			} else {
+				ColorPickerSelectButton(Event);
+			}
+		} else if (Y >= FavoritesPaletteOffset && Y < FavoritesPaletteOffset + FavoritesPaletteHeight) {
+			ColorPickerSelectFromFavorites(Event);
 		}
+
 		document.addEventListener("mouseup", ColorPickerEndPick);
 		document.addEventListener("touchend", ColorPickerEndPick);
+
+	} else {
+		ColorPickerSelectedFavoriteIndex = null;
 	}
 }
 
@@ -149,16 +174,81 @@ function ColorPickerPickSV(Event) {
 }
 
 /**
- * Sets the picked HSV from the color pallet
+ * Sets the picked HSV from the color palette
  * @param {MouseEvent|TouchEvent} Event - The touch/mouse event
  * @returns {void} - Nothing
  */
-function ColorPickerSelectFromPallete(Event) {
+function ColorPickerSelectFromPalette(Event) {
 	var C = ColorPickerGetCoordinates(Event);
 	var P = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
-	var HSV = P > 0.5 ? ColorPickerInitialHSV : ColorPickerLastHSV;
+	var HSV = P > 0.75 ? ColorPickerInitialHSV : ColorPickerLastHSV;
 	ColorPickerHSV = Object.assign({}, HSV);
 	ColorPickerNotify();
+}
+
+/**
+ * Handles clicking on the favorite colors palette
+ * @param {MouseEvent|TouchEvent} Event - The touch/mouse event
+ * @returns {void} - Nothing
+ */
+function ColorPickerSelectFromFavorites(Event) {
+	var C = ColorPickerGetCoordinates(Event);
+	var P = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
+	var SelectedIndex;
+
+	if(P < (1/6)){
+		SelectedIndex = 0;
+	}
+	else if(P < (2/6)){
+		SelectedIndex = 1;
+	}
+	else if(P < (3/6)){
+		SelectedIndex = 2;
+	}
+	else if(P < (4/6)){
+		SelectedIndex = 3;
+	}
+	else if(P < (5/6)){
+		SelectedIndex = 4;
+	}
+	else{
+		SelectedIndex = 5;
+	}
+
+	if (SelectedIndex == ColorPickerSelectedFavoriteIndex){
+		ColorPickerHSV = Object.assign({}, Player.SavedColors[ColorPickerSelectedFavoriteIndex + (ColorPickerFavoritesPage * 6)]);
+		ColorPickerNotify();
+		ColorPickerSelectedFavoriteIndex = null;
+	} else {
+		ColorPickerSelectedFavoriteIndex = SelectedIndex;
+	}
+}
+
+/**
+ * Handles the previous, next, and save button functionality for the color picker.
+ * @param {MouseEvent|TouchEvent} Event - The touch/mouse event
+ * @returns {void} - Nothing
+ */
+function ColorPickerSelectButton(Event) {
+	var C = ColorPickerGetCoordinates(Event);
+	var X = C.X;
+	var Y = C.Y;
+
+	if(Y > ColorPickerLayout.ButtonOffset && Y < ColorPickerLayout.ButtonOffset + 90){
+		if (X > ColorPickerLayout.NextButtonX && X < ColorPickerLayout.NextButtonX + 90){
+			ColorPickerFavoritesPage = (ColorPickerFavoritesPage + 1) % Math.round(ColorPickerNumSaved / 6);
+			ColorPickerSelectedFavoriteIndex = null;
+		} else if (X > ColorPickerLayout.SaveButtonX && X < ColorPickerLayout.SaveButtonX + 90){
+			if (!(ColorPickerSelectedFavoriteIndex === null)) {
+				Player.SavedColors[ColorPickerSelectedFavoriteIndex + (ColorPickerFavoritesPage * 6)] = Object.assign({}, ColorPickerHSV);
+				ServerSend("AccountUpdate", { SavedColors: Player.SavedColors });
+			}
+		} else if (X > ColorPickerLayout.PrevButtonX && X < ColorPickerLayout.PrevButtonX + 90){
+			var NumPages = Math.round(ColorPickerNumSaved / 6);
+			ColorPickerFavoritesPage = (((ColorPickerFavoritesPage - 1) % NumPages) + NumPages) % NumPages;
+			ColorPickerSelectedFavoriteIndex = null;
+		}
+	}
 }
 
 /**
@@ -219,15 +309,27 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
 	// Calculate Layout
 	ColorPickerLayout.HueBarHeight = ColorPickerHueBarHeight;
 	ColorPickerLayout.HueBarOffset = Y;
-	ColorPickerLayout.PalleteHeight = ColorPickerPalleteHeight;
-	ColorPickerLayout.PalleteOffset = Y + Height - ColorPickerLayout.PalleteHeight;
-	ColorPickerLayout.SVPanelHeight = Height - ColorPickerLayout.HueBarHeight - ColorPickerLayout.PalleteHeight - ColorPickerSVPanelGap - ColorPickerPalleteGap;
+	ColorPickerLayout.FavoritesPaletteHeight = ColorPickerFavoritesPaletteHeight;
+	ColorPickerLayout.FavoritesPaletteOffset = Y + Height - ColorPickerLayout.FavoritesPaletteHeight;
+	ColorPickerLayout.PaletteHeight = ColorPickerPaletteHeight;
+	ColorPickerLayout.PaletteOffset = Y + Height - ColorPickerLayout.PaletteHeight - ColorPickerLayout.FavoritesPaletteHeight - ColorPickerFavoritesPaletteGap;
+	ColorPickerLayout.SVPanelHeight = Height - ColorPickerLayout.HueBarHeight - ColorPickerLayout.PaletteHeight - ColorPickerSVPanelGap - ColorPickerPaletteGap - ColorPickerLayout.FavoritesPaletteHeight - ColorPickerFavoritesPaletteGap;
 	ColorPickerLayout.SVPanelOffset = ColorPickerLayout.HueBarOffset + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
+	ColorPickerLayout.ButtonOffset = ColorPickerLayout.PaletteOffset + ((ColorPickerLayout.PaletteHeight - 90) / 2);
+	ColorPickerLayout.SaveButtonX = X + (((ColorPickerWidth / 6) - 90) / 2);
+	ColorPickerLayout.PrevButtonX = X + (ColorPickerWidth / 6) + (((ColorPickerWidth / 6) - 90) / 2);
+	ColorPickerLayout.NextButtonX = X + (ColorPickerWidth / 3) + (((ColorPickerWidth / 6) - 90) / 2);
 
 	var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
 	var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
-	var PalleteOffset = ColorPickerLayout.PalleteOffset;
-	var PalleteHeight = ColorPickerLayout.PalleteHeight;
+	var PaletteOffset = ColorPickerLayout.PaletteOffset;
+	var PaletteHeight = ColorPickerLayout.PaletteHeight;
+	var FavoritesPaletteOffset = ColorPickerLayout.FavoritesPaletteOffset;
+	var FavoritesPaletteHeight = ColorPickerLayout.FavoritesPaletteHeight;
+	var ButtonOffset = ColorPickerLayout.ButtonOffset;
+	var NextButtonX = ColorPickerLayout.NextButtonX;
+	var SaveButtonX = ColorPickerLayout.SaveButtonX;
+	var PrevButtonX = ColorPickerLayout.PrevButtonX;
 
 	var HSV;
 	if (ColorPickerInitialHSV == null) {
@@ -309,9 +411,36 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
 	// Draw Hue Picker
 	DrawEmptyRect(X + HSV.H * (Width - 20), Y, 20, ColorPickerHueBarHeight, "#FFFFFF");
 
-	// Draw Pallette
-	DrawRect(X, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerLastHSV));
-	DrawRect(X + ColorPickerWidth / 2, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerInitialHSV));
+	//Draw Buttons (90 by 90 px) centered
+	let SavedTextAlign = MainCanvas.textAlign;
+	MainCanvas.textAlign = "center";
+	DrawButton(SaveButtonX, ButtonOffset, 90, 90, "", "White", "Icons/Save.png", DialogFindPlayer("ColorSave"));
+	DrawButton(PrevButtonX, ButtonOffset, 90, 90, "", "White", "Icons/Prev.png", DialogFindPlayer("PrevPage"));
+	DrawButton(NextButtonX, ButtonOffset, 90, 90, "", "White", "Icons/Next.png", DialogFindPlayer("NextPage"));
+	MainCanvas.textAlign = SavedTextAlign;
+
+	// Draw Palette
+	DrawRect(X + (ColorPickerWidth / 2), PaletteOffset, ColorPickerWidth / 4, PaletteHeight, ColorPickerHSVToCSS(ColorPickerLastHSV));
+	DrawRect(X + ((ColorPickerWidth / 4) * 3), PaletteOffset, ColorPickerWidth / 4, PaletteHeight, ColorPickerHSVToCSS(ColorPickerInitialHSV));
+
+	// Draw Favorites Palette
+	DrawRect(X, FavoritesPaletteOffset, ColorPickerWidth / 6, FavoritesPaletteHeight, ColorPickerHSVToCSS(Player.SavedColors[0 + (ColorPickerFavoritesPage * 6)]));
+	DrawRect(X + (ColorPickerWidth / 6), FavoritesPaletteOffset, ColorPickerWidth / 6, FavoritesPaletteHeight, ColorPickerHSVToCSS(Player.SavedColors[1 + (ColorPickerFavoritesPage * 6)]));
+	DrawRect(X + ((ColorPickerWidth / 6) * 2), FavoritesPaletteOffset, ColorPickerWidth / 6, FavoritesPaletteHeight, ColorPickerHSVToCSS(Player.SavedColors[2 + (ColorPickerFavoritesPage * 6)]));
+	DrawRect(X + ((ColorPickerWidth / 6) * 3), FavoritesPaletteOffset, ColorPickerWidth / 6, FavoritesPaletteHeight, ColorPickerHSVToCSS(Player.SavedColors[3 + (ColorPickerFavoritesPage * 6)]));
+	DrawRect(X + ((ColorPickerWidth / 6) * 4), FavoritesPaletteOffset, ColorPickerWidth / 6, FavoritesPaletteHeight, ColorPickerHSVToCSS(Player.SavedColors[4 + (ColorPickerFavoritesPage * 6)]));
+	DrawRect(X + ((ColorPickerWidth / 6) * 5), FavoritesPaletteOffset, ColorPickerWidth / 6, FavoritesPaletteHeight, ColorPickerHSVToCSS(Player.SavedColors[5 + (ColorPickerFavoritesPage * 6)]));
+	if (ColorPickerSelectedFavoriteIndex !== null) //if a saved color is selected
+	{
+		var FavoriteColorX = X + ((ColorPickerWidth / 6) * ColorPickerSelectedFavoriteIndex);
+
+		if (MouseX > FavoriteColorX && MouseX < FavoriteColorX + (ColorPickerWidth / 6) && MouseY > FavoritesPaletteOffset && MouseY < FavoritesPaletteOffset + FavoritesPaletteHeight) {
+			// If mouse is hovering over selected favorite color slot, change color of highlight.
+			DrawEmptyRect(X + ((ColorPickerWidth / 6) * ColorPickerSelectedFavoriteIndex), FavoritesPaletteOffset, ColorPickerWidth / 6, FavoritesPaletteHeight, "darkcyan", 10);
+		} else { // Highlight selected favorite color slot.
+			DrawEmptyRect(X + ((ColorPickerWidth / 6) * ColorPickerSelectedFavoriteIndex), FavoritesPaletteOffset, ColorPickerWidth / 6, FavoritesPaletteHeight, "cyan", 10);
+		}
+	}
 
 	ColorPickerX = X;
 	ColorPickerY = Y;
@@ -403,4 +532,45 @@ function ColorPickerHSVToCSS(HSV) {
 	if (BS.length == 1) BS = "0" + BS;
 
 	return "#" + RS + GS + BS;
+}
+
+/**
+ * Returns the array of default colors for the list of favorite colors.
+ * @returns {HSVColor[]} - Array of default colors
+ */
+function GetDefaultSavedColors() {
+
+	if (DefaultSavedColors.length == 0) { //sets custom default values if not set yet
+		DefaultSavedColors[0] = {H: 0, S: 0, V: 0.12549019607843137};
+		DefaultSavedColors[1] = {H: 0, S: 0, V: 0.5019607843137255};
+		DefaultSavedColors[2] = {H: 0, S: 0, V: 0.7333333333333333};
+		DefaultSavedColors[3] = {H: 0, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[4] = {H: 0.3333333333333333, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[5] = {H: 0.6666666666666666, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[6] = {H: 0.16666666666666666, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[7] = {H: 0.5, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[8] = {H: 0.8333333333333334, S: 0.24705882352941172, V: 0.6666666666666666};
+		DefaultSavedColors[9] = {H: 0, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[10] = {H: 0.3333333333333333, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[11] = {H: 0.6666666666666666, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[12] = {H: 0.16666666666666666, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[13] = {H: 0.5, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[14] = {H: 0.8333333333333334, S: 0.7500000000000001, V: 0.8};
+		DefaultSavedColors[15] = {H: 0, S: 0, V: 0.12549019607843137};
+		DefaultSavedColors[16] = {H: 0, S: 0, V: 0.5019607843137255};
+		DefaultSavedColors[17] = {H: 0, S: 0, V: 0.7333333333333333};
+		DefaultSavedColors[18] = {H: 0, S: 0.24705882352941172, V: 0.6666666666666666};
+
+		for (let i = 0; i < ColorPickerNumSaved; i++) { //fill rest of slots with white
+			if (typeof DefaultSavedColors[i] != "object") {
+				DefaultSavedColors[i] = {H: 0, S: 0, V: 1};
+			}
+		}
+	}
+
+	var SavedColors = [];
+	for (let i = 0; i < ColorPickerNumSaved; i++) {
+		SavedColors[i] = Object.assign({}, DefaultSavedColors[i]);
+	}
+	return SavedColors;
 }
