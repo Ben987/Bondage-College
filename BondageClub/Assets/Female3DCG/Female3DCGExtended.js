@@ -1966,6 +1966,46 @@ var AssetFemale3DCGExtended = {
 				]
 			},
 		}, // SilkStraps
+		MetalChastityBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "OpenBack",
+						Property: {
+							Type: null,
+							Block: null,
+						},
+					},
+					{
+						Name: "ClosedBack",
+						Property: {
+							Type: "ClosedBack",
+							Block: ["ItemButt"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectBackShield",
+					TypePrefix: "Chastity",
+					NpcPrefix: "Chastity",
+					ChatPrefix: "ChastityBeltBackShield",
+				}
+			},
+		}, // MetalChastityBelt
+		OrnateChastityBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "MetalChastityBelt" },
+		}, // OrnateChastityBelt
+		StuddedChastityBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "MetalChastityBelt" },
+		}, // StuddedChastityBelt
+		PolishedChastityBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "MetalChastityBelt" },
+		}, // PolishedChastityBelt
 	}, // ItemPelvis
 	ItemEars: {
 		HeadphoneEarPlugs: {
