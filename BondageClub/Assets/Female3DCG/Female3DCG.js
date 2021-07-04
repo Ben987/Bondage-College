@@ -4205,7 +4205,8 @@ var AssetFemale3DCG = [
 			{
 				Name: "WoodenBox", Priority: 58, Value: 60, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", RemoveAtLogin: true, DefaultColor: ["Default", "#600"], SetPose: ["BaseLower"], Extended: true, DynamicAfterDraw: true, MinOpacity: 0, Opacity: 0, FixedPosition: true,
 				AllowType: ["NWSE"],
-				Prerequisite: ["NotSuspended", "NotHogtied", "NotHorse"],
+				Block: ["ItemAddon"],
+				Prerequisite: ["NotSuspended", "NotHogtied", "NotHorse", "NotLifted"],
 				Effect: ["Prone", "Enclose", "Freeze"],
 				AllowEffect: ["Prone", "Enclose", "BlindNormal", "GagLight", "Freeze"],
 				Layer: [
@@ -4214,11 +4215,11 @@ var AssetFemale3DCG = [
 					{ Name: "Text", HasImage: false, HasType: false },
 					{
 						Name: "Frame", CopyLayerColor: "Back", MinOpacity: 1, HasType: false,
-						Alpha: [{ Masks: [[0, -50, 500, 80], [0, 10, 45, 980], [445, 10, 55, 980], [0, 990, 500, 110]] }],
+						Alpha: [{ Masks: [[0, -50, 500, 80], [0, 10, 45, 980], [445, 10, 55, 980], [0, 990, 500, 110], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }],
 					},
 				],
 			},
-			{ Name: "SmallWoodenBox", Priority: 58, Value: 40, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "CanKneel"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "BlindNormal", "GagLight", "Freeze"], HideItem: ["ShoesFlippers"], Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999]] }], RemoveAtLogin: true },
+			{ Name: "SmallWoodenBox", Priority: 58, Value: 40, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "CanKneel", "NotLifted"], SetPose: ["Kneel"], Block: ["ItemAddon"], Effect: ["ForceKneel", "Prone", "Enclose", "BlindNormal", "GagLight", "Freeze"], HideItem: ["ShoesFlippers"], Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }], RemoveAtLogin: true },
 			{ Name: "MilkCan", Priority: 58, Fetish: ["Metal"], Value: -1, Difficulty: 1, Time: 15, RemoveTime: 10, SetPose: ["Kneel"], Effect: ["BlindHeavy", "Prone", "Enclose", "GagHeavy", "Freeze"], HideItem: ["ShoesFlippers"], RemoveAtLogin: true },
 			{
 				Name: "WaterCell", Priority: 58, Fetish: ["Metal"], Value: -1, Difficulty: 1, Time: 15, RemoveTime: 15, SetPose: ["Suspension", "LegsClosed"], Effect: ["Prone", "Enclose", "GagMedium", "Freeze"], HideItem: ["ShoesFlippers"], Block: ["ItemFeet"], RemoveAtLogin: true,
@@ -4227,9 +4228,10 @@ var AssetFemale3DCG = [
 			},
 			{
 				Name: "Cage", Priority: 58, Fetish: ["Metal"], Value: 120, Difficulty: 4, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", RemoveAtLogin: true,
-				Prerequisite: ["NotKneeling", "NotSuspended"],
+				Prerequisite: ["NotKneeling", "NotSuspended", "NotLifted"],
 				Effect: ["Prone", "Enclose", "Freeze"],
 				HideItem: ["ShoesFlippers"],
+				Block: ["ItemAddon"],
 				Alpha: [{ Masks: [[1, 80, 105, 900], [410, 80, 105, 900]] }],
 				SetPose: ["BaseLower"],
 				Layer: [
@@ -4238,7 +4240,7 @@ var AssetFemale3DCG = [
 					{ Name: "Tint" },
 				]
 			},
-			{ Name: "LowCage", Priority: 58, Fetish: ["Metal"], Value: 80, Difficulty: 4, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "Freeze"], HideItem: ["ShoesFlippers"], Alpha: [{ Masks: [[1, 80, 75, 900], [400, 80, 100, 900]] }], RemoveAtLogin: true },
+			{ Name: "LowCage", Priority: 58, Fetish: ["Metal"], Value: 80, Difficulty: 4, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Block: ["ItemAddon"], Prerequisite: ["NotLifted", "NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "Freeze"], HideItem: ["ShoesFlippers"], Alpha: [{ Masks: [[1, 80, 75, 900], [400, 80, 100, 900]] }], RemoveAtLogin: true },
 			{ Name: "SaddleStand", Fetish: ["Metal"], Priority: 39, Value: 100, Difficulty: -2, Time: 10, AllowLock: true, Prerequisite: ["LegsOpen", "AllFours", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NotKneelingSpread", "NotShackled"], SetPose: ["LegsOpen"], Effect: ["Prone", "Freeze", "Mounted"], Block: ["ItemPelvis", "ItemLegs", "ItemFeet"], AllowActivityOn: ["ItemPelvis", "ItemLegs", "ItemFeet"], Height: 30, RemoveAtLogin: true },
 			{ Name: "BurlapSack", Priority: 39, Value: 35, Difficulty: 5, SelfBondage: 4, Time: 15, RemoveTime: 6, Audio: "Bag", Prerequisite: ["NotSuspended", "AllFours", "NotHogtied", "NotYoked", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], Hide: ["Cloth", "ClothLower", "Shoes", "ItemBoots", "ItemLegs", "ItemFeet", "ItemArms", "ItemButt", "TailStraps", "Wings", "BodyLower", "Socks", "ItemHidden", "ItemNipplesPiercings", "ItemTorso"], SetPose: ["Kneel", "BackElbowTouch"], Effect: ["ForceKneel", "Block", "Prone", "Freeze"], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemHands", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots"] },
 			{ Name: "InflatableBodyBag", Fetish: ["Latex"], Priority: 31, Value: 225, Difficulty: 1, SelfBondage: 6, Time: 30, RemoveTime: 50, AllowLock: true, Audio: "Bag", Prerequisite: ["NotSuspended", "AllFours", "NotHogtied", "NotYoked", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], Hide: ["Cloth", "Suit", "ClothLower", "SuitLower", "Shoes", "ItemBoots", "ItemLegs", "ItemFeet", "ItemArms", "ItemButt", "TailStraps", "Wings", "BodyLower", "Socks", "ItemNipplesPiercings"], HideItem: ["ItemVulvaFullLatexSuitWand", "ItemNipplesLactationPump"], AllowPose: ["Kneel"], SetPose: ["LegsClosed", "BackElbowTouch"], Effect: ["Block", "Prone", "Freeze"], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemHands", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots"], Extended: true, SelfUnlock: false, AllowActivePose: ["Kneel"] },
@@ -4266,7 +4268,7 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "LittleMonster", Priority: 34, Value: 40, Difficulty: -10, Time: 5, IsRestraint: false, AllowPose: ["AllFours", "Hogtied", "TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Horse", "Yoked", "OverTheHead"], Effect: [], Extended: true, RemoveAtLogin: true },
 			{ Name: "Familiar", Priority: 6, Value: 200, Difficulty: -10, Time: 5, IsRestraint: false, AllowPose: ["AllFours", "Hogtied", "TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Horse", "Yoked", "OverTheHead"], Effect: [], Extended: true, RemoveAtLogin: true },
-			{ Name: "Coffin", Priority:70, Value: 240,  Top: -150, Left:10, Difficulty: -20, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["AllFours", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NoFeetSpreader"], SetPose: ["LegsClosed"], AllowEffect: ["Freeze", "GagMedium", "Prone", "Enclose", "BlindLight"], HideItem: ["ShoesFlippers"],
+			{ Name: "Coffin", Priority:70, Value: 240,  Top: -150, Left:10, Difficulty: -20, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotLifted", "AllFours", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NoFeetSpreader"], Block: ["ItemAddon"], SetPose: ["LegsClosed"], AllowEffect: ["Freeze", "GagMedium", "Prone", "Enclose", "BlindLight"], HideItem: ["ShoesFlippers"],
 				Layer: [
 					{Name:"Inside", Priority:1, HasType: false},
 					{Name:"Frame", Priority:57, ColorGroup: "Main", HasType: false, Alpha: [{ Masks: [
@@ -4285,7 +4287,7 @@ var AssetFemale3DCG = [
 				],
 				Extended:true, RemoveAtLogin: true, AllowType:["Closed"]
 			},
-			{ Name: "CryoCapsule", Category: ["SciFi"], Priority:70, Value: 240,  Top: 0, Left:10, Difficulty: -20, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["AllFours", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NoFeetSpreader"], SetPose: ["LegsClosed"], AllowEffect: ["Freeze", "GagMedium", "Prone", "Enclose", "BlindLight"], HideItem: ["ShoesFlippers"],
+			{ Name: "CryoCapsule", Category: ["SciFi"], Priority:70, Value: 240,  Top: 0, Left:10, Difficulty: -20, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotLifted", "AllFours", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NoFeetSpreader"], Block: ["ItemAddon"], SetPose: ["LegsClosed"], AllowEffect: ["Freeze", "GagMedium", "Prone", "Enclose", "BlindLight"], HideItem: ["ShoesFlippers"],
 				Layer: [
 					{Name:"Inside", Priority:1, HasType: false},
 					{Name:"Frame", Priority:57, ColorGroup: "Main", HasType: false, Alpha: [{ Masks: [
@@ -4315,9 +4317,10 @@ var AssetFemale3DCG = [
 			{ Name: "Sybian", Priority: 22, Value: 80, Difficulty: 1, Time: 10, IsRestraint: false, Prerequisite: ["AccessVulva", "AllFours", "LegsOpen", "NotSuspended", "NotHogtied", "NotShackled", "NotChaste", "NotHorse"], Hide: ["Shoes", "Socks", "ItemBoots", "ItemFeet", "ItemLegs", "ItemVulva"], HideItem: ["ClothLowerPajama1", "ClothLowerShorts1", "ClothLowerJeans1", "ClothLowerJeans2", "ClothLowerWaspie1", "ClothLowerWaspie2", "ClothLowerWaspie3", "ClothLowerLatexPants1", "ClothLowerLeggings1", "ClothLowerLeggings2", "ItemDevicesTeddyBear", "SuitLowerReverseBunnySuit", "ClothLowerJeansShorts", "ClothLowerShortPlaidSkirt"], SetPose: ["KneelingSpread"], Effect: ["FillVulva", "Egged", "Freeze", "Mounted"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemPelvis", "ItemButt", "ItemVulva"], AllowActivityOn: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemPelvis"], RemoveAtLogin: true, ArousalZone: "ItemVulva", DynamicScriptDraw: true },
 			{ Name: "StrapOnSmooth", Fetish: ["Leather"], Priority: 34, Value: 25, Difficulty: 1, Time: 10, IsRestraint: false, AllowActivity: ["Penetrate"] },
 			{ Name: "StrapOnStuds", Fetish: ["Leather"], Priority: 34, Value: 25, Difficulty: 1, Time: 10, IsRestraint: false, AllowActivity: ["Penetrate"] },
-			{ Name: "DisplayCase", Priority: 58, Fetish: ["Metal"], Value: 60, Difficulty: -2, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended"], Effect: ["Prone", "Enclose", "DeafLight", "GagLight", "Freeze"],  HideItem: ["ShoesFlippers"], Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999]] }], RemoveAtLogin: true, SetPose: ["BaseLower"] },
-			{ Name: "SmallDisplayCase", Priority: 58, Fetish: ["Metal"], Value: 40, Difficulty: -2, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "DeafLight", "GagLight", "Freeze"], HideItem: ["ShoesFlippers"],  Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999]] }], RemoveAtLogin: true },
-			{ Name: "FuturisticCrate", Priority: 58, Category: ["SciFi"], Fetish: ["Metal"], Value: 70, Difficulty: -2, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, DrawLocks: false, Audio: "LockLarge", Prerequisite: ["NotSuspended"], LayerVisibility: true, Effect: [], AllowEffect: ["GagLight", "Freeze", "Prone", "BlindLight", "Enclose", "BlindNormal","BlindHeavy", "GagHeavy", "Freeze"],  HideItem: ["ShoesFlippers"],
+			{ Name: "DisplayCase", Priority: 58, Fetish: ["Metal"], Value: 60, Difficulty: -2, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotLifted"], Effect: ["Prone", "Enclose", "DeafLight", "GagLight", "Freeze"], Block: ["ItemAddon"], HideItem: ["ShoesFlippers"], Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }], RemoveAtLogin: true, SetPose: ["BaseLower"] },
+			{ Name: "SmallDisplayCase", Priority: 58, Fetish: ["Metal"], Value: 40, Difficulty: -2, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "NotLifted"], Block: ["ItemAddon"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "DeafLight", "GagLight", "Freeze"], HideItem: ["ShoesFlippers"],  Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }], RemoveAtLogin: true },
+			{ Name: "FuturisticCrate", Priority: 58, Category: ["SciFi"], Fetish: ["Metal"], Value: 70, Difficulty: -2, SelfBondage: 1, Time: 15, RemoveTime: 10, AllowLock: true, DrawLocks: false, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotLifted"], LayerVisibility: true, Effect: [], AllowEffect: ["GagLight", "Freeze", "Prone", "BlindLight", "Enclose", "BlindNormal","BlindHeavy", "GagHeavy", "Freeze"],  HideItem: ["ShoesFlippers"],
+				Block: ["ItemAddon"],
 				Alpha: [{ Masks: [[1, 1, 70, 999], [420, 1, 80, 999]] }], RemoveAtLogin: true, SetPose: ["BaseLower"], Extended: true, AllowType: ["Window", "SmallWindow", "Closed"],
 				DefaultColor: ["#93C48C", "#3B7F2C","Default", "Default", "#BBBBFF", "Default", ],
 				Layer: [
@@ -4331,8 +4334,8 @@ var AssetFemale3DCG = [
 					{Name:"Lid_SmallWindow", Priority:57, CopyLayerColor: "Lid_Closed", HasType: false, AllowTypes: ["SmallWindow"], Visibility: "AllExceptPlayerDialog"},
 				],
 			},
-			{ Name: "WoodenBoxOpenHead", Value: 60, Difficulty: -2, SelfBondage: 3, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotYoked"], Hide: ["Wings"], Effect: ["Prone", "Freeze", "Block"],  HideItem: ["ShoesFlippers"],  AllowBlock: ["ItemHands"], Alpha: [{ Masks: [[1, 220, 70, 999], [420, 220, 80, 999]] }], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots", "ItemHands"], RemoveAtLogin: true, SetPose: ["BaseLower"] },
-			{ Name: "SmallWoodenBoxOpenHead", Value: 40, Difficulty: -2, SelfBondage: 3, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "CanKneel", "NotYoked"], Hide: ["Wings"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Freeze", "Block"], HideItem: ["ShoesFlippers"],  AllowBlock: ["ItemHands"], Alpha: [{ Masks: [[1, 220, 70, 999], [420, 220, 80, 999]] }], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots", "ItemHands"], RemoveAtLogin: true },
+			{ Name: "WoodenBoxOpenHead", Value: 60, Difficulty: -2, SelfBondage: 3, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotYoked", "NotLifted"], Hide: ["Wings"], Effect: ["Prone", "Freeze", "Block"],  HideItem: ["ShoesFlippers"], Alpha: [{ Masks: [[1, 220, 70, 999], [420, 220, 80, 999], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }], Block: ["ItemAddon", "ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots", "ItemHands"], RemoveAtLogin: true, SetPose: ["BaseLower"] },
+			{ Name: "SmallWoodenBoxOpenHead", Value: 40, Difficulty: -2, SelfBondage: 3, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "CanKneel", "NotYoked", "NotLifted"], Hide: ["Wings"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Freeze", "Block"], HideItem: ["ShoesFlippers"], Alpha: [{ Masks: [[1, 220, 70, 999], [420, 220, 80, 999], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }], Block: ["ItemArms", "ItemAddon", "ItemBreast", "ItemButt", "ItemFeet", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots", "ItemHands"], RemoveAtLogin: true },
 			{ Name: "WoodenStocks", Value: 150, Difficulty: 50, SelfBondage: 4, Time: 10, AllowLock: true, Prerequisite: ["NotKneeling", "AllFours", "NotSuspended", "NotHogtied", "NotKneelingSpread", "NoItemArms", "LegsOpen"], SetPose: ["Yoked", "LegsOpen"], Effect: ["Prone", "Freeze", "Block", "Mounted"], Block: ["ItemArms", "ItemFeet", "ItemLegs", "ItemBoots"], AllowActivityOn: ["ItemArms", "ItemFeet", "ItemLegs", "ItemBoots"],RemoveAtLogin: true },
 			{
 				Name: "Vacbed", Fetish: ["Latex"], ParentGroup: "BodyUpper", Value: 200, Difficulty: 50, BuyGroup: "Vac", Priority: 36, SelfBondage: 3, Time: 10, Extended: true,
@@ -4434,7 +4437,8 @@ var AssetFemale3DCG = [
 			{
 				Name: "Locker", Priority: 58, Value: 50, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, Top: 0, AllowLock: true, Extended: true, RemoveAtLogin: true, MinOpacity: 0, Opacity: 0, FixedPosition: true,
 				AllowType: ["Ventless"],
-				Prerequisite: ["NotSuspended", "NotHogtied"],
+				Block: ["ItemAddon"],
+				Prerequisite: ["NotSuspended", "NotHogtied", "NotLifted"],
 				Effect: ["Prone", "Enclose", "BlindLight", "Freeze"],
 				AllowEffect: ["GagLight"],
 				Layer: [
@@ -4451,8 +4455,9 @@ var AssetFemale3DCG = [
 			{
 				Name: "SmallLocker", Priority: 58, Value: 40, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, Top: 0, AllowLock: true, Extended: true, RemoveAtLogin: true, MinOpacity: 0, Opacity: 0,
 				AllowType: ["Ventless"],
-				Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "CanKneel"],
+				Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "CanKneel", "NotLifted"],
 				SetPose: ["Kneel"],
+				Block: ["ItemAddon"],
 				Effect: ["ForceKneel", "Prone", "Enclose", "BlindLight", "Freeze"],
 				AllowEffect: ["GagLight"],
 				Layer: [
@@ -4506,7 +4511,8 @@ var AssetFemale3DCG = [
 			{
 				Name: "TransportWoodenBox", Priority: 58, Value: 60, Difficulty: -2, SelfBondage: 5, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", DefaultColor: ["Default", "Default", "Default", "#600"], Extended: true, RemoveAtLogin: true, SetPose: ["BaseLower"], MinOpacity: 0, Opacity: 0, DynamicAfterDraw: true, FixedPosition: true,
 				AllowType: ["NWSE"],
-				Prerequisite: ["NotSuspended", "NotHogtied"],
+				Block: ["ItemAddon"],
+				Prerequisite: ["NotSuspended", "NotHogtied", "NotLifted"],
 				Effect: ["Prone", "Enclose", "Freeze", "Leash"],
 				AllowEffect: ["Prone", "Enclose", "BlindNormal", "GagLight", "Freeze", "Leash"],
 				Layer: [
@@ -4514,7 +4520,7 @@ var AssetFemale3DCG = [
 					{ Name: "Panel", CopyLayerColor: "Back", HasType: false },
 					{
 						Name: "Frame", CopyLayerColor: "Back", MinOpacity: 1, HasType: false,
-						Alpha: [{ Masks: [[0, -50, 500, 80], [0, 10, 45, 980], [445, 10, 55, 980], [0, 990, 500, 110]] }],
+						Alpha: [{ Masks: [[0, -50, 500, 80], [0, 10, 45, 980], [445, 10, 55, 980], [0, 990, 500, 110], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }],
 					},
 					{ Name: "Wheelholders", MinOpacity: 1, HasType: false },
 					{ Name: "Wheels", MinOpacity: 1, HasType: false },
