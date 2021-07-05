@@ -961,6 +961,48 @@ var AssetFemale3DCGExtended = {
 				ChangeWhenLocked: false,
 			},
 		}, // KirugumiMask
+		GwenHood: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "HairOutAccOut",
+						Property: {
+							Type: null,
+							Hide: []
+						},
+					},
+					{
+						Name: "HairInAccOut",
+						Property: {
+							Type: "HairInAccOut",
+							Hide: ["HairBack"]
+						},
+					},
+					{
+						Name: "HairOutAccIn",
+						Property: {
+							Type: "HairOutAccIn",
+							Hide: ["HairAccessory1", "HairAccessory2", "HairAccessory3"]
+						},
+					},
+					{
+						Name: "HairInAccIn",
+						Property: {
+							Type: "HairInAccIn",
+							Hide: ["HairAccessory1", "HairAccessory2", "HairAccessory3", "HairBack"]
+						},
+					},
+				],
+				Dialog: {
+					Load: "GwenHoodSelectStyle",
+					TypePrefix: "GwenHoodStyle",
+					ChatPrefix: "GwenHoodChangeStyle",
+				},
+				DrawImages: false,
+			},
+		}, // HempRopeHarness
 	}, // ItemHood
 	ItemDevices: {
 		Crib: {
@@ -1171,6 +1213,58 @@ var AssetFemale3DCGExtended = {
 			},
 		}, //Pole
 	}, // ItemDevices
+	ItemBoots: {
+		ToeTape: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Toes",
+						Property: { Type: null, Difficulty: 0 },
+					},
+					{
+						Name: "Full",
+						Property: { Type: "Full", Difficulty: 2 },
+					},
+				],
+				Dialog: {
+					Load: "SelectTapeWrapping",
+					TypePrefix: "ToeTapePose",
+					ChatPrefix: "ToeTapeSet",
+					NpcPrefix: "",
+				},
+			},
+		}, // ToeTape
+	}, // ItemBoots
+	ItemNipples: {
+		PlateClamps: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Loose",
+						Property: {
+							Type: null
+						},
+					},
+					{
+						Name: "Tight",
+						Property: {
+							Type: "Tight"
+						},
+					}
+				],
+				Dialog: {
+					Load: "ItemNipplesPlateClampsSelectTightness",
+					TypePrefix: "ItemNipplesPlateClampsTightnessLevel",
+					ChatPrefix: "ItemNipplesPlateClamps",
+				},
+				DrawImages: false,
+			},
+		}, // PlateClamps
+	}, // ItemNipples
 	Corset: {
 		LatexCorset1: {
 			Archetype: ExtendedArchetype.TYPED,
@@ -1220,6 +1314,39 @@ var AssetFemale3DCGExtended = {
 				]
 			},
 		}, // ThinLeatherStraps
+		HempRopeHarness: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Crotch",
+						Property: { Type: null, Difficulty: 1, Effect: ["CrotchRope"] }
+					}, {
+						Name: "Waist",
+						Property: { Type: "Waist", Difficulty: 1 }
+					}, {
+						Name: "Harness",
+						BondageLevel: 2,
+						Property: { Type: "Harness", Difficulty: 1, Effect: ["CrotchRope"] }
+					}, {
+						Name: "Star",
+						BondageLevel: 3,
+						Property: { Type: "Star", Difficulty: 2 }
+					}, {
+						Name: "Diamond",
+						BondageLevel: 4,
+						Property: { Type: "Diamond", Difficulty: 3, Effect: ["CrotchRope"] }
+					},
+				],
+				Dialog: {
+					Load: "SelectRopeBondage",
+					TypePrefix: "RopeBondage",
+					ChatPrefix: "RopeHarnessSet",
+					NpcPrefix: "RopeBondage",
+				},
+			},
+		}, // HempRopeHarness
 	}, // ItemTorso
 	Shoes: {
 		FuturisticHeels2: {
@@ -2031,6 +2158,57 @@ var AssetFemale3DCGExtended = {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { AssetName: "MetalChastityBelt" },
 		}, // PolishedChastityBelt
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "BowWrap",
+						Property: { Type: null, Difficulty: 3, OverridePriority: 21 },
+					},
+					{
+						Name: "CrotchWrapping",
+						Property: { Type: "CrotchWrapping", Difficulty: 4 },
+					},
+				],
+				Dialog: {
+					Load: "SelectRibbonType",
+					TypePrefix: "RibbonsBelt",
+					NpcPrefix: "ItemPelvisRibbons",
+					ChatPrefix: "PelvisRibbonsSet",
+				}
+			},
+		}, // Ribbons
+		HempRope: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Crotch",
+						Property: { Type: null, Difficulty: 1, Effect: ["CrotchRope"] }
+					}, {
+						Name: "OverPanties",
+						Property: { Type: "OverPanties", Difficulty: 1, OverridePriority: 21, Effect: ["CrotchRope"] }
+					}, {
+						Name: "SwissSeat",
+						BondageLevel: 4,
+						Property: { Type: "SwissSeat", Difficulty: 4 }
+					}, {
+						Name: "KikkouHip",
+						BondageLevel: 5,
+						Property: { Type: "KikkouHip", Difficulty: 5 }
+					}
+				],
+				Dialog: {
+					Load: "SelectRopeBondage",
+					TypePrefix: "RopeBondage",
+					NpcPrefix: "RopeBondage",
+					ChatPrefix: "PelvisRopeSet",
+				}
+			},
+		}, // HempRope
 	}, // ItemPelvis
 	ItemEars: {
 		HeadphoneEarPlugs: {
