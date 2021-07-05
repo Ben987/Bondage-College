@@ -89,11 +89,22 @@ function InventoryItemVulvaFuturisticVibratorExit() {
 
 function InventoryItemVulvaFuturisticVibratorDetectMsg(msg, TriggerValues) {
 	var commandsReceived = [];
+
+	// If the message is OOC, just return immediately
+	if (msg.indexOf('(') == 0) return commandsReceived;
+
 	for (let I = 0; I < TriggerValues.length; I++) {
-		const triggerRegex = new RegExp(`\\b${TriggerValues[I].toUpperCase()}\\b`);
-		const success = triggerRegex.test(msg.replace(/[^a-z0-9]/gmi, " ").replace(/\s+/g, " "));
+		// Don't execute arbitrary regex
+		let regexString = TriggerValues[I].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+		// Allow `*` wildcard, and normalize case
+		regexString = regexString.replaceAll("\\*", ".*")
+		regexString = regexString.toUpperCase()
+
+		const triggerRegex = new RegExp(`\\b${regexString}\\b`);
+		const success = triggerRegex.test(msg);
 		
-		if (success && msg.indexOf('(') != 0) commandsReceived.push(ItemVulvaFuturisticVibratorTriggers[I]);
+		if (success) commandsReceived.push(ItemVulvaFuturisticVibratorTriggers[I]);
 	}
 	return commandsReceived;
 }
