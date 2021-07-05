@@ -2,7 +2,6 @@
 
 var ItemVulvaFuturisticVibratorTriggers = ["Increase", "Decrease", "Disable", "Edge", "Random", "Deny", "Tease", "Shock"];
 var ItemVulvaFuturisticVibratorTriggerValues = [];
-var FuturisticVibratorCheckChatTime = 1000; // Checks chat every 1 sec
 
 function InventoryItemVulvaFuturisticVibratorLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;

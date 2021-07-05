@@ -389,8 +389,13 @@ function InventoryItemPelvisFuturisticTrainingBeltUpdateVibeMode(C, Item, Force)
 function InventoryFuturisticTrainingBeltCheckPunishSpeech(Item, LastTime) {
 	if (!Item) return "";
 	if (!Item.Property) return "";
-	for (let CH = 0; CH < ChatRoomChatLog.length; CH++) {
-		if (ChatRoomChatLog[CH].Time > LastTime && ChatRoomChatLog[CH].SenderMemberNumber == Player.MemberNumber) {
+	// Search from latest message backwards, allowing early exit
+	for (let CH = ChatRoomChatLog.length - 1; CH >= 0; CH--) {
+
+		// Messages are in order, no need to keep looping
+		if (ChatRoomChatLog[CH].Time <= LastTime) break
+
+		if (ChatRoomChatLog[CH].SenderMemberNumber == Player.MemberNumber) {
 			let msg = ChatRoomChatLog[CH].Chat.toUpperCase().replace(/[^a-z0-9]/gmi, " ").replace(/\s+/g, " ");
 			let msgTruncated = ChatRoomChatLog[CH].Chat.toUpperCase().replace(/[^a-z0-9]/gmi, "").replace(/\s+/g, "");
 
@@ -641,12 +646,12 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptDraw(data) {
 	var property = (data.Item.Property = data.Item.Property || {});
 	if (typeof persistentData.UpdateTime !== "number") persistentData.UpdateTime = CommonTime() + 4000;
 	if (typeof persistentData.LastMessageLen !== "number") persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
-	if (typeof persistentData.CheckTime !== "number") persistentData.CheckTime = CommonTime() + FuturisticVibratorCheckChatTime;
+	if (typeof persistentData.CheckTime !== "number") persistentData.CheckTime = 0;
 
 	if (persistentData.UpdateTime < CommonTime() && data.C == Player) {
 
 		if (CommonTime() > property.NextShockTime) {
-			AssetsItemPelvisFuturisticTrainingBeltScriptUpdatePlayer(data, persistentData.CheckTime - FuturisticVibratorCheckChatTime);
+			AssetsItemPelvisFuturisticTrainingBeltScriptUpdatePlayer(data, persistentData.CheckTime);
 			AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data);
 			persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
 		}
@@ -656,7 +661,8 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptDraw(data) {
 		AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);
 		AnimationRequestDraw(data.C);
 		
-		
-		persistentData.CheckTime = CommonTime() + FuturisticVibratorCheckChatTime;
+		// Set CheckTime to last processed chat message time
+		var lastMsgIndex = ChatRoomChatLog.length - 1;
+		persistentData.CheckTime = (lastMsgIndex >= 0 ? ChatRoomChatLog[lastMsgIndex].Time : 0);
 	}
 }
