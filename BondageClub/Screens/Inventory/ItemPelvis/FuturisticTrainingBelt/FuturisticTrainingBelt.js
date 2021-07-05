@@ -395,6 +395,9 @@ function InventoryFuturisticTrainingBeltCheckPunishSpeech(Item, LastTime) {
 		// Messages are in order, no need to keep looping
 		if (ChatRoomChatLog[CH].Time <= LastTime) break
 
+		// If the message is OOC, just return immediately
+		if (ChatRoomChatLog[CH].Chat.indexOf('(') == 0) return "";
+
 		if (ChatRoomChatLog[CH].SenderMemberNumber == Player.MemberNumber) {
 			let msg = ChatRoomChatLog[CH].Chat.toUpperCase().replace(/[^a-z0-9]/gmi, " ").replace(/\s+/g, " ");
 			let msgTruncated = ChatRoomChatLog[CH].Chat.toUpperCase().replace(/[^a-z0-9]/gmi, "").replace(/\s+/g, "");
