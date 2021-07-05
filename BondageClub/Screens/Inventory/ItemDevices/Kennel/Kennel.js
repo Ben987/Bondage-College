@@ -65,11 +65,12 @@ function InventoryItemDevicesKennelValidate(C, Item, Option) {
 	return Allowed;
 }
 
-function AssetsItemDevicesKennelBeforeDraw({ PersistentData, L, Property, LayerType, C }) {
+function AssetsItemDevicesKennelBeforeDraw({ PersistentData, L, Property }) {
+	if (L !== "_Door") return;
+	
 	const Data = PersistentData();
 	const Properties = Property || {};
 	const Type = Properties.Type ? Properties.Type : "Open";
-	if (L !== "_Door") return;
 
 	if (Data.DoorState >= 11 || Data.DoorState <= 1) Data.MustChange = false;
 
@@ -85,7 +86,7 @@ function AssetsItemDevicesKennelScriptDraw({ C, PersistentData, Item }) {
 	const Data = PersistentData();
 	const Properties = Item.Property || {};
 	const Type = Properties.Type ? Properties.Type : "Open";
-	const FrameTime = 120;
+	const FrameTime = 200;
 
 	if (typeof Data.DoorState !== "number") Data.DoorState = Type.startsWith("Closed") ? 11 : 1;
 	if (typeof Data.ChangeTime !== "number") Data.ChangeTime = CommonTime() + FrameTime;
