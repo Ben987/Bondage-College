@@ -98,3 +98,7 @@ function AssetsItemDevicesKennelScriptDraw({ C, PersistentData, Item }) {
 		AnimationRequestDraw(C);
 	}
 }
+
+function InventoryItemDevicesKennelGetAudio(C) {
+	return InventoryGet(C, "ItemDevices") && InventoryGet(C, "ItemDevices").Asset.Name === "Kennel" ? "CageStruggle" : "CageEquip";
+}
