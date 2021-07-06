@@ -1822,9 +1822,9 @@ function DialogDraw() {
 			if (CharacterAppearanceForceUpCharacter == CurrentCharacter.MemberNumber) {
 				drawButton = "Icons/Remove.png";
 			} else if (CurrentCharacter.HeightModifier < -90) {
-				drawButton = C.IsInverted() ? "Icons/Down.png" : "Icons/Up.png";
+				drawButton = CurrentCharacter.IsInverted() ? "Icons/Down.png" : "Icons/Up.png";
 			} else if (CurrentCharacter.HeightModifier > 30) {
-				drawButton = C.IsInverted() ? "Icons/Up.png" : "Icons/Down.png";
+				drawButton = CurrentCharacter.IsInverted() ? "Icons/Up.png" : "Icons/Down.png";
 			}
 			if (drawButton) DrawButton(510, 50, 90, 90, "", "White", drawButton, DialogFindPlayer("ShowAllZones"));
 		}
