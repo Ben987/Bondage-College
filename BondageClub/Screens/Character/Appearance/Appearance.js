@@ -428,11 +428,7 @@ function CharacterAppearanceItemIsHidden(AssetName, GroupName) {
  * @returns {void} - Nothing
  */
 function CharacterAppearanceSetHeightModifiers(C) {
-	if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
-		// If the "Up" button was clicked, move the character to the top
-		C.HeightModifier = 0;
-		C.HeightRatioProportion = 1;
-	} else {
+	if (CharacterAppearanceForceUpCharacter != C.MemberNumber) {
 		let Height = 0;
 		let HeightRatioProportion = 1;
 
@@ -533,11 +529,12 @@ function CharacterAppearanceXOffset(C, HeightRatio) {
  * up at the 'ceiling'
  * @param {Character} C - The character to reposition
  * @param {number} HeightRatio - The character's height ratio
+ * @param {boolean} [IgnoreUpButton=false] - Whether or not to ignore the up button status
  * @returns {number} - The amounnt to move the character along the Y co-ordinate
  */
-function CharacterAppearanceYOffset(C, HeightRatio) {
+function CharacterAppearanceYOffset(C, HeightRatio, IgnoreUpButton) {
 	let HeightModifier = C.HeightModifier;
-	if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
+	if (!IgnoreUpButton && CharacterAppearanceForceUpCharacter == C.MemberNumber) {
 		HeightModifier = 0;
 	}
 	return 1000 * (1 - HeightRatio) * C.HeightRatioProportion - HeightModifier * HeightRatio;

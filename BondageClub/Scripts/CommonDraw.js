@@ -146,7 +146,7 @@ function CommonDrawAppearanceBuild(C, {
 		let YFixedOffset = 0;
 		if (A.FixedPosition) {
 			if (C.IsInverted()) {
-				YFixedOffset = -Y + 1000 - (Y + CharacterAppearanceYOffset(C, C.HeightRatio) / C.HeightRatio);
+				YFixedOffset = -Y + 1000 - (Y + CharacterAppearanceYOffset(C, C.HeightRatio, true) / C.HeightRatio);
 			} else {
 				YFixedOffset = C.HeightModifier + 1000 * (1 - C.HeightRatio) * (1 - C.HeightRatioProportion) / C.HeightRatio;
 			}
