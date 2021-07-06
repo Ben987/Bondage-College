@@ -536,7 +536,11 @@ function CharacterAppearanceXOffset(C, HeightRatio) {
  * @returns {number} - The amounnt to move the character along the Y co-ordinate
  */
 function CharacterAppearanceYOffset(C, HeightRatio) {
-	return 1000 * (1 - HeightRatio) * C.HeightRatioProportion - C.HeightModifier * HeightRatio;
+	let HeightModifier = C.HeightModifier;
+	if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
+		HeightModifier = 0;
+	}
+	return 1000 * (1 - HeightRatio) * C.HeightRatioProportion - HeightModifier * HeightRatio;
 }
 
 /**
