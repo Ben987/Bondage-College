@@ -2397,6 +2397,34 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // EyePatch1
 	}, // Glasses
+	Garters: {
+		GarterBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Both",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Right",
+						Property: {
+							Type: "Right",
+						},
+					},
+					{
+						Name: "Left",
+						Property: {
+							Type: "Left",
+						},
+					},
+				],
+				DrawImages: false,
+			},
+		}, // GarterBelt
+	}, // Garters
 	Necklace: {
 		NecklaceKey: {
 			Archetype: ExtendedArchetype.TYPED,

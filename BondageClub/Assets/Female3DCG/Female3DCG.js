@@ -741,7 +741,13 @@ var AssetFemale3DCG = [
 		AllowPose: ["LegsClosed", "Spread", "Horse", "Kneel", "KneelingSpread"],
 		PreviewZone: [100, 450, 300, 300],
 		Asset: [
-			{ Name: "GarterBelt", Value: 10 },
+			{
+				Name: "GarterBelt", Value: 10, Extended: true,
+				Layer: [
+					{ Name: "Left", HasType: false, AllowTypes: ["", "Left"] },
+					{ Name: "Right", HasType: false, AllowTypes: ["", "Right"] },
+				] 
+			},
 			{ Name: "GarterBelt2", Value: 10 }
 		],
 		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
