@@ -220,13 +220,14 @@ function ValidationResolveLockModification(previousItem, newItem, params, itemBl
 
 	const previousProperty = previousItem.Property || {};
 	const newProperty = newItem.Property = newItem.Property || {};
-
-	if (!ValidationLockWasModified(previousProperty, newProperty)) {
-		return true;
-	}
-
+	
 	const previousLock = InventoryGetLock(previousItem);
 	const newLock = InventoryGetLock(newItem);
+	const notLocked = !previousLock && !newLock;
+	
+	if (notLocked || !ValidationLockWasModified(previousProperty, newProperty)) {
+		return true;
+	}
 
 	const lockSwapped = !!newLock && !!previousLock && newLock.Asset.Name !== previousLock.Asset.Name;
 	const lockModified = !!newLock && !!previousLock && !lockSwapped;
