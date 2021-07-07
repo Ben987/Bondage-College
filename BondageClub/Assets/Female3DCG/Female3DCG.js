@@ -4511,7 +4511,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "Kennel", Fetish: ["Metal", "Pet"], Top: 0, Value: 150, Difficulty: 6, Time: 15, RemoveTime: 10, AllowLock: true, RemoveAtLogin: true, Extended: true, FixedPosition: true, DynamicBeforeDraw: true, DynamicScriptDraw: true,
+				Name: "Kennel", Fetish: ["Metal", "Pet"], Top: 0, Value: 150, Time: 15, RemoveTime: 10, AllowLock: true, RemoveAtLogin: true, Extended: true, FixedPosition: true, DynamicBeforeDraw: true, DynamicScriptDraw: true,
 				DynamicAudio: (C) => InventoryItemDevicesKennelGetAudio(C),
                 DefaultColor: ["#2E2E29", "#780E0E", "#2E2E29", "#2E2E29"],
                 Prerequisite: ["NotLifted", "NotSuspended", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "CanKneel"],
@@ -4524,12 +4524,12 @@ var AssetFemale3DCG = [
                     { Name: "Kennel", Priority: 1, HasType: false },
                     { Name: "Padding", Priority: 1, AllowTypes: ["OpenPadding", "ClosedPadding"], HasType: false },
                     {
-                        Name: "Frame", HasType: false,
+                        Name: "Frame", HasType: false, Priority: 58,
                         Alpha: [{
                             Masks: [[0, 0, 500, 270], [0, 1000, 500, 250], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha]
                         }]
                     },
-                    { Name: "Door" },
+                    { Name: "Door", Priority: 58 },
                 ]
             },
 			{

@@ -4,17 +4,18 @@ const InventoryItemDevicesKennelOptions = [
 	{
 		Name: "OpenNoPadding",
         ItemValue: { Door: false, Padding: false},
-		Property: { Type: null }
+		Property: { Type: null, Difficulty: -100 }
 	}, {
 		Name: "OpenPadding",
         ItemValue: { Door: false, Padding: true},
-		Property: { Type: "OpenPadding" }
+		Property: { Type: "OpenPadding", Difficulty: -100 }
     }, {
 		Name: "ClosedNoPadding",
         ItemValue: { Door: true, Padding: false},
 		Property: { 
 			Type: "Closed",
 			Effect: ["OneWayEnclose", "Prone", "Freeze"],
+			Difficulty: 10,
 		}
     }, {
 		Name: "ClosedPadding",
@@ -22,6 +23,7 @@ const InventoryItemDevicesKennelOptions = [
 		Property: { 
 			Type: "ClosedPadding",
 			Effect: ["OneWayEnclose", "Prone", "Freeze"],
+			Difficulty: 10,
 		}
     }
 ];
