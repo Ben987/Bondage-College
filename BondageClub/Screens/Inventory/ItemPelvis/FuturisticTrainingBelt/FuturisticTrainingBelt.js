@@ -670,7 +670,6 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptDraw(data) {
 		AnimationRequestDraw(data.C);
 		
 		// Set CheckTime to last processed chat message time
-		var lastMsgIndex = ChatRoomChatLog.length - 1;
 		persistentData.CheckTime = (lastMsgIndex >= 0 ? ChatRoomChatLog[lastMsgIndex].Time : 0);
 	}
 }
