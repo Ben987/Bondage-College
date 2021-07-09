@@ -127,7 +127,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 MaidRescue,,,(She struggles in her restraints.)  Help!,,IsVendorRestrained()
 MaidRescue,,,"(She gives you a thumbs up.)  Everything is back to normal, thanks to you and the sorority.",,!IsVendorRestrained()
 MaidRescue,,Do you need help?,"(She nods quickly.)  Yes, yes, yes!  Please help.",,IsVendorRestrained()
-MaidRescue,,Anything was stolen?,(She shrugs.)  I sure hope not.,,
+MaidRescue,,Was anything stolen?,(She shrugs.)  I sure hope not.,,
 MaidRescue,MaidRescueComplete,Is everything alright now?,You've took care of everything.  Please send my regards to the maids of the sorority.,CompleteRescue(),!IsVendorRestrained()
 MaidRescue,,What happened here?,"I've made a deal with a client that if she bought everything, she could use the items on me.  So, she did just that.",,"IsRescueScenario(""BoughtEverything"")"
 MaidRescue,,What happened here?,A burglar surprised and restrained me.  The maids caught her and dragged her away.  I guess they sent you to help me.,,"IsRescueScenario(""CatBurglar"")"

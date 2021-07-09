@@ -298,7 +298,7 @@ Brauchst du Hilfe?
 (She nods quickly.)  Yes, yes, yes!  Please help.
 (Sie nickt hastig.) Ja, ja, ja! Bitte hilf mir.
 ###_PLAYER
-Anything was stolen?
+Was anything stolen?
 Wurde etwas gestohlen?
 ###_NPC
 (She shrugs.)  I sure hope not.
