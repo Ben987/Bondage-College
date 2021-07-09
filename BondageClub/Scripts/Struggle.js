@@ -898,11 +898,6 @@ function StruggleLockPickClick(C) {
 
 						if (StruggleLockPickProgressCurrentTries == StruggleLockPickProgressMaxTries && StruggleLockPickSet.filter(x => x==false).length > 0 ) {
 							SkillProgress("LockPicking", StruggleLockPickProgressSkillLose);
-							if (DialogLentLockpicks)  {
-								DialogLentLockpicks = false;
-								if (CurrentScreen == "ChatRoom")
-									ChatRoomPublishCustomAction("LockPickBreak", true, [{ Tag: "DestinationCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }]);
-							}
 
 						}
 					}
@@ -984,9 +979,15 @@ function StruggleDrawLockpickProgress(C) {
 					DrawText(DialogFindPlayer("LockpickFailed"), X, 262, "red");
 				}
 			} else if (Math.random() < 0.25 && StruggleLockPickTotalTries > 5) { // StruggleLockPickTotalTries is meant to give players a bit of breathing room so they don't get tired right away
-				LogAdd("FailedLockPick", "LockPick", CurrentTime + StruggleLockPickFailTimeout);
-				StruggleLockPickFailTime = CurrentTime + StruggleLockPickFailTimeout;
-				StruggleLockPickTotalTries = 0;
+				if (DialogLentLockpicks)  {
+					DialogLentLockpicks = false;
+					if (CurrentScreen == "ChatRoom")
+						ChatRoomPublishCustomAction("LockPickBreak", true, [{ Tag: "DestinationCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }]);
+				} else {
+					LogAdd("FailedLockPick", "LockPick", CurrentTime + StruggleLockPickFailTimeout);
+					StruggleLockPickFailTime = CurrentTime + StruggleLockPickFailTimeout;
+					StruggleLockPickTotalTries = 0;
+				}
 			} else
 				StruggleLockPickFailTime = CurrentTime + 1500;
 		}
