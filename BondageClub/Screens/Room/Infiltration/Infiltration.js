@@ -119,6 +119,7 @@ function InfiltrationPrepareMission() {
 		CharacterRandomName(C);
 		InfiltrationTarget.Type = "NPC";
 		InfiltrationTarget.Name = C.Name;
+		InfiltrationTarget.PrivateRoom = false;
 	} else {
 		InfiltrationTarget.Type = CommonRandomItemFromList(InfiltrationTarget.Type, InfiltrationObjectType);
 		InfiltrationTarget.Name = DialogFind(InfiltrationSupervisor, "Object" + InfiltrationTarget.Type);
@@ -163,6 +164,11 @@ function InfiltrationCompleteMission() {
 	let Money = 12 + (InfiltrationDifficulty * 6);
 	if (InfiltrationPerksActive("Negotiation")) Money = Math.round(Money * 1.2);
 	CharacterChangeMoney(Player, Money);
+	if ((InfiltrationMission == "Rescue") && (InfiltrationTarget.Type == "NPC") && InfiltrationTarget.PrivateRoom) {
+		NPCEventAdd(PrivateRansomCharacter, "Kidnap", CurrentTime);
+		if (PrivateRansomCharacter.Love < 50) PrivateRansomCharacter.Love = 50;
+		ServerPrivateCharacterSync();
+	}
 }
 
 /**
@@ -351,6 +357,21 @@ function InfiltrationGetPandoraLock() {
  */
 function InfiltrationRansomFriend() {
 	NPCEventAdd(PrivateRansomCharacter, "Kidnap", CurrentTime);
+	if (PrivateRansomCharacter.Love < 0) PrivateRansomCharacter.Love = 0;
 	ServerPrivateCharacterSync();
 	CharacterChangeMoney(Player, -100);
+}
+
+/**
+ * Starts a rescue mission for the NPC in the private room
+ * @returns {void} - Nothing
+ */
+function InfiltrationStartNPCRescue() {
+	InfiltrationMission	= "Rescue";
+	InfiltrationTarget.Type = "NPC";
+	InfiltrationTarget.Name = PrivateRansomCharacter.Name;
+	InfiltrationTarget.PrivateRoom = true;
+	InfiltrationTarget.Found = false;
+	InfiltrationDifficulty = 2;
+	InfiltrationRandomClothes();
 }

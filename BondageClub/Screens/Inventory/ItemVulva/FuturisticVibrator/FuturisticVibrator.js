@@ -208,7 +208,7 @@ function AssetsItemVulvaFuturisticVibratorScriptDraw(data) {
 	if (typeof PersistentData.CheckTime !== "number") PersistentData.CheckTime = 0;
 
 	// Trigger a check if a new message is detected
-	var lastMsgIndex = ChatRoomChatLog.length - 1
+	let lastMsgIndex = ChatRoomChatLog.length - 1
 	if (lastMsgIndex >= 0 && ChatRoomChatLog[lastMsgIndex].Time > PersistentData.CheckTime) {
 		InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, PersistentData.CheckTime);
 

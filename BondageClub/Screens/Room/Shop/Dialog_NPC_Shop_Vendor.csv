@@ -76,6 +76,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 101,,Gloves.,,Start(Gloves),CanShow(Gloves)
 101,,Shoes.,,Start(Shoes),CanShow(Shoes)
 101,,Corsets.,,Start(Corset),CanShow(Corset)
+101,,Bracelets.,,Start(Bracelet),CanShow(Bracelet)
 101,100,It's another type of clothes.,What kind is it?,,
 101,90,What else do you have?,We have many items available.,,BuyMode
 101,90,Actually it's something else.,What kind of item is it?,,!BuyMode

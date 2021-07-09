@@ -35,6 +35,7 @@ var ChatRoomLastSize = 0;
 var ChatRoomLastDesc = "";
 var ChatRoomLastAdmin = [];
 var ChatRoomNewRoomToUpdate = null;
+var ChatRoomNewRoomToUpdateTimer = 0;
 var ChatRoomLeashList = [];
 var ChatRoomLeashPlayer = null;
 var ChatRoomTargetDirty = false;
@@ -957,23 +958,25 @@ function ChatRoomTarget() {
  */
 function ChatRoomSetLastChatRoom(room) {
 	if (room != "") {
-		if (ChatRoomData && ChatRoomData.Background)
-			Player.LastChatRoomBG = ChatRoomData.Background;
-		if (ChatRoomData && ChatRoomData.Private)
-			Player.LastChatRoomPrivate = ChatRoomData.Private;
-		if (ChatRoomData && ChatRoomData.Limit)
-			Player.LastChatRoomSize = ChatRoomData.Limit;
-		if (ChatRoomData && ChatRoomData.Description != null)
-			Player.LastChatRoomDesc = ChatRoomData.Description;
-		if (ChatRoomData && ChatRoomData.Admin)
-			Player.LastChatRoomAdmin = ChatRoomData.Admin;
+		if (!ChatRoomNewRoomToUpdate) {
+			if (ChatRoomData && ChatRoomData.Background)
+				Player.LastChatRoomBG = ChatRoomData.Background;
+			if (ChatRoomData && ChatRoomData.Private)
+				Player.LastChatRoomPrivate = ChatRoomData.Private;
+			if (ChatRoomData && ChatRoomData.Limit)
+				Player.LastChatRoomSize = ChatRoomData.Limit;
+			if (ChatRoomData && ChatRoomData.Description != null)
+				Player.LastChatRoomDesc = ChatRoomData.Description;
+			if (ChatRoomData && ChatRoomData.Admin)
+				Player.LastChatRoomAdmin = ChatRoomData.Admin;
 
-		ChatRoomLastName = ChatRoomData.Name;
-		ChatRoomLastBG = ChatRoomData.Background;
-		ChatRoomLastSize = ChatRoomData.Limit;
-		ChatRoomLastPrivate = ChatRoomData.Private;
-		ChatRoomLastDesc = ChatRoomData.Description;
-		ChatRoomLastAdmin = ChatRoomData.Admin;
+			ChatRoomLastName = ChatRoomData.Name;
+			ChatRoomLastBG = ChatRoomData.Background;
+			ChatRoomLastSize = ChatRoomData.Limit;
+			ChatRoomLastPrivate = ChatRoomData.Private;
+			ChatRoomLastDesc = ChatRoomData.Description;
+			ChatRoomLastAdmin = ChatRoomData.Admin;
+		}
 	} else {
 		Player.LastChatRoomBG = "";
 		Player.LastChatRoomPrivate = false;
@@ -1248,6 +1251,9 @@ function ChatRoomRun() {
 
 	// Clear notifications if needed
 	ChatRoomNotificationReset();
+	
+	// Recreates the chatroom with the stored chatroom data if necessary
+	ChatRoomRecreate();
 }
 
 /**
@@ -2181,9 +2187,6 @@ function ChatRoomSync(data) {
 	if (ChatRoomData.Game != null) {
 		ChatRoomGame = ChatRoomData.Game;
 	}
-
-	// Recreates the chatroom with the stored chatroom data if necessary
-	ChatRoomRecreate();
 
 	// Check whether the player's last chatroom data needs updating
 	ChatRoomCheckForLastChatRoomUpdates();
@@ -3344,8 +3347,8 @@ function ChatRoomNotificationRaiseChatJoin(C) {
  * @returns {void} - Nothing
  */
 function ChatRoomRecreate() {
-	if (Player.ImmersionSettings && Player.ImmersionSettings.ReturnToChatRoomAdmin &&
-		Player.ImmersionSettings.ReturnToChatRoom && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
+	if (CurrentTime > ChatRoomNewRoomToUpdateTimer && ChatRoomNewRoomToUpdate && Player.ImmersionSettings && Player.ImmersionSettings.ReturnToChatRoomAdmin &&
+		Player.ImmersionSettings.ReturnToChatRoom && Player.LastChatRoomAdmin) {
 		// Add the player if they are not an admin
 		if (!Player.LastChatRoomAdmin.includes(Player.MemberNumber) && Player.LastChatRoomPrivate) {
 			Player.LastChatRoomAdmin.push(Player.MemberNumber);
@@ -3362,6 +3365,7 @@ function ChatRoomRecreate() {
 			Private: Player.LastChatRoomPrivate,
 			Locked: ChatRoomData.Locked,
 		};
+		
 		ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: UpdatedRoom, Action: "Update" });
 		ChatRoomNewRoomToUpdate = null;
 	}

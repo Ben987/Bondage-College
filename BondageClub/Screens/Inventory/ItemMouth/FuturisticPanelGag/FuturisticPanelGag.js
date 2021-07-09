@@ -509,6 +509,9 @@ function AssetsItemMouthFuturisticPanelGagScriptDraw(data) {
 	if (typeof persistentData.LastMessageLen !== "number") persistentData.LastMessageLen = (ChatRoomLastMessage) ? ChatRoomLastMessage.length : 0;
 	if (typeof property.BlinkState !== "number") property.BlinkState = 0;
 
+	if (ChatRoomLastMessage && ChatRoomLastMessage.length != persistentData.LastMessageLen && data.Item && data.Item.Property && data.Item.Property.Sensitivity > 0) 
+		persistentData.ChangeTime = Math.min(persistentData.ChangeTime, CommonTime() + 400); // Trigger shortly after if the user speaks
+
 	if (persistentData.UpdateTime < CommonTime() && data.C == Player) {
 		if (CurrentScreen == "ChatRoom") {
 

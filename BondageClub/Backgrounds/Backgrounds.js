@@ -197,6 +197,8 @@ var BackgroundsList = [
 	{ Name: "Yacht3", Tag: [BackgroundsTagIndoor, BackgroundsTagAquatic] },
 	{ Name: "Office1", Tag: [BackgroundsTagIndoor] },
 	{ Name: "Office2", Tag: [BackgroundsTagIndoor] },
+	{ Name: "EmptyWarehouse", Tag: [BackgroundsTagIndoor] },
+	{ Name: "LeatherChamber", Tag: [BackgroundsTagIndoor, BackgroundsTagDungeon] },
 ];
 
 /**

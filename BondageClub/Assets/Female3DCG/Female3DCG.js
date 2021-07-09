@@ -198,7 +198,7 @@ var AssetFemale3DCG = [
 			{ Name: "StudentOutfit3Bow2", Priority: 34, Left: 200, Top: 250 },
 			{ Name: "StudentOutfit3Bow3", Priority: 34, Left: 200, Top: 250 },
 			{
-				Name: "Bouquet", Priority: 41, Value: 40, Left: 175, Top: 350, BuyGroup: "Bouquet", AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"],
+				Name: "Bouquet", Priority: 41, Value: 40, Left: 175, Top: 350, BuyGroup: "Bouquet", AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"], Hide: ["Bracelet"],
 				Layer: [
 					{ Name: "Base" },
 					{ Name: "Flowers" }
@@ -1112,6 +1112,21 @@ var AssetFemale3DCG = [
 			{ Name: "SeethroughSuit", Fetish: ["Nylon"], Value: -1, BuyGroup: "SeethroughSuit" },
 			{ Name: "CowPrintedGloves", Value: 15, Alpha: [{ Group: ["BodyUpper"], Pose: ["OverTheHead"],  Masks: [[90, 125, 30, 70], [370, 125, 30, 70]] }] },
 			{ Name: "LatexElbowGloves", Fetish: ["Latex"], Value: 75 }
+		],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
+	},
+
+	{
+		Group: "Bracelet",
+        ParentGroup: "BodyUpper",
+        Priority: 46,
+        Default: false,
+        AllowPose: ["TapedHands", "Yoked", "OverTheHead"],
+		PreviewZone: [125, 265, 250, 250],
+		Asset: [
+			{ Name: "BowBand", Value: 20},
+			{ Name: "KinkBracelet", Value: 25},
+			{ Name: "LesBand", Value: 30},
 		],
 		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
@@ -4379,7 +4394,7 @@ var AssetFemale3DCG = [
 			{
 				Name: "Vacbed", Fetish: ["Latex"], ParentGroup: "BodyUpper", Value: 200, Difficulty: 50, BuyGroup: "Vac", Priority: 36, SelfBondage: 3, Time: 10, Extended: true,
 				Prerequisite: ["NotKneeling", "AllFours", "NotSuspended", "NotHogtied", "NotKneelingSpread", "NoItemArms", "LegsOpen", "NoItemHands", "NoItemLegs", "NoHorse", "NoItemFeet"],
-				Hide: ["ItemNeckAccessories", "ItemNeckRestraints", "HairBack", "ClothAccessory"],
+				Hide: ["ItemNeckAccessories", "ItemNeckRestraints", "HairBack", "ClothAccessory", "Bracelet"],
 				SetPose: ["Yoked", "BaseLower"],
 				Effect: ["Prone", "Freeze", "Block", "Mounted", "IsPlugged"],
 				HideItem: ["ShoesFlippers"],
@@ -4390,7 +4405,7 @@ var AssetFemale3DCG = [
 			},
 			{
 				Name: "VacBedDeluxe", Fetish: ["Latex"], Priority: 36, Value: 250, Difficulty: 50, SelfBondage: 3, Time: 10, RemoveTime: 10, AllowLock: true, RemoveAtLogin: true, DefaultColor: ["#808080", "#808080", "#808080"], Extended: true, MinOpacity: 0.25, MaxOpacity: 1, Opacity: 1,
-				Hide: ["Hands", "HairBack", "Cloth", "ClothLower", "ClothAccessory", "Necklace", "Suit", "SuitLower", "Bra", "Panties", "Socks", "RightAnklet", "LeftAnklet", "Shoes", "Gloves", "TailStraps", "Wings", "ItemFeet", "ItemLegs", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemArms", "ItemHands", "ItemBoots", "Pussy", "Corset"],
+				Hide: ["Hands", "HairBack", "Cloth", "ClothLower", "ClothAccessory", "Necklace", "Suit", "SuitLower", "Bra", "Panties", "Socks", "RightAnklet", "LeftAnklet", "Shoes", "Gloves", "TailStraps", "Wings", "ItemFeet", "ItemLegs", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemArms", "ItemHands", "ItemBoots", "Pussy", "Corset", "Bracelet"],
 				Prerequisite: ["NotKneeling", "AllFours", "NotSuspended", "NotHogtied", "NotKneelingSpread", "NoItemArms", "NoItemHands", "NoItemLegs", "NoHorse", "NoItemFeet"],
 				Block: ["ItemArms", "ItemBoots", "ItemBreast", "ItemButt", "ItemFeet", "ItemHands", "ItemLegs", "ItemMisc", "ItemNeck", "ItemNeckAccessories", "ItemNeckRestraints", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings"],
 				AllowActivityOn: ["ItemArms", "ItemFeet", "ItemLegs", "ItemBoots"],
@@ -4570,7 +4585,7 @@ var AssetFemale3DCG = [
 			{
 				Name: "VacCube", Fetish: ["Latex"], Value: 250, Difficulty: 50, Priority: 36, Top: -70, Left: 0, SelfBondage: 4, Time: 20, RemoveAtLogin: true, DefaultColor: "#480000",
 				Prerequisite: ["NoItemArms", "NoItemLegs", "AllFours", "NotSuspended", "NotHogtied", "NotKneelingSpread", "NotYoked", "LegsOpen", "NoHorse", "NoItemFeet"],
-				Hide: ["BodyLower", "Hands", "HairBack", "Cloth", "ClothLower", "ClothAccessory", "Necklace", "Suit", "SuitLower", "Bra", "Panties", "Socks", "RightAnklet", "LeftAnklet", "Shoes", "Gloves", "TailStraps", "Wings", "ItemFeet", "ItemLegs", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemArms", "ItemHands", "ItemBoots", "Pussy", "Corset"],
+				Hide: ["BodyLower", "Hands", "HairBack", "Cloth", "ClothLower", "ClothAccessory", "Necklace", "Suit", "SuitLower", "Bra", "Panties", "Socks", "RightAnklet", "LeftAnklet", "Shoes", "Gloves", "TailStraps", "Wings", "ItemFeet", "ItemLegs", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemArms", "ItemHands", "ItemBoots", "Pussy", "Corset", "Bracelet"],
 				SetPose: ["BaseUpper", "BaseLower"],
 				Effect: ["Prone", "Freeze", "Block"],
 				HideItem: ["ShoesFlippers"],
@@ -4783,7 +4798,8 @@ var PoseFemale3DCG = [
 		Name: "Hogtied",
 		Category: "BodyFull",
 		OverrideHeight: { Height: -575, Priority: 50 },
-		Hide: ["BodyLower", "Head", "Hands", "ClothLower", "Wings", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemFeet", "LeftAnklet", "RightAnklet", "Garters"],
+		Hide: ["BodyLower", "Head", "Hands", "ClothLower", "Wings", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemFeet", "LeftAnklet", "RightAnklet", "Garters", "Bracelet"],
+
 		MovePosition: [{ Group: "Socks", X: 0, Y: -400 }, { Group: "Shoes", X: 0, Y: -500 }, { Group: "ItemBoots", X: 0, Y: -500 }, { Group: "SuitLower", X: 0, Y: -380 }, { Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }]
 	},
 	{
@@ -4795,19 +4811,21 @@ var PoseFemale3DCG = [
 		Name: "SuspensionHogtied",
 		Category: "BodyFull",
 		OverrideHeight: { Height: 0, Priority: 50 },
-		Hide: ["BodyLower", "Hands", "ClothLower", "Wings", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemFeet", "SuitLower", "ItemDevices", "LeftAnklet", "RightAnklet", "Garters"]
+		Hide: ["BodyLower", "Hands", "ClothLower", "Wings", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemFeet", "SuitLower", "ItemDevices", "LeftAnklet", "RightAnklet", "Garters", "Bracelet"]
+
 	},
 	{
 		Name: "AllFours",
 		Category: "BodyFull",
 		OverrideHeight: { Height: -560, Priority: 50 },
-		Hide: ["ItemFeet", "ClothLower", "SuitLower", "Nipples", "Pussy", "BodyLower", "Head", "Wings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemBoots", "Suit", "Panties", "Bra", "Socks", "Shoes", "LeftAnklet", "RightAnklet", "Corset", "Garters"],
+		Hide: ["ItemFeet", "ClothLower", "SuitLower", "Nipples", "Pussy", "BodyLower", "Head", "Wings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemBoots", "Suit", "Panties", "Bra", "Socks", "Shoes", "LeftAnklet", "RightAnklet", "Corset", "Garters", "Bracelet"],
 		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }]
 	},
 	{
 		Name: "BackBoxTie",
 		Category: "BodyUpper",
 		AllowMenu: true,
+		Hide: ["Bracelet"],
 	},
 	{
 		Name: "LegsClosed",
@@ -4823,11 +4841,13 @@ var PoseFemale3DCG = [
 		Name: "BackElbowTouch",
 		Category: "BodyUpper",
 		AllowMenu: true,
+		Hide: ["Bracelet"],
 	},
 	{
 		Name: "BackCuffs",
 		Category: "BodyUpper",
 		AllowMenu: true,
+		Hide: ["Bracelet"],
 	},
 	{
 		Name: "TapedHands",

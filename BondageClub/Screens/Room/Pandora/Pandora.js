@@ -588,9 +588,14 @@ function PandoraBuildMainHall() {
 			}
 			if (InfiltrationMission == "Rescue") {
 				let Victim = PandoraGenerateNPC("Rescue", "Victim", InfiltrationTarget.Name, true);
-				if (Math.random() >= 0.333) CharacterRandomUnderwear(Victim);
-				else if (Math.random() >= 0.5) CharacterNaked(Victim);
-				CharacterFullRandomRestrain(Victim, "LOT", true);
+				if ((InfiltrationTarget.PrivateRoom != null) && InfiltrationTarget.PrivateRoom) {
+					Victim.Appearance = PrivateRansomCharacter.Appearance.slice(0);
+					CharacterRefresh(Victim);
+				} else {
+					if (Math.random() >= 0.333) CharacterRandomUnderwear(Victim);
+					else if (Math.random() >= 0.5) CharacterNaked(Victim);
+					CharacterFullRandomRestrain(Victim, "LOT", true);
+				}
 				Room.Character.push(Victim);
 				let Guard = PandoraGenerateNPC("Rescue", "Guard", "RANDOM", false);
 				Room.PathMap[0].Character.push(Guard);
