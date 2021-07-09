@@ -3347,7 +3347,15 @@ function ChatRoomRecreate() {
 	if (Player.ImmersionSettings && Player.ImmersionSettings.ReturnToChatRoomAdmin &&
 		Player.ImmersionSettings.ReturnToChatRoom && Player.LastChatRoomAdmin && ChatRoomNewRoomToUpdate) {
 		// Add the player if they are not an admin
-		if (!Player.LastChatRoomAdmin.includes(Player.MemberNumber) && Player.LastChatRoomPrivate) {
+		let isTrapped = false;
+		let C = Player;
+		for (let A = 0; A < C.Appearance.length; A++)
+			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily) && C.Appearance[A].Asset.IsRestraint && (InventoryOwnerOnlyItem(C.Appearance[A]) || InventoryLoverOnlyItem(C.Appearance[A])) && 
+				(InventoryItemHasEffect(C.Appearance[A], "Tethered", true) || InventoryItemHasEffect(C.Appearance[A], "Mounted", true) || InventoryItemHasEffect(C.Appearance[A], "Enclose", true) || InventoryItemHasEffect(C.Appearance[A], "OneWayEnclose", true))) {
+				isTrapped = true;
+			}
+		
+		if (!isTrapped && !Player.LastChatRoomAdmin.includes(Player.MemberNumber) && Player.LastChatRoomPrivate) {
 			Player.LastChatRoomAdmin.push(Player.MemberNumber);
 		}
 		var UpdatedRoom = {
