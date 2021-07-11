@@ -220,7 +220,7 @@ function validateArray(definition, obj, description, allowMissing=false) {
 						if (assetConfig && assetConfig.CopyConfig) {
 							const Overrides = assetConfig.Config;
 							const { GroupName, AssetName } = assetConfig.CopyConfig;
-							assetConfig = AssetFemale3DCGExtended[GroupName || Group.Group]?.[AssetName];
+							assetConfig = (AssetFemale3DCGExtended[GroupName || Group.Group] || {} )[AssetName];
 							if (!assetConfig) {
 								error(`Asset ${Group.Group}:${Asset.Name}: CopyConfig target not found!`);
 								assetConfig = groupConfig[Asset.Name];
