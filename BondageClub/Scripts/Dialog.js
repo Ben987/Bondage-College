@@ -1197,12 +1197,13 @@ function DialogPublishAction(C, ClickItem) {
 	if (C.FocusGroup != null) {
 		var TargetItem = (InventoryGet(C, C.FocusGroup.Name));
 		if (InventoryItemHasEffect(ClickItem, "TriggerShock") && InventoryItemHasEffect(TargetItem, "ReceiveShock")) {
+			if (TargetItem.Property && typeof TargetItem.Property.TriggerCount == "number")
+				TargetItem.Property.TriggerCount++
 			if (CurrentScreen == "ChatRoom") {
 				let intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
 				InventoryExpressionTrigger(C, ClickItem);
 				ChatRoomPublishCustomAction(TargetItem.Asset.Name + "Trigger" + intensity, true, [{ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber }]);
-			}
-			else {
+			} else {
 				let intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
 				let D = (DialogFindPlayer(TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacterName", C.Name);
 				if (D != "") {
