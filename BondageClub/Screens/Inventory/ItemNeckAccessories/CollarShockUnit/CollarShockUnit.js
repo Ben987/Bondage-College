@@ -78,10 +78,6 @@ function InventoryItemNeckAccessoriesCollarShockUnitResetCount() {
 
 	ChatRoomPublishCustomAction("ShockCountReset", false, Dictionary);
 
-	if (CurrentScreen == "ChatRoom") {
-		ChatRoomCharacterItemUpdate(C, C.FocusGroup.Name);
-	}
-
 }
 
 // Sets the shock collar intensity
@@ -134,10 +130,8 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
 		// The Player shocks herself
 		ActivityArousalItem(C, C, DialogFocusItem.Asset);
 	}
-	if (CurrentScreen == "ChatRoom") {
-		ChatRoomCharacterItemUpdate(C, C.FocusGroup.Name);
+	if (CurrentScreen == "ChatRoom")
 		DialogLeave();
-	}
 
 	InventoryShockExpression(C);
 }
