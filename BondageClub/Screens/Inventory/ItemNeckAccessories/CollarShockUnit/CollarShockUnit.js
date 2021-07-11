@@ -144,7 +144,7 @@ function AssetsItemNeckAccessoriesCollarShockUnitBeforeDraw(data) {
 		var intensity = property.Intensity ? property.Intensity : 0;
 		var wasBlinking = property.Type === "Blink";
 		if (wasBlinking && Triggered) persistentData.DisplayCount++;
-		if (persistentData.DisplayCount >= intensity + 2) {
+		if (persistentData.DisplayCount >= intensity * 1.5 + 3) {
 			persistentData.DisplayCount = 0;
 			persistentData.LastTriggerCount = property.TriggerCount;
 		}
@@ -159,11 +159,17 @@ function AssetsItemNeckAccessoriesCollarShockUnitScriptDraw(data) {
 	if (typeof persistentData.DisplayCount !== "number") persistentData.DisplayCount = 0;
 	if (typeof persistentData.LastTriggerCount !== "number") persistentData.LastTriggerCount = property.TriggerCount;
 
+	
+	var isTriggered = persistentData.LastTriggerCount < property.TriggerCount;
+	var newlyTriggered = isTriggered && persistentData.DisplayCount == 0;
+	if (newlyTriggered)
+		persistentData.ChangeTime = Math.min(persistentData.ChangeTime, CommonTime());
+	
 	if (persistentData.ChangeTime < CommonTime()) {
 		if (persistentData.LastTriggerCount > property.TriggerCount) persistentData.LastTriggerCount = 0;
 		var wasBlinking = property.Type === "Blink";
-		property.Type = wasBlinking ? null : "Blink";
-		var timeFactor = (persistentData.LastTriggerCount < property.TriggerCount) ? 12 : 1;
+		property.Type = wasBlinking && !newlyTriggered ? null : "Blink";
+		var timeFactor = isTriggered ? 12 : 1;
 		var timeToNextRefresh = (wasBlinking ? 4000 : 1000) / timeFactor;
 		persistentData.ChangeTime = CommonTime() + timeToNextRefresh;
 		AnimationRequestRefreshRate(data.C, (5000 / timeFactor) - timeToNextRefresh);
