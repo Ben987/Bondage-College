@@ -1314,6 +1314,10 @@ var AssetFemale3DCGExtended = {
 				]
 			},
 		}, // ThinLeatherStraps
+		NylonRopeHarness: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "HempRopeHarness" }
+		}, // NylonRopeHarness
 		HempRopeHarness: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
