@@ -50,7 +50,7 @@ function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else{
 		if (DialogFocusItem.Property == null) DialogFocusItem.Property = {
-			Intensity: 0,
+			Intensity: -1,
 			// Security
 			ChatMessage: false,
 			NextShockTime: 0,
@@ -79,7 +79,7 @@ function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 		if (DialogFocusItem.Property.PunishStruggleOther == null) DialogFocusItem.Property.PunishStruggleOther = false;
 		if (DialogFocusItem.Property.PunishOrgasm == null) DialogFocusItem.Property.PunishOrgasm = false;
 		if (DialogFocusItem.Property.ChatMessage == null) DialogFocusItem.Property.ChatMessage = false;
-		if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = 0;
+		if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = -1;
 		if (DialogFocusItem.Property.PublicModeCurrent == null) DialogFocusItem.Property.PublicModeCurrent = 0;
 		if (DialogFocusItem.Property.PublicModePermission == null) DialogFocusItem.Property.PublicModePermission = 0;
 		if (DialogFocusItem.Property.DeviceState == null) DialogFocusItem.Property.DeviceState = 0;
