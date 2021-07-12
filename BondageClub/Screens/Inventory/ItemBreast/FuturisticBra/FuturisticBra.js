@@ -272,9 +272,9 @@ function AssetsItemBreastFuturisticBraScriptDraw(data) {
 		var update = InventoryItemBreastFuturisticBraUpdate(data.C);
 		property.HeartRate = update.bpm;
 		if (property.Type != "Solid" && property.Type != "Solid2")
-			if (property.Type == "Heart2" || property.Type == "Show2")
-				property.Type = (update.breathing == "Action") ? "Show2Heart" : "Show2";
-			else property.Type = (update.breathing == "Action") ? "Heart" : null;
+			if (property.Type == "Show2Heart" || property.Type == "Show2")
+				property.Type = (update.breathing == "Action" || update.breathing == "High") ? "Show2Heart" : "Show2";
+			else property.Type = (update.breathing == "Action" || update.breathing ==  "High") ? "Heart" : null;
 
 		var timeToNextRefresh = 1100;
 		persistentData.UpdateTime = CommonTime() + timeToNextRefresh;
