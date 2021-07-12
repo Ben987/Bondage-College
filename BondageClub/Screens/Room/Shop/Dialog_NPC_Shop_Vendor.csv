@@ -83,6 +83,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 110,,Bras.,,Start(Bra),CanShow(Bra)
 110,,Panties.,,Start(Panties),CanShow(Panties)
 110,,Socks.,,Start(Socks),CanShow(Socks)
+110,,Garters.,,Start(Garters),CanShow(Garters)
 110,90,What else do you have?,We have many items available.,,BuyMode
 110,90,Actually it's something else.,What kind of item is it?,,!BuyMode
 120,,Outfits or accessories for the body.,,Start(Wings),CanShow(Wings)
