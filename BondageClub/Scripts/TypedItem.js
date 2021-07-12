@@ -305,7 +305,7 @@ function TypedItemGetOption(groupName, assetName, optionName) {
  * message informing the player of the requirements that are not met.
  */
 function TypedItemValidateOption(C, item, option, previousOption) {
-	if (InventoryBlockedOrLimited(C, item, option.Property.Type)) {
+	if (option.Property && option.Property.Type && InventoryBlockedOrLimited(C, item, option.Property.Type)) {
 		return DialogFindPlayer("ExtendedItemNoItemPermission");
 	}
 	const validationFunctionName = `Inventory${item.Asset.Group.Name}${item.Asset.Name}Validate`;

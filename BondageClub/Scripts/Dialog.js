@@ -842,14 +842,13 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 
 		// In item permission mode we add all the enable items except the ones already on, unless on Extreme difficulty
 		if (DialogItemPermissionMode) {
-			const onExtreme = Player.GetDifficulty() >= 3;
 			for (let A = 0; A < Asset.length; A++)
 				if (Asset[A].Enable && Asset[A].Group.Name == C.FocusGroup.Name) {
-					if (Asset[A].Wear && !onExtreme) {
+					if (Asset[A].Wear) {
 						if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
 							DialogInventoryAdd(Player, { Asset: Asset[A] }, false, DialogSortOrder.Enabled);
 					}
-					else if (Asset[A].IsLock && (!onExtreme || MainHallStrongLocks.includes(Asset[A].Name))) {
+					else if (Asset[A].IsLock) {
 						var LockIsWorn = InventoryCharacterIsWearingLock(C, Asset[A].Name);
 						DialogInventoryAdd(Player, { Asset: Asset[A] }, LockIsWorn, DialogSortOrder.Enabled);
 					}
@@ -1244,8 +1243,8 @@ function DialogItemClick(ClickItem) {
 
 	// In permission mode, the player can allow or block items for herself
 	if ((C.ID == 0) && DialogItemPermissionMode) {
-		if (ClickItem.Worn || (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name))) return;
-		DialogInventoryTogglePermission(ClickItem);
+		const worn = (ClickItem.Worn || (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name)));
+		DialogInventoryTogglePermission(ClickItem, worn);
 		return;
 	}
 
@@ -1308,10 +1307,11 @@ function DialogItemClick(ClickItem) {
 
 /**
  * Toggle permission of an item in the dialog inventory list
+ * @param {boolean} worn - True if the player is changing permissions for an item they're wearing
  * @param {DialogInventoryItem} item
  */
-function DialogInventoryTogglePermission(item) {
-	InventoryTogglePermission(item, null);
+function DialogInventoryTogglePermission(item, worn) {
+	InventoryTogglePermission(item, null, worn);
 
 	// Refresh the inventory item
 	const itemIndex = DialogInventory.findIndex(i => i.Asset.Name == item.Asset.Name && i.Asset.Group.Name == item.Asset.Group.Name);
@@ -1766,9 +1766,7 @@ function DialogDrawItemMenu(C) {
 	}
 
 	// Show the no access text
-	if (C.ID == 0 && DialogItemPermissionMode && Player.GetDifficulty() >= 3)
-		DrawTextWrap(DialogFindPlayer("ExtremePermissionMode"), 1000, 550, 1000, 250, "White");
-	else if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
+	if (InventoryGroupIsBlocked(C)) DrawText(DialogFindPlayer("ZoneBlocked"), 1500, 700, "White", "Black");
 	else if (DialogInventory.length > 0) DrawText(DialogFindPlayer("AccessBlocked"), 1500, 700, "White", "Black");
 	else DrawText(DialogFindPlayer("NoItems"), 1500, 700, "White", "Black");
 
