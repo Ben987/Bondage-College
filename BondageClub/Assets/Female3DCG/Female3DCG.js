@@ -1121,6 +1121,7 @@ var AssetFemale3DCG = [
         ParentGroup: "BodyUpper",
         Priority: 46,
         Default: false,
+		Clothing: true,
         AllowPose: ["TapedHands", "Yoked", "OverTheHead"],
 		PreviewZone: [125, 265, 250, 250],
 		Asset: [
