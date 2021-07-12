@@ -2171,12 +2171,13 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "MetalChastityBra", Fetish: ["Metal"], Value: 60, Difficulty: 50, Time: 15, AllowLock: true, Audio: "CuffsMetal", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }] },
 			{ Name: "PolishedChastityBra", Fetish: ["Metal"], Value: 100, Difficulty: 50, Time: 15, AllowLock: true, Audio: "CuffsMetal", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }] },
-			{ Name: "FuturisticBra", Category: ["SciFi"], Fetish: ["Metal"], Value: 120, BuyGroup: "FuturisticBra", Difficulty: 50, Time: 10, Random: false, AllowLock: true, DrawLocks: false, DefaultColor: ["#50913C", "#FFFFFF", "#889FA7", "Default"], AllowType: ["", "Heart", "Solid"], Audio: "FuturisticApply", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], FuturisticRecolor: true, Effect: [ "BreastChaste", "UseRemote"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }], Extended: true, DynamicAfterDraw: true,  DynamicScriptDraw: true,
+			{ Name: "FuturisticBra", Category: ["SciFi"], Fetish: ["Metal"], Value: 120, BuyGroup: "FuturisticBra", Difficulty: 50, Time: 10, Random: false, AllowLock: true, DrawLocks: false, DefaultColor: ["#50913C", "#FFFFFF", "#889FA7", "Default"], AllowType: ["", "Heart", "Solid", "Show2", "Show2Heart", "Solid2"], Audio: "FuturisticApply", Prerequisite: "AccessBreast", Hide: ["ItemNipples", "ItemNipplesPiercings"], FuturisticRecolor: true, Effect: [ "BreastChaste", "UseRemote"], Block: ["ItemNipples", "ItemNipplesPiercings"], ExpressionTrigger: [{ Name: "Soft", Group: "Eyebrows", Timer: 10 }], Extended: true, DynamicAfterDraw: true,  DynamicScriptDraw: true,
 				Layer: [
 					{ Name: "Display", AllowColorize: true , HasType: false},
-					{ Name: "Text" , AllowColorize: true , AllowTypes: ["", "Heart"]},
-					{ Name: "Mesh" , AllowColorize: true , HasType: false},
-					{ Name: "Bra" , AllowColorize: true , AllowTypes: ["", "Heart", "Solid"]},
+					{ Name: "Text" , AllowColorize: true , AllowTypes: ["", "Heart", "Show2", "Show2Heart"]},
+					{ Name: "Mesh" , AllowColorize: true , HasType: false, AllowTypes: ["", "Heart", "Solid"]},
+					{ Name: "Mesh2", CopyLayerColor: "Mesh", HasType: false, AllowTypes: ["Show2", "Show2Heart", "Solid2"]},
+					{ Name: "Bra" , AllowColorize: true , AllowTypes: ["", "Heart", "Solid", "Show2", "Show2Heart", "Solid2"]},
 					{ Name: "Lock", LockLayer: true,AllowColorize: true, HasType: false, ParentGroup: null},
 				]
 			},
