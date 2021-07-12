@@ -29,6 +29,13 @@ var DrawLastDarkFactor = 0;
 var DrawLastCharacters = [];
 
 /**
+ * A list of elements to draw at the end of the drawing process. 
+ * Mostly used for hovering button labels.
+ * @type {Function[]}
+ */
+var DrawHoverElements = [];
+
+/**
  * The last canvas position in format `[left, top, width, height]`
  */
 var DrawCanvasPosition = [0, 0, 0, 0];
@@ -963,7 +970,7 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText,
 
 	// Draw the hovering text
 	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
-		DrawButtonHover(Left, Top, Width, Height, HoveringText);
+		DrawHoverElements.push(() => DrawButtonHover(Left, Top, Width, Height, HoveringText));
 	}
 }
 
@@ -1068,7 +1075,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !Disabled)
-		DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? BackText() : MouseX >= RightSplit ? NextText() : "");
+		DrawHoverElements.push(() => { DrawButtonHover(Left, Top, Width, Height, MouseX < LeftSplit ? BackText() : MouseX >= RightSplit ? NextText() : "") });
 
 }
 
@@ -1261,8 +1268,12 @@ function DrawProcess(time) {
 	if (CurrentCharacter != null) DialogDraw();
 	else CurrentScreenFunctions.Run(time);
 
+	// Draw Hovering text so they can be above everything else
+	DrawProcessHoverElements();
+	
 	// Draws beep from online player sent by the server
 	ServerDrawBeep();
+	
 
 	// Checks for screen resize/position change and calls appropriate function
 	const newCanvasPosition = [MainCanvas.canvas.offsetLeft, MainCanvas.canvas.offsetTop, MainCanvas.canvas.clientWidth, MainCanvas.canvas.clientHeight];
@@ -1281,6 +1292,16 @@ function DrawProcess(time) {
 		DialogLeave();
 	}
 
+}
+
+/**
+ * Draws every element that is considered a "hover" element such has button tooltips.
+ * @returns {void} - Nothing
+ */
+function DrawProcessHoverElements() {
+	for (let E = 0; E < DrawHoverElements.length; E++)
+		if (typeof DrawHoverElements[0] === "function")
+			(DrawHoverElements.shift())();
 }
 
 /**
@@ -1360,7 +1381,7 @@ function DrawPreviewIcons(icons, X, Y) {
 			const iconY = Y + (iconSize + 5) * (index % iconsPerCol);
 			DrawImageResize(`Icons/Previews/${icon}.png`, iconX, iconY, iconSize, iconSize);
 			if (MouseIn(iconX, iconY, iconSize * 0.9, iconSize * 0.9)) {
-				DrawButtonHover(iconX, iconY, 100, 65, DialogFindPlayer("PreviewIcon" + icon));
+				DrawHoverElements.push(() => DrawButtonHover(iconX, iconY, 100, 65, DialogFindPlayer("PreviewIcon" + icon)));
 			}
 		});
 	}
