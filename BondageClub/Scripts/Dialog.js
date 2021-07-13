@@ -1845,7 +1845,7 @@ function DialogDraw() {
 	CharacterCheckHooks(C, true);
 
 	// Draw the menu for facial expressions if the player clicked on herself
-	if (CurrentCharacter.ID == 0) {
+	if (CurrentCharacter != null && CurrentCharacter.ID == 0) {
 		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1 && !CommonPhotoMode) DrawButton(420, 50, 90, 90, "", "White", "Icons/Next.png", DialogFindPlayer("NextPage"));
 		if (!DialogSelfMenuSelected)
 			DialogDrawExpressionMenu();
@@ -1854,7 +1854,7 @@ function DialogDraw() {
 	}
 
 	// If we must show the item/inventory menu
-	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
+	if (((Player.FocusGroup != null) || ((CurrentCharacter != null && CurrentCharacter.FocusGroup != null) && CurrentCharacter != null && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
 
 		var C = CharacterGetCurrent();
 
@@ -1883,11 +1883,12 @@ function DialogDraw() {
 	} else {
 
 		// Draws the intro text or dialog result
-		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT")) {
-			DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -5, 840, 165, "white", null, 3);
-			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-		} else DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -5, 950, 165, "white", null, 3);
-
+		if (CurrentCharacter != null) {
+			if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT")) {
+				DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -5, 840, 165, "white", null, 3);
+				DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+			} else DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -5, 950, 165, "white", null, 3);
+			
 		// Draws the possible answers
 		var pos = 0;
 		for (let D = 0; D < CurrentCharacter.Dialog.length; D++)
@@ -1899,6 +1900,7 @@ function DialogDraw() {
 		// The more time you spend with an NPC, the more the love will rise
 		NPCInteraction();
 
+		}
 	}
 
 }
