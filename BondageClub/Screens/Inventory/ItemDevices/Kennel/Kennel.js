@@ -102,5 +102,7 @@ function AssetsItemDevicesKennelScriptDraw({ C, PersistentData, Item }) {
 }
 
 function InventoryItemDevicesKennelGetAudio(C) {
-	return InventoryGet(C, "ItemDevices") && InventoryGet(C, "ItemDevices").Asset.Name === "Kennel" ? "CageStruggle" : "CageEquip";
+	let wasWorn = InventoryGet(C, "ItemDevices") && InventoryGet(C, "ItemDevices").Asset.Name === "Kennel";
+	let isSelf = C.ID == 0;
+	return isSelf && wasWorn ? "CageStruggle" : "CageEquip";
 }

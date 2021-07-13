@@ -18,6 +18,18 @@ var InventoryItemBreastFuturisticBraOptions = [
 			Type: "Solid",
 		},
 	},
+	{
+		Name: "Show2",
+		Property: {
+			Type: "Show2",
+		},
+	},
+	{
+		Name: "Solid2",
+		Property: {
+			Type: "Solid2",
+		},
+	},
 ];
 
 
@@ -79,10 +91,14 @@ function InventoryItemBreastFuturisticBraDraw() {
 
 	// If the player can modify
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) == "") {
-		if (DialogFocusItem.Property.Type == "Solid") {
-			DrawButton(1250, 900, 200, 64, DialogFindPlayer("FuturisticBraPlayerShow"), "White", "");
-		} else {
-			DrawButton(1550, 900, 200, 64, DialogFindPlayer("FuturisticBraPlayerSolid"), "White", "");
+		if (DialogFocusItem.Property.Type != null) {
+			DrawButton(1150, 900, 150, 64, DialogFindPlayer("FuturisticBraPlayerShow"), "White", "");
+		} if (DialogFocusItem.Property.Type != "Solid") {
+			DrawButton(1337, 900, 150, 64, DialogFindPlayer("FuturisticBraPlayerSolid"), "White", "");
+		} if (DialogFocusItem.Property.Type != "Show2") {
+			DrawButton(1525, 900, 150, 64, DialogFindPlayer("FuturisticBraPlayerShow2"), "White", "");
+		} if (DialogFocusItem.Property.Type != "Solid2") {
+			DrawButton(1712, 900, 150, 64, DialogFindPlayer("FuturisticBraPlayerSolid2"), "White", "");
 		}
 	}
 
@@ -101,20 +117,27 @@ function InventoryItemBreastFuturisticBraDraw() {
 function InventoryItemBreastFuturisticBraClick() {
 	if (MouseIn(1885, 25, 90, 90)) DialogFocusItem = null;
 
-	if (MouseIn(1250, 900, 500, 64)) {
+	if (MouseIn(1150, 900, 800, 64)) {
 		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 
 		// If the player can modify
 		if (InventoryItemMouthFuturisticPanelGagValidate(C) == "") {
-
-			if (DialogFocusItem.Property.Type == "Solid" && MouseIn(1250, 900, 500, 64)) {
+			if (DialogFocusItem.Property.Type != null && MouseIn(1150, 900, 150, 64)) {
 				DialogFocusItem.Property.Type = "";
 				if (CurrentScreen == "ChatRoom")
 					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemBreastFuturisticBraOptions[0]);
-			} else if (MouseIn(1550, 900, 500, 64)) {
+			} else if (DialogFocusItem.Property.Type != "Solid" && MouseIn(1337, 900, 150, 64)) {
 				DialogFocusItem.Property.Type = "Solid";
 				if (CurrentScreen == "ChatRoom")
 					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemBreastFuturisticBraOptions[1]);
+			} else if (DialogFocusItem.Property.Type != "Show2" && MouseIn(1525, 900, 150, 64)) {
+				DialogFocusItem.Property.Type = "Show2";
+				if (CurrentScreen == "ChatRoom")
+					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemBreastFuturisticBraOptions[2]);
+			} else if (DialogFocusItem.Property.Type != "Solid2" && MouseIn(1712, 900, 150, 64)) {
+				DialogFocusItem.Property.Type = "Solid2";
+				if (CurrentScreen == "ChatRoom")
+					InventoryItemBreastFuturisticBraPublishAction(C, InventoryItemBreastFuturisticBraOptions[3]);
 			}
 
 			CharacterRefresh(C, true);
@@ -205,7 +228,7 @@ function InventoryItemBreastFuturisticBraDynamicAudio(data) {
 function AssetsItemBreastFuturisticBraAfterDraw({
     C, A, X, Y, Property, drawCanvas, drawCanvasBlink, AlphaMasks, L, G, Color
 }) {
-	if (L === "_Text" && Property && Property.Type != "Solid") {
+	if (L === "_Text" && Property && (Property.Type != "Solid" && Property.Type != "Solid2")) {
 
 		var offset = normal_yoffset;
 		if (G == "_Large") offset = large_yoffset;
@@ -248,8 +271,10 @@ function AssetsItemBreastFuturisticBraScriptDraw(data) {
 	if (persistentData.UpdateTime < CommonTime()) {
 		var update = InventoryItemBreastFuturisticBraUpdate(data.C);
 		property.HeartRate = update.bpm;
-		if (property.Type != "Solid")
-			property.Type = (update.breathing == "Action") ? "Heart" : null;
+		if (property.Type != "Solid" && property.Type != "Solid2")
+			if (property.Type == "Show2Heart" || property.Type == "Show2")
+				property.Type = (update.breathing == "Action" || update.breathing == "High") ? "Show2Heart" : "Show2";
+			else property.Type = (update.breathing == "Action" || update.breathing ==  "High") ? "Heart" : null;
 
 		var timeToNextRefresh = 1100;
 		persistentData.UpdateTime = CommonTime() + timeToNextRefresh;

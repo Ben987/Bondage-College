@@ -80,9 +80,9 @@ var ChatRoomHideIconState = 0;
 var ChatRoomMenuButtons = [];
 let ChatRoomFontSize = 30;
 const ChatRoomFontSizes = {
-	Small: 24,
-	Medium: 30,
-	Large: 36,
+	Small: 28,
+	Medium: 36,
+	Large: 44,
 };
 
 /**

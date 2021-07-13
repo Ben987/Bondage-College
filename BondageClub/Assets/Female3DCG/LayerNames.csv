@@ -64,7 +64,7 @@ ClothLowerAdmiralSkirtCloth,Skirt
 ClothLowerAdmiralSkirtStripe,Trim
 ClothLowerHaremPantsPanty,Panty
 ClothLowerHaremPantsVeil,Veil
-ClothLowerHaremPantsPantyLine,Panty Line
+ClothLowerHaremPantsPantyline,Panty Line
 SuitLowerCatsuitBase,Suit
 SuitLowerCatsuitZip,Zip
 SuitLowerSeethroughSuitZipBase,Suit
@@ -198,6 +198,9 @@ ItemNipplesTapedVibeEggsTape1,Left Tape Strip
 ItemNipplesTapedVibeEggsTape2,Right Tape Strip
 ItemNipplesPiercingsVibeHeartPiercingsHeart,Heart
 ItemNipplesPiercingsVibeHeartPiercingsRing,Ring
+ItemNipplesPiercingsNecklacePiercingChainChain,Chain
+ItemNipplesPiercingsNecklacePiercingChainHeart,Heart
+ItemNipplesPiercingsNecklacePiercingChainPiercing,Piercing
 ItemBreastOrnateChastityBraBra,Bra
 ItemBreastOrnateChastityBraGems,Gems
 ItemArmsLeatherCuffsCuffs,Cuffs
@@ -292,6 +295,11 @@ ItemNeckOrnateCollarCollar,Collar
 ItemNeckOrnateCollarGem,Gems
 ItemNeckShinySteelCollarCollar,Collar
 ItemNeckShinySteelCollarRing,Ring
+ItemNeckGothicCollarCollar,Collar
+ItemNeckGothicCollarOrnaments,Ornaments
+ItemNeckGothicCollarJewels,Jewels
+ItemNeckGothicCollarMetal,Metal
+ItemNeckGothicCollarFlowers,Flowers
 ItemNeckAccessoriesCustomCollarTagTag,Tag
 ItemNeckAccessoriesCustomCollarTagText,Text
 ItemNeckAccessoriesElectronicTagTag,Tag

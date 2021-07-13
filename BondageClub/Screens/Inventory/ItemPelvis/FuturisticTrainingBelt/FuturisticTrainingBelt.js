@@ -50,7 +50,7 @@ function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied();
 	} else{
 		if (DialogFocusItem.Property == null) DialogFocusItem.Property = {
-			Intensity: 0,
+			Intensity: -1,
 			// Security
 			ChatMessage: false,
 			NextShockTime: 0,
@@ -79,7 +79,7 @@ function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 		if (DialogFocusItem.Property.PunishStruggleOther == null) DialogFocusItem.Property.PunishStruggleOther = false;
 		if (DialogFocusItem.Property.PunishOrgasm == null) DialogFocusItem.Property.PunishOrgasm = false;
 		if (DialogFocusItem.Property.ChatMessage == null) DialogFocusItem.Property.ChatMessage = false;
-		if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = 0;
+		if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = -1;
 		if (DialogFocusItem.Property.PublicModeCurrent == null) DialogFocusItem.Property.PublicModeCurrent = 0;
 		if (DialogFocusItem.Property.PublicModePermission == null) DialogFocusItem.Property.PublicModePermission = 0;
 		if (DialogFocusItem.Property.DeviceState == null) DialogFocusItem.Property.DeviceState = 0;
@@ -93,12 +93,14 @@ function InventoryItemPelvisFuturisticTrainingBeltLoad() {
 		if (DialogFocusItem.Property.DeviceState >= FuturisticTrainingBeltStates.length || DialogFocusItem.Property.DeviceState < 0) DialogFocusItem.Property.DeviceState = 0;
 		if (DialogFocusItem.Property.DeviceStateTimer >= CommonTime + 3600000) DialogFocusItem.Property.DeviceStateTimer = 0; // Prevents people from hacking in ultra-long state timers
 		
-		if (FuturisticTrainingBeltSetMode < 0 || FuturisticTrainingBeltSetMode > FuturisticTrainingBeltModes.length)
-			FuturisticTrainingBeltSetMode = DialogFocusItem.Property.PublicModeCurrent;
 		
 		const input = ElementCreateInput("PunishRequiredSpeechWord", "text", "", "25");
 		if (input) input.placeholder = DialogFocusItem.Property.PunishRequiredSpeechWord;
 	}
+
+	
+	if (FuturisticTrainingBeltSetMode < 0 || FuturisticTrainingBeltSetMode > FuturisticTrainingBeltModes.length)
+		FuturisticTrainingBeltSetMode = DialogFocusItem.Property.PublicModeCurrent;
 }
 
 function InventoryItemPelvisFuturisticTrainingBeltDraw() {
@@ -182,7 +184,8 @@ function InventoryItemPelvisFuturisticTrainingBeltClick() {
 	var canViewMode = false;
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
-		InventoryItemMouthFuturisticPanelGagClickAccessDenied();
+		if (MouseIn(1885, 25, 90, 90)) InventoryItemPelvisFuturisticTrainingBeltExit();
+		else InventoryItemMouthFuturisticPanelGagClickAccessDenied();
 	} else {
 		if (MouseIn(1885, 25, 90, 90)) InventoryItemPelvisFuturisticTrainingBeltExit();
 
@@ -635,6 +638,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptStateMachine(data) {
 	
 	if (ArousalActive) {
 		if (EdgeMode && C.ArousalSettings.Progress > 96 && !((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < C.ArousalSettings.OrgasmTimer))) { // Manually trigger orgasm at this stage 
+			DialogLeave();
 			ActivityOrgasmPrepare(C, true);
 			// Continuous edging~
 			if (Mode == "EdgeAndDeny")

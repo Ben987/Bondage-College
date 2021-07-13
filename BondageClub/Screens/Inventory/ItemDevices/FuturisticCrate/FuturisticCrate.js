@@ -11,7 +11,7 @@ var InventoryItemDevicesFuturisticCrateOptions = [
 		},
 		{
 			Name: "Window",
-			Property: { Type: "Window" , Effect: ["BlindMedium", "GagLight", "Prone", "Freeze", "Enclose"]},
+			Property: { Type: "Window", Effect: ["BlindNormal", "GagLight", "Prone", "Freeze", "Enclose"]},
 		},
 		{
 			Name: "Closed",

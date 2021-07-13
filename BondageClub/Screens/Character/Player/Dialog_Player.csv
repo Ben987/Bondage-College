@@ -163,7 +163,6 @@ ZoneBlocked,,,This zone is out of reach from another item,,
 LockZoneBlocked,,,Another item is blocking access to this lock,,
 AccessBlocked,,,You cannot access your items,,
 NoItems,,,You have no items in this category,,
-ExtremePermissionMode,,,"In Extreme difficulty, permissions can only be changed for certain locks",,
 ProgressDex,,,Click when the player reaches the buckle to progress,,
 ProgressFlex,,,Click the ropes before they hit the ground to progress,,
 ProgressClick,,,Click here to speed up the progress,,
@@ -1027,8 +1026,12 @@ FuturisticBraPlayerSubmissiveness,,,Current Training Level:,,
 FuturisticBraPlayerTracking,,,Tracking Signal: Good,,
 FuturisticBraPlayerSolid,,,Cover Display,,
 FuturisticBraPlayerShow,,,Show Display,,
+FuturisticBraPlayerSolid2,,,Cover Display (Alt),,
+FuturisticBraPlayerShow2,,,Show Display (Alt),,
 InventoryItemBreastFuturisticBraSetSolid,,,SourceCharacter covers the display on DestinationCharacter bra.,,
 InventoryItemBreastFuturisticBraSetShow,,,SourceCharacter opens up the display on DestinationCharacter bra.,,
+InventoryItemBreastFuturisticBraSetSolid2,,,SourceCharacter covers the display on DestinationCharacter bra.,,
+InventoryItemBreastFuturisticBraSetShow2,,,SourceCharacter opens up the display on DestinationCharacter bra.,,
 FuturisticBraPlayerHeartRateBPM,,,BPM,,
 CupholderGagOptions,,,Cup interactions,,
 CupholderGagOptionsTip,,,Tip over,,
@@ -1197,6 +1200,9 @@ PelvisRopeSetCrotch,,,SourceCharacter uses the rope on TargetCharacter to do a c
 PelvisRopeSetOverPanties,,,SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie over her panties.,,
 PelvisRopeSetSwissSeat,,,SourceCharacter uses the rope on TargetCharacter to do a swiss seat style rope tie.,,
 PelvisRopeSetKikkouHip,,,SourceCharacter uses the rope on TargetCharacter to do a kikkou hip style rope tie.,,
+ResetShockCount,,,Reset trigger count,,
+ShockCount,,,Trigger count: ShockCount,,
+ShockCountReset,,,SourceCharacter resets DestinationCharacter AssetName trigger count.,,
 Intensity-1,,,Item intensity: Disabled,,
 Intensity0,,,Item intensity: Low,,
 Intensity1,,,Item intensity: Medium,,
@@ -2290,7 +2296,7 @@ PantiesDiapers4Butterflies,,,Butterflies
 PantiesDiapers4Spots,,,Spots
 PreviewIconFavorite,,,Favorited
 PreviewIconHandheld,,,Held
-PreviewIconLocked,,,Automatically locks
+PreviewIconLocked,,,Locked
 PreviewIconLoverOnly,,,Lovers only
 PreviewIconOwnerOnly,,,Owner only
 PreviewIconUnlocked,,,Automatically locks

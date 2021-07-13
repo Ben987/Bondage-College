@@ -4,31 +4,80 @@
 function InventoryItemNeckAccessoriesCollarShockUnitLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Intensity: 0, ShowText: true };
 	if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = 0;
+	if (DialogFocusItem.Property.TriggerCount == null) DialogFocusItem.Property.TriggerCount = 0;
 	if (DialogFocusItem.Property.ShowText == null) DialogFocusItem.Property.ShowText = true;
 }
 
 // Draw the item extension screen
 function InventoryItemNeckAccessoriesCollarShockUnitDraw() {
 	DrawAssetPreview(1387, 225, DialogFocusItem.Asset);
-	DrawText(DialogFindPlayer("Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
-	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1200, 650, 200, 55, DialogFindPlayer("Low"), "White");
-	if (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) DrawButton(1550, 650, 200, 55, DialogFindPlayer("Medium"), "White");
-	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1375, 710, 200, 55, DialogFindPlayer("High"), "White");
+	DrawText(DialogFindPlayer("Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 550, "White", "Gray");
+	DrawText(DialogFindPlayer("ShockCount").replace("ShockCount", DialogFocusItem.Property.TriggerCount), 1500, 600, "White", "Gray");
+	DrawButton(1200, 650, 200, 55, DialogFindPlayer("Low"), DialogFocusItem.Property.Intensity > 0 ? "White" : "Gray");
+	DrawButton(1550, 650, 200, 55, DialogFindPlayer("Medium"), (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1) ? "White" : "Gray");
+	DrawButton(1375, 710, 200, 55, DialogFindPlayer("High"), DialogFocusItem.Property.Intensity < 2 ? "White" : "Gray");
 	if (CurrentScreen == "ChatRoom") DrawButton(1325, 800, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
 	if (CurrentScreen == "ChatRoom") DrawText(DialogFindPlayer("ShockCollarShowChat"), 1570, 833, "White", "Gray");
-	DrawButton(1375, 900, 200, 55, DialogFindPlayer("TriggerShock"), "White");
+	DrawButton(1250, 900, 200, 55, DialogFindPlayer("ResetShockCount"), Player.CanInteract() && DialogFocusItem.Property.TriggerCount > 0 ? "White" : "Gray");
+	DrawButton(1500, 900, 200, 55, DialogFindPlayer("TriggerShock"), Player.CanInteract() ? "White" : "Gray");
 }
 
 // Catches the item extension clicks
 function InventoryItemNeckAccessoriesCollarShockUnitClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1325) && (MouseX <= 1389) && (MouseY >= 800) && (MouseY <= 864) && (CurrentScreen == "ChatRoom")) {
+	if (MouseIn(1325, 800, 64, 64) && (CurrentScreen == "ChatRoom")) {
 		DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
+		return;
 	}
-	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(0 - DialogFocusItem.Property.Intensity);
-	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
-	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (Player.CanInteract() && (MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 900) && (MouseY <= 955)) InventoryItemNeckAccessoriesCollarShockUnitTrigger();
+	
+	if (MouseIn(1200, 650, 200, 55) && (DialogFocusItem.Property.Intensity > 0)) {
+		InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(0 - DialogFocusItem.Property.Intensity);
+		return;
+	}
+	
+	if (MouseIn(1550, 650, 200, 55) && (DialogFocusItem.Property.Intensity < 1 || DialogFocusItem.Property.Intensity > 1)) {
+		InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
+		return;
+	}
+	
+	if (MouseIn(1375, 710, 200, 55) && (DialogFocusItem.Property.Intensity < 2)) {
+		InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(2 - DialogFocusItem.Property.Intensity);
+		return;
+	}
+	
+	if (Player.CanInteract() && MouseIn(1500, 900, 200, 55)) {
+		InventoryItemNeckAccessoriesCollarShockUnitTrigger();
+		return;
+	}
+	
+	if (Player.CanInteract() && DialogFocusItem.Property.TriggerCount > 0 && MouseIn(1250, 900, 200, 55)) {
+		InventoryItemNeckAccessoriesCollarShockUnitResetCount();
+		return;
+	}
+	
+	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+}
+
+// Resets the trigger count
+function InventoryItemNeckAccessoriesCollarShockUnitResetCount() {
+	// Gets the current item and character
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
+		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+		InventoryItemNeckAccessoriesCollarShockUnitLoad();
+	}
+	
+	DialogFocusItem.Property.TriggerCount = 0;
+
+	var Dictionary = [];
+	Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
+	Dictionary.push({ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
+	Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
+	Dictionary.push({ Tag: "AssetName", AssetName: DialogFocusItem.Asset.Name });
+	Dictionary.push({ AssetName: DialogFocusItem.Asset.Name });
+	Dictionary.push({ AssetGroupName: DialogFocusItem.Asset.Group.Name });
+
+	ChatRoomPublishCustomAction("ShockCountReset", false, Dictionary);
+
 }
 
 // Sets the shock collar intensity
@@ -62,6 +111,8 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemNeckAccessoriesCollarShockUnitLoad();
 	}
+	
+	DialogFocusItem.Property.TriggerCount++;
 
 	var Dictionary = [];
 	Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
@@ -79,26 +130,49 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
 		// The Player shocks herself
 		ActivityArousalItem(C, C, DialogFocusItem.Asset);
 	}
-	if (CurrentScreen == "ChatRoom") DialogLeave();
+	if (CurrentScreen == "ChatRoom")
+		DialogLeave();
 
 	InventoryShockExpression(C);
 }
 
 function AssetsItemNeckAccessoriesCollarShockUnitBeforeDraw(data) {
-	return data.L === "_Light" ? { Color: "#2f0" } : null;
+	if (data.L === "_Light") {
+		var persistentData = data.PersistentData();
+		var property = data.Property || {};
+		var Triggered = persistentData.LastTriggerCount < property.TriggerCount;
+		var intensity = property.Intensity ? property.Intensity : 0;
+		var wasBlinking = property.Type === "Blink";
+		if (wasBlinking && Triggered) persistentData.DisplayCount++;
+		if (persistentData.DisplayCount >= intensity * 1.5 + 3) {
+			persistentData.DisplayCount = 0;
+			persistentData.LastTriggerCount = property.TriggerCount;
+		}
+		return { Color: Triggered ? "#f00" : "#2f0" };
+	}
 }
 
 function AssetsItemNeckAccessoriesCollarShockUnitScriptDraw(data) {
 	var persistentData = data.PersistentData();
 	var property = (data.Item.Property = data.Item.Property || {});
 	if (typeof persistentData.ChangeTime !== "number") persistentData.ChangeTime = CommonTime() + 4000;
+	if (typeof persistentData.DisplayCount !== "number") persistentData.DisplayCount = 0;
+	if (typeof persistentData.LastTriggerCount !== "number") persistentData.LastTriggerCount = property.TriggerCount;
 
+	
+	var isTriggered = persistentData.LastTriggerCount < property.TriggerCount;
+	var newlyTriggered = isTriggered && persistentData.DisplayCount == 0;
+	if (newlyTriggered)
+		persistentData.ChangeTime = Math.min(persistentData.ChangeTime, CommonTime());
+	
 	if (persistentData.ChangeTime < CommonTime()) {
+		if (persistentData.LastTriggerCount > property.TriggerCount) persistentData.LastTriggerCount = 0;
 		var wasBlinking = property.Type === "Blink";
-		property.Type = wasBlinking ? null : "Blink";
-		var timeToNextRefresh = wasBlinking ? 4000 : 1000;
+		property.Type = wasBlinking && !newlyTriggered ? null : "Blink";
+		var timeFactor = isTriggered ? 12 : 1;
+		var timeToNextRefresh = (wasBlinking ? 4000 : 1000) / timeFactor;
 		persistentData.ChangeTime = CommonTime() + timeToNextRefresh;
-		AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);
+		AnimationRequestRefreshRate(data.C, (5000 / timeFactor) - timeToNextRefresh);
 		AnimationRequestDraw(data.C);
 	}
 }

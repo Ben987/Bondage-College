@@ -733,7 +733,8 @@ function AppearanceGetPreviewImageColor(C, item, hover) {
 		else if (InventoryIsPermissionLimited(C, item.Asset.Name, item.Asset.Group.Name)) permission = "amber";
 		return item.Worn ? "gray" : AppearancePermissionColors[permission][hover ? 1 : 0];
 	} else {
-		const Unusable = item.SortOrder.startsWith(DialogSortOrder.Unusable.toString());
+		const Unusable = item.SortOrder.startsWith(DialogSortOrder.Unusable.toString())
+			|| item.SortOrder.startsWith(DialogSortOrder.FavoriteUnusable.toString());
 		const Blocked = item.SortOrder.startsWith(DialogSortOrder.Blocked.toString());
 		if (hover && !Blocked) return "cyan";
 		else if (item.Worn) return "pink";
@@ -1092,10 +1093,9 @@ function AppearanceClick() {
 				// In permission mode, we toggle the settings for an item
 				if (DialogItemPermissionMode) {
 
-					var CurrentItem = InventoryGet(C, C.FocusGroup.Name);
-
-					if (CurrentItem && (CurrentItem.Asset.Name == Item.Asset.Name)) return;
-					DialogInventoryTogglePermission(Item);
+					const CurrentItem = InventoryGet(C, C.FocusGroup.Name);
+					const worn = (CurrentItem && (CurrentItem.Asset.Name == Item.Asset.Name));
+					DialogInventoryTogglePermission(Item, worn);
 
 				} else {
 					if (InventoryBlockedOrLimited(C, Item)) return;
