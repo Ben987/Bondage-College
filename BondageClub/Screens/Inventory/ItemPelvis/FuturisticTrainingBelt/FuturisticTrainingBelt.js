@@ -175,6 +175,9 @@ function InventoryItemPelvisFuturisticTrainingBeltDraw() {
 		() => !canViewMode ? "" : DialogFindPlayer("FuturisticTrainingBeltMode" + ((FuturisticTrainingBeltSetMode + FuturisticTrainingBeltModes.length - 1) % FuturisticTrainingBeltModes.length)),
 		() => !canViewMode ? "" : DialogFindPlayer("FuturisticTrainingBeltMode" + ((FuturisticTrainingBeltSetMode + 1) % FuturisticTrainingBeltModes.length)));
 
+	if (!FuturisticChastityBeltConfigure) {
+		FuturisticTrainingBeltSetMode = DialogFocusItem.Property.PublicModeCurrent;
+	}
 	
 
 }
