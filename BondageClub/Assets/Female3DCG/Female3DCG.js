@@ -4400,7 +4400,7 @@ var AssetFemale3DCG = [
 					{ Name: "Body", Priority: 1, HasType: false },
 					{ Name: "Display", Priority: 58, HasType: false, },
 					{ Name: "Lock", Priority: 58, HasType: false, LockLayer: true },
-					{ Name: "Frame", Priority: 58, HasType: false, Alpha: [{ Masks: [[0, 0, 71, 1000], [420, 0, 80, 1000], [0, 995, 500, 5], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }], },
+					{ Name: "Frame", Priority: 58, HasType: false, Alpha: [{ Masks: [[0, 0, 55, 1000], [420, 0, 80, 1000], [0, 995, 500, 5], AssetUpperOverflowAlpha, AssetLowerOverflowAlpha] }], },
 					{ Name: "Glass", Priority: 57, HasType: true, AllowTypes: ["Window", "SmallWindow"], Visibility: "AllExceptPlayerDialog" },
 					{ Name: "Lid_Closed", Priority: 57, HasType: false, AllowTypes: ["Closed"], Visibility: "Others" },
 					{ Name: "Lid_Window", Priority: 57, CopyLayerColor: "Lid_Closed", HasType: false, AllowTypes: ["Window"], Visibility: "AllExceptPlayerDialog" },
