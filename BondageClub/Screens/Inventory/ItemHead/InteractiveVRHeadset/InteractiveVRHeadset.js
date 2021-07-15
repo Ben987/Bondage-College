@@ -77,8 +77,8 @@ function InventoryItemHeadInteractiveVRHeadsetExit() {
 	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
-function InventoryItemHeadInteractiveVRHeadsetValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
+function InventoryItemHeadInteractiveVRHeadsetValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item); // All futuristic items refer to the gag
 }
 
 function InventoryItemHeadInteractiveVRHeadsetNpcDialog(C, Option) {

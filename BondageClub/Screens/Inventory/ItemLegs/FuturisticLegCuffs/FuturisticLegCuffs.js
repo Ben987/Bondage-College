@@ -92,9 +92,9 @@ function InventoryItemLegsFuturisticLegCuffsExit() {
 /**
  * Validates whether or not the player has access to the item's extended item screen
  * @param {Character} C - The character on whom the restraint is applied
- * @param {Option} Option - The current option for this extended item
+ * @param {Item} Item - The equipped item
  * @returns {string} - Returns a validation message if validation fails, or an empty string otherwise
  */
-function InventoryItemLegsFuturisticLegCuffsValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
+function InventoryItemLegsFuturisticLegCuffsValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item);
 }

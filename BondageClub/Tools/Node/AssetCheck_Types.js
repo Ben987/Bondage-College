@@ -107,7 +107,7 @@ const AssetType = {
 	OverrideBlinking: "Boolean",
 	DialogSortOverride: "Number",
 	// DynamicDescription: "Function",
-	// DynamicPreviewIcon: "Function",
+	// DynamicPreviewImage: "Function",
 	// DynamicAllowInventoryAdd: "Function",
 	// DynamicExpressionTrigger: "Function",
 	// DynamicName: "Function",
@@ -137,6 +137,7 @@ const AssetType = {
 	FuturisticRecolorDisplay: "Boolean",
 	Attribute: "[String]",
 	HideItemAttribute: "[String]",
+	PreviewIcons: "[String]",
 };
 
 const AssetLayerType = {

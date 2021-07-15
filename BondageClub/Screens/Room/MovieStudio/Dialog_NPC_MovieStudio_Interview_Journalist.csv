@@ -23,7 +23,7 @@ PlayerGagged,,,(She looks at your gag and giggles.),,
 40,,(Dust her with the gag.),(She struggles against the cross and laughs.)  Eeeeyyaaahahahah!,"DoActivity(""InterviewMaidDusterGagJournalist"")",!Player.CanTalk()
 40,,(Tickle her with the feather duster.),(You dust her slowly as she laughs on the cross.)  Hhheeooooaahaha!  Stop it!,"DoActivity(""InterviewMaidFeatherDusterJournalist"")","CanDoActivity(""InterviewMaidFeatherDusterJournalist"")"
 40,,(Caress her with the long duster.),(You dust her slowly as she moans a little.)  Heeeeeeey!  I'm not dusty!,"DoActivity(""InterviewMaidLongDusterJournalist"")","CanDoActivity(""InterviewMaidLongDusterJournalist"")"
-40,,(Use the toothbrush on her.),(You tickle her with the toothbrush as she trashes on the cross.)  Hey!  This is not how you use a toothbrush.,"DoActivity(""InterviewMaidToothbrushJournalist"")","CanDoActivity(""InterviewMaidToothbrushJournalist"")"
+40,,(Use the toothbrush on her.),(You tickle her with the toothbrush as she thrashes on the cross.)  Hey!  This is not how you use a toothbrush.,"DoActivity(""InterviewMaidToothbrushJournalist"")","CanDoActivity(""InterviewMaidToothbrushJournalist"")"
 40,50,(Masturbate her with the wand.),(She screams of pleasure as you masturbate her.)  Oh yes!  Yes!  Can I cum?  Please!,"DoActivity(""InterviewMaidWandOrgasmJournalist"")","CanDoActivity(""InterviewMaidWandOrgasmJournalist"")"
 40,,(Masturbate her with the wand.),(She yells loudly and gets another quick orgasm.)  Aaaaaaaaaah!  Enough!  This is too much!,"DoActivity(""InterviewMaidWandRepeatOrgasmJournalist"")","CanDoActivity(""InterviewMaidWandRepeatOrgasmJournalist"")"
 40,100,(Release her.),,"DoActivity(""InterviewMaidReleaseJournalist"")",

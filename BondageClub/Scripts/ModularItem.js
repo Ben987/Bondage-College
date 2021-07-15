@@ -530,7 +530,7 @@ function ModularItemSetType(module, index, data) {
  * Publishes the chatroom message for a modular item when one of its modules has changed.
  * @param {ModularItemModule} module - The module that changed
  * @param {number} index - The index of the newly chosen option within the module
- * @param {ModularItemData} - The modular item's data
+ * @param {ModularItemData} data - The modular item's data
  * @returns {void} - Nothing
  */
 function ModularItemChatRoomMessage(module, index, { chatSetting, chatMessagePrefix }) {

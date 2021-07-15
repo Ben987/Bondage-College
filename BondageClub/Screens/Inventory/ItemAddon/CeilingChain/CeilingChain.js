@@ -6,8 +6,11 @@ const CeilingChainAddonOptions = [
 		Property: { Type: null, Difficulty: 6, Effect: []}
 	}, {
 		Name: "Suspended",
-        Property: { Type: "Suspended", Difficulty: 7,
-    OverrideHeight: { Height: 30, Priority: 51, HeightRatioProportion: 0 } },
+			Property: { 
+			Type: "Suspended", Difficulty: 7,
+			OverrideHeight: { Height: 30, Priority: 51, HeightRatioProportion: 0 },
+			Effect: ["Lifted"],
+		},
 	},
 ];
 

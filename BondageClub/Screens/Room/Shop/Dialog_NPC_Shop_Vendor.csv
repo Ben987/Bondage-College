@@ -56,7 +56,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 34,31,Can I try again?,Alright.  Let me find an item to promote.  (She checks on the shelves for an item to use on you.),,JobCanGoAgain()
 34,,Can you help me out?,"I don't have time, there's too many customers.  Go find a maid if you can't struggle out.",DialogRemove(),!Player.CanInteract()
 90,100,Clothes and accessories.,"What kind of clothes?",,CanShow(Cloth|ClothAccessory|Suit|ClothLower|Hat|Glasses|Mask|Necklace|Gloves|Shoes|Corset)
-90,110,Underwear.,"What kind of underwear?",,CanShow(Bra|Panties|Socks)
+90,110,Underwear.,"What kind of underwear?",,CanShow(Bra|Panties|Socks|Garters)
 90,120,Exotic accessories.,"What kind of accessories?",,CanShow(Wings|TailStraps|HairAccessory1|ItemDevices|ItemAddon)
 90,200,Something for the head.,For which body part exactly?,,CanShow(ItemHead|ItemEars|ItemMouth|ItemNeck|ItemNeckAccessories|ItemNeckRestraints|ItemHood|ItemNose|ItemMisc)
 90,210,Something for the body or arms.,For which body part exactly?,,CanShow(ItemArms|ItemHands|ItemBreast|ItemNipples|ItemNipplesPiercings|ItemTorso|ItemPelvis)
@@ -68,7 +68,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 100,,Pants or skirts.,,Start(ClothLower),CanShow(ClothLower)
 100,,Hats or head accessories.,,Start(Hat),CanShow(Hat)
 100,,Glasses.,,Start(Glasses),CanShow(Glasses)
-100,101,It's another type of clothes.,What kind is it?,,CanShow(Mask|Necklace|Gloves|Shoes|Corset)
+100,101,It's another type of clothes.,What kind is it?,,CanShow(Mask|Necklace|Gloves|Shoes|Corset|Bracelet)
 100,90,What else do you have?,We have many items available.,,BuyMode
 100,90,Actually it's something else.,What kind of item is it?,,!BuyMode
 101,,Masks.,,Start(Mask),CanShow(Mask)
@@ -76,12 +76,14 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 101,,Gloves.,,Start(Gloves),CanShow(Gloves)
 101,,Shoes.,,Start(Shoes),CanShow(Shoes)
 101,,Corsets.,,Start(Corset),CanShow(Corset)
+101,,Bracelets.,,Start(Bracelet),CanShow(Bracelet)
 101,100,It's another type of clothes.,What kind is it?,,
 101,90,What else do you have?,We have many items available.,,BuyMode
 101,90,Actually it's something else.,What kind of item is it?,,!BuyMode
 110,,Bras.,,Start(Bra),CanShow(Bra)
 110,,Panties.,,Start(Panties),CanShow(Panties)
 110,,Socks.,,Start(Socks),CanShow(Socks)
+110,,Garters.,,Start(Garters),CanShow(Garters)
 110,90,What else do you have?,We have many items available.,,BuyMode
 110,90,Actually it's something else.,What kind of item is it?,,!BuyMode
 120,,Outfits or accessories for the body.,,Start(Wings),CanShow(Wings)
@@ -127,7 +129,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 MaidRescue,,,(She struggles in her restraints.)  Help!,,IsVendorRestrained()
 MaidRescue,,,"(She gives you a thumbs up.)  Everything is back to normal, thanks to you and the sorority.",,!IsVendorRestrained()
 MaidRescue,,Do you need help?,"(She nods quickly.)  Yes, yes, yes!  Please help.",,IsVendorRestrained()
-MaidRescue,,Anything was stolen?,(She shrugs.)  I sure hope not.,,
+MaidRescue,,Was anything stolen?,(She shrugs.)  I sure hope not.,,
 MaidRescue,MaidRescueComplete,Is everything alright now?,You've took care of everything.  Please send my regards to the maids of the sorority.,CompleteRescue(),!IsVendorRestrained()
 MaidRescue,,What happened here?,"I've made a deal with a client that if she bought everything, she could use the items on me.  So, she did just that.",,"IsRescueScenario(""BoughtEverything"")"
 MaidRescue,,What happened here?,A burglar surprised and restrained me.  The maids caught her and dragged her away.  I guess they sent you to help me.,,"IsRescueScenario(""CatBurglar"")"

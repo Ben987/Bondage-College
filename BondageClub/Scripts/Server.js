@@ -535,6 +535,7 @@ function ServerPrivateCharacterSync() {
 				ArousalSettings: PrivateCharacter[ID].ArousalSettings,
 				Event: PrivateCharacter[ID].Event
 			};
+			if (PrivateCharacter[ID].FromPandora != null) C.FromPandora = PrivateCharacter[ID].FromPandora;
 			D.PrivateCharacter.push(C);
 		}
 		ServerAccountUpdate.QueueData(D);

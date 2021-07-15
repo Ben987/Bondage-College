@@ -229,8 +229,8 @@ function InventoryItemPelvisFuturisticChastityBeltPublishGeneric(C, msg) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemPelvisFuturisticChastityBeltValidate(C) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
+function InventoryItemPelvisFuturisticChastityBeltValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item); // All futuristic items refer to the gag
 }
 
 

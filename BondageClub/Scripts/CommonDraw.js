@@ -22,7 +22,7 @@
 /**
  * A callback function used to draw a canvas on a canvas
  * @callback drawCanvas
- * @param {string} Img - The canvas to draw
+ * @param {HTMLImageElement | HTMLCanvasElement} Img - The canvas to draw
  * @param {number} x - The x coordinate to draw the canvas at
  * @param {number} y - The y coordinate to draw the canvas at
  */
@@ -146,7 +146,7 @@ function CommonDrawAppearanceBuild(C, {
 		let YFixedOffset = 0;
 		if (A.FixedPosition) {
 			if (C.IsInverted()) {
-				YFixedOffset = -Y + 1000 - (Y + CharacterAppearanceYOffset(C, C.HeightRatio) / C.HeightRatio);
+				YFixedOffset = -Y + 1000 - (Y + CharacterAppearanceYOffset(C, C.HeightRatio, true) / C.HeightRatio);
 			} else {
 				YFixedOffset = C.HeightModifier + 1000 * (1 - C.HeightRatio) * (1 - C.HeightRatioProportion) / C.HeightRatio;
 			}
@@ -182,10 +182,7 @@ function CommonDrawAppearanceBuild(C, {
 				return Acc;
 			}, []);
 
-		let Color = CA.Color;
-		if (Array.isArray(Color)) {
-			Color = Color[Layer.ColorIndex] || AG.ColorSchema[0];
-		}
+		let Color = Array.isArray(CA.Color) ? (CA.Color[Layer.ColorIndex] || AG.ColorSchema[0]) : CA.Color;
 
 		// Fix to legacy appearance data when Hands could be different to BodyUpper
 		if (GroupName === "Hands") Color = "Default";

@@ -460,7 +460,7 @@ function GameLARPGetOdds(Action, Source, Target) {
 	// Returns the % between 0 and 1
 	if (Odds > 1) Odds = 1;
 	if (Odds < 0) Odds = 0;
-	return Odds.toFixed(2);
+	return Math.round(Odds * 100) / 100;
 
 }
 
@@ -679,7 +679,7 @@ function GameLARPProcessAction(Action, ItemName, Source, Target, RNG) {
 
 	// If the odds are successful (0% never succeeds, 100% always succeeds)
 	var Odds = GameLARPGetOdds(Action, Source, Target);
-	if ((Odds >= 0.01) && ((Odds >= 1) || (Odds >= RNG.toFixed(2)))) {
+	if ((Odds >= 0.01) && ((Odds >= 1) || (Odds >= Math.round(RNG * 100) / 100))) {
 
 		// Regular restrain actions
 		ChatRoomAllowCharacterUpdate = false;
@@ -745,7 +745,7 @@ function GameLARPCharacterClick(C) {
  * @param {string} Description - Description of the message (item name, team name, etc.)
  * @param {number} RNG - The number given by RNG.
  * @param {number} Odds - The number required for the move to work.
- * @param {string} Color - Color of the message to add.
+ * @param {string} [Color] - Color of the message to add.
  * @returns {void} - Nothing
  */
 function GameLARPAddChatLog(Msg, Source, Target, Description, RNG, Odds, Color) {

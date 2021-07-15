@@ -74,8 +74,8 @@ function InventoryItemArmsFuturisticStraitjacketExit() {
 	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
-function InventoryItemArmsFuturisticStraitjacketValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
+function InventoryItemArmsFuturisticStraitjacketValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item);
 }
 
 function InventoryItemArmsFuturisticStraitjacketPublishAction(C, Option) {

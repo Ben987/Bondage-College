@@ -316,7 +316,7 @@ function MainHallWalk(RoomName) {
 		var MeetKidnapper = ((ReputationGet("Kidnap") > 0) && (CheatFactor("BlockRandomKidnap", 0) == 1)) ? Math.random() : 0;
 		var MeetClubSlave = Math.random();
 		var MeetPolice = (LogQuery("Joined", "BadGirl")) ? (Math.random() * PrisonWantedPlayer()) : 0;
-		var PandoraRevenge = (SkillGetLevel(Player, "Infiltration") >= 4) ? Math.random() * (SkillGetLevel(Player, "Infiltration") / 7) : 0;
+		var PandoraRevenge = (SkillGetLevel(Player, "Infiltration") >= 3) ? Math.random() * (SkillGetLevel(Player, "Infiltration") / 7) : 0;
 
 		// Starts the event with the highest value (picked at random)
 		if ((PandoraRevenge > MeetPolice) && (PandoraRevenge > PlayerClubSlave) && (PandoraRevenge > PlayerEscapedAsylum) && (PandoraRevenge > MeetEscapedPatient) && (PandoraRevenge > MeetKidnapper) && (PandoraRevenge > MeetClubSlave)) InfiltrationStartKidnapping();

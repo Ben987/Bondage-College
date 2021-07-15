@@ -326,6 +326,18 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 0,10,Let's talk.,(She starts to sing.)  Let's talk about sex baby!  Let's talk about you and me!,,,StartTalk,Horny
 0,10,Let's talk.,"Absolutely, what will be the topic of our discussion or debate?",,,StartTalk,Polite
 0,10,Let's talk.,What's up?,,,StartTalk,Rude
+0,,Do you miss Pandora's Box?,"Not really, my adventures in the club and in your private room have been more pleasant.  (She winks at you.)",,IsFromPandoraPositive(),PandoraPositive,
+0,,Do you miss Pandora's Box?,"Don't ask questions when you already know the answer.  The Bondage Club is better than Pandora's Box, period.",,IsFromPandoraPositive(),PandoraPositive,Serious|Dominant
+0,,Do you miss Pandora's Box?,"Oh no, I've made friends here who are tons of fun.  And your Mistresses are so strict and beautiful.  (She shivers.)",,IsFromPandoraPositive(),PandoraPositive,Playful|Submissive
+0,,Do you miss Pandora's Box?,I've already pondered that question many times and the answer is negative.  The Bondage Club appears to be superior to Pandora's Box.,,IsFromPandoraPositive(),PandoraPositive,Wise|Polite
+0,,Do you miss Pandora's Box?,"(She seems undecided.)  Kind of, both clubs are good.  Maybe I'll visit the box again someday.",,IsFromPandoraNeutral(),PandoraNeutral,
+0,,Do you miss Pandora's Box?,"That's an interesting question, but I don't have the answer.  If they give me more control around here, I might review my position.",,IsFromPandoraNeutral(),PandoraNeutral,Serious|Dominant
+0,,Do you miss Pandora's Box?,A little.  It's hard to choose between Pandora's Box strict Dominatrixes and the Bondage Club fearless Mistresses.  Both are so much fun!,,IsFromPandoraNeutral(),PandoraNeutral,Playful|Submissive
+0,,Do you miss Pandora's Box?,"I've already pondered that question many times and I'm undecided.  Both clubs are good, maybe I'll visit the Pandora's Box again someday.",,IsFromPandoraNeutral(),PandoraNeutral,Wise|Polite
+0,,Do you miss Pandora's Box?,"I do miss the Box.  No offense, but the Bondage Club is getting old and stale.",,IsFromPandoraNegative(),PandoraNegative,
+0,,Do you miss Pandora's Box?,"Damn right!  Don't take it personal girl, but I'll probably move back there sooner than later.",,IsFromPandoraNegative(),PandoraNegative,Serious|Dominant
+0,,Do you miss Pandora's Box?,"Yeah, the box was so cool.  I miss the times I got chained naked in the dungeon by a Dominatrix.  (She shivers.)",,IsFromPandoraNegative(),PandoraNegative,Playful|Submissive
+0,,Do you miss Pandora's Box?,I've already pondered that question many times and the answer is positive.  Pandora's Box has a definitive panache and prestige that is lacking here.,,IsFromPandoraNegative(),PandoraNegative,Wise|Polite
 0,,Can I tie you up?,You don't need to ask.  Simply do it.,,AllowRestain(),CanRestrain,
 0,,Can I tie you up?,Hell yeah!  Strap me and fuck me all day.,,AllowRestain(),CanRestrain,Horny|Rude
 0,,Can I tie you up?,Absolutely.  I love fun bondage.  But please be careful not to hurt to me.,,AllowRestain(),CanRestrain,Playful|Peaceful
@@ -652,6 +664,18 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1000,1010,Can we talk Mistress?,(She starts to sing.)  Let's talk about sex subbie!  Let's talk about you and me!,,,DomStartTalk,Horny
 1000,1010,Can we talk Mistress?,"Absolutely, what will be the topic of our discussion or debate?",,,DomStartTalk,Polite
 1000,1010,Can we talk Mistress?,What's up slave?,,,DomStartTalk,Rude
+1000,,"Mistress, do you miss Pandora's Box?","Not really, my adventures in the club and in your private room have been more pleasant.  (She winks at you.)",,IsFromPandoraPositive(),DomPandoraPositive,
+1000,,"Mistress, do you miss Pandora's Box?","Don't ask questions when you already know the answer.  The Bondage Club is better than Pandora's Box, period.",,IsFromPandoraPositive(),DomPandoraPositive,Serious|Dominant
+1000,,"Mistress, do you miss Pandora's Box?","Oh no, I've made friends here who are tons of fun.  And your Mistresses are so strict and beautiful.  (She shivers.)",,IsFromPandoraPositive(),DomPandoraPositive,Playful|Submissive
+1000,,"Mistress, do you miss Pandora's Box?",I've already pondered that question many times and the answer is negative.  The Bondage Club appears to be superior to Pandora's Box.,,IsFromPandoraPositive(),DomPandoraPositive,Wise|Polite
+1000,,"Mistress, do you miss Pandora's Box?","(She seems undecided.)  Kind of, both clubs are good.  Maybe I'll visit the box again someday.",,IsFromPandoraNeutral(),DomPandoraNeutral,
+1000,,"Mistress, do you miss Pandora's Box?","That's an interesting question, but I don't have the answer.  If they give me more control around here, I might review my position.",,IsFromPandoraNeutral(),DomPandoraNeutral,Serious|Dominant
+1000,,"Mistress, do you miss Pandora's Box?",A little.  It's hard to choose between Pandora's Box strict Dominatrixes and the Bondage Club fearless Mistresses.  Both are so much fun!,,IsFromPandoraNeutral(),DomPandoraNeutral,Playful|Submissive
+1000,,"Mistress, do you miss Pandora's Box?","I've already pondered that question many times and I'm undecided.  Both clubs are good, maybe I'll visit the Pandora's Box again someday.",,IsFromPandoraNeutral(),DomPandoraNeutral,Wise|Polite
+1000,,"Mistress, do you miss Pandora's Box?","I do miss the Box.  No offense, but the Bondage Club is getting old and stale.",,IsFromPandoraNegative(),DomPandoraNegative,
+1000,,"Mistress, do you miss Pandora's Box?","Damn right!  Don't take it personal girl, but I'll probably move back there sooner than later.",,IsFromPandoraNegative(),DomPandoraNegative,Serious|Dominant
+1000,,"Mistress, do you miss Pandora's Box?","Yeah, the box was so cool.  I miss the times I got chained naked in the dungeon by a Dominatrix.  (She shivers.)",,IsFromPandoraNegative(),DomPandoraNegative,Playful|Submissive
+1000,,"Mistress, do you miss Pandora's Box?",I've already pondered that question many times and the answer is positive.  Pandora's Box has a definitive panache and prestige that is lacking here.,,IsFromPandoraNegative(),DomPandoraNegative,Wise|Polite
 1000,1050,"Girl, it's time to turn the tables.",(She looks surprised.)  What?  What are you talking about my slave?,PlayerTurnTablesStart(),PlayerCanTurnTables(),DomTurnTablesStart,
 1000,1050,"Girl, it's time to turn the tables.",(She looks furious.)  What the fuck?  You better explain yourself before I punish you slave.,PlayerTurnTablesStart(),PlayerCanTurnTables(),DomTurnTablesStart,Rude|Violent
 1000,1050,"Girl, it's time to turn the tables.",(She looks annoyed.)  What?  Do not play games my cherish slave.  I am not disposed.,PlayerTurnTablesStart(),PlayerCanTurnTables(),DomTurnTablesStart,Polite|Serious
@@ -1238,6 +1262,18 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2000,2010,Let's talk my girl.,(She nods quickly.)  What will be the kinky subject of the day?,,,SubStartTalk,Horny
 2000,2010,Let's talk my girl.,"Absolutely, what will be the topic of our discussion or debate?",,,SubStartTalk,Polite
 2000,2010,Let's talk my girl.,What's up Mistress?,,,SubStartTalk,Rude
+2000,,"Slave, do you miss Pandora's Box?","Not really Mistress, my adventures in the club and in your private room have been more pleasant.  (She bows her head.)",,IsFromPandoraPositive(),SubPandoraPositive,
+2000,,"Slave, do you miss Pandora's Box?","You already know the answer Mistress.  The Bondage Club is better than Pandora's Box, period.",,IsFromPandoraPositive(),SubPandoraPositive,Serious|Dominant
+2000,,"Slave, do you miss Pandora's Box?","Oh no Mistress, I've made friends here who are tons of fun.  And your Mistresses are so strict and beautiful.  (She shivers.)",,IsFromPandoraPositive(),SubPandoraPositive,Playful|Submissive
+2000,,"Slave, do you miss Pandora's Box?",I've already pondered that question many times and the answer is negative.  The Bondage Club appears to be superior to Pandora's Box.,,IsFromPandoraPositive(),SubPandoraPositive,Wise|Polite
+2000,,"Slave, do you miss Pandora's Box?","(She seems undecided.)  Kind of, both clubs are good.  Maybe I'll visit the box again someday.  I hope you don't mind.",,IsFromPandoraNeutral(),SubPandoraNeutral,
+2000,,"Slave, do you miss Pandora's Box?","That's an interesting question, but I don't have the answer Mistress.  If they give me more control around here, I might review my position.",,IsFromPandoraNeutral(),SubPandoraNeutral,Serious|Dominant
+2000,,"Slave, do you miss Pandora's Box?",A little.  It's hard to choose between Pandora's Box strict Dominatrixes and the Bondage Club fearless Mistresses.  Both are so much fun!,,IsFromPandoraNeutral(),SubPandoraNeutral,Playful|Submissive
+2000,,"Slave, do you miss Pandora's Box?","I've already pondered that question many times and I'm undecided.  Both clubs are good, maybe I'll visit Pandora's again someday with your permission.",,IsFromPandoraNeutral(),SubPandoraNeutral,Wise|Polite
+2000,,"Slave, do you miss Pandora's Box?","I do miss the Box Mistress.  No offense, but the Bondage Club is getting old and stale.",,IsFromPandoraNegative(),SubPandoraNegative,
+2000,,"Slave, do you miss Pandora's Box?","Damn right!  Don't take it personal Miss, but I'll probably move back there sooner than later.",,IsFromPandoraNegative(),SubPandoraNegative,Serious|Dominant
+2000,,"Slave, do you miss Pandora's Box?","Yeah, the box was so cool Mistress.  I miss the times I got chained naked in the dungeon by a Dominatrix.  (She shivers.)",,IsFromPandoraNegative(),SubPandoraNegative,Playful|Submissive
+2000,,"Slave, do you miss Pandora's Box?",I've already pondered that question many times and the answer is positive.  Pandora's Box has a definitive panache and prestige that is lacking here.,,IsFromPandoraNegative(),SubPandoraNegative,Wise|Polite
 2000,2080,What is that grin on your face?,"Times have changed, I'm now more Dominant than you.  Maybe it's time to turn the tables.",SubTurnTablesStart(),SubCanTurnTables(),SubTurnTablesStart,
 2000,2080,What is that grin on your face?,"Times have changed, I'm fucking tougher than you now.  It's time to turn the tables.",SubTurnTablesStart(),SubCanTurnTables(),SubTurnTablesStart,Rude|Violent
 2000,2080,What is that grin on your face?,"We need to face the reality of our times, I've outgrown you.  It could be time to turn the tables.",SubTurnTablesStart(),SubCanTurnTables(),SubTurnTablesStart,Polite|Serious

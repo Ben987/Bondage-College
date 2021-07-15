@@ -129,7 +129,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		OverrideBlinking: (NewAsset.OverrideBlinking == null) ? false : NewAsset.OverrideBlinking,
 		DialogSortOverride: NewAsset.DialogSortOverride,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicDescription : function () { return this.Description; },
-		DynamicPreviewIcon: (typeof NewAsset.DynamicPreviewIcon === 'function') ? NewAsset.DynamicPreviewIcon : function () { return ""; },
+		DynamicPreviewImage: (typeof NewAsset.DynamicPreviewImage === 'function') ? NewAsset.DynamicPreviewImage : function () { return ""; },
 		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function') ? NewAsset.DynamicAllowInventoryAdd : function () { return true; },
 		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function') ? NewAsset.DynamicExpressionTrigger : function () { return this.ExpressionTrigger; },
 		DynamicName: (typeof NewAsset.DynamicName === 'function') ? NewAsset.DynamicName : function () { return this.Name; },
@@ -158,6 +158,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		FuturisticRecolor: typeof NewAsset.FuturisticRecolor === 'boolean' ? NewAsset.FuturisticRecolor : false,
 		FuturisticRecolorDisplay: typeof NewAsset.FuturisticRecolorDisplay === 'boolean' ? NewAsset.FuturisticRecolorDisplay : false,
 		Attribute: NewAsset.Attribute || [],
+		PreviewIcons: NewAsset.PreviewIcons || [],
 	}, AssetParsePoseProperties(NewAsset, AssetCurrentGroup.AllowPose.slice()));
 
 	// Ensure opacity value is valid
@@ -397,7 +398,10 @@ function AssetBuildDescription(Family, CSV) {
 
 }
 
-// Loads the description of the assets in a specific language
+/**
+ * Loads the description of the assets in a specific language
+ * @param {string} Family The asset family to load the description for
+ */
 function AssetLoadDescription(Family) {
 
 	// Finds the full path of the CSV file to use cache

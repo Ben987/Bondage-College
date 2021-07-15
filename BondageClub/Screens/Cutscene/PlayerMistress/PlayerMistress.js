@@ -15,8 +15,8 @@ function PlayerMistressLoad() {
 	PlayerMistressMistressRight = CharacterLoadNPC("NPC_MistressRight");
 	PlayerMistressMaidLeft = CharacterLoadNPC("NPC_MaidLeft");
 	PlayerMistressMaidRight = CharacterLoadNPC("NPC_MaidRight");
-	CharacterFullRandomRestrain(PlayerMistressMaidLeft, "Lot");
-	CharacterFullRandomRestrain(PlayerMistressMaidRight, "Lot");
+	CharacterFullRandomRestrain(PlayerMistressMaidLeft, "LOT");
+	CharacterFullRandomRestrain(PlayerMistressMaidRight, "LOT");
 	InventoryWear(PlayerMistressMaidLeft, "WoodenMaidTrayFull", "ItemMisc");
 	InventoryWear(PlayerMistressMaidRight, "WoodenMaidTrayFull", "ItemMisc");
 }

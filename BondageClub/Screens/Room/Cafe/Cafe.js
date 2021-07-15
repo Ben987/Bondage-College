@@ -206,11 +206,7 @@ function CafeServiceBound(Style) {
 
 		// Gag Sub Types
 		if (Bondage == "ClothGag") {
-            Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemMouth");
-			DialogExtendItem(InventoryGet(Player, "ItemMouth"));
-			const Options = TypedItemGetOptions("ItemMouth", Bondage);
-			Option = CommonRandomItemFromList(null, Options);
-			ExtendedItemSetType(Player, Options, Option);
+			TypedItemSetRandomOption(Player, "ItemMouth");
 		}
 	}
 
@@ -230,11 +226,7 @@ function CafeServiceBound(Style) {
         ExtendedItemSetType(Player, InventoryItemLegsDuctTapeOptions, Option);
 
         // Gag Sub Type
-        Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemMouth");
-        DialogExtendItem(InventoryGet(Player, "ItemMouth"));
-        const Options = TypedItemGetOptions("ItemMouth", "DuctTape")
-        Option = CommonRandomItemFromList(null, Options);
-        ExtendedItemSetType(Player, Options, Option);
+		TypedItemSetRandomOption(Player, "ItemMouth");
 	}
 
 	if (Style == "Leather") {
@@ -249,11 +241,7 @@ function CafeServiceBound(Style) {
 		InventoryWear(Player, Bondage, "ItemArms", RandomColor, 15);
 
 		if (Bondage == "LeatherCuffs") {
-            Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemArms");
-            DialogExtendItem(InventoryGet(Player, "ItemArms"));
-            const Options = TypedItemGetOptions("ItemArms", Bondage);
-            Option = CommonRandomItemFromList(null, Options);
-            ExtendedItemSetType(Player, Options, Option);
+			TypedItemSetRandomOption(Player, "ItemArms");
 		}
 
 		// Legs
@@ -317,11 +305,7 @@ function CafeServiceBound(Style) {
 		InventoryWear(Player, Bondage, "ItemMouth", RandomColor);
 
 		if (Bondage == "PumpGag") {
-            Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemMouth");
-            DialogExtendItem(InventoryGet(Player, "ItemMouth"));
-            const Options = TypedItemGetOptions("ItemMouth", Bondage);
-            Option = CommonRandomItemFromList(null, Options);
-            ExtendedItemSetType(Player, Options, Option);
+			TypedItemSetRandomOption(Player, "ItemMouth");
 		}
 	}
 
@@ -337,11 +321,7 @@ function CafeServiceBound(Style) {
 		InventoryWear(Player, Bondage, "ItemArms", RandomColor, 20);
 
 		if (Bondage == "StraitJacket") {
-            Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemArms");
-			DialogExtendItem(InventoryGet(Player, "ItemArms"));
-			const Options = TypedItemGetOptions("ItemArms", Bondage);
-			const Option = CommonRandomItemFromList(null, Options);
-			ExtendedItemSetType(Player, Options, Option);
+			TypedItemSetRandomOption(Player, "ItemArms");
 		}
 
 		// Legs
@@ -375,20 +355,11 @@ function CafeServiceBound(Style) {
 		InventoryWear(Player, Bondage, "ItemMouth");
 
 		if (Bondage == "PumpGag") {
-            Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemMouth");
-            DialogExtendItem(InventoryGet(Player, "ItemMouth"));
-            const Options = TypedItemGetOptions("ItemMouth", Bondage);
-            Option = CommonRandomItemFromList(null, Options);
-            ExtendedItemSetType(Player, Options, Option);
-            CharacterLoadEffect(Player);
+			TypedItemSetRandomOption(Player, "ItemMouth");
 		}
 
 		if (Bondage == "PlugGag") {
-            Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemMouth");
-			DialogExtendItem(InventoryGet(Player, "ItemMouth"));
-			const Options = TypedItemGetOptions("ItemMouth", Bondage);
-			Option = CommonRandomItemFromList(null, Options);
-			ExtendedItemSetType(Player, Options, Option);
+			TypedItemSetRandomOption(Player, "ItemMouth");
 		}
 
 		// Head

@@ -262,6 +262,12 @@ CourierNew,Courier New
 Copperplate,Copperplate
 GraphicsInvertRoom,Flip the room vertically when upside-down
 GraphicsStimulationFlash,Screen filters when stimulated by events
+GraphicsAntialiasing,"Enable antialiasing (For this browser, if supported)"
+GraphicsNoWebGL,"Not running on WebGL, cannot edit rendering configurations."
+GraphicsPowerMode,"Preferred power consumption mode (For this browser, if supported)"
+PowerModelow-power,"Low consumption, slower rendering"
+PowerModedefault,Default
+PowerModehigh-performance,"High consumption, faster rendering"
 Sensitivity,Sensitivity
 ControllerActive,Controller Active
 MapButtons,Map Buttons

@@ -64,7 +64,7 @@ function InventoryItemArmsFuturisticCuffsDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else
-		ExtendedItemDraw(InventoryItemArmsFuturisticCuffsOptions, "LeatherCuffsPose");
+		ExtendedItemDraw(InventoryItemArmsFuturisticCuffsOptions, "ItemArmsCuffs");
 }
 
 /**
@@ -85,8 +85,8 @@ function InventoryItemArmsFuturisticCuffsExit() {
 	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
-function InventoryItemArmsFuturisticCuffsValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
+function InventoryItemArmsFuturisticCuffsValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item);
 }
 
 

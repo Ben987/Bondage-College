@@ -322,6 +322,21 @@ function PrivateSubCanTurnTables() { return (!Player.IsRestrained() && !CurrentC
  * @returns {boolean} - TRUE if we allow NPC cheats
  */
 function PrivateNPCAllowCheat() { return (CheatFactor("ChangeNPCTrait", 0) == 0); }
+/**
+ * Checks if the character comes from Pandora's Box and she has a negative opinion of the player
+ * @returns {boolean} - TRUE if the character is from Pandora's Box and has a negative opinion
+ */
+function PrivateIsFromPandoraNegative() { return ((CurrentCharacter.FromPandora != null) && (CurrentCharacter.FromPandora == true) && (CurrentCharacter.Love <= -40) && !CurrentCharacter.IsLoverPrivate()); }
+/**
+ * Checks if the character comes from Pandora's Box and she has a neutral opinion of the player
+ * @returns {boolean} - TRUE if the character is from Pandora's Box and has a neutral opinion
+ */
+function PrivateIsFromPandoraNeutral() { return ((CurrentCharacter.FromPandora != null) && (CurrentCharacter.FromPandora == true) && (CurrentCharacter.Love > -40) && (CurrentCharacter.Love < 40) && !CurrentCharacter.IsLoverPrivate()); }
+/**
+ * Checks if the character comes from Pandora's Box and she has a positive opinion of the player
+ * @returns {boolean} - TRUE if the character is from Pandora's Box and has a positive opinion
+ */
+function PrivateIsFromPandoraPositive() { return ((CurrentCharacter.FromPandora != null) && (CurrentCharacter.FromPandora == true) && (CurrentCharacter.Love >= 40) && !CurrentCharacter.IsLoverPrivate()); }
 
 /**
  * Loads the private room screen and the vendor NPC.
@@ -341,14 +356,16 @@ function PrivateLoad() {
 	PrivateVendor.AllowItem = false;
 	Player.ArousalSettings.OrgasmCount = 0;
 	NPCTraitDialog(PrivateVendor);
-	let mustSync = false;
+	let MustSync = false;
 	for (let C = 1; C < PrivateCharacter.length; C++) {
-		const updateRequired = PrivateLoadCharacter(C);
-		mustSync = mustSync || updateRequired;
+		let FromPandora = PrivateCharacter[C].FromPandora;
+		let UpdateRequired = PrivateLoadCharacter(C);
+		if (FromPandora != null) PrivateCharacter[C].FromPandora = FromPandora;
+		MustSync = (MustSync || UpdateRequired);
 	}
-	mustSync = mustSync || PrivateRelationDecay();
-
-	if (mustSync) ServerPrivateCharacterSync();
+	MustSync = (MustSync || PrivateRelationDecay());
+	MustSync = (MustSync || PrivateRansomStart());
+	if (MustSync) ServerPrivateCharacterSync();
 }
 
 /**
@@ -370,14 +387,19 @@ function PrivateDrawCharacter() {
 			// If the character is sent to the asylum, she won't show in the room but her slot is still taken
 			if (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime) {
 
-				// Draw the NPC and the cage if needed
-				if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
-				DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
-				if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
-				if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
-					if ((Player.Cage == null) || (C == 0))
-						if (!PrivateCharacter[C].IsOwner())
-							DrawButton(X + 205 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
+				// If the character is kidnapped by Pandora's Box, a ransom note will be shown
+				if (NPCEventGet(PrivateCharacter[C], "Kidnap") <= CurrentTime) {
+			
+					// Draw the NPC and the cage if needed
+					if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
+					DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
+					if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
+					if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
+						if ((Player.Cage == null) || (C == 0))
+							if (!PrivateCharacter[C].IsOwner())
+								DrawButton(X + 205 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
+							
+				} else DrawImage("Screens/Room/PrivateRansom/RansomNote.png", X + 160 + (C - PrivateCharacterOffset) * 470, 375);
 
 			} else {
 
@@ -473,7 +495,7 @@ function PrivateClickCharacterButton() {
 
 		// The cage is only available on certain conditions
 		if ((MouseX >= X + 205 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 295 + (C - PrivateCharacterOffset) * 470))
-			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime))
+			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "Kidnap") <= CurrentTime))
 				if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
 					if ((Player.Cage == null) || (C == 0))
 						if (!PrivateCharacter[C].IsOwner()) {
@@ -509,6 +531,13 @@ function PrivateClickCharacter() {
 	for (let C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++)
 		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470))
 			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime)) {
+
+				// If a kidnapping is in progress, we show the ransom note
+				if (NPCEventGet(PrivateCharacter[C], "Kidnap") >= CurrentTime) {
+					PrivateRansomCharacter = PrivateCharacter[C];
+					CommonSetScreen("Room", "PrivateRansom");
+					return;
+				}
 
 				// If the arousal meter is shown for that character, we can interact with it
 				if ((PrivateCharacter[C].ID == 0) || (Player.ArousalSettings.ShowOtherMeter == null) || Player.ArousalSettings.ShowOtherMeter)
@@ -730,7 +759,7 @@ function PrivateLoadCharacter(C) {
  * Triggered when a new character is added to the player's private room.
  * @param {object} Template - The base of the character, includes the name and appearance.
  * @param {string} Archetype - The type of character such as maid or mistress.
- * @param {boolean} CustomData - Whether or not the character has non-random traits.
+ * @param {boolean} [CustomData=false] - Whether or not the character has non-random traits.
  * @returns {void} - Nothing.
  */
 function PrivateAddCharacter(Template, Archetype, CustomData) {
@@ -1147,7 +1176,7 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 240000; CharacterSetActivePose(Player, "Kneel", true); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 15); }
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemVulva") == null)) InventoryWear(Player, "VibratingEgg", "ItemVulva");
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemButt") == null)) InventoryWear(Player, "BlackButtPlug", "ItemButt");
-	if (PrivatePunishment == "ChastityBelt") { InventoryWear(Player, CommonRandomItemFromList("", PrivateBeltList), "ItemPelvis"); InventoryLock(Player, "ItemPelvis", "OwnerPadlock", null); }
+	if (PrivatePunishment == "ChastityBelt") { InventoryWearRandom(Player, "ItemPelvis", null, null, false, true, PrivateBeltList, true); InventoryLock(Player, "ItemPelvis", "OwnerPadlock", null); }
 	if (PrivatePunishment == "ChastityBra") { InventoryWear(Player, "MetalChastityBra", "ItemBreast"); InventoryLock(Player, "ItemBreast", "OwnerPadlock", null); }
 	if (PrivatePunishment == "ForceNaked") LogAdd("BlockChange", "Rule", CurrentTime + 1800000);
 	if (PrivatePunishment == "ConfiscateKey") InventoryConfiscateKey();
@@ -1350,7 +1379,7 @@ function PrivateLoveYou() {
 
 		// When the NPC equips an egg or a belt on the player
 		if (PrivateLoverActivity == "EggInsert") { InventoryWear(Player, "VibratingEgg", "ItemVulva"); InventoryGet(Player, "ItemVulva").Property = { Intensity: 0 }; }
-		if (PrivateLoverActivity == "LockBelt") { InventoryWear(Player, CommonRandomItemFromList("", PrivateBeltList), "ItemPelvis"); InventoryLock(Player, "ItemPelvis", "LoversPadlock", null); }
+		if (PrivateLoverActivity == "LockBelt") { InventoryWearRandom(Player, "ItemPelvis", null, null, false, true, PrivateBeltList, true); InventoryLock(Player, "ItemPelvis", "LoversPadlock", null); }
 		if (PrivateLoverActivity == "UnlockBelt") InventoryRemove(Player, "ItemPelvis");
 
 		// When the NPC plays with the egg speed

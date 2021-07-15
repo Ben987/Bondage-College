@@ -28,6 +28,18 @@ function InfiltrationCanFail() { return ((InfiltrationTarget == null) || (Infilt
 function InfiltrationCanGoBack() { return (((InfiltrationTarget == null) || (InfiltrationTarget.Fail == null) || (InfiltrationTarget.Fail == false)) && !InfiltrationCanSuccess()); }
 
 /**
+ * Returns TRUE if the player can start the Pandora Padlock Mission, needs to be missing the item and infiltration 6 or more
+ * @returns {boolean} - TRUE if successful
+ */
+function InfiltrationCanGetPandoraLock() { return (DialogSkillGreater("Infiltration", 6) && (!InventoryAvailable(Player, "PandoraPadlock", "ItemMisc") || !InventoryAvailable(Player, "PandoraPadlockKey", "ItemMisc"))); }
+
+/**
+ * Returns TRUE if the player can ask to get Pandora's locks as a reward for the mission
+ * @returns {boolean} - TRUE if successful
+ */
+function InfiltrationCanAskForPandoraLock() { return ((InfiltrationMission == "Retrieve") && (InfiltrationTarget.Type = "PandoraPadlockKeys")); }
+
+/**
  * Loads the infiltration screen by generating the supervisor.
  * @returns {void} - Nothing
  */
@@ -107,6 +119,7 @@ function InfiltrationPrepareMission() {
 		CharacterRandomName(C);
 		InfiltrationTarget.Type = "NPC";
 		InfiltrationTarget.Name = C.Name;
+		InfiltrationTarget.PrivateRoom = false;
 	} else {
 		InfiltrationTarget.Type = CommonRandomItemFromList(InfiltrationTarget.Type, InfiltrationObjectType);
 		InfiltrationTarget.Name = DialogFind(InfiltrationSupervisor, "Object" + InfiltrationTarget.Type);
@@ -151,6 +164,11 @@ function InfiltrationCompleteMission() {
 	let Money = 12 + (InfiltrationDifficulty * 6);
 	if (InfiltrationPerksActive("Negotiation")) Money = Math.round(Money * 1.2);
 	CharacterChangeMoney(Player, Money);
+	if ((InfiltrationMission == "Rescue") && (InfiltrationTarget.Type == "NPC") && InfiltrationTarget.PrivateRoom) {
+		NPCEventAdd(PrivateRansomCharacter, "Kidnap", CurrentTime);
+		if (PrivateRansomCharacter.Love < 50) PrivateRansomCharacter.Love = 50;
+		ServerPrivateCharacterSync();
+	}
 }
 
 /**
@@ -191,18 +209,22 @@ function InfiltrationPayRansom(Type) {
  * @returns {void} - Nothing
  */
 function InfiltrationStartKidnapping() {
-	let IntroText = TextGet("PandoraKidnapperIntro" + Math.floor(Math.random() * 5));
+	let Type = "Kidnapper";
+	if ((InventoryAvailable(Player, "PandoraPadlock", "ItemMisc") || InventoryAvailable(Player, "PandoraPadlockKey", "ItemMisc")) && (Math.random() >= 0.5)) Type = "Dominatrix";
+	let IntroText = TextGet("Pandora" + Type + "Intro" + Math.floor(Math.random() * 5));
 	IntroText = IntroText.replace("DialogPlayerName", Player.Name);
 	CommonSetScreen("Room", "Infiltration");
 	InfiltrationBackground = MainHallBackground;
-	CharacterDelete("NPC_Infiltration_Kidnapper");
-	delete CommonCSVCache["Screens/Room/Infiltration/NPC_Infiltration_Kidnapper.csv"];
-	InfiltrationKidnapper = CharacterLoadNPC("NPC_Infiltration_Kidnapper");
+	CharacterDelete("NPC_Infiltration_" + Type);
+	delete CommonCSVCache["Screens/Room/Infiltration/NPC_Infiltration_" + Type + ".csv"];
+	InfiltrationKidnapper = CharacterLoadNPC("NPC_Infiltration_" + Type);
 	CharacterRandomName(InfiltrationKidnapper);
 	CharacterRelease(InfiltrationKidnapper);
 	InfiltrationKidnapper.Stage = "0";
-	CharacterAppearanceFullRandom(InfiltrationKidnapper);
-	CharacterRefresh(InfiltrationKidnapper, false);
+	if (Type == "Kidnapper") {
+		CharacterAppearanceFullRandom(InfiltrationKidnapper);
+		CharacterRefresh(InfiltrationKidnapper, false);
+	} else PandoraDress(InfiltrationKidnapper, "Mistress");
 	CharacterSetCurrent(InfiltrationKidnapper);
 	InfiltrationKidnapper.CurrentDialog = IntroText;
 }
@@ -218,7 +240,14 @@ function InfiltrationEndKidnapping(Reward) {
 		CurrentScreen = "Private";
 		PrivateAddCharacter(CurrentCharacter);
 		CommonSetScreen("Room", "Private");
-		PrivateCharacter[PrivateCharacter.length - 1].Love = -80;
+		let C = PrivateCharacter[PrivateCharacter.length - 1];
+		C.Love = -80;
+		C.FromPandora = true;
+		if (InventoryIsWorn(C, "MistressBoots", "Shoes")) {
+			C.Title = "Dominatrix";
+			NPCTraitSet(C, "Dominant", 50 + Math.floor(Math.random() * 51));
+		}
+		ServerPrivateCharacterSync();
 		DialogLeave();
 		return;
 	}
@@ -288,4 +317,61 @@ function InfiltrationKidnapperUngag() {
  */
 function InfiltrationCanBringToRoom() {
 	return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax));
+}
+
+/**
+ * Removes the Pandora Locks and Keys from the player inventory, ends the scene
+ * @returns {void} - Nothing
+ */
+function InfiltrationStealItems() {
+	InventoryDelete(Player, "PandoraPadlock", "ItemMisc");
+	InventoryDelete(Player, "PandoraPadlockKey", "ItemMisc");
+	InfiltrationEndKidnapping();
+}
+
+/**
+ * Starts the Pandora's padlock special mission, cannot be given randomly
+ * @returns {void} - Nothing
+ */
+function InfiltrationStartPandoraLock() {
+	InfiltrationMission	= "Retrieve";
+	InfiltrationTarget.Type = "PandoraPadlockKeys";
+	InfiltrationTarget.Name = DialogFind(InfiltrationSupervisor, "Object" + InfiltrationTarget.Type);
+	InfiltrationTarget.Found = false;
+	InfiltrationDifficulty = 4;
+	InfiltrationRandomClothes();
+}
+
+/**
+ * Add the Pandora locks and keys to the player inventory
+ * @returns {void} - Nothing
+ */
+function InfiltrationGetPandoraLock() {
+	InventoryAdd(Player, "PandoraPadlock", "ItemMisc");
+	InventoryAdd(Player, "PandoraPadlockKey", "ItemMisc");
+}
+
+/**
+ * Pays for the ransom to free a friend from the private room
+ * @returns {void} - Nothing
+ */
+function InfiltrationRansomFriend() {
+	NPCEventAdd(PrivateRansomCharacter, "Kidnap", CurrentTime);
+	if (PrivateRansomCharacter.Love < 0) PrivateRansomCharacter.Love = 0;
+	ServerPrivateCharacterSync();
+	CharacterChangeMoney(Player, -100);
+}
+
+/**
+ * Starts a rescue mission for the NPC in the private room
+ * @returns {void} - Nothing
+ */
+function InfiltrationStartNPCRescue() {
+	InfiltrationMission	= "Rescue";
+	InfiltrationTarget.Type = "NPC";
+	InfiltrationTarget.Name = PrivateRansomCharacter.Name;
+	InfiltrationTarget.PrivateRoom = true;
+	InfiltrationTarget.Found = false;
+	InfiltrationDifficulty = 2;
+	InfiltrationRandomClothes();
 }

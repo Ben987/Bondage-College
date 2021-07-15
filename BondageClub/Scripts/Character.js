@@ -124,7 +124,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 			return this.GetBlindLevel() > 0;
 		},
 		IsEnclose: function () {
-			return (this.Effect.indexOf("Enclose") >= 0);
+			return (this.Effect.indexOf("Enclose") >= 0 || (this.Effect.indexOf("OneWayEnclose") >= 0 && this.ID == 0));
 		},
 		IsMounted: function () {
 			return (this.Effect.indexOf("Mounted") >= 0);
@@ -708,7 +708,7 @@ function CharacterCanChangeToPose(C, poseName) {
 /**
  * Checks if a certain pose is whitelisted and available for the pose menu
  * @param {Character} C - Character to check for the pose
- * @param {string} Type - Pose type to check for within items
+ * @param {string|undefined} Type - Pose type to check for within items
  * @param {string} Pose - Pose to check for whitelist
  * @returns {boolean} - TRUE if the character has the pose available
  */
@@ -1295,7 +1295,7 @@ function CharacterResetFacialExpression(C) {
 
 /**
  * Gets the currently selected character
- * @returns {Character} - Currently selected character
+ * @returns {Character|null} - Currently selected character
  */
 function CharacterGetCurrent() {
 	return (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -1471,7 +1471,6 @@ function CharacterGetClumsiness(C) {
 	return Math.min(clumsiness, 5);
 }
 
-
 /**
  * Applies hooks to a character based on conditions
  * Future hooks go here
@@ -1490,7 +1489,7 @@ function CharacterCheckHooks(C, IgnoreHooks) {
 
 			})) refresh = true;
 		} else if (C.UnregisterHook("BeforeSortLayers", "HideRestraints")) refresh = true;
-		
+
 		// Hook for layer visibility
 		// Visibility is a string individual layers have. If an item has any layers with visibility, it should have the LayerVisibility: true property
 		// We basically check the player's items and see if any are visible that have the LayerVisibility property.
@@ -1513,7 +1512,7 @@ function CharacterCheckHooks(C, IgnoreHooks) {
 					(Layer.Visibility == "Owner" && C.IsOwnedByPlayer()) ||
 					(Layer.Visibility == "Lovers" && C.IsLoverOfPlayer()) ||
 					(Layer.Visibility == "Mistresses" && LogQuery("ClubMistress", "Management"))
-					));
+				));
 			}))) refresh = true;
 			// Use the regular hook when the character is not
 			else if (!IgnoreHooks && (C.UnregisterHook("AfterLoadCanvas", "LayerVisibilityDialog") || C.RegisterHook("AfterLoadCanvas", "LayerVisibility", (C) => {
@@ -1526,12 +1525,27 @@ function CharacterCheckHooks(C, IgnoreHooks) {
 					(Layer.Visibility == "Owner" && C.IsOwnedByPlayer()) ||
 					(Layer.Visibility == "Lovers" && C.IsLoverOfPlayer()) ||
 					(Layer.Visibility == "Mistresses" && LogQuery("ClubMistress", "Management"))
-					));
+				));
 			}))) refresh = true;
-			
+
 		} else if (C.UnregisterHook("AfterLoadCanvas", "LayerVisibility")) refresh = true;
 	}
 
 	if (refresh) CharacterLoadCanvas(C);
 	return refresh;
+}
+
+
+/**
+ * Transfers an item from one character to another
+ * @param {Character} FromC - The character from which to pick the item
+ * @param {Character} ToC - The character on which we must put the item
+ * @param {string} Group - The item group to transfer (Cloth, Hat, etc.)
+ * @returns {void} - Nothing
+ */
+function CharacterTransferItem(FromC, ToC, Group, Refresh) {
+	let Item = InventoryGet(FromC, Group);
+	if (Item == null) return;
+	InventoryWear(ToC, Item.Asset.Name, Group, Item.Color, Item.Difficulty);
+	if (Refresh) CharacterRefresh(ToC);
 }

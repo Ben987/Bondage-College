@@ -11,7 +11,7 @@ var InventoryItemDevicesFuturisticCrateOptions = [
 		},
 		{
 			Name: "Window",
-			Property: { Type: "Window" , Effect: ["BlindMedium", "GagLight", "Prone", "Freeze", "Enclose"]},
+			Property: { Type: "Window", Effect: ["BlindNormal", "GagLight", "Prone", "Freeze", "Enclose"]},
 		},
 		{
 			Name: "Closed",
@@ -58,7 +58,7 @@ function InventoryItemDevicesFuturisticCratePublishAction(C, Option) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemDevicesFuturisticCrateValidate(C) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
+function InventoryItemDevicesFuturisticCrateValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item); // All futuristic items refer to the gag
 }
 

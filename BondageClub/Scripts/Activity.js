@@ -338,14 +338,14 @@ function ActivityOrgasmStart(C) {
 	if ((C.ID == 0) || C.IsNpc()) {
 		if (C.ID == 0 && !ActivityOrgasmRuined) ActivityOrgasmGameResistCount = 0;
 		ActivityOrgasmWillpowerProgress(C);
-		
+
 		if (!ActivityOrgasmRuined) {
-		
+
 			C.ArousalSettings.OrgasmTimer = CurrentTime + (Math.random() * 10000) + 5000;
 			C.ArousalSettings.OrgasmStage = 2;
 			C.ArousalSettings.OrgasmCount = (C.ArousalSettings.OrgasmCount == null) ? 1 : C.ArousalSettings.OrgasmCount + 1;
 			ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
-			
+
 			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
 				let Dictionary = [];
 				Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
@@ -354,7 +354,7 @@ function ActivityOrgasmStart(C) {
 			}
 		} else {
 			ActivityOrgasmStop(Player, 65 + Math.ceil(Math.random()*20));
-			
+
 			if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
 				let Dictionary = [];
 				let ChatModifier = C.ArousalSettings.OrgasmStage == 1 ? "Timeout" : "Surrender";
@@ -363,8 +363,8 @@ function ActivityOrgasmStart(C) {
 				ActivityChatRoomArousalSync(C);
 			}
 		}
-		
-		
+
+
 	}
 }
 
@@ -421,12 +421,12 @@ function ActivityOrgasmGameGenerate(Progress) {
 /**
  * Triggers an orgasm for the player or an NPC which lasts from 5 to 15 seconds
  * @param {Character} C - Character for which an orgasm was triggered
- * @param {bool} Bypass - If true, this will do a ruined orgasm rather than a real one
+ * @param {boolean} [Bypass=false] - If true, this will do a ruined orgasm rather than a real one
  * @returns {void} - Nothing
  */
 function ActivityOrgasmPrepare(C, Bypass) {
 	ActivityOrgasmRuined = false;
-	
+
 	if (C.Effect.includes("DenialMode")) {
 		C.ArousalSettings.Progress = 99;
 		if (C.ID == 0 && (Bypass || C.Effect.includes("RuinOrgasms"))) ActivityOrgasmRuined = true;
@@ -438,7 +438,7 @@ function ActivityOrgasmPrepare(C, Bypass) {
 		if (C.ID == 0 && Bypass) ActivityOrgasmRuined = true;
 		else return;
 	}
-	
+
 	if (C.ID == 0 && ActivityOrgasmRuined) {
 		ActivityOrgasmGameGenerate(0); // Resets the game
 	}

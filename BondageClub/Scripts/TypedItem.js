@@ -138,15 +138,15 @@ function TypedItemCreateClickFunction({ options, functionPrefix, drawImages }) {
  */
 function TypedItemCreateValidateFunction({ changeWhenLocked, options, functionPrefix, validate }) {
 	const validateFunctionName = `${functionPrefix}Validate`;
-	window[validateFunctionName] = function (C, option) {
+	window[validateFunctionName] = function (C, item, option, currentOption) {
 		let message = "";
 
 		if (typeof validate === "function") {
-			message = validate(C, option);
+			message = validate(C, item, option, currentOption);
 		}
 
-		const itemLocked = DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.LockedBy;
-		if (!message && !changeWhenLocked && itemLocked && !DialogCanUnlock(C, DialogFocusItem)) {
+		const itemLocked = item && item.Property && item.Property.LockedBy;
+		if (!message && !changeWhenLocked && itemLocked && !DialogCanUnlock(C, item)) {
 			message = DialogFindPlayer("CantChangeWhileLocked");
 		}
 
@@ -270,6 +270,18 @@ function TypedItemGetOptions(groupName, assetName) {
 }
 
 /**
+ * Returns a list of typed item option names available for the given asset, or an empty array if the asset is not typed
+ * @param {string} groupName - The name of the asset group
+ * @param {string} assetName - The name of the asset
+ * @returns {string[]} - The option names available for the asset, or an empty array if the asset is not typed or no
+ * typed item data was found
+ */
+function TypedItemGetOptionNames(groupName, assetName) {
+	const options = TypedItemGetOptions(groupName, assetName);
+	return options ? options.map(option => option.Name) : [];
+}
+
+/**
  * Returns the named option configuration object for a typed item
  * @param {string} groupName - The name of the asset group
  * @param {string} assetName - The name of the asset
@@ -279,4 +291,153 @@ function TypedItemGetOptions(groupName, assetName) {
 function TypedItemGetOption(groupName, assetName, optionName) {
 	const options = TypedItemGetOptions(groupName, assetName);
 	return options ? options.find(option => option.Name === optionName) : null;
+}
+
+/**
+ * Validates a selected option. A typed item may provide a custom validation function. Returning a non-empty string from
+ * the validation function indicates that the new option is not compatible with the character's current state (generally
+ * due to prerequisites or other requirements).
+ * @param {Character} C - The character on whom the item is equipped
+ * @param {Item} item - The item whose options are being validated
+ * @param {ExtendedItemOption|ModularItemOption} option - The new option
+ * @param {ExtendedItemOption|ModularItemOption} previousOption - The previously applied option
+ * @returns {string|undefined} - undefined or an empty string if the validation passes. Otherwise, returns a string
+ * message informing the player of the requirements that are not met.
+ */
+function TypedItemValidateOption(C, item, option, previousOption) {
+	if (option.Property && option.Property.Type && InventoryBlockedOrLimited(C, item, option.Property.Type)) {
+		return DialogFindPlayer("ExtendedItemNoItemPermission");
+	}
+	const validationFunctionName = `Inventory${item.Asset.Group.Name}${item.Asset.Name}Validate`;
+	let validationMessage = CommonCallFunctionByName(validationFunctionName, C, item, option, previousOption);
+	if (!validationMessage || typeof validationMessage !== "string") {
+		validationMessage = ExtendedItemValidate(C, item, option, previousOption);
+	}
+	return validationMessage;
+}
+
+/**
+ * Sets a typed item's type and properties to the option whose name matches the provided option name parameter.
+ * @param {Character} C - The character on whom the item is equipped
+ * @param {Item|string} itemOrGroupName - The item whose type to set, or the group name for the item
+ * @param {string} optionName - The name of the option to set
+ * @param {boolean} [push] - Whether or not appearance updates should be persisted (only applies if the character is the
+ * player) - defaults to false.
+ * @returns {string|undefined} - undefined or an empty string if the type was set correctly. Otherwise, returns a string
+ * informing the player of the requirements that are not met.
+ */
+function TypedItemSetOptionByName(C, itemOrGroupName, optionName, push = false) {
+	const item = typeof itemOrGroupName === "string" ? InventoryGet(C, itemOrGroupName) : itemOrGroupName;
+
+	if (!item) return;
+
+	const assetName = item.Asset.Name;
+	const groupName = item.Asset.Group.Name;
+	const warningMessage = `Cannot set option for ${groupName}:${assetName} to ${optionName}`;
+
+	if (item.Asset.Archetype !== ExtendedArchetype.TYPED) {
+		const msg = `${warningMessage}: item does not use the typed archetype`;
+		console.warn(msg);
+		return msg;
+	}
+
+	const options = TypedItemGetOptions(groupName, assetName);
+	const option = options.find(o => o.Name === optionName);
+
+	if (!option) {
+		const msg = `${warningMessage}: option "${optionName}" does not exist`;
+		console.warn(msg);
+		return msg;
+	}
+
+	return TypedItemSetOption(C, item, options, option);
+}
+
+/**
+ * Sets a typed item's type and properties to the option provided.
+ * @param {Character} C - The character on whom the item is equipped
+ * @param {Item} item - The item whose type to set
+ * @param {ExtendedItemOption[]} options - The typed item options for the item
+ * @param {ExtendedItemOption} option - The option to set
+ * @param {boolean} [push] - Whether or not appearance updates should be persisted (only applies if the character is the
+ * player) - defaults to false.
+ * @returns {string|undefined} - undefined or an empty string if the type was set correctly. Otherwise, returns a string
+ * informing the player of the requirements that are not met.
+ */
+function TypedItemSetOption(C, item, options, option, push = false) {
+	if (!item || !options || !option) return;
+
+	const previousProperty = item.Property || options[0].Property;
+	const previousOption = TypedItemFindPreviousOption(item, options);
+
+	const requirementMessage = TypedItemValidateOption(C, item, option, previousOption);
+	if (requirementMessage) {
+		return requirementMessage;
+	}
+
+	// Create a new Property object based on the previous one
+	const newProperty = Object.assign({}, previousProperty);
+	// Delete properties added by the previous option
+	for (const key of Object.keys(previousOption.Property)) {
+		delete newProperty[key];
+	}
+	// Clone the new properties and use them to extend the existing properties
+	Object.assign(newProperty, JSON.parse(JSON.stringify(option.Property)));
+
+	// If the item is locked, ensure it has the "Lock" effect
+	if (newProperty.LockedBy && !(newProperty.Effect || []).includes("Lock")) {
+		newProperty.Effect = (newProperty.Effect || []);
+		newProperty.Effect.push("Lock");
+	}
+
+	item.Property = newProperty;
+	CharacterRefresh(C, push);
+}
+
+/**
+ * Finds the currently set option on the given typed item
+ * @param {Item} item - The equipped item
+ * @param {ExtendedItemOption[]} options - The list of available options for the item
+ * @returns {ExtendedItemOption} - The option which is currently applied to the item, or the first item in the options
+ * array if no type is set.
+ */
+function TypedItemFindPreviousOption(item, options) {
+	const previousProperty = item.Property || options[0].Property;
+	const previousType = previousProperty.Type;
+	return options.find(o => o.Property.Type === previousType) || options[0];
+}
+
+/**
+ * Sets a typed item's type to a random option, respecting prerequisites and option validation.
+ * @param {Character} C - The character on whom the item is equipped
+ * @param {Item|string} itemOrGroupName - The item whose type to set, or the group name for the item
+ * @param {boolean} [push] - Whether or not appearance updates should be persisted (only applies if the character is the
+ * player) - defaults to false.
+ * @returns {string|undefined} - undefined or an empty string if the type was set correctly. Otherwise, returns a string
+ * informing the player of the requirements that are not met.
+ */
+function TypedItemSetRandomOption(C, itemOrGroupName, push = false) {
+	const item = typeof itemOrGroupName === "string" ? InventoryGet(C, itemOrGroupName) : itemOrGroupName;
+
+	if (!item || item.Asset.Archetype !== ExtendedArchetype.TYPED) {
+		console.warn("Cannot set random option: item does not exist or does not use the typed archetype");
+		return;
+	}
+
+	/** @type {ExtendedItemOption[]} */
+	const allOptions = TypedItemGetOptions(item.Asset.Group.Name, item.Asset.Name);
+	// Avoid blocked & non-random options
+	const availableOptions = allOptions
+		.filter(option => option.Random !== false)
+		.filter(option => !InventoryBlockedOrLimited(C, item, option.Property.Type));
+
+	/** @type {ExtendedItemOption} */
+	let option;
+	if (availableOptions.length === 0) {
+		// If no options are available, use the null type
+		option = allOptions.find(O => O.Property.Type == null);
+	} else {
+		option = CommonRandomItemFromList(null, availableOptions);
+	}
+	return TypedItemSetOption(C, item, availableOptions, option, push);
 }

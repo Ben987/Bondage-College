@@ -42,8 +42,8 @@ function InventoryItemArmsFuturisticArmbinderExit() {
 	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
-function InventoryItemArmsFuturisticArmbinderValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
+function InventoryItemArmsFuturisticArmbinderValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item);
 }
 
 function InventoryItemArmsFuturisticArmbinderPublishAction(C, Option) {

@@ -151,7 +151,6 @@ function ColorPickerGetCoordinates(Event) {
 function ColorPickerPickHue(Event) {
 	var C = ColorPickerGetCoordinates(Event);
 	ColorPickerHSV.H = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
-	ColorPickerLastHSV = Object.assign({}, ColorPickerHSV);
 	ColorPickerNotify();
 }
 
@@ -169,7 +168,6 @@ function ColorPickerPickSV(Event) {
 	var V = 1 - (C.Y - SVPanelOffset) / SVPanelHeight;
 	ColorPickerHSV.S = Math.max(0, Math.min(1, S));
 	ColorPickerHSV.V = Math.max(0, Math.min(1, V));
-	ColorPickerLastHSV = Object.assign({}, ColorPickerHSV);
 	ColorPickerNotify();
 }
 
@@ -194,26 +192,7 @@ function ColorPickerSelectFromPalette(Event) {
 function ColorPickerSelectFromFavorites(Event) {
 	var C = ColorPickerGetCoordinates(Event);
 	var P = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
-	var SelectedIndex;
-
-	if(P < (1/6)){
-		SelectedIndex = 0;
-	}
-	else if(P < (2/6)){
-		SelectedIndex = 1;
-	}
-	else if(P < (3/6)){
-		SelectedIndex = 2;
-	}
-	else if(P < (4/6)){
-		SelectedIndex = 3;
-	}
-	else if(P < (5/6)){
-		SelectedIndex = 4;
-	}
-	else{
-		SelectedIndex = 5;
-	}
+	var SelectedIndex = Math.min(Math.floor(P * 6), 5);
 
 	if (SelectedIndex == ColorPickerSelectedFavoriteIndex){
 		ColorPickerHSV = Object.assign({}, Player.SavedColors[ColorPickerSelectedFavoriteIndex + (ColorPickerFavoritesPage * 6)]);
@@ -253,15 +232,17 @@ function ColorPickerSelectButton(Event) {
 
 /**
  * Alters the color picker display based on the selected value
+ * @param {boolean} [sourceElementChanged=false] - True if the color was updated by the text input element
  * @returns {void} - Nothing
  */
-function ColorPickerNotify() {
-	ColorPickerCSS = ColorPickerHSVToCSS(ColorPickerHSV);
+function ColorPickerNotify(sourceElementChanged = false) {
+	ColorPickerLastHSV = Object.assign({}, ColorPickerHSV);
+	if (!sourceElementChanged) ColorPickerCSS = ColorPickerHSVToCSS(ColorPickerHSV);
 	if (ColorPickerCallback) {
 		ColorPickerCallback(ColorPickerCSS);
 	}
 
-	if (ColorPickerSourceElement) {
+	if (!sourceElementChanged && ColorPickerSourceElement) {
 		ColorPickerSourceElement.value = ColorPickerCSS;
 	}
 }
@@ -319,7 +300,7 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
 	ColorPickerLayout.SaveButtonX = X + (((ColorPickerWidth / 6) - 90) / 2);
 	ColorPickerLayout.PrevButtonX = X + (ColorPickerWidth / 6) + (((ColorPickerWidth / 6) - 90) / 2);
 	ColorPickerLayout.NextButtonX = X + (ColorPickerWidth / 3) + (((ColorPickerWidth / 6) - 90) / 2);
-	
+
 	var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
 	var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
 	var PaletteOffset = ColorPickerLayout.PaletteOffset;
@@ -327,9 +308,9 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
 	var FavoritesPaletteOffset = ColorPickerLayout.FavoritesPaletteOffset;
 	var FavoritesPaletteHeight = ColorPickerLayout.FavoritesPaletteHeight;
 	var ButtonOffset = ColorPickerLayout.ButtonOffset;
-	var NextButtonX = ColorPickerLayout.NextButtonX
-	var SaveButtonX = ColorPickerLayout.SaveButtonX
-	var PrevButtonX = ColorPickerLayout.PrevButtonX
+	var NextButtonX = ColorPickerLayout.NextButtonX;
+	var SaveButtonX = ColorPickerLayout.SaveButtonX;
+	var PrevButtonX = ColorPickerLayout.PrevButtonX;
 
 	var HSV;
 	if (ColorPickerInitialHSV == null) {
@@ -359,12 +340,9 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
 			if (CommonIsColor(UserInputColor)) {
 				ColorPickerIsDefault = false;
 				if (!ColorPickerCSSColorEquals(UserInputColor, ColorPickerCSS)) {
-					if (ColorPickerCallback) {
-						// Fire callback due to source element changed by user interaction
-						ColorPickerCallback(UserInputColor);
-					}
 					ColorPickerCSS = UserInputColor;
 					ColorPickerHSV = ColorPickerCSSToHSV(UserInputColor, ColorPickerHSV);
+					ColorPickerNotify(true);
 				}
 			} else if (UserInputColor === "DEFAULT" && !ColorPickerIsDefault) {
 				ColorPickerIsDefault = true;

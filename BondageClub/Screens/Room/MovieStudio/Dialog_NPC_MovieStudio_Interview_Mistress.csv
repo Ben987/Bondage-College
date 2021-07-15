@@ -104,7 +104,7 @@ PunishmentChastity,400,Not a chastity belt!,Damn right.  You will both be locked
 501,,(Use the whip on her.),(You take turns to whip her as she screams with each lash.)  Aaargh!  Get me out and I'll show you how to use a whip.,"DoActivity(""InterviewMistressWhip"")","CanDoActivity(""InterviewMistressWhip"")"
 501,,(Use the cattle prod on her.),(You and the maid zap her with the cattle prod as the camera zooms in.)  Careful with these!,"DoActivity(""InterviewMistressProd"")","CanDoActivity(""InterviewMistressProd"")"
 501,,(Masturbate in front of her.),(You masturbate and moan in front of her as she gets angrier.)  Get me out now!,"DoActivity(""InterviewMistressMasturbate"")",
-501,,(Make out with the maid.),(You and the maid start to make out in front of her as she trashes in her bondage.),"DoActivity(""InterviewMistressMakeOut"")",
+501,,(Make out with the maid.),(You and the maid start to make out in front of her as she thrashes in her bondage.),"DoActivity(""InterviewMistressMakeOut"")",
 501,,(Leave her.),,DialogLeave(),
 1000,1010,"It's fine, I can do the interview like that.",Well aren't you a kinky journalist?  (She spanks your butt.)  Let's do that interview.,"DoActivity(""InterviewMistressSpankPlayer"")",
 1000,1010,"Yes, I should dress back up.",(You dress back up slowly as the camera follows your moves.)  Let's do that interview.,"DoActivity(""InterviewMistressChangePlayerBack"")",

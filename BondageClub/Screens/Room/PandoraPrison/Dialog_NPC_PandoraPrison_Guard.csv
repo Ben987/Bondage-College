@@ -11,7 +11,7 @@ ItemEars,,,(She seems angry as you push earplugs inside.)  How can I follow your
 RemoveItemEars,,,(You pull the earplugs out.)  You're only adding more time to your sentence.,,
 ItemArms,,,(She struggles as you restrain her arms securely.)  You're breaking the law again.,,
 RemoveItemArms,,,(You free her arms and she stretches.)  You're still under arrest.,,
-ItemLegs,,,(She trashes as you restrain her legs.)  You better carry me then!,,
+ItemLegs,,,(She thrashes as you restrain her legs.)  You better carry me then!,,
 RemoveItemLegs,,,(You release her legs.)  Justice will strike you down like a hammer.,,
 ItemFeet,,,(She grumbles as you restrain her feet.)  This will be reported in your trial.,,
 RemoveItemFeet,,,(You release her feet.)  Let's walk until you get caught.,,
@@ -171,3 +171,34 @@ BeatThird,BeatLeave,(Take long deep breaths.),(She hits you swiftly a few times 
 BeatLeave,,You're a sadist!,Thanks!  It's one of my many qualities.  I'll see you later.  (She starts to walk away.),DialogRemove(),Player.CanTalk()
 BeatLeave,,(Grumble in your gag.),"That gag fits you so well, you can keep it.  See you later.  (She starts to walk away.)",DialogRemove(),!Player.CanTalk()
 BeatLeave,,(Leave her.),,CharacterRemove(),
+IntroTickle,,,"(Guard DialogCharacterName comes with a leather bag.)  Prisoner DialogPlayerName, we need some information on the Bondage Club.",,
+IntroRestrainedTickle,,,"(Guard DialogCharacterName comes with a leather bag.)  Prisoner DialogPlayerName, we need some information on the Bondage Club.",,
+Tickle,TickleStart,You won't get any information from me.,"(She picks a tickling item and smirks.)  I'll make a great deal with you: you talk, I'll shorten your sentence and I won't tickle you.",PickTickle(),Player.CanTalk()
+Tickle,TickleStart,What will you give me if I squeal?,"(She picks a tickling item and smirks.)  I'll make a great deal with you: you talk, I'll shorten your sentence and I won't tickle you.",PickTickle(),Player.CanTalk()
+Tickle,TickleStart,I don't know anything.,"(She picks a tickling item and smirks.)  I'll make a great deal with you: you talk, I'll shorten your sentence and I won't tickle you.",PickTickle(),Player.CanTalk()
+Tickle,TickleStart,(Mumble some words.),"(She removes your gag and picks a tickling item.)  I'll make a great deal with you: you talk, I'll shorten your sentence and I won't tickle you.",PickTickle(),!Player.CanTalk()
+Tickle,TickleStart,(Try to shake your gag off.),"(She removes your gag and picks a tickling item.)  I'll make a great deal with you: you talk, I'll shorten your sentence and I won't tickle you.",PickTickle(),!Player.CanTalk()
+Tickle,TickleStart,(Nod slowly.),"(She removes your gag and picks a tickling item.)  I'll make a great deal with you: you talk, I'll shorten your sentence and I won't tickle you.",PickTickle(),!Player.CanTalk()
+TickleStart,TickleSecond,No deal!,Very well.  (She grins and starts to tickle you without mercy.)  You will talk sooner or later.,PlayerTickle(3),
+TickleStart,TickleSecond,Wait!  I have a better bargain.,I'm not here to negotiate.  (She starts to tickle you playfully.)  You will talk sooner or later.,PlayerTickle(2),
+TickleStart,TickleSecond,Let me think about it.,I don't have time to wait.  (She starts to tickle you slowly.)  You will talk sooner or later.,PlayerTickle(1),
+TickleStart,TickleSqueal,"Fine, I'll talk.  (Give her some information.)","(She takes notes as you give her some information on the Bondage Club.)  Alright, I'll shorten your sentence for this.",PlayerSqueal(3),
+TickleStart,TickleSqueal,I'll tell you everything.  (Give her lots of information.),"(She takes notes as you give her lots of information on the Bondage Club.)  Very good, I'll shorten your sentence for this.",PlayerSqueal(5),
+TickleSecond,TickleThird,Eeeeeeeaaaahahaha!,(She laughs with you and continues to tickle you playfully.)  You know what to do to make it stop.,PlayerTickle(2),
+TickleSecond,TickleThird,Give me a break and I'll talk.,"No break, you need to talk now.  (She tickles you slowly.)  You know what to do to make it stop.",PlayerTickle(1),
+TickleSecond,TickleThird,That's the best you can do?,I can do much worse.  (She tickles you without mercy.)  You know what to do to make it stop.,PlayerTickle(3),
+TickleSecond,TickleSqueal,I'll tell you everything.  (Give her lots of information.),"(She takes notes as you give her lots of information on the Bondage Club.)  Very good, I'll shorten your sentence for this.",PlayerSqueal(5),
+TickleSecond,TickleSqueal,"Fine, I'll talk.  (Give her some information.)","(She takes notes as you give her some information on the Bondage Club.)  Alright, I'll shorten your sentence for this.",PlayerSqueal(3),
+TickleThird,TickleEnd,I cannot focus when you tickle me.,(She tickles you slowly.)  I'm getting tired of this.  It's your last chance to talk and get a shorter stay.,PlayerTickle(1),
+TickleThird,TickleEnd,Fuck you!  I'm not talking!,(She tickles you without mercy.)  I'm getting tired of this.  It's your last chance to talk and get a shorter stay.,PlayerTickle(3),
+TickleThird,TickleEnd,Oooooeeeehehe!  Aaaahh!  Stop!,(She tickles you some more.)  I'm getting tired of this.  It's your last chance to talk and get a shorter stay.,PlayerTickle(2),
+TickleThird,TickleSqueal,"Fine, I'll talk.  (Give her some information.)","(She takes notes as you give her some information on the Bondage Club.)  Alright, I'll shorten your sentence for this.",PlayerSqueal(3),
+TickleThird,TickleSqueal,I'll tell you everything.  (Give her lots of information.),"(She takes notes as you give her lots of information on the Bondage Club.)  Very good, I'll shorten your sentence for this.",PlayerSqueal(5),
+TickleEnd,TickleLeave,I'll never talk.,"Fine, have fun struggling.  I'm leaving for now.  (She starts to walk away.)",,
+TickleEnd,TickleLeave,Your torture methods are lame.,I'll do better next time.  I'm leaving for now.  (She starts to walk away.),,
+TickleEnd,TickleSqueal,"Fine, I'll talk.  (Give her some information.)","(She takes notes as you give her some information on the Bondage Club.)  Alright, I'll shorten your sentence for this.",PlayerSqueal(3),
+TickleEnd,TickleSqueal,I'll tell you everything.  (Give her lots of information.),"(She takes notes as you give her lots of information on the Bondage Club.)  Very good, I'll shorten your sentence for this.",PlayerSqueal(5),
+TickleSqueal,TickleLeave,You better do it.,A deal is a deal.  And no one will know you squealed.  I must leave for now.  (She starts to walk away.),,
+TickleSqueal,TickleLeave,Don't tell anyone I talked.,"Don't worry, nobody will know that you squealed.  I must leave for now.  (She starts to walk away.)",,
+TickleSqueal,TickleLeave,Can you also release me?,That's not part of the deal.  I must leave for now.  (She starts to walk away.),,
+TickleLeave,,(Leave her.),,CharacterRemove(),

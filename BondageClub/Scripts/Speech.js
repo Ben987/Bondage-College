@@ -74,7 +74,7 @@ function SpeechGetGagLevel(C, AssetGroup) {
  */
 function SpeechGetTotalGagLevel(C, NoDeaf=false) {
 	let GagEffect = 0;
-	
+
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth2");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth3");
@@ -105,10 +105,10 @@ function SpeechGetTotalGagLevel(C, NoDeaf=false) {
  */
 function SpeechGarble(C, CD, NoDeaf=false) {
 	let NS = CD;
-	
+
 	let GagEffect = SpeechGetTotalGagLevel(C, NoDeaf);
-	
-	
+
+
 	if (GagEffect > 0) NS = SpeechGarbleByGagLevel(GagEffect, CD);
 
 	// No gag effect, we return the regular text
