@@ -219,7 +219,7 @@ function InventorySpankingToysAvailableToys(C) {
  */
 function InventorySpankingToysGetType(C) {
 	var Toy = InventoryGet(C, "ItemHands");
-	if (Toy && Toy.Property && Toy.Property.Type) return Toy.Property.Type;
+	if (Toy && Toy.Asset.Name === "SpankingToys" && Toy.Property && Toy.Property.Type) return Toy.Property.Type;
 	else return "Crop";
 }
 
