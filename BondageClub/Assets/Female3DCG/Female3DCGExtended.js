@@ -2147,7 +2147,8 @@ var AssetFemale3DCGExtended = {
 					TypePrefix: "Chastity",
 					NpcPrefix: "Chastity",
 					ChatPrefix: "ChastityBeltBackShield",
-				}
+				},
+				ChangeWhenLocked: false,
 			},
 		}, // MetalChastityBelt
 		OrnateChastityBelt: {
