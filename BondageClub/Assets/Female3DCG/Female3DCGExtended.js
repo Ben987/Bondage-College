@@ -873,15 +873,15 @@ var AssetFemale3DCGExtended = {
 					},
 					{
 						Name: "Corset", Key: "co",
-						Options: [{ Property: { Hide: ["Corset"] } }, {}],
+						Options: [{ Property: { Hide: ["Corset", "ItemTorso"] } }, {}],
 					},
 					{
 						Name: "NipplesPiercings", Key: "np",
-						Options: [{ Property: { Hide: ["ItemNipplesPiercings"] } }, {}],
+						Options: [{ Property: { Hide: ["ItemNipplesPiercings", "ItemNipples", "ItemBreast"] } }, {}],
 					},
 					{
 						Name: "VulvaPiercings", Key: "vp",
-						Options: [{ Property: { Hide: ["ItemVulvaPiercings"] } }, {}],
+						Options: [{ Property: { Hide: ["ItemVulvaPiercings", "Panties", "ItemPelvis"] } }, {}],
 					},
 				],
 				ChangeWhenLocked: false,
