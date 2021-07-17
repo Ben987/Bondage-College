@@ -1768,8 +1768,18 @@ function ChatRoomMessage(data) {
 	// Make sure the message is valid (needs a Sender and Content)
 	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number")) {
 
-		// If we must reset the current game played in the room
-		if (data.Content == "ServerUpdateRoom") OnlineGameReset();
+		if (data.Content == "ServerUpdateRoom") {
+			// If we must reset the current game played in the room
+			OnlineGameReset();
+			
+			// If we must garble the chatroom name (immersion settings.)
+			if (Array.isArray(data.Dictionary)) {
+				let ChatRoomNameDictTag = data.Dictionary.find(el => el.Tag === "ChatRoomName");
+				if (ChatRoomNameDictTag) {
+					ChatRoomNameDictTag.Text = ChatSearchMuffle(ChatRoomNameDictTag.Text);
+				}
+			}
+		}
 
 		// Exits right away if the sender is ghosted
 		if (Player.GhostList.indexOf(data.Sender) >= 0) return;
