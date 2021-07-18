@@ -414,7 +414,7 @@ function InventoryFuturisticTrainingBeltCheckPunishSpeech(Item, LastTime) {
 			if (Item.Property.PunishRequiredSpeech > 0 && Item.Property.PunishRequiredSpeechWord && msg.length > 0) {
 				let gagLevel = SpeechGetTotalGagLevel(Player)
 				if (gagLevel < 8) {
-					let checkWord = SpeechGarbleByGagLevel(gagLevel, Item.Property.PunishRequiredSpeechWord.replace(/[^a-z0-9]/gmi, " ").replace(/\s+/g, " ")).toUpperCase();
+					let checkWord = SpeechGarble(Player, Item.Property.PunishRequiredSpeechWord, true).replace(/[^a-z0-9]/gmi, " ").replace(/\s+/g, " ").toUpperCase();
 					if (!msg.includes(checkWord)) return "RequiredSpeech";
 				}
 			}
