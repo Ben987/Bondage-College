@@ -484,7 +484,7 @@ function AssetsItemPelvisFuturisticTrainingBeltScriptUpdatePlayer(data, LastTime
 					InventoryItemPelvisFuturisticTrainingBeltUpdateVibeMode(C, Item);					
 				}
 				
-				AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, "RequiredSpeech", Item.Property.PunishRequiredSpeechWord, NoShock);
+				AssetsItemPelvisFuturisticChastityBeltScriptTrigger(C, Item, "RequiredSpeech", Item.Property.PunishRequiredSpeechWord.replace(/[^a-z0-9]/gmi, " ").replace(/\s+/g, " "), NoShock);
 			}
 		}
 	}
