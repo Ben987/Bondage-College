@@ -867,7 +867,13 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "BunnySuccubus2", Fetish: ["Pet"], Value: 35 },
-			{ Name: "WitchHat1", Value: 40 },
+			{
+				Name: "WitchHat1", Value: 40,
+				Layer: [
+					{ Name: "Hat" },
+					{ Name: "Band" },
+				]
+			},
 			{
 				Name: "PirateBandana1", Value: 15, Layer: [
 					{ Name: "Bandana" },
