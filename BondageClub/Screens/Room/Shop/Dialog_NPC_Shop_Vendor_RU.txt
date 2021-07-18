@@ -300,7 +300,7 @@ Do you need help?
 (She nods quickly.)  Yes, yes, yes!  Please help.
 (Она быстро кивает.) Да, да, да!  Пожалуйста помоги.
 ###_PLAYER
-Anything was stolen?
+Was anything stolen?
 Что-нибудь украли?
 ###_NPC
 (She shrugs.)  I sure hope not.

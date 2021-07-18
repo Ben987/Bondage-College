@@ -15,6 +15,8 @@ var KidnapMode = "";
 var KidnapDialog = "";
 var KidnapPlayerMove = "";
 var KidnapOpponentMove = "";
+var KidnapPlayerDamage = 0;
+var KidnapOpponentDamage = 0;
 var KidnapResultPlayer = "test";
 var KidnapResultOpponent = "test";
 var KidnapResultUpperHand = "";
@@ -28,6 +30,7 @@ var KidnapMoveMap = [
 	[2, 0, 1, 2], // Sneakiness
 	[0, 0, 0, 0] // Meditation
 ];
+var KidnapRPS = ["Rock", "Scissors", "Paper"];
 
 /**
  * Generates the kidnap stats for the given character, factoring in any bonus it might have.
@@ -47,6 +50,27 @@ function KidnapLoadStats(C, Bonus) {
 }
 
 /**
+ * Builds a deck of kidnap cards for the character, the deck contains 7 random cards and must contain at least 1 card of each type
+ * @param {Character} C - The character for which to generate the cards
+ * @returns {void} - Nothing
+ */
+function KidnapBuildCards(C) {
+	let MoveTypeCount = [0, 0, 0];
+	while ((MoveTypeCount[0] == 0) || (MoveTypeCount[1] == 0) || (MoveTypeCount[2] == 0)) {
+		C.KidnapCard = [];
+		MoveTypeCount = [0, 0, 0];
+		while (C.KidnapCard.length < 7) {
+			let MoveType = Math.floor(Math.random() * 3);
+			MoveTypeCount[MoveType]++;
+			C.KidnapCard.push({Move: MoveType, Value: Math.floor(Math.random() * C.KidnapStat[MoveType]) + 2});
+		}
+	}
+	C.KidnapCard.sort((a, b) => (a.Value > b.Value) ? 1 : -1)
+	C.KidnapCard.sort((a, b) => (a.Move > b.Move) ? 1 : -1)
+	C.KidnapCard.push({Move: 3});
+}
+
+/**
  * Builds the inventory items that are available when kidnapping
  * @returns {void} - Nothing
  */
@@ -57,7 +81,7 @@ function KidnapInventoryBuild() {
 	if (KidnapOpponent.FocusGroup != null)
 		for (let A = 0; A < Player.Inventory.length; A++)
 			if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == KidnapOpponent.FocusGroup.Name) && Player.Inventory[A].Asset.Enable && Player.Inventory[A].Asset.Wear && Player.Inventory[A].Asset.Random)
-				DialogInventoryAdd(KidnapOpponent, Player.Inventory[A], false, DialogSortOrderEnabled);
+				DialogInventoryAdd(KidnapOpponent, Player.Inventory[A], false, DialogSortOrder.Enabled);
 	DialogInventorySort();
 
 }
@@ -117,29 +141,41 @@ function KidnapSetMode(NewMode) {
  */
 function KidnapAIMove() {
 
-	// Builds an array of each potential damage that can be done with a move, to rate that move, there's always at least a small odd
-	let MoveOdds = [10, 10, 10, 0];
-	for (let OppMove = 0; OppMove <= 2; OppMove++) {
-		for (let PlaMove = 0; PlaMove <= 2; PlaMove++) {
-			let PlaEff = Math.round(Player.KidnapStat[PlaMove] / (KidnapMoveEffective(Player, PlaMove) ? 1 : 2));
-			let OppEff = Math.round(KidnapOpponent.KidnapStat[OppMove] / (KidnapMoveEffective(KidnapOpponent, OppMove) ? 1 : 2));
-			if (KidnapMoveMap[OppMove][PlaMove] == 0) MoveOdds[OppMove] = MoveOdds[OppMove] - PlaEff;
-			if (KidnapMoveMap[OppMove][PlaMove] == 1) MoveOdds[OppMove] = MoveOdds[OppMove] + OppEff - PlaEff;
-			if (KidnapMoveMap[OppMove][PlaMove] == 2) MoveOdds[OppMove] = MoveOdds[OppMove] + OppEff;
-		}
-		if (MoveOdds[OppMove] <= 0) MoveOdds[OppMove] = 1;
+	// Builds a value for each moves and puts that value in an array
+	let MoveOdds = [];
+	for (let M = 0; M < KidnapOpponent.KidnapCard.length; M++) {
+		let Value = 10;
+		if (KidnapOpponent.KidnapCard[M].Move != 3)
+			for (let P = 0; P < Player.KidnapCard.length; P++) {
+				let PlaEff = Math.round(Player.KidnapCard[P].Value / (KidnapMoveEffective(Player, Player.KidnapCard[P].Move) ? 1 : 2));
+				let OppEff = Math.round(KidnapOpponent.KidnapCard[M].Value / (KidnapMoveEffective(KidnapOpponent, KidnapOpponent.KidnapCard[M].Move) ? 1 : 2));
+				if (KidnapMoveMap[KidnapOpponent.KidnapCard[M].Move][Player.KidnapCard[P].Move] == 0) Value = Value - PlaEff;
+				if (KidnapMoveMap[KidnapOpponent.KidnapCard[M].Move][Player.KidnapCard[P].Move] == 1) Value = Value + OppEff - PlaEff;
+				if (KidnapMoveMap[KidnapOpponent.KidnapCard[M].Move][Player.KidnapCard[P].Move] == 2) Value = Value + OppEff;
+			}
+		else
+			Value = (6 - KidnapOpponent.KidnapCard.length) * (Player.KidnapCard.length + 2);
+		if (Value < 0) Value = 0;
+		MoveOdds.push(Value);
 	}
+	
+	// Builds the total, if it's zero, we return a random move
+	let Total = 0;
+	for (let M = 0; M < MoveOdds.length; M++)
+		Total = Total + MoveOdds[M];
+	if (Total <= 0) return Math.floor(Math.random() * KidnapOpponent.KidnapCard.length);
 
-	// Meditation can start to happen when total of moves are 12 or less
-	MoveOdds[3] = (13 - KidnapOpponent.KidnapStat[0] - KidnapOpponent.KidnapStat[1] - KidnapOpponent.KidnapStat[2]) * 4;
-	if (MoveOdds[3] < 0) MoveOdds[3] = 0;
-
-	// Rolls a random result between all moves and returns it
-	let Result = Math.floor(Math.random() * (MoveOdds[0] + MoveOdds[1] + MoveOdds[2] + MoveOdds[3]));
-	if (Result < MoveOdds[0]) return 0;
-	if (Result < MoveOdds[0] + MoveOdds[1]) return 1;
-	if (Result < MoveOdds[0] + MoveOdds[1] + MoveOdds[2]) return 2;
-	return 3;
+	// Picks a random position in the best values, the higher the value, the higher the chance it will get picked
+	let Pos = Math.floor(Math.random() * Total);
+	let RunningTotal = 0;
+	for (let M = 0; M < MoveOdds.length; M++) {
+		if ((Pos >= RunningTotal) && (Pos <= RunningTotal + MoveOdds[M]))
+			return M;
+		RunningTotal = RunningTotal + MoveOdds[M];
+	}
+	
+	// No move found, we go full random
+	return Math.floor(Math.random() * KidnapOpponent.KidnapCard.length);
 
 }
 
@@ -223,8 +259,8 @@ function KidnapShowMove() {
 	DrawTextWrap(KidnapResultPlayer, 1410, 150, 580, 200, "white");
 	DrawTextWrap(KidnapResultOpponent, 1410, 350, 580, 200, "white");
 	DrawTextWrap(KidnapResultUpperHand, 1410, 550, 580, 200, "white");
-	DrawText(TextGet(KidnapMoveType[KidnapPlayerMove]), 750, 25, "white", "gray");
-	DrawText(TextGet(KidnapMoveType[KidnapOpponentMove]), 1250, 25, "white", "gray");
+	DrawText(TextGet(KidnapMoveType[KidnapPlayerMove]) + ((KidnapPlayerDamage != null) ? " - " + KidnapPlayerDamage.toString() : ""), 750, 25, "white", "gray");
+	DrawText(TextGet(KidnapMoveType[KidnapOpponentMove]) + ((KidnapOpponentDamage != null) ? " - " + KidnapOpponentDamage.toString() : ""), 1250, 25, "white", "gray");
 }
 
 /**
@@ -244,10 +280,12 @@ function KidnapMoveEffective(C, MoveType) {
  * @param {number} PlayerMove - Type of the player move (Represented by the index of the character move array)
  * @returns {void} - Nothing
  */
-function KidnapSelectMove(PlayerMove) {
+function KidnapSelectMove(CardIndex) {
 
 	// Gets both moves effectiveness
-	var OpponentMove = KidnapAIMove();
+	var OpponentCardIndex = KidnapAIMove();
+	var PlayerMove = Player.KidnapCard[CardIndex].Move;
+	var OpponentMove = KidnapOpponent.KidnapCard[OpponentCardIndex].Move;
 	var PM = KidnapMoveMap[PlayerMove][OpponentMove];
 	var OM = KidnapMoveMap[OpponentMove][PlayerMove];
 	KidnapDialog = "Player" + KidnapMoveType[PlayerMove] + "Opponent" + KidnapMoveType[OpponentMove];
@@ -256,19 +294,23 @@ function KidnapSelectMove(PlayerMove) {
 	KidnapPlayerMove = PlayerMove;
 	KidnapOpponentMove = OpponentMove;
 
+	// Gets the damage done by both sides
+	KidnapPlayerDamage = Player.KidnapCard[CardIndex].Value;
+	if (!KidnapMoveEffective(Player, PlayerMove)) KidnapPlayerDamage = Math.round(KidnapPlayerDamage / 2);
+	KidnapOpponentDamage = KidnapOpponent.KidnapCard[OpponentCardIndex].Value;
+	if (!KidnapMoveEffective(KidnapOpponent, OpponentMove)) KidnapOpponentDamage = Math.round(KidnapOpponentDamage / 2);
+	
 	// If the move is effective, we lower the willpower and show it as text
 	if (PM >= 1) {
-		let Damage = parseInt(Player.KidnapStat[PlayerMove]);
-		if (!KidnapMoveEffective(Player, PlayerMove)) Damage = Math.round(Damage / 2);
-		if (PlayerMove == OpponentMove) Damage = Damage - parseInt(KidnapOpponent.KidnapStat[OpponentMove]);
+		let Damage = KidnapPlayerDamage;
+		if (PlayerMove == OpponentMove) Damage = Damage - KidnapOpponentDamage;
 		if (Damage < 0) Damage = 0;
 		KidnapOpponent.KidnapWillpower = parseInt(KidnapOpponent.KidnapWillpower) - Damage;
 		KidnapResultOpponent = KidnapOpponent.Name + " " + TextGet("Lost") + " " + Damage.toString() + " " + TextGet("Willpower");
 	} else KidnapResultOpponent = KidnapOpponent.Name + " " + TextGet("NoLost");
 	if (OM >= 1) {
-		let Damage = parseInt(KidnapOpponent.KidnapStat[OpponentMove]);
-		if (!KidnapMoveEffective(KidnapOpponent, OpponentMove)) Damage = Math.round(Damage / 2);
-		if (PlayerMove == OpponentMove) Damage = Damage - parseInt(Player.KidnapStat[PlayerMove]);
+		let Damage = KidnapOpponentDamage;
+		if (PlayerMove == OpponentMove) Damage = Damage - KidnapPlayerDamage;
 		if (Damage < 0) Damage = 0;
 		Player.KidnapWillpower = parseInt(Player.KidnapWillpower) - Damage;
 		KidnapResultPlayer = Player.Name + " " + TextGet("Lost") + " " + Damage.toString() + " " + TextGet("Willpower");
@@ -280,17 +322,17 @@ function KidnapSelectMove(PlayerMove) {
 	if ((PM >= 2) && (PlayerMove != 3) && (OpponentMove != 3)) { KidnapUpperHandVictim = KidnapOpponent; KidnapResultUpperHand = Player.Name + " " + TextGet("UpperHand"); }
 	if ((OM >= 2) && (PlayerMove != 3) && (OpponentMove != 3)) { KidnapUpperHandVictim = Player; KidnapResultUpperHand = KidnapOpponent.Name + " " + TextGet("UpperHand"); }
 
-	// If both players have 0 willpower, they go back to 1 in a sudden death
+	// Cannot go below zero
 	if (Player.KidnapWillpower < 0) Player.KidnapWillpower = 0;
 	if (KidnapOpponent.KidnapWillpower < 0) KidnapOpponent.KidnapWillpower = 0;
 
-	// The move that was used is halved
-	if (PlayerMove <= 2) Player.KidnapStat[PlayerMove] = Math.round(Player.KidnapStat[PlayerMove] / 2);
-	if (OpponentMove <= 2) KidnapOpponent.KidnapStat[OpponentMove] = Math.round(KidnapOpponent.KidnapStat[OpponentMove] / 2);
+	// Removes the card from the deck
+	Player.KidnapCard.splice(CardIndex, 1);
+	KidnapOpponent.KidnapCard.splice(OpponentCardIndex, 1);
 
 	// When someone meditates, it resets her stats to max
-	if (PlayerMove == 3) KidnapLoadStats(Player, 0);
-	if (OpponentMove == 3) KidnapLoadStats(KidnapOpponent, Math.round(KidnapDifficulty / 2.5));
+	if (PlayerMove == 3) KidnapBuildCards(Player);
+	if (OpponentMove == 3) KidnapBuildCards(KidnapOpponent);
 
 	// Shows the move dialog
 	KidnapSetMode("ShowMove");
@@ -367,6 +409,8 @@ function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
 	KidnapOpponent.KidnapWillpower = KidnapOpponent.KidnapMaxWillpower;
 	KidnapLoadStats(Player, 0);
 	KidnapLoadStats(KidnapOpponent, Math.round(KidnapDifficulty / 2.5));
+	KidnapBuildCards(Player);
+	KidnapBuildCards(KidnapOpponent);
 	KidnapSetMode("Intro");
 	CommonSetScreen("MiniGame", "Kidnap");
 }
@@ -378,19 +422,16 @@ function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
  * @param {number} X - Position of the text to draw on the X axis, normally the position of the character
  * @returns {void} - Nothing
  */
-function KidnapDrawMove(C, Header, X) {
+function KidnapDrawMove(C, Header, X, Side) {
 	DrawText(TextGet(Header), X, 50, "White", "Gray");
-	for (let M = 0; M < 4; M++)
-		DrawButton(X - 200, (M * 100) + 100, 400, 70, TextGet(KidnapMoveType[M]) + ((C.KidnapStat[M] > 0) ? " ( " + C.KidnapStat[M].toString() + ((KidnapMoveEffective(C, M)) ? "" : " / 2") + " )" : ""), (C.ID == 0) ? (KidnapMoveEffective(C, M) ? "White" : "Silver") : "Pink");
-	DrawButton(X - 200, 900, 400, 70, TextGet("Surrender"), (C.ID == 0) ? "White" : "Pink");
-	if (Header == "SelectMove") {
-		DrawImage("Screens/MiniGame/Kidnap/LeftRock.png", 460, 91);
-		DrawImage("Screens/MiniGame/Kidnap/LeftScissors.png", 460, 191);
-		DrawImage("Screens/MiniGame/Kidnap/LeftPaper.png", 460, 291);
-	} else {
-		DrawImage("Screens/MiniGame/Kidnap/RightRock.png", 1435, 91);
-		DrawImage("Screens/MiniGame/Kidnap/RightScissors.png", 1435, 191);
-		DrawImage("Screens/MiniGame/Kidnap/RightPaper.png", 1435, 291);
+	for (let M = 0; M < C.KidnapCard.length; M++) {
+		let Color = KidnapMoveEffective(C, C.KidnapCard[M].Move) ? "White" : "Silver";
+		let Value = KidnapMoveEffective(C, C.KidnapCard[M].Move) ? C.KidnapCard[M].Value : Math.round(C.KidnapCard[M].Value / 2);
+		let Text = TextGet(KidnapMoveType[C.KidnapCard[M].Move]);
+		if (Value != null) Text = Text + " - " + Value.toString();
+		DrawButton(X - 240, (M * 100) + 100, 480, 80, "", Color);
+		DrawText(Text, X + ((Value != null) ? ((Side == "Left") ? -60 : 60) : 0), (M * 100) + 140, "Black", "Silver");
+		if (Value != null) DrawImage("Screens/MiniGame/Kidnap/" + Side + KidnapRPS[C.KidnapCard[M].Move] + ".png", X + ((Side == "Left") ? 115 : -220), (M * 100) + 100);
 	}
 }
 
@@ -477,14 +518,14 @@ function KidnapRun() {
 	if (KidnapMode == "Intro") KidnapTitle(Player.Name + " vs " + KidnapOpponent.Name);
 	if (KidnapMode == "SuddenDeath") KidnapTitle(TextGet("SuddenDeath"));
 	if (KidnapMode == "End") KidnapTitle(((KidnapVictory) ? Player.Name : KidnapOpponent.Name) + " " + TextGet("Wins"));
-	if (KidnapMode == "SelectMove") { KidnapDrawMove(Player, "SelectMove", 250); KidnapDrawMove(KidnapOpponent, "OpponentMove", 1750); }
+	if (KidnapMode == "SelectMove") { KidnapDrawMove(Player, "SelectMove", 250, "Left"); KidnapDrawMove(KidnapOpponent, "OpponentMove", 1750, "Right"); }
 	if (KidnapMode == "UpperHand") KidnapDrawMoveUpperHand();
 	if (KidnapMode == "ShowMove") KidnapShowMove();
 	if (KidnapMode == "SelectItem") KidnapShowItem();
 
 	// If the time is over, we go to the next step
 	if (CommonTime() >= KidnapTimer) {
-		if (KidnapMode == "SelectMove") { KidnapSelectMove(3); return; }
+		if (KidnapMode == "SelectMove") { KidnapSelectMove(Player.KidnapCard.length - 1); return; }
 		if (KidnapMode == "End") { CommonDynamicFunction(KidnapReturnFunction); return; }
 		if ((KidnapMode == "Intro") || (KidnapMode == "SuddenDeath") || (KidnapMode == "ShowMove") || (KidnapMode == "UpperHand") || (KidnapMode == "SelectItem")) KidnapSetMode("SelectMove");
 	} else KidnapShowTimer();
@@ -508,11 +549,9 @@ function KidnapClick() {
 
 	// When the user selects a regular move
 	if (KidnapMode == "SelectMove") {
-		for (let M = 0; M < 4; M++)
-			if ((MouseX >= 50) && (MouseX <= 450) && (MouseY >= 100 + (M * 100)) && (MouseY <= 170 + (M * 100)))
+		for (let M = 0; M < Player.KidnapCard.length; M++)
+			if ((MouseX >= 10) && (MouseX <= 490) && (MouseY >= 100 + (M * 100)) && (MouseY <= 180 + (M * 100)))
 				KidnapSelectMove(M);
-		if ((MouseX >= 50) && (MouseX <= 450) && (MouseY >= 900) && (MouseY <= 970))
-			KidnapSurrender();
 		return;
 	}
 

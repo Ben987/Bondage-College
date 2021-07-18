@@ -88,6 +88,7 @@ function PandoraPrisonClick() {
 			if ((Math.random() > 0.5) && (PandoraWillpower * 2 >= PandoraMaxWillpower)) PandoraPrisonGuard.Stage = "Beat";
 			else if ((Math.random() > 0.5) && !CharacterIsNaked(Player)) PandoraPrisonGuard.Stage = "Strip";
 			else if ((Math.random() > 0.5) && CharacterIsNaked(Player) && !Player.IsChaste()) PandoraPrisonGuard.Stage = "Chastity";
+			else if ((Math.random() > 0.5) && CharacterIsNaked(Player) && !Player.CanInteract()) PandoraPrisonGuard.Stage = "Tickle";
 			else PandoraPrisonGuard.Stage = "ChangeBondage";
 		}
 		CharacterSetCurrent(PandoraPrisonCharacter);
@@ -168,11 +169,11 @@ function PandoraPrisonPlayerStrip(Level) {
  */
 function PandoraPrisonPlayerChastity(LockType) {
 	if (InventoryGet(Player, "ItemPelvis") == null) {
-		InventoryWear(Player, CommonRandomItemFromList("", ["MetalChastityBelt", "LeatherChastityBelt", "SleekLeatherChastityBelt", "StuddedChastityBelt", "PolishedChastityBelt", "SteelChastityPanties"]), "ItemPelvis");
+		InventoryWearRandom(Player, "ItemPelvis", null, null, false, true, ["MetalChastityBelt", "LeatherChastityBelt", "SleekLeatherChastityBelt", "StuddedChastityBelt", "PolishedChastityBelt", "SteelChastityPanties"], true);
 		InventoryLock(Player, "ItemPelvis", LockType);
 	}
 	if (InventoryGet(Player, "ItemBreast") == null) {
-		InventoryWear(Player, CommonRandomItemFromList("", ["MetalChastityBra", "PolishedChastityBra", "LeatherBreastBinder"]), "ItemBreast");
+		InventoryWearRandom(Player, "ItemBreast", null, null, false, true, ["MetalChastityBra", "PolishedChastityBra", "LeatherBreastBinder"], true);
 		InventoryLock(Player, "ItemBreast", LockType);
 	}
 }
@@ -320,4 +321,43 @@ function PandoraPrisonPlayerBeat(Damage, Blush) {
 	CharacterSetFacialExpression(Player, "Blush", Blush, 10);
 	CharacterSetFacialExpression(Player, "Eyes", "Closed", 10);
 	CharacterSetFacialExpression(Player, "Eyes2", "Closed", 10);
+}
+
+/**
+ * When the current NPC picks a random tickling item
+ * @returns {void} - Nothing
+ */
+function PandoraPrisonPickTickle() {
+	PandoraPrisonPlayerUngag();
+	InventoryWear(PandoraPrisonGuard, "SpankingToys", "ItemHands");
+	InventoryGet(PandoraPrisonGuard, "ItemHands").Property = { Type: CommonRandomItemFromList("", ["Feather", "FeatherDuster", "ElectricToothbrush", "Toothbrush", "Vibrator", "VibratingWand", "SmallVibratingWand"]) };
+	CharacterRefresh(PandoraPrisonGuard);
+}
+
+/**
+ * When the player squeals, it shorten her sentence
+ * @param {string} Minutes - The number of minutes to remove from the sentence
+ * @returns {void} - Nothing
+ */
+function PandoraPrisonPlayerSqueal(Minutes) {
+	Minutes = parseInt(Minutes);
+	if (Minutes > 0) {
+		Player.Infiltration.Punishment.Timer = Player.Infiltration.Punishment.Timer - (Minutes * 60000);
+		if (Player.Infiltration.Punishment.Timer < CurrentTime + 60000) Player.Infiltration.Punishment.Timer = CurrentTime + 60000;
+		ServerSend("AccountUpdate", { Infiltration: Player.Infiltration });
+	}
+}
+
+/**
+ * When the player gets tickled, she reacts and loses some willpower
+ * @returns {void} - Nothing
+ */
+function PandoraPrisonPlayerTickle(Damage) {
+	Damage = parseInt(Damage);
+	PandoraWillpower = PandoraWillpower - Damage;
+	if (PandoraWillpower < 0) PandoraWillpower = 0;
+	PandoraWillpowerTimer = PandoraWillpowerTimer + ((InfiltrationPerksActive("Recovery")) ? 20000 : 30000);
+	CharacterSetFacialExpression(Player, "Blush", "Medium", 10);
+	CharacterSetFacialExpression(Player, "Eyes", "Surprised", 10);
+	CharacterSetFacialExpression(Player, "Eyes2", "Surprised", 10);
 }

@@ -71,8 +71,8 @@ function InventoryItemHeadInteractiveVisorExit() {
 	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
-function InventoryItemHeadInteractiveVisorValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
+function InventoryItemHeadInteractiveVisorValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item); // All futuristic items refer to the gag
 }
 
 function InventoryItemHeadInteractiveVisorNpcDialog(C, Option) {

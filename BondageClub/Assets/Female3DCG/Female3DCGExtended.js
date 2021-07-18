@@ -28,6 +28,87 @@ const ExtendedArchetype = {
  * @const
  */
 var AssetFemale3DCGExtended = {
+	Cloth: {
+		TShirt2: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Plain",
+						Property: { Type: null, },
+					},
+					{
+						Name: "BCLogo",
+						Property: {
+							Type: "BCLogo",
+							DefaultColor: "#FFF0CC",
+						},
+					},
+					{
+						Name: "BDSM",
+						Property: {
+							Type: "BDSM",
+							DefaultColor: "Default",
+						},
+					},
+					{
+						Name: "Gag",
+						Property: {
+							Type: "Gag",
+							DefaultColor: "Default",
+						},
+					},
+					{
+						Name: "Knot",
+						Property: {
+							Type: "Knot",
+							DefaultColor: "#CCC088",
+						},
+					},
+					{
+						Name: "Rock",
+						Property: {
+							Type: "Rock",
+							DefaultColor: "#B03030",
+						},
+					},
+					{
+						Name: "Smile",
+						Property: {
+							Type: "Smile",
+							DefaultColor: "#BB9911",
+						},
+					},
+					{
+						Name: "Tick",
+						Property: {
+							Type: "Tick",
+							DefaultColor: "#119977",
+						},
+					},
+				],
+			},
+		}, // TShirt2
+		ChineseDress2: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Red",
+						Property: { Type: null},
+					},
+					{
+						Name: "Purple",
+						Property: { Type: "Purple"},
+					},
+					{
+						Name: "Pink",
+						Property: { Type: "Pink"},
+					},
+				],		
+			},
+		}, // ChineseDress2
+	}, // Cloth
 	ClothAccessory: {
 		LeatherStraps: {
 			Archetype: ExtendedArchetype.TYPED,
@@ -42,9 +123,34 @@ var AssetFemale3DCGExtended = {
 						Name: "Strap",
 						Property: { Type: "Strap", },
 					},
-				],		
+				],
 			},
 		}, // LeatherStraps
+		BunnyCollarCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Both",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Collar",
+						Property: {
+							Type: "Collar",
+						},
+					},
+					{
+						Name: "Cuffs",
+						Property: {
+							Type: "Cuffs",
+						},
+					},
+				],
+			},
+		}, // BunnyCollarCuffs
 	}, // ClothAccessory
 	ItemArms: {
 		HighSecurityStraitJacket: {
@@ -464,13 +570,13 @@ var AssetFemale3DCGExtended = {
 				Dialog: {
 					Load: "SelectTapeWrapping",
 				},
-				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR, CommonChatTags.DEST_CHAR ],
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR, CommonChatTags.DEST_CHAR],
 			}
 		}, // DuctTape
 		Zipties: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
-				Options:[
+				Options: [
 					{
 						Name: "ZipLight",
 						Property: {
@@ -757,6 +863,30 @@ var AssetFemale3DCGExtended = {
 				],
 			}
 		}, // SturdyLeatherBelts
+		StraitLeotard: {
+			Archetype: ExtendedArchetype.MODULAR,
+			Config: {
+				Modules: [
+					{
+						Name: "Cloth", Key: "cl",
+						Options: [{ Property: { Hide: ["Cloth"] } }, {}],
+					},
+					{
+						Name: "Corset", Key: "co",
+						Options: [{ Property: { Hide: ["Corset"] } }, {}],
+					},
+					{
+						Name: "NipplesPiercings", Key: "np",
+						Options: [{ Property: { Hide: ["ItemNipplesPiercings"] } }, {}],
+					},
+					{
+						Name: "VulvaPiercings", Key: "vp",
+						Options: [{ Property: { Hide: ["ItemVulvaPiercings"] } }, {}],
+					},
+				],
+				ChangeWhenLocked: false,
+			},
+		}, // StraitLeotard
 	}, // ItemArms
 	ItemNeck: {
 		ShinySteelCollar: {
@@ -808,10 +938,71 @@ var AssetFemale3DCGExtended = {
 							}
 						], // Opacity
 					},
+					{
+						Name: "MaskStyle", Key: "ms",
+						Options: [
+							{
+								Property: {
+									Effect: ["BlockMouth"],
+									Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Mask"],
+									HideItem: ["ItemHeadSnorkel"],
+									Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemHead", "ItemNose", "ItemEars"]
+								}
+							},
+							{
+								Property: {
+									OverridePriority: 35,
+									Hide: ["Head"],
+								}
+							},
+						],
+					},
 				],
 				ChangeWhenLocked: false,
 			},
 		}, // KirugumiMask
+		GwenHood: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "HairOutAccOut",
+						Property: {
+							Type: null,
+							Hide: []
+						},
+					},
+					{
+						Name: "HairInAccOut",
+						Property: {
+							Type: "HairInAccOut",
+							Hide: ["HairBack"]
+						},
+					},
+					{
+						Name: "HairOutAccIn",
+						Property: {
+							Type: "HairOutAccIn",
+							Hide: ["HairAccessory1", "HairAccessory2", "HairAccessory3"]
+						},
+					},
+					{
+						Name: "HairInAccIn",
+						Property: {
+							Type: "HairInAccIn",
+							Hide: ["HairAccessory1", "HairAccessory2", "HairAccessory3", "HairBack"]
+						},
+					},
+				],
+				Dialog: {
+					Load: "GwenHoodSelectStyle",
+					TypePrefix: "GwenHoodStyle",
+					ChatPrefix: "GwenHoodChangeStyle",
+				},
+				DrawImages: false,
+			},
+		}, // HempRopeHarness
 	}, // ItemHood
 	ItemDevices: {
 		Crib: {
@@ -835,7 +1026,245 @@ var AssetFemale3DCGExtended = {
 				],
 			},
 		}, // Crib
+		TeddyBear: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Bear",
+						Property: { Type: null },
+					},
+					{
+						Name: "Fox",
+						Property: { Type: "Fox" },
+					},
+					{
+						Name: "Pup",
+						Property: { Type: "Pup" },
+					},
+					{
+						Name: "Pony",
+						Property: { Type: "Pony" },
+					},
+					{
+						Name: "Kitty",
+						Property: { Type: "Kitty" },
+					},
+					{
+						Name: "Bunny",
+						Property: { Type: "Bunny" },
+					},
+				],
+			},
+		}, // TeddyBear
+		PetBed: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "NoBlanket",
+						Property: {
+							Type: null
+						},
+					},
+					{
+						Name: "Blanket",
+						Property: {
+							Type: "Blanket",
+							SetPose: ["AllFours"],
+							Hide: ["ItemArms", "ItemButt", "TailStraps", "Wings"],
+							Block: [
+								"ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemBoots",
+								"ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings",
+								"ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings"
+							]
+						},
+					},
+				],
+			},
+		}, // PetBed
+		Vacbed: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Normal",
+						Property: { Type: null }
+					},
+					{
+						Name: "Nohair",
+						Property: {
+							Type: "Nohair",
+							Hide: ["HairFront", "HairAccessory1", "HairAccessory2", "HairAccessory3", "Hat"],
+						},
+					},
+				],
+			},
+		}, // Vacbed
+		Familiar: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Bat",
+						Property: { Type: null },
+					},
+					{
+						Name: "Cat",
+						Property: { Type: "Cat" },
+					},
+					{
+						Name: "Skeleton",
+						Property: { Type: "Skeleton" },
+					},
+					{
+						Name: "Parrot",
+						Property: { Type: "Parrot" },
+					},
+				],
+			},
+		}, // Familiar
+		LittleMonster: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Black",
+						Property: { Type: null },
+					},
+					{
+						Name: "Red",
+						Property: { Type: "Red" },
+					},
+					{
+						Name: "Green",
+						Property: { Type: "Green" },
+					},
+					{
+						Name: "Blue",
+						Property: { Type: "Blue" },
+					},
+				],
+			},
+		}, //LitteMonster
+		InflatableBodyBag: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Light",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+						},
+					},
+					{
+						Name: "Inflated",
+						Property: {
+							Type: "Inflated",
+							Difficulty: 3,
+						},
+					},
+					{
+						Name: "Bloated",
+						Property: {
+							Type: "Bloated",
+							Difficulty: 6,
+						},
+					},
+					{
+						Name: "Max",
+						Property: {
+							Type: "Max",
+							Difficulty: 9,
+						},
+					},
+				],
+			},
+		}, //InflatableBodyBag
+		Pole: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Untied",
+						Property: {
+							Type: null,
+						}
+					},
+					{
+						Name: "Tied",
+						SelfBondageLevel: 2,
+						Property: {
+							Type: "Tied",
+							Difficulty: 8,
+							SetPose: ["BackBoxTie"],
+							Effect: ["Block", "Freeze", "Prone"],
+						}
+					},
+				],
+			},
+		}, //Pole
 	}, // ItemDevices
+	ItemBoots: {
+		ToeTape: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Toes",
+						Property: { Type: null, Difficulty: 0 },
+					},
+					{
+						Name: "Full",
+						Property: { Type: "Full", Difficulty: 2 },
+					},
+				],
+				Dialog: {
+					Load: "SelectTapeWrapping",
+					TypePrefix: "ToeTapePose",
+					ChatPrefix: "ToeTapeSet",
+					NpcPrefix: "",
+				},
+			},
+		}, // ToeTape
+	}, // ItemBoots
+	ItemNipples: {
+		PlateClamps: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Loose",
+						Property: {
+							Type: null
+						},
+					},
+					{
+						Name: "Tight",
+						Property: {
+							Type: "Tight"
+						},
+					}
+				],
+				Dialog: {
+					Load: "ItemNipplesPlateClampsSelectTightness",
+					TypePrefix: "ItemNipplesPlateClampsTightnessLevel",
+					ChatPrefix: "ItemNipplesPlateClamps",
+				},
+				DrawImages: false,
+			},
+		}, // PlateClamps
+	}, // ItemNipples
 	Corset: {
 		LatexCorset1: {
 			Archetype: ExtendedArchetype.TYPED,
@@ -872,7 +1301,7 @@ var AssetFemale3DCGExtended = {
 					{ Name: "Harness", Property: { Type: "Harness" } },
 					{ Name: "Star", Property: { Type: "Star" } },
 					{ Name: "Diamond", Property: { Type: "Diamond" } },
-				]				
+				]
 			},
 		}, // SilkStraps
 		ThinLeatherStraps: {
@@ -882,9 +1311,46 @@ var AssetFemale3DCGExtended = {
 					{ Name: "Crotch", Property: { Type: null } },
 					{ Name: "Waist", Property: { Type: "Waist" } },
 					{ Name: "Harness", Property: { Type: "Harness" } },
-				]				
+				]
 			},
 		}, // ThinLeatherStraps
+		NylonRopeHarness: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "HempRopeHarness" }
+		}, // NylonRopeHarness
+		HempRopeHarness: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Crotch",
+						Property: { Type: null, Difficulty: 1, Effect: ["CrotchRope"] }
+					}, {
+						Name: "Waist",
+						Property: { Type: "Waist", Difficulty: 1 }
+					}, {
+						Name: "Harness",
+						BondageLevel: 2,
+						Property: { Type: "Harness", Difficulty: 1, Effect: ["CrotchRope"] }
+					}, {
+						Name: "Star",
+						BondageLevel: 3,
+						Property: { Type: "Star", Difficulty: 2 }
+					}, {
+						Name: "Diamond",
+						BondageLevel: 4,
+						Property: { Type: "Diamond", Difficulty: 3, Effect: ["CrotchRope"] }
+					},
+				],
+				Dialog: {
+					Load: "SelectRopeBondage",
+					TypePrefix: "RopeBondage",
+					ChatPrefix: "RopeHarnessSet",
+					NpcPrefix: "RopeBondage",
+				},
+			},
+		}, // HempRopeHarness
 	}, // ItemTorso
 	Shoes: {
 		FuturisticHeels2: {
@@ -893,7 +1359,7 @@ var AssetFemale3DCGExtended = {
 				Options: [
 					{ Name: "Shiny", Property: { Type: null } },
 					{ Name: "Matte", Property: { Type: "Matte" } },
-				]				
+				]
 			},
 		}, // Shoes
 	}, // ItemTorso
@@ -1439,28 +1905,109 @@ var AssetFemale3DCGExtended = {
 				],
 			}
 		}, // SturdyLeatherBelts
-	}, // ItemLegs
-	ItemFeet: {
-		SteelAnkleCuffs: {
+		LeatherLegCuffs: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
 				Options: [
 					{
 						Name: "None",
-						Property: {	Type: null }
+						Property: { Type: null },
 					},
 					{
 						Name: "Closed",
 						Property: {
 							Type: "Closed",
-							Effect: ["Prone", "Freeze"],
 							SetPose: ["LegsClosed"],
-							FreezeActivePose: ["BodyLower"]
+							Effect: ["Prone", "KneelFreeze", "Slow"],
+							FreezeActivePose: ["BodyLower"],
+							Difficulty: 6,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectBondagePosition",
+				}
+			}
+		}, // LeatherLegCuffs
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Messystyle",
+						Property: { Type: null, Difficulty: 3 },
+					},
+					{
+						Name: "MessyWrap",
+						Property: { Type: "MessyWrap", Difficulty: 4 },
+					},
+					{
+						Name: "Cross",
+						Property: { Type: "Cross", Difficulty: 5 },
+					},
+				],
+				Dialog: {
+					Load: "SelectRibbonType",
+				}
+			}
+		}, // Ribbons
+		OrnateLegCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "LeatherLegCuffs" },
+		}, // OrnateLegCuffs
+		Zipties: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "ZipLegLight",
+						Property: { Type: null, SetPose: ["LegsClosed"], Difficulty: 1 }
+					}, {
+						Name: "ZipLegMedium",
+						Property: { Type: "ZipLegMedium", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}, {
+						Name: "ZipLegFull",
+						Property: { Type: "ZipLegFull", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}, {
+						Name: "ZipFrogtie",
+						Property: { Type: "ZipFrogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Effect: ["ForceKneel"], Difficulty: 3 },
+						Prerequisite: ["NotSuspended", "CanKneel"]
+					}
+				],
+				Dialog: {
+					Load: "SelectZipTie",
+					TypePrefix: "ZipBondage",
+					NpcPrefix: "Zip",
+				}
+			}
+		}, // Zipties
+	}, // ItemLegs
+	ItemFeet: {
+		SteelAnkleCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR, CommonChatTags.ASSET_NAME],
+				Options: [
+					{
+						Name: "None",
+						Property: {
+							Type: null, SetPose: null, Difficulty: null, Effect: null, FreezeActivePose: [],
+						}
+					},
+					{
+						Name: "Closed",
+						Property: {
+							Type: "Closed", Effect: ["Prone", "Freeze"], SetPose: ["LegsClosed"], Difficulty: 6, FreezeActivePose: ["BodyLower"],
 						}
 					}
 				],
 				Dialog: {
-					Load: "SelectBondagePosition"
+					Load: "SelectBondagePosition",
+					TypePrefix: "ItemFeetSteelAnkleCuffs",
+					ChatPrefix: "ItemFeetSteelAnkleCuffsSet",
 				}
 			}
 		}, // SteelAnkleCuffs
@@ -1468,6 +2015,86 @@ var AssetFemale3DCGExtended = {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "ItemArms", AssetName: "SturdyLeatherBelts" },
 		}, // SturdyLeatherBelts 
+		LeatherAnkleCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "SteelAnkleCuffs" },
+		}, // LeatherAnkleCuffs
+		OrnateAnkleCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "SteelAnkleCuffs" },
+		}, // OrnateAnkleCuffs
+		DuctTape: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Feet",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Hide: null,
+							SetPose: ["LegsClosed"],
+						},
+					},
+					{
+						Name: "HalfFeet",
+						Property: {
+							Type: "HalfFeet",
+							Difficulty: 2,
+							Hide: ["ClothLower", "Shoes"],
+							SetPose: ["LegsClosed"],
+						},
+					},
+					{
+						Name: "MostFeet",
+						Property: {
+							Type: "MostFeet",
+							Difficulty: 4,
+							Hide: ["ClothLower", "Shoes"],
+							SetPose: ["LegsClosed"],
+						},
+					},
+					{
+						Name: "CompleteFeet",
+						Property: {
+							Type: "CompleteFeet",
+							Difficulty: 6,
+							Hide: ["ClothLower", "Shoes"],
+							SetPose: ["LegsClosed"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectTapeWrapping",
+					ChatPrefix: "DuctTapeRestrain",
+					NpcPrefix: "DuctTapeRestrain",
+					TypePrefix: "DuctTapePose",
+				}
+			},
+		}, // DuctTape
+		Zipties: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "ZipFeetLight",
+						Property: { Type: null, SetPose: ["LegsClosed"], Difficulty: 1 },
+					}, {
+						Name: "ZipFeetMedium",
+						Property: { Type: "ZipFeetMedium", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}, {
+						Name: "ZipFeetFull",
+						Property: { Type: "ZipFeetFull", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}
+				],
+				Dialog: {
+					Load: "SelectZipTie",
+					ChatPrefix: "ZipFeetSet",
+					NpcPrefix: "ZipFeetSet",
+					TypePrefix: "ZipBondage",
+				}
+			},
+		}, // Zipties
 	}, // ItemFeet
 	ItemMisc: {
 		ServingTray: {
@@ -1475,7 +2102,10 @@ var AssetFemale3DCGExtended = {
 			Config: {
 				Options: [
 					{ Name: "Empty", Property: { Type: null } },
-					{ Name: "Full", Property: { Type: "Full" } },
+					{ Name: "Drinks", Property: { Type: "Drinks" } },
+					{ Name: "Cake", Property: { Type: "Cake" } },
+					{ Name: "Cookies", Property: { Type: "Cookies" } },
+					{ Name: "Toys", Property: { Type: "Toys" } },
 				],
 			},
 		}, // WoodenMaidTray
@@ -1492,7 +2122,151 @@ var AssetFemale3DCGExtended = {
 				]
 			},
 		}, // SilkStraps
+		MetalChastityBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "OpenBack",
+						Property: {
+							Type: null,
+							Block: null,
+						},
+					},
+					{
+						Name: "ClosedBack",
+						Property: {
+							Type: "ClosedBack",
+							Block: ["ItemButt"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectBackShield",
+					TypePrefix: "Chastity",
+					NpcPrefix: "Chastity",
+					ChatPrefix: "ChastityBeltBackShield",
+				},
+				ChangeWhenLocked: false,
+			},
+		}, // MetalChastityBelt
+		OrnateChastityBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "MetalChastityBelt" },
+		}, // OrnateChastityBelt
+		StuddedChastityBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "MetalChastityBelt" },
+		}, // StuddedChastityBelt
+		PolishedChastityBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "MetalChastityBelt" },
+		}, // PolishedChastityBelt
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "BowWrap",
+						Property: { Type: null, Difficulty: 3, OverridePriority: 21 },
+					},
+					{
+						Name: "CrotchWrapping",
+						Property: { Type: "CrotchWrapping", Difficulty: 4 },
+					},
+				],
+				Dialog: {
+					Load: "SelectRibbonType",
+					TypePrefix: "RibbonsBelt",
+					NpcPrefix: "ItemPelvisRibbons",
+					ChatPrefix: "PelvisRibbonsSet",
+				}
+			},
+		}, // Ribbons
+		HempRope: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Crotch",
+						Property: { Type: null, Difficulty: 1, Effect: ["CrotchRope"] }
+					}, {
+						Name: "OverPanties",
+						Property: { Type: "OverPanties", Difficulty: 1, OverridePriority: 21, Effect: ["CrotchRope"] }
+					}, {
+						Name: "SwissSeat",
+						BondageLevel: 4,
+						Property: { Type: "SwissSeat", Difficulty: 4 }
+					}, {
+						Name: "KikkouHip",
+						BondageLevel: 5,
+						Property: { Type: "KikkouHip", Difficulty: 5 }
+					}
+				],
+				Dialog: {
+					Load: "SelectRopeBondage",
+					TypePrefix: "RopeBondage",
+					NpcPrefix: "RopeBondage",
+					ChatPrefix: "PelvisRopeSet",
+				}
+			},
+		}, // HempRope
 	}, // ItemPelvis
+	ItemEars: {
+		HeadphoneEarPlugs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR, CommonChatTags.ASSET_NAME],
+				Options: [
+					{
+						Name: "Off",
+						Property: {
+							Type: null,
+							Effect: [],
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							Effect: ["DeafLight"],
+						},
+					},
+					{
+						Name: "Heavy",
+						Property: {
+							Type: "Heavy",
+							Effect: ["DeafHeavy"],
+						},
+					},
+					{
+						Name: "NoiseCancelling",
+						Property: {
+							Type: "NoiseCancelling",
+							Effect: ["DeafTotal"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "HeadphoneEarPlugsSelectLoudness",
+					TypePrefix: "HeadphoneEarPlugsPose",
+					ChatPrefix: "HeadphoneEarPlugsRestrain",
+					NpcPrefix: "ItemEarsHeadphonePlugs",
+				}
+			},
+		}, // HeadphoneEarPlugs
+		Headphones: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "HeadphoneEarPlugs" },
+		}, // Headphones
+		BluetoothEarbuds: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "HeadphoneEarPlugs" },
+		}, // BluetoothEarbuds
+	}, // ItemEars
 	Bra: {
 		SilkStraps: {
 			Archetype: ExtendedArchetype.TYPED,
@@ -1506,6 +2280,62 @@ var AssetFemale3DCGExtended = {
 				]
 			}
 		}, // SilkStraps
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Basic",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Bow",
+						Property: {
+							Type: "Bow",
+						},
+					},
+					{
+						Name: "Wrap",
+						Property: {
+							Type: "Wrap",
+						},
+					},
+				],
+				Dialog: {
+					TypePrefix: "RibbonBraType",
+					Load: "SelectRibbonStyle",
+				}
+			}
+		}, // Ribbons
+		SexyBikini1: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Open",
+						Property: {
+							Type: null, 
+						},
+					},
+					{
+						Name: "Closed",
+						Property: {
+							Type: "Closed"
+						},
+					},
+				],
+				Dialog: {
+					TypePrefix: "BikiniType",
+					Load: "SelectBikiniType",
+				}
+			}
+		}, // SexyBikini1
+		CuteBikini1: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "SexyBikini1" },
+		}, // CuteBikini1
 	}, // Bra
 	Panties: {
 		SilkStraps: {
@@ -1519,5 +2349,203 @@ var AssetFemale3DCGExtended = {
 				]
 			},
 		}, // SilkStraps
+		Diapers4: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "None",
+						Property: { Type: null, },
+					},
+					{
+						Name: "StrawBerry",
+						Property: { Type: "StrawBerry", },
+					},
+					{
+						Name: "Flower",
+						Property: { Type: "Flower", },
+					},
+					{
+						Name: "Butterflies",
+						Property: { Type: "Butterfly", },
+					},
+					{
+						Name: "Spots",
+						Property: { Type: "Spots", },
+					},
+				],
+			},
+		}, // Diapers4
 	}, // Panties
+	Glasses: {
+		EyePatch1: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Left",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Right",
+						Property: {
+							Type: "Right",
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectEyePatchType",
+					TypePrefix: "EyePatchType",
+				}
+			},
+		}, // EyePatch1
+	}, // Glasses
+	Garters: {
+		GarterBelt: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Both",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Right",
+						Property: {
+							Type: "Right",
+						},
+					},
+					{
+						Name: "Left",
+						Property: {
+							Type: "Left",
+						},
+					},
+				],
+				DrawImages: false,
+			},
+		}, // GarterBelt
+	}, // Garters
+	Necklace: {
+		NecklaceKey: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Normal",
+						Property: {
+							Type: null,
+							OverridePriority: 31
+						},
+					},
+					{
+						Name: "Tucked",
+						Property: {
+							Type: "Tucked",
+							OverridePriority: 29
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectPriorityType",
+					TypePrefix: "ClothPriorityType",
+				}
+			},
+		}, // NecklaceKey
+		NecklaceLock: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "NecklaceKey" },
+		}, // NecklaceLock
+	}, // Necklace
+	ItemHead: {
+		DuctTape: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Double",
+						Property: {
+							Type: null,
+							Block: ["ItemNose"],
+							Effect: ["BlindNormal", "Prone"],
+						},
+					},
+					{
+						Name: "Wrap",
+						Property: {
+							Type: "Wrap",
+							Block: ["ItemNose"],
+							Effect: ["BlindNormal", "Prone"],
+						},
+					},
+					{
+						Name: "Mummy",
+						Property: {
+							Type: "Mummy",
+							Hide: ["ItemMouth", "ItemMouth2", "ItemMouth3", "HairFront", "HairBack"],
+							Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemHood", "ItemNose"],
+							Effect: ["GagNormal", "BlindNormal", "Prone", "BlockMouth"],
+						},
+					}
+				]
+			}
+		}, // DuctTape
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Basic",
+						Property: {
+							Type: null,
+							Effect: ["BlindLight", "Prone"],
+						},
+					},
+					{
+						Name: "Wrap",
+						Property: {
+							Type: "Wrap",
+							Effect: ["BlindNormal", "Prone"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectRibbonType",
+				},
+			},
+		}, // Ribbons
+		WebBlindfold: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Blindfold",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Block: ["ItemNose"],
+						},
+					},
+					{
+						Name: "Cocoon",
+						Property: {
+							Type: "Cocoon",
+							Difficulty: 30,
+							Hide: ["HairFront", "HairBack", "Glasses", "Hat", "ItemMouth", "ItemMouth2", "ItemMouth3"],
+							Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemHood", "ItemNose"],
+							Effect: ["BlindHeavy", "Prone", "GagNormal", "BlockMouth"],
+						},
+					},
+				],
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Dialog: {
+					Load: "WebBondageSelect",
+				},
+			},
+		}, // WebBlindfold
+	}, // ItemHead
 };

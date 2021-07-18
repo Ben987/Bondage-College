@@ -70,6 +70,7 @@ const AssetType = {
 	Random: "Boolean",
 	RemoveAtLogin: "Boolean",
 	Time: "Number",
+	LayerVisibility: "Boolean",
 	RemoveTime: "Number",
 	RemoveTimer: "Number",
 	MaxTimer: "Number",
@@ -106,7 +107,7 @@ const AssetType = {
 	OverrideBlinking: "Boolean",
 	DialogSortOverride: "Number",
 	// DynamicDescription: "Function",
-	// DynamicPreviewIcon: "Function",
+	// DynamicPreviewImage: "Function",
 	// DynamicAllowInventoryAdd: "Function",
 	// DynamicExpressionTrigger: "Function",
 	// DynamicName: "Function",
@@ -136,6 +137,7 @@ const AssetType = {
 	FuturisticRecolorDisplay: "Boolean",
 	Attribute: "[String]",
 	HideItemAttribute: "[String]",
+	PreviewIcons: "[String]",
 };
 
 const AssetLayerType = {
@@ -146,6 +148,7 @@ const AssetLayerType = {
 	HideColoring: "Boolean",
 	AllowTypes: "[String]",
 	HasType: "Boolean",
+	Visibility: "String",
 	ParentGroup: "Maybe String",
 	AllowPose: "[String]",
 	Priority: "Number",

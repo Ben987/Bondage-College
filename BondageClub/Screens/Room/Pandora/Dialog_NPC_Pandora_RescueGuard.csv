@@ -15,7 +15,7 @@ ItemEars,,,(She seems angry as you push earplugs inside.)  How can I follow your
 RemoveItemEars,,,(You pull the earplugs out.)  You're only adding more time to your sentence.,,
 ItemArms,,,(She struggles as you restrain her arms securely.)  You're breaking the law again.,,
 RemoveItemArms,,,(You free her arms and she stretches.)  You're still under arrest.,,
-ItemLegs,,,(She trashes as you restrain her legs.)  You better carry me then!,,
+ItemLegs,,,(She thrashes as you restrain her legs.)  You better carry me then!,,
 RemoveItemLegs,,,(You release her legs.)  Justice will strike you down like a hammer.,,
 ItemFeet,,,(She grumbles as you restrain her feet.)  This will be reported in your trial.,,
 RemoveItemFeet,,,(You release her feet.)  Let's walk until you get caught.,,
@@ -94,7 +94,7 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 210,220,You're not punishing me girl.,Someone else will take care of that.  A Dominatrix is coming right up.,,Player.CanTalk()
 210,220,I will accept it Miss.,You're in the right mindset for this.  A Dominatrix is coming right up.,,Player.CanTalk()
 210,220,(Scream in your gag.),"Scream girl, it's amusing.  A Dominatrix is coming right up.",,!Player.CanTalk()
-210,220,(Trash in your bondage.),You're cute when you struggle.  A Dominatrix is coming right up.,,!Player.CanTalk()
+210,220,(Thrash in your bondage.),You're cute when you struggle.  A Dominatrix is coming right up.,,!Player.CanTalk()
 210,220,(Bow your head and stay silent.),You're in the right mindset for this.  A Dominatrix is coming right up.,,!Player.CanTalk()
 220,,How about a bribe?,You can't bribe me!  The Dominatrix is already on her way.,DialogRemove(),Player.CanTalk()
 220,,I'll be back!,"I can do better!  (She makes a robot voice.)  Hasta la vista, baby!",DialogRemove(),Player.CanTalk()

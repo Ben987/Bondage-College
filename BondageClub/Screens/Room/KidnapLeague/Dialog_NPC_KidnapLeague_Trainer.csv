@@ -44,8 +44,8 @@ ClubSlave,,(Leave her.),,DialogLeave(),
 0,50,I'll take a bounty hunter job.,"We have many kidnapping bounties available.  Are you looking for an easy target, or more of a challenge?",,CanTakeBounty()
 0,,Who's my bounty target again?,,BountyRemind(),BountyTaken()
 0,55,"I've succeeded, my bounty was kidnapped.",,BountyPay(),BountyWasVictory()
-0,,I've failed to kidnap my bounty.,"Maybe the challenge was too tough for you.  You can take a break, or pick up another bounty if you want.",BountyReset(),BountyWasDefeat()
-0,10,I want to practice kidnappings with you.,"Great!  I can go easy on you, or use all my tricks if you're confident enough.  Which will it be?",ResetTrainer(),AllowKidnap()
+0,,I've failed to kidnap my bounty.,Maybe the challenge was too tough for you.  You can take a break or pick up another bounty if you want.,BountyReset(),BountyWasDefeat()
+0,10,I want to practice kidnappings with you.,Great!  I can go easy on you or use all my tricks if you're confident enough.  Which will it be?,ResetTrainer(),AllowKidnap()
 0,,Let's talk later.  (Leave her.),,DialogLeave(),
 10,,Please go easy on me.,,StartKidnap(-3),
 10,,A regular match please.,,StartKidnap(0),
@@ -72,22 +72,21 @@ ClubSlave,,(Leave her.),,DialogLeave(),
 30,,Can members leave the league?,Of course.  Though you will lose any reputation gained in the league before.,,
 30,0,That's enough.,Very good.  Can I help you with anything else?,,
 40,,How do I kidnap?,"To kidnap, you must fight your opponent and break her willpower.  You can use many types of moves and items to make her submit to you.",,
-40,,How do I win a kidnapping fight?,"To win, you must break your opponent's willpower before getting yours broken yourself.  The first to break will submit, and then their arms can be restrained.",,
-40,,How can I attack?,Both kidnappers attack at the same time and can perform any one of four moves.  Each move has strengths and weaknesses against other moves.,,
-40,41,What are these different moves?,"We call them the ""BDSM"" moves, they are: Brute force, Domination, Sneakiness, and Meditation.",,
-40,49,How does the strength move work?,"The stronger the move, the more it will break your opponent's willpower.",,
+40,,How do I win a kidnapping fight?,"To win, you must break your opponent's willpower before getting yours broken.  The first to break will submit, and then their arms can be restrained.",,
+40,,How can I attack?,Both kidnappers attack at the same time and can perform four different moves.  Each move has strengths and weaknesses against other moves.,,
+40,41,What are these different moves?,"We call them the ""BDSM"" moves, they are: Brute force, Domination, Sneakiness, and Meditation.  You will get 8 moves when you begin a fight.",,
 40,,What's an upper hand in a fight?,You get the upper hand when you carry out a good move against your opponent.  It will allow you to restrain your opponent or get free yourself.,,
-40,,Can I use items that are not restraints?,"Yes, if you have items such as whips, crops, or vibrators. They will give you a starting advantage on various moves.",,
+40,,Can I use items that are not restraints?,"Yes, many unique items can be used passively to boost your moves strength.  They cannot be bought from the store, try to find them within the club.",,
 40,0,I know everything I need.,Excellent.  Can I help you with anything else?,,
 41,42,(Listen.),"Brute force is about using physical strength and endurance against your opponent.  You can slap, kick, punch, and choke, but don't go too far.",,
-42,43,(Listen.),"Brute force is good versus Domination and bad versus Sneakiness.  Brute force is halved if clothes are removed.",,
+42,43,(Listen.),Brute force is good versus Domination and bad versus Sneakiness.  Brute force is halved if clothes are removed.,,
 43,44,(Listen.),"Domination consists of intimidating, insulting, and making your opponent feel weaker than you, which breaks their morale.",,
-44,45,(Listen.),"Domination is good versus Sneakiness and bad versus Brute force.  Domination is halved when gagged.",,
+44,45,(Listen.),Domination is good versus Sneakiness and bad versus Brute force.  Domination is halved when gagged.,,
 45,46,(Listen.),"Sneakiness means to ambush, trip, surprise, sneak, tickle, or use tricks to break your opponent.",,
-46,47,(Listen.),"Sneakiness is good versus Brute force and bad versus Domination.  Sneakiness is halved if feet are restrained.",,
-47,48,(Listen.),"Meditation is used to recover, so you can use Brute force, Domination and Sneakiness at full strength once again.",,
-48,40,(Listen.),"Meditation is weak against everything, so you will probably take a hit when you use it, but come back stronger.",,
-49,40,(Listen.),"Each time you use the B, D & S moves, it's strength will be halved, so it's good to alternate between different moves.",,
+46,47,(Listen.),Sneakiness is good versus Brute force and bad versus Domination.  Sneakiness is halved if feet are restrained.,,
+47,48,(Listen.),"Meditation is used to recover.  If you use that move, you will get 8 new fresh moves that you'll be able to use in the next round.",,
+48,49,(Listen.),"Meditation is weak against everything, so you will probably take a hit when you use it, but come back stronger.",,
+49,40,(Listen.),The strategy is using the right move at the right time and recovering when the timing is best.  Do not get caught off guard.  Anything else?,,
 50,51,I want an easy bounty.,,TakeBounty(0),
 50,51,Give me some challenge.,,TakeBounty(3),
 50,51,I'll take your top bounty.,,TakeBounty(6),
@@ -111,7 +110,7 @@ ClubSlave,,(Leave her.),,DialogLeave(),
 110,,What can I do with my victims?,"Anything you want, as long as you don't go over their limits.  You can tickle, spank, tease, or even make love with them.",,
 110,,Struggle some more!,(She struggles but doesn't really try to escape.)  It's all part of the fun.,,IsTrainerRestrained()
 110,0,Let's chit chat.,What would you like to talk about?,ResetTrainer(),!IsTrainerRestrained()
-110,10,I want to try another practice fight.,"Great!  I can go easy on you, or use all my tricks if you're confident enough.  Which will it be?",ResetTrainer(),AllowKidnap()
+110,10,I want to try another practice fight.,Great!  I can go easy on you or use all my tricks if you're confident enough.  Which will it be?,ResetTrainer(),AllowKidnap()
 110,,Let's talk later.  (Leave her.),,DialogLeave(),
 200,210,Congratulations!  That was fun.,Yes!  I hope you've learned a few tricks.,,Player.CanTalk()
 200,210,"Yes, but you're too strong for me.",You'll learn new tricks and you'll get stronger.,"DialogChangeReputation(""Dominant"", -2)",Player.CanTalk()

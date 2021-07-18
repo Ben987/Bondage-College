@@ -15,7 +15,7 @@ ItemEars,,,(She seems angry as you push earplugs inside.)  How can I follow your
 RemoveItemEars,,,(You pull the earplugs out.)  You're only adding more time to your sentence.,,
 ItemArms,,,(She struggles as you restrain her arms securely.)  You're breaking the law again.,,
 RemoveItemArms,,,(You free her arms and she stretches.)  You're still under arrest.,,
-ItemLegs,,,(She trashes as you restrain her legs.)  You better carry me then!,,
+ItemLegs,,,(She thrashes as you restrain her legs.)  You better carry me then!,,
 RemoveItemLegs,,,(You release her legs.)  Justice will strike you down like a hammer.,,
 ItemFeet,,,(She grumbles as you restrain her feet.)  This will be reported in your trial.,,
 RemoveItemFeet,,,(You release her feet.)  Let's walk until you get caught.,,
@@ -162,7 +162,7 @@ WaitDominatrix,,(Wait for the Dominatrix.),,PunishmentIntro(),
 200,210,You're not arresting me girl.,You're already arrested.  A Dominatrix will come to pick you in a few minutes.,,Player.CanTalk()
 200,210,I will accept it Miss.,Perfect.  A Dominatrix will come to pick you in a few minutes.,,Player.CanTalk()
 200,210,(Scream in your gag.),Scream all you want.  A Dominatrix will come to pick you in a few minutes.,,!Player.CanTalk()
-200,210,(Trash in your bondage.),This is pointless.  A Dominatrix will come to pick you in a few minutes.,,!Player.CanTalk()
+200,210,(Thrash in your bondage.),This is pointless.  A Dominatrix will come to pick you in a few minutes.,,!Player.CanTalk()
 200,210,(Bow your head and stay silent.),Perfect.  A Dominatrix will come to pick you in a few minutes.,,!Player.CanTalk()
 210,,How about a bribe?,Trying to bribe an officer?   That's more prison time for you.  (She takes notes.),DialogRemove(),Player.CanTalk()
 210,,I will have my revenge.,"(She smirks.)  Aren't you cute?  Stop that nonsense, the Dominatrix is coming.",DialogRemove(),Player.CanTalk()

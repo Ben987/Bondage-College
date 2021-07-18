@@ -23,7 +23,7 @@ ItemBoots,,,(She tries to kick you as you restrain her feet.)  You will rot in j
 RemoveItemBoots,,,(She wiggles her feet as you release them.)  Soon you will lick my boots.,,
 ItemNeck,,,(She seems furious as you strap a collar on her.)  This is really offensive you know?,,
 RemoveItemNeck,,,(You remove the collar from her neck.)  I will never forget this.,,
-ItemPelvis,,,(She trashes to avoid the belt as you strap it on her.)  Chastity?  Really?  Are you serious?,,
+ItemPelvis,,,(She thrashes to avoid the belt as you strap it on her.)  Chastity?  Really?  Are you serious?,,
 RemoveItemPelvis,,,(She nods as you unlock the belt.)  You cannot keep me chaste anyway.,,
 ItemHead,,,(She becomes silent as you strap the device on her head.),,
 RemoveItemHead,,,(She takes a deep breath as you release her head.)  I will enjoy torturing you.,,
@@ -90,7 +90,7 @@ RemoveItemNipples,,,(She stays silent as you remove the device.),,
 200,WaitDominatrix,I'm not going to any jail.,Your fate is already sealed girl.  A Dominatrix friend of mine will escort you there.,,Player.CanTalk()
 200,WaitDominatrix,I will accept it Miss.,Good girl.  A Dominatrix friend of mine will escort you to your new home.,,Player.CanTalk()
 200,WaitDominatrix,(Scream in your gag.),Scream all you want.  A Dominatrix friend of mine will escort you to your new home.,,!Player.CanTalk()
-200,WaitDominatrix,(Trash in your bondage.),"Struggle or curse, it won't change anything.  A Dominatrix friend of mine will escort you to your new home.",,!Player.CanTalk()
+200,WaitDominatrix,(Thrash in your bondage.),"Struggle or curse, it won't change anything.  A Dominatrix friend of mine will escort you to your new home.",,!Player.CanTalk()
 200,WaitDominatrix,(Bow your head and stay silent.),Good girl.  A Dominatrix friend of mine will escort you to your new home.,,
 WaitDominatrix,,I promise I will be good.,Of course.  Everyone turns good after a long stay in our prison.  (She grins.),DialogRemove(),Player.CanTalk()
 WaitDominatrix,,Another Dominatrix?,She's coming up very soon.  She will take extra good care of you.  (She laughs out loud.),DialogRemove(),Player.CanTalk()

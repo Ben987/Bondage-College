@@ -429,6 +429,9 @@ function ModularItemMergeModuleValues({ asset, modules }, moduleValues) {
 		if (Property.Effect) CommonArrayConcatDedupe(mergedProperty.Effect, Property.Effect);
 		if (Property.Hide) CommonArrayConcatDedupe(mergedProperty.Hide, Property.Hide);
 		if (Property.HideItem) CommonArrayConcatDedupe(mergedProperty.HideItem, Property.HideItem);
+		if (Property.SetPose) mergedProperty.SetPose = CommonArrayConcatDedupe(mergedProperty.SetPose || [], Property.SetPose);
+		if (typeof Property.OverridePriority === "number") mergedProperty.OverridePriority = Property.OverridePriority;
+		if (typeof Property.HeightModifier === "number") mergedProperty.HeightModifier = (mergedProperty.HeightModifier || 0) + Property.HeightModifier;
 		return mergedProperty;
 	}, {
 		Type: ModularItemConstructType(modules, moduleValues),
@@ -527,7 +530,7 @@ function ModularItemSetType(module, index, data) {
  * Publishes the chatroom message for a modular item when one of its modules has changed.
  * @param {ModularItemModule} module - The module that changed
  * @param {number} index - The index of the newly chosen option within the module
- * @param {ModularItemData} - The modular item's data
+ * @param {ModularItemData} data - The modular item's data
  * @returns {void} - Nothing
  */
 function ModularItemChatRoomMessage(module, index, { chatSetting, chatMessagePrefix }) {

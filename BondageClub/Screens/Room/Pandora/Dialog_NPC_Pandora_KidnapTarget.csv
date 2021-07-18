@@ -64,7 +64,7 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 210,220,You're not punishing me girl.,I don't do punishments.  A Dominatrix will come to get you soon.,,Player.CanTalk()
 210,220,I will accept it Miss.,You might like this punishment subbie girl.  A Dominatrix will come to get you soon.,,Player.CanTalk()
 210,220,(Scream in your gag.),Scream all you want.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
-210,220,(Trash in your bondage.),You're not getting out.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
+210,220,(Thrash in your bondage.),You're not getting out.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
 210,220,(Bow your head and stay silent.),You might like this punishment subbie girl.  A Dominatrix will come to get you soon.,,!Player.CanTalk()
 220,,You can't be serious.,"Oh yeah?  Watch me, I'm very serious.  (She waits for a Dominatrix.)",DialogRemove(),Player.CanTalk()
 220,,I will have my revenge.,"We'll see about that, try anything and I will crush you again.",DialogRemove(),Player.CanTalk()

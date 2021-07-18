@@ -293,6 +293,12 @@ function ElementPosition(ElementID, X, Y, W, H) {
  * @returns {void} - Nothing
  */
 function ElementPositionFix(ElementID, Font, X, Y, W, H) {
+	var E = document.getElementById(ElementID);
+	// Verify the element exists
+	if (!E) {
+		console.warn("A call to ElementPositionFix was made on non-existent element with ID '" + ElementID + "'");
+		return;
+	}
 
 	// Different positions based on the width/height ratio
 	const HRatio = MainCanvas.canvas.clientHeight / 1000;
@@ -304,7 +310,6 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 	const Width = W * WRatio;
 
 	// Sets the element style
-	var E = document.getElementById(ElementID);
 	Object.assign(E.style, {
 		fontSize: Font + "px",
 		fontFamily: CommonGetFontName(),
@@ -348,7 +353,7 @@ function ElementScrollToEnd(ID) {
  * @param {string} ID - The id of the element to find the scroll percentage of.
  * @returns {(number|null)} - A float representing the scroll percentage.
  */
- function ElementGetScrollPercentage(ID) {
+function ElementGetScrollPercentage(ID) {
 	var element = document.getElementById(ID);
 	if (element != null) return (element.scrollTop + element.clientHeight) / element.scrollHeight;
 

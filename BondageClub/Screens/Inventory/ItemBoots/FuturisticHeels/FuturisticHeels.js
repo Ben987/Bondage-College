@@ -50,7 +50,7 @@ function InventoryItemBootsFuturisticHeelsPublishAction(C, Option) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
-function InventoryItemBootsFuturisticHeelsValidate(C) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option); // All futuristic items refer to the gag
+function InventoryItemBootsFuturisticHeelsValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item); // All futuristic items refer to the gag
 }
 

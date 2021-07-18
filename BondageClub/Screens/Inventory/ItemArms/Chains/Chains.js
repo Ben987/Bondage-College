@@ -111,13 +111,14 @@ function InventoryItemArmsChainsNpcDialog(C, Option) {
 /**
  * Validates, if the chosen option is possible. Sets the global variable 'DialogExtendedMessage' to the appropriate error message, if not.
  * @param {Character} C - The character to validate the option for
+ * @param {Item} Item - The equipped item
  * @param {ExtendedItemOption} Option - The selected option
  * @returns {string} - Returns false and sets DialogExtendedMessage, if the chosen option is not possible.
  */
-function InventoryItemArmsChainsValidate(C, Option) {
+function InventoryItemArmsChainsValidate(C, Item, Option) {
 	var Allowed = "";
 
-	if (InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
+	if (InventoryItemHasEffect(Item, "Lock", true)) {
 		Allowed = DialogFindPlayer("CantChangeWhileLocked");
 	} else if (Option.Prerequisite) {
 		if (!ExtendedItemSelfProofRequirementCheck(C, Option.Prerequisite)) {

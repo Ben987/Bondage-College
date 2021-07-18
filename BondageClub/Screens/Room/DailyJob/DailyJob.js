@@ -22,9 +22,9 @@ function DailyJobPlayerFullRestrain() { CharacterFullRandomRestrain(Player, "ALL
 function DailyJobPuppyLoad(GirlNum) {
 	var C = (GirlNum == "0") ? Player : CharacterLoadNPC("NPC_DailyJob_PuppyGirl" + GirlNum);
 	CharacterNaked(C);
-	InventoryWear(C, CommonRandomItemFromList("", ["BitchSuit", "BitchSuitExposed", "HempRope", "Chains", "ArmbinderJacket", "StraitLeotard", "LeatherStraitJacket", "BoxTieArmbinder"]), "ItemArms", null, 8);
-	InventoryWear(C, CommonRandomItemFromList("", ["Ears1", "Ears2", "PonyEars1", "BunnyEars1", "BunnyEars2", "PuppyEars1", "FoxEars1", "WolfEars1", "WolfEars2", "FoxEars2", "FoxEars3", "PuppyEars2"]), "HairAccessory1", null, 8);
-	InventoryWear(C, CommonRandomItemFromList("", ["FoxTailsStrap", "PuppyTailStrap", "RaccoonStrap", "PuppyTailStrap1", "FoxTailStrap1", "FoxTailStrap2", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"]), "TailStraps", null, 8);
+	InventoryWearRandom(C, "ItemArms", 8, null, false, true, ["BitchSuit", "BitchSuitExposed", "HempRope", "Chains", "ArmbinderJacket", "StraitLeotard", "LeatherStraitJacket", "BoxTieArmbinder"], true);
+	InventoryWearRandom(C, "HairAccessory1", 8, null, false, true, ["Ears1", "Ears2", "PonyEars1", "BunnyEars1", "BunnyEars2", "PuppyEars1", "FoxEars1", "WolfEars1", "WolfEars2", "FoxEars2", "FoxEars3", "PuppyEars2"], true);
+	InventoryWearRandom(C, "TailStraps", 8, null, false, true, ["FoxTailsStrap", "PuppyTailStrap", "RaccoonStrap", "PuppyTailStrap1", "FoxTailStrap1", "FoxTailStrap2", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"], true);
 	if (InventoryGet(C, "ItemMouth") == null) InventoryWearRandom(C, "ItemMouth", 8);
 	if (InventoryGet(C, "ItemNeck") == null) InventoryWearRandom(C, "ItemNeck", 8);
 	if (InventoryGet(C, "ItemNeckRestraints") == null) InventoryWear(C, "ChainLeash", "ItemNeckRestraints", null, 8);

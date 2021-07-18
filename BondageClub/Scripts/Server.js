@@ -193,12 +193,16 @@ function ServerDisconnect(data, close = false) {
 				RelogChatLog = document.getElementById("TextAreaChatLog").cloneNode(true);
 				RelogChatLog.id = "RelogChatLog";
 				RelogChatLog.name = "RelogChatLog";
+				RelogInputText = ElementValue("InputChat").trim();
 				ElementRemove("InputChat");
 				ElementRemove("TextAreaChatLog");
 				CurrentScreen = "ChatSearch";
 				CurrentModule = "Online";
 				CurrentCharacter = null;
-			} else RelogChatLog = null;
+			} else {
+				RelogChatLog = null;
+				RelogInputText = "";
+			}
 
 			// Keeps the relog data
 			RelogData = { Screen: CurrentScreen, Module: CurrentModule, Character: CurrentCharacter };
@@ -264,13 +268,14 @@ function ServerPlayerInventorySync() {
 }
 
 /**
- * Syncs player's blocked, limited and hidden items to the server
+ * Syncs player's favorite, blocked, limited and hidden items to the server
  * @returns {void} - Nothing
  */
 function ServerPlayerBlockItemsSync() {
 	ServerAccountUpdate.QueueData({
 		BlockItems: CommonPackItemArray(Player.BlockItems),
 		LimitedItems: CommonPackItemArray(Player.LimitedItems),
+		FavoriteItems: CommonPackItemArray(Player.FavoriteItems),
 		HiddenItems: Player.HiddenItems
 	}, true);
 }
@@ -356,7 +361,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	if (SourceMemberNumber == null) SourceMemberNumber = C.MemberNumber;
 	const updateParams = ValidationCreateDiffParams(C, SourceMemberNumber);
 
-	const { appearance, updateValid } = Object.keys(appearanceDiffs)
+	let { appearance, updateValid } = Object.keys(appearanceDiffs)
 		.reduce(({ appearance, updateValid }, key) => {
 			const diff = appearanceDiffs[key];
 			const { item, valid } = ValidationResolveAppearanceDiff(diff[0], diff[1], updateParams);
@@ -364,6 +369,10 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			updateValid = updateValid && valid;
 			return { appearance, updateValid };
 		}, { appearance: [], updateValid: true });
+
+	const cyclicBlockSanitizationResult = ValidationResolveCyclicBlocks(appearance, appearanceDiffs);
+	appearance = cyclicBlockSanitizationResult.appearance;
+	updateValid = updateValid && cyclicBlockSanitizationResult.valid;
 
 	if (AppearanceFull) {
 		C.AppearanceFull = appearance;
@@ -526,6 +535,7 @@ function ServerPrivateCharacterSync() {
 				ArousalSettings: PrivateCharacter[ID].ArousalSettings,
 				Event: PrivateCharacter[ID].Event
 			};
+			if (PrivateCharacter[ID].FromPandora != null) C.FromPandora = PrivateCharacter[ID].FromPandora;
 			D.PrivateCharacter.push(C);
 		}
 		ServerAccountUpdate.QueueData(D);

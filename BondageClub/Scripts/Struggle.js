@@ -289,21 +289,22 @@ function StruggleStrength(Reverse) {
 	if (!Reverse) StruggleProgressStruggleCount++;
 	if ((StruggleProgressStruggleCount >= 50) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgressOperation = DialogFindPlayer("Impossible");
 
-	// At 15 hit: low blush, 50: Medium and 125: High
-	if (DialogAllowBlush && !Reverse) {
-		if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
-		if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
-		if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+	if (!Reverse && Player.OnlineSharedSettings.ItemsAffectExpressions) {
+		// At 15 hit: low blush, 50: Medium and 125: High
+		if (DialogAllowBlush) {
+			if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
+			if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
+			if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+		}
+
+		// At 15 hit: Start drooling
+		if (DialogAllowFluids) {
+			if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Fluids", "DroolMessy");
+		}
+
+		// Over 50 progress, the character frowns
+		if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
 	}
-
-	// At 15 hit: Start drooling
-	if (DialogAllowFluids && !Reverse) {
-		if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Fluids", "DroolMessy");
-	}
-
-	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
-
 
 }
 /**
@@ -397,7 +398,12 @@ function StruggleStrengthStart(C, PrevItem, NextItem) {
 
 	// Applying or removing specific items can trigger an audio sound to play
 	if ((PrevItem && PrevItem.Asset) || (NextItem && NextItem.Asset)) {
-		var AudioFile = (NextItem && NextItem.Asset) ? NextItem.Asset.Audio : PrevItem.Asset.Audio;
+		var AudioFile = null;
+		if (NextItem && NextItem.Asset) {
+			AudioFile = NextItem.Asset.DynamicAudio ? NextItem.Asset.DynamicAudio(C) : NextItem.Asset.Audio;
+		} else {
+			AudioFile = PrevItem.Asset.DynamicAudio ? PrevItem.Asset.DynamicAudio(C) : PrevItem.Asset.Audio;
+		}
 		if (AudioFile != null) AudioDialogStart("Audio/" + AudioGetFileName(AudioFile) + ".mp3");
 	}
 
@@ -611,21 +617,22 @@ function StruggleFlexibility(Reverse, Hover) {
 	if (!Reverse) StruggleProgressStruggleCount += 3;
 	if ((StruggleProgressStruggleCount >= 50) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgressOperation = DialogFindPlayer("Impossible");
 
-	// At 15 hit: low blush, 50: Medium and 125: High
-	if (DialogAllowBlush && !Reverse) {
-		if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
-		if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
-		if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+	if (!Reverse && Player.OnlineSharedSettings.ItemsAffectExpressions) {
+		// At 15 hit: low blush, 50: Medium and 125: High
+		if (DialogAllowBlush) {
+			if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
+			if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
+			if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+		}
+
+		// At 25 hit: Start one eye closed
+		if (DialogAllowFluids) {
+			if (StruggleProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes2", "Closed");
+		}
+
+		// Over 50 progress, the character frowns
+		if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
 	}
-
-	// At 25 hit: Start one eye closed
-	if (DialogAllowFluids && !Reverse) {
-		if (StruggleProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes2", "Closed");
-	}
-
-	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows && !Reverse) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
-
 
 }
 
@@ -807,21 +814,22 @@ function StruggleDexterity(Reverse) {
 	StruggleProgressStruggleCount += Math.max(1, 3*(distMult + 0.5));
 	if ((StruggleProgressStruggleCount >= 50) && (StruggleProgressChallenge > 6) && (StruggleProgressAuto < 0)) StruggleProgressOperation = DialogFindPlayer("Impossible");
 
-	// At 15 hit: low blush, 50: Medium and 125: High
-	if (DialogAllowBlush) {
-		if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
-		if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
-		if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+	if (Player.OnlineSharedSettings.ItemsAffectExpressions) {
+		// At 15 hit: low blush, 50: Medium and 125: High
+		if (DialogAllowBlush) {
+			if (StruggleProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
+			if (StruggleProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
+			if (StruggleProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+		}
+
+		// At 25 hit: Eyes look glazed
+		if (DialogAllowFluids) {
+			if (StruggleProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes", "Dazed");
+		}
+
+		// Over 50 progress, the character frowns
+		if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
 	}
-
-	// At 25 hit: Eyes look glazed
-	if (DialogAllowFluids) {
-		if (StruggleProgressStruggleCount == 25) CharacterSetFacialExpression(Player, "Eyes", "Dazed");
-	}
-
-	// Over 50 progress, the character frowns
-	if (DialogAllowEyebrows) CharacterSetFacialExpression(Player, "Eyebrows", (StruggleProgress >= 50) ? "Angry" : null);
-
 
 }
 
@@ -890,11 +898,6 @@ function StruggleLockPickClick(C) {
 
 						if (StruggleLockPickProgressCurrentTries == StruggleLockPickProgressMaxTries && StruggleLockPickSet.filter(x => x==false).length > 0 ) {
 							SkillProgress("LockPicking", StruggleLockPickProgressSkillLose);
-							if (DialogLentLockpicks)  {
-								DialogLentLockpicks = false;
-								if (CurrentScreen == "ChatRoom")
-									ChatRoomPublishCustomAction("LockPickBreak", true, [{ Tag: "DestinationCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }]);
-							}
 
 						}
 					}
@@ -976,9 +979,15 @@ function StruggleDrawLockpickProgress(C) {
 					DrawText(DialogFindPlayer("LockpickFailed"), X, 262, "red");
 				}
 			} else if (Math.random() < 0.25 && StruggleLockPickTotalTries > 5) { // StruggleLockPickTotalTries is meant to give players a bit of breathing room so they don't get tired right away
-				LogAdd("FailedLockPick", "LockPick", CurrentTime + StruggleLockPickFailTimeout);
-				StruggleLockPickFailTime = CurrentTime + StruggleLockPickFailTimeout;
-				StruggleLockPickTotalTries = 0;
+				if (DialogLentLockpicks)  {
+					DialogLentLockpicks = false;
+					if (CurrentScreen == "ChatRoom")
+						ChatRoomPublishCustomAction("LockPickBreak", true, [{ Tag: "DestinationCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber }]);
+				} else {
+					LogAdd("FailedLockPick", "LockPick", CurrentTime + StruggleLockPickFailTimeout);
+					StruggleLockPickFailTime = CurrentTime + StruggleLockPickFailTimeout;
+					StruggleLockPickTotalTries = 0;
+				}
 			} else
 				StruggleLockPickFailTime = CurrentTime + 1500;
 		}
@@ -1161,7 +1170,7 @@ function StruggleLockPickProgressStart(C, Item) {
 				if (InventoryItemHasEffect(InventoryGet(Player, "ItemFeet"), "Block", true)) S = S - 1; // A little harder while legs bound, but it wont make it impossible
 				if (InventoryGroupIsBlocked(Player, "ItemFeet")) S = S - 1; // A little harder while wearing something like a legbinder as well
 				if (Player.IsBlind()) S = S - 1; // harder while blind
-				if (Player.GetDeafLevel() > 0) S = S - Math.Ceiling(Player.GetDeafLevel()/2); // harder while deaf
+				if (Player.GetDeafLevel() > 0) S = S - Math.ceil(Player.GetDeafLevel()/2); // harder while deaf
 
 				// No bonus from struggle assist. Lockpicking is a solo activity!
 			}

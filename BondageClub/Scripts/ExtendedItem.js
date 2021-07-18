@@ -146,20 +146,25 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
 		const Option = Options[I];
 		const Hover = MouseIn(X, Y, 225, 55 + ImageHeight) && !CommonIsMobile;
 		const IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
+		const IsFavorite = InventoryIsFavorite(ExtendedItemPermissionMode ? Player : C, Asset.Name, Asset.Group.Name, Option.Property && Option.Property.Type ? Option.Property.Type : null);
 		const ButtonColor = ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected);
 
 		DrawButton(X, Y, 225, 55 + ImageHeight, "", ButtonColor, null, null, IsSelected);
-		if (ShowImages) DrawImage(`${AssetGetInventoryPath(Asset)}/${Option.Name}.png`, X + 2, Y);
-		DrawTextFit(DialogFindPlayer(DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
+		if (ShowImages) {
+			DrawImage(`${AssetGetInventoryPath(Asset)}/${Option.Name}.png`, X + 2, Y);
+			const icons = IsFavorite ? ["Favorite"] : null;
+			DrawPreviewIcons(icons, X + 2, Y);
+		}
+		DrawTextFit((IsFavorite && !ShowImages ? "★ " : "") + DialogFindPlayer(DialogPrefix + Option.Name), X + 112, Y + 30 + ImageHeight, 225, "black");
 		if (ControllerActive == true) {
 			setButton(X + 112, Y + 30 + ImageHeight);
 		}
 	}
 
 	// Permission mode toggle
-	if (Player.GetDifficulty() < 3) {
-		DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFindPlayer(ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
-	}
+	DrawButton(1775, 25, 90, 90, "", "White",
+		ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png",
+		DialogFindPlayer(ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 }
 
 /**
@@ -173,16 +178,15 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage, ShowImages = tr
  */
 function ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected) {
 	const IsSelfBondage = C.ID === 0;
-	const FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, CurrentOption, IsSelfBondage);
-	const BlockedOrLimited = InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type);
-	const PlayerBlocked = InventoryIsPermissionBlocked(
-		Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName,
-		Option.Property.Type,
-	);
-	const PlayerLimited = InventoryIsPermissionLimited(
-		Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
 	let ButtonColor;
 	if (ExtendedItemPermissionMode) {
+		const PlayerBlocked = InventoryIsPermissionBlocked(
+			Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.Group.Name,
+			Option.Property.Type,
+		);
+		const PlayerLimited = InventoryIsPermissionLimited(
+			Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
+
 		if ((IsSelfBondage && IsSelected) || Option.Property.Type == null) {
 			ButtonColor = "#888888";
 		} else if (PlayerBlocked) {
@@ -193,6 +197,9 @@ function ExtendedItemGetButtonColor(C, Option, CurrentOption, Hover, IsSelected)
 			ButtonColor = Hover ? "green" : "lime";
 		}
 	} else {
+		const BlockedOrLimited = InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type);
+		const FailSkillCheck = !!ExtendedItemRequirementCheckMessageMemo(Option, CurrentOption, IsSelfBondage);
+
 		if (IsSelected && !Option.HasSubscreen) {
 			ButtonColor = "#888888";
 		} else if (BlockedOrLimited) {
@@ -242,7 +249,7 @@ function ExtendedItemClick(Options, OptionsPerPage, ShowImages = true) {
 	}
 
 	// Permission toggle button
-	if (MouseIn(1775, 25, 90, 90) && Player.GetDifficulty() < 3) {
+	if (MouseIn(1775, 25, 90, 90)) {
 		if (ExtendedItemPermissionMode && CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
 		ExtendedItemPermissionMode = !ExtendedItemPermissionMode;
 	}
@@ -295,45 +302,28 @@ function ExtendedItemExit() {
  */
 function ExtendedItemSetType(C, Options, Option) {
 	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-	var FunctionPrefix = ExtendedItemFunctionPrefix() + (ExtendedItemSubscreen || "");
+	const FunctionPrefix = ExtendedItemFunctionPrefix() + (ExtendedItemSubscreen || "");
 
 	if (CurrentScreen == "ChatRoom") {
 		// Call the item's load function
 		CommonCallFunctionByName(FunctionPrefix + "Load");
 	}
-	// Default the previous Property and Type to the first option if not found on the current item
-	var PreviousProperty = DialogFocusItem.Property || Options[0].Property;
-	var PreviousType = PreviousProperty.Type || Options[0].Property.Type;
-	var PreviousOption = Options.find(O => O.Property.Type === PreviousType);
 
-	// Create a new Property object based on the previous one
-	var NewProperty = Object.assign({}, PreviousProperty);
-	// Delete properties added by the previous option
-	Object.keys(PreviousOption.Property).forEach(key => delete NewProperty[key]);
-	// Clone the new properties and use them to extend the existing properties
-	Object.assign(NewProperty, JSON.parse(JSON.stringify(Option.Property)));
-
-	// If the item is locked, ensure it has the "Lock" effect
-	if (NewProperty.LockedBy && !(NewProperty.Effect || []).includes("Lock")) {
-		NewProperty.Effect = (NewProperty.Effect || []);
-		NewProperty.Effect.push("Lock");
-	}
-
-	DialogFocusItem.Property = NewProperty;
 	const IsCloth = DialogFocusItem.Asset.Group.Clothing;
-	CharacterRefresh(C, !IsCloth); // Does not sync appearance while in the wardrobe
+	const previousOption = TypedItemFindPreviousOption(DialogFocusItem, Options);
+
+	TypedItemSetOption(C, DialogFocusItem, Options, Option, !IsCloth); // Do not sync appearance while in the wardrobe
 
 	// For a restraint, we might publish an action, change the expression or change the dialog of a NPC
 	if (!IsCloth) {
 		// If the item triggers an expression, start the expression change
 		if (Option.Expression) {
-			const E = Option.Expression[0];
-			CharacterSetFacialExpression(C, E.Group, E.Name, E.Timer);
+			InventoryExpressionTriggerApply(C, Option.Expression);
 		}
 		ChatRoomCharacterUpdate(C);
 		if (CurrentScreen === "ChatRoom") {
 			// If we're in a chatroom, call the item's publish function to publish a message to the chatroom
-			CommonCallFunctionByName(FunctionPrefix + "PublishAction", C, Option, PreviousOption);
+			CommonCallFunctionByName(FunctionPrefix + "PublishAction", C, Option, previousOption);
 		} else {
 			CommonCallFunctionByName(FunctionPrefix + "Exit");
 			DialogFocusItem = null;
@@ -342,7 +332,7 @@ function ExtendedItemSetType(C, Options, Option) {
 				DialogMenuButtonBuild(C);
 			} else {
 				// Otherwise, call the item's NPC dialog function, if one exists
-				CommonCallFunctionByName(FunctionPrefix + "NpcDialog", C, Option, PreviousOption);
+				CommonCallFunctionByName(FunctionPrefix + "NpcDialog", C, Option, previousOption);
 				C.FocusGroup = null;
 			}
 		}
@@ -360,12 +350,10 @@ function ExtendedItemSetType(C, Options, Option) {
  */
 function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage) {
 	if (ExtendedItemPermissionMode) {
-		if (Option.Property.Type == null || (C.ID == 0 && DialogFocusItem.Property.Type == Option.Property.Type)) return;
-		InventoryTogglePermission(DialogFocusItem, Option.Property.Type);
+		if (Option.Property.Type == null) return;
+		const worn = C.ID == 0 && DialogFocusItem.Property.Type == Option.Property.Type;
+		InventoryTogglePermission(DialogFocusItem, Option.Property.Type, worn);
 	} else {
-		if (InventoryBlockedOrLimited(C, DialogFocusItem, Option.Property.Type)) {
-			return;
-		}
 		if (DialogFocusItem.Property.Type === Option.Property.Type && !Option.HasSubscreen) {
 			return;
 		}
@@ -397,40 +385,50 @@ function ExtendedItemHandleOptionClick(C, Options, Option, IsSelfBondage) {
  */
 function ExtendedItemRequirementCheckMessage(Option, CurrentOption, IsSelfBondage) {
 	const C = CharacterGetCurrent() || CharacterAppearanceSelection;
-
-	if (IsSelfBondage) {
-		let RequiredLevel = Option.SelfBondageLevel || Math.max(DialogFocusItem.Asset.SelfBondage, Option.BondageLevel);
-		if (SkillGetLevelReal(Player, "SelfBondage") < RequiredLevel) {
-			return DialogFindPlayer("RequireSelfBondage" + RequiredLevel);
-		}
-	} else {
-		let RequiredLevel = Option.BondageLevel;
-		if (SkillGetLevelReal(Player, "Bondage") < RequiredLevel) {
-			return DialogFindPlayer("RequireBondageLevel").replace("ReqLevel", `${RequiredLevel}`);
-		}
-	}
-
-	// An extendable item may provide a validation function. Returning a non-empty string from the validation function
-	// will drop out of this function, and the new type will not be applied.
-	let ValidationMessage = CommonCallFunctionByName(`${ExtendedItemFunctionPrefix()}Validate`, C, Option);
-	if (!ValidationMessage || typeof ValidationMessage !== "string") {
-		ValidationMessage = ExtendedItemValidate(C, Option, CurrentOption);
+	let ValidationMessage = TypedItemValidateOption(C, DialogFocusItem, Option, CurrentOption);
+	if (!ValidationMessage) {
+		ExtendedItemCheckSkillRequirements(C, DialogFocusItem, Option);
 	}
 	return ValidationMessage;
 }
 
 /**
+ * Checks whether the player meets an option's self-bondage/bondage skill level requirements
+ * @param {Character} C - The character on whom the bondage is applied
+ * @param {Item} Item - The item whose options are being checked
+ * @param {ExtendedItemOption|ModularItemOption} Option - The option whose requirements should be checked against
+ * @returns {string|undefined} - undefined if the player meets the option's skill level requirements. Otherwise returns
+ * a string message informing them of the requirements they do not meet.
+ */
+function ExtendedItemCheckSkillRequirements(C, Item, Option) {
+	const SelfBondage = C.ID === 0;
+	if (SelfBondage) {
+		let RequiredLevel = Option.SelfBondageLevel;
+		if (typeof RequiredLevel !== "number") RequiredLevel = Math.max(Item.Asset.SelfBondage, Option.BondageLevel);
+		if (SkillGetLevelReal(Player, "SelfBondage") < RequiredLevel) {
+			return DialogFindPlayer("RequireSelfBondage" + RequiredLevel);
+		}
+	} else {
+		let RequiredLevel = Option.BondageLevel || 0;
+		if (SkillGetLevelReal(Player, "Bondage") < RequiredLevel) {
+			return DialogFindPlayer("RequireBondageLevel").replace("ReqLevel", `${RequiredLevel}`);
+		}
+	}
+}
+
+/**
  * Checks whether a change from the given current option to the newly selected option is valid.
  * @param {Character} C - The character wearing the item
- * @param {Pick<ExtendedItemOption, "Prerequisite" | "SelfBlockCheck" | "Property">} Option - The selected option
- * @param {Pick<ExtendedItemOption, "ChangeWhenLocked">} CurrentOption - The currently applied option on the item
+ * @param {Item} Item - The extended item to validate
+ * @param {ExtendedItemOption|ModularItemOption} Option - The selected option
+ * @param {ExtendedItemOption|ModularItemOption} CurrentOption - The currently applied option on the item
  * @returns {string} - Returns a non-empty message string if the item failed validation, or an empty string otherwise
  */
-function ExtendedItemValidate(C, { Prerequisite, SelfBlockCheck, Property }, CurrentOption) {
-	const CurrentProperty = DialogFocusItem && DialogFocusItem.Property;
+function ExtendedItemValidate(C, Item, { Prerequisite, SelfBlockCheck, Property }, CurrentOption) {
+	const CurrentProperty = Item && Item.Property;
 	const CurrentLockedBy = CurrentProperty && CurrentProperty.LockedBy;
 
-	if (CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, DialogFocusItem)) {
+	if (CurrentOption && CurrentOption.ChangeWhenLocked === false && CurrentLockedBy && !DialogCanUnlock(C, Item)) {
 		// If the option can't be changed when locked, ensure that the player can unlock the item (if it's locked)
 		return DialogFindPlayer("CantChangeWhileLocked");
 	} else if (Prerequisite && SelfBlockCheck && !ExtendedItemSelfProofRequirementCheck(C, Prerequisite)) {
@@ -442,8 +440,7 @@ function ExtendedItemValidate(C, { Prerequisite, SelfBlockCheck, Property }, Cur
 	} else {
 		const OldEffect = CurrentProperty && CurrentProperty.Effect;
 		if (OldEffect && OldEffect.includes("Lock") && Property && Property.AllowLock === false) {
-			DialogExtendedMessage = DialogFindPlayer("ExtendedItemUnlockBeforeChange");
-			return DialogExtendedMessage;
+			return DialogFindPlayer("ExtendedItemUnlockBeforeChange");
 		}
 	}
 
@@ -462,7 +459,7 @@ function ExtendedItemSelfProofRequirementCheck(C, Prerequisite) {
 
 	// Remove the item temporarily for prerequisite-checking
 	let CurrentItem = InventoryGet(C, C.FocusGroup.Name);
-	InventoryRemove(C, C.FocusGroup.Name, false);
+	C.Appearance = C.Appearance.filter(Item => Item !== CurrentItem);
 	CharacterRefresh(C, false, false);
 
 	if (!InventoryAllow(C, Prerequisite, true)) {
@@ -470,11 +467,8 @@ function ExtendedItemSelfProofRequirementCheck(C, Prerequisite) {
 	}
 
 	// Re-add the item
-	let DifficultyFactor = CurrentItem.Difficulty - CurrentItem.Asset.Difficulty;
-	CharacterAppearanceSetItem(C, C.FocusGroup.Name, CurrentItem.Asset, CurrentItem.Color, DifficultyFactor, null, false);
-	InventoryGet(C, C.FocusGroup.Name).Property = CurrentItem.Property;
+	C.Appearance.push(CurrentItem);
 	CharacterRefresh(C, false, false);
-	DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 
 	return Allowed;
 }

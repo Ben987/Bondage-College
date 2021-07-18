@@ -2,7 +2,6 @@
 
 var ItemVulvaFuturisticVibratorTriggers = ["Increase", "Decrease", "Disable", "Edge", "Random", "Deny", "Tease", "Shock"];
 var ItemVulvaFuturisticVibratorTriggerValues = [];
-var FuturisticVibratorCheckChatTime = 1000; // Checks chat every 1 sec
 
 function InventoryItemVulvaFuturisticVibratorLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -85,10 +84,26 @@ function InventoryItemVulvaFuturisticVibratorExit() {
 		ElementRemove("FuturisticVibe" + ItemVulvaFuturisticVibratorTriggers[I]);
 }
 
+
+
 function InventoryItemVulvaFuturisticVibratorDetectMsg(msg, TriggerValues) {
 	var commandsReceived = [];
+
+	// If the message is OOC, just return immediately
+	if (msg.indexOf('(') == 0) return commandsReceived;
+
 	for (let I = 0; I < TriggerValues.length; I++) {
-		if (msg.indexOf('(') != 0 && msg.includes(TriggerValues[I].toUpperCase())) commandsReceived.push(ItemVulvaFuturisticVibratorTriggers[I]);
+		// Don't execute arbitrary regex
+		let regexString = TriggerValues[I].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+		// Allow `*` wildcard, and normalize case
+		regexString = regexString.replaceAll("\\*", ".*")
+		regexString = regexString.toUpperCase()
+
+		const triggerRegex = new RegExp(`\\b${regexString}\\b`);
+		const success = triggerRegex.test(msg);
+		
+		if (success) commandsReceived.push(ItemVulvaFuturisticVibratorTriggers[I]);
 	}
 	return commandsReceived;
 }
@@ -102,7 +117,7 @@ function InventoryItemVulvaFuturisticVibratorGetMode(Item, Increase) {
 	return (Increase ? ((Item.Property.Mode == VibratorMode.OFF) ? VibratorMode.LOW : VibratorMode.MAXIMUM ): VibratorMode.LOW);
 }
 
-function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option) {
+function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option, IgnoreSame) {
 	var OldIntensity = Item.Property.Intensity;
 	VibratorModeSetProperty(Item, Option.Property);
 	CharacterRefresh(C);
@@ -118,7 +133,7 @@ function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option) {
 		if (Item.Property.Intensity !== OldIntensity) {
 			var Direction = Item.Property.Intensity > OldIntensity ? "Increase" : "Decrease";
 			Message = "Vibe" + Direction + "To" + Item.Property.Intensity;
-		} else {
+		} else if (!IgnoreSame) {
 			Message = "FuturisticVibratorChange";
 			Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
 		}
@@ -126,7 +141,15 @@ function InventoryItemVulvaFuturisticVibratorSetMode(C, Item, Option) {
 		Dictionary.push({ Automatic: true });
 		ServerSend("ChatRoomChat", { Content: Message, Type: "Action", Dictionary });
 	}
-    CharacterSetFacialExpression(C, "Blush", "Soft", 5);
+
+	if (C.OnlineSharedSettings && C.OnlineSharedSettings.ItemsAffectExpressions) {
+		if (Item.Property.Intensity > -1) {
+			CharacterSetFacialExpression(C, "Blush", "Medium", 5);
+		}
+		else {
+			CharacterSetFacialExpression(C, "Eyebrows", "Soft", 5);
+		}
+	}
 }
 
 // Trigger a shock automatically
@@ -140,9 +163,7 @@ function InventoryItemVulvaFuturisticVibratorTriggerShock(C, Item) {
 			ServerSend("ChatRoomChat", { Content: "FuturisticVibratorShockTrigger", Type: "Action", Dictionary });
 	}
 
-	CharacterSetFacialExpression(C, "Eyebrows", "Soft", 10);
-	CharacterSetFacialExpression(C, "Blush", "Soft", 15);
-	CharacterSetFacialExpression(C, "Eyes", "Closed", 5);
+	InventoryShockExpression(C);
 }
 
 
@@ -151,27 +172,29 @@ function InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, LastTime) {
 	if (!Item.Property) VibratorModeSetProperty(Item, VibratorModeOptions[VibratorModeSet.STANDARD][0].Property);
 	var TriggerValues = Item.Property.TriggerValues && Item.Property.TriggerValues.split(',');
 	if (!TriggerValues) TriggerValues = ItemVulvaFuturisticVibratorTriggers;
-	for (let CH = 0; CH < ChatRoomChatLog.length; CH++) {
-		if (ChatRoomChatLog[CH].Time > LastTime) {
-			var msg = InventoryItemVulvaFuturisticVibratorDetectMsg(ChatRoomChatLog[CH].Chat.toUpperCase(), TriggerValues);
 
-			if (msg.length > 0) {
-				//vibrator modes, can only pick one
-				if (msg.includes("Edge")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.EDGE));
-				else if (msg.includes("Deny")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.DENY));
-				else if (msg.includes("Tease")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.TEASE));
-				else if (msg.includes("Random")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.RANDOM));
-				else if (msg.includes("Disable")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.OFF));
-				else if (msg.includes("Increase")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, true)));
-				else if (msg.includes("Decrease")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, false)));
-				
-				//triggered actions
-				if (msg.includes("Shock")) InventoryItemVulvaFuturisticVibratorTriggerShock(C, Item);
-			}
+	// Search from latest message backwards, allowing early exit
+	for (let CH = ChatRoomChatLog.length - 1; CH >= 0; CH--) {
 
+		// Messages are in order, no need to keep looping
+		if (ChatRoomChatLog[CH].Time <= LastTime) break
+
+		var msg = InventoryItemVulvaFuturisticVibratorDetectMsg(ChatRoomChatLog[CH].Chat.toUpperCase(), TriggerValues);
+
+		if (msg.length > 0) {
+			//vibrator modes, can only pick one
+			if (msg.includes("Edge")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.EDGE));
+			else if (msg.includes("Deny")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.DENY));
+			else if (msg.includes("Tease")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.TEASE));
+			else if (msg.includes("Random")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.RANDOM));
+			else if (msg.includes("Disable")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(VibratorMode.OFF));
+			else if (msg.includes("Increase")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, true)), true);
+			else if (msg.includes("Decrease")) InventoryItemVulvaFuturisticVibratorSetMode(C, Item, VibratorModeGetOption(InventoryItemVulvaFuturisticVibratorGetMode(Item, false)), true);
+			
+			//triggered actions
+			if (msg.includes("Shock")) InventoryItemVulvaFuturisticVibratorTriggerShock(C, Item);
 		}
 	}
-
 }
 
 function AssetsItemVulvaFuturisticVibratorScriptDraw(data) {
@@ -181,12 +204,15 @@ function AssetsItemVulvaFuturisticVibratorScriptDraw(data) {
 	// Only run updates on the player and NPCs
 	if (C.ID !== 0 && C.MemberNumber !== null) return;
 
-	if (typeof PersistentData.CheckTime !== "number") PersistentData.CheckTime = CommonTime() + FuturisticVibratorCheckChatTime;
+	// Default to some number that just means all messages are viable
+	if (typeof PersistentData.CheckTime !== "number") PersistentData.CheckTime = 0;
 
-	if (CommonTime() > PersistentData.CheckTime) {
-		InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, PersistentData.CheckTime - FuturisticVibratorCheckChatTime);
+	// Trigger a check if a new message is detected
+	let lastMsgIndex = ChatRoomChatLog.length - 1
+	if (lastMsgIndex >= 0 && ChatRoomChatLog[lastMsgIndex].Time > PersistentData.CheckTime) {
+		InventoryItemVulvaFuturisticVibratorHandleChat(C, Item, PersistentData.CheckTime);
 
-		PersistentData.CheckTime = CommonTime() + FuturisticVibratorCheckChatTime;
+		PersistentData.CheckTime = ChatRoomChatLog[lastMsgIndex].Time;
 	}
 
 	VibratorModeScriptDraw(data);

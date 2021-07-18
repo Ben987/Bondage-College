@@ -46,8 +46,8 @@ function InventoryItemFeetFuturisticAnkleCuffsExit() {
 	InventoryItemMouthFuturisticPanelGagExitAccessDenied();
 }
 
-function InventoryItemFeetFuturisticAnkleCuffsValidate(C, Option) {
-	return InventoryItemMouthFuturisticPanelGagValidate(C, Option);
+function InventoryItemFeetFuturisticAnkleCuffsValidate(C, Item) {
+	return InventoryItemMouthFuturisticPanelGagValidate(C, Item);
 }
 
 function InventoryItemFeetFuturisticAnkleCuffsPublishAction(C, Option) {

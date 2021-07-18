@@ -213,9 +213,22 @@ function validateArray(definition, obj, description, allowMissing=false) {
 				// Check any extended item config
 				if (Asset.Extended) {
 					const groupConfig = AssetFemale3DCGExtended[Group.Group] || {};
-					const assetConfig = groupConfig[Asset.Name];
+					let assetConfig = groupConfig[Asset.Name];
 					if (assetConfig) {
 						validateObject(types.ExtendedItemAssetConfig, assetConfig, `Extended asset archetype for ${Group.Group}:${Asset.Name}`);
+						const Config = assetConfig.Config;
+						if (assetConfig && assetConfig.CopyConfig) {
+							const Overrides = assetConfig.Config;
+							const { GroupName, AssetName } = assetConfig.CopyConfig;
+							assetConfig = (AssetFemale3DCGExtended[GroupName || Group.Group] || {} )[AssetName];
+							if (!assetConfig) {
+								error(`Asset ${Group.Group}:${Asset.Name}: CopyConfig target not found!`);
+								assetConfig = groupConfig[Asset.Name];
+							} else if (Overrides) {
+								const MergedConfig = Object.assign({}, assetConfig.Config, Overrides);
+								assetConfig = Object.assign({}, assetConfig, {Config: MergedConfig});
+							}
+						}
 						if (assetConfig.Config) {
 							if (assetConfig.Archetype === "modular") {
 								validateObject(types.ModularItemConfig, assetConfig.Config, `Extended asset config for ${Group.Group}:${Asset.Name}`);
@@ -226,7 +239,19 @@ function validateArray(definition, obj, description, allowMissing=false) {
 							} else if (assetConfig.Archetype === "typed") {
 								validateObject(types.TypedItemConfig, assetConfig.Config, `Extended asset config for ${Group.Group}:${Asset.Name}`);
 								validateArray(types.ExtendedItemOption, assetConfig.Config.Options, `Extended asset config for ${Group.Group}:${Asset.Name} Options`);
+								const HasSubscreen = !localError && assetConfig.Config.Options.some(option => !!option.HasSubscreen);
+								if (!HasSubscreen) {
+									if (Asset.AllowEffect !== undefined) {
+										error(`Asset ${Group.Group}:${Asset.Name}: Assets using "typed" archetype should NOT set AllowEffect (unless they use subscreens)`);
+									}
+									if (Asset.AllowBlock !== undefined) {
+										error(`Asset ${Group.Group}:${Asset.Name}: Assets using "typed" archetype should NOT set AllowBlock (unless they use subscreens)`);
+									}
+								}
 							}
+						}
+						if (assetConfig.Archetype === "typed" && Asset.AllowType !== undefined) {
+							error(`Asset ${Group.Group}:${Asset.Name}: Assets using "typed" archetype should NOT set AllowType`);
 						}
 						if (!["modular", "typed"].includes(assetConfig.Archetype)) {
 							error(`Extended asset archetype for ${Group.Group}:${Asset.Name}: Unknown Archetype ${assetConfig.Archetype}`);

@@ -1,0 +1,32 @@
+PlayerGagged,,,(She looks at your gag and giggle.)  This place is so kinky.,,
+0,,,Hello again.  Maybe it wasn't the best idea to sell you my clothes.  (She blushes.),,CurrentCharacter.IsNaked()
+0,,,"Hello maid, can I have a drink?",,"CostumeIs(""Maid"")"
+0,,,Hi Miss.  Everyone is protected today?,,"CostumeIs(""Guard"")"
+0,,,(She seems impressed by you.)  Wow!  You're a real Dominatrix?  It's a pleasure to meet you.,,"CostumeIs(""Mistress"")"
+0,,,"Hello there, I'm a new Pandora's Box member.",,
+0,,You're cute naked.,(She blushes.)  Was that a trick?  Maybe selling my clothes wasn't a great deal.,DialogRemove(),CurrentCharacter.IsNaked()
+0,,Who are you?,I'm DialogCharacterName.  I'm a new member.  Can you show me around?,DialogRemove(),!CurrentCharacter.IsNaked()
+0,,Can I tie you up?,"It would be a pleasure, but they told me I need to wait a few more days before getting restrained or restraining someone else.",DialogRemove(),
+0,,Can you help me?,(She laughs.)  Help you?   I'm totally lost around here.  You're the one that should be helping me.,DialogRemove(),
+0,,I'll go get you a free drink.,(You go get her a free drink and she seems happy about it.)  Thanks a lot!  You're doing an awesome job.,RecruitBoost(),"CostumeIs(""Maid"")"
+0,10,Are you enjoying Pandora's Box?,"I'm not sure, it's all very new and confusing.  And you?  Do you like the place?",StartRecruit(),CanStartRecruit()
+0,100,Can I buy your clothes?,Buy my clothes?  Are you serious?  These old clothes are cheap you know?,,!CurrentCharacter.IsNaked()
+0,,I must go.  (Leave her.),,CharacterAllowMove(),
+10,0,"Sure, it's a good club.","I agree, there are worse places to spend our free time.",,
+10,20,This place isn't great.,"They say it's improving, I'm sure it will get better with time.",,
+10,20,This club sucks.,"Don't be too harsh.  They say it's improving, I'm sure it will get better with time.",,
+20,30,Have you heard of the Bondage Club?,"I've heard about it, but never went.  They have good BDSM events?",,
+20,0,Maybe you're right.,"Yep, there are worse places to spend our free time.",,
+30,0,It depends on the day.,"Just like here, I guess.  There are worse places to spend our free time.",,
+30,40,It's the kinkiest place in town.,Now that's interesting!  Are they recruiting new members?,,CanRecruit()
+30,0,It's the kinkiest place in town.,"That's very interesting!  Sadly, I don't have enough time for a second BDSM club.  But maybe I'll visit someday.",,!CanRecruit()
+30,0,Pandora's Box is better.,"I agree, there are worse places to spend our free time.",,
+40,50,Yes!  You could go right now.,"Great idea!  Thanks for the tip, I will go see the Bondage Club right now.  (Your infiltration skill has increased.)",InfiltrationChange(15),
+40,60,Yes!  I have a room there that we could share.,"Perfect!  I will meet you in your room, see you later.  (Your infiltration skill has increased.)",InfiltrationChange(15),CanJoinPrivateRoom()
+40,0,I don't know.,I don't want to waste my time.  I'll try to apply another day.,,
+40,0,Not right now.,"Too bad, maybe I'll try to apply another day.",,
+50,,(Let her go to the Bondage Club.),,RemoveCurrentCharacter(),
+60,,(Let her go to your private room.),,CharacterJoinPrivateRoom(),
+100,0,"I know, but I like them. (Offer 10$.)","Alright, but this is very strange.  (She gets naked and sells you her clothes for 10$.)",BuyRandomClothes(),DialogMoneyGreater(10)
+100,0,I can't offer much. (Offer 5$.),"Sorry, I can't accept that offer.",,DialogMoneyGreater(5)
+100,0,Forget it then.,Very well.  You're a strange person you know?,,

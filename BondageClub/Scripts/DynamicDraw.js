@@ -355,10 +355,10 @@ function DynamicDrawTextArc(text, ctx, x, y, options) {
  * @returns {void} - Nothing
  */
 function DynamicDrawTextAndEffects(text, ctx, x, y, options) {
-	const { effect, width } = options;
 	DynamicDrawApplyOptions(ctx, options);
+	const effect = DynamicDrawTextEffects[options.effect] || {};
 	if (typeof effect.before === "function") effect.before(text, ctx, x, y, options);
-	ctx.fillText(text, x, y, width);
+	ctx.fillText(text, x, y, options.width);
 	if (typeof effect.after === "function") effect.after(text, ctx, x, y, options);
 }
 
@@ -370,7 +370,6 @@ function DynamicDrawTextAndEffects(text, ctx, x, y, options) {
 function DynamicDrawParseOptions(options) {
 	options = options || {};
 	const parsedOptions = Object.assign({}, DynamicDrawTextDefaultOptions, options);
-	parsedOptions.effect = DynamicDrawTextEffects[parsedOptions.effect] || {};
 	return parsedOptions;
 }
 

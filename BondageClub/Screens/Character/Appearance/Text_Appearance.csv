@@ -14,6 +14,7 @@ Prev,Previous
 Cancel,Cancel changes
 Accept,Accept changes
 Wardrobe,Wardrobe
+WardrobeDisabled,Wardrobe can be bought in your private room.
 DialogPermissionMode,Edit item permissions
 Use,Use this item
 UseDisabled,Unable to use due to player permissions

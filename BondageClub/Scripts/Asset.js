@@ -105,6 +105,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		AlwaysExtend: (NewAsset.AlwaysExtend == null) ? false : NewAsset.AlwaysExtend,
 		AlwaysInteract: (NewAsset.AlwaysInteract == null) ? false : NewAsset.AlwaysInteract,
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
+		LayerVisibility: (NewAsset.LayerVisibility == null) ? false : NewAsset.LayerVisibility,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
 		PickDifficulty: (NewAsset.PickDifficulty == null) ? 0 : NewAsset.PickDifficulty,
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
@@ -128,7 +129,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		OverrideBlinking: (NewAsset.OverrideBlinking == null) ? false : NewAsset.OverrideBlinking,
 		DialogSortOverride: NewAsset.DialogSortOverride,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicDescription : function () { return this.Description; },
-		DynamicPreviewIcon: (typeof NewAsset.DynamicPreviewIcon === 'function') ? NewAsset.DynamicPreviewIcon : function () { return ""; },
+		DynamicPreviewImage: (typeof NewAsset.DynamicPreviewImage === 'function') ? NewAsset.DynamicPreviewImage : function () { return ""; },
 		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function') ? NewAsset.DynamicAllowInventoryAdd : function () { return true; },
 		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function') ? NewAsset.DynamicExpressionTrigger : function () { return this.ExpressionTrigger; },
 		DynamicName: (typeof NewAsset.DynamicName === 'function') ? NewAsset.DynamicName : function () { return this.Name; },
@@ -157,6 +158,7 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 		FuturisticRecolor: typeof NewAsset.FuturisticRecolor === 'boolean' ? NewAsset.FuturisticRecolor : false,
 		FuturisticRecolorDisplay: typeof NewAsset.FuturisticRecolorDisplay === 'boolean' ? NewAsset.FuturisticRecolorDisplay : false,
 		Attribute: NewAsset.Attribute || [],
+		PreviewIcons: NewAsset.PreviewIcons || [],
 	}, AssetParsePoseProperties(NewAsset, AssetCurrentGroup.AllowPose.slice()));
 
 	// Ensure opacity value is valid
@@ -244,6 +246,7 @@ function AssetMapLayer(Layer, AssetDefinition, A, I) {
 		ColorGroup: Layer.ColorGroup,
 		HideColoring: typeof Layer.HideColoring === "boolean" ? Layer.HideColoring : false,
 		AllowTypes: Array.isArray(Layer.AllowTypes) ? Layer.AllowTypes : null,
+		Visibility:  typeof Layer.Visibility === "string" ? Layer.Visibility : null,
 		HasType: typeof Layer.HasType === "boolean" ? Layer.HasType : A.HasType,
 		ParentGroupName: Layer.ParentGroup,
 		Priority: Layer.Priority || AssetDefinition.Priority || AssetCurrentGroup.DrawingPriority,
@@ -395,7 +398,10 @@ function AssetBuildDescription(Family, CSV) {
 
 }
 
-// Loads the description of the assets in a specific language
+/**
+ * Loads the description of the assets in a specific language
+ * @param {string} Family The asset family to load the description for
+ */
 function AssetLoadDescription(Family) {
 
 	// Finds the full path of the CSV file to use cache

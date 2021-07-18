@@ -5,7 +5,10 @@ var Player;
 /** @type {number|string} */
 var KeyPress = "";
 var CurrentModule;
+/** @type {string} */
 var CurrentScreen;
+/** @type {ScreenFunctions} */
+var CurrentScreenFunctions;
 /** @type {Character|null} */
 var CurrentCharacter = null;
 var CurrentOnlinePlayers = 0;
@@ -211,7 +214,7 @@ function CommonReadCSV(Array, Path, Screen, File) {
 /**
  * AJAX utility to get a file and return its content. By default will retry requests 10 times
  * @param {string} Path - Path of the resource to request
- * @param {function} Callback - Callback to execute once the resource is received
+ * @param {(this: XMLHttpRequest, xhr: XMLHttpRequest) => void} Callback - Callback to execute once the resource is received
  * @param {number} [RetriesLeft] - How many more times to retry if the request fails - after this hits zero, an error will be logged
  * @returns {void} - Nothing
  */
@@ -232,7 +235,7 @@ function CommonGet(Path, Callback, RetriesLeft) {
  * Retry handler for CommonGet requests. Exponentially backs off retry attempts up to a limit of 1 minute. By default,
  * retries up to a maximum of 10 times.
  * @param {string} Path - The path of the resource to request
- * @param {function} Callback - Callback to execute once the resource is received
+ * @param {(this: XMLHttpRequest, xhr: XMLHttpRequest) => void} Callback - Callback to execute once the resource is received
  * @param {number} [RetriesLeft] - How many more times to retry - after this hits zero, an error will be logged
  * @returns {void} - Nothing
  */
@@ -249,23 +252,25 @@ function CommonGetRetry(Path, Callback, RetriesLeft) {
 
 /**
  * Catches the clicks on the main screen and forwards it to the current screen click function if it exists, otherwise it sends it to the dialog click function
+ * @param {MouseEvent | TouchEvent} event - The event that triggered this
  * @returns {void} - Nothing
  */
-function CommonClick() {
+function CommonClick(event) {
 	if (CurrentCharacter == null)
-		CommonDynamicFunction(CurrentScreen + "Click()");
+		CurrentScreenFunctions.Click(event);
 	else
 		DialogClick();
 }
 
 /**
  * Catches key presses on the main screen and forwards it to the current screen key down function if it exists, otherwise it sends it to the dialog key down function
+ * @param {KeyboardEvent} event - The event that triggered this
  * @returns {void} - Nothing
  */
-function CommonKeyDown() {
+function CommonKeyDown(event) {
 	if (CurrentCharacter == null) {
-		if (typeof window[CurrentScreen + "KeyDown"] === "function")
-			CommonDynamicFunction(CurrentScreen + "KeyDown()");
+		if (CurrentScreenFunctions.KeyDown)
+			CurrentScreenFunctions.KeyDown(event);
 		if (ControllerActive == true) {
 			ControllerSupportKeyDown();
 		}
@@ -378,20 +383,50 @@ function CommonCallFunctionByNameWarn(FunctionName/*, ...args */) {
  * @returns {void} - Nothing
  */
 function CommonSetScreen(NewModule, NewScreen) {
-	var prevScreen = CurrentScreen;
+	const prevScreen = CurrentScreen;
+
+	if (CurrentScreenFunctions && CurrentScreenFunctions.Unload) {
+		CurrentScreenFunctions.Unload();
+	}
+	if (ControllerActive == true) {
+		ClearButtons();
+	}
+
+
+	// Check for required functions
+	if (typeof window[`${NewScreen}Run`] !== "function") {
+		throw Error(`Screen "${NewScreen}": Missing required Run function`);
+	}
+	if (typeof window[`${NewScreen}Click`] !== "function") {
+		throw Error(`Screen "${NewScreen}": Missing required Click function`);
+	}
+
 	CurrentModule = NewModule;
 	CurrentScreen = NewScreen;
+	CurrentScreenFunctions = {
+		Run: window[`${NewScreen}Run`],
+		Click: window[`${NewScreen}Click`],
+		Load: typeof window[`${NewScreen}Load`] === "function" ? window[`${NewScreen}Load`] : undefined,
+		Unload: typeof window[`${NewScreen}Unload`] === "function" ? window[`${NewScreen}Unload`] : undefined,
+		Resize: typeof window[`${NewScreen}Resize`] === "function" ? window[`${NewScreen}Resize`] : undefined,
+		KeyDown: typeof window[`${NewScreen}KeyDown`] === "function" ? window[`${NewScreen}KeyDown`] : undefined,
+		Exit: typeof window[`${NewScreen}Exit`] === "function" ? window[`${NewScreen}Exit`] : undefined
+	};
+
 	CurrentDarkFactor = 1.0;
 	CommonGetFont.clearCache();
 	CommonGetFontName.clearCache();
 	TextLoad();
-	if (typeof window[CurrentScreen + "Load"] === "function")
-		CommonDynamicFunction(CurrentScreen + "Load()");
+
+	if (CurrentScreenFunctions.Load) {
+		CurrentScreenFunctions.Load();
+	}
+	if (CurrentScreenFunctions.Resize) {
+		CurrentScreenFunctions.Resize(true);
+	}
+
 	if (prevScreen == "ChatSearch" || prevScreen == "ChatCreate")
 		ChatRoomStimulationMessage("Walk");
-	if (ControllerActive == true) {
-		ClearButtons();
-	}
 }
 
 /**
@@ -447,8 +482,8 @@ function CommonRandomItemFromList(ItemPrevious, ItemList) {
 function CommonConvertStringToArray(s) {
 	var arr = [];
 	if (s != "") {
-		arr = s.split(',').map(Number).reduce((list, curr) => {
-			if (!((curr === false) || Number.isNaN(curr))) list.push(curr);
+		arr = s.split(',').reduce((list, curr) => {
+			if (!(!curr || Number.isNaN(Number(curr)))) list.push(Number(curr));
 			return list;
 		}, []);
 	}
@@ -568,7 +603,7 @@ function CommonLimitFunction(func, minWait = 0) {
 	const funcThrottled = CommonThrottle(func);
 
 	return function () {
-		const wait = Math.max(Player.GraphicsSettings.AnimationQuality, minWait);
+		const wait = Math.max(Player.GraphicsSettings ? Player.GraphicsSettings.AnimationQuality : 100 , minWait);
 		const args = [wait].concat(Array.from(arguments));
 		return wait < 100 ? funcThrottled.apply(this, args) : funcDebounced.apply(this, args);
 	};
@@ -650,7 +685,7 @@ function CommonTakePhoto(Left, Top, Width, Height) {
 	CommonPhotoMode = true;
 
 	// Ensure everything is redrawn once in photo-mode
-	DrawProcess();
+	DrawProcess(0);
 
 	// Capture screen as image URL
 	const ImgData = /** @type {HTMLCanvasElement} */ (document.getElementById("MainCanvas")).getContext('2d').getImageData(Left, Top, Width, Height);
@@ -731,7 +766,7 @@ function CommonCompareVersion(Current, Other) {
 	];
 	for (let i = 0; i < 3; i++) {
 		if (CurrentVer[i] !== OtherVer[i]) {
-			return Math.sign(OtherVer[i] - CurrentVer[i]);
+			return /** @type {-1|0|1} */ (Math.sign(OtherVer[i] - CurrentVer[i]));
 		}
 	}
 	return 0;
@@ -785,7 +820,7 @@ function CommonDeepEqual(obj1, obj2) {
  * Adds all items from the source array to the destination array if they aren't already included
  * @param {*[]} dest - The destination array
  * @param {*[]} src - The source array
- * @returns {void} - Nothing
+ * @returns {*[]} - The destination array
  */
 function CommonArrayConcatDedupe(dest, src) {
 	if (Array.isArray(src) && Array.isArray(dest)) {
@@ -793,6 +828,7 @@ function CommonArrayConcatDedupe(dest, src) {
 			if (!dest.includes(item)) dest.push(item);
 		}
 	}
+	return dest;
 }
 
 /**
