@@ -658,7 +658,8 @@ var AssetFemale3DCGExtended = {
 							AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"],
 							SetPose: ["Kneel", "BackElbowTouch"], Difficulty: 3
 						},
-						Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
+						Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+						Random: false,
 					}, {
 						Name: "ZipHogtie",
 						Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
@@ -669,7 +670,8 @@ var AssetFemale3DCGExtended = {
 							AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"],
 							SetPose: ["Hogtied"], Difficulty: 3
 						},
-						Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
+						Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+						Random: false,
 					}, {
 						Name: "ZipAllFours",
 						Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
@@ -679,7 +681,8 @@ var AssetFemale3DCGExtended = {
 							AllowActivityOn: ["ItemLegs", "ItemFeet", "ItemBoots"],
 							SetPose: ["AllFours"], Difficulty: 3
 						},
-						Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }]
+						Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+						Random: false,
 					},
 				],
 				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
@@ -696,7 +699,13 @@ var AssetFemale3DCGExtended = {
 					{ Name: "Boxtie", Property: { Type: null, SetPose: ["BackBoxTie"] } },
 					{ Name: "WristElbow", Property: { Type: "WristElbow", SetPose: ["BackElbowTouch"] } },
 					{ Name: "WristElbowHarness", Property: { Type: "WristElbowHarness", SetPose: ["BackElbowTouch"] } },
-					{ Name: "Hogtie", Property: { Type: "Hogtie", SetPose: ["Hogtied"], Effect: ["Block", "Freeze", "Prone"] } }
+					{
+						Name: "Hogtie",
+						Property: {
+							Type: "Hogtie", SetPose: ["Hogtied"], Effect: ["Block", "Freeze", "Prone"]
+						},
+						Random: false,
+					}
 				]
 			}
 		}, //ThinLeatherStraps
@@ -1081,6 +1090,7 @@ var AssetFemale3DCGExtended = {
 								"ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings"
 							]
 						},
+						Random: false,
 					},
 				],
 			},
@@ -1974,7 +1984,8 @@ var AssetFemale3DCGExtended = {
 					}, {
 						Name: "ZipFrogtie",
 						Property: { Type: "ZipFrogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Effect: ["ForceKneel"], Difficulty: 3 },
-						Prerequisite: ["NotSuspended", "CanKneel"]
+						Prerequisite: ["NotSuspended", "CanKneel"],
+						Random: false,
 					}
 				],
 				Dialog: {
