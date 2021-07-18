@@ -425,7 +425,8 @@ function ActivityOrgasmGameGenerate(Progress) {
  * @returns {void} - Nothing
  */
 function ActivityOrgasmPrepare(C, Bypass) {
-	ActivityOrgasmRuined = false;
+	if (C.ID == 0)
+		ActivityOrgasmRuined = false;
 
 	if (C.Effect.includes("DenialMode")) {
 		C.ArousalSettings.Progress = 99;
