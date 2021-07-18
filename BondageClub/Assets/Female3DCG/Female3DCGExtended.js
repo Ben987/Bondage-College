@@ -453,10 +453,10 @@ var AssetFemale3DCGExtended = {
 					{
 						Name: "PetTape",
 						SelfBondageLevel: 10,
-						Prerequisite: ["NoOuterClothes"],
 						Property: {
 							Type: "PetTape",
-							SetPose: ["BackElbowTouch", "Kneel"],
+							SetPose: ["BackElbowTouch"],
+							Block: ["ItemHands"],
 							Difficulty: 7,
 						}
 					},

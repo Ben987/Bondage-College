@@ -13,6 +13,10 @@ var InventoryItemLegsDuctTapeOptions = [
 	}, {
 		Name: "CompleteLegs",
 		Property: { Type: "CompleteLegs", Hide: ["ClothLower"], Difficulty: 6 }
+	}, {
+		Name: "PetLegs",
+		Property: { Type: "PetLegs", Hide: ["ClothLower"], SetPose: ["Kneel"], Block: ["ItemFeet"], Effect: ["ForceKneel"], Difficulty: 6 },
+		Prerequisite: ["NotSuspended", "CanKneel"]
 	}
 ];
 
