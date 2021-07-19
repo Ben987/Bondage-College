@@ -1151,7 +1151,7 @@ var AssetFemale3DCGExtended = {
 					},
 				],
 			},
-		}, //LitteMonster
+		}, // LitteMonster
 		InflatableBodyBag: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -1187,7 +1187,7 @@ var AssetFemale3DCGExtended = {
 					},
 				],
 			},
-		}, //InflatableBodyBag
+		}, // InflatableBodyBag
 		Pole: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -1211,7 +1211,39 @@ var AssetFemale3DCGExtended = {
 					},
 				],
 			},
-		}, //Pole
+		}, // Pole
+		CryoCapsule: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Open",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Effect: ["Freeze"],
+							SelfUnlock: true
+						}
+					},
+					{
+						Name: "Closed",
+						Property: {
+							Type: "Closed",
+							Difficulty: 50,
+							Effect: ["Freeze", "GagMedium", "Prone", "Enclose", "BlindLight"],
+							SelfUnlock: false
+						}
+					}
+				],
+				ChangeWhenLocked: false,
+				Dialog: {
+					Load: "SelectCryoCapsuleType",
+					TypePrefix: "CryoCapsuleType",
+					ChatPrefix: "CryoCapsuleSet",
+				},
+			},
+		}, // CryoCapsule
 	}, // ItemDevices
 	ItemBoots: {
 		ToeTape: {
