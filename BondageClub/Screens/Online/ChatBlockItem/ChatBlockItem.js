@@ -49,6 +49,4 @@ function ChatBlockItemExit() {
 		ElementValue("InputDescription", ChatBlockItemReturnData.Description);
 		ElementValue("InputSize", ChatBlockItemReturnData.Limit);
 	}
-	if (ChatBlockItemReturnData.Screen == "ChatAdmin")
-		ChatBlockItemCategory = ChatAdminBlockCategory;
 }

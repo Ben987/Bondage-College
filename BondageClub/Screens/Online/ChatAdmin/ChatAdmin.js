@@ -10,6 +10,7 @@ var ChatAdminGameList = ["", "LARP"];
 var ChatAdminBackgroundSelected = null;
 var ChatAdminTemporaryData = null;
 var ChatAdminBlockCategory = [];
+var ChatAdminInitialLoad = false;
 
 /**
  * Loads the chat Admin screen properties and creates the inputs
@@ -22,7 +23,7 @@ function ChatAdminLoad() {
 	ChatAdminBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect);
 	if (ChatAdminBackgroundIndex < 0) ChatAdminBackgroundIndex = 0;
 	ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
-	ChatAdminBlockCategory = ChatRoomData.BlockCategory;
+	if (!ChatAdminInitialLoad) ChatAdminBlockCategory = ChatRoomData.BlockCategory.slice();
 	ChatAdminGame = ChatRoomGame;
 
 	// Prepares the controls to edit a room
@@ -60,7 +61,7 @@ function ChatAdminLoad() {
 		document.getElementById("InputSize").setAttribute("disabled", "disabled");
 		ChatAdminMessage = "AdminOnly";
 	} else ChatAdminMessage = "UseMemberNumbers";
-
+	ChatAdminInitialLoad = true;
 }
 
 /**
@@ -183,6 +184,7 @@ function ChatAdminExit() {
 	ElementRemove("InputAdminList");
 	ElementRemove("InputBanList");
 	CommonSetScreen("Online", "ChatRoom");
+	ChatAdminInitialLoad = false;
 }
 
 /**
