@@ -1248,6 +1248,26 @@ var AssetFemale3DCGExtended = {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { AssetName: "CryoCapsule" },
 			Config: {
+				Options: [
+					{
+						Name: "Open",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Effect: ["Freeze"],
+							SelfUnlock: true
+						}
+					},
+					{
+						Name: "Closed",
+						Property: {
+							Type: "Closed",
+							Difficulty: 50,
+							Effect: ["Freeze", "GagMedium", "Prone", "Enclose", "BlindLight"],
+							SelfUnlock: false
+						}
+					}
+				],
 				Dialog: {
 					Load: "SelectCoffinType",
 					TypePrefix: "CoffinType",
@@ -1932,6 +1952,30 @@ var AssetFemale3DCGExtended = {
 		} // BunnyMask1
 	}, // Mask
 	ItemLegs: {
+		Chains: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Basic",
+						BondageLevel: 0,
+						Property: { Type: null, Difficulty: 0 }
+					}, {
+						Name: "Strict",
+						BondageLevel: 2,
+						Property: { Type: "Strict", Difficulty: 2 }
+					}					
+				],
+				Dialog: {
+					Load: "SelectChainBondage",
+					TypePrefix: "ChainBondage",
+					ChatPrefix: "LegChainSet",
+					NpcPrefix: "ChainBondage",
+				},
+				ChangeWhenLocked: false,
+			}
+		}, // Chains
 		SturdyLeatherBelts: {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "ItemArms", AssetName: "SturdyLeatherBelts" },
