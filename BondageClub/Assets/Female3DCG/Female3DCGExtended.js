@@ -1244,6 +1244,17 @@ var AssetFemale3DCGExtended = {
 				},
 			},
 		}, // CryoCapsule
+		Coffin: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "CryoCapsule" },
+			Config: {
+				Dialog: {
+					Load: "SelectCoffinType",
+					TypePrefix: "CoffinType",
+					ChatPrefix: "CoffinSet",
+				},
+			},
+		}, // Coffin
 	}, // ItemDevices
 	ItemBoots: {
 		ToeTape: {
