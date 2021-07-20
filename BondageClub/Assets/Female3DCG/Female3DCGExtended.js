@@ -1245,6 +1245,77 @@ var AssetFemale3DCGExtended = {
 		}, // GwenHood
 	}, // ItemHood
 	ItemDevices: {
+		BondageBench: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "None",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							AllowLock: false,
+							SetPose: ["LegsClosed"],
+							Effect: ["Mounted"],
+						},
+					},
+					{
+						Name: "Light",
+						SelfBondageLevel: 2,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Light",
+							Difficulty: 2,
+							SetPose: ["LegsClosed", "BaseUpper"],
+							Effect: ["Block", "Prone", "Freeze", "Mounted"],
+							Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+						},
+					},
+					{
+						Name: "Normal",
+						SelfBondageLevel: 3,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Normal",
+							Difficulty: 3,
+							SetPose: ["LegsClosed", "BaseUpper"],
+							Effect: ["Block", "Prone", "Freeze", "Mounted"],
+							Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+						},
+					},
+					{
+						Name: "Heavy",
+						SelfBondageLevel: 6,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Heavy",
+							Difficulty: 6,
+							SetPose: ["LegsClosed", "BaseUpper"],
+							Effect: ["Block", "Prone", "Freeze", "Mounted"],
+							Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+						},
+					},
+					{
+						Name: "Full",
+						SelfBondageLevel: 9,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Full",
+							Difficulty: 9,
+							SetPose: ["LegsClosed", "BaseUpper"],
+							Effect: ["Block", "Prone", "Freeze", "Mounted"],
+							Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "BondageBenchStrapsSelectTightness",
+					TypePrefix: "BondageBenchStrapsPose",
+					ChatPrefix: "BondageBenchStrapsRestrain",
+				},
+			},
+		}, // BondageBench
 		Cushion: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {

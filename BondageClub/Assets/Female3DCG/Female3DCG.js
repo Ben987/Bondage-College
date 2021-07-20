@@ -4320,8 +4320,6 @@ var AssetFemale3DCG = [
 				Prerequisite: ["NotKneeling", "AllFours", "NotSuspended", "NotHogtied", "NoFeetSpreader"],
 				SetPose: ["LegsClosed"],
 				Effect: ["Mounted"],
-				AllowEffect: ["Block", "Prone", "Freeze", "Mounted"],
-				AllowType: ["Light", "Normal", "Heavy", "Full"],
 				AllowLock: true,
 				AllowLockType: ["Light", "Normal", "Heavy", "Full"],
 				Layer: [
