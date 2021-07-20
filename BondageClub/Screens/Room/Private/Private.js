@@ -1001,7 +1001,7 @@ function PrivateStartActivity() {
 	PrivateActivityCount = 0;
 	CurrentCharacter.Stage = "Activity" + PrivateActivity;
 	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateActivity + "Intro");
-	if (PrivateActivityTarget != null) CurrentCharacter.CurrentDialog = CurrentCharacter.CurrentDialog.replace("ActivityTarget", PrivateActivityTarget.Name);
+	if (PrivateActivityTarget != null) CurrentCharacter.CurrentDialog = CurrentCharacter.CurrentDialog.replace(/ActivityTarget/g, PrivateActivityTarget.Name);
 
 }
 
