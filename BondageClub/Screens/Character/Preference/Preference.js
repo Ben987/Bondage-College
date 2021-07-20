@@ -18,6 +18,8 @@ var PreferenceSettingsSensDepList = ["SensDepLight", "Normal", "SensDepNames", "
 var PreferenceSettingsSensDepIndex = 0;
 var PreferenceSettingsVFXList = ["VFXInactive", "VFXSolid", "VFXAnimatedTemp", "VFXAnimated"];
 var PreferenceSettingsVFXIndex = 0;
+var PreferenceSettingsVFXFilterList = ["VFXFilterLight", "VFXFilterMedium", "VFXFilterHeavy"];
+var PreferenceSettingsVFXFilterIndex = 0;
 var PreferenceSettingsVolumeList = [1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 var PreferenceSettingsSensitivityList = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var PreferenceSettingsDeadZoneList = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
@@ -571,7 +573,8 @@ function PreferenceLoad() {
 	PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog) < 0) ? 0 : PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog);
 	PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
 	PreferenceArousalActiveIndex = (PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active) < 0) ? 0 : PreferenceArousalActiveList.indexOf(Player.ArousalSettings.Active);
-	PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX) < 0) ? 0 : PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX);
+	PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFXIndex) < 0) ? 0 : PreferenceSettingsVFXList.indexOf(Player.ArousalSettings.VFX);
+	PreferenceSettingsVFXFilterIndex = (PreferenceSettingsVFXFilterList.indexOf(Player.ArousalSettings.VFXFilter) < 0) ? 0 : PreferenceSettingsVFXFilterList.indexOf(Player.ArousalSettings.VFXFilter);
 	PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible) < 0) ? 0 : PreferenceArousalVisibleList.indexOf(Player.ArousalSettings.Visible);
 	PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.indexOf(Player.ArousalSettings.AffectStutter) < 0) ? 0 : PreferenceArousalAffectStutterList.indexOf(Player.ArousalSettings.AffectStutter);
 	ChatRoomRefreshFontSize();
@@ -1309,39 +1312,52 @@ function PreferenceSubscreenGraphicsRun() {
 	// Character and exit button
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-
-	MainCanvas.textAlign = "left";
-	DrawText(TextGet("VFXPreferences"), 500, 125, "Black", "Gray");
-	DrawText(TextGet("VFX"), 800, 216, "Black", "Gray");
-	DrawText(TextGet("GraphicsFont"), 800, 306, "Black", "Gray");
-	DrawTextFit(TextGet("GraphicsFontDisclaimer"), 500, 376, 1400, "Black", "Gray");
-	DrawCheckbox(500, 430, 64, 64, TextGet("GraphicsInvertRoom"), Player.GraphicsSettings.InvertRoom);
-	DrawCheckbox(500, 510, 64, 64, TextGet("GraphicsStimulationFlash"), Player.GraphicsSettings.StimulationFlash);
-	DrawCheckbox(500, 590, 64, 64, TextGet("DoBlindFlash"), Player.GraphicsSettings.DoBlindFlash);
-	DrawText(TextGet("GeneralAnimationQualityText"), 750, 712, "Black", "Gray");
-	if (GLVersion !== "No WebGL") {
-		DrawCheckbox(500, 765, 64, 64, TextGet("GraphicsAntialiasing"), !localStorage.getItem("GLDraw-antialiasOff"));
-		DrawText(TextGet("GraphicsPowerMode"), 880, 885, "Black", "Gray");
-	} else {
-		DrawText(TextGet("GraphicsNoWebGL"), 700, 810, "Red", "Gray");
-	}
 	
 	MainCanvas.textAlign = "center";
-	DrawBackNextButton(500, 182, 250, 64, TextGet(Player.ArousalSettings.VFX), "White", "",
-		() => TextGet(PreferenceSettingsVFXList[(PreferenceSettingsVFXIndex + PreferenceSettingsVFXList.length - 1) % PreferenceSettingsVFXList.length]),
-		() => TextGet(PreferenceSettingsVFXList[(PreferenceSettingsVFXIndex + 1) % PreferenceSettingsVFXList.length]));
+	PreferencePageChangeDraw(1595, 75, 2); // Uncomment when adding a 2nd page
+	
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("VFXPreferences"), 500, 125, "Black", "Gray");
+	
+	if (PreferencePageCurrent === 1) {
+		DrawText(TextGet("VFX"), 800, 216, "Black", "Gray");
+		DrawText(TextGet("GraphicsFont"), 800, 306, "Black", "Gray");
+		DrawTextFit(TextGet("GraphicsFontDisclaimer"), 500, 376, 1400, "Black", "Gray");
+		DrawCheckbox(500, 430, 64, 64, TextGet("GraphicsInvertRoom"), Player.GraphicsSettings.InvertRoom);
+		DrawCheckbox(500, 510, 64, 64, TextGet("GraphicsStimulationFlash"), Player.GraphicsSettings.StimulationFlash);
+		DrawCheckbox(500, 590, 64, 64, TextGet("DoBlindFlash"), Player.GraphicsSettings.DoBlindFlash);
+		DrawText(TextGet("GeneralAnimationQualityText"), 750, 712, "Black", "Gray");
+		if (GLVersion !== "No WebGL") {
+			DrawCheckbox(500, 765, 64, 64, TextGet("GraphicsAntialiasing"), !localStorage.getItem("GLDraw-antialiasOff"));
+			DrawText(TextGet("GraphicsPowerMode"), 880, 885, "Black", "Gray");
+		} else {
+			DrawText(TextGet("GraphicsNoWebGL"), 700, 810, "Red", "Gray");
+		}
+		
+		MainCanvas.textAlign = "center";
+		DrawBackNextButton(500, 182, 250, 64, TextGet(Player.ArousalSettings.VFX), "White", "",
+			() => TextGet(PreferenceSettingsVFXList[(PreferenceSettingsVFXIndex + PreferenceSettingsVFXList.length - 1) % PreferenceSettingsVFXList.length]),
+			() => TextGet(PreferenceSettingsVFXList[(PreferenceSettingsVFXIndex + 1) % PreferenceSettingsVFXList.length]));
 
-	DrawBackNextButton(500, 270, 250, 64, TextGet(Player.GraphicsSettings.Font), "White", "",
-		() => TextGet(PreferenceGraphicsFontList[(PreferenceGraphicsFontIndex + PreferenceGraphicsFontList.length - 1) % PreferenceGraphicsFontList.length]),
-		() => TextGet(PreferenceGraphicsFontList[(PreferenceGraphicsFontIndex + 1) % PreferenceGraphicsFontList.length]));
+		DrawBackNextButton(500, 270, 250, 64, TextGet(Player.GraphicsSettings.Font), "White", "",
+			() => TextGet(PreferenceGraphicsFontList[(PreferenceGraphicsFontIndex + PreferenceGraphicsFontList.length - 1) % PreferenceGraphicsFontList.length]),
+			() => TextGet(PreferenceGraphicsFontList[(PreferenceGraphicsFontIndex + 1) % PreferenceGraphicsFontList.length]));
 
-	DrawBackNextButton(500, 680, 200, 64, TextGet("GeneralAnimationQuality" + Player.GraphicsSettings.AnimationQuality), "White", "",
-		() => PreferenceGraphicsAnimationQualityIndex == 0 ? "" : TextGet("GeneralAnimationQuality" + PreferenceGraphicsAnimationQualityList[PreferenceGraphicsAnimationQualityIndex - 1].toString()),
-		() => PreferenceGraphicsAnimationQualityIndex == PreferenceGraphicsAnimationQualityList.length - 1 ? "" : TextGet("GeneralAnimationQuality" + PreferenceGraphicsAnimationQualityList[PreferenceGraphicsAnimationQualityIndex + 1].toString()));
-	if (GLVersion !== "No WebGL") {
-		DrawBackNextButton(500, 850, 360, 64, TextGet("PowerMode" + PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex]), "White", "",
-			() => PreferenceGraphicsPowerModeIndex == 0 ? "" : TextGet("PowerMode" + PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex - 1].toString()),
-			() => PreferenceGraphicsPowerModeIndex == PreferenceGraphicsPowerModes.length - 1 ? "" : TextGet("PowerMode" + PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex + 1].toString()));
+		DrawBackNextButton(500, 680, 200, 64, TextGet("GeneralAnimationQuality" + Player.GraphicsSettings.AnimationQuality), "White", "",
+			() => PreferenceGraphicsAnimationQualityIndex == 0 ? "" : TextGet("GeneralAnimationQuality" + PreferenceGraphicsAnimationQualityList[PreferenceGraphicsAnimationQualityIndex - 1].toString()),
+			() => PreferenceGraphicsAnimationQualityIndex == PreferenceGraphicsAnimationQualityList.length - 1 ? "" : TextGet("GeneralAnimationQuality" + PreferenceGraphicsAnimationQualityList[PreferenceGraphicsAnimationQualityIndex + 1].toString()));
+		if (GLVersion !== "No WebGL") {
+			DrawBackNextButton(500, 850, 360, 64, TextGet("PowerMode" + PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex]), "White", "",
+				() => PreferenceGraphicsPowerModeIndex == 0 ? "" : TextGet("PowerMode" + PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex - 1].toString()),
+				() => PreferenceGraphicsPowerModeIndex == PreferenceGraphicsPowerModes.length - 1 ? "" : TextGet("PowerMode" + PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex + 1].toString()));
+		}
+	} else if (PreferencePageCurrent === 2) {
+		DrawText(TextGet("VFXFilter"), 1000, 216, "Black", "Gray");
+		
+		MainCanvas.textAlign = "center";
+		DrawBackNextButton(500, 182, 450, 64, TextGet(Player.ArousalSettings.VFXFilter), "White", "",
+			() => TextGet(PreferenceSettingsVFXFilterList[(PreferenceSettingsVFXFilterIndex + PreferenceSettingsVFXFilterList.length - 1) % PreferenceSettingsVFXFilterList.length]),
+			() => TextGet(PreferenceSettingsVFXFilterList[(PreferenceSettingsVFXFilterIndex + 1) % PreferenceSettingsVFXFilterList.length]));
 	}
 }
 
@@ -1353,44 +1369,55 @@ function PreferenceSubscreenGraphicsClick() {
 	// If the user clicked the exit icon to return to the main screen
 	if (MouseIn(1815, 75, 90, 90)) PreferenceSubscreenGraphicsExit();
 	
-	if (MouseIn(500, 182, 250, 64)) {
-		if (MouseX <= 625) PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.length + PreferenceSettingsVFXIndex - 1) % PreferenceSettingsVFXList.length;
-		else PreferenceSettingsVFXIndex = (PreferenceSettingsVFXIndex + 1) % PreferenceSettingsVFXList.length;
-		Player.ArousalSettings.VFX = PreferenceSettingsVFXList[PreferenceSettingsVFXIndex];
-	}
-	if (MouseIn(500, 270, 250, 64)) {
-		if (MouseX <= 625) PreferenceGraphicsFontIndex = (PreferenceGraphicsFontList.length + PreferenceGraphicsFontIndex - 1) % PreferenceGraphicsFontList.length;
-		else PreferenceGraphicsFontIndex = (PreferenceGraphicsFontIndex + 1) % PreferenceGraphicsFontList.length;
-		Player.GraphicsSettings.Font = PreferenceGraphicsFontList[PreferenceGraphicsFontIndex];
-		CommonGetFont.clearCache();
-		CommonGetFontName.clearCache();
-		DrawingGetTextSize.clearCache();
-	}
-	if (MouseIn(500, 430, 64, 64)) Player.GraphicsSettings.InvertRoom = !Player.GraphicsSettings.InvertRoom;
-	if (MouseIn(500, 510, 64, 64)) Player.GraphicsSettings.StimulationFlash = !Player.GraphicsSettings.StimulationFlash;
-	if (MouseIn(500, 590, 64, 64)) Player.GraphicsSettings.DoBlindFlash = !Player.GraphicsSettings.DoBlindFlash;
-	if (MouseIn(500, 680, 200, 64)) {
-		if (MouseX <= 600) {
-			if (PreferenceGraphicsAnimationQualityIndex > 0) PreferenceGraphicsAnimationQualityIndex--;
-		} else {
-			if (PreferenceGraphicsAnimationQualityIndex < PreferenceGraphicsAnimationQualityList.length - 1) PreferenceGraphicsAnimationQualityIndex++;
+	// Change page
+	PreferencePageChangeClick(1595, 75, 2); // Uncomment when adding a 2nd page
+
+	if (PreferencePageCurrent === 1) {
+		if (MouseIn(500, 182, 250, 64)) {
+			if (MouseX <= 625) PreferenceSettingsVFXIndex = (PreferenceSettingsVFXList.length + PreferenceSettingsVFXIndex - 1) % PreferenceSettingsVFXList.length;
+			else PreferenceSettingsVFXIndex = (PreferenceSettingsVFXIndex + 1) % PreferenceSettingsVFXList.length;
+			Player.ArousalSettings.VFX = PreferenceSettingsVFXList[PreferenceSettingsVFXIndex];
 		}
-		Player.GraphicsSettings.AnimationQuality = PreferenceGraphicsAnimationQualityList[PreferenceGraphicsAnimationQualityIndex];
-	}
-	if (GLVersion !== "No WebGL" && MouseIn(500, 850, 360, 64)) {
-		if (MouseX <= 600) {
-			if (PreferenceGraphicsPowerModeIndex > 0) PreferenceGraphicsPowerModeIndex--;
-		} else {
-			if (PreferenceGraphicsPowerModeIndex < PreferenceGraphicsPowerModes.length - 1) PreferenceGraphicsPowerModeIndex++;
+		if (MouseIn(500, 270, 250, 64)) {
+			if (MouseX <= 625) PreferenceGraphicsFontIndex = (PreferenceGraphicsFontList.length + PreferenceGraphicsFontIndex - 1) % PreferenceGraphicsFontList.length;
+			else PreferenceGraphicsFontIndex = (PreferenceGraphicsFontIndex + 1) % PreferenceGraphicsFontList.length;
+			Player.GraphicsSettings.Font = PreferenceGraphicsFontList[PreferenceGraphicsFontIndex];
+			CommonGetFont.clearCache();
+			CommonGetFontName.clearCache();
+			DrawingGetTextSize.clearCache();
 		}
-		localStorage.setItem("GLDraw-powerPreference", PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex]);
-	}
-	if (GLVersion !== "No WebGL" && MouseIn(500, 765, 64, 64)) {
-		if (localStorage.getItem("GLDraw-antialiasOff"))
-			localStorage.removeItem("GLDraw-antialiasOff");
-		else
-			localStorage.setItem("GLDraw-antialiasOff", "true");
-		PreferenceGraphicsWebGLOptions.powerPreference = !PreferenceGraphicsWebGLOptions.powerPreference;
+		if (MouseIn(500, 430, 64, 64)) Player.GraphicsSettings.InvertRoom = !Player.GraphicsSettings.InvertRoom;
+		if (MouseIn(500, 510, 64, 64)) Player.GraphicsSettings.StimulationFlash = !Player.GraphicsSettings.StimulationFlash;
+		if (MouseIn(500, 590, 64, 64)) Player.GraphicsSettings.DoBlindFlash = !Player.GraphicsSettings.DoBlindFlash;
+		if (MouseIn(500, 680, 200, 64)) {
+			if (MouseX <= 600) {
+				if (PreferenceGraphicsAnimationQualityIndex > 0) PreferenceGraphicsAnimationQualityIndex--;
+			} else {
+				if (PreferenceGraphicsAnimationQualityIndex < PreferenceGraphicsAnimationQualityList.length - 1) PreferenceGraphicsAnimationQualityIndex++;
+			}
+			Player.GraphicsSettings.AnimationQuality = PreferenceGraphicsAnimationQualityList[PreferenceGraphicsAnimationQualityIndex];
+		}
+		if (GLVersion !== "No WebGL" && MouseIn(500, 850, 360, 64)) {
+			if (MouseX <= 600) {
+				if (PreferenceGraphicsPowerModeIndex > 0) PreferenceGraphicsPowerModeIndex--;
+			} else {
+				if (PreferenceGraphicsPowerModeIndex < PreferenceGraphicsPowerModes.length - 1) PreferenceGraphicsPowerModeIndex++;
+			}
+			localStorage.setItem("GLDraw-powerPreference", PreferenceGraphicsPowerModes[PreferenceGraphicsPowerModeIndex]);
+		}
+		if (GLVersion !== "No WebGL" && MouseIn(500, 765, 64, 64)) {
+			if (localStorage.getItem("GLDraw-antialiasOff"))
+				localStorage.removeItem("GLDraw-antialiasOff");
+			else
+				localStorage.setItem("GLDraw-antialiasOff", "true");
+			PreferenceGraphicsWebGLOptions.powerPreference = !PreferenceGraphicsWebGLOptions.powerPreference;
+		}
+	} if (PreferencePageCurrent === 2) {
+		if (MouseIn(500, 182, 450, 64)) {
+			if (MouseX <= 825) PreferenceSettingsVFXFilterIndex = (PreferenceSettingsVFXFilterList.length + PreferenceSettingsVFXFilterIndex - 1) % PreferenceSettingsVFXFilterList.length;
+			else PreferenceSettingsVFXFilterIndex = (PreferenceSettingsVFXFilterIndex + 1) % PreferenceSettingsVFXFilterList.length;
+			Player.ArousalSettings.VFXFilter = PreferenceSettingsVFXFilterList[PreferenceSettingsVFXFilterIndex];
+		}
 	}
 }
 

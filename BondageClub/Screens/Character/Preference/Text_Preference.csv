@@ -171,6 +171,10 @@ VFXInactive,Bare Meter
 VFXSolid,Solid Glow
 VFXAnimatedTemp,Temporary Animation
 VFXAnimated,Constant Animation
+VFXFilter,Arousal Screen Filter
+VFXFilterHeavy,Strong Gradient
+VFXFilterMedium,Solid Color Filter
+VFXFilterLight,Solid Filter at High Arousal
 ArousalVisible,Meter visibility:
 ArousalVisibleAll,Show arousal to everyone
 ArousalVisibleAccess,Show if they have access

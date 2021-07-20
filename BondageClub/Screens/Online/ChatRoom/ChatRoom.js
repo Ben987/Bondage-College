@@ -1145,6 +1145,46 @@ function ChatRoomResize(load) {
 }
 
 /**
+ * Draws arousal screen filter
+ * @param {Y} - Y to draw filter at.
+ * @param {Height} - Height of filter
+ * @param {Width} - Width of filter
+ * @returns {void} - Nothing.
+ */
+function ChatRoomDrawArousalScreenFilter(Y, Height, Width) {
+	let y1 = Y;
+	let h = Height;
+	
+	let amplitude = 0.24 * Math.min(1, 2 - 1.5 * Player.ArousalSettings.Progress/100); // Amplitude of the oscillation
+	let percent = Player.ArousalSettings.Progress/100.0;
+	let level = Math.min(0.5, percent) + 0.5 * Math.pow(Math.max(0, percent*2 - 1), 4)
+	let oscillation = Math.sin(CommonTime() / 1000 % Math.PI);
+	let alpha = 0.6 * level * (0.99 - amplitude + amplitude * oscillation);
+	
+	if (ChatRoomCharacterCount == 3) {y1 = 50; h = 900;}
+	else if (ChatRoomCharacterCount == 4) {y1 = 150; h = 700;}
+	else if (ChatRoomCharacterCount == 5) {y1 = 250; h = 500;}
+	
+	if (Player.ArousalSettings.VFXFilter == "VFXFilterHeavy") {
+		const Grad = MainCanvas.createLinearGradient(0, y1, 0, h);
+		let alphamin = Math.max(0, alpha / 2 - 0.05);
+		Grad.addColorStop(0, `rgba(255, 100, 176, ${alpha})`);
+		Grad.addColorStop(0.1 + 0.2*percent * (1.2 + 0.2 * oscillation), `rgba(255, 100, 176, ${alphamin})`);
+		Grad.addColorStop(0.5, `rgba(255, 100, 176, ${alphamin/2})`);
+		Grad.addColorStop(0.9 - 0.2*percent * (1.2 + 0.2 * oscillation), `rgba(255, 100, 176, ${alphamin})`);
+		Grad.addColorStop(1, `rgba(255, 100, 176, ${alpha})`);
+		MainCanvas.fillStyle = Grad;
+		MainCanvas.fillRect(0, y1, Width, h);
+	} else {
+		if (Player.ArousalSettings.VFXFilter != "VFXFilterMedium") {
+			alpha = (Player.ArousalSettings.Progress >= 91) ? 0.25 : 0;
+		} else alpha /= 2;
+		if (alpha > 0)
+			DrawRect(0, y1, Width, h, `rgba(255, 176, 176, ${alpha})`);
+	}
+}
+
+/**
  * Runs the chatroom screen.
  * @returns {void} - Nothing.
  */
@@ -1223,12 +1263,14 @@ function ChatRoomRun() {
 			if (ActivityOrgasmRuined) ActivityOrgasmControl();
 			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
 			ActivityOrgasmProgressBar(50, 970);
-		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99) && !CommonPhotoMode) {
-			if ((ChatRoomCharacterCount <= 2) || (ChatRoomCharacterCount >= 6) ||
-				(Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepExtreme") && (Player.GetBlindLevel() >= 3))) DrawRect(0, 0, 1003, 1000, "#FFB0B040");
-			else if (ChatRoomCharacterCount == 3) DrawRect(0, 50, 1003, 900, "#FFB0B040");
-			else if (ChatRoomCharacterCount == 4) DrawRect(0, 150, 1003, 700, "#FFB0B040");
-			else if (ChatRoomCharacterCount == 5) DrawRect(0, 250, 1003, 500, "#FFB0B040");
+		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 1) && (Player.ArousalSettings.Progress <= 99) && !CommonPhotoMode) {
+			let y1 = 0;
+			let h = 1000;
+			ChatRoomDrawArousalScreenFilter(y1, h, 1003);
+		}
+		
+		if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 1) && (Player.ArousalSettings.Progress <= 90) && !CommonPhotoMode) {
+			
 		}
 	}
 
