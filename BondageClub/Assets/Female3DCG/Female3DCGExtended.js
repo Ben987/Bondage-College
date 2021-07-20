@@ -1692,6 +1692,36 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // ClitSuctionCup
 	}, // ItemVulva
+	ItemVulvaPiercings: {
+		ClitRing: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						Property: {
+							Type: null,
+							Effect: [],
+						},
+					},
+					{
+						Name: "Leash",
+						Prerequisite: ["NotSuspended"],
+						Property: {
+							Type: "Leash",
+							Effect: ["Leash"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectAttachmentState",
+					TypePrefix: "ClitRingPose",
+					ChatPrefix: "ClitRingRestrain",
+				},
+			},
+		}, // ClitRing
+	}, // ItemVulvaPiercings
 	ItemButt: {
 		AnalHook: {
 			Archetype: ExtendedArchetype.TYPED,
