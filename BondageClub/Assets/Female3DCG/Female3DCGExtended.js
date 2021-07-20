@@ -2112,6 +2112,42 @@ var AssetFemale3DCGExtended = {
 		}, // Zipties
 	}, // ItemLegs
 	ItemFeet: {
+		Chains: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Basic",
+						BondageLevel: 0,
+						Property: { Type: null, Difficulty: 0, SetPose: ["LegsClosed"] },
+					},
+					{
+						Name: "Strict",
+						BondageLevel: 2,
+						Property: { Type: "Strict", Difficulty: 2, SetPose: ["LegsClosed"] },
+					},
+					{
+						Name: "Suspension",
+						BondageLevel: 6,
+						Prerequisite: ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"],
+						Property: {
+							Type: "Suspension",
+							Difficulty: 4,
+							SetPose: ["Suspension", "LegsClosed"],
+							AllowActivePose: [],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectChainBondage",
+					TypePrefix: "ChainBondage",
+					ChatPrefix: "LegChainSet",
+					NpcPrefix: "ChainBondage",
+				},
+				ChangeWhenLocked: false,
+			}
+		}, // Chains
 		SteelAnkleCuffs: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
