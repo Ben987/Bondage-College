@@ -104,6 +104,8 @@ interface AssetGroup {
 	AllowNone: boolean;
 	AllowColorize: boolean;
 	AllowCustomize: boolean;
+	AllowActivePose?: string[];
+	WhitelistActivePose?: string[];
 	ColorSchema: string[];
 	ParentSize: string;
 	ParentColor: string;
