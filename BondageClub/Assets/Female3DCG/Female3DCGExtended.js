@@ -3441,4 +3441,55 @@ var AssetFemale3DCGExtended = {
 			}
 		}, // CeilingRope
 	}, // ItemAddon
+	ItemNose: {
+		NoseRing: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						Property: {
+							Type: null,
+							Effect: [],
+							SetPose: [],
+						},
+					},
+					{
+						Name: "ChainShort",
+						Prerequisite: ["NotSuspended", "CanKneel", "NotMounted"],
+						Property: {
+							Type: "ChainShort",
+							Effect: ["Freeze", "ForceKneel", "IsChained"],
+							SetPose: ["Kneel"],
+						},
+					},
+					{
+						Name: "ChainLong",
+						Prerequisite: ["NotSuspended"],
+						Property: {
+							Type: "ChainLong",
+							Effect: ["Tethered", "IsChained"],
+							SetPose: [],
+						},
+					},
+					{
+						Name: "Leash",
+						Prerequisite: ["NotSuspended"],
+						Property: {
+							Type: "Leash",
+							Effect: ["Leash"],
+							SetPose: [],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectAttachmentState",
+					TypePrefix: "NoseRingPose",
+					ChatPrefix: "NoseRingRestrain",
+					NpcPrefix: "InventoryItemNoseNoseRingNPCReaction",
+				},
+			}
+		}, // NoseRing
+	}, // ItemNose
 };
