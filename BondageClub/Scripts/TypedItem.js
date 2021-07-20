@@ -35,12 +35,14 @@ const TypedItemDataLookup = {};
  * An enum encapsulating the possible chatroom message settings for typed items
  * - TO_ONLY - The item has one chatroom message per type (indicating that the type has been selected)
  * - FROM_TO - The item has a chatroom message for from/to type pairing
- * @type {{TO_ONLY: string, FROM_TO: string}}
+ * - SILENT - The item doesn't publish an action when a type is selected.
+ * @type {{TO_ONLY: string, FROM_TO: string, SILENT: string}}
  * @enum {string}
  */
 const TypedItemChatSetting = {
 	TO_ONLY: "toOnly",
 	FROM_TO: "fromTo",
+	SILENT: "silent",
 };
 
 /**
@@ -161,6 +163,7 @@ function TypedItemCreateValidateFunction({ changeWhenLocked, options, functionPr
  */
 function TypedItemCreatePublishFunction(data) {
 	const { options, functionPrefix, dialog, chatSetting } = data;
+	if (chatSetting === TypedItemChatSetting.SILENT) return;
 	const publishFunctionName = `${functionPrefix}PublishAction`;
 	window[publishFunctionName] = function (C, newOption, previousOption) {
 		let msg = dialog.chatPrefix;

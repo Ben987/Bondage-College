@@ -1083,6 +1083,64 @@ var AssetFemale3DCGExtended = {
 		} // ShinySteelCollar
 	}, // ItemNeck
 	ItemHood: {
+		InflatedBallHood: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Empty",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							InflateLevel: 0,
+							Effect: [],
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							Difficulty: 2,
+							InflateLevel: 1,
+							Effect: ["GagLight", "BlockMouth"],
+						},
+					},
+					{
+						Name: "Inflated",
+						Property: {
+							Type: "Inflated",
+							Difficulty: 4,
+							InflateLevel: 2,
+							Effect: ["GagEasy", "BlockMouth"],
+						},
+					},
+					{
+						Name: "Bloated",
+						Property: {
+							Type: "Bloated",
+							Difficulty: 6,
+							InflateLevel: 3,
+							Effect: ["GagMedium", "BlockMouth"],
+						},
+					},
+					{
+						Name: "Maximum",
+						Property: {
+							Type: "Maximum",
+							Difficulty: 8,
+							InflateLevel: 4,
+							Effect: ["GagVeryHeavy", "BlockMouth"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectInflateLevel",
+					TypePrefix: "InflateLevel",
+					ChatPrefix: ({ newIndex, previousIndex }) => `InflatedHood${(newIndex > previousIndex) ? "pumps" : "deflates"}To`,
+				},
+				DrawImages: false,
+			}
+		}, // InflatedBallHood
 		KirugumiMask: {
 			Archetype: ExtendedArchetype.MODULAR,
 			Config: {
@@ -1184,7 +1242,7 @@ var AssetFemale3DCGExtended = {
 				},
 				DrawImages: false,
 			},
-		}, // HempRopeHarness
+		}, // GwenHood
 	}, // ItemHood
 	ItemDevices: {
 		Crib: {
@@ -1869,6 +1927,28 @@ var AssetFemale3DCGExtended = {
 		}, // LatexCorset1
 	}, // Corset
 	ItemTorso: {
+		HeavyLatexCorset: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Normal",
+						Property: { Type: null },
+					},
+					{
+						Name: "Straps",
+						Property: { Type: "Straps" },
+					},
+				],
+				Dialog: {
+					Load: "SelectHeavyLatexCorsetType",
+					TypePrefix: "HeavyLatexCorsetType",
+					ChatPrefix: "HeavyLatexCorsetSet",
+					NpcPrefix: "HeavyLatexCorset",
+				},
+			}
+		}, // HeavyLatexCorset
 		Ribbons: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -2658,6 +2738,30 @@ var AssetFemale3DCGExtended = {
 		}, // Zipties
 	}, // ItemLegs
 	ItemFeet: {
+		SpreaderMetal: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Narrow",
+						Property: {
+							Type: null, Effect: ["Prone", "Freeze"], SetPose: ["LegsOpen"],
+						}
+					},
+					{
+						Name: "Wide",
+						Property: {
+							Type: "Wide", Effect: ["Prone", "Freeze"], SetPose: ["Spread"],
+						}
+					}
+				],
+				Dialog: {
+					Load: "SelectSpreaderType",
+					TypePrefix: "SpreaderMetalPose",
+				},
+				ChatSetting: TypedItemChatSetting.SILENT,
+			}
+		}, // SpreaderMetal
 		Chains: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
