@@ -245,6 +245,7 @@ var AssetFemale3DCGExtended = {
 							Property: { Type: "KneelingHogtie", Effect: ["Block", "Freeze", "Prone", "NotSelfPickable"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Kneel", "BackElbowTouch"], Difficulty: 3 },
 							Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 							SelfBlockCheck: true,
+							Random: false,
 						}, {
 							Name: "Hogtied",
 							BondageLevel: 4,
@@ -252,6 +253,7 @@ var AssetFemale3DCGExtended = {
 							Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone", "NotSelfPickable"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied"], Difficulty: 3 },
 							Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 							SelfBlockCheck: true,
+							Random: false,
 						}, {
 							Name: "AllFours",
 							BondageLevel: 6,
@@ -259,6 +261,7 @@ var AssetFemale3DCGExtended = {
 							Property: { Type: "AllFours", Effect: ["ForceKneel", "NotSelfPickable"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"],  AllowActivityOn: ["ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["AllFours"], Difficulty: 3 },
 							Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 							SelfBlockCheck: true,
+							Random: false,
 						}, {
 							Name: "SuspensionHogtied",
 							BondageLevel: 8,
@@ -266,6 +269,7 @@ var AssetFemale3DCGExtended = {
 							Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone", "NotSelfPickable"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6,
 								OverrideHeight: { Height: 0, Priority: 51, HeightRatioProportion: 0 } },
 							Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+							Random: false,
 						}
 				],
 				Dialog: {
@@ -2122,7 +2126,8 @@ var AssetFemale3DCGExtended = {
 						Name: "Frogtie",
 						BondageLevel: 3,
 						Property: { Type: "Frogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Effect: ["ForceKneel"], Difficulty: 3 },
-						Prerequisite: ["NotSuspended", "CanKneel"]
+						Prerequisite: ["NotSuspended", "CanKneel"],
+						Random: false,
 					}, {
 						Name: "Crossed",
 						BondageLevel: 4,
@@ -2287,6 +2292,7 @@ var AssetFemale3DCGExtended = {
 							SetPose: ["Suspension", "LegsClosed"],
 							AllowActivePose: [],
 						},
+						Random: false,
 					},
 				],
 				Dialog: {
