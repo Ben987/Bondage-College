@@ -104,6 +104,7 @@ interface AssetGroup {
 	AllowNone: boolean;
 	AllowColorize: boolean;
 	AllowCustomize: boolean;
+	Random?: boolean;
 	ColorSchema: string[];
 	ParentSize: string;
 	ParentColor: string;
