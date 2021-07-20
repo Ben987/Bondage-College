@@ -1093,7 +1093,7 @@ function StruggleDrawLockpickProgress(C) {
 function StruggleLockPickProgressGetOperation(C, Item) {
 	var lock = InventoryGetLock(Item);
 	if ((Item != null && lock != null)) {
-		if (lock.Name == "CombinationPadlock" || lock.Name == "PasswordPadlock") return DialogFindPlayer("Decoding");
+		if (lock.Asset.Name == "CombinationPadlock" || lock.Asset.Name == "PasswordPadlock") return DialogFindPlayer("Decoding");
 		if (Item.Asset.Name.indexOf("Futuristic") >= 0 || Item.Asset.Name.indexOf("Interactive") >= 0) return DialogFindPlayer("Hacking");
 		return DialogFindPlayer("Picking");
 	}

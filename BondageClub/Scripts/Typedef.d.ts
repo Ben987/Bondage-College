@@ -522,7 +522,7 @@ interface Character {
 		DisableAdvancedVibes: boolean;
 	};
 	AppearanceFull?: Item[];
-	Trait?: any[];
+	Trait?: NPCTrait[];
 	Event?: any[];
 	// Online character properties
 	Title?: string;
@@ -684,6 +684,11 @@ interface PlayerCharacter extends Character {
 	SubmissivesList?: Set<number>;
 	KinkyDungeonKeybindings?: any;
 	Infiltration?: any;
+}
+
+interface NPCTrait {
+	Name: string;
+	Value: number;
 }
 
 //#region Extended items
