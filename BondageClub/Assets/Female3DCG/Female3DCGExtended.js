@@ -1536,6 +1536,82 @@ var AssetFemale3DCGExtended = {
 		}, // ClitSuctionCup
 	}, // ItemVulva
 	ItemButt: {
+		AnalHook: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Intensity: 0,
+							Effect: ["IsPlugged"],
+						},
+					},
+					{
+						Name: "Chain",
+						Property: {
+							Type: "Chain",
+							Difficulty: 8,
+							Intensity: 1,
+							Effect: ["IsPlugged", "Freeze", "Egged"]
+						}
+					},
+					{
+						Name: "Hair",
+						Property: {
+							Type: "Hair",
+							Difficulty: 4,
+							Intensity: 1,
+							Effect: ["IsPlugged", "Egged"]
+						}
+					},
+				],
+				Dialog: {
+					Load: "SelectAttachmentState",
+					TypePrefix: "AnalHookPose",
+					ChatPrefix: "AnalHookRestrain",
+					NpcPrefix: "InventoryItemButtAnalHookNPCReaction",
+				},
+			},
+		}, // AnalHook
+		ButtPlugLock: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						Property: { Type: null },
+					},
+					{
+						Name: "ChainShort",
+						Prerequisite: ["NotSuspended", "CanKneel", "NotMounted"],
+						Property: {
+							Type: "ChainShort",
+							Effect: ["Freeze", "ForceKneel", "IsChained"],
+							SetPose: ["Kneel"],
+						},
+					},
+					{
+						Name: "ChainLong",
+						Prerequisite: ["NotSuspended"],
+						Property: {
+							Type: "ChainLong",
+							Effect: ["Tethered", "IsChained"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectAttachmentState",
+					TypePrefix: "ButtPlugLockPose",
+					ChatPrefix: "ButtPlugLockRestrain",
+					NpcPrefix: "ButtPlugLockSet",
+				},
+			},
+		}, // ButtPlugLock
 		ButtPump: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
