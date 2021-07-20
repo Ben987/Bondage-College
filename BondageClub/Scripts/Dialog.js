@@ -77,7 +77,7 @@ var DialogSelfMenuOptions = [
 /**
  * Compares the player's reputation with a given value
  * @param {string} RepType - The name of the reputation to check
- * @param {number} Value - The value to compare
+ * @param {string} Value - The value to compare
  * @returns {boolean} - Returns TRUE if a specific reputation type is less or equal than a given value
  */
 function DialogReputationLess(RepType, Value) { return (ReputationGet(RepType) <= Value); }
@@ -85,7 +85,7 @@ function DialogReputationLess(RepType, Value) { return (ReputationGet(RepType) <
 /**
  * Compares the player's reputation with a given value
  * @param {string} RepType - The name of the reputation to check
- * @param {number} Value - The value to compare
+ * @param {string} Value - The value to compare
  * @returns {boolean} - Returns TRUE if a specific reputation type is greater or equal than a given value
  */
 function DialogReputationGreater(RepType, Value) { return (ReputationGet(RepType) >= Value); }
@@ -99,7 +99,7 @@ function DialogMoneyGreater(Amount) { return (parseInt(Player.Money) >= parseInt
 
 /**
  * Changes a given player's account by a given amount
- * @param {number} Amount - The amount that should be charged or added to the player's account
+ * @param {string} Amount - The amount that should be charged or added to the player's account
  * @returns {void} - Nothing
  */
 function DialogChangeMoney(Amount) { CharacterChangeMoney(Player, Amount); }
