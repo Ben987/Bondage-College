@@ -181,6 +181,34 @@ var AssetFemale3DCGExtended = {
 		}, // Ribbons
 	}, // ItemBreast
 	ItemArms: {
+		MetalCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "InFront",
+						Property: {
+							Type: "InFront",
+							SetPose: ["BaseUpper"],
+						}
+					},
+					{
+						Name: "BehindBack",
+						Property: {
+							Type: null,
+							SetPose: ["BackCuffs"],
+						}
+					}
+				],
+				Dialog: {
+					Load: "SelectBondagePosition",
+					TypePrefix: "MetalCuffsPose",
+					ChatPrefix: "MetalCuffsRestrain",
+					NpcPrefix: "ItemArmsMetalCuffs",
+				},
+			}
+		}, // MetalCuffs
 		Chains: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
