@@ -1157,7 +1157,7 @@ function ChatRoomDrawArousalScreenFilter(Y, Height, Width) {
 	
 	let amplitude = 0.24 * Math.min(1, 2 - 1.5 * Player.ArousalSettings.Progress/100); // Amplitude of the oscillation
 	let percent = Player.ArousalSettings.Progress/100.0;
-	let level = Math.min(0.5, percent) + 0.5 * Math.pow(Math.max(0, percent*2 - 1), 4)
+	let level = Math.min(0.5, percent) + 0.5 * Math.pow(Math.max(0, percent*2 - 1), 4);
 	let oscillation = Math.sin(CommonTime() / 1000 % Math.PI);
 	let alpha = 0.6 * level * (0.99 - amplitude + amplitude * oscillation);
 	
