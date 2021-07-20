@@ -1268,10 +1268,6 @@ function ChatRoomRun() {
 			let h = 1000;
 			ChatRoomDrawArousalScreenFilter(y1, h, 1003);
 		}
-		
-		if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 1) && (Player.ArousalSettings.Progress <= 90) && !CommonPhotoMode) {
-			
-		}
 	}
 
 	if ((Player.ImmersionSettings != null && Player.GraphicsSettings != null) && (Player.ImmersionSettings.StimulationEvents && Player.GraphicsSettings.StimulationFlash) && ChatRoomPinkFlashTime > CommonTime()) {
