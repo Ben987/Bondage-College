@@ -1245,6 +1245,34 @@ var AssetFemale3DCGExtended = {
 		}, // GwenHood
 	}, // ItemHood
 	ItemDevices: {
+		Cushion: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Hold",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Kneel",
+						Prerequisite: ["NotSuspended", "CanKneel"],
+						Property: {
+							Type: "Kneel",
+							OverrideHeight: { Height: -200, Priority: 21 },
+							OverridePriority: 1,
+							SetPose: ["Kneel"]
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectCushionStyle",
+					TypePrefix: "CushionType",
+				},
+				ChatSetting: TypedItemChatSetting.SILENT,
+			},
+		}, // Cushion
 		Crib: {
 			Archetype: ExtendedArchetype.MODULAR,
 			Config: {
