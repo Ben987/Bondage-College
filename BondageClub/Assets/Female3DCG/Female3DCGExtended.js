@@ -1557,7 +1557,8 @@ var AssetFemale3DCGExtended = {
 							Difficulty: 8,
 							Intensity: 1,
 							Effect: ["IsPlugged", "Freeze", "Egged"]
-						}
+						},
+						Random: false,
 					},
 					{
 						Name: "Hair",
@@ -1594,6 +1595,7 @@ var AssetFemale3DCGExtended = {
 							Effect: ["Freeze", "ForceKneel", "IsChained"],
 							SetPose: ["Kneel"],
 						},
+						Random: false,
 					},
 					{
 						Name: "ChainLong",
@@ -1602,6 +1604,7 @@ var AssetFemale3DCGExtended = {
 							Type: "ChainLong",
 							Effect: ["Tethered", "IsChained"],
 						},
+						Random: false,
 					},
 				],
 				Dialog: {
@@ -1663,6 +1666,60 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // ButtPump
 	}, // ItemButt
+	ItemNipplesPiercings: {
+		RoundPiercing: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						BondageLevel: 0,
+						Prerequisite: ["AccessBreast", "AccessBreastSuitZip"],
+						Property: {
+							Type: null,
+							Difficulty: 0,
+						},
+					},
+					{
+						Name: "Chain",
+						BondageLevel: 0,
+						Prerequisite: ["AccessBreast", "AccessBreastSuitZip", "Collared"],
+						Property: {
+							Type: "Chain",
+							Difficulty: 0,
+							Block: ["ItemNeck"],
+						},
+					},
+					{
+						Name: "Weighted",
+						BondageLevel: 0,
+						Prerequisite: ["AccessBreast", "AccessBreastSuitZip"],
+						Property: {
+							Type: "Weighted",
+							Difficulty: 0,
+						},
+					},
+					{
+						Name: "WeightedChain",
+						BondageLevel: 0,
+						Prerequisite: ["AccessBreast", "AccessBreastSuitZip", "Collared"],
+						Property: {
+							Type: "WeightedChain",
+							Difficulty: 0,
+							Block: ["ItemNeck"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectPiercingState",
+					TypePrefix: "RoundPiercingPose",
+					ChatPrefix: "RoundPiercingRestrain",
+					NpcPrefix: "RoundPiercingNPCReaction",
+				},
+			},
+		}, // RoundPiercing
+	}, // ItemNipplesPiercings
 	ItemNipples: {
 		LactationPump: {
 			Archetype: ExtendedArchetype.TYPED,
