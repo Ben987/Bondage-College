@@ -152,6 +152,34 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // BunnyCollarCuffs
 	}, // ClothAccessory
+	ItemBreast: {
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "LightWrap",
+						Property: { Type: null, Difficulty: 0 },
+					},
+					{
+						Name: "LightWrapBow",
+						Property: { Type: "LightWrapBow", Difficulty: 1 },
+					},
+					{
+						Name: "Wrap",
+						Property: { Type: "Wrap", Difficulty: 2 },
+					},
+				],
+				Dialog: {
+					Load: "SelectRibbonType",
+					TypePrefix: "RibbonsStyle",
+					ChatPrefix: "RibbonsSet",
+					NpcPrefix: "ItemBreastRibbons",
+				},
+			}
+		}, // Ribbons
+	}, // ItemBreast
 	ItemArms: {
 		HighSecurityStraitJacket: {
 			Archetype: ExtendedArchetype.MODULAR,
@@ -1351,6 +1379,32 @@ var AssetFemale3DCGExtended = {
 		}, // LatexCorset1
 	}, // Corset
 	ItemTorso: {
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Basic",
+						Property: { Type: null, Difficulty: 1 }
+					}, {
+						Name: "Harness1",
+						BondageLevel: 2,
+						Property: { Type: "Harness1" , Difficulty: 3 , Effect: ["CrotchRope"]}
+					}, {
+						Name: "Harness2",
+						BondageLevel: 3,
+						Property: { Type: "Harness2" , Difficulty: 4, Effect: ["CrotchRope"] }
+					}
+				],
+				Dialog: {
+					Load: "SelectRibbonType",
+					TypePrefix: "RibbonsTorso",
+					ChatPrefix: "TorsoRibbonsSet",
+					NpcPrefix: "ItemTorsoRibbons",
+				},
+			}
+		}, // Ribbons
 		LatexCorset1: {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "Corset", AssetName: "LatexCorset1" },
