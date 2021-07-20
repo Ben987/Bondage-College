@@ -173,9 +173,9 @@ function CharacterAppearanceFullRandom(C, ClothOnly=false) {
 				C.Appearance.splice(A, 1);
 			}
 
-	// For each item group (non default items only show at a 10% rate, if it can occasionally happen)
+	// For each item group (non default items only show at a 8% rate, if it can occasionally happen)
 	for (let A = 0; A < AssetGroup.length; A++)
-		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (AssetGroup[A].Random && Math.random() < 0.1) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && (!CharacterAppearanceMustHide(C, AssetGroup[A].Name) || !AssetGroup[A].AllowNone) && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None")) {
+		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (AssetGroup[A].Random && Math.random() < 0.08) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && (!CharacterAppearanceMustHide(C, AssetGroup[A].Name) || !AssetGroup[A].AllowNone) && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None")) {
 
 			// Get the parent size
 			var ParentSize = "";
@@ -193,9 +193,9 @@ function CharacterAppearanceFullRandom(C, ClothOnly=false) {
 			// Since there was no parent, get all the possible items
 			if (R.length == 0)
 				for (let I = 0; I < CharacterAppearanceAssets.length; I++)
-					if ((CharacterAppearanceAssets[I].Group.Name == AssetGroup[A].Name) && (CharacterAppearanceAssets[I].ParentItem == null) && ((ParentSize == "") || (CharacterAppearanceAssets[I].Name == ParentSize)))
+					if ((CharacterAppearanceAssets[I].Group.Name == AssetGroup[A].Name) && CharacterAppearanceAssets[I].Random && (CharacterAppearanceAssets[I].ParentItem == null) && ((ParentSize == "") || (CharacterAppearanceAssets[I].Name == ParentSize)))
 						R.push(CharacterAppearanceAssets[I]);
-
+			
 			// Picks a random item and color and add it
 			if (R.length > 0) {
 				var SelectedAsset = InventoryGetRandom(C, AssetGroup[A].Name, R);
