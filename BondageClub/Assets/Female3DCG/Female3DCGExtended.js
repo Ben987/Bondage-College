@@ -181,6 +181,51 @@ var AssetFemale3DCGExtended = {
 		}, // Ribbons
 	}, // ItemBreast
 	ItemArms: {
+		InflatableStraightLeotard: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Light",
+						Property: {
+							Type: null,
+							Effect: ["Block", "Prone"],
+						},
+					},
+					{
+						Name: "Inflated",
+						Property: {
+							Type: "Inflated",
+							Effect: ["Block", "Prone"],
+							Difficulty: 1,
+						},
+					},
+					{
+						Name: "Bloated",
+						Property: {
+							Type: "Bloated",
+							Effect: ["Block", "Prone"],
+							Difficulty: 2,
+						},
+					},
+					{
+						Name: "Max",
+						Property: {
+							Type: "Max",
+							Effect: ["Block", "Prone", "Freeze"],
+							Difficulty: 3,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectInflationLevel",
+					TypePrefix: "InflationAmount",
+					ChatPrefix: "InflationAmountSet",
+					NpcPrefix: "ItemArmsInflatableStraightLeotard",
+				},
+			}
+		}, // InflatableStraightLeotard
 		MetalCuffs: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -2866,4 +2911,56 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // WebBlindfold
 	}, // ItemHead
+	ItemAddon: {
+		CeilingChain: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Lowered",
+						Property: { Type: null, Difficulty: 6, Effect: []}
+					}, {
+						Name: "Suspended",
+							Property: { 
+							Type: "Suspended", Difficulty: 7,
+							OverrideHeight: { Height: 30, Priority: 51, HeightRatioProportion: 0 },
+							Effect: ["Lifted"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectCeilingChainState",
+					TypePrefix: "CeilingChainBondage",
+					ChatPrefix: "CeilingChainSet",
+					NpcPrefix: "CeilingChain",
+				},
+			}
+		}, // CeilingChain
+		CeilingRope: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Lowered",
+						Property: { Type: null, Difficulty: 6}
+					}, {
+						Name: "Suspended",
+						Property: { 
+							Type: "Suspended", Difficulty: 7,
+							OverrideHeight: { Height: 30, Priority: 51, HeightRatioProportion: 0 },
+							Effect: ["Lifted"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectCeilingRopeState",
+					TypePrefix: "CeilingRopeBondage",
+					ChatPrefix: "CeilingRopeSet",
+					NpcPrefix: "CeilingRope",
+				},
+			}
+		}, // CeilingRope
+	}, // ItemAddon
 };
