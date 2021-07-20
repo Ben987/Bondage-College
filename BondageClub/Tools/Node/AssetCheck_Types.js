@@ -216,6 +216,7 @@ const ExtendedItemOption = {
 	Property: "Maybe Object",
 	Expression: "Maybe [{ Name: String, Group: String, Timer: Number }]",
 	HasSubscreen: "Maybe Boolean",
+	Random: "Maybe Boolean",
 }
 
 module.exports = {
