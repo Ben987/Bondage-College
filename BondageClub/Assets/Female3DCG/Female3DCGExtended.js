@@ -1483,7 +1483,209 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // ToeTape
 	}, // ItemBoots
+	ItemVulva: {
+		ClitSuctionCup: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Loose",
+						Property: {
+							Type: null,
+							SuctionLevel: 0,
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							SuctionLevel: 1,
+						},
+					},
+					{
+						Name: "Medium",
+						Property: {
+							Type: "Medium",
+							SuctionLevel: 2,
+						},
+					},
+					{
+						Name: "Heavy",
+						Property: {
+							Type: "Heavy",
+							SuctionLevel: 3,
+						},
+					},
+					{
+						Name: "Maximum",
+						Property: {
+							Type: "Maximum",
+							SuctionLevel: 4,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectSuctionLevel",
+					TypePrefix: "SuctionLevel",
+					ChatPrefix: ({ newIndex, previousIndex }) => `ClitSuc${(newIndex > previousIndex) ? "tightens" : "loosens"}To`,
+					NpcPrefix: "ItemVulvaClitSuctionCupNPCReaction"
+				},
+				DrawImages: false,
+			},
+		}, // ClitSuctionCup
+	}, // ItemVulva
+	ItemButt: {
+		ButtPump: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Empty",
+						Property: {
+							Type: null,
+							InflateLevel: 0,
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							InflateLevel: 1,
+						},
+					},
+					{
+						Name: "Inflated",
+						Property: {
+							Type: "Inflated",
+							InflateLevel: 2,
+						},
+					},
+					{
+						Name: "Bloated",
+						Property: {
+							Type: "Bloated",
+							InflateLevel: 3,
+						},
+					},
+					{
+						Name: "Maximum",
+						Property: {
+							Type: "Maximum",
+							InflateLevel: 4,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectInflateLevel",
+					TypePrefix: "InflateLevel",
+					ChatPrefix: ({ newIndex, previousIndex }) => `BPumps${(newIndex > previousIndex) ? "pumps" : "deflates"}To`,
+					NpcPrefix: "InventoryItemButtButtPumpNPCReaction",
+				},
+				DrawImages: false,
+			},
+		}, // ButtPump
+	}, // ItemButt
 	ItemNipples: {
+		LactationPump: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Off",
+						Property: {
+							Type: null,
+							SuctionLevel: 0,
+						},
+					},
+					{
+						Name: "LowSuction",
+						Property: {
+							Type: "LowSuction",
+							SuctionLevel: 1,
+						},
+					},
+					{
+						Name: "MediumSuction",
+						Property: {
+							Type: "MediumSuction",
+							SuctionLevel: 2,
+						},
+					},
+					{
+						Name: "HighSuction",
+						Property: {
+							Type: "HighSuction",
+							SuctionLevel: 3,
+						},
+					},
+					{
+						Name: "MaximumSuction",
+						Property: {
+							Type: "MaximumSuction",
+							SuctionLevel: 4,
+						},
+					},
+				],
+				Dialog: {
+					Load: "LactationPumpSelectSetting",
+					TypePrefix: "LactationPump",
+					ChatPrefix: ({ newIndex, previousIndex }) => `LactationPumpPower${(newIndex > previousIndex) ? "tightens" : "loosens"}To`,
+				},
+				DrawImages: false,
+			},
+		}, // LactationPump
+		NippleSuctionCups: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Loose",
+						Property: {
+							Type: null,
+							SuctionLevel: 0,
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							SuctionLevel: 1,
+						},
+					},
+					{
+						Name: "Medium",
+						Property: {
+							Type: "Medium",
+							SuctionLevel: 2,
+						},
+					},
+					{
+						Name: "Heavy",
+						Property: {
+							Type: "Heavy",
+							SuctionLevel: 3,
+						},
+					},
+					{
+						Name: "Maximum",
+						Property: {
+							Type: "Maximum",
+							SuctionLevel: 4,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectSuctionLevel",
+					TypePrefix: "SuctionLevel",
+					ChatPrefix: ({ newIndex, previousIndex }) => `NipSuc${(newIndex > previousIndex) ? "tightens" : "loosens"}To`,
+				},
+				DrawImages: false,
+			},
+		}, // NippleSuctionCups
 		PlateClamps: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
