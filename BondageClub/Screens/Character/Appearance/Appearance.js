@@ -195,7 +195,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly=false) {
 				for (let I = 0; I < CharacterAppearanceAssets.length; I++)
 					if ((CharacterAppearanceAssets[I].Group.Name == AssetGroup[A].Name) && CharacterAppearanceAssets[I].Random && (CharacterAppearanceAssets[I].ParentItem == null) && ((ParentSize == "") || (CharacterAppearanceAssets[I].Name == ParentSize)))
 						R.push(CharacterAppearanceAssets[I]);
-			
+
 			// Picks a random item and color and add it
 			if (R.length > 0) {
 				var SelectedAsset = InventoryGetRandom(C, AssetGroup[A].Name, R);
