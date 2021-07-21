@@ -33,7 +33,7 @@ var CommonVersionUpdated = false;
  * Additionally, sending the following tags will ensure that asset names in messages are correctly translated by
  * recipients:
  * ASSET_NAME: (substituted with the localized name of the asset, if available)
- * @enum {string}
+ * @type {Record<"SOURCE_CHAR"|"DEST_CHAR"|"DEST_CHAR_NAME"|"TARGET_CHAR"|"TARGET_CHAR_NAME"|"ASSET_NAME", CommonChatTags>}
  */
 const CommonChatTags = {
 	SOURCE_CHAR: "SourceCharacter",

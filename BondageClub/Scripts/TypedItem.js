@@ -35,8 +35,7 @@ const TypedItemDataLookup = {};
  * An enum encapsulating the possible chatroom message settings for typed items
  * - TO_ONLY - The item has one chatroom message per type (indicating that the type has been selected)
  * - FROM_TO - The item has a chatroom message for from/to type pairing
- * @type {{TO_ONLY: string, FROM_TO: string}}
- * @enum {string}
+ * @type {Record<"TO_ONLY"|"FROM_TO", TypedItemChatSetting>}
  */
 const TypedItemChatSetting = {
 	TO_ONLY: "toOnly",
