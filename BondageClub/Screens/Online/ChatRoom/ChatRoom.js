@@ -1151,19 +1151,12 @@ function ChatRoomResize(load) {
  * @param {Width} - Width of filter
  * @returns {void} - Nothing.
  */
-function ChatRoomDrawArousalScreenFilter(Y, Height, Width) {
-	let y1 = Y;
-	let h = Height;
-	
+function ChatRoomDrawArousalScreenFilter(y1, h, Width) {	
 	let amplitude = 0.24 * Math.min(1, 2 - 1.5 * Player.ArousalSettings.Progress/100); // Amplitude of the oscillation
 	let percent = Player.ArousalSettings.Progress/100.0;
 	let level = Math.min(0.5, percent) + 0.5 * Math.pow(Math.max(0, percent*2 - 1), 4);
 	let oscillation = Math.sin(CommonTime() / 1000 % Math.PI);
 	let alpha = 0.6 * level * (0.99 - amplitude + amplitude * oscillation);
-	
-	if (ChatRoomCharacterCount == 3) {y1 = 50; h = 900;}
-	else if (ChatRoomCharacterCount == 4) {y1 = 150; h = 700;}
-	else if (ChatRoomCharacterCount == 5) {y1 = 250; h = 500;}
 	
 	if (Player.ArousalSettings.VFXFilter == "VFXFilterHeavy") {
 		const Grad = MainCanvas.createLinearGradient(0, y1, 0, h);
@@ -1266,6 +1259,11 @@ function ChatRoomRun() {
 		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 1) && (Player.ArousalSettings.Progress <= 99) && !CommonPhotoMode) {
 			let y1 = 0;
 			let h = 1000;
+			
+			if (ChatRoomCharacterCount == 3) {y1 = 50; h = 900;}
+			else if (ChatRoomCharacterCount == 4) {y1 = 150; h = 700;}
+			else if (ChatRoomCharacterCount == 5) {y1 = 250; h = 500;}
+			
 			ChatRoomDrawArousalScreenFilter(y1, h, 1003);
 		}
 	}
