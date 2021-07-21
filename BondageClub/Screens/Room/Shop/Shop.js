@@ -110,7 +110,7 @@ function ShopRun() {
 		var Y = 125;
 		for (let A = ShopItemOffset; (A < ShopCart.length && A < ShopItemOffset + 12); A++) {
 			const Hidden = CharacterAppearanceItemIsHidden(ShopCart[A].Name, ShopCart[A].Group.Name);
-			const Description = ShopCart[A].Description + " " + (Math.ceil(ShopCart[A].Value * (ShopBuyMode ? 1 : 0.5))).toString()  + " $";
+			const Description = ShopCart[A].Description + " $" + (Math.ceil(ShopCart[A].Value * (ShopBuyMode ? 1 : 0.5))).toString();
 			const Background = MouseIn(X, Y, 225, 275) && !CommonIsMobile ? "cyan" : "#fff";
 			const Foreground = InventoryAvailable(Player, ShopCart[A].Name, ShopCart[A].Group.Name) ? "green" : "red";
 			if (Hidden) DrawPreviewBox(X, Y, "Icons/HiddenItem.png", Description, { Background, Foreground });
