@@ -23,7 +23,7 @@ jobs:
       run: echo "::remove-matcher owner=tsc::"
     - name: Run TypeScript
       run: |
-       npm run -s assetcheck-typescript -- --pretty false | sed -E 's/^([^ ][^\(]*)\(([0-9]+),([0-9]+)\): (.*)$/\0\n::error file=\1,line=\2,col=\3::\4/' | sed -z 's/\n  /%0A  /'
+       npm run -s assetcheck-typescript -- --pretty
       shell: bash
     - name: Run Asset check
       run: npm run -s assetcheck
