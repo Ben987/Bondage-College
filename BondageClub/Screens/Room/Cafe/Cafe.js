@@ -255,8 +255,9 @@ function CafeServiceBound(Style) {
 		if (Bondage == "LeatherLegCuffs") {
             Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemLegs");
 			DialogExtendItem(InventoryGet(Player, "ItemLegs"));
-			const Option = TypedItemGetOptions("ItemLegs", "LeatherLegCuffs").find(O => O.Name === "Closed");
-			ExtendedItemSetType(Player, TypedItemGetOptions("ItemLegs", "LeatherLegCuffs"), Option);
+			const Options = TypedItemGetOptions("ItemLegs", "LeatherLegCuffs");
+			const Option = Options.find(O => O.Name === "Closed");
+			ExtendedItemSetType(Player, Options, Option);
 		}
 
 		// Gag
@@ -337,8 +338,9 @@ function CafeServiceBound(Style) {
 			if (Bondage == "LeatherLegCuffs") {
                 Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemLegs");
 				DialogExtendItem(InventoryGet(Player, "ItemLegs"));
-				const Option = TypedItemGetOptions("ItemLegs", "LeatherLegCuffs").find(O => O.Name === "Closed");
-				ExtendedItemSetType(Player, TypedItemGetOptions("ItemLegs", "LeatherLegCuffs"), Option);
+				const Options = TypedItemGetOptions("ItemLegs", "LeatherLegCuffs");
+				const Option = Options.find(O => O.Name === "Closed");
+				ExtendedItemSetType(Player, Options, Option);
 			}
 		}
 
