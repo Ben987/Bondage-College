@@ -4,11 +4,13 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
+/* eslint-disable */
 var LoginThankYouList = ["Aceffect", "Anna", "Aylea", "BlueWinter", "Brian", "bryce", "Christian", "DarkStar", "Dini", "ElCriminal", 
  						 "Epona", "Escurse", "FanRunner", "Greendragon", "JoeyDubDee", "John", "KamiKaze", "Kimuriel", "Longwave", "Michal", 
 						 "Michel", "Mike", "Mindtie", "Misa", "MrUniver", "Mzklopyu", "Nick", "Nightcore", "Rashiash", "Ray", 
 						 "Rika", "Rutherford", "Ryner", "Samuel", "SeraDenoir", "Shadow", "Somononon", "Stephanie", "Tam", "TKSonix", 
 						 "TopHat", "Troubadix", "William", "Xepherio", "Yuna", "Znarf"];
+/* eslint-enable */
 var LoginThankYouNext = 0;
 var LoginSubmitted = false;
 var LoginIsRelog = false;
