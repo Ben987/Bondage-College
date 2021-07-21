@@ -20,7 +20,7 @@ function InfiltrationPerksActivate(PerkName) {
 	while (Player.Infiltration.Perks.length < InfiltrationPerksList.length)
 		Player.Infiltration.Perks = Player.Infiltration.Perks + "0";
 	let Index = InfiltrationPerksList.indexOf(PerkName);
-	if (Index < 0) return false;
+	if (Index < 0) return;
 	let Active = !InfiltrationPerksActive(PerkName);
 	if (Active && (InfiltrationPerksAvail() <= InfiltrationPerksTaken())) return;
 	Player.Infiltration.Perks = Player.Infiltration.Perks.substring(0, Index) + (Active ? "1" : "0") + Player.Infiltration.Perks.substring(Index + 1);
@@ -28,7 +28,7 @@ function InfiltrationPerksActivate(PerkName) {
 
 /**
  * Returns the number of perks taken by the player
- * @returns {void} - Nothing
+ * @returns {number} - Number of perks taken by the player
  */
 function InfiltrationPerksTaken() {
 	return (Player.Infiltration.Perks.match(/1/g)||[]).length;
@@ -36,7 +36,7 @@ function InfiltrationPerksTaken() {
 
 /**
  * Returns the number of perks available for the player
- * @returns {number} - Nothing
+ * @returns {number} - Number of perks available for the player
  */
 function InfiltrationPerksAvail() {
 	return SkillGetLevel(Player, "Infiltration") + 1;
