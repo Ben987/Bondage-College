@@ -8,7 +8,7 @@
     "lint:fix": "eslint --fix --config ./.eslintrc.js ../../Assets/Female3DCG/Female3DCG.js",
     "lintscripts": "eslint --quiet \"../../Scripts/**/*.js\" \"../../Screens/**/*.js\" \"../../Assets/**/*.js\" \"../../Tools/**/*.js\" \"../../Backgrounds/Backgrounds.js\"",
     "assetcheck": "node AssetCheck",
-    "assetcheck-typescript": "cd ../../ && tsc -p Tools/Node/tsconfig-assetcheck.json",
+    "assetcheck-typescript": "cd ../../../ && tsc -p BondageClub/Tools/Node/tsconfig-assetcheck.json",
     "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
   "repository": {
