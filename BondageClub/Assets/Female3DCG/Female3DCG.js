@@ -115,7 +115,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "Dress2", Value: 100, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsNecklacePiercingChain", "ItemNipplesPiercingsWeightedPiercing", "ItemDevicesStrapOnSmooth", "ItemDevicesStrapOnStuds", "ItemNipplesLactationPump", "BraRibbons", "ItemBreastRibbons"] },
-			{ Name: "LaceBabydoll", Fetish: ["Lingerie"], Value: 40, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsNecklacePiercingChain", "ItemNipplesPiercingsWeightedPiercing", "ItemNipplesLactationPump"] },
+			{ Name: "LaceBabydoll", Fetish: ["Lingerie"], Value: 40, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing", "ItemNipplesLactationPump"] },
 			{ Name: "SleevelessTop", Fetish: ["Lingerie"], Value: 20, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsNecklacePiercingChain", "ItemNipplesPiercingsWeightedPiercing", "ItemNipplesLactationPump"] },
 			{
 				Name: "DressFur", Value: 70, HideItem: ["ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerSkirt1", "ClothLowerSkirt2", "ClothLowerSkirt3", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1", "ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsNecklacePiercingChain", "ItemNipplesPiercingsWeightedPiercing", "ItemDevicesStrapOnSmooth", "ItemDevicesStrapOnStuds", "ItemNipplesLactationPump", "BraRibbons", "ItemBreastRibbons"],
@@ -1579,7 +1579,7 @@ var AssetFemale3DCG = [
 				],
 			},
 			{
-				Name: "SuspensionCuffs", Fetish: ["Leather"], Value: 70, Difficulty: 10, SelfBondage: 3, Time: 30, AllowLock: true, Random: false, SetPose: ["LegsOpen", "Suspension"], Effect: ["Block", "Prone"], Block: ["ItemLegs", "ItemBoots"], Prerequisite: ["NotKneeling", "NotMounted", "NotChained", "NotHogtied", "LegsOpen"], Hide: ["Shoes"], OverrideHeight: { Height: -100, Priority: 41 },
+				Name: "SuspensionCuffs", Fetish: ["Leather"], Value: 70, Difficulty: 10, SelfBondage: 3, Time: 30, AllowLock: true, Random: false, SetPose: ["LegsOpen", "Suspension"], Effect: ["Block", "Prone", "Freeze"], Block: ["ItemLegs", "ItemBoots"], Prerequisite: ["NotKneeling", "NotMounted", "NotChained", "NotHogtied", "LegsOpen"], Hide: ["Shoes"], OverrideHeight: { Height: -100, Priority: 41 },
 			},
 			AssetSpankingToys
 		],
