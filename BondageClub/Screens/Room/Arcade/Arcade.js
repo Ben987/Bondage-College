@@ -10,7 +10,7 @@ var ArcadeCannotDoDeviousChallenge = false;
 
 /**
  * Determines whether or not the player is bound and can plead to have their own headset put on them
- * @returns {bool} - Whether or not the player can ask to have a headset put on
+ * @returns {boolean} - Whether or not the player can ask to have a headset put on
  */
 function ArcadeCanAskForHeadsetHelpBound() {
 	if (ArcadeCanPlayGames()) return false;
@@ -19,7 +19,7 @@ function ArcadeCanAskForHeadsetHelpBound() {
 
 /**
  * Determines whether or not the player is gagged and can plead to have their own headset put on them
- * @returns {bool} - Whether or not the player can ask to have a headset put on
+ * @returns {boolean} - Whether or not the player can ask to have a headset put on
  */
 function ArcadeCanAskForHeadsetHelpGagged() {
 	if (ArcadeCanPlayGames()) return false;
@@ -28,7 +28,7 @@ function ArcadeCanAskForHeadsetHelpGagged() {
 
 /**
  * Determines whether or not the player can play games
- * @returns {bool} - Whether or not the player has a headset
+ * @returns {boolean} - Whether or not the player has a headset
  */
 function ArcadeCanPlayGames() {
 	var head = InventoryGet(Player, "ItemHead");
@@ -37,7 +37,7 @@ function ArcadeCanPlayGames() {
 
 /**
  * Determines whether or not the player can play games and is gagged
- * @returns {bool} - Whether or not the player has a headset and is gagged
+ * @returns {boolean} - Whether or not the player has a headset and is gagged
  */
 function ArcadeCanPlayGamesAndGagged() {
 	var head = InventoryGet(Player, "ItemHead");
@@ -46,7 +46,7 @@ function ArcadeCanPlayGamesAndGagged() {
 
 /**
  * Determines whether or not the player needs to rent a headset
- * @returns {bool} - Whether or not the player needs to rent a headset
+ * @returns {boolean} - Whether or not the player needs to rent a headset
  */
 function ArcadeNeedToRent() {
 	return !ArcadeCanPlayGames() && !DialogInventoryAvailable("InteractiveVRHeadset", "ItemHead");
@@ -90,7 +90,7 @@ function ArcadeToggleDeviousChallenge() {
 
 /**
  * Returns the deviouschallenge
- * @returns {bool} - ArcadeDeviousChallenge
+ * @returns {boolean} - ArcadeDeviousChallenge
  */
 function ArcadeDeviousChallengeAllowed() {
 	return !ArcadeDeviousChallenge && !ArcadeCannotDoDeviousChallenge;
@@ -98,7 +98,7 @@ function ArcadeDeviousChallengeAllowed() {
 
 /**
  * Returns the deviouschallenge
- * @returns {bool} - ArcadeDeviousChallenge
+ * @returns {boolean} - ArcadeDeviousChallenge
  */
 function ArcadeDeviousChallengeEnabled() {
 	return ArcadeDeviousChallenge;
