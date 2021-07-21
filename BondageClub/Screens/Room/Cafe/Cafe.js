@@ -253,11 +253,7 @@ function CafeServiceBound(Style) {
 		InventoryWear(Player, Bondage, "ItemLegs", RandomColor);
 
 		if (Bondage == "LeatherLegCuffs") {
-            Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemLegs");
-			DialogExtendItem(InventoryGet(Player, "ItemLegs"));
-			const Options = TypedItemGetOptions("ItemLegs", "LeatherLegCuffs");
-			const Option = Options.find(O => O.Name === "Closed");
-			ExtendedItemSetType(Player, Options, Option);
+			TypedItemSetOptionByName(Player, "ItemLegs", "Closed");
 		}
 
 		// Gag
@@ -336,11 +332,7 @@ function CafeServiceBound(Style) {
 			InventoryWear(Player, Bondage, "ItemLegs", RandomColor);
 
 			if (Bondage == "LeatherLegCuffs") {
-                Player.FocusGroup = AssetGroupGet("Female3DCG", "ItemLegs");
-				DialogExtendItem(InventoryGet(Player, "ItemLegs"));
-				const Options = TypedItemGetOptions("ItemLegs", "LeatherLegCuffs");
-				const Option = Options.find(O => O.Name === "Closed");
-				ExtendedItemSetType(Player, Options, Option);
+				TypedItemSetOptionByName(Player, "ItemLegs", "Closed");
 			}
 		}
 
