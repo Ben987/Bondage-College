@@ -38,7 +38,7 @@ function InventoryItemLegsFuturisticLegCuffsDraw() {
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
 		InventoryItemMouthFuturisticPanelGagDrawAccessDenied();
 	} else {
-		ExtendedItemDraw(InventoryItemLegsFuturisticLegCuffsOptions, "LeatherLegCuffsPose");
+		ExtendedItemDraw(InventoryItemLegsFuturisticLegCuffsOptions, "ItemFeetSteelAnkleCuffs");
 	}
 }
 
@@ -66,6 +66,7 @@ function InventoryItemLegsFuturisticLegCuffsPublishAction(C, Option) {
 	var Dictionary = [
 		{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
 		{ Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+		{ Tag: "AssetName", AssetName: DialogFocusItem.Asset.Name },
 	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
