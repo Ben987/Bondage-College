@@ -296,10 +296,10 @@ interface Asset {
 	DynamicDescription: (C: Character) => string;
 	DynamicPreviewImage: (C: Character) => string;
 	DynamicAllowInventoryAdd: (C: Character) => boolean;
-	DynamicExpressionTrigger: (C: Character) => ExpressionTrigger[];
-	DynamicName: (C?: Character) => string;
+	DynamicExpressionTrigger: (C: Character) => ExpressionTrigger[] | null | undefined;
+	DynamicName: (C: Character) => string;
 	DynamicGroupName: string;
-	DynamicActivity: (C: Character) => string[] | string | undefined;
+	DynamicActivity: (C: Character) => string[] | string | null | undefined;
 	DynamicAudio: ((C: Character) => string) | null;
 	CharacterRestricted: boolean;
 	AllowRemoveExclusive: boolean;

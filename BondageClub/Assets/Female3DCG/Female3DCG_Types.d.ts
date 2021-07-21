@@ -1,233 +1,168 @@
-"use strict";
-const AssetGroupType = {
-	Asset: "[Object | String]",
-	Group: "String",
-	ParentGroup: "Maybe String",
-	Category: "Maybe String",
-	Default: "Maybe Boolean",
-	IsRestraint: "Maybe Boolean",
-	AllowNone: "Maybe Boolean",
-	AllowColorize: "Maybe Boolean",
-	AllowCustomize: "Maybe Boolean",
-	Random: "Maybe Boolean",
-	Color: "Maybe [String]",
-	ParentSize: "Maybe String",
-	ParentColor: "Maybe String",
-	Clothing: "Maybe Boolean",
-	Underwear: "Maybe Boolean",
-	BodyCosplay: "Maybe Boolean",
-	Activity: "Maybe [String]",
-	AllowActivityOn: "Maybe [String]",
-	Hide: "Maybe [String]",
-	Block: "Maybe [String]",
-	Zone: "Maybe [(Number, Number, Number, Number)]",
-	SetPose: "Maybe [String]",
-	AllowPose: "Maybe [String]",
-	AllowExpression: "Maybe [String]",
-	Effect: "Maybe [String]",
-	MirrorGroup: "Maybe String",
-	RemoveItemOnRemove: "Maybe [{ Group: String, Name: String, Type: Maybe String }]",
-	Priority: "Maybe Number",
-	Left: "Maybe Number",
-	Top: "Maybe Number",
-	FullAlpha: "Maybe Boolean",
-	Blink: "Maybe Boolean",
-	InheritColor: "Maybe String",
-	FreezeActivePose: "Maybe [String]",
-	PreviewZone: "Maybe (Number, Number, Number, Number)",
-	DynamicGroupName: "Maybe String",
-};
-
-const AssetType = {
-	Name: "String",
-	ParentItem: "String",
-	ParentGroup: "Maybe String",
-	Enable: "Boolean",
-	Visible: "Boolean",
-	Wear: "Boolean",
-	Activity: "String | [String]",
-	AllowActivity: "[String]",
-	AllowActivityOn: "[String]",
-	BuyGroup: "String",
-	PrerequisiteBuyGroups: "[String]",
-	Effect: "[String]",
-	Bonus: "String",
-	Block: "[String]",
-	Expose: "[String]",
-	Hide: "[String]",
-	HideItem: "[String]",
-	HideItemExclude: "[String]",
-	Require: "[String]",
-	SetPose: "[String]",
-	AllowPose: "[String]",
-	HideForPose: "[String]",
-	AllowActivePose: "[String]",
-	WhitelistActivePose: "[String]",
-	Value: "Number",
-	Difficulty: "Number",
-	SelfBondage: "Number",
-	SelfUnlock: "Boolean",
-	ExclusiveUnlock: "Boolean",
-	Random: "Boolean",
-	RemoveAtLogin: "Boolean",
-	Time: "Number",
-	LayerVisibility: "Boolean",
-	RemoveTime: "Number",
-	RemoveTimer: "Number",
-	MaxTimer: "Number",
-	Priority: "Number",
-	Left: "Number",
-	Top: "Number",
-	Height: "Number",
-	Zoom: "Number",
-	Alpha: "[{ Group: Maybe [String], Pose: Maybe [String], Masks: [(Number, Number, Number, Number)] }]",
-	Prerequisite: "String | [String]",
-	Extended: "Boolean",
-	AlwaysExtend: "Boolean",
-	AlwaysInteract: "Boolean",
-	AllowLock: "Boolean",
-	IsLock: "Boolean",
-	PickDifficulty: "Maybe Number",
-	OwnerOnly: "Boolean",
-	LoverOnly: "Boolean",
-	ExpressionTrigger: "[{ Name: String, Group: String, Timer: Number }]",
-	RemoveItemOnRemove: "[{ Name: String, Group: String, Type: Maybe String }]",
-	AllowEffect: "[String]",
-	AllowBlock: "[String]",
-	AllowType: "[String]",
-	DefaultColor: "String | [String]",
-	Opacity: "Number",
-	MinOpacity: "Number",
-	MaxOpacity: "Number",
-	Audio: "String",
-	Category: "[String]",
-	Fetish: "[String]",
-	ArousalZone: "String",
-	IsRestraint: "Boolean",
-	BodyCosplay: "Boolean",
-	OverrideBlinking: "Boolean",
-	DialogSortOverride: "Number",
-	// DynamicDescription: "Function",
-	// DynamicPreviewImage: "Function",
-	// DynamicAllowInventoryAdd: "Function",
-	// DynamicExpressionTrigger: "Function",
-	// DynamicName: "Function",
-	DynamicGroupName: "String",
-	// DynamicActivity: "Function",
-	// DynamicAudio: "Function",
-	CharacterRestricted: "Boolean",
-	AllowRemoveExclusive: "Boolean",
-	InheritColor: "String",
-	DynamicBeforeDraw: "Boolean",
-	DynamicAfterDraw: "Boolean",
-	DynamicScriptDraw: "Boolean",
-	HasType: "Boolean",
-	AllowLockType: "[String]",
-	AllowColorizeAll: "Boolean",
-	AvailableLocations: "[String]",
-	OverrideHeight: "{ Height: Number, Priority: Number, HeightRatioProportion: Maybe Number }",
-	FreezeActivePose: "[String]",
-	DrawLocks: "Boolean",
-	AllowExpression: "[String]",
-	MirrorExpression: "String",
-	FixedPosition: "Boolean",
-	CustomBlindBackground: "Object",
-	Layer: "[Object]",
-	Archetype: "String",
-	FuturisticRecolor: "Boolean",
-	FuturisticRecolorDisplay: "Boolean",
-	Attribute: "[String]",
-	HideItemAttribute: "[String]",
-	PreviewIcons: "[String]",
-};
-
-const AssetLayerType = {
-	Name: "String",
-	AllowColorize: "Boolean",
-	CopyLayerColor: "String",
-	ColorGroup: "String",
-	HideColoring: "Boolean",
-	AllowTypes: "[String]",
-	HasType: "Boolean",
-	Visibility: "String",
-	ParentGroup: "Maybe String",
-	AllowPose: "[String]",
-	Priority: "Number",
-	InheritColor: "String",
-	Alpha: "[{ Group: Maybe [String], Pose: Maybe [String], Masks: [(Number, Number, Number, Number)] }]",
-	Left: "Number",
-	Top: "Number",
-	HideAs: "{ Group: String, Asset: String }",
-	HasImage: "Boolean",
-	Opacity: "Number",
-	MinOpacity: "Number",
-	MaxOpacity: "Number",
-	LockLayer: "Boolean",
-	MirrorExpression: "String",
-	HideForPose: "[String]",
-	AllowModuleTypes: "[String]",
-};
-
-const ExtendedItemAssetConfig = {
-	Archetype: "String",
-	Config: "Maybe Object", // ModularItemConfig | TypedItemConfig
-	CopyConfig: "Maybe {GroupName: Maybe String, AssetName: String}",
-};
-
-const ModularItemConfig = {
-	Modules: "[Object]", // ModularItemModule[]
-	ChatSetting: "Maybe String",
-	ChangeWhenLocked: "Maybe Boolean",
+interface AssetGroupDefinition {
+	Asset: (AssetDefinition | string)[];
+	Group: string;
+	ParentGroup?: string;
+	Category?: string;
+	Default?: boolean;
+	IsRestraint?: boolean;
+	AllowNone?: boolean;
+	AllowColorize?: boolean;
+	AllowCustomize?: boolean;
+	Random?: boolean;
+	Color?: string[];
+	ParentSize?: string;
+	ParentColor?: string;
+	Clothing?: boolean;
+	Underwear?: boolean;
+	BodyCosplay?: boolean;
+	Activity?: string[];
+	AllowActivityOn?: string[];
+	Hide?: string[];
+	Block?: string[];
+	Zone?: [number, number, number, number][];
+	SetPose?: string[];
+	AllowPose?: string[];
+	AllowExpression?: string[];
+	Effect?: string[];
+	MirrorGroup?: string;
+	RemoveItemOnRemove?: { Group: string, Name: string, Type?: string }[];
+	Priority?: number;
+	Left?: number;
+	Top?: number;
+	FullAlpha?: boolean;
+	Blink?: boolean;
+	InheritColor?: string;
+	FreezeActivePose?: string[];
+	PreviewZone?: [number, number, number, number];
+	DynamicGroupName?: string;
 }
 
-const ModularItemModule = {
-	Name: "String",
-	Key: "String",
-	Options: "[Object]", // ModularItemOption[]
+interface AssetDefinition {
+	Name: string,
+	ParentItem?: string;
+	ParentGroup?: string | null;
+	Enable?: boolean;
+	Visible?: boolean;
+	Wear?: boolean;
+	Activity?: string | string[];
+	AllowActivity?: string[];
+	AllowActivityOn?: string[];
+	BuyGroup?: string;
+	PrerequisiteBuyGroups?: string[];
+	Effect?: string[];
+	Bonus?: string;
+	Block?: string[];
+	Expose?: string[];
+	Hide?: string[];
+	HideItem?: string[];
+	HideItemExclude?: string[];
+	Require?: string[];
+	SetPose?: string[];
+	AllowPose?: string[];
+	HideForPose?: string[];
+	AllowActivePose?: string[];
+	WhitelistActivePose?: string[];
+	Value?: number;
+	Difficulty?: number;
+	SelfBondage?: number;
+	SelfUnlock?: boolean;
+	ExclusiveUnlock?: boolean;
+	Random?: boolean;
+	RemoveAtLogin?: boolean;
+	Time?: number;
+	LayerVisibility?: boolean;
+	RemoveTime?: number;
+	RemoveTimer?: number;
+	MaxTimer?: number;
+	Priority?: number;
+	Left?: number;
+	Top?: number;
+	Height?: number;
+	Zoom?: number;
+	Alpha?: { Group?: string[], Pose?: string[], Masks: [number, number, number, number][] }[];
+	Prerequisite?: string | string[];
+	Extended?: boolean;
+	AlwaysExtend?: boolean;
+	AlwaysInteract?: boolean;
+	AllowLock?: boolean;
+	IsLock?: boolean;
+	PickDifficulty?: number | null;
+	OwnerOnly?: boolean;
+	LoverOnly?: boolean;
+	ExpressionTrigger?: { Name: string, Group: string, Timer: number }[];
+	RemoveItemOnRemove?: { Name: string, Group: string, Type?: string }[];
+	AllowEffect?: string[];
+	AllowBlock?: string[];
+	AllowType?: string[];
+	DefaultColor?: string | string[];
+	Opacity?: number;
+	MinOpacity?: number;
+	MaxOpacity?: number;
+	Audio?: string;
+	Category?: string[];
+	Fetish?: string[];
+	ArousalZone?: string;
+	IsRestraint?: boolean;
+	BodyCosplay?: boolean;
+	OverrideBlinking?: boolean;
+	DialogSortOverride?: number;
+	DynamicDescription?: (C: Character) => string;
+	DynamicPreviewImage?: (C: Character) => string;
+	DynamicAllowInventoryAdd?: (C: Character) => boolean;
+	DynamicExpressionTrigger?: (C: Character) => ExpressionTrigger[] | null | undefined;
+	DynamicName?: (C: Character) => string;
+	DynamicGroupName?: string;
+	DynamicActivity?: (C: Character) => string[] | string | null | undefined;
+	DynamicAudio?: (C: Character) => string;
+	CharacterRestricted?: boolean;
+	AllowRemoveExclusive?: boolean;
+	InheritColor?: string;
+	DynamicBeforeDraw?: boolean;
+	DynamicAfterDraw?: boolean;
+	DynamicScriptDraw?: boolean;
+	HasType?: boolean;
+	AllowLockType?: string[];
+	AllowColorizeAll?: boolean;
+	AvailableLocations?: string[];
+	OverrideHeight?: { Height: number; Priority: number; HeightRatioProportion?: number };
+	FreezeActivePose?: string[];
+	DrawLocks?: boolean;
+	AllowExpression?: string[];
+	MirrorExpression?: string;
+	FixedPosition?: boolean;
+	CustomBlindBackground?: any;
+	Layer?: AssetLayerDefinition[];
+	Archetype?: string;
+	FuturisticRecolor?: boolean;
+	FuturisticRecolorDisplay?: boolean;
+	Attribute?: string[];
+	HideItemAttribute?: string[];
+	PreviewIcons?: string[];
 }
 
-const ModularItemOption = {
-		Difficulty: "Maybe Number",
-		BondageLevel: "Maybe Number",
-		SelfBondageLevel: "Maybe Number",
-		Block: "Maybe [String]",
-		Hide: "Maybe [String]",
-		HideItem: "Maybe [String]",
-		Property: "Maybe Object",
-		ChangeWhenLocked: "Maybe Boolean",
+interface AssetLayerDefinition {
+	Name?: string;
+	AllowColorize?: boolean;
+	CopyLayerColor?: string;
+	ColorGroup?: string;
+	HideColoring?: boolean;
+	AllowTypes?: string[];
+	HasType?: boolean;
+	Visibility?: string;
+	ParentGroup?: string | null,
+	AllowPose?: string[];
+	Priority?: number;
+	InheritColor?: string;
+	Alpha?: { Group?: string[], Pose?: string[], Masks: [number, number, number, number][] }[],
+	Left?: number;
+	Top?: number;
+	HideAs?: { Group: string, Asset: string };
+	HasImage?: boolean;
+	Opacity?: number;
+	MinOpacity?: number;
+	MaxOpacity?: number;
+	LockLayer?: boolean;
+	MirrorExpression?: string;
+	HideForPose?: string[];
+	AllowModuleTypes?: string[];
 }
-
-const TypedItemConfig = {
-	Options: "[Object]", // ExtendedItemOption
-	Dialog: "Maybe { Load: Maybe String, TypePrefix: Maybe String, ChatPrefix: Maybe String, NpcPrefix: Maybe String }",
-	ChatTags: "Maybe [String]",
-	ChatSetting: "Maybe String",
-	DrawImages: "Maybe Boolean",
-	ChangeWhenLocked: "Maybe Boolean",
-	// Validate: "Maybe Function",
-}
-
-const ExtendedItemOption = {
-	Name: "String",
-	BondageLevel: "Maybe Number",
-	SelfBondageLevel: "Maybe Number",
-	Prerequisite: "Undefined | String | [String]",
-	SelfBlockCheck: "Maybe Boolean",
-	ChangeWhenLocked: "Maybe Boolean",
-	Property: "Maybe Object",
-	Expression: "Maybe [{ Name: String, Group: String, Timer: Number }]",
-	HasSubscreen: "Maybe Boolean",
-	Random: "Maybe Boolean",
-}
-
-module.exports = {
-	AssetGroupType,
-	AssetType,
-	AssetLayerType,
-	ExtendedItemAssetConfig,
-	ModularItemConfig,
-	ModularItemModule,
-	ModularItemOption,
-	TypedItemConfig,
-	ExtendedItemOption
-};
