@@ -9,6 +9,7 @@ const AssetGroupType = {
 	AllowNone: "Maybe Boolean",
 	AllowColorize: "Maybe Boolean",
 	AllowCustomize: "Maybe Boolean",
+	Random: "Maybe Boolean",
 	Color: "Maybe [String]",
 	ParentSize: "Maybe String",
 	ParentColor: "Maybe String",
