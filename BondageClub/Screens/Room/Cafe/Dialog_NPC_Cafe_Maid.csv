@@ -76,7 +76,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 110,130,(Nod your head.),Anything to help a sister.  (She makes sure your tray is full and that you are securely bound for serving drinks.),RamdomBound(),
 120,125,Shibari style with ropes.,"Yes, head maid DialogPlayerName.  (She gags and binds you tightly using classic bondage techniques.)",ServiceBound(Shibari),
 120,125,"Use duct tape, lots of duct tape.","Yes, head maid DialogPlayerName.  (She uses a whole roll of duct tape on your body.)",ServiceBound(Tape),
-120,125,lock me in leather.,"Yes, head maid DialogPlayerName.  (She secures and gags you with tight leather, locking every buckle.)",ServiceBound(Leather),
+120,125,Lock me in leather.,"Yes, head maid DialogPlayerName.  (She secures and gags you with tight leather, locking every buckle.)",ServiceBound(Leather),
 120,125,Cover me in latex.,"Yes, head maid DialogPlayerName.  (She uses latex items on you.)",ServiceBound(Latex),
 120,125,Just bind me as secure as you can.,"Certainly, head maid DialogPlayerName.  (She binds you as thoroughly as she can, trying to impress you.)",ServiceBound(Heavy),IsHeadMaid
 125,130,(Nod approvingly.),(She makes sure your tray is full.)  You are ready to serve in style now miss.,RefillTray(),
