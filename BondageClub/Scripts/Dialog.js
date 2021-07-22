@@ -843,17 +843,19 @@ function DialogInventoryBuild(C, Offset, redrawPreviews = false) {
 
 		// In item permission mode we add all the enable items except the ones already on, unless on Extreme difficulty
 		if (DialogItemPermissionMode) {
-			for (let A = 0; A < Asset.length; A++)
-				if (Asset[A].Enable && Asset[A].Group.Name == C.FocusGroup.Name) {
-					if (Asset[A].Wear) {
-						if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
-							DialogInventoryAdd(Player, { Asset: Asset[A] }, false, DialogSortOrder.Enabled);
-					}
-					else if (Asset[A].IsLock) {
-						var LockIsWorn = InventoryCharacterIsWearingLock(C, Asset[A].Name);
-						DialogInventoryAdd(Player, { Asset: Asset[A] }, LockIsWorn, DialogSortOrder.Enabled);
-					}
+			for (const A of C.FocusGroup.Asset) {
+				if (!A.Enable)
+					continue;
+
+				if (A.Wear) {
+					if ((CurItem == null) || (CurItem.Asset.Name != A.Name) || (CurItem.Asset.Group.Name != A.Group.Name))
+						DialogInventoryAdd(Player, { Asset: A }, false, DialogSortOrder.Enabled);
 				}
+				else if (A.IsLock) {
+					var LockIsWorn = InventoryCharacterIsWearingLock(C, A.Name);
+					DialogInventoryAdd(Player, { Asset: A }, LockIsWorn, DialogSortOrder.Enabled);
+				}
+			}
 		} else {
 
 			// Second, we add everything from the victim inventory
@@ -1040,11 +1042,9 @@ function DialogMenuButtonClick() {
 				if (C.FocusGroup.Name == "ItemMouth") NewLayerName = "ItemMouth2";
 				if (C.FocusGroup.Name == "ItemMouth2") NewLayerName = "ItemMouth3";
 				if (C.FocusGroup.Name == "ItemMouth3") NewLayerName = "ItemMouth";
-				for (let A = 0; A < AssetGroup.length; A++)
-					if (AssetGroup[A].Name == NewLayerName) {
-						C.FocusGroup = AssetGroup[A];
-						DialogInventoryBuild(C);
-					}
+
+				C.FocusGroup = AssetGroupGet(C.AssetFamily, NewLayerName);
+				DialogInventoryBuild(C);
 			}
 
 

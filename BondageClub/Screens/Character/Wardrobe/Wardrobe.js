@@ -207,13 +207,13 @@ function WardrobeFastLoad(C, W, Update) {
 			.filter(w => w.Name != null && w.Group != null)
 			.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
 			.forEach(w => {
-				var A = Asset.find(a =>
-					a.Group.Name == w.Group
-					&& a.Group.Category == "Appearance"
-					&& WardrobeGroupAccessible(C, a.Group, { ExcludeNonCloth: true })
-					&& a.Name == w.Name
-					&& (a.Value == 0 || InventoryAvailable(Player, a.Name, a.Group.Name)));
-				if (A != null) {
+				const A = AssetGet(C.AssetFamily, w.Group, w.Name);
+				if (
+					A
+					&& A.Group.Category == "Appearance"
+					&& WardrobeGroupAccessible(C, A.Group, { ExcludeNonCloth: true })
+					&& (A.Value == 0 || InventoryAvailable(Player, A.Name, A.Group.Name))
+				) {
 					CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, null, false);
 					if (w.Property && InventoryGet(C, w.Group)) {
 						var item = InventoryGet(C, w.Group);
@@ -231,9 +231,9 @@ function WardrobeFastLoad(C, W, Update) {
 				if (C.Appearance.find(a => a.Asset.Group.Name == g.Name) == null) {
 					// For a group with a mirrored group, we copy the opposite if it exists
 					if (g.MirrorGroup && InventoryGet(C, g.MirrorGroup)) {
-						C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name && a.Name == InventoryGet(C, g.MirrorGroup).Asset.Name), Difficulty: 0, Color: InventoryGet(C, g.MirrorGroup).Color });
+						C.Appearance.push({ Asset: AssetGet(C.AssetFamily, g.Name, InventoryGet(C, g.MirrorGroup).Asset.Name), Difficulty: 0, Color: InventoryGet(C, g.MirrorGroup).Color });
 					} else {
-						C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Difficulty: 0, Color: "Default" });
+						C.Appearance.push({ Asset: AssetGroupGet(C.AssetFamily, g.Name).Asset[0], Difficulty: 0, Color: "Default" });
 					}
 				}
 			});

@@ -140,12 +140,7 @@ function IntroductionChangeMaidOpinion(Bonus) {
  * @returns {void} - Nothing
  */
 function IntroductionSetZone(NewZone) {
-	for (let A = 0; A < AssetGroup.length; A++)
-		if (AssetGroup[A].Name == NewZone) {
-			Player.FocusGroup = AssetGroup[A];
-			CurrentCharacter.FocusGroup = AssetGroup[A];
-			break;
-		}
+	CurrentCharacter.FocusGroup = Player.FocusGroup = AssetGroupGet("Female3DCG", NewZone);
 }
 
 /**

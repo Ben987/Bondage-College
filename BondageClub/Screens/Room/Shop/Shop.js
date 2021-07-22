@@ -343,11 +343,7 @@ function ShopCanSell(asset) {
 function ShopStart(ItemGroup) {
 
 	// Finds the asset group to shop with
-	for (let A = 0; A < AssetGroup.length; A++)
-		if (AssetGroup[A].Name == ItemGroup) {
-			ShopVendor.FocusGroup = AssetGroup[A];
-			break;
-		}
+	ShopVendor.FocusGroup = AssetGroupGet(ShopVendor.AssetFamily, ItemGroup);
 
 	// If we have a group, we start the shop
 	if (ShopVendor.FocusGroup != null) {

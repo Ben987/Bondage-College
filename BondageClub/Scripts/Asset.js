@@ -6,6 +6,10 @@ var Asset = [];
 var AssetGroup = [];
 /** @type {AssetGroup} */
 var AssetCurrentGroup;
+/** @type {Map<string, Asset>} */
+var AssetMap = new Map();
+/** @type {Map<string, AssetGroup>} */
+var AssetGroupMap = new Map();
 /** @type {Pose[]} */
 var Pose = [];
 
@@ -16,6 +20,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		Family: NewAssetFamily,
 		Name: NewAsset.Group,
 		Description: NewAsset.Group,
+		Asset: [],
 		ParentGroupName: (NewAsset.ParentGroup == null) ? "" : NewAsset.ParentGroup,
 		Category: (NewAsset.Category == null) ? "Appearance" : NewAsset.Category,
 		IsDefault: (NewAsset.Default == null) ? true : NewAsset.Default,
@@ -50,6 +55,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		PreviewZone: NewAsset.PreviewZone,
 		DynamicGroupName: NewAsset.DynamicGroupName || NewAsset.Group,
 	};
+	AssetGroupMap.set(A.Name, A);
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
 }
@@ -169,6 +175,8 @@ function AssetAdd(NewAsset, ExtendedConfig) {
 	AssetAssignColorIndices(A);
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
+	AssetCurrentGroup.Asset.push(A);
+	AssetMap.set(AssetCurrentGroup.Name + "/" + A.Name, A);
 	Asset.push(A);
 	if (A.Extended && ExtendedConfig) AssetBuildExtended(A, ExtendedConfig);
 }
@@ -457,16 +465,13 @@ function AssetLoadAll() {
 
 /**
  * Gets a specific asset by family/group/name
- * @param {string} Family - The family to search in
+ * @param {string} Family - The family to search in (Ignored until other family is added)
  * @param {string} Group - Name of the group of the searched asset
  * @param {string} Name - Name of the searched asset
  * @returns {Asset|null}
  */
 function AssetGet(Family, Group, Name) {
-	for (let A = 0; A < Asset.length; A++)
-		if ((Asset[A].Name == Name) && (Asset[A].Group.Name == Group) && (Asset[A].Group.Family == Family))
-			return Asset[A];
-	return null;
+	return AssetMap.get(Group + "/" + Name) || null;
 }
 
 /**
@@ -489,25 +494,17 @@ function AssetGetActivity(Family, Name) {
  * @returns {Array.<{Name: string, Group: string}>} - The cleaned up array
  */
 function AssetCleanArray(AssetArray) {
-	var CleanArray = [];
-	// Only save the existing items
-	for (let A = 0; A < Asset.length; A++)
-		for (let AA = 0; AA < AssetArray.length; AA++)
-			if (AssetArray[AA].Name == Asset[A].Name && AssetArray[AA].Group == Asset[A].Group.Name) {
-				CleanArray.push(AssetArray[AA]);
-				break;
-			}
-	return CleanArray;
+	return AssetArray.filter(({ Group, Name }) => AssetGet('Female3DCG', Group, Name) != null);
 }
 
 /**
  * Gets an asset group by the asset family name and group name
- * @param {string} Family - The asset family that the group belongs to
+ * @param {string} Family - The asset family that the group belongs to (Ignored until other family is added)
  * @param {string} Group - The name of the asset group to find
- * @returns {*} - The asset group matching the provided family and group name
+ * @returns {AssetGroup|null} - The asset group matching the provided family and group name
  */
 function AssetGroupGet(Family, Group) {
-	return AssetGroup.find(g => g.Family === Family && g.Name === Group);
+	return AssetGroupMap.get(Group) || null;
 }
 
 /**

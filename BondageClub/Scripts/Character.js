@@ -1060,15 +1060,13 @@ function CharacterRandomUnderwear(C) {
 
 	// Generate random undies at a random color
 	var Color = "";
-	for (let A = 0; A < AssetGroup.length; A++)
-		if ((AssetGroup[A].Category == "Appearance") && AssetGroup[A].Underwear && (AssetGroup[A].IsDefault || (Math.random() < 0.2))) {
-			var Group = [];
-			if (Color == "") Color = CommonRandomItemFromList("", AssetGroup[A].ColorSchema);
-			for (let I = 0; I < Asset.length; I++)
-				if ((Asset[I].Group.Name == AssetGroup[A].Name) && ((Asset[I].Value == 0) || InventoryAvailable(C, Asset[I].Name, Asset[I].Group.Name)))
-					Group.push(Asset[I]);
+	for (const G of AssetGroup)
+		if ((G.Category == "Appearance") && G.Underwear && (G.IsDefault || (Math.random() < 0.2))) {
+			if (Color == "") Color = CommonRandomItemFromList("", G.ColorSchema);
+			const Group = G.Asset
+				.filter(A => A.Value == 0 || InventoryAvailable(C, A.Name, G.Name));
 			if (Group.length > 0)
-				CharacterAppearanceSetItem(C, AssetGroup[A].Name, Group[Math.floor(Group.length * Math.random())], Color);
+				CharacterAppearanceSetItem(C, G.Name, Group[Math.floor(Group.length * Math.random())], Color);
 		}
 
 	// Refreshes the character

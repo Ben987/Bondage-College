@@ -1794,15 +1794,14 @@ function PreferenceSubscreenVisibilityLoad() {
 	PreferenceVisibilityBlockList = Player.BlockItems.slice();
 	for (let G = 0; G < AssetGroup.length; G++)
 		if (AssetGroup[G].Clothing || AssetGroup[G].Category != "Appearance") {
-			var AssetList = [];
-			for (let A = 0; A < Asset.length; A++)
-				if (Asset[A].Group.Name == AssetGroup[G].Name && Asset[A].Visible)
-					AssetList.push({
-						Asset: Asset[A],
-						Hidden: CharacterAppearanceItemIsHidden(Asset[A].Name, AssetGroup[G].Name),
-						Blocked: InventoryIsPermissionBlocked(Player, Asset[A].Name, AssetGroup[G].Name),
-						Limited: InventoryIsPermissionLimited(Player, Asset[A].Name, AssetGroup[G].Name)
-					});
+			const AssetList = AssetGroup[G].Asset
+				.filter(A => A.Visible)
+				.map(A => ({
+					Asset: A,
+					Hidden: CharacterAppearanceItemIsHidden(A.Name, AssetGroup[G].Name),
+					Blocked: InventoryIsPermissionBlocked(Player, A.Name, AssetGroup[G].Name),
+					Limited: InventoryIsPermissionLimited(Player, A.Name, AssetGroup[G].Name),
+				}));
 			if (AssetList.length > 0) PreferenceVisibilityGroupList.push({ Group: AssetGroup[G], Assets: AssetList });
 		}
 	PreferenceVisibilityAssetChanged(true);

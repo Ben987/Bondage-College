@@ -117,12 +117,8 @@ function KidnapSetMode(NewMode) {
 	// If we must end the mini game in victory, one last item can be equipped
 	if ((NewMode == "SelectMove") && (KidnapOpponent.KidnapWillpower <= 0)) {
 		if (!KidnapVictory) {
-			for (let A = 0; A < AssetGroup.length; A++)
-				if (AssetGroup[A].Name == "ItemArms") {
-					KidnapOpponent.FocusGroup = AssetGroup[A];
-					KidnapInventoryBuild();
-					break;
-				}
+			KidnapOpponent.FocusGroup = AssetGroupGet("Female3DCG", "ItemArms");
+			KidnapInventoryBuild();
 			NewMode = (KidnapOpponent.FocusGroup != null) ? "SelectItem" : "End";
 			KidnapVictory = true;
 		} else NewMode = "End";

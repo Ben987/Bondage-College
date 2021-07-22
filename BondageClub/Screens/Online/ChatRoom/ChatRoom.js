@@ -1966,11 +1966,11 @@ function ChatRoomMessage(data) {
 								}
 						}
 						else if (dictionary[D].AssetGroupName) {
-							for (let A = 0; A < AssetGroup.length; A++)
-								if (AssetGroup[A].Name == dictionary[D].AssetGroupName) {
-									msg = msg.replace(dictionary[D].Tag, AssetGroup[A].Description.toLowerCase());
-									GroupName = dictionary[D].AssetGroupName;
-								}
+							const G = AssetGroupGet('Female3DCG', dictionary[D].AssetGroupName);
+							if (G) {
+								msg = msg.replace(dictionary[D].Tag, G.Description.toLowerCase());
+								GroupName = dictionary[D].AssetGroupName;
+							}
 						}
 						else if (dictionary[D].ActivityCounter) ActivityCounter = dictionary[D].ActivityCounter;
 						else if (dictionary[D].Automatic) Automatic = true;

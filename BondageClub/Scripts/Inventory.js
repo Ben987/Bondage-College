@@ -378,12 +378,10 @@ function InventoryGet(C, AssetGroup) {
 * @param {number} [MemberNumber] - The member number of the character putting the item on - defaults to -1
 */
 function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty, MemberNumber) {
-	for (let A = 0; A < Asset.length; A++)
-		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup)) {
-			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null || ItemColor == "Default") && Asset[A].DefaultColor != null) ? Asset[A].DefaultColor : ItemColor, Difficulty, MemberNumber);
-			InventoryExpressionTrigger(C, InventoryGet(C, AssetGroup));
-			return;
-		}
+	const A = AssetGet(C.AssetFamily, AssetGroup, AssetName);
+	if (!A) return;
+	CharacterAppearanceSetItem(C, AssetGroup, A, ((ItemColor == null || ItemColor == "Default") && A.DefaultColor != null) ? A.DefaultColor : ItemColor, Difficulty, MemberNumber);
+	InventoryExpressionTrigger(C, InventoryGet(C, AssetGroup));
 }
 
 /**
