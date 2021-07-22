@@ -1128,7 +1128,7 @@ var AssetFemale3DCG = [
         Priority: 46,
         Default: false,
 		Clothing: true,
-        AllowPose: ["TapedHands", "Yoked", "OverTheHead"],
+        AllowPose: ["Yoked", "OverTheHead"],
 		PreviewZone: [125, 265, 250, 250],
 		Asset: [
 			{ Name: "BowBand", Value: 20},
