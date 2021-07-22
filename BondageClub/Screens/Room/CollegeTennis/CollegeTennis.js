@@ -98,7 +98,7 @@ function CollegeTennisClick() {
 
 /**
  * Starts the tennis mini game on the given difficulty. The player is equipped with a racket.
- * @param {number} Difficulty - Difficulty factor of the minigame
+ * @param {"Easy"|"Normal"|"Hard"} Difficulty - Difficulty factor of the minigame
  * @returns {void} - Nothing
  */
 function CollegeTennisGameStart(Difficulty) {

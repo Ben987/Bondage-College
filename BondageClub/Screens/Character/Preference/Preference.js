@@ -712,7 +712,7 @@ function PreferenceSubscreenDifficultyRun() {
 
 		// Draw the detailed texts
 		for (let T = 0; T <= 4; T++)
-			DrawText(TextGet("Difficulty" + PreferenceDifficultyLevel.toString() + "Text" + T.toString()), 500, 225 + 100 * T, 1050, 120, "Black", "White");
+			DrawText(TextGet("Difficulty" + PreferenceDifficultyLevel.toString() + "Text" + T.toString()), 500, 225 + 100 * T, "Black", "White");
 
 		// Can only set to 2 or 3 if no change was done for 1 week
 		if (PreferenceDifficultyLevel != Player.GetDifficulty()) {
@@ -721,8 +721,8 @@ function PreferenceSubscreenDifficultyRun() {
 				DrawCheckbox(500, 700, 64, 64, TextGet("DifficultyIAccept"), PreferenceDifficultyAccept);
 				MainCanvas.textAlign = "center";
 				DrawButton(500, 825, 300, 64, TextGet("DifficultyChangeMode") + " " + TextGet("DifficultyLevel" + PreferenceDifficultyLevel.toString()), PreferenceDifficultyAccept ? "White" : "#ebebe4", "");
-			} else DrawText(TextGet("DifficultyWaitSevenDays").replace("NumberOfHours", Math.ceil((LastChange + 604800000 - CurrentTime) / 3600000).toString()), 500, 825, 1050, 120, "Black", "White");
-		} else DrawText(TextGet("DifficultyAlreadyPlayingOn"), 500, 825, 1050, 120, "Black", "White");
+			} else DrawText(TextGet("DifficultyWaitSevenDays").replace("NumberOfHours", Math.ceil((LastChange + 604800000 - CurrentTime) / 3600000).toString()), 500, 825, "Black", "White");
+		} else DrawText(TextGet("DifficultyAlreadyPlayingOn"), 500, 825, "Black", "White");
 		MainCanvas.textAlign = "center";
 
 	}

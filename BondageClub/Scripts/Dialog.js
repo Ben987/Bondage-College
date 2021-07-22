@@ -107,7 +107,7 @@ function DialogChangeMoney(Amount) { CharacterChangeMoney(Player, Amount); }
 /**
  * Alters the current player's reputation by a given amount
  * @param {string} RepType - The name of the reputation to change
- * @param {string} Value - The value, the player's reputation should be altered by
+ * @param {number|string} Value - The value, the player's reputation should be altered by
  * @returns {void} - Nothing
  */
 function DialogSetReputation(RepType, Value) { ReputationChange(RepType, (parseInt(ReputationGet(RepType)) * -1) + parseInt(Value)); } // Sets a fixed number for the player specific reputation

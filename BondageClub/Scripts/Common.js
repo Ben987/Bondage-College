@@ -748,7 +748,7 @@ function CommonUnpackItemArray(arr) {
  * Compares two version numbers and returns -1/0/1 if Other number is smaller/same/larger than Current one
  * @param {string} Current Current version number
  * @param {string} Other Other version number
- * @returns {-1|0|1} Comparsion result
+ * @returns {-1|0|1} Comparison result
  */
 function CommonCompareVersion(Current, Other) {
 	const CurrentMatch = GameVersionFormat.exec(Current);

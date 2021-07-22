@@ -758,7 +758,7 @@ function PrivateLoadCharacter(C) {
 /**
  * Triggered when a new character is added to the player's private room.
  * @param {object} Template - The base of the character, includes the name and appearance.
- * @param {string} Archetype - The type of character such as maid or mistress.
+ * @param {string} [Archetype] - The type of character such as maid or mistress.
  * @param {boolean} [CustomData=false] - Whether or not the character has non-random traits.
  * @returns {void} - Nothing.
  */

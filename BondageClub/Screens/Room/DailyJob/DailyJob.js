@@ -16,7 +16,7 @@ function DailyJobPlayerFullRestrain() { CharacterFullRandomRestrain(Player, "ALL
 
 /**
  * Loads a puppy girl and fully restrain her
- * @param {number} GirlNum - Number of the puppy to load
+ * @param {"0"|"1"|"2"|"3"|"4"} GirlNum - Number of the puppy to load
  * @returns {Character} - The generated puppy girl
  */
 function DailyJobPuppyLoad(GirlNum) {
