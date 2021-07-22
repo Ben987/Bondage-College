@@ -1,3 +1,4 @@
+//@ts-check
 "use strict";
 // *** Item value guidelines ***
 // First, check if there's a similar item and use that price.  If there isn't, use the real price in US dollars
@@ -20,12 +21,19 @@
 // Don't create anything that could be viewed by lots of players as racist, sexist, anti-LGBT, pedophilic, religious or political
 // If you change an item or a piece of code made by someone else, make sure to get their approval first
 
-// Spanking Toys Asset
+/**
+ * Spanking Toys Asset
+ * @type {AssetDefinition}
+ */
 var AssetSpankingToys = {
 	Name: "SpankingToys", Random: false, Wear: false, BuyGroup: "SpankingToys",
 	DynamicAllowInventoryAdd: C => InventoryIsWorn(Player, "SpankingToys", "ItemHands") && InventorySpankingToysActivityAllowed(C),
 	DynamicDescription: C => InventorySpankingToysGetDescription(C),
-	DynamicExpressionTrigger: () => InventoryItemHandsSpankingToysOptions.find(x => x.Name == InventorySpankingToysGetType(Player)).ExpressionTrigger,
+	DynamicExpressionTrigger: () => {
+		const Type = InventorySpankingToysGetType(Player);
+		const Option = InventoryItemHandsSpankingToysOptions.find(x => x.Name === Type);
+		return Option && Option.ExpressionTrigger;
+	},
 	DynamicPreviewImage: () => InventorySpankingToysGetType(Player),
 	DynamicName: C => "SpankingToys" + InventorySpankingToysGetType(C),
 	DynamicGroupName: "ItemHands",
@@ -38,10 +46,15 @@ var AssetSpankingToys = {
 };
 
 // Alpha mask regions based on Appearance.js CanvasUpperOverflow and CanvasLowerOverflow values
+/** @type {[number, number, number, number]} */
 const AssetUpperOverflowAlpha = [0, -700, 500, 700];
+/** @type {[number, number, number, number]} */
 const AssetLowerOverflowAlpha = [0, 1000, 500, 1000 + 150];
 
-// 3D Custom Girl based assets
+/**
+ * 3D Custom Girl based assets
+ * @type {AssetGroupDefinition[]}
+ */
 var AssetFemale3DCG = [
 
 	// Appearance specific
@@ -190,6 +203,7 @@ var AssetFemale3DCG = [
 		Group: "ClothAccessory",
 		Priority: 32,
 		Default: false,
+		Random: false,
 		Clothing: true,
 		PreviewZone: [0, 200, 500, 500],
 		Asset: [
@@ -277,6 +291,7 @@ var AssetFemale3DCG = [
 		ParentGroup: "BodyUpper",
 		Priority: 14,
 		Default: false,
+		Random: false,
 		Clothing: true,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"],
 		PreviewZone: [75, 150, 350, 350],
@@ -421,6 +436,7 @@ var AssetFemale3DCG = [
 		Priority: 14,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		Left: 95,
 		Top: 380,
 		AllowPose: ["LegsClosed", "Kneel", "Horse", "KneelingSpread", "Spread", "Hogtied"],
@@ -602,16 +618,16 @@ var AssetFemale3DCG = [
 			{ Name: "Panties14", Fetish: ["Lingerie"], Value: 10, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
 			{ Name: "Panties15", Fetish: ["Lingerie"], Value: 10, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
 			{ Name: "Bikini1", Value: 25, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
-			{ Name: "Diapers1", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Value: 20, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
+			{ Name: "Diapers1", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Random: false, Value: 20, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
 			{
-				Name: "Diapers2", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"],
+				Name: "Diapers2", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Random: false,Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"],
 				Layer: [
 					{ Name: "Diaper" },
 					{ Name: "Cover" }
 				]
 			},
-			{ Name: "Diapers3", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
-			{ Name: "Diapers4", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"], Extended: true,
+			{ Name: "Diapers3", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Random: false,Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
+			{ Name: "Diapers4", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Random: false,Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"], Extended: true,
 				Layer: [
 					{ Name: "Diaper", HasType: false },
 					{ Name: "Tape", HasType: false },
@@ -802,7 +818,7 @@ var AssetFemale3DCG = [
 			{ Name: "Heels3", Height: 15, Value: 30 },
 			{ Name: "BarefootSandals1", Hide: ["Socks"], Value: 10, BuyGroup: "BarefootSandals" },
 			{ Name: "LatexAnkleShoes", Fetish: ["Latex"], Value: 60, DefaultColor: ["#373636"], },
-			{ Name: "Flippers", Height: 40, Value: 25, HideItem: ["LeftAnkletRibbon1", "RightAnkletRibbon1"], Left: 84,
+			{ Name: "Flippers", Height: 40, Value: 25, HideItem: ["LeftAnkletRibbon1", "RightAnkletRibbon1"], Left: 84, Random: false,
 				Layer: [
 					{ Name: "Fins",  AllowColorize: true },
 					{ Name: "Shoes",  AllowColorize: false }
@@ -962,6 +978,7 @@ var AssetFemale3DCG = [
 		Priority: 54,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		Left: 90,
 		Top: 0,
 		PreviewZone: [125, 0, 250, 250],
@@ -1035,6 +1052,7 @@ var AssetFemale3DCG = [
 		Priority: 53,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		BodyCosplay: true,
 		Left: 90,
 		Top: 0,
@@ -1162,6 +1180,7 @@ var AssetFemale3DCG = [
 		Priority: 53,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		Underwear: true,
 		Left: 180,
 		Top: 125,
@@ -1213,6 +1232,7 @@ var AssetFemale3DCG = [
 		Priority: 4,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		Underwear: true,
 		BodyCosplay: true,
 		Left: 0,
@@ -1265,6 +1285,7 @@ var AssetFemale3DCG = [
 		Group: "Wings",
 		Priority: 3,
 		Default: false,
+		Random: false,
 		Clothing: true,
 		Underwear: true,
 		BodyCosplay: true,
@@ -1989,7 +2010,7 @@ var AssetFemale3DCG = [
 					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "Shock") {
 						return [{ Name: "Medium", Group: "Blush", Timer: 10 }];
 					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "ShockTriggered") {
-						var belt = InventoryGet(CharacterGetCurrent(), "ItemPelvis");
+						var belt = InventoryGet(C, "ItemPelvis");
 						var intensity = belt && belt.Property && belt.Property.Intensity;
 						if (intensity == 0) {
 							return [{ Name: "Low", Group: "Blush", Timer: 10 }];
@@ -5188,7 +5209,10 @@ var ActivityFemale3DCG = [
 	}
 ];
 
-// 3D Custom Girl based fetishes
+/**
+ * 3D Custom Girl based fetishes
+ * @type {{Name: string; GetFactor(C: Character): number; }[]}
+ */
 var FetishFemale3DCG = [
 	{
 		Name: "Bondage",

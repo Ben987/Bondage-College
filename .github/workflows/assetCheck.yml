@@ -17,7 +17,13 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x
+        node-version: 14.x
     - run: npm ci
+    - name: Custom matcher
+      run: echo "::remove-matcher owner=tsc::"
+    - name: Run TypeScript
+      run: |
+       npm run -s assetcheck-typescript -- --pretty
+      shell: bash
     - name: Run Asset check
       run: npm run -s assetcheck

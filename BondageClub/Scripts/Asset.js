@@ -23,6 +23,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		AllowNone: (NewAsset.AllowNone == null) ? true : NewAsset.AllowNone,
 		AllowColorize: (NewAsset.AllowColorize == null) ? true : NewAsset.AllowColorize,
 		AllowCustomize: (NewAsset.AllowCustomize == null) ? true : NewAsset.AllowCustomize,
+		Random: (NewAsset.Random == null) ? true : NewAsset.Random,
 		ColorSchema: (NewAsset.Color == null) ? ["Default"] : NewAsset.Color,
 		ParentSize: (NewAsset.ParentSize == null) ? "" : NewAsset.ParentSize,
 		ParentColor: (NewAsset.ParentColor == null) ? "" : NewAsset.ParentColor,

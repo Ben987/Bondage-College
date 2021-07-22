@@ -38,6 +38,25 @@ interface HTMLCanvasElement {
 
 //#endregion
 
+//#region Enums
+type ExtendedArchetype = "modular" | "typed";
+type TypedItemChatSetting = "toOnly" | "fromTo";
+type ModularItemChatSetting = "perModule" | "perOption";
+type CommonChatTags =
+	| "SourceCharacter"
+	| "DestinationCharacter"
+	| "DestinationCharacterName"
+	| "TargetCharacter"
+	| "TargetCharacterName"
+	| "AssetName";
+
+type NotificationAudioType = 0 | 1 | 2;
+type NotificationAlertType = 0 | 1 | 3 | 2;
+
+type DialogSortOrder = | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+//#endregion
+
 //#region index.html
 
 /**
@@ -104,6 +123,7 @@ interface AssetGroup {
 	AllowNone: boolean;
 	AllowColorize: boolean;
 	AllowCustomize: boolean;
+	Random?: boolean;
 	ColorSchema: string[];
 	ParentSize: string;
 	ParentColor: string;
@@ -276,10 +296,10 @@ interface Asset {
 	DynamicDescription: (C: Character) => string;
 	DynamicPreviewImage: (C: Character) => string;
 	DynamicAllowInventoryAdd: (C: Character) => boolean;
-	DynamicExpressionTrigger: (C: Character) => ExpressionTrigger[];
-	DynamicName: (C?: Character) => string;
+	DynamicExpressionTrigger: (C: Character) => ExpressionTrigger[] | null | undefined;
+	DynamicName: (C: Character) => string;
 	DynamicGroupName: string;
-	DynamicActivity: (C: Character) => string[] | string | undefined;
+	DynamicActivity: (C: Character) => string[] | string | null | undefined;
 	DynamicAudio: ((C: Character) => string) | null;
 	CharacterRestricted: boolean;
 	AllowRemoveExclusive: boolean;

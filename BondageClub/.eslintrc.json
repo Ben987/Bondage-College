@@ -31,6 +31,7 @@
 		"no-trailing-spaces": "warn",
 		"semi": "warn",
 		"indent": ["warn", "tab", { "SwitchCase": 1, "ignoredNodes": ["ConditionalExpression"] }],
+		"unicode-bom": ["error", "never"],
 		// Until globals are properly documented
 		"no-undef": "off",
 		"no-var": "off"

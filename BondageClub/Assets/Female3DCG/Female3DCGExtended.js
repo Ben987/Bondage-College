@@ -1,3 +1,4 @@
+//@ts-check
 "use strict";
 
 /**
@@ -13,7 +14,7 @@
 /**
  * An enum encapsulating the available extended item archetypes
  * MODULAR - Indicates that this item is modular, with several independently configurable modules
- * @enum {string}
+ * @type {Record<"MODULAR"|"TYPED", ExtendedArchetype>}
  * @see {@link ModularItemConfig}
  * @see {@link TypedItemConfig}
  */

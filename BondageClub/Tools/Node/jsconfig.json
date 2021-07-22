@@ -6,5 +6,8 @@
 		"strict": true,
 		"noImplicitAny": false
 	},
-	"include": ["AssetCheck.js"]
+	"include": [
+		"../../Assets/Female3DCG/Female3DCG_Types.d.ts",
+		"AssetCheck.js"
+	]
 }

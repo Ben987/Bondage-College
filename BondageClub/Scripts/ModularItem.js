@@ -61,7 +61,7 @@ const ModularItemDataLookup = {};
  * the same)
  * - PER_OPTION - The item has one chatroom message per option (for finer granularity - each individual option within a
  * module can have its own chatroom message)
- * @enum {string}
+ * @type {Record<"PER_MODULE"|"PER_OPTION", ModularItemChatSetting>}
  */
 const ModularItemChatSetting = {
 	PER_MODULE: "perModule",

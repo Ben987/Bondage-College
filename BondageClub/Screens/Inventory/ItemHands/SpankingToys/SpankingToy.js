@@ -1,4 +1,5 @@
 "use strict";
+/** @type { (ExtendedItemOption & { ExpressionTrigger: ExpressionTrigger[] } )[]} */
 const InventoryItemHandsSpankingToysOptions = [
 	{
 		Name: "Crop",
@@ -171,21 +172,27 @@ const InventoryItemHandsSpankingToysOptions = [
 	},
 ];
 
-// Loads the item extension properties
+/** Loads the item extension properties */
 function InventoryItemHandsSpankingToysLoad() {
 	ExtendedItemLoad(InventorySpankingToysAvailableToys(CharacterGetCurrent()), "SelectSpankingToysType");
 }
 
-// Draw the item extension screen
+/** Draw the item extension screen */
 function InventoryItemHandsSpankingToysDraw() {
 	ExtendedItemDraw(InventorySpankingToysAvailableToys(CharacterGetCurrent()), "SpankingToysType");
 }
 
-// Catches the item extension clicks
+/** Catches the item extension clicks */
 function InventoryItemHandsSpankingToysClick() {
 	ExtendedItemClick(InventorySpankingToysAvailableToys(CharacterGetCurrent()));
 }
 
+/**
+ * Publishes the message to the chat
+ * @param {Character} C - The target character
+ * @param {ExtendedItemOption} Option - The currently selected Option
+ * @returns {void} - Nothing
+ */
 function InventoryItemHandsSpankingToysPublishAction(C, Option) {
 	var msg = C.ID == 0 ? "SpankingToysSetPlayer" : "SpankingToysSetOthers";
 	var Dictionary = [];
@@ -195,6 +202,15 @@ function InventoryItemHandsSpankingToysPublishAction(C, Option) {
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
 
+/**
+ * The NPC dialog is for what the NPC says to you when you make a change to their restraints - the dialog lookup is on a
+ * per-NPC basis. You basically put the "AssetName" + OptionName in there to allow individual NPCs to override their default
+ * "GroupName" dialog if for example we ever wanted an NPC to react specifically to having the restraint put on them.
+ * That could be done by adding an "AssetName" entry (or entries) to that NPC's dialog CSV
+ * @param {Character} C - The NPC to whom the restraint is applied
+ * @param {ExtendedItemOption} Option - The chosen option for this extended item
+ * @returns {void} - Nothing
+ */
 function InventoryItemHandsSpankingToysNpcDialog(C, Option) {
 	C.CurrentDialog = DialogFind(C, "SpankingToys" + Option.Name, "ItemHands");
 }
@@ -223,7 +239,11 @@ function InventorySpankingToysGetType(C) {
 	else return "Crop";
 }
 
-// Get the description of the spanking toy that the character is holding
+/**
+ * Get the description of the spanking toy that the character is holding
+ * @param {Character} C
+ * @returns {string}
+ */
 function InventorySpankingToysGetDescription(C) {
 	var ToyDescription = null;
 	var Toy = InventoryGet(C, "ItemHands");
@@ -237,14 +257,22 @@ function InventorySpankingToysGetDescription(C) {
 	return ToyDescription || "Handheld Toy";
 }
 
-// Get the activity of the spanking toy that the character is holding
+/**
+ * Get the activity of the spanking toy that the character is holding
+ * @param {Character} C
+ * @returns {string | string[] | null}
+ */
 function InventorySpankingToysGetActivity(C) {
 	var Type = InventorySpankingToysGetType(C);
 	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
 	return A && A.Activity || null;
 }
 
-// Determine whether an item activity is allowed on the selected region
+/**
+ * Determine whether an item activity is allowed on the selected region
+ * @param {Character} C
+ * @returns {boolean}
+ */
 function InventorySpankingToysActivityAllowed(C) {
 	var Type = InventorySpankingToysGetType(Player);
 	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
