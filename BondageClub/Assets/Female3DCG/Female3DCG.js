@@ -190,6 +190,7 @@ var AssetFemale3DCG = [
 		Group: "ClothAccessory",
 		Priority: 32,
 		Default: false,
+		Random: false,
 		Clothing: true,
 		PreviewZone: [0, 200, 500, 500],
 		Asset: [
@@ -277,6 +278,7 @@ var AssetFemale3DCG = [
 		ParentGroup: "BodyUpper",
 		Priority: 14,
 		Default: false,
+		Random: false,
 		Clothing: true,
 		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked", "Hogtied", "OverTheHead"],
 		PreviewZone: [75, 150, 350, 350],
@@ -421,6 +423,7 @@ var AssetFemale3DCG = [
 		Priority: 14,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		Left: 95,
 		Top: 380,
 		AllowPose: ["LegsClosed", "Kneel", "Horse", "KneelingSpread", "Spread", "Hogtied"],
@@ -602,16 +605,16 @@ var AssetFemale3DCG = [
 			{ Name: "Panties14", Fetish: ["Lingerie"], Value: 10, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
 			{ Name: "Panties15", Fetish: ["Lingerie"], Value: 10, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
 			{ Name: "Bikini1", Value: 25, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
-			{ Name: "Diapers1", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Value: 20, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
+			{ Name: "Diapers1", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Random: false, Value: 20, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
 			{
-				Name: "Diapers2", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"],
+				Name: "Diapers2", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Random: false,Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"],
 				Layer: [
 					{ Name: "Diaper" },
 					{ Name: "Cover" }
 				]
 			},
-			{ Name: "Diapers3", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
-			{ Name: "Diapers4", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"], Extended: true,
+			{ Name: "Diapers3", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Random: false,Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"] },
+			{ Name: "Diapers4", Priority: 23, Category: ["ABDL"], Fetish: ["ABDL"], Random: false,Value: 30, HideItem: ["ItemButtAnalBeads2", "ItemVulvaVibratingDildo", "ItemVulvaInflatableVibeDildo", "ItemVulvaClitSuctionCup", "ItemVulvaPiercingsVibeHeartClitPiercing", "ItemVulvaPiercingsClitRing"], Extended: true,
 				Layer: [
 					{ Name: "Diaper", HasType: false },
 					{ Name: "Tape", HasType: false },
@@ -802,7 +805,7 @@ var AssetFemale3DCG = [
 			{ Name: "Heels3", Height: 15, Value: 30 },
 			{ Name: "BarefootSandals1", Hide: ["Socks"], Value: 10, BuyGroup: "BarefootSandals" },
 			{ Name: "LatexAnkleShoes", Fetish: ["Latex"], Value: 60, DefaultColor: ["#373636"], },
-			{ Name: "Flippers", Height: 40, Value: 25, HideItem: ["LeftAnkletRibbon1", "RightAnkletRibbon1"], Left: 84,
+			{ Name: "Flippers", Height: 40, Value: 25, HideItem: ["LeftAnkletRibbon1", "RightAnkletRibbon1"], Left: 84, Random: false,
 				Layer: [
 					{ Name: "Fins",  AllowColorize: true },
 					{ Name: "Shoes",  AllowColorize: false }
@@ -962,6 +965,7 @@ var AssetFemale3DCG = [
 		Priority: 54,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		Left: 90,
 		Top: 0,
 		PreviewZone: [125, 0, 250, 250],
@@ -1035,6 +1039,7 @@ var AssetFemale3DCG = [
 		Priority: 53,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		BodyCosplay: true,
 		Left: 90,
 		Top: 0,
@@ -1162,6 +1167,7 @@ var AssetFemale3DCG = [
 		Priority: 53,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		Underwear: true,
 		Left: 180,
 		Top: 125,
@@ -1213,6 +1219,7 @@ var AssetFemale3DCG = [
 		Priority: 4,
 		Default: false,
 		Clothing: true,
+		Random: false,
 		Underwear: true,
 		BodyCosplay: true,
 		Left: 0,
@@ -1265,6 +1272,7 @@ var AssetFemale3DCG = [
 		Group: "Wings",
 		Priority: 3,
 		Default: false,
+		Random: false,
 		Clothing: true,
 		Underwear: true,
 		BodyCosplay: true,
