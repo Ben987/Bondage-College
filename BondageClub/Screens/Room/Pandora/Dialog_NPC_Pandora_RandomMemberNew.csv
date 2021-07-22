@@ -27,6 +27,6 @@ PlayerGagged,,,(She looks at your gag and giggle.)  This place is so kinky.,,
 40,0,Not right now.,"Too bad, maybe I'll try to apply another day.",,
 50,,(Let her go to the Bondage Club.),,RemoveCurrentCharacter(),
 60,,(Let her go to your private room.),,CharacterJoinPrivateRoom(),
-100,0,"I know, but I like them. (Offer 10$.)","Alright, but this is very strange.  (She gets naked and sells you her clothes for 10$.)",BuyRandomClothes(),DialogMoneyGreater(10)
-100,0,I can't offer much. (Offer 5$.),"Sorry, I can't accept that offer.",,DialogMoneyGreater(5)
+100,0,"I know, but I like them. (Offer $10.)","Alright, but this is very strange.  (She gets naked and sells you her clothes for $10.)",BuyRandomClothes(),DialogMoneyGreater(10)
+100,0,I can't offer much. (Offer $5.),"Sorry, I can't accept that offer.",,DialogMoneyGreater(5)
 100,0,Forget it then.,Very well.  You're a strange person you know?,,

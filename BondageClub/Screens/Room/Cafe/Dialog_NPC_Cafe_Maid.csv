@@ -47,9 +47,9 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 10,,Temporary side effects?,"Yes, some customers claimed our specialities had an effect on them, but only for an hour.",,
 10,0,That is all I wanted to know.,Very well.  Can I get you anything?,,
 20,0,Okay. I will catch one of them,,,
-30,40,I would like an energy drink,Certainly miss. They are REPLACEMONEY $ per can.,EquirePrice(EnergyDrink),
-30,40,I would like a glass of milk,Certainly miss. That is REPLACEMONEY $ per glass.,EquirePrice(GlassMilk),
-31,40,I would like a cupcake,Certainly miss. They are REPLACEMONEY $ each.,EquirePrice(Cupcake),
+30,40,I would like an energy drink,Certainly miss. They are $REPLACEMONEY per can.,EquirePrice(EnergyDrink),
+30,40,I would like a glass of milk,Certainly miss. That is $REPLACEMONEY per glass.,EquirePrice(GlassMilk),
+31,40,I would like a cupcake,Certainly miss. They are $REPLACEMONEY each.,EquirePrice(Cupcake),
 30,0,"Actually, I won't have a special at the moment",That is quite alright.  Is there anything else you would like?,,
 40,0,(Buy an energy drink.),(The maid takes your money and gives you a can of energy drink.  You consume it and feel invigorated and more skillful.),ConsumeSpeciiality(),Equired(EnergyDrink)
 40,0,(Buy a glass of milk.),"(The maid takes your money and gives you a bottle of milk.  You consume it and feel comforted, but also slightly confused and numb.)",ConsumeSpeciiality(),Equired(GlassMilk)

@@ -33,15 +33,15 @@ IntroDrawBondage,,,"(You both dress back up.)  Too bad nobody won, it could have
 22,0,I've changed my mind.,It's fine.  We can play later.,,
 23,,(Play chess with her.),,"GameStart(3, ""Honor"")",
 23,0,I've changed my mind.,It's fine.  We can play later.,,
-30,31,Let's bet 10$.,"It's a small bet, but it should be fun.  (She prepares the chess board.)  Ready to go?",,DialogMoneyGreater(10)
-30,32,Let's bet 20$.,"That's a fair bet, let's do this!  (She prepares the chess board.)  Ready to go?",,DialogMoneyGreater(20)
-30,33,Let's bet 30$.,A serious bet?  I won't pull any punches.  (She prepares the chess board.)  Ready to go?,,DialogMoneyGreater(30)
+30,31,Let's bet $10.,"It's a small bet, but it should be fun.  (She prepares the chess board.)  Ready to go?",,DialogMoneyGreater(10)
+30,32,Let's bet $20.,"That's a fair bet, let's do this!  (She prepares the chess board.)  Ready to go?",,DialogMoneyGreater(20)
+30,33,Let's bet $30.,A serious bet?  I won't pull any punches.  (She prepares the chess board.)  Ready to go?,,DialogMoneyGreater(30)
 30,0,I've changed my mind.,It's fine.  We can play later.,,
-31,,(Play chess for 10$ with her.),,"GameStart(1, ""Money"")",
+31,,(Play chess for $10 with her.),,"GameStart(1, ""Money"")",
 31,0,I've changed my mind.,It's fine.  We can play later.,,
-32,,(Play chess for 20$ with her.),,"GameStart(2, ""Money"")",
+32,,(Play chess for $20 with her.),,"GameStart(2, ""Money"")",
 32,0,I've changed my mind.,It's fine.  We can play later.,,
-33,,(Play chess for 30$ with her.),,"GameStart(3, ""Money"")",
+33,,(Play chess for $30 with her.),,"GameStart(3, ""Money"")",
 33,0,I've changed my mind.,It's fine.  We can play later.,,
 40,41,I don't know.,Let's make some rules.  Each major piece like a knight or a rook gets one cloth off.  Have you played before?  Should I go easy on you?,,
 40,41,Each major piece gets one cloth off.,That sounds perfect.  Each major piece like a knight or a rook gets one cloth off.  Have you played before?  Should I go easy on you?,,

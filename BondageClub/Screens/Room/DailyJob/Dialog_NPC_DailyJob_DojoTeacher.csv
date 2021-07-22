@@ -19,10 +19,10 @@ DojoStruggleDefeat,,,"I'm sorry you could not make it, please practice your evas
 40,50,I can escape from any rope.,This will be your evasion challenge!  You'll have three tries.  Please show every movements to our class.,"DialogChangeReputation(""Dominant"", 2)"
 40,50,(Struggle a little.),You'll have three chances to escape from this Shibari.  Please show every movements to our class.,
 50,,(Start to struggle.),,DojoGameStart()
-100,110,It's been my pleasure to struggle.,(She gives you 100$ for your efforts.)  I will certainly contact you again when the next class is ready.,"DialogChangeReputation(""Dominant"", -2)"
-100,110,You can restrain me anytime Miss.,(She gives you 100$ for your efforts.)  I will certainly contact you again when the next class is ready.,"DialogChangeReputation(""Dominant"", -4)"
-100,110,Next time I could restrain you.,(She smirks and gives you 100$ for your efforts.)  Check with the maids to know when the next class is ready.,"DialogChangeReputation(""Dominant"", 3)"
-100,110,(Stay silent and nod.),(She gives you 100$ for your efforts.)  I might need you again for another class in the future.,
+100,110,It's been my pleasure to struggle.,(She gives you $100 for your efforts.)  I will certainly contact you again when the next class is ready.,"DialogChangeReputation(""Dominant"", -2)"
+100,110,You can restrain me anytime Miss.,(She gives you $100 for your efforts.)  I will certainly contact you again when the next class is ready.,"DialogChangeReputation(""Dominant"", -4)"
+100,110,Next time I could restrain you.,(She smirks and gives you $100 for your efforts.)  Check with the maids to know when the next class is ready.,"DialogChangeReputation(""Dominant"", 3)"
+100,110,(Stay silent and nod.),(She gives you $100 for your efforts.)  I might need you again for another class in the future.,
 110,,Thank you!  (Leave her.),,End()
 110,,(Take the money and leave her.),,End()
 200,210,I feel so ashamed.,You should only be ashamed if you stopped trying.    Practice your evasion techniques and come back.,"DialogChangeReputation(""Dominant"", -2)"

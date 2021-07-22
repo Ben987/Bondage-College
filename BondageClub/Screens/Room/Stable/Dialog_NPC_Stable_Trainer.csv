@@ -39,10 +39,10 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 0,,I want a trial trainer training.,"Ok, let us start.",TrialTrainerTraining(),PlayerIsNewby
 0,,I'm here for a training routine.,,PlayerStartTrainingLesson(),PlayerIsPony
 0,,I'm here for a pony exam.,You are not ready yet.  You have to train harder.,,StablePlayerDisallowedPonyExamen()
-0,60,I'm here for a pony exam.,Do you think the training was successful? Then I get 50 $ exam fee.,,StablePlayerAllowedPonyExamen()
+0,60,I'm here for a pony exam.,Do you think the training was successful? Then I get $50 exam fee.,,StablePlayerAllowedPonyExamen()
 0,,I'm here for a trainer exam.,You? Don't make me laugh.,,StablePlayerDisallowedTrainerExamen()
-0,65,I'm here for a trainer exam.,Do you think you're ready? Then pay the 50$.,,StablePlayerAllowedTrainerExamen()
-0,210,I want to train a pony.,That'll be a 10$ cleaning fee for your riding gear.,,PlayerIsTrainer
+0,65,I'm here for a trainer exam.,Do you think you're ready? Then pay the $50.,,StablePlayerAllowedTrainerExamen()
+0,210,I want to train a pony.,That'll be a $10 cleaning fee for your riding gear.,,PlayerIsTrainer
 0,,(End the training and dress back up.),(She begins to stow the bridle.),DressBackPlayer(),StablePlayerIsDressOff()
 0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
 11,12,"Here's the money, let's start.",(She puts it in her pocket.) Undress.,PayTheFee(),
@@ -111,15 +111,15 @@ StableBecomePonySubIntro,0,,"No, not yet. Only submissive people can be trained.
 StableBecomePonyEquipmentIntro,,,"No, not yet. You have to buy the necessary equipment in the shop first.",,
 StableBecomePonyEquipment,0,(Listen.),"You need the following: a harness ball gag, a leather armbinder, a leather harness, and a horse tail plug.",,
 StableBecomePonyCollarIntro,0,,"No, not yet. You also have to wear a collar.",,
-StableBecomePonyMoneyIntro,0,,"No, not yet.  The training fee is 50$.",,
-StableBecomePonyTrueIntro,,,"Yes, the training costs 50$. It's long and demanding.",,
+StableBecomePonyMoneyIntro,0,,"No, not yet.  The training fee is $50.",,
+StableBecomePonyTrueIntro,,,"Yes, the training costs $50. It's long and demanding.",,
 StableBecomePonyTrue,11,When can I start?,Once you have paid the fee and the health check is completed.,,
 StableBecomePonyTrue,0,I do not want it.,Contact me if you change your mind.,,
 StableBecomeTrainerDressageIntro,,,"Before you become a trainer, you must first learn the subtleties of dressage.",,
 StableBecomeTrainerDomIntro,,,Only dominant people can become trainers.,,
 StableBecomeTrainerEquipmentIntro,,,"You lack the necessary equipment. You have to buy the following: crops, whips, and leather belts for feet and legs.",,
 StableBecomeTrainerMoneyIntro,,,You are too poor and cannot afford training ponies.,,
-StableBecomeTrainerTrueIntro,,,"Yes, you can join the trainer guild. The entrance fee is 500$.",,
+StableBecomeTrainerTrueIntro,,,"Yes, you can join the trainer guild. The entrance fee is $500.",,
 StableBecomeTrainerTrue,200,Take my money. when can I start?,First exercise: grab a broom and sweep the stable.,,
 StableBecomeTrainerTrue,0,That is too expensive for me.,Contact me when you've saved some cash.,,
 StableTrainingStartCollar,,,Where is your collar?,,
@@ -264,4 +264,4 @@ StableExamTHurdle,,(Bring a pony to the hurdle course),,PlayerTExamHurdles(),
 StableExamTFailIntro,,,You failed in this exam. Continue training before you sign up again.,,
 StableExamTFail,0,(Leave the exam course and dress back up.),Keep training and then try again.,PlayerTExamEnd(),
 StableExamTPassIntro,,,"Congratulations, you have passed all the exams.",,
-StableExamTPass,0,(Give the present trainers a whiskey (50$).),(They celebrate your success.) Hip Hip Hurray!,PlayerTExamPass(),
+StableExamTPass,0,(Give the present trainers a whiskey ($50).),(They celebrate your success.) Hip Hip Hurray!,PlayerTExamPass(),

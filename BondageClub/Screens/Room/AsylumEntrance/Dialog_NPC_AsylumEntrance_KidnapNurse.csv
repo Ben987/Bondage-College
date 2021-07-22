@@ -14,10 +14,10 @@ BribeFailure,,,(She refuses the money.)  You cannot bribe me!  You're going back
 0,10,Wait!  Can we negotiate?,(She thinks for a few seconds.)  Negotiate?  How much do you value your freedom?,,
 0,,(Fight her.),,KidnapNurseFight(),Player.CanInteract()
 0,200,(Surrender.),(You surrender without a fight as she grins.)  It's time to go back to the asylum girl.,"DialogChangeReputation(""Dominant"", -4)",
-10,,I'll give you 10$.,,"KidnapNurseBribe(10, 25)",DialogMoneyGreater(10)
-10,,I'll give you 25$.,,"KidnapNurseBribe(25, 50)",DialogMoneyGreater(25)
-10,,I'll give you 50$.,,"KidnapNurseBribe(50, 75)",DialogMoneyGreater(50)
-10,,I'll give you 100$.,,"KidnapNurseBribe(100, 100)",DialogMoneyGreater(100)
+10,,I'll give you $10.,,"KidnapNurseBribe(10, 25)",DialogMoneyGreater(10)
+10,,I'll give you $25.,,"KidnapNurseBribe(25, 50)",DialogMoneyGreater(25)
+10,,I'll give you $50.,,"KidnapNurseBribe(50, 75)",DialogMoneyGreater(50)
+10,,I'll give you $100.,,"KidnapNurseBribe(100, 100)",DialogMoneyGreater(100)
 10,11,We could become friends.,Forget it!  I'm bringing you back to the asylum.,"DialogChangeReputation(""Dominant"", -2)",
 10,11,I won't knock you out if you run now.,You think you can scare me?  I'm bringing you back to the asylum.,"DialogChangeReputation(""Dominant"", 2)",
 11,,(Fight her.),,KidnapNurseFight(),Player.CanInteract()

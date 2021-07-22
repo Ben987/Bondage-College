@@ -22,15 +22,15 @@ FightDefeat,,,(A teacher comes and separates you.  You both clean up as she smir
 10,20,I'll try the big salad.,That's lame.  Try something better like a steak.  I'm broke so I'll have the cheap ass fried chicken.,,
 10,20,Fried chicken for me.,"Same here, I would go for a steak, but I'm broke as shit.",SidneyLoveChange(1),
 10,,I'll check the menu.  (Leave her.),,DialogLeave(),
-20,30,You can't afford your lunch?,"Yeah, I spent all my money on we...  on schoolbooks.  Can I borrow 20$ from you?  I'll repay you next week.",SidneyLoveChange(1),
-20,30,How much do you need?,"20$ for a good meal, can I borrow it from you?  I'll repay you next week.",SidneyLoveChange(2),
+20,30,You can't afford your lunch?,"Yeah, I spent all my money on we...  on schoolbooks.  Can I borrow $20 from you?  I'll repay you next week.",SidneyLoveChange(1),
+20,30,How much do you need?,"$20 for a good meal, can I borrow it from you?  I'll repay you next week.",SidneyLoveChange(2),
 20,50,I'm also broke.,"Yeah, life is a bitch.  (She replaces her hat.)  Fucking Mildred and her fucking rules.",,
 30,50,"No way, I'm keeping my money.","Fine, I don't care.  (She replaces her hat.)  Fucking Mildred and her fucking rules.",,
 30,50,"I would, but I don't have enough cash.",The economy is crap.  (She replaces her hat.)  Fucking Mildred and her fucking rules.,SidneyLoveChange(1),
-30,40,"Here's 20$, repay me next week.","Thanks!  (She takes your 20$.)  Come to think of it, can I borrow 40$ more for boo... supper later?","SidneyLoveChange(2, 20)",DialogMoneyGreater(20)
-30,40,"Here's 20$, no need to repay me.","Fuck yeah!  (She takes your 20$.)  Come to think of it, can I borrow 40$ more for boo... for supper later?","SidneyLoveChange(3, 20)",DialogMoneyGreater(20)
-40,50,"Not 40$, but I can give you another 20$.",Wow!  Thanks!  (She replaces her hat.)  Fucking Mildred and her fucking rules.,"SidneyLoveChange(2, 20)",DialogMoneyGreater(20)
-40,50,"Here's 40$ for your ""supper"".",Jackpot!  (She takes your money and replaces her hat.)  Fucking Mildred and her fucking rules.,"SidneyLoveChange(3, 40)",DialogMoneyGreater(40)
+30,40,"Here's $20, repay me next week.","Thanks!  (She takes your $20.)  Come to think of it, can I borrow $40 more for boo... supper later?","SidneyLoveChange(2, 20)",DialogMoneyGreater(20)
+30,40,"Here's $20, no need to repay me.","Fuck yeah!  (She takes your $20.)  Come to think of it, can I borrow $40 more for boo... for supper later?","SidneyLoveChange(3, 20)",DialogMoneyGreater(20)
+40,50,"Not $40, but I can give you another $20.",Wow!  Thanks!  (She replaces her hat.)  Fucking Mildred and her fucking rules.,"SidneyLoveChange(2, 20)",DialogMoneyGreater(20)
+40,50,"Here's $40 for your ""supper"".",Jackpot!  (She takes your money and replaces her hat.)  Fucking Mildred and her fucking rules.,"SidneyLoveChange(3, 40)",DialogMoneyGreater(40)
 40,50,"No, you're pushing your luck.",Can't blame me for trying.  (She replaces her hat.)  Fucking Mildred and her fucking rules.,,
 50,60,That dunce hat is a punishment?,"Yeah, for texting in class.  That bitch Mildred won't give me back my phone if I don't wear it all day.",SidneyLoveChange(1),
 50,60,That hat is ridiculous.,I know!  (She looks angry.)  That bitch Mildred won't give me back my phone if I don't wear it all day.,,

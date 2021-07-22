@@ -52,10 +52,10 @@ TennisDefeat,,,(She looks happy.)  Good game!  But you need some practice.  We c
 1000,,I need to go.  (Leave her.),,DialogLeave(),
 1010,,Please go easy.  (Play tennis.),,"GameStart(""Easy"")",
 1010,,Let's do a regular game.  (Play tennis.),,"GameStart(""Normal"")",
-1010,1011,We can bet some money on the game.,Are you willing to bet 25$ on the game?  The winner keeps everything.  I won't go easy on you.,,DialogMoneyGreater(25)
-1010,,We can bet some money on the game.,You're too poor for that.  Get 25$ and we can bet it on a real tennis match.,,!DialogMoneyGreater(25)
+1010,1011,We can bet some money on the game.,Are you willing to bet $25 on the game?  The winner keeps everything.  I won't go easy on you.,,DialogMoneyGreater(25)
+1010,,We can bet some money on the game.,You're too poor for that.  Get $25 and we can bet it on a real tennis match.,,!DialogMoneyGreater(25)
 1010,1000,Maybe we can play later.,"Sure, let me know when you're ready.",,
-1011,,"Here's 25$, you're going down.  (Play tennis.)",,"GameStart(""Hard"")",
+1011,,"Here's $25, you're going down.  (Play tennis.)",,"GameStart(""Hard"")",
 1011,1000,Forget it.,Chicken!,,
 1100,1010,Another match?  Sure!,"Perfect, this time I will crush you.",,
 1100,1000,"No, that's enough.","Alright, you can come back to play anytime.",,

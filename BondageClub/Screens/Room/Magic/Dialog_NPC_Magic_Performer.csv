@@ -37,7 +37,7 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 0,30,The show can begin.,Welcome dear spectators.,ShowStart(),ShowIsState(3)
 0,,(Squirm in the shackles and seek help.),I can not work like that. Goodbye.,TrickEndPerformance(),Player.IsRestrained()
 0,,I'm ready for the next trick.,,SelectTrick(),ShowIsState(5)
-0,,I did it and I want to stop.,(She gives you the income of REPLACEMONEY$.),ShowPayoff(),ShowIsState(5)
+0,,I did it and I want to stop.,(She gives you the income of $REPLACEMONEY.),ShowPayoff(),ShowIsState(5)
 0,,Goodbye. (Leave.),,DialogLeave(),
 10,,What is this room? ,The Houdini-Theater in which a magic show will be performed.,,
 10,,What's in it for me if I participate?,"As an assistant, you can earn some money.",,
@@ -55,7 +55,7 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 100,,(Signal her that you are done.),,TrickChangeBinds(),RestrainPerformerMinItem(5)
 101,,,Now show the audience how to get out of there.,,
 101,102,That was easy. Let's do the next trick.,Applause for the artist.,,!Player.IsRestrained()
-101,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY$.),ShowPayoff(),!Player.IsRestrained()
+101,0,I did it and I want to stop.,(She gives you the income of $REPLACEMONEY.),ShowPayoff(),!Player.IsRestrained()
 101,0,(Give up and beg for help.),Your performance is over.,TrickEndPerformance(),Player.IsRestrained()
 101,,(Turn away.),,DialogLeave(),
 102,,(Wait.),,SelectTrick(),
@@ -72,7 +72,7 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 120,,(Signal her that you are done.),,TrickBindAsstant(),RestrainAssistantMinItem(5)
 121,,,Now show the audience how to get out of there.,,
 121,122,That was easy. Let's do the next trick.,Applause for the artist.,,!Player.IsRestrained()
-121,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY$.),ShowPayoff(),!Player.IsRestrained()
+121,0,I did it and I want to stop.,(She gives you the income of $REPLACEMONEY.),ShowPayoff(),!Player.IsRestrained()
 121,0,(Give up and beg for help.),Your performance is over.,TrickEndPerformance(),Player.IsRestrained()
 121,,(Turn away.),,DialogLeave(),
 122,,(Wait.),,SelectTrick(),
@@ -80,19 +80,19 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 130,,(Prepare the trick.),,TrickBoxTiedLight(),
 131,,,"The question is, can she escape?",,
 131,132,"Here I am, the show goes on.",Applause for the escape.,,!Player.IsRestrained()
-131,0,I escaped and am happy to finish the show.,(She gives you the income of REPLACEMONEY$.) Will you come back?,ShowPayoff(),!Player.IsRestrained()
+131,0,I escaped and am happy to finish the show.,(She gives you the income of $REPLACEMONEY.) Will you come back?,ShowPayoff(),!Player.IsRestrained()
 131,0,(Knock for help.),,TrickEndPerformance(),Player.IsRestrained()
 131,,(Turn away.),,DialogLeave(),
 132,,(Wait.),,SelectTrick(),
 140,,,(She conjures a few coins out of nowhere and holds them out to you.),,
-140,141,(Take them.),(You get REPLACEMONEY$.),TrickGetCoin(),
+140,141,(Take them.),(You get $REPLACEMONEY.),TrickGetCoin(),
 140,141,(Give them back.),(She performs another card trick and the show continues.),,
 141,,(Entertain the audience.),,SelectTrick(),
 150,,,Your task: escape from a wooden box and some heavy bondage.,,
 150,,(Prepare the trick.),,TrickBoxTiedHeavy(),
 151,,,"Incredible, will we ever see her again?",,
 151,152,"Nothing can stop me, it goes on.",Cheers for the feat.,,!Player.IsRestrained()
-151,0,I need a break and get out of the show.,(She gives you the income of REPLACEMONEY$.) Thank you so much.,ShowPayoff(),!Player.IsRestrained()
+151,0,I need a break and get out of the show.,(She gives you the income of $REPLACEMONEY.) Thank you so much.,ShowPayoff(),!Player.IsRestrained()
 151,0,(Knock for help.),,TrickEndPerformance(),Player.IsRestrained()
 151,,(Turn away.),,DialogLeave(),
 152,,(Wait.),,SelectTrick(),
@@ -100,7 +100,7 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 160,,(Dive under the water skillfully.),,TrickBoxMilkCan(),
 161,,,(She fastens the lid with three bolts.),,
 161,162,I am Houdini's true heiress.,Cheers for the feat.,,!Player.IsRestrained()
-161,0,(Catch your breath.) I've had enough.,(She gives you the income of REPLACEMONEY$.) Thanks for the show.,ShowPayoff(),!Player.IsRestrained()
+161,0,(Catch your breath.) I've had enough.,(She gives you the income of $REPLACEMONEY.) Thanks for the show.,ShowPayoff(),!Player.IsRestrained()
 161,0,(Knock for help.),,TrickEndPerformance(),Player.IsRestrained()
 161,,(Turn away.),,DialogLeave(),
 162,,(Wait.),,SelectTrick(),
@@ -108,7 +108,7 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 170,,(Prepare for the task.),,TrickBoxWaterCell(),
 171,,,A few piranhas for motivation?,,
 171,172,"Here I am the shark. Go on, go on.",Cheers for the feat.,,!Player.IsRestrained()
-171,0,The submarine has emerged. I need a break.,(She gives you the income of REPLACEMONEY$.) Thanks for the show.,ShowPayoff(),!Player.IsRestrained()
+171,0,The submarine has emerged. I need a break.,(She gives you the income of $REPLACEMONEY.) Thanks for the show.,ShowPayoff(),!Player.IsRestrained()
 171,0,(Wink for help.),,TrickEndPerformance(),Player.IsRestrained()
 171,,(Turn away.),,DialogLeave(),
 172,,(Wait and smile.),,SelectTrick(),
@@ -121,4 +121,4 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 190,,(Signal her that you are done.),,TrickAsstantChange(),RestrainAssistantMinItem(5)
 191,,,How did she get dressed again? Go over to her and tell her to change for the show.,,
 191,,The show must go on.,Applause for both of them.,SelectTrick(),ShowIsState(3)
-191,,"Goodbye, I'm leaving the show.",(She gives you the income of REPLACEMONEY$.) Will you come back?,ShowPayoff(),ShowIsState(3)
+191,,"Goodbye, I'm leaving the show.",(She gives you the income of $REPLACEMONEY.) Will you come back?,ShowPayoff(),ShowIsState(3)
