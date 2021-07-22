@@ -76,7 +76,7 @@ ItemPelvisLeatherCrop,,,(You whack the leather crop right on her butt.)  Ouch! I
 SuspensionHempRope,,,(You restrain her feet with the long hemp rope and suspend her from the ceiling.)  Oh my... You're quite a kidnapper!,,
 RemoveSuspensionHempRope,,,(You let her down from the ceiling and untie her feet.)  Thanks!  I was getting dizzy.,,
 0,,I don't want mercy and I won't show any.,,RandomStart(),
-0,,Wait!  Can we make a deal?  I'll give you 10$.,No deal!  I'm eager for a fight.,DialogRemove(),
+0,,Wait!  Can we make a deal?  I'll give you $10.,No deal!  I'm eager for a fight.,DialogRemove(),
 0,,(Fight her.),,RandomStart(),
 0,,(Surrender.),,RandomSurrender(),
 1,,How did you hear about me?,Never mind.  We need less chatting and more fighting.,DialogRemove(),
@@ -85,7 +85,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling and untie her feet
 1,,(Surrender.),,RandomSurrender(),
 2,,Lady of Ropes?  You're mistaking me for someone else.,You can't fool me Lady.  You fit her description perfectly.  I will kidnap you and I will get the bounty.,DialogRemove(),
 2,,Yes!  The Lady of Ropes will fight you.,,RandomStart(),
-2,,A bounty hunter?  Here's 20$.  Leave me alone.,,RandomBribe(20),DialogMoneyGreater(20)
+2,,A bounty hunter?  Here's $20.  Leave me alone.,,RandomBribe(20),DialogMoneyGreater(20)
 2,,(Fight her.),,RandomStart(),
 2,,(Surrender.),,RandomSurrender(),
 3,,Sure!  Let's fight.,,RandomStart(),
@@ -98,7 +98,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling and untie her feet
 4,,(Surrender.),,RandomSurrender(),
 5,,Who put a bounty on me?,"Who cares?  I'm here for the money, not to chat.",DialogRemove(),
 5,,No bounty hunter will ever get me.,,RandomStart(),
-5,,"Take this 20$ and leave, bounty hunter.",,RandomBribe(20),DialogMoneyGreater(20)
+5,,"Take this $20 and leave, bounty hunter.",,RandomBribe(20),DialogMoneyGreater(20)
 5,,(Fight her.),,RandomStart(),
 5,,(Surrender.),,RandomSurrender(),
 6,,You've heard about me?,"I've heard you're one of the best kidnappers in the club.  So, I've came for a challenge.",DialogRemove(),
@@ -146,7 +146,7 @@ BountyShop,,,(Your bounty is currently shopping and seems to be annoyed by you.)
 110,,(Spank her.),(You spank her hard on the butt and she sharply inhales from the pain.),,Player.CanInteract()
 110,105,(Talk with her.),(You move back to talk with her.),,
 110,,(Let her go.),,RandomEnd(),
-120,121,Pay me and I'll let you go.,"Fine, be a bully then!  I'll give you DIALOGMONEY $ if you release me and leave me alone.",RandomMoneyAmount(),WillPayForFreedom
+120,121,Pay me and I'll let you go.,"Fine, be a bully then!  I'll give you $DIALOGMONEY if you release me and leave me alone.",RandomMoneyAmount(),WillPayForFreedom
 120,105,Pay me and I'll let you go.,You're a bully!  There's no way I'm paying you.,,!WillPayForFreedom
 120,105,Forget it.,Very well.  Will you let me go then?,,
 121,,Deal!  (Release her and take the money.),,RandomEndMoney(),

@@ -1,6 +1,6 @@
 PlayerGagged,,,Remove that gag or get lost.  I run the market and I don't have time for mumblings.,,
 AuctionFail,,,"Too bad it didn't work for you, but a new girl is coming up right now if you want to check her.",,
-TrainingSuccess,,,Well done!  I think this slave has learned a lot in your hands.  Here's your salary.  (She gives you MoneyAmount$),,
+TrainingSuccess,,,Well done!  I think this slave has learned a lot in your hands.  Here's your salary.  (She gives you $MoneyAmount),,
 TrainingFail,,,You've failed your training.  Thanks for your time but I cannot pay you.,,
 0,,,Greetings Mistress DialogPlayerName.  It's always a pleasure to see you at the market.  Are you here to train our slaves?,,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,Greetings head maid DialogPlayerName.  What do you need from the slave market?,,"DialogLogQuery(""LeadSorority"", ""Maid"")"

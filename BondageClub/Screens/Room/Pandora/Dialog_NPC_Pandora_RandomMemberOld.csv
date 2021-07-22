@@ -26,10 +26,10 @@ BribeInfoRetrieveFull,,,I think I saw that object before.  Try the LevelName lev
 100,110,I'm looking for a girl.,"(You give some details on the girl you need to kidnap.)  I think I could help, but information isn't free.",,"MissionIs(""Kidnap"")"
 100,110,I'm looking for an object.,"(You give some details on the object you need to retrieve.)  I think I could help, but information isn't free.",,"MissionIs(""Retrieve"")"
 100,0,Forget it.,Alright then.  Anything else?,,
-110,120,Take this.  (Give her 5$),,"BribeInfo(5, ""Little"")","!HasPerk(""Bribery"")"
-110,120,Take this.  (Give her 3$),,"BribeInfo(3, ""Little"")","HasPerk(""Bribery"")"
-110,120,Tell me everything.  (Give her 10$),,"BribeInfo(10, ""Full"")","!HasPerk(""Bribery"")"
-110,120,Tell me everything.  (Give her 6$),,"BribeInfo(6, ""Full"")","HasPerk(""Bribery"")"
+110,120,Take this.  (Give her $5),,"BribeInfo(5, ""Little"")","!HasPerk(""Bribery"")"
+110,120,Take this.  (Give her $3),,"BribeInfo(3, ""Little"")","HasPerk(""Bribery"")"
+110,120,Tell me everything.  (Give her $10),,"BribeInfo(10, ""Full"")","!HasPerk(""Bribery"")"
+110,120,Tell me everything.  (Give her $6),,"BribeInfo(6, ""Full"")","HasPerk(""Bribery"")"
 110,120,You really think a guard will pay you?,,"BribeInfo(0, ""Little"")","CostumeIs(""Guard"")"
 110,120,You really think a Dominatrix will pay you?,,"BribeInfo(0, ""Full"")","CostumeIs(""Mistress"")"
 110,0,Forget it.,Alright then.  Anything else?,,

@@ -100,10 +100,10 @@ ChangeBondageRestrain,ChangeBondageLeave,(Stay silent.),"I'm leaving, prisoner D
 ChangeBondageLeave,,Hold on.  Can we talk some more?,Not now.  I'll be back later.  (She starts to walk away.),DialogRemove(),Player.CanTalk()
 ChangeBondageLeave,,(Struggle in your bondage.),Have fun struggling.  (She starts to walk away.),DialogRemove(),!Player.CanTalk()
 ChangeBondageLeave,,(Leave her.),,CharacterRemove(),
-ChangeBondageBribe,ChangeBondage,Here you go.  (Give her 5$.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(5, 3)","!HasPerk(""Bribery"")"
-ChangeBondageBribe,ChangeBondage,Here you go.  (Give her 3$.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(3, 3)","HasPerk(""Bribery"")"
-ChangeBondageBribe,ChangeBondage,Here you go.  (Give her 10$.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(10, 5)","!HasPerk(""Bribery"")"
-ChangeBondageBribe,ChangeBondage,Here you go.  (Give her 6$.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(6, 5)","HasPerk(""Bribery"")"
+ChangeBondageBribe,ChangeBondage,Here you go.  (Give her $5.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(5, 3)","!HasPerk(""Bribery"")"
+ChangeBondageBribe,ChangeBondage,Here you go.  (Give her $3.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(3, 3)","HasPerk(""Bribery"")"
+ChangeBondageBribe,ChangeBondage,Here you go.  (Give her $10.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(10, 5)","!HasPerk(""Bribery"")"
+ChangeBondageBribe,ChangeBondage,Here you go.  (Give her $6.),"(She smiles and takes the money.)  I'll lower your jail time a little, but you still need new restraints.","BribeProcess(6, 5)","HasPerk(""Bribery"")"
 ChangeBondageBribe,ChangeBondage,Forget it.,(She sighs.)  It's time to get some fresh restraints on you then.,"BribeProcess(0, 0)",
 IntroStrip,,,"(Guard DialogCharacterName steps inside and looks at you.)  Prisoner DialogPlayerName, since you're not restrained, let's get you naked.",,
 IntroRestrainedStrip,,,"(Guard DialogCharacterName steps inside and looks at your bondage.)  Prisoner DialogPlayerName, it's time to strip you naked.",,

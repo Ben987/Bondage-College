@@ -1,4 +1,4 @@
-ItemSold,,,"Well done, another satisfied customer.  Here's your commission.  (She gives you MoneyAmount$.)",,
+ItemSold,,,"Well done, another satisfied customer.  Here's your commission.  (She gives you $MoneyAmount.)",,
 ItemNotSold,,,"Too bad, the customer left.",,
 PlayerGagged,,,This is the only store in town that receives gagged customers.,,
 ItemMouth,,,(She shakes her head no but you're able to gag and silence her.),,
@@ -38,7 +38,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 20,0,Check my items.  I've bought everything.,No way!  Well a deal is a deal.  You can strap me up if you want.,VendorBondage(),BoughtEverything
 20,0,I'll remember that deal.,Sure!  Do you have more questions for me?,,
 30,,What's the job?,Selling gears.  Customers wants to know if the items are secure and good looking.  You could demonstrate for them.,,
-30,,How much does it pay?,"I can give you 10% of the selling price, minimum 5$, for each item you help me to sell.  It's a good commission.",,
+30,,How much does it pay?,"I can give you 10% of the selling price, minimum $5, for each item you help me to sell.  It's a good commission.",,
 30,31,I'm ready!,"Very well, let me find an item to promote.  (She checks on the shelves for an item to use on you.)",,!Player.IsRestrained()
 30,,I'm ready!,No you're not.  (She giggles.)  Get out of these restraints first.,,Player.IsRestrained()
 30,0,Not right now.,"Alright, let me know when you're ready.  Is there anything else you need?",,

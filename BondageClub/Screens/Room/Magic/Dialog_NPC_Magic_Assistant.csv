@@ -35,7 +35,7 @@ RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that sup
 0,,"Please change, the show's starting.",I'll hurry up.,AssistantDress(),ShowIsState(2)
 0,,"Take five, you are free.",Thank you very much!,AssistantRelese(),AssistantIsReleased()
 0,,"(Sing ""Sweet, Sweet Gwendolyne"".)",(During the song you tie each other. The spectators are thrilled.),SongGwendoyn(),ShowIsState(6)
-0,10,"(Sing ""Bad Girl"".)",(Some spectators give you money. You get REPLACEMONEY$.),SongBadGirl(),ShowIsState(6)
+0,10,"(Sing ""Bad Girl"".)",(Some spectators give you money. You get $REPLACEMONEY.),SongBadGirl(),ShowIsState(6)
 0,,I should tie you up.,Make it look really nice.,DialogRemove(),ShowIsState(7)
 0,,"Please change, the show's starting.","I can't, I'm tied up. Please free me.",,AssistantIsDressRestrain()
 0,,"Please change, the show's starting.",I'll hurry up.,AssistantDress(),AssistantIsntDressRestrain()

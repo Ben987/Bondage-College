@@ -18,7 +18,7 @@ Defeat,,,(She checks your bondage and grins.)  I'll never return to the asylum!,
 20,,(Let her go.),,EscapedPatientLeave(),
 21,,(Let her go.),,EscapedPatientLeave(),
 30,,Pay me and I'll let you go.,"Forget it, you won't get any money from me.",,!EscapedPatientWillBribe
-30,40,Pay me and I'll let you go.,You're so corrupted.  Take these 5$ and leave me alone.,EscapedPatientBribe(),EscapedPatientWillBribe
+30,40,Pay me and I'll let you go.,You're so corrupted.  Take these $5 and leave me alone.,EscapedPatientBribe(),EscapedPatientWillBribe
 30,,"Come to my room, you can hide there.","No way, I'm not following a nurse anywhere.",,!EscapedPatientWillJoin
 30,50,"Come to my room, you can hide there.","I guess there are worse plans than that.  Alright then, I'll follow you.",,EscapedPatientWillJoin
 30,,I won't drag you by your hair.  (Fight her.),,EscapedPatientFight(),
@@ -31,7 +31,7 @@ Defeat,,,(She checks your bondage and grins.)  I'll never return to the asylum!,
 100,110,I'm bringing you back to the asylum.,Why are you so cruel?  Fine!  I'll go back with you.,,
 100,120,I feel like keeping you for myself.,(She looks nervous.)  What does that mean?  Where are we going?,,CanTransferToRoom()
 100,130,I'm feeling merciful.  I'll let you go.,"Really?  Wow, thank you so much!  You're the best.",,
-110,111,(Take her back to the asylum.),(You bring her back to asylum where she gets fully restrained.  They congratulate you and pay you 15$ for your work.),EscapedPatientTransferToAsylum(),
+110,111,(Take her back to the asylum.),(You bring her back to asylum where she gets fully restrained.  They congratulate you and pay you $15 for your work.),EscapedPatientTransferToAsylum(),
 111,,Welcome home girl.,(She sighs and bows her head.),,
 111,,Don't try to escape again.,(She shakes her head no.),,
 111,,(Get your money and leave her.),,EscapedPatientLeave(),

@@ -99,12 +99,12 @@ Ransom10,End,I don't want anything.,You make us proud comrade.  (She salutes you
 100,110,My friend was kidnapped.,Sorry about that.  Pandora's Box has been causing lots of trouble lately.  Is there a ransom to pay?,,
 100,0,I don't need anything.  (Leave her.),,DialogLeave(),
 110,120,I'm not paying.  I'll go free her.,That's what I wanted to hear comrade!  The Bondage Club will support you for that mission.  Are you ready for your disguise?,,
-110,180,"Yes, the ransom amount is 100$.",(She nods.)  That's the usual price.  Will you pay to free her?,,
+110,180,"Yes, the ransom amount is $100.",(She nods.)  That's the usual price.  Will you pay to free her?,,
 110,,For how long they will keep her?,It depends on the guards and Dominatrixes.  Most victims are usually kept for a week.,,
 110,0,Let's drop this.  (Leave her.),,DialogLeave(),
 120,Ready,It's time to change.  (Find a disguise.),(You pick a random disguise together.)  Your friend is waiting for you.  Are you ready to go?,StartNPCRescue(),
 120,0,I'll do it later.,"Very well, you know where to find me when you're ready.  (She salutes you.)",DialogLeave(),
 180,190,I don't have enough money.,I understand comrade.  It's a big sum and it might be used to finance more kidnappings.  Let me know if you get the funds.,,
-180,190,I'll pay right now.  (Give her 100$.),(She takes the money and arranges her liberation.)  Your friend should be back in a few minutes comrade.,RansomFriend(),DialogMoneyGreater(100)
+180,190,I'll pay right now.  (Give her $100.),(She takes the money and arranges her liberation.)  Your friend should be back in a few minutes comrade.,RansomFriend(),DialogMoneyGreater(100)
 180,190,I don't know yet.,"Think about it, comrade.  It's a big sum and it might be used to finance more kidnappings.",,
 190,0,Thanks.  Take care.  (Leave her.),,DialogLeave(),

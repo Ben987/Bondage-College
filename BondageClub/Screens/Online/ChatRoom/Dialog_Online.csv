@@ -21,7 +21,7 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 10,,(Stop ghosting her.),(This member is no longer ghosted by you.  You will see what she says or does in your chat log.),"ListManage(""Remove"", ""GhostList"")",CanRemoveGhost()
 10,0,(Offer her a trial period to become your submissive.),(The request was sent.  She must accept for the trial period to start.),"SendOwnershipRequest(""Propose"")","OwnershipOptionIs(""CanOfferStartTrial"")"
 10,0,(Accept a trial period to become her submissive.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanStartTrial"")"
-10,11,(Offer her to end the trial and be fully collared.),(There's a 100$ fee to prepare the ceremony and get her a slave collar.  Will you pay now?),,"OwnershipOptionIs(""CanOfferEndTrial"")"
+10,11,(Offer her to end the trial and be fully collared.),(There's a $100 fee to prepare the ceremony and get her a slave collar.  Will you pay now?),,"OwnershipOptionIs(""CanOfferEndTrial"")"
 10,0,(Accept her collar and begin the ceremony.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanEndTrial"")"
 10,100,"(Owner rules, restrictions & punishments.)","(Select the owner rule, restriction or punishment that you want to enforce.)",,IsCollaredByPlayer()
 10,200,"(Lover rules, restrictions & punishments.)","(Select the lover rule, restriction or punishment that you want to enforce on your lover.)",,IsLoverOfPlayer()
@@ -30,13 +30,13 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 10,0,(Accept to be her girlfriend.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginDating"")"
 10,0,(Offer her to become your fiancée.),(The request has been sent.  She must accept it to become your fiancée.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginEngagement"")"
 10,0,(Accept her proposal of engagement.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginEngagement"")"
-10,12,(Offer her to marry each other.),(There's a 100$ fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanOfferBeginWedding"")"
-10,13,(Accept her proposal and become her wife.),(There's a 100$ fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanBeginWedding"")"
-11,0,(Pay 100$ for the collaring ceremony.),"(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)","SendOwnershipRequest(""Propose"")",DialogMoneyGreater(100)
+10,12,(Offer her to marry each other.),(There's a $100 fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanOfferBeginWedding"")"
+10,13,(Accept her proposal and become her wife.),(There's a $100 fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanBeginWedding"")"
+11,0,(Pay $100 for the collaring ceremony.),"(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)","SendOwnershipRequest(""Propose"")",DialogMoneyGreater(100)
 11,0,(Refuse to pay.),(Main menu),,
-12,0,(Pay 100$ for the wedding.),(You pay and ask her to marry you. You wait for her answer.),"SendLovershipRequest(""Propose"")",DialogMoneyGreater(100)
+12,0,(Pay $100 for the wedding.),(You pay and ask her to marry you. You wait for her answer.),"SendLovershipRequest(""Propose"")",DialogMoneyGreater(100)
 12,0,(Refuse to pay.),(Main menu),,
-13,0,(Pay 100$ for the wedding.),,"SendLovershipRequest(""Accept"")",DialogMoneyGreater(100)
+13,0,(Pay $100 for the wedding.),,"SendLovershipRequest(""Accept"")",DialogMoneyGreater(100)
 13,0,(Refuse to pay.),(Main menu),,
 10,0,(Back to main menu.),(Main menu.),,
 20,21,(Look at free drinks.),(Free drinks menu.),,
@@ -52,21 +52,21 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 21,0,(Back to main menu.),(Main menu.),,
 22,0,(Get a $5 Virgin Mojito.),,"DrinkPick(""VirginMojito"", 5)",DialogMoneyGreater(5)
 22,0,(Get a $5 Margarita.),,"DrinkPick(""Margarita"", 5)",DialogMoneyGreater(5)
-22,0,(Get a 5$ glass of Whiskey.),,"DrinkPick(""Whiskey"", 5)",DialogMoneyGreater(5)
-22,0,(Get a 5$ glass of Champagne.),,"DrinkPick(""Champagne"", 5)",DialogMoneyGreater(5)
+22,0,(Get a $5 glass of Whiskey.),,"DrinkPick(""Whiskey"", 5)",DialogMoneyGreater(5)
+22,0,(Get a $5 glass of Champagne.),,"DrinkPick(""Champagne"", 5)",DialogMoneyGreater(5)
 22,20,(Back to drink options.),(Drink options.),,
 22,0,(Back to main menu.),(Main menu.),,
-23,0,(Get a 10$ jug of Sicilian Lemonade for everyone.),,"DrinkPick(""LemonadeJug"", 10)",DialogMoneyGreater(10)
-23,0,(Get a 10$ round of shooters for everyone.),,"DrinkPick(""RoundShooters"", 10)",DialogMoneyGreater(10)
-23,0,(Get a 10$ jug of Sex on the Beach for everyone.),,"DrinkPick(""SexOnTheBeachJug"", 10)",DialogMoneyGreater(10)
-23,0,(Get a 10$ beer pitcher for everyone.),,"DrinkPick(""BeerPitcher"", 10)",DialogMoneyGreater(10)
+23,0,(Get a $10 jug of Sicilian Lemonade for everyone.),,"DrinkPick(""LemonadeJug"", 10)",DialogMoneyGreater(10)
+23,0,(Get a $10 round of shooters for everyone.),,"DrinkPick(""RoundShooters"", 10)",DialogMoneyGreater(10)
+23,0,(Get a $10 jug of Sex on the Beach for everyone.),,"DrinkPick(""SexOnTheBeachJug"", 10)",DialogMoneyGreater(10)
+23,0,(Get a $10 beer pitcher for everyone.),,"DrinkPick(""BeerPitcher"", 10)",DialogMoneyGreater(10)
 23,20,(Back to drink options.),(Drink options.),,
 23,0,(Back to main menu.),(Main menu.),,
 24,0,(Get a free tea.),,"DrinkPick(""FreeTea"", 0)",
 24,0,(Get a free coffee.),,"DrinkPick(""FreeCoffee"", 0)",
-24,0,(Get a 5$ hot chocolate.),,"DrinkPick(""HotChocolate"", 5)",DialogMoneyGreater(5)
-24,0,(Get a 5$ espresso.),,"DrinkPick(""Espresso"", 5)",DialogMoneyGreater(5)
-24,0,(Get a 5$ cappuccino.),,"DrinkPick(""Cappuccino"", 5)",DialogMoneyGreater(5)
+24,0,(Get a $5 hot chocolate.),,"DrinkPick(""HotChocolate"", 5)",DialogMoneyGreater(5)
+24,0,(Get a $5 espresso.),,"DrinkPick(""Espresso"", 5)",DialogMoneyGreater(5)
+24,0,(Get a $5 cappuccino.),,"DrinkPick(""Cappuccino"", 5)",DialogMoneyGreater(5)
 24,20,(Back to drink options.),(Drink options.),,
 24,0,(Back to main menu.),(Main menu.),,
 30,0,(Call the maids to escort her out of the room.),,"AdminAction(""Kick"")",

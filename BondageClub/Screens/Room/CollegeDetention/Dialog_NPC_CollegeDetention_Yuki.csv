@@ -58,7 +58,7 @@ NoOrgasm,,,(She pushes you away.)  That's enough!  I'm not in the mood anymore a
 190,200,Are we good now?  Is it enough?,No!  I'll tell you when it's enough.  Keep writing.,YukiLoveChange(-1),
 190,200,This is stupid.,You're the one that was stupid enough to get in trouble.  Keep writing.,YukiLoveChange(-1),
 200,210,"(Write: ""I will be a good student."".)",(She checks a window.),,
-200,210,I'll give you 20$ if we forget this.,You think you can bribe me?  Don't make me laugh.,YukiLoveChange(-1),
+200,210,I'll give you $20 if we forget this.,You think you can bribe me?  Don't make me laugh.,YukiLoveChange(-1),
 210,220,"(Write: ""I will be a good student."".)",I miss the days when we rarely had anyone in detention.,,
 210,220,(Wink at her.),"(She winks back.)  You're a curious student, aren't you?  Keep writing.",YukiLoveChange(1),
 210,220,(Try to steal her key.),"(As she watches her cell phone, you steal her teacher lounge key from her desk.)",GetTeacherKey(),"!DialogLogQuery(""TeacherKey"", ""College"")"

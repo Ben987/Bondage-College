@@ -52,12 +52,12 @@ RemoveItemNipples,,,(She takes a deep breath and stays silent as you remove the 
 0,,(Give her a sisterly hug.),(She hugs you back.)  Thanks!  Sister hugs are the best.,RecruitBoost(),"CostumeIs(""Maid"")"
 0,50,Are you getting paid enough for your work?,"(She ponders.)  The salary isn't great, but it's a fun job.",StartRecruit(),CanStartRecruit()
 0,,I don't need anything.  (Go explore.),,CharacterAllowMove(),
-10,0,A glass of water. (0$),(She comes back with a glass of water for you to enjoy.)  Anything else?,BuyMaidDrink(0),
-10,0,A cup of coffee. (0$),(She comes back with a cup of coffee for you to enjoy.)  Anything else?,BuyMaidDrink(0),
-10,0,A beer please. (5$),(She comes back with a beer for you to enjoy.  You give her 5$.)  Anything else?,BuyMaidDrink(5),DialogMoneyGreater(5)
-10,0,A glass of wine. (5$),(She comes back with a glass of wine for you to enjoy.  You give her 5$.)  Anything else?,BuyMaidDrink(5),DialogMoneyGreater(5)
-10,0,A martini. (10$),(She comes back with a martini for you to enjoy.  You give her 10$.)  Anything else?,BuyMaidDrink(10),DialogMoneyGreater(10)
-10,0,A margarita. (10$),(She comes back with a margarita for you to enjoy.  You give her 10$.)  Anything else?,BuyMaidDrink(10),DialogMoneyGreater(10)
+10,0,A glass of water. ($0),(She comes back with a glass of water for you to enjoy.)  Anything else?,BuyMaidDrink(0),
+10,0,A cup of coffee. ($0),(She comes back with a cup of coffee for you to enjoy.)  Anything else?,BuyMaidDrink(0),
+10,0,A beer please. ($5),(She comes back with a beer for you to enjoy.  You give her $5.)  Anything else?,BuyMaidDrink(5),DialogMoneyGreater(5)
+10,0,A glass of wine. ($5),(She comes back with a glass of wine for you to enjoy.  You give her $5.)  Anything else?,BuyMaidDrink(5),DialogMoneyGreater(5)
+10,0,A martini. ($10),(She comes back with a martini for you to enjoy.  You give her $10.)  Anything else?,BuyMaidDrink(10),DialogMoneyGreater(10)
+10,0,A margarita. ($10),(She comes back with a margarita for you to enjoy.  You give her $10.)  Anything else?,BuyMaidDrink(10),DialogMoneyGreater(10)
 10,0,"Nothing, I'm good.","Very well, is there anything else I can do for you?",,
 20,30,"I'm a spy, I need a costume.",A spy?  I will never help you!  Surrender right now!,,
 20,30,Stop talking and strip girl.,No!  Are you a thief?  Surrender right now!,,

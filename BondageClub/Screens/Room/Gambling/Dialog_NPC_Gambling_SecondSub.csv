@@ -49,14 +49,14 @@ RemoveSuspensionHempRope,,,"Finally, I'm back on firm ground.",,
 10,,Can I tie you up?,Only if you win a game.,,
 10,,Will you restrain me?,"You bet your ass I will, if I win or if you run out of money.",,
 10,0,I don't have any more questions.,Alright. Shall we play a game?,,
-11,12,What are the rules of Catch the Fox?,"One player is the fox, the other is the hunter. The hunter pays a hunting lease of 5$.",,CanPlayFox()
+11,12,What are the rules of Catch the Fox?,"One player is the fox, the other is the hunter. The hunter pays a hunting lease of $5.",,CanPlayFox()
 11,20,What are the rules of Street to Roissy?,"Both players roll the dice simultaneously. Each player must roll a 1 first, then 2, 3, 4, 5, and finally 6.",,CanPlayStreetRoissy()
 11,26,What are the rules of Dare Six?,"In each round, you roll a dice as many times as you want and count the points together.",,CanPlayDaredSix()
 11,10,I have another question.,"OK, go ahead.",,
 12,13,(Listen.),The fox tries to catch them as prey. The fox and the hunter take turns throwing dice.,,
 13,14,(Listen.),The fox gets a dice lead and needs to reach a total of 30 to escape the hunter.,,
 14,10,(Listen.),"If the hunter's score is equal to or as high as the fox's score, they catch the fox and get the lease back.",,
-20,21,(Listen.),"If a player rolls the wrong number, they pay 1$ and roll again.",,
+20,21,(Listen.),"If a player rolls the wrong number, they pay $1 and roll again.",,
 21,22,(Listen.),"If a player rolls the correct number, the opponent takes a step towards Roissy and either remove clothes or add restraints.",,
 22,10,(Listen.),"The first person to reach Roissy loses, and the winner takes all the money.",,
 26,27,(Listen.),Then I roll the dice. Whoever has more points wins the round.,,
@@ -68,8 +68,8 @@ RemoveSuspensionHempRope,,,"Finally, I'm back on firm ground.",,
 30,,(Slap her.),(You slap her firmly in the face. She gasps from the pain and bows her head.),,
 30,,(Spank her.),(You spank her hard and she yelps from the pain.),,Player.CanInteract()
 30,0,(End the game.),(You take a step back and she looks surprised.),,
-50,51,(Nod yes.),Are you ready to pay 25$?,,!Player.CanTalk()
-50,51,"Yes, can you release me?",Are you ready to pay 25$?,,Player.CanTalk()
+50,51,(Nod yes.),Are you ready to pay $25?,,!Player.CanTalk()
+50,51,"Yes, can you release me?",Are you ready to pay $25?,,Player.CanTalk()
 50,0,(Shake your head.),Tough luck then.,,!Player.CanTalk()
 50,0,"No, thanks.","Fair enough, but I'm not letting you out.",,Player.CanTalk()
 51,0,(Nod yes.),(She release you and takes the money.),PayForFreedom(),CanPayToRelease()
@@ -80,10 +80,10 @@ RemoveSuspensionHempRope,,,"Finally, I'm back on firm ground.",,
 100,101,I'll play as the fox.,You roll first then.,"FoxController(""fox"")",ShowDiceStack()
 100,101,I'll play as the hunter.,"Ok, I'll roll first then.","FoxController(""hunter"")",ShowDiceStack()
 101,,Next roll.,Ok.,"FoxController(""NextDice"")",ShowDiceStack()
-102,0,The fox has escaped! (Take the win.),(She gives you the profit of REPLACEMONEY$.),"FoxController(""player_fox_win"")",ShowDiceStack()
+102,0,The fox has escaped! (Take the win.),(She gives you the profit of $REPLACEMONEY.),"FoxController(""player_fox_win"")",ShowDiceStack()
 103,0,Congratulations! (Give her the win.),(She quickly takes the money.),"FoxController(""player_hunter_lost"")",ShowDiceStack()
 104,0,"Uh oh, you caught me!",(She ties you up.),"FoxController(""player_fox_lost"")",ShowDiceStack()
-105,0,Ahah! You can't escape me!,(She gives you the REPLACEMONEY$ back.),"FoxController(""player_hunter_win"")",ShowDiceStack()
+105,0,Ahah! You can't escape me!,(She gives you the $REPLACEMONEY back.),"FoxController(""player_hunter_win"")",ShowDiceStack()
 200,,(Roll the dice.),(You both roll the dice.),"StreetRoissyController(""nextDice"")",ShowDiceStack()
 202,,(Cheer.),(She mumbles into the gag.),"StreetRoissyController(""win"")",ShowDiceStack()
 203,,I walk the line.,Can you see the place to be?,"StreetRoissyController(""nextDice"")",ShowDiceStack()
@@ -101,13 +101,13 @@ RemoveSuspensionHempRope,,,"Finally, I'm back on firm ground.",,
 233,,"Oh, I lost. (Take off your underwear.)",Feeling exposed?,"StreetRoissyController(""lost"")",ShowDiceStack()
 234,,"Oh, I lost. (Let her tie your legs.)",Don't lose your balance now.,"StreetRoissyController(""lost"")",ShowDiceStack()
 235,,"Oh, I lost. (Let her tie your arms.)",Just a little bit more to go...,"StreetRoissyController(""lost"")",ShowDiceStack()
-236,,"Oh, I lost. (Try to resist her putting the gag in.)",Oh no you don't!  (She forces the gag into your mouth and takes the REPLACEMONEY$ winnings.),"StreetRoissyController(""lost"")",ShowDiceStack()
+236,,"Oh, I lost. (Try to resist her putting the gag in.)",Oh no you don't!  (She forces the gag into your mouth and takes the $REPLACEMONEY winnings.),"StreetRoissyController(""lost"")",ShowDiceStack()
 241,,I win. Take off your accessories.,(She takes her accessories off.),"StreetRoissyController(""win"")",ShowDiceStack()
 242,,I win. Lose the clothes.,(She takes her clothes off.),"StreetRoissyController(""win"")",ShowDiceStack()
 243,,I win. Time for you to get naked.,(She takes her underwear off.),"StreetRoissyController(""win"")",ShowDiceStack()
 244,,"I win. Let's tie up those legs, shall we?",(She nods slowly as you bind her legs.),"StreetRoissyController(""win"")",ShowDiceStack()
 245,,I win. You don't need those arms to roll the dice.,(She struggles as you tie her arms behind her.),"StreetRoissyController(""win"")",ShowDiceStack()
-246,,I win. Time for the final touch!,"(She mumbles as you gag her, and then you take the REPLACEMONEY$ winnings.)","StreetRoissyController(""win"")",ShowDiceStack()
+246,,I win. Time for the final touch!,"(She mumbles as you gag her, and then you take the $REPLACEMONEY winnings.)","StreetRoissyController(""win"")",ShowDiceStack()
 300,,I want to add a die.,(She gives you another die.),"DaredSixController(""add"")",ShowDiceStack()
 300,,That's enough.,(She nods slowly and rolls her dice.),"DaredSixController(""fin"")",ShowDiceStack()
 311,,"Oh, I lost. (Take off your accessories.)",(She smiles menacingly.),"DaredSixController(""lost"")",ShowDiceStack()
@@ -115,13 +115,13 @@ RemoveSuspensionHempRope,,,"Finally, I'm back on firm ground.",,
 313,,"Oh, I lost. (Take off your underwear.)",I hope you're not too cold!,"DaredSixController(""lost"")",ShowDiceStack()
 314,,"Oh, I lost. (Let her tie your legs.)","Looking better already, don't you think?","DaredSixController(""lost"")",ShowDiceStack()
 315,,"Oh, I lost. (Let her tie your arms.)","Hey, you look great like this...","DaredSixController(""lost"")",ShowDiceStack()
-316,,"Oh, I lost. (Open your mouth.)",This gag is perfect for you. (She takes the REPLACEMONEY$ winnings.),"DaredSixController(""lost"")",ShowDiceStack()
+316,,"Oh, I lost. (Open your mouth.)",This gag is perfect for you. (She takes the $REPLACEMONEY winnings.),"DaredSixController(""lost"")",ShowDiceStack()
 321,,I win. Take off those accessories.,(She removes her accessories.),"DaredSixController(""win"")",ShowDiceStack()
 322,,I win. Let's see some underwear.,(She drops her clothes to the floor.),"DaredSixController(""win"")",ShowDiceStack()
 323,,I win. Lose the bra and panties.,(She removes her underwear.),"DaredSixController(""win"")",ShowDiceStack()
 324,,I win. Let's get those legs tied up.,(She nods slowly as you tie her legs together.),"DaredSixController(""win"")",ShowDiceStack()
 325,,I win. Time to keep those arms out of the way.,(She looks down as you tie her arms behind her.),"DaredSixController(""win"")",ShowDiceStack()
-326,,I win. Open wide!,"(She opens her mouth slowly and you gag her, and then take the REPLACEMONEY$ winnings.)","DaredSixController(""win"")",ShowDiceStack()
+326,,I win. Open wide!,"(She opens her mouth slowly and you gag her, and then take the $REPLACEMONEY winnings.)","DaredSixController(""win"")",ShowDiceStack()
 330,0,(Cheer.),(She mumbles into the gag.),,
 340,0,(Mumble into the gag.),(She cheers.),,
 GamblingSecondSubTied,,,"(She shows you her restraints.) I would like to, but...",,

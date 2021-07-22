@@ -298,7 +298,7 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 0,,,"Cool room you have there.  So, what's up?",,,Intro,Rude
 0,,,You have a lovely room Miss.  What's on your mind?,,,Intro,Submissive
 0,,,You have a nice lair to kidnap subs.  What would you like to do?,,,Intro,Dominant
-0,,,This room is certainly worth the 250$ rent.  Now tell me what's on your mind.,,,Intro,Wise
+0,,,This room is certainly worth the 2$50 rent.  Now tell me what's on your mind.,,,Intro,Wise
 0,,,(She hums a happy song.)  I love your private room!  What could we do to have fun?,,,Intro,Playful
 0,,I love you!,I love you too.  You're the best.,LoveYou(),IsLoverHappy(),LoveYouHappy,
 0,,I love you!,I love you girl.  Don't change.,LoveYou(),IsLoverHappy(),LoveYouHappy,Dominant|Violent
@@ -464,9 +464,9 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 11,0,Get in your underwear.,(She nods and makes sure she's wearing only her underwear.)  I'm not sure where this is going.,"Change(""Underwear"")",,,
 11,0,Get naked.,(She blushes and gets fully naked.)  Something kinky is brewing!,"Change(""Naked"")",,,
 11,,Can I have your college clothes?,I cannot do that.  I'll get punished if I lose this college outfit.,,CanGetCollegeClothes(),,
-11,12,Let's go shop for new clothes.,(She smiles.)  A shopping trip is a great idea!  Do you have at least 50$ to pay for my new clothes?,,,,
+11,12,Let's go shop for new clothes.,(She smiles.)  A shopping trip is a great idea!  Do you have at least $50 to pay for my new clothes?,,,,
 11,0,Stay like that.,Alright.  What would you like to do then?,,,,
-12,0,"Yes, here's the money.  (Pay 50$ to shop.)",,"Change(""Custom"")",DialogMoneyGreater(50),,
+12,0,"Yes, here's the money.  (Pay $50 to shop.)",,"Change(""Custom"")",DialogMoneyGreater(50),,
 12,0,Forget it.  It's too expensive.,Alright.  What would you like to do then?,NPCInteraction(-2),,,
 15,0,"Yes, get out.  (Kick her out.)",,KickOut(),,,
 15,0,"No, you can stay.",(She seems confused.)  Alright.  What would you like to do?,NPCInteraction(-5),,CancelKickOut,
@@ -1108,14 +1108,14 @@ ActivityShibari,1000,(Let her tie you up.),"(She makes sure you're naked and res
 ActivityShibari,1000,(Roll your eyes up and nod.),(She makes sure you're naked and restrains you with many hemp ropes.)  Never doubt my bondage skills.,ActivityRun(-1),,,
 ActivityShibari,1000,(Bow your head submissively.),"(She makes sure you're naked and restrains you with many hemp ropes.)  Wonderful, have fun struggling.",ActivityRun(1),,,
 ActivityShibari,1000,(Shake your head no.),(She makes sure you're naked and restrains you with many hemp ropes.)  There!  Struggle for me.,ActivityRun(-7),,,
-ActivityGiftIntro,,,"My girl, you make me really happy and I want to reward you.  I'll give you 50$ so you can do some shopping.",,,DomActivityGiftIntro,
-ActivityGiftIntro,,,"My wonderful submissive, I truly appreciate owning you and I want you to feel appreciated.  Take these 50$ and purchase something you desire.",,,DomActivityGiftIntro,Wise|Polite
-ActivityGiftIntro,,,"You're a great bitch and should get a gift.  (She checks her purse for a while.)  Here's 50$, get something kinky!",,,DomActivityGiftIntro,Dumb|Rude
-ActivityGift,1000,Wow!  Thank you.,My pleasure.  Spend it on something I can use on you.  (She winks and gives you 50$.),ActivityRun(0),Player.CanTalk(),,
-ActivityGift,1000,You're the best Mistress ever!,And you're the best sub.  Spend it on something I can use on you.  (She winks and gives you 50$.),ActivityRun(1),Player.CanTalk(),,
-ActivityGift,1000,I cannot take it.,"Slave, take it and spend it on something I can use on you.  (She gives you 50$.)",ActivityRun(-1),Player.CanTalk(),,
-ActivityGift,1000,(Nod politely and take the money.),Spend it on something I can use on you.  (She winks and gives you 50$.),ActivityRun(0),,,
-ActivityGift,1000,(Refuse the money.),"Slave, take it and spend it on something I can use on you.  (She gives you 50$.)",ActivityRun(-1),,,
+ActivityGiftIntro,,,"My girl, you make me really happy and I want to reward you.  I'll give you $50 so you can do some shopping.",,,DomActivityGiftIntro,
+ActivityGiftIntro,,,"My wonderful submissive, I truly appreciate owning you and I want you to feel appreciated.  Take these $50 and purchase something you desire.",,,DomActivityGiftIntro,Wise|Polite
+ActivityGiftIntro,,,"You're a great bitch and should get a gift.  (She checks her purse for a while.)  Here's $50, get something kinky!",,,DomActivityGiftIntro,Dumb|Rude
+ActivityGift,1000,Wow!  Thank you.,My pleasure.  Spend it on something I can use on you.  (She winks and gives you $50.),ActivityRun(0),Player.CanTalk(),,
+ActivityGift,1000,You're the best Mistress ever!,And you're the best sub.  Spend it on something I can use on you.  (She winks and gives you $50.),ActivityRun(1),Player.CanTalk(),,
+ActivityGift,1000,I cannot take it.,"Slave, take it and spend it on something I can use on you.  (She gives you $50.)",ActivityRun(-1),Player.CanTalk(),,
+ActivityGift,1000,(Nod politely and take the money.),Spend it on something I can use on you.  (She winks and gives you $50.),ActivityRun(0),,,
+ActivityGift,1000,(Refuse the money.),"Slave, take it and spend it on something I can use on you.  (She gives you $50.)",ActivityRun(-1),,,
 ActivityPetGirlIntro,,,"I've seen a few puppy girls in the club, and now I want one.  I think I'll make a pet out of you.",,,DomActivityPetGirlIntro,
 ActivityPetGirlIntro,,,"My girl, it would be really hot to see you in a puppy suit and cuddle with you.  I'll make a pet out of you.",,,DomActivityPetGirlIntro,Horny
 ActivityPetGirlIntro,,,"My parents never let me have a puppy back then, and now I want one.  I'll make a pet out of you.",,,DomActivityPetGirlIntro,Dumb
@@ -1408,9 +1408,9 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2020,2021,"Yes slave, I'm ready to collar you.","Dear Mistress, being owned by your caring hands would be a dream.  I will accept your loving collar.",,,SubReadyForCollar,Peaceful
 2020,2021,"Yes slave, I'm ready to collar you.","Mistress, I wish to surrender my flesh and freedom to you.  I will accept your tight collar.",,,SubReadyForCollar,Violent
 2020,2010,No.  Let's continue the trial.,(She sighs.)  Yes Mistress.,,,,
-2021,2022,Great!  I will setup the collaring ceremony.,You're the best!  I think there's a 100$ cost to prepare the ceremony though.,,,SubSetupCollaring,
-2021,2022,Great!  I will setup the collaring ceremony.,This is wonderful Mistress.  Do you have the 100$ to cover the ceremony cost?,,,SubSetupCollaring,Wise
-2021,2022,Great!  I will setup the collaring ceremony.,"Great!  Is there a cost for the ceremony?  10$?  50$?  Oh no, I think it's 100$.",,,SubSetupCollaring,Dumb
+2021,2022,Great!  I will setup the collaring ceremony.,You're the best!  I think there's a $100 cost to prepare the ceremony though.,,,SubSetupCollaring,
+2021,2022,Great!  I will setup the collaring ceremony.,This is wonderful Mistress.  Do you have the $100 to cover the ceremony cost?,,,SubSetupCollaring,Wise
+2021,2022,Great!  I will setup the collaring ceremony.,"Great!  Is there a cost for the ceremony?  $10?  $50?  Oh no, I think it's $100.",,,SubSetupCollaring,Dumb
 2022,2010,I don't have enough money.,"It's fine Mistress, take the time you need to find the money.",,!DialogMoneyGreater(100),,
 2022,2023,"Yes, I have enough money.",This is really thrilling!  Should we go right now?,,DialogMoneyGreater(100),,
 2023,2024,Yes.  (Do the collaring ceremony.),,NPCCollaring(),,,
@@ -1429,9 +1429,9 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2040,2000,Get in your underwear.,(She nods and makes sure she's wearing only her underwear.)  I'm not sure where this is going.,"Change(""Underwear"")",,,
 2040,2000,Get naked.,(She blushes and gets fully naked.)  Something kinky is brewing.,"Change(""Naked"")",,,
 2040,2042,Give me your college clothes.,I can't Mistress.  I'll get punished if I lose this college outfit.,,CanGetCollegeClothes(),,
-2040,2041,Let's go shop for new clothes.,(She smiles.)  That's a great idea Mistress.  Do you have at least 50$ to pay for my new clothes?,,,,
+2040,2041,Let's go shop for new clothes.,(She smiles.)  That's a great idea Mistress.  Do you have at least $50 to pay for my new clothes?,,,,
 2040,2000,Stay like that.,Yes Mistress.  What would you like to do then?,,,,
-2041,2000,"Yes, here's the money.  (Pay 50$ to shop.)",,"Change(""Custom"")",DialogMoneyGreater(50),,
+2041,2000,"Yes, here's the money.  (Pay $50 to shop.)",,"Change(""Custom"")",DialogMoneyGreater(50),,
 2041,2000,Forget it.  It's too expensive.,Yes Mistress.  What would you like to do then?,,,,
 2042,2000,Fine.  Forget it girl.,Very well.  What would you like to do then?,,,,
 2042,2000,You'll get punished now if you don't obey.,(She gulps and give you her college outfit.)  Yes Mistress.  I'll try to find a good excuse for losing them.,GetCollegeClothes(),,,
@@ -1480,13 +1480,13 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2066,2067,You need to become more serious.,(She nods.)  But how can I truly change?,"SlaveImproveSelect(""Serious"")",,,
 2066,2067,You need to become more playful.,Sweet!  But how can I truly change?,"SlaveImproveSelect(""Playful"")",,,
 2066,2010,Forget it.,Alright.  Anything else?,,,,
-2067,2068,The asylum will change you.,"(She nods.)  Yes, they have specific one day treatments.  But there's a 25$ fee, will you pay for it?",,,,
-2067,2068,You'll get therapies at the asylum.,"(She nods.)  Yes, they have specific one day treatments.  But there's a 25$ fee, will you pay for it?",,,,
-2067,2068,They have treatments for that at the asylum.,"(She nods.)  Yes, they have specific one day treatments.  But there's a 25$ fee, will you pay for it?",,,,
-2068,2069,I will pay the 25$.,Alright Mistress.  I will go there right now.  I will be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,
-2068,2069,I will pay the 25$.,(She nods slowly.)  I will go there and become a better subbie.  I will be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Playful|Peaceful
-2068,2069,I will pay the 25$.,I have my doubts but it's worth a try.  I'll go there quickly and be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Serious|Violent
-2068,2069,I will pay the 25$.,I'll try to be the best cunt for you.  I'll go there and be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Horny|Rude
+2067,2068,The asylum will change you.,"(She nods.)  Yes, they have specific one day treatments.  But there's a $25 fee, will you pay for it?",,,,
+2067,2068,You'll get therapies at the asylum.,"(She nods.)  Yes, they have specific one day treatments.  But there's a $25 fee, will you pay for it?",,,,
+2067,2068,They have treatments for that at the asylum.,"(She nods.)  Yes, they have specific one day treatments.  But there's a $25 fee, will you pay for it?",,,,
+2068,2069,I will pay the $25.,Alright Mistress.  I will go there right now.  I will be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,
+2068,2069,I will pay the $25.,(She nods slowly.)  I will go there and become a better subbie.  I will be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Playful|Peaceful
+2068,2069,I will pay the $25.,I have my doubts but it's worth a try.  I'll go there quickly and be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Serious|Violent
+2068,2069,I will pay the $25.,I'll try to be the best cunt for you.  I'll go there and be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Horny|Rude
 2068,2010,Forget it then.,Alright.  Anything else?,,,,
 2069,2000,See you tomorrow!  (Send her to the asylum.),,SlaveImproveSend(),,,
 2070,2071,Would you like to be my girlfriend?,Yes.  I could see myself as being both your slave and your lover.  I know we could have a great time together.,,,SubProposeGirlfriend,

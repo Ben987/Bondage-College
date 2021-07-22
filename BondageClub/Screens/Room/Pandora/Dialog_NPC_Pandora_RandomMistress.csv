@@ -51,7 +51,7 @@ RemoveItemNipples,,,(She stays silent as you remove the device.),,
 0,,Everything is quiet today.,Very good.  Be careful and watch out for spies from the Bondage Club.,DialogRemove(),"CostumeIs(""Guard"")"
 0,,I'm protecting this level.,Stay alert then.  We can't have any prisoner escape before the ransom is paid.,DialogRemove(),"CostumeIs(""Guard"")"
 0,40,"Sorry, I'm on a break.",Get lost then.  I don't have time for lazy maids.  (She walks away.),,"CostumeIs(""Maid"")"
-0,40,"Yes Miss, what drinks would you like?",(She orders a few drinks and gives you 5$.)  Don't be late or there will be trouble.  I need to go.  (She walks away.),PlayerPay(5),"CostumeIs(""Maid"")"
+0,40,"Yes Miss, what drinks would you like?",(She orders a few drinks and gives you $5.)  Don't be late or there will be trouble.  I need to go.  (She walks away.),PlayerPay(5),"CostumeIs(""Maid"")"
 0,10,Can I help you with something Miss?,"You're a good girl, aren't you?  Can you deliver this document to the Dominatrix headquarters?",,PandoraOdds50()
 0,,Can I help you with something Miss?,"No, why would I need help from you?",DialogRemove(),!PandoraOdds50()
 0,30,You think you can scare me?,"(She cracks her knuckles.)  You think you're tough, aren't you?  Fine!  I challenge you to a duel.",,
