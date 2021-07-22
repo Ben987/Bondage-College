@@ -194,6 +194,16 @@ function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (Current
  */
 function ChatRoomIsCollaredByPlayer() { return ((CurrentCharacter != null) && (CurrentCharacter.Ownership != null) && (CurrentCharacter.Ownership.Stage == 1) && (CurrentCharacter.Ownership.MemberNumber == Player.MemberNumber)); }
 /**
+ * Checks if the current character is owned by the player. (Including trial)
+ * @returns {boolean} - TRUE if the current character is owned by the player.
+ */
+function ChatRoomIsOwnedByPlayer() { return CurrentCharacter != null && CurrentCharacter.Ownership != null && CurrentCharacter.Ownership.MemberNumber == Player.MemberNumber; }
+/**
+ * Checks if the current character is wearing any collar.
+ * @returns {boolean} - TRUE if the current character is owned by the player.
+ */
+function ChatRoomIsWearingCollar() { return CurrentCharacter != null && InventoryGet(CurrentCharacter, "ItemNeck") !== null; }
+/**
  * Checks if the current character is lover of the player.
  * @returns {boolean} - TRUE if the current character is lover of the player.
  */

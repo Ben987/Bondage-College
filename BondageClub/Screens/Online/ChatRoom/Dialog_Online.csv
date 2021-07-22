@@ -4,7 +4,7 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 0,,,(You don't have access to use or remove items on her.),,!DialogDoAllowItem(CurrentCharacter)
 0,,(View her profile.),,ViewProfile(),
 0,,(Change her clothes.),,ChangeClothes(),ChatRoomCanChangeClothes()
-0,10,(Manage your relationship.),"(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)",CheckRelationships(),
+0,10,(Manage your relationship.),"(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)",,
 0,20,(Check her drink tray.),(There's a variety of drinks.  Some are offered by the club and some are more expensive.),,CanTakeDrink()
 0,30,(Room administrator action.),"(As a room administrator, you can take these actions with her.)",,PlayerIsAdmin()
 0,40,(Character actions.),(Possible character actions.),,CanPerformCharacterAction()
@@ -19,19 +19,25 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 10,,(Remove from friendlist.),(This member is not longer considered to be a friend by you.),"ListManage(""Remove"", ""FriendList"")",CanRemoveFriend()
 10,,(Ghost and ignore her.),(This member is now ghosted and ignored by you.  Nothing she says or does will appear in your chat log.),"ListManage(""Add"", ""GhostList"")",CanAddGhost()
 10,,(Stop ghosting her.),(This member is no longer ghosted by you.  You will see what she says or does in your chat log.),"ListManage(""Remove"", ""GhostList"")",CanRemoveGhost()
-10,0,(Offer her a trial period to become your submissive.),(The request was sent.  She must accept for the trial period to start.),"SendOwnershipRequest(""Propose"")","OwnershipOptionIs(""CanOfferStartTrial"")"
-10,0,(Accept a trial period to become her submissive.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanStartTrial"")"
-10,11,(Offer her to end the trial and be fully collared.),(There's a 100$ fee to prepare the ceremony and get her a slave collar.  Will you pay now?),,"OwnershipOptionIs(""CanOfferEndTrial"")"
-10,0,(Accept her collar and begin the ceremony.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanEndTrial"")"
+10,RelationshipSubmenu,"(Manage Ownership & Lovership)","(You can ask her to become your lover or submissive or advance the relationship.)",CheckRelationships(),
 10,100,"(Owner rules, restrictions & punishments.)","(Select the owner rule, restriction or punishment that you want to enforce.)",,IsCollaredByPlayer()
 10,200,"(Lover rules, restrictions & punishments.)","(Select the lover rule, restriction or punishment that you want to enforce on your lover.)",,IsLoverOfPlayer()
 10,,(Give her the money envelope.),,GiveMoneyForOwner(),CanGiveMoneyForOwner()
-10,0,(Ask her to be your girlfriend.),(The request has been sent.  She must accept it to start dating you.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginDating"")"
-10,0,(Accept to be her girlfriend.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginDating"")"
-10,0,(Offer her to become your fiancée.),(The request has been sent.  She must accept it to become your fiancée.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginEngagement"")"
-10,0,(Accept her proposal of engagement.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginEngagement"")"
-10,12,(Offer her to marry each other.),(There's a 100$ fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanOfferBeginWedding"")"
-10,13,(Accept her proposal and become her wife.),(There's a 100$ fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanBeginWedding"")"
+RelationshipSubmenu,0,(Offer her a trial period to become your submissive.),(The request was sent.  She must accept for the trial period to start.),"SendOwnershipRequest(""Propose"")","OwnershipOptionIs(""CanOfferStartTrial"")"
+RelationshipSubmenu,0,(Accept a trial period to become her submissive.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanStartTrial"")"
+RelationshipSubmenu,11,(Offer her to end the trial and be fully collared.),(There's a 100$ fee to prepare the ceremony and get her a slave collar.  Will you pay now?),,"OwnershipOptionIs(""CanOfferEndTrial"")"
+RelationshipSubmenu,0,(Accept her collar and begin the ceremony.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanEndTrial"")"
+RelationshipSubmenu,0,(Ask her to be your girlfriend.),(The request has been sent.  She must accept it to start dating you.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginDating"")"
+RelationshipSubmenu,0,(Accept to be her girlfriend.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginDating"")"
+RelationshipSubmenu,0,(Offer her to become your fiancée.),(The request has been sent.  She must accept it to become your fiancée.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginEngagement"")"
+RelationshipSubmenu,0,(Accept her proposal of engagement.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginEngagement"")"
+RelationshipSubmenu,12,(Offer her to marry each other.),(There's a 100$ fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanOfferBeginWedding"")"
+RelationshipSubmenu,13,(Accept her proposal and become her wife.),(There's a 100$ fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanBeginWedding"")"
+RelationshipSubmenu,10,(Back),"(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)",,
+RelationshipSubmenu,ReleaseSubmissiveConfirm,(Release her from the slave bond.),(Are you sure you want to release her? THIS ACTION IS NOT REVERSIBLE!),,IsOwnedByPlayer()
+ReleaseSubmissiveConfirm,0,"(Yes, I want to permanently break the ownership!)",(The ownership has been broken.),"SendOwnershipRequest(""Release"")",!IsWearingCollar()
+ReleaseSubmissiveConfirm,,"(Yes, I want to permanently break the ownership!)",(The submissive must not be wearing any collar to complete this action.),,IsWearingCollar()
+ReleaseSubmissiveConfirm,0,(Cancel),(Main menu),,
 11,0,(Pay 100$ for the collaring ceremony.),"(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)","SendOwnershipRequest(""Propose"")",DialogMoneyGreater(100)
 11,0,(Refuse to pay.),(Main menu),,
 12,0,(Pay 100$ for the wedding.),(You pay and ask her to marry you. You wait for her answer.),"SendLovershipRequest(""Propose"")",DialogMoneyGreater(100)
