@@ -152,7 +152,180 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // BunnyCollarCuffs
 	}, // ClothAccessory
+	ItemBreast: {
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "LightWrap",
+						Property: { Type: null, Difficulty: 0 },
+					},
+					{
+						Name: "LightWrapBow",
+						Property: { Type: "LightWrapBow", Difficulty: 1 },
+					},
+					{
+						Name: "Wrap",
+						Property: { Type: "Wrap", Difficulty: 2 },
+					},
+				],
+				Dialog: {
+					Load: "SelectRibbonType",
+					TypePrefix: "RibbonsStyle",
+					ChatPrefix: "RibbonsSet",
+					NpcPrefix: "ItemBreastRibbons",
+				},
+			}
+		}, // Ribbons
+	}, // ItemBreast
 	ItemArms: {
+		InflatableStraightLeotard: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Light",
+						Property: {
+							Type: null,
+							Effect: ["Block", "Prone"],
+						},
+					},
+					{
+						Name: "Inflated",
+						Property: {
+							Type: "Inflated",
+							Effect: ["Block", "Prone"],
+							Difficulty: 1,
+						},
+					},
+					{
+						Name: "Bloated",
+						Property: {
+							Type: "Bloated",
+							Effect: ["Block", "Prone"],
+							Difficulty: 2,
+						},
+					},
+					{
+						Name: "Max",
+						Property: {
+							Type: "Max",
+							Effect: ["Block", "Prone", "Freeze"],
+							Difficulty: 3,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectInflationLevel",
+					TypePrefix: "InflationAmount",
+					ChatPrefix: "InflationAmountSet",
+					NpcPrefix: "ItemArmsInflatableStraightLeotard",
+				},
+			}
+		}, // InflatableStraightLeotard
+		MetalCuffs: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "InFront",
+						Property: {
+							Type: "InFront",
+							SetPose: ["BaseUpper"],
+						}
+					},
+					{
+						Name: "BehindBack",
+						Property: {
+							Type: null,
+							SetPose: ["BackCuffs"],
+						}
+					}
+				],
+				Dialog: {
+					Load: "SelectBondagePosition",
+					TypePrefix: "MetalCuffsPose",
+					ChatPrefix: "MetalCuffsRestrain",
+					NpcPrefix: "ItemArmsMetalCuffs",
+				},
+			}
+		}, // MetalCuffs
+		Chains: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+						{
+							Name: "WristTie",
+							BondageLevel: null,
+							Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+							Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
+						}, {
+							Name: "BoxTie",
+							BondageLevel: null,
+							Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 }
+						}, {
+							Name: "ChainCuffs",
+							BondageLevel: null,
+							Property: { Type: "ChainCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 29 },
+							Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }]
+						}, {
+							Name: "WristElbowTie",
+							BondageLevel: 2,
+							Property: { Type: "WristElbowTie", Effect: ["Block", "Prone", "NotSelfPickable"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
+							Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
+						}, {
+							Name: "WristElbowHarnessTie",
+							BondageLevel: 3,
+							Property: { Type: "WristElbowHarnessTie", Effect: ["Block", "Prone", "NotSelfPickable"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
+							Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }]
+						}, {
+							Name: "KneelingHogtie",
+							BondageLevel: 4,
+							Prerequisite: ["NotMounted", "NotSuspended"],
+							Property: { Type: "KneelingHogtie", Effect: ["Block", "Freeze", "Prone", "NotSelfPickable"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Kneel", "BackElbowTouch"], Difficulty: 3 },
+							Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+							SelfBlockCheck: true,
+							Random: false,
+						}, {
+							Name: "Hogtied",
+							BondageLevel: 4,
+							Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
+							Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone", "NotSelfPickable"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied"], Difficulty: 3 },
+							Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+							SelfBlockCheck: true,
+							Random: false,
+						}, {
+							Name: "AllFours",
+							BondageLevel: 6,
+							Prerequisite: ["NotMounted", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
+							Property: { Type: "AllFours", Effect: ["ForceKneel", "NotSelfPickable"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemDevices"],  AllowActivityOn: ["ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["AllFours"], Difficulty: 3 },
+							Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+							SelfBlockCheck: true,
+							Random: false,
+						}, {
+							Name: "SuspensionHogtied",
+							BondageLevel: 8,
+							Prerequisite: ["NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"],
+							Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone", "NotSelfPickable"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], AllowActivityOn: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6,
+								OverrideHeight: { Height: 0, Priority: 51, HeightRatioProportion: 0 } },
+							Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+							Random: false,
+						}
+				],
+				Dialog: {
+					Load: "SelectChainBondage",
+					TypePrefix: "ChainBondage",
+					ChatPrefix: "ArmsChainSet",
+					NpcPrefix: "ChainBondage",
+				},
+				ChangeWhenLocked: false,
+			}
+		}, // Chains
 		HighSecurityStraitJacket: {
 			Archetype: ExtendedArchetype.MODULAR,
 			Config: {
@@ -910,6 +1083,64 @@ var AssetFemale3DCGExtended = {
 		} // ShinySteelCollar
 	}, // ItemNeck
 	ItemHood: {
+		InflatedBallHood: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Empty",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							InflateLevel: 0,
+							Effect: [],
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							Difficulty: 2,
+							InflateLevel: 1,
+							Effect: ["GagLight", "BlockMouth"],
+						},
+					},
+					{
+						Name: "Inflated",
+						Property: {
+							Type: "Inflated",
+							Difficulty: 4,
+							InflateLevel: 2,
+							Effect: ["GagEasy", "BlockMouth"],
+						},
+					},
+					{
+						Name: "Bloated",
+						Property: {
+							Type: "Bloated",
+							Difficulty: 6,
+							InflateLevel: 3,
+							Effect: ["GagMedium", "BlockMouth"],
+						},
+					},
+					{
+						Name: "Maximum",
+						Property: {
+							Type: "Maximum",
+							Difficulty: 8,
+							InflateLevel: 4,
+							Effect: ["GagVeryHeavy", "BlockMouth"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectInflateLevel",
+					TypePrefix: "InflateLevel",
+					ChatPrefix: ({ newIndex, previousIndex }) => `InflatedHood${(newIndex > previousIndex) ? "pumps" : "deflates"}To`,
+				},
+				DrawImages: false,
+			}
+		}, // InflatedBallHood
 		KirugumiMask: {
 			Archetype: ExtendedArchetype.MODULAR,
 			Config: {
@@ -1011,9 +1242,108 @@ var AssetFemale3DCGExtended = {
 				},
 				DrawImages: false,
 			},
-		}, // HempRopeHarness
+		}, // GwenHood
 	}, // ItemHood
 	ItemDevices: {
+		BondageBench: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "None",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							AllowLock: false,
+							SetPose: ["LegsClosed"],
+							Effect: ["Mounted"],
+						},
+					},
+					{
+						Name: "Light",
+						SelfBondageLevel: 2,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Light",
+							Difficulty: 2,
+							SetPose: ["LegsClosed", "BaseUpper"],
+							Effect: ["Block", "Prone", "Freeze", "Mounted"],
+							Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+						},
+					},
+					{
+						Name: "Normal",
+						SelfBondageLevel: 3,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Normal",
+							Difficulty: 3,
+							SetPose: ["LegsClosed", "BaseUpper"],
+							Effect: ["Block", "Prone", "Freeze", "Mounted"],
+							Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+						},
+					},
+					{
+						Name: "Heavy",
+						SelfBondageLevel: 6,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Heavy",
+							Difficulty: 6,
+							SetPose: ["LegsClosed", "BaseUpper"],
+							Effect: ["Block", "Prone", "Freeze", "Mounted"],
+							Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+						},
+					},
+					{
+						Name: "Full",
+						SelfBondageLevel: 9,
+						Prerequisite: ["NoOuterClothes"],
+						Property: {
+							Type: "Full",
+							Difficulty: 9,
+							SetPose: ["LegsClosed", "BaseUpper"],
+							Effect: ["Block", "Prone", "Freeze", "Mounted"],
+							Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "BondageBenchStrapsSelectTightness",
+					TypePrefix: "BondageBenchStrapsPose",
+					ChatPrefix: "BondageBenchStrapsRestrain",
+				},
+			},
+		}, // BondageBench
+		Cushion: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Hold",
+						Property: {
+							Type: null,
+						},
+					},
+					{
+						Name: "Kneel",
+						Prerequisite: ["NotSuspended", "CanKneel"],
+						Property: {
+							Type: "Kneel",
+							OverrideHeight: { Height: -200, Priority: 21 },
+							OverridePriority: 1,
+							SetPose: ["Kneel"]
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectCushionStyle",
+					TypePrefix: "CushionType",
+				},
+				ChatSetting: TypedItemChatSetting.SILENT,
+			},
+		}, // Cushion
 		Crib: {
 			Archetype: ExtendedArchetype.MODULAR,
 			Config: {
@@ -1161,7 +1491,7 @@ var AssetFemale3DCGExtended = {
 					},
 				],
 			},
-		}, //LitteMonster
+		}, // LitteMonster
 		InflatableBodyBag: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -1197,7 +1527,7 @@ var AssetFemale3DCGExtended = {
 					},
 				],
 			},
-		}, //InflatableBodyBag
+		}, // InflatableBodyBag
 		Pole: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -1221,7 +1551,70 @@ var AssetFemale3DCGExtended = {
 					},
 				],
 			},
-		}, //Pole
+		}, // Pole
+		CryoCapsule: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Open",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Effect: ["Freeze"],
+							SelfUnlock: true
+						}
+					},
+					{
+						Name: "Closed",
+						Property: {
+							Type: "Closed",
+							Difficulty: 50,
+							Effect: ["Freeze", "GagMedium", "Prone", "Enclose", "BlindLight"],
+							SelfUnlock: false
+						}
+					}
+				],
+				ChangeWhenLocked: false,
+				Dialog: {
+					Load: "SelectCryoCapsuleType",
+					TypePrefix: "CryoCapsuleType",
+					ChatPrefix: "CryoCapsuleSet",
+				},
+			},
+		}, // CryoCapsule
+		Coffin: {
+			Archetype: ExtendedArchetype.TYPED,
+			CopyConfig: { AssetName: "CryoCapsule" },
+			Config: {
+				Options: [
+					{
+						Name: "Open",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Effect: ["Freeze"],
+							SelfUnlock: true
+						}
+					},
+					{
+						Name: "Closed",
+						Property: {
+							Type: "Closed",
+							Difficulty: 50,
+							Effect: ["Freeze", "GagMedium", "Prone", "Enclose", "BlindLight"],
+							SelfUnlock: false
+						}
+					}
+				],
+				Dialog: {
+					Load: "SelectCoffinType",
+					TypePrefix: "CoffinType",
+					ChatPrefix: "CoffinSet",
+				},
+			},
+		}, // Coffin
 	}, // ItemDevices
 	ItemBoots: {
 		ToeTape: {
@@ -1247,7 +1640,372 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // ToeTape
 	}, // ItemBoots
+	ItemVulva: {
+		ClitSuctionCup: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Loose",
+						Property: {
+							Type: null,
+							SuctionLevel: 0,
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							SuctionLevel: 1,
+						},
+					},
+					{
+						Name: "Medium",
+						Property: {
+							Type: "Medium",
+							SuctionLevel: 2,
+						},
+					},
+					{
+						Name: "Heavy",
+						Property: {
+							Type: "Heavy",
+							SuctionLevel: 3,
+						},
+					},
+					{
+						Name: "Maximum",
+						Property: {
+							Type: "Maximum",
+							SuctionLevel: 4,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectSuctionLevel",
+					TypePrefix: "SuctionLevel",
+					ChatPrefix: ({ newIndex, previousIndex }) => `ClitSuc${(newIndex > previousIndex) ? "tightens" : "loosens"}To`,
+					NpcPrefix: "ItemVulvaClitSuctionCupNPCReaction"
+				},
+				DrawImages: false,
+			},
+		}, // ClitSuctionCup
+	}, // ItemVulva
+	ItemVulvaPiercings: {
+		ClitRing: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						Property: {
+							Type: null,
+							Effect: [],
+						},
+					},
+					{
+						Name: "Leash",
+						Prerequisite: ["NotSuspended"],
+						Property: {
+							Type: "Leash",
+							Effect: ["Leash"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectAttachmentState",
+					TypePrefix: "ClitRingPose",
+					ChatPrefix: "ClitRingRestrain",
+				},
+			},
+		}, // ClitRing
+	}, // ItemVulvaPiercings
+	ItemButt: {
+		AnalHook: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						Property: {
+							Type: null,
+							Difficulty: 0,
+							Intensity: 0,
+							Effect: ["IsPlugged"],
+						},
+					},
+					{
+						Name: "Chain",
+						Property: {
+							Type: "Chain",
+							Difficulty: 8,
+							Intensity: 1,
+							Effect: ["IsPlugged", "Freeze", "Egged"]
+						},
+						Random: false,
+					},
+					{
+						Name: "Hair",
+						Property: {
+							Type: "Hair",
+							Difficulty: 4,
+							Intensity: 1,
+							Effect: ["IsPlugged", "Egged"]
+						}
+					},
+				],
+				Dialog: {
+					Load: "SelectAttachmentState",
+					TypePrefix: "AnalHookPose",
+					ChatPrefix: "AnalHookRestrain",
+					NpcPrefix: "InventoryItemButtAnalHookNPCReaction",
+				},
+			},
+		}, // AnalHook
+		ButtPlugLock: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						Property: { Type: null },
+					},
+					{
+						Name: "ChainShort",
+						Prerequisite: ["NotSuspended", "CanKneel", "NotMounted"],
+						Property: {
+							Type: "ChainShort",
+							Effect: ["Freeze", "ForceKneel", "IsChained"],
+							SetPose: ["Kneel"],
+						},
+						Random: false,
+					},
+					{
+						Name: "ChainLong",
+						Prerequisite: ["NotSuspended"],
+						Property: {
+							Type: "ChainLong",
+							Effect: ["Tethered", "IsChained"],
+						},
+						Random: false,
+					},
+				],
+				Dialog: {
+					Load: "SelectAttachmentState",
+					TypePrefix: "ButtPlugLockPose",
+					ChatPrefix: "ButtPlugLockRestrain",
+					NpcPrefix: "ButtPlugLockSet",
+				},
+			},
+		}, // ButtPlugLock
+		ButtPump: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Empty",
+						Property: {
+							Type: null,
+							InflateLevel: 0,
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							InflateLevel: 1,
+						},
+					},
+					{
+						Name: "Inflated",
+						Property: {
+							Type: "Inflated",
+							InflateLevel: 2,
+						},
+					},
+					{
+						Name: "Bloated",
+						Property: {
+							Type: "Bloated",
+							InflateLevel: 3,
+						},
+					},
+					{
+						Name: "Maximum",
+						Property: {
+							Type: "Maximum",
+							InflateLevel: 4,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectInflateLevel",
+					TypePrefix: "InflateLevel",
+					ChatPrefix: ({ newIndex, previousIndex }) => `BPumps${(newIndex > previousIndex) ? "pumps" : "deflates"}To`,
+					NpcPrefix: "InventoryItemButtButtPumpNPCReaction",
+				},
+				DrawImages: false,
+			},
+		}, // ButtPump
+	}, // ItemButt
+	ItemNipplesPiercings: {
+		RoundPiercing: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						BondageLevel: 0,
+						Prerequisite: ["AccessBreast", "AccessBreastSuitZip"],
+						Property: {
+							Type: null,
+							Difficulty: 0,
+						},
+					},
+					{
+						Name: "Chain",
+						BondageLevel: 0,
+						Prerequisite: ["AccessBreast", "AccessBreastSuitZip", "Collared"],
+						Property: {
+							Type: "Chain",
+							Difficulty: 0,
+							Block: ["ItemNeck"],
+						},
+					},
+					{
+						Name: "Weighted",
+						BondageLevel: 0,
+						Prerequisite: ["AccessBreast", "AccessBreastSuitZip"],
+						Property: {
+							Type: "Weighted",
+							Difficulty: 0,
+						},
+					},
+					{
+						Name: "WeightedChain",
+						BondageLevel: 0,
+						Prerequisite: ["AccessBreast", "AccessBreastSuitZip", "Collared"],
+						Property: {
+							Type: "WeightedChain",
+							Difficulty: 0,
+							Block: ["ItemNeck"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectPiercingState",
+					TypePrefix: "RoundPiercingPose",
+					ChatPrefix: "RoundPiercingRestrain",
+					NpcPrefix: "RoundPiercingNPCReaction",
+				},
+			},
+		}, // RoundPiercing
+	}, // ItemNipplesPiercings
 	ItemNipples: {
+		LactationPump: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Off",
+						Property: {
+							Type: null,
+							SuctionLevel: 0,
+						},
+					},
+					{
+						Name: "LowSuction",
+						Property: {
+							Type: "LowSuction",
+							SuctionLevel: 1,
+						},
+					},
+					{
+						Name: "MediumSuction",
+						Property: {
+							Type: "MediumSuction",
+							SuctionLevel: 2,
+						},
+					},
+					{
+						Name: "HighSuction",
+						Property: {
+							Type: "HighSuction",
+							SuctionLevel: 3,
+						},
+					},
+					{
+						Name: "MaximumSuction",
+						Property: {
+							Type: "MaximumSuction",
+							SuctionLevel: 4,
+						},
+					},
+				],
+				Dialog: {
+					Load: "LactationPumpSelectSetting",
+					TypePrefix: "LactationPump",
+					ChatPrefix: ({ newIndex, previousIndex }) => `LactationPumpPower${(newIndex > previousIndex) ? "tightens" : "loosens"}To`,
+				},
+				DrawImages: false,
+			},
+		}, // LactationPump
+		NippleSuctionCups: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Loose",
+						Property: {
+							Type: null,
+							SuctionLevel: 0,
+						},
+					},
+					{
+						Name: "Light",
+						Property: {
+							Type: "Light",
+							SuctionLevel: 1,
+						},
+					},
+					{
+						Name: "Medium",
+						Property: {
+							Type: "Medium",
+							SuctionLevel: 2,
+						},
+					},
+					{
+						Name: "Heavy",
+						Property: {
+							Type: "Heavy",
+							SuctionLevel: 3,
+						},
+					},
+					{
+						Name: "Maximum",
+						Property: {
+							Type: "Maximum",
+							SuctionLevel: 4,
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectSuctionLevel",
+					TypePrefix: "SuctionLevel",
+					ChatPrefix: ({ newIndex, previousIndex }) => `NipSuc${(newIndex > previousIndex) ? "tightens" : "loosens"}To`,
+				},
+				DrawImages: false,
+			},
+		}, // NippleSuctionCups
 		PlateClamps: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -1298,6 +2056,54 @@ var AssetFemale3DCGExtended = {
 		}, // LatexCorset1
 	}, // Corset
 	ItemTorso: {
+		HeavyLatexCorset: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Normal",
+						Property: { Type: null },
+					},
+					{
+						Name: "Straps",
+						Property: { Type: "Straps" },
+					},
+				],
+				Dialog: {
+					Load: "SelectHeavyLatexCorsetType",
+					TypePrefix: "HeavyLatexCorsetType",
+					ChatPrefix: "HeavyLatexCorsetSet",
+					NpcPrefix: "HeavyLatexCorset",
+				},
+			}
+		}, // HeavyLatexCorset
+		Ribbons: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Basic",
+						Property: { Type: null, Difficulty: 1 }
+					}, {
+						Name: "Harness1",
+						BondageLevel: 2,
+						Property: { Type: "Harness1" , Difficulty: 3 , Effect: ["CrotchRope"]}
+					}, {
+						Name: "Harness2",
+						BondageLevel: 3,
+						Property: { Type: "Harness2" , Difficulty: 4, Effect: ["CrotchRope"] }
+					}
+				],
+				Dialog: {
+					Load: "SelectRibbonType",
+					TypePrefix: "RibbonsTorso",
+					ChatPrefix: "TorsoRibbonsSet",
+					NpcPrefix: "ItemTorsoRibbons",
+				},
+			}
+		}, // Ribbons
 		LatexCorset1: {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "Corset", AssetName: "LatexCorset1" },
@@ -1899,6 +2705,70 @@ var AssetFemale3DCGExtended = {
 		} // BunnyMask1
 	}, // Mask
 	ItemLegs: {
+		HempRope: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Basic",
+						Property: { Type: null, SetPose: ["LegsClosed"], Difficulty: 1 }
+					}, {
+						Name: "FullBinding",
+						BondageLevel: 2,
+						Property: { Type: "FullBinding", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}, {
+						Name: "Link",
+						BondageLevel: 2,
+						Property: { Type: "Link", SetPose: ["LegsClosed"], Difficulty: 2 }
+					}, {
+						Name: "Frogtie",
+						BondageLevel: 3,
+						Property: { Type: "Frogtie", SetPose: ["Kneel"], Block: ["ItemFeet"], Effect: ["ForceKneel"], Difficulty: 3 },
+						Prerequisite: ["NotSuspended", "CanKneel"],
+						Random: false,
+					}, {
+						Name: "Crossed",
+						BondageLevel: 4,
+						Property: { Type: "Crossed", SetPose: ["LegsClosed"], Difficulty: 4 }
+					}, {
+						Name: "Mermaid",
+						BondageLevel: 4,
+						Property: { Type: "Mermaid", SetPose: ["LegsClosed"], Difficulty: 4 }
+					}					
+				],
+				Dialog: {
+					Load: "SelectRopeBondage",
+					TypePrefix: "RopeBondage",
+					ChatPrefix: "LegRopeSet",
+					NpcPrefix: "RopeBondage",
+				},
+			}
+		}, // HempRope
+		Chains: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Basic",
+						BondageLevel: 0,
+						Property: { Type: null, Difficulty: 0 }
+					}, {
+						Name: "Strict",
+						BondageLevel: 2,
+						Property: { Type: "Strict", Difficulty: 2 }
+					}					
+				],
+				Dialog: {
+					Load: "SelectChainBondage",
+					TypePrefix: "ChainBondage",
+					ChatPrefix: "LegChainSet",
+					NpcPrefix: "ChainBondage",
+				},
+				ChangeWhenLocked: false,
+			}
+		}, // Chains
 		SturdyLeatherBelts: {
 			Archetype: ExtendedArchetype.TYPED,
 			CopyConfig: { GroupName: "ItemArms", AssetName: "SturdyLeatherBelts" },
@@ -1997,6 +2867,67 @@ var AssetFemale3DCGExtended = {
 		}, // Zipties
 	}, // ItemLegs
 	ItemFeet: {
+		SpreaderMetal: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				Options: [
+					{
+						Name: "Narrow",
+						Property: {
+							Type: null, Effect: ["Prone", "Freeze"], SetPose: ["LegsOpen"],
+						}
+					},
+					{
+						Name: "Wide",
+						Property: {
+							Type: "Wide", Effect: ["Prone", "Freeze"], SetPose: ["Spread"],
+						}
+					}
+				],
+				Dialog: {
+					Load: "SelectSpreaderType",
+					TypePrefix: "SpreaderMetalPose",
+				},
+				ChatSetting: TypedItemChatSetting.SILENT,
+			}
+		}, // SpreaderMetal
+		Chains: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Basic",
+						BondageLevel: 0,
+						Property: { Type: null, Difficulty: 0, SetPose: ["LegsClosed"] },
+					},
+					{
+						Name: "Strict",
+						BondageLevel: 2,
+						Property: { Type: "Strict", Difficulty: 2, SetPose: ["LegsClosed"] },
+					},
+					{
+						Name: "Suspension",
+						BondageLevel: 6,
+						Prerequisite: ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"],
+						Property: {
+							Type: "Suspension",
+							Difficulty: 4,
+							SetPose: ["Suspension", "LegsClosed"],
+							AllowActivePose: [],
+						},
+						Random: false,
+					},
+				],
+				Dialog: {
+					Load: "SelectChainBondage",
+					TypePrefix: "ChainBondage",
+					ChatPrefix: "LegChainSet",
+					NpcPrefix: "ChainBondage",
+				},
+				ChangeWhenLocked: false,
+			}
+		}, // Chains
 		SteelAnkleCuffs: {
 			Archetype: ExtendedArchetype.TYPED,
 			Config: {
@@ -2574,4 +3505,107 @@ var AssetFemale3DCGExtended = {
 			},
 		}, // WebBlindfold
 	}, // ItemHead
+	ItemAddon: {
+		CeilingChain: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Lowered",
+						Property: { Type: null, Difficulty: 6, Effect: []}
+					}, {
+						Name: "Suspended",
+							Property: { 
+							Type: "Suspended", Difficulty: 7,
+							OverrideHeight: { Height: 30, Priority: 51, HeightRatioProportion: 0 },
+							Effect: ["Lifted"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectCeilingChainState",
+					TypePrefix: "CeilingChainBondage",
+					ChatPrefix: "CeilingChainSet",
+					NpcPrefix: "CeilingChain",
+				},
+			}
+		}, // CeilingChain
+		CeilingRope: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.TARGET_CHAR],
+				Options: [
+					{
+						Name: "Lowered",
+						Property: { Type: null, Difficulty: 6}
+					}, {
+						Name: "Suspended",
+						Property: { 
+							Type: "Suspended", Difficulty: 7,
+							OverrideHeight: { Height: 30, Priority: 51, HeightRatioProportion: 0 },
+							Effect: ["Lifted"],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectCeilingRopeState",
+					TypePrefix: "CeilingRopeBondage",
+					ChatPrefix: "CeilingRopeSet",
+					NpcPrefix: "CeilingRope",
+				},
+			}
+		}, // CeilingRope
+	}, // ItemAddon
+	ItemNose: {
+		NoseRing: {
+			Archetype: ExtendedArchetype.TYPED,
+			Config: {
+				ChatTags: [CommonChatTags.SOURCE_CHAR, CommonChatTags.DEST_CHAR],
+				Options: [
+					{
+						Name: "Base",
+						Property: {
+							Type: null,
+							Effect: [],
+							SetPose: [],
+						},
+					},
+					{
+						Name: "ChainShort",
+						Prerequisite: ["NotSuspended", "CanKneel", "NotMounted"],
+						Property: {
+							Type: "ChainShort",
+							Effect: ["Freeze", "ForceKneel", "IsChained"],
+							SetPose: ["Kneel"],
+						},
+					},
+					{
+						Name: "ChainLong",
+						Prerequisite: ["NotSuspended"],
+						Property: {
+							Type: "ChainLong",
+							Effect: ["Tethered", "IsChained"],
+							SetPose: [],
+						},
+					},
+					{
+						Name: "Leash",
+						Prerequisite: ["NotSuspended"],
+						Property: {
+							Type: "Leash",
+							Effect: ["Leash"],
+							SetPose: [],
+						},
+					},
+				],
+				Dialog: {
+					Load: "SelectAttachmentState",
+					TypePrefix: "NoseRingPose",
+					ChatPrefix: "NoseRingRestrain",
+					NpcPrefix: "InventoryItemNoseNoseRingNPCReaction",
+				},
+			}
+		}, // NoseRing
+	}, // ItemNose
 };
