@@ -32,6 +32,8 @@ var GLDrawAlphaThreshold = 0.01;
 var GLDrawHalfAlphaLow = 0.8 / 256.0;
 var GLDrawHalfAlphaHigh = 1.2 / 256.0;
 
+var GLDrawLodingCharacters = [];
+
 window.addEventListener('load', GLDrawLoad);
 
 /**
@@ -353,9 +355,9 @@ function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
  * @param {boolean} fullAlpha - Whether or not the full alpha should be rendered
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
  * @param {number} opacity - The opacity at which to draw the image
- * @returns {void} - Nothing
+ * @returns {boolean} - If the draw is a success or image had an error
  */
-function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks, opacity, rotate) { GLDrawImage(url, gl, dstX, dstY, 500, color, fullAlpha, alphaMasks, opacity, rotate); }
+function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks, opacity, rotate) { return GLDrawImage(url, gl, dstX, dstY, 500, color, fullAlpha, alphaMasks, opacity, rotate); }
 /**
  * Draws an image from a given url to a WebGLRenderingContext
  * @param {string} url - URL of the image to render
@@ -368,12 +370,19 @@ function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha, alphaMasks, opa
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
  * @param {number} [opacity=1] - The opacity at which to draw the image
  * @param {boolean} [rotate=false] - If the image should be rotated by 180 degress
- * @returns {void} - Nothing
+ * @returns {boolean} - If the draw is a success or image had an error
  */
 function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks, opacity, rotate = false) {
 	offsetX = offsetX || 0;
 	opacity = typeof opacity === "number" ? opacity : 1;
 	var tex = GLDrawLoadImage(gl, url);
+
+	// we can draw canvas if image was not found
+	if (tex.error) return true;
+
+	if (!tex.loaded) return false;
+
+
 	var mask = GLDrawLoadMask(gl, tex.width, tex.height, dstX, dstY, alphaMasks);
 	if (rotate) dstX = 500 - dstX;
 	const sign = rotate ? -1 : 1;
@@ -409,6 +418,8 @@ function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks,
 	if (program.u_color != null) gl.uniform4fv(program.u_color, GLDrawHexToRGBA(color, opacity));
 
 	gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+	return true;
 }
 
 /**
@@ -418,8 +429,9 @@ function GLDrawImage(url, gl, dstX, dstY, offsetX, color, fullAlpha, alphaMasks,
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
+ * @returns {boolean}
  */
-function GLDraw2DCanvasBlink(gl, Img, X, Y, alphaMasks) { GLDraw2DCanvas(gl, Img, X + 500, Y, alphaMasks); }
+function GLDraw2DCanvasBlink(gl, Img, X, Y, alphaMasks) { return GLDraw2DCanvas(gl, Img, X + 500, Y, alphaMasks); }
 /**
  * Draws a canvas on the WebGL canvas
  * @param {WebGL2RenderingContext} gl - WebGL context
@@ -427,12 +439,13 @@ function GLDraw2DCanvasBlink(gl, Img, X, Y, alphaMasks) { GLDraw2DCanvas(gl, Img
  * @param {number} X - Position of the image on the X axis
  * @param {number} Y - Position of the image on the Y axis
  * @param {number[][]} alphaMasks - A list of alpha masks to apply to the asset
+ * @returns {boolean}
  */
 function GLDraw2DCanvas(gl, Img, X, Y, alphaMasks) {
 	var TempCanvasName = Img.getAttribute("name");
 	gl.textureCache.delete(TempCanvasName);
 	GLDrawImageCache.set(TempCanvasName, Img);
-	GLDrawImage(TempCanvasName, gl, X, Y, 0, null, null, alphaMasks);
+	return GLDrawImage(TempCanvasName, gl, X, Y, 0, null, null, alphaMasks);
 }
 
 /**
@@ -447,6 +460,8 @@ function GLDrawBingImageToTextureInfo(gl, Img, textureInfo) {
 	textureInfo.height = Img.height;
 	gl.bindTexture(gl.TEXTURE_2D, textureInfo.texture);
 	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, Img);
+	textureInfo.loaded = true;
+	textureInfo.error = false;
 }
 
 /**
@@ -463,8 +478,8 @@ function GLDrawLoadImage(gl, url) {
 		var tex = gl.createTexture();
 
 		gl.bindTexture(gl.TEXTURE_2D, tex);
-		/** @type { { width: number; height: number; texture: WebGLTexture; } } */
-		textureInfo = { width: 1, height: 1, texture: tex, };
+		/** @type { { width: number; height: number; texture: WebGLTexture; loaded: boolean; error: boolean; } } */
+		textureInfo = { width: 1, height: 1, texture: tex, loaded: false, error: false };
 		gl.textureCache.set(url, textureInfo);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
 		gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
@@ -482,10 +497,15 @@ function GLDrawLoadImage(gl, url) {
 			++GLDrawCacheTotalImages;
 			Img.addEventListener('load', function () {
 				GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
-				++GLDrawCacheLoadedImages;
-				if (GLDrawCacheLoadedImages == GLDrawCacheTotalImages) { Player.MustDraw = true; CharacterLoadCanvasAll(); }
+				if (!textureInfo.error) ++GLDrawCacheLoadedImages;
+				if (GLDrawCacheLoadedImages == GLDrawCacheTotalImages) GLDrawForceRedraw();
 			});
 			Img.addEventListener('error', function () {
+				if (!textureInfo.error) {
+					textureInfo.error = true;
+					++GLDrawCacheLoadedImages;
+					if (GLDrawCacheLoadedImages == GLDrawCacheTotalImages) GLDrawForceRedraw();
+				}
 				if (Img.errorcount == null) Img.errorcount = 0;
 				Img.errorcount += 1;
 				if (Img.errorcount < 3) {
@@ -493,8 +513,7 @@ function GLDrawLoadImage(gl, url) {
 					Img.src = Img.src;
 				} else {
 					console.log("Error loading image " + Img.src);
-					++GLDrawCacheLoadedImages;
-					if (GLDrawCacheLoadedImages == GLDrawCacheTotalImages) CharacterLoadCanvasAll();
+
 				}
 			});
 			Img.src = url;
@@ -546,9 +565,9 @@ function GLDrawLoadMask(gl, texWidth, texHeight, offsetX, offsetY, alphaMasks) {
  * @param {number} y - Position of the image on the Y axis
  * @param {number} width - Width of the rectangle to clear
  * @param {number} height - Height of the rectangle to clear
- * @returns {void} - Nothing
+ * @returns {boolean} - true
  */
-function GLDrawClearRectBlink(gl, x, y, width, height) { GLDrawClearRect(gl, x + 500, y, width, height); }
+function GLDrawClearRectBlink(gl, x, y, width, height) { return GLDrawClearRect(gl, x + 500, y, width, height); }
 /**
  * Clears a rectangle on WebGLRenderingContext
  * @param {WebGLRenderingContext} gl - WebGL context
@@ -556,7 +575,7 @@ function GLDrawClearRectBlink(gl, x, y, width, height) { GLDrawClearRect(gl, x +
  * @param {number} y - Position of the image on the Y axis
  * @param {number} width - Width of the rectangle to clear
  * @param {number} height - Height of the rectangle to clear
- * @returns {void} - Nothing
+ * @returns {boolean} - true
  */
 function GLDrawClearRect(gl, x, y, width, height) {
 	gl.enable(gl.SCISSOR_TEST);
@@ -564,6 +583,7 @@ function GLDrawClearRect(gl, x, y, width, height) {
 	gl.clearColor(0, 0, 0, 0);
 	gl.clear(gl.COLOR_BUFFER_BIT);
 	gl.disable(gl.SCISSOR_TEST);
+	return true;
 }
 
 /**
@@ -586,8 +606,8 @@ function GLDrawHexToRGBA(color, alpha = 1) {
  */
 function GLDrawAppearanceBuild(C) {
 	GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, CanvasDrawHeight);
-	CommonDrawCanvasPrepare(C);
-	CommonDrawAppearanceBuild(C, {
+	CommonDrawCanvasPrepare(C, true);
+	if (CommonDrawAppearanceBuild(C, {
 		clearRect: (x, y, w, h) => GLDrawClearRect(GLDrawCanvas.GL, x, CanvasDrawHeight - y - h, w, h),
 		clearRectBlink: (x, y, w, h) => GLDrawClearRectBlink(GLDrawCanvas.GL, x, CanvasDrawHeight - y - h, w, h),
 		drawImage: (src, x, y, alphaMasks, opacity, rotate) => GLDrawImage(src, GLDrawCanvas.GL, x, y, 0, null, null, alphaMasks, opacity, rotate),
@@ -596,7 +616,20 @@ function GLDrawAppearanceBuild(C) {
 		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => GLDrawImageBlink(src, GLDrawCanvas.GL, x, y, color, fullAlpha, alphaMasks, opacity, rotate),
 		drawCanvas: (Img, x, y, alphaMasks) => GLDraw2DCanvas(GLDrawCanvas.GL, Img, x, y, alphaMasks),
 		drawCanvasBlink: (Img, x, y, alphaMasks) => GLDraw2DCanvasBlink(GLDrawCanvas.GL, Img, x, y, alphaMasks),
-	});
-	C.Canvas.getContext("2d").drawImage(GLDrawCanvas, 0, 0);
-	C.CanvasBlink.getContext("2d").drawImage(GLDrawCanvas, -500, 0);
+	})) {
+		CommonDrawCanvasPrepare(C);
+		C.Canvas.getContext("2d").drawImage(GLDrawCanvas, 0, 0);
+		C.CanvasBlink.getContext("2d").drawImage(GLDrawCanvas, -500, 0);
+	} else {
+		GLDrawLodingCharacters.push(C);
+	}
+}
+
+/**
+ * Redraw all characters that were not loaded correctly
+ */
+function GLDrawForceRedraw() {
+	const chars = [...GLDrawLodingCharacters];
+	GLDrawLodingCharacters = [];
+	chars.forEach(C => GLDrawAppearanceBuild(C));
 }

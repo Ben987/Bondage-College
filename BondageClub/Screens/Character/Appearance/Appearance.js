@@ -477,14 +477,14 @@ function CharacterAppearanceSetHeightModifiers(C) {
 function CharacterAppearanceBuildCanvas(C) {
 	CommonDrawCanvasPrepare(C);
 	CommonDrawAppearanceBuild(C, {
-		clearRect: (x, y, w, h) => C.Canvas.getContext("2d").clearRect(x, y, w, h),
-		clearRectBlink: (x, y, w, h) => C.CanvasBlink.getContext("2d").clearRect(x, y, w, h),
-		drawImage: (src, x, y, alphaMasks, opacity, rotate) => DrawImageCanvas(src, C.Canvas.getContext("2d"), x, y, alphaMasks, opacity, rotate),
-		drawImageBlink: (src, x, y, alphaMasks, opacity, rotate) => DrawImageCanvas(src, C.CanvasBlink.getContext("2d"), x, y, alphaMasks, opacity, rotate),
-		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => DrawImageCanvasColorize(src, C.Canvas.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity, rotate),
-		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => DrawImageCanvasColorize(src, C.CanvasBlink.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity, rotate),
-		drawCanvas: (Img, x, y, alphaMasks) => DrawCanvas(Img, C.Canvas.getContext("2d"), x, y, alphaMasks),
-		drawCanvasBlink: (Img, x, y, alphaMasks) => DrawCanvas(Img, C.CanvasBlink.getContext("2d"), x, y, alphaMasks),
+		clearRect: (x, y, w, h) => { C.Canvas.getContext("2d").clearRect(x, y, w, h); return true; } ,
+		clearRectBlink: (x, y, w, h) => { C.CanvasBlink.getContext("2d").clearRect(x, y, w, h); return true; },
+		drawImage: (src, x, y, alphaMasks, opacity, rotate) => { DrawImageCanvas(src, C.Canvas.getContext("2d"), x, y, alphaMasks, opacity, rotate); return true; },
+		drawImageBlink: (src, x, y, alphaMasks, opacity, rotate) => { DrawImageCanvas(src, C.CanvasBlink.getContext("2d"), x, y, alphaMasks, opacity, rotate); return true; },
+		drawImageColorize: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => { DrawImageCanvasColorize(src, C.Canvas.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity, rotate); return true; },
+		drawImageColorizeBlink: (src, x, y, color, fullAlpha, alphaMasks, opacity, rotate) => { DrawImageCanvasColorize(src, C.CanvasBlink.getContext("2d"), x, y, 1, color, fullAlpha, alphaMasks, opacity, rotate); return true; },
+		drawCanvas: (Img, x, y, alphaMasks) => { DrawCanvas(Img, C.Canvas.getContext("2d"), x, y, alphaMasks); return true; },
+		drawCanvasBlink: (Img, x, y, alphaMasks) => { DrawCanvas(Img, C.CanvasBlink.getContext("2d"), x, y, alphaMasks); return true; },
 	});
 }
 

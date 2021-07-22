@@ -43,19 +43,20 @@
 /**
  * Prepares the character's drawing canvases before drawing the character's appearance.
  * @param {Character} C - The character to prepare
+ * @param {boolean} [NoClear] - do not call clearRect
  * @returns {void} - Nothing
  */
-function CommonDrawCanvasPrepare(C) {
+function CommonDrawCanvasPrepare(C, NoClear) {
 	if (C.Canvas == null) {
 		C.Canvas = document.createElement("canvas");
 		C.Canvas.width = 500;
 		C.Canvas.height = CanvasDrawHeight;
-	} else C.Canvas.getContext("2d").clearRect(0, 0, 500, CanvasDrawHeight);
+	} else if (!NoClear) C.Canvas.getContext("2d").clearRect(0, 0, 500, CanvasDrawHeight);
 	if (C.CanvasBlink == null) {
 		C.CanvasBlink = document.createElement("canvas");
 		C.CanvasBlink.width = 500;
 		C.CanvasBlink.height = CanvasDrawHeight;
-	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, CanvasDrawHeight);
+	} else if (!NoClear) C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, CanvasDrawHeight);
 
 	C.MustDraw = true;
 }
@@ -84,9 +85,11 @@ function CommonDrawAppearanceBuild(C, {
 	drawImageColorizeBlink,
 }) {
 	const LayerCounts = {};
-
+	var success = true;
 	// Loop through all layers in the character appearance
 	C.AppearanceLayers.forEach((Layer) => {
+		if (!success) return;
+
 		const A = Layer.Asset;
 		const AG = A.Group;
 		const CountKey = AG.Name + "/" + A.Name;
@@ -159,8 +162,8 @@ function CommonDrawAppearanceBuild(C, {
 			if ((!AlphaDef.Group || !AlphaDef.Group.length) &&
 				(!AlphaDef.Pose || !Array.isArray(AlphaDef.Pose) || !!CommonDrawFindPose(C, AlphaDef.Pose))) {
 				AlphaDef.Masks.forEach(rect => {
-					clearRect(rect[0], rect[1] + CanvasUpperOverflow + YFixedOffset, rect[2], rect[3]);
-					clearRectBlink(rect[0], rect[1] + CanvasUpperOverflow + YFixedOffset, rect[2], rect[3]);
+					if (!clearRect(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3])) { success = false; return; }
+					if (!clearRectBlink(rect[0], rect[1] + CanvasUpperOverflow, rect[2], rect[3])) { success = false; return; }
 				});
 			}
 		});
@@ -288,28 +291,28 @@ function CommonDrawAppearanceBuild(C, {
 			// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply
 			// that text)
 			if ((Color != null) && (Color.indexOf("#") == 0) && Layer.AllowColorize) {
-				drawImageColorize(
+				if (!drawImageColorize(
 					"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + L + ".png", X, Y,
 					Color,
 					AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate
-				);
-				drawImageColorizeBlink(
+				)) { success = false; return; }
+				if (!drawImageColorizeBlink(
 					"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + L + ".png", X, Y,
 					Color, AG.DrawingFullAlpha, AlphaMasks, Opacity, Rotate
-				);
+				)) { success = false; return; }
 			} else {
 				var ColorName = ((Color == null) || (Color == "Default") || (Color == "") || (Color.length == 1) ||
 					(Color.indexOf("#") == 0)) ? "" : "_" + Color;
-				drawImage(
+				if (!drawImage(
 					"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + G + LayerType + ColorName + L + ".png",
 					X, Y,
 					AlphaMasks, Opacity, Rotate
-				);
-				drawImageBlink(
+				)) { success = false; return; }
+				if (!drawImageBlink(
 					"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + G + LayerType + ColorName + L +
 					".png",
 					X, Y, AlphaMasks, Opacity, Rotate
-				);
+				)) { success = false; return; }
 			}
 		}
 
@@ -320,14 +323,14 @@ function CommonDrawAppearanceBuild(C, {
 
 			// If we just drew the last drawable layer for this asset, draw the lock too (never colorized)
 			if (DrawableLayerCount === LayerCounts[CountKey]) {
-				drawImage(
+				if (!drawImage(
 					"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + Expression + A.Name + (A.HasType ? Type : "") +
 					"_Lock.png",
 					X, Y, AlphaMasks
-				);
-				drawImageBlink(
+				)) { success = false; return; }
+				if (!drawImageBlink(
 					"Assets/" + AG.Family + "/" + GroupName + "/" + Pose + BlinkExpression + A.Name + (A.HasType ? Type : "") +
-					"_Lock.png", X, Y, AlphaMasks);
+					"_Lock.png", X, Y, AlphaMasks)) { success = false; return; }
 			}
 		}
 		// }
@@ -343,6 +346,8 @@ function CommonDrawAppearanceBuild(C, {
 			CommonCallFunctionByNameWarn(`Assets${A.Group.Name}${A.Name}AfterDraw`, DrawingData);
 		}
 	});
+
+	return success;
 }
 
 /**
